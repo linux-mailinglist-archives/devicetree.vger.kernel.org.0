@@ -2,156 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 893475BCF7
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 15:32:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A8C495BD8D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 16:03:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729071AbfGANcg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 09:32:36 -0400
-Received: from mga09.intel.com ([134.134.136.24]:38071 "EHLO mga09.intel.com"
+        id S1728902AbfGAODe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 10:03:34 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36232 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727415AbfGANcg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jul 2019 09:32:36 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 01 Jul 2019 06:32:35 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,439,1557212400"; 
-   d="scan'208";a="361834699"
-Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.122]) ([10.237.72.122])
-  by fmsmga005.fm.intel.com with ESMTP; 01 Jul 2019 06:32:33 -0700
-Subject: Re: [PATCH 3/3] mmc: sdhci-sprd: Add pin control support for voltage
- switch
-To:     Baolin Wang <baolin.wang@linaro.org>, ulf.hansson@linaro.org,
-        zhang.lyra@gmail.com, orsonzhai@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     vincent.guittot@linaro.org, linux-mmc@vger.kernel.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-References: <cover.1561094029.git.baolin.wang@linaro.org>
- <db6d2b2d6170fd2409916c5c41b857f4bc587a15.1561094029.git.baolin.wang@linaro.org>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-Message-ID: <bc6ae189-ca6b-5447-907e-41ec05b2926c@intel.com>
-Date:   Mon, 1 Jul 2019 16:31:25 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1727031AbfGAODe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Jul 2019 10:03:34 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 381CE2175B;
+        Mon,  1 Jul 2019 14:03:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1561989813;
+        bh=T2w/j8sYKdqu+6ydzrypjQS9JVeaNU+szoI9ecA6Qvw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=r4pN9Zh75V00tchT8/xeABJC+L4MWPT1MZxTHZGEWDk2wcRsBdcXAwSDWisLoSTNI
+         1VgJ5sax1mLkviCHWwO/rLIep7TekqS6eWtrl/URRYivEc7ViMfsKkIswa/TRjs494
+         IKgcJMbLBIr3w9aBduRa2S/eDEAD4MsMY8QFkyFw=
+Received: by mail-qt1-f176.google.com with SMTP id h21so14696904qtn.13;
+        Mon, 01 Jul 2019 07:03:33 -0700 (PDT)
+X-Gm-Message-State: APjAAAWk8ztL2Zb2ktTdsO4ETipED5CHLW16g4rNTm5TtpYjaIweMTBy
+        b/g+yf0/FHhOy+sQ+8zzO8QEHDyYXYj/0wzwAg==
+X-Google-Smtp-Source: APXvYqxIe3KvpivdXVekQQyi1JMul6lzbVRgVZQlo8hDS8fSl7EpRCjBjbxVicvn9Xjlwji3WRPz4NFznBekQ59zdyY=
+X-Received: by 2002:aed:3f10:: with SMTP id p16mr20698288qtf.110.1561989812384;
+ Mon, 01 Jul 2019 07:03:32 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <db6d2b2d6170fd2409916c5c41b857f4bc587a15.1561094029.git.baolin.wang@linaro.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190630203614.5290-1-robdclark@gmail.com> <20190630203614.5290-2-robdclark@gmail.com>
+In-Reply-To: <20190630203614.5290-2-robdclark@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 1 Jul 2019 08:03:20 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKMULJJ9CERRBpqd7Y2dtovEJ6jcDKy6J4yR6rAdjibUg@mail.gmail.com>
+Message-ID: <CAL_JsqKMULJJ9CERRBpqd7Y2dtovEJ6jcDKy6J4yR6rAdjibUg@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: chosen: document panel-id binding
+To:     Rob Clark <robdclark@gmail.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        aarch64-laptops@lists.linaro.org,
+        Rob Clark <robdclark@chromium.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 21/06/19 9:12 AM, Baolin Wang wrote:
-> For Spreadtrum SD card voltage switching, besides regulator setting,
-> it also need switch related pin's state to output corresponding voltage.
-> 
-> This patch adds pin control operation to support voltage switch.
-> 
-> Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
-
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-
+On Sun, Jun 30, 2019 at 2:36 PM Rob Clark <robdclark@gmail.com> wrote:
+>
+> From: Rob Clark <robdclark@chromium.org>
+>
+> The panel-id property in chosen can be used to communicate which panel,
+> of multiple possibilities, is installed.
+>
+> Signed-off-by: Rob Clark <robdclark@chromium.org>
 > ---
->  drivers/mmc/host/sdhci-sprd.c |   54 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 54 insertions(+)
-> 
-> diff --git a/drivers/mmc/host/sdhci-sprd.c b/drivers/mmc/host/sdhci-sprd.c
-> index 8b23c88..6ee340a 100644
-> --- a/drivers/mmc/host/sdhci-sprd.c
-> +++ b/drivers/mmc/host/sdhci-sprd.c
-> @@ -12,6 +12,7 @@
->  #include <linux/of.h>
->  #include <linux/of_device.h>
->  #include <linux/of_gpio.h>
-> +#include <linux/pinctrl/consumer.h>
->  #include <linux/platform_device.h>
->  #include <linux/pm_runtime.h>
->  #include <linux/regulator/consumer.h>
-> @@ -72,6 +73,9 @@ struct sdhci_sprd_host {
->  	struct clk *clk_sdio;
->  	struct clk *clk_enable;
->  	struct clk *clk_2x_enable;
-> +	struct pinctrl *pinctrl;
-> +	struct pinctrl_state *pins_uhs;
-> +	struct pinctrl_state *pins_default;
->  	u32 base_rate;
->  	int flags; /* backup of host attribute */
->  	u32 phy_delay[MMC_TIMING_MMC_HS400 + 2];
-> @@ -405,6 +409,8 @@ static void sdhci_sprd_request(struct mmc_host *mmc, struct mmc_request *mrq)
->  
->  static int sdhci_sprd_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
->  {
-> +	struct sdhci_host *host = mmc_priv(mmc);
-> +	struct sdhci_sprd_host *sprd_host = TO_SPRD_HOST(host);
->  	int ret;
->  
->  	if (!IS_ERR(mmc->supply.vqmmc)) {
-> @@ -416,6 +422,37 @@ static int sdhci_sprd_voltage_switch(struct mmc_host *mmc, struct mmc_ios *ios)
->  		}
->  	}
->  
-> +	if (IS_ERR(sprd_host->pinctrl))
-> +		return 0;
-> +
-> +	switch (ios->signal_voltage) {
-> +	case MMC_SIGNAL_VOLTAGE_180:
-> +		ret = pinctrl_select_state(sprd_host->pinctrl,
-> +					   sprd_host->pins_uhs);
-> +		if (ret) {
-> +			pr_err("%s: failed to select uhs pin state\n",
-> +			       mmc_hostname(mmc));
-> +			return ret;
-> +		}
-> +		break;
-> +
-> +	default:
-> +		/* fall-through */
-> +	case MMC_SIGNAL_VOLTAGE_330:
-> +		ret = pinctrl_select_state(sprd_host->pinctrl,
-> +					   sprd_host->pins_default);
-> +		if (ret) {
-> +			pr_err("%s: failed to select default pin state\n",
-> +			       mmc_hostname(mmc));
-> +			return ret;
-> +		}
-> +		break;
-> +	}
-> +
-> +	/* Wait for 300 ~ 500 us for pin state stable */
-> +	usleep_range(300, 500);
-> +	sdhci_reset(host, SDHCI_RESET_CMD | SDHCI_RESET_DATA);
-> +
->  	return 0;
->  }
->  
-> @@ -504,6 +541,23 @@ static int sdhci_sprd_probe(struct platform_device *pdev)
->  	sprd_host = TO_SPRD_HOST(host);
->  	sdhci_sprd_phy_param_parse(sprd_host, pdev->dev.of_node);
->  
-> +	sprd_host->pinctrl = devm_pinctrl_get(&pdev->dev);
-> +	if (!IS_ERR(sprd_host->pinctrl)) {
-> +		sprd_host->pins_uhs =
-> +			pinctrl_lookup_state(sprd_host->pinctrl, "state_uhs");
-> +		if (IS_ERR(sprd_host->pins_uhs)) {
-> +			ret = PTR_ERR(sprd_host->pins_uhs);
-> +			goto pltfm_free;
-> +		}
-> +
-> +		sprd_host->pins_default =
-> +			pinctrl_lookup_state(sprd_host->pinctrl, "default");
-> +		if (IS_ERR(sprd_host->pins_default)) {
-> +			ret = PTR_ERR(sprd_host->pins_default);
-> +			goto pltfm_free;
-> +		}
-> +	}
-> +
->  	clk = devm_clk_get(&pdev->dev, "sdio");
->  	if (IS_ERR(clk)) {
->  		ret = PTR_ERR(clk);
-> 
+>  Documentation/devicetree/bindings/chosen.txt | 69 ++++++++++++++++++++
+>  1 file changed, 69 insertions(+)
 
+I need to update this file to say it's moved to the schema repository...
+
+But I don't think that will matter...
+
+> diff --git a/Documentation/devicetree/bindings/chosen.txt b/Documentation/devicetree/bindings/chosen.txt
+> index 45e79172a646..d502e6489b8b 100644
+> --- a/Documentation/devicetree/bindings/chosen.txt
+> +++ b/Documentation/devicetree/bindings/chosen.txt
+> @@ -68,6 +68,75 @@ on PowerPC "stdout" if "stdout-path" is not found.  However, the
+>  "linux,stdout-path" and "stdout" properties are deprecated. New platforms
+>  should only use the "stdout-path" property.
+>
+> +panel-id
+> +--------
+> +
+> +For devices that have multiple possible display panels (multi-sourcing the
+> +display panels is common on laptops, phones, tablets), this allows the
+> +bootloader to communicate which panel is installed, e.g.
+
+How does the bootloader figure out which panel? Why can't the kernel
+do the same thing?
+
+> +
+> +/ {
+> +       chosen {
+> +               panel-id = <0xc4>;
+> +       };
+> +
+> +       ivo_panel {
+> +               compatible = "ivo,m133nwf4-r0";
+> +               power-supply = <&vlcm_3v3>;
+> +               no-hpd;
+> +
+> +               ports {
+> +                       port {
+> +                               ivo_panel_in_edp: endpoint {
+> +                                       remote-endpoint = <&sn65dsi86_out_ivo>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +
+> +       boe_panel {
+> +               compatible = "boe,nv133fhm-n61";
+
+Both panels are going to probe. So the bootloader needs to disable the
+not populated panel setting 'status' (or delete the node). If you do
+that, do you even need 'panel-id'?
+
+> +               power-supply = <&vlcm_3v3>;
+> +               no-hpd;
+> +
+> +               ports {
+> +                       port {
+> +                               boe_panel_in_edp: endpoint {
+> +                                       remote-endpoint = <&sn65dsi86_out_boe>;
+> +                               };
+> +                       };
+> +               };
+> +       };
+> +
+> +       display_or_bridge_device {
+> +
+> +               ports {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +
+> +                       ...
+> +
+> +                       port@0 {
+> +                               #address-cells = <1>;
+> +                               #size-cells = <0>;
+> +                               reg = <0>;
+> +
+> +                               endpoint@c4 {
+> +                                       reg = <0xc4>;
+
+What does this number represent? It is supposed to be defined by the
+display_or_bridge_device, not a specific panel.
+
+We also need to consider how the DSI case with panels as children of
+the DSI controller would work and how this would work with multiple
+displays each having multiple panel options.
+
+Rob
