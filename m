@@ -2,79 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 53D095C0CD
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 18:03:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 892F65C0D1
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 18:04:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727615AbfGAQDQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 12:03:16 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:46012 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727419AbfGAQDQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jul 2019 12:03:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=IetNNsaoWLkYSAXHE+XLJKKaYo2maSqrxawr9i3AODM=; b=aOPoFzu5X7DIXa6UoMwgiG7W4O
-        dEG+8mePAq/q1GKJV5ij276Gar/vIfjp5D6Gn+ilv3X7r4mITYTQBKzBmDCOqmazbSVrCZpM0Rgfu
-        bD1AXorJAWLUU/UpxuflwHXIkXlpVBNaXiBRvzQzEL8HCGlLZCOkd1UZFV2oAk/bcK/Q=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hhylr-0008CQ-5d; Mon, 01 Jul 2019 18:03:11 +0200
-Date:   Mon, 1 Jul 2019 18:03:11 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Pawel Dembicki <paweldembicki@gmail.com>
-Cc:     linus.walleij@linaro.org,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/4] net: dsa: vsc73xx: Split vsc73xx driver
-Message-ID: <20190701160311.GB30468@lunn.ch>
-References: <20190701152723.624-1-paweldembicki@gmail.com>
- <20190701152723.624-2-paweldembicki@gmail.com>
+        id S1727419AbfGAQEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 12:04:12 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:35372 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727009AbfGAQEM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 12:04:12 -0400
+Received: by mail-ed1-f67.google.com with SMTP id w20so24238363edd.2
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 09:04:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:reply-to:from:date:message-id:subject:to;
+        bh=CW9cWzC2TdaXGW/Oa7rO3g+KcDq77+1utXZmIqtuxiw=;
+        b=Ihc3JkWhTxWK4+WLDs0nh0NojzeC4JNgXf9pRvtLnagVQ2x9kuN7RzuQkOIe0bYzkN
+         9UDkHZn2A7Xhidcgj03AodkPDl3ZG0MXg7+tcp3+kLpVfFxHbJYBwamRHXPHn5J6e/mI
+         jAj+y68PPVXbtm6EHNMNeoAJteCQH//W3gxLHBeTwQoeW0fUCVsR3OccvfYNQDNKneLl
+         iS7Vuo+gOhSfcAV6guXceODtD+xc6HRL4YRcMSknecM0O7+FJOsV8IPXp5Vs3I9d+0Lc
+         vXyBUo1xr6ZGiEELe8nGEG104HNs2ewROoZAsuFfWO7Gqot63OrzRYyFPYBFddN4EaX7
+         jdGg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
+         :subject:to;
+        bh=CW9cWzC2TdaXGW/Oa7rO3g+KcDq77+1utXZmIqtuxiw=;
+        b=n1fVgBi76v9w6XXiGsxipiD72b5mRsSiaEiVlUxq1kdxcBvrUDzvgYLTczeqIWNBtE
+         lWXQoae0WQ8yGPQ/Iyj6P+mvSw4iXlhRdpQkUvcOsRPlpE+aFI6tPQy4VX+4hCS6IOIu
+         d7Da21AXEO2GD2Y/qw58wi3C0yFbWIFXQcFaAq3JO/INKnw7QcAw1rBJqnvUY8MYsHSo
+         roDYpUaWFFLgenw04lI9bJ0euaVM5jlc3D+gT5uDHpPoetJ0HeeBXhQCASN+0lObJsDV
+         G6+ryy/WEVy9VWbJQElDYLpVyFb2KSV0MDXtOrRZHv4vRxOyTey1qU+XH2Z5w+WXm97i
+         TCeA==
+X-Gm-Message-State: APjAAAU4FHg4KstdAzBFC/74wXSPNNsDkuBpg7uPz+MI7S357QS1teel
+        AXtiuMfIZCzHGLsDiQckC2LuxJ2ibs3o1Qinj18=
+X-Google-Smtp-Source: APXvYqyQzGo7XeMlvXtXUWlwZf9rteGC7AnwXqD73BAzLiyJn+cZFcIYGxCMogRN2L/ObyRdU5oBvyXbcU03aSH8mq0=
+X-Received: by 2002:a50:92cd:: with SMTP id l13mr29416255eda.136.1561997050896;
+ Mon, 01 Jul 2019 09:04:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190701152723.624-2-paweldembicki@gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Received: by 2002:a50:894e:0:0:0:0:0 with HTTP; Mon, 1 Jul 2019 09:04:10 -0700 (PDT)
+Reply-To: eddywilliam0003@gmail.com
+From:   eddy william <edemhoegbesso@gmail.com>
+Date:   Mon, 1 Jul 2019 18:04:10 +0200
+Message-ID: <CAPM9i69OBYLDRb9OtNNQZE-Dc+R96o8uTF_saL=dN4gZ2hWWUQ@mail.gmail.com>
+Subject: hello
+To:     undisclosed-recipients:;
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> @@ -495,12 +380,12 @@ static int vsc73xx_update_bits(struct vsc73xx *vsc, u8 block, u8 subblock,
->  	int ret;
->  
->  	/* Same read-modify-write algorithm as e.g. regmap */
-> -	ret = vsc73xx_read(vsc, block, subblock, reg, &orig);
-> +	ret = vsc->ops->read(vsc, block, subblock, reg, &orig);
->  	if (ret)
->  		return ret;
->  	tmp = orig & ~mask;
->  	tmp |= val & mask;
-> -	return vsc73xx_write(vsc, block, subblock, reg, tmp);
-> +	return vsc->ops->write(vsc, block, subblock, reg, tmp);
+Hello
 
-This patch would be a lot less invasive and smaller if you hid the
-difference between SPI and platform inside vsc73xx_write() and
-vsc73xx_read().
+My name is Eddy william. I am a lawyer by profession. I would like to offer you
+the closest relatives to my client. They inherit the sum of ($ 14.2 million)
+Dollars that my client left in the bank before he died.
 
-> -static int vsc73xx_probe(struct spi_device *spi)
-> +int vsc73xx_probe(struct vsc73xx *vsc)
->  {
-> -	struct device *dev = &spi->dev;
+My client is a citizen of your country who died in a car accident with his wife
+and only son. I will be entitled to 50% of the total fund, while 50%
+be for you.
 
-  struct device *dev = vsc->dev;
+Please contact my private email here for more information:
+eddywilliam0003@gmail.com
 
-and then a lot of the changes you make here go away.
-
-In general, think about how to make the changes small. It saves your
-time from actually making changes, and reviewer time since the patch
-it smaller.
-
-    Andrew
+Thanks in advance,
+Mr. Eddy William,
