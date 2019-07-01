@@ -2,146 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E7FF55B8F4
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 12:27:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2AEB55B8FB
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 12:29:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727488AbfGAK1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 06:27:50 -0400
-Received: from mail-eopbgr150071.outbound.protection.outlook.com ([40.107.15.71]:41294
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726076AbfGAK1u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jul 2019 06:27:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=jUhGPYRi2ANEFS9ovpX/t35XfP1KJPlRUS0Gmo6xnDM=;
- b=Rk5fBktkunWwxWf4LNFf4tT6vxFzVPaKDbvC+0W4MnDNjm8ydHYy/VIgeCtKzwt2+gOSzpWyZCSH8/Vv/di+7FTUhnFL8UT1FYUtRFg0bNrpRAotBDmTX91L6Ea2c3HL+8TIYMEMKJ8t4L7arf1cmGdRvN8oMN05whpBRDo1kpk=
-Received: from DB8PR04MB6747.eurprd04.prod.outlook.com (20.179.250.159) by
- DB8PR04MB5737.eurprd04.prod.outlook.com (20.179.9.29) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2032.20; Mon, 1 Jul 2019 10:27:46 +0000
-Received: from DB8PR04MB6747.eurprd04.prod.outlook.com
- ([fe80::93a:4344:1120:4ca0]) by DB8PR04MB6747.eurprd04.prod.outlook.com
- ([fe80::93a:4344:1120:4ca0%6]) with mapi id 15.20.2032.019; Mon, 1 Jul 2019
- 10:27:46 +0000
-From:   "Z.q. Hou" <zhiqiang.hou@nxp.com>
-To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-CC:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: RE: [PATCHv5 10/20] PCI: mobiveil: Fix the INTx process errors
-Thread-Topic: [PATCHv5 10/20] PCI: mobiveil: Fix the INTx process errors
-Thread-Index: AQHU8QrIICRAPGaNQUWlVdR7PlC4dKaxxWUAgARHCcA=
-Date:   Mon, 1 Jul 2019 10:27:46 +0000
-Message-ID: <DB8PR04MB67473911A253C9B7EF9FF1F484F90@DB8PR04MB6747.eurprd04.prod.outlook.com>
-References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
- <20190412083635.33626-11-Zhiqiang.Hou@nxp.com>
- <20190628170552.GD21829@e121166-lin.cambridge.arm.com>
-In-Reply-To: <20190628170552.GD21829@e121166-lin.cambridge.arm.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=zhiqiang.hou@nxp.com; 
-x-originating-ip: [119.31.174.73]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f13949ae-0153-4c05-d37d-08d6fe0ec27c
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB8PR04MB5737;
-x-ms-traffictypediagnostic: DB8PR04MB5737:
-x-microsoft-antispam-prvs: <DB8PR04MB5737509C3DFF9CB63B62F0B384F90@DB8PR04MB5737.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 00851CA28B
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(366004)(376002)(396003)(39860400002)(346002)(13464003)(54534003)(199004)(189003)(74316002)(14444005)(11346002)(478600001)(476003)(446003)(7416002)(256004)(66066001)(76116006)(7736002)(68736007)(52536014)(305945005)(33656002)(86362001)(64756008)(66946007)(73956011)(66446008)(66556008)(2906002)(486006)(6116002)(99286004)(55016002)(76176011)(6916009)(5660300002)(9686003)(3846002)(102836004)(53936002)(8676002)(66476007)(6506007)(14454004)(316002)(7696005)(71200400001)(6436002)(26005)(25786009)(4326008)(71190400001)(6246003)(53546011)(229853002)(8936002)(54906003)(81156014)(186003)(81166006);DIR:OUT;SFP:1101;SCL:1;SRVR:DB8PR04MB5737;H:DB8PR04MB6747.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 8E9qg9R9owK2VZLGCEY73zxzx+pAMpCyuG06HjaXMXs3zlhcPa0DIwf96Id6S0aqCpc0iQI2P3ZZTUJc09NpteAgTpSnWxyXqFW7HXdA+XVOQizT0RohA16yBbYnd8RdLrfE0SahBHVhSKAbdSz710jmlYxbdLSl1huSUovEkEIKBFmwBLuWECYyFHilDnZeY7osPB3aU/3UCUA/LcBBPtL6nFvCd9GngJ1mwySBLs4gguExwaKS282LTKK8BvhiRexU/4l3Oq+7PBfY6liM+B0u8SwF7TGkKxyRbI9KoAyH79jU4805RZicEKudEJCVqrJoAt+SW5bKFtVv3ncaEIRLG0WfeopW/sh0BnU6OPIYVcnu3WncJPZTjl8hv1dn7mUiI+cnDM9pbK8D9ub/UD+C84yKLuIDPlohCoYycZM=
-Content-Type: text/plain; charset="gb2312"
-Content-Transfer-Encoding: base64
+        id S1727974AbfGAK3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 06:29:19 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:56602 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726076AbfGAK3T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 06:29:19 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 0B98E602F8; Mon,  1 Jul 2019 10:29:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1561976957;
+        bh=cWSqOAbfEz0WFf4XUVNLEBEC9uRW9zO4ucQFc7vzM00=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=Od0njd60uogiEn3/nAA6Sj//Hy7MvxWTACCiY6BZ7mCOjrPRHQ8axGLCk4DVEIJNd
+         3m80rMmfd9Pebpm5cl0UibXA/LcA4OzEb0xdgbQtbOChB0tFLV9X/Tye8Rvy9XT7HD
+         12zqZUBpeXwcnD0SJ+Jttx0iFgdUWpTW8r4MV2ao=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
+Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
+        by smtp.codeaurora.org (Postfix) with ESMTP id 3C7896021C;
+        Mon,  1 Jul 2019 10:29:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1561976955;
+        bh=cWSqOAbfEz0WFf4XUVNLEBEC9uRW9zO4ucQFc7vzM00=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=SSn//CNdAEi+Df+wdQhcfXAiJXSvCVN2iSNFav/O7aqFuchgwHQfZH/pkp7ttFN8x
+         ZO+0JX0GlQpFX9cK/UfhTEZxMQxEOCahs6VXyZO0s5TT6NBtwRKY+7PND4UxFFIAOD
+         bar+dR4pacKtEnIOcJFVaZz2L37gQcyRsD/bVMAk=
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f13949ae-0153-4c05-d37d-08d6fe0ec27c
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2019 10:27:46.4622
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: zhiqiang.hou@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5737
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Mon, 01 Jul 2019 15:59:13 +0530
+From:   dhar@codeaurora.org
+To:     Jeykumar Sankaran <jsanka@codeaurora.org>
+Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, robdclark@gmail.com,
+        seanpaul@chromium.org, hoegsberg@chromium.org,
+        abhinavk@codeaurora.org, chandanu@codeaurora.org,
+        nganji@codeaurora.org, jshekhar@codeaurora.org
+Subject: Re: drm/msm/dpu: Correct dpu encoder spinlock initialization
+In-Reply-To: <627144af54459a203f1583d2ad9b390c@codeaurora.org>
+References: <1561357632-15361-1-git-send-email-dhar@codeaurora.org>
+ <efade579f7ba59585b88ecb367422e5c@codeaurora.org>
+ <d61d7805b4ac0ec45309bf5b65841262@codeaurora.org>
+ <627144af54459a203f1583d2ad9b390c@codeaurora.org>
+Message-ID: <ea91c2c49d73af79bd6eea93a6d00a5a@codeaurora.org>
+X-Sender: dhar@codeaurora.org
+User-Agent: Roundcube Webmail/1.2.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTG9yZW56bywNCg0KVGhhbmtzIGEgbG90IGZvciB5b3VyIGNvbW1lbnRzIQ0KDQo+IC0tLS0t
-T3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+IEZyb206IExvcmVuem8gUGllcmFsaXNpIDxsb3Jlbnpv
-LnBpZXJhbGlzaUBhcm0uY29tPg0KPiBTZW50OiAyMDE5xOo21MIyOcjVIDE6MDYNCj4gVG86IFou
-cS4gSG91IDx6aGlxaWFuZy5ob3VAbnhwLmNvbT4NCj4gQ2M6IGxpbnV4LXBjaUB2Z2VyLmtlcm5l
-bC5vcmc7IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFkLm9yZzsNCj4gZGV2aWNldHJl
-ZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWtlcm5lbEB2Z2VyLmtlcm5lbC5vcmc7DQo+IGJoZWxn
-YWFzQGdvb2dsZS5jb207IHJvYmgrZHRAa2VybmVsLm9yZzsgbWFyay5ydXRsYW5kQGFybS5jb207
-DQo+IGwuc3VicmFobWFueWFAbW9iaXZlaWwuY28uaW47IHNoYXduZ3VvQGtlcm5lbC5vcmc7IExl
-byBMaQ0KPiA8bGVveWFuZy5saUBueHAuY29tPjsgY2F0YWxpbi5tYXJpbmFzQGFybS5jb207IHdp
-bGwuZGVhY29uQGFybS5jb207DQo+IE1pbmdrYWkgSHUgPG1pbmdrYWkuaHVAbnhwLmNvbT47IE0u
-aC4gTGlhbiA8bWluZ2h1YW4ubGlhbkBueHAuY29tPjsNCj4gWGlhb3dlaSBCYW8gPHhpYW93ZWku
-YmFvQG54cC5jb20+DQo+IFN1YmplY3Q6IFJlOiBbUEFUQ0h2NSAxMC8yMF0gUENJOiBtb2JpdmVp
-bDogRml4IHRoZSBJTlR4IHByb2Nlc3MgZXJyb3JzDQo+IA0KPiBPbiBGcmksIEFwciAxMiwgMjAx
-OSBhdCAwODozNjoxMkFNICswMDAwLCBaLnEuIEhvdSB3cm90ZToNCj4gPiBGcm9tOiBIb3UgWmhp
-cWlhbmcgPFpoaXFpYW5nLkhvdUBueHAuY29tPg0KPiA+DQo+ID4gSW4gdGhlIGxvb3AgYmxvY2ss
-IHRoZXJlIGlzIG5vdCBjb2RlIHRvIHVwZGF0ZSB0aGUgbG9vcCBrZXksIHRoaXMNCj4gPiBwYXRj
-aCB1cGRhdGVzIHRoZSBsb29wIGtleSBieSByZS1yZWFkIHRoZSBJTlR4IHN0YXR1cyByZWdpc3Rl
-ci4NCj4gPg0KPiA+IFRoaXMgcGF0Y2ggYWxzbyBhZGQgdGhlIGNsZWFyaW5nIG9mIHRoZSBoYW5k
-bGVkIElOVHggc3RhdHVzLg0KPiANCj4gVGhpcyBpcyB0d28gYnVncyBhbmQgdGhhdCByZXF1aXJl
-cyB0d28gcGF0Y2hlcywgZWFjaCBvZiB0aGVtIGZpeGluZyBhIHNwZWNpZmljDQo+IGlzc3VlLg0K
-PiANCj4gU28gc3BsaXQgdGhlIHBhdGNoIGludG8gdHdvIGFuZCByZXBvc3QgaXQuDQoNClllcywg
-d2lsbCBzcGxpdCBpdC4NCg0KVGhhbmtzLA0KWmhpcWlhbmcNCiANCj4gTG9yZW56bw0KPiANCj4g
-PiBOb3RlOiBOZWVkIE1WIHRvIHRlc3QgdGhpcyBmaXguDQo+ID4NCj4gPiBGaXhlczogOWFmNmJj
-YjExZTEyICgiUENJOiBtb2JpdmVpbDogQWRkIE1vYml2ZWlsIFBDSWUgSG9zdCBCcmlkZ2UgSVAN
-Cj4gPiBkcml2ZXIiKQ0KPiA+IFNpZ25lZC1vZmYtYnk6IEhvdSBaaGlxaWFuZyA8WmhpcWlhbmcu
-SG91QG54cC5jb20+DQo+ID4gUmV2aWV3ZWQtYnk6IE1pbmdodWFuIExpYW4gPE1pbmdodWFuLkxp
-YW5AbnhwLmNvbT4NCj4gPiBSZXZpZXdlZC1ieTogU3VicmFobWFueWEgTGluZ2FwcGEgPGwuc3Vi
-cmFobWFueWFAbW9iaXZlaWwuY28uaW4+DQo+ID4gLS0tDQo+ID4gVjU6DQo+ID4gIC0gQ29ycmVj
-dGVkIGFuZCByZXRvdWNoZWQgdGhlIHN1YmplY3QgYW5kIGNoYW5nZWxvZy4NCj4gPg0KPiA+ICBk
-cml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaWUtbW9iaXZlaWwuYyB8IDEzICsrKysrKysrKy0tLS0N
-Cj4gPiAgMSBmaWxlIGNoYW5nZWQsIDkgaW5zZXJ0aW9ucygrKSwgNCBkZWxldGlvbnMoLSkNCj4g
-Pg0KPiA+IGRpZmYgLS1naXQgYS9kcml2ZXJzL3BjaS9jb250cm9sbGVyL3BjaWUtbW9iaXZlaWwu
-Yw0KPiA+IGIvZHJpdmVycy9wY2kvY29udHJvbGxlci9wY2llLW1vYml2ZWlsLmMNCj4gPiBpbmRl
-eCA0YmE0NTg0NzRlNDIuLjc4ZTU3NWU3MWY0ZCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL3Bj
-aS9jb250cm9sbGVyL3BjaWUtbW9iaXZlaWwuYw0KPiA+ICsrKyBiL2RyaXZlcnMvcGNpL2NvbnRy
-b2xsZXIvcGNpZS1tb2JpdmVpbC5jDQo+ID4gQEAgLTM2MSw2ICszNjEsNyBAQCBzdGF0aWMgdm9p
-ZCBtb2JpdmVpbF9wY2llX2lzcihzdHJ1Y3QgaXJxX2Rlc2MgKmRlc2MpDQo+ID4gIAkvKiBIYW5k
-bGUgSU5UeCAqLw0KPiA+ICAJaWYgKGludHJfc3RhdHVzICYgUEFCX0lOVFBfSU5UWF9NQVNLKSB7
-DQo+ID4gIAkJc2hpZnRlZF9zdGF0dXMgPSBjc3JfcmVhZGwocGNpZSwgUEFCX0lOVFBfQU1CQV9N
-SVNDX1NUQVQpOw0KPiA+ICsJCXNoaWZ0ZWRfc3RhdHVzICY9IFBBQl9JTlRQX0lOVFhfTUFTSzsN
-Cj4gPiAgCQlzaGlmdGVkX3N0YXR1cyA+Pj0gUEFCX0lOVFhfU1RBUlQ7DQo+ID4gIAkJZG8gew0K
-PiA+ICAJCQlmb3JfZWFjaF9zZXRfYml0KGJpdCwgJnNoaWZ0ZWRfc3RhdHVzLCBQQ0lfTlVNX0lO
-VFgpIHsgQEANCj4gLTM3MiwxMg0KPiA+ICszNzMsMTYgQEAgc3RhdGljIHZvaWQgbW9iaXZlaWxf
-cGNpZV9pc3Ioc3RydWN0IGlycV9kZXNjICpkZXNjKQ0KPiA+ICAJCQkJCWRldl9lcnJfcmF0ZWxp
-bWl0ZWQoZGV2LCAidW5leHBlY3RlZCBJUlEsDQo+IElOVCVkXG4iLA0KPiA+ICAJCQkJCQkJICAg
-IGJpdCk7DQo+ID4NCj4gPiAtCQkJCS8qIGNsZWFyIGludGVycnVwdCAqLw0KPiA+IC0JCQkJY3Ny
-X3dyaXRlbChwY2llLA0KPiA+IC0JCQkJCSAgIHNoaWZ0ZWRfc3RhdHVzIDw8IFBBQl9JTlRYX1NU
-QVJULA0KPiA+ICsJCQkJLyogY2xlYXIgaW50ZXJydXB0IGhhbmRsZWQgKi8NCj4gPiArCQkJCWNz
-cl93cml0ZWwocGNpZSwgMSA8PCAoUEFCX0lOVFhfU1RBUlQgKyBiaXQpLA0KPiA+ICAJCQkJCSAg
-IFBBQl9JTlRQX0FNQkFfTUlTQ19TVEFUKTsNCj4gPiAgCQkJfQ0KPiA+IC0JCX0gd2hpbGUgKChz
-aGlmdGVkX3N0YXR1cyA+PiBQQUJfSU5UWF9TVEFSVCkgIT0gMCk7DQo+ID4gKw0KPiA+ICsJCQlz
-aGlmdGVkX3N0YXR1cyA9IGNzcl9yZWFkbChwY2llLA0KPiA+ICsJCQkJCQkgICBQQUJfSU5UUF9B
-TUJBX01JU0NfU1RBVCk7DQo+ID4gKwkJCXNoaWZ0ZWRfc3RhdHVzICY9IFBBQl9JTlRQX0lOVFhf
-TUFTSzsNCj4gPiArCQkJc2hpZnRlZF9zdGF0dXMgPj49IFBBQl9JTlRYX1NUQVJUOw0KPiA+ICsJ
-CX0gd2hpbGUgKHNoaWZ0ZWRfc3RhdHVzICE9IDApOw0KPiA+ICAJfQ0KPiA+DQo+ID4gIAkvKiBy
-ZWFkIGV4dHJhIE1TSSBzdGF0dXMgcmVnaXN0ZXIgKi8NCj4gPiAtLQ0KPiA+IDIuMTcuMQ0KPiA+
-DQo=
+On 2019-06-26 03:10, Jeykumar Sankaran wrote:
+> On 2019-06-24 22:44, dhar@codeaurora.org wrote:
+>> On 2019-06-25 03:56, Jeykumar Sankaran wrote:
+>>> On 2019-06-23 23:27, Shubhashree Dhar wrote:
+>>>> dpu encoder spinlock should be initialized during dpu encoder
+>>>> init instead of dpu encoder setup which is part of commit.
+>>>> There are chances that vblank control uses the uninitialized
+>>>> spinlock if not initialized during encoder init.
+>>> Not much can be done if someone is performing a vblank operation
+>>> before encoder_setup is done.
+>>> Can you point to the path where this lock is acquired before
+>>> the encoder_setup?
+>>> 
+>>> Thanks
+>>> Jeykumar S.
+>>>> 
+>> 
+>> When running some dp usecase, we are hitting this callstack.
+>> 
+>> Process kworker/u16:8 (pid: 215, stack limit = 0x00000000df9dd930)
+>> Call trace:
+>>  spin_dump+0x84/0x8c
+>>  spin_dump+0x0/0x8c
+>>  do_raw_spin_lock+0x80/0xb0
+>>  _raw_spin_lock_irqsave+0x34/0x44
+>>  dpu_encoder_toggle_vblank_for_crtc+0x8c/0xe8
+>>  dpu_crtc_vblank+0x168/0x1a0
+>>  dpu_kms_enable_vblank+0[   11.648998]  vblank_ctrl_worker+0x3c/0x60
+>>  process_one_work+0x16c/0x2d8
+>>  worker_thread+0x1d8/0x2b0
+>>  kthread+0x124/0x134
+>> 
+>> Looks like vblank is getting enabled earlier causing this issue and we
+>> are using the spinlock without initializing it.
+>> 
+>> Thanks,
+>> Shubhashree
+>> 
+> DP calls into set_encoder_mode during hotplug before even notifying the
+> u/s. Can you trace out the original caller of this stack?
+> 
+> Even though the patch is harmless, I am not entirely convinced to move 
+> this
+> initialization. Any call which acquires the lock before encoder_setup
+> will be a no-op since there will not be any physical encoder to work 
+> with.
+> 
+> Thanks and Regards,
+> Jeykumar S.
+> 
+>>>> Change-Id: I5a18b95fa47397c834a266b22abf33a517b03a4e
+>>>> Signed-off-by: Shubhashree Dhar <dhar@codeaurora.org>
+>>>> ---
+>>>>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 3 +--
+>>>>  1 file changed, 1 insertion(+), 2 deletions(-)
+>>>> 
+>>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>>> index 5f085b5..22938c7 100644
+>>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
+>>>> @@ -2195,8 +2195,6 @@ int dpu_encoder_setup(struct drm_device *dev, 
+>>>> struct
+>>>> drm_encoder *enc,
+>>>>  	if (ret)
+>>>>  		goto fail;
+>>>> 
+>>>> -	spin_lock_init(&dpu_enc->enc_spinlock);
+>>>> -
+>>>>  	atomic_set(&dpu_enc->frame_done_timeout, 0);
+>>>>  	timer_setup(&dpu_enc->frame_done_timer,
+>>>>  			dpu_encoder_frame_done_timeout, 0);
+>>>> @@ -2250,6 +2248,7 @@ struct drm_encoder *dpu_encoder_init(struct
+>>>> drm_device *dev,
+>>>> 
+>>>>  	drm_encoder_helper_add(&dpu_enc->base, &dpu_encoder_helper_funcs);
+>>>> 
+>>>> +	spin_lock_init(&dpu_enc->enc_spinlock);
+>>>>  	dpu_enc->enabled = false;
+>>>> 
+>>>>  	return &dpu_enc->base;
+
+In dpu_crtc_vblank(), we are looping through all the encoders in the 
+present mode_config: 
+https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c#L1082
+and hence calling dpu_encoder_toggle_vblank_for_crtc() for all the 
+encoders. But in dpu_encoder_toggle_vblank_for_crtc(), after acquiring 
+the spinlock, we will do a early return for
+the encoders which are not currently assigned to our crtc: 
+https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c#L1318.
+Since the encoder_setup for the secondary encoder(dp encoder in this 
+case) is not called until dp hotplug, we are hitting kernel panic while 
+acquiring the lock.
