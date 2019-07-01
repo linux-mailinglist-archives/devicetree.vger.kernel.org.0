@@ -2,202 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D135A5C18C
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 19:00:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED5E05C2A0
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 20:08:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728735AbfGARAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 13:00:03 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:42519 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727782AbfGARAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 13:00:03 -0400
-Received: by mail-io1-f67.google.com with SMTP id u19so21872306ior.9
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 10:00:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=JolxjoC61TKJKf0jb4dN4P28SKpb+zH+zGH1st4ym90=;
-        b=Qd4WduNYQlNNrJRAp36QmrwJY099eDBeJ105dOffHIB5X7OI66k1xlFc+yOJ0OeT8W
-         JAeFJ2lUgNto0dagfE4x46ArMzjM/yE45uJXQQ80irLhpGEMjpsZkWyFodEwxLWk510o
-         vqEu++m0gselpSMr634ICkAselddnefqJ4+VU=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=JolxjoC61TKJKf0jb4dN4P28SKpb+zH+zGH1st4ym90=;
-        b=FpogUGzV8hm4QSbyJT9MhTJeh29Uo/v0EsFUPPcwOV7lDtj5lTw4LshPRSlAabHxub
-         nV3EdueNrTS2LAzMaDHyqwgfTxVqf97rxrKHkaFkcrcwcaiqBf97p3dD2baIIDCiB0De
-         w6nmO8mhqhvDCmeD3AcCMv+5i3eRr8wYJlfr4yzA+QmRbgqk/hndEigL0pxMOizUm+Pb
-         4Y5yU90xIHhdH61O7ONK3iOfLRuYEKqQ96IMz1ARZN0WxkqMN8qQ2wCV5YPNKFvfx6o2
-         ZZCv3KCJVpS+/MI+j7pW8LpfdzLw0I/UPGs+/AbHCTDqeERaEnH1aXd48cwChYnShI76
-         zVbw==
-X-Gm-Message-State: APjAAAX92ajnN/MFaG3uD8FhYOq1Iy9+SHPNDq1bvASXQeMBUdXXic4g
-        OLU5m4C5btohUzIlQSygTJoYHIR+jvE=
-X-Google-Smtp-Source: APXvYqyqNRmc6BMMY0lJgpxTx7Vgsp+Ziq6xqhFDSTRCkkWa2el+Yeig8trpaX/dXuuamFPphCUjvw==
-X-Received: by 2002:a6b:f607:: with SMTP id n7mr238290ioh.263.1562000401835;
-        Mon, 01 Jul 2019 10:00:01 -0700 (PDT)
-Received: from mail-io1-f53.google.com (mail-io1-f53.google.com. [209.85.166.53])
-        by smtp.gmail.com with ESMTPSA id n17sm9786993iog.63.2019.07.01.09.59.58
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 01 Jul 2019 09:59:59 -0700 (PDT)
-Received: by mail-io1-f53.google.com with SMTP id s7so30335453iob.11
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 09:59:58 -0700 (PDT)
-X-Received: by 2002:a02:6597:: with SMTP id u145mr30963069jab.26.1562000398582;
- Mon, 01 Jul 2019 09:59:58 -0700 (PDT)
+        id S1727111AbfGASId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 14:08:33 -0400
+Received: from mail.bugwerft.de ([46.23.86.59]:38152 "EHLO mail.bugwerft.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726664AbfGASId (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Jul 2019 14:08:33 -0400
+X-Greylist: delayed 371 seconds by postgrey-1.27 at vger.kernel.org; Mon, 01 Jul 2019 14:08:32 EDT
+Received: from localhost.localdomain (pD95EF93B.dip0.t-ipconnect.de [217.94.249.59])
+        by mail.bugwerft.de (Postfix) with ESMTPSA id 77604290042;
+        Mon,  1 Jul 2019 17:59:10 +0000 (UTC)
+From:   Daniel Mack <daniel@zonque.org>
+To:     jic23@kernel.org, lars@metafoo.de
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, Daniel Mack <daniel@zonque.org>
+Subject: [PATCH 1/2] device-tree: iio: add bindings documentation for NXP PCT2075
+Date:   Mon,  1 Jul 2019 20:01:57 +0200
+Message-Id: <20190701180158.9463-1-daniel@zonque.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190401171724.215780-1-dianders@chromium.org>
- <20190401171724.215780-2-dianders@chromium.org> <20190630200259.GA15102@ravnborg.org>
-In-Reply-To: <20190630200259.GA15102@ravnborg.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Mon, 1 Jul 2019 09:59:46 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=V3eiBXP4Z5KMxD=-csV5EAD9cY4MzuAOtMyphpDmW+_A@mail.gmail.com>
-Message-ID: <CAD=FV=V3eiBXP4Z5KMxD=-csV5EAD9cY4MzuAOtMyphpDmW+_A@mail.gmail.com>
-Subject: Re: [PATCH v5 1/7] dt-bindings: Add panel-timing subnode to simple-panel
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sean Paul <seanpaul@chromium.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Jeffy Chen <jeffy.chen@rock-chips.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        =?UTF-8?Q?Enric_Balletb=C3=B2?= <enric.balletbo@collabora.com>,
-        =?UTF-8?Q?St=C3=A9phane_Marchesin?= <marcheu@chromium.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Matthias Kaehlcke <mka@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This documentens the bindings for the NXP PCT2075 temperature sensor
+driver.
 
-On Sun, Jun 30, 2019 at 1:03 PM Sam Ravnborg <sam@ravnborg.org> wrote:
->
-> Hi Douglas.
->
-> Some long overdue review feedback.
->
-> On Mon, Apr 01, 2019 at 10:17:18AM -0700, Douglas Anderson wrote:
-> > From: Sean Paul <seanpaul@chromium.org>
-> >
-> > This patch adds a new subnode to simple-panel allowing us to override
-> > the typical timing expressed in the panel's display_timing.
-> >
-> > Changes in v2:
-> >  - Split out the binding into a new patch (Rob)
-> >  - display-timings is a new section (Rob)
-> >  - Use the full display-timings subnode instead of picking the timing
-> >    out (Rob/Thierry)
-> > Changes in v3:
-> >  - Go back to using the timing subnode directly, but rename to
-> >    panel-timing (Rob)
-> > Changes in v4:
-> >  - Simplify desc. for when override should be used (Thierry/Laurent)
-> >  - Removed Rob H review since it's been a year and wording changed
-> > Changes in v5:
-> >  - Removed bit about OS may ignore (Rob/Ezequiel)
-> >
-> > Cc: Doug Anderson <dianders@chromium.org>
-> > Cc: Eric Anholt <eric@anholt.net>
-> > Cc: Heiko Stuebner <heiko@sntech.de>
-> > Cc: Jeffy Chen <jeffy.chen@rock-chips.com>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: St=C3=A9phane Marchesin <marcheu@chromium.org>
-> > Cc: Thierry Reding <thierry.reding@gmail.com>
-> > Cc: devicetree@vger.kernel.org
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: linux-rockchip@lists.infradead.org
-> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
-> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > ---
-> >
-> >  .../bindings/display/panel/simple-panel.txt   | 22 +++++++++++++++++++
-> >  1 file changed, 22 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/display/panel/simple-pan=
-el.txt b/Documentation/devicetree/bindings/display/panel/simple-panel.txt
-> > index b2b872c710f2..93882268c0b9 100644
-> > --- a/Documentation/devicetree/bindings/display/panel/simple-panel.txt
-> > +++ b/Documentation/devicetree/bindings/display/panel/simple-panel.txt
-> > @@ -15,6 +15,16 @@ Optional properties:
-> >    (hot plug detect) signal, but the signal isn't hooked up so we shoul=
-d
-> >    hardcode the max delay from the panel spec when powering up the pane=
-l.
-> >
-> > +panel-timing subnode
-> > +--------------------
-> > +
-> > +This optional subnode is for devices which require a mode differing
-> > +from the panel's "typical" display timing.
-> Meybe add here that it is expected that the panel has included timing
-> in the driver itself, and not as part of DT.
-> So what is specified here is a more precise variant, within the limits
-> of what is specified for the panel.
+Signed-off-by: Daniel Mack <daniel@zonque.org>
+---
+ .../bindings/iio/temperature/pct2075.txt      | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/temperature/pct2075.txt
 
-See discussions previous versions of this patch.  Specifically you can
-see v4 at <https://patchwork.kernel.org/patch/10875505/> and v3
-(posted by Sean) at <https://patchwork.kernel.org/patch/10207591/>.
+diff --git a/Documentation/devicetree/bindings/iio/temperature/pct2075.txt b/Documentation/devicetree/bindings/iio/temperature/pct2075.txt
+new file mode 100644
+index 000000000000..dc5d3e991ab0
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/temperature/pct2075.txt
+@@ -0,0 +1,60 @@
++* NXP PCT2075 - I2C connected digital temperature sensor
++
++Link to datasheet: https://www.nxp.com/docs/en/data-sheet/PCT2075.pdf
++
++Required properties:
++
++ - compatible:	Should be "nxp,pct2075"
++ - reg:		The I2C address of the sensor
++		(controllable via A[0,1,2] pins)
++
++Addressing pins can be tied high, low or left floating, allowing for up to
++27 different I2C addresses, depending on the package.
++
++Optional properties:
++
++ - vcc-supply:		A regulator node that is connected to the Vcc pin
++			(2.7V - 5.5V). If specified, the regulator will be
++			enabled at probe time and disabled when the driver
++			is removed.
++
++ - nxp,os-fault-queue:	Specifies the number of faults that must occur
++			consecutively to activate the OS output pin.
++			Valid numbers are 1 (default), 2, 4 and 6.
++
++ - nxp,os-active-high:	Specifies that the OS pin should be in active-high
++			mode. By default, it is active-low.
++
++ - nxp,os-mode-interrupt: Configures the device to operate the OS pin
++			  as an interrupt rather than a comparator. Please
++			  refer to the datasheet for information about the
++			  differences.
++
++ - nxp,sample-period-ms: Configures the sample period of the device in
++			 milliseconds. Valid values are multiples of 100
++			 up to 3100.
++
++ - nxp,overtemperature-shutdown-millicelsius:
++			Configures the temperature threshold at which the
++			device shuts down, in milli-celcius.
++			Values are given as signed integer and are valid
++			in the range from -55000 up to +125000.
++
++ - nxp,hysteresis-millicelsius:
++			Configures the temperature threshold for OS pin
++			operation, in milli-celcius.
++			Values are given as signed integer and are valid
++			in the range from -55000 up to +125000.
++
++Example:
++
++pct2075@48 {
++	compatible = "nxp,pct2075";
++	reg = <0x48>; /* A0, A1, A2 = low */
++	nxp,os-active-high;
++	nxp,os-mode-interrupt;
++	nxp,sample-period-ms = <1000>;
++	nxp,overtemperature-shutdown-millicelsius = <110000>;
++	nxp,hysteresis-millicelsius = <(-10000)>;
++};
++
+-- 
+2.21.0
 
-Specifically: According to Rob H it is generally not required to
-validate what's in device tree--it can be just blindly applied.  Thus
-the bindings shouldn't really say anything about trying to reconcile
-with the driver (especially since that's heavily relying on the
-current driver implementation).
-
-At the moment the driver still does validate things and we could
-discuss removing that in a future patchset if it was deemed important
-/ desirable.
-
-
-> > +Format information on the panel-timing subnode can be found in
-> > +display-timing.txt.
-> display-timing defines otional properties:
-> hsync-active, pixelclk-active, doublescan etc.
-> It is not from the above obvious which properties from display-timings
-> that can be specified for a panel-timing sub-node.
-> Maybe because they can all be specified?
->
-> Display-timing allows timings to be specified as a range.
-> If it is also OK to specify a range for panle-timing then everythign is
-> fine. But if the panel-timign subnode do not allow ranges this needs to
-> be specified.
-
-One thing to think about here is that the bindings are a bit divorced
-from the real world.  Specifically the bindings should describe
-hardware / what's possible and it's OK for bindings to describe things
-that aren't yet supported in code.  You've gotta be really careful
-here, of course, because it's easy to write ridiculous bindings if
-there is no implementation backing them up, but in general that's
-supposed to be the idea.
-
-Here it seems like it should be possible to specify timings as a range
-and that would be a sensible thing to do.  ...and we're already using
-existing code to parse this node, specifically
-of_get_display_timing().  If simple-panel can't (yet) handle
-reconciling ranges specified in DT then presumably we shouldn't rely
-on that yet.  ...but if it becomes useful then we can add it later.
-...but it's OK to already have it in the bindings.
-
-Did that make sense?  If I'm misunderstanding something about the
-situation then please yell!  :-)
-
-I will also note that perhaps we shouldn't nit-pick too much as per
-Rob's comment in the cover letter [1] of v5 of the series.
-Specifically he said this binding is going away anyway.
-
-Summary: I think I have no actions here and this could go to drm-misc
-with Theirry's Ack plus other tags.
-
-
-[1] https://lore.kernel.org/patchwork/cover/1057038/
