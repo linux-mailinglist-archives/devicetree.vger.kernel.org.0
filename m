@@ -2,130 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AAF8C5BC7B
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 15:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 766915BCBD
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 15:20:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728972AbfGANML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 09:12:11 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:57944 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728882AbfGANMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 09:12:01 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190701131200euoutp013f154ffed38b2c187815812138f23d4c~tSqVtGCvX2458924589euoutp01p
-        for <devicetree@vger.kernel.org>; Mon,  1 Jul 2019 13:12:00 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190701131200euoutp013f154ffed38b2c187815812138f23d4c~tSqVtGCvX2458924589euoutp01p
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1561986720;
-        bh=6Yr0cfbNf5pOBz/M7zrCaVD8oUBVDD8thshT1MqD9b4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=UDheMqmD4KeN3kAPIrzzUJ+Ywxh8fp/Jh+nNPcT7/YnR8Ad+obSIHoovW5y9X9Zvn
-         KvnP8e36jA+E/WIaxsBBnH00asCay2SZ2IMhj7hMVc+xTJlThP6pulaxwDeSv7Ytn4
-         iPVn3fkrUL/pgLGWI2TVSPik+RNUdtXx/WnWlRiA=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190701131158eucas1p133fc961ac9c32734c5d9cb90da50b96e~tSqUlWEtk0797807978eucas1p1I;
-        Mon,  1 Jul 2019 13:11:58 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 57.2B.04298.E960A1D5; Mon,  1
-        Jul 2019 14:11:58 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190701131158eucas1p2392cc10dfabbd2628c160d0aa3abecb8~tSqT59B7m0924209242eucas1p2g;
-        Mon,  1 Jul 2019 13:11:58 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190701131157eusmtrp25676b4a56ce3fbb7d8603a47677b6420~tSqTryTav0788807888eusmtrp2W;
-        Mon,  1 Jul 2019 13:11:57 +0000 (GMT)
-X-AuditID: cbfec7f2-f2dff700000010ca-ae-5d1a069e5948
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 2B.02.04146.D960A1D5; Mon,  1
-        Jul 2019 14:11:57 +0100 (BST)
-Received: from AMDC3778.DIGITAL.local (unknown [106.120.51.20]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190701131156eusmtip14f13b22fca0fc3af7a8f07488f5e180d~tSqSsyDpI2796027960eusmtip1Y;
-        Mon,  1 Jul 2019 13:11:56 +0000 (GMT)
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-To:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-clk@vger.kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org,
-        b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
-        cw00.choi@samsung.com, kyungmin.park@samsung.com,
-        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
-        myungjoo.ham@samsung.com, keescook@chromium.org, tony@atomide.com,
-        jroedel@suse.de, treding@nvidia.com, digetx@gmail.com,
-        gregkh@linuxfoundation.org, willy.mh.wolff.ml@gmail.com,
-        Lukasz Luba <l.luba@partner.samsung.com>
-Subject: [PATCH v11 9/9] ARM: exynos_defconfig: enable DMC driver
-Date:   Mon,  1 Jul 2019 15:11:38 +0200
-Message-Id: <20190701131138.22666-10-l.luba@partner.samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190701131138.22666-1-l.luba@partner.samsung.com>
-X-Brightmail-Tracker: H4sIAAAAAAAAA0WSe0hTURzHO7tPzeVtiZ5MFJZFVmpW1IkiFAwuQRD2tJJaeVHRTdvVfAUt
-        pVLTfFam+cgi56N8NEyl8knLRzkrU1yGuswyK8w0hmRt3kn/fc73+/2d7zmHQ2OSEcKRDlFE
-        ckqFLExKWuN1z4097oWkY8CmwZR1qCa3ikD9v8YJVNT+ikAVUwaAEu9WkSi7s0CEuq/KUbrh
-        K4Z6eqop9DJhkkKDKic0lfqBQG8ab5NoOq0doNyeZyL0oH2IQr2de5D+oppEbZNXCDT/rgZH
-        TW/3Iv3cMjT7YhR4O7CzM1k4+2PgEsXmq3pxtiFviGJry5NJtqmgkmLTEr+TbMv3JyL2mqYc
-        sI+64tnpWuf9S49Z7wrkwkLOcUrP3aesg2815+ARf4gY3Vw2pQJ3iBRgRUNmK0wwaExsTUsY
-        NYAZn4cWDAnzC8D+nAjBmAawNOkuuThRaLhPCkYpgPPDbSJhYZrQDv+mUgBNk4wHrC8/ax6w
-        Y3IBzP98wJzBmMcY/KZ/D8zGCsYHDnwxUmbGmTWwrmpUZGYx4w11mhlMaHOBFdXNC2xl0l/P
-        DC00QyaZhk19lZZL+MIBoxEIvAJOaDWUwE7wb0ORSGAeqtLuWDLnoSG9wJLZCdu0vYT50Bjj
-        BqsaPQXZB+r0H3GzDJllcODbcrOMmTCr7iYmyGKYdFkipNdBTarOUmQPSytvWDZn4bi6jBIe
-        NBvAT3qfDOCS97+rGIBy4MBF8fIgjvdScNEevEzORymCPM6Ey2uB6eN1zWt/1oOZ16dbAUMD
-        qY1Y9R4GSAjZOT5W3gogjUntxE3qlQEScaAsNo5Thp9URoVxfCtYReNSB3H8kuHjEiZIFsmF
-        clwEp1x0RbSVowrkrc5rrRw7FOPkb6codna9l9lnsxl/Ol5S7Gd/9DAaLBNv3qDWcW62k598
-        u/0f8tjs9f0fqidatAcjjcszjXHx0SPNJTd18WBtuo0/6zcy1ebO+jA5218eWTraHJd7YpvL
-        xjHke/RR5IWSkyEdE/tcU0Kfde2IRlvGwi/E2Xbkc1KcD5Z5rceUvOwfq2NeqXQDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrGIsWRmVeSWpSXmKPExsVy+t/xu7pz2aRiDV5uM7bYOGM9q8X1L89Z
-        LeYfOcdqsfrjY0aL5sXr2Swmn5rLZHGmO9ei//FrZovz5zewW5xtesNucatBxuJjzz1Wi8u7
-        5rBZfO49wmgx4/w+Jou1R+6yW1w85Wpxu3EFm8XhN+2sFv+ubWSx2H/Fy+L2bz6LbyceMTqI
-        e3z7OonF4/2NVnaP2Q0XWTx2zrrL7rFpVSebx/65a9g9epvfsXkcfLeHyaNvyypGj82nqz0+
-        b5IL4I7SsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQ
-        y5h5YApLwV/Wigu/J7M3MC5k7WLk5JAQMJGY93gZWxcjF4eQwFJGiTfrjrNDJMQkJu3bDmUL
-        S/y51gVV9IlRonP2A6BuDg42AT2JHasKQeIiAnMYJX52bWMEcZgFzjJL7F7xhgmkW1jAUeLG
-        y59gk1gEVCW2rX8EFucVcJC4sOUrM8QGeYnVGw6A2ZxA8Utf77KB2EIC9hLrFt9gnMDIt4CR
-        YRWjSGppcW56brGhXnFibnFpXrpecn7uJkZgHG479nPzDsZLG4MPMQpwMCrx8GrckogVYk0s
-        K67MPcQowcGsJMK7f4VkrBBvSmJlVWpRfnxRaU5q8SFGU6CjJjJLiSbnA1NEXkm8oamhuYWl
-        obmxubGZhZI4b4fAwRghgfTEktTs1NSC1CKYPiYOTqkGRsFQs88h66S+8FSWSXzZ17Q5tI7f
-        d6XAA8eFNs5/fsZ/Ffv4as7Mj5H6HvN+XxLpOSFjb3UydUpJi99Gj8TZrj+Kg7d+kfi0+WNp
-        1Nfl8rpC2ce6c1RL8tndFR/uYlOY0RH6+67+BIs3rumndr3yMag5e42JXVa293sFJ6vzi0U7
-        wo+4J64xUGIpzkg01GIuKk4EAD86CovZAgAA
-X-CMS-MailID: 20190701131158eucas1p2392cc10dfabbd2628c160d0aa3abecb8
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190701131158eucas1p2392cc10dfabbd2628c160d0aa3abecb8
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190701131158eucas1p2392cc10dfabbd2628c160d0aa3abecb8
-References: <20190701131138.22666-1-l.luba@partner.samsung.com>
-        <CGME20190701131158eucas1p2392cc10dfabbd2628c160d0aa3abecb8@eucas1p2.samsung.com>
+        id S1727049AbfGANUx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 09:20:53 -0400
+Received: from mail-eopbgr40068.outbound.protection.outlook.com ([40.107.4.68]:60671
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726329AbfGANUx (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 1 Jul 2019 09:20:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=OaUAOPXohnVzqkJWmyYjhVRxTzpR9ETGSfw0coirnpU=;
+ b=BmqZP4N45I/2fHOuCtgjfLP3ZAJet3nMAo+14RhKTh0uxm5AoT7GLIxlr/ZQjoVTiUH8rMwpb+W/OhXrm0WMY4vhQAub9M6s4qdVqOW1mt9d833ln8iCntkmxgB1nMoT50decNxniXVdZhlUjBM29UCIr/KCeR50Z/itUMNyIZQ=
+Received: from VI1PR04MB5055.eurprd04.prod.outlook.com (20.177.50.140) by
+ VI1PR04MB5133.eurprd04.prod.outlook.com (20.177.50.158) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2032.20; Mon, 1 Jul 2019 13:20:49 +0000
+Received: from VI1PR04MB5055.eurprd04.prod.outlook.com
+ ([fe80::d83:14c4:dedb:213b]) by VI1PR04MB5055.eurprd04.prod.outlook.com
+ ([fe80::d83:14c4:dedb:213b%5]) with mapi id 15.20.2032.019; Mon, 1 Jul 2019
+ 13:20:49 +0000
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     Anson Huang <anson.huang@nxp.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "ccaione@baylibre.com" <ccaione@baylibre.com>,
+        "angus@akkea.ca" <angus@akkea.ca>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH V2 1/2] arm64: dts: imx8mm: Correct OPP table according to
+ latest datasheet
+Thread-Topic: [PATCH V2 1/2] arm64: dts: imx8mm: Correct OPP table according
+ to latest datasheet
+Thread-Index: AQHVLmXFrcvuT+m33U+Utu0uFxLfsA==
+Date:   Mon, 1 Jul 2019 13:20:49 +0000
+Message-ID: <VI1PR04MB5055B324BD963A50698A0AA9EEF90@VI1PR04MB5055.eurprd04.prod.outlook.com>
+References: <20190629102157.8026-1-Anson.Huang@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leonard.crestez@nxp.com; 
+x-originating-ip: [82.144.34.2]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 87341a7a-cb93-4da3-a19e-08d6fe26ef54
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB5133;
+x-ms-traffictypediagnostic: VI1PR04MB5133:
+x-microsoft-antispam-prvs: <VI1PR04MB51337C39C1D510A69D7404B6EEF90@VI1PR04MB5133.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 00851CA28B
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(39860400002)(396003)(346002)(376002)(136003)(199004)(189003)(66476007)(66556008)(66446008)(66946007)(64756008)(44832011)(66066001)(446003)(86362001)(81156014)(53936002)(55016002)(8676002)(81166006)(25786009)(6246003)(316002)(73956011)(486006)(52536014)(54906003)(478600001)(14454004)(71190400001)(71200400001)(76116006)(91956017)(476003)(33656002)(9686003)(110136005)(7416002)(76176011)(53546011)(6506007)(102836004)(229853002)(5660300002)(26005)(186003)(2501003)(256004)(4744005)(99286004)(7696005)(6436002)(4326008)(8936002)(305945005)(7736002)(6116002)(3846002)(74316002)(68736007)(2906002)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5133;H:VI1PR04MB5055.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: SItNQtVosjwD7wxDstdr9fpgogvf1z9tMFPOFSKY9ie2CqihiE9AQJrVGVrg2Q5g43Q0EVClLvpDmYXyowYupni8sabTO4SMGj+BK+/o37M1p3BGQVOxqHWp6om703LXwHLyV76DsL55eXCsvjB/caWKUpsIkvB176AZISZJyOsEpAhIUnYobAwfw7/z/daSJtLgv1o26ky0pLBw9+dMZKMoquKWiTi8fgjW0rqko+zBb7qGLRlKR6BB92azR8JiULgmsh+vlR40vpjzBKtLlcTTkMX51dWdzlGiD5qIuab36MbR1M7iuWasP+KW/Cv3TvApqrh9C8AuqaNG63hMsf5cdJlGKwgyovDj1UGu8Aw3EBrua+yd41AScq0iN2dZ5nIE4IbWPYpdT61YiGT9/z14yAopUNfl3xilS8no/Uo=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 87341a7a-cb93-4da3-a19e-08d6fe26ef54
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2019 13:20:49.5638
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5133
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable driver for Exynos5422 Dynamic Memory Controller supporting
-dynamic frequency and voltage scaling in Exynos5422 SoCs.
-
-Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
----
- arch/arm/configs/exynos_defconfig | 2 ++
- 1 file changed, 2 insertions(+)
-
-diff --git a/arch/arm/configs/exynos_defconfig b/arch/arm/configs/exynos_defconfig
-index c95c54284da2..4e7e52786174 100644
---- a/arch/arm/configs/exynos_defconfig
-+++ b/arch/arm/configs/exynos_defconfig
-@@ -290,6 +290,8 @@ CONFIG_DEVFREQ_GOV_PERFORMANCE=y
- CONFIG_DEVFREQ_GOV_POWERSAVE=y
- CONFIG_DEVFREQ_GOV_USERSPACE=y
- CONFIG_ARM_EXYNOS_BUS_DEVFREQ=y
-+CONFIG_EXYNOS5422_DMC=y
-+CONFIG_DDR=y
- CONFIG_DEVFREQ_EVENT_EXYNOS_NOCP=y
- CONFIG_EXYNOS_IOMMU=y
- CONFIG_EXTCON=y
--- 
-2.17.1
-
+On 6/29/2019 1:31 PM, Anson.Huang@nxp.com wrote:=0A=
+> From: Anson Huang <Anson.Huang@nxp.com>=0A=
+> =0A=
+> According to latest datasheet (Rev.0.2, 04/2019) from below links,=0A=
+> 1.8GHz is ONLY available for consumer part, so the market segment=0A=
+> bits for 1.8GHz opp should ONLY available for consumer part accordingly.=
+=0A=
+>  > Fixes: f403a26c865b (arm64: dts: imx8mm: Add cpu speed grading and =0A=
+all OPPs)=0A=
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>=0A=
+=0A=
+For both:=0A=
+Reviewed-by: Leonard Crestez <leonard.crestez@nxp.com>=0A=
+=0A=
+The vendor tree goes through a lot of testing so switching to the exact =0A=
+speed grading interpretation from there does make sense.=0A=
