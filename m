@@ -2,439 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5EE95B5B3
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 09:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7A515B604
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 09:49:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727802AbfGAHZj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 03:25:39 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:38311 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727451AbfGAHZj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 03:25:39 -0400
-Received: by mail-pf1-f195.google.com with SMTP id y15so6118664pfn.5
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 00:25:38 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=31YZpUwGpcIWxXfunTU3YnlxSzOHcHbdXILjgQQWIsY=;
-        b=Rk0sgGyrNiH2QhmgC33ugsXSCUWxLRG8ileCEjyYl9eT3xp6n8dv2Uo6b3XXF5R64m
-         F29sjl9RkAdfDtZNKqCOj/rdTbAdcGub+uBvyyDzWkGDBvd0NHXCkev/POfZgzUSqFXs
-         7LgTO5o5mx5dmRoPFgfvlvd2ko8PD3+vKT+S4=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=31YZpUwGpcIWxXfunTU3YnlxSzOHcHbdXILjgQQWIsY=;
-        b=sXLMk79FATpkiatJk/iu+4lNvHkoScdK2wbcZgs6q2jH5LqUrwf/rnqyzuIRyEpot1
-         wVFRDMENuVSWs9xhsiTMbiIsGSl+ghENdTeFQ7m9WrLPpluXb+NRaYK5v+bsT0e8LP7T
-         g+RLMYbaezaWw6P9gfDeSp6TvFP8Jn+3O2sE0arnsdILvHiOm3Tnmzw/XJjmybHnoO0Y
-         rZoxFcVMkVonZU2WUbhM+lwl5OZOYoRUljgPiZOOsAS6ToQmcgPkkMoe02MLiK4Jwdm5
-         /ObnaJ5/nOAs3D14gtqOF87aU1sVtvmlSfQQDGorM1a2rkPoonlBpTy7Zcrs9R0+uXcG
-         qgqg==
-X-Gm-Message-State: APjAAAUHph15Gznu8sHOoNzwzrzZgR0WAf+Y0e/up8lzEvEAxz1eNMKg
-        Bp8+k+Em7z/8ozqIOX5TiGj+beB74FU=
-X-Google-Smtp-Source: APXvYqxWZ5ea3dRF89PSbb6SmUlfX9fNTMbMLqcspKfe3YESfKVtEKjWrcgEaL9fOLPpUnoHeFZYTg==
-X-Received: by 2002:a63:89c7:: with SMTP id v190mr22486457pgd.299.1561965938371;
-        Mon, 01 Jul 2019 00:25:38 -0700 (PDT)
-Received: from chromium.org ([2401:fa00:4:4:6d27:f13:a0fa:d4b6])
-        by smtp.gmail.com with ESMTPSA id a3sm9112379pff.122.2019.07.01.00.25.34
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 01 Jul 2019 00:25:37 -0700 (PDT)
-Date:   Mon, 1 Jul 2019 16:25:32 +0900
-From:   Tomasz Figa <tfiga@chromium.org>
-To:     Jungo Lin <jungo.lin@mediatek.com>
-Cc:     hverkuil@xs4all.nl, laurent.pinchart@ideasonboard.com,
-        matthias.bgg@gmail.com, mchehab@kernel.org,
-        linux-media@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        srv_heupstream@mediatek.com, ddavenport@chromium.org,
-        robh@kernel.org, sean.cheng@mediatek.com, sj.huang@mediatek.com,
-        frederic.chen@mediatek.com, ryan.yu@mediatek.com,
-        rynn.wu@mediatek.com, frankie.chiu@mediatek.com
-Subject: Re: [RFC,v3 9/9] media: platform: Add Mediatek ISP P1 shared memory
- device
-Message-ID: <20190701072532.GB137710@chromium.org>
-References: <jungo.lin@mediatek.com>
- <20190611035344.29814-1-jungo.lin@mediatek.com>
- <20190611035344.29814-10-jungo.lin@mediatek.com>
+        id S1727162AbfGAHtq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 03:49:46 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:10171 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727996AbfGAHsz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 03:48:55 -0400
+X-UUID: 29e458313bd94780bffa386dc71126cc-20190701
+X-UUID: 29e458313bd94780bffa386dc71126cc-20190701
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        (envelope-from <bibby.hsieh@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 551608128; Mon, 01 Jul 2019 15:48:45 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 1 Jul 2019 15:48:43 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 1 Jul 2019 15:48:43 +0800
+From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
+To:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>
+CC:     Daniel Kurtz <djkurtz@chromium.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        YT Shen <yt.shen@mediatek.com>,
+        Daoyuan Huang <daoyuan.huang@mediatek.com>,
+        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
+        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        <ginny.chen@mediatek.com>, Bibby Hsieh <bibby.hsieh@mediatek.com>
+Subject: [PATCH v10 00/12] support gce on mt8183 platform
+Date:   Mon, 1 Jul 2019 15:48:30 +0800
+Message-ID: <20190701074842.15401-1-bibby.hsieh@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190611035344.29814-10-jungo.lin@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jungo,
+Changes since v8 and v9:
+ - change the error return code in cmdq_dev_get_client_reg()
 
-On Tue, Jun 11, 2019 at 11:53:44AM +0800, Jungo Lin wrote:
-> The purpose of this child device is to provide shared
-> memory management for exchanging tuning data between co-processor
-> and the Pass 1 unit of the camera ISP system, including cache
-> buffer handling.
-> 
+Changes since v7:
+ - remove the memory allocation out of cmdq_dev_get_client_reg()
+ - rebase onto 5.2-rc1
 
-Looks like we haven't really progressed on getting this replaced with
-something that doesn't require so much custom code. Let me propose something
-better then.
+Changes since v6:
+ - remove cmdq_dev_get_event function and gce event property
+ - separate some changes to indepentent patch
+ - change the binding document related to gce-client-reg property
 
-We already have a reserved memory mode in DT. If it has a compatible string
-of "shared-dma-pool", it would be registered in the coherent DMA framework
-[1]. That would make it available for consumer devices to look-up.
+Changes since v5:
+ - fix typo
+ - remove gce-event-name form the dt-binding
+ - add reasons in commit message
 
-Now if we add a "memory-region" property to the SCP device node and point it
-to our reserved memory node, the SCP driver could look it up and hook to the
-DMA mapping API using of_reserved_mem_device_init_by_idx[2].
+Changes since v4:
+ - refine the architecture of the packet encoder function
+ - refine the gce enevt property
+ - change the patch's title
 
-That basically makes any dma_alloc_*(), dma_map_*(), etc. calls on the SCP
-struct device use the coherent DMA ops, which operate on the assigned memory
-pool. With that, the P1 driver could just directly use those calls to
-manage the memory, without any custom code.
+Changes since v3:
+ - fix a typo in dt-binding and dtsi
+ - cast the return value to right format
 
-There is an example how this setup works in the s5p-mfc driver[3], but it
-needs to be noted that it creates child nodes, because it can have more than
-1 DMA port, which may need its own memory pool. In our case, we wouldn't
-need child nodes and could just use the SCP device directly.
+Changes since v2:
+ - according to CK's review comment, change the property name and
+   refine the parameter
+ - change the patch's title
+ - remove unused property from dt-binding and dts
 
-[1] https://elixir.bootlin.com/linux/v5.2-rc7/source/kernel/dma/coherent.c#L345
-[2] https://elixir.bootlin.com/linux/v5.2-rc7/source/drivers/of/of_reserved_mem.c#L312
-[3] https://elixir.bootlin.com/linux/v5.2-rc7/source/drivers/media/platform/s5p-mfc/s5p_mfc.c#L1075
+Changes since v1:
+ - add prefix "cmdq" in the commit subject
+ - add dt-binding document for get event and subsys function
+ - add fix up tag in fixup patch
+ - fix up some coding style (alignment)
 
-Let me also post some specific comments below, in case we end up still
-needing any of the code.
+MTK will support gce function on mt8183 platform.
+  dt-binding: gce: add gce header file for mt8183
+  mailbox: mediatek: cmdq: support mt8183 gce function
+  arm64: dts: add gce node for mt8183
 
-> Signed-off-by: Jungo Lin <jungo.lin@mediatek.com>
-> ---
-> This patch depends on "Add support for mt8183 SCP"[1].
-> 
-> [1] https://patchwork.kernel.org/cover/10972143/
-> ---
->  .../platform/mtk-isp/isp_50/cam/Makefile      |   1 +
->  .../mtk-isp/isp_50/cam/mtk_cam-smem.c         | 304 ++++++++++++++++++
->  .../mtk-isp/isp_50/cam/mtk_cam-smem.h         |  18 ++
->  3 files changed, 323 insertions(+)
->  create mode 100644 drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam-smem.c
->  create mode 100644 drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam-smem.h
-> 
-> diff --git a/drivers/media/platform/mtk-isp/isp_50/cam/Makefile b/drivers/media/platform/mtk-isp/isp_50/cam/Makefile
-> index 95f0b1c8fa1c..d545ca6f09c5 100644
-> --- a/drivers/media/platform/mtk-isp/isp_50/cam/Makefile
-> +++ b/drivers/media/platform/mtk-isp/isp_50/cam/Makefile
-> @@ -4,5 +4,6 @@ mtk-cam-isp-objs += mtk_cam-ctrl.o
->  mtk-cam-isp-objs += mtk_cam-v4l2-util.o
->  mtk-cam-isp-objs += mtk_cam.o
->  mtk-cam-isp-objs += mtk_cam-scp.o
-> +mtk-cam-isp-objs += mtk_cam-smem.o
->  
->  obj-$(CONFIG_VIDEO_MEDIATEK_ISP_PASS1) += mtk-cam-isp.o
-> \ No newline at end of file
-> diff --git a/drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam-smem.c b/drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam-smem.c
-> new file mode 100644
-> index 000000000000..a9845668ce10
-> --- /dev/null
-> +++ b/drivers/media/platform/mtk-isp/isp_50/cam/mtk_cam-smem.c
-> @@ -0,0 +1,304 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +//
-> +// Copyright (c) 2018 MediaTek Inc.
-> +
-> +#include <asm/cacheflush.h>
-> +#include <linux/device.h>
-> +#include <linux/io.h>
-> +#include <linux/iommu.h>
-> +#include <linux/of.h>
-> +#include <linux/of_fdt.h>
-> +#include <linux/of_reserved_mem.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/platform_data/mtk_scp.h>
-> +#include <media/videobuf2-dma-contig.h>
-> +
-> +#include "mtk_cam-smem.h"
-> +
-> +static struct dma_map_ops smem_dma_ops;
-> +
-> +struct mtk_cam_smem_dev {
-> +	struct device *dev;
-> +	struct sg_table sgt;
-> +	struct page **smem_pages;
-> +	dma_addr_t smem_base;
-> +	dma_addr_t smem_dma_base;
-> +	int smem_size;
-> +};
-> +
-> +struct dma_coherent_mem {
-> +	void		*virt_base;
-> +	dma_addr_t	device_base;
-> +	unsigned long	pfn_base;
-> +	int		size;
-> +	int		flags;
-> +	unsigned long	*bitmap;
-> +	spinlock_t	spinlock; /* dma_coherent_mem attributes protection */
-> +	bool		use_dev_dma_pfn_offset;
-> +};
-> +
-> +dma_addr_t mtk_cam_smem_iova_to_scp_addr(struct device *dev,
-> +					 dma_addr_t iova)
-> +{
-> +	struct iommu_domain *domain;
-> +	dma_addr_t addr, limit;
-> +	struct mtk_cam_smem_dev *smem_dev = dev_get_drvdata(dev);
-> +
-> +	domain = iommu_get_domain_for_dev(dev);
-> +	if (!domain) {
-> +		dev_warn(dev, "No iommu group domain\n");
-> +		return 0;
-> +	}
-> +
-> +	addr = iommu_iova_to_phys(domain, iova);
-> +	limit = smem_dev->smem_base + smem_dev->smem_size;
-> +	if (addr < smem_dev->smem_base || addr >= limit) {
-> +		dev_err(dev,
-> +			"Unexpected scp_addr:%pad must >= %pad and < %pad)\n",
-> +			&addr, &smem_dev->smem_base, &limit);
-> +		return 0;
-> +	}
-> +	return addr;
-> +}
+Besides above patches, we refine gce driver on those patches.
+  soc: mediatek: cmdq: reorder the parameter
+  soc: mediatek: cmdq: change the type of input parameter
+  mailbox: mediatek: cmdq: move the CMDQ_IRQ_MASK into cmdq driver data
+  soc: mediatek: cmdq: clear the event in cmdq initial flow
 
-This isn't correct. One could pass an IOVA that wasn't allocated for the SCP
-and then the address wouldn't be valid, because it would point outside of
-the address range allowed for SCP to access and also it would only point to
-the first page backing the IOVA.
+In order to enhance the convenience of gce usage, we add new helper functions and refine the method of instruction combining.
+  dt-binding: gce: remove thread-num property
+  dt-binding: gce: add binding for gce client reg property
+  soc: mediatek: cmdq: define the instruction struct
+  soc: mediatek: cmdq: add polling function
+  soc: mediatek: cmdq: add cmdq_dev_get_client_reg function
 
-The correct approach would be to always carry SCP DMA address and IOVA
-together in some kind of struct describing such buffers.
+Bibby Hsieh (12):
+  dt-binding: gce: remove thread-num property
+  dt-binding: gce: add gce header file for mt8183
+  dt-binding: gce: add binding for gce client reg property
+  mailbox: mediatek: cmdq: move the CMDQ_IRQ_MASK into cmdq driver data
+  mailbox: mediatek: cmdq: support mt8183 gce function
+  soc: mediatek: cmdq: clear the event in cmdq initial flow
+  soc: mediatek: cmdq: reorder the parameter
+  soc: mediatek: cmdq: change the type of input parameter
+  soc: mediatek: cmdq: define the instruction struct
+  soc: mediatek: cmdq: add polling function
+  soc: mediatek: cmdq: add cmdq_dev_get_client_reg function
+  arm64: dts: add gce node for mt8183
 
-> +
-> +static int mtk_cam_smem_get_sgtable(struct device *dev,
-> +				    struct sg_table *sgt,
-> +				    void *cpu_addr, dma_addr_t dma_addr,
-> +				    size_t size, unsigned long attrs)
-> +{
-> +	struct mtk_cam_smem_dev *smem_dev = dev_get_drvdata(dev);
-> +	size_t pages_count = PAGE_ALIGN(size) >> PAGE_SHIFT;
-> +	dma_addr_t scp_addr = mtk_cam_smem_iova_to_scp_addr(dev, dma_addr);
-> +	u32 pages_start = (scp_addr - smem_dev->smem_base) >> PAGE_SHIFT;
-> +
-> +	dev_dbg(dev,
-> +		"%s:page:%u va:%pK scp addr:%pad, aligned size:%zu pages:%zu\n",
-> +		__func__, pages_start, cpu_addr, &scp_addr, size, pages_count);
-> +
-> +	return sg_alloc_table_from_pages(sgt,
-> +		smem_dev->smem_pages + pages_start,
-> +		pages_count, 0, size, GFP_KERNEL);
-> +}
+ .../devicetree/bindings/mailbox/mtk-gce.txt   |  25 ++-
+ arch/arm64/boot/dts/mediatek/mt8183.dtsi      |  11 ++
+ drivers/mailbox/mtk-cmdq-mailbox.c            |  18 +-
+ drivers/soc/mediatek/mtk-cmdq-helper.c        | 169 +++++++++++++----
+ include/dt-bindings/gce/mt8183-gce.h          | 177 ++++++++++++++++++
+ include/linux/mailbox/mtk-cmdq-mailbox.h      |   5 +
+ include/linux/soc/mediatek/mtk-cmdq.h         |  53 +++++-
+ 7 files changed, 397 insertions(+), 61 deletions(-)
+ create mode 100644 include/dt-bindings/gce/mt8183-gce.h
 
-This should be just dma_get_sgtable_attrs(), in the approach I suggested at
-the top.
+-- 
+2.18.0
 
-> +
-> +static void *mtk_cam_smem_get_cpu_addr(struct mtk_cam_smem_dev *smem_dev,
-> +				       dma_addr_t addr)
-> +{
-> +	struct device *dev = smem_dev->dev;
-> +	struct dma_coherent_mem *dma_mem = dev->dma_mem;
-> +
-> +	if (addr < smem_dev->smem_base ||
-> +	    addr > smem_dev->smem_base + smem_dev->smem_size) {
-
-This is off by one, should be >=.
-
-Also, this wouldn't really guarantee the CPU access the caller is going to
-do is valid, because it doesn't consider the access operation size.
-
-Generally I'd suggest designing the code so that it doesn't have to convert
-offset addresses between different address spaces.
-
-> +		dev_err(dev, "Invalid scp_addr %pad from sg\n", &addr);
-> +		return NULL;
-> +	}
-> +	return dma_mem->virt_base + (addr - smem_dev->smem_base);
-> +}
-> +
-> +static void mtk_cam_smem_sync_sg_for_cpu(struct device *dev,
-> +					 struct scatterlist *sgl, int nelems,
-> +					 enum dma_data_direction dir)
-> +{
-> +	struct mtk_cam_smem_dev *smem_dev = dev_get_drvdata(dev);
-> +	dma_addr_t scp_addr = sg_phys(sgl);
-> +	void *cpu_addr = mtk_cam_smem_get_cpu_addr(smem_dev, scp_addr);
-> +
-> +	dev_dbg(dev,
-> +		"__dma_unmap_area:scp_addr:%pad,vaddr:%pK,size:%d,dir:%d\n",
-> +		&scp_addr, cpu_addr, sgl->length, dir);
-> +	__dma_unmap_area(cpu_addr, sgl->length, dir);
-
-It's not allowed to use this function anywhere outside of the DMA API
-internals. See the comment [4].
-
-[4] https://elixir.bootlin.com/linux/v5.2-rc7/source/arch/arm64/include/asm/cacheflush.h#L112
-
-> +}
-> +
-> +static void mtk_cam_smem_sync_sg_for_device(struct device *dev,
-> +					    struct scatterlist *sgl,
-> +					    int nelems,
-> +					    enum dma_data_direction dir)
-> +{
-> +	struct mtk_cam_smem_dev *smem_dev = dev_get_drvdata(dev);
-> +	dma_addr_t scp_addr = sg_phys(sgl);
-> +	void *cpu_addr = mtk_cam_smem_get_cpu_addr(smem_dev, scp_addr);
-> +
-> +	dev_dbg(dev,
-> +		"__dma_map_area:scp_addr:%pad,vaddr:%pK,size:%d,dir:%d\n",
-> +		&scp_addr, cpu_addr, sgl->length, dir);
-> +	__dma_map_area(cpu_addr, sgl->length, dir);
-
-Ditto.
-
-> +}
-> +
-> +static void mtk_cam_smem_setup_dma_ops(struct device *dev,
-> +				       struct dma_map_ops *smem_ops)
-> +{
-> +	memcpy((void *)smem_ops, dev->dma_ops, sizeof(*smem_ops));
-> +	smem_ops->get_sgtable = mtk_cam_smem_get_sgtable;
-> +	smem_ops->sync_sg_for_device = mtk_cam_smem_sync_sg_for_device;
-> +	smem_ops->sync_sg_for_cpu = mtk_cam_smem_sync_sg_for_cpu;
-> +	set_dma_ops(dev, smem_ops);
-> +}
-> +
-> +static int mtk_cam_reserved_drm_sg_init(struct mtk_cam_smem_dev *smem_dev)
-> +{
-> +	u32 size_align, n_pages;
-> +	struct device *dev = smem_dev->dev;
-> +	struct sg_table *sgt = &smem_dev->sgt;
-> +	struct page **pages;
-> +	dma_addr_t dma_addr;
-> +	unsigned int i;
-> +	int ret;
-> +
-> +	smem_dev->smem_base = scp_get_reserve_mem_phys(SCP_ISP_MEM2_ID);
-> +	smem_dev->smem_size = scp_get_reserve_mem_size(SCP_ISP_MEM2_ID);
-> +	if (!smem_dev->smem_base || !smem_dev->smem_size)
-> +		return -EPROBE_DEFER;
-> +
-> +	dev_info(dev, "%s dev:0x%pK base:%pad size:%u MiB\n",
-> +		 __func__,
-> +		 smem_dev->dev,
-> +		 &smem_dev->smem_base,
-> +		 (smem_dev->smem_size / SZ_1M));
-> +
-> +	size_align = PAGE_ALIGN(smem_dev->smem_size);
-> +	n_pages = size_align >> PAGE_SHIFT;
-> +
-> +	pages = kmalloc_array(n_pages, sizeof(struct page *), GFP_KERNEL);
-> +	if (!pages)
-> +		return -ENOMEM;
-> +
-> +	for (i = 0; i < n_pages; i++)
-> +		pages[i] = phys_to_page(smem_dev->smem_base + i * PAGE_SIZE);
-> +
-> +	ret = sg_alloc_table_from_pages(sgt, pages, n_pages, 0,
-> +					size_align, GFP_KERNEL);
-> +	if (ret) {
-> +		dev_err(dev, "failed to alloca sg table:%d\n", ret);
-> +		goto fail_table_alloc;
-> +	}
-> +	sgt->nents = dma_map_sg_attrs(dev, sgt->sgl, sgt->orig_nents,
-> +				      DMA_BIDIRECTIONAL,
-> +				      DMA_ATTR_SKIP_CPU_SYNC);
-> +	if (!sgt->nents) {
-> +		dev_err(dev, "failed to dma sg map\n");
-> +		goto fail_map;
-> +	}
-> +
-> +	dma_addr = sg_dma_address(sgt->sgl);
-> +	ret = dma_declare_coherent_memory(dev, smem_dev->smem_base,
-> +					  dma_addr, size_align,
-> +					  DMA_MEMORY_EXCLUSIVE);
-> +	if (ret) {
-> +		dev_err(dev, "Unable to declare smem  memory:%d\n", ret);
-> +		goto fail_map;
-> +	}
-> +
-> +	dev_info(dev, "Coherent mem pa:%pad/%pad, size:%d\n",
-> +		 &smem_dev->smem_base, &dma_addr, size_align);
-> +
-> +	smem_dev->smem_size = size_align;
-> +	smem_dev->smem_pages = pages;
-> +	smem_dev->smem_dma_base = dma_addr;
-> +
-> +	return 0;
-> +
-> +fail_map:
-> +	sg_free_table(sgt);
-> +fail_table_alloc:
-> +	while (n_pages--)
-> +		__free_page(pages[n_pages]);
-> +	kfree(pages);
-> +
-> +	return -ENOMEM;
-> +}
-> +
-> +/* DMA memory related helper functions */
-> +static void mtk_cam_memdev_release(struct device *dev)
-> +{
-> +	vb2_dma_contig_clear_max_seg_size(dev);
-> +}
-> +
-> +static struct device *mtk_cam_alloc_smem_dev(struct device *dev,
-> +					     const char *name)
-> +{
-> +	struct device *child;
-> +	int ret;
-> +
-> +	child = devm_kzalloc(dev, sizeof(*child), GFP_KERNEL);
-> +	if (!child)
-> +		return NULL;
-> +
-> +	child->parent = dev;
-> +	child->iommu_group = dev->iommu_group;
-
-This isn't something that can be set explicitly. It's an internal field of
-the IOMMU subsystem.
-
-> +	child->release = mtk_cam_memdev_release;
-> +	dev_set_name(child, name);
-> +	set_dma_ops(child, get_dma_ops(dev));
-> +	child->dma_mask = dev->dma_mask;
-> +	ret = dma_set_coherent_mask(child, DMA_BIT_MASK(32));
-> +	if (ret)
-> +		return NULL;
-> +
-> +	vb2_dma_contig_set_max_seg_size(child, DMA_BIT_MASK(32));
-> +
-> +	if (device_register(child)) {
-> +		device_del(child);
-> +		return NULL;
-> +	}
-> +
-> +	return child;
-> +}
-
-We shouldn't need child devices, just one SCP device, as I mentioned above.
-
-> +
-> +static int mtk_cam_composer_dma_init(struct mtk_isp_p1_ctx *isp_ctx)
-> +{
-> +	struct isp_p1_device *p1_dev = p1_ctx_to_dev(isp_ctx);
-> +	struct device *dev = &p1_dev->pdev->dev;
-> +	u32 size;
-> +	dma_addr_t addr;
-> +
-> +	isp_ctx->scp_mem_pa = scp_get_reserve_mem_phys(SCP_ISP_MEM_ID);
-> +	size = PAGE_ALIGN(scp_get_reserve_mem_size(SCP_ISP_MEM_ID));
-> +	if (!isp_ctx->scp_mem_pa || !size)
-> +		return -EPROBE_DEFER;
-> +
-> +	dev_info(dev, "scp addr:%pad size:0x%x\n", &isp_ctx->scp_mem_pa, size);
-
-This isn't something that deserves the "info" log level. Should be "dbg"
-or removed.
-
-Best regards,
-Tomasz
