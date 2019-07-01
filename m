@@ -2,71 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B99925C384
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 21:14:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 883845C3A6
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 21:30:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726587AbfGATOE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 15:14:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56972 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726509AbfGATOE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jul 2019 15:14:04 -0400
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8329E2183F;
-        Mon,  1 Jul 2019 19:14:03 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562008443;
-        bh=Npf2ZLK+YvbRuR9twpc+krnhiPOW2wMFwVIdnqN5JqQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=flFiVqGCvfcXPuIeAdBYQ645aaDv1KcSRcDYxgnBYJf84XizqlGOY23OyCUV/Dvsl
-         qWmiBQgFSd55MAIdjT9gafJfjpe+fZpr6hEHkKR3SoZ9dZCPvIQpB9LPe7zq/wuD62
-         SAVnNPwkQ0MjsRE5cV0IWmL8tjlHUvvhLDmj2sv8=
-Received: by mail-qk1-f169.google.com with SMTP id c70so11938010qkg.7;
-        Mon, 01 Jul 2019 12:14:03 -0700 (PDT)
-X-Gm-Message-State: APjAAAUPdfWD73xyI3ZZzgQ1xI87voKYihrTiCFYOgOcvIEgV/LxmRng
-        6mMU2lBOI5MoJ8sd3qlS8bwqFQZ7GW4Rm3qs8A==
-X-Google-Smtp-Source: APXvYqw94pWnQhyAKVMPyGJC0DCMp9FcnT2dJ+7x7e7D7x+ONjb+1RwRrIevTD05Fg2Zf9JHoMU/KgitDn7+vFJdxXw=
-X-Received: by 2002:ae9:ebd1:: with SMTP id b200mr22436844qkg.152.1562008442787;
- Mon, 01 Jul 2019 12:14:02 -0700 (PDT)
+        id S1726605AbfGATaV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 15:30:21 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:39762 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726076AbfGATaV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 15:30:21 -0400
+Received: by mail-lj1-f193.google.com with SMTP id v18so14400790ljh.6;
+        Mon, 01 Jul 2019 12:30:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=c2eFfHmfd9U9AMnKFnD7g9eg9q57yzBinw/q4+GoLBk=;
+        b=prz9JSr0Ix/WEdo4cL4SdYm7c5EuCT+Kyz0mYTOybz6lg9vOtPNg0KBN36C+D7A+95
+         pVxPfXyCS9zSpZ6W40JayIh0zBBAU4KZ5/P2M71D96mxyMyVnooItQXuadtMCJKUNf6q
+         9xVN9KI872oKfQyBGV2HpNrjMVnPCzfWNcixCp5s/42qk/AHIkBGxq77H8nBlpCeTcU6
+         kqeSOAjzzN9PSAddCq9fFyrLSNYhzFB+gUQT4aZqbln4aS2zOQ0EZNjcDuFlf5nOK1Sc
+         tA1fzcbbC12A3APOFXZDkPZR/V3023ZoVSgKHtlMaYNsc1Ye/qh+LCgtFS/cTdXnZVx2
+         S6Dg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=c2eFfHmfd9U9AMnKFnD7g9eg9q57yzBinw/q4+GoLBk=;
+        b=HuZo0TIQc74oEbt3gVbMDmXYNV/j2knojVVhqEVt3Ezg8xcU+tRHf+0LTQ1qLLTos1
+         HW0W/rrntYXgFPocTl2G91/rtKjUhvZ+/3FyFjJ3OdnBDEz9p7XgLomAfUsH4ivTcGQq
+         oM+20H4MTeiHjirIgnjzJKQYwuCWkqtJmO8VCBDtKIWIAbZHbkDPhajdbh/9ORxK/dI7
+         Qm/Xqv2Rwe5pWYohbcIwOAdNN9cg+YCajl2BjKEQdstG89SmV8x29XhmTZKzH/TxHUwv
+         hgwx6KjJVQtfpF5fl5dhU4h4fIl1tAMVw1Z1eegofACny0gmGIgEzdnnqPTKsHIiymOt
+         DsGw==
+X-Gm-Message-State: APjAAAWh3dFBhF6qcjFQWsjpXmcN+hchnN8qMwTLl5z1e51OkFg5XPt9
+        kVbvDYjWcrPVX/U+Urd0Z8Ql13mP
+X-Google-Smtp-Source: APXvYqyt7pIhGs2lNgfb9Ej2qDR5BG2Vm8qXWoVDPEMZd8CXonitUT2Jb1OUibTRNSj7RCOuN90Yaw==
+X-Received: by 2002:a2e:96d5:: with SMTP id d21mr3513670ljj.170.1562009418517;
+        Mon, 01 Jul 2019 12:30:18 -0700 (PDT)
+Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
+        by smtp.googlemail.com with ESMTPSA id u18sm2582661lfe.65.2019.07.01.12.30.17
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 01 Jul 2019 12:30:17 -0700 (PDT)
+Subject: Re: [PATCH v6 07/15] dt-bindings: memory: tegra30: Convert to
+ Tegra124 YAML
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-tegra@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20190630210019.26914-1-digetx@gmail.com>
+ <20190630210019.26914-8-digetx@gmail.com>
+ <CAL_JsqJq5iwQcbUixMWK819OTof8DzrZ3UMhByc1pTAFTdwnjg@mail.gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <ba299725-b65b-ce7d-6376-a26918cc985b@gmail.com>
+Date:   Mon, 1 Jul 2019 22:30:15 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-References: <20190628175713.14831-1-martyn.welch@collabora.com>
-In-Reply-To: <20190628175713.14831-1-martyn.welch@collabora.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 1 Jul 2019 13:13:51 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ6Kmmw1WisFswq6s71ZyoEFC8P-SasrwKngbEw2OH5YA@mail.gmail.com>
-Message-ID: <CAL_JsqJ6Kmmw1WisFswq6s71ZyoEFC8P-SasrwKngbEw2OH5YA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: Add binding document for NOA1305
-To:     Martyn Welch <martyn.welch@collabora.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        kernel@lists.collabora.co.uk, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_JsqJq5iwQcbUixMWK819OTof8DzrZ3UMhByc1pTAFTdwnjg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 28, 2019 at 11:57 AM Martyn Welch
-<martyn.welch@collabora.com> wrote:
->
-> Document the ON Semiconductor NOA1305 ambient light sensor devicetree
-> bindings.
->
-> Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
-> ---
->
-> Changes:
-> v2: Same as v1.
->
->  .../bindings/iio/light/noa1305.yaml           | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/light/noa1305.yaml
+01.07.2019 22:11, Rob Herring пишет:
+> On Sun, Jun 30, 2019 at 3:04 PM Dmitry Osipenko <digetx@gmail.com> wrote:
+>>
+> 
+> "Convert" implies you delete the old binding doc.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Yes, unfortunately the deletion got lost by accident after rebase and it was already
+too late when I noticed that. Will be fixed in the next revision.
+
+>> The Tegra30 binding will actually differ from the Tegra124 a tad, in
+>> particular the EMEM configuration description. Hence rename the binding
+>> to Tegra124 during of the conversion to YAML.
+>>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> ---
+>>  .../nvidia,tegra124-mc.yaml                   | 149 ++++++++++++++++++
+>>  1 file changed, 149 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+>>
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+>> new file mode 100644
+>> index 000000000000..d18242510295
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+>> @@ -0,0 +1,149 @@
+>> +# SPDX-License-Identifier: (GPL-2.0)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra124-mc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title:
+>> +  NVIDIA Tegra124 SoC Memory Controller
+>> +
+>> +maintainers:
+>> +  - Jon Hunter <jonathanh@nvidia.com>
+>> +  - Thierry Reding <thierry.reding@gmail.com>
+>> +
+>> +description: |
+>> +  Tegra124 SoC features a hybrid 2x32-bit / 1x64-bit memory controller.
+>> +  These are interleaved to provide high performance with the load shared across
+>> +  two memory channels. The Tegra124 Memory Controller handles memory requests
+>> +  from internal clients and arbitrates among them to allocate memory bandwidth
+>> +  for DDR3L and LPDDR3 SDRAMs.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: nvidia,tegra124-mc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description:
+>> +      Physical base address.
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description:
+>> +      Memory Controller clock.
+>> +
+>> +  clock-names:
+>> +    items:
+>> +      - const: mc
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +    description:
+>> +      Memory Controller interrupt.
+>> +
+>> +  "#reset-cells":
+>> +    const: 1
+>> +
+>> +  "#iommu-cells":
+>> +    const: 1
+>> +
+>> +patternProperties:
+>> +  ".*":
+> 
+> Please define a node name or pattern for node names.
+
+There was no pattern specified in the original binding. But I guess the existing
+upstream device-trees could be used as the source for the pattern.
+
+>> +    properties:
+>> +      nvidia,ram-code:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description:
+>> +          Value of RAM_CODE this timing set is used for.
+>> +
+>> +    patternProperties:
+>> +      ".*":
+> 
+> Same here.
+> 
+>> +        properties:
+>> +          clock-frequency:
+>> +            description:
+>> +              Memory clock rate in Hz.
+> 
+> No constraints? Anything from 0 to 4GHz works?
+
+Okay, will add the min/max. I'm not sure what is the exact upper freq limit, probably
+~1GHz.
