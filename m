@@ -2,154 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 57C805B659
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 10:07:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7B49F5B697
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 10:15:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727080AbfGAIHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 04:07:49 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:55576 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726402AbfGAIHt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 04:07:49 -0400
-X-UUID: 45e0ed03ee754ba388e3c4726bc25420-20190701
-X-UUID: 45e0ed03ee754ba388e3c4726bc25420-20190701
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 633325689; Mon, 01 Jul 2019 16:07:28 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 1 Jul 2019 16:07:26 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 1 Jul 2019 16:07:26 +0800
-Message-ID: <1561968446.3524.1.camel@mtksdaap41>
-Subject: Re: [PATCH v10 11/12] soc: mediatek: cmdq: add
- cmdq_dev_get_client_reg function
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
-CC:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Kurtz <djkurtz@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        id S1727980AbfGAIPR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 04:15:17 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:18316 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727967AbfGAIPQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 04:15:16 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x618CiNV016226;
+        Mon, 1 Jul 2019 10:14:35 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=hFwLxNltwxLPb7ENYweaemIXvQCfpR8maLmH6iPD0zc=;
+ b=lYFRMiACJlg8tAf3KRmNIm/mkd2Juy85VeyEwdJ5oG1eXZy+z6LNV5/iMZdUQVuxw0Vm
+ V4sOxi8s41OX/D27ZLAkk9nHe71A6vbvd89cSO++VpwrZvGHtustTFL4rNcffIoekLxw
+ l8Gm2OZK80o1s/OEQ79r4paEtrJbfnqdGdR6agMJ339v7irgX89Db+6jiLEfVW4VKCoO
+ 1qls3Zi/h9Swd0w7Yf9/5iBnVqlR3m7GS+wVSvL96S0tF6MZ9CS/M0QLhL0Il7zxuK7O
+ FfA39gYW4L7RTfWyRs7nCkoHXWwth9q42y0vuqoe4TT+D1A+ebcuFe3pKFVruXUDoQsB Gg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2tdwf0kn6f-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Mon, 01 Jul 2019 10:14:35 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id BB55043;
+        Mon,  1 Jul 2019 08:14:33 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag5node3.st.com [10.75.127.15])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 921D4191D;
+        Mon,  1 Jul 2019 08:14:33 +0000 (GMT)
+Received: from localhost (10.75.127.49) by SFHDAG5NODE3.st.com (10.75.127.15)
+ with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 1 Jul 2019 10:14:33
+ +0200
+From:   Fabrice Gasnier <fabrice.gasnier@st.com>
+To:     <broonie@kernel.org>, <lgirdwood@gmail.com>, <robh+dt@kernel.org>,
+        <alexandre.torgue@st.com>
+CC:     <mcoquelin.stm32@gmail.com>, <fabrice.gasnier@st.com>,
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        "YT Shen" <yt.shen@mediatek.com>,
-        Daoyuan Huang <daoyuan.huang@mediatek.com>,
-        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <ginny.chen@mediatek.com>
-Date:   Mon, 1 Jul 2019 16:07:26 +0800
-In-Reply-To: <20190701074842.15401-12-bibby.hsieh@mediatek.com>
-References: <20190701074842.15401-1-bibby.hsieh@mediatek.com>
-         <20190701074842.15401-12-bibby.hsieh@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        <linux-kernel@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <devicetree@vger.kernel.org>
+Subject: [PATCH v2 0/4] regulator: add support for the STM32 ADC booster
+Date:   Mon, 1 Jul 2019 10:14:21 +0200
+Message-ID: <1561968865-22037-1-git-send-email-fabrice.gasnier@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.49]
+X-ClientProxiedBy: SFHDAG6NODE3.st.com (10.75.127.18) To SFHDAG5NODE3.st.com
+ (10.75.127.15)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-01_06:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Bibby:
+Add support for the 3.3V booster regulator embedded in stm32h7 and stm32mp1
+devices, that can be used to supply ADC analog input switches.
+It's useful to reach full ADC performance when their supply is below 2.7V
+(vdda by default).
 
-On Mon, 2019-07-01 at 15:48 +0800, Bibby Hsieh wrote:
-> GCE cannot know the register base address, this function
-> can help cmdq client to get the cmdq_client_reg structure.
-> 
+Changes in v2:
+- rebase on top of for-next branch
 
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
+Fabrice Gasnier (4):
+  dt-bindings: regulator: add support for the stm32-booster
+  regulator: add support for the stm32-booster
+  ARM: multi_v7_defconfig: enable STM32 booster regulator
+  ARM: dts: stm32: add booster for ADC analog switches on stm32mp157c
 
-> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
-> ---
->  drivers/soc/mediatek/mtk-cmdq-helper.c | 28 ++++++++++++++++++++++++++
->  include/linux/soc/mediatek/mtk-cmdq.h  | 21 +++++++++++++++++++
->  2 files changed, 49 insertions(+)
-> 
-> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> index 70ad4d806fac..ad52ac3ccfbb 100644
-> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
-> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> @@ -27,6 +27,34 @@ struct cmdq_instruction {
->  	u8 op;
->  };
->  
-> +int cmdq_dev_get_client_reg(struct device *dev,
-> +			    struct cmdq_client_reg *client_reg, int idx)
-> +{
-> +	struct of_phandle_args spec;
-> +	int err;
-> +
-> +	if (!client_reg)
-> +		return -ENOENT;
-> +
-> +	err = of_parse_phandle_with_args(dev->of_node, "mediatek,gce-client-reg",
-> +					 "#subsys-cells", idx, &spec);
-> +	if (err < 0) {
-> +		dev_err(dev,
-> +			"error %d can't parse gce-client-reg property (%d)",
-> +			err, idx);
-> +
-> +		return err;
-> +	}
-> +
-> +	client_reg->subsys = spec.args[0];
-> +	client_reg->offset = spec.args[1];
-> +	client_reg->size = spec.args[2];
-> +	of_node_put(spec.np);
-> +
-> +	return 0;
-> +}
-> +EXPORT_SYMBOL(cmdq_dev_get_client_reg);
-> +
->  static void cmdq_client_timeout(struct timer_list *t)
->  {
->  	struct cmdq_client *client = from_timer(client, t, timer);
-> diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
-> index a345870a6d10..be402c4c740e 100644
-> --- a/include/linux/soc/mediatek/mtk-cmdq.h
-> +++ b/include/linux/soc/mediatek/mtk-cmdq.h
-> @@ -15,6 +15,12 @@
->  
->  struct cmdq_pkt;
->  
-> +struct cmdq_client_reg {
-> +	u8 subsys;
-> +	u16 offset;
-> +	u16 size;
-> +};
-> +
->  struct cmdq_client {
->  	spinlock_t lock;
->  	u32 pkt_cnt;
-> @@ -142,4 +148,19 @@ int cmdq_pkt_flush_async(struct cmdq_pkt *pkt, cmdq_async_flush_cb cb,
->   */
->  int cmdq_pkt_flush(struct cmdq_pkt *pkt);
->  
-> +/**
-> + * cmdq_dev_get_client_reg() - parse cmdq client reg from the device
-> + *			       node of CMDQ client
-> + * @dev:	device of CMDQ mailbox clienti
-> + * @client_reg: CMDQ client reg pointer
-> + * @idx:	the index of desired reg
-> + *
-> + * Return: 0 for success; else the error code is returned
-> + *
-> + * Help CMDQ client pasing the cmdq client reg
-> + * from the device node of CMDQ client.
-> + */
-> +int cmdq_dev_get_client_reg(struct device *dev,
-> +			    struct cmdq_client_reg *client_reg, int idx);
-> +
->  #endif	/* __MTK_CMDQ_H__ */
+ .../bindings/regulator/st,stm32-booster.txt        |  18 +++
+ arch/arm/boot/dts/stm32mp157c.dtsi                 |   6 +
+ arch/arm/configs/multi_v7_defconfig                |   1 +
+ drivers/regulator/Kconfig                          |  11 ++
+ drivers/regulator/Makefile                         |   1 +
+ drivers/regulator/stm32-booster.c                  | 132 +++++++++++++++++++++
+ 6 files changed, 169 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/st,stm32-booster.txt
+ create mode 100644 drivers/regulator/stm32-booster.c
 
+-- 
+2.7.4
 
