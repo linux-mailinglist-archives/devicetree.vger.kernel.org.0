@@ -2,156 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2AEB55B8FB
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 12:29:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B59C45B94D
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 12:48:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727974AbfGAK3T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 06:29:19 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:56602 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726076AbfGAK3T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 06:29:19 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 0B98E602F8; Mon,  1 Jul 2019 10:29:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561976957;
-        bh=cWSqOAbfEz0WFf4XUVNLEBEC9uRW9zO4ucQFc7vzM00=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Od0njd60uogiEn3/nAA6Sj//Hy7MvxWTACCiY6BZ7mCOjrPRHQ8axGLCk4DVEIJNd
-         3m80rMmfd9Pebpm5cl0UibXA/LcA4OzEb0xdgbQtbOChB0tFLV9X/Tye8Rvy9XT7HD
-         12zqZUBpeXwcnD0SJ+Jttx0iFgdUWpTW8r4MV2ao=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id 3C7896021C;
-        Mon,  1 Jul 2019 10:29:14 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1561976955;
-        bh=cWSqOAbfEz0WFf4XUVNLEBEC9uRW9zO4ucQFc7vzM00=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=SSn//CNdAEi+Df+wdQhcfXAiJXSvCVN2iSNFav/O7aqFuchgwHQfZH/pkp7ttFN8x
-         ZO+0JX0GlQpFX9cK/UfhTEZxMQxEOCahs6VXyZO0s5TT6NBtwRKY+7PND4UxFFIAOD
-         bar+dR4pacKtEnIOcJFVaZz2L37gQcyRsD/bVMAk=
+        id S1727220AbfGAKsK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 06:48:10 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:40629 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727185AbfGAKr1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 06:47:27 -0400
+Received: by mail-wr1-f68.google.com with SMTP id p11so13273798wre.7
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 03:47:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=QoklnP0bi5VlneOSfMMO/1j0O/akzR/UGUOVoiR4zJg=;
+        b=rYaIP9Z8AFkt6CFzPHllnzifEfoS3M8n6vylLz93bKjw4ukFm0EwmOLEOruJaaMNFV
+         THRhW7V96RN3MeWc9jECmk0UnxywaKuuM395kQUTkVkQ91otdIVspn3NAoz1lCVoqQXr
+         jIhtpPYC2GNXsA1fk09adtYfVcer1x+/YlVaWcSb4CdXyCtdDZbnHmgXa0tomJtTg6Ml
+         JuaCUL3mE4xkgN07UmouRA3Rib1L+P6Sm6QkL6u5UzPEplW7vKFQJhaZKKv9giKCty0Y
+         45D/viPJ7aVxT6ZfzTMack7XC03RGwNQUpVGXylbCkr7iBcleCnXyehjG0NYDfvPY+fJ
+         b36Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=QoklnP0bi5VlneOSfMMO/1j0O/akzR/UGUOVoiR4zJg=;
+        b=r4ecgG+C0YsiUJMGJ6QdWit2RRRMeFh80WRN3XBSF4r0z2I15UWiRhsfTPSou+Mf0T
+         Nm40u6i1PGXNBZ5UivaFVSY8nWZry55uViVP51F4qf3ZWnsHDj/eQdRkfVpt+CaHFdMU
+         5zbSDyMKE3hx/OBhT9ar26XNGJE3mXtYol5Y4c+fSswKSO1QZS5IP/h8Bk8JBipoXvA/
+         JWg5fw8UlBZ3xOavgf2YrGqxvfE1DT0CSRNA1LR+KqOew0JBxzkVvZ9pli+eLOW8LqkI
+         bV9JMYkXDomOBSFVq9xrrIfUPkHZEioCMp1mZjFQozJbc+JDhtHdDQ1nOnpr60qBJ698
+         d+Ww==
+X-Gm-Message-State: APjAAAUXiNf/4PrxzmstD1KnwrduzYzxxIewHj2+B+ymTlvL6digzjkb
+        6VQOKa2JULNTYZWTxZOrQ3iC29TJLRA=
+X-Google-Smtp-Source: APXvYqyTP4k0eF1dNYLfLBPz3xOUZqajJ8MktdmUINp3t0MNrFM4AUYuYE5IkIEDgwrBspHaABU2FA==
+X-Received: by 2002:a5d:5589:: with SMTP id i9mr9222404wrv.198.1561978045919;
+        Mon, 01 Jul 2019 03:47:25 -0700 (PDT)
+Received: from localhost.localdomain (176-150-251-154.abo.bbox.fr. [176.150.251.154])
+        by smtp.gmail.com with ESMTPSA id d24sm11658802wra.43.2019.07.01.03.47.24
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 01 Jul 2019 03:47:25 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     jbrunet@baylibre.com, khilman@baylibre.com,
+        devicetree@vger.kernel.org
+Cc:     linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [RFC 02/11] dt-bindings: power: amlogic, meson-gx-pwrc: Add SM1 bindings
+Date:   Mon,  1 Jul 2019 12:46:56 +0200
+Message-Id: <20190701104705.18271-3-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190701104705.18271-1-narmstrong@baylibre.com>
+References: <20190701104705.18271-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Mon, 01 Jul 2019 15:59:13 +0530
-From:   dhar@codeaurora.org
-To:     Jeykumar Sankaran <jsanka@codeaurora.org>
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        seanpaul@chromium.org, hoegsberg@chromium.org,
-        abhinavk@codeaurora.org, chandanu@codeaurora.org,
-        nganji@codeaurora.org, jshekhar@codeaurora.org
-Subject: Re: drm/msm/dpu: Correct dpu encoder spinlock initialization
-In-Reply-To: <627144af54459a203f1583d2ad9b390c@codeaurora.org>
-References: <1561357632-15361-1-git-send-email-dhar@codeaurora.org>
- <efade579f7ba59585b88ecb367422e5c@codeaurora.org>
- <d61d7805b4ac0ec45309bf5b65841262@codeaurora.org>
- <627144af54459a203f1583d2ad9b390c@codeaurora.org>
-Message-ID: <ea91c2c49d73af79bd6eea93a6d00a5a@codeaurora.org>
-X-Sender: dhar@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-06-26 03:10, Jeykumar Sankaran wrote:
-> On 2019-06-24 22:44, dhar@codeaurora.org wrote:
->> On 2019-06-25 03:56, Jeykumar Sankaran wrote:
->>> On 2019-06-23 23:27, Shubhashree Dhar wrote:
->>>> dpu encoder spinlock should be initialized during dpu encoder
->>>> init instead of dpu encoder setup which is part of commit.
->>>> There are chances that vblank control uses the uninitialized
->>>> spinlock if not initialized during encoder init.
->>> Not much can be done if someone is performing a vblank operation
->>> before encoder_setup is done.
->>> Can you point to the path where this lock is acquired before
->>> the encoder_setup?
->>> 
->>> Thanks
->>> Jeykumar S.
->>>> 
->> 
->> When running some dp usecase, we are hitting this callstack.
->> 
->> Process kworker/u16:8 (pid: 215, stack limit = 0x00000000df9dd930)
->> Call trace:
->>  spin_dump+0x84/0x8c
->>  spin_dump+0x0/0x8c
->>  do_raw_spin_lock+0x80/0xb0
->>  _raw_spin_lock_irqsave+0x34/0x44
->>  dpu_encoder_toggle_vblank_for_crtc+0x8c/0xe8
->>  dpu_crtc_vblank+0x168/0x1a0
->>  dpu_kms_enable_vblank+0[   11.648998]  vblank_ctrl_worker+0x3c/0x60
->>  process_one_work+0x16c/0x2d8
->>  worker_thread+0x1d8/0x2b0
->>  kthread+0x124/0x134
->> 
->> Looks like vblank is getting enabled earlier causing this issue and we
->> are using the spinlock without initializing it.
->> 
->> Thanks,
->> Shubhashree
->> 
-> DP calls into set_encoder_mode during hotplug before even notifying the
-> u/s. Can you trace out the original caller of this stack?
-> 
-> Even though the patch is harmless, I am not entirely convinced to move 
-> this
-> initialization. Any call which acquires the lock before encoder_setup
-> will be a no-op since there will not be any physical encoder to work 
-> with.
-> 
-> Thanks and Regards,
-> Jeykumar S.
-> 
->>>> Change-Id: I5a18b95fa47397c834a266b22abf33a517b03a4e
->>>> Signed-off-by: Shubhashree Dhar <dhar@codeaurora.org>
->>>> ---
->>>>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 3 +--
->>>>  1 file changed, 1 insertion(+), 2 deletions(-)
->>>> 
->>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>> index 5f085b5..22938c7 100644
->>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>> @@ -2195,8 +2195,6 @@ int dpu_encoder_setup(struct drm_device *dev, 
->>>> struct
->>>> drm_encoder *enc,
->>>>  	if (ret)
->>>>  		goto fail;
->>>> 
->>>> -	spin_lock_init(&dpu_enc->enc_spinlock);
->>>> -
->>>>  	atomic_set(&dpu_enc->frame_done_timeout, 0);
->>>>  	timer_setup(&dpu_enc->frame_done_timer,
->>>>  			dpu_encoder_frame_done_timeout, 0);
->>>> @@ -2250,6 +2248,7 @@ struct drm_encoder *dpu_encoder_init(struct
->>>> drm_device *dev,
->>>> 
->>>>  	drm_encoder_helper_add(&dpu_enc->base, &dpu_encoder_helper_funcs);
->>>> 
->>>> +	spin_lock_init(&dpu_enc->enc_spinlock);
->>>>  	dpu_enc->enabled = false;
->>>> 
->>>>  	return &dpu_enc->base;
+Add bindings for the Amlogic SM1 Power control:
+- the VPU power control compatible
+- the general-purpose power controller, controlling the USB, PCIe, NNA and
+  GE2D power domains.
 
-In dpu_crtc_vblank(), we are looping through all the encoders in the 
-present mode_config: 
-https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/msm/disp/dpu1/dpu_crtc.c#L1082
-and hence calling dpu_encoder_toggle_vblank_for_crtc() for all the 
-encoders. But in dpu_encoder_toggle_vblank_for_crtc(), after acquiring 
-the spinlock, we will do a early return for
-the encoders which are not currently assigned to our crtc: 
-https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c#L1318.
-Since the encoder_setup for the secondary encoder(dp encoder in this 
-case) is not called until dp hotplug, we are hitting kernel panic while 
-acquiring the lock.
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../bindings/power/amlogic,meson-gx-pwrc.txt  | 35 +++++++++++++++++++
+ include/dt-bindings/power/meson-sm1-power.h   | 15 ++++++++
+ 2 files changed, 50 insertions(+)
+ create mode 100644 include/dt-bindings/power/meson-sm1-power.h
+
+diff --git a/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt b/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt
+index 0fdc3dd1125e..f0a1e20555bf 100644
+--- a/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt
++++ b/Documentation/devicetree/bindings/power/amlogic,meson-gx-pwrc.txt
+@@ -19,6 +19,7 @@ Required properties:
+ - compatible: should be one of the following :
+ 	- "amlogic,meson-gx-pwrc-vpu" for the Meson GX SoCs
+ 	- "amlogic,meson-g12a-pwrc-vpu" for the Meson G12A SoCs
++	- "amlogic,meson-sm1-pwrc-vpu" for the Meson SM1 SoCs
+ - #power-domain-cells: should be 0
+ - amlogic,hhi-sysctrl: phandle to the HHI sysctrl node
+ - resets: phandles to the reset lines needed for this power demain sequence
+@@ -60,4 +61,38 @@ ao_sysctrl: sys-ctrl@0 {
+ 	};
+ };
+ 
++General Purpose Power Controller
++--------------------------------
+ 
++The Amlogic SM1 SoCs embeds a General Purpose Power Controller used
++to control the power domain for, at least, the USB PHYs and PCIe
++peripherals.
++
++
++Device Tree Bindings:
++---------------------
++
++Required properties:
++- compatible: should be one of the following :
++	- "amlogic,meson-sm1-pwrc" for the Meson SM1 SoCs
++- #power-domain-cells: should be 0
++- amlogic,hhi-sysctrl: phandle to the HHI sysctrl node
++
++Parent node should have the following properties :
++- compatible: "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd"
++- reg: base address and size of the AO system control register space.
++
++
++Example:
++-------
++
++ao_sysctrl: sys-ctrl@0 {
++	compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
++	reg =  <0x0 0x0 0x0 0x100>;
++
++	pwrc: power-controller {
++		compatible = "amlogic,meson-sm1-pwrc";
++		#power-domain-cells = <1>;
++		amlogic,hhi-sysctrl = <&hhi>;
++	};
++};
+diff --git a/include/dt-bindings/power/meson-sm1-power.h b/include/dt-bindings/power/meson-sm1-power.h
+new file mode 100644
+index 000000000000..30e17e4a478e
+--- /dev/null
++++ b/include/dt-bindings/power/meson-sm1-power.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: (GPL-2.0+ or MIT) */
++/*
++ * Copyright (c) 2019 BayLibre, SAS
++ * Author: Neil Armstrong <narmstrong@baylibre.com>
++ */
++
++#ifndef _DT_BINDINGS_MESON_SM1_POWER_H
++#define _DT_BINDINGS_MESON_SM1_POWER_H
++
++#define PWRC_SM1_NNA_ID		0
++#define PWRC_SM1_USB_ID		1
++#define PWRC_SM1_PCIE_ID	2
++#define PWRC_SM1_GE2D_ID	3
++
++#endif
+-- 
+2.21.0
+
