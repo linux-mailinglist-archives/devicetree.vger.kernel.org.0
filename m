@@ -2,117 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 445B05B64A
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 10:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57C805B659
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 10:07:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727661AbfGAIFA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 04:05:00 -0400
-Received: from mga01.intel.com ([192.55.52.88]:23367 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727080AbfGAIFA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jul 2019 04:05:00 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga008.fm.intel.com ([10.253.24.58])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 01 Jul 2019 01:04:59 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,438,1557212400"; 
-   d="scan'208";a="163612156"
-Received: from paasikivi.fi.intel.com ([10.237.72.42])
-  by fmsmga008.fm.intel.com with ESMTP; 01 Jul 2019 01:04:58 -0700
-Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
-        id AF9C52080B; Mon,  1 Jul 2019 11:04:57 +0300 (EEST)
-Date:   Mon, 1 Jul 2019 11:04:57 +0300
-From:   Sakari Ailus <sakari.ailus@linux.intel.com>
-To:     Marek Vasut <marex@denx.de>
-Cc:     linux-media@vger.kernel.org,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] media: dt-bindings: Add Intersil ISL7998x DT bindings
-Message-ID: <20190701080457.acucsi6p3mlmbg75@paasikivi.fi.intel.com>
-References: <20190520201812.7937-1-marex@denx.de>
+        id S1727080AbfGAIHt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 04:07:49 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:55576 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726402AbfGAIHt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 04:07:49 -0400
+X-UUID: 45e0ed03ee754ba388e3c4726bc25420-20190701
+X-UUID: 45e0ed03ee754ba388e3c4726bc25420-20190701
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 633325689; Mon, 01 Jul 2019 16:07:28 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Mon, 1 Jul 2019 16:07:26 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 1 Jul 2019 16:07:26 +0800
+Message-ID: <1561968446.3524.1.camel@mtksdaap41>
+Subject: Re: [PATCH v10 11/12] soc: mediatek: cmdq: add
+ cmdq_dev_get_client_reg function
+From:   CK Hu <ck.hu@mediatek.com>
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+CC:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Daniel Kurtz <djkurtz@chromium.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        "YT Shen" <yt.shen@mediatek.com>,
+        Daoyuan Huang <daoyuan.huang@mediatek.com>,
+        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
+        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        <ginny.chen@mediatek.com>
+Date:   Mon, 1 Jul 2019 16:07:26 +0800
+In-Reply-To: <20190701074842.15401-12-bibby.hsieh@mediatek.com>
+References: <20190701074842.15401-1-bibby.hsieh@mediatek.com>
+         <20190701074842.15401-12-bibby.hsieh@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190520201812.7937-1-marex@denx.de>
-User-Agent: NeoMutt/20170113 (1.7.2)
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+Hi, Bibby:
 
-On Mon, May 20, 2019 at 10:18:11PM +0200, Marek Vasut wrote:
-> Add bindings for the Intersil ISL7998x BT656-to-MIPI-CSI2 decoder.
+On Mon, 2019-07-01 at 15:48 +0800, Bibby Hsieh wrote:
+> GCE cannot know the register base address, this function
+> can help cmdq client to get the cmdq_client_reg structure.
 > 
-> Signed-off-by: Marek Vasut <marex@denx.de>
-> Cc: Sakari Ailus <sakari.ailus@linux.intel.com>
-> Cc: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: devicetree@vger.kernel.org
-> To: linux-media@vger.kernel.org
+
+Reviewed-by: CK Hu <ck.hu@mediatek.com>
+
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
 > ---
->  .../bindings/media/i2c/isl7998x.txt           | 37 +++++++++++++++++++
->  1 file changed, 37 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/isl7998x.txt
+>  drivers/soc/mediatek/mtk-cmdq-helper.c | 28 ++++++++++++++++++++++++++
+>  include/linux/soc/mediatek/mtk-cmdq.h  | 21 +++++++++++++++++++
+>  2 files changed, 49 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/isl7998x.txt b/Documentation/devicetree/bindings/media/i2c/isl7998x.txt
-> new file mode 100644
-> index 000000000000..c21703983360
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/isl7998x.txt
-> @@ -0,0 +1,37 @@
-> +Intersil ISL7998x BT656-to-MIPI-CSI2 decoder
+> diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
+> index 70ad4d806fac..ad52ac3ccfbb 100644
+> --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
+> +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
+> @@ -27,6 +27,34 @@ struct cmdq_instruction {
+>  	u8 op;
+>  };
+>  
+> +int cmdq_dev_get_client_reg(struct device *dev,
+> +			    struct cmdq_client_reg *client_reg, int idx)
+> +{
+> +	struct of_phandle_args spec;
+> +	int err;
 > +
-> +The Intersil ISL7998x is a BT656-to-MIPI-CSI decoder which, capable of
-> +receiving up to four analog stream and multiplexing them into up to four
-> +MIPI CSI2 virtual channels, using one MIPI clock lane and 1/2 data lanes.
+> +	if (!client_reg)
+> +		return -ENOENT;
 > +
-> +Required Properties:
-> +- compatible: value should be "isil,isl79987"
-> +- pd-gpios: a GPIO spec for the Power Down pin (active high)
+> +	err = of_parse_phandle_with_args(dev->of_node, "mediatek,gce-client-reg",
+> +					 "#subsys-cells", idx, &spec);
+> +	if (err < 0) {
+> +		dev_err(dev,
+> +			"error %d can't parse gce-client-reg property (%d)",
+> +			err, idx);
 > +
-> +Option Properties:
-> +- isil,num-inputs: Number of connected inputs (1, 2 or 4)
+> +		return err;
+> +	}
+> +
+> +	client_reg->subsys = spec.args[0];
+> +	client_reg->offset = spec.args[1];
+> +	client_reg->size = spec.args[2];
+> +	of_node_put(spec.np);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL(cmdq_dev_get_client_reg);
+> +
+>  static void cmdq_client_timeout(struct timer_list *t)
+>  {
+>  	struct cmdq_client *client = from_timer(client, t, timer);
+> diff --git a/include/linux/soc/mediatek/mtk-cmdq.h b/include/linux/soc/mediatek/mtk-cmdq.h
+> index a345870a6d10..be402c4c740e 100644
+> --- a/include/linux/soc/mediatek/mtk-cmdq.h
+> +++ b/include/linux/soc/mediatek/mtk-cmdq.h
+> @@ -15,6 +15,12 @@
+>  
+>  struct cmdq_pkt;
+>  
+> +struct cmdq_client_reg {
+> +	u8 subsys;
+> +	u16 offset;
+> +	u16 size;
+> +};
+> +
+>  struct cmdq_client {
+>  	spinlock_t lock;
+>  	u32 pkt_cnt;
+> @@ -142,4 +148,19 @@ int cmdq_pkt_flush_async(struct cmdq_pkt *pkt, cmdq_async_flush_cb cb,
+>   */
+>  int cmdq_pkt_flush(struct cmdq_pkt *pkt);
+>  
+> +/**
+> + * cmdq_dev_get_client_reg() - parse cmdq client reg from the device
+> + *			       node of CMDQ client
+> + * @dev:	device of CMDQ mailbox clienti
+> + * @client_reg: CMDQ client reg pointer
+> + * @idx:	the index of desired reg
+> + *
+> + * Return: 0 for success; else the error code is returned
+> + *
+> + * Help CMDQ client pasing the cmdq client reg
+> + * from the device node of CMDQ client.
+> + */
+> +int cmdq_dev_get_client_reg(struct device *dev,
+> +			    struct cmdq_client_reg *client_reg, int idx);
+> +
+>  #endif	/* __MTK_CMDQ_H__ */
 
-The presence of ports describing connected Bt.656 inputs tells this.
 
-> +
-> +For further reading on port node refer to
-> +Documentation/devicetree/bindings/media/video-interfaces.txt.
-
-Which endpoint properties are relevant for the endpoint(s) in the CSI-2 port?
-How about the ports describing the Bt.656 interfaces? You should have
-those, too...
-
-> +
-> +Example:
-> +
-> +	i2c_master {
-> +		isl7998x_mipi@44 {
-> +			compatible = "isil,isl79987";
-> +			reg = <0x44>;
-> +			isil,num-inputs = <4>;
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pinctrl_videoadc>;
-> +			pd-gpios = <&gpio3 27 GPIO_ACTIVE_HIGH>;
-> +			status = "okay";
-> +
-> +			port {
-> +				isl79987_to_mipi_csi2: endpoint {
-> +					remote-endpoint = <&mipi_csi2_in>;
-> +					clock-lanes = <0>;
-> +					data-lanes = <1 2>;
-> +				};
-> +			};
-> +		};
-> +	};
-> 
-
--- 
-Regards,
-
-Sakari Ailus
-sakari.ailus@linux.intel.com
