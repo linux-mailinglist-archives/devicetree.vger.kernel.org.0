@@ -2,135 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C60B55C438
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 22:18:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B241B5C444
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 22:23:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726658AbfGAUSs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 16:18:48 -0400
-Received: from esa2.hgst.iphmx.com ([68.232.143.124]:62971 "EHLO
-        esa2.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726652AbfGAUSr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 16:18:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1562012336; x=1593548336;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=N8FdXl9fQhVeMl/osm7KAlS6gPFgaAA9xTyaCj4BAvw=;
-  b=Al/aLvhu2cAJL5K8inDZD4SalS6MM7y6fankehpwkJF8Y2NBkUEGoKT/
-   TAOLCCOjrl+OrV1xlC+3LJVcyBp5cMNq0kL6evl9Ay17NliTumrq18YG1
-   vtg9kyiVkP6q39/klVWfxj/mMtEjms6G+8x6C5iMCbf7gF9IpV0djYU3n
-   EaOI0i/crSdvg9nChRkpO+uuA7jldUjj4e9oa/reV3hY5pmxG+3lcKKlz
-   /577DYXizRWEghZ2tHf967DTV+nQ8/7xS3ef7n7tbxFnwdLsLgqulJDrC
-   NBIkE4W8Y729mCkcLVOYzsGMekhUc+UMjq6jpf1NGL2BF/zYJgqTKbISM
-   A==;
-X-IronPort-AV: E=Sophos;i="5.63,440,1557158400"; 
-   d="scan'208";a="211832433"
-Received: from mail-by2nam03lp2056.outbound.protection.outlook.com (HELO NAM03-BY2-obe.outbound.protection.outlook.com) ([104.47.42.56])
-  by ob1.hgst.iphmx.com with ESMTP; 02 Jul 2019 04:18:55 +0800
+        id S1726642AbfGAUXo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 16:23:44 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:36549 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726586AbfGAUXo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 16:23:44 -0400
+Received: by mail-lj1-f194.google.com with SMTP id i21so14578811ljj.3
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 13:23:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=N8FdXl9fQhVeMl/osm7KAlS6gPFgaAA9xTyaCj4BAvw=;
- b=fUaChbDyboOJkSkpFbOeD6ynlDJk3hv5TXEFgpEXSHjJ4Szj4f1xiw4DH6HGUMATnS585m3k1VXdlqfQOziVg30gOiGGwf88/18iAwoXBWFxg6OVVuCnNyNRPzqmwtampVfXnGNRiynkbfq3e9UjSlYinVOhTjnadOw8rJ2wq84=
-Received: from BYAPR04MB3782.namprd04.prod.outlook.com (52.135.214.142) by
- BYAPR04MB5509.namprd04.prod.outlook.com (20.178.232.27) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2032.20; Mon, 1 Jul 2019 20:18:45 +0000
-Received: from BYAPR04MB3782.namprd04.prod.outlook.com
- ([fe80::65e3:6069:d7d5:90a2]) by BYAPR04MB3782.namprd04.prod.outlook.com
- ([fe80::65e3:6069:d7d5:90a2%5]) with mapi id 15.20.2032.019; Mon, 1 Jul 2019
- 20:18:45 +0000
-From:   Atish Patra <Atish.Patra@wdc.com>
-To:     "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>
-CC:     "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "palmer@sifive.com" <palmer@sifive.com>,
-        "mchehab+samsung@kernel.org" <mchehab+samsung@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "mingo@kernel.org" <mingo@kernel.org>,
-        "linux@armlinux.org.uk" <linux@armlinux.org.uk>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
-        "morten.rasmussen@arm.com" <morten.rasmussen@arm.com>,
-        "ottosabart@seberm.com" <ottosabart@seberm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "jeremy.linton@arm.com" <jeremy.linton@arm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "johan@kernel.org" <johan@kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        "peterz@infradead.org" <peterz@infradead.org>,
-        "anup@brainfault.org" <anup@brainfault.org>,
-        "rafael@kernel.org" <rafael@kernel.org>,
-        "sudeep.holla@arm.com" <sudeep.holla@arm.com>
-Subject: Re: [PATCH v8 0/7] Unify CPU topology across ARM & RISC-V
-Thread-Topic: [PATCH v8 0/7] Unify CPU topology across ARM & RISC-V
-Thread-Index: AQHVLSJGz+hI7exIqkGm7p6W+lzWB6a2H8CAgAACBYCAAAEiAIAAFy+A
-Date:   Mon, 1 Jul 2019 20:18:44 +0000
-Message-ID: <daaf6f4e6512402bd8b6fcefc3dba9c045921b38.camel@wdc.com>
-References: <20190627195302.28300-1-atish.patra@wdc.com>
-         <alpine.DEB.2.21.9999.1907011143520.3867@viisi.sifive.com>
-         <5f31cb3c576bdbd89665614582af66d04ece8f29.camel@wdc.com>
-         <alpine.DEB.2.21.9999.1907011154310.3867@viisi.sifive.com>
-In-Reply-To: <alpine.DEB.2.21.9999.1907011154310.3867@viisi.sifive.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Atish.Patra@wdc.com; 
-x-originating-ip: [199.255.45.61]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 392baa72-e3fe-4abc-8622-08d6fe615186
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:BYAPR04MB5509;
-x-ms-traffictypediagnostic: BYAPR04MB5509:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <BYAPR04MB5509E1C8D65A9917F7C2D528FAF90@BYAPR04MB5509.namprd04.prod.outlook.com>
-wdcipoutbound: EOP-TRUE
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-forefront-prvs: 00851CA28B
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(346002)(39860400002)(396003)(366004)(376002)(136003)(51914003)(199004)(189003)(478600001)(76176011)(118296001)(25786009)(102836004)(99286004)(54906003)(26005)(5660300002)(6306002)(6512007)(6246003)(66476007)(5640700003)(316002)(72206003)(6506007)(68736007)(66446008)(6486002)(66556008)(64756008)(6916009)(73956011)(229853002)(7416002)(66946007)(76116006)(6436002)(86362001)(486006)(446003)(11346002)(2616005)(476003)(81156014)(81166006)(2906002)(36756003)(66066001)(966005)(3846002)(6116002)(14454004)(2501003)(8936002)(71190400001)(186003)(2351001)(53936002)(71200400001)(4326008)(4744005)(7736002)(305945005)(8676002)(256004);DIR:OUT;SFP:1102;SCL:1;SRVR:BYAPR04MB5509;H:BYAPR04MB3782.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: DmK/3pHc9Bd04sX1oPOoOSDuOu9s7ntx/WZT3Mizz7c47m29yOQe6UjfIzZz2IMXnEILYkg5h+GGCzZmnm6CMXHQtDsB212OpPb0pl2GM7WwVi/Liwei84bfApPMHiilt4lkniFuOgrLzE9lxyux7ClpwqKeUqoZV9ksizKHgctG7hhWKV8nhKpdnjn4IKmgdcSu0c3z+DlNwiaLdxP/lbpCKpNnE6EofBTzfNUQVC8ZcpSi+ilpT39pXFiv74DoMIVxNDJIuoPgDvpZTcJHAKXzuxGzYpp7MBfKN9mhVm9DS4sArjNgjK6pAcQhBr805YeZVifxKJ3hK8D+pPaYAMoEgncSMgXl4AByAt12tnlDPMDjkx/J5b67+8vdP7uGqqs185LyhGUesXJkrIngUdRzMqH9K/YBwVUt14cxZtc=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <19593EB42262524DBDC8DEE9233E70C3@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2yeezC43PYS18W/SIzQiodt0jp2d2/Hn/sPPvB7Hkrs=;
+        b=fvRVEuWalo7Pr6238+rkM+9g1mlIvP6z++a9qdgrfo11+VJyASL1zgTmiIwKi5iMMT
+         YShRpuwPqGemeFZ7Z1VHUgwgWQVG4CtuVQki/LnGJ/ZSHEYN8zuBYrVylZDsn+HKSYbp
+         kBYu5NSjWoUZTfta3+Lvc1Cabxww2yqA6eBvfAoNI3iFLNr4murQmwNjSQqHjEiA/6kE
+         CMQT6EWcfQhNt2/XgGug8SxMLCVnV8ec3pNaGs0S04+U8TV+oYfv5Dq/+LzzRQVB8zpJ
+         CyNinv4oxe6ZcmMyqSVS1+GAOu2jd7E9RJ9EGZQ6IggtKvPw+34fkt0kOCVGw3+OIHRj
+         FeYw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2yeezC43PYS18W/SIzQiodt0jp2d2/Hn/sPPvB7Hkrs=;
+        b=sagXUTA3bpBQ+d/bKq+mDN56ilsyZ99meBo+xvNWcOjicLDUGeHcLrtCwolRnVfXG6
+         xzb/jiUMkVMtuWsToezuxsw6iBBwAm5yJ1Py4tV/cVR8lNd2RBW9bYs+jsLqWe1jIgJz
+         xrrK1TJVSu123VTeOdNowhS46WF5begRMpFjs4SHPIOA7JjAl1pgieUaGHz5LFRMYDsC
+         PohoVwP2wWxKphJ1qlYQKUfiCk+zjFCdM75pfPvfHtwIUqdvJJp3m4U2LNhl4vm1yBZ/
+         +No3gkLbJMZo1Kv6wB+z9Wz4B+H4OHjo11O74t3NfSNAyQx8PUuSKd5Hjlv3GbB3TRBu
+         /zMg==
+X-Gm-Message-State: APjAAAXlH8pKcFGo55vwicKZ9HyW4aTwRLclLmj2vnr2WUbVmaDojIiY
+        QugjEkMta+24vE90hhUCR5kepgDBpt5AxvKn7g0SIA==
+X-Google-Smtp-Source: APXvYqyUxzE1vHY3FGSByUi6GK2txxEik41ysV2f+vH6fGH86OktUnzJ178axhcKMNZYGvJVxtG9YJ2PxCvsjyXPERM=
+X-Received: by 2002:a2e:81d8:: with SMTP id s24mr15172028ljg.37.1562012622393;
+ Mon, 01 Jul 2019 13:23:42 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 392baa72-e3fe-4abc-8622-08d6fe615186
-X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Jul 2019 20:18:44.9279
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Atish.Patra@wdc.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB5509
+References: <20190701152723.624-1-paweldembicki@gmail.com> <45ff597a-5090-3874-b43d-5b5f45d2d2f6@gmail.com>
+In-Reply-To: <45ff597a-5090-3874-b43d-5b5f45d2d2f6@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 1 Jul 2019 22:23:30 +0200
+Message-ID: <CACRpkdaQhv+4RG8k+QaCE9F3-Oeo8-rjSqGgakr8r2pyOkyoGw@mail.gmail.com>
+Subject: Re: [PATCH 1/4] net: dsa: Change DT bindings for Vitesse VSC73xx switches
+To:     Florian Fainelli <f.fainelli@gmail.com>
+Cc:     Pawel Dembicki <paweldembicki@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDE5LTA3LTAxIGF0IDExOjU1IC0wNzAwLCBQYXVsIFdhbG1zbGV5IHdyb3RlOg0K
-PiBPbiBNb24sIDEgSnVsIDIwMTksIEF0aXNoIFBhdHJhIHdyb3RlOg0KPiANCj4gPiBPbiBNb24s
-IDIwMTktMDctMDEgYXQgMTE6NDQgLTA3MDAsIFBhdWwgV2FsbXNsZXkgd3JvdGU6DQo+ID4gPiBM
-b29rcyBsaWtlIHBhdGNoZXMgMSwgNiwgYW5kIDcgYXJlIG1pc3NpbmcgeW91ciBTaWduZWQtb2Zm
-LQ0KPiA+ID4gYnk6LiAgQ2FuIEkgDQo+ID4gPiBhZGQgdGhvc2U/DQo+ID4gPiANCj4gPiBTdXJl
-LiANCj4gPiANCj4gPiBJcyBpdCBhIGNvbW1vbiBwcmFjdGljZSB0byBhZGQgIlNpZ25lZC1vZmYt
-Ynk6IiB0aGUgc2VuZGVyIGV2ZW4gaWYNCj4gPiB0aGUNCj4gPiBzZW5kZXIgaGFzIG5vdCB0b3Vj
-aGVkIHRoZSBwYXRjaCBhdCBhbGw/DQo+IA0KPiBZZXMsIHNlZSBzZWN0aW9uIDExKGMpIGhlcmU6
-DQo+IA0KPiBodHRwczovL2dpdC5rZXJuZWwub3JnL3B1Yi9zY20vbGludXgva2VybmVsL2dpdC90
-b3J2YWxkcy9saW51eC5naXQvdHJlZS9Eb2N1bWVudGF0aW9uL3Byb2Nlc3Mvc3VibWl0dGluZy1w
-YXRjaGVzLnJzdCNuNDE4DQo+IA0KPiBUaGUgbWFpbiBmYWN0b3IgaGVyZSBpcyB0aGF0IHlvdSBj
-b2xsZWN0ZWQgYW5kIHJlc2VudCB0aGUgcGF0Y2hlcyAtDQo+IHRodXMgDQo+IHlvdSdyZSBpbiB0
-aGUgcGF0Y2ggc3VibWlzc2lvbiBjaGFpbi4NCj4gDQoNCkFoaCBva2F5LiBUaGFua3MgZm9yIHRo
-ZSBsaW5rLiBJIHdpbGwga2VlcCB0aGlzIGluIG1pbmQgaW4gZnV0dXJlLg0KDQpSZWdhcmRzLA0K
-QXRpc2gNCj4gDQo+IC0gUGF1bA0KDQo=
+On Mon, Jul 1, 2019 at 6:44 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
+
+> Take b53 for instance which supports MDIO and SPI by default, and
+> optionally memory mapped and SRAB (indirect memory map) accesses, they
+> all have the same compatible strings. Whether the switches will appear
+> as spi_device, platform_device, or something else is entirely based on
+> how the Device Tree is laid out.
+
+That's clever.
+
+Pawel can you restructure the series around this observation?
+
+Yours,
+Linus Walleij
