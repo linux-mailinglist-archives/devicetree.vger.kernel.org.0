@@ -2,190 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A26E05C160
-	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 18:45:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D135A5C18C
+	for <lists+devicetree@lfdr.de>; Mon,  1 Jul 2019 19:00:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729071AbfGAQpT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 12:45:19 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:33385 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727030AbfGAQpS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 12:45:18 -0400
-Received: by mail-wm1-f66.google.com with SMTP id h19so455809wme.0;
-        Mon, 01 Jul 2019 09:45:16 -0700 (PDT)
+        id S1728735AbfGARAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 13:00:03 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:42519 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727782AbfGARAD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 13:00:03 -0400
+Received: by mail-io1-f67.google.com with SMTP id u19so21872306ior.9
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 10:00:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=8Wrak9T/dqG3Cj1so+ph+ncSMKddxwdFBJ2/cQ9fA/w=;
-        b=Ea4BqHthzHUPUeD7zqotXw+WJ/OTt8xMa//IS2ZjZ6YqPom1EHWnCr6JAB+w38gK8f
-         sKSlXOxc7ZE6+w1q3s2VVNjkG6Xn0oX5fCqxF4FGX4qfL/l94S7dia2bOcEEr9rU6Mcr
-         8k3ZwE/Jl2R7CV4sARe1N3zDeDwmNgu1EQTz7ZA73MdlrvLx0mdGZDPyIjyEY0BNGt8H
-         m7Nv2fSz4hpbSV1K5n+uQWCtc3YW7w2M9UdF2O1pdZIjQ+5XbAdOGubtIYlaTxK0ckkp
-         HUQkCjtbAEbBBJRzyl/tbIQ1HmVcxqmdUyJfKyVZxPB9hRaP0DjFaSzM3kBLpsERPUbS
-         89Ng==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=JolxjoC61TKJKf0jb4dN4P28SKpb+zH+zGH1st4ym90=;
+        b=Qd4WduNYQlNNrJRAp36QmrwJY099eDBeJ105dOffHIB5X7OI66k1xlFc+yOJ0OeT8W
+         JAeFJ2lUgNto0dagfE4x46ArMzjM/yE45uJXQQ80irLhpGEMjpsZkWyFodEwxLWk510o
+         vqEu++m0gselpSMr634ICkAselddnefqJ4+VU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=8Wrak9T/dqG3Cj1so+ph+ncSMKddxwdFBJ2/cQ9fA/w=;
-        b=KuA0FauEKZPWIQnEA1AW25+KjvYYkCI5qDG0XD56ZtfVDJ5OvOj6z66VRgv3tuQdcO
-         QLhFF1dHFZzYuPthpcQ2cNlw8pkSx4gCLaItT7oLyNe2ZkyBOClZfGdhbcNFU5W9fqcg
-         F6zvMKYe0dWQFwAR2t2lj304XAYnenhBBzI1npR5/xFxeHWR0fhJW/fidJTaMpnM3ooo
-         Yo7ZiA+QV10/b8Jt1ZmnLpT9mKRYgjoe34jlomAWoz6AnfC1AEnBI2hIk8KLUmg24qnb
-         5IL8owfyjefYJv47oMCfrQsBtyANUJhiXsgftffs2wl6iuc2Lwr/EE9oKF+0UwTxjH4W
-         Kfiw==
-X-Gm-Message-State: APjAAAWXZ/v7kK8Rixh4BU7t62kDeBGuIvgJiR+xT4+i6B9tdodmnGO7
-        dbWdWzc0IYAzHOK/JB1J/npfqhVs
-X-Google-Smtp-Source: APXvYqwaurz4/UAR0mTocZnDtauJ2EKslJ/980SxMWg/w3dbNntT2diwvIhHRkidDfUjw2T38oWRxw==
-X-Received: by 2002:a1c:e108:: with SMTP id y8mr125291wmg.65.1561999515553;
-        Mon, 01 Jul 2019 09:45:15 -0700 (PDT)
-Received: from [10.67.50.91] ([192.19.223.252])
-        by smtp.googlemail.com with ESMTPSA id t14sm9558475wrr.33.2019.07.01.09.45.12
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 01 Jul 2019 09:45:15 -0700 (PDT)
-Subject: Re: [PATCH 3/4] net: dsa: vsc73xx: add support for parallel mode
-To:     Pawel Dembicki <paweldembicki@gmail.com>
-Cc:     linus.walleij@linaro.org, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190701152723.624-1-paweldembicki@gmail.com>
- <20190701152723.624-3-paweldembicki@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=f.fainelli@gmail.com; prefer-encrypt=mutual; keydata=
- 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
- M5kY0ACeNhCZJvZ5g4C2Lc9fcTHu8jxmEkI=
-Message-ID: <b7afaf2e-ca4e-2795-658d-2f0289203833@gmail.com>
-Date:   Mon, 1 Jul 2019 09:45:10 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=JolxjoC61TKJKf0jb4dN4P28SKpb+zH+zGH1st4ym90=;
+        b=FpogUGzV8hm4QSbyJT9MhTJeh29Uo/v0EsFUPPcwOV7lDtj5lTw4LshPRSlAabHxub
+         nV3EdueNrTS2LAzMaDHyqwgfTxVqf97rxrKHkaFkcrcwcaiqBf97p3dD2baIIDCiB0De
+         w6nmO8mhqhvDCmeD3AcCMv+5i3eRr8wYJlfr4yzA+QmRbgqk/hndEigL0pxMOizUm+Pb
+         4Y5yU90xIHhdH61O7ONK3iOfLRuYEKqQ96IMz1ARZN0WxkqMN8qQ2wCV5YPNKFvfx6o2
+         ZZCv3KCJVpS+/MI+j7pW8LpfdzLw0I/UPGs+/AbHCTDqeERaEnH1aXd48cwChYnShI76
+         zVbw==
+X-Gm-Message-State: APjAAAX92ajnN/MFaG3uD8FhYOq1Iy9+SHPNDq1bvASXQeMBUdXXic4g
+        OLU5m4C5btohUzIlQSygTJoYHIR+jvE=
+X-Google-Smtp-Source: APXvYqyqNRmc6BMMY0lJgpxTx7Vgsp+Ziq6xqhFDSTRCkkWa2el+Yeig8trpaX/dXuuamFPphCUjvw==
+X-Received: by 2002:a6b:f607:: with SMTP id n7mr238290ioh.263.1562000401835;
+        Mon, 01 Jul 2019 10:00:01 -0700 (PDT)
+Received: from mail-io1-f53.google.com (mail-io1-f53.google.com. [209.85.166.53])
+        by smtp.gmail.com with ESMTPSA id n17sm9786993iog.63.2019.07.01.09.59.58
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Mon, 01 Jul 2019 09:59:59 -0700 (PDT)
+Received: by mail-io1-f53.google.com with SMTP id s7so30335453iob.11
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 09:59:58 -0700 (PDT)
+X-Received: by 2002:a02:6597:: with SMTP id u145mr30963069jab.26.1562000398582;
+ Mon, 01 Jul 2019 09:59:58 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190701152723.624-3-paweldembicki@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190401171724.215780-1-dianders@chromium.org>
+ <20190401171724.215780-2-dianders@chromium.org> <20190630200259.GA15102@ravnborg.org>
+In-Reply-To: <20190630200259.GA15102@ravnborg.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Mon, 1 Jul 2019 09:59:46 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=V3eiBXP4Z5KMxD=-csV5EAD9cY4MzuAOtMyphpDmW+_A@mail.gmail.com>
+Message-ID: <CAD=FV=V3eiBXP4Z5KMxD=-csV5EAD9cY4MzuAOtMyphpDmW+_A@mail.gmail.com>
+Subject: Re: [PATCH v5 1/7] dt-bindings: Add panel-timing subnode to simple-panel
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sean Paul <seanpaul@chromium.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Jeffy Chen <jeffy.chen@rock-chips.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        =?UTF-8?Q?Enric_Balletb=C3=B2?= <enric.balletbo@collabora.com>,
+        =?UTF-8?Q?St=C3=A9phane_Marchesin?= <marcheu@chromium.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Matthias Kaehlcke <mka@chromium.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/1/19 8:27 AM, Pawel Dembicki wrote:
-> This patch add platform part of vsc73xx driver.
-> It allows to use chip connected by PI interface.
-> 
-> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
-> ---
+Hi,
 
-[snip]
+On Sun, Jun 30, 2019 at 1:03 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Douglas.
+>
+> Some long overdue review feedback.
+>
+> On Mon, Apr 01, 2019 at 10:17:18AM -0700, Douglas Anderson wrote:
+> > From: Sean Paul <seanpaul@chromium.org>
+> >
+> > This patch adds a new subnode to simple-panel allowing us to override
+> > the typical timing expressed in the panel's display_timing.
+> >
+> > Changes in v2:
+> >  - Split out the binding into a new patch (Rob)
+> >  - display-timings is a new section (Rob)
+> >  - Use the full display-timings subnode instead of picking the timing
+> >    out (Rob/Thierry)
+> > Changes in v3:
+> >  - Go back to using the timing subnode directly, but rename to
+> >    panel-timing (Rob)
+> > Changes in v4:
+> >  - Simplify desc. for when override should be used (Thierry/Laurent)
+> >  - Removed Rob H review since it's been a year and wording changed
+> > Changes in v5:
+> >  - Removed bit about OS may ignore (Rob/Ezequiel)
+> >
+> > Cc: Doug Anderson <dianders@chromium.org>
+> > Cc: Eric Anholt <eric@anholt.net>
+> > Cc: Heiko Stuebner <heiko@sntech.de>
+> > Cc: Jeffy Chen <jeffy.chen@rock-chips.com>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: St=C3=A9phane Marchesin <marcheu@chromium.org>
+> > Cc: Thierry Reding <thierry.reding@gmail.com>
+> > Cc: devicetree@vger.kernel.org
+> > Cc: dri-devel@lists.freedesktop.org
+> > Cc: linux-rockchip@lists.infradead.org
+> > Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> > Signed-off-by: Douglas Anderson <dianders@chromium.org>
+> > ---
+> >
+> >  .../bindings/display/panel/simple-panel.txt   | 22 +++++++++++++++++++
+> >  1 file changed, 22 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/panel/simple-pan=
+el.txt b/Documentation/devicetree/bindings/display/panel/simple-panel.txt
+> > index b2b872c710f2..93882268c0b9 100644
+> > --- a/Documentation/devicetree/bindings/display/panel/simple-panel.txt
+> > +++ b/Documentation/devicetree/bindings/display/panel/simple-panel.txt
+> > @@ -15,6 +15,16 @@ Optional properties:
+> >    (hot plug detect) signal, but the signal isn't hooked up so we shoul=
+d
+> >    hardcode the max delay from the panel spec when powering up the pane=
+l.
+> >
+> > +panel-timing subnode
+> > +--------------------
+> > +
+> > +This optional subnode is for devices which require a mode differing
+> > +from the panel's "typical" display timing.
+> Meybe add here that it is expected that the panel has included timing
+> in the driver itself, and not as part of DT.
+> So what is specified here is a more precise variant, within the limits
+> of what is specified for the panel.
 
-> +	struct vsc73xx_platform *vsc_platform = vsc->priv;
-> +	u32 offset;
-> +
-> +	if (!vsc73xx_is_addr_valid(block, subblock))
-> +		return -EINVAL;
-> +
-> +	offset = vsc73xx_make_addr(block, subblock, reg);
-> +
-> +	mutex_lock(&vsc->lock);
-> +		iowrite32be(val, vsc_platform->base_addr + offset);
-> +	mutex_unlock(&vsc->lock);
+See discussions previous versions of this patch.  Specifically you can
+see v4 at <https://patchwork.kernel.org/patch/10875505/> and v3
+(posted by Sean) at <https://patchwork.kernel.org/patch/10207591/>.
 
-Similar question from Andrew, why is the locking done in the platform
-layer, should not that be done in the core I/O operation instead?
+Specifically: According to Rob H it is generally not required to
+validate what's in device tree--it can be just blindly applied.  Thus
+the bindings shouldn't really say anything about trying to reconcile
+with the driver (especially since that's heavily relying on the
+current driver implementation).
 
-> +
-> +	return 0;
-> +}
-> +
-> +static int vsc73xx_platform_probe(struct platform_device *pdev)
-> +{
-> +	struct device *dev = &pdev->dev;
-> +	struct vsc73xx_platform *vsc_platform;
-> +	struct resource *res = NULL;
-> +	int ret;
-> +
-> +	vsc_platform = devm_kzalloc(dev, sizeof(*vsc_platform), GFP_KERNEL);
-> +	if (!vsc_platform)
-> +		return -ENOMEM;
-> +
-> +	platform_set_drvdata(pdev, vsc_platform);
-> +	vsc_platform->pdev = pdev;
-> +	vsc_platform->vsc.dev = dev;
-> +	vsc_platform->vsc.priv = vsc_platform;
-> +	vsc_platform->vsc.ops = &vsc73xx_platform_ops;
-> +
-> +	/* obtain I/O memory space */
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	if (!res) {
-> +		dev_err(&pdev->dev, "cannot obtain I/O memory space\n");
-> +		ret = -ENXIO;
-> +		return ret;
-> +	}
-> +
-> +	vsc_platform->base_addr = devm_ioremap_resource(&pdev->dev, res);
+At the moment the driver still does validate things and we could
+discuss removing that in a future patchset if it was deemed important
+/ desirable.
 
-devm_ioremap_resource takes care of checking that the resource pointer
-is valid, no need to do that here.
 
-> +	if (!vsc_platform->base_addr) {
+> > +Format information on the panel-timing subnode can be found in
+> > +display-timing.txt.
+> display-timing defines otional properties:
+> hsync-active, pixelclk-active, doublescan etc.
+> It is not from the above obvious which properties from display-timings
+> that can be specified for a panel-timing sub-node.
+> Maybe because they can all be specified?
+>
+> Display-timing allows timings to be specified as a range.
+> If it is also OK to specify a range for panle-timing then everythign is
+> fine. But if the panel-timign subnode do not allow ranges this needs to
+> be specified.
 
-if (IS_ERR(vsc_platform->base_addr))
--- 
-Florian
+One thing to think about here is that the bindings are a bit divorced
+from the real world.  Specifically the bindings should describe
+hardware / what's possible and it's OK for bindings to describe things
+that aren't yet supported in code.  You've gotta be really careful
+here, of course, because it's easy to write ridiculous bindings if
+there is no implementation backing them up, but in general that's
+supposed to be the idea.
+
+Here it seems like it should be possible to specify timings as a range
+and that would be a sensible thing to do.  ...and we're already using
+existing code to parse this node, specifically
+of_get_display_timing().  If simple-panel can't (yet) handle
+reconciling ranges specified in DT then presumably we shouldn't rely
+on that yet.  ...but if it becomes useful then we can add it later.
+...but it's OK to already have it in the bindings.
+
+Did that make sense?  If I'm misunderstanding something about the
+situation then please yell!  :-)
+
+I will also note that perhaps we shouldn't nit-pick too much as per
+Rob's comment in the cover letter [1] of v5 of the series.
+Specifically he said this binding is going away anyway.
+
+Summary: I think I have no actions here and this could go to drm-misc
+with Theirry's Ack plus other tags.
+
+
+[1] https://lore.kernel.org/patchwork/cover/1057038/
