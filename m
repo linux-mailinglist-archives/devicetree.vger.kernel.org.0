@@ -2,196 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B09D25C71B
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 04:22:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D7DE5C79E
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 05:14:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726781AbfGBCWp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 22:22:45 -0400
-Received: from mail-eopbgr130081.outbound.protection.outlook.com ([40.107.13.81]:39136
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726638AbfGBCWp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 1 Jul 2019 22:22:45 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s/gDAUpFXewypvzk2IdH6qNRNYJxfwIs6YnMoRAYLqM=;
- b=K7TGkKAfaTSWmYY7hakRWlcbAp3KnwoXgX+cx+Ci6zSqpLA8loa2zU6wR9VxG0oCUKMxMWC0WtJ4dyx7YUbNZDa4Eez4BHjuZn/6AVbSr3CakGqIguZsXQDrbep9E+DJmMMOd6V2ulHpfYrep6LWXpgd2GG2GTKLNMTaVCVjIBA=
-Received: from VI1PR04MB5327.eurprd04.prod.outlook.com (20.177.52.16) by
- VI1PR04MB5519.eurprd04.prod.outlook.com (20.178.122.141) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2032.18; Tue, 2 Jul 2019 02:22:36 +0000
-Received: from VI1PR04MB5327.eurprd04.prod.outlook.com
- ([fe80::c1bf:7842:6630:b87a]) by VI1PR04MB5327.eurprd04.prod.outlook.com
- ([fe80::c1bf:7842:6630:b87a%7]) with mapi id 15.20.2032.019; Tue, 2 Jul 2019
- 02:22:36 +0000
-From:   Peter Chen <peter.chen@nxp.com>
-To:     Peter Chen <hzpeterchen@gmail.com>,
-        "balbi@kernel.org" <balbi@kernel.org>
-CC:     "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
+        id S1726793AbfGBDOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 23:14:41 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:16994 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726362AbfGBDOl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 23:14:41 -0400
+X-UUID: ac37cdcccc7e429d866ae712426f1b79-20190702
+X-UUID: ac37cdcccc7e429d866ae712426f1b79-20190702
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw01.mediatek.com
+        (envelope-from <bibby.hsieh@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 2145765387; Tue, 02 Jul 2019 11:14:34 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 2 Jul 2019 11:14:32 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 2 Jul 2019 11:14:32 +0800
+Message-ID: <1562037272.17533.4.camel@mtksdaap41>
+Subject: Re: [PATCH v10 03/12] dt-binding: gce: add binding for gce client
+ reg property
+From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Matthias Brugger <matthias.bgg@gmail.com>,
+        CK HU <ck.hu@mediatek.com>,
+        Daniel Kurtz <djkurtz@chromium.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        USB list <linux-usb@vger.kernel.org>,
-        "chunfeng.yun@mediatek.com" <chunfeng.yun@mediatek.com>,
-        "sergei.shtylyov@cogentembedded.com" 
-        <sergei.shtylyov@cogentembedded.com>
-Subject: RE: [PATCH v5 2/8] usb: phy: phy-mxs-usb: add imx7ulp support
-Thread-Topic: [PATCH v5 2/8] usb: phy: phy-mxs-usb: add imx7ulp support
-Thread-Index: AQHVKjC2+eUELMfK2Ee5/v4ACES1I6aqH/uAgAyFV4A=
-Date:   Tue, 2 Jul 2019 02:22:36 +0000
-Message-ID: <VI1PR04MB53271C703961E9DA4C04714A8BF80@VI1PR04MB5327.eurprd04.prod.outlook.com>
-References: <20190624020258.21690-1-peter.chen@nxp.com>
- <20190624020258.21690-3-peter.chen@nxp.com>
- <CAL411-r_=44bAi6zupcM7cG7-ivcEH_Mu3YYffoE8Ve0d+xqRg@mail.gmail.com>
-In-Reply-To: <CAL411-r_=44bAi6zupcM7cG7-ivcEH_Mu3YYffoE8Ve0d+xqRg@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=peter.chen@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 51f1d84e-2e80-47ac-956a-08d6fe942604
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB5519;
-x-ms-traffictypediagnostic: VI1PR04MB5519:
-x-microsoft-antispam-prvs: <VI1PR04MB551941C32FA52B0AD6B51CEB8BF80@VI1PR04MB5519.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 008663486A
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(366004)(396003)(136003)(376002)(346002)(199004)(189003)(54906003)(316002)(110136005)(55016002)(86362001)(5660300002)(71200400001)(71190400001)(256004)(44832011)(14444005)(7416002)(6116002)(68736007)(229853002)(305945005)(3846002)(7736002)(99286004)(66946007)(11346002)(66476007)(73956011)(52536014)(76116006)(66446008)(64756008)(33656002)(81166006)(8936002)(2501003)(66556008)(478600001)(81156014)(8676002)(486006)(2906002)(74316002)(186003)(102836004)(446003)(6506007)(76176011)(66066001)(53936002)(476003)(7696005)(6246003)(6436002)(14454004)(26005)(4326008)(9686003)(25786009);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5519;H:VI1PR04MB5327.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: j3igr7iDLTd7j0mMc6R5ElNXuYUdezHCEVlAV53A6QHL09XB8cF8wcqcc9qCDB3We0u4k7RbTSsalvNsNHXn236eIfE5t49RbjRcE0MKxvjeALlCPcuYJPvQ4aDi3LR+sX3+9Rr9+JiBXO8Z+LKUAcFGEyYXI5Rsjcn5TESfSlQFlE4lGpbM2IlYj//a57dHnnxvd1G+YGEAOHr52GuId9s8ypW+2l0tL/VMxd1Q0JvQergLUEVvJSTi1o9cc2FIe/FgX8b6pie0SiHKglKNw8ho+VofWAmJsMLiSpTDzrTzDXb9ZsekHGbdVmnAP0qVdAn7n+Kzvxxp3t3TH6ZSsXhSKAa05vC1chNZewovLvzoRqcykFlpGBImLmkVlIAfHsk/v1KysK861bm8El1bgPZ8Slq2P/IadQOJNmsTjT4=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        "YT Shen" <yt.shen@mediatek.com>,
+        Daoyuan Huang <daoyuan.huang@mediatek.com>,
+        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
+        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>,
+        <ginny.chen@mediatek.com>
+Date:   Tue, 2 Jul 2019 11:14:32 +0800
+In-Reply-To: <20190701074842.15401-4-bibby.hsieh@mediatek.com>
+References: <20190701074842.15401-1-bibby.hsieh@mediatek.com>
+         <20190701074842.15401-4-bibby.hsieh@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 51f1d84e-2e80-47ac-956a-08d6fe942604
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jul 2019 02:22:36.4374
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: peter.chen@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5519
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-IA0KPiANCj4gSGkgRmVsaXBlLA0KPiANCj4gV291bGQgeW91IHBsZWFzZSBoYXZlIGEgcmV2aWV3
-IGZvciBQYXRjaCAxIGFuZCBQYXRjaCAyIGluIHRoaXMgc2VyaWVzPw0KPiBUaGFua3MuDQo+IA0K
-DQpQaW5nLi4uDQoNClRoZSBEVFMgYW5kIGNvbnRyb2xsZXIgcGF0Y2hlcyBoYXZlIGFscmVhZHkg
-cXVldWVkLiBUaGFua3MuDQoNClBldGVyDQoNCj4gUGV0ZXINCj4gDQo+ID4gU2lnbmVkLW9mZi1i
-eTogUGV0ZXIgQ2hlbiA8cGV0ZXIuY2hlbkBueHAuY29tPg0KPiA+IC0tLQ0KPiA+ICBkcml2ZXJz
-L3VzYi9waHkvcGh5LW14cy11c2IuYyB8IDY3DQo+ID4gKysrKysrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrKysrKysrKysrLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgNjYgaW5zZXJ0aW9ucygr
-KSwgMSBkZWxldGlvbigtKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvdXNiL3BoeS9w
-aHktbXhzLXVzYi5jDQo+ID4gYi9kcml2ZXJzL3VzYi9waHkvcGh5LW14cy11c2IuYyBpbmRleCA2
-ZmExNmFiMzFlMmUuLjcwYjhjODI0OGNhZg0KPiA+IDEwMDY0NA0KPiA+IC0tLSBhL2RyaXZlcnMv
-dXNiL3BoeS9waHktbXhzLXVzYi5jDQo+ID4gKysrIGIvZHJpdmVycy91c2IvcGh5L3BoeS1teHMt
-dXNiLmMNCj4gPiBAQCAtMTcsOSArMTcsMTEgQEANCj4gPiAgI2luY2x1ZGUgPGxpbnV4L29mX2Rl
-dmljZS5oPg0KPiA+ICAjaW5jbHVkZSA8bGludXgvcmVnbWFwLmg+DQo+ID4gICNpbmNsdWRlIDxs
-aW51eC9tZmQvc3lzY29uLmg+DQo+ID4gKyNpbmNsdWRlIDxsaW51eC9pb3BvbGwuaD4NCj4gPg0K
-PiA+ICAjZGVmaW5lIERSSVZFUl9OQU1FICJteHNfcGh5Ig0KPiA+DQo+ID4gKy8qIFJlZ2lzdGVy
-IE1hY3JvICovDQo+ID4gICNkZWZpbmUgSFdfVVNCUEhZX1BXRCAgICAgICAgICAgICAgICAgICAg
-ICAgICAgMHgwMA0KPiA+ICAjZGVmaW5lIEhXX1VTQlBIWV9UWCAgICAgICAgICAgICAgICAgICAg
-ICAgICAgIDB4MTANCj4gPiAgI2RlZmluZSBIV19VU0JQSFlfQ1RSTCAgICAgICAgICAgICAgICAg
-ICAgICAgICAweDMwDQo+ID4gQEAgLTM3LDYgKzM5LDExIEBADQo+ID4gICNkZWZpbmUgR01fVVNC
-UEhZX1RYX1RYQ0FMNDVETih4KSAgICAgICAgICAgICgoKHgpICYgMHhmKSA8PCA4KQ0KPiA+ICAj
-ZGVmaW5lIEdNX1VTQlBIWV9UWF9EX0NBTCh4KSAgICAgICAgICAgICAgICAoKCh4KSAmIDB4Zikg
-PDwgMCkNCj4gPg0KPiA+ICsvKiBpbXg3dWxwICovDQo+ID4gKyNkZWZpbmUgSFdfVVNCUEhZX1BM
-TF9TSUMgICAgICAgICAgICAgICAgICAgICAgMHhhMA0KPiA+ICsjZGVmaW5lIEhXX1VTQlBIWV9Q
-TExfU0lDX1NFVCAgICAgICAgICAgICAgICAgIDB4YTQNCj4gPiArI2RlZmluZSBIV19VU0JQSFlf
-UExMX1NJQ19DTFIgICAgICAgICAgICAgICAgICAweGE4DQo+ID4gKw0KPiA+ICAjZGVmaW5lIEJN
-X1VTQlBIWV9DVFJMX1NGVFJTVCAgICAgICAgICAgICAgICAgIEJJVCgzMSkNCj4gPiAgI2RlZmlu
-ZSBCTV9VU0JQSFlfQ1RSTF9DTEtHQVRFICAgICAgICAgICAgICAgICBCSVQoMzApDQo+ID4gICNk
-ZWZpbmUgQk1fVVNCUEhZX0NUUkxfT1RHX0lEX1ZBTFVFICAgICAgICAgICAgQklUKDI3KQ0KPiA+
-IEBAIC01NSw2ICs2MiwxMiBAQA0KPiA+ICAjZGVmaW5lIEJNX1VTQlBIWV9JUF9GSVggICAgICAg
-ICAgICAgICAgICAgICAgIChCSVQoMTcpIHwgQklUKDE4KSkNCj4gPg0KPiA+ICAjZGVmaW5lIEJN
-X1VTQlBIWV9ERUJVR19DTEtHQVRFICAgICAgICAgICAgICAgICAgICAgICAgQklUKDMwKQ0KPiA+
-ICsvKiBpbXg3dWxwICovDQo+ID4gKyNkZWZpbmUgQk1fVVNCUEhZX1BMTF9MT0NLICAgICAgICAg
-ICAgICAgICAgICAgQklUKDMxKQ0KPiA+ICsjZGVmaW5lIEJNX1VTQlBIWV9QTExfUkVHX0VOQUJM
-RSAgICAgICAgICAgICAgIEJJVCgyMSkNCj4gPiArI2RlZmluZSBCTV9VU0JQSFlfUExMX0JZUEFT
-UyAgICAgICAgICAgICAgICAgICBCSVQoMTYpDQo+ID4gKyNkZWZpbmUgQk1fVVNCUEhZX1BMTF9Q
-T1dFUiAgICAgICAgICAgICAgICAgICAgQklUKDEyKQ0KPiA+ICsjZGVmaW5lIEJNX1VTQlBIWV9Q
-TExfRU5fVVNCX0NMS1MgICAgICAgICAgICAgIEJJVCg2KQ0KPiA+DQo+ID4gIC8qIEFuYXRvcCBS
-ZWdpc3RlcnMgKi8NCj4gPiAgI2RlZmluZSBBTkFESUdfQU5BX01JU0MwICAgICAgICAgICAgICAg
-ICAgICAgICAweDE1MA0KPiA+IEBAIC0xNjgsNiArMTgxLDkgQEAgc3RhdGljIGNvbnN0IHN0cnVj
-dCBteHNfcGh5X2RhdGEgaW14NnVsX3BoeV9kYXRhID0gew0KPiA+ICAgICAgICAgLmZsYWdzID0g
-TVhTX1BIWV9ESVNDT05ORUNUX0xJTkVfV0lUSE9VVF9WQlVTLA0KPiA+ICB9Ow0KPiA+DQo+ID4g
-K3N0YXRpYyBjb25zdCBzdHJ1Y3QgbXhzX3BoeV9kYXRhIGlteDd1bHBfcGh5X2RhdGEgPSB7IH07
-DQo+ID4gKw0KPiA+ICBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBteHNfcGh5X2R0
-X2lkc1tdID0gew0KPiA+ICAgICAgICAgeyAuY29tcGF0aWJsZSA9ICJmc2wsaW14NnN4LXVzYnBo
-eSIsIC5kYXRhID0gJmlteDZzeF9waHlfZGF0YSwgfSwNCj4gPiAgICAgICAgIHsgLmNvbXBhdGli
-bGUgPSAiZnNsLGlteDZzbC11c2JwaHkiLCAuZGF0YSA9ICZpbXg2c2xfcGh5X2RhdGEsDQo+ID4g
-fSwgQEAgLTE3NSw2ICsxOTEsNyBAQCBzdGF0aWMgY29uc3Qgc3RydWN0IG9mX2RldmljZV9pZCBt
-eHNfcGh5X2R0X2lkc1tdID0gew0KPiA+ICAgICAgICAgeyAuY29tcGF0aWJsZSA9ICJmc2wsaW14
-MjMtdXNicGh5IiwgLmRhdGEgPSAmaW14MjNfcGh5X2RhdGEsIH0sDQo+ID4gICAgICAgICB7IC5j
-b21wYXRpYmxlID0gImZzbCx2ZjYxMC11c2JwaHkiLCAuZGF0YSA9ICZ2ZjYxMF9waHlfZGF0YSwg
-fSwNCj4gPiAgICAgICAgIHsgLmNvbXBhdGlibGUgPSAiZnNsLGlteDZ1bC11c2JwaHkiLCAuZGF0
-YSA9ICZpbXg2dWxfcGh5X2RhdGEsDQo+ID4gfSwNCj4gPiArICAgICAgIHsgLmNvbXBhdGlibGUg
-PSAiZnNsLGlteDd1bHAtdXNicGh5IiwgLmRhdGEgPQ0KPiA+ICsgJmlteDd1bHBfcGh5X2RhdGEs
-IH0sDQo+ID4gICAgICAgICB7IC8qIHNlbnRpbmVsICovIH0NCj4gPiAgfTsNCj4gPiAgTU9EVUxF
-X0RFVklDRV9UQUJMRShvZiwgbXhzX3BoeV9kdF9pZHMpOyBAQCAtMTk5LDYgKzIxNiwxMSBAQCBz
-dGF0aWMNCj4gPiBpbmxpbmUgYm9vbCBpc19pbXg2c2xfcGh5KHN0cnVjdCBteHNfcGh5ICpteHNf
-cGh5KQ0KPiA+ICAgICAgICAgcmV0dXJuIG14c19waHktPmRhdGEgPT0gJmlteDZzbF9waHlfZGF0
-YTsgIH0NCj4gPg0KPiA+ICtzdGF0aWMgaW5saW5lIGJvb2wgaXNfaW14N3VscF9waHkoc3RydWN0
-IG14c19waHkgKm14c19waHkpIHsNCj4gPiArICAgICAgIHJldHVybiBteHNfcGh5LT5kYXRhID09
-ICZpbXg3dWxwX3BoeV9kYXRhOyB9DQo+ID4gKw0KPiA+ICAvKg0KPiA+ICAgKiBQSFkgbmVlZHMg
-c29tZSAzMksgY3ljbGVzIHRvIHN3aXRjaCBmcm9tIDMySyBjbG9jayB0bw0KPiA+ICAgKiBidXMg
-KHN1Y2ggYXMgQUhCL0FYSSwgZXRjKSBjbG9jay4NCj4gPiBAQCAtMjIyLDE0ICsyNDQsNDkgQEAg
-c3RhdGljIHZvaWQgbXhzX3BoeV90eF9pbml0KHN0cnVjdCBteHNfcGh5ICpteHNfcGh5KQ0KPiA+
-ICAgICAgICAgfQ0KPiA+ICB9DQo+ID4NCj4gPiArc3RhdGljIGludCBteHNfcGh5X3BsbF9lbmFi
-bGUodm9pZCBfX2lvbWVtICpiYXNlLCBib29sIGVuYWJsZSkNCj4gPiArew0KPiA+ICsgICAgICAg
-aW50IHJldCA9IDA7DQo+ID4gKw0KPiA+ICsgICAgICAgaWYgKGVuYWJsZSkgew0KPiA+ICsgICAg
-ICAgICAgICAgICB1MzIgdmFsdWU7DQo+ID4gKw0KPiA+ICsgICAgICAgICAgICAgICB3cml0ZWwo
-Qk1fVVNCUEhZX1BMTF9SRUdfRU5BQkxFLCBiYXNlICsNCj4gSFdfVVNCUEhZX1BMTF9TSUNfU0VU
-KTsNCj4gPiArICAgICAgICAgICAgICAgd3JpdGVsKEJNX1VTQlBIWV9QTExfQllQQVNTLCBiYXNl
-ICsNCj4gSFdfVVNCUEhZX1BMTF9TSUNfQ0xSKTsNCj4gPiArICAgICAgICAgICAgICAgd3JpdGVs
-KEJNX1VTQlBIWV9QTExfUE9XRVIsIGJhc2UgKw0KPiBIV19VU0JQSFlfUExMX1NJQ19TRVQpOw0K
-PiA+ICsgICAgICAgICAgICAgICByZXQgPSByZWFkbF9wb2xsX3RpbWVvdXQoYmFzZSArIEhXX1VT
-QlBIWV9QTExfU0lDLA0KPiA+ICsgICAgICAgICAgICAgICAgICAgICAgIHZhbHVlLCAodmFsdWUg
-JiBCTV9VU0JQSFlfUExMX0xPQ0spICE9IDAsDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAg
-MTAwLCAxMDAwMCk7DQo+ID4gKyAgICAgICAgICAgICAgIGlmIChyZXQpDQo+ID4gKyAgICAgICAg
-ICAgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiArDQo+ID4gKyAgICAgICAgICAgICAgIHdy
-aXRlbChCTV9VU0JQSFlfUExMX0VOX1VTQl9DTEtTLCBiYXNlICsNCj4gPiArICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICAgIEhXX1VTQlBIWV9QTExfU0lDX1NFVCk7DQo+ID4gKyAgICAgICB9
-IGVsc2Ugew0KPiA+ICsgICAgICAgICAgICAgICB3cml0ZWwoQk1fVVNCUEhZX1BMTF9FTl9VU0Jf
-Q0xLUywgYmFzZSArDQo+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICBIV19VU0JQ
-SFlfUExMX1NJQ19DTFIpOw0KPiA+ICsgICAgICAgICAgICAgICB3cml0ZWwoQk1fVVNCUEhZX1BM
-TF9QT1dFUiwgYmFzZSArDQo+IEhXX1VTQlBIWV9QTExfU0lDX0NMUik7DQo+ID4gKyAgICAgICAg
-ICAgICAgIHdyaXRlbChCTV9VU0JQSFlfUExMX0JZUEFTUywgYmFzZSArDQo+IEhXX1VTQlBIWV9Q
-TExfU0lDX1NFVCk7DQo+ID4gKyAgICAgICAgICAgICAgIHdyaXRlbChCTV9VU0JQSFlfUExMX1JF
-R19FTkFCTEUsIGJhc2UgKw0KPiBIV19VU0JQSFlfUExMX1NJQ19DTFIpOw0KPiA+ICsgICAgICAg
-fQ0KPiA+ICsNCj4gPiArICAgICAgIHJldHVybiByZXQ7DQo+ID4gK30NCj4gPiArDQo+ID4gIHN0
-YXRpYyBpbnQgbXhzX3BoeV9od19pbml0KHN0cnVjdCBteHNfcGh5ICpteHNfcGh5KQ0KPiA+ICB7
-DQo+ID4gICAgICAgICBpbnQgcmV0Ow0KPiA+ICAgICAgICAgdm9pZCBfX2lvbWVtICpiYXNlID0g
-bXhzX3BoeS0+cGh5LmlvX3ByaXY7DQo+ID4NCj4gPiArICAgICAgIGlmIChpc19pbXg3dWxwX3Bo
-eShteHNfcGh5KSkgew0KPiA+ICsgICAgICAgICAgICAgICByZXQgPSBteHNfcGh5X3BsbF9lbmFi
-bGUoYmFzZSwgdHJ1ZSk7DQo+ID4gKyAgICAgICAgICAgICAgIGlmIChyZXQpDQo+ID4gKyAgICAg
-ICAgICAgICAgICAgICAgICAgcmV0dXJuIHJldDsNCj4gPiArICAgICAgIH0NCj4gPiArDQo+ID4g
-ICAgICAgICByZXQgPSBzdG1wX3Jlc2V0X2Jsb2NrKGJhc2UgKyBIV19VU0JQSFlfQ1RSTCk7DQo+
-ID4gICAgICAgICBpZiAocmV0KQ0KPiA+IC0gICAgICAgICAgICAgICByZXR1cm4gcmV0Ow0KPiA+
-ICsgICAgICAgICAgICAgICBnb3RvIGRpc2FibGVfcGxsOw0KPiA+DQo+ID4gICAgICAgICAvKiBQ
-b3dlciB1cCB0aGUgUEhZICovDQo+ID4gICAgICAgICB3cml0ZWwoMCwgYmFzZSArIEhXX1VTQlBI
-WV9QV0QpOw0KPiA+IEBAIC0yNjcsNiArMzI0LDExIEBAIHN0YXRpYyBpbnQgbXhzX3BoeV9od19p
-bml0KHN0cnVjdCBteHNfcGh5ICpteHNfcGh5KQ0KPiA+ICAgICAgICAgbXhzX3BoeV90eF9pbml0
-KG14c19waHkpOw0KPiA+DQo+ID4gICAgICAgICByZXR1cm4gMDsNCj4gPiArDQo+ID4gK2Rpc2Fi
-bGVfcGxsOg0KPiA+ICsgICAgICAgaWYgKGlzX2lteDd1bHBfcGh5KG14c19waHkpKQ0KPiA+ICsg
-ICAgICAgICAgICAgICBteHNfcGh5X3BsbF9lbmFibGUoYmFzZSwgZmFsc2UpOw0KPiA+ICsgICAg
-ICAgcmV0dXJuIHJldDsNCj4gPiAgfQ0KPiA+DQo+ID4gIC8qIFJldHVybiB0cnVlIGlmIHRoZSB2
-YnVzIGlzIHRoZXJlICovDQo+ID4gQEAgLTM4OCw2ICs0NTAsOSBAQCBzdGF0aWMgdm9pZCBteHNf
-cGh5X3NodXRkb3duKHN0cnVjdCB1c2JfcGh5ICpwaHkpDQo+ID4gICAgICAgICB3cml0ZWwoQk1f
-VVNCUEhZX0NUUkxfQ0xLR0FURSwNCj4gPiAgICAgICAgICAgICAgICBwaHktPmlvX3ByaXYgKyBI
-V19VU0JQSFlfQ1RSTF9TRVQpOw0KPiA+DQo+ID4gKyAgICAgICBpZiAoaXNfaW14N3VscF9waHko
-bXhzX3BoeSkpDQo+ID4gKyAgICAgICAgICAgICAgIG14c19waHlfcGxsX2VuYWJsZShwaHktPmlv
-X3ByaXYsIGZhbHNlKTsNCj4gPiArDQo+ID4gICAgICAgICBjbGtfZGlzYWJsZV91bnByZXBhcmUo
-bXhzX3BoeS0+Y2xrKTsNCj4gPiAgfQ0KPiA+DQo+ID4gLS0NCj4gPiAyLjE0LjENCj4gPg0K
+Hi, Rob,
+
+Sorry to bother you, could you please review this patch when you are
+available? Thanks.
+
+On Mon, 2019-07-01 at 15:48 +0800, Bibby Hsieh wrote:
+> cmdq driver provide a function that get the relationship
+> of sub system number from device node for client.
+> add specification for #subsys-cells, mediatek,gce-client-reg.
+> 
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
+> ---
+>  .../devicetree/bindings/mailbox/mtk-gce.txt    | 18 ++++++++++++++----
+>  1 file changed, 14 insertions(+), 4 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> index 1f7f8f2a3f49..d48282d6b02d 100644
+> --- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> +++ b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> @@ -21,12 +21,21 @@ Required properties:
+>  	priority: Priority of GCE thread.
+>  	atomic_exec: GCE processing continuous packets of commands in atomic
+>  		way.
+> +- #subsys-cells: Should be 3.
+> +	<&phandle subsys_number start_offset size>
+> +	phandle: Label name of a gce node.
+> +	subsys_number: specify the sub-system id which is corresponding
+> +		       to the register address.
+> +	start_offset: the start offset of register address that GCE can access.
+> +	size: the total size of register address that GCE can access.
+>  
+>  Required properties for a client device:
+>  - mboxes: Client use mailbox to communicate with GCE, it should have this
+>    property and list of phandle, mailbox specifiers.
+> -- mediatek,gce-subsys: u32, specify the sub-system id which is corresponding
+> -  to the register address.
+> +Optional properties for a client device:
+> +- mediatek,gce-client-reg: Specify the sub-system id which is corresponding
+> +  to the register address, it should have this property and list of phandle,
+> +  sub-system specifiers.
+>  
+>  Some vaules of properties are defined in 'dt-bindings/gce/mt8173-gce.h'
+>  or 'dt-binding/gce/mt8183-gce.h'. Such as sub-system ids, thread priority, event ids.
+> @@ -40,6 +49,7 @@ Example:
+>  		clocks = <&infracfg CLK_INFRA_GCE>;
+>  		clock-names = "gce";
+>  		#mbox-cells = <3>;
+> +		#subsys-cells = <3>;
+>  	};
+>  
+>  Example for a client device:
+> @@ -48,9 +58,9 @@ Example for a client device:
+>  		compatible = "mediatek,mt8173-mmsys";
+>  		mboxes = <&gce 0 CMDQ_THR_PRIO_LOWEST 1>,
+>  			 <&gce 1 CMDQ_THR_PRIO_LOWEST 1>;
+> -		mediatek,gce-subsys = <SUBSYS_1400XXXX>;
+>  		mutex-event-eof = <CMDQ_EVENT_MUTEX0_STREAM_EOF
+>  				CMDQ_EVENT_MUTEX1_STREAM_EOF>;
+> -
+> +		mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>,
+> +					  <&gce SUBSYS_1401XXXX 0x2000 0x100>;
+>  		...
+>  	};
+
+-- 
+Bibby
+
