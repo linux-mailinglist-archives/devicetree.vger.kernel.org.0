@@ -2,144 +2,197 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4D34D5CD17
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 11:58:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F2C455CD48
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 12:05:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727129AbfGBJ6x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 05:58:53 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:51899 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726765AbfGBJ6x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 05:58:53 -0400
-Received: by mail-wm1-f68.google.com with SMTP id 207so242960wma.1
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 02:58:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=QRPK0qOkX5Q+M8nvo0n2KeWKFtd7tJOQgBeJJuKeUes=;
-        b=EfsmAl9xsk75PZQw1eUJrpmqGtNjtNVcKtdZ3k0Y5L5V8C0VwhUTn6oLj7Z/kwj7xA
-         vebq/nBTJvTA3LEqmGJqGE4/JbzssjqYL5LEGjotpbgHycm6BAcppyawnkXy9PlrRg3L
-         m1yg8jPukP5KaUGgNhlmW2IACKW10DFYGZDvLG2OAuBzYnmd0hc5m3Now6tquOQG5H3I
-         Zc13t3OA3JOiOIDSGmQFaiGawELStthwhCUQZCpAS8Jx3RYX8uenqVmDEERYoVNDehFe
-         VEg/hOOQzY0MtOtH+Wx+lVUIQFYeJA5Hrncc+tNoLHvy1COFp6pAoyse9mfU6KYMBU3i
-         ZVeg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=QRPK0qOkX5Q+M8nvo0n2KeWKFtd7tJOQgBeJJuKeUes=;
-        b=IdKr57NwJOyQ6b1UqD2xFaqNge7sjBDHjQZKRAGLyuFCwRUXXpP/fvf/lrU3074S70
-         BUa0jpY2iN79Y7lUlVkPumaEfgGXpQ9VA8kWC9X5ZnTBqRAn605gE63++uqp0bimLkEn
-         YlLL0HRkWHxP9rc31NhH9LiB3chXEtoFdCl6c/Mk3myHtwqZUrHnXSXWY9w81oVW2DwF
-         HdJBDaL6FPat8pvrRyZjKaiAFMhpRoq519wiUya6TIfdU6Onzk8Y+aW/+4F5VADkkKHJ
-         G8MrFclhLuIo5ORbQrD6Oc8j5h0qAxq7ra7IntiqSgEVYD+OD8Imb25wiWB1eB+mT+za
-         8X1w==
-X-Gm-Message-State: APjAAAUVZh5AHVwBYv3sqnOxanpl5Dg1xzyVT0GrK0yZN0O5Tmj3Y8S4
-        5ZZuXu0UgY00d0fqXqYuGjWAJjpS+6XrIg==
-X-Google-Smtp-Source: APXvYqxfrHc8PV4pwgQMDK4hyRg+o6rg2wqmTnwa6gQYNet/g493PWh1vk4Ow79EN1QphwjQ8Ag8Gw==
-X-Received: by 2002:a1c:6154:: with SMTP id v81mr2812406wmb.92.1562061531646;
-        Tue, 02 Jul 2019 02:58:51 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id y1sm1969442wma.32.2019.07.02.02.58.50
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 02 Jul 2019 02:58:51 -0700 (PDT)
-Date:   Tue, 2 Jul 2019 10:58:49 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Jean-Jacques Hiblot <jjhiblot@ti.com>
-Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz, robh+dt@kernel.org,
-        mark.rutland@arm.com, lee.jones@linaro.org, jingoohan1@gmail.com,
-        dmurphy@ti.com, linux-leds@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        tomi.valkeinen@ti.com, devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/4] devicetree: Add led-backlight binding
-Message-ID: <20190702095849.fxlmiqcioihsi3zk@holly.lan>
-References: <20190701151423.30768-1-jjhiblot@ti.com>
- <20190701151423.30768-5-jjhiblot@ti.com>
+        id S1726105AbfGBKFV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 06:05:21 -0400
+Received: from mailgw01.mediatek.com ([216.200.240.184]:49620 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725996AbfGBKFV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 06:05:21 -0400
+X-Greylist: delayed 301 seconds by postgrey-1.27 at vger.kernel.org; Tue, 02 Jul 2019 06:05:21 EDT
+X-UUID: 54741aff087e4c8a930e649c99b9ac13-20190702
+X-UUID: 54741aff087e4c8a930e649c99b9ac13-20190702
+Received: from mtkcas67.mediatek.inc [(172.29.193.45)] by mailgw01.mediatek.com
+        (envelope-from <ryder.lee@mediatek.com>)
+        (musrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 1894146130; Tue, 02 Jul 2019 02:00:18 -0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ MTKMBS62N2.mediatek.inc (172.29.193.42) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 2 Jul 2019 03:00:17 -0700
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 2 Jul 2019 18:00:15 +0800
+Message-ID: <1562061615.29303.2.camel@mtkswgap22>
+Subject: Re: [PATCH 1/3] add doc and MAINTAINERS for poweroff
+From:   Ryder Lee <ryder.lee@mediatek.com>
+To:     Frank Wunderlich <frank-w@public-files.de>,
+        Sean Wang <Sean.Wang@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        Josef Friedl <josef.friedl@speed.at>
+Date:   Tue, 2 Jul 2019 18:00:15 +0800
+In-Reply-To: <20190702094045.3652-2-frank-w@public-files.de>
+References: <20190702094045.3652-1-frank-w@public-files.de>
+         <20190702094045.3652-2-frank-w@public-files.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190701151423.30768-5-jjhiblot@ti.com>
-User-Agent: NeoMutt/20180716
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 01, 2019 at 05:14:23PM +0200, Jean-Jacques Hiblot wrote:
-> From: Tomi Valkeinen <tomi.valkeinen@ti.com>
++Sean
+
+On Tue, 2019-07-02 at 11:40 +0200, Frank Wunderlich wrote:
+> From: Josef Friedl <josef.friedl@speed.at>
 > 
-> Add DT binding for led-backlight.
-
-I think the patchset is in the wrong order; the DT bindings
-documentation should appear *before* the binding is
-implemented (amoung other things this prevent transient checkpatch
-warnings as the patchset is applied).
-
-
+> poweroff for BPI-R2
+> Suggested-by: Frank Wunderlich <frank-w@public-files.de>
 > 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
-> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Josef Friedl <josef.friedl@speed.at>
 > ---
->  .../video/backlight/led-backlight.txt         | 39 +++++++++++++++++++
->  1 file changed, 39 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/video/backlight/led-backlight.txt
+>  .../devicetree/bindings/mfd/mt6397.txt        | 10 ++++++-
+>  .../bindings/power/reset/mt6323-poweroff.txt  | 20 +++++++++++++
+>  .../devicetree/bindings/rtc/rtc-mt6397.txt    | 29 +++++++++++++++++++
+>  MAINTAINERS                                   |  6 ++++
+>  4 files changed, 64 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/power/reset/mt6323-poweroff.txt
+>  create mode 100644 Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/video/backlight/led-backlight.txt b/Documentation/devicetree/bindings/video/backlight/led-backlight.txt
-> new file mode 100644
-> index 000000000000..216cd52d624a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/video/backlight/led-backlight.txt
-> @@ -0,0 +1,39 @@
-> +led-backlight bindings
+> diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
+> index 0ebd08af777d..44acb9827716 100644
+> --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
+> +++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
+> @@ -8,6 +8,7 @@ MT6397/MT6323 is a multifunction device with the following sub modules:
+>  - Clock
+>  - LED
+>  - Keys
+> +- Power controller
+> 
+>  It is interfaced to host controller using SPI interface by a proprietary hardware
+>  called PMIC wrapper or pwrap. MT6397/MT6323 MFD is a child device of pwrap.
+> @@ -22,8 +23,10 @@ compatible: "mediatek,mt6397" or "mediatek,mt6323"
+>  Optional subnodes:
+> 
+>  - rtc
+> -	Required properties:
+> +	Required properties: Should be one of follows
+> +		- compatible: "mediatek,mt6323-rtc"
+>  		- compatible: "mediatek,mt6397-rtc"
+> +	For details, see Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
+>  - regulators
+>  	Required properties:
+>  		- compatible: "mediatek,mt6397-regulator"
+> @@ -46,6 +49,11 @@ Optional subnodes:
+>  		- compatible: "mediatek,mt6397-keys" or "mediatek,mt6323-keys"
+>  	see Documentation/devicetree/bindings/input/mtk-pmic-keys.txt
+> 
+> +- power-controller
+> +	Required properties:
+> +		- compatible: "mediatek,mt6323-pwrc"
+> +	For details, see Documentation/devicetree/bindings/power/reset/mt6323-poweroff.txt
 > +
-> +The node of the backlight driver IS the node of the LED.
+>  Example:
+>  	pwrap: pwrap@1000f000 {
+>  		compatible = "mediatek,mt8135-pwrap";
+> diff --git a/Documentation/devicetree/bindings/power/reset/mt6323-poweroff.txt b/Documentation/devicetree/bindings/power/reset/mt6323-poweroff.txt
+> new file mode 100644
+> index 000000000000..933f0c48e887
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/power/reset/mt6323-poweroff.txt
+> @@ -0,0 +1,20 @@
+> +Device Tree Bindings for Power Controller on MediaTek PMIC
+> +
+> +The power controller which could be found on PMIC is responsible for externally
+> +powering off or on the remote MediaTek SoC through the circuit BBPU.
 > +
 > +Required properties:
-> +  - compatible: "led-backlight"
-> +  - brightness-levels: Array of distinct LED brightness levels. These
-> +      are in the range from 0 to 255, passed to the LED class driver.
-> +  - default-brightness-level: the default brightness level (index into the
-> +      array defined by the "brightness-levels" property)
-
-I think brightness-levels and default-brightness-level could be
-optional properties since a default 1:1 mapping seems reasonable given
-how constrained the LED brightness values are.
-
-
-Daniel.
-
-
-> +
-> +Optional properties:
-> +  - power-supply: regulator for supply voltage
-> +  - enable-gpios: contains a single GPIO specifier for the GPIO which enables
-> +                  and disables the backlight (see GPIO binding[0])
-> +
-> +[0]: Documentation/devicetree/bindings/gpio/gpio.txt
+> +- compatible: Should be one of follows
+> +       "mediatek,mt6323-pwrc": for MT6323 PMIC
 > +
 > +Example:
 > +
-> +led_ctrl {
-> +	red_led@1 {
-> +	        label = "red";
-> +		reg = <1>;
-> +	}
+> +       pmic {
+> +               compatible = "mediatek,mt6323";
 > +
-> +	backlight_led@2 {
-> +		function = LED_FUNCTION_BACKLIGHT;
-> +		reg = <2>;
+> +               ...
 > +
-> +		compatible = "led-backlight";
+> +               power-controller {
+> +                       compatible = "mediatek,mt6323-pwrc";
+> +               };
+> +       }
+> diff --git a/Documentation/devicetree/bindings/rtc/rtc-mt6397.txt b/Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
+> new file mode 100644
+> index 000000000000..ebd1cf80dcc8
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
+> @@ -0,0 +1,29 @@
+> +Device-Tree bindings for MediaTek PMIC based RTC
 > +
-> +		brightness-levels = <0 4 8 16 32 64 128 255>;
-> +		default-brightness-level = <6>;
+> +MediaTek PMIC based RTC is an independent function of MediaTek PMIC that works
+> +as a type of multi-function device (MFD). The RTC can be configured and set up
+> +with PMIC wrapper bus which is a common resource shared with the other
+> +functions found on the same PMIC.
 > +
-> +		power-supply = <&vdd_bl_reg>;
-> +		enable-gpios = <&gpio 58 0>;
-> +	};
-> +};
-> -- 
+> +For MediaTek PMIC MFD bindings, see:
+> +Documentation/devicetree/bindings/mfd/mt6397.txt
+> +
+> +For MediaTek PMIC wrapper bus bindings, see:
+> +Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
+> +
+> +Required properties:
+> +- compatible: Should be one of follows
+> +       "mediatek,mt6323-rtc": for MT6323 PMIC
+> +       "mediatek,mt6397-rtc": for MT6397 PMIC
+> +
+> +Example:
+> +
+> +       pmic {
+> +               compatible = "mediatek,mt6323";
+> +
+> +               ...
+> +
+> +               rtc {
+> +                       compatible = "mediatek,mt6323-rtc";
+> +               };
+> +       };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index 01a52fc964da..ec6ff342aa3c 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -9920,6 +9920,12 @@ S:	Maintained
+>  F:	drivers/net/dsa/mt7530.*
+>  F:	net/dsa/tag_mtk.c
+> 
+> +MEDIATEK BOARD LEVEL SHUTDOWN DRIVERS
+> +M:	Sean Wang <sean.wang@mediatek.com>
+> +L:	linux-pm@vger.kernel.org
+> +S:	Maintained
+> +F:	Documentation/devicetree/bindings/power/reset/mt6323-poweroff.txt
+
+It's odd that there's no Sean's SOB tag in the series but add him in the
+entry.
+
+>  MEDIATEK JPEG DRIVER
+>  M:	Rick Chang <rick.chang@mediatek.com>
+>  M:	Bin Liu <bin.liu@mediatek.com>
+> --
 > 2.17.1
 > 
+> 
+> _______________________________________________
+> Linux-mediatek mailing list
+> Linux-mediatek@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-mediatek
+
+
