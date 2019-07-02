@@ -2,164 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C18975CB8A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 10:14:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DB3AA5CBF6
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 10:22:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728328AbfGBIOC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 04:14:02 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:58267 "EHLO
-        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728121AbfGBIOC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 04:14:02 -0400
-X-Originating-IP: 90.89.68.76
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 29E16FF807;
-        Tue,  2 Jul 2019 08:13:47 +0000 (UTC)
-Date:   Tue, 2 Jul 2019 10:13:46 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Andrzej Hajda <a.hajda@samsung.com>
-Cc:     Torsten Duwe <duwe@lst.de>, Harald Geyer <harald@ccbib.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
- on Teres-I
-Message-ID: <20190702081346.4hlb53qcajhz4ckl@flea>
-References: <20190605120237.ekmytfxcwbjaqy3x@flea>
- <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at>
- <20190607062802.m5wslx3imiqooq5a@flea>
- <CGME20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752@epcas1p4.samsung.com>
- <20190607094030.GA12373@lst.de>
- <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
- <20190612152022.c3cfhp4cauhzhfyr@flea>
- <bb2c2c00-b46e-1984-088f-861ac8952331@samsung.com>
- <20190701095842.fvganvycce2cy7jn@flea>
- <64471471-5b4d-3c1f-a0e3-e02ee78ca23c@samsung.com>
+        id S1725972AbfGBIWF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 04:22:05 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:39945 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725859AbfGBIWE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 04:22:04 -0400
+Received: by mail-wr1-f67.google.com with SMTP id p11so16692032wre.7
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 01:22:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=npK20M4VjgRq8bweyVfDmxYuK/3oR7Zc4HxgTAOxcqU=;
+        b=QDE4lDiHJUMLEnF5ZiGmGwnAjKcFsLz0g7kuRJXlBy0qd0j80HVGb4RjGm8VYTR+dH
+         xuTtJuu7t6EsfUFrxGaKMmWYjpYutbhZFLfjfyUN2MnSDD2QULDY5EhmojzlUVKB3KjR
+         /HO475AdE8D0WOYYCsK0XrORwUrvRnVXXZAGFK06rmBbLbdGC2xHMZo793IyfOgFWN1Q
+         mmc/5TM1UyQYsDGjHaka+j4f/XXUGEhjZS7jhJuef/HFbUIEi8NYrTz+0m59ZH8tIwG3
+         9K5X3N8WPJvs2ghje0N4nnPF8Zd1QB/HP3my3eVW3NZGFyd7546K5GyWqPC/1sw9C6OS
+         gSFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=npK20M4VjgRq8bweyVfDmxYuK/3oR7Zc4HxgTAOxcqU=;
+        b=arMmKCHia05j4NqBnQUb6u9Y3UDoicmfHFzdgTS3fuwhgZKIteAYwTvjqUTR6JY51Z
+         yifTzC8qwYR6m12+ftKvOhyK3Ol512o4o0FUC0pf3/ypzWgPkVqmpferWHplGInHjo6G
+         Iiew0bK4C26YIWLnTxpXJ7olzAuWuvvhUQ5xyPM8FEYA3fw6mXnMAc+M4YyH9wazYD7P
+         nKOsCFLJ1Au/m0NpaMMKztVbucQvdkJzcFoYJtEOHkceTWXT24+llmvggLDcmaBQSJZd
+         PjhAWk57nRHmQF5Vy8RcxAJx1iy7tWy1/b7504ZD7n5B39bMBZr6y+Mi93yyz9B55ZD3
+         Qmzg==
+X-Gm-Message-State: APjAAAUyvF9P0NibPmeGju6PCOrMeLqlHh6lYTDWxFsp1K9U38HRoyX9
+        NaLeOOJW9HhEEmDOCVetIlMC4wrfwHc=
+X-Google-Smtp-Source: APXvYqwevDSd+3eE4DJi0D0ipmYNR9B2qOUnZJQVIAPek/FAfF+1wQicHfJKOQPBQDQ1R3DWnHdT9w==
+X-Received: by 2002:adf:dc81:: with SMTP id r1mr22261339wrj.298.1562055722799;
+        Tue, 02 Jul 2019 01:22:02 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id l124sm2121489wmf.36.2019.07.02.01.22.01
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Jul 2019 01:22:02 -0700 (PDT)
+Subject: Re: [RFC PATCH 1/5] dt-bindings: soundwire: add slave bindings
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     broonie@kernel.org, robh+dt@kernel.org, devicetree@vger.kernel.org,
+        mark.rutland@arm.com, pierre-louis.bossart@linux.intel.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        bgoswami@quicinc.com
+References: <20190611104043.22181-1-srinivas.kandagatla@linaro.org>
+ <20190611104043.22181-2-srinivas.kandagatla@linaro.org>
+ <20190701061155.GJ2911@vkoul-mobl>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <ce1e445e-3254-1308-8752-2cb56a7e0cc6@linaro.org>
+Date:   Tue, 2 Jul 2019 09:22:01 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="ysvumhfqulaacx3l"
-Content-Disposition: inline
-In-Reply-To: <64471471-5b4d-3c1f-a0e3-e02ee78ca23c@samsung.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190701061155.GJ2911@vkoul-mobl>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Thanks Vinod for taking time to review,
 
---ysvumhfqulaacx3l
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On 01/07/2019 07:11, Vinod Koul wrote:
+> On 11-06-19, 11:40, Srinivas Kandagatla wrote:
+>> This patch adds bindings for Soundwire Slave devices which includes how
+>> SoundWire enumeration address is represented in SoundWire slave device
+>> tree nodes.
+>>
+>> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+>> ---
+>>   .../devicetree/bindings/soundwire/bus.txt     | 48 +++++++++++++++++++
+>>   1 file changed, 48 insertions(+)
+>>   create mode 100644 Documentation/devicetree/bindings/soundwire/bus.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/soundwire/bus.txt b/Documentation/devicetree/bindings/soundwire/bus.txt
+>> new file mode 100644
+>> index 000000000000..19a672b0d528
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/soundwire/bus.txt
+> 
+> The bindings are for slave right and the file is bus.txt?
 
-On Mon, Jul 01, 2019 at 02:27:51PM +0200, Andrzej Hajda wrote:
-> On 01.07.2019 11:58, Maxime Ripard wrote:
-> > On Fri, Jun 28, 2019 at 12:39:32PM +0200, Andrzej Hajda wrote:
-> >> On 12.06.2019 17:20, Maxime Ripard wrote:
-> >>>> I am not sure if I understand whole discussion here, but I also do not
-> >>>> understand whole edp-connector thing.
-> >>> The context is this one:
-> >>> https://patchwork.freedesktop.org/patch/257352/?series=51182&rev=1
-> >>> https://patchwork.freedesktop.org/patch/283012/?series=56163&rev=1
-> >>> https://patchwork.freedesktop.org/patch/286468/?series=56776&rev=2
-> >>>
-> >>> TL;DR: This bridge is being used on ARM laptops that can come with
-> >>> different eDP panels. Some of these panels require a regulator to be
-> >>> enabled for the panel to work, and this is obviously something that
-> >>> should be in the DT.
-> >>>
-> >>> However, we can't really describe the panel itself, since the vendor
-> >>> uses several of them and just relies on the eDP bus to do its job at
-> >>> retrieving the EDIDs. A generic panel isn't really working either
-> >>> since that would mean having a generic behaviour for all the panels
-> >>> connected to that bus, which isn't there either.
-> >>>
-> >>> The connector allows to expose this nicely.
-> >> As VESA presentation says[1] eDP is based on DP but is much more
-> >> flexible, it is up to integrator (!!!) how the connection, power
-> >> up/down, initialization sequence should be performed. Trying to cover
-> >> every such case in edp-connector seems to me similar to panel-simple
-> >> attempt failure. Moreover there is no such thing as physical standard
-> >> eDP connector. Till now I though DT connector should describe physical
-> >> connector on the device, now I am lost, are there some DT bindings
-> >> guidelines about definition of a connector?
-> > This might be semantics but I guess we're in some kind of grey area?
-> >
-> > Like, for eDP, if it's soldered I guess we could say that there's no
-> > connector. But what happens if for some other board, that signal is
-> > routed through a ribbon?
-> >
-> > You could argue that there's no physical connector in both cases, or
-> > that there's one in both, or one for the ribbon and no connector for
-> > the one soldered in.
->
-> This is not about ribbon vs soldering. It is about usage: this
-> connection is static across the whole life of the device (except
-> exceptional things: repair, non-standard usage, etc).
+I tried to follow what I have done for SLIMBus.
+Do you prefer them to be documented in slave.txt?
 
-It doesn't have to be.
+> 
+>> @@ -0,0 +1,48 @@
+>> +SoundWire bus bindings.
+>> +
+>> +SoundWire is a 2-pin multi-drop interface with data and clock line.
+>> +It facilitates development of low cost, efficient, high performance systems.
+>> +
+>> +SoundWire controller bindings are very much specific to vendor.
+>> +
+>> +Child nodes(SLAVE devices):
+>> +Every SoundWire controller node can contain zero or more child nodes
+>> +representing slave devices on the bus. Every SoundWire slave device is
+>> +uniquely determined by the enumeration address containing 5 fields:
+>> +SoundWire Version, Instance ID, Manufacturer ID, Part ID and Class ID
+>> +for a device. Addition to below required properties, child nodes can
+>> +have device specific bindings.
+>> +
+>> +Required property for SoundWire child node if it is present:
+>> +- compatible:	 "sdwVER,MFD,PID,CID". The textual representation of
+>> +		  SoundWire Enumeration address comprising SoundWire
+>> +		  Version, Manufacturer ID, Part ID and Class ID,
+>> +		  shall be in lower-case hexadecimal with leading
+>> +		  zeroes suppressed.
+>> +		  Version number '0x10' represents SoundWire 1.0
+>> +		  Version number '0x11' represents SoundWire 1.1
+>> +		  ex: "sdw10,0217,2010,0"
+> 
+> any reason why we want to code version number and not say sdw,1.0,...
+> and so on?
 
-> And "the real connector" is (at least for me) something where
-> end-user can connect/disconnect different things: USB, HDMI,
-> ethernet, etc. And obviously to be functional it should be somehow
-> standardized. So even if there could be some grey area, I do not see
-> it here.
+For consistency reasons, as other info in hex.
 
-Well, if there's a ribbon connector, then you have a physical
-connector, with the end user being able to connect / disconnect
-various displays. It might not be the case with actual products, but
-it's pretty common with SBCs to have that signal routed through a
-connector, and the user has several options to connect a display to
-it.
+> 
+>> +
+>> +- sdw-instance-id: Should be ('Instance ID') from SoundWire
+>> +		  Enumeration Address. Instance ID is for the cases
+>> +		  where multiple Devices of the same type or Class
+>> +		  are attached to the bus.
+> 
+> instance id is part of the 48bit device id, so wont it make sense to add
+> that to compatible as well?
+> 
+So we could have multiple instance of same IP, so adding this to 
+compatible string does not make sense! As driver has to list all the 
+possible compatible strings.
 
-The line really is blurred.
-
-> >> Maybe instead of edp-connector one would introduce integrator's specific
-> >> connector, for example with compatible "olimex,teres-edp-connector"
-> >> which should follow edp abstract connector rules? This will be at least
-> >> consistent with below presentation[1] - eDP requirements depends on
-> >> integrator. Then if olimex has standard way of dealing with panels
-> >> present in olimex/teres platforms the driver would then create
-> >> drm_panel/drm_connector/drm_bridge(?) according to these rules, I guess.
-> >> Anyway it still looks fishy for me :), maybe because I am not
-> >> familiarized with details of these platforms.
->
-> > That makes sense yes
->
-> And what if some panel can be used with this pseudo-connecter and in
-> some different hw directly? Code duplication? DT overlays?
-
-Overlays are a solution, but I would advocate to always have the
-connector.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---ysvumhfqulaacx3l
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXRsSOgAKCRDj7w1vZxhR
-xULUAPsGQYzNIZSTC25p24UViIRLulmthcOhzTK4JDdmTudgfAD+LA/mKeRDEVmr
-5I2K+qvDzz8yXwdP9AtgR/XK8mhHSQ8=
-=dLkQ
------END PGP SIGNATURE-----
-
---ysvumhfqulaacx3l--
+>> +
+>> +SoundWire example for Qualcomm's SoundWire controller:
+>> +
+>> +soundwire@c2d0000 {
+>> +	compatible = "qcom,soundwire-v1.5.0"
+>> +	reg = <0x0c2d0000 0x2000>;
+>> +
+>> +	spkr_left:wsa8810-left{
+>> +		compatible = "sdw10,0217,2010,0";
+>> +		sdw-instance-id = <1>;
+>> +		...
+>> +	};
+>> +
+>> +	spkr_right:wsa8810-right{
+>> +		compatible = "sdw10,0217,2010,0";
+>> +		sdw-instance-id = <2>;
+>> +		...
+>> +	};
+>> +};
+>> -- 
+>> 2.21.0
+> 
