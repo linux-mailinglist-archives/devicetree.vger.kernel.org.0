@@ -2,137 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87DB85DAC1
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 03:25:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54E725DA2C
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 03:03:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727275AbfGCBZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 21:25:57 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:33400 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726329AbfGCBZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 21:25:57 -0400
-Received: by mail-io1-f68.google.com with SMTP id u13so960022iop.0
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 18:25:56 -0700 (PDT)
+        id S1726963AbfGCBDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 21:03:14 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:54794 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727082AbfGCBDO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 21:03:14 -0400
+Received: by mail-wm1-f66.google.com with SMTP id g135so405872wme.4;
+        Tue, 02 Jul 2019 18:03:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=6suCIUcpnxYWLx0u7rAt8YHu7DyHRein/0Ku8MDeQrw=;
-        b=MyF13COg8Z9CREi9V7uwtNZ+RQgUSogpyqwer+wxMaRNlPvmTJ3LJUiyv1bRH2HNg4
-         UdgEbOWphL591zLtGdaR5I4Nw4e1exGSG3CgmWGSsfGiRRfTC+NEd9mUTlTTIUs2/NJT
-         WoMG2zeqsWqlC36tyRgV6MVFaOJ16SDyDjBSU=
+        d=googlemail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LBWB6uQ0LpQxJc9ymoFNG6XGEMqz0HTQ0I21d3MdiIY=;
+        b=Ob8OAm8l+LEYVwr57X3OufsI0zkT79AT5Jut2x7UTyTugJd7r1yIb8W3bBQrg2Abru
+         3yXhkZtVb6uVC4BJ8Fx9CF87O3PO32pmt8i0eAHJpcLMz0OmL8tmtrlFthK8QgWiNeiP
+         ZtUviQ6hQxJACJ99tQ3I8eyz0zPBl5BO9xQ9tiwkdapagV0XAVHvQ9PWNDOt7W4NZHFi
+         S9umhTYjJH4M8ODI/AkEIxrM0/vWhdyFtPCmI4XA0y/qZP0O2mv/GDPF643CpgFQR5Sy
+         tuCPRygfybpytV0rhxmsfKq5sYMe1la5gSd7Gbz2Rb6s8oPXelTwdj1wjgc/jRlura4V
+         gzIA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=6suCIUcpnxYWLx0u7rAt8YHu7DyHRein/0Ku8MDeQrw=;
-        b=b2BGh2odKVRAKMzu5yylIxFyITftsfbLS8tDRmH72gtRB9OYOa8wRKDKBUzbWSmevI
-         JNEuChw99H8Nq9VfhRyOcVxkwX/3XWQWYIvP/kowJjmPdHGX7Ffbd0n/ybafuVFHrN2g
-         FnGvpeHY4GqvWH3jk+kkqjmWEDie2QwqcPrjntRx67etrVCKelxUVyg5FZXiLbWgPBPO
-         CHt/t9Rn84bsk1Z1/DMwGT7tKtLF3alyXp5CrOz8D0QdtB6eTTNuUlLCCa1tlUr0736e
-         5ph5utWf9/W5Ge9LpWIuzjmxYPR1QAEmNl1Z1H8612mt6Ro9u/jcGMqwqZuhW/sybJpp
-         Obow==
-X-Gm-Message-State: APjAAAVjm4WypyKrkba5Kc9xMXoHqxFPEddulcttqgAuHqEpYLyNAhZO
-        ajpAk4rQbFO7ulGO3L73ZvAH4EG0tXU=
-X-Google-Smtp-Source: APXvYqx5JEWzQ2UvrlKxvGeWqIfB1W0aL296harWOsLlHl3Q8hH1RcuJ1Vt5RcC8hDSKgsrp1ijs0Q==
-X-Received: by 2002:a5d:8e08:: with SMTP id e8mr5288386iod.139.1562098479898;
-        Tue, 02 Jul 2019 13:14:39 -0700 (PDT)
-Received: from mail-io1-f42.google.com (mail-io1-f42.google.com. [209.85.166.42])
-        by smtp.gmail.com with ESMTPSA id f17sm14089072ioc.2.2019.07.02.13.14.37
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 02 Jul 2019 13:14:38 -0700 (PDT)
-Received: by mail-io1-f42.google.com with SMTP id m24so40209811ioo.2
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 13:14:37 -0700 (PDT)
-X-Received: by 2002:a02:aa1d:: with SMTP id r29mr15652512jam.127.1562098477589;
- Tue, 02 Jul 2019 13:14:37 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LBWB6uQ0LpQxJc9ymoFNG6XGEMqz0HTQ0I21d3MdiIY=;
+        b=Ri4HEi0PY+6ZXToUY7fshGGxErH39rQgZN8VUzaIapZ/1S6pa92NAePgP3lsCzrk+f
+         5ZvFFLq+qcxd81CTVynIEDY0YeEiirSwUkZRw8uca9jvgtnxSIbBLFjqSlGLKv0OykcK
+         EnShwLJ6QNm+XjcELgjYta+tNj8D1foNrCUxG9WfnooIfqKLVGqGOuAVzsnbRJ4NH1Ma
+         M5NiaQWjPchuQiFaIrD/UWga69cE3YZZc6X2aPqtAuRZYu/0WzIbFSjdMK/LOjw2uTTM
+         NmjM3bNSAf18OH6COckc5yy+iHeSpw2BrNYtwKmz/BgnbcX7ZnFnryHuAl8JSOm3jWUE
+         wNIA==
+X-Gm-Message-State: APjAAAWjgvQiUYlcmeRNntJprVdNocjHB/dayNmDV8YVEbIC/Z+3OSJx
+        8LwkAhaN1bRpotdha0I3wCmvUAkv
+X-Google-Smtp-Source: APXvYqxOUC2uNqK6Z/BzGBTWsn4YGIpPODSbFR6VlbGZ1L/KD+v0vnSxOXKnwHJsTkYKaXf58GCbjA==
+X-Received: by 2002:a7b:c3d5:: with SMTP id t21mr4048369wmj.87.1562099728934;
+        Tue, 02 Jul 2019 13:35:28 -0700 (PDT)
+Received: from blackbox.darklights.net (p200300F133D62000A09003363445C98E.dip0.t-ipconnect.de. [2003:f1:33d6:2000:a090:336:3445:c98e])
+        by smtp.googlemail.com with ESMTPSA id s12sm100041wmh.34.2019.07.02.13.35.27
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 02 Jul 2019 13:35:28 -0700 (PDT)
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+To:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
+        john@phrozen.org, kishon@ti.com, robh+dt@kernel.org
+Cc:     linux-kernel@vger.kernel.org, hauke@hauke-m.de,
+        paul.burton@mips.com, ralf@linux-mips.org, mark.rutland@arm.com,
+        ms@dev.tdt.de,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH 0/4] Lantiq VRX200/ARX300 PCIe PHY driver
+Date:   Tue,  2 Jul 2019 22:35:19 +0200
+Message-Id: <20190702203523.2412-1-martin.blumenstingl@googlemail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20190621211346.1324-1-ezequiel@collabora.com> <3c68bf286d8b75ac339df0eab43d276667e073c2.camel@collabora.com>
-In-Reply-To: <3c68bf286d8b75ac339df0eab43d276667e073c2.camel@collabora.com>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Tue, 2 Jul 2019 13:14:24 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=UK3bpyvvFQtsvUtWHun_bfxb25R0bLyg=WJz+yHz5kvg@mail.gmail.com>
-Message-ID: <CAD=FV=UK3bpyvvFQtsvUtWHun_bfxb25R0bLyg=WJz+yHz5kvg@mail.gmail.com>
-Subject: Re: [PATCH v2 0/3] RK3288 Gamma LUT
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
-        Sean Paul <seanpaul@chromium.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Various Lantiq (now Intel) SoCs contain one or more PCIe controllers
+and PHYs.
+This adds a driver for the PCIe PHYs found on the Lantiq VRX200 and
+ARX300 SoCs. GRX390 should also be supported as far as I can tell,
+but I don't have any of these devices to further verify that.
 
-On Tue, Jul 2, 2019 at 4:26 AM Ezequiel Garcia <ezequiel@collabora.com> wrote:
->
-> Hi Heiko,
->
-> On Fri, 2019-06-21 at 18:13 -0300, Ezequiel Garcia wrote:
-> > Let's support Gamma LUT configuration on RK3288 SoCs.
-> >
-> > In order to do so, this series adds a new and optional
-> > address resource.
-> >
-> > A separate address resource is required because on this RK3288,
-> > the LUT address is after the MMU address, which is requested
-> > by the iommu driver. This prevents the DRM driver
-> > from requesting an entire register space.
-> >
-> > The current implementation works for RGB 10-bit tables, as that
-> > is what seems to work on RK3288.
-> >
-> > This has been tested on a Rock2 Square board, using
-> > a hacked 'modetest' tool, with legacy and atomic APIs.
-> >
-> > Thanks,
-> > Eze
-> >
-> > Changes from v1:
-> > * drop explicit linear LUT after finding a proper
-> >   way to disable gamma correction.
-> > * avoid setting gamma is the CRTC is not active.
-> > * s/int/unsigned int as suggested by Jacopo.
-> > * only enable color management and set gamma size
-> >   if gamma LUT is supported, suggested by Doug.
-> > * drop the reg-names usage, and instead just use indexed reg
-> >   specifiers, suggested by Doug.
-> >
-> > Changes from RFC:
-> > * Request (an optional) address resource for the LUT.
-> > * Add devicetree changes.
-> > * Drop support for RK3399, which doesn't seem to work
-> >   out of the box and needs more research.
-> > * Support pass-thru setting when GAMMA_LUT is NULL.
-> > * Add a check for the gamma size, as suggested by Ilia.
-> > * Move gamma setting to atomic_commit_tail, as pointed
-> >   out by Jacopo/Laurent, is the correct way.
-> >
-> > Ezequiel Garcia (3):
-> >   dt-bindings: display: rockchip: document VOP gamma LUT address
-> >   drm/rockchip: Add optional support for CRTC gamma LUT
-> >   ARM: dts: rockchip: Add RK3288 VOP gamma LUT address
-> >
-> >  .../display/rockchip/rockchip-vop.txt         |   6 +-
-> >  arch/arm/boot/dts/rk3288.dtsi                 |   4 +-
-> >  drivers/gpu/drm/rockchip/rockchip_drm_fb.c    |   3 +
-> >  drivers/gpu/drm/rockchip/rockchip_drm_vop.c   | 114 ++++++++++++++++++
-> >  drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |   7 ++
-> >  drivers/gpu/drm/rockchip/rockchip_vop_reg.c   |   2 +
-> >  6 files changed, 133 insertions(+), 3 deletions(-)
+I have tested this PCIe PHY driver with the out-of-tree PCIe controller
+driver in OpenWrt: [0]
 
-I will note that I can confirm that the "gamma_test" app present on
-Chrome OS can be shown to work with this series, both on eDP and HDMI.
-I see a nice shiny RGB pattern on the screen.  Thus:
+dependencies for this series:
+none
 
-Tested-by: Douglas Anderson <dianders@chromium.org>
+patches 1-3 should go through the PHY tree
+patch 4 should go through the mips tree
+
+I am aware that this series is too late for the v5.3 development cycle.
+Getting review comments is still appreciated so this can be queued early
+in the v5.4 development cycle.
+
+
+[0] https://github.com/xdarklight/openwrt/commits/lantiq-mainline-pcie-phy-20190702
+
+
+Martin Blumenstingl (4):
+  dt-bindings: phy: add binding for the Lantiq VRX200 and ARX300 PCIe
+    PHYs
+  phy: lantiq: vrx200-pcie: add a driver for the Lantiq VRX200 PCIe PHY
+  phy: enable compile-testing for the Lantiq PHY drivers
+  MIPS: lantiq: update the clock alias' for the mainline PCIe PHY driver
+
+ .../bindings/phy/lantiq,vrx200-pcie-phy.yaml  |  87 +++
+ arch/mips/lantiq/xway/sysctrl.c               |  16 +-
+ drivers/phy/Makefile                          |   2 +-
+ drivers/phy/lantiq/Kconfig                    |  11 +
+ drivers/phy/lantiq/Makefile                   |   1 +
+ drivers/phy/lantiq/phy-lantiq-vrx200-pcie.c   | 495 ++++++++++++++++++
+ .../dt-bindings/phy/phy-lantiq-vrx200-pcie.h  |  11 +
+ 7 files changed, 614 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/phy/lantiq,vrx200-pcie-phy.yaml
+ create mode 100644 drivers/phy/lantiq/phy-lantiq-vrx200-pcie.c
+ create mode 100644 include/dt-bindings/phy/phy-lantiq-vrx200-pcie.h
+
+-- 
+2.22.0
+
