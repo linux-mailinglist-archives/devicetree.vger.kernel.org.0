@@ -2,84 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79F815D21C
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 16:52:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D78FA5D289
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 17:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726621AbfGBOwK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 10:52:10 -0400
-Received: from office2.cesnet.cz ([195.113.144.244]:59328 "EHLO
-        office2.cesnet.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726150AbfGBOwK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 10:52:10 -0400
-X-Greylist: delayed 462 seconds by postgrey-1.27 at vger.kernel.org; Tue, 02 Jul 2019 10:52:08 EDT
-Received: from localhost (unknown [IPv6:2001:718:1:2c:b88f:a570:7aec:4192])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by office2.cesnet.cz (Postfix) with ESMTPSA id 29D02400066;
-        Tue,  2 Jul 2019 16:44:20 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cesnet.cz;
-        s=office2; t=1562078663;
-        bh=qW1FNQVp0z6X5XtOPtt+yydz6FyGhgdAlTaFXUsn36I=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=hVFwOXXv5dSaG5A0OecsMLG4o/9VEBvb1xXmz2XJFiyCjy+FTFTY8PX10MNntWPhw
-         hBb5OHUEQ2cFfcNUwYC5gvhTyf1NC9sxPwUn9A8yAiQR1jEXEPocCALb1Reqgd5akb
-         ZWQs/PjkpPkcDUH9j4lEDuTnSky1x3y4Nf+Y+yvg=
-From:   =?iso-8859-1?Q?Jan_Kundr=E1t?= <jan.kundrat@cesnet.cz>
-To:     =?iso-8859-1?Q?Myl=E8ne_Josserand?= <mylene.josserand@bootlin.com>
-Cc:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <linux-serial@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <thomas.petazzoni@bootlin.com>
-Subject: Re: [PATCH v1] tty: serial: max310x: Add optional reset gpio
-Date:   Tue, 02 Jul 2019 16:44:20 +0200
-MIME-Version: 1.0
-Message-ID: <d9ac1295-e780-409d-b7de-b4c2db586e58@cesnet.cz>
-In-Reply-To: <20190614141112.29962-1-mylene.josserand@bootlin.com>
-References: <20190614141112.29962-1-mylene.josserand@bootlin.com>
-Organization: CESNET
-User-Agent: Trojita/v0.7-402-g68ee77c9; Qt/5.13.0; xcb; Linux; Gentoo Base System release 2.4.1
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
+        id S1725780AbfGBPQe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 11:16:34 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:38586 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725972AbfGBPQd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Jul 2019 11:16:33 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id C33A71A0C70;
+        Tue,  2 Jul 2019 17:16:31 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id B63791A0C68;
+        Tue,  2 Jul 2019 17:16:31 +0200 (CEST)
+Received: from fsr-ub1464-137.ea.freescale.net (fsr-ub1464-137.ea.freescale.net [10.171.82.114])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 7E993205ED;
+        Tue,  2 Jul 2019 17:16:31 +0200 (CEST)
+From:   Ioana Ciornei <ioana.ciornei@nxp.com>
+To:     shawnguo@kernel.org
+Cc:     leoyang.li@nxp.com, devicetree@vger.kernel.org,
+        Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: [PATCH v2] arm64: dts: add the console node for DPAA2 platforms
+Date:   Tue,  2 Jul 2019 18:16:18 +0300
+Message-Id: <1562080578-31677-1-git-send-email-ioana.ciornei@nxp.com>
+X-Mailer: git-send-email 1.9.1
+Reply-to: ioana.ciornei@nxp.com
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On p=C3=A1tek 14. =C4=8Dervna 2019 16:11:12 CEST, Myl=C3=A8ne Josserand wrote=
-:
-> --- a/Documentation/devicetree/bindings/serial/maxim,max310x.txt
-> +++ b/Documentation/devicetree/bindings/serial/maxim,max310x.txt
-> @@ -15,6 +15,7 @@ Required properties:
->    "osc" if an external clock source is used.
-> =20
->  Optional properties:
-> +- reset-gpios: Gpio to use for reset.
+Add the console device tree node for the following
+DPAA2 based platforms: LS1088A, LS2080A, LS2088A and LX2160A.
 
-"GPIO", not "Gpio", for consistency.
+Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
+---
+Changes in v2:
+ - use a generic node name
+ - remove leading zeros and 0x from the unit-address
 
->  =09if (spi->dev.of_node) {
-> +=09=09struct gpio_desc *reset_gpio;
->  =09=09const struct of_device_id *of_id =3D
->  =09=09=09of_match_device(max310x_dt_ids, &spi->dev);
->  =09=09if (!of_id)
->  =09=09=09return -ENODEV;
-> =20
->  =09=09devtype =3D (struct max310x_devtype *)of_id->data;
-> +=09=09reset_gpio =3D devm_gpiod_get_optional(&spi->dev, "reset",
-> +=09=09=09=09=09=09     GPIOD_OUT_HIGH);
-> +=09=09if (IS_ERR(reset_gpio))
-> +=09=09=09return PTR_ERR(reset_gpio);
-> +=09=09gpiod_set_value_cansleep(reset_gpio, 0);
->  =09} else {
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 5 +++++
+ arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 5 +++++
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 5 +++++
+ 3 files changed, 15 insertions(+)
 
-The RST signal is active-low on the chip, but the code initializes the=20
-output to GPIOD_OUT_HIGH. Are you perhaps relying on a DT binding setting=20
-an ACTIVE_LOW flag on the reset GPIO lane? This should be documented.
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+index 661137ffa319..d190d5490e31 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+@@ -665,6 +665,11 @@
+ 			clock-names = "apb_pclk", "wdog_clk";
+ 		};
+ 
++		console@8340020 {
++			compatible = "fsl,dpaa2-console";
++			reg = <0x00000000 0x08340020 0 0x2>;
++		};
++
+ 		fsl_mc: fsl-mc@80c000000 {
+ 			compatible = "fsl,qoriq-mc";
+ 			reg = <0x00000008 0x0c000000 0 0x40>,	 /* MC portal base */
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+index d7e78dcd153d..229d7f7d293d 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+@@ -321,6 +321,11 @@
+ 			};
+ 		};
+ 
++		console@8340020 {
++			compatible = "fsl,dpaa2-console";
++			reg = <0x00000000 0x08340020 0 0x2>;
++		};
++
+ 		fsl_mc: fsl-mc@80c000000 {
+ 			compatible = "fsl,qoriq-mc";
+ 			reg = <0x00000008 0x0c000000 0 0x40>,	 /* MC portal base */
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+index 125a8cc2c5b3..0426e2230447 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+@@ -848,6 +848,11 @@
+ 			dma-coherent;
+ 		};
+ 
++		console@8340020 {
++			compatible = "fsl,dpaa2-console";
++			reg = <0x00000000 0x08340020 0 0x2>;
++		};
++
+ 		fsl_mc: fsl-mc@80c000000 {
+ 			compatible = "fsl,qoriq-mc";
+ 			reg = <0x00000008 0x0c000000 0 0x40>,
+-- 
+1.9.1
 
-Assuming that this polarity inversion works, the code first asserts the=20
-reset, then it performs no explicit waiting, and then it clears the RST=20
-signal. I checked MAX14830's datasheet, and there's no minimal reset=20
-duration, so perhaps this is safe, but it looks a bit odd to me.
-
-With kind regards,
-Jan
