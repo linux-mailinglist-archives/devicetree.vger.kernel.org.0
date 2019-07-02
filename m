@@ -2,185 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 68E405D6AC
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 21:15:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87DB85DAC1
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 03:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726779AbfGBTPZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 15:15:25 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:49670 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726329AbfGBTPZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 15:15:25 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id C8A2D607B9; Tue,  2 Jul 2019 19:15:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1562094923;
-        bh=X8Aoljm0LYeyxBEqbEVId7mUQqHptsmMGCGTKktZVAA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=N/PcbyT58Do7LICpzhWUA4B3V217FV7Ad9lbkyim+DNPhlNSr7cWqiwqV7OYKJ4hd
-         YQmrx995MCms606pArLo4LiTFwCY/wvGw228u+vz6nw/AMJ7EPyxjWp6WoxSYzuYxz
-         CFIii91QxvHmYF7aCBDJVcoU5XwhQbZPo5zJQgQU=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id C6F8C60746;
-        Tue,  2 Jul 2019 19:15:22 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1562094922;
-        bh=X8Aoljm0LYeyxBEqbEVId7mUQqHptsmMGCGTKktZVAA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=lHcJ/6o71zHCEADhRs23OU6NF+fNeaAPkCHRI05v5co4mdYEj3f7sPw5dx+lZhLQe
-         SRAbtSg4y9iUnsw603C34us7Wsql3rW0zwF1DPBSYa6yBz2BrRNMxmNwCMFDKg2dF4
-         gWsdl5907wyfFiDc6aRnjlssZQ3V6wedqenCYRm4=
+        id S1727275AbfGCBZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 21:25:57 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:33400 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726329AbfGCBZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 21:25:57 -0400
+Received: by mail-io1-f68.google.com with SMTP id u13so960022iop.0
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 18:25:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6suCIUcpnxYWLx0u7rAt8YHu7DyHRein/0Ku8MDeQrw=;
+        b=MyF13COg8Z9CREi9V7uwtNZ+RQgUSogpyqwer+wxMaRNlPvmTJ3LJUiyv1bRH2HNg4
+         UdgEbOWphL591zLtGdaR5I4Nw4e1exGSG3CgmWGSsfGiRRfTC+NEd9mUTlTTIUs2/NJT
+         WoMG2zeqsWqlC36tyRgV6MVFaOJ16SDyDjBSU=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6suCIUcpnxYWLx0u7rAt8YHu7DyHRein/0Ku8MDeQrw=;
+        b=b2BGh2odKVRAKMzu5yylIxFyITftsfbLS8tDRmH72gtRB9OYOa8wRKDKBUzbWSmevI
+         JNEuChw99H8Nq9VfhRyOcVxkwX/3XWQWYIvP/kowJjmPdHGX7Ffbd0n/ybafuVFHrN2g
+         FnGvpeHY4GqvWH3jk+kkqjmWEDie2QwqcPrjntRx67etrVCKelxUVyg5FZXiLbWgPBPO
+         CHt/t9Rn84bsk1Z1/DMwGT7tKtLF3alyXp5CrOz8D0QdtB6eTTNuUlLCCa1tlUr0736e
+         5ph5utWf9/W5Ge9LpWIuzjmxYPR1QAEmNl1Z1H8612mt6Ro9u/jcGMqwqZuhW/sybJpp
+         Obow==
+X-Gm-Message-State: APjAAAVjm4WypyKrkba5Kc9xMXoHqxFPEddulcttqgAuHqEpYLyNAhZO
+        ajpAk4rQbFO7ulGO3L73ZvAH4EG0tXU=
+X-Google-Smtp-Source: APXvYqx5JEWzQ2UvrlKxvGeWqIfB1W0aL296harWOsLlHl3Q8hH1RcuJ1Vt5RcC8hDSKgsrp1ijs0Q==
+X-Received: by 2002:a5d:8e08:: with SMTP id e8mr5288386iod.139.1562098479898;
+        Tue, 02 Jul 2019 13:14:39 -0700 (PDT)
+Received: from mail-io1-f42.google.com (mail-io1-f42.google.com. [209.85.166.42])
+        by smtp.gmail.com with ESMTPSA id f17sm14089072ioc.2.2019.07.02.13.14.37
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Jul 2019 13:14:38 -0700 (PDT)
+Received: by mail-io1-f42.google.com with SMTP id m24so40209811ioo.2
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 13:14:37 -0700 (PDT)
+X-Received: by 2002:a02:aa1d:: with SMTP id r29mr15652512jam.127.1562098477589;
+ Tue, 02 Jul 2019 13:14:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Tue, 02 Jul 2019 12:15:22 -0700
-From:   Jeykumar Sankaran <jsanka@codeaurora.org>
-To:     dhar@codeaurora.org
-Cc:     dri-devel@lists.freedesktop.org, linux-arm-msm@vger.kernel.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, robdclark@gmail.com,
-        seanpaul@chromium.org, hoegsberg@chromium.org,
-        abhinavk@codeaurora.org, chandanu@codeaurora.org,
-        nganji@codeaurora.org, jshekhar@codeaurora.org
-Subject: Re: drm/msm/dpu: Correct dpu encoder spinlock initialization
-In-Reply-To: <f9a7786cce817c7d1a646b052ba1a679@codeaurora.org>
-References: <1561357632-15361-1-git-send-email-dhar@codeaurora.org>
- <efade579f7ba59585b88ecb367422e5c@codeaurora.org>
- <d61d7805b4ac0ec45309bf5b65841262@codeaurora.org>
- <627144af54459a203f1583d2ad9b390c@codeaurora.org>
- <ea91c2c49d73af79bd6eea93a6d00a5a@codeaurora.org>
- <f9a7786cce817c7d1a646b052ba1a679@codeaurora.org>
-Message-ID: <87b59fd6d89f4096243770edefc5e97b@codeaurora.org>
-X-Sender: jsanka@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+References: <20190621211346.1324-1-ezequiel@collabora.com> <3c68bf286d8b75ac339df0eab43d276667e073c2.camel@collabora.com>
+In-Reply-To: <3c68bf286d8b75ac339df0eab43d276667e073c2.camel@collabora.com>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Tue, 2 Jul 2019 13:14:24 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=UK3bpyvvFQtsvUtWHun_bfxb25R0bLyg=WJz+yHz5kvg@mail.gmail.com>
+Message-ID: <CAD=FV=UK3bpyvvFQtsvUtWHun_bfxb25R0bLyg=WJz+yHz5kvg@mail.gmail.com>
+Subject: Re: [PATCH v2 0/3] RK3288 Gamma LUT
+To:     Ezequiel Garcia <ezequiel@collabora.com>
+Cc:     =?UTF-8?Q?Heiko_St=C3=BCbner?= <heiko@sntech.de>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
+        Sean Paul <seanpaul@chromium.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Jacopo Mondi <jacopo@jmondi.org>,
+        Ilia Mirkin <imirkin@alum.mit.edu>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 2019-07-02 11:21, Jeykumar Sankaran wrote:
-> On 2019-07-01 03:29, dhar@codeaurora.org wrote:
->> On 2019-06-26 03:10, Jeykumar Sankaran wrote:
->>> On 2019-06-24 22:44, dhar@codeaurora.org wrote:
->>>> On 2019-06-25 03:56, Jeykumar Sankaran wrote:
->>>>> On 2019-06-23 23:27, Shubhashree Dhar wrote:
->>>>>> dpu encoder spinlock should be initialized during dpu encoder
->>>>>> init instead of dpu encoder setup which is part of commit.
->>>>>> There are chances that vblank control uses the uninitialized
->>>>>> spinlock if not initialized during encoder init.
->>>>> Not much can be done if someone is performing a vblank operation
->>>>> before encoder_setup is done.
->>>>> Can you point to the path where this lock is acquired before
->>>>> the encoder_setup?
->>>>> 
->>>>> Thanks
->>>>> Jeykumar S.
->>>>>> 
->>>> 
->>>> When running some dp usecase, we are hitting this callstack.
->>>> 
->>>> Process kworker/u16:8 (pid: 215, stack limit = 0x00000000df9dd930)
->>>> Call trace:
->>>>  spin_dump+0x84/0x8c
->>>>  spin_dump+0x0/0x8c
->>>>  do_raw_spin_lock+0x80/0xb0
->>>>  _raw_spin_lock_irqsave+0x34/0x44
->>>>  dpu_encoder_toggle_vblank_for_crtc+0x8c/0xe8
->>>>  dpu_crtc_vblank+0x168/0x1a0
->>>>  dpu_kms_enable_vblank+0[   11.648998]  vblank_ctrl_worker+0x3c/0x60
->>>>  process_one_work+0x16c/0x2d8
->>>>  worker_thread+0x1d8/0x2b0
->>>>  kthread+0x124/0x134
->>>> 
->>>> Looks like vblank is getting enabled earlier causing this issue and 
->>>> we
->>>> are using the spinlock without initializing it.
->>>> 
->>>> Thanks,
->>>> Shubhashree
->>>> 
->>> DP calls into set_encoder_mode during hotplug before even notifying 
->>> the
->>> u/s. Can you trace out the original caller of this stack?
->>> 
->>> Even though the patch is harmless, I am not entirely convinced to 
->>> move this
->>> initialization. Any call which acquires the lock before encoder_setup
->>> will be a no-op since there will not be any physical encoder to work 
->>> with.
->>> 
->>> Thanks and Regards,
->>> Jeykumar S.
->>> 
->>>>>> Change-Id: I5a18b95fa47397c834a266b22abf33a517b03a4e
->>>>>> Signed-off-by: Shubhashree Dhar <dhar@codeaurora.org>
->>>>>> ---
->>>>>>  drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c | 3 +--
->>>>>>  1 file changed, 1 insertion(+), 2 deletions(-)
->>>>>> 
->>>>>> diff --git a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>>>> b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>>>> index 5f085b5..22938c7 100644
->>>>>> --- a/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>>>> +++ b/drivers/gpu/drm/msm/disp/dpu1/dpu_encoder.c
->>>>>> @@ -2195,8 +2195,6 @@ int dpu_encoder_setup(struct drm_device 
->>>>>> *dev, struct
->>>>>> drm_encoder *enc,
->>>>>>  	if (ret)
->>>>>>  		goto fail;
->>>>>> 
->>>>>> -	spin_lock_init(&dpu_enc->enc_spinlock);
->>>>>> -
->>>>>>  	atomic_set(&dpu_enc->frame_done_timeout, 0);
->>>>>>  	timer_setup(&dpu_enc->frame_done_timer,
->>>>>>  			dpu_encoder_frame_done_timeout, 0);
->>>>>> @@ -2250,6 +2248,7 @@ struct drm_encoder *dpu_encoder_init(struct
->>>>>> drm_device *dev,
->>>>>> 
->>>>>>  	drm_encoder_helper_add(&dpu_enc->base, 
->>>>>> &dpu_encoder_helper_funcs);
->>>>>> 
->>>>>> +	spin_lock_init(&dpu_enc->enc_spinlock);
->>>>>>  	dpu_enc->enabled = false;
->>>>>> 
->>>>>>  	return &dpu_enc->base;
->> 
->> In dpu_crtc_vblank(), we are looping through all the encoders in the
->> present mode_config:
->> https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/msm/disp/dpu
->> 1/dpu_crtc.c#L1082
->> and hence calling dpu_encoder_toggle_vblank_for_crtc() for all the
->> encoders. But in dpu_encoder_toggle_vblank_for_crtc(), after acquiring
->> the spinlock, we will do a early return for
->> the encoders which are not currently assigned to our crtc:
->> https://github.com/torvalds/linux/blob/master/drivers/gpu/drm/msm/disp/dpu
->> 1/dpu_encoder.c#L1318.
->> Since the encoder_setup for the secondary encoder(dp encoder in this
->> case) is not called until dp hotplug, we are hitting kernel panic
->> while acquiring the lock.
-> This is the sequence in which the events are expected to happen:
-> 
-> 1) DP connector is instantiated with an inactive state
-> 2) Hot plug on DP
-> 3) DP connector is activated
-> 4) User space attaches a CRTC to the activated connector
-> 5) CRTC is enabled
-> 6) CRTC_VBLANK_ON is called
-> 7) dpu_crtc_vblank is called.
-> 
-> So can you help tracing out why dpu_crtc_vblank is called when the 
-> connector
-> is not activated yet (no hotplug)?
+Hi,
 
-Overlooked the loop which iterates through *all* the encoders 
-irrespective of their
-activated status.
+On Tue, Jul 2, 2019 at 4:26 AM Ezequiel Garcia <ezequiel@collabora.com> wrote:
+>
+> Hi Heiko,
+>
+> On Fri, 2019-06-21 at 18:13 -0300, Ezequiel Garcia wrote:
+> > Let's support Gamma LUT configuration on RK3288 SoCs.
+> >
+> > In order to do so, this series adds a new and optional
+> > address resource.
+> >
+> > A separate address resource is required because on this RK3288,
+> > the LUT address is after the MMU address, which is requested
+> > by the iommu driver. This prevents the DRM driver
+> > from requesting an entire register space.
+> >
+> > The current implementation works for RGB 10-bit tables, as that
+> > is what seems to work on RK3288.
+> >
+> > This has been tested on a Rock2 Square board, using
+> > a hacked 'modetest' tool, with legacy and atomic APIs.
+> >
+> > Thanks,
+> > Eze
+> >
+> > Changes from v1:
+> > * drop explicit linear LUT after finding a proper
+> >   way to disable gamma correction.
+> > * avoid setting gamma is the CRTC is not active.
+> > * s/int/unsigned int as suggested by Jacopo.
+> > * only enable color management and set gamma size
+> >   if gamma LUT is supported, suggested by Doug.
+> > * drop the reg-names usage, and instead just use indexed reg
+> >   specifiers, suggested by Doug.
+> >
+> > Changes from RFC:
+> > * Request (an optional) address resource for the LUT.
+> > * Add devicetree changes.
+> > * Drop support for RK3399, which doesn't seem to work
+> >   out of the box and needs more research.
+> > * Support pass-thru setting when GAMMA_LUT is NULL.
+> > * Add a check for the gamma size, as suggested by Ilia.
+> > * Move gamma setting to atomic_commit_tail, as pointed
+> >   out by Jacopo/Laurent, is the correct way.
+> >
+> > Ezequiel Garcia (3):
+> >   dt-bindings: display: rockchip: document VOP gamma LUT address
+> >   drm/rockchip: Add optional support for CRTC gamma LUT
+> >   ARM: dts: rockchip: Add RK3288 VOP gamma LUT address
+> >
+> >  .../display/rockchip/rockchip-vop.txt         |   6 +-
+> >  arch/arm/boot/dts/rk3288.dtsi                 |   4 +-
+> >  drivers/gpu/drm/rockchip/rockchip_drm_fb.c    |   3 +
+> >  drivers/gpu/drm/rockchip/rockchip_drm_vop.c   | 114 ++++++++++++++++++
+> >  drivers/gpu/drm/rockchip/rockchip_drm_vop.h   |   7 ++
+> >  drivers/gpu/drm/rockchip/rockchip_vop_reg.c   |   2 +
+> >  6 files changed, 133 insertions(+), 3 deletions(-)
 
-Reviewed-by: Jeykumar Sankaran <jsanka@codeaurora.org>
+I will note that I can confirm that the "gamma_test" app present on
+Chrome OS can be shown to work with this series, both on eDP and HDMI.
+I see a nice shiny RGB pattern on the screen.  Thus:
 
+Tested-by: Douglas Anderson <dianders@chromium.org>
