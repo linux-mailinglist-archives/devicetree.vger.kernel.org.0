@@ -2,121 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3097D5CFA8
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 14:40:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 763815D0F7
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 15:49:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726702AbfGBMkh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 08:40:37 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:37966 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726418AbfGBMkh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 08:40:37 -0400
-Received: by mail-wr1-f68.google.com with SMTP id p11so6440606wro.5;
-        Tue, 02 Jul 2019 05:40:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XWX5YYP1CNCT9e/dIGU0i3ZnwA5tEC0AyVRX+7SK6lw=;
-        b=b/XwH55NMOZSeol8hUdl7s8+9MNvt25FwAvIKkjn8gLsUeAd8wx8U4In9vAjQGNQ66
-         xYdpJP0am9FkBYaK54YKsNF01TFgWk2QfTmy5tHtf5nkg3MuXYQpV/8XCXNcHQFTy0Qm
-         kMTJoAKR3BZmkJgsesFPmjKdASQG2RzkFRvw0Eo7QQ9hbk+jeXm28flyeoXL0idx9d4g
-         Dwcpf2R+vKAYLFmmprGBnLTCsMflKJ4FSdgxmFCUjhMSTYG5E0Z/oicFe/U5L4gtkf3A
-         yv7CpnzFlTy+sYMa0C/XUIxZqtiTmKVglM3VdtHNpkctEOku/xGln9sSUikdUov+mcwA
-         kxDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XWX5YYP1CNCT9e/dIGU0i3ZnwA5tEC0AyVRX+7SK6lw=;
-        b=MgLUDhBgdDRddmBttApajsHM1qDf62O0BSBsrn2Xv92q3z4Tm79FfTFgCtrdTK9PF/
-         bU1pDFJXde0r1E5oFHkh7yrHpjhZZrubQ4xCdbCv+Gh+R7x7hAIO+R6WGMAbhFId+eht
-         kUDjfjaOjkGBqpQn37N63BhBoLgXmMA2T53yCIZGCwJHNwoWE4EFlgjMiUc7slHgNIgh
-         Lu2P5Zfg3z4IXd2pVcqzMrZFaSkZknbcd1ATAz8kKcSelfHQRkIQmzve79Y+wn1yNPwB
-         zOdEFCTNj7SlH+SIZoVigm0JT98MUWyqJlYAgzTQIwmsdm812qkBTtnyDn6VEtcI28T7
-         rrJw==
-X-Gm-Message-State: APjAAAUVapyUVvxFuI2xOp5eQyb00g6Vym5NuIyrxttUED8V3u3QfsRj
-        MQPVS35jDMZ6Oy0PCScSaIf/q+o3PiJJjg7ydEs=
-X-Google-Smtp-Source: APXvYqwN7H5OuDdNXdoNXzu2dimkV8ct5pJbj57BHREg3taMw4HvwJusECpbPxShilr7quxy0JxRfexKoEAdrV0/3UU=
-X-Received: by 2002:adf:b69a:: with SMTP id j26mr15952442wre.93.1562071234542;
- Tue, 02 Jul 2019 05:40:34 -0700 (PDT)
+        id S1726686AbfGBNtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 09:49:08 -0400
+Received: from [43.251.180.74] ([43.251.180.74]:59058 "EHLO
+        server1.dssworld.in" rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726375AbfGBNtH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 09:49:07 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=rtsmbmc.in;
+         s=default; h=Content-Transfer-Encoding:Content-Type:MIME-Version:Message-ID:
+        Reply-To:From:Date:Subject:To:Sender:Cc:Content-ID:Content-Description:
+        Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:
+        In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=bzBPgAYIoKmT7g6XLsw9NT30TO+YCudjv4xittFeuZc=; b=MWd0PHAdCDYRV1lRflsaz/kXMx
+        fdwapsjugMkVqEdCizdLfohIYJwiVCjym8EdaX8i7LjMZBG5/iDUAJLOfyG+vEJk+1wH9k1sY0KRy
+        kTFdgSd9l/62DMNPgGuVDoT6JGFli6j4rQR/+GS73peAWTNmNfEOh16lZ5w+j3GJhP9ogvPhd9uFH
+        Bo6rGdsSj41ydQjncx93PJhsUSOwJ/iwC+BcBc1Pz0coIw7FpiCrCvRUcKJKLOHtsX/lbqD2egdT/
+        FKDxNWUot41VraILUuvG0F0QTqux3zaY7wNWwc+wBH0cQPReLrwenPZLG6BUTvOfc1ChqtQt5LBn+
+        NH6A3n3g==;
+Received: from rtsmbmc by server1.dssworld.in with local (Exim 4.92)
+        (envelope-from <info@paypal.com>)
+        id 1hiI7o-0004iJ-KI
+        for devicetree@vger.kernel.org; Tue, 02 Jul 2019 18:13:08 +0530
+To:     devicetree@vger.kernel.org
+Subject: Important - Your suspension notification
+X-PHP-Script: rtsmbmc.in/test/mailer.php for 95.249.85.249
+X-PHP-Originating-Script: 535:mailer.php
+Date:   Tue, 2 Jul 2019 12:43:08 +0000
+From:   PAYPAL <info@paypal.com>
+Reply-To: no-reply@paypal.com
+Message-ID: <90144ec2331ae40e14b7767de7f6bffe@rtsmbmc.in>
+X-Mailer: Leaf PHPMailer 2.7 (leafmailer.pw)
 MIME-Version: 1.0
-References: <20190702114102.1254-1-andradanciu1997@gmail.com> <20190702114542.2eoc6nm2kyhode43@fsr-ub1664-175>
-In-Reply-To: <20190702114542.2eoc6nm2kyhode43@fsr-ub1664-175>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Tue, 2 Jul 2019 15:40:23 +0300
-Message-ID: <CAEnQRZBtAOzuF0L1iKKTRdR_A5skbnZFb=B1io8f_pdHcnvbyg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: imx8mq: Add sai6 node
-To:     Abel Vesa <abel.vesa@nxp.com>
-Cc:     Andra Danciu <andradanciu1997@gmail.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - server1.dssworld.in
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [535 497] / [47 12]
+X-AntiAbuse: Sender Address Domain - paypal.com
+X-Get-Message-Sender-Via: server1.dssworld.in: authenticated_id: rtsmbmc/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: server1.dssworld.in: rtsmbmc
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 2, 2019 at 2:46 PM Abel Vesa <abel.vesa@nxp.com> wrote:
->
-> On 19-07-02 14:41:02, Andra Danciu wrote:
->
-> Missing commit message here. Please add one.
+PAYPAL SUPPORT
+Your Suspension Notification.
+ 
+HI,
+we could Not authorize your last payment for the next billing cycle of your Subscription.
+Click Here to Restart Your Membership====> https://www.raicesquiche.com/confirm/Youraccount
+ 
+We are here to helf if you need it.
+-Thank You-
 
-Agree. Also, please add SAI3. As you noticed our pico pi board has
-pins exposed on for SAI2/SAI3.
-
-As for the description you can say:
-
-SAI3/6 supports up to 2-channels TX (1 dataline) and 2-channels RX (1 dataline).
-
->
-> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> > Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 14 ++++++++++++++
-> >  1 file changed, 14 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > index d09b808eff87..1ff664523f56 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > @@ -278,6 +278,20 @@
-> >                       #size-cells = <1>;
-> >                       ranges = <0x30000000 0x30000000 0x400000>;
-> >
-> > +                     sai6: sai@30030000 {
-> > +                             compatible = "fsl,imx8mq-sai",
-> > +                                     "fsl,imx6sx-sai";
-> > +                             reg = <0x30030000 0x10000>;
-> > +                             interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-> > +                             clocks = <&clk IMX8MQ_CLK_SAI6_IPG>,
-> > +                                     <&clk IMX8MQ_CLK_SAI6_ROOT>,
-> > +                                     <&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
-> > +                             clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> > +                             dmas = <&sdma2 4 24 0>, <&sdma2 5 24 0>;
-> > +                             dma-names = "rx", "tx";
-> > +                             status = "disabled";
-> > +                     };
-> > +
-> >                       gpio1: gpio@30200000 {
-> >                               compatible = "fsl,imx8mq-gpio", "fsl,imx35-gpio";
-> >                               reg = <0x30200000 0x10000>;
-> > --
-> > 2.11.0
-> >
