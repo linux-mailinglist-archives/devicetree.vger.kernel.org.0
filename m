@@ -2,30 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E52B5CC50
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 11:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C7A5CC66
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 11:07:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726255AbfGBJED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 05:04:03 -0400
-Received: from mail-eopbgr40066.outbound.protection.outlook.com ([40.107.4.66]:52846
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726213AbfGBJED (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Jul 2019 05:04:03 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=QAjOxXxVXc5VPLLcb/dHyXfMTUeODVEKWaZKOX/5Rio=;
- b=KMr7ykY6ewJMY9Vd0MZIckdGVBQ11GXKdaB9wFyA1dSA8P7J4H6ZEiKXMFDIPEyyftOQMFnNSSIsvQ6hVapon/r+PiY6jTnnsf85Gb1UgsytE+o2GhU+E6U9csDry96ZiiNLY5giMwYC8RFvTimieyZ232w12uKJFdO52l+iZh0=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3852.eurprd04.prod.outlook.com (52.134.71.143) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2052.15; Tue, 2 Jul 2019 09:03:53 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::3945:fcda:5bdd:8191]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::3945:fcda:5bdd:8191%4]) with mapi id 15.20.2032.019; Tue, 2 Jul 2019
- 09:03:53 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        id S1725868AbfGBJHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 05:07:48 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:39921 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726213AbfGBJHr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 05:07:47 -0400
+Received: by mail-wm1-f65.google.com with SMTP id z23so80179wma.4
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 02:07:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=V4HxjVvwI55coPU+osq21qWtWbtvr2h0ZIAaAI4JjGc=;
+        b=eacPMb3RtzXRp0MoZuWr+7eXy8QPTEQUq8PzIf4QEBQB6z/a9RyRz4oZQMpc8ucKbb
+         8N/OCmMMFbtAStQng3VxWPIUI8ToXUBzNpWT0m4ldAx4DFUhpC/gujPXqTrx2W0hO500
+         2Q911NwCnUViWlewXOykBBvnLyfnZQQf1axOcn5ggoVomi5YHcOvkQvohaaN+WSqpeem
+         RY7525xh3th6HNIFxZMRkfozh5fGl+9pI9LGhzicDPoUDnqSjwJerulSv3n5mWeR1YUz
+         MVCg+Q1nQLPqA58SV5IZbX+KN5aGux/PZkAIbbx3m1tEzBNadIwaMoF35DtReDLGAn04
+         FVDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=V4HxjVvwI55coPU+osq21qWtWbtvr2h0ZIAaAI4JjGc=;
+        b=qf4TeGzxsgVY5NKLD/UW7YzJ/mLPicWAbeUTUvzO3sFJ9Q0qHw8vSckilFQe6H2Qsh
+         R/T8tohD+wiuo8EBKIwEX25muck0XRVGU3l7xtDN6JSw+sI8w6GRoSin/G7lYxbtquDq
+         Z45gxxR9y+IvdHmTLuwyp9pLR/jzkYg9Ycy6Qyb/tHvubHxRW9+nULdu2ZlNDRGKpWpl
+         8PbV31u8dYGnmiBIZgtPwmAlhUeLXJxsebwI/rq3EJkZI6RTVuYbhHmlh56hx+x1Ciqo
+         lizNAX92ZpbxvY11aRXS9P1zOabi4mpzB1rMqdpXqMT4ah1IjKmcjMqaK9NHIOMNosSq
+         R/yw==
+X-Gm-Message-State: APjAAAUfAp2G72Vj1z0uO2unVOZxvKVTQUbP+TnD3aYLiR6xYgdd9e4L
+        3Wl1OXMiNXe3yxFyQ/Q2svZ7fA==
+X-Google-Smtp-Source: APXvYqyn3uOazHwJTQdZXGCSxlU7zGJstVqFVi8qJ6rrSXzE+pfr7rjZWbLXpcnnEWduyGPZuMOtFw==
+X-Received: by 2002:a1c:407:: with SMTP id 7mr2808751wme.113.1562058463367;
+        Tue, 02 Jul 2019 02:07:43 -0700 (PDT)
+Received: from [192.168.0.41] (132.97.130.77.rev.sfr.net. [77.130.97.132])
+        by smtp.googlemail.com with ESMTPSA id u1sm2426957wml.14.2019.07.02.02.07.41
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Jul 2019 02:07:42 -0700 (PDT)
+Subject: Re: [PATCH RESEND V4 1/5] clocksource: timer-of: Support getting
+ clock frequency from DT
+To:     Anson Huang <anson.huang@nxp.com>,
         "tglx@linutronix.de" <tglx@linutronix.de>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "mark.rutland@arm.com" <mark.rutland@arm.com>,
@@ -47,128 +70,227 @@ To:     Daniel Lezcano <daniel.lezcano@linaro.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH RESEND V4 1/5] clocksource: timer-of: Support getting
- clock frequency from DT
-Thread-Topic: [PATCH RESEND V4 1/5] clocksource: timer-of: Support getting
- clock frequency from DT
-Thread-Index: AQHVMKzI5vm2kro3VEayuYp4cUHC7Ka2+NMAgAAMX4A=
-Date:   Tue, 2 Jul 2019 09:03:52 +0000
-Message-ID: <DB3PR0402MB39166F04BAF9BA9D6C75B3A8F5F80@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+Cc:     dl-linux-imx <linux-imx@nxp.com>
 References: <20190702075513.17451-1-Anson.Huang@nxp.com>
  <c7ff76e5-d73d-e71e-c3f4-445bdd2c5b93@linaro.org>
-In-Reply-To: <c7ff76e5-d73d-e71e-c3f4-445bdd2c5b93@linaro.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4ab916d8-bfbf-45cb-6abb-08d6fecc34c7
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3852;
-x-ms-traffictypediagnostic: DB3PR0402MB3852:
-x-microsoft-antispam-prvs: <DB3PR0402MB38525138B8FED766AF9BAF7AF5F80@DB3PR0402MB3852.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 008663486A
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(39860400002)(136003)(396003)(366004)(376002)(189003)(199004)(6506007)(53546011)(6436002)(110136005)(76116006)(66946007)(73956011)(2501003)(81166006)(68736007)(7696005)(81156014)(53936002)(33656002)(8676002)(76176011)(99286004)(74316002)(4326008)(8936002)(6116002)(3846002)(229853002)(6246003)(476003)(446003)(11346002)(256004)(102836004)(14444005)(7736002)(186003)(316002)(305945005)(55016002)(5660300002)(71200400001)(71190400001)(86362001)(9686003)(478600001)(52536014)(7416002)(66066001)(14454004)(2201001)(44832011)(25786009)(486006)(64756008)(66556008)(66446008)(26005)(66476007)(2906002)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3852;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: gKpj+Xk4JnexUovvtcMvtqLCiSgybhuKggPWHDBXndgeklFx0CRioTTrpJnCIgTJz4wMhF9Wc90y514GIqudApMqp9hv46kiWOvBBVCY3ZZyWcn6R8W9tnucY1T+8I3eLLXPv4W3D9m4lT+yA6nNGQTs/Yvm/vWXJ6ok5Z0lxww9btvAZuVuL+kbKUW6s+u4lrvcr35V/CALzYx8t08Sy2hTHStRonxoQ/8r6JgThKJ35TFZ9V+6VFRnIlIvjQ+NPhCVtnqwsk0O9L3TSamgG6c1n0PE5ivEAODJfSoQoVe5KU+nfQcv3nH6+FfhfTSJIIME5EyEoXprFY4wPPPrd8hwPMLP0IBmQPZPGgyjTkSW5unjbK9/hBmA8rYSgZKF96W15ROdcYtm2t+0Sh2rbZOsr36Sl+H9miFJ1wmF+jw=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+ <DB3PR0402MB39166F04BAF9BA9D6C75B3A8F5F80@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+From:   Daniel Lezcano <daniel.lezcano@linaro.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <0540a255-93e5-d68f-5bf5-31f9043fb3ad@linaro.org>
+Date:   Tue, 2 Jul 2019 11:07:40 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4ab916d8-bfbf-45cb-6abb-08d6fecc34c7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jul 2019 09:03:52.9722
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3852
+In-Reply-To: <DB3PR0402MB39166F04BAF9BA9D6C75B3A8F5F80@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIERhbmllbA0KDQo+IEhpIEFuc29uLA0KPiANCj4gd2h5IGRpZCB5b3UgcmVzZW5kIHRoZSBz
-ZXJpZXM/DQoNClByZXZpb3VzIHBhdGNoIHNlcmllcyBoYXMgYnVpbGQgd2FybmluZyBhbmQgSSBk
-aWQgTk9UIG5vdGljZSwgc29ycnkgZm9yIHRoYXQsDQoNCmRyaXZlcnMvY2xvY2tzb3VyY2UvdGlt
-ZXItb2YuYzogSW4gZnVuY3Rpb24g4oCYdGltZXJfb2ZfaW5pdOKAmToNCmRyaXZlcnMvY2xvY2tz
-b3VyY2UvdGltZXItb2YuYzoxODU6MzA6IHdhcm5pbmc6IHN1Z2dlc3QgcGFyZW50aGVzZXMgYXJv
-dW5kIGNvbXBhcmlzb24gaW4gb3BlcmFuZCBvZiDigJgm4oCZIFstV3BhcmVudGhlc2VzXQ0KICBp
-ZiAodG8tPmZsYWdzICYgY2xvY2tfZmxhZ3MgPT0gY2xvY2tfZmxhZ3MpDQogICAgICAgICAgICAg
-ICAgICAgICAgICAgICAgICBeDQoNCnNvIEkgcmVzZW5kIHRoZSBwYXRjaCBzZXJpZXMgd2l0aCBi
-ZWxvdywgc29ycnkgZm9yIG1pc3NpbmcgbWVudGlvbiBvZiB0aGUgY2hhbmdlcyBpbiByZXNlbnQg
-cGF0Y2ggc2VyaWVzLg0KDQogKwlpZiAoKHRvLT5mbGFncyAmIGNsb2NrX2ZsYWdzKSA9PSBjbG9j
-a19mbGFncykNCg0KU29ycnkgZm9yIG1haWwgc3Rvcm0uLi4NCg0KVGhhbmtzLA0KQW5zb24NCg0K
-PiANCj4gDQo+IE9uIDAyLzA3LzIwMTkgMDk6NTUsIEFuc29uLkh1YW5nQG54cC5jb20gd3JvdGU6
-DQo+ID4gRnJvbTogQW5zb24gSHVhbmcgPEFuc29uLkh1YW5nQG54cC5jb20+DQo+ID4NCj4gPiBN
-b3JlIGFuZCBtb3JlIHBsYXRmb3JtcyB1c2UgcGxhdGZvcm0gZHJpdmVyIG1vZGVsIGZvciBjbG9j
-ayBkcml2ZXIsIHNvDQo+ID4gdGhlIGNsb2NrIGRyaXZlciBpcyBOT1QgcmVhZHkgZHVyaW5nIHRp
-bWVyIGluaXRpYWxpemF0aW9uIHBoYXNlLCBpdA0KPiA+IHdpbGwgY2F1c2UgdGltZXIgaW5pdGlh
-bGl6YXRpb24gZmFpbGVkLg0KPiA+DQo+ID4gVG8gc3VwcG9ydCB0aG9zZSBwbGF0Zm9ybXMgd2l0
-aCB1cHBlciBzY2VuYXJpbywgaW50cm9kdWNpbmcgYSBuZXcgZmxhZw0KPiA+IFRJTUVSX09GX0NM
-T0NLX0ZSRVFVRU5DWSB3aGljaCBpcyBtdXR1YWxseSBleGNsdXNpdmUgd2l0aA0KPiA+IFRJTUVS
-X09GX0NMT0NLIGZsYWcgdG8gc3VwcG9ydCBnZXR0aW5nIHRpbWVyIGNsb2NrIGZyZXF1ZW5jeSBm
-cm9tIERUJ3MNCj4gPiB0aW1lciBub2RlLCB0aGUgcHJvcGVydHkgbmFtZSBzaG91bGQgYmUgImNs
-b2NrLWZyZXF1ZW5jeSIsIHRoZW4gb2ZfY2xrDQo+ID4gb3BlcmF0aW9ucyBjYW4gYmUgc2tpcHBl
-ZC4NCj4gPg0KPiA+IFVzZXIgbmVlZHMgdG8gc2VsZWN0IGVpdGhlciBUSU1FUl9PRl9DTE9DS19G
-UkVRVUVOQ1kgb3INCj4gVElNRVJfT0ZfQ0xPQ0sNCj4gPiBmbGFnIGlmIHdhbnQgdG8gdXNlIHRp
-bWVyLW9mIGRyaXZlciB0byBpbml0aWFsaXplIHRoZSBjbG9jayByYXRlLg0KPiA+DQo+ID4gU2ln
-bmVkLW9mZi1ieTogQW5zb24gSHVhbmcgPEFuc29uLkh1YW5nQG54cC5jb20+DQo+ID4gLS0tDQo+
-ID4gQ2hhbmdlcyBzaW5jZSBWMzoNCj4gPiAJLSB1c2UgaGFyZGNvZGVkICJjbG9jay1mcmVxdWVu
-Y3kiIGluc3RlYWQgb2YgYWRkaW5nIG5ldyB2YXJpYWJsZQ0KPiBwcm9wX25hbWU7DQo+ID4gCS0g
-YWRkIHByZS1jb25kaXRpb24gY2hlY2sgZm9yIFRJTUVSX09GX0NMT0NLIGFuZA0KPiBUSU1FUl9P
-Rl9DTE9DS19GUkVRVUVOQ1ksIHRoZXkgTVVTVCBiZSBleGNsdXNpdmUuDQo+ID4gLS0tDQo+ID4g
-IGRyaXZlcnMvY2xvY2tzb3VyY2UvdGltZXItb2YuYyB8IDI5ICsrKysrKysrKysrKysrKysrKysr
-KysrKysrKysrDQo+ID4gZHJpdmVycy9jbG9ja3NvdXJjZS90aW1lci1vZi5oIHwgIDcgKysrKy0t
-LQ0KPiA+ICAyIGZpbGVzIGNoYW5nZWQsIDMzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0p
-DQo+ID4NCj4gPiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9jbG9ja3NvdXJjZS90aW1lci1vZi5jDQo+
-ID4gYi9kcml2ZXJzL2Nsb2Nrc291cmNlL3RpbWVyLW9mLmMgaW5kZXggODA1NDIyOC4uODU4ZjY4
-NCAxMDA2NDQNCj4gPiAtLS0gYS9kcml2ZXJzL2Nsb2Nrc291cmNlL3RpbWVyLW9mLmMNCj4gPiAr
-KysgYi9kcml2ZXJzL2Nsb2Nrc291cmNlL3RpbWVyLW9mLmMNCj4gPiBAQCAtMTYxLDExICsxNjEs
-MzAgQEAgc3RhdGljIF9faW5pdCBpbnQgdGltZXJfb2ZfYmFzZV9pbml0KHN0cnVjdA0KPiBkZXZp
-Y2Vfbm9kZSAqbnAsDQo+ID4gIAlyZXR1cm4gMDsNCj4gPiAgfQ0KPiA+DQo+ID4gK3N0YXRpYyBf
-X2luaXQgaW50IHRpbWVyX29mX2Nsa19mcmVxdWVuY3lfaW5pdChzdHJ1Y3QgZGV2aWNlX25vZGUg
-Km5wLA0KPiA+ICsJCQkJCSAgICAgIHN0cnVjdCBvZl90aW1lcl9jbGsgKm9mX2Nsaykgew0KPiA+
-ICsJaW50IHJldDsNCj4gPiArCXUzMiByYXRlOw0KPiA+ICsNCj4gPiArCXJldCA9IG9mX3Byb3Bl
-cnR5X3JlYWRfdTMyKG5wLCAiY2xvY2stZnJlcXVlbmN5IiwgJnJhdGUpOw0KPiA+ICsJaWYgKCFy
-ZXQpIHsNCj4gPiArCQlvZl9jbGstPnJhdGUgPSByYXRlOw0KPiA+ICsJCW9mX2Nsay0+cGVyaW9k
-ID0gRElWX1JPVU5EX1VQKHJhdGUsIEhaKTsNCj4gPiArCX0NCj4gPiArDQo+ID4gKwlyZXR1cm4g
-cmV0Ow0KPiA+ICt9DQo+ID4gKw0KPiA+ICBpbnQgX19pbml0IHRpbWVyX29mX2luaXQoc3RydWN0
-IGRldmljZV9ub2RlICpucCwgc3RydWN0IHRpbWVyX29mICp0bykNCj4gPiB7DQo+ID4gKwl1bnNp
-Z25lZCBsb25nIGNsb2NrX2ZsYWdzID0gVElNRVJfT0ZfQ0xPQ0sgfA0KPiA+ICtUSU1FUl9PRl9D
-TE9DS19GUkVRVUVOQ1k7DQo+ID4gIAlpbnQgcmV0ID0gLUVJTlZBTDsNCj4gPiAgCWludCBmbGFn
-cyA9IDA7DQo+ID4NCj4gPiArCWlmICgodG8tPmZsYWdzICYgY2xvY2tfZmxhZ3MpID09IGNsb2Nr
-X2ZsYWdzKQ0KPiA+ICsJCXJldHVybiByZXQ7DQo+ID4gKw0KPiA+ICAJaWYgKHRvLT5mbGFncyAm
-IFRJTUVSX09GX0JBU0UpIHsNCj4gPiAgCQlyZXQgPSB0aW1lcl9vZl9iYXNlX2luaXQobnAsICZ0
-by0+b2ZfYmFzZSk7DQo+ID4gIAkJaWYgKHJldCkNCj4gPiBAQCAtMTgwLDYgKzE5OSwxMyBAQCBp
-bnQgX19pbml0IHRpbWVyX29mX2luaXQoc3RydWN0IGRldmljZV9ub2RlICpucCwNCj4gc3RydWN0
-IHRpbWVyX29mICp0bykNCj4gPiAgCQlmbGFncyB8PSBUSU1FUl9PRl9DTE9DSzsNCj4gPiAgCX0N
-Cj4gPg0KPiA+ICsJaWYgKHRvLT5mbGFncyAmIFRJTUVSX09GX0NMT0NLX0ZSRVFVRU5DWSkgew0K
-PiA+ICsJCXJldCA9IHRpbWVyX29mX2Nsa19mcmVxdWVuY3lfaW5pdChucCwgJnRvLT5vZl9jbGsp
-Ow0KPiA+ICsJCWlmIChyZXQpDQo+ID4gKwkJCWdvdG8gb3V0X2ZhaWw7DQo+ID4gKwkJZmxhZ3Mg
-fD0gVElNRVJfT0ZfQ0xPQ0tfRlJFUVVFTkNZOw0KPiA+ICsJfQ0KPiA+ICsNCj4gPiAgCWlmICh0
-by0+ZmxhZ3MgJiBUSU1FUl9PRl9JUlEpIHsNCj4gPiAgCQlyZXQgPSB0aW1lcl9vZl9pcnFfaW5p
-dChucCwgJnRvLT5vZl9pcnEpOw0KPiA+ICAJCWlmIChyZXQpDQo+ID4gQEAgLTIwMSw2ICsyMjcs
-OSBAQCBpbnQgX19pbml0IHRpbWVyX29mX2luaXQoc3RydWN0IGRldmljZV9ub2RlICpucCwNCj4g
-c3RydWN0IHRpbWVyX29mICp0bykNCj4gPiAgCWlmIChmbGFncyAmIFRJTUVSX09GX0NMT0NLKQ0K
-PiA+ICAJCXRpbWVyX29mX2Nsa19leGl0KCZ0by0+b2ZfY2xrKTsNCj4gPg0KPiA+ICsJaWYgKGZs
-YWdzICYgVElNRVJfT0ZfQ0xPQ0tfRlJFUVVFTkNZKQ0KPiA+ICsJCXRvLT5vZl9jbGsucmF0ZSA9
-IDA7DQo+ID4gKw0KPiA+ICAJaWYgKGZsYWdzICYgVElNRVJfT0ZfQkFTRSkNCj4gPiAgCQl0aW1l
-cl9vZl9iYXNlX2V4aXQoJnRvLT5vZl9iYXNlKTsNCj4gPiAgCXJldHVybiByZXQ7DQo+ID4gZGlm
-ZiAtLWdpdCBhL2RyaXZlcnMvY2xvY2tzb3VyY2UvdGltZXItb2YuaA0KPiA+IGIvZHJpdmVycy9j
-bG9ja3NvdXJjZS90aW1lci1vZi5oIGluZGV4IGE1NDc4ZjMuLmEwOGUxMDggMTAwNjQ0DQo+ID4g
-LS0tIGEvZHJpdmVycy9jbG9ja3NvdXJjZS90aW1lci1vZi5oDQo+ID4gKysrIGIvZHJpdmVycy9j
-bG9ja3NvdXJjZS90aW1lci1vZi5oDQo+ID4gQEAgLTQsOSArNCwxMCBAQA0KPiA+DQo+ID4gICNp
-bmNsdWRlIDxsaW51eC9jbG9ja2NoaXBzLmg+DQo+ID4NCj4gPiAtI2RlZmluZSBUSU1FUl9PRl9C
-QVNFCTB4MQ0KPiA+IC0jZGVmaW5lIFRJTUVSX09GX0NMT0NLCTB4Mg0KPiA+IC0jZGVmaW5lIFRJ
-TUVSX09GX0lSUQkweDQNCj4gPiArI2RlZmluZSBUSU1FUl9PRl9CQVNFCQkJMHgxDQo+ID4gKyNk
-ZWZpbmUgVElNRVJfT0ZfQ0xPQ0sJCQkweDINCj4gPiArI2RlZmluZSBUSU1FUl9PRl9JUlEJCQkw
-eDQNCj4gPiArI2RlZmluZSBUSU1FUl9PRl9DTE9DS19GUkVRVUVOQ1kJMHg4DQo+ID4NCj4gPiAg
-c3RydWN0IG9mX3RpbWVyX2lycSB7DQo+ID4gIAlpbnQgaXJxOw0K
+On 02/07/2019 11:03, Anson Huang wrote:
+> Hi, Daniel
+> 
+>> Hi Anson,
+>>
+>> why did you resend the series?
+> 
+> Previous patch series has build warning and I did NOT notice, sorry for that,
+> 
+> drivers/clocksource/timer-of.c: In function ‘timer_of_init’:
+> drivers/clocksource/timer-of.c:185:30: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+>   if (to->flags & clock_flags == clock_flags)
+>                               ^
+> 
+> so I resend the patch series with below, sorry for missing mention of the changes in resent patch series.
+> 
+>  +	if ((to->flags & clock_flags) == clock_flags)
+> 
+> Sorry for mail storm...
+
+No problem at all, I prefer this caught and fixed early :)
+
+Next time just send a V5 because 'resend' means there is no change but
+there was a problem with the email (could be also interpreted as a
+gentle ping).
+
+>> On 02/07/2019 09:55, Anson.Huang@nxp.com wrote:
+>>> From: Anson Huang <Anson.Huang@nxp.com>
+>>>
+>>> More and more platforms use platform driver model for clock driver, so
+>>> the clock driver is NOT ready during timer initialization phase, it
+>>> will cause timer initialization failed.
+>>>
+>>> To support those platforms with upper scenario, introducing a new flag
+>>> TIMER_OF_CLOCK_FREQUENCY which is mutually exclusive with
+>>> TIMER_OF_CLOCK flag to support getting timer clock frequency from DT's
+>>> timer node, the property name should be "clock-frequency", then of_clk
+>>> operations can be skipped.
+>>>
+>>> User needs to select either TIMER_OF_CLOCK_FREQUENCY or
+>> TIMER_OF_CLOCK
+>>> flag if want to use timer-of driver to initialize the clock rate.
+>>>
+>>> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+>>> ---
+>>> Changes since V3:
+>>> 	- use hardcoded "clock-frequency" instead of adding new variable
+>> prop_name;
+>>> 	- add pre-condition check for TIMER_OF_CLOCK and
+>> TIMER_OF_CLOCK_FREQUENCY, they MUST be exclusive.
+>>> ---
+>>>  drivers/clocksource/timer-of.c | 29 +++++++++++++++++++++++++++++
+>>> drivers/clocksource/timer-of.h |  7 ++++---
+>>>  2 files changed, 33 insertions(+), 3 deletions(-)
+>>>
+>>> diff --git a/drivers/clocksource/timer-of.c
+>>> b/drivers/clocksource/timer-of.c index 8054228..858f684 100644
+>>> --- a/drivers/clocksource/timer-of.c
+>>> +++ b/drivers/clocksource/timer-of.c
+>>> @@ -161,11 +161,30 @@ static __init int timer_of_base_init(struct
+>> device_node *np,
+>>>  	return 0;
+>>>  }
+>>>
+>>> +static __init int timer_of_clk_frequency_init(struct device_node *np,
+>>> +					      struct of_timer_clk *of_clk) {
+>>> +	int ret;
+>>> +	u32 rate;
+>>> +
+>>> +	ret = of_property_read_u32(np, "clock-frequency", &rate);
+>>> +	if (!ret) {
+>>> +		of_clk->rate = rate;
+>>> +		of_clk->period = DIV_ROUND_UP(rate, HZ);
+>>> +	}
+>>> +
+>>> +	return ret;
+>>> +}
+>>> +
+>>>  int __init timer_of_init(struct device_node *np, struct timer_of *to)
+>>> {
+>>> +	unsigned long clock_flags = TIMER_OF_CLOCK |
+>>> +TIMER_OF_CLOCK_FREQUENCY;
+>>>  	int ret = -EINVAL;
+>>>  	int flags = 0;
+>>>
+>>> +	if ((to->flags & clock_flags) == clock_flags)
+>>> +		return ret;
+>>> +
+>>>  	if (to->flags & TIMER_OF_BASE) {
+>>>  		ret = timer_of_base_init(np, &to->of_base);
+>>>  		if (ret)
+>>> @@ -180,6 +199,13 @@ int __init timer_of_init(struct device_node *np,
+>> struct timer_of *to)
+>>>  		flags |= TIMER_OF_CLOCK;
+>>>  	}
+>>>
+>>> +	if (to->flags & TIMER_OF_CLOCK_FREQUENCY) {
+>>> +		ret = timer_of_clk_frequency_init(np, &to->of_clk);
+>>> +		if (ret)
+>>> +			goto out_fail;
+>>> +		flags |= TIMER_OF_CLOCK_FREQUENCY;
+>>> +	}
+>>> +
+>>>  	if (to->flags & TIMER_OF_IRQ) {
+>>>  		ret = timer_of_irq_init(np, &to->of_irq);
+>>>  		if (ret)
+>>> @@ -201,6 +227,9 @@ int __init timer_of_init(struct device_node *np,
+>> struct timer_of *to)
+>>>  	if (flags & TIMER_OF_CLOCK)
+>>>  		timer_of_clk_exit(&to->of_clk);
+>>>
+>>> +	if (flags & TIMER_OF_CLOCK_FREQUENCY)
+>>> +		to->of_clk.rate = 0;
+>>> +
+>>>  	if (flags & TIMER_OF_BASE)
+>>>  		timer_of_base_exit(&to->of_base);
+>>>  	return ret;
+>>> diff --git a/drivers/clocksource/timer-of.h
+>>> b/drivers/clocksource/timer-of.h index a5478f3..a08e108 100644
+>>> --- a/drivers/clocksource/timer-of.h
+>>> +++ b/drivers/clocksource/timer-of.h
+>>> @@ -4,9 +4,10 @@
+>>>
+>>>  #include <linux/clockchips.h>
+>>>
+>>> -#define TIMER_OF_BASE	0x1
+>>> -#define TIMER_OF_CLOCK	0x2
+>>> -#define TIMER_OF_IRQ	0x4
+>>> +#define TIMER_OF_BASE			0x1
+>>> +#define TIMER_OF_CLOCK			0x2
+>>> +#define TIMER_OF_IRQ			0x4
+>>> +#define TIMER_OF_CLOCK_FREQUENCY	0x8
+>>>
+>>>  struct of_timer_irq {
+>>>  	int irq;
+
+
+-- 
+ <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+
+Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
+<http://twitter.com/#!/linaroorg> Twitter |
+<http://www.linaro.org/linaro-blog/> Blog
+
