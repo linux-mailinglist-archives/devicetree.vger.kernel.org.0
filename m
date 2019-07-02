@@ -2,188 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14F0B5D044
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 15:11:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 65D6F5D047
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 15:12:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726401AbfGBNLx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 09:11:53 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:43552 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726623AbfGBNLw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 09:11:52 -0400
-Received: by mail-wr1-f68.google.com with SMTP id p13so17743775wru.10
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 06:11:51 -0700 (PDT)
+        id S1726964AbfGBNMG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 09:12:06 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:37395 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726930AbfGBNMF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 09:12:05 -0400
+Received: by mail-wm1-f67.google.com with SMTP id f17so976734wme.2;
+        Tue, 02 Jul 2019 06:12:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=dtiFMwb61GFph+NiLLfdMwRbAYlFiiULbxV5uhpqzbs=;
-        b=V++CEmF+i6wDMdxwKT7ZGWJ2ct/9at3E204w9IE7cbFQWvcCNQDR5KcsoLxloh2VfD
-         OOZPoB15QjLkAQbitnLCpRSYMCMzSNs3PWcmh0VIV5ty8dbo3ii8pxCnrV/W4/cAbfT0
-         5rYF5WJ1dd+EkPRCDWtfxN9gt5240opSaVY6DC1sQYflxwnNOtTwzgkqXVrPGck5ILHL
-         901nlWn8vCond4cgJdNfrZwlgBX0o5z0bip8f12VfwaBw1vBIotnBxn1Qzg1QCmjRtBD
-         HqOVZTHD7ztuO2Mbc2oJ3aQ4AR9KnOcNOTVgajbPs7qAONZ88vxFMqSInkMoi5415upq
-         cFIQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=xY8o03GKg7yE0EDv+JzNdYmGsRVySZFoyWELDtBrxsQ=;
+        b=L+3dGzZqpQ2QrZyjS0R0EMbctTzpWn30VI9Gk0ULoS0BK1YNpPvtNid+iqGcxesqyS
+         l+OmcE+IikAlMXWGoXhzozhJ4mfxUAVRr6SGz6J5LwK+4rV48vIJDv4UvhaF/fU4y91N
+         vV2juYYeDO2hecTi/Ibtpsf7tl43LAHeIKYjczOSbVny40/yBznTMon/2cpej///nlK7
+         0kgvQLsfAVG2onOknvNSu1Z+JklA9HHTWyjtWqAciQxCAaThKC2E0k/zZGKh90s5Tc+E
+         /LA2sPJJOg4e9XdEd2aXYOrBOgsmxJRIhNF8ZtvugT3UnYvQ2QWWnCuqGnEAkId4+iyK
+         nauA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=dtiFMwb61GFph+NiLLfdMwRbAYlFiiULbxV5uhpqzbs=;
-        b=jhxEdFMs+XiTzVohoNL1fZ/TXWBXRcDLNQASpO6z3FAiMQQ7xiiIUvMNo/c5E3f+pi
-         sPjotPZAPOviAbn9rXOy2wLzkMQg4xWg6PmO6cZ46Tq4Q7FdR7WT0XE454psAelGxp2d
-         hqshdgMKB1Zb4i20+F4kEn6XpjJlT6UIJxU8Wqf1uV+BIXLQfGkHq5uhrflgAG1aArki
-         wx7inO8IGbXFjsqpB7DzAyf6e/xresZFo2EWjU1a2ce+tCiY3+hxH7ppz7oMvHUaror/
-         FOlnnN8otwaLd8F5UmNbW3uJbj19lPyZrg4QSUrFmykxefEmelIQAqP0KZB9Ttbe2mnm
-         yMFA==
-X-Gm-Message-State: APjAAAVeFGa2sMt1v8sKKIAwbys9tut0lgbN+BpY0ipn5hTw1SD9jX7E
-        Ja5pTboZHnpmyVnvy1PDuuKwuQ==
-X-Google-Smtp-Source: APXvYqyCF5BhdWZHRjhmUYkqcu7PDvQ+1PKBZeupILVCkfHkRnPZLwpcjzx3Hpun3/h9ML/RRkFBRQ==
-X-Received: by 2002:a5d:4d84:: with SMTP id b4mr20369411wru.242.1562073110866;
-        Tue, 02 Jul 2019 06:11:50 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id h8sm2526250wmf.12.2019.07.02.06.11.49
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 02 Jul 2019 06:11:50 -0700 (PDT)
-Date:   Tue, 2 Jul 2019 14:11:48 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Brian Dodge <bdodge09@gmail.com>
-Cc:     pavel@ucw.cz, lee.jones@linaro.org, jingoohan1@gmail.com,
-        jacek.anaszewski@gmail.com, robh+dt@kernel.org,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org, pbacon@psemi.com
-Subject: Re: [PATCH 1/2] dt-bindings: backlight: fix vendor prefix for
- ArcticSand arcxcnn driver bindings
-Message-ID: <20190702131148.unb3pfthxvacfwn3@holly.lan>
-References: <1561940895-15837-1-git-send-email-bdodge09@gmail.com>
- <1561940895-15837-2-git-send-email-bdodge09@gmail.com>
- <20190702092617.c4wn3dmg5orrquyj@holly.lan>
- <9ffed46f-c878-e415-cad0-cbe64efb9885@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <9ffed46f-c878-e415-cad0-cbe64efb9885@gmail.com>
-User-Agent: NeoMutt/20180716
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=xY8o03GKg7yE0EDv+JzNdYmGsRVySZFoyWELDtBrxsQ=;
+        b=KbOs+lYRgXhRqqdAE4u5WzQVwuaOvkkRFrIx585WNR6kiGO1XaUgd3qdf0xAaLsaMN
+         hnlUWWQE0735WLLHZVkt6RDEPlZMRAQwIXhW2+VHPh9qBrZ6BjNhqEnNA8M7BCtvlVHw
+         4KD8K9KQKkR0G+0wM6GWB4wRwM/r55x17Bij6SUz3LV2YLnwXHImM42VCA25yczN1IWJ
+         ezBnw+3XSXLk8TlErPagyUhh3IK7u9UquD3xs2Z4EvbjnUtnlc/hYg1kY0QDcFMV4DV5
+         AC+ngtmS7a+pT9VRa2m7OdWQEYYCSOd63EEQGn5P+aw1BopTnhvp8QxetZyaaDLnPUu6
+         VTlg==
+X-Gm-Message-State: APjAAAWYMShH1qFk1Yf/peMOE8WGkdXein0DetWy5PSIIJDq/BWhwOy+
+        UjiRcxNANryIezOn2m8EE/Q=
+X-Google-Smtp-Source: APXvYqwN2JTq7fEYVbdkNym5m6nNOaDhPP5LMVErx0F9CCrxHaY3Laf/tTPkWgVzxni8MfZZNBFocw==
+X-Received: by 2002:a7b:cf27:: with SMTP id m7mr3529000wmg.7.1562073123716;
+        Tue, 02 Jul 2019 06:12:03 -0700 (PDT)
+Received: from localhost.localdomain ([212.146.100.6])
+        by smtp.gmail.com with ESMTPSA id h8sm2526416wmf.12.2019.07.02.06.12.01
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Jul 2019 06:12:03 -0700 (PDT)
+From:   Andra Danciu <andradanciu1997@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        l.stach@pengutronix.de, abel.vesa@nxp.com, Anson.Huang@nxp.com,
+        andrew.smirnov@gmail.com, angus@akkea.ca, ccaione@baylibre.com,
+        agx@sigxcpu.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] arm64: dts: imx8mq: Add sai3 and sai6 nodes
+Date:   Tue,  2 Jul 2019 16:11:55 +0300
+Message-Id: <20190702131155.18170-1-andradanciu1997@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 02, 2019 at 07:21:29AM -0400, Brian Dodge wrote:
-> 
-> On 7/2/19 5:26 AM, Daniel Thompson wrote:
-> > > [PATCH 1/2] dt-bindings: backlight: fix vendor prefix for
-> > > ArcticSand arcxcnn driver bindings
-> > The "v2" is normally applied to the whole patchset (if you
-> > prepare the patchset using git format-patch then you can use
-> > the --subject-prefix argument for that).
-> Sorry and noted
-> > 
-> > On Sun, Jun 30, 2019 at 08:28:14PM -0400, Brian Dodge wrote:
-> > > The vendor-prefixes.txt file properly refers to ArcticSand
-> > > as arctic but the driver bindings improperly abbreviated the
-> > > prefix to arc. This was a mistake in the original patch. This
-> > > patch adds "arctic" and retains "arc" (deprecated) bindings
-> > > 
-> > > Signed-off-by: Brian Dodge <bdodge09@gmail.com>
-> > > ---
-> > >   .../bindings/leds/backlight/arcxcnn_bl.txt         | 31 +++++++++++++++-------
-> > >   1 file changed, 21 insertions(+), 10 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt b/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt
-> > > index 230abde..4d98394 100644
-> > > --- a/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt
-> > > +++ b/Documentation/devicetree/bindings/leds/backlight/arcxcnn_bl.txt
-> > > @@ -1,8 +1,13 @@
-> > > -Binding for ArcticSand arc2c0608 LED driver
-> > > +Binding for ArcticSand arc family LED drivers
-> > >   Required properties:
-> > > -- compatible:		should be "arc,arc2c0608"
-> > > -- reg:			slave address
-> > > +- compatible: one of
-> > > +	"arctic,arc1c0608"
-> > > +	"arctic,arc2c0608"
-> > > +	"arctic,arc3c0845"
-> > > +	"arc,arc2c0608" (deprecated)
-> > Nothing wrong with adding compatible strings for arc1 and arc3 but I
-> > would expect it to be mentioned in the description to reassure reviewers
-> > that the right depth of thought has been applied Something like "Also added
-> > compatible strings for other family members, all the existing optional
-> > properties work the same way for the new devices." (if you agree that it
-> > is true) is good to show you were paying proper attention!
-> > 
-> > However this does perhaps verge a little towards nitpicking so maybe
-> > wait to see what the DT folks say. From my point of view:
-> > Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
-> > 
-> > 
-> > Daniel.
-> 
-> Good point. I did actually think about this a bit. The *only* chip available
-> at the time of the original driver was the arc2c0608 and that is the chip
-> that is currently in use in the Samsung Chromebook Plus, and the only use I
-> know of using the "arc" prefix. There will be no reason to ever support
-> "arc,arc1.." or "arc,arc3..." in the bindings for past or future use.
-> 
-> The new two chips are just basically supported by this driver. There is more
-> functionality to them which will be enabled in my next patch. I wanted to
-> separate the move to "arctic" from the move to fully support the other chips
-> for clarity (you guys are all rightly picky!) I did put the new chip
-> bindings in the driver/bindings in this patch though so I could test this
-> patch against the actual h/w instances: I have three boards, one with each
-> chip type and each has a dtb with the "arctic,.." type binding onboard.
+SAI3 and SAI6 nodes are used to connect to an external codec.
+They have 1 Tx and 1 Rx dataline.
 
-I think you have misunderstood. I've got no problem with renaming the
-properties as well.
+Cc: Daniel Baluta <daniel.baluta@nxp.com>
+Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
+---
+Changes since v1:
+	- Added sai3 node because we need it to enable audio on pico-pi-8m
+	- Added commit description
 
-What I was bringing up is that you have extended the scope of the
-bindings to cover the arc1 and arc3 devices. It would be good for you
-to explicitly confirm that the existing properties all still apply
-to arc1 and arc3 devices, and that no new properties are needed to
-model them properly.
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-As it happens I *did* glance at your old arc1/arc3 patch to check it for
-myself before I offered you the Acked-by and didn't see anything that
-offended me. However a good patch description would have spared me that
-work...
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index d09b808eff87..2d489c5cdc26 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -278,6 +278,20 @@
+ 			#size-cells = <1>;
+ 			ranges = <0x30000000 0x30000000 0x400000>;
+ 
++			sai6: sai@30030000 {
++				compatible = "fsl,imx8mq-sai",
++					"fsl,imx6sx-sai";
++				reg = <0x30030000 0x10000>;
++				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX8MQ_CLK_SAI6_IPG>,
++					<&clk IMX8MQ_CLK_SAI6_ROOT>,
++					<&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
++				clock-names = "bus", "mclk1", "mclk2", "mclk3";
++				dmas = <&sdma2 4 24 0>, <&sdma2 5 24 0>;
++				dma-names = "rx", "tx";
++				status = "disabled";
++			};
++
+ 			gpio1: gpio@30200000 {
+ 				compatible = "fsl,imx8mq-gpio", "fsl,imx35-gpio";
+ 				reg = <0x30200000 0x10000>;
+@@ -728,6 +742,22 @@
+ 				status = "disabled";
+ 			};
+ 
++			sai3: sai@308c0000 {
++				compatible = "fsl,imx8mq-sai",
++					     "fsl,imx6sx-sai";
++				reg = <0x308c0000 0x10000>;
++				interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clk IMX8MQ_CLK_SAI3_IPG>,
++					<&clk IMX8MQ_CLK_DUMMY>,
++					<&clk IMX8MQ_CLK_SAI3_ROOT>,
++					<&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
++				clock-names = "bus", "mclk1", "mclk2", "mclk3";
++				dmas = <&sdma1 12 24 0>, <&sdma1 13 24 0>;
++				dma-names = "rx", "tx";
++				status = "disabled";
++			};
++
++
+ 			i2c1: i2c@30a20000 {
+ 				compatible = "fsl,imx8mq-i2c", "fsl,imx21-i2c";
+ 				reg = <0x30a20000 0x10000>;
+-- 
+2.11.0
 
-
-Daniel.
-
-
-> 
-> > > +
-> > > +- reg:		slave address
-> > >   Optional properties:
-> > >   - default-brightness:	brightness value on boot, value from: 0-4095
-> > > @@ -11,19 +16,25 @@ Optional properties:
-> > >   - led-sources:		List of enabled channels from 0 to 5.
-> > >   			See Documentation/devicetree/bindings/leds/common.txt
-> > > -- arc,led-config-0:	setting for register ILED_CONFIG_0
-> > > -- arc,led-config-1:	setting for register ILED_CONFIG_1
-> > > -- arc,dim-freq:		PWM mode frequence setting (bits [3:0] used)
-> > > -- arc,comp-config:	setting for register CONFIG_COMP
-> > > -- arc,filter-config:	setting for register FILTER_CONFIG
-> > > -- arc,trim-config:	setting for register IMAXTUNE
-> > > +- arctic,led-config-0:	setting for register ILED_CONFIG_0
-> > > +- arctic,led-config-1:	setting for register ILED_CONFIG_1
-> > > +- arctic,dim-freq:	PWM mode frequence setting (bits [3:0] used)
-> > > +- arctic,comp-config:	setting for register CONFIG_COMP
-> > > +- arctic,filter-config:	setting for register FILTER_CONFIG
-> > > +- arctic,trim-config:	setting for register IMAXTUNE
-> > > +- arc,led-config-0:	setting for register ILED_CONFIG_0 (deprecated)
-> > > +- arc,led-config-1:	setting for register ILED_CONFIG_1 (deprecated)
-> > > +- arc,dim-freq:		PWM mode frequence setting (bits [3:0] used) (deprecated)
-> > > +- arc,comp-config:	setting for register CONFIG_COMP (deprecated)
-> > > +- arc,filter-config:	setting for register FILTER_CONFIG (deprecated)
-> > > +- arc,trim-config:	setting for register IMAXTUNE (deprecated)
-> > >   Note: Optional properties not specified will default to values in IC EPROM
-> > >   Example:
-> > >   arc2c0608@30 {
-> > > -	compatible = "arc,arc2c0608";
-> > > +	compatible = "arctic,arc2c0608";
-> > >   	reg = <0x30>;
-> > >   	default-brightness = <500>;
-> > >   	label = "lcd-backlight";
-> > > -- 
-> > > 2.7.4
-> > > 
