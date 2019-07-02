@@ -2,141 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D940E5D04E
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 15:14:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C2F15D075
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 15:23:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726623AbfGBNOv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 09:14:51 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:53896 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726375AbfGBNOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 09:14:50 -0400
-Received: by mail-wm1-f67.google.com with SMTP id x15so822110wmj.3;
-        Tue, 02 Jul 2019 06:14:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=43iWKH6jifytF6JFVgfLHPopXRcvvg3jKXLdEufvKFw=;
-        b=XHZrJP4SOb5CVeG/E/xOCKM4DLp2Kmo4x9pWHCOlVjK45UA7ZmotrdUT/FpN5jf7j9
-         qOpebsH/AJqMB8gFlQFEOReSsbmofA5CMNpe/82pJghUrdHdsgU2vSg+dnhowSv96oS8
-         LK6v9QXiVAu355xmxFUEj+jfHAP4wWxWJCas00Ga3VcrhyZyZHw6khXDvKWNBU5CXjQH
-         3BSvwbvAJbEgsCf4iaXiLLKvtVX1jaKGh+a7EuVJ55wlAx/2f5uF6Mcr2NixW95XbcV2
-         lA8MjLt2kYklqra+H7kFMEYda+ZNRV5URE5AnIFvksujftfUeiDtoopSYkpemp3xSRME
-         qD2g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=43iWKH6jifytF6JFVgfLHPopXRcvvg3jKXLdEufvKFw=;
-        b=CxhW0YWUWqDMzB/M9SLFpYdJ1Fu0cgoad1pznJSHdYZ9ggYcAUULkABgMA4DOi2gBU
-         rwYTCI4Uxmnvz0a7KlvMBdZ/EytfGFoM8YAbW61ulKyGLRUbVRFCu9n/Cpuvpk4noIa3
-         GOXjBrUYFufEwFciL7wfmCEvnEqcTIFfesp1TYW9X5WZQSWbUfBg8feaXQZaPCNBQCCK
-         jF8S8UqEfWXn+iDQizrc8ELg2f7OZDYS9YNwnpTv3CbYi8sCoad17DawcLtmnIXdr2hm
-         GZH9WiHb95OCozXmMCNMw1o4dKLw3uiyD/lN1TMIstMTXGJLZQZNr/KrUJqYpQbmNTjn
-         o3LQ==
-X-Gm-Message-State: APjAAAVYzu5tHb3T+u5uGQaGnwnPoDH5Ju6qSR6FZ7G1AJICAwwZYZDo
-        yexQspMgwZydzj2nIu4nsTA6JIe3EmBz21AlX5o=
-X-Google-Smtp-Source: APXvYqxWyXlIkUu8b3u0rYozO679+E2AsoRAzxugCAL/051AnSJ56YHrOmAaSBvKviIHxzKsoTLBzEQBGqT0b1X6Hc8=
-X-Received: by 2002:a7b:c051:: with SMTP id u17mr3394953wmc.25.1562073288730;
- Tue, 02 Jul 2019 06:14:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190702131155.18170-1-andradanciu1997@gmail.com>
-In-Reply-To: <20190702131155.18170-1-andradanciu1997@gmail.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Tue, 2 Jul 2019 16:14:37 +0300
-Message-ID: <CAEnQRZDC_wxHbs4ZpeKTo9z7T-tdgeDLwgcf+DLRfZmXDga20A@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: imx8mq: Add sai3 and sai6 nodes
-To:     Andra Danciu <andradanciu1997@gmail.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        id S1726628AbfGBNXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 09:23:48 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:48216 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725922AbfGBNXs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Jul 2019 09:23:48 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=4vVWFuLsHpIWVPpgwHNuzXCST8lBvsaqqrIguyqY5+I=; b=evOQZPp90942wbrSoURbVGwyAd
+        xYvOl9kc49jpgfzfyuo92IfubYXYnX5+Ui904ENWMQnsj8iweMbMbxNHcK/MtnJloI480OunE8PFu
+        e2ddWhoT1B2Iwb3swRWDaP1Jv45EHg9E9yt7yF+aJF7XB7dvICs24CQfE1wQoHDj6Orc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hiIl0-0005l5-1e; Tue, 02 Jul 2019 15:23:38 +0200
+Date:   Tue, 2 Jul 2019 15:23:38 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>, andrew.smirnov@gmail.com,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Carlo Caione <ccaione@baylibre.com>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Josef Friedl <josef.friedl@speed.at>
+Subject: Re: [PATCH 1/3] add doc and MAINTAINERS for poweroff
+Message-ID: <20190702132338.GB20191@lunn.ch>
+References: <20190702094045.3652-1-frank-w@public-files.de>
+ <20190702094045.3652-2-frank-w@public-files.de>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190702094045.3652-2-frank-w@public-files.de>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Looks better now. One comment inline:
+On Tue, Jul 02, 2019 at 11:40:43AM +0200, Frank Wunderlich wrote:
+> From: Josef Friedl <josef.friedl@speed.at>
+> 
+> poweroff for BPI-R2
+> Suggested-by: Frank Wunderlich <frank-w@public-files.de>
+> 
+> Signed-off-by: Josef Friedl <josef.friedl@speed.at>
 
-On Tue, Jul 2, 2019 at 4:12 PM Andra Danciu <andradanciu1997@gmail.com> wrote:
->
-> SAI3 and SAI6 nodes are used to connect to an external codec.
-> They have 1 Tx and 1 Rx dataline.
->
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
-> ---
-> Changes since v1:
->         - Added sai3 node because we need it to enable audio on pico-pi-8m
->         - Added commit description
->
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 30 ++++++++++++++++++++++++++++++
->  1 file changed, 30 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index d09b808eff87..2d489c5cdc26 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -278,6 +278,20 @@
->                         #size-cells = <1>;
->                         ranges = <0x30000000 0x30000000 0x400000>;
->
-> +                       sai6: sai@30030000 {
-> +                               compatible = "fsl,imx8mq-sai",
-> +                                       "fsl,imx6sx-sai";
-> +                               reg = <0x30030000 0x10000>;
-> +                               interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-> +                               clocks = <&clk IMX8MQ_CLK_SAI6_IPG>,
-> +                                       <&clk IMX8MQ_CLK_SAI6_ROOT>,
-> +                                       <&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
-> +                               clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> +                               dmas = <&sdma2 4 24 0>, <&sdma2 5 24 0>;
-> +                               dma-names = "rx", "tx";
-> +                               status = "disabled";
-> +                       };
-> +
->                         gpio1: gpio@30200000 {
->                                 compatible = "fsl,imx8mq-gpio", "fsl,imx35-gpio";
->                                 reg = <0x30200000 0x10000>;
-> @@ -728,6 +742,22 @@
->                                 status = "disabled";
->                         };
->
-> +                       sai3: sai@308c0000 {
-> +                               compatible = "fsl,imx8mq-sai",
-> +                                            "fsl,imx6sx-sai";
-> +                               reg = <0x308c0000 0x10000>;
-> +                               interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
-> +                               clocks = <&clk IMX8MQ_CLK_SAI3_IPG>,
-> +                                       <&clk IMX8MQ_CLK_DUMMY>,
-> +                                       <&clk IMX8MQ_CLK_SAI3_ROOT>,
-> +                                       <&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
-> +                               clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> +                               dmas = <&sdma1 12 24 0>, <&sdma1 13 24 0>;
-> +                               dma-names = "rx", "tx";
-> +                               status = "disabled";
-> +                       };
-> +
-> +
+Hi Frank
 
-Please don't use multiple blank lines here.
+This needs you own Signed-off-by as well. Anybody who touches the
+patch, passes it upwards on the submitter/maintainer chain needs to
+add there own SOB.
 
->                         i2c1: i2c@30a20000 {
->                                 compatible = "fsl,imx8mq-i2c", "fsl,imx21-i2c";
->                                 reg = <0x30a20000 0x10000>;
-> --
-> 2.11.0
->
+     Andrew
+
