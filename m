@@ -2,81 +2,260 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 294BA5C7BD
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 05:22:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2B09F5C7CA
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 05:25:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727102AbfGBDV7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 23:21:59 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:2246 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727084AbfGBDV6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 23:21:58 -0400
-X-UUID: 93b521935216423d8b6a2b78ba5128ce-20190702
-X-UUID: 93b521935216423d8b6a2b78ba5128ce-20190702
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <ran.bi@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1562462008; Tue, 02 Jul 2019 11:21:50 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 2 Jul 2019 11:21:49 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 2 Jul 2019 11:21:48 +0800
-From:   Ran Bi <ran.bi@mediatek.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>
-CC:     Alessandro Zummo <a.zummo@towertech.it>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-rtc@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, YT Shen <yt.shen@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Flora Fu <flora.fu@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Ran Bi <ran.bi@mediatek.com>
-Subject: [PATCH 3/3] arm64: dts: add rtc nodes for MT2712
-Date:   Tue, 2 Jul 2019 11:21:20 +0800
-Message-ID: <20190702032120.16539-4-ran.bi@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190702032120.16539-1-ran.bi@mediatek.com>
-References: <20190702032120.16539-1-ran.bi@mediatek.com>
+        id S1726917AbfGBDZo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 1 Jul 2019 23:25:44 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:44256 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726871AbfGBDZo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 23:25:44 -0400
+Received: by mail-ot1-f68.google.com with SMTP id b7so15683968otl.11
+        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 20:25:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BHGF7VMQI7XpbRIIhAwMxS2GHFW+rRDDlK2JWUOPEgE=;
+        b=QvXLX5r0YZB9lmN2nLXR/1agzDkcATg10L5l1wPAjnSUk3yG4S0pKdJTn8ki4OXllW
+         Vxag2hu4q2FeyCR63o0yPcLgyzlAEgPStnXvUB734X7pSzS8cuyZfqREz6jwgfyHJVJo
+         RaPmo9ACBri2i2Fh4W+xU7LGDrtWPebX4v7zNSRP653WSlKqWiN8pFvH2GID1xBGbZR6
+         9hkntYcPWXxvG5RAhsvQw0pcLBVQ6QIGSK87nryn2Pi2FdEw884ZDpVsiPxzDFhhtcPe
+         RahP5UH/bfYTHAW0BdCi/+tbKSEWC7JtSl0tmqKTs0FvYnETHx64Y/QrpMf2xzVRepoI
+         KHCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BHGF7VMQI7XpbRIIhAwMxS2GHFW+rRDDlK2JWUOPEgE=;
+        b=f5Gk97AqWP8BOI2z7sGrYk4t3+Q3vnM1quSj6OCE229xd4lce1oI4BU9/eb1i5LMk/
+         fNXU6qJrcJocw15RExvPZ4bCosqVZ9Bpj9KSbqWDkly7gZ1H2nX4jV3NsiI2m7c3UGzT
+         S2TBVvhIm2uAUFcAW0PuKU3O6BnjR9kxbB7hRaovTbO0ih1+yc5xW9HEgl+Lh5WMp8U0
+         gB9KJdhzd0z7stsP5dm/Emvis9jxoqoZ4jO6ezZQ6GtklHttWSGdE4b9jKl/3MT4IUjr
+         LIU262WVND3v9fccHVrfsxquP3T3ssOtnJdlDzerSBPZ8ydkMTRBd+qCbamEyPfUvsWr
+         hv3w==
+X-Gm-Message-State: APjAAAWBbql5j6wiuC32tPFeYrA+IOAWGOZzOAfUEE3aIdTdfg9taD8f
+        HL86mZgJbQA6gyyFBunlfT+ZcFW5evNSSdaVXDHg5g==
+X-Google-Smtp-Source: APXvYqxjXzORSDw2eIRGi7Dn1JJFQLdnvYvYI3ay/pRZ46abc9t0OFoCANmmhhscaXeU7MYSx98U5DYT8f8rG8cGBLk=
+X-Received: by 2002:a9d:6d06:: with SMTP id o6mr18846471otp.225.1562037942860;
+ Mon, 01 Jul 2019 20:25:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <20190702004811.136450-1-saravanak@google.com> <20190702004811.136450-3-saravanak@google.com>
+ <CAL_JsqLdvDpKB=iV6x3eTr2F4zY0bxU-Wjb+JeMjj5rdnRc-OQ@mail.gmail.com>
+In-Reply-To: <CAL_JsqLdvDpKB=iV6x3eTr2F4zY0bxU-Wjb+JeMjj5rdnRc-OQ@mail.gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 1 Jul 2019 20:25:06 -0700
+Message-ID: <CAGETcx_i9353aRFbJXNS78EvqwmU-2-xSBJ+ySZX1gjjHpz_cg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/4] of/platform: Add functional dependency link from
+ DT bindings
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Android Kernel Team <kernel-team@android.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add device node for MT2712 rtc.
+On Mon, Jul 1, 2019 at 6:32 PM Rob Herring <robh+dt@kernel.org> wrote:
+>
+> On Mon, Jul 1, 2019 at 6:48 PM Saravana Kannan <saravanak@google.com> wrote:
+> >
+> > Add device-links after the devices are created (but before they are
+> > probed) by looking at common DT bindings like clocks and
+> > interconnects.
+> >
+> > Automatically adding device-links for functional dependencies at the
+> > framework level provides the following benefits:
+> >
+> > - Optimizes device probe order and avoids the useless work of
+> >   attempting probes of devices that will not probe successfully
+> >   (because their suppliers aren't present or haven't probed yet).
+> >
+> >   For example, in a commonly available mobile SoC, registering just
+> >   one consumer device's driver at an initcall level earlier than the
+> >   supplier device's driver causes 11 failed probe attempts before the
+> >   consumer device probes successfully. This was with a kernel with all
+> >   the drivers statically compiled in. This problem gets a lot worse if
+> >   all the drivers are loaded as modules without direct symbol
+> >   dependencies.
+> >
+> > - Supplier devices like clock providers, interconnect providers, etc
+> >   need to keep the resources they provide active and at a particular
+> >   state(s) during boot up even if their current set of consumers don't
+> >   request the resource to be active. This is because the rest of the
+> >   consumers might not have probed yet and turning off the resource
+> >   before all the consumers have probed could lead to a hang or
+> >   undesired user experience.
+> >
+> >   Some frameworks (Eg: regulator) handle this today by turning off
+> >   "unused" resources at late_initcall_sync and hoping all the devices
+> >   have probed by then. This is not a valid assumption for systems with
+> >   loadable modules. Other frameworks (Eg: clock) just don't handle
+> >   this due to the lack of a clear signal for when they can turn off
+> >   resources. This leads to downstream hacks to handle cases like this
+> >   that can easily be solved in the upstream kernel.
+> >
+> >   By linking devices before they are probed, we give suppliers a clear
+> >   count of the number of dependent consumers. Once all of the
+> >   consumers are active, the suppliers can turn off the unused
+> >   resources without making assumptions about the number of consumers.
+> >
+> > By default we just add device-links to track "driver presence" (probe
+> > succeeded) of the supplier device. If any other functionality provided
+> > by device-links are needed, it is left to the consumer/supplier
+> > devices to change the link when they probe.
+> >
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > ---
+> >  drivers/of/Kconfig    |  9 ++++++++
+> >  drivers/of/platform.c | 52 +++++++++++++++++++++++++++++++++++++++++++
+> >  2 files changed, 61 insertions(+)
+> >
+> > diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
+> > index 37c2ccbefecd..7c7fa7394b4c 100644
+> > --- a/drivers/of/Kconfig
+> > +++ b/drivers/of/Kconfig
+> > @@ -103,4 +103,13 @@ config OF_OVERLAY
+> >  config OF_NUMA
+> >         bool
+> >
+> > +config OF_DEVLINKS
+>
+> I'd prefer this not be a config option. After all, we want one kernel
+> build that works for all platforms.
 
-Signed-off-by: Ran Bi <ran.bi@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt2712e.dtsi | 6 ++++++
- 1 file changed, 6 insertions(+)
+We need a lot more changes before one kernel build can work for all
+platforms. At least until then, I think we need this. Lot less chance
+of breaking existing platforms before all the missing pieces are
+created.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-index 43307bad3f0d..31166c17c39a 100644
---- a/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt2712e.dtsi
-@@ -303,6 +303,12 @@
- 		status = "disabled";
- 	};
- 
-+	rtc: rtc@10011000 {
-+		compatible = "mediatek,mt2712-rtc";
-+		reg = <0 0x10011000 0 0x1000>;
-+		interrupts = <GIC_SPI 239 IRQ_TYPE_LEVEL_LOW>;
-+	};
-+
- 	spis1: spi@10013000 {
- 		compatible = "mediatek,mt2712-spi-slave";
- 		reg = <0 0x10013000 0 0x100>;
--- 
-2.18.0
+> A kernel command line option to disable might be useful for debugging.
 
+Or we can have a command line to enable this for platforms that want
+to use it and have it default off.
+
+> > +       bool "Device links from DT bindings"
+> > +       help
+> > +         Common DT bindings like clocks, interconnects, etc represent a
+> > +         consumer device's dependency on suppliers devices. This option
+> > +         creates device links from these common bindings so that consumers are
+> > +         probed only after all their suppliers are active and suppliers can
+> > +         tell when all their consumers are active.
+> > +
+> >  endif # OF
+> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> > index 04ad312fd85b..a53717168aca 100644
+> > --- a/drivers/of/platform.c
+> > +++ b/drivers/of/platform.c
+> > @@ -61,6 +61,57 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
+> >  EXPORT_SYMBOL(of_find_device_by_node);
+> >
+> >  #ifdef CONFIG_OF_ADDRESS
+> > +static int of_link_binding(struct device *dev, char *binding, char *cell)
+>
+> Under CONFIG_OF_ADDRESS seems like a strange location.
+
+Yeah, but the rest of the file seems to be under this. So I'm not
+touching that. I can probably move this function further down (close
+to platform populate) if you want that.
+>
+> > +{
+> > +       struct of_phandle_args sup_args;
+> > +       struct platform_device *sup_dev;
+> > +       unsigned int i = 0, links = 0;
+> > +       u32 dl_flags = DL_FLAG_AUTOPROBE_CONSUMER;
+> > +
+> > +       while (!of_parse_phandle_with_args(dev->of_node, binding, cell, i,
+> > +                                          &sup_args)) {
+> > +               i++;
+> > +               sup_dev = of_find_device_by_node(sup_args.np);
+> > +               if (!sup_dev)
+> > +                       continue;
+> > +               if (device_link_add(dev, &sup_dev->dev, dl_flags))
+> > +                       links++;
+> > +               put_device(&sup_dev->dev);
+> > +       }
+> > +       if (links < i)
+> > +               return -ENODEV;
+> > +       return 0;
+> > +}
+> > +
+> > +/*
+> > + * List of bindings and their cell names (use NULL if no cell names) from which
+> > + * device links need to be created.
+> > + */
+> > +static char *link_bindings[] = {
+>
+> const
+
+Ack
+
+>
+> > +#ifdef CONFIG_OF_DEVLINKS
+> > +       "clocks", "#clock-cells",
+> > +       "interconnects", "#interconnect-cells",
+>
+> Planning to add others?
+
+Not in this patch.
+
+Regulators are the other big missing piece that I'm aware of now but
+they need a lot of discussion (see email from David and my reply).
+
+Not sure what other resources are shared where they can be "turned
+off" and cause devices set up at boot to fail. For example, I don't
+think interrupts need functional dependency tracking because they
+aren't really turned off by consumer 1 in a way that breaks things for
+consumer 2. Just masked and the consumer 2 can unmask and use it once
+it probes.
+
+I'm only intimately familiar with clocks, interconnects and regulators
+(to some extent). I'm open to adding other supplier categories in
+future patches as I educate myself of those or if other people want to
+add support for more categories.
+
+-Saravana
+
+> > +#endif
+> > +};
+> > +
+> > +static int of_link_to_suppliers(struct device *dev)
+> > +{
+> > +       unsigned int i = 0;
+> > +       bool done = true;
+> > +
+> > +       if (unlikely(!dev->of_node))
+> > +               return 0;
+> > +
+> > +       for (i = 0; i < ARRAY_SIZE(link_bindings) / 2; i++)
+> > +               if (of_link_binding(dev, link_bindings[i * 2],
+> > +                                       link_bindings[i * 2 + 1]))
+> > +                       done = false;
+> > +
+> > +       if (!done)
+> > +               return -ENODEV;
+> > +       return 0;
+> > +}
+> > +
+> >  /*
+> >   * The following routines scan a subtree and registers a device for
+> >   * each applicable node.
+> > @@ -524,6 +575,7 @@ static int __init of_platform_default_populate_init(void)
+> >         if (!of_have_populated_dt())
+> >                 return -ENODEV;
+> >
+> > +       platform_bus_type.add_links = of_link_to_suppliers;
+> >         /*
+> >          * Handle certain compatibles explicitly, since we don't want to create
+> >          * platform_devices for every node in /reserved-memory with a
+> > --
+> > 2.22.0.410.gd8fdbe21b5-goog
+> >
