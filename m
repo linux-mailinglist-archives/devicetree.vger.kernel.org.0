@@ -2,83 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5421D5CF1A
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 14:06:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0CD005CF2D
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 14:12:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726544AbfGBMGa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 08:06:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34794 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725922AbfGBMGa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Jul 2019 08:06:30 -0400
-Received: from mail-lj1-f175.google.com (mail-lj1-f175.google.com [209.85.208.175])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1725972AbfGBMMs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 08:12:48 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:35732 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725835AbfGBMMr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 08:12:47 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 718D6607CA; Tue,  2 Jul 2019 12:12:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1562069566;
+        bh=RLBvnxM+OVbNv4r5AYHQOxPu145fE2liFYRI6/iiGbU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=J08daGH6gIrUYLRP0hlqHmrTtP68/8CkE4bEd2q5+AQ4K8gOmB03MnzeXvBcORbSe
+         62rqnfpvym72/rxCulhpq6NjZZpy2UQqBfQ7tpeM7D2ZB9Q1u3YdVEpvihBd44jmbQ
+         Y3lxSETWvroB6ZhlCTjTcPNBBJwgnGloUMduDTWo=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from amasule-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9660F21851;
-        Tue,  2 Jul 2019 12:06:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562069188;
-        bh=JMUvbK/LfOJhb6Ete6QNsOakQUnGfCiPzMOmNQ6+NCg=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=HwC20ALa2Bz/YOW4FKBF/0iy/VmbQeOGBkAAkPTbw4EE8VmR2fSspfXMqIqwBdVc/
-         zFjLG4As/+XHC/UKUp9UeDb1GP5DlrEAxFpWnUT/UA0QODaoSD5VDW5BRnZQkzNU7U
-         H+wq0YOGmgvMgbg3tmtNjBKsB7mFNNQ1FiH5MGuI=
-Received: by mail-lj1-f175.google.com with SMTP id p17so16648026ljg.1;
-        Tue, 02 Jul 2019 05:06:28 -0700 (PDT)
-X-Gm-Message-State: APjAAAUr1uZ4khOmwGJGEWjlGlNrEcklBi3a+VGqK2KhyTPKYszaSXmj
-        C89t7oVNmtl3OeBRKrhrPO0hMOEeXpNxT1jeg3Q=
-X-Google-Smtp-Source: APXvYqzUYFM/EIyZphFmV/SpQwmAz/C+DNi3kHPWXR6+ebp2/C/4bHX7aVTINZ72IbXpXBNvNjj3Ls2f2eDhzgGnXR8=
-X-Received: by 2002:a2e:8155:: with SMTP id t21mr16985058ljg.80.1562069186791;
- Tue, 02 Jul 2019 05:06:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <CGME20190701131152eucas1p2c5ac5f1611fd07e3b7a4ad289abe3e81@eucas1p2.samsung.com>
- <20190701131138.22666-1-l.luba@partner.samsung.com> <20190701131138.22666-4-l.luba@partner.samsung.com>
-In-Reply-To: <20190701131138.22666-4-l.luba@partner.samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 2 Jul 2019 14:06:15 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPcc3q4_GLg21TL=xNO5U1Kp9ZHqpSERHFVCi8OLasgm3Q@mail.gmail.com>
-Message-ID: <CAJKOXPcc3q4_GLg21TL=xNO5U1Kp9ZHqpSERHFVCi8OLasgm3Q@mail.gmail.com>
-Subject: Re: [PATCH v11 3/9] drivers: memory: extend of_memory by LPDDR3 support
-To:     Lukasz Luba <l.luba@partner.samsung.com>
+        (Authenticated sender: amasule@codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id E35AD607B9;
+        Tue,  2 Jul 2019 12:12:42 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1562069565;
+        bh=RLBvnxM+OVbNv4r5AYHQOxPu145fE2liFYRI6/iiGbU=;
+        h=From:To:Cc:Subject:Date:From;
+        b=jZq88CHDAP2GN0GIQdcRABMvIW/2zjcU2ARY+JZNyQpT92erEpVBr35mSDR4fGjmG
+         ajue6NMTi4E77O7gpnbcxajVRJ+CQeMmr4J3FFKoaxLkMzRZ2FnX82GfKojbQH90SF
+         w1kduKUmPBlIDaEDglnE4SgnJ1yP1xxdExFFMFis=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org E35AD607B9
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=amasule@codeaurora.org
+From:   Aniket Masule <amasule@codeaurora.org>
+To:     andy.gross@linaro.org, david.brown@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com
 Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
-        <b.zolnierkie@samsung.com>, kgene@kernel.org,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        kyungmin.park@samsung.com,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com,
-        keescook@chromium.org, tony@atomide.com, jroedel@suse.de,
-        treding@nvidia.com, digetx@gmail.com, gregkh@linuxfoundation.org,
-        willy.mh.wolff.ml@gmail.com
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-msm@vger.kernel.org, vgarodia@codeaurora.org,
+        Aniket Masule <amasule@codeaurora.org>,
+        Malathi Gottam <mgottam@codeaurora.org>
+Subject: [PATCH v3] arm64: dts: sdm845: Add video nodes
+Date:   Tue,  2 Jul 2019 17:42:29 +0530
+Message-Id: <1562069549-25384-1-git-send-email-amasule@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 1 Jul 2019 at 15:11, Lukasz Luba <l.luba@partner.samsung.com> wrote:
->
-> The patch adds AC timings information needed to support LPDDR3 and memory
-> controllers. The structure is used in of_memory and currently in Exynos
-> 5422 DMC. Add parsing data needed for LPDDR3 support.
-> It is currently used in Exynos5422 Dynamic Memory Controller.
->
-> Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
-> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
-> ---
->  drivers/memory/of_memory.c | 149 +++++++++++++++++++++++++++++++++++++
->  drivers/memory/of_memory.h |  18 +++++
->  include/memory/jedec_ddr.h |  61 +++++++++++++++
->  3 files changed, 228 insertions(+)
+From: Malathi Gottam <mgottam@codeaurora.org>
 
-Hi,
+This adds video nodes to sdm845 based on the examples
+in the bindings.
 
-As I mentioned before in v10, I can take entire patchset through
-samsung-soc but this one patch requires ack or at least reviews.
+Signed-off-by: Malathi Gottam <mgottam@codeaurora.org>
+Co-developed-by: Aniket Masule <amasule@codeaurora.org>
+Signed-off-by: Aniket Masule <amasule@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/sdm845.dtsi | 30 ++++++++++++++++++++++++++++++
+ 1 file changed, 30 insertions(+)
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+index fcb9330..f3cd94f 100644
+--- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
++++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+@@ -1893,6 +1893,36 @@
+ 			};
+ 		};
+ 
++		video-codec@aa00000 {
++			compatible = "qcom,sdm845-venus";
++			reg = <0 0x0aa00000 0 0xff000>;
++			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
++			power-domains = <&videocc VENUS_GDSC>;
++			clocks = <&videocc VIDEO_CC_VENUS_CTL_CORE_CLK>,
++				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
++				 <&videocc VIDEO_CC_VENUS_CTL_AXI_CLK>;
++			clock-names = "core", "iface", "bus";
++			iommus = <&apps_smmu 0x10a0 0x8>,
++				 <&apps_smmu 0x10b0 0x0>;
++			memory-region = <&venus_mem>;
++
++			video-core0 {
++				compatible = "venus-decoder";
++				clocks = <&videocc VIDEO_CC_VCODEC0_CORE_CLK>,
++					 <&videocc VIDEO_CC_VCODEC0_AXI_CLK>;
++				clock-names = "core", "bus";
++				power-domains = <&videocc VCODEC0_GDSC>;
++			};
++
++			video-core1 {
++				compatible = "venus-encoder";
++				clocks = <&videocc VIDEO_CC_VCODEC1_CORE_CLK>,
++					 <&videocc VIDEO_CC_VCODEC1_AXI_CLK>;
++				clock-names = "core", "bus";
++				power-domains = <&videocc VCODEC1_GDSC>;
++			};
++		};
++
+ 		videocc: clock-controller@ab00000 {
+ 			compatible = "qcom,sdm845-videocc";
+ 			reg = <0 0x0ab00000 0 0x10000>;
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
