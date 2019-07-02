@@ -2,132 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BBD025DB55
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 04:06:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D1345D9F7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 02:58:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727065AbfGCCG3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 22:06:29 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:33312 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726329AbfGCCG3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 22:06:29 -0400
-Received: by mail-wm1-f67.google.com with SMTP id h19so1795347wme.0;
-        Tue, 02 Jul 2019 19:06:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Au6/RZg4uG1yjTUrNE1TtFncQkGuc7/u4mr9IkIEock=;
-        b=eNGoUxRtKUcixNH+Ied9TuCw5DbSq1zNaVkixhPbSDOnSqoMWV0SyCJFJx25nTclKv
-         XqYvbnXM65kAAVQfb2mpsiOzhJR9esdpRyMnYRQ9vTz+Kl9a7dSkrC3tTq4Oa6Wd1F8B
-         ZbiVapz1qO14nHwoc3bCfq6ohbQ6Quss07kKNikgdUKOufdBhihsCN09h4wHGw2Y86Bf
-         svRiKHy/Nw4Qksr5Jb0r/PC22HTchOgKsofXLuKStfKrWbRAen3/prr/rUaDGSOtzxtc
-         t2A73M+CdEylxX+07vuykv1lUGVaVsXvXQ3yEeJ0JbW94sm1yUQXii4IYcocZB7q5MDp
-         Pl5Q==
+        id S1727142AbfGCA6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 20:58:21 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:39114 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727074AbfGCA6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 20:58:21 -0400
+Received: by mail-oi1-f194.google.com with SMTP id m202so599484oig.6;
+        Tue, 02 Jul 2019 17:58:20 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Au6/RZg4uG1yjTUrNE1TtFncQkGuc7/u4mr9IkIEock=;
-        b=Gj4fJ9xxWycErbysNN3XLIikWcJoKlqV4+WMspv7xm1jNVdpFvyPLb5jVWWyIwt/Q/
-         zfDwyVicGHss6A97roUTvJzDRbOBthGOEOuq6iDQnaSYHp4J8lLdYUJSYCIcEyP1JDwt
-         hIWmlsykQ0OJuDKlzCCLnbDYSL0yF/q18PqXQwB+gaB3XlUIHK2pJZYzFkOY4qCIWO1K
-         F/0QEF+UOT6SesK9RIa3NFq6YnTwnuJPukFEQ/A/J2kGqaukDqtcsLPRJkU52rF4DMD8
-         x5F72fIeDGm/clySQZ1nRXnyI/CoSKDKlZCQE3Bea2u0zRmAN72WSU81VcybfJYvmU9d
-         4Y/w==
-X-Gm-Message-State: APjAAAVyEggIVkoOcB5zqODur3AlA05GJItLDF2XnKMm4Ct20T11UPJj
-        YkFiDiuCDKmg/iA7LGQGNzZugkyJ
-X-Google-Smtp-Source: APXvYqw6u0c/65SNfyawfg4aH6BrqS9H2i9Imk26GVXs8xJNe5Uq7A3pkq2tkzplb9MdU28iCbIK4A==
-X-Received: by 2002:a7b:c247:: with SMTP id b7mr4805648wmj.13.1562099734917;
-        Tue, 02 Jul 2019 13:35:34 -0700 (PDT)
-Received: from blackbox.darklights.net (p200300F133D62000A09003363445C98E.dip0.t-ipconnect.de. [2003:f1:33d6:2000:a090:336:3445:c98e])
-        by smtp.googlemail.com with ESMTPSA id s12sm100041wmh.34.2019.07.02.13.35.33
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=DtQmDM1bjxYXcqNKxDIhe3kpTPPYxiOv+5lbfQfOZdE=;
+        b=rdNe1uBrDpAhqLxbcDYjpTEaSwGuI+OGS7FawePaNtE4XaFxFX9LZRkySKagywu96E
+         5elS2OlM2+9SQgOMAHfPsD14tq/9GPSsyXTBQ3v1vpiNeL6mut71AVMzDUmgoKvcaFjG
+         ZkG0TM63qOs8T6VRpCXd6HLvZitCUOj8H6AqM607XGa9sNMZxcj5Tj3Dgs6HVZi8+ESR
+         xkOnd3jnmRURIOnkuqQO34Ubry6C0J+SGZG6KYYpQEfIBOlBi11jTR0PdknRRl+Zli6X
+         R2bK6l6wqZo8BNKUpi7f8TOuuWmeQSAPLRaOIjTworkSmjVLbbO8vJl2DBuaJCC4r6ZZ
+         FONQ==
+X-Gm-Message-State: APjAAAUu5rtSqVJRCWOmfmBKZQ6UUYSPd1ThQtxFvCoFJrs/jqDCbwzs
+        OVV69Bmzj+Eqt4CMigJrY+ILGKuHCGs=
+X-Google-Smtp-Source: APXvYqxgfIVc55JlioUk1yKtSLmO9ntomZUFE6/lH8QIzZr758B9lCLwgU+mAmopE2kMlm4WWSK35A==
+X-Received: by 2002:a63:f342:: with SMTP id t2mr30570356pgj.83.1562101035558;
+        Tue, 02 Jul 2019 13:57:15 -0700 (PDT)
+Received: from 42.do-not-panic.com (42.do-not-panic.com. [157.230.128.187])
+        by smtp.gmail.com with ESMTPSA id d26sm16963231pfn.29.2019.07.02.13.57.13
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 02 Jul 2019 13:35:34 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        john@phrozen.org, kishon@ti.com, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, hauke@hauke-m.de,
-        paul.burton@mips.com, ralf@linux-mips.org, mark.rutland@arm.com,
-        ms@dev.tdt.de,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH 4/4] MIPS: lantiq: update the clock alias' for the mainline PCIe PHY driver
-Date:   Tue,  2 Jul 2019 22:35:23 +0200
-Message-Id: <20190702203523.2412-5-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190702203523.2412-1-martin.blumenstingl@googlemail.com>
-References: <20190702203523.2412-1-martin.blumenstingl@googlemail.com>
+        Tue, 02 Jul 2019 13:57:13 -0700 (PDT)
+Received: by 42.do-not-panic.com (Postfix, from userid 1000)
+        id DC91A40251; Tue,  2 Jul 2019 20:57:12 +0000 (UTC)
+Date:   Tue, 2 Jul 2019 20:57:12 +0000
+From:   Luis Chamberlain <mcgrof@kernel.org>
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah <shuah@kernel.org>, Theodore Ts'o <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Subject: Re: [PATCH v5 07/18] kunit: test: add initial tests
+Message-ID: <20190702205712.GS19023@42.do-not-panic.com>
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <20190617082613.109131-8-brendanhiggins@google.com>
+ <20190625232249.GS19023@42.do-not-panic.com>
+ <CAFd5g46mnd=a0OqFCx0hOHX+DxW+5yA2LXH5Q0gEg8yUZK=4FA@mail.gmail.com>
+ <CAFd5g46=7OQDREdLDTiMgVWq-Xj2zfOw8cRhPJEihSbO89MDyA@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFd5g46=7OQDREdLDTiMgVWq-Xj2zfOw8cRhPJEihSbO89MDyA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The mainline PCIe PHY driver has it's own devicetree node. Update the
-clock alias so the mainline driver finds the clocks.
+On Tue, Jul 02, 2019 at 10:52:50AM -0700, Brendan Higgins wrote:
+> On Wed, Jun 26, 2019 at 12:53 AM Brendan Higgins
+> <brendanhiggins@google.com> wrote:
+> >
+> > On Tue, Jun 25, 2019 at 4:22 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
+> > >
+> > > On Mon, Jun 17, 2019 at 01:26:02AM -0700, Brendan Higgins wrote:
+> > > > diff --git a/kunit/example-test.c b/kunit/example-test.c
+> > > > new file mode 100644
+> > > > index 0000000000000..f44b8ece488bb
+> > > > --- /dev/null
+> > > > +++ b/kunit/example-test.c
+> > >
+> > > <-- snip -->
+> > >
+> > > > +/*
+> > > > + * This defines a suite or grouping of tests.
+> > > > + *
+> > > > + * Test cases are defined as belonging to the suite by adding them to
+> > > > + * `kunit_cases`.
+> > > > + *
+> > > > + * Often it is desirable to run some function which will set up things which
+> > > > + * will be used by every test; this is accomplished with an `init` function
+> > > > + * which runs before each test case is invoked. Similarly, an `exit` function
+> > > > + * may be specified which runs after every test case and can be used to for
+> > > > + * cleanup. For clarity, running tests in a test module would behave as follows:
+> > > > + *
+> > >
+> > > To be clear this is not the kernel module init, but rather the kunit
+> > > module init. I think using kmodule would make this clearer to a reader.
+> >
+> > Seems reasonable. Will fix in next revision.
+> >
+> > > > + * module.init(test);
+> > > > + * module.test_case[0](test);
+> > > > + * module.exit(test);
+> > > > + * module.init(test);
+> > > > + * module.test_case[1](test);
+> > > > + * module.exit(test);
+> > > > + * ...;
+> > > > + */
+> 
+> Do you think it might be clearer yet to rename `struct kunit_module
+> *module;` to `struct kunit_suite *suite;`?
 
-The first PCIe PHY is located at 0x1f106800 and exists on VRX200, ARX300
-and GRX390.
-The second PCIe PHY is located at 0x1f700400 and exists on ARX300 and
-GRX390.
-The third PCIe PHY is located at 0x1f106a00 and exists onl on GRX390.
-Lantiq's board support package (called "UGW") names these registers
-"PDI".
+Yes. Definitely. Or struct kunit_test. Up to you.
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/mips/lantiq/xway/sysctrl.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
-
-diff --git a/arch/mips/lantiq/xway/sysctrl.c b/arch/mips/lantiq/xway/sysctrl.c
-index b4323b2214e2..156a95ac5c72 100644
---- a/arch/mips/lantiq/xway/sysctrl.c
-+++ b/arch/mips/lantiq/xway/sysctrl.c
-@@ -468,14 +468,14 @@ void __init ltq_soc_init(void)
- 		clkdev_add_pmu("1f203018.usb2-phy", "phy", 1, 2, PMU_ANALOG_USB0_P);
- 		clkdev_add_pmu("1f203034.usb2-phy", "phy", 1, 2, PMU_ANALOG_USB1_P);
- 		/* rc 0 */
--		clkdev_add_pmu("1d900000.pcie", "phy", 1, 2, PMU_ANALOG_PCIE0_P);
-+		clkdev_add_pmu("1f106800.phy", "phy", 1, 2, PMU_ANALOG_PCIE0_P);
- 		clkdev_add_pmu("1d900000.pcie", "msi", 1, 1, PMU1_PCIE_MSI);
--		clkdev_add_pmu("1d900000.pcie", "pdi", 1, 1, PMU1_PCIE_PDI);
-+		clkdev_add_pmu("1f106800.phy", "pdi", 1, 1, PMU1_PCIE_PDI);
- 		clkdev_add_pmu("1d900000.pcie", "ctl", 1, 1, PMU1_PCIE_CTL);
- 		/* rc 1 */
--		clkdev_add_pmu("19000000.pcie", "phy", 1, 2, PMU_ANALOG_PCIE1_P);
-+		clkdev_add_pmu("1f700400.phy", "phy", 1, 2, PMU_ANALOG_PCIE1_P);
- 		clkdev_add_pmu("19000000.pcie", "msi", 1, 1, PMU1_PCIE1_MSI);
--		clkdev_add_pmu("19000000.pcie", "pdi", 1, 1, PMU1_PCIE1_PDI);
-+		clkdev_add_pmu("1f700400.phy", "pdi", 1, 1, PMU1_PCIE1_PDI);
- 		clkdev_add_pmu("19000000.pcie", "ctl", 1, 1, PMU1_PCIE1_CTL);
- 	}
- 
-@@ -499,9 +499,9 @@ void __init ltq_soc_init(void)
- 		clkdev_add_pmu("1e101000.usb", "otg", 1, 0, PMU_USB0);
- 		clkdev_add_pmu("1e106000.usb", "otg", 1, 0, PMU_USB1);
- 		/* rc 2 */
--		clkdev_add_pmu("1a800000.pcie", "phy", 1, 2, PMU_ANALOG_PCIE2_P);
-+		clkdev_add_pmu("1f106a00.pcie", "phy", 1, 2, PMU_ANALOG_PCIE2_P);
- 		clkdev_add_pmu("1a800000.pcie", "msi", 1, 1, PMU1_PCIE2_MSI);
--		clkdev_add_pmu("1a800000.pcie", "pdi", 1, 1, PMU1_PCIE2_PDI);
-+		clkdev_add_pmu("1f106a00.pcie", "pdi", 1, 1, PMU1_PCIE2_PDI);
- 		clkdev_add_pmu("1a800000.pcie", "ctl", 1, 1, PMU1_PCIE2_CTL);
- 		clkdev_add_pmu("1e10b308.eth", NULL, 0, 0, PMU_SWITCH | PMU_PPE_DP);
- 		clkdev_add_pmu("1da00000.usif", "NULL", 1, 0, PMU_USIF);
-@@ -526,10 +526,10 @@ void __init ltq_soc_init(void)
- 		clkdev_add_pmu("1e101000.usb", "otg", 1, 0, PMU_USB0 | PMU_AHBM);
- 		clkdev_add_pmu("1f203034.usb2-phy", "phy", 1, 0, PMU_USB1_P);
- 		clkdev_add_pmu("1e106000.usb", "otg", 1, 0, PMU_USB1 | PMU_AHBM);
--		clkdev_add_pmu("1d900000.pcie", "phy", 1, 1, PMU1_PCIE_PHY);
-+		clkdev_add_pmu("1f106800.phy", "phy", 1, 1, PMU1_PCIE_PHY);
- 		clkdev_add_pmu("1d900000.pcie", "bus", 1, 0, PMU_PCIE_CLK);
- 		clkdev_add_pmu("1d900000.pcie", "msi", 1, 1, PMU1_PCIE_MSI);
--		clkdev_add_pmu("1d900000.pcie", "pdi", 1, 1, PMU1_PCIE_PDI);
-+		clkdev_add_pmu("1f106800.phy", "pdi", 1, 1, PMU1_PCIE_PDI);
- 		clkdev_add_pmu("1d900000.pcie", "ctl", 1, 1, PMU1_PCIE_CTL);
- 		clkdev_add_pmu(NULL, "ahb", 1, 0, PMU_AHBM | PMU_AHBS);
- 
--- 
-2.22.0
-
+  Luis
