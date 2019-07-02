@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0A1495CB1F
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 10:11:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DA5785CB1A
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 10:11:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728833AbfGBIKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 04:10:33 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:43370 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728679AbfGBIKc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 04:10:32 -0400
-Received: by mail-wr1-f67.google.com with SMTP id p13so16614391wru.10
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 01:10:31 -0700 (PDT)
+        id S1728849AbfGBIKj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 04:10:39 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:39895 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728832AbfGBIKe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 04:10:34 -0400
+Received: by mail-wm1-f67.google.com with SMTP id z23so2174786wma.4
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 01:10:32 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yQvFLY/IGcdAwWsBuNGxABc1MrG/sBdj2yTY8HMsOyA=;
-        b=VB52+/PtxfgbVZZLgrOZg7aQDmVQcdvsPsqYr3oTx1ihZODOXKCh0XGtTfTjN6YPhc
-         wGwd4a9rEiv8UgHkrRl8F73a9G+tSOS4PYwZ/2le5JwMP9MnidD3xltf3mUYL2IwbdjQ
-         SP193tXdQgo6qiEW/dniG/51JRX6hUzMSxwIeJBKbOjIF/DVDVUDa8g7WGUq+YCnZdpI
-         og2BedTqjCE/2YCOtvZm5M7wl1HFJ/hTYtFTrBSD6SBTvBYEMay7CstxZNQIpZ6S/MUm
-         +uY9Ow41PHc/3unM7fQCccPO7ZaWxaQtrZF5pTigPrxzU1ZHEDFL6q4ek47xXH+3+mfy
-         NUMg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=RsDRgnG30eH/2HxBr2CWqa8LThIzd6WAhW3RPg8E7LY=;
+        b=ATtYMSiq8qyZaEXMNFb5e+Q1VIOVwuQ/cIZS9AYHlGxNZAf3RTf6nN5q1seQ09EHgP
+         zb1FCvEsnqA+eEYxkdQZviWbWCTKnlv/jrHh9IYa3APdlmKxxw4Zg5ijEHFdOqXq1HTN
+         ZPog4pcB5zmhpfGq+yfqHYea9B6OuulG6lgLi1Yf/EjoB/+kGaVAzTdKj91fnMxUzw1v
+         d3Jv2ocNz2RNdqJkefwvMh5VaYaksRGdRDJKGaJTYYTf5tZ06mi+tpq01zpMfZRJyFky
+         aPQmy+6JOz3bxqYQhhoJmtu4MokxglB7eaKIpdqUvSLnESGfGoZl8LSGZzuhI0vmjLCr
+         fgrA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=yQvFLY/IGcdAwWsBuNGxABc1MrG/sBdj2yTY8HMsOyA=;
-        b=WmU0MykyCXuGwP5eeTNrMWh+xdJya5FyU15Sdq4Ts5Q5SL/ddY7UrqxExEjBnzuvmo
-         K87hpYPGUOWUMH3eLN3WX4z8Cytp3+6AaXeXYYhz3n8Mk6nm8iPLcm8U1uK5su3W1RIY
-         OqALo4Uw8rXoc5yKZDrxUnSaG8sVyBf6u68wo0mXZh0UwlOuYuG73IYhctHf0PgZ3Ahs
-         SjxwrdTRqBwuUfxDwq5/8tdOZspuiy7e+iMPuo1UQNzSboQygnbE55O+4vCtynXrQG40
-         WcnB6lG294G20x57H6eyrQaWfzAm7RGaPKBh4cDNiLSO6MywblGa/rwPJgQSAcw3cM8y
-         M2kA==
-X-Gm-Message-State: APjAAAV78YYDY1jPKDEzR/W3GzR3SCm4TUn6Ci37PY7751dZaG4j1Y5M
-        fT6ev11MUf1LjqIp4pLEH9w5FGXuY5k=
-X-Google-Smtp-Source: APXvYqzzM1irAnKYi4Zg0DLLzyDAHFeASvIOtmDV2pI5kvdSaEcZuL1Ba2KGrecc573o0TBJYvzOAA==
-X-Received: by 2002:a5d:5450:: with SMTP id w16mr13266170wrv.128.1562055030738;
-        Tue, 02 Jul 2019 01:10:30 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=RsDRgnG30eH/2HxBr2CWqa8LThIzd6WAhW3RPg8E7LY=;
+        b=SyEd5tsHjbZ66QtMJ62MYCRItS7+rG0VYJ5/1c3u+I2658IWeOWBkDfDAMRJJkKoT/
+         u+at1JCMUcD6tGVP1UdoVXqfpjZ0cTRViHq77Ai7lBP4tyaanBlNfhtZ6PjcQ2CbJKkF
+         Xp8J3WhrrTplEUaAihPrSBjfmHNAeoPxss2KM4wpMmptM1UaIA2ME9LUfqCF0CVcWgkC
+         mmtyhWdwBJp4u+XRF3DsYiAm/fo7quw77ZLS2rcMGKLsOF6eoMawRTrNuQdGLc1gWpnN
+         /L0/V6mK+BV8Z5fTfPPI1nwxc8FqO9JjOAucOu8uzrCDHDTns5Pc361hKwh3JdVFuNZ2
+         FbaQ==
+X-Gm-Message-State: APjAAAXKefnFXu5yZok6lv53bqFXLF8Ytow3BtoUSF8HaCjDiWikZcTL
+        SU+NSPB1fC54eo5MIcfQA5zYIA==
+X-Google-Smtp-Source: APXvYqzJ3k2SZabdiLOVGHVAtma51tP5xjFabLy3yxUQK8/QSeWwE0oZUiOjABUQya6P04Vtgf7arA==
+X-Received: by 2002:a1c:f115:: with SMTP id p21mr2257357wmh.134.1562055031841;
+        Tue, 02 Jul 2019 01:10:31 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.gmail.com with ESMTPSA id e4sm1608859wme.16.2019.07.02.01.10.29
+        by smtp.gmail.com with ESMTPSA id e4sm1608859wme.16.2019.07.02.01.10.30
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 02 Jul 2019 01:10:30 -0700 (PDT)
+        Tue, 02 Jul 2019 01:10:31 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     robh+dt@kernel.org, broonie@kernel.org
 Cc:     bgoswami@codeaurora.org, vkoul@kernel.org,
@@ -51,10 +51,12 @@ Cc:     bgoswami@codeaurora.org, vkoul@kernel.org,
         mark.rutland@arm.com, alsa-devel@alsa-project.org,
         srini@kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH 0/6] ASoC: Add support to WCD9340/WCD9341 codec
-Date:   Tue,  2 Jul 2019 09:09:14 +0100
-Message-Id: <20190702080920.22623-1-srinivas.kandagatla@linaro.org>
+Subject: [PATCH 1/6] ASoC: dt-bindings: add dt bindings for WCD9340/WCD9341 audio codec
+Date:   Tue,  2 Jul 2019 09:09:15 +0100
+Message-Id: <20190702080920.22623-2-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190702080920.22623-1-srinivas.kandagatla@linaro.org>
+References: <20190702080920.22623-1-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -62,43 +64,209 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset adds support to Qualcomm WCD9340/WCD9341 Codec which
-is a standalone Hi-Fi audio codec IC.
-This codec supports both I2S/I2C and SLIMbus audio interfaces.
-On slimbus interface it supports two data lanes; 16 Tx ports
-and 8 Rx ports. It has Five DACs and seven dedicated interpolators,
-Multibutton headset control (MBHC), Active noise cancellation,
-Sidetone paths, MAD (mic activity detection) and codec processing engine.
-It supports Class-H differential earpiece out and stereo single
-ended headphones out.
-This codec also has integrated SoundWire controller.
-Patchset for this is already sent for review at
-https://lwn.net/Articles/790651/
-    
-This patchset has been tested on SDM845 based DragonBoard DB845c with WSA881x
-smart speaker amplifiers via soundwire and 4 DMICs.
+This patch adds bindings for wcd9340/wcd9341 audio codec which can
+support both SLIMbus and I2S/I2C interface.
 
-Thanks,
-srini
-
-Srinivas Kandagatla (6):
-  ASoC: dt-bindings: add dt bindings for WCD9340/WCD9341 audio codec
-  ASoC: wcd934x: add support to wcd9340/wcd9341 codec
-  ASoC: wcd934x: add basic controls
-  ASoC: wcd934x: add playback dapm widgets
-  ASoC: wcd934x: add capture dapm widgets
-  ASoC: wcd934x: add audio routings
-
- .../bindings/sound/qcom,wcd934x.txt           |  188 +
- sound/soc/codecs/Kconfig                      |   10 +
- sound/soc/codecs/Makefile                     |    2 +
- sound/soc/codecs/wcd934x.c                    | 5979 +++++++++++++++++
- sound/soc/codecs/wcd934x.h                    |  426 ++
- 5 files changed, 6605 insertions(+)
+Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+---
+ .../bindings/sound/qcom,wcd934x.txt           | 188 ++++++++++++++++++
+ 1 file changed, 188 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wcd934x.txt
- create mode 100644 sound/soc/codecs/wcd934x.c
- create mode 100644 sound/soc/codecs/wcd934x.h
 
+diff --git a/Documentation/devicetree/bindings/sound/qcom,wcd934x.txt b/Documentation/devicetree/bindings/sound/qcom,wcd934x.txt
+new file mode 100644
+index 000000000000..2b48c98b5b7d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/sound/qcom,wcd934x.txt
+@@ -0,0 +1,188 @@
++QCOM WCD9340/9341 Codec Bindings
++
++Qualcomm WCD9340/WCD9341 Codec is a standalone Hi-Fi audio codec IC, supports
++Qualcomm Technologies, Inc. (QTI) multimedia solutions, including
++the MSM8996, MSM8976, and MSM8956 chipsets. It has in-built
++Soundwire controller, interrupt mux. It supports both I2S/I2C and
++SLIMbus audio interfaces.
++
++Required properties with SLIMbus Interface:
++
++- compatible:
++	Usage: required
++	Value type: <stringlist>
++	Definition: For SLIMbus interface it should be "slimMID,PID",
++		    textual representation of Manufacturer ID, Product Code,
++		    shall be in lower case hexadecimal with leading zeroes
++		    suppressed.  Refer to slimbus/bus.txt for details.
++		    Should be:
++		    "slim217,250" for SDM845/SDA845 SoCs with SLIMbus.
++
++- reg
++	Usage: required
++	Value type: <u32 u32>
++	Definition: Should be ('Device index', 'Instance ID')
++
++- interrupts
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: Interrupts via WCD INTR1 and INTR2 pins
++
++- interrupt-names:
++	Usage: required
++	Value type: <String array>
++	Definition: Interrupt names of WCD INTR1 and INTR2
++	Should be: "intr1", "intr2"
++
++- reset-gpios:
++	Usage: required
++	Value type: <String Array>
++	Definition: Reset gpio line
++
++- slim-ifc-dev:
++	Usage: required
++	Value type: <phandle>
++	Definition: SLIM interface device
++
++- clocks:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: See clock-bindings.txt section "consumers". List of
++                three clock specifiers for mclk, mclk2 and slimbus clock.
++
++- clock-names:
++	Usage: required
++	Value type: <string>
++	Definition: Must contain "mclk", "mclk2" and "slimbus" strings.
++
++- vdd-buck-supply:
++	Usage: required
++	Value type: <phandle>
++	Definition: Should contain a reference to the 1.8V buck supply
++
++- vdd-buck-sido-supply:
++	Usage: required
++	Value type: <phandle>
++	Definition: Should contain a reference to the 1.8V SIDO buck supply
++
++- vdd-rx-supply:
++	Usage: required
++	Value type: <phandle>
++	Definition: Should contain a reference to the 1.8V rx supply
++
++- vdd-tx-supply:
++	Usage: required
++	Value type: <phandle>
++	Definition: Should contain a reference to the 1.8V tx supply
++
++- vdd-vbat-supply:
++	Usage: Optional
++	Value type: <phandle>
++	Definition: Should contain a reference to the vbat supply
++
++- vdd-micbias-supply:
++	Usage: required
++	Value type: <phandle>
++	Definition: Should contain a reference to the micbias supply
++
++- vdd-io-supply:
++	Usage: required
++	Value type: <phandle>
++	Definition: Should contain a reference to the 1.8V io supply
++
++- qcom,micbias1-lvl:
++	Usage: required
++	Value type: <u32>
++	Definition: Should be voltage in milli Volts for micbias1 output
++	Supported values are in inbetween 1800mV-2850mV
++
++- qcom,micbias2-lvl:
++	Usage: required
++	Value type: <u32>
++	Definition: Should be voltage in milli Volts for micbias2 output
++	Supported values are in inbetween 1800mV-2850mV
++
++- qcom,micbias3-lvl:
++	Usage: required
++	Value type: <u32>
++	Definition: Should be voltage in milli Volts for micbias3 output
++	Supported values are in inbetween 1800mV-2850mV
++
++- qcom,micbias4-lvl:
++	Usage: required
++	Value type: <u32>
++	Definition: Should be voltage in milli Volts for micbias4 output
++	Supported values are in inbetween 1800mV-2850mV
++
++- clock-output-names:
++	Usage: required
++	Value type: <string>
++	Definition: Should be the "mclk", corresponding to name
++			of the clk output.
++
++- clock-frequency:
++	Usage: required
++	Definition: Indicating the frequency of mclk output.
++
++- interrupt-controller:
++	Usage: required
++	Definition: Indicating that this is a interrupt controller
++
++- #interrupt-cells:
++	Usage: required
++	Value type: <int>
++	Definition: should be 1
++
++- #clock-cells:
++	Usage: required
++	Value type: <int>
++	Definition: should be 0, as there is only one clock out supported.
++
++#sound-dai-cells
++	Usage: required
++	Value type: <u32>
++	Definition: Must be 1
++
++Example:
++
++wcd9340: audio-codec@1{
++	compatible = "slim217,250";
++	reg  = <1 0>;
++	reset-gpios = <&tlmm 64 0>;
++	slim-ifc-dev  = <&wcd9340_ifd>;
++	vdd-buck-supply = <&vreg_s4a_1p8>;
++	vdd-buck-sido-supply = <&vreg_s4a_1p8>;
++	vdd-tx-supply = <&vreg_s4a_1p8>;
++	vdd-rx-supply = <&vreg_s4a_1p8>;
++	vdd-io-supply = <&vreg_s4a_1p8>;
++	qcom,micbias1-lvl = <1800>;
++	qcom,micbias2-lvl = <1800>;
++	qcom,micbias3-lvl = <1800>;
++	qcom,micbias4-lvl = <1800>;
++
++	interrupt-parent = <&tlmm>;
++	interrupts = <54 IRQ_TYPE_LEVEL_HIGH>;
++	interrupt-names  = "intr1";
++	interrupt-controller;
++	#interrupt-cells = <1>;
++
++	#clock-cells = <0>;
++	clock-frequency = <9600000>;
++	clock-output-names = "mclk";
++	#sound-dai-cells = <1>;
++
++	pinctrl@42 {
++		compatible = "qcom,wcd9340-pinctrl";
++		gpio-controller;
++		#gpio-cells = <2>;
++		gpio-ranges = <&wcdpinctrl 0 0 5>;
++		reg = <0x42 0x2>;
++		...
++	};
++
++	soundwire@c85{
++		compatible = "qcom,soundwire-v1.3.0";
++		reg = <0xc85 0x40>;
++		...
++	};
++};
 -- 
 2.21.0
 
