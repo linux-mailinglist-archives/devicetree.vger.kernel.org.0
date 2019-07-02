@@ -2,139 +2,234 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 668125C7E6
-	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 05:41:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D895E5C893
+	for <lists+devicetree@lfdr.de>; Tue,  2 Jul 2019 07:03:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726930AbfGBDl1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 1 Jul 2019 23:41:27 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:41257 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726793AbfGBDl1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 1 Jul 2019 23:41:27 -0400
-Received: by mail-ot1-f65.google.com with SMTP id o101so15444429ota.8
-        for <devicetree@vger.kernel.org>; Mon, 01 Jul 2019 20:41:26 -0700 (PDT)
+        id S1725819AbfGBFDl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 01:03:41 -0400
+Received: from mail-eopbgr820084.outbound.protection.outlook.com ([40.107.82.84]:21216
+        "EHLO NAM01-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725775AbfGBFDl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Jul 2019 01:03:41 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=testarcselector01; d=microsoft.com; cv=none;
+ b=T/jtYkLUmd9vp+0S+Sl9IHcdUzIaBZfHmOOncrQLtH9Kjyg8BT5o9GGZf4HQWur5hSlLeCb7/fnEkiESGRDfJeHkYJrG9KwPPr8DCTYjzdZthTRD0DSXAucEJl3Z1dqZ7NsK8nf8/aF02vtPQOU+eh/EL7E7eWU6QDOx/a4AyGQ=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=testarcselector01;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q9tjPnojdKxr0Bp4Q+c4jyY/pkhQslgoo3EupspDCIQ=;
+ b=TpARg9e4Jm+jSc5GWceM8TZs/CeUg6Vipf1FxBIJRCWWMc9L4ObsaG5FtY5DR/mBT+qtZoceOM4ouqJ65PVaeUj1jypzkFM5YdJW2qfV8dyAV11IN2bHH6cPugPoF+n5C+B0uCpxJOIMC8trvhaPTmg01gxqB4ndzNUEW+nuoAw=
+ARC-Authentication-Results: i=1; test.office365.com
+ 1;spf=none;dmarc=none;dkim=none;arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AwFMvNlDZyc812vrg+bp/ViMSNpSgttyG5YsRP7U/zs=;
-        b=mfYKBa3Fe+hxUiDN022gH0lEGTEMq3JXVnwiUnLyW6FqMu7SRaHkzGumur2mcma+i3
-         p0RofUHDm3aCF+7v7SRVceN74CHTceHz7LgkcmbYg3hmSireatVhaTiKBHNk3muKza5C
-         KNIrfHTCeFuL07S2xdESCkaeQy+DDBVXD6UKvHj0rGw+yrt9Wjyn7eaKZHjDPQg7ykr1
-         iNxuu/kAR/Fxr9Agl85nh5t39bo4SpthylP2XjKGz+CJtH6wO1d1iSAg1kbMyMRfOQ9C
-         zkeKZi0gxjbXGgYU7a9ZhKjmWxzPuggcWw2JJp7MkXF9s4pj00IbtYMJsu5LjNMMpl59
-         mEqQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AwFMvNlDZyc812vrg+bp/ViMSNpSgttyG5YsRP7U/zs=;
-        b=h+JAI4LUyIxpPxAi50MZGedaI5BGrv6ratdunDxuJ/USEvdfu1mX+cbRsnfgJaDqMA
-         coN2dgY+75HfDP/X79muizL3AVuwyNE8MTLkx998jjwoCxBNMvkUYxeHZnZufu/UDgGZ
-         QUvWbyyftJzNC/Zmr/VvDN1n1bYUmQlORD1dE3sML2RSmqZZEdo43gFjTO2l0f5dWlJ5
-         TWWuxhNX7mBiD5z92RmJD1ynasV/ruCuKNXt9POQ1dP9p3xY0aITZDOPtPEdQMOfT0Sa
-         /pbxZw99zAILhXJCJQUvCRNxocDLf2sywwMHAuZrWO9GcxCWXsk08viJ60tSO2J3N1rz
-         XfiA==
-X-Gm-Message-State: APjAAAV+gFmh4LbyT/XAhkbUzm1fOcY3NePaHppLpiy4/H/O7u4suUFX
-        j5CPw7DEFC37M3HCRoa7qFJR2hR69IJDreJGWcs+sZSLdUrawQ==
-X-Google-Smtp-Source: APXvYqzaTQmQ+2ZZdku7sIVKLWcpaRAB4YyGNBeZcAlNsV3Vt05L27tpBfdujxcXoF6JYx6GEVFUFZr3VLm6h/L6d5A=
-X-Received: by 2002:a05:6830:160c:: with SMTP id g12mr24058948otr.231.1562038886315;
- Mon, 01 Jul 2019 20:41:26 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190702004811.136450-1-saravanak@google.com> <20190702004811.136450-5-saravanak@google.com>
- <CAL_JsqKAn2uD4DC2wqJtkqLTFJ54yG_qaQjgfg=YrQfSEhJw+g@mail.gmail.com>
-In-Reply-To: <CAL_JsqKAn2uD4DC2wqJtkqLTFJ54yG_qaQjgfg=YrQfSEhJw+g@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 1 Jul 2019 20:40:50 -0700
-Message-ID: <CAGETcx8_rXX+PJUq6JqMVquejg_T9rrbCCCP62p4XtSbV2EUYw@mail.gmail.com>
-Subject: Re: [PATCH v3 4/4] driver core: Add edit_links() callback for drivers
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
+ d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=q9tjPnojdKxr0Bp4Q+c4jyY/pkhQslgoo3EupspDCIQ=;
+ b=eezTsubU3xB1C+Fyvg2vZYBBRnSrQO1DDf6O9QiMx6kriMK+kkf/sSlA7UXnz01G0k9suWRqvPNRM+Up+798h178F8KtabbmebCLR2xsWC9VlpbuyV5YWIqDOsiItJblgIX5qQ7UJzMYXMdrSI1bThcgcmN+/xzXPt+EXU845FQ=
+Received: from MN2PR02MB6029.namprd02.prod.outlook.com (10.255.7.10) by
+ MN2PR02MB6206.namprd02.prod.outlook.com (52.132.174.27) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2008.16; Tue, 2 Jul 2019 05:03:36 +0000
+Received: from MN2PR02MB6029.namprd02.prod.outlook.com
+ ([fe80::e880:6205:6aac:21a3]) by MN2PR02MB6029.namprd02.prod.outlook.com
+ ([fe80::e880:6205:6aac:21a3%7]) with mapi id 15.20.2032.019; Tue, 2 Jul 2019
+ 05:03:35 +0000
+From:   Manish Narani <MNARANI@xilinx.com>
+To:     Jolly Shah <JOLLYS@xilinx.com>,
+        "ulf.hansson@linaro.org" <ulf.hansson@linaro.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "heiko@sntech.de" <heiko@sntech.de>,
+        Michal Simek <michals@xilinx.com>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "christoph.muellner@theobroma-systems.com" 
+        <christoph.muellner@theobroma-systems.com>,
+        "philipp.tomsich@theobroma-systems.com" 
+        <philipp.tomsich@theobroma-systems.com>,
+        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
+        "scott.branden@broadcom.com" <scott.branden@broadcom.com>,
+        "ayaka@soulik.info" <ayaka@soulik.info>,
+        "kernel@esmil.dk" <kernel@esmil.dk>,
+        "tony.xie@rock-chips.com" <tony.xie@rock-chips.com>,
+        Rajan Vaja <RAJANV@xilinx.com>,
+        Nava kishore Manne <navam@xilinx.com>,
+        "mdf@kernel.org" <mdf@kernel.org>,
+        "olof@lixom.net" <olof@lixom.net>
+CC:     "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-rockchip@lists.infradead.org" 
+        <linux-rockchip@lists.infradead.org>
+Subject: RE: [PATCH v2 09/11] firmware: xilinx: Add SDIO Tap Delay APIs
+Thread-Topic: [PATCH v2 09/11] firmware: xilinx: Add SDIO Tap Delay APIs
+Thread-Index: AQHVL84JeVHP4kxP9EW6vgtCTZmvBKa2D8GAgAC2MfA=
+Date:   Tue, 2 Jul 2019 05:03:35 +0000
+Message-ID: <MN2PR02MB6029CA4163882081D7B8C255C1F80@MN2PR02MB6029.namprd02.prod.outlook.com>
+References: <1561958991-21935-1-git-send-email-manish.narani@xilinx.com>
+ <1561958991-21935-10-git-send-email-manish.narani@xilinx.com>
+ <BYAPR02MB599224BA6280EDF56870E1D8B8F90@BYAPR02MB5992.namprd02.prod.outlook.com>
+In-Reply-To: <BYAPR02MB599224BA6280EDF56870E1D8B8F90@BYAPR02MB5992.namprd02.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=MNARANI@xilinx.com; 
+x-originating-ip: [149.199.50.133]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9d689439-5e58-4f4a-5fc4-08d6feaaa36a
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:MN2PR02MB6206;
+x-ms-traffictypediagnostic: MN2PR02MB6206:
+x-microsoft-antispam-prvs: <MN2PR02MB6206382EFADCB53844F872DDC1F80@MN2PR02MB6206.namprd02.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 008663486A
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(136003)(366004)(39860400002)(396003)(346002)(13464003)(189003)(199004)(3846002)(53546011)(110136005)(6506007)(446003)(102836004)(66066001)(4326008)(54906003)(11346002)(68736007)(486006)(9686003)(76176011)(52536014)(66946007)(5660300002)(7416002)(6246003)(53936002)(2501003)(74316002)(316002)(64756008)(7696005)(476003)(76116006)(66556008)(66476007)(73956011)(99286004)(6436002)(66446008)(72206003)(55016002)(186003)(305945005)(86362001)(33656002)(2906002)(229853002)(14444005)(256004)(6116002)(2201001)(81166006)(81156014)(8676002)(26005)(14454004)(8936002)(25786009)(7736002)(478600001)(71190400001)(71200400001)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:MN2PR02MB6206;H:MN2PR02MB6029.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: xilinx.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: zcCQ7JvN2YlxD0Y9rBA4O2Y7mSXWI933wUOE+uL16YsrqVKxxA+I+06n+YrgAy0M9ht0QglfO+EmQZJxPdtFfh3F+czUefQs97PYoqn0HDO9vPF5JAlL/IIRBWzFtfPAifUoaMuAv74hEfhu31TiqDTckmkECx7dAvc6QUCuugeaF3i1uoP1z8h4CFP+z2qU+oYk7xCwVSiNAoiIAV9JFaIsPi++FMN1ctT1PjWxneaeQ2fLRi4SXMKOrFUZTfvMw2VAPtbANxNSUceat26Q0dosfDt2gdSKZERZrvbVp/htAouZ2wRRILdv+PI2MK1R8tgWAtPnoklyiJa7XSIDSrf7LyhAOlkyso0nAnS7KpwkGgyijyq6WpmkJ+6aW/ynDur8ewf2Fsyl0zqrx0A8l+4BUbaDoEuugm2W5y3x63A=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: xilinx.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9d689439-5e58-4f4a-5fc4-08d6feaaa36a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Jul 2019 05:03:35.7397
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mnarani@xilinx.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB6206
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 1, 2019 at 6:46 PM Rob Herring <robh+dt@kernel.org> wrote:
->
-> On Mon, Jul 1, 2019 at 6:48 PM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > The driver core/bus adding dependencies by default makes sure that
-> > suppliers don't sync the hardware state with software state before all the
-> > consumers have their drivers loaded (if they are modules) and are probed.
-> >
-> > However, when the bus incorrectly adds dependencies that it shouldn't have
-> > added, the devices might never probe.
-> >
-> > For example, if device-C is a consumer of device-S and they have phandles
-> > to each other in DT, the following could happen:
-> >
-> > 1.  Device-S get added first.
-> > 2.  The bus add_links() callback will (incorrectly) try to link it as
-> >     a consumer of device-C.
-> > 3.  Since device-C isn't present, device-S will be put in
-> >     "waiting-for-supplier" list.
-> > 4.  Device-C gets added next.
-> > 5.  All devices in "waiting-for-supplier" list are retried for linking.
-> > 6.  Device-S gets linked as consumer to Device-C.
-> > 7.  The bus add_links() callback will (correctly) try to link it as
-> >     a consumer of device-S.
-> > 8.  This isn't allowed because it would create a cyclic device links.
-> >
-> > So neither devices will get probed since the supplier is dependent on a
-> > consumer that'll never probe (because it can't get resources from the
-> > supplier).
-> >
-> > Without this patch, things stay in this broken state. However, with this
-> > patch, the execution will continue like this:
-> >
-> > 9.  Device-C's driver is loaded.
-> > 10. Device-C's driver removes Device-S as a consumer of Device-C.
-> > 11. Device-C's driver adds Device-C as a consumer of Device-S.
-> > 12. Device-S probes.
-> > 13. Device-S sync_state() isn't called because Device-C hasn't probed yet.
-> > 14. Device-C probes.
-> > 15. Device-S's sync_state() callback is called.
->
-> We already have some DT unittests around platform devices. It would be
-> nice to extend them to demonstrate this problem. Could be a follow-up
-> patch though.
->
-> In the case a driver hasn't been updated, couldn't the driver core
-> just remove all the links of C to S and S to C so that progress can be
-> made and we retain the status quo of what we have today?
+Hi Jolly,
 
-The problem is knowing which of those links to delete and when.
 
-If a link between S and C fails, how do we know and keep track of
-which of the other 100 links in the system are causing a cycle? It can
-get unwieldy real quick. We could delete all the links to fall back to
-status quo, but how do we tell at what point in time we can delete
-them all?
+> -----Original Message-----
+> From: Jolly Shah
+> Sent: Monday, July 1, 2019 11:36 PM
+> To: Manish Narani <MNARANI@xilinx.com>; ulf.hansson@linaro.org;
+> robh+dt@kernel.org; mark.rutland@arm.com; heiko@sntech.de; Michal Simek
+> <michals@xilinx.com>; adrian.hunter@intel.com;
+> christoph.muellner@theobroma-systems.com; philipp.tomsich@theobroma-
+> systems.com; viresh.kumar@linaro.org; scott.branden@broadcom.com;
+> ayaka@soulik.info; kernel@esmil.dk; tony.xie@rock-chips.com; Rajan Vaja
+> <RAJANV@xilinx.com>; Nava kishore Manne <navam@xilinx.com>;
+> mdf@kernel.org; Manish Narani <MNARANI@xilinx.com>; olof@lixom.net
+> Cc: linux-mmc@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> rockchip@lists.infradead.org
+> Subject: RE: [PATCH v2 09/11] firmware: xilinx: Add SDIO Tap Delay APIs
+>=20
+> Hi Manish,
+>=20
+> > -----Original Message-----
+> > From: Manish Narani <manish.narani@xilinx.com>
+> > Sent: Sunday, June 30, 2019 10:30 PM
+> > To: ulf.hansson@linaro.org; robh+dt@kernel.org; mark.rutland@arm.com;
+> > heiko@sntech.de; Michal Simek <michals@xilinx.com>;
+> > adrian.hunter@intel.com; christoph.muellner@theobroma-systems.com;
+> > philipp.tomsich@theobroma-systems.com; viresh.kumar@linaro.org;
+> > scott.branden@broadcom.com; ayaka@soulik.info; kernel@esmil.dk;
+> > tony.xie@rock-chips.com; Rajan Vaja <RAJANV@xilinx.com>; Jolly Shah
+> > <JOLLYS@xilinx.com>; Nava kishore Manne <navam@xilinx.com>;
+> > mdf@kernel.org; Manish Narani <MNARANI@xilinx.com>; olof@lixom.net
+> > Cc: linux-mmc@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> > rockchip@lists.infradead.org
+> > Subject: [PATCH v2 09/11] firmware: xilinx: Add SDIO Tap Delay APIs
+> >
+> > Add APIs for setting SDIO Tap Delays on ZynqMP platform.
+> >
+> > Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+> > ---
+> >  drivers/firmware/xilinx/zynqmp.c     | 48
+> > ++++++++++++++++++++++++++++++++++++
+> >  include/linux/firmware/xlnx-zynqmp.h | 15 ++++++++++-
+> >  2 files changed, 62 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/firmware/xilinx/zynqmp.c
+> b/drivers/firmware/xilinx/zynqmp.c
+> > index fd3d837..b81f1be 100644
+> > --- a/drivers/firmware/xilinx/zynqmp.c
+> > +++ b/drivers/firmware/xilinx/zynqmp.c
+> > @@ -664,6 +664,52 @@ static int zynqmp_pm_set_requirement(const u32
+> > node, const u32 capabilities,
+> >  				   qos, ack, NULL);
+> >  }
+> >
+> > +/**
+> > + * zynqmp_pm_sdio_out_setphase() - PM call to set clock output delays =
+for
+> SD
+> > + * @device_id:		Device ID of the SD controller
+> > + * @tap_delay:		Tap Delay value for output clock
+> > + *
+> > + * This API function is to be used for setting the clock output delays=
+ for SD
+> > + * clock.
+> > + *
+> > + * Return: Returns status, either success or error+reason
+> > + */
+> > +static int zynqmp_pm_sdio_out_setphase(u32 device_id, u8 tap_delay)
+> > +{
+> > +	u32 node_id =3D (!device_id) ? NODE_SD_0 : NODE_SD_1;
+> > +	int ret;
+> > +
+> > +	ret =3D zynqmp_pm_ioctl(node_id, IOCTL_SET_SD_TAPDELAY,
+> > +			      PM_TAPDELAY_OUTPUT, tap_delay, NULL);
+> > +	if (ret)
+> > +		pr_err("Error setting Output Tap Delay\n");
+> > +
+> > +	return ret;
+> > +}
+> > +
+> > +/**
+> > + * zynqmp_pm_sdio_in_setphase() - PM call to set clock input delays fo=
+r SD
+> > + * @device_id:		Device ID of the SD controller
+> > + * @tap_delay:		Tap Delay value for input clock
+> > + *
+> > + * This API function is to be used for setting the clock input delays =
+for SD
+> > + * clock.
+> > + *
+> > + * Return: Returns status, either success or error+reason
+> > + */
+> > +static int zynqmp_pm_sdio_in_setphase(u32 device_id, u8 tap_delay)
+> > +{
+> > +	u32 node_id =3D (!device_id) ? NODE_SD_0 : NODE_SD_1;
+> > +	int ret;
+> > +
+> > +	ret =3D zynqmp_pm_ioctl(node_id, IOCTL_SET_SD_TAPDELAY,
+> > +			      PM_TAPDELAY_INPUT, tap_delay, NULL);
+> > +	if (ret)
+> > +		pr_err("Error setting Input Tap Delay\n");
+> > +
+> > +	return ret;
+> > +}
+> > +
+> >  static const struct zynqmp_eemi_ops eemi_ops =3D {
+> >  	.get_api_version =3D zynqmp_pm_get_api_version,
+> >  	.get_chipid =3D zynqmp_pm_get_chipid,
+> > @@ -687,6 +733,8 @@ static const struct zynqmp_eemi_ops eemi_ops =3D {
+> >  	.set_requirement =3D zynqmp_pm_set_requirement,
+> >  	.fpga_load =3D zynqmp_pm_fpga_load,
+> >  	.fpga_get_status =3D zynqmp_pm_fpga_get_status,
+> > +	.sdio_out_setphase =3D zynqmp_pm_sdio_out_setphase,
+> > +	.sdio_in_setphase =3D zynqmp_pm_sdio_in_setphase,
+>=20
+> Are these eemi APIs? You are using ioctl eemi api to set the delay.
 
-> That would
-> lessen the chances of breaking platforms and reduce the immediate need
-> to fix them.
+Yes, I am making these eemi APIs and calling ioctl API from these. This is =
+to make the SD driver code more readable.
 
-Which is why I think we need to have a commandline/config option to
-turn this series on. Keep in mind that once this patch is merged, the
-API for the supplier drivers would be the same whether the feature is
-enabled or not. They just fallback to status quo behavior (do their
-stuff in late_initcall_sync() like they do today).
-
-This patch series has a huge impact on the behavior and I don't think
-there's a sound reason to force it on everyone right away. This is
-something that needs incremental changes to bring in more and more
-platforms/drivers into the new scheme. At a minimum Qualcomm seems
-pretty interested in using this to solve their "when do I change/turn
-off this clock/interconnect after boot?" question.
-
--Saravana
+Thanks,
+Manish
