@@ -2,162 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 687C55E5DF
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 15:58:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D06BE5E5FF
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 16:05:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726217AbfGCN6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 09:58:33 -0400
-Received: from node.akkea.ca ([192.155.83.177]:59766 "EHLO node.akkea.ca"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725847AbfGCN6d (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Jul 2019 09:58:33 -0400
-Received: by node.akkea.ca (Postfix, from userid 33)
-        id B606E4E204B; Wed,  3 Jul 2019 13:58:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1562162312; bh=UHIUaVsVDuz0yZjRB09x+PshwKLK6UHG+Qvlw7TIC58=;
-        h=To:Subject:Date:From:Cc:In-Reply-To:References;
-        b=SpfH1iV5gPGx0vLKUhzKfEvLCQNmPLkUyJlyLG3cW8wfWxKgAPFOR+aGMwiCtP5qV
-         S+TSC/nxxbenLnoRMlQrsfUB2MXIUMeQmR2zwJ5dfti+3LJyKCNajnNEm6XcjeReqg
-         E8fKNY+j2dOhPI2vMmPmQD/ssHXJFGIGur51ElBA=
-To:     Daniel Baluta <daniel.baluta@gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: imx8mq: Add sai3 and sai6 nodes
-X-PHP-Originating-Script: 1000:rcube.php
+        id S1727032AbfGCOFW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 10:05:22 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:43484 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725933AbfGCOFS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 10:05:18 -0400
+Received: by mail-lj1-f196.google.com with SMTP id 16so2546141ljv.10;
+        Wed, 03 Jul 2019 07:05:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ZG2UMgdDAV2oBx4LVT6IwYAPv5J7xFdj5LWkwxMiZXY=;
+        b=bLHtnmEAF5ZvaXPGQOuCRooghIah73EC/ySluBdo8Lbxhv6TkdN7TfpCNQPQ6p4ne0
+         XdEo/oLl1aHia6gzSIEBdlS8xz4scZnWvrDGuF3jyGuOy4ryf3xDg9KJxomuUoKeOk9T
+         /k4v4XAZBHqKeahgjLy7EbkHo4REGuZUjLHTPkNjfLcvV5jKs+Afb0xXAZIoz8/b48r5
+         dNqgJHN6Xr9j5akdJ2mGX/qx1JI+YQ4EjnHvoEdqlt/U+3+fKemnJzqeo4ob4qyBbsEg
+         pOjnWBqPM7rsJU0uzeoZcFhYiOtzo8SpeV1yalAFrsBey8Zb7GbazbtFSM8AVK1NtW0Z
+         XCNQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ZG2UMgdDAV2oBx4LVT6IwYAPv5J7xFdj5LWkwxMiZXY=;
+        b=IlvRG7kfhHmCtaBccIMQzmquHxxqg6jdL8mr3wXY8QSuVEt1JXIplGs+j44c0jISPI
+         6AKMUJzkns0cNdSjHkiY2YMzXJz7cWXENwpy2LDiM2aoZgVaUiLm1/sKStX4KKu5z5oc
+         FSADanq6vBsy+VDeZ0ZEi/4bnNnIYYWGuM844Ti96Py8hflMmrPyiySxlvHi5z5LSJjK
+         gsgKNH87YhvpJHEUTIwCQxN2E0+w/C7eEB3rb9SqiXG+3VbMbCT3trXx+s2R/5J+go4Z
+         9IIDLLJBP5aJKKinJuq5NcgCvm0N1bJj+jVlxAMtM3iYawywWPBMeJFYQ8/ycZHAHOb3
+         qNHw==
+X-Gm-Message-State: APjAAAW1l3DI0egKkWnzZrgvaEYnnJtyK5jO/c5VSrO7sjSPNlCM+izW
+        LK3Pk7MjRPds+aQ4Ni1h/OPd3GJo
+X-Google-Smtp-Source: APXvYqw1MsZOHp0+5AV+cKjF9JNTP/sQsStMZ1Ql/RyUNFlCwQE83BtnATOAyep+C3N642uR6wF6pQ==
+X-Received: by 2002:a05:651c:213:: with SMTP id y19mr2846579ljn.25.1562162715557;
+        Wed, 03 Jul 2019 07:05:15 -0700 (PDT)
+Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
+        by smtp.googlemail.com with ESMTPSA id z12sm411215lfg.67.2019.07.03.07.05.13
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Jul 2019 07:05:14 -0700 (PDT)
+Subject: Re: [PATCH v6 07/15] dt-bindings: memory: tegra30: Convert to
+ Tegra124 YAML
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-tegra@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20190630210019.26914-1-digetx@gmail.com>
+ <20190630210019.26914-8-digetx@gmail.com>
+ <CAL_JsqJq5iwQcbUixMWK819OTof8DzrZ3UMhByc1pTAFTdwnjg@mail.gmail.com>
+ <ba299725-b65b-ce7d-6376-a26918cc985b@gmail.com>
+ <d98f16ee-ac43-8f1e-d324-d6e2cfccf3c8@gmail.com>
+ <CAL_Jsq+-cuqVf60MbaNTz3jCUQkEpU8EgUe1xyOzHLsM5zjjEg@mail.gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <7d24fa15-0bd0-2ae6-7951-36826956a24f@gmail.com>
+Date:   Wed, 3 Jul 2019 17:05:12 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 03 Jul 2019 07:58:32 -0600
-From:   Angus Ainslie <angus@akkea.ca>
-Cc:     Andra Danciu <andradanciu1997@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>, andrew.smirnov@gmail.com,
-        Carlo Caione <ccaione@baylibre.com>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-In-Reply-To: <CAEnQRZCoOyyZVs0=BjXB5=wYe3XW9GOF9JvwjhSU9BsChh08uA@mail.gmail.com>
-References: <20190702132353.18632-1-andradanciu1997@gmail.com>
- <9ea5109f8645c3f27a9e350c5f9b2d4c@www.akkea.ca>
- <CAEnQRZDCpPju7xBBY9=e0dWt=A9c3t3g88pEw+teoZmmOiiKXQ@mail.gmail.com>
- <9e196ce51eac9ce9c327198c4a2911a8@www.akkea.ca>
- <CAEnQRZCoOyyZVs0=BjXB5=wYe3XW9GOF9JvwjhSU9BsChh08uA@mail.gmail.com>
-Message-ID: <8ebfeaae8541132ad39e4109d135cd5f@www.akkea.ca>
-X-Sender: angus@akkea.ca
-User-Agent: Roundcube Webmail/1.1.3
+In-Reply-To: <CAL_Jsq+-cuqVf60MbaNTz3jCUQkEpU8EgUe1xyOzHLsM5zjjEg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
-
-On 2019-07-03 07:25, Daniel Baluta wrote:
-> On Wed, Jul 3, 2019 at 4:12 PM Angus Ainslie <angus@akkea.ca> wrote:
->> 
->> Hi Daniel,
->> 
->> On 2019-07-03 07:10, Daniel Baluta wrote:
->> > On Wed, Jul 3, 2019 at 4:01 PM Angus Ainslie <angus@akkea.ca> wrote:
->> >>
->> >> Hi Andra,
->> >>
->> >> I tried this out on linux-next and I'm not able to record or play
->> >> sound.
->> >>
->> >> I also added the sai2 entry to test out our devkit and get a PCM
->> >> timeout
->> >> with that.
->> >
->> > Hi Angus,
->> >
->> > There are still lots of SAI patches that need to be upstream. Me and
->> > Andra
->> > will be working on that over this summer.
->> >
->> >>
->> >> On 2019-07-02 07:23, Andra Danciu wrote:
->> >> > SAI3 and SAI6 nodes are used to connect to an external codec.
->> >> > They have 1 Tx and 1 Rx dataline.
->> >> >
->> >> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
->> >> > Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
->> >> > ---
->> >> > Changes since v2:
->> >> >       - removed multiple new lines
->> >> >
->> >> > Changes since v1:
->> >> >       - Added sai3 node because we need it to enable audio on pico-pi-8m
->> >> >       - Added commit description
->> >> >
->> >> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 29
->> >> > +++++++++++++++++++++++++++++
->> >> >  1 file changed, 29 insertions(+)
->> >> >
->> >> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
->> >> > b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
->> >> > index d09b808eff87..736cf81b695e 100644
->> >> > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
->> >> > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
->> >> > @@ -278,6 +278,20 @@
->> >> >                       #size-cells = <1>;
->> >> >                       ranges = <0x30000000 0x30000000 0x400000>;
->> >> >
->> >> > +                     sai6: sai@30030000 {
->> >> > +                             compatible = "fsl,imx8mq-sai",
->> >>
->> >> I don't find this compatible string in sound/soc/fsl/fsl_sai.c. Aren't
->> >> the registers at a different offset from "fsl,imx6sx-sai".
->> >
->> > Yes, you are right on this. We are trying to slowly push all our
->> > internal-tree
->> > patches to mainline. Obviously, with started with low hanging fruits,
->> > DTS
->> > nodes and small SAI fixes.
->> >
->> > Soon, we will start to send patches for SAI IP ipgrade for imx8.
->> >
->> >>
->> >> How is this supposed to work ?
->> >>
->> >
->> > For the moment it won't work unless we will upstream all our SAI
->> > internal patches.
->> > But we will get there hopefully this summer.
->> >
->> 
->> Shouldn't a working driver be upstream before enabling it in the
->> devicetree ?
+03.07.2019 16:22, Rob Herring пишет:
+> On Tue, Jul 2, 2019 at 6:48 PM Dmitry Osipenko <digetx@gmail.com> wrote:
+>>
+>> 01.07.2019 22:30, Dmitry Osipenko пишет:
+>>> 01.07.2019 22:11, Rob Herring пишет:
+>>>> On Sun, Jun 30, 2019 at 3:04 PM Dmitry Osipenko <digetx@gmail.com> wrote:
+>>>>>
+>>>>
+>>>> "Convert" implies you delete the old binding doc.
+>>>
+>>> Yes, unfortunately the deletion got lost by accident after rebase and it was already
+>>> too late when I noticed that. Will be fixed in the next revision.
+>>>
+>>>>> The Tegra30 binding will actually differ from the Tegra124 a tad, in
+>>>>> particular the EMEM configuration description. Hence rename the binding
+>>>>> to Tegra124 during of the conversion to YAML.
+>>>>>
+>>>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>>>> ---
+>>>>>  .../nvidia,tegra124-mc.yaml                   | 149 ++++++++++++++++++
+>>>>>  1 file changed, 149 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+>>>>> new file mode 100644
+>>>>> index 000000000000..d18242510295
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+>>>>> @@ -0,0 +1,149 @@
+>>>>> +# SPDX-License-Identifier: (GPL-2.0)
+>>>>> +%YAML 1.2
+>>>>> +---
+>>>>> +$id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra124-mc.yaml#
+>>>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>>>> +
+>>>>> +title:
+>>>>> +  NVIDIA Tegra124 SoC Memory Controller
+>>>>> +
+>>>>> +maintainers:
+>>>>> +  - Jon Hunter <jonathanh@nvidia.com>
+>>>>> +  - Thierry Reding <thierry.reding@gmail.com>
+>>>>> +
+>>>>> +description: |
+>>>>> +  Tegra124 SoC features a hybrid 2x32-bit / 1x64-bit memory controller.
+>>>>> +  These are interleaved to provide high performance with the load shared across
+>>>>> +  two memory channels. The Tegra124 Memory Controller handles memory requests
+>>>>> +  from internal clients and arbitrates among them to allocate memory bandwidth
+>>>>> +  for DDR3L and LPDDR3 SDRAMs.
+>>>>> +
+>>>>> +properties:
+>>>>> +  compatible:
+>>>>> +    const: nvidia,tegra124-mc
+>>>>> +
+>>>>> +  reg:
+>>>>> +    maxItems: 1
+>>>>> +    description:
+>>>>> +      Physical base address.
+>>>>> +
+>>>>> +  clocks:
+>>>>> +    maxItems: 1
+>>>>> +    description:
+>>>>> +      Memory Controller clock.
+>>>>> +
+>>>>> +  clock-names:
+>>>>> +    items:
+>>>>> +      - const: mc
+>>>>> +
+>>>>> +  interrupts:
+>>>>> +    maxItems: 1
+>>>>> +    description:
+>>>>> +      Memory Controller interrupt.
+>>>>> +
+>>>>> +  "#reset-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +  "#iommu-cells":
+>>>>> +    const: 1
+>>>>> +
+>>>>> +patternProperties:
+>>>>> +  ".*":
+>>>>
+>>>> Please define a node name or pattern for node names.
+>>>
+>>> There was no pattern specified in the original binding. But I guess the existing
+>>> upstream device-trees could be used as the source for the pattern.
+>>
+>> Actually it looks like the use of explicit pattern is not really a good idea because
+>> device-tree could have node named in a way that it doesn't match the pattern and hence
+>> dtbs_check silently skips the non-matching nodes. Is there any way to express that
+>> non-matching nodes shall be rejected?
 > 
-> I see your point here and maybe your suggestion is the ideal
-> way to do things.
+> additionalProperties: false
 > 
-> Anyhow, I don't see a problem with adding the node in dts
-> because CONFIG_FSL_SAI is not set in the default config.
-> 
+> It's not ideal because you have to list all properties and can't
+> combine multiple schema, but that's getting addressed in json-schema
+> draft8. That shouldn't matter for you in this case though.
 
-I think the assumption is that devices in the devicetree are tested and 
-working. That's not currently the case for sai on imx8mq.
-
-> We try to speedup the upstreaming process giving the fact
-> that SAI patches will go through audio maintainer's tree and
-> the DTS patches will most likely go through Shawn's tree.
-> 
-
-Ok I can see them being committed concurrently but I haven't even seen a 
-v1 of the sai patches.
-
-Thanks
-Angus
-
-> thanks,
-> Daniel.
-
+Works like a charm! Thank you very much.
