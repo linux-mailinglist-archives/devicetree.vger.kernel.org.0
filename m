@@ -2,106 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 115235DBFD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 04:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94AD95DCB3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 05:03:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728357AbfGCCS6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 22:18:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56792 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728351AbfGCCS5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Jul 2019 22:18:57 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5EDBA21882;
-        Wed,  3 Jul 2019 02:18:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562120337;
-        bh=mI3Eh754xfeg6MnRvDx3kOdsC0rJqHt9VJWUrh+yDS8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=I/QUeHYDj0P+f6ydueQJHQrnP5fw3g0upXqGXKa9bnEv3ml/6ur6hRRQiKouvcP1N
-         qGQZeNmZclg46R4yR8FhOQdy6J0OaRHhKjJMu3En1BAZNyIABzTN3DrU+yBYcRLfcy
-         DO5eolFR0g7keSBovtO7rR8H7wGTqblW60Q2ykwg=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 4.9 7/8] ARM: dts: imx6ul: fix PWM[1-4] interrupts
-Date:   Tue,  2 Jul 2019 22:18:46 -0400
-Message-Id: <20190703021847.18542-7-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190703021847.18542-1-sashal@kernel.org>
-References: <20190703021847.18542-1-sashal@kernel.org>
+        id S1727090AbfGCDD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 23:03:28 -0400
+Received: from twhmllg3.macronix.com ([211.75.127.131]:33328 "EHLO
+        TWHMLLG3.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727080AbfGCDD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 23:03:28 -0400
+Received: from twhfmlp1.macronix.com (twhfm1p1.macronix.com [172.17.20.91])
+        by TWHMLLG3.macronix.com with ESMTP id x6333J7g046150;
+        Wed, 3 Jul 2019 11:03:19 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+Received: from MXML06C.mxic.com.tw (mxml06c.macronix.com [172.17.14.55])
+        by Forcepoint Email with ESMTP id 1CBFD7CFFB98E88ECBE7;
+        Wed,  3 Jul 2019 11:03:19 +0800 (CST)
+In-Reply-To: <20190627193635.29abff43@xps13>
+References: <1561443056-13766-1-git-send-email-masonccyang@mxic.com.tw> <1561443056-13766-2-git-send-email-masonccyang@mxic.com.tw> <20190627193635.29abff43@xps13>
+To:     "Miquel Raynal" <miquel.raynal@bootlin.com>
+Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
+        broonie@kernel.org, christophe.kerello@st.com,
+        computersforpeace@gmail.com, devicetree@vger.kernel.org,
+        dwmw2@infradead.org, jianxin.pan@amlogic.com, juliensu@mxic.com.tw,
+        lee.jones@linaro.org, liang.yang@amlogic.com,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        marek.vasut@gmail.com, paul@crapouillou.net, paul.burton@mips.com,
+        richard@nod.at, stefan@agner.ch, vigneshr@ti.com
+Subject: Re: [PATCH v4 1/2] mtd: rawnand: Add Macronix Raw NAND controller
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+X-KeepSent: 041E283A:13DCC1D9-4825842C:000C9C7C;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
+Message-ID: <OF041E283A.13DCC1D9-ON4825842C.000C9C7C-4825842C.0010C960@mxic.com.tw>
+From:   masonccyang@mxic.com.tw
+Date:   Wed, 3 Jul 2019 11:03:21 +0800
+X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
+ 2019/07/03 AM 11:03:19,
+        Serialize complete at 2019/07/03 AM 11:03:19
+Content-Type: text/plain; charset="US-ASCII"
+X-MAIL: TWHMLLG3.macronix.com x6333J7g046150
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
 
-[ Upstream commit 3cf10132ac8d536565f2c02f60a3aeb315863a52 ]
+Hi Miquel,
 
-According to the i.MX6UL/L RM, table 3.1 "ARM Cortex A7 domain interrupt
-summary", the interrupts for the PWM[1-4] go from 83 to 86.
+> > Add a driver for Macronix raw NAND controller.
+> 
+> Could you pass userspace major MTD tests and can you attach/mount/edit
+> a UBI/UBIFS storage?
 
-Fixes: b9901fe84f02 ("ARM: dts: imx6ul: add pwm[1-4] nodes")
-Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: Shawn Guo <shawnguo@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm/boot/dts/imx6ul.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+The other userspace MTD tests are passed.
 
-diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-index 7839300fe46b..200d9082caa4 100644
---- a/arch/arm/boot/dts/imx6ul.dtsi
-+++ b/arch/arm/boot/dts/imx6ul.dtsi
-@@ -332,7 +332,7 @@
- 			pwm1: pwm@02080000 {
- 				compatible = "fsl,imx6ul-pwm", "fsl,imx27-pwm";
- 				reg = <0x02080000 0x4000>;
--				interrupts = <GIC_SPI 115 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 83 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6UL_CLK_PWM1>,
- 					 <&clks IMX6UL_CLK_PWM1>;
- 				clock-names = "ipg", "per";
-@@ -343,7 +343,7 @@
- 			pwm2: pwm@02084000 {
- 				compatible = "fsl,imx6ul-pwm", "fsl,imx27-pwm";
- 				reg = <0x02084000 0x4000>;
--				interrupts = <GIC_SPI 116 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 84 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6UL_CLK_PWM2>,
- 					 <&clks IMX6UL_CLK_PWM2>;
- 				clock-names = "ipg", "per";
-@@ -354,7 +354,7 @@
- 			pwm3: pwm@02088000 {
- 				compatible = "fsl,imx6ul-pwm", "fsl,imx27-pwm";
- 				reg = <0x02088000 0x4000>;
--				interrupts = <GIC_SPI 117 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 85 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6UL_CLK_PWM3>,
- 					 <&clks IMX6UL_CLK_PWM3>;
- 				clock-names = "ipg", "per";
-@@ -365,7 +365,7 @@
- 			pwm4: pwm@0208c000 {
- 				compatible = "fsl,imx6ul-pwm", "fsl,imx27-pwm";
- 				reg = <0x0208c000 0x4000>;
--				interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-+				interrupts = <GIC_SPI 86 IRQ_TYPE_LEVEL_HIGH>;
- 				clocks = <&clks IMX6UL_CLK_PWM4>,
- 					 <&clks IMX6UL_CLK_PWM4>;
- 				clock-names = "ipg", "per";
--- 
-2.20.1
+nandwrite, nanddump and nandtest.
+i.e.,
+zynq> ./nandtest -k /dev/mtd1
+ECC corrections: 0
+ECC failures   : 0
+Bad blocks     : 0
+BBT blocks     : 0
+00100000: writing...random: crng init done
+005c0000: checking...
+Finished pass 1 successfully
+zynq>
+
+
+UBI/UBI-FS test is also passed.
+i.e.,
+UBI/UBIFS storage test on mtd2 as example
+1. ubiformat /dev/mtd2
+2. ubiattach /dev/ubi_ctrl -m 2
+3. ubimkvol /dev/ubi0 -N ubifs -m
+4. mknod -m 777 /dev/ubi0 c 244 0
+5. mount -t ubifs ubi0_0 /mnt/ubifs
+6. copy a file to /mnt/ubifs
+7. sync and power off - on cycle
+8. ubiattach & mount /mnt/ubifs
+9. read file and compare it with md5sum
+
+thanks & best regards,
+Mason
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information 
+and/or personal data, which is protected by applicable laws. Please be 
+reminded that duplication, disclosure, distribution, or use of this e-mail 
+(and/or its attachments) or any part thereof is prohibited. If you receive 
+this e-mail in error, please notify us immediately and delete this mail as 
+well as its attachment(s) from your system. In addition, please be 
+informed that collection, processing, and/or use of personal data is 
+prohibited unless expressly permitted by personal data protection laws. 
+Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
+
+
+============================================================================
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
 
