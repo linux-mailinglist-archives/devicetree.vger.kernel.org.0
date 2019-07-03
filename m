@@ -2,124 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ADEFC5DDAD
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 07:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD6305DE0A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 08:28:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726670AbfGCFId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 01:08:33 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:40632 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725785AbfGCFId (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 01:08:33 -0400
-Received: by mail-pl1-f195.google.com with SMTP id a93so531527pla.7
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 22:08:33 -0700 (PDT)
+        id S1726670AbfGCG2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 02:28:10 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:51849 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726201AbfGCG2K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 02:28:10 -0400
+Received: by mail-wm1-f65.google.com with SMTP id 207so895728wma.1;
+        Tue, 02 Jul 2019 23:28:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=bP96sN12+LB4G6r3Yzr2XfyFwArhE5W1JsAQXFpUTDg=;
-        b=Vnx9hfTr/VWxDub2tOXOowzwiubYGn/LxBAvZqSZPPVKw4rbPpdKFBpYBOcBRRC1jl
-         l1UYyXOtSNZnb1fqwnKIyPgVWGCpqOX72qkWPCbMePtTbBwe1WjVnY7frmgfEvd2Sgtn
-         GqCgCU4loxPMQSzv1cdh04GnJMFKfP2pGW/lI=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=8eCCLmkLkeLDCE1a5Yy+pkPkgEz/If2djsBLUVl9QJY=;
+        b=fG8BhAz8rpQYJOJXA5V8a2gJRw28DhFgY3Psa6mrsFvwZGR6CTs4wcu+duQr9PUZ1b
+         1fp2XrkoaQVdrihUflkGjH61OlQWzrCfKToaVUOCr+GGgVuKvxBliXtP5U7AcmY2zQrc
+         Lne4KAP8plFJyOy00k7E7hH1AKViwLCpDBkSc/LHT9W4VlPbc8C5ft6Xfw7Xyf1CuJpb
+         MoW6PjhgtrCI0b6gtdMkTE4xIWeQCaGpJJxi97JxTdsXNKWuFCv+SuxKJ1OnA+5uAG45
+         cC+U99NQXlHlClM71PsZWDq6NXd6SdjFTKkA1UxYG0/DF9R2psTPqwkbfoikmALWuHoI
+         ohgA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=bP96sN12+LB4G6r3Yzr2XfyFwArhE5W1JsAQXFpUTDg=;
-        b=sPruzdDucVUR8k0cO0bn1gphmbAME8L9zcWFk7m+SDcu0fAKKSW17TtyjFQwEr/Ljj
-         nAaj3T8uCbud/odaIVMsDZPoDlqJBJYJBYAvXsTrVgkv9j6G1hocbDsf3drdBVaZmd4C
-         +IRFwcIl6Osr6eeLocYvgN3Ipulp8fyW+mJkTrFTQkijgTR8CXllLnei1PjQUo35rSEa
-         BjTewF4q9A54g39Wwb9HupZEDpGLnqq/SstqtPkt7nQC/9T5+G88t2UUdFvTb/K5BiwI
-         FxWObXPTeQTUjiyu6FsvNkpO726mc5EhxpZS5mZ15Ij4hl4F5n7gfhaAq/tImp0GCufJ
-         JAcg==
-X-Gm-Message-State: APjAAAXHpkCMJCjE0BDQuIi6qQHXlQUHTAZ2Y6IOloX6VLknYnJhuT1z
-        hNLtE8iC+dCl7BghOTvUU1EyBQ==
-X-Google-Smtp-Source: APXvYqzr5qQEG/MCl44C+LlaT88NYZd1W5tF3BecvIL8q7wgcm/VpeoP8zNrKVLauTL9Ru/pegMbiQ==
-X-Received: by 2002:a17:902:f301:: with SMTP id gb1mr39331452plb.292.1562130512588;
-        Tue, 02 Jul 2019 22:08:32 -0700 (PDT)
-Received: from drinkcat2.tpe.corp.google.com ([2401:fa00:1:b:d8b7:33af:adcb:b648])
-        by smtp.gmail.com with ESMTPSA id v13sm803990pfe.105.2019.07.02.22.08.30
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 02 Jul 2019 22:08:31 -0700 (PDT)
-From:   Nicolas Boichat <drinkcat@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Ian Campbell <ian.campbell@citrix.com>,
-        Grant Likely <grant.likely@linaro.org>,
-        Stephen Boyd <swboyd@chromium.org>
-Subject: [PATCH] of/fdt: Make sure no-map does not remove already reserved regions
-Date:   Wed,  3 Jul 2019 13:08:27 +0800
-Message-Id: <20190703050827.173284-1-drinkcat@chromium.org>
-X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=8eCCLmkLkeLDCE1a5Yy+pkPkgEz/If2djsBLUVl9QJY=;
+        b=kzv5hgemOY+474FMxAkTMfY41+ed7LdM9INrsJ0OYsiLEPqQr9SzwQ4LjtFKxwDoWz
+         IkHzPdfO1G5eIbvlWR2DXR5N3oWCEWdzFcbPBjRrYgLz2JNOyQekrIt7/XQqNM0EWOvj
+         j92XiWASwHBfMnevm4FynLxGgx10n0wIuoqnncxJ4HqfV/Tl4fghOHgmFRYiGDFjiZ97
+         RH8GU2JUTXlKEd0oyVpDtZQkeqce6rZ0ky07MH6xx6B+igPsej4b+0Rsw9CMKOoph3sa
+         Zk6Q+yT7udW0YWyiQCjIcOTqgK5PBuYPL4NWVMn+fjC67IKJxd0flktY1H8ZhecMbhVl
+         qSvg==
+X-Gm-Message-State: APjAAAWOocxl92EAyJFwHl/L384dUj+wpPWOsdF70yKsegox2sRdsATA
+        T07edWHC442ErAqVeFR01pX6dIcNQ2mXVSgVDGE=
+X-Google-Smtp-Source: APXvYqx802GCX61Rc7Neoi0DifztLFTBp2UudWaw5hHr7BOqJW/VmA8zZ/yFboZfaa3BWsIrlQi+SX8f4OGEhsRcTQg=
+X-Received: by 2002:a1c:96c7:: with SMTP id y190mr5812991wmd.87.1562135288232;
+ Tue, 02 Jul 2019 23:28:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190702132353.18632-1-andradanciu1997@gmail.com>
+In-Reply-To: <20190702132353.18632-1-andradanciu1997@gmail.com>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Wed, 3 Jul 2019 09:27:56 +0300
+Message-ID: <CAEnQRZDO4FzsC-MZGsxd=7dxSc0dRGcMjWW-W9T2TF7C1iD9NA@mail.gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: imx8mq: Add sai3 and sai6 nodes
+To:     Andra Danciu <andradanciu1997@gmail.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>, andrew.smirnov@gmail.com,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Carlo Caione <ccaione@baylibre.com>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If the device tree is incorrectly configured, and attempts to
-define a "no-map" reserved memory that overlaps with the kernel
-data/code, the kernel would crash quickly after boot, with no
-obvious clue about the nature of the issue.
+On Tue, Jul 2, 2019 at 4:25 PM Andra Danciu <andradanciu1997@gmail.com> wrote:
+>
+> SAI3 and SAI6 nodes are used to connect to an external codec.
+> They have 1 Tx and 1 Rx dataline.
+>
+> Cc: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
 
-For example, this would happen if we have the kernel mapped at
-these addresses (from /proc/iomem):
-40000000-41ffffff : System RAM
-  40080000-40dfffff : Kernel code
-  40e00000-411fffff : reserved
-  41200000-413e0fff : Kernel data
+Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
 
-And we declare a no-map shared-dma-pool region at a fixed address
-within that range:
-mem_reserved: mem_region {
-	compatible = "shared-dma-pool";
-	reg = <0 0x40000000 0 0x01A00000>;
-	no-map;
-};
-
-To fix this, when removing memory regions at early boot (which is
-what "no-map" regions do), we need to make sure that the memory
-is not already reserved. If we do, __reserved_mem_reserve_reg
-will throw an error:
-[    0.000000] OF: fdt: Reserved memory: failed to reserve memory
-   for node 'mem_region': base 0x0000000040000000, size 26 MiB
-and the code that will try to use the region should also fail,
-later on.
-
-We do not do anything for non-"no-map" regions, as memblock
-explicitly allows reserved regions to overlap, and the commit
-that this fixes removed the check for that precise reason.
-
-Fixes: 094cb98179f19b7 ("of/fdt: memblock_reserve /memreserve/ regions in the case of partial overlap")
-Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
----
- drivers/of/fdt.c | 10 +++++++++-
- 1 file changed, 9 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index cd17dc62a71980a..a1ded43fc332d0c 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1138,8 +1138,16 @@ int __init __weak early_init_dt_mark_hotplug_memory_arch(u64 base, u64 size)
- int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
- 					phys_addr_t size, bool nomap)
- {
--	if (nomap)
-+	if (nomap) {
-+		/*
-+		 * If the memory is already reserved (by another region), we
-+		 * should not allow it to be removed altogether.
-+		 */
-+		if (memblock_is_region_reserved(base, size))
-+			return -EBUSY;
-+
- 		return memblock_remove(base, size);
-+	}
- 	return memblock_reserve(base, size);
- }
- 
--- 
-2.22.0.410.gd8fdbe21b5-goog
-
+> ---
+> Changes since v2:
+>         - removed multiple new lines
+>
+> Changes since v1:
+>         - Added sai3 node because we need it to enable audio on pico-pi-8m
+>         - Added commit description
+>
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 29 +++++++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index d09b808eff87..736cf81b695e 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -278,6 +278,20 @@
+>                         #size-cells = <1>;
+>                         ranges = <0x30000000 0x30000000 0x400000>;
+>
+> +                       sai6: sai@30030000 {
+> +                               compatible = "fsl,imx8mq-sai",
+> +                                       "fsl,imx6sx-sai";
+> +                               reg = <0x30030000 0x10000>;
+> +                               interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +                               clocks = <&clk IMX8MQ_CLK_SAI6_IPG>,
+> +                                       <&clk IMX8MQ_CLK_SAI6_ROOT>,
+> +                                       <&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
+> +                               clock-names = "bus", "mclk1", "mclk2", "mclk3";
+> +                               dmas = <&sdma2 4 24 0>, <&sdma2 5 24 0>;
+> +                               dma-names = "rx", "tx";
+> +                               status = "disabled";
+> +                       };
+> +
+>                         gpio1: gpio@30200000 {
+>                                 compatible = "fsl,imx8mq-gpio", "fsl,imx35-gpio";
+>                                 reg = <0x30200000 0x10000>;
+> @@ -728,6 +742,21 @@
+>                                 status = "disabled";
+>                         };
+>
+> +                       sai3: sai@308c0000 {
+> +                               compatible = "fsl,imx8mq-sai",
+> +                                            "fsl,imx6sx-sai";
+> +                               reg = <0x308c0000 0x10000>;
+> +                               interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+> +                               clocks = <&clk IMX8MQ_CLK_SAI3_IPG>,
+> +                                       <&clk IMX8MQ_CLK_DUMMY>,
+> +                                       <&clk IMX8MQ_CLK_SAI3_ROOT>,
+> +                                       <&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
+> +                               clock-names = "bus", "mclk1", "mclk2", "mclk3";
+> +                               dmas = <&sdma1 12 24 0>, <&sdma1 13 24 0>;
+> +                               dma-names = "rx", "tx";
+> +                               status = "disabled";
+> +                       };
+> +
+>                         i2c1: i2c@30a20000 {
+>                                 compatible = "fsl,imx8mq-i2c", "fsl,imx21-i2c";
+>                                 reg = <0x30a20000 0x10000>;
+> --
+> 2.11.0
+>
