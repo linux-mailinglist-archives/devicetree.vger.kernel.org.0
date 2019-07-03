@@ -2,189 +2,341 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F0C45E274
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 13:04:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B58675E31B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 13:49:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727168AbfGCLE1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 07:04:27 -0400
-Received: from mail-eopbgr740047.outbound.protection.outlook.com ([40.107.74.47]:56176
-        "EHLO NAM01-BN3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727269AbfGCLEZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Jul 2019 07:04:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector1-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Vp0rqdLuu4DONvE4ea8TBMWjUjorJbwMs3yqZs4UmJI=;
- b=mugXz/nnTV/7nKB2TVSN+5nOeGqdUBNRuNsRujAyOLwM5LOjzXuOA/y0sXgToWwwz1JwUjq2xKOQxlc6z6FUcE3BKKos6ll+9sXB+kDo6pUzNjL5KY4LEGPQTKLgws2gG0kT6DxWZ83fJMJpjr/PL5mkn9EyMKS9mDnytI9YNxo=
-Received: from MN2PR02MB6368.namprd02.prod.outlook.com (52.132.175.153) by
- MN2PR02MB5823.namprd02.prod.outlook.com (20.179.87.90) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2032.20; Wed, 3 Jul 2019 11:04:22 +0000
-Received: from MN2PR02MB6368.namprd02.prod.outlook.com
- ([fe80::eddc:227e:27cc:d2bc]) by MN2PR02MB6368.namprd02.prod.outlook.com
- ([fe80::eddc:227e:27cc:d2bc%5]) with mapi id 15.20.2032.019; Wed, 3 Jul 2019
- 11:04:22 +0000
-From:   Dragan Cvetic <draganc@xilinx.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Derek Kiernan <dkiernan@xilinx.com>
-Subject: RE: [PATCH V7 00/11] misc: xilinx sd-fec drive
-Thread-Topic: [PATCH V7 00/11] misc: xilinx sd-fec drive
-Thread-Index: AQHVIHtLLdGbOE767U2XbDHU36aibaamNrSAgAA5XPCAAM7egIARm4rg
-Date:   Wed, 3 Jul 2019 11:04:22 +0000
-Message-ID: <MN2PR02MB63682925A8D89F3B69001744CBFB0@MN2PR02MB6368.namprd02.prod.outlook.com>
-References: <1560274185-264438-1-git-send-email-dragan.cvetic@xilinx.com>
- <20190621141553.GA16650@kroah.com>
- <CH2PR02MB635999D7374378CEA096FE72CBE70@CH2PR02MB6359.namprd02.prod.outlook.com>
- <20190622060135.GB26200@kroah.com>
-In-Reply-To: <20190622060135.GB26200@kroah.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=draganc@xilinx.com; 
-x-originating-ip: [149.199.80.133]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bee70e3e-e6f8-440f-45f1-08d6ffa6340a
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:MN2PR02MB5823;
-x-ms-traffictypediagnostic: MN2PR02MB5823:
-x-ms-exchange-purlcount: 1
-x-microsoft-antispam-prvs: <MN2PR02MB5823AFC90AF569B7BE3B9C20CBFB0@MN2PR02MB5823.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-forefront-prvs: 00872B689F
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(366004)(39860400002)(376002)(396003)(346002)(199004)(13464003)(189003)(71190400001)(102836004)(53546011)(68736007)(7696005)(99286004)(81156014)(8676002)(8936002)(66946007)(25786009)(71200400001)(6506007)(26005)(305945005)(7736002)(74316002)(76176011)(76116006)(14454004)(5660300002)(476003)(52536014)(486006)(66446008)(66476007)(64756008)(14444005)(6916009)(66556008)(73956011)(81166006)(966005)(33656002)(9686003)(6306002)(4326008)(446003)(53936002)(86362001)(186003)(11346002)(316002)(6436002)(256004)(54906003)(66066001)(229853002)(107886003)(3846002)(55016002)(6116002)(6246003)(2906002)(478600001);DIR:OUT;SFP:1101;SCL:1;SRVR:MN2PR02MB5823;H:MN2PR02MB6368.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: xilinx.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: PAvRYdPVc5KlEHo3KT3Mhcru3iD0F7fLTVkYFoZWK7MbH9JQY3z+9ODb4qeGPu9Ou9KWdsvXx/1WiKUNDQP9hplmelTYF9+KRYdF1AHU3Hkl8yLYC6pCjYhG3AhxYiAwFhp+e/P/l1r3rigACfQ1gl0hCwBrOg53K9tVaPmiJTfzk5+ltjA2GNS2RkL4fJALS6GP0nvS5QBeMGAGmiIPi8DvPFZymTG5T/MDdm0K6iYY/MtVFQBiq52WGq84RUJY7K+G2hSHPHeTizCGKMBeXaBb4w+sPHm+IacwGvNWF9gkY9mRhJFcHlhwCGKzADJ3/O7QI4RjwAZdtkEeaNV+gNAbhSxjCMjFSzmRBrGkM3vqrryG0D6cPdJS5IESLJKl5ffYK5nlrcmsvlRBJhikkNVXZNc3hlZL4U826t5xAHQ=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1727060AbfGCLtm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 07:49:42 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:36173 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727056AbfGCLtl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 07:49:41 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 61253C0010;
+        Wed,  3 Jul 2019 11:49:34 +0000 (UTC)
+Date:   Wed, 3 Jul 2019 13:49:33 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for
+ PLL_MIPI
+Message-ID: <20190703114933.u3x4ej3v7ocewvif@flea>
+References: <20190129151348.mh27btttsqcmeban@flea>
+ <CAMty3ZAjAoti8Zu80c=OyCA+u-jtQnkidsKSNz_c2OaRswqc3w@mail.gmail.com>
+ <20190201143102.rcvrxstc365mezvx@flea>
+ <CAMty3ZC3_+z1upH4Y08R1z=Uq1C=OpWETNrBO8nGRoHhuNrHSA@mail.gmail.com>
+ <20190605064933.6bmskkxzzgn35xz7@flea>
+ <CAMty3ZCCP=oCqm5=49BsjwoxdDETgBfU_5g8fQ=bz=iWApV0tw@mail.gmail.com>
+ <20190614142406.ybdiqfppo5mc5bgq@flea>
+ <CAMty3ZB45cHx3WeXnywBh2_UA_bTmFs6yBTqLWA1BNf4fQtVvQ@mail.gmail.com>
+ <20190625144930.5hegt6bkzqzykjid@flea>
+ <CAMty3ZCmj0Rz7MMhLqihsvLQi+1CHf0fAoJQ4QN65xB-bwxaJw@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bee70e3e-e6f8-440f-45f1-08d6ffa6340a
-X-MS-Exchange-CrossTenant-originalarrivaltime: 03 Jul 2019 11:04:22.0937
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: draganc@xilinx.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR02MB5823
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="o6glxbmwab2ugpxc"
+Content-Disposition: inline
+In-Reply-To: <CAMty3ZCmj0Rz7MMhLqihsvLQi+1CHf0fAoJQ4QN65xB-bwxaJw@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+--o6glxbmwab2ugpxc
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-> -----Original Message-----
-> From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> Sent: Saturday 22 June 2019 07:02
-> To: Dragan Cvetic <draganc@xilinx.com>
-> Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@li=
-sts.infradead.org; robh+dt@kernel.org;
-> mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
-l.org; Derek Kiernan <dkiernan@xilinx.com>
-> Subject: Re: [PATCH V7 00/11] misc: xilinx sd-fec drive
->=20
-> On Fri, Jun 21, 2019 at 05:49:45PM +0000, Dragan Cvetic wrote:
+On Tue, Jun 25, 2019 at 09:00:36PM +0530, Jagan Teki wrote:
+> On Tue, Jun 25, 2019 at 8:19 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 > >
+> > On Thu, Jun 20, 2019 at 11:57:44PM +0530, Jagan Teki wrote:
+> > > On Fri, Jun 14, 2019 at 7:54 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > >
+> > > > On Wed, Jun 05, 2019 at 01:03:16PM +0530, Jagan Teki wrote:
+> > > > > On Wed, Jun 5, 2019 at 12:19 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > > > >
+> > > > > > Hi,
+> > > > > >
+> > > > > > I've reordered the mail a bit to work on chunks
+> > > > > >
+> > > > > > On Fri, May 24, 2019 at 03:37:42PM +0530, Jagan Teki wrote:
+> > > > > > > > I wish it was in your commit log in the first place, instead of having
+> > > > > > > > to exchange multiple mails over this.
+> > > > > > > >
+> > > > > > > > However, I don't think that's quite true, and it might be a bug in
+> > > > > > > > Allwinner's implementation (or rather something quite confusing).
+> > > > > > > >
+> > > > > > > > You're right that the lcd_rate and pll_rate seem to be generated from
+> > > > > > > > the pixel clock, and it indeed looks like the ratio between the pixel
+> > > > > > > > clock and the TCON dotclock is defined through the number of bits per
+> > > > > > > > lanes.
+> > > > > > > >
+> > > > > > > > However, in this case, dsi_rate is actually the same than lcd_rate,
+> > > > > > > > since pll_rate is going to be divided by dsi_div:
+> > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L791
+> > > > > > > >
+> > > > > > > > Since lcd_div is 1, it also means that in this case, dsi_rate ==
+> > > > > > > > dclk_rate.
+> > > > > > > >
+> > > > > > > > The DSI module clock however, is always set to 148.5 MHz. Indeed, if
+> > > > > > > > we look at:
+> > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L804
+> > > > > > > >
+> > > > > > > > We can see that the rate in clk_info is used if it's different than
+> > > > > > > > 0. This is filled by disp_al_lcd_get_clk_info, which, in the case of a
+> > > > > > > > DSI panel, will hardcode it to 148.5 MHz:
+> > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L164
+> > > > > > >
+> > > > > > > Let me explain, something more.
+> > > > > > >
+> > > > > > > According to bsp there are clk_info.tcon_div which I will explain below.
+> > > > > > > clk_info.dsi_div which is dynamic and it depends on bpp/lanes, so it
+> > > > > > > is 6 for 24bpp and 4 lanes devices.
+> > > > > > >
+> > > > > > > PLL rate here depends on dsi_div (not tcon_div)
+> > > > > > >
+> > > > > > > Code here
+> > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L784
+> > > > > > >
+> > > > > > > is computing the actual set rate, which depends on dsi_rate.
+> > > > > > >
+> > > > > > > lcd_rate = dclk_rate * clk_info.dsi_div;
+> > > > > > > dsi_rate = pll_rate / clk_info.dsi_div;
+> > > > > > >
+> > > > > > > Say if the dclk_rate 148MHz then the dsi_rate is 888MHz which set rate
+> > > > > > > for above link you mentioned.
+> > > > > > >
+> > > > > > > Here are the evidence with some prints.
+> > > > > > >
+> > > > > > > https://gist.github.com/openedev/9bae2d87d2fcc06b999fe48c998b7043
+> > > > > > > https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
+> > > > > >
+> > > > > > Ok, so we agree up to this point, and the prints confirm that the
+> > > > > > analysis above is the right one.
+> > > > > >
+> > > > > > > > So, the DSI clock is set to this here:
+> > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L805
+> > > > > >
+> > > > > > Your patch doesn't address that, so let's leave that one alone.
+> > > > >
+> > > > > Basically this is final pll set rate when sun4i_dotclock.c called the
+> > > > > desired rate with ccu_nkm.c so it ended the final rate with parent as
+> > > > > Line 8 of
+> > > > > https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
+> > > >
+> > > > If that's important to the driver, it should be set explicitly then,
+> > > > and not work by accident.
+> > > >
+> > > > > > > > The TCON *module* clock (the one in the clock controller) has been set
+> > > > > > > > to lcd_rate (so the pixel clock times the number of bits per lane) here:
+> > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L800
+> > > > > > > >
+> > > > > > > > And the PLL has been set to the same rate here:
+> > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L794
+> > > > > > > >
+> > > > > > > > Let's take a step back now: that function we were looking at,
+> > > > > > > > lcd_clk_config, is called by lcd_clk_enable, which is in turn called
+> > > > > > > > by disp_lcd_enable here:
+> > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L1328
+> > > > > > > >
+> > > > > > > > The next function being called is disp_al_lcd_cfg, and that function
+> > > > > > > > will hardcode the TCON dotclock divider to 4, here:
+> > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L240
+> > > > > > >
+> > > > > > > tcon_div from BSP point-of-view of there are two variants
+> > > > > > > 00) clk_info.tcon_div which is 4 and same is set the divider position
+> > > > > > > in SUN4I_TCON0_DCLK_REG (like above link refer)
+> > > > > > > 01) tcon_div which is 4 and used for edge timings computation
+> > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/de_dsi.c#L12
+> > > > > > >
+> > > > > > > The real reason for 01) is again 4 is they set the divider to 4 in 00)
+> > > > > > > which is technically wrong because the dividers which used during
+> > > > > > > dotclock in above (dsi_div) should be used here as well. Since there
+> > > > > > > is no dynamic way of doing this BSP hard-coding these values.
+> > > > > > >
+> > > > > > > Patches 5,6,7 on this series doing this
+> > > > > > > https://patchwork.freedesktop.org/series/60847/
+> > > > > > >
+> > > > > > > Hope this explanation helps?
+> > > > > >
+> > > > > > It doesn't.
+> > > > > >
+> > > > > > The clock tree is this one:
+> > > > > >
+> > > > > > PLL(s) -> TCON module clock -> TCON dotclock.
+> > > > > >
+> > > > > > The links I mentioned above show that the clock set to lcd_rate is the
+> > > > > > TCON module clocks (and it should be the one taking the bpp and lanes
+> > > > > > into account), while the TCON dotclock uses a fixed divider of 4.
+> > > > >
+> > > > > Sorry, I can argue much other-than giving some code snips, according to [1]
+> > > > >
+> > > > > 00) Line 785, 786 with dclk_rate 148000000
+> > > > >
+> > > > > lcd_rate = dclk_rate * clk_info.dsi_div;
+> > > > > pll_rate = lcd_rate * clk_info.lcd_div;
+> > > > >
+> > > > > Since dsi_div is 6 (bpp/lanes), lcd_div 1
+> > > > >
+> > > > > lcd_rate = 888000000, pll_rate = 888000000
+> > > > >
+> > > > > 01)  Line 801, 804 are final rates computed as per clock driver (say
+> > > > > ccu_nkm in mainline)
+> > > > >
+> > > > > lcd_rate_set=891000000
+> > > > >
+> > > > > As per your comments if it would be 4 then the desired numbers are
+> > > > > would be 592000000 not 888000000.
+> > > > >
+> > > > > This is what I'm trying to say in all mails, and same as verified with
+> > > > > 2-lanes devices as well where the dsi_div is 12 so the final rate is
+> > > > > 290MHz * 12
+> > > >
+> > > > In the code you sent, you're forcing a divider on the internal TCON
+> > > > clock, while that one is fixed in the BSP.
+> > > >
+> > > > There's indeed the bpp / lanes divider, but it's used in the *parent*
+> > > > clock of the one you're changing.
+> > > >
+> > > > And the dsi0_clk clock you pointed out in the code snippet is yet
+> > > > another clock, the MIPI DSI module clock.
+> > >
+> > > Correct, look like I refereed wrong reference in the above mail. sorry
+> > > for the noise.
+> > >
+> > > Actually I'm trying to explain about pll_rate here which indeed
+> > > depends on dsi.div
+> > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L786
+> > >
+> > > lcd_rate = dclk_rate * clk_info.dsi_div;
+> > > pll_rate = lcd_rate * clk_info.lcd_div;
+> > >
+> > > Say
+> > >
+> > > 1) For 148MHz dclk_rate with dsi_div is 6 (24/4) lcd_div is 1 which
+> > > resulting pll_rate is 888MHz.
+> > >
+> > > 2) For 30MHz dclk_rate with 4 lane and 24 RGB the resulting pll_rate is 180MHz
+> > >
+> > > 3) For 27.5MHz dclk_rate with 2 lane and 24 RGB the resulting pll_rate is 330MHz
+> > >
+> > > Here is the few more logs in code, for case 2)
+> > >
+> > > [    1.920441] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
+> > > [    1.920505] ideal = 180000000, rounded = 178200000
+> > > [    1.920509] sun4i_dclk_round_rate: div = 6 rate = 29700000
+> > > [    1.920514] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
+> > > [    1.920532] ideal = 180000000, rounded = 178200000
+> > > [    1.920535] sun4i_dclk_round_rate: div = 6 rate = 29700000
+> > > [    1.920572] sun4i_dclk_recalc_rate: val = 1, rate = 178200000
+> > > [    1.920576] sun4i_dclk_recalc_rate: val = 1, rate = 178200000
+> > > [    1.920597] rate = 178200000
+> > > [    1.920599] parent_rate = 297000000
+> > > [    1.920602] reg = 0x90c00000
+> > > [    1.920605] _nkm.n = 3, nkm->n.offset = 0x1, nkm->n.shift = 8
+> > > [    1.920609] _nkm.k = 2, nkm->k.offset = 0x1, nkm->k.shift = 4
+> > > [    1.920612] _nkm.m = 10, nkm->m.offset = 0x1, nkm->m.shift = 0
+> > > [    1.920958] sun4i_dclk_set_rate div 6
+> > > [    1.920966] sun4i_dclk_recalc_rate: val = 6, rate = 29700000
+> > >
+> > > and clk_summary:
+> > >
+> > >     pll-video0                        1        1        1   297000000
+> > >         0     0  50000
+> > >        hdmi                           0        0        0   297000000
+> > >         0     0  50000
+> > >        tcon1                          0        0        0   297000000
+> > >         0     0  50000
+> > >        pll-mipi                       1        1        1   178200000
+> > >         0     0  50000
+> > >           tcon0                       2        2        1   178200000
+> > >         0     0  50000
+> > >              tcon-pixel-clock         1        1        1    29700000
+> > >         0     0  50000
+> > >        pll-video0-2x                  0        0        0   594000000
+> > >         0     0  50000
 > >
-> > > -----Original Message-----
-> > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> > > Sent: Friday 21 June 2019 15:16
-> > > To: Dragan Cvetic <draganc@xilinx.com>
-> > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kerne=
-l@lists.infradead.org; robh+dt@kernel.org;
-> > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.k=
-ernel.org; Derek Kiernan <dkiernan@xilinx.com>
-> > > Subject: Re: [PATCH V7 00/11] misc: xilinx sd-fec drive
-> > >
-> > > On Tue, Jun 11, 2019 at 06:29:34PM +0100, Dragan Cvetic wrote:
-> > > > This patchset is adding the full Soft Decision Forward Error
-> > > > Correction (SD-FEC) driver implementation, driver DT binding and
-> > > > driver documentation.
-> > > >
-> > > > Forward Error Correction (FEC) codes such as Low Density Parity
-> > > > Check (LDPC) and turbo codes provide a means to control errors in
-> > > > data transmissions over unreliable or noisy communication
-> > > > channels. The SD-FEC Integrated Block is an optimized block for
-> > > > soft-decision decoding of these codes. Fixed turbo codes are
-> > > > supported directly, whereas custom and standardized LDPC codes
-> > > > are supported through the ability to specify the parity check
-> > > > matrix through an AXI4-Lite bus or using the optional programmable
-> > > > (PL)-based support logic. For the further information see
-> > > > https://www.xilinx.com/support/documentation/ip_documentation/
-> > > > sd_fec/v1_1/pg256-sdfec-integrated-block.pdf
-> > > >
-> > > > This driver is a platform device driver which supports SDFEC16
-> > > > (16nm) IP. SD-FEC driver supports LDPC decoding and encoding and
-> > > > Turbo code decoding. LDPC codes can be specified on
-> > > > a codeword-by-codeword basis, also a custom LDPC code can be used.
-> > > >
-> > > > The SD-FEC driver exposes a char device interface and supports
-> > > > file operations: open(), close(), poll() and ioctl(). The driver
-> > > > allows only one usage of the device, open() limits the number of
-> > > > driver instances. The driver also utilize Common Clock Framework
-> > > > (CCF).
-> > > >
-> > > > The control and monitoring is supported over ioctl system call.
-> > > > The features supported by ioctl():
-> > > > - enable or disable data pipes to/from device
-> > > > - configure the FEC algorithm parameters
-> > > > - set the order of data
-> > > > - provide a control of a SDFEC bypass option
-> > > > - activates/deactivates SD-FEC
-> > > > - collect and provide statistical data
-> > > > - enable/disable interrupt mode
-> > >
-> > > Is there any userspace tool that talks to this device using these cus=
-tom
-> > > ioctls yet?
-> > >
-> > Tools no, but could be the customer who is using the driver.
->=20
-> I don't understand this.  Who has written code to talk to these
-> special ioctls from userspace?  Is there a pointer to that code
-> anywhere?
->=20
-> > > Doing a one-off ioctl api is always a risky thing, you are pretty muc=
-h
-> > > just creating brand new system calls for one piece of hardware.
-> > >
+> > This discussion is going nowhere. I'm telling you that your patch
+> > doesn't apply the divider you want on the proper clock, and you're
+> > replying that indeed, you're applying it on the wrong clock.
 > >
-> > Why is that wrong and what is the risk?
->=20
-> You now have custom syscalls for one specfic piece of hardware that you
-> now have to maintain working properly for the next 40+ years.  You have
-> to make sure those calls are correct and that this is the correct api to
-> talk to this hardware.
->=20
+> > It might work by accident in your case, but the board I have here
+> > clearly indicates otherwise, so there's two possible way out here:
+> >
+> >   - Either you apply that divider to the TCON *module* clock, and not
+> >     the dclk
+> >
+> >   - Or you point to somewhere in the allwinner code where the bpp /
+> >     lanes divider is used for the dclk divider.
+>
+> I don't know how to proceed further on this, as you say it might work
+> in accident but I have tested this in A33, A64 and R40 with 4
+> different DSI panels and one DSI-RGB bridge. All of them do use
+> PLL_MIPI (pll_rate) and it indeed depends on bpp/lanes
+>
+> 4-lane, 24-bit: Novatek NT35596 panel
+> 4-lane, 24-bit: Feiyang, FY07024di26a30d panel
+> 4-lane, 24-bit: Bananapi-s070wv20 panel
+> 2-lane, 24-bit: Techstar,ts8550b panel
+>
+> and
+>
+> 4-lane, 24-bit, ICN6211 DSI-to-RGB bridge panel
+>
+> All above listed panels and bridges are working as per BSP and do
+> follow bpp/lanes and for DIVIDER 4 no panel is working.
 
+Look. I'm not saying that there's no issue, I'm saying that your
+patch, applied to the clock you're applying it to, doesn't make sense
+and isn't what the BSP does.
 
-The only idea I have got from the comments are to do more abstraction
-eg. have a few ioctls with the abstraction done through the passing argumen=
-ts?
+You can keep on arguing that your patch is perfect as is, but the fact
+that there's regressions proves otherwise.
 
+> The panels/bridges I have has tested in BSP and as you mentioned in
+> another mail, your panel is not tested in BSP - this is the only
+> difference. I did much reverse-engineering on PLL_MIPI clocking in BSP
+> so I'm afraid what can I do next on this, If you want to look further
+> on BSP I would suggest to verify on pll_rate side. If you feel
+> anything I'm missing please let me know.
 
+I already told you how we can make some progress in the mail you
+quoted, but you chose to ignore that.
 
+Until there's been some progress on either points mentionned above,
+I'm just going to stop answering on this topic.
 
-> > What would you propose?
-> > Definitely, I have to read about this.
->=20
-> What is this hardware and what is it used for?  Who will be talking to
-> it from userspace?  What userspace workload uses it?  What tools need to
-> talk to it?  Where is the code that uses these new apis?
->=20
-> thanks,
->=20
-> greg k-h
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--o6glxbmwab2ugpxc
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXRyWTQAKCRDj7w1vZxhR
+xdyoAP9tCvDZs8w8YEGmL0evt8L9SKcoKx5BZwh5Z7lls7ghGAD8CqFYUJPGvO12
+Ni8dsGuXB5rd6Rd6Lq2C0UC1UMhE8Qk=
+=5uDR
+-----END PGP SIGNATURE-----
+
+--o6glxbmwab2ugpxc--
