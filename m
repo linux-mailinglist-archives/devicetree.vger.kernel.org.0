@@ -2,63 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D784E5EC2F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 21:05:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F67D5EC4B
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 21:09:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727076AbfGCTFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 15:05:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39380 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726473AbfGCTFH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Jul 2019 15:05:07 -0400
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A63B0218A6
-        for <devicetree@vger.kernel.org>; Wed,  3 Jul 2019 19:05:06 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562180706;
-        bh=ZVMs6id3mPq/QIZ1KW174w4yBPuFTMf/hjam7k1jXFI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=1ZL7dmDJM1/kPi/yEhOoj0pJDP9lb+BdsSzL/8zWG13wfI26AcNk7KfdKWO6pd1p4
-         r9wpKwBlIhAmZSpALzHqZQnFDBMXYKib9cy6A1hmlcbxXrjIxTec3LmEswJAI+QDcW
-         i5QIL9pbecmEEj283ElfOj1gAwGewx3NRzJjNrPE=
-Received: by mail-qt1-f177.google.com with SMTP id w17so1974473qto.10
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 12:05:06 -0700 (PDT)
-X-Gm-Message-State: APjAAAXtJT8eGMULV8Dql3DkOPhzYSP5rj5EsiX0bTnEbaNEy6E0n3S0
-        rn6Ic9z8/43AsN1rnOqxpKpmuoSj+HwwzqYwmg==
-X-Google-Smtp-Source: APXvYqypWf/5ykAWU7UvqfFogAiDRydfSYoh1jZH2Fm0V2WCmnq5zVliwZzmOReUDyvGyCsJCeVeHitP8HfEJo4HqiQ=
-X-Received: by 2002:a0c:acef:: with SMTP id n44mr34340113qvc.39.1562180705919;
- Wed, 03 Jul 2019 12:05:05 -0700 (PDT)
+        id S1726973AbfGCTJp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 15:09:45 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:42266 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726473AbfGCTJp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 15:09:45 -0400
+Received: from [127.0.0.1] (localhost [127.0.0.1])
+        (Authenticated sender: koike)
+        with ESMTPSA id 4799B28ABB7
+From:   Helen Koike <helen.koike@collabora.com>
+To:     linux-rockchip@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, eddie.cai.linux@gmail.com,
+        mchehab@kernel.org, heiko@sntech.de, jacob2.chen@rock-chips.com,
+        jeffy.chen@rock-chips.com, zyc@rock-chips.com,
+        linux-kernel@vger.kernel.org, tfiga@chromium.org,
+        hans.verkuil@cisco.com, laurent.pinchart@ideasonboard.com,
+        sakari.ailus@linux.intel.com, kernel@collabora.com,
+        ezequiel@collabora.com, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, zhengsq@rock-chips.com,
+        Helen Koike <helen.koike@collabora.com>,
+        Paul Kocialkowski <paul.kocialkowski@bootlin.com>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Sylwester Nawrocki <s.nawrocki@samsung.com>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: [PATCH v7 01/14] media: videodev2.h, v4l2-ioctl: add rkisp1 meta buffer format
+Date:   Wed,  3 Jul 2019 16:08:57 -0300
+Message-Id: <20190703190910.32633-2-helen.koike@collabora.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190703190910.32633-1-helen.koike@collabora.com>
+References: <20190703190910.32633-1-helen.koike@collabora.com>
 MIME-Version: 1.0
-References: <20190703095421.11798-1-maxime.ripard@bootlin.com>
-In-Reply-To: <20190703095421.11798-1-maxime.ripard@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 3 Jul 2019 13:04:53 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+fqJe5_H80xwimsjueVCEwxbNa2sVQCAg=RjD-n1VfXA@mail.gmail.com>
-Message-ID: <CAL_Jsq+fqJe5_H80xwimsjueVCEwxbNa2sVQCAg=RjD-n1VfXA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: nvmem: SID: Fix the examples node names
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 3, 2019 at 3:54 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Now that the examples are validated, the examples in the SID binding
-> generates an error since the node names aren't one of the valid ones.
->
-> Let's switch for one that is ok.
->
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> ---
->  .../devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml    | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+From: Shunqian Zheng <zhengsq@rock-chips.com>
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Add the Rockchip ISP1 specific processing parameter format
+V4L2_META_FMT_RK_ISP1_PARAMS and metadata format
+V4L2_META_FMT_RK_ISP1_STAT_3A for 3A.
+
+Signed-off-by: Shunqian Zheng <zhengsq@rock-chips.com>
+Signed-off-by: Jacob Chen <jacob2.chen@rock-chips.com>
+Acked-by: Hans Verkuil <hans.verkuil@cisco.com>
+[update for upstream]
+Signed-off-by: Helen Koike <helen.koike@collabora.com>
+
+---
+
+Changes in v7:
+- s/IPU3/RK_ISP1
+
+ drivers/media/v4l2-core/v4l2-ioctl.c | 2 ++
+ include/uapi/linux/videodev2.h       | 4 ++++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/drivers/media/v4l2-core/v4l2-ioctl.c b/drivers/media/v4l2-core/v4l2-ioctl.c
+index b1f4b991dba6..248eb9d3bf42 100644
+--- a/drivers/media/v4l2-core/v4l2-ioctl.c
++++ b/drivers/media/v4l2-core/v4l2-ioctl.c
+@@ -1308,6 +1308,8 @@ static void v4l_fill_fmtdesc(struct v4l2_fmtdesc *fmt)
+ 	case V4L2_META_FMT_VSP1_HGO:	descr = "R-Car VSP1 1-D Histogram"; break;
+ 	case V4L2_META_FMT_VSP1_HGT:	descr = "R-Car VSP1 2-D Histogram"; break;
+ 	case V4L2_META_FMT_UVC:		descr = "UVC payload header metadata"; break;
++	case V4L2_META_FMT_RK_ISP1_PARAMS:	descr = "Rockchip ISP1 3A params"; break;
++	case V4L2_META_FMT_RK_ISP1_STAT_3A:	descr = "Rockchip ISP1 3A statistics"; break;
+ 
+ 	default:
+ 		/* Compressed formats */
+diff --git a/include/uapi/linux/videodev2.h b/include/uapi/linux/videodev2.h
+index 9d9705ceda76..e1fa8e3089f8 100644
+--- a/include/uapi/linux/videodev2.h
++++ b/include/uapi/linux/videodev2.h
+@@ -750,6 +750,10 @@ struct v4l2_pix_format {
+ #define V4L2_META_FMT_UVC         v4l2_fourcc('U', 'V', 'C', 'H') /* UVC Payload Header metadata */
+ #define V4L2_META_FMT_D4XX        v4l2_fourcc('D', '4', 'X', 'X') /* D4XX Payload Header metadata */
+ 
++/* Vendor specific - used for RK_ISP1 camera sub-system */
++#define V4L2_META_FMT_RK_ISP1_PARAMS	v4l2_fourcc('R', 'K', '1', 'P') /* Rockchip ISP1 params */
++#define V4L2_META_FMT_RK_ISP1_STAT_3A	v4l2_fourcc('R', 'K', '1', 'S') /* Rockchip ISP1 3A statistics */
++
+ /* priv field value to indicates that subsequent fields are valid. */
+ #define V4L2_PIX_FMT_PRIV_MAGIC		0xfeedcafe
+ 
+-- 
+2.20.1
+
