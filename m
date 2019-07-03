@@ -2,175 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B5645ECE5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 21:38:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 578B15ED0A
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 21:58:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727184AbfGCThv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 15:37:51 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:44645 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727217AbfGCThk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 15:37:40 -0400
-Received: by mail-pf1-f195.google.com with SMTP id t16so1749484pfe.11
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 12:37:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=92MMMWQ7DnIvwLqCz1ZLToZjaHseBvhkT/Mp2Z/Tv9k=;
-        b=S9JgP9iyGcwTSuU5Ibit1VXMos7cpzyQTnSn13mK3rBRD5RmlHy8K8BGo9PpVDpicm
-         z91XR7hdWMinwUYnD2j3tir2SgCHM4vtnDYaVlLMAUV5GkU+GNApM3Xp/yKgxkOF5bl2
-         euIrKxgCx3A5x3TnLLAMLZAbwp/QuaMWGLyyQ=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=92MMMWQ7DnIvwLqCz1ZLToZjaHseBvhkT/Mp2Z/Tv9k=;
-        b=r8uVtmYQGrZOj2NTSaehrhkk7aVABEzec/U00zFl/+VLGYNW6GU3qlVXFR4Ic+7cLv
-         bSFpzG5wXfBgDqmer4HUQatKjTO5KF/vOGKZhoEnCr9y64S+Gb7rhKl6gCh64rSc0kf5
-         szqGJp15FE6T9btfoGLJhjDUYHBSCVAkqpOsTlujhGFtev7krwAZUu8pBTj7tJBtxJAB
-         lBGqEFDv9O23/y6/5japGuIBZ/Hmye3hHAZennspT800D+Qah3242krwjXTZgT7/2r1T
-         ME9dqaiw/ApQoPIOypizDyjofQa41pO18XvsjnZLBqc5brCFYuVVeqvQdyBvUQpAlJwR
-         Olqg==
-X-Gm-Message-State: APjAAAX/nDS0bREfxy6e+DvAsXBMcHnE6nzCAS/pmdMzdKsX6TXHA/zk
-        r1ebvsb5rdDT/N/jjl/INLJuxQ==
-X-Google-Smtp-Source: APXvYqz+i2vxmI1brUUWvEihoY3pc7PssJnkoB8NUdEDOglIhqwlU4hxiv0B0CGnk5evw/zLyeO/uA==
-X-Received: by 2002:a63:2a83:: with SMTP id q125mr38238567pgq.102.1562182659699;
-        Wed, 03 Jul 2019 12:37:39 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id p23sm4448964pfn.10.2019.07.03.12.37.38
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 12:37:39 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v2 7/7] net: phy: realtek: configure RTL8211E LEDs
-Date:   Wed,  3 Jul 2019 12:37:24 -0700
-Message-Id: <20190703193724.246854-7-mka@chromium.org>
-X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
-In-Reply-To: <20190703193724.246854-1-mka@chromium.org>
-References: <20190703193724.246854-1-mka@chromium.org>
+        id S1726739AbfGCT6G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 15:58:06 -0400
+Received: from relay2-d.mail.gandi.net ([217.70.183.194]:55759 "EHLO
+        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726833AbfGCT6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 15:58:04 -0400
+X-Originating-IP: 90.89.68.76
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 80E2140008;
+        Wed,  3 Jul 2019 19:58:00 +0000 (UTC)
+Date:   Wed, 3 Jul 2019 21:57:50 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/7] dt-bindings: net: mdio: Add child nodes
+Message-ID: <20190703195750.vupb3r5xoujjw6pe@flea>
+References: <20190703095513.12340-1-maxime.ripard@bootlin.com>
+ <20190703095513.12340-3-maxime.ripard@bootlin.com>
+ <CAL_JsqKgBXxbg_9ZKfmj6y0s_5Z5QZw3RmdJfSHEpjh84m9brg@mail.gmail.com>
+ <20190703141300.duhk2qj3m5qpkp3h@flea>
+ <CAL_JsqLr32VK=HSeY52NCkZj-gBfLhTWu5eheXWk--fL16zBYg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="25ib7336ijmsjdbi"
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLr32VK=HSeY52NCkZj-gBfLhTWu5eheXWk--fL16zBYg@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure the RTL8211E LEDs behavior when the device tree property
-'realtek,led-modes' is specified.
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
-Changes in v2:
-- patch added to the series
----
- drivers/net/phy/realtek.c | 63 +++++++++++++++++++++++++++++++++++++--
- 1 file changed, 61 insertions(+), 2 deletions(-)
+--25ib7336ijmsjdbi
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
-index 45fee4612031..559aec547738 100644
---- a/drivers/net/phy/realtek.c
-+++ b/drivers/net/phy/realtek.c
-@@ -9,6 +9,7 @@
-  * Copyright (c) 2004 Freescale Semiconductor, Inc.
-  */
- #include <linux/bitops.h>
-+#include <linux/bits.h>
- #include <linux/device.h>
- #include <linux/module.h>
- #include <linux/of.h>
-@@ -35,6 +36,15 @@
- #define RTL8211E_EEE_LED_MODE1			0x05
- #define RTL8211E_EEE_LED_MODE2			0x06
- 
-+/* RTL8211E extension page 44 */
-+#define RTL8211E_LACR				0x1a
-+#define RLT8211E_LACR_LEDACTCTRL_SHIFT		4
-+#define RLT8211E_LACR_LEDACTCTRL_MASK		GENMASK(6, 4)
-+#define RTL8211E_LCR				0x1c
-+#define RTL8211E_LCR_LEDCTRL_MASK		(GENMASK(2, 0) | \
-+						 GENMASK(6, 4) | \
-+						 GENMASK(10, 8))
-+
- /* RTL8211E extension page 160 */
- #define RTL8211E_SCR				0x1a
- #define RTL8211E_SCR_DISABLE_RXC_SSC		BIT(2)
-@@ -124,6 +134,56 @@ static int rtl8211e_disable_eee_led_mode(struct phy_device *phydev)
- 	return phy_restore_page(phydev, oldpage, ret);
- }
- 
-+static int rtl8211e_config_leds(struct phy_device *phydev)
-+{
-+	struct device *dev = &phydev->mdio.dev;
-+	int count, i, oldpage, ret;
-+	u16 lacr_bits = 0, lcr_bits = 0;
-+
-+	if (!dev->of_node)
-+		return 0;
-+
-+	if (of_property_read_bool(dev->of_node, "realtek,eee-led-mode-disable"))
-+		rtl8211e_disable_eee_led_mode(phydev);
-+
-+	count = of_property_count_elems_of_size(dev->of_node,
-+						"realtek,led-modes",
-+						sizeof(u32));
-+	if (count < 0 || count > 3)
-+		return -EINVAL;
-+
-+	for (i = 0; i < count; i++) {
-+		u32 val;
-+
-+		of_property_read_u32_index(dev->of_node,
-+					   "realtek,led-modes", i, &val);
-+		lacr_bits |= (u16)(val >> 16) <<
-+			(RLT8211E_LACR_LEDACTCTRL_SHIFT + i);
-+		lcr_bits |= (u16)(val & 0xf) << (i * 4);
-+	}
-+
-+	oldpage = rtl8211e_select_ext_page(phydev, 44);
-+	if (oldpage < 0) {
-+		dev_err(dev, "failed to select extended page: %d\n", oldpage);
-+		goto err;
-+	}
-+
-+	ret = __phy_modify(phydev, RTL8211E_LACR,
-+			   RLT8211E_LACR_LEDACTCTRL_MASK, lacr_bits);
-+	if (ret) {
-+		dev_err(dev, "failed to write LACR reg: %d\n", ret);
-+		goto err;
-+	}
-+
-+	ret = __phy_modify(phydev, RTL8211E_LCR,
-+			   RTL8211E_LCR_LEDCTRL_MASK, lcr_bits);
-+	if (ret)
-+		dev_err(dev, "failed to write LCR reg: %d\n", ret);
-+
-+err:
-+	return phy_restore_page(phydev, oldpage, ret);
-+}
-+
- static int rtl8211e_config_init(struct phy_device *phydev)
- {
- 	struct device *dev = &phydev->mdio.dev;
-@@ -137,8 +197,7 @@ static int rtl8211e_config_init(struct phy_device *phydev)
- 			dev_err(dev, "failed to enable SSC on RXC: %d\n", ret);
- 	}
- 
--	if (of_property_read_bool(dev->of_node, "realtek,eee-led-mode-disable"))
--		rtl8211e_disable_eee_led_mode(phydev);
-+	rtl8211e_config_leds(phydev);
- 
- 	return 0;
- }
--- 
-2.22.0.410.gd8fdbe21b5-goog
+Hi Rob,
 
+On Wed, Jul 03, 2019 at 08:20:32AM -0600, Rob Herring wrote:
+> On Wed, Jul 3, 2019 at 8:13 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> >
+> > On Wed, Jul 03, 2019 at 07:53:43AM -0600, Rob Herring wrote:
+> > > On Wed, Jul 3, 2019 at 3:55 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > >
+> > > > The child nodes of a mdio bus are supposed to be ethernet PHYs, with a reg
+> > > > property. Make sure that's validated as well.
+> > >
+> > > I don't think this is always true. I seem to recall there's some
+> > > timestamping devices connected via mdio.
+> > >
+> > > In any case, it's not a long list of names, so we can probably just
+> > > enumerate them as needed. Does this generate any warnings?
+> >
+> > I did a run on both arm and arm64 Allwinner DTS, and it doesn't.
+> >
+> > I can do one on multi_v7 / arm64's defconfig, but that's probably
+> > going to be a bit hard to tell from the noise of warnings.
+>
+> I do allmodconfig because that will build all dtbs. You can run checks
+> with a single schema like this:
+>
+> make dtbs_check DT_SCHEMA_FILES=a-single-schema.yaml
+
+Right, of course :)
+
+I just did it, and apart from a few arm32 broadcom boards that don't
+have the right address-cells / size-cells (probably false positive due
+to the fact they use mdio@something as node name), there's no other
+warnings.
+
+I'm not sure what you were on about though. If there's another node
+than an ethernet phy, we won' have any warning since we don't have
+additionalProperties to false.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--25ib7336ijmsjdbi
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXR0IvgAKCRDj7w1vZxhR
+xVMUAQCQCy0qGWX1fT3+VMSxXrsFCgBl0tUKQd7LZgRe/RuZgwEAkgTei2NisG9X
+kGdN9aKhFE9NrPSPW3cnLh36AdQXUgQ=
+=H5Ni
+-----END PGP SIGNATURE-----
+
+--25ib7336ijmsjdbi--
