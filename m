@@ -2,90 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 08D255EC21
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 21:03:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D784E5EC2F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 21:05:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726951AbfGCTDB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 15:03:01 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:43151 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727239AbfGCTDA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 15:03:00 -0400
-Received: by mail-pf1-f194.google.com with SMTP id i189so1712642pfg.10
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 12:03:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=x1DRYxM4S/B7SoxMDhNxSzKMNHFlAjuQUN144vOww2A=;
-        b=EiT8BWbl+xHvb7JFvpcjaMBfzfBwNgp5IyVQl4JjzJ7b6sxwpmksLvde9vYcrpQreD
-         sRJqJbjhYOYJBEZompfAK7sofYrjSgbr3fdLQJ2n4MyEJ/tNP4N8IInWdCHMZ7wjDu6g
-         ofrPqbN6sZFxyvHDXBpRnX31lju59FJeiu5ao9NWIoOajR3+rnbMoO9tb6S1+cVNT5WK
-         HOUWSNdjAjNLEk8ssEXpuoRe33pQouijP6A8ueGkJJ7KeJNAmfDcfhq3SmmrXvFM0rIE
-         MWHD64RlAdRvOL/6ylNB8a9b9WZENN2Zn6wKnLQjbEys6SQJHq03eJP2+jKrOWhuJcPU
-         MAdQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=x1DRYxM4S/B7SoxMDhNxSzKMNHFlAjuQUN144vOww2A=;
-        b=du8HmMHc8ZeaWjwE2+pQz0iBpa9on6Iza9CUqCpASDWjtvdnERUSyunCGsXyV5ZjuY
-         24N1nZ9lLkFze2hu2Aby/wcaYhLV0p0nombQ4AA7oIDRb2up86zv5mxn+lriHyMgBWjn
-         ydYDqB2IY5Ytd2E9EZcQNA8m7JO818cFzqFAOEg8Ap3MSbMJkKBHQghbL3tbsBEWX2lp
-         0GQ5nolA0wy0juXaL11JYhvaw3qCqyUO7pdgaIcwVcR9+btTetnJJ8AQiEZuA2eo1UCO
-         xfF/LP/Ts3bbFFTald3dPOiHLjbs/sLs5NnyQXRAeURuG75PFD3T/O99n+3nHvHYPRJs
-         Zdgw==
-X-Gm-Message-State: APjAAAVLcy/kz8f/Ej7uf8VBrtLKIwUpRK0eDWXkIfZfGmv+vfxS1q68
-        NeCUkXqzQe4TUl4NT5ej/eVAD6qa2w==
-X-Google-Smtp-Source: APXvYqy8mtloT40dRnY/gaVB9FpkscYftIb1iPR1fDiwsvm8UFmgRrDb0Wh22kBTCyQyQyviBDgDXw==
-X-Received: by 2002:a63:d04e:: with SMTP id s14mr13153497pgi.189.1562180579800;
-        Wed, 03 Jul 2019 12:02:59 -0700 (PDT)
-Received: from localhost.localdomain ([2409:4072:117:d72f:1d34:d0bb:bb4e:3065])
-        by smtp.gmail.com with ESMTPSA id j14sm3631503pfn.120.2019.07.03.12.02.54
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 03 Jul 2019 12:02:59 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     mchehab@kernel.org, robh+dt@kernel.org
-Cc:     linux-media@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        c.barrett@framos.com, a.brela@framos.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 3/3] MAINTAINERS: Add entry for IMX290 CMOS image sensor driver
-Date:   Thu,  4 Jul 2019 00:32:30 +0530
-Message-Id: <20190703190230.12392-4-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190703190230.12392-1-manivannan.sadhasivam@linaro.org>
-References: <20190703190230.12392-1-manivannan.sadhasivam@linaro.org>
+        id S1727076AbfGCTFH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 15:05:07 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39380 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726473AbfGCTFH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jul 2019 15:05:07 -0400
+Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A63B0218A6
+        for <devicetree@vger.kernel.org>; Wed,  3 Jul 2019 19:05:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562180706;
+        bh=ZVMs6id3mPq/QIZ1KW174w4yBPuFTMf/hjam7k1jXFI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=1ZL7dmDJM1/kPi/yEhOoj0pJDP9lb+BdsSzL/8zWG13wfI26AcNk7KfdKWO6pd1p4
+         r9wpKwBlIhAmZSpALzHqZQnFDBMXYKib9cy6A1hmlcbxXrjIxTec3LmEswJAI+QDcW
+         i5QIL9pbecmEEj283ElfOj1gAwGewx3NRzJjNrPE=
+Received: by mail-qt1-f177.google.com with SMTP id w17so1974473qto.10
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 12:05:06 -0700 (PDT)
+X-Gm-Message-State: APjAAAXtJT8eGMULV8Dql3DkOPhzYSP5rj5EsiX0bTnEbaNEy6E0n3S0
+        rn6Ic9z8/43AsN1rnOqxpKpmuoSj+HwwzqYwmg==
+X-Google-Smtp-Source: APXvYqypWf/5ykAWU7UvqfFogAiDRydfSYoh1jZH2Fm0V2WCmnq5zVliwZzmOReUDyvGyCsJCeVeHitP8HfEJo4HqiQ=
+X-Received: by 2002:a0c:acef:: with SMTP id n44mr34340113qvc.39.1562180705919;
+ Wed, 03 Jul 2019 12:05:05 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190703095421.11798-1-maxime.ripard@bootlin.com>
+In-Reply-To: <20190703095421.11798-1-maxime.ripard@bootlin.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 3 Jul 2019 13:04:53 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+fqJe5_H80xwimsjueVCEwxbNa2sVQCAg=RjD-n1VfXA@mail.gmail.com>
+Message-ID: <CAL_Jsq+fqJe5_H80xwimsjueVCEwxbNa2sVQCAg=RjD-n1VfXA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: nvmem: SID: Fix the examples node names
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Sony IMX290 CMOS image sensor driver.
+On Wed, Jul 3, 2019 at 3:54 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> Now that the examples are validated, the examples in the SID binding
+> generates an error since the node names aren't one of the valid ones.
+>
+> Let's switch for one that is ok.
+>
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> ---
+>  .../devicetree/bindings/nvmem/allwinner,sun4i-a10-sid.yaml    | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index d0ed735994a5..27e4c1f57b61 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -14669,6 +14669,14 @@ S:	Maintained
- F:	drivers/media/i2c/imx274.c
- F:	Documentation/devicetree/bindings/media/i2c/imx274.txt
- 
-+SONY IMX290 SENSOR DRIVER
-+M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-+L:	linux-media@vger.kernel.org
-+T:	git git://linuxtv.org/media_tree.git
-+S:	Maintained
-+F:	drivers/media/i2c/imx290.c
-+F:	Documentation/devicetree/bindings/media/i2c/imx290.txt
-+
- SONY IMX319 SENSOR DRIVER
- M:	Bingbu Cao <bingbu.cao@intel.com>
- L:	linux-media@vger.kernel.org
--- 
-2.17.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
