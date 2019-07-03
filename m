@@ -2,186 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C2765E7CE
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 17:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 697925ED08
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 21:58:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726871AbfGCP0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 11:26:22 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:45017 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726870AbfGCP0W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 11:26:22 -0400
-Received: by mail-pg1-f196.google.com with SMTP id i18so1412604pgl.11;
-        Wed, 03 Jul 2019 08:26:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:openpgp:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=6QROen4N3MxmsNite+g7qwf/F2DzBAOrXmr+wrgNUV0=;
-        b=mL4FL2ocXEMUft2oJQXTLNkmp2DMQhRFIDfUUudoCHFYlSIrh6ynFfZlCuB+8NOMim
-         VMk9y7HplpNPFC6KGuTDgS6dN8TuY0uxMMdes5b9KmZGrzUiZGiaxWrWNJVy4prSIHHm
-         EStziaTU3MfmVowvDCqYVV6LvbKF/35GxNu7JH78aAPAJWUgbZYIdpXbVU+5xnPvG27X
-         hxbdI4InhdFTJmwB9CBPRdoD9eLEvdQ8oL0wG7ftUT2i9Xk8p1/xNX2Huh82tc6DK0gO
-         Ze2D7YCXmmd35uGFHjWxQNENe8fZI3z5nHbp48GVshQkZUvqiWXJVAmYWkq8tAORAnGI
-         A5cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=6QROen4N3MxmsNite+g7qwf/F2DzBAOrXmr+wrgNUV0=;
-        b=r1mvjbIZh5tvyZJ2n4KCnCgZMvLjELDByJX2IPMVagERhZvrzGOPbVP2ZW8SK+5zMy
-         JvXY1NrFnFDnm9vvFwXo5+Q1m7wg41ksW9CMkpOdHOP6CxjME36+4KtEwSyOPdBn3vnx
-         3peaFIDn9d1AgdZx9q2b/knq6UroPHbSI4pugFVxHaFhDkmsS3Wgrn7gtwOMbQc08NHy
-         ywQXxbYvhlb19OdsQAZ0izA3ImLo4l86X0ojM+5kRkLVF1SM5POxJz1F5ceBYdaQ9U9d
-         V1elTaz2e6UaGJ4IpTCzH4gfd5EPLTh8D9+W33fw/VAkGqAU9IYho/YLotMHRxJ0wCnD
-         beyg==
-X-Gm-Message-State: APjAAAVlCUzlHX5RzAFZiTOqM/9IUeaI25Q/2vIUj84zRbku7YVgh0NK
-        bxDHPFl++/Q+NZzxh6nXCPYEeC1f
-X-Google-Smtp-Source: APXvYqwyIwTtUGuTTdJ9VDhykSgyTtX+5oH5cD/Vk+9O8Lfm6DJ0XbWSbihJbPJDOXwi1P6wrXn71w==
-X-Received: by 2002:a63:125c:: with SMTP id 28mr28274843pgs.255.1562167581005;
-        Wed, 03 Jul 2019 08:26:21 -0700 (PDT)
-Received: from [10.230.28.107] ([192.19.223.252])
-        by smtp.gmail.com with ESMTPSA id r27sm6054940pgn.25.2019.07.03.08.26.19
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 08:26:20 -0700 (PDT)
-Subject: Re: [PATCH v2 1/4] net: dsa: Change DT bindings for Vitesse VSC73xx
- switches
-To:     Pawel Dembicki <paweldembicki@gmail.com>
-Cc:     linus.walleij@linaro.org, Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190701152723.624-1-paweldembicki@gmail.com>
- <20190703085757.1027-1-paweldembicki@gmail.com>
-From:   Florian Fainelli <f.fainelli@gmail.com>
-Openpgp: preference=signencrypt
-Message-ID: <97789626-8371-703b-b515-7eef5cdf198d@gmail.com>
-Date:   Wed, 3 Jul 2019 08:26:18 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1726805AbfGCT6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 15:58:04 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:35269 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726821AbfGCT6E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 15:58:04 -0400
+X-Originating-IP: 90.89.68.76
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 742B8240004;
+        Wed,  3 Jul 2019 19:57:58 +0000 (UTC)
+Date:   Wed, 3 Jul 2019 17:30:56 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-amarula <linux-amarula@amarulasolutions.com>
+Subject: Re: [PATCH 01/25] arm64: dts: allwinner: Switch A64 dts(i) to use
+ SPDX identifier
+Message-ID: <20190703153056.jhks4yb4ag56rrx5@flea>
+References: <20190703124609.21435-1-jagan@amarulasolutions.com>
+ <20190703124609.21435-2-jagan@amarulasolutions.com>
+ <20190703132838.nhewz5wzsijl65s5@flea>
+ <CAMty3ZDyx_RSkU=OndsvzS5reOzab0DBkrarSeHt+-gtsdyKuQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20190703085757.1027-1-paweldembicki@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAMty3ZDyx_RSkU=OndsvzS5reOzab0DBkrarSeHt+-gtsdyKuQ@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jul 03, 2019 at 07:52:27PM +0530, Jagan Teki wrote:
+> On Wed, Jul 3, 2019 at 6:58 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> >
+> > On Wed, Jul 03, 2019 at 06:15:45PM +0530, Jagan Teki wrote:
+> > > Adopt the SPDX license identifier headers to ease license
+> > > compliance management on Allwinner A64 dts(i) files.
+> > >
+> > > While the text specifies "of the GPL or the X11 license"
+> > > but the actual license text matches the MIT license as
+> > > specified at [0]
+> > >
+> > > [0] https://spdx.org/licenses/MIT.html
+> > >
+> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> > > ---
+> > >  .../dts/allwinner/sun50i-a64-bananapi-m64.dts | 39 +------------------
+> > >  .../dts/allwinner/sun50i-a64-nanopi-a64.dts   | 39 +------------------
+> > >  .../dts/allwinner/sun50i-a64-olinuxino.dts    | 39 +------------------
+> > >  .../dts/allwinner/sun50i-a64-orangepi-win.dts | 39 +------------------
+> > >  .../dts/allwinner/sun50i-a64-pine64-plus.dts  | 39 +------------------
+> > >  .../boot/dts/allwinner/sun50i-a64-pine64.dts  | 39 +------------------
+> > >  .../allwinner/sun50i-a64-sopine-baseboard.dts | 39 +------------------
+> > >  .../boot/dts/allwinner/sun50i-a64-sopine.dtsi | 39 +------------------
+> > >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 39 +------------------
+> > >  9 files changed, 9 insertions(+), 342 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
+> > > index 208373efee49..efdd84c362b0 100644
+> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
+> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
+> > > @@ -1,43 +1,6 @@
+> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+> >
+> > You say that this is a GPL2 only license
+> >
+> > >  /*
+> > >   * Copyright (c) 2016 ARM Ltd.
+> > > - *
+> > > - * This file is dual-licensed: you can use it either under the terms
+> > > - * of the GPL or the X11 license, at your option. Note that this dual
+> > > - * licensing only applies to this file, and not this project as a
+> > > - * whole.
+> > > - *
+> > > - *  a) This library is free software; you can redistribute it and/or
+> > > - *     modify it under the terms of the GNU General Public License as
+> > > - *     published by the Free Software Foundation; either version 2 of the
+> > > - *     License, or (at your option) any later version.
+> >
+> > While this is GPL2 or later.
+>
+> Yes, this is where I was confused with compared to existing
+> architectures. It seems like it is a call from author of the file or
+> make GPL-2.0 for generic purpose [1], not really sure.
 
+What are you confused about? This is GPL2 or later, and it shouldn't
+really be changed (unless we have the consent of all the contributors
+of all the DTs, but that's a can of worm I don't want to reopen).
 
-On 7/3/2019 1:57 AM, Pawel Dembicki wrote:
-> This commit introduce how to use vsc73xx platform driver.
-> 
-> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+Maxime
 
-Pawel, please resubmit your patches starting a new thread, not as reply
-to the existing ones, see
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/networking/netdev-FAQ.rst#n134
-for details. Also, David Miller typically likes to have a cover letter
-for patch count > 1.
-
-Thanks!
-
-> ---
-> Changes in v2:
-> - Drop -spi and -platform suffix
-> - Change commit message
-> 
->  .../bindings/net/dsa/vitesse,vsc73xx.txt      | 57 +++++++++++++++++--
->  1 file changed, 53 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt
-> index ed4710c40641..c55e0148657d 100644
-> --- a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt
-> +++ b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt
-> @@ -2,8 +2,8 @@ Vitesse VSC73xx Switches
->  ========================
->  
->  This defines device tree bindings for the Vitesse VSC73xx switch chips.
-> -The Vitesse company has been acquired by Microsemi and Microsemi in turn
-> -acquired by Microchip but retains this vendor branding.
-> +The Vitesse company has been acquired by Microsemi and Microsemi has
-> +been acquired Microchip but retains this vendor branding.
->  
->  The currently supported switch chips are:
->  Vitesse VSC7385 SparX-G5 5+1-port Integrated Gigabit Ethernet Switch
-> @@ -11,8 +11,13 @@ Vitesse VSC7388 SparX-G8 8-port Integrated Gigabit Ethernet Switch
->  Vitesse VSC7395 SparX-G5e 5+1-port Integrated Gigabit Ethernet Switch
->  Vitesse VSC7398 SparX-G8e 8-port Integrated Gigabit Ethernet Switch
->  
-> -The device tree node is an SPI device so it must reside inside a SPI bus
-> -device tree node, see spi/spi-bus.txt
-> +This switch could have two different management interface.
-> +
-> +If SPI interface is used, the device tree node is an SPI device so it must
-> +reside inside a SPI bus device tree node, see spi/spi-bus.txt
-> +
-> +If Platform driver is used, the device tree node is an platform device so it
-> +must reside inside a platform bus device tree node.
->  
->  Required properties:
->  
-> @@ -38,6 +43,7 @@ and subnodes of DSA switches.
->  
->  Examples:
->  
-> +SPI:
->  switch@0 {
->  	compatible = "vitesse,vsc7395";
->  	reg = <0>;
-> @@ -79,3 +85,46 @@ switch@0 {
->  		};
->  	};
->  };
-> +
-> +Platform:
-> +switch@2,0 {
-> +	#address-cells = <1>;
-> +	#size-cells = <1>;
-> +	compatible = "vitesse,vsc7385";
-> +	reg = <0x2 0x0 0x20000>;
-> +	reset-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
-> +
-> +	ports {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		port@0 {
-> +			reg = <0>;
-> +			label = "lan1";
-> +		};
-> +		port@1 {
-> +			reg = <1>;
-> +			label = "lan2";
-> +		};
-> +		port@2 {
-> +			reg = <2>;
-> +			label = "lan3";
-> +		};
-> +		port@3 {
-> +			reg = <3>;
-> +			label = "lan4";
-> +		};
-> +		vsc: port@6 {
-> +			reg = <6>;
-> +			label = "cpu";
-> +			ethernet = <&enet0>;
-> +			phy-mode = "rgmii";
-> +			fixed-link {
-> +				speed = <1000>;
-> +				full-duplex;
-> +				pause;
-> +			};
-> +		};
-> +	};
-> +
-> +};
-> 
-
--- 
-Florian
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
