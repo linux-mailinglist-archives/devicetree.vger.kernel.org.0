@@ -2,79 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3259B5E41E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:41:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 407B85E433
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:46:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726305AbfGCMlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 08:41:39 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:37648 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726656AbfGCMlj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:41:39 -0400
-Received: by mail-lf1-f65.google.com with SMTP id d11so1677184lfb.4
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 05:41:38 -0700 (PDT)
+        id S1726413AbfGCMqq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 08:46:46 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:33448 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725830AbfGCMqq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:46:46 -0400
+Received: by mail-pf1-f195.google.com with SMTP id x15so1248974pfq.0
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 05:46:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Xy4atC47KUkhRxvml94Kq1gg6hZsMUYINS4fjvWdvCo=;
-        b=McGlDSOxEhWCKthKIE+gpLcPxbWgwKMrrLO60s7Qh4nwlG49H+YLqxceuhzil1otMt
-         K37j2Icrf10zt7CxCWNJi1UDiM+ejYhV1kb2j1jWfRnwY8u9S0O8PtNMWArTBz4Gxb7w
-         R6teFD8bDFWDPt5c9JoIKrYC48wvC/px85/MDRT+SA9nxDgoBNhSks7DE4FDo61vDmEL
-         V0gSZfi9DaWn1asSSQN0/4VhIQ83nmB9GVns7ibbxOSDedWet6lcvPkvFoETlRymLS1n
-         yo8SnuurCvS+8qYuBTeAx/GTnUFau/ttRSu97efdls7MS/OtVLUq/sefWcGcGf0dQr7l
-         yuZw==
+        d=amarulasolutions.com; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=37zMRc5OLeXQ1EZxQfSrpoqB3BZsrBGRKhWCr9J/qnU=;
+        b=q5h/wSLQ54IhHdfloF1JQsl367YdBmGaEDZ0cnhH2TJY2bO/FzWQUWhrAQEeHq2OuQ
+         tfiy/9INEduH/BNB9yhHlTCaMdjhTR7HpyZUZwIKNuUaQdIXElTzLYZuROvMD72rRpSP
+         CrYl5wWRvL5NxXfkbDc95qb42NyMsLe4BP+ok=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Xy4atC47KUkhRxvml94Kq1gg6hZsMUYINS4fjvWdvCo=;
-        b=QpStgyxwYnb5YaA3LeTkMbcstF1Qkd2Jeq4g8jY8rNIcywrdEC6LvkwdxBm6/PJnlM
-         SSfSZP6cJJ6pe+SLcm/m3ocTW8+claP8yJ13W493p/VW9E4wZDeuI+I9AOPClWgtHf9V
-         sRx/76NlrKgAdCrZ9eiOEPEsnLo8/oFIX4CRRMboJUZJmpFFB6l/3+A6/DO2gYAefDZS
-         3qLYBulmcJ6sAyjRT5ev50ZoUzqvTlL7v8Tv2q78XxIr83/OZ1D1HMFyGKlz84RPb+nW
-         kKFiREHbp/gs2MNnPxpcmE8be9lKtPp7j5AEbhXwW6VR3jy8A6VQxp8jy4lVJ44kDPgJ
-         8MCg==
-X-Gm-Message-State: APjAAAXR3c9hg7RyzU1cpuk0h3gDFAvC6kWKwcpBiQFGFwUZyTndXfi1
-        sRi9tOwTLp0LOS2pb2j4jxsb4SxzUjONU1f8ITE/OZje
-X-Google-Smtp-Source: APXvYqxSZq8kK+Sf3ly/VpTa30WhTR81fi6H8aQwENAVhDZ+xbderjUjpKdryIIlUpIb+lO7f/hQ0SNAIZdSKuEFh/Q=
-X-Received: by 2002:a19:7616:: with SMTP id c22mr18395121lff.115.1562157697300;
- Wed, 03 Jul 2019 05:41:37 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190701152723.624-1-paweldembicki@gmail.com> <20190703085757.1027-1-paweldembicki@gmail.com>
-In-Reply-To: <20190703085757.1027-1-paweldembicki@gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 3 Jul 2019 14:41:26 +0200
-Message-ID: <CACRpkdabQbVosWjD22E6pM8t3gu8c=5qNMEtRsp2HLV0PJ9nYg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] net: dsa: Change DT bindings for Vitesse VSC73xx switches
-To:     Pawel Dembicki <paweldembicki@gmail.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=37zMRc5OLeXQ1EZxQfSrpoqB3BZsrBGRKhWCr9J/qnU=;
+        b=E4r/jPJ9u0cLp5MiseU2hr33+MzYjnMBbdt7ENlRwHRZ48sOwG0May8fyvFaXDHseQ
+         8IjFrdT8zUbHK6N6f3al7GKYT4aR6kyx8dVfdGzu2X2oUcFHuR02OORiEKSHYZ9YHiVX
+         qfj6WZf1/bMNLQKoBi2720lK4HKhOJjXaomXdYAWWhyFcetOlYWmFKcpQ9FuUg7kTE16
+         RdSTtCj1jlkoeFmosjXMvjYgTklf434LF/DV2PUnZHrRW3IrSgAWJQbiDWtW0zf2dNLT
+         WuS/uOnlxNSDPIVYY8egHtIYG0wL5xBXU2VOvNTOAfG3OjIdzCeI1qUKziVQ2jQyo4Mm
+         +9XA==
+X-Gm-Message-State: APjAAAUvmcUZlPXbcEv5tKHiEDVdsVlcGriCSE3zxgFIUK0PXySNcXXG
+        xy9ypF1QSogvDOikVcSOgQbpRw==
+X-Google-Smtp-Source: APXvYqylfxLeIDA67xo3DLoxeVWI5oA2b3t5Njd8IiyvJgWG5PrfxawnFsDdmwdx+XBWjM/ALyrkWA==
+X-Received: by 2002:a17:90a:7148:: with SMTP id g8mr12756345pjs.51.1562158004954;
+        Wed, 03 Jul 2019 05:46:44 -0700 (PDT)
+Received: from localhost.localdomain ([183.82.231.32])
+        by smtp.gmail.com with ESMTPSA id q1sm3735890pfn.178.2019.07.03.05.46.41
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Jul 2019 05:46:44 -0700 (PDT)
+From:   Jagan Teki <jagan@amarulasolutions.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        netdev <netdev@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: [PATCH 00/25] arm64/ARM: dts: allwinner: Switch to use SPDX identifier
+Date:   Wed,  3 Jul 2019 18:15:44 +0530
+Message-Id: <20190703124609.21435-1-jagan@amarulasolutions.com>
+X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 3, 2019 at 10:58 AM Pawel Dembicki <paweldembicki@gmail.com> wrote:
+This series to switch all Allwinner dts(i) and associate
+files to use SPDX Licence identifier.
 
-> This commit introduce how to use vsc73xx platform driver.
->
-> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
-> ---
-> Changes in v2:
-> - Drop -spi and -platform suffix
-> - Change commit message
+Jagan Teki (25):
+  arm64: dts: allwinner: Switch A64 dts(i) to use SPDX identifier
+  arm64: dts: allwinner: axp803: Switch to use SPDX identifier
+  arm64: dts: allwinner: Switch H5 dts(i) to use SPDX identifier
+  ARM: dts: sun4i: Switch A10 dts(i) to use SPDX identifier
+  ARM: dts: sun5i: Switch A10s dts(i) to use SPDX identifier
+  ARM: dts: sun5i: Switch A13 dts(i) to use SPDX identifier
+  ARM: dts: sun5i: Switch GR8 dts(i) to use SPDX identifier
+  ARM: dts: sun6i: Switch A31 dts(i) to use SPDX identifier
+  ARM: dts: sun6i: Switch A31s dts(i) to use SPDX identifier
+  ARM: dts: sun7i: Switch A20 dts(i) to use SPDX identifier
+  ARM: dts: sun8i: t3-cqa3t-bv3: Remove legacy license text
+  ARM: dts: sun8i: Switch A23 dts(i) to use SPDX identifier
+  ARM: dts: sun8i: Switch A33 dts(i) to use SPDX identifier
+  ARM: dts: sun8i: Switch A83T dts(i) to use SPDX identifier
+  ARM: dts: sun8i: Switch H2+ dts to use SPDX identifier
+  ARM: dts: sun8i: Switch H3 dts(i) to use SPDX identifier
+  ARM: dts: sun8i: Switch R40 dts(i) to use SPDX identifier
+  ARM: dts: sun8i: Switch V3s dts(i) to use SPDX identifier
+  ARM: dts: sun9i: Switch A80 dts(i) to use SPDX identifier
+  ARM: dts: axp152: Switch to use SPDX identifier
+  ARM: dts: axp209: Switch to use SPDX identifier
+  ARM: dts: axp223: Switch to use SPDX identifier
+  ARM: dts: axp22x: Switch to use SPDX identifier
+  ARM: dts: axp809: Switch to use SPDX identifier
+  ARM: dts: axp81x: Switch to use SPDX identifier
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+ arch/arm/boot/dts/axp152.dtsi                 | 39 +---------------
+ arch/arm/boot/dts/axp209.dtsi                 | 39 +---------------
+ arch/arm/boot/dts/axp223.dtsi                 | 39 +---------------
+ arch/arm/boot/dts/axp22x.dtsi                 | 39 +---------------
+ arch/arm/boot/dts/axp809.dtsi                 | 39 +---------------
+ arch/arm/boot/dts/axp81x.dtsi                 | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-a1000.dts         | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-ba10-tvbox.dts    | 39 +---------------
+ .../boot/dts/sun4i-a10-chuwi-v7-cw0825.dts    | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-cubieboard.dts    | 39 +---------------
+ .../boot/dts/sun4i-a10-dserve-dsrv9703c.dts   | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-gemei-g9.dts      | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-hackberry.dts     | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-hyundai-a7hd.dts  | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-inet1.dts         | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-inet97fv2.dts     | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-inet9f-rev03.dts  | 39 +---------------
+ .../dts/sun4i-a10-itead-iteaduino-plus.dts    | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-jesurun-q5.dts    | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-marsboard.dts     | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-mini-xplus.dts    | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-mk802.dts         | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-mk802ii.dts       | 39 +---------------
+ .../arm/boot/dts/sun4i-a10-olinuxino-lime.dts | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-pcduino.dts       | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10-pcduino2.dts      | 39 +---------------
+ .../boot/dts/sun4i-a10-pov-protab2-ips9.dts   | 39 +---------------
+ arch/arm/boot/dts/sun4i-a10.dtsi              | 39 +---------------
+ arch/arm/boot/dts/sun5i-a10s-auxtek-t003.dts  | 39 +---------------
+ arch/arm/boot/dts/sun5i-a10s-auxtek-t004.dts  | 39 +---------------
+ arch/arm/boot/dts/sun5i-a10s-mk802.dts        | 39 +---------------
+ .../boot/dts/sun5i-a10s-olinuxino-micro.dts   | 39 +---------------
+ arch/arm/boot/dts/sun5i-a10s-r7-tv-dongle.dts | 39 +---------------
+ arch/arm/boot/dts/sun5i-a10s-wobo-i5.dts      | 39 +---------------
+ arch/arm/boot/dts/sun5i-a10s.dtsi             | 39 +---------------
+ .../boot/dts/sun5i-a13-difrnce-dit4350.dts    | 39 +---------------
+ .../dts/sun5i-a13-empire-electronix-d709.dts  | 39 +---------------
+ .../dts/sun5i-a13-empire-electronix-m712.dts  | 39 +---------------
+ arch/arm/boot/dts/sun5i-a13-hsg-h702.dts      | 39 +---------------
+ arch/arm/boot/dts/sun5i-a13-inet-98v-rev2.dts | 39 +---------------
+ arch/arm/boot/dts/sun5i-a13-licheepi-one.dts  | 39 +---------------
+ .../boot/dts/sun5i-a13-olinuxino-micro.dts    | 39 +---------------
+ arch/arm/boot/dts/sun5i-a13-olinuxino.dts     | 39 +---------------
+ arch/arm/boot/dts/sun5i-a13-q8-tablet.dts     | 39 +---------------
+ arch/arm/boot/dts/sun5i-a13-utoo-p66.dts      | 39 +---------------
+ arch/arm/boot/dts/sun5i-a13.dtsi              | 39 +---------------
+ arch/arm/boot/dts/sun5i-gr8-chip-pro.dts      | 39 +---------------
+ arch/arm/boot/dts/sun5i-gr8-evb.dts           | 39 +---------------
+ arch/arm/boot/dts/sun5i-gr8.dtsi              | 39 +---------------
+ arch/arm/boot/dts/sun5i-r8-chip.dts           | 39 +---------------
+ arch/arm/boot/dts/sun5i-r8.dtsi               | 39 +---------------
+ .../dts/sun5i-reference-design-tablet.dtsi    | 39 +---------------
+ arch/arm/boot/dts/sun5i.dtsi                  | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31-app4-evb1.dts     | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31-colombus.dts      | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31-hummingbird.dts   | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31-i7.dts            | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31-m9.dts            | 39 +---------------
+ .../boot/dts/sun6i-a31-mele-a1000g-quad.dts   | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31.dtsi              | 39 +---------------
+ .../boot/dts/sun6i-a31s-colorfly-e708-q1.dts  | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31s-cs908.dts        | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31s-inet-q972.dts    | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31s-primo81.dts      | 39 +---------------
+ .../arm/boot/dts/sun6i-a31s-sina31s-core.dtsi | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31s-sina31s.dts      | 39 +---------------
+ .../boot/dts/sun6i-a31s-sinovoip-bpi-m2.dts   | 39 +---------------
+ .../sun6i-a31s-yones-toptech-bs1078-v2.dts    | 39 +---------------
+ arch/arm/boot/dts/sun6i-a31s.dtsi             | 39 +---------------
+ .../dts/sun6i-reference-design-tablet.dtsi    | 39 +---------------
+ .../boot/dts/sun7i-a20-bananapi-m1-plus.dts   | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-bananapi.dts      | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-bananapro.dts     | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-cubieboard2.dts   | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-cubietruck.dts    | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-hummingbird.dts   | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-i12-tvbox.dts     | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-icnova-swac.dts   | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-itead-ibox.dts    | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-lamobo-r1.dts     | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-m3.dts            | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-mk808c.dts        | 44 +------------------
+ .../arm/boot/dts/sun7i-a20-olimex-som-evb.dts | 39 +---------------
+ .../arm/boot/dts/sun7i-a20-olinuxino-lime.dts | 39 +---------------
+ .../dts/sun7i-a20-olinuxino-lime2-emmc.dts    | 41 +----------------
+ .../boot/dts/sun7i-a20-olinuxino-lime2.dts    | 39 +---------------
+ .../dts/sun7i-a20-olinuxino-micro-emmc.dts    | 41 +----------------
+ .../boot/dts/sun7i-a20-olinuxino-micro.dts    | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-orangepi-mini.dts | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-orangepi.dts      | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-pcduino3-nano.dts | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20-pcduino3.dts      | 39 +---------------
+ .../arm/boot/dts/sun7i-a20-wexler-tab7200.dts | 39 +---------------
+ .../boot/dts/sun7i-a20-wits-pro-a20-dkt.dts   | 39 +---------------
+ arch/arm/boot/dts/sun7i-a20.dtsi              | 39 +---------------
+ arch/arm/boot/dts/sun8i-a23-a33.dtsi          | 39 +---------------
+ arch/arm/boot/dts/sun8i-a23-evb.dts           | 39 +---------------
+ arch/arm/boot/dts/sun8i-a23-gt90h-v4.dts      | 39 +---------------
+ arch/arm/boot/dts/sun8i-a23-inet86dz.dts      | 39 +---------------
+ .../dts/sun8i-a23-polaroid-mid2407pxe03.dts   | 39 +---------------
+ .../dts/sun8i-a23-polaroid-mid2809pxe04.dts   | 39 +---------------
+ arch/arm/boot/dts/sun8i-a23-q8-tablet.dts     | 39 +---------------
+ arch/arm/boot/dts/sun8i-a23.dtsi              | 39 +---------------
+ arch/arm/boot/dts/sun8i-a33-ga10h-v1.1.dts    | 39 +---------------
+ .../arm/boot/dts/sun8i-a33-inet-d978-rev2.dts | 39 +---------------
+ arch/arm/boot/dts/sun8i-a33-olinuxino.dts     | 39 +---------------
+ arch/arm/boot/dts/sun8i-a33-q8-tablet.dts     | 39 +---------------
+ .../arm/boot/dts/sun8i-a33-sinlinx-sina33.dts | 39 +---------------
+ arch/arm/boot/dts/sun8i-a33.dtsi              | 39 +---------------
+ .../dts/sun8i-a83t-allwinner-h8homlet-v2.dts  | 39 +---------------
+ arch/arm/boot/dts/sun8i-a83t-bananapi-m3.dts  | 39 +---------------
+ .../boot/dts/sun8i-a83t-cubietruck-plus.dts   | 39 +---------------
+ arch/arm/boot/dts/sun8i-a83t-tbs-a711.dts     | 39 +---------------
+ arch/arm/boot/dts/sun8i-a83t.dtsi             | 39 +---------------
+ .../boot/dts/sun8i-h2-plus-orangepi-r1.dts    | 39 +---------------
+ .../boot/dts/sun8i-h2-plus-orangepi-zero.dts  | 39 +---------------
+ .../boot/dts/sun8i-h3-bananapi-m2-plus.dts    | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-beelink-x2.dts     | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-nanopi-m1-plus.dts | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-nanopi-m1.dts      | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-nanopi-neo-air.dts | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-nanopi-neo.dts     | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-nanopi.dtsi        | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-orangepi-2.dts     | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-orangepi-lite.dts  | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-orangepi-one.dts   | 39 +---------------
+ .../boot/dts/sun8i-h3-orangepi-pc-plus.dts    | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-orangepi-pc.dts    | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3-orangepi-plus.dts  | 39 +---------------
+ .../arm/boot/dts/sun8i-h3-orangepi-plus2e.dts | 39 +---------------
+ .../boot/dts/sun8i-h3-orangepi-zero-plus2.dts | 39 +---------------
+ arch/arm/boot/dts/sun8i-h3.dtsi               | 39 +---------------
+ arch/arm/boot/dts/sun8i-q8-common.dtsi        | 39 +---------------
+ arch/arm/boot/dts/sun8i-r16-bananapi-m2m.dts  | 39 +---------------
+ arch/arm/boot/dts/sun8i-r16-parrot.dts        | 39 +---------------
+ .../boot/dts/sun8i-r40-bananapi-m2-ultra.dts  | 39 +---------------
+ arch/arm/boot/dts/sun8i-r40.dtsi              | 39 +---------------
+ .../dts/sun8i-reference-design-tablet.dtsi    | 39 +---------------
+ arch/arm/boot/dts/sun8i-t3-cqa3t-bv3.dts      | 38 ----------------
+ .../boot/dts/sun8i-v3s-licheepi-zero-dock.dts | 39 +---------------
+ arch/arm/boot/dts/sun8i-v3s-licheepi-zero.dts | 39 +---------------
+ arch/arm/boot/dts/sun8i-v3s.dtsi              | 39 +---------------
+ .../boot/dts/sun8i-v40-bananapi-m2-berry.dts  | 39 +---------------
+ arch/arm/boot/dts/sun9i-a80-cubieboard4.dts   | 39 +---------------
+ arch/arm/boot/dts/sun9i-a80-optimus.dts       | 39 +---------------
+ arch/arm/boot/dts/sun9i-a80.dtsi              | 39 +---------------
+ arch/arm64/boot/dts/allwinner/axp803.dtsi     | 39 +---------------
+ .../dts/allwinner/sun50i-a64-bananapi-m64.dts | 39 +---------------
+ .../dts/allwinner/sun50i-a64-nanopi-a64.dts   | 39 +---------------
+ .../dts/allwinner/sun50i-a64-olinuxino.dts    | 39 +---------------
+ .../dts/allwinner/sun50i-a64-orangepi-win.dts | 39 +---------------
+ .../dts/allwinner/sun50i-a64-pine64-plus.dts  | 39 +---------------
+ .../boot/dts/allwinner/sun50i-a64-pine64.dts  | 39 +---------------
+ .../allwinner/sun50i-a64-sopine-baseboard.dts | 39 +---------------
+ .../boot/dts/allwinner/sun50i-a64-sopine.dtsi | 39 +---------------
+ arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 39 +---------------
+ .../allwinner/sun50i-h5-nanopi-neo-plus2.dts  | 39 +---------------
+ .../dts/allwinner/sun50i-h5-nanopi-neo2.dts   | 39 +---------------
+ .../dts/allwinner/sun50i-h5-orangepi-pc2.dts  | 39 +---------------
+ .../allwinner/sun50i-h5-orangepi-prime.dts    | 39 +---------------
+ .../sun50i-h5-orangepi-zero-plus2.dts         | 39 +---------------
+ arch/arm64/boot/dts/allwinner/sun50i-h5.dtsi  | 39 +---------------
+ 162 files changed, 163 insertions(+), 6163 deletions(-)
 
-Yours,
-Linus Walleij
+-- 
+2.18.0.321.gffc6fa0e3
+
