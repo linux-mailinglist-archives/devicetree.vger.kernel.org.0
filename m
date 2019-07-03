@@ -2,78 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6162C5EC83
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 21:11:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFE475ECA9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 21:16:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727480AbfGCTLC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 15:11:02 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:42582 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726736AbfGCTLC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 15:11:02 -0400
-Received: from [127.0.0.1] (localhost [127.0.0.1])
-        (Authenticated sender: koike)
-        with ESMTPSA id 5EFA228ABC7
-From:   Helen Koike <helen.koike@collabora.com>
-To:     linux-rockchip@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, eddie.cai.linux@gmail.com,
-        mchehab@kernel.org, heiko@sntech.de, jacob2.chen@rock-chips.com,
-        jeffy.chen@rock-chips.com, zyc@rock-chips.com,
-        linux-kernel@vger.kernel.org, tfiga@chromium.org,
-        hans.verkuil@cisco.com, laurent.pinchart@ideasonboard.com,
-        sakari.ailus@linux.intel.com, kernel@collabora.com,
-        ezequiel@collabora.com, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, zhengsq@rock-chips.com,
-        Helen Koike <helen.koike@collabora.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-Subject: [PATCH v7 14/14] MAINTAINERS: add entry for Rockchip ISP1 driver
-Date:   Wed,  3 Jul 2019 16:09:10 -0300
-Message-Id: <20190703190910.32633-15-helen.koike@collabora.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190703190910.32633-1-helen.koike@collabora.com>
-References: <20190703190910.32633-1-helen.koike@collabora.com>
+        id S1726574AbfGCTQH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 15:16:07 -0400
+Received: from smtprelay0003.hostedemail.com ([216.40.44.3]:35678 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726581AbfGCTQH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 15:16:07 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay05.hostedemail.com (Postfix) with ESMTP id 9890718021864;
+        Wed,  3 Jul 2019 19:16:05 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:988:989:1260:1277:1311:1313:1314:1345:1359:1437:1515:1516:1518:1534:1538:1593:1594:1711:1714:1730:1747:1777:1792:2194:2199:2393:2553:2559:2562:2828:3138:3139:3140:3141:3142:3351:3622:3867:4250:4321:5007:6642:6742:7903:7904:10004:10400:10848:11026:11232:11473:11658:11914:12297:12740:12760:12895:13069:13311:13357:13439:14659:21080:21451:21627:30054:30090:30091,0,RBL:23.242.196.136:@perches.com:.lbl8.mailshell.net-62.14.0.180 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:23,LUA_SUMMARY:none
+X-HE-Tag: farm73_34d274a800e47
+X-Filterd-Recvd-Size: 1862
+Received: from XPS-9350 (cpe-23-242-196-136.socal.res.rr.com [23.242.196.136])
+        (Authenticated sender: joe@perches.com)
+        by omf16.hostedemail.com (Postfix) with ESMTPA;
+        Wed,  3 Jul 2019 19:16:02 +0000 (UTC)
+Message-ID: <2f19693f2f720dcc037465d4ae517fb846c7eb4f.camel@perches.com>
+Subject: Re: [patch v3 1/5] AST2500 DMA UART driver
+From:   Joe Perches <joe@perches.com>
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        "sudheer.v" <open.sudheer@gmail.com>
+Cc:     jslaby@suse.com, joel@jms.id.au, andrew@aj.id.au,
+        benh@kernel.crashing.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        shivahshankar.shankarnarayanrao@aspeedtech.com,
+        shivahshankar@gmail.com, sudheer.veliseti@aspeedtech.com,
+        sudheer veliseti <sudheer.open@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
+Date:   Wed, 03 Jul 2019 12:16:01 -0700
+In-Reply-To: <20190703174926.GA12813@kroah.com>
+References: <1561459476-14268-1-git-send-email-open.sudheer@gmail.com>
+         <1561459476-14268-2-git-send-email-open.sudheer@gmail.com>
+         <20190703174926.GA12813@kroah.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.30.5-0ubuntu0.18.10.1 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for the rockchip isp1 driver.
+On Wed, 2019-07-03 at 19:49 +0200, Greg KH wrote:
+> On Tue, Jun 25, 2019 at 04:14:32PM +0530, sudheer.v wrote:
+> > +#define UART_TX_R_POINT(x) (0x40 + (x * 0x20))
+> > +#define UART_TX_W_POINT(x) (0x44 + (x * 0x20))
+> > +#define UART_TX_SDMA_ADDR(x) (0x48 + (x * 0x20))
+> > +#define UART_RX_R_POINT(x) (0x50 + (x * 0x20))
+> > +#define UART_RX_W_POINT(x) (0x54 + (x * 0x20))
+> > +#define UART_RX_SDMA_ADDR(x) (0x58 + (x * 0x20))
+> 
+> Please use a tab to line these up.
 
-Signed-off-by: Helen Koike <helen.koike@collabora.com>
----
+Also x should be surrounded by parentheses
 
-Changes in v7: None
+#define UART_TX_R_POINT(x)	(0x40 + ((x) * 0x20))
 
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+etc...
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 866969b36a13..47c8f17b0b1f 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13518,6 +13518,14 @@ F:	drivers/hid/hid-roccat*
- F:	include/linux/hid-roccat*
- F:	Documentation/ABI/*/sysfs-driver-hid-roccat*
- 
-+ROCKCHIP ISP V1 DRIVER
-+M:	Helen Koike <helen.koike@collabora.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	drivers/media/platform/rockchip/isp1/
-+F:	Documentation/devicetree/bindings/media/rockchip-isp1.txt
-+F:	Documentation/devicetree/bindings/media/rockchip-mipi-dphy.txt
-+
- ROCKCHIP RASTER 2D GRAPHIC ACCELERATION UNIT DRIVER
- M:	Jacob chen <jacob2.chen@rock-chips.com>
- L:	linux-media@vger.kernel.org
--- 
-2.20.1
 
