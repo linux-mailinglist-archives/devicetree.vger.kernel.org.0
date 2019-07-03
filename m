@@ -2,124 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F35F25D958
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 02:41:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E2EF65D9EA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 02:57:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727197AbfGCAlN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 20:41:13 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:35817 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727132AbfGCAlN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 20:41:13 -0400
-Received: by mail-ot1-f67.google.com with SMTP id j19so510177otq.2;
-        Tue, 02 Jul 2019 17:41:13 -0700 (PDT)
+        id S1727231AbfGCA5X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 20:57:23 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:40160 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727223AbfGCA5W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 20:57:22 -0400
+Received: by mail-oi1-f193.google.com with SMTP id w196so591588oie.7;
+        Tue, 02 Jul 2019 17:57:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=bSOqYii7ZBXl1VimAzOsNXyArtOqUO8Ub/4ZYTA1j8c=;
-        b=q99GRcsXbET72JhVUP+W09DtQ82pAEbhghUwbJjJUv1NS9OSrA+MEhNfDcpH+tiBXp
-         TWM8sf7tC+y68iDzSrV8xAphAUbgEiXEbjxqmQerxymKzbfMd6mtcqWLXOIzK2JBLbPY
-         H2d/98y/oTDU6E9MlkrvWQH7fJGN1h1mIQSYvw+yBtsZEJi/cdOYWvcP3guzN8MOawfO
-         lnHMNcGRonLGQO2LvHfcsG2x8fevU3l6viLz4gb8JZUHjw9NtQb9O4TVOCIXHIgk1z5K
-         B6Ga3y+dBjjB0K2+cFK4Nm2+qdFszmUnMo6t5zefToiJMhrFq5WwfBwpzDPxDvk1S/HM
-         mpMA==
+        bh=EYSjJ+LydcEzxdw5idXtHVOIPJiJa1YBB46CfRDibpM=;
+        b=Ky+Qov/F2L5VKJErmVkFIhuhAIV0b1AaOa7IMvL2kX/CUlcxAElMT3DrIgwtBnA4d1
+         SQ/23AicMM7pBE+KLQpjWjno8WseCCJH2B9hFbvaoV728N3z07QHToIGQtDp6PfV94rI
+         Dv/k6naII/d9qUlexdL/XoZ1IEf9ZOj3wXlcer1runlwnx96UQ55EyJWCSwYjcuyZSRV
+         ETsmPLcasSQMP0aylaGM7CqMRgDkZzaVyopzqjOUyaupOk/n+qJGV3S3swBHCiTn9wm3
+         l0vG4Le3nRf61YoCFWKKFPFbg2ybTvPs+QBi74QoDVpU5Ib2l0hrpfVXXPjP296aYkhL
+         +tsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=bSOqYii7ZBXl1VimAzOsNXyArtOqUO8Ub/4ZYTA1j8c=;
-        b=P+kifVX8X3EnAmrAQUuo7dg859nWf4L4yRTu2dkHHV1kIobfMJKzyIL5plltujhzG2
-         nvlaU2AFWavNW7lDse3Od3OG9ZhKjL+ZCRhBfRRWfciG+44Kj5CMpCDk0ET8MpjXfqjo
-         Bo6sWPwB6yyEUlWbVCAiSt/y1aYUFsWQLeviqBipogI2ElxiPb037GYA+hxQvPQUtQdH
-         7/ADC5Hx4TdzWzY3EVuqCr0q6ivKC65yKLX8QWqPz7+avwZAZpjYrSJF1Ihn4tHoaEcV
-         eExIcdoP01ICGRws1whv6I19yG7K3Ddt8WsydmwUY96ZWByNJX6RrnaLi4yDVqjcwYoT
-         Vy2w==
-X-Gm-Message-State: APjAAAXK6aLgqT6jx/OW+WOOu1sXfMINGDchSfkvMAyHekhW6y+2biyb
-        vpIKZBQVCnWahkmWQv71OgQLfVyddjx2bWtemRZd9MXX
-X-Google-Smtp-Source: APXvYqy50mvLsxYgtKfRVlbA3GW5kWzUW612jiymv5fzhnObYnbprETeytMvN2i8gL1V0pTGXBI3bFIWucwvT2K1t5Y=
-X-Received: by 2002:a9d:39a6:: with SMTP id y35mr27422788otb.81.1562110657449;
- Tue, 02 Jul 2019 16:37:37 -0700 (PDT)
+        bh=EYSjJ+LydcEzxdw5idXtHVOIPJiJa1YBB46CfRDibpM=;
+        b=gi/DqSaxmCGMPVi1A3Wa+0wAzssTAUs3HTEMbC1c92zkXAMW0LNK8rZeME7DjvFTV7
+         cT/Y6Fh9RlhqJt1emcMHwnSYkvo+nbMDEsN1RjEk0gNg8pfRGOFgPOQDNK1IFLfV41Hm
+         c73xvi/3TdepC29NSdg0jsCbmFm/YEG58JDIO4sv3s5T9QpEjXXQm/pnpk7KFIVNa4+b
+         cyGxvyGogGXXNxkM8bnDIKEy0l/TdcGb3iL8OhqSYlQMMgeDIJDNaus1ZgWmmCZBAPDx
+         9EQ6Iw4i6lCg/I8ctx4/BxzIk6cyZsmqnQUGz7zsJ4HhjuESal7Rqwsfw8ZFF43gtMUe
+         ed2Q==
+X-Gm-Message-State: APjAAAXPhMsP7HnYat274GKKLw8JPC4awBWigg3oFKQaUvBCuNaUSEDZ
+        mP2/Bg/NH7W05eZPz5l/DyHiadsdNajnelb6YTT7qTOC
+X-Google-Smtp-Source: APXvYqyaGj0PCGVVeTWrqW1w/ckN7gLuV9G2Q3xfXsdrU6SN4A4wrK/wTIoCTD3mXZvotSia4JivxoObW/UzXuEV8E0=
+X-Received: by 2002:a05:6808:8f0:: with SMTP id d16mr1556508oic.47.1562112065923;
+ Tue, 02 Jul 2019 17:01:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190702203523.2412-1-martin.blumenstingl@googlemail.com>
- <20190702203523.2412-2-martin.blumenstingl@googlemail.com> <CAL_Jsq+3H-cbrUna27RJ1o0w5MxaubkA9hcZjpWsaEYnx6bWQg@mail.gmail.com>
-In-Reply-To: <CAL_Jsq+3H-cbrUna27RJ1o0w5MxaubkA9hcZjpWsaEYnx6bWQg@mail.gmail.com>
+References: <20190701104705.18271-1-narmstrong@baylibre.com> <20190701104705.18271-3-narmstrong@baylibre.com>
+In-Reply-To: <20190701104705.18271-3-narmstrong@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Wed, 3 Jul 2019 01:37:26 +0200
-Message-ID: <CAFBinCCaK5USb062tywd54y=6B0jTFsx1-k7NMfqvjmS7+5LgA@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: phy: add binding for the Lantiq VRX200
- and ARX300 PCIe PHYs
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        John Crispin <john@phrozen.org>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Hauke Mehrtens <hauke@hauke-m.de>,
-        Paul Burton <paul.burton@mips.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Martin Schiller <ms@dev.tdt.de>
+Date:   Wed, 3 Jul 2019 02:00:55 +0200
+Message-ID: <CAFBinCAT1JaK6ksD9OzCK_wEEWJdaZL2vLzGeCzVVbz9V67btQ@mail.gmail.com>
+Subject: Re: [RFC 02/11] dt-bindings: power: amlogic, meson-gx-pwrc: Add SM1 bindings
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     jbrunet@baylibre.com, khilman@baylibre.com,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+Hi Neil,
 
-On Wed, Jul 3, 2019 at 1:34 AM Rob Herring <robh+dt@kernel.org> wrote:
+On Mon, Jul 1, 2019 at 12:48 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
 [...]
-> > +  lantiq,rcu:
-> > +    maxItems: 1
-> > +    description: phandle to the RCU syscon
+> +General Purpose Power Controller
+> +--------------------------------
 >
-> You need to define the type (and drop maxItems):
->
-> $ref: /schemas/types.yaml#/definitions/phandle
-thank you for this hint - the examples I used didn't have it
+> +The Amlogic SM1 SoCs embeds a General Purpose Power Controller used
+> +to control the power domain for, at least, the USB PHYs and PCIe
+> +peripherals.
+AFAIK each binding document should only describe one IP block.
+this one seems to be new / different
 
-> > +
-> > +  lantiq,rcu-endian-offset:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: the offset of the endian registers for this PHY instance in the RCU syscon
-> > +
-> > +  lantiq,rcu-big-endian-mask:
-> > +    $ref: /schemas/types.yaml#/definitions/uint32
-> > +    description: the mask to set the PDI (PHY) registers for this PHY instance to big endian
-> > +
-> > +required:
-> > +  - "#phy-cells"
-> > +  - compatible
-> > +  - reg
-> > +  - clocks
-> > +  - clock-names
-> > +  - resets
-> > +  - reset-names
-> > +  - lantiq,rcu
-> > +  - lantiq,rcu-endian-offset
-> > +  - lantiq,rcu-big-endian-mask
-> > +
-> > +additionalProperties: false
-> > +
-> > +examples:
-> > +  - |
-> > +    pcie0_phy: phy@106800 {
-> > +        compatible = "lantiq,vrx200-pcie-phy";
-> > +        reg = <0x106800 0x100>;
-> > +        lantiq,rcu = <&rcu0>;
-> > +        lantiq,rcu-endian-offset = <0x4c>;
-> > +        lantiq,rcu-big-endian-mask = <0x80>; /* bit 7 */
-> > +        big-endian;
->
-> The example will fail to validate because big-endian is not listed as
-> a property and you have 'additionalProperties: false'. So you have to
-> either list big-endian or drop additionalProperties.
-good catch, thank you.
-I'll add big-endian and little-endian as allowed (but optional) properties
+should it get it's own file?
+also should it be a .yaml binding?
 
-> Note that the examples are validated against the schema in linux-next now.
-I tested this with yesterday's linux-next tree and it didn't fail for me
-do you have any hint how I can run this validation myself?
+> +
+> +Device Tree Bindings:
+> +---------------------
+> +
+> +Required properties:
+> +- compatible: should be one of the following :
+> +       - "amlogic,meson-sm1-pwrc" for the Meson SM1 SoCs
+> +- #power-domain-cells: should be 0
+> +- amlogic,hhi-sysctrl: phandle to the HHI sysctrl node
+> +
+> +Parent node should have the following properties :
+> +- compatible: "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd"
+> +- reg: base address and size of the AO system control register space.
+> +
+> +
+> +Example:
+> +-------
+> +
+> +ao_sysctrl: sys-ctrl@0 {
+> +       compatible = "amlogic,meson-gx-ao-sysctrl", "syscon", "simple-mfd";
+> +       reg =  <0x0 0x0 0x0 0x100>;
+> +
+> +       pwrc: power-controller {
+> +               compatible = "amlogic,meson-sm1-pwrc";
+> +               #power-domain-cells = <1>;
+> +               amlogic,hhi-sysctrl = <&hhi>;
+> +       };
+> +};
+I'm not sure that we want to mix HHI and AO power domains in one driver again
+back in March I asked a few questions about modelling the power
+domains and Kevin explained that we can implement them hierarchical:
+[0]
+unfortunately I didn't have the time to work on this - however, now
+that we implement a new driver: should we follow this hierarchical
+approach?
 
 
 Martin
+
+
+[0] http://lists.infradead.org/pipermail/linux-amlogic/2019-March/010512.html
