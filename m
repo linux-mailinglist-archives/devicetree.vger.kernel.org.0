@@ -2,89 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 823935E3E7
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:29:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3259B5E41E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:41:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726581AbfGCM3E convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 Jul 2019 08:29:04 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:46345 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726473AbfGCM3E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:29:04 -0400
-Received: by mail-ot1-f68.google.com with SMTP id z23so2096178ote.13;
-        Wed, 03 Jul 2019 05:29:03 -0700 (PDT)
+        id S1726305AbfGCMlj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 08:41:39 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:37648 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726656AbfGCMlj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:41:39 -0400
+Received: by mail-lf1-f65.google.com with SMTP id d11so1677184lfb.4
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 05:41:38 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Xy4atC47KUkhRxvml94Kq1gg6hZsMUYINS4fjvWdvCo=;
+        b=McGlDSOxEhWCKthKIE+gpLcPxbWgwKMrrLO60s7Qh4nwlG49H+YLqxceuhzil1otMt
+         K37j2Icrf10zt7CxCWNJi1UDiM+ejYhV1kb2j1jWfRnwY8u9S0O8PtNMWArTBz4Gxb7w
+         R6teFD8bDFWDPt5c9JoIKrYC48wvC/px85/MDRT+SA9nxDgoBNhSks7DE4FDo61vDmEL
+         V0gSZfi9DaWn1asSSQN0/4VhIQ83nmB9GVns7ibbxOSDedWet6lcvPkvFoETlRymLS1n
+         yo8SnuurCvS+8qYuBTeAx/GTnUFau/ttRSu97efdls7MS/OtVLUq/sefWcGcGf0dQr7l
+         yuZw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=pKHVWszZZEtGMfrkxlS6Mr1MOgzz8lcLJEA6ynRIBiw=;
-        b=ISUKMQp/IWzkdqGvB+v0kSGPMc1/abtK+hcQKd4A0LdbMmhJyAih0bqNE/Iucen+/Y
-         9dmisA1rmVtcErXef0GumYywzY/j7aMl02O3bzS7oD+weySnALhfgPwSVT1QgqVRmZAw
-         ERF/YyEmgCpJziXtFd6TrdljKvWeVwN2EilADeXr+SfFLB474mJOJ4LEEUeQ5FTJ3ZUG
-         lnSr0ppqNGyRQHbwyZ3TZ6rF6CogiwPRDWTW4TI9ZNFd4xZyLt2c+Gy/wTSsTNxqUXJ4
-         P2tq9gRAiS/lmc+qZ6JRuYpoAr7nrtrYu6oKr7z5HeYMqMrDgecxsOcIyUes3OGKMb73
-         4IJQ==
-X-Gm-Message-State: APjAAAX+U38DFu/hX4YuLTC7GH/MjF6kvdZMVgMepNCzKuOMShQz2h2k
-        47vQUxLtUycSMkWXdyensbnhB8vKWBGQVttA1p7BtSd7
-X-Google-Smtp-Source: APXvYqxfyGKRIQlSeSi4rdMAJk89SgbdTTUtOXFiMGg+V5s+74l/jRcvT8vNlzEoWGFUeChWyQOfxr8pJhQnQZp1WEY=
-X-Received: by 2002:a9d:704f:: with SMTP id x15mr8468680otj.297.1562156943524;
- Wed, 03 Jul 2019 05:29:03 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=Xy4atC47KUkhRxvml94Kq1gg6hZsMUYINS4fjvWdvCo=;
+        b=QpStgyxwYnb5YaA3LeTkMbcstF1Qkd2Jeq4g8jY8rNIcywrdEC6LvkwdxBm6/PJnlM
+         SSfSZP6cJJ6pe+SLcm/m3ocTW8+claP8yJ13W493p/VW9E4wZDeuI+I9AOPClWgtHf9V
+         sRx/76NlrKgAdCrZ9eiOEPEsnLo8/oFIX4CRRMboJUZJmpFFB6l/3+A6/DO2gYAefDZS
+         3qLYBulmcJ6sAyjRT5ev50ZoUzqvTlL7v8Tv2q78XxIr83/OZ1D1HMFyGKlz84RPb+nW
+         kKFiREHbp/gs2MNnPxpcmE8be9lKtPp7j5AEbhXwW6VR3jy8A6VQxp8jy4lVJ44kDPgJ
+         8MCg==
+X-Gm-Message-State: APjAAAXR3c9hg7RyzU1cpuk0h3gDFAvC6kWKwcpBiQFGFwUZyTndXfi1
+        sRi9tOwTLp0LOS2pb2j4jxsb4SxzUjONU1f8ITE/OZje
+X-Google-Smtp-Source: APXvYqxSZq8kK+Sf3ly/VpTa30WhTR81fi6H8aQwENAVhDZ+xbderjUjpKdryIIlUpIb+lO7f/hQ0SNAIZdSKuEFh/Q=
+X-Received: by 2002:a19:7616:: with SMTP id c22mr18395121lff.115.1562157697300;
+ Wed, 03 Jul 2019 05:41:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190703083514.32385-1-horms+renesas@verge.net.au> <20190703083514.32385-3-horms+renesas@verge.net.au>
-In-Reply-To: <20190703083514.32385-3-horms+renesas@verge.net.au>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 3 Jul 2019 14:28:51 +0200
-Message-ID: <CAMuHMdVgx9N0yeeei5qcg1yz2WEdDf0gQ6GcwUOAz7u09S_D4A@mail.gmail.com>
-Subject: Re: [PATCH v2 2/2] dt-bindings: usb: renesas_gen3: Rename bindings
- documentation file
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        USB list <linux-usb@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+References: <20190701152723.624-1-paweldembicki@gmail.com> <20190703085757.1027-1-paweldembicki@gmail.com>
+In-Reply-To: <20190703085757.1027-1-paweldembicki@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Wed, 3 Jul 2019 14:41:26 +0200
+Message-ID: <CACRpkdabQbVosWjD22E6pM8t3gu8c=5qNMEtRsp2HLV0PJ9nYg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] net: dsa: Change DT bindings for Vitesse VSC73xx switches
+To:     Pawel Dembicki <paweldembicki@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
+        netdev <netdev@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon,
+On Wed, Jul 3, 2019 at 10:58 AM Pawel Dembicki <paweldembicki@gmail.com> wrote:
 
-On Wed, Jul 3, 2019 at 10:35 AM Simon Horman <horms+renesas@verge.net.au> wrote:
-> For consistency with the naming of (most) other documentation files for DT
-> bindings for Renesas IP blocks rename the Renesas USB3.0 peripheral
-> documentation file from renesas-gen3.txt to renesas,usb3-peri.txt
+> This commit introduce how to use vsc73xx platform driver.
 >
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
->
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 > ---
-> v2
-> * Accumulate review tags
-> * Use renesas,usb3-peri.txt as new filename as suggested by Shimoda-san
+> Changes in v2:
+> - Drop -spi and -platform suffix
+> - Change commit message
 
-Unfortunately the previous version has already made it into usb-next
-23c46801d14cb647 dt-bindings: usb: renesas_gen3: Rename bindings
-documentation file
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yours,
+Linus Walleij
