@@ -2,139 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DCA765EDB5
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 22:36:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24E185EDC2
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 22:43:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727246AbfGCUgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 16:36:53 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:41355 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727239AbfGCUgx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 16:36:53 -0400
-Received: by mail-pf1-f194.google.com with SMTP id m30so1819389pff.8
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 13:36:52 -0700 (PDT)
+        id S1727004AbfGCUnF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 16:43:05 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:38959 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726902AbfGCUnF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 16:43:05 -0400
+Received: by mail-pl1-f196.google.com with SMTP id b7so1852102pls.6
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 13:43:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=rfHYB+lTiI64lxTRcrT8/UH1l7TT30GDFo4j4mMP0os=;
-        b=lzqeBcEuokgv9F+An1HdqVa1FTlpZRSoxJVcua0QQjegnNqpBg13lqdi5uQD9G4S1A
-         zzo2oYALjBRFRF6PsnkhuJjeEtqUHtc4uzNZKKitT/lsjVFmiwZrCIepl+bIri9ldgo/
-         kOhgUwfQa1yH/168NopNHSZYBWEp/1YkmWVUY=
+        bh=x4TV9OuGMH2IFAWRzYFxjVpyDgSmZpX4HKATzy9i5LE=;
+        b=NqpSXt2ai4FWgYUhx9YUIQd8vWtb3B9ByuyfiMWY/XFkaiWfCj1FBGxkAwtk1xNHNN
+         vgKEuCm1NC9cInuq+hL1kwDFHAL7pRfhG61zNFwnu36Z3oVL48mwQVXET+K0XU4M/2U4
+         MxeCSPy7BE3iLKqtqYOwH2ulvCTGQgY8QrwSQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rfHYB+lTiI64lxTRcrT8/UH1l7TT30GDFo4j4mMP0os=;
-        b=mBkfcH2UwiksvdkDdqzFe2e+1mBZi0K0xyS0qU0IscQFLDY0d13p5m5zzUqUpVVr3P
-         W2U7AeyGMjjFRZBJVrW7iYiNQt8rsiIVNK7P+xn6H4iuPJld4LeYoGkF1HWEt097EpVS
-         OCdu/izVvfRo2ReLUyL044sLjaKyxNuiJlKBxoKBxrzdd0qZGpeeosHuk+CWp0woEY8C
-         4QR70rnIXk0kDnE39NjZCziTFj4rO/4oQ3xypc126XIKMtaWbHgBsGNjaWWBq9ipFSgV
-         hO/Y37IflLN5opjYzfAQLIsPIMLYJq7dVYalynPqCKAdozR6kCD50FR5DJ89HiFUALSs
-         d13w==
-X-Gm-Message-State: APjAAAV66ic9qXNhbAtDJVGoAlM3ILsN3B0/DsgNNKxuB7Jn1KmJFlys
-        1qIM0YQqt8ip0xTHC5N2UgDg4Q==
-X-Google-Smtp-Source: APXvYqzQxQSIwg820yjADqUQOcipDJH4aw/rukCrBqhLYubTwlnkIxMpQhcr9BOdFoKBZowj+r6xTQ==
-X-Received: by 2002:a63:f817:: with SMTP id n23mr39418076pgh.35.1562186212565;
-        Wed, 03 Jul 2019 13:36:52 -0700 (PDT)
+        bh=x4TV9OuGMH2IFAWRzYFxjVpyDgSmZpX4HKATzy9i5LE=;
+        b=g/Zhsean+8WlJK8dYkxfgv5xcvY7DUxiajwb424mPF57hDWa+4AYdFkg1slTqgzjaV
+         Og1z/VihRCQme9hFhYkRebwsjopS4NUmsyFv9VH7cdm7ie7S82fLENS3F6qkKShWDc1Y
+         OVGsZhr6+oldA9Hd4R7SkIdLiKNPPHeeHTJy/xcc9iHmNDIQzlW1wnGJuGr2uKZo5/MJ
+         Nsg+4d2Jr9AA9HEKs4wsIX9b17DFJ04BkYFeyiXHYQfatiMNWOQ0udvAuvlKBRBJjwTw
+         NKj+QxEspC5ShceFANOI9zCRt1WLeuAKGUqViaAh/qCg41jnfdF3g/jPkzjrrpwwJzAq
+         FPEA==
+X-Gm-Message-State: APjAAAVe0fyCkXlmN1WDot57yNbicMNQtTNf+6C6gj9kdQJKZGc/k/p0
+        A+MEuSHgtB0+9n9IpxMslGO/Ew==
+X-Google-Smtp-Source: APXvYqykgvMApITkPMMhHzregOurly8+6C4wq2UcUc1VFL1/AiRc7obmDF5E4wOp3JP2p5uh8rmkmw==
+X-Received: by 2002:a17:902:9a06:: with SMTP id v6mr43660872plp.71.1562186584828;
+        Wed, 03 Jul 2019 13:43:04 -0700 (PDT)
 Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id u7sm3080371pgr.94.2019.07.03.13.36.51
+        by smtp.gmail.com with ESMTPSA id u7sm3086441pgr.94.2019.07.03.13.43.04
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 13:36:51 -0700 (PDT)
-Date:   Wed, 3 Jul 2019 13:36:50 -0700
+        Wed, 03 Jul 2019 13:43:04 -0700 (PDT)
+Date:   Wed, 3 Jul 2019 13:43:02 -0700
 From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
+To:     Andrew Lunn <andrew@lunn.ch>
 Cc:     "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
         Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v2 4/7] net: phy: realtek: Enable accessing RTL8211E
- extension pages
-Message-ID: <20190703203650.GF250418@google.com>
+Subject: Re: [PATCH v2 7/7] net: phy: realtek: configure RTL8211E LEDs
+Message-ID: <20190703204302.GG250418@google.com>
 References: <20190703193724.246854-1-mka@chromium.org>
- <20190703193724.246854-4-mka@chromium.org>
- <dd7a569b-41e4-5925-88fc-227e69c82f67@gmail.com>
+ <20190703193724.246854-7-mka@chromium.org>
+ <20190703201032.GG18473@lunn.ch>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <dd7a569b-41e4-5925-88fc-227e69c82f67@gmail.com>
+In-Reply-To: <20190703201032.GG18473@lunn.ch>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 03, 2019 at 10:12:12PM +0200, Heiner Kallweit wrote:
-> On 03.07.2019 21:37, Matthias Kaehlcke wrote:
-> > The RTL8211E has extension pages, which can be accessed after
-> > selecting a page through a custom method. Add a function to
-> > modify bits in a register of an extension page and a helper for
-> > selecting an ext page.
-> > 
-> > rtl8211e_modify_ext_paged() is inspired by its counterpart
-> > phy_modify_paged().
-> > 
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > Changes in v2:
-> > - assign .read/write_page handlers for RTL8211E
+On Wed, Jul 03, 2019 at 10:10:32PM +0200, Andrew Lunn wrote:
+> > +	for (i = 0; i < count; i++) {
+> > +		u32 val;
+> > +
+> > +		of_property_read_u32_index(dev->of_node,
+> > +					   "realtek,led-modes", i, &val);
 > 
-> Maybe this was planned, but it's not part of the patch.
+> Please validate the value, 0 - 7.
 
-Oops, it was definitely there when I tested ... I guess this got
-somehow lost when changing the patch order and resolving minor
-conflicts, seems like I only build tested after that :/
+ok, will be 0-7 and 0x10000 - 0x10007 (w/ RTL8211E_LINK_ACTIVITY) though.
 
-> > - use phy_select_page() and phy_restore_page(), get rid of
-> >   rtl8211e_restore_page()
-> > - s/rtl821e_select_ext_page/rtl8211e_select_ext_page/
-> > - updated commit message
-> > ---
-> >  drivers/net/phy/realtek.c | 42 +++++++++++++++++++++++++++++++++++++++
-> >  1 file changed, 42 insertions(+)
-> > 
-> > diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
-> > index eb815cbe1e72..9cd6241e2a6d 100644
-> > --- a/drivers/net/phy/realtek.c
-> > +++ b/drivers/net/phy/realtek.c
-> > @@ -27,6 +27,9 @@
-> >  #define RTL821x_EXT_PAGE_SELECT			0x1e
-> >  #define RTL821x_PAGE_SELECT			0x1f
-> >  
-> > +#define RTL8211E_EXT_PAGE			7
-> > +#define RTL8211E_EPAGSR				0x1e
-> > +
-> >  /* RTL8211E page 5 */
-> >  #define RTL8211E_EEE_LED_MODE1			0x05
-> >  #define RTL8211E_EEE_LED_MODE2			0x06
-> > @@ -58,6 +61,44 @@ static int rtl821x_write_page(struct phy_device *phydev, int page)
-> >  	return __phy_write(phydev, RTL821x_PAGE_SELECT, page);
-> >  }
-> >  
-> > +static int rtl8211e_select_ext_page(struct phy_device *phydev, int page)
-> > +{
-> > +	int ret, oldpage;
-> > +
-> > +	oldpage = phy_select_page(phydev, RTL8211E_EXT_PAGE);
-> > +	if (oldpage < 0)
-> > +		return oldpage;
-> > +
-> > +	ret = __phy_write(phydev, RTL8211E_EPAGSR, page);
-> > +	if (ret)
-> > +		return phy_restore_page(phydev, page, ret);
-> > +
-> > +	return 0;
-> > +}
-> > +
-> > +static int __maybe_unused rtl8211e_modify_ext_paged(struct phy_device *phydev,
-> > +				    int page, u32 regnum, u16 mask, u16 set)
-> 
-> This __maybe_unused isn't too nice as you use the function in a subsequent patch.
-
-It's needed to avoid a compiler warning (unless we don't care about
-that for an interim version), the attribute is removed again in the
-next patch.
+This is the somewhat quirky part about the property, each value
+translates to two registers. This seemed to be the cleanest solution
+from the bindings perspective, but I'm open to other suggestions.
