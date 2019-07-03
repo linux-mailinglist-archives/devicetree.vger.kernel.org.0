@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94CFE5E45F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:48:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABA235E45D
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:48:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727392AbfGCMr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 08:47:56 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:40439 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727390AbfGCMrz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:47:55 -0400
-Received: by mail-pl1-f193.google.com with SMTP id a93so1200622pla.7
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 05:47:55 -0700 (PDT)
+        id S1727407AbfGCMr7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 08:47:59 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:40446 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727406AbfGCMr6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:47:58 -0400
+Received: by mail-pl1-f196.google.com with SMTP id a93so1200691pla.7
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 05:47:58 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=hI0nEfm36NpLEPogdFHDHDsT1hordtZvfHDLvAQdCYI=;
-        b=dp5VZ3sFaT9aSMq0HxxYFlVDN1Kc11nXD87v1JPa7qF/gxmYUieo/xFu5AouIHiIqB
-         z8+iLQ2SDD7CLVY0XQ+p1DoQqWEuTiZxEhzOIlUqsjND9STaxqmYbOqMnvBJ7XCnnxXh
-         71uY/ia0i5OOHmyEOz5dfWmL39KBBCZ0qMLho=
+        bh=E66BJBj0lKscdTHg8FShQPxIXv/lJtWJWNrVUu1xJMU=;
+        b=cFs6VL7Eip5vd6GVRMF6w9dh3WpNqCCuUcJFLQ/wXyTN2v3gkf3M4w5Y26tBoYY4n0
+         OLBQ+tBKEyBOVVgz7hh1zm2aZ6yVKhuZSihzJUoEBDjKT5fnLdSSNev3x4gB0AwOU2H3
+         y2ByBCs/R4D0eyreMR6DxumQHomvywl0KgU4I=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=hI0nEfm36NpLEPogdFHDHDsT1hordtZvfHDLvAQdCYI=;
-        b=AyDMIcLzFvjKYfVVP4uSDx9W+/3HnlFIyG+j0gaNZICP1gf9kqC/+TOzLda/fHaut1
-         kBD93wWubJyzZr3ZRJ5zx6cy3YvvjnM0giH/5ZgkE6epnYCtCkJ8P0InZ1oqQNTG6IMM
-         XCh34j3n+KqpC6GKyz6FqOjQ0F1It+4+lMryKjkx07M1t3Cve6xk/+CaaYdQM/SDY6Qz
-         2AfKtLwMZuP6QKqwZCzrXYzTbxtuTqDksxwYFcG3QGK5bzzqf8Z9AsI86Eyu+3HjFbNv
-         NZsbZRLASP/wXKIAZ4a4kHz/hXWLomLzaOvPaVQ7IYnZLbQfjp9XrW3ww5H4pJSwODtQ
-         uIuA==
-X-Gm-Message-State: APjAAAUObpCkqOf930POWjXlowhv2OSxWQnz+bRMHYR0EjvyWBD9Hd7D
-        jKsskJhGgwlYskiTsETw2OQsTQ==
-X-Google-Smtp-Source: APXvYqxSHzyCsAGDvgKBSLSBujd9I3e+s204r6kCnwK0wzZNJ9m3GGYin9S61HnhmGSmcjvVtpjGdQ==
-X-Received: by 2002:a17:902:8b88:: with SMTP id ay8mr40974455plb.139.1562158074741;
-        Wed, 03 Jul 2019 05:47:54 -0700 (PDT)
+        bh=E66BJBj0lKscdTHg8FShQPxIXv/lJtWJWNrVUu1xJMU=;
+        b=BqppXtCuoZtrpeg70zFttMHkqchCWmOD7upjxvv8icn3ETQo3K8+HUX3U8RaAIrrq3
+         5FCVIgng1DkpH1VASPTBKjgcPCtdqGEK4JSuPxMtNf0vNdg+6khZy2+lFYYhsN/ftJMg
+         R+FnqF4NA4KlQj/JkkTCE5wc5RZ9EIKVORU7oPbDShpFjnbEQ0+N8X2u3mbnGtEdWiul
+         KYDd4INqh9cBj0t0ttc5Yo/xSLo/BVI32FonEJhT0be1BiE1QBrSgFPGFPeaRmEd84Eo
+         RVrK239shDrg5TjnXup0oFCreu7oFUFnNUcEGeoQAMRg3hDwMedT7yW5sCuaQNT9GtF1
+         FjrA==
+X-Gm-Message-State: APjAAAULLAYULO2Ihk6es0NpoNGLGyhdQkioDvJOHuxHzV05fW2JuPp6
+        IcJTC1e9+NrV3TaYxEGvu4BfnA==
+X-Google-Smtp-Source: APXvYqzMJkEPdNiqyC9uGCqfZ9XypYQFC276AVboo57ryVdTNUuX5YprAGGDnwlCqlrIfs0WrT1QqQ==
+X-Received: by 2002:a17:902:ba8e:: with SMTP id k14mr42156993pls.256.1562158077970;
+        Wed, 03 Jul 2019 05:47:57 -0700 (PDT)
 Received: from localhost.localdomain ([183.82.231.32])
-        by smtp.gmail.com with ESMTPSA id q1sm3735890pfn.178.2019.07.03.05.47.51
+        by smtp.gmail.com with ESMTPSA id q1sm3735890pfn.178.2019.07.03.05.47.54
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 05:47:54 -0700 (PDT)
+        Wed, 03 Jul 2019 05:47:57 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -49,9 +49,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 21/25] ARM: dts: axp209: Switch to use SPDX identifier
-Date:   Wed,  3 Jul 2019 18:16:05 +0530
-Message-Id: <20190703124609.21435-22-jagan@amarulasolutions.com>
+Subject: [PATCH 22/25] ARM: dts: axp223: Switch to use SPDX identifier
+Date:   Wed,  3 Jul 2019 18:16:06 +0530
+Message-Id: <20190703124609.21435-23-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 In-Reply-To: <20190703124609.21435-1-jagan@amarulasolutions.com>
 References: <20190703124609.21435-1-jagan@amarulasolutions.com>
@@ -63,7 +63,7 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Adopt the SPDX license identifier headers to ease license
-compliance management on axp209.dtsi.
+compliance management on axp223.dtsi.
 
 While the text specifies "of the GPL or the X11 license"
 but the actual license text matches the MIT license as
@@ -73,19 +73,19 @@ specified at [0]
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
- arch/arm/boot/dts/axp209.dtsi | 39 +----------------------------------
+ arch/arm/boot/dts/axp223.dtsi | 39 +----------------------------------
  1 file changed, 1 insertion(+), 38 deletions(-)
 
-diff --git a/arch/arm/boot/dts/axp209.dtsi b/arch/arm/boot/dts/axp209.dtsi
-index 0d9ff12bdf28..9e05606cafcf 100644
---- a/arch/arm/boot/dts/axp209.dtsi
-+++ b/arch/arm/boot/dts/axp209.dtsi
+diff --git a/arch/arm/boot/dts/axp223.dtsi b/arch/arm/boot/dts/axp223.dtsi
+index b91b6c1278c7..77e8e26f1314 100644
+--- a/arch/arm/boot/dts/axp223.dtsi
++++ b/arch/arm/boot/dts/axp223.dtsi
 @@ -1,45 +1,8 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
  /*
-  * Copyright 2015 Chen-Yu Tsai
+  * Copyright 2016 Free Electrons
   *
-  * Chen-Yu Tsai <wens@csie.org>
+  * Quentin Schulz <quentin.schulz@free-electrons.com>
 - *
 - * This file is dual-licensed: you can use it either under the terms
 - * of the GPL or the X11 license, at your option. Note that this dual
