@@ -2,143 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CDF95DA0F
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 03:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 83BE95DA75
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 03:11:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727066AbfGCBAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 21:00:32 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:44183 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726930AbfGCBAc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 21:00:32 -0400
-Received: by mail-ot1-f66.google.com with SMTP id b7so491875otl.11
-        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 18:00:31 -0700 (PDT)
+        id S1727192AbfGCBK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 21:10:56 -0400
+Received: from mail-pg1-f202.google.com ([209.85.215.202]:56457 "EHLO
+        mail-pg1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726329AbfGCBKZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 21:10:25 -0400
+Received: by mail-pg1-f202.google.com with SMTP id x13so482818pgk.23
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 18:10:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=IScLyBXmZGGQsg6YA+cbexUtHiw0BDkrJFGTmkdmngg=;
-        b=VMIxp3GShJJ/mN1EIIno9K4EiTWxB1WzC+kchDIN4KPW5q3pTD+fDKHqGZo9kBhNuy
-         A7+lCno6kZdyolLkrhb5pvcMnYSutsIw4wvIkklE0lyBWKABdN76U+bxj69/D/SARfhO
-         BHU7XxtoNJTW68uPJ9HQDugNLTeyhdhMvtwN8RQEnc15+Fzgq5LqCHzS/DTx9kzMWJPg
-         PkIGWFt81cEswUIJkjjJJR+8RmCHQUC2NeYaACpLQOndB7z6Z/qUc7VxUeIk4UQd0hO6
-         aIxBMk2KZP857aor8fXbHLusNcpXMYEleDIfcL4xTvGWxqXWf3oNBdxasNX2v3ZhB4Rv
-         /fGg==
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=+/NgGwFACy34LZMNgdF6kK1NINvGCtP2Z/MvjjI7Ew8=;
+        b=gD1H9ujuBDHYxyQRM/QxbAM3l52LJlazN/k0bex99R3tQl+EKLtZtPVAAE3Y7PRS83
+         so+dRF8C5h0z3U2iTRMh+m0UC9PJQGeEpO4BN2p1AG2qg08y9u8qsKrA3a473FdvYzDQ
+         9o+1ImEqm49Ba4/rIxrNfFQ5a6gQtJ+MHqIL+IhQBci2U/KwaQwea/xCfZC4wGCQLv/A
+         sJtLlgV5jRHx+WJoNEd5sJJvcr1P38owycNXEwhnHsiAUfil7US4V3sb0+0GfyeU08PO
+         rlOg/95z7CY5CPeeNzBD6+wNSiJc9qFlzW/OXrkzUe8es9PaWmzgRcmL1CeX1BeGeC4Z
+         mCug==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IScLyBXmZGGQsg6YA+cbexUtHiw0BDkrJFGTmkdmngg=;
-        b=T9V4MwYdahlmX4zkUfZ31uQnjuJQsEQXkTcJFbwgL5c5nfgWDDl4AxoY6HLZnvFqmD
-         kQB20rwndkE6sCEwc8UoKfePMGFkc1E2lIeUm3T8YVzVJBnccc3A2ObDm2U5TO8Gn/py
-         Pfio9/ipAdTn5s/ZCiM2ThgNadprurZ1IVZtYDsgfQQCTCEv10wA1iV3GYYIb0FNE6Ja
-         r4B6loYs7gGhUCx+Vrf6ld4XKgKT0rcwPUt1SouDMIIFDmEeg92qoa82e0INdsePOAsb
-         3tabSo289UO30ufYsG+Ae2pxY8r6HWx223xkA6hbnKOo4I68z+kmoVGv1buA2jcPfdtJ
-         60CA==
-X-Gm-Message-State: APjAAAXAQQorD8ILVI0GCf5xrBqPqzBjytLkkZyBTaXsoqUngNxw4hFr
-        MbCb09f8Jm10vR5Cp8BrSsu07ZCk+BhX5lMQ2/FXOQ==
-X-Google-Smtp-Source: APXvYqyPI6XRNaSODwAVCZ8Gc8HPl67W6T/qAFtS0xWcBeqdGKTuUhcBKnapNO9tkjp6ZTxN3P4uER5w6Q805SsZc4E=
-X-Received: by 2002:a9d:6d06:: with SMTP id o6mr22963590otp.225.1562115630968;
- Tue, 02 Jul 2019 18:00:30 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190702004811.136450-1-saravanak@google.com> <7900c670-5b3a-f950-dec9-70d98d94a84f@codeaurora.org>
-In-Reply-To: <7900c670-5b3a-f950-dec9-70d98d94a84f@codeaurora.org>
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=+/NgGwFACy34LZMNgdF6kK1NINvGCtP2Z/MvjjI7Ew8=;
+        b=t/fHSnz7YKzXrhumCgHUnxJSTylGRpZ/a1ngu4w0acND3xR3+/gqI5OdAqFB4/dd4B
+         V0CjReQMNxK94Tu/qqoeqv56ionSNmy9rx9CadYCUngto7YhgMgWarvml3vVv24ZfU97
+         YYM1RuI1IOu2ZApYALOmVKECUr4HWfmAqn+DAWOQEf4jsra5VMb13AP5y2UPhjKLoexB
+         +khfLT563xXRX3AMVD+4p1OYDPZNRzszVL5ZT2tyQSMv9YnwyKy46qD3AtXIaqznCKtY
+         QkB9gf5Y9+c1yZ3rT9nynNXywh5iFLLLqhchl0IfHtFDEJI8tX3PK3haWNH6SkYj4JsD
+         SLqA==
+X-Gm-Message-State: APjAAAXh0UIje72V7T2i44r0+DnK+ItKa5GnXEXQRfuJj2swn3QkOidX
+        +4pFX/qOefsrx1L1FfDv6NQh8hBeKYSyg8o=
+X-Google-Smtp-Source: APXvYqxjLAm5FeB4krGVnJ8xrlNX//iGRKhBSPNoeTp221sbsHnxh0Xh8hiTM1YF3feQVjQjV1Qr19ueNgCNDpo=
+X-Received: by 2002:a63:7c0e:: with SMTP id x14mr33166685pgc.65.1562116224469;
+ Tue, 02 Jul 2019 18:10:24 -0700 (PDT)
+Date:   Tue,  2 Jul 2019 18:10:14 -0700
+Message-Id: <20190703011020.151615-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
+Subject: [PATCH v3 0/6] Introduce Bandwidth OPPs for interconnect paths
 From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 2 Jul 2019 17:59:54 -0700
-Message-ID: <CAGETcx--+3BNjYZ6cgirNr_uZjU0464UHSUcaVHh_uTO2yWTCQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] Solve postboot supplier cleanup and optimize probe ordering
-To:     David Collins <collinsd@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc:     Saravana Kannan <saravanak@google.com>, vincent.guittot@linaro.org,
+        seansw@qti.qualcomm.com, daidavid1@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>, sibis@codeaurora.org,
+        bjorn.andersson@linaro.org, evgreen@chromium.org,
+        kernel-team@android.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 2, 2019 at 5:03 PM David Collins <collinsd@codeaurora.org> wrote:
->
-> Hello Saravana,
->
-> On 7/1/19 5:48 PM, Saravana Kannan wrote:
-> ...
-> > TODO:
-> > - For the case of consumer child sub-nodes being added by a parent
-> >   device after late_initcall_sync we might be able to address that by
-> >   recursively parsing all child nodes and adding all their suppliers as
-> >   suppliers of the parent node too. The parent probe will add the
-> >   children before its probe is completed and that will prevent the
-> >   supplier's sync_state from being executed before the children are
-> >   probed.
-> >
-> > But I'll write that part once I see how this series is received.
->
-> I don't think that this scheme will work in all cases.  It can also lead
-> to probing deadlock.
->
-> Here is an example:
->
-> Three DT devices (top level A with subnodes B and C):
-> /A
-> /A/B
-> /A/C
-> C is a consumer of B.
->
-> When device A is created, a search of its subnodes will find the link from
-> C to B.  Since device B hasn't been created yet, of_link_to_suppliers()
-> will fail and add A to the wait_for_suppliers list.  This will cause the
-> probe of A to fail with -EPROBE_DEFER (thanks to the check in
-> device_links_check_suppliers()).  As a result device B will not be created
-> and device A will never probe.
->
-> You could try to resolve this situation by detecting the cycle and *not*
-> adding A to the wait_for_suppliers list.  However, that would get us back
-> to the problem we had before.  A would be allowed to probe which would
-> then result in devices being added for B and C.  If the device for B is
-> added before C, then it would be allowed to immediately probe and
-> (assuming this all takes place after late_initcall_sync thanks to modules)
-> its sync_state() callback would be called since no consumer devices are
-> linked to B.
->
-> Please note that to change this example from theoretical to practical,
-> replace "A" with apps_rsc, "B" with pmi8998-rpmh-regulators, and "C" with
-> pm8998-rpmh-regulators in [1].
+Interconnects and interconnect paths quantify their performance levels in
+terms of bandwidth and not in terms of frequency. So similar to how we have
+frequency based OPP tables in DT and in the OPP framework, we need
+bandwidth OPP table support in the OPP framework and in DT. Since there can
+be more than one interconnect path used by a device, we also need a way to
+assign a bandwidth OPP table to an interconnect path.
 
-Interesting use case.
+This patch series:
+- Adds opp-peak-KBps and opp-avg-KBps properties to OPP DT bindings
+- Adds interconnect-opp-table property to interconnect DT bindings
+- Adds OPP helper functions for bandwidth OPP tables
+- Adds icc_get_opp_table() to get the OPP table for an interconnect path
 
-First, to clarify my TODO: I was initially thinking of the recursive
-"up-heritance" of suppliers from child to parent to handle cases where
-the supplier is a device from some other top level device (or its
-child). My thinking has evolved a bit on that. I think the parent
-needs to inherit only from it's immediate children and not its
-grandchildren (the child is responsible for handling grandchildren
-suppliers). I'll also have to make sure I don't try to create a link
-from a parent device to one of its child device nodes (should be easy
-to check).
+So with the DT bindings added in this patch series, the DT for a GPU
+that does bandwidth voting from GPU to Cache and GPU to DDR would look
+something like this:
 
-Anyway, going back to your case, for dependencies between child nodes
-of a parent, can't the parent just populate them in the right order?
-You can loop through the children and add them in multiple stages.
+gpu_cache_opp_table: gpu_cache_opp_table {
+	compatible = "operating-points-v2";
 
-I'll continue to think if I can come up with anything nicer on the
-drivers, but even if we can't come up with anything better, we can
-still make sync_state() work.
+	gpu_cache_3000: opp-3000 {
+		opp-peak-KBps = <3000>;
+		opp-avg-KBps = <1000>;
+	};
+	gpu_cache_6000: opp-6000 {
+		opp-peak-KBps = <6000>;
+		opp-avg-KBps = <2000>;
+	};
+	gpu_cache_9000: opp-9000 {
+		opp-peak-KBps = <9000>;
+		opp-avg-KBps = <9000>;
+	};
+};
+
+gpu_ddr_opp_table: gpu_ddr_opp_table {
+	compatible = "operating-points-v2";
+
+	gpu_ddr_1525: opp-1525 {
+		opp-peak-KBps = <1525>;
+		opp-avg-KBps = <452>;
+	};
+	gpu_ddr_3051: opp-3051 {
+		opp-peak-KBps = <3051>;
+		opp-avg-KBps = <915>;
+	};
+	gpu_ddr_7500: opp-7500 {
+		opp-peak-KBps = <7500>;
+		opp-avg-KBps = <3000>;
+	};
+};
+
+gpu_opp_table: gpu_opp_table {
+	compatible = "operating-points-v2";
+	opp-shared;
+
+	opp-200000000 {
+		opp-hz = /bits/ 64 <200000000>;
+	};
+	opp-400000000 {
+		opp-hz = /bits/ 64 <400000000>;
+	};
+};
+
+gpu@7864000 {
+	...
+	operating-points-v2 = <&gpu_opp_table>, <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>;
+	interconnects = <&mmnoc MASTER_GPU_1 &bimc SLAVE_SYSTEM_CACHE>,
+			<&mmnoc MASTER_GPU_1 &bimc SLAVE_DDR>;
+	interconnect-names = "gpu-cache", "gpu-mem";
+	interconnect-opp-table = <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>
+};
 
 Cheers,
 Saravana
 
->
-> Take care,
-> David
->
-> [1]
-> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sdm845-mtp.dts?h=v5.2-rc7#n55
->
-> --
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
+Saravana Kannan (6):
+  dt-bindings: opp: Introduce opp-peak-KBps and opp-avg-KBps bindings
+  OPP: Add support for bandwidth OPP tables
+  OPP: Add helper function for bandwidth OPP tables
+  OPP: Add API to find an OPP table from its DT node
+  dt-bindings: interconnect: Add interconnect-opp-table property
+  interconnect: Add OPP table support for interconnects
+
+ .../bindings/interconnect/interconnect.txt    |  8 ++
+ Documentation/devicetree/bindings/opp/opp.txt | 15 +++-
+ drivers/interconnect/core.c                   | 27 ++++++-
+ drivers/opp/core.c                            | 51 +++++++++++++
+ drivers/opp/of.c                              | 76 ++++++++++++++++---
+ drivers/opp/opp.h                             |  4 +-
+ include/linux/interconnect.h                  |  7 ++
+ include/linux/pm_opp.h                        | 26 +++++++
+ 8 files changed, 199 insertions(+), 15 deletions(-)
+
+-- 
+2.22.0.410.gd8fdbe21b5-goog
+
