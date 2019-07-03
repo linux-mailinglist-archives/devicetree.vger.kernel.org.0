@@ -2,141 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD6305DE0A
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 08:28:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3E875DE1E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 08:36:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726670AbfGCG2K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 02:28:10 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:51849 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726201AbfGCG2K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 02:28:10 -0400
-Received: by mail-wm1-f65.google.com with SMTP id 207so895728wma.1;
-        Tue, 02 Jul 2019 23:28:08 -0700 (PDT)
+        id S1727111AbfGCGgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 02:36:35 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:42300 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727032AbfGCGgf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 02:36:35 -0400
+Received: by mail-pl1-f196.google.com with SMTP id ay6so644082plb.9
+        for <devicetree@vger.kernel.org>; Tue, 02 Jul 2019 23:36:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=8eCCLmkLkeLDCE1a5Yy+pkPkgEz/If2djsBLUVl9QJY=;
-        b=fG8BhAz8rpQYJOJXA5V8a2gJRw28DhFgY3Psa6mrsFvwZGR6CTs4wcu+duQr9PUZ1b
-         1fp2XrkoaQVdrihUflkGjH61OlQWzrCfKToaVUOCr+GGgVuKvxBliXtP5U7AcmY2zQrc
-         Lne4KAP8plFJyOy00k7E7hH1AKViwLCpDBkSc/LHT9W4VlPbc8C5ft6Xfw7Xyf1CuJpb
-         MoW6PjhgtrCI0b6gtdMkTE4xIWeQCaGpJJxi97JxTdsXNKWuFCv+SuxKJ1OnA+5uAG45
-         cC+U99NQXlHlClM71PsZWDq6NXd6SdjFTKkA1UxYG0/DF9R2psTPqwkbfoikmALWuHoI
-         ohgA==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=2mLMfQ4nvAKGOVEbA2uhHQT7JEZMjE5/snh70yqtuzY=;
+        b=Bvu8UZRFuBAAR4SgwLLN2JKKgPvnC9BWAueAeKYJVn6aGQZ8u7BOAgd81xdeRHUo+F
+         htQmElWKQHk0jGUA3Op5+r1V7U/d76LuZgUJn7nl878FPvbt9mNc6yd/QoNDV+qkew3H
+         H07uBJoEfdcf8T6XUoPC9wov/lnQdAZBS4tfJIWIcRN51KZPxWP4VfSRtDl97e1ObDVl
+         fjOSWJCoyuunHJlK2EqLJcI/NrsIFSz/4zYGB3b4VAomuwA5WWRMOFZdaqN/Uv8iINlj
+         T9H2Sm6u2lQMPIyFiIezClthfneLAvigb0HFApzTdDSqpvKb4nH8yhM1mgQ4dwxBJDwz
+         I5Og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=8eCCLmkLkeLDCE1a5Yy+pkPkgEz/If2djsBLUVl9QJY=;
-        b=kzv5hgemOY+474FMxAkTMfY41+ed7LdM9INrsJ0OYsiLEPqQr9SzwQ4LjtFKxwDoWz
-         IkHzPdfO1G5eIbvlWR2DXR5N3oWCEWdzFcbPBjRrYgLz2JNOyQekrIt7/XQqNM0EWOvj
-         j92XiWASwHBfMnevm4FynLxGgx10n0wIuoqnncxJ4HqfV/Tl4fghOHgmFRYiGDFjiZ97
-         RH8GU2JUTXlKEd0oyVpDtZQkeqce6rZ0ky07MH6xx6B+igPsej4b+0Rsw9CMKOoph3sa
-         Zk6Q+yT7udW0YWyiQCjIcOTqgK5PBuYPL4NWVMn+fjC67IKJxd0flktY1H8ZhecMbhVl
-         qSvg==
-X-Gm-Message-State: APjAAAWOocxl92EAyJFwHl/L384dUj+wpPWOsdF70yKsegox2sRdsATA
-        T07edWHC442ErAqVeFR01pX6dIcNQ2mXVSgVDGE=
-X-Google-Smtp-Source: APXvYqx802GCX61Rc7Neoi0DifztLFTBp2UudWaw5hHr7BOqJW/VmA8zZ/yFboZfaa3BWsIrlQi+SX8f4OGEhsRcTQg=
-X-Received: by 2002:a1c:96c7:: with SMTP id y190mr5812991wmd.87.1562135288232;
- Tue, 02 Jul 2019 23:28:08 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190702132353.18632-1-andradanciu1997@gmail.com>
-In-Reply-To: <20190702132353.18632-1-andradanciu1997@gmail.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Wed, 3 Jul 2019 09:27:56 +0300
-Message-ID: <CAEnQRZDO4FzsC-MZGsxd=7dxSc0dRGcMjWW-W9T2TF7C1iD9NA@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: imx8mq: Add sai3 and sai6 nodes
-To:     Andra Danciu <andradanciu1997@gmail.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=2mLMfQ4nvAKGOVEbA2uhHQT7JEZMjE5/snh70yqtuzY=;
+        b=nPLxFsPZg0rGea/lOvazZlUlurOQWZ2ix7jyjbtfM2CyHomtXDYa2Dw373CNVDFvlz
+         xZxsm57D2a3Jt18IZpKuVyLJSfSu0MB3yV89fstpJnfHqADwYPF87YV1nUgI3i6ptlqn
+         vwIo9h8K2Gx32cAXoNB2ajo+XvA9a7/oneGhCuAptLIPCJm+ZwRF+9H4BppRD1LkFlIR
+         8xWCMQg+MALE8KwP5lpjepobi0/8c96z97LsjxwOKzxuEoFVdoQab2Vmo8Gl+XxtFa0u
+         /NjqD6BuBjjIsuEVNMR3Zx749RcyQxQ8HU8e9MIr6+Qwr8EjY3YFQ8a8WzZ8O3SL2tMb
+         XITQ==
+X-Gm-Message-State: APjAAAV2RBMVrt4HQvLUbDzXqcNd+H9OkF9YLFFc7TmpYAdNG3M+VNzE
+        sb8qGrrZlyjfjtHHCwMnyqlXcQ==
+X-Google-Smtp-Source: APXvYqwpA64nFtKGwqnu2eFe0F3WBDW99irwxsCQNcCbw7Vli1g91dpgBBCSJqTtLsaS2ZkP/a14NQ==
+X-Received: by 2002:a17:902:7793:: with SMTP id o19mr40000598pll.110.1562135794873;
+        Tue, 02 Jul 2019 23:36:34 -0700 (PDT)
+Received: from localhost ([122.172.21.205])
+        by smtp.gmail.com with ESMTPSA id 137sm2105787pfz.112.2019.07.02.23.36.33
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Jul 2019 23:36:34 -0700 (PDT)
+Date:   Wed, 3 Jul 2019 12:06:32 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>, andrew.smirnov@gmail.com,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Carlo Caione <ccaione@baylibre.com>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        sibis@codeaurora.org, bjorn.andersson@linaro.org,
+        evgreen@chromium.org, kernel-team@android.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] Introduce Bandwidth OPPs for interconnect paths
+Message-ID: <20190703063632.hl2lipcoeehplyxq@vireshk-i7>
+References: <20190703011020.151615-1-saravanak@google.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190703011020.151615-1-saravanak@google.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 2, 2019 at 4:25 PM Andra Danciu <andradanciu1997@gmail.com> wrote:
->
-> SAI3 and SAI6 nodes are used to connect to an external codec.
-> They have 1 Tx and 1 Rx dataline.
->
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
+On 02-07-19, 18:10, Saravana Kannan wrote:
+> Interconnects and interconnect paths quantify their performance levels in
+> terms of bandwidth and not in terms of frequency. So similar to how we have
+> frequency based OPP tables in DT and in the OPP framework, we need
+> bandwidth OPP table support in the OPP framework and in DT. Since there can
+> be more than one interconnect path used by a device, we also need a way to
+> assign a bandwidth OPP table to an interconnect path.
+> 
+> This patch series:
+> - Adds opp-peak-KBps and opp-avg-KBps properties to OPP DT bindings
+> - Adds interconnect-opp-table property to interconnect DT bindings
+> - Adds OPP helper functions for bandwidth OPP tables
+> - Adds icc_get_opp_table() to get the OPP table for an interconnect path
+> 
+> So with the DT bindings added in this patch series, the DT for a GPU
+> that does bandwidth voting from GPU to Cache and GPU to DDR would look
+> something like this:
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+And what changed since V2 ?
 
-> ---
-> Changes since v2:
->         - removed multiple new lines
->
-> Changes since v1:
->         - Added sai3 node because we need it to enable audio on pico-pi-8m
->         - Added commit description
->
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 29 +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index d09b808eff87..736cf81b695e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -278,6 +278,20 @@
->                         #size-cells = <1>;
->                         ranges = <0x30000000 0x30000000 0x400000>;
->
-> +                       sai6: sai@30030000 {
-> +                               compatible = "fsl,imx8mq-sai",
-> +                                       "fsl,imx6sx-sai";
-> +                               reg = <0x30030000 0x10000>;
-> +                               interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-> +                               clocks = <&clk IMX8MQ_CLK_SAI6_IPG>,
-> +                                       <&clk IMX8MQ_CLK_SAI6_ROOT>,
-> +                                       <&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
-> +                               clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> +                               dmas = <&sdma2 4 24 0>, <&sdma2 5 24 0>;
-> +                               dma-names = "rx", "tx";
-> +                               status = "disabled";
-> +                       };
-> +
->                         gpio1: gpio@30200000 {
->                                 compatible = "fsl,imx8mq-gpio", "fsl,imx35-gpio";
->                                 reg = <0x30200000 0x10000>;
-> @@ -728,6 +742,21 @@
->                                 status = "disabled";
->                         };
->
-> +                       sai3: sai@308c0000 {
-> +                               compatible = "fsl,imx8mq-sai",
-> +                                            "fsl,imx6sx-sai";
-> +                               reg = <0x308c0000 0x10000>;
-> +                               interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
-> +                               clocks = <&clk IMX8MQ_CLK_SAI3_IPG>,
-> +                                       <&clk IMX8MQ_CLK_DUMMY>,
-> +                                       <&clk IMX8MQ_CLK_SAI3_ROOT>,
-> +                                       <&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
-> +                               clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> +                               dmas = <&sdma1 12 24 0>, <&sdma1 13 24 0>;
-> +                               dma-names = "rx", "tx";
-> +                               status = "disabled";
-> +                       };
-> +
->                         i2c1: i2c@30a20000 {
->                                 compatible = "fsl,imx8mq-i2c", "fsl,imx21-i2c";
->                                 reg = <0x30a20000 0x10000>;
-> --
-> 2.11.0
->
+-- 
+viresh
