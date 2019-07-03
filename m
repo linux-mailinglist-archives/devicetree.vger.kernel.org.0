@@ -2,102 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B78295E038
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 10:51:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05E815E05E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 10:58:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727121AbfGCIvh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 04:51:37 -0400
-Received: from mout.gmx.net ([212.227.15.18]:46665 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726400AbfGCIvh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Jul 2019 04:51:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1562143879;
-        bh=9PB186LEloBouYC1p2ldmUewg113AS/sk7TTgnQz8eE=;
-        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=GP5yP5IwXwZWTpXfe8SA3N/3zIgAF+n+xBPjg9pP/80VsehK5SJFrQkblA+mcm8DL
-         sUdghrvHHHWKKaCfmCJ0D3UG6/YDOjOQpxkP1ZLW5p34Vlg8nDHz2GbATIjAq4iZnF
-         HMkkGm05EwVq93gDCm9rVb23E/04+chH5Y0S9mZk=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.158.204] ([217.61.158.204]) by web-mail.gmx.net
- (3c-app-gmx-bs07.server.lan [172.19.170.56]) (via HTTP); Wed, 3 Jul 2019
- 10:51:18 +0200
+        id S1727198AbfGCI6T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 04:58:19 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:32985 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726400AbfGCI6T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 04:58:19 -0400
+Received: by mail-lf1-f68.google.com with SMTP id y17so1218959lfe.0;
+        Wed, 03 Jul 2019 01:58:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=2mMVMreh3hJKLJhjIAM6H3oxpyFnkoyLmzafE6hiSIY=;
+        b=UXws+LNoc7XAqzFvu2ppbTf8wVcwsxHXrk3Ud4xWb0tXIqA2dh9Wp/KRTsplhNpRra
+         3WSW3yODUK1V9ndVDC9S0J6MBtc1GPi5ahtLaAYAKhDtboQW6norrPX3/3ptnODRgxVb
+         1RENdrzUS8xvpaQs/4AXCXevjmtWNfMSJK4dN0PGACa+e8x7JenM0wNjajQBSSJLkly8
+         ++qulESU0o8WGAvfC1i5XM+oHspsEodECy/e+RLr+JdzCnGgF8FIs5VeUZsW39sMEx5/
+         Th1TPtOXN5SlEdR9r1eoGlOSD+b/u0ImwZZvIrvIp7D2UrC2YP1PjNf/6DJLIvxmngBS
+         39iQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=2mMVMreh3hJKLJhjIAM6H3oxpyFnkoyLmzafE6hiSIY=;
+        b=CVjy36jew3MVJPqq+6DzSoscckJeYorTFczHqSpDc4D6Zn2WWJUAAaAkroo97RS27O
+         9yTqoCkeOvJjNB4ELHJ1BUIifM/RqmTYK/wWc5jD9NfGHvniYQsdNHNQ3nlYQ3FlkVKc
+         bSTRVn0KM1lx8Z2EPCrZTbAwwOpckfCHnoh8r1pdCHSvraW6+vlBTDQuwq3E5+RFAAzC
+         f7PQnTctjZpqrFS667krlmH85MgkAy6q0w1k5fFEHi5hD42RYyyEvzdtZhL5DDF2AX47
+         XZlKAWzNZJeQ/vFvYb36RgIsg3E3SYI2KflHYSyXDSCX6t7WBiQS/CV8oQutPCraRjZ7
+         5lUQ==
+X-Gm-Message-State: APjAAAWZuD9+HJs52Fm8Sd0uPCY3wy0MXd+spw3Gv7uI6zOhLMQbO1Lk
+        BcSiG5LGA5kvDVWTl8jKHp4=
+X-Google-Smtp-Source: APXvYqzBE5JWkQEYewzfdunGupYNiyEuR9qo8QLMdsdBwvBsO19vdVFSYv3J+rTIfOgB9HV+S9xlKg==
+X-Received: by 2002:a19:80c4:: with SMTP id b187mr2931361lfd.122.1562144297227;
+        Wed, 03 Jul 2019 01:58:17 -0700 (PDT)
+Received: from krolik-desktop.lan ([91.238.216.6])
+        by smtp.gmail.com with ESMTPSA id p76sm348625ljb.49.2019.07.03.01.58.15
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 03 Jul 2019 01:58:16 -0700 (PDT)
+From:   Pawel Dembicki <paweldembicki@gmail.com>
+Cc:     paweldembicki@gmail.com, linus.walleij@linaro.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 1/4] net: dsa: Change DT bindings for Vitesse VSC73xx switches
+Date:   Wed,  3 Jul 2019 10:57:56 +0200
+Message-Id: <20190703085757.1027-1-paweldembicki@gmail.com>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190701152723.624-1-paweldembicki@gmail.com>
+References: <20190701152723.624-1-paweldembicki@gmail.com>
 MIME-Version: 1.0
-Message-ID: <trinity-ca99ab22-eda4-42dd-b6eb-8e4bb5c99165-1562143878858@3c-app-gmx-bs07>
-From:   "Frank Wunderlich" <frank-w@public-files.de>
-To:     "Matthias Brugger" <matthias.bgg@gmail.com>
-Cc:     "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        "Josef Friedl" <josef.friedl@speed.at>,
-        "Sean Wang" <sean.wang@mediatek.com>,
-        "Ryder Lee" <ryder.lee@mediatek.com>
-Subject: Aw: Re: [PATCH 3/3] add driver and MAINTAINERS for poweroff
-Content-Type: text/plain; charset=UTF-8
-Date:   Wed, 3 Jul 2019 10:51:18 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <c1358da0-60a4-49dd-71a8-77e90178c9c9@gmail.com>
-References: <20190702094045.3652-1-frank-w@public-files.de>
- <20190702094045.3652-4-frank-w@public-files.de>
- <c1358da0-60a4-49dd-71a8-77e90178c9c9@gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:JPZTCh1ZfJHpWzb5eYAk5s1kOodanJvlOtH0JoIL8Th5cL5eBNXN53MDJZG4Tiea1rQbA
- ZPZUQ2sgDFECxxKapNnBOheINb976QRPW6Wr+OzxgmAp/lN91irS9iqxWTnAZKTjmXV12PyN+sy4
- NbqHa0eaADVQOZFLcZBw3UAFT3quKZoGm9gT5BJ8AnNIp6Q2+Xhtg56dlrva6jfmPpBj/aPTgVlv
- qN998m7tH0wsHPJGQ0k3O8vu3SoNVkokqEOBJ0FoektvVCYGUVcdxc8BFFzZ+UHMiman3Qxnb3Kr
- 1I=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:1DICHQPpQTI=:A+NaXAfFhjiJt8kS1grdXD
- I8q+xw9r5eK5Hs0XxMcq9YAmZoEbhl5ngXLZirqdMYPNCsnaKMeVeOGCf9SfEUioYjkiIUQZB
- TiTU8Tw6t6rLww2mYVN1zH/UGj6ISVUDdFgBQzicUwLNh7UP13UCGyLB+vaa+JHKeyjJhppkh
- BOkc62et0yP0yk/E6tM1TaT+Q8NjGJhKTNSJ4AR2VqJJKLaFVhE/S5qmusGjjOrn7imr1sP2J
- YWSqbIRWftYdT90MSZWM/nf5wB0aEcYxrwElx37L5KD4b1WAMyQSQCHqKYDuqkDnO6nhM4tzb
- VnWUJ/TP7MdswuWgS3pfMJr5XBXJkMnvTgVk0LTfAtgRqeIz2VeNu6nQ/ixPwXb91Wj7ozvzq
- yFfBYU/ahOjjVvEO01PVk+8Mkmf//BE6fUQMqH98N5YHiAXJiP9SzCkZ1r7FFSAa6+hJC3nJs
- pr6O7q1FU1E5qaHAM6+fUin6y8Ub+D5hgJ4C7Mhe7dAnun5Ww3Kx9D39Vl4lk6sFiVxJbDO1j
- SFZGpLKXUGusvNivSBCQDEA6xIf6PV3Cx3dTQdyTIE5iXnp/dPMTYDFgVmWmyZNl89b1elkg9
- sbM2p9+6MwlcJiHH4VvESL7N3bbu3YQlskn0BljRWyD9FjsUmDrJRvl1abkbvjegDrIJ3Ue/u
- BODs=
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mathias
+This commit introduce how to use vsc73xx platform driver.
 
-thank you for first look on this. Patchseries is originally from Josef Fri=
-edl i got some time ago for getting poweroff working on bananapi r2. There=
- it works and maybe on another devices too.
+Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+---
+Changes in v2:
+- Drop -spi and -platform suffix
+- Change commit message
 
-drivers/rtc/rtc-mt6397.c and drivers/rtc/rtc-mt7622.c look very differentl=
-y on a diff (you've commented in part 1/3)
+ .../bindings/net/dsa/vitesse,vsc73xx.txt      | 57 +++++++++++++++++--
+ 1 file changed, 53 insertions(+), 4 deletions(-)
 
-maybe code is compatible but i have not the knowledge to compare this...ma=
-ybe sean (sorry, that i missed you) or ryder can say a word about the comp=
-atibility.
+diff --git a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt
+index ed4710c40641..c55e0148657d 100644
+--- a/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt
++++ b/Documentation/devicetree/bindings/net/dsa/vitesse,vsc73xx.txt
+@@ -2,8 +2,8 @@ Vitesse VSC73xx Switches
+ ========================
+ 
+ This defines device tree bindings for the Vitesse VSC73xx switch chips.
+-The Vitesse company has been acquired by Microsemi and Microsemi in turn
+-acquired by Microchip but retains this vendor branding.
++The Vitesse company has been acquired by Microsemi and Microsemi has
++been acquired Microchip but retains this vendor branding.
+ 
+ The currently supported switch chips are:
+ Vitesse VSC7385 SparX-G5 5+1-port Integrated Gigabit Ethernet Switch
+@@ -11,8 +11,13 @@ Vitesse VSC7388 SparX-G8 8-port Integrated Gigabit Ethernet Switch
+ Vitesse VSC7395 SparX-G5e 5+1-port Integrated Gigabit Ethernet Switch
+ Vitesse VSC7398 SparX-G8e 8-port Integrated Gigabit Ethernet Switch
+ 
+-The device tree node is an SPI device so it must reside inside a SPI bus
+-device tree node, see spi/spi-bus.txt
++This switch could have two different management interface.
++
++If SPI interface is used, the device tree node is an SPI device so it must
++reside inside a SPI bus device tree node, see spi/spi-bus.txt
++
++If Platform driver is used, the device tree node is an platform device so it
++must reside inside a platform bus device tree node.
+ 
+ Required properties:
+ 
+@@ -38,6 +43,7 @@ and subnodes of DSA switches.
+ 
+ Examples:
+ 
++SPI:
+ switch@0 {
+ 	compatible = "vitesse,vsc7395";
+ 	reg = <0>;
+@@ -79,3 +85,46 @@ switch@0 {
+ 		};
+ 	};
+ };
++
++Platform:
++switch@2,0 {
++	#address-cells = <1>;
++	#size-cells = <1>;
++	compatible = "vitesse,vsc7385";
++	reg = <0x2 0x0 0x20000>;
++	reset-gpios = <&gpio0 12 GPIO_ACTIVE_LOW>;
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			label = "lan1";
++		};
++		port@1 {
++			reg = <1>;
++			label = "lan2";
++		};
++		port@2 {
++			reg = <2>;
++			label = "lan3";
++		};
++		port@3 {
++			reg = <3>;
++			label = "lan4";
++		};
++		vsc: port@6 {
++			reg = <6>;
++			label = "cpu";
++			ethernet = <&enet0>;
++			phy-mode = "rgmii";
++			fixed-link {
++				speed = <1000>;
++				full-duplex;
++				pause;
++			};
++		};
++	};
++
++};
+-- 
+2.20.1
 
-> Fix the commit message. MAINTAINERS get normally send a independent patc=
-h.
-> Split patches between RTC and PWRC.
-> If not a new patch it should be stated in the commit message at least.
-
-i will try to split this
-
-> > + * Author: Tianping.Fang <tianping.fang@mediatek.com>
-> > + *        Sean Wang <sean.wang@mediatek.com>
->
-> You are the author of this file, aren't you?
-
-no, afaik these is code taken from rtc-mt6397.c and put in a separate head=
-er-file to use it in multiple c-files.
-
-sidenote on encoding/word-wrap. i use only "git sendemail" which afaik cal=
-ls sendmail (no other mta like thunderbird or similar) on ubuntu 18.4....c=
-urently have no idea how to fix this...have searched before, but not yet f=
-ound anything. if you have an idea please give me a hint.
-
-regards Frank
