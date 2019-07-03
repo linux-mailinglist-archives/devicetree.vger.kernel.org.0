@@ -2,121 +2,242 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A23E75EF9A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 01:23:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D53855EFB4
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 01:41:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727378AbfGCXXe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 19:23:34 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:33906 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726562AbfGCXXe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 19:23:34 -0400
-Received: by mail-pg1-f195.google.com with SMTP id p10so1967928pgn.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 16:23:34 -0700 (PDT)
+        id S1727021AbfGCXlE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 19:41:04 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:44129 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727398AbfGCXlE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 19:41:04 -0400
+Received: by mail-pf1-f196.google.com with SMTP id t16so1997910pfe.11
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 16:41:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=XN3qgR1tVFK8sR9o1ybEyQRnUeXtfxfXh+O+zHL4/+Y=;
-        b=NzaNPXi+YZBGhIbIgIUZaTohxouzyDY7kLRqaDb4+9gt2fecCZ8L3hIKaY4vXMfsYQ
-         FxCmxwlE32iIfosrg9EOn5v5GkBgijUn24kBLYBMZN08ljM7nepXFEurCwjzALS56CR9
-         U5pBPaqa6xQnuBxvVQwfk/PA1nRUA3Q34yqUo=
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=cVKYoZ7M1neTWMWNkSfarm1kLLkAZh2a4u3Pqo3SzOU=;
+        b=OWhUfNT+x+l9tKNcHcOr8kuP2qdhGyE+B0e411zUg/nxqHy1v3vbklBPjWBIPWd1+X
+         lw5aHflM74n2xt/OAAiQhlNPGrSQVQRa+4MjJybCNy2xt94ieU8axV/bh19o4WGfWzwW
+         bc7SeBseK2dfjfJAMouw6pY81wBVOyVQijUmOr6rIyxetCcz2tD+r9Vrdt1IxtPYRepK
+         Nbi/7inGd9MhBPjN3BDpD4xzbLxIX311D6atZ8neX7oEcRDtH4k/c+3mNfaUqCqIHwqh
+         gffewpeSSQuFiFnvGzd3H0SEAPr2VegAZ8NlEv0Yl6KNzakq7kQ12TioJjvvu6bdkP5c
+         sjAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XN3qgR1tVFK8sR9o1ybEyQRnUeXtfxfXh+O+zHL4/+Y=;
-        b=SA3Smc5/vAx6aYnqQiHdX5RF49WepKefRJlMvVZseTnzJKYBTN6ZJ42ZAV5LAwGtpm
-         4TnocAzub/4Dmm0GdIkKRccfEpFEF8ZZQo8WVznFxilRfkmwibxAhBpKe+co575j2Gdw
-         o02bbR1MsRgw1zPtZygggvBjK6gKf8Ox7n7TZLaC0ng4vp2mVYlf1QSnzdhqAVQzP3m9
-         cz3Um8/c3QQk6/imGagKKTW5RsiYv9sbE6wBOp4FQC7Arr5etNo80susC4HqLSsvMgzq
-         siXN2kk9E0Z6MrWHLM2cSgzVjCWtsNTh6fLpHAm28DXq/ORBaCuTeuY+qJSUntQ1m9Zc
-         50Sw==
-X-Gm-Message-State: APjAAAX+A/kn3/itjd+drjT8PXsPg6c5iJgwG74vDJIrJTVsjo8Hs+8x
-        uT05GGG0xL1yGuiE1maZBFEDnA==
-X-Google-Smtp-Source: APXvYqx7unjhBypVqBgNvPTq6zAIlWKbNq6OlF0jySSP96LUGqlwwpVzJOnU2WwDUiZnU1HtSWbhLA==
-X-Received: by 2002:a63:5107:: with SMTP id f7mr25033521pgb.266.1562196214038;
-        Wed, 03 Jul 2019 16:23:34 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id v22sm5837535pgk.69.2019.07.03.16.23.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 16:23:33 -0700 (PDT)
-Date:   Wed, 3 Jul 2019 16:23:31 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Florian Fainelli <f.fainelli@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v2 6/7] dt-bindings: net: realtek: Add property to
- configure LED mode
-Message-ID: <20190703232331.GL250418@google.com>
-References: <20190703193724.246854-1-mka@chromium.org>
- <20190703193724.246854-6-mka@chromium.org>
- <e8fe7baf-e4e0-c713-7b93-07a3859c33c6@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=cVKYoZ7M1neTWMWNkSfarm1kLLkAZh2a4u3Pqo3SzOU=;
+        b=Uv0lxmMsPXsxcZ95u7DhS+9VSpKZ7tkusVtsa2wcAHYltkA1tgFRSKJMi9a+h9Nl1P
+         M0X1aXODJ1K4MU56yB7haFRwUgOXUE5oVeuTyJt6lyA/u9vlkfrpBUtb+GkEuZyO2YiE
+         IcINHPdIbx0Gom32w4CNb/HZTh7xo3RdeFvTil+O0ur1B+6oouUcpQ5qeQPTyQUBe+ot
+         dVVJ3sDS401uzF1LnH7gdusw8/vl20BYgeS7He+ij5UeMLL5GkV9ZtXhmdQLsOW0aW2K
+         anwQ0kz6itig88RePm0bt8imXxlL9g4VZ/kUUvzTjUTadsmUjnAAD2oREvAWXEshfcG6
+         0vjg==
+X-Gm-Message-State: APjAAAXsRqmUooa5SdwtwCh1kV3dtZKxUI0/dAJIl8Om1QM/IPDqV56n
+        8fTXlqgU5kLlF7/u2OWtH2ShURLIGRnIe+Ari7V3bA==
+X-Google-Smtp-Source: APXvYqwXB8g3qJfj0dB5mvs+S7ESPDvYCMhtPXvQDa6QHJcnwrHQejsvEjyf5gqWIAbwtcABAn5rOnSpZi2/GaX3pAc=
+X-Received: by 2002:a63:b919:: with SMTP id z25mr39509300pge.201.1562197262480;
+ Wed, 03 Jul 2019 16:41:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <e8fe7baf-e4e0-c713-7b93-07a3859c33c6@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190617082613.109131-1-brendanhiggins@google.com>
+ <10feac3e-7621-65e5-fbf0-9c63fcbe09c9@gmail.com> <69809117-dcda-160a-ee0a-d1d3b4c5cd8a@kernel.org>
+ <20190621181342.GA17166@mit.edu> <6f3f5184-d14e-1b46-17f1-391ee67e699c@kernel.org>
+ <CAFd5g46W1u+6JKLW0WX9uicK5utvJe9tvq4YBsCkghuo0rCmng@mail.gmail.com>
+In-Reply-To: <CAFd5g46W1u+6JKLW0WX9uicK5utvJe9tvq4YBsCkghuo0rCmng@mail.gmail.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Wed, 3 Jul 2019 16:40:50 -0700
+Message-ID: <CAFd5g4515jAOzEtiZfXP0d6YUgOxOZCknw0Nd-2wsY=mPFdGqg@mail.gmail.com>
+Subject: Re: [PATCH v5 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+To:     shuah <shuah@kernel.org>
+Cc:     "Theodore Ts'o" <tytso@mit.edu>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Florian,
+On Fri, Jun 21, 2019 at 5:54 PM Brendan Higgins
+<brendanhiggins@google.com> wrote:
+>
+> On Fri, Jun 21, 2019 at 12:21 PM shuah <shuah@kernel.org> wrote:
+> >
+> > On 6/21/19 12:13 PM, Theodore Ts'o wrote:
+> > > On Fri, Jun 21, 2019 at 08:59:48AM -0600, shuah wrote:
+> > >>>> ### But wait! Doesn't kselftest support in kernel testing?!
+> > >>>>
+> > >>>> ....
+> > >>
+> > >> I think I commented on this before. I agree with the statement that
+> > >> there is no overlap between Kselftest and KUnit. I would like see this
+> > >> removed. Kselftest module support supports use-cases KUnit won't be able
+> > >> to. I can build an kernel with Kselftest test modules and use it in the
+> > >> filed to load and run tests if I need to debug a problem and get data
+> > >> from a system. I can't do that with KUnit.
+>
+> Sure, I think this point has been brought up a number of times before.
+> Maybe I didn't write this section well because, like Frank said, it
+> comes across as being critical of the Kselftest module support; that
+> wasn't my intention. I was speaking from the perspective that
+> Kselftest module support is just a feature of Kselftest, and not a
+> full framework like KUnit is (obviously Kselftest itself *is* a
+> framework, but a very small part of it is not).
+>
+> It was obvious to me what Kselftest module support was intended for,
+> and it is not intended to cover the use case that KUnit is targeting.
+>
+> > >> In my mind, I am not viewing this as which is better. Kselftest and
+> > >> KUnit both have their place in the kernel development process. It isn't
+> > >> productive and/or necessary to comparing Kselftest and KUnit without a
+> > >> good understanding of the problem spaces for each of these.
+>
+> Again, I didn't mean to draw a comparison of which is better than the
+> other. I was just trying to point out that Kselftest module support
+> doesn't make sense as a stand alone unit testing framework, or really
+> a framework of any kind, despite how it might actually be used.
+>
+> > >> I would strongly recommend not making reference to Kselftest and talk
+> > >> about what KUnit offers.
+>
+> I can see your point. It seems that both you and Frank seem to think
+> that I drew a comparison between Kselftest and KUnit, which was
+> unintended. I probably should have spent more time editing this
+> section, but I can see the point of drawing the comparison itself
+> might invite this confusion.
+>
+> > > Shuah,
+> > >
+> > > Just to recall the history, this section of the FAQ was added to rebut
+> > > the ***very*** strong statements that Frank made that there was
+> > > overlap between Kselftest and Kunit, and that having too many ways for
+> > > kernel developers to do the identical thing was harmful (he said it
+> > > was too much of a burden on a kernel developer) --- and this was an
+> > > argument for not including Kunit in the upstream kernel.
+>
+> I don't think he was actually advocating that we don't include KUnit,
+> maybe playing devil's advocate; nevertheless, at the end, Frank seemed
+> to agree that there were valuable things that KUnit offered. I thought
+> he just wanted to make the point that I hadn't made the distinction
+> sufficiently clear in the cover letter, and other reviewers might get
+> confused in the future as well.
+>
+> Additionally, it does look like people were trying to use Kselftest
+> module support to cover some things which really were trying to be
+> unit tests. I know this isn't really intended - everything looks like
+> a nail when you only have a hammer, which I think Frank was pointing
+> out furthers the above confusion.
+>
+> In anycase, it sounds like I have, if anything, only made the
+> discussion even more confusing by adding this section; sorry about
+> that.
+>
+> > > If we're past that objection, then perhaps this section can be
+> > > dropped, but there's a very good reason why it was there.  I wouldn't
+> > > Brendan to be accused of ignoring feedback from those who reviewed his
+> > > patches.   :-)
+> > >
+> >
+> > Agreed. I understand that this FAQ probably was needed at one time and
+> > Brendan added it to address the concerns.
+>
+> I don't want to speak for Frank, but I don't think it was an objection
+> to KUnit itself, but rather an objection to not sufficiently
+> addressing the point about how they differ.
+>
+> > I think at some point we do need to have a document that outlines when
+> > to KUnit and when to use Kselftest modules. I think one concern people
+> > have is that if KUnit is perceived as a  replacement for Ksefltest
+> > module, Kselftest module will be ignored leaving users without the
+> > ability to build and run with Kselftest modules and load them on a need
+> > basis to gather data on a systems that aren't dedicated strictly for
+> > testing.
+>
+> I absolutely agree! I posed a suggestion here[1], which after I just
+> now searched for a link, I realize for some reason it didn't seem like
+> it reached a number of the mailing lists that I sent it to, so I
+> should probably resend it.
+>
+> Anyway, a summary of what I suggested: We should start off by better
+> organizing Documentation/dev-tools/ and create a landing page that
+> groups the dev-tools by function according to what person is likely to
+> use them and for what. Eventually and specifically for Kselftest and
+> KUnit, I would like to have a testing guide for the kernel that
+> explains what testing procedure should look like and what to use and
+> when.
+>
+> > I am trying to move the conversation forward from KUnit vs. Kselftest
+> > modules discussion to which problem areas each one addresses keeping
+> > in mind that it is not about which is better. Kselftest and KUnit both
+> > have their place in the kernel development process. We just have to be
+> > clear on usage as we write tests for each.
+>
+> I think that is the right long term approach. I think a good place to
+> start, like I suggested above, is cleaning up
+> Documentation/dev-tools/, but I think that belongs in a (probably
+> several) follow-up patchset.
+>
+> Frank, I believe your objection was mostly related to how KUnit is
+> presented specifically in the cover letter, and doesn't necessarily
+> deal with the intended use case. So I don't think that doing this,
+> especially doing this later, really addresses your concern. I don't
+> want to belabor the issue, but I would also rather not put words in
+> your mouth, what are your thoughts on the above?
+>
+> I think my main concern moving forward on this point is that I am not
+> sure that I can address the debate that this section covers in a way
+> that is both sufficiently concise for a cover letter, but also doesn't
+> invite more potential confusion. My inclination at this point is to
+> drop it since I think the set of reviewers for this patchset has at
+> this point become fixed, and it seems that it will likely cause more
+> confusion rather than reduce it; also, I don't really think this will
 
-On Wed, Jul 03, 2019 at 02:37:47PM -0700, Florian Fainelli wrote:
-> On 7/3/19 12:37 PM, Matthias Kaehlcke wrote:
-> > The LED behavior of some Realtek PHYs is configurable. Add the
-> > property 'realtek,led-modes' to specify the configuration of the
-> > LEDs.
-> > 
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > Changes in v2:
-> > - patch added to the series
-> > ---
-> >  .../devicetree/bindings/net/realtek.txt         |  9 +++++++++
-> >  include/dt-bindings/net/realtek.h               | 17 +++++++++++++++++
-> >  2 files changed, 26 insertions(+)
-> >  create mode 100644 include/dt-bindings/net/realtek.h
-> > 
-> > diff --git a/Documentation/devicetree/bindings/net/realtek.txt b/Documentation/devicetree/bindings/net/realtek.txt
-> > index 71d386c78269..40b0d6f9ee21 100644
-> > --- a/Documentation/devicetree/bindings/net/realtek.txt
-> > +++ b/Documentation/devicetree/bindings/net/realtek.txt
-> > @@ -9,6 +9,12 @@ Optional properties:
-> >  
-> >  	SSC is only available on some Realtek PHYs (e.g. RTL8211E).
-> >  
-> > +- realtek,led-modes: LED mode configuration.
-> > +
-> > +	A 0..3 element vector, with each element configuring the operating
-> > +	mode of an LED. Omitted LEDs are turned off. Allowed values are
-> > +	defined in "include/dt-bindings/net/realtek.h".
-> 
-> This should probably be made more general and we should define LED modes
-> that makes sense regardless of the PHY device, introduce a set of
-> generic functions for validating and then add new function pointer for
-> setting the LED configuration to the PHY driver. This would allow to be
-> more future proof where each PHY driver could expose standard LEDs class
-> devices to user-space, and it would also allow facilities like: ethtool
-> -p to plug into that.
-> 
-> Right now, each driver invents its own way of configuring LEDs, that
-> does not scale, and there is not really a good reason for that other
-> than reviewing drivers in isolation and therefore making it harder to
-> extract the commonality. Yes, I realize that since you are the latest
-> person submitting something in that area, you are being selected :)
+Since no one has objected to dropping the "### But wait! Doesn't
+kselftest support in kernel testing?!" section in the past almost two
+weeks, I am just going to continue on without it.
 
-I see the merit of your proposal to come up with a generic mechanism
-to configure Ethernet LEDs, however I can't justify spending much of
-my work time on this. If it is deemed useful I'm happy to send another
-version of the current patchset that addresses the reviewer's comments,
-but if the implementation of a generic LED configuration interface is
-a requirement I will have to abandon at least the LED configuration
-part of this series.
+Cheers
+
+> be an issue for end users, especially once we have proper
+> documentation in place. Alternatively, I guess I could maybe address
+> the point elsewhere and refer to it in the cover letter? Or maybe just
+> put it at the end of the cover letter?
+>
+> [1] https://www.mail-archive.com/kgdb-bugreport@lists.sourceforge.net/msg05059.html
