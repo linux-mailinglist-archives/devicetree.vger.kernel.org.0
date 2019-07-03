@@ -2,140 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B7EB5EF27
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 00:27:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE1A05EF4B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 00:56:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727422AbfGCW1d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 18:27:33 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:43035 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727421AbfGCW1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 18:27:32 -0400
-Received: by mail-ot1-f68.google.com with SMTP id q10so4030092otk.10
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 15:27:32 -0700 (PDT)
+        id S1727310AbfGCW4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 18:56:52 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:34246 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727056AbfGCW4w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 18:56:52 -0400
+Received: by mail-pg1-f194.google.com with SMTP id p10so1941967pgn.1
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 15:56:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=D2V6DzWpvWTZUVXRvfBLQmJzwket1ppQ/Sc433n2/Nc=;
-        b=mmVJrnqCbKv1e50NHEEmq1OoZcpLFVzXU1X0qha21y2dJYbJVVyXKBEbwD21H0Mkgw
-         h/pzQH1i/cFTXLvSSY6Y7n59RwLUZcrCmeuukwEY4k/Lo9bGBRLuZNkIgrPHl1HS03AC
-         OWUDKWQRtkeieoHAoX0gRZwbxw3WnSvdRASvuTP6kW5aM813Tt/j5PdUafTZPbKKbMra
-         gKgMcDSUa4+X34/vSWbaD/LaTsKT+LwlKVKKr6kkhh/t3Uxtz323Sa0VnxegvVnRsiu+
-         vPk5h/fsjfGfJb/7UkUDTYIOl5rREmnWwt90bN88b56oX7k2sb9B7ix0LvIfbyyJKanU
-         jZuw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=PRnPC62JX/RoJO2/m7GOKXtEfYdUUSzelwP+KhPJ16w=;
+        b=YpKWoSeoP8mPpxkQgnQZglfCx5jnSJdY1jiKYlL+sUIb0OfW4xqnmRkLdMNjT2NTwz
+         9MQiJoHu40bDZPvu2VldqFTU3rT3DdBHClvwtFqkBXx8+WGhIzttsMK29A/5Zkeyrp6U
+         20YtqOCnf4UR+BIpkiNdJVXqHbtmuquinMAQ8=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=D2V6DzWpvWTZUVXRvfBLQmJzwket1ppQ/Sc433n2/Nc=;
-        b=W3DC+7WCOCIiIIpLwcS9+OFmlKZV08+hrJGIc6JDNgpeeaCQuYmGmgLQX1HFwNttks
-         8dolxull1UUNHuj9zUgGZPcBAAOUgk/WDf7YV3vxMgk1uXyIIJsnwhql+m+xSKn4QkAS
-         QhguXg2noZIh+n2H9tZZO7NRAHFOMwfy0YD3614AfhQ5OF015fj+hDU3T4pIJsB1fFbf
-         ZuAJV//l+Dz3O04rrcORu/Qw7FKizWxj8P6DJxjH3XaLgA1BSS7CHv7VgnVP0HgVjyyz
-         hF8Jd0igKHFKKPTVnWwjZ46AfkB7HGJ6DvMuZATN/wE1LrV+j1M8VMYwzTg1jni93ycV
-         Q2eA==
-X-Gm-Message-State: APjAAAXxdpSsylMiXWDeN5kkASYhoDkyyfebKgCrP4qF9BmFV3zDBes4
-        K5dgDUfNLj8Antgl4VSmtL+Y7eipuh0Iw2u1d1O4qQ==
-X-Google-Smtp-Source: APXvYqyeTTr+WvpeAKpXyj3063djbPHVPYZg4Jf5vvwk7ke/KotikoqN8p0GhSt6ugm8Gb7SQ9BHig9URCNweka4tb0=
-X-Received: by 2002:a9d:6d06:: with SMTP id o6mr27558240otp.225.1562192851493;
- Wed, 03 Jul 2019 15:27:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190702004811.136450-1-saravanak@google.com> <7900c670-5b3a-f950-dec9-70d98d94a84f@codeaurora.org>
- <CAGETcx--+3BNjYZ6cgirNr_uZjU0464UHSUcaVHh_uTO2yWTCQ@mail.gmail.com>
-In-Reply-To: <CAGETcx--+3BNjYZ6cgirNr_uZjU0464UHSUcaVHh_uTO2yWTCQ@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 3 Jul 2019 15:26:46 -0700
-Message-ID: <CAGETcx_by9aShONfSAR8rfhC69nBzeEhrZSHhOb7HuUBeCu=JA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/4] Solve postboot supplier cleanup and optimize probe ordering
-To:     David Collins <collinsd@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=PRnPC62JX/RoJO2/m7GOKXtEfYdUUSzelwP+KhPJ16w=;
+        b=KxFEePhcGG8/gwJjCgINQc3bJslfNgXzlupLWZro67j61gaEZGTvZKFQhpliUyeBCz
+         P3/fz4xm0ON14tJf6w9W1HuSswT6b0mvNyQeJVNy+g00n6/5+zrlsQoFw2X74W3GpvHj
+         H4z2qb8mXPsLAD93dVOvu9Hg1yYPczc3aY7rz1EAMITVw3AGHRzf09I/Df1XKv+jdPYa
+         FvjQkkiQ+ohv4ZvLt7MHNSRqfPDaJCHDUIUO0YsAEwWzMewruMYF1Ubbt0WKramWH1+e
+         TPjt45Q/UCg2+VqopDrTNCqDaE3N/BdmImQrpE1Ey2vfU4tIbicLr5FzooThEJ/WIqw0
+         mC3Q==
+X-Gm-Message-State: APjAAAXpsEEoNYXERQqdcE9xRyWtAFHP3pGoDhDPkYs0f/X8Rkrln3+l
+        aH3IiVgfWQwMkSe6CWqf0CvpWA==
+X-Google-Smtp-Source: APXvYqyvAYsxwYDLVdbBmZDOVqaTqouGlL7BWOuPZ+HJcoLd2cmjndbKZyf58r/rkf0fKUu0eYY6LA==
+X-Received: by 2002:a17:90a:2190:: with SMTP id q16mr15114510pjc.23.1562194611721;
+        Wed, 03 Jul 2019 15:56:51 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id d187sm3427000pfa.38.2019.07.03.15.56.50
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Jul 2019 15:56:50 -0700 (PDT)
+Date:   Wed, 3 Jul 2019 15:56:48 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH v2 4/7] net: phy: realtek: Enable accessing RTL8211E
+ extension pages
+Message-ID: <20190703225648.GK250418@google.com>
+References: <20190703193724.246854-1-mka@chromium.org>
+ <20190703193724.246854-4-mka@chromium.org>
+ <dd7a569b-41e4-5925-88fc-227e69c82f67@gmail.com>
+ <20190703203650.GF250418@google.com>
+ <98326ec2-6e90-fd3a-32f5-cf0db26c31a9@gmail.com>
+ <20190703212407.GI250418@google.com>
+ <3e47639a-bbbb-f438-bc66-a29423090e95@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <3e47639a-bbbb-f438-bc66-a29423090e95@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 2, 2019 at 5:59 PM Saravana Kannan <saravanak@google.com> wrote:
->
-> On Tue, Jul 2, 2019 at 5:03 PM David Collins <collinsd@codeaurora.org> wrote:
-> >
-> > Hello Saravana,
-> >
-> > On 7/1/19 5:48 PM, Saravana Kannan wrote:
-> > ...
-> > > TODO:
-> > > - For the case of consumer child sub-nodes being added by a parent
-> > >   device after late_initcall_sync we might be able to address that by
-> > >   recursively parsing all child nodes and adding all their suppliers as
-> > >   suppliers of the parent node too. The parent probe will add the
-> > >   children before its probe is completed and that will prevent the
-> > >   supplier's sync_state from being executed before the children are
-> > >   probed.
-> > >
-> > > But I'll write that part once I see how this series is received.
-> >
-> > I don't think that this scheme will work in all cases.  It can also lead
-> > to probing deadlock.
-> >
-> > Here is an example:
-> >
-> > Three DT devices (top level A with subnodes B and C):
-> > /A
-> > /A/B
-> > /A/C
-> > C is a consumer of B.
-> >
-> > When device A is created, a search of its subnodes will find the link from
-> > C to B.  Since device B hasn't been created yet, of_link_to_suppliers()
-> > will fail and add A to the wait_for_suppliers list.  This will cause the
-> > probe of A to fail with -EPROBE_DEFER (thanks to the check in
-> > device_links_check_suppliers()).  As a result device B will not be created
-> > and device A will never probe.
-> >
-> > You could try to resolve this situation by detecting the cycle and *not*
-> > adding A to the wait_for_suppliers list.  However, that would get us back
-> > to the problem we had before.  A would be allowed to probe which would
-> > then result in devices being added for B and C.  If the device for B is
-> > added before C, then it would be allowed to immediately probe and
-> > (assuming this all takes place after late_initcall_sync thanks to modules)
-> > its sync_state() callback would be called since no consumer devices are
-> > linked to B.
-> >
-> > Please note that to change this example from theoretical to practical,
-> > replace "A" with apps_rsc, "B" with pmi8998-rpmh-regulators, and "C" with
-> > pm8998-rpmh-regulators in [1].
->
-> Interesting use case.
->
-> First, to clarify my TODO: I was initially thinking of the recursive
-> "up-heritance" of suppliers from child to parent to handle cases where
-> the supplier is a device from some other top level device (or its
-> child). My thinking has evolved a bit on that. I think the parent
-> needs to inherit only from it's immediate children and not its
-> grandchildren (the child is responsible for handling grandchildren
-> suppliers). I'll also have to make sure I don't try to create a link
-> from a parent device to one of its child device nodes (should be easy
-> to check).
->
-> Anyway, going back to your case, for dependencies between child nodes
-> of a parent, can't the parent just populate them in the right order?
-> You can loop through the children and add them in multiple stages.
->
-> I'll continue to think if I can come up with anything nicer on the
-> drivers, but even if we can't come up with anything better, we can
-> still make sync_state() work.
+On Wed, Jul 03, 2019 at 11:27:41PM +0200, Heiner Kallweit wrote:
+> On 03.07.2019 23:24, Matthias Kaehlcke wrote:
+> > On Wed, Jul 03, 2019 at 11:01:09PM +0200, Heiner Kallweit wrote:
+> >> On 03.07.2019 22:36, Matthias Kaehlcke wrote:
+> >>> On Wed, Jul 03, 2019 at 10:12:12PM +0200, Heiner Kallweit wrote:
+> >>>> On 03.07.2019 21:37, Matthias Kaehlcke wrote:
+> >>>>> The RTL8211E has extension pages, which can be accessed after
+> >>>>> selecting a page through a custom method. Add a function to
+> >>>>> modify bits in a register of an extension page and a helper for
+> >>>>> selecting an ext page.
+> >>>>>
+> >>>>> rtl8211e_modify_ext_paged() is inspired by its counterpart
+> >>>>> phy_modify_paged().
+> >>>>>
+> >>>>> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> >>>>> ---
+> >>>>> Changes in v2:
+> >>>>> - assign .read/write_page handlers for RTL8211E
+> >>>>
+> >>>> Maybe this was planned, but it's not part of the patch.
+> >>>
+> >>> Oops, it was definitely there when I tested ... I guess this got
+> >>> somehow lost when changing the patch order and resolving minor
+> >>> conflicts, seems like I only build tested after that :/
+> >>>
+> >> RTL8211E also supports normal pages (reg 0x1f = page).
+> >> See e.g. rtl8168e_2_hw_phy_config in the r8169 driver, this network
+> >> chip has an integrated RTL8211E PHY. There settings on page 3 and 5
+> >> are done.
+> >> Therefore I would prefer to use .read/write_page for normal paging
+> >> in all Realtek PHY drivers. Means the code here would remain as it
+> >> is and just the changelog would need to be fixed.
+> > 
+> > Do I understand correctly that you suggest an additional patch that
+> > assigns .read/write_page() for all entries of realtek_drvs?
+> > 
+> 
+> No, basically all the Realtek PHY drivers use the following already:
+> .read_page	= rtl821x_read_page,
+> .write_page	= rtl821x_write_page,
+> What I mean is that this should stay as it is, and not be overwritten
+> with the extended paging.
 
-There's actually a much better way to handle this case where you won't
-have to handle ordering on the driver side. I just need to add one or
-two patches to my patch series. I'll send that out sometime next week.
+I now see the source of our/my misunderstanding. I'm working on a 4.19
+kernel, which doesn't have your recent patch:
+
+commit daf3ddbe11a2ff74c95bc814df8e5fe3201b4cb5
+Author: Heiner Kallweit <hkallweit1@gmail.com>
+Date:   Fri May 10 22:11:26 2019 +0200
+
+    net: phy: realtek: add missing page operations
 
 
--Saravana
+That's what I intended to do for RTL8211E, no need to overwrite it
+with the extended paging.
+
+Thanks
+
+Matthias
