@@ -2,113 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DFC175E336
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 13:52:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 749485E345
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 13:54:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725820AbfGCLwu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 07:52:50 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:51588 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725786AbfGCLwt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 07:52:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=BpBI6Uam/Ba69qxJ40cWtj6le3Gp4lAAIrOAWXOCNOw=; b=ZIhUlwak0XEU9G9A4azpkLIcu
-        4kQlEGi85DHSgWoL1C5gwoyeiarXya7fStpIvOEActdzIITiV3UoThrGdCeI7vVO+Yk5gbelqI95I
-        3aw0MExEJzC378gzX78PELtushjzWQYdxeSn91khHQoOdItlczjuhLbPP0nUWPqnQGKAM=;
-Received: from [2001:470:1f1d:6b5:7e7a:91ff:fede:4a45] (helo=finisterre.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hidoa-0005tC-Ji; Wed, 03 Jul 2019 11:52:44 +0000
-Received: by finisterre.sirena.org.uk (Postfix, from userid 1000)
-        id 9FCF8440046; Wed,  3 Jul 2019 12:52:43 +0100 (BST)
-Date:   Wed, 3 Jul 2019 12:52:43 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     robh+dt@kernel.org, bgoswami@codeaurora.org, vkoul@kernel.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        mark.rutland@arm.com, alsa-devel@alsa-project.org, srini@kernel.org
-Subject: Re: [PATCH 2/6] ASoC: wcd934x: add support to wcd9340/wcd9341 codec
-Message-ID: <20190703115243.GV2793@sirena.org.uk>
-References: <20190702080920.22623-1-srinivas.kandagatla@linaro.org>
- <20190702080920.22623-3-srinivas.kandagatla@linaro.org>
- <20190702144411.GP2793@sirena.org.uk>
- <2e2a32dd-3dca-5391-1bfa-ab1c1f420e3a@linaro.org>
- <20190702165753.GQ2793@sirena.org.uk>
- <0a9a994c-5a88-539f-3af0-76754b9b58d1@linaro.org>
+        id S1726743AbfGCLyr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 07:54:47 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:43875 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725830AbfGCLyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 07:54:47 -0400
+Received: by mail-pf1-f193.google.com with SMTP id i189so1150107pfg.10;
+        Wed, 03 Jul 2019 04:54:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=k/KBEhw11MRcCMOb8f2psGopLc5YCHZIsK9nzKNu3tQ=;
+        b=SMOeSoSRi0+oqZlNDwv59vRW57HZM8pn3Ec33C3/E2Z3SwcRsZJauat4xLR0fvh+W+
+         sLQ3KBRVbLnNhlGR/RqG9UVGJEyO0MRAr6h+CNbd9kZTf8TziXRnmWQs7rbLzhn77L5W
+         AMpl/oJLSSo4YLojBMLVwTuRjt8uar8FpF/c6oPjbkSVtyBiPWbntJ//BmQ5zK3pNxN6
+         +d/vRj8+TG9PdPTdHovHW29AHyTvbstFhAVksirmaWo4FnDpjskoPStdL06XBIwVOWOD
+         OZXgTGVLr9pm/o9Sx5SH68bU8VEXrSgPok8/uz6S2NYmQN25t63R2E/oEpVolZgGVfxA
+         rJGQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=k/KBEhw11MRcCMOb8f2psGopLc5YCHZIsK9nzKNu3tQ=;
+        b=HuDbiHPZRjE64KIhIK16F2OASpN7j7qDyXVU9Pc6pbS7N2qEP4crLoL6PZTs4JkOGk
+         nNcuuY3z1mSceULm3ipkZNpqCldbAlkKZYAwSJHmJFVvA7mZPKsYzpk7xuamTXd+syDz
+         o830dRXg3rn0ZSxVtvy0Kf23hZwBFz2EmLV3W1JhXQgOOzbyIlX2C8pgaxeIIrHQ74YZ
+         Lh0I5iUddwNm5KDNTAx9gib9yRIBIUgSaMJ2jOLhZLSq8zr9lIBlGG08D7JB3tVz24o2
+         pZ0wACdb+Rgn5jPYEXH7ZsrYHEAJPkl20f/FM/6jhLBhwxizHAgXG5y35q1SFYJy51Jc
+         JRXw==
+X-Gm-Message-State: APjAAAUQC3oFAsG/mUFqHWKEIOyJi6TTagJSkBUCryq8LHDN4CfpvOpe
+        UufLNQQLouqU2Kk07GEdQ3o=
+X-Google-Smtp-Source: APXvYqx1GxMPR8TSA25T6/wYw6e73aoYPk12PRDP/bbSFLul+0wlokh780G60ZTll4P9t921i9ktJQ==
+X-Received: by 2002:a63:7e43:: with SMTP id o3mr37208993pgn.450.1562154885825;
+        Wed, 03 Jul 2019 04:54:45 -0700 (PDT)
+Received: from ziggy.stardust ([37.223.141.54])
+        by smtp.gmail.com with ESMTPSA id 10sm4448868pfb.30.2019.07.03.04.54.42
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Jul 2019 04:54:45 -0700 (PDT)
+Subject: Re: Aw: Re: [PATCH 3/3] add driver and MAINTAINERS for poweroff
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Josef Friedl <josef.friedl@speed.at>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+References: <20190702094045.3652-1-frank-w@public-files.de>
+ <20190702094045.3652-4-frank-w@public-files.de>
+ <c1358da0-60a4-49dd-71a8-77e90178c9c9@gmail.com>
+ <trinity-ca99ab22-eda4-42dd-b6eb-8e4bb5c99165-1562143878858@3c-app-gmx-bs07>
+From:   Matthias Brugger <matthias.bgg@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=matthias.bgg@gmail.com; prefer-encrypt=mutual; keydata=
+ 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
+ jrHWeQEI2ucSKsNa8FllDmG/fQ==
+Message-ID: <61f579d7-f415-481f-6f34-1534f0805dc1@gmail.com>
+Date:   Wed, 3 Jul 2019 13:54:41 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="VpY0yS1BYpNZumir"
-Content-Disposition: inline
-In-Reply-To: <0a9a994c-5a88-539f-3af0-76754b9b58d1@linaro.org>
-X-Cookie: This sentence no verb.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <trinity-ca99ab22-eda4-42dd-b6eb-8e4bb5c99165-1562143878858@3c-app-gmx-bs07>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---VpY0yS1BYpNZumir
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
 
-On Wed, Jul 03, 2019 at 09:49:37AM +0100, Srinivas Kandagatla wrote:
-> On 02/07/2019 17:57, Mark Brown wrote:
+On 03/07/2019 10:51, Frank Wunderlich wrote:
+> Hi Mathias
+> 
+> thank you for first look on this. Patchseries is originally from Josef Friedl i got some time ago for getting poweroff working on bananapi r2. There it works and maybe on another devices too.
+> 
+> drivers/rtc/rtc-mt6397.c and drivers/rtc/rtc-mt7622.c look very differently on a diff (you've commented in part 1/3)
+> 
+> maybe code is compatible but i have not the knowledge to compare this...maybe sean (sorry, that i missed you) or ryder can say a word about the compatibility.
+> 
 
-> > This is a driver for a single device, you should be able to
-> > instantiate things without requiring binding through DT (and
-> > hence support non-DT systems such as those using ACPI).
+My fault, I didn't got that right. So you are just improving the code of the RTC
+driver. Which is great, but as already said, do this in a separate patch. :)
 
-> My view point atleast from hw side was that Codec is Parent which is
-> encompassing these different blocks and bus interface. DT representation
-> clearly showed that relationship between the parent and child devices.
-> Binding it through DT will make sure that resources are ready before
-> they are instantiated.
+Regards,
+Matthias
 
-> All the child devices also have some machine/board specific properties
-> and dependency on resources from parent like regmap, clks, and bus.
-
-> In ACPI case, am not 100% sure how these will be represented inline with
-> hw representation.
-
-> Are you suggesting to use MFD here?
-
-I'm saying that you should be using a MFD here like all the other
-CODECs with multiple functions and that you shouldn't have
-compatible strings in DT for the subfunctions since you already
-know they'll be there simply from enumerating the chip as a whole
-and how exactly they are divided up is a function of how Linux
-currently has subsystems, not of the hardware.
-
-> > > This will instantiate all the child devices like pinctrl, SoundWire
-> > > Controller and so on.
-
-> > Just create platform devices like normal...
-
-> These are already modeled as platform devices, except the fact that
-> these are children of Codec device.
-
-No, you've got them as DT nodes.
-
---VpY0yS1BYpNZumir
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0clwoACgkQJNaLcl1U
-h9ASZQf/Wax09z9q+yldgDqXtel9Fw1TmqbiQeU45IngtUaP/G3c4hKXjszf9tIu
-D0+ip3V72iegmlnXKInzv+9+sB+l0gQb8g4PYBF4p1HPmXNao/FuZnKhbJSKvEAz
-HjwLM80oUApbivHyMNycr48s3Yaix4tC5aeSolBGjGFAMQ++bD2Sblgfbd1M0K1T
-YweS+5UStw/IboNQtKyl/TXaCTjjq7wtFUVUIfPZcazxlWBd278nApbuEwAqTbkU
-wKvLgwQOaQIkAEMu4okXOUVwognAoNWs2Hfg8vJRTB5NMl4EvkSs55/agXXS0+mW
-onDPn2hPaqk8Bj5oR5ymS7NFkR+cGw==
-=d0xq
------END PGP SIGNATURE-----
-
---VpY0yS1BYpNZumir--
+>> Fix the commit message. MAINTAINERS get normally send a independent patch.
+>> Split patches between RTC and PWRC.
+>> If not a new patch it should be stated in the commit message at least.
+> 
+> i will try to split this
+> 
+>>> + * Author: Tianping.Fang <tianping.fang@mediatek.com>
+>>> + *        Sean Wang <sean.wang@mediatek.com>
+>>
+>> You are the author of this file, aren't you?
+> 
+> no, afaik these is code taken from rtc-mt6397.c and put in a separate header-file to use it in multiple c-files.
+> 
+> sidenote on encoding/word-wrap. i use only "git sendemail" which afaik calls sendmail (no other mta like thunderbird or similar) on ubuntu 18.4....curently have no idea how to fix this...have searched before, but not yet found anything. if you have an idea please give me a hint.
+> 
+> regards Frank
+> 
