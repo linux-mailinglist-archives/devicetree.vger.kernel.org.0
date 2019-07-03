@@ -2,128 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CF0985E4B9
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 15:00:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B51645E4CC
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 15:05:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726430AbfGCNAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 09:00:47 -0400
-Received: from node.akkea.ca ([192.155.83.177]:57972 "EHLO node.akkea.ca"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725847AbfGCNAr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Jul 2019 09:00:47 -0400
-Received: by node.akkea.ca (Postfix, from userid 33)
-        id BC92D4E204B; Wed,  3 Jul 2019 13:00:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
-        t=1562158846; bh=jfEnQz6Z7lDitZDfZEU5tHLgi5WtCywGyso2NpbD6yM=;
-        h=To:Subject:Date:From:Cc:In-Reply-To:References;
-        b=nHY7Db9TTbezNC91mUbwu6U9bjG3WAnn/Vj2i/HuvYVxqG55+k/M/yHfQaRKCevGh
-         3gFNdY/MIMR/QthhXFfVDa7O2uYz6nSZ3Iz73qCjR3tpEJR21kbtwmGf4EUHZylfde
-         blLDPH5clasanypevgikazHmk+IrIti1LuSXTjuE=
-To:     Andra Danciu <andradanciu1997@gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: imx8mq: Add sai3 and sai6 nodes
-X-PHP-Originating-Script: 1000:rcube.php
+        id S1726457AbfGCNFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 09:05:16 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:34922 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725830AbfGCNFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 09:05:16 -0400
+Received: by mail-wm1-f68.google.com with SMTP id c6so2330604wml.0;
+        Wed, 03 Jul 2019 06:05:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=KH2eG+x8Tg1+duN/dfrI01o6FXkBJqUeFiUf1jFkgyQ=;
+        b=BW4JmIPUbKk7pMK8MtLDqli/03LRWL5o69F3Wk9hHVgusTFgWEBelYIOFPgnEiAkxx
+         a6W5stinsnu55yOj+pCd1uysnend14STiaeWzHm/hxhwTbKs1f1ZuT/8KR1kwtyRDcs9
+         7CyuwDUtEYdkVK1nbw9oTz/Vgtn7X3vNJNvfw0yYFhXhqUzUTg7xI+FrMJQYFvxKrXgj
+         Cxj7CtML5rZ+lzAZZnLmz3GcFG4kgcd0EpaFLigTJUhXPmlWAQoNwA768Cih2l9y0HSX
+         T30VJPWGBPaiNV2MBOyN2nT8QfBxLhWYorSLR82bYDT6cvpwp/ditZ9MkQWK/QbdK+IV
+         YzZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=KH2eG+x8Tg1+duN/dfrI01o6FXkBJqUeFiUf1jFkgyQ=;
+        b=POa8XA4QDinzo6zUfhEDzM69H/kF5jRrHN0jiG1gMwySMgEspojJsHK3X5IBRiqBfB
+         /XuzfslcidE+ZWiw4xXRK2+sxxVbJwXVCK15Ugk/jRMtl9HReMilMVNwjEfs2Z0lGlxn
+         BM/BJOH5V6Kbn6GPR6nulRYfbKCkmM+NTYLLQyeUi5wQGfTJqphbi+HwgrNE7QuwfvdE
+         vBldyCwli2iB0iOXR1XQ/xy0AHXRJpbwAHb2PDb4DJlU8pyOkHUkR7DHoTx/Yd5q5Hqq
+         KQcfNEuZpQTqARQ9bX0EIkMzoF+DyOYOdRcSmTLCfZYtpv9GkYwEAkdV95LHF4CCjwsn
+         u9ow==
+X-Gm-Message-State: APjAAAXumRKBI1NehkAEwZ87L+/Lamwv4ETrTfEj6hgi2T/h903gpzAP
+        JspeGyKToFFyCjBeWEgjGxFxsMrejf9WQm//UFjidjRAHIw=
+X-Google-Smtp-Source: APXvYqxY84Zmx8oWuSwwzgbMqQpDMtrsx3Me5sgTMeJ67amW0WnvPJVfwdFa1XFxQ2eCxwvf6j5mMN+1RkBNosgAdG0=
+X-Received: by 2002:a05:600c:206:: with SMTP id 6mr7668361wmi.73.1562159114636;
+ Wed, 03 Jul 2019 06:05:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 03 Jul 2019 07:00:46 -0600
-From:   Angus Ainslie <angus@akkea.ca>
-Cc:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, l.stach@pengutronix.de, abel.vesa@nxp.com,
-        Anson.Huang@nxp.com, andrew.smirnov@gmail.com,
-        ccaione@baylibre.com, agx@sigxcpu.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-In-Reply-To: <20190702132353.18632-1-andradanciu1997@gmail.com>
-References: <20190702132353.18632-1-andradanciu1997@gmail.com>
-Message-ID: <9ea5109f8645c3f27a9e350c5f9b2d4c@www.akkea.ca>
-X-Sender: angus@akkea.ca
-User-Agent: Roundcube Webmail/1.1.3
+References: <1562155702-29809-1-git-send-email-abel.vesa@nxp.com>
+In-Reply-To: <1562155702-29809-1-git-send-email-abel.vesa@nxp.com>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Wed, 3 Jul 2019 16:05:02 +0300
+Message-ID: <CAEnQRZAje+i1i0Nj2-SgAkdpdEq3-NyOLOt4mxfC_ayd2aD=Bg@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mm: Init rates and parents configs for clocks
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andra,
+On Wed, Jul 3, 2019 at 3:10 PM Abel Vesa <abel.vesa@nxp.com> wrote:
+>
+> Add the initial configuration for clocks that need default parent and rate
+> setting. This is based on the vendor tree clock provider parents and rates
+> configuration except this is doing the setup in dts rather than using clock
+> consumer API in a clock provider driver.
+>
+> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
 
-I tried this out on linux-next and I'm not able to record or play sound.
+Thanks Abel, this helps audio.  For audio clk:
 
-I also added the sai2 entry to test out our devkit and get a PCM timeout 
-with that.
+Acked-by: Daniel Baluta <daniel.baluta@nxp.com>
 
-On 2019-07-02 07:23, Andra Danciu wrote:
-> SAI3 and SAI6 nodes are used to connect to an external codec.
-> They have 1 Tx and 1 Rx dataline.
-> 
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
 > ---
-> Changes since v2:
-> 	- removed multiple new lines
-> 
+>
 > Changes since v1:
-> 	- Added sai3 node because we need it to enable audio on pico-pi-8m
-> 	- Added commit description
-> 
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 29 
-> +++++++++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index d09b808eff87..736cf81b695e 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -278,6 +278,20 @@
->  			#size-cells = <1>;
->  			ranges = <0x30000000 0x30000000 0x400000>;
-> 
-> +			sai6: sai@30030000 {
-> +				compatible = "fsl,imx8mq-sai",
-
-I don't find this compatible string in sound/soc/fsl/fsl_sai.c. Aren't 
-the registers at a different offset from "fsl,imx6sx-sai".
-
-How is this supposed to work ?
-
-Thanks
-Angus
-
-> +					"fsl,imx6sx-sai";
-> +				reg = <0x30030000 0x10000>;
-> +				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk IMX8MQ_CLK_SAI6_IPG>,
-> +					<&clk IMX8MQ_CLK_SAI6_ROOT>,
-> +					<&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
-> +				clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> +				dmas = <&sdma2 4 24 0>, <&sdma2 5 24 0>;
-> +				dma-names = "rx", "tx";
-> +				status = "disabled";
-> +			};
-> +
->  			gpio1: gpio@30200000 {
->  				compatible = "fsl,imx8mq-gpio", "fsl,imx35-gpio";
->  				reg = <0x30200000 0x10000>;
-> @@ -728,6 +742,21 @@
->  				status = "disabled";
->  			};
-> 
-> +			sai3: sai@308c0000 {
-> +				compatible = "fsl,imx8mq-sai",
-> +					     "fsl,imx6sx-sai";
-> +				reg = <0x308c0000 0x10000>;
-> +				interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
-> +				clocks = <&clk IMX8MQ_CLK_SAI3_IPG>,
-> +					<&clk IMX8MQ_CLK_DUMMY>,
-> +					<&clk IMX8MQ_CLK_SAI3_ROOT>,
-> +					<&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
-> +				clock-names = "bus", "mclk1", "mclk2", "mclk3";
-> +				dmas = <&sdma1 12 24 0>, <&sdma1 13 24 0>;
-> +				dma-names = "rx", "tx";
-> +				status = "disabled";
-> +			};
-> +
->  			i2c1: i2c@30a20000 {
->  				compatible = "fsl,imx8mq-i2c", "fsl,imx21-i2c";
->  				reg = <0x30a20000 0x10000>;
-
+>  - removed the PCIE, CSI and DISP clocks parent setting since
+>    that should be done from their driver.
+>
+>  arch/arm64/boot/dts/freescale/imx8mm.dtsi | 11 +++++++++++
+>  1 file changed, 11 insertions(+)
+>
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> index 232a741..ba2034d 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> @@ -451,6 +451,17 @@
+>                                          <&clk_ext3>, <&clk_ext4>;
+>                                 clock-names = "osc_32k", "osc_24m", "clk_ext1", "clk_ext2",
+>                                               "clk_ext3", "clk_ext4";
+> +                               assigned-clocks = <&clk IMX8MM_CLK_NOC>,
+> +                                               <&clk IMX8MM_CLK_AUDIO_AHB>,
+> +                                               <&clk IMX8MM_CLK_IPG_AUDIO_ROOT>,
+> +                                               <&clk IMX8MM_SYS_PLL3>,
+> +                                               <&clk IMX8MM_VIDEO_PLL1>;
+> +                               assigned-clock-parents = <&clk IMX8MM_SYS_PLL3_OUT>,
+> +                                                        <&clk IMX8MM_SYS_PLL1_800M>;
+> +                               assigned-clock-rates = <0>,
+> +                                                       <400000000>,
+> +                                                       <750000000>,
+> +                                                       <594000000>;
+>                         };
+>
+>                         src: reset-controller@30390000 {
+> --
+> 2.7.4
+>
