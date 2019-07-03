@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 997145E453
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81E245E455
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:48:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727391AbfGCMsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 08:48:06 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:34537 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727432AbfGCMsF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:48:05 -0400
-Received: by mail-pl1-f196.google.com with SMTP id i2so1213381plt.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 05:48:05 -0700 (PDT)
+        id S1726621AbfGCMsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 08:48:08 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:41554 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727462AbfGCMsI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:48:08 -0400
+Received: by mail-pl1-f193.google.com with SMTP id m7so1191765pls.8
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 05:48:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=E6uRjcermCh0vpVDEIEhbk7Fmo6X2a/vaz5WmKDnX10=;
-        b=b0zu5dXrKN9pCZXKQexawbFEbckTVyo7Y/CfUphYXkxBdh2IGsT/Jiic87Zy8Is5az
-         kcSfZXgiA2mF/PXqlXlpWn1OqxsBgwmr+4kug7T0brB9AekUPJb1WqzOoXeJ9OtHcQgf
-         nP0sPALi9wKcBwgWOflx1NbBZUv2KO7vIVEZ8=
+        bh=LeVp32fCyZqIo/d5l2qER2CwKv5pwBDkf2I+uhwHe8s=;
+        b=V3DnPL5zk4ThmbRKSVn94ZksxfRwmk+EVcnMl4nlTJjcLknY6+1hlvBh1dwBNrzDmH
+         ow6ZFZ9mcmPWii7TglC+rrCdK73BpOUrC8/anenKLMKn3oQamFdpn8xSt+5i2cd9ji2Q
+         a6kCGn3aBBOHeDz1BP/vL739Wi/HVnRTxr6NI=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=E6uRjcermCh0vpVDEIEhbk7Fmo6X2a/vaz5WmKDnX10=;
-        b=JEXFlzhyKzXeAvpBXfOI7bnNIpRkkCobt7Sin2QVOMcR84EMBLPW/a0IwDtHZgHsnh
-         tWS2RIcLrNFsndn6tKrDYc82MmSkKLrQfMmvOFu0nUNFEuRTPiTq+TbESlycekxiDw5v
-         rQcJe0EF3jeyBZihVx3Z+SFwD166f9MDN0feaqfXmpU8FCBn2znRw+i7cCgqQ4INZ5xM
-         S0LCb+32I86/sYw975xeJ3av8Z1Kb1MLH4M4xW4DUTMOeZdFUwnQY2O0ejh8bHYbRK6A
-         i0thJNDIYgLorJ6pYr1D9T/9JjNfuCLsZfgHz9MMRyw1cjquI112t4ueIlGxnyhwmNkV
-         rnQA==
-X-Gm-Message-State: APjAAAWsDKkAX3V1x6U7uSIpQSEidUhnvAeDU0wc/HWifXiJLBBqNoBe
-        mDKggn5hDPHIINM84kAT9iCpdAfKB3JlPQ==
-X-Google-Smtp-Source: APXvYqzwwj7W+UdpQxGHCSMx8CuXgmzpcfjEKHlgFijFZGBYMqD+T8XyO9rvp8IZ+HN0rWDQ0Iu9EA==
-X-Received: by 2002:a17:902:a60d:: with SMTP id u13mr34396176plq.144.1562158084588;
-        Wed, 03 Jul 2019 05:48:04 -0700 (PDT)
+        bh=LeVp32fCyZqIo/d5l2qER2CwKv5pwBDkf2I+uhwHe8s=;
+        b=fz1LZsC0kNGBufsQlqx4UpsoyQ4lHaJtHpD0QRkVCnRFsBojbDtext6TRMJU6A25ja
+         ue8HqjFygNovIDp3Gz0jkHeGX1pwHppc51rBixpCcQ2UkC3zuo6t4ewOEaNdjyN6pJfb
+         A5C1lxwZj4YgX9DRlAd3tXWxYA6hxUrU9Twgh1db41Ytx5jm73WUK66twK7SlAOCMBG8
+         1M4Y/C44ZnDyUYziwC314s3rvH7yfIDWQaVqxFcctnSa1Dj4/Vwch64T7D3YQwTH111t
+         ldagZao/9keBR3AwsOb/2DXxNAB2NnN74yYxi/c3iLZHsYLE7BrMsRw+PK5Uyd2iyxX+
+         lpQQ==
+X-Gm-Message-State: APjAAAX+KBjmcYPbUBcJ5/6hm+MQauHpPRzGTlQkxJjEKXslHlsxswSn
+        sNz9ZJkb0u5mKCvBXTvQM0PuqQ==
+X-Google-Smtp-Source: APXvYqyl7oeWpq55E1rWzd8jsC71JAFEsVI26A8LO4PA4TcVfWTWVvZXb3P77i9AiNKVYR8cn1ZRLA==
+X-Received: by 2002:a17:902:2a6b:: with SMTP id i98mr39877642plb.75.1562158087779;
+        Wed, 03 Jul 2019 05:48:07 -0700 (PDT)
 Received: from localhost.localdomain ([183.82.231.32])
-        by smtp.gmail.com with ESMTPSA id q1sm3735890pfn.178.2019.07.03.05.48.01
+        by smtp.gmail.com with ESMTPSA id q1sm3735890pfn.178.2019.07.03.05.48.04
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 05:48:04 -0700 (PDT)
+        Wed, 03 Jul 2019 05:48:07 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -49,9 +49,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 24/25] ARM: dts: axp809: Switch to use SPDX identifier
-Date:   Wed,  3 Jul 2019 18:16:08 +0530
-Message-Id: <20190703124609.21435-25-jagan@amarulasolutions.com>
+Subject: [PATCH 25/25] ARM: dts: axp81x: Switch to use SPDX identifier
+Date:   Wed,  3 Jul 2019 18:16:09 +0530
+Message-Id: <20190703124609.21435-26-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 In-Reply-To: <20190703124609.21435-1-jagan@amarulasolutions.com>
 References: <20190703124609.21435-1-jagan@amarulasolutions.com>
@@ -63,7 +63,7 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Adopt the SPDX license identifier headers to ease license
-compliance management on axp809.dtsi.
+compliance management on axp81x.dtsi.
 
 While the text specifies "of the GPL or the X11 license"
 but the actual license text matches the MIT license as
@@ -73,17 +73,17 @@ specified at [0]
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
- arch/arm/boot/dts/axp809.dtsi | 39 +----------------------------------
+ arch/arm/boot/dts/axp81x.dtsi | 39 +----------------------------------
  1 file changed, 1 insertion(+), 38 deletions(-)
 
-diff --git a/arch/arm/boot/dts/axp809.dtsi b/arch/arm/boot/dts/axp809.dtsi
-index ab8e5f2d9246..53a902b29d6f 100644
---- a/arch/arm/boot/dts/axp809.dtsi
-+++ b/arch/arm/boot/dts/axp809.dtsi
+diff --git a/arch/arm/boot/dts/axp81x.dtsi b/arch/arm/boot/dts/axp81x.dtsi
+index 1dfeeceabf4c..83649e75f86d 100644
+--- a/arch/arm/boot/dts/axp81x.dtsi
++++ b/arch/arm/boot/dts/axp81x.dtsi
 @@ -1,45 +1,8 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
  /*
-  * Copyright 2015 Chen-Yu Tsai
+  * Copyright 2017 Chen-Yu Tsai
   *
   * Chen-Yu Tsai <wens@csie.org>
 - *
@@ -126,7 +126,7 @@ index ab8e5f2d9246..53a902b29d6f 100644
 - *     OTHER DEALINGS IN THE SOFTWARE.
   */
  
- /*
+ /* AXP813/818 Integrated Power Management Chip */
 -- 
 2.18.0.321.gffc6fa0e3
 
