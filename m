@@ -2,36 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 946DA5DC6C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 04:23:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6B625DC6F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 04:23:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727490AbfGCCPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 22:15:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53608 "EHLO mail.kernel.org"
+        id S1727545AbfGCCWr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 22:22:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53726 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727474AbfGCCPS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 2 Jul 2019 22:15:18 -0400
+        id S1727547AbfGCCPY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 2 Jul 2019 22:15:24 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 86B8621873;
-        Wed,  3 Jul 2019 02:15:16 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1AD31218A0;
+        Wed,  3 Jul 2019 02:15:23 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562120117;
-        bh=yfKz8Pgy3xUbbCrtwVExGp4uzeldW4cOAyhyQTJFsFE=;
+        s=default; t=1562120123;
+        bh=x+xiUEjIlDgPOtEAJJ3ptRrqKRICaQTLBuXdh2m9Fco=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Cszx2o5nZL5X9URylEmFnv42BogCzeB9ZcZniss5l647gs0Ewlw/OSOWCfVKrLAp7
-         6NlxwublEB8Ua3sHyiXsibz9BlL+fu/Quh1/Wn1oxwzIXTVanCp4cCyDSXq3QeY5LX
-         AeUnU+vIVQbZiw3vPQz+wzUpZ7t+UO/YXk+fyNJo=
+        b=DA4SeyPvJHaBOLn9MmepAe7E7dKs2jNJRz4SSaAmKvlvrVrkL7yUqLkT2yP0nYkqe
+         +M+iDzc8lWVmu5jEYY0X6oRTmSiHeGw6t/XSUC8dK2D5ARI7CXjTF4tO/I4McYPnYf
+         b6qlnK9Df+sJgxRF0d3kH/CwlmbKjqr+cKcXOdjQ=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.1 02/39] ARM: dts: meson8b: fix the operating voltage of the Mali GPU
-Date:   Tue,  2 Jul 2019 22:14:37 -0400
-Message-Id: <20190703021514.17727-2-sashal@kernel.org>
+Cc:     Ran Wang <ran.wang_1@nxp.com>, Shawn Guo <shawnguo@kernel.org>,
+        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.1 08/39] arm64: dts: ls1028a: Fix CPU idle fail.
+Date:   Tue,  2 Jul 2019 22:14:43 -0400
+Message-Id: <20190703021514.17727-8-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190703021514.17727-1-sashal@kernel.org>
 References: <20190703021514.17727-1-sashal@kernel.org>
@@ -44,74 +42,67 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+From: Ran Wang <ran.wang_1@nxp.com>
 
-[ Upstream commit 26d65140e92a626e39c73c9abf769fd174bf5076 ]
+[ Upstream commit 53f2ac9d3aa881ed419054076042898b77c27ee4 ]
 
-Amlogic's vendor kernel defines an OPP for the GPU on Meson8b boards
-with a voltage of 1.15V. It turns out that the vendor kernel relies on
-the bootloader to set up the voltage. The bootloader however sets a
-fixed voltage of 1.10V.
+PSCI spec define 1st parameter's bit 16 of function CPU_SUSPEND to
+indicate CPU State Type: 0 for standby, 1 for power down. In this
+case, we want to select standby for CPU idle feature. But current
+setting wrongly select power down and cause CPU SUSPEND fail every
+time. Need this fix.
 
-Amlogic's patched u-boot sources (uboot-2015-01-15-23a3562521) confirm
-this:
-$ grep -oiE "VDD(EE|AO)_VOLTAGE[ ]+[0-9]+" board/amlogic/configs/m8b_*
-  board/amlogic/configs/m8b_m100_v1.h:VDDAO_VOLTAGE            1100
-  board/amlogic/configs/m8b_m101_v1.h:VDDAO_VOLTAGE            1100
-  board/amlogic/configs/m8b_m102_v1.h:VDDAO_VOLTAGE            1100
-  board/amlogic/configs/m8b_m200_v1.h:VDDAO_VOLTAGE            1100
-  board/amlogic/configs/m8b_m201_v1.h:VDDEE_VOLTAGE            1100
-  board/amlogic/configs/m8b_m201_v1.h:VDDEE_VOLTAGE            1100
-  board/amlogic/configs/m8b_m202_v1.h:VDDEE_VOLTAGE            1100
-
-Another hint at this is the VDDEE voltage on the EC-100 and Odroid-C1
-boards. The VDDEE regulator supplies the Mali GPU. It's basically a copy
-of the VCCK (CPU supply) which means it's limited to 0.86V to 1.14V.
-
-Update the operating voltage of the Mali GPU on Meson8b to 1.10V so it
-matches with what the vendor u-boot sets.
-
-Fixes: c3ea80b6138cae ("ARM: dts: meson8b: add the Mali-450 MP2 GPU")
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Kevin Hilman <khilman@baylibre.com>
+Fixes: 8897f3255c9c ("arm64: dts: Add support for NXP LS1028A SoC")
+Signed-off-by: Ran Wang <ran.wang_1@nxp.com>
+Signed-off-by: Shawn Guo <shawnguo@kernel.org>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm/boot/dts/meson8b.dtsi | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index fe84a8c3ce81..6b80aff32fc2 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -163,23 +163,23 @@
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index 2896bbcfa3bb..228872549f01 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -28,7 +28,7 @@
+ 			enable-method = "psci";
+ 			clocks = <&clockgen 1 0>;
+ 			next-level-cache = <&l2>;
+-			cpu-idle-states = <&CPU_PH20>;
++			cpu-idle-states = <&CPU_PW20>;
+ 		};
  
- 		opp-255000000 {
- 			opp-hz = /bits/ 64 <255000000>;
--			opp-microvolt = <1150000>;
-+			opp-microvolt = <1100000>;
+ 		cpu1: cpu@1 {
+@@ -38,7 +38,7 @@
+ 			enable-method = "psci";
+ 			clocks = <&clockgen 1 0>;
+ 			next-level-cache = <&l2>;
+-			cpu-idle-states = <&CPU_PH20>;
++			cpu-idle-states = <&CPU_PW20>;
  		};
- 		opp-364300000 {
- 			opp-hz = /bits/ 64 <364300000>;
--			opp-microvolt = <1150000>;
-+			opp-microvolt = <1100000>;
- 		};
- 		opp-425000000 {
- 			opp-hz = /bits/ 64 <425000000>;
--			opp-microvolt = <1150000>;
-+			opp-microvolt = <1100000>;
- 		};
- 		opp-510000000 {
- 			opp-hz = /bits/ 64 <510000000>;
--			opp-microvolt = <1150000>;
-+			opp-microvolt = <1100000>;
- 		};
- 		opp-637500000 {
- 			opp-hz = /bits/ 64 <637500000>;
--			opp-microvolt = <1150000>;
-+			opp-microvolt = <1100000>;
- 			turbo-mode;
+ 
+ 		l2: l2-cache {
+@@ -53,13 +53,13 @@
+ 		 */
+ 		entry-method = "arm,psci";
+ 
+-		CPU_PH20: cpu-ph20 {
+-			compatible = "arm,idle-state";
+-			idle-state-name = "PH20";
+-			arm,psci-suspend-param = <0x00010000>;
+-			entry-latency-us = <1000>;
+-			exit-latency-us = <1000>;
+-			min-residency-us = <3000>;
++		CPU_PW20: cpu-pw20 {
++			  compatible = "arm,idle-state";
++			  idle-state-name = "PW20";
++			  arm,psci-suspend-param = <0x0>;
++			  entry-latency-us = <2000>;
++			  exit-latency-us = <2000>;
++			  min-residency-us = <6000>;
  		};
  	};
+ 
 -- 
 2.20.1
 
