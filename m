@@ -2,109 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 697925ED08
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 21:58:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6E2A85E976
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 18:46:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726805AbfGCT6E (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 15:58:04 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:35269 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726821AbfGCT6E (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 15:58:04 -0400
-X-Originating-IP: 90.89.68.76
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 742B8240004;
-        Wed,  3 Jul 2019 19:57:58 +0000 (UTC)
-Date:   Wed, 3 Jul 2019 17:30:56 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Jagan Teki <jagan@amarulasolutions.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1726678AbfGCQqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 12:46:05 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:46591 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726430AbfGCQqF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 12:46:05 -0400
+Received: by mail-ed1-f68.google.com with SMTP id d4so2715962edr.13;
+        Wed, 03 Jul 2019 09:46:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=08FT7ddsmk9tLgvVvr2oQycyQXe5HFBk71BAZ/FmXUk=;
+        b=TWa4pc2EdmtLNNbcdyQZTBp7Y2NNRNhRU25KJV9GQNIpuMKkvzYyNvnWH7nRRamPjb
+         /caum6h7iO4vYiEkff6fwK5UakxNxnG7joCZz2ztHg18jvm1EzUT1MVhQUAdq6q6nmlh
+         82j59LytSemhPZWkaRojDdtxLTfmB0aT4QJc8vxqebnnxqkcQ6Wtz6QBDJXsWnnofHPh
+         2WF0ehgVKHOIAaLQ6W69V8wxdHlaBd0SOTcldZ+6dWpo3IR2VBG8l/WRdWfnpOcQFk7Q
+         KkRJJkh4BFNw5XmVgmjlpoBmP5BhcLKyzDbmUjJ9zdsbCCnt6JHPtnNQj0qqrIbVFNEh
+         aSng==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=08FT7ddsmk9tLgvVvr2oQycyQXe5HFBk71BAZ/FmXUk=;
+        b=RDaClSbQfRLYE20Dk1rFemvNCT6J85jjJkARjX1d4yJOoiYkjgo4tFFzdUslrJ38wC
+         fVEjp7ITyXu+TBMDlqFbhWsg3JsedUweqSIvyPYislVFcyrh9GQ1LuuuVEAnWfs8jAfu
+         fb3eECwYXZ7AdyRDemRWGYSI9pekRfHzQfWbNbPlbNxGP5T60/SOdlurXAIiWJg9ojvq
+         Y7+7AvrAs2Yeh/yJc5gHBjdiQqUvQWKGZx5XbXXz667AJKyCBePeMO8q2gyQ8LZerayJ
+         +MSIrzDQMxOLFMUe6NJu9njS5sxsqxNv2IXbx1X1dlARF4KAv5eYLU28KGLa9Z6iagN9
+         fyYw==
+X-Gm-Message-State: APjAAAV/xjrn2G7FD1swYAx8ZbAvt3Pap9Q3Wj8fWJev6GXJX3NCbHgG
+        W0sVCHNqZ4nhuWDoqAZGyB0=
+X-Google-Smtp-Source: APXvYqyQneHl9k0YePcXIOIWu0hzBiE7uHghqSPjYIrF6KJ/fdAgv7pH7XVLT+Hdo0nRWBLT+8kdhg==
+X-Received: by 2002:aa7:c754:: with SMTP id c20mr43184865eds.265.1562172363746;
+        Wed, 03 Jul 2019 09:46:03 -0700 (PDT)
+Received: from localhost (ip1f10d6e1.dynamic.kabel-deutschland.de. [31.16.214.225])
+        by smtp.gmail.com with ESMTPSA id h10sm845881eda.85.2019.07.03.09.46.02
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Jul 2019 09:46:02 -0700 (PDT)
+Date:   Wed, 3 Jul 2019 18:46:00 +0200
+From:   Oliver Graute <oliver.graute@gmail.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, narmstrong@baylibre.com,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        linux-amarula <linux-amarula@amarulasolutions.com>
-Subject: Re: [PATCH 01/25] arm64: dts: allwinner: Switch A64 dts(i) to use
- SPDX identifier
-Message-ID: <20190703153056.jhks4yb4ag56rrx5@flea>
-References: <20190703124609.21435-1-jagan@amarulasolutions.com>
- <20190703124609.21435-2-jagan@amarulasolutions.com>
- <20190703132838.nhewz5wzsijl65s5@flea>
- <CAMty3ZDyx_RSkU=OndsvzS5reOzab0DBkrarSeHt+-gtsdyKuQ@mail.gmail.com>
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCHv3 0/2] Variscite DART-6UL SoM support
+Message-ID: <20190703164600.GA9261@ripley>
+References: <1559839624-12286-1-git-send-email-oliver.graute@gmail.com>
+ <20190613013830.GC20747@dragon>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAMty3ZDyx_RSkU=OndsvzS5reOzab0DBkrarSeHt+-gtsdyKuQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190613013830.GC20747@dragon>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 03, 2019 at 07:52:27PM +0530, Jagan Teki wrote:
-> On Wed, Jul 3, 2019 at 6:58 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> >
-> > On Wed, Jul 03, 2019 at 06:15:45PM +0530, Jagan Teki wrote:
-> > > Adopt the SPDX license identifier headers to ease license
-> > > compliance management on Allwinner A64 dts(i) files.
-> > >
-> > > While the text specifies "of the GPL or the X11 license"
-> > > but the actual license text matches the MIT license as
-> > > specified at [0]
-> > >
-> > > [0] https://spdx.org/licenses/MIT.html
-> > >
-> > > Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
-> > > ---
-> > >  .../dts/allwinner/sun50i-a64-bananapi-m64.dts | 39 +------------------
-> > >  .../dts/allwinner/sun50i-a64-nanopi-a64.dts   | 39 +------------------
-> > >  .../dts/allwinner/sun50i-a64-olinuxino.dts    | 39 +------------------
-> > >  .../dts/allwinner/sun50i-a64-orangepi-win.dts | 39 +------------------
-> > >  .../dts/allwinner/sun50i-a64-pine64-plus.dts  | 39 +------------------
-> > >  .../boot/dts/allwinner/sun50i-a64-pine64.dts  | 39 +------------------
-> > >  .../allwinner/sun50i-a64-sopine-baseboard.dts | 39 +------------------
-> > >  .../boot/dts/allwinner/sun50i-a64-sopine.dtsi | 39 +------------------
-> > >  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 39 +------------------
-> > >  9 files changed, 9 insertions(+), 342 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
-> > > index 208373efee49..efdd84c362b0 100644
-> > > --- a/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
-> > > +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64-bananapi-m64.dts
-> > > @@ -1,43 +1,6 @@
-> > > +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
-> >
-> > You say that this is a GPL2 only license
-> >
-> > >  /*
-> > >   * Copyright (c) 2016 ARM Ltd.
-> > > - *
-> > > - * This file is dual-licensed: you can use it either under the terms
-> > > - * of the GPL or the X11 license, at your option. Note that this dual
-> > > - * licensing only applies to this file, and not this project as a
-> > > - * whole.
-> > > - *
-> > > - *  a) This library is free software; you can redistribute it and/or
-> > > - *     modify it under the terms of the GNU General Public License as
-> > > - *     published by the Free Software Foundation; either version 2 of the
-> > > - *     License, or (at your option) any later version.
-> >
-> > While this is GPL2 or later.
->
-> Yes, this is where I was confused with compared to existing
-> architectures. It seems like it is a call from author of the file or
-> make GPL-2.0 for generic purpose [1], not really sure.
+On 13/06/19, Shawn Guo wrote:
+> On Thu, Jun 06, 2019 at 06:47:00PM +0200, Oliver Graute wrote:
+> > Need feedback to the following patches which adds support for a DART-6UL Board
+> > 
+> > Product Page: https://www.variscite.com/product/evaluation-kits/dart-6ul-kits
+> > 
+> > Oliver Graute (2):
+> >   ARM: dts: imx6ul: Add Variscite DART-6UL SoM support
+> >   ARM: dts: Add support for i.MX6 UltraLite DART Variscite Customboard
+> 
+> It's already v3?  I did not find previous versions.  What's changed
+> since previous versions?
 
-What are you confused about? This is GPL2 or later, and it shouldn't
-really be changed (unless we have the consent of all the contributors
-of all the DTs, but that's a can of worm I don't want to reopen).
+The first two version you can find here. I splitted board and SoM part
+according Neils and Fabios comments.
 
-Maxime
+v1
+https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=59259
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+v2 
+https://patchwork.kernel.org/patch/10748361/
+
+Please review the latest version v4:
+
+https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=137257
+
+Thx for your time and patience.
+
+Oliver
