@@ -2,80 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B475E62C
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 16:13:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB20E5E654
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 16:17:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725933AbfGCONG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 10:13:06 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:35649 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726490AbfGCONF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 10:13:05 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id B62E02001A;
-        Wed,  3 Jul 2019 14:13:00 +0000 (UTC)
-Date:   Wed, 3 Jul 2019 16:13:00 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/7] dt-bindings: net: mdio: Add child nodes
-Message-ID: <20190703141300.duhk2qj3m5qpkp3h@flea>
-References: <20190703095513.12340-1-maxime.ripard@bootlin.com>
- <20190703095513.12340-3-maxime.ripard@bootlin.com>
- <CAL_JsqKgBXxbg_9ZKfmj6y0s_5Z5QZw3RmdJfSHEpjh84m9brg@mail.gmail.com>
+        id S1726640AbfGCORU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 10:17:20 -0400
+Received: from foss.arm.com ([217.140.110.172]:49192 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726581AbfGCORU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jul 2019 10:17:20 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 3A2DD2B;
+        Wed,  3 Jul 2019 07:17:20 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 363A63F718;
+        Wed,  3 Jul 2019 07:17:18 -0700 (PDT)
+Date:   Wed, 3 Jul 2019 15:17:15 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
+Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Xiaowei Bao <xiaowei.bao@nxp.com>
+Subject: Re: [PATCHv5 03/20] PCI: mobiveil: Correct the returned error number
+Message-ID: <20190703141715.GB26804@e121166-lin.cambridge.arm.com>
+References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
+ <20190412083635.33626-4-Zhiqiang.Hou@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="t3vspt6dpabgj43y"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAL_JsqKgBXxbg_9ZKfmj6y0s_5Z5QZw3RmdJfSHEpjh84m9brg@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <20190412083635.33626-4-Zhiqiang.Hou@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Apr 12, 2019 at 08:35:30AM +0000, Z.q. Hou wrote:
+> From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> 
+> This patch corrects the returned error number by convention,
+> and removes an unnecessary error check.
 
---t3vspt6dpabgj43y
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Two distinct changes, two patches, please split and repost.
 
-On Wed, Jul 03, 2019 at 07:53:43AM -0600, Rob Herring wrote:
-> On Wed, Jul 3, 2019 at 3:55 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> >
-> > The child nodes of a mdio bus are supposed to be ethernet PHYs, with a reg
-> > property. Make sure that's validated as well.
->
-> I don't think this is always true. I seem to recall there's some
-> timestamping devices connected via mdio.
->
-> In any case, it's not a long list of names, so we can probably just
-> enumerate them as needed. Does this generate any warnings?
+Lorenzo
 
-I did a run on both arm and arm64 Allwinner DTS, and it doesn't.
-
-I can do one on multi_v7 / arm64's defconfig, but that's probably
-going to be a bit hard to tell from the noise of warnings.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---t3vspt6dpabgj43y
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXRy37AAKCRDj7w1vZxhR
-xVpzAP0QfgtmDLDgzAxLUAk40JbOCuA7vYsWKx9boQv2Joq9YAD+NSZ/8cEK5r0C
-UTO6FEbNY9ZrSWPe9DuBwUTtbC8g3w8=
-=TelY
------END PGP SIGNATURE-----
-
---t3vspt6dpabgj43y--
+> Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+> Reviewed-by: Minghuan Lian <Minghuan.Lian@nxp.com>
+> Reviewed-by: Subrahmanya Lingappa <l.subrahmanya@mobiveil.co.in>
+> ---
+> V5:
+>  - Corrected and retouched the subject and changelog.
+> 
+>  drivers/pci/controller/pcie-mobiveil.c | 8 +++-----
+>  1 file changed, 3 insertions(+), 5 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/pcie-mobiveil.c b/drivers/pci/controller/pcie-mobiveil.c
+> index b87471f08a40..563210e731d3 100644
+> --- a/drivers/pci/controller/pcie-mobiveil.c
+> +++ b/drivers/pci/controller/pcie-mobiveil.c
+> @@ -819,7 +819,7 @@ static int mobiveil_pcie_init_irq_domain(struct mobiveil_pcie *pcie)
+>  
+>  	if (!pcie->intx_domain) {
+>  		dev_err(dev, "Failed to get a INTx IRQ domain\n");
+> -		return -ENODEV;
+> +		return -ENOMEM;
+>  	}
+>  
+>  	raw_spin_lock_init(&pcie->intx_mask_lock);
+> @@ -845,11 +845,9 @@ static int mobiveil_pcie_probe(struct platform_device *pdev)
+>  	/* allocate the PCIe port */
+>  	bridge = devm_pci_alloc_host_bridge(dev, sizeof(*pcie));
+>  	if (!bridge)
+> -		return -ENODEV;
+> +		return -ENOMEM;
+>  
+>  	pcie = pci_host_bridge_priv(bridge);
+> -	if (!pcie)
+> -		return -ENOMEM;
+>  
+>  	pcie->pdev = pdev;
+>  
+> @@ -866,7 +864,7 @@ static int mobiveil_pcie_probe(struct platform_device *pdev)
+>  						    &pcie->resources, &iobase);
+>  	if (ret) {
+>  		dev_err(dev, "Getting bridge resources failed\n");
+> -		return -ENOMEM;
+> +		return ret;
+>  	}
+>  
+>  	/*
+> -- 
+> 2.17.1
+> 
