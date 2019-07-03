@@ -2,132 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CE1A05EF4B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 00:56:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 569AF5EF7C
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 01:05:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727310AbfGCW4w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 18:56:52 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:34246 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727056AbfGCW4w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 18:56:52 -0400
-Received: by mail-pg1-f194.google.com with SMTP id p10so1941967pgn.1
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 15:56:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=PRnPC62JX/RoJO2/m7GOKXtEfYdUUSzelwP+KhPJ16w=;
-        b=YpKWoSeoP8mPpxkQgnQZglfCx5jnSJdY1jiKYlL+sUIb0OfW4xqnmRkLdMNjT2NTwz
-         9MQiJoHu40bDZPvu2VldqFTU3rT3DdBHClvwtFqkBXx8+WGhIzttsMK29A/5Zkeyrp6U
-         20YtqOCnf4UR+BIpkiNdJVXqHbtmuquinMAQ8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=PRnPC62JX/RoJO2/m7GOKXtEfYdUUSzelwP+KhPJ16w=;
-        b=KxFEePhcGG8/gwJjCgINQc3bJslfNgXzlupLWZro67j61gaEZGTvZKFQhpliUyeBCz
-         P3/fz4xm0ON14tJf6w9W1HuSswT6b0mvNyQeJVNy+g00n6/5+zrlsQoFw2X74W3GpvHj
-         H4z2qb8mXPsLAD93dVOvu9Hg1yYPczc3aY7rz1EAMITVw3AGHRzf09I/Df1XKv+jdPYa
-         FvjQkkiQ+ohv4ZvLt7MHNSRqfPDaJCHDUIUO0YsAEwWzMewruMYF1Ubbt0WKramWH1+e
-         TPjt45Q/UCg2+VqopDrTNCqDaE3N/BdmImQrpE1Ey2vfU4tIbicLr5FzooThEJ/WIqw0
-         mC3Q==
-X-Gm-Message-State: APjAAAXpsEEoNYXERQqdcE9xRyWtAFHP3pGoDhDPkYs0f/X8Rkrln3+l
-        aH3IiVgfWQwMkSe6CWqf0CvpWA==
-X-Google-Smtp-Source: APXvYqyvAYsxwYDLVdbBmZDOVqaTqouGlL7BWOuPZ+HJcoLd2cmjndbKZyf58r/rkf0fKUu0eYY6LA==
-X-Received: by 2002:a17:90a:2190:: with SMTP id q16mr15114510pjc.23.1562194611721;
-        Wed, 03 Jul 2019 15:56:51 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id d187sm3427000pfa.38.2019.07.03.15.56.50
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 15:56:50 -0700 (PDT)
-Date:   Wed, 3 Jul 2019 15:56:48 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v2 4/7] net: phy: realtek: Enable accessing RTL8211E
- extension pages
-Message-ID: <20190703225648.GK250418@google.com>
-References: <20190703193724.246854-1-mka@chromium.org>
- <20190703193724.246854-4-mka@chromium.org>
- <dd7a569b-41e4-5925-88fc-227e69c82f67@gmail.com>
- <20190703203650.GF250418@google.com>
- <98326ec2-6e90-fd3a-32f5-cf0db26c31a9@gmail.com>
- <20190703212407.GI250418@google.com>
- <3e47639a-bbbb-f438-bc66-a29423090e95@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <3e47639a-bbbb-f438-bc66-a29423090e95@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        id S1727282AbfGCXFg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 19:05:36 -0400
+Received: from gate.crashing.org ([63.228.1.57]:34221 "EHLO gate.crashing.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727021AbfGCXFf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jul 2019 19:05:35 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x63N4tut012603;
+        Wed, 3 Jul 2019 18:04:56 -0500
+Message-ID: <c8b5e295c34aaf8b3d8b03aeaa980c88d870443a.camel@kernel.crashing.org>
+Subject: Re: [patch v3 1/5] AST2500 DMA UART driver
+From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
+To:     Greg KH <gregkh@linuxfoundation.org>,
+        "sudheer.v" <open.sudheer@gmail.com>
+Cc:     jslaby@suse.com, joel@jms.id.au, andrew@aj.id.au,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        shivahshankar.shankarnarayanrao@aspeedtech.com,
+        shivahshankar@gmail.com, sudheer.veliseti@aspeedtech.com,
+        sudheer veliseti <sudheer.open@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
+Date:   Thu, 04 Jul 2019 09:04:55 +1000
+In-Reply-To: <20190703174926.GA12813@kroah.com>
+References: <1561459476-14268-1-git-send-email-open.sudheer@gmail.com>
+         <1561459476-14268-2-git-send-email-open.sudheer@gmail.com>
+         <20190703174926.GA12813@kroah.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 03, 2019 at 11:27:41PM +0200, Heiner Kallweit wrote:
-> On 03.07.2019 23:24, Matthias Kaehlcke wrote:
-> > On Wed, Jul 03, 2019 at 11:01:09PM +0200, Heiner Kallweit wrote:
-> >> On 03.07.2019 22:36, Matthias Kaehlcke wrote:
-> >>> On Wed, Jul 03, 2019 at 10:12:12PM +0200, Heiner Kallweit wrote:
-> >>>> On 03.07.2019 21:37, Matthias Kaehlcke wrote:
-> >>>>> The RTL8211E has extension pages, which can be accessed after
-> >>>>> selecting a page through a custom method. Add a function to
-> >>>>> modify bits in a register of an extension page and a helper for
-> >>>>> selecting an ext page.
-> >>>>>
-> >>>>> rtl8211e_modify_ext_paged() is inspired by its counterpart
-> >>>>> phy_modify_paged().
-> >>>>>
-> >>>>> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> >>>>> ---
-> >>>>> Changes in v2:
-> >>>>> - assign .read/write_page handlers for RTL8211E
-> >>>>
-> >>>> Maybe this was planned, but it's not part of the patch.
-> >>>
-> >>> Oops, it was definitely there when I tested ... I guess this got
-> >>> somehow lost when changing the patch order and resolving minor
-> >>> conflicts, seems like I only build tested after that :/
-> >>>
-> >> RTL8211E also supports normal pages (reg 0x1f = page).
-> >> See e.g. rtl8168e_2_hw_phy_config in the r8169 driver, this network
-> >> chip has an integrated RTL8211E PHY. There settings on page 3 and 5
-> >> are done.
-> >> Therefore I would prefer to use .read/write_page for normal paging
-> >> in all Realtek PHY drivers. Means the code here would remain as it
-> >> is and just the changelog would need to be fixed.
-> > 
-> > Do I understand correctly that you suggest an additional patch that
-> > assigns .read/write_page() for all entries of realtek_drvs?
-> > 
-> 
-> No, basically all the Realtek PHY drivers use the following already:
-> .read_page	= rtl821x_read_page,
-> .write_page	= rtl821x_write_page,
-> What I mean is that this should stay as it is, and not be overwritten
-> with the extended paging.
+On Wed, 2019-07-03 at 19:49 +0200, Greg KH wrote:
+> > +
+> > +     if (tx_sts & UART_SDMA0_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA0_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[0]));
+> > +     } else if (tx_sts & UART_SDMA1_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA1_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[1]));
+> > +     } else if (tx_sts & UART_SDMA2_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA2_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[2]));
+> > +     } else if (tx_sts & UART_SDMA3_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA3_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[3]));
+> > +     } else if (tx_sts & UART_SDMA4_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA4_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[4]));
+> > +     } else if (tx_sts & UART_SDMA5_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA5_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[5]));
+> > +     } else if (tx_sts & UART_SDMA6_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA6_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[6]));
+> > +     } else if (tx_sts & UART_SDMA7_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA7_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[7]));
+> > +     } else if (tx_sts & UART_SDMA8_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA8_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[8]));
+> > +     } else if (tx_sts & UART_SDMA9_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA9_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[9]));
+> > +     } else if (tx_sts & UART_SDMA10_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA10_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[10]));
+> > +     } else if (tx_sts & UART_SDMA11_INT) {
+> > +             ast_uart_sdma_write(sdma, UART_SDMA11_INT, UART_TX_SDMA_ISR);
+> > +             ast_sdma_bufffdone(&(sdma->dma_ch->tx_dma_info[11]));
+> > +     } else {
+> > +     }
 
-I now see the source of our/my misunderstanding. I'm working on a 4.19
-kernel, which doesn't have your recent patch:
+Also this should be a for () loop...
 
-commit daf3ddbe11a2ff74c95bc814df8e5fe3201b4cb5
-Author: Heiner Kallweit <hkallweit1@gmail.com>
-Date:   Fri May 10 22:11:26 2019 +0200
-
-    net: phy: realtek: add missing page operations
+Cheers,
+Ben.
 
 
-That's what I intended to do for RTL8211E, no need to overwrite it
-with the extended paging.
-
-Thanks
-
-Matthias
