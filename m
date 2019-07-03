@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A2A605E47E
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:49:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 181C95E47F
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:49:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727074AbfGCMrE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 08:47:04 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:41410 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727071AbfGCMrD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:47:03 -0400
-Received: by mail-pl1-f194.google.com with SMTP id m7so1190281pls.8
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 05:47:02 -0700 (PDT)
+        id S1726217AbfGCMrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 08:47:07 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:37036 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727094AbfGCMrG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:47:06 -0400
+Received: by mail-pl1-f193.google.com with SMTP id bh12so1201439plb.4
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 05:47:05 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=2xOrMAnP6SbWgOhNgiIkDHtTR5ddyHBAwC8dcHGU1jM=;
-        b=CxqJ2YtWOGAw0oODid5Qt5mQg1VoVLNEAcYkidQRl2+lsrs1y07eU6JRc1fVwL86th
-         x2oe74fEOKuutDeMp7i4D7AKelShvJzZA7utIn24vCMHnGwFC7FPECXWA9dTdhF4R2dk
-         hx8sUZJwcSthlfDSTEdaDDrbM3uxytGxAZ6Ho=
+        bh=vWBkVJMd9kSkqWTZ94RFDaq4kMzggq1qJPbrnpTpzLE=;
+        b=A0ynj0bP/AnmKqe+3uQ6iLE3Dq5lVKa1LInR/NyY/B+cgALdaRk2d8uh4hmO6h2jL7
+         NEFxNlkpBnhbGC++aFhCnVEi/KzebwPN39+byyaA0m9qWjZIDpawnwQuaPmYwZ6dEva+
+         Ol0ISFKF3f5fIOQFarSyg7rDY1F/JFbkc1Zuk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=2xOrMAnP6SbWgOhNgiIkDHtTR5ddyHBAwC8dcHGU1jM=;
-        b=oPZyJiv5NyabFQjrElI83ymK0INsVROfJoK03y3CgG68PxctCiqZCrnPmvjHsdsVrA
-         phHDL1i+lEGg8PrRBGCJoOwoDXHIFTHdtGSFiUP8Rgv369ZrsMJRh5hKDgUyfni/CoCd
-         4HAFcGVl282/oKckumahwKlLdfJYX32LZSkLDwD4F0h4o+KQFveIlKF1yygGYzzXpH8q
-         lzdIAYYDq+OUnhICnKFhpB9Joxyu4DVdzg6zP395pJE+g79aditHf0kJEigFrfWg9bh4
-         V2yKTODQ2ebb/2Gwo3s9hgLpKgbzjeB7oAr3WHLu24rwMefu+gOFjKpEGIgDmA1QhytT
-         jplQ==
-X-Gm-Message-State: APjAAAVrXyqbvQEj7EB/4j1sywfHyCPS2W5B3r2kR5K1qkaK3uxEz8qa
-        nsFAUJZiWoDFYHlGDElu16FmEg==
-X-Google-Smtp-Source: APXvYqyfm6yD1Ok0ZhSwmHaLnaNzZ1JcblHUMpZvLdecBVeUkWIIJIC6Y51uaynvyZb4v6/iC92MUQ==
-X-Received: by 2002:a17:902:2884:: with SMTP id f4mr41378913plb.286.1562158021896;
-        Wed, 03 Jul 2019 05:47:01 -0700 (PDT)
+        bh=vWBkVJMd9kSkqWTZ94RFDaq4kMzggq1qJPbrnpTpzLE=;
+        b=NMWc3IFiSEDze3Z0uqEUohnFOTPnDQ+kzAclKdPJ5POEDphPS0dzcy/L3NUMkfPB9O
+         S3HHlqw2opoDRQD57EFy1vwDq+AnS+gHFhklC8KWyqT8XPI8j04eS0aRGmq1siWftQ3L
+         ySfZ6fuSkOTeezg6kRUkLgAu8Y9wkIJw8R1fLp2BmrCvhz3QGd4wfn705S9PWvQCE4S2
+         PC6+hQ6aY7ZNu4Y2FARamDFgb/AdXCQgdC0sjN28xy9L44GVpT3gF6BPQBLvDsouwqcD
+         Fjks/lLKb1bN0HjJqkbSPNvRt3hpOMCC98Y4JqvGvDPozDKM/IFDwT0L4JLF6AiPwzOJ
+         PcSg==
+X-Gm-Message-State: APjAAAVBkw+Uyk0ASTkLSKxdOiJZfswOHx00E0CaG1ok9uNPgiQqTzr7
+        iU8StUVXxcMDLrebEaV2cEWw+A==
+X-Google-Smtp-Source: APXvYqzZzhfuBDT6AVh2znk4kxh/5HDJ3WKGbsy02VFdL6UBU9pLfVbHzX5iIFeGpGOsnbE0sNUmAg==
+X-Received: by 2002:a17:902:684:: with SMTP id 4mr42247347plh.138.1562158025244;
+        Wed, 03 Jul 2019 05:47:05 -0700 (PDT)
 Received: from localhost.localdomain ([183.82.231.32])
-        by smtp.gmail.com with ESMTPSA id q1sm3735890pfn.178.2019.07.03.05.46.58
+        by smtp.gmail.com with ESMTPSA id q1sm3735890pfn.178.2019.07.03.05.47.02
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 05:47:01 -0700 (PDT)
+        Wed, 03 Jul 2019 05:47:04 -0700 (PDT)
 From:   Jagan Teki <jagan@amarulasolutions.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -49,9 +49,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
 Cc:     linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
         Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 05/25] ARM: dts: sun5i: Switch A10s dts(i) to use SPDX identifier
-Date:   Wed,  3 Jul 2019 18:15:49 +0530
-Message-Id: <20190703124609.21435-6-jagan@amarulasolutions.com>
+Subject: [PATCH 06/25] ARM: dts: sun5i: Switch A13 dts(i) to use SPDX identifier
+Date:   Wed,  3 Jul 2019 18:15:50 +0530
+Message-Id: <20190703124609.21435-7-jagan@amarulasolutions.com>
 X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
 In-Reply-To: <20190703124609.21435-1-jagan@amarulasolutions.com>
 References: <20190703124609.21435-1-jagan@amarulasolutions.com>
@@ -63,7 +63,7 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Adopt the SPDX license identifier headers to ease license
-compliance management on Allwinner A10s dts(i) files.
+compliance management on Allwinner A13 dts(i) files.
 
 While the text specifies "of the GPL or the X11 license"
 but the actual license text matches the MIT license as
@@ -73,20 +73,73 @@ specified at [0]
 
 Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
 ---
- arch/arm/boot/dts/sun5i-a10s-auxtek-t003.dts  | 39 +------------------
- arch/arm/boot/dts/sun5i-a10s-auxtek-t004.dts  | 39 +------------------
- arch/arm/boot/dts/sun5i-a10s-mk802.dts        | 39 +------------------
- .../boot/dts/sun5i-a10s-olinuxino-micro.dts   | 39 +------------------
- arch/arm/boot/dts/sun5i-a10s-r7-tv-dongle.dts | 39 +------------------
- arch/arm/boot/dts/sun5i-a10s-wobo-i5.dts      | 39 +------------------
- arch/arm/boot/dts/sun5i-a10s.dtsi             | 39 +------------------
- arch/arm/boot/dts/sun5i.dtsi                  | 39 +------------------
- 8 files changed, 8 insertions(+), 304 deletions(-)
+ .../boot/dts/sun5i-a13-difrnce-dit4350.dts    | 39 +------------------
+ .../dts/sun5i-a13-empire-electronix-d709.dts  | 39 +------------------
+ .../dts/sun5i-a13-empire-electronix-m712.dts  | 39 +------------------
+ arch/arm/boot/dts/sun5i-a13-hsg-h702.dts      | 39 +------------------
+ arch/arm/boot/dts/sun5i-a13-inet-98v-rev2.dts | 39 +------------------
+ arch/arm/boot/dts/sun5i-a13-licheepi-one.dts  | 39 +------------------
+ .../boot/dts/sun5i-a13-olinuxino-micro.dts    | 39 +------------------
+ arch/arm/boot/dts/sun5i-a13-olinuxino.dts     | 39 +------------------
+ arch/arm/boot/dts/sun5i-a13-q8-tablet.dts     | 39 +------------------
+ arch/arm/boot/dts/sun5i-a13-utoo-p66.dts      | 39 +------------------
+ arch/arm/boot/dts/sun5i-a13.dtsi              | 39 +------------------
+ .../dts/sun5i-reference-design-tablet.dtsi    | 39 +------------------
+ 12 files changed, 12 insertions(+), 456 deletions(-)
 
-diff --git a/arch/arm/boot/dts/sun5i-a10s-auxtek-t003.dts b/arch/arm/boot/dts/sun5i-a10s-auxtek-t003.dts
-index 64d50fcfcd3a..652de144c45f 100644
---- a/arch/arm/boot/dts/sun5i-a10s-auxtek-t003.dts
-+++ b/arch/arm/boot/dts/sun5i-a10s-auxtek-t003.dts
+diff --git a/arch/arm/boot/dts/sun5i-a13-difrnce-dit4350.dts b/arch/arm/boot/dts/sun5i-a13-difrnce-dit4350.dts
+index 894c4c4f9a1f..2396bc758520 100644
+--- a/arch/arm/boot/dts/sun5i-a13-difrnce-dit4350.dts
++++ b/arch/arm/boot/dts/sun5i-a13-difrnce-dit4350.dts
+@@ -1,43 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+ /*
+  * Copyright 2016 Hans de Goede <hdegoede@redhat.com>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/sun5i-a13-empire-electronix-d709.dts b/arch/arm/boot/dts/sun5i-a13-empire-electronix-d709.dts
+index a23bf24792ec..cefb621db3fe 100644
+--- a/arch/arm/boot/dts/sun5i-a13-empire-electronix-d709.dts
++++ b/arch/arm/boot/dts/sun5i-a13-empire-electronix-d709.dts
 @@ -1,43 +1,6 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
  /*
@@ -132,10 +185,108 @@ index 64d50fcfcd3a..652de144c45f 100644
   */
  
  /dts-v1/;
-diff --git a/arch/arm/boot/dts/sun5i-a10s-auxtek-t004.dts b/arch/arm/boot/dts/sun5i-a10s-auxtek-t004.dts
-index 8af0eae2ddc1..aee1031639f6 100644
---- a/arch/arm/boot/dts/sun5i-a10s-auxtek-t004.dts
-+++ b/arch/arm/boot/dts/sun5i-a10s-auxtek-t004.dts
+diff --git a/arch/arm/boot/dts/sun5i-a13-empire-electronix-m712.dts b/arch/arm/boot/dts/sun5i-a13-empire-electronix-m712.dts
+index b1e2afd9de52..03a2b432803d 100644
+--- a/arch/arm/boot/dts/sun5i-a13-empire-electronix-m712.dts
++++ b/arch/arm/boot/dts/sun5i-a13-empire-electronix-m712.dts
+@@ -1,43 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+ /*
+  * Copyright 2016 Hans de Goede <hdegoede@redhat.com>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/sun5i-a13-hsg-h702.dts b/arch/arm/boot/dts/sun5i-a13-hsg-h702.dts
+index 9b9f2a574851..95f3241aa5a3 100644
+--- a/arch/arm/boot/dts/sun5i-a13-hsg-h702.dts
++++ b/arch/arm/boot/dts/sun5i-a13-hsg-h702.dts
+@@ -1,43 +1,6 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+ /*
+  * Copyright 2014 Chen-Yu Tsai <wens@csie.org>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/sun5i-a13-inet-98v-rev2.dts b/arch/arm/boot/dts/sun5i-a13-inet-98v-rev2.dts
+index 439ae3b537df..8977a093972b 100644
+--- a/arch/arm/boot/dts/sun5i-a13-inet-98v-rev2.dts
++++ b/arch/arm/boot/dts/sun5i-a13-inet-98v-rev2.dts
 @@ -1,43 +1,6 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
  /*
@@ -181,14 +332,18 @@ index 8af0eae2ddc1..aee1031639f6 100644
   */
  
  /dts-v1/;
-diff --git a/arch/arm/boot/dts/sun5i-a10s-mk802.dts b/arch/arm/boot/dts/sun5i-a10s-mk802.dts
-index 6e90ccb267aa..93ab11bb6b6d 100644
---- a/arch/arm/boot/dts/sun5i-a10s-mk802.dts
-+++ b/arch/arm/boot/dts/sun5i-a10s-mk802.dts
-@@ -1,43 +1,6 @@
+diff --git a/arch/arm/boot/dts/sun5i-a13-licheepi-one.dts b/arch/arm/boot/dts/sun5i-a13-licheepi-one.dts
+index ba8d75b3c716..1b5b03cba26e 100644
+--- a/arch/arm/boot/dts/sun5i-a13-licheepi-one.dts
++++ b/arch/arm/boot/dts/sun5i-a13-licheepi-one.dts
+@@ -1,47 +1,10 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
  /*
-  * Copyright 2015 Hans de Goede <hdegoede@redhat.com>
+  * Copyright 2016 Icenowy Zheng <icenowy@aosc.xyz>
+  *
+  * Based on sun5i-a13-olinuxino.dts, which is
+  *   Copyright 2012 Maxime Ripard <maxime.ripard@free-electrons.com>
+  *   Copyright 2013 Hans de Goede <hdegoede@redhat.com>
 - *
 - * This file is dual-licensed: you can use it either under the terms
 - * of the GPL or the X11 license, at your option. Note that this dual
@@ -230,14 +385,64 @@ index 6e90ccb267aa..93ab11bb6b6d 100644
   */
  
  /dts-v1/;
-diff --git a/arch/arm/boot/dts/sun5i-a10s-olinuxino-micro.dts b/arch/arm/boot/dts/sun5i-a10s-olinuxino-micro.dts
-index 5340b4164df2..3ee9a1992c6f 100644
---- a/arch/arm/boot/dts/sun5i-a10s-olinuxino-micro.dts
-+++ b/arch/arm/boot/dts/sun5i-a10s-olinuxino-micro.dts
+diff --git a/arch/arm/boot/dts/sun5i-a13-olinuxino-micro.dts b/arch/arm/boot/dts/sun5i-a13-olinuxino-micro.dts
+index 5df398d77238..d7cb6deab700 100644
+--- a/arch/arm/boot/dts/sun5i-a13-olinuxino-micro.dts
++++ b/arch/arm/boot/dts/sun5i-a13-olinuxino-micro.dts
+@@ -1,44 +1,7 @@
++// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+ /*
+  * Copyright 2012 Maxime Ripard <maxime.ripard@free-electrons.com>
+  * Copyright 2013 Hans de Goede <hdegoede@redhat.com>
+- *
+- * This file is dual-licensed: you can use it either under the terms
+- * of the GPL or the X11 license, at your option. Note that this dual
+- * licensing only applies to this file, and not this project as a
+- * whole.
+- *
+- *  a) This file is free software; you can redistribute it and/or
+- *     modify it under the terms of the GNU General Public License as
+- *     published by the Free Software Foundation; either version 2 of the
+- *     License, or (at your option) any later version.
+- *
+- *     This file is distributed in the hope that it will be useful,
+- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
+- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- *     GNU General Public License for more details.
+- *
+- * Or, alternatively,
+- *
+- *  b) Permission is hereby granted, free of charge, to any person
+- *     obtaining a copy of this software and associated documentation
+- *     files (the "Software"), to deal in the Software without
+- *     restriction, including without limitation the rights to use,
+- *     copy, modify, merge, publish, distribute, sublicense, and/or
+- *     sell copies of the Software, and to permit persons to whom the
+- *     Software is furnished to do so, subject to the following
+- *     conditions:
+- *
+- *     The above copyright notice and this permission notice shall be
+- *     included in all copies or substantial portions of the Software.
+- *
+- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+- *     OTHER DEALINGS IN THE SOFTWARE.
+  */
+ 
+ /dts-v1/;
+diff --git a/arch/arm/boot/dts/sun5i-a13-olinuxino.dts b/arch/arm/boot/dts/sun5i-a13-olinuxino.dts
+index 39101228a755..0f0f723cbf88 100644
+--- a/arch/arm/boot/dts/sun5i-a13-olinuxino.dts
++++ b/arch/arm/boot/dts/sun5i-a13-olinuxino.dts
 @@ -1,45 +1,8 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
  /*
-  * Copyright 2013 Maxime Ripard
+  * Copyright 2012 Maxime Ripard
   *
   * Maxime Ripard <maxime.ripard@free-electrons.com>
 - *
@@ -281,14 +486,14 @@ index 5340b4164df2..3ee9a1992c6f 100644
   */
  
  /dts-v1/;
-diff --git a/arch/arm/boot/dts/sun5i-a10s-r7-tv-dongle.dts b/arch/arm/boot/dts/sun5i-a10s-r7-tv-dongle.dts
-index b2a49a216ebf..0351e5526b57 100644
---- a/arch/arm/boot/dts/sun5i-a10s-r7-tv-dongle.dts
-+++ b/arch/arm/boot/dts/sun5i-a10s-r7-tv-dongle.dts
+diff --git a/arch/arm/boot/dts/sun5i-a13-q8-tablet.dts b/arch/arm/boot/dts/sun5i-a13-q8-tablet.dts
+index fde559a8b61e..7a1a61e24651 100644
+--- a/arch/arm/boot/dts/sun5i-a13-q8-tablet.dts
++++ b/arch/arm/boot/dts/sun5i-a13-q8-tablet.dts
 @@ -1,43 +1,6 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
  /*
-  * Copyright 2014 Hans de Goede <hdegoede@redhat.com>
+  * Copyright 2015 Hans de Goede <hdegoede@redhat.com>
 - *
 - * This file is dual-licensed: you can use it either under the terms
 - * of the GPL or the X11 license, at your option. Note that this dual
@@ -330,14 +535,14 @@ index b2a49a216ebf..0351e5526b57 100644
   */
  
  /dts-v1/;
-diff --git a/arch/arm/boot/dts/sun5i-a10s-wobo-i5.dts b/arch/arm/boot/dts/sun5i-a10s-wobo-i5.dts
-index b5ee8fb13a92..bf57da8cb206 100644
---- a/arch/arm/boot/dts/sun5i-a10s-wobo-i5.dts
-+++ b/arch/arm/boot/dts/sun5i-a10s-wobo-i5.dts
+diff --git a/arch/arm/boot/dts/sun5i-a13-utoo-p66.dts b/arch/arm/boot/dts/sun5i-a13-utoo-p66.dts
+index be486d28d04f..6c4ba0d62ff9 100644
+--- a/arch/arm/boot/dts/sun5i-a13-utoo-p66.dts
++++ b/arch/arm/boot/dts/sun5i-a13-utoo-p66.dts
 @@ -1,43 +1,6 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
  /*
-  * Copyright 2015 Jelle van der Waa <jelle@vdwaa.nl>
+  * Copyright 2015 Hans de Goede <hdegoede@redhat.com>
 - *
 - * This file is dual-licensed: you can use it either under the terms
 - * of the GPL or the X11 license, at your option. Note that this dual
@@ -379,14 +584,14 @@ index b5ee8fb13a92..bf57da8cb206 100644
   */
  
  /dts-v1/;
-diff --git a/arch/arm/boot/dts/sun5i-a10s.dtsi b/arch/arm/boot/dts/sun5i-a10s.dtsi
-index 09c486b608b2..830f24a6f082 100644
---- a/arch/arm/boot/dts/sun5i-a10s.dtsi
-+++ b/arch/arm/boot/dts/sun5i-a10s.dtsi
+diff --git a/arch/arm/boot/dts/sun5i-a13.dtsi b/arch/arm/boot/dts/sun5i-a13.dtsi
+index ae04955fd9a3..cdbf8ce54a05 100644
+--- a/arch/arm/boot/dts/sun5i-a13.dtsi
++++ b/arch/arm/boot/dts/sun5i-a13.dtsi
 @@ -1,45 +1,8 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
  /*
-  * Copyright 2013 Maxime Ripard
+  * Copyright 2012 Maxime Ripard
   *
   * Maxime Ripard <maxime.ripard@free-electrons.com>
 - *
@@ -430,28 +635,26 @@ index 09c486b608b2..830f24a6f082 100644
   */
  
  #include "sun5i.dtsi"
-diff --git a/arch/arm/boot/dts/sun5i.dtsi b/arch/arm/boot/dts/sun5i.dtsi
-index 2fb438c4fe9d..57af0584ae5a 100644
---- a/arch/arm/boot/dts/sun5i.dtsi
-+++ b/arch/arm/boot/dts/sun5i.dtsi
-@@ -1,45 +1,8 @@
+diff --git a/arch/arm/boot/dts/sun5i-reference-design-tablet.dtsi b/arch/arm/boot/dts/sun5i-reference-design-tablet.dtsi
+index 1a9926d71410..42ccea0add15 100644
+--- a/arch/arm/boot/dts/sun5i-reference-design-tablet.dtsi
++++ b/arch/arm/boot/dts/sun5i-reference-design-tablet.dtsi
+@@ -1,43 +1,6 @@
 +// SPDX-License-Identifier: (GPL-2.0 OR MIT)
  /*
-  * Copyright 2012-2015 Maxime Ripard
-  *
-  * Maxime Ripard <maxime.ripard@free-electrons.com>
+  * Copyright 2015 Hans de Goede <hdegoede@redhat.com>
 - *
 - * This file is dual-licensed: you can use it either under the terms
 - * of the GPL or the X11 license, at your option. Note that this dual
 - * licensing only applies to this file, and not this project as a
 - * whole.
 - *
-- *  a) This library is free software; you can redistribute it and/or
+- *  a) This file is free software; you can redistribute it and/or
 - *     modify it under the terms of the GNU General Public License as
 - *     published by the Free Software Foundation; either version 2 of the
 - *     License, or (at your option) any later version.
 - *
-- *     This library is distributed in the hope that it will be useful,
+- *     This file is distributed in the hope that it will be useful,
 - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
 - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 - *     GNU General Public License for more details.
@@ -479,8 +682,8 @@ index 2fb438c4fe9d..57af0584ae5a 100644
 - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 - *     OTHER DEALINGS IN THE SOFTWARE.
   */
+ #include "sunxi-reference-design-tablet.dtsi"
  
- #include <dt-bindings/clock/sun5i-ccu.h>
 -- 
 2.18.0.321.gffc6fa0e3
 
