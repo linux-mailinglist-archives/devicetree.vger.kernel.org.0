@@ -2,161 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3ECA45ED87
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 22:32:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2A71E5EDB0
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 22:36:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727005AbfGCUcH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 16:32:07 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:35386 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726656AbfGCUcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 16:32:07 -0400
-Received: by mail-pl1-f194.google.com with SMTP id w24so1839120plp.2
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 13:32:06 -0700 (PDT)
+        id S1727060AbfGCUgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 16:36:22 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:38543 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726821AbfGCUgW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 16:36:22 -0400
+Received: by mail-ot1-f66.google.com with SMTP id d17so3780149oth.5
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 13:36:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=l7QTIU39WbGgNxpqHk/rQWXH658WW2+nXc1D+IbTyqQ=;
-        b=i/PDO53YknvDxsmpUlY5WMTP6lFmxNQVpr7dbtzg14LI26sjTul+WHfmpQsVZ8uvh5
-         /B06lochxNQ3zGnLgAwXjyCwVErxqc1b8yyZhJMbnm4t/g4Ehe/YGRp4Hrx+O27HVkaS
-         ds6E+hxYF4SQl6TxYO1J3pbD9wwwBSsKEOgDw=
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=XPXq+pIJPDQwSLT19cfFmw2Vcvo0FzOgU0YAUNu6RQk=;
+        b=wJEJ8tMd3xtbZ2ihovoIGxTsU9YvYQTD507F06G8Qqxby/Sqvh3E1rTKa7dCWbAXsL
+         h/isW/5dGZoENf01Ua1CCOvp4kgRYyzqLT7O6zHgJ8l7uoiYTsWdVJ21RHWF19PzlLAR
+         9xr3ISuA4c2/xdscQyncXx03C+DMq5YRqIsnH9jeBCTGsOE+ieL9MGoSO8GfuWheduzo
+         OQw5O8PpiOM9bedjbV9vjq+7W/dh1hZDoISE5FWjVv2qvKldf5IhSZUYIA0Ab1JM77l2
+         6+vk3f1AQPzkm62ZK5lTASVX297bodhM/abR59OSn82RuuK+7lPzRMTZinSktvd1c4EB
+         DFnw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=l7QTIU39WbGgNxpqHk/rQWXH658WW2+nXc1D+IbTyqQ=;
-        b=Z6CJqoimecU5YOz8Sh6FSHDYINBl46P3p+STFfdaGsx4D9tx0vOCAlMcdx4qfM2+z5
-         JVRqZfjUhpgrZlz4bwHuB1GDc0KwnXWU0xJ0oOZd00Gx1B6qJTJLLjQqHhtHKapheLux
-         xfMaiyTfCcUGOKkpApOv0o0K2OVPGgCOa5oYH1a8ADqWpx6KWGkqfQC3WgM9oZhFxma2
-         ydg1TlC2x7TOSRFud+n6EnKIHwXqopYROla34rWUo9joVOLkP7IJ3UK9jBl+5vej/aAA
-         Xl5tL0KX1ifY2ciTklkdCdEnBWPhR2qpYpOlvNRcj1Yx8lWzZzMU+O45IqcLrKb3hZ4j
-         fiJw==
-X-Gm-Message-State: APjAAAWtEoOPw0pSwA+dD4d1OjIX4Y17IBkRHtufhi9ManyxSPr0EqP1
-        16kzD9rjv4OV4XJSi0A4tDaXSw==
-X-Google-Smtp-Source: APXvYqzAEp++YNnisvcoj6zq4UQd893GB9VfCRudl4/qLynhPsEDXlNKQDyXPS6cxdQnfiExwmtHHg==
-X-Received: by 2002:a17:902:4b:: with SMTP id 69mr43964560pla.89.1562185926577;
-        Wed, 03 Jul 2019 13:32:06 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id g6sm2824380pgh.64.2019.07.03.13.32.05
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 13:32:06 -0700 (PDT)
-Date:   Wed, 3 Jul 2019 13:32:04 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=XPXq+pIJPDQwSLT19cfFmw2Vcvo0FzOgU0YAUNu6RQk=;
+        b=XgB4hjXSNnwdAO3K/EJSTR09MxPOc+FpFwtVBIak02Mw2ZQUiLpJj23J01RDgQLUa/
+         MaJEpJHRWHSSP8rWBY9b9QAcnXh5Iq1D/SlQtuXZdSVH8swVjUL/MyuR9qzxqGDzC/bj
+         bxPKn2IExD6B+gSm+VqEcM7h4SItuHrEBPubzez2HSQ6+TNctLORgIL5EzXLRL8vJoRf
+         C+0mL9FcrgqX7hvHz35JoeokqoRUGJKZ+SmN7ZI4eV+FQTI9JrWEEqnA7u4vSKTw9xqR
+         CbDCCGykDVkMT9Iayu7IC8k2pfF5y0dwxeJLFV2FLG9NWdyibbWgkxaRfw0F7vDQ0tXJ
+         4gUA==
+X-Gm-Message-State: APjAAAWd/jMl64afZ6/yJOCXzyE0qqV6O2U8tGifyoFYk4PsKARcSpEe
+        lmbnR5iGrZq3NEwv/7KuZhjfix+9YC+PvqutjnrG/Q==
+X-Google-Smtp-Source: APXvYqy900opobQMpHjkJXGmlkfMTJ/Fz3xLTchhFyxqL4NA93DGafUbOsl0BNsl2aa50mubporMqRqSONHDjBDYRfU=
+X-Received: by 2002:a9d:1909:: with SMTP id j9mr14152896ota.139.1562186181028;
+ Wed, 03 Jul 2019 13:36:21 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190703011020.151615-1-saravanak@google.com> <20190703063632.hl2lipcoeehplyxq@vireshk-i7>
+In-Reply-To: <20190703063632.hl2lipcoeehplyxq@vireshk-i7>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 3 Jul 2019 13:35:44 -0700
+Message-ID: <CAGETcx9Dhzt9-Ys-8hLtoZ9RYWMWa59H5yismUJDWmJ3Kq-smQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] Introduce Bandwidth OPPs for interconnect paths
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v2 2/7] net: phy: realtek: Allow disabling RTL8211E EEE
- LED mode
-Message-ID: <20190703203204.GE250418@google.com>
-References: <20190703193724.246854-1-mka@chromium.org>
- <20190703193724.246854-2-mka@chromium.org>
- <743dda1b-532d-175f-1f87-5d80ba4a2e94@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <743dda1b-532d-175f-1f87-5d80ba4a2e94@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        seansw@qti.qualcomm.com, daidavid1@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>, sibis@codeaurora.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        evgreen@chromium.org,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Tue, Jul 2, 2019 at 11:36 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+>
+> On 02-07-19, 18:10, Saravana Kannan wrote:
+> > Interconnects and interconnect paths quantify their performance levels in
+> > terms of bandwidth and not in terms of frequency. So similar to how we have
+> > frequency based OPP tables in DT and in the OPP framework, we need
+> > bandwidth OPP table support in the OPP framework and in DT. Since there can
+> > be more than one interconnect path used by a device, we also need a way to
+> > assign a bandwidth OPP table to an interconnect path.
+> >
+> > This patch series:
+> > - Adds opp-peak-KBps and opp-avg-KBps properties to OPP DT bindings
+> > - Adds interconnect-opp-table property to interconnect DT bindings
+> > - Adds OPP helper functions for bandwidth OPP tables
+> > - Adds icc_get_opp_table() to get the OPP table for an interconnect path
+> >
+> > So with the DT bindings added in this patch series, the DT for a GPU
+> > that does bandwidth voting from GPU to Cache and GPU to DDR would look
+> > something like this:
+>
+> And what changed since V2 ?
 
-On Wed, Jul 03, 2019 at 10:09:39PM +0200, Heiner Kallweit wrote:
-> On 03.07.2019 21:37, Matthias Kaehlcke wrote:
-> > EEE LED mode is enabled by default on the RTL8211E. Disable it when
-> > the device tree property 'realtek,eee-led-mode-disable' exists.
-> > 
-> > The magic values to disable EEE LED mode were taken from the RTL8211E
-> > datasheet, unfortunately they are not further documented.
-> > 
-> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> > ---
-> > Changes in v2:
-> > - patch added to the series
-> > ---
-> >  drivers/net/phy/realtek.c | 37 ++++++++++++++++++++++++++++++++++++-
-> >  1 file changed, 36 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
-> > index a669945eb829..eb815cbe1e72 100644
-> > --- a/drivers/net/phy/realtek.c
-> > +++ b/drivers/net/phy/realtek.c
-> > @@ -9,8 +9,9 @@
-> >   * Copyright (c) 2004 Freescale Semiconductor, Inc.
-> >   */
-> >  #include <linux/bitops.h>
-> > -#include <linux/phy.h>
-> >  #include <linux/module.h>
-> > +#include <linux/of.h>
-> > +#include <linux/phy.h>
-> >  
-> >  #define RTL821x_PHYSR				0x11
-> >  #define RTL821x_PHYSR_DUPLEX			BIT(13)
-> > @@ -26,6 +27,10 @@
-> >  #define RTL821x_EXT_PAGE_SELECT			0x1e
-> >  #define RTL821x_PAGE_SELECT			0x1f
-> >  
-> > +/* RTL8211E page 5 */
-> > +#define RTL8211E_EEE_LED_MODE1			0x05
-> > +#define RTL8211E_EEE_LED_MODE2			0x06
-> > +
-> >  #define RTL8211F_INSR				0x1d
-> >  
-> >  #define RTL8211F_TX_DELAY			BIT(8)
-> > @@ -53,6 +58,35 @@ static int rtl821x_write_page(struct phy_device *phydev, int page)
-> >  	return __phy_write(phydev, RTL821x_PAGE_SELECT, page);
-> >  }
-> >  
-> > +static int rtl8211e_disable_eee_led_mode(struct phy_device *phydev)
-> > +{
-> 
-> You define return type int but AFAICS the return value is never used,
-> also in subsequent patches.
+Sorry, forgot to put that in. I just dropped a lot of patches that
+weren't relevant to the idea of BW OPPs and tying them to
+interconnects.
 
-ok, I'll change it to void
-
-> > +	int ret = 0;
-> > +	int oldpage;
-> > +
-> > +	oldpage = phy_select_page(phydev, 5);
-> > +	if (oldpage < 0)
-> > +		goto out;
-> > +
-> > +	/* write magic values to disable EEE LED mode */
-> > +	ret = __phy_write(phydev, RTL8211E_EEE_LED_MODE1, 0x8b82);
-> > +	if (ret)
-> > +		goto out;
-> > +
-> > +	ret = __phy_write(phydev, RTL8211E_EEE_LED_MODE2, 0x052b);
-> > +
-> > +out:
-> > +	return phy_restore_page(phydev, oldpage, ret);
-> > +}
-> > +
-> > +static int rtl8211e_config_init(struct phy_device *phydev)
-> > +{
-> > +	struct device *dev = &phydev->mdio.dev;
-> > +
-> > +	if (of_property_read_bool(dev->of_node, "realtek,eee-led-mode-disable"))
-> > +		rtl8211e_disable_eee_led_mode(phydev);
-> > +
-> > +	return 0;
-> > +}
-> 
-> I suppose checkpatch complains about the missing empty line.
-> You add it in a later patch, in case of a v3 you could fix that.
-
-Actually checkpatch does not complain, I'll fix it in v3.
-
-Thanks
-
-Matthias
+-Saravana
