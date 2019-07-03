@@ -2,131 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81E245E455
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:48:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CF0985E4B9
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 15:00:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726621AbfGCMsI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 08:48:08 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:41554 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727462AbfGCMsI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:48:08 -0400
-Received: by mail-pl1-f193.google.com with SMTP id m7so1191765pls.8
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 05:48:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=amarulasolutions.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=LeVp32fCyZqIo/d5l2qER2CwKv5pwBDkf2I+uhwHe8s=;
-        b=V3DnPL5zk4ThmbRKSVn94ZksxfRwmk+EVcnMl4nlTJjcLknY6+1hlvBh1dwBNrzDmH
-         ow6ZFZ9mcmPWii7TglC+rrCdK73BpOUrC8/anenKLMKn3oQamFdpn8xSt+5i2cd9ji2Q
-         a6kCGn3aBBOHeDz1BP/vL739Wi/HVnRTxr6NI=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=LeVp32fCyZqIo/d5l2qER2CwKv5pwBDkf2I+uhwHe8s=;
-        b=fz1LZsC0kNGBufsQlqx4UpsoyQ4lHaJtHpD0QRkVCnRFsBojbDtext6TRMJU6A25ja
-         ue8HqjFygNovIDp3Gz0jkHeGX1pwHppc51rBixpCcQ2UkC3zuo6t4ewOEaNdjyN6pJfb
-         A5C1lxwZj4YgX9DRlAd3tXWxYA6hxUrU9Twgh1db41Ytx5jm73WUK66twK7SlAOCMBG8
-         1M4Y/C44ZnDyUYziwC314s3rvH7yfIDWQaVqxFcctnSa1Dj4/Vwch64T7D3YQwTH111t
-         ldagZao/9keBR3AwsOb/2DXxNAB2NnN74yYxi/c3iLZHsYLE7BrMsRw+PK5Uyd2iyxX+
-         lpQQ==
-X-Gm-Message-State: APjAAAX+KBjmcYPbUBcJ5/6hm+MQauHpPRzGTlQkxJjEKXslHlsxswSn
-        sNz9ZJkb0u5mKCvBXTvQM0PuqQ==
-X-Google-Smtp-Source: APXvYqyl7oeWpq55E1rWzd8jsC71JAFEsVI26A8LO4PA4TcVfWTWVvZXb3P77i9AiNKVYR8cn1ZRLA==
-X-Received: by 2002:a17:902:2a6b:: with SMTP id i98mr39877642plb.75.1562158087779;
-        Wed, 03 Jul 2019 05:48:07 -0700 (PDT)
-Received: from localhost.localdomain ([183.82.231.32])
-        by smtp.gmail.com with ESMTPSA id q1sm3735890pfn.178.2019.07.03.05.48.04
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 05:48:07 -0700 (PDT)
-From:   Jagan Teki <jagan@amarulasolutions.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     linux-sunxi@googlegroups.com, linux-amarula@amarulasolutions.com,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: [PATCH 25/25] ARM: dts: axp81x: Switch to use SPDX identifier
-Date:   Wed,  3 Jul 2019 18:16:09 +0530
-Message-Id: <20190703124609.21435-26-jagan@amarulasolutions.com>
-X-Mailer: git-send-email 2.18.0.321.gffc6fa0e3
-In-Reply-To: <20190703124609.21435-1-jagan@amarulasolutions.com>
-References: <20190703124609.21435-1-jagan@amarulasolutions.com>
+        id S1726430AbfGCNAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 09:00:47 -0400
+Received: from node.akkea.ca ([192.155.83.177]:57972 "EHLO node.akkea.ca"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725847AbfGCNAr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jul 2019 09:00:47 -0400
+Received: by node.akkea.ca (Postfix, from userid 33)
+        id BC92D4E204B; Wed,  3 Jul 2019 13:00:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1562158846; bh=jfEnQz6Z7lDitZDfZEU5tHLgi5WtCywGyso2NpbD6yM=;
+        h=To:Subject:Date:From:Cc:In-Reply-To:References;
+        b=nHY7Db9TTbezNC91mUbwu6U9bjG3WAnn/Vj2i/HuvYVxqG55+k/M/yHfQaRKCevGh
+         3gFNdY/MIMR/QthhXFfVDa7O2uYz6nSZ3Iz73qCjR3tpEJR21kbtwmGf4EUHZylfde
+         blLDPH5clasanypevgikazHmk+IrIti1LuSXTjuE=
+To:     Andra Danciu <andradanciu1997@gmail.com>
+Subject: Re: [PATCH v3] arm64: dts: imx8mq: Add sai3 and sai6 nodes
+X-PHP-Originating-Script: 1000:rcube.php
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 03 Jul 2019 07:00:46 -0600
+From:   Angus Ainslie <angus@akkea.ca>
+Cc:     shawnguo@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, l.stach@pengutronix.de, abel.vesa@nxp.com,
+        Anson.Huang@nxp.com, andrew.smirnov@gmail.com,
+        ccaione@baylibre.com, agx@sigxcpu.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+In-Reply-To: <20190702132353.18632-1-andradanciu1997@gmail.com>
+References: <20190702132353.18632-1-andradanciu1997@gmail.com>
+Message-ID: <9ea5109f8645c3f27a9e350c5f9b2d4c@www.akkea.ca>
+X-Sender: angus@akkea.ca
+User-Agent: Roundcube Webmail/1.1.3
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adopt the SPDX license identifier headers to ease license
-compliance management on axp81x.dtsi.
+Hi Andra,
 
-While the text specifies "of the GPL or the X11 license"
-but the actual license text matches the MIT license as
-specified at [0]
+I tried this out on linux-next and I'm not able to record or play sound.
 
-[0] https://spdx.org/licenses/MIT.html
+I also added the sai2 entry to test out our devkit and get a PCM timeout 
+with that.
 
-Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
----
- arch/arm/boot/dts/axp81x.dtsi | 39 +----------------------------------
- 1 file changed, 1 insertion(+), 38 deletions(-)
+On 2019-07-02 07:23, Andra Danciu wrote:
+> SAI3 and SAI6 nodes are used to connect to an external codec.
+> They have 1 Tx and 1 Rx dataline.
+> 
+> Cc: Daniel Baluta <daniel.baluta@nxp.com>
+> Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
+> ---
+> Changes since v2:
+> 	- removed multiple new lines
+> 
+> Changes since v1:
+> 	- Added sai3 node because we need it to enable audio on pico-pi-8m
+> 	- Added commit description
+> 
+>  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 29 
+> +++++++++++++++++++++++++++++
+>  1 file changed, 29 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> index d09b808eff87..736cf81b695e 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+> @@ -278,6 +278,20 @@
+>  			#size-cells = <1>;
+>  			ranges = <0x30000000 0x30000000 0x400000>;
+> 
+> +			sai6: sai@30030000 {
+> +				compatible = "fsl,imx8mq-sai",
 
-diff --git a/arch/arm/boot/dts/axp81x.dtsi b/arch/arm/boot/dts/axp81x.dtsi
-index 1dfeeceabf4c..83649e75f86d 100644
---- a/arch/arm/boot/dts/axp81x.dtsi
-+++ b/arch/arm/boot/dts/axp81x.dtsi
-@@ -1,45 +1,8 @@
-+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
- /*
-  * Copyright 2017 Chen-Yu Tsai
-  *
-  * Chen-Yu Tsai <wens@csie.org>
-- *
-- * This file is dual-licensed: you can use it either under the terms
-- * of the GPL or the X11 license, at your option. Note that this dual
-- * licensing only applies to this file, and not this project as a
-- * whole.
-- *
-- *  a) This file is free software; you can redistribute it and/or
-- *     modify it under the terms of the GNU General Public License as
-- *     published by the Free Software Foundation; either version 2 of the
-- *     License, or (at your option) any later version.
-- *
-- *     This file is distributed in the hope that it will be useful,
-- *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-- *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-- *     GNU General Public License for more details.
-- *
-- * Or, alternatively,
-- *
-- *  b) Permission is hereby granted, free of charge, to any person
-- *     obtaining a copy of this software and associated documentation
-- *     files (the "Software"), to deal in the Software without
-- *     restriction, including without limitation the rights to use,
-- *     copy, modify, merge, publish, distribute, sublicense, and/or
-- *     sell copies of the Software, and to permit persons to whom the
-- *     Software is furnished to do so, subject to the following
-- *     conditions:
-- *
-- *     The above copyright notice and this permission notice shall be
-- *     included in all copies or substantial portions of the Software.
-- *
-- *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-- *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-- *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-- *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-- *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-- *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-- *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-- *     OTHER DEALINGS IN THE SOFTWARE.
-  */
- 
- /* AXP813/818 Integrated Power Management Chip */
--- 
-2.18.0.321.gffc6fa0e3
+I don't find this compatible string in sound/soc/fsl/fsl_sai.c. Aren't 
+the registers at a different offset from "fsl,imx6sx-sai".
+
+How is this supposed to work ?
+
+Thanks
+Angus
+
+> +					"fsl,imx6sx-sai";
+> +				reg = <0x30030000 0x10000>;
+> +				interrupts = <GIC_SPI 90 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clk IMX8MQ_CLK_SAI6_IPG>,
+> +					<&clk IMX8MQ_CLK_SAI6_ROOT>,
+> +					<&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
+> +				clock-names = "bus", "mclk1", "mclk2", "mclk3";
+> +				dmas = <&sdma2 4 24 0>, <&sdma2 5 24 0>;
+> +				dma-names = "rx", "tx";
+> +				status = "disabled";
+> +			};
+> +
+>  			gpio1: gpio@30200000 {
+>  				compatible = "fsl,imx8mq-gpio", "fsl,imx35-gpio";
+>  				reg = <0x30200000 0x10000>;
+> @@ -728,6 +742,21 @@
+>  				status = "disabled";
+>  			};
+> 
+> +			sai3: sai@308c0000 {
+> +				compatible = "fsl,imx8mq-sai",
+> +					     "fsl,imx6sx-sai";
+> +				reg = <0x308c0000 0x10000>;
+> +				interrupts = <GIC_SPI 50 IRQ_TYPE_LEVEL_HIGH>;
+> +				clocks = <&clk IMX8MQ_CLK_SAI3_IPG>,
+> +					<&clk IMX8MQ_CLK_DUMMY>,
+> +					<&clk IMX8MQ_CLK_SAI3_ROOT>,
+> +					<&clk IMX8MQ_CLK_DUMMY>, <&clk IMX8MQ_CLK_DUMMY>;
+> +				clock-names = "bus", "mclk1", "mclk2", "mclk3";
+> +				dmas = <&sdma1 12 24 0>, <&sdma1 13 24 0>;
+> +				dma-names = "rx", "tx";
+> +				status = "disabled";
+> +			};
+> +
+>  			i2c1: i2c@30a20000 {
+>  				compatible = "fsl,imx8mq-i2c", "fsl,imx21-i2c";
+>  				reg = <0x30a20000 0x10000>;
 
