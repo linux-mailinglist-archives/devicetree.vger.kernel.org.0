@@ -2,82 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 070DB5E37B
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 823935E3E7
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 14:29:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726981AbfGCMId (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 08:08:33 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:45716 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726910AbfGCMIc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Jul 2019 08:08:32 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 93E261A0006;
-        Wed,  3 Jul 2019 14:08:30 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 8647B1A036B;
-        Wed,  3 Jul 2019 14:08:30 +0200 (CEST)
-Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id F11F5205F0;
-        Wed,  3 Jul 2019 14:08:29 +0200 (CEST)
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>
-Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Abel Vesa <abel.vesa@nxp.com>
-Subject: [PATCH v2] arm64: dts: imx8mm: Init rates and parents configs for clocks
-Date:   Wed,  3 Jul 2019 15:08:22 +0300
-Message-Id: <1562155702-29809-1-git-send-email-abel.vesa@nxp.com>
-X-Mailer: git-send-email 2.7.4
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726581AbfGCM3E convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 3 Jul 2019 08:29:04 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:46345 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726473AbfGCM3E (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 08:29:04 -0400
+Received: by mail-ot1-f68.google.com with SMTP id z23so2096178ote.13;
+        Wed, 03 Jul 2019 05:29:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=pKHVWszZZEtGMfrkxlS6Mr1MOgzz8lcLJEA6ynRIBiw=;
+        b=ISUKMQp/IWzkdqGvB+v0kSGPMc1/abtK+hcQKd4A0LdbMmhJyAih0bqNE/Iucen+/Y
+         9dmisA1rmVtcErXef0GumYywzY/j7aMl02O3bzS7oD+weySnALhfgPwSVT1QgqVRmZAw
+         ERF/YyEmgCpJziXtFd6TrdljKvWeVwN2EilADeXr+SfFLB474mJOJ4LEEUeQ5FTJ3ZUG
+         lnSr0ppqNGyRQHbwyZ3TZ6rF6CogiwPRDWTW4TI9ZNFd4xZyLt2c+Gy/wTSsTNxqUXJ4
+         P2tq9gRAiS/lmc+qZ6JRuYpoAr7nrtrYu6oKr7z5HeYMqMrDgecxsOcIyUes3OGKMb73
+         4IJQ==
+X-Gm-Message-State: APjAAAX+U38DFu/hX4YuLTC7GH/MjF6kvdZMVgMepNCzKuOMShQz2h2k
+        47vQUxLtUycSMkWXdyensbnhB8vKWBGQVttA1p7BtSd7
+X-Google-Smtp-Source: APXvYqxfyGKRIQlSeSi4rdMAJk89SgbdTTUtOXFiMGg+V5s+74l/jRcvT8vNlzEoWGFUeChWyQOfxr8pJhQnQZp1WEY=
+X-Received: by 2002:a9d:704f:: with SMTP id x15mr8468680otj.297.1562156943524;
+ Wed, 03 Jul 2019 05:29:03 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190703083514.32385-1-horms+renesas@verge.net.au> <20190703083514.32385-3-horms+renesas@verge.net.au>
+In-Reply-To: <20190703083514.32385-3-horms+renesas@verge.net.au>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 3 Jul 2019 14:28:51 +0200
+Message-ID: <CAMuHMdVgx9N0yeeei5qcg1yz2WEdDf0gQ6GcwUOAz7u09S_D4A@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: usb: renesas_gen3: Rename bindings
+ documentation file
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        USB list <linux-usb@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the initial configuration for clocks that need default parent and rate
-setting. This is based on the vendor tree clock provider parents and rates
-configuration except this is doing the setup in dts rather than using clock
-consumer API in a clock provider driver.
+Hi Simon,
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
----
+On Wed, Jul 3, 2019 at 10:35 AM Simon Horman <horms+renesas@verge.net.au> wrote:
+> For consistency with the naming of (most) other documentation files for DT
+> bindings for Renesas IP blocks rename the Renesas USB3.0 peripheral
+> documentation file from renesas-gen3.txt to renesas,usb3-peri.txt
+>
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+>
+> ---
+> v2
+> * Accumulate review tags
+> * Use renesas,usb3-peri.txt as new filename as suggested by Shimoda-san
 
-Changes since v1:
- - removed the PCIE, CSI and DISP clocks parent setting since
-   that should be done from their driver.
+Unfortunately the previous version has already made it into usb-next
+23c46801d14cb647 dt-bindings: usb: renesas_gen3: Rename bindings
+documentation file
 
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 11 +++++++++++
- 1 file changed, 11 insertions(+)
+Gr{oetje,eeting}s,
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 232a741..ba2034d 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -451,6 +451,17 @@
- 					 <&clk_ext3>, <&clk_ext4>;
- 				clock-names = "osc_32k", "osc_24m", "clk_ext1", "clk_ext2",
- 					      "clk_ext3", "clk_ext4";
-+				assigned-clocks = <&clk IMX8MM_CLK_NOC>,
-+						<&clk IMX8MM_CLK_AUDIO_AHB>,
-+						<&clk IMX8MM_CLK_IPG_AUDIO_ROOT>,
-+						<&clk IMX8MM_SYS_PLL3>,
-+						<&clk IMX8MM_VIDEO_PLL1>;
-+				assigned-clock-parents = <&clk IMX8MM_SYS_PLL3_OUT>,
-+							 <&clk IMX8MM_SYS_PLL1_800M>;
-+				assigned-clock-rates = <0>,
-+							<400000000>,
-+							<750000000>,
-+							<594000000>;
- 			};
- 
- 			src: reset-controller@30390000 {
+                        Geert
+
 -- 
-2.7.4
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
