@@ -2,52 +2,32 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B6275E4E2
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 15:10:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 954115E4F3
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 15:12:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726430AbfGCNKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 09:10:52 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:34819 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725933AbfGCNKw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 09:10:52 -0400
-Received: by mail-wr1-f68.google.com with SMTP id c27so2781320wrb.2;
-        Wed, 03 Jul 2019 06:10:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1Bobaa50WXbR9Y4LcY/j1xmyJEA8EpS2B/y8I4HgN8Y=;
-        b=m01HNG6wrx/reIarGAfsQfArF84e7O4uyXNBjqkc9OOTg8rv7kmLMtGi/FGFpq/IHM
-         LLFm+60f/VkHVa/kdCHMn3Gdk31L0i7zSM8d7O9Yop9simcXDE2BFiTdV5wWl9ApObxn
-         dF3oVE8bQ7aJhpHFPcU+LGNtNDRgbAxjQfMy5gHMowF1EQq5jWLIvX2mz5NOP6Cr5jva
-         WH7a83cBEgSceLeUh7dtKLV7cUNsAVryRJWwIGXFU7WSdK0WzKrsuFiIxA3/ARt4L5p4
-         5kvXGVYykMG1z5CkyV+VVwmJ2z9YwW1gBVglW86TSqLoXPg99UbW1QKZ/wEPhWppm3xq
-         72Ag==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1Bobaa50WXbR9Y4LcY/j1xmyJEA8EpS2B/y8I4HgN8Y=;
-        b=AEqEQhW8J79qychvVLeQYIvs7ZwWlOQJCVN87SU0wX5b3FN/fsVhTKXbpZi1W7QMGk
-         UdNrRjV6Qh2skfKsT0lnyYCNkrGaPdfzq9mh2QwLfkaPhIyIGSEwOrKgRzNRhl1EvkRv
-         HzsgJZnen8uSjec5PoGcORNgdAG/Shq6InLBRsGSBN8nsi3vvpOQzyMNgR2ThdJ0RJjV
-         zXvLcxbmGKilKLW6q6MYg0C36DwV9p3W2N+VlAKjwQ/VZrKUpu+cTLcY0mSEGMxxCSif
-         tV2AhbIW7MQAzvbvj7vV7DkEA91B4A46D0uLLJgwQhg58b3cSP4O/G9wQTVjoOiexqgm
-         wCEw==
-X-Gm-Message-State: APjAAAWeiXFCRqMALzTyoQs3zf0ovszVj3IFfOUW+JOrsdngz2LSG1QL
-        YFmpKOOrRCMpl3qfz9WvOsPkoB71sAYPnPwB9tk=
-X-Google-Smtp-Source: APXvYqzxRCWgYBv94XndsktY7TXLYzN563M7b6eZz6JCymcmhJ0NgQ/r9yxy7ERMDwsgfwNkZOv6T+elFv3Cp6CEi1w=
-X-Received: by 2002:adf:b69a:: with SMTP id j26mr21775717wre.93.1562159449703;
- Wed, 03 Jul 2019 06:10:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190702132353.18632-1-andradanciu1997@gmail.com> <9ea5109f8645c3f27a9e350c5f9b2d4c@www.akkea.ca>
-In-Reply-To: <9ea5109f8645c3f27a9e350c5f9b2d4c@www.akkea.ca>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Wed, 3 Jul 2019 16:10:38 +0300
-Message-ID: <CAEnQRZDCpPju7xBBY9=e0dWt=A9c3t3g88pEw+teoZmmOiiKXQ@mail.gmail.com>
+        id S1726628AbfGCNMw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 09:12:52 -0400
+Received: from node.akkea.ca ([192.155.83.177]:58376 "EHLO node.akkea.ca"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725933AbfGCNMv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jul 2019 09:12:51 -0400
+Received: by node.akkea.ca (Postfix, from userid 33)
+        id 76E254E204B; Wed,  3 Jul 2019 13:12:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=akkea.ca; s=mail;
+        t=1562159571; bh=e9mCRjUPMrK+NkTqhauY/TqZcc/RebVUj8bLM/dL1+g=;
+        h=To:Subject:Date:From:Cc:In-Reply-To:References;
+        b=qUWWDsIKxHCz84cOUYE2/HgdHZRdeRICVc9DZ6w8MZS8SW6IQR96VhJ/M+8FikdQO
+         +FBE7YvuwCYK9fXTtNatkhVOlKhHmeZRutkl56mEE3H5qeKfsLD4Q2Fef6uVhFJGty
+         0E5vya6ra1FDGUaHa/K7hOFElnoA3O7DkCMcBLWY=
+To:     Daniel Baluta <daniel.baluta@gmail.com>
 Subject: Re: [PATCH v3] arm64: dts: imx8mq: Add sai3 and sai6 nodes
-To:     Angus Ainslie <angus@akkea.ca>
+X-PHP-Originating-Script: 1000:rcube.php
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII;
+ format=flowed
+Content-Transfer-Encoding: 7bit
+Date:   Wed, 03 Jul 2019 07:12:51 -0600
+From:   Angus Ainslie <angus@akkea.ca>
 Cc:     Andra Danciu <andradanciu1997@gmail.com>,
         Shawn Guo <shawnguo@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -64,73 +44,95 @@ Cc:     Andra Danciu <andradanciu1997@gmail.com>,
         Devicetree List <devicetree@vger.kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAEnQRZDCpPju7xBBY9=e0dWt=A9c3t3g88pEw+teoZmmOiiKXQ@mail.gmail.com>
+References: <20190702132353.18632-1-andradanciu1997@gmail.com>
+ <9ea5109f8645c3f27a9e350c5f9b2d4c@www.akkea.ca>
+ <CAEnQRZDCpPju7xBBY9=e0dWt=A9c3t3g88pEw+teoZmmOiiKXQ@mail.gmail.com>
+Message-ID: <9e196ce51eac9ce9c327198c4a2911a8@www.akkea.ca>
+X-Sender: angus@akkea.ca
+User-Agent: Roundcube Webmail/1.1.3
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 3, 2019 at 4:01 PM Angus Ainslie <angus@akkea.ca> wrote:
->
-> Hi Andra,
->
-> I tried this out on linux-next and I'm not able to record or play sound.
->
-> I also added the sai2 entry to test out our devkit and get a PCM timeout
-> with that.
+Hi Daniel,
 
-Hi Angus,
+On 2019-07-03 07:10, Daniel Baluta wrote:
+> On Wed, Jul 3, 2019 at 4:01 PM Angus Ainslie <angus@akkea.ca> wrote:
+>> 
+>> Hi Andra,
+>> 
+>> I tried this out on linux-next and I'm not able to record or play 
+>> sound.
+>> 
+>> I also added the sai2 entry to test out our devkit and get a PCM 
+>> timeout
+>> with that.
+> 
+> Hi Angus,
+> 
+> There are still lots of SAI patches that need to be upstream. Me and 
+> Andra
+> will be working on that over this summer.
+> 
+>> 
+>> On 2019-07-02 07:23, Andra Danciu wrote:
+>> > SAI3 and SAI6 nodes are used to connect to an external codec.
+>> > They have 1 Tx and 1 Rx dataline.
+>> >
+>> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
+>> > Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
+>> > ---
+>> > Changes since v2:
+>> >       - removed multiple new lines
+>> >
+>> > Changes since v1:
+>> >       - Added sai3 node because we need it to enable audio on pico-pi-8m
+>> >       - Added commit description
+>> >
+>> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 29
+>> > +++++++++++++++++++++++++++++
+>> >  1 file changed, 29 insertions(+)
+>> >
+>> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+>> > b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+>> > index d09b808eff87..736cf81b695e 100644
+>> > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+>> > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+>> > @@ -278,6 +278,20 @@
+>> >                       #size-cells = <1>;
+>> >                       ranges = <0x30000000 0x30000000 0x400000>;
+>> >
+>> > +                     sai6: sai@30030000 {
+>> > +                             compatible = "fsl,imx8mq-sai",
+>> 
+>> I don't find this compatible string in sound/soc/fsl/fsl_sai.c. Aren't
+>> the registers at a different offset from "fsl,imx6sx-sai".
+> 
+> Yes, you are right on this. We are trying to slowly push all our 
+> internal-tree
+> patches to mainline. Obviously, with started with low hanging fruits, 
+> DTS
+> nodes and small SAI fixes.
+> 
+> Soon, we will start to send patches for SAI IP ipgrade for imx8.
+> 
+>> 
+>> How is this supposed to work ?
+>> 
+> 
+> For the moment it won't work unless we will upstream all our SAI
+> internal patches.
+> But we will get there hopefully this summer.
+> 
 
-There are still lots of SAI patches that need to be upstream. Me and Andra
-will be working on that over this summer.
+Shouldn't a working driver be upstream before enabling it in the 
+devicetree ?
 
->
-> On 2019-07-02 07:23, Andra Danciu wrote:
-> > SAI3 and SAI6 nodes are used to connect to an external codec.
-> > They have 1 Tx and 1 Rx dataline.
-> >
-> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> > Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
-> > ---
-> > Changes since v2:
-> >       - removed multiple new lines
-> >
-> > Changes since v1:
-> >       - Added sai3 node because we need it to enable audio on pico-pi-8m
-> >       - Added commit description
-> >
-> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 29
-> > +++++++++++++++++++++++++++++
-> >  1 file changed, 29 insertions(+)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > index d09b808eff87..736cf81b695e 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > @@ -278,6 +278,20 @@
-> >                       #size-cells = <1>;
-> >                       ranges = <0x30000000 0x30000000 0x400000>;
-> >
-> > +                     sai6: sai@30030000 {
-> > +                             compatible = "fsl,imx8mq-sai",
->
-> I don't find this compatible string in sound/soc/fsl/fsl_sai.c. Aren't
-> the registers at a different offset from "fsl,imx6sx-sai".
+Thanks
+Angus
 
-Yes, you are right on this. We are trying to slowly push all our internal-tree
-patches to mainline. Obviously, with started with low hanging fruits, DTS
-nodes and small SAI fixes.
+> Thanks,
+> Daniel.
 
-Soon, we will start to send patches for SAI IP ipgrade for imx8.
-
->
-> How is this supposed to work ?
->
-
-For the moment it won't work unless we will upstream all our SAI
-internal patches.
-But we will get there hopefully this summer.
-
-Thanks,
-Daniel.
