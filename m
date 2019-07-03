@@ -2,96 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2A71E5EDB0
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 22:36:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DCA765EDB5
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 22:36:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727060AbfGCUgW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 16:36:22 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:38543 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726821AbfGCUgW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 16:36:22 -0400
-Received: by mail-ot1-f66.google.com with SMTP id d17so3780149oth.5
-        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 13:36:21 -0700 (PDT)
+        id S1727246AbfGCUgx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 16:36:53 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:41355 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727239AbfGCUgx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 16:36:53 -0400
+Received: by mail-pf1-f194.google.com with SMTP id m30so1819389pff.8
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 13:36:52 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=XPXq+pIJPDQwSLT19cfFmw2Vcvo0FzOgU0YAUNu6RQk=;
-        b=wJEJ8tMd3xtbZ2ihovoIGxTsU9YvYQTD507F06G8Qqxby/Sqvh3E1rTKa7dCWbAXsL
-         h/isW/5dGZoENf01Ua1CCOvp4kgRYyzqLT7O6zHgJ8l7uoiYTsWdVJ21RHWF19PzlLAR
-         9xr3ISuA4c2/xdscQyncXx03C+DMq5YRqIsnH9jeBCTGsOE+ieL9MGoSO8GfuWheduzo
-         OQw5O8PpiOM9bedjbV9vjq+7W/dh1hZDoISE5FWjVv2qvKldf5IhSZUYIA0Ab1JM77l2
-         6+vk3f1AQPzkm62ZK5lTASVX297bodhM/abR59OSn82RuuK+7lPzRMTZinSktvd1c4EB
-         DFnw==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=rfHYB+lTiI64lxTRcrT8/UH1l7TT30GDFo4j4mMP0os=;
+        b=lzqeBcEuokgv9F+An1HdqVa1FTlpZRSoxJVcua0QQjegnNqpBg13lqdi5uQD9G4S1A
+         zzo2oYALjBRFRF6PsnkhuJjeEtqUHtc4uzNZKKitT/lsjVFmiwZrCIepl+bIri9ldgo/
+         kOhgUwfQa1yH/168NopNHSZYBWEp/1YkmWVUY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=XPXq+pIJPDQwSLT19cfFmw2Vcvo0FzOgU0YAUNu6RQk=;
-        b=XgB4hjXSNnwdAO3K/EJSTR09MxPOc+FpFwtVBIak02Mw2ZQUiLpJj23J01RDgQLUa/
-         MaJEpJHRWHSSP8rWBY9b9QAcnXh5Iq1D/SlQtuXZdSVH8swVjUL/MyuR9qzxqGDzC/bj
-         bxPKn2IExD6B+gSm+VqEcM7h4SItuHrEBPubzez2HSQ6+TNctLORgIL5EzXLRL8vJoRf
-         C+0mL9FcrgqX7hvHz35JoeokqoRUGJKZ+SmN7ZI4eV+FQTI9JrWEEqnA7u4vSKTw9xqR
-         CbDCCGykDVkMT9Iayu7IC8k2pfF5y0dwxeJLFV2FLG9NWdyibbWgkxaRfw0F7vDQ0tXJ
-         4gUA==
-X-Gm-Message-State: APjAAAWd/jMl64afZ6/yJOCXzyE0qqV6O2U8tGifyoFYk4PsKARcSpEe
-        lmbnR5iGrZq3NEwv/7KuZhjfix+9YC+PvqutjnrG/Q==
-X-Google-Smtp-Source: APXvYqy900opobQMpHjkJXGmlkfMTJ/Fz3xLTchhFyxqL4NA93DGafUbOsl0BNsl2aa50mubporMqRqSONHDjBDYRfU=
-X-Received: by 2002:a9d:1909:: with SMTP id j9mr14152896ota.139.1562186181028;
- Wed, 03 Jul 2019 13:36:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190703011020.151615-1-saravanak@google.com> <20190703063632.hl2lipcoeehplyxq@vireshk-i7>
-In-Reply-To: <20190703063632.hl2lipcoeehplyxq@vireshk-i7>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Wed, 3 Jul 2019 13:35:44 -0700
-Message-ID: <CAGETcx9Dhzt9-Ys-8hLtoZ9RYWMWa59H5yismUJDWmJ3Kq-smQ@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] Introduce Bandwidth OPPs for interconnect paths
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=rfHYB+lTiI64lxTRcrT8/UH1l7TT30GDFo4j4mMP0os=;
+        b=mBkfcH2UwiksvdkDdqzFe2e+1mBZi0K0xyS0qU0IscQFLDY0d13p5m5zzUqUpVVr3P
+         W2U7AeyGMjjFRZBJVrW7iYiNQt8rsiIVNK7P+xn6H4iuPJld4LeYoGkF1HWEt097EpVS
+         OCdu/izVvfRo2ReLUyL044sLjaKyxNuiJlKBxoKBxrzdd0qZGpeeosHuk+CWp0woEY8C
+         4QR70rnIXk0kDnE39NjZCziTFj4rO/4oQ3xypc126XIKMtaWbHgBsGNjaWWBq9ipFSgV
+         hO/Y37IflLN5opjYzfAQLIsPIMLYJq7dVYalynPqCKAdozR6kCD50FR5DJ89HiFUALSs
+         d13w==
+X-Gm-Message-State: APjAAAV66ic9qXNhbAtDJVGoAlM3ILsN3B0/DsgNNKxuB7Jn1KmJFlys
+        1qIM0YQqt8ip0xTHC5N2UgDg4Q==
+X-Google-Smtp-Source: APXvYqzQxQSIwg820yjADqUQOcipDJH4aw/rukCrBqhLYubTwlnkIxMpQhcr9BOdFoKBZowj+r6xTQ==
+X-Received: by 2002:a63:f817:: with SMTP id n23mr39418076pgh.35.1562186212565;
+        Wed, 03 Jul 2019 13:36:52 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id u7sm3080371pgr.94.2019.07.03.13.36.51
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 03 Jul 2019 13:36:51 -0700 (PDT)
+Date:   Wed, 3 Jul 2019 13:36:50 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        seansw@qti.qualcomm.com, daidavid1@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>, sibis@codeaurora.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        evgreen@chromium.org,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH v2 4/7] net: phy: realtek: Enable accessing RTL8211E
+ extension pages
+Message-ID: <20190703203650.GF250418@google.com>
+References: <20190703193724.246854-1-mka@chromium.org>
+ <20190703193724.246854-4-mka@chromium.org>
+ <dd7a569b-41e4-5925-88fc-227e69c82f67@gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <dd7a569b-41e4-5925-88fc-227e69c82f67@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 2, 2019 at 11:36 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> On 02-07-19, 18:10, Saravana Kannan wrote:
-> > Interconnects and interconnect paths quantify their performance levels in
-> > terms of bandwidth and not in terms of frequency. So similar to how we have
-> > frequency based OPP tables in DT and in the OPP framework, we need
-> > bandwidth OPP table support in the OPP framework and in DT. Since there can
-> > be more than one interconnect path used by a device, we also need a way to
-> > assign a bandwidth OPP table to an interconnect path.
-> >
-> > This patch series:
-> > - Adds opp-peak-KBps and opp-avg-KBps properties to OPP DT bindings
-> > - Adds interconnect-opp-table property to interconnect DT bindings
-> > - Adds OPP helper functions for bandwidth OPP tables
-> > - Adds icc_get_opp_table() to get the OPP table for an interconnect path
-> >
-> > So with the DT bindings added in this patch series, the DT for a GPU
-> > that does bandwidth voting from GPU to Cache and GPU to DDR would look
-> > something like this:
->
-> And what changed since V2 ?
+On Wed, Jul 03, 2019 at 10:12:12PM +0200, Heiner Kallweit wrote:
+> On 03.07.2019 21:37, Matthias Kaehlcke wrote:
+> > The RTL8211E has extension pages, which can be accessed after
+> > selecting a page through a custom method. Add a function to
+> > modify bits in a register of an extension page and a helper for
+> > selecting an ext page.
+> > 
+> > rtl8211e_modify_ext_paged() is inspired by its counterpart
+> > phy_modify_paged().
+> > 
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> > Changes in v2:
+> > - assign .read/write_page handlers for RTL8211E
+> 
+> Maybe this was planned, but it's not part of the patch.
 
-Sorry, forgot to put that in. I just dropped a lot of patches that
-weren't relevant to the idea of BW OPPs and tying them to
-interconnects.
+Oops, it was definitely there when I tested ... I guess this got
+somehow lost when changing the patch order and resolving minor
+conflicts, seems like I only build tested after that :/
 
--Saravana
+> > - use phy_select_page() and phy_restore_page(), get rid of
+> >   rtl8211e_restore_page()
+> > - s/rtl821e_select_ext_page/rtl8211e_select_ext_page/
+> > - updated commit message
+> > ---
+> >  drivers/net/phy/realtek.c | 42 +++++++++++++++++++++++++++++++++++++++
+> >  1 file changed, 42 insertions(+)
+> > 
+> > diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
+> > index eb815cbe1e72..9cd6241e2a6d 100644
+> > --- a/drivers/net/phy/realtek.c
+> > +++ b/drivers/net/phy/realtek.c
+> > @@ -27,6 +27,9 @@
+> >  #define RTL821x_EXT_PAGE_SELECT			0x1e
+> >  #define RTL821x_PAGE_SELECT			0x1f
+> >  
+> > +#define RTL8211E_EXT_PAGE			7
+> > +#define RTL8211E_EPAGSR				0x1e
+> > +
+> >  /* RTL8211E page 5 */
+> >  #define RTL8211E_EEE_LED_MODE1			0x05
+> >  #define RTL8211E_EEE_LED_MODE2			0x06
+> > @@ -58,6 +61,44 @@ static int rtl821x_write_page(struct phy_device *phydev, int page)
+> >  	return __phy_write(phydev, RTL821x_PAGE_SELECT, page);
+> >  }
+> >  
+> > +static int rtl8211e_select_ext_page(struct phy_device *phydev, int page)
+> > +{
+> > +	int ret, oldpage;
+> > +
+> > +	oldpage = phy_select_page(phydev, RTL8211E_EXT_PAGE);
+> > +	if (oldpage < 0)
+> > +		return oldpage;
+> > +
+> > +	ret = __phy_write(phydev, RTL8211E_EPAGSR, page);
+> > +	if (ret)
+> > +		return phy_restore_page(phydev, page, ret);
+> > +
+> > +	return 0;
+> > +}
+> > +
+> > +static int __maybe_unused rtl8211e_modify_ext_paged(struct phy_device *phydev,
+> > +				    int page, u32 regnum, u16 mask, u16 set)
+> 
+> This __maybe_unused isn't too nice as you use the function in a subsequent patch.
+
+It's needed to avoid a compiler warning (unless we don't care about
+that for an interim version), the attribute is removed again in the
+next patch.
