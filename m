@@ -2,124 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F9C75D960
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 02:42:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6DA15D99E
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 02:49:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726736AbfGCAmS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 20:42:18 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:46206 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726430AbfGCAmS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 20:42:18 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 8D5D66025A; Wed,  3 Jul 2019 00:03:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1562112231;
-        bh=Ehzb5REbZ1sAGqR0DY72rQI/Hyw2RX9/t1g57kj00rs=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=PHnDSrVDwfgQJgf0I+W+KiUM86AS4rE6Fy2Av270knbxo+bEBYplTz/ZCPQuEe2I4
-         fNzPDwaSZmBiKo5VrP0sRQRLEYzURkM4UWHUZJhyn8FZwrHSNghuSX7UHfV8XAd558
-         BbrAULrw8EBM7HOh+AHyh++3rcGV3X4HoXZMpYAc=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.46.160.165] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: collinsd@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 257F66025A;
-        Wed,  3 Jul 2019 00:03:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1562112230;
-        bh=Ehzb5REbZ1sAGqR0DY72rQI/Hyw2RX9/t1g57kj00rs=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=YkMHRIYLA5V46KlIhru4A3fnsbCSkndtSW9zs2Cjaim0N2J64OYjzq8THiO9uc63G
-         pjPnWHJwm0B583nkQzsUveSzVv0Jwe2j5cWQBRKv6eBvXzKhEPU3zEIbNuGVe7J29W
-         0dOSvKmHAXUZVMS609/mKWBo3oXa1snC9A6dFOjs=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 257F66025A
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=collinsd@codeaurora.org
-Subject: Re: [PATCH v3 0/4] Solve postboot supplier cleanup and optimize probe
- ordering
-To:     Saravana Kannan <saravanak@google.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel-team@android.com
-References: <20190702004811.136450-1-saravanak@google.com>
-From:   David Collins <collinsd@codeaurora.org>
-Message-ID: <7900c670-5b3a-f950-dec9-70d98d94a84f@codeaurora.org>
-Date:   Tue, 2 Jul 2019 17:03:49 -0700
+        id S1727132AbfGCAsv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 20:48:51 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:32798 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727127AbfGCAsv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 20:48:51 -0400
+Received: by mail-lj1-f193.google.com with SMTP id h10so506297ljg.0;
+        Tue, 02 Jul 2019 17:48:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:from:to:cc:references:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=TWJCP/fEaymOaFdQkCML59yLiwgz6iUoELvQxqYUfdQ=;
+        b=dH9UZMJPZrX5saPr6Hul/qtlv0mwSa063rtp6m+Tu60V+c485syc2p1FuguZnRteDM
+         0nWzpSUQwXX5DV+zihGpxnjUGbv+Hp9/D17TLC8PAWZ1ubFv7Mx2JjGyX2PS23I2EvPt
+         smy0gAB495gfjp0DvpCgSh6vRcvwLoXJehHbl7K0Qll+YwtuGDj9QGsOV5P/zAsesU33
+         DkAAP2ioEA8C7I4ic3uqQYPDnl+bBd6ux3EeepIulDI8+rohzwK/DetuQm2iHnqUy3tj
+         zn+ngimK5MtEezkEDFTeZw/S+zIy6Tb7BAl48UKaiTQ61V+w3gh1KphREG4bamRJ0821
+         WjqQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=TWJCP/fEaymOaFdQkCML59yLiwgz6iUoELvQxqYUfdQ=;
+        b=FQn1Pm+1SZ79fbTJkaIc/qqb4tCqAfSakBeYxmd9mLMvt+rnF4RospZjCNPn5uhmdA
+         UqqqfIddNByI7EOygKVs3DXZU7UnodiJVNf3qpNKg4zTsxKUCHzHREMxWrREVkIKi1FI
+         F1kXWqo8Yhk16flmh48MS2HuZJe1/hD1ggN9OZfjiE2azG3Mc9pF96sZn4hbMSYd+xWS
+         klNLQyccSowdUQOnWeTyoVxva8sDJtvLh2fA3EEpua9OXu4UDen/chUe556GlwBm2ISC
+         emVoPS4lbbgywF8UR7uepHwKBziAxkVR5y5LEJ6/MZP2Tjqympo8HeJ1e40Y3f+sqFcg
+         Agzw==
+X-Gm-Message-State: APjAAAVlLHaB6wg9ycuWWbxMUxwduf42nwx9Y9GNrOvv65tzFLbqe4Wf
+        iBgQNpdUik+Q5q8sIcwfh7cqrqX9
+X-Google-Smtp-Source: APXvYqxJj59E+oUMQaEbbY269e+VK0l4af2KOAsx0cebioGvo9ypvyjI6QKvyFE8oJfNsZmIp6/YFQ==
+X-Received: by 2002:a2e:9f57:: with SMTP id v23mr20122353ljk.138.1562114928255;
+        Tue, 02 Jul 2019 17:48:48 -0700 (PDT)
+Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
+        by smtp.googlemail.com with ESMTPSA id v15sm102810lfq.86.2019.07.02.17.48.46
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 02 Jul 2019 17:48:47 -0700 (PDT)
+Subject: Re: [PATCH v6 07/15] dt-bindings: memory: tegra30: Convert to
+ Tegra124 YAML
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-tegra@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20190630210019.26914-1-digetx@gmail.com>
+ <20190630210019.26914-8-digetx@gmail.com>
+ <CAL_JsqJq5iwQcbUixMWK819OTof8DzrZ3UMhByc1pTAFTdwnjg@mail.gmail.com>
+ <ba299725-b65b-ce7d-6376-a26918cc985b@gmail.com>
+Message-ID: <d98f16ee-ac43-8f1e-d324-d6e2cfccf3c8@gmail.com>
+Date:   Wed, 3 Jul 2019 03:48:46 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <20190702004811.136450-1-saravanak@google.com>
+In-Reply-To: <ba299725-b65b-ce7d-6376-a26918cc985b@gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Saravana,
-
-On 7/1/19 5:48 PM, Saravana Kannan wrote:
-...
-> TODO:
-> - For the case of consumer child sub-nodes being added by a parent
->   device after late_initcall_sync we might be able to address that by
->   recursively parsing all child nodes and adding all their suppliers as
->   suppliers of the parent node too. The parent probe will add the
->   children before its probe is completed and that will prevent the
->   supplier's sync_state from being executed before the children are
->   probed.
+01.07.2019 22:30, Dmitry Osipenko пишет:
+> 01.07.2019 22:11, Rob Herring пишет:
+>> On Sun, Jun 30, 2019 at 3:04 PM Dmitry Osipenko <digetx@gmail.com> wrote:
+>>>
+>>
+>> "Convert" implies you delete the old binding doc.
 > 
-> But I'll write that part once I see how this series is received.
+> Yes, unfortunately the deletion got lost by accident after rebase and it was already
+> too late when I noticed that. Will be fixed in the next revision.
+> 
+>>> The Tegra30 binding will actually differ from the Tegra124 a tad, in
+>>> particular the EMEM configuration description. Hence rename the binding
+>>> to Tegra124 during of the conversion to YAML.
+>>>
+>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>> ---
+>>>  .../nvidia,tegra124-mc.yaml                   | 149 ++++++++++++++++++
+>>>  1 file changed, 149 insertions(+)
+>>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+>>>
+>>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+>>> new file mode 100644
+>>> index 000000000000..d18242510295
+>>> --- /dev/null
+>>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
+>>> @@ -0,0 +1,149 @@
+>>> +# SPDX-License-Identifier: (GPL-2.0)
+>>> +%YAML 1.2
+>>> +---
+>>> +$id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra124-mc.yaml#
+>>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>>> +
+>>> +title:
+>>> +  NVIDIA Tegra124 SoC Memory Controller
+>>> +
+>>> +maintainers:
+>>> +  - Jon Hunter <jonathanh@nvidia.com>
+>>> +  - Thierry Reding <thierry.reding@gmail.com>
+>>> +
+>>> +description: |
+>>> +  Tegra124 SoC features a hybrid 2x32-bit / 1x64-bit memory controller.
+>>> +  These are interleaved to provide high performance with the load shared across
+>>> +  two memory channels. The Tegra124 Memory Controller handles memory requests
+>>> +  from internal clients and arbitrates among them to allocate memory bandwidth
+>>> +  for DDR3L and LPDDR3 SDRAMs.
+>>> +
+>>> +properties:
+>>> +  compatible:
+>>> +    const: nvidia,tegra124-mc
+>>> +
+>>> +  reg:
+>>> +    maxItems: 1
+>>> +    description:
+>>> +      Physical base address.
+>>> +
+>>> +  clocks:
+>>> +    maxItems: 1
+>>> +    description:
+>>> +      Memory Controller clock.
+>>> +
+>>> +  clock-names:
+>>> +    items:
+>>> +      - const: mc
+>>> +
+>>> +  interrupts:
+>>> +    maxItems: 1
+>>> +    description:
+>>> +      Memory Controller interrupt.
+>>> +
+>>> +  "#reset-cells":
+>>> +    const: 1
+>>> +
+>>> +  "#iommu-cells":
+>>> +    const: 1
+>>> +
+>>> +patternProperties:
+>>> +  ".*":
+>>
+>> Please define a node name or pattern for node names.
+> 
+> There was no pattern specified in the original binding. But I guess the existing
+> upstream device-trees could be used as the source for the pattern.
 
-I don't think that this scheme will work in all cases.  It can also lead
-to probing deadlock.
-
-Here is an example:
-
-Three DT devices (top level A with subnodes B and C):
-/A
-/A/B
-/A/C
-C is a consumer of B.
-
-When device A is created, a search of its subnodes will find the link from
-C to B.  Since device B hasn't been created yet, of_link_to_suppliers()
-will fail and add A to the wait_for_suppliers list.  This will cause the
-probe of A to fail with -EPROBE_DEFER (thanks to the check in
-device_links_check_suppliers()).  As a result device B will not be created
-and device A will never probe.
-
-You could try to resolve this situation by detecting the cycle and *not*
-adding A to the wait_for_suppliers list.  However, that would get us back
-to the problem we had before.  A would be allowed to probe which would
-then result in devices being added for B and C.  If the device for B is
-added before C, then it would be allowed to immediately probe and
-(assuming this all takes place after late_initcall_sync thanks to modules)
-its sync_state() callback would be called since no consumer devices are
-linked to B.
-
-Please note that to change this example from theoretical to practical,
-replace "A" with apps_rsc, "B" with pmi8998-rpmh-regulators, and "C" with
-pm8998-rpmh-regulators in [1].
-
-Take care,
-David
-
-[1]
-https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/arm64/boot/dts/qcom/sdm845-mtp.dts?h=v5.2-rc7#n55
-
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+Actually it looks like the use of explicit pattern is not really a good idea because
+device-tree could have node named in a way that it doesn't match the pattern and hence
+dtbs_check silently skips the non-matching nodes. Is there any way to express that
+non-matching nodes shall be rejected?
