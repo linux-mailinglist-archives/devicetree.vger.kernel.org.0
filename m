@@ -2,115 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94AD95DCB3
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 05:03:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80A435DD22
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 05:57:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727090AbfGCDD2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 2 Jul 2019 23:03:28 -0400
-Received: from twhmllg3.macronix.com ([211.75.127.131]:33328 "EHLO
-        TWHMLLG3.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727080AbfGCDD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 23:03:28 -0400
-Received: from twhfmlp1.macronix.com (twhfm1p1.macronix.com [172.17.20.91])
-        by TWHMLLG3.macronix.com with ESMTP id x6333J7g046150;
-        Wed, 3 Jul 2019 11:03:19 +0800 (GMT-8)
-        (envelope-from masonccyang@mxic.com.tw)
-Received: from MXML06C.mxic.com.tw (mxml06c.macronix.com [172.17.14.55])
-        by Forcepoint Email with ESMTP id 1CBFD7CFFB98E88ECBE7;
-        Wed,  3 Jul 2019 11:03:19 +0800 (CST)
-In-Reply-To: <20190627193635.29abff43@xps13>
-References: <1561443056-13766-1-git-send-email-masonccyang@mxic.com.tw> <1561443056-13766-2-git-send-email-masonccyang@mxic.com.tw> <20190627193635.29abff43@xps13>
-To:     "Miquel Raynal" <miquel.raynal@bootlin.com>
-Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
-        broonie@kernel.org, christophe.kerello@st.com,
-        computersforpeace@gmail.com, devicetree@vger.kernel.org,
-        dwmw2@infradead.org, jianxin.pan@amlogic.com, juliensu@mxic.com.tw,
-        lee.jones@linaro.org, liang.yang@amlogic.com,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        marek.vasut@gmail.com, paul@crapouillou.net, paul.burton@mips.com,
-        richard@nod.at, stefan@agner.ch, vigneshr@ti.com
-Subject: Re: [PATCH v4 1/2] mtd: rawnand: Add Macronix Raw NAND controller
+        id S1727114AbfGCD5S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 2 Jul 2019 23:57:18 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:38302 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727025AbfGCD5R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 2 Jul 2019 23:57:17 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 55BBA6038E; Wed,  3 Jul 2019 03:57:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1562126237;
+        bh=Aq4cCJDxYrULJtxL5b8KPbo01q6oair5ivvgUrHGj6Y=;
+        h=From:To:Cc:Subject:Date:From;
+        b=a18CdN/RaEcu548QrtYRLupKrQAp2ZRPD+2Ht2MuLkNTeAYVz3i8DlToH0menNywH
+         dprrU6XyNbkWRIRuiOMcT4JLrtq+UgLVWUcOwT2O1sDCecYhFLx0RD5+hYvK6VUbmj
+         r906kT8IdA9KO48nWcaYRP2l4lXLAe97H6cgn0JM=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from govinds-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: govinds@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 337DF6038E;
+        Wed,  3 Jul 2019 03:57:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1562126236;
+        bh=Aq4cCJDxYrULJtxL5b8KPbo01q6oair5ivvgUrHGj6Y=;
+        h=From:To:Cc:Subject:Date:From;
+        b=n6JWO34Mw4XbxIkJ5pVYQLK0Kb9XAhSRICWo/9GRxn8NWvJHLkgpuaUnUHUylBQBS
+         hEhydJy1vV7e281f9BHERULra8pGFSIPprxkrfrBkcGuQEShSkBbIb4T+/SKs7fFta
+         YtAP734tO2DRzgqOopGQpt34xYQhrIwklYGIhu8o=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 337DF6038E
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=govinds@codeaurora.org
+From:   Govind Singh <govinds@codeaurora.org>
+To:     ath10k@lists.infradead.org
+Cc:     linux-wireless@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, Govind Singh <govinds@codeaurora.org>
+Subject: [PATCH 0/3] Move voltage regulator config to driver private data
+Date:   Wed,  3 Jul 2019 09:27:08 +0530
+Message-Id: <20190703035711.25592-1-govinds@codeaurora.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-X-KeepSent: 041E283A:13DCC1D9-4825842C:000C9C7C;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
-Message-ID: <OF041E283A.13DCC1D9-ON4825842C.000C9C7C-4825842C.0010C960@mxic.com.tw>
-From:   masonccyang@mxic.com.tw
-Date:   Wed, 3 Jul 2019 11:03:21 +0800
-X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
- 2019/07/03 AM 11:03:19,
-        Serialize complete at 2019/07/03 AM 11:03:19
-Content-Type: text/plain; charset="US-ASCII"
-X-MAIL: TWHMLLG3.macronix.com x6333J7g046150
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+WCN3990 voltage regulator config is varying b/w different MSM platforms ex: SDM845/
+QCS404. In order to have scalable config, move regulator config to driver
+private data.
 
-Hi Miquel,
+Tested HW: WCN3990(SDM845/QCS404)
+Tested FW: WLAN.HL.3.1-01040-QCAHLSWMTPLZ-1
 
-> > Add a driver for Macronix raw NAND controller.
-> 
-> Could you pass userspace major MTD tests and can you attach/mount/edit
-> a UBI/UBIFS storage?
+Govind Singh (3):
+  dt: bindings: update compatible dt properties for WCN3990 wifi node
+  ath10k: Move regulator config to driver private data
+  arm64: dts: qcom: qcs404: Modify wifi dt node for SDM845/QCS404
+    devices
 
-The other userspace MTD tests are passed.
+ .../bindings/net/wireless/qcom,ath10k.txt     |  2 +
+ arch/arm64/boot/dts/qcom/qcs404-evb.dtsi      |  3 ++
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          |  2 +-
+ arch/arm64/boot/dts/qcom/sdm845.dtsi          |  2 +-
+ drivers/net/wireless/ath/ath10k/snoc.c        | 38 +++++++++++++++----
+ drivers/net/wireless/ath/ath10k/snoc.h        | 23 ++++++-----
+ 6 files changed, 51 insertions(+), 19 deletions(-)
 
-nandwrite, nanddump and nandtest.
-i.e.,
-zynq> ./nandtest -k /dev/mtd1
-ECC corrections: 0
-ECC failures   : 0
-Bad blocks     : 0
-BBT blocks     : 0
-00100000: writing...random: crng init done
-005c0000: checking...
-Finished pass 1 successfully
-zynq>
-
-
-UBI/UBI-FS test is also passed.
-i.e.,
-UBI/UBIFS storage test on mtd2 as example
-1. ubiformat /dev/mtd2
-2. ubiattach /dev/ubi_ctrl -m 2
-3. ubimkvol /dev/ubi0 -N ubifs -m
-4. mknod -m 777 /dev/ubi0 c 244 0
-5. mount -t ubifs ubi0_0 /mnt/ubifs
-6. copy a file to /mnt/ubifs
-7. sync and power off - on cycle
-8. ubiattach & mount /mnt/ubifs
-9. read file and compare it with md5sum
-
-thanks & best regards,
-Mason
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information 
-and/or personal data, which is protected by applicable laws. Please be 
-reminded that duplication, disclosure, distribution, or use of this e-mail 
-(and/or its attachments) or any part thereof is prohibited. If you receive 
-this e-mail in error, please notify us immediately and delete this mail as 
-well as its attachment(s) from your system. In addition, please be 
-informed that collection, processing, and/or use of personal data is 
-prohibited unless expressly permitted by personal data protection laws. 
-Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
-
-
-
-============================================================================
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
