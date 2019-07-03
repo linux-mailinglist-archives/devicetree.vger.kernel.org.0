@@ -2,99 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E2A85E976
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 18:46:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF1AC5E9A4
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 18:50:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726678AbfGCQqF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 12:46:05 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:46591 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726430AbfGCQqF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 12:46:05 -0400
-Received: by mail-ed1-f68.google.com with SMTP id d4so2715962edr.13;
-        Wed, 03 Jul 2019 09:46:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=08FT7ddsmk9tLgvVvr2oQycyQXe5HFBk71BAZ/FmXUk=;
-        b=TWa4pc2EdmtLNNbcdyQZTBp7Y2NNRNhRU25KJV9GQNIpuMKkvzYyNvnWH7nRRamPjb
-         /caum6h7iO4vYiEkff6fwK5UakxNxnG7joCZz2ztHg18jvm1EzUT1MVhQUAdq6q6nmlh
-         82j59LytSemhPZWkaRojDdtxLTfmB0aT4QJc8vxqebnnxqkcQ6Wtz6QBDJXsWnnofHPh
-         2WF0ehgVKHOIAaLQ6W69V8wxdHlaBd0SOTcldZ+6dWpo3IR2VBG8l/WRdWfnpOcQFk7Q
-         KkRJJkh4BFNw5XmVgmjlpoBmP5BhcLKyzDbmUjJ9zdsbCCnt6JHPtnNQj0qqrIbVFNEh
-         aSng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=08FT7ddsmk9tLgvVvr2oQycyQXe5HFBk71BAZ/FmXUk=;
-        b=RDaClSbQfRLYE20Dk1rFemvNCT6J85jjJkARjX1d4yJOoiYkjgo4tFFzdUslrJ38wC
-         fVEjp7ITyXu+TBMDlqFbhWsg3JsedUweqSIvyPYislVFcyrh9GQ1LuuuVEAnWfs8jAfu
-         fb3eECwYXZ7AdyRDemRWGYSI9pekRfHzQfWbNbPlbNxGP5T60/SOdlurXAIiWJg9ojvq
-         Y7+7AvrAs2Yeh/yJc5gHBjdiQqUvQWKGZx5XbXXz667AJKyCBePeMO8q2gyQ8LZerayJ
-         +MSIrzDQMxOLFMUe6NJu9njS5sxsqxNv2IXbx1X1dlARF4KAv5eYLU28KGLa9Z6iagN9
-         fyYw==
-X-Gm-Message-State: APjAAAV/xjrn2G7FD1swYAx8ZbAvt3Pap9Q3Wj8fWJev6GXJX3NCbHgG
-        W0sVCHNqZ4nhuWDoqAZGyB0=
-X-Google-Smtp-Source: APXvYqyQneHl9k0YePcXIOIWu0hzBiE7uHghqSPjYIrF6KJ/fdAgv7pH7XVLT+Hdo0nRWBLT+8kdhg==
-X-Received: by 2002:aa7:c754:: with SMTP id c20mr43184865eds.265.1562172363746;
-        Wed, 03 Jul 2019 09:46:03 -0700 (PDT)
-Received: from localhost (ip1f10d6e1.dynamic.kabel-deutschland.de. [31.16.214.225])
-        by smtp.gmail.com with ESMTPSA id h10sm845881eda.85.2019.07.03.09.46.02
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 09:46:02 -0700 (PDT)
-Date:   Wed, 3 Jul 2019 18:46:00 +0200
-From:   Oliver Graute <oliver.graute@gmail.com>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     linux-arm-kernel@lists.infradead.org, narmstrong@baylibre.com,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1727121AbfGCQuD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 12:50:03 -0400
+Received: from mout.gmx.net ([212.227.15.15]:44177 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727147AbfGCQtn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jul 2019 12:49:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1562172510;
+        bh=Me1SvsLDyMMGaUAM+H2U6QR3rP8Y3XVwEjAtU6m8VUA=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=MV6Va6oTlm89ruMxAxb87nEE2pPoh3n4vLdyHMS/pwe0XAqsgXSoh6piSJ85L+fZ+
+         sgvmA53g2n+XMMAAp0AJk0bPzDzrj4b4WNENRhxpuD3EyGTX/635+Twttk5ALFoVPE
+         XNxzEw/MJF8MVJWtuWJW4wXKFLb44ksoCMESeWpA=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from localhost.localdomain ([217.61.158.204]) by mail.gmx.com
+ (mrgmx004 [212.227.17.190]) with ESMTPSA (Nemesis) id
+ 1Mv2xO-1iZJ3G21eS-00r1tZ; Wed, 03 Jul 2019 18:48:30 +0200
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCHv3 0/2] Variscite DART-6UL SoM support
-Message-ID: <20190703164600.GA9261@ripley>
-References: <1559839624-12286-1-git-send-email-oliver.graute@gmail.com>
- <20190613013830.GC20747@dragon>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190613013830.GC20747@dragon>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Richard Fontana <rfontana@redhat.com>,
+        Allison Randal <allison@lohutok.net>,
+        "David S . Miller" <davem@davemloft.net>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        "Paul E . McKenney" <paulmck@linux.ibm.com>
+Cc:     Frank Wunderlich <frank-w@public-files.de>
+Subject: [PATCH v2 0/7] implement poweroff for mt6323/6397
+Date:   Wed,  3 Jul 2019 18:48:15 +0200
+Message-Id: <20190703164822.17924-1-frank-w@public-files.de>
+X-Mailer: git-send-email 2.17.1
+X-Provags-ID: V03:K1:Q7bwDdrEsaphQYrmHhp90HE//kekmdWGTaievfmTLBQ650JdlG0
+ ZFc89t3IpqF6r+6VIT+crsEBq/Xze1pedGbOYkWYQfBHJcBZWJae3I7ecQ1H/v2yoJF8OpX
+ Pf8SwioVIe5yR86V2HhD2iyrRPnU9EZxKaK/fDp6sj/cNdKzfwD7IhaXPNReS4u11f3x2QB
+ D7KWSsmavk+XqjXkrbOpA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:80cN8sB+jW0=:MrqNVi7o1rXFaCcRKYMpMr
+ w42OIhPPamz4BFUxxD4WMAHwfFtF5Af/vkftOIq7mwDnmmLVjvzpDCY9WCe+26/fmhm9ILqrW
+ FlaWUzNwCyTbmexafmmy0f91BemYMTQny1Fh37Gy7/GX3Xw+J5/nUfZOCJ2exG/XYIluMDmy1
+ 0q4mBFg7UmyUtQO+ytaMzkxVjE2oF/JKKZ5drh/6iOFGqbGHl6EbrcaI0NGLIiQXE3xynUQaY
+ WW1Yre6qDx+HjMJ9Lk5dJMbEI57lMR5YuwgjOebQDEBq6Xe1uYXOrzQR1wkevI09OhmGYYLlT
+ AimTIiXaIOSqccv46iS0RLais/yHBL82Mz0q6lDrlsJNUJsxltDWWK8DBL2OcuT4ruWkeM1ea
+ BRuglTOqIvDTmPPygFhbdvUPT6iPFC7afxNXsGefI4bbjeNhYX6nS0F6cwLQ2LIWga4XZkEZd
+ z6sIuSnVYTe+hqvFwc+wKCzx53SS1hI7i5L0KpagtNitCMJqykKo0ImhRAKAg080rNWownjRu
+ IPF/cHMBG0dPqoq4tjWbz8fm1ABB8geWNY2G5YJw+XustSCnZIeRDuYUn3vntf3hSxyCvx/h6
+ MUbKc6EOnU3cwHaV2hAPdxdQaQVe0v5g5AqlyYzLoEe7LdHwl/8Ck/aMLs/1/dJgRKxLbPsgC
+ UyZqBeY7unxw19J2xnG0Rh0BmWuPeaNKNP+zSqXTSQtW0xKi6IF4r3mcK8qS4aF+fx1jPOjPU
+ FJ/4FPuvumLOfqR2xMCUtQ6ttO9gm7EQrFRiOoerJYoin92K1LI3mvoWpSnTnqjVhQycnPTH1
+ MeV3DKDczqlWEV/1LfDYSeSftVblK3KgGgG4cTpn710t5TFBO5gsiAHq88wJmaWek/LpO45iM
+ lfH96Cnhp+nsfsx6Zf44h1aGTG813Gh62z+M9mCsiiKkDVkBwA8dthC2A5gYrTY8a+bpgDYYq
+ a/PprCwYWXTxAJDQUXN9vx6seI1oJ1RF8Dn4qKzj8/2YFP3OpbfqnIVlrgV52vYoI/gQq8HBW
+ EDEaEam7lcXmITZU6/tZX/iLapG/9XXkG0MhyT4QusnNpUDoDd0WocRAYIjyBDgPfyREQFliV
+ HSgBUVFAVXoG6U=
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 13/06/19, Shawn Guo wrote:
-> On Thu, Jun 06, 2019 at 06:47:00PM +0200, Oliver Graute wrote:
-> > Need feedback to the following patches which adds support for a DART-6UL Board
-> > 
-> > Product Page: https://www.variscite.com/product/evaluation-kits/dart-6ul-kits
-> > 
-> > Oliver Graute (2):
-> >   ARM: dts: imx6ul: Add Variscite DART-6UL SoM support
-> >   ARM: dts: Add support for i.MX6 UltraLite DART Variscite Customboard
-> 
-> It's already v3?  I did not find previous versions.  What's changed
-> since previous versions?
+mainline-driver does not support mt6323
 
-The first two version you can find here. I splitted board and SoM part
-according Neils and Fabios comments.
+this series adds mt6323 to mt6397-rtc-driver and implement
+power-controller on it.
 
-v1
-https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=59259
+with this poweroff is working on bananapi-r2
 
-v2 
-https://patchwork.kernel.org/patch/10748361/
+Original Patch from Josef Friedl
 
-Please review the latest version v4:
+changes since v1:
+	- splitted into functional parts
+	- more infos about changes
 
-https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=137257
+Josef Friedl (7):
+  docs: dt-bindings: add poweroff
+  rtc: mt6397: move some common definitions into rtc.h
+  rtc: mt6397: improvements of rtc driver
+  mfd: mt6323: some improvements of mt6397-core
+  power: reset: add driver for mt6323 poweroff
+  MAINTAINERS: add Mediatek shutdown drivers
+  arm: dts: mt6323: add keys, power-controller, rtc and codec
 
-Thx for your time and patience.
+ .../devicetree/bindings/mfd/mt6397.txt        |  10 +-
+ .../bindings/power/reset/mt6323-poweroff.txt  |  20 ++++
+ .../devicetree/bindings/rtc/rtc-mt6397.txt    |  29 +++++
+ MAINTAINERS                                   |   7 ++
+ arch/arm/boot/dts/mt6323.dtsi                 |  27 +++++
+ drivers/mfd/mt6397-core.c                     |  40 +++++--
+ drivers/power/reset/Kconfig                   |  10 ++
+ drivers/power/reset/Makefile                  |   1 +
+ drivers/power/reset/mt6323-poweroff.c         |  97 +++++++++++++++
+ drivers/rtc/rtc-mt6397.c                      | 110 ++++--------------
+ include/linux/mfd/mt6397/core.h               |   2 +
+ include/linux/mfd/mt6397/rtc.h                |  71 +++++++++++
+ 12 files changed, 325 insertions(+), 99 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/reset/mt6323-p=
+oweroff.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
+ create mode 100644 drivers/power/reset/mt6323-poweroff.c
+ create mode 100644 include/linux/mfd/mt6397/rtc.h
 
-Oliver
+=2D-
+2.17.1
+
