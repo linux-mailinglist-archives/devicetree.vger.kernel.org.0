@@ -2,143 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FB405ED4D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 22:15:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 852C35ED43
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 22:14:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727137AbfGCUOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 16:14:50 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:39454 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727087AbfGCUOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 16:14:50 -0400
-Received: by mail-wr1-f67.google.com with SMTP id x4so4180383wrt.6;
-        Wed, 03 Jul 2019 13:14:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=WBfRrtE2AUjJNR4gQtkNz6C4Ih4H5C4/HnLfvNurTLE=;
-        b=m75QlRBhAxn2WVHWttp32A4fbPXuLCsrvUgVySGzABKtmbdv0cqa7TbWGaWQPu1xnP
-         4GQwU12hhWmQTX6OEOY+br9Me+QXKmh7NEPsM7Vy2+16/qv0AlC5Av7g4yrqvWbFt9ZX
-         w8zjVzas+0kxPDibtCPIhA3rQXnSQkHKcWja5yPvJS1ElUZ2/uwPaLT5fEFVHpuflXp8
-         6v2VN2fDbtCNawiVyeZon2bABdHkA8U1UjcINQseIw0tCqj2uG2ufXhiSy6ZIDGpZjrW
-         ApVkx6jUCK3RzoATfSn9El6m8BOYJDDxqItTOqxdZQjjEBt1VCu3M+FqB9QnV77YgnLL
-         Z27w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=WBfRrtE2AUjJNR4gQtkNz6C4Ih4H5C4/HnLfvNurTLE=;
-        b=HMAyTA8lLMWTmhj7YCOi2xuBghH404LAREkoZnnwRNFwccayg1BTud/knXxqXjXdez
-         6w4SM2/55t4wf7hrluMNQEU7Bs+bhbLMCTN+bYVRBOTKGuEJGI3WjNF+necmfKA3ZHmU
-         wfOZ1pE/1+0ms8M2C12xKy6QesvSfI0ksOBI+4uaZyZPDLnZHsxfzohsELuOHBwcoE0g
-         X3kelNTiHqndGIt+NXDYsfNRSrCquuckQJN3KWPSmEx35CCGMO1p6TL8XZ+MKJ11f+b4
-         6xSCsVLBlFUWC0zNtDHpWwPP3zcg8iO/ZJaOxNmx4WcYsiwrySCyk8TP+ueo/mpurC1o
-         Z43w==
-X-Gm-Message-State: APjAAAXazkb/VhwzVF2dpru2mIMbF8Rr28thGr5FIPL12INieSrW1yOa
-        Xgk4pQA6r2RR3gcI1pWG0Hw=
-X-Google-Smtp-Source: APXvYqzZvKG/LNrrMgkl4hBygW/G0g6FMChhpeglD+mK4TjOgqKfe9gbhCEJwKd4cJHKyFdYTiGkgQ==
-X-Received: by 2002:a5d:500f:: with SMTP id e15mr18914764wrt.41.1562184887930;
-        Wed, 03 Jul 2019 13:14:47 -0700 (PDT)
-Received: from ?IPv6:2003:ea:8bd6:c00:4503:872e:8227:c4e0? (p200300EA8BD60C004503872E8227C4E0.dip0.t-ipconnect.de. [2003:ea:8bd6:c00:4503:872e:8227:c4e0])
-        by smtp.googlemail.com with ESMTPSA id t80sm3548106wmt.26.2019.07.03.13.14.47
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 03 Jul 2019 13:14:47 -0700 (PDT)
-Subject: Re: [PATCH v2 6/7] dt-bindings: net: realtek: Add property to
- configure LED mode
-To:     Matthias Kaehlcke <mka@chromium.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-References: <20190703193724.246854-1-mka@chromium.org>
- <20190703193724.246854-6-mka@chromium.org>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Message-ID: <e7fa2c8c-d53e-2480-d239-e2c0b362dc4f@gmail.com>
-Date:   Wed, 3 Jul 2019 22:13:21 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1726550AbfGCUOl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 16:14:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45146 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726490AbfGCUOl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 3 Jul 2019 16:14:41 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 42A20218A3
+        for <devicetree@vger.kernel.org>; Wed,  3 Jul 2019 20:14:40 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562184880;
+        bh=oMl/LQyGHN1AF+7Z0LcSUB2ZY6jJhk+OtQa8gTPvMd8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=JExDYoUGSIHpp8Ba0Bvyy2oigl8V00RdqmBNTbEIHvVrhuhItqAjNpeb7yrk9fsfK
+         jsDkfSGe/kbApy1fmiWiejgHR4IfemyckI2CzR8zIGra0GHuCrub0SHiWTNwiYRPgh
+         GRx6O9cqnDG9CelEZeZfLW1926q6zqDYP6hvCZCc=
+Received: by mail-qt1-f172.google.com with SMTP id z4so2044852qtc.3
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 13:14:40 -0700 (PDT)
+X-Gm-Message-State: APjAAAUk8i5czI5mmQruXyW8MPV2cjYWA7WplTQy/BqXcyN6gyRMGHrR
+        coZkOP1ChwVUmFn/96OHCyVViwGUB+X6oFi+YQ==
+X-Google-Smtp-Source: APXvYqzDfM/FmuUxrf8xMBTjWm+aAhJAZQCnB4xKYdbfHIo9y9o1hcT/sOhnyq8m4kCxXIzFduiX56YVVWzcIW9y/8o=
+X-Received: by 2002:a0c:baa1:: with SMTP id x33mr34335310qvf.200.1562184879520;
+ Wed, 03 Jul 2019 13:14:39 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190703193724.246854-6-mka@chromium.org>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190703095513.12340-1-maxime.ripard@bootlin.com>
+ <20190703095513.12340-3-maxime.ripard@bootlin.com> <CAL_JsqKgBXxbg_9ZKfmj6y0s_5Z5QZw3RmdJfSHEpjh84m9brg@mail.gmail.com>
+ <20190703141300.duhk2qj3m5qpkp3h@flea> <CAL_JsqLr32VK=HSeY52NCkZj-gBfLhTWu5eheXWk--fL16zBYg@mail.gmail.com>
+ <20190703195750.vupb3r5xoujjw6pe@flea>
+In-Reply-To: <20190703195750.vupb3r5xoujjw6pe@flea>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 3 Jul 2019 14:14:27 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+KKvBhzq3uxuaU6tvoW4Sgu=4UnBP-qAp34FRw6bOkwA@mail.gmail.com>
+Message-ID: <CAL_Jsq+KKvBhzq3uxuaU6tvoW4Sgu=4UnBP-qAp34FRw6bOkwA@mail.gmail.com>
+Subject: Re: [PATCH 3/7] dt-bindings: net: mdio: Add child nodes
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03.07.2019 21:37, Matthias Kaehlcke wrote:
-> The LED behavior of some Realtek PHYs is configurable. Add the
-> property 'realtek,led-modes' to specify the configuration of the
-> LEDs.
-> 
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> Changes in v2:
-> - patch added to the series
-> ---
->  .../devicetree/bindings/net/realtek.txt         |  9 +++++++++
->  include/dt-bindings/net/realtek.h               | 17 +++++++++++++++++
->  2 files changed, 26 insertions(+)
->  create mode 100644 include/dt-bindings/net/realtek.h
-> 
-> diff --git a/Documentation/devicetree/bindings/net/realtek.txt b/Documentation/devicetree/bindings/net/realtek.txt
-> index 71d386c78269..40b0d6f9ee21 100644
-> --- a/Documentation/devicetree/bindings/net/realtek.txt
-> +++ b/Documentation/devicetree/bindings/net/realtek.txt
-> @@ -9,6 +9,12 @@ Optional properties:
->  
->  	SSC is only available on some Realtek PHYs (e.g. RTL8211E).
->  
-> +- realtek,led-modes: LED mode configuration.
-> +
-> +	A 0..3 element vector, with each element configuring the operating
-> +	mode of an LED. Omitted LEDs are turned off. Allowed values are
-> +	defined in "include/dt-bindings/net/realtek.h".
-> +
->  Example:
->  
->  mdio0 {
-> @@ -20,5 +26,8 @@ mdio0 {
->  		reg = <1>;
->  		realtek,eee-led-mode-disable;
->  		realtek,enable-ssc;
-> +		realtek,led-modes = <RTL8211E_LINK_ACTIVITY
-> +				     RTL8211E_LINK_100
-> +				     RTL8211E_LINK_1000>;
->  	};
->  };
-> diff --git a/include/dt-bindings/net/realtek.h b/include/dt-bindings/net/realtek.h
-> new file mode 100644
-> index 000000000000..8d64f58d58f8
-> --- /dev/null
-> +++ b/include/dt-bindings/net/realtek.h
-> @@ -0,0 +1,17 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +#ifndef _DT_BINDINGS_REALTEK_H
-> +#define _DT_BINDINGS_REALTEK_H
-> +
-> +/* LED modes for RTL8211E PHY */
-> +
-> +#define RTL8211E_LINK_10		1
-> +#define RTL8211E_LINK_100		2
-> +#define RTL8211E_LINK_1000		4
-> +#define RTL8211E_LINK_10_100		3
-> +#define RTL8211E_LINK_10_1000		5
-> +#define RTL8211E_LINK_100_1000		6
-> +#define RTL8211E_LINK_10_100_1000	7
-> +
-> +#define RTL8211E_LINK_ACTIVITY		(1 << 16)
+On Wed, Jul 3, 2019 at 1:58 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> Hi Rob,
+>
+> On Wed, Jul 03, 2019 at 08:20:32AM -0600, Rob Herring wrote:
+> > On Wed, Jul 3, 2019 at 8:13 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > >
+> > > On Wed, Jul 03, 2019 at 07:53:43AM -0600, Rob Herring wrote:
+> > > > On Wed, Jul 3, 2019 at 3:55 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > > >
+> > > > > The child nodes of a mdio bus are supposed to be ethernet PHYs, with a reg
+> > > > > property. Make sure that's validated as well.
+> > > >
+> > > > I don't think this is always true. I seem to recall there's some
+> > > > timestamping devices connected via mdio.
+> > > >
+> > > > In any case, it's not a long list of names, so we can probably just
+> > > > enumerate them as needed. Does this generate any warnings?
+> > >
+> > > I did a run on both arm and arm64 Allwinner DTS, and it doesn't.
+> > >
+> > > I can do one on multi_v7 / arm64's defconfig, but that's probably
+> > > going to be a bit hard to tell from the noise of warnings.
+> >
+> > I do allmodconfig because that will build all dtbs. You can run checks
+> > with a single schema like this:
+> >
+> > make dtbs_check DT_SCHEMA_FILES=a-single-schema.yaml
+>
+> Right, of course :)
+>
+> I just did it, and apart from a few arm32 broadcom boards that don't
+> have the right address-cells / size-cells (probably false positive due
+> to the fact they use mdio@something as node name), there's no other
+> warnings.
 
-I don't see where this is used.
+Actually, they look like real errors in the DT with the values of
+address-cells / size-cells swapped. But the node is disabled in the
+ones I looked at.
 
-> +
-> +#endif
-> 
+> I'm not sure what you were on about though. If there's another node
+> than an ethernet phy, we won' have any warning since we don't have
+> additionalProperties to false.
 
+True. I guess I wasn't thinking through it... Anyways, I applied it.
+
+Rob
