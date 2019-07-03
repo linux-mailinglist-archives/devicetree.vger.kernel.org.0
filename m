@@ -2,67 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5C3F35DF3D
-	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 10:01:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FCE55DFEA
+	for <lists+devicetree@lfdr.de>; Wed,  3 Jul 2019 10:35:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727134AbfGCIB5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 04:01:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55164 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726670AbfGCIB5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 3 Jul 2019 04:01:57 -0400
-Received: from localhost (unknown [122.167.76.109])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C812D21897;
-        Wed,  3 Jul 2019 08:01:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562140916;
-        bh=ThdOqIlE3tUWkIZCcSvGSfnftygpU4mdRMsrGkRB824=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GYWQ75vkqGkJRXZ6dih6ItEgb92wHdF8ZCCOyuF3axygjOhqHqmTIb2jAg4FJQyMO
-         MrWvaEwr1wH1x6qy3E1kg8mRdmo6Z75vwTE4+AMN4bcaxafhH/uYvWc70hiwxTZnlX
-         O8X88LouQrPToBR47ovMX8nPVzJBtNteMfpzquKY=
-Date:   Wed, 3 Jul 2019 13:28:48 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     yibin.gong@nxp.com
-Cc:     robh@kernel.org, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        festevam@gmail.com, mark.rutland@arm.com, dan.j.williams@intel.com,
-        angelo@sysam.it, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v5 0/6] add edma2 for i.mx7ulp
-Message-ID: <20190703075848.GR2911@vkoul-mobl>
-References: <20190625094324.19196-1-yibin.gong@nxp.com>
+        id S1726670AbfGCIfZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 04:35:25 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:57638 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726400AbfGCIfZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 04:35:25 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 0189525B775;
+        Wed,  3 Jul 2019 18:35:23 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id 17ABC9403B8; Wed,  3 Jul 2019 10:35:21 +0200 (CEST)
+From:   Simon Horman <horms+renesas@verge.net.au>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-usb@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Simon Horman <horms+renesas@verge.net.au>
+Subject: [PATCH v2 0/2] dt-bindings: usb: renease_{usbhs,gen3} Rename bindings documentation files
+Date:   Wed,  3 Jul 2019 10:35:12 +0200
+Message-Id: <20190703083514.32385-1-horms+renesas@verge.net.au>
+X-Mailer: git-send-email 2.11.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190625094324.19196-1-yibin.gong@nxp.com>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25-06-19, 17:43, yibin.gong@nxp.com wrote:
-> From: Robin Gong <yibin.gong@nxp.com>
-> 
-> This patch set add new version of edma for i.mx7ulp, the main changes
-> are as belows:
->  1. only one dmamux.
->  2. another clock dma_clk except dmamux clk.
->  3. 16 independent interrupts instead of only one interrupt for
->     all channels
-> For the first change, need modify fsl-edma-common.c and mcf-edma,
-> so create the first two patches to prepare without any function impact.
-> 
-> For the third change, need request single irq for every channel with
-> the legacy handler. But actually 2 dma channels share one interrupt(16
-> channel interrupts, but 32 channels.),ch0/ch16,ch1/ch17... For now, just
-> simply request irq without IRQF_SHARED flag, since 16 channels are enough
-> on i.mx7ulp whose M4 domain own some peripherals.
+Hi,
 
-Applied patches 1-5, thanks
+For consistency with the naming of (most) other documentation files for DT
+bindings for Renesas IP blocks rename the Renesas USBHS and USB 3.0
+peripheral documentation files.
+
+Changes since v1
+* Accumulate review tags
+* Use renesas,usb3-peri.txt as new filename for renesas_gen3,
+  as suggested by Shimoda-san
+
+Simon Horman (2):
+  dt-bindings: usb: renesas_usbhs: Rename bindings documentation file
+  dt-bindings: usb: renesas_gen3: Rename bindings documentation file
+
+ .../devicetree/bindings/usb/{renesas_usb3.txt => renesas,usb3-peri.txt}   | 0
+ .../devicetree/bindings/usb/{renesas_usbhs.txt => renesas,usbhs.txt}      | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+ rename Documentation/devicetree/bindings/usb/{renesas_usb3.txt => renesas,usb3-peri.txt} (100%)
+ rename Documentation/devicetree/bindings/usb/{renesas_usbhs.txt => renesas,usbhs.txt} (100%)
+
 -- 
-~Vinod
+2.11.0
+
