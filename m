@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59E315F41A
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 09:49:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 36B065F42F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 10:00:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726120AbfGDHtL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 03:49:11 -0400
-Received: from mail-eopbgr60045.outbound.protection.outlook.com ([40.107.6.45]:45390
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        id S1725945AbfGDIA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 04:00:29 -0400
+Received: from mail-eopbgr00078.outbound.protection.outlook.com ([40.107.0.78]:54063
+        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
         rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725945AbfGDHtL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Jul 2019 03:49:11 -0400
+        id S1725920AbfGDIA3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Jul 2019 04:00:29 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=bg3YVZyZix9ibFcYWOAmR1P6Nh6H6haGJXEGrezCKN0=;
- b=MNlvGOO1bE3gwqoiyFfMX5odP8T+TWf78MbA83x0OAD/GJt9aK4yiMkabyBGFRCZ1Wtv4OHc0r4HwAg6lsU+phZs4bX5n99clwnjuGwiMzfMaoQboWr9WzKV0rsyRHrFoy/bzsEU0+ModE6TGHFKOzC1r7FX4uiD3tYO2ipyPfU=
-Received: from DB7PR04MB5051.eurprd04.prod.outlook.com (20.176.234.223) by
- DB7PR04MB4185.eurprd04.prod.outlook.com (52.134.111.27) with Microsoft SMTP
+ bh=0Os2M1u4hQFlUUZir5WG6cu5oF/YNz5e4IzKf5ru3hA=;
+ b=XV/qNoVv0eEDPHrJ7os5NpML4t7YVkZz1DfCFCrOOEj6Cdh+i31ww8sV4yV2/bbiyo7vTC7pN4e3VClSjDJYjObLoxHr8ML8/Bs7r/kk2GTtMKzeMkSAFz5LV+r3bhHstTlDzpP43aSKlRDhZdbluJrONRUOMNf2PZ/3N00rpJ8=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3738.eurprd04.prod.outlook.com (52.134.70.145) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2052.16; Thu, 4 Jul 2019 07:49:07 +0000
-Received: from DB7PR04MB5051.eurprd04.prod.outlook.com
- ([fe80::6c98:1416:8221:bdfc]) by DB7PR04MB5051.eurprd04.prod.outlook.com
- ([fe80::6c98:1416:8221:bdfc%4]) with mapi id 15.20.2052.010; Thu, 4 Jul 2019
- 07:49:07 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Anson Huang <anson.huang@nxp.com>,
+ 15.20.2032.20; Thu, 4 Jul 2019 08:00:25 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::3945:fcda:5bdd:8191]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::3945:fcda:5bdd:8191%4]) with mapi id 15.20.2052.010; Thu, 4 Jul 2019
+ 08:00:25 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     Leonard Crestez <leonard.crestez@nxp.com>,
         "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>
 CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "mark.rutland@arm.com" <mark.rutland@arm.com>,
@@ -46,82 +46,78 @@ CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mm: Assign highest opp as suspend opp
+Subject: RE: [PATCH 2/2] arm64: dts: imx8mm: Assign highest opp as suspend opp
 Thread-Topic: [PATCH 2/2] arm64: dts: imx8mm: Assign highest opp as suspend
  opp
-Thread-Index: AQHVMjEDVn995bhE70i5OsdReRFRhA==
-Date:   Thu, 4 Jul 2019 07:49:07 +0000
-Message-ID: <DB7PR04MB50519C02D90675070F21501DEEFA0@DB7PR04MB5051.eurprd04.prod.outlook.com>
+Thread-Index: AQHVMjD62bccyXxndUyDszIpSDkBnaa6F2SA
+Date:   Thu, 4 Jul 2019 08:00:24 +0000
+Message-ID: <DB3PR0402MB39165D27F23501EE358DE607F5FA0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
 References: <20190704061403.8249-1-Anson.Huang@nxp.com>
  <20190704061403.8249-2-Anson.Huang@nxp.com>
+ <DB7PR04MB50519C02D90675070F21501DEEFA0@DB7PR04MB5051.eurprd04.prod.outlook.com>
+In-Reply-To: <DB7PR04MB50519C02D90675070F21501DEEFA0@DB7PR04MB5051.eurprd04.prod.outlook.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [82.144.34.2]
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [119.31.174.66]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f05be104-3873-4909-9548-08d700541803
+x-ms-office365-filtering-correlation-id: f97e96a1-60ef-4b23-f80b-08d70055abce
 x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB7PR04MB4185;
-x-ms-traffictypediagnostic: DB7PR04MB4185:
-x-microsoft-antispam-prvs: <DB7PR04MB41851512C4255B5A3548A931EEFA0@DB7PR04MB4185.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2399;
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3738;
+x-ms-traffictypediagnostic: DB3PR0402MB3738:
+x-microsoft-antispam-prvs: <DB3PR0402MB37385D5D32BA1619C0B548E9F5FA0@DB3PR0402MB3738.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
 x-forefront-prvs: 0088C92887
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(346002)(39860400002)(376002)(366004)(396003)(199004)(189003)(33656002)(9686003)(71190400001)(81156014)(81166006)(102836004)(26005)(229853002)(446003)(55016002)(53936002)(6116002)(8936002)(316002)(54906003)(71200400001)(186003)(110136005)(476003)(44832011)(486006)(3846002)(91956017)(6436002)(7416002)(478600001)(68736007)(76116006)(73956011)(6506007)(15650500001)(6246003)(4744005)(7736002)(66946007)(305945005)(64756008)(66446008)(66556008)(66476007)(86362001)(14444005)(256004)(5660300002)(4326008)(2501003)(99286004)(53546011)(52536014)(76176011)(66066001)(74316002)(25786009)(7696005)(14454004)(8676002)(2906002)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB4185;H:DB7PR04MB5051.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(396003)(39860400002)(346002)(136003)(366004)(199004)(189003)(8676002)(99286004)(229853002)(102836004)(66066001)(76176011)(7696005)(53546011)(25786009)(54906003)(6506007)(110136005)(3846002)(6116002)(33656002)(14454004)(7416002)(7736002)(305945005)(186003)(4326008)(8936002)(316002)(15650500001)(2906002)(81166006)(81156014)(478600001)(74316002)(26005)(68736007)(2501003)(71200400001)(71190400001)(53936002)(6246003)(66556008)(66946007)(76116006)(66446008)(66476007)(64756008)(73956011)(5660300002)(55016002)(486006)(44832011)(86362001)(52536014)(9686003)(6436002)(256004)(14444005)(446003)(11346002)(476003)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3738;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
 received-spf: None (protection.outlook.com: nxp.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: PRJDAL7OvTH5whHzKkeF/40C9fZaeEpPHcI9fzXDbyWGVTmzg8YmFbx9mWBlwatAcZFEn9dpR6rdKRucH83HyO0+3kgnGgKWgdA8UThJaaPeLQC46dIcAAxA5wmYxgS/Y7N4sMlXg1h2avH58VK0EA91JNC5ZVIarVFqwCR84jep+WVFoEdU5x+1+9iKgih0U6rpSYtyPRA9SSH2A1H8kwjvGqFDrSgdx81wCfqWUGKbQO4DdR+h5/ngmOMgqQ/AW7k8+pMxXc1sC5LVg5XyjTtrZKTJ9pNVh8M3M6B8980hKuu9HcE93utaqZvKIoy9hCpHEf3tbc6S4sg28Rx1F3ktv6e4ukziKdAHWxjFpU/X2XzjdikA6H9sc8pJyhyOUeBpnxS/2oDiNvdyVXQzuvxq8eUgOIElCuqHotIz4jk=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-microsoft-antispam-message-info: sSACyW0V1pdegfYmDUfMLyW7K29iXC8f2vzGlbt4SxRekcCRm34M++/kyxkisjUtYV3nSkV2cTkXHDDiYoWSBzTxdG9rCyLJACd/2aa66quUtNbaqDZ+VyBomXf5/eq+U7SEvYlxBhW9s5T0D6svscgCdYZY+jlUujDAIcBvLjw3AC2E12Av8Xc7cIFtzocUFmkrNJIGYXt1MSd+K3v/4B3Fq1gBplOET9ClPaPxCP1rsNLjbSHY+sLRFdSraqptJgjTtnXIJNKHH9qgr2Z5AyiSpn2Vp0+YqsJjxcSlnLZhalspzcRwZRuwZvr+XhE6TrseeoG+t3VoGlC6Ub0M8/K8PtIJQXHZMG3SLMvYxKApyqCJ2CkGwi8fls9o1lrF/+J35IbFcomVPGds/MJijDYENvTG7Lm6c7w9TfcS6Bs=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
 X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f05be104-3873-4909-9548-08d700541803
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jul 2019 07:49:07.5136
+X-MS-Exchange-CrossTenant-Network-Message-Id: f97e96a1-60ef-4b23-f80b-08d70055abce
+X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jul 2019 08:00:24.9793
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB4185
+X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3738
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/4/2019 9:23 AM, Anson.Huang@nxp.com wrote:=0A=
-> From: Anson Huang <Anson.Huang@nxp.com>=0A=
-> =0A=
-> Assign highest OPP as suspend OPP to reduce suspend/resume=0A=
-> latency on i.MX8MM.=0A=
-> =0A=
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>=0A=
-> ---=0A=
->   arch/arm64/boot/dts/freescale/imx8mm.dtsi | 1 +=0A=
->   1 file changed, 1 insertion(+)=0A=
-> =0A=
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mm.dtsi=0A=
-> index b11fc5e..3a62407 100644=0A=
-> --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi=0A=
-> +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi=0A=
-> @@ -136,6 +136,7 @@=0A=
->   			opp-microvolt =3D <1000000>;=0A=
->   			opp-supported-hw =3D <0x8>, <0x3>;=0A=
->   			clock-latency-ns =3D <150000>;=0A=
-> +			opp-suspend;=0A=
->   		};=0A=
->   	};=0A=
-=0A=
-What if the highest OPP is unavailable due to speed grading? Ideally we =0A=
-should find a way to suspend at the highest *supported* OPP.=0A=
-=0A=
-Maybe the opp-suspend marking could be assigned from imx-cpufreq-dt =0A=
-driver code?=0A=
-=0A=
---=0A=
-Regards,=0A=
-Leonard=0A=
-=0A=
+SGksIExlb25hcmQNCg0KPiBPbiA3LzQvMjAxOSA5OjIzIEFNLCBBbnNvbi5IdWFuZ0BueHAuY29t
+IHdyb3RlOg0KPiA+IEZyb206IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KPiA+
+DQo+ID4gQXNzaWduIGhpZ2hlc3QgT1BQIGFzIHN1c3BlbmQgT1BQIHRvIHJlZHVjZSBzdXNwZW5k
+L3Jlc3VtZSBsYXRlbmN5IG9uDQo+ID4gaS5NWDhNTS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6
+IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KPiA+IC0tLQ0KPiA+ICAgYXJjaC9h
+cm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kgfCAxICsNCj4gPiAgIDEgZmlsZSBj
+aGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQv
+Ym9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS5kdHNpDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRz
+L2ZyZWVzY2FsZS9pbXg4bW0uZHRzaQ0KPiA+IGluZGV4IGIxMWZjNWUuLjNhNjI0MDcgMTAwNjQ0
+DQo+ID4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kNCj4g
+PiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0uZHRzaQ0KPiA+IEBA
+IC0xMzYsNiArMTM2LDcgQEANCj4gPiAgIAkJCW9wcC1taWNyb3ZvbHQgPSA8MTAwMDAwMD47DQo+
+ID4gICAJCQlvcHAtc3VwcG9ydGVkLWh3ID0gPDB4OD4sIDwweDM+Ow0KPiA+ICAgCQkJY2xvY2st
+bGF0ZW5jeS1ucyA9IDwxNTAwMDA+Ow0KPiA+ICsJCQlvcHAtc3VzcGVuZDsNCj4gPiAgIAkJfTsN
+Cj4gPiAgIAl9Ow0KPiANCj4gV2hhdCBpZiB0aGUgaGlnaGVzdCBPUFAgaXMgdW5hdmFpbGFibGUg
+ZHVlIHRvIHNwZWVkIGdyYWRpbmc/IElkZWFsbHkgd2UNCj4gc2hvdWxkIGZpbmQgYSB3YXkgdG8g
+c3VzcGVuZCBhdCB0aGUgaGlnaGVzdCAqc3VwcG9ydGVkKiBPUFAuDQo+IA0KPiBNYXliZSB0aGUg
+b3BwLXN1c3BlbmQgbWFya2luZyBjb3VsZCBiZSBhc3NpZ25lZCBmcm9tIGlteC1jcHVmcmVxLWR0
+DQo+IGRyaXZlciBjb2RlPw0KDQpZZXMsIHRoaXMgaXMgYWxzbyBteSBjb25jZXJuLCB0aGUgY3Vy
+cmVudCBPUFAgZHJpdmVyIGRvZXMgTk9UIGhhbmRsZSBpdCB3ZWxsLCBhbmQNCkkgd2FzIHRoaW5r
+aW5nIHRvIGFzc2lnbmUgaXQgZnJvbSBpbXgtY3B1ZnJlcS1kdCBkcml2ZXIsIDEgb3B0aW9uIGlz
+IHRvIHJ1bnRpbWUgYWRkDQoic3VzcGVuZC1vcHAiIHByb3BlcnR5IGludG8gRFQgT1BQIG5vZGUg
+YWZ0ZXIgcGFyc2luZyB0aGUgc3BlZWQgZ3JhZGluZyBmdXNlIGFuZA0KT1BQIHRhYmxlLCBidXQg
+SSBkbyBOT1QgbGlrZSB0aGF0IHZlcnkgbXVjaCwgYXMgd2UgbmVlZCB0byBtYW51YWxseSBjcmVh
+dGUgYSBwcm9wZXJ0eSwNCnRoZSBvdGhlciBvcHRpb24gaXMgdG8gY2hhbmdlIGNwdSBmcmVxIHBv
+bGljeSBpbnNpZGUgaW14LWNwdWZyZXEtZHQgZHJpdmVyIGluIHN1c3BlbmQvcmVzdW1lDQpjYWxs
+YmFjaz8gV2hpY2ggb25lIGRvIHlvdSBwcmVmZXI/DQoNClRoYW5rcywNCkFuc29uDQoNCj4gDQo+
+IC0tDQo+IFJlZ2FyZHMsDQo+IExlb25hcmQNCg0K
