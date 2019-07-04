@@ -2,210 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 768FA5FADD
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 17:30:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C92BC5FB13
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 17:39:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727462AbfGDPal (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 11:30:41 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:7261 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727066AbfGDPal (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 11:30:41 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d1e1ba30000>; Thu, 04 Jul 2019 08:30:43 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 04 Jul 2019 08:30:39 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 04 Jul 2019 08:30:39 -0700
-Received: from [10.24.70.13] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 4 Jul
- 2019 15:30:30 +0000
-Subject: Re: [PATCH V6 26/27] PCI: tegra: Add support for GPIO based PERST#
-To:     Jon Hunter <jonathanh@nvidia.com>
-CC:     <thierry.reding@gmail.com>, <bhelgaas@google.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <lorenzo.pieralisi@arm.com>, <vidyas@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-pci@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20190618180206.4908-1-mmaddireddy@nvidia.com>
- <20190618180206.4908-27-mmaddireddy@nvidia.com>
- <a4ddd0a3-f0b4-23de-fb0e-91a417d20362@nvidia.com>
-X-Nvconfidentiality: public
-From:   Manikanta Maddireddy <mmaddireddy@nvidia.com>
-Message-ID: <84d26bcc-f5d5-6694-98c9-1363d706d76c@nvidia.com>
-Date:   Thu, 4 Jul 2019 20:59:33 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.1
+        id S1727851AbfGDPj6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 11:39:58 -0400
+Received: from mo4-p02-ob.smtp.rzone.de ([81.169.146.168]:36435 "EHLO
+        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727454AbfGDPj6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 11:39:58 -0400
+X-Greylist: delayed 342 seconds by postgrey-1.27 at vger.kernel.org; Thu, 04 Jul 2019 11:39:56 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; t=1562254795;
+        s=strato-dkim-0002; d=fpond.eu;
+        h=Subject:References:In-Reply-To:Message-ID:Cc:To:From:Date:
+        X-RZG-CLASS-ID:X-RZG-AUTH:From:Subject:Sender;
+        bh=gou5Zh0HIbQCcM7c2CWEWnJ04+a+qFsD/mEWP+ODjjE=;
+        b=OuyCIoqmsQhbJTbv0dWCKhxJOxfFJ9CnNnTYIoPD7RabOLrTIPqiWSJu0WBN/RMvkI
+        LEQEVp4NzUIxfUl+igoTTETz555+ZoaMH2WyB6N7DtgzreFgvP6rqr7O9QVlOnjMq3tl
+        lAf/eCisAIGpPqaagIs9Br9pYJ+/qHBUDW4ASHlxE70wXSGvlQzZ+48AHbPplswVMnoQ
+        eMEOtd1S+eJcGhYCtgTlrnHI8GYqb1JG1q/K6pBckWwQRrSbevmuNMdgDI2VHzlrV8pV
+        mhYtSU1hjzLpjb2fEnxCfMFgik4rpr4bN60AWkYKbsQ7hFqlcwd45rTMiFA5MB6jx5+3
+        cPFA==
+X-RZG-AUTH: ":OWANVUa4dPFUgKR/3dpvnYP0Np73amq+g13rqGzmt2bYDnKIKaws6YXTsc4="
+X-RZG-CLASS-ID: mo00
+Received: from oxapp01-01.back.ox.d0m.de
+        by smtp-ox.front (RZmta 44.24 AUTH)
+        with ESMTPSA id h0a328v64FXe11g
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve X9_62_prime256v1 with 256 ECDH bits, eq. 3072 bits RSA))
+        (Client did not present a certificate);
+        Thu, 4 Jul 2019 17:33:40 +0200 (CEST)
+Date:   Thu, 4 Jul 2019 17:33:40 +0200 (CEST)
+From:   Ulrich Hecht <uli@fpond.eu>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        CK Hu <ck.hu@mediatek.com>,
+        Matthias Brugger <mbrugger@suse.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Rob Herring <robh@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, Sean Wang <sean.wang@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Sean Wang <Sean.Wang@mediatek.com>,
+        Stephen Boyd <sboyd@codeaurora.org>,
+        linux-kernel@vger.kernel.org,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Ulrich Hecht <ulrich.hecht+renesas@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        matthias.bgg@kernel.org, linux-mediatek@lists.infradead.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Message-ID: <100944512.353257.1562254420397@webmail.strato.com>
+In-Reply-To: <84d1c444-d6cb-9537-1bf5-b4e736443239@gmail.com>
+References: <20181116125449.23581-1-matthias.bgg@kernel.org>
+ <20181116125449.23581-9-matthias.bgg@kernel.org>
+ <20181116231522.GA18006@bogus>
+ <2a23e407-4cd4-2e2b-97a5-4e2bb96846e0@gmail.com>
+ <CAL_JsqKJQwfDJbpmwW+oCxiDkSp5+6mG-uoURmCQVEMP_jFOEg@mail.gmail.com>
+ <154281878765.88331.10581984256202566195@swboyd.mtv.corp.google.com>
+ <458178ac-c0fc-9671-7fc8-ed2d6f61424c@suse.com>
+ <154356023767.88331.18401188808548429052@swboyd.mtv.corp.google.com>
+ <a229bfc7-683f-5b0d-7b71-54f934de6214@suse.com>
+ <1561953318.25914.9.camel@mtksdaap41>
+ <84d1c444-d6cb-9537-1bf5-b4e736443239@gmail.com>
+Subject: Re: [PATCH v5 08/12] dt-bindings: mediatek: Change the binding for
+ mmsys clocks
 MIME-Version: 1.0
-In-Reply-To: <a4ddd0a3-f0b4-23de-fb0e-91a417d20362@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1562254243; bh=foDDVnVJHx6KR6x2puYO1ArLk0094qpQ1+7q7I3QISo=;
-        h=X-PGP-Universal:Subject:To:CC:References:X-Nvconfidentiality:From:
-         Message-ID:Date:User-Agent:MIME-Version:In-Reply-To:
-         X-Originating-IP:X-ClientProxiedBy:Content-Type:
-         Content-Transfer-Encoding:Content-Language;
-        b=NQAE52B+KXuZlQtPln7Benq1P10Ssk9sXwMWwva9sTXylLB85wS8yAnqal5C1GtAX
-         Z1cTUN6Zuq0rT8LDKt1yFcrT2hFJH7Ugz6xoEduAkTihDhB2mbE8iUr7vitawNQv0i
-         zPvfASmxQ14poUnDTnEMaSqcAYynz37UzvHdTTOFzrbeaO47ScNV/hG5+IFB+xTuNY
-         PCUX4PUFjD8TuCfWRrXRa2vBsA2+16HZp3yeBt8jfB/BaK35uTXy/SbPqBbnpcev1t
-         AtzGYgB5A2rOceLLsaOU62jT5X6DW9LaPOrrLUrQCGQD6cRG6UMfMKJh2EqVhdLHkx
-         VLzPqfGlipozw==
+X-Priority: 3
+Importance: Medium
+X-Mailer: Open-Xchange Mailer v7.8.4-Rev59
+X-Originating-IP: 85.212.144.69
+X-Originating-Client: open-xchange-appsuite
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
+> On July 4, 2019 at 11:08 AM Matthias Brugger <matthias.bgg@gmail.com> wrote:
+> You are right, it took far too long for me to respond with a new version of the
+> series. The problem I face is, that I use my mt8173 based chromebook for
+> testing. It needs some downstream patches and broke somewhere between my last
+> email and a few month ago.
 
-On 04-Jul-19 8:18 PM, Jon Hunter wrote:
-> On 18/06/2019 19:02, Manikanta Maddireddy wrote:
->> Tegra PCIe has fixed per port SFIO line to signal PERST#, which can be
->> controlled by AFI port register. However, if a platform routes a different
->> GPIO to the PCIe slot, then port register cannot control it. Add support
->> for GPIO based PERST# signal for such platforms. GPIO number comes from per
->> port PCIe device tree node. PCIe driver probe doesn't fail if per port
->> "reset-gpios" property is not populated, make sure that DT property is not
->> missed for such platforms.
-> Really? So how come on Jetson TK1 I see ...
->
-> [    1.073165] tegra-pcie 1003000.pcie: failed to get reset GPIO: -2
->
->
-> [    1.073210] tegra-pcie: probe of 1003000.pcie failed with error -2
->
-> And now ethernet is broken? Why has this not been tested on all Tegra
-> platforms? There is no reason why code submitted to upstream by us
-> (people at NVIDIA) have not tested this on our internal test farm. This
-> is disappointing.
+If that Chromebook is an Acer R13 and you need a working kernel, you may want to have a look at https://github.com/uli/kernel/tree/elm-working-5.2 .
 
-I did verified this patch on our internal TK1 test farm. I also tested
-on TX1 and TX2.
-This issue popped up because below fix in gpiolib driver went in
-at the same time.
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/commit/?id=025bf37725f1929542361eef2245df30badf242e
-
->> Signed-off-by: Manikanta Maddireddy <mmaddireddy@nvidia.com>
->> Acked-by: Thierry Reding <treding@nvidia.com>
->> ---
->> V6: No change
->>
->> V5:
->> * Updated reset gpio toggle logic to reflect active low usage
->> * Replaced kasprintf() with devm_kasprintf()
->> * Updated commit message with more information.
->>
->> V4: Using devm_gpiod_get_from_of_node() to get reset-gpios
->>
->> V3: Using helper function to get reset-gpios
->>
->> V2: Using standard "reset-gpio" property
->>
->>  drivers/pci/controller/pci-tegra.c | 45 ++++++++++++++++++++++++++----
->>  1 file changed, 39 insertions(+), 6 deletions(-)
->>
->> diff --git a/drivers/pci/controller/pci-tegra.c b/drivers/pci/controller/pci-tegra.c
->> index d2841532ff0e..a819bc087a05 100644
->> --- a/drivers/pci/controller/pci-tegra.c
->> +++ b/drivers/pci/controller/pci-tegra.c
->> @@ -17,6 +17,7 @@
->>  #include <linux/debugfs.h>
->>  #include <linux/delay.h>
->>  #include <linux/export.h>
->> +#include <linux/gpio.h>
->>  #include <linux/interrupt.h>
->>  #include <linux/iopoll.h>
->>  #include <linux/irq.h>
->> @@ -399,6 +400,8 @@ struct tegra_pcie_port {
->>  	unsigned int lanes;
->>  
->>  	struct phy **phys;
->> +
->> +	struct gpio_desc *reset_gpio;
->>  };
->>  
->>  struct tegra_pcie_bus {
->> @@ -544,15 +547,23 @@ static void tegra_pcie_port_reset(struct tegra_pcie_port *port)
->>  	unsigned long value;
->>  
->>  	/* pulse reset signal */
->> -	value = afi_readl(port->pcie, ctrl);
->> -	value &= ~AFI_PEX_CTRL_RST;
->> -	afi_writel(port->pcie, value, ctrl);
->> +	if (port->reset_gpio) {
->> +		gpiod_set_value(port->reset_gpio, 1);
->> +	} else {
->> +		value = afi_readl(port->pcie, ctrl);
->> +		value &= ~AFI_PEX_CTRL_RST;
->> +		afi_writel(port->pcie, value, ctrl);
->> +	}
->>  
->>  	usleep_range(1000, 2000);
->>  
->> -	value = afi_readl(port->pcie, ctrl);
->> -	value |= AFI_PEX_CTRL_RST;
->> -	afi_writel(port->pcie, value, ctrl);
->> +	if (port->reset_gpio) {
->> +		gpiod_set_value(port->reset_gpio, 0);
->> +	} else {
->> +		value = afi_readl(port->pcie, ctrl);
->> +		value |= AFI_PEX_CTRL_RST;
->> +		afi_writel(port->pcie, value, ctrl);
->> +	}
->>  }
->>  
->>  static void tegra_pcie_enable_rp_features(struct tegra_pcie_port *port)
->> @@ -2199,6 +2210,7 @@ static int tegra_pcie_parse_dt(struct tegra_pcie *pcie)
->>  		struct tegra_pcie_port *rp;
->>  		unsigned int index;
->>  		u32 value;
->> +		char *label;
->>  
->>  		err = of_pci_get_devfn(port);
->>  		if (err < 0) {
->> @@ -2257,6 +2269,27 @@ static int tegra_pcie_parse_dt(struct tegra_pcie *pcie)
->>  		if (IS_ERR(rp->base))
->>  			return PTR_ERR(rp->base);
->>  
->> +		label = devm_kasprintf(dev, GFP_KERNEL, "pex-reset-%u", index);
->> +		if (!label) {
->> +			dev_err(dev, "failed to create reset GPIO label\n");
->> +			return -ENOMEM;
->> +		}
->> +
->> +		/*
->> +		 * Returns null if reset-gpios property is not populated and
->> +		 * fall back to using AFI per port register to toggle PERST#
->> +		 * SFIO line.
->> +		 */
->> +		rp->reset_gpio = devm_gpiod_get_from_of_node(dev, port,
->> +							     "reset-gpios", 0,
->> +							     GPIOD_OUT_LOW,
->> +							     label);
->> +		if (IS_ERR(rp->reset_gpio)) {
->> +			err = PTR_ERR(rp->reset_gpio);
->> +			dev_err(dev, "failed to get reset GPIO: %d\n", err);
->> +			return err;
->> +		}
->> +
-> So I believe that we can just remove the above. I will give it a test
-> and see.
->
-> Cheers
-> Jon
->
-Error check should be modified as follows,
-
-	if (PTR_ERR(rp->reset_gpio) == -ENOENT)
-		rp->reset_gpio = NULL;
-	else if (IS_ERR(rp->reset_gpio))
- 		return PTR_ERR(rp->reset_gpio);
-
-Manikanta
-
+CU
+Uli
