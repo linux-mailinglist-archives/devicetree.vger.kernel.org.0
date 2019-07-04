@@ -2,132 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 569365F7F1
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 14:23:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47A025F7FF
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 14:25:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727800AbfGDMXp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 08:23:45 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:40071 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727724AbfGDMXp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 08:23:45 -0400
-Received: by mail-wm1-f68.google.com with SMTP id v19so5929699wmj.5;
-        Thu, 04 Jul 2019 05:23:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Au6/RZg4uG1yjTUrNE1TtFncQkGuc7/u4mr9IkIEock=;
-        b=ppsqQ6341LXZFkotdqm7QLQNWGU2FguwpzLTyHWzKLkaCn5PELO/IIhDdbn1SsrBjO
-         912lOfJ0OO17P2wGjRgxoecwR3uva40CC1Cdk0/STTlkp+S8HjqXHK8CumYyiMquyMxX
-         72j5g8PS2UH9lBYnolqHokJXjRXtzqGiTT37xcxdZkxEi4xoy7ke8UspwBx3jdIjMfcq
-         WMtkaL37U59ZMY2o6Ngzzi0NSwsA15D1AsQWp3VLD5R2D+7ZmYKR0JKWtY69w4f8ERal
-         4m7YChnusYIUjWzvRilVAgH0NsSRt4DUCfbLqPSvU0ll6n/oHi16XacizVdJrefXbWaN
-         5biA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Au6/RZg4uG1yjTUrNE1TtFncQkGuc7/u4mr9IkIEock=;
-        b=ZXq36EmgKJxJASwtJSUnebnDmpGFbNsdhTiWFU0SN0bYWUlHJPlEz8WqRm7PYW2jHJ
-         P4rl9aXWgIlDhyq2ZrMQQ1N1LVgfQD0EP4UT8KySTlo2wfDfmGMaMHHYs4zo5DUoWA1P
-         HKFbiQ4X0UlDyuAihZnChrOO+qJKtcyz3we30Xoh8C2/FGCnSaX+FVnGcXajLAkzTCYE
-         79KA/7L0WA2PiFUksmSPYNBJsCWSuTgeMTzjY5lcypFpYDUpZTHuAv4BGx6wNusBMn6k
-         s8c8dM/babt1ftN4pEyiyXSyW+wNBbtDIlSQT4DdOBJuNUEFr05OYPGbGxamroCFY5Pu
-         w5zw==
-X-Gm-Message-State: APjAAAX/MYxm9WtzY7HSgFq9Zmp48XXt5z0+c/uODPtMgidVoDe1qlig
-        OzFmdaC0NeLpUUO/5rgaCV7y+uoo
-X-Google-Smtp-Source: APXvYqy+OfXVBhg/qFCqUwLyU9WkJ4ZlxYbp/Uxs+PRCpc6bTufZkfPTrxjP/EXZ39T4H65hDNo7GA==
-X-Received: by 2002:a1c:3587:: with SMTP id c129mr13186879wma.90.1562243022349;
-        Thu, 04 Jul 2019 05:23:42 -0700 (PDT)
-Received: from blackbox.darklights.net (p200300F133D6200090FB6F2A0C02D39B.dip0.t-ipconnect.de. [2003:f1:33d6:2000:90fb:6f2a:c02:d39b])
-        by smtp.googlemail.com with ESMTPSA id w10sm5141825wru.76.2019.07.04.05.23.41
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 04 Jul 2019 05:23:41 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        john@phrozen.org, kishon@ti.com, robh+dt@kernel.org
-Cc:     linux-kernel@vger.kernel.org, hauke@hauke-m.de,
-        paul.burton@mips.com, ralf@linux-mips.org, mark.rutland@arm.com,
-        ms@dev.tdt.de,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v2 4/4] MIPS: lantiq: update the clock alias' for the mainline PCIe PHY driver
-Date:   Thu,  4 Jul 2019 14:23:19 +0200
-Message-Id: <20190704122319.8983-5-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190704122319.8983-1-martin.blumenstingl@googlemail.com>
-References: <20190704122319.8983-1-martin.blumenstingl@googlemail.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1727675AbfGDMZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 08:25:01 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:35290 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727771AbfGDMZB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 08:25:01 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=vFXKWZbVlhtP1uV3m8Dyf6rla7JmlnmBJTS3Fskfk3I=; b=mm0hugq4fRA9
+        ejjmmKIjkCCbP7VOXFMeeNif7zZri8yEK7qmskL8U7p2b+jCRPmiVLtu4JmoSTdofNT5ysqXHwzS/
+        YoaFUueq/YaFHVaf30i0SPNttcVfLhL9NjRpUFUtp8Bj35V6E1mxHhomEcsCse8y8VJrWldu+Zn6Z
+        otkRo=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.89)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hj0nH-0000ig-9E; Thu, 04 Jul 2019 12:24:55 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id A00DD274389C; Thu,  4 Jul 2019 13:24:54 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>
+Subject: Applied "ASoC: meson: axg-tdm-formatter: add reset to the bindings documentation" to the asoc tree
+In-Reply-To: <20190703120749.32341-2-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190704122454.A00DD274389C@ypsilon.sirena.org.uk>
+Date:   Thu,  4 Jul 2019 13:24:54 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The mainline PCIe PHY driver has it's own devicetree node. Update the
-clock alias so the mainline driver finds the clocks.
+The patch
 
-The first PCIe PHY is located at 0x1f106800 and exists on VRX200, ARX300
-and GRX390.
-The second PCIe PHY is located at 0x1f700400 and exists on ARX300 and
-GRX390.
-The third PCIe PHY is located at 0x1f106a00 and exists onl on GRX390.
-Lantiq's board support package (called "UGW") names these registers
-"PDI".
+   ASoC: meson: axg-tdm-formatter: add reset to the bindings documentation
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.3
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 094380ea2bf9f0fa7d63e67bf500b8c77e8d1910 Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Wed, 3 Jul 2019 14:07:48 +0200
+Subject: [PATCH] ASoC: meson: axg-tdm-formatter: add reset to the bindings
+ documentation
+
+Add an optional reset property to the tdm formatter bindings. The
+dedicated reset line is present on some SoC families, such as the g12a.
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Link: https://lore.kernel.org/r/20190703120749.32341-2-jbrunet@baylibre.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- arch/mips/lantiq/xway/sysctrl.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+ .../bindings/sound/amlogic,axg-tdm-formatters.txt           | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
-diff --git a/arch/mips/lantiq/xway/sysctrl.c b/arch/mips/lantiq/xway/sysctrl.c
-index b4323b2214e2..156a95ac5c72 100644
---- a/arch/mips/lantiq/xway/sysctrl.c
-+++ b/arch/mips/lantiq/xway/sysctrl.c
-@@ -468,14 +468,14 @@ void __init ltq_soc_init(void)
- 		clkdev_add_pmu("1f203018.usb2-phy", "phy", 1, 2, PMU_ANALOG_USB0_P);
- 		clkdev_add_pmu("1f203034.usb2-phy", "phy", 1, 2, PMU_ANALOG_USB1_P);
- 		/* rc 0 */
--		clkdev_add_pmu("1d900000.pcie", "phy", 1, 2, PMU_ANALOG_PCIE0_P);
-+		clkdev_add_pmu("1f106800.phy", "phy", 1, 2, PMU_ANALOG_PCIE0_P);
- 		clkdev_add_pmu("1d900000.pcie", "msi", 1, 1, PMU1_PCIE_MSI);
--		clkdev_add_pmu("1d900000.pcie", "pdi", 1, 1, PMU1_PCIE_PDI);
-+		clkdev_add_pmu("1f106800.phy", "pdi", 1, 1, PMU1_PCIE_PDI);
- 		clkdev_add_pmu("1d900000.pcie", "ctl", 1, 1, PMU1_PCIE_CTL);
- 		/* rc 1 */
--		clkdev_add_pmu("19000000.pcie", "phy", 1, 2, PMU_ANALOG_PCIE1_P);
-+		clkdev_add_pmu("1f700400.phy", "phy", 1, 2, PMU_ANALOG_PCIE1_P);
- 		clkdev_add_pmu("19000000.pcie", "msi", 1, 1, PMU1_PCIE1_MSI);
--		clkdev_add_pmu("19000000.pcie", "pdi", 1, 1, PMU1_PCIE1_PDI);
-+		clkdev_add_pmu("1f700400.phy", "pdi", 1, 1, PMU1_PCIE1_PDI);
- 		clkdev_add_pmu("19000000.pcie", "ctl", 1, 1, PMU1_PCIE1_CTL);
- 	}
+diff --git a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+index 3b94a715a0b9..8835a43edfbb 100644
+--- a/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
++++ b/Documentation/devicetree/bindings/sound/amlogic,axg-tdm-formatters.txt
+@@ -15,11 +15,15 @@ Required properties:
+   * "lrclk"    : sample clock
+   * "lrclk_sel": sample clock input multiplexer
  
-@@ -499,9 +499,9 @@ void __init ltq_soc_init(void)
- 		clkdev_add_pmu("1e101000.usb", "otg", 1, 0, PMU_USB0);
- 		clkdev_add_pmu("1e106000.usb", "otg", 1, 0, PMU_USB1);
- 		/* rc 2 */
--		clkdev_add_pmu("1a800000.pcie", "phy", 1, 2, PMU_ANALOG_PCIE2_P);
-+		clkdev_add_pmu("1f106a00.pcie", "phy", 1, 2, PMU_ANALOG_PCIE2_P);
- 		clkdev_add_pmu("1a800000.pcie", "msi", 1, 1, PMU1_PCIE2_MSI);
--		clkdev_add_pmu("1a800000.pcie", "pdi", 1, 1, PMU1_PCIE2_PDI);
-+		clkdev_add_pmu("1f106a00.pcie", "pdi", 1, 1, PMU1_PCIE2_PDI);
- 		clkdev_add_pmu("1a800000.pcie", "ctl", 1, 1, PMU1_PCIE2_CTL);
- 		clkdev_add_pmu("1e10b308.eth", NULL, 0, 0, PMU_SWITCH | PMU_PPE_DP);
- 		clkdev_add_pmu("1da00000.usif", "NULL", 1, 0, PMU_USIF);
-@@ -526,10 +526,10 @@ void __init ltq_soc_init(void)
- 		clkdev_add_pmu("1e101000.usb", "otg", 1, 0, PMU_USB0 | PMU_AHBM);
- 		clkdev_add_pmu("1f203034.usb2-phy", "phy", 1, 0, PMU_USB1_P);
- 		clkdev_add_pmu("1e106000.usb", "otg", 1, 0, PMU_USB1 | PMU_AHBM);
--		clkdev_add_pmu("1d900000.pcie", "phy", 1, 1, PMU1_PCIE_PHY);
-+		clkdev_add_pmu("1f106800.phy", "phy", 1, 1, PMU1_PCIE_PHY);
- 		clkdev_add_pmu("1d900000.pcie", "bus", 1, 0, PMU_PCIE_CLK);
- 		clkdev_add_pmu("1d900000.pcie", "msi", 1, 1, PMU1_PCIE_MSI);
--		clkdev_add_pmu("1d900000.pcie", "pdi", 1, 1, PMU1_PCIE_PDI);
-+		clkdev_add_pmu("1f106800.phy", "pdi", 1, 1, PMU1_PCIE_PDI);
- 		clkdev_add_pmu("1d900000.pcie", "ctl", 1, 1, PMU1_PCIE_CTL);
- 		clkdev_add_pmu(NULL, "ahb", 1, 0, PMU_AHBM | PMU_AHBS);
+-Example of TDMOUT_A on the A113 SoC:
++Optional property:
++- resets: phandle to the dedicated reset line of the tdm formatter.
++
++Example of TDMOUT_A on the S905X2 SoC:
  
+ tdmout_a: audio-controller@500 {
+ 	compatible = "amlogic,axg-tdmout";
+ 	reg = <0x0 0x500 0x0 0x40>;
++	resets = <&clkc_audio AUD_RESET_TDMOUT_A>;
+ 	clocks = <&clkc_audio AUD_CLKID_TDMOUT_A>,
+ 		 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK>,
+ 		 <&clkc_audio AUD_CLKID_TDMOUT_A_SCLK_SEL>,
 -- 
-2.22.0
+2.20.1
 
