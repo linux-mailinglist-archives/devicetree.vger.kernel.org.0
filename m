@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81C135F333
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 09:05:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0067B5F33B
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 09:08:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727313AbfGDHFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 03:05:17 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:42052 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726698AbfGDHFQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 03:05:16 -0400
-Received: by mail-lf1-f66.google.com with SMTP id s19so2756533lfb.9
-        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2019 00:05:15 -0700 (PDT)
+        id S1727160AbfGDHIo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 03:08:44 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:41558 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726087AbfGDHIo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 03:08:44 -0400
+Received: by mail-lj1-f194.google.com with SMTP id 205so5062920ljj.8
+        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2019 00:08:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=2/jhMVFWL9zAP6DASgDxWvKe4pRoCVY+Bzzlbxt4Sws=;
-        b=qwDSVwsECgzZhe2WwlG1p8BOPlPHnzsNTaQt1KS8uYPGmdPXJqoI8dUKZa4N9BH/bQ
-         O7QOMjn0trVW6NJLJAgx1IQA8mYmF2lT6hZqFMtVdWO5d7EKSxWkwVQeA51/LKFBQFeR
-         JfWOVSjVV3Af/VORKOstlu0LPLSn+zx1e+VbFF6GbnJnmvY/KumjMcv+KeAbxHIJFwHg
-         47dCJgb1rCk/k6pxP9MR2KHQI7uoBai+qnkxbSrfGXVxvqclUX3PzMMxApCEHCY2xU6N
-         vWNlOxTyomJ9DxPxQU4YiQJgFKC/tJkybV4VdVUcFXD85U/wq+refUau9H/AEzpPCUtB
-         39AA==
+        bh=z+yDQXZBu9SZbvn6mgBUuVYqmxLVmFyz4Vo9bngrxUI=;
+        b=B2BUQrUVxULlKRJS5lMPPjtlfCyR/cpGa/JNFSx1NNpJ70seu+uYRTbvfGypGYABIU
+         CxJZfCTAFoaPQIns9v8AwLj7ah0ZG6Sn9hDLHxos8YnGQxtNK7JyE8DVg7Y8vE0Cdg4D
+         Ipq7V/VEMO/CHYGPNONTUQQWHlRa9qVCkcOTaODWEdJO0B0iOVxgjxHsRukSZcZ5gXnQ
+         /+OLoLT2xdkHASxQZd8U311reV3DxQdqzT7n/qXwoQW77BLy0JRSOtJkgqMKUPdLeAT/
+         o1T+RuWUbk2tDvvCAP0VnUN5Unx7ELnCH6ospARtxhvRxFqZgrdUcMr3YxCOELrpDbxp
+         7qCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=2/jhMVFWL9zAP6DASgDxWvKe4pRoCVY+Bzzlbxt4Sws=;
-        b=nYEq6k8QhBtS4cX5zzXPNtQTdz2HwNO6xWxpgNcPoWaeQyU4KUVhC9ySWriN3KLJxg
-         5TMacNupjUMcqQZXsxx6c8kCuD+nARCupD+ftXEIcSeuqo6om2vBPQ3qubX8bYJ4W7EZ
-         gZybvESSTNfC89jS1bvH1x3olYoU2Uy1Qcp5xiDNzpqAQp7MqtO1KaCkiFOiTF9WfU3r
-         VzSeAi417NDas5dgg81JAhmavp4TjfURo8+rtJbItPyqQfcw0wq9vylwZB8WqNB1zeRf
-         atD8IYm3HaX7n4fUCSQTnOEe7P35Y3x4o/C+pDsGqYK3w0E+tkeQbhtb4lkPloCFxVJk
-         5Okw==
-X-Gm-Message-State: APjAAAVubhPdjXXB40FOMGHi4HX7/e1tww7La1FxuXJ/d6X/PGl2/BOb
-        +xjLin/tMY9RrFn0Fok0iOFliaN8FBbJ9vI4TxYoAA==
-X-Google-Smtp-Source: APXvYqxQCD23eaeoAJhpEZfOc2Of9fwPsf/stmR5iwxoFFdrgqdv4D53+o/uLeap0VPJozhN950Mm7ck5RTeeImezjQ=
-X-Received: by 2002:ac2:5c42:: with SMTP id s2mr4161503lfp.61.1562223914898;
- Thu, 04 Jul 2019 00:05:14 -0700 (PDT)
+        bh=z+yDQXZBu9SZbvn6mgBUuVYqmxLVmFyz4Vo9bngrxUI=;
+        b=bSWQxYYM7LlIUid2F3g1qLSIZn+o2arDdrl8Ty3Z/4L1CS4Sp6RGUQPKa1Eoew9twH
+         QXRlRSW/Qd0lSoU3zWOcRLyyfjgFz+ADk6nUBBChWUzlsjuv1pegXdxr+O9jiZlpBq5Y
+         sKRGF7mEW5sX/LycNyHfMzVSkaB/sfEcSE87+TdytUmAOVYezQszg2ePWsS4zIf4osGp
+         u/n+Vhfs4ihbrmRKoaHxEGOhB4DyK9r8T7+5w4JnZSWincD7uF246Zxc5CGncvpIyg5x
+         PCXW1VxAFDAhDnBLZb5PtXt7llx5LNK8NwN6myDCF6TR/iGhZ00a0mPvBAnIxs3Z+UWj
+         zPxw==
+X-Gm-Message-State: APjAAAXxlwWlTbWRye52gSXAMAK2p/1PIzan+3sYhJ0KuuVLqayLbdJr
+        bK3BvFN/suyesFJjaU/ZejWFdXthu7gp3aVzf+vSXA==
+X-Google-Smtp-Source: APXvYqzAE52wDKWGp7SxUTgiftMLBqCoXOEoy+XcZG4hC4ZwyouUmvy2f/0rCYzbxtwlRi9vLamWTUdF7YapL9YnDsY=
+X-Received: by 2002:a2e:2c14:: with SMTP id s20mr1982640ljs.54.1562224122116;
+ Thu, 04 Jul 2019 00:08:42 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190703171924.31801-1-paweldembicki@gmail.com> <20190703171924.31801-2-paweldembicki@gmail.com>
-In-Reply-To: <20190703171924.31801-2-paweldembicki@gmail.com>
+References: <20190703171924.31801-1-paweldembicki@gmail.com> <20190703171924.31801-3-paweldembicki@gmail.com>
+In-Reply-To: <20190703171924.31801-3-paweldembicki@gmail.com>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Thu, 4 Jul 2019 09:05:03 +0200
-Message-ID: <CACRpkdb5LonYLpbOHj=Oo8Z7XjVUWoO0CuhOokxfSoY_fRinPw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/4] net: dsa: Change DT bindings for Vitesse VSC73xx switches
+Date:   Thu, 4 Jul 2019 09:08:30 +0200
+Message-ID: <CACRpkdZR6K24U7fag9VOhZR60LPASKXiyPPG8yNcJUjqaE=Ggg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/4] net: dsa: vsc73xx: Split vsc73xx driver
 To:     Pawel Dembicki <paweldembicki@gmail.com>
 Cc:     Andrew Lunn <andrew@lunn.ch>,
         Vivien Didelot <vivien.didelot@gmail.com>,
@@ -66,19 +66,17 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Wed, Jul 3, 2019 at 7:21 PM Pawel Dembicki <paweldembicki@gmail.com> wrote:
 
-> This commit introduce how to use vsc73xx platform driver.
+> This driver (currently) only takes control of the switch chip over
+> SPI and configures it to route packages around when connected to a
+> CPU port. But Vitesse chip support also parallel interface.
 >
+> This patch split driver into two parts: core and spi. It is required
+> for add support to another managing interface.
+>
+> Tested-by: Linus Walleij <linus.walleij@linaro.org>
 > Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
 
-Nice!
-
-> +If Platform driver is used, the device tree node is an platform device so it
-> +must reside inside a platform bus device tree node.
-
-I would write something like "when connected to a memory bus, and
-used in memory-mapped I/O mode, a platform device is used to represent
-the vsc73xx" so it is clear what is going on.
-
+That's a nice and clean split.
 Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
 
 Yours,
