@@ -2,91 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 187895F5F3
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 11:48:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3705F5F62E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 12:01:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727365AbfGDJsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 05:48:00 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:41975 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727305AbfGDJsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 05:48:00 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1hiyLH-0002sf-TQ; Thu, 04 Jul 2019 11:47:51 +0200
-Message-ID: <1562233671.6641.9.camel@pengutronix.de>
-Subject: Re: [PATCH V2 1/2] dt-bindings: reset: imx7: Add support for i.MX8MM
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Anson Huang <anson.huang@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Cc:     dl-linux-imx <linux-imx@nxp.com>
-Date:   Thu, 04 Jul 2019 11:47:51 +0200
-In-Reply-To: <DB3PR0402MB39167FBAA2A3867148063F83F5FA0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <20190704092600.38015-1-Anson.Huang@nxp.com>
-         <1562233305.6641.8.camel@pengutronix.de>
-         <DB3PR0402MB39167FBAA2A3867148063F83F5FA0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
+        id S1727470AbfGDKAf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 06:00:35 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:49784 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727518AbfGDKAf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 06:00:35 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 087ED28A379;
+        Thu,  4 Jul 2019 11:00:33 +0100 (BST)
+Date:   Thu, 4 Jul 2019 12:00:29 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Qii Wang <qii.wang@mediatek.com>
+Cc:     <bbrezillon@kernel.org>, devicetree@vger.kernel.org,
+        srv_heupstream@mediatek.com, leilk.liu@mediatek.com,
+        gregkh@linuxfoundation.org, xinping.qian@mediatek.com,
+        linux-kernel@vger.kernel.org, liguo.zhang@mediatek.com,
+        linux-mediatek@lists.infradead.org, matthias.bgg@gmail.com,
+        linux-i3c@lists.infradead.org, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v2 1/2] dt-bindings: i3c: Document MediaTek I3C master
+ bindings
+Message-ID: <20190704120029.4cc6d151@collabora.com>
+In-Reply-To: <1561527388-4829-2-git-send-email-qii.wang@mediatek.com>
+References: <1561527388-4829-1-git-send-email-qii.wang@mediatek.com>
+        <1561527388-4829-2-git-send-email-qii.wang@mediatek.com>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-07-04 at 09:46 +0000, Anson Huang wrote:
-> Hi, Philipp
-> 
-> > On Thu, 2019-07-04 at 17:25 +0800, Anson.Huang@nxp.com wrote:
-> > > From: Anson Huang <Anson.Huang@nxp.com>
-> > > 
-> > > i.MX8MM can reuse i.MX8MQ's reset driver, update the compatible
-> > > property and related info to support i.MX8MM.
-> > > 
-> > > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> > > ---
-> > > New patch.
-> > > ---
-> > >  Documentation/devicetree/bindings/reset/fsl,imx7-src.txt | 4 ++--
-> > >  1 file changed, 2 insertions(+), 2 deletions(-)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
-> > > b/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
-> > > index 13e0951..bc24c45 100644
-> > > --- a/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
-> > > +++ b/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
-> > > @@ -7,7 +7,7 @@ controller binding usage.
-> > >  Required properties:
-> > >  - compatible:
-> > >  	- For i.MX7 SoCs should be "fsl,imx7d-src", "syscon"
-> > > -	- For i.MX8MQ SoCs should be "fsl,imx8mq-src", "syscon"
-> > > +	- For i.MX8MQ/i.MX8MM SoCs should be "fsl,imx8mq-src", "syscon"
-> > 
-> > Please still add the "fsl,imx8mm-src" for i.MX8MM, just in case a significant
-> > difference is discovered later.
-> 
-> OK, then I will add a new line as below:
-> 
-> For i.MX8MM SoCs should be "fsl,imx8mm-src", "fsl,imx8mq-src", "syscon"
+On Wed, 26 Jun 2019 13:36:27 +0800
+Qii Wang <qii.wang@mediatek.com> wrote:
 
-Yes, that looks good, thanks.
+> Document MediaTek I3C master DT bindings.
+> 
 
-regards
-Philipp
+You forgot to Cc the DT maintainers/ML.
+
+> Signed-off-by: Qii Wang <qii.wang@mediatek.com>
+> ---
+>  .../devicetree/bindings/i3c/mtk,i3c-master.txt     |   47 ++++++++++++++++++++
+>  1 file changed, 47 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> new file mode 100644
+> index 0000000..3fd4f17
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> @@ -0,0 +1,47 @@
+> +Bindings for MediaTek I3C master block
+> +=====================================
+> +
+> +Required properties:
+> +--------------------
+> +- compatible: shall be "mediatek,i3c-master"
+> +- reg: physical base address of the controller and apdma base, length of
+> +  memory mapped region.
+> +- reg-names: should be "main" for controller and "dma" for apdma.
+> +- interrupts: interrupt number to the cpu.
+> +- clocks: clock name from clock manager.
+> +- clock-names: must include "main" and "dma".
+> +
+> +Mandatory properties defined by the generic binding (see
+> +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> +
+> +- #address-cells: shall be set to 3
+> +- #size-cells: shall be set to 0
+> +
+> +Optional properties defined by the generic binding (see
+> +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> +
+> +- i2c-scl-hz
+> +- i3c-scl-hz
+> +
+> +I3C device connected on the bus follow the generic description (see
+> +Documentation/devicetree/bindings/i3c/i3c.txt for more details).
+> +
+> +Example:
+> +
+> +	i3c0: i3c@1100d000 {
+> +		compatible = "mediatek,i3c-master";
+> +		reg = <0x1100d000 0x100>,
+> +		      <0x11000300 0x80>;
+> +		reg-names = "main", "dma";
+> +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
+> +		clocks = <&i3c0_ck>, <&ap_dma_ck>;
+> +		clock-names = "main", "dma";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		i2c-scl-hz = <100000>;
+> +
+> +		nunchuk: nunchuk@52 {
+> +			compatible = "nintendo,nunchuk";
+> +			reg = <0x52 0x80000010 0>;
+> +		};
+> +	};
+
