@@ -2,84 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B5565F66F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 12:16:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 09D235F68E
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 12:24:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727487AbfGDKQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 06:16:12 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:41225 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727249AbfGDKQM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 06:16:12 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1hiyma-0006Og-Vt; Thu, 04 Jul 2019 12:16:04 +0200
-Message-ID: <1562235363.6641.10.camel@pengutronix.de>
-Subject: Re: [PATCH V3 1/2] dt-bindings: reset: imx7: Add support for i.MX8MM
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Anson.Huang@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, leonard.crestez@nxp.com, ping.bai@nxp.com,
-        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Date:   Thu, 04 Jul 2019 12:16:03 +0200
-In-Reply-To: <20190704094416.4757-1-Anson.Huang@nxp.com>
-References: <20190704094416.4757-1-Anson.Huang@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1727500AbfGDKYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 06:24:38 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:48774 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727499AbfGDKYi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Jul 2019 06:24:38 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 82D8A1A0597;
+        Thu,  4 Jul 2019 12:24:36 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 76B121A0581;
+        Thu,  4 Jul 2019 12:24:36 +0200 (CEST)
+Received: from fsr-ub1664-175.ea.freescale.net (fsr-ub1664-175.ea.freescale.net [10.171.82.40])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id EAC24205D9;
+        Thu,  4 Jul 2019 12:24:35 +0200 (CEST)
+From:   Abel Vesa <abel.vesa@nxp.com>
+To:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>
+Cc:     NXP Linux Team <linux-imx@nxp.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Abel Vesa <abel.vesa@nxp.com>
+Subject: [PATCH] arm64: dts: imx8mq: Default parents for PCIE1 clocks
+Date:   Thu,  4 Jul 2019 13:24:24 +0300
+Message-Id: <1562235864-12953-1-git-send-email-abel.vesa@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anson,
+Set default parents for PCIE1_CTRL and PCIE1_PHY clocks.
 
-On Thu, 2019-07-04 at 17:44 +0800, Anson.Huang@nxp.com wrote:
-> From: Anson Huang <Anson.Huang@nxp.com>
-> 
-> i.MX8MM can reuse i.MX8MQ's reset driver, update the compatible
-> property and related info to support i.MX8MM.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> ---
-> Changes since V2:
-> 	- Add separate line for i.MX8MM in case anything different later for i.MX8MM.
-> ---
->  Documentation/devicetree/bindings/reset/fsl,imx7-src.txt | 6 ++++--
->  1 file changed, 4 insertions(+), 2 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt b/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
-> index 13e0951..c2489e4 100644
-> --- a/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
-> +++ b/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
-> @@ -8,6 +8,7 @@ Required properties:
->  - compatible:
->  	- For i.MX7 SoCs should be "fsl,imx7d-src", "syscon"
->  	- For i.MX8MQ SoCs should be "fsl,imx8mq-src", "syscon"
-> +	- For i.MX8MM SoCs should be "fsl,imx8mm-src", "fsl,imx8mq-src", "syscon"
->  - reg: should be register base and length as documented in the
->    datasheet
->  - interrupts: Should contain SRC interrupt
-> @@ -46,5 +47,6 @@ Example:
->  
->  
->  For list of all valid reset indices see
-> -<dt-bindings/reset/imx7-reset.h> for i.MX7 and
-> -<dt-bindings/reset/imx8mq-reset.h> for i.MX8MQ
-> +<dt-bindings/reset/imx7-reset.h> for i.MX7,
-> +<dt-bindings/reset/imx8mq-reset.h> for i.MX8MQ and
-> +<dt-bindings/reset/imx8mq-reset.h> for i.MX8MM
+Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-The last line is misleading, as that file contains reset indices that
-are invalid for i.MX8MM.
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+index e3df9b8..23bf85f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+@@ -235,6 +235,10 @@
+ 		 <&clk IMX8MQ_CLK_PCIE1_PHY>,
+ 		 <&pcie0_refclk>;
+ 	clock-names = "pcie", "pcie_aux", "pcie_phy", "pcie_bus";
++	assigned-clocks = <&clk IMX8MQ_CLK_PCIE1_CTRL>,
++			  <&clk IMX8MQ_CLK_PCIE1_PHY>;
++	assigned-clock-parents = <&clk IMX8MQ_SYS2_PLL_250M>,
++				 <&clk IMX8MQ_SYS2_PLL_100M>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.7.4
 
-regards
-Philipp
