@@ -2,77 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 06B705F74D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 13:45:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 249185F775
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 13:50:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727547AbfGDLpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 07:45:50 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:33124 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727436AbfGDLpt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 07:45:49 -0400
-Received: by mail-lj1-f194.google.com with SMTP id h10so5899542ljg.0
-        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2019 04:45:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=EcGyPuegWpkyLveOwqViCG+5n+jaNm8XsLEeG0/iRsA=;
-        b=jRqEA9jpdiAIsbLYJeNpbrSUkTbSqZrrluMKjb9VCqgfn2JcBOi6jk8Lk3VntTNsBD
-         BgHH6LXMaL4kyRzhjTLmRe3b0gsJyTYzoK2B+Eur6PXvz9Aggp5XneLBHifpoDN5OJgH
-         X9YctfaM0YwCqQ1gjCmcLdGRr32QGoR4Lu/UUL5eMLiuQ90ucdjoLvN+5JqMUT5XDUuP
-         8qOcxjCKSHc40xwDTQUKVL1wUxMZkQfJ4PU6lZtgBonl83Emx/EX9BPwm6YGwnLiEpOh
-         7Aq7oC7XSZkyyHPDK6cpFQ+9Rxe8zUgNBnj8yTdCyK6h/K98NQHaT+U/sFb+uJX3gezp
-         JPUw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=EcGyPuegWpkyLveOwqViCG+5n+jaNm8XsLEeG0/iRsA=;
-        b=UUMt4xA/IoHhsV3h6mO1rw3RWOQExa4XKBMJDtu1ih9zVMvfoFsgjGT0d50OaoVjOi
-         inq5wpLIGRqskGC6Dr+Fy0R/qFyJTIGdeCjmo8iNxynTj2R3VxJ75p5YnqQFfZCmdlOV
-         tzVzEYj72+Vs+/G15YeMi8MZG2fE8YUegvpKNOR/JfO1odqqkH0PuSgGOKf/EnBWZ3ax
-         xHmbcyaVOikzBHzzfTfhYtf+WfUxwANApL7Po9eEVyujp9l0EjKsx/EpasHQpE2KB+Q0
-         QM62mbcFcFcLdQ1TtsbF6UNOIvMoFvbLrH6wZARdtMhSt1ErG1KWFQ80kpNOMvvs9gdl
-         4BMQ==
-X-Gm-Message-State: APjAAAUtJECHOhG5HxiyG3OcrprsnmHEMY7WcmO9+mD9Rpsku2D8EwGH
-        KoinV0Fm6CYiVRV9I7VRVGV7H44sWf2XXz3XnKA=
-X-Google-Smtp-Source: APXvYqxECjz+P/SVIEx+OjvWTRlZkQMIrPms1adAd7ZXiedN8D0FPNO2bMbtUF3epg7DzVZNjb5gcaEF3aKBt0VIH3s=
-X-Received: by 2002:a2e:a311:: with SMTP id l17mr4663565lje.214.1562240747757;
- Thu, 04 Jul 2019 04:45:47 -0700 (PDT)
+        id S1727574AbfGDLuT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 07:50:19 -0400
+Received: from mout.gmx.net ([212.227.15.19]:44393 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727548AbfGDLuT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Jul 2019 07:50:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1562240946;
+        bh=3XgfK29g7vLa/3fkH4yqnV5cnFE1yxc49nWYpw/CAjE=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=knmHJll2oZI2vMmwAv/1ME4hVpqS0PWrF9Ii8PkJp7W5/sqfcY/qrsUAkKjVViwQn
+         3CxBSzc/FCwAmnBG2/JJ/9Qcs9UnGrsKgur1158+rpQ4xA/L8ZOOZucSZQ+H3zoH/H
+         r8/kl+3pUg6RVhZL4FTDAvNzcrsZD9G5hCVre2hI=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [217.61.145.121] ([217.61.145.121]) by web-mail.gmx.net
+ (3c-app-gmx-bs27.server.lan [172.19.170.79]) (via HTTP); Thu, 4 Jul 2019
+ 13:49:06 +0200
 MIME-Version: 1.0
-References: <20190704110053.19028-1-sebastien.szymanski@armadeus.com>
-In-Reply-To: <20190704110053.19028-1-sebastien.szymanski@armadeus.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 4 Jul 2019 08:45:37 -0300
-Message-ID: <CAOMZO5Buo4psm_JOH-3OTQQ0t+QGGRSabBWKFksP9W10Tr-hOA@mail.gmail.com>
-Subject: Re: [PATCH 1/1] ARM: dts: imx6ul: fix clock frequency property name
- of I2C buses
-To:     =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Message-ID: <trinity-cc209a43-af34-4788-8b7a-8495052c8ca6-1562240946454@3c-app-gmx-bs27>
+From:   "Frank Wunderlich" <frank-w@public-files.de>
+To:     "Matthias Brugger" <matthias.bgg@gmail.com>
+Cc:     "Lee Jones" <lee.jones@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Sean Wang" <sean.wang@mediatek.com>,
+        "Sebastian Reichel" <sre@kernel.org>,
+        "Alessandro Zummo" <a.zummo@towertech.it>,
+        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        "Eddie Huang" <eddie.huang@mediatek.com>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        "Richard Fontana" <rfontana@redhat.com>,
+        "Allison Randal" <allison@lohutok.net>,
+        "David S . Miller" <davem@davemloft.net>,
+        "Mauro Carvalho Chehab" <mchehab+samsung@kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Rob Herring" <robh@kernel.org>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Nicolas Ferre" <nicolas.ferre@microchip.com>,
+        "Paul E . McKenney" <paulmck@linux.ibm.com>,
+        "Josef Friedl" <josef.friedl@speed.at>
+Subject: Aw: Re: [PATCH v2 2/7] rtc: mt6397: move some common definitions
+ into rtc.h
+Content-Type: text/plain; charset=UTF-8
+Date:   Thu, 4 Jul 2019 13:49:06 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <62a4c4ce-7ab3-2f9d-a85e-be92340724a9@gmail.com>
+References: <20190703164822.17924-1-frank-w@public-files.de>
+ <20190703164822.17924-3-frank-w@public-files.de>
+ <62a4c4ce-7ab3-2f9d-a85e-be92340724a9@gmail.com>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:7WCJDoI4ExT7kJKMPI6fq7FNUW7pRNwLc1tUO/5cmP72zZnoBU2v1Y8uix/fw2i48d5FF
+ Wd8wvTQJl1I2afIhS99OdBd4Iyh67OTcrpdbEQzhKKf6oNe+8evBVlNA3mdt3sLZ9EfauHTySxHm
+ DPZWCXm6h5c0Phecn2JIbp8F6eSFLCyZzdI2+ijkEM1IUpZ0cT5dqCmnk8hPwd9Sd1EJDKwLDMdM
+ fnT5RJ/tuLvBBpxa3bA56T8T1C/9SuiwHF1TDpcf69rvk2/9SvDHsBp3GT6hMIlCS4ZRbzcYD2dP
+ 58=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:mW1rCx44iLA=:/Gajeu7to3A6Ht4fEOGmOM
+ VrVkYrIOaOWFbVz0dUB19QotgPqpUaNZ9s5JK+j8PjaEBomafj/raSFiwvRW1i7F+V8c1yXi3
+ 7UJr7dAlUe5CK5xzgHEMiBNl7adKcmNKYRE/o0poTjKZAwuMVnHV9J+fkUdRrQDVrVkNZQDtY
+ LHvQnas9brIhuezksYFzH9Pol+hd3YXpTP1J/k9Tep1e6ppE6zX3awixfJVVyPXj09b9iFFPP
+ nPpETdXzqQspp2OaySgm9TbPNosj+TI6fbPcuIA9018AH3QcfASNas9uoobDSzUAKc7u2CYCl
+ SmsdGV0F41hBk0LaPWMD5JmQE14GDfYBjsG1BP29GHify4oGtvVCBqrZwZKRCtbUz3G7i9KQG
+ IknEjSp92+qsc71cN9DiVh3WD72v2MeCIqH32Vt5HLNfOb2hbBvkYRepx+55v6D+PY0s0xKDY
+ ld9U5E2roDTiHXZ+GymN4caVOKAi3lsJT8kr9E3JCAEFOuqkGsPN8VrnmnDmvFOlxOumyBJki
+ NqU8IwX2kaZfTf99CDBU5Ortk+6ZMl98egmxvVuWkpX9nml7w1lACPqpLuB1FFc0rFvC1MzXB
+ wDNcELXrKOYz9pdcvEr6jUKFQoA9gQsQbd6KNaUd8V3CtnvF7ZGL1GdRH8I4RJ7AKDsyEeUsy
+ Ekr8=
 Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 4, 2019 at 8:01 AM S=C3=A9bastien Szymanski
-<sebastien.szymanski@armadeus.com> wrote:
->
-> A few boards set clock frequency of their I2C buses with
-> "clock_frequency" property. The right property is "clock-frequency".
->
-> Signed-off-by: S=C3=A9bastien Szymanski <sebastien.szymanski@armadeus.com=
->
+> Still missing commit message. Describe here why you need to do that.
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+ok, added note that headers are reused in power-off-driver
+
+https://github.com/frank-w/BPI-R2-4.14/commits/5.2-poweroff-mainline
+
+> Please check your email setting as discussed offline. Otherwise your pat=
+ches
+> won't get accepted.
+
+tested with webmailer where it looks good :(
+
+seems the problem is only shown when imported to patchwork
+
+using only git sendemail in ubuntu 18.4 without any mta (have sendmail not=
+ installed) and no changes made to git sendemail except authentication.
+
+i see that (except cover-letter which is quoted-printable) all is send wit=
+h
+Content-Type: text/plain; charset=3D"us-ascii"
+Content-Transfer-Encoding: 7bit
+
+so i have forced git sendemail now to
+sendemail.composeencoding UTF-8
+
+if this does not work i can try instead
+sendemail.transferEncoding 8bit
+
+regards Frank
