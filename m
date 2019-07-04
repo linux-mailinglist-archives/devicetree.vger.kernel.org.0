@@ -2,89 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 063255F70F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 13:10:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C1A25F742
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 13:38:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727599AbfGDLJr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 07:09:47 -0400
-Received: from mout.gmx.net ([212.227.17.22]:51253 "EHLO mout.gmx.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727436AbfGDLJr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Jul 2019 07:09:47 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
-        s=badeba3b8450; t=1562238524;
-        bh=xewwvH1K14MpwmyPyoSVm3soCqhRG4coEguzC5XFyRU=;
-        h=X-UI-Sender-Class:From:Cc:Subject:Date:In-Reply-To:References;
-        b=F5ztQ6oLQDxWBeKJRudGw4uO/Od6NHcZR42iKjQZwFNvXMU1LDkJcz++vnGjhGhkT
-         rhKPJAk0CjVGVx6E4KYrz4r/6zYDVOF8Z62oh4MlWCmTeJdmMyWg6nyBRNPHdnNkk6
-         4qALyoONjlAPb/+iANBotiT6pDWpFqR33aTqbqDk=
-X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
-Received: from [217.61.145.121] ([217.61.145.121]) by web-mail.gmx.net
- (3c-app-gmx-bs27.server.lan [172.19.170.79]) (via HTTP); Thu, 4 Jul 2019
- 13:08:44 +0200
+        id S1727554AbfGDLg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 07:36:57 -0400
+Received: from smtp2.infineon.com ([217.10.52.18]:2767 "EHLO
+        smtp2.infineon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727436AbfGDLg5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 07:36:57 -0400
+X-Greylist: delayed 429 seconds by postgrey-1.27 at vger.kernel.org; Thu, 04 Jul 2019 07:36:55 EDT
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1562240216; x=1593776216;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=jj7pE5xyI7GKLRZzLxvYqwwU70BVQrx76pcVRLKA4RI=;
+  b=I8myp0XAPwFYWUjtFKYtEWt3h4jGAVEHi+wgjypm5QiARvRvk7TzZTan
+   W3ni6evVIN8maG4nq2whKh7mcSvndPa/tRRJVGi1qWQ7yeyBRkmnSPOhY
+   hlafMmkea33Ogg0cAXvo+p4AspLJ3chtSvyj+mPPSkVkacVhjfTS8EVck
+   Y=;
+IronPort-SDR: IXo7G6x+FN7DENZq6DX7nJou9qS2eXOrvYbwJ9vgXAStjiOzFMQzGFiCywqbwRFxbyoO4qxlD3
+ Ly1phjuUTNTw==
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6000,8403,9307"; a="5415994"
+X-IronPort-AV: E=Sophos;i="5.63,450,1557180000"; 
+   d="scan'208";a="5415994"
+Received: from unknown (HELO mucxv002.muc.infineon.com) ([172.23.11.17])
+  by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2019 13:29:46 +0200
+Received: from MUCSE708.infineon.com (MUCSE708.infineon.com [172.23.7.82])
+        by mucxv002.muc.infineon.com (Postfix) with ESMTPS;
+        Thu,  4 Jul 2019 13:29:45 +0200 (CEST)
+Received: from [10.154.32.88] (172.23.8.247) by MUCSE708.infineon.com
+ (172.23.7.82) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.1591.10; Thu, 4
+ Jul 2019 13:29:45 +0200
+Subject: Re: [PATCH v2 0/2] char: tpm: add new driver for tpm i2c ptp
+To:     Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
+        Oshri Alkoby <oshrialkoby85@gmail.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <peterhuewe@gmx.de>, <jgg@ziepe.ca>,
+        <arnd@arndb.de>, <gregkh@linuxfoundation.org>,
+        <oshri.alkoby@nuvoton.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-integrity@vger.kernel.org>, <gcwilson@us.ibm.com>,
+        <kgoldman@us.ibm.com>, <nayna@linux.vnet.ibm.com>,
+        <dan.morav@nuvoton.com>, <tomer.maimon@nuvoton.com>
+References: <20190628151327.206818-1-oshrialkoby85@gmail.com>
+ <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
+From:   Alexander Steffen <Alexander.Steffen@infineon.com>
+Message-ID: <79e8bfd2-2ed1-cf48-499c-5122229beb2e@infineon.com>
+Date:   Thu, 4 Jul 2019 13:29:41 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Message-ID: <trinity-bad65b37-f133-4f92-9513-965ecc0e0a0b-1562238524435@3c-app-gmx-bs27>
-From:   "Frank Wunderlich" <frank-w@public-files.de>
-Cc:     "Lee Jones" <lee.jones@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Sean Wang" <sean.wang@mediatek.com>,
-        "Sebastian Reichel" <sre@kernel.org>,
-        "Alessandro Zummo" <a.zummo@towertech.it>,
-        "Alexandre Belloni" <alexandre.belloni@bootlin.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        "Eddie Huang" <eddie.huang@mediatek.com>,
-        "Thomas Gleixner" <tglx@linutronix.de>,
-        "Richard Fontana" <rfontana@redhat.com>,
-        "Allison Randal" <allison@lohutok.net>,
-        "David S . Miller" <davem@davemloft.net>,
-        "Mauro Carvalho Chehab" <mchehab+samsung@kernel.org>,
-        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
-        "Rob Herring" <robh@kernel.org>,
-        "Linus Walleij" <linus.walleij@linaro.org>,
-        "Nicolas Ferre" <nicolas.ferre@microchip.com>,
-        "Paul E . McKenney" <paulmck@linux.ibm.com>,
-        "Josef Friedl" <josef.friedl@speed.at>
-Subject: Aw: Re: [PATCH v2 3/7] rtc: mt6397: improvements of rtc driver
-Content-Type: text/plain; charset=UTF-8
-Date:   Thu, 4 Jul 2019 13:08:44 +0200
-Importance: normal
-Sensitivity: Normal
-In-Reply-To: <24975910-cb06-7faf-998f-def23ca0891f@gmail.com>
-References: <20190703164822.17924-1-frank-w@public-files.de>
- <20190703164822.17924-4-frank-w@public-files.de>
- <24975910-cb06-7faf-998f-def23ca0891f@gmail.com>
-X-UI-Message-Type: mail
-X-Priority: 3
-X-Provags-ID: V03:K1:jnRruknwXBDel+OIwmAlBlpZCo1GUcWSFiGCMCvsYCxnT6gNPN47MfQ8d+npte2+5ba3C
- pK6nsUiE1pbreDN5g7uwxCqoVPtzGFjzwnicn7H2HiakjJVH++0nWUZcvMTNbDw41XYyfHz1rvP5
- tyG636rnPhcTQmqemF8FuioIckboC/V+PRYo5xPNkhqnJzTMPGV8c9mOlJm7mL9gNnKhsJ51sgaA
- F2utj5iZ0sWUH8hx4axdegf1shPw2ITfHHB8OiUIm42I/vflDVjo4pyNj0d7P0Z8P9Qmr9ogiFQj
- I8=
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:5dO1uuC4GHI=:HuT9N7g5VLRtNrhu9OZLWM
- s4oHLi+F4JnZ1iuiGNv5fWp6Cawu+ZAFh+3ySZ/XyVDWcO/IoLj6PmevaQtIHibcXyMfldhFr
- H774L3+0s3jPi4KGidGirvKsHonDduG2z+L3Hn5rHCEArBIdknXuOxWNhrmImQjNPngJJeLcN
- AJAbSiX3wEcJQeshB2wsEWtNRopMrBOxtJZbIFBfnOPeRwwo8DEuVkaCYlpp4hz+0/zfIXXQi
- C97yBiCjPLdCIHjsXZ5FIKvjW49IX0pBxKczAEpkfnS2I9CRZNj/n/cISuJ58TiX3s4IcsraE
- +cxkjIKRljQ8Hva6SIjS3R6dPeEXAgsIsIxHYoGiSLg7IjKggeCViPlkbocioMjnsimIFQC1V
- DuNLmHO4HtIuuMWPuDlM7liEmbM9toxtmxxrq02GY+5zxJjdg/CN0JjoKEMogwcNSvPSUJSQ8
- FAKuYh05I68HWtL6BpvPtIfRieUKWEh7fVgNqET3U5VGelkjd5RuHrVWi6gF+quRLHFZdKXzx
- dRRAViLmvut6WTLCuFMLnYaIMCg7WkcaJkU0Ca+zAJNai39ND4MXdE2mvPGhy5qugJUijobm8
- 0iieYHmAd1P9kqyoWbTqNZhVd2cK0Kh6doCKz0cYxypBjEwSttY0c7BBcptAgDVtFMz7wJlco
- CaQE=
-To:     unlisted-recipients:; (no To-header on input)
+In-Reply-To: <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.23.8.247]
+X-ClientProxiedBy: MUCSE716.infineon.com (172.23.7.67) To
+ MUCSE708.infineon.com (172.23.7.82)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> Gesendet: Donnerstag, 04. Juli 2019 um 11:13 Uhr
-> Von: "Matthias Brugger" <matthias.bgg@gmail.com>
+On 04.07.2019 10:43, Jarkko Sakkinen wrote:
+> Check out tpm_tis_core.c and tpm_tis_spi.c. TPM TIS driver implements
+> that spec so you should only implement a new physical layer.
 
-> It's up to the maintainer but I don't like patches doing clean-ups together with
-> adding support for new HW, although it's a trivial one here.
+I had the same thought. Unfortunately, the I2C-TIS specification 
+introduces two relevant changes compared to tpm_tis/tpm_tis_spi:
 
-i can split again to have clean-up and new functions separated
+1. Locality is not encoded into register addresses anymore, but stored 
+in a separate register.
+2. Several register addresses have changed (but still contain compatible 
+contents).
+
+I'd still prefer not to duplicate all the high-level logic from 
+tpm_tis_core. But this will probably mean to introduce some new 
+interfaces between tpm_tis_core and the physical layers.
+
+Also, shouldn't the new driver be called tpm_tis_i2c, to group it with 
+all the other (TIS) drivers, that implement a vendor-independent 
+protocol? With tpm_i2c_ptp users might assume that ptp is just another 
+vendor.
+
+Alexander
