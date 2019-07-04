@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E93975F438
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 10:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24E065F48A
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 10:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726267AbfGDIEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 04:04:01 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:43762 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725920AbfGDIEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 04:04:00 -0400
+        id S1726614AbfGDIZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 04:25:57 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:44020 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726012AbfGDIZ5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 04:25:57 -0400
 Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6483QBk046220;
-        Thu, 4 Jul 2019 03:03:26 -0500
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x648PTtb121299;
+        Thu, 4 Jul 2019 03:25:29 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1562227406;
-        bh=0kq++ky63kGYSgR8djc1FO813K4IO89kI5DZxoHH1Ls=;
+        s=ti-com-17Q1; t=1562228729;
+        bh=fNPkwALi8NkKv8UqT4FQ103MHuhzRMQlVjnGvrouozA=;
         h=Subject:To:References:From:Date:In-Reply-To;
-        b=v3Rl3LsLlDGsKmW/8RW/yIWhVVS8XfQTQ2NS6dlPI36OsKRxQf9cTRxz0yIaR7RbQ
-         /v7N3xDAMCajJSdhY4wyW53dO3hj/VCZBFbS2wQCwXpX0EuEECVuI8ZkALvtMhQK+5
-         8IK5JaTNigxy+6m+EkiDhJ/5qHVvrF1GRauSmzGE=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6483Q5K060792
+        b=Loj7VX+R0UeS8xCOs6Ab4egqHhFPCdSYwDp+D1InOC2TbUgLR4W3UHMBtczjqnVs2
+         HlNgI//b7NUXG5JBG8SXY4YztgUnV2waT1THN+5XDGs44KTP4NhOnCRWNLJNKEs/nv
+         iEO/b7h8sTwKkcOfV1sCistcU2h/v/078+0391Zg=
+Received: from DLEE109.ent.ti.com (dlee109.ent.ti.com [157.170.170.41])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x648PTYb091087
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 4 Jul 2019 03:03:26 -0500
-Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+        Thu, 4 Jul 2019 03:25:29 -0500
+Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 4 Jul
- 2019 03:03:25 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
- (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ 2019 03:25:29 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE105.ent.ti.com
+ (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 4 Jul 2019 03:03:25 -0500
+ Frontend Transport; Thu, 4 Jul 2019 03:25:29 -0500
 Received: from [10.1.3.6] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6483MZX009020;
-        Thu, 4 Jul 2019 03:03:22 -0500
-Subject: Re: [PATCH 1/3] drm/bridge: sii902x: fix missing reference to mclk
- clock
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x648PPvh044715;
+        Thu, 4 Jul 2019 03:25:26 -0500
+Subject: Re: [PATCH 2/3] dt-bindings: display: sii902x: Change audio mclk
+ binding
 To:     Olivier Moysan <olivier.moysan@st.com>, <a.hajda@samsung.com>,
         <narmstrong@baylibre.com>, <Laurent.pinchart@ideasonboard.com>,
         <jonas@kwiboo.se>, <jernej.skrabec@siol.net>, <airlied@linux.ie>,
@@ -47,7 +47,7 @@ To:     Olivier Moysan <olivier.moysan@st.com>, <a.hajda@samsung.com>,
         <linux-stm32@st-md-mailman.stormreply.com>, <robh+dt@kernel.org>,
         <mark.rutland@arm.com>, <devicetree@vger.kernel.org>
 References: <1562082426-14876-1-git-send-email-olivier.moysan@st.com>
- <1562082426-14876-2-git-send-email-olivier.moysan@st.com>
+ <1562082426-14876-3-git-send-email-olivier.moysan@st.com>
 From:   Jyri Sarha <jsarha@ti.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=jsarha@ti.com; prefer-encrypt=mutual; keydata=
@@ -92,15 +92,15 @@ Autocrypt: addr=jsarha@ti.com; prefer-encrypt=mutual; keydata=
  uBrUXDDhCoiZnjQaNz/J+o9iYjuMTpY1Wp+igjIretYr9+kLvGsoPo/kTPWyiuh/WiFU2d6J
  PMCGFGhodTS5qmQA6IOuazek1qSZIl475u3E2uG98AEX/kRhSzgpsbvADPEUPaz75uvlmOCX
  tv+Sye9QT4Z1QCh3lV/Zh4GlY5lt4MwYnqFCxroK/1LpkLgdyQ4rRVw=
-Message-ID: <36194ec6-2ea7-6c0d-6142-a6bb24a65ccb@ti.com>
-Date:   Thu, 4 Jul 2019 11:03:21 +0300
+Message-ID: <85c5d6a8-95d9-d4c0-fb33-4a774caf0b5e@ti.com>
+Date:   Thu, 4 Jul 2019 11:25:25 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.1
 MIME-Version: 1.0
-In-Reply-To: <1562082426-14876-2-git-send-email-olivier.moysan@st.com>
+In-Reply-To: <1562082426-14876-3-git-send-email-olivier.moysan@st.com>
 Content-Type: text/plain; charset="utf-8"
 Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -108,36 +108,40 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 02/07/2019 18:47, Olivier Moysan wrote:
-> Add devm_clk_get call to retrieve reference to master clock.
+> As stated in SiL9022/24 datasheet, master clock is not required for I2S.
+> Make mclk property optional in DT bindings.
 > 
-> Fixes: ff5781634c41 ("drm/bridge: sii902x: Implement HDMI audio support")
+> Fixes: 3f18021f43a3 ("dt-bindings: display: sii902x: Add HDMI audio bindings")
 > 
 > Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
 
+Looking the specs again it looks like the mclk is requred for sii9020,
+but not for sii9022 and sii9024.
+
+So I guess it is fine to accept the configurations without the mclk.
+
 Reviewed-by: Jyri Sarha <jsarha@ti.com>
 
-I wonder how that line was dropped and how the code past my final test.
-Any way, this fix is definitely needed.
-
-Thanks,
-Jyri
-
 > ---
->  drivers/gpu/drm/bridge/sii902x.c | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/display/bridge/sii902x.txt | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
-> index dd7aa466b280..36acc256e67e 100644
-> --- a/drivers/gpu/drm/bridge/sii902x.c
-> +++ b/drivers/gpu/drm/bridge/sii902x.c
-> @@ -750,6 +750,7 @@ static int sii902x_audio_codec_init(struct sii902x *sii902x,
->  		sii902x->audio.i2s_fifo_sequence[i] |= audio_fifo_id[i] |
->  			i2s_lane_id[lanes[i]] |	SII902X_TPI_I2S_FIFO_ENABLE;
+> diff --git a/Documentation/devicetree/bindings/display/bridge/sii902x.txt b/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> index 2df44b7d3821..6e14e087c0d0 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> +++ b/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> @@ -26,9 +26,8 @@ Optional properties:
+>  	- clocks: phandle and clock specifier for each clock listed in
+>             the clock-names property
+>  	- clock-names: "mclk"
+> -	   Describes SII902x MCLK input. MCLK is used to produce
+> -	   HDMI audio CTS values. This property is required if
+> -	   "#sound-dai-cells"-property is present. This property follows
+> +	   Describes SII902x MCLK input. MCLK can be used to produce
+> +	   HDMI audio CTS values. This property follows
+>  	   Documentation/devicetree/bindings/clock/clock-bindings.txt
+>  	   consumer binding.
 >  
-> +	sii902x->audio.mclk = devm_clk_get(dev, "mclk");
->  	if (IS_ERR(sii902x->audio.mclk)) {
->  		dev_err(dev, "%s: No clock (audio mclk) found: %ld\n",
->  			__func__, PTR_ERR(sii902x->audio.mclk));
 > 
 
 
