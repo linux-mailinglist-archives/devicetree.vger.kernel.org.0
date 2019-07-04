@@ -2,122 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36B065F42F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 10:00:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E93975F438
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 10:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725945AbfGDIA3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 04:00:29 -0400
-Received: from mail-eopbgr00078.outbound.protection.outlook.com ([40.107.0.78]:54063
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725920AbfGDIA3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Jul 2019 04:00:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0Os2M1u4hQFlUUZir5WG6cu5oF/YNz5e4IzKf5ru3hA=;
- b=XV/qNoVv0eEDPHrJ7os5NpML4t7YVkZz1DfCFCrOOEj6Cdh+i31ww8sV4yV2/bbiyo7vTC7pN4e3VClSjDJYjObLoxHr8ML8/Bs7r/kk2GTtMKzeMkSAFz5LV+r3bhHstTlDzpP43aSKlRDhZdbluJrONRUOMNf2PZ/3N00rpJ8=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3738.eurprd04.prod.outlook.com (52.134.70.145) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2032.20; Thu, 4 Jul 2019 08:00:25 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::3945:fcda:5bdd:8191]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::3945:fcda:5bdd:8191%4]) with mapi id 15.20.2052.010; Thu, 4 Jul 2019
- 08:00:25 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Leonard Crestez <leonard.crestez@nxp.com>,
-        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>
-CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH 2/2] arm64: dts: imx8mm: Assign highest opp as suspend opp
-Thread-Topic: [PATCH 2/2] arm64: dts: imx8mm: Assign highest opp as suspend
- opp
-Thread-Index: AQHVMjD62bccyXxndUyDszIpSDkBnaa6F2SA
-Date:   Thu, 4 Jul 2019 08:00:24 +0000
-Message-ID: <DB3PR0402MB39165D27F23501EE358DE607F5FA0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <20190704061403.8249-1-Anson.Huang@nxp.com>
- <20190704061403.8249-2-Anson.Huang@nxp.com>
- <DB7PR04MB50519C02D90675070F21501DEEFA0@DB7PR04MB5051.eurprd04.prod.outlook.com>
-In-Reply-To: <DB7PR04MB50519C02D90675070F21501DEEFA0@DB7PR04MB5051.eurprd04.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f97e96a1-60ef-4b23-f80b-08d70055abce
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3738;
-x-ms-traffictypediagnostic: DB3PR0402MB3738:
-x-microsoft-antispam-prvs: <DB3PR0402MB37385D5D32BA1619C0B548E9F5FA0@DB3PR0402MB3738.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 0088C92887
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(396003)(39860400002)(346002)(136003)(366004)(199004)(189003)(8676002)(99286004)(229853002)(102836004)(66066001)(76176011)(7696005)(53546011)(25786009)(54906003)(6506007)(110136005)(3846002)(6116002)(33656002)(14454004)(7416002)(7736002)(305945005)(186003)(4326008)(8936002)(316002)(15650500001)(2906002)(81166006)(81156014)(478600001)(74316002)(26005)(68736007)(2501003)(71200400001)(71190400001)(53936002)(6246003)(66556008)(66946007)(76116006)(66446008)(66476007)(64756008)(73956011)(5660300002)(55016002)(486006)(44832011)(86362001)(52536014)(9686003)(6436002)(256004)(14444005)(446003)(11346002)(476003)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3738;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: sSACyW0V1pdegfYmDUfMLyW7K29iXC8f2vzGlbt4SxRekcCRm34M++/kyxkisjUtYV3nSkV2cTkXHDDiYoWSBzTxdG9rCyLJACd/2aa66quUtNbaqDZ+VyBomXf5/eq+U7SEvYlxBhW9s5T0D6svscgCdYZY+jlUujDAIcBvLjw3AC2E12Av8Xc7cIFtzocUFmkrNJIGYXt1MSd+K3v/4B3Fq1gBplOET9ClPaPxCP1rsNLjbSHY+sLRFdSraqptJgjTtnXIJNKHH9qgr2Z5AyiSpn2Vp0+YqsJjxcSlnLZhalspzcRwZRuwZvr+XhE6TrseeoG+t3VoGlC6Ub0M8/K8PtIJQXHZMG3SLMvYxKApyqCJ2CkGwi8fls9o1lrF/+J35IbFcomVPGds/MJijDYENvTG7Lm6c7w9TfcS6Bs=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726267AbfGDIEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 04:04:01 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:43762 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725920AbfGDIEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 04:04:00 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6483QBk046220;
+        Thu, 4 Jul 2019 03:03:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1562227406;
+        bh=0kq++ky63kGYSgR8djc1FO813K4IO89kI5DZxoHH1Ls=;
+        h=Subject:To:References:From:Date:In-Reply-To;
+        b=v3Rl3LsLlDGsKmW/8RW/yIWhVVS8XfQTQ2NS6dlPI36OsKRxQf9cTRxz0yIaR7RbQ
+         /v7N3xDAMCajJSdhY4wyW53dO3hj/VCZBFbS2wQCwXpX0EuEECVuI8ZkALvtMhQK+5
+         8IK5JaTNigxy+6m+EkiDhJ/5qHVvrF1GRauSmzGE=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6483Q5K060792
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 4 Jul 2019 03:03:26 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 4 Jul
+ 2019 03:03:25 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 4 Jul 2019 03:03:25 -0500
+Received: from [10.1.3.6] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6483MZX009020;
+        Thu, 4 Jul 2019 03:03:22 -0500
+Subject: Re: [PATCH 1/3] drm/bridge: sii902x: fix missing reference to mclk
+ clock
+To:     Olivier Moysan <olivier.moysan@st.com>, <a.hajda@samsung.com>,
+        <narmstrong@baylibre.com>, <Laurent.pinchart@ideasonboard.com>,
+        <jonas@kwiboo.se>, <jernej.skrabec@siol.net>, <airlied@linux.ie>,
+        <daniel@ffwll.ch>, <dri-devel@lists.freedesktop.org>,
+        <linux-kernel@vger.kernel.org>, <benjamin.gaignard@st.com>,
+        <alexandre.torgue@st.com>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <devicetree@vger.kernel.org>
+References: <1562082426-14876-1-git-send-email-olivier.moysan@st.com>
+ <1562082426-14876-2-git-send-email-olivier.moysan@st.com>
+From:   Jyri Sarha <jsarha@ti.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=jsarha@ti.com; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <36194ec6-2ea7-6c0d-6142-a6bb24a65ccb@ti.com>
+Date:   Thu, 4 Jul 2019 11:03:21 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f97e96a1-60ef-4b23-f80b-08d70055abce
-X-MS-Exchange-CrossTenant-originalarrivaltime: 04 Jul 2019 08:00:24.9793
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3738
+In-Reply-To: <1562082426-14876-2-git-send-email-olivier.moysan@st.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIExlb25hcmQNCg0KPiBPbiA3LzQvMjAxOSA5OjIzIEFNLCBBbnNvbi5IdWFuZ0BueHAuY29t
-IHdyb3RlOg0KPiA+IEZyb206IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KPiA+
-DQo+ID4gQXNzaWduIGhpZ2hlc3QgT1BQIGFzIHN1c3BlbmQgT1BQIHRvIHJlZHVjZSBzdXNwZW5k
-L3Jlc3VtZSBsYXRlbmN5IG9uDQo+ID4gaS5NWDhNTS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6
-IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KPiA+IC0tLQ0KPiA+ICAgYXJjaC9h
-cm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kgfCAxICsNCj4gPiAgIDEgZmlsZSBj
-aGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPiA+DQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtNjQv
-Ym9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS5kdHNpDQo+ID4gYi9hcmNoL2FybTY0L2Jvb3QvZHRz
-L2ZyZWVzY2FsZS9pbXg4bW0uZHRzaQ0KPiA+IGluZGV4IGIxMWZjNWUuLjNhNjI0MDcgMTAwNjQ0
-DQo+ID4gLS0tIGEvYXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kNCj4g
-PiArKysgYi9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0uZHRzaQ0KPiA+IEBA
-IC0xMzYsNiArMTM2LDcgQEANCj4gPiAgIAkJCW9wcC1taWNyb3ZvbHQgPSA8MTAwMDAwMD47DQo+
-ID4gICAJCQlvcHAtc3VwcG9ydGVkLWh3ID0gPDB4OD4sIDwweDM+Ow0KPiA+ICAgCQkJY2xvY2st
-bGF0ZW5jeS1ucyA9IDwxNTAwMDA+Ow0KPiA+ICsJCQlvcHAtc3VzcGVuZDsNCj4gPiAgIAkJfTsN
-Cj4gPiAgIAl9Ow0KPiANCj4gV2hhdCBpZiB0aGUgaGlnaGVzdCBPUFAgaXMgdW5hdmFpbGFibGUg
-ZHVlIHRvIHNwZWVkIGdyYWRpbmc/IElkZWFsbHkgd2UNCj4gc2hvdWxkIGZpbmQgYSB3YXkgdG8g
-c3VzcGVuZCBhdCB0aGUgaGlnaGVzdCAqc3VwcG9ydGVkKiBPUFAuDQo+IA0KPiBNYXliZSB0aGUg
-b3BwLXN1c3BlbmQgbWFya2luZyBjb3VsZCBiZSBhc3NpZ25lZCBmcm9tIGlteC1jcHVmcmVxLWR0
-DQo+IGRyaXZlciBjb2RlPw0KDQpZZXMsIHRoaXMgaXMgYWxzbyBteSBjb25jZXJuLCB0aGUgY3Vy
-cmVudCBPUFAgZHJpdmVyIGRvZXMgTk9UIGhhbmRsZSBpdCB3ZWxsLCBhbmQNCkkgd2FzIHRoaW5r
-aW5nIHRvIGFzc2lnbmUgaXQgZnJvbSBpbXgtY3B1ZnJlcS1kdCBkcml2ZXIsIDEgb3B0aW9uIGlz
-IHRvIHJ1bnRpbWUgYWRkDQoic3VzcGVuZC1vcHAiIHByb3BlcnR5IGludG8gRFQgT1BQIG5vZGUg
-YWZ0ZXIgcGFyc2luZyB0aGUgc3BlZWQgZ3JhZGluZyBmdXNlIGFuZA0KT1BQIHRhYmxlLCBidXQg
-SSBkbyBOT1QgbGlrZSB0aGF0IHZlcnkgbXVjaCwgYXMgd2UgbmVlZCB0byBtYW51YWxseSBjcmVh
-dGUgYSBwcm9wZXJ0eSwNCnRoZSBvdGhlciBvcHRpb24gaXMgdG8gY2hhbmdlIGNwdSBmcmVxIHBv
-bGljeSBpbnNpZGUgaW14LWNwdWZyZXEtZHQgZHJpdmVyIGluIHN1c3BlbmQvcmVzdW1lDQpjYWxs
-YmFjaz8gV2hpY2ggb25lIGRvIHlvdSBwcmVmZXI/DQoNClRoYW5rcywNCkFuc29uDQoNCj4gDQo+
-IC0tDQo+IFJlZ2FyZHMsDQo+IExlb25hcmQNCg0K
+On 02/07/2019 18:47, Olivier Moysan wrote:
+> Add devm_clk_get call to retrieve reference to master clock.
+> 
+> Fixes: ff5781634c41 ("drm/bridge: sii902x: Implement HDMI audio support")
+> 
+> Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
+
+Reviewed-by: Jyri Sarha <jsarha@ti.com>
+
+I wonder how that line was dropped and how the code past my final test.
+Any way, this fix is definitely needed.
+
+Thanks,
+Jyri
+
+> ---
+>  drivers/gpu/drm/bridge/sii902x.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
+> index dd7aa466b280..36acc256e67e 100644
+> --- a/drivers/gpu/drm/bridge/sii902x.c
+> +++ b/drivers/gpu/drm/bridge/sii902x.c
+> @@ -750,6 +750,7 @@ static int sii902x_audio_codec_init(struct sii902x *sii902x,
+>  		sii902x->audio.i2s_fifo_sequence[i] |= audio_fifo_id[i] |
+>  			i2s_lane_id[lanes[i]] |	SII902X_TPI_I2S_FIFO_ENABLE;
+>  
+> +	sii902x->audio.mclk = devm_clk_get(dev, "mclk");
+>  	if (IS_ERR(sii902x->audio.mclk)) {
+>  		dev_err(dev, "%s: No clock (audio mclk) found: %ld\n",
+>  			__func__, PTR_ERR(sii902x->audio.mclk));
+> 
+
+
+-- 
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
+Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
