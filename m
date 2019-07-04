@@ -2,103 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 044475F00D
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 02:28:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D60DB5F017
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 02:37:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727345AbfGDA2w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 3 Jul 2019 20:28:52 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:50307 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727326AbfGDA2w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 20:28:52 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id A7BC91BC6;
-        Wed,  3 Jul 2019 20:28:50 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Wed, 03 Jul 2019 20:28:50 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=OWn2mLh7/XUi0TJMekxt7yvjPNcgULS
-        BCoi83C82YNo=; b=oHFzw8noCMYk24pCj0ny/IlupuxDjd+p4ys/R9Ec8OJoqgX
-        b3W4LGtgKvAEv8CvF0/syCO2IACosaB667bLAIzW1fCsT4+tekeXDMyl3zEFaOMC
-        X3wfdHDxlVZ2cTvRtREUMNFakBGD3FdqJwxIFMPo9D5x+SRmJWwsmgZea8ZIokzx
-        qFrQHBEN70Np0VbSVFiJ/FMG6m7Jvf/TSMEiuAnbFyR2Tj5P/2x3ep6feeqpCRUM
-        /XQM4H5W+qvlFlPR14RfVf+2+cx9GET41XeY7GI/7STl9Yln4aJ0ywSKGl7l0hKk
-        d7EGxMsXHkwxl3k9BOZNgrK3iFSDGCjK9ibJrrw==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=OWn2mL
-        h7/XUi0TJMekxt7yvjPNcgULSBCoi83C82YNo=; b=bJ2K1ryWC7mcx8ZrhtqG4p
-        bjjDnClvZrJYisIta3ipWFXcHpUGkV/rnES74wiSO7RXuYiJVFVOG11bOPSZakuq
-        efd8A+CAL9GVQaAiVrOlVZjqmdNj6hfv4JF8muUrXYaOdM8DJysv26hKoV9mgYrz
-        UmJmWhxbXsIqSIS52KU/Kh/OU1wznmLyrn8+0mVHz4Uo7fXM75evRKb0Mh9Q6Py0
-        mm3IwOJuNDTEtwNCEiqGvlLZwKQP4wClYP0BP01Ts2j/ix14AKaVBexjLqKcAlyA
-        fZP4j3Z40fb+1wberXaFsYGNdkKBfKdRRVRg836sXTQlOB5kkMZIg5joW6eXgqSQ
-        ==
-X-ME-Sender: <xms:QEgdXaQCmhwW6lVppTwfGyVi11eyWy8KVOPmoh1yLSlVp3N1IFZpbA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrfedugdefhecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
-    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrghrrg
-    hmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghr
-    ufhiiigvpedt
-X-ME-Proxy: <xmx:QEgdXddXftyY9CXDkmK4PtChKPg5uBek0H_VhgWsl11Dtv6_rfcivA>
-    <xmx:QEgdXf53eT9-j9HP3nKzzEA7iAzI-6jSOkqbwtDVfPRDkMbXPLzIJw>
-    <xmx:QEgdXeYtH0YWySTHIsemK5URyZ09CZlpVSlM3hwA-MMUfvxqQKc5Iw>
-    <xmx:QkgdXeWYmYs6ZpjvMHl1vd32N4O17eliMjdtMYZk0YDJLRSaiEL4ig>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id BCEECE00A2; Wed,  3 Jul 2019 20:28:48 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-731-g19d3b16-fmstable-20190627v1
+        id S1727473AbfGDAhD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 3 Jul 2019 20:37:03 -0400
+Received: from mail-vk1-f201.google.com ([209.85.221.201]:46585 "EHLO
+        mail-vk1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727398AbfGDAhD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 3 Jul 2019 20:37:03 -0400
+Received: by mail-vk1-f201.google.com with SMTP id p64so449735vkp.13
+        for <devicetree@vger.kernel.org>; Wed, 03 Jul 2019 17:37:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=3dkcwHp7UkbBjeC+jKJgdEez1r7JnE/QFVNxh/Av3lE=;
+        b=P/9Q0U57X0Mjr2pSdVR3fq5Q9Stk+yaqd+YUm9sq0ou6AVsZSt/1N/33ozuhbgY2vA
+         l95M1OTPG7AMpCdkXNxZwoF74wXCpWnPckCjmlCUOfpVWb6OUe1dqoKeBMLQ2rRoWAC+
+         fNHaGobDGBWH78hBlHjYyz8R5pV2r1lKhN6q853RMfM6pw8GA8VVYjvcvo3uf8gDuuir
+         ENB2mZWRXg62IrhKkC86LfkNF4vHPkE6nmhUv9Xome467fLx+E9J0pgZrqEdzyy++0mz
+         884zs7eBSkOyiHbrPJJuzc+Z2DaP9Fz7PcxSltbsQgqsrKy/bR2ai8bDNYsLrfqN7e+f
+         Qiwg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=3dkcwHp7UkbBjeC+jKJgdEez1r7JnE/QFVNxh/Av3lE=;
+        b=Yt5Ktb1flWcQGRluVPuBaoGMz3srZwVq+2xcfpU/tBb4nwy+7mpPzM4FhMfYrylvnz
+         5NQwh8whabee82bpM8Ra64JBhIRcwH0DWXVxdWuyzcbK+NIXP9xIhqF9dSJEa1pGA5Pg
+         UCeiEiSTzab63ELxCvPer7wbac9712lufvn6XVLsYcFCKZhutNdmdagKNuaVoS5il+mX
+         GjQo01ND07LLpfOV7frD3xnoIEOk+1RKc3qzgCXUgc0KkNILoEiu8pcitzeNuZeDUQr4
+         Tp+TU27cCUOyMIOLze2TvOTG5vvJpDcP2BYK9IMEJAkPl32RF9C/0WYssPIr56/m4k9H
+         tghQ==
+X-Gm-Message-State: APjAAAVUwtAYO0KcbYUWYLIp2FzZXNe1o9TCmbCbW9F8dtYu4hmSj/v2
+        YCC8bNQyXxWv5h5EjglK9ayPkTcR/SDaY8lPmcZ7Bw==
+X-Google-Smtp-Source: APXvYqxifi+9P2uuB2xECPxDjII80enpIo8mSlNTAxiC8KmAvRxtyVWjtDGXaCnqTdPCo5Xn7dOc4Z0daGhonP28ve9Qzg==
+X-Received: by 2002:a1f:5945:: with SMTP id n66mr6468396vkb.58.1562200621022;
+ Wed, 03 Jul 2019 17:37:01 -0700 (PDT)
+Date:   Wed,  3 Jul 2019 17:35:57 -0700
+Message-Id: <20190704003615.204860-1-brendanhiggins@google.com>
 Mime-Version: 1.0
-Message-Id: <022b6528-7ab3-449f-807d-d711b6d2db51@www.fastmail.com>
-In-Reply-To: <CACRpkdaxiFR3ezt4FzhRxpqc4DYYjsbBeysPUaaQH+_QgYjudw@mail.gmail.com>
-References: <20190628023838.15426-1-andrew@aj.id.au>
- <CACRpkdaxiFR3ezt4FzhRxpqc4DYYjsbBeysPUaaQH+_QgYjudw@mail.gmail.com>
-Date:   Thu, 04 Jul 2019 10:28:45 +1000
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Linus Walleij" <linus.walleij@linaro.org>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "Ryan Chen" <ryan_chen@aspeedtech.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Joel Stanley" <joel@jms.id.au>, linux-aspeed@lists.ozlabs.org,
-        "OpenBMC Maillist" <openbmc@lists.ozlabs.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 0/8] pinctrl: aspeed: Preparation for AST2600
-Content-Type: text/plain
+X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
+Subject: [PATCH v6 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+From:   Brendan Higgins <brendanhiggins@google.com>
+To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+## TL;DR
 
+This is a pretty straightforward follow-up to Stephen and Luis' comments
+on PATCH v5: There is nothing that really changes any functionality or
+usage with the minor exception that I renamed `struct kunit_module` to
+`struct kunit_suite`. Nevertheless, a good deal of clean ups and fixes.
+See "Changes Since Last Version" section below.
 
-On Wed, 3 Jul 2019, at 18:40, Linus Walleij wrote:
-> Hi Andrew,
-> 
-> On Fri, Jun 28, 2019 at 4:39 AM Andrew Jeffery <andrew@aj.id.au> wrote:
-> >
-> > Hello!
-> >
-> > The ASPEED AST2600 is in the pipeline, and we have enough information to start
-> > preparing to upstream support for it. This series lays some ground work;
-> > splitting the bindings and dicing the implementation up a little further to
-> > facilitate differences between the 2600 and previous SoC generations.
-> >
-> > v2 addresses Rob's comments on the bindings conversion patches. v1 can be found
-> > here:
-> 
-> I have applied this series, I had to strip some changes of the header
-> because it was based on some SPDX cleanups upstream but no
-> big deal I think. Check the result please.
+As for our current status, right now we got Reviewed-bys on all patches
+except:
 
-Thanks. Have you pushed the branch yet? I just fetched your pinctrl tree
-and can't see the patches.
+- [PATCH v6 08/18] objtool: add kunit_try_catch_throw to the noreturn
+  list
 
-Andrew
+However, it would probably be good to get reviews/acks from the
+subsystem maintainers on:
+
+- [PATCH v6 06/18] kbuild: enable building KUnit
+- [PATCH v6 08/18] objtool: add kunit_try_catch_throw to the noreturn
+  list
+- [PATCH v6 15/18] Documentation: kunit: add documentation for KUnit
+- [PATCH v6 17/18] kernel/sysctl-test: Add null pointer test for
+  sysctl.c:proc_dointvec()
+
+Other than that, I think we should be good to go.
+
+## Background
+
+This patch set proposes KUnit, a lightweight unit testing and mocking
+framework for the Linux kernel.
+
+Unlike Autotest and kselftest, KUnit is a true unit testing framework;
+it does not require installing the kernel on a test machine or in a VM
+(however, KUnit still allows you to run tests on test machines or in VMs
+if you want[1]) and does not require tests to be written in userspace
+running on a host kernel. Additionally, KUnit is fast: From invocation
+to completion KUnit can run several dozen tests in about a second.
+Currently, the entire KUnit test suite for KUnit runs in under a second
+from the initial invocation (build time excluded).
+
+KUnit is heavily inspired by JUnit, Python's unittest.mock, and
+Googletest/Googlemock for C++. KUnit provides facilities for defining
+unit test cases, grouping related test cases into test suites, providing
+common infrastructure for running tests, mocking, spying, and much more.
+
+### What's so special about unit testing?
+
+A unit test is supposed to test a single unit of code in isolation,
+hence the name. There should be no dependencies outside the control of
+the test; this means no external dependencies, which makes tests orders
+of magnitudes faster. Likewise, since there are no external dependencies,
+there are no hoops to jump through to run the tests. Additionally, this
+makes unit tests deterministic: a failing unit test always indicates a
+problem. Finally, because unit tests necessarily have finer granularity,
+they are able to test all code paths easily solving the classic problem
+of difficulty in exercising error handling code.
+
+### Is KUnit trying to replace other testing frameworks for the kernel?
+
+No. Most existing tests for the Linux kernel are end-to-end tests, which
+have their place. A well tested system has lots of unit tests, a
+reasonable number of integration tests, and some end-to-end tests. KUnit
+is just trying to address the unit test space which is currently not
+being addressed.
+
+### More information on KUnit
+
+There is a bunch of documentation near the end of this patch set that
+describes how to use KUnit and best practices for writing unit tests.
+For convenience I am hosting the compiled docs here[2].
+
+Additionally for convenience, I have applied these patches to a
+branch[3]. The repo may be cloned with:
+git clone https://kunit.googlesource.com/linux
+This patchset is on the kunit/rfc/v5.2-rc7/v6 branch.
+
+## Changes Since Last Version
+
+Aside from renaming `struct kunit_module` to `struct kunit_suite`, there
+isn't really anything in here that changes any functionality:
+
+- Rebased on v5.2-rc7
+- Got rid of spinlocks.
+  - Now update success field using WRITE_ONCE. - Suggested by Stephen
+  - Other instances replaced by mutex. - Suggested by Stephen and Luis
+- Renamed `struct kunit_module` to `struct kunit_suite`. - Inspired by
+  Luis.
+- Fixed a broken example of how to use kunit_tool. - Pointed out by Ted
+- Added descriptions to unit tests. - Suggested by Luis
+- Labeled unit tests which tested the API. - Suggested by Luis
+- Made a number of minor cleanups. - Suggested by Luis and Stephen.
+
+[1] https://google.github.io/kunit-docs/third_party/kernel/docs/usage.html#kunit-on-non-uml-architectures
+[2] https://google.github.io/kunit-docs/third_party/kernel/docs/
+[3] https://kunit.googlesource.com/linux/+/kunit/rfc/v5.2-rc7/v6
+
+-- 
+2.22.0.410.gd8fdbe21b5-goog
+
