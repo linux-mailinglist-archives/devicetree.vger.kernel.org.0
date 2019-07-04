@@ -2,89 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C1A25F742
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 13:38:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 06B705F74D
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 13:45:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727554AbfGDLg5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 07:36:57 -0400
-Received: from smtp2.infineon.com ([217.10.52.18]:2767 "EHLO
-        smtp2.infineon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727436AbfGDLg5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 07:36:57 -0400
-X-Greylist: delayed 429 seconds by postgrey-1.27 at vger.kernel.org; Thu, 04 Jul 2019 07:36:55 EDT
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
-  t=1562240216; x=1593776216;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=jj7pE5xyI7GKLRZzLxvYqwwU70BVQrx76pcVRLKA4RI=;
-  b=I8myp0XAPwFYWUjtFKYtEWt3h4jGAVEHi+wgjypm5QiARvRvk7TzZTan
-   W3ni6evVIN8maG4nq2whKh7mcSvndPa/tRRJVGi1qWQ7yeyBRkmnSPOhY
-   hlafMmkea33Ogg0cAXvo+p4AspLJ3chtSvyj+mPPSkVkacVhjfTS8EVck
-   Y=;
-IronPort-SDR: IXo7G6x+FN7DENZq6DX7nJou9qS2eXOrvYbwJ9vgXAStjiOzFMQzGFiCywqbwRFxbyoO4qxlD3
- Ly1phjuUTNTw==
-X-SBRS: None
-X-IronPort-AV: E=McAfee;i="6000,8403,9307"; a="5415994"
-X-IronPort-AV: E=Sophos;i="5.63,450,1557180000"; 
-   d="scan'208";a="5415994"
-Received: from unknown (HELO mucxv002.muc.infineon.com) ([172.23.11.17])
-  by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 04 Jul 2019 13:29:46 +0200
-Received: from MUCSE708.infineon.com (MUCSE708.infineon.com [172.23.7.82])
-        by mucxv002.muc.infineon.com (Postfix) with ESMTPS;
-        Thu,  4 Jul 2019 13:29:45 +0200 (CEST)
-Received: from [10.154.32.88] (172.23.8.247) by MUCSE708.infineon.com
- (172.23.7.82) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.1591.10; Thu, 4
- Jul 2019 13:29:45 +0200
-Subject: Re: [PATCH v2 0/2] char: tpm: add new driver for tpm i2c ptp
-To:     Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
-        Oshri Alkoby <oshrialkoby85@gmail.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <peterhuewe@gmx.de>, <jgg@ziepe.ca>,
-        <arnd@arndb.de>, <gregkh@linuxfoundation.org>,
-        <oshri.alkoby@nuvoton.com>
-CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-integrity@vger.kernel.org>, <gcwilson@us.ibm.com>,
-        <kgoldman@us.ibm.com>, <nayna@linux.vnet.ibm.com>,
-        <dan.morav@nuvoton.com>, <tomer.maimon@nuvoton.com>
-References: <20190628151327.206818-1-oshrialkoby85@gmail.com>
- <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
-From:   Alexander Steffen <Alexander.Steffen@infineon.com>
-Message-ID: <79e8bfd2-2ed1-cf48-499c-5122229beb2e@infineon.com>
-Date:   Thu, 4 Jul 2019 13:29:41 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1727547AbfGDLpu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 07:45:50 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:33124 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727436AbfGDLpt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 07:45:49 -0400
+Received: by mail-lj1-f194.google.com with SMTP id h10so5899542ljg.0
+        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2019 04:45:48 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=EcGyPuegWpkyLveOwqViCG+5n+jaNm8XsLEeG0/iRsA=;
+        b=jRqEA9jpdiAIsbLYJeNpbrSUkTbSqZrrluMKjb9VCqgfn2JcBOi6jk8Lk3VntTNsBD
+         BgHH6LXMaL4kyRzhjTLmRe3b0gsJyTYzoK2B+Eur6PXvz9Aggp5XneLBHifpoDN5OJgH
+         X9YctfaM0YwCqQ1gjCmcLdGRr32QGoR4Lu/UUL5eMLiuQ90ucdjoLvN+5JqMUT5XDUuP
+         8qOcxjCKSHc40xwDTQUKVL1wUxMZkQfJ4PU6lZtgBonl83Emx/EX9BPwm6YGwnLiEpOh
+         7Aq7oC7XSZkyyHPDK6cpFQ+9Rxe8zUgNBnj8yTdCyK6h/K98NQHaT+U/sFb+uJX3gezp
+         JPUw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=EcGyPuegWpkyLveOwqViCG+5n+jaNm8XsLEeG0/iRsA=;
+        b=UUMt4xA/IoHhsV3h6mO1rw3RWOQExa4XKBMJDtu1ih9zVMvfoFsgjGT0d50OaoVjOi
+         inq5wpLIGRqskGC6Dr+Fy0R/qFyJTIGdeCjmo8iNxynTj2R3VxJ75p5YnqQFfZCmdlOV
+         tzVzEYj72+Vs+/G15YeMi8MZG2fE8YUegvpKNOR/JfO1odqqkH0PuSgGOKf/EnBWZ3ax
+         xHmbcyaVOikzBHzzfTfhYtf+WfUxwANApL7Po9eEVyujp9l0EjKsx/EpasHQpE2KB+Q0
+         QM62mbcFcFcLdQ1TtsbF6UNOIvMoFvbLrH6wZARdtMhSt1ErG1KWFQ80kpNOMvvs9gdl
+         4BMQ==
+X-Gm-Message-State: APjAAAUtJECHOhG5HxiyG3OcrprsnmHEMY7WcmO9+mD9Rpsku2D8EwGH
+        KoinV0Fm6CYiVRV9I7VRVGV7H44sWf2XXz3XnKA=
+X-Google-Smtp-Source: APXvYqxECjz+P/SVIEx+OjvWTRlZkQMIrPms1adAd7ZXiedN8D0FPNO2bMbtUF3epg7DzVZNjb5gcaEF3aKBt0VIH3s=
+X-Received: by 2002:a2e:a311:: with SMTP id l17mr4663565lje.214.1562240747757;
+ Thu, 04 Jul 2019 04:45:47 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.23.8.247]
-X-ClientProxiedBy: MUCSE716.infineon.com (172.23.7.67) To
- MUCSE708.infineon.com (172.23.7.82)
+References: <20190704110053.19028-1-sebastien.szymanski@armadeus.com>
+In-Reply-To: <20190704110053.19028-1-sebastien.szymanski@armadeus.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 4 Jul 2019 08:45:37 -0300
+Message-ID: <CAOMZO5Buo4psm_JOH-3OTQQ0t+QGGRSabBWKFksP9W10Tr-hOA@mail.gmail.com>
+Subject: Re: [PATCH 1/1] ARM: dts: imx6ul: fix clock frequency property name
+ of I2C buses
+To:     =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 04.07.2019 10:43, Jarkko Sakkinen wrote:
-> Check out tpm_tis_core.c and tpm_tis_spi.c. TPM TIS driver implements
-> that spec so you should only implement a new physical layer.
+On Thu, Jul 4, 2019 at 8:01 AM S=C3=A9bastien Szymanski
+<sebastien.szymanski@armadeus.com> wrote:
+>
+> A few boards set clock frequency of their I2C buses with
+> "clock_frequency" property. The right property is "clock-frequency".
+>
+> Signed-off-by: S=C3=A9bastien Szymanski <sebastien.szymanski@armadeus.com=
+>
 
-I had the same thought. Unfortunately, the I2C-TIS specification 
-introduces two relevant changes compared to tpm_tis/tpm_tis_spi:
-
-1. Locality is not encoded into register addresses anymore, but stored 
-in a separate register.
-2. Several register addresses have changed (but still contain compatible 
-contents).
-
-I'd still prefer not to duplicate all the high-level logic from 
-tpm_tis_core. But this will probably mean to introduce some new 
-interfaces between tpm_tis_core and the physical layers.
-
-Also, shouldn't the new driver be called tpm_tis_i2c, to group it with 
-all the other (TIS) drivers, that implement a vendor-independent 
-protocol? With tpm_i2c_ptp users might assume that ptp is just another 
-vendor.
-
-Alexander
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
