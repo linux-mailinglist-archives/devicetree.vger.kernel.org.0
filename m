@@ -2,133 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 905995FDD2
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 22:43:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94F835FE49
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 23:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727017AbfGDUn6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 16:43:58 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:57599 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726038AbfGDUn6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 16:43:58 -0400
-Received: from localhost (lfbn-1-1545-137.w90-65.abo.wanadoo.fr [90.65.161.137])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id E568E100006;
-        Thu,  4 Jul 2019 20:43:37 +0000 (UTC)
-Date:   Thu, 4 Jul 2019 22:43:36 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Richard Fontana <rfontana@redhat.com>,
-        Allison Randal <allison@lohutok.net>,
-        "David S . Miller" <davem@davemloft.net>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "Paul E . McKenney" <paulmck@linux.ibm.com>,
-        Josef Friedl <josef.friedl@speed.at>
-Subject: Re: [PATCH v2 3/7] rtc: mt6397: improvements of rtc driver
-Message-ID: <20190704204336.GJ3692@piout.net>
-References: <20190703164822.17924-1-frank-w@public-files.de>
- <20190703164822.17924-4-frank-w@public-files.de>
+        id S1727115AbfGDV5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 17:57:31 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:37793 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726038AbfGDV5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 17:57:31 -0400
+Received: by mail-io1-f67.google.com with SMTP id e5so10855761iok.4;
+        Thu, 04 Jul 2019 14:57:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nj+rzUZGPqNyT1DZeu2Av7HuuzM7T7JYl6p3NYhknn8=;
+        b=Ujp3QmVs+l454k/ITR9Axi10EwfvczIkphlFECMdXBQeuBvmjjJfcVmgJdnwW/+AlN
+         IUG3TXy9g8xKjXufXQnQA/DVlYqHnSTRFrD9DEcd+TtRrSnQ3kFRHP9L8O0qOcisu+Lv
+         aiAL8wseNs7zTvYeonZkYT0hUi3aRJgBx0hlPK03EUVMocUbjEQogSEME5nBRJ+ricaM
+         uV06V5oxmEgjjsNrEKj9YCCyHa01234qXID4WxdUddbXxEkSIeKn+yMLPpfxMRARmwvY
+         m3kJiik8YQ3y8R+p/Sir8zZr240zrIdnqrybm9ZjCk7E13Hfp1621AxMuDV6qs+fTV04
+         ZfSw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nj+rzUZGPqNyT1DZeu2Av7HuuzM7T7JYl6p3NYhknn8=;
+        b=ERLzakgy8YwwQ+P71ovH6SURYnRrW3SC3ytSpAdvebT829gyzsoMgQjbBgBjkQ6HxH
+         elljndwFjRKgsH9X4u5jm7oIqIsEAW99u+iCxjYrqjKr2NhOhT9CON1c3S6S+09rrUF9
+         gW4BBPRCpExwWoIu5mlEyNLvCBNAPlpQbGMzPXyWkSq6H/2HuAd3Wj6ZMHpN0XJ6h/xE
+         mN9L/kS7NOb/61W5p94NOm9/ajVtgc8/74hNPIl4V/fl3sqt1lFcB0dCYijXjk0g5724
+         UOnbdrl5kI2Nea3W3vztyo8MoHbzj9hoqXYtIp+xq2fJvGhNvRtKILEPMSkWZVdAhyqW
+         tlVw==
+X-Gm-Message-State: APjAAAXJq0n1bVgSEcN5o6m52C7SjvA6Hbt4Fk7ULzMTx5VfdLFVhmuF
+        ER4CebFLPSxp4cyZoaZOKbz56dtvgKFG8HUPxk4=
+X-Google-Smtp-Source: APXvYqyR6CruPNYROHA1gS+xODfFPQgVwSBzFGUGReZxEolIGxk1Z8sJWGXQQ+OzCtK4IAAFLY2UQJdKdV/SFDZ2eKs=
+X-Received: by 2002:a02:878a:: with SMTP id t10mr393023jai.112.1562277450605;
+ Thu, 04 Jul 2019 14:57:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190703164822.17924-4-frank-w@public-files.de>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+References: <20190703171924.31801-1-paweldembicki@gmail.com>
+ <20190703171924.31801-5-paweldembicki@gmail.com> <CACRpkdYsA5437Sb8J539AJ=cYtnO2MiD7w7V_Emrmk8dNKbaEQ@mail.gmail.com>
+In-Reply-To: <CACRpkdYsA5437Sb8J539AJ=cYtnO2MiD7w7V_Emrmk8dNKbaEQ@mail.gmail.com>
+From:   =?UTF-8?Q?Pawe=C5=82_Dembicki?= <paweldembicki@gmail.com>
+Date:   Thu, 4 Jul 2019 23:57:19 +0200
+Message-ID: <CAJN1Kkydjopnd8tZ+RgRUNXW1k6ygFGaaFZvCzB+RDp1K6KFFg@mail.gmail.com>
+Subject: Re: [PATCH v2 4/4] net: dsa: vsc73xx: Assert reset if iCPU is enabled
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/07/2019 18:48:18+0200, Frank Wunderlich wrote:
-> @@ -271,14 +268,11 @@ static int mtk_rtc_probe(struct platform_device *pdev)
-> 
->  	platform_set_drvdata(pdev, rtc);
-> 
-> -	rtc->rtc_dev = devm_rtc_allocate_device(rtc->dev);
-> -	if (IS_ERR(rtc->rtc_dev))
-> -		return PTR_ERR(rtc->rtc_dev);
-> +	ret = devm_request_threaded_irq(&pdev->dev, rtc->irq, NULL,
-> +					mtk_rtc_irq_handler_thread,
-> +					IRQF_ONESHOT | IRQF_TRIGGER_HIGH,
-> +					"mt6397-rtc", rtc);
-> 
+On 4/7/19 09:22 Linus Walleij <linus.walleij@linaro.org> wrote:
+>
+> My devices do not have direct access to the reset line so I
+> can't assert reset no matter how I try, if it works for you, the
+> code is certainly better like this.
+>
 
-This change may lead to a crash and the allocation was intentionally
-placed before the irq request.
+In P2020RDB, VSC7385 reset is connected to GPIO. U-boot put binary
+file to iCPU and make VSC7385 unmanaged.
+However reset flush internal memory and iCPU stop.
+In this case bootlog looks like that:
 
-> -	ret = request_threaded_irq(rtc->irq, NULL,
-> -				   mtk_rtc_irq_handler_thread,
-> -				   IRQF_ONESHOT | IRQF_TRIGGER_HIGH,
-> -				   "mt6397-rtc", rtc);
->  	if (ret) {
->  		dev_err(&pdev->dev, "Failed to request alarm IRQ: %d: %d\n",
->  			rtc->irq, ret);
-> @@ -287,6 +281,10 @@ static int mtk_rtc_probe(struct platform_device *pdev)
-> 
->  	device_init_wakeup(&pdev->dev, 1);
-> 
-> +	rtc->rtc_dev = devm_rtc_allocate_device(&pdev->dev);
-> +	if (IS_ERR(rtc->rtc_dev))
-> +		return PTR_ERR(rtc->rtc_dev);
-> +
->  	rtc->rtc_dev->ops = &mtk_rtc_ops;
-> 
->  	ret = rtc_register_device(rtc->rtc_dev);
-> @@ -302,15 +300,6 @@ static int mtk_rtc_probe(struct platform_device *pdev)
->  	return ret;
->  }
-> 
-> -static int mtk_rtc_remove(struct platform_device *pdev)
-> -{
-> -	struct mt6397_rtc *rtc = platform_get_drvdata(pdev);
-> -
-> -	free_irq(rtc->irq, rtc);
-> -
-> -	return 0;
-> -}
-> -
->  #ifdef CONFIG_PM_SLEEP
->  static int mt6397_rtc_suspend(struct device *dev)
->  {
-> @@ -337,6 +326,7 @@ static SIMPLE_DEV_PM_OPS(mt6397_pm_ops, mt6397_rtc_suspend,
->  			mt6397_rtc_resume);
-> 
->  static const struct of_device_id mt6397_rtc_of_match[] = {
-> +	{ .compatible = "mediatek,mt6323-rtc", },
+[    2.989047] vsc73xx-platform ffb00000.switch: VSC7385 (rev: 2) switch found
+[    2.996192] vsc73xx-platform ffb00000.switch: iCPU enabled boots
+from PI/SI, no external memory
+[    3.005057] vsc73xx-platform ffb00000.switch: Chip seems to be out
+of control. Assert reset and try again.
+[    3.045034] vsc73xx-platform ffb00000.switch: VSC7385 (rev: 2) switch found
+[    3.052171] vsc73xx-platform ffb00000.switch: iCPU disabled, no
+external memory
 
-Unrelated change, this is not an improvement and must be accompanied by
-a documentation change.
-
->  	{ .compatible = "mediatek,mt6397-rtc", },
->  	{ }
->  };
-> @@ -349,7 +339,6 @@ static struct platform_driver mtk_rtc_driver = {
->  		.pm = &mt6397_pm_ops,
->  	},
->  	.probe	= mtk_rtc_probe,
-> -	.remove = mtk_rtc_remove,
->  };
-> 
->  module_platform_driver(mtk_rtc_driver);
-> --
-> 2.17.1
-> 
-
--- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Best Regards,
+Pawel Dembicki
