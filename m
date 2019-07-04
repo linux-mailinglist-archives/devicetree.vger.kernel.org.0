@@ -2,703 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 540D45F6E7
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 12:57:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8A3DE5F923
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 15:30:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727520AbfGDK4v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 06:56:51 -0400
-Received: from foss.arm.com ([217.140.110.172]:39074 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727385AbfGDK4v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Jul 2019 06:56:51 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9C7842B;
-        Thu,  4 Jul 2019 03:56:49 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7F62B3F703;
-        Thu,  4 Jul 2019 03:56:47 -0700 (PDT)
-Date:   Thu, 4 Jul 2019 11:56:42 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     "Z.q. Hou" <zhiqiang.hou@nxp.com>
-Cc:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "l.subrahmanya@mobiveil.co.in" <l.subrahmanya@mobiveil.co.in>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will.deacon@arm.com" <will.deacon@arm.com>,
-        Mingkai Hu <mingkai.hu@nxp.com>,
-        "M.h. Lian" <minghuan.lian@nxp.com>,
-        Xiaowei Bao <xiaowei.bao@nxp.com>
-Subject: Re: [PATCHv5 02/20] PCI: mobiveil: Format the code without
- functionality change
-Message-ID: <20190704105642.GA11693@e121166-lin.cambridge.arm.com>
-References: <20190412083635.33626-1-Zhiqiang.Hou@nxp.com>
- <20190412083635.33626-3-Zhiqiang.Hou@nxp.com>
- <20190703151905.GD26804@e121166-lin.cambridge.arm.com>
- <DB8PR04MB6747C634DDA37032FE29843084FA0@DB8PR04MB6747.eurprd04.prod.outlook.com>
+        id S1727092AbfGDNaS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 09:30:18 -0400
+Received: from 3.mo5.mail-out.ovh.net ([46.105.40.108]:34385 "EHLO
+        3.mo5.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727093AbfGDNaS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 09:30:18 -0400
+X-Greylist: delayed 7805 seconds by postgrey-1.27 at vger.kernel.org; Thu, 04 Jul 2019 09:30:17 EDT
+Received: from player698.ha.ovh.net (unknown [10.109.160.12])
+        by mo5.mail-out.ovh.net (Postfix) with ESMTP id CC4792427E7
+        for <devicetree@vger.kernel.org>; Thu,  4 Jul 2019 13:01:29 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player698.ha.ovh.net (Postfix) with ESMTPSA id 8525378DC2D5;
+        Thu,  4 Jul 2019 11:01:17 +0000 (UTC)
+From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Subject: [PATCH 1/1] ARM: dts: imx6ul: fix clock frequency property name of I2C buses
+Date:   Thu,  4 Jul 2019 13:00:53 +0200
+Message-Id: <20190704110053.19028-1-sebastien.szymanski@armadeus.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <DB8PR04MB6747C634DDA37032FE29843084FA0@DB8PR04MB6747.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 15891232762363794563
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrfedvgdefjecutefuodetggdotefrodftvfcurfhrohhfihhlvgemucfqggfjpdevjffgvefmvefgnecuuegrihhlohhuthemucehtddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmd
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 04, 2019 at 03:00:37AM +0000, Z.q. Hou wrote:
+A few boards set clock frequency of their I2C buses with
+"clock_frequency" property. The right property is "clock-frequency".
 
-[...]
+Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+---
+ arch/arm/boot/dts/imx6ul-14x14-evk.dtsi  | 2 +-
+ arch/arm/boot/dts/imx6ul-geam.dts        | 2 +-
+ arch/arm/boot/dts/imx6ul-isiot.dtsi      | 2 +-
+ arch/arm/boot/dts/imx6ul-pico-hobbit.dts | 2 +-
+ arch/arm/boot/dts/imx6ul-pico-pi.dts     | 4 ++--
+ 5 files changed, 6 insertions(+), 6 deletions(-)
 
-> > If you can manage to rebase patches on pci/mobiveil on top of v5.2-rc1,
-> > send them separately so that I can merge them as a base for the subsequent
-> > patches to be applied.
-> 
-> You meant send the patches one by one, which you requested to split, and
-> other patches without any changes can be send together, right?
+diff --git a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+index 9207d5d071f1..d556f7c541ce 100644
+--- a/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
++++ b/arch/arm/boot/dts/imx6ul-14x14-evk.dtsi
+@@ -112,7 +112,7 @@
+ };
+ 
+ &i2c2 {
+-	clock_frequency = <100000>;
++	clock-frequency = <100000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c2>;
+ 	status = "okay";
+diff --git a/arch/arm/boot/dts/imx6ul-geam.dts b/arch/arm/boot/dts/imx6ul-geam.dts
+index bc77f26a2f1d..6157a058feec 100644
+--- a/arch/arm/boot/dts/imx6ul-geam.dts
++++ b/arch/arm/boot/dts/imx6ul-geam.dts
+@@ -156,7 +156,7 @@
+ };
+ 
+ &i2c2 {
+-	clock_frequency = <100000>;
++	clock-frequency = <100000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c2>;
+ 	status = "okay";
+diff --git a/arch/arm/boot/dts/imx6ul-isiot.dtsi b/arch/arm/boot/dts/imx6ul-isiot.dtsi
+index 213e802bf35c..23e6e2e7ace9 100644
+--- a/arch/arm/boot/dts/imx6ul-isiot.dtsi
++++ b/arch/arm/boot/dts/imx6ul-isiot.dtsi
+@@ -148,7 +148,7 @@
+ };
+ 
+ &i2c2 {
+-	clock_frequency = <100000>;
++	clock-frequency = <100000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c2>;
+ 	status = "okay";
+diff --git a/arch/arm/boot/dts/imx6ul-pico-hobbit.dts b/arch/arm/boot/dts/imx6ul-pico-hobbit.dts
+index 39eeeddac39e..09f7ffa9ad8c 100644
+--- a/arch/arm/boot/dts/imx6ul-pico-hobbit.dts
++++ b/arch/arm/boot/dts/imx6ul-pico-hobbit.dts
+@@ -43,7 +43,7 @@
+ };
+ 
+ &i2c2 {
+-	clock_frequency = <100000>;
++	clock-frequency = <100000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c2>;
+ 	status = "okay";
+diff --git a/arch/arm/boot/dts/imx6ul-pico-pi.dts b/arch/arm/boot/dts/imx6ul-pico-pi.dts
+index de07357b27fc..6cd7d5877d20 100644
+--- a/arch/arm/boot/dts/imx6ul-pico-pi.dts
++++ b/arch/arm/boot/dts/imx6ul-pico-pi.dts
+@@ -43,7 +43,7 @@
+ };
+ 
+ &i2c2 {
+-	clock_frequency = <100000>;
++	clock-frequency = <100000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c2>;
+ 	status = "okay";
+@@ -58,7 +58,7 @@
+ };
+ 
+ &i2c3 {
+-	clock_frequency = <100000>;
++	clock-frequency = <100000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c3>;
+ 	status = "okay";
+-- 
+2.21.0
 
-First step, rebase my branch above against v5.2-rc1 *without* this
-patch. Then apply all the patches I requested to split (inclusive of
-this one) on top of it and send the whole patch series in one go.
-
-Please let me know if that's still unclear.
-
-Thanks,
-Lorenzo
-
-> > If you have any questions please ask, do not post patches if there is
-> > something that is not clear.
-> 
-> Yes, I'll, thanks for your guide again!
-> 
-> B.R,
-> Zhiqiang
-> 
-> > 
-> > Lorenzo
-> > 
-> > > diff --git a/drivers/pci/controller/pcie-mobiveil.c
-> > > b/drivers/pci/controller/pcie-mobiveil.c
-> > > index d55c7e780c6e..b87471f08a40 100644
-> > > --- a/drivers/pci/controller/pcie-mobiveil.c
-> > > +++ b/drivers/pci/controller/pcie-mobiveil.c
-> > > @@ -31,38 +31,40 @@
-> > >   * translation tables are grouped into windows, each window registers
-> > are
-> > >   * grouped into blocks of 4 or 16 registers each
-> > >   */
-> > > -#define PAB_REG_BLOCK_SIZE	16
-> > > -#define PAB_EXT_REG_BLOCK_SIZE	4
-> > > +#define PAB_REG_BLOCK_SIZE		16
-> > > +#define PAB_EXT_REG_BLOCK_SIZE		4
-> > >
-> > > -#define PAB_REG_ADDR(offset, win) (offset + (win *
-> > > PAB_REG_BLOCK_SIZE)) -#define PAB_EXT_REG_ADDR(offset, win) (offset
-> > +
-> > > (win * PAB_EXT_REG_BLOCK_SIZE))
-> > > +#define PAB_REG_ADDR(offset, win)	\
-> > > +	(offset + (win * PAB_REG_BLOCK_SIZE))
-> > > +#define PAB_EXT_REG_ADDR(offset, win)	\
-> > > +	(offset + (win * PAB_EXT_REG_BLOCK_SIZE))
-> > >
-> > > -#define LTSSM_STATUS		0x0404
-> > > -#define  LTSSM_STATUS_L0_MASK	0x3f
-> > > -#define  LTSSM_STATUS_L0	0x2d
-> > > +#define LTSSM_STATUS			0x0404
-> > > +#define  LTSSM_STATUS_L0_MASK		0x3f
-> > > +#define  LTSSM_STATUS_L0		0x2d
-> > >
-> > > -#define PAB_CTRL		0x0808
-> > > -#define  AMBA_PIO_ENABLE_SHIFT	0
-> > > -#define  PEX_PIO_ENABLE_SHIFT	1
-> > > -#define  PAGE_SEL_SHIFT	13
-> > > -#define  PAGE_SEL_MASK		0x3f
-> > > -#define  PAGE_LO_MASK		0x3ff
-> > > -#define  PAGE_SEL_OFFSET_SHIFT	10
-> > > +#define PAB_CTRL			0x0808
-> > > +#define  AMBA_PIO_ENABLE_SHIFT		0
-> > > +#define  PEX_PIO_ENABLE_SHIFT		1
-> > > +#define  PAGE_SEL_SHIFT			13
-> > > +#define  PAGE_SEL_MASK			0x3f
-> > > +#define  PAGE_LO_MASK			0x3ff
-> > > +#define  PAGE_SEL_OFFSET_SHIFT		10
-> > >
-> > > -#define PAB_AXI_PIO_CTRL	0x0840
-> > > -#define  APIO_EN_MASK		0xf
-> > > +#define PAB_AXI_PIO_CTRL		0x0840
-> > > +#define  APIO_EN_MASK			0xf
-> > >
-> > > -#define PAB_PEX_PIO_CTRL	0x08c0
-> > > -#define  PIO_ENABLE_SHIFT	0
-> > > +#define PAB_PEX_PIO_CTRL		0x08c0
-> > > +#define  PIO_ENABLE_SHIFT		0
-> > >
-> > >  #define PAB_INTP_AMBA_MISC_ENB		0x0b0c
-> > > -#define PAB_INTP_AMBA_MISC_STAT	0x0b1c
-> > > +#define PAB_INTP_AMBA_MISC_STAT		0x0b1c
-> > >  #define  PAB_INTP_INTX_MASK		0x01e0
-> > >  #define  PAB_INTP_MSI_MASK		0x8
-> > >
-> > > -#define PAB_AXI_AMAP_CTRL(win)	PAB_REG_ADDR(0x0ba0, win)
-> > > -#define  WIN_ENABLE_SHIFT	0
-> > > -#define  WIN_TYPE_SHIFT	1
-> > > +#define PAB_AXI_AMAP_CTRL(win)		PAB_REG_ADDR(0x0ba0, win)
-> > > +#define  WIN_ENABLE_SHIFT		0
-> > > +#define  WIN_TYPE_SHIFT			1
-> > >
-> > >  #define PAB_EXT_AXI_AMAP_SIZE(win)	PAB_EXT_REG_ADDR(0xbaf0,
-> > win)
-> > >
-> > > @@ -70,16 +72,16 @@
-> > >  #define  AXI_WINDOW_ALIGN_MASK		3
-> > >
-> > >  #define PAB_AXI_AMAP_PEX_WIN_L(win)	PAB_REG_ADDR(0x0ba8,
-> > win)
-> > > -#define  PAB_BUS_SHIFT		24
-> > > -#define  PAB_DEVICE_SHIFT	19
-> > > -#define  PAB_FUNCTION_SHIFT	16
-> > > +#define  PAB_BUS_SHIFT			24
-> > > +#define  PAB_DEVICE_SHIFT		19
-> > > +#define  PAB_FUNCTION_SHIFT		16
-> > >
-> > >  #define PAB_AXI_AMAP_PEX_WIN_H(win)	PAB_REG_ADDR(0x0bac,
-> > win)
-> > >  #define PAB_INTP_AXI_PIO_CLASS		0x474
-> > >
-> > > -#define PAB_PEX_AMAP_CTRL(win)	PAB_REG_ADDR(0x4ba0, win)
-> > > -#define  AMAP_CTRL_EN_SHIFT	0
-> > > -#define  AMAP_CTRL_TYPE_SHIFT	1
-> > > +#define PAB_PEX_AMAP_CTRL(win)		PAB_REG_ADDR(0x4ba0,
-> > win)
-> > > +#define  AMAP_CTRL_EN_SHIFT		0
-> > > +#define  AMAP_CTRL_TYPE_SHIFT		1
-> > >
-> > >  #define PAB_EXT_PEX_AMAP_SIZEN(win)	PAB_EXT_REG_ADDR(0xbef0,
-> > win)
-> > >  #define PAB_PEX_AMAP_AXI_WIN(win)	PAB_REG_ADDR(0x4ba4,
-> > win)
-> > > @@ -87,39 +89,39 @@
-> > >  #define PAB_PEX_AMAP_PEX_WIN_H(win)	PAB_REG_ADDR(0x4bac,
-> > win)
-> > >
-> > >  /* starting offset of INTX bits in status register */
-> > > -#define PAB_INTX_START	5
-> > > +#define PAB_INTX_START			5
-> > >
-> > >  /* supported number of MSI interrupts */
-> > > -#define PCI_NUM_MSI	16
-> > > +#define PCI_NUM_MSI			16
-> > >
-> > >  /* MSI registers */
-> > > -#define MSI_BASE_LO_OFFSET	0x04
-> > > -#define MSI_BASE_HI_OFFSET	0x08
-> > > -#define MSI_SIZE_OFFSET	0x0c
-> > > -#define MSI_ENABLE_OFFSET	0x14
-> > > -#define MSI_STATUS_OFFSET	0x18
-> > > -#define MSI_DATA_OFFSET	0x20
-> > > -#define MSI_ADDR_L_OFFSET	0x24
-> > > -#define MSI_ADDR_H_OFFSET	0x28
-> > > +#define MSI_BASE_LO_OFFSET		0x04
-> > > +#define MSI_BASE_HI_OFFSET		0x08
-> > > +#define MSI_SIZE_OFFSET			0x0c
-> > > +#define MSI_ENABLE_OFFSET		0x14
-> > > +#define MSI_STATUS_OFFSET		0x18
-> > > +#define MSI_DATA_OFFSET			0x20
-> > > +#define MSI_ADDR_L_OFFSET		0x24
-> > > +#define MSI_ADDR_H_OFFSET		0x28
-> > >
-> > >  /* outbound and inbound window definitions */
-> > > -#define WIN_NUM_0		0
-> > > -#define WIN_NUM_1		1
-> > > -#define CFG_WINDOW_TYPE	0
-> > > -#define IO_WINDOW_TYPE		1
-> > > -#define MEM_WINDOW_TYPE	2
-> > > -#define IB_WIN_SIZE		((u64)256 * 1024 * 1024 * 1024)
-> > > -#define MAX_PIO_WINDOWS	8
-> > > +#define WIN_NUM_0			0
-> > > +#define WIN_NUM_1			1
-> > > +#define CFG_WINDOW_TYPE			0
-> > > +#define IO_WINDOW_TYPE			1
-> > > +#define MEM_WINDOW_TYPE			2
-> > > +#define IB_WIN_SIZE			((u64)256 * 1024 * 1024 * 1024)
-> > > +#define MAX_PIO_WINDOWS			8
-> > >
-> > >  /* Parameters for the waiting for link up routine */
-> > > -#define LINK_WAIT_MAX_RETRIES	10
-> > > -#define LINK_WAIT_MIN	90000
-> > > -#define LINK_WAIT_MAX	100000
-> > > +#define LINK_WAIT_MAX_RETRIES		10
-> > > +#define LINK_WAIT_MIN			90000
-> > > +#define LINK_WAIT_MAX			100000
-> > >
-> > > -#define PAGED_ADDR_BNDRY			0xc00
-> > > -#define OFFSET_TO_PAGE_ADDR(off)		\
-> > > +#define PAGED_ADDR_BNDRY		0xc00
-> > > +#define OFFSET_TO_PAGE_ADDR(off)	\
-> > >  	((off & PAGE_LO_MASK) | PAGED_ADDR_BNDRY)
-> > > -#define OFFSET_TO_PAGE_IDX(off)			\
-> > > +#define OFFSET_TO_PAGE_IDX(off)		\
-> > >  	((off >> PAGE_SEL_OFFSET_SHIFT) & PAGE_SEL_MASK)
-> > >
-> > >  struct mobiveil_msi {			/* MSI information */
-> > > @@ -297,14 +299,14 @@ static void __iomem
-> > *mobiveil_pcie_map_bus(struct pci_bus *bus,
-> > >  					unsigned int devfn, int where)
-> > >  {
-> > >  	struct mobiveil_pcie *pcie = bus->sysdata;
-> > > +	u32 value;
-> > >
-> > >  	if (!mobiveil_pcie_valid_device(bus, devfn))
-> > >  		return NULL;
-> > >
-> > > -	if (bus->number == pcie->root_bus_nr) {
-> > > -		/* RC config access */
-> > > +	/* RC config access */
-> > > +	if (bus->number == pcie->root_bus_nr)
-> > >  		return pcie->csr_axi_slave_base + where;
-> > > -	}
-> > >
-> > >  	/*
-> > >  	 * EP config access (in Config/APIO space) @@ -312,10 +314,12 @@
-> > > static void __iomem *mobiveil_pcie_map_bus(struct pci_bus *bus,
-> > >  	 * (BDF) in PAB_AXI_AMAP_PEX_WIN_L0 Register.
-> > >  	 * Relies on pci_lock serialization
-> > >  	 */
-> > > -	csr_writel(pcie, bus->number << PAB_BUS_SHIFT |
-> > > -			PCI_SLOT(devfn) << PAB_DEVICE_SHIFT |
-> > > -			PCI_FUNC(devfn) << PAB_FUNCTION_SHIFT,
-> > > -			PAB_AXI_AMAP_PEX_WIN_L(WIN_NUM_0));
-> > > +	value = bus->number << PAB_BUS_SHIFT |
-> > > +		PCI_SLOT(devfn) << PAB_DEVICE_SHIFT |
-> > > +		PCI_FUNC(devfn) << PAB_FUNCTION_SHIFT;
-> > > +
-> > > +	csr_writel(pcie, value, PAB_AXI_AMAP_PEX_WIN_L(WIN_NUM_0));
-> > > +
-> > >  	return pcie->config_axi_slave_base + where;  }
-> > >
-> > > @@ -350,22 +354,22 @@ static void mobiveil_pcie_isr(struct irq_desc
-> > > *desc)
-> > >
-> > >  	/* Handle INTx */
-> > >  	if (intr_status & PAB_INTP_INTX_MASK) {
-> > > -		shifted_status = csr_readl(pcie, PAB_INTP_AMBA_MISC_STAT) >>
-> > > -			PAB_INTX_START;
-> > > +		shifted_status = csr_readl(pcie, PAB_INTP_AMBA_MISC_STAT);
-> > > +		shifted_status >>= PAB_INTX_START;
-> > >  		do {
-> > >  			for_each_set_bit(bit, &shifted_status, PCI_NUM_INTX) {
-> > >  				virq = irq_find_mapping(pcie->intx_domain,
-> > > -						bit + 1);
-> > > +							bit + 1);
-> > >  				if (virq)
-> > >  					generic_handle_irq(virq);
-> > >  				else
-> > > -					dev_err_ratelimited(dev,
-> > > -						"unexpected IRQ, INT%d\n", bit);
-> > > +					dev_err_ratelimited(dev, "unexpected IRQ,
-> > INT%d\n",
-> > > +							    bit);
-> > >
-> > >  				/* clear interrupt */
-> > >  				csr_writel(pcie,
-> > > -					shifted_status << PAB_INTX_START,
-> > > -					PAB_INTP_AMBA_MISC_STAT);
-> > > +					   shifted_status << PAB_INTX_START,
-> > > +					   PAB_INTP_AMBA_MISC_STAT);
-> > >  			}
-> > >  		} while ((shifted_status >> PAB_INTX_START) != 0);
-> > >  	}
-> > > @@ -375,8 +379,7 @@ static void mobiveil_pcie_isr(struct irq_desc
-> > > *desc)
-> > >
-> > >  	/* handle MSI interrupts */
-> > >  	while (msi_status & 1) {
-> > > -		msi_data = readl_relaxed(pcie->apb_csr_base
-> > > -				+ MSI_DATA_OFFSET);
-> > > +		msi_data = readl_relaxed(pcie->apb_csr_base +
-> > MSI_DATA_OFFSET);
-> > >
-> > >  		/*
-> > >  		 * MSI_STATUS_OFFSET register gets updated to zero @@ -385,18
-> > > +388,18 @@ static void mobiveil_pcie_isr(struct irq_desc *desc)
-> > >  		 * two dummy reads.
-> > >  		 */
-> > >  		msi_addr_lo = readl_relaxed(pcie->apb_csr_base +
-> > > -				MSI_ADDR_L_OFFSET);
-> > > +					    MSI_ADDR_L_OFFSET);
-> > >  		msi_addr_hi = readl_relaxed(pcie->apb_csr_base +
-> > > -				MSI_ADDR_H_OFFSET);
-> > > +					    MSI_ADDR_H_OFFSET);
-> > >  		dev_dbg(dev, "MSI registers, data: %08x, addr: %08x:%08x\n",
-> > > -				msi_data, msi_addr_hi, msi_addr_lo);
-> > > +			msi_data, msi_addr_hi, msi_addr_lo);
-> > >
-> > >  		virq = irq_find_mapping(msi->dev_domain, msi_data);
-> > >  		if (virq)
-> > >  			generic_handle_irq(virq);
-> > >
-> > >  		msi_status = readl_relaxed(pcie->apb_csr_base +
-> > > -				MSI_STATUS_OFFSET);
-> > > +					   MSI_STATUS_OFFSET);
-> > >  	}
-> > >
-> > >  	/* Clear the interrupt status */
-> > > @@ -413,7 +416,7 @@ static int mobiveil_pcie_parse_dt(struct
-> > > mobiveil_pcie *pcie)
-> > >
-> > >  	/* map config resource */
-> > >  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> > > -			"config_axi_slave");
-> > > +					   "config_axi_slave");
-> > >  	pcie->config_axi_slave_base = devm_pci_remap_cfg_resource(dev,
-> > res);
-> > >  	if (IS_ERR(pcie->config_axi_slave_base))
-> > >  		return PTR_ERR(pcie->config_axi_slave_base);
-> > > @@ -421,7 +424,7 @@ static int mobiveil_pcie_parse_dt(struct
-> > > mobiveil_pcie *pcie)
-> > >
-> > >  	/* map csr resource */
-> > >  	res = platform_get_resource_byname(pdev, IORESOURCE_MEM,
-> > > -			"csr_axi_slave");
-> > > +					   "csr_axi_slave");
-> > >  	pcie->csr_axi_slave_base = devm_pci_remap_cfg_resource(dev, res);
-> > >  	if (IS_ERR(pcie->csr_axi_slave_base))
-> > >  		return PTR_ERR(pcie->csr_axi_slave_base);
-> > > @@ -452,7 +455,7 @@ static int mobiveil_pcie_parse_dt(struct
-> > > mobiveil_pcie *pcie)  }
-> > >
-> > >  static void program_ib_windows(struct mobiveil_pcie *pcie, int
-> > win_num,
-> > > -		int pci_addr, u32 type, u64 size)
-> > > +			       int pci_addr, u32 type, u64 size)
-> > >  {
-> > >  	int pio_ctrl_val;
-> > >  	int amap_ctrl_dw;
-> > > @@ -465,19 +468,20 @@ static void program_ib_windows(struct
-> > mobiveil_pcie *pcie, int win_num,
-> > >  	}
-> > >
-> > >  	pio_ctrl_val = csr_readl(pcie, PAB_PEX_PIO_CTRL);
-> > > -	csr_writel(pcie,
-> > > -		pio_ctrl_val | (1 << PIO_ENABLE_SHIFT), PAB_PEX_PIO_CTRL);
-> > > -	amap_ctrl_dw = csr_readl(pcie, PAB_PEX_AMAP_CTRL(win_num));
-> > > -	amap_ctrl_dw = (amap_ctrl_dw | (type << AMAP_CTRL_TYPE_SHIFT));
-> > > -	amap_ctrl_dw = (amap_ctrl_dw | (1 << AMAP_CTRL_EN_SHIFT));
-> > > +	pio_ctrl_val |= 1 << PIO_ENABLE_SHIFT;
-> > > +	csr_writel(pcie, pio_ctrl_val, PAB_PEX_PIO_CTRL);
-> > >
-> > > -	csr_writel(pcie, amap_ctrl_dw | lower_32_bits(size64),
-> > > -		   PAB_PEX_AMAP_CTRL(win_num));
-> > > +	amap_ctrl_dw = csr_readl(pcie, PAB_PEX_AMAP_CTRL(win_num));
-> > > +	amap_ctrl_dw |= (type << AMAP_CTRL_TYPE_SHIFT) |
-> > > +			(1 << AMAP_CTRL_EN_SHIFT) |
-> > > +			lower_32_bits(size64);
-> > > +	csr_writel(pcie, amap_ctrl_dw, PAB_PEX_AMAP_CTRL(win_num));
-> > >
-> > >  	csr_writel(pcie, upper_32_bits(size64),
-> > >  		   PAB_EXT_PEX_AMAP_SIZEN(win_num));
-> > >
-> > >  	csr_writel(pcie, pci_addr, PAB_PEX_AMAP_AXI_WIN(win_num));
-> > > +
-> > >  	csr_writel(pcie, pci_addr, PAB_PEX_AMAP_PEX_WIN_L(win_num));
-> > >  	csr_writel(pcie, 0, PAB_PEX_AMAP_PEX_WIN_H(win_num));  } @@
-> > -486,7
-> > > +490,8 @@ static void program_ib_windows(struct mobiveil_pcie *pcie,
-> > int win_num,
-> > >   * routine to program the outbound windows
-> > >   */
-> > >  static void program_ob_windows(struct mobiveil_pcie *pcie, int
-> > win_num,
-> > > -		u64 cpu_addr, u64 pci_addr, u32 config_io_bit, u64 size)
-> > > +			       u64 cpu_addr, u64 pci_addr,
-> > > +			       u32 config_io_bit, u64 size)
-> > >  {
-> > >
-> > >  	u32 value, type;
-> > > @@ -505,7 +510,7 @@ static void program_ob_windows(struct
-> > mobiveil_pcie *pcie, int win_num,
-> > >  	type = config_io_bit;
-> > >  	value = csr_readl(pcie, PAB_AXI_AMAP_CTRL(win_num));
-> > >  	csr_writel(pcie, 1 << WIN_ENABLE_SHIFT | type << WIN_TYPE_SHIFT |
-> > > -			lower_32_bits(size64), PAB_AXI_AMAP_CTRL(win_num));
-> > > +		   lower_32_bits(size64), PAB_AXI_AMAP_CTRL(win_num));
-> > >
-> > >  	csr_writel(pcie, upper_32_bits(size64),
-> > > PAB_EXT_AXI_AMAP_SIZE(win_num));
-> > >
-> > > @@ -515,14 +520,14 @@ static void program_ob_windows(struct
-> > mobiveil_pcie *pcie, int win_num,
-> > >  	 */
-> > >  	value = csr_readl(pcie, PAB_AXI_AMAP_AXI_WIN(win_num));
-> > >  	csr_writel(pcie, cpu_addr & (~AXI_WINDOW_ALIGN_MASK),
-> > > -			PAB_AXI_AMAP_AXI_WIN(win_num));
-> > > +		   PAB_AXI_AMAP_AXI_WIN(win_num));
-> > >
-> > >  	value = csr_readl(pcie, PAB_AXI_AMAP_PEX_WIN_H(win_num));
-> > >
-> > >  	csr_writel(pcie, lower_32_bits(pci_addr),
-> > > -			PAB_AXI_AMAP_PEX_WIN_L(win_num));
-> > > +		   PAB_AXI_AMAP_PEX_WIN_L(win_num));
-> > >  	csr_writel(pcie, upper_32_bits(pci_addr),
-> > > -			PAB_AXI_AMAP_PEX_WIN_H(win_num));
-> > > +		   PAB_AXI_AMAP_PEX_WIN_H(win_num));
-> > >
-> > >  	pcie->ob_wins_configured++;
-> > >  }
-> > > @@ -538,7 +543,9 @@ static int mobiveil_bringup_link(struct
-> > > mobiveil_pcie *pcie)
-> > >
-> > >  		usleep_range(LINK_WAIT_MIN, LINK_WAIT_MAX);
-> > >  	}
-> > > +
-> > >  	dev_err(&pcie->pdev->dev, "link never came up\n");
-> > > +
-> > >  	return -ETIMEDOUT;
-> > >  }
-> > >
-> > > @@ -551,16 +558,16 @@ static void mobiveil_pcie_enable_msi(struct
-> > mobiveil_pcie *pcie)
-> > >  	msi->msi_pages_phys = (phys_addr_t)msg_addr;
-> > >
-> > >  	writel_relaxed(lower_32_bits(msg_addr),
-> > > -		pcie->apb_csr_base + MSI_BASE_LO_OFFSET);
-> > > +		       pcie->apb_csr_base + MSI_BASE_LO_OFFSET);
-> > >  	writel_relaxed(upper_32_bits(msg_addr),
-> > > -		pcie->apb_csr_base + MSI_BASE_HI_OFFSET);
-> > > +		       pcie->apb_csr_base + MSI_BASE_HI_OFFSET);
-> > >  	writel_relaxed(4096, pcie->apb_csr_base + MSI_SIZE_OFFSET);
-> > >  	writel_relaxed(1, pcie->apb_csr_base + MSI_ENABLE_OFFSET);  }
-> > >
-> > >  static int mobiveil_host_init(struct mobiveil_pcie *pcie)  {
-> > > -	u32 value, pab_ctrl, type = 0;
-> > > +	u32 value, pab_ctrl, type;
-> > >  	int err;
-> > >  	struct resource_entry *win, *tmp;
-> > >
-> > > @@ -575,26 +582,27 @@ static int mobiveil_host_init(struct
-> > mobiveil_pcie *pcie)
-> > >  	 * Space
-> > >  	 */
-> > >  	value = csr_readl(pcie, PCI_COMMAND);
-> > > -	csr_writel(pcie, value | PCI_COMMAND_IO |
-> > PCI_COMMAND_MEMORY |
-> > > -		PCI_COMMAND_MASTER, PCI_COMMAND);
-> > > +	value |= PCI_COMMAND_IO | PCI_COMMAND_MEMORY |
-> > PCI_COMMAND_MASTER;
-> > > +	csr_writel(pcie, value, PCI_COMMAND);
-> > >
-> > >  	/*
-> > >  	 * program PIO Enable Bit to 1 (and PEX PIO Enable to 1) in PAB_CTRL
-> > >  	 * register
-> > >  	 */
-> > >  	pab_ctrl = csr_readl(pcie, PAB_CTRL);
-> > > -	csr_writel(pcie, pab_ctrl | (1 << AMBA_PIO_ENABLE_SHIFT) |
-> > > -		(1 << PEX_PIO_ENABLE_SHIFT), PAB_CTRL);
-> > > +	pab_ctrl |= (1 << AMBA_PIO_ENABLE_SHIFT) | (1 <<
-> > PEX_PIO_ENABLE_SHIFT);
-> > > +	csr_writel(pcie, pab_ctrl, PAB_CTRL);
-> > >
-> > >  	csr_writel(pcie, (PAB_INTP_INTX_MASK | PAB_INTP_MSI_MASK),
-> > > -		PAB_INTP_AMBA_MISC_ENB);
-> > > +		   PAB_INTP_AMBA_MISC_ENB);
-> > >
-> > >  	/*
-> > >  	 * program PIO Enable Bit to 1 and Config Window Enable Bit to 1 in
-> > >  	 * PAB_AXI_PIO_CTRL Register
-> > >  	 */
-> > >  	value = csr_readl(pcie, PAB_AXI_PIO_CTRL);
-> > > -	csr_writel(pcie, value | APIO_EN_MASK, PAB_AXI_PIO_CTRL);
-> > > +	value |= APIO_EN_MASK;
-> > > +	csr_writel(pcie, value, PAB_AXI_PIO_CTRL);
-> > >
-> > >  	/*
-> > >  	 * we'll program one outbound window for config reads and @@
-> > -605,25
-> > > +613,25 @@ static int mobiveil_host_init(struct mobiveil_pcie *pcie)
-> > >
-> > >  	/* config outbound translation window */
-> > >  	program_ob_windows(pcie, pcie->ob_wins_configured,
-> > > -			pcie->ob_io_res->start, 0, CFG_WINDOW_TYPE,
-> > > -			resource_size(pcie->ob_io_res));
-> > > +			   pcie->ob_io_res->start, 0, CFG_WINDOW_TYPE,
-> > > +			   resource_size(pcie->ob_io_res));
-> > >
-> > >  	/* memory inbound translation window */
-> > >  	program_ib_windows(pcie, WIN_NUM_1, 0, MEM_WINDOW_TYPE,
-> > > IB_WIN_SIZE);
-> > >
-> > >  	/* Get the I/O and memory ranges from DT */
-> > >  	resource_list_for_each_entry_safe(win, tmp, &pcie->resources) {
-> > > -		type = 0;
-> > >  		if (resource_type(win->res) == IORESOURCE_MEM)
-> > >  			type = MEM_WINDOW_TYPE;
-> > > -		if (resource_type(win->res) == IORESOURCE_IO)
-> > > +		else if (resource_type(win->res) == IORESOURCE_IO)
-> > >  			type = IO_WINDOW_TYPE;
-> > > -		if (type) {
-> > > -			/* configure outbound translation window */
-> > > -			program_ob_windows(pcie, pcie->ob_wins_configured,
-> > > -				win->res->start, 0, type,
-> > > -				resource_size(win->res));
-> > > -		}
-> > > +		else
-> > > +			continue;
-> > > +
-> > > +		/* configure outbound translation window */
-> > > +		program_ob_windows(pcie, pcie->ob_wins_configured,
-> > > +				   win->res->start, 0, type,
-> > > +				   resource_size(win->res));
-> > >  	}
-> > >
-> > >  	/* setup MSI hardware registers */
-> > > @@ -643,7 +651,8 @@ static void mobiveil_mask_intx_irq(struct irq_data
-> > *data)
-> > >  	mask = 1 << ((data->hwirq + PAB_INTX_START) - 1);
-> > >  	raw_spin_lock_irqsave(&pcie->intx_mask_lock, flags);
-> > >  	shifted_val = csr_readl(pcie, PAB_INTP_AMBA_MISC_ENB);
-> > > -	csr_writel(pcie, (shifted_val & (~mask)), PAB_INTP_AMBA_MISC_ENB);
-> > > +	shifted_val &= ~mask;
-> > > +	csr_writel(pcie, shifted_val, PAB_INTP_AMBA_MISC_ENB);
-> > >  	raw_spin_unlock_irqrestore(&pcie->intx_mask_lock, flags);  }
-> > >
-> > > @@ -658,7 +667,8 @@ static void mobiveil_unmask_intx_irq(struct
-> > irq_data *data)
-> > >  	mask = 1 << ((data->hwirq + PAB_INTX_START) - 1);
-> > >  	raw_spin_lock_irqsave(&pcie->intx_mask_lock, flags);
-> > >  	shifted_val = csr_readl(pcie, PAB_INTP_AMBA_MISC_ENB);
-> > > -	csr_writel(pcie, (shifted_val | mask), PAB_INTP_AMBA_MISC_ENB);
-> > > +	shifted_val |= mask;
-> > > +	csr_writel(pcie, shifted_val, PAB_INTP_AMBA_MISC_ENB);
-> > >  	raw_spin_unlock_irqrestore(&pcie->intx_mask_lock, flags);  }
-> > >
-> > > @@ -672,10 +682,11 @@ static struct irq_chip intx_irq_chip = {
-> > >
-> > >  /* routine to setup the INTx related data */  static int
-> > > mobiveil_pcie_intx_map(struct irq_domain *domain, unsigned int irq,
-> > > -		irq_hw_number_t hwirq)
-> > > +				  irq_hw_number_t hwirq)
-> > >  {
-> > >  	irq_set_chip_and_handler(irq, &intx_irq_chip, handle_level_irq);
-> > >  	irq_set_chip_data(irq, domain->host_data);
-> > > +
-> > >  	return 0;
-> > >  }
-> > >
-> > > @@ -692,7 +703,7 @@ static struct irq_chip mobiveil_msi_irq_chip = {
-> > >
-> > >  static struct msi_domain_info mobiveil_msi_domain_info = {
-> > >  	.flags	= (MSI_FLAG_USE_DEF_DOM_OPS |
-> > MSI_FLAG_USE_DEF_CHIP_OPS |
-> > > -		MSI_FLAG_MULTI_PCI_MSI | MSI_FLAG_PCI_MSIX),
-> > > +		   MSI_FLAG_MULTI_PCI_MSI | MSI_FLAG_PCI_MSIX),
-> > >  	.chip	= &mobiveil_msi_irq_chip,
-> > >  };
-> > >
-> > > @@ -710,7 +721,7 @@ static void mobiveil_compose_msi_msg(struct
-> > > irq_data *data, struct msi_msg *msg)  }
-> > >
-> > >  static int mobiveil_msi_set_affinity(struct irq_data *irq_data,
-> > > -		const struct cpumask *mask, bool force)
-> > > +				     const struct cpumask *mask, bool force)
-> > >  {
-> > >  	return -EINVAL;
-> > >  }
-> > > @@ -722,7 +733,8 @@ static struct irq_chip
-> > > mobiveil_msi_bottom_irq_chip = {  };
-> > >
-> > >  static int mobiveil_irq_msi_domain_alloc(struct irq_domain *domain,
-> > > -		unsigned int virq, unsigned int nr_irqs, void *args)
-> > > +					 unsigned int virq,
-> > > +					 unsigned int nr_irqs, void *args)
-> > >  {
-> > >  	struct mobiveil_pcie *pcie = domain->host_data;
-> > >  	struct mobiveil_msi *msi = &pcie->msi; @@ -742,13 +754,13 @@ static
-> > > int mobiveil_irq_msi_domain_alloc(struct irq_domain *domain,
-> > >  	mutex_unlock(&msi->lock);
-> > >
-> > >  	irq_domain_set_info(domain, virq, bit,
-> > &mobiveil_msi_bottom_irq_chip,
-> > > -				domain->host_data, handle_level_irq,
-> > > -				NULL, NULL);
-> > > +			    domain->host_data, handle_level_irq, NULL, NULL);
-> > >  	return 0;
-> > >  }
-> > >
-> > >  static void mobiveil_irq_msi_domain_free(struct irq_domain *domain,
-> > > -		unsigned int virq, unsigned int nr_irqs)
-> > > +					 unsigned int virq,
-> > > +					 unsigned int nr_irqs)
-> > >  {
-> > >  	struct irq_data *d = irq_domain_get_irq_data(domain, virq);
-> > >  	struct mobiveil_pcie *pcie = irq_data_get_irq_chip_data(d); @@
-> > > -756,12 +768,11 @@ static void mobiveil_irq_msi_domain_free(struct
-> > > irq_domain *domain,
-> > >
-> > >  	mutex_lock(&msi->lock);
-> > >
-> > > -	if (!test_bit(d->hwirq, msi->msi_irq_in_use)) {
-> > > +	if (!test_bit(d->hwirq, msi->msi_irq_in_use))
-> > >  		dev_err(&pcie->pdev->dev, "trying to free unused MSI#%lu\n",
-> > >  			d->hwirq);
-> > > -	} else {
-> > > +	else
-> > >  		__clear_bit(d->hwirq, msi->msi_irq_in_use);
-> > > -	}
-> > >
-> > >  	mutex_unlock(&msi->lock);
-> > >  }
-> > > @@ -785,12 +796,14 @@ static int mobiveil_allocate_msi_domains(struct
-> > mobiveil_pcie *pcie)
-> > >  	}
-> > >
-> > >  	msi->msi_domain = pci_msi_create_irq_domain(fwnode,
-> > > -				&mobiveil_msi_domain_info, msi->dev_domain);
-> > > +						    &mobiveil_msi_domain_info,
-> > > +						    msi->dev_domain);
-> > >  	if (!msi->msi_domain) {
-> > >  		dev_err(dev, "failed to create MSI domain\n");
-> > >  		irq_domain_remove(msi->dev_domain);
-> > >  		return -ENOMEM;
-> > >  	}
-> > > +
-> > >  	return 0;
-> > >  }
-> > >
-> > > @@ -801,8 +814,8 @@ static int mobiveil_pcie_init_irq_domain(struct
-> > mobiveil_pcie *pcie)
-> > >  	int ret;
-> > >
-> > >  	/* setup INTx */
-> > > -	pcie->intx_domain = irq_domain_add_linear(node,
-> > > -				PCI_NUM_INTX, &intx_domain_ops, pcie);
-> > > +	pcie->intx_domain = irq_domain_add_linear(node, PCI_NUM_INTX,
-> > > +						  &intx_domain_ops, pcie);
-> > >
-> > >  	if (!pcie->intx_domain) {
-> > >  		dev_err(dev, "Failed to get a INTx IRQ domain\n"); @@ -917,10
-> > > +930,10 @@ MODULE_DEVICE_TABLE(of, mobiveil_pcie_of_match);
-> > static
-> > > struct platform_driver mobiveil_pcie_driver = {
-> > >  	.probe = mobiveil_pcie_probe,
-> > >  	.driver = {
-> > > -			.name = "mobiveil-pcie",
-> > > -			.of_match_table = mobiveil_pcie_of_match,
-> > > -			.suppress_bind_attrs = true,
-> > > -		},
-> > > +		.name = "mobiveil-pcie",
-> > > +		.of_match_table = mobiveil_pcie_of_match,
-> > > +		.suppress_bind_attrs = true,
-> > > +	},
-> > >  };
-> > >
-> > >  builtin_platform_driver(mobiveil_pcie_driver);
-> > > --
-> > > 2.17.1
-> > >
