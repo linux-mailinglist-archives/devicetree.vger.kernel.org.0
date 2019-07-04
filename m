@@ -2,109 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD2925F65F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 12:13:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B5565F66F
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 12:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727298AbfGDKNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 06:13:47 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:35852 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727249AbfGDKNq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Jul 2019 06:13:46 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id CD8581A0594;
-        Thu,  4 Jul 2019 12:13:44 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 5887A1A0157;
-        Thu,  4 Jul 2019 12:13:41 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id BE758402E1;
-        Thu,  4 Jul 2019 18:13:36 +0800 (SGT)
-From:   fugang.duan@nxp.com
-To:     festevam@gmail.com, shawnguo@kernel.org
-Cc:     daniel.baluta@gmail.com, fugang.duan@nxp.com,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH arm64/dts 1/1] arm64: dts: imx8qxp: add lpuart baud clock
-Date:   Thu,  4 Jul 2019 18:04:43 +0800
-Message-Id: <20190704100443.10957-1-fugang.duan@nxp.com>
-X-Mailer: git-send-email 2.14.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727487AbfGDKQM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 06:16:12 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:41225 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727249AbfGDKQM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 06:16:12 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1hiyma-0006Og-Vt; Thu, 04 Jul 2019 12:16:04 +0200
+Message-ID: <1562235363.6641.10.camel@pengutronix.de>
+Subject: Re: [PATCH V3 1/2] dt-bindings: reset: imx7: Add support for i.MX8MM
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Anson.Huang@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, leonard.crestez@nxp.com, ping.bai@nxp.com,
+        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Date:   Thu, 04 Jul 2019 12:16:03 +0200
+In-Reply-To: <20190704094416.4757-1-Anson.Huang@nxp.com>
+References: <20190704094416.4757-1-Anson.Huang@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fugang Duan <fugang.duan@nxp.com>
+Hi Anson,
 
-Add imx8qxp lpuart baud clock.
+On Thu, 2019-07-04 at 17:44 +0800, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
+> 
+> i.MX8MM can reuse i.MX8MQ's reset driver, update the compatible
+> property and related info to support i.MX8MM.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
+> Changes since V2:
+> 	- Add separate line for i.MX8MM in case anything different later for i.MX8MM.
+> ---
+>  Documentation/devicetree/bindings/reset/fsl,imx7-src.txt | 6 ++++--
+>  1 file changed, 4 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt b/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
+> index 13e0951..c2489e4 100644
+> --- a/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
+> +++ b/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
+> @@ -8,6 +8,7 @@ Required properties:
+>  - compatible:
+>  	- For i.MX7 SoCs should be "fsl,imx7d-src", "syscon"
+>  	- For i.MX8MQ SoCs should be "fsl,imx8mq-src", "syscon"
+> +	- For i.MX8MM SoCs should be "fsl,imx8mm-src", "fsl,imx8mq-src", "syscon"
+>  - reg: should be register base and length as documented in the
+>    datasheet
+>  - interrupts: Should contain SRC interrupt
+> @@ -46,5 +47,6 @@ Example:
+>  
+>  
+>  For list of all valid reset indices see
+> -<dt-bindings/reset/imx7-reset.h> for i.MX7 and
+> -<dt-bindings/reset/imx8mq-reset.h> for i.MX8MQ
+> +<dt-bindings/reset/imx7-reset.h> for i.MX7,
+> +<dt-bindings/reset/imx8mq-reset.h> for i.MX8MQ and
+> +<dt-bindings/reset/imx8mq-reset.h> for i.MX8MM
 
-Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
----
- arch/arm64/boot/dts/freescale/imx8qxp.dtsi | 23 +++++++++++++++--------
- 1 file changed, 15 insertions(+), 8 deletions(-)
+The last line is misleading, as that file contains reset indices that
+are invalid for i.MX8MM.
 
-diff --git a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-index 05fa0b7..4402b2e 100644
---- a/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8qxp.dtsi
-@@ -30,6 +30,9 @@
- 		mmc2 = &usdhc3;
- 		mu1 = &lsio_mu1;
- 		serial0 = &adma_lpuart0;
-+		serial1 = &adma_lpuart1;
-+		serial2 = &adma_lpuart2;
-+		serial3 = &adma_lpuart3;
- 	};
- 
- 	cpus {
-@@ -209,8 +212,9 @@
- 			reg = <0x5a060000 0x1000>;
- 			interrupts = <GIC_SPI 225 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-parent = <&gic>;
--			clocks = <&adma_lpcg IMX_ADMA_LPCG_UART0_BAUD_CLK>;
--			clock-names = "ipg";
-+			clocks = <&adma_lpcg IMX_ADMA_LPCG_UART0_IPG_CLK>,
-+				 <&adma_lpcg IMX_ADMA_LPCG_UART0_BAUD_CLK>;
-+			clock-names = "ipg", "baud";
- 			power-domains = <&pd IMX_SC_R_UART_0>;
- 			status = "disabled";
- 		};
-@@ -220,8 +224,9 @@
- 			reg = <0x5a070000 0x1000>;
- 			interrupts = <GIC_SPI 226 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-parent = <&gic>;
--			clocks = <&adma_lpcg IMX_ADMA_LPCG_UART1_BAUD_CLK>;
--			clock-names = "ipg";
-+			clocks = <&adma_lpcg IMX_ADMA_LPCG_UART1_IPG_CLK>,
-+				 <&adma_lpcg IMX_ADMA_LPCG_UART1_BAUD_CLK>;
-+			clock-names = "ipg", "baud";
- 			power-domains = <&pd IMX_SC_R_UART_1>;
- 			status = "disabled";
- 		};
-@@ -231,8 +236,9 @@
- 			reg = <0x5a080000 0x1000>;
- 			interrupts = <GIC_SPI 227 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-parent = <&gic>;
--			clocks = <&adma_lpcg IMX_ADMA_LPCG_UART2_BAUD_CLK>;
--			clock-names = "ipg";
-+			clocks = <&adma_lpcg IMX_ADMA_LPCG_UART2_IPG_CLK>,
-+				 <&adma_lpcg IMX_ADMA_LPCG_UART2_BAUD_CLK>;
-+			clock-names = "ipg", "baud";
- 			power-domains = <&pd IMX_SC_R_UART_2>;
- 			status = "disabled";
- 		};
-@@ -242,8 +248,9 @@
- 			reg = <0x5a090000 0x1000>;
- 			interrupts = <GIC_SPI 228 IRQ_TYPE_LEVEL_HIGH>;
- 			interrupt-parent = <&gic>;
--			clocks = <&adma_lpcg IMX_ADMA_LPCG_UART3_BAUD_CLK>;
--			clock-names = "ipg";
-+			clocks = <&adma_lpcg IMX_ADMA_LPCG_UART3_IPG_CLK>,
-+				 <&adma_lpcg IMX_ADMA_LPCG_UART3_BAUD_CLK>;
-+			clock-names = "ipg", "baud";
- 			power-domains = <&pd IMX_SC_R_UART_3>;
- 			status = "disabled";
- 		};
--- 
-2.7.4
-
+regards
+Philipp
