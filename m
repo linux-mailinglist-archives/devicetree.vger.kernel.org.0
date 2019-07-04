@@ -2,81 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1C0745F32B
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 09:02:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81C135F333
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 09:05:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726139AbfGDHCm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 03:02:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58504 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725920AbfGDHCm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Jul 2019 03:02:42 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E9F8A2133F;
-        Thu,  4 Jul 2019 07:02:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562223761;
-        bh=0oIb/xCT3XLGQm//gpuwzJhTfVxSSNj2HGbdu4q2mfo=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=kjkmVNUHh0i1R1QHDk14Ed8hJdp8t230pxRxwJn6cLt81ivp639YfvpxGTRi7tn0h
-         /J/az8RDFGBthzhsjX6ZC/A/W8fGVcfRvEDa35V/zj0ML+uR/v7GTNksOtZd+31Wkp
-         L//KiTeWpyM1eP0YTr9N/I570G2ubODK7xbbowhI=
-Date:   Thu, 4 Jul 2019 09:02:39 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Cc:     Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Leo Yan <leo.yan@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        David Brown <david.brown@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>
-Subject: Re: [PATCHv5 1/2] dt-bindings: coresight: Change CPU phandle to
- required property
-Message-ID: <20190704070239.GB32707@kroah.com>
-References: <cover.1561659046.git.saiprakash.ranjan@codeaurora.org>
- <2afedb941294af7ba0658496b4aca3759a4e43ff.1561659046.git.saiprakash.ranjan@codeaurora.org>
- <CANLsYkxvh+qUDvqG45o7qh61Noq=a=BJ4-p68ipdzxYt6n5bNA@mail.gmail.com>
- <8fb5947e-acf8-faff-5594-2a32151ebee7@codeaurora.org>
+        id S1727313AbfGDHFR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 03:05:17 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:42052 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726698AbfGDHFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 03:05:16 -0400
+Received: by mail-lf1-f66.google.com with SMTP id s19so2756533lfb.9
+        for <devicetree@vger.kernel.org>; Thu, 04 Jul 2019 00:05:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2/jhMVFWL9zAP6DASgDxWvKe4pRoCVY+Bzzlbxt4Sws=;
+        b=qwDSVwsECgzZhe2WwlG1p8BOPlPHnzsNTaQt1KS8uYPGmdPXJqoI8dUKZa4N9BH/bQ
+         O7QOMjn0trVW6NJLJAgx1IQA8mYmF2lT6hZqFMtVdWO5d7EKSxWkwVQeA51/LKFBQFeR
+         JfWOVSjVV3Af/VORKOstlu0LPLSn+zx1e+VbFF6GbnJnmvY/KumjMcv+KeAbxHIJFwHg
+         47dCJgb1rCk/k6pxP9MR2KHQI7uoBai+qnkxbSrfGXVxvqclUX3PzMMxApCEHCY2xU6N
+         vWNlOxTyomJ9DxPxQU4YiQJgFKC/tJkybV4VdVUcFXD85U/wq+refUau9H/AEzpPCUtB
+         39AA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2/jhMVFWL9zAP6DASgDxWvKe4pRoCVY+Bzzlbxt4Sws=;
+        b=nYEq6k8QhBtS4cX5zzXPNtQTdz2HwNO6xWxpgNcPoWaeQyU4KUVhC9ySWriN3KLJxg
+         5TMacNupjUMcqQZXsxx6c8kCuD+nARCupD+ftXEIcSeuqo6om2vBPQ3qubX8bYJ4W7EZ
+         gZybvESSTNfC89jS1bvH1x3olYoU2Uy1Qcp5xiDNzpqAQp7MqtO1KaCkiFOiTF9WfU3r
+         VzSeAi417NDas5dgg81JAhmavp4TjfURo8+rtJbItPyqQfcw0wq9vylwZB8WqNB1zeRf
+         atD8IYm3HaX7n4fUCSQTnOEe7P35Y3x4o/C+pDsGqYK3w0E+tkeQbhtb4lkPloCFxVJk
+         5Okw==
+X-Gm-Message-State: APjAAAVubhPdjXXB40FOMGHi4HX7/e1tww7La1FxuXJ/d6X/PGl2/BOb
+        +xjLin/tMY9RrFn0Fok0iOFliaN8FBbJ9vI4TxYoAA==
+X-Google-Smtp-Source: APXvYqxQCD23eaeoAJhpEZfOc2Of9fwPsf/stmR5iwxoFFdrgqdv4D53+o/uLeap0VPJozhN950Mm7ck5RTeeImezjQ=
+X-Received: by 2002:ac2:5c42:: with SMTP id s2mr4161503lfp.61.1562223914898;
+ Thu, 04 Jul 2019 00:05:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <8fb5947e-acf8-faff-5594-2a32151ebee7@codeaurora.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <20190703171924.31801-1-paweldembicki@gmail.com> <20190703171924.31801-2-paweldembicki@gmail.com>
+In-Reply-To: <20190703171924.31801-2-paweldembicki@gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Thu, 4 Jul 2019 09:05:03 +0200
+Message-ID: <CACRpkdb5LonYLpbOHj=Oo8Z7XjVUWoO0CuhOokxfSoY_fRinPw@mail.gmail.com>
+Subject: Re: [PATCH v2 1/4] net: dsa: Change DT bindings for Vitesse VSC73xx switches
+To:     Pawel Dembicki <paweldembicki@gmail.com>
+Cc:     Andrew Lunn <andrew@lunn.ch>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        netdev <netdev@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 04, 2019 at 12:13:40PM +0530, Sai Prakash Ranjan wrote:
-> On 7/4/2019 1:32 AM, Mathieu Poirier wrote:
-> > Hi Greg,
-> > 
-> > On Thu, 27 Jun 2019 at 12:15, Sai Prakash Ranjan
-> > <saiprakash.ranjan@codeaurora.org> wrote:
-> > > 
-> > > Do not assume the affinity to CPU0 if cpu phandle is omitted.
-> > > Update the DT binding rules to reflect the same by changing it
-> > > to a required property.
-> > > 
-> > > Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-> > > Reviewed-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> > 
-> > I'm all good with this patch - can you pick this up for the coming
-> > merge window?  If not I'll simply keep it in my tree for 5.4.
-> > 
-> > Tested-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > 
-> 
-> I think you missed adding Greg, adding him now ;)
+On Wed, Jul 3, 2019 at 7:21 PM Pawel Dembicki <paweldembicki@gmail.com> wrote:
 
-I don't see any patch here for me to actually take :(
+> This commit introduce how to use vsc73xx platform driver.
+>
+> Signed-off-by: Pawel Dembicki <paweldembicki@gmail.com>
+
+Nice!
+
+> +If Platform driver is used, the device tree node is an platform device so it
+> +must reside inside a platform bus device tree node.
+
+I would write something like "when connected to a memory bus, and
+used in memory-mapped I/O mode, a platform device is used to represent
+the vsc73xx" so it is clear what is going on.
+
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
