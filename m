@@ -2,65 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 46E2B5F95F
-	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 15:53:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9920D5F969
+	for <lists+devicetree@lfdr.de>; Thu,  4 Jul 2019 15:53:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727044AbfGDNxH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 09:53:07 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:55686 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727026AbfGDNxH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 4 Jul 2019 09:53:07 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 687B7200D9A;
-        Thu,  4 Jul 2019 15:53:05 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 27095200D9D;
-        Thu,  4 Jul 2019 15:53:00 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 6A9B9402C0;
-        Thu,  4 Jul 2019 21:52:53 +0800 (SGT)
-From:   fugang.duan@nxp.com
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org
-Cc:     gregkh@linuxfoundation.org, festevam@gmail.com,
-        daniel.baluta@gmail.com, fugang.duan@nxp.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH RESEND 1/1] dt-bindings: serial: lpuart: add the clock requirement for imx8qxp
-Date:   Thu,  4 Jul 2019 21:43:55 +0800
-Message-Id: <20190704134355.2402-1-fugang.duan@nxp.com>
-X-Mailer: git-send-email 2.14.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727251AbfGDNxu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 09:53:50 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:9182 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727026AbfGDNxu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 09:53:50 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d1e04eb0000>; Thu, 04 Jul 2019 06:53:47 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Thu, 04 Jul 2019 06:53:48 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Thu, 04 Jul 2019 06:53:48 -0700
+Received: from [10.21.132.148] (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 4 Jul
+ 2019 13:53:46 +0000
+Subject: Re: [PATCH 6/8] phy: tegra: xusb: t210: support wake and sleepwalk
+To:     JC Kuo <jckuo@nvidia.com>, <gregkh@linuxfoundation.org>,
+        <thierry.reding@gmail.com>, <pdeschrijver@nvidia.com>,
+        <afrid@nvidia.com>
+CC:     <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <nkristam@nvidia.com>,
+        <skomatineni@nvidia.com>
+References: <20190614074824.22023-1-jckuo@nvidia.com>
+ <20190614074824.22023-2-jckuo@nvidia.com>
+From:   Jon Hunter <jonathanh@nvidia.com>
+Message-ID: <70ba0026-1e93-61ef-bec8-c10963870b4f@nvidia.com>
+Date:   Thu, 4 Jul 2019 14:53:44 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
+MIME-Version: 1.0
+In-Reply-To: <20190614074824.22023-2-jckuo@nvidia.com>
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1562248427; bh=QX1/bASO94P51PT7/EjtJR+0a47ax7pts7qSYTKjBx0=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Language:
+         Content-Transfer-Encoding;
+        b=VeJ6DJFdc/S45F16ZEbEjqR9wmt4vBw0c1p0JkW1N0JDR2FS2oBNH2bkUsmAo/I0p
+         pSKwee+3ytwqI2jE2YcekbOyBhIU+il2tikYLw8WQIL8YEoLKo2e8qdu3GpRwXef62
+         gzMC4CWjDzyNmX0JZSUXfe0sGzuuiVfWbXbIwyFn1nW2ohTerDG+VmxKLHTldQQ9+q
+         xkJHJPZGr/Fr1m7FLCR0/ly1ZVwWdkN764DkIJExx+ETVo43FRtmngptk9VbzmsvWT
+         r+cEnhNNChUJ+zccclOPKbeR11dVecYkxf6eyY2rZbh4/jxuCakXy9Nqy1ZEcUS6Ut
+         k1mCHUnyOAzYA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Fugang Duan <fugang.duan@nxp.com>
 
-Add the baud clock requirement for imx8qxp.
+On 14/06/2019 08:48, JC Kuo wrote:
+> This commit implements Tegra210 XUSB PADCTL wake and sleepwalk
+> routines.
 
-Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
----
- Documentation/devicetree/bindings/serial/fsl-lpuart.txt | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+This patch does not apply cleanly. I am not sure how this was generated
+but appears to come from windows (with ^M end of line character). Please
+fix this.
 
-diff --git a/Documentation/devicetree/bindings/serial/fsl-lpuart.txt b/Documentation/devicetree/bindings/serial/fsl-lpuart.txt
-index 21483ba..3495eee 100644
---- a/Documentation/devicetree/bindings/serial/fsl-lpuart.txt
-+++ b/Documentation/devicetree/bindings/serial/fsl-lpuart.txt
-@@ -13,7 +13,10 @@ Required properties:
- - reg : Address and length of the register set for the device
- - interrupts : Should contain uart interrupt
- - clocks : phandle + clock specifier pairs, one for each entry in clock-names
--- clock-names : should contain: "ipg" - the uart clock
-+- clock-names : For vf610/ls1021a/imx7ulp, "ipg" clock is for uart bus/baud
-+  clock. For imx8qxp lpuart, "ipg" clock is bus clock that is used to access
-+  lpuart controller registers, it also requires "baud" clock for module to
-+  receive/transmit data.
- 
- Optional properties:
- - dmas: A list of two dma specifiers, one for each entry in dma-names.
+Alot of these enable/disble functions looks very similar; programming
+the same registers just with different bits. Maybe worth considering
+consolidating these functions.
+
+Cheers
+Jon
+
 -- 
-2.7.4
-
+nvpublic
