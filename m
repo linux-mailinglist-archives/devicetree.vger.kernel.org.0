@@ -2,187 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E16105FEAC
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 01:32:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 282925FF0A
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 02:26:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727443AbfGDXcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 4 Jul 2019 19:32:24 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:39874 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726038AbfGDXcX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 4 Jul 2019 19:32:23 -0400
-Received: by mail-ed1-f68.google.com with SMTP id m10so6657091edv.6;
-        Thu, 04 Jul 2019 16:32:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=cX6nHtTKELS0nlqmaRfVAhra97bpjvwlsmKbwJvPrso=;
-        b=rxl1wTXi046K+QqtyHJvHyAJgrlScrICo4IcfjX78f7TBSCH6gB+2yKRSQChPuc0x2
-         6so96zGpdM1L5QmCnq3tQqZZJHTtqc6z5VtiaKA/xM14WOkTv7KfSp+9GE6j+n4k/gLb
-         FH/XIN6SSU/8GfvtL57cO4NYTDiZHE+roDOuZng/6OcVdu7/UVItQzAIYDL100fB3TGl
-         MHBbmZRYz+I7LW0kIVIK77oU7leOx9DDqh8VXyJEWysbfH3g0V9BirA/CZAqdCAp/JD6
-         exjODXOaliCajA2UgpL95TJlvOy2kfpVZaIDFnfTHWio87wMdnxWdnanWXzv2TQ1toXk
-         3gPA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=cX6nHtTKELS0nlqmaRfVAhra97bpjvwlsmKbwJvPrso=;
-        b=PgY9Bf8Kk87KuGC6Igy1OugcD/xKh5uSX9jlF6lahaZmtgPPUahi+WbpJkOC6nMmJR
-         ZwqrSuTxjvNcpJ0vmLA/vZpI7C0Vf2fxVH2gonsSHsAZt5st2cI0pZ5wgSUMcwSLXEGZ
-         E/Zgb/IKt8Ge3kvXxbX0jKBDsnL1z66Xh214lvELN+OP3GCKnW+ybn7raHXTpcZ58Nkq
-         EQUE663K4V+VpbZHriXcnMQprWJGOHq4hpjft9T0lJ0hh+rx7I4he5cETnLETXwJPawR
-         4oRcyh80HroNdPXRdikPREDiPLy1dxHn2MIMOBMnTdby4DPoGLOlxS2OEcMv2mMHfLVE
-         9qOQ==
-X-Gm-Message-State: APjAAAWjgqH/gEGX+x4Fk/iTeZ2bNI15+2RTwQ5rBjLwo9+fNCOenkST
-        ExvUwGO6ZUN3rscbpVaOUBybvogBXkq3KibcUzw=
-X-Google-Smtp-Source: APXvYqwubu8GnrljQuP6hpQyT0Bj/7SRpfGpd1V8szw8gCaTzMPhkSeoUuAvBgEbpax9UIQXw7I/eJvRRVTgRPDSEf8=
-X-Received: by 2002:a50:aa14:: with SMTP id o20mr1159284edc.165.1562283141133;
- Thu, 04 Jul 2019 16:32:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <1561131532-14860-1-git-send-email-claudiu.manoil@nxp.com>
- <1561131532-14860-5-git-send-email-claudiu.manoil@nxp.com>
- <20190621164940.GL31306@lunn.ch> <VI1PR04MB4880D8F90BBCD30BF8A69C9696E00@VI1PR04MB4880.eurprd04.prod.outlook.com>
- <20190624115558.GA5690@piout.net> <20190624142625.GR31306@lunn.ch>
- <20190624152344.3bv46jjhhygo6zwl@lx-anielsen.microsemi.net>
- <20190624162431.GX31306@lunn.ch> <20190624182614.GC5690@piout.net>
-In-Reply-To: <20190624182614.GC5690@piout.net>
-From:   Vladimir Oltean <olteanv@gmail.com>
-Date:   Fri, 5 Jul 2019 02:32:09 +0300
-Message-ID: <CA+h21hqGtA5ou7a3wjSuHxa_4fXk4GZohTAxnUdfLZjV3nq5Eg@mail.gmail.com>
-Subject: Re: [PATCH net-next 4/6] arm64: dts: fsl: ls1028a: Add Felix switch
- port DT node
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>,
-        "Allan W. Nielsen" <allan.nielsen@microchip.com>,
-        Claudiu Manoil <claudiu.manoil@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>,
+        id S1727115AbfGEA0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 4 Jul 2019 20:26:43 -0400
+Received: from mail-eopbgr30087.outbound.protection.outlook.com ([40.107.3.87]:63185
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727093AbfGEA0m (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 4 Jul 2019 20:26:42 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WGziptvsj5NuUVTGH1rzLHrnPaAuypv9P4eX/Pp1EAU=;
+ b=ECL3zQYj0FpA3jFhuDSM7N2Y9edrXBKmmQUTWQ6FwJZL1gYfrz4kKCqzKZPiruRZx53yZNDQD+uauZPghxzC+es3kFFohyEEA55uvzQVE7QqHHCo79cBZdDSwxCBMhW9A95nWdEAyyCs2iza4z4mnJ6qAIBzr7617/R8obA5PDs=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3755.eurprd04.prod.outlook.com (52.134.71.155) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2052.18; Fri, 5 Jul 2019 00:26:38 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::3945:fcda:5bdd:8191]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::3945:fcda:5bdd:8191%4]) with mapi id 15.20.2052.010; Fri, 5 Jul 2019
+ 00:26:38 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Alexandru Marginean <alexandru.marginean@nxp.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
-        Allan Nielsen <Allan.Nielsen@microsemi.com>,
-        Rob Herring <robh+dt@kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+CC:     dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH V3 1/2] dt-bindings: reset: imx7: Add support for i.MX8MM
+Thread-Topic: [PATCH V3 1/2] dt-bindings: reset: imx7: Add support for i.MX8MM
+Thread-Index: AQHVMk5T8ePkVlGuXEKfzs7Ixfs7tqa6PluAgADs2ZA=
+Date:   Fri, 5 Jul 2019 00:26:38 +0000
+Message-ID: <DB3PR0402MB39167B9A3CFAE6D8798B3CAEF5F50@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+References: <20190704094416.4757-1-Anson.Huang@nxp.com>
+ <1562235363.6641.10.camel@pengutronix.de>
+In-Reply-To: <1562235363.6641.10.camel@pengutronix.de>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 3f3ca13b-04a9-4221-ea51-08d700df7201
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3755;
+x-ms-traffictypediagnostic: DB3PR0402MB3755:
+x-microsoft-antispam-prvs: <DB3PR0402MB37558948A0E7C199FDCA580EF5F50@DB3PR0402MB3755.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 008960E8EC
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(366004)(376002)(39860400002)(136003)(396003)(199004)(189003)(305945005)(6436002)(7736002)(478600001)(25786009)(53936002)(99286004)(2501003)(7696005)(26005)(446003)(11346002)(186003)(110136005)(486006)(81166006)(66556008)(8676002)(229853002)(81156014)(256004)(316002)(64756008)(66946007)(66476007)(66446008)(76116006)(476003)(73956011)(74316002)(8936002)(44832011)(2906002)(14444005)(76176011)(6246003)(71200400001)(5660300002)(9686003)(86362001)(55016002)(33656002)(6506007)(71190400001)(68736007)(2201001)(52536014)(14454004)(66066001)(3846002)(6116002)(4326008)(102836004)(7416002)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3755;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 6jZk33i6j0vGIuTyoG10V9qUbvgqy2ipVxr+TYsa2zWEVUFJS97IF4I0rYgf2zg+6FV0XTYOHuhMSSbWZIZtuKq05VBiYW9wn8azb44CXh0Wn/+L19fuKM/mhezWkdkKvcjoQqv1XMww2AjqJ+tX1mDVImHLlfrjaasqVyaxCEV4HN+27Kzukw9QNEce0n3zOxwOtaODvP75uJtj4cxxHHb0qMESolkAWhMjCTTT2rKQRjz31tl1TkxW0HrbYxvWAGuV7dSCtKcVMd4GoRvlUmNILDl3PKs5/Cs2K1gRn6raD7P4pkmCpNOagQLBSL6k2ImntDwRGgbDcSMVHKzKRPaXmoM6xFI0oZvFAPr6eEgds8Fvnv2IQDl5moqxWjIzNJemTjChpTavBJOdNoihga7oWFvKiy+8zCtr4JxFr3c=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 3f3ca13b-04a9-4221-ea51-08d700df7201
+X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jul 2019 00:26:38.5320
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3755
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 25 Jun 2019 at 00:23, Alexandre Belloni
-<alexandre.belloni@bootlin.com> wrote:
->
-> On 24/06/2019 18:24:31+0200, Andrew Lunn wrote:
-> > On Mon, Jun 24, 2019 at 05:23:45PM +0200, Allan W. Nielsen wrote:
-> > > Hi Andrew,
-> > >
-> > > The 06/24/2019 16:26, Andrew Lunn wrote:
-> > > > > > Yeah, there are 2 ethernet controller ports (managed by the enetc driver)
-> > > > > > connected inside the SoC via SGMII links to 2 of the switch ports, one of
-> > > > > > these switch ports can be configured as CPU port (with follow-up patches).
-> > > > > >
-> > > > > > This configuration may look prettier on DSA, but the main restriction here
-> > > > > > is that the entire functionality is provided by the ocelot driver which is a
-> > > > > > switchdev driver.  I don't think it would be a good idea to copy-paste code
-> > > > > > from ocelot to a separate dsa driver.
-> > > > > >
-> > > > >
-> > > > > We should probably make the ocelot driver a DSA driver then...
-> > > > An important part of DSA is being able to direct frames out specific
-> > > > ports when they ingress via the CPU port. Does the silicon support
-> > > > this? At the moment, i think it is using polled IO.
-> > >
-> > > That is supported, it requires a bit of initial configuration of the Chip, but
-> > > nothing big (I believe this configuration is part of Claudiu's change-set).
-> > >
-> > > But how do you envision this done?
-> > >
-> > > - Let the existing SwitchDev driver and the DSA driver use a set of common
-> > >   functions.
-> > > - Convert the existing Ocelot driver from SwitchDev to DSA
-> > > - Fork (copy) the existing driver of Ocelot, and modify it as needed for the
-> > >   Felix driver
-> > >
-> > > My guess is the first one, but I would like to understand what you have in mind.
-> >
-> > I don't know the various architectures the switch is used in. But it
-> > does seem like a core library, and then a switchdev wrapper for Ocelot
-> > and a DSA wrapper for Felix would make sense.
->
-> Ocelot could also be used in a DSA setting where one port can be
-> connected to an external MAC and be used to inject/extract frames
-> to/from any other ports. In that case, the IFH would serve as the DSA
-> tag.
->
->
-> --
-> Alexandre Belloni, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-
-Hi everyone,
-
-Thank you for the nice discussion.
-I've been talking off-list to Claudiu and Alexandru about switchdev vs
-DSA for the Felix/Ocelot switches.
-My initial reaction was the same as Andrew's - there's a CPU-facing
-Ethernet MAC with some vendor-defined injection and extraction
-headers? Sounds like DSA.
-But then we discussed about what DSA for Felix/Ocelot would look like.
-Here are some points to consider:
-- DSA is typically used for discrete switches, switchdev is typically
-used for embedded ones. As far as I understand from Allan's message,
-Ocelot is really an entire switching SoC that's running Linux inside
-(on the MIPS CPU) with a switchdev driver. There is no (mainline?)
-driver that would control the Ocelot SoC from a higher-level Linux
-system. The latter would (maybe) fit DSA more.
-- The D in DSA is for cascaded switches. Apart from the absence of
-such a "Ocelot SoC" driver (which maybe can be written, I don't know),
-I think the switching core itself has some fundamental limitations
-that make a DSA implementation questionable:
-    1. The switch has a single port which can apply these vendor tags.
-Also the injection header is different than the extraction header. See
-more at #4.
-    2. The switch will tag all frames that go upstream on this port
-towards the CPU, no matter what source port they came from. It can't
-be told "hey, don't add a tag for frames coming from this
-downstream-facing port, because it's a DSA port and not front-panel,
-so there's another switch underneath you who already added a tag to
-the frame". So frames that arrive at the CPU through an array of N
-cascaded Felix/Ocelot switches will need to be peeled off, one by one,
-by N vendor tags.
-    3. The extraction header does not contain a field for the "switch
-id", only for the "source port". This means that if you want to figure
-out the switch id, you really *need* to make a topology out of those
-stacked vendor tags and figure out which switch it was by counting the
-tags. It also means that you can only have Felix/Ocelot in a linear
-topology.
-    4. The switch cannot parse its own vendor tags. This is a big one,
-because it means that for an autonomously forwarded frame which
-transits two cascaded switches but doesn't reach the CPU, there is no
-one in the path who's going to consume the vendor tag. So the frame
-will exit the other front-panel port with extra bytes in it.
-
-Ok, let's say that all of the above limitations have one thing in
-common - the vendor tags aren't really thought out with DSA-like
-setups in mind. In theory it's possible to not use the native tags and
-instead implement a dsa_8021q tagger for it. But then, RX timestamps
-for PTP are also transmitted to the CPU through this vendor header,
-and losing PTP is a big no-no.
-
-So my conclusion is that DSA for Felix/Ocelot doesn't make a lot of
-sense if the whole purpose is to hide the CPU-facing netdev.
-In a cascaded setup, these switches could only sit at the top of tree,
-and ironically, they'd be better modeled as a switchdev DSA master
-port than part of the DSA tree itself. Put these switches anywhere
-else in the tree and they're just troublemakers.
-As for the LS1028A, I think that connecting this embedded switch via
-two Ethernet MACs is just poorly thought out design, but that doesn't
-mean DSA is going to help it in any way other than perhaps cosmetic.
-
-Regards,
--Vladimir
+SGksIFBoaWxpcHANCg0KPiBPbiBUaHUsIDIwMTktMDctMDQgYXQgMTc6NDQgKzA4MDAsIEFuc29u
+Lkh1YW5nQG54cC5jb20gd3JvdGU6DQo+ID4gRnJvbTogQW5zb24gSHVhbmcgPEFuc29uLkh1YW5n
+QG54cC5jb20+DQo+ID4NCj4gPiBpLk1YOE1NIGNhbiByZXVzZSBpLk1YOE1RJ3MgcmVzZXQgZHJp
+dmVyLCB1cGRhdGUgdGhlIGNvbXBhdGlibGUNCj4gPiBwcm9wZXJ0eSBhbmQgcmVsYXRlZCBpbmZv
+IHRvIHN1cHBvcnQgaS5NWDhNTS4NCj4gPg0KPiA+IFNpZ25lZC1vZmYtYnk6IEFuc29uIEh1YW5n
+IDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KPiA+IC0tLQ0KPiA+IENoYW5nZXMgc2luY2UgVjI6DQo+
+ID4gCS0gQWRkIHNlcGFyYXRlIGxpbmUgZm9yIGkuTVg4TU0gaW4gY2FzZSBhbnl0aGluZyBkaWZm
+ZXJlbnQgbGF0ZXIgZm9yDQo+IGkuTVg4TU0uDQo+ID4gLS0tDQo+ID4gIERvY3VtZW50YXRpb24v
+ZGV2aWNldHJlZS9iaW5kaW5ncy9yZXNldC9mc2wsaW14Ny1zcmMudHh0IHwgNiArKysrLS0NCj4g
+PiAgMSBmaWxlIGNoYW5nZWQsIDQgaW5zZXJ0aW9ucygrKSwgMiBkZWxldGlvbnMoLSkNCj4gPg0K
+PiA+IGRpZmYgLS1naXQgYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvcmVzZXQv
+ZnNsLGlteDctc3JjLnR4dA0KPiA+IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L3Jlc2V0L2ZzbCxpbXg3LXNyYy50eHQNCj4gPiBpbmRleCAxM2UwOTUxLi5jMjQ4OWU0IDEwMDY0
+NA0KPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9yZXNldC9mc2ws
+aW14Ny1zcmMudHh0DQo+ID4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L3Jlc2V0L2ZzbCxpbXg3LXNyYy50eHQNCj4gPiBAQCAtOCw2ICs4LDcgQEAgUmVxdWlyZWQgcHJv
+cGVydGllczoNCj4gPiAgLSBjb21wYXRpYmxlOg0KPiA+ICAJLSBGb3IgaS5NWDcgU29DcyBzaG91
+bGQgYmUgImZzbCxpbXg3ZC1zcmMiLCAic3lzY29uIg0KPiA+ICAJLSBGb3IgaS5NWDhNUSBTb0Nz
+IHNob3VsZCBiZSAiZnNsLGlteDhtcS1zcmMiLCAic3lzY29uIg0KPiA+ICsJLSBGb3IgaS5NWDhN
+TSBTb0NzIHNob3VsZCBiZSAiZnNsLGlteDhtbS1zcmMiLCAiZnNsLGlteDhtcS1zcmMiLA0KPiAi
+c3lzY29uIg0KPiA+ICAtIHJlZzogc2hvdWxkIGJlIHJlZ2lzdGVyIGJhc2UgYW5kIGxlbmd0aCBh
+cyBkb2N1bWVudGVkIGluIHRoZQ0KPiA+ICAgIGRhdGFzaGVldA0KPiA+ICAtIGludGVycnVwdHM6
+IFNob3VsZCBjb250YWluIFNSQyBpbnRlcnJ1cHQgQEAgLTQ2LDUgKzQ3LDYgQEAgRXhhbXBsZToN
+Cj4gPg0KPiA+DQo+ID4gIEZvciBsaXN0IG9mIGFsbCB2YWxpZCByZXNldCBpbmRpY2VzIHNlZQ0K
+PiA+IC08ZHQtYmluZGluZ3MvcmVzZXQvaW14Ny1yZXNldC5oPiBmb3IgaS5NWDcgYW5kDQo+ID4g
+LTxkdC1iaW5kaW5ncy9yZXNldC9pbXg4bXEtcmVzZXQuaD4gZm9yIGkuTVg4TVENCj4gPiArPGR0
+LWJpbmRpbmdzL3Jlc2V0L2lteDctcmVzZXQuaD4gZm9yIGkuTVg3LA0KPiA+ICs8ZHQtYmluZGlu
+Z3MvcmVzZXQvaW14OG1xLXJlc2V0Lmg+IGZvciBpLk1YOE1RIGFuZA0KPiA+ICs8ZHQtYmluZGlu
+Z3MvcmVzZXQvaW14OG1xLXJlc2V0Lmg+IGZvciBpLk1YOE1NDQo+IA0KPiBUaGUgbGFzdCBsaW5l
+IGlzIG1pc2xlYWRpbmcsIGFzIHRoYXQgZmlsZSBjb250YWlucyByZXNldCBpbmRpY2VzIHRoYXQg
+YXJlIGludmFsaWQNCj4gZm9yIGkuTVg4TU0uDQoNCldoYXQgaXMgeW91ciBzdWdnZXN0aW9uIGFi
+b3V0IHRoaXMgbGluZT8gSnVzdCBOT1QgY2hhbmdlIGl0PyBPciBhZGRpbmcgYSBuZXcgZmlsZQ0K
+aW14OG1tLXJlc2V0LmggYnV0IHN0aWxsIHVzZSB0aGUgSU1YOE1RX1JFU0VUXyBhcyBwcmVmaXgg
+PyBPciBrZWVwIHdoYXQgSSBjaGFuZ2VkLCBidXQNCmFkZGluZyBzb21lIGNvbW1lbnRzIGluIHRo
+b3NlIG1hY3JvcyB0aGF0IGkuTVg4TU0gZG9lcyBOT1Qgc3VwcG9ydD8NCg0KVGhhbmtzLA0KQW5z
+b24uDQoNCj4gDQo+IHJlZ2FyZHMNCj4gUGhpbGlwcA0K
