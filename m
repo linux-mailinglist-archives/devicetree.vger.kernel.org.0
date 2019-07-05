@@ -2,158 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86A42601DF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 09:59:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 430E6601E4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 10:02:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728079AbfGEH7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 03:59:52 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:12204 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727506AbfGEH7w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 03:59:52 -0400
-X-UUID: e2a2d1ea09994fbb828606ec42d8dc9c-20190705
-X-UUID: e2a2d1ea09994fbb828606ec42d8dc9c-20190705
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <jungo.lin@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 645243814; Fri, 05 Jul 2019 15:59:40 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 5 Jul 2019 15:59:39 +0800
-Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 5 Jul 2019 15:59:39 +0800
-Message-ID: <1562313579.1212.73.camel@mtksdccf07>
-Subject: Re: [RFC,v3 9/9] media: platform: Add Mediatek ISP P1 shared memory
- device
-From:   Jungo Lin <jungo.lin@mediatek.com>
-To:     Tomasz Figa <tfiga@chromium.org>
-CC:     <devicetree@vger.kernel.org>,
-        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
-        <sean.cheng@mediatek.com>,
-        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
-        <frederic.chen@mediatek.com>,
-        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
-        <rynn.wu@mediatek.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        Ryan Yu =?UTF-8?Q?=28=E4=BD=99=E5=AD=9F=E4=BF=AE=29?= 
-        <ryan.yu@mediatek.com>,
-        Frankie Chiu =?UTF-8?Q?=28=E9=82=B1=E6=96=87=E5=87=B1=29?= 
-        <frankie.chiu@mediatek.com>, Hans Verkuil <hverkuil@xs4all.nl>,
-        <ddavenport@chromium.org>, Sj Huang <sj.huang@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        "Linux Media Mailing List" <linux-media@vger.kernel.org>
-Date:   Fri, 5 Jul 2019 15:59:39 +0800
-In-Reply-To: <CAAFQd5BaTQ-Q7gsE0X+d4_81OZq9WHaCYkmALt7_4A1JFo=_8g@mail.gmail.com>
-References: <jungo.lin@mediatek.com>
-         <20190611035344.29814-1-jungo.lin@mediatek.com>
-         <20190611035344.29814-10-jungo.lin@mediatek.com>
-         <20190701072532.GB137710@chromium.org>
-         <1562297618.1212.46.camel@mtksdccf07>
-         <CAAFQd5BaTQ-Q7gsE0X+d4_81OZq9WHaCYkmALt7_4A1JFo=_8g@mail.gmail.com>
+        id S1727835AbfGEICm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 04:02:42 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:57285 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727506AbfGEICm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 04:02:42 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1hjJAu-0001cv-SN; Fri, 05 Jul 2019 10:02:32 +0200
+Message-ID: <1562313748.4291.3.camel@pengutronix.de>
+Subject: Re: [PATCH V3 1/2] dt-bindings: reset: imx7: Add support for i.MX8MM
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Anson Huang <anson.huang@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Cc:     dl-linux-imx <linux-imx@nxp.com>
+Date:   Fri, 05 Jul 2019 10:02:28 +0200
+In-Reply-To: <DB3PR0402MB39167B9A3CFAE6D8798B3CAEF5F50@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+References: <20190704094416.4757-1-Anson.Huang@nxp.com>
+         <1562235363.6641.10.camel@pengutronix.de>
+         <DB3PR0402MB39167B9A3CFAE6D8798B3CAEF5F50@DB3PR0402MB3916.eurprd04.prod.outlook.com>
 Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
-MIME-Version: 1.0
-X-MTK:  N
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Tomasz:
+Hi Anson,
 
-On Fri, 2019-07-05 at 13:22 +0900, Tomasz Figa wrote:
-> Hi Jungo,
+On Fri, 2019-07-05 at 00:26 +0000, Anson Huang wrote:
+> Hi, Philipp
 > 
-> On Fri, Jul 5, 2019 at 12:33 PM Jungo Lin <jungo.lin@mediatek.com> wrote:
-> >
-> > Hi Tomasz,
-
-[snip]
-
-> > After applying your suggestion in SCP device driver, we could remove
-> > mtk_cam-smem.h/c. Currently, we use dma_alloc_coherent with SCP device
-> > to get SCP address. We could touch the buffer with this SCP address in
-> > SCP processor.
-> >
-> > After that, we use dma_map_page_attrs with P1 device which supports
-> > IOMMU domain to get IOVA address. For this address, we will assign
-> > it to our ISP HW device to proceed.
-> >
-> > Below is the snippet for ISP P1 compose buffer initialization.
-> >
-> >         ptr = dma_alloc_coherent(p1_dev->cam_dev.smem_dev,
-> >                                  MAX_COMPOSER_SIZE, &addr, GFP_KERNEL);
-> >         if (!ptr) {
-> >                 dev_err(dev, "failed to allocate compose memory\n");
-> >                 return -ENOMEM;
-> >         }
-> >         isp_ctx->scp_mem_pa = addr;
+> > On Thu, 2019-07-04 at 17:44 +0800, Anson.Huang@nxp.com wrote:
+> > > From: Anson Huang <Anson.Huang@nxp.com>
+> > > 
+> > > i.MX8MM can reuse i.MX8MQ's reset driver, update the compatible
+> > > property and related info to support i.MX8MM.
+> > > 
+> > > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> > > ---
+> > > Changes since V2:
+> > > 	- Add separate line for i.MX8MM in case anything different later for
+> > 
+> > i.MX8MM.
+> > > ---
+> > >  Documentation/devicetree/bindings/reset/fsl,imx7-src.txt | 6 ++++--
+> > >  1 file changed, 4 insertions(+), 2 deletions(-)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
+> > > b/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
+> > > index 13e0951..c2489e4 100644
+> > > --- a/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
+> > > +++ b/Documentation/devicetree/bindings/reset/fsl,imx7-src.txt
+> > > @@ -8,6 +8,7 @@ Required properties:
+> > >  - compatible:
+> > >  	- For i.MX7 SoCs should be "fsl,imx7d-src", "syscon"
+> > >  	- For i.MX8MQ SoCs should be "fsl,imx8mq-src", "syscon"
+> > > +	- For i.MX8MM SoCs should be "fsl,imx8mm-src", "fsl,imx8mq-src",
+> > 
+> > "syscon"
+> > >  - reg: should be register base and length as documented in the
+> > >    datasheet
+> > >  - interrupts: Should contain SRC interrupt @@ -46,5 +47,6 @@ Example:
+> > > 
+> > > 
+> > >  For list of all valid reset indices see
+> > > -<dt-bindings/reset/imx7-reset.h> for i.MX7 and
+> > > -<dt-bindings/reset/imx8mq-reset.h> for i.MX8MQ
+> > > +<dt-bindings/reset/imx7-reset.h> for i.MX7,
+> > > +<dt-bindings/reset/imx8mq-reset.h> for i.MX8MQ and
+> > > +<dt-bindings/reset/imx8mq-reset.h> for i.MX8MM
+> > 
+> > The last line is misleading, as that file contains reset indices that are invalid
+> > for i.MX8MM.
 > 
-> addr contains a DMA address, not a physical address. Could we call it
-> scp_mem_dma instead?
-> 
-> >         dev_dbg(dev, "scp addr:%pad\n", &addr);
-> >
-> >         /* get iova address */
-> >         addr = dma_map_page_attrs(dev, phys_to_page(addr), 0,
-> 
-> addr is a DMA address, so phys_to_page() can't be called on it. The
-> simplest thing here would be to use dma_map_single() with ptr as the
-> CPU address expected.
-> 
+> What is your suggestion about this line?
 
-We have changed to use ma_map_single() with ptr, but encounter IOMMU
-error. From the debug log of iommu_dma_map_page[3], we got
-0x0000000054800000 instead of expected address: 0x0000000050800000[2].
-There is a address offset(0x4000000). If we change to use
-dma_map_page_attrs with phys_to_page(addr), the address is correct as we
-expected[2]. Do you have any suggestion on this issue? Do we miss
-something?
+I would prefer to add an imx8mm-reset.h with only the existing reset
+bits, using the IMX8MM_RESET_ prefix. That would make it easy to spot
+errors in the dtsi (anything starting with IMX8MQ_ is potentially
+wrong).
 
-[1]
-[    1.344786] __dma_alloc_from_coherent: 0x800000 PAGE_SHIFT:12
-device_base:0x0000000050000000 dma:0x0000000050800000
-virt_base:ffffff8014000000 va:ffffff8014800000
+> Just NOT change it?
 
-[    1.346890] mtk-cam 1a000000.camisp: scp addr:0x0000000050800000
-va:ffffff8014800000
+The change is good in principle. It just should point to an imx8mm-
+reset.h with only the existing resets on i.MX8MM, or imx8mq-reset.h
+should be modified to actually make clear which resets are valid on
+i.MX8MM.
 
-[    1.347864] iommu_dma_map_page:0x0000000054800000 offset:0
-[    1.348562] mtk-cam 1a000000.camisp: iova addr:0x00000000fde00000
+> Or adding a new file imx8mm-reset.h but still use the IMX8MQ_RESET_ as
+> prefix ?
 
-[2]
-[    1.346738] __dma_alloc_from_coherent: 0x800000 PAGE_SHIFT:12
-device_base:0x0000000050000000 dma:0x0000000050800000
-virt_base:ffffff8014000000 va:ffffff8014800000
-[    1.348841] mtk-cam 1a000000.camisp: scp addr:0x0000000050800000
-va:ffffff8014800000
-[    1.349816] iommu_dma_map_page:0x0000000050800000 offset:0
-[    1.350514] mtk-cam 1a000000.camisp: iova addr:0x00000000fde00000
+I don't think you should redefine the same macros in imx8mm-reset.h. In
+this case using IMX8MM_RESET_ would be better.
 
+> Or keep what I changed, but adding some comments in those macros that
+> i.MX8MM does NOT support?
 
-[3]
-dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
-		unsigned long offset, size_t size, int prot)
-{
-	phys_addr_t phys = page_to_phys(page);
-	pr_err("iommu_dma_map_page:%pa offset:%lu\n", &phys, offset);
+That would be acceptable as well.
 
-	return __iommu_dma_map(dev, page_to_phys(page) + offset, size, prot,
-			iommu_get_dma_domain(dev));
-}
-
-[snip]
-
-Best regards,
-
-Jungo
-
+regards
+Philipp
