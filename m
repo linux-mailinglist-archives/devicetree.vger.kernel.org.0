@@ -2,77 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7507560DD0
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2019 00:29:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62F9260E2A
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2019 01:49:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725764AbfGEW3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 18:29:20 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:35668 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725957AbfGEW3U (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 18:29:20 -0400
-Received: by mail-io1-f68.google.com with SMTP id m24so12652530ioo.2
-        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2019 15:29:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lixom-net.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=A2xFeB/vxfBJWIi2SCTq+vsVIJL+pCcb0P3THlDfvNk=;
-        b=hycMa+7f59LmBeoZx7y+T6iB+NqeRfKUCiEwPvr1G17qNMYTgFWeGgJnfHmpt58y3R
-         pE2x4OswYZw80bCfWurEXT3RSUYQLZGIm/hAun3Zsi1gdbn1j5dxcQTLo8sHPU+Ciz7o
-         iDfQh6cgbrxML1qV0b61RieVtvOF/c3yjVMQI4kcnTJHkz3r+Xp2keXGFHneyVDSqFe6
-         g4Yik34C0kIqHBkyqItwiZt00TrFmr8pZUvduDej+ANXqBVq2TKmE0PkuRWaAIypt0tb
-         5n+qAkievhL51pi8/Pk3ZX+Zpn0q4OOrs0azQb3ZvUf+vI+YpFAf4M4GatHRVj+GVVUc
-         2Mog==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=A2xFeB/vxfBJWIi2SCTq+vsVIJL+pCcb0P3THlDfvNk=;
-        b=SdVaHz4cyiFbV43ALYtvrrik3kaBr6H1L7Asmf5btoalh5FcLJkQFlKQIzCYRjz8Fb
-         twcoiDlZrKdulqR9X8V+YqHzkxT/n2QEbm5cBxBkA9JLI3rnoR8J/GckbTJc/+OUgM5X
-         dZvnJYpoCmTld+CniIhlowmNKSBB3RgzFkk9UGPWgobKZS2jTGMIP66X1XN+YyEODGCV
-         gW6nEHL9MQ2PeVoaFjo/MaaeWr72M5wjEVzXCimtyPEP/2+ejnVQ86GdwS7xks7/RDQ4
-         KbsSchFHb4GEcMThCtD6Ptotr1buEuet7m57l/B08X9kzKPlFgK/BrhNHOc7tFoLIv08
-         3fYA==
-X-Gm-Message-State: APjAAAVbT9uy77sCoBqChKCjo/VDkMxSCOdrQGyWrEhRWEvueorjYiFf
-        Ue6+3dOq6v2yEd26fgjwgKcecq0BH5ycKm5xBukIGg==
-X-Google-Smtp-Source: APXvYqwtqdru004WFVZFoC69PGQmOPnOHdWCXRH4144sBC3NkbqjrE+G/DO1ByoQUCVa7iOf555pJHgtt5vr645kXJM=
-X-Received: by 2002:a5d:9642:: with SMTP id d2mr2393845ios.278.1562365759537;
- Fri, 05 Jul 2019 15:29:19 -0700 (PDT)
+        id S1726689AbfGEXtM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 19:49:12 -0400
+Received: from userp2130.oracle.com ([156.151.31.86]:53324 "EHLO
+        userp2130.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726069AbfGEXtM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 19:49:12 -0400
+Received: from pps.filterd (userp2130.oracle.com [127.0.0.1])
+        by userp2130.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x65Nmq8Z024441;
+        Fri, 5 Jul 2019 23:48:52 GMT
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=corp-2018-07-02;
+ bh=ra6Kem6NMcGrdxwE+HEeI+HohkUxPqCSf76jOp32wYQ=;
+ b=rvrbG2U3eV3dzFu+UOQ+/aqMIbxSSzuaI1S2HxcZ5PeCQroTn/s1qQwVak611qZl5aso
+ Skilx0Osiu24UvUkRAJdMMpo3shUoxSNcwNVOtzEY8VmZ8iTWjLLBTmKVLzdfWxyGUvI
+ GDB9KtMK/M3RLRmMSgMrYjmqLtixNWgNyHDSN6BMqqphq4e98vjC3Qvr4TGUv/UakyZP
+ UsCxYpxNGgPKrqulorM5EYG1eNd3Vi92cgsD5Zwv6D2e0h/qp9o64e+3CGjMO56945tL
+ 3EUCJk41A5j+AmpyWstdGKk5zuHgPQOR6b14vgxXqU9vm3/6qdO82gskbEbC+CIHtWQr JQ== 
+Received: from userp3020.oracle.com (userp3020.oracle.com [156.151.31.79])
+        by userp2130.oracle.com with ESMTP id 2te61emryh-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 05 Jul 2019 23:48:52 +0000
+Received: from pps.filterd (userp3020.oracle.com [127.0.0.1])
+        by userp3020.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x65Nlr6D161763;
+        Fri, 5 Jul 2019 23:48:51 GMT
+Received: from aserv0122.oracle.com (aserv0122.oracle.com [141.146.126.236])
+        by userp3020.oracle.com with ESMTP id 2thxrvncg8-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
+        Fri, 05 Jul 2019 23:48:51 +0000
+Received: from abhmp0014.oracle.com (abhmp0014.oracle.com [141.146.116.20])
+        by aserv0122.oracle.com (8.14.4/8.14.4) with ESMTP id x65NmoxQ011788;
+        Fri, 5 Jul 2019 23:48:50 GMT
+Received: from [10.11.0.40] (/10.11.0.40)
+        by default (Oracle Beehive Gateway v4.0)
+        with ESMTP ; Fri, 05 Jul 2019 16:48:50 -0700
+Subject: Re: [RESEND PATCH next v2 0/6] ARM: keystone: update dt and enable
+ cpts support
+To:     Grygorii Strashko <grygorii.strashko@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>
+Cc:     Sekhar Nori <nsekhar@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+References: <20190705151247.30422-1-grygorii.strashko@ti.com>
+From:   santosh.shilimkar@oracle.com
+Organization: Oracle Corporation
+Message-ID: <2ef8b34e-7a6e-b3e4-90e0-c4e7f16c2e99@oracle.com>
+Date:   Fri, 5 Jul 2019 16:48:49 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:52.0)
+ Gecko/20100101 Thunderbird/52.9.1
 MIME-Version: 1.0
-References: <cover.1559635435.git.baolin.wang@linaro.org> <15AEA3314E88B01E.21242@linux.kernel.org>
-In-Reply-To: <15AEA3314E88B01E.21242@linux.kernel.org>
-From:   Olof Johansson <olof@lixom.net>
-Date:   Fri, 5 Jul 2019 15:29:08 -0700
-Message-ID: <CAOesGMjdnQuLdvphBDM3xmH6o+Nca8+65mw8-EajV0Eb_8MS5w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/9] mmc: sdhci-sprd: Check the enable clock's return
- value correctly
-To:     patchwork-soc+owner@linux.kernel.org
-Cc:     Adrian Hunter <adrian.hunter@intel.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Lyra Zhang <zhang.lyra@gmail.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Baolin Wang <baolin.wang@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        ARM-SoC Maintainers <arm@kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-mmc@vger.kernel.org,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190705151247.30422-1-grygorii.strashko@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9309 signatures=668688
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
+ phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
+ adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
+ engine=8.0.1-1810050000 definitions=main-1907050306
+X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9309 signatures=668688
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
+ suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
+ lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1810050000
+ definitions=main-1907050306
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 5, 2019 at 3:25 PM Olof Johansson via Linux.Kernel.Org
-<olof=lixom.net@linux.kernel.org> wrote:
+On 7/5/19 8:12 AM, Grygorii Strashko wrote:
+> Hi Santosh,
+> 
+> This series is set of platform changes required to enable NETCP CPTS reference
+> clock selection and final patch to enable CPTS for Keystone 66AK2E/L/HK SoCs.
+> 
+> Those patches were posted already [1] together with driver's changes, so this
+> is re-send of DT/platform specific changes only, as driver's changes have
+> been merged already.
+> 
+> Patches 1-5: CPTS DT nodes update for TI Keystone 2 66AK2HK/E/L SoCs.
+> Patch 6: enables CPTS for TI Keystone 2 66AK2HK/E/L SoCs.
+> 
+> [1] https://patchwork.kernel.org/cover/10980037/
+> 
+> Grygorii Strashko (6):
+>    ARM: dts: keystone-clocks: add input fixed clocks
+>    ARM: dts: k2e-clocks: add input ext. fixed clocks tsipclka/b
+>    ARM: dts: k2e-netcp: add cpts refclk_mux node
+>    ARM: dts: k2hk-netcp: add cpts refclk_mux node
+>    ARM: dts: k2l-netcp: add cpts refclk_mux node
+>    ARM: configs: keystone: enable cpts
+> 
+Will add these for 5.4 queue. Thanks !!
 
-Hmm, well, that didn't work like I expected to. Sorry for the noise.
-
-
--Olof
+Regards,
+Santosh
