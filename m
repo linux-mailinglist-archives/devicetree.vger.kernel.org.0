@@ -2,87 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ADFD7608FF
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 17:15:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD51E60973
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 17:37:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728133AbfGEPP2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 11:15:28 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:39710 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728124AbfGEPP2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 11:15:28 -0400
-Received: by mail-pf1-f194.google.com with SMTP id j2so4456035pfe.6
-        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2019 08:15:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=W3shWyjUMuq9t5Vu5n5b4WyN7Fp07Hz5BxwWZP81hBQ=;
-        b=GLp+9NqHTitbzc/EsYIplus2wwytDD1COg7tthvJ2z5C8u6TdKlK6E52+9zQmpo/WA
-         vr2Ea2RI3BbF84Mjk8+R3Ql1MGPwxtXnLPOc0v6pelHEkoPT1mrL1wgi6ZR6EmyyHvAI
-         jS8p0xLZHL2Pkqpa341OyGhxtca7Ga12OwWYTVagEvFpGj5CIhDJxSCMW0JasKA5K9mG
-         ZyaqF8WakEI2giuswI29XVelWqw+Jy+oFJ+0oIeFIF5mADrGyv8nsL0DG5Vn1F3pE01R
-         Hb10poYOGOSaXMvo7zwOHatpZhAqtyIwKRaMsnKjgtURH+zuyJLF2xJcCEC/5xNRlbOG
-         mLdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=W3shWyjUMuq9t5Vu5n5b4WyN7Fp07Hz5BxwWZP81hBQ=;
-        b=AH590nBUfQtji2Wr42qh8jKom9RvKR8UhjJXTeZSRTM9aG9cde2nEyYhn5JoxzwaBT
-         KdgFcRFgK8BInT0japIZiFwm+w+rNKf18gn3QOb30x/y/oeqzFUoT7VTxOED75j8f0fV
-         9QQo6+FZIkt/X+6nRtxAWM4j6pz+rCbZi+OcssYw+zaSgtWWrhyuvLXzbcYRHm14vYIM
-         Nmr7WFGTznnNVWUzRGpiHfrLWOzLAnZc9QTvcqxkyFiaPndrr8iBqODTvT+7fVT00Y40
-         6ahtp7EN/WGEBGiFqIeH/Ql7W0xlDquHvPzF6OGNLNEBuGbKpWgtWe6jTqs9Mnl3/c5/
-         Oxww==
-X-Gm-Message-State: APjAAAX25s+7z5ZbsW+zu23MTYiORzH+uF/XNpw43PFyl5ZZEoQctJei
-        5RcBT850WPJv6v/jmBLV6b3G
-X-Google-Smtp-Source: APXvYqw6EQk4uR8VqbeRigjfRsmWR1YAaEHXOOQRQW99S4UWiNDtnjOUj1yeXWg4KdwRNP1FZyRfPw==
-X-Received: by 2002:a17:90a:25e6:: with SMTP id k93mr6322707pje.100.1562339727172;
-        Fri, 05 Jul 2019 08:15:27 -0700 (PDT)
-Received: from localhost.localdomain ([2409:4072:916:7317:a59d:72b6:ef7f:a938])
-        by smtp.gmail.com with ESMTPSA id w3sm8248778pgl.31.2019.07.05.08.15.20
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 05 Jul 2019 08:15:26 -0700 (PDT)
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org
-Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        haitao.suo@bitmain.com, darren.tsao@bitmain.com,
-        fisher.cheng@bitmain.com, alec.lin@bitmain.com,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: [PATCH 5/5] MAINTAINERS: Add entry for Bitmain BM1880 SoC clock driver
-Date:   Fri,  5 Jul 2019 20:44:40 +0530
-Message-Id: <20190705151440.20844-6-manivannan.sadhasivam@linaro.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190705151440.20844-1-manivannan.sadhasivam@linaro.org>
-References: <20190705151440.20844-1-manivannan.sadhasivam@linaro.org>
+        id S1727090AbfGEPhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 11:37:16 -0400
+Received: from mout.gmx.net ([212.227.15.19]:56819 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725497AbfGEPhP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Jul 2019 11:37:15 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1562340946;
+        bh=+xG973BWcEz2x94VZcUAPePu5GwCe5fwDn2xc5iFqo0=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=N0/iBvJc6HtX2nJ4b7IPEhJQHze0yGnFVfDsrmD7ZCrkY1o/NEmt/GfIh0sEBoPZk
+         pUwgP+xFM6zSWbqJykxww7GN6eLJ2skqyA7owjZiCfEOBg042cwWIgn7mjUyrBCEpv
+         jE/dN7C0LP0estl9Ivtpd/Id2IV8oTVe4Tp9sxUo=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [185.53.41.182] ([185.53.41.182]) by web-mail.gmx.net
+ (3c-app-gmx-bs68.server.lan [172.19.170.213]) (via HTTP); Fri, 5 Jul 2019
+ 17:35:46 +0200
+MIME-Version: 1.0
+Message-ID: <trinity-7b1977bd-252b-4482-b708-cf704a9d3da1-1562340946396@3c-app-gmx-bs68>
+From:   "Frank Wunderlich" <frank-w@public-files.de>
+To:     "Alexandre Belloni" <alexandre.belloni@bootlin.com>
+Cc:     "Lee Jones" <lee.jones@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        "Sean Wang" <sean.wang@mediatek.com>,
+        "Sebastian Reichel" <sre@kernel.org>,
+        "Alessandro Zummo" <a.zummo@towertech.it>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        "Eddie Huang" <eddie.huang@mediatek.com>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        "Richard Fontana" <rfontana@redhat.com>,
+        "Allison Randal" <allison@lohutok.net>,
+        "David S . Miller" <davem@davemloft.net>,
+        "Mauro Carvalho Chehab" <mchehab+samsung@kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Rob Herring" <robh@kernel.org>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Nicolas Ferre" <nicolas.ferre@microchip.com>,
+        "Paul E . McKenney" <paulmck@linux.ibm.com>,
+        "Josef Friedl" <josef.friedl@speed.at>
+Subject: Aw: Re: [PATCH v2 3/7] rtc: mt6397: improvements of rtc driver
+Content-Type: text/plain; charset=UTF-8
+Date:   Fri, 5 Jul 2019 17:35:46 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20190704204336.GJ3692@piout.net>
+References: <20190703164822.17924-1-frank-w@public-files.de>
+ <20190703164822.17924-4-frank-w@public-files.de>
+ <20190704204336.GJ3692@piout.net>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:3DQjnrcP0qQkneq0N2KGXDypFxKC70Y6B/6Wz6gG83c+zzU8tPfyJ7R1HE1HqAXh3hB2I
+ tgJSbOVBlcwfm2+5WrNhSjWxrIe4AmFQkfXZmEFAprfzxqChBFn9HnyAR9YWrNvCPuG17yU7Op4d
+ ugpFGrIo4Tf+JcmINzOK23uQEhN2f8orMVc5A246lEDzSCXmCflOxlZ6PHU1xgJelMk9hVPkR8fZ
+ DhVDomXvArd2HR4UT+Ec00/BFdO1KKd8+sxf1crLqLghjGrqQGEuEjQemQPPAcQJzokFsPSPjEgJ
+ Ok=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:U5UYnBEkf+0=:lL1CL6XEoZrqJz8T2zwkL5
+ 4VYvmDYvZ5WzNABcDNBejMTkwRG1c67XpMAnjTSAn1VKRZ87YyW8Fes8PHzncewehLQUqaLue
+ LVS2SFGPFzRxC0khTzvlus1KUr5oZY7QijfOK9hocquUSx+iHzpI9TDlAnmWe4UaoMF/42CDH
+ WGqzSesYNDhJ7QrAjfxtUFBYbMU6YGR/80HNhJeKizPb9hMhw1PNX2FTuEKhB9AhTNWDwj9jf
+ iz2TYEYzFWXqIjVYcbNyIpCk5fhnRvSvMFgGnv8nXdIrk/aesBOoI1tMC5dY47eKVhwcxbF3G
+ D+sXhAC/j9gEmrB19oC5cSMkvSvUHyXuG49+ftF/sz8bwRecT//qfKlBN/CWfLF+KTKQ0W48R
+ xrcCxWA4aVF7JhOIHm0iuSzma7jniESyMdd9UufoYSt+hBWPgp+BB9+EF6Ufu4+PeO1WxdTxr
+ CO5FuMMppqZq0zy35n31R7Y7AqTSK4X0aeIIY0rtWO4BOnrtCnxD4Kxjj93N0FpJ/y3CWdPFE
+ r2AHMveJE7FwuKD4IPTmai0ubwLDHQJximoqtKtj7ibjV+W5K1jLBN8QCGyFm+7WaavnB4il9
+ jtB6YIWXJrrwvYpdopClbcSNQtobLh8iTwP4OAZnwlQXtwCqyeKBff4O3dDbmq/Ihzy05qfUB
+ Zrmc=
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for Bitmain BM1880 SoC clock driver.
+Hi Alexander,
 
-Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
----
- MAINTAINERS | 2 ++
- 1 file changed, 2 insertions(+)
+thank you for the Review
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 01a52fc964da..f9259161cb5c 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -1464,8 +1464,10 @@ M:	Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
- L:	linux-arm-kernel@lists.infradead.org (moderated for non-subscribers)
- S:	Maintained
- F:	arch/arm64/boot/dts/bitmain/
-+F:	drivers/clk/clk-bm1880.c
- F:	drivers/pinctrl/pinctrl-bm1880.c
- F:	Documentation/devicetree/bindings/arm/bitmain.yaml
-+F:	Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.txt
- F:	Documentation/devicetree/bindings/pinctrl/bitmain,bm1880-pinctrl.txt
- 
- ARM/CALXEDA HIGHBANK ARCHITECTURE
--- 
-2.17.1
+> Gesendet: Donnerstag, 04. Juli 2019 um 22:43 Uhr
+> Von: "Alexandre Belloni" <alexandre.belloni@bootlin.com>
+> > -	rtc->rtc_dev =3D devm_rtc_allocate_device(rtc->dev);
+> > -	if (IS_ERR(rtc->rtc_dev))
+> > -		return PTR_ERR(rtc->rtc_dev);
+> > +	ret =3D devm_request_threaded_irq(&pdev->dev, rtc->irq, NULL,
+> > +					mtk_rtc_irq_handler_thread,
+> > +					IRQF_ONESHOT | IRQF_TRIGGER_HIGH,
+> > +					"mt6397-rtc", rtc);
+> >
+>
+> This change may lead to a crash and the allocation was intentionally
+> placed before the irq request.
 
+i got no crash till now, but i will try to move the allocation before irq-=
+request
+
+> > -	ret =3D request_threaded_irq(rtc->irq, NULL,
+> > -				   mtk_rtc_irq_handler_thread,
+> > -				   IRQF_ONESHOT | IRQF_TRIGGER_HIGH,
+> > -				   "mt6397-rtc", rtc);
+> >  	if (ret) {
+> >  		dev_err(&pdev->dev, "Failed to request alarm IRQ: %d: %d\n",
+> >  			rtc->irq, ret);
+> > @@ -287,6 +281,10 @@ static int mtk_rtc_probe(struct platform_device *=
+pdev)
+> >
+> >  	device_init_wakeup(&pdev->dev, 1);
+> >
+> > +	rtc->rtc_dev =3D devm_rtc_allocate_device(&pdev->dev);
+> > +	if (IS_ERR(rtc->rtc_dev))
+> > +		return PTR_ERR(rtc->rtc_dev);
+> > +
+> >  	rtc->rtc_dev->ops =3D &mtk_rtc_ops;
+
+
+> >  static const struct of_device_id mt6397_rtc_of_match[] =3D {
+> > +	{ .compatible =3D "mediatek,mt6323-rtc", },
+>
+> Unrelated change, this is not an improvement and must be accompanied by
+> a documentation change.
+
+documentation is changed in 1/7 defining this compatible. i called it impr=
+ovement because existing driver now supports another chip
+
+regards Frank
