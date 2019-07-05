@@ -2,66 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDEAE60A27
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 18:22:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFB0960A31
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 18:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725788AbfGEQWY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 12:22:24 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48634 "EHLO mail.kernel.org"
+        id S1726085AbfGEQXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 12:23:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49496 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725730AbfGEQWX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Jul 2019 12:22:23 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        id S1725917AbfGEQXZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Jul 2019 12:23:25 -0400
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CDC42218A3;
-        Fri,  5 Jul 2019 16:22:22 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3F314218CA;
+        Fri,  5 Jul 2019 16:23:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562343742;
-        bh=BfIZ6tKZCVBNxIWZMJzgLQLDrDM98KXngGyQEogUvuc=;
+        s=default; t=1562343804;
+        bh=DjO00UEeURnOprUG5mN+2U9KI5+oYy0rMuZBSb5mW2o=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=F2XUZ0AsiObz38Qx97acqnLEtyiZgGiHacWy+UuMmsUAZJyO+KDJLw8FYplC9QPZn
-         1TKYBoIBLF2IC3EmcGzM0b9XjavOgg5NQmwwvSRDtgTrFwD+ezXLUgku1I618QESPZ
-         TsfEL/AU5M7NwZX3NfKhGm0FO5+MNz/tZJtu6ZKw=
-Received: by mail-qt1-f178.google.com with SMTP id z4so8211829qtc.3;
-        Fri, 05 Jul 2019 09:22:22 -0700 (PDT)
-X-Gm-Message-State: APjAAAVDPyvLBKh7NQfi+BHzC0OSJ626wBBbK5UXF0xutHcYNBU6f573
-        ZI/Q/rjsuk5WT9r5lkfyZxC422oygCQ6qECScg==
-X-Google-Smtp-Source: APXvYqznIT4YElky20jKxqRkbKAWLxPbxOFcKpVR97IY2WHAR4eOb1KboDsmea/JxYWvnsvS6y441We6YElJY7mXJIY=
-X-Received: by 2002:aed:3f10:: with SMTP id p16mr3422307qtf.110.1562343742119;
- Fri, 05 Jul 2019 09:22:22 -0700 (PDT)
+        b=a0jDfkTYC72T/YJYLKK1nGc7hSNO8lVHk9qMVpswBcrz9WNprUQ3XaV8DHlgd2vaU
+         hMcpwoCtyEBxGLMQqKawyocV5Eueb6cMwrv+u84XmFTBjy+MkBZk7zJrdBitzGa2OW
+         9Bfc5FePfUMYd6YciPsYQ8c5U782GQzyQ8YrdTdw=
+Received: by mail-qk1-f170.google.com with SMTP id r21so7998913qke.2;
+        Fri, 05 Jul 2019 09:23:24 -0700 (PDT)
+X-Gm-Message-State: APjAAAWuNN+WIqxzeWKHxTbmdiCOmFQb7tU09TAXaPgme7GvvvnNsNaZ
+        lRqjCC6UiaSU9O8Tv8V38XmEDooqLfQAmsjAkQ==
+X-Google-Smtp-Source: APXvYqy/0g0M78QUbCdgY0Xp/Y0bTbmSVCD16U1+TXU2RK0KVT9aQc6q4SpKS2zq2GeE4Ocqd7cuWKEJcuuhl4Xrw78=
+X-Received: by 2002:a37:a44a:: with SMTP id n71mr2160286qke.393.1562343803430;
+ Fri, 05 Jul 2019 09:23:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190703095338.11266-1-maxime.ripard@bootlin.com>
-In-Reply-To: <20190703095338.11266-1-maxime.ripard@bootlin.com>
+References: <20190703180604.9840-1-luca@z3ntu.xyz> <20190703180604.9840-2-luca@z3ntu.xyz>
+In-Reply-To: <20190703180604.9840-2-luca@z3ntu.xyz>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 5 Jul 2019 10:22:10 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLej_OAetF35vG7eraN5BheLu9fkit8Fw7NS0Ckx_HvZQ@mail.gmail.com>
-Message-ID: <CAL_JsqLej_OAetF35vG7eraN5BheLu9fkit8Fw7NS0Ckx_HvZQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: i2c: mv64xxx: Fix the example compatible
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Wolfram Sang <wsa@the-dreams.de>,
+Date:   Fri, 5 Jul 2019 10:23:11 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJU5nBf+tzudpXVseeb8FMoJUK3ANJs3btb=6gbcG41EA@mail.gmail.com>
+Message-ID: <CAL_JsqJU5nBf+tzudpXVseeb8FMoJUK3ANJs3btb=6gbcG41EA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] dt-bindings: iio: light: add stk33xx
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
         Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        devicetree@vger.kernel.org
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        Hannes Schmelzer <hannes.schmelzer@br-automation.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Allison Randal <allison@lohutok.net>,
+        Martijn Braam <martijn@brixit.nl>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        ~martijnbraam/pmos-upstream@lists.sr.ht
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 3, 2019 at 3:53 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+On Wed, Jul 3, 2019 at 12:06 PM Luca Weiss <luca@z3ntu.xyz> wrote:
 >
-> One example has a compatible that isn't a valid combination according to
-> the binding, and now that the examples are validated as well, this
-> generates a warning.
+> Add binding documentation for the stk33xx family of ambient light
+> sensors.
 >
-> Let's fix this.
->
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+> Signed-off-by: Luca Weiss <luca@z3ntu.xyz>
 > ---
->  Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../bindings/iio/light/stk33xx.yaml           | 49 +++++++++++++++++++
+>  1 file changed, 49 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/light/stk33xx.yaml
 
 Reviewed-by: Rob Herring <robh@kernel.org>
