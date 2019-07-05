@@ -2,140 +2,158 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E32960134
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 09:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86A42601DF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 09:59:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727440AbfGEHBN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 03:01:13 -0400
-Received: from mail-eopbgr20078.outbound.protection.outlook.com ([40.107.2.78]:11654
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726012AbfGEHBN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Jul 2019 03:01:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=s7Sb5iXnQeq6a4whQIZqloWLVF73UJr240vQ6vJkYPY=;
- b=F3EJXJly6N0kYOQvvHDl7H0nhoHJK0dMcCZMVg0jozw+OiLOonNPnxYqMTezEpJW70wtuMnGBDrCCUcxjreXrMcm1/3GdrpMYRnoHbfag4b/dpGkEz8ftZnn+RjClRXYAt28/54E40JRYzp2+1KYp/sAsNNfmnIIbfFgNQu3mNw=
-Received: from AM0PR04MB5779.eurprd04.prod.outlook.com (20.178.202.151) by
- AM0PR04MB6467.eurprd04.prod.outlook.com (20.179.253.80) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2032.20; Fri, 5 Jul 2019 07:01:08 +0000
-Received: from AM0PR04MB5779.eurprd04.prod.outlook.com
- ([fe80::a126:d121:200:367]) by AM0PR04MB5779.eurprd04.prod.outlook.com
- ([fe80::a126:d121:200:367%7]) with mapi id 15.20.2032.019; Fri, 5 Jul 2019
- 07:01:08 +0000
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     Anson Huang <anson.huang@nxp.com>
-CC:     "rui.zhang@intel.com" <rui.zhang@intel.com>,
-        "edubezval@gmail.com" <edubezval@gmail.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "mturquette@baylibre.com" <mturquette@baylibre.com>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 5/6] clk: imx8mq: Remove CLK_IS_CRITICAL flag for
- IMX8MQ_CLK_TMU_ROOT
-Thread-Topic: [PATCH 5/6] clk: imx8mq: Remove CLK_IS_CRITICAL flag for
- IMX8MQ_CLK_TMU_ROOT
-Thread-Index: AQHVMu9QFutD3B96ckCJ5EoT7khMLqa7mPeA
-Date:   Fri, 5 Jul 2019 07:01:08 +0000
-Message-ID: <20190705070107.xsxvnh7b36w4q4c6@fsr-ub1664-175>
-References: <20190705045612.27665-1-Anson.Huang@nxp.com>
- <20190705045612.27665-5-Anson.Huang@nxp.com>
-In-Reply-To: <20190705045612.27665-5-Anson.Huang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=abel.vesa@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7684758f-e8cb-482a-b8b0-08d701168e4d
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB6467;
-x-ms-traffictypediagnostic: AM0PR04MB6467:
-x-microsoft-antispam-prvs: <AM0PR04MB646733A05AF6FEDFEC7A1F12F6F50@AM0PR04MB6467.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2150;
-x-forefront-prvs: 008960E8EC
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(7916004)(376002)(396003)(366004)(346002)(136003)(39860400002)(189003)(199004)(6116002)(99286004)(14444005)(102836004)(256004)(5660300002)(6506007)(64756008)(66446008)(66556008)(6486002)(3846002)(2906002)(229853002)(6862004)(76176011)(6436002)(26005)(4326008)(71200400001)(86362001)(14454004)(6512007)(25786009)(71190400001)(9686003)(53546011)(186003)(66066001)(44832011)(54906003)(305945005)(476003)(11346002)(8936002)(1076003)(7736002)(486006)(478600001)(8676002)(81166006)(33716001)(81156014)(6636002)(68736007)(66946007)(6246003)(66476007)(316002)(73956011)(446003)(7416002)(91956017)(76116006)(53936002)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB6467;H:AM0PR04MB5779.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: yRndkOOzP1IjQoa9e0O0lRa0djhHRhUDJq9EGcWsEGysrDhAt9g97LiiFDlaUTNV35w4x2m7hzeObgcG9fNNXRgKxEQmNTjGBja9Ep96602mspQ8bPCA7Xf+5pITd1YbQ4Ij6izQEFW1l3TpcJwCjYfMBZwLp134XRodxcXyQ9vpqFS52jqjcUF4+IahWizFAHvZrG4dTRxuybJtyyerT+Yl3AZUgTVengyOkMrVqprAv5Fm4O1RTEyGoVS6JpKyaaQHhals2BIO5e8skwACooRmsJPzENZ5fhM4n3TK1Vnjdib6EUxOiJmXlMxO6C00i70hIoD0c5SMXsdGc9ICgonlRc3/nopnYd+8ZU/VwthieYmp0REPkJEh5ciduW6EJwmMJUS4iiCTQcJ//TrpnZPYNygN0x0uDQAHjSCUNSk=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <F7A714F4FD2FF54F9AF66368F4FEFA79@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        id S1728079AbfGEH7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 03:59:52 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:12204 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727506AbfGEH7w (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 03:59:52 -0400
+X-UUID: e2a2d1ea09994fbb828606ec42d8dc9c-20190705
+X-UUID: e2a2d1ea09994fbb828606ec42d8dc9c-20190705
+Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
+        (envelope-from <jungo.lin@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 645243814; Fri, 05 Jul 2019 15:59:40 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 5 Jul 2019 15:59:39 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 5 Jul 2019 15:59:39 +0800
+Message-ID: <1562313579.1212.73.camel@mtksdccf07>
+Subject: Re: [RFC,v3 9/9] media: platform: Add Mediatek ISP P1 shared memory
+ device
+From:   Jungo Lin <jungo.lin@mediatek.com>
+To:     Tomasz Figa <tfiga@chromium.org>
+CC:     <devicetree@vger.kernel.org>,
+        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
+        <sean.cheng@mediatek.com>,
+        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
+        <frederic.chen@mediatek.com>,
+        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
+        <rynn.wu@mediatek.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Rob Herring <robh@kernel.org>,
+        Ryan Yu =?UTF-8?Q?=28=E4=BD=99=E5=AD=9F=E4=BF=AE=29?= 
+        <ryan.yu@mediatek.com>,
+        Frankie Chiu =?UTF-8?Q?=28=E9=82=B1=E6=96=87=E5=87=B1=29?= 
+        <frankie.chiu@mediatek.com>, Hans Verkuil <hverkuil@xs4all.nl>,
+        <ddavenport@chromium.org>, Sj Huang <sj.huang@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        "Linux Media Mailing List" <linux-media@vger.kernel.org>
+Date:   Fri, 5 Jul 2019 15:59:39 +0800
+In-Reply-To: <CAAFQd5BaTQ-Q7gsE0X+d4_81OZq9WHaCYkmALt7_4A1JFo=_8g@mail.gmail.com>
+References: <jungo.lin@mediatek.com>
+         <20190611035344.29814-1-jungo.lin@mediatek.com>
+         <20190611035344.29814-10-jungo.lin@mediatek.com>
+         <20190701072532.GB137710@chromium.org>
+         <1562297618.1212.46.camel@mtksdccf07>
+         <CAAFQd5BaTQ-Q7gsE0X+d4_81OZq9WHaCYkmALt7_4A1JFo=_8g@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7684758f-e8cb-482a-b8b0-08d701168e4d
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Jul 2019 07:01:08.2502
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: abel.vesa@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB6467
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-07-05 12:56:11, Anson.Huang@nxp.com wrote:
-> From: Anson Huang <Anson.Huang@nxp.com>
->=20
-> IMX8MQ_CLK_TMU_ROOT is ONLY used for thermal module, the driver
-> should manage this clock, so no need to have CLK_IS_CRITICAL flag
-> set.
->=20
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Hi Tomasz:
 
-Reviewed-by: Abel Vesa <abel.vesa@nxp.com>
+On Fri, 2019-07-05 at 13:22 +0900, Tomasz Figa wrote:
+> Hi Jungo,
+> 
+> On Fri, Jul 5, 2019 at 12:33 PM Jungo Lin <jungo.lin@mediatek.com> wrote:
+> >
+> > Hi Tomasz,
 
-> ---
->  drivers/clk/imx/clk-imx8mq.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->=20
-> diff --git a/drivers/clk/imx/clk-imx8mq.c b/drivers/clk/imx/clk-imx8mq.c
-> index d407a07..91de69a 100644
-> --- a/drivers/clk/imx/clk-imx8mq.c
-> +++ b/drivers/clk/imx/clk-imx8mq.c
-> @@ -539,7 +539,7 @@ static int imx8mq_clocks_probe(struct platform_device=
- *pdev)
->  	clks[IMX8MQ_CLK_DISP_AXI_ROOT]  =3D imx_clk_gate2_shared2("disp_axi_roo=
-t_clk", "disp_axi", base + 0x45d0, 0, &share_count_dcss);
->  	clks[IMX8MQ_CLK_DISP_APB_ROOT]  =3D imx_clk_gate2_shared2("disp_apb_roo=
-t_clk", "disp_apb", base + 0x45d0, 0, &share_count_dcss);
->  	clks[IMX8MQ_CLK_DISP_RTRM_ROOT] =3D imx_clk_gate2_shared2("disp_rtrm_ro=
-ot_clk", "disp_rtrm", base + 0x45d0, 0, &share_count_dcss);
-> -	clks[IMX8MQ_CLK_TMU_ROOT] =3D imx_clk_gate4_flags("tmu_root_clk", "ipg_=
-root", base + 0x4620, 0, CLK_IS_CRITICAL);
-> +	clks[IMX8MQ_CLK_TMU_ROOT] =3D imx_clk_gate4("tmu_root_clk", "ipg_root",=
- base + 0x4620, 0);
->  	clks[IMX8MQ_CLK_VPU_DEC_ROOT] =3D imx_clk_gate2_flags("vpu_dec_root_clk=
-", "vpu_bus", base + 0x4630, 0, CLK_SET_RATE_PARENT | CLK_OPS_PARENT_ENABLE=
-);
->  	clks[IMX8MQ_CLK_CSI1_ROOT] =3D imx_clk_gate4("csi1_root_clk", "csi1_cor=
-e", base + 0x4650, 0);
->  	clks[IMX8MQ_CLK_CSI2_ROOT] =3D imx_clk_gate4("csi2_root_clk", "csi2_cor=
-e", base + 0x4660, 0);
-> --=20
-> 2.7.4
-> =
+[snip]
+
+> > After applying your suggestion in SCP device driver, we could remove
+> > mtk_cam-smem.h/c. Currently, we use dma_alloc_coherent with SCP device
+> > to get SCP address. We could touch the buffer with this SCP address in
+> > SCP processor.
+> >
+> > After that, we use dma_map_page_attrs with P1 device which supports
+> > IOMMU domain to get IOVA address. For this address, we will assign
+> > it to our ISP HW device to proceed.
+> >
+> > Below is the snippet for ISP P1 compose buffer initialization.
+> >
+> >         ptr = dma_alloc_coherent(p1_dev->cam_dev.smem_dev,
+> >                                  MAX_COMPOSER_SIZE, &addr, GFP_KERNEL);
+> >         if (!ptr) {
+> >                 dev_err(dev, "failed to allocate compose memory\n");
+> >                 return -ENOMEM;
+> >         }
+> >         isp_ctx->scp_mem_pa = addr;
+> 
+> addr contains a DMA address, not a physical address. Could we call it
+> scp_mem_dma instead?
+> 
+> >         dev_dbg(dev, "scp addr:%pad\n", &addr);
+> >
+> >         /* get iova address */
+> >         addr = dma_map_page_attrs(dev, phys_to_page(addr), 0,
+> 
+> addr is a DMA address, so phys_to_page() can't be called on it. The
+> simplest thing here would be to use dma_map_single() with ptr as the
+> CPU address expected.
+> 
+
+We have changed to use ma_map_single() with ptr, but encounter IOMMU
+error. From the debug log of iommu_dma_map_page[3], we got
+0x0000000054800000 instead of expected address: 0x0000000050800000[2].
+There is a address offset(0x4000000). If we change to use
+dma_map_page_attrs with phys_to_page(addr), the address is correct as we
+expected[2]. Do you have any suggestion on this issue? Do we miss
+something?
+
+[1]
+[    1.344786] __dma_alloc_from_coherent: 0x800000 PAGE_SHIFT:12
+device_base:0x0000000050000000 dma:0x0000000050800000
+virt_base:ffffff8014000000 va:ffffff8014800000
+
+[    1.346890] mtk-cam 1a000000.camisp: scp addr:0x0000000050800000
+va:ffffff8014800000
+
+[    1.347864] iommu_dma_map_page:0x0000000054800000 offset:0
+[    1.348562] mtk-cam 1a000000.camisp: iova addr:0x00000000fde00000
+
+[2]
+[    1.346738] __dma_alloc_from_coherent: 0x800000 PAGE_SHIFT:12
+device_base:0x0000000050000000 dma:0x0000000050800000
+virt_base:ffffff8014000000 va:ffffff8014800000
+[    1.348841] mtk-cam 1a000000.camisp: scp addr:0x0000000050800000
+va:ffffff8014800000
+[    1.349816] iommu_dma_map_page:0x0000000050800000 offset:0
+[    1.350514] mtk-cam 1a000000.camisp: iova addr:0x00000000fde00000
+
+
+[3]
+dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
+		unsigned long offset, size_t size, int prot)
+{
+	phys_addr_t phys = page_to_phys(page);
+	pr_err("iommu_dma_map_page:%pa offset:%lu\n", &phys, offset);
+
+	return __iommu_dma_map(dev, page_to_phys(page) + offset, size, prot,
+			iommu_get_dma_domain(dev));
+}
+
+[snip]
+
+Best regards,
+
+Jungo
+
