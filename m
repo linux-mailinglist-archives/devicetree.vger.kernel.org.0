@@ -2,78 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AABCC60546
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 13:28:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A35B60553
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 13:39:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727903AbfGEL2N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 07:28:13 -0400
-Received: from mga07.intel.com ([134.134.136.100]:64432 "EHLO mga07.intel.com"
+        id S1727831AbfGELja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 07:39:30 -0400
+Received: from mga17.intel.com ([192.55.52.151]:45408 "EHLO mga17.intel.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727665AbfGEL2N (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Jul 2019 07:28:13 -0400
+        id S1727758AbfGELja (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Jul 2019 07:39:30 -0400
 X-Amp-Result: SKIPPED(no attachment in message)
 X-Amp-File-Uploaded: False
-Received: from orsmga005.jf.intel.com ([10.7.209.41])
-  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Jul 2019 04:28:13 -0700
+Received: from orsmga007.jf.intel.com ([10.7.209.58])
+  by fmsmga107.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Jul 2019 04:39:29 -0700
 X-ExtLoop1: 1
 X-IronPort-AV: E=Sophos;i="5.63,454,1557212400"; 
-   d="scan'208";a="339810868"
-Received: from jsakkine-mobl1.tm.intel.com ([10.237.50.189])
-  by orsmga005.jf.intel.com with ESMTP; 05 Jul 2019 04:28:07 -0700
-Message-ID: <45603af2fc8374a90ef9e81a67083395cc9c7190.camel@linux.intel.com>
-Subject: Re: [PATCH v2 0/2] char: tpm: add new driver for tpm i2c ptp
-From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-To:     Oshri Alkobi <oshrialkoby85@gmail.com>,
-        Alexander Steffen <Alexander.Steffen@infineon.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, peterhuewe@gmx.de,
-        jgg@ziepe.ca, arnd@arndb.de, gregkh@linuxfoundation.org,
-        oshri.alkoby@nuvoton.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-integrity@vger.kernel.org,
-        gcwilson@us.ibm.com, kgoldman@us.ibm.com, nayna@linux.vnet.ibm.com,
-        dan.morav@nuvoton.com, tomer.maimon@nuvoton.com
-Date:   Fri, 05 Jul 2019 14:28:07 +0300
-In-Reply-To: <CAM9mBwJC2QD5-gV1eJUDzC2Fnnugr-oCZCoaH2sT_7ktFDkS-Q@mail.gmail.com>
-References: <20190628151327.206818-1-oshrialkoby85@gmail.com>
-         <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
-         <79e8bfd2-2ed1-cf48-499c-5122229beb2e@infineon.com>
-         <CAM9mBwJC2QD5-gV1eJUDzC2Fnnugr-oCZCoaH2sT_7ktFDkS-Q@mail.gmail.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.32.1-2 
+   d="scan'208";a="155261669"
+Received: from pipin.fi.intel.com (HELO pipin) ([10.237.72.175])
+  by orsmga007.jf.intel.com with ESMTP; 05 Jul 2019 04:39:25 -0700
+From:   Felipe Balbi <felipe.balbi@linux.intel.com>
+To:     Pawel Laszczak <pawell@cadence.com>, devicetree@vger.kernel.org
+Cc:     gregkh@linuxfoundation.org, linux-usb@vger.kernel.org,
+        hdegoede@redhat.com, heikki.krogerus@linux.intel.com,
+        robh+dt@kernel.org, rogerq@ti.com, linux-kernel@vger.kernel.org,
+        jbergsagel@ti.com, nsekhar@ti.com, nm@ti.com, sureshp@cadence.com,
+        peter.chen@nxp.com, jpawar@cadence.com, kurahul@cadence.com,
+        Pawel Laszczak <pawell@cadence.com>
+Subject: Re: [PATCH v9 2/6] usb:gadget Separated decoding functions from dwc3 driver.
+In-Reply-To: <1562324238-16655-3-git-send-email-pawell@cadence.com>
+References: <1562324238-16655-1-git-send-email-pawell@cadence.com> <1562324238-16655-3-git-send-email-pawell@cadence.com>
+Date:   Fri, 05 Jul 2019 14:39:24 +0300
+Message-ID: <87tvc0lngz.fsf@linux.intel.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-07-04 at 12:48 -0500, Oshri Alkobi wrote:
-> Alex, Jarkko, thank you very much for your feedbacks!
 
-Please configure your email client to use plain text.
+Hi,
 
-> I totally agree, there are some duplications that can be common, indeed it
-> will require some work in tpm_tis_core.
-> Since I believe it is not going to happen soon, I would suggest to examine
-> what duplications can currently be dropped from the new driver, so the kernel
-> will support the PTP I2C interface in the meantime.
-> I will appreciate getting ideas about any tpm_tis_core logic that currently
-> can be used as is by the new drive.
+Pawel Laszczak <pawell@cadence.com> writes:
+> diff --git a/include/linux/usb/ch9.h b/include/linux/usb/ch9.h
+> index da82606be605..d388a3a5ab7e 100644
+> --- a/include/linux/usb/ch9.h
+> +++ b/include/linux/usb/ch9.h
+> @@ -70,4 +70,29 @@ extern enum usb_device_speed usb_get_maximum_speed(struct device *dev);
+>   */
+>  extern const char *usb_state_string(enum usb_device_state state);
+>  
+> +/**
+> + * usb_decode_ctrl - Returns human readable representation of control request.
+> + * @str: buffer to return a human-readable representation of control request.
+> + *       This buffer should have about 200 bytes.
+> + * @size: size of str buffer.
+> + * @bRequestType: matches the USB bmRequestType field
+> + * @bRequest: matches the USB bRequest field
+> + * @wValue: matches the USB wValue field (CPU byte order)
+> + * @wIndex: matches the USB wIndex field (CPU byte order)
+> + * @wLength: matches the USB wLength field (CPU byte order)
+> + *
+> + * Function returns decoded, formatted and human-readable description of
+> + * control request packet.
+> + *
+> + * The usage scenario for this is for tracepoints, so function as a return
+> + * use the same value as in parameters. This approach allows to use this
+> + * function in TP_printk
+> + *
+> + * Important: wValue, wIndex, wLength parameters before invoking this function
+> + * should be processed by le16_to_cpu macro.
+> + */
+> +extern const char *usb_decode_ctrl(char *str, size_t size, __u8 bRequestType,
+> +				   __u8 bRequest, __u16 wValue, __u16 wIndex,
+> +				   __u16 wLength);
+> +
 
-I rather wait for a solution that integrates with our mature stack for
-TIS (or these days FIFO) than integrate something half-baked. If you
-want something in, please do right things right.
+where's the stub when !TRACING?
 
-What you are proposing would mean maintaining duplicate stacks forever.
-
-> Since the TIS is an old specification that mostly defines FIFO for TPM1.2 I
-> would say the name tpm_tis_i2c does not completely reflect its goal. However
-> we really don't have any problem with any name that the group will agree on.
-> Does tpm_ptp_i2c sound better than the current name?
-
-Absolutely not going to use that name. The naming convention is what
-it is for other drivers that are adapt tpm_tis_core to different HW
-interfaces.
-
-/Jarkko
-
+-- 
+balbi
