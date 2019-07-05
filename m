@@ -2,56 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0ED5F60436
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 12:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0586660452
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 12:20:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728344AbfGEKMC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 06:12:02 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:47208 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726005AbfGEKMB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 06:12:01 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 9E1CA80601; Fri,  5 Jul 2019 12:11:48 +0200 (CEST)
-Date:   Fri, 5 Jul 2019 12:11:51 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Jean-Jacques Hiblot <jjhiblot@ti.com>
-Cc:     jacek.anaszewski@gmail.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, lee.jones@linaro.org,
-        daniel.thompson@linaro.org, jingoohan1@gmail.com, dmurphy@ti.com,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, tomi.valkeinen@ti.com,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 4/4] devicetree: Add led-backlight binding
-Message-ID: <20190705101151.kmyvccbjitfqe4fv@devuan>
-References: <20190701151423.30768-1-jjhiblot@ti.com>
- <20190701151423.30768-5-jjhiblot@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190701151423.30768-5-jjhiblot@ti.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+        id S1728021AbfGEKUh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 06:20:37 -0400
+Received: from relmlor1.renesas.com ([210.160.252.171]:60230 "EHLO
+        relmlie5.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727723AbfGEKUh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 06:20:37 -0400
+X-IronPort-AV: E=Sophos;i="5.62,454,1554735600"; 
+   d="scan'208";a="20644599"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie5.idc.renesas.com with ESMTP; 05 Jul 2019 19:20:35 +0900
+Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 5899F4004BA7;
+        Fri,  5 Jul 2019 19:20:33 +0900 (JST)
+From:   Biju Das <biju.das@bp.renesas.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Biju Das <biju.das@bp.renesas.com>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Subject: [PATCH 0/3] Add WLAN/BT support
+Date:   Fri,  5 Jul 2019 11:15:17 +0100
+Message-Id: <1562321720-18735-1-git-send-email-biju.das@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi!
+This series adds WLAN/BT support for the HiHope RZ/G2M platform.
 
-> Add DT binding for led-backlight.
-> 
-> Signed-off-by: Tomi Valkeinen <tomi.valkeinen@ti.com>
-> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
-> Cc: devicetree@vger.kernel.org
-> ---
+This patchset is based on renesas devel branch.
 
-> +Required properties:
-> +  - compatible: "led-backlight"
-> +  - brightness-levels: Array of distinct LED brightness levels. These
-> +      are in the range from 0 to 255, passed to the LED class driver.
+Biju Das (3):
+  arm64: dts: renesas: hihope-common: Add PCA9654 I/O expander
+  arm64: dts: renesas: hihope-common: Add BT support
+  arm64: dts: renesas: hihope-common: Add WLAN support
 
-These days, we support more (or less) than 256 brightness levels for LED.
-									Pavel
+ arch/arm64/boot/dts/renesas/hihope-common.dtsi | 78 ++++++++++++++++++++++++++
+ 1 file changed, 78 insertions(+)
+
 -- 
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
+2.7.4
+
