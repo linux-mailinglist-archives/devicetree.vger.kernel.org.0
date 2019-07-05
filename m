@@ -2,79 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 656B960B73
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 20:33:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E2CA60B78
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 20:35:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727275AbfGESdD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 14:33:03 -0400
-Received: from sauhun.de ([88.99.104.3]:53478 "EHLO pokefinder.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725730AbfGESdC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Jul 2019 14:33:02 -0400
-Received: from localhost (p54B334DF.dip0.t-ipconnect.de [84.179.52.223])
-        by pokefinder.org (Postfix) with ESMTPSA id 315F72C0398;
-        Fri,  5 Jul 2019 20:33:01 +0200 (CEST)
-Date:   Fri, 5 Jul 2019 20:33:00 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        linux-i2c@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: i2c: sun6i-p2wi: Fix the binding example
-Message-ID: <20190705183300.GF4717@kunai>
-References: <20190703095338.11266-1-maxime.ripard@bootlin.com>
- <20190703095338.11266-2-maxime.ripard@bootlin.com>
+        id S1727340AbfGESfm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 14:35:42 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:37657 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725730AbfGESfl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 14:35:41 -0400
+Received: by mail-io1-f65.google.com with SMTP id e5so16617936iok.4;
+        Fri, 05 Jul 2019 11:35:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=6RTglQDcnPhYZ6+ia3duitJHDfc8+bEhxKjHNNLaC3E=;
+        b=BZ+9kgdje40skG8QZnBrGGdCq+a5PY3QRB1EP82Bv5D+ASw59GLdJ9nl/CXfWrv2Vb
+         sdF/4tDpTcNbX29P0DW2295h/VzsyaIFf6sv2obahvhi1F+alJ5zWmaIJiJXRPUNeaYy
+         WUaUabgcyn/IxOCELyyu3AD5IKOubFFL1lUj/Z7VEDe8z+Hz4XrYmBQwlw5UdwX4fwjD
+         hC3UH/KOlUIB65U/iiQZL8bXUsDlJ5+vvTWOEFcdI8AoUkJzuUZdhsxDb3zR2QybccWT
+         XnXvDsdZdq+wBp8GJNViKCsoaxzAeoKTh08miWZiKe3mFnjd5j8o0p6REXuo9vGXKrUk
+         Y5Rg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=6RTglQDcnPhYZ6+ia3duitJHDfc8+bEhxKjHNNLaC3E=;
+        b=D7BMyCxtBJELX+zDt+F94st4rB5u1zjNBHjv6JIFDDCHOVFZJWq2dvomTDuv42xYlQ
+         u6E2nKNDJZ/SOPtE/QI3QzZ46RqlLljB9dELRfHlreA1kOHZYNAAlW7h2BNma+ZnETsw
+         q3quJJgSGAkSg0hzIPCTjDvFG6aIi8FqZDcsJg6YRVIuEHOCyfWbj7SXTl3VjAa2KId/
+         L9uFIhQKdwM4xxz/bUhF6lW+Mjy+oPhSVItsrW2lSdb98mMh8K8CWv4VVRxMzrr+imQI
+         wBeDJholW7EpzMBjo4OpAi050ckqoXtuY2YjL86RVgUR54Hr3PnwVeciNAnlJKkiwJJM
+         Q0aA==
+X-Gm-Message-State: APjAAAXGdh7+lmq4Gu6UGr1j1l/58zwORB0SOxacari7JLfkp1lbti9r
+        f/3yysehKVLf/gecBV7g4x2Eoc9/oL01b63yqj8=
+X-Google-Smtp-Source: APXvYqyd73dY/S9t5icoFq7nzm8pi6H5OC2r++hJMBl44SpiTDWX/+NV+P7GLXcL1rKew1ZlNNEFkwyeZXbwgWKdoq0=
+X-Received: by 2002:a02:c95a:: with SMTP id u26mr5888920jao.15.1562351741149;
+ Fri, 05 Jul 2019 11:35:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="TU+u6i6jrDPzmlWF"
-Content-Disposition: inline
-In-Reply-To: <20190703095338.11266-2-maxime.ripard@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190705165450.329-1-jeffrey.l.hugo@gmail.com>
+ <20190705165755.515-1-jeffrey.l.hugo@gmail.com> <20190705172058.GA2788@ravnborg.org>
+In-Reply-To: <20190705172058.GA2788@ravnborg.org>
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Date:   Fri, 5 Jul 2019 12:35:30 -0600
+Message-ID: <CAOCk7NrVSCt18QfMs+_nW1rDMuhK_dPKWL0roESmwEEy4u3BZQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] drm/panel: simple: Add support for Sharp LD-D5116Z01B panel
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     thierry.reding@gmail.com, Dave Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri, Jul 5, 2019 at 11:21 AM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Jeffrey.
+>
+> Patch looks good, but there is a few fields that are not initialized.
+> Did you forget them, or are they not needed?
 
---TU+u6i6jrDPzmlWF
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Thanks for the review.  Overlooked some of them.
 
-On Wed, Jul 03, 2019 at 11:53:38AM +0200, Maxime Ripard wrote:
-> Even though the binding claims that the frequency can go up to 6MHz, the
-> common i2c binding sets a limit at 3MHz, which then triggers a warning.
->=20
-> Since the only SoC that uses that bus uses a frequency of 100kHz, and that
-> this bus hasn't been found in an SoC for something like 5 years, let's ju=
-st
-> fix the example to have a frequency within the acceptable range for i2c.
->=20
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+>
+> On Fri, Jul 05, 2019 at 09:57:55AM -0700, Jeffrey Hugo wrote:
+> > The Sharp LD-D5116Z01B is a 12.3" eDP panel with a 1920X1280 resolution.
+> >
+> > Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> > ---
+> >  drivers/gpu/drm/panel/panel-simple.c | 26 ++++++++++++++++++++++++++
+> >  1 file changed, 26 insertions(+)
+> >
+> > diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> > index 5a93c4edf1e4..e6f578667324 100644
+> > --- a/drivers/gpu/drm/panel/panel-simple.c
+> > +++ b/drivers/gpu/drm/panel/panel-simple.c
+> > @@ -2354,6 +2354,29 @@ static const struct panel_desc samsung_ltn140at29_301 = {
+> >       },
+> >  };
+> >
+> > +static const struct drm_display_mode sharp_ld_d5116z01b_mode = {
+> > +     .clock = 168480,
+> > +     .hdisplay = 1920,
+> > +     .hsync_start = 1920 + 48,
+> > +     .hsync_end = 1920 + 48 + 32,
+> > +     .htotal = 1920 + 48 + 32 + 80,
+> > +     .vdisplay = 1280,
+> > +     .vsync_start = 1280 + 3,
+> > +     .vsync_end = 1280 + 3 + 10,
+> > +     .vtotal = 1280 + 3 + 10 + 57,
+> > +     .vrefresh = 60,
+> > +};
+> No .flags? Is it not needed for an eDP panel?
 
-Applied to for-next, thanks!
+The flags don't appear to make sense per my understanding of eDP.
+Therefore I intended .flags to be 0, which it implicitly is because
+this is a static struct.  Would you prefer I explicitly list .flags =
+0?
 
+>
+> > +
+> > +static const struct panel_desc sharp_ld_d5116z01b = {
+> > +     .modes = &sharp_ld_d5116z01b_mode,
+> > +     .num_modes = 1,
+> > +     .bpc = 8,
+> > +     .size = {
+> > +             .width = 260,
+> > +             .height = 120,
+> > +     },
+> > +};
+> No .bus_format?
 
---TU+u6i6jrDPzmlWF
-Content-Type: application/pgp-signature; name="signature.asc"
+Ah, yes.  Looks like it should be MEDIA_BUS_FMT_RGB888_1X24
+Will fix.
 
------BEGIN PGP SIGNATURE-----
+> No .bus_flags?
 
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl0fl9wACgkQFA3kzBSg
-Kbb05BAAphN8yqYnjQ4CiPIfWfCmJbbv5Y3lc7hSh8TNGBfRFa0xR64Z7JjnMuV2
-lqSfEV/BnmP9X8LRd8oX7J17sNn8YuR9QNrPnMAzg369/qTdDUoc32BaXGVFSCd9
-OdTYIKN8mbG9OrmFQPhbtQlxjEyPjjgSusIagNkvpExMIFtEfQDbxqNeu/kYAxxa
-i0H3WxJ1WIw/d/kTeVKFwxODHA0zvsETxkZRgNw76fPwm5Yxg1+reDBNQ1XufUMY
-G/xRtgW9eDcEXGd9W7i2OaSnpPYKuSMxC0I+DwI7WeGuYGt+cbJPawTGBTJtLElh
-SQWciLXbGtgBnu8iGOQBHhDOdNEpo0zKF26ZmwTClewdyQz/woG3ibko0wL1kF7A
-hHwOfUpK+kxP3fCMIotqxAGGQz8Rm5aZA6OQaqTgUx4ZdeUz3i/eCVGpb+LmuBSO
-50vvXKfWaRE0r4CKk98MmRrKarv4QAUEdWa2pHo3COOR2g1R57PPOYxdewM8Lz3Z
-jiFNXoe2+wlKEBrRXmegJJrDy1zgUzw/GyLtoiH4VaBKgrxAAJTjAsDdov06kYLS
-a1dpRatayNrt6ej9TCQwv9vF33RWuqGCfjBt0KC9QV6KPviaUDPedA5DgExrABg5
-D+DjY/idtbD+uhJA0fUHXCtdb2KzTZjnFGSTknhhTkjN4euP0p8=
-=M5Ht
------END PGP SIGNATURE-----
-
---TU+u6i6jrDPzmlWF--
+eDP is differential signaling, so what I see generally doesn't apply,
+but DRM_BUS_FLAG_DATA_MSB_TO_LSB does apply, so I'll add that.
