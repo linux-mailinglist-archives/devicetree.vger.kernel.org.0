@@ -2,148 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DC4B060604
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 14:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 531DF60680
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 15:19:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727638AbfGEMhm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 08:37:42 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:49134 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725601AbfGEMhl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 08:37:41 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x65CWUBO015894;
-        Fri, 5 Jul 2019 14:36:13 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
- date : message-id : references : in-reply-to : content-type : content-id :
- content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=nuMS6p+p3kSwZitSa3B2HZ8uP0JDZ2NWsyUgLamNnd0=;
- b=NEVk99+KVuuwQZPkG0kmtuAaoM+1yQYeq2y07wKKVR5WjnQccS0/1HiOmmHp73HOR9N5
- 14Gq/eo3rYJLA6vGhwt0M0pufNUc3aE6mpbN8pZfVkbKPNWLoFx5Ym+pjNbBVmUDgUFz
- gchrebzYFkXdBgiX5AVCz3bEW5mCajFgor1PLMi960cttvIjiX/2ZCM6hzqrN0f66p3G
- mOAUyy30RfXCWGaVmAJLuUYcWKweyTVnWHc9ya1pxJutg7ydvnPwlRrHNkXybc01Qbiw
- znhM9q4rEBN9AylBWAWk9SpdUZ6y6woQN1iqTJ39KqDWhiNLO9ENi24xJvCTGXaF3Mfi Tg== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2tdxvjjgj1-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 05 Jul 2019 14:36:13 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 7C90531;
-        Fri,  5 Jul 2019 12:36:12 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4862E2C7F;
-        Fri,  5 Jul 2019 12:36:12 +0000 (GMT)
-Received: from SFHDAG6NODE3.st.com (10.75.127.18) by SFHDAG3NODE1.st.com
- (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 5 Jul
- 2019 14:36:11 +0200
-Received: from SFHDAG6NODE3.st.com ([fe80::d04:5337:ab17:b6f6]) by
- SFHDAG6NODE3.st.com ([fe80::d04:5337:ab17:b6f6%20]) with mapi id
- 15.00.1473.003; Fri, 5 Jul 2019 14:36:11 +0200
-From:   Philippe CORNU <philippe.cornu@st.com>
-To:     Olivier MOYSAN <olivier.moysan@st.com>,
-        "a.hajda@samsung.com" <a.hajda@samsung.com>,
-        "narmstrong@baylibre.com" <narmstrong@baylibre.com>,
-        "Laurent.pinchart@ideasonboard.com" 
-        <Laurent.pinchart@ideasonboard.com>,
-        "jonas@kwiboo.se" <jonas@kwiboo.se>,
-        "jernej.skrabec@siol.net" <jernej.skrabec@siol.net>,
-        "airlied@linux.ie" <airlied@linux.ie>,
-        "daniel@ffwll.ch" <daniel@ffwll.ch>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        id S1727635AbfGENT1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 09:19:27 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:55782 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726794AbfGENT1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Jul 2019 09:19:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=nWbKLFHL+b+hFBq0825QJ0Fh8N/yT85HADdlrJpqwCQ=; b=3GP3RPKu7ZpFV7+cfZjE+vohUc
+        Bex/2CpZC7Ala0E0eG4LZVetEHQEb/pfJHowfchWGZpWrdgaXwHw7j7iVZVhdnGDzqhJtwb9f/Eeo
+        KLOig8uZwjFnSMbwTDYL8WRA0Mk0Pe6SrZtuUPnX5rsJaDgQ9SE3ZqwIKhT9NdjVOm9A=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hjO7O-0001Br-S6; Fri, 05 Jul 2019 15:19:14 +0200
+Date:   Fri, 5 Jul 2019 15:19:14 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Claudiu Manoil <claudiu.manoil@nxp.com>
+Cc:     Vladimir Oltean <olteanv@gmail.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        "Allan W. Nielsen" <allan.nielsen@microchip.com>,
+        "David S . Miller" <davem@davemloft.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        Alexandru Marginean <alexandru.marginean@nxp.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Benjamin GAIGNARD <benjamin.gaignard@st.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
+        "UNGLinuxDriver@microchip.com" <UNGLinuxDriver@microchip.com>,
+        Allan Nielsen <Allan.Nielsen@microsemi.com>,
+        Rob Herring <robh+dt@kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "jsarha@ti.com" <jsarha@ti.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 3/3] drm/bridge: sii902x: make audio mclk optional
-Thread-Topic: [PATCH 3/3] drm/bridge: sii902x: make audio mclk optional
-Thread-Index: AQHVMO2M8CUkPHajiUCKtjETQ0unPqa72RGA
-Date:   Fri, 5 Jul 2019 12:36:11 +0000
-Message-ID: <2828a8ca-6d25-fe49-f97a-cfd86e5d5fac@st.com>
-References: <1562082426-14876-1-git-send-email-olivier.moysan@st.com>
- <1562082426-14876-4-git-send-email-olivier.moysan@st.com>
-In-Reply-To: <1562082426-14876-4-git-send-email-olivier.moysan@st.com>
-Accept-Language: fr-FR, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.47]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <94B1862D7883AE44876E6AC9CEA4D8CD@st.com>
-Content-Transfer-Encoding: base64
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH net-next 4/6] arm64: dts: fsl: ls1028a: Add Felix switch
+ port DT node
+Message-ID: <20190705131914.GA4428@lunn.ch>
+References: <20190621164940.GL31306@lunn.ch>
+ <VI1PR04MB4880D8F90BBCD30BF8A69C9696E00@VI1PR04MB4880.eurprd04.prod.outlook.com>
+ <20190624115558.GA5690@piout.net>
+ <20190624142625.GR31306@lunn.ch>
+ <20190624152344.3bv46jjhhygo6zwl@lx-anielsen.microsemi.net>
+ <20190624162431.GX31306@lunn.ch>
+ <20190624182614.GC5690@piout.net>
+ <CA+h21hqGtA5ou7a3wjSuHxa_4fXk4GZohTAxnUdfLZjV3nq5Eg@mail.gmail.com>
+ <20190705044945.GA30115@lunn.ch>
+ <VI1PR04MB4880DEA9D7836A68E0EE141396F50@VI1PR04MB4880.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-05_05:,,
- signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <VI1PR04MB4880DEA9D7836A68E0EE141396F50@VI1PR04MB4880.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgT2xpdmllciwNCmFuZCBtYW55IHRoYW5rcyBmb3IgeW91ciBwYXRjaC4NCg0KUmV2aWV3ZWQt
-Ynk6IFBoaWxpcHBlIENvcm51IDxwaGlsaXBwZS5jb3JudUBzdC5jb20+DQpQaGlsaXBwZSA6LSkN
-Cg0KT24gNy8yLzE5IDU6NDcgUE0sIE9saXZpZXIgTW95c2FuIHdyb3RlOg0KPiBUaGUgbWFzdGVy
-IGNsb2NrIG9uIGkycyBidXMgaXMgbm90IG1hbmRhdG9yeSwNCj4gYXMgc2lpOTAyWCBpbnRlcm5h
-bCBQTEwgY2FuIGJlIHVzZWQgaW5zdGVhZC4NCj4gTWFrZSB1c2Ugb2YgbWNsayBvcHRpb25hbC4N
-Cj4gDQo+IEZpeGVzOiBmZjU3ODE2MzRjNDEgKCJkcm0vYnJpZGdlOiBzaWk5MDJ4OiBJbXBsZW1l
-bnQgSERNSSBhdWRpbyBzdXBwb3J0IikNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IE9saXZpZXIgTW95
-c2FuIDxvbGl2aWVyLm1veXNhbkBzdC5jb20+DQo+IC0tLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9i
-cmlkZ2Uvc2lpOTAyeC5jIHwgMzkgKysrKysrKysrKysrKysrKysrKysrKystLS0tLS0tLS0tLS0t
-LS0tDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDIzIGluc2VydGlvbnMoKyksIDE2IGRlbGV0aW9ucygt
-KQ0KPiANCj4gZGlmZiAtLWdpdCBhL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc2lpOTAyeC5jIGIv
-ZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zaWk5MDJ4LmMNCj4gaW5kZXggMzZhY2MyNTZlNjdlLi5h
-MDhiZDlmZGMwNDYgMTAwNjQ0DQo+IC0tLSBhL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc2lpOTAy
-eC5jDQo+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9icmlkZ2Uvc2lpOTAyeC5jDQo+IEBAIC01NjIs
-MTkgKzU2MiwyMSBAQCBzdGF0aWMgaW50IHNpaTkwMnhfYXVkaW9faHdfcGFyYW1zKHN0cnVjdCBk
-ZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwNCj4gICAJCX0NCj4gICAJfQ0KPiAgIA0KPiAtCXJldCA9
-IGNsa19wcmVwYXJlX2VuYWJsZShzaWk5MDJ4LT5hdWRpby5tY2xrKTsNCj4gLQlpZiAocmV0KSB7
-DQo+IC0JCWRldl9lcnIoZGV2LCAiRW5hYmxpbmcgbWNsayBmYWlsZWQ6ICVkXG4iLCByZXQpOw0K
-PiAtCQlyZXR1cm4gcmV0Ow0KPiAtCX0NCj4gKwlpZiAoc2lpOTAyeC0+YXVkaW8ubWNsaykgew0K
-PiArCQlyZXQgPSBjbGtfcHJlcGFyZV9lbmFibGUoc2lpOTAyeC0+YXVkaW8ubWNsayk7DQo+ICsJ
-CWlmIChyZXQpIHsNCj4gKwkJCWRldl9lcnIoZGV2LCAiRW5hYmxpbmcgbWNsayBmYWlsZWQ6ICVk
-XG4iLCByZXQpOw0KPiArCQkJcmV0dXJuIHJldDsNCj4gKwkJfQ0KPiAgIA0KPiAtCW1jbGtfcmF0
-ZSA9IGNsa19nZXRfcmF0ZShzaWk5MDJ4LT5hdWRpby5tY2xrKTsNCj4gKwkJbWNsa19yYXRlID0g
-Y2xrX2dldF9yYXRlKHNpaTkwMngtPmF1ZGlvLm1jbGspOw0KPiAgIA0KPiAtCXJldCA9IHNpaTkw
-Mnhfc2VsZWN0X21jbGtfZGl2KCZpMnNfY29uZmlnX3JlZywgcGFyYW1zLT5zYW1wbGVfcmF0ZSwN
-Cj4gLQkJCQkgICAgICBtY2xrX3JhdGUpOw0KPiAtCWlmIChtY2xrX3JhdGUgIT0gcmV0ICogcGFy
-YW1zLT5zYW1wbGVfcmF0ZSkNCj4gLQkJZGV2X2RiZyhkZXYsICJJbmFjY3VyYXRlIHJlZmVyZW5j
-ZSBjbG9jayAoJWxkLyVkICE9ICV1KVxuIiwNCj4gLQkJCW1jbGtfcmF0ZSwgcmV0LCBwYXJhbXMt
-PnNhbXBsZV9yYXRlKTsNCj4gKwkJcmV0ID0gc2lpOTAyeF9zZWxlY3RfbWNsa19kaXYoJmkyc19j
-b25maWdfcmVnLA0KPiArCQkJCQkgICAgICBwYXJhbXMtPnNhbXBsZV9yYXRlLCBtY2xrX3JhdGUp
-Ow0KPiArCQlpZiAobWNsa19yYXRlICE9IHJldCAqIHBhcmFtcy0+c2FtcGxlX3JhdGUpDQo+ICsJ
-CQlkZXZfZGJnKGRldiwgIkluYWNjdXJhdGUgcmVmZXJlbmNlIGNsb2NrICglbGQvJWQgIT0gJXUp
-XG4iLA0KPiArCQkJCW1jbGtfcmF0ZSwgcmV0LCBwYXJhbXMtPnNhbXBsZV9yYXRlKTsNCj4gKwl9
-DQo+ICAgDQo+ICAgCW11dGV4X2xvY2soJnNpaTkwMngtPm11dGV4KTsNCj4gICANCj4gQEAgLTY0
-MCw3ICs2NDIsOCBAQCBzdGF0aWMgaW50IHNpaTkwMnhfYXVkaW9faHdfcGFyYW1zKHN0cnVjdCBk
-ZXZpY2UgKmRldiwgdm9pZCAqZGF0YSwNCj4gICAJbXV0ZXhfdW5sb2NrKCZzaWk5MDJ4LT5tdXRl
-eCk7DQo+ICAgDQo+ICAgCWlmIChyZXQpIHsNCj4gLQkJY2xrX2Rpc2FibGVfdW5wcmVwYXJlKHNp
-aTkwMngtPmF1ZGlvLm1jbGspOw0KPiArCQlpZiAoc2lpOTAyeC0+YXVkaW8ubWNsaykNCj4gKwkJ
-CWNsa19kaXNhYmxlX3VucHJlcGFyZShzaWk5MDJ4LT5hdWRpby5tY2xrKTsNCj4gICAJCWRldl9l
-cnIoZGV2LCAiJXM6IGhkbWkgYXVkaW8gZW5hYmxlIGZhaWxlZDogJWRcbiIsIF9fZnVuY19fLA0K
-PiAgIAkJCXJldCk7DQo+ICAgCX0NCj4gQEAgLTY1OSw3ICs2NjIsOCBAQCBzdGF0aWMgdm9pZCBz
-aWk5MDJ4X2F1ZGlvX3NodXRkb3duKHN0cnVjdCBkZXZpY2UgKmRldiwgdm9pZCAqZGF0YSkNCj4g
-ICANCj4gICAJbXV0ZXhfdW5sb2NrKCZzaWk5MDJ4LT5tdXRleCk7DQo+ICAgDQo+IC0JY2xrX2Rp
-c2FibGVfdW5wcmVwYXJlKHNpaTkwMngtPmF1ZGlvLm1jbGspOw0KPiArCWlmIChzaWk5MDJ4LT5h
-dWRpby5tY2xrKQ0KPiArCQljbGtfZGlzYWJsZV91bnByZXBhcmUoc2lpOTAyeC0+YXVkaW8ubWNs
-ayk7DQo+ICAgfQ0KPiAgIA0KPiAgIGludCBzaWk5MDJ4X2F1ZGlvX2RpZ2l0YWxfbXV0ZShzdHJ1
-Y3QgZGV2aWNlICpkZXYsIHZvaWQgKmRhdGEsIGJvb2wgZW5hYmxlKQ0KPiBAQCAtNzUyLDkgKzc1
-NiwxMiBAQCBzdGF0aWMgaW50IHNpaTkwMnhfYXVkaW9fY29kZWNfaW5pdChzdHJ1Y3Qgc2lpOTAy
-eCAqc2lpOTAyeCwNCj4gICANCj4gICAJc2lpOTAyeC0+YXVkaW8ubWNsayA9IGRldm1fY2xrX2dl
-dChkZXYsICJtY2xrIik7DQo+ICAgCWlmIChJU19FUlIoc2lpOTAyeC0+YXVkaW8ubWNsaykpIHsN
-Cj4gLQkJZGV2X2VycihkZXYsICIlczogTm8gY2xvY2sgKGF1ZGlvIG1jbGspIGZvdW5kOiAlbGRc
-biIsDQo+IC0JCQlfX2Z1bmNfXywgUFRSX0VSUihzaWk5MDJ4LT5hdWRpby5tY2xrKSk7DQo+IC0J
-CXJldHVybiAwOw0KPiArCQlpZiAoUFRSX0VSUihzaWk5MDJ4LT5hdWRpby5tY2xrKSAhPSAtRU5P
-RU5UKSB7DQo+ICsJCQlkZXZfZXJyKGRldiwgIiVzOiBObyBjbG9jayAoYXVkaW8gbWNsaykgZm91
-bmQ6ICVsZFxuIiwNCj4gKwkJCQlfX2Z1bmNfXywgUFRSX0VSUihzaWk5MDJ4LT5hdWRpby5tY2xr
-KSk7DQo+ICsJCQlyZXR1cm4gUFRSX0VSUihzaWk5MDJ4LT5hdWRpby5tY2xrKTsNCj4gKwkJfQ0K
-PiArCQlzaWk5MDJ4LT5hdWRpby5tY2xrID0gTlVMTDsNCj4gICAJfQ0KPiAgIA0KPiAgIAlzaWk5
-MDJ4LT5hdWRpby5wZGV2ID0gcGxhdGZvcm1fZGV2aWNlX3JlZ2lzdGVyX2RhdGEoDQo+IA==
+> Nice discussion, again, but there's a missing point that has not been
+> brought up yet.  We actually intend to support the following hardware
+> configuration: a single PCI device consisting of the Microsemi's switch core
+> and our DMA rings.
+> The hardware supports this configuration into a single PCI function (PF), 
+> with a unique PCI function id (0xe111), so that the same driver has access to 
+> both switch registers and DMA rings connected to the CPU port.  This device
+> would qualify  as a  switchdev device, and we can simply reuse the existing
+> ocelot code for the switch core part.  The initial patch set was the first step in
+> supporting the switch core on our platform, we just need to add the support
+> for the DMA rings part, to make it a complete switchdev solution.
+
+Hi Claudiu
+
+It sound like in the end you will have a core library and then two
+drivers wrapped around it, giving a pure switchdev device with polled
+IO or DMA, and a DSA driver using a CPU port.
+
+   Andrew
