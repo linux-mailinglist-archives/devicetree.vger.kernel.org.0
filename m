@@ -2,81 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9CF36608E0
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 17:13:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4E732608EF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 17:15:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727725AbfGEPNj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 11:13:39 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:56984 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727961AbfGEPNj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 11:13:39 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x65FDZ8Y087596;
-        Fri, 5 Jul 2019 10:13:35 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1562339615;
-        bh=X5SQUumkW58Zgp2FI1ph9B4uenobpRYKTZ55G7V38jk=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=CEukuNRy3wkAEheclq4mBFDybaEU9p6Z87439S5jVmmWPEn/eKjWInZ1H1w9W+uyD
-         AOyrO8FSKJCO+1bj71XytWrVcVMEGh61LCcarM7MyLP8ytC/GYTgWPhC/tbhVJ3vI5
-         BIO4bTmTbobu7HJuNu/CXYLBANAStyYosRm+JAnA=
-Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x65FDZB0012878
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 5 Jul 2019 10:13:35 -0500
-Received: from DFLE104.ent.ti.com (10.64.6.25) by DFLE111.ent.ti.com
- (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 5 Jul
- 2019 10:13:35 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 5 Jul 2019 10:13:35 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x65FDYQk095136;
-        Fri, 5 Jul 2019 10:13:34 -0500
-From:   Grygorii Strashko <grygorii.strashko@ti.com>
-To:     Santosh Shilimkar <ssantosh@kernel.org>
-CC:     Sekhar Nori <nsekhar@ti.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Grygorii Strashko <grygorii.strashko@ti.com>
-Subject: [RESEND PATCH next v2 6/6] ARM: configs: keystone: enable cpts
-Date:   Fri, 5 Jul 2019 18:12:47 +0300
-Message-ID: <20190705151247.30422-7-grygorii.strashko@ti.com>
+        id S1728004AbfGEPO7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 11:14:59 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:40056 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727872AbfGEPOy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 11:14:54 -0400
+Received: by mail-pl1-f196.google.com with SMTP id a93so4760572pla.7
+        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2019 08:14:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=LG/wQK5eDhZO2JkmChNMhmQOYOK1XGmyw1rFFuxqroU=;
+        b=fc5wkPe+dcpEqURdBxoMZHkCu7ruRwywX8u94KSlg4PtNUUKv1XNQ2h+hPrPex7hXK
+         VD2FrV3QrNPFHljlLp9iA3TAwyCJpbQfIZMu6IeYhFFbqVNCG+4dRcpTTex9MIDA8isg
+         MFmW4PlzYaU+rHd8q7Ml+nbonIDBGxC7smUnWlWgqx65ULvaH0VoOPEpDYz/AlfiLjSP
+         cas8EcLbYQ59WCanZWRNFY1apouJ4wbEn9R7Px2mQNL9hTgQbIqhPKx99nOoihYL2EXK
+         o64Bn2pewcsOvDIoscJDs8Pw2X+wWGYA4h5uX7U+sSA6S495hfr2tgBdrTazwNhv1WYd
+         NN9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=LG/wQK5eDhZO2JkmChNMhmQOYOK1XGmyw1rFFuxqroU=;
+        b=GMJZ0g5GYAZ4B+rltwzjuhN5KkL0MpT4TWy7TKOkVCkvcJd5y4WKr5ffAIneIB7ZTn
+         Law092VmndRY3kM55+BQYjnHxLd7i+WYnJEckDO29QGoVG9IpnN8dVXEG81X/6DaQJzf
+         COV3gWT7bg1X6yGNgfRyd3mMXIXCRvN5UhcsWwK50/XZuW1v8qo86EtkVzbShtiZ1XDw
+         qXxiIcmxzEBwYfrfgsv0qo1qXj+M9zj/gVCprP9naBmL/GEyNt2FOn8NOhdee9hApTRU
+         JoGzUR3xilsRvKNn/DQhgSNLEebBCNtLyrKmDNtuGVjwsABXU5ucSSzwh2sL8yefIYDX
+         Vfag==
+X-Gm-Message-State: APjAAAXgWQmgpF6q9WIQ1f0/jdfLUSBQzKVqZD8p6GA7oGiVOYD3zVXu
+        5cpJpfW8/W6+Pyt/K9yKBf+C
+X-Google-Smtp-Source: APXvYqyuyWM051xgjkop2EkbkL9HbE7ns7a3MbZMkVaSgI+NVgtU3F46u+LXPNsBGqLnjeIMdq97bg==
+X-Received: by 2002:a17:902:16f:: with SMTP id 102mr6040122plb.94.1562339693237;
+        Fri, 05 Jul 2019 08:14:53 -0700 (PDT)
+Received: from localhost.localdomain ([2409:4072:916:7317:a59d:72b6:ef7f:a938])
+        by smtp.gmail.com with ESMTPSA id w3sm8248778pgl.31.2019.07.05.08.14.46
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 05 Jul 2019 08:14:52 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     sboyd@kernel.org, mturquette@baylibre.com, robh+dt@kernel.org
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        haitao.suo@bitmain.com, darren.tsao@bitmain.com,
+        fisher.cheng@bitmain.com, alec.lin@bitmain.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH 0/5] Add Bitmain BM1880 clock driver
+Date:   Fri,  5 Jul 2019 20:44:35 +0530
+Message-Id: <20190705151440.20844-1-manivannan.sadhasivam@linaro.org>
 X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190705151247.30422-1-grygorii.strashko@ti.com>
-References: <20190705151247.30422-1-grygorii.strashko@ti.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Enable CPTS support which is present in Network Coprocessor Gigabit
-Ethernet (GbE) Switch Subsystem.
+Hello,
 
-Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
----
- arch/arm/configs/keystone_defconfig | 1 +
- 1 file changed, 1 insertion(+)
+This patchset adds common clock driver for Bitmain BM1880 SoC clock
+controller. The clock controller consists of gate, divider, mux
+and pll clocks with different compositions. Hence, the driver uses
+composite clock structure in place where multiple clocking units are
+combined together.
 
-diff --git a/arch/arm/configs/keystone_defconfig b/arch/arm/configs/keystone_defconfig
-index 72fee57aad2f..0b2281407ecf 100644
---- a/arch/arm/configs/keystone_defconfig
-+++ b/arch/arm/configs/keystone_defconfig
-@@ -136,6 +136,7 @@ CONFIG_BLK_DEV_SD=y
- CONFIG_NETDEVICES=y
- CONFIG_TI_KEYSTONE_NETCP=y
- CONFIG_TI_KEYSTONE_NETCP_ETHSS=y
-+CONFIG_TI_CPTS=y
- CONFIG_MARVELL_PHY=y
- CONFIG_SERIAL_8250=y
- CONFIG_SERIAL_8250_CONSOLE=y
+This patchset also removes UART fixed clock and sources clocks from clock
+controller for Sophon Edge board where the driver has been validated.
+
+Thanks,
+Mani
+
+Manivannan Sadhasivam (5):
+  dt-bindings: clock: Add Bitmain BM1880 SoC clock controller binding
+  arm64: dts: bitmain: Add clock controller support for BM1880 SoC
+  arm64: dts: bitmain: Source common clock for UART controllers
+  clk: Add driver for Bitmain BM1880 SoC clock controller
+  MAINTAINERS: Add entry for Bitmain BM1880 SoC clock driver
+
+ .../bindings/clock/bitmain,bm1880-clk.txt     |  47 +
+ MAINTAINERS                                   |   2 +
+ .../boot/dts/bitmain/bm1880-sophon-edge.dts   |   9 -
+ arch/arm64/boot/dts/bitmain/bm1880.dtsi       |  27 +
+ drivers/clk/Kconfig                           |   6 +
+ drivers/clk/Makefile                          |   1 +
+ drivers/clk/clk-bm1880.c                      | 947 ++++++++++++++++++
+ include/dt-bindings/clock/bm1880-clock.h      |  82 ++
+ 8 files changed, 1112 insertions(+), 9 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.txt
+ create mode 100644 drivers/clk/clk-bm1880.c
+ create mode 100644 include/dt-bindings/clock/bm1880-clock.h
+
 -- 
 2.17.1
 
