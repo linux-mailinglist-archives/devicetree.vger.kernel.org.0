@@ -2,62 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 202F660376
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 11:58:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7ECF603B4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 11:59:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728375AbfGEJ5s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 05:57:48 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:44978 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728188AbfGEJ5r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 05:57:47 -0400
-Received: by mail-lf1-f66.google.com with SMTP id r15so5925666lfm.11
-        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2019 02:57:46 -0700 (PDT)
+        id S1727753AbfGEJ7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 05:59:31 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:38529 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728399AbfGEJ6F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 05:58:05 -0400
+Received: by mail-lj1-f193.google.com with SMTP id r9so8689856ljg.5
+        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2019 02:58:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=aR9uAvgeaPzmKk1YhWutKX7D15M3aAKx9HHCruqrY3s=;
-        b=MWycKuBRX+yk7xrNtRuZUKiQquKUSF3f8BCs3i94Tg0jpBzZZSvrg/KD7XjF4dZzSj
-         WSrqJ6zerqnMOvMfSPwSVX3FvQGTSplMbTnriDo9DNz+qLIXcuuEsZ5lpvxuokKTpCBK
-         91jIzkvGtmoB8LaQtWv0mH8JH43enZMRtsDRSFjZY/Lh4IBxpsbtWgkEWI2FSsmU2vRs
-         e5akyZHNQOVUmjeUAH2tLlxyWfr/pDHyCokuz1SLnr7wKHi8quESwtQgQdlN8CW0Eqlp
-         is8yXlOGy337hHmkBlxu5b/sOae3LXt5VVrrXfKPDVNivJ+s5X4AhNns1P5oip54DDm6
-         UzjA==
+        bh=VUCWK2MsD9fKCW5H56U5T5vRzO2k7QDz1z157zPKgz4=;
+        b=yF9Y4TXdbukUm95Tym+SSRRKXOgy30rcUTY/I/w2ob/pI2Xk6mM2EFws9z/z9Jy5cn
+         5yH51ejAX7BSHtxlej6Sietfapi0cefT59q9jJN1ifMQjBqWA/apLst7ul9igPrQzDk2
+         drpnxdar+aTtUDEWi3y8Cvaxy3V5c8w9TqANXQggoaL7EEGMCiDWenolNKnmfMlIz6hF
+         LA7dy1MeKgwm/taneDq3mE/Cww1ynKWrGI+PksCPx8K3tIZOtjsxbHUhCVxP0us659eW
+         TmBrcMnTRQnSIVFZY+/4qysi0crgRy02/xmt3FLPdAsn0bXiaXQyjMv1jXGLbzNsj4go
+         eyAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=aR9uAvgeaPzmKk1YhWutKX7D15M3aAKx9HHCruqrY3s=;
-        b=emhoGdCOxp6R3CbFUjkS0oCcmk3fZ2OGDBfpwKsQNJEIuDvhRzYfW48KBTZiPoFYfV
-         GG0+7AquHOh1kZozqC/kSHU13gJl20725xOyzXKdFsYPBCgvQjXScHl081XgdD9PqX8c
-         KQt0JjvQGt4whwK+N8urjyakofgpziJnRG6OQA5FjG0hJMBRhVkfVS8TnclNrsSGTPVo
-         RjhNlB4xpOnYmcdPjgvsQg0OMLTWG7jYdwcq7NSCJoZAfqUoIzjCeK7th32flodCyQF5
-         JsLVeWCEDbPDs8aCwb7KgirR2O5MkGqUczDtukE5gyuHvDFvLGP0ve5dxpEhxs0PdysU
-         +3tQ==
-X-Gm-Message-State: APjAAAU3S9mFCoYJMisl/4SuWUUSV7UALZ/D3qoGFnRAY3/6NMG0BrYx
-        msZIOKRCywYWJD1SuezgNS/v7A==
-X-Google-Smtp-Source: APXvYqzKvDyiKWeIXmJyoQuAirsIgVLFmJHimarCgDX5CCLbzQQDbDzznUGhL8wvlYup85IAH62Q6Q==
-X-Received: by 2002:a19:7709:: with SMTP id s9mr1485305lfc.86.1562320665755;
-        Fri, 05 Jul 2019 02:57:45 -0700 (PDT)
+        bh=VUCWK2MsD9fKCW5H56U5T5vRzO2k7QDz1z157zPKgz4=;
+        b=Ztnnrd6Mzya01OBp/tPMMoH0Ykbmy4EXo2aY+rURpjLGdaEXewH5aH6U6utMionRUg
+         OLg16eF7FpbFo4xvThRBv4ATRq53ZX9tmPI32mtrFXMzeWJF5J0GwROHajuc7yRCo0P/
+         9nqZg9ujYqRu1Kc/zR9FA7VnPAWJowJiwMUiDmjRjJEFQ8zKczqB3EyXMnSV23GMPwaJ
+         IaM4JREnX4VXmbsP+wrKWF0aIvshXZUW7JaYCXCVC0mKdZeVqcEGDKOAtbx1ClA0x9qu
+         PBkbwQxmoHFFIoPcLJ94e3jzvyWXu7vjpWegDvjpfkJEaedh+22gWkjQggESw+jUV0vW
+         lbAQ==
+X-Gm-Message-State: APjAAAUBx+enoWxwyKwjeqs+2o/oERdyUvVQaDNf82qH+VC5qygRptJm
+        hVuzBBVL6mkpYoxDLi/mIWuTIA==
+X-Google-Smtp-Source: APXvYqx0ZiI7NUTcCSAcDJg+m43On7JBoo/yMllTvC1H2ViTfIYfM/r31p51tmof/TzmGg/DplB8aw==
+X-Received: by 2002:a2e:9758:: with SMTP id f24mr1723330ljj.58.1562320683615;
+        Fri, 05 Jul 2019 02:58:03 -0700 (PDT)
 Received: from localhost.localdomain (ua-83-226-34-119.bbcust.telenor.se. [83.226.34.119])
-        by smtp.gmail.com with ESMTPSA id q2sm1298364lfj.25.2019.07.05.02.57.44
+        by smtp.gmail.com with ESMTPSA id 25sm1692704ljn.62.2019.07.05.02.58.02
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 05 Jul 2019 02:57:45 -0700 (PDT)
+        Fri, 05 Jul 2019 02:58:02 -0700 (PDT)
 From:   Niklas Cassel <niklas.cassel@linaro.org>
-To:     Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Ilia Lin <ilia.lin@kernel.org>, Andy Gross <agross@kernel.org>
+To:     Andy Gross <agross@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, jorge.ramirez-ortiz@linaro.org,
         bjorn.andersson@linaro.org, ulf.hansson@linaro.org,
-        Sricharan R <sricharan@codeaurora.org>,
         Niklas Cassel <niklas.cassel@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 01/13] dt-bindings: cpufreq: Re-organise kryo cpufreq to use it for other nvmem based qcom socs
-Date:   Fri,  5 Jul 2019 11:57:12 +0200
-Message-Id: <20190705095726.21433-2-niklas.cassel@linaro.org>
+Subject: [PATCH 03/13] dt-bindings: cpufreq: qcom-nvmem: Make speedbin related properties optional
+Date:   Fri,  5 Jul 2019 11:57:14 +0200
+Message-Id: <20190705095726.21433-4-niklas.cassel@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190705095726.21433-1-niklas.cassel@linaro.org>
 References: <20190705095726.21433-1-niklas.cassel@linaro.org>
@@ -68,54 +67,31 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sricharan R <sricharan@codeaurora.org>
+Not all Qualcomm platforms need to care about the speedbin efuse,
+nor the value blown into the speedbin efuse.
+Therefore, make the nvmem-cells and opp-supported-hw properties
+optional.
 
-The kryo cpufreq driver reads the nvmem cell and uses that data to
-populate the opps. There are other qcom cpufreq socs like krait which
-does similar thing. Except for the interpretation of the read data,
-rest of the driver is same for both the cases. So pull the common things
-out for reuse.
-
-Signed-off-by: Sricharan R <sricharan@codeaurora.org>
-[niklas.cassel@linaro.org: split dt-binding into a separate patch and
-do not rename the compatible string.]
 Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
 ---
-Changes since RFC:
--Made DT bindings a separate patch.
--Keep the original compatible string, since renaming it breaks DT
-backwards compatibility.
+ Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt | 4 ++++
+ 1 file changed, 4 insertions(+)
 
- .../opp/{kryo-cpufreq.txt => qcom-nvmem-cpufreq.txt}   | 10 +++++-----
- 1 file changed, 5 insertions(+), 5 deletions(-)
- rename Documentation/devicetree/bindings/opp/{kryo-cpufreq.txt => qcom-nvmem-cpufreq.txt} (98%)
-
-diff --git a/Documentation/devicetree/bindings/opp/kryo-cpufreq.txt b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
-similarity index 98%
-rename from Documentation/devicetree/bindings/opp/kryo-cpufreq.txt
-rename to Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
-index c2127b96805a..198441e80ba8 100644
---- a/Documentation/devicetree/bindings/opp/kryo-cpufreq.txt
+diff --git a/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
+index 198441e80ba8..c5ea8b90e35d 100644
+--- a/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
 +++ b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
-@@ -1,13 +1,13 @@
--Qualcomm Technologies, Inc. KRYO CPUFreq and OPP bindings
-+Qualcomm Technologies, Inc. NVMEM CPUFreq and OPP bindings
- ===================================
- 
--In Certain Qualcomm Technologies, Inc. SoCs like apq8096 and msm8996
--that have KRYO processors, the CPU ferequencies subset and voltage value
--of each OPP varies based on the silicon variant in use.
-+In Certain Qualcomm Technologies, Inc. SoCs like apq8096 and msm8996,
-+the CPU frequencies subset and voltage value of each OPP varies based on
-+the silicon variant in use.
- Qualcomm Technologies, Inc. Process Voltage Scaling Tables
- defines the voltage and frequency value based on the msm-id in SMEM
- and speedbin blown in the efuse combination.
--The qcom-cpufreq-kryo driver reads the msm-id and efuse value from the SoC
-+The qcom-cpufreq-nvmem driver reads the msm-id and efuse value from the SoC
- to provide the OPP framework with required information (existing HW bitmap).
- This is used to determine the voltage and frequency value for each OPP of
- operating-points-v2 table when it is parsed by the OPP framework.
+@@ -20,6 +20,10 @@ In 'cpus' nodes:
+ In 'operating-points-v2' table:
+ - compatible: Should be
+ 	- 'operating-points-v2-kryo-cpu' for apq8096 and msm8996.
++
++Optional properties:
++--------------------
++In 'operating-points-v2' table:
+ - nvmem-cells: A phandle pointing to a nvmem-cells node representing the
+ 		efuse registers that has information about the
+ 		speedbin that is used to select the right frequency/voltage
 -- 
 2.21.0
 
