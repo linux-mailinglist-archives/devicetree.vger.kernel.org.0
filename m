@@ -2,94 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83E0060A43
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 18:29:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8469E60A68
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 18:42:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727853AbfGEQ3f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 12:29:35 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:57088 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725917AbfGEQ3f (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Jul 2019 12:29:35 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=/ataEGZSOL+nuZDsLx0axzYzlb6dLsffIscARtjpMwE=; b=uMOv6YBQleUehDC8E/SOVWjyJS
-        Wii3q3OARflhOtXeZa+aiBZYZK+aofCJl6HFvrF4fXPKzNO2RI3rHBsVZN2DygUnKXH0pQjhXKb6B
-        6+SZVAJblx5bQyYmySDtrtmBB79iDtH2r/i6MMz5WnuVYPCXnqkeR5UA2khh+47WzHiA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hjR5S-00035G-B0; Fri, 05 Jul 2019 18:29:26 +0200
-Date:   Fri, 5 Jul 2019 18:29:26 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v2 1/7] dt-bindings: net: Add bindings for Realtek PHYs
-Message-ID: <20190705162926.GM18473@lunn.ch>
-References: <20190703193724.246854-1-mka@chromium.org>
- <CAL_JsqJdBAMPc1sZJfL7V9cxGgCb4GWwRokwJDmac5L2AO2-wg@mail.gmail.com>
- <20190703213327.GH18473@lunn.ch>
- <CAL_Jsq+dqz7n0_+Y5R4772-rh=9x=k20A69hnDwxH3OyZXQneQ@mail.gmail.com>
+        id S1728581AbfGEQmZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 12:42:25 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:37169 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726302AbfGEQmY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 12:42:24 -0400
+Received: by mail-io1-f68.google.com with SMTP id e5so15978220iok.4;
+        Fri, 05 Jul 2019 09:42:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8nlXZ7u0rxXu0XMq6FG+OHVHwTKfcbW3lBZ9QzezvgQ=;
+        b=sFNqqqzRlAA4SMpiDaVvec20s8KX0ZfFYVnx5NXskiA/YXfMOjI3abxFu7pZ2i3XlW
+         vwdL6MzchTzI7wMlQVpMvo65193c2Mif93/n97yhJvK4lr4nmhtdhg5LmC5RAjUDK8pp
+         mZbCbA+js9weh7ozapfV5tTUWfPSVkhSMoJbtccW58bxWG3GWW2mIzMNRY6XmDk9wTG9
+         XppY9JKwKO3aSmNbm5wX8HsBXrGx1XTLtEcEZVeJTe4QG1GEsPqz9ddCyQwc48avY+Jk
+         f+vcx6YmXYiRaT3xEWbf1SyqgSLFOeBR9v4RHn48+LuOWMWqTfF8af4GbXojefaUA7pI
+         vbnA==
+X-Gm-Message-State: APjAAAU4mMtenbse/ulg9Xa4d2odgScA6xLMNu3H1+noY+ppD66Sxr+k
+        /Fi78a7mWOokagwZ34oJfxwqoyg=
+X-Google-Smtp-Source: APXvYqzM3MTheDkYKqJsDxrjwbKNkXHZsWgJIUt0bbxTWr9csYiLC5zscIL04ZJlvsbcj4gbapjptw==
+X-Received: by 2002:a5d:9f4a:: with SMTP id u10mr4983031iot.243.1562344943338;
+        Fri, 05 Jul 2019 09:42:23 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.252])
+        by smtp.googlemail.com with ESMTPSA id b8sm6878104ioj.16.2019.07.05.09.42.22
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 05 Jul 2019 09:42:22 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Subject: [PATCH v3 00/13] Conversion of panel bindings to DT schema
+Date:   Fri,  5 Jul 2019 10:42:08 -0600
+Message-Id: <20190705164221.4462-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+dqz7n0_+Y5R4772-rh=9x=k20A69hnDwxH3OyZXQneQ@mail.gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 05, 2019 at 10:17:16AM -0600, Rob Herring wrote:
-> On Wed, Jul 3, 2019 at 3:33 PM Andrew Lunn <andrew@lunn.ch> wrote:
-> >
-> > > I think if we're going to have custom properties for phys, we should
-> > > have a compatible string to at least validate whether the custom
-> > > properties are even valid for the node.
-> >
-> > Hi Rob
-> >
-> > What happens with other enumerable busses where a compatible string is
-> > not used?
-> 
-> We usually have a compatible. USB and PCI both do. Sometimes it is a
-> defined format based on VID/PID.
+This series converts the common panel bindings to DT schema format. 
+Besides the conversion of common panel properties, a few panel bindings 
+are converted here as well. These are all the ones with references to 
+panel-common.txt or panel-lvds.txt.
 
-Hi Rob
+I'll apply the series to drm-misc. One patch from v2 already got applied 
+without its dependency.
 
-Is it defined what to do with this compatible? Just totally ignore it?
-Validate it against the hardware and warning if it is wrong? Force
-load the driver that implements the compatible, even thought bus
-enumeration says it is the wrong driver?
+v3:
+- Consistently list all used properties and add 'additionalProperties: 
+  false'
 
-> > The Ethernet PHY subsystem will ignore the compatible string and load
-> > the driver which fits the enumeration data. Using the compatible
-> > string only to get the right YAML validator seems wrong. I would
-> > prefer adding some other property with a clear name indicates its is
-> > selecting the validator, and has nothing to do with loading the
-> > correct driver. And it can then be used as well for USB and PCI
-> > devices etc.
-> 
-> Just because Linux happens to not use compatible really has nothing to
-> do with whether or not the nodes should have a compatible. What does
-> FreeBSD want? U-boot?
-> 
-> I don't follow how adding a validate property would help. It would
-> need to be 'validate-node-as-a-realtek-phy'.
+Rob
 
-This makes it clear it is all about validating the DT, and nothing
-about the actual running hardware. What i don't really want to see is
-the poorly defined situation that DT contains a compatible string, but
-we have no idea what it is actually used for. See the question above.
+Rob Herring (13):
+  dt-bindings: display: Convert common panel bindings to DT schema
+  dt-bindings: display: Convert ampire,am-480272h3tmqw-t01h panel to DT
+    schema
+  dt-bindings: display: Convert armadeus,st0700-adapt panel to DT schema
+  dt-bindings: display: Convert bananapi,s070wv20-ct16 panel to DT
+    schema
+  dt-bindings: display: Convert dlc,dlc0700yzg-1 panel to DT schema
+  dt-bindings: display: Convert pda,91-00156-a0 panel to DT schema
+  dt-bindings: display: Convert raspberrypi,7inch-touchscreen panel to
+    DT schema
+  dt-bindings: display: Convert tfc,s9700rtwv43tr-01b panel to DT schema
+  dt-bindings: display: Convert panel-lvds to DT schema
+  dt-bindings: display: Convert innolux,ee101ia-01 panel to DT schema
+  dt-bindings: display: Convert mitsubishi,aa104xd12 panel to DT schema
+  dt-bindings: display: Convert mitsubishi,aa121td01 panel to DT schema
+  dt-bindings: display: Convert sgd,gktw70sdae4se panel to DT schema
 
-     Andrew
+ .../panel/ampire,am-480272h3tmqw-t01h.txt     |  26 ---
+ .../panel/ampire,am-480272h3tmqw-t01h.yaml    |  42 +++++
+ .../display/panel/arm,versatile-tft-panel.txt |   2 +-
+ .../display/panel/armadeus,st0700-adapt.txt   |   9 --
+ .../display/panel/armadeus,st0700-adapt.yaml  |  33 ++++
+ .../display/panel/bananapi,s070wv20-ct16.txt  |  12 --
+ .../display/panel/bananapi,s070wv20-ct16.yaml |  31 ++++
+ .../display/panel/dlc,dlc0700yzg-1.txt        |  13 --
+ .../display/panel/dlc,dlc0700yzg-1.yaml       |  31 ++++
+ .../display/panel/innolux,ee101ia-01d.txt     |   7 -
+ .../display/panel/innolux,ee101ia-01d.yaml    |  31 ++++
+ .../bindings/display/panel/lvds.yaml          | 107 +++++++++++++
+ .../display/panel/mitsubishi,aa104xd12.txt    |  47 ------
+ .../display/panel/mitsubishi,aa104xd12.yaml   |  75 +++++++++
+ .../display/panel/mitsubishi,aa121td01.txt    |  47 ------
+ .../display/panel/mitsubishi,aa121td01.yaml   |  74 +++++++++
+ .../bindings/display/panel/panel-common.txt   | 101 ------------
+ .../bindings/display/panel/panel-common.yaml  | 149 ++++++++++++++++++
+ .../bindings/display/panel/panel-lvds.txt     | 121 --------------
+ .../bindings/display/panel/panel.txt          |   4 -
+ .../display/panel/pda,91-00156-a0.txt         |  14 --
+ .../display/panel/pda,91-00156-a0.yaml        |  31 ++++
+ .../panel/raspberrypi,7inch-touchscreen.txt   |  49 ------
+ .../panel/raspberrypi,7inch-touchscreen.yaml  |  71 +++++++++
+ .../display/panel/sgd,gktw70sdae4se.txt       |  41 -----
+ .../display/panel/sgd,gktw70sdae4se.yaml      |  68 ++++++++
+ .../bindings/display/panel/simple-panel.txt   |  29 +---
+ .../display/panel/tfc,s9700rtwv43tr-01b.txt   |  15 --
+ .../display/panel/tfc,s9700rtwv43tr-01b.yaml  |  33 ++++
+ 29 files changed, 778 insertions(+), 535 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/ampire,am-480272h3tmqw-t01h.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/ampire,am-480272h3tmqw-t01h.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/armadeus,st0700-adapt.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/armadeus,st0700-adapt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/bananapi,s070wv20-ct16.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/bananapi,s070wv20-ct16.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/dlc,dlc0700yzg-1.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/innolux,ee101ia-01d.yaml
+ create mode 100644 Documentation/devicetree/bindings/display/panel/lvds.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/mitsubishi,aa104xd12.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/mitsubishi,aa121td01.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/panel-common.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/panel-common.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/panel-lvds.txt
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/panel.txt
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/pda,91-00156-a0.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/pda,91-00156-a0.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/raspberrypi,7inch-touchscreen.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/raspberrypi,7inch-touchscreen.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/panel/tfc,s9700rtwv43tr-01b.txt
+ create mode 100644 Documentation/devicetree/bindings/display/panel/tfc,s9700rtwv43tr-01b.yaml
+
+-- 
+2.20.1
+
