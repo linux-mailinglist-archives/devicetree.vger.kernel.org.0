@@ -2,80 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4CB7B6052B
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 13:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7229660545
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 13:27:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728291AbfGELPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 07:15:46 -0400
-Received: from mga03.intel.com ([134.134.136.65]:29098 "EHLO mga03.intel.com"
+        id S1727674AbfGEL11 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 07:27:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39496 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726005AbfGELPq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Jul 2019 07:15:46 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga003.jf.intel.com ([10.7.209.27])
-  by orsmga103.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 05 Jul 2019 04:15:46 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,454,1557212400"; 
-   d="scan'208";a="167032354"
-Received: from jsakkine-mobl1.tm.intel.com ([10.237.50.189])
-  by orsmga003.jf.intel.com with ESMTP; 05 Jul 2019 04:15:39 -0700
-Message-ID: <2e2e646c3fae87307a149ee06e9fd4a7e493830d.camel@linux.intel.com>
-Subject: Re: [PATCH v2 0/2] char: tpm: add new driver for tpm i2c ptp
-From:   Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-To:     Alexander Steffen <Alexander.Steffen@infineon.com>,
-        Oshri Alkoby <oshrialkoby85@gmail.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, peterhuewe@gmx.de, jgg@ziepe.ca,
-        arnd@arndb.de, gregkh@linuxfoundation.org, oshri.alkoby@nuvoton.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-integrity@vger.kernel.org, gcwilson@us.ibm.com,
-        kgoldman@us.ibm.com, nayna@linux.vnet.ibm.com,
-        dan.morav@nuvoton.com, tomer.maimon@nuvoton.com
-Date:   Fri, 05 Jul 2019 14:15:37 +0300
-In-Reply-To: <79e8bfd2-2ed1-cf48-499c-5122229beb2e@infineon.com>
-References: <20190628151327.206818-1-oshrialkoby85@gmail.com>
-         <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
-         <79e8bfd2-2ed1-cf48-499c-5122229beb2e@infineon.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-Content-Type: text/plain; charset="UTF-8"
-User-Agent: Evolution 3.32.1-2 
+        id S1727665AbfGEL11 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Jul 2019 07:27:27 -0400
+Received: from localhost (83-84-126-242.cable.dynamic.v4.ziggo.nl [83.84.126.242])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 213C021852;
+        Fri,  5 Jul 2019 11:27:26 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562326046;
+        bh=LEEDjkG3dbCcARsXiTFH04ZPn/aQjCdDpJ7cBnwl+Q4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=y9S8zd3NbMt+JeDJsSkAJ/mCX/0WMbBZgI5M4FbdKw8ElHa9kDYTRsY4EqJNDyyNZ
+         3L6nFKJiQwuXMbrwCCAHc+6T/krx5xxF+Iagt9S1M3LEih96OI+vnxI5e2Ki4kQrdW
+         0uDloP2MvVjihfkVl2pUBHQdjmqVuwaRW0pb94Jk=
+Date:   Fri, 5 Jul 2019 13:27:24 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Pawel Laszczak <pawell@cadence.com>
+Cc:     devicetree@vger.kernel.org, felipe.balbi@linux.intel.com,
+        linux-usb@vger.kernel.org, hdegoede@redhat.com,
+        heikki.krogerus@linux.intel.com, robh+dt@kernel.org, rogerq@ti.com,
+        linux-kernel@vger.kernel.org, jbergsagel@ti.com, nsekhar@ti.com,
+        nm@ti.com, sureshp@cadence.com, peter.chen@nxp.com,
+        jpawar@cadence.com, kurahul@cadence.com
+Subject: Re: [PATCH v9 2/6] usb:gadget Separated decoding functions from dwc3
+ driver.
+Message-ID: <20190705112724.GA4294@kroah.com>
+References: <1562324238-16655-1-git-send-email-pawell@cadence.com>
+ <1562324238-16655-3-git-send-email-pawell@cadence.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1562324238-16655-3-git-send-email-pawell@cadence.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-07-04 at 13:29 +0200, Alexander Steffen wrote:
-> On 04.07.2019 10:43, Jarkko Sakkinen wrote:
-> > Check out tpm_tis_core.c and tpm_tis_spi.c. TPM TIS driver implements
-> > that spec so you should only implement a new physical layer.
+On Fri, Jul 05, 2019 at 11:57:14AM +0100, Pawel Laszczak wrote:
+> Patch moves some decoding functions from driver/usb/dwc3/debug.h driver
+> to driver/usb/gadget/debug.c file. These moved functions include:
+>     dwc3_decode_get_status
+>     dwc3_decode_set_clear_feature
+>     dwc3_decode_set_address
+>     dwc3_decode_get_set_descriptor
+>     dwc3_decode_get_configuration
+>     dwc3_decode_set_configuration
+>     dwc3_decode_get_intf
+>     dwc3_decode_set_intf
+>     dwc3_decode_synch_frame
+>     dwc3_decode_set_sel
+>     dwc3_decode_set_isoch_delay
+>     dwc3_decode_ctrl
 > 
-> I had the same thought. Unfortunately, the I2C-TIS specification 
-> introduces two relevant changes compared to tpm_tis/tpm_tis_spi:
-
-I doubt that there was any comparison made.
-
-> 1. Locality is not encoded into register addresses anymore, but stored 
-> in a separate register.
-> 2. Several register addresses have changed (but still contain compatible 
-> contents).
+> These functions are used also in inroduced cdns3 driver.
 > 
-> I'd still prefer not to duplicate all the high-level logic from 
-> tpm_tis_core. But this will probably mean to introduce some new 
-> interfaces between tpm_tis_core and the physical layers.
+> All functions prefixes were changed from dwc3 to usb.
+> Also, function's parameters has been extended according to the name
+> of fields in standard SETUP packet.
+> Additionally, patch adds usb_decode_ctrl function to
+> include/linux/usb/gadget.h file.
 
-Agreed. Some plumbing needs to be done in tpm_tis_core to make it work
-for this. We definitely do not want to duplicate code that has been
-field tested for years.
+No it does not :(
 
-> Also, shouldn't the new driver be called tpm_tis_i2c, to group it with 
-> all the other (TIS) drivers, that implement a vendor-independent 
-> protocol? With tpm_i2c_ptp users might assume that ptp is just another 
-> vendor.
+> Signed-off-by: Pawel Laszczak <pawell@cadence.com>
+> ---
+>  drivers/usb/common/Makefile |   5 +
+>  drivers/usb/common/debug.c  | 268 ++++++++++++++++++++++++++++++++++++
+>  drivers/usb/dwc3/debug.h    | 252 ---------------------------------
+>  drivers/usb/dwc3/trace.h    |   2 +-
+>  include/linux/usb/ch9.h     |  25 ++++
+>  5 files changed, 299 insertions(+), 253 deletions(-)
+>  create mode 100644 drivers/usb/common/debug.c
+> 
+> diff --git a/drivers/usb/common/Makefile b/drivers/usb/common/Makefile
+> index 0a7c45e85481..cdc66b59a6f0 100644
+> --- a/drivers/usb/common/Makefile
+> +++ b/drivers/usb/common/Makefile
+> @@ -5,6 +5,11 @@
+>  
+>  obj-$(CONFIG_USB_COMMON)	  += usb-common.o
+>  usb-common-y			  += common.o
+> +
+> +ifneq ($(CONFIG_TRACING),)
+> +	usb-common-y		  += debug.o
+> +endif
 
-Yes, absolutely. I guess the driver has been done without looking at
-what already exist in the TPM kernel stack.
+So only enable this if tracing is not emabled?  Or if enabled?  I'm
+confused, isn't there an easier way to write this?
 
-/Jarkko
+thanks,
 
+greg k-h
