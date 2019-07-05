@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6012E605E2
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 14:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 821FA605FF
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 14:36:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728800AbfGEMZ5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 08:25:57 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:28578 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726765AbfGEMZ5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 08:25:57 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x65CNqYQ030318;
-        Fri, 5 Jul 2019 14:24:15 +0200
+        id S1727515AbfGEMgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 08:36:51 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:1878 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725601AbfGEMgv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 08:36:51 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x65CVYTY029722;
+        Fri, 5 Jul 2019 14:35:16 +0200
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
  date : message-id : references : in-reply-to : content-type : content-id :
  content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=EFphJe1CVVP/nzRxA8x6BhXKv/0bjU3/TiVkvgOFPek=;
- b=BYLU4XNoWdTNPUWd8ceyUbCwUOTaR3Zl4KnD/DGwy4jIGIeLB91fgSU0JmDTNPxB+m8B
- snlkGg5ZlGmvMkbPmJtFJx1IBbJSAsrxEj8p2sFSRZ/55OFHIdcJn55lp4s138lzPju/
- 2uKvrqJyrQP7KyltAKDUlXNckkyChpMBpj2exHAtp56yQ6Xe0YEzz3TMiVVDFV6yf+qK
- k4aCeQ/5gDkYiLxkHyPIu3B2qN1jxWF9hWyWQsPcWDqaTiLt5lzuSXvfC2uHYySkX71q
- yoaDFjY2zrcL7+8I9p+xMmvyzjquq0X4bq+uO99TSuQ+S57jzx1ZKE6MeT+G7r4ZXl4C nQ== 
+ bh=njzQHa4+h1RnF+3DEZ8qWlHR8A0NDvMIkjMuExbOY/c=;
+ b=Lms/oWpARTnfFQZUGeLLSL/L5nCtc4yzZ/CJ0qPJ0hKUMsYaYecBD/8UKtYDYaRrRHBt
+ l2cG1M1ivkaqS6KPtjjDZzFp7+tv6a8Btq9SpvxDUUWWQtFHndcN96Zei+cX7Pnl17za
+ lCrFTCEwLRM6Et0oiVg66e+9uElel5r76m8cdY4Uqf1hXM7kKTOSeeadR5UFlCWPcO27
+ 5h6salTtUNpFVrgDhLmYhcR6JrRewtugTCbL+tBa0NOfUoTAiYUAbUwhsO5ZwimFvkt3
+ /6jFjyql7Bun7AVz1gsL5KWi0P8RSvHJIJ0hmG6DEEBRoIdy5bImxxgwrvn5EJ49lQ2o ig== 
 Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2tdw4ajaab-1
+        by mx07-00178001.pphosted.com with ESMTP id 2tdwf1jhdu-1
         (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 05 Jul 2019 14:24:14 +0200
+        Fri, 05 Jul 2019 14:35:16 +0200
 Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AB07734;
-        Fri,  5 Jul 2019 12:24:02 +0000 (GMT)
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 79C7D34;
+        Fri,  5 Jul 2019 12:35:15 +0000 (GMT)
 Received: from Webmail-eu.st.com (sfhdag6node2.st.com [10.75.127.17])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 72FD32C47;
-        Fri,  5 Jul 2019 12:24:02 +0000 (GMT)
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 40D982C7F;
+        Fri,  5 Jul 2019 12:35:15 +0000 (GMT)
 Received: from SFHDAG6NODE3.st.com (10.75.127.18) by SFHDAG6NODE2.st.com
  (10.75.127.17) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 5 Jul
- 2019 14:24:01 +0200
+ 2019 14:35:14 +0200
 Received: from SFHDAG6NODE3.st.com ([fe80::d04:5337:ab17:b6f6]) by
  SFHDAG6NODE3.st.com ([fe80::d04:5337:ab17:b6f6%20]) with mapi id
- 15.00.1473.003; Fri, 5 Jul 2019 14:24:02 +0200
+ 15.00.1473.003; Fri, 5 Jul 2019 14:35:14 +0200
 From:   Philippe CORNU <philippe.cornu@st.com>
 To:     Olivier MOYSAN <olivier.moysan@st.com>,
         "a.hajda@samsung.com" <a.hajda@samsung.com>,
@@ -61,16 +61,16 @@ To:     Olivier MOYSAN <olivier.moysan@st.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
         "mark.rutland@arm.com" <mark.rutland@arm.com>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: Re: [PATCH 1/3] drm/bridge: sii902x: fix missing reference to mclk
- clock
-Thread-Topic: [PATCH 1/3] drm/bridge: sii902x: fix missing reference to mclk
- clock
-Thread-Index: AQHVMO2KR4mZoMb3BkGaiUB8X+1y2qa71auA
-Date:   Fri, 5 Jul 2019 12:24:02 +0000
-Message-ID: <39d9bf8f-a906-7f69-582d-b2996e600c0f@st.com>
+Subject: Re: [PATCH 2/3] dt-bindings: display: sii902x: Change audio mclk
+ binding
+Thread-Topic: [PATCH 2/3] dt-bindings: display: sii902x: Change audio mclk
+ binding
+Thread-Index: AQHVMO2JtZ7sVttbMk6Xu8iqEAATraa72MyA
+Date:   Fri, 5 Jul 2019 12:35:14 +0000
+Message-ID: <ca446f4b-d918-fe6d-f6bd-4aa07efbefac@st.com>
 References: <1562082426-14876-1-git-send-email-olivier.moysan@st.com>
- <1562082426-14876-2-git-send-email-olivier.moysan@st.com>
-In-Reply-To: <1562082426-14876-2-git-send-email-olivier.moysan@st.com>
+ <1562082426-14876-3-git-send-email-olivier.moysan@st.com>
+In-Reply-To: <1562082426-14876-3-git-send-email-olivier.moysan@st.com>
 Accept-Language: fr-FR, en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
@@ -79,9 +79,9 @@ user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.2
 x-ms-exchange-messagesentrepresentingtype: 1
 x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.47]
+x-originating-ip: [10.75.127.45]
 Content-Type: text/plain; charset="utf-8"
-Content-ID: <DDC1C03DC92D944FA408C2A9B6DAE01F@st.com>
+Content-ID: <82CCEAE863094E428B349826FE92A781@st.com>
 Content-Transfer-Encoding: base64
 MIME-Version: 1.0
 X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-05_05:,,
@@ -91,24 +91,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgT2xpdmllciwNCmFuZCBtYW55IHRoYW5rcyBmb3IgeW91ciBwYXRjaC4NCkkgZG8gbm90IHNl
-ZSBob3cgYXVkaW8gY291bGQgd29yayB3aXRob3V0IHlvdXIgcGF0Y2gsIHNvOg0KUmV2aWV3ZWQt
-Ynk6IFBoaWxpcHBlIENvcm51IDxwaGlsaXBwZS5jb3JudUBzdC5jb20+DQpQaGlsaXBwZSA6LSkN
-Cg0KT24gNy8yLzE5IDU6NDcgUE0sIE9saXZpZXIgTW95c2FuIHdyb3RlOg0KPiBBZGQgZGV2bV9j
-bGtfZ2V0IGNhbGwgdG8gcmV0cmlldmUgcmVmZXJlbmNlIHRvIG1hc3RlciBjbG9jay4NCj4gDQo+
-IEZpeGVzOiBmZjU3ODE2MzRjNDEgKCJkcm0vYnJpZGdlOiBzaWk5MDJ4OiBJbXBsZW1lbnQgSERN
-SSBhdWRpbyBzdXBwb3J0IikNCj4gDQo+IFNpZ25lZC1vZmYtYnk6IE9saXZpZXIgTW95c2FuIDxv
-bGl2aWVyLm1veXNhbkBzdC5jb20+DQo+IC0tLQ0KPiAgIGRyaXZlcnMvZ3B1L2RybS9icmlkZ2Uv
-c2lpOTAyeC5jIHwgMSArDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQo+IA0K
-PiBkaWZmIC0tZ2l0IGEvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zaWk5MDJ4LmMgYi9kcml2ZXJz
-L2dwdS9kcm0vYnJpZGdlL3NpaTkwMnguYw0KPiBpbmRleCBkZDdhYTQ2NmIyODAuLjM2YWNjMjU2
-ZTY3ZSAxMDA2NDQNCj4gLS0tIGEvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zaWk5MDJ4LmMNCj4g
-KysrIGIvZHJpdmVycy9ncHUvZHJtL2JyaWRnZS9zaWk5MDJ4LmMNCj4gQEAgLTc1MCw2ICs3NTAs
-NyBAQCBzdGF0aWMgaW50IHNpaTkwMnhfYXVkaW9fY29kZWNfaW5pdChzdHJ1Y3Qgc2lpOTAyeCAq
-c2lpOTAyeCwNCj4gICAJCXNpaTkwMngtPmF1ZGlvLmkyc19maWZvX3NlcXVlbmNlW2ldIHw9IGF1
-ZGlvX2ZpZm9faWRbaV0gfA0KPiAgIAkJCWkyc19sYW5lX2lkW2xhbmVzW2ldXSB8CVNJSTkwMlhf
-VFBJX0kyU19GSUZPX0VOQUJMRTsNCj4gICANCj4gKwlzaWk5MDJ4LT5hdWRpby5tY2xrID0gZGV2
-bV9jbGtfZ2V0KGRldiwgIm1jbGsiKTsNCj4gICAJaWYgKElTX0VSUihzaWk5MDJ4LT5hdWRpby5t
-Y2xrKSkgew0KPiAgIAkJZGV2X2VycihkZXYsICIlczogTm8gY2xvY2sgKGF1ZGlvIG1jbGspIGZv
-dW5kOiAlbGRcbiIsDQo+ICAgCQkJX19mdW5jX18sIFBUUl9FUlIoc2lpOTAyeC0+YXVkaW8ubWNs
-aykpOw0KPiA=
+SGkgT2xpdmllciwNCmFuZCBtYW55IHRoYW5rcyBmb3IgeW91ciBwYXRjaC4NCkkgaGF2ZSBkb3Vi
+bGUgY2hlY2tlZCBpbiB0aGUgc2lsOTAyMi8yNCBkYXRhc2hlZXQgYW5kIHlvdSBhcmUgcmlnaHQ6
+DQoNCiJBcyBhbiBvcHRpb24sIHRoZSBvcmlnaW5hbCBNQ0xLIHNpZ25hbCB1c2VkIHRvIHN0cm9i
+ZSB0aGUgSTJTIHNpZ25hbHMgDQpvdXQgZnJvbSB0aGUgc291cmNpbmcgY2hpcCBjYW4gYmUgdXNl
+ZC4gSWYgdGhlIGludGVybmFsIFBMTCBpcyB1c2VkLCANCnRoZW4gYW4gZXh0ZXJuYWwgTUNMSyBp
+bnB1dCBpcyBub3QgcmVxdWlyZWQuIg0KDQpTbywgZXZlbiBpZiAjc291bmQtZGFpLWNlbGxzIGlz
+IHRoZXJlLCB0aGlzIGlzIG5vdCBtYW5kYXRvcnkgdG8gaGF2ZSBNQ0xLLg0KDQpSZXZpZXdlZC1i
+eTogUGhpbGlwcGUgQ29ybnUgPHBoaWxpcHBlLmNvcm51QHN0LmNvbT4NClBoaWxpcHBlIDotKQ0K
+DQoNCk9uIDcvMi8xOSA1OjQ3IFBNLCBPbGl2aWVyIE1veXNhbiB3cm90ZToNCj4gQXMgc3RhdGVk
+IGluIFNpTDkwMjIvMjQgZGF0YXNoZWV0LCBtYXN0ZXIgY2xvY2sgaXMgbm90IHJlcXVpcmVkIGZv
+ciBJMlMuDQo+IE1ha2UgbWNsayBwcm9wZXJ0eSBvcHRpb25hbCBpbiBEVCBiaW5kaW5ncy4NCj4g
+DQo+IEZpeGVzOiAzZjE4MDIxZjQzYTMgKCJkdC1iaW5kaW5nczogZGlzcGxheTogc2lpOTAyeDog
+QWRkIEhETUkgYXVkaW8gYmluZGluZ3MiKQ0KPiANCj4gU2lnbmVkLW9mZi1ieTogT2xpdmllciBN
+b3lzYW4gPG9saXZpZXIubW95c2FuQHN0LmNvbT4NCj4gLS0tDQo+ICAgRG9jdW1lbnRhdGlvbi9k
+ZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL3NpaTkwMngudHh0IHwgNSArKy0tLQ0K
+PiAgIDEgZmlsZSBjaGFuZ2VkLCAyIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQo+IA0K
+PiBkaWZmIC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rpc3BsYXkv
+YnJpZGdlL3NpaTkwMngudHh0IGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2Rp
+c3BsYXkvYnJpZGdlL3NpaTkwMngudHh0DQo+IGluZGV4IDJkZjQ0YjdkMzgyMS4uNmUxNGUwODdj
+MGQwIDEwMDY0NA0KPiAtLS0gYS9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlz
+cGxheS9icmlkZ2Uvc2lpOTAyeC50eHQNCj4gKysrIGIvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVl
+L2JpbmRpbmdzL2Rpc3BsYXkvYnJpZGdlL3NpaTkwMngudHh0DQo+IEBAIC0yNiw5ICsyNiw4IEBA
+IE9wdGlvbmFsIHByb3BlcnRpZXM6DQo+ICAgCS0gY2xvY2tzOiBwaGFuZGxlIGFuZCBjbG9jayBz
+cGVjaWZpZXIgZm9yIGVhY2ggY2xvY2sgbGlzdGVkIGluDQo+ICAgICAgICAgICAgICB0aGUgY2xv
+Y2stbmFtZXMgcHJvcGVydHkNCj4gICAJLSBjbG9jay1uYW1lczogIm1jbGsiDQo+IC0JICAgRGVz
+Y3JpYmVzIFNJSTkwMnggTUNMSyBpbnB1dC4gTUNMSyBpcyB1c2VkIHRvIHByb2R1Y2UNCj4gLQkg
+ICBIRE1JIGF1ZGlvIENUUyB2YWx1ZXMuIFRoaXMgcHJvcGVydHkgaXMgcmVxdWlyZWQgaWYNCj4g
+LQkgICAiI3NvdW5kLWRhaS1jZWxscyItcHJvcGVydHkgaXMgcHJlc2VudC4gVGhpcyBwcm9wZXJ0
+eSBmb2xsb3dzDQo+ICsJICAgRGVzY3JpYmVzIFNJSTkwMnggTUNMSyBpbnB1dC4gTUNMSyBjYW4g
+YmUgdXNlZCB0byBwcm9kdWNlDQo+ICsJICAgSERNSSBhdWRpbyBDVFMgdmFsdWVzLiBUaGlzIHBy
+b3BlcnR5IGZvbGxvd3MNCj4gICAJICAgRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdz
+L2Nsb2NrL2Nsb2NrLWJpbmRpbmdzLnR4dA0KPiAgIAkgICBjb25zdW1lciBiaW5kaW5nLg0KPiAg
+IA0KPiA=
