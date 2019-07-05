@@ -2,118 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9430860ABA
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 19:07:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6856C60AF9
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 19:21:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727559AbfGERHn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 13:07:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49582 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727459AbfGERHn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 5 Jul 2019 13:07:43 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1727212AbfGERVM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 13:21:12 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:41740 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725813AbfGERVL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 13:21:11 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7438E2184C;
-        Fri,  5 Jul 2019 17:07:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562346462;
-        bh=OZxT04gFLaytkGm/DzGBYCBCGqk5NGXSEVy2rS3EiwI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cL1wObRoQenEIXsCCKDarEPhPCAIkA44+i28Z4Iwx050I/EAAm3u/7u7xuHLnObdI
-         ZU+TI07MpefFoZRe1d4xMc5kGx6FJr1p8BDAYGn46woqrkYBlEC85vbgHFzMHO8Vok
-         NYLz4M8AaxPGX0zlpAmVfjD/GXa4Py27Czdb4BiI=
-Received: by mail-qt1-f180.google.com with SMTP id l9so3548318qtu.6;
-        Fri, 05 Jul 2019 10:07:42 -0700 (PDT)
-X-Gm-Message-State: APjAAAUtqXHCK9RNtUBzCxP/6rBRdZ182qN9hCSGHTblXkusGrDnhY0/
-        +jFwyrrkz6uEezXyMZ14QHbj0JULIgCs77h5Ig==
-X-Google-Smtp-Source: APXvYqzRPnqHPiK5FtXZdlxd9J+MzOxznX+s3EKmFaJzKSLY3lHZQBXNK8cSmAjCk9VbXcP6xQOkNISe2GnXfNFemLc=
-X-Received: by 2002:ac8:36b9:: with SMTP id a54mr3646411qtc.300.1562346461718;
- Fri, 05 Jul 2019 10:07:41 -0700 (PDT)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 5CCDD803B4;
+        Fri,  5 Jul 2019 19:21:06 +0200 (CEST)
+Date:   Fri, 5 Jul 2019 19:20:58 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     thierry.reding@gmail.com, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        bjorn.andersson@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/2] drm/panel: simple: Add support for Sharp
+ LD-D5116Z01B panel
+Message-ID: <20190705172058.GA2788@ravnborg.org>
+References: <20190705165450.329-1-jeffrey.l.hugo@gmail.com>
+ <20190705165755.515-1-jeffrey.l.hugo@gmail.com>
 MIME-Version: 1.0
-References: <20190703193724.246854-1-mka@chromium.org> <CAL_JsqJdBAMPc1sZJfL7V9cxGgCb4GWwRokwJDmac5L2AO2-wg@mail.gmail.com>
- <20190703213327.GH18473@lunn.ch> <CAL_Jsq+dqz7n0_+Y5R4772-rh=9x=k20A69hnDwxH3OyZXQneQ@mail.gmail.com>
- <20190705162926.GM18473@lunn.ch>
-In-Reply-To: <20190705162926.GM18473@lunn.ch>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 5 Jul 2019 11:07:29 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+bS5qAGhFa0q5sjOaajokDoO-5yc23MkrrCE=Y-jt=ZQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+bS5qAGhFa0q5sjOaajokDoO-5yc23MkrrCE=Y-jt=ZQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/7] dt-bindings: net: Add bindings for Realtek PHYs
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Matthias Kaehlcke <mka@chromium.org>,
-        "David S . Miller" <davem@davemloft.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190705165755.515-1-jeffrey.l.hugo@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=pGLkceISAAAA:8
+        a=OJLUmJNqMcVkCySmTlIA:9 a=CjuIK1q_8ugA:10
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 5, 2019 at 10:29 AM Andrew Lunn <andrew@lunn.ch> wrote:
->
-> On Fri, Jul 05, 2019 at 10:17:16AM -0600, Rob Herring wrote:
-> > On Wed, Jul 3, 2019 at 3:33 PM Andrew Lunn <andrew@lunn.ch> wrote:
-> > >
-> > > > I think if we're going to have custom properties for phys, we should
-> > > > have a compatible string to at least validate whether the custom
-> > > > properties are even valid for the node.
-> > >
-> > > Hi Rob
-> > >
-> > > What happens with other enumerable busses where a compatible string is
-> > > not used?
-> >
-> > We usually have a compatible. USB and PCI both do. Sometimes it is a
-> > defined format based on VID/PID.
->
-> Hi Rob
->
-> Is it defined what to do with this compatible? Just totally ignore it?
-> Validate it against the hardware and warning if it is wrong? Force
-> load the driver that implements the compatible, even thought bus
-> enumeration says it is the wrong driver?
+Hi Jeffrey.
 
-The short answer is either the problems get fixed or if DTs exist and
-need to be supported which are wrong then the OS deals with the
-problem to make things work as desired (see PowerMac code).
+Patch looks good, but there is a few fields that are not initialized.
+Did you forget them, or are they not needed?
 
-If the ethernet phy subsystem wants to ignore compatible, that is totally fine.
+On Fri, Jul 05, 2019 at 09:57:55AM -0700, Jeffrey Hugo wrote:
+> The Sharp LD-D5116Z01B is a 12.3" eDP panel with a 1920X1280 resolution.
+> 
+> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> ---
+>  drivers/gpu/drm/panel/panel-simple.c | 26 ++++++++++++++++++++++++++
+>  1 file changed, 26 insertions(+)
+> 
+> diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+> index 5a93c4edf1e4..e6f578667324 100644
+> --- a/drivers/gpu/drm/panel/panel-simple.c
+> +++ b/drivers/gpu/drm/panel/panel-simple.c
+> @@ -2354,6 +2354,29 @@ static const struct panel_desc samsung_ltn140at29_301 = {
+>  	},
+>  };
+>  
+> +static const struct drm_display_mode sharp_ld_d5116z01b_mode = {
+> +	.clock = 168480,
+> +	.hdisplay = 1920,
+> +	.hsync_start = 1920 + 48,
+> +	.hsync_end = 1920 + 48 + 32,
+> +	.htotal = 1920 + 48 + 32 + 80,
+> +	.vdisplay = 1280,
+> +	.vsync_start = 1280 + 3,
+> +	.vsync_end = 1280 + 3 + 10,
+> +	.vtotal = 1280 + 3 + 10 + 57,
+> +	.vrefresh = 60,
+> +};
+No .flags? Is it not needed for an eDP panel?
 
-> > > The Ethernet PHY subsystem will ignore the compatible string and load
-> > > the driver which fits the enumeration data. Using the compatible
-> > > string only to get the right YAML validator seems wrong. I would
-> > > prefer adding some other property with a clear name indicates its is
-> > > selecting the validator, and has nothing to do with loading the
-> > > correct driver. And it can then be used as well for USB and PCI
-> > > devices etc.
-> >
-> > Just because Linux happens to not use compatible really has nothing to
-> > do with whether or not the nodes should have a compatible. What does
-> > FreeBSD want? U-boot?
-> >
-> > I don't follow how adding a validate property would help. It would
-> > need to be 'validate-node-as-a-realtek-phy'.
->
-> This makes it clear it is all about validating the DT, and nothing
-> about the actual running hardware. What i don't really want to see is
-> the poorly defined situation that DT contains a compatible string, but
-> we have no idea what it is actually used for. See the question above.
+> +
+> +static const struct panel_desc sharp_ld_d5116z01b = {
+> +	.modes = &sharp_ld_d5116z01b_mode,
+> +	.num_modes = 1,
+> +	.bpc = 8,
+> +	.size = {
+> +		.width = 260,
+> +		.height = 120,
+> +	},
+> +};
+No .bus_format?
+No .bus_flags?
 
-What's poorly defined are the current bindings, type definitions of
-properties, and what properties are valid or not in specific nodes. If
-we only had to better define the rules around compatible use or
-mismatches, we'd be a lot better off.
-
-I'm not going to add properties solely for validation when we already
-have a well defined, 15 year+ pattern for defining what a node
-contains that practically every other subsystem and node uses. I guess
-we just won't worry about validating ethernet phy nodes beyond some
-basic checks.
-
-Rob
+	Sam
