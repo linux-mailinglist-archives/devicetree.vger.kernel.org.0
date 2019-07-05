@@ -2,127 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 984F960458
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 12:20:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 279A4604F4
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 13:01:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728149AbfGEKUp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 06:20:45 -0400
-Received: from relmlor2.renesas.com ([210.160.252.172]:54193 "EHLO
-        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728035AbfGEKUo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 06:20:44 -0400
-X-IronPort-AV: E=Sophos;i="5.62,454,1554735600"; 
-   d="scan'208";a="20430357"
-Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
-  by relmlie6.idc.renesas.com with ESMTP; 05 Jul 2019 19:20:43 +0900
-Received: from be1yocto.ree.adwin.renesas.com (unknown [172.29.43.62])
-        by relmlir5.idc.renesas.com (Postfix) with ESMTP id 7AADF4002629;
-        Fri,  5 Jul 2019 19:20:41 +0900 (JST)
-From:   Biju Das <biju.das@bp.renesas.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Biju Das <biju.das@bp.renesas.com>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Subject: [PATCH 3/3] arm64: dts: renesas: hihope-common: Add WLAN support
-Date:   Fri,  5 Jul 2019 11:15:20 +0100
-Message-Id: <1562321720-18735-4-git-send-email-biju.das@bp.renesas.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1562321720-18735-1-git-send-email-biju.das@bp.renesas.com>
-References: <1562321720-18735-1-git-send-email-biju.das@bp.renesas.com>
+        id S1726978AbfGELBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 07:01:12 -0400
+Received: from mslow2.mail.gandi.net ([217.70.178.242]:51568 "EHLO
+        mslow2.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726921AbfGELBL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 07:01:11 -0400
+Received: from relay12.mail.gandi.net (unknown [217.70.178.232])
+        by mslow2.mail.gandi.net (Postfix) with ESMTP id BFF673A7062;
+        Fri,  5 Jul 2019 10:34:21 +0000 (UTC)
+Received: from localhost (alyon-656-1-672-152.w92-137.abo.wanadoo.fr [92.137.69.152])
+        (Authenticated sender: gregory.clement@bootlin.com)
+        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 35AFF20000C;
+        Fri,  5 Jul 2019 10:34:13 +0000 (UTC)
+From:   Gregory CLEMENT <gregory.clement@bootlin.com>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
+        Maxime Ripard <maxime.ripard@bootlin.com>
+Subject: Re: [PATCH 1/2] dt-bindings: i2c: mv64xxx: Fix the example compatible
+In-Reply-To: <20190703095338.11266-1-maxime.ripard@bootlin.com>
+References: <20190703095338.11266-1-maxime.ripard@bootlin.com>
+Date:   Fri, 05 Jul 2019 12:34:12 +0200
+Message-ID: <87k1cwg47v.fsf@FE-laptop>
+MIME-Version: 1.0
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch enables WLAN support for the HiHope RZ/G2[MN] boards.
+Maxime Ripard <maxime.ripard@bootlin.com> writes:
 
-Signed-off-by: Biju Das <biju.das@bp.renesas.com>
----
- arch/arm64/boot/dts/renesas/hihope-common.dtsi | 45 ++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+> One example has a compatible that isn't a valid combination according to
+> the binding, and now that the examples are validated as well, this
+> generates a warning.
+>
+> Let's fix this.
+>
+> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 
-diff --git a/arch/arm64/boot/dts/renesas/hihope-common.dtsi b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-index fdeb4d2..52d61c9 100644
---- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-+++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-@@ -54,6 +54,13 @@
- 		led3 {
- 			gpios = <&gpio0  0 GPIO_ACTIVE_HIGH>;
- 		};
-+
-+		wlan_active_led {
-+			label = "yellow:wlan";
-+			gpios = <&gpio7  1 GPIO_ACTIVE_HIGH>;
-+			linux,default-trigger = "phy0tx";
-+			default-state = "off";
-+		};
- 	};
- 
- 	reg_1p8v: regulator0 {
-@@ -98,6 +105,17 @@
- 			  1800000 0>;
- 	};
- 
-+	wlan_en_reg: regulator-wlan_en {
-+		compatible = "regulator-fixed";
-+		regulator-name = "wlan-en-regulator";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <1800000>;
-+		startup-delay-us = <70000>;
-+
-+		gpio = <&gpio_expander 1 GPIO_ACTIVE_HIGH>;
-+		enable-active-high;
-+	};
-+
- 	x302_clk: x302-clock {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-@@ -242,6 +260,12 @@
- 		power-source = <1800>;
- 	};
- 
-+	sdhi2_pins: sd2 {
-+		groups = "sdhi2_data4", "sdhi2_ctrl";
-+		function = "sdhi2";
-+		power-source = <1800>;
-+	};
-+
- 	sdhi3_pins: sd3 {
- 		groups = "sdhi3_data8", "sdhi3_ctrl", "sdhi3_ds";
- 		function = "sdhi3";
-@@ -301,6 +325,27 @@
- 	status = "okay";
- };
- 
-+&sdhi2 {
-+	status = "okay";
-+	pinctrl-0 = <&sdhi2_pins>;
-+	pinctrl-names = "default";
-+
-+	vmmc-supply = <&wlan_en_reg>;
-+	bus-width = <4>;
-+	non-removable;
-+	cap-power-off-card;
-+	keep-power-in-suspend;
-+
-+	#address-cells = <1>;
-+	#size-cells = <0>;
-+	wlcore: wlcore@2 {
-+		compatible = "ti,wl1837";
-+		reg = <2>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <5 IRQ_TYPE_LEVEL_HIGH>;
-+	};
-+};
-+
- &sdhi3 {
- 	pinctrl-0 = <&sdhi3_pins>;
- 	pinctrl-1 = <&sdhi3_pins>;
+
+Acked-by: Gregory CLEMENT <gregory.clement@bootlin.com>
+
+Thanks,
+
+Gregory
+
+> ---
+>  Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+> index 9a5654ef5670..001f2b7abad0 100644
+> --- a/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+> +++ b/Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
+> @@ -105,7 +105,7 @@ examples:
+>  
+>    - |
+>      i2c@11000 {
+> -        compatible = "marvell,mv78230-i2c", "marvell,mv64xxx-i2c";
+> +        compatible = "marvell,mv78230-i2c";
+>          reg = <0x11000 0x100>;
+>          interrupts = <29>;
+>          clock-frequency = <100000>;
+> -- 
+> 2.21.0
+>
+
 -- 
-2.7.4
-
+Gregory Clement, Bootlin
+Embedded Linux and Kernel engineering
+http://bootlin.com
