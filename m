@@ -2,52 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 61F006032F
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 11:37:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FA0660422
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 12:09:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727677AbfGEJhv convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 5 Jul 2019 05:37:51 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:46069 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727506AbfGEJhv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 05:37:51 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 37263805FA; Fri,  5 Jul 2019 11:37:37 +0200 (CEST)
-Date:   Fri, 5 Jul 2019 11:37:42 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Brian Dodge <bdodge09@gmail.com>
-Cc:     daniel.thompson@linaro.org, lee.jones@linaro.org,
-        jingoohan1@gmail.com, jacek.anaszewski@gmail.com,
-        robh+dt@kernel.org, dri-devel@lists.freedesktop.org,
-        linux-leds@vger.kernel.org, devicetree@vger.kernel.org,
-        pbacon@psemi.com
-Subject: Re: [PATCH 2/2] backlight: arcxcnn: add "arctic" vendor prefix
-Message-ID: <20190705093742.gqj3bkipzcuu46q5@devuan>
-References: <1561940895-15837-1-git-send-email-bdodge09@gmail.com>
- <1561940895-15837-3-git-send-email-bdodge09@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <1561940895-15837-3-git-send-email-bdodge09@gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+        id S1727632AbfGEKHG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 06:07:06 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:47748 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726568AbfGEKHG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 5 Jul 2019 06:07:06 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1AC10200703;
+        Fri,  5 Jul 2019 12:07:03 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 8F8BF200706;
+        Fri,  5 Jul 2019 12:06:54 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 20295402DF;
+        Fri,  5 Jul 2019 18:06:44 +0800 (SGT)
+From:   Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+To:     linux-pci@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        l.subrahmanya@mobiveil.co.in, shawnguo@kernel.org,
+        leoyang.li@nxp.com, lorenzo.pieralisi@arm.com,
+        catalin.marinas@arm.com, will.deacon@arm.com
+Cc:     Mingkai.Hu@nxp.com, Minghuan.Lian@nxp.com, Xiaowei.Bao@nxp.com,
+        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Subject: [PATCHv6 00/28] PCI: mobiveil: fixes for Mobiveil PCIe Host Bridge IP driver
+Date:   Fri,  5 Jul 2019 17:56:28 +0800
+Message-Id: <20190705095656.19191-1-Zhiqiang.Hou@nxp.com>
+X-Mailer: git-send-email 2.14.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun 2019-06-30 20:28:15, Brian Dodge wrote:
-> The original patch adding this driver and DT bindings improperly
-> used "arc" as the vendor-prefix. This adds "arctic" which is the
-> proper prefix and retains "arc" to allow existing users of the
-> "arc" prefix to update to new kernels. There is at least one
-> (Samsung Chromebook Plus)
-> 
-> Signed-off-by: Brian Dodge <bdodge09@gmail.com>
-> Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
+This patch set is to add fixes for Mobiveil PCIe Host driver.
+Splited #2, #3, #9 and #10 of v5 patches.
 
-ack.
+Hou Zhiqiang (28):
+  PCI: mobiveil: Unify register accessors
+  PCI: mobiveil: Remove the flag MSI_FLAG_MULTI_PCI_MSI
+  PCI: mobiveil: Fix PCI base address in MEM/IO outbound windows
+  PCI: mobiveil: Update the resource list traversal function
+  PCI: mobiveil: Use WIN_NUM_0 explicitly for CFG outbound window
+  PCI: mobiveil: Use the 1st inbound window for MEM inbound
+    transactions
+  PCI: mobiveil: Fix the Class Code field
+  PCI: mobiveil: Move the link up waiting out of mobiveil_host_init()
+  PCI: mobiveil: Move IRQ chained handler setup out of DT parse
+  PCI: mobiveil: Initialize Primary/Secondary/Subordinate bus numbers
+  PCI: mobiveil: Fix devfn check in mobiveil_pcie_valid_device()
+  dt-bindings: PCI: mobiveil: Change gpio_slave and apb_csr to optional
+  PCI: mobiveil: Reformat the code for readability
+  PCI: mobiveil: Make the register updating more readable
+  PCI: mobiveil: Revise the MEM/IO outbound window initialization
+  PCI: mobiveil: Fix the returned error number
+  PCI: mobiveil: Remove an unnecessary return value check
+  PCI: mobiveil: Remove redundant var definitions and register read
+    operations
+  PCI: mobiveil: Fix the valid check for inbound and outbound window
+  PCI: mobiveil: Add the statistic of initialized inbound windows
+  PCI: mobiveil: Clear the target fields before updating the register
+  PCI: mobiveil: Mask out the lower 10-bit hardcode window size
+  PCI: mobiveil: Add upper 32-bit CPU base address setup in outbound
+    window
+  PCI: mobiveil: Add upper 32-bit PCI base address setup in inbound
+    window
+  PCI: mobiveil: Fix the CPU base address setup in inbound window
+  PCI: mobiveil: Move PCIe PIO enablement out of inbound window routine
+  PCI: mobiveil: Fix infinite-loop in the INTx process
+  PCI: mobiveil: Fix the potential INTx missing problem
 
--- 
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
+ .../devicetree/bindings/pci/mobiveil-pcie.txt      |    2 +
+ drivers/pci/controller/pcie-mobiveil.c             |  529 ++++++++++++--------
+ 2 files changed, 318 insertions(+), 213 deletions(-)
+
