@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E7ECF603B4
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 11:59:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E547360386
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 11:58:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727753AbfGEJ7b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 05:59:31 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:38529 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728399AbfGEJ6F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 05:58:05 -0400
-Received: by mail-lj1-f193.google.com with SMTP id r9so8689856ljg.5
-        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2019 02:58:04 -0700 (PDT)
+        id S1727764AbfGEJ6U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 05:58:20 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:43026 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728429AbfGEJ6I (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 05:58:08 -0400
+Received: by mail-lf1-f65.google.com with SMTP id c19so313921lfm.10
+        for <devicetree@vger.kernel.org>; Fri, 05 Jul 2019 02:58:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=VUCWK2MsD9fKCW5H56U5T5vRzO2k7QDz1z157zPKgz4=;
-        b=yF9Y4TXdbukUm95Tym+SSRRKXOgy30rcUTY/I/w2ob/pI2Xk6mM2EFws9z/z9Jy5cn
-         5yH51ejAX7BSHtxlej6Sietfapi0cefT59q9jJN1ifMQjBqWA/apLst7ul9igPrQzDk2
-         drpnxdar+aTtUDEWi3y8Cvaxy3V5c8w9TqANXQggoaL7EEGMCiDWenolNKnmfMlIz6hF
-         LA7dy1MeKgwm/taneDq3mE/Cww1ynKWrGI+PksCPx8K3tIZOtjsxbHUhCVxP0us659eW
-         TmBrcMnTRQnSIVFZY+/4qysi0crgRy02/xmt3FLPdAsn0bXiaXQyjMv1jXGLbzNsj4go
-         eyAg==
+        bh=3GNalLtrTqW5s+BFJJMMFnFc3aO7NBuze3htvzi00W0=;
+        b=hmExekYi60+hf8c4YDeaGqFYkUdJGMndPOTAz0wzT5VaYrhc79TdPrC82wL7SI1HMS
+         4B9mDD2JiVa++vAEXHVQb0+EI7rCDihpO7F40mAaBXF7Uk9HbWS/PAUzo7lcLs1D+Z+5
+         +VCR+V4xb6J4WTh8C16gju5+rR5NbyRcecrcUSwIsPl0ZzwWjh9zoIUlEBYwFgv9gE9s
+         YZU+4liOcFjYB4deygvG/JxyDYUhIx9AambMTyv7d4zxy7I1buYsHQHlCwGBegiQVp1R
+         vigjgZqTKy8zqnB1XSWpP3VssMyj7Beg5ro1l+jhu2Vwbsl++Xdy1jq8OMNcv8pL3J7+
+         4otA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=VUCWK2MsD9fKCW5H56U5T5vRzO2k7QDz1z157zPKgz4=;
-        b=Ztnnrd6Mzya01OBp/tPMMoH0Ykbmy4EXo2aY+rURpjLGdaEXewH5aH6U6utMionRUg
-         OLg16eF7FpbFo4xvThRBv4ATRq53ZX9tmPI32mtrFXMzeWJF5J0GwROHajuc7yRCo0P/
-         9nqZg9ujYqRu1Kc/zR9FA7VnPAWJowJiwMUiDmjRjJEFQ8zKczqB3EyXMnSV23GMPwaJ
-         IaM4JREnX4VXmbsP+wrKWF0aIvshXZUW7JaYCXCVC0mKdZeVqcEGDKOAtbx1ClA0x9qu
-         PBkbwQxmoHFFIoPcLJ94e3jzvyWXu7vjpWegDvjpfkJEaedh+22gWkjQggESw+jUV0vW
-         lbAQ==
-X-Gm-Message-State: APjAAAUBx+enoWxwyKwjeqs+2o/oERdyUvVQaDNf82qH+VC5qygRptJm
-        hVuzBBVL6mkpYoxDLi/mIWuTIA==
-X-Google-Smtp-Source: APXvYqx0ZiI7NUTcCSAcDJg+m43On7JBoo/yMllTvC1H2ViTfIYfM/r31p51tmof/TzmGg/DplB8aw==
-X-Received: by 2002:a2e:9758:: with SMTP id f24mr1723330ljj.58.1562320683615;
-        Fri, 05 Jul 2019 02:58:03 -0700 (PDT)
+        bh=3GNalLtrTqW5s+BFJJMMFnFc3aO7NBuze3htvzi00W0=;
+        b=oDp9zibe20DjofM2M7pCyD2fJlQYpBcNdjb1qST7iDajISwVKVhE/yCDKfdO32YdLN
+         /jr7cCEBBZ5WWr7c4kYfCUSR6abrZzGvrfQVdINhBz4l73B3p26A0d+aO492j3MdY1ZX
+         TR8u7Ajab0SffCQzECOpT8Yq+DTqZRyVOW004h+rRKwHaGtmAOq/becESWnuYFmK8LBC
+         b7VnkFA+LeKcDtDOt9wCzTHDH3dZdsakrLtXGLn+iFcH+8scgfkCaTYdaKyfbDD6F2oC
+         iQx0PCGsV22w7bjq62asEHM0enwjpe7DJtdHsOrQRcKy1h6e+yVAdBtuMYj1d3eavl7X
+         M51A==
+X-Gm-Message-State: APjAAAV8LNDr8piLbmhbbZr6oWEBEvjpSrJmJUgYAK34e7rYy4x4uOoY
+        Iwz5I8sVErCnVVRYa1yJCnH0bA==
+X-Google-Smtp-Source: APXvYqwE4CIl8CEAtpIJlQJkbUer2Z0hhINHb7uHx65wmIJHGa6qKcwuuJ0HkO9FENk2/2/WJUlxRg==
+X-Received: by 2002:ac2:4a6e:: with SMTP id q14mr1583691lfp.154.1562320686116;
+        Fri, 05 Jul 2019 02:58:06 -0700 (PDT)
 Received: from localhost.localdomain (ua-83-226-34-119.bbcust.telenor.se. [83.226.34.119])
-        by smtp.gmail.com with ESMTPSA id 25sm1692704ljn.62.2019.07.05.02.58.02
+        by smtp.gmail.com with ESMTPSA id 25sm1692704ljn.62.2019.07.05.02.58.05
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 05 Jul 2019 02:58:02 -0700 (PDT)
+        Fri, 05 Jul 2019 02:58:05 -0700 (PDT)
 From:   Niklas Cassel <niklas.cassel@linaro.org>
-To:     Andy Gross <agross@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
+To:     Ilia Lin <ilia.lin@kernel.org>, Andy Gross <agross@kernel.org>,
         Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
         Stephen Boyd <sboyd@kernel.org>
 Cc:     linux-arm-msm@vger.kernel.org, jorge.ramirez-ortiz@linaro.org,
@@ -54,9 +54,9 @@ Cc:     linux-arm-msm@vger.kernel.org, jorge.ramirez-ortiz@linaro.org,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 03/13] dt-bindings: cpufreq: qcom-nvmem: Make speedbin related properties optional
-Date:   Fri,  5 Jul 2019 11:57:14 +0200
-Message-Id: <20190705095726.21433-4-niklas.cassel@linaro.org>
+Subject: [PATCH 05/13] dt-bindings: cpufreq: qcom-nvmem: Support pstates provided by a power domain
+Date:   Fri,  5 Jul 2019 11:57:16 +0200
+Message-Id: <20190705095726.21433-6-niklas.cassel@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190705095726.21433-1-niklas.cassel@linaro.org>
 References: <20190705095726.21433-1-niklas.cassel@linaro.org>
@@ -67,31 +67,143 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Not all Qualcomm platforms need to care about the speedbin efuse,
-nor the value blown into the speedbin efuse.
-Therefore, make the nvmem-cells and opp-supported-hw properties
-optional.
+Some Qualcomm SoCs have support for Core Power Reduction (CPR).
+On these platforms, we need to attach to the power domain provider
+providing the performance states, so that the leaky device (the CPU)
+can configure the performance states (which represent different
+CPU clock frequencies).
 
 Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
 ---
- Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt | 4 ++++
- 1 file changed, 4 insertions(+)
+ .../bindings/opp/qcom-nvmem-cpufreq.txt       | 111 ++++++++++++++++++
+ 1 file changed, 111 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
-index 198441e80ba8..c5ea8b90e35d 100644
+index c5ea8b90e35d..e19a95318e98 100644
 --- a/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
 +++ b/Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt
-@@ -20,6 +20,10 @@ In 'cpus' nodes:
- In 'operating-points-v2' table:
- - compatible: Should be
- 	- 'operating-points-v2-kryo-cpu' for apq8096 and msm8996.
+@@ -23,6 +23,15 @@ In 'operating-points-v2' table:
+ 
+ Optional properties:
+ --------------------
++In 'cpus' nodes:
++- power-domains: A phandle pointing to the PM domain specifier which provides
++		the performance states available for active state management.
++		Please refer to the power-domains bindings
++		Documentation/devicetree/bindings/power/power_domain.txt
++		and also examples below.
++- power-domain-names: Should be
++	- 'cpr' for qcs404.
 +
-+Optional properties:
-+--------------------
-+In 'operating-points-v2' table:
+ In 'operating-points-v2' table:
  - nvmem-cells: A phandle pointing to a nvmem-cells node representing the
  		efuse registers that has information about the
- 		speedbin that is used to select the right frequency/voltage
+@@ -682,3 +691,105 @@ soc {
+ 		};
+ 	};
+ };
++
++Example 2:
++---------
++
++	cpus {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		CPU0: cpu@100 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a53";
++			reg = <0x100>;
++			....
++			clocks = <&apcs_glb>;
++			operating-points-v2 = <&cpu_opp_table>;
++			power-domains = <&cprpd>;
++			power-domain-names = "cpr";
++		};
++
++		CPU1: cpu@101 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a53";
++			reg = <0x101>;
++			....
++			clocks = <&apcs_glb>;
++			operating-points-v2 = <&cpu_opp_table>;
++			power-domains = <&cprpd>;
++			power-domain-names = "cpr";
++		};
++
++		CPU2: cpu@102 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a53";
++			reg = <0x102>;
++			....
++			clocks = <&apcs_glb>;
++			operating-points-v2 = <&cpu_opp_table>;
++			power-domains = <&cprpd>;
++			power-domain-names = "cpr";
++		};
++
++		CPU3: cpu@103 {
++			device_type = "cpu";
++			compatible = "arm,cortex-a53";
++			reg = <0x103>;
++			....
++			clocks = <&apcs_glb>;
++			operating-points-v2 = <&cpu_opp_table>;
++			power-domains = <&cprpd>;
++			power-domain-names = "cpr";
++		};
++	};
++
++	cpu_opp_table: cpu-opp-table {
++		compatible = "operating-points-v2-kryo-cpu";
++		opp-shared;
++
++		opp-1094400000 {
++			opp-hz = /bits/ 64 <1094400000>;
++			required-opps = <&cpr_opp1>;
++		};
++		opp-1248000000 {
++			opp-hz = /bits/ 64 <1248000000>;
++			required-opps = <&cpr_opp2>;
++		};
++		opp-1401600000 {
++			opp-hz = /bits/ 64 <1401600000>;
++			required-opps = <&cpr_opp3>;
++		};
++	};
++
++	cpr_opp_table: cpr-opp-table {
++		compatible = "operating-points-v2-qcom-level";
++
++		cpr_opp1: opp1 {
++			opp-level = <1>;
++			....
++		};
++		cpr_opp2: opp2 {
++			opp-level = <2>;
++			....
++		};
++		cpr_opp3: opp3 {
++			opp-level = <3>;
++			....
++		};
++	};
++
++....
++
++soc {
++....
++	cprpd: cpr@b018000 {
++		compatible = "qcom,qcs404-cpr", "qcom,cpr";
++		reg = <0x0b018000 0x1000>;
++		....
++		vdd-apc-supply = <&pms405_s3>;
++		#power-domain-cells = <0>;
++		operating-points-v2 = <&cpr_opp_table>;
++		....
++	};
++};
 -- 
 2.21.0
 
