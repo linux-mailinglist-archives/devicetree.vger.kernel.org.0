@@ -2,194 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49C2D60A81
-	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 18:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7888E60AA7
+	for <lists+devicetree@lfdr.de>; Fri,  5 Jul 2019 18:54:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728775AbfGEQmr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 5 Jul 2019 12:42:47 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:44485 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728758AbfGEQmq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 12:42:46 -0400
-Received: by mail-io1-f66.google.com with SMTP id s7so20320375iob.11;
-        Fri, 05 Jul 2019 09:42:46 -0700 (PDT)
+        id S1725788AbfGEQy4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 5 Jul 2019 12:54:56 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:41875 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725730AbfGEQy4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 5 Jul 2019 12:54:56 -0400
+Received: by mail-pf1-f193.google.com with SMTP id m30so4549925pff.8;
+        Fri, 05 Jul 2019 09:54:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=L0b++Cz1DwGWHz8E2aHIDiGlzeh1G15jnzGEGv6N1Ps=;
+        b=r8evzbtHvy2h/zqYmnDCCyQvt4RnwSQxMKEapzC+A3hoFUeqAbWZt4hsZqtLoeBxQl
+         EVwT7iSyFNtnkWNqWnmn+GvUTetKo8BkVXiYAtEtUUyj5MaPS6F9FCQcpGgyjbXSUaCp
+         ILN+BsrEu8QfBHKNV2AsgY8i/SJeqGJk5YTF6n9QPiw/fjmU/QZiRtsvJwLkLrDW1Bxx
+         Bmg+AR4rjNJnGNIc6muTjci9aUduBqGvVMJ8CDAJHiv2EwAloA+KdaSEud7MGnoBUIV5
+         UsfyezlvYuj+lvLVIeU012tTXnFG83JOTlskReNgxz3nPGImHj7Wo5tFv6ovRfprmvZO
+         +jsw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=4u+6qapxeTisjBjV1LDNg1dP2Dk7yZmXQTbzF8olw5A=;
-        b=bjrdAMJPXxajh2jSDx5707slvz+MXBGgG4xqETDNMQPhRcaUpm25lAhNYtsTB7t7J4
-         GtyhbZgTZ3jx1r3mpwttaK5Q/eBvzkHw3AWuSXLb11FSWcIaguG4nDYqRkxz6LvG/+wS
-         zGVgOjeTHKIvRro1pg+B8aqrm0HJIap6duFponqqu6UvlH/U0RjwZcukIqOK/jQLSViU
-         L25MtsXqxCmS7JlRGrNeMjbIKc+8iWyIKXw6teEwO3bDy1NnNN2rXxZ6JIbE/CQ6r+pN
-         dI52zsYD3vjU4AahMH4Pvm3VEJ2eLumGLN92A+HfyK/0vUrtfprnh3AFAwnl2vKFIpvY
-         QyYg==
-X-Gm-Message-State: APjAAAW8i6BzoiCmL7vIo7Jqap5gfcVdIRK4aPaQHWNPDM1ibS7R0Ky1
-        hauWPsrGj4hcPp3mSjgTL9imBBA=
-X-Google-Smtp-Source: APXvYqxz2DHGPlJxRSIxbizb1JVeLUdXDwOC9XowLkLz/SOUbfeAE6k57d3jmFM/zcbiN3zywcoRbg==
-X-Received: by 2002:a02:c519:: with SMTP id s25mr5497475jam.11.1562344965673;
-        Fri, 05 Jul 2019 09:42:45 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.252])
-        by smtp.googlemail.com with ESMTPSA id b8sm6878104ioj.16.2019.07.05.09.42.44
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 05 Jul 2019 09:42:45 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH v3 13/13] dt-bindings: display: Convert sgd,gktw70sdae4se panel to DT schema
-Date:   Fri,  5 Jul 2019 10:42:21 -0600
-Message-Id: <20190705164221.4462-14-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190705164221.4462-1-robh@kernel.org>
-References: <20190705164221.4462-1-robh@kernel.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=L0b++Cz1DwGWHz8E2aHIDiGlzeh1G15jnzGEGv6N1Ps=;
+        b=EABaCzWw8KlSvE23kG8fsh0ixBx4+nf7DXCvSj7teXN1NVt+R/QAdmNTAyBUuTvDZ+
+         BViNhuy6BWJ3T1wA80QIdS7S29rtpj7Df/91IYQWZLNP70bcEeOFyGBkPDrvy1CbdSmy
+         nKzhbHRJLcJsV8sGDnS3kqW9b1ECO35T455b40Y4Oe3Nt9x4mx1wVyhFGgUwqrDAjtHK
+         Bbh1zGUFTJj5J7CoP519f+ZJH+XuRciXpSGGIs0soawl3rRTVdCWSQZjQSsEgpKspKDa
+         tKUC4EbU7+rfOn4UD/twBQ+xLARcl4tbr22D0PKBtKjQRkRh62lraA5Xhx1W6E2kfdpO
+         tFgA==
+X-Gm-Message-State: APjAAAUgXRaioY6OIXlBOwot9fVdWCEadbrLej8OKRvVyNdxMxpBgDB2
+        QuCkgK3O6u3mU3BDILro/24=
+X-Google-Smtp-Source: APXvYqyyW8jKS41MUK89FU5reGeNsJZYJND8bEG5SSJ2bU/tlPCV9U3sQ4VgzxjWQuHQfXZRtNcTsw==
+X-Received: by 2002:a63:5610:: with SMTP id k16mr6565617pgb.335.1562345695389;
+        Fri, 05 Jul 2019 09:54:55 -0700 (PDT)
+Received: from aw-bldr-10.qualcomm.com (i-global254.qualcomm.com. [199.106.103.254])
+        by smtp.gmail.com with ESMTPSA id b126sm11066744pfa.126.2019.07.05.09.54.53
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 05 Jul 2019 09:54:54 -0700 (PDT)
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, thierry.reding@gmail.com,
+        sam@ravnborg.org, airlied@linux.ie, daniel@ffwll.ch,
+        bjorn.andersson@linaro.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Subject: [PATCH 0/2] Add Sharp panel option for Lenovo Miix 630
+Date:   Fri,  5 Jul 2019 09:54:50 -0700
+Message-Id: <20190705165450.329-1-jeffrey.l.hugo@gmail.com>
+X-Mailer: git-send-email 2.17.1
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Convert the sgd,gktw70sdae4se LVDS panel binding to DT schema.
+The Lenovo Miix 630 laptop can be found with one of two panels - a BOE
+or Sharp option.  This likely provides options during manufacturing.
 
-Cc: Neil Armstrong <narmstrong@baylibre.com>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: Sam Ravnborg <sam@ravnborg.org>
-Cc: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Reviewed-by: Maxime Ripard <maxime.ripard@bootlin.com>
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- .../display/panel/sgd,gktw70sdae4se.txt       | 41 -----------
- .../display/panel/sgd,gktw70sdae4se.yaml      | 68 +++++++++++++++++++
- 2 files changed, 68 insertions(+), 41 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.txt
- create mode 100644 Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
+These panels connect via eDP, however they sit behind a DSI to eDP
+bridge on the laptop, so they can easily be handled by the existing
+simple panel code.
 
-diff --git a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.txt b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.txt
-deleted file mode 100644
-index d06644b555bd..000000000000
---- a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.txt
-+++ /dev/null
-@@ -1,41 +0,0 @@
--Solomon Goldentek Display GKTW70SDAE4SE LVDS Display Panel
--==========================================================
--
--The GKTW70SDAE4SE is a 7" WVGA TFT-LCD display panel.
--
--These DT bindings follow the LVDS panel bindings defined in panel-lvds.txt
--with the following device-specific properties.
--
--Required properties:
--
--- compatible: Shall contain "sgd,gktw70sdae4se" and "panel-lvds", in that order.
--
--Example
---------
--
--panel {
--	compatible = "sgd,gktw70sdae4se", "panel-lvds";
--
--	width-mm = <153>;
--	height-mm = <86>;
--
--	data-mapping = "jeida-18";
--
--	panel-timing {
--		clock-frequency = <32000000>;
--		hactive = <800>;
--		vactive = <480>;
--		hback-porch = <39>;
--		hfront-porch = <39>;
--		vback-porch = <29>;
--		vfront-porch = <13>;
--		hsync-len = <47>;
--		vsync-len = <2>;
--	};
--
--	port {
--		panel_in: endpoint {
--			remote-endpoint = <&lvds_encoder>;
--		};
--	};
--};
-diff --git a/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-new file mode 100644
-index 000000000000..e63a570ae59d
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/sgd,gktw70sdae4se.yaml
-@@ -0,0 +1,68 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/sgd,gktw70sdae4se.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Solomon Goldentek Display GKTW70SDAE4SE 7" WVGA LVDS Display Panel
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Thierry Reding <thierry.reding@gmail.com>
-+
-+allOf:
-+  - $ref: lvds.yaml#
-+
-+properties:
-+  compatible:
-+    items:
-+      - const: sgd,gktw70sdae4se
-+      - {} # panel-lvds, but not listed here to avoid false select
-+
-+  data-mapping:
-+    const: jeida-18
-+
-+  width-mm:
-+    const: 153
-+
-+  height-mm:
-+    const: 86
-+
-+  panel-timing: true
-+  port: true
-+
-+additionalProperties: false
-+
-+required:
-+  - compatible
-+
-+examples:
-+  - |+
-+    panel {
-+      compatible = "sgd,gktw70sdae4se", "panel-lvds";
-+
-+      width-mm = <153>;
-+      height-mm = <86>;
-+
-+      data-mapping = "jeida-18";
-+
-+      panel-timing {
-+        clock-frequency = <32000000>;
-+        hactive = <800>;
-+        vactive = <480>;
-+        hback-porch = <39>;
-+        hfront-porch = <39>;
-+        vback-porch = <29>;
-+        vfront-porch = <13>;
-+        hsync-len = <47>;
-+        vsync-len = <2>;
-+      };
-+
-+      port {
-+        panel_in: endpoint {
-+          remote-endpoint = <&lvds_encoder>;
-+        };
-+      };
-+    };
-+
-+...
+This series adds support for the Sharp option.
+
+Jeffrey Hugo (2):
+  dt-bindings: panel: Add Sharp LD-D5116Z01B
+  drm/panel: simple: Add support for Sharp LD-D5116Z01B panel
+
+ .../display/panel/sharp,ld-d5116z01b.txt      | 27 +++++++++++++++++++
+ drivers/gpu/drm/panel/panel-simple.c          | 26 ++++++++++++++++++
+ 2 files changed, 53 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/sharp,ld-d5116z01b.txt
+
 -- 
-2.20.1
+2.17.1
 
