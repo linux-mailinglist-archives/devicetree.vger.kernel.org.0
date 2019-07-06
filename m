@@ -2,126 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1E5AF611D9
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2019 17:19:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B61861221
+	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2019 18:17:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726526AbfGFPTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Jul 2019 11:19:51 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:39571 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726446AbfGFPTv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Jul 2019 11:19:51 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 7EDDF803E2; Sat,  6 Jul 2019 17:19:37 +0200 (CEST)
-Date:   Sat, 6 Jul 2019 17:19:41 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Jacek Anaszewski <jacek.anaszewski@gmail.com>
-Cc:     Jean-Jacques Hiblot <jjhiblot@ti.com>, devicetree@vger.kernel.org,
-        linux-leds@vger.kernel.org, robh@kernel.org,
-        "Valkeinen, Tomi" <tomi.valkeinen@ti.com>
-Subject: Re: devicetree bindings for a generic led-based backlight driver
-Message-ID: <20190706151941.GB9856@amd>
-References: <69f3a300-9e37-448d-e6fa-49c1c9ca0dd6@ti.com>
- <400ac00b-d3c7-b58f-52fa-8b18b6c7e4a2@gmail.com>
- <283a3b7c-c3ed-719e-14e3-fc73e08af880@ti.com>
- <e7c5a500-4107-8895-d0fc-377c71cd3b34@gmail.com>
+        id S1726522AbfGFQQz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 6 Jul 2019 12:16:55 -0400
+Received: from mout.gmx.net ([212.227.15.19]:38535 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726712AbfGFQQz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 6 Jul 2019 12:16:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1562429720;
+        bh=v/j4XiFKCPBK6S3apqY0k2vzFHqTLRdaz8I12SI1NC0=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date:In-Reply-To:References;
+        b=CJHkPYNHKpYJZeE8b5exv7hkag9LhEEk+oMaVu7xO2FhAqyFGWXwh1VMzFLMBIQAt
+         SUzlzlLPzNa+VycQIqxK3jP7pFWAWr+3NfSKAIasrPtmMrq1Jf0xTkOFJyAUjG4ip+
+         eZ/Fmx5yUrwrEjw564ZtBuE2gG9/dHoIoBaWeMSc=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from [185.53.41.182] ([185.53.41.182]) by web-mail.gmx.net
+ (3c-app-gmx-bs42.server.lan [172.19.170.94]) (via HTTP); Sat, 6 Jul 2019
+ 18:15:20 +0200
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha1;
-        protocol="application/pgp-signature"; boundary="b5gNqxB1S1yM7hjW"
-Content-Disposition: inline
-In-Reply-To: <e7c5a500-4107-8895-d0fc-377c71cd3b34@gmail.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Message-ID: <trinity-a4e5f99f-00bc-4e90-9a48-64dbc6ba9c08-1562429720701@3c-app-gmx-bs42>
+From:   "Frank Wunderlich" <frank-w@public-files.de>
+To:     "Alexandre Belloni" <alexandre.belloni@bootlin.com>
+Cc:     "Lee Jones" <lee.jones@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>,
+        "Sean Wang" <sean.wang@mediatek.com>,
+        "Sebastian Reichel" <sre@kernel.org>,
+        "Alessandro Zummo" <a.zummo@towertech.it>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
+        "Eddie Huang" <eddie.huang@mediatek.com>,
+        "Thomas Gleixner" <tglx@linutronix.de>,
+        "Richard Fontana" <rfontana@redhat.com>,
+        "Allison Randal" <allison@lohutok.net>,
+        "David S . Miller" <davem@davemloft.net>,
+        "Mauro Carvalho Chehab" <mchehab+samsung@kernel.org>,
+        "Greg Kroah-Hartman" <gregkh@linuxfoundation.org>,
+        "Rob Herring" <robh@kernel.org>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Nicolas Ferre" <nicolas.ferre@microchip.com>,
+        "Paul E . McKenney" <paulmck@linux.ibm.com>,
+        "Josef Friedl" <josef.friedl@speed.at>
+Subject: Aw: Re: Re: [PATCH v2 3/7] rtc: mt6397: improvements of rtc driver
+Content-Type: text/plain; charset=UTF-8
+Date:   Sat, 6 Jul 2019 18:15:20 +0200
+Importance: normal
+Sensitivity: Normal
+In-Reply-To: <20190705212448.GB12409@piout.net>
+References: <20190703164822.17924-1-frank-w@public-files.de>
+ <20190703164822.17924-4-frank-w@public-files.de>
+ <20190704204336.GJ3692@piout.net>
+ <trinity-7b1977bd-252b-4482-b708-cf704a9d3da1-1562340946396@3c-app-gmx-bs68>
+ <20190705212448.GB12409@piout.net>
+X-UI-Message-Type: mail
+X-Priority: 3
+X-Provags-ID: V03:K1:HL+BGyIiUKA788YDI9SjshqIgoMva0CxAoF0FNbmiWgikilC3yiUX3XktaeBDjK0IKEwF
+ M5OzAzR5nw+t+4CRs1I9g+sSK9MWMfSk/mKhmsVI5WIq/vtS3pVX1YuGkdLkf/v3EPW6LKS0H0fH
+ MEGQbEULdeuovwyZr1yP9Tpo/P2sY+g5b5YLZja/sE2f9jGjj/jjGqHWsp1kdhzEMjXYJMc5vSNc
+ dfl7xrTKVwXPYNGVBc9EZLwMTCrtuqST4Fgc+OvmRPpC724OLngAkRDCyKKMuFK307+DLk1V/cdV
+ FQ=
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:dyLM7KxLlUY=:rEe9h1ie4NZfHvWUktHHgZ
+ wGYyOhfZILpnEZ9Mc5xv/j/t5C7oJ/KSAvlrJYU5WMOFIXloz16TCcbtXrc+MXq5y+9Pp0yWn
+ /fcu5HNIpjz8tXE9yfRZ6E7xrDRaCCxo66a0w6VTfpZypL+UJSarOf2DvVSf2GqRaFmXlPB69
+ WNCtysh7zssF8h3itBz5jY/CtpUPdiL7ycY4Pgh37j0fDS0fn7nM8v2TR6osYKCBYrdTeFjHU
+ HleenrgDa8iGGTiYyHUWzXCdNO2ppoUKiHnTSpBEFVXFxP7JIwvekGpFALoE3aRZeLT+fze9T
+ 4T+8fwwqzV5OHA+UJgFaHnCzgJr/NqZEvJb6bDNoeGi1kgrD+QBn7Vwm7dZQwKMsoZ9agtiA1
+ +tPco/SEoeaAUgsQnmaIlPA6tUzYFTxuRbQqMYzOYDJWXtyxplXDcLueUlMvtLPYZcGQZWBME
+ JASBkNFwFm4MjMeu5nzlgUuw6KDoyJm3cINY+DPewJc51PjyO5puYKREvSFnzKMKIfSsThaxN
+ L1nE9hTZGtGw9cq4Npn6TC4mZFzVBU/P6rQ72e683HS4W0hRjzlmKxB7DeKv41qFQPhugeZFQ
+ wlQRAG8d1atCBJ+ncStUtIuL8Ft/x3w/oFsEkK7VO6aTN5lyXftWeNXEqGPd0FWxquNe6FOq7
+ UoSo=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> Gesendet: Freitag, 05. Juli 2019 um 23:24 Uhr
+> Von: "Alexandre Belloni" <alexandre.belloni@bootlin.com>
 
---b5gNqxB1S1yM7hjW
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> Let's say the RTC has been used to start your platform, then the irq
+> handler will be called as soon as the irq is requested, leading to a
+> null pointer dereference.
 
-Hi!
+i cannot test this with my platform, but i have changed it in my repo
 
-> >>> A few years ago (2015), Tomi Valkeinen posted a series implementing a
-> >>> backlight driver on top of a LED device.
-> >>>
-> >>> https://patchwork.kernel.org/patch/7293991/
-> >>> https://patchwork.kernel.org/patch/7294001/
-> >>> https://patchwork.kernel.org/patch/7293981/
-> >>>
-> >>> The discussion stopped=A0 because he lacked the time to work on it.
-> >>>
-> >>> I will be taking over the task and, before heading in the wrong
-> >>> direction, wanted a confirmation that the binding Tomi last proposed =
-in
-> >>> hist last email was indeed the preferred option.
-> >>>
-> >>> It will probably require some modifications in the LED core to create
-> >>> the right kind of led-device (normal, flash or backlight) based on the
-> >>> compatible option.
-> >> I recall that discussion. I gave my ack for the LED changes but
-> >> now we have more LED people that might want to look into that.
-> >=20
-> > Regarding the LED bindings as discussed by Tom and Rob in
-> > https://patchwork.kernel.org/patch/7293991/, what do you think of using
-> > a 'compatible' string to make a LED device also a backlight or a flash =
-LED ?
->=20
-> After going through the referenced discussion and refreshing my memory
-> it looks to me the most reasonable way to go for backlight case.
->=20
-> Nevertheless I'd not tamper at LED flash support - if it's not broken,
-> don't fix it.
->=20
-> Best regards,
-> Jacek Anaszewski
->=20
-> > Here is the example from Tomi at the end of the discussion:
-> >=20
-> > /* tlc59108 is an i2c device */
-> > tlc59116@40 {
-> > 	#address-cells =3D <1>;
-> > 	#size-cells =3D <0>;
-> > 	compatible =3D "ti,tlc59108";
-> > 	reg =3D <0x40>;
-> >=20
-> > 	wan@0 {
-> > 		label =3D "wrt1900ac:amber:wan";
-> > 		reg =3D <0x0>;
-> > 	};
-> >=20
-> > 	bl@2 {
-> > 		label =3D "backlight";
-> > 		reg =3D <0x2>;
-> >=20
-> > 		compatible =3D "led-backlight";
-> > 		brightness-levels =3D <0 243 245 247 248 249 251 252 255>;
-> > 		default-brightness-level =3D <8>;
-> >=20
-> > 		enable-gpios =3D <&pcf_lcd 13 GPIO_ACTIVE_LOW>;
+https://github.com/frank-w/BPI-R2-4.14/commits/5.2-poweroff-mainline
 
-So... this needs some kind of reference to display it belongs to,
-right?
+> Yes and IIRC, I did comment that the rtc change also had to be separated
+> from 1/7.
 
-									Pavel
+also this is put in separate commit, can you take a look before i post v3?
 
---=20
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blo=
-g.html
+> Also, I really doubt this new compatible is necessary at all as you
+> could simply directly use mediatek,mt6397-rtc.
 
---b5gNqxB1S1yM7hjW
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: Digital signature
+imho this can confuse because the wrong chip-name is used in dts
 
------BEGIN PGP SIGNATURE-----
-Version: GnuPG v1
-
-iEYEARECAAYFAl0gvA0ACgkQMOfwapXb+vLuAgCgkcxncs9hK9t8jdQD36OCNME+
-Xc8An1qdPMdEZT4o/7K4z1UaqQXEberG
-=6Egk
------END PGP SIGNATURE-----
-
---b5gNqxB1S1yM7hjW--
+regards Frank
