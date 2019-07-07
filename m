@@ -2,96 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D8C60612E0
-	for <lists+devicetree@lfdr.de>; Sat,  6 Jul 2019 22:04:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A182614CC
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2019 13:58:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726813AbfGFUEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 6 Jul 2019 16:04:30 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:40343 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726307AbfGFUEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 6 Jul 2019 16:04:30 -0400
-X-Originating-IP: 90.65.161.137
-Received: from localhost (lfbn-1-1545-137.w90-65.abo.wanadoo.fr [90.65.161.137])
-        (Authenticated sender: alexandre.belloni@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 4B50AE0003;
-        Sat,  6 Jul 2019 20:04:20 +0000 (UTC)
-Date:   Sat, 6 Jul 2019 22:04:20 +0200
-From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-rtc@vger.kernel.org,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Richard Fontana <rfontana@redhat.com>,
-        Allison Randal <allison@lohutok.net>,
-        "David S . Miller" <davem@davemloft.net>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Rob Herring <robh@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        "Paul E . McKenney" <paulmck@linux.ibm.com>,
-        Josef Friedl <josef.friedl@speed.at>
-Subject: Re: Re: Re: [PATCH v2 3/7] rtc: mt6397: improvements of rtc driver
-Message-ID: <20190706200420.GE12409@piout.net>
-References: <20190703164822.17924-1-frank-w@public-files.de>
- <20190703164822.17924-4-frank-w@public-files.de>
- <20190704204336.GJ3692@piout.net>
- <trinity-7b1977bd-252b-4482-b708-cf704a9d3da1-1562340946396@3c-app-gmx-bs68>
- <20190705212448.GB12409@piout.net>
- <trinity-a4e5f99f-00bc-4e90-9a48-64dbc6ba9c08-1562429720701@3c-app-gmx-bs42>
+        id S1726005AbfGGL6V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Jul 2019 07:58:21 -0400
+Received: from smtp-fw-4101.amazon.com ([72.21.198.25]:4688 "EHLO
+        smtp-fw-4101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725981AbfGGL6V (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Jul 2019 07:58:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1562500698; x=1594036698;
+  h=from:to:cc:subject:date:message-id:mime-version;
+  bh=AzRAD81nU2MwlCqn0AU1evNVTd1zGcE1O6MmxMHhUbc=;
+  b=GFC9qHnyD7oytVt8NNIq0OZ9KzASQKyzbCEPBow8lcxylNWJIZRR3+Lg
+   ydYRouHrvTGm6Lbw9CMjyJGhB0y/SmepzuPpEti5Gl+ddNO1vMfp27bB3
+   q8ecW/Bv7QOpOJP2mghfnk4pDZ9VH5kyjyjfJSbIkSEaCGb/JKFqyWQSY
+   c=;
+X-IronPort-AV: E=Sophos;i="5.62,462,1554768000"; 
+   d="scan'208";a="773526810"
+Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2b-4ff6265a.us-west-2.amazon.com) ([10.124.125.6])
+  by smtp-border-fw-out-4101.iad4.amazon.com with ESMTP; 07 Jul 2019 11:58:15 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
+        by email-inbound-relay-2b-4ff6265a.us-west-2.amazon.com (Postfix) with ESMTPS id D2DE8A230C;
+        Sun,  7 Jul 2019 11:58:15 +0000 (UTC)
+Received: from EX13D19EUB003.ant.amazon.com (10.43.166.69) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Sun, 7 Jul 2019 11:58:15 +0000
+Received: from ub6d44c9ce3e25c.ant.amazon.com (10.43.161.16) by
+ EX13D19EUB003.ant.amazon.com (10.43.166.69) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Sun, 7 Jul 2019 11:58:06 +0000
+From:   Hanna Hawa <hhhawa@amazon.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <bp@alien8.de>,
+        <mchehab@kernel.org>, <james.morse@arm.com>, <davem@davemloft.net>,
+        <gregkh@linuxfoundation.org>, <linus.walleij@linaro.org>,
+        <Jonathan.Cameron@huawei.com>, <nicolas.ferre@microchip.com>,
+        <paulmck@linux.ibm.com>
+CC:     <dwmw@amazon.co.uk>, <benh@amazon.com>, <ronenk@amazon.com>,
+        <talel@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-edac@vger.kernel.org>, <hhhawa@amazon.com>
+Subject: [PATCH v2 0/4] Add support for Amazon's Annapurna Labs EDAC for L1/L2
+Date:   Sun, 7 Jul 2019 14:57:34 +0300
+Message-ID: <1562500658-14717-1-git-send-email-hhhawa@amazon.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <trinity-a4e5f99f-00bc-4e90-9a48-64dbc6ba9c08-1562429720701@3c-app-gmx-bs42>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+Content-Type: text/plain
+X-Originating-IP: [10.43.161.16]
+X-ClientProxiedBy: EX13D12UWC004.ant.amazon.com (10.43.162.182) To
+ EX13D19EUB003.ant.amazon.com (10.43.166.69)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/07/2019 18:15:20+0200, Frank Wunderlich wrote:
-> > Gesendet: Freitag, 05. Juli 2019 um 23:24 Uhr
-> > Von: "Alexandre Belloni" <alexandre.belloni@bootlin.com>
-> 
-> > Let's say the RTC has been used to start your platform, then the irq
-> > handler will be called as soon as the irq is requested, leading to a
-> > null pointer dereference.
-> 
-> i cannot test this with my platform, but i have changed it in my repo
-> 
-> https://github.com/frank-w/BPI-R2-4.14/commits/5.2-poweroff-mainline
-> 
-> > Yes and IIRC, I did comment that the rtc change also had to be separated
-> > from 1/7.
-> 
-> also this is put in separate commit, can you take a look before i post v3?
-> 
-> > Also, I really doubt this new compatible is necessary at all as you
-> > could simply directly use mediatek,mt6397-rtc.
-> 
-> imho this can confuse because the wrong chip-name is used in dts
-> 
+This series adds L1 and L2 caches support for error detection and
+correction for Amazon's Annapurna Labs SoCs.
+Alpine SoCs support L1 and L2 single bit correction and two bits detection
+capability based on ARM implementation.
 
-This is not true, we do that all the time and the immediate benefit of
-using the mt6397 compatible is that then there is no need to
-synchronize between subsystems. If you want to be absolutely
-conservative, you could use
+Changes since v1:
+-----------------
+- Split into two drivers
+- Get cpu-mask according to l2-cache handler from devicetree
+- Remove parameter casting
+- Use GENMASK() in bit mask
+- Use FIELD_GET()
+- Update define description PLRU_RAM -> PF_RAM
+- Use sys_reg() and read_sysreg_s()
+- Remove all write/read wrappers
+- Check fatal field to set if the error correctable or not
+- Remove un-relevant information from error prints.
+- Update smp_call_function_single() call function to wait
+- remove usage of get_online_cpus/put_online_cpus
+- Use on_each_cpu() and smp_call_function_any() instead of loop with for_each_cpu.
+- use buffer for error prints and pass to edac API
+- Remove edac_op_state set
+- Add for loop to report on repeated errors of the same type
+- Fix error name of the TLB to be L2_TLB as written in ARM TRM
+- Minor change in Kconfig
+- Minor changes in commit message
 
-compatible = "mediatek,mt6323-rtc", "mediatek,mt6397-rtc";
+Hanna Hawa (4):
+  dt-bindings: EDAC: Add Amazon's Annapurna Labs L1 EDAC
+  edac: Add support for Amazon's Annapurna Labs L1 EDAC
+  dt-bindings: EDAC: Add Amazon's Annapurna Labs L2 EDAC
+  edac: Add support for Amazon's Annapurna Labs L2 EDAC
 
-in your DT.
-
+ .../devicetree/bindings/edac/amazon,al-l1-edac.txt |  14 ++
+ .../devicetree/bindings/edac/amazon,al-l2-edac.txt |  20 +++
+ MAINTAINERS                                        |  12 ++
+ drivers/edac/Kconfig                               |  16 ++
+ drivers/edac/Makefile                              |   2 +
+ drivers/edac/al_l1_edac.c                          | 154 +++++++++++++++++
+ drivers/edac/al_l2_edac.c                          | 185 +++++++++++++++++++++
+ 7 files changed, 403 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/edac/amazon,al-l1-edac.txt
+ create mode 100644 Documentation/devicetree/bindings/edac/amazon,al-l2-edac.txt
+ create mode 100644 drivers/edac/al_l1_edac.c
+ create mode 100644 drivers/edac/al_l2_edac.c
 
 -- 
-Alexandre Belloni, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+2.7.4
+
