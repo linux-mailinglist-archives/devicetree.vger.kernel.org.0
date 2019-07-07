@@ -2,315 +2,441 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45DE5614D9
-	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2019 13:58:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05B7C614F4
+	for <lists+devicetree@lfdr.de>; Sun,  7 Jul 2019 14:55:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725981AbfGGL66 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Jul 2019 07:58:58 -0400
-Received: from smtp-fw-4101.amazon.com ([72.21.198.25]:5068 "EHLO
-        smtp-fw-4101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726760AbfGGL66 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Jul 2019 07:58:58 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1562500736; x=1594036736;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=60X891scMhbmjUoeEckMBvX4630ty+8QYuK2MOZwV4o=;
-  b=NX6D7Ld6LyIorpcEYjEljQF9ClqoxuY11vn4ubqlTx+UFl6CI9CwUKCs
-   4a2PWJvEuEirKMiwz20QhGVIWzoci81xuipSYlsHfaAfkUUt44//kSCW7
-   EHtHdlx8q4G0/KRoS/+wIAWXFEhgQEYYLRHtfuZ/+Gk0LxhPd3xvbywG/
-   E=;
-X-IronPort-AV: E=Sophos;i="5.62,462,1554768000"; 
-   d="scan'208";a="773526838"
-Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-2a-d0be17ee.us-west-2.amazon.com) ([10.124.125.6])
-  by smtp-border-fw-out-4101.iad4.amazon.com with ESMTP; 07 Jul 2019 11:58:54 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
-        by email-inbound-relay-2a-d0be17ee.us-west-2.amazon.com (Postfix) with ESMTPS id E6B2BA074E;
-        Sun,  7 Jul 2019 11:58:50 +0000 (UTC)
-Received: from EX13D19EUB003.ant.amazon.com (10.43.166.69) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Sun, 7 Jul 2019 11:58:50 +0000
-Received: from ub6d44c9ce3e25c.ant.amazon.com (10.43.161.16) by
- EX13D19EUB003.ant.amazon.com (10.43.166.69) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Sun, 7 Jul 2019 11:58:40 +0000
-From:   Hanna Hawa <hhhawa@amazon.com>
-To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <bp@alien8.de>,
-        <mchehab@kernel.org>, <james.morse@arm.com>, <davem@davemloft.net>,
-        <gregkh@linuxfoundation.org>, <linus.walleij@linaro.org>,
-        <Jonathan.Cameron@huawei.com>, <nicolas.ferre@microchip.com>,
-        <paulmck@linux.ibm.com>
-CC:     <dwmw@amazon.co.uk>, <benh@amazon.com>, <ronenk@amazon.com>,
-        <talel@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-edac@vger.kernel.org>, <hhhawa@amazon.com>
-Subject: [PATCH v2 4/4] edac: Add support for Amazon's Annapurna Labs L2 EDAC
-Date:   Sun, 7 Jul 2019 14:57:38 +0300
-Message-ID: <1562500658-14717-5-git-send-email-hhhawa@amazon.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1562500658-14717-1-git-send-email-hhhawa@amazon.com>
-References: <1562500658-14717-1-git-send-email-hhhawa@amazon.com>
+        id S1726623AbfGGMzB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Jul 2019 08:55:01 -0400
+Received: from szxga04-in.huawei.com ([45.249.212.190]:2173 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726541AbfGGMzB (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 7 Jul 2019 08:55:01 -0400
+Received: from DGGEMS405-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id 53709216AEF176B757FB;
+        Sun,  7 Jul 2019 20:54:57 +0800 (CST)
+Received: from localhost (10.45.56.64) by DGGEMS405-HUB.china.huawei.com
+ (10.3.19.205) with Microsoft SMTP Server id 14.3.439.0; Sun, 7 Jul 2019
+ 20:54:53 +0800
+Date:   Sun, 7 Jul 2019 13:54:49 +0100
+From:   Jonathan Cameron <jonathan.cameron@huawei.com>
+To:     Daniel Mack <daniel@zonque.org>
+CC:     <jic23@kernel.org>, <lars@metafoo.de>, <linux-iio@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <robh+dt@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>
+Subject: Re: [PATCH 2/2] iio: add driver for PCT2075 temperature sensor
+Message-ID: <20190707135449.000010b9@huawei.com>
+In-Reply-To: <20190701180158.9463-2-daniel@zonque.org>
+References: <20190701180158.9463-1-daniel@zonque.org>
+        <20190701180158.9463-2-daniel@zonque.org>
+Organization: Huawei
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; i686-w64-mingw32)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.43.161.16]
-X-ClientProxiedBy: EX13D12UWC004.ant.amazon.com (10.43.162.182) To
- EX13D19EUB003.ant.amazon.com (10.43.166.69)
+Content-Type: text/plain; charset="US-ASCII"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.45.56.64]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds support for Amazon's Annapurna Labs L2 EDAC driver to detect and
-report L2 errors.
 
-Signed-off-by: Hanna Hawa <hhhawa@amazon.com>
----
- MAINTAINERS               |   6 ++
- drivers/edac/Kconfig      |   8 ++
- drivers/edac/Makefile     |   1 +
- drivers/edac/al_l2_edac.c | 185 ++++++++++++++++++++++++++++++++++++++++++++++
- 4 files changed, 200 insertions(+)
- create mode 100644 drivers/edac/al_l2_edac.c
++CC Jean and Guenter (the hwmon maintainers)
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index fd29ea6..a6dcf3d 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -749,6 +749,12 @@ S:	Maintained
- F:	drivers/edac/al_l1_edac.c
- F:	Documentation/devicetree/bindings/edac/amazon,al-l1-edac.txt
- 
-+AMAZON ANNAPURNA LABS L2 EDAC
-+M:	Hanna Hawa <hhhawa@amazon.com>
-+S:	Maintained
-+F:	drivers/edac/al_l2_edac.c
-+F:	Documentation/devicetree/bindings/edac/amazon,al-l2-edac.txt
-+
- AMAZON ANNAPURNA LABS THERMAL MMIO DRIVER
- M:	Talel Shenhar <talel@amazon.com>
- S:	Maintained
-diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-index 58b92bc..8bbb745 100644
---- a/drivers/edac/Kconfig
-+++ b/drivers/edac/Kconfig
-@@ -82,6 +82,14 @@ config EDAC_AL_L1
- 	  for Amazon's Annapurna Labs SoCs.
- 	  This driver detects errors of L1 caches.
- 
-+config EDAC_AL_L2
-+	bool "Amazon's Annapurna Labs L2 EDAC"
-+	depends on ARCH_ALPINE
-+	help
-+	  Support for L2 error detection and correction
-+	  for Amazon's Annapurna Labs SoCs.
-+	  This driver detects errors of L2 caches.
-+
- config EDAC_AMD64
- 	tristate "AMD64 (Opteron, Athlon64)"
- 	depends on AMD_NB && EDAC_DECODE_MCE
-diff --git a/drivers/edac/Makefile b/drivers/edac/Makefile
-index caa2dc9..60a6b8b 100644
---- a/drivers/edac/Makefile
-+++ b/drivers/edac/Makefile
-@@ -23,6 +23,7 @@ edac_mce_amd-y				:= mce_amd.o
- obj-$(CONFIG_EDAC_DECODE_MCE)		+= edac_mce_amd.o
- 
- obj-$(CONFIG_EDAC_AL_L1)		+= al_l1_edac.o
-+obj-$(CONFIG_EDAC_AL_L2)		+= al_l2_edac.o
- obj-$(CONFIG_EDAC_AMD76X)		+= amd76x_edac.o
- obj-$(CONFIG_EDAC_CPC925)		+= cpc925_edac.o
- obj-$(CONFIG_EDAC_I5000)		+= i5000_edac.o
-diff --git a/drivers/edac/al_l2_edac.c b/drivers/edac/al_l2_edac.c
-new file mode 100644
-index 0000000..4db6b66
---- /dev/null
-+++ b/drivers/edac/al_l2_edac.c
-@@ -0,0 +1,185 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright 2019 Amazon.com, Inc. or its affiliates. All Rights Reserved.
-+ */
-+
-+#include <linux/bitfield.h>
-+#include <linux/of.h>
-+
-+#include "edac_device.h"
-+#include "edac_module.h"
-+
-+/* Same bit assignments of L2MERRSR_EL1 in ARM CA57/CA72 */
-+#define ARM_CA57_L2MERRSR_EL1			sys_reg(3, 1, 15, 2, 3)
-+#define ARM_CA57_L2MERRSR_RAMID			GENMASK(30, 24)
-+#define  ARM_CA57_L2_TAG_RAM			0x10
-+#define  ARM_CA57_L2_DATA_RAM			0x11
-+#define  ARM_CA57_L2_SNOOP_RAM			0x12
-+#define  ARM_CA57_L2_DIRTY_RAM			0x14
-+#define  ARM_CA57_L2_INC_PF_RAM			0x18
-+#define ARM_CA57_L2MERRSR_VALID			GENMASK(31, 31)
-+#define ARM_CA57_L2MERRSR_REPEAT		GENMASK(39, 32)
-+#define ARM_CA57_L2MERRSR_OTHER			GENMASK(47, 40)
-+#define ARM_CA57_L2MERRSR_FATAL			GENMASK(63, 63)
-+
-+#define AL_L2_EDAC_MSG_MAX			256
-+
-+struct al_l2_edac {
-+	cpumask_t cluster_cpus;
-+};
-+
-+static void al_l2_edac_l2merrsr(void *arg)
-+{
-+	struct edac_device_ctl_info *edac_dev = arg;
-+	int cpu, i;
-+	u32 ramid, repeat, other, fatal;
-+	u64 val = read_sysreg_s(ARM_CA57_L2MERRSR_EL1);
-+	char msg[AL_L2_EDAC_MSG_MAX];
-+	int space, count;
-+	char *p;
-+
-+	if (!(FIELD_GET(ARM_CA57_L2MERRSR_VALID, val)))
-+		return;
-+
-+	cpu = smp_processor_id();
-+	ramid = FIELD_GET(ARM_CA57_L2MERRSR_RAMID, val);
-+	repeat = FIELD_GET(ARM_CA57_L2MERRSR_REPEAT, val);
-+	other = FIELD_GET(ARM_CA57_L2MERRSR_OTHER, val);
-+	fatal = FIELD_GET(ARM_CA57_L2MERRSR_FATAL, val);
-+
-+	space = sizeof(msg);
-+	p = msg;
-+	count = snprintf(p, space, "CPU%d L2 %serror detected", cpu,
-+			 (fatal) ? "Fatal " : "");
-+	p += count;
-+	space -= count;
-+
-+	switch (ramid) {
-+	case ARM_CA57_L2_TAG_RAM:
-+		count = snprintf(p, space, " RAMID='L2 Tag RAM'");
-+		break;
-+	case ARM_CA57_L2_DATA_RAM:
-+		count = snprintf(p, space, " RAMID='L2 Data RAM'");
-+		break;
-+	case ARM_CA57_L2_SNOOP_RAM:
-+		count = snprintf(p, space, " RAMID='L2 Snoop RAM'");
-+		break;
-+	case ARM_CA57_L2_DIRTY_RAM:
-+		count = snprintf(p, space, " RAMID='L2 Dirty RAM'");
-+		break;
-+	case ARM_CA57_L2_INC_PF_RAM:
-+		count = snprintf(p, space, " RAMID='L2 internal metadat'");
-+		break;
-+	default:
-+		count = snprintf(p, space, " RAMID='unknown'");
-+		break;
-+	}
-+
-+	p += count;
-+	space -= count;
-+
-+	count = snprintf(p, space,
-+			 " repeat=%d, other=%d (L2MERRSR_EL1=0x%llx)",
-+			 repeat, other, val);
-+
-+	for (i = 0; i < repeat; i++) {
-+		if (fatal)
-+			edac_device_handle_ue(edac_dev, 0, 0, msg);
-+		else
-+			edac_device_handle_ce(edac_dev, 0, 0, msg);
-+	}
-+
-+	write_sysreg_s(0, ARM_CA57_L2MERRSR_EL1);
-+}
-+
-+static void al_l2_edac_check(struct edac_device_ctl_info *edac_dev)
-+{
-+	struct al_l2_edac *al_l2 = edac_dev->pvt_info;
-+
-+	smp_call_function_any(&al_l2->cluster_cpus, al_l2_edac_l2merrsr,
-+			      edac_dev, 1);
-+}
-+
-+static int al_l2_edac_probe(struct platform_device *pdev)
-+{
-+	struct edac_device_ctl_info *edac_dev;
-+	struct al_l2_edac *al_l2;
-+	struct device *dev = &pdev->dev;
-+	int ret, i;
-+
-+	edac_dev = edac_device_alloc_ctl_info(sizeof(*al_l2),
-+					      (char *)dev_name(dev), 1, "L", 1,
-+					      2, NULL, 0,
-+					      edac_device_alloc_index());
-+	if (IS_ERR(edac_dev))
-+		return -ENOMEM;
-+
-+	al_l2 = edac_dev->pvt_info;
-+	edac_dev->edac_check = al_l2_edac_check;
-+	edac_dev->dev = dev;
-+	edac_dev->mod_name = dev_name(dev);
-+	edac_dev->dev_name = dev_name(dev);
-+	edac_dev->ctl_name = dev_name(dev);
-+	platform_set_drvdata(pdev, edac_dev);
-+
-+	for_each_online_cpu(i) {
-+		struct device_node *cpu;
-+		struct device_node *cpu_cache, *l2_cache;
-+
-+		cpu = of_get_cpu_node(i, NULL);
-+		cpu_cache = of_find_next_cache_node(cpu);
-+		l2_cache = of_parse_phandle(dev->of_node, "l2-cache", 0);
-+
-+		if (cpu_cache == l2_cache)
-+			cpumask_set_cpu(i, &al_l2->cluster_cpus);
-+	}
-+
-+	if (cpumask_empty(&al_l2->cluster_cpus)) {
-+		dev_err(dev, "CPU mask is empty for this L2 cache\n");
-+		ret = -EINVAL;
-+		goto err;
-+	}
-+
-+	ret = edac_device_add_device(edac_dev);
-+	if (ret) {
-+		dev_err(dev, "Failed to add L2 edac device\n");
-+		goto err;
-+	}
-+
-+	return 0;
-+
-+err:
-+	edac_device_free_ctl_info(edac_dev);
-+
-+	return ret;
-+}
-+
-+static int al_l2_edac_remove(struct platform_device *pdev)
-+{
-+	struct edac_device_ctl_info *edac_dev = platform_get_drvdata(pdev);
-+
-+	edac_device_del_device(edac_dev->dev);
-+	edac_device_free_ctl_info(edac_dev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id al_l2_edac_of_match[] = {
-+	{ .compatible = "amazon,al-l2-edac" },
-+	{}
-+};
-+MODULE_DEVICE_TABLE(of, al_l2_edac_of_match);
-+
-+static struct platform_driver al_l2_edac_driver = {
-+	.probe = al_l2_edac_probe,
-+	.remove = al_l2_edac_remove,
-+	.driver = {
-+		.name = "al_l2_edac",
-+		.of_match_table = al_l2_edac_of_match,
-+	},
-+};
-+module_platform_driver(al_l2_edac_driver);
-+
-+MODULE_LICENSE("GPL v2");
-+MODULE_AUTHOR("Hanna Hawa <hhhawa@amazon.com>");
-+MODULE_DESCRIPTION("Amazon's Annapurna Lab's L2 EDAC Driver");
--- 
-2.7.4
+On Mon, 1 Jul 2019 20:01:58 +0200
+Daniel Mack <daniel@zonque.org> wrote:
+
+> This patch adds a driver for NXP PCT2075 temperature sensors, connected
+> via I2C.
+> 
+> The datasheet for this part is here:
+> 
+>  https://www.nxp.com/docs/en/data-sheet/PCT2075.pdf
+> 
+> All hardware configuration options are accessible via DT properites.
+> 
+> Signed-off-by: Daniel Mack <daniel@zonque.org>
+Hi Daniel,
+
+My main concern with this one is whether IIO is the most suitable place to
+put the driver.  Whilst the iio-hwmon bridge can be used to allow
+a generic temperature sensor with an IIO driver to be used for hardware
+monitoring, some devices are designed for that application so should
+just be given hwmon drivers in the first place.
+
+What made you propose an IIO driver for this one?
+
+"I2C-bus Fm+, 1C accuracy, digital temperature sensor and
+thermal watchdog" definitely sounds like a hardware monitoring device.
+
+Note that the temp sensors in IIO fall into a few existing categories
+1) Temperatures sensors that are definitely not commonly used for hardware
+monitoring. This includes things like non contact infrared thermal sensors.
+2) Temperature sensors that form part of device that includes other sensors
+or ADC channels that aren't meant for hardware monitoring (perhaps an
+air pressure sensor).
+3) A few odd corner cases where the interface is the same as a part with
+other non hmwon channels, but that part isn't present for a particular
+part (these are rare!)
+
+Sorry for the slow response, I'm traveling at the moment.
+
+Jonathan
+
+> ---
+>  drivers/iio/temperature/Kconfig   |  11 ++
+>  drivers/iio/temperature/Makefile  |   1 +
+>  drivers/iio/temperature/pct2075.c | 307 ++++++++++++++++++++++++++++++
+>  3 files changed, 319 insertions(+)
+>  create mode 100644 drivers/iio/temperature/pct2075.c
+> 
+> diff --git a/drivers/iio/temperature/Kconfig b/drivers/iio/temperature/Kconfig
+> index c185cbee25c7..20aeb4c764b7 100644
+> --- a/drivers/iio/temperature/Kconfig
+> +++ b/drivers/iio/temperature/Kconfig
+> @@ -55,6 +55,17 @@ config MLX90632
+>  	  This driver can also be built as a module. If so, the module will
+>  	  be called mlx90632.
+>  
+> +config PCT2075
+> +	tristate "NXP PCT2075 temperature sensor"
+> +	depends on I2C
+> +	help
+> +	  If you say yes here you get support for the NXP
+> +	  NCP2075 I2C connected Fm+ digital temperature sensor and
+> +	  thermal watchdog.
+> +
+> +	  This driver can also be built as a module. If so, the module will
+> +	  be called pct2075.
+> +
+>  config TMP006
+>  	tristate "TMP006 infrared thermopile sensor"
+>  	depends on I2C
+> diff --git a/drivers/iio/temperature/Makefile b/drivers/iio/temperature/Makefile
+> index baca4776ca0d..7fad51b8be4f 100644
+> --- a/drivers/iio/temperature/Makefile
+> +++ b/drivers/iio/temperature/Makefile
+> @@ -8,6 +8,7 @@ obj-$(CONFIG_MAXIM_THERMOCOUPLE) += maxim_thermocouple.o
+>  obj-$(CONFIG_MAX31856) += max31856.o
+>  obj-$(CONFIG_MLX90614) += mlx90614.o
+>  obj-$(CONFIG_MLX90632) += mlx90632.o
+> +obj-$(CONFIG_PCT2075) += pct2075.o
+>  obj-$(CONFIG_TMP006) += tmp006.o
+>  obj-$(CONFIG_TMP007) += tmp007.o
+>  obj-$(CONFIG_TSYS01) += tsys01.o
+> diff --git a/drivers/iio/temperature/pct2075.c b/drivers/iio/temperature/pct2075.c
+> new file mode 100644
+> index 000000000000..e2a092079905
+> --- /dev/null
+> +++ b/drivers/iio/temperature/pct2075.c
+> @@ -0,0 +1,307 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/err.h>
+> +#include <linux/i2c.h>
+> +#include <linux/iio/iio.h>
+> +#include <linux/iio/sysfs.h>
+> +#include <linux/kernel.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+> +
+> +#define PCT2075_REG_CONF	1
+> +#define		PCT2075_CONF_OS_F_QUEUE(val) (((val) & 0x3) << 3)
+> +#define		PCT2075_CONF_OS_ACTIVE_HIGH	BIT(2)
+> +#define		PCT2075_CONF_OS_COMP_INT	BIT(1)
+> +#define		PCT2075_CONF_SHUTDOWN		BIT(0)
+> +
+> +#define PCT2075_REG_TEMP	0
+> +#define PCT2075_REG_THYST	2
+> +#define PCT2075_REG_TOS		3
+> +#define PCT2075_REG_TIDLE	4
+> +
+> +struct pct2075_data {
+> +	struct i2c_client *client;
+> +	struct regulator *regulator;
+> +	u8 reg_conf;
+> +	u8 reg_tidle;
+> +	u16 reg_thyst;
+> +	u16 reg_tos;
+> +};
+> +
+> +static const struct iio_chan_spec pct2075_channel = {
+> +	.type = IIO_TEMP,
+> +	.channel = IIO_MOD_TEMP_AMBIENT,
+> +	.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
+> +};
+> +
+> +static int pct2075_read_raw(struct iio_dev *indio_dev,
+> +			    struct iio_chan_spec const *chan,
+> +			    int *val,
+> +			    int *val2,
+> +			    long mask)
+> +{
+> +	struct pct2075_data *pct2075 = iio_priv(indio_dev);
+> +	int ret, v;
+> +
+> +	ret = i2c_smbus_read_word_swapped(pct2075->client,
+> +					  PCT2075_REG_TEMP);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	v = sign_extend32(ret >> 5, 10) * 125;
+> +	*val = v / 1000;
+> +	*val2 = (v % 1000) * 1000;
+> +
+> +	return IIO_VAL_INT_PLUS_MICRO;
+> +}
+> +
+> +static int pct2075_sync(struct pct2075_data *pct2075)
+> +{
+> +	struct i2c_client *client = pct2075->client;
+> +	struct device *dev = &client->dev;
+> +	int ret;
+> +
+> +	ret = i2c_smbus_write_byte_data(client, PCT2075_REG_CONF,
+> +					pct2075->reg_conf);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Cannot write CONF register: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = i2c_smbus_write_byte_data(client, PCT2075_REG_TIDLE,
+> +					pct2075->reg_tidle);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Cannot write TIDLE register: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = i2c_smbus_write_word_swapped(client, PCT2075_REG_TOS,
+> +					   pct2075->reg_tos);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Cannot write TOS register: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	ret = i2c_smbus_write_word_swapped(client, PCT2075_REG_THYST,
+> +					   pct2075->reg_thyst);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Cannot write THYST register: %d\n", ret);
+> +		return ret;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static void pct2075_of_parse_temperature(struct device *dev,
+> +					 u16 *out, const char *name)
+> +{
+> +	int ret;
+> +	s32 tmp;
+> +
+> +	ret = of_property_read_s32(dev->of_node, name, &tmp);
+> +	if (ret != 0)
+> +		return;
+> +
+> +	if (tmp < -55000 || tmp > 125000 || tmp % 500 != 0) {
+> +		dev_err(dev, "Unsupported value for %s", name);
+> +		return;
+> +	}
+> +
+> +	*out = ((u16) (tmp / 500)) << 7;
+> +}
+> +
+> +static const struct iio_info pct2075_info = {
+> +	.read_raw = pct2075_read_raw,
+> +};
+> +
+> +static int pct2075_probe(struct i2c_client *client,
+> +			 const struct i2c_device_id *id)
+> +{
+> +	struct device *dev = &client->dev;
+> +	struct pct2075_data *pct2075;
+> +	struct iio_dev *indio_dev;
+> +	u32 tmp;
+> +	int ret;
+> +
+> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*pct2075));
+> +	if (!indio_dev) {
+> +		dev_err(&client->dev, "Failed to allocate device\n");
+> +		return -ENOMEM;
+> +	}
+> +
+> +	pct2075 = iio_priv(indio_dev);
+> +	i2c_set_clientdata(client, indio_dev);
+> +	pct2075->client = client;
+> +
+> +	indio_dev->dev.parent = dev;
+> +	indio_dev->name = id->name;
+> +	indio_dev->modes = INDIO_DIRECT_MODE;
+> +	indio_dev->info = &pct2075_info;
+> +	indio_dev->channels = &pct2075_channel;
+> +	indio_dev->num_channels = 1;
+> +
+> +	pct2075->regulator = devm_regulator_get_optional(dev, "vcc");
+> +	if (IS_ERR(pct2075->regulator)) {
+> +		ret = PTR_ERR(pct2075->regulator);
+> +		if (ret == -EPROBE_DEFER)
+> +			return ret;
+> +
+> +		pct2075->regulator = NULL;
+> +	}
+> +
+> +	if (pct2075->regulator) {
+> +		ret = regulator_enable(pct2075->regulator);
+> +		if (ret < 0) {
+> +			dev_err(dev, "Cannot enable regulator: %d\n", ret);
+> +			return ret;
+> +		}
+> +	}
+> +
+> +	/* Read hardware defaults */
+> +	ret = i2c_smbus_read_word_swapped(client, PCT2075_REG_TOS);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Cannot read TOS register: %d\n", ret);
+> +		return ret;
+> +	}
+> +	pct2075->reg_tos = ret;
+> +
+> +	ret = i2c_smbus_read_word_swapped(client, PCT2075_REG_THYST);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Cannot read THYST register: %d\n", ret);
+> +		return ret;
+> +	}
+> +	pct2075->reg_thyst = ret;
+> +
+> +	ret = i2c_smbus_read_byte_data(client, PCT2075_REG_TIDLE);
+> +	if (ret < 0) {
+> +		dev_err(dev, "Cannot read TIDLE register: %d\n", ret);
+> +		return ret;
+> +	}
+> +	pct2075->reg_tidle = ret;
+> +
+> +	/* Parse DT properties */
+> +	ret = of_property_read_u32(dev->of_node, "nxp,os-fault-queue", &tmp);
+> +	if (ret == 0) {
+> +		switch (tmp) {
+> +		case 1:
+> +			pct2075->reg_conf |= PCT2075_CONF_OS_F_QUEUE(0);
+> +			break;
+> +		case 2:
+> +			pct2075->reg_conf |= PCT2075_CONF_OS_F_QUEUE(1);
+> +			break;
+> +		case 4:
+> +			pct2075->reg_conf |= PCT2075_CONF_OS_F_QUEUE(2);
+> +			break;
+> +		case 6:
+> +			pct2075->reg_conf |= PCT2075_CONF_OS_F_QUEUE(3);
+> +			break;
+> +		default:
+> +			dev_err(dev, "Unsupported value for nxp,os-fault-queue");
+> +		}
+> +	}
+> +
+> +	if (of_property_read_bool(dev->of_node, "nxp,os-active-high"))
+> +		pct2075->reg_conf |= PCT2075_CONF_OS_ACTIVE_HIGH;
+> +
+> +	if (of_property_read_bool(dev->of_node, "nxp,os-mode-interrupt"))
+> +		pct2075->reg_conf |= PCT2075_CONF_OS_COMP_INT;
+> +
+> +	ret = of_property_read_u32(dev->of_node, "nxp,sample-period-ms", &tmp);
+> +	if (ret == 0) {
+> +		if (tmp % 100 == 0 && tmp <= 3100)
+> +			pct2075->reg_tidle = tmp / 100;
+> +		else
+> +			dev_err(dev, "Unsupported value for nxp,sample-period-ms");
+> +	}
+> +
+> +	pct2075_of_parse_temperature(dev, &pct2075->reg_tos,
+> +				     "nxp,overtemperature-shutdown-millicelsius");
+> +	pct2075_of_parse_temperature(dev, &pct2075->reg_thyst,
+> +				     "nxp,hysteresis-millicelsius");
+> +
+> +	ret = pct2075_sync(pct2075);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	pm_runtime_disable(dev);
+> +	ret = pm_runtime_set_active(dev);
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	pm_runtime_enable(&client->dev);
+> +	pm_runtime_set_autosuspend_delay(dev, 10);
+> +	pm_runtime_use_autosuspend(dev);
+> +
+> +	return iio_device_register(indio_dev);
+> +}
+> +
+> +static int pct2075_remove(struct i2c_client *client)
+> +{
+> +	struct iio_dev *indio_dev = i2c_get_clientdata(client);
+> +	struct pct2075_data *pct2075 = iio_priv(indio_dev);
+> +	struct device *dev = &client->dev;
+> +
+> +	i2c_smbus_write_byte_data(client, PCT2075_REG_CONF,
+> +				  PCT2075_CONF_SHUTDOWN);
+> +
+> +	if (pct2075->regulator)
+> +		regulator_disable(pct2075->regulator);
+> +
+> +	iio_device_unregister(indio_dev);
+> +
+> +	pm_runtime_disable(dev);
+> +	pm_runtime_set_suspended(dev);
+> +	pm_runtime_put_noidle(dev);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct i2c_device_id pct2075_id[] = {
+> +	{ "pct2075", 0 },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(i2c, pct2075_id);
+> +
+> +static const struct of_device_id pct2075_of_match[] = {
+> +	{ .compatible = "nxp,pct2075" },
+> +	{ }
+> +};
+> +MODULE_DEVICE_TABLE(of, pct2075_of_match);
+> +
+> +static int __maybe_unused pct2075_pm_suspend(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
+> +	struct pct2075_data *pct2075 = iio_priv(indio_dev);
+> +
+> +	return i2c_smbus_write_byte_data(pct2075->client, PCT2075_REG_CONF,
+> +					 PCT2075_CONF_SHUTDOWN);
+> +}
+> +
+> +static int __maybe_unused pct2075_pm_resume(struct device *dev)
+> +{
+> +	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
+> +	struct pct2075_data *pct2075 = iio_priv(indio_dev);
+> +
+> +	return pct2075_sync(pct2075);
+> +}
+> +
+> +static UNIVERSAL_DEV_PM_OPS(pct2075_pm_ops, pct2075_pm_suspend,
+> +			    pct2075_pm_resume, NULL);
+> +
+> +static struct i2c_driver pct2075_driver = {
+> +	.driver = {
+> +		.name	= "pct2075",
+> +		.of_match_table = pct2075_of_match,
+> +		.pm	= &pct2075_pm_ops,
+> +	},
+> +	.probe = pct2075_probe,
+> +	.remove = pct2075_remove,
+> +	.id_table = pct2075_id,
+> +};
+> +module_i2c_driver(pct2075_driver);
+> +
+> +MODULE_AUTHOR("Daniel Mack <daniel@zonque.org>");
+> +MODULE_DESCRIPTION("NXP PCT2075 temperature sensor driver");
+> +MODULE_LICENSE("GPL v2");
+
 
