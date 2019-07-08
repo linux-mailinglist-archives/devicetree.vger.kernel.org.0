@@ -2,100 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A07D61836
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 00:55:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 57A7C61981
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 05:29:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728248AbfGGWzX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Jul 2019 18:55:23 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:35568 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728192AbfGGWzX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Jul 2019 18:55:23 -0400
-Received: by mail-qt1-f195.google.com with SMTP id d23so16325054qto.2;
-        Sun, 07 Jul 2019 15:55:22 -0700 (PDT)
+        id S1728859AbfGHD3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Jul 2019 23:29:03 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:35576 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726105AbfGHD3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Jul 2019 23:29:03 -0400
+Received: by mail-qt1-f193.google.com with SMTP id d23so16725707qto.2
+        for <devicetree@vger.kernel.org>; Sun, 07 Jul 2019 20:29:03 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=3ErUctKt9CJ3rgf9ZExT4u2Tmx1X1fVjtqY74IUmVOo=;
-        b=JlXHeBGDcgPOSpehTvZEUAPwg/03JUwV5Oib3l8ccCErTyvUSFpKvVXITpSsuA5HzZ
-         CZ6UqCpB/q5sef/EOkgQ+RsNCm+A+sejBBhaTqvqalSylNB+1z72WqFs4hGxaL6+kTLx
-         r2AYuXIBh2hRcjmmVkIZ+ofmon6UkniG1b16MVJK3t7bykOnH3VeebDj5Mf8gtetiy3w
-         l23+w1477IPOqnjYRFfQN+gVtIRb6eML5Ua0AXJOpOI8veBT1wkZ9Hkaqnhed6YwRWF+
-         POemOi6hU9+/cb+G6ei/SF0+GceH7PAbstYAin10hez1zUwXJxw8m5XPlg4jlXYCSEAV
-         b9wg==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=AK79VDL+Vgenq/SIz4Re5O9aUU8flN86KP1/GJSoiLE=;
+        b=ez8MWVdvAiNAzrPrfFi/OIQyqlh22yAZ/zH+VWz8JN6ZEaGDfCi2GG42eDqeMtgSkh
+         1sqvjYom7xaqRKO9p7Q7pFOSyV5DgCWI6XAyo4PPH5AQXeGYTykL5UWwgdYYa1z5adoB
+         KoeneGqzCXCplkbOtzanZacHSkKv1pX/0vonQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=3ErUctKt9CJ3rgf9ZExT4u2Tmx1X1fVjtqY74IUmVOo=;
-        b=sWzGiyt942qXq8zzrqt/dEppl+Hpk9lwWBIJ0vvzCCC0HjRquxo3bmXL/sr5Z1CDCs
-         +kkzCn/oGoUMg1tKvsuasv/1ihI+RqDGaTfdgbBtfRU8RA6WDCEdnUbcQ4qO4HW2oFp2
-         X2+38mx4F8CI+Ttfgnqd5lFmVAu55VjKeMlsKu4XtT9yNleXjrcolBEwiIjKcgZAMT9+
-         FsSv0SKWdr3Ya6umaQpMO2Xk02F6sMApUTIF4m6TMM7JZyTrFNFn9QFpNQFR7nUicfwE
-         OcFTpDJJnqiU70QDIlufF6bnXdvJwhkTVIeGhY33cjv+D1QX5F4OmOz/fjkJ/WJX/K4G
-         op4A==
-X-Gm-Message-State: APjAAAUEf++3KKLOfbSoCy/UVSvVqCKyo/JND/2Vh4UOu6odoJcmU5Dj
-        6cbxA18vwCJnivgYiGCfn20=
-X-Google-Smtp-Source: APXvYqxAEVv5dxzJ388e9Q4kk1sMyPRq1q9tmbkqaHtnpponx5iIEAxZARkOStaKXXWWHRbiGikZJw==
-X-Received: by 2002:ac8:26c8:: with SMTP id 8mr11617758qtp.308.1562540122068;
-        Sun, 07 Jul 2019 15:55:22 -0700 (PDT)
-Received: from localhost.localdomain (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
-        by smtp.gmail.com with ESMTPSA id t2sm8217556qth.33.2019.07.07.15.55.19
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 07 Jul 2019 15:55:21 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v7 13/13] ARM: dts: tegra30: Add External Memory Controller node
-Date:   Mon,  8 Jul 2019 01:54:24 +0300
-Message-Id: <20190707225424.9562-14-digetx@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190707225424.9562-1-digetx@gmail.com>
-References: <20190707225424.9562-1-digetx@gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=AK79VDL+Vgenq/SIz4Re5O9aUU8flN86KP1/GJSoiLE=;
+        b=NM0QxJBVYZ8kOfUivffocsDtj9+oFfz90+ITqYQWzkwa9a33qRl0Ow1pcgQ9mG8tJm
+         x/wsfrQ0OEAdAM/WvnozS2vNS6oWQcsfh/aYH6r0sfldGMBjBqrT624mluhu+FN+d0pN
+         KAcUf3V+R2wh7qqQCfeOFjxOfTsNDTDAa16kX38UX6TaX9oaTNnhkW3iR/1KDMThpl9R
+         VmB4WaUVuamBERv2AoH1stq0tzN5KQGZwqzTRlEGfNUJ56q9xy1QGC11/5NSN1501zN6
+         OdRrgZ7QbCjNQDiyOkwJvfW6cOJjTgr2gyWUoYJb9ddexZqgU/zhjmsMdHq9qYLh1NW7
+         tPEQ==
+X-Gm-Message-State: APjAAAVXITXZfaQ3Ru7Q6Hh7ajXHRIK72A5S+dteQQpaKIfH2HcLMgZY
+        9qZheWvmOh20tBMtbJOuF/ouyybDz3zu43iIt0vTSw==
+X-Google-Smtp-Source: APXvYqwS+agaC1kW4fS2QvA9PLe7B8m9Obzbo4GMUG8V7F6612I0p2pqiO5MLu/JXxuE3ADTeouCu6Uj8N29MxKn+jU=
+X-Received: by 2002:a0c:baa1:: with SMTP id x33mr13371081qvf.200.1562556542563;
+ Sun, 07 Jul 2019 20:29:02 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190328152822.532-1-sibis@codeaurora.org> <20190328152822.532-3-sibis@codeaurora.org>
+In-Reply-To: <20190328152822.532-3-sibis@codeaurora.org>
+From:   Hsin-Yi Wang <hsinyi@chromium.org>
+Date:   Mon, 8 Jul 2019 11:28:36 +0800
+Message-ID: <CAJMQK-gcBC=ZyscuHzOe4t6xQzviTYo9W9_DSsppoaTZuiEOcw@mail.gmail.com>
+Subject: Re: [PATCH RFC 2/9] OPP: Export a number of helpers to prevent code duplication
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>, andy.gross@linaro.org,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
+        david.brown@linaro.org, Mark Rutland <mark.rutland@arm.com>,
+        lkml <linux-kernel@vger.kernel.org>,
+        linux-arm-msm-owner@vger.kernel.org, devicetree@vger.kernel.org,
+        rnayak@codeaurora.org, Chanwoo Choi <cw00.choi@samsung.com>,
+        linux-pm@vger.kernel.org, evgreen@chromium.org,
+        daidavid1@codeaurora.org, dianders@chromium.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add External Memory Controller node to the device-tree.
+On Thu, Mar 28, 2019 at 3:28 PM Sibi Sankar <sibis@codeaurora.org> wrote:
 
-Acked-by: Peter De Schrijver <pdeschrijver@nvidia.com>
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- arch/arm/boot/dts/tegra30.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+> +
+> +/* The caller must call dev_pm_opp_put() after the OPP is used */
+> +struct dev_pm_opp *dev_pm_opp_find_opp_of_np(struct opp_table *opp_table,
+> +                                            struct device_node *opp_np)
+> +{
+> +       return _find_opp_of_np(opp_table, opp_np);
+> +}
+Hi Sibi,
 
-diff --git a/arch/arm/boot/dts/tegra30.dtsi b/arch/arm/boot/dts/tegra30.dtsi
-index e074258d4518..8355264e2265 100644
---- a/arch/arm/boot/dts/tegra30.dtsi
-+++ b/arch/arm/boot/dts/tegra30.dtsi
-@@ -732,6 +732,15 @@
- 		#reset-cells = <1>;
- 	};
- 
-+	memory-controller@7000f400 {
-+		compatible = "nvidia,tegra30-emc";
-+		reg = <0x7000f400 0x400>;
-+		interrupts = <GIC_SPI 78 IRQ_TYPE_LEVEL_HIGH>;
-+		clocks = <&tegra_car TEGRA30_CLK_EMC>;
-+
-+		nvidia,memory-controller = <&mc>;
-+	};
-+
- 	fuse@7000f800 {
- 		compatible = "nvidia,tegra30-efuse";
- 		reg = <0x7000f800 0x400>;
--- 
-2.22.0
+Though this is not the latest version, we've seen following issue:
 
+We would get lockdep warnings on this:
+[   79.068957] Call trace:
+[   79.071396]  _find_opp_of_np+0xa0/0xa8
+[   79.075136]  dev_pm_opp_find_opp_of_np+0x24/0x30
+[   79.079744]  devfreq_passive_event_handler+0x304/0x51c
+[   79.084872]  devfreq_add_device+0x368/0x434
+[   79.089046]  devm_devfreq_add_device+0x68/0xb0
+[   79.093480]  mtk_cci_devfreq_probe+0x108/0x158
+[   79.097915]  platform_drv_probe+0x80/0xb0
+[   79.101915]  really_probe+0x1b4/0x28c
+[   79.105568]  driver_probe_device+0x64/0xfc
+[   79.109655]  __driver_attach+0x94/0xcc
+[   79.113395]  bus_for_each_dev+0x84/0xcc
+[   79.117221]  driver_attach+0x2c/0x38
+[   79.120788]  bus_add_driver+0x120/0x1f4
+[   79.124614]  driver_register+0x64/0xf8
+[   79.128355]  __platform_driver_register+0x4c/0x58
+[   79.133049]  mtk_cci_devfreq_init+0x1c/0x24
+[   79.137224]  do_one_initcall+0x1c0/0x3e0
+[   79.141138]  do_initcall_level+0x1f4/0x224
+[   79.145225]  do_basic_setup+0x34/0x4c
+[   79.148878]  kernel_init_freeable+0x10c/0x194
+[   79.153225]  kernel_init+0x14/0x100
+[   79.156705]  ret_from_fork+0x10/0x18
+[   79.160270] irq event stamp: 238006
+[   79.163750] hardirqs last  enabled at (238005):
+[<ffffffa71fdea0a4>] _raw_spin_unlock_irqrestore+0x40/0x84
+[   79.173391] hardirqs last disabled at (238006):
+[<ffffffa71f480e78>] do_debug_exception+0x70/0x198
+[   79.182337] softirqs last  enabled at (237998):
+[<ffffffa71f48165c>] __do_softirq+0x45c/0x4a4
+[   79.190850] softirqs last disabled at (237987):
+[<ffffffa71f4bc0d4>] irq_exit+0xd8/0xf8
+[   79.198842] ---[ end trace 0e66a55077a0abab ]---
+
+In _find_opp_of_np()[1], there's
+lockdep_assert_held(&opp_table_lock);
+
+[1] https://elixir.bootlin.com/linux/latest/source/drivers/opp/of.c#L75
+
+But in governor passive.c#cpufreq_passive_register(), it call
+dev_pm_opp_find_opp_of_np() directly, so it wouldn't access
+opp_table_lock lock.
+
+Another similar place is in dev_pm_opp_of_add_table(), most devfreq
+would call this to get opp table.
+dev_pm_opp_of_add_table
+ -->   _opp_add_static_v2
+    -->    _of_opp_alloc_required_opps  // would goes here if opp
+table contains "required-opps" property.
+        -->    _find_opp_of_np
+cpufreq-map governor needs devfreq to have "required-opps" property.
+So it would also trigger above lockdep warning.
+
+
+The question is: Is lockdep_assert_held(&opp_table_lock); needed in
+above use cases? Since they don't need to modify device and opp lists.
+
+Thanks
