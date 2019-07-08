@@ -2,364 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C6A56202C
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 16:12:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3555462092
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 16:35:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731704AbfGHOML (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 10:12:11 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:50895 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731695AbfGHOME (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 10:12:04 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190708141202euoutp02d2a5a2d61cdc8cf159c27a59b4ab7835~vc-wbo8no2937229372euoutp02s
-        for <devicetree@vger.kernel.org>; Mon,  8 Jul 2019 14:12:02 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190708141202euoutp02d2a5a2d61cdc8cf159c27a59b4ab7835~vc-wbo8no2937229372euoutp02s
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1562595122;
-        bh=B65nsgdjRRoW6mPZXWZON3Kf0yDaJF62dOk5OUhqe0A=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CQiVP9E8zoxA01it3Gwj2UuGxAE5Sj8O8OI6EQLKPpGMP8MbUnfP4Ou/V2e+biNxH
-         YBWd4nNO/B3Nd/tp9wZyy4pNCSwam/C3825pASJE8WjbOVy+7j/3LaVo0CRJL5j0Gl
-         IlGjwBJTUyHFsx/LSPLXMWXML7M+O5L9sAEyQcQM=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190708141201eucas1p1818c7d53d00cdb2e45bbc2c6836ee3c8~vc-vo07c31359313593eucas1p11;
-        Mon,  8 Jul 2019 14:12:01 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 24.A2.04377.13F432D5; Mon,  8
-        Jul 2019 15:12:01 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190708141200eucas1p12bf901a2589efe92b133b357d2cbc57e~vc-u6DWUc1359313593eucas1p10;
-        Mon,  8 Jul 2019 14:12:00 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190708141200eusmtrp2b714a81350b295d4a9ee7225fda102d0~vc-u41TbV1954319543eusmtrp2S;
-        Mon,  8 Jul 2019 14:12:00 +0000 (GMT)
-X-AuditID: cbfec7f4-113ff70000001119-51-5d234f314253
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 48.D4.04140.03F432D5; Mon,  8
-        Jul 2019 15:12:00 +0100 (BST)
-Received: from AMDC3218.DIGITAL.local (unknown [106.120.51.18]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190708141159eusmtip2e0d6a2676725e01caa593dc60ebc80a3~vc-uL7ltB0438404384eusmtip2e;
-        Mon,  8 Jul 2019 14:11:59 +0000 (GMT)
-From:   k.konieczny@partner.samsung.com
-To:     k.konieczny@partner.samsung.com
-Cc:     Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Subject: [PATCH 3/3] ARM: dts: exynos: add initial data for coupled
- regulators for Exynos5422/5800
-Date:   Mon,  8 Jul 2019 16:11:40 +0200
-Message-Id: <20190708141140.24379-4-k.konieczny@partner.samsung.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190708141140.24379-1-k.konieczny@partner.samsung.com>
+        id S1729916AbfGHOfX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 10:35:23 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:58084 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728725AbfGHOfX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 10:35:23 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x68EY6Rp102598;
+        Mon, 8 Jul 2019 09:34:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1562596446;
+        bh=hXfxFp1QXezw+NYZdrZlfzveNpTBArYCTN7fGcltScQ=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=Tnv5OR8RgxVpa931ZBMUNiMeBBQ17JAoeVng8k56BuAuO7P3DplN8kePTRCRILrcc
+         J88tQqCI3WWWDokNlmPPFbC8X7IqefGBo0kQSng7nfLSkUViUKJTHia0B9s4ghiPCg
+         45SiEITPpxI5T1anGYDGpWhHl8hQ6i/ZviEw0Kkk=
+Received: from DLEE111.ent.ti.com (dlee111.ent.ti.com [157.170.170.22])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x68EY6QZ003693
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 8 Jul 2019 09:34:06 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 8 Jul
+ 2019 09:34:06 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 8 Jul 2019 09:34:06 -0500
+Received: from [10.250.81.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x68EY5hT101564;
+        Mon, 8 Jul 2019 09:34:05 -0500
+Subject: Re: [PATCH 1/6] dt-bindings: irqchip: Add PRUSS interrupt controller
+ bindings
+To:     Suman Anna <s-anna@ti.com>, Marc Zyngier <marc.zyngier@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>
+CC:     Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        David Lechner <david@lechnology.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20190708035243.12170-1-s-anna@ti.com>
+ <20190708035243.12170-2-s-anna@ti.com>
+From:   "Andrew F. Davis" <afd@ti.com>
+Message-ID: <b67e8ce6-a291-ce4c-9972-b7fc7cd08bb4@ti.com>
+Date:   Mon, 8 Jul 2019 10:34:05 -0400
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa1CMYRj1fvfSNl8bekZNxjaMSxfhxzs0hqbYfxnMMExY+lRsl9ntojJD
-        RZTpMgxSKmba0aySbiRk1GrHpRtNJWFZKl2Qli6T1u5+ufw7z3nOec9zZl6OlBrohVx4ZIyg
-        ilQoZYw9dbtpssXLN8gjeFXa0FxckVtO4y5TP42LdC00zqo3I5xtHCJxa+stFjenDLO40thJ
-        45d1Vxg8lqlDOLe1nsBlujcs1nS1E/h1cgmDhyeaCXzqgY7FM50VFK4yNDEbpfLSwlIkr9Sm
-        M/Kq4uPyR1/uE/Ksai2S67vvEPKxSvet7G57vxBBGR4nqHw27LcPa+zIZqL71x/NvPOCPoFS
-        vDOQHQf8WvjVlIsykD0n5UsQTAymk+JgQtDz8zojDmMIUqby0R/LlKacEhfXEbSVPSH+Wvq0
-        D0mriuGXQHXuZ9aK5/EecP7tJdu7JD9JwbO6VNq6cOZDIKdm0oYpi+GC/jtjxRI+AMZ6Mmgx
-        bhGk196jrNiODwSdsRCJGid4cvmjjSctmtSafFsA8CMsFCZPs6I5AL6O60gRO8OgvnqWdwPz
-        3SJCxPHw6VoWK5pPIjCcHqXExXpo1LdbruAsCcuhvM5HpDfB54s3bDTwjtA94iTe4AjnbltL
-        WmkJnEmTimovKDQ/n63iChnmm7NYDo1lpSgHLc77r03ef23y/uVeRaQWuQix6ohQQb06Uoj3
-        Visi1LGRod4HoyIqkeXfPZvRm2pR3fSBBsRzSOYg4dxlwVJaEadOiGhAwJGyeZL6LR7BUkmI
-        IiFRUEXtU8UqBXUDcuUomYskaY5hj5QPVcQIRwQhWlD92RKc3cITKOide6/R57jSz3xjviFt
-        nKnYVDJKmoI0YUtd2zY+/rBsZ6bD7t5XBeGBTqrLm58n/0hSRh/w3HWoYEeFR0fAuvcarWvm
-        /b4+494Z8Nx77HD0ts3DpjiWXDNtl6UfGCka3eLgX0v61wxsrdK0j35NPOu5Mmf7VHtc8QK3
-        b0aKeOopk1HqMIXvClKlVvwGV/NZpHMDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHIsWRmVeSWpSXmKPExsVy+t/xe7oG/sqxBmfPaVhsnLGe1eL6l+es
-        FvOPnGO16Nv3n9Gi//FrZovz5zewW5xtesNusenxNVaLy7vmsFl87j3CaDHj/D4mi7VH7rJb
-        LL1+kcniduMKNos3P84yWbTuPcJu8e/aRhaLzQ+OsTkIeayZt4bRY9OqTjaPzUvqPQ6+28Pk
-        0bdlFaPH8RvbmTw+b5ILYI/SsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3
-        s0lJzcksSy3St0vQyzh8pZ+t4Ll1Re/2S6wNjE16XYycHBICJhK/lq5n6WLk4hASWMoosWLm
-        XTaIhLRE4+nVTBC2sMSfa11sEEWfGCU+7znIDpJgE1CV2DLjJZgtIqAsMfnedGaQImaBTlaJ
-        JZP+giWEBZIklt99xQJiswA1TD3+CWwDr4CLxOdbXawQG+QlOnfsBqvhFHCVOPJ4HiOILQRU
-        s+7yFCaIekGJkzOfgNUwA9U3b53NPIFRYBaS1CwkqQWMTKsYRVJLi3PTc4uN9IoTc4tL89L1
-        kvNzNzEC43LbsZ9bdjB2vQs+xCjAwajEw8shpxQrxJpYVlyZe4hRgoNZSYR3n7tyrBBvSmJl
-        VWpRfnxRaU5q8SFGU6AnJjJLiSbnA1NGXkm8oamhuYWlobmxubGZhZI4b4fAwRghgfTEktTs
-        1NSC1CKYPiYOTqkGxsQXii8ePtc5KPO/dh+HjYVEB3Ooo/lytgOf3neeXqXDc3Lizok2u9V1
-        3VksDa+VtRrnHBaM7D9f6vs4+ofMP9NJjeqvdD4taT+ROr3FtjjsZm+4sMHSu7/Uarb+iH/3
-        Z9O11MO2PqozJH6GGZTN2XCZg2tvbuC7YofuvlciX+Z4C62JUWReoMRSnJFoqMVcVJwIABy4
-        ZpThAgAA
-X-CMS-MailID: 20190708141200eucas1p12bf901a2589efe92b133b357d2cbc57e
-X-Msg-Generator: CA
+In-Reply-To: <20190708035243.12170-2-s-anna@ti.com>
 Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190708141200eucas1p12bf901a2589efe92b133b357d2cbc57e
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190708141200eucas1p12bf901a2589efe92b133b357d2cbc57e
-References: <20190708141140.24379-1-k.konieczny@partner.samsung.com>
-        <CGME20190708141200eucas1p12bf901a2589efe92b133b357d2cbc57e@eucas1p1.samsung.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marek Szyprowski <m.szyprowski@samsung.com>
+On 7/7/19 11:52 PM, Suman Anna wrote:
+> The Programmable Real-Time Unit Subsystem (PRUSS) contains an interrupt
+> controller (INTC) that can handle various system input events and post
+> interrupts back to the device-level initiators. The INTC can support
+> upto 64 input events on most SoCs with individual control configuration
+> and hardware prioritization. These events are mapped onto 10 interrupt
+> lines through two levels of many-to-one mapping support. Different
+> interrupt lines are routed to the individual PRU cores or to the
+> host CPU or to other PRUSS instances.
+> 
+> The K3 AM65x and J721E SoCs have the next generation of the PRU-ICSS IP,
+> commonly called ICSSG. The ICSSG interrupt controller on K3 SoCs provide
+> a higher number of host interrupts (20 vs 10) and can handle an increased
+> number of input events (160 vs 64) from various SoC interrupt sources.
+> 
+> Add the bindings document for these interrupt controllers on all the
+> applicable SoCs. It covers the OMAP architecture SoCs - AM33xx, AM437x
+> and AM57xx; the Keystone 2 architecture based 66AK2G SoC; the Davinci
+> architecture based OMAPL138 SoCs, and the K3 architecture based AM65x
+> and J721E SoCs.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Andrew F. Davis <afd@ti.com>
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> ---
+> Prior version: https://patchwork.kernel.org/patch/10795771/
+> 
+>  .../interrupt-controller/ti,pruss-intc.txt    | 92 +++++++++++++++++++
+>  1 file changed, 92 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.txt
+> new file mode 100644
+> index 000000000000..020073c07a92
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.txt
+> @@ -0,0 +1,92 @@
+> +PRU ICSS INTC on TI SoCs
+> +========================
+> +
+> +Each PRUSS has a single interrupt controller instance that is common to both
+> +the PRU cores. Most interrupt controllers can route 64 input events which are
+> +then mapped to 10 possible output interrupts through two levels of mapping.
+> +The input events can be triggered by either the PRUs and/or various other
+> +PRUSS internal and external peripherals. The first 2 output interrupts are
+> +fed exclusively to the internal PRU cores, with the remaining 8 (2 through 9)
+> +connected to external interrupt controllers including the MPU and/or other
+> +PRUSS instances, DSPs or devices.
+> +
+> +The K3 family of SoCs can handle 160 input events that can be mapped to 20
+> +different possible output interrupts. The additional output interrupts (10
+> +through 19) are connected to new sub-modules within the ICSSG instances.
+> +
+> +This interrupt-controller node should be defined as a child node of the
+> +corresponding PRUSS node. The node should be named "interrupt-controller".
+> +Please see the overall PRUSS bindings document for additional details
+> +including a complete example,
+> +    Documentation/devicetree/bindings/soc/ti/ti,pruss.txt
+> +
+> +Required Properties:
+> +--------------------
+> +- compatible           : should be one of the following,
+> +                             "ti,pruss-intc" for OMAP-L13x/AM18x/DA850 SoCs,
+> +                                                 AM335x family of SoCs,
+> +                                                 AM437x family of SoCs,
+> +                                                 AM57xx family of SoCs
+> +                                                 66AK2G family of SoCs
+> +                             "ti,icssg-intc" for K3 AM65x & J721E family of SoCs
+> +- reg                  : base address and size for the PRUSS INTC sub-module
+> +- interrupts           : all the interrupts generated towards the main host
+> +                         processor in the SoC. The format depends on the
+> +                         interrupt specifier for the particular SoC's ARM GIC
+> +                         parent interrupt controller. A shared interrupt can
+> +                         be skipped if the desired destination and usage is by
+> +                         a different processor/device.
+> +- interrupt-names      : should use one of the following names for each valid
+> +                         interrupt connected to ARM GIC, the name should match
+> +                         the corresponding host interrupt number,
+> +                             "host0", "host1", "host2", "host3", "host4",
+> +                             "host5", "host6" or "host7"
+> +- interrupt-controller : mark this node as an interrupt controller
+> +- #interrupt-cells     : should be 1. Client users shall use the PRU System
+> +                         event number (the interrupt source that the client
+> +                         is interested in) as the value of the interrupts
+> +                         property in their node
+> +
+> +Optional Properties:
+> +--------------------
+> +The following properties are _required_ only for some SoCs. If none of the below
+> +properties are defined, it implies that all the host interrupts 2 through 9 are
+> +connected exclusively to the ARM GIC.
+> +
+> +- ti,irqs-reserved     : an array of 8-bit elements of host interrupts between
+> +                         0 and 7 (corresponding to PRUSS INTC output interrupts
+> +                         2 through 9) that are not connected to the ARM GIC.
 
-Declare Exynos5422/5800 voltage ranges for opp points for big cpu core and
-bus wcore and couple their voltage supllies as vdd_arm and vdd_int should
-be in 300mV range.
+The reason for 0-7 mapping to 2-9 is not instantly clear to someone
+reading this. If you respin this could you note that reason is
+interrupts 0 and 1 are always routed back into the PRUSS. Thinking more
+on that, the same is true for interrupt 7 ("host5") on AM437x/66AK2G yet
+we don't skip that in the naming.. now that we have the reserved IRQ
+mechanism above, why not leave the one-to-one interrupt to name mapping,
+but always have at least the first two marked as reserved for all the
+current devices:
 
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-Signed-off-by: Kamil Konieczny <k.konieczny@partner.samsung.com>
----
- arch/arm/boot/dts/exynos5420.dtsi             | 34 +++++++++----------
- arch/arm/boot/dts/exynos5422-odroid-core.dtsi |  4 +++
- arch/arm/boot/dts/exynos5800-peach-pi.dts     |  4 +++
- arch/arm/boot/dts/exynos5800.dtsi             | 32 ++++++++---------
- 4 files changed, 41 insertions(+), 33 deletions(-)
+ti,irqs-reserved = /bits/ 8 <0 1>;
 
-diff --git a/arch/arm/boot/dts/exynos5420.dtsi b/arch/arm/boot/dts/exynos5420.dtsi
-index 5fb2326875dc..0cbf74750553 100644
---- a/arch/arm/boot/dts/exynos5420.dtsi
-+++ b/arch/arm/boot/dts/exynos5420.dtsi
-@@ -48,62 +48,62 @@
- 			opp-shared;
- 			opp-1800000000 {
- 				opp-hz = /bits/ 64 <1800000000>;
--				opp-microvolt = <1250000>;
-+				opp-microvolt = <1250000 1250000 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-1700000000 {
- 				opp-hz = /bits/ 64 <1700000000>;
--				opp-microvolt = <1212500>;
-+				opp-microvolt = <1212500 1212500 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-1600000000 {
- 				opp-hz = /bits/ 64 <1600000000>;
--				opp-microvolt = <1175000>;
-+				opp-microvolt = <1175000 1175000 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-1500000000 {
- 				opp-hz = /bits/ 64 <1500000000>;
--				opp-microvolt = <1137500>;
-+				opp-microvolt = <1137500 1137500 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-1400000000 {
- 				opp-hz = /bits/ 64 <1400000000>;
--				opp-microvolt = <1112500>;
-+				opp-microvolt = <1112500 1112500 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-1300000000 {
- 				opp-hz = /bits/ 64 <1300000000>;
--				opp-microvolt = <1062500>;
-+				opp-microvolt = <1062500 1062500 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-1200000000 {
- 				opp-hz = /bits/ 64 <1200000000>;
--				opp-microvolt = <1037500>;
-+				opp-microvolt = <1037500 1037500 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-1100000000 {
- 				opp-hz = /bits/ 64 <1100000000>;
--				opp-microvolt = <1012500>;
-+				opp-microvolt = <1012500 1012500 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-1000000000 {
- 				opp-hz = /bits/ 64 <1000000000>;
--				opp-microvolt = < 987500>;
-+				opp-microvolt = < 987500 987500 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-900000000 {
- 				opp-hz = /bits/ 64 <900000000>;
--				opp-microvolt = < 962500>;
-+				opp-microvolt = < 962500 962500 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-800000000 {
- 				opp-hz = /bits/ 64 <800000000>;
--				opp-microvolt = < 937500>;
-+				opp-microvolt = < 937500 937500 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 			opp-700000000 {
- 				opp-hz = /bits/ 64 <700000000>;
--				opp-microvolt = < 912500>;
-+				opp-microvolt = < 912500 912500 1500000>;
- 				clock-latency-ns = <140000>;
- 			};
- 		};
-@@ -1100,23 +1100,23 @@
- 
- 			opp00 {
- 				opp-hz = /bits/ 64 <84000000>;
--				opp-microvolt = <925000>;
-+				opp-microvolt = <925000 925000 1400000>;
- 			};
- 			opp01 {
- 				opp-hz = /bits/ 64 <111000000>;
--				opp-microvolt = <950000>;
-+				opp-microvolt = <950000 950000 1400000>;
- 			};
- 			opp02 {
- 				opp-hz = /bits/ 64 <222000000>;
--				opp-microvolt = <950000>;
-+				opp-microvolt = <950000 950000 1400000>;
- 			};
- 			opp03 {
- 				opp-hz = /bits/ 64 <333000000>;
--				opp-microvolt = <950000>;
-+				opp-microvolt = <950000 950000 1400000>;
- 			};
- 			opp04 {
- 				opp-hz = /bits/ 64 <400000000>;
--				opp-microvolt = <987500>;
-+				opp-microvolt = <987500 987500 1400000>;
- 			};
- 		};
- 
-diff --git a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-index 25d95de15c9b..65d094256b54 100644
---- a/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-+++ b/arch/arm/boot/dts/exynos5422-odroid-core.dtsi
-@@ -428,6 +428,8 @@
- 				regulator-max-microvolt = <1500000>;
- 				regulator-always-on;
- 				regulator-boot-on;
-+				regulator-coupled-with = <&buck3_reg>;
-+				regulator-coupled-max-spread = <300000>;
- 			};
- 
- 			buck3_reg: BUCK3 {
-@@ -436,6 +438,8 @@
- 				regulator-max-microvolt = <1400000>;
- 				regulator-always-on;
- 				regulator-boot-on;
-+				regulator-coupled-with = <&buck2_reg>;
-+				regulator-coupled-max-spread = <300000>;
- 			};
- 
- 			buck4_reg: BUCK4 {
-diff --git a/arch/arm/boot/dts/exynos5800-peach-pi.dts b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-index e0f470fe54c8..5c1e965ed7e9 100644
---- a/arch/arm/boot/dts/exynos5800-peach-pi.dts
-+++ b/arch/arm/boot/dts/exynos5800-peach-pi.dts
-@@ -257,6 +257,8 @@
- 				regulator-always-on;
- 				regulator-boot-on;
- 				regulator-ramp-delay = <12500>;
-+				regulator-coupled-with = <&buck3_reg>;
-+				regulator-coupled-max-spread = <300000>;
- 				regulator-state-mem {
- 					regulator-off-in-suspend;
- 				};
-@@ -269,6 +271,8 @@
- 				regulator-always-on;
- 				regulator-boot-on;
- 				regulator-ramp-delay = <12500>;
-+				regulator-coupled-with = <&buck2_reg>;
-+				regulator-coupled-max-spread = <300000>;
- 				regulator-state-mem {
- 					regulator-off-in-suspend;
- 				};
-diff --git a/arch/arm/boot/dts/exynos5800.dtsi b/arch/arm/boot/dts/exynos5800.dtsi
-index 57d3b319fd65..2a74735d161c 100644
---- a/arch/arm/boot/dts/exynos5800.dtsi
-+++ b/arch/arm/boot/dts/exynos5800.dtsi
-@@ -22,61 +22,61 @@
- 
- &cluster_a15_opp_table {
- 	opp-1700000000 {
--		opp-microvolt = <1250000>;
-+		opp-microvolt = <1250000 1250000 1500000>;
- 	};
- 	opp-1600000000 {
--		opp-microvolt = <1250000>;
-+		opp-microvolt = <1250000 1250000 1500000>;
- 	};
- 	opp-1500000000 {
--		opp-microvolt = <1100000>;
-+		opp-microvolt = <1100000 1100000 1500000>;
- 	};
- 	opp-1400000000 {
--		opp-microvolt = <1100000>;
-+		opp-microvolt = <1100000 1100000 1500000>;
- 	};
- 	opp-1300000000 {
--		opp-microvolt = <1100000>;
-+		opp-microvolt = <1100000 1100000 1500000>;
- 	};
- 	opp-1200000000 {
--		opp-microvolt = <1000000>;
-+		opp-microvolt = <1000000 1000000 1500000>;
- 	};
- 	opp-1100000000 {
--		opp-microvolt = <1000000>;
-+		opp-microvolt = <1000000 1000000 1500000>;
- 	};
- 	opp-1000000000 {
--		opp-microvolt = <1000000>;
-+		opp-microvolt = <1000000 1000000 1500000>;
- 	};
- 	opp-900000000 {
--		opp-microvolt = <1000000>;
-+		opp-microvolt = <1000000 1000000 1500000>;
- 	};
- 	opp-800000000 {
--		opp-microvolt = <900000>;
-+		opp-microvolt = <900000 900000 1500000>;
- 	};
- 	opp-700000000 {
--		opp-microvolt = <900000>;
-+		opp-microvolt = <900000 900000 1500000>;
- 	};
- 	opp-600000000 {
- 		opp-hz = /bits/ 64 <600000000>;
--		opp-microvolt = <900000>;
-+		opp-microvolt = <900000 900000 1500000>;
- 		clock-latency-ns = <140000>;
- 	};
- 	opp-500000000 {
- 		opp-hz = /bits/ 64 <500000000>;
--		opp-microvolt = <900000>;
-+		opp-microvolt = <900000 900000 1500000>;
- 		clock-latency-ns = <140000>;
- 	};
- 	opp-400000000 {
- 		opp-hz = /bits/ 64 <400000000>;
--		opp-microvolt = <900000>;
-+		opp-microvolt = <900000 900000 1500000>;
- 		clock-latency-ns = <140000>;
- 	};
- 	opp-300000000 {
- 		opp-hz = /bits/ 64 <300000000>;
--		opp-microvolt = <900000>;
-+		opp-microvolt = <900000 900000 1500000>;
- 		clock-latency-ns = <140000>;
- 	};
- 	opp-200000000 {
- 		opp-hz = /bits/ 64 <200000000>;
--		opp-microvolt = <900000>;
-+		opp-microvolt = <900000 900000 1500000>;
- 		clock-latency-ns = <140000>;
- 	};
- };
--- 
-2.22.0
+Then any "hostx" listed as reserved need not be present in the host
+interrupts property array. To me that would solve the "managing
+interrupts not targeting the Linux running core" problem and keep the
+names consistent, e.g.:
 
+/* AM437x PRU-ICSS */
+pruss_intc: interrupt-controller@20000 {
+	compatible = "ti,pruss-intc";
+	reg = <0x20000 0x2000>;
+	interrupts = <                       20       21       22
+	                   23       24                25       26>;
+	interrupt-names =                   "host2", "host3", "host4",
+	                  "host5", "host6",          "host8", "host9";
+	interrupt-controller;
+	#interrupt-cells = <1>;
+	ti,irqs-reserved = /bits/ 8 <0 1 7>;
+};
+
+Instantly clear which are missing and which "hostx" maps to which host
+interrupt number.
+
+Andrew
+
+> +                           Eg: AM437x and 66AK2G SoCs do not have "host5"
+> +                               interrupt connected to MPU
+> +- ti,irqs-shared       : an array of 8-bit elements of host interrupts between
+> +                         0 and 7 (corresponding to PRUSS INTC output interrupts
+> +                         2 through 9) that are also connected to other devices
+> +                         or processors in the SoC.
+> +                           Eg: AM65x and J721E SoCs have "host5", "host6" and
+> +                               "host7" interrupts connected to MPU, and other
+> +                               ICSSG instances
+> +
+> +
+> +Example:
+> +--------
+> +
+> +1.	/* AM33xx PRU-ICSS */
+> +	pruss: pruss@0 {
+> +		compatible = "ti,am3356-pruss";
+> +		reg = <0x0 0x80000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		...
+> +
+> +		pruss_intc: interrupt-controller@20000 {
+> +			compatible = "ti,pruss-intc";
+> +			reg = <0x20000 0x2000>;
+> +			interrupts = <20 21 22 23 24 25 26 27>;
+> +			interrupt-names = "host0", "host1", "host2",
+> +					  "host3", "host4", "host5",
+> +					  "host6", "host7";
+> +			interrupt-controller;
+> +			#interrupt-cells = <1>;
+> +			ti,irqs-shared = /bits/ 8 <0 6 7>;
+> +		};
+> +	};
+> 
