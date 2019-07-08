@@ -2,136 +2,537 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A060161BF7
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 10:54:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B69E161C75
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 11:36:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728624AbfGHIy0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 04:54:26 -0400
-Received: from mail-eopbgr80073.outbound.protection.outlook.com ([40.107.8.73]:8679
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727636AbfGHIyZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Jul 2019 04:54:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=IcNlbZo/PmBMhKNMU2vkni64ggmauEBrCouHRhzqkS8=;
- b=g19Wg0xgTBWjazM9GlyiY6M8P78AQN8D/g2dgpi1b/MfQP8XYVEPHlc3UH0FV1OU2zXUfi+SRXh7ezwUL+ma3fw7oUEHBp8yN3OUFB+wuwQ3+4lMZywitKwOb3q5LFCpum5hNNoDp+3t7CVibXFWawwzryXc7HMT7si2R92wvOg=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3756.eurprd04.prod.outlook.com (52.134.73.29) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2052.18; Mon, 8 Jul 2019 08:54:19 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::3945:fcda:5bdd:8191]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::3945:fcda:5bdd:8191%4]) with mapi id 15.20.2052.020; Mon, 8 Jul 2019
- 08:54:19 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-CC:     Leonard Crestez <leonard.crestez@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH 2/2] arm64: dts: imx8mm: Assign highest opp as suspend opp
-Thread-Topic: [PATCH 2/2] arm64: dts: imx8mm: Assign highest opp as suspend
- opp
-Thread-Index: AQHVMjD62bccyXxndUyDszIpSDkBnabAaO+AgAACe/CAAARwgIAAADZQ
-Date:   Mon, 8 Jul 2019 08:54:19 +0000
-Message-ID: <DB3PR0402MB39164E2F386181255ED37F45F5F60@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <20190704061403.8249-1-Anson.Huang@nxp.com>
- <20190704061403.8249-2-Anson.Huang@nxp.com>
- <DB7PR04MB50519C02D90675070F21501DEEFA0@DB7PR04MB5051.eurprd04.prod.outlook.com>
- <20190708082511.py7gnjbqyp7bnhqx@vireshk-i7>
- <DB3PR0402MB391622133CD116FDE26A4F9AF5F60@DB3PR0402MB3916.eurprd04.prod.outlook.com>
- <20190708084957.waiwdun327pgvfv4@vireshk-i7>
-In-Reply-To: <20190708084957.waiwdun327pgvfv4@vireshk-i7>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9fe22632-f024-41fc-58de-08d70381dd2f
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3756;
-x-ms-traffictypediagnostic: DB3PR0402MB3756:
-x-microsoft-antispam-prvs: <DB3PR0402MB375670A7E32EBD3CD424F656F5F60@DB3PR0402MB3756.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 00922518D8
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(39860400002)(376002)(346002)(136003)(396003)(199004)(189003)(102836004)(3846002)(76116006)(66946007)(11346002)(6116002)(73956011)(68736007)(81156014)(26005)(2906002)(71190400001)(81166006)(8676002)(66556008)(66476007)(44832011)(15650500001)(54906003)(64756008)(14454004)(66446008)(446003)(52536014)(71200400001)(186003)(486006)(8936002)(66066001)(476003)(6916009)(7416002)(478600001)(256004)(7696005)(86362001)(316002)(53936002)(14444005)(7736002)(99286004)(74316002)(6436002)(5660300002)(6246003)(55016002)(305945005)(25786009)(9686003)(229853002)(4326008)(33656002)(76176011)(6506007)(53546011)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3756;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: uDpyWP9lwNJsxGDH0PD5HdEXSqM6Qibt+w3utjtHcBnaXJf9s44t6d3JF3bzGm3WbcmQwMnkASD6DYFFT3xyzRJjkr9jBe0vpE5feUF9x5PKOWIfLS3IdwF3+xArZwFtYTTEPTTDAWI5ad7iHRFW1C0QSBVFZktvqwtW/gwBrAdeqfmCoMlu85AxlnGcle3dZf92NIeXYJ6Cwikmi4Jn0RC7k3YT7B1k9C6czgphiK5QR4pWevqZzSd21197GXJIOcuaVWMTndE5PRF5Sc7mtNUHh+q1TvyYukuguZMHFWblrS5ez8Qhyxe09AW84eYJVmOKYkp+xV4Uof1hQInNVGtBvFKFhWN4x0hPZ1uCftkt1xTu0ABlHNiy2XdBu3AV19AjCEaQ4W9tPcliwl1+Y1R5colHm2yE9ELT7OjshXA=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1729112AbfGHJgS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 05:36:18 -0400
+Received: from foss.arm.com ([217.140.110.172]:43164 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728725AbfGHJgS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jul 2019 05:36:18 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E180E360;
+        Mon,  8 Jul 2019 02:36:16 -0700 (PDT)
+Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 8A99D3F246;
+        Mon,  8 Jul 2019 02:36:15 -0700 (PDT)
+Subject: Re: [PATCH 2/6] irqchip: Add Realtek RTD129x intc driver
+To:     Aleix Roca Nonell <kernelrocks@gmail.com>,
+        =?UTF-8?Q?Andreas_F=c3=a4rber?= <afaerber@suse.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>
+Cc:     Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20190707132256.GC13340@arks.localdomain>
+From:   Marc Zyngier <marc.zyngier@arm.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=marc.zyngier@arm.com; prefer-encrypt=mutual; keydata=
+ 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
+ Z46HaNmN2hZS/oJ69c1DI5Rcww==
+Organization: ARM Ltd
+Message-ID: <5efa2ccb-9659-443c-7986-8ceb01aa64b9@arm.com>
+Date:   Mon, 8 Jul 2019 10:36:14 +0100
+User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9fe22632-f024-41fc-58de-08d70381dd2f
-X-MS-Exchange-CrossTenant-originalarrivaltime: 08 Jul 2019 08:54:19.1857
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3756
+In-Reply-To: <20190707132256.GC13340@arks.localdomain>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGksIFZpcmVzaA0KDQo+IE9uIDA4LTA3LTE5LCAwODo0MywgQW5zb24gSHVhbmcgd3JvdGU6DQo+
-ID4gSGksIFZpcmVzaA0KPiA+DQo+ID4gPiBPbiAwNC0wNy0xOSwgMDc6NDksIExlb25hcmQgQ3Jl
-c3RleiB3cm90ZToNCj4gPiA+ID4gT24gNy80LzIwMTkgOToyMyBBTSwgQW5zb24uSHVhbmdAbnhw
-LmNvbSB3cm90ZToNCj4gPiA+ID4gPiBGcm9tOiBBbnNvbiBIdWFuZyA8QW5zb24uSHVhbmdAbnhw
-LmNvbT4NCj4gPiA+ID4gPg0KPiA+ID4gPiA+IEFzc2lnbiBoaWdoZXN0IE9QUCBhcyBzdXNwZW5k
-IE9QUCB0byByZWR1Y2Ugc3VzcGVuZC9yZXN1bWUNCj4gPiA+ID4gPiBsYXRlbmN5IG9uIGkuTVg4
-TU0uDQo+ID4gPiA+ID4NCj4gPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBBbnNvbiBIdWFuZyA8QW5z
-b24uSHVhbmdAbnhwLmNvbT4NCj4gPiA+ID4gPiAtLS0NCj4gPiA+ID4gPiAgIGFyY2gvYXJtNjQv
-Ym9vdC9kdHMvZnJlZXNjYWxlL2lteDhtbS5kdHNpIHwgMSArDQo+ID4gPiA+ID4gICAxIGZpbGUg
-Y2hhbmdlZCwgMSBpbnNlcnRpb24oKykNCj4gPiA+ID4gPg0KPiA+ID4gPiA+IGRpZmYgLS1naXQg
-YS9hcmNoL2FybTY0L2Jvb3QvZHRzL2ZyZWVzY2FsZS9pbXg4bW0uZHRzaQ0KPiA+ID4gPiA+IGIv
-YXJjaC9hcm02NC9ib290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kNCj4gPiA+ID4gPiBpbmRl
-eCBiMTFmYzVlLi4zYTYyNDA3IDEwMDY0NA0KPiA+ID4gPiA+IC0tLSBhL2FyY2gvYXJtNjQvYm9v
-dC9kdHMvZnJlZXNjYWxlL2lteDhtbS5kdHNpDQo+ID4gPiA+ID4gKysrIGIvYXJjaC9hcm02NC9i
-b290L2R0cy9mcmVlc2NhbGUvaW14OG1tLmR0c2kNCj4gPiA+ID4gPiBAQCAtMTM2LDYgKzEzNiw3
-IEBADQo+ID4gPiA+ID4gICAJCQlvcHAtbWljcm92b2x0ID0gPDEwMDAwMDA+Ow0KPiA+ID4gPiA+
-ICAgCQkJb3BwLXN1cHBvcnRlZC1odyA9IDwweDg+LCA8MHgzPjsNCj4gPiA+ID4gPiAgIAkJCWNs
-b2NrLWxhdGVuY3ktbnMgPSA8MTUwMDAwPjsNCj4gPiA+ID4gPiArCQkJb3BwLXN1c3BlbmQ7DQo+
-ID4gPiA+ID4gICAJCX07DQo+ID4gPiA+ID4gICAJfTsNCj4gPiA+ID4NCj4gPiA+ID4gV2hhdCBp
-ZiB0aGUgaGlnaGVzdCBPUFAgaXMgdW5hdmFpbGFibGUgZHVlIHRvIHNwZWVkIGdyYWRpbmc/DQo+
-ID4gPg0KPiA+ID4gV2hhdCBkb2VzIHRoaXMgZXhhY3RseSBtZWFuID8gSG93IGlzIHRoZSBPUFAg
-bWFkZSB1bmF2YWlsYWJsZSBpbg0KPiA+ID4geW91ciBjYXNlID8NCj4gPg0KPiA+IFRoYXQgaXMg
-YmVjYXVzZSBpbiBpLk1YOE0gc2VyaWVzIFNvQ3MsIHRoZSBzcGVlZCBncmFkaW5nIGFuZCBtYXJr
-ZXQNCj4gPiBzZWdtZW50IGZ1c2VzIHNldHRpbmdzIGNvdWxkIGFmZmVjdCB0aGUgT1BQIGRlZmlu
-ZWQgaW4gRFQsIGluIGEgd29yZCwNCj4gPiBhbGwgcG9zc2libGUgT1BQcyBhcmUgZGVmaW5lZCBp
-biBEVCwgYnV0IGVhY2ggcGFydHMgY291bGQgT05MWSBzZWxlY3QNCj4gPiBzb21lIG9mIHRoZW0g
-dG8gYmUgd29ya2luZyBPUFBzLCBzbyBpZiB0aGUgIm9wcC1zdXNwZW5kIiBpcyBhZGRlZCBmb3IN
-Cj4gPiAxIE9QUCBpbiBEVCwgaWYgdGhlIHBhcnQncyBzcGVlZCBncmFkaW5nIG9yIG1hcmtldCBz
-ZWdtZW50IGZ1c2Ugc2V0dGluZ3MNCj4gbWFrZSB0aGF0IE9QUCBhcyB1bmF2YWlsYWJsZSwgIHRo
-ZW4gdGhhdCAib3BwLXN1c3BlbmQiDQo+ID4gaXMgTk9UIHdvcmtpbmcgYXQgYWxsLg0KPiANCj4g
-SG93IGlzIHRoaXMgc2VsZWN0aW9uIGRvbmUgPyBZb3UgdXNpbmcgc29tZSBPUFAgaGVscGVyIG9y
-IHNvbWV0aGluZyBlbHNlID8NCg0KRWFjaCBPUFAgaGFzICJvcHAtc3VwcG9ydGVkLWh3IiBwcm9w
-ZXJ0eSBhcyBiZWxvdywgdGhlIGZpcnN0IHZhbHVlIG5lZWRzIHRvIGJlDQpjaGVja2VkIHdpdGgg
-c3BlZWQgZ3JhZGluZyBmdXNlLCBhbmQgdGhlIHNlY29uZCBvbmUgbmVlZHMgdG8gYmUgY2hlY2tl
-ZCB3aXRoDQptYXJrZXQgc2VnbWVudCBmdXNlLCBPTkxZIGJvdGggb2YgdGhlbSBwYXNzZWQsIHRo
-ZW4gdGhpcyBPUFAgaXMgc3VwcG9ydGVkLiBJdA0KY2FsbHMgZGV2X3BtX29wcF9zZXRfc3VwcG9y
-dGVkX2h3KCkgdG8gdGVsbCBPUFAgZnJhbWV3b3JrIHRvIHBhcnNlIHRoZSBPUFANCnRhYmxlLCB0
-aGlzIGlzIG15IHVuZGVyc3RhbmRpbmcuDQoNCm9wcC1zdXBwb3J0ZWQtaHcgPSA8MHg4PiwgPDB4
-Mz47DQoNCnRoYW5rcywNCkFuc29uDQoNCg==
+On 07/07/2019 14:22, Aleix Roca Nonell wrote:
+> This driver adds support for the RTD1296 and RTD1295 interrupt
+> controller (intc). It is based on both the BPI-SINOVOIP project and
+> Andreas Färber's previous attempt to submit a similar driver.
+> 
+> There is currently no publicly available datasheet on this SoC and the
+> exact behaviour of the registers controlling the intc remain uncertain.
+> 
+> This driver controls two intcs: "iso" and "misc". Each intc has its own
+> Interrupt Enable Register (IER) and Interrupt Status Resgister (ISR).
+
+Register
+
+> However, not all "misc" intc irqs have the same offsets for both ISR and
+> IER. For this reason an ISR to IER offsets table is defined.
+> 
+> The driver catches the IER value to reduce accesses to the table inside the
+> interrupt handler. Actually, the driver stores the ISR offsets of currently
+> enabled interrupts in a variable.
+> 
+> Signed-off-by: Aleix Roca Nonell <kernelrocks@gmail.com>
+
+I expect Andreas and you to sort the attribution issue. I'm certainly
+not going to take this in if things are unclear.
+
+> ---
+>  drivers/irqchip/Makefile      |   1 +
+>  drivers/irqchip/irq-rtd129x.c | 371 ++++++++++++++++++++++++++++++++++
+>  2 files changed, 372 insertions(+)
+>  create mode 100644 drivers/irqchip/irq-rtd129x.c
+> 
+> diff --git a/drivers/irqchip/Makefile b/drivers/irqchip/Makefile
+> index 606a003a0000..0689c3956250 100644
+> --- a/drivers/irqchip/Makefile
+> +++ b/drivers/irqchip/Makefile
+> @@ -100,3 +100,4 @@ obj-$(CONFIG_MADERA_IRQ)		+= irq-madera.o
+>  obj-$(CONFIG_LS1X_IRQ)			+= irq-ls1x.o
+>  obj-$(CONFIG_TI_SCI_INTR_IRQCHIP)	+= irq-ti-sci-intr.o
+>  obj-$(CONFIG_TI_SCI_INTA_IRQCHIP)	+= irq-ti-sci-inta.o
+> +obj-$(CONFIG_ARCH_REALTEK)		+= irq-rtd129x.o
+> diff --git a/drivers/irqchip/irq-rtd129x.c b/drivers/irqchip/irq-rtd129x.c
+> new file mode 100644
+> index 000000000000..76358ca50f10
+> --- /dev/null
+> +++ b/drivers/irqchip/irq-rtd129x.c
+> @@ -0,0 +1,371 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +
+> +#include <linux/irqchip.h>
+> +#include <linux/of.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of_irq.h>
+> +#include <linux/irqdomain.h>
+> +#include <linux/io.h>
+> +#include <linux/spinlock.h>
+> +#include <linux/irqchip.h>
+> +#include <linux/bits.h>
+> +#include <linux/irqchip/chained_irq.h>
+> +
+> +#define RTD129X_INTC_NR_IRQS 32
+> +#define DEV_NAME "RTD1296_INTC"
+> +
+> +/*
+> + * This interrupt controller (hereinafter intc) driver controls two intcs: "iso"
+> + * and "misc". Each intc has its own Interrupt Enable Register (IER) and
+> + * Interrupt Status Resgister (ISR). However, not all "misc" intc irqs have the
+> + * same offsets for both ISR and IER. For this reason an ISR to IER offsets
+> + * table is defined. Also, to reduce accesses to this table in the interrupt
+> + * handler, the driver stores the ISR offsets of currently enabled interrupts in
+> + * a variable.
+> + */
+> +
+> +enum misc_int_en {
+> +	MISC_INT_FAIL		= 0xFF,
+> +	MISC_INT_RVD		= 0xFE,
+> +	MISC_INT_EN_FAN		= 29,
+> +	MISC_INT_EN_I2C3	= 28,
+> +	MISC_INT_EN_GSPI	= 27,
+> +	MISC_INT_EN_I2C2	= 26,
+> +	MISC_INT_EN_SC0		= 24,
+> +	MISC_INT_EN_LSADC1	= 22,
+> +	MISC_INT_EN_LSADC0	= 21,
+> +	MISC_INT_EN_GPIODA	= 20,
+> +	MISC_INT_EN_GPIOA	= 19,
+> +	MISC_INT_EN_I2C4	= 15,
+> +	MISC_INT_EN_I2C5	= 14,
+> +	MISC_INT_EN_RTC_DATA	= 12,
+> +	MISC_INT_EN_RTC_HOUR	= 11,
+> +	MISC_INT_EN_RTC_MIN	= 10,
+> +	MISC_INT_EN_UR2		= 7,
+> +	MISC_INT_EN_UR2_TO	= 6,
+> +	MISC_INT_EN_UR1_TO	= 5,
+> +	MISC_INT_EN_UR1		= 3,
+> +};
+> +
+> +enum iso_int_en {
+> +	ISO_INT_FAIL		= 0xFF,
+> +	ISO_INT_RVD		= 0xFE,
+> +	ISO_INT_EN_I2C1_REQ	= 31,
+> +	ISO_INT_EN_GPHY_AV	= 30,
+> +	ISO_INT_EN_GPHY_DV	= 29,
+> +	ISO_INT_EN_GPIODA	= 20,
+> +	ISO_INT_EN_GPIOA	= 19,
+> +	ISO_INT_EN_RTC_ALARM	= 13,
+> +	ISO_INT_EN_RTC_HSEC	= 12,
+> +	ISO_INT_EN_I2C1		= 11,
+> +	ISO_INT_EN_I2C0		= 8,
+> +	ISO_INT_EN_IRDA		= 5,
+> +	ISO_INT_EN_UR0		= 2,
+> +};
+> +
+> +unsigned char rtd129x_intc_enable_map_misc[RTD129X_INTC_NR_IRQS] = {
+> +	MISC_INT_FAIL,		/* Bit0 */
+> +	MISC_INT_FAIL,		/* Bit1 */
+> +	MISC_INT_RVD,		/* Bit2 */
+> +	MISC_INT_EN_UR1,	/* Bit3 */
+> +	MISC_INT_FAIL,		/* Bit4 */
+> +	MISC_INT_EN_UR1_TO,	/* Bit5 */
+> +	MISC_INT_RVD,		/* Bit6 */
+> +	MISC_INT_RVD,		/* Bit7 */
+> +	MISC_INT_EN_UR2,	/* Bit8 */
+> +	MISC_INT_RVD,		/* Bit9 */
+> +	MISC_INT_EN_RTC_MIN,	/* Bit10 */
+> +	MISC_INT_EN_RTC_HOUR,	/* Bit11 */
+> +	MISC_INT_EN_RTC_DATA,	/* Bit12 */
+> +	MISC_INT_EN_UR2_TO,	/* Bit13 */
+> +	MISC_INT_EN_I2C5,	/* Bit14 */
+> +	MISC_INT_EN_I2C4,	/* Bit15 */
+> +	MISC_INT_FAIL,		/* Bit16 */
+> +	MISC_INT_FAIL,		/* Bit17 */
+> +	MISC_INT_FAIL,		/* Bit18 */
+> +	MISC_INT_EN_GPIOA,	/* Bit19 */
+> +	MISC_INT_EN_GPIODA,	/* Bit20 */
+> +	MISC_INT_EN_LSADC0,	/* Bit21 */
+> +	MISC_INT_EN_LSADC1,	/* Bit22 */
+> +	MISC_INT_EN_I2C3,	/* Bit23 */
+> +	MISC_INT_EN_SC0,	/* Bit24 */
+> +	MISC_INT_FAIL,		/* Bit25 */
+> +	MISC_INT_EN_I2C2,	/* Bit26 */
+> +	MISC_INT_EN_GSPI,	/* Bit27 */
+> +	MISC_INT_FAIL,		/* Bit28 */
+> +	MISC_INT_EN_FAN,	/* Bit29 */
+> +	MISC_INT_FAIL,		/* Bit30 */
+> +	MISC_INT_FAIL		/* Bit31 */
+> +};
+> +
+> +unsigned char rtd129x_intc_enable_map_iso[RTD129X_INTC_NR_IRQS] = {
+> +	ISO_INT_FAIL,		/* Bit0 */
+> +	ISO_INT_RVD,		/* Bit1 */
+> +	ISO_INT_EN_UR0,		/* Bit2 */
+> +	ISO_INT_FAIL,		/* Bit3 */
+> +	ISO_INT_FAIL,		/* Bit4 */
+> +	ISO_INT_EN_IRDA,	/* Bit5 */
+> +	ISO_INT_FAIL,		/* Bit6 */
+> +	ISO_INT_RVD,		/* Bit7 */
+> +	ISO_INT_EN_I2C0,	/* Bit8 */
+> +	ISO_INT_RVD,		/* Bit9 */
+> +	ISO_INT_FAIL,		/* Bit10 */
+> +	ISO_INT_EN_I2C1,	/* Bit11 */
+> +	ISO_INT_EN_RTC_HSEC,	/* Bit12 */
+> +	ISO_INT_EN_RTC_ALARM,	/* Bit13 */
+> +	ISO_INT_FAIL,		/* Bit14 */
+> +	ISO_INT_FAIL,		/* Bit15 */
+> +	ISO_INT_FAIL,		/* Bit16 */
+> +	ISO_INT_FAIL,		/* Bit17 */
+> +	ISO_INT_FAIL,		/* Bit18 */
+> +	ISO_INT_EN_GPIOA,	/* Bit19 */
+> +	ISO_INT_EN_GPIODA,	/* Bit20 */
+> +	ISO_INT_RVD,		/* Bit21 */
+> +	ISO_INT_RVD,		/* Bit22 */
+> +	ISO_INT_RVD,		/* Bit23 */
+> +	ISO_INT_RVD,		/* Bit24 */
+> +	ISO_INT_FAIL,		/* Bit25 */
+> +	ISO_INT_FAIL,		/* Bit26 */
+> +	ISO_INT_FAIL,		/* Bit27 */
+> +	ISO_INT_FAIL,		/* Bit28 */
+> +	ISO_INT_EN_GPHY_DV,	/* Bit29 */
+> +	ISO_INT_EN_GPHY_AV,	/* Bit30 */
+> +	ISO_INT_EN_I2C1_REQ	/* Bit31 */
+> +};
+> +
+> +struct rtd129x_intc_data {
+> +	void __iomem		*unmask;
+> +	void __iomem		*isr;
+> +	void __iomem		*ier;
+> +	u32			ier_cached;
+> +	u32			isr_en;
+> +	raw_spinlock_t		lock;
+> +	unsigned int		parent_irq;
+> +	const unsigned char	*en_map;
+> +};
+> +
+> +static struct irq_domain *rtd129x_intc_domain;
+> +
+> +static void rtd129x_intc_irq_handle(struct irq_desc *desc)
+> +{
+> +	struct rtd129x_intc_data *priv = irq_desc_get_handler_data(desc);
+> +	struct irq_chip *chip = irq_desc_get_chip(desc);
+> +	unsigned int local_irq;
+> +	u32 status;
+> +	int i;
+> +
+> +	chained_irq_enter(chip, desc);
+> +
+> +	raw_spin_lock(&priv->lock);
+> +	status = readl_relaxed(priv->isr);
+> +	status &= priv->isr_en;
+> +	raw_spin_unlock(&priv->lock);
+
+What is this lock protecting? isr_en?
+
+> +
+> +	while (status) {
+> +		i = __ffs(status);
+> +		status &= ~BIT(i);
+> +
+> +		local_irq = irq_find_mapping(rtd129x_intc_domain, i);
+> +		if (likely(local_irq)) {
+> +			if (!generic_handle_irq(local_irq))
+> +				writel_relaxed(BIT(i), priv->isr);
+
+What are the write semantics of the ISR register? Hot bit clear? How
+does it work since mask() does the same thing? Clearly, something is
+wrong here.
+
+> +		} else {
+> +			handle_bad_irq(desc);
+> +		}
+> +	}
+> +
+> +	chained_irq_exit(chip, desc);
+> +}
+> +
+> +static void rtd129x_intc_mask(struct irq_data *data)
+> +{
+> +	struct rtd129x_intc_data *priv = irq_data_get_irq_chip_data(data);
+> +
+> +	writel_relaxed(BIT(data->hwirq), priv->isr);
+> +}
+> +
+> +static void rtd129x_intc_unmask(struct irq_data *data)
+> +{
+> +	struct rtd129x_intc_data *priv = irq_data_get_irq_chip_data(data);
+> +
+> +	writel_relaxed(BIT(data->hwirq), priv->unmask);
+
+What effect does this have on the isr register? The whole mask/unmask
+thing seems to be pretty dodgy...
+
+> +}
+> +
+> +static void rtd129x_intc_enable(struct irq_data *data)
+> +{
+> +	struct rtd129x_intc_data *priv = irq_data_get_irq_chip_data(data);
+> +	unsigned long flags;
+> +	u8 en_offset;
+> +
+> +	en_offset = priv->en_map[data->hwirq];
+> +
+> +	if ((en_offset != MISC_INT_RVD) && (en_offset != MISC_INT_FAIL)) {
+> +		raw_spin_lock_irqsave(&priv->lock, flags);
+> +
+> +		priv->isr_en |= BIT(data->hwirq);
+> +		priv->ier_cached |= BIT(en_offset);
+> +		writel_relaxed(priv->ier_cached, priv->ier);
+> +
+> +		raw_spin_unlock_irqrestore(&priv->lock, flags);
+> +	} else if (en_offset == MISC_INT_FAIL) {
+> +		pr_err("[%s] Enable irq(%lu) failed\n", DEV_NAME, data->hwirq);
+> +	}
+> +}
+> +
+> +static void rtd129x_intc_disable(struct irq_data *data)
+> +{
+> +	struct rtd129x_intc_data *priv = irq_data_get_irq_chip_data(data);
+> +	unsigned long flags;
+> +	u8 en_offset;
+> +
+> +	en_offset = priv->en_map[data->hwirq];
+> +
+> +	if ((en_offset != MISC_INT_RVD) && (en_offset != MISC_INT_FAIL)) {
+> +		raw_spin_lock_irqsave(&priv->lock, flags);
+> +
+> +		priv->isr_en &= ~BIT(data->hwirq);
+> +		priv->ier_cached &= ~BIT(en_offset);
+> +		writel_relaxed(priv->ier_cached, priv->ier);
+> +
+> +		raw_spin_unlock_irqrestore(&priv->lock, flags);
+> +	} else if (en_offset == MISC_INT_FAIL) {
+> +		pr_err("[%s] Disable irq(%lu) failed\n", DEV_NAME, data->hwirq);
+> +	}
+> +}
+
+So here's a thought: Why do we need all of this? If mask/unmask do their
+job correctly, we could just enable all interrupts in one go (just a
+32bit write) at probe time, and leave all interrupts masked until they
+are in use. You could then drop all these silly tables that don't bring
+much...
+
+> +
+> +static struct irq_chip rtd129x_intc_chip = {
+> +	.name		= DEV_NAME,
+> +	.irq_mask	= rtd129x_intc_mask,
+> +	.irq_unmask	= rtd129x_intc_unmask,
+> +	.irq_enable	= rtd129x_intc_enable,
+> +	.irq_disable	= rtd129x_intc_disable,
+> +};
+> +
+> +static int rtd129x_intc_map(struct irq_domain *d, unsigned int virq,
+> +			    irq_hw_number_t hw_irq)
+> +{
+> +	struct rtd129x_intc_data *priv = d->host_data;
+> +
+> +	irq_set_chip_and_handler(virq, &rtd129x_intc_chip, handle_level_irq);
+> +	irq_set_chip_data(virq, priv);
+> +	irq_set_probe(virq);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct irq_domain_ops rtd129x_intc_domain_ops = {
+> +	.xlate			= irq_domain_xlate_onecell,
+> +	.map			= rtd129x_intc_map,
+> +};
+> +
+> +static const struct of_device_id rtd129x_intc_matches[] = {
+> +	{ .compatible = "realtek,rtd129x-intc-misc",
+> +		.data = rtd129x_intc_enable_map_misc
+> +	},
+> +	{ .compatible = "realtek,rtd129x-intc-iso",
+> +		.data = rtd129x_intc_enable_map_iso
+> +	},
+> +	{ }
+> +};
+> +
+> +static int rtd129x_intc_of_init(struct device_node *node,
+> +				struct device_node *parent)
+> +{
+> +	struct rtd129x_intc_data *priv;
+> +	const struct of_device_id *match;
+> +	u32 isr_tmp, ier_tmp, ier_bit;
+> +	int ret, i;
+> +
+> +	priv = kzalloc(sizeof(*priv), GFP_KERNEL);
+> +	if (!priv) {
+> +		ret = -ENOMEM;
+> +		goto err;
+> +	}
+> +
+> +	raw_spin_lock_init(&priv->lock);
+> +
+> +	priv->isr = of_iomap(node, 0);
+> +	if (!priv->isr) {
+> +		pr_err("unable to obtain status reg iomap address\n");
+> +		ret = -ENOMEM;
+> +		goto free_priv;
+> +	}
+> +
+> +	priv->ier = of_iomap(node, 1);
+> +	if (!priv->ier) {
+> +		pr_err("unable to obtain enable reg iomap address\n");
+> +		ret = -ENOMEM;
+> +		goto iounmap_status;
+> +	}
+> +
+> +	priv->unmask = of_iomap(node, 2);
+> +	if (!priv->unmask) {
+> +		pr_err("unable to obtain unmask reg iomap address\n");
+> +		ret = -ENOMEM;
+> +		goto iounmap_enable;
+> +	}
+> +
+> +	priv->parent_irq = irq_of_parse_and_map(node, 0);
+> +	if (!priv->parent_irq) {
+> +		pr_err("failed to map parent interrupt %d\n", priv->parent_irq);
+> +		ret = -EINVAL;
+> +		goto iounmap_all;
+> +	}
+> +
+> +	match = of_match_node(rtd129x_intc_matches, node);
+> +	if (!match) {
+> +		pr_err("failed to find matching node\n");
+> +		ret = -ENODEV;
+> +		goto iounmap_all;
+> +	}
+> +	priv->en_map = match->data;
+> +
+> +	// initialize enabled irq's map to its matching status bit in isr by
+> +	// inverse walking the enable to status offsets map. Only needed for
+> +	// misc
+
+Why do we need any of this? The kernel is supposed to start from a clean
+slate, not to inherit whatever has been set before, unless there is a
+very compelling reason.
+
+> +	priv->ier_cached = readl_relaxed(priv->ier);
+> +	if (priv->en_map == rtd129x_intc_enable_map_misc) {
+> +		ier_tmp = priv->ier_cached;
+> +		isr_tmp = 0;
+> +		while (ier_tmp) {
+> +			ier_bit = __ffs(ier_tmp);
+> +			ier_tmp &= ~BIT(ier_bit);
+> +			for (i = 0; i < RTD129X_INTC_NR_IRQS; i++)
+> +				if (priv->en_map[i] == ier_bit)
+> +					isr_tmp |= BIT(i);
+> +		}
+> +		priv->isr_en = isr_tmp;
+> +	} else {
+> +		priv->isr_en = priv->ier_cached;
+> +	}
+> +
+> +	rtd129x_intc_domain = irq_domain_add_linear(node, RTD129X_INTC_NR_IRQS,
+> +						    &rtd129x_intc_domain_ops,
+> +						    priv);
+> +	if (!rtd129x_intc_domain) {
+> +		pr_err("failed to create irq domain\n");
+> +		ret = -ENOMEM;
+> +		goto iounmap_all;
+> +	}
+> +
+> +	irq_set_chained_handler_and_data(priv->parent_irq,
+> +					 rtd129x_intc_irq_handle, priv);
+> +
+> +	return 0;
+> +
+> +iounmap_all:
+> +	iounmap(priv->unmask);
+> +iounmap_enable:
+> +	iounmap(priv->ier);
+> +iounmap_status:
+> +	iounmap(priv->isr);
+> +free_priv:
+> +	kfree(priv);
+> +err:
+> +	return ret;
+> +}
+> +
+> +IRQCHIP_DECLARE(rtd129x_intc_misc, "realtek,rtd129x-intc-misc",
+> +		rtd129x_intc_of_init);
+> +IRQCHIP_DECLARE(rtd129x_intc_iso, "realtek,rtd129x-intc-iso",
+> +		rtd129x_intc_of_init);
+> 
+
+Thanks,
+
+	M.
+-- 
+Jazz is not dead. It just smells funny...
