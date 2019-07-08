@@ -2,135 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0863E61CD9
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 12:22:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21A1161D18
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 12:36:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730040AbfGHKWa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 06:22:30 -0400
-Received: from mail-vk1-f193.google.com ([209.85.221.193]:33322 "EHLO
-        mail-vk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729366AbfGHKWa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 06:22:30 -0400
-Received: by mail-vk1-f193.google.com with SMTP id y130so2351168vkc.0
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 03:22:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=AsAFKBEUFBHkHXTlE13fl56JrUE0oQy8Oxu/yYLscUs=;
-        b=CXRvFicswoDHkYUNICeN+Cl9Qq4iIcvmcjhLdwzB1hU0uQHhlLHad2mHczOGsJMqCL
-         ykKz6XDfuiQYMCXRuUnOuu0wyttGBqJ1JecYwgFDJsNOzoVtK3eSz2rirFv7xkNi6gqK
-         GZs+8SUsPv7ACMYkOiz39V/WYXUnENJoGAFzO2W5qT5m4eRPoHholsEwIe9G47VV6sCB
-         qOU2Lf7b3y96IvzDWOytjQqCcO9t2OCwQ451IjZqCMbvl3R/Kp04tgggrDebhg4s7zUp
-         KYVatYbKtQXCxyA+n03YXX0GXrm9HSUsbiJACe+7CJElxfD67xJGxzY7ZQzULcgYhCix
-         GoTg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=AsAFKBEUFBHkHXTlE13fl56JrUE0oQy8Oxu/yYLscUs=;
-        b=VNqlUXGstKQSe9lrzRPFOKPNkP8XNoeQQ5YIF8aqBedp8Bwt+NF4upipwA6WnwAz7b
-         yXGdLpCVVKfjcfOtdf7hsRZpHCU7AEqKPyLm2kIvYZeGyQ22308XTz7wX/uURSjrcESz
-         +ri64I8eKfPMYB0G9swOTYGjABzC5TeAFRTxNawX0swAfb7EkND7D/udhwwqPoVEnWsg
-         rlmJVC9uC/UPYcS1rjyYwvDX+8szNSWPOg2bPB1HjRDelg+cRRrKFkq997Ge+bm1KNVa
-         t4LNhex0XvF93chqZZ8W+803ilU4HuRa9JieExWfMvPZdMScxY2TSwT3y1Xh1VFewsx0
-         +1iw==
-X-Gm-Message-State: APjAAAW/NcvgZQmHSLWJvWs1HmeMul5SMLfEkM69wzsI2ATeS0RyyJ22
-        J7jgPuaTTJuU9/PdFDdqsD6sLafS3ENl5ebR9EmpZw==
-X-Google-Smtp-Source: APXvYqw0lA6VLJL9moW99FXeG1c2nRgE06JCNEZ3lnJHUwGVDWkipH4PLGfoHZRemOlF+o2/UbzvFRdOUGbzPdk2/hs=
-X-Received: by 2002:a1f:3f45:: with SMTP id m66mr4651377vka.17.1562581348878;
- Mon, 08 Jul 2019 03:22:28 -0700 (PDT)
+        id S1727787AbfGHKgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 06:36:03 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:57824 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725869AbfGHKgD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 06:36:03 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x68AZuJX003329;
+        Mon, 8 Jul 2019 05:35:56 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1562582156;
+        bh=S2OagN/TyZ2TEiU3bu+SsPIK5XLysRm1306Fh61l0tQ=;
+        h=From:To:CC:Subject:Date;
+        b=hIpfqc3rSqrumuVG4rOSVS7bDA16icSG233TMLoMFUhWladJnI8goiauwYhBpNgcA
+         8ka3sKn6diiv7CfxmZI3kCf34sa6d/yQsJkTn/jtr4/Qfrj5yPuVfH1KlvuFdOysxA
+         uQkPuTKXXHaLrgkjpiOXqGbG57BKTkJjz0KXHUvE=
+Received: from DFLE112.ent.ti.com (dfle112.ent.ti.com [10.64.6.33])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x68AZu2p020896
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 8 Jul 2019 05:35:56 -0500
+Received: from DFLE115.ent.ti.com (10.64.6.36) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 8 Jul
+ 2019 05:35:56 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE115.ent.ti.com
+ (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 8 Jul 2019 05:35:56 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x68AZtrb040273;
+        Mon, 8 Jul 2019 05:35:55 -0500
+From:   Jean-Jacques Hiblot <jjhiblot@ti.com>
+To:     <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <daniel.thompson@linaro.org>
+CC:     <dmurphy@ti.com>, <linux-leds@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        Jean-Jacques Hiblot <jjhiblot@ti.com>
+Subject: [PATCH 0/2] leds: Add control of the voltage/current regulator to the LED core
+Date:   Mon, 8 Jul 2019 12:35:45 +0200
+Message-ID: <20190708103547.23528-1-jjhiblot@ti.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20190621060511.29609-1-yamada.masahiro@socionext.com>
- <CAK7LNASGVbkGgu7psy4DfCxmr-AxSQ3fmGJ=aDAiuSkJ5hrDwA@mail.gmail.com>
- <20190621105025.GA2987@kunai> <CADnJP=sg1Kp=TAvUD-ofQje9Y6mWWE_ZnQM_eB85uw3z6PHrVQ@mail.gmail.com>
-In-Reply-To: <CADnJP=sg1Kp=TAvUD-ofQje9Y6mWWE_ZnQM_eB85uw3z6PHrVQ@mail.gmail.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 8 Jul 2019 12:21:52 +0200
-Message-ID: <CAPDyKFqdRO9VeTrG7-nSU-oMB=HenCB3GO4GS0sN=KHnLYDCtw@mail.gmail.com>
-Subject: Re: [PATCH] mmc: remove another TMIO MMC variant usdhi6rol0.c
-To:     Lars Persson <lists@bofh.nu>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>
-Cc:     Wolfram Sang <wsa@the-dreams.de>,
-        linux-mmc <linux-mmc@vger.kernel.org>,
-        Rabin Vincent <rabin.vincent@axis.com>,
-        Guennadi Liakhovetski <g.liakhovetski@gmx.de>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 24 Jun 2019 at 09:04, Lars Persson <lists@bofh.nu> wrote:
->
-> On Fri, Jun 21, 2019 at 12:50 PM Wolfram Sang <wsa@the-dreams.de> wrote:
-> >
-> > Hi,
-> >
-> > On Fri, Jun 21, 2019 at 03:16:11PM +0900, Masahiro Yamada wrote:
-> > > (Added Lars Persson, Guennadi Liakhovetski)
-> > >
-> > > On Fri, Jun 21, 2019 at 3:06 PM Masahiro Yamada
-> > > <yamada.masahiro@socionext.com> wrote:
-> > >
-> > > This needs Ack from Renesas.
-> > > But, I do not know if TMIO folks are sure about this driver, though.
-> > > (If they had been sure about it, they should not have duplicated the driver
-> > > in the first place.)
-> >
-> > ... and from the original mail:
-> >
-> > > Delete this driver now. Please re-implement it based on tmio_mmc_core.c
-> > > if needed.
-> >
-> > I was never happy with this driver existing, yet I never knew which HW
-> > platform needed this, so I didn't touch it. But I'd like to see it go in
-> > favor of merging with the TMIO code base.
-> >
-> > >
-> > > Perhaps, some code snippets in this driver might be useful for cleaning
-> > > tmio_mmc. It will stay in git history forever, and you can dig for it
-> > > whenever you need it.
-> > >
-> > > Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
-> >
-> > I double checked there is no user in the current tree. I also searched
-> > the web and did not find any out-of-tree user or even a reference of it.
-> >
-> > So, for now:
-> >
-> > Reviewed-by: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> >
-> > But this seriously needs an Ack from Shimoda-san or Morimoto-san. And
-> > maybe Guennadi has remarks, too?
-> >
->
-> So let me tell you the real use of this driver.
->
-> It is used by Axis Communications in our Artpec-6 chips that will be
-> around for at least 5 years in active development at our side. The SoC
-> is upstreamed, but the upstreaming effort was side-tracked before the
-> usdhi6rol0 was added to the devicetree.
->
-> I do agree with you guys that we should not keep two drivers for the
-> same IP so there should be an effort to unify the drivers. In the mean
-> time, we can make the connection with Axis more explicit by assigning
-> us as maintainer and pushing the device tree entries.
+This series makes it possible for the LED core to manage the power supply
+of a LED. It uses the regulator API to disable/enable the power if when the
+LED is turned on/off.
+This is especially useful in situations where the LED driver/controller is
+not supplying the power.
 
-To me, this sounds like a reasonable good plan. Although, we need a
-formal maintainer rather than just a company name.
+Jean-Jacques Hiblot (2):
+  leds: Add control of the voltage/current regulator to the LED core
+  dt-bindings: leds: document new "power-supply" property
 
-If you or anybody at Axis can send a patch for MAINTAINERS, that would
-serve as commitment that I would be happy with.
+ .../devicetree/bindings/leds/common.txt       |  5 ++
+ drivers/leds/led-class.c                      | 10 ++++
+ drivers/leds/led-core.c                       | 53 +++++++++++++++++--
+ include/linux/leds.h                          |  4 ++
+ 4 files changed, 69 insertions(+), 3 deletions(-)
 
-Additionally, of course, the sooner we can get things moving on
-converting usdhi6rol0 into using the tmio family driver, the better.
+-- 
+2.17.1
 
-Kind regards
-Uffe
