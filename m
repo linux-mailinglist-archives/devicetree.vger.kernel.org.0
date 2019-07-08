@@ -2,176 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC57362B28
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 23:38:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D66162B61
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 00:19:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732784AbfGHVil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 17:38:41 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:35261 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730630AbfGHVil (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 17:38:41 -0400
-Received: by mail-io1-f68.google.com with SMTP id m24so29204261ioo.2;
-        Mon, 08 Jul 2019 14:38:40 -0700 (PDT)
+        id S1732790AbfGHWTv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 18:19:51 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:32852 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732609AbfGHWTv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 18:19:51 -0400
+Received: by mail-io1-f65.google.com with SMTP id z3so23916896iog.0;
+        Mon, 08 Jul 2019 15:19:50 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=untM+Kv8ZutGAnkYCVkbqKxPIv+NhfYxHiB+6bSFjEE=;
-        b=jabTb5LCFK3yoB+JVDBPjgrmd1zoyX2fjDcg1JitojN8WDaMF+cL6UgHAeqJAFJnen
-         +ef8TEu+ockCaNq+uFawaiW90mxLmrALec77QHz1yJz0tNkQh6n9vs0pKuuqFwLtmMEP
-         tNfc2zpDJ+bt1ZQjwirTR03yUexKDgUP6NwkMpxltlBq/wzUxS8YCEKGeQEBZNlq2Haw
-         4+qsl2Pu+NDaJS6gvM6PPsb8dm2i8Qo6vmHBQZmKS3SwlWB41d/7p9rsMEClSNRA7Gpn
-         IyctG44zTCid6qqjF2Y2GjorcxxuMZbFPwXOaP09j4Y9eFFiH4J/kYt7g8ipvmdkV+D9
-         1Oyw==
-X-Gm-Message-State: APjAAAWtZ/9BMskvpHPARyZ9cpeSicGkhHqZr1hEojM7ieQaDUvzLJ/H
-        EjRqNlan5C3ZU9WS5XnfiA==
-X-Google-Smtp-Source: APXvYqzGWdEgyQPIbLHBkjZ2Je6IlC+TiSD0JfeEEnJoe/Chs6bC5oSR97CEDOIUIm+cX6cVkJUNQQ==
-X-Received: by 2002:a5d:940b:: with SMTP id v11mr5355941ion.69.1562621920210;
-        Mon, 08 Jul 2019 14:38:40 -0700 (PDT)
+        bh=mN46vG+/AOz/nYTuDQPNV5277nOfHBKNL+k2+anwNSQ=;
+        b=XhgH5E/sdyIXaCLrVDGUVddyypzTy+2HSt7JY8nIJzd27x1pCNjwmMVA30qvKPaFPU
+         onWGhmly6Q5TBggGLQXvI7XuylS6yyevToz1yAA7Qz2c+9Qac4S13/rjbar+yLpIGHoM
+         ly6WN3SSGjQfrjX6MaygUZDzwOKM+fS9JcpxZKaw9Nt+iXRr9xZ+osB4oEtt57EC3rVI
+         fDmFG0fr+xBk8FuczCGZUdKMB7iq23KUild0xHnuXthnOMXyi+tWGJrthzQMueBfny89
+         qe1NM9NaMEmZdiPH5oPvwRF6P5kA7uuhAjx4sS2QU79uLez3qWEzxcUb8af9Y+dI36FQ
+         Nc4Q==
+X-Gm-Message-State: APjAAAXfvhQUcRKpsgy1uDNP42gbwKrF5KJsff4rL+34a2IdLK/NEln2
+        WmlsGBmlX1eIk3aiyVR9ZdCPMGs=
+X-Google-Smtp-Source: APXvYqyFCtd9RZAWexm1ovEMHGgSm3Adn/B2Dt7+BZSqwk7NopQ7+ycbM6hzReeqC1agYla95EW74Q==
+X-Received: by 2002:a02:1607:: with SMTP id a7mr23310703jaa.123.1562624389648;
+        Mon, 08 Jul 2019 15:19:49 -0700 (PDT)
 Received: from localhost ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id w23sm33854623ioa.51.2019.07.08.14.38.39
+        by smtp.gmail.com with ESMTPSA id q22sm14923152ioj.56.2019.07.08.15.19.48
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 08 Jul 2019 14:38:39 -0700 (PDT)
-Date:   Mon, 8 Jul 2019 15:38:37 -0600
+        Mon, 08 Jul 2019 15:19:48 -0700 (PDT)
+Date:   Mon, 8 Jul 2019 16:19:47 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Richard Cochran <richardcochran@gmail.com>
-Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jacob Keller <jacob.e.keller@intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Miroslav Lichvar <mlichvar@redhat.com>,
-        Willem de Bruijn <willemb@google.com>
-Subject: Re: [PATCH V5 net-next 4/6] dt-bindings: ptp: Introduce MII time
- stamping devices.
-Message-ID: <20190708213837.GA28934@bogus>
-References: <cover.1559281985.git.richardcochran@gmail.com>
- <d786656435c64160d50014beb3d3d9d1aaf6f22d.1559281985.git.richardcochran@gmail.com>
+To:     peng.fan@nxp.com
+Cc:     mark.rutland@arm.com, jassisinghbrar@gmail.com,
+        sudeep.holla@arm.com, f.fainelli@gmail.com, kernel@pengutronix.de,
+        linux-imx@nxp.com, shawnguo@kernel.org, festevam@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, andre.przywara@arm.com,
+        van.freenix@gmail.com
+Subject: Re: [PATCH V2 1/2] DT: mailbox: add binding doc for the ARM SMC
+ mailbox
+Message-ID: <20190708221947.GA13552@bogus>
+References: <20190603083005.4304-1-peng.fan@nxp.com>
+ <20190603083005.4304-2-peng.fan@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <d786656435c64160d50014beb3d3d9d1aaf6f22d.1559281985.git.richardcochran@gmail.com>
+In-Reply-To: <20190603083005.4304-2-peng.fan@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, May 30, 2019 at 10:56:24PM -0700, Richard Cochran wrote:
-> This patch add a new binding that allows non-PHY MII time stamping
-> devices to find their buses.  The new documentation covers both the
-> generic binding and one upcoming user.
+On Mon, Jun 03, 2019 at 04:30:04PM +0800, peng.fan@nxp.com wrote:
+> From: Peng Fan <peng.fan@nxp.com>
 > 
-> Signed-off-by: Richard Cochran <richardcochran@gmail.com>
-> Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+> The ARM SMC mailbox binding describes a firmware interface to trigger
+> actions in software layers running in the EL2 or EL3 exception levels.
+> The term "ARM" here relates to the SMC instruction as part of the ARM
+> instruction set, not as a standard endorsed by ARM Ltd.
+> 
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  Documentation/devicetree/bindings/ptp/ptp-ines.txt | 35 ++++++++++++++++++
->  .../devicetree/bindings/ptp/timestamper.txt        | 41 ++++++++++++++++++++++
->  2 files changed, 76 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/ptp/ptp-ines.txt
->  create mode 100644 Documentation/devicetree/bindings/ptp/timestamper.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/ptp/ptp-ines.txt b/Documentation/devicetree/bindings/ptp/ptp-ines.txt
+> V2:
+> Introduce interrupts as a property.
+> 
+> V1:
+> arm,func-ids is still kept as an optional property, because there is no
+> defined SMC funciton id passed from SCMI. So in my test, I still use
+> arm,func-ids for ARM SIP service.
+> 
+>  .../devicetree/bindings/mailbox/arm-smc.txt        | 101 +++++++++++++++++++++
+>  1 file changed, 101 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.txt b/Documentation/devicetree/bindings/mailbox/arm-smc.txt
 > new file mode 100644
-> index 000000000000..4dee9eb89455
+> index 000000000000..401887118c09
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ptp/ptp-ines.txt
-> @@ -0,0 +1,35 @@
-> +ZHAW InES PTP time stamping IP core
+> +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.txt
+> @@ -0,0 +1,101 @@
+> +ARM SMC Mailbox Interface
+> +=========================
 > +
-> +The IP core needs two different kinds of nodes.  The control node
-> +lives somewhere in the memory map and specifies the address of the
-> +control registers.  There can be up to three port handles placed as
-> +attributes of PHY nodes.  These associate a particular MII bus with a
-> +port index within the IP core.
+> +This mailbox uses the ARM smc (secure monitor call) instruction to trigger
+> +a mailbox-connected activity in firmware, executing on the very same core
+> +as the caller. By nature this operation is synchronous and this mailbox
+> +provides no way for asynchronous messages to be delivered the other way
+> +round, from firmware to the OS, but asynchronous notification could also
+> +be supported. However the value of r0/w0/x0 the firmware returns after
+> +the smc call is delivered as a received message to the mailbox framework,
+> +so a synchronous communication can be established, for a asynchronous
+> +notification, no value will be returned. The exact meaning of both the
+> +action the mailbox triggers as well as the return value is defined by
+> +their users and is not subject to this binding.
 > +
-> +Required properties of the control node:
+> +One use case of this mailbox is the SCMI interface, which uses shared memory
+> +to transfer commands and parameters, and a mailbox to trigger a function
+> +call. This allows SoCs without a separate management processor (or when
+> +such a processor is not available or used) to use this standardized
+> +interface anyway.
 > +
-> +- compatible:		"ines,ptp-ctrl"
-
-This is an IP block that gets integrated into SoCs? It's not very 
-specific given that there could be different versions of the IP block 
-and SoC vendors can integrate various versions of the IP block in their 
-own unique (i.e. buggy) way.
-
-> +- reg:			physical address and size of the register bank
+> +This binding describes no hardware, but establishes a firmware interface.
+> +Upon receiving an SMC using one of the described SMC function identifiers,
+> +the firmware is expected to trigger some mailbox connected functionality.
+> +The communication follows the ARM SMC calling convention[1].
+> +Firmware expects an SMC function identifier in r0 or w0. The supported
+> +identifiers are passed from consumers, or listed in the the arm,func-ids
+> +properties as described below. The firmware can return one value in
+> +the first SMC result register, it is expected to be an error value,
+> +which shall be propagated to the mailbox client.
 > +
-> +Required format of the port handle within the PHY node:
+> +Any core which supports the SMC or HVC instruction can be used, as long as
+> +a firmware component running in EL3 or EL2 is handling these calls.
 > +
-> +- timestamper:		provides control node reference and
-> +			the port channel within the IP core
+> +Mailbox Device Node:
+> +====================
+> +
+> +This node is expected to be a child of the /firmware node.
+> +
+> +Required properties:
+> +--------------------
+> +- compatible:		Shall be "arm,smc-mbox"
+> +- #mbox-cells		Shall be 1 - the index of the channel needed.
+> +- arm,num-chans		The number of channels supported.
+> +- method:		A string, either:
+> +			"hvc": if the driver shall use an HVC call, or
+> +			"smc": if the driver shall use an SMC call.
+> +
+> +Optional properties:
+> +- arm,func-ids		An array of 32-bit values specifying the function
+> +			IDs used by each mailbox channel. Those function IDs
+> +			follow the ARM SMC calling convention standard [1].
+> +			There is one identifier per channel and the number
+> +			of supported channels is determined by the length
+> +			of this array.
+> +- interrupts		SPI interrupts may be listed for notification,
+> +			each channel should use a dedicated interrupt
+> +			line.
 > +
 > +Example:
+> +--------
 > +
-> +	tstamper: timestamper@60000000 {
-> +		compatible = "ines,ptp-ctrl";
-> +		reg = <0x60000000 0x80>;
-> +	};
+> +	sram@910000 {
+> +		compatible = "mmio-sram";
+> +		reg = <0x0 0x93f000 0x0 0x1000>;
+> +		#address-cells = <1>;
+> +		#size-cells = <1>;
+> +		ranges = <0 0x0 0x93f000 0x1000>;
 > +
-> +	ethernet@80000000 {
-> +		...
-> +		mdio {
-> +			...
-> +			phy@3 {
-
-ethernet-phy is the correct node name.
-
-> +				...
-> +				timestamper = <&tstamper 0>;
-> +			};
+> +		cpu_scp_lpri: scp-shmem@0 {
+> +			compatible = "arm,scmi-shmem";
+> +			reg = <0x0 0x200>;
 > +		};
-> +	};
-> diff --git a/Documentation/devicetree/bindings/ptp/timestamper.txt b/Documentation/devicetree/bindings/ptp/timestamper.txt
-> new file mode 100644
-> index 000000000000..88ea0bc7d662
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/ptp/timestamper.txt
-> @@ -0,0 +1,41 @@
-> +Time stamps from MII bus snooping devices
 > +
-> +This binding supports non-PHY devices that snoop the MII bus and
-> +provide time stamps.  In contrast to PHY time stamping drivers (which
-> +can simply attach their interface directly to the PHY instance), stand
-> +alone MII time stamping drivers use this binding to specify the
-> +connection between the snooping device and a given network interface.
-> +
-> +Non-PHY MII time stamping drivers typically talk to the control
-> +interface over another bus like I2C, SPI, UART, or via a memory mapped
-> +peripheral.  This controller device is associated with one or more
-> +time stamping channels, each of which snoops on a MII bus.
-> +
-> +The "timestamper" property lives in a phy node and links a time
-> +stamping channel from the controller device to that phy's MII bus.
-> +
-> +Example:
-> +
-> +	tstamper: timestamper@10000000 {
-> +		compatible = "bigcorp,ts-ctrl";
-
-Would be better to use a real example here.
-
-> +	};
-> +
-> +	ethernet@20000000 {
-> +		mdio {
-> +			phy@1 {
-> +				timestamper = <&tstamper 0>;
-> +			};
+> +		cpu_scp_hpri: scp-shmem@200 {
+> +			compatible = "arm,scmi-shmem";
+> +			reg = <0x200 0x200>;
 > +		};
 > +	};
 > +
-> +	ethernet@30000000 {
-> +		mdio {
-> +			phy@2 {
-> +				timestamper = <&tstamper 1>;
-> +			};
+> +	smc_mbox: mailbox {
+
+This should be a child of 'firmware' node at least and really a child of 
+the firmware component that implements the feature.
+
+> +		#mbox-cells = <1>;
+> +		compatible = "arm,smc-mbox";
+> +		method = "smc";
+> +		arm,num-chans = <0x2>;
+> +		/* Optional */
+> +		arm,func-ids = <0xc20000fe>, <0xc20000ff>;
+> +	};
+> +
+> +	firmware {
+> +		scmi {
+> +			compatible = "arm,scmi";
+> +			mboxes = <&mailbox 0 &mailbox 1>;
+> +			mbox-names = "tx", "rx";
+> +			shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
 > +		};
 > +	};
 > +
-> +In this example, time stamps from the MII bus attached to phy@1 will
-> +appear on time stamp channel 0 (zero), and those from phy@2 appear on
-> +channel 1.
+> +
+> +[1]
+> +http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.den0028a/index.html
 > -- 
-> 2.11.0
+> 2.16.4
 > 
