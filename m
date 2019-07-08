@@ -2,154 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F28CB6276A
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 19:40:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC8386279B
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 19:50:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729778AbfGHRke (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 13:40:34 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:43502 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728189AbfGHRkc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 13:40:32 -0400
-Received: by mail-ot1-f65.google.com with SMTP id q10so17021108otk.10;
-        Mon, 08 Jul 2019 10:40:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=KSVacs8YIm4Q8FN/mo4VvWI9vvPJ+1SwGrfqSjXCwAs=;
-        b=cdBffCSMGovpdqOuw2eSAroY4VE3XeTKZxsETQ39SYm80rCHztdOezzH+hyadWxoF6
-         9dF8HVPWqM2q7E/vKF4k5/jrbKVOhfmoDju+uAtMNFbI/MTySJ5BUf1T96iKq5aLuUJg
-         /edDw5SHMcsEJXpJlZyLKdfiM7PZ1ETj1uPHBJTw1H8278WnXEmz2dPlUImQct6O/LHi
-         jLjPYYsoXgdmgPplMoare0LZmrcaFgAtR6HN3+WQvmvfpw653It07PGr6VZZLfWt5d0r
-         PhbGvmsdyM1q0L6fhqjrhsUDeNpWbHLlUA3R/ocXz8R4FCpSnzbcj4DqOko+OJqaMsHC
-         LJ5A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=KSVacs8YIm4Q8FN/mo4VvWI9vvPJ+1SwGrfqSjXCwAs=;
-        b=fa4zjA5TAXTTLj+SSoSr1nwZ6JAk/PRxA/CQwrGFLnxWjTlO0DZje8UeckR8JkUgrH
-         Nv0kFKxq2j95EDKwC7TlpdJ+brIiRpo3kTQcvkL/GOtvl86Jr85KkrFJBYgxzNgtQz+3
-         fZheclsnatohiCfNoggLLfYFvkQtLUsGk+XI0xV6k1TYqzft+0Orp2nNJmXi3nKTMBX1
-         mQLDzeL10IRDT23WPykfzl9ZN7TqDTzoHRELKrMVxEB5+o9QB2dxC+XLQHMxj8/c2Kg5
-         UpS4dS8Je5DbGJ61JLZ7zmCQJYrH4caCmOAtEHtYA4J4/v0bKP0GLG4TeCTGjWKfGK5c
-         cA9A==
-X-Gm-Message-State: APjAAAXWGsx//6kinMCE0Cu/C1XHhTG4k62oySvAmLTf1YxK6q/ZGqBo
-        GS13dhlRwc0RVq/PD6W7eoO0np+nn2/Wma+VGgI=
-X-Google-Smtp-Source: APXvYqynS/GXRYen51q6ZZMCoT3bwhm+IUspfjINhfxpNq0N4KVOCnl2xnKfOrIoZv2GGw5qYNdOUzo9QUm7BhURwy0=
-X-Received: by 2002:a9d:39a6:: with SMTP id y35mr16024114otb.81.1562607630822;
- Mon, 08 Jul 2019 10:40:30 -0700 (PDT)
+        id S1730940AbfGHRuQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 13:50:16 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:41184 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730936AbfGHRuP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 13:50:15 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 6F4BD80636;
+        Mon,  8 Jul 2019 19:50:09 +0200 (CEST)
+Date:   Mon, 8 Jul 2019 19:50:08 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Doug Anderson <dianders@chromium.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sean Paul <seanpaul@chromium.org>, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Jeffy Chen <jeffy.chen@rock-chips.com>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Enric =?iso-8859-1?Q?Balletb=F2?= <enric.balletbo@collabora.com>,
+        =?iso-8859-1?Q?St=E9phane?= Marchesin <marcheu@chromium.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: Re: [PATCH v5 2/7] drm/panel: simple: Add ability to override
+ typical timing
+Message-ID: <20190708175007.GA3511@ravnborg.org>
+References: <20190401171724.215780-1-dianders@chromium.org>
+ <20190401171724.215780-3-dianders@chromium.org>
+ <20190630202246.GB15102@ravnborg.org>
+ <CAD=FV=V_wTD1xpkXRe-z2HsZ8QXKq7jmq8CsfhMnFxi-5XDJjw@mail.gmail.com>
 MIME-Version: 1.0
-References: <20190708173330.13217-1-martin.blumenstingl@googlemail.com> <20190708173330.13217-3-martin.blumenstingl@googlemail.com>
-In-Reply-To: <20190708173330.13217-3-martin.blumenstingl@googlemail.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Mon, 8 Jul 2019 19:40:19 +0200
-Message-ID: <CAFBinCD8UG5PtCLzFDmiK22T03TVgGrgLB1zW3vLOAvXWs3Tvg@mail.gmail.com>
-Subject: Re: [PATCH RFC v1 2/2] mmc: host: meson-mx-sdhc: new driver for the
- Amlogic Meson SDHC host
-To:     jianxin.pan@amlogic.com
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        mark.rutland@arm.com, robh+dt@kernel.org, ulf.hansson@linaro.org,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-amlogic@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAD=FV=V_wTD1xpkXRe-z2HsZ8QXKq7jmq8CsfhMnFxi-5XDJjw@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
+        a=AWgJsaMlI6ysr0MxQJMA:9 a=0846P8UFn4bgp1PN:21 a=puqGkp3IltQWEqwz:21
+        a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Jianxin,
+Hi Dough.
 
-I thought I'd put my questions inline again so it's easier to follow me.
-I hope you can help clarify some of the questions I have.
+On Mon, Jul 01, 2019 at 09:39:24AM -0700, Doug Anderson wrote:
+> Hi,
+> 
+> On Sun, Jun 30, 2019 at 1:22 PM Sam Ravnborg <sam@ravnborg.org> wrote:
+> >
+> > > @@ -91,6 +92,8 @@ struct panel_simple {
+> > >       struct i2c_adapter *ddc;
+> > >
+> > >       struct gpio_desc *enable_gpio;
+> > > +
+> > > +     struct drm_display_mode override_mode;
+> > I fail to see where this poiter is assigned.
+> 
+> In panel_simple_parse_override_mode().  Specifically:
+> 
+> drm_display_mode_from_videomode(&vm, &panel->override_mode);
 
-On Mon, Jul 8, 2019 at 7:33 PM Martin Blumenstingl
-<martin.blumenstingl@googlemail.com> wrote:
->
-> WiP - only partially working - see performance numbers.
->
-> Odroid-C1 eMMC (HS-200):
-> Amlogic's vendor driver @ Linux 3.10:
->   7781351936 bytes (7.8 GB) copied, 134.714 s, 57.8 MB/s
-> This driver:
->   7781351936 bytes (7.8 GB, 7.2 GiB) copied, 189.02 s, 41.2 MB/s
->
-> EC-100 eMMC (HS MMC):
-> Amlogic's vendor driver @ Linux 3.10:
->   15762194432 bytes (16 GB) copied, 422.967 s, 37.3 MB/s
-> This driver:
->   15762194432 bytes (16 GB, 15 GiB) copied, 9232.65 s, 1.7 MB/s
-my EC-100 board uses high-speed MMC (no HS-200) mode only and it's
-really bad there
-on Odroid-C1 the MMC the performance is at ~70% of the 3.10 kernel driver
+The above code-snippet is only called in the panel has specified display
+timings using display_timings - it is not called when display_mode is
+used.
+So override_mode is only assigned in some cases and not all cases.
+This needs to be fixed so we do not reference override_mode unless
+it is set.
 
-my thinking is that phase tuning "fixes" the performance on Odroid-C1
-(EC-100 doesn't use tuning because it's not using HS-200 mode).
-I could be wrong here though. Please let me know if you have any suggestions
+> 
+> 
+> > @@ -152,6 +162,44 @@ static int panel_simple_get_fixed_modes(struct panel_simple *panel)
+> > >               num++;
+> > >       }
+> > >
+> > > +     return num;
+> > > +}
+> > > +
+> > > +static int panel_simple_get_non_edid_modes(struct panel_simple *panel)
+> > > +{
+> > > +     struct drm_connector *connector = panel->base.connector;
+> > > +     struct drm_device *drm = panel->base.drm;
+> > > +     struct drm_display_mode *mode;
+> > > +     bool has_override = panel->override_mode.type;
+> > This looks suspicious.
+> > panel->override_mode.type is an unsigned int that may have a number of
+> > bits set.
+> > So the above code implicitly convert a .type != 0 to a true.
+> > This can be expressed in a much more reader friendly way.
+> 
+> You would suggest that I add a boolean field to a structure to
+> indicate whether an override mode is present?
+A simple  bool has_override = panel->override_mode.type != 0;
+would do the trick here.
+Then there is no hidden conversion from int to a bool.
 
+But as override_mode can be NULL something more needs to be done.
 
-[...]
-> +               if (mmc->actual_clock > 100000000) {
-> +                       rx_clk_phase = 1;
-> +               } else if (mmc->actual_clock > 45000000) {
-> +                       if (ios->signal_voltage == MMC_SIGNAL_VOLTAGE_330)
-> +                               rx_clk_phase = 15;
-> +                       else
-> +                               rx_clk_phase = 11;
-> +               } else if (mmc->actual_clock >= 25000000) {
-> +                       rx_clk_phase = 15;
-> +               } else if (mmc->actual_clock > 5000000) {
-> +                       rx_clk_phase = 23;
-> +               } else if (mmc->actual_clock > 1000000) {
-> +                       rx_clk_phase = 55;
-> +               } else {
-> +                       rx_clk_phase = 1061;
-> +               }
-this MMC clock frequency to RX clock phase mapping only seems to work
-for FCLK_DIV3
-how do I calculate this dynamically?
-
-[...]
-> +static int meson_mx_sdhc_register_clks(struct meson_mx_sdhc_host *host)
-> +{
-> +       struct clk *mux_parents[MESON_SDHC_PARENT_CLKS];
-> +       struct clk *mux_clk, *div_clk;
-> +       int i;
-> +
-> +       for (i = 0; i < MESON_SDHC_PARENT_CLKS; i++)
-> +               mux_parents[i] = host->parent_clks[i].clk;
-> +
-> +       host->clkc_clk_src_sel.reg = host->base + MESON_SDHC_CLKC;
-> +       host->clkc_clk_src_sel.shift = __ffs(MESON_SDHC_CLKC_CLK_SRC_SEL);
-> +       host->clkc_clk_src_sel.mask = MESON_SDHC_CLKC_CLK_SRC_SEL >>
-> +                                     host->clkc_clk_src_sel.shift;
-> +       mux_clk = meson_mx_sdhc_register_clk(mmc_dev(host->mmc),
-> +                                            &host->clkc_clk_src_sel.hw,
-> +                                            "clk_src_sel",
-> +                                            MESON_SDHC_PARENT_CLKS,
-> +                                            mux_parents,
-> +                                            CLK_SET_RATE_NO_REPARENT,
-> +                                            &clk_mux_ops);
-> +       if (IS_ERR(mux_clk))
-> +               return PTR_ERR(mux_clk);
-> +
-> +       host->clkc_clk_div.reg = host->base + MESON_SDHC_CLKC;
-> +       host->clkc_clk_div.shift = __ffs(MESON_SDHC_CLKC_CLK_DIV);
-> +       host->clkc_clk_div.width = fls(MESON_SDHC_CLKC_CLK_DIV) -
-> +                                  host->clkc_clk_div.shift;
-are there any constraints for the divider?
-the driver from the Amlogic kernel sources does this, but I'm not sure
-what this is trying to achieve (and why):
-       clk_div = input_rate / clk_ios - !(input_rate%clk_ios);
-       if (!(clk_div & 0x01)) // if even number, turn it to an odd one
-          clk_div++;
-
-[...]
-> +       mmc->max_busy_timeout = 0; // TODO: actual value?
-do you know the actual busy timeout of this IP block?
-
-
-Thank you for your time!
-Regards
-Martin
+	Sam
