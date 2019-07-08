@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C98B6295B
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 21:25:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B90D6295D
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 21:25:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388726AbfGHTZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 15:25:14 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:36747 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391538AbfGHTZN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 15:25:13 -0400
-Received: by mail-pf1-f194.google.com with SMTP id r7so8076492pfl.3
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 12:25:13 -0700 (PDT)
+        id S2391669AbfGHTZQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 15:25:16 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:44510 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391685AbfGHTZP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 15:25:15 -0400
+Received: by mail-pl1-f193.google.com with SMTP id t14so5677237plr.11
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 12:25:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=c4uAWO2xmu252LdOM6iPnY9UopRO1Fi//IgaHZgpov0=;
-        b=iNpeBQQtfqQ1TJgqESjgV+5IBBSVIreasZT6U7MhxHRWjaW9uKqclQb0B2/IdiMbRL
-         O8n2L57pWVTNk6rXEkNDCaQ9bTUt1wgOqlFMrh/tLfuWRw9VDeYy8b979ZJcQQhnwvh2
-         0coB/WG9kysdaS0v8smC8q682OH+v+ZBADAJs=
+        bh=Z5eHwBNuWYWKF1GupD4lDii6DsKsGEYAJZvTYM/KCqI=;
+        b=g6DmxOlfjJavtQhzMxF93mSr+YoVsWfSuyZx1EJ62H9u6NIRhiIUo6rQbpJL0oyftP
+         RVtP7lAuSo7E6rRmRJg94S5J3R/vu5pv1kgMpCqkXNEGCV0WHZvkY9PoO/kTHAWzCcxH
+         vhRvNRkEsOzAHw0MhR0Y9OsFyaOruo1jmuQ0w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=c4uAWO2xmu252LdOM6iPnY9UopRO1Fi//IgaHZgpov0=;
-        b=UF2NYPefytCcT/BH9Ce4gpkTQUoNqKszb7qL8eyNqgMvGYiF8VJgVYUnS90gSZtIwT
-         z54S8QUyJcALO2S4QtTDBPLCC5vAoH66YBgeZP8GZP/IZg0kKEm6Z+/qWWbEeSJCt0eD
-         im/YUbayOtjWRkjFmmP3T9sucfgeWSnjY3RFEqSpN+b2yBSioxKOXY6pHOMnJ7jL4AfU
-         L5AZCsmqS1qvGo36pCqXoB1pB6TY9ut5nJ5TaE4VAS3YTPAAIsfUGypSOmnJBWEDfHWa
-         Vsl7v1POUrWE4rIg7LQVX2gQ1DOhsX7DhAnAUS54wGSQaFDm6OhfO3oP0BmPwRWWfOB4
-         hx/Q==
-X-Gm-Message-State: APjAAAXiE20WvFUYc1wmRdgOeESXhH17hICCn4z6MZNtlMDip65QL5qL
-        MqYo21SVc0sdV8d4BMQw4KjddA==
-X-Google-Smtp-Source: APXvYqxeCVlZXRSm30fM1wf1daKaYzqjidYa7WK1HTymDcqUGGTSmv1xpCiMrgFjDK0wArf5QNMt7A==
-X-Received: by 2002:a17:90a:d996:: with SMTP id d22mr27797320pjv.86.1562613913084;
-        Mon, 08 Jul 2019 12:25:13 -0700 (PDT)
+        bh=Z5eHwBNuWYWKF1GupD4lDii6DsKsGEYAJZvTYM/KCqI=;
+        b=XN8I3KPIzl3HsHqLndS/be/GcYGlDF9nRo36e+B6WJB7NUbRoCbEjBsj1VARQ8cPwB
+         k6c7LyoC4dL4MNPFuPzac1imLswlGxkp2VxngYaY7ttSsyijkn4tctw6K+o3c3jCKrZV
+         5V4Nib8AZeQT0UViKBi0IPTM+qZBDiZb1Wz6i84G2/IQvIi5aZdW2r87ED1/1ZfyH41t
+         fujO/Hp5GwCAnXob60S1j5p7BjKfPZaEkUXZo0/TRzx2f/jlxLM8XqLBKAcgTW8t8BmJ
+         yfBJIAPmL0S1kzG8VjDXcgbIckuIMt1e0ceVEi6Lil135NU3uf++GHLSiEMwF/LU6rel
+         JLRw==
+X-Gm-Message-State: APjAAAWRH3+yQCYboWvYaWm0Yc42q3qH6HP98LVQOKqo+F1ST3sWeoWO
+        K7eDGuPoSz76GjeZ3FO5CnYPrg==
+X-Google-Smtp-Source: APXvYqzfy0HVoxjXdQF/nkAhmrMgk9z+IbtHFWroP7aqxCr0POXhMb28WjmetIMRN/0+fXLRkz9HFw==
+X-Received: by 2002:a17:902:f81:: with SMTP id 1mr26692509plz.191.1562613914916;
+        Mon, 08 Jul 2019 12:25:14 -0700 (PDT)
 Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id t17sm20193715pgg.48.2019.07.08.12.25.12
+        by smtp.gmail.com with ESMTPSA id x65sm23185986pfd.139.2019.07.08.12.25.14
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 08 Jul 2019 12:25:12 -0700 (PDT)
+        Mon, 08 Jul 2019 12:25:14 -0700 (PDT)
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
@@ -52,9 +52,9 @@ Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
         Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v3 2/7] net: phy: realtek: Allow disabling RTL8211E EEE LED mode
-Date:   Mon,  8 Jul 2019 12:24:54 -0700
-Message-Id: <20190708192459.187984-3-mka@chromium.org>
+Subject: [PATCH v3 3/7] dt-bindings: net: realtek: Add property to enable SSC
+Date:   Mon,  8 Jul 2019 12:24:55 -0700
+Message-Id: <20190708192459.187984-4-mka@chromium.org>
 X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
 In-Reply-To: <20190708192459.187984-1-mka@chromium.org>
 References: <20190708192459.187984-1-mka@chromium.org>
@@ -65,96 +65,43 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-EEE LED mode is enabled by default on the RTL8211E. Disable it when
-the device tree property 'realtek,eee-led-mode-disable' exists.
-
-The magic values to disable EEE LED mode were taken from the RTL8211E
-datasheet, unfortunately they are not further documented.
+Add the 'realtek,enable-ssc' property to enable Spread Spectrum
+Clocking (SSC) on Realtek PHYs that support it.
 
 Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 ---
-TODO: DT validation
-
 Changes in v3:
-- don't have two versions of rtl8211e_config_init()
-  (was due to my dev kernel being 4.19, which doesn't have
-   this function yet)
-- changed return type of rtl8211e_disable_eee_led_mode() to void
-- added empty line after rtl8211e_config_init()
+- changed wording for supported PHY models
 
 Changes in v2:
-- patch added to the series
+- patch added to the series (kind of, it already existed, but now
+  the binding is created by another patch)
 ---
- drivers/net/phy/realtek.c | 31 ++++++++++++++++++++++++++++++-
- 1 file changed, 30 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/net/realtek.txt | 5 +++++
+ 1 file changed, 5 insertions(+)
 
-diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
-index a669945eb829..827ea7ed080d 100644
---- a/drivers/net/phy/realtek.c
-+++ b/drivers/net/phy/realtek.c
-@@ -9,8 +9,9 @@
-  * Copyright (c) 2004 Freescale Semiconductor, Inc.
-  */
- #include <linux/bitops.h>
--#include <linux/phy.h>
- #include <linux/module.h>
-+#include <linux/of.h>
-+#include <linux/phy.h>
+diff --git a/Documentation/devicetree/bindings/net/realtek.txt b/Documentation/devicetree/bindings/net/realtek.txt
+index db0333f23fec..af2824664f08 100644
+--- a/Documentation/devicetree/bindings/net/realtek.txt
++++ b/Documentation/devicetree/bindings/net/realtek.txt
+@@ -15,6 +15,10 @@ Optional properties:
  
- #define RTL821x_PHYSR				0x11
- #define RTL821x_PHYSR_DUPLEX			BIT(13)
-@@ -26,6 +27,10 @@
- #define RTL821x_EXT_PAGE_SELECT			0x1e
- #define RTL821x_PAGE_SELECT			0x1f
+   Only supported for "realtek,rtl8211e".
  
-+/* RTL8211E page 5 */
-+#define RTL8211E_EEE_LED_MODE1			0x05
-+#define RTL8211E_EEE_LED_MODE2			0x06
++- realtek,enable-ssc : Enable Spread Spectrum Clocking (SSC) on this port.
 +
- #define RTL8211F_INSR				0x1d
++  Only supported for "realtek,rtl8211e".
++
  
- #define RTL8211F_TX_DELAY			BIT(8)
-@@ -53,6 +58,26 @@ static int rtl821x_write_page(struct phy_device *phydev, int page)
- 	return __phy_write(phydev, RTL821x_PAGE_SELECT, page);
- }
+ Example:
  
-+static void rtl8211e_disable_eee_led_mode(struct phy_device *phydev)
-+{
-+	int oldpage;
-+	int err = 0;
-+
-+	oldpage = phy_select_page(phydev, 5);
-+	if (oldpage < 0)
-+		goto out;
-+
-+	/* write magic values to disable EEE LED mode */
-+	err = __phy_write(phydev, RTL8211E_EEE_LED_MODE1, 0x8b82);
-+	if (err)
-+		goto out;
-+
-+	err = __phy_write(phydev, RTL8211E_EEE_LED_MODE2, 0x052b);
-+
-+out:
-+	phy_restore_page(phydev, oldpage, err);
-+}
-+
- static int rtl8201_ack_interrupt(struct phy_device *phydev)
- {
- 	int err;
-@@ -184,9 +209,13 @@ static int rtl8211f_config_init(struct phy_device *phydev)
- 
- static int rtl8211e_config_init(struct phy_device *phydev)
- {
-+	struct device *dev = &phydev->mdio.dev;
- 	int ret = 0, oldpage;
- 	u16 val;
- 
-+	if (of_property_read_bool(dev->of_node, "realtek,eee-led-mode-disable"))
-+		rtl8211e_disable_eee_led_mode(phydev);
-+
- 	/* enable TX/RX delay for rgmii-* modes, and disable them for rgmii. */
- 	switch (phydev->interface) {
- 	case PHY_INTERFACE_MODE_RGMII:
+@@ -27,5 +31,6 @@ mdio0 {
+ 		compatible = "realtek,rtl8211e";
+ 		reg = <1>;
+ 		realtek,eee-led-mode-disable;
++		realtek,enable-ssc;
+ 	};
+ };
 -- 
 2.22.0.410.gd8fdbe21b5-goog
 
