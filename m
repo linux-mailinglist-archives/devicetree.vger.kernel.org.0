@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 09E6D62C3B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 00:56:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFB8C62C42
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 00:57:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728630AbfGHW4q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 18:56:46 -0400
-Received: from mail-pf1-f202.google.com ([209.85.210.202]:53345 "EHLO
-        mail-pf1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728571AbfGHW4p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 18:56:45 -0400
-Received: by mail-pf1-f202.google.com with SMTP id 191so5056527pfy.20
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 15:56:44 -0700 (PDT)
+        id S1728713AbfGHW4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 18:56:49 -0400
+Received: from mail-qt1-f201.google.com ([209.85.160.201]:51397 "EHLO
+        mail-qt1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728711AbfGHW4s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 18:56:48 -0400
+Received: by mail-qt1-f201.google.com with SMTP id m25so7923915qtn.18
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 15:56:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=mgBpCx6CWfEZqhYDHYS+zPohWIoo7fdF1geROPA0ULA=;
-        b=hervEiYDs7Q2SvRkIEf4brdnTQw7MghOqdn01eWpOIXXBzvIUrL4jTkv4icYVN2koO
-         brxuISIVjc9VvRW4aalVzfm6BQjNdpUKauHIJNNcQBkfpNQi3kjOhi9hsiiP11+8K+8p
-         VoIzjJnjaB99WjFGjehw34T0aQndgbmBFZiPaaxqMdFyeiklH+DviZ2YIoH+CmpggYA9
-         DPb5pu0zmGBundTxk5VBYS4uY8jWR/vjchjNawojxL4wEthSGO5ihTQVXogbPdenT8Ui
-         eTlmueTUJP8c9+pDz1oBrklJ5JjD5CsqSFQiL7gkd2LTWsa4jTUJMsDPCP8tp77WoPh6
-         3Nww==
+        bh=u1eu5Q6qNnosVNL7ZS50tOQF+TSWAKuZjVys5X8lD3k=;
+        b=WGI50DdYYx+Uhgt7xYtokHpc+GBb8ht5o/y+/bOew2g9L4TI3CIL3otG9zQBwG6pKj
+         zBvvqcnXmdQCddkCO/0mOEPYwl9XkVTHDBHJuaONn/jcEploVqB982SvtJfhJDl3N4EW
+         rUeKytatMYLpHjrJzjLXjhDqCD7ctM+rz+QhWCPVBClBTxexTGKq4ebLdaxj24Yeja1q
+         nF2tTDG1LOJM3yZ+iNYLO+ZtUfvlpGWE8r0DoX8gnlg0I5IFtu7ttKm0zlx7iRJ5drwz
+         MY8eQP5HUaL5wYrnjGk6eM9KQcQLQ8xqTtKsjluRJVNASqwF8D2gNDvxLaREzs4/mNke
+         d7zg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=mgBpCx6CWfEZqhYDHYS+zPohWIoo7fdF1geROPA0ULA=;
-        b=UR6dGOuA7f3blvaw5NrojJX58CBQSdHzMes32bicgr83zpKJ7q7gTEo45DL3BV0VdM
-         rwZnCv6SMdkHsHuGlH2arhC3sdWf6+abEK263uuNpdbM17ErUmb78uGx0L1N7qerzCQa
-         21CsTx6Zx/3bjrKNbxSZtj9rL54zGHPMEUS+kP0a1lvpwCpn+5wF48j2c9gVjfufpopB
-         3Z/JS4fdivCZqebT9nt0rseaz+9wv7XtxDZ0CJzgKVDR5wB1/qKfmizcWxt1D1YDcG4a
-         L/nYYostQDDxK2vMaSoebKJTc8VHGfDircZLBv8TyIOE3pmqgMEJ11inDe5TA0DlBwez
-         av5Q==
-X-Gm-Message-State: APjAAAWiuFta2axquNXimPM2UBH3WShWwUUM7IYk3waHZ45CDPMWHa4a
-        HjIqlZD3ju/xFsZIAYGY7RH1tWqUuR5Plb0=
-X-Google-Smtp-Source: APXvYqw+JRwFHBWaLEPLqJFvJKQ+G1E3/hF7EaAb3AIHa4dGZbu0e1sAZPJNBDubpeqbj2mmUlAabS326cgaiIU=
-X-Received: by 2002:a63:1310:: with SMTP id i16mr26194626pgl.187.1562626604106;
- Mon, 08 Jul 2019 15:56:44 -0700 (PDT)
-Date:   Mon,  8 Jul 2019 15:56:21 -0700
+        bh=u1eu5Q6qNnosVNL7ZS50tOQF+TSWAKuZjVys5X8lD3k=;
+        b=gY8h/QPLWDfac4tohziZcKIv35srqEZDn9qtyQB2pWZvnCQDFe5g1KmwmMR/ocef5t
+         rdk1VDHdmd6mYkQs+N2KL6Nuzn+OQaypRqpbtkSkWtBkAQcpn4NhCVZJpjZoWLsiF5HR
+         1Pt9FbFS9ujIp6cWLwLm2W68hxvORMQxUQDzbu7tmvHR7wdmtM1NXpb5EDRvOZkUaXrV
+         5F34OLls8loV5ugy9PDXQP0GRwAu9YLDNmqpLLvI1f3rdRRwPieUpqrV2quzXnvjaflB
+         PQDpWlVzBZavrYpVpMV2U31OOPOVTomK35tSQgz44nqUqr5v/+le9WyXommU7angrPDn
+         oHwQ==
+X-Gm-Message-State: APjAAAV9nN2OJz83fL5+uzVosU2JU50tAK0EiymDQ8NhXX27gFgR/N7l
+        NbDt9xk2HOEpUgIdsiMqen871klZOtBe2ec=
+X-Google-Smtp-Source: APXvYqwvRo+4i76hVWIzQ54oOss1Uos7FRzSKKQK6Nv32bMLUcRsIH63nzjSOE5keCoHd7ixFyLGNDMc2TWbAtM=
+X-Received: by 2002:a37:4c4e:: with SMTP id z75mr16269072qka.230.1562626607478;
+ Mon, 08 Jul 2019 15:56:47 -0700 (PDT)
+Date:   Mon,  8 Jul 2019 15:56:22 -0700
 In-Reply-To: <20190708225624.119973-1-saravanak@google.com>
-Message-Id: <20190708225624.119973-6-saravanak@google.com>
+Message-Id: <20190708225624.119973-7-saravanak@google.com>
 Mime-Version: 1.0
 References: <20190708225624.119973-1-saravanak@google.com>
 X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
-Subject: [PATCH v4 5/8] driver core: Add APIs to pause/resume sync state callbacks
+Subject: [PATCH v4 6/8] of/platform: Pause/resume sync state in of_platform_populate()
 From:   Saravana Kannan <saravanak@google.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -63,155 +63,39 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-When multiple devices are added after kernel init, some suppliers could be
-added before their consumer devices get added. In these instances, the
-supplier devices could get their sync_state callback called right after
-they probe because the consumers haven't had a chance to create device
-links to the suppliers.
+When multiple child devices are populated using of_platform_populate()
+after kernel init, there could be supplier-consumer dependencies between
+the child devices.
 
-This change adds APIs to pause/resume sync state callbacks so that when
-multiple devices are added, their sync_state callback evaluation can be
-postponed to happen after all of them are added.
+Wait for all the devices to be added and linked before calling sync_state()
+on all the suppliers.
 
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/base/core.c    | 34 +++++++++++++++++++++++++++-------
- drivers/of/platform.c  |  5 ++---
- include/linux/device.h |  6 ++++--
- 3 files changed, 33 insertions(+), 12 deletions(-)
+ drivers/of/platform.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/drivers/base/core.c b/drivers/base/core.c
-index dce97b5f3536..1c08f8614ae1 100644
---- a/drivers/base/core.c
-+++ b/drivers/base/core.c
-@@ -46,7 +46,8 @@ early_param("sysfs.deprecated", sysfs_deprecated_setup);
- /* Device links support. */
- static LIST_HEAD(wait_for_suppliers);
- static DEFINE_MUTEX(wfs_lock);
--static bool supplier_sync_state_enabled;
-+static LIST_HEAD(deferred_sync);
-+static unsigned int supplier_sync_state_disabled;
- 
- #ifdef CONFIG_SRCU
- static DEFINE_MUTEX(device_links_lock);
-@@ -657,17 +658,32 @@ static void __device_links_supplier_sync_state(struct device *dev)
- 	dev->state_synced = true;
- }
- 
--int device_links_supplier_sync_state(struct device *dev, void *data)
-+void device_links_supplier_sync_state_pause(void)
- {
- 	device_links_write_lock();
--	__device_links_supplier_sync_state(dev);
-+	supplier_sync_state_disabled++;
- 	device_links_write_unlock();
--	return 0;
- }
- 
--void device_links_supplier_sync_state_enable(void)
-+void device_links_supplier_sync_state_resume(void)
- {
--	supplier_sync_state_enabled = true;
-+	struct device *dev, *tmp;
-+
-+	device_links_write_lock();
-+	if (!supplier_sync_state_disabled) {
-+		WARN(true, "Unmatched sync_state pause/resume!");
-+		goto out;
-+	}
-+	supplier_sync_state_disabled--;
-+	if (supplier_sync_state_disabled)
-+		goto out;
-+
-+	list_for_each_entry_safe(dev, tmp, &deferred_sync, links.defer_sync) {
-+		__device_links_supplier_sync_state(dev);
-+		list_del_init(&dev->links.defer_sync);
-+	}
-+out:
-+	device_links_write_unlock();
- }
- 
- /**
-@@ -715,7 +731,9 @@ void device_links_driver_bound(struct device *dev)
- 		WARN_ON(link->status != DL_STATE_CONSUMER_PROBE);
- 		WRITE_ONCE(link->status, DL_STATE_ACTIVE);
- 
--		if (supplier_sync_state_enabled)
-+		if (supplier_sync_state_disabled)
-+			list_add_tail(&dev->links.defer_sync, &deferred_sync);
-+		else
- 			__device_links_supplier_sync_state(link->supplier);
- 	}
- 
-@@ -826,6 +844,7 @@ void device_links_driver_cleanup(struct device *dev)
- 		WRITE_ONCE(link->status, DL_STATE_DORMANT);
- 	}
- 
-+	list_del_init(&dev->links.defer_sync);
- 	__device_links_no_driver(dev);
- 
- 	device_links_write_unlock();
-@@ -1797,6 +1816,7 @@ void device_initialize(struct device *dev)
- 	INIT_LIST_HEAD(&dev->links.consumers);
- 	INIT_LIST_HEAD(&dev->links.suppliers);
- 	INIT_LIST_HEAD(&dev->links.needs_suppliers);
-+	INIT_LIST_HEAD(&dev->links.defer_sync);
- 	dev->links.status = DL_DEV_NO_DRIVER;
- }
- EXPORT_SYMBOL_GPL(device_initialize);
 diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 4d12d6658999..56b718f09929 100644
+index 56b718f09929..dba962a0ee50 100644
 --- a/drivers/of/platform.c
 +++ b/drivers/of/platform.c
-@@ -581,6 +581,7 @@ static int __init of_platform_default_populate_init(void)
- 		return -ENODEV;
+@@ -486,6 +486,7 @@ int of_platform_populate(struct device_node *root,
+ 	pr_debug("%s()\n", __func__);
+ 	pr_debug(" starting at: %pOF\n", root);
  
- 	platform_bus_type.add_links = of_link_to_suppliers;
 +	device_links_supplier_sync_state_pause();
- 	/*
- 	 * Handle certain compatibles explicitly, since we don't want to create
- 	 * platform_devices for every node in /reserved-memory with a
-@@ -604,9 +605,7 @@ arch_initcall_sync(of_platform_default_populate_init);
- 
- static int __init of_platform_sync_state_init(void)
- {
--	device_links_supplier_sync_state_enable();
--	bus_for_each_dev(&platform_bus_type, NULL, NULL,
--			 device_links_supplier_sync_state);
+ 	for_each_child_of_node(root, child) {
+ 		rc = of_platform_bus_create(child, matches, lookup, parent, true);
+ 		if (rc) {
+@@ -493,6 +494,8 @@ int of_platform_populate(struct device_node *root,
+ 			break;
+ 		}
+ 	}
 +	device_links_supplier_sync_state_resume();
- 	return 0;
- }
- late_initcall_sync(of_platform_sync_state_init);
-diff --git a/include/linux/device.h b/include/linux/device.h
-index d3c9e70052d8..0ea28cb8c77e 100644
---- a/include/linux/device.h
-+++ b/include/linux/device.h
-@@ -926,12 +926,14 @@ enum dl_dev_state {
-  * @suppliers: List of links to supplier devices.
-  * @consumers: List of links to consumer devices.
-  * @needs_suppliers: Hook to global list of devices waiting for suppliers.
-+ * @defer_sync: Hook to global list of devices that have deferred sync_state.
-  * @status: Driver status information.
-  */
- struct dev_links_info {
- 	struct list_head suppliers;
- 	struct list_head consumers;
- 	struct list_head needs_suppliers;
-+	struct list_head defer_sync;
- 	enum dl_dev_state status;
- };
++
+ 	of_node_set_flag(root, OF_POPULATED_BUS);
  
-@@ -1438,8 +1440,8 @@ struct device_link *device_link_add(struct device *consumer,
- 				    struct device *supplier, u32 flags);
- void device_link_del(struct device_link *link);
- void device_link_remove(void *consumer, struct device *supplier);
--int device_links_supplier_sync_state(struct device *dev, void *data);
--void device_links_supplier_sync_state_enable(void);
-+void device_links_supplier_sync_state_pause(void);
-+void device_links_supplier_sync_state_resume(void);
- void device_link_remove_from_wfs(struct device *consumer);
- 
- #ifndef dev_fmt
+ 	of_node_put(root);
 -- 
 2.22.0.410.gd8fdbe21b5-goog
 
