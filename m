@@ -2,78 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 591FA62B66
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 00:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C3DA62B72
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 00:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725864AbfGHWWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 18:22:40 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:44459 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725815AbfGHWWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 18:22:40 -0400
-Received: by mail-io1-f65.google.com with SMTP id s7so38854552iob.11;
-        Mon, 08 Jul 2019 15:22:39 -0700 (PDT)
+        id S1726686AbfGHWaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 18:30:39 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:35599 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726371AbfGHWaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 18:30:39 -0400
+Received: by mail-io1-f68.google.com with SMTP id m24so29454806ioo.2;
+        Mon, 08 Jul 2019 15:30:38 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=j+TKZB9O7k+DtANgHGBfHBHuGR2fL+XIDhYBGfnpm5c=;
-        b=a8+AIXAQifBduWrllVxwxQPlXuIh1jF1Rj1PS+jkXmAACQ72pFPNG7SaQH4TYXdW/c
-         ZxpmDWbqFW/5Rwmz5DJZb2Zwq26EPZ8iMWTkY6K4Y69skgrRDNOAihLQIoePD4Fo9dYZ
-         Z0nwi0DkaCEPT1WpG6XVLeo/Ow84UoJNa+Aq2DHQh3gKEASU994K1jBw4Ukhr5lJpsJI
-         HoBGxerWBzEOOjg4WrNeh2OR5AW7c3F93PuKPsGAfWOniaffO3L1pIF81EhYafcNbKTD
-         psVlESlvNf3mzeJwub0dqSGXEXiurfka4aRamcS9CGuW6MPuTlNA46kHc8dpUeG9C+nm
-         bTjw==
-X-Gm-Message-State: APjAAAWdaX89LLWb4pwepS73r5Y2CPmak0gu8gBH7nCaxQI7Uel5wgmF
-        ImzPa0k/szDxuVMQ1JlBat6qebU=
-X-Google-Smtp-Source: APXvYqzFDsbgQ7fCs+NRybe+k3ZWI7EOwEOe9pO2Lrk17Q9cymxTA8kXF6V9k6yESGcyJ8+BjKOEZQ==
-X-Received: by 2002:a6b:b985:: with SMTP id j127mr21421472iof.186.1562624559280;
-        Mon, 08 Jul 2019 15:22:39 -0700 (PDT)
+        bh=DKbe5Bw/ZWkGGevk11CJOS1MNbgfdugSW24hlqZbzbo=;
+        b=tHMaGIsLukSuB6CqKCJfcHL9Q2DOFCpwAXWWSJqaAnjJK7Dccec+nKsYSuzgWH1Qsx
+         OjYvYIkG3UklEh2PUBZnhTXpyY45+9DQJ/dfsozrg18ACjNAyHpx7M0apPwC5TOdr+dk
+         zCFpxo4g9KWhOE3WYJfsbw5YxJqwfxMtwQ08PZxLECgnXcWQJTpoVV7cANRHkPVhzy8J
+         /4WvOLHa6u+kJVvOSqyKIaklRRiI2rXfWFDz9iomvPvcBGkuThS5OKQPBTOdB6Q9We79
+         SWSyaQCvTopobbSFB00XXp6+BwoyBUPd4iEDRc7fqNSs8nIomdzKQK0L27lQ7l8Mmrht
+         Qdaw==
+X-Gm-Message-State: APjAAAUcwDDdnycTaKhTUoaRWJSSIcrwWbRoEi9yt9/deASN568xaA8W
+        Ll7zRL0jxaoN3V+nQ1NEVA==
+X-Google-Smtp-Source: APXvYqzSDWN6ooiwDgwx+KLeyHhdjBuL+QsFBURU2G0UGLCiUVOLkcMQl1URO5AdsIaKlOsojsMMsg==
+X-Received: by 2002:a5e:c00e:: with SMTP id u14mr7422195iol.196.1562625037976;
+        Mon, 08 Jul 2019 15:30:37 -0700 (PDT)
 Received: from localhost ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id t133sm21552866iof.21.2019.07.08.15.22.38
+        by smtp.gmail.com with ESMTPSA id x22sm14429132iob.84.2019.07.08.15.30.36
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 08 Jul 2019 15:22:38 -0700 (PDT)
-Date:   Mon, 8 Jul 2019 16:22:37 -0600
+        Mon, 08 Jul 2019 15:30:36 -0700 (PDT)
+Date:   Mon, 8 Jul 2019 16:30:35 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     John Stultz <john.stultz@linaro.org>
-Cc:     lkml <linux-kernel@vger.kernel.org>,
-        John Stultz <john.stultz@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Amit Pundir <amit.pundir@linaro.org>,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/3 v2] dt-bindings: power: reset: qcom: Add
- qcom,pm8998-pon compatability line
-Message-ID: <20190708222237.GA30944@bogus>
-References: <20190603222319.62842-1-john.stultz@linaro.org>
+To:     min.guo@mediatek.com
+Cc:     Bin Liu <b-liu@ti.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        chunfeng.yun@mediatek.com, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, tony@atomide.com,
+        hdegoede@redhat.com
+Subject: Re: [PATCH v6 1/6] dt-bindings: usb: musb: Add support for MediaTek
+ musb controller
+Message-ID: <20190708223035.GA7005@bogus>
+References: <1559648359-6569-1-git-send-email-min.guo@mediatek.com>
+ <1559648359-6569-2-git-send-email-min.guo@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190603222319.62842-1-john.stultz@linaro.org>
+In-Reply-To: <1559648359-6569-2-git-send-email-min.guo@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  3 Jun 2019 22:23:17 +0000, John Stultz wrote:
-> Update bindings to support for qcom,pm8998-pon which uses gen2 pon
+On Tue, Jun 04, 2019 at 07:39:14PM +0800, min.guo@mediatek.com wrote:
+> From: Min Guo <min.guo@mediatek.com>
 > 
-> Cc: Andy Gross <agross@kernel.org>
-> Cc: David Brown <david.brown@linaro.org>
-> Cc: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Cc: Amit Pundir <amit.pundir@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Mark Rutland <mark.rutland@arm.com>
-> Cc: Sebastian Reichel <sre@kernel.org>
-> Cc: linux-arm-msm@vger.kernel.org
-> Cc: devicetree@vger.kernel.org
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> Signed-off-by: John Stultz <john.stultz@linaro.org>
+> This adds support for MediaTek musb controller in
+> host, peripheral and otg mode.
+> 
+> Signed-off-by: Min Guo <min.guo@mediatek.com>
 > ---
->  Documentation/devicetree/bindings/power/reset/qcom,pon.txt | 1 +
->  1 file changed, 1 insertion(+)
+> changes in v6:
+> 1. Modify usb connector child node
 > 
+> changes in v5:
+> suggested by Rob:
+> 1. Modify compatible as 
+> - compatible : should be one of:
+>                "mediatek,mt-2701"
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+No, should be: mediatek,mt2701-musb
+
+>                ...
+>                followed by "mediatek,mtk-musb"
+> 2. Add usb connector child node
+> 
+> changes in v4:
+> suggested by Sergei:
+> 1. String alignment
+> 
+> changes in v3:
+> 1. no changes
+> 
+> changes in v2:
+> suggested by Bin:
+> 1. Modify DRC to DRD
+> suggested by Rob:
+> 2. Drop the "<soc-model>-musb" in compatible
+> 3. Remove phy-names
+> 4. Add space after comma in clock-names
+> ---
+>  .../devicetree/bindings/usb/mediatek,musb.txt      | 55 ++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/usb/mediatek,musb.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,musb.txt b/Documentation/devicetree/bindings/usb/mediatek,musb.txt
+> new file mode 100644
+> index 0000000..7434299
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,musb.txt
+> @@ -0,0 +1,55 @@
+> +MediaTek musb DRD/OTG controller
+> +-------------------------------------------
+> +
+> +Required properties:
+> + - compatible      : should be one of:
+> +                     "mediatek,mt-2701"
+> +                     ...
+> +                     followed by "mediatek,mtk-musb"
+> + - reg             : specifies physical base address and size of
+> +                     the registers
+> + - interrupts      : interrupt used by musb controller
+> + - interrupt-names : must be "mc"
+> + - phys            : PHY specifier for the OTG phy
+> + - dr_mode         : should be one of "host", "peripheral" or "otg",
+> +                     refer to usb/generic.txt
+> + - clocks          : a list of phandle + clock-specifier pairs, one for
+> +                     each entry in clock-names
+> + - clock-names     : must contain "main", "mcu", "univpll"
+> +                     for clocks of controller
+> +
+> +Optional properties:
+> + - power-domains   : a phandle to USB power domain node to control USB's
+> +                     MTCMOS
+> +
+> +Required child nodes:
+> + usb connector node as defined in bindings/connector/usb-connector.txt
+> +Optional properties:
+> + - id-gpios        : input GPIO for USB ID pin.
+> + - vbus-gpios      : input GPIO for USB VBUS pin.
+> + - vbus-supply     : reference to the VBUS regulator, needed when supports
+> +                     dual-role mode
+> +
+> +Example:
+> +
+> +usb2: usb@11200000 {
+> +	compatible = "mediatek,mt2701-musb",
+> +		     "mediatek,mtk-musb";
+> +	reg = <0 0x11200000 0 0x1000>;
+> +	interrupts = <GIC_SPI 32 IRQ_TYPE_LEVEL_LOW>;
+> +	interrupt-names = "mc";
+> +	phys = <&u2port2 PHY_TYPE_USB2>;
+> +	dr_mode = "otg";
+> +	clocks = <&pericfg CLK_PERI_USB0>,
+> +		 <&pericfg CLK_PERI_USB0_MCU>,
+> +		 <&pericfg CLK_PERI_USB_SLV>;
+> +	clock-names = "main","mcu","univpll";
+> +	power-domains = <&scpsys MT2701_POWER_DOMAIN_IFR_MSC>;
+> +	connector{
+> +		compatible = "linux,typeb-conn-gpio", "usb-b-connector";
+
+linux,typeb-conn-gpio is not an accepted compatible string.
+
+> +		label = "micro-USB";
+> +		type = "micro";
+> +		id-gpios = <&pio 44 GPIO_ACTIVE_HIGH>;
+> +		vbus-supply = <&usb_vbus>;
+> +	};
+> +};
+> -- 
+> 1.9.1
+> 
