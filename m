@@ -2,88 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 48EB861B79
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 09:58:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 938F461BA5
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 10:25:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728573AbfGHH6g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 03:58:36 -0400
-Received: from mx1.redhat.com ([209.132.183.28]:60256 "EHLO mx1.redhat.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725836AbfGHH6e (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Jul 2019 03:58:34 -0400
-Received: from smtp.corp.redhat.com (int-mx01.intmail.prod.int.phx2.redhat.com [10.5.11.11])
-        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
-        (No client certificate requested)
-        by mx1.redhat.com (Postfix) with ESMTPS id 268CB3092640;
-        Mon,  8 Jul 2019 07:58:34 +0000 (UTC)
-Received: from [10.36.116.46] (ovpn-116-46.ams2.redhat.com [10.36.116.46])
-        by smtp.corp.redhat.com (Postfix) with ESMTPS id BDBC018ACB;
-        Mon,  8 Jul 2019 07:58:31 +0000 (UTC)
-Subject: Re: [PATCH 2/8] dt-bindings: document PASID property for IOMMU
- masters
-To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>,
-        will.deacon@arm.com
-Cc:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        robin.murphy@arm.com, jacob.jun.pan@linux.intel.com,
-        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
- <20190610184714.6786-3-jean-philippe.brucker@arm.com>
-From:   Auger Eric <eric.auger@redhat.com>
-Message-ID: <4a90dc21-e727-b2f6-1353-cb08babf0ec2@redhat.com>
-Date:   Mon, 8 Jul 2019 09:58:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+        id S1727377AbfGHIZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 04:25:14 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:43249 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726492AbfGHIZO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 04:25:14 -0400
+Received: by mail-pl1-f193.google.com with SMTP id cl9so7832825plb.10
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 01:25:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=HBSOpGeilh1d+k1ITUctDAa0jlGTfzm/XYHfd6NAVZs=;
+        b=TvcxpHNWz4hgGUB+LNuHI5YWHzDVJt/1XgqQ6DFUhvMzKA3okKMpxbvr4ipDQOrT6v
+         cwArEjpPjqqcYw8uYvas1+s7vRj7ogC++JHqyLHMMj42y9wJKuSrE99NAaIapSSpHd0Z
+         bX3Qd8NBsMFZOfz4Dxqr3ghsVHfjX5JWFsctmRGbOuQQkxw+te0XbnZkUMzFGfHV+xDi
+         X1W1bPjecr55Nnewqc2U778mZbu4vyBHm/2woeQ+8Lyvq6WLSKzDktV/ZgZTtD+d1W8R
+         dCeTcHk0vXB/0ru0tum/y/vkPNnHtMUbAsKqibaCZaPqNAKKOV3l2wR1Y1vl+UFCpR2A
+         LFJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=HBSOpGeilh1d+k1ITUctDAa0jlGTfzm/XYHfd6NAVZs=;
+        b=XDufbDZndbSnmlm7isuE47AXI86DOQmvPHR8guJvrf7uC5IfHVXeZZbYoyasZ0HfUy
+         dM/09OIS1eeHu93wdjlk8m3Trk8lvkTy/eImddJyvANQLiMMFZ1bCC8sGzEoOem9eb1O
+         E2Kg62DM/Rj/RXhlzGhtnQUpF0VJJCOZAIMc4+Hl1z+iKzZxkCqKhCzf04N8eqgsIJbN
+         brrHdJ29kOPH1J4fa/sND5sepgKzIDZk6luiz0SJFb4tc7AhVTKoGAqy4U8GtTXm/N4E
+         KAts3OKg2Kpzj0MB2TfCgtBDgZ+oSmQDLg518jR1HttzYuNAReGrvJCDz7K561n9Jk3n
+         A1wA==
+X-Gm-Message-State: APjAAAVsZaL9zIiXKZ+tiQHcg3HnseoS01ffG08g/pbFGVoKjN07WiBW
+        oluMcm32lHftgRlQ893Vi8nLBQ==
+X-Google-Smtp-Source: APXvYqwCjNEbxbwIuNxeO93iHJHDw+JddjwVlDj89IzeQ0Xpdb6vLLbspbd5Q1ZKCMscFgvOECoAXw==
+X-Received: by 2002:a17:902:8b82:: with SMTP id ay2mr21412249plb.164.1562574313802;
+        Mon, 08 Jul 2019 01:25:13 -0700 (PDT)
+Received: from localhost ([122.172.28.117])
+        by smtp.gmail.com with ESMTPSA id k22sm22327205pfg.77.2019.07.08.01.25.12
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Jul 2019 01:25:12 -0700 (PDT)
+Date:   Mon, 8 Jul 2019 13:55:11 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Leonard Crestez <leonard.crestez@nxp.com>
+Cc:     Anson Huang <anson.huang@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "ccaione@baylibre.com" <ccaione@baylibre.com>,
+        "angus@akkea.ca" <angus@akkea.ca>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: Re: [PATCH 2/2] arm64: dts: imx8mm: Assign highest opp as suspend opp
+Message-ID: <20190708082511.py7gnjbqyp7bnhqx@vireshk-i7>
+References: <20190704061403.8249-1-Anson.Huang@nxp.com>
+ <20190704061403.8249-2-Anson.Huang@nxp.com>
+ <DB7PR04MB50519C02D90675070F21501DEEFA0@DB7PR04MB5051.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-In-Reply-To: <20190610184714.6786-3-jean-philippe.brucker@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Scanned-By: MIMEDefang 2.79 on 10.5.11.11
-X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16 (mx1.redhat.com [10.5.110.43]); Mon, 08 Jul 2019 07:58:34 +0000 (UTC)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DB7PR04MB50519C02D90675070F21501DEEFA0@DB7PR04MB5051.eurprd04.prod.outlook.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jean,
-
-On 6/10/19 8:47 PM, Jean-Philippe Brucker wrote:
-> On Arm systems, some platform devices behind an SMMU may support the PASID
-> feature, which offers multiple address space. Let the firmware tell us
-> when a device supports PASID.
+On 04-07-19, 07:49, Leonard Crestez wrote:
+> On 7/4/2019 9:23 AM, Anson.Huang@nxp.com wrote:
+> > From: Anson Huang <Anson.Huang@nxp.com>
+> > 
+> > Assign highest OPP as suspend OPP to reduce suspend/resume
+> > latency on i.MX8MM.
+> > 
+> > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> > ---
+> >   arch/arm64/boot/dts/freescale/imx8mm.dtsi | 1 +
+> >   1 file changed, 1 insertion(+)
+> > 
+> > diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > index b11fc5e..3a62407 100644
+> > --- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > +++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
+> > @@ -136,6 +136,7 @@
+> >   			opp-microvolt = <1000000>;
+> >   			opp-supported-hw = <0x8>, <0x3>;
+> >   			clock-latency-ns = <150000>;
+> > +			opp-suspend;
+> >   		};
+> >   	};
 > 
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
-> ---
-> Previous discussion on this patch last year:
-> https://patchwork.ozlabs.org/patch/872275/
-> I split PASID and stall definitions, keeping only PASID here.
-> ---
->  Documentation/devicetree/bindings/iommu/iommu.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
+> What if the highest OPP is unavailable due to speed grading?
+
+What does this exactly mean ? How is the OPP made unavailable in your
+case ?
+
+What will dev_pm_opp_get_suspend_opp_freq() return in this case ?
+
+> Ideally we 
+> should find a way to suspend at the highest *supported* OPP.
 > 
-> diff --git a/Documentation/devicetree/bindings/iommu/iommu.txt b/Documentation/devicetree/bindings/iommu/iommu.txt
-> index 5a8b4624defc..3c36334e4f94 100644
-> --- a/Documentation/devicetree/bindings/iommu/iommu.txt
-> +++ b/Documentation/devicetree/bindings/iommu/iommu.txt
-> @@ -86,6 +86,12 @@ have a means to turn off translation. But it is invalid in such cases to
->  disable the IOMMU's device tree node in the first place because it would
->  prevent any driver from properly setting up the translations.
->  
-> +Optional properties:
-> +--------------------
-> +- pasid-num-bits: Some masters support multiple address spaces for DMA, by
-> +  tagging DMA transactions with an address space identifier. By default,
-> +  this is 0, which means that the device only has one address space.
-> +
-Reviewed-by: Eric Auger <eric.auger@redhat.com>
+> Maybe the opp-suspend marking could be assigned from imx-cpufreq-dt 
+> driver code?
 
-Thanks
+Sorry for jumping in late, the latest patch from Anson drew my
+attention to this topic :)
 
-Eric
->  
->  Notes:
->  ======
-> 
-
+-- 
+viresh
