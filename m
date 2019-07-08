@@ -2,45 +2,45 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 66BF962967
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 21:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E5C162964
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 21:25:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731705AbfGHTZ1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 15:25:27 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:43716 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403888AbfGHTZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 15:25:19 -0400
-Received: by mail-pf1-f193.google.com with SMTP id i189so8060246pfg.10
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 12:25:19 -0700 (PDT)
+        id S2403817AbfGHTZW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 15:25:22 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:40537 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403953AbfGHTZV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 15:25:21 -0400
+Received: by mail-pl1-f195.google.com with SMTP id a93so8778989pla.7
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 12:25:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=XWbP/dCS1tGcjo88wg6gDGGHLplE0DvcXvP3Oeiy9UU=;
-        b=Swc5kxgl5rIe9OaAt1N63AxfODEw3kumM3N8MfT45AsUykZcx27fjKTzNBUG/UiLq9
-         C7cZNxvR8HdtbUbPAIxPiFZsVOlFA4KpZF1Rc2hua3Pg4jqsafBYtCO/b13DdOEhzjMn
-         zbFl+OUTwbyNtzVkXFsZO6t0w1KS0rr3xvFSE=
+        bh=RvgoMdD3Hp5MNxLK+UifXpyN/q0ZxRgeuu9cUaFHqr8=;
+        b=SpMlpQid2jj35QITypL4R5jsoWc0eG7EtxUCSVBodyEYgZle89BhBjfYFUQcF2IcgI
+         mXOOm3S92C45cfdZOxjxUNPEiD0QpH1HZiyzpYze+Mrg3gwzJZnA0thsvhG+Ajpoyf6/
+         6XTwCEWLcN8yOYJBHr+iZ35NTAosHvvbZSfqY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=XWbP/dCS1tGcjo88wg6gDGGHLplE0DvcXvP3Oeiy9UU=;
-        b=FuPTk1WBQ+Xg9SWLrFwpRV6ZfyuXrUVQmRJaKzhQgY7gmtl7Qalda8xBVBEYTf4XxH
-         zO5hX2aLokOQAhiXgyOqTfIw5haVGPj7Qv4H5HQJeQ8qiou3904uzO19XH/eh4I7EnMK
-         FQr99nuwqXe3pST4BMpXtzJJSdhOrMTMKNWNnzyucOaUFxBQ+50FyKoeFMa93NAs+0z+
-         SIovcSv0s15/0rkKuny9piKj0cjAO/EV2ka5K9Z1tASVvdSrudBYj69z4DcVXnVtsZ1O
-         9IQy9LXlXiXZKyKgZXtidG0Pf0PRm3kNZyRrFaW7OFSi5T/wT7iL0qJPyc9nd2kES2hl
-         VAQg==
-X-Gm-Message-State: APjAAAXv/S4BW9CThIpuztsverFDN4OaWB5ZvmdiJzZZq5VJyC7gbQ9h
-        5tXngz4DnbHOvrbtvDIHonWMuQ==
-X-Google-Smtp-Source: APXvYqxj8gwX0MrPf9c4HdvT72aVScvAKz1wrH5AksRYEurt1SzUJRc1/Q7Jf6KoqCILHaraNuL+Fw==
-X-Received: by 2002:a17:90a:17c4:: with SMTP id q62mr28281541pja.104.1562613918931;
-        Mon, 08 Jul 2019 12:25:18 -0700 (PDT)
+        bh=RvgoMdD3Hp5MNxLK+UifXpyN/q0ZxRgeuu9cUaFHqr8=;
+        b=bmRuc1R0wqVFtDYk7S+mV1vEGwb7ub7ulHhtKWQCz0qP94VKjFGyhxBwzLzcUKcymX
+         c8lMDKy+QFsPmh7K6e6nOh8sfpqF0yxUNhqy2dbkQ3iyws9MkmEAyLhvYcZDGeweKeR5
+         zLOlBs/W2uFCQIUN3IZHP7zuk6kpoXnvFRNCEswXPnWYoNzirK8LUbq/8Eq5LKxKGuVS
+         IhsyTUr4Id8zkG2PgmnEABovGA2vAYMgFWcC79dIaxIRKBgh+ZCImQuZ3CNxsaDnG/Tu
+         wbYhSeA2UKMxLKl9NDEiUhNwt9RMBcyZC8tK3MyQvVdR1akDMd61bzaAmOuPKpoXwrBe
+         kkUA==
+X-Gm-Message-State: APjAAAVEMhF2ky62e6baGhsPWHEy5iOnELvD1J3pykXYV18/pbsGlLM6
+        nBEJahn3GmutEpXxg4HauKESDw==
+X-Google-Smtp-Source: APXvYqyYbItR6VGpkLNF5CZeyV8kogEprG74LIry/HE4PBk2qDVJtcyVuPh67bU1HhhmNxBuH27ERw==
+X-Received: by 2002:a17:902:fe93:: with SMTP id x19mr25192719plm.77.1562613920330;
+        Mon, 08 Jul 2019 12:25:20 -0700 (PDT)
 Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id e13sm14330483pff.45.2019.07.08.12.25.18
+        by smtp.gmail.com with ESMTPSA id e13sm14330516pff.45.2019.07.08.12.25.19
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 08 Jul 2019 12:25:18 -0700 (PDT)
+        Mon, 08 Jul 2019 12:25:19 -0700 (PDT)
 From:   Matthias Kaehlcke <mka@chromium.org>
 To:     "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
@@ -52,9 +52,9 @@ Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         Douglas Anderson <dianders@chromium.org>,
         Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v3 6/7] dt-bindings: net: realtek: Add property to configure LED mode
-Date:   Mon,  8 Jul 2019 12:24:58 -0700
-Message-Id: <20190708192459.187984-7-mka@chromium.org>
+Subject: [PATCH v3 7/7] net: phy: realtek: configure RTL8211E LEDs
+Date:   Mon,  8 Jul 2019 12:24:59 -0700
+Message-Id: <20190708192459.187984-8-mka@chromium.org>
 X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
 In-Reply-To: <20190708192459.187984-1-mka@chromium.org>
 References: <20190708192459.187984-1-mka@chromium.org>
@@ -65,76 +65,133 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The LED behavior of some Realtek PHYs is configurable. Add the
-property 'realtek,led-modes' to specify the configuration of the
-LEDs.
+Configure the RTL8211E LEDs behavior when the device tree property
+'realtek,led-modes' is specified.
 
 Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 ---
+TODO: DT validation
+
 Changes in v3:
-- added RTL8211E_LED_OFF to LED modes
-- changed wording for supported PHY models
+- sanity check led-modes values
+- set LACR bits in a more readable way
+- use phydev_err() instead of dev_err()
+- log an error if LED configuration fails
 
 Changes in v2:
 - patch added to the series
 ---
- .../devicetree/bindings/net/realtek.txt        | 11 +++++++++++
- include/dt-bindings/net/realtek.h              | 18 ++++++++++++++++++
- 2 files changed, 29 insertions(+)
- create mode 100644 include/dt-bindings/net/realtek.h
+ drivers/net/phy/realtek.c | 72 +++++++++++++++++++++++++++++++++++++--
+ 1 file changed, 70 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/net/realtek.txt b/Documentation/devicetree/bindings/net/realtek.txt
-index af2824664f08..ab218f2b7653 100644
---- a/Documentation/devicetree/bindings/net/realtek.txt
-+++ b/Documentation/devicetree/bindings/net/realtek.txt
-@@ -19,6 +19,14 @@ Optional properties:
+diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
+index 5854412403b5..e9fb67654c4e 100644
+--- a/drivers/net/phy/realtek.c
++++ b/drivers/net/phy/realtek.c
+@@ -9,10 +9,12 @@
+  * Copyright (c) 2004 Freescale Semiconductor, Inc.
+  */
+ #include <linux/bitops.h>
++#include <linux/bits.h>
+ #include <linux/device.h>
+ #include <linux/module.h>
+ #include <linux/of.h>
+ #include <linux/phy.h>
++#include <dt-bindings/net/realtek.h>
  
-   Only supported for "realtek,rtl8211e".
+ #define RTL821x_PHYSR				0x11
+ #define RTL821x_PHYSR_DUPLEX			BIT(13)
+@@ -34,6 +36,15 @@
+ #define RTL8211E_EEE_LED_MODE1			0x05
+ #define RTL8211E_EEE_LED_MODE2			0x06
  
-+- realtek,led-modes: LED mode configuration.
++/* RTL8211E extension page 44 */
++#define RTL8211E_LACR				0x1a
++#define RLT8211E_LACR_LEDACTCTRL_SHIFT		4
++#define RLT8211E_LACR_LEDACTCTRL_MASK		GENMASK(6, 4)
++#define RTL8211E_LCR				0x1c
++#define RTL8211E_LCR_LEDCTRL_MASK		(GENMASK(2, 0) | \
++						 GENMASK(6, 4) | \
++						 GENMASK(10, 8))
 +
-+  A 0..3 element vector, with each element configuring the operating
-+  mode of an LED. Omitted LEDs are turned off. Allowed values are
-+  defined in "include/dt-bindings/net/realtek.h".
-+
-+  Only supported for "realtek,rtl8211e".
-+
+ /* RTL8211E extension page 160 */
+ #define RTL8211E_SCR				0x1a
+ #define RTL8211E_SCR_DISABLE_RXC_SSC		BIT(2)
+@@ -123,6 +134,62 @@ static void rtl8211e_disable_eee_led_mode(struct phy_device *phydev)
+ 	phy_restore_page(phydev, oldpage, err);
+ }
  
- Example:
++static int rtl8211e_config_leds(struct phy_device *phydev)
++{
++	struct device *dev = &phydev->mdio.dev;
++	int count, i, oldpage, ret;
++	u16 lacr_bits = 0, lcr_bits = 0;
++
++	if (!dev->of_node)
++		return 0;
++
++	if (of_property_read_bool(dev->of_node, "realtek,eee-led-mode-disable"))
++		rtl8211e_disable_eee_led_mode(phydev);
++
++	count = of_property_count_elems_of_size(dev->of_node,
++						"realtek,led-modes",
++						sizeof(u32));
++	if (count < 0 || count > 3)
++		return -EINVAL;
++
++	for (i = 0; i < count; i++) {
++		u32 val;
++
++		of_property_read_u32_index(dev->of_node,
++					   "realtek,led-modes", i, &val);
++		if ((val > RTL8211E_LINK_10_100_1000 &&
++		    val < RTL8211E_LINK_ACTIVITY) ||
++		    val > (RTL8211E_LINK_ACTIVITY | RTL8211E_LINK_10_100_1000))
++			return -EINVAL;
++
++		if (val & RTL8211E_LINK_ACTIVITY)
++			lacr_bits |= BIT(RLT8211E_LACR_LEDACTCTRL_SHIFT + i);
++
++		lcr_bits |= (u16)(val & 0xf) << (i * 4);
++	}
++
++	oldpage = rtl8211e_select_ext_page(phydev, 44);
++	if (oldpage < 0) {
++		phydev_err(phydev, "failed to select extended page: %d\n", oldpage);
++		goto err;
++	}
++
++	ret = __phy_modify(phydev, RTL8211E_LACR,
++			   RLT8211E_LACR_LEDACTCTRL_MASK, lacr_bits);
++	if (ret) {
++		phydev_err(phydev, "failed to write LACR reg: %d\n", ret);
++		goto err;
++	}
++
++	ret = __phy_modify(phydev, RTL8211E_LCR,
++			   RTL8211E_LCR_LEDCTRL_MASK, lcr_bits);
++	if (ret)
++		phydev_err(phydev, "failed to write LCR reg: %d\n", ret);
++
++err:
++	return phy_restore_page(phydev, oldpage, ret);
++}
++
+ static int rtl8201_ack_interrupt(struct phy_device *phydev)
+ {
+ 	int err;
+@@ -267,8 +334,9 @@ static int rtl8211e_config_init(struct phy_device *phydev)
+ 				   ret);
+ 	}
  
-@@ -32,5 +40,8 @@ mdio0 {
- 		reg = <1>;
- 		realtek,eee-led-mode-disable;
- 		realtek,enable-ssc;
-+		realtek,led-modes = <RTL8211E_LINK_ACTIVITY
-+				     RTL8211E_LINK_100
-+				     RTL8211E_LINK_1000>;
- 	};
- };
-diff --git a/include/dt-bindings/net/realtek.h b/include/dt-bindings/net/realtek.h
-new file mode 100644
-index 000000000000..023cb776a7a3
---- /dev/null
-+++ b/include/dt-bindings/net/realtek.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: GPL-2.0 */
-+#ifndef _DT_BINDINGS_REALTEK_H
-+#define _DT_BINDINGS_REALTEK_H
-+
-+/* LED modes for RTL8211E PHY */
-+
-+#define RTL8211E_LED_OFF		0
-+#define RTL8211E_LINK_10		1
-+#define RTL8211E_LINK_100		2
-+#define RTL8211E_LINK_1000		4
-+#define RTL8211E_LINK_10_100		3
-+#define RTL8211E_LINK_10_1000		5
-+#define RTL8211E_LINK_100_1000		6
-+#define RTL8211E_LINK_10_100_1000	7
-+
-+#define RTL8211E_LINK_ACTIVITY		(1 << 16)
-+
-+#endif
+-	if (of_property_read_bool(dev->of_node, "realtek,eee-led-mode-disable"))
+-		rtl8211e_disable_eee_led_mode(phydev);
++	ret = rtl8211e_config_leds(phydev);
++	if (ret)
++		phydev_err(phydev, "LED configuration failed: %d\n", ret);
+ 
+ 	/* enable TX/RX delay for rgmii-* modes, and disable them for rgmii. */
+ 	switch (phydev->interface) {
 -- 
 2.22.0.410.gd8fdbe21b5-goog
 
