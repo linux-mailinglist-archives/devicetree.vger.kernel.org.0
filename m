@@ -2,176 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83FC2627E3
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 20:05:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0945E627EF
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 20:08:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731067AbfGHSFu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 14:05:50 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:53854 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727413AbfGHSFu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 14:05:50 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x68I5gQj024246;
-        Mon, 8 Jul 2019 13:05:42 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1562609142;
-        bh=wEbRu5aOTp26FP4TWDfUijCXFiai/2iU7BfaaA5fAN4=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=dBDfzhoOpie6dafFJ81O8Dg2iNxxIOcT8M/K5LlvPJMLBOGG4vA08UDO1CIgDgO3S
-         4BH4D0OxKi6M5dklrHO2QzwqTMcMVxagJlCS4xbiUG5T5DPGiS2U4WKrYKVOe0Wn8L
-         xOXpFfJMMqX/BpJue0j+NnQEZQfmMNmaAzJuFFx0=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x68I5ghh040190
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 8 Jul 2019 13:05:42 -0500
-Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 8 Jul
- 2019 13:05:42 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 8 Jul 2019 13:05:42 -0500
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x68I5fos046757;
-        Mon, 8 Jul 2019 13:05:41 -0500
-Subject: Re: [PATCH 2/2] backlight: arcxcnn: add "arctic" vendor prefix
-To:     Brian Dodge <bdodge09@gmail.com>, <pavel@ucw.cz>
-CC:     <daniel.thompson@linaro.org>, <lee.jones@linaro.org>,
-        <jingoohan1@gmail.com>, <jacek.anaszewski@gmail.com>,
-        <robh+dt@kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <linux-leds@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <pbacon@psemi.com>
-References: <1561940895-15837-1-git-send-email-bdodge09@gmail.com>
- <1561940895-15837-3-git-send-email-bdodge09@gmail.com>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <c7b8da82-e492-db1e-5a02-e4a36df6a6f2@ti.com>
-Date:   Mon, 8 Jul 2019 13:05:00 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1731063AbfGHSIk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 14:08:40 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:46307 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731045AbfGHSIj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 14:08:39 -0400
+Received: by mail-pg1-f196.google.com with SMTP id i8so8057285pgm.13
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 11:08:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=pl4l3gaXCZ0Civm5i1pNfvFYe/9qjH5f6pxejgr6AT8=;
+        b=SmOjZWgQtja4PiBSvkc/DsaRuuY8KuEdsMMIKFu//v+ppa1NV5GwqJ4JU08u4uuqXU
+         KBGOdoVwwU+z3nPB5Yc7Nj2ei2N1Y2sszCQi7aydqX+v1bs0R5WVY9VfrLuAxD0X22yO
+         et4/wVXqTEuA8XKb8I+GG2Cy0aB5wgbYiiI9zkmmG0P1bXmqCbs0GEYAywdf8m69uDNv
+         i3LNyALK0qO5EHrEqLLK7h1Y4PRr0CfVpj56uFuOU19A9ib63eiTFseAJoBv3geF+XdI
+         Ex1jzjCOgerKv5XAy3Zhbk2qyoHk/ecWgRcxMQ7auZjG3EZDzZIqKZ+9SL7kyLXtMMIf
+         MRgA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=pl4l3gaXCZ0Civm5i1pNfvFYe/9qjH5f6pxejgr6AT8=;
+        b=CyVYiOGZbwKK7NMP60b4Sh4UMwLYNCyOs43tysjg5uWej12z1YevSgAs+FG1It88S2
+         392Pkz+0DWMiVZTGF3WWKjPUmRH2Sp5MnT+xmvFn8enrOyxfuJfkzILZ4QP+PPxrBiqy
+         8GYYBgQV60qBispA4qqVVgLANRlH9Z5pA8ws2Qgu+FVoq7YarI2OGBFoO9JG7mAucuuQ
+         mJ9Bpe16daSAO0S6BJ7VCwj4Nxy15Dzd8YE0/cjPJ5jI1pIeLF4vpjRUql9To+d6dPgi
+         0wnWurzx5vkQ+loa8hFkWkKQy46Qgjflqbx4tuJR8A3ikXiJF+PFyyJIJZ6ecAUw/9mA
+         UnzQ==
+X-Gm-Message-State: APjAAAVcuz+uzJEsc3GvPXi979FSgiXEUWJYHzKDHI4FMiv6Al2vitvd
+        +sVCU8WfG4ynnJmFvcEZT6WbeABhVehJl6c/N/Z8gA==
+X-Google-Smtp-Source: APXvYqwoLoh11AGLeVf5uSZhLWgN1V0Lf0IPFYJElvqds2Mjg+FKGEtSZZdm1FCZKhiAeE2kYC6jZBxFraVmnG074HI=
+X-Received: by 2002:a63:b919:: with SMTP id z25mr25337810pge.201.1562609318390;
+ Mon, 08 Jul 2019 11:08:38 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <1561940895-15837-3-git-send-email-bdodge09@gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20190704003615.204860-1-brendanhiggins@google.com>
+ <20190704003615.204860-2-brendanhiggins@google.com> <20190705201505.GA19023@42.do-not-panic.com>
+In-Reply-To: <20190705201505.GA19023@42.do-not-panic.com>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Mon, 8 Jul 2019 11:08:27 -0700
+Message-ID: <CAFd5g45cF9rYc8YupnCgd=7xz_yW+_TMp_L+cSFUBW7d9njnVQ@mail.gmail.com>
+Subject: Re: [PATCH v6 01/18] kunit: test: add KUnit test runner core
+To:     Luis Chamberlain <mcgrof@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah <shuah@kernel.org>, "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Brian
-
-On 6/30/19 7:28 PM, Brian Dodge wrote:
-> The original patch adding this driver and DT bindings improperly
-> used "arc" as the vendor-prefix. This adds "arctic" which is the
-> proper prefix and retains "arc" to allow existing users of the
-> "arc" prefix to update to new kernels. There is at least one
-> (Samsung Chromebook Plus)
+On Fri, Jul 5, 2019 at 1:15 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
 >
-> Signed-off-by: Brian Dodge <bdodge09@gmail.com>
-> Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
-> ---
->   drivers/video/backlight/arcxcnn_bl.c | 41 +++++++++++++++++++++++++++---------
->   1 file changed, 31 insertions(+), 10 deletions(-)
+> On Wed, Jul 03, 2019 at 05:35:58PM -0700, Brendan Higgins wrote:
+> > Add core facilities for defining unit tests; this provides a common way
+> > to define test cases, functions that execute code which is under test
+> > and determine whether the code under test behaves as expected; this also
+> > provides a way to group together related test cases in test suites (here
+> > we call them test_modules).
+> >
+> > Just define test cases and how to execute them for now; setting
+> > expectations on code will be defined later.
+> >
+> > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
 >
-> diff --git a/drivers/video/backlight/arcxcnn_bl.c b/drivers/video/backlight/arcxcnn_bl.c
-> index 7b1c0a0..a419554 100644
-> --- a/drivers/video/backlight/arcxcnn_bl.c
-> +++ b/drivers/video/backlight/arcxcnn_bl.c
-> @@ -1,9 +1,9 @@
->   // SPDX-License-Identifier: GPL-2.0-only
->   /*
-> - * Backlight driver for ArcticSand ARC_X_C_0N_0N Devices
-> + * Backlight driver for pSemi (formerly ArcticSand) ARC_X_C_0N_0N Devices
->    *
-> - * Copyright 2016 ArcticSand, Inc.
-> - * Author : Brian Dodge <bdodge@arcticsand.com>
+> Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
+>
+> But a nitpick below, I think that can be fixed later with a follow up
+> patch.
+>
+> > +/**
+> > + * struct kunit - represents a running instance of a test.
+> > + * @priv: for user to store arbitrary data. Commonly used to pass data created
+> > + * in the init function (see &struct kunit_suite).
+> > + *
+> > + * Used to store information about the current context under which the test is
+> > + * running. Most of this data is private and should only be accessed indirectly
+> > + * via public functions; the one exception is @priv which can be used by the
+> > + * test writer to store arbitrary data.
+> > + *
+> > + * A brief note on locking:
+> > + *
+> > + * First off, we need to lock because in certain cases a user may want to use an
+> > + * expectation in a thread other than the thread that the test case is running
+> > + * in.
+>
+> This as a prefix to the struct without a lock seems odd. It would be
+> clearer I think if you'd explain here what locking mechanism we decided
+> to use and why it suffices today.
 
-I know you are the original author from ArcticSand but did pSemi 
-actually own the copyright in 2016?
+Whoops, sorry this should have been in the next patch. Will fix.
 
-I don't think this is a big issue just wondering if we should retain the 
-ArcticSand copyright as well.
+> > +/**
+> > + * suite_test() - used to register a &struct kunit_suite with KUnit.
+>
+> You mean kunit_test_suite()?
 
-Probably a question for your legal department.
+Yep, sorry about that. Will fix.
 
-Otherwise
+> > + * @suite: a statically allocated &struct kunit_suite.
+> > + *
+> > + * Registers @suite with the test framework. See &struct kunit_suite for more
+> > + * information.
+> > + *
+> > + * NOTE: Currently KUnit tests are all run as late_initcalls; this means that
+> > + * they cannot test anything where tests must run at a different init phase. One
+> > + * significant restriction resulting from this is that KUnit cannot reliably
+> > + * test anything that is initialize in the late_init phase.
+>                             initialize prior to the late init phase.
+>
+>
+> That is, this is useless to test things running early.
 
-Reviewed-by: Dan Murphy <dmurphy@ti.com>
+Yeah, I can add that phrasing in.
 
-> + * Copyright 2016-2019  pSemi, Inc.
-> + * Author : Brian Dodge <bdodge@psemi.com>
->    */
->   
->   #include <linux/backlight.h>
-> @@ -191,27 +191,46 @@ static void arcxcnn_parse_dt(struct arcxcnn *lp)
->   	if (ret == 0)
->   		lp->pdata->initial_brightness = prog_val;
->   
-> -	ret = of_property_read_u32(node, "arc,led-config-0", &prog_val);
-> +	ret = of_property_read_u32(node, "arctic,led-config-0", &prog_val);
-> +	if (ret)
-> +		ret = of_property_read_u32(node, "arc,led-config-0", &prog_val);
-> +
->   	if (ret == 0)
->   		lp->pdata->led_config_0 = (u8)prog_val;
->   
-> -	ret = of_property_read_u32(node, "arc,led-config-1", &prog_val);
-> +	ret = of_property_read_u32(node, "arctic,led-config-1", &prog_val);
-> +	if (ret)
-> +		ret = of_property_read_u32(node, "arc,led-config-1", &prog_val);
-> +
->   	if (ret == 0)
->   		lp->pdata->led_config_1 = (u8)prog_val;
->   
-> -	ret = of_property_read_u32(node, "arc,dim-freq", &prog_val);
-> +	ret = of_property_read_u32(node, "arctic,dim-freq", &prog_val);
-> +	if (ret)
-> +		ret = of_property_read_u32(node, "arc,dim-freq", &prog_val);
-> +
->   	if (ret == 0)
->   		lp->pdata->dim_freq = (u8)prog_val;
->   
-> -	ret = of_property_read_u32(node, "arc,comp-config", &prog_val);
-> +	ret = of_property_read_u32(node, "arctic,comp-config", &prog_val);
-> +	if (ret)
-> +		ret = of_property_read_u32(node, "arc,comp-config", &prog_val);
-> +
->   	if (ret == 0)
->   		lp->pdata->comp_config = (u8)prog_val;
->   
-> -	ret = of_property_read_u32(node, "arc,filter-config", &prog_val);
-> +	ret = of_property_read_u32(node, "arctic,filter-config", &prog_val);
-> +	if (ret)
-> +		ret = of_property_read_u32(node,
-> +				"arc,filter-config", &prog_val);
-> +
->   	if (ret == 0)
->   		lp->pdata->filter_config = (u8)prog_val;
->   
-> -	ret = of_property_read_u32(node, "arc,trim-config", &prog_val);
-> +	ret = of_property_read_u32(node, "arctic,trim-config", &prog_val);
-> +	if (ret)
-> +		ret = of_property_read_u32(node, "arc,trim-config", &prog_val);
-> +
->   	if (ret == 0)
->   		lp->pdata->trim_config = (u8)prog_val;
->   
-> @@ -381,6 +400,8 @@ static int arcxcnn_remove(struct i2c_client *cl)
->   }
->   
->   static const struct of_device_id arcxcnn_dt_ids[] = {
-> +	{ .compatible = "arctic,arc2c0608" },
-> +	/* here to remain compatible with an older binding, do not use */
->   	{ .compatible = "arc,arc2c0608" },
->   	{ }
->   };
-> @@ -404,5 +425,5 @@ static struct i2c_driver arcxcnn_driver = {
->   module_i2c_driver(arcxcnn_driver);
->   
->   MODULE_LICENSE("GPL v2");
-> -MODULE_AUTHOR("Brian Dodge <bdodge@arcticsand.com>");
-> +MODULE_AUTHOR("Brian Dodge <bdodge@psemi.com>");
->   MODULE_DESCRIPTION("ARCXCNN Backlight driver");
+> > + *
+> > + * TODO(brendanhiggins@google.com): Don't run all KUnit tests as late_initcalls.
+> > + * I have some future work planned to dispatch all KUnit tests from the same
+> > + * place, and at the very least to do so after everything else is definitely
+> > + * initialized.
+>
+> TODOs are odd to be adding to documentation, this is just not common
+> place practice. The NOTE should suffice for you.
+
+Because it is a kernel doc? Would you usually make a separate
+non-kernel doc comment for a TODO? I guess that makes sense.
+
+Thanks!
