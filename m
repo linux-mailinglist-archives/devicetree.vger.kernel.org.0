@@ -2,27 +2,27 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C07CD62BA2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 00:36:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD54362B87
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 00:34:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727602AbfGHWeq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 18:34:46 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:29229 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727520AbfGHWep (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 18:34:45 -0400
-X-UUID: 82c7138289d249b4a2192c3b9a6c4f34-20190709
-X-UUID: 82c7138289d249b4a2192c3b9a6c4f34-20190709
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
+        id S1727632AbfGHWer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 18:34:47 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:25910 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727547AbfGHWer (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 18:34:47 -0400
+X-UUID: fb0084a53d9a47c688ff393d58f992c6-20190709
+X-UUID: fb0084a53d9a47c688ff393d58f992c6-20190709
+Received: from mtkcas09.mediatek.inc [(172.21.101.178)] by mailgw02.mediatek.com
         (envelope-from <yongqiang.niu@mediatek.com>)
         (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1511006387; Tue, 09 Jul 2019 06:34:37 +0800
+        with ESMTP id 686714619; Tue, 09 Jul 2019 06:34:40 +0800
 Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 9 Jul 2019 06:34:37 +0800
+ mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 9 Jul 2019 06:34:38 +0800
 Received: from localhost.localdomain (10.17.3.153) by mtkcas08.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 9 Jul 2019 06:34:36 +0800
+ Transport; Tue, 9 Jul 2019 06:34:37 +0800
 From:   <yongqiang.niu@mediatek.com>
 To:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
         Rob Herring <robh+dt@kernel.org>,
@@ -34,14 +34,15 @@ CC:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>,
         Yongqiang Niu <yongqiang.niu@mediatek.com>
-Subject: [PATCH v4, 19/33] drm/mediatek: add gmc_bits for ovl private data
-Date:   Tue, 9 Jul 2019 06:33:59 +0800
-Message-ID: <1562625253-29254-20-git-send-email-yongqiang.niu@mediatek.com>
+Subject: [PATCH v4, 20/33] drm/medaitek: add layer_nr for ovl private data
+Date:   Tue, 9 Jul 2019 06:34:00 +0800
+Message-ID: <1562625253-29254-21-git-send-email-yongqiang.niu@mediatek.com>
 X-Mailer: git-send-email 1.8.1.1.dirty
 In-Reply-To: <1562625253-29254-1-git-send-email-yongqiang.niu@mediatek.com>
 References: <1562625253-29254-1-git-send-email-yongqiang.niu@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain
+X-TM-SNTS-SMTP: 474F5C3AC966225E64CB4C579BF51C6090B072D4768532445A60A59DD61B83942000:8
 X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -50,76 +51,53 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 
-This patch add gmc_bits for ovl private data
-GMC register was set RDMA ultra and pre-ultra threshold.
-10bit GMC register define is different with other SOC, gmc_thrshd_l not
-used.
+This patch add layer_nr for ovl private data
+ovl_2l almost same with with ovl hardware, except the
+layer number for ovl_2l is 2 and ovl is 4.
+this patch is a preparation for ovl-2l and
+ovl share the same driver.
 
 Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 Reviewed-by: CK Hu <ck.hu@mediatek.com>
 ---
- drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 23 +++++++++++++++++++++--
- 1 file changed, 21 insertions(+), 2 deletions(-)
+ drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 7 ++++++-
+ 1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-index 28d1911..afb313c 100644
+index afb313c..a0ab760 100644
 --- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
 +++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-@@ -39,7 +39,9 @@
- #define DISP_REG_OVL_ADDR_MT8173		0x0f40
- #define DISP_REG_OVL_ADDR(ovl, n)		((ovl)->data->addr + 0x20 * (n))
- 
--#define	OVL_RDMA_MEM_GMC	0x40402020
-+#define GMC_THRESHOLD_BITS	16
-+#define GMC_THRESHOLD_HIGH	((1 << GMC_THRESHOLD_BITS) / 4)
-+#define GMC_THRESHOLD_LOW	((1 << GMC_THRESHOLD_BITS) / 8)
- 
- #define OVL_CON_BYTE_SWAP	BIT(24)
- #define OVL_CON_MTX_YUV_TO_RGB	(6 << 16)
-@@ -57,6 +59,7 @@
- 
+@@ -60,6 +60,7 @@
  struct mtk_disp_ovl_data {
  	unsigned int addr;
-+	unsigned int gmc_bits;
+ 	unsigned int gmc_bits;
++	unsigned int layer_nr;
  	bool fmt_rgb565_is_0;
  };
  
-@@ -140,9 +143,23 @@ static unsigned int mtk_ovl_layer_nr(struct mtk_ddp_comp *comp)
- static void mtk_ovl_layer_on(struct mtk_ddp_comp *comp, unsigned int idx)
+@@ -137,7 +138,9 @@ static void mtk_ovl_config(struct mtk_ddp_comp *comp, unsigned int w,
+ 
+ static unsigned int mtk_ovl_layer_nr(struct mtk_ddp_comp *comp)
  {
- 	unsigned int reg;
-+	unsigned int gmc_thrshd_l;
-+	unsigned int gmc_thrshd_h;
-+	unsigned int gmc_value;
+-	return 4;
 +	struct mtk_disp_ovl *ovl = comp_to_ovl(comp);
- 
- 	writel(0x1, comp->regs + DISP_REG_OVL_RDMA_CTRL(idx));
--	writel(OVL_RDMA_MEM_GMC, comp->regs + DISP_REG_OVL_RDMA_GMC(idx));
 +
-+	gmc_thrshd_l = GMC_THRESHOLD_LOW >>
-+		      (GMC_THRESHOLD_BITS - ovl->data->gmc_bits);
-+	gmc_thrshd_h = GMC_THRESHOLD_HIGH >>
-+		      (GMC_THRESHOLD_BITS - ovl->data->gmc_bits);
-+	if (ovl->data->gmc_bits == 10)
-+		gmc_value = gmc_thrshd_h | gmc_thrshd_h << 16;
-+	else
-+		gmc_value = gmc_thrshd_l | gmc_thrshd_l << 8 |
-+			    gmc_thrshd_h << 16 | gmc_thrshd_h << 24;
-+	writel(gmc_value, comp->regs + DISP_REG_OVL_RDMA_GMC(idx));
++	return ovl->data->layer_nr;
+ }
  
- 	reg = readl(comp->regs + DISP_REG_OVL_SRC_CON);
- 	reg = reg | BIT(idx);
-@@ -324,11 +341,13 @@ static int mtk_disp_ovl_remove(struct platform_device *pdev)
- 
+ static void mtk_ovl_layer_on(struct mtk_ddp_comp *comp, unsigned int idx)
+@@ -342,12 +345,14 @@ static int mtk_disp_ovl_remove(struct platform_device *pdev)
  static const struct mtk_disp_ovl_data mt2701_ovl_driver_data = {
  	.addr = DISP_REG_OVL_ADDR_MT2701,
-+	.gmc_bits = 8,
+ 	.gmc_bits = 8,
++	.layer_nr = 4,
  	.fmt_rgb565_is_0 = false,
  };
  
  static const struct mtk_disp_ovl_data mt8173_ovl_driver_data = {
  	.addr = DISP_REG_OVL_ADDR_MT8173,
-+	.gmc_bits = 8,
+ 	.gmc_bits = 8,
++	.layer_nr = 4,
  	.fmt_rgb565_is_0 = true,
  };
  
