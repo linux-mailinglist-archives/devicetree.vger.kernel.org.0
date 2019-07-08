@@ -2,480 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B37FC61996
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 05:49:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78590619AA
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 05:54:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727189AbfGHDty (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 7 Jul 2019 23:49:54 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:41347 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726044AbfGHDtx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Jul 2019 23:49:53 -0400
-Received: by mail-pg1-f193.google.com with SMTP id q4so6936757pgj.8;
-        Sun, 07 Jul 2019 20:49:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=wlsWE2sBshBJN2G3QjJ7riXPImdr5euvnFvQcVEqoj0=;
-        b=sVisJhC7AQNz4TxWOi+2CJ+Q8MeTNXt8lIbTFtRY6ofeFlU+QVGTRUdHJ1zXrtp/H0
-         VZwYPrJrFngIL2fl5NL4tbhd0JN00yF2yRvtHUG8lKpYXN1BqYWYpAg2AdP6NqOgZslS
-         /M+G/cUvRlwPjeZkmJM2W62AnUvPyj5lWUxYWX9sS6XcFlHOfF0BkmXF90Zk1HxwoWAU
-         tfPTL/1Mevrc0GY0QsG/0ef4LWA6yTQIDCVtrt9N6zKu/fHvZIsrKOXeAEDOLIc11UM4
-         mikLt4AXM3HyKtRGvt6GqsG4fhlVgA0UO8eiD1taLx2jo+njbID1HqUySCj1ryu7xB8K
-         2MBA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:subject:to:cc:references:from:message-id
-         :date:user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=wlsWE2sBshBJN2G3QjJ7riXPImdr5euvnFvQcVEqoj0=;
-        b=tzyW6pq8O8K9VxwYBoH6O5DPsf1ldb+lcZ1GDQiTkSgaf1MaQdBW2mL7uGjnEqpb6G
-         pIMuvTXl0dveAGyebV1PSQJaVQNviLr8qM6KMMoanz8WRZCcmydkMh7Y4ODySOCg7dKm
-         S5UZ3Ftg8q/LvpqBoZr6rZIdjNdeqILR4PbbYE/sLar4WHYiBEQX4AMkOR7GxuKEmL4n
-         rYAplIETr4/aCF6tbrPsIufe7OFBe96/F12F6fgpaLi2BuoAb8L9cSCYioSGDBcUbKXL
-         2WF6u496ItSiPkHrI+9anhBrwaVO7tuWj6ykGvkh8Me5zvV+a68Lo33/Fhkf/LL4DBUH
-         gpCQ==
-X-Gm-Message-State: APjAAAXamOPRUBOyv1Jn4C0iiA9czyb/ExVTAgbFyO1jRnI/P15tgQrd
-        JOulKVzJT4LJzNO/Psrkzsg=
-X-Google-Smtp-Source: APXvYqznI31Uy34+0qQdECAP540BmK/CTUwt0X9y4opVHcsvOtQXTDMOtyIdXbGWAYidsdjj3SP8jg==
-X-Received: by 2002:a17:90a:bf03:: with SMTP id c3mr21180794pjs.112.1562557792922;
-        Sun, 07 Jul 2019 20:49:52 -0700 (PDT)
-Received: from server.roeck-us.net ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id 196sm17197959pfy.167.2019.07.07.20.49.51
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 07 Jul 2019 20:49:51 -0700 (PDT)
-Subject: Re: [PATCH 2/2] iio: add driver for PCT2075 temperature sensor
-To:     Jonathan Cameron <jonathan.cameron@huawei.com>,
-        Daniel Mack <daniel@zonque.org>
-Cc:     jic23@kernel.org, lars@metafoo.de, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org, robh+dt@kernel.org,
-        Jean Delvare <jdelvare@suse.com>
-References: <20190701180158.9463-1-daniel@zonque.org>
- <20190701180158.9463-2-daniel@zonque.org>
- <20190707135449.000010b9@huawei.com>
-From:   Guenter Roeck <linux@roeck-us.net>
-Message-ID: <5e3904a6-07d9-dc79-6799-c775174c65d0@roeck-us.net>
-Date:   Sun, 7 Jul 2019 20:49:50 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1728956AbfGHDx5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 7 Jul 2019 23:53:57 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:60216 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727774AbfGHDx4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 7 Jul 2019 23:53:56 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x683qjop025049;
+        Sun, 7 Jul 2019 22:52:45 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1562557965;
+        bh=BrRcS2Ts0+S5AcxuLtFsmCPOIptQ/S7lXXWgFUi6kWA=;
+        h=From:To:CC:Subject:Date;
+        b=OTI6h2xjNNQdb3BrlzNL/9rQfQhkLJarwU+e1JabV7dNUSUXFfKUKsiD/ikWgEBY9
+         hxjHyYrtOMQthS+xqFLpEqjBma0vp5rGXgbediC3+mW6bj2lcwK6vDQyHrEL9PnBT+
+         Tdrkd1DEGu7SLZuMaY+0O9s7gQX1s8k82chb0qSY=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x683qjf7042834
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Sun, 7 Jul 2019 22:52:45 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Sun, 7 Jul
+ 2019 22:52:45 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Sun, 7 Jul 2019 22:52:45 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x683qjaa122089;
+        Sun, 7 Jul 2019 22:52:45 -0500
+Received: from localhost (irmo.dhcp.ti.com [128.247.58.153])
+        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x683qjm26429;
+        Sun, 7 Jul 2019 22:52:45 -0500 (CDT)
+From:   Suman Anna <s-anna@ti.com>
+To:     Marc Zyngier <marc.zyngier@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>
+CC:     Tony Lindgren <tony@atomide.com>, "Andrew F. Davis" <afd@ti.com>,
+        Roger Quadros <rogerq@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        David Lechner <david@lechnology.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH 0/6] Add TI PRUSS Local Interrupt Controller IRQChip driver
+Date:   Sun, 7 Jul 2019 22:52:37 -0500
+Message-ID: <20190708035243.12170-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-In-Reply-To: <20190707135449.000010b9@huawei.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/7/19 5:54 AM, Jonathan Cameron wrote:
-> 
-> +CC Jean and Guenter (the hwmon maintainers)
-> 
-> On Mon, 1 Jul 2019 20:01:58 +0200
-> Daniel Mack <daniel@zonque.org> wrote:
-> 
->> This patch adds a driver for NXP PCT2075 temperature sensors, connected
->> via I2C.
->>
->> The datasheet for this part is here:
->>
->>   https://www.nxp.com/docs/en/data-sheet/PCT2075.pdf
->>
->> All hardware configuration options are accessible via DT properites.
->>
->> Signed-off-by: Daniel Mack <daniel@zonque.org>
-> Hi Daniel,
-> 
-> My main concern with this one is whether IIO is the most suitable place to
-> put the driver.  Whilst the iio-hwmon bridge can be used to allow
-> a generic temperature sensor with an IIO driver to be used for hardware
-> monitoring, some devices are designed for that application so should
-> just be given hwmon drivers in the first place.
-> 
-> What made you propose an IIO driver for this one?
-> 
-> "I2C-bus Fm+, 1C accuracy, digital temperature sensor and
-> thermal watchdog" definitely sounds like a hardware monitoring device.
-> 
-> Note that the temp sensors in IIO fall into a few existing categories
-> 1) Temperatures sensors that are definitely not commonly used for hardware
-> monitoring. This includes things like non contact infrared thermal sensors.
-> 2) Temperature sensors that form part of device that includes other sensors
-> or ADC channels that aren't meant for hardware monitoring (perhaps an
-> air pressure sensor).
-> 3) A few odd corner cases where the interface is the same as a part with
-> other non hmwon channels, but that part isn't present for a particular
-> part (these are rare!)
-> 
+Hi All,
 
-On top of that, unless I am missing something, the chip is compatible with
-lm75. Extending the existing lm75 hwmon driver should only require a few
-lines of code. Writing a duplicate of the lm75 driver in iio really doesn't
-make sense to me, an even less less so under some pretty much unknown name.
+The following series adds an IRQChip driver for the local interrupt controller
+present within a Programmable Real-Time Unit and Industrial Communication
+Subsystem (PRU-ICSS) present on a number of TI SoCs including OMAP architecture
+based AM335x, AM437x, AM57xx SoCs, Keystone 2 architecture based 66AK2G SoCs,
+Davinci architecture based OMAP-L138/DA850 SoCs and the latest K3 architecture
+based AM65x and J721E SoCs. This series splits out the INTC portions into a
+separate stand-alone series from the previous PRUSS support patch series [1]
+as requested by various maintainers. Patches are on top of latest master.
 
-Guenter
+The PRUSS local INTC is a unique interrupt controller designed to map a number
+of SoC-level device or internal PRUSS interrupt sources into a smaller set of
+output interrupt lines that are connected to various SoC-level processors like
+the host ARM, PRU cores themselves and optionally to some DSPs, other PRUSS,
+DMA controllers etc. The following are some of the features:
+ - Capture of 64 (160 on K3) System Events/input interrupt sources
+ - Multiplexing of these system events onto 10 (20 on K3) output interrupt
+   channels in a many-to-one fashion
+ - Multiplexing of the output interrupt channels onto 10 (20 on K3) host
+   interrupts split between multiple processors. Typical integration connects
+   the first 2 host interrupts to PRU cores, and the next 8 host interrupts
+   to ARM cores.
+ - Independent enable and disable of system events and their mapping onto
+   a channel
+ - Independent enable and disable of host events and the mapping to host
+   events per interrupt channel. 
+ - Inherent hardward prioritization of events and channels (lower number
+   indicates higher priority).
+ - Additional input interrupt sources multiplexing using either a SoC-level
+   CFG MMR or PRUSS CFG MMR (support will be added through PRU rproc client
+   bindings).
 
-> Sorry for the slow response, I'm traveling at the moment.
-> 
-> Jonathan
-> 
->> ---
->>   drivers/iio/temperature/Kconfig   |  11 ++
->>   drivers/iio/temperature/Makefile  |   1 +
->>   drivers/iio/temperature/pct2075.c | 307 ++++++++++++++++++++++++++++++
->>   3 files changed, 319 insertions(+)
->>   create mode 100644 drivers/iio/temperature/pct2075.c
->>
->> diff --git a/drivers/iio/temperature/Kconfig b/drivers/iio/temperature/Kconfig
->> index c185cbee25c7..20aeb4c764b7 100644
->> --- a/drivers/iio/temperature/Kconfig
->> +++ b/drivers/iio/temperature/Kconfig
->> @@ -55,6 +55,17 @@ config MLX90632
->>   	  This driver can also be built as a module. If so, the module will
->>   	  be called mlx90632.
->>   
->> +config PCT2075
->> +	tristate "NXP PCT2075 temperature sensor"
->> +	depends on I2C
->> +	help
->> +	  If you say yes here you get support for the NXP
->> +	  NCP2075 I2C connected Fm+ digital temperature sensor and
->> +	  thermal watchdog.
->> +
->> +	  This driver can also be built as a module. If so, the module will
->> +	  be called pct2075.
->> +
->>   config TMP006
->>   	tristate "TMP006 infrared thermopile sensor"
->>   	depends on I2C
->> diff --git a/drivers/iio/temperature/Makefile b/drivers/iio/temperature/Makefile
->> index baca4776ca0d..7fad51b8be4f 100644
->> --- a/drivers/iio/temperature/Makefile
->> +++ b/drivers/iio/temperature/Makefile
->> @@ -8,6 +8,7 @@ obj-$(CONFIG_MAXIM_THERMOCOUPLE) += maxim_thermocouple.o
->>   obj-$(CONFIG_MAX31856) += max31856.o
->>   obj-$(CONFIG_MLX90614) += mlx90614.o
->>   obj-$(CONFIG_MLX90632) += mlx90632.o
->> +obj-$(CONFIG_PCT2075) += pct2075.o
->>   obj-$(CONFIG_TMP006) += tmp006.o
->>   obj-$(CONFIG_TMP007) += tmp007.o
->>   obj-$(CONFIG_TSYS01) += tsys01.o
->> diff --git a/drivers/iio/temperature/pct2075.c b/drivers/iio/temperature/pct2075.c
->> new file mode 100644
->> index 000000000000..e2a092079905
->> --- /dev/null
->> +++ b/drivers/iio/temperature/pct2075.c
->> @@ -0,0 +1,307 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +
->> +#include <linux/err.h>
->> +#include <linux/i2c.h>
->> +#include <linux/iio/iio.h>
->> +#include <linux/iio/sysfs.h>
->> +#include <linux/kernel.h>
->> +#include <linux/module.h>
->> +#include <linux/of.h>
->> +#include <linux/pm_runtime.h>
->> +#include <linux/regulator/consumer.h>
->> +
->> +#define PCT2075_REG_CONF	1
->> +#define		PCT2075_CONF_OS_F_QUEUE(val) (((val) & 0x3) << 3)
->> +#define		PCT2075_CONF_OS_ACTIVE_HIGH	BIT(2)
->> +#define		PCT2075_CONF_OS_COMP_INT	BIT(1)
->> +#define		PCT2075_CONF_SHUTDOWN		BIT(0)
->> +
->> +#define PCT2075_REG_TEMP	0
->> +#define PCT2075_REG_THYST	2
->> +#define PCT2075_REG_TOS		3
->> +#define PCT2075_REG_TIDLE	4
->> +
->> +struct pct2075_data {
->> +	struct i2c_client *client;
->> +	struct regulator *regulator;
->> +	u8 reg_conf;
->> +	u8 reg_tidle;
->> +	u16 reg_thyst;
->> +	u16 reg_tos;
->> +};
->> +
->> +static const struct iio_chan_spec pct2075_channel = {
->> +	.type = IIO_TEMP,
->> +	.channel = IIO_MOD_TEMP_AMBIENT,
->> +	.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
->> +};
->> +
->> +static int pct2075_read_raw(struct iio_dev *indio_dev,
->> +			    struct iio_chan_spec const *chan,
->> +			    int *val,
->> +			    int *val2,
->> +			    long mask)
->> +{
->> +	struct pct2075_data *pct2075 = iio_priv(indio_dev);
->> +	int ret, v;
->> +
->> +	ret = i2c_smbus_read_word_swapped(pct2075->client,
->> +					  PCT2075_REG_TEMP);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	v = sign_extend32(ret >> 5, 10) * 125;
->> +	*val = v / 1000;
->> +	*val2 = (v % 1000) * 1000;
->> +
->> +	return IIO_VAL_INT_PLUS_MICRO;
->> +}
->> +
->> +static int pct2075_sync(struct pct2075_data *pct2075)
->> +{
->> +	struct i2c_client *client = pct2075->client;
->> +	struct device *dev = &client->dev;
->> +	int ret;
->> +
->> +	ret = i2c_smbus_write_byte_data(client, PCT2075_REG_CONF,
->> +					pct2075->reg_conf);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Cannot write CONF register: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = i2c_smbus_write_byte_data(client, PCT2075_REG_TIDLE,
->> +					pct2075->reg_tidle);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Cannot write TIDLE register: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = i2c_smbus_write_word_swapped(client, PCT2075_REG_TOS,
->> +					   pct2075->reg_tos);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Cannot write TOS register: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	ret = i2c_smbus_write_word_swapped(client, PCT2075_REG_THYST,
->> +					   pct2075->reg_thyst);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Cannot write THYST register: %d\n", ret);
->> +		return ret;
->> +	}
->> +
->> +	return 0;
->> +}
->> +
->> +static void pct2075_of_parse_temperature(struct device *dev,
->> +					 u16 *out, const char *name)
->> +{
->> +	int ret;
->> +	s32 tmp;
->> +
->> +	ret = of_property_read_s32(dev->of_node, name, &tmp);
->> +	if (ret != 0)
->> +		return;
->> +
->> +	if (tmp < -55000 || tmp > 125000 || tmp % 500 != 0) {
->> +		dev_err(dev, "Unsupported value for %s", name);
->> +		return;
->> +	}
->> +
->> +	*out = ((u16) (tmp / 500)) << 7;
->> +}
->> +
->> +static const struct iio_info pct2075_info = {
->> +	.read_raw = pct2075_read_raw,
->> +};
->> +
->> +static int pct2075_probe(struct i2c_client *client,
->> +			 const struct i2c_device_id *id)
->> +{
->> +	struct device *dev = &client->dev;
->> +	struct pct2075_data *pct2075;
->> +	struct iio_dev *indio_dev;
->> +	u32 tmp;
->> +	int ret;
->> +
->> +	indio_dev = devm_iio_device_alloc(dev, sizeof(*pct2075));
->> +	if (!indio_dev) {
->> +		dev_err(&client->dev, "Failed to allocate device\n");
->> +		return -ENOMEM;
->> +	}
->> +
->> +	pct2075 = iio_priv(indio_dev);
->> +	i2c_set_clientdata(client, indio_dev);
->> +	pct2075->client = client;
->> +
->> +	indio_dev->dev.parent = dev;
->> +	indio_dev->name = id->name;
->> +	indio_dev->modes = INDIO_DIRECT_MODE;
->> +	indio_dev->info = &pct2075_info;
->> +	indio_dev->channels = &pct2075_channel;
->> +	indio_dev->num_channels = 1;
->> +
->> +	pct2075->regulator = devm_regulator_get_optional(dev, "vcc");
->> +	if (IS_ERR(pct2075->regulator)) {
->> +		ret = PTR_ERR(pct2075->regulator);
->> +		if (ret == -EPROBE_DEFER)
->> +			return ret;
->> +
->> +		pct2075->regulator = NULL;
->> +	}
->> +
->> +	if (pct2075->regulator) {
->> +		ret = regulator_enable(pct2075->regulator);
->> +		if (ret < 0) {
->> +			dev_err(dev, "Cannot enable regulator: %d\n", ret);
->> +			return ret;
->> +		}
->> +	}
->> +
->> +	/* Read hardware defaults */
->> +	ret = i2c_smbus_read_word_swapped(client, PCT2075_REG_TOS);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Cannot read TOS register: %d\n", ret);
->> +		return ret;
->> +	}
->> +	pct2075->reg_tos = ret;
->> +
->> +	ret = i2c_smbus_read_word_swapped(client, PCT2075_REG_THYST);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Cannot read THYST register: %d\n", ret);
->> +		return ret;
->> +	}
->> +	pct2075->reg_thyst = ret;
->> +
->> +	ret = i2c_smbus_read_byte_data(client, PCT2075_REG_TIDLE);
->> +	if (ret < 0) {
->> +		dev_err(dev, "Cannot read TIDLE register: %d\n", ret);
->> +		return ret;
->> +	}
->> +	pct2075->reg_tidle = ret;
->> +
->> +	/* Parse DT properties */
->> +	ret = of_property_read_u32(dev->of_node, "nxp,os-fault-queue", &tmp);
->> +	if (ret == 0) {
->> +		switch (tmp) {
->> +		case 1:
->> +			pct2075->reg_conf |= PCT2075_CONF_OS_F_QUEUE(0);
->> +			break;
->> +		case 2:
->> +			pct2075->reg_conf |= PCT2075_CONF_OS_F_QUEUE(1);
->> +			break;
->> +		case 4:
->> +			pct2075->reg_conf |= PCT2075_CONF_OS_F_QUEUE(2);
->> +			break;
->> +		case 6:
->> +			pct2075->reg_conf |= PCT2075_CONF_OS_F_QUEUE(3);
->> +			break;
->> +		default:
->> +			dev_err(dev, "Unsupported value for nxp,os-fault-queue");
->> +		}
->> +	}
->> +
->> +	if (of_property_read_bool(dev->of_node, "nxp,os-active-high"))
->> +		pct2075->reg_conf |= PCT2075_CONF_OS_ACTIVE_HIGH;
->> +
->> +	if (of_property_read_bool(dev->of_node, "nxp,os-mode-interrupt"))
->> +		pct2075->reg_conf |= PCT2075_CONF_OS_COMP_INT;
->> +
->> +	ret = of_property_read_u32(dev->of_node, "nxp,sample-period-ms", &tmp);
->> +	if (ret == 0) {
->> +		if (tmp % 100 == 0 && tmp <= 3100)
->> +			pct2075->reg_tidle = tmp / 100;
->> +		else
->> +			dev_err(dev, "Unsupported value for nxp,sample-period-ms");
->> +	}
->> +
->> +	pct2075_of_parse_temperature(dev, &pct2075->reg_tos,
->> +				     "nxp,overtemperature-shutdown-millicelsius");
->> +	pct2075_of_parse_temperature(dev, &pct2075->reg_thyst,
->> +				     "nxp,hysteresis-millicelsius");
->> +
->> +	ret = pct2075_sync(pct2075);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	pm_runtime_disable(dev);
->> +	ret = pm_runtime_set_active(dev);
->> +	if (ret < 0)
->> +		return ret;
->> +
->> +	pm_runtime_enable(&client->dev);
->> +	pm_runtime_set_autosuspend_delay(dev, 10);
->> +	pm_runtime_use_autosuspend(dev);
->> +
->> +	return iio_device_register(indio_dev);
->> +}
->> +
->> +static int pct2075_remove(struct i2c_client *client)
->> +{
->> +	struct iio_dev *indio_dev = i2c_get_clientdata(client);
->> +	struct pct2075_data *pct2075 = iio_priv(indio_dev);
->> +	struct device *dev = &client->dev;
->> +
->> +	i2c_smbus_write_byte_data(client, PCT2075_REG_CONF,
->> +				  PCT2075_CONF_SHUTDOWN);
->> +
->> +	if (pct2075->regulator)
->> +		regulator_disable(pct2075->regulator);
->> +
->> +	iio_device_unregister(indio_dev);
->> +
->> +	pm_runtime_disable(dev);
->> +	pm_runtime_set_suspended(dev);
->> +	pm_runtime_put_noidle(dev);
->> +
->> +	return 0;
->> +}
->> +
->> +static const struct i2c_device_id pct2075_id[] = {
->> +	{ "pct2075", 0 },
->> +	{ }
->> +};
->> +MODULE_DEVICE_TABLE(i2c, pct2075_id);
->> +
->> +static const struct of_device_id pct2075_of_match[] = {
->> +	{ .compatible = "nxp,pct2075" },
->> +	{ }
->> +};
->> +MODULE_DEVICE_TABLE(of, pct2075_of_match);
->> +
->> +static int __maybe_unused pct2075_pm_suspend(struct device *dev)
->> +{
->> +	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
->> +	struct pct2075_data *pct2075 = iio_priv(indio_dev);
->> +
->> +	return i2c_smbus_write_byte_data(pct2075->client, PCT2075_REG_CONF,
->> +					 PCT2075_CONF_SHUTDOWN);
->> +}
->> +
->> +static int __maybe_unused pct2075_pm_resume(struct device *dev)
->> +{
->> +	struct iio_dev *indio_dev = i2c_get_clientdata(to_i2c_client(dev));
->> +	struct pct2075_data *pct2075 = iio_priv(indio_dev);
->> +
->> +	return pct2075_sync(pct2075);
->> +}
->> +
->> +static UNIVERSAL_DEV_PM_OPS(pct2075_pm_ops, pct2075_pm_suspend,
->> +			    pct2075_pm_resume, NULL);
->> +
->> +static struct i2c_driver pct2075_driver = {
->> +	.driver = {
->> +		.name	= "pct2075",
->> +		.of_match_table = pct2075_of_match,
->> +		.pm	= &pct2075_pm_ops,
->> +	},
->> +	.probe = pct2075_probe,
->> +	.remove = pct2075_remove,
->> +	.id_table = pct2075_id,
->> +};
->> +module_i2c_driver(pct2075_driver);
->> +
->> +MODULE_AUTHOR("Daniel Mack <daniel@zonque.org>");
->> +MODULE_DESCRIPTION("NXP PCT2075 temperature sensor driver");
->> +MODULE_LICENSE("GPL v2");
-> 
-> 
-> 
+More details can be found in any of the supported SoC TRMs.
+Eg: Chapter 30.1.6 of AM5728 TRM [2]
+
+Changes from previous series include:
+ - Update bindings to move away from SoC-specific compatibles
+ - Use new DT properties to add support for shared and exclusive ARM GIC
+   interrupt lines 
+ - Include support for Davinci OMAP-L138 and K3 AM65x & J721E SoCs
+ - Split up the driver patch into granular incremental support patches
+
+regards
+Suman
+
+[1] https://patchwork.kernel.org/cover/10795721/
+[2] http://www.ti.com/lit/pdf/spruhz6
+
+
+Andrew F. Davis (2):
+  irqchip/irq-pruss-intc: Add a PRUSS irqchip driver for PRUSS
+    interrupts
+  irqchip/irq-pruss-intc: Add API to trigger a PRU sysevent
+
+Suman Anna (4):
+  dt-bindings: irqchip: Add PRUSS interrupt controller bindings
+  irqchip/irq-pruss-intc: Add support for shared and invalid interrupts
+  irqchip/irq-pruss-intc: Add helper functions to configure internal
+    mapping
+  irqchip/irq-pruss-intc: Add support for ICSSG INTC on K3 SoCs
+
+ .../interrupt-controller/ti,pruss-intc.txt    |  92 +++
+ drivers/irqchip/Kconfig                       |  10 +
+ drivers/irqchip/Makefile                      |   1 +
+ drivers/irqchip/irq-pruss-intc.c              | 749 ++++++++++++++++++
+ include/linux/irqchip/irq-pruss-intc.h        |  33 +
+ include/linux/pruss_intc.h                    |  26 +
+ 6 files changed, 911 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.txt
+ create mode 100644 drivers/irqchip/irq-pruss-intc.c
+ create mode 100644 include/linux/irqchip/irq-pruss-intc.h
+ create mode 100644 include/linux/pruss_intc.h
+
+-- 
+2.22.0
 
