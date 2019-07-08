@@ -2,80 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DCB1562BC3
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 00:36:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B59162C1C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 00:50:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727348AbfGHWgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 18:36:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:60662 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728331AbfGHWgm (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Jul 2019 18:36:42 -0400
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D993C2171F;
-        Mon,  8 Jul 2019 22:36:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562625401;
-        bh=etQZxdD3jWFIiCxrDW0HQwr5UqBYy63rTWHPnocVmu4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BgWdhM6si1+2SOjmlc2UNExPoZL6SZ23FdT2Ttm4VNDRyA4emXndsMAJw9hhWPpqH
-         X2c3w819OKT0rg+KKTO2B6GrZESOZH45oF8Y86patOlvFzwoRhODiJVODg0h82l3K1
-         c6zVPzhqQF6EJt+n66WzJwzVglvg0NkqyG133rTw=
-Received: by mail-qk1-f178.google.com with SMTP id g18so14604416qkl.3;
-        Mon, 08 Jul 2019 15:36:40 -0700 (PDT)
-X-Gm-Message-State: APjAAAXZqDeUwUyqSMcfympX9UI6YZH9uwguC6Q10jJPOJU5h/2rZKKl
-        bMwq7yTbxJrFwzAbJaV593zVSmKOV62PCpk5Jw==
-X-Google-Smtp-Source: APXvYqwvtLTmIrH/mZK3DlmCt9rMsWjVnFKMZZK8zbC/QWKJ4wGC/qrPDbXUVjjOfj81Ygpndm1RRGGampcUfPrxjPg=
-X-Received: by 2002:a37:a010:: with SMTP id j16mr16508145qke.152.1562625400068;
- Mon, 08 Jul 2019 15:36:40 -0700 (PDT)
-MIME-Version: 1.0
-References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
-In-Reply-To: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 8 Jul 2019 16:36:27 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
-Message-ID: <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
-Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-To:     Harish Jenny K N <harish_kandiga@mentor.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S1726830AbfGHWuY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 18:50:24 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:42313 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725840AbfGHWuX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 18:50:23 -0400
+Received: by mail-io1-f68.google.com with SMTP id u19so38972090ior.9;
+        Mon, 08 Jul 2019 15:50:23 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=H/MyjdanrQ6K/py9dIxz3e56bfKj5atUb0fchKi3Mro=;
+        b=n/tyF1mXNSSP9vpo6g0k/fdUbM6rrMbK/gnPA8QeYC/sNBGocrZbtOst2mdRhdk11i
+         9st6PNys6pMxvhFQgim/bD1m4SDq/o6/7JVM5wQHC97zjNvhlRmp0fEyq5HhUAMU9eJc
+         GRevuFxc0vvR16kRO+UbWudvNxviyrnkIZ7Sccg9v7au6kjtw1/d9JvwarlB1X1TTdEV
+         IlidT+vP5OWquLKDFJsNgubuvYDp2MU9MhtTyrT7NawD9txLKh87La5WCAAILU8vWw8K
+         FMZX5Z8gpLCnstxDjHKF4YIoaLngm8EfZa/sN5/Dq41Am6skyCxmv5UI1yDodsAXojcO
+         z3hg==
+X-Gm-Message-State: APjAAAXuC1wBadTuZWnSdWyY8ww6zEfE6YCEe0Yb2f8VwSXpA3u0ksSn
+        v3Pocy/70OOGKDV3uZlN2w==
+X-Google-Smtp-Source: APXvYqzZFN9dAG5V65nMJvTNBFQoqUzrTk2W0/Fnk2oO/UP/uvEe0rRUTXgyk6ynGmU3h+IdLkXYAQ==
+X-Received: by 2002:a5e:9701:: with SMTP id w1mr22230948ioj.294.1562626222486;
+        Mon, 08 Jul 2019 15:50:22 -0700 (PDT)
+Received: from localhost ([64.188.179.252])
+        by smtp.gmail.com with ESMTPSA id y20sm16723564iol.34.2019.07.08.15.50.21
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 08 Jul 2019 15:50:21 -0700 (PDT)
+Date:   Mon, 8 Jul 2019 16:50:20 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Vishal Sagar <vishal.sagar@xilinx.com>
+Cc:     Hyun Kwon <hyun.kwon@xilinx.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Michal Simek <michal.simek@xilinx.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-kernel@vger.kernel.org, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        Dinesh Kumar <dineshk@xilinx.com>,
+        Sandip Kothari <sandipk@xilinx.com>
+Subject: Re: [PATCH 1/2] media: dt-bindings: media: xilinx: Add Xilinx
+ UHD-SDI Receiver Subsystem
+Message-ID: <20190708225020.GA28126@bogus>
+References: <1559656556-79174-1-git-send-email-vishal.sagar@xilinx.com>
+ <1559656556-79174-2-git-send-email-vishal.sagar@xilinx.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1559656556-79174-2-git-send-email-vishal.sagar@xilinx.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jun 28, 2019 at 3:31 AM Harish Jenny K N
-<harish_kandiga@mentor.com> wrote:
->
-> Document the device tree binding for the inverter gpio
-> controller to configure the polarity of the gpio pins
-> used by the consumers.
->
-> Signed-off-by: Harish Jenny K N <harish_kandiga@mentor.com>
+On Tue, Jun 04, 2019 at 07:25:55PM +0530, Vishal Sagar wrote:
+> Add bindings documentation for Xilinx UHD-SDI Receiver Subsystem.
+> 
+> The Xilinx UHD-SDI Receiver Subsystem consists of SMPTE UHD-SDI (RX) IP
+> core, an SDI RX to Video Bridge IP core to convert SDI video to native
+> video and a Video In to AXI4-Stream IP core to convert native video to
+> AXI4-Stream.
+> 
+> Signed-off-by: Vishal Sagar <vishal.sagar@xilinx.com>
 > ---
->  .../devicetree/bindings/gpio/gpio-inverter.txt     | 29 ++++++++++++++++++++++
->  1 file changed, 29 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-inverter.txt
->
-> diff --git a/Documentation/devicetree/bindings/gpio/gpio-inverter.txt b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
+>  .../bindings/media/xilinx/xlnx,sdirxss.txt         | 80 ++++++++++++++++++++++
+>  1 file changed, 80 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/xilinx/xlnx,sdirxss.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/media/xilinx/xlnx,sdirxss.txt b/Documentation/devicetree/bindings/media/xilinx/xlnx,sdirxss.txt
 > new file mode 100644
-> index 0000000..8bb6b2e
+> index 0000000..8445bee
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
-> @@ -0,0 +1,29 @@
-> +GPIO-INVERTER
-> +======
-> +This binding defines the gpio-inverter. The gpio-inverter is a driver that
-> +allows to properly describe the gpio polarities on the hardware.
+> +++ b/Documentation/devicetree/bindings/media/xilinx/xlnx,sdirxss.txt
+> @@ -0,0 +1,80 @@
+> +
+> +Xilinx SMPTE UHD-SDI Receiver Subsystem Device Tree Bindings
+> +------------------------------------------------------------
+> +
+> +The SMPTE UHD-SDI Receiver (RX) Subsystem allows you to quickly create systems
+> +based on SMPTE SDI protocols. It receives unaligned native SDI streams from
+> +the SDI GT PHY and outputs an AXI4-Stream video stream, native video, or
+> +native SDI using Xilinx transceivers as the physical layer.
+> +
+> +The subsystem consists of
+> +1 - SMPTE UHD-SDI Rx
+> +2 - SDI Rx to Native Video Bridge
+> +3 - Video In to AXI4-Stream Bridge
+> +
+> +The subsystem can capture SDI streams in utpo 12G mode and output a dual pixel
+> +per clock YUV 422 or 420 10 bits per component AXI4-Stream.
+> +
+> +Required properties:
+> +--------------------
+> +- compatible: Must contain "xlnx,v-smpte-uhdsdi-rx-ss"
 
-I don't understand. Please explain this in terms of the hardware, not a driver.
+Only one version?
 
-Rob
+> +- reg: Physical base address and length of the registers set for the device.
+> +- interrupts: Contains the interrupt line number.
+> +- clocks: List of phandles to AXI4-Lite clock, core clock to SMPTE UHD-SDI Rx
+> +  and Video clocks.
+> +- clock-names: Must contain "s_axi_aclk", "sdi_rx_clk" and "video_out_clk" in
+> +  the same order as clocks listed in clocks property.
+> +- xlnx,line-rate: The maximum mode supported by the design. Possible values are
+> +  are as below -
+> +  12G_SDI_8DS	- 12G mode
+> +  6G_SDI	-  6G mode
+> +  3G_SDI	-  3G mode
+
+I don't think a string is a good fit here. Using 3, 6, 12 with a defined 
+unit as defined in property-units.txt is preferred. Register field values are 
+okay for vendor specific stuff, too.
+
+> +
+> +Optional properties:
+> +--------------------
+> +- xlnx,include-edh: This is present when the Error Detection and Handling
+> +  processor is enabled in design.
+> +
+> +Ports
+> +-----
+> +The device node shall contain one 'port' child node as defined in
+> +Documentation/devicetree/bindings/media/video-interfaces.txt.
+> +
+> +Generally the SDI port is connected to a device like SDI Broadcast camera which
+> +is independently controlled. Hence port@0 is a source port which can be
+> +connected to downstream IP which can work with AXI4 Stream data.
+> +
+> +Required port properties:
+> +-------------------------
+> +- reg: 0 - for source port.
+> +
+> +- xlnx,video-format: This can be XVIP_VF_YUV_422 or XVIP_VF_YUV_420.
+> +- xlnx,video-width: This is should be 10.
+
+Don't we have standard properties for these?
+
+I assume width here is really part of the pixel or bus interface format 
+rather than physical signals? We typically only have a separate property 
+for the latter case.
+
+> +
+> +Example:
+> +		v_smpte_uhdsdi_rx_ss: v_smpte_uhdsdi_rx_ss@80000000 {
+
+s/_/-/ in the node name. Node names are supposed to be generic when 
+possible, but I don't have a suggestion here.
+
+> +			compatible = "xlnx,v-smpte-uhdsdi-rx-ss";
+> +			interrupt-parent = <&gic>;
+> +			interrupts = <0 89 4>;
+> +			reg = <0x0 0x80000000 0x0 0x10000>;
+> +			xlnx,include-edh;
+> +			xlnx,line-rate = "12G_SDI_8DS";
+> +			clocks = <&clk_1>, <&si570_1>, <&clk_2>;
+> +			clock-names = "s_axi_aclk", "sdi_rx_clk", "video_out_clk";
+> +
+> +			ports {
+> +				#address-cells = <1>;
+> +				#size-cells = <0>;
+> +
+> +				port@0 {
+> +					reg = <0>;
+> +
+> +					xlnx,video-format = <XVIP_VF_YUV_422>;
+> +					xlnx,video-width = <10>;
+> +
+> +					sdirx_out: endpoint {
+> +						remote-endpoint = <&vcap_sdirx_in>;
+> +					};
+> +				};
+> +			};
+> +		};
+> -- 
+> 1.8.3.1
+> 
