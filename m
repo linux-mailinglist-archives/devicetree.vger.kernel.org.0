@@ -2,38 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B3944620C8
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 16:46:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BFF0620EC
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 16:56:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731952AbfGHOqV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 10:46:21 -0400
-Received: from mo4-p02-ob.smtp.rzone.de ([85.215.255.83]:34781 "EHLO
-        mo4-p02-ob.smtp.rzone.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725869AbfGHOqU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 10:46:20 -0400
-X-RZG-AUTH: ":JGIXVUS7cutRB/49FwqZ7WcJeFKiMhflhwDubTJ9o1OAA2UNf2AyOEF/R66y"
-X-RZG-CLASS-ID: mo00
-Received: from iMac.fritz.box
-        by smtp.strato.de (RZmta 44.24 DYNA|AUTH)
-        with ESMTPSA id V09459v68Ek7X7H
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (curve secp521r1 with 521 ECDH bits, eq. 15360 bits RSA))
-        (Client did not present a certificate);
-        Mon, 8 Jul 2019 16:46:07 +0200 (CEST)
-From:   "H. Nikolaus Schaller" <hns@goldelico.com>
-To:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>
-Cc:     letux-kernel@openphoenux.org, linux-spi@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-omap@vger.kernel.org,
-        "H. Nikolaus Schaller" <hns@goldelico.com>, stable@vger.kernel.org
-Subject: [PATCH 2/2] DTS: ARM: gta04: introduce legacy spi-cs-high to make display work again
-Date:   Mon,  8 Jul 2019 16:46:05 +0200
-Message-Id: <8ae7cf816b22ef9cecee0d789fcf9e8a06495c39.1562597164.git.hns@goldelico.com>
-X-Mailer: git-send-email 2.19.1
-In-Reply-To: <cover.1562597164.git.hns@goldelico.com>
-References: <cover.1562597164.git.hns@goldelico.com>
+        id S1731882AbfGHO4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 10:56:38 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:33688 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725840AbfGHO4i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 10:56:38 -0400
+Received: by mail-wr1-f67.google.com with SMTP id n9so17520980wru.0
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 07:56:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lusticky.cz; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=6A2wEUKZ2w/NmNg6qTXlBT+G1/lwdgA/OS6jqf9rino=;
+        b=Dqch3UtvFbjZcRo5gHJVFBzEKhcPph8OZmmoJTmPBDsWNPjViVCMuu7wPPoPZdp1k4
+         LP/1TsEzimCbte7BWjj3Tv94twyynDQNDJV7HrL80G2ZoMc4cqh9mCWOO3bp/78zKIdH
+         hF3oE1Fniib0IL1ML64vdfY/VODiTFbSB+4f9x2bbj3kxznUdgzqzIREN6UmWg4xAnSW
+         A14UpCnE9qpDgT5RCLotQyyThqduZYGclAKC3lxn8y2tSmS8uKQcO25GextJKUqqUcuK
+         bVfvkHRezZvolWW18DbUnJPg+Cqup2Di4fWkMLCuLkiSGN9POyuqAeuEpBtE5DTI6j0H
+         jGyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=6A2wEUKZ2w/NmNg6qTXlBT+G1/lwdgA/OS6jqf9rino=;
+        b=oSv98heZY/ltxzFANc9fjn++bcMed2SDHDY4mQjQps4+38Q9cY6MSBMFjAUwHIywat
+         SbeII0RTz5VgT8/rcvVlG5pDzZMS2Wrl7uIANYp0HQjV7OcQ404TnxtEKaRQ3n5hSLJM
+         jxU3C12CgwUC4jyFHBy1PEzZR79bJWOsYXBy4GFwiHu5FUeIpdo0OVHacDa5mHAsTl+q
+         qrTGo4eHadIZ45TqL+Y893xiEMqj1/JUkSv0/Ef70CCuzyrDhrlY7hwQhLds7pWUWADp
+         JjJXr1pPICyJMt1Ezgo/nLFa/hZrg57RYTWULZyYmI3njzYNhfKpqotgT8wErIczo/om
+         Qrrw==
+X-Gm-Message-State: APjAAAW+gLtBv6HyJSLloo3kkNKKUXgnFrKQrbZFcXUpu+i2oevQDzlv
+        c+hj7ck5rYlRq/fKMot9uaL0aw==
+X-Google-Smtp-Source: APXvYqyH59Nm3vbt1NDiGZ18Kibh0K801N8w6r86bMR01GEi1FwpjHiY3T3JJRdiyapDKZbulvXwjA==
+X-Received: by 2002:a5d:4e02:: with SMTP id p2mr12453877wrt.182.1562597795750;
+        Mon, 08 Jul 2019 07:56:35 -0700 (PDT)
+Received: from e430.riomail.cz (188-175-152-238.client.rionet.cz. [188.175.152.238])
+        by smtp.gmail.com with ESMTPSA id f70sm11887595wme.22.2019.07.08.07.56.34
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 08 Jul 2019 07:56:35 -0700 (PDT)
+From:   Josef Lusticky <josef@lusticky.cz>
+To:     sam@ravnborg.org, robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org
+Cc:     daniel@ffwll.ch, thierry.reding@gmail.com, airlied@linux.ie,
+        Josef Lusticky <josef@lusticky.cz>
+Subject: [PATCH v2 0/2] Add DRM ILI9341 parallel RGB panel driver
+Date:   Mon,  8 Jul 2019 16:56:16 +0200
+Message-Id: <20190708145618.26031-1-josef@lusticky.cz>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190304125033.28841-1-josef@lusticky.cz>
+References: <20190304125033.28841-1-josef@lusticky.cz>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -41,73 +62,38 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-commit 6953c57ab172 "gpio: of: Handle SPI chipselect legacy bindings"
+Hi,
+This is the v2 of the patch-set which adds support for
+Ilitek ILI9341 parallel RGB panels.
 
-did introduce logic to centrally handle the legacy spi-cs-high property
-in combination with cs-gpios. This assumes that the polarity
-of the CS has to be inverted if spi-cs-high is missing, even
-and especially if non-legacy GPIO_ACTIVE_HIGH is specified.
+The ILI9341 chip supports both parallel RGB input mode and SPI input mode.
+This driver adds support for the parallel RGB input mode.
 
-The DTS for the GTA04 was orginally introduced under the assumption
-that there is no need for spi-cs-high if the gpio is defined with
-proper polarity GPIO_ACTIVE_HIGH.
+Changes since v1:
+* Device-tree bindings in one file
+* D/C GPIO pin is optional
+* mipi_dbi_* functions used to initialize the display
+* entry in MAINTAINERS sorted alphabetically
+* Makefile, Kconfig: DRM_PANEL_ILITEK_IL9341 renamed to DRM_PANEL_ILITEK_ILI9341
+* Kconfig: depend on BACKLIGHT_CLASS_DEVICE
+* Kconfig: select TINYDRM_MIPI_DBI
+* order of include files changed
+* drm_mode_duplicate checked for failure
 
-This was not a problem until gpiolib changed the interpretation of
-GPIO_ACTIVE_HIGH and missing spi-cs-high.
+Thank you Rob Herring and Sam Ravnborg for comments.
 
-The effect is that the missing spi-cs-high is now interpreted as CS being
-low (despite GPIO_ACTIVE_HIGH) which turns off the SPI interface when the
-panel is to be programmed by the panel driver.
+Josef Lusticky (2):
+  dt-bindings: panel: Add parallel RGB mode for Ilitek ILI9341 panels
+  drm/panel: Add Ilitek ILI9341 parallel RGB panel driver
 
-Therefore, we have to add the redundant and legacy spi-cs-high property
-to properly pass through the legacy handler.
+ .../bindings/display/ilitek,ili9341.txt       |  67 +++-
+ MAINTAINERS                                   |   6 +
+ drivers/gpu/drm/panel/Kconfig                 |   9 +
+ drivers/gpu/drm/panel/Makefile                |   1 +
+ drivers/gpu/drm/panel/panel-ilitek-ili9341.c  | 291 ++++++++++++++++++
+ 5 files changed, 363 insertions(+), 11 deletions(-)
+ create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9341.c
 
-Since this is nowhere documented in the bindings, we add some words of
-WARNING.
-
-Cc: stable@vger.kernel.org
-Signed-off-by: H. Nikolaus Schaller <hns@goldelico.com>
----
- Documentation/devicetree/bindings/spi/spi-bus.txt | 6 ++++++
- arch/arm/boot/dts/omap3-gta04.dtsi                | 1 +
- 2 files changed, 7 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/spi/spi-bus.txt b/Documentation/devicetree/bindings/spi/spi-bus.txt
-index 1f6e86f787ef..982aa590058b 100644
---- a/Documentation/devicetree/bindings/spi/spi-bus.txt
-+++ b/Documentation/devicetree/bindings/spi/spi-bus.txt
-@@ -47,6 +47,10 @@ cs1 : native
- cs2 : &gpio1 1 0
- cs3 : &gpio1 2 0
- 
-+WARNING: the polarity of cs-gpios may be inverted in some cases compared
-+to what is specified in the third parameter. In that case the spi-cs-high
-+property must be defined for slave nodes.
-+
- 
- SPI slave nodes must be children of the SPI controller node.
- 
-@@ -69,6 +73,8 @@ All slave nodes can contain the following optional properties:
- 		    phase (CPHA) mode.
- - spi-cs-high     - Empty property indicating device requires chip select
- 		    active high.
-+                   WARNING: this is especially required even if the cs-gpios
-+		    define the gpio as GPIO_ACTIVE_HIGH
- - spi-3wire       - Empty property indicating device requires 3-wire mode.
- - spi-lsb-first   - Empty property indicating device requires LSB first mode.
- - spi-tx-bus-width - The bus width (number of data wires) that is used for MOSI.
-diff --git a/arch/arm/boot/dts/omap3-gta04.dtsi b/arch/arm/boot/dts/omap3-gta04.dtsi
-index 9a9a29fe88ec..47bab8e1040e 100644
---- a/arch/arm/boot/dts/omap3-gta04.dtsi
-+++ b/arch/arm/boot/dts/omap3-gta04.dtsi
-@@ -124,6 +124,7 @@
- 			spi-max-frequency = <100000>;
- 			spi-cpol;
- 			spi-cpha;
-+			spi-cs-high;
- 
- 			backlight= <&backlight>;
- 			label = "lcd";
 -- 
-2.19.1
+2.20.1
 
