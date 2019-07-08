@@ -2,75 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B2D0161B70
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 09:55:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9AE6A61B73
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 09:58:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727415AbfGHHzv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 03:55:51 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:8648 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725836AbfGHHzv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 03:55:51 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d22f7010000>; Mon, 08 Jul 2019 00:55:45 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 08 Jul 2019 00:55:50 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 08 Jul 2019 00:55:50 -0700
-Received: from tbergstrom-lnx.Nvidia.com (172.20.13.39) by
- HQMAIL107.nvidia.com (172.20.187.13) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3; Mon, 8 Jul 2019 07:55:49 +0000
-Received: by tbergstrom-lnx.Nvidia.com (Postfix, from userid 1000)
-        id A8A4342890; Mon,  8 Jul 2019 10:55:47 +0300 (EEST)
-Date:   Mon, 8 Jul 2019 10:55:47 +0300
-From:   Peter De Schrijver <pdeschrijver@nvidia.com>
-To:     JC Kuo <jckuo@nvidia.com>
-CC:     Jon Hunter <jonathanh@nvidia.com>, <gregkh@linuxfoundation.org>,
-        <thierry.reding@gmail.com>, <afrid@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-usb@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <nkristam@nvidia.com>,
-        <skomatineni@nvidia.com>
-Subject: Re: [PATCH 3/8] phy: tegra: xusb: t210: rearrange UPHY init
-Message-ID: <20190708075547.GC12715@pdeschrijver-desktop.Nvidia.com>
-References: <20190614074652.21960-1-jckuo@nvidia.com>
- <20190614074652.21960-4-jckuo@nvidia.com>
- <1a57e3e6-a9b2-87ba-a76b-1785ddd0d935@nvidia.com>
- <94af84e5-5bc3-d481-b784-c0e0dd2b7859@nvidia.com>
+        id S1727132AbfGHH6Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 03:58:24 -0400
+Received: from mx1.redhat.com ([209.132.183.28]:59104 "EHLO mx1.redhat.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725836AbfGHH6X (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jul 2019 03:58:23 -0400
+Received: from smtp.corp.redhat.com (int-mx05.intmail.prod.int.phx2.redhat.com [10.5.11.15])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mx1.redhat.com (Postfix) with ESMTPS id 0C0042F8BF7;
+        Mon,  8 Jul 2019 07:58:23 +0000 (UTC)
+Received: from [10.36.116.46] (ovpn-116-46.ams2.redhat.com [10.36.116.46])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 3FFC417D40;
+        Mon,  8 Jul 2019 07:58:20 +0000 (UTC)
+Subject: Re: [PATCH 8/8] iommu/arm-smmu-v3: Add support for PCI PASID
+To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>,
+        will.deacon@arm.com
+Cc:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        robin.murphy@arm.com, jacob.jun.pan@linux.intel.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
+ <20190610184714.6786-9-jean-philippe.brucker@arm.com>
+From:   Auger Eric <eric.auger@redhat.com>
+Message-ID: <b0e3d9a9-6085-b393-1982-3dd95bf5d100@redhat.com>
+Date:   Mon, 8 Jul 2019 09:58:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <94af84e5-5bc3-d481-b784-c0e0dd2b7859@nvidia.com>
-X-NVConfidentiality: public
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL106.nvidia.com (172.18.146.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1562572546; bh=s7gBsVMVHBYedTs39MDLgXJIF7Cw3ubVGD31xQtf62k=;
-        h=X-PGP-Universal:Date:From:To:CC:Subject:Message-ID:References:
-         MIME-Version:Content-Type:Content-Disposition:In-Reply-To:
-         X-NVConfidentiality:User-Agent:X-Originating-IP:X-ClientProxiedBy;
-        b=p6WUTZQY4cm2PThQd0HgVbUZbnnY1U85OUByI1mZ9YCqzCq7bT16pIGNKKKkmOeKG
-         NDlhAB75e62a7dCRWHs2wXPvwaFzmCpW6cF4HokXIHtOIsttsbxo3UZpHOdK1Ij+UA
-         JuYNd22yjjQea03IESbEabSg6i2MpsC4l8KrBz0c74DRKO58ano11g3LDByDe7Aywu
-         qBtJElKuIZWMD7WI9ptY10GEj4PKUozaPkjX2UbJhf6ofTZDNCTPkliLcrmpek2YST
-         nfBV47i0Lcl3oBVl4jU2AY2rdA4vE0a7H5hvAm0cvzVxgz/V2nF+3tMlFWQumnj8gy
-         GpAULTRybhNmg==
+In-Reply-To: <20190610184714.6786-9-jean-philippe.brucker@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.15
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16 (mx1.redhat.com [10.5.110.38]); Mon, 08 Jul 2019 07:58:23 +0000 (UTC)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 05, 2019 at 02:48:49PM +0800, JC Kuo wrote:
-> > Looks like you are moving all the code from the port enable to the phy
-> > enable and after this change the port enable does nothing. Do we not
-> > differentiate between phy and port? I think a bit more description is
-> > necessary here to describe the impact of this change.
-> Sorry that I am not sure whether I should use "LP0" or "SC7" for Linux system
-> suspend (either to ram or disk). Should I use SC7 instead of LP0?
+Hi Jean,
 
-Please use SC7 rather than LP0.
+On 6/10/19 8:47 PM, Jean-Philippe Brucker wrote:
+> Enable PASID for PCI devices that support it. Since the SSID tables are
+> allocated by arm_smmu_attach_dev(), PASID has to be enabled early enough.
+> arm_smmu_dev_feature_enable() would be too late, since by that time the
+> main DMA domain has already been attached. Do it in add_device() instead.
+> 
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+> ---
+>  drivers/iommu/arm-smmu-v3.c | 51 ++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 50 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
+> index 972bfb80f964..a8a516d9ff10 100644
+> --- a/drivers/iommu/arm-smmu-v3.c
+> +++ b/drivers/iommu/arm-smmu-v3.c
+> @@ -2197,6 +2197,49 @@ static void arm_smmu_disable_ats(struct arm_smmu_master *master)
+>  	master->ats_enabled = false;
+>  }
+>  
+> +static int arm_smmu_enable_pasid(struct arm_smmu_master *master)
+> +{
+> +	int ret;
+> +	int features;
+> +	int num_pasids;
+> +	struct pci_dev *pdev;
+> +
+> +	if (!dev_is_pci(master->dev))
+> +		return -ENOSYS;
+> +
+> +	pdev = to_pci_dev(master->dev);
+> +
+> +	features = pci_pasid_features(pdev);
+> +	if (features < 0)
+> +		return -ENOSYS;
+> +
+> +	num_pasids = pci_max_pasids(pdev);
+> +	if (num_pasids <= 0)
+> +		return -ENOSYS;
+> +
+> +	ret = pci_enable_pasid(pdev, features);
+> +	if (!ret)
+> +		master->ssid_bits = min_t(u8, ilog2(num_pasids),
+> +					  master->smmu->ssid_bits);
+I don't really get why this setting is conditional to the success of
+pci_enabled_pasid and not num_pasids > 0.
 
-Peter.
+If it fails the ssid_bits is set to min(smmu->ssid_bits,
+fwspec->num_pasid_bits) anyway.
 
+> +	return ret;
+> +}
+> +
+> +static void arm_smmu_disable_pasid(struct arm_smmu_master *master)
+> +{
+> +	struct pci_dev *pdev;
+> +
+> +	if (!dev_is_pci(master->dev))
+> +		return;
+> +
+> +	pdev = to_pci_dev(master->dev);
+> +
+> +	if (!pdev->pasid_enabled)
+> +		return;
+> +
+> +	pci_disable_pasid(pdev);
+> +	master->ssid_bits = 0;
+in case of a platform device you leave the ssid_bits to a value != 0. Is
+that what you want?
+> +}
+> +
+>  static void arm_smmu_detach_dev(struct arm_smmu_master *master)
+>  {
+>  	unsigned long flags;
+> @@ -2413,6 +2456,9 @@ static int arm_smmu_add_device(struct device *dev)
+>  
+>  	master->ssid_bits = min(smmu->ssid_bits, fwspec->num_pasid_bits);
+>  
+> +	/* Note that PASID must be enabled before, and disabled after ATS */
+> +	arm_smmu_enable_pasid(master);
+In case the call fails, don't you want to handle the error and reset the
+ssid_bits?
+> +
+>  	/*
+>  	 * If the SMMU doesn't support 2-stage CD, limit the linear
+>  	 * tables to a reasonable number of contexts, let's say
+> @@ -2423,7 +2469,7 @@ static int arm_smmu_add_device(struct device *dev)
+>  
+>  	ret = iommu_device_link(&smmu->iommu, dev);
+>  	if (ret)
+> -		goto err_free_master;
+> +		goto err_disable_pasid;
+>  
+>  	group = iommu_group_get_for_dev(dev);
+>  	if (IS_ERR(group)) {
+> @@ -2436,6 +2482,8 @@ static int arm_smmu_add_device(struct device *dev)
+>  
+>  err_unlink:
+>  	iommu_device_unlink(&smmu->iommu, dev);
+> +err_disable_pasid:
+> +	arm_smmu_disable_pasid(master);
+>  err_free_master:
+>  	kfree(master);
+>  	fwspec->iommu_priv = NULL;
+> @@ -2456,6 +2504,7 @@ static void arm_smmu_remove_device(struct device *dev)
+>  	arm_smmu_detach_dev(master);
+>  	iommu_group_remove_device(dev);
+>  	iommu_device_unlink(&smmu->iommu, dev);
+> +	arm_smmu_disable_pasid(master);
+>  	kfree(master);
+>  	iommu_fwspec_free(dev);
+>  }
+> 
+Thanks
+
+Eric
