@@ -2,34 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0AA5B62E4A
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 04:46:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 77727629DD
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 21:46:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725905AbfGICqJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 22:46:09 -0400
-Received: from 51-15-166-107.rev.poneytelecom.eu ([51.15.166.107]:34063 "EHLO
-        sd-126045.dedibox.fr" rhost-flags-OK-FAIL-OK-OK) by vger.kernel.org
-        with ESMTP id S1725886AbfGICqJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 22:46:09 -0400
-X-Greylist: delayed 24124 seconds by postgrey-1.27 at vger.kernel.org; Mon, 08 Jul 2019 22:46:09 EDT
-Received: from 51-15-166-107.rev.poneytelecom.eu (localhost [IPv6:::1])
-        by sd-126045.dedibox.fr (Postfix) with SMTP id E4F491D69386
-        for <devicetree@vger.kernel.org>; Mon,  8 Jul 2019 21:40:23 +0200 (CEST)
-From:   devicetree@vger.kernel.org
-Reply-To: prodawez@armyspy.com
-To:     wWZFQudevicetree@vger.kernel.org
-Subject: =?utf-8?B?0JfQtNGA0LDQstGB0YLQstGD0LnRgtC1ISDQktCw0YEg?=
-        =?utf-8?B?0LjQvdGC0LXRgNC10YHRg9GO0YIg0LrQu9C40LXQvdGC?=
-        =?utf-8?B?0YHQutC40LUg0LHQsNC30Ysg0LTQsNC90L3Ri9GFPw==?=
+        id S2403914AbfGHTqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 15:46:25 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:33172 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727899AbfGHTqZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jul 2019 15:46:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=7uzdZ/IK3FH7mAIp0p/NryfuhGgzACHzKLTL6ohKmwk=; b=ikEvL6YwY3XHO++2Fxo3voV2lk
+        RwN645AfLfAirXvn9mhWF6kSeCbf0lAML7Juf/sQODcI/f12ZY+WbJp5l3/UfAsqtEz5BQnreFkQz
+        BVvlmR2xxcBBg4jBgHUS8CagXtMM2d3XTHLGzwqiOsHXMzn8Sj2BKdhaePd54FV8ETqY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hkZaZ-0004Yg-Tk; Mon, 08 Jul 2019 21:46:15 +0200
+Date:   Mon, 8 Jul 2019 21:46:15 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH v3 1/7] dt-bindings: net: Add bindings for Realtek PHYs
+Message-ID: <20190708194615.GH9027@lunn.ch>
+References: <20190708192459.187984-1-mka@chromium.org>
+ <20190708192459.187984-2-mka@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8";
-Content-Transfer-Encoding: base64
-Message-Id: <20190708194023.E4F491D69386@sd-126045.dedibox.fr>
-Date:   Mon,  8 Jul 2019 21:40:23 +0200 (CEST)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190708192459.187984-2-mka@chromium.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-0JfQtNGA0LDQstGB0YLQstGD0LnRgtC1ISDQktCw0YEg0LjQvdGC0LXRgNC10YHRg9GO0YIg0LrQ
-u9C40LXQvdGC0YHQutC40LUg0LHQsNC30Ysg0LTQsNC90L3Ri9GFPw0K
+On Mon, Jul 08, 2019 at 12:24:53PM -0700, Matthias Kaehlcke wrote:
+> Add the 'realtek,eee-led-mode-disable' property to disable EEE
+> LED mode on Realtek PHYs that support it.
+> 
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+> TODO: adapt PHY core to deal with optional compatible strings
+
+Yes. Does this even work at the moment? I would expect
+of_mdiobus_child_is_phy() to return false, indicating the device is
+not actually a PHY.
+
+    Andrew
