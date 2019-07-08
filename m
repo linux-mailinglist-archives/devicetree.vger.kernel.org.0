@@ -2,424 +2,293 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77FD2620F1
-	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 16:56:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B130E62142
+	for <lists+devicetree@lfdr.de>; Mon,  8 Jul 2019 17:13:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726580AbfGHO4o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 10:56:44 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:42891 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725840AbfGHO4n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 10:56:43 -0400
-Received: by mail-wr1-f65.google.com with SMTP id a10so16386435wrp.9
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 07:56:40 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lusticky.cz; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Qks6huK9PjJ7axz52EWgNZCOtNEhVZbSxesN0cPqE5g=;
-        b=qw+5vHURgVqu0/D/7NqQwSOlNOEDd6uHGo7IpQXK7eiQWAV+HMvfxHpk44kgoLNf9G
-         fguxglf/7pCP655ZwCPFIIOrbTqcP+frS3Lz+HpPo8+XeRzG8nI/GvvRc3kU2il+R4Lg
-         ubW74Q9k1mszBzpxTYTdUp0bxcYr+I51pPy5yPoaekW2EYymaNdcYY6xzxJBABGrF/lQ
-         0mZIvj4OP5IcmcWZUYhgt0fIGmq50J75Tsd/SW/g0Qa45ja0rkQUYmRQ0Cymd+s5BoVr
-         Rzlx2mhnSB6ylHk1B80qWwDbDWPTmv1hn9JATGr5KrhRHLSNHKaQ15Rky8904lyi3qTM
-         H51Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Qks6huK9PjJ7axz52EWgNZCOtNEhVZbSxesN0cPqE5g=;
-        b=mKuW24BITm5zH59CNWauC81wpGkWxub5Mo6Sg6tT2B7YxRHjUMZPEKFwa4jecYT4X3
-         XkEJK8GNlGCWAcdym6DPkkNM9fIB2+2aXyUNNtlo3nuGXYDPcj45Nt8kKx8TOdcVkw48
-         egeNRn+7FMxFVfpUQUGZ1g+jw1CtJYpWlo8JNZtEieea3FRMyU/bJ8UZ+Xk7KVu/cNR/
-         dn+1JictlCZppEKWDsvRR1/zK5OQEEFy7CJLuUQhZfyffA0BK3V7CrEf4+ll184GkYe9
-         sutBwN0pU7CfZKSPosoasJ9LELn67EmdYwk6sFOQ8ofzTU3nvB66PSw9/x6oJf3IQiBY
-         M+0w==
-X-Gm-Message-State: APjAAAXM07sgSQN29PKA/yVylsLFgYXrzk6gGl14/1qwyo183i7wt5yl
-        L7/66bO2DCgyHKMcVDtcapoN5A==
-X-Google-Smtp-Source: APXvYqyCQ5Qs2d8AWgSDe31YNLghM90udICUq4+rAc+I4xIfponO0N4QRio/daOLAczwi/JzORanFw==
-X-Received: by 2002:adf:eb06:: with SMTP id s6mr19940685wrn.151.1562597800156;
-        Mon, 08 Jul 2019 07:56:40 -0700 (PDT)
-Received: from e430.riomail.cz (188-175-152-238.client.rionet.cz. [188.175.152.238])
-        by smtp.gmail.com with ESMTPSA id f70sm11887595wme.22.2019.07.08.07.56.39
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 08 Jul 2019 07:56:39 -0700 (PDT)
-From:   Josef Lusticky <josef@lusticky.cz>
-To:     sam@ravnborg.org, robh@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org
-Cc:     daniel@ffwll.ch, thierry.reding@gmail.com, airlied@linux.ie,
-        Josef Lusticky <josef@lusticky.cz>
-Subject: [PATCH v2 2/2] drm/panel: Add Ilitek ILI9341 parallel RGB panel driver
-Date:   Mon,  8 Jul 2019 16:56:18 +0200
-Message-Id: <20190708145618.26031-3-josef@lusticky.cz>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190708145618.26031-1-josef@lusticky.cz>
-References: <20190304125033.28841-1-josef@lusticky.cz>
- <20190708145618.26031-1-josef@lusticky.cz>
+        id S1728370AbfGHPNK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 11:13:10 -0400
+Received: from mx1.redhat.com ([209.132.183.28]:51460 "EHLO mx1.redhat.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725977AbfGHPNK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jul 2019 11:13:10 -0400
+Received: from smtp.corp.redhat.com (int-mx02.intmail.prod.int.phx2.redhat.com [10.5.11.12])
+        (using TLSv1.2 with cipher AECDH-AES256-SHA (256/256 bits))
+        (No client certificate requested)
+        by mx1.redhat.com (Postfix) with ESMTPS id 9A8B8A3B6E;
+        Mon,  8 Jul 2019 15:13:09 +0000 (UTC)
+Received: from [10.36.116.46] (ovpn-116-46.ams2.redhat.com [10.36.116.46])
+        by smtp.corp.redhat.com (Postfix) with ESMTPS id 0618551F0F;
+        Mon,  8 Jul 2019 15:13:06 +0000 (UTC)
+Subject: Re: [PATCH 5/8] iommu/arm-smmu-v3: Add second level of context
+ descriptor table
+To:     Jean-Philippe Brucker <jean-philippe.brucker@arm.com>,
+        will.deacon@arm.com
+Cc:     joro@8bytes.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        robin.murphy@arm.com, jacob.jun.pan@linux.intel.com,
+        iommu@lists.linux-foundation.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+References: <20190610184714.6786-1-jean-philippe.brucker@arm.com>
+ <20190610184714.6786-6-jean-philippe.brucker@arm.com>
+From:   Auger Eric <eric.auger@redhat.com>
+Message-ID: <3e69caf7-4e8a-4bce-7a89-51e21a0134b1@redhat.com>
+Date:   Mon, 8 Jul 2019 17:13:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.4.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190610184714.6786-6-jean-philippe.brucker@arm.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Scanned-By: MIMEDefang 2.79 on 10.5.11.12
+X-Greylist: Sender IP whitelisted, not delayed by milter-greylist-4.5.16 (mx1.redhat.com [10.5.110.30]); Mon, 08 Jul 2019 15:13:09 +0000 (UTC)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add driver for Ilitek ILI9341 panels in parallel RGB mode
+Hi Jean,
 
-Signed-off-by: Josef Lusticky <josef@lusticky.cz>
----
- MAINTAINERS                                  |   6 +
- drivers/gpu/drm/panel/Kconfig                |   9 +
- drivers/gpu/drm/panel/Makefile               |   1 +
- drivers/gpu/drm/panel/panel-ilitek-ili9341.c | 291 +++++++++++++++++++
- 4 files changed, 307 insertions(+)
- create mode 100644 drivers/gpu/drm/panel/panel-ilitek-ili9341.c
+On 6/10/19 8:47 PM, Jean-Philippe Brucker wrote:
+> The SMMU can support up to 20 bits of SSID. Add a second level of page
+> tables to accommodate this. Devices that support more than 1024 SSIDs now
+> have a table of 1024 L1 entries (8kB), pointing to tables of 1024 context
+> descriptors (64kB), allocated on demand.
+> 
+> Signed-off-by: Jean-Philippe Brucker <jean-philippe.brucker@arm.com>
+> ---
+>  drivers/iommu/arm-smmu-v3.c | 136 +++++++++++++++++++++++++++++++++---
+>  1 file changed, 128 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/iommu/arm-smmu-v3.c b/drivers/iommu/arm-smmu-v3.c
+> index d90eb604b65d..326b71793336 100644
+> --- a/drivers/iommu/arm-smmu-v3.c
+> +++ b/drivers/iommu/arm-smmu-v3.c
+> @@ -216,6 +216,8 @@
+>  
+>  #define STRTAB_STE_0_S1FMT		GENMASK_ULL(5, 4)
+>  #define STRTAB_STE_0_S1FMT_LINEAR	0
+> +#define STRTAB_STE_0_S1FMT_4K_L2	1
+As you only use 64kB L2, I guess you can remove the 4K define?
+> +#define STRTAB_STE_0_S1FMT_64K_L2	2
+>  #define STRTAB_STE_0_S1CTXPTR_MASK	GENMASK_ULL(51, 6)
+>  #define STRTAB_STE_0_S1CDMAX		GENMASK_ULL(63, 59)
+>  
+> @@ -255,6 +257,18 @@
+>  
+>  #define STRTAB_STE_3_S2TTB_MASK		GENMASK_ULL(51, 4)
+>  
+> +/*
+> + * Linear: when less than 1024 SSIDs are supported
+> + * 2lvl: at most 1024 L1 entrie,
+entries
+> + *      1024 lazy entries per table.
+> + */
+> +#define CTXDESC_SPLIT			10
+> +#define CTXDESC_NUM_L2_ENTRIES		(1 << CTXDESC_SPLIT)
+> +
+> +#define CTXDESC_L1_DESC_DWORD		1
+> +#define CTXDESC_L1_DESC_VALID		1
+> +#define CTXDESC_L1_DESC_L2PTR_MASK	GENMASK_ULL(51, 12)
+> +
+>  /* Context descriptor (stage-1 only) */
+>  #define CTXDESC_CD_DWORDS		8
+>  #define CTXDESC_CD_0_TCR_T0SZ		GENMASK_ULL(5, 0)
+> @@ -530,7 +544,10 @@ struct arm_smmu_ctx_desc {
+>  struct arm_smmu_s1_cfg {
+>  	u8				s1fmt;
+>  	u8				s1cdmax;
+> -	struct arm_smmu_cd_table	table;
+> +	struct arm_smmu_cd_table	*tables;
+> +	size_t				num_tables;
+> +	__le64				*l1ptr;
+> +	dma_addr_t			l1ptr_dma;
+>  
+>  	/* Context descriptor 0, when substreams are disabled or s1dss = 0b10 */
+>  	struct arm_smmu_ctx_desc	cd;
+> @@ -1118,12 +1135,51 @@ static void arm_smmu_free_cd_leaf_table(struct arm_smmu_device *smmu,
+>  {
+>  	size_t size = num_entries * (CTXDESC_CD_DWORDS << 3);
+>  
+> +	if (!table->ptr)
+> +		return;
+>  	dmam_free_coherent(smmu->dev, size, table->ptr, table->ptr_dma);
+>  }
+>  
+> -static __le64 *arm_smmu_get_cd_ptr(struct arm_smmu_s1_cfg *cfg, u32 ssid)
+> +static void arm_smmu_write_cd_l1_desc(__le64 *dst,
+> +				      struct arm_smmu_cd_table *table)
+>  {
+> -	return cfg->table.ptr + ssid * CTXDESC_CD_DWORDS;
+> +	u64 val = (table->ptr_dma & CTXDESC_L1_DESC_L2PTR_MASK) |
+> +		  CTXDESC_L1_DESC_VALID;
+> +
+> +	*dst = cpu_to_le64(val);
+> +}
+> +
+> +static __le64 *arm_smmu_get_cd_ptr(struct arm_smmu_domain *smmu_domain,
+> +				   u32 ssid)> +{
+> +	unsigned int idx;
+> +	struct arm_smmu_cd_table *table;
+> +	struct arm_smmu_device *smmu = smmu_domain->smmu;
+> +	struct arm_smmu_s1_cfg *cfg = &smmu_domain->s1_cfg;
+> +
+> +	if (cfg->s1fmt == STRTAB_STE_0_S1FMT_LINEAR) {
+> +		table = &cfg->tables[0];
+> +		idx = ssid;
+> +	} else {
+> +		idx = ssid >> CTXDESC_SPLIT;
+> +		if (idx >= cfg->num_tables)
+> +			return NULL;
+> +
+> +		table = &cfg->tables[idx];
+> +		if (!table->ptr) {
+> +			__le64 *l1ptr = cfg->l1ptr + idx * CTXDESC_L1_DESC_DWORD;
+> +
+> +			if (arm_smmu_alloc_cd_leaf_table(smmu, table,
+> +							 CTXDESC_NUM_L2_ENTRIES))
+> +				return NULL;
+> +
+> +			arm_smmu_write_cd_l1_desc(l1ptr, table);
+> +			/* An invalid L1 entry is allowed to be cached */
+> +			arm_smmu_sync_cd(smmu_domain, ssid, false);
+> +		}
+> +		idx = ssid & (CTXDESC_NUM_L2_ENTRIES - 1);
+> +	}
+> +	return table->ptr + idx * CTXDESC_CD_DWORDS;
+>  }
+>  
+>  static u64 arm_smmu_cpu_tcr_to_cd(u64 tcr)
+> @@ -1149,7 +1205,7 @@ static int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain,
+>  	u64 val;
+>  	bool cd_live;
+>  	struct arm_smmu_device *smmu = smmu_domain->smmu;
+> -	__le64 *cdptr = arm_smmu_get_cd_ptr(&smmu_domain->s1_cfg, ssid);
+> +	__le64 *cdptr = arm_smmu_get_cd_ptr(smmu_domain, ssid);
+>  
+>  	/*
+>  	 * This function handles the following cases:
+> @@ -1213,20 +1269,81 @@ static int arm_smmu_write_ctx_desc(struct arm_smmu_domain *smmu_domain,
+>  static int arm_smmu_alloc_cd_tables(struct arm_smmu_domain *smmu_domain,
+>  				    struct arm_smmu_master *master)
+>  {
+> +	int ret;
+> +	size_t size = 0;
+> +	size_t max_contexts, num_leaf_entries;
+>  	struct arm_smmu_device *smmu = smmu_domain->smmu;
+>  	struct arm_smmu_s1_cfg *cfg = &smmu_domain->s1_cfg;
+>  
+>  	cfg->s1fmt = STRTAB_STE_0_S1FMT_LINEAR;
+>  	cfg->s1cdmax = master->ssid_bits;
+> -	return arm_smmu_alloc_cd_leaf_table(smmu, &cfg->table, 1 << cfg->s1cdmax);
+> +
+> +	max_contexts = 1 << cfg->s1cdmax;
+> +	if (!(smmu->features & ARM_SMMU_FEAT_2_LVL_CDTAB) ||
+> +	    max_contexts <= CTXDESC_NUM_L2_ENTRIES) {
+> +		cfg->s1fmt = STRTAB_STE_0_S1FMT_LINEAR;
+> +		cfg->num_tables = 1;
+> +		num_leaf_entries = max_contexts;
+> +	} else {
+> +		cfg->s1fmt = STRTAB_STE_0_S1FMT_64K_L2;
+> +		/*
+> +		 * SSID[S1CDmax-1:10] indexes 1st-level table, SSID[9:0] indexes
+> +		 * 2nd-level
+> +		 */
+> +		cfg->num_tables = max_contexts / CTXDESC_NUM_L2_ENTRIES;
+> +
+> +		size = cfg->num_tables * (CTXDESC_L1_DESC_DWORD << 3);
+> +		cfg->l1ptr = dmam_alloc_coherent(smmu->dev, size,
+> +						 &cfg->l1ptr_dma,
+> +						 GFP_KERNEL | __GFP_ZERO);
+> +		if (!cfg->l1ptr) {
+> +			dev_warn(smmu->dev, "failed to allocate L1 context table\n");
+> +			return -ENOMEM;
+> +		}
+> +
+> +		num_leaf_entries = CTXDESC_NUM_L2_ENTRIES;
+> +	}
+> +
+> +	cfg->tables = devm_kzalloc(smmu->dev, sizeof(struct arm_smmu_cd_table) *
+> +				   cfg->num_tables, GFP_KERNEL);
+> +	if (!cfg->tables)
+> +		return -ENOMEM;
+goto err_free_l1
+> +
+> +	ret = arm_smmu_alloc_cd_leaf_table(smmu, &cfg->tables[0], num_leaf_entries);
+don't you want to do that only in linear case. In 2-level mode, I
+understand arm_smmu_get_cd_ptr() will do the job.
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 0a76716874bd..a35bf56cc018 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5028,6 +5028,12 @@ S:	Maintained
- F:	drivers/gpu/drm/tinydrm/hx8357d.c
- F:	Documentation/devicetree/bindings/display/himax,hx8357d.txt
- 
-+DRM DRIVER FOR ILITEK ILI9341 PANELS
-+M:	Josef Lusticky <josef@lusticky.cz>
-+S:	Maintained
-+F:	drivers/gpu/drm/panel/panel-ilitek-ili9341.c
-+F:	Documentation/devicetree/bindings/display/panel/ilitek,ili9341.txt
-+
- DRM DRIVER FOR INTEL I810 VIDEO CARDS
- S:	Orphan / Obsolete
- F:	drivers/gpu/drm/i810/
-diff --git a/drivers/gpu/drm/panel/Kconfig b/drivers/gpu/drm/panel/Kconfig
-index eaecd40cc32e..34a5b262f924 100644
---- a/drivers/gpu/drm/panel/Kconfig
-+++ b/drivers/gpu/drm/panel/Kconfig
-@@ -56,6 +56,15 @@ config DRM_PANEL_ILITEK_IL9322
- 	  Say Y here if you want to enable support for Ilitek IL9322
- 	  QVGA (320x240) RGB, YUV and ITU-T BT.656 panels.
- 
-+config DRM_PANEL_ILITEK_ILI9341
-+	tristate "Ilitek ILI9341 240x320 panels"
-+	depends on OF && SPI
-+	depends on BACKLIGHT_CLASS_DEVICE
-+	select TINYDRM_MIPI_DBI
-+	help
-+	  Say Y here if you want to enable support for Ilitek ILI9341
-+	  QVGA (240x320) RGB panel.
-+
- config DRM_PANEL_ILITEK_ILI9881C
- 	tristate "Ilitek ILI9881C-based panels"
- 	depends on OF
-diff --git a/drivers/gpu/drm/panel/Makefile b/drivers/gpu/drm/panel/Makefile
-index 62dae45f8f74..ba4a303c1a66 100644
---- a/drivers/gpu/drm/panel/Makefile
-+++ b/drivers/gpu/drm/panel/Makefile
-@@ -4,6 +4,7 @@ obj-$(CONFIG_DRM_PANEL_LVDS) += panel-lvds.o
- obj-$(CONFIG_DRM_PANEL_SIMPLE) += panel-simple.o
- obj-$(CONFIG_DRM_PANEL_FEIYANG_FY07024DI26A30D) += panel-feiyang-fy07024di26a30d.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_IL9322) += panel-ilitek-ili9322.o
-+obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9341) += panel-ilitek-ili9341.o
- obj-$(CONFIG_DRM_PANEL_ILITEK_ILI9881C) += panel-ilitek-ili9881c.o
- obj-$(CONFIG_DRM_PANEL_INNOLUX_P079ZCA) += panel-innolux-p079zca.o
- obj-$(CONFIG_DRM_PANEL_JDI_LT070ME05000) += panel-jdi-lt070me05000.o
-diff --git a/drivers/gpu/drm/panel/panel-ilitek-ili9341.c b/drivers/gpu/drm/panel/panel-ilitek-ili9341.c
-new file mode 100644
-index 000000000000..0c700b171025
---- /dev/null
-+++ b/drivers/gpu/drm/panel/panel-ilitek-ili9341.c
-@@ -0,0 +1,291 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Ilitek ILI9341 drm_panel driver
-+ * 240RGBx320 dots resolution TFT LCD display
-+ *
-+ * This driver supports the following panel configurations:
-+ * - Command interface:
-+ *     - MIPI-DBI Type 3 Option 1
-+ *       (9-bit SPI with Data/Command bit  - IM[3:0] = 1101)
-+ *     - MIPI-DBI Type 3 Option 3
-+ *       (8-bit SPI with Data/Command GPIO - IM[3:0] = 1110)
-+ * - Graphical data interface:
-+ *     - MIPI-DPI 18-bit parallel RGB interface
-+ *
-+ * Copyright (C) 2019 Josef Lusticky <josef@lusticky.cz>
-+ *
-+ */
-+
-+#include <linux/backlight.h>
-+#include <linux/delay.h>
-+#include <linux/gpio/consumer.h>
-+#include <linux/module.h>
-+#include <linux/of_device.h>
-+#include <linux/spi/spi.h>
-+
-+#include <video/mipi_display.h>
-+
-+#include <drm/drm_modes.h>
-+#include <drm/drm_panel.h>
-+#include <drm/drm_print.h>
-+#include <drm/tinydrm/mipi-dbi.h>
-+
-+/* ILI9341 extended register set (Vendor Command Set) */
-+#define ILI9341_IFMODE         0xB0 // clock polarity
-+#define ILI9341_IFCTL          0xF6 // interface conrol
-+#define ILI9341_PGAMCTRL       0xE0 // positive gamma control
-+#define ILI9341_NGAMCTRL       0xE1 // negative gamma control
-+
-+#define ILI9341_MADCTL_MV      BIT(5)
-+#define ILI9341_MADCTL_MX      BIT(6)
-+#define ILI9341_MADCTL_MY      BIT(7)
-+
-+/**
-+ * struct ili9341_config - the display specific configuration
-+ * @width_mm: physical panel width [mm]
-+ * @height_mm: physical panel height [mm]
-+ */
-+struct ili9341_config {
-+	u32 width_mm;
-+	u32 height_mm;
-+};
-+
-+struct ili9341 {
-+	struct drm_panel panel;
-+	struct mipi_dbi *mipi;
-+	const struct ili9341_config *conf;
-+};
-+
-+static inline struct ili9341 *panel_to_ili9341(struct drm_panel *panel)
-+{
-+	return container_of(panel, struct ili9341, panel);
-+}
-+
-+static int ili9341_deinit(struct drm_panel *panel, struct ili9341 *ili)
-+{
-+	mipi_dbi_command(ili->mipi, MIPI_DCS_SET_DISPLAY_OFF);
-+	mipi_dbi_command(ili->mipi, MIPI_DCS_ENTER_SLEEP_MODE);
-+	msleep(5);
-+	return 0;
-+}
-+
-+static int ili9341_init(struct drm_panel *panel, struct ili9341 *ili)
-+{
-+	/* HW / SW Reset display and wait */
-+	if (ili->mipi->reset)
-+		mipi_dbi_hw_reset(ili->mipi);
-+
-+	mipi_dbi_command(ili->mipi, MIPI_DCS_SOFT_RESET);
-+	msleep(120);
-+
-+	/* Polarity */
-+	mipi_dbi_command(ili->mipi, ILI9341_IFMODE, 0xC0);
-+
-+	/* Interface control */
-+	mipi_dbi_command(ili->mipi, ILI9341_IFCTL, 0x09, 0x01, 0x26);
-+
-+	/* Pixel format */
-+	mipi_dbi_command(ili->mipi, MIPI_DCS_SET_PIXEL_FORMAT, MIPI_DCS_PIXEL_FMT_18BIT << 4);
-+
-+	/* Gamma */
-+	mipi_dbi_command(ili->mipi, MIPI_DCS_SET_GAMMA_CURVE, 0x01);
-+	mipi_dbi_command(ili->mipi, ILI9341_PGAMCTRL,
-+		0x0f, 0x31, 0x2b, 0x0c, 0x0e, 0x08, 0x4e, 0xf1,
-+		0x37, 0x07, 0x10, 0x03, 0x0e, 0x09, 0x00);
-+	mipi_dbi_command(ili->mipi, ILI9341_NGAMCTRL,
-+		0x00, 0x0e, 0x14, 0x03, 0x11, 0x07, 0x31, 0xc1,
-+		0x48, 0x08, 0x0f, 0x0c, 0x31, 0x36, 0x0f);
-+
-+	/* Rotation */
-+	mipi_dbi_command(ili->mipi, MIPI_DCS_SET_ADDRESS_MODE, ILI9341_MADCTL_MX);
-+
-+	/* Exit sleep mode */
-+	mipi_dbi_command(ili->mipi, MIPI_DCS_EXIT_SLEEP_MODE);
-+	msleep(120);
-+
-+	mipi_dbi_command(ili->mipi, MIPI_DCS_SET_DISPLAY_ON);
-+
-+	return 0;
-+}
-+
-+static int ili9341_unprepare(struct drm_panel *panel)
-+{
-+	struct ili9341 *ili = panel_to_ili9341(panel);
-+
-+	return ili9341_deinit(panel, ili);
-+}
-+
-+static int ili9341_prepare(struct drm_panel *panel)
-+{
-+	struct ili9341 *ili = panel_to_ili9341(panel);
-+	int ret;
-+
-+	ret = ili9341_init(panel, ili);
-+	if (ret < 0)
-+		ili9341_unprepare(panel);
-+	return ret;
-+}
-+
-+static int ili9341_enable(struct drm_panel *panel)
-+{
-+	struct ili9341 *ili = panel_to_ili9341(panel);
-+
-+	return backlight_enable(ili->mipi->backlight);
-+}
-+
-+static int ili9341_disable(struct drm_panel *panel)
-+{
-+	struct ili9341 *ili = panel_to_ili9341(panel);
-+
-+	return backlight_disable(ili->mipi->backlight);
-+}
-+
-+static const struct drm_display_mode prgb_240x320_mode = {
-+	.clock = 6350,
-+
-+	.hdisplay = 240,
-+	.hsync_start = 240 + 10,
-+	.hsync_end = 240 + 10 + 10,
-+	.htotal = 240 + 10 + 10 + 20,
-+
-+	.vdisplay = 320,
-+	.vsync_start = 320 + 4,
-+	.vsync_end = 320 + 4 + 2,
-+	.vtotal = 320 + 4 + 2 + 2,
-+
-+	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-+	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED
-+};
-+
-+static int ili9341_get_modes(struct drm_panel *panel)
-+{
-+	struct drm_connector *connector = panel->connector;
-+	struct ili9341 *ili = panel_to_ili9341(panel);
-+	struct drm_display_mode *mode;
-+
-+	mode = drm_mode_duplicate(panel->drm, &prgb_240x320_mode);
-+	if (!mode) {
-+		DRM_DEV_ERROR(panel->drm->dev, "bad mode or failed to add mode\n");
-+		return -ENOMEM;
-+	}
-+
-+	drm_mode_set_name(mode);
-+
-+	mode->width_mm = ili->conf->width_mm;
-+	mode->height_mm = ili->conf->height_mm;
-+
-+	connector->display_info.width_mm = mode->width_mm;
-+	connector->display_info.height_mm = mode->height_mm;
-+	connector->display_info.bus_flags |= DRM_BUS_FLAG_DE_HIGH |
-+		DRM_BUS_FLAG_PIXDATA_POSEDGE | DRM_BUS_FLAG_SYNC_NEGEDGE;
-+
-+	drm_mode_probed_add(connector, mode);
-+
-+	return 1; /* Number of modes */
-+}
-+
-+static const struct drm_panel_funcs ili9341_drm_funcs = {
-+	.disable = ili9341_disable,
-+	.unprepare = ili9341_unprepare,
-+	.prepare = ili9341_prepare,
-+	.enable = ili9341_enable,
-+	.get_modes = ili9341_get_modes,
-+};
-+
-+static int ili9341_probe(struct spi_device *spi)
-+{
-+	struct device *dev = &spi->dev;
-+	struct ili9341 *ili;
-+	struct mipi_dbi *mipi;
-+	struct gpio_desc *dc_gpio;
-+	int ret;
-+
-+	mipi = devm_kzalloc(dev, sizeof(*mipi), GFP_KERNEL);
-+	if (!mipi)
-+		return -ENOMEM;
-+
-+	ili = devm_kzalloc(dev, sizeof(*ili), GFP_KERNEL);
-+	if (!ili)
-+		return -ENOMEM;
-+
-+	ili->mipi = mipi;
-+
-+	spi_set_drvdata(spi, ili);
-+
-+	/*
-+	 * Every new incarnation of this display must have a unique
-+	 * data entry for the system in this driver.
-+	 */
-+	ili->conf = of_device_get_match_data(dev);
-+	if (!ili->conf) {
-+		DRM_DEV_ERROR(dev, "missing device configuration\n");
-+		return -ENODEV;
-+	}
-+
-+	ili->mipi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-+	if (IS_ERR(ili->mipi->reset)) {
-+		DRM_DEV_ERROR(dev, "failed to get gpio 'reset'\n");
-+		return PTR_ERR(ili->mipi->reset);
-+	}
-+
-+	ili->mipi->backlight = devm_of_find_backlight(dev);
-+	if (IS_ERR(ili->mipi->backlight)) {
-+		DRM_DEV_ERROR(dev, "failed to get backlight\n");
-+		return PTR_ERR(ili->mipi->backlight);
-+	}
-+
-+	dc_gpio = devm_gpiod_get_optional(dev, "dc", GPIOD_OUT_LOW);
-+	if (IS_ERR(dc_gpio)) {
-+		DRM_DEV_ERROR(dev, "failed to get gpio 'dc'\n");
-+		return PTR_ERR(dc_gpio);
-+	}
-+
-+	ret = mipi_dbi_spi_init(spi, ili->mipi, dc_gpio);
-+	if (ret) {
-+		DRM_DEV_ERROR(dev, "MIPI-DBI SPI setup failed\n");
-+		return ret;
-+	}
-+
-+	drm_panel_init(&ili->panel);
-+	ili->panel.dev = dev;
-+	ili->panel.funcs = &ili9341_drm_funcs;
-+
-+	return drm_panel_add(&ili->panel);
-+}
-+
-+static int ili9341_remove(struct spi_device *spi)
-+{
-+	struct ili9341 *ili = spi_get_drvdata(spi);
-+
-+	drm_panel_remove(&ili->panel);
-+
-+	ili9341_disable(&ili->panel);
-+	ili9341_unprepare(&ili->panel);
-+
-+	return 0;
-+}
-+
-+static const struct ili9341_config dt024ctft_data = {
-+	.width_mm = 37,
-+	.height_mm = 49,
-+};
-+
-+static const struct of_device_id ili9341_of_match[] = {
-+	{ .compatible = "displaytech,dt024ctft", .data = &dt024ctft_data },
-+	{ /* sentinel */ }
-+};
-+MODULE_DEVICE_TABLE(of, ili9341_of_match);
-+
-+static struct spi_driver ili9341_driver = {
-+	.probe = ili9341_probe,
-+	.remove = ili9341_remove,
-+	.driver = {
-+		.name = "panel-ilitek-ili9341",
-+		.of_match_table = ili9341_of_match,
-+	},
-+};
-+module_spi_driver(ili9341_driver);
-+
-+MODULE_AUTHOR("Josef Lusticky <josef@lusticky.cz>");
-+MODULE_DESCRIPTION("ILI9341 LCD panel driver");
-+MODULE_LICENSE("GPL");
--- 
-2.20.1
+> +	if (ret)
+> +		goto err_free_l1;
+> +
+> +	if (cfg->l1ptr)
+> +		arm_smmu_write_cd_l1_desc(cfg->l1ptr, &cfg->tables[0]);
+that stuff could be removed as well? By the way I can see that
+arm_smmu_get_cd_ptr() does a arm_smmu_sync_cd after. wouldn't it be
+needed here as well?
+> +
+> +	return 0;
+> +
+> +err_free_l1:
+> +	if (cfg->l1ptr)
+> +		dmam_free_coherent(smmu->dev, size, cfg->l1ptr, cfg->l1ptr_dma);
+> +	devm_kfree(smmu->dev, cfg->tables);
+> +	return ret;
+>  }
+>  
+>  static void arm_smmu_free_cd_tables(struct arm_smmu_domain *smmu_domain)
+>  {
+> +	int i;
+>  	struct arm_smmu_device *smmu = smmu_domain->smmu;
+>  	struct arm_smmu_s1_cfg *cfg = &smmu_domain->s1_cfg;
+> +	size_t num_leaf_entries = 1 << cfg->s1cdmax;
+> +	struct arm_smmu_cd_table *table = cfg->tables;
+> +
+> +	if (cfg->l1ptr) {
+> +		size_t size = cfg->num_tables * (CTXDESC_L1_DESC_DWORD << 3);
+>  
+> -	arm_smmu_free_cd_leaf_table(smmu, &cfg->table, 1 << cfg->s1cdmax);
+> +		dmam_free_coherent(smmu->dev, size, cfg->l1ptr,
+> +				   cfg->l1ptr_dma);
+> +		num_leaf_entries = CTXDESC_NUM_L2_ENTRIES;
+> +	}
+> +
+> +	for (i = 0; i < cfg->num_tables; i++, table++)
+> +		arm_smmu_free_cd_leaf_table(smmu, table, num_leaf_entries);
+> +	devm_kfree(smmu->dev, cfg->tables);
+>  }
+>  
+>  /* Stream table manipulation functions */
+> @@ -1346,6 +1463,9 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
+>  	}
+>  
+>  	if (s1_cfg) {
+> +		dma_addr_t ptr_dma = s1_cfg->l1ptr ? s1_cfg->l1ptr_dma :
+> +			             s1_cfg->tables[0].ptr_dma;
+> +
+>  		BUG_ON(ste_live);
+>  		dst[1] = cpu_to_le64(
+>  			 FIELD_PREP(STRTAB_STE_1_S1DSS, STRTAB_STE_1_S1DSS_SSID0) |
+> @@ -1358,7 +1478,7 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
+>  		   !(smmu->features & ARM_SMMU_FEAT_STALL_FORCE))
+>  			dst[1] |= cpu_to_le64(STRTAB_STE_1_S1STALLD);
+>  
+> -		val |= (s1_cfg->table.ptr_dma & STRTAB_STE_0_S1CTXPTR_MASK) |
+> +		val |= (ptr_dma & STRTAB_STE_0_S1CTXPTR_MASK) |
+>  			FIELD_PREP(STRTAB_STE_0_CFG, STRTAB_STE_0_CFG_S1_TRANS) |
+>  			FIELD_PREP(STRTAB_STE_0_S1CDMAX, s1_cfg->s1cdmax) |
+>  			FIELD_PREP(STRTAB_STE_0_S1FMT, s1_cfg->s1fmt);
+> @@ -1815,7 +1935,7 @@ static void arm_smmu_domain_free(struct iommu_domain *domain)
+>  	if (smmu_domain->stage == ARM_SMMU_DOMAIN_S1) {
+>  		struct arm_smmu_s1_cfg *cfg = &smmu_domain->s1_cfg;
+>  
+> -		if (cfg->table.ptr) {
+> +		if (cfg->tables) {
+>  			arm_smmu_free_cd_tables(smmu_domain);
+>  			arm_smmu_bitmap_free(smmu->asid_map, cfg->cd.asid);
+I don't get why the arm_smmu_bitmap_free is dependent on cfg->tables.
 
+Thanks
+
+Eric
+>  		}
+> 
