@@ -2,100 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DCBA263ADC
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 20:23:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42DA463AE8
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 20:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727761AbfGISWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 14:22:51 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:33879 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727757AbfGISWv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 14:22:51 -0400
-Received: by mail-pl1-f196.google.com with SMTP id i2so10526510plt.1;
-        Tue, 09 Jul 2019 11:22:50 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=14941MCmJea/f9nxksHUctUhT5FKLU9Frn5jof0WtuE=;
-        b=gW0wqqvyJ4Z2qq0g7t5KKKxsz5V/WKxx7dpvKM6qK/ERdWssQW4tFHYDQ+stV3w7P8
-         9SYfO4PVdHXhPcWe8w+0ApFXRcmBuPs4s4qOv4HwtRYjC4sDt/3xbkW2xeROdxSDqVpp
-         vZ4f9clunnn6X3lPL31hO3X8sBb9LJqInHb+xLBrM76SvI0jK5zmtU9s/T3D0JFqQN4a
-         M5kRmuAai0rSsvSsFWqp2GveygZr6k9aydXQNKa+dwlyYBccPjmq2bPftzwbR7isMmKO
-         7+eJtBiuOkhu7iPk3AShADa2bkFAFALllHAUF1Mug77rOFBCjQF0BaK2SGRYBCM2N+Uo
-         3byQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=14941MCmJea/f9nxksHUctUhT5FKLU9Frn5jof0WtuE=;
-        b=jRIBKxl85Ea7Lj1ZK0lUr4jirKMMAdCpbSgcRT9vb6h1bJpVtV2GNmKJ8Qql2beu/J
-         h4klbhb/CkghRvr2DvR3EStPIyRxSfE61E3ZIBQTIAjX8pWN27kFML1u5/7uSnRPEzgw
-         4c6CTMBg+IB8eGY8+lXXyly6wUed/9X8gK/5KfjDXYsEWCRo+SI0eWlLFrKjoNfxTPyi
-         ppJkz2uxvCehj/mMU6RtPqypJ9zbH2FxEtruqF/fg5R2DrpwWOyLmMI6KpyQCm4yHQuk
-         fapLjKLdFb9SntQlZ+0fC6Kw6f67wnM4Pz/ea/ojg73ZTTNoIiqIyssZ/hj0YQJ6xBcc
-         RqdQ==
-X-Gm-Message-State: APjAAAWb6Ukq/Dd24hMxGRx4I2xQ6q+i22/BJN4wAaZsJrYbrsYnlGNd
-        7g5w08tsR6PlHp1SZBFVQzkUKmSC3V1zGA==
-X-Google-Smtp-Source: APXvYqzKj+Fqdp7qcv2pHkOixbAbKJ1ai7LV4ypDO5bRjcwYN89jpWEd4xaWf7wm4WdR3kzF7gzuWQ==
-X-Received: by 2002:a17:902:a40c:: with SMTP id p12mr33838928plq.146.1562696570189;
-        Tue, 09 Jul 2019 11:22:50 -0700 (PDT)
-Received: from localhost.localdomain ([2001:19f0:7001:2668:5400:1ff:fe62:2bbd])
-        by smtp.gmail.com with ESMTPSA id m69sm21008639pga.11.2019.07.09.11.22.43
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 09 Jul 2019 11:22:49 -0700 (PDT)
-From:   Chuanhong Guo <gch981213@gmail.com>
-To:     linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
-        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
-        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list),
-        linux-mips@vger.kernel.org (open list:MIPS),
-        devel@driverdev.osuosl.org (open list:STAGING SUBSYSTEM)
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        John Crispin <john@phrozen.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Weijie Gao <hackpascal@gmail.com>, NeilBrown <neil@brown.name>,
-        Chuanhong Guo <gch981213@gmail.com>
-Subject: [PATCH 5/5] staging: mt7621-dts: fix register range of memc node in mt7621.dtsi
-Date:   Wed, 10 Jul 2019 02:20:18 +0800
-Message-Id: <20190709182018.23193-6-gch981213@gmail.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190709182018.23193-1-gch981213@gmail.com>
-References: <20190709182018.23193-1-gch981213@gmail.com>
+        id S1727232AbfGIS0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 14:26:05 -0400
+Received: from retiisi.org.uk ([95.216.213.190]:52184 "EHLO
+        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726318AbfGIS0F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 14:26:05 -0400
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 08634634C7B;
+        Tue,  9 Jul 2019 21:25:01 +0300 (EEST)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.89)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1hkunU-000294-9D; Tue, 09 Jul 2019 21:25:00 +0300
+Date:   Tue, 9 Jul 2019 21:25:00 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     Luis de Oliveira <Luis.Oliveira@synopsys.com>
+Cc:     "mchehab@kernel.org" <mchehab@kernel.org>,
+        "davem@davemloft.net" <davem@davemloft.net>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
+        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "kishon@ti.com" <kishon@ti.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>
+Subject: Re: [v4 1/6] dt-bindings: media: Document bindings for DW MIPI CSI-2
+ Host
+Message-ID: <20190709182500.3x544axnrgy72aje@valkosipuli.retiisi.org.uk>
+References: <1560280855-18085-1-git-send-email-luis.oliveira@synopsys.com>
+ <1560280855-18085-2-git-send-email-luis.oliveira@synopsys.com>
+ <20190628141326.swgl3kg4fj5pmlqx@valkosipuli.retiisi.org.uk>
+ <MN2PR12MB37109D7AADCE4823CB458CB9CBF60@MN2PR12MB3710.namprd12.prod.outlook.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <MN2PR12MB37109D7AADCE4823CB458CB9CBF60@MN2PR12MB3710.namprd12.prod.outlook.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The memc node from mt7621.dtsi has incorrect register resource.
-Fix it according to the programming guide.
+Hi Luis,
 
-Signed-off-by: Weijie Gao <hackpascal@gmail.com>
-Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
----
- drivers/staging/mt7621-dts/mt7621.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+On Mon, Jul 08, 2019 at 03:21:50PM +0000, Luis de Oliveira wrote:
+> Hi Sakari,
+> 
+> Thank you for your feedback.
+> I have my comments inline.
+> 
+> From: Sakari Ailus <sakari.ailus@iki.fi>
+> Date: Fri, Jun 28, 2019 at 15:13:26
+> 
+> > Hi Luis,
+> > 
+> > Thank you for the patchset.
+> > 
+> > On Tue, Jun 11, 2019 at 09:20:50PM +0200, Luis Oliveira wrote:
+> > > From: Luis Oliveira <lolivei@synopsys.com>
+> > > 
+> > > Add bindings for Synopsys DesignWare MIPI CSI-2 host.
+> > > 
+> > > Signed-off-by: Luis Oliveira <lolivei@synopsys.com>
+> > > ---
+> > > Changelog
+> > > v3-v4
+> > > - remove "plat" from the block name @rob @laurent
+> > > - remove "phy-names" when single-entry @rob
+> > > - remove "snps,output-type" -> went to the driver config @laurent
+> > > 
+> > >  .../devicetree/bindings/media/snps,dw-csi.txt      | 41 ++++++++++++++++++++++
+> > >  1 file changed, 41 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-csi.txt
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/snps,dw-csi.txt b/Documentation/devicetree/bindings/media/snps,dw-csi.txt
+> > > new file mode 100644
+> > > index 0000000..613b7f9
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/media/snps,dw-csi.txt
+> > > @@ -0,0 +1,41 @@
+> > > +Synopsys DesignWare CSI-2 Host controller
+> > > +
+> > > +Description
+> > > +-----------
+> > > +
+> > > +This HW block is used to receive image coming from an MIPI CSI-2 compatible
+> > > +camera.
+> > > +
+> > > +Required properties:
+> > > +- compatible		: shall be "snps,dw-csi"
+> > > +- reg			: physical base address and size of the device memory
+> > > +			  mapped registers;
+> > > +- interrupts		: DW CSI-2 Host interrupts
+> > > +- phys			: List of one PHY specifier (as defined in
+> > > +			  Documentation/devicetree/bindings/phy/phy-bindings.txt).
+> > > +			  This PHY is a MIPI DPHY working in RX mode.
+> > > +- resets		: Reference to a reset controller (optional)
+> > > +
+> > > +The per-board settings:
+> > > + - port sub-node describing a single endpoint connected to the camera as
+> > > +   described in video-interfaces.txt[1].
+> > 
+> > Which endpoint properties in video-interfaces.txt are relevant for the
+> > hardware? Which values may they have?
+> > 
+> 
+> Currently I'm using only two properties "data-lanes" and "bus-width", but 
+> I have plans to add blanking info also.
+> I will add more info.
 
-diff --git a/drivers/staging/mt7621-dts/mt7621.dtsi b/drivers/staging/mt7621-dts/mt7621.dtsi
-index 12717f570ceb..ac9189276590 100644
---- a/drivers/staging/mt7621-dts/mt7621.dtsi
-+++ b/drivers/staging/mt7621-dts/mt7621.dtsi
-@@ -138,7 +138,7 @@
- 
- 		memc: memc@5000 {
- 			compatible = "mtk,mt7621-memc";
--			reg = <0x300 0x100>;
-+			reg = <0x5000 0x1000>;
- 		};
- 
- 		cpc: cpc@1fbf0000 {
+Isn't blanking defined by what the transmitter seneds? Or do you have
+hardware limitations on the receiver side?
+
+I've only heard of one such case before, and it was a very old parallel
+receiver.
+
+If you have a CSI-2 receiver, bus-width isn't relevant --- it's for paralle
+interfaces only. Please add data-lanes to required endpoint properties.
+
 -- 
-2.21.0
+Regards,
 
+Sakari Ailus
