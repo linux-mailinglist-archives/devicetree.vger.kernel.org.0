@@ -2,233 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D816F63277
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 09:55:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD010632A5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 10:09:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725985AbfGIHzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 03:55:40 -0400
-Received: from mail-eopbgr50079.outbound.protection.outlook.com ([40.107.5.79]:42887
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725911AbfGIHzj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jul 2019 03:55:39 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=l7JOqoZNLF1ch2AXaETC6HGqHaRuhuy6+juS3/DgGdc=;
- b=XhtqQP9aiQyyWmUlJ2fsn6lQ9DnHBOi9cR0RE8+Ur4APKHlRTp4wQrmsXq+pqUslTWWmWwKmKpvzRSnjUMha01K+66Wixt0NejRapsc9M8iTwJvdRQ0XHPXhJ/iscCK8OUA846b6M/Jt+js67ZvZalaNhjZySGaGmk+k6Ge6y74=
-Received: from VE1PR04MB6655.eurprd04.prod.outlook.com (20.179.235.94) by
- VE1PR04MB6735.eurprd04.prod.outlook.com (20.179.235.212) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2052.19; Tue, 9 Jul 2019 07:55:31 +0000
-Received: from VE1PR04MB6655.eurprd04.prod.outlook.com
- ([fe80::846e:134d:2731:fcd]) by VE1PR04MB6655.eurprd04.prod.outlook.com
- ([fe80::846e:134d:2731:fcd%7]) with mapi id 15.20.2052.020; Tue, 9 Jul 2019
- 07:55:31 +0000
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Felipe Balbi <balbi@kernel.org>, Rob Herring <robh+dt@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "open list:DESIGNWARE USB3 DRD IP DRIVER" <linux-usb@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Leo Li <leoyang.li@nxp.com>
-Subject: RE: [PATCH] usb: dwc3: Enable the USB snooping
-Thread-Topic: [PATCH] usb: dwc3: Enable the USB snooping
-Thread-Index: AQHTXdpMV/QBUrO8J0eNmcCmR0ATg6MVIlkAgAAD6zCAABVWgINueaJwgAAMz4CAAwpoAIAF38DwgBavPgCACkIu0IAASk0AgBejzDA=
-Date:   Tue, 9 Jul 2019 07:55:30 +0000
-Message-ID: <VE1PR04MB6655D052B076C52F7F24A387F1F10@VE1PR04MB6655.eurprd04.prod.outlook.com>
-References: <20171115060459.45375-1-ran.wang_1@nxp.com>
- <87ineb9b5v.fsf@linux.intel.com>
- <VI1PR04MB1504776EF3D4D8C374F0C069F1290@VI1PR04MB1504.eurprd04.prod.outlook.com>
- <87shdfet90.fsf@linux.intel.com>
- <AM5PR0402MB28654EBE2D431CC2F8061CF8F11E0@AM5PR0402MB2865.eurprd04.prod.outlook.com>
- <87k1eaanjw.fsf@linux.intel.com>
- <AM5PR0402MB2865F3735D808E1BC9F67968F1180@AM5PR0402MB2865.eurprd04.prod.outlook.com>
- <AM5PR0402MB2865D0F0E2B4F65C86D051F8F1140@AM5PR0402MB2865.eurprd04.prod.outlook.com>
- <87o92wgyqj.fsf@linux.intel.com>
- <VE1PR04MB66557834D3588FC8B558950AF1E00@VE1PR04MB6655.eurprd04.prod.outlook.com>
- <87v9wvsex3.fsf@linux.intel.com>
-In-Reply-To: <87v9wvsex3.fsf@linux.intel.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=ran.wang_1@nxp.com; 
-x-originating-ip: [92.121.36.197]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c9c4a4c7-3feb-476e-7082-08d70442d097
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VE1PR04MB6735;
-x-ms-traffictypediagnostic: VE1PR04MB6735:
-x-microsoft-antispam-prvs: <VE1PR04MB6735CFA97D7A01FA7A5ADF27F1F10@VE1PR04MB6735.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
-x-forefront-prvs: 0093C80C01
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(376002)(346002)(366004)(396003)(136003)(189003)(199004)(504964003)(3846002)(7696005)(186003)(6116002)(74316002)(6246003)(102836004)(6506007)(26005)(53546011)(76176011)(52536014)(86362001)(229853002)(33656002)(486006)(8676002)(81166006)(81156014)(5660300002)(2906002)(446003)(8936002)(316002)(9686003)(25786009)(14454004)(76116006)(73956011)(55016002)(478600001)(4326008)(476003)(71190400001)(54906003)(99286004)(71200400001)(110136005)(305945005)(68736007)(66446008)(64756008)(66556008)(66946007)(66476007)(7736002)(53936002)(256004)(14444005)(66066001)(6436002)(11346002);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6735;H:VE1PR04MB6655.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: /LBlbvyE4InEq3vOIdp05vwA/+sTkagOMRYEP8wQNKiN0N8MN6MBVh0DM2P2AJ+Me5NKpXA7HLzfc3/a0HCjuErNQiYpz/mf4TW3UCLOsrRzd41lctK+GvJu+KattMuWG+mPbXs8jrCUseoi/g/S3f66jc1VBLoDVmjnN2NsESakVXl8w+ZgQOqt8XlMdXILEFVGwvYNRKU0neyjOLCztSr8bBxgw1Oa2kpSDzFZMf3WK9O9FsW5KayQJeSTTKYTT62TPPXzVFvO0OEYRZMrViVbJ9CWD+ANSmTeE4cIRnH22H68/3Ae9ueaFxRNO+12o9LJztw/SrrglINeKz7cEgmel7U4VrUsDVoJOdoV5PNvCfo5OiayI878z0COKmw+ySduzWQngKuZnghEr9celEtSepvQpORfMdZg8CBb5SE=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c9c4a4c7-3feb-476e-7082-08d70442d097
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jul 2019 07:55:30.8443
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ran.wang_1@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6735
+        id S1726218AbfGIIJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 04:09:42 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:56376 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725886AbfGIIJm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jul 2019 04:09:42 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 955721A053B;
+        Tue,  9 Jul 2019 10:09:40 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 666491A0DBF;
+        Tue,  9 Jul 2019 10:09:27 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id CBEE3402DF;
+        Tue,  9 Jul 2019 16:09:13 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        leonard.crestez@nxp.com, p.zabel@pengutronix.de, ping.bai@nxp.com,
+        daniel.baluta@nxp.com, l.stach@pengutronix.de, abel.vesa@nxp.com,
+        angus@akkea.ca, andrew.smirnov@gmail.com, ccaione@baylibre.com,
+        agx@sigxcpu.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V2 1/4] dt-bindings: opp: Support multiple opp-suspend properties
+Date:   Tue,  9 Jul 2019 16:00:12 +0800
+Message-Id: <20190709080015.43442-1-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Felipe,
+From: Anson Huang <Anson.Huang@nxp.com>
 
-On Monday, June 24, 2019 13:58, Felipe Balbi wrote:
->=20
-> Hi,
->=20
-> Ran Wang <ran.wang_1@nxp.com> writes:
-> >> >> > >> >> >  /* Global Debug Queue/FIFO Space Available Register */
-> >> >> > >> >> >  #define DWC3_GDBGFIFOSPACE_NUM(n)	((n) & 0x1f)
-> >> >> > >> >> >  #define DWC3_GDBGFIFOSPACE_TYPE(n)	(((n) << 5) & 0x1e0)
-> >> >> > >> >> > @@ -859,6 +867,7 @@ struct dwc3_scratchpad_array {
-> >> >> > >> >> >   * 	3	- Reserved
-> >> >> > >> >> >   * @imod_interval: set the interrupt moderation interval=
- in
-> 250ns
-> >> >> > >> >> >   *                 increments or 0 to disable.
-> >> >> > >> >> > + * @dma_coherent: set if enable dma-coherent.
-> >> >> > >> >>
-> >> >> > >> >> you're not enabling dma coherency, you're enabling cache
-> snooping.
-> >> >> > >> >> And this property should describe that. Also, keep in mind
-> >> >> > >> >> that different devices may want different cache types for
-> >> >> > >> >> each of those fields, so your property would have to be a
-> >> >> > >> >> lot more complex. Something
-> >> >> > like:
-> >> >> > >> >>
-> >> >> > >> >> 	snps,cache-type =3D <foobar "cacheable">, <baz "cacheable"=
->, ...
-> >> >> > >> >>
-> >> >> > >> >> Then driver would have to parse this properly to setup GSBU=
-SCFG0.
-> >> >> > >
-> >> >> > > According to the DesignWare Cores SuperSpeed USB 3.0
-> >> >> > > Controller Databook (v2.60a), it has described Type Bit
-> >> >> > > Assignments for all supported
-> >> >> > master bus type:
-> >> >> > > AHB, AXI3, AXI4 and Native. I found the bit definition are
-> >> >> > > different among
-> >> >> > them.
-> >> >> > > So, for the example you gave above, feel a little bit confused.
-> >> >> > > Did you mean:
-> >> >> > >     snps,cache-type =3D <DATA_RD  "write allocate">, <DESC_RD
-> >> >> > > "cacheable">, <DATA_WR  "bufferable">, <DESC_WR  "read
-> >> >> > > allocate">
-> >> >> >
-> >> >> > yeah, something like that.
-> >> >>
-> >> >> I think DATA_RD  should be a macro, right? So, where I can put its =
-define?
-> >> >> Create a dwc3.h in include/dt-bindings/usb/ ?
-> >> >
-> >> > Could you please give me some advice here? I'd like to prepare next
-> >> > version patch after getting this settled.
-> >> >
-> >> >> Another question about this remain open is: DWC3 data book's Table
-> >> >> 6-5 Cache Type Bit Assignments show that bits definition will
-> >> >> differ per MBUS_TYPEs as
-> >> >> below:
-> >> >> ----------------------------------------------------------------
-> >> >>  MBUS_TYPE| bit[3]       |bit[2]       |bit[1]     |bit[0]
-> >> >>  ----------------------------------------------------------------
-> >> >>  AHB      |Cacheable     |Bufferable   |Privilegge |Data
-> >> >>  AXI3     |Write Allocate|Read Allocate|Cacheable  |Bufferable
-> >> >>  AXI4     |Allocate Other|Allocate     |Modifiable |Bufferable
-> >> >>  AXI4     |Other Allocate|Allocate     |Modifiable |Bufferable
-> >> >>  Native   |Same as AXI   |Same as AXI  |Same as AXI|Same as AXI
-> >> >>  ----------------------------------------------------------------
-> >> >>  Note: The AHB, AXI3, AXI4, and PCIe busses use different names
-> >> >> for certain  signals, which have the same meaning:
-> >> >>    Bufferable =3D Posted
-> >> >>    Cacheable =3D Modifiable =3D Snoop (negation of No Snoop)
-> >> >>
-> >> >> For Layerscape SoCs, MBUS_TYPE is AXI3. So I am not sure how to
-> >> >> use snps,cache-type =3D <DATA_RD  "write allocate">, to cover all
-> MBUS_TYPE?
-> >> >> (you can notice that AHB and AXI3's cacheable are on different
-> >> >> bit) Or I just need to handle AXI3 case?
-> >> >
-> >> > Also on this open. Thank you in advance.
-> >>
-> >> You could pass two strings and let the driver process them. Something
-> >> like:
-> >>
-> >> 	snps,cache_type =3D <"data_wr" "write allocate">, <"desc_rd"
-> >> "cacheable">...
-> >>
-> >> And so on. The only thing missing is for the mbus_type to be known by =
-the
-> driver.
-> >> Is that something we can figure out on any of the HWPARAMS registers
-> >> or does it have to be told explicitly?
-> >
-> > I have checked Layerscape Reference manual, HWPARAMS0~8 doesn't
-> > contain mbus_type Info, and I didn't know where have declared it explic=
-itly.
-> >
-> >> Another option would be to pass a string followed by one hex digit for=
- the
-> bits:
-> >>
-> >> 	snps,cache_type =3D <"data_wr" 0x8>, <"desc_rd" 0x2>...;
-> >>
-> >> Then we don't need to describe mbus_type since the bits are what matte=
-rs.
+Update opp-suspend property's description to support multiple
+opp-suspend properties defined in DT, the OPP with highest opp-hz
+and with opp-suspend property present will be used as suspend opp.
 
-For this option, looks like DTC doesn't allow form of <"data_wr" 0x8>, <"de=
-sc_rd" 0x2>...=20
-It will report error when compiling:
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+New patch.
+---
+ Documentation/devicetree/bindings/opp/opp.txt | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-DTC     arch/arm64/boot/dts/freescale/fsl-ls1088a-rdb.dtb
-Error: arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi:383.23-24 syntax erro=
-r
-FATAL ERROR: Unable to parse input tree
-scripts/Makefile.lib:294: recipe for target 'arch/arm64/boot/dts/freescale/=
-fsl-ls1088a-qds.dtb' failed
-make[2]: *** [arch/arm64/boot/dts/freescale/fsl-ls1088a-qds.dtb] Error 1
-make[2]: *** Waiting for unfinished jobs....
-Error: arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi:383.23-24 syntax erro=
-r
-FATAL ERROR: Unable to parse input tree
+diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+index 76b6c79..6859227 100644
+--- a/Documentation/devicetree/bindings/opp/opp.txt
++++ b/Documentation/devicetree/bindings/opp/opp.txt
+@@ -140,8 +140,8 @@ Optional properties:
+   frequency for a short duration of time limited by the device's power, current
+   and thermal limits.
+ 
+-- opp-suspend: Marks the OPP to be used during device suspend. Only one OPP in
+-  the table should have this.
++- opp-suspend: Marks the OPP to be used during device suspend. If multiple OPPs
++  in the table have this, the OPP with highest opp-hz will be used.
+ 
+ - opp-supported-hw: This enables us to select only a subset of OPPs from the
+   larger OPP table, based on what version of the hardware we are running on. We
+-- 
+2.7.4
 
-One of the solution I can figure out is to use macro to replace "data_wr", =
-like below:
-<DATA_WR 0x8>, <DESC_RD 0x2>...
-
-However, it will require creating file in include/dt-bindings/usb/dwc3.h to
-place macro definitions.
-
-Or may I use:  "data_wr", <0x8>,  "desc_rd",  <0x2>... ?
-
-Thanks & Regards,
-Ran
-
-> > Yes, it's also what we prefer to use, it will be more flexible, I can
-> > add above Table
-> > 6-5 Cache Type Bit Assignments in binding to help user decide which
-> > value they would use.
-> >
-> > I would submit another version of patch for further review, thank you v=
-ery
-> much.
->=20
-> cool, thanks
->=20
-> --
-> balbi
