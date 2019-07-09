@@ -2,155 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96CE4637CA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 16:22:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF2B1637D2
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 16:22:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726218AbfGIOWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 10:22:00 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:45827 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726341AbfGIOWA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 10:22:00 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id EA3DB20001A;
-        Tue,  9 Jul 2019 14:21:55 +0000 (UTC)
-Date:   Tue, 9 Jul 2019 16:21:55 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Icenowy Zheng <icenowy@aosc.io>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
+        id S1726377AbfGIOWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 10:22:38 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:38275 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726341AbfGIOWi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 10:22:38 -0400
+Received: by mail-io1-f67.google.com with SMTP id j6so43531962ioa.5;
+        Tue, 09 Jul 2019 07:22:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Nyw3ayYjb6xxz+TXQiu0yImt7hvULSuFd6no466kGDg=;
+        b=cojslcn7Qn5H3peNZIMzlMW+/9bM+6ieTKp3Vq1S2EvfQ5iB+NhqVOu7Y2iXcpitr9
+         2lkHgEgTueBQxuP5qTd+B/sO5AgsBRQNB4x80oPq/kRVH5GoSkYJW03O1Ase85LuM3Bd
+         Uvtyr1uB5M9TaiWvZu6hLKsWkQAQX6ZplbOtyZehN+UWpIZY9SIM+M+1wXbQjyfkrW0j
+         n/BUyUo8XEGYrHoHBJu+x8eONlqRt/xybCQdArLJ/UCJZRVVKxeriR6N+69iLemcZau6
+         1BxLQK4K0rR7nNGlIJRlpLbDG+EJRYApuAtaUf4tkigk4DA+0CTqNimAyieEPyeHj4Kd
+         CLog==
+X-Gm-Message-State: APjAAAU3GiNswDJ8Ax5gZJDyYvOoNoOE8bE026R56YKtey5iSLcqR7+7
+        fL2S5DzoG+YOzNdQTNVuFw==
+X-Google-Smtp-Source: APXvYqwGEmLaEm/oSVALxwoDJQLE4Vi1IOoNxGbBog+3P1/ET15BHO6JQdjBS6+02vhPwx0mCo0XXw==
+X-Received: by 2002:a6b:dc08:: with SMTP id s8mr10053113ioc.209.1562682157639;
+        Tue, 09 Jul 2019 07:22:37 -0700 (PDT)
+Received: from localhost ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id n17sm19238636iog.63.2019.07.09.07.22.36
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 09 Jul 2019 07:22:36 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 08:22:35 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Sean Paul <seanpaul@chromium.org>,
-        David Airlie <airlied@linux.ie>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Torsten Duwe <duwe@lst.de>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Harald Geyer <harald@ccbib.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
- on Teres-I
-Message-ID: <20190709142155.2blclgbqapjeifv3@flea>
-References: <20190607062802.m5wslx3imiqooq5a@flea>
- <CGME20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752@epcas1p4.samsung.com>
- <20190607094030.GA12373@lst.de>
- <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
- <20190612152022.c3cfhp4cauhzhfyr@flea>
- <bb2c2c00-b46e-1984-088f-861ac8952331@samsung.com>
- <20190701095842.fvganvycce2cy7jn@flea>
- <CA+E=qVdsYV2Bxk245=Myq=otd7-7WHzUnSJN8_1dciAzvSOG8g@mail.gmail.com>
- <20190709085532.cdqv7whuesrjs64c@flea>
- <72E7C765-3660-413A-8450-94BE4B3D1345@aosc.io>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mathias Nyman <mathias.nyman@intel.com>,
+        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Jumin Li <jumin.li@mediatek.com>
+Subject: Re: [PATCH 3/5] dt-bindings: usb: mtk-xhci: add an optional xhci_ck
+ clock
+Message-ID: <20190709142235.GA11951@bogus>
+References: <5e06482a0be15476c7b5825f155accf98275afa8.1560246390.git.chunfeng.yun@mediatek.com>
+ <9b6ad8dee142d73b56d653ecb7475c4ed28e5eb8.1560246390.git.chunfeng.yun@mediatek.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="en37fuotj5a3o4w2"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <72E7C765-3660-413A-8450-94BE4B3D1345@aosc.io>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <9b6ad8dee142d73b56d653ecb7475c4ed28e5eb8.1560246390.git.chunfeng.yun@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, Jun 12, 2019 at 01:55:19PM +0800, Chunfeng Yun wrote:
+> Add a new optional clock xhci_ck
+> 
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
+> index 266c2d917a28..91c0704b586b 100644
+> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
+> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
+> @@ -29,6 +29,7 @@ Required properties:
+>  	"sys_ck": controller clock used by normal mode,
+>  	the following ones are optional:
+>  	"ref_ck": reference clock used by low power mode etc,
+> +	"xhci_ck": controller clock,
+>  	"mcu_ck": mcu_bus clock for register access,
+>  	"dma_ck": dma_bus clock for data transfer by DMA
 
---en37fuotj5a3o4w2
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+A new clock should go at the end to stay backwards compatible.
 
-On Tue, Jul 09, 2019 at 04:58:35PM +0800, Icenowy Zheng wrote:
->
->
-> =E4=BA=8E 2019=E5=B9=B47=E6=9C=889=E6=97=A5 GMT+08:00 =E4=B8=8B=E5=8D=884=
-:55:32, Maxime Ripard <maxime.ripard@bootlin.com> =E5=86=99=E5=88=B0:
-> >On Mon, Jul 08, 2019 at 05:49:21PM -0700, Vasily Khoruzhick wrote:
-> >> > > Maybe instead of edp-connector one would introduce integrator's
-> >specific
-> >> > > connector, for example with compatible
-> >"olimex,teres-edp-connector"
-> >> > > which should follow edp abstract connector rules? This will be at
-> >least
-> >> > > consistent with below presentation[1] - eDP requirements depends
-> >on
-> >> > > integrator. Then if olimex has standard way of dealing with
-> >panels
-> >> > > present in olimex/teres platforms the driver would then create
-> >> > > drm_panel/drm_connector/drm_bridge(?) according to these rules, I
-> >guess.
-> >> > > Anyway it still looks fishy for me :), maybe because I am not
-> >> > > familiarized with details of these platforms.
-> >> >
-> >> > That makes sense yes
-> >>
-> >> Actually, it makes no sense at all. Current implementation for
-> >anx6345
-> >> driver works fine as is with any panel specified assuming panel
-> >delays
-> >> are long enough for connected panel. It just doesn't use panel
-> >timings
-> >> from the driver. Creating a platform driver for connector itself
-> >looks
-> >> redundant since it can't be reused, it doesn't describe actual
-> >> hardware and it's just defeats purpose of DT by introducing
-> >> board-specific code.
-> >
-> >I'm not sure where you got the idea that the purpose of DT is to not
-> >have any board-specific code.
-> >
-> >It's perfectly fine to have some, that's even why there's a compatible
-> >assigned to each and every board.
-> >
-> >What the DT is about is allowing us to have a generic behaviour that
-> >we can detect: we can have a given behaviour for a given board, and a
-> >separate one for another one, and this will be evaluated at runtime.
-> >
-> >This is *exactly* what this is about: we can have a compatible that
-> >sets a given, more specific, behaviour (olimex,teres-edp-connector)
-> >while saying that this is compatible with the generic behaviour
-> >(edp-connector). That way, any OS will know what quirk to apply if
-> >needed, and if not that it can use the generic behaviour.
-> >
-> >And we could create a generic driver, for the generic behaviour if
-> >needed.
-> >
-> >> There's another issue: if we introduce edp-connector we'll have to
-> >> specify power up delays somewhere (in dts? or in platform driver?),
-> >so
-> >> edp-connector doesn't really solve the issue of multiple panels with
-> >> same motherboard.
-> >
-> >And that's what that compatible is about :)
->
-> Maybe we can introduce a connector w/o any driver just like hdmi-connecto=
-r?
-
-Ironically, a driver for it has been sent yesterday :)
-
-But yeah, we can definitely do that too.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---en37fuotj5a3o4w2
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXSSjAwAKCRDj7w1vZxhR
-xRd1AQCJ5jZZvccoYKMTlhIFwESGq/tLGx3Ao78XQTTrIK5CFAEA11fhHaijvh3D
-nQ4CuXzwsgPAxXOwMwPH8TV3F9oC/Aw=
-=S7iw
------END PGP SIGNATURE-----
-
---en37fuotj5a3o4w2--
+>  
+> @@ -100,7 +101,7 @@ Required properties:
+>   - clocks : a list of phandle + clock-specifier pairs, one for each
+>  	entry in clock-names
+>   - clock-names : must contain "sys_ck", and the following ones are optional:
+> -	"ref_ck", "mcu_ck" and "dma_ck"
+> +	"ref_ck", "xhci_ck", "mcu_ck" and "dma_ck"
+>  
+>  Optional properties:
+>   - vbus-supply : reference to the VBUS regulator;
+> -- 
+> 2.21.0
+> 
