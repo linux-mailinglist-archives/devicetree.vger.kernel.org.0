@@ -2,113 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00BD26338B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 11:36:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1D14633CB
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 11:59:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726031AbfGIJgH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 05:36:07 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:41168 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725985AbfGIJgH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 05:36:07 -0400
-Received: by mail-lf1-f68.google.com with SMTP id 62so12940552lfa.8
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2019 02:36:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=XU2IBGyFRzKn02DPmdzj6szchTRAPUpG4CBxe0IbZxM=;
-        b=xIz67RFwEx4FnMHMwebDTUVE9XLXFv8FCz7wp9SaGHdJlEH5Z3EEk3wEuu7Mtp2zbG
-         M4T+EmJW0LsmjGJoak92C7bJ2U6zeKs+oNarpfT7EgB7rYP8h9/LGM+aOKvCcGQbR1Kw
-         qYwWOxViWDwiGlwbH4ipBaOha885QznmvsQtbk7LHgiVDrTnSNvX4BzCWSdGBD7Cf0H1
-         Rj3W3NjOQku2W/94ZTyRcy/ZV2iB+q7HTarYXQBoDq2XBVxy2UoamJNPIu2wSpbVi+U4
-         gMBmx/57gTp6NgVzCPbl8TipJ3u+A3U2lC+cXeqODlnqu7tBNqCfAuqpV6Mf7Fck3HLQ
-         RFng==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=XU2IBGyFRzKn02DPmdzj6szchTRAPUpG4CBxe0IbZxM=;
-        b=grrcb2HRLagpoZJ8wDmag5ngGp3y/N0MYTHsaxBS3HytqK4s0ESA74shl7kvfSnwQb
-         d1eZFeHeRGJ4E1Op6Ds9hlTL9IqJgobfHme5J9AymBGB/AISFLCnjNs8VZsBMHMMBz1G
-         Zal4rsnjoWa8iqSESFHtwz4aBX3Gv7X7J9oX+yhOTqpyfgjHZG7m5EAwsh7yCUKvoTW7
-         6nx9FtUeHifH5fIhMGQoPOq8vHiRNa6cubLmimCaxT5GI58jKREeMeI+ALvaZiVnPRdf
-         K8b3BJFoKOpIrwG0AYbtYrcxRAsfB2bf89drHjAfUyuB+/1OgTSzFXaBDZ7KT8PqQlRO
-         DoOw==
-X-Gm-Message-State: APjAAAU4KZm6XmQTvQ8VouhZtQ6EWLK047fOxyx68blVmun5JHsfFKsv
-        63Ar0gbqpEPkW98RFYQHUZHbpw==
-X-Google-Smtp-Source: APXvYqxGrufPNKdsqBBStgGj1iNyRF54W7AS2XauiAm/Fr8QXkxDauZ+cr22x87ZgqJU7N1c+XgycQ==
-X-Received: by 2002:a19:ec15:: with SMTP id b21mr11999025lfa.32.1562664965397;
-        Tue, 09 Jul 2019 02:36:05 -0700 (PDT)
-Received: from ?IPv6:2a00:1fa0:293:b564:5d38:7bfd:30:5ce9? ([2a00:1fa0:293:b564:5d38:7bfd:30:5ce9])
-        by smtp.gmail.com with ESMTPSA id i17sm2828273lfp.94.2019.07.09.02.36.03
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 09 Jul 2019 02:36:04 -0700 (PDT)
-Subject: Re: [PATCH v2 05/10] net: hisilicon: HI13X1_GMAX need dreq reset at
- first
-To:     Jiangfeng Xiao <xiaojiangfeng@huawei.com>, davem@davemloft.net,
-        robh+dt@kernel.org, yisen.zhuang@huawei.com,
-        salil.mehta@huawei.com, mark.rutland@arm.com,
-        dingtianhong@huawei.com
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, leeyou.li@huawei.com,
-        nixiaoming@huawei.com, jianping.liu@huawei.com,
-        xiekunxun@huawei.com
-References: <1562643071-46811-1-git-send-email-xiaojiangfeng@huawei.com>
- <1562643071-46811-6-git-send-email-xiaojiangfeng@huawei.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Message-ID: <890c48d1-76b8-5aea-e175-aa7d9967acd2@cogentembedded.com>
-Date:   Tue, 9 Jul 2019 12:35:57 +0300
-User-Agent: Mozilla/5.0 (Windows NT 6.3; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1726074AbfGIJ7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 05:59:24 -0400
+Received: from mx01.quantatw.com ([219.87.191.90]:31098 "EHLO
+        mx01.quantatw.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726126AbfGIJ7X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 05:59:23 -0400
+X-Greylist: delayed 619 seconds by postgrey-1.27 at vger.kernel.org; Tue, 09 Jul 2019 05:59:22 EDT
+Received: from unknown (HELO mailbx06.quanta.corp) ([10.243.91.101])
+  by mx01.quantatw.com with ESMTP; 09 Jul 2019 17:49:00 +0800
+Received: from mailbx05.quanta.corp (10.243.91.100) by mailbx06.quanta.corp
+ (10.243.91.101) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 9 Jul 2019
+ 17:48:59 +0800
+Received: from mailbx05.quanta.corp ([192.168.0.5]) by mailbx05.quanta.corp
+ ([192.168.0.5]) with mapi id 15.01.1713.004; Tue, 9 Jul 2019 17:48:59 +0800
+From:   =?big5?B?R2VvcmdlIEh1bmcgKKx4qb63cSk=?= <George.Hung@quantatw.com>
+To:     Rob Herring <robh@kernel.org>, George Hung <ghung.quanta@gmail.com>
+CC:     Mark Rutland <mark.rutland@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Tali Perry <tali.perry1@gmail.com>,
+        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
+        "wak@google.com" <wak@google.com>,
+        "benjaminfair@google.com" <benjaminfair@google.com>,
+        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
+        "tomer.maimon@nuvoton.com" <tomer.maimon@nuvoton.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Borislav Petkov <bp@alien8.de>,
+        "Avi.Fishman@nuvoton.com" <Avi.Fishman@nuvoton.com>,
+        "Jonathan Cameron" <Jonathan.Cameron@huawei.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        linux-edac <linux-edac@vger.kernel.org>,
+        "Patrick Venture" <venture@google.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        James Morse <james.morse@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "davem@davemloft.net" <davem@davemloft.net>
+Subject: RE: [PATCH 5.2 v2 2/2] dt-binding: edac: add NPCM ECC documentation
+Thread-Topic: [PATCH 5.2 v2 2/2] dt-binding: edac: add NPCM ECC documentation
+Thread-Index: AQHVNfd78GrHFC2ty02NT0e+R3uriabCCCsA
+Date:   Tue, 9 Jul 2019 09:48:59 +0000
+Message-ID: <0c90f9376c0e425c9a226379f7e5bfad@quantatw.com>
+References: <20190605141253.38554-1-ghung.quanta@gmail.com>
+ <20190605141253.38554-2-ghung.quanta@gmail.com>
+ <20190709014058.GA30269@bogus>
+In-Reply-To: <20190709014058.GA30269@bogus>
+Accept-Language: zh-TW, en-US
+Content-Language: zh-TW
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [10.243.91.252]
+x-tm-as-product-ver: SMEX-12.0.0.1727-8.200.1013-24746.005
+x-tm-as-result: No--21.007500-0.000000-31
+x-tm-as-matchedid: 140026-150567-700225-703140-701090-703503-704039-139010-1
+        39006-188199-702601-702887-702754-702304-702058-702617-823290-705012-703129
+        -106660-703408-700069-701429-702604-705249-110462-701342-704841-863519-1880
+        19-703017-702395-703213-701478-704585-701337-703958-700737-704384-704397-70
+        2392-700786-703880-148004-148133-20043-42000-42003-63
+x-tm-as-user-approved-sender: Yes
+x-tm-as-user-blocked-sender: No
+Content-Type: text/plain; charset="big5"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-In-Reply-To: <1562643071-46811-6-git-send-email-xiaojiangfeng@huawei.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
-
-On 09.07.2019 6:31, Jiangfeng Xiao wrote:
-
-> HI13X1_GMAC delete request for soft reset at first,
-> otherwise, the subsequent initialization will not
-> take effect.
-> 
-> Signed-off-by: Jiangfeng Xiao <xiaojiangfeng@huawei.com>
-> ---
->   drivers/net/ethernet/hisilicon/hip04_eth.c | 24 ++++++++++++++++++++++++
->   1 file changed, 24 insertions(+)
-> 
-> diff --git a/drivers/net/ethernet/hisilicon/hip04_eth.c b/drivers/net/ethernet/hisilicon/hip04_eth.c
-> index fe61b01..19d8cfd 100644
-> --- a/drivers/net/ethernet/hisilicon/hip04_eth.c
-> +++ b/drivers/net/ethernet/hisilicon/hip04_eth.c
-[...]
-> @@ -853,6 +867,15 @@ static int hip04_mac_probe(struct platform_device *pdev)
->   		goto init_fail;
->   	}
->   
-> +#if defined(CONFIG_HI13X1_GMAC)
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
-> +	priv->sysctrl_base = devm_ioremap_resource(d, res);
-
-    There's devm_platform_ioremap_resource() now.
-
-> +	if (IS_ERR(priv->sysctrl_base)) {
-> +		ret = PTR_ERR(priv->sysctrl_base);
-> +		goto init_fail;
-> +	}
-> +#endif
-> +
->   	ret = of_parse_phandle_with_fixed_args(node, "port-handle", 2, 0, &arg);
->   	if (ret < 0) {
->   		dev_warn(d, "no port-handle\n");
-[...]
-
-MBR, Sergei
+SGkgUm9iLA0KDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogb3BlbmJt
+Yw0KPiBbbWFpbHRvOm9wZW5ibWMtYm91bmNlcytnZW9yZ2UuaHVuZz1xdWFudGF0dy5jb21AbGlz
+dHMub3psYWJzLm9yZ10gT24NCj4gQmVoYWxmIE9mIFJvYiBIZXJyaW5nDQo+IFNlbnQ6IFR1ZXNk
+YXksIEp1bHkgMDksIDIwMTkgOTo0MSBBTQ0KPiBUbzogR2VvcmdlIEh1bmcNCj4gQ2M6IE1hcmsg
+UnV0bGFuZDsgTGludXMgV2FsbGVpajsgVGFsaSBQZXJyeTsgcGF1bG1ja0BsaW51eC5pYm0uY29t
+Ow0KPiB3YWtAZ29vZ2xlLmNvbTsgYmVuamFtaW5mYWlyQGdvb2dsZS5jb207IG9wZW5ibWNAbGlz
+dHMub3psYWJzLm9yZzsNCj4gdG9tZXIubWFpbW9uQG51dm90b24uY29tOyBkZXZpY2V0cmVlQHZn
+ZXIua2VybmVsLm9yZzsgQm9yaXNsYXYgUGV0a292Ow0KPiBBdmkuRmlzaG1hbkBudXZvdG9uLmNv
+bTsgSm9uYXRoYW4gQ2FtZXJvbjsgTWF1cm8gQ2FydmFsaG8gQ2hlaGFiOw0KPiBsaW51eC1lZGFj
+OyBQYXRyaWNrIFZlbnR1cmU7IE5pY29sYXMgRmVycmU7IGxpbnV4LWtlcm5lbDsgSmFtZXMgTW9y
+c2U7IEdyZWcNCj4gS3JvYWgtSGFydG1hbjsgZGF2ZW1AZGF2ZW1sb2Z0Lm5ldA0KPiBTdWJqZWN0
+OiBSZTogW1BBVENIIDUuMiB2MiAyLzJdIGR0LWJpbmRpbmc6IGVkYWM6IGFkZCBOUENNIEVDQw0K
+PiBkb2N1bWVudGF0aW9uDQo+IA0KPiBPbiBXZWQsIEp1biAwNSwgMjAxOSBhdCAxMDoxMjo1M1BN
+ICswODAwLCBHZW9yZ2UgSHVuZyB3cm90ZToNCj4gPiBBZGQgZGV2aWNlIHRyZWUgZG9jdW1lbnRh
+dGlvbiBmb3IgTnV2b3RvbiBCTUMgRUNDDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBHZW9yZ2Ug
+SHVuZyA8Z2h1bmcucXVhbnRhQGdtYWlsLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2JpbmRpbmdz
+L2VkYWMvbnBjbTd4eC1zZHJhbS1lZGFjLnR4dCAgICAgICAgfCAxNw0KPiArKysrKysrKysrKysr
+KysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUg
+bW9kZSAxMDA2NDQNCj4gPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZWRhYy9u
+cGNtN3h4LXNkcmFtLWVkYWMudHh0DQo+ID4NCj4gPiBkaWZmIC0tZ2l0DQo+ID4gYS9Eb2N1bWVu
+dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZWRhYy9ucGNtN3h4LXNkcmFtLWVkYWMudHh0DQo+
+ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZWRhYy9ucGNtN3h4LXNkcmFt
+LWVkYWMudHh0DQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAw
+MDAuLmRkNGRhYzU5YTViZA0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0
+aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZWRhYy9ucGNtN3h4LXNkcmFtLWVkYWMudHh0DQo+ID4g
+QEAgLTAsMCArMSwxNyBAQA0KPiA+ICtOdXZvdG9uIE5QQ003eHggU29DIEVEQUMgZGV2aWNlIGRy
+aXZlcg0KPiA+ICsNCj4gPiArVGhlIE51dm90b24gTlBDTTd4eCBTb0Mgc3VwcG9ydHMgRERSNCBt
+ZW1vcnkgd2l0aC93aXRob3V0IEVDQyBhbmQNCj4gdGhlDQo+ID4gK2RyaXZlciB1c2VzIHRoZSBF
+REFDIGZyYW1ld29yayB0byBpbXBsZW1lbnQgdGhlIEVDQyBkZXRlY3Rpb24gYW5kDQo+IGNvcnJ0
+ZWN0aW9uLg0KPiA+ICsNCj4gPiArUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPiArLSBjb21wYXRp
+YmxlOglzaG91bGQgYmUgIm51dm90b24sbnBjbTd4eC1zZHJhbS1lZGFjIg0KPiANCj4gSXMgdGhp
+cyBmb3IgdGhlIHdob2xlIFNEUkFNIGNvbnRyb2xsZXIgb3IganVzdCBFQ0MgcmVsYXRlZCByZWdp
+c3RlcnM/DQo+IEluIHRoZSBmb3JtZXIgY2FzZSwgdGhlIG5hbWluZyBzaG91bGQganVzdCByZWZs
+ZWN0IHRoZSBibG9jayBuYW1lIGFuZCBub3QgYQ0KPiBMaW51eCB0ZXJtLg0KDQpTb3JyeSBmb3Ig
+Y29uZnVzZWQgbmFtaW5nLCB0aGUgYWRkcmVzcyBzcGFjZSBpcyBmb3IgdGhlIHdob2xlIG1lbW9y
+eSBjb250cm9sbGVyIHJlZ2lzdGVycyBpbmRlZWQsDQpidXQgdGhlIGRyaXZlciBvbmx5IHVzZXMg
+dGhlIEVDQyByZWxhdGVkIHJlZ2lzdGVycy4NClNob3VsZCBJIGNoYW5nZSB0aGUgbmFtZSB0byAi
+bnV2b3RvbixucGNtN3h4LWVkYWMiID8NCg0KPiANCj4gPiArLSByZWc6CQlNZW1vcnkgY29udHJv
+bGxlciByZWdpc3RlciBzZXQgc2hvdWxkIGJlIDwweGYwODI0MDAwDQo+IDB4MTAwMD4NCj4gPiAr
+LSBpbnRlcnJ1cHRzOglzaG91bGQgYmUgTUMgaW50ZXJydXB0ICMyNQ0KPiA+ICsNCj4gPiArRXhh
+bXBsZToNCj4gPiArDQo+ID4gKwltYzogbWVtb3J5LWNvbnRyb2xsZXJAZjA4MjQwMDAgew0KPiA+
+ICsJCWNvbXBhdGlibGUgPSAibnV2b3RvbixucGNtN3h4LXNkcmFtLWVkYWMiOw0KPiA+ICsJCXJl
+ZyA9IDwweGYwODI0MDAwIDB4MTAwMD47DQo+ID4gKwkJaW50ZXJydXB0cyA9IDwwIDI1IDQ+Ow0K
+PiA+ICsJfTsNCj4gPiAtLQ0KPiA+IDIuMjEuMA0KPiA+DQo=
