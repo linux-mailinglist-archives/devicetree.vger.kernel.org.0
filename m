@@ -2,103 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BECF6383D
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 16:53:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B17E638D7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 17:46:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726582AbfGIOxl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 10:53:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43944 "EHLO mail.kernel.org"
+        id S1726238AbfGIPqv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 11:46:51 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39488 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726115AbfGIOxl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jul 2019 10:53:41 -0400
-Received: from [192.168.1.112] (c-24-9-64-241.hsd1.co.comcast.net [24.9.64.241])
+        id S1726126AbfGIPqv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jul 2019 11:46:51 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6644F214AF;
-        Tue,  9 Jul 2019 14:53:35 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3A9CD21707;
+        Tue,  9 Jul 2019 15:46:50 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562684020;
-        bh=Mv7YTLIc+jI3uCRwSd1DAeik4HQLm9P9oMcVwz2d2dk=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=XgulwaGpIAZUTMHGK6H52VD3EGXSfaZA2VLPhCuPHVQN4Ql3qcJzAtWEmAruTZN6F
-         CiqOnOuc9sTH4GW5+VhzHiNXC2Jpq24ah0VHZEIGAOqDliCu4Fwf44hiQwbpQ/Q/If
-         Xl4Y5OinAOMyTTsR/xSt2diAONVrq1cwoJa/TeF8=
-Subject: Re: [PATCH v7 16/18] MAINTAINERS: add entry for KUnit the unit
- testing framework
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
-        tytso@mit.edu, yamada.masahiro@socionext.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, shuah <shuah@kernel.org>
-References: <20190709063023.251446-1-brendanhiggins@google.com>
- <20190709063023.251446-17-brendanhiggins@google.com>
-From:   shuah <shuah@kernel.org>
-Message-ID: <7cc417dd-036f-7dc1-6814-b1fdac810f03@kernel.org>
-Date:   Tue, 9 Jul 2019 08:53:19 -0600
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        s=default; t=1562687210;
+        bh=4f3MOO8zcd+5CtA6PP6zPt3BLYAEsqlHl7hOpTexx+I=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Nu/W7DL+FL92KLTyNHww2Nb1KodWLchrMgI7cuVRB4QWi+/Uhhg4t8tzDx/Ifitsv
+         gnYak4Ph65a5Z0KFTMtOJvcHHQYCHe2sfvLFYEeIIXrtTNBdTfmDicDsfBjhUzzXcr
+         TfNjRvgu0nsTE8b0Ko/P7Rskv1ehTYAw1zRqkpmU=
+Received: by mail-qt1-f180.google.com with SMTP id d17so20677431qtj.8;
+        Tue, 09 Jul 2019 08:46:50 -0700 (PDT)
+X-Gm-Message-State: APjAAAXI++Q+XHWFpelfswKXSQJTX+4t7ZpFQhWDSm75xdWyz79aIhtI
+        iqJ7AuK8M0AiN2OVl8qt5JcBaIlF56FV5Yc/RQ==
+X-Google-Smtp-Source: APXvYqydRCRswf88vjxavUG/qgoU+4yXgYQVD+q2t75PqwMNmeOfzwJzAfkQW1pTkrQVapqMI74TYwhjY2kifHq7aDs=
+X-Received: by 2002:aed:3f10:: with SMTP id p16mr19409167qtf.110.1562687209443;
+ Tue, 09 Jul 2019 08:46:49 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190709063023.251446-17-brendanhiggins@google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190607154410.10633-1-paul@crapouillou.net> <20190607154410.10633-2-paul@crapouillou.net>
+ <20190709020425.GA7984@bogus> <1562642299.1834.0@crapouillou.net>
+In-Reply-To: <1562642299.1834.0@crapouillou.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 9 Jul 2019 09:46:37 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJKqhnt1a7vhF+4RA53dSNUaB==8Tmcida3z63nDSZGKA@mail.gmail.com>
+Message-ID: <CAL_JsqJKqhnt1a7vhF+4RA53dSNUaB==8Tmcida3z63nDSZGKA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: Remove unused compatible strings
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>, od@zcrc.me,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/9/19 12:30 AM, Brendan Higgins wrote:
-> Add myself as maintainer of KUnit, the Linux kernel's unit testing
-> framework.
-> 
-> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-> ---
->   MAINTAINERS | 11 +++++++++++
->   1 file changed, 11 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 677ef41cb012c..48d04d180a988 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -8599,6 +8599,17 @@ S:	Maintained
->   F:	tools/testing/selftests/
->   F:	Documentation/dev-tools/kselftest*
->   
-> +KERNEL UNIT TESTING FRAMEWORK (KUnit)
-> +M:	Brendan Higgins <brendanhiggins@google.com>
-> +L:	linux-kselftest@vger.kernel.org
-> +L:	kunit-dev@googlegroups.com
-> +W:	https://google.github.io/kunit-docs/third_party/kernel/docs/
-> +S:	Maintained
-> +F:	Documentation/dev-tools/kunit/
-> +F:	include/kunit/
-> +F:	kunit/
-> +F:	tools/testing/kunit/
-> +
->   KERNEL USERMODE HELPER
->   M:	Luis Chamberlain <mcgrof@kernel.org>
->   L:	linux-kernel@vger.kernel.org
-> 
+On Mon, Jul 8, 2019 at 9:18 PM Paul Cercueil <paul@crapouillou.net> wrote:
+>
+>
+>
+> Le lun. 8 juil. 2019 =C3=A0 22:04, Rob Herring <robh@kernel.org> a =C3=A9=
+crit :
+> > On Fri, Jun 07, 2019 at 05:44:05PM +0200, Paul Cercueil wrote:
+> >>  Right now none of the Ingenic-based boards probe this driver from
+> >>  devicetree. This driver defined three compatible strings for the
+> >> exact
+> >>  same behaviour. Before these strings are used, we can remove two of
+> >>  them.
+> >>
+> >>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> >>  ---
+> >>
+> >>  Notes:
+> >>      v2: Rebase on v5.2-rc3
+> >>
+> >>   Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt | 5
+> >> +----
+> >>   1 file changed, 1 insertion(+), 4 deletions(-)
+> >>
+> >>  diff --git
+> >> a/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+> >> b/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+> >>  index 7d9d3f90641b..493bec80d59b 100644
+> >>  --- a/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+> >>  +++ b/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+> >>  @@ -2,10 +2,7 @@ Ingenic JZ47xx PWM Controller
+> >>   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+> >>
+> >>   Required properties:
+> >>  -- compatible: One of:
+> >>  -  * "ingenic,jz4740-pwm"
+> >>  -  * "ingenic,jz4770-pwm"
+> >>  -  * "ingenic,jz4780-pwm"
+> >>  +- compatible: Should be "ingenic,jz4740-pwm"
+> >
+> > Are you sure all 3 chips are exactly the same features and bugs?
+>
+> The hardware on these chips have tiny differences, but the current
+> driver code works on all the SoCs.
+>
+>
+> > The correct thing to do here generally is the 4770 and 4780 would also
+> > have ingenic,jz4740-pwm as a fallback compatible. Then the driver can
+> > match on that until you find some difference and can use the more
+> > specific compatible.
+>
+> Why not just update the devicetree with the new compatible string when
+> a difference is found?
 
-Thanks Brendan.
+Because dtb's should be part of the firmware/bootloader and can be
+updated independently. Maybe you don't care on your platform, but
+that's the preferred model for DT and what we follow. DTs live in the
+kernel tree for convenience, but are independent from the kernel.
 
-I am good with this. I can take KUnit patches through kselftest
-with your Ack.
-
-thanks,
--- Shuah
+Rob
