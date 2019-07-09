@@ -2,77 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 13D6062D46
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 03:07:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81A6662D79
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 03:36:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725941AbfGIBHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 21:07:32 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:2243 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725886AbfGIBHb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 8 Jul 2019 21:07:31 -0400
-Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id 8F1A245A256F786BE060;
-        Tue,  9 Jul 2019 09:07:28 +0800 (CST)
-Received: from [127.0.0.1] (10.65.87.206) by DGGEMS411-HUB.china.huawei.com
- (10.3.19.211) with Microsoft SMTP Server id 14.3.439.0; Tue, 9 Jul 2019
- 09:07:19 +0800
-Subject: Re: [PATCH] net: hisilicon: Add an tx_desc to adapt HI13X1_GMAC
-To:     David Miller <davem@davemloft.net>
-References: <1562307003-103516-1-git-send-email-xiaojiangfeng@huawei.com>
- <20190707.221805.2104668553072088371.davem@davemloft.net>
- <20190708.111833.1002341757593028886.davem@davemloft.net>
-CC:     <yisen.zhuang@huawei.com>, <salil.mehta@huawei.com>,
-        <dingtianhong@huawei.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <netdev@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <leeyou.li@huawei.com>, <xiekunxun@huawei.com>,
-        <jianping.liu@huawei.com>, <nixiaoming@huawei.com>
-From:   Jiangfeng Xiao <xiaojiangfeng@huawei.com>
-Message-ID: <89adc83e-c789-9c61-222b-23110778a873@huawei.com>
-Date:   Tue, 9 Jul 2019 09:07:19 +0800
-User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
- Thunderbird/45.7.1
+        id S1726820AbfGIBf0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 21:35:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35064 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726784AbfGIBf0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jul 2019 21:35:26 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DCAE0217D4
+        for <devicetree@vger.kernel.org>; Tue,  9 Jul 2019 01:35:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562636125;
+        bh=xPZoq9ebLBZ4qc4AlgGWCh4n4FLriLhzXe2xjvwKQy0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=gb7yUgNA159Dz22SVpLI5lwlV8b7pFhUpaSLPjOqlk1uo0VJaVI1ls4rWq+Z9wwV8
+         3fxkeR1sOqhAWaE4NUZrS7nyWoVPHqexCcZhfK8nYYLo5l5KVl9qjTJIEZZweTR89g
+         NyrCv9I2B6J1ImzJYWTLPL25hutxBbJgWKCLjxuc=
+Received: by mail-qt1-f180.google.com with SMTP id j19so20007549qtr.12
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 18:35:24 -0700 (PDT)
+X-Gm-Message-State: APjAAAVBCM9rd1qYhDQdf/2kUZfOw5UUeDujzbxmv9EDDJAFz8slLeed
+        vaNqDBuTbgEup0k4tc5LaIrmq3v4OYmymFyGFg==
+X-Google-Smtp-Source: APXvYqyqmZeIkbto+17UZjfxGBJMlMWVcDAdvvmQ5T/erxPr9rb4UuIEp0K074iP8kNoQ+hmFRpW6TQL61jNAR0UsVY=
+X-Received: by 2002:ac8:3908:: with SMTP id s8mr16339056qtb.224.1562636124028;
+ Mon, 08 Jul 2019 18:35:24 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190708.111833.1002341757593028886.davem@davemloft.net>
-Content-Type: text/plain; charset="windows-1252"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.65.87.206]
-X-CFilter-Loop: Reflected
+References: <20190707180852.5512-1-laurent.pinchart@ideasonboard.com>
+ <20190707181937.6250-1-laurent.pinchart@ideasonboard.com> <20190707181937.6250-14-laurent.pinchart@ideasonboard.com>
+ <CAL_JsqLJy=UCeQ_Ex7tFh2OjtitNFVjT4v=PDZSbseva+ZrGDQ@mail.gmail.com> <20190709010004.GD4819@pendragon.ideasonboard.com>
+In-Reply-To: <20190709010004.GD4819@pendragon.ideasonboard.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 8 Jul 2019 19:35:12 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ0ABZ_Qg_uHoZJU6krV7VB5rwyYWhcFoxDVhiYFpPS5Q@mail.gmail.com>
+Message-ID: <CAL_JsqJ0ABZ_Qg_uHoZJU6krV7VB5rwyYWhcFoxDVhiYFpPS5Q@mail.gmail.com>
+Subject: Re: [PATCH 17/60] dt-bindings: Add legacy 'toppoly' vendor prefix
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>, Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jul 8, 2019 at 7:00 PM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+>
+> Hi Rob,
+>
+> On Mon, Jul 08, 2019 at 01:00:35PM -0600, Rob Herring wrote:
+> > On Sun, Jul 7, 2019 at 12:25 PM Laurent Pinchart wrote:
+> > >
+> > > The 'toppoly' vendor prefix is in use and refers to TPO, whose DT vendor
+> > > prefix is already defined as 'tpo'. Add 'toppoly' as an alternative and
+> > > document it as legacy.
+> > >
+> > > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> > >  1 file changed, 2 insertions(+)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > index 2514463f2c63..d78527eb8254 100644
+> > > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > > @@ -867,6 +867,8 @@ patternProperties:
+> > >      description: Tecon Microprocessor Technologies, LLC.
+> > >    "^topeet,.*":
+> > >      description: Topeet
+> > > +  "^toppoly,.*":
+> > > +    description: TPO (legacy prefix, see 'tpo')
+> >
+> > Add 'deprecated: true' also. That's a new property in json-schema
+> > draft8. It's not used for anything yet other than documentation.
+>
+> Thank you for the pointer.
+>
+> By the way this series conflicts with your patches that move all panel
+> bindings to yaml. I'll rebase it on top if yours gets merged first.
 
+I committed the series today, but I don't see what conflicts though.
 
-On 2019/7/9 2:18, David Miller wrote:
-> From: David Miller <davem@davemloft.net>
-> Date: Sun, 07 Jul 2019 22:18:05 -0700 (PDT)
-> 
->> From: Jiangfeng Xiao <xiaojiangfeng@huawei.com>
->> Date: Fri, 5 Jul 2019 14:10:03 +0800
->>
->>> HI13X1 changed the offsets and bitmaps for tx_desc
->>> registers in the same peripheral device on different
->>> models of the hip04_eth.
->>>
->>> Signed-off-by: Jiangfeng Xiao <xiaojiangfeng@huawei.com>
->>
->> Applied.
-> 
-> Actually I didn't apply this because I can't see that HI13X1_GMAC
-> kconfig knob anywhere in the tree at all.
-> 
-
-Thank you for your guidance, I made a mistake, for which I am
-sincerely sorry for wasting your time.
-
-I will submit the correct one again.
-I will not make this low-level mistake again.
-
-Thanks,
-Jiangfeng Xiao
-
-
-
+Rob
