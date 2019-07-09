@@ -2,101 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A4471635EA
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 14:31:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D1CE63677
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 15:09:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726345AbfGIMbH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 08:31:07 -0400
-Received: from szxga05-in.huawei.com ([45.249.212.191]:2246 "EHLO huawei.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725947AbfGIMbG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jul 2019 08:31:06 -0400
-Received: from DGGEMS410-HUB.china.huawei.com (unknown [172.30.72.58])
-        by Forcepoint Email with ESMTP id 33CBD1F65E6AF96065CC;
-        Tue,  9 Jul 2019 20:31:02 +0800 (CST)
-Received: from localhost (10.45.141.82) by DGGEMS410-HUB.china.huawei.com
- (10.3.19.210) with Microsoft SMTP Server id 14.3.439.0; Tue, 9 Jul 2019
- 20:31:01 +0800
-Date:   Tue, 9 Jul 2019 13:30:56 +0100
-From:   Jonathan Cameron <jonathan.cameron@huawei.com>
-To:     "Hawa, Hanna" <hhhawa@amazon.com>
-CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <bp@alien8.de>,
-        <mchehab@kernel.org>, <james.morse@arm.com>, <davem@davemloft.net>,
-        <gregkh@linuxfoundation.org>, <linus.walleij@linaro.org>,
-        <nicolas.ferre@microchip.com>, <paulmck@linux.ibm.com>,
-        <dwmw@amazon.co.uk>, <benh@amazon.com>, <ronenk@amazon.com>,
-        <talel@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-edac@vger.kernel.org>
-Subject: Re: [PATCH v2 2/4] edac: Add support for Amazon's Annapurna Labs L1
- EDAC
-Message-ID: <20190709133056.00001c57@huawei.com>
-In-Reply-To: <45e9ac35-9ffc-8f5f-cbdb-f85453227363@amazon.com>
-References: <1562500658-14717-1-git-send-email-hhhawa@amazon.com>
-        <1562500658-14717-3-git-send-email-hhhawa@amazon.com>
-        <20190709173229.0000135f@huawei.com>
-        <45e9ac35-9ffc-8f5f-cbdb-f85453227363@amazon.com>
-Organization: Huawei
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; i686-w64-mingw32)
+        id S1726977AbfGINJv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 09:09:51 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:45673 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726046AbfGINJv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 09:09:51 -0400
+X-UUID: a7011a74a7d04a94baa0edb48571cdc2-20190709
+X-UUID: a7011a74a7d04a94baa0edb48571cdc2-20190709
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <qii.wang@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 872568423; Tue, 09 Jul 2019 21:09:46 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Tue, 9 Jul 2019 21:09:44 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Tue, 9 Jul 2019 21:09:44 +0800
+From:   Qii Wang <qii.wang@mediatek.com>
+To:     <bbrezillon@kernel.org>
+CC:     <matthias.bgg@gmail.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <linux-i3c@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <qii.wang@mediatek.com>, <liguo.zhang@mediatek.com>,
+        <xinping.qian@mediatek.com>
+Subject: [PATCH v3 0/2] Add MediaTek I3C master controller driver
+Date:   Tue, 9 Jul 2019 21:09:20 +0800
+Message-ID: <1562677762-24067-1-git-send-email-qii.wang@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-Content-Type: text/plain; charset="US-ASCII"
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.45.141.82]
-X-CFilter-Loop: Reflected
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 9 Jul 2019 14:01:03 +0300
-"Hawa, Hanna" <hhhawa@amazon.com> wrote:
+This series are based on 5.2-rc1, we provide two patches to
+support MediaTek I3C master controller.
 
-> On 7/9/2019 12:32 PM, Jonathan Cameron wrote:
-> >> Signed-off-by: Hanna Hawa<hhhawa@amazon.com>  
-> > A quick drive by review as I was feeling curious.
-> > 
-> > Just a couple of trivial queries and observation on the fact it
-> > might be useful to add a few devm managed functions to cut down
-> > on edac driver boilerplate.
-> > 
-> > Thanks,
-> > 
-> > Jonathan
-> >   
-> >> +#define ARM_CA57_CPUMERRSR_VALID		GENMASK(31, 31)  
-> > For a single bit it's common to use BIT(31) rather than GENMASK to make
-> > it explicit.  
-> 
-> Will fix.
-> 
-> > 
-> >   
-> >> +	edac_dev->mod_name = dev_name(dev);  
-> > I'd admit I'm not that familiar with edac, but seems odd that a
-> > module name field would have the dev_name.  
-> 
-> Will fix when I got more inputs.
-> 
-> >   
-> >> +	edac_device_free_ctl_info(edac_dev);  
-> > More a passing observation than a suggestion for this driver, but if there was
-> > ever a place where it looked like a couple of devm_ allocation functions would
-> > be useful, this is it;)
-> > 
-> > edac_dev = devm_device_alloc_ctrl_info(dev, ...)
-> > ...
-> > devm_edac_device_add_device(dev, ...)  
-> 
-> I agree.
-> I can implement the devm_* functions in separate patches as this is not 
-> related to my patches (and not to delay this patches).
-> 
+Main changes compared to v2:
+--modify the description of clock and interrupt in bindings
+--use correct cells for I2C device in bindings
 
-Great.
+Main changes compared to v1:
+--remove clock-div, let clock driver handle it
+--let sample_cnt and step_cnt start from two
 
-Jonathan
+Qii Wang (2):
+  dt-bindings: i3c: Document MediaTek I3C master bindings
+  i3c: master: Add driver for MediaTek IP
 
-> > 
-> >   
+ .../devicetree/bindings/i3c/mtk,i3c-master.txt     |   48 +
+ drivers/i3c/master/Kconfig                         |   10 +
+ drivers/i3c/master/Makefile                        |    1 +
+ drivers/i3c/master/i3c-master-mtk.c                | 1239 ++++++++++++++++++++
+ 4 files changed, 1298 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+ create mode 100644 drivers/i3c/master/i3c-master-mtk.c
 
-
+-- 
+1.7.9.5
