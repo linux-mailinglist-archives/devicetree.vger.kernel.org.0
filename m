@@ -2,77 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3DB0263BE1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 21:26:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D07B63C58
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 22:01:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727052AbfGIT0f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 15:26:35 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:34148 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726491AbfGIT0e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 15:26:34 -0400
-Received: by mail-io1-f65.google.com with SMTP id k8so454614iot.1;
-        Tue, 09 Jul 2019 12:26:34 -0700 (PDT)
+        id S1729126AbfGIUBZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 16:01:25 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:46135 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728959AbfGIUBY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 16:01:24 -0400
+Received: by mail-io1-f67.google.com with SMTP id i10so45785550iol.13;
+        Tue, 09 Jul 2019 13:01:24 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=YJCxWDqrIACeyw572XUN88X748QX9Vah3vz0WR7ceS0=;
-        b=YCpxB+sehO4NnSiV+g6W2Xa1MMwpIoZVq4FwBkp5z+xJL6Zpqqvnvgf8JkCc5Ir2+4
-         6+Kdo5oY++mF2hqWIZJKiB3YgV3qlMZP5IwaQXpePNtKhCg1H8waZrxzEzQVB21xz4sX
-         wx9dfDY+V/TIH4jsTmpj+KFKLwagRI8f2oxd8L/uQwuEEjWIrUJMas3MIHDlIKD4t2Jl
-         LlgGwdVednr2sStHoPAxe76UzOLfdtwUGw0ZYDnoOo2MjA0RBFn/FcVELjdOV15xGWqk
-         cqUPrEtqnl8MCREIJjcXMP4lG/Xaf8nQ1ma3hlAZoi6qvmbVrxGYag1DzAELMfNoSrDi
-         yIbA==
-X-Gm-Message-State: APjAAAWhsSV3b3jMrtJa2tp7f80aX6xuTE46q/n5LnryDJfHRTv2v02Y
-        g8IHB69hKdeE99ZAfo4uu5EHrCF1CQ==
-X-Google-Smtp-Source: APXvYqzFQYn+xq0I9wKEnggnMxeBx0XK0qbhuePWj72qrLE7hJHFol3dpjQxB5aYLpvyr7Hg82Dl9w==
-X-Received: by 2002:a05:6638:3d2:: with SMTP id r18mr30146201jaq.13.1562700393681;
-        Tue, 09 Jul 2019 12:26:33 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.251])
-        by smtp.googlemail.com with ESMTPSA id c17sm18671708ioo.82.2019.07.09.12.26.32
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=B7/QcW7r5MQOGhPEoQO1LbngGWl8Cp/c3zBrZbGmskM=;
+        b=BmL8bFLtY/b8HJ9LNKgDW7qtyOkGvfYPL/II1VC9Nkfmp8Zha17QGZo1/+lsGjY5XV
+         6XxAgxiy6Ga13SLci+cfWWHjNJ0DFhB6syC/iljDLbF7CESedfTP/vOtQGTxwXdyKe8d
+         gNRMjmOelzMFxEYOvgZzRp46mxeyD8qzp/+BwwZe53WSKqzB4Tapkfn+Ys0w4oOsy+7P
+         sgfLlKy9Al4LOGqliPr+MymPiv5MadGV/f11MwPiYqoJ7JVcw1sFJKd5C8ZZmPcqneBB
+         7ELPZMFbyS2ORPHF17vsDUmwDg5ypC74HQFpRUNIHctrWskP6OMreSSDmVx/DOzvKuOq
+         jX/g==
+X-Gm-Message-State: APjAAAViEZmOg+qY47hTM+8j3b56rowlYUOxPHr0Yx7iymi7XtHplNoj
+        pXCGdyTlF8g+bp2gglhOGQ==
+X-Google-Smtp-Source: APXvYqytSsRPVq3GTbSVDnVsku/qIgTDId3MOrt1dloK9TJz1SnYYCUTN2WCuwk38In8AaLhppOnLQ==
+X-Received: by 2002:a02:7f15:: with SMTP id r21mr31288185jac.120.1562702483721;
+        Tue, 09 Jul 2019 13:01:23 -0700 (PDT)
+Received: from localhost ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id s2sm15525321ioj.8.2019.07.09.13.01.22
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 09 Jul 2019 12:26:33 -0700 (PDT)
+        Tue, 09 Jul 2019 13:01:23 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 14:01:21 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-spi@vger.kernel.org
-Subject: [PATCH] spi: dt-bindings: spi-controller: remove unnecessary 'maxItems: 1' from reg
-Date:   Tue,  9 Jul 2019 13:26:31 -0600
-Message-Id: <20190709192631.16394-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+To:     Cheng-Yi Chiang <cychiang@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, Hans Verkuil <hverkuil@xs4all.nl>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Heiko Stuebner <heiko@sntech.de>, dianders@chromium.org,
+        dgreid@chromium.org, tzungbi@chromium.org,
+        linux-media@vger.kernel.org, alsa-devel@alsa-project.org,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 5/7] ASoC: rockchip: rockchip-max98090: Add node for HDMI
+Message-ID: <20190709200121.GA19118@bogus>
+References: <20190603043251.226549-1-cychiang@chromium.org>
+ <20190603043251.226549-6-cychiang@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190603043251.226549-6-cychiang@chromium.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Mixing array constraints like 'maxItems' and string or integer value
-constraints like 'minimum' don't make sense. Also, with only value
-constraints, it is implied we have a single value. So lets remove
-'maxItems: 1'.
+On Mon, Jun 03, 2019 at 12:32:49PM +0800, Cheng-Yi Chiang wrote:
+> Let user specify HDMI node so machine driver can use it to let codec
+> driver register callback on correct hdmi-notifier.
+> 
+> Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
+> ---
+>  Documentation/devicetree/bindings/sound/rockchip-max98090.txt | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/rockchip-max98090.txt b/Documentation/devicetree/bindings/sound/rockchip-max98090.txt
+> index a805aa99ad75..dae57c14864e 100644
+> --- a/Documentation/devicetree/bindings/sound/rockchip-max98090.txt
+> +++ b/Documentation/devicetree/bindings/sound/rockchip-max98090.txt
+> @@ -7,6 +7,7 @@ Required properties:
+>    connected to the CODEC
+>  - rockchip,audio-codec: The phandle of the MAX98090 audio codec
+>  - rockchip,headset-codec: The phandle of Ext chip for jack detection
+> +- rockchip,hdmi: The phandle of HDMI node for HDMI jack detection
+>  
+>  Example:
+>  
+> @@ -16,4 +17,5 @@ sound {
+>  	rockchip,i2s-controller = <&i2s>;
+>  	rockchip,audio-codec = <&max98090>;
+>  	rockchip,headset-codec = <&headsetcodec>;
+> +	rockchip,hdmi= <&hdmi>;
 
-Cc: Mark Brown <broonie@kernel.org>
-Cc: linux-spi@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/spi/spi-controller.yaml | 1 -
- 1 file changed, 1 deletion(-)
+space                ^
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-index 876c0623f322..a02e2fe2bfb2 100644
---- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-@@ -73,7 +73,6 @@ patternProperties:
-           Compatible of the SPI device.
- 
-       reg:
--        maxItems: 1
-         minimum: 0
-         maximum: 256
-         description:
--- 
-2.20.1
+With that,
 
+Acked-by: Rob Herring <robh@kernel.org>
+
+>  };
+> -- 
+> 2.22.0.rc1.257.g3120a18244-goog
+> 
