@@ -2,172 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6534B63DD8
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 00:22:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AFE6463DFE
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 00:49:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726324AbfGIWWv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 18:22:51 -0400
-Received: from mga06.intel.com ([134.134.136.31]:10292 "EHLO mga06.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726792AbfGIWWu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jul 2019 18:22:50 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga005.fm.intel.com ([10.253.24.32])
-  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 09 Jul 2019 15:22:49 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.63,472,1557212400"; 
-   d="scan'208";a="364289204"
-Received: from tthayer-hp-z620.an.intel.com ([10.122.105.146])
-  by fmsmga005.fm.intel.com with ESMTP; 09 Jul 2019 15:22:49 -0700
-From:   thor.thayer@linux.intel.com
-To:     bp@alien8.de, mchehab@kernel.org, james.morse@arm.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, dinguyen@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-edac@vger.kernel.org,
-        Thor Thayer <thor.thayer@linux.intel.com>
-Subject: [PATCH 3/3] EDAC, altera: Use common framework for Stratix10 SDRAM ECC
-Date:   Tue,  9 Jul 2019 17:24:50 -0500
-Message-Id: <1562711090-900-4-git-send-email-thor.thayer@linux.intel.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1562711090-900-1-git-send-email-thor.thayer@linux.intel.com>
-References: <1562711090-900-1-git-send-email-thor.thayer@linux.intel.com>
+        id S1726346AbfGIWs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 18:48:57 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:40991 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726133AbfGIWs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 18:48:57 -0400
+Received: by mail-io1-f68.google.com with SMTP id j5so504091ioj.8;
+        Tue, 09 Jul 2019 15:48:56 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=eyGsWrRed7Jq2fWkYfn59iLgEVDakSTfvuCH22V1pT0=;
+        b=Yf6YEbG07pNKdUv25S9LVWe+AqZqc/E6EArIsHPEjwLkJV31wXpONBztVKeaUqGKas
+         82pR6AymX5IGmFUIihoZvrths2yn0Gado5sEJT8hrLgYJDoYvpsaioFGCYGYnh51xjfJ
+         BTwbKURKcJJs26lDUfdXfK+i/C8bbiPaZHWW+zKAsXhbha7nla6Cvx45ipdf5pqqogVJ
+         VXm+q26YGrnrfgD5ASwHVPCsln88zQC7omIZh+pt916UJ32gNqfoGBriL1X3xXhwj6qV
+         5SpY9YIs2YZdtSq+Px8aTWGji6+CNYaJwHLej9oxIWxw7AzFOmL1KtP4s+lRNa5Q2ipf
+         tVxA==
+X-Gm-Message-State: APjAAAXp+BHwsdn4C6MQ7A2FT8Xev/8XVOxYidcW76lozEswucSCCvdO
+        aW9hpfvEqhLQZT1L0jjOr2Fbin7NZg==
+X-Google-Smtp-Source: APXvYqwzP6rx57Vi77awxmcfPlql9muZaKdh7hCav0/eA+7kxPRhZTDjpr4e1FcFWE5jTSJM89JiQA==
+X-Received: by 2002:a02:bb08:: with SMTP id y8mr30746646jan.51.1562712536023;
+        Tue, 09 Jul 2019 15:48:56 -0700 (PDT)
+Received: from localhost ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id j5sm81947iom.69.2019.07.09.15.48.54
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 09 Jul 2019 15:48:55 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 16:48:53 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Grygorii Strashko <grygorii.strashko@ti.com>
+Cc:     netdev@vger.kernel.org,
+        Ilias Apalodimas <ilias.apalodimas@linaro.org>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Ivan Khoronzhuk <ivan.khoronzhuk@linaro.org>,
+        Jiri Pirko <jiri@resnulli.us>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Sekhar Nori <nsekhar@ti.com>, linux-kernel@vger.kernel.org,
+        linux-omap@vger.kernel.org, Murali Karicheri <m-karicheri2@ti.com>,
+        Ivan Vecera <ivecera@redhat.com>, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH v4 net-next 05/11] dt-bindings: net: ti: add new cpsw
+ switch driver bindings
+Message-ID: <20190709224853.GA2365@bogus>
+References: <20190621181314.20778-1-grygorii.strashko@ti.com>
+ <20190621181314.20778-6-grygorii.strashko@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190621181314.20778-6-grygorii.strashko@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Thor Thayer <thor.thayer@linux.intel.com>
+On Fri, Jun 21, 2019 at 09:13:08PM +0300, Grygorii Strashko wrote:
+> Add bindings for the new TI CPSW switch driver. Comparing to the legacy
+> bindings (net/cpsw.txt):
+> - ports definition follows DSA bindings (net/dsa/dsa.txt) and ports can be
+> marked as "disabled" if not physically wired.
+> - ports definition follows DSA bindings (net/dsa/dsa.txt) and ports can be
+> marked as "disabled" if not physically wired.
+> - all deprecated properties dropped;
+> - all legacy propertiies dropped which represents constant HW cpapbilities
+> (cpdma_channels, ale_entries, bd_ram_size, mac_control, slaves,
+> active_slave)
+> - cpts properties grouped in "cpts" sub-node
+> 
+> Signed-off-by: Grygorii Strashko <grygorii.strashko@ti.com>
+> ---
+>  .../bindings/net/ti,cpsw-switch.txt           | 147 ++++++++++++++++++
+>  1 file changed, 147 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/ti,cpsw-switch.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/net/ti,cpsw-switch.txt b/Documentation/devicetree/bindings/net/ti,cpsw-switch.txt
+> new file mode 100644
+> index 000000000000..787219cddccd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/ti,cpsw-switch.txt
+> @@ -0,0 +1,147 @@
+> +TI SoC Ethernet Switch Controller Device Tree Bindings (new)
+> +------------------------------------------------------
+> +
+> +The 3-port switch gigabit ethernet subsystem provides ethernet packet
+> +communication and can be configured as an ethernet switch. It provides the
+> +gigabit media independent interface (GMII),reduced gigabit media
+> +independent interface (RGMII), reduced media independent interface (RMII),
+> +the management data input output (MDIO) for physical layer device (PHY)
+> +management.
+> +
+> +Required properties:
+> +- compatible : be one of the below:
+> +	  "ti,cpsw-switch" for backward compatible
+> +	  "ti,am335x-cpsw-switch" for AM335x controllers
+> +	  "ti,am4372-cpsw-switch" for AM437x controllers
+> +	  "ti,dra7-cpsw-switch" for DRA7x controllers
+> +- reg : physical base address and size of the CPSW module IO range
+> +- ranges : shall contain the CPSW module IO range available for child devices
+> +- clocks : should contain the CPSW functional clock
+> +- clock-names : should be "fck"
+> +	See bindings/clock/clock-bindings.txt
+> +- interrupts : should contain CPSW RX, TX, MISC, RX_THRESH interrupts
+> +- interrupt-names : should contain "rx_thresh", "rx", "tx", "misc"
 
-The Stratix10 SDRAM ECC is a better match with the devices ECC
-framework.
-Use the ECC device framework with the linked list to track
-SDRAM errors. This simplifies the device tree node as well.
+What's the defined order because it's not consistent here.
 
-Signed-off-by: Thor Thayer <thor.thayer@linux.intel.com>
----
- drivers/edac/altera_edac.c | 32 +++++++++++++++++++++++++++++---
- drivers/edac/altera_edac.h | 25 ++++++++++++++++++++++++-
- 2 files changed, 53 insertions(+), 4 deletions(-)
+> +	See bindings/interrupt-controller/interrupts.txt
+> +
+> +Optional properties:
+> +- syscon : phandle to the system control device node which provides access to
+> +	efuse IO range with MAC addresses
+> +
+> +Required Sub-nodes:
+> +- ports	: contains CPSW external ports descriptions
 
-diff --git a/drivers/edac/altera_edac.c b/drivers/edac/altera_edac.c
-index c2e693e34d43..23e6af7287e4 100644
---- a/drivers/edac/altera_edac.c
-+++ b/drivers/edac/altera_edac.c
-@@ -222,7 +222,6 @@ static unsigned long get_total_mem(void)
- static const struct of_device_id altr_sdram_ctrl_of_match[] = {
- 	{ .compatible = "altr,sdram-edac", .data = &c5_data},
- 	{ .compatible = "altr,sdram-edac-a10", .data = &a10_data},
--	{ .compatible = "altr,sdram-edac-s10", .data = &a10_data},
- 	{},
- };
- MODULE_DEVICE_TABLE(of, altr_sdram_ctrl_of_match);
-@@ -1170,6 +1169,24 @@ static int __init __maybe_unused altr_init_a10_ecc_device_type(char *compat)
- 	return 0;
- }
- 
-+/*********************** SDRAM EDAC Device Functions *********************/
-+
-+#ifdef CONFIG_EDAC_ALTERA_SDRAM
-+
-+static const struct edac_device_prv_data s10_sdramecc_data = {
-+	.setup = altr_check_ecc_deps,
-+	.ce_clear_mask = ALTR_S10_ECC_SERRPENA,
-+	.ue_clear_mask = ALTR_S10_ECC_DERRPENA,
-+	.ecc_enable_mask = ALTR_S10_ECC_EN,
-+	.ecc_en_ofst = ALTR_S10_ECC_CTRL_SDRAM_OFST,
-+	.ce_set_mask = ALTR_S10_ECC_TSERRA,
-+	.ue_set_mask = ALTR_S10_ECC_TDERRA,
-+	.set_err_ofst = ALTR_S10_ECC_INTTEST_OFST,
-+	.ecc_irq_handler = altr_edac_a10_ecc_irq,
-+	.inject_fops = &altr_edac_a10_device_inject_fops,
-+};
-+#endif /* CONFIG_EDAC_ALTERA_SDRAM */
-+
- /*********************** OCRAM EDAC Device Functions *********************/
- 
- #ifdef CONFIG_EDAC_ALTERA_OCRAM
-@@ -1759,6 +1776,9 @@ static const struct of_device_id altr_edac_a10_device_of_match[] = {
- #ifdef CONFIG_EDAC_ALTERA_SDMMC
- 	{ .compatible = "altr,socfpga-sdmmc-ecc", .data = &a10_sdmmcecca_data },
- #endif
-+#ifdef CONFIG_EDAC_ALTERA_SDRAM
-+	{ .compatible = "altr,sdram-edac-s10", .data = &s10_sdramecc_data },
-+#endif
- 	{},
- };
- MODULE_DEVICE_TABLE(of, altr_edac_a10_device_of_match);
-@@ -1889,6 +1909,10 @@ static int validate_parent_available(struct device_node *np)
- 	struct device_node *parent;
- 	int ret = 0;
- 
-+	/* SDRAM must be present for Linux (implied parent) */
-+	if (of_device_is_compatible(np, "altr,sdram-edac-s10"))
-+		return 0;
-+
- 	/* Ensure parent device is enabled if parent node exists */
- 	parent = of_parse_phandle(np, "altr,ecc-parent", 0);
- 	if (parent && !of_device_is_available(parent))
-@@ -2231,13 +2255,15 @@ static int altr_edac_a10_probe(struct platform_device *pdev)
- 		    of_device_is_compatible(child, "altr,socfpga-dma-ecc") ||
- 		    of_device_is_compatible(child, "altr,socfpga-usb-ecc") ||
- 		    of_device_is_compatible(child, "altr,socfpga-qspi-ecc") ||
-+#ifdef CONFIG_EDAC_ALTERA_SDRAM
-+		    of_device_is_compatible(child, "altr,sdram-edac-s10") ||
-+#endif
- 		    of_device_is_compatible(child, "altr,socfpga-sdmmc-ecc"))
- 
- 			altr_edac_a10_device_add(edac, child);
- 
- #ifdef CONFIG_EDAC_ALTERA_SDRAM
--		else if ((of_device_is_compatible(child, "altr,sdram-edac-a10")) ||
--			 (of_device_is_compatible(child, "altr,sdram-edac-s10")))
-+		else if (of_device_is_compatible(child, "altr,sdram-edac-a10"))
- 			of_platform_populate(pdev->dev.of_node,
- 					     altr_sdram_ctrl_of_match,
- 					     NULL, &pdev->dev);
-diff --git a/drivers/edac/altera_edac.h b/drivers/edac/altera_edac.h
-index 55654cc4bcdf..3727e72c8c2e 100644
---- a/drivers/edac/altera_edac.h
-+++ b/drivers/edac/altera_edac.h
-@@ -289,6 +289,29 @@ struct altr_sdram_mc_data {
- #define ALTR_A10_ECC_INIT_WATCHDOG_10US      10000
- 
- /************* Stratix10 Defines **************/
-+#define ALTR_S10_ECC_CTRL_SDRAM_OFST      0x00
-+#define ALTR_S10_ECC_EN                   BIT(0)
-+
-+#define ALTR_S10_ECC_ERRINTEN_OFST        0x10
-+#define ALTR_S10_ECC_ERRINTENS_OFST       0x14
-+#define ALTR_S10_ECC_ERRINTENR_OFST       0x18
-+#define ALTR_S10_ECC_SERRINTEN            BIT(0)
-+
-+#define ALTR_S10_ECC_INTMODE_OFST         0x1C
-+#define ALTR_S10_ECC_INTMODE              BIT(0)
-+
-+#define ALTR_S10_ECC_INTSTAT_OFST         0x20
-+#define ALTR_S10_ECC_SERRPENA             BIT(0)
-+#define ALTR_S10_ECC_DERRPENA             BIT(8)
-+#define ALTR_S10_ECC_ERRPENA_MASK         (ALTR_S10_ECC_SERRPENA | \
-+					   ALTR_S10_ECC_DERRPENA)
-+
-+#define ALTR_S10_ECC_INTTEST_OFST         0x24
-+#define ALTR_S10_ECC_TSERRA               BIT(0)
-+#define ALTR_S10_ECC_TDERRA               BIT(8)
-+#define ALTR_S10_ECC_TSERRB               BIT(16)
-+#define ALTR_S10_ECC_TDERRB               BIT(24)
-+
- #define ALTR_S10_DERR_ADDRA_OFST          0x2C
- 
- /* Stratix10 ECC Manager Defines */
-@@ -300,7 +323,7 @@ struct altr_sdram_mc_data {
- #define S10_SYSMGR_UE_ADDR_OFST           0x224
- 
- #define S10_DDR0_IRQ_MASK                 BIT(16)
--#define S10_DBE_IRQ_MASK                  0x3FE
-+#define S10_DBE_IRQ_MASK                  0x3FFFE
- 
- /* Define ECC Block Offsets for peripherals */
- #define ECC_BLK_ADDRESS_OFST              0x40
--- 
-2.7.4
+Use ethernet-ports to avoid 'ports' from the graph binding.
 
+> +	Required properties:
+> +	- #address-cells : Must be 1
+> +	- #size-cells : Must be 0
+> +	- reg : CPSW port number. Should be 1 or 2
+> +	- phys : phandle on phy-gmii-sel PHY (see phy/ti-phy-gmii-sel.txt)
+> +	- phy-mode : operation mode of the PHY interface [1]
+> +	- phy-handle : phandle to a PHY on an MDIO bus [1]
+> +
+> +	Optional properties:
+> +	- ti,label : Describes the label associated with this port
+
+What's wrong with standard 'label' property.
+
+> +	- ti,dual_emac_pvid : Specifies default PORT VID to be used to segregate
+
+s/_/-/
+
+> +		ports. Default value - CPSW port number.
+> +	- mac-address : array of 6 bytes, specifies the MAC address. Always
+> +		accounted first if present [1]
+
+No need to re-define this here. 
+
+> +	- local-mac-address : See [1]
+> +
+> +- mdio : CPSW MDIO bus block description
+> +	- bus_freq : MDIO Bus frequency
+> +	See bindings/net/mdio.txt and davinci-mdio.txt
+
+Standard properties clock-frequency or bus-frequency would have been 
+better...
+
+> +
+> +- cpts : The Common Platform Time Sync (CPTS) module description
+> +	- clocks : should contain the CPTS reference clock
+> +	- clock-names : should be "cpts"
+> +	See bindings/clock/clock-bindings.txt
+> +
+> +	Optional properties - all ports:
+> +	- cpts_clock_mult : Numerator to convert input clock ticks into ns
+> +	- cpts_clock_shift : Denominator to convert input clock ticks into ns
+> +			  Mult and shift will be calculated basing on CPTS
+> +			  rftclk frequency if both cpts_clock_shift and
+> +			  cpts_clock_mult properties are not provided.
+
+Should have 'ti' prefix and use '-' rather than '_'. However, these are 
+already defined somewhere else, right? I can't tell that from reading 
+this.
+
+> +
+> +[1] See Documentation/devicetree/bindings/net/ethernet.txt
+> +
+> +Examples - SOC:
+
+Please don't split example into SoC and board. Just show the flat 
+example.
+
+> +mac_sw: ethernet_switch@0 {
+
+switch@0
+
+> +	compatible = "ti,dra7-cpsw-switch","ti,cpsw-switch";
+> +	reg = <0x0 0x4000>;
+> +	ranges = <0 0 0x4000>;
+> +	clocks = <&gmac_main_clk>;
+> +	clock-names = "fck";
+> +	#address-cells = <1>;
+> +	#size-cells = <1>;
+> +	syscon = <&scm_conf>;
+> +	status = "disabled";
+> +
+> +	interrupts = <GIC_SPI 334 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 335 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 336 IRQ_TYPE_LEVEL_HIGH>,
+> +		     <GIC_SPI 337 IRQ_TYPE_LEVEL_HIGH>;
+> +	interrupt-names = "rx_thresh", "rx", "tx", "misc"
+> +
+> +	ports {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +
+> +		cpsw_port1: port@1 {
+> +			reg = <1>;
+> +			ti,label = "port1";
+
+Not really any better than the node name. Do you really even need this 
+property?
+
+> +			/* Filled in by U-Boot */
+> +			mac-address = [ 00 00 00 00 00 00 ];
+> +			phys = <&phy_gmii_sel 1>;
+> +		};
+> +
+> +		cpsw_port2: port@2 {
+> +			reg = <2>;
+> +			ti,label = "port2";
+> +			/* Filled in by U-Boot */
+> +			mac-address = [ 00 00 00 00 00 00 ];
+> +			phys = <&phy_gmii_sel 2>;
+> +		};
+> +	};
+> +
+> +	davinci_mdio_sw: mdio@1000 {
+> +		compatible = "ti,cpsw-mdio","ti,davinci_mdio";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		ti,hwmods = "davinci_mdio";
+> +		bus_freq = <1000000>;
+> +		reg = <0x1000 0x100>;
+> +	};
+> +
+> +	cpts {
+> +		clocks = <&gmac_clkctrl DRA7_GMAC_GMAC_CLKCTRL 25>;
+> +		clock-names = "cpts";
+> +	};
+> +};
+> +
+> +Examples - platform/board:
+> +
+> +&mac_sw {
+> +	pinctrl-names = "default", "sleep";
+> +	status = "okay";
+> +};
+> +
+> +&cpsw_port1 {
+> +	phy-handle = <&ethphy0_sw>;
+> +	phy-mode = "rgmii";
+> +	ti,dual_emac_pvid = <1>;
+> +};
+> +
+> +&cpsw_port2 {
+> +	phy-handle = <&ethphy1_sw>;
+> +	phy-mode = "rgmii";
+> +	ti,dual_emac_pvid = <2>;
+> +};
+> +
+> +&davinci_mdio_sw {
+> +	ethphy0_sw: ethernet-phy@0 {
+> +		reg = <0>;
+> +	};
+> +
+> +	ethphy1_sw: ethernet-phy@1 {
+> +		reg = <1>;
+> +	};
+> +};
+> -- 
+> 2.17.1
+> 
