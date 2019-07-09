@@ -2,72 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB50362E2B
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 04:34:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEE9D62EAD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 05:21:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726793AbfGICeH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 22:34:07 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:43213 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725886AbfGICeH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 22:34:07 -0400
-Received: by mail-io1-f66.google.com with SMTP id k20so39820722ios.10;
-        Mon, 08 Jul 2019 19:34:06 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Jmvcnf17SdTOjp+JcKTP5mZou8gtz+qNNgynsKTEhKQ=;
-        b=hJh3VjNDzn51SHg0FYqM3cqxezUHWsAtDraigfNejobzgTQhLRTz3GUymELPG+v1g/
-         2mGrekHuL3xQoDaQs3SYjUo+GAb2E2d96KbAe/AfIIZ+YwYRkC9OdhKqz7TUurTfhfJs
-         gaXwYJQubQVxWJwm49im0RJfHBU4n5TmZfe+qo+N+qqS/DwGXvhjr1xWpOBrDAku1m33
-         tNo6T4jc03rYt/5ZtaALgXve+BLMV7B8ZmrUaf/fdYEiw1u9phF7BPeDk6k85pZIlThK
-         CNByGM7SYS2Nvm8qedBC/69BRO1Xc7jBNA3hOBN75hN7ds3egvEDE4snB/QSJHFiJ9O+
-         tlQg==
-X-Gm-Message-State: APjAAAVfTsE0R83IHGGyeUOq+njCFYUb4H3vrUuvbL8iwEcTTDpFfSYK
-        lmOmhaVtFuKD6fFMz/sd7g==
-X-Google-Smtp-Source: APXvYqz69JDID2fJqVQHBsqpbzGdCfYQdFAvvCP76K5lkHq5ZezS4qwxqyj5D6GYBOIopNPx1thdQA==
-X-Received: by 2002:a6b:c38b:: with SMTP id t133mr22538567iof.162.1562639646373;
-        Mon, 08 Jul 2019 19:34:06 -0700 (PDT)
-Received: from localhost ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id n7sm14884828ioo.79.2019.07.08.19.34.05
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 08 Jul 2019 19:34:05 -0700 (PDT)
-Date:   Mon, 8 Jul 2019 20:34:04 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-kernel@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH 5/6] dt-bindings: timer: renesas: tmu: Document r8a774a1
- bindings
-Message-ID: <20190709023404.GA6500@bogus>
-References: <1560258401-9517-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1560258401-9517-6-git-send-email-fabrizio.castro@bp.renesas.com>
+        id S1727143AbfGIDSg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 23:18:36 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:48852 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725886AbfGIDSg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 23:18:36 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1562642313; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=pzy3NwVjkusfZHFaTz046qoprbVpGHFFowMHni2vKtY=;
+        b=FAKYRBQOCMleXkDI4SHI3KoMWnQ0xln8qD1jRqi8ki6Grz/6w0gtIXbzMqQs75W46LVFid
+        f/YIylx7EA97zTZvDMndKAP0Audad4Ic7N2eOK87xraEVSBW5jIzlI46JyRis7eLd/emjV
+        YqXSYYUHp7i8WAhgzPFpOuk5RqfpX8g=
+Date:   Mon, 08 Jul 2019 23:18:19 -0400
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH v2 1/6] dt-bindings: Remove unused compatible strings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>, od@zcrc.me,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Message-Id: <1562642299.1834.0@crapouillou.net>
+In-Reply-To: <20190709020425.GA7984@bogus>
+References: <20190607154410.10633-1-paul@crapouillou.net>
+        <20190607154410.10633-2-paul@crapouillou.net> <20190709020425.GA7984@bogus>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1560258401-9517-6-git-send-email-fabrizio.castro@bp.renesas.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 11 Jun 2019 14:06:40 +0100, Fabrizio Castro wrote:
-> Document RZ/G2M (R8A774A1) SoC in the Renesas TMU bindings.
-> 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> ---
->  Documentation/devicetree/bindings/timer/renesas,tmu.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+
+Le lun. 8 juil. 2019 =E0 22:04, Rob Herring <robh@kernel.org> a =E9crit :
+> On Fri, Jun 07, 2019 at 05:44:05PM +0200, Paul Cercueil wrote:
+>>  Right now none of the Ingenic-based boards probe this driver from
+>>  devicetree. This driver defined three compatible strings for the=20
+>> exact
+>>  same behaviour. Before these strings are used, we can remove two of
+>>  them.
+>>=20
+>>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+>>  ---
+>>=20
+>>  Notes:
+>>      v2: Rebase on v5.2-rc3
+>>=20
+>>   Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt | 5=20
+>> +----
+>>   1 file changed, 1 insertion(+), 4 deletions(-)
+>>=20
+>>  diff --git=20
+>> a/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt=20
+>> b/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+>>  index 7d9d3f90641b..493bec80d59b 100644
+>>  --- a/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+>>  +++ b/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+>>  @@ -2,10 +2,7 @@ Ingenic JZ47xx PWM Controller
+>>   =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D
+>>=20
+>>   Required properties:
+>>  -- compatible: One of:
+>>  -  * "ingenic,jz4740-pwm"
+>>  -  * "ingenic,jz4770-pwm"
+>>  -  * "ingenic,jz4780-pwm"
+>>  +- compatible: Should be "ingenic,jz4740-pwm"
+>=20
+> Are you sure all 3 chips are exactly the same features and bugs?
+
+The hardware on these chips have tiny differences, but the current
+driver code works on all the SoCs.
+
+
+> The correct thing to do here generally is the 4770 and 4780 would also
+> have ingenic,jz4740-pwm as a fallback compatible. Then the driver can
+> match on that until you find some difference and can use the more
+> specific compatible.
+
+Why not just update the devicetree with the new compatible string when
+a difference is found?
+
+
+>>   - #pwm-cells: Should be 3. See pwm.txt in this directory for a=20
+>> description
+>>     of the cells format.
+>>   - clocks : phandle to the external clock.
+>>  --
+>>  2.21.0.593.g511ec345e18
+>>=20
+
+=
+
