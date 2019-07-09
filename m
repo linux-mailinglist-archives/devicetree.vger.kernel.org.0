@@ -2,83 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EDE762ED1
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 05:27:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3565262EEE
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 05:35:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727444AbfGIDWz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 23:22:55 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:11069 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725886AbfGIDWz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 23:22:55 -0400
-X-UUID: d3fcdc57db1a47fc8521b97de71692fa-20190709
-X-UUID: d3fcdc57db1a47fc8521b97de71692fa-20190709
-Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw01.mediatek.com
-        (envelope-from <xia.jiang@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 1986524408; Tue, 09 Jul 2019 11:22:37 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 9 Jul 2019 11:22:35 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 9 Jul 2019 11:22:35 +0800
-From:   Xia Jiang <xia.jiang@mediatek.com>
-To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rick Chang <rick.chang@mediatek.com>
-CC:     <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Tomasz Figa <tfiga@chromium.org>,
-        <srv_heupstream@mediatek.com>, Xia Jiang <xia.jiang@mediatek.com>
-Subject: [PATCH 5/5] arm: dts: add jpeg enc device tree node
-Date:   Tue, 9 Jul 2019 11:21:03 +0800
-Message-ID: <20190709032103.10291-6-xia.jiang@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190709032103.10291-1-xia.jiang@mediatek.com>
-References: <20190709032103.10291-1-xia.jiang@mediatek.com>
+        id S1726793AbfGIDbx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 23:31:53 -0400
+Received: from szxga07-in.huawei.com ([45.249.212.35]:51602 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727294AbfGIDbe (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jul 2019 23:31:34 -0400
+Received: from DGGEMS402-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id 914E36710C36FFFF234A;
+        Tue,  9 Jul 2019 11:31:29 +0800 (CST)
+Received: from huawei.com (10.67.189.167) by DGGEMS402-HUB.china.huawei.com
+ (10.3.19.202) with Microsoft SMTP Server id 14.3.439.0; Tue, 9 Jul 2019
+ 11:31:20 +0800
+From:   Jiangfeng Xiao <xiaojiangfeng@huawei.com>
+To:     <davem@davemloft.net>, <robh+dt@kernel.org>,
+        <yisen.zhuang@huawei.com>, <salil.mehta@huawei.com>,
+        <mark.rutland@arm.com>, <dingtianhong@huawei.com>,
+        <xiaojiangfeng@huawei.com>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <leeyou.li@huawei.com>,
+        <nixiaoming@huawei.com>, <jianping.liu@huawei.com>,
+        <xiekunxun@huawei.com>
+Subject: [PATCH v2 00/10] net: hisilicon: Add support for HI13X1 to hip04_eth
+Date:   Tue, 9 Jul 2019 11:31:01 +0800
+Message-ID: <1562643071-46811-1-git-send-email-xiaojiangfeng@huawei.com>
+X-Mailer: git-send-email 1.8.5.6
 MIME-Version: 1.0
 Content-Type: text/plain
-X-MTK:  N
+X-Originating-IP: [10.67.189.167]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add jpeg enc device tree node
+The main purpose of this patch series is to extend the
+hip04_eth driver to support HI13X1_GMAC.
 
-Signed-off-by: Xia Jiang <xia.jiang@mediatek.com>
----
- arch/arm/boot/dts/mt2701.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
+The offset and bitmap of some registers of HI13X1_GMAC
+are different from hip04_eth common soc. In addition,
+the definition of send descriptor and parsing descriptor
+are different from hip04_eth common soc. So the macro
+of the register offset is redefined to adapt the HI13X1_GMAC.
 
-diff --git a/arch/arm/boot/dts/mt2701.dtsi b/arch/arm/boot/dts/mt2701.dtsi
-index 51e1305c6471..560f27fd9d9e 100644
---- a/arch/arm/boot/dts/mt2701.dtsi
-+++ b/arch/arm/boot/dts/mt2701.dtsi
-@@ -569,6 +569,18 @@
- 			 <&iommu MT2701_M4U_PORT_JPGDEC_BSDMA>;
- 	};
- 
-+	jpegenc: jpegenc@1500a000 {
-+		compatible = "mediatek,mt2701-jpgenc", "mediatek,mtk-jpgenc";
-+		reg = <0 0x1500a000 0 0x1000>;
-+		interrupts = <GIC_SPI 141 IRQ_TYPE_LEVEL_LOW>;
-+		clocks =  <&imgsys CLK_IMG_VENC>;
-+		clock-names = "jpgenc";
-+		power-domains = <&scpsys MT2701_POWER_DOMAIN_ISP>;
-+		mediatek,larb = <&larb2>;
-+		iommus = <&iommu MT2701_M4U_PORT_JPGENC_RDMA>,
-+			<&iommu MT2701_M4U_PORT_JPGENC_BSDMA>;
-+	};
-+
- 	vdecsys: syscon@16000000 {
- 		compatible = "mediatek,mt2701-vdecsys", "syscon";
- 		reg = <0 0x16000000 0 0x1000>;
+Clean up the sparse warning by the way.
+
+Change since v1:
+* Add a cover letter.
+
+Jiangfeng Xiao (10):
+  net: hisilicon: Add support for HI13X1 to hip04_eth
+  net: hisilicon: Cleanup for got restricted __be32
+  net: hisilicon: Cleanup for cast to restricted __be32
+  net: hisilicon: HI13X1_GMAX skip write LOCAL_PAGE_REG
+  net: hisilicon: HI13X1_GMAX need dreq reset at first
+  net: hisilicon: dt-bindings: Add an field of port-handle
+  net: hisilicon: Add group field to adapt HI13X1_GMAC
+  net: hisilicon: Offset buf address to adapt HI13X1_GMAC
+  net: hisilicon: Add an rx_desc to adapt HI13X1_GMAC
+  net: hisilicon: Add an tx_desc to adapt HI13X1_GMAC
+
+ .../bindings/net/hisilicon-hip04-net.txt           |   7 +-
+ drivers/net/ethernet/hisilicon/Kconfig             |  10 ++
+ drivers/net/ethernet/hisilicon/hip04_eth.c         | 142 ++++++++++++++++++---
+ 3 files changed, 136 insertions(+), 23 deletions(-)
+
 -- 
-2.18.0
+1.8.5.6
 
