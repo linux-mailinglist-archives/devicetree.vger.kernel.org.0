@@ -2,95 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF2B1637D2
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 16:22:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 987E2637E0
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 16:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726377AbfGIOWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 10:22:38 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:38275 "EHLO
+        id S1726165AbfGIOZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 10:25:58 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:46588 "EHLO
         mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726341AbfGIOWi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 10:22:38 -0400
-Received: by mail-io1-f67.google.com with SMTP id j6so43531962ioa.5;
-        Tue, 09 Jul 2019 07:22:38 -0700 (PDT)
+        with ESMTP id S1726055AbfGIOZ6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 10:25:58 -0400
+Received: by mail-io1-f67.google.com with SMTP id i10so43476179iol.13;
+        Tue, 09 Jul 2019 07:25:57 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Nyw3ayYjb6xxz+TXQiu0yImt7hvULSuFd6no466kGDg=;
-        b=cojslcn7Qn5H3peNZIMzlMW+/9bM+6ieTKp3Vq1S2EvfQ5iB+NhqVOu7Y2iXcpitr9
-         2lkHgEgTueBQxuP5qTd+B/sO5AgsBRQNB4x80oPq/kRVH5GoSkYJW03O1Ase85LuM3Bd
-         Uvtyr1uB5M9TaiWvZu6hLKsWkQAQX6ZplbOtyZehN+UWpIZY9SIM+M+1wXbQjyfkrW0j
-         n/BUyUo8XEGYrHoHBJu+x8eONlqRt/xybCQdArLJ/UCJZRVVKxeriR6N+69iLemcZau6
-         1BxLQK4K0rR7nNGlIJRlpLbDG+EJRYApuAtaUf4tkigk4DA+0CTqNimAyieEPyeHj4Kd
-         CLog==
-X-Gm-Message-State: APjAAAU3GiNswDJ8Ax5gZJDyYvOoNoOE8bE026R56YKtey5iSLcqR7+7
-        fL2S5DzoG+YOzNdQTNVuFw==
-X-Google-Smtp-Source: APXvYqwGEmLaEm/oSVALxwoDJQLE4Vi1IOoNxGbBog+3P1/ET15BHO6JQdjBS6+02vhPwx0mCo0XXw==
-X-Received: by 2002:a6b:dc08:: with SMTP id s8mr10053113ioc.209.1562682157639;
-        Tue, 09 Jul 2019 07:22:37 -0700 (PDT)
+        bh=TBLGLx1opEkdu4WEI7zl5nZCtTgFdfC2oKMXvQ0ZHkQ=;
+        b=CNElxBd90ZWHB8b3hZvVOOy2YxKDXOzKmR13ak0nel8azEGNhXnrwjF6rk+0N9Ed7C
+         m9ggQtHQAlzGY/avetYWYEsvT2tXdz+S5y8mqAQVeStCIdGhluCyqiFb7mvtv4Hz0opN
+         0yCdQ0x4g6pFFBesuQwHHTuGjz09gkE9G6GHQjjPEOMO8dlDLF2n+CHONCS5Jk6v81US
+         wf/+AuShL9jojhnWQ/J7IRpqn20rVp4ljVsHtxYtj0GqkWbLt8TRlxDmDGtlBABrZqOH
+         LdbLb55aibzSo9x8puSdpndmZNtre6eg4aZjptzQLpfi5dm+eONYhWnGVSZ8PJfq1bR5
+         XOBA==
+X-Gm-Message-State: APjAAAWk/VoXy367ts9/QNwVjosyZYjCN70lhYjeNWxSJbeakX/rsNz4
+        179/T6dXDHCdRRi/glC5lQ==
+X-Google-Smtp-Source: APXvYqxeVyS/sSddo+lwEMt88jLnJWt2h6n+OjL2EEpK6rkBHysE70PXtsyrqnGGBx2tfZQi+bpFZA==
+X-Received: by 2002:a5e:9747:: with SMTP id h7mr18425725ioq.299.1562682357065;
+        Tue, 09 Jul 2019 07:25:57 -0700 (PDT)
 Received: from localhost ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id n17sm19238636iog.63.2019.07.09.07.22.36
+        by smtp.gmail.com with ESMTPSA id t133sm24420765iof.21.2019.07.09.07.25.56
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 09 Jul 2019 07:22:36 -0700 (PDT)
-Date:   Tue, 9 Jul 2019 08:22:35 -0600
+        Tue, 09 Jul 2019 07:25:56 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 08:25:55 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mathias Nyman <mathias.nyman@intel.com>,
-        linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Jumin Li <jumin.li@mediatek.com>
-Subject: Re: [PATCH 3/5] dt-bindings: usb: mtk-xhci: add an optional xhci_ck
- clock
-Message-ID: <20190709142235.GA11951@bogus>
-References: <5e06482a0be15476c7b5825f155accf98275afa8.1560246390.git.chunfeng.yun@mediatek.com>
- <9b6ad8dee142d73b56d653ecb7475c4ed28e5eb8.1560246390.git.chunfeng.yun@mediatek.com>
+To:     Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     linux-media@vger.kernel.org,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Nicolas Dufresne <nicolas@ndufresne.ca>,
+        Jonas Karlman <jonas@kwiboo.se>, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v5 08/10] media: dt-bindings: Document i.MX8MQ and
+ i.MX8MM VPU bindings
+Message-ID: <20190709142555.GA14360@bogus>
+References: <20190612093915.18973-1-p.zabel@pengutronix.de>
+ <20190612093915.18973-9-p.zabel@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <9b6ad8dee142d73b56d653ecb7475c4ed28e5eb8.1560246390.git.chunfeng.yun@mediatek.com>
+In-Reply-To: <20190612093915.18973-9-p.zabel@pengutronix.de>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 12, 2019 at 01:55:19PM +0800, Chunfeng Yun wrote:
-> Add a new optional clock xhci_ck
+On Wed, Jun 12, 2019 at 11:39:13AM +0200, Philipp Zabel wrote:
+> Add devicetree binding documentation for the Hantro G1/G2 VPU on i.MX8MQ
+> and for the Hantro G1/G2/H1 VPU on i.MX8MM.
 > 
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> Signed-off-by: Philipp Zabel <p.zabel@pengutronix.de>
 > ---
->  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
+>  .../devicetree/bindings/media/imx8m-vpu.txt   | 56 +++++++++++++++++++
+>  1 file changed, 56 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/imx8m-vpu.txt
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-> index 266c2d917a28..91c0704b586b 100644
-> --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-> +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-> @@ -29,6 +29,7 @@ Required properties:
->  	"sys_ck": controller clock used by normal mode,
->  	the following ones are optional:
->  	"ref_ck": reference clock used by low power mode etc,
-> +	"xhci_ck": controller clock,
->  	"mcu_ck": mcu_bus clock for register access,
->  	"dma_ck": dma_bus clock for data transfer by DMA
+> diff --git a/Documentation/devicetree/bindings/media/imx8m-vpu.txt b/Documentation/devicetree/bindings/media/imx8m-vpu.txt
+> new file mode 100644
+> index 000000000000..659bd28dd002
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/imx8m-vpu.txt
+> @@ -0,0 +1,56 @@
+> +device-tree bindings for Hantro G1/G2/H1 VPU codecs implemented on i.MX8M SoCs
+> +
+> +Required properties:
+> +- compatible: value should be one of the following
+> +		"nxp,imx8mq-vpu",
+> +		"nxp,imx8mm-vpu";
+> +- regs: VPU core and control block register ranges
+> +- reg-names: should be
+> +		"g1", "g2", "ctrl" on i.MX8MQ,
+> +		"g1", "g2", "h1", "ctrl" on i.MX8MM.
 
-A new clock should go at the end to stay backwards compatible.
+Would be nicer to put h1 at the end, so the indexes don't change.
 
->  
-> @@ -100,7 +101,7 @@ Required properties:
->   - clocks : a list of phandle + clock-specifier pairs, one for each
->  	entry in clock-names
->   - clock-names : must contain "sys_ck", and the following ones are optional:
-> -	"ref_ck", "mcu_ck" and "dma_ck"
-> +	"ref_ck", "xhci_ck", "mcu_ck" and "dma_ck"
->  
->  Optional properties:
->   - vbus-supply : reference to the VBUS regulator;
+> +- interrupts: encoding and decoding interrupt specifiers
+> +- interrupt-names: should be
+> +		"g1", "g2" on i.MX8MQ,
+> +		"g1", "g2", "h1" on i.MX8MM.
+> +- clocks: phandle to VPU core clocks and bus clock
+> +- clock-names: should be
+> +		"g1", "g2", "bus" on i.MX8MQ,
+> +		"g1", "g2", "h1", "bus" on i.MX8MM.
+
+Here too.
+
+> +- power-domains: phandle to power domain node
+> +
+> +Examples:
+> +
+> +	vpu: vpu@38300000 {
+
+video-codec@...
+
+> +		compatible = "nxp,imx8mq-vpu";
+> +		reg = <0x38300000 0x10000>,
+> +		      <0x38310000 0x10000>,
+> +		      <0x38320000 0x10000>;
+> +		reg-names = "g1", "g2", "ctrl";
+> +		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "g1", "g2";
+> +		clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
+> +			 <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
+> +			 <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
+> +		clock-names = "g1", "g2", "bus";
+> +		power-domains = <&pgc_vpu>;
+> +	};
+> +
+> +	vpu: vpu@38300000 {
+
+Are 2 examples really necessary?
+
+> +		compatible = "nxp,imx8mm-vpu";
+> +		reg = <0x38300000 0x10000>,
+> +		      <0x38310000 0x10000>,
+> +		      <0x38320000 0x10000>;
+> +		      <0x38330000 0x10000>;
+> +		reg-names = "g1", "g2", "h1", "ctrl";
+> +		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>,
+> +			     <GIC_SPI 8 IRQ_TYPE_LEVEL_HIGH>;
+> +			     <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +		interrupt-names = "g1", "g2", "h1";
+> +		clocks = <&clk IMX8MQ_CLK_VPU_G1_ROOT>,
+> +			 <&clk IMX8MQ_CLK_VPU_G2_ROOT>,
+> +			 <&clk IMX8MQ_CLK_VPU_H1_ROOT>,
+> +			 <&clk IMX8MQ_CLK_VPU_DEC_ROOT>;
+> +		clock-names = "g1", "g2", "h1", "bus";
+> +		power-domains = <&pgc_vpu>;
+> +	};
 > -- 
-> 2.21.0
+> 2.20.1
 > 
