@@ -2,26 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4792632AF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 10:10:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E69AA632BF
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 10:14:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726660AbfGIIJu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 04:09:50 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:33672 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725886AbfGIIJs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jul 2019 04:09:48 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E1937200558;
-        Tue,  9 Jul 2019 10:09:46 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3EA73200562;
-        Tue,  9 Jul 2019 10:09:33 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 236FD4030B;
-        Tue,  9 Jul 2019 16:09:20 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        id S1726008AbfGIIOk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 04:14:40 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:43449 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725951AbfGIIOk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 04:14:40 -0400
+Received: by mail-pf1-f196.google.com with SMTP id i189so8902383pfg.10
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2019 01:14:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=WwQ5bucdLWQygYxygSJozlXHDjj0Eb5bfaQTAqD/RAY=;
+        b=uDcfYqYFArvBK5OKADRY9kCppXYU9MKVJkzXKP+XmdGwa+G+W5U6Apj/QIwIw1wbdq
+         mlm+vab7pxbwcYkSarZB4iWWIagZSfR06v/5FgDZyMJvtCnafnawfUYqRS2naVJBmwaB
+         LOeSJnW/zeQ3pjYzrACQTdcy9L9O9IwzFFme93iS59Wt2t50/F75s4YNvXQtSce43IXb
+         f7LMWR3mP9zzL6KQQshGUyxJkOMGkgXTacrC0A5ifnX3kyIeBP/9PWtl5vEpN6IUzBhR
+         mZkwGuCc8ayAIvv/MrH1i798OGSOpetrigTzCMeRMXV17X2KaprPL79lQpqfNY7a0Njw
+         yHww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=WwQ5bucdLWQygYxygSJozlXHDjj0Eb5bfaQTAqD/RAY=;
+        b=jzifx5WsuS5oaOO5yjIBdDRHU24Y9Aok7V/QOsFA5s/8JYxN8mrIatbN6Um1gal/LD
+         orH6yUda0tqwhiINkNLMn6Dx9t4rN8sBwPfuPjIzoZLVlGZSKiMzTNTN4sMueUBYFEp0
+         T/BKmtEdMA8QCen1+ba3bA7axFoA7y1qfTCR3yFcby3qCUlau3fcYVjae2zicVI8VdTD
+         t8IYlQPMI2szTDHXVK1voyJ2EFLjCWjv9XmmFBqbUUj35c1rbHaS0OUivRxPd9Xhss+S
+         xqeetPXQHvIqRlJrkZmLhteQhHQCczYwSRQs4rCnbYdG7yeVgWtQe7neuHKAukN21d2y
+         TUwA==
+X-Gm-Message-State: APjAAAWqt2mFQa0hK6CtTF3Zre9TjHTgAcWqdeGBt6nTMiAat4lcgrmI
+        ITENcxEyrDphzPymraqVo2Mofg==
+X-Google-Smtp-Source: APXvYqzICT10j5UplTlApExoj/w21dBQdKmi/8TtBgI8+M4EnpKOLgBeiolAXaDckLPieEY5y7K7mA==
+X-Received: by 2002:a63:1847:: with SMTP id 7mr29794492pgy.204.1562660079412;
+        Tue, 09 Jul 2019 01:14:39 -0700 (PDT)
+Received: from localhost ([122.172.28.117])
+        by smtp.gmail.com with ESMTPSA id u97sm1823179pjb.26.2019.07.09.01.14.38
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 09 Jul 2019 01:14:38 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 13:44:36 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Anson.Huang@nxp.com
+Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
         robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
         s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
         leonard.crestez@nxp.com, p.zabel@pengutronix.de, ping.bai@nxp.com,
@@ -29,61 +55,53 @@ To:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
         angus@akkea.ca, andrew.smirnov@gmail.com, ccaione@baylibre.com,
         agx@sigxcpu.org, linux-pm@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V2 4/4] arm64: dts: imx8mm: Add opp-suspend property to OPP table
-Date:   Tue,  9 Jul 2019 16:00:15 +0800
-Message-Id: <20190709080015.43442-4-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20190709080015.43442-1-Anson.Huang@nxp.com>
+        linux-arm-kernel@lists.infradead.org, Linux-imx@nxp.com
+Subject: Re: [PATCH V2 1/4] dt-bindings: opp: Support multiple opp-suspend
+ properties
+Message-ID: <20190709081436.fguhzv2quldql2k4@vireshk-i7>
 References: <20190709080015.43442-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190709080015.43442-1-Anson.Huang@nxp.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+On 09-07-19, 16:00, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
+> 
+> Update opp-suspend property's description to support multiple
+> opp-suspend properties defined in DT, the OPP with highest opp-hz
+> and with opp-suspend property present will be used as suspend opp.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
+> New patch.
+> ---
+>  Documentation/devicetree/bindings/opp/opp.txt | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+> index 76b6c79..6859227 100644
+> --- a/Documentation/devicetree/bindings/opp/opp.txt
+> +++ b/Documentation/devicetree/bindings/opp/opp.txt
+> @@ -140,8 +140,8 @@ Optional properties:
+>    frequency for a short duration of time limited by the device's power, current
+>    and thermal limits.
+>  
+> -- opp-suspend: Marks the OPP to be used during device suspend. Only one OPP in
+> -  the table should have this.
+> +- opp-suspend: Marks the OPP to be used during device suspend. If multiple OPPs
+> +  in the table have this, the OPP with highest opp-hz will be used.
+>  
+>  - opp-supported-hw: This enables us to select only a subset of OPPs from the
+>    larger OPP table, based on what version of the hardware we are running on. We
 
-Add opp-suspend property to each OPP, the of opp core will
-select the OPP HW supported and with highest rate to be
-suspend opp, it will speed up the suspend/resume process.
+LGTM. Once Rob Acks it, I will apply the first two patches to the OPP
+tree.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
-No changes.
----
- arch/arm64/boot/dts/freescale/imx8mm.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mm.dtsi b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-index 398318b..973f457 100644
---- a/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mm.dtsi
-@@ -108,6 +108,7 @@
- 			opp-microvolt = <850000>;
- 			opp-supported-hw = <0xe>, <0x7>;
- 			clock-latency-ns = <150000>;
-+			opp-suspend;
- 		};
- 
- 		opp-1600000000 {
-@@ -115,6 +116,7 @@
- 			opp-microvolt = <900000>;
- 			opp-supported-hw = <0xc>, <0x7>;
- 			clock-latency-ns = <150000>;
-+			opp-suspend;
- 		};
- 
- 		opp-1800000000 {
-@@ -122,6 +124,7 @@
- 			opp-microvolt = <1000000>;
- 			opp-supported-hw = <0x8>, <0x3>;
- 			clock-latency-ns = <150000>;
-+			opp-suspend;
- 		};
- 	};
- 
 -- 
-2.7.4
-
+viresh
