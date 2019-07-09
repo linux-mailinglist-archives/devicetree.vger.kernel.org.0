@@ -2,157 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5023062D22
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 02:49:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5401062D3C
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 03:00:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726967AbfGIAtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 20:49:31 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:45279 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725935AbfGIAtb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 20:49:31 -0400
-Received: by mail-oi1-f194.google.com with SMTP id m206so14065383oib.12;
-        Mon, 08 Jul 2019 17:49:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=mZfF3qmGUmaIXGQVLjO4ElcPFOkI/q/c+xioJlIBg2U=;
-        b=A+6tMfOydkWZAq3FLs4JYZTw3Q+rRUwRJpGF79VNLOKlzkmnFjXBBoVFCPB6WH032H
-         heRFES7RMAV1lT9/7vozKekg8HAZa7l54YEJ+ZJvC6W6P2DKHqFGmZ/zYZBf99ICvwaY
-         6WK+H/4RwupNppMbKV5C81EiPhx08soNSJCaWtntbLw7fXD9/hCk929ra2K1C7XAoME0
-         Z8aWaXfodpDgxVje7iFZrELXqv/9UCQpZt3t5HaDSVfbslLjbJ9j1yT2gI+cn0cjNAZE
-         lLyUEpU6GREM2LLCUFPqQAHbDl2HpMKDqnru4XN80ye/ljTCNYMwEb/7SmrGmEPZg9Qf
-         4pWg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=mZfF3qmGUmaIXGQVLjO4ElcPFOkI/q/c+xioJlIBg2U=;
-        b=JIuY/o6UFLYoJSwgkKS4TiNXqWjvcO2ssVjDAJVMAbYOpqwZukPTwZZGvLC4rhp4rO
-         s8u2xCTPxizyY3u9k34gGZ0ZUWfGjBPIAoDCHjcMOnZKBtInHByZIgm7IjOzah3Ii6YG
-         SheKvw0wDTEYpmXzVjrC9/Waxnk/+70vzGYaAXmR0X7k8GCumBPwOxUMRWWuhuBgRRcA
-         a9UD8B36dVsBBYC85TOVg572y3BQjS5/DsELWn/wIoLqJ80BAHo/XJwT0hccb3TsKyaX
-         3f/AzUnKEhQe6/ebjLWyWlgd6vp2E+TGmkSqFDiS/U/Nty3h6kvRfeMAOVw4WSnMk91Y
-         /xzA==
-X-Gm-Message-State: APjAAAW89gDjtExZH1LuGpxZELFsCW0tlMF2tgR6i/Fn+x25jmWvDI7N
-        3rY8sNSM+lIfiRwRbHunm3mfTnzPgkqdYWOfLtE=
-X-Google-Smtp-Source: APXvYqwn/NmbXG3TvpJ/5pRB/ldFPNOG9MC5TDpP7mMGAObq2oBz7QvF8Qh6xGlGhVhQcK1KBKGA38nN+dBvrIRtU7Y=
-X-Received: by 2002:aca:f552:: with SMTP id t79mr10221713oih.145.1562633370288;
- Mon, 08 Jul 2019 17:49:30 -0700 (PDT)
+        id S1725905AbfGIBAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 21:00:33 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:60226 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725886AbfGIBAd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 21:00:33 -0400
+Received: from pendragon.ideasonboard.com (softbank126163157105.bbtec.net [126.163.157.105])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A1EEA56A;
+        Tue,  9 Jul 2019 03:00:29 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1562634030;
+        bh=JcoNvT6UrNwEt+JAKB+7zeJTg9CMTlg7f+WQ+ug96XA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JJ0dnaeWZoBDMj0jnrK99OHQkR2NJ0rWC5xGY2fL7nW9Cl7NDb0ePwDHRPL56kUR6
+         u2Wiqg1TbBPafN9RBiuGxFkbZzixD1txIm1yJHrrm751ziIsNMSOUErN2BN76ci26w
+         1D+6jM1yyDMJ/NlGZCCH1Ht9P9E2UVwrXPh0a5aU=
+Date:   Tue, 9 Jul 2019 04:00:04 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
+        Tomi Valkeinen <tomi.valkeinen@ti.com>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>, Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Sebastian Reichel <sebastian.reichel@collabora.com>,
+        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>
+Subject: Re: [PATCH 17/60] dt-bindings: Add legacy 'toppoly' vendor prefix
+Message-ID: <20190709010004.GD4819@pendragon.ideasonboard.com>
+References: <20190707180852.5512-1-laurent.pinchart@ideasonboard.com>
+ <20190707181937.6250-1-laurent.pinchart@ideasonboard.com>
+ <20190707181937.6250-14-laurent.pinchart@ideasonboard.com>
+ <CAL_JsqLJy=UCeQ_Ex7tFh2OjtitNFVjT4v=PDZSbseva+ZrGDQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <CA+E=qVckHLqRngsfK=AcvstrD0ymEfRkYyhS_kBtZ3YWdE3L=g@mail.gmail.com>
- <20190605101317.GA9345@lst.de> <20190605120237.ekmytfxcwbjaqy3x@flea>
- <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at> <20190607062802.m5wslx3imiqooq5a@flea>
- <CGME20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752@epcas1p4.samsung.com>
- <20190607094030.GA12373@lst.de> <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
- <20190612152022.c3cfhp4cauhzhfyr@flea> <bb2c2c00-b46e-1984-088f-861ac8952331@samsung.com>
- <20190701095842.fvganvycce2cy7jn@flea>
-In-Reply-To: <20190701095842.fvganvycce2cy7jn@flea>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Mon, 8 Jul 2019 17:49:21 -0700
-Message-ID: <CA+E=qVdsYV2Bxk245=Myq=otd7-7WHzUnSJN8_1dciAzvSOG8g@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
- on Teres-I
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>, Torsten Duwe <duwe@lst.de>,
-        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqLJy=UCeQ_Ex7tFh2OjtitNFVjT4v=PDZSbseva+ZrGDQ@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 1, 2019 at 2:58 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> Hi!
->
-> On Fri, Jun 28, 2019 at 12:39:32PM +0200, Andrzej Hajda wrote:
-> > On 12.06.2019 17:20, Maxime Ripard wrote:
-> > >> I am not sure if I understand whole discussion here, but I also do not
-> > >> understand whole edp-connector thing.
-> > > The context is this one:
-> > > https://patchwork.freedesktop.org/patch/257352/?series=51182&rev=1
-> > > https://patchwork.freedesktop.org/patch/283012/?series=56163&rev=1
-> > > https://patchwork.freedesktop.org/patch/286468/?series=56776&rev=2
-> > >
-> > > TL;DR: This bridge is being used on ARM laptops that can come with
-> > > different eDP panels. Some of these panels require a regulator to be
-> > > enabled for the panel to work, and this is obviously something that
-> > > should be in the DT.
-> > >
-> > > However, we can't really describe the panel itself, since the vendor
-> > > uses several of them and just relies on the eDP bus to do its job at
-> > > retrieving the EDIDs. A generic panel isn't really working either
-> > > since that would mean having a generic behaviour for all the panels
-> > > connected to that bus, which isn't there either.
-> > >
-> > > The connector allows to expose this nicely.
+Hi Rob,
+
+On Mon, Jul 08, 2019 at 01:00:35PM -0600, Rob Herring wrote:
+> On Sun, Jul 7, 2019 at 12:25 PM Laurent Pinchart wrote:
 > >
-> > As VESA presentation says[1] eDP is based on DP but is much more
-> > flexible, it is up to integrator (!!!) how the connection, power
-> > up/down, initialization sequence should be performed. Trying to cover
-> > every such case in edp-connector seems to me similar to panel-simple
-> > attempt failure. Moreover there is no such thing as physical standard
-> > eDP connector. Till now I though DT connector should describe physical
-> > connector on the device, now I am lost, are there some DT bindings
-> > guidelines about definition of a connector?
->
-> This might be semantics but I guess we're in some kind of grey area?
->
-> Like, for eDP, if it's soldered I guess we could say that there's no
-> connector. But what happens if for some other board, that signal is
-> routed through a ribbon?
->
-> You could argue that there's no physical connector in both cases, or
-> that there's one in both, or one for the ribbon and no connector for
-> the one soldered in.
->
-> > Maybe instead of edp-connector one would introduce integrator's specific
-> > connector, for example with compatible "olimex,teres-edp-connector"
-> > which should follow edp abstract connector rules? This will be at least
-> > consistent with below presentation[1] - eDP requirements depends on
-> > integrator. Then if olimex has standard way of dealing with panels
-> > present in olimex/teres platforms the driver would then create
-> > drm_panel/drm_connector/drm_bridge(?) according to these rules, I guess.
-> > Anyway it still looks fishy for me :), maybe because I am not
-> > familiarized with details of these platforms.
->
-> That makes sense yes
+> > The 'toppoly' vendor prefix is in use and refers to TPO, whose DT vendor
+> > prefix is already defined as 'tpo'. Add 'toppoly' as an alternative and
+> > document it as legacy.
+> >
+> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+> > ---
+> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > index 2514463f2c63..d78527eb8254 100644
+> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+> > @@ -867,6 +867,8 @@ patternProperties:
+> >      description: Tecon Microprocessor Technologies, LLC.
+> >    "^topeet,.*":
+> >      description: Topeet
+> > +  "^toppoly,.*":
+> > +    description: TPO (legacy prefix, see 'tpo')
+> 
+> Add 'deprecated: true' also. That's a new property in json-schema
+> draft8. It's not used for anything yet other than documentation.
 
-Actually, it makes no sense at all. Current implementation for anx6345
-driver works fine as is with any panel specified assuming panel delays
-are long enough for connected panel. It just doesn't use panel timings
-from the driver. Creating a platform driver for connector itself looks
-redundant since it can't be reused, it doesn't describe actual
-hardware and it's just defeats purpose of DT by introducing
-board-specific code.
+Thank you for the pointer.
 
-There's another issue: if we introduce edp-connector we'll have to
-specify power up delays somewhere (in dts? or in platform driver?), so
-edp-connector doesn't really solve the issue of multiple panels with
-same motherboard.
+By the way this series conflicts with your patches that move all panel
+bindings to yaml. I'll rebase it on top if yours gets merged first.
 
-I'd say DT overlays should be preferred solution here, not another
-connector binding.
+-- 
+Regards,
 
-> Maxime
->
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+Laurent Pinchart
