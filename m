@@ -2,92 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DE04D62FDD
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 07:19:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B73762FE7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 07:25:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726010AbfGIFL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 01:11:28 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:38509 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725856AbfGIFL2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 01:11:28 -0400
-Received: by mail-pl1-f195.google.com with SMTP id az7so1979271plb.5;
-        Mon, 08 Jul 2019 22:11:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=FV7uyWwtvMV2i7smjumOV97N5dk29bMDQstes/Ncgy8=;
-        b=M1hijk/ui8sZaqBVT1hjia0XKdY92edcBLMt/AqWFpmfQsqBEOgMfsSK+W3BuwgcEa
-         6mPZdg1UiPSs4tEYeCdU5Pub/SRt3Nw2Hz/Ic6HkOMGBnPp16VT9umklQiEna77qBY5m
-         LUJEPOLbbLNyGuJxAS4JhDfMHv5mOT4skAYdSccR7cUSMg78MkpTyqRGD1CxaLwyr8ca
-         SkxbfEYz9/aOPrbSgbg0z4lUht3GB/SbqGFMhRRqDYoPc0Z4kYheE7RNBMbQSsQTfekk
-         Gm6n5efJcvho99X9ZiD1CTAZo2Pe2Q0ChO/Tn1MMesKSGqdzKKL7SBvFs5F+dcIoJSH1
-         Epbg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=FV7uyWwtvMV2i7smjumOV97N5dk29bMDQstes/Ncgy8=;
-        b=B5Xt18elO4yPGn64ihkKfem8AmW01dmXzgdggj4yma4pea3eBXoxqJz8UwnV8UMP6i
-         b2hkWEUT0MT10sr+99ylyFDVIwFGb82v3KInFK/F+DXQ9yh4auJJ+l0btZD3d2Z9D39i
-         6KHTDB6AMjKSeaohNxLJ+meHmixvEhrcOvnBXWuQKCrRC/648i9OhXA1e+nTWNA6Yitv
-         cmc5LssDZuk41tdzyg3E/HVU+VogPD3e6K4SuFBampMiaqDcdMLg2brN9ENJJXAyPXys
-         uT/0J1DhJnCRprVeG/AxAGdnf7ndTKNBB96tksgeb18ewByanblGprShESHFhj31JAS+
-         7dRw==
-X-Gm-Message-State: APjAAAVL6IXdzt+KIEbO7HFZzf+VvzC8b+zIotTR4ro4E+ZK2L3RWXuX
-        Jg/Ueb5oLj9/+DS68jxqaw0=
-X-Google-Smtp-Source: APXvYqyn99tXbTiSR+YpshSEG0gQfV6PEnPvcaCgcu+OMifv2wZR2jjLqnWEVM8gIJHRncKFDeSrdw==
-X-Received: by 2002:a17:902:9004:: with SMTP id a4mr29689029plp.109.1562649087747;
-        Mon, 08 Jul 2019 22:11:27 -0700 (PDT)
-Received: from localhost (c-73-222-71-142.hsd1.ca.comcast.net. [73.222.71.142])
-        by smtp.gmail.com with ESMTPSA id i6sm16416325pgi.40.2019.07.08.22.11.25
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 08 Jul 2019 22:11:26 -0700 (PDT)
-Date:   Mon, 8 Jul 2019 22:11:24 -0700
-From:   Richard Cochran <richardcochran@gmail.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Jacob Keller <jacob.e.keller@intel.com>,
+        id S1726057AbfGIFZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 01:25:41 -0400
+Received: from relay1.mentorg.com ([192.94.38.131]:43871 "EHLO
+        relay1.mentorg.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726010AbfGIFZl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 01:25:41 -0400
+Received: from nat-ies.mentorg.com ([192.94.31.2] helo=svr-ies-mbx-01.mgc.mentorg.com)
+        by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+        id 1hkidE-0007iy-MU from Harish_Kandiga@mentor.com ; Mon, 08 Jul 2019 22:25:36 -0700
+Received: from [10.0.3.15] (137.202.0.90) by svr-ies-mbx-01.mgc.mentorg.com
+ (139.181.222.1) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Tue, 9 Jul
+ 2019 06:25:31 +0100
+Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
+To:     Rob Herring <robh+dt@kernel.org>
+CC:     Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Miroslav Lichvar <mlichvar@redhat.com>,
-        Willem de Bruijn <willemb@google.com>
-Subject: Re: [PATCH V5 net-next 4/6] dt-bindings: ptp: Introduce MII time
- stamping devices.
-Message-ID: <20190709051124.vf2au5htyhghk4yx@localhost>
-References: <cover.1559281985.git.richardcochran@gmail.com>
- <d786656435c64160d50014beb3d3d9d1aaf6f22d.1559281985.git.richardcochran@gmail.com>
- <20190708213837.GA28934@bogus>
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Balasubramani Vivekanandan 
+        <balasubramani_vivekanandan@mentor.com>
+References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
+ <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
+From:   Harish Jenny K N <harish_kandiga@mentor.com>
+Message-ID: <06c95f15-d577-e43d-e046-ee222f86c406@mentor.com>
+Date:   Tue, 9 Jul 2019 10:55:22 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190708213837.GA28934@bogus>
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [137.202.0.90]
+X-ClientProxiedBy: SVR-IES-MBX-08.mgc.mentorg.com (139.181.222.8) To
+ svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 08, 2019 at 03:38:37PM -0600, Rob Herring wrote:
-> > +Required properties of the control node:
-> > +
-> > +- compatible:		"ines,ptp-ctrl"
-> 
-> This is an IP block that gets integrated into SoCs?
+Hi Rob,
 
-It is an IP block implemented in an FPGA (like the zync or the socfpga).
 
-> It's not very 
-> specific given that there could be different versions of the IP block 
-> and SoC vendors can integrate various versions of the IP block in their 
-> own unique (i.e. buggy) way.
+On 09/07/19 4:06 AM, Rob Herring wrote:
+> On Fri, Jun 28, 2019 at 3:31 AM Harish Jenny K N
+> <harish_kandiga@mentor.com> wrote:
+>> Document the device tree binding for the inverter gpio
+>> controller to configure the polarity of the gpio pins
+>> used by the consumers.
+>>
+>> Signed-off-by: Harish Jenny K N <harish_kandiga@mentor.com>
+>> ---
+>>  .../devicetree/bindings/gpio/gpio-inverter.txt     | 29 ++++++++++++++++++++++
+>>  1 file changed, 29 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-inverter.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/gpio/gpio-inverter.txt b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
+>> new file mode 100644
+>> index 0000000..8bb6b2e
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
+>> @@ -0,0 +1,29 @@
+>> +GPIO-INVERTER
+>> +======
+>> +This binding defines the gpio-inverter. The gpio-inverter is a driver that
+>> +allows to properly describe the gpio polarities on the hardware.
+> I don't understand. Please explain this in terms of the hardware, not a driver.
 
-There is a version register where both the interface and FPGA are
-versioned.  The driver doesn't presently do anything with that field,
-but if newer interfaces appear, then the driver can deal with that
-without any DT help.
 
-Thanks,
-Richard
+gpio inverters can be used on different hardware to alter the polarity of gpio chips.
+The polarity of pins can change from hardware to hardware with the use of inverters.
+This device tree binding models gpio inverters in the device tree to properly describe the hardware.
+
+Please let me know if this is enough and needs to be updated in the documentation patch.
+
+
+I am sorry I did not include device tree list in the original discussion ( i.e first version of the patch
+https://www.spinics.net/lists/linux-gpio/msg39681.html).
+
+
+Thanks.
+
+
+Best Regards,
+
+Harish Jenny K N
+
+
