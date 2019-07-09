@@ -2,101 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B84163911
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 18:08:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1CB263923
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 18:16:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726491AbfGIQIh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 12:08:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46130 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726428AbfGIQIh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jul 2019 12:08:37 -0400
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3F28921707;
-        Tue,  9 Jul 2019 16:08:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562688516;
-        bh=7G04If6utmtPjNzVDfxUufKY34dDgpvovPzQqyazXb8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=cTrgdmMJcvTCuNw1nfm04tZ5/5CpDMD5AhFJoEF2tsh6UPKJ5ToYiTbvx2IU2Gil/
-         UQ9NlU+6Mlh94lnUVLQGrfUqhDPBzkjCfhd3aHNzxo3CnoGw3dQrh1yKSfUy9DgGAE
-         Ad9Ez7HNcYjBLlVPZUz7wS56OK/nfjfcCHs6px4I=
-Received: by mail-qk1-f177.google.com with SMTP id d15so16430068qkl.4;
-        Tue, 09 Jul 2019 09:08:36 -0700 (PDT)
-X-Gm-Message-State: APjAAAU40XUJy8jk/OtECED4ZGyZ36ON/uUj1/nx+i10nmqqqly+wLpi
-        QDtFfFu93MNRpmMPfMcNOLQDr7b1Kek+iZ7DAw==
-X-Google-Smtp-Source: APXvYqyArqBcWiLb04f/lmcNo1mBs4Ui/VJwoNEOVLGeCirWfaiYQyFlnPu1fW9GNCsgvVbCvwbAlnXBHnQu5FtG0M0=
-X-Received: by 2002:a37:6944:: with SMTP id e65mr17596167qkc.119.1562688515464;
- Tue, 09 Jul 2019 09:08:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
- <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com> <06c95f15-d577-e43d-e046-ee222f86c406@mentor.com>
-In-Reply-To: <06c95f15-d577-e43d-e046-ee222f86c406@mentor.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 9 Jul 2019 10:08:24 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLQvjtnfUsZ2RP4eozvdwMLzNxtgmT+XFaxW4xzoFjL=w@mail.gmail.com>
-Message-ID: <CAL_JsqLQvjtnfUsZ2RP4eozvdwMLzNxtgmT+XFaxW4xzoFjL=w@mail.gmail.com>
-Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-To:     Harish Jenny K N <harish_kandiga@mentor.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1726282AbfGIQQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 12:16:29 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:36308 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725816AbfGIQQ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 12:16:29 -0400
+Received: by mail-io1-f67.google.com with SMTP id o9so28805173iom.3;
+        Tue, 09 Jul 2019 09:16:29 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=cmH0c7rU2QLLyWG/6xPHKfwtrFCXaKp58TMMmxWczzs=;
+        b=kS/DDqnkmmxjoLgy0uvqD6o7PBPT3zHGL6inZdhVqjD5P6pjs13B0/pFAeA0OMqQ/p
+         HHhsCGkLFwtB3VFUZsxKPSTV78sDmzL3NDGz7iiLjhjX8+Xk9P6k4MmbqEcER0yAGhAV
+         W4T7ieZotHL1zUz8Hmlji4io3plVHOh2YOGOmF060iFGWQ5S989s49Ikb4G3C2Cyeu0z
+         DVFkcLRs2o7ZpYzC09KsTaJdDtX6QsoA863J0IjYdKyLIl3hOXqy7ZucYx7JdUhSFZmz
+         3soW6tPL37HdZZXQIhlRvH8vkZoFLgvQZuGs05hKt/B6RVZAzVylTbTUVB7BUTvRIQ4q
+         3DFg==
+X-Gm-Message-State: APjAAAWTqG8tSOdfv+x60kc3pruI/YoDpBpHZLn51Lw4ZeAHUnhsUk5Z
+        chJRSBTVmZBOsWuGxKas4iiz3J1V9g==
+X-Google-Smtp-Source: APXvYqzdvfXwgR2WspdKABPMp95eGUqFQLHUA9L2KvpwEo20v19atw5mJsEZC4pFZvMvyV7fMi+5Rg==
+X-Received: by 2002:a5d:9711:: with SMTP id h17mr20726190iol.280.1562688988577;
+        Tue, 09 Jul 2019 09:16:28 -0700 (PDT)
+Received: from localhost ([64.188.179.251])
+        by smtp.gmail.com with ESMTPSA id 8sm13425764ion.26.2019.07.09.09.16.27
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 09 Jul 2019 09:16:27 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 10:16:26 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jagan Teki <jagan@amarulasolutions.com>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
+        dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
         devicetree@vger.kernel.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>
-Content-Type: text/plain; charset="UTF-8"
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        linux-sunxi@googlegroups.com,
+        Michael Trimarchi <michael@amarulasolutions.com>,
+        linux-amarula@amarulasolutions.com,
+        Jagan Teki <jagan@amarulasolutions.com>
+Subject: Re: [PATCH v2 7/9] dt-bindings: sun6i-dsi: Add R40 DPHY compatible
+ (w/  A31 fallback)
+Message-ID: <20190709161626.GA28908@bogus>
+References: <20190614164324.9427-1-jagan@amarulasolutions.com>
+ <20190614164324.9427-8-jagan@amarulasolutions.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190614164324.9427-8-jagan@amarulasolutions.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 8, 2019 at 11:25 PM Harish Jenny K N
-<harish_kandiga@mentor.com> wrote:
->
-> Hi Rob,
->
->
-> On 09/07/19 4:06 AM, Rob Herring wrote:
-> > On Fri, Jun 28, 2019 at 3:31 AM Harish Jenny K N
-> > <harish_kandiga@mentor.com> wrote:
-> >> Document the device tree binding for the inverter gpio
-> >> controller to configure the polarity of the gpio pins
-> >> used by the consumers.
-> >>
-> >> Signed-off-by: Harish Jenny K N <harish_kandiga@mentor.com>
-> >> ---
-> >>  .../devicetree/bindings/gpio/gpio-inverter.txt     | 29 ++++++++++++++++++++++
-> >>  1 file changed, 29 insertions(+)
-> >>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-inverter.txt
-> >>
-> >> diff --git a/Documentation/devicetree/bindings/gpio/gpio-inverter.txt b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
-> >> new file mode 100644
-> >> index 0000000..8bb6b2e
-> >> --- /dev/null
-> >> +++ b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
-> >> @@ -0,0 +1,29 @@
-> >> +GPIO-INVERTER
-> >> +======
-> >> +This binding defines the gpio-inverter. The gpio-inverter is a driver that
-> >> +allows to properly describe the gpio polarities on the hardware.
-> > I don't understand. Please explain this in terms of the hardware, not a driver.
->
->
-> gpio inverters can be used on different hardware to alter the polarity of gpio chips.
-> The polarity of pins can change from hardware to hardware with the use of inverters.
+On Fri, 14 Jun 2019 22:13:22 +0530, Jagan Teki wrote:
+> The MIPI DSI PHY controller on Allwinner R40 is similar
+> on the one on A31.
+> 
+> Add R40 compatible and append A31 compatible as fallback.
+> 
+> Signed-off-by: Jagan Teki <jagan@amarulasolutions.com>
+> ---
+>  Documentation/devicetree/bindings/display/sunxi/sun6i-dsi.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
 
-Yes, I know what an inverter is.
-
-> This device tree binding models gpio inverters in the device tree to properly describe the hardware.
-
-We already define the active state of GPIOs in the consumers. If
-there's an inverter in the middle, the consumer active state is simply
-inverted. I don't agree that that is a hack as Linus said without some
-reasoning why an inverter needs to be modeled in DT. Anything about
-what 'userspace' needs is not a reason. That's a Linux thing that has
-little to do with hardware description.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
