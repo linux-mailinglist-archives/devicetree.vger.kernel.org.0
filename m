@@ -2,68 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CD91D63E04
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 00:50:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED1F463E11
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 00:57:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726428AbfGIWu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 18:50:56 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:33413 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726133AbfGIWuz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 18:50:55 -0400
-Received: by mail-io1-f65.google.com with SMTP id z3so601124iog.0;
-        Tue, 09 Jul 2019 15:50:55 -0700 (PDT)
+        id S1726318AbfGIW4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 18:56:50 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:39624 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726284AbfGIW4u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 18:56:50 -0400
+Received: by mail-io1-f66.google.com with SMTP id f4so555523ioh.6;
+        Tue, 09 Jul 2019 15:56:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=UqPnkpAEUlKpVyrsNSV+fc7Kx0vSPNNrsHHUgfNEjus=;
-        b=Xc86xulVRMYuYUj6z/+FFg8nUXg5Ia769QdUKABqF7EfYLv9NJZNZnFn8WlFL+fWyS
-         D98bEEbdXTIP675Ef0Y2hhsJiEFv5rQyLy9fTN3uJx1vWFqXsPfrmGHE383e8IOtYOPs
-         H/zy63h2cSnVn710Tl+xJudYIaP+MoKyC4KuKE3+l3ZZN6m8yfgu5zl9VfgWf1kH8xXS
-         CGzVGQw0Yj/FNr3tu0x1K4utNsB3QdksPoNLa36J1y7i5H9a0Bc4iECg283YYUJpob26
-         bMduGoSiJhYsg4iDLKhqmf3nl5kvQipmZprEsqVKcUQNbHlx9p2nc+npq8rzYkBUZq3r
-         2C5A==
-X-Gm-Message-State: APjAAAXX0XTlRLjXYduKjxVTFLjdTJGSm1sn3NDeyJfcssyWznA/ubzV
-        X21tLRBXjmYUfKcMDcnvgg==
-X-Google-Smtp-Source: APXvYqx6GaFGNFu/Gs8Ct3zM+Thf5p3GPzAn0CoeeaRGIEaKsvMqPDSWW2PRaa//YWXroiwsO+DBDQ==
-X-Received: by 2002:a5d:8411:: with SMTP id i17mr21198926ion.83.1562712654937;
-        Tue, 09 Jul 2019 15:50:54 -0700 (PDT)
+        bh=9BNTOCR0FAJ2g4YYe8k6aNoK5Zx/TmcNqpSKDP9NSpM=;
+        b=JKwjnzc7ZXJ3L4TohNvh5xoziMmkK0wdWuVjogXu3CBpa+SzWczaTK9/xR5NmOMmac
+         o/ZKkrTPCYtaRXLgubN5960VryWjjTATKDYGvDAErySHPa2B5P1FMmsJWQ9UNbgPMNR+
+         ZLEkyNiy14ZtItVyKr2N/qPrqEZ6yDtfXspPmddIjkmPllQGTtEF+EohqWuM8Ku3bQyf
+         ApMLW6GWZlWaotLCgAFdhua3mGtYzpLfmw6Y+ZkhLC+O2TfXxY83K+J0qxCyys1qKWsZ
+         AWeli9chSAhWlVOwqhmCvF3fIBQ5YnPHb3nYPmXabqi9hZ3XA615hJWv3EnUu3ngKKQX
+         qGQQ==
+X-Gm-Message-State: APjAAAUXmxY2Nyqc1MZAF38YK5urWxVxVE1STr6t1j5j910/dG7i0bJr
+        UMrXH5fYQ4+9kaXKs7sQNA==
+X-Google-Smtp-Source: APXvYqz+xwp1piJzrTHGP/QMIunspYfZSL/+DEFIMhBsaktuEIuhUeLCHzrMlf2OFmjZyQikva4G0g==
+X-Received: by 2002:a02:8663:: with SMTP id e90mr23520924jai.98.1562713009260;
+        Tue, 09 Jul 2019 15:56:49 -0700 (PDT)
 Received: from localhost ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id l14sm291821iob.1.2019.07.09.15.50.54
+        by smtp.gmail.com with ESMTPSA id n2sm304558ioa.27.2019.07.09.15.56.48
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 09 Jul 2019 15:50:54 -0700 (PDT)
-Date:   Tue, 9 Jul 2019 16:50:53 -0600
+        Tue, 09 Jul 2019 15:56:48 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 16:56:47 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Kefeng Wang <wangkefeng.wang@huawei.com>
-Cc:     Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org,
-        Kefeng Wang <wangkefeng.wang@huawei.com>,
-        Kumar Gala <galak@kernel.crashing.org>
-Subject: Re: [PATCH] dt-bindings: 83xx-512x-pci: Drop cell-index property
-Message-ID: <20190709225053.GA12654@bogus>
-References: <20190622034557.196097-1-wangkefeng.wang@huawei.com>
+To:     Icenowy Zheng <icenowy@aosc.io>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v3 4/9] clk: sunxi-ng: v3s: add Allwinner V3 support
+Message-ID: <20190709225647.GA12966@bogus>
+References: <20190623043801.14040-1-icenowy@aosc.io>
+ <20190623043801.14040-5-icenowy@aosc.io>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190622034557.196097-1-wangkefeng.wang@huawei.com>
+In-Reply-To: <20190623043801.14040-5-icenowy@aosc.io>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 22 Jun 2019 11:45:57 +0800, Kefeng Wang wrote:
-> 28eac2b74cc7 ("powerpc/fsl: Remove cell-index from PCI nodes"),
-> and for now it is still not used, drop it from doc.
+On Sun, Jun 23, 2019 at 12:37:56PM +0800, Icenowy Zheng wrote:
+> Allwinner V3 has the same main die with V3s, but with more pins wired.
+> There's a I2S bus on V3 that is not available on V3s.
 > 
-> Cc: Kumar Gala <galak@kernel.crashing.org>
-> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
+> Add the V3-only peripheral's clocks and reset to the V3s CCU driver,
+> bound to a new V3 compatible string. The driver name is not changed
+> because it's part of the device tree binding (the header file name).
+> 
+> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
 > ---
->  Documentation/devicetree/bindings/pci/83xx-512x-pci.txt | 1 -
->  1 file changed, 1 deletion(-)
+> No changes in v3/v2.
 > 
+>  drivers/clk/sunxi-ng/ccu-sun8i-v3s.c      | 225 +++++++++++++++++++++-
+>  drivers/clk/sunxi-ng/ccu-sun8i-v3s.h      |   2 +-
 
-Applied, thanks.
+>  include/dt-bindings/clock/sun8i-v3s-ccu.h |   4 +
+>  include/dt-bindings/reset/sun8i-v3s-ccu.h |   3 +
 
-Rob
+Acked-by: Rob Herring <robh@kernel.org>
+
+>  4 files changed, 231 insertions(+), 3 deletions(-)
