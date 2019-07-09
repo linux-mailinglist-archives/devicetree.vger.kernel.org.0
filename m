@@ -2,79 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F2B0D63AFF
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 20:32:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E62AE63B3B
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 20:40:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728666AbfGIScS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 14:32:18 -0400
-Received: from mout.kundenserver.de ([212.227.126.131]:53537 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726592AbfGIScS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 14:32:18 -0400
-Received: from localhost ([62.96.34.174]) by mrelayeu.kundenserver.de
- (mreue012 [212.227.15.167]) with ESMTPSA (Nemesis) id
- 1MfbwW-1iQYBn3fGi-00fx9T; Tue, 09 Jul 2019 20:32:11 +0200
-Date:   Tue, 9 Jul 2019 20:32:11 +0200
-From:   Andreas Klinger <ak@it-klinger.de>
-To:     linux-omap@vger.kernel.org
-Cc:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: am335x-wega.dtsi: fix wrong card detect pin level
-Message-ID: <20190709183209.y64keopah5rkismc@arbad>
+        id S1726792AbfGISkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 14:40:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57942 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726133AbfGISkX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jul 2019 14:40:23 -0400
+Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4812A208C4;
+        Tue,  9 Jul 2019 18:40:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562697623;
+        bh=koCanOkVczvS52T73JPshYve2oe1v8MC5CVzIbc6FFw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=Rg4Kf+gWwQB7wGTO2ZJxE7BgB+ir2DZV1nIP7CbvwvdjxUxvCug7xMpH3KfH0n2o+
+         ufWwlDpcVBFPYzl49Vpcll+lEFdbBJAUXE62gdJHMT2TSAT8hbrryMOYIKzQDC04no
+         rsaJH+G7kjHSg0EM5NflHr78qmgCv9XXNXon6Irw=
+Received: by mail-qt1-f178.google.com with SMTP id j19so22627980qtr.12;
+        Tue, 09 Jul 2019 11:40:23 -0700 (PDT)
+X-Gm-Message-State: APjAAAWajnfUl5VpdaKr4IRi8x0vHvfyc69vFe4ViDfbg+FeHBVJQ6jD
+        LhAxuh59UGIfRGZrnIqSBgScNkuHvZA8ZUbI1g==
+X-Google-Smtp-Source: APXvYqzVdHUQy7kNe51NTmoxLixeCI0ZKWKOgMr6PxrBeJUBchUQj/myky27Tg2C8vC5QI9tQkIWqsTc+fws8sN66A8=
+X-Received: by 2002:ac8:3908:: with SMTP id s8mr19918584qtb.224.1562697622534;
+ Tue, 09 Jul 2019 11:40:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-Provags-ID: V03:K1:mLpKUvjdvDUhw3C0lESUlBgRztaW463jyV9JDLd5qtkB543lknY
- rIBnmPz36XRigau/3NKaC3TAsaxMDXC4NaCyqjPC8RcEXKdxhvin7U01RAqOctwMD9YZ7qa
- BSTsrY6woa0Eds6yU4hxhleCtR/u9XWRT+qJO4aa7/ugO4oBIVAe2qk+Eu0E2glhAM//uXE
- GnpmYk7Jji1o0VIr/WT5g==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:SKpnKGbIXBI=:rcghbSGCxoLumohil+yF4H
- 8lyqKSiqeOgBB8F2doLaLc/kBrfRbzdHHjTQsPpEewP+DzGYTFkKqcE8EiDpTVBZ4yiBOocXk
- wjnbiJbN1l6jEqX2vvdlhUbkQ6KCSZIaZGK0WyBcvpP7/B5O98E6ZrsT8CmtHeZnuuteGdDaW
- oT5ptLr5Aq7z6CAqHMF5HUwRzOvAy7pWyv9oGTInD2yOJWk4kJxv1cHZ+UGGPqDNiIrPjQlLH
- 9tLta9HsQ9cg1gVa2k9P1+0BXh9eILXsOuMGJ5Y35R4XfAV3PNaeGI3nqyoMkJOwHBAhqkwHM
- 4nxBnYv+QS/GA1M2ow1nPG11SYyRcUxyJl9GwHb/i57qaTo8+zbUJ07cTv8Tv3dXciedTyGEU
- 5o5ibZzwKVPnQZuhZw7lXkUPFUGqVNhDSlBPTaNyrXpGULxxU2RY0rb5xcrElXUA4p0xSQAKJ
- qAwDVg61fQOXvrRlKNZp8v4ZTuXKmNd1buEVt3zLoGDnn6+4AX1eJsjm+f2LsOEVZClP8VbhI
- YIK9H4FBe4XgoMjPy1PAL/bwyS8DrvwmTf6wpJUz9RuPu/z+DfbWTM2VP5cbYAGKReEetqfS0
- 8++qHzVBO3Nfh1XXJyR344Asf4dD4P07lIQOkTnv5rCFLYdyzEp8vz14BlF98vyUWGImOMetU
- GCulqD45dpCA7/5i9NO5WexlyX6O6R9C1Kes+LibxHO3mDvGYhZDWcEAppkns7oMyhk6Y9OW0
- dm421jvAkvj59UgWcSyx2mCPnNxHkZeS8YhnaQ==
+References: <20190707132339.GF13340@arks.localdomain> <27a3468f-e7b4-e334-5956-8db87d04ff8c@suse.de>
+In-Reply-To: <27a3468f-e7b4-e334-5956-8db87d04ff8c@suse.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 9 Jul 2019 12:40:11 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLsO2MBOXUj3HT6=08VNsH7Ak_iJnxzdSOK3YF5+R387w@mail.gmail.com>
+Message-ID: <CAL_JsqLsO2MBOXUj3HT6=08VNsH7Ak_iJnxzdSOK3YF5+R387w@mail.gmail.com>
+Subject: Re: [PATCH 5/6] dt-bindings: arm: Document RTD1296
+To:     =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>
+Cc:     Aleix Roca Nonell <kernelrocks@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-mmc cards on mmc1 are not detected because of wrong card detect (cd) level.
+On Sun, Jul 7, 2019 at 7:31 AM Andreas F=C3=A4rber <afaerber@suse.de> wrote=
+:
+>
+> Am 07.07.19 um 15:23 schrieb Aleix Roca Nonell:
+> > Add bindings for Relatek RTD1296 SoC. And the Bannana Pi BPI-W2 board.
+>
+> "Realtek", "Banana"
+>
+> >
+> > Signed-off-by: Aleix Roca Nonell <kernelrocks@gmail.com>
+> > ---
+> >  Documentation/devicetree/bindings/arm/realtek.txt | 13 +++++++++++++
+> >  1 file changed, 13 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/arm/realtek.txt b/Docume=
+ntation/devicetree/bindings/arm/realtek.txt
+> > index 95839e19ae92..78da1004d38c 100644
+> > --- a/Documentation/devicetree/bindings/arm/realtek.txt
+> > +++ b/Documentation/devicetree/bindings/arm/realtek.txt
+> > @@ -20,3 +20,16 @@ Root node property compatible must contain, dependin=
+g on board:
+> >  Example:
+> >
+> >      compatible =3D "zidoo,x9s", "realtek,rtd1295";
+> > +
+> > +
+> > +RTD1296 SoC
+> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +
+> > +Required root node properties:
+> > +
+> > + - compatible :  must contain "realtek,rtd1296"
+>
+> I'm pretty sure that I had such a patch on the list already, so this is
+> lacking my authorship.
+>
+> Also, Rob has been working to convert these to YAML, so we should
+> probably complete that first and then add RTD1296 properly.
 
-Change cd from GPIO_ACTIVE_HIGH to GPIO_ACTIVE_LOW.
+I'm just waiting for you to either ack it or apply it.
 
-This is necessary because of commit e63201f19438 ("mmc: omap_hsmmc:
-Delete platform data GPIO CD and WP")
-
-Signed-off-by: Andreas Klinger <ak@it-klinger.de>
----
- arch/arm/boot/dts/am335x-wega.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/arch/arm/boot/dts/am335x-wega.dtsi b/arch/arm/boot/dts/am335x-wega.dtsi
-index b7d28a20341f..84581fed3d06 100644
---- a/arch/arm/boot/dts/am335x-wega.dtsi
-+++ b/arch/arm/boot/dts/am335x-wega.dtsi
-@@ -157,7 +157,7 @@
- 	bus-width = <4>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&mmc1_pins>;
--	cd-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
-+	cd-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
- 	status = "okay";
- };
- 
--- 
-2.11.0
-
-
--- 
+Rob
