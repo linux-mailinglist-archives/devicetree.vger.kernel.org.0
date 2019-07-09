@@ -2,118 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1D14633CB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 11:59:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 84FF663461
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 12:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726074AbfGIJ7Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 05:59:24 -0400
-Received: from mx01.quantatw.com ([219.87.191.90]:31098 "EHLO
-        mx01.quantatw.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726126AbfGIJ7X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 05:59:23 -0400
-X-Greylist: delayed 619 seconds by postgrey-1.27 at vger.kernel.org; Tue, 09 Jul 2019 05:59:22 EDT
-Received: from unknown (HELO mailbx06.quanta.corp) ([10.243.91.101])
-  by mx01.quantatw.com with ESMTP; 09 Jul 2019 17:49:00 +0800
-Received: from mailbx05.quanta.corp (10.243.91.100) by mailbx06.quanta.corp
- (10.243.91.101) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Tue, 9 Jul 2019
- 17:48:59 +0800
-Received: from mailbx05.quanta.corp ([192.168.0.5]) by mailbx05.quanta.corp
- ([192.168.0.5]) with mapi id 15.01.1713.004; Tue, 9 Jul 2019 17:48:59 +0800
-From:   =?big5?B?R2VvcmdlIEh1bmcgKKx4qb63cSk=?= <George.Hung@quantatw.com>
-To:     Rob Herring <robh@kernel.org>, George Hung <ghung.quanta@gmail.com>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Tali Perry <tali.perry1@gmail.com>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "wak@google.com" <wak@google.com>,
-        "benjaminfair@google.com" <benjaminfair@google.com>,
-        "openbmc@lists.ozlabs.org" <openbmc@lists.ozlabs.org>,
-        "tomer.maimon@nuvoton.com" <tomer.maimon@nuvoton.com>,
+        id S1726091AbfGIKdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 06:33:24 -0400
+Received: from smtprelay-out1.synopsys.com ([198.182.61.142]:54622 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1725947AbfGIKdY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 06:33:24 -0400
+Received: from mailhost.synopsys.com (badc-mailhost2.synopsys.com [10.192.0.18])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 90113C0127;
+        Tue,  9 Jul 2019 10:33:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1562668403; bh=3ID/eNgnM54kEEEIv4XlZ/O+E9xDglfl4VK2MpkrqOU=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=JsumvsUKc6BMVzr8/qfoPSPddFwQF+AyxBpnVZdDe6/4PxYvTTgfr4c0azG1xfauL
+         Au/iTUKgrAQhzwyMzw3uSAGj21CfcXNYaEJrESlw1yGMgCWbfV8DGDNAhaAAshxKNu
+         nd7Xk8mhlZ6j3cihPezGTK4AqFS2msBWNupf2hiW1G8wop1CFQj2/WeLFC+N5tCK+7
+         NeF07QEbaR7KqJ3spAQoiRyf3UMKUbM53d+jff/Sn5kYaJoHZ3aDIdkWcI49F687U7
+         SN+OzGd4SSUhN4YoR4o9q7H1cguwewoUBgmyZ8crCaDp2UVR33OtNA6XljD4HaQ7uB
+         aSteUNMSs7voA==
+Received: from US01WEHTC3.internal.synopsys.com (us01wehtc3.internal.synopsys.com [10.15.84.232])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPS id B67ACA0069;
+        Tue,  9 Jul 2019 10:33:22 +0000 (UTC)
+Received: from US01HYBRID2.internal.synopsys.com (10.15.246.24) by
+ US01WEHTC3.internal.synopsys.com (10.15.84.232) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Tue, 9 Jul 2019 03:33:22 -0700
+Received: from NAM05-CO1-obe.outbound.protection.outlook.com (10.13.134.195)
+ by mrs.synopsys.com (10.15.246.24) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Tue, 9 Jul 2019 03:33:22 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=synopsys.onmicrosoft.com; s=selector1-synopsys-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=pjYWJ8yh1941EPOmwR85nb/Ljvk2zHonSgGY2fgXSKQ=;
+ b=Je6k7CiUSxZT61Zhdfhvr2DrdnuDBudiyCb5Vftwh1kzxmvbY6IG5hFB8dM3ZRysUhPOKohmecswY2KitzQf6RN3izGESpBS7Ir3D45q00oLqbAEMs4ManTzVdirC7ExBvqIGUWeAe84sO2RkWueLYvHlZyDS5L6gRU1AdDWUh0=
+Received: from MN2PR12MB3710.namprd12.prod.outlook.com (10.255.236.23) by
+ MN2PR12MB3133.namprd12.prod.outlook.com (20.178.241.208) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2052.19; Tue, 9 Jul 2019 10:33:18 +0000
+Received: from MN2PR12MB3710.namprd12.prod.outlook.com
+ ([fe80::8025:feba:c9cf:ba9f]) by MN2PR12MB3710.namprd12.prod.outlook.com
+ ([fe80::8025:feba:c9cf:ba9f%3]) with mapi id 15.20.2052.020; Tue, 9 Jul 2019
+ 10:33:18 +0000
+From:   Luis de Oliveira <Luis.Oliveira@synopsys.com>
+To:     Rob Herring <robh@kernel.org>,
+        Luis Oliveira <Luis.Oliveira@synopsys.com>
+CC:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Borislav Petkov <bp@alien8.de>,
-        "Avi.Fishman@nuvoton.com" <Avi.Fishman@nuvoton.com>,
-        "Jonathan Cameron" <Jonathan.Cameron@huawei.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        linux-edac <linux-edac@vger.kernel.org>,
-        "Patrick Venture" <venture@google.com>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        James Morse <james.morse@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "davem@davemloft.net" <davem@davemloft.net>
-Subject: RE: [PATCH 5.2 v2 2/2] dt-binding: edac: add NPCM ECC documentation
-Thread-Topic: [PATCH 5.2 v2 2/2] dt-binding: edac: add NPCM ECC documentation
-Thread-Index: AQHVNfd78GrHFC2ty02NT0e+R3uriabCCCsA
-Date:   Tue, 9 Jul 2019 09:48:59 +0000
-Message-ID: <0c90f9376c0e425c9a226379f7e5bfad@quantatw.com>
-References: <20190605141253.38554-1-ghung.quanta@gmail.com>
- <20190605141253.38554-2-ghung.quanta@gmail.com>
- <20190709014058.GA30269@bogus>
-In-Reply-To: <20190709014058.GA30269@bogus>
-Accept-Language: zh-TW, en-US
-Content-Language: zh-TW
+        "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>,
+        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>
+Subject: RE: [PATCH V2 2/2] dt-bindings: Document the DesignWare IP reset
+ bindings
+Thread-Topic: [PATCH V2 2/2] dt-bindings: Document the DesignWare IP reset
+ bindings
+Thread-Index: AQHVHH23e2+X/xsJsUq7VXVMGc6J2KbBuOcAgACOyjA=
+Date:   Tue, 9 Jul 2019 10:33:18 +0000
+Message-ID: <MN2PR12MB371095ABA70D43398ABF982CCBF10@MN2PR12MB3710.namprd12.prod.outlook.com>
+References: <1559835388-2578-1-git-send-email-luis.oliveira@synopsys.com>
+ <1559835388-2578-3-git-send-email-luis.oliveira@synopsys.com>
+ <20190709015220.GA18239@bogus>
+In-Reply-To: <20190709015220.GA18239@bogus>
+Accept-Language: en-US
+Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-originating-ip: [10.243.91.252]
-x-tm-as-product-ver: SMEX-12.0.0.1727-8.200.1013-24746.005
-x-tm-as-result: No--21.007500-0.000000-31
-x-tm-as-matchedid: 140026-150567-700225-703140-701090-703503-704039-139010-1
-        39006-188199-702601-702887-702754-702304-702058-702617-823290-705012-703129
-        -106660-703408-700069-701429-702604-705249-110462-701342-704841-863519-1880
-        19-703017-702395-703213-701478-704585-701337-703958-700737-704384-704397-70
-        2392-700786-703880-148004-148133-20043-42000-42003-63
-x-tm-as-user-approved-sender: Yes
-x-tm-as-user-blocked-sender: No
-Content-Type: text/plain; charset="big5"
-Content-Transfer-Encoding: base64
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=lolivei@synopsys.com; 
+x-originating-ip: [83.174.63.141]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 9977b52e-b334-484f-e5a5-08d70458db76
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:MN2PR12MB3133;
+x-ms-traffictypediagnostic: MN2PR12MB3133:
+x-microsoft-antispam-prvs: <MN2PR12MB313328ECBE02E5B03CF873E3CBF10@MN2PR12MB3133.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8273;
+x-forefront-prvs: 0093C80C01
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(366004)(376002)(346002)(136003)(39860400002)(189003)(199004)(54534003)(37524003)(6636002)(68736007)(478600001)(5660300002)(6436002)(3846002)(6116002)(229853002)(25786009)(446003)(316002)(66446008)(64756008)(66476007)(66556008)(4326008)(54906003)(107886003)(73956011)(110136005)(33656002)(66946007)(486006)(52536014)(476003)(186003)(11346002)(256004)(26005)(8676002)(81166006)(81156014)(71190400001)(74316002)(71200400001)(102836004)(66066001)(8936002)(7736002)(99286004)(76176011)(6506007)(7696005)(86362001)(6246003)(305945005)(9686003)(76116006)(53936002)(14454004)(55016002)(2906002);DIR:OUT;SFP:1102;SCL:1;SRVR:MN2PR12MB3133;H:MN2PR12MB3710.namprd12.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: synopsys.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Ik+Y5CevsidhK5AiS0Uwpu2Goc53762sZ1qel0/nMvLdQKrflYiC2eF3wZADMsyz6T+aNbtidZv0JqaajZ2r6/N25U3va5ZWf2VYPOvdsPvz+3+IP5ZMNxuUgYUEUVsRXdAh5IhptbZFd6IX541EB4+8k5IkiQvv7uWg1d5BCyLV3sN2GATqrqHBB44cwIweXckehFNezdzm6+bs315QBibPFjaC61YKYZTUj2DvAPIUdA1kqc9fderuCqmDkzloytuJo4z/S7J65oENq9PQiogxmjc/cdxMiylUphvty7Df9hd/p2OHZdpFG44Gd7vZwUDW+V60Wp3jdp+W3SKAR9RCqS5OBIzfePxzGsNlxRAZO+ShYINLMo94whIk1+hgTZ92ubNjBTQDM4U6HTwWhBkmO/EYWXsrPsxl/xI0M+I=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
+X-MS-Exchange-CrossTenant-Network-Message-Id: 9977b52e-b334-484f-e5a5-08d70458db76
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Jul 2019 10:33:18.0920
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: lolivei@synopsys.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MN2PR12MB3133
+X-OriginatorOrg: synopsys.com
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgUm9iLA0KDQoNCj4gLS0tLS1PcmlnaW5hbCBNZXNzYWdlLS0tLS0NCj4gRnJvbTogb3BlbmJt
-Yw0KPiBbbWFpbHRvOm9wZW5ibWMtYm91bmNlcytnZW9yZ2UuaHVuZz1xdWFudGF0dy5jb21AbGlz
-dHMub3psYWJzLm9yZ10gT24NCj4gQmVoYWxmIE9mIFJvYiBIZXJyaW5nDQo+IFNlbnQ6IFR1ZXNk
-YXksIEp1bHkgMDksIDIwMTkgOTo0MSBBTQ0KPiBUbzogR2VvcmdlIEh1bmcNCj4gQ2M6IE1hcmsg
-UnV0bGFuZDsgTGludXMgV2FsbGVpajsgVGFsaSBQZXJyeTsgcGF1bG1ja0BsaW51eC5pYm0uY29t
-Ow0KPiB3YWtAZ29vZ2xlLmNvbTsgYmVuamFtaW5mYWlyQGdvb2dsZS5jb207IG9wZW5ibWNAbGlz
-dHMub3psYWJzLm9yZzsNCj4gdG9tZXIubWFpbW9uQG51dm90b24uY29tOyBkZXZpY2V0cmVlQHZn
-ZXIua2VybmVsLm9yZzsgQm9yaXNsYXYgUGV0a292Ow0KPiBBdmkuRmlzaG1hbkBudXZvdG9uLmNv
-bTsgSm9uYXRoYW4gQ2FtZXJvbjsgTWF1cm8gQ2FydmFsaG8gQ2hlaGFiOw0KPiBsaW51eC1lZGFj
-OyBQYXRyaWNrIFZlbnR1cmU7IE5pY29sYXMgRmVycmU7IGxpbnV4LWtlcm5lbDsgSmFtZXMgTW9y
-c2U7IEdyZWcNCj4gS3JvYWgtSGFydG1hbjsgZGF2ZW1AZGF2ZW1sb2Z0Lm5ldA0KPiBTdWJqZWN0
-OiBSZTogW1BBVENIIDUuMiB2MiAyLzJdIGR0LWJpbmRpbmc6IGVkYWM6IGFkZCBOUENNIEVDQw0K
-PiBkb2N1bWVudGF0aW9uDQo+IA0KPiBPbiBXZWQsIEp1biAwNSwgMjAxOSBhdCAxMDoxMjo1M1BN
-ICswODAwLCBHZW9yZ2UgSHVuZyB3cm90ZToNCj4gPiBBZGQgZGV2aWNlIHRyZWUgZG9jdW1lbnRh
-dGlvbiBmb3IgTnV2b3RvbiBCTUMgRUNDDQo+ID4NCj4gPiBTaWduZWQtb2ZmLWJ5OiBHZW9yZ2Ug
-SHVuZyA8Z2h1bmcucXVhbnRhQGdtYWlsLmNvbT4NCj4gPiAtLS0NCj4gPiAgLi4uL2JpbmRpbmdz
-L2VkYWMvbnBjbTd4eC1zZHJhbS1lZGFjLnR4dCAgICAgICAgfCAxNw0KPiArKysrKysrKysrKysr
-KysrKw0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMTcgaW5zZXJ0aW9ucygrKQ0KPiA+ICBjcmVhdGUg
-bW9kZSAxMDA2NDQNCj4gPiBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZWRhYy9u
-cGNtN3h4LXNkcmFtLWVkYWMudHh0DQo+ID4NCj4gPiBkaWZmIC0tZ2l0DQo+ID4gYS9Eb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZWRhYy9ucGNtN3h4LXNkcmFtLWVkYWMudHh0DQo+
-ID4gYi9Eb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZWRhYy9ucGNtN3h4LXNkcmFt
-LWVkYWMudHh0DQo+ID4gbmV3IGZpbGUgbW9kZSAxMDA2NDQNCj4gPiBpbmRleCAwMDAwMDAwMDAw
-MDAuLmRkNGRhYzU5YTViZA0KPiA+IC0tLSAvZGV2L251bGwNCj4gPiArKysgYi9Eb2N1bWVudGF0
-aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZWRhYy9ucGNtN3h4LXNkcmFtLWVkYWMudHh0DQo+ID4g
-QEAgLTAsMCArMSwxNyBAQA0KPiA+ICtOdXZvdG9uIE5QQ003eHggU29DIEVEQUMgZGV2aWNlIGRy
-aXZlcg0KPiA+ICsNCj4gPiArVGhlIE51dm90b24gTlBDTTd4eCBTb0Mgc3VwcG9ydHMgRERSNCBt
-ZW1vcnkgd2l0aC93aXRob3V0IEVDQyBhbmQNCj4gdGhlDQo+ID4gK2RyaXZlciB1c2VzIHRoZSBF
-REFDIGZyYW1ld29yayB0byBpbXBsZW1lbnQgdGhlIEVDQyBkZXRlY3Rpb24gYW5kDQo+IGNvcnJ0
-ZWN0aW9uLg0KPiA+ICsNCj4gPiArUmVxdWlyZWQgcHJvcGVydGllczoNCj4gPiArLSBjb21wYXRp
-YmxlOglzaG91bGQgYmUgIm51dm90b24sbnBjbTd4eC1zZHJhbS1lZGFjIg0KPiANCj4gSXMgdGhp
-cyBmb3IgdGhlIHdob2xlIFNEUkFNIGNvbnRyb2xsZXIgb3IganVzdCBFQ0MgcmVsYXRlZCByZWdp
-c3RlcnM/DQo+IEluIHRoZSBmb3JtZXIgY2FzZSwgdGhlIG5hbWluZyBzaG91bGQganVzdCByZWZs
-ZWN0IHRoZSBibG9jayBuYW1lIGFuZCBub3QgYQ0KPiBMaW51eCB0ZXJtLg0KDQpTb3JyeSBmb3Ig
-Y29uZnVzZWQgbmFtaW5nLCB0aGUgYWRkcmVzcyBzcGFjZSBpcyBmb3IgdGhlIHdob2xlIG1lbW9y
-eSBjb250cm9sbGVyIHJlZ2lzdGVycyBpbmRlZWQsDQpidXQgdGhlIGRyaXZlciBvbmx5IHVzZXMg
-dGhlIEVDQyByZWxhdGVkIHJlZ2lzdGVycy4NClNob3VsZCBJIGNoYW5nZSB0aGUgbmFtZSB0byAi
-bnV2b3RvbixucGNtN3h4LWVkYWMiID8NCg0KPiANCj4gPiArLSByZWc6CQlNZW1vcnkgY29udHJv
-bGxlciByZWdpc3RlciBzZXQgc2hvdWxkIGJlIDwweGYwODI0MDAwDQo+IDB4MTAwMD4NCj4gPiAr
-LSBpbnRlcnJ1cHRzOglzaG91bGQgYmUgTUMgaW50ZXJydXB0ICMyNQ0KPiA+ICsNCj4gPiArRXhh
-bXBsZToNCj4gPiArDQo+ID4gKwltYzogbWVtb3J5LWNvbnRyb2xsZXJAZjA4MjQwMDAgew0KPiA+
-ICsJCWNvbXBhdGlibGUgPSAibnV2b3RvbixucGNtN3h4LXNkcmFtLWVkYWMiOw0KPiA+ICsJCXJl
-ZyA9IDwweGYwODI0MDAwIDB4MTAwMD47DQo+ID4gKwkJaW50ZXJydXB0cyA9IDwwIDI1IDQ+Ow0K
-PiA+ICsJfTsNCj4gPiAtLQ0KPiA+IDIuMjEuMA0KPiA+DQo=
+Hi Rob,
+
+Thank you for the comments,
+
+From: Rob Herring <robh@kernel.org>
+Date: Tue, Jul 09, 2019 at 02:52:20
+
+> On Thu, Jun 06, 2019 at 05:36:28PM +0200, Luis Oliveira wrote:
+> > This adds documentation of device tree bindings for the
+> > DesignWare IP reset controller.
+> >=20
+> > Signed-off-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+> > Signed-off-by: Luis Oliveira <luis.oliveira@synopsys.com>
+> > ---
+> > Changelog
+> > - Add active low configuration example
+> > - Fix compatible string in the active high example
+> >=20
+> >  .../devicetree/bindings/reset/snps,dw-reset.txt    | 30 ++++++++++++++=
+++++++++
+> >  1 file changed, 30 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/reset/snps,dw-res=
+et.txt
+> >=20
+> > diff --git a/Documentation/devicetree/bindings/reset/snps,dw-reset.txt =
+b/Documentation/devicetree/bindings/reset/snps,dw-reset.txt
+> > new file mode 100644
+> > index 0000000..85f3301
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/reset/snps,dw-reset.txt
+> > @@ -0,0 +1,30 @@
+> > +Synopsys DesignWare Reset controller
+> > +=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D
+> > +
+> > +Please also refer to reset.txt in this directory for common reset
+> > +controller binding usage.
+> > +
+> > +Required properties:
+> > +
+> > +- compatible: should be one of the following.
+> > +	"snps,dw-high-reset" - for active high configuration
+> > +	"snps,dw-low-reset" - for active low configuration
+>=20
+> This is really a standalone block?
+>=20
+> Are there versions of IP?
+>=20
+
+We use this block because is is very simple. The Verilog is autogenerated=20
+after an simple input configuration (APB config, reset pin number, active=20
+high/low, etc) so it does not need versioning.
+We use it in almost all our testchips and prototyping, and it is a=20
+standalone block.
+
+> > +
+> > +- reg: physical base address of the controller and length of memory ma=
+pped
+> > +	region.
+> > +
+> > +- #reset-cells: must be 1.
+> > +
+> > +example:
+> > +
+> > +	dw_rst_1: reset-controller@0000 {
+> > +		  compatible =3D "snps,dw-high-reset";
+> > +	 	  reg =3D <0x0000 0x4>;
+> > +		  #reset-cells =3D <1>;
+> > +	};
+> > +
+> > +	dw_rst_2: reset-controller@1000 {i
+> > +		  compatible =3D "snps,dw-low-reset";
+> > +		  reg =3D <0x1000 0x8>;
+> > +		  #reset-cells =3D <1>;
+> > +	};
+> > --=20
+> > 2.7.4
+> >=20
+
+Thank you Rob,
+
+Luis
+
