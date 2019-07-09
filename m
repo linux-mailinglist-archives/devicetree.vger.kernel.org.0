@@ -2,117 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9644A62CB6
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 01:35:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5023062D22
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 02:49:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726582AbfGHXe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 19:34:58 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:43066 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725864AbfGHXe6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 19:34:58 -0400
-Received: by mail-wr1-f66.google.com with SMTP id p13so18907183wru.10
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 16:34:57 -0700 (PDT)
+        id S1726967AbfGIAtb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 20:49:31 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:45279 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725935AbfGIAtb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 20:49:31 -0400
+Received: by mail-oi1-f194.google.com with SMTP id m206so14065383oib.12;
+        Mon, 08 Jul 2019 17:49:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=+0bgA4UqbyynY1WKuo34XLnfT2RL8oF6dGSsO++vmwI=;
-        b=Vvu+7XyZ+bf18JzhxWs9WUla5B97kN6JNUGK09wQnbC1To+ikzJLjWemzYQ4bSdXem
-         Lb4Ujrcwm/h5eSGI7UR+HmJu9labaWTTr2uGAMIQle4ZAoZT+/Rr04O/5fXMa+UDK/dI
-         PiWmvqDOuBeRwnaNj0eFrE7zYpPFf5ZW5v1/snESkLUrZhzUeLNH4C7U1TAT94jY3ioz
-         eEbjqFsIRgjTDidMp1LOdKzZIEzJRV4P4q40BE/P564YjPoiVk+St3f2/qGgJ0XbufeM
-         E4LGboUMF+nD44IlGbVNDieKQG3KCLdUF/egpt+dZ1xlDy4X/3SK1jXeVQiIZHm6dFjh
-         zhQA==
+        bh=mZfF3qmGUmaIXGQVLjO4ElcPFOkI/q/c+xioJlIBg2U=;
+        b=A+6tMfOydkWZAq3FLs4JYZTw3Q+rRUwRJpGF79VNLOKlzkmnFjXBBoVFCPB6WH032H
+         heRFES7RMAV1lT9/7vozKekg8HAZa7l54YEJ+ZJvC6W6P2DKHqFGmZ/zYZBf99ICvwaY
+         6WK+H/4RwupNppMbKV5C81EiPhx08soNSJCaWtntbLw7fXD9/hCk929ra2K1C7XAoME0
+         Z8aWaXfodpDgxVje7iFZrELXqv/9UCQpZt3t5HaDSVfbslLjbJ9j1yT2gI+cn0cjNAZE
+         lLyUEpU6GREM2LLCUFPqQAHbDl2HpMKDqnru4XN80ye/ljTCNYMwEb/7SmrGmEPZg9Qf
+         4pWg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=+0bgA4UqbyynY1WKuo34XLnfT2RL8oF6dGSsO++vmwI=;
-        b=LcMo/KSd+t5A7tjbyhUndYTgILrja3BmVXZ1WjjTlrvFt24HThSF5s1ODKuIE6EFgl
-         58+MCFAyjk5G8z7Fjzb5ZzrzbNk6MYMADsOcjCxJRCay+K1bs/ovfpe51pQ4dAAi7/Tx
-         oQVrVjEHh4PMN7NMZm9ct5Fw4XL+JzSk/T8zvB4XsE9w7Z6XqCcG42AawnfdpLZcHKPK
-         W56MzWR6BxudbnmioOdkKkX7BKhkihdVe9ia1tfAJimH0NwNDq+HdJv5y6tAy2+QCKOl
-         9FWWYIOuwzdnHK4Kog5Fil56lorOwZSKHr7kkuv5xTBykPpgG7sC2ykWWY3FLXMsFkGO
-         yXOQ==
-X-Gm-Message-State: APjAAAVoGA10LsLVFXQ3BJVm2JFhKMK+jFrm7MkHyIKiADZrvJ7gTSXa
-        mH/pAm0NZ2a2TQ2/1UGNSZRsNSP4j+vs2dvwUvXY
-X-Google-Smtp-Source: APXvYqy2agX+h3NF02X+WujT1yk9yb+IABwJhy8IpnbR3/useLGvEwjfJj5ObeDsKZRewf4wva8AmF6fHX7xEyn/0ZQ=
-X-Received: by 2002:a5d:4ec1:: with SMTP id s1mr19532947wrv.19.1562628896307;
- Mon, 08 Jul 2019 16:34:56 -0700 (PDT)
+        bh=mZfF3qmGUmaIXGQVLjO4ElcPFOkI/q/c+xioJlIBg2U=;
+        b=JIuY/o6UFLYoJSwgkKS4TiNXqWjvcO2ssVjDAJVMAbYOpqwZukPTwZZGvLC4rhp4rO
+         s8u2xCTPxizyY3u9k34gGZ0ZUWfGjBPIAoDCHjcMOnZKBtInHByZIgm7IjOzah3Ii6YG
+         SheKvw0wDTEYpmXzVjrC9/Waxnk/+70vzGYaAXmR0X7k8GCumBPwOxUMRWWuhuBgRRcA
+         a9UD8B36dVsBBYC85TOVg572y3BQjS5/DsELWn/wIoLqJ80BAHo/XJwT0hccb3TsKyaX
+         3f/AzUnKEhQe6/ebjLWyWlgd6vp2E+TGmkSqFDiS/U/Nty3h6kvRfeMAOVw4WSnMk91Y
+         /xzA==
+X-Gm-Message-State: APjAAAW89gDjtExZH1LuGpxZELFsCW0tlMF2tgR6i/Fn+x25jmWvDI7N
+        3rY8sNSM+lIfiRwRbHunm3mfTnzPgkqdYWOfLtE=
+X-Google-Smtp-Source: APXvYqwn/NmbXG3TvpJ/5pRB/ldFPNOG9MC5TDpP7mMGAObq2oBz7QvF8Qh6xGlGhVhQcK1KBKGA38nN+dBvrIRtU7Y=
+X-Received: by 2002:aca:f552:: with SMTP id t79mr10221713oih.145.1562633370288;
+ Mon, 08 Jul 2019 17:49:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190704003615.204860-1-brendanhiggins@google.com>
- <20190704003615.204860-19-brendanhiggins@google.com> <20190705204810.GE19023@42.do-not-panic.com>
- <CAFd5g44j7ECQorYLnDQadAaj+yBki98kFjmjejn+3W4eHtqGDA@mail.gmail.com> <CAAXuY3q1==RvAiw+gw5kfFJmjdR9JEUnnxou4Sv0POd88aD41w@mail.gmail.com>
-In-Reply-To: <CAAXuY3q1==RvAiw+gw5kfFJmjdR9JEUnnxou4Sv0POd88aD41w@mail.gmail.com>
-From:   Iurii Zaikin <yzaikin@google.com>
-Date:   Mon, 8 Jul 2019 16:34:20 -0700
-Message-ID: <CAAXuY3ov7s28BQ0VxzkfAHR6NZiBq-YfnJ_510VN22DMhEyCBg@mail.gmail.com>
-Subject: Re: [PATCH v6 18/18] MAINTAINERS: add proc sysctl KUnit test to PROC
- SYSCTL section
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     Luis Chamberlain <mcgrof@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        shuah <shuah@kernel.org>, "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
+References: <CA+E=qVckHLqRngsfK=AcvstrD0ymEfRkYyhS_kBtZ3YWdE3L=g@mail.gmail.com>
+ <20190605101317.GA9345@lst.de> <20190605120237.ekmytfxcwbjaqy3x@flea>
+ <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at> <20190607062802.m5wslx3imiqooq5a@flea>
+ <CGME20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752@epcas1p4.samsung.com>
+ <20190607094030.GA12373@lst.de> <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
+ <20190612152022.c3cfhp4cauhzhfyr@flea> <bb2c2c00-b46e-1984-088f-861ac8952331@samsung.com>
+ <20190701095842.fvganvycce2cy7jn@flea>
+In-Reply-To: <20190701095842.fvganvycce2cy7jn@flea>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Mon, 8 Jul 2019 17:49:21 -0700
+Message-ID: <CA+E=qVdsYV2Bxk245=Myq=otd7-7WHzUnSJN8_1dciAzvSOG8g@mail.gmail.com>
+Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
+ on Teres-I
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>, Torsten Duwe <duwe@lst.de>,
+        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
         dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> On Mon, Jul 8, 2019 at 4:16 PM Brendan Higgins <brendanhiggins@google.com> wrote:
->>
->> CC'ing Iurii Zaikin
->>
->> On Fri, Jul 5, 2019 at 1:48 PM Luis Chamberlain <mcgrof@kernel.org> wrote:
->> >
->> > On Wed, Jul 03, 2019 at 05:36:15PM -0700, Brendan Higgins wrote:
->> > > Add entry for the new proc sysctl KUnit test to the PROC SYSCTL section.
->> > >
->> > > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
->> > > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
->> > > Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
->> > > Acked-by: Luis Chamberlain <mcgrof@kernel.org>
->> >
->> > Come to think of it, I'd welcome Iurii to be added as a maintainer,
->> > with the hope Iurii would be up to review only the kunit changes. Of
->> > course if Iurii would be up to also help review future proc changes,
->> > even better. 3 pair of eyeballs is better than 2 pairs.
->>
->> What do you think, Iurii?
+On Mon, Jul 1, 2019 at 2:58 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> Hi!
+>
+> On Fri, Jun 28, 2019 at 12:39:32PM +0200, Andrzej Hajda wrote:
+> > On 12.06.2019 17:20, Maxime Ripard wrote:
+> > >> I am not sure if I understand whole discussion here, but I also do not
+> > >> understand whole edp-connector thing.
+> > > The context is this one:
+> > > https://patchwork.freedesktop.org/patch/257352/?series=51182&rev=1
+> > > https://patchwork.freedesktop.org/patch/283012/?series=56163&rev=1
+> > > https://patchwork.freedesktop.org/patch/286468/?series=56776&rev=2
+> > >
+> > > TL;DR: This bridge is being used on ARM laptops that can come with
+> > > different eDP panels. Some of these panels require a regulator to be
+> > > enabled for the panel to work, and this is obviously something that
+> > > should be in the DT.
+> > >
+> > > However, we can't really describe the panel itself, since the vendor
+> > > uses several of them and just relies on the eDP bus to do its job at
+> > > retrieving the EDIDs. A generic panel isn't really working either
+> > > since that would mean having a generic behaviour for all the panels
+> > > connected to that bus, which isn't there either.
+> > >
+> > > The connector allows to expose this nicely.
+> >
+> > As VESA presentation says[1] eDP is based on DP but is much more
+> > flexible, it is up to integrator (!!!) how the connection, power
+> > up/down, initialization sequence should be performed. Trying to cover
+> > every such case in edp-connector seems to me similar to panel-simple
+> > attempt failure. Moreover there is no such thing as physical standard
+> > eDP connector. Till now I though DT connector should describe physical
+> > connector on the device, now I am lost, are there some DT bindings
+> > guidelines about definition of a connector?
+>
+> This might be semantics but I guess we're in some kind of grey area?
+>
+> Like, for eDP, if it's soldered I guess we could say that there's no
+> connector. But what happens if for some other board, that signal is
+> routed through a ribbon?
+>
+> You could argue that there's no physical connector in both cases, or
+> that there's one in both, or one for the ribbon and no connector for
+> the one soldered in.
+>
+> > Maybe instead of edp-connector one would introduce integrator's specific
+> > connector, for example with compatible "olimex,teres-edp-connector"
+> > which should follow edp abstract connector rules? This will be at least
+> > consistent with below presentation[1] - eDP requirements depends on
+> > integrator. Then if olimex has standard way of dealing with panels
+> > present in olimex/teres platforms the driver would then create
+> > drm_panel/drm_connector/drm_bridge(?) according to these rules, I guess.
+> > Anyway it still looks fishy for me :), maybe because I am not
+> > familiarized with details of these platforms.
+>
+> That makes sense yes
 
-I'm in.
+Actually, it makes no sense at all. Current implementation for anx6345
+driver works fine as is with any panel specified assuming panel delays
+are long enough for connected panel. It just doesn't use panel timings
+from the driver. Creating a platform driver for connector itself looks
+redundant since it can't be reused, it doesn't describe actual
+hardware and it's just defeats purpose of DT by introducing
+board-specific code.
+
+There's another issue: if we introduce edp-connector we'll have to
+specify power up delays somewhere (in dts? or in platform driver?), so
+edp-connector doesn't really solve the issue of multiple panels with
+same motherboard.
+
+I'd say DT overlays should be preferred solution here, not another
+connector binding.
+
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
