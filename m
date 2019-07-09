@@ -2,95 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3B73762FE7
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 07:25:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1BC663010
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 07:40:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726057AbfGIFZl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 01:25:41 -0400
-Received: from relay1.mentorg.com ([192.94.38.131]:43871 "EHLO
-        relay1.mentorg.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726010AbfGIFZl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 01:25:41 -0400
-Received: from nat-ies.mentorg.com ([192.94.31.2] helo=svr-ies-mbx-01.mgc.mentorg.com)
-        by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
-        id 1hkidE-0007iy-MU from Harish_Kandiga@mentor.com ; Mon, 08 Jul 2019 22:25:36 -0700
-Received: from [10.0.3.15] (137.202.0.90) by svr-ies-mbx-01.mgc.mentorg.com
- (139.181.222.1) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Tue, 9 Jul
- 2019 06:25:31 +0100
-Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-To:     Rob Herring <robh+dt@kernel.org>
-CC:     Linus Walleij <linus.walleij@linaro.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S1726658AbfGIFkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 01:40:19 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:34933 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725818AbfGIFkS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 01:40:18 -0400
+Received: by mail-pl1-f196.google.com with SMTP id w24so9471203plp.2
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 22:40:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=oNfoBSAVs4HwlcfNYsclg/dP1n0XavIgjkMDpD1mPiY=;
+        b=qj/En8SAcjlo3abd1feAIjM0u/Mro4Llh0ow4E5dJPGEUYTgknUTKxU1/i+J3jWMBN
+         p25OPQsFgd7UEZdsGY6Ix40FcQTMNKciT4LNWrGbY+OeyG9jIxEI2RBpPnmpn5e8ORa4
+         k0mt57EeQt3A48ZZOsXkdS5epjRbA1SLO1Ka2SyShqNIbp0lVHJWqYVmsT6VR8FFtQsK
+         DFhDLtC7yfbeY27Br1XDph3bkoPnKvgG1iMFUaOUBpyUvVBo8OUPEIO6Xvo+5OHjrrUe
+         qRGZfmT4Bcz6Y4Fkj1e6/gkz2Y8JL8TLEthi+V2VYj2DUGcr0fiiOU+Jeg2nsd4X3lBK
+         Jjyw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=oNfoBSAVs4HwlcfNYsclg/dP1n0XavIgjkMDpD1mPiY=;
+        b=SqlERQsCQiRn9RMh58ejqzUwYuMAbeRiG61HRxHRTf7lt4nAxKaQ//+VWUmuevcyTT
+         hfbB3rnWqImH/G/87uF3TuKsJdmVAY3POg7l7YFcYVg3R9RVPkpLjrjoj5ot/8GJgKSw
+         ylW20H72EiDfV6tviPizDlEDKo1uZylZCH0T/Sr5ZO9g+45T/Xm/QL9iP3+ffigDvRpc
+         onXlxw7488KSdNoIyzqZZlox1FpWuf1bdkDX9riCUu3sMJZYIQwtDsRAxg0uPuTkFeuX
+         iTOhNbcqUmjw4ukkUa+IlaQCkZAcR753sZ0waW/aUCiW56ay8sXbhdOzr6ir3Uu+HA4X
+         3Jiw==
+X-Gm-Message-State: APjAAAWr6Xhl/irwnFFKk2xjXxITEJzLjyf685zE5j1o83KXL3P/tt/b
+        Rc09Yymsrawc1qu9ZFL2ENpHkA==
+X-Google-Smtp-Source: APXvYqyV89mc4OQKczZ8sRKuZ6VoDj+GFu/P2sqMf45IqdFh8iCwtAvZ5SJ+Cb5vmTNA4cnNYsunBw==
+X-Received: by 2002:a17:902:b20c:: with SMTP id t12mr29930984plr.285.1562650818025;
+        Mon, 08 Jul 2019 22:40:18 -0700 (PDT)
+Received: from localhost ([122.172.28.117])
+        by smtp.gmail.com with ESMTPSA id l31sm41547789pgm.63.2019.07.08.22.40.16
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 08 Jul 2019 22:40:16 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 11:10:14 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     k.konieczny@partner.samsung.com
+Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>
-References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
- <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
-From:   Harish Jenny K N <harish_kandiga@mentor.com>
-Message-ID: <06c95f15-d577-e43d-e046-ee222f86c406@mentor.com>
-Date:   Tue, 9 Jul 2019 10:55:22 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: Re: [PATCH 1/3] opp: core: add regulators enable and disable
+Message-ID: <20190709054014.o3g4e6gbovrq3vvn@vireshk-i7>
+References: <20190708141140.24379-1-k.konieczny@partner.samsung.com>
+ <CGME20190708141159eucas1p1751506975ff96a436e14940916623722@eucas1p1.samsung.com>
+ <20190708141140.24379-2-k.konieczny@partner.samsung.com>
 MIME-Version: 1.0
-In-Reply-To: <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [137.202.0.90]
-X-ClientProxiedBy: SVR-IES-MBX-08.mgc.mentorg.com (139.181.222.8) To
- svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190708141140.24379-2-k.konieczny@partner.samsung.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On 08-07-19, 16:11, k.konieczny@partner.samsung.com wrote:
+> From: Kamil Konieczny <k.konieczny@partner.samsung.com>
+> 
+> Add enable regulators to dev_pm_opp_set_regulators() and disable
+> regulators to dev_pm_opp_put_regulators(). This prepares for
+> converting exynos-bus devfreq driver to use dev_pm_opp_set_rate().
+> 
+> Signed-off-by: Kamil Konieczny <k.konieczny@partner.samsung.com>
+> ---
+>  drivers/opp/core.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+> 
+> diff --git a/drivers/opp/core.c b/drivers/opp/core.c
+> index 0e7703fe733f..947cac452854 100644
+> --- a/drivers/opp/core.c
+> +++ b/drivers/opp/core.c
+> @@ -1580,8 +1580,19 @@ struct opp_table *dev_pm_opp_set_regulators(struct device *dev,
+>  	if (ret)
+>  		goto free_regulators;
+>  
+> +	for (i = 0; i < opp_table->regulator_count; i++) {
+> +		ret = regulator_enable(opp_table->regulators[i]);
+> +		if (ret < 0)
+> +			goto disable;
+> +	}
 
+I am wondering on why is this really required as this isn't done for
+any other platform, probably because the regulators are enabled by
+bootloader and are always on.
 
-On 09/07/19 4:06 AM, Rob Herring wrote:
-> On Fri, Jun 28, 2019 at 3:31 AM Harish Jenny K N
-> <harish_kandiga@mentor.com> wrote:
->> Document the device tree binding for the inverter gpio
->> controller to configure the polarity of the gpio pins
->> used by the consumers.
->>
->> Signed-off-by: Harish Jenny K N <harish_kandiga@mentor.com>
->> ---
->>  .../devicetree/bindings/gpio/gpio-inverter.txt     | 29 ++++++++++++++++++++++
->>  1 file changed, 29 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-inverter.txt
->>
->> diff --git a/Documentation/devicetree/bindings/gpio/gpio-inverter.txt b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
->> new file mode 100644
->> index 0000000..8bb6b2e
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
->> @@ -0,0 +1,29 @@
->> +GPIO-INVERTER
->> +======
->> +This binding defines the gpio-inverter. The gpio-inverter is a driver that
->> +allows to properly describe the gpio polarities on the hardware.
-> I don't understand. Please explain this in terms of the hardware, not a driver.
-
-
-gpio inverters can be used on different hardware to alter the polarity of gpio chips.
-The polarity of pins can change from hardware to hardware with the use of inverters.
-This device tree binding models gpio inverters in the device tree to properly describe the hardware.
-
-Please let me know if this is enough and needs to be updated in the documentation patch.
-
-
-I am sorry I did not include device tree list in the original discussion ( i.e first version of the patch
-https://www.spinics.net/lists/linux-gpio/msg39681.html).
-
-
-Thanks.
-
-
-Best Regards,
-
-Harish Jenny K N
-
-
+-- 
+viresh
