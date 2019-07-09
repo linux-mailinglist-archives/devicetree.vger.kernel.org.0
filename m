@@ -2,74 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 387CC63734
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 15:46:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCD6E63745
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 15:49:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726993AbfGINqP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 09:46:15 -0400
-Received: from lb2-smtp-cloud7.xs4all.net ([194.109.24.28]:35421 "EHLO
-        lb2-smtp-cloud7.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725947AbfGINqP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 09:46:15 -0400
-Received: from [IPv6:2001:983:e9a7:1:10f:829c:8d05:60ea] ([IPv6:2001:983:e9a7:1:10f:829c:8d05:60ea])
-        by smtp-cloud7.xs4all.net with ESMTPA
-        id kqRbhm0bA0SBqkqRch39E3; Tue, 09 Jul 2019 15:46:12 +0200
-Subject: Re: [PATCH 0/5]Add support for mt2701 JPEG ENC support
-To:     Xia Jiang <xia.jiang@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rick Chang <rick.chang@mediatek.com>
-Cc:     linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Tomasz Figa <tfiga@chromium.org>, srv_heupstream@mediatek.com
-References: <20190709032103.10291-1-xia.jiang@mediatek.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Message-ID: <79316488-30fd-7ff3-7598-d29f85f663ab@xs4all.nl>
-Date:   Tue, 9 Jul 2019 15:46:07 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1726776AbfGINtT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 09:49:19 -0400
+Received: from szxga07-in.huawei.com ([45.249.212.35]:50978 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725947AbfGINtT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jul 2019 09:49:19 -0400
+Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.59])
+        by Forcepoint Email with ESMTP id 5E58C7DF4F8011129D08;
+        Tue,  9 Jul 2019 21:49:06 +0800 (CST)
+Received: from [127.0.0.1] (10.65.87.206) by DGGEMS411-HUB.china.huawei.com
+ (10.3.19.211) with Microsoft SMTP Server id 14.3.439.0; Tue, 9 Jul 2019
+ 21:48:56 +0800
+Subject: Re: [PATCH v2 05/10] net: hisilicon: HI13X1_GMAX need dreq reset at
+ first
+To:     Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
+        <davem@davemloft.net>, <robh+dt@kernel.org>,
+        <yisen.zhuang@huawei.com>, <salil.mehta@huawei.com>,
+        <mark.rutland@arm.com>, <dingtianhong@huawei.com>
+References: <1562643071-46811-1-git-send-email-xiaojiangfeng@huawei.com>
+ <1562643071-46811-6-git-send-email-xiaojiangfeng@huawei.com>
+ <890c48d1-76b8-5aea-e175-aa7d9967acd2@cogentembedded.com>
+CC:     <netdev@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <leeyou.li@huawei.com>,
+        <nixiaoming@huawei.com>, <jianping.liu@huawei.com>,
+        <xiekunxun@huawei.com>
+From:   Jiangfeng Xiao <xiaojiangfeng@huawei.com>
+Message-ID: <101b8c68-75f5-00a7-9845-e59c0467768c@huawei.com>
+Date:   Tue, 9 Jul 2019 21:48:56 +0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.7.1
 MIME-Version: 1.0
-In-Reply-To: <20190709032103.10291-1-xia.jiang@mediatek.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
+In-Reply-To: <890c48d1-76b8-5aea-e175-aa7d9967acd2@cogentembedded.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfJOEIUcU2sXWd9bC50a4eYZ5LTEqfEC1JRULW/bkWFrKdVBQ/lekp5KR2UKQdl9uV4VWVClgZWcLqUO4U/SIIm7ISiTjndpkJheBiYNaEAFvQfVeC1hE
- qDSQfIJmk/pjXs8utQp3DTtOqUIptglNMx5+x4W/J5vYwRdieV76rYwt1uzqXQP6js809vDQcbILwA5sHqYWI/2J/6a9b45DeDh3orTZ/MxP8kPO9df14mwJ
- S1MxCRveuwBZtb6R/KFayiMT4RsCwFGoULDHt6TnGD9ginkNVzqp/JANQXm3ffjpGyQ1B89xPCMKOXpqGVRCjFN5k+PEhwSEztmjFZeK0NzNE2i/wB5ClqDe
- RDVeE6Da5JzSxbV288V5nLRHHD6Iiw12bgt4gA4/tVRdbP21dSIhdfhVjemZJW0GaP9t/FwrwVa8YWaW5MKuFSuJDMJGTiu3OKl1FSShYw12gq2WUYai9KS5
- Uve2BsE7IGAhi4w20a4KGIzBzy/c++Y+EoLyagdfByRhV2fiHdnmHVYINifeHHB/H/FnuteLO9LZyev32Lf9q+ICby6ut90xUSvvun/Rww+WE7yrbYjgWhRf
- fU5md9AtQ7NlMAtoIsmAr3MWw3oCPUzteY4AB6RKmjSJLgbw/RSmV51M+EYKlibLPDQZJFw/AKh1dPHyyk0cHGJ4novIdqenBjG0Au0Zqz+D5aduPGNIgDoH
- 1Zb5Qe7V6I8=
+X-Originating-IP: [10.65.87.206]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/9/19 5:20 AM, Xia Jiang wrote:
-> This patchset add support for mt2701 JPEG ENC support.
+
+
+On 2019/7/9 17:35, Sergei Shtylyov wrote:
+> Hello!
 > 
-> This is the compliance test result for jpeg dec and enc.
+> On 09.07.2019 6:31, Jiangfeng Xiao wrote:
 > 
-> The JPEG dec log:
-> ------------------------------------------------------------
-> v4l2-compliance -d /dev/video0
-> v4l2-compliance SHA: 08fed4d0edb1492b91d9d1054c36fed95c372eaa, 32 bits
+>> HI13X1_GMAC delete request for soft reset at first,
+>> otherwise, the subsequent initialization will not
+>> take effect.
+>>
+>> Signed-off-by: Jiangfeng Xiao <xiaojiangfeng@huawei.com>
+>> ---
+>>   drivers/net/ethernet/hisilicon/hip04_eth.c | 24 ++++++++++++++++++++++++
+>>   1 file changed, 24 insertions(+)
+>>
+>> diff --git a/drivers/net/ethernet/hisilicon/hip04_eth.c b/drivers/net/ethernet/hisilicon/hip04_eth.c
+>> index fe61b01..19d8cfd 100644
+>> --- a/drivers/net/ethernet/hisilicon/hip04_eth.c
+>> +++ b/drivers/net/ethernet/hisilicon/hip04_eth.c
+> [...]
+>> @@ -853,6 +867,15 @@ static int hip04_mac_probe(struct platform_device *pdev)
+>>           goto init_fail;
+>>       }
+>>   +#if defined(CONFIG_HI13X1_GMAC)
+>> +    res = platform_get_resource(pdev, IORESOURCE_MEM, 1);
+>> +    priv->sysctrl_base = devm_ioremap_resource(d, res);
+> 
+>    There's devm_platform_ioremap_resource() now.
 
-Hmm, the SHA indicates that you are using an old v4l2-compliance version.
-Please get the latest code from the v4l-utils git repo.
+Thank you for your review, Great issue, which makes my code more concise.
 
-<snip>
+I will fix it in v3. Or submit a patch to modify it separately, if maintainer
+applies this patch series.
 
-> Buffer ioctls:
->                 fail: v4l2-test-buffers.cpp(713): q.create_bufs(node, 1, &fmt) != EINVAL
-
-This should be fixed: this test tries to create a buffer of half the minimum
-size, and the driver doesn't check that it is too small.
-
-Ditto for the encoder.
-
-Regards,
-
-	Hans
