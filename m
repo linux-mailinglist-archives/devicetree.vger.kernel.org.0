@@ -2,134 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 42DA463AE8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 20:26:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 972C963AF3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 20:29:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727232AbfGIS0F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 14:26:05 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:52184 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726318AbfGIS0F (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 14:26:05 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726636AbfGIS3Y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 14:29:24 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51902 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726618AbfGIS3Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jul 2019 14:29:24 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 08634634C7B;
-        Tue,  9 Jul 2019 21:25:01 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.89)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1hkunU-000294-9D; Tue, 09 Jul 2019 21:25:00 +0300
-Date:   Tue, 9 Jul 2019 21:25:00 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Luis de Oliveira <Luis.Oliveira@synopsys.com>
-Cc:     "mchehab@kernel.org" <mchehab@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>
-Subject: Re: [v4 1/6] dt-bindings: media: Document bindings for DW MIPI CSI-2
- Host
-Message-ID: <20190709182500.3x544axnrgy72aje@valkosipuli.retiisi.org.uk>
-References: <1560280855-18085-1-git-send-email-luis.oliveira@synopsys.com>
- <1560280855-18085-2-git-send-email-luis.oliveira@synopsys.com>
- <20190628141326.swgl3kg4fj5pmlqx@valkosipuli.retiisi.org.uk>
- <MN2PR12MB37109D7AADCE4823CB458CB9CBF60@MN2PR12MB3710.namprd12.prod.outlook.com>
+        by mail.kernel.org (Postfix) with ESMTPSA id 9C28320665
+        for <devicetree@vger.kernel.org>; Tue,  9 Jul 2019 18:29:23 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562696963;
+        bh=pUZIeC1S9z7OJMHABuIQ2/WFjaI1KT27EcpgVYoUwaA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=2vnakC3yYM5AyoyldeQx0/K4PMoIrqyyubnkr1KBLlSHia56aVzXLqFQN5GISTAPL
+         QL6BmNAkPzIildPxSZFm0QZZ7bLlOUfNDyGyukw9scj6hgsgE6IoVs8+yFr1UPnuHT
+         zgiu5PLf9iuOPckZF3gJpxTKI/1/VbQOep/G7mlY=
+Received: by mail-qt1-f169.google.com with SMTP id 44so18781688qtg.11
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2019 11:29:23 -0700 (PDT)
+X-Gm-Message-State: APjAAAXVXrDMobXiPssn/cN/uz3qKKrcjSXzGlhasPobqkHCpKRaaaS2
+        yeVKbAipcBjvqqvE40eG+HX1uPCy65PpkKeDIA==
+X-Google-Smtp-Source: APXvYqwbmrL/V//0g8rzcfG0Up30/DlFA0VgMobiAbQUSjeUKKolaQXczlK0u67eBPBMMb1j71KIkj8Jborh0LxqxNM=
+X-Received: by 2002:ac8:3908:: with SMTP id s8mr19874524qtb.224.1562696962930;
+ Tue, 09 Jul 2019 11:29:22 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MN2PR12MB37109D7AADCE4823CB458CB9CBF60@MN2PR12MB3710.namprd12.prod.outlook.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+References: <20190618212229.32302-4-robh@kernel.org> <20190709171508.GA10127@Mani-XPS-13-9360>
+In-Reply-To: <20190709171508.GA10127@Mani-XPS-13-9360>
+From:   Rob Herring <robh@kernel.org>
+Date:   Tue, 9 Jul 2019 12:29:11 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+S9FEVq_ikLF2vWS3VkrGueFa8nPnbHhAjThemP+eajA@mail.gmail.com>
+Message-ID: <CAL_Jsq+S9FEVq_ikLF2vWS3VkrGueFa8nPnbHhAjThemP+eajA@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: Convert RDA Micro board/soc bindings to json-schema
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        =?UTF-8?Q?Andreas_F=C3=A4rber?= <afaerber@suse.de>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luis,
+On Tue, Jul 9, 2019 at 11:15 AM Manivannan Sadhasivam
+<manivannan.sadhasivam@linaro.org> wrote:
+>
+> Hi Rob,
+>
+> On Tue, Jun 18, 2019 at 03:22:28PM -0600, Rob Herring wrote:
+> > Convert RDA Micro SoC bindings to DT schema format using json-schema.
+> >
+> > Cc: "Andreas F=C3=A4rber" <afaerber@suse.de>
+> > Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> > Signed-off-by: Rob Herring <robh@kernel.org>
+> > ---
+> > Andreas, Update the license on this one too to dual licensed if you
+> > want.
+>
+> I'm fine with GPL-2.0. Since there isn't any other RDA specific patches
+> in my tree, you want to take this patch? Else I have to send the Pull
+> Request to ARM SoC folks with this patch alone.
 
-On Mon, Jul 08, 2019 at 03:21:50PM +0000, Luis de Oliveira wrote:
-> Hi Sakari,
-> 
-> Thank you for your feedback.
-> I have my comments inline.
-> 
-> From: Sakari Ailus <sakari.ailus@iki.fi>
-> Date: Fri, Jun 28, 2019 at 15:13:26
-> 
-> > Hi Luis,
-> > 
-> > Thank you for the patchset.
-> > 
-> > On Tue, Jun 11, 2019 at 09:20:50PM +0200, Luis Oliveira wrote:
-> > > From: Luis Oliveira <lolivei@synopsys.com>
-> > > 
-> > > Add bindings for Synopsys DesignWare MIPI CSI-2 host.
-> > > 
-> > > Signed-off-by: Luis Oliveira <lolivei@synopsys.com>
-> > > ---
-> > > Changelog
-> > > v3-v4
-> > > - remove "plat" from the block name @rob @laurent
-> > > - remove "phy-names" when single-entry @rob
-> > > - remove "snps,output-type" -> went to the driver config @laurent
-> > > 
-> > >  .../devicetree/bindings/media/snps,dw-csi.txt      | 41 ++++++++++++++++++++++
-> > >  1 file changed, 41 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-csi.txt
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/media/snps,dw-csi.txt b/Documentation/devicetree/bindings/media/snps,dw-csi.txt
-> > > new file mode 100644
-> > > index 0000000..613b7f9
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/media/snps,dw-csi.txt
-> > > @@ -0,0 +1,41 @@
-> > > +Synopsys DesignWare CSI-2 Host controller
-> > > +
-> > > +Description
-> > > +-----------
-> > > +
-> > > +This HW block is used to receive image coming from an MIPI CSI-2 compatible
-> > > +camera.
-> > > +
-> > > +Required properties:
-> > > +- compatible		: shall be "snps,dw-csi"
-> > > +- reg			: physical base address and size of the device memory
-> > > +			  mapped registers;
-> > > +- interrupts		: DW CSI-2 Host interrupts
-> > > +- phys			: List of one PHY specifier (as defined in
-> > > +			  Documentation/devicetree/bindings/phy/phy-bindings.txt).
-> > > +			  This PHY is a MIPI DPHY working in RX mode.
-> > > +- resets		: Reference to a reset controller (optional)
-> > > +
-> > > +The per-board settings:
-> > > + - port sub-node describing a single endpoint connected to the camera as
-> > > +   described in video-interfaces.txt[1].
-> > 
-> > Which endpoint properties in video-interfaces.txt are relevant for the
-> > hardware? Which values may they have?
-> > 
-> 
-> Currently I'm using only two properties "data-lanes" and "bus-width", but 
-> I have plans to add blanking info also.
-> I will add more info.
+Okay, I can take it. The preference is actually dual licensed which is
+why I asked, but that can be done later.
 
-Isn't blanking defined by what the transmitter seneds? Or do you have
-hardware limitations on the receiver side?
-
-I've only heard of one such case before, and it was a very old parallel
-receiver.
-
-If you have a CSI-2 receiver, bus-width isn't relevant --- it's for paralle
-interfaces only. Please add data-lanes to required endpoint properties.
-
--- 
-Regards,
-
-Sakari Ailus
+Rob
