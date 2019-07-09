@@ -2,147 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8207963A68
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 20:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB9E663AC3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 20:22:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726492AbfGISBs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 14:01:48 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:43048 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726519AbfGISBs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 14:01:48 -0400
-Received: by mail-pg1-f196.google.com with SMTP id f25so9834135pgv.10
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2019 11:01:48 -0700 (PDT)
+        id S1726284AbfGISWA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 14:22:00 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:36498 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726218AbfGISWA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 14:22:00 -0400
+Received: by mail-pl1-f193.google.com with SMTP id k8so10529442plt.3;
+        Tue, 09 Jul 2019 11:21:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=OUg57n/8w7Mlx4FSaThva6QRBMRQrC57aji70HqhlTs=;
-        b=u9enlrUFhNo6CpHlrQV/HgMnM2prP/1x9AkLcEyZIZZ95VhPysZXNdVgTxFeHrQSyj
-         D854QOHx1OOVg+bK1q0GL9M26yGnhrklGjHFU0YlePfBqyn8fol1vLU/0tJs5NO+XWNV
-         6Qg4G47Yz8EAu+oXnFu1Mzex0KXUQSkc3dP89G7ycpwdK6vtjyVs4n/CA1F66BOgluWi
-         cGrmqcEgZcaKnQ36vda5DA3xHSSM91ST4LQMohLGersiVfBM4MAAfBua5GuHtjmb28bv
-         cNHp7EXFv/Be9TyDKlfByNT+SveMU7rOne9AoLQN+azT38ic+R4kxi1lUa+FZPUqI2ob
-         eorw==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/7SeunipKTPZ/+kbJegCG+IF0p5px4U+K64a01qXtbE=;
+        b=sOurpNYCJgDeWdvGkMj8ayoABPRE6fc/4zOsZC7FyTAo8Tr+q1gjS4BcBv72AAs3a8
+         UtGvCQrz7Z8RYFwMSpWwIz0cfoq5O82WShkcOmdIWpkjsWgSpNcDvNEiafl7UO/6CfP1
+         W58CGB/DxmA52/5HglaJeRUzcXaCg231oj4dvcutHMlW+6WgWebC/cRRpE08FE0ChO2U
+         cQ3T/gEQtah4pCv/pmweD6I1gkA37bNO0Al1gScGvbVoqNkPtg2zCLOfeRsVUkf7a8xD
+         LkjUGWca7W4+mB9/BBjp/mdmeuf2ScqDH2yB96txiYab9HzIyqE+v9HhNcoFkntQkhvq
+         Tmow==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=OUg57n/8w7Mlx4FSaThva6QRBMRQrC57aji70HqhlTs=;
-        b=pKhg7oCwKLALC7GygnEALQvVwMGYjDA8aGY5wf7sJB54FXGN53Diq/RKfQYRO3KQi0
-         Eha30orQgU1Lo+cUtfzCUGFieSjzcJhAf3jyRGpafUUniRFJks/wjHynMn6MhwqDZaKV
-         ZH/L3cU5DyPkALD9F8wACebYqxhRY8pnD6dtC6T5PZjwLqF/Zx1s5o15T7w1pu6t28JA
-         NgArTCHFjIX5vyOit+c3YLVaWAfI3ub3VSfkRwvImRszafqqa2fWx6fuUSIhbrswnXZK
-         Su81zkPYch4mEySeCiU2UcvP5pRiSp9N+D0s060xZ/ymjRqMty1Q051mQhYdOyixpqG/
-         aCVw==
-X-Gm-Message-State: APjAAAXVU+obV3xesMvKJ5PzZRs8GwMvt7+6pwpcFCjnaojRrZElNenY
-        LwwvirU7RQr5OG/Icl2yTLt34aQL+p15gTqhj8VtVA==
-X-Google-Smtp-Source: APXvYqw4HCjsVl+Amh2Teet2qtkXvGz99b/JiD+OyiCx/6U5M9oVU+FrejKuChE3TPRj4OZE1ZrjIBxXffNmybu5Pvg=
-X-Received: by 2002:a63:205f:: with SMTP id r31mr32165059pgm.159.1562695307162;
- Tue, 09 Jul 2019 11:01:47 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/7SeunipKTPZ/+kbJegCG+IF0p5px4U+K64a01qXtbE=;
+        b=qDprZY5/ehuPgkQIppB2ORnA0vCgiznjjyhrzzUgE1l2qd0XL6V2I1ffzXl3yNMP1x
+         +AlolWtUKVyWGOM35xt8B4Zv0iZywMrzpAw1qmrIRhN/mZ7AjpNgkIB6wnRcfgJXsx/H
+         EiZNaKvqo2v8l9j/H6VRPm7sRys6aV7Vr9RN4QTvrdda6hn1AQvbj756+Bf5pb+14kSl
+         pXS1aa8Y50XvSQxIXBeEa+jf19GM4qshNLIhE3geMG6s1ZvLnS1vcoqjAy86kHC1Gj+6
+         71+py1ICtGmVCf87Os+UNRxn+FQfsOgzK4b8vVdy8BFhx5TgiJYpTvpLs2+zgK8/Ak0z
+         1HKw==
+X-Gm-Message-State: APjAAAUWKU34bTrVXo6F3OYARaAIjNaSYs1Ogj3DYnu7th1v274gzbGp
+        85g2+a6LTxOs6NgQpdBTnPnidoWxvOee7A==
+X-Google-Smtp-Source: APXvYqypFlpEDviSy2ejpUywzPdVRNwYyo/yvYMiyCSTuDOWShCdGVsakrtlrPCv8wbj+TvDK+OTfA==
+X-Received: by 2002:a17:902:86:: with SMTP id a6mr34117842pla.244.1562696519377;
+        Tue, 09 Jul 2019 11:21:59 -0700 (PDT)
+Received: from localhost.localdomain ([2001:19f0:7001:2668:5400:1ff:fe62:2bbd])
+        by smtp.gmail.com with ESMTPSA id m69sm21008639pga.11.2019.07.09.11.21.52
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 09 Jul 2019 11:21:58 -0700 (PDT)
+From:   Chuanhong Guo <gch981213@gmail.com>
+To:     linux-clk@vger.kernel.org (open list:COMMON CLK FRAMEWORK),
+        devicetree@vger.kernel.org (open list:OPEN FIRMWARE AND FLATTENED
+        DEVICE TREE BINDINGS), linux-kernel@vger.kernel.org (open list),
+        linux-mips@vger.kernel.org (open list:MIPS),
+        devel@driverdev.osuosl.org (open list:STAGING SUBSYSTEM)
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
+        John Crispin <john@phrozen.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Weijie Gao <hackpascal@gmail.com>, NeilBrown <neil@brown.name>,
+        Chuanhong Guo <gch981213@gmail.com>
+Subject: [PATCH 0/5] MIPS: ralink: add CPU clock detection for MT7621
+Date:   Wed, 10 Jul 2019 02:20:13 +0800
+Message-Id: <20190709182018.23193-1-gch981213@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190709063023.251446-1-brendanhiggins@google.com>
- <20190709063023.251446-17-brendanhiggins@google.com> <7cc417dd-036f-7dc1-6814-b1fdac810f03@kernel.org>
-In-Reply-To: <7cc417dd-036f-7dc1-6814-b1fdac810f03@kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Tue, 9 Jul 2019 11:01:35 -0700
-Message-ID: <CAFd5g4595X8cM919mohQVaShs4dKWzZ_-2RVB=6SH3RdVMwuQw@mail.gmail.com>
-Subject: Re: [PATCH v7 16/18] MAINTAINERS: add entry for KUnit the unit
- testing framework
-To:     shuah <shuah@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 9, 2019 at 7:53 AM shuah <shuah@kernel.org> wrote:
->
-> On 7/9/19 12:30 AM, Brendan Higgins wrote:
-> > Add myself as maintainer of KUnit, the Linux kernel's unit testing
-> > framework.
-> >
-> > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-> > ---
-> >   MAINTAINERS | 11 +++++++++++
-> >   1 file changed, 11 insertions(+)
-> >
-> > diff --git a/MAINTAINERS b/MAINTAINERS
-> > index 677ef41cb012c..48d04d180a988 100644
-> > --- a/MAINTAINERS
-> > +++ b/MAINTAINERS
-> > @@ -8599,6 +8599,17 @@ S:     Maintained
-> >   F:  tools/testing/selftests/
-> >   F:  Documentation/dev-tools/kselftest*
-> >
-> > +KERNEL UNIT TESTING FRAMEWORK (KUnit)
-> > +M:   Brendan Higgins <brendanhiggins@google.com>
-> > +L:   linux-kselftest@vger.kernel.org
-> > +L:   kunit-dev@googlegroups.com
-> > +W:   https://google.github.io/kunit-docs/third_party/kernel/docs/
-> > +S:   Maintained
-> > +F:   Documentation/dev-tools/kunit/
-> > +F:   include/kunit/
-> > +F:   kunit/
-> > +F:   tools/testing/kunit/
-> > +
-> >   KERNEL USERMODE HELPER
-> >   M:  Luis Chamberlain <mcgrof@kernel.org>
-> >   L:  linux-kernel@vger.kernel.org
-> >
->
-> Thanks Brendan.
->
-> I am good with this. I can take KUnit patches through kselftest
-> with your Ack.
+This patchset ports CPU clock detection for MT7621 from OpenWrt.
 
-My acknowledgement? Sure! I thought we already agreed to that.
+Last time I sent this, I forgot to add an binding include which
+caused a compile error and the patch doesn't stay in linux-next.
 
-Also, do we need an ack from Masahiro or Michal for the Kbuild patch
-[PATCH v7 06/18]? And an ack from Josh or Peter for the objtool patch
-[PATCH v7 08/18]?
+This patchset resent the first two commits and also added binding
+documentation for mt7621-pll and used it in mt7621-dts at
+drivers/staging.
 
-Greg and Logan gave me a Reviewed-by for the Kbuild patch, so maybe
-that's fine, but I don't have any reviews or acks for the objtool
-patch.
+BTW: What should I do with such a patchset that touches multiple
+parts in kernel?
+Is it correct to send the entire patchset to lists of all involved
+subsystems?
 
-Thanks!
+Chuanhong Guo (5):
+  MIPS: ralink: add dt binding header for mt7621-pll
+  MIPS: ralink: fix cpu clock of mt7621 and add dt clk devices
+  dt: bindings: add mt7621-pll dt binding documentation
+  staging: mt7621-dts: add dt nodes for mt7621-pll
+  staging: mt7621-dts: fix register range of memc node in mt7621.dtsi
+
+ .../bindings/clock/mediatek,mt7621-pll.txt    |  19 ++++
+ arch/mips/include/asm/mach-ralink/mt7621.h    |  20 ++++
+ arch/mips/ralink/mt7621.c                     | 102 ++++++++++++------
+ arch/mips/ralink/timer-gic.c                  |   4 +-
+ drivers/staging/mt7621-dts/mt7621.dtsi        |  17 ++-
+ include/dt-bindings/clock/mt7621-clk.h        |  14 +++
+ 6 files changed, 134 insertions(+), 42 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt7621-pll.txt
+ create mode 100644 include/dt-bindings/clock/mt7621-clk.h
+
+-- 
+2.21.0
+
