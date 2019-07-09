@@ -2,100 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A98762DB5
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 03:56:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4A92F62DB7
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 03:56:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725925AbfGIBsg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 21:48:36 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:42346 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725905AbfGIBsg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 21:48:36 -0400
-Received: by mail-io1-f65.google.com with SMTP id u19so39671009ior.9;
-        Mon, 08 Jul 2019 18:48:35 -0700 (PDT)
+        id S1726046AbfGIBwX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 21:52:23 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:35473 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725941AbfGIBwX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 21:52:23 -0400
+Received: by mail-io1-f68.google.com with SMTP id m24so30247323ioo.2;
+        Mon, 08 Jul 2019 18:52:22 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=GvfjGGlw3UxBPItY7HGBbTvYAxu5k/MIEMpMCZvF99I=;
-        b=UTaJYLljlZRjSzoNqmRsxcW5o04wdkEn61vm2x2yoJQZNWFEPz/TXS6F6f10E2I828
-         TWYm8pLJKD3K7eQWrcBFemgo6df+9o8hXMgPQjGxX1QiefPirXKZRO4SKmosuOydeHD9
-         gjvbf//mAUMVOZ46MMCgjpLg5EI3znf4dzDcPqcO0b28PNJYv5iHHSVwtjVt0fZPsR3T
-         zK22YQVpMUlsMW9CWNkb0JQg21Mkct0kjXJ0Vzdg4TeqP8M95FJ4qct0sHE0a7G/I1jY
-         Zt5X2HIs5GNssXAG/WYrtT/pxtRRRDNyS1Lqbto+qwxpp0CXlml3MyYBXki+Tpv7xFDe
-         L/HQ==
-X-Gm-Message-State: APjAAAXFyqpmeqfTpnmXG+jSqZJWNOa8J7rOMp+GF239vQYqHquz10Lr
-        jcmsOsuQQbCC2cfdDEBS7A==
-X-Google-Smtp-Source: APXvYqx8/pBZlcjplRHgCgiL8IcLhiig4B4YXatyJvJH9FgiUfObN2umu8Y0q9OyU8ZtGCD+ohGRiQ==
-X-Received: by 2002:a5d:8c97:: with SMTP id g23mr22369768ion.250.1562636914903;
-        Mon, 08 Jul 2019 18:48:34 -0700 (PDT)
+        bh=/tzcZLlDxbC1twwv0AFnIwTd9l+z877k7LvqZNpQY/c=;
+        b=kMwyIDadQowI9Se3474fkdqIU67ubqm8PaDM2K1pPoKp+c4wFFz5JaQXsxMGfdF0mL
+         xbZFQj8bqgy/EF+i0XH94/dJe56NO8EibhLTDlrpNU+2saVGeRj2TNugjbrFwsW6Nx11
+         vr/L+UzPQPW+w2devIJ+7Th1yQagCpdHH86X67oPfcpcv99bf/JB5j8Eie+ZnlxXpeQq
+         YmVPOLm4Q/bUwi059pXwZUtI3xedcPnkhe2alJI71JaxtgmBm5zWwtX/T9wMBfvXz1fy
+         8H6TEnq7JkMpQ+J0UpYOluZcASqaQ08ShXorknPJGzo+caNwES0FKdDl08xqsXUC+J3D
+         0bNA==
+X-Gm-Message-State: APjAAAUuRUkKPMlawxakxcP3yPT1myk3vHBBDZPUK6/NjcOVIBIxG2Wj
+        ynLelUNQoEYmpd5OEpUcLQ==
+X-Google-Smtp-Source: APXvYqyuoLXWQjUHBrmOlsWqa0z0KTgxi+6bb9MZ0KVWo5iYoxRliYViJNxGihIE2TjIS3iii9ESlQ==
+X-Received: by 2002:a02:6d24:: with SMTP id m36mr25055180jac.87.1562637142441;
+        Mon, 08 Jul 2019 18:52:22 -0700 (PDT)
 Received: from localhost ([64.188.179.252])
-        by smtp.gmail.com with ESMTPSA id l5sm25436032ioq.83.2019.07.08.18.48.33
+        by smtp.gmail.com with ESMTPSA id e188sm16873548ioa.3.2019.07.08.18.52.21
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 08 Jul 2019 18:48:34 -0700 (PDT)
-Date:   Mon, 8 Jul 2019 19:48:32 -0600
+        Mon, 08 Jul 2019 18:52:21 -0700 (PDT)
+Date:   Mon, 8 Jul 2019 19:52:20 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Alim Akhtar <alim.akhtar@samsung.com>,
-        Avri Altman <avri.altman@wdc.com>,
-        Pedro Sousa <pedrom.sousa@synopsys.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        Andy Gross <agross@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        linux-arm-msm@vger.kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-scsi@vger.kernel.org
-Subject: Re: [PATCH v2 2/3] scsi: ufs: Allow resetting the UFS device
-Message-ID: <20190709014832.GA14402@bogus>
-References: <20190606010249.3538-1-bjorn.andersson@linaro.org>
- <20190606010249.3538-3-bjorn.andersson@linaro.org>
+To:     Luis Oliveira <Luis.Oliveira@synopsys.com>
+Cc:     p.zabel@pengutronix.de, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Joao.Pinto@synopsys.com,
+        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>
+Subject: Re: [PATCH V2 2/2] dt-bindings: Document the DesignWare IP reset
+ bindings
+Message-ID: <20190709015220.GA18239@bogus>
+References: <1559835388-2578-1-git-send-email-luis.oliveira@synopsys.com>
+ <1559835388-2578-3-git-send-email-luis.oliveira@synopsys.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190606010249.3538-3-bjorn.andersson@linaro.org>
+In-Reply-To: <1559835388-2578-3-git-send-email-luis.oliveira@synopsys.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 05, 2019 at 06:02:48PM -0700, Bjorn Andersson wrote:
-> Acquire the device-reset GPIO and toggle this to reset the UFS device
-> during initialization and host reset.
+On Thu, Jun 06, 2019 at 05:36:28PM +0200, Luis Oliveira wrote:
+> This adds documentation of device tree bindings for the
+> DesignWare IP reset controller.
 > 
-> Based on downstream support implemented by Subhash Jadavani
-> <subhashj@codeaurora.org>.
-> 
-> Tested-by: John Stultz <john.stultz@linaro.org>
-> Signed-off-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
+> Signed-off-by: Luis Oliveira <luis.oliveira@synopsys.com>
 > ---
+> Changelog
+> - Add active low configuration example
+> - Fix compatible string in the active high example
 > 
-> Changes since v1:
-> - Added gpio to DT binding document
-> - Fixed spelling of UFS
+>  .../devicetree/bindings/reset/snps,dw-reset.txt    | 30 ++++++++++++++++++++++
+>  1 file changed, 30 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/reset/snps,dw-reset.txt
 > 
->  .../devicetree/bindings/ufs/ufshcd-pltfrm.txt |  2 +
->  drivers/scsi/ufs/ufshcd.c                     | 44 +++++++++++++++++++
->  drivers/scsi/ufs/ufshcd.h                     |  4 ++
->  3 files changed, 50 insertions(+)
+> diff --git a/Documentation/devicetree/bindings/reset/snps,dw-reset.txt b/Documentation/devicetree/bindings/reset/snps,dw-reset.txt
+> new file mode 100644
+> index 0000000..85f3301
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/snps,dw-reset.txt
+> @@ -0,0 +1,30 @@
+> +Synopsys DesignWare Reset controller
+> +=======================================
+> +
+> +Please also refer to reset.txt in this directory for common reset
+> +controller binding usage.
+> +
+> +Required properties:
+> +
+> +- compatible: should be one of the following.
+> +	"snps,dw-high-reset" - for active high configuration
+> +	"snps,dw-low-reset" - for active low configuration
+
+This is really a standalone block?
+
+Are there versions of IP?
+
+> +
+> +- reg: physical base address of the controller and length of memory mapped
+> +	region.
+> +
+> +- #reset-cells: must be 1.
+> +
+> +example:
+> +
+> +	dw_rst_1: reset-controller@0000 {
+> +		  compatible = "snps,dw-high-reset";
+> +	 	  reg = <0x0000 0x4>;
+> +		  #reset-cells = <1>;
+> +	};
+> +
+> +	dw_rst_2: reset-controller@1000 {i
+> +		  compatible = "snps,dw-low-reset";
+> +		  reg = <0x1000 0x8>;
+> +		  #reset-cells = <1>;
+> +	};
+> -- 
+> 2.7.4
 > 
-> diff --git a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> index a74720486ee2..d562d8b4919c 100644
-> --- a/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> +++ b/Documentation/devicetree/bindings/ufs/ufshcd-pltfrm.txt
-> @@ -54,6 +54,8 @@ Optional properties:
->  			  PHY reset from the UFS controller.
->  - resets            : reset node register
->  - reset-names       : describe reset node register, the "rst" corresponds to reset the whole UFS IP.
-> +- device-reset-gpios	: A phandle and gpio specifier denoting the GPIO connected
-> +			  to the RESET pin of the UFS memory device.
-
-A sign we should have a child node for the device...
-
-Doesn't using 'reset-gpios' work as I doubt one would have a GPIO reset 
-for the host controller.
-
-Rob
