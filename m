@@ -2,78 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2053563E00
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 00:50:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CD91D63E04
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 00:50:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726491AbfGIWuO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 18:50:14 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:43711 "EHLO
+        id S1726428AbfGIWu4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 18:50:56 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:33413 "EHLO
         mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726133AbfGIWuO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 18:50:14 -0400
-Received: by mail-io1-f65.google.com with SMTP id k20so483659ios.10;
-        Tue, 09 Jul 2019 15:50:13 -0700 (PDT)
+        with ESMTP id S1726133AbfGIWuz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 18:50:55 -0400
+Received: by mail-io1-f65.google.com with SMTP id z3so601124iog.0;
+        Tue, 09 Jul 2019 15:50:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=nvvoh+fbNkBLPpXy4Y6lZA9c7jtYP7QeOvjrEV4cBIw=;
-        b=E152u+zQeaNBnPpxaN3G5IWMXpMaQpMLd010lSDCikFET9slcst5Zoxa/lUtl6ccxh
-         pCEkqrRhpo6lxIQ2t7QS9oYJOilukZoKbVGiY1XoxEii4ojKe3XXo4+cE/1YM/vONEXk
-         WcZmw46W/E5aNdxj7INMJD44+keaTIvS/N9HN76TzIe/2kTzT130wKpj8cBHgQGEWbkn
-         lgR3oyfB+BpgqQl48gqzoVvM+xhqrYrffFRGJ9ttkaQCKu17Ye18ElrvQ4uBpNJRZLT3
-         x53tLU9jkKia5vBRM4blxKfuA7Z3EH2xG/YamXI5vndFkX681kAbKCY0hn8nKlOPyaqO
-         7dAA==
-X-Gm-Message-State: APjAAAVPphKBeq8WKNo9RwBx3rPAy3EWUqVGQb7fVk47V/nPEC/PgX0X
-        AJdunqHYy0GG84RO6ObSNQ==
-X-Google-Smtp-Source: APXvYqyIRybL0nbRMpxsdXhfMWV2kUc5p622WEvGhc+cnLHFcA7qWZGwS/KW4h4GpNKPh1jLWlazuQ==
-X-Received: by 2002:a05:6602:144:: with SMTP id v4mr27703160iot.202.1562712612914;
-        Tue, 09 Jul 2019 15:50:12 -0700 (PDT)
+        bh=UqPnkpAEUlKpVyrsNSV+fc7Kx0vSPNNrsHHUgfNEjus=;
+        b=Xc86xulVRMYuYUj6z/+FFg8nUXg5Ia769QdUKABqF7EfYLv9NJZNZnFn8WlFL+fWyS
+         D98bEEbdXTIP675Ef0Y2hhsJiEFv5rQyLy9fTN3uJx1vWFqXsPfrmGHE383e8IOtYOPs
+         H/zy63h2cSnVn710Tl+xJudYIaP+MoKyC4KuKE3+l3ZZN6m8yfgu5zl9VfgWf1kH8xXS
+         CGzVGQw0Yj/FNr3tu0x1K4utNsB3QdksPoNLa36J1y7i5H9a0Bc4iECg283YYUJpob26
+         bMduGoSiJhYsg4iDLKhqmf3nl5kvQipmZprEsqVKcUQNbHlx9p2nc+npq8rzYkBUZq3r
+         2C5A==
+X-Gm-Message-State: APjAAAXX0XTlRLjXYduKjxVTFLjdTJGSm1sn3NDeyJfcssyWznA/ubzV
+        X21tLRBXjmYUfKcMDcnvgg==
+X-Google-Smtp-Source: APXvYqx6GaFGNFu/Gs8Ct3zM+Thf5p3GPzAn0CoeeaRGIEaKsvMqPDSWW2PRaa//YWXroiwsO+DBDQ==
+X-Received: by 2002:a5d:8411:: with SMTP id i17mr21198926ion.83.1562712654937;
+        Tue, 09 Jul 2019 15:50:54 -0700 (PDT)
 Received: from localhost ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id i4sm292005iog.31.2019.07.09.15.50.11
+        by smtp.gmail.com with ESMTPSA id l14sm291821iob.1.2019.07.09.15.50.54
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 09 Jul 2019 15:50:12 -0700 (PDT)
-Date:   Tue, 9 Jul 2019 16:50:11 -0600
+        Tue, 09 Jul 2019 15:50:54 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 16:50:53 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Ezequiel Garcia <ezequiel@collabora.com>
-Cc:     dri-devel@lists.freedesktop.org,
-        linux-rockchip@lists.infradead.org,
-        Heiko =?iso-8859-1?Q?St=FCbner?= <heiko@sntech.de>,
-        Sandy Huang <hjc@rock-chips.com>, kernel@collabora.com,
-        Sean Paul <seanpaul@chromium.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Douglas Anderson <dianders@chromium.org>,
-        Jacopo Mondi <jacopo@jmondi.org>,
-        Ilia Mirkin <imirkin@alum.mit.edu>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Ezequiel Garcia <ezequiel@collabora.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: rockchip: document VOP
- gamma LUT address
-Message-ID: <20190709225011.GA11245@bogus>
-References: <20190621211346.1324-1-ezequiel@collabora.com>
- <20190621211346.1324-2-ezequiel@collabora.com>
+To:     Kefeng Wang <wangkefeng.wang@huawei.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Kefeng Wang <wangkefeng.wang@huawei.com>,
+        Kumar Gala <galak@kernel.crashing.org>
+Subject: Re: [PATCH] dt-bindings: 83xx-512x-pci: Drop cell-index property
+Message-ID: <20190709225053.GA12654@bogus>
+References: <20190622034557.196097-1-wangkefeng.wang@huawei.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190621211346.1324-2-ezequiel@collabora.com>
+In-Reply-To: <20190622034557.196097-1-wangkefeng.wang@huawei.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 21 Jun 2019 18:13:44 -0300, Ezequiel Garcia wrote:
-> Add the register specifier description for an
-> optional gamma LUT address.
+On Sat, 22 Jun 2019 11:45:57 +0800, Kefeng Wang wrote:
+> 28eac2b74cc7 ("powerpc/fsl: Remove cell-index from PCI nodes"),
+> and for now it is still not used, drop it from doc.
 > 
-> Signed-off-by: Ezequiel Garcia <ezequiel@collabora.com>
+> Cc: Kumar Gala <galak@kernel.crashing.org>
+> Signed-off-by: Kefeng Wang <wangkefeng.wang@huawei.com>
 > ---
-> Changes from v1:
-> * Drop reg-names, suggested by Doug.
-> ---
->  .../devicetree/bindings/display/rockchip/rockchip-vop.txt   | 6 +++++-
->  1 file changed, 5 insertions(+), 1 deletion(-)
+>  Documentation/devicetree/bindings/pci/83xx-512x-pci.txt | 1 -
+>  1 file changed, 1 deletion(-)
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Applied, thanks.
+
+Rob
