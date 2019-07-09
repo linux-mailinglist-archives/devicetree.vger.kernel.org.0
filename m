@@ -2,75 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D4259639DB
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 19:03:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DBC86639E5
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 19:05:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726341AbfGIRDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 13:03:36 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:41636 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726284AbfGIRDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 13:03:36 -0400
-Received: by mail-io1-f65.google.com with SMTP id j5so25353335ioj.8
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2019 10:03:35 -0700 (PDT)
+        id S1726133AbfGIRFe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 13:05:34 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:39973 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725816AbfGIRFe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 13:05:34 -0400
+Received: by mail-io1-f67.google.com with SMTP id h6so36502634iom.7;
+        Tue, 09 Jul 2019 10:05:34 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=0PRQV1h01VSnXO7p1jiGRaa3LHaTGuGr/hi69YvxKb8=;
-        b=Vx9VIP3TqG7lMrF9fcrOTSMbmcJw1Dv87ljgwA7rled63/bI93KnL6oWBOpHv0pDmr
-         44vAiSeSJ3nvL14k3upyTO0ZD3uvgTk3ZWYltsLgePKasyQJpQJSBlaXW9SyytZZd7Ve
-         WwnYvMSgPRj/i9c7Mu/231EWUzOBbWwUNAHectPrGQQ6CzIcaufuBRv57Q5k2AqBCGKf
-         DPLJ+HaHfTJRB9k7XhoQthnWEa8/vs6U+MSWPhguoyd/UjuzLM0/Ad9+a7+UgTY8a5yc
-         O6vS/YCZQ0NefnLfRcHqGA87EXLXL5lIiuj+5GepnxgqLJxKvMBTixizHlaXY50qR4tV
-         iJBg==
-X-Gm-Message-State: APjAAAUq12r9BEbkaDWGOGkRGRtObG/XbGWB+mNiMTKadGJfXSCvE9Vx
-        W4i8PBT48Q3SB5QLDKoAbiQxL7w1FA==
-X-Google-Smtp-Source: APXvYqzAi/TybgN9SP/8YqcbDSuKeU8Tx9sFm9tzFu1cwz6VaHeNAfpnmFTlnxxrzFQCmQLyus9IJg==
-X-Received: by 2002:a02:13c3:: with SMTP id 186mr28606534jaz.30.1562691815051;
-        Tue, 09 Jul 2019 10:03:35 -0700 (PDT)
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=TZVSdIReA1dub8lT+/BNLKNf7FMnmnulMnUfS3UgQmc=;
+        b=lIfPNS77oh6GZKTG8EW0DdN7iALgEHwzL89uHZYjO9TNjeVYtWTw3RXwvPGkQykOWD
+         bkcFa6UMXSOir8F2Egs7a83pgFrZXh9luUaKKGX0NHrjT8WPWAVQiQTZ1asixhuYCjMU
+         qfv/XWVZ+HtdE+jrHZs2rqi8A6xPSIJ5iX4HaZquBC8nq6jtFfKckNWe0PHhqAfUggRs
+         sfUxDQxENJN8guZ8F9zuUEV8XCdGwt5Xj+kD8SFfoxXNbirTAVuVXEXKyJsRKJnTwJhj
+         8xgHsr1BsJieTCqoxxDHfY9c77EEzZ0ukNGMoRds3N/524H0voPESCkSc6lGVa20wLy9
+         jarw==
+X-Gm-Message-State: APjAAAUMQxADasf2bNU4OOZrw9lnY6KU1cgYi5vYQ4DjdzamJ42LetXG
+        DfitaDmRY0efwF/s3ny8tw==
+X-Google-Smtp-Source: APXvYqy82rUB+PxD0GvIta+96cabnu3QalLm/IpoEAom3xpXM1tw/t9dcYtTv9yOKDIievsmVKm/tg==
+X-Received: by 2002:a5d:94d0:: with SMTP id y16mr24563041ior.123.1562691933479;
+        Tue, 09 Jul 2019 10:05:33 -0700 (PDT)
 Received: from localhost ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id b20sm16803274ios.44.2019.07.09.10.03.34
+        by smtp.gmail.com with ESMTPSA id f20sm19481160ioh.17.2019.07.09.10.05.32
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 09 Jul 2019 10:03:34 -0700 (PDT)
-Date:   Tue, 9 Jul 2019 11:03:32 -0600
+        Tue, 09 Jul 2019 10:05:32 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 11:05:31 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-arm-kernel@lists.infradead.org,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Subject: Re: [PATCH] dt-bindings: arm: Convert RDA Micro board/soc bindings
- to json-schema
-Message-ID: <20190709170332.GA14545@bogus>
-References: <20190618212229.32302-4-robh@kernel.org>
+To:     Anson.Huang@nxp.com
+Cc:     mturquette@baylibre.com, sboyd@kernel.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, catalin.marinas@arm.com,
+        will.deacon@arm.com, maxime.ripard@bootlin.com, olof@lixom.net,
+        horms+renesas@verge.net.au, jagan@amarulasolutions.com,
+        leonard.crestez@nxp.com, bjorn.andersson@linaro.org,
+        dinguyen@kernel.org, enric.balletbo@collabora.com,
+        aisheng.dong@nxp.com, ping.bai@nxp.com, abel.vesa@nxp.com,
+        l.stach@pengutronix.de, peng.fan@nxp.com,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Linux-imx@nxp.com
+Subject: Re: [PATCH V5 1/5] dt-bindings: imx: Add clock binding doc for
+ i.MX8MN
+Message-ID: <20190709170531.GA19236@bogus>
+References: <20190619055247.35771-1-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190618212229.32302-4-robh@kernel.org>
+In-Reply-To: <20190619055247.35771-1-Anson.Huang@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 18, 2019 at 03:22:28PM -0600, Rob Herring wrote:
-> Convert RDA Micro SoC bindings to DT schema format using json-schema.
+On Wed, 19 Jun 2019 13:52:43 +0800, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
 > 
-> Cc: "Andreas Färber" <afaerber@suse.de>
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
+> Add the clock binding doc for i.MX8MN.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> Reviewed-by: Maxime Ripard <maxime.ripard@bootlin.com>
 > ---
-> Andreas, Update the license on this one too to dual licensed if you 
-> want.
-
-Ping.
-
+> No changes.
+> ---
+>  .../devicetree/bindings/clock/imx8mn-clock.yaml    | 112 +++++++++++
+>  include/dt-bindings/clock/imx8mn-clock.h           | 215 +++++++++++++++++++++
+>  2 files changed, 327 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/imx8mn-clock.yaml
+>  create mode 100644 include/dt-bindings/clock/imx8mn-clock.h
 > 
->  Documentation/devicetree/bindings/arm/rda.txt | 17 ----------------
->  .../devicetree/bindings/arm/rda.yaml          | 20 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 21 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/rda.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/rda.yaml
+
+Reviewed-by: Rob Herring <robh@kernel.org>
