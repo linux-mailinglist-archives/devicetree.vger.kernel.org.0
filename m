@@ -2,86 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5401062D3C
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 03:00:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 13D6062D46
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 03:07:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725905AbfGIBAd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 8 Jul 2019 21:00:33 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:60226 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725886AbfGIBAd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 8 Jul 2019 21:00:33 -0400
-Received: from pendragon.ideasonboard.com (softbank126163157105.bbtec.net [126.163.157.105])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id A1EEA56A;
-        Tue,  9 Jul 2019 03:00:29 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1562634030;
-        bh=JcoNvT6UrNwEt+JAKB+7zeJTg9CMTlg7f+WQ+ug96XA=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=JJ0dnaeWZoBDMj0jnrK99OHQkR2NJ0rWC5xGY2fL7nW9Cl7NDb0ePwDHRPL56kUR6
-         u2Wiqg1TbBPafN9RBiuGxFkbZzixD1txIm1yJHrrm751ziIsNMSOUErN2BN76ci26w
-         1D+6jM1yyDMJ/NlGZCCH1Ht9P9E2UVwrXPh0a5aU=
-Date:   Tue, 9 Jul 2019 04:00:04 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     dri-devel <dri-devel@lists.freedesktop.org>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>, Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Sebastian Reichel <sebastian.reichel@collabora.com>,
-        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>
-Subject: Re: [PATCH 17/60] dt-bindings: Add legacy 'toppoly' vendor prefix
-Message-ID: <20190709010004.GD4819@pendragon.ideasonboard.com>
-References: <20190707180852.5512-1-laurent.pinchart@ideasonboard.com>
- <20190707181937.6250-1-laurent.pinchart@ideasonboard.com>
- <20190707181937.6250-14-laurent.pinchart@ideasonboard.com>
- <CAL_JsqLJy=UCeQ_Ex7tFh2OjtitNFVjT4v=PDZSbseva+ZrGDQ@mail.gmail.com>
+        id S1725941AbfGIBHc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 8 Jul 2019 21:07:32 -0400
+Received: from szxga05-in.huawei.com ([45.249.212.191]:2243 "EHLO huawei.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725886AbfGIBHb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 8 Jul 2019 21:07:31 -0400
+Received: from DGGEMS411-HUB.china.huawei.com (unknown [172.30.72.58])
+        by Forcepoint Email with ESMTP id 8F1A245A256F786BE060;
+        Tue,  9 Jul 2019 09:07:28 +0800 (CST)
+Received: from [127.0.0.1] (10.65.87.206) by DGGEMS411-HUB.china.huawei.com
+ (10.3.19.211) with Microsoft SMTP Server id 14.3.439.0; Tue, 9 Jul 2019
+ 09:07:19 +0800
+Subject: Re: [PATCH] net: hisilicon: Add an tx_desc to adapt HI13X1_GMAC
+To:     David Miller <davem@davemloft.net>
+References: <1562307003-103516-1-git-send-email-xiaojiangfeng@huawei.com>
+ <20190707.221805.2104668553072088371.davem@davemloft.net>
+ <20190708.111833.1002341757593028886.davem@davemloft.net>
+CC:     <yisen.zhuang@huawei.com>, <salil.mehta@huawei.com>,
+        <dingtianhong@huawei.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <netdev@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <leeyou.li@huawei.com>, <xiekunxun@huawei.com>,
+        <jianping.liu@huawei.com>, <nixiaoming@huawei.com>
+From:   Jiangfeng Xiao <xiaojiangfeng@huawei.com>
+Message-ID: <89adc83e-c789-9c61-222b-23110778a873@huawei.com>
+Date:   Tue, 9 Jul 2019 09:07:19 +0800
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:45.0) Gecko/20100101
+ Thunderbird/45.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqLJy=UCeQ_Ex7tFh2OjtitNFVjT4v=PDZSbseva+ZrGDQ@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190708.111833.1002341757593028886.davem@davemloft.net>
+Content-Type: text/plain; charset="windows-1252"
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.65.87.206]
+X-CFilter-Loop: Reflected
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
 
-On Mon, Jul 08, 2019 at 01:00:35PM -0600, Rob Herring wrote:
-> On Sun, Jul 7, 2019 at 12:25 PM Laurent Pinchart wrote:
-> >
-> > The 'toppoly' vendor prefix is in use and refers to TPO, whose DT vendor
-> > prefix is already defined as 'tpo'. Add 'toppoly' as an alternative and
-> > document it as legacy.
-> >
-> > Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > ---
-> >  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
-> > diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > index 2514463f2c63..d78527eb8254 100644
-> > --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> > @@ -867,6 +867,8 @@ patternProperties:
-> >      description: Tecon Microprocessor Technologies, LLC.
-> >    "^topeet,.*":
-> >      description: Topeet
-> > +  "^toppoly,.*":
-> > +    description: TPO (legacy prefix, see 'tpo')
+
+On 2019/7/9 2:18, David Miller wrote:
+> From: David Miller <davem@davemloft.net>
+> Date: Sun, 07 Jul 2019 22:18:05 -0700 (PDT)
 > 
-> Add 'deprecated: true' also. That's a new property in json-schema
-> draft8. It's not used for anything yet other than documentation.
+>> From: Jiangfeng Xiao <xiaojiangfeng@huawei.com>
+>> Date: Fri, 5 Jul 2019 14:10:03 +0800
+>>
+>>> HI13X1 changed the offsets and bitmaps for tx_desc
+>>> registers in the same peripheral device on different
+>>> models of the hip04_eth.
+>>>
+>>> Signed-off-by: Jiangfeng Xiao <xiaojiangfeng@huawei.com>
+>>
+>> Applied.
+> 
+> Actually I didn't apply this because I can't see that HI13X1_GMAC
+> kconfig knob anywhere in the tree at all.
+> 
 
-Thank you for the pointer.
+Thank you for your guidance, I made a mistake, for which I am
+sincerely sorry for wasting your time.
 
-By the way this series conflicts with your patches that move all panel
-bindings to yaml. I'll rebase it on top if yours gets merged first.
+I will submit the correct one again.
+I will not make this low-level mistake again.
 
--- 
-Regards,
+Thanks,
+Jiangfeng Xiao
 
-Laurent Pinchart
+
+
