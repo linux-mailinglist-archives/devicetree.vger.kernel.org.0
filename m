@@ -2,107 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B692162FB8
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 06:45:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE04D62FDD
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 07:19:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726074AbfGIEpJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 00:45:09 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:39012 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727570AbfGIEpJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 00:45:09 -0400
-Received: by mail-pg1-f195.google.com with SMTP id u17so8293043pgi.6
-        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 21:45:08 -0700 (PDT)
+        id S1726010AbfGIFL2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 01:11:28 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:38509 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725856AbfGIFL2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 01:11:28 -0400
+Received: by mail-pl1-f195.google.com with SMTP id az7so1979271plb.5;
+        Mon, 08 Jul 2019 22:11:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
+        d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=w8T1boIzFFoSOnmUYhW8pmkZUoG7ex2MB+rDKpzf8fs=;
-        b=XfZKXd7gmjz5FPaPLVypAzfMeQL7XUAQdYsunJCY3edTML1McnkNitbWb6ADc6SBhM
-         Qo0eMq66Gu9Gv56plq3V0zoMDHhQApGnazKdIpO84Qk9i6oqX32jNLCetDrieaCdg+v8
-         EJrv1Cy3o3HIijQtdKVW1jbOnR62iGkmeLqCOrMOtR7lQwTf7qKtB6WW50HzQHvyaW6e
-         w7Oiq41vBHBavgTsowi5sXY3Wm/rL+7C+KAK/1lwea//U4oQmdcylRmlpNm8diu/JF3+
-         M9vnE/7+ELnEwQikJXNppyxGHxZjtjIm3Nz+RMt9X0D6uI/jIQg0NYt6YEOV8gY8gTXt
-         zIUw==
+        bh=FV7uyWwtvMV2i7smjumOV97N5dk29bMDQstes/Ncgy8=;
+        b=M1hijk/ui8sZaqBVT1hjia0XKdY92edcBLMt/AqWFpmfQsqBEOgMfsSK+W3BuwgcEa
+         6mPZdg1UiPSs4tEYeCdU5Pub/SRt3Nw2Hz/Ic6HkOMGBnPp16VT9umklQiEna77qBY5m
+         LUJEPOLbbLNyGuJxAS4JhDfMHv5mOT4skAYdSccR7cUSMg78MkpTyqRGD1CxaLwyr8ca
+         SkxbfEYz9/aOPrbSgbg0z4lUht3GB/SbqGFMhRRqDYoPc0Z4kYheE7RNBMbQSsQTfekk
+         Gm6n5efJcvho99X9ZiD1CTAZo2Pe2Q0ChO/Tn1MMesKSGqdzKKL7SBvFs5F+dcIoJSH1
+         Epbg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=w8T1boIzFFoSOnmUYhW8pmkZUoG7ex2MB+rDKpzf8fs=;
-        b=nBeFDk2/yYcxBVjD6CJBKoceP+G+YUeTitdyEoErKtQoJc16JLtnqtkCJDFkctLbg0
-         xhu/D1RXcUabOoKYfoKUACSYaF0HRP0lSRvOohLWruVvHVlRZ5vpztK5zSDtui7o+AIR
-         xvXvfvIkU9fnlpo8seQE/VxdFjbRxuzcxVW3+h1hM3rkrWmIJv6JI5viNQ8rtAT+d4fN
-         BLQtpt9ql0hJa3SuRJySzsLngIs61CuICI/I0cbQ+tXRhQWhVTqxM73zPOWcC8Rh7/3B
-         J/rXKXeAR/o/SLOGDBEKB0tfcQeCGQHAIa+5cXN5KNctpMyC4noVF4eD22EVSRTpfks7
-         70pg==
-X-Gm-Message-State: APjAAAXkgMoeRDQ7kg6zMuJzaMSn0yOEn1OQ13uZVWsi10XMN4vN9cc8
-        hTy32CyhLsT+Mo+LzwIt/FCz7w==
-X-Google-Smtp-Source: APXvYqxS1+TfUWQ4K5tWV/rky+PwoP/Nuue4PVUm0srLpT8NGOpInpCXQV6wKkHekUNntK1m1G9cwg==
-X-Received: by 2002:a63:e953:: with SMTP id q19mr28343284pgj.313.1562647508410;
-        Mon, 08 Jul 2019 21:45:08 -0700 (PDT)
-Received: from localhost ([122.172.28.117])
-        by smtp.gmail.com with ESMTPSA id 14sm38828425pfj.36.2019.07.08.21.45.06
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 08 Jul 2019 21:45:06 -0700 (PDT)
-Date:   Tue, 9 Jul 2019 10:15:04 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Anson Huang <anson.huang@nxp.com>
-Cc:     Leonard Crestez <leonard.crestez@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
-        "ccaione@baylibre.com" <ccaione@baylibre.com>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "agx@sigxcpu.org" <agx@sigxcpu.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Subject: Re: [PATCH 2/2] arm64: dts: imx8mm: Assign highest opp as suspend opp
-Message-ID: <20190709044504.gyljwwnxdt5niur5@vireshk-i7>
-References: <20190704061403.8249-1-Anson.Huang@nxp.com>
- <20190704061403.8249-2-Anson.Huang@nxp.com>
- <DB7PR04MB50519C02D90675070F21501DEEFA0@DB7PR04MB5051.eurprd04.prod.outlook.com>
- <20190708082511.py7gnjbqyp7bnhqx@vireshk-i7>
- <DB3PR0402MB391622133CD116FDE26A4F9AF5F60@DB3PR0402MB3916.eurprd04.prod.outlook.com>
- <20190708084957.waiwdun327pgvfv4@vireshk-i7>
- <DB3PR0402MB39164E2F386181255ED37F45F5F60@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+        bh=FV7uyWwtvMV2i7smjumOV97N5dk29bMDQstes/Ncgy8=;
+        b=B5Xt18elO4yPGn64ihkKfem8AmW01dmXzgdggj4yma4pea3eBXoxqJz8UwnV8UMP6i
+         b2hkWEUT0MT10sr+99ylyFDVIwFGb82v3KInFK/F+DXQ9yh4auJJ+l0btZD3d2Z9D39i
+         6KHTDB6AMjKSeaohNxLJ+meHmixvEhrcOvnBXWuQKCrRC/648i9OhXA1e+nTWNA6Yitv
+         cmc5LssDZuk41tdzyg3E/HVU+VogPD3e6K4SuFBampMiaqDcdMLg2brN9ENJJXAyPXys
+         uT/0J1DhJnCRprVeG/AxAGdnf7ndTKNBB96tksgeb18ewByanblGprShESHFhj31JAS+
+         7dRw==
+X-Gm-Message-State: APjAAAVL6IXdzt+KIEbO7HFZzf+VvzC8b+zIotTR4ro4E+ZK2L3RWXuX
+        Jg/Ueb5oLj9/+DS68jxqaw0=
+X-Google-Smtp-Source: APXvYqyn99tXbTiSR+YpshSEG0gQfV6PEnPvcaCgcu+OMifv2wZR2jjLqnWEVM8gIJHRncKFDeSrdw==
+X-Received: by 2002:a17:902:9004:: with SMTP id a4mr29689029plp.109.1562649087747;
+        Mon, 08 Jul 2019 22:11:27 -0700 (PDT)
+Received: from localhost (c-73-222-71-142.hsd1.ca.comcast.net. [73.222.71.142])
+        by smtp.gmail.com with ESMTPSA id i6sm16416325pgi.40.2019.07.08.22.11.25
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 08 Jul 2019 22:11:26 -0700 (PDT)
+Date:   Mon, 8 Jul 2019 22:11:24 -0700
+From:   Richard Cochran <richardcochran@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     netdev@vger.kernel.org, David Miller <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Jacob Keller <jacob.e.keller@intel.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Miroslav Lichvar <mlichvar@redhat.com>,
+        Willem de Bruijn <willemb@google.com>
+Subject: Re: [PATCH V5 net-next 4/6] dt-bindings: ptp: Introduce MII time
+ stamping devices.
+Message-ID: <20190709051124.vf2au5htyhghk4yx@localhost>
+References: <cover.1559281985.git.richardcochran@gmail.com>
+ <d786656435c64160d50014beb3d3d9d1aaf6f22d.1559281985.git.richardcochran@gmail.com>
+ <20190708213837.GA28934@bogus>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <DB3PR0402MB39164E2F386181255ED37F45F5F60@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20190708213837.GA28934@bogus>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-07-19, 08:54, Anson Huang wrote:
-> Each OPP has "opp-supported-hw" property as below, the first value needs to be
-> checked with speed grading fuse, and the second one needs to be checked with
-> market segment fuse, ONLY both of them passed, then this OPP is supported. It
-> calls dev_pm_opp_set_supported_hw() to tell OPP framework to parse the OPP
-> table, this is my understanding.
+On Mon, Jul 08, 2019 at 03:38:37PM -0600, Rob Herring wrote:
+> > +Required properties of the control node:
+> > +
+> > +- compatible:		"ines,ptp-ctrl"
 > 
-> opp-supported-hw = <0x8>, <0x3>;
+> This is an IP block that gets integrated into SoCs?
 
-Right, so that's what I was expecting.
+It is an IP block implemented in an FPGA (like the zync or the socfpga).
 
-One thing we can do is change the binding of OPP core a bit to allow
-multiple OPP nodes to contain the "opp-suspend" property and select
-the one finally with the highest frequency. That would be a better as
-a generic solution IMO.
+> It's not very 
+> specific given that there could be different versions of the IP block 
+> and SoC vendors can integrate various versions of the IP block in their 
+> own unique (i.e. buggy) way.
 
-And then a small OPP core patch will fix it.
+There is a version register where both the interface and FPGA are
+versioned.  The driver doesn't presently do anything with that field,
+but if newer interfaces appear, then the driver can deal with that
+without any DT help.
 
--- 
-viresh
+Thanks,
+Richard
