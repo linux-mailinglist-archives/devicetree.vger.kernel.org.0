@@ -2,51 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 46AFF63309
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 10:46:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A2216330F
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 10:55:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726091AbfGIIqZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 04:46:25 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:55984 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725985AbfGIIqZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 04:46:25 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id 3C81725B707;
-        Tue,  9 Jul 2019 18:46:23 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id 330A09403E4; Tue,  9 Jul 2019 10:46:21 +0200 (CEST)
-Date:   Tue, 9 Jul 2019 10:46:21 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        id S1725961AbfGIIzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 04:55:37 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:39977 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725951AbfGIIzg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 04:55:36 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 648996000D;
+        Tue,  9 Jul 2019 08:55:32 +0000 (UTC)
+Date:   Tue, 9 Jul 2019 10:55:32 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Vasily Khoruzhick <anarsoul@gmail.com>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>, Torsten Duwe <duwe@lst.de>,
+        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>, xu_shunji@hoperun.com
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: hihope-common: Add HDMI audio
- support
-Message-ID: <20190709084620.xanvvesjho62dlcd@verge.net.au>
-References: <1562333979-28516-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1562333979-28516-4-git-send-email-fabrizio.castro@bp.renesas.com>
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
+ on Teres-I
+Message-ID: <20190709085532.cdqv7whuesrjs64c@flea>
+References: <20190605120237.ekmytfxcwbjaqy3x@flea>
+ <E1hYsvP-0000PY-Pz@stardust.g4.wien.funkfeuer.at>
+ <20190607062802.m5wslx3imiqooq5a@flea>
+ <CGME20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752@epcas1p4.samsung.com>
+ <20190607094030.GA12373@lst.de>
+ <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
+ <20190612152022.c3cfhp4cauhzhfyr@flea>
+ <bb2c2c00-b46e-1984-088f-861ac8952331@samsung.com>
+ <20190701095842.fvganvycce2cy7jn@flea>
+ <CA+E=qVdsYV2Bxk245=Myq=otd7-7WHzUnSJN8_1dciAzvSOG8g@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="ejhhd7l2mldty4ew"
 Content-Disposition: inline
-In-Reply-To: <1562333979-28516-4-git-send-email-fabrizio.castro@bp.renesas.com>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <CA+E=qVdsYV2Bxk245=Myq=otd7-7WHzUnSJN8_1dciAzvSOG8g@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 05, 2019 at 02:39:39PM +0100, Fabrizio Castro wrote:
-> This patch adds support for HDMI audio to the device tree
-> common to the HiHope RZ/G2M and the HiHope RZ/G2N.
-> 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
+--ejhhd7l2mldty4ew
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
+On Mon, Jul 08, 2019 at 05:49:21PM -0700, Vasily Khoruzhick wrote:
+> > > Maybe instead of edp-connector one would introduce integrator's specific
+> > > connector, for example with compatible "olimex,teres-edp-connector"
+> > > which should follow edp abstract connector rules? This will be at least
+> > > consistent with below presentation[1] - eDP requirements depends on
+> > > integrator. Then if olimex has standard way of dealing with panels
+> > > present in olimex/teres platforms the driver would then create
+> > > drm_panel/drm_connector/drm_bridge(?) according to these rules, I guess.
+> > > Anyway it still looks fishy for me :), maybe because I am not
+> > > familiarized with details of these platforms.
+> >
+> > That makes sense yes
+>
+> Actually, it makes no sense at all. Current implementation for anx6345
+> driver works fine as is with any panel specified assuming panel delays
+> are long enough for connected panel. It just doesn't use panel timings
+> from the driver. Creating a platform driver for connector itself looks
+> redundant since it can't be reused, it doesn't describe actual
+> hardware and it's just defeats purpose of DT by introducing
+> board-specific code.
+
+I'm not sure where you got the idea that the purpose of DT is to not
+have any board-specific code.
+
+It's perfectly fine to have some, that's even why there's a compatible
+assigned to each and every board.
+
+What the DT is about is allowing us to have a generic behaviour that
+we can detect: we can have a given behaviour for a given board, and a
+separate one for another one, and this will be evaluated at runtime.
+
+This is *exactly* what this is about: we can have a compatible that
+sets a given, more specific, behaviour (olimex,teres-edp-connector)
+while saying that this is compatible with the generic behaviour
+(edp-connector). That way, any OS will know what quirk to apply if
+needed, and if not that it can use the generic behaviour.
+
+And we could create a generic driver, for the generic behaviour if
+needed.
+
+> There's another issue: if we introduce edp-connector we'll have to
+> specify power up delays somewhere (in dts? or in platform driver?), so
+> edp-connector doesn't really solve the issue of multiple panels with
+> same motherboard.
+
+And that's what that compatible is about :)
+
+> I'd say DT overlays should be preferred solution here, not another
+> connector binding.
+
+Overlays are a way to apply a device tree dynamically. It's orthogonal
+to the binding.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--ejhhd7l2mldty4ew
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXSRWhAAKCRDj7w1vZxhR
+xX17AP9m55K0q2PlhGjTg96EP4qSaUJ3PeJP4YHnC9hGYGMuWwD9HbDHJHhrb3wn
+zWBH9y7+q3si+oAQDJcL8eGh17MSBgc=
+=IVjC
+-----END PGP SIGNATURE-----
+
+--ejhhd7l2mldty4ew--
