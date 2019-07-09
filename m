@@ -2,111 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 615A8636D9
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 15:23:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ADFE2636E3
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 15:25:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726391AbfGINXn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 09:23:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57406 "EHLO mail.kernel.org"
+        id S1726829AbfGINZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 09:25:46 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58578 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726047AbfGINXn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 9 Jul 2019 09:23:43 -0400
-Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
+        id S1726047AbfGINZq (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 9 Jul 2019 09:25:46 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D732E2173C;
-        Tue,  9 Jul 2019 13:23:41 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B8F73217F9;
+        Tue,  9 Jul 2019 13:25:45 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562678622;
-        bh=K7H1kEUToWNqvM6GLzxoMPgmsavZghV7Gk4tE8OMVuA=;
+        s=default; t=1562678745;
+        bh=2Pu//gdRw8xl7g3w+j9PqFIaEyA7c1GFTHnPsYQLEfM=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BMDvnli6kkiXG+ngJr/QOV7eoM99Hj56OcHJIEUrUFmG5HT9iPtmHOb3f4jaUUOdB
-         6bcLtZIUyyA3naNGTvV1BmfvGlhCG80bw3aJqEqbX4/nH0Zd9G4CSmxd656opdvTZA
-         9np2sdud2/WALbjhVRHIZAyUfI6it+NR58rTd3U4=
-Received: by mail-qt1-f181.google.com with SMTP id k10so13945404qtq.1;
-        Tue, 09 Jul 2019 06:23:41 -0700 (PDT)
-X-Gm-Message-State: APjAAAWSupyHVpRUccpoEB5eMXyGyi+YS/UIzCqtZHa6gCVKAytABE3H
-        OjiCbTepfPGJ12uYrkKtuBzT1Gt+mbFnaOKxBA==
-X-Google-Smtp-Source: APXvYqwXw5rsZaC1EdkcqRuJXMS+UsK1zZ4XUkzCc/lt0tG51VKABx6vaV1j0L/3LfwLXwfv1LiayIC8AnFrYJIOq/s=
-X-Received: by 2002:ac8:36b9:: with SMTP id a54mr19096579qtc.300.1562678621129;
- Tue, 09 Jul 2019 06:23:41 -0700 (PDT)
+        b=OzzxHCoo1uBNd3c9YxIPGssh+/Jx2PVbGQT9/Bh2m6tY/G6FckB4NNCB2m2Xd/uZ2
+         3lMUZhSIRiIkijEOtWoUPMP6/uIYS4AYfAsHWAiaX/sJ7a7qMp/Y9sCVUv+MsOK86P
+         wlPirOz+ColfHRQn5wqZjljqN3JMmdlfld92YBK0=
+Received: by mail-qt1-f176.google.com with SMTP id j19so21527974qtr.12;
+        Tue, 09 Jul 2019 06:25:45 -0700 (PDT)
+X-Gm-Message-State: APjAAAW6N03eN+Jt5fOwrD5S9sZfLPIGV0aDALNZjC2tw+D8VIPqTy40
+        GfNbSz0rApvZvEzeyugZLLLT6Gl5BSTZrqkjvw==
+X-Google-Smtp-Source: APXvYqzNgeDDk6JGVfv4FyCVfvJ+ZYxm57dh5Q1YBNuhIpjWSbaApc03TqOi2O1VrurMm3HooVZD1GBjAucXOFEk5aY=
+X-Received: by 2002:a0c:b786:: with SMTP id l6mr19486021qve.148.1562678744997;
+ Tue, 09 Jul 2019 06:25:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <1559835388-2578-1-git-send-email-luis.oliveira@synopsys.com>
- <1559835388-2578-3-git-send-email-luis.oliveira@synopsys.com>
- <20190709015220.GA18239@bogus> <MN2PR12MB371095ABA70D43398ABF982CCBF10@MN2PR12MB3710.namprd12.prod.outlook.com>
-In-Reply-To: <MN2PR12MB371095ABA70D43398ABF982CCBF10@MN2PR12MB3710.namprd12.prod.outlook.com>
+References: <1560155683-29584-1-git-send-email-talel@amazon.com>
+ <1560155683-29584-2-git-send-email-talel@amazon.com> <20190709022301.GA8734@bogus>
+ <f1fd393d-0b8c-16f1-9ac2-0589e9cb9ea7@amazon.com>
+In-Reply-To: <f1fd393d-0b8c-16f1-9ac2-0589e9cb9ea7@amazon.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 9 Jul 2019 07:23:28 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKmWNfmsSqe9mTyVGC14LoyKDYONokAxdqoP_5_0ZTKNg@mail.gmail.com>
-Message-ID: <CAL_JsqKmWNfmsSqe9mTyVGC14LoyKDYONokAxdqoP_5_0ZTKNg@mail.gmail.com>
-Subject: Re: [PATCH V2 2/2] dt-bindings: Document the DesignWare IP reset bindings
-To:     Luis de Oliveira <Luis.Oliveira@synopsys.com>
-Cc:     "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+Date:   Tue, 9 Jul 2019 07:25:33 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLNWAw2LtCvnsDkrUTmk-Vy1ncwR4XuCN7=_Sg8vbTr2w@mail.gmail.com>
+Message-ID: <CAL_JsqLNWAw2LtCvnsDkrUTmk-Vy1ncwR4XuCN7=_Sg8vbTr2w@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: Amazon's
+ Annapurna Labs FIC
+To:     "Shenhar, Talel" <talel@amazon.com>
+Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Shawn Lin <shawn.lin@rock-chips.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>,
-        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>
+        dwmw@amazon.co.uk,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        jonnyc@amazon.com, hhhawa@amazon.com, ronenk@amazon.com,
+        hanochu@amazon.com, barakw@amazon.com
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 9, 2019 at 4:33 AM Luis de Oliveira
-<Luis.Oliveira@synopsys.com> wrote:
+On Tue, Jul 9, 2019 at 12:00 AM Shenhar, Talel <talel@amazon.com> wrote:
 >
-> Hi Rob,
+> Marc, should I publish those fixes as new patch that updates the
+> dt-bindings or new patchset to this list?
 >
-> Thank you for the comments,
+> On 7/9/2019 5:23 AM, Rob Herring wrote:
+> > On Mon, Jun 10, 2019 at 11:34:42AM +0300, Talel Shenhar wrote:
+> >> +- #interrupt-cells: must be 2.
+> >> +  First cell defines the index of the interrupt within the controller.
+> >> +  Second cell is used to specify the trigger type and must be one of the
+> >> +  following:
+> >> +    - bits[3:0] trigger type and level flags
+> >> +    1 = low-to-high edge triggered
+> >> +    4 = active high level-sensitive
+> > No need to define this here. Reference the standard definition.
 >
-> From: Rob Herring <robh@kernel.org>
-> Date: Tue, Jul 09, 2019 at 02:52:20
+> This device only support those two modes.
 >
-> > On Thu, Jun 06, 2019 at 05:36:28PM +0200, Luis Oliveira wrote:
-> > > This adds documentation of device tree bindings for the
-> > > DesignWare IP reset controller.
-> > >
-> > > Signed-off-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-> > > Signed-off-by: Luis Oliveira <luis.oliveira@synopsys.com>
-> > > ---
-> > > Changelog
-> > > - Add active low configuration example
-> > > - Fix compatible string in the active high example
-> > >
-> > >  .../devicetree/bindings/reset/snps,dw-reset.txt    | 30 ++++++++++++++++++++++
-> > >  1 file changed, 30 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/reset/snps,dw-reset.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/reset/snps,dw-reset.txt b/Documentation/devicetree/bindings/reset/snps,dw-reset.txt
-> > > new file mode 100644
-> > > index 0000000..85f3301
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/reset/snps,dw-reset.txt
-> > > @@ -0,0 +1,30 @@
-> > > +Synopsys DesignWare Reset controller
-> > > +=======================================
-> > > +
-> > > +Please also refer to reset.txt in this directory for common reset
-> > > +controller binding usage.
-> > > +
-> > > +Required properties:
-> > > +
-> > > +- compatible: should be one of the following.
-> > > +   "snps,dw-high-reset" - for active high configuration
-> > > +   "snps,dw-low-reset" - for active low configuration
-> >
-> > This is really a standalone block?
-> >
-> > Are there versions of IP?
-> >
+> This definition tries to capture the supported modes.
 >
-> We use this block because is is very simple. The Verilog is autogenerated
-> after an simple input configuration (APB config, reset pin number, active
-> high/low, etc) so it does not need versioning.
-> We use it in almost all our testchips and prototyping, and it is a
-> standalone block.
+> Should I just state that those two modes are supported and then avoid
+> the actual bits and values?
 
-Okay.
+Yes.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Rob
