@@ -2,159 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DEB4E63A03
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 19:15:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A96FD63A58
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 19:59:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726165AbfGIRPQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 13:15:16 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:34845 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725816AbfGIRPQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 13:15:16 -0400
-Received: by mail-pl1-f195.google.com with SMTP id w24so10418813plp.2
-        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2019 10:15:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=6JqEUq6HaXDJWu6s7yj66u17X0ICHbiONtveTUyPzEk=;
-        b=eNcxbWYnHcBQa2L5Y8oqfVLwTSg1uIl/DeQjz+alQshTGfMRfp8NbFnIJfvpqiK1b6
-         gtQpDXS0ArTdrNsAJ/DPjzpURsIGeIVF7YiBBeATJrDAB1SibPz+iqb0CMHeMR4bDxlz
-         wDeqMWOUlMDEPUQWuc+yQgqEMS6ynbVePapmj2cQyzxfel22Kt5nE/0Uy9KwjE5sqlY6
-         +5qknYKUPURGf9uutfwQcDgFCnyxGLBU864+LTwGxw881ou5SZe3e7QHlTZAJMRTLr+e
-         DDCk5cEwSJouZMsWnPTZ7HY47c3mdR2I6m21FmisviWCHhxugHB0IJ0/Sj1kdEpDPCEh
-         i3Hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=6JqEUq6HaXDJWu6s7yj66u17X0ICHbiONtveTUyPzEk=;
-        b=opxPirCtBjpkF94P4GMxesR9XnU1VyiphkBp8yuFCCoyCte9aFbxPZuZuqmY8fo/KO
-         6vDK0J32yB/feBoQBmnbzSAMd32JFW+SAMOvnHbDycxahrGZ/DjpbVOuaPZBLnnZJxJC
-         /4oi/MU7/nHf7iLsXKjwvYIVYuSRbVb2oGtNKCWcS8zLKaDAEXGfkcRppW5a2wclDQqn
-         jXlCp+Tv1leB5NOhq38+mp3bVk5Bks0NMvBN1MNudhY5u27ewJZAa2ZhklQYCHkd+SXA
-         i+wTYhVXQ/YA8qdpprpsAcucasgAUsLpVLAqkYRh9nOjETXljLHiQJ30ka9JlJz/P4UL
-         TIzg==
-X-Gm-Message-State: APjAAAVz/yHWlyuhBwFkvFzwlYq+uxGd8T/YgKfijN8jNQ2D9/0EyWco
-        56qy2nhrncVWdh66mZByc9pt0VnqdQ==
-X-Google-Smtp-Source: APXvYqyNTmDI4M26K6JugK2vIR4D1U3j9E/kiP98iSOHWzeJ2x3Qx7I0p+WRjsowVapfdoTws09qyA==
-X-Received: by 2002:a17:902:1129:: with SMTP id d38mr33932147pla.220.1562692515236;
-        Tue, 09 Jul 2019 10:15:15 -0700 (PDT)
-Received: from Mani-XPS-13-9360 ([2405:204:7105:f96f:dc5f:6504:2cec:969e])
-        by smtp.gmail.com with ESMTPSA id e13sm17644218pff.45.2019.07.09.10.15.11
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 09 Jul 2019 10:15:14 -0700 (PDT)
-Date:   Tue, 9 Jul 2019 22:45:08 +0530
-From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Andreas =?iso-8859-1?Q?F=E4rber?= <afaerber@suse.de>
-Subject: Re: [PATCH] dt-bindings: arm: Convert RDA Micro board/soc bindings
- to json-schema
-Message-ID: <20190709171508.GA10127@Mani-XPS-13-9360>
-References: <20190618212229.32302-4-robh@kernel.org>
+        id S1726541AbfGIR7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 13:59:38 -0400
+Received: from smtprelay0094.hostedemail.com ([216.40.44.94]:39464 "EHLO
+        smtprelay.hostedemail.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726133AbfGIR7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 13:59:38 -0400
+Received: from filter.hostedemail.com (clb03-v110.bra.tucows.net [216.40.38.60])
+        by smtprelay01.hostedemail.com (Postfix) with ESMTP id A73A7100E86C5;
+        Tue,  9 Jul 2019 17:59:36 +0000 (UTC)
+X-Session-Marker: 6A6F6540706572636865732E636F6D
+X-Spam-Summary: 2,0,0,,d41d8cd98f00b204,joe@perches.com,:::::::::::::::::::::::::::::::::::::::::,RULES_HIT:41:355:379:599:988:989:1260:1277:1311:1313:1314:1345:1359:1515:1516:1518:1534:1537:1560:1593:1594:1711:1714:1730:1747:1777:1792:2393:2553:2559:2562:2828:3138:3139:3140:3141:3142:3622:3876:3877:4321:5007:6114:6312:6642:6742:10004:10400:10848:10967:11232:11473:11658:11914:12297:12438:12740:12760:12895:13069:13311:13357:13439:14659:14721:21080:21451:21627:21810:30054:30090:30091,0,RBL:23.242.196.136:@perches.com:.lbl8.mailshell.net-62.8.0.180 64.201.201.201,CacheIP:none,Bayesian:0.5,0.5,0.5,Netcheck:none,DomainCache:0,MSF:not bulk,SPF:fn,MSBL:0,DNSBL:neutral,Custom_rules:0:0:0,LFtime:27,LUA_SUMMARY:none
+X-HE-Tag: earth64_192839cbcd232
+X-Filterd-Recvd-Size: 1636
+Received: from XPS-9350.home (cpe-23-242-196-136.socal.res.rr.com [23.242.196.136])
+        (Authenticated sender: joe@perches.com)
+        by omf08.hostedemail.com (Postfix) with ESMTPA;
+        Tue,  9 Jul 2019 17:59:32 +0000 (UTC)
+Message-ID: <ff4ce6a96a922cff2dd929560b9167207b4899e9.camel@perches.com>
+Subject: Re: [PATCH v2 2/4] edac: Add support for Amazon's Annapurna Labs L1
+ EDAC
+From:   Joe Perches <joe@perches.com>
+To:     Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Hanna Hawa <hhhawa@amazon.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, bp@alien8.de,
+        mchehab@kernel.org, james.morse@arm.com, davem@davemloft.net,
+        gregkh@linuxfoundation.org, linus.walleij@linaro.org,
+        nicolas.ferre@microchip.com, paulmck@linux.ibm.com,
+        dwmw@amazon.co.uk, benh@amazon.com, ronenk@amazon.com,
+        talel@amazon.com, jonnyc@amazon.com, hanochu@amazon.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-edac@vger.kernel.org
+Date:   Tue, 09 Jul 2019 10:59:31 -0700
+In-Reply-To: <20190709173229.0000135f@huawei.com>
+References: <1562500658-14717-1-git-send-email-hhhawa@amazon.com>
+         <1562500658-14717-3-git-send-email-hhhawa@amazon.com>
+         <20190709173229.0000135f@huawei.com>
+Content-Type: text/plain; charset="ISO-8859-1"
+User-Agent: Evolution 3.30.5-0ubuntu0.18.10.1 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190618212229.32302-4-robh@kernel.org>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+On Tue, 2019-07-09 at 17:32 +0800, Jonathan Cameron wrote:
+> On Sun, 7 Jul 2019 14:57:36 +0300
+[]
+> > +#define ARM_CA57_CPUMERRSR_REPEAT		GENMASK(39, 32)
+> > +#define ARM_CA57_CPUMERRSR_OTHER		GENMASK(47, 40)
+> > +#define ARM_CA57_CPUMERRSR_FATAL		GENMASK(63, 63)
 
-On Tue, Jun 18, 2019 at 03:22:28PM -0600, Rob Herring wrote:
-> Convert RDA Micro SoC bindings to DT schema format using json-schema.
-> 
-> Cc: "Andreas Färber" <afaerber@suse.de>
-> Cc: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> Signed-off-by: Rob Herring <robh@kernel.org>
-> ---
-> Andreas, Update the license on this one too to dual licensed if you 
-> want.
+GENMASK_ULL
 
-I'm fine with GPL-2.0. Since there isn't any other RDA specific patches
-in my tree, you want to take this patch? Else I have to send the Pull
-Request to ARM SoC folks with this patch alone.
 
-Thanks,
-Mani
-
-> 
->  Documentation/devicetree/bindings/arm/rda.txt | 17 ----------------
->  .../devicetree/bindings/arm/rda.yaml          | 20 +++++++++++++++++++
->  MAINTAINERS                                   |  2 +-
->  3 files changed, 21 insertions(+), 18 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/arm/rda.txt
->  create mode 100644 Documentation/devicetree/bindings/arm/rda.yaml
-> 
-> diff --git a/Documentation/devicetree/bindings/arm/rda.txt b/Documentation/devicetree/bindings/arm/rda.txt
-> deleted file mode 100644
-> index 43c80762c428..000000000000
-> --- a/Documentation/devicetree/bindings/arm/rda.txt
-> +++ /dev/null
-> @@ -1,17 +0,0 @@
-> -RDA Micro platforms device tree bindings
-> -----------------------------------------
-> -
-> -RDA8810PL SoC
-> -=============
-> -
-> -Required root node properties:
-> -
-> - - compatible :  must contain "rda,8810pl"
-> -
-> -
-> -Boards:
-> -
-> -Root node property compatible must contain, depending on board:
-> -
-> - - Orange Pi 2G-IoT: "xunlong,orangepi-2g-iot"
-> - - Orange Pi i96: "xunlong,orangepi-i96"
-> diff --git a/Documentation/devicetree/bindings/arm/rda.yaml b/Documentation/devicetree/bindings/arm/rda.yaml
-> new file mode 100644
-> index 000000000000..51cec2b63b04
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/arm/rda.yaml
-> @@ -0,0 +1,20 @@
-> +# SPDX-License-Identifier: GPL-2.0
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/arm/rda.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: RDA Micro platforms device tree bindings
-> +
-> +maintainers:
-> +  - Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-> +
-> +properties:
-> +  compatible:
-> +    items:
-> +      - enum:
-> +          - xunlong,orangepi-2g-iot     # Orange Pi 2G-IoT
-> +          - xunlong,orangepi-i96        # Orange Pi i96
-> +      - const: rda,8810pl
-> +
-> +...
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 2c6f4d15805e..56ee276088eb 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -2111,7 +2111,7 @@ F:	arch/arm/boot/dts/rda8810pl-*
->  F:	drivers/clocksource/timer-rda.c
->  F:	drivers/irqchip/irq-rda-intc.c
->  F:	drivers/tty/serial/rda-uart.c
-> -F:	Documentation/devicetree/bindings/arm/rda.txt
-> +F:	Documentation/devicetree/bindings/arm/rda.yaml
->  F:	Documentation/devicetree/bindings/interrupt-controller/rda,8810pl-intc.txt
->  F:	Documentation/devicetree/bindings/serial/rda,8810pl-uart.txt
->  F:	Documentation/devicetree/bindings/timer/rda,8810pl-timer.txt
-> -- 
-> 2.20.1
-> 
