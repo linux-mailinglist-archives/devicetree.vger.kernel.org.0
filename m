@@ -2,103 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81E5763040
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 08:00:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E40063078
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 08:32:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725961AbfGIGAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 02:00:01 -0400
-Received: from smtp-fw-9102.amazon.com ([207.171.184.29]:5647 "EHLO
-        smtp-fw-9102.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725951AbfGIGAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 02:00:01 -0400
+        id S1726062AbfGIGcm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 02:32:42 -0400
+Received: from mail-yw1-f74.google.com ([209.85.161.74]:54551 "EHLO
+        mail-yw1-f74.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726032AbfGIGcm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 02:32:42 -0400
+Received: by mail-yw1-f74.google.com with SMTP id v3so11618467ywe.21
+        for <devicetree@vger.kernel.org>; Mon, 08 Jul 2019 23:32:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1562652000; x=1594188000;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=UtkGVRmMvu6UY0P2XrYTov5ny6K/ib2hxgjTX5ntpb0=;
-  b=gpIv8D6y0fXDBSTtpV4Ys8ITjD2EuGxAbJSi8DD14jjBkoz5hAyewge9
-   OLGKVXKBYfEPJEL4C0MiYNBXcrH/6SPwQVi2EHtr3g+GHrLTlcTAOw/4v
-   ChfJkFWUFFVL5Aj3U5mCWnwW5Sc6nV8sewXB/pDHzlK38TdSr+IT4qhUH
-   I=;
-X-IronPort-AV: E=Sophos;i="5.62,469,1554768000"; 
-   d="scan'208";a="684424846"
-Received: from sea3-co-svc-lb6-vlan2.sea.amazon.com (HELO email-inbound-relay-1d-f273de60.us-east-1.amazon.com) ([10.47.22.34])
-  by smtp-border-fw-out-9102.sea19.amazon.com with ESMTP; 09 Jul 2019 05:59:57 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
-        by email-inbound-relay-1d-f273de60.us-east-1.amazon.com (Postfix) with ESMTPS id 787FAA248F;
-        Tue,  9 Jul 2019 05:59:54 +0000 (UTC)
-Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Tue, 9 Jul 2019 05:59:53 +0000
-Received: from [10.85.103.206] (10.43.161.115) by EX13D01EUB001.ant.amazon.com
- (10.43.166.194) with Microsoft SMTP Server (TLS) id 15.0.1367.3; Tue, 9 Jul
- 2019 05:59:44 +0000
-Subject: Re: [PATCH v4 1/2] dt-bindings: interrupt-controller: Amazon's
- Annapurna Labs FIC
-To:     Rob Herring <robh@kernel.org>
-CC:     <nicolas.ferre@microchip.com>, <jason@lakedaemon.net>,
-        <marc.zyngier@arm.com>, <mark.rutland@arm.com>,
-        <mchehab+samsung@kernel.org>, <davem@davemloft.net>,
-        <shawn.lin@rock-chips.com>, <tglx@linutronix.de>,
-        <devicetree@vger.kernel.org>, <gregkh@linuxfoundation.org>,
-        <linux-kernel@vger.kernel.org>, <dwmw@amazon.co.uk>,
-        <benh@kernel.crashing.org>, <jonnyc@amazon.com>,
-        <hhhawa@amazon.com>, <ronenk@amazon.com>, <hanochu@amazon.com>,
-        <barakw@amazon.com>
-References: <1560155683-29584-1-git-send-email-talel@amazon.com>
- <1560155683-29584-2-git-send-email-talel@amazon.com>
- <20190709022301.GA8734@bogus>
-From:   "Shenhar, Talel" <talel@amazon.com>
-Message-ID: <f1fd393d-0b8c-16f1-9ac2-0589e9cb9ea7@amazon.com>
-Date:   Tue, 9 Jul 2019 08:59:40 +0300
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <20190709022301.GA8734@bogus>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [10.43.161.115]
-X-ClientProxiedBy: EX13D05UWC002.ant.amazon.com (10.43.162.92) To
- EX13D01EUB001.ant.amazon.com (10.43.166.194)
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=ccEO1tkkeH8HT1/mhIGVUKFl/9lAslI495fANVrqi9k=;
+        b=e2JKyD27N2epGYfKgaRHgJrtns9MYtHULutiWECP0zFRJv3jgMPgvU/mgzt7m2CruN
+         qyDh4tO7vEMXIwz5uC90ZiqlsOp6jxtaX8TLEstg/mB6t2n5nc3E1nANny//4ZuViIuT
+         Q3ccwNzcmvwEgQPy45ljMduIsRcMZ+yyArZsE7tNVMmyeTDybeKjOVOQs49sE+w8xRgU
+         l6IbFINnO1SRMJvZ1e6x0/QcQs5GYjWItk2Tf6QcJnNv92P+Yml808NgCvyRAieR+7tt
+         vVHGQ59GH0W9PqLAZQXcyb1ZKKpl+uFrILyK+81ZrKs3HHFsWjaaDhu+6fgoH9G5s9wC
+         jETQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=ccEO1tkkeH8HT1/mhIGVUKFl/9lAslI495fANVrqi9k=;
+        b=mv7V4z6TmuaIoF/mlAqb2TDWVJyPCuxcoiZCBMBpSZL5KDwveOJ6tqDY8lY6aRvDvn
+         2WVgAmvSLy11g1FGYIi3/8TlmIwHwlw0p9u6OPpkXLDW7o8xKTSS/wIL3yUBqsy4kEbU
+         DBIHONsDYak/EqBj4ZwrXsETCg8JNr95abpx9wEr6C2euuAY5yDOsWgjHgpNZTW9jjM5
+         gp6Oof/m/JXKdiUvjjJ1l3cMunjnPShSemDPBcpRyb9vCwN7azlm4J/aO4Ftw+gSK35I
+         0BWYxyh9nUsL+xBGv79NQVhHd/59hO2WPrzzqX9mOdsVp2qgbR6mppSQ9lkXwB4jK95p
+         bh/g==
+X-Gm-Message-State: APjAAAUb13k/SJEVECB4VTRzXFH1Lm7/PwIbjYZOLxD+F9s/Yneaj03G
+        NRJJ2x2pvaOi3Pd55vjPREVk5O+h3xczAd8kUVLJsQ==
+X-Google-Smtp-Source: APXvYqxTCUgwXCc9biuo/mRL1pSgsNPvKrcZOBY5oaano9+5jCyWavrpS1UTvqWVKgVXm3lya3N2nYit0+zc7OI5xI8uZg==
+X-Received: by 2002:a81:710a:: with SMTP id m10mr13083743ywc.277.1562653960705;
+ Mon, 08 Jul 2019 23:32:40 -0700 (PDT)
+Date:   Mon,  8 Jul 2019 23:30:05 -0700
+Message-Id: <20190709063023.251446-1-brendanhiggins@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
+Subject: [PATCH v7 00/18] kunit: introduce KUnit, the Linux kernel unit
+ testing framework
+From:   Brendan Higgins <brendanhiggins@google.com>
+To:     frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, sboyd@kernel.org,
+        shuah@kernel.org, tytso@mit.edu, yamada.masahiro@socionext.com
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Iurii Zaikin <yzaikin@google.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Marc, should I publish those fixes as new patch that updates the 
-dt-bindings or new patchset to this list?
+## TL;DR
 
-On 7/9/2019 5:23 AM, Rob Herring wrote:
-> On Mon, Jun 10, 2019 at 11:34:42AM +0300, Talel Shenhar wrote:
->> +- #interrupt-cells: must be 2.
->> +  First cell defines the index of the interrupt within the controller.
->> +  Second cell is used to specify the trigger type and must be one of the
->> +  following:
->> +    - bits[3:0] trigger type and level flags
->> +	1 = low-to-high edge triggered
->> +	4 = active high level-sensitive
-> No need to define this here. Reference the standard definition.
+This is a pretty straightforward follow-up to Luis' comments on PATCH
+v6: There is nothing that changes any functionality or usage.
 
-This device only support those two modes.
+As for our current status, we only need reviews/acks on the following
+patches:
 
-This definition tries to capture the supported modes.
+- [PATCH v7 06/18] kbuild: enable building KUnit
+  - Need a review or ack from Masahiro Yamada or Michal Marek
+- [PATCH v7 08/18] objtool: add kunit_try_catch_throw to the noreturn
+  list
+  - Need a review or ack from Josh Poimboeuf or Peter Zijlstra
 
-Should I just state that those two modes are supported and then avoid 
-the actual bits and values?
+Other than that, I think we should be good to go.
 
->
->> +- interrupt-parent: specifies the parent interrupt controller.
-> Drop this. It is implied and could be in the parent.
-ack
->
->> +- interrupts: describes which input line in the interrupt parent, this
->> +  fic's output is connected to. This field property depends on the parent's
->> +  binding
->> +
->> +Example:
->> +
->> +amazon_fic: interrupt-controller@0xfd8a8500 {
-> Drop the '0x'
-ack
+## Background
+
+This patch set proposes KUnit, a lightweight unit testing and mocking
+framework for the Linux kernel.
+
+Unlike Autotest and kselftest, KUnit is a true unit testing framework;
+it does not require installing the kernel on a test machine or in a VM
+(however, KUnit still allows you to run tests on test machines or in VMs
+if you want[1]) and does not require tests to be written in userspace
+running on a host kernel. Additionally, KUnit is fast: From invocation
+to completion KUnit can run several dozen tests in about a second.
+Currently, the entire KUnit test suite for KUnit runs in under a second
+from the initial invocation (build time excluded).
+
+KUnit is heavily inspired by JUnit, Python's unittest.mock, and
+Googletest/Googlemock for C++. KUnit provides facilities for defining
+unit test cases, grouping related test cases into test suites, providing
+common infrastructure for running tests, mocking, spying, and much more.
+
+### What's so special about unit testing?
+
+A unit test is supposed to test a single unit of code in isolation,
+hence the name. There should be no dependencies outside the control of
+the test; this means no external dependencies, which makes tests orders
+of magnitudes faster. Likewise, since there are no external dependencies,
+there are no hoops to jump through to run the tests. Additionally, this
+makes unit tests deterministic: a failing unit test always indicates a
+problem. Finally, because unit tests necessarily have finer granularity,
+they are able to test all code paths easily solving the classic problem
+of difficulty in exercising error handling code.
+
+### Is KUnit trying to replace other testing frameworks for the kernel?
+
+No. Most existing tests for the Linux kernel are end-to-end tests, which
+have their place. A well tested system has lots of unit tests, a
+reasonable number of integration tests, and some end-to-end tests. KUnit
+is just trying to address the unit test space which is currently not
+being addressed.
+
+### More information on KUnit
+
+There is a bunch of documentation near the end of this patch set that
+describes how to use KUnit and best practices for writing unit tests.
+For convenience I am hosting the compiled docs here[2].
+
+Additionally for convenience, I have applied these patches to a
+branch[3]. The repo may be cloned with:
+git clone https://kunit.googlesource.com/linux
+This patchset is on the kunit/rfc/v5.2/v7 branch.
+
+## Changes Since Last Version
+
+Aside from renaming `struct kunit_module` to `struct kunit_suite`, there
+isn't really anything in here that changes any functionality:
+
+- Rebased on v5.2
+- Added Iurii as a maintainer for PROC SYSCTL, as suggested by Luis.
+- Removed some references to spinlock that I failed to remove in the
+  previous version, as pointed out by Luis.
+- Cleaned up some comments, as suggested by Luis.
+
+[1] https://google.github.io/kunit-docs/third_party/kernel/docs/usage.html#kunit-on-non-uml-architectures
+[2] https://google.github.io/kunit-docs/third_party/kernel/docs/
+[3] https://kunit.googlesource.com/linux/+/kunit/rfc/v5.2/v7
+
+-- 
+2.22.0.410.gd8fdbe21b5-goog
+
