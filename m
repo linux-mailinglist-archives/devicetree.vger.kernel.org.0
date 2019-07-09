@@ -2,84 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0507F6380F
-	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 16:41:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 21ABE63825
+	for <lists+devicetree@lfdr.de>; Tue,  9 Jul 2019 16:48:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726055AbfGIOl3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 9 Jul 2019 10:41:29 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:41483 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726046AbfGIOl2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 10:41:28 -0400
-Received: by mail-io1-f65.google.com with SMTP id j5so24304993ioj.8;
-        Tue, 09 Jul 2019 07:41:28 -0700 (PDT)
+        id S1726060AbfGIOs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 9 Jul 2019 10:48:57 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:43053 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726025AbfGIOs5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 9 Jul 2019 10:48:57 -0400
+Received: by mail-io1-f66.google.com with SMTP id k20so43673377ios.10;
+        Tue, 09 Jul 2019 07:48:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=EyPnKhK+QTa3w59m9Lz+vk+6zrrmCFPQRDeNLA4SjFM=;
-        b=aTrwuMCgdnV3Dx6uymSVWlROCgBlNW1NLtqeoWFHfbn5+KWB3V/4Olub1BfXprljdG
-         FFL6ziGLMLFK0K1ogq2MTXBZYrq0Ubpw0317KDYtinTERbTUMkY+9kO7hczewFfW+ndL
-         Qt6G3N2xhbc92oZL1ABiYFUxOuDwMSbzxAAb43hk98VnDVCPBoIC74NQH4wCKNyBr2g8
-         rOjBSFQL/cKI52m8VkWcYlezGwI/ZypdyDFQU+4nGWo5C7byjPw7sFuDR8iV7h8HaTKu
-         OE/LvaOx6RZXicdNEYGFMC30tRiREa9+5bPK/jdIfUFXQQy4u8G14KUDFvyZbTRW2lNO
-         xLyw==
-X-Gm-Message-State: APjAAAX2blL+uGkyaNLKYcRP99FFJJzqVkjoB1I7jjp2IdtBuksBqsi6
-        lNJF/ItKrrWhsAcFarXk0t2y4wE=
-X-Google-Smtp-Source: APXvYqyncVy8cA742s5kc2Sy1Hke65FJvErGLFMZdEivjqzZxTI7NRCTl8QKuCrGHf8f/WIzK026ww==
-X-Received: by 2002:a6b:8b0b:: with SMTP id n11mr8460184iod.101.1562683287950;
-        Tue, 09 Jul 2019 07:41:27 -0700 (PDT)
+        bh=T/Vs1PK7xFKDrlW3gYSloAnKpvLJ7R0MVGjuRw+/My8=;
+        b=Aik42ZQ03K/p/LiQ+UxOCm0utOs0f60yFYR3CckErcaHkDPrzxOF8LKBHlOsHIixvy
+         UQsCEEwHHu5iyD9NskL5ZPyYbToqsKbB1FiNYsd+qD+q/INR85nC/0tmu9Q4o4lbLUFy
+         a8Q0wHUKrjeCei3qfS6r3r9PTBdZremeYoBOtNIAQfuV0/4yHn7khWED189Lok5ZzZKc
+         Df9scvPI+/WjnECCLIKx4IvkD3ICTlL5vR7bsfRSo1ZLfe+OASWRKTrCNXE6WWP0Cr0q
+         qH5pQO8sjwuOw43EaS1voaM6QRhvZBVEYhWsTwatUddcgXLpSgVspojvb4OliC4sWHpi
+         bGhA==
+X-Gm-Message-State: APjAAAVzYDmyjLgbfpsMoHLCy+v73Ldoi0B0vX7clgXnNE5HjjF/eicj
+        a4JngoJYrmw78GjEz99cEg==
+X-Google-Smtp-Source: APXvYqyBShhjIwHDM6V18l3Qy1+iKno11GiIPO5CJH47QkOqrUPZqlX2lx6+G0+9VhP3FVExjUBBog==
+X-Received: by 2002:a02:878a:: with SMTP id t10mr28623549jai.112.1562683736075;
+        Tue, 09 Jul 2019 07:48:56 -0700 (PDT)
 Received: from localhost ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id v3sm11713790iom.53.2019.07.09.07.41.26
+        by smtp.gmail.com with ESMTPSA id r7sm19309768ioa.71.2019.07.09.07.48.54
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 09 Jul 2019 07:41:27 -0700 (PDT)
-Date:   Tue, 9 Jul 2019 08:41:26 -0600
+        Tue, 09 Jul 2019 07:48:54 -0700 (PDT)
+Date:   Tue, 9 Jul 2019 08:48:53 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Stephen Boyd <swboyd@chromium.org>
-Cc:     Peter Huewe <peterhuewe@gmx.de>,
-        Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>,
-        Andrey Pronin <apronin@chromium.org>,
-        linux-kernel@vger.kernel.org, Jason Gunthorpe <jgg@ziepe.ca>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-integrity@vger.kernel.org, devicetree@vger.kernel.org,
-        Duncan Laurie <dlaurie@chromium.org>,
-        Guenter Roeck <groeck@chromium.org>
-Subject: Re: [PATCH 4/8] dt-bindings: tpm: document properties for cr50
-Message-ID: <20190709144126.GA12345@bogus>
-References: <20190613180931.65445-1-swboyd@chromium.org>
- <20190613180931.65445-5-swboyd@chromium.org>
+To:     Piotr Sroka <piotrs@cadence.com>
+Cc:     linux-kernel@vger.kernel.org,
+        David Woodhouse <dwmw2@infradead.org>,
+        BrianNorris <computersforpeace@gmail.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-mtd@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [v3 2/2] dt-bindings: nand: Add Cadence NAND controller driver
+Message-ID: <20190709144853.GA23699@bogus>
+References: <20190614150956.31244-1-piotrs@cadence.com>
+ <20190614151301.5371-1-piotrs@cadence.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190613180931.65445-5-swboyd@chromium.org>
+In-Reply-To: <20190614151301.5371-1-piotrs@cadence.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jun 13, 2019 at 11:09:27AM -0700, Stephen Boyd wrote:
-> From: Andrey Pronin <apronin@chromium.org>
-> 
-> Add TPM2.0 PTP FIFO compatible SPI interface for chips with Cr50
-> firmware.
-> 
-> Signed-off-by: Andrey Pronin <apronin@chromium.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Signed-off-by: Stephen Boyd <swboyd@chromium.org>
+On Fri, Jun 14, 2019 at 04:13:01PM +0100, Piotr Sroka wrote:
+> Signed-off-by: Piotr Sroka <piotrs@cadence.com>
 > ---
+> Changes for v3:
+> - add unit suffix for board_delay 
+> - move child description to proper place
+> - remove prefix cadence_ for reg and sdma fields
+> Changes for v2:
+> - remove chip dependends parameters from dts bindings
+> - add names for register ranges in dts bindings
+> - add generic bindings to describe NAND chip representation
+> ---
+>  .../bindings/mtd/cadence-nand-controller.txt       | 51 ++++++++++++++++++++++
+>  1 file changed, 51 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
 > 
-> This is a resend of https://lkml.kernel.org/r/1469757314-116169-2-git-send-email-apronin@chromium.org
-> with status removed.
+> diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+> new file mode 100644
+> index 000000000000..e485b87075bd
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
+> @@ -0,0 +1,51 @@
+> +* Cadence NAND controller
+> +
+> +Required properties:
+> +  - compatible : "cdns,hpnfc"
+
+Only 1 version of h/w features and bugs?
+
+'hp-nfc' would be a bit more readable IMO.
+
+> +  - reg : Contains two entries, each of which is a tuple consisting of a
+> +	  physical address and length. The first entry is the address and
+> +	  length of the controller register set. The second entry is the
+> +	  address and length of the Slave DMA data port.
+> +  - reg-names: should contain "reg" and "sdma"
+> +  - interrupts : The interrupt number.
+> +  - clocks: phandle of the controller core clock (nf_clk).
+> +
+> +Optional properties:
+> +  - dmas: shall reference DMA channel associated to the NAND controller
+> +  - cdns,board-delay_ps : Estimated Board delay. The value includes the total
+
+s/_/-/
+
+> +    round trip delay for the signals and is used for deciding on values
+> +    associated with data read capture. The example formula for SDR mode is
+> +    the following:
+> +    board_delay = RE#PAD_delay + PCB trace to device + PCB trace from device
+> +    + DQ PAD delay
+> +
+> +Children nodes represent the available NAND chips.
+
+Child nodes...
+
+> +
+> +Required properties of NAND chips:
+> +  - reg: shall contain the native Chip Select ids from 0 to max supported by
+> +    the cadence nand flash controller
+> +
+> +
+> +See Documentation/devicetree/bindings/mtd/nand.txt for more details on
+> +generic bindings.
+> +
+> +Example:
+> +
+> +nand_controller: nand-controller @60000000 {
+
+remove space                       ^
+
+> +
+> +	  compatible = "cdns,hpnfc";
+> +	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
+> +	  reg-names = "reg", "sdma";
+> +	  clocks = <&nf_clk>;
+> +	  cdns,board-delay_ps = <4830>;
+> +	  interrupts = <2 0>;
+> +	  nand@0 {
+> +	      reg = <0>;
+> +	      label = "nand-1";
+> +	  };
+> +	  nand@1 {
+> +	      reg = <1>;
+> +	      label = "nand-2";
+> +	  };
+> +
+> +};
+> -- 
+> 2.15.0
 > 
->  .../bindings/security/tpm/cr50_spi.txt        | 19 +++++++++++++++++++
-
-google,cr50.txt instead.
-
-With that,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
->  1 file changed, 19 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/security/tpm/cr50_spi.txt
