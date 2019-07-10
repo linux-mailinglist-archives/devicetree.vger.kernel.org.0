@@ -2,157 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81F6C646E7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 15:23:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2CD564728
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 15:40:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727305AbfGJNXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 09:23:37 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45422 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727229AbfGJNXh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Jul 2019 09:23:37 -0400
-Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1727539AbfGJNkC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 09:40:02 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:49206 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726080AbfGJNkC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 09:40:02 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9958A2087F;
-        Wed, 10 Jul 2019 13:23:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562765016;
-        bh=ptwe1rDFfCle9mAd7yUbzwHCUIplmYHPvUm9uxzozYw=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Ygq4G+Z93uqVVpJVD5haYpXwweRb1Aq6snmGvdOmy8F1jygCrILzqs6RgP/d591b9
-         nUBz/e/yJa14QCMACtxj8udJ495dRYqX22DoUq4EzdfGme8B1cJHRdf15xPBLV4R4P
-         xTiKoIThZpr8n+cZltoJbcnxVtJSmai1XHX+GIJE=
-Received: by mail-qt1-f176.google.com with SMTP id w17so2337245qto.10;
-        Wed, 10 Jul 2019 06:23:36 -0700 (PDT)
-X-Gm-Message-State: APjAAAUohhkzezqI1mEaZbvwMSMtElcocmHgnkWY31pgKb1+oii+cGD6
-        0h3R23D3bg1cwpKI1po3gPWojaVKs3oFGXMUig==
-X-Google-Smtp-Source: APXvYqz+nKMIXVVlc8oZ0Q2Q8/QxA9fpNLvERwVPUf4Z5TxRc+gsCONhWB7rl/hp6YxNljnWyrHfGZ8KKeLd1yp38pM=
-X-Received: by 2002:ac8:3908:: with SMTP id s8mr23635427qtb.224.1562765015828;
- Wed, 10 Jul 2019 06:23:35 -0700 (PDT)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id E66A820079;
+        Wed, 10 Jul 2019 15:39:57 +0200 (CEST)
+Date:   Wed, 10 Jul 2019 15:39:56 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Josef Lusticky <josef@lusticky.cz>
+Cc:     robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, daniel@ffwll.ch,
+        thierry.reding@gmail.com, airlied@linux.ie
+Subject: Re: [PATCH v2 1/2] dt-bindings: panel: Add parallel RGB mode for
+ Ilitek ILI9341 panels
+Message-ID: <20190710133956.GB11791@ravnborg.org>
+References: <20190304125033.28841-1-josef@lusticky.cz>
+ <20190708145618.26031-1-josef@lusticky.cz>
+ <20190708145618.26031-2-josef@lusticky.cz>
 MIME-Version: 1.0
-References: <20190701093826.5472-1-Anson.Huang@nxp.com> <20190701093826.5472-2-Anson.Huang@nxp.com>
- <CAL_JsqKeu-b8mbMJBtnNn1vL=RSvUXbo+g40haZnjXTW11CJ6w@mail.gmail.com> <DB3PR0402MB39167FC68991F071E9E58D81F5F00@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-In-Reply-To: <DB3PR0402MB39167FC68991F071E9E58D81F5F00@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 10 Jul 2019 07:23:23 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJbHFZ2qcLvhZGk8Q-f80_QhdgQxcHe2TyCjc4GGRNJNQ@mail.gmail.com>
-Message-ID: <CAL_JsqJbHFZ2qcLvhZGk8Q-f80_QhdgQxcHe2TyCjc4GGRNJNQ@mail.gmail.com>
-Subject: Re: [PATCH V4 2/5] clocksource/drivers/sysctr: Add clock-frequency property
-To:     Anson Huang <anson.huang@nxp.com>
-Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Viresh Kumar <viresh.kumar@linaro.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190708145618.26031-2-josef@lusticky.cz>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
+        a=znvrqEH1YbIRDl4D6eEA:9 a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 9, 2019 at 7:30 PM Anson Huang <anson.huang@nxp.com> wrote:
->
-> Hi, Rob
->
-> > On Mon, Jul 1, 2019 at 3:47 AM <Anson.Huang@nxp.com> wrote:
-> > >
-> > > From: Anson Huang <Anson.Huang@nxp.com>
-> >
-> > 'dt-bindings: timer: ...' for the subject.
->
-> OK, I made a mistake.
->
-> >
-> > >
-> > > Systems which use platform driver model for clock driver require the
-> > > clock frequency to be supplied via device tree when system counter
-> > > driver is enabled.
-> >
-> > This is a DT binding. What's a platform driver?
->
-> It is just trying to explain why we need to introduce this "clock-frequency"
-> property, nothing about the binding and platform driver.
->
-> >
-> > >
-> > > This is necessary as in the platform driver model the of_clk
-> > > operations do not work correctly because system counter driver is
-> > > initialized in early phase of system boot up, and clock driver using
-> > > platform driver model is NOT ready at that time, it will cause system
-> > > counter driver initialization failed.
-> > >
-> > > Add clock-frequency property to the device tree bindings of the NXP
-> > > system counter, so the driver can tell timer-of driver to get clock
-> > > frequency from DT directly instead of doing of_clk operations via clk
-> > > APIs.
-> >
-> > While you've now given a good explanation why you need this, it all sounds
-> > like linux specific issues and a DT change should not be necessary.
-> >
-> > Presumably, 'clocks' points to a fixed-clock node, right? Just parse the 'clocks'
-> > phandle and fetch the frequency from that node if you need to get the
-> > frequency 'early'.
->
-> Sound like a better solution, I will try that, since the system counter's clock is
-> from osc_24m and divided by 3, since different platforms may have different divider,
-> so maybe I can create a fixed-clock node in DT, then system counter driver can parse
-> the clock and fetch the frequency from that node, will redo a V5 patch.
+Hi Josef.
 
-The divide by 3 can be implied by the compatible. If you need a
-different divider, add another compatible.
+On Mon, Jul 08, 2019 at 04:56:17PM +0200, Josef Lusticky wrote:
+> ILI9341 supports both SPI input mode and parallel RGB input mode.
+> This commit adds parallel RGB input mode bindings.
+> 
+> Signed-off-by: Josef Lusticky <josef@lusticky.cz>
+> ---
+>  .../bindings/display/ilitek,ili9341.txt       | 67 ++++++++++++++++---
+>  1 file changed, 56 insertions(+), 11 deletions(-)
+With Robs patches landed in drm-misc-next yaml format is from now on
+preferred for panel bindings, or at least this is my take on it.
 
-> >
-> > > Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> > > ---
-> > > No change.
-> > > ---
-> > >  .../devicetree/bindings/timer/nxp,sysctr-timer.txt        | 15 +++++++++------
-> > >  1 file changed, 9 insertions(+), 6 deletions(-)
-> > >
-> > > diff --git
-> > > a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-> > > b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-> > > index d576599..7088a0e 100644
-> > > --- a/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-> > > +++ b/Documentation/devicetree/bindings/timer/nxp,sysctr-timer.txt
-> > > @@ -11,15 +11,18 @@ Required properties:
-> > >  - reg :             Specifies the base physical address and size of the comapre
-> > >                      frame and the counter control, read & compare.
-> > >  - interrupts :      should be the first compare frames' interrupt
-> > > -- clocks :         Specifies the counter clock.
-> > > -- clock-names:             Specifies the clock's name of this module
-> > > +- clocks :          Specifies the counter clock, mutually exclusive with clock-
-> > frequency.
-> > > +- clock-names :     Specifies the clock's name of this module, mutually
-> > exclusive with
-> > > +                   clock-frequency.
-> > > +- clock-frequency : Specifies system counter clock frequency, mutually
-> > exclusive with
-> > > +                   clocks/clock-names.
-> >
-> > It doesn't really work to say one or the other is needed unless you make the
-> > OS support both cases.
->
-> The OS already support both cases now with this patch series.
+So a yaml conversion would be appreciated, but not mandatory.
 
-What about FreeBSD or any other OS?
+> 
+> diff --git a/Documentation/devicetree/bindings/display/ilitek,ili9341.txt b/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+> index 169b32e4ee4e..629f38a1d0cd 100644
+> --- a/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+> +++ b/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+> @@ -1,27 +1,72 @@
+>  Ilitek ILI9341 display panels
+>  
+> -This binding is for display panels using an Ilitek ILI9341 controller in SPI
+> -mode.
+> +This binding is for display panels using an Ilitek ILI9341 controller.
+> +The display panels are supported in the following graphical input modes:
+> +- SPI input mode
+> +	MIPI-DBI Type 3 Option 1 or Option 3 is used to transfer
+> +	commands and graphical data
+> +- parallel RGB input mode
+> +	MIPI-DBI Type 3 Option 1 or Option 3 is used for commands
+> +	MIPI-DPI 18-bit parallel RGB connection is used to transfer
+> +	graphical data
+>  
+> -Required properties:
+> -- compatible:	"adafruit,yx240qv29", "ilitek,ili9341"
+> -- dc-gpios:	D/C pin
+> -- reset-gpios:	Reset pin
+> +
+> +SPI input mode:
+>  
+>  The node for this driver must be a child node of a SPI controller, hence
+> -all mandatory properties described in ../spi/spi-bus.txt must be specified.
+> +all mandatory properties described in spi/spi-bus.txt must be specified.
+> +
+> +Required properties in SPI input mode:
+> +- compatible:   "adafruit,yx240qv29", "ilitek,ili9341"
+> +- backlight:    phandle of the backlight device attached to the panel
+> +
+> +Optional properties in SPI input mode:
+> +- rotation:     panel rotation in degrees counter clockwise (0,90,180,270)
+> +- dc-gpios:     GPIO spec for the D/C pin, see gpio/gpio.txt
+> +- reset-gpios:  GPIO spec for the reset pin, see gpio/gpio.txt
+> +
+> +
+> +Parallel RGB input mode:
+> +
+> +The node for this driver must be a child node of a SPI controller, hence
+> +all mandatory properties described in spi/spi-bus.txt must be specified.
+> +
+> +Required properties in parallel RGB input mode:
+> +- compatible:   "displaytech,dt024ctft", "ilitek,ili9341"
+> +- backlight:    phandle of the backlight device attached to the panel
+> +
+> +Optional properties in parallel RGB input mode:
+> +- dc-gpios:     GPIO spec for the D/C pin, see gpio/gpio.txt
+> +- reset-gpios:  GPIO spec for the reset pin, see gpio/gpio.txt
+>  
+> -Optional properties:
+> -- rotation:	panel rotation in degrees counter clockwise (0,90,180,270)
+> -- backlight:	phandle of the backlight device attached to the panel
+> +In parallel RGB input mode,
+> +the device node can contain one 'port' child node with one child
+> +'endpoint' node, according to the bindings defined in
+> +media/video-interfaces.txt. This node should describe panel's video bus.
+>  
+> -Example:
+> +
+> +Example in SPI input mode:
+>  	display@0{
+>  		compatible = "adafruit,yx240qv29", "ilitek,ili9341";
+>  		reg = <0>;
+>  		spi-max-frequency = <32000000>;
+>  		dc-gpios = <&gpio0 9 GPIO_ACTIVE_HIGH>;
+>  		reset-gpios = <&gpio0 8 GPIO_ACTIVE_HIGH>;
+> +		backlight = <&backlight>;
+>  		rotation = <270>;
+> +	};
+> +
+> +Example in parallel RGB input mode:
+> +	panel@{
+I think you need a number after "@" here.
 
-Rob
+With this fixed:
+Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
