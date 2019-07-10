@@ -2,343 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A0E2864775
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 15:47:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B625C6477F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 15:49:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727325AbfGJNr1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 09:47:27 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:49385 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726333AbfGJNr1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 09:47:27 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1727297AbfGJNs7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 09:48:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56878 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727102AbfGJNs7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Jul 2019 09:48:59 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id B742D20081;
-        Wed, 10 Jul 2019 15:47:23 +0200 (CEST)
-Date:   Wed, 10 Jul 2019 15:47:22 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Josef Lusticky <josef@lusticky.cz>
-Cc:     robh@kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, daniel@ffwll.ch,
-        thierry.reding@gmail.com, airlied@linux.ie
-Subject: Re: [PATCH v2 2/2] drm/panel: Add Ilitek ILI9341 parallel RGB panel
- driver
-Message-ID: <20190710134722.GC11791@ravnborg.org>
-References: <20190304125033.28841-1-josef@lusticky.cz>
- <20190708145618.26031-1-josef@lusticky.cz>
- <20190708145618.26031-3-josef@lusticky.cz>
+        by mail.kernel.org (Postfix) with ESMTPSA id 8EA482086D;
+        Wed, 10 Jul 2019 13:48:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562766538;
+        bh=u+h9L2PkMGszB6CZLiEEQigUEngQOBljD1CgcZzVQs8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lZ4A3uCdSkp29Q/gAuH6R2uj6rbrd53DWPa4VlstJqQldNKxgTjsLASLg+tfjB+hg
+         NNi6IR+fLrGr3J0vl6OWLzR8CFyoUz93EuC0buH4M99Yywpe7IF47tdardJkbkPqvI
+         /S7S4Rn2gJbCmsj+gUCx3VhOBuKiXlUikMMoIjYE=
+Received: by mail-qk1-f180.google.com with SMTP id g18so1915014qkl.3;
+        Wed, 10 Jul 2019 06:48:58 -0700 (PDT)
+X-Gm-Message-State: APjAAAVOMA4uI29oStj4HfAxQZvNlH/8NeoJWVDEWQUj7ftqxsc9NqOY
+        5yNPQu599Qqonw1QxjgVJrNDpqsqavPLoJ0QkA==
+X-Google-Smtp-Source: APXvYqzLjS4ENFrvg6Ny01xGrcyKKx0P85tzVM/HZcRb+gBjeV+mgbMRCgrB0/kR689V7NgUiJbGMqBd++/xEeWl0uU=
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr23970720qke.223.1562766537777;
+ Wed, 10 Jul 2019 06:48:57 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190708145618.26031-3-josef@lusticky.cz>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
-        a=YNRIPrah4-pk3FGtvwYA:9 a=ZEo8nJetd6AVmpUu:21 a=0qIVUtRu9QG884qP:21
-        a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22
+References: <20190613005109.1867-1-jassisinghbrar@gmail.com>
+ <20190613005237.1996-1-jassisinghbrar@gmail.com> <20190709143437.GA30850@bogus>
+ <CABb+yY3OsAh3xgX8_vvA7A7mU+FkEj__BQs9CxMvf=eYxRYXyw@mail.gmail.com>
+In-Reply-To: <CABb+yY3OsAh3xgX8_vvA7A7mU+FkEj__BQs9CxMvf=eYxRYXyw@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 10 Jul 2019 07:48:40 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKB2tw8NFYgO09RHvYBKJ8uVCktYH36wiPWi0wvH758Eg@mail.gmail.com>
+Message-ID: <CAL_JsqKB2tw8NFYgO09RHvYBKJ8uVCktYH36wiPWi0wvH758Eg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: milbeaut-m10v-hdmac: Add Socionext
+ Milbeaut HDMAC bindings
+To:     Jassi Brar <jassisinghbrar@gmail.com>
+Cc:     "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
+        <dmaengine@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Vinod <vkoul@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Takao Orito <orito.takao@socionext.com>,
+        Masami Hiramatsu <masami.hiramatsu@linaro.org>,
+        Kazuhiro Kasai <kasai.kazuhiro@socionext.com>,
+        Jassi Brar <jaswinder.singh@linaro.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Josef.
+On Tue, Jul 9, 2019 at 10:12 PM Jassi Brar <jassisinghbrar@gmail.com> wrote:
+>
+> On Tue, Jul 9, 2019 at 9:34 AM Rob Herring <robh@kernel.org> wrote:
+> >
+> > On Wed, Jun 12, 2019 at 07:52:37PM -0500, jassisinghbrar@gmail.com wrote:
+> > > From: Jassi Brar <jaswinder.singh@linaro.org>
+> > >
+> > > Document the devicetree bindings for Socionext Milbeaut HDMAC
+> > > controller. Controller has upto 8 floating channels, that need
+> > > a predefined slave-id to work from a set of slaves.
+> > >
+> > > Signed-off-by: Jassi Brar <jaswinder.singh@linaro.org>
+> > > ---
+> > >  .../bindings/dma/milbeaut-m10v-hdmac.txt           | 54 +++++++++++++++++++
+> > >  1 file changed, 54 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt b/Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt
+> > > new file mode 100644
+> > > index 000000000000..a104fcb9e73d
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/dma/milbeaut-m10v-hdmac.txt
+> > > @@ -0,0 +1,51 @@
+> > > +* Milbeaut AHB DMA Controller
+> > > +
+> > > +Milbeaut AHB DMA controller has transfer capability bellow.
+> > > + - memory to memory transfer
+> > > + - device to memory transfer
+> > > + - memory to device transfer
+> > > +
+> > > +Required property:
+> > > +- compatible:       Should be  "socionext,milbeaut-m10v-hdmac"
+> > > +- reg:              Should contain DMA registers location and length.
+> > > +- interrupts:       Should contain all of the per-channel DMA interrupts.
+> >
+> > How many?
+> >
+> Each channel has an IRQ line. And the number of channels is
+> configurable. So instead of having some explicit property like
+> 'dma-channels', we infer that from the number of irqs registered.
 
-Thanks for updating the driver.
+Yes, I get that. There's still a range that's valid and you need to
+define those constraints. If there's a variable number of channels,
+then that implies different SoCs which should also mean different
+compatible strings.
 
-On Mon, Jul 08, 2019 at 04:56:18PM +0200, Josef Lusticky wrote:
-> Add driver for Ilitek ILI9341 panels in parallel RGB mode
-> 
-> Signed-off-by: Josef Lusticky <josef@lusticky.cz>
-> + */
-> +
-> +#include <linux/backlight.h>
-> +#include <linux/delay.h>
-> +#include <linux/gpio/consumer.h>
-> +#include <linux/module.h>
-> +#include <linux/of_device.h>
-> +#include <linux/spi/spi.h>
-> +
-> +#include <video/mipi_display.h>
-> +
-> +#include <drm/drm_modes.h>
-> +#include <drm/drm_panel.h>
-> +#include <drm/drm_print.h>
-> +#include <drm/tinydrm/mipi-dbi.h>
-Good to see drivers that no longer uses drmP.h :-)
-
-> +
-> +/* ILI9341 extended register set (Vendor Command Set) */
-> +#define ILI9341_IFMODE         0xB0 // clock polarity
-> +#define ILI9341_IFCTL          0xF6 // interface conrol
-> +#define ILI9341_PGAMCTRL       0xE0 // positive gamma control
-> +#define ILI9341_NGAMCTRL       0xE1 // negative gamma control
-> +
-> +#define ILI9341_MADCTL_MV      BIT(5)
-> +#define ILI9341_MADCTL_MX      BIT(6)
-> +#define ILI9341_MADCTL_MY      BIT(7)
-> +
-> +/**
-> + * struct ili9341_config - the display specific configuration
-> + * @width_mm: physical panel width [mm]
-> + * @height_mm: physical panel height [mm]
-> + */
-> +struct ili9341_config {
-> +	u32 width_mm;
-> +	u32 height_mm;
-> +};
-> +
-> +struct ili9341 {
-> +	struct drm_panel panel;
-> +	struct mipi_dbi *mipi;
-> +	const struct ili9341_config *conf;
-> +};
-> +
-> +static inline struct ili9341 *panel_to_ili9341(struct drm_panel *panel)
-> +{
-> +	return container_of(panel, struct ili9341, panel);
-> +}
-> +
-> +static int ili9341_deinit(struct drm_panel *panel, struct ili9341 *ili)
-> +{
-> +	mipi_dbi_command(ili->mipi, MIPI_DCS_SET_DISPLAY_OFF);
-> +	mipi_dbi_command(ili->mipi, MIPI_DCS_ENTER_SLEEP_MODE);
-> +	msleep(5);
-> +	return 0;
-> +}
-> +
-> +static int ili9341_init(struct drm_panel *panel, struct ili9341 *ili)
-> +{
-> +	/* HW / SW Reset display and wait */
-> +	if (ili->mipi->reset)
-> +		mipi_dbi_hw_reset(ili->mipi);
-> +
-> +	mipi_dbi_command(ili->mipi, MIPI_DCS_SOFT_RESET);
-> +	msleep(120);
-Consider a usleep_range here - to have the waiting a little more relaxed
-in the system.
-
-> +
-> +	/* Polarity */
-> +	mipi_dbi_command(ili->mipi, ILI9341_IFMODE, 0xC0);
-> +
-> +	/* Interface control */
-> +	mipi_dbi_command(ili->mipi, ILI9341_IFCTL, 0x09, 0x01, 0x26);
-> +
-> +	/* Pixel format */
-> +	mipi_dbi_command(ili->mipi, MIPI_DCS_SET_PIXEL_FORMAT, MIPI_DCS_PIXEL_FMT_18BIT << 4);
-> +
-> +	/* Gamma */
-> +	mipi_dbi_command(ili->mipi, MIPI_DCS_SET_GAMMA_CURVE, 0x01);
-> +	mipi_dbi_command(ili->mipi, ILI9341_PGAMCTRL,
-> +		0x0f, 0x31, 0x2b, 0x0c, 0x0e, 0x08, 0x4e, 0xf1,
-> +		0x37, 0x07, 0x10, 0x03, 0x0e, 0x09, 0x00);
-> +	mipi_dbi_command(ili->mipi, ILI9341_NGAMCTRL,
-> +		0x00, 0x0e, 0x14, 0x03, 0x11, 0x07, 0x31, 0xc1,
-> +		0x48, 0x08, 0x0f, 0x0c, 0x31, 0x36, 0x0f);
-> +
-> +	/* Rotation */
-> +	mipi_dbi_command(ili->mipi, MIPI_DCS_SET_ADDRESS_MODE, ILI9341_MADCTL_MX);
-> +
-> +	/* Exit sleep mode */
-> +	mipi_dbi_command(ili->mipi, MIPI_DCS_EXIT_SLEEP_MODE);
-> +	msleep(120);
-> +
-> +	mipi_dbi_command(ili->mipi, MIPI_DCS_SET_DISPLAY_ON);
-> +
-> +	return 0;
-> +}
-> +
-> +static int ili9341_unprepare(struct drm_panel *panel)
-> +{
-> +	struct ili9341 *ili = panel_to_ili9341(panel);
-> +
-> +	return ili9341_deinit(panel, ili);
-> +}
-> +
-> +static int ili9341_prepare(struct drm_panel *panel)
-> +{
-> +	struct ili9341 *ili = panel_to_ili9341(panel);
-> +	int ret;
-> +
-> +	ret = ili9341_init(panel, ili);
-> +	if (ret < 0)
-> +		ili9341_unprepare(panel);
-> +	return ret;
-> +}
-> +
-> +static int ili9341_enable(struct drm_panel *panel)
-> +{
-> +	struct ili9341 *ili = panel_to_ili9341(panel);
-> +
-> +	return backlight_enable(ili->mipi->backlight);
-> +}
-> +
-> +static int ili9341_disable(struct drm_panel *panel)
-> +{
-> +	struct ili9341 *ili = panel_to_ili9341(panel);
-> +
-> +	return backlight_disable(ili->mipi->backlight);
-> +}
-> +
-> +static const struct drm_display_mode prgb_240x320_mode = {
-> +	.clock = 6350,
-> +
-> +	.hdisplay = 240,
-> +	.hsync_start = 240 + 10,
-> +	.hsync_end = 240 + 10 + 10,
-> +	.htotal = 240 + 10 + 10 + 20,
-> +
-> +	.vdisplay = 320,
-> +	.vsync_start = 320 + 4,
-> +	.vsync_end = 320 + 4 + 2,
-> +	.vtotal = 320 + 4 + 2 + 2,
-> +
-> +	.flags = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
-> +	.type = DRM_MODE_TYPE_DRIVER | DRM_MODE_TYPE_PREFERRED
-> +};
-> +
-> +static int ili9341_get_modes(struct drm_panel *panel)
-> +{
-> +	struct drm_connector *connector = panel->connector;
-> +	struct ili9341 *ili = panel_to_ili9341(panel);
-> +	struct drm_display_mode *mode;
-> +
-> +	mode = drm_mode_duplicate(panel->drm, &prgb_240x320_mode);
-> +	if (!mode) {
-> +		DRM_DEV_ERROR(panel->drm->dev, "bad mode or failed to add mode\n");
-> +		return -ENOMEM;
-> +	}
-> +
-> +	drm_mode_set_name(mode);
-> +
-> +	mode->width_mm = ili->conf->width_mm;
-> +	mode->height_mm = ili->conf->height_mm;
-> +
-> +	connector->display_info.width_mm = mode->width_mm;
-> +	connector->display_info.height_mm = mode->height_mm;
-> +	connector->display_info.bus_flags |= DRM_BUS_FLAG_DE_HIGH |
-> +		DRM_BUS_FLAG_PIXDATA_POSEDGE | DRM_BUS_FLAG_SYNC_NEGEDGE;
-> +
-> +	drm_mode_probed_add(connector, mode);
-> +
-> +	return 1; /* Number of modes */
-> +}
-> +
-> +static const struct drm_panel_funcs ili9341_drm_funcs = {
-> +	.disable = ili9341_disable,
-> +	.unprepare = ili9341_unprepare,
-> +	.prepare = ili9341_prepare,
-> +	.enable = ili9341_enable,
-> +	.get_modes = ili9341_get_modes,
-> +};
-> +
-> +static int ili9341_probe(struct spi_device *spi)
-> +{
-> +	struct device *dev = &spi->dev;
-> +	struct ili9341 *ili;
-> +	struct mipi_dbi *mipi;
-> +	struct gpio_desc *dc_gpio;
-> +	int ret;
-> +
-> +	mipi = devm_kzalloc(dev, sizeof(*mipi), GFP_KERNEL);
-> +	if (!mipi)
-> +		return -ENOMEM;
-> +
-> +	ili = devm_kzalloc(dev, sizeof(*ili), GFP_KERNEL);
-> +	if (!ili)
-> +		return -ENOMEM;
-> +
-> +	ili->mipi = mipi;
-> +
-> +	spi_set_drvdata(spi, ili);
-> +
-> +	/*
-> +	 * Every new incarnation of this display must have a unique
-> +	 * data entry for the system in this driver.
-> +	 */
-> +	ili->conf = of_device_get_match_data(dev);
-> +	if (!ili->conf) {
-> +		DRM_DEV_ERROR(dev, "missing device configuration\n");
-> +		return -ENODEV;
-> +	}
-> +
-> +	ili->mipi->reset = devm_gpiod_get_optional(dev, "reset", GPIOD_OUT_HIGH);
-> +	if (IS_ERR(ili->mipi->reset)) {
-> +		DRM_DEV_ERROR(dev, "failed to get gpio 'reset'\n");
-> +		return PTR_ERR(ili->mipi->reset);
-> +	}
-> +
-> +	ili->mipi->backlight = devm_of_find_backlight(dev);
-> +	if (IS_ERR(ili->mipi->backlight)) {
-> +		DRM_DEV_ERROR(dev, "failed to get backlight\n");
-> +		return PTR_ERR(ili->mipi->backlight);
-> +	}
-> +
-> +	dc_gpio = devm_gpiod_get_optional(dev, "dc", GPIOD_OUT_LOW);
-> +	if (IS_ERR(dc_gpio)) {
-> +		DRM_DEV_ERROR(dev, "failed to get gpio 'dc'\n");
-> +		return PTR_ERR(dc_gpio);
-> +	}
-> +
-> +	ret = mipi_dbi_spi_init(spi, ili->mipi, dc_gpio);
-> +	if (ret) {
-> +		DRM_DEV_ERROR(dev, "MIPI-DBI SPI setup failed\n");
-> +		return ret;
-> +	}
-> +
-> +	drm_panel_init(&ili->panel);
-> +	ili->panel.dev = dev;
-> +	ili->panel.funcs = &ili9341_drm_funcs;
-> +
-> +	return drm_panel_add(&ili->panel);
-> +}
-> +
-> +static int ili9341_remove(struct spi_device *spi)
-> +{
-> +	struct ili9341 *ili = spi_get_drvdata(spi);
-> +
-> +	drm_panel_remove(&ili->panel);
-> +
-> +	ili9341_disable(&ili->panel);
-> +	ili9341_unprepare(&ili->panel);
-> +
-> +	return 0;
-> +}
-> +
-> +static const struct ili9341_config dt024ctft_data = {
-> +	.width_mm = 37,
-> +	.height_mm = 49,
-> +};
-> +
-> +static const struct of_device_id ili9341_of_match[] = {
-> +	{ .compatible = "displaytech,dt024ctft", .data = &dt024ctft_data },
-> +	{ /* sentinel */ }
-> +};
-If another display is supported then the drm_display_mode may not match.
-So the above may not prove enough in the future.
-for now it should be fine.
-
-
-> +MODULE_DEVICE_TABLE(of, ili9341_of_match);
-> +
-> +static struct spi_driver ili9341_driver = {
-> +	.probe = ili9341_probe,
-> +	.remove = ili9341_remove,
-> +	.driver = {
-> +		.name = "panel-ilitek-ili9341",
-> +		.of_match_table = ili9341_of_match,
-> +	},
-> +};
-> +module_spi_driver(ili9341_driver);
-> +
-> +MODULE_AUTHOR("Josef Lusticky <josef@lusticky.cz>");
-> +MODULE_DESCRIPTION("ILI9341 LCD panel driver");
-> +MODULE_LICENSE("GPL");
-
-Looks good.
-Reviewed-by: Sam Ravnborg <sam@ravnborg.org>
-
-	Sam
+Rob
