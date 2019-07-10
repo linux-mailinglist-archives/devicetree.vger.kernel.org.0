@@ -2,103 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CDCC3647E7
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 16:14:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BD51A6480E
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 16:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727359AbfGJOOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 10:14:44 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:59054 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726458AbfGJOOo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 10:14:44 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id B4448616BA; Wed, 10 Jul 2019 14:14:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1562768082;
-        bh=tT33zEBA9PtRD/IyowYg4/egpUqKgsUqXRsSxZ2TsDc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=PlLcypq+S5CJ+uDTIOt7PtM6y7uf12suXgocabiOn517FPnNl/Ie1GMLbc4PtqJsq
-         0STdtJnFsAv1YGvg9DDwJBlwf8/MN+OAGqH0SKQuAKh7cuzd0c/u7e8jc9UJ3lBIQU
-         F+3GLfH6X5SJEu/vfQu7MFwDko22xyg0UwpmHjRg=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id 5FB4E61157;
-        Wed, 10 Jul 2019 14:14:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1562768077;
-        bh=tT33zEBA9PtRD/IyowYg4/egpUqKgsUqXRsSxZ2TsDc=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=A0fzCeMqOmcCgRGdt06AnbTMN+K+nOl11BW5LXKKOg9nv0wJ4SqKwRNWRWSP8l31I
-         WD6h2jkw/gAXKmkKN7LJk+n3dnI/pwXhRA8no7A0PODXrfxo7f2fnWMaXp5LcqfmV9
-         t3WOvWrdtZRINX/fROacge/ouizD+RvUGse9pmII=
+        id S1727742AbfGJOQa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 10:16:30 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:35299 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726617AbfGJOQ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Jul 2019 10:16:29 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 6D3B4160C;
+        Wed, 10 Jul 2019 10:16:28 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Wed, 10 Jul 2019 10:16:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=pU/ZJD/W/LSUZ7docvxRW9NDp5
+        g+z+9zh0aNagTZBXU=; b=D4kYOq39R5yaReEh7G3luGqW0UfZE1/qxpun4Df9zW
+        XJ8vi83u3o4FLc10yVRjN+VlUylh1w1Ac8Aq2jkT9vNeCtkrEAJpTuowmZ+yIIIg
+        RyzNNtA0VG2pGbXG36JelnF/I856XSBsG8k+LlTkvmkShNkODlK9uCE+hqJetJmQ
+        GIcsjRN4KFRhk//k/A/92jU/Azev63qGN2INs4ThIg6u8Jb+RW8ubUkiqLCLdi36
+        QUgIknlL0yiYToxpmes27ZNRJi0YHQNNugln4XE0ym1ECsY/TJTy21tUz0nXkmk6
+        3ZYO8vhljwC0DoSquMzybm1hRaTkKJnx2X1g74tasypg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=pU/ZJD/W/LSUZ7doc
+        vxRW9NDp5g+z+9zh0aNagTZBXU=; b=zr6KNcoWBQzAjCHN6n23n3x+KoCEcsfVm
+        ydGRWqXpXdOwAHa4yX+f2V1y/fAmEtY5bd23ZY8pLs+wBfTlKEKzKXpAYqkScBqH
+        4RPiOocJ2C0TRfTfzU6ChCQ/hHA60ZdkUDLHz1WJONm2E0CVCoH7zPFTgCbHAtBd
+        QNxc2PSxZGU2ITJGPKa2AA4bS+VaiEKXJLRuqQV3b0msjvdiWtJ3vRu8eIwsjH2b
+        Bjc5GKCunyIvHW/LEFIJqloJx1901e0xnqf4tgZ5DDX6ou7Z6dwychT8Tdn77eET
+        KLSSNy9Q4rfJTX/mPOr6Oiii60WDSddjTjw0d7T20YW3fgYMMp30w==
+X-ME-Sender: <xms:O_MlXcjzK-xLWk4cI7qJv9Qw34H1oPMYwl9db4l3SnZa0xrdVyEHpA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrgeeigdejiecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghjrdhi
+    ugdrrghuqeenucfkphepudegrddvrdekhedrvddvnecurfgrrhgrmhepmhgrihhlfhhroh
+    hmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:O_MlXYzj6lwL8H5aVd3eLWJCL8CLQ22NXh0Quhg1AXqkNYcMEOXNbw>
+    <xmx:O_MlXT2X8Z_GnJuzF12_9IifdL9fmLyPvmZzpNWemX7cSpb8o7Vq7g>
+    <xmx:O_MlXclJBRzqINO-vg202mwBT4QvqGAXLcWoaDCsaQ74b2HCPk2NTw>
+    <xmx:PPMlXYR0R3tjk-ZoC-ip6q7Tlxv83HZhK2kcnsRFr_gT5A5dqVprSQ>
+Received: from localhost.localdomain (ppp14-2-85-22.adl-apt-pir-bras31.tpg.internode.on.net [14.2.85.22])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 6E2FC380088;
+        Wed, 10 Jul 2019 10:16:22 -0400 (EDT)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     linux-mmc@vger.kernel.org
+Cc:     Andrew Jeffery <andrew@aj.id.au>, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, joel@jms.id.au,
+        adrian.hunter@intel.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        ryanchen.aspeed@gmail.com
+Subject: [PATCH 0/2] mmc: Add support for the ASPEED SD controller
+Date:   Wed, 10 Jul 2019 23:46:09 +0930
+Message-Id: <20190710141611.21159-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Wed, 10 Jul 2019 19:44:37 +0530
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     nm@ti.com, sboyd@kernel.org, georgi.djakov@linaro.org,
-        agross@kernel.org, david.brown@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, rjw@rjwysocki.net,
-        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        saravanak@google.com, linux-kernel-owner@vger.kernel.org,
-        adharmap@codeaurora.org
-Subject: Re: [PATCH RFC 0/4] DDR/L3 Scaling support on SDM845 SoCs
-In-Reply-To: <20190701092949.afenn2et2qexostt@vireshk-i7>
-References: <20190627133424.4980-1-sibis@codeaurora.org>
- <20190701092949.afenn2et2qexostt@vireshk-i7>
-Message-ID: <d2e3b5bf3aa6ee740f004b7b770bef26@codeaurora.org>
-X-Sender: sibis@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Viresh,
+Hello,
 
-On 2019-07-01 14:59, Viresh Kumar wrote:
-> On 27-06-19, 19:04, Sibi Sankar wrote:
->> This RFC series aims to extend cpu based scaling support to L3/DDR on
->> SDM845 SoCs. The patch series depends on "Introduce OPP bandwidth 
->> bindings"
->> series (https://patchwork.kernel.org/cover/10912993/). A part of the
->> series will still be applicable if we decide to go ahead with the 
->> proposal
->> from Saravana as well so I decided to post this out.
->> 
->> v2:
->> * Incorporated Viresh's comments from:
->> [1]https://lore.kernel.org/lkml/20190410102429.r6j6brm5kspmqxc3@vireshk-i7/
->> [2]https://lore.kernel.org/lkml/20190410112516.gnh77jcwawvld6et@vireshk-i7/
-> 
-> Did you get a chance to look at this ?
-> 
-> lore.kernel.org/lkml/20190622003449.33707-1-saravanak@google.com
+This short series introduce devicetree bindings and a driver for the ASPEED SD
+controller. Please review!
 
-Yes, I have v2 of cpufreq passive governor
-patch in the works based on Saravana's
-series. I plan on posting it out end of
-week. I had sent this series out
-since a portion (specifically update_
-voltage helper and adding opp_tables
-to cpufreq-hw driver) would remain
-constant irrespective of the path
-we choose.
+Andrew
 
-FWIW, on SDM845 SoCs we cannot use a
-rpmh_write_batch based icc_set on
-cpufreq fast switch pathw since it
-uses the "wait_for_completion" api.
+Andrew Jeffery (2):
+  dt-bindings: mmc: Document Aspeed SD controller
+  mmc: Add support for the ASPEED SD controller
 
+ .../bindings/mmc/sdhci-of-aspeed.yaml         |  91 ++++++
+ drivers/mmc/host/Kconfig                      |  12 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/sdhci-of-aspeed.c            | 307 ++++++++++++++++++
+ 4 files changed, 411 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml
+ create mode 100644 drivers/mmc/host/sdhci-of-aspeed.c
 
 -- 
--- Sibi Sankar --
-Qualcomm Innovation Center, Inc. is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project.
+2.20.1
+
