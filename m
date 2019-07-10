@@ -2,125 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EEF1364415
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 11:03:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E34764435
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 11:15:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727538AbfGJJDI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 05:03:08 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:39681 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726198AbfGJJDH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 05:03:07 -0400
-Received: by mail-pf1-f195.google.com with SMTP id j2so788809pfe.6
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2019 02:03:07 -0700 (PDT)
+        id S1727643AbfGJJPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 05:15:46 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:39283 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727464AbfGJJPq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 05:15:46 -0400
+Received: by mail-pl1-f194.google.com with SMTP id b7so917176pls.6
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2019 02:15:46 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=6NZ04dqkp5PZfb0iXau7OgJEqRReEfjejYdtenD28ag=;
-        b=t23I+rpKmwsx6L9Q4vUWFIrJBxJxq3TYfSJJPSu/DjOD1DCo6AlHTwiZJlR7EcNGLO
-         GcQlUTbk8YYTWXMsTz7Ef3BZFWCqFrJHdwQJnu1FY5awvwwGJ0c2XwZ8QwIsysig7Ih3
-         tY04e41XUxPfvyCqSBO3x1irGqEIENikMgzQBi4MZ4IdKu0Zx0koI4Yp/RMuYBu0enit
-         0Lsxto60XXj2SyuYhy6rrP8meO/YIeFPeGY5iNej4rSHjrjV86VWSjpA/QCxHNdTt5I6
-         qHBx7HRK6cDVRQ7y+2ZpeyJApVKKrYbHzVzKOl0ckKy1KNxZuK/6Z3vXfmAAzmEvpGUs
-         uLSQ==
+        bh=rs5UUXtAqT5R1zFPxyCMoObdvjFrpKQLMGjYPWWR+M4=;
+        b=xuDFEEprPQrx+CqmzvYG12VzfgLPfkFe3i9dDO9PYcL0P6GlYTHeg9CvVU75INDcfo
+         /B1HQzUaYBWgrSQr4QqLDllN0ySewu+Aucrj6f3rYqEBvPfKYmVNRP1VtkFAgR4Dnnwy
+         wYK2HDv8BW4cYA9i/YOEeHB71zoM56WjB5FZ3hXxzmZPy9bJzNvQoO/LSjPqNJY6AuEs
+         HWjsDnM8bx+F1bAhlBhUe+v3UezS0KGgbT9g5qtl1N77SC8yRCWJCMX7840BuAklPao/
+         IpNwuqYKXD16xdMURhUJ5FuGtedK5vsNiT/iKtpo1WWCo82zqV15hKbbCfwOv35Xraho
+         ACWQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6NZ04dqkp5PZfb0iXau7OgJEqRReEfjejYdtenD28ag=;
-        b=iVy8AzU/6HKBfgACl1PnuxF0y839B08ap6xI0JvKqmT0Ddi9NZ8lwX9nOyAPgGFzIa
-         JHVahMOvqRluQoXh+JvgXnEs7vWas4z5ivfGmkOWCrblcgHgkYkvDIVNSw0H9popR9XQ
-         Iev7SD3wz11bvajDpMPeeIEQodNuV7ez6BrVBa5GmzseTxJZCHvlaMloRlIFHGOH3KjA
-         l5PdIZrt5kHntUPTHf7BZnat9rNJlSc8nGXN+zrayktUZA0B4XoozdiSTjfmOvVbyWIW
-         iv1wY7Wif0GW9bFn283eYTVHc4+4rO6KSTToBX/4kzTJfPeOS81GttgGp5PW4p1nWK7/
-         Y1vA==
-X-Gm-Message-State: APjAAAW4qffbJS70YQPie7z7lYCe0olYVpQ7Loxy4/uUNj8F4cKgNu8y
-        AJx5CBhqF7yVy16xWvNC26SWMA==
-X-Google-Smtp-Source: APXvYqxK+S0LBckyQx94QVniKkTJ+/+6VuQvBLPkooC8SUohB+Wy0vvz/pDDQjQLOEljUV6HT7fR5w==
-X-Received: by 2002:a63:ad07:: with SMTP id g7mr33649130pgf.405.1562749386689;
-        Wed, 10 Jul 2019 02:03:06 -0700 (PDT)
+        bh=rs5UUXtAqT5R1zFPxyCMoObdvjFrpKQLMGjYPWWR+M4=;
+        b=FvHzAfQprN7x3dc4r79VPO3/Mx3WGvmnZ2QGrQsVVFj168MZ8iezDtSqRF8SqDRAAm
+         qemZiRYiXrJvOuMU/jVPsz2eg1Ob4AFQ9NTkp6qNI7TXy7CtzIqu0oGSRTVMdR2diETy
+         N1JM6jqdQzpXGua4xVOgZv6VcHT29KWJv9mTaOvtNVgD1DpNDtuDsfPSTIt5vFxLlarL
+         C2UVf7Aki2xY4iSf9psv7jjqH5fYNPsibxUhK6yz12iD5N1K4WogrNlwh8o/+aRPCs7J
+         FbLtgd04wwDPoWJBI78wRfk0uyOf+9hhYGdUvsD6D42Zgo9Y20PdBwBawLw1vn59lA4n
+         CFgA==
+X-Gm-Message-State: APjAAAUQZWzjN+SW9U8OCgVL/4MC7V9VjyR7tHSUi+EqoCHFqGk6woDj
+        ABm3luoSxXdDEwYa/6oeH0Dwuw==
+X-Google-Smtp-Source: APXvYqzWzbSazZ8noBpanqTTfe68a2rHVdItZzY1mNR00meLwg0PgqjSVl0my2iNIShhy2iItWQJMw==
+X-Received: by 2002:a17:902:b43:: with SMTP id 61mr38449888plq.322.1562750145655;
+        Wed, 10 Jul 2019 02:15:45 -0700 (PDT)
 Received: from localhost ([122.172.28.117])
-        by smtp.gmail.com with ESMTPSA id x65sm1633917pfd.139.2019.07.10.02.03.05
+        by smtp.gmail.com with ESMTPSA id z20sm3555377pfk.72.2019.07.10.02.15.44
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 10 Jul 2019 02:03:06 -0700 (PDT)
-Date:   Wed, 10 Jul 2019 14:33:03 +0530
+        Wed, 10 Jul 2019 02:15:45 -0700 (PDT)
+Date:   Wed, 10 Jul 2019 14:45:43 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Niklas Cassel <niklas.cassel@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        jorge.ramirez-ortiz@linaro.org, sboyd@kernel.org,
-        vireshk@kernel.org, bjorn.andersson@linaro.org,
-        ulf.hansson@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/13] arm64: dts: qcom: qcs404: Add CPR and populate OPP
- table
-Message-ID: <20190710090303.tb5ue3wq6r7ofyev@vireshk-i7>
-References: <20190705095726.21433-1-niklas.cassel@linaro.org>
- <20190705095726.21433-12-niklas.cassel@linaro.org>
+To:     Yangtao Li <tiny.windzz@gmail.com>
+Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        maxime.ripard@bootlin.com, wens@csie.org, rjw@rjwysocki.net,
+        davem@davemloft.net, mchehab+samsung@kernel.org,
+        gregkh@linuxfoundation.org, linus.walleij@linaro.org,
+        nicolas.ferre@microchip.com, paulmck@linux.ibm.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [RESEND, PATCH v4 0/2] cpufreq: Add sunxi nvmem based CPU
+ scaling driver
+Message-ID: <20190710091543.yqcthfgzmxvku5ws@vireshk-i7>
+References: <20190612162816.31713-1-tiny.windzz@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190705095726.21433-12-niklas.cassel@linaro.org>
+In-Reply-To: <20190612162816.31713-1-tiny.windzz@gmail.com>
 User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 05-07-19, 11:57, Niklas Cassel wrote:
-> diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
->  	cpu_opp_table: cpu-opp-table {
-> -		compatible = "operating-points-v2";
-> +		compatible = "operating-points-v2-kryo-cpu";
->  		opp-shared;
->  
->  		opp-1094400000 {
->  			opp-hz = /bits/ 64 <1094400000>;
-> -			opp-microvolt = <1224000 1224000 1224000>;
-> +			required-opps = <&cpr_opp1>;
->  		};
->  		opp-1248000000 {
->  			opp-hz = /bits/ 64 <1248000000>;
-> -			opp-microvolt = <1288000 1288000 1288000>;
-> +			required-opps = <&cpr_opp2>;
->  		};
->  		opp-1401600000 {
->  			opp-hz = /bits/ 64 <1401600000>;
-> -			opp-microvolt = <1384000 1384000 1384000>;
-> +			required-opps = <&cpr_opp3>;
-> +		};
-> +	};
-> +
-> +	cpr_opp_table: cpr-opp-table {
-> +		compatible = "operating-points-v2-qcom-level";
-> +
-> +		cpr_opp1: opp1 {
-> +			opp-level = <1>;
-> +			qcom,opp-fuse-level = <1>;
-> +			opp-hz = /bits/ 64 <1094400000>;
-> +		};
-> +		cpr_opp2: opp2 {
-> +			opp-level = <2>;
-> +			qcom,opp-fuse-level = <2>;
-> +			opp-hz = /bits/ 64 <1248000000>;
-> +		};
-> +		cpr_opp3: opp3 {
-> +			opp-level = <3>;
-> +			qcom,opp-fuse-level = <3>;
-> +			opp-hz = /bits/ 64 <1401600000>;
->  		};
->  	};
+On 12-06-19, 12:28, Yangtao Li wrote:
+> Add sunxi nvmem based CPU scaling driver, refers to qcom-cpufreq-kryo.
+> 
+> Yangtao Li (2):
+>   cpufreq: Add sun50i nvmem based CPU scaling driver
+>   dt-bindings: cpufreq: Document allwinner,sun50i-h6-operating-points
+> 
+>  .../bindings/opp/sun50i-nvmem-cpufreq.txt     | 167 +++++++++++++
+>  MAINTAINERS                                   |   7 +
+>  drivers/cpufreq/Kconfig.arm                   |  12 +
+>  drivers/cpufreq/Makefile                      |   1 +
+>  drivers/cpufreq/cpufreq-dt-platdev.c          |   2 +
+>  drivers/cpufreq/sun50i-cpufreq-nvmem.c        | 226 ++++++++++++++++++
+>  6 files changed, 415 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/opp/sun50i-nvmem-cpufreq.txt
+>  create mode 100644 drivers/cpufreq/sun50i-cpufreq-nvmem.c
+> 
+> ---
+> v4:
+> -Remove sunxi_cpufreq_soc_data structure for now.
+> -Convert to less generic name.
+> -Update soc_bin xlate.
 
-- Do we ever have cases more complex than this for this version of CPR ?
+Applied. Thanks.
 
-- What about multiple devices with same CPR table, not big LITTLE
-  CPUs, but other devices like two different type of IO devices ? What
-  will we do with opp-hz in those cases ?
-
-- If there are no such cases, can we live without opp-hz being used
-  here and reverse-engineer the highest frequency by looking directly
-  at CPUs OPP table ? i.e. by looking at required-opps field.
+I will push it only after 5.3-rc1 is released.
 
 -- 
 viresh
