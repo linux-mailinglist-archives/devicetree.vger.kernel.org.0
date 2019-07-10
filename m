@@ -2,152 +2,325 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2859D64D85
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 22:27:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE88364DB7
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 22:50:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727653AbfGJU1z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 16:27:55 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:42896 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727381AbfGJU1y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 16:27:54 -0400
-Received: by mail-pg1-f193.google.com with SMTP id t132so1759788pgb.9
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2019 13:27:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=hO2jzOM05mxrz5IGdqgpee+axiQH+2OXPmqo+Ul0FcM=;
-        b=DXE2TyoaAsiT9dgVdMLJlwnFOJG+VPwltPNRpKt3x1FLvKASU/iQDS/su9pWcI6ZPd
-         MXkkWpKWuusX2P8emSJdJDlt30oE5SxYRezHyYxpjjVp3ZbcLi8A3iWXovzH83yYRc8k
-         fjxQns6K5/tsiMazqiGGWLPX8o1RPbeCk84rZYGhBrbKZfsdxcSVvoPDO0y7puTr2iGH
-         fQNI4xvqDUtOGBpEZRrc5xNRkpC2AFKD+tShr+e3Bwk8ghWvxHexXjknk4e4/Fuddr4K
-         h5eIBtrjZWB7rbYTWe1Z8/fz44NvT2DlWtjdcUYum8NYmtJkqcBIajW2gxCHzFBMqhlz
-         2q0w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=hO2jzOM05mxrz5IGdqgpee+axiQH+2OXPmqo+Ul0FcM=;
-        b=IOq9S3/I/OitbzdLRXph/DsVuQcbCrdluR7yVltSeGIIVHBVbBjnGFGeFeM7+vAV/7
-         ekllSv4OrsyHfz+U+xVEnlDwTgLC4j8ivwtlV0lw+JKO58A4SQqttuj0czMBxnubvZai
-         pUkKP+L0YoVL1+cn14RHvy29f4SNZXJZt7byoIMcLX0OxxCT5Tad+85VK8p5JnIN1BwQ
-         pixE567qnh77dD13KRF5iqcTZqCnzpH7F7D7F4fKT5uWaaCnCFoe1AWGS5/pWiAYbMQJ
-         U/7lLpiWDJGU6jChckPw2IYXRjR6SQssKtFUw2ENro8Uocdlk7d/7kkjxh9HXGbEYuQC
-         7fAA==
-X-Gm-Message-State: APjAAAW9+YPdpZiEEA6afWbGcDdFwdEB93jYpLFP+Y2b+1dwH9g6NADR
-        7RhXZBi1kKmuw+WkU5SES2+dHf+d0R59Rb/8xq1SzQ==
-X-Google-Smtp-Source: APXvYqzZdlWhCkBvFW8XUuT2KDhsG6TgutjUsDP74lsWb4XjESrHCjQll9Q/yu+3XrTs4ARL+yM6pPyLsGbtB4DuWT0=
-X-Received: by 2002:a63:205f:: with SMTP id r31mr109331pgm.159.1562790473396;
- Wed, 10 Jul 2019 13:27:53 -0700 (PDT)
+        id S1726708AbfGJUuR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 16:50:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45094 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726033AbfGJUuR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Jul 2019 16:50:17 -0400
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 91BB821019;
+        Wed, 10 Jul 2019 20:50:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562791814;
+        bh=TyY2GTRl0SRc/N3vL/VGCXKc7Zo1ZjKqA+jq9ab2Qms=;
+        h=From:Date:Subject:To:Cc:From;
+        b=I4iGN8uBan09GuOsLvByQYhebLDBuIV/NooP6mG86NIwbXnallIyxu9atQ7CeaGk5
+         okNLScyWB3TzZarJgp7hvEBZDNd96r62U291cdezJQo0Vfd2e9swz4PGzSGZS8Y5e1
+         M6bbGZtYab2LOcTnzhaJQOpWFdW/1E8Cpub+pnP4=
+Received: by mail-qt1-f173.google.com with SMTP id h24so4046128qto.0;
+        Wed, 10 Jul 2019 13:50:14 -0700 (PDT)
+X-Gm-Message-State: APjAAAWzj+uUuWffQF8Spoj84pvHtx9f/jFIrsvWEA7tvQR0F8+InR4I
+        Z68H4/s2ERgDSAUvFJowVp/GSJH3BqLEgeQI+Q==
+X-Google-Smtp-Source: APXvYqyAeCkhKhL7oXL7MjXoOf3GJZ+E5YrdvjuEoJM0RC+3kdFJoXcJByqC6ZfKjlIKlr/VOoVBbGTM8H9FrLj6azE=
+X-Received: by 2002:a0c:b786:: with SMTP id l6mr26676423qve.148.1562791813740;
+ Wed, 10 Jul 2019 13:50:13 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190709063023.251446-1-brendanhiggins@google.com>
- <20190709063023.251446-17-brendanhiggins@google.com> <7cc417dd-036f-7dc1-6814-b1fdac810f03@kernel.org>
- <CAFd5g4595X8cM919mohQVaShs4dKWzZ_-2RVB=6SH3RdVMwuQw@mail.gmail.com>
-In-Reply-To: <CAFd5g4595X8cM919mohQVaShs4dKWzZ_-2RVB=6SH3RdVMwuQw@mail.gmail.com>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Wed, 10 Jul 2019 13:27:42 -0700
-Message-ID: <CAFd5g45zFhBN-yrJbRt6KnFkYKxVqjs9qeQULCSD6z89vvG-Tg@mail.gmail.com>
-Subject: Re: [PATCH v7 16/18] MAINTAINERS: add entry for KUnit the unit
- testing framework
-To:     shuah <shuah@kernel.org>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 10 Jul 2019 14:50:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJAydO3Zjx_9S+r8h5YAQbDBJjqHSFV-aKkN9n=MH7erg@mail.gmail.com>
+Message-ID: <CAL_JsqJAydO3Zjx_9S+r8h5YAQbDBJjqHSFV-aKkN9n=MH7erg@mail.gmail.com>
+Subject: [GIT PULL] Devicetree updates for 5.3
+To:     Linus Torvalds <torvalds@linux-foundation.org>
 Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, David Miller <davem@davemloft.net>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 9, 2019 at 11:01 AM Brendan Higgins
-<brendanhiggins@google.com> wrote:
->
-> On Tue, Jul 9, 2019 at 7:53 AM shuah <shuah@kernel.org> wrote:
-> >
-> > On 7/9/19 12:30 AM, Brendan Higgins wrote:
-> > > Add myself as maintainer of KUnit, the Linux kernel's unit testing
-> > > framework.
-> > >
-> > > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> > > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > > Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-> > > ---
-> > >   MAINTAINERS | 11 +++++++++++
-> > >   1 file changed, 11 insertions(+)
-> > >
-> > > diff --git a/MAINTAINERS b/MAINTAINERS
-> > > index 677ef41cb012c..48d04d180a988 100644
-> > > --- a/MAINTAINERS
-> > > +++ b/MAINTAINERS
-> > > @@ -8599,6 +8599,17 @@ S:     Maintained
-> > >   F:  tools/testing/selftests/
-> > >   F:  Documentation/dev-tools/kselftest*
-> > >
-> > > +KERNEL UNIT TESTING FRAMEWORK (KUnit)
-> > > +M:   Brendan Higgins <brendanhiggins@google.com>
-> > > +L:   linux-kselftest@vger.kernel.org
-> > > +L:   kunit-dev@googlegroups.com
-> > > +W:   https://google.github.io/kunit-docs/third_party/kernel/docs/
-> > > +S:   Maintained
-> > > +F:   Documentation/dev-tools/kunit/
-> > > +F:   include/kunit/
-> > > +F:   kunit/
-> > > +F:   tools/testing/kunit/
-> > > +
-> > >   KERNEL USERMODE HELPER
-> > >   M:  Luis Chamberlain <mcgrof@kernel.org>
-> > >   L:  linux-kernel@vger.kernel.org
-> > >
-> >
-> > Thanks Brendan.
-> >
-> > I am good with this. I can take KUnit patches through kselftest
-> > with your Ack.
->
-> My acknowledgement? Sure! I thought we already agreed to that.
->
-> Also, do we need an ack from Masahiro or Michal for the Kbuild patch
-> [PATCH v7 06/18]? And an ack from Josh or Peter for the objtool patch
-> [PATCH v7 08/18]?
+Hi Linus,
 
-By the way, I am guessing you have already seen it, but I uploaded a
-new version to incorporate a suggestion made by Masahiro on patch
-06/18. In addition, I have gotten acks on the two patches mentioned
-above. So I think we are good to go.
+Please pull. There's 2 conflicts. The first is with your tree and SPDX
+tags in scripts/dtc/. The correct resolution is to take the version
+from my tree as that has the correct licenses from upstream dtc. The
+2nd conflict is with the netdev tree. It's fine to just delete
+ethernet.txt. The necessary changes are already in the new schema
+file.
 
-Thanks!
+Rob
+
+The following changes since commit 852d095d16a6298834839f441593f59d58a31978=
+:
+
+  checkpatch.pl: Update DT vendor prefix check (2019-05-22 14:54:49 -0500)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+tags/devicetree-for-5.3
+
+for you to fetch changes up to f59d261180f3b66367962f1974090815ce710056:
+
+  dt-bindings: vendor-prefixes: add Sipeed (2019-07-09 16:57:41 -0600)
+
+----------------------------------------------------------------
+Devicetree updates for v5.3:
+
+- DT binding schema examples are now validated against the schemas.
+  Various examples are fixed due to that.
+
+- Sync dtc with upstream version v1.5.0-30-g702c1b6c0e73
+
+- Initial schemas for networking bindings. This includes ethernet, phy
+  and mdio common bindings with several Allwinner and stmmac converted
+  to the schema.
+
+- Conversion of more Arm top-level SoC/board bindings to DT schema
+
+- Conversion of PSCI binding to DT schema
+
+- Rework Arm CPU schema to coexist with other CPU schemas
+
+- Add a bunch of missing vendor prefixes and new ones for SoChip,
+  Sipeed, Kontron, B&R Industrial Automation GmbH, and Espressif
+
+- Add Mediatek UART RX wakeup support to binding
+
+- Add reset to ST UART binding
+
+- Remove some Linuxisms from the endianness common-properties.txt
+  binding
+
+- Make the flattened DT read-only after init
+
+- Ignore disabled reserved memory nodes
+
+- Clean-up some dead code in FDT functions
+
+----------------------------------------------------------------
+Amit Kucheria (1):
+      Documentation: arm: Link idle-states binding to "enable-method" prope=
+rty
+
+Brian Masney (1):
+      dt-bindings: backlight: lm3630a: correct schema validation
+
+Claire Chang (1):
+      dt-bindings: serial: add documentation for Rx in-band wakeup support
+
+Erwan Le Ray (1):
+      dt-bindings: stm32: serial: Add optional reset
+
+Geert Uytterhoeven (3):
+      dt-bindings: property-units: Sanitize unit naming
+      dt-bindings: Add missing newline at end of file
+      of/platform: Drop superfluous cast in of_device_make_bus_id()
+
+Hannes Schmelzer (1):
+      Documentation: devicetree: Add vendor prefix for B&R Industrial
+Automation GmbH
+
+Icenowy Zheng (2):
+      dt-bindings: vendor-prefixes: add SoChip
+      dt-bindings: vendor-prefixes: add Sipeed
+
+Kefeng Wang (2):
+      of/fdt: Fix =E2=80=98of_fdt_match=E2=80=99 defined but not used compi=
+ler warning
+      dt-bindings: 83xx-512x-pci: Drop cell-index property
+
+Krishna Reddy (1):
+      of: reserved-memory: ignore disabled memory-region nodes
+
+Marco Felsch (1):
+      dt-bindings: add Kontron vendor prefix
+
+Masahiro Yamada (1):
+      of/fdt: pass early_init_dt_reserve_memory_arch() with bool type nomap
+
+Maxime Ripard (22):
+      dt-bindings: Add vendor prefix for Espressif
+      dt-bindings: vendor: Escape single quote
+      dt-bindings: vendor: Fix simtek vendor compatible
+      dt-bindings: vendor: Add a bunch of vendors
+      dt-bindings: net: Add YAML schemas for the generic Ethernet options
+      dt-bindings: net: Add a YAML schemas for the generic PHY options
+      dt-bindings: net: Add a YAML schemas for the generic MDIO options
+      MAINTAINERS: Add Ethernet PHY YAML file
+      dt-bindings: net: phy: The interrupt property is not mandatory
+      dt-bindings: net: sun4i-emac: Convert the binding to a schemas
+      dt-bindings: net: sun4i-mdio: Convert the binding to a schemas
+      dt-bindings: net: stmmac: Convert the binding to a schemas
+      dt-bindings: net: sun7i-gmac: Convert the binding to a schemas
+      dt-bindings: net: sun8i-emac: Convert the binding to a schemas
+      dt-bindings: net: dwmac: Deprecate the PHY reset properties
+      dt-bindings: net: mdio: Add a nodename pattern
+      dt-bindings: net: mdio: Add address and size cells
+      dt-bindings: net: mdio: Add child nodes
+      dt-bindings: display: Fix simple-framebuffer example
+      dt-bindings: simple-framebuffer: Add requirement for pipelines
+      dt-bindings: net: Use phy-mode instead of phy-connection-type
+      dt-bindings: usb: ehci: Fix example warnings
+
+Rob Herring (15):
+      scripts/dtc: Update to upstream version v1.5.0-23-g87963ee20693
+      dt-bindings: vendor-prefixes: Also allow node names starting with '_'
+      dt-bindings: Check the examples against the schemas
+      scripts/dtc: Update to upstream version v1.5.0-30-g702c1b6c0e73
+      dt-bindings: arm: Convert Alpine board/soc bindings to json-schema
+      dt-bindings: arm: qcom: Add missing schema for MSM8974
+      dt-bindings: arm: qcom: Add missing schema for IPQ4019 boards
+      dt-bindings: arm: Convert Axxia board/soc bindings to json-schema
+      dt-bindings: arm: Convert MOXA ART board/soc bindings to json-schema
+      dt-bindings: arm: Convert NXP LPC32xx board/soc bindings to json-sche=
+ma
+      dt-bindings: arm: Convert Conexant Digicolor board/soc bindings
+to json-schema
+      dt-bindings: arm: Convert PSCI binding to json-schema
+      dt-bindings: arm: Limit cpus schema to only check Arm 'cpu' nodes
+      dt-bindings: mtd: sunxi-nand: Drop 'maxItems' from child 'reg' proper=
+ty
+      dt-bindings: arm: Convert RDA Micro board/soc bindings to json-schema
+
+Stephen Boyd (3):
+      dt-bindings: Remove Linuxisms from common-properties binding
+      of/fdt: Remove dead code and mark functions with __init
+      of/fdt: Mark initial_boot_params as __ro_after_init
+
+Wolfram Sang (1):
+      of: unittest: simplify getting the adapter of a client
+
+ Documentation/arm64/booting.txt                    |   2 +-
+ Documentation/devicetree/bindings/Makefile         |   2 +-
+ .../devicetree/bindings/arm/al,alpine.txt          |  16 -
+ .../devicetree/bindings/arm/al,alpine.yaml         |  21 +
+ Documentation/devicetree/bindings/arm/arm-boards   |   2 +-
+ Documentation/devicetree/bindings/arm/axxia.txt    |  12 -
+ Documentation/devicetree/bindings/arm/axxia.yaml   |  19 +
+ Documentation/devicetree/bindings/arm/cpus.yaml    | 487 ++++++++++-------=
+----
+ .../devicetree/bindings/arm/digicolor.txt          |   6 -
+ .../devicetree/bindings/arm/digicolor.yaml         |  16 +
+ .../devicetree/bindings/arm/idle-states.txt        |  15 +-
+ Documentation/devicetree/bindings/arm/moxart.txt   |  12 -
+ Documentation/devicetree/bindings/arm/moxart.yaml  |  19 +
+ .../devicetree/bindings/arm/nxp/lpc32xx.txt        |   8 -
+ .../devicetree/bindings/arm/nxp/lpc32xx.yaml       |  25 ++
+ Documentation/devicetree/bindings/arm/psci.txt     | 111 -----
+ Documentation/devicetree/bindings/arm/psci.yaml    | 163 +++++++
+ Documentation/devicetree/bindings/arm/qcom.yaml    |  14 +
+ Documentation/devicetree/bindings/arm/rda.txt      |  17 -
+ Documentation/devicetree/bindings/arm/rda.yaml     |  20 +
+ .../devicetree/bindings/common-properties.txt      |  17 +-
+ .../bindings/display/simple-framebuffer.yaml       |  25 +-
+ .../devicetree/bindings/ipmi/npcm7xx-kcs-bmc.txt   |   2 +-
+ .../bindings/leds/backlight/lm3630a-backlight.yaml |  21 +-
+ .../bindings/mtd/allwinner,sun4i-a10-nand.yaml     |   1 -
+ .../bindings/net/allwinner,sun4i-a10-emac.yaml     |  56 +++
+ .../bindings/net/allwinner,sun4i-a10-mdio.yaml     |  70 +++
+ .../bindings/net/allwinner,sun4i-emac.txt          |  19 -
+ .../bindings/net/allwinner,sun4i-mdio.txt          |  27 --
+ .../bindings/net/allwinner,sun7i-a20-gmac.txt      |  27 --
+ .../bindings/net/allwinner,sun7i-a20-gmac.yaml     |  65 +++
+ .../bindings/net/allwinner,sun8i-a83t-emac.yaml    | 321 ++++++++++++++
+ .../devicetree/bindings/net/dwmac-sun8i.txt        | 201 ---------
+ .../bindings/net/ethernet-controller.yaml          | 206 +++++++++
+ .../devicetree/bindings/net/ethernet-phy.yaml      | 177 ++++++++
+ Documentation/devicetree/bindings/net/ethernet.txt |  68 +--
+ .../devicetree/bindings/net/fixed-link.txt         |  55 +--
+ Documentation/devicetree/bindings/net/mdio.txt     |  38 +-
+ Documentation/devicetree/bindings/net/mdio.yaml    |  74 ++++
+ Documentation/devicetree/bindings/net/phy.txt      |  80 +---
+ .../devicetree/bindings/net/snps,dwmac.yaml        | 411 +++++++++++++++++
+ Documentation/devicetree/bindings/net/stmmac.txt   | 179 +-------
+ .../devicetree/bindings/pci/83xx-512x-pci.txt      |   1 -
+ .../bindings/pinctrl/nuvoton,npcm7xx-pinctrl.txt   |   2 +-
+ .../devicetree/bindings/property-units.txt         |  34 +-
+ .../devicetree/bindings/regulator/pv88060.txt      |   2 +-
+ .../devicetree/bindings/serial/mtk-uart.txt        |  13 +-
+ .../devicetree/bindings/serial/st,stm32-usart.txt  |   1 +
+ .../devicetree/bindings/sound/cs42l73.txt          |   2 +-
+ .../devicetree/bindings/usb/generic-ehci.yaml      |   3 +-
+ .../devicetree/bindings/vendor-prefixes.yaml       |  76 +++-
+ Documentation/translations/zh_CN/arm64/booting.txt |   2 +-
+ MAINTAINERS                                        |   3 +-
+ drivers/of/fdt.c                                   | 141 +++---
+ drivers/of/of_reserved_mem.c                       |   3 +
+ drivers/of/platform.c                              |   3 +-
+ drivers/of/unittest.c                              |   2 +-
+ include/linux/of_fdt.h                             |  11 -
+ scripts/dtc/Makefile.dtc                           |   1 +
+ scripts/dtc/checks.c                               |  72 ++-
+ scripts/dtc/data.c                                 |  17 +-
+ scripts/dtc/dtc-lexer.l                            |  17 +-
+ scripts/dtc/dtc-parser.y                           |  17 +-
+ scripts/dtc/dtc.c                                  |  17 +-
+ scripts/dtc/dtc.h                                  |  20 +-
+ scripts/dtc/flattree.c                             |  19 +-
+ scripts/dtc/fstree.c                               |  17 +-
+ scripts/dtc/libfdt/Makefile.libfdt                 |   3 +
+ scripts/dtc/libfdt/fdt.c                           |  47 +-
+ scripts/dtc/libfdt/fdt.h                           |  47 +-
+ scripts/dtc/libfdt/fdt_addresses.c                 |  94 ++--
+ scripts/dtc/libfdt/fdt_empty_tree.c                |  47 +-
+ scripts/dtc/libfdt/fdt_overlay.c                   |  57 +--
+ scripts/dtc/libfdt/fdt_ro.c                        |  97 ++--
+ scripts/dtc/libfdt/fdt_rw.c                        |  69 +--
+ scripts/dtc/libfdt/fdt_strerror.c                  |  47 +-
+ scripts/dtc/libfdt/fdt_sw.c                        | 125 +++---
+ scripts/dtc/libfdt/fdt_wip.c                       |  47 +-
+ scripts/dtc/libfdt/libfdt.h                        | 205 ++++++---
+ scripts/dtc/libfdt/libfdt_env.h                    |  48 +-
+ scripts/dtc/libfdt/libfdt_internal.h               |  47 +-
+ scripts/dtc/livetree.c                             |  37 +-
+ scripts/dtc/srcpos.c                               |  16 +-
+ scripts/dtc/srcpos.h                               |  16 +-
+ scripts/dtc/treesource.c                           |  17 +-
+ scripts/dtc/util.c                                 |  16 +-
+ scripts/dtc/util.h                                 |  20 +-
+ scripts/dtc/version_gen.h                          |   2 +-
+ scripts/dtc/yamltree.c                             |  16 +-
+ 89 files changed, 2562 insertions(+), 2181 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/al,alpine.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/al,alpine.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/axxia.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/axxia.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/digicolor.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/digicolor.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/moxart.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/moxart.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/nxp/lpc32xx.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/nxp/lpc32xx.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/psci.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/psci.yaml
+ delete mode 100644 Documentation/devicetree/bindings/arm/rda.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/rda.yaml
+ create mode 100644
+Documentation/devicetree/bindings/net/allwinner,sun4i-a10-emac.yaml
+ create mode 100644
+Documentation/devicetree/bindings/net/allwinner,sun4i-a10-mdio.yaml
+ delete mode 100644
+Documentation/devicetree/bindings/net/allwinner,sun4i-emac.txt
+ delete mode 100644
+Documentation/devicetree/bindings/net/allwinner,sun4i-mdio.txt
+ delete mode 100644
+Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.txt
+ create mode 100644
+Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.yaml
+ create mode 100644
+Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/dwmac-sun8i.txt
+ create mode 100644
+Documentation/devicetree/bindings/net/ethernet-controller.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/ethernet-phy.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/mdio.yaml
+ create mode 100644 Documentation/devicetree/bindings/net/snps,dwmac.yaml
