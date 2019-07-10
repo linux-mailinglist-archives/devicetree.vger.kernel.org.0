@@ -2,190 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5869E64E9C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 00:11:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8BAC164EBB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 00:40:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727030AbfGJWLc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 18:11:32 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:44214 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726245AbfGJWLc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 18:11:32 -0400
-Received: by mail-oi1-f195.google.com with SMTP id e189so2869363oib.11;
-        Wed, 10 Jul 2019 15:11:31 -0700 (PDT)
+        id S1727063AbfGJWkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 18:40:09 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:46927 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726245AbfGJWkJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 18:40:09 -0400
+Received: by mail-io1-f68.google.com with SMTP id i10so8235170iol.13
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2019 15:40:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=w0fNZ+VwPek5C+viI1snkH/my4gCM3GRy8SEqIEurFg=;
-        b=FDMNkG9C/a/JXOKXykARV0Tgu5YnEa+mdKXbnNdqxZB8C8/0GpR1qgIShCPQ015R+/
-         rXagG3fo+XoxkQSBmh7wQSI2U0ZELZ+DI5FuNydFTxqfmKxbfDBtHY5sm3CkM2mEyTwJ
-         ECmHfCFgxnIx7XbU8ZlyeesZhkNpMf150ltwtgo3VqfYRAcZXDMry+c2Gj9GG9js9jHp
-         4qk2fkGpojRs+P7zVMsrK/tu5Pi113FcVZUZV2HU/bFr+Dn+IHSQhcPa6uPnbGuBpCt8
-         5AniWOjqbOCSJAC0N8+qxBtPkT97+cOImG7CW8xEVi/DKYKmK6sf0s6Zs3Iag/vsvDJL
-         pmqw==
+        bh=h1QrIpFdh5rLkTKFlCHaduUWYuYcrWpgjVEeSTaTyVo=;
+        b=i5KPrHovfkqkwkajM2OJwC/MI8IVo3lIvSf1xBkUaMHWuUyWkij1QldVl9kX/GMlE1
+         DNsrFiTH/7r6LswYJlPb1030krcbMTp9icHuWypgydw+2C+kuV72UBpH6KFLdct9hP6R
+         bfQOoNSN7axemJnh/3RbdCrrYZ6IDuOtjaP+w=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=w0fNZ+VwPek5C+viI1snkH/my4gCM3GRy8SEqIEurFg=;
-        b=oErIKz4CH0POmYfQzJlvgEGpt9OSpXACilePRxaK+8NGTjymGuAk0DrM31BXhM5DNf
-         zJoDqTOJTT/NOEtOAxSCdAQGD1ub/C6uqsGE41K/iIYG98pH62kmeMZQgalwqDbVCXPo
-         OpMY48OkJ5UMmM3TV0z3YIPqH3usyLzL0C/XPiTVG4JDp4WySK7tISgUyVmIQkkh3x8E
-         URAmqLEVh3VSx3CWMtpUrBbVVdoIUj7FhFLgguN+6Ay03gUYZMpUGgobIeRo64UgWZfX
-         UIADYd2udsSRW1YihRu6ysXqyQQzYBZYTLSpXV+YKpB+5gRMzah33vKnBGyquVB3FgfA
-         TJ2g==
-X-Gm-Message-State: APjAAAWfjvsbYmpQQGWyiWwo1/e521tfpGXUym1pWbimvWZ9kT7+cK1m
-        3gGVWSNqvqY9sRZ2lI9azOOjKKf83blJJFF2uYU=
-X-Google-Smtp-Source: APXvYqy5OXN836oo7SWmrQ7Vg9tlideKoCNYHP1ilr/cbrOyEfNDRMdydeIgqr0QsvHASXs5J1ioQHTHS5HXQQG1cGQ=
-X-Received: by 2002:aca:f552:: with SMTP id t79mr353341oih.145.1562796690656;
- Wed, 10 Jul 2019 15:11:30 -0700 (PDT)
+        bh=h1QrIpFdh5rLkTKFlCHaduUWYuYcrWpgjVEeSTaTyVo=;
+        b=Uf2h8jDUiVV5vJgZ4p7nyCNaOfz7l2imJ4n+lQEyoFgjBjcebzG8VyArTfA7lNjv2s
+         V1jsjClJVYitAb1bQlL2XOtoPgExVBh0zVBVGgbH6eP5abp6GIg6zDqOzwsGimBiAlCk
+         Bm7R7t7SYTQHbMps+JqXvM+aQKqI2MS5z6u0RJuMiHTetC51f3P5p68+RLzcIesCnN8O
+         gdL8nP6JoZ56PPRwdtFo7o+Lwl8iLPITD4lhDCg8QwG8CSTKLOvH136OpIi8NEEM2uL/
+         7G2kgvRCMMEui1mRy/8wnL3r93rbTgllgsSecFzxLAPSEPU7mq3jSRJntPE7fKRTkAzx
+         Ucnw==
+X-Gm-Message-State: APjAAAWWYQ7uLgyj2ZZPfvJNYaPqd7wf3Tx/NTLYeOQs+uJVPL0Qcnq/
+        NlAvGgOIxZ80OScA6dEPp6pnYFpoCXQ=
+X-Google-Smtp-Source: APXvYqyMVfSo1EcYJ9RIjLTHK01dqjwROKUi1x972XlsFOZENMsLOsx441y8X+zmWBd2PdLYSxRkvg==
+X-Received: by 2002:a02:c615:: with SMTP id i21mr599749jan.135.1562798407706;
+        Wed, 10 Jul 2019 15:40:07 -0700 (PDT)
+Received: from mail-io1-f50.google.com (mail-io1-f50.google.com. [209.85.166.50])
+        by smtp.gmail.com with ESMTPSA id m20sm4087311ioh.4.2019.07.10.15.40.05
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Wed, 10 Jul 2019 15:40:05 -0700 (PDT)
+Received: by mail-io1-f50.google.com with SMTP id g20so8251113ioc.12
+        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2019 15:40:05 -0700 (PDT)
+X-Received: by 2002:a02:c6a9:: with SMTP id o9mr688304jan.90.1562798405041;
+ Wed, 10 Jul 2019 15:40:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190607062802.m5wslx3imiqooq5a@flea> <CGME20190607094103epcas1p4babbb11ec050974a62f2af79bc64d752@epcas1p4.samsung.com>
- <20190607094030.GA12373@lst.de> <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
- <20190612152022.c3cfhp4cauhzhfyr@flea> <bb2c2c00-b46e-1984-088f-861ac8952331@samsung.com>
- <20190701095842.fvganvycce2cy7jn@flea> <CA+E=qVdsYV2Bxk245=Myq=otd7-7WHzUnSJN8_1dciAzvSOG8g@mail.gmail.com>
- <20190709085532.cdqv7whuesrjs64c@flea> <CA+E=qVdz4vfU3rtTTKjYdM+4UA+=FWheJfWOMaDtFMnWQ1rHbw@mail.gmail.com>
- <20190710114042.ybgavnxb4hgqrtor@flea>
-In-Reply-To: <20190710114042.ybgavnxb4hgqrtor@flea>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Wed, 10 Jul 2019 15:11:04 -0700
-Message-ID: <CA+E=qVdFoT137pADfxz3uMwhOqjqrA9+6hBeOfbJxuH-M-3Pjw@mail.gmail.com>
-Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
- on Teres-I
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>, Torsten Duwe <duwe@lst.de>,
-        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
+References: <20190401171724.215780-1-dianders@chromium.org>
+ <20190401171724.215780-3-dianders@chromium.org> <20190630202246.GB15102@ravnborg.org>
+ <CAD=FV=V_wTD1xpkXRe-z2HsZ8QXKq7jmq8CsfhMnFxi-5XDJjw@mail.gmail.com> <20190708175007.GA3511@ravnborg.org>
+In-Reply-To: <20190708175007.GA3511@ravnborg.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Wed, 10 Jul 2019 15:39:52 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=XnDTKkscdCwFE1137aX6pTtv=5zqXf=yqcnchpZpt5_Q@mail.gmail.com>
+Message-ID: <CAD=FV=XnDTKkscdCwFE1137aX6pTtv=5zqXf=yqcnchpZpt5_Q@mail.gmail.com>
+Subject: Re: [PATCH v5 2/7] drm/panel: simple: Add ability to override typical timing
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sean Paul <seanpaul@chromium.org>, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
         David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
+        Jeffy Chen <jeffy.chen@rock-chips.com>,
         dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+        LKML <linux-kernel@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        =?UTF-8?Q?Enric_Balletb=C3=B2?= <enric.balletbo@collabora.com>,
+        =?UTF-8?Q?St=C3=A9phane_Marchesin?= <marcheu@chromium.org>,
+        Ezequiel Garcia <ezequiel@collabora.com>,
+        Matthias Kaehlcke <mka@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 10, 2019 at 4:40 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+Sam,
+
+On Mon, Jul 8, 2019 at 10:50 AM Sam Ravnborg <sam@ravnborg.org> wrote:
 >
-> On Tue, Jul 09, 2019 at 01:30:18PM -0700, Vasily Khoruzhick wrote:
-> > On Tue, Jul 9, 2019 at 1:55 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> Hi Dough.
+>
+> On Mon, Jul 01, 2019 at 09:39:24AM -0700, Doug Anderson wrote:
+> > Hi,
+> >
+> > On Sun, Jun 30, 2019 at 1:22 PM Sam Ravnborg <sam@ravnborg.org> wrote:
 > > >
-> > > On Mon, Jul 08, 2019 at 05:49:21PM -0700, Vasily Khoruzhick wrote:
-> > > > > > Maybe instead of edp-connector one would introduce integrator's specific
-> > > > > > connector, for example with compatible "olimex,teres-edp-connector"
-> > > > > > which should follow edp abstract connector rules? This will be at least
-> > > > > > consistent with below presentation[1] - eDP requirements depends on
-> > > > > > integrator. Then if olimex has standard way of dealing with panels
-> > > > > > present in olimex/teres platforms the driver would then create
-> > > > > > drm_panel/drm_connector/drm_bridge(?) according to these rules, I guess.
-> > > > > > Anyway it still looks fishy for me :), maybe because I am not
-> > > > > > familiarized with details of these platforms.
-> > > > >
-> > > > > That makes sense yes
+> > > > @@ -91,6 +92,8 @@ struct panel_simple {
+> > > >       struct i2c_adapter *ddc;
 > > > >
-> > > > Actually, it makes no sense at all. Current implementation for anx6345
-> > > > driver works fine as is with any panel specified assuming panel delays
-> > > > are long enough for connected panel. It just doesn't use panel timings
-> > > > from the driver. Creating a platform driver for connector itself looks
-> > > > redundant since it can't be reused, it doesn't describe actual
-> > > > hardware and it's just defeats purpose of DT by introducing
-> > > > board-specific code.
-> > >
-> > > I'm not sure where you got the idea that the purpose of DT is to not
-> > > have any board-specific code.
+> > > >       struct gpio_desc *enable_gpio;
+> > > > +
+> > > > +     struct drm_display_mode override_mode;
+> > > I fail to see where this poiter is assigned.
 > >
-> > I believe DT was an attempt to move to declarative approach for
-> > describing hardware. Yes, we have different compatibles for different
-> > devices but they're specific to particular device rather than
-> > particular board. Device interconnection is described in DT along with
-> > some properties rather than in board-specific C-file.
->
-> You're right, but it's not incompatible with having some code to deal
-> with some board quirk.
->
-> > Introducing board-specific compatible for a connector isn't looking
-> > right to me.
->
-> If that board has a board-specific behaviour for it's connector, then
-> what's the issue?
->
-> You can't describe all the quirks in the all boards using purely
-> properties.
->
-> > > It's perfectly fine to have some, that's even why there's a compatible
-> > > assigned to each and every board.
-> > >
-> > > What the DT is about is allowing us to have a generic behaviour that
-> > > we can detect: we can have a given behaviour for a given board, and a
-> > > separate one for another one, and this will be evaluated at runtime.
-> > >
-> > > This is *exactly* what this is about: we can have a compatible that
-> > > sets a given, more specific, behaviour (olimex,teres-edp-connector)
-> > > while saying that this is compatible with the generic behaviour
-> > > (edp-connector). That way, any OS will know what quirk to apply if
-> > > needed, and if not that it can use the generic behaviour.
-> > >
-> > > And we could create a generic driver, for the generic behaviour if
-> > > needed.
-> > >
-> > > > There's another issue: if we introduce edp-connector we'll have to
-> > > > specify power up delays somewhere (in dts? or in platform driver?), so
-> > > > edp-connector doesn't really solve the issue of multiple panels with
-> > > > same motherboard.
-> > >
-> > > And that's what that compatible is about :)
+> > In panel_simple_parse_override_mode().  Specifically:
 > >
-> > Sorry, I fail to see how it would be different from using existing
-> > panels infrastructure and different panels compatibles. I think Rob's
-> > idea was to introduce generic edp-connector.
+> > drm_display_mode_from_videomode(&vm, &panel->override_mode);
 >
-> Again, there's no such thing as a generic edp-connector. The spec
-> doesn't define anything related to the power sequence for example.
->
-> > If we can't make it generic then let's use panel infrastructure.
->
-> Which uses a device specific compatible. Really, I'm not sure what
-> your objection and / or argument is here.
->
-> In addition, when that was brought up in the discussion, you rejected
-> it because it was inconvenient:
-> https://patchwork.freedesktop.org/patch/283012/?series=56163&rev=1#comment_535206
+> The above code-snippet is only called in the panel has specified display
+> timings using display_timings - it is not called when display_mode is
+> used.
+> So override_mode is only assigned in some cases and not all cases.
+> This needs to be fixed so we do not reference override_mode unless
+> it is set.
 
-It is inconvenient, but I don't understand how having board-specific
-connectors fixes it.
+I'm afraid I'm not following you here.
+
+* override_mode is a structure that's directly part of "struct panel_simple".
+
+* The panel is allocated in panel_simple_probe() with devm_kzalloc().
+
+* The "z" in kzalloc means that this memory will be zero-initialized.
+
+From the points above, "override_mode" will always be set to
+something.  If we didn't run "drm_display_mode_from_videomode(&vm,
+&panel->override_mode);" then we know the entire override_mode
+structure will be zero.
+
+While it took a while for me to get used to it, the kernel convention
+is to rely on zero-initialization and not to explicitly init things to
+zero.  As an example of this being codified in the source, you can see
+that "checkpatch.pl" will yell at you for a similar thing: "do not
+initialise globals to 0".
 
 
-
-> And I agree with you on that one.
->
-> > > > I'd say DT overlays should be preferred solution here, not another
-> > > > connector binding.
-> > >
-> > > Overlays are a way to apply a device tree dynamically. It's orthogonal
-> > > to the binding.
+> > > @@ -152,6 +162,44 @@ static int panel_simple_get_fixed_modes(struct panel_simple *panel)
+> > > >               num++;
+> > > >       }
+> > > >
+> > > > +     return num;
+> > > > +}
+> > > > +
+> > > > +static int panel_simple_get_non_edid_modes(struct panel_simple *panel)
+> > > > +{
+> > > > +     struct drm_connector *connector = panel->base.connector;
+> > > > +     struct drm_device *drm = panel->base.drm;
+> > > > +     struct drm_display_mode *mode;
+> > > > +     bool has_override = panel->override_mode.type;
+> > > This looks suspicious.
+> > > panel->override_mode.type is an unsigned int that may have a number of
+> > > bits set.
+> > > So the above code implicitly convert a .type != 0 to a true.
+> > > This can be expressed in a much more reader friendly way.
 > >
-> > It isn't orthogonal to original problem though.
->
-> It is. The original problem is that you want to power up whatever is
-> on the other side of a eDP link using an arbitrary regulator.
->
-> This is a "how do I describe that in my DT" problem, and it really has
-> nothing to do with how the DT is being passed to the kernel.
->
-> Maxime
->
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+> > You would suggest that I add a boolean field to a structure to
+> > indicate whether an override mode is present?
+> A simple  bool has_override = panel->override_mode.type != 0;
+> would do the trick here.
+> Then there is no hidden conversion from int to a bool.
+
+I will change this to "panel->override_mode.type != 0" if you're
+really sure, but this seems both against the general Linux style
+feedback I've received over the years (though there is definitely not
+100% consistency) and also against the local convention in this file.
+Examples in this file of treating ints as bools without an explicit
+"!= 0":
+
+* panel_simple_get_fixed_modes checks "if (panel->desc->bus_format)"
+* panel_simple_disable checks "if (p->desc->delay.disable)"
+* panel_simple_unprepare checks "if (p->desc->delay.unprepare)"
+* panel_simple_prepare checks "if (delay)"
+* panel_simple_enable checks "if (p->desc->delay.enable)"
+
+...and, although slightly different, pointers in this file are checked
+for NULL vs. non-NULL without an explicit "== NULL".
+
+Of course just because all the other examples in the file do it one
+way doesn't mean that new code has to do it another way, but I wanted
+to be really sure you wanted me to go against the existing convention
+before changing this.
+
+
+> But as override_mode can be NULL something more needs to be done.
+
+I'm afraid I don't understand how override_mode can be NULL since it's
+not a pointer.  Can you clarify?
+
+
+-Doug
