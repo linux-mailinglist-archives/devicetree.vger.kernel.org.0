@@ -2,106 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BA052649BB
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 17:35:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2F8D64A14
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 17:50:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727063AbfGJPfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 11:35:11 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:45838 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727521AbfGJPe4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 11:34:56 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=7QYvFls9cFFESC1iCFjHNVMcABi/vx5KKko2y+ogruc=; b=DCTWJJmqSBmc
-        Cg/2D57XqG2bNMWH+/z9If72M7H90alUmHKY3e9c6j1/+lRKN4s6EColac2SYyUKff/GYuQNU2VNa
-        K/a5wqetVmYCREYGAqrxPv2DOK2JWZWcXqx+po0mBGD7H+p0vw/ZBCgci4yiOCi0PEnJ+ieTi+ZlB
-        8DybQ=;
-Received: from [217.140.106.53] (helo=fitzroy.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1hlEcQ-00083v-8X; Wed, 10 Jul 2019 15:34:54 +0000
-Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
-        id F057BD02D84; Wed, 10 Jul 2019 16:34:53 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Subject: Applied "spi: dt-bindings: spi-controller: remove unnecessary 'maxItems: 1' from reg" to the spi tree
-In-Reply-To: <20190709192631.16394-1-robh@kernel.org>
-X-Patchwork-Hint: ignore
-Message-Id: <20190710153453.F057BD02D84@fitzroy.sirena.org.uk>
-Date:   Wed, 10 Jul 2019 16:34:53 +0100 (BST)
+        id S1727414AbfGJPt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 11:49:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34000 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727290AbfGJPt7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Jul 2019 11:49:59 -0400
+Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EAE5E21473;
+        Wed, 10 Jul 2019 15:49:58 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562773799;
+        bh=f3705MLDMz7ZVRIZ/2mbpGAvk6+s8V0oHG6b0/yE9pg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=dNr4F5HawxLIUhCtkX+gOEjtuf9BGR0CEIsliRqZH2O9ZtsdBVaq2kRHWU6Hi1+fo
+         XRZwgaoUmOgituexlwOZw6yF+zL0fvnshjkK4ofv79S4KQTO3bO3TnB7b8CachtiCF
+         KS0ZkAhzVzVQnnkBbUi8ZqjFD274etLB6JypO9QY=
+Received: by mail-qt1-f169.google.com with SMTP id n11so2948349qtl.5;
+        Wed, 10 Jul 2019 08:49:58 -0700 (PDT)
+X-Gm-Message-State: APjAAAWrcwvR9UpUlCeNMPJCVSE8VsdGFQEhmZHf8U4qvuKWJOrtWGvG
+        ciR3kcFKYWRp+/Mh+DpumQmy3ylLAIcuujOaow==
+X-Google-Smtp-Source: APXvYqz6I/p/hMSsLLeh44Lioj37XHZzwUteYHfVHSa7jufX40UundN85FK+bOouu15+3Q3HfQJkSkXH5cMd8kt4WyU=
+X-Received: by 2002:ac8:36b9:: with SMTP id a54mr25025832qtc.300.1562773798149;
+ Wed, 10 Jul 2019 08:49:58 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190710141611.21159-1-andrew@aj.id.au> <20190710141611.21159-2-andrew@aj.id.au>
+In-Reply-To: <20190710141611.21159-2-andrew@aj.id.au>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 10 Jul 2019 09:49:45 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKrYcUbn_02z9GQO6U4rz7k=p3kB7_G0tKmv25MMZZNQg@mail.gmail.com>
+Message-ID: <CAL_JsqKrYcUbn_02z9GQO6U4rz7k=p3kB7_G0tKmv25MMZZNQg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: Document Aspeed SD controller
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        ryanchen.aspeed@gmail.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+On Wed, Jul 10, 2019 at 8:16 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the
+> SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
+> data bus if only a single slot is enabled.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> ---
+>  .../bindings/mmc/sdhci-of-aspeed.yaml         | 91 +++++++++++++++++++
 
-   spi: dt-bindings: spi-controller: remove unnecessary 'maxItems: 1' from reg
+aspeed,sdhci.yaml
 
-has been applied to the spi tree at
+>  1 file changed, 91 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml b/Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml
+> new file mode 100644
+> index 000000000000..e98a2ac4d46d
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml
+> @@ -0,0 +1,91 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.3
+The preferred license is (GPL-2.0 OR BSD-2-Clause) if that is okay with you.
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/sdhci-of-aspeed.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ASPEED SD/SDIO/eMMC Controller
+> +
+> +maintainers:
+> +  - Andrew Jeffery <andrew@aj.id.au>
+> +  - Ryan Chen <ryanchen.aspeed@gmail.com>
+> +
+> +description: |+
+> +  The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the SDIO
+> +  Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit data bus if
+> +  only a single slot is enabled.
+> +
+> +  The two slots are supported by a common configuration area. As the SDHCIs for
+> +  the slots are dependent on the common configuration area, they are described
+> +  as child nodes.
+> +
+> +properties:
+> +  compatible:
+> +    enum: [ aspeed,ast2400-sdc, aspeed,ast2500-sdc ]
+> +  reg:
+> +    description: Common configuration registers
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+This should have a 'maxItems: 1'. Same for the child reg.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+> +  ranges: true
+> +  clocks:
+> +    maxItems: 1
+> +    description: The SD/SDIO controller clock gate
+> +  sdhci:
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+This needs to be a pattern (under patternProperties) as these have
+unit-addresses.
 
-Thanks,
-Mark
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        allOf:
+> +          - enum: [ aspeed,ast2400-sdhci, aspeed,ast2500-sdhci ]
+> +          - const: sdhci
 
-From 43167bb1f6bb7efa73adc40d2dd700bb6546cc2c Mon Sep 17 00:00:00 2001
-From: Rob Herring <robh@kernel.org>
-Date: Tue, 9 Jul 2019 13:26:31 -0600
-Subject: [PATCH] spi: dt-bindings: spi-controller: remove unnecessary
- 'maxItems: 1' from reg
+This condition can never be true. What you need is s/allOf/items/.
+However, 'sdhci' is not really a useful compatible because every
+implementation has quirks, so I'd drop it.
 
-Mixing array constraints like 'maxItems' and string or integer value
-constraints like 'minimum' don't make sense. Also, with only value
-constraints, it is implied we have a single value. So lets remove
-'maxItems: 1'.
+> +      reg:
+> +        description: The SDHCI registers
+> +      clocks:
+> +        maxItems: 1
+> +        description: The SD bus clock
+> +      slot:
+> +        allOf:
+> +          - $ref: /schemas/types.yaml#/definitions/uint32
+> +          - enum: [0, 1]
 
-Cc: Mark Brown <broonie@kernel.org>
-Cc: linux-spi@vger.kernel.org
-Signed-off-by: Rob Herring <robh@kernel.org>
-Link: https://lore.kernel.org/r/20190709192631.16394-1-robh@kernel.org
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- Documentation/devicetree/bindings/spi/spi-controller.yaml | 1 -
- 1 file changed, 1 deletion(-)
+Is this really needed? Offset 0x100 is slot 0 and offset 0x200 is slot
+1. Does that ever change?
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-index 876c0623f322..a02e2fe2bfb2 100644
---- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
-+++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
-@@ -73,7 +73,6 @@ patternProperties:
-           Compatible of the SPI device.
- 
-       reg:
--        maxItems: 1
-         minimum: 0
-         maximum: 256
-         description:
--- 
-2.20.1
+> +      interrupts:
+> +        maxItems: 1
+> +        description: The SD interrupt shared between both slots
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - clocks
+> +      - slot
+> +      - interrupts
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - ranges
+> +  - clocks
 
+#address-cells and #size-cells are required too.
+
+You should also add 'additionalProperties: false' here so other random
+properties can't be present.
+
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/aspeed-clock.h>
+> +    sdc@1e740000 {
+> +            compatible = "aspeed,ast2500-sdc";
+> +            reg = <0x1e740000 0x100>;
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            ranges;
+
+It's preferred to limit the range here and then the child addresses
+are 0x100 and 0x200.
+
+> +            clocks = <&syscon ASPEED_CLK_GATE_SDCLK>;
+> +
+> +            sdhci0: sdhci@1e740100 {
+> +                    compatible = "aspeed,ast2500-sdhci", "sdhci";
+> +                    reg = <0x1e740100 0x100>;
+> +                    slot = <0>;
+> +                    interrupts = <26>;
+> +                    sdhci,auto-cmd12;
+> +                    clocks = <&syscon ASPEED_CLK_SDIO>;
+> +            };
+> +
+> +            sdhci1: sdhci@1e740200 {
+> +                    compatible = "aspeed,ast2500-sdhci", "sdhci";
+> +                    reg = <0x1e740200 0x100>;
+> +                    slot = <1>;
+> +                    interrupts = <26>;
+> +                    sdhci,auto-cmd12;
+> +                    clocks = <&syscon ASPEED_CLK_SDIO>;
+> +            };
+> +    };
+> --
+> 2.20.1
+>
