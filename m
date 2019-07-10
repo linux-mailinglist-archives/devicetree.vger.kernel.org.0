@@ -2,169 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B7E664F00
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 00:56:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27DEE64F17
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 01:10:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727705AbfGJW4z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 18:56:55 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:43786 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727859AbfGJW4y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 18:56:54 -0400
-Received: by mail-io1-f67.google.com with SMTP id k20so8325433ios.10
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2019 15:56:53 -0700 (PDT)
+        id S1727516AbfGJXKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 19:10:19 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:40408 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726708AbfGJXKT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 19:10:19 -0400
+Received: by mail-ot1-f67.google.com with SMTP id e8so3897535otl.7;
+        Wed, 10 Jul 2019 16:10:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=wvZvVibciLuoN0XPHn1GQTPO0jZSmghihu4pRgb43gE=;
-        b=Hqkoo2XXLEooMC5VZ+gOGg3gxQkocTVvzTmDsnDANF3OvZLlo/WQja4ye0rFzpf83e
-         shsMhGUJvVUA4YU0xi/vv+i+XuO2LxUMqoRYnyGtJibDxbKwyeL16AR1P0KokEbKVpus
-         TtaPbc8kH0P9xgP/1HkX6qrifSz9Mm/YfZAik=
+        bh=zOl/4QjBy1AW7qYuyDY5XT0hjYnXC6DcAJBpkzl0PHI=;
+        b=H1UDpQLEZcDHT2f5H5ImR/uneIMngNaFtHExhhRI1hPFxMbfZ4VUbowPJKrXdHu/Wt
+         smoBUScf5aczoqOoDJG9maeO0XjvWp+H4fNsfspzcmv31JCtuPqL0cXVz4GD8oLzbf2N
+         ZgGvav44nwUxj0RA6R0zBRV40Wfni/MkjCZJcSLJ7UgvH2O4e+2aZ7urVmR89RMHzfTZ
+         lxqTgljho97ZquaIlQ6yF05xR5M7ODf61hpv56An+RGS/nMpOODNSWTHDewJY2Wr3ct7
+         5Ghai8O3H2/tzyUAaj5QKonCrJceoW00furKv0qheUams9jV9kz+sYXaEglIe3CjMc+s
+         aR2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=wvZvVibciLuoN0XPHn1GQTPO0jZSmghihu4pRgb43gE=;
-        b=nYA7nxM4Yam85o1npszxEFjgJpRCWmuUBe3LYWMaQWxgIxqFtYyNjEkl/1IAIkN1cM
-         oyfFNs6VFua35Q60uVgPwIVtZ5CNMzoNgJLNgocEppRPBgaOy0/MizxkBFVPDu0zypnc
-         ZBbJYvVHhSO4S9GQ5inRGAuIR+ks6tKVwzW74CDW1aZLW35AdGxFq01VNUPP5xVMPjGp
-         NEFcOmhptbsdFQMbMiZx84652X7Jf8Mt8VPISKn8Potmma2bgNFL4EZpZ9yLQuSzjahU
-         up0IboZOqB1pxI+SQ3wT8N8+AFz8imJuCOHwIrRidbbfS6qEsGBaWt4rT443HGejB8ht
-         dM8Q==
-X-Gm-Message-State: APjAAAVTrFsC1Pc2vAtDPSSLAAQcS5zO2QUW/S7XVN5L1fYeJpE6B6Av
-        66SfyefInW1ioK+mpeHp2U/KSyYjIBs=
-X-Google-Smtp-Source: APXvYqyzF3Bk0pzSmoLsCtE54fIDmM3HpSQ+AfGFUvIqcsyeJFhRGV77VeFOv1lbfwGeyfpAYJSZKQ==
-X-Received: by 2002:a5e:de4d:: with SMTP id e13mr662783ioq.272.1562799413131;
-        Wed, 10 Jul 2019 15:56:53 -0700 (PDT)
-Received: from mail-io1-f41.google.com (mail-io1-f41.google.com. [209.85.166.41])
-        by smtp.gmail.com with ESMTPSA id x22sm2518580ioh.87.2019.07.10.15.56.51
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Wed, 10 Jul 2019 15:56:51 -0700 (PDT)
-Received: by mail-io1-f41.google.com with SMTP id h6so8351842iom.7
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2019 15:56:51 -0700 (PDT)
-X-Received: by 2002:a5e:c241:: with SMTP id w1mr670314iop.58.1562799411159;
- Wed, 10 Jul 2019 15:56:51 -0700 (PDT)
+        bh=zOl/4QjBy1AW7qYuyDY5XT0hjYnXC6DcAJBpkzl0PHI=;
+        b=qAoIO/QF+L6wyO/vTKYqyMyzcQ65kcgMagqL/mkOqU4rejaWpCqZv3pgqQ9dd2Mohu
+         BFmBFju4ezKzKsa/SB370AynZAezXsqz3f+KFFRnOlmUo8hoDHZ5iKLewkugsoNNwlGc
+         /r0aovgJ/OBgO24ix8vmDSuf3KMPVBFMpGcyS0mdS4EnLy+zv3ppXwKxoP0ctjV1CYjb
+         s0ciC33qGtMkd+dHz71UupKxI//5XicWPWNYGcNzkbmKdTBfMQ/ONWfLWMFmjeI+5ixB
+         SP/8vZLcwjTrgo6bfrIREOwTr2mQw/5lKEGHznwNFInVrHohxc9dmHzw6WWXFrYL/RGn
+         +hUA==
+X-Gm-Message-State: APjAAAW93X2JOSH2ERM49E/7a6GWBu6cZRR/Andv81TRPowDVAUxfYB/
+        p16FJC3Tvtbwph1L7AXTN/gH8GGp1S3I1B+W/Mk=
+X-Google-Smtp-Source: APXvYqz2RpwH4pyPuxIqsY3Jk01l6pCxhtB+fsAoA6sP8HbGqCPKyFUN1rGcJxjdBY2aJ7m7PpF04jShUCcSnuc4/nQ=
+X-Received: by 2002:a05:6830:2010:: with SMTP id e16mr728916otp.344.1562800218410;
+ Wed, 10 Jul 2019 16:10:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190401171724.215780-1-dianders@chromium.org>
- <20190401171724.215780-3-dianders@chromium.org> <20190630202246.GB15102@ravnborg.org>
- <20190630205514.GA17046@ravnborg.org> <CAD=FV=WH4kmhQA0kbKcAUx=oOeqTZiQOFCXYpVWwq+mG7Y7ofA@mail.gmail.com>
- <20190708175606.GB3511@ravnborg.org>
-In-Reply-To: <20190708175606.GB3511@ravnborg.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 10 Jul 2019 15:56:39 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VdkPLwyGhSnrHCcduQAPwby35Mqhk_r=O595bMoMT=6w@mail.gmail.com>
-Message-ID: <CAD=FV=VdkPLwyGhSnrHCcduQAPwby35Mqhk_r=O595bMoMT=6w@mail.gmail.com>
-Subject: Re: [PATCH v5 2/7] drm/panel: simple: Add ability to override typical timing
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     devicetree@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Jeffy Chen <jeffy.chen@rock-chips.com>,
-        LKML <linux-kernel@vger.kernel.org>,
+References: <20190623164206.7467-1-tiny.windzz@gmail.com>
+In-Reply-To: <20190623164206.7467-1-tiny.windzz@gmail.com>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Wed, 10 Jul 2019 16:09:52 -0700
+Message-ID: <CA+E=qVfhDEQER2UTj65hR9erzej9Ey2FrUa9GV=iCFYsWZ2ztw@mail.gmail.com>
+Subject: Re: [PATCH v4 00/11] add thermal driver for h6
+To:     Yangtao Li <tiny.windzz@gmail.com>
+Cc:     rui.zhang@intel.com, Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        =?UTF-8?Q?Enric_Balletb=C3=B2?= <enric.balletbo@collabora.com>,
-        =?UTF-8?Q?St=C3=A9phane_Marchesin?= <marcheu@chromium.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        "David S. Miller" <davem@davemloft.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        paulmck@linux.ibm.com, devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        Linux PM <linux-pm@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On Mon, Jul 8, 2019 at 10:56 AM Sam Ravnborg <sam@ravnborg.org> wrote:
+On Sun, Jun 23, 2019 at 9:42 AM Yangtao Li <tiny.windzz@gmail.com> wrote:
 >
-> On Mon, Jul 01, 2019 at 09:39:06AM -0700, Doug Anderson wrote:
-> > Hi,
-> >
-> > On Sun, Jun 30, 2019 at 1:55 PM Sam Ravnborg <sam@ravnborg.org> wrote:
-> > >
-> > > Hi Douglas.
-> > >
-> > > > > +
-> > > > > +   /* Only add timings if override was not there or failed to validate */
-> > > > > +   if (num == 0 && panel->desc->num_timings)
-> > > > > +           num = panel_simple_get_timings_modes(panel);
-> > > > > +
-> > > > > +   /*
-> > > > > +    * Only add fixed modes if timings/override added no mode.
-> > > >
-> > > > This part I fail to understand.
-> > > > If we have a panel where we in panel-simple have specified the timings,
-> > > > and done so using display_timing so with proper {min, typ, max} then it
-> > > > should be perfectly legal to specify a more precise variant in the DT
-> > > > file.
-> > > > Or what did I miss here?
-> > >
-> > > Got it now.
-> > > If display_mode is used for timings this is what you call "fixed mode".
-> > > Hmm, if I got confused someone else may also be confused by this naming.
-> >
-> > The name "fixed mode" comes from the old code, though I guess in the
-> > old code it used to refer to a mode that came from either the
-> > display_timing or the display_mode.
-> >
-> > How about if I call it "panel_simple_get_from_fixed_display_mode"?
-> > ...or if you have another suggestion feel free to chime in.
-> What we really want to distingush here is the use of display_mode
-> and display_timings (if I got the names right).
-> That display_mode specify a fixed timing and display_timing specify
-> a valid range is something in the semantics of the two types.
-> So naming that refer to display_mode versus display_timing will make the
-> code simpler to understand. and then a nice comment that when
-> display_mode
-> is used one looses the possibility to use override_mode.
-> That would be fine to have in the struct in the driver.
-
-OK, I can change the names here and try to find a good place to add a comment.
-
-
-> > NOTE: Since this feedback is minor and this patch has been outstanding
-> > for a while (and is blocking other work), I am assuming that the best
-> > path forward is for Heiko to land this patch with Thierry's Ack and
-> > I'll send a follow-up.  Please yell if you disagree.
-> Let's give the patches a spin more as we have passed the possibility for
-> the current merge window.
-
-Any way I can convince you to change your mind here?  There are no
-functional changes requested so far in your feedback and no bugs--it's
-just a few variable names and comments.  By landing the existing
-patches as-is:
-
-1. We stop spamming all the people CCed on this whole series (which
-includes device tree patches) that might be interested in the series
-as a whole but aren't interested in details.
-
-2. We can debate the bikeshed-type issues on their own merit and I
-don't have to debate removing existing Acks / Reviewed-by / Tested-by
-tags as I make changes.
-
-3. Even if it's not a good time to land the patches right now we know
-that these patches will be ready to land as soon as the window opens.
-As I mentioned earlier these patches are blocking other work [1] and
-landing that patch is actually preventing Matthias from submitting
-another series of patches to add support for rk3288-veyron-tiger and
-rk3288-veyron-fievel.  Certainly I know that upstream doesn't make a
-policy of landing things just to suit the timelines of a downstream
-project, but in this case there seems very little downsides to landing
-the existing patches and taking a later cleanup patch.
-
-
-> I am on vacation at the moment and thus slow in responses, but will be back
-> at the home office next week and will be more responsive again.
+> This patchset add support for H3 and H6 thermal sensor.
 >
->         Sam - who is enjoying the alps in Austria
+> BTY, do a cleanup in thermal makfile.
+>
+> Yangtao Li (11):
+>   thermal: sun8i: add thermal driver for h6
+>   dt-bindings: thermal: add binding document for h6 thermal controller
+>   thermal: fix indentation in makefile
+>   thermal: sun8i: get ths sensor number from device compatible
+>   thermal: sun8i: rework for sun8i_ths_get_temp()
+>   thermal: sun8i: get ths init func from device compatible
+>   thermal: sun8i: rework for ths irq handler func
+>   thermal: sun8i: support ahb clocks
+>   thermal: sun8i: rework for ths calibrate func
+>   dt-bindings: thermal: add binding document for h3 thermal controller
+>   thermal: sun8i: add thermal driver for h3
 
-Hope you have had a great vacation!
+It would be nice to add dts changes to this series. It's unlikely that
+you'll get any "Tested-by" otherwise.
 
-[1] https://lkml.kernel.org/r/20190625222629.154619-1-mka@chromium.org
 
--Doug
+>  .../bindings/thermal/sun8i-thermal.yaml       |  94 +++
+>  MAINTAINERS                                   |   7 +
+>  drivers/thermal/Kconfig                       |  14 +
+>  drivers/thermal/Makefile                      |   9 +-
+>  drivers/thermal/sun8i_thermal.c               | 534 ++++++++++++++++++
+>  5 files changed, 654 insertions(+), 4 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/sun8i-thermal.yaml
+>  create mode 100644 drivers/thermal/sun8i_thermal.c
+>
+> ---
+> v4:
+> -add h3 support
+> -fix yaml file
+> ---
+> 2.17.1
+>
+>
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
