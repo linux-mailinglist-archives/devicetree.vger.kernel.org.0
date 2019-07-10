@@ -2,99 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E34764435
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 11:15:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B8F9664458
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 11:26:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727643AbfGJJPq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 05:15:46 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:39283 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727464AbfGJJPq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 05:15:46 -0400
-Received: by mail-pl1-f194.google.com with SMTP id b7so917176pls.6
-        for <devicetree@vger.kernel.org>; Wed, 10 Jul 2019 02:15:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=rs5UUXtAqT5R1zFPxyCMoObdvjFrpKQLMGjYPWWR+M4=;
-        b=xuDFEEprPQrx+CqmzvYG12VzfgLPfkFe3i9dDO9PYcL0P6GlYTHeg9CvVU75INDcfo
-         /B1HQzUaYBWgrSQr4QqLDllN0ySewu+Aucrj6f3rYqEBvPfKYmVNRP1VtkFAgR4Dnnwy
-         wYK2HDv8BW4cYA9i/YOEeHB71zoM56WjB5FZ3hXxzmZPy9bJzNvQoO/LSjPqNJY6AuEs
-         HWjsDnM8bx+F1bAhlBhUe+v3UezS0KGgbT9g5qtl1N77SC8yRCWJCMX7840BuAklPao/
-         IpNwuqYKXD16xdMURhUJ5FuGtedK5vsNiT/iKtpo1WWCo82zqV15hKbbCfwOv35Xraho
-         ACWQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=rs5UUXtAqT5R1zFPxyCMoObdvjFrpKQLMGjYPWWR+M4=;
-        b=FvHzAfQprN7x3dc4r79VPO3/Mx3WGvmnZ2QGrQsVVFj168MZ8iezDtSqRF8SqDRAAm
-         qemZiRYiXrJvOuMU/jVPsz2eg1Ob4AFQ9NTkp6qNI7TXy7CtzIqu0oGSRTVMdR2diETy
-         N1JM6jqdQzpXGua4xVOgZv6VcHT29KWJv9mTaOvtNVgD1DpNDtuDsfPSTIt5vFxLlarL
-         C2UVf7Aki2xY4iSf9psv7jjqH5fYNPsibxUhK6yz12iD5N1K4WogrNlwh8o/+aRPCs7J
-         FbLtgd04wwDPoWJBI78wRfk0uyOf+9hhYGdUvsD6D42Zgo9Y20PdBwBawLw1vn59lA4n
-         CFgA==
-X-Gm-Message-State: APjAAAUQZWzjN+SW9U8OCgVL/4MC7V9VjyR7tHSUi+EqoCHFqGk6woDj
-        ABm3luoSxXdDEwYa/6oeH0Dwuw==
-X-Google-Smtp-Source: APXvYqzWzbSazZ8noBpanqTTfe68a2rHVdItZzY1mNR00meLwg0PgqjSVl0my2iNIShhy2iItWQJMw==
-X-Received: by 2002:a17:902:b43:: with SMTP id 61mr38449888plq.322.1562750145655;
-        Wed, 10 Jul 2019 02:15:45 -0700 (PDT)
-Received: from localhost ([122.172.28.117])
-        by smtp.gmail.com with ESMTPSA id z20sm3555377pfk.72.2019.07.10.02.15.44
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 10 Jul 2019 02:15:45 -0700 (PDT)
-Date:   Wed, 10 Jul 2019 14:45:43 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Yangtao Li <tiny.windzz@gmail.com>
-Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        maxime.ripard@bootlin.com, wens@csie.org, rjw@rjwysocki.net,
-        davem@davemloft.net, mchehab+samsung@kernel.org,
-        gregkh@linuxfoundation.org, linus.walleij@linaro.org,
-        nicolas.ferre@microchip.com, paulmck@linux.ibm.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [RESEND, PATCH v4 0/2] cpufreq: Add sunxi nvmem based CPU
- scaling driver
-Message-ID: <20190710091543.yqcthfgzmxvku5ws@vireshk-i7>
-References: <20190612162816.31713-1-tiny.windzz@gmail.com>
+        id S1726163AbfGJJ0W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 05:26:22 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:33278 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726080AbfGJJ0W (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 05:26:22 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6A9QGjg055921;
+        Wed, 10 Jul 2019 04:26:16 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1562750776;
+        bh=ZvmY/XWFNUdc+S/ieVtnXAaglk7WibX4sxJZnd5qsUo=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=usyAtY1WsfSioj5vs361bb43UQQiJNlhcknsVvT5FwVmgC3E2GdVNxnmmcz9vQmBb
+         9svFJVX393zPupBxfQkV2hXAyv0gU5vi+hBVYpnkn+PY7np259jN/AoInrMdz68Zqw
+         gBBuFpAz3nRRkUIlZHIlkkopFOVnaNRlJs4nSZ9A=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6A9QGUJ095450
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 10 Jul 2019 04:26:16 -0500
+Received: from DLEE101.ent.ti.com (157.170.170.31) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 10
+ Jul 2019 04:26:16 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE101.ent.ti.com
+ (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 10 Jul 2019 04:26:16 -0500
+Received: from [10.250.97.31] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6A9QE58002375;
+        Wed, 10 Jul 2019 04:26:15 -0500
+Subject: Re: devicetree bindings for a generic led-based backlight driver
+To:     Pavel Machek <pavel@ucw.cz>,
+        Jacek Anaszewski <jacek.anaszewski@gmail.com>
+CC:     <devicetree@vger.kernel.org>, <linux-leds@vger.kernel.org>,
+        <robh@kernel.org>, "Valkeinen, Tomi" <tomi.valkeinen@ti.com>
+References: <69f3a300-9e37-448d-e6fa-49c1c9ca0dd6@ti.com>
+ <400ac00b-d3c7-b58f-52fa-8b18b6c7e4a2@gmail.com>
+ <283a3b7c-c3ed-719e-14e3-fc73e08af880@ti.com>
+ <e7c5a500-4107-8895-d0fc-377c71cd3b34@gmail.com> <20190706151941.GB9856@amd>
+From:   Jean-Jacques Hiblot <jjhiblot@ti.com>
+Message-ID: <616bb9bb-4518-3d25-cafe-afccd23d1070@ti.com>
+Date:   Wed, 10 Jul 2019 11:26:14 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190612162816.31713-1-tiny.windzz@gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20190706151941.GB9856@amd>
+Content-Type: text/plain; charset="windows-1252"; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 12-06-19, 12:28, Yangtao Li wrote:
-> Add sunxi nvmem based CPU scaling driver, refers to qcom-cpufreq-kryo.
-> 
-> Yangtao Li (2):
->   cpufreq: Add sun50i nvmem based CPU scaling driver
->   dt-bindings: cpufreq: Document allwinner,sun50i-h6-operating-points
-> 
->  .../bindings/opp/sun50i-nvmem-cpufreq.txt     | 167 +++++++++++++
->  MAINTAINERS                                   |   7 +
->  drivers/cpufreq/Kconfig.arm                   |  12 +
->  drivers/cpufreq/Makefile                      |   1 +
->  drivers/cpufreq/cpufreq-dt-platdev.c          |   2 +
->  drivers/cpufreq/sun50i-cpufreq-nvmem.c        | 226 ++++++++++++++++++
->  6 files changed, 415 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/opp/sun50i-nvmem-cpufreq.txt
->  create mode 100644 drivers/cpufreq/sun50i-cpufreq-nvmem.c
-> 
-> ---
-> v4:
-> -Remove sunxi_cpufreq_soc_data structure for now.
-> -Convert to less generic name.
-> -Update soc_bin xlate.
+Hi Pavel
 
-Applied. Thanks.
+On 06/07/2019 17:19, Pavel Machek wrote:
+> Hi!
+>
+>>>>> A few years ago (2015), Tomi Valkeinen posted a series implementing a
+>>>>> backlight driver on top of a LED device.
+>>>>>
+>>>>> https://patchwork.kernel.org/patch/7293991/
+>>>>> https://patchwork.kernel.org/patch/7294001/
+>>>>> https://patchwork.kernel.org/patch/7293981/
+>>>>>
+>>>>> The discussion stopped  because he lacked the time to work on it.
+>>>>>
+>>>>> I will be taking over the task and, before heading in the wrong
+>>>>> direction, wanted a confirmation that the binding Tomi last proposed in
+>>>>> hist last email was indeed the preferred option.
+>>>>>
+>>>>> It will probably require some modifications in the LED core to create
+>>>>> the right kind of led-device (normal, flash or backlight) based on the
+>>>>> compatible option.
+>>>> I recall that discussion. I gave my ack for the LED changes but
+>>>> now we have more LED people that might want to look into that.
+>>> Regarding the LED bindings as discussed by Tom and Rob in
+>>> https://patchwork.kernel.org/patch/7293991/, what do you think of using
+>>> a 'compatible' string to make a LED device also a backlight or a flash LED ?
+>> After going through the referenced discussion and refreshing my memory
+>> it looks to me the most reasonable way to go for backlight case.
+>>
+>> Nevertheless I'd not tamper at LED flash support - if it's not broken,
+>> don't fix it.
+>>
+>> Best regards,
+>> Jacek Anaszewski
+>>
+>>> Here is the example from Tomi at the end of the discussion:
+>>>
+>>> /* tlc59108 is an i2c device */
+>>> tlc59116@40 {
+>>> 	#address-cells = <1>;
+>>> 	#size-cells = <0>;
+>>> 	compatible = "ti,tlc59108";
+>>> 	reg = <0x40>;
+>>>
+>>> 	wan@0 {
+>>> 		label = "wrt1900ac:amber:wan";
+>>> 		reg = <0x0>;
+>>> 	};
+>>>
+>>> 	bl@2 {
+>>> 		label = "backlight";
+>>> 		reg = <0x2>;
+>>>
+>>> 		compatible = "led-backlight";
+>>> 		brightness-levels = <0 243 245 247 248 249 251 252 255>;
+>>> 		default-brightness-level = <8>;
+>>>
+>>> 		enable-gpios = <&pcf_lcd 13 GPIO_ACTIVE_LOW>;
+> So... this needs some kind of reference to display it belongs to,
+> right?
 
-I will push it only after 5.3-rc1 is released.
+This is the reverse. The display uses a reference the backlight.
 
--- 
-viresh
+JJ
+
+>
+> 									Pavel
+>
