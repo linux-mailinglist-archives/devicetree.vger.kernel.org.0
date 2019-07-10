@@ -2,159 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EFD0C63FBE
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 06:00:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6A9063FD2
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 06:12:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726033AbfGJEAZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 00:00:25 -0400
-Received: from conssluserg-05.nifty.com ([210.131.2.90]:63681 "EHLO
-        conssluserg-05.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725791AbfGJEAZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 00:00:25 -0400
-Received: from mail-vs1-f43.google.com (mail-vs1-f43.google.com [209.85.217.43]) (authenticated)
-        by conssluserg-05.nifty.com with ESMTP id x6A407t3006697;
-        Wed, 10 Jul 2019 13:00:08 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com x6A407t3006697
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1562731208;
-        bh=KknRHaSkhBMpTs1BmzD59wJGTvSH88jZgscNwiE3MlQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Zcv8Y/m8P8X292YdVCGzvjt8eh3zKthkL/tKU8hgl0+kZFK/TCidt2YnUJeXwRY2C
-         53gnnvfR1V5a/tZ3oft3dU87Wv/na0I6Cs7CUbLYQQ/tTgfsks7h1YrnLQlPvFedYE
-         CUXVrkPfqD5VgYstJJ7CydXBopsxsIxYrwFsxgwx6d60uk5NaU0HmmUFrWcRa0Ma+X
-         JP4vrMHlCl+oWvWoNYTtWzS8BRJaI99Vvewq8PDOryzMVp2NXYrBOU+OgPSCXtaQVR
-         iBpoKf4mR5G2BIwMVbOsyg7IXjsTJdhgiZepcEUeuFghjpTnMBJ19Lf/0+rRb7AENC
-         me1vWrlscZvww==
-X-Nifty-SrcIP: [209.85.217.43]
-Received: by mail-vs1-f43.google.com with SMTP id m8so625105vsj.0;
-        Tue, 09 Jul 2019 21:00:08 -0700 (PDT)
-X-Gm-Message-State: APjAAAUOzUg7dewpDpaEaEwdms+J+YjUAAAn+8Q5wRx/H0vBF2T/33CF
-        O4/8l42f2KO7ypeZySrTpPfE7/o10ZbDtcOBLrA=
-X-Google-Smtp-Source: APXvYqzEJesQV2n3K1HZLU8Wx1IHWCC1QIw58D6BP7vlVU/X0PRT9+zSoni+Ubl8ut/dwkZUzYEjYnFrduUZ0sj9y38=
-X-Received: by 2002:a67:f495:: with SMTP id o21mr16708917vsn.54.1562731207027;
- Tue, 09 Jul 2019 21:00:07 -0700 (PDT)
+        id S1726127AbfGJEMR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 00:12:17 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:37824 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726122AbfGJEMR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 00:12:17 -0400
+Received: by mail-vs1-f65.google.com with SMTP id v6so622785vsq.4
+        for <devicetree@vger.kernel.org>; Tue, 09 Jul 2019 21:12:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jsT84thXZgrjljKWPHUjY7JeFgImc9+U4hEoxyiTJcc=;
+        b=bWsVGu9ZtrSBJl4JbELamsoGGvbUEuoJyLkzEdD/lBLkOe2SuDywqNJvjhLcdkFQIV
+         uQzhsHZfClHSSErFS8YngoK5icUK/zOzfk2MyJE77f/EpBtLGiDl5OLXwZaYMg1H4xvi
+         8bZw2KyzNEgXQhxeZxd3j43hSpSd9KAK3Vxwk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jsT84thXZgrjljKWPHUjY7JeFgImc9+U4hEoxyiTJcc=;
+        b=D11IsTWsjEoskBwV40GN1rT8fxkJt4YfMap0Y66TbaSNW5sWFCi39wIPpTP0meSSXB
+         GRsbXHemG1weA5qwULDp0JZHzHAxH5BeKotwuK9ogxeB16KCa7cs+R5UDvgyuWEnrY3/
+         pKoQhSibm4wi8TMcNFW9jC66JhKDbRGcwA3HGkd1pbBCgbibQ8sAdz75mbHzpsJjcT6h
+         uN7SQTAX3/o0isviH+up8UZotuH6DWB8Dnk9yS/Sf1Mj0ItHhQfi9qfbuj/UGCZu/QQr
+         0Xgte09aLqrsD+AIGC/6Sk9rFwFYNqAsSLa7ezp58AVl2kTOORNYhqngmYA3/+fnVrKq
+         YlNQ==
+X-Gm-Message-State: APjAAAV8tCNYDdR/h+1pT6rEecKb+p1Ss4/mgANow4YJBPngcEmc8k3d
+        DAI8VFiAE4MchIOSMJ1ONv3pIO7I7I0zyixn5ou+VQ==
+X-Google-Smtp-Source: APXvYqwRDoiekjMfVg1dAkd95CbZGZ3jhAzyHEQ1N/LeXKKIJksHQNLAm0BnKpQtXYeH+ZnDwbVN+JmCCFjQkCNhqMc=
+X-Received: by 2002:a67:f7cd:: with SMTP id a13mr14190782vsp.163.1562731935844;
+ Tue, 09 Jul 2019 21:12:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190709063023.251446-1-brendanhiggins@google.com> <20190709063023.251446-7-brendanhiggins@google.com>
-In-Reply-To: <20190709063023.251446-7-brendanhiggins@google.com>
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-Date:   Wed, 10 Jul 2019 12:59:30 +0900
-X-Gmail-Original-Message-ID: <CAK7LNATx30AhZ51xozde=nO06-8UzuC0M9nfZXrqkyfmEFdu5w@mail.gmail.com>
-Message-ID: <CAK7LNATx30AhZ51xozde=nO06-8UzuC0M9nfZXrqkyfmEFdu5w@mail.gmail.com>
-Subject: Re: [PATCH v7 06/18] kbuild: enable building KUnit
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
+References: <20190603043251.226549-1-cychiang@chromium.org>
+ <20190603043251.226549-6-cychiang@chromium.org> <20190709200121.GA19118@bogus>
+In-Reply-To: <20190709200121.GA19118@bogus>
+From:   Cheng-yi Chiang <cychiang@chromium.org>
+Date:   Wed, 10 Jul 2019 12:11:48 +0800
+Message-ID: <CAFv8NwLiKu055S7apzj+gTYh0neQ5rLmPYEYkEj6Zf3hikWWpA@mail.gmail.com>
+Subject: Re: [PATCH 5/7] ASoC: rockchip: rockchip-max98090: Add node for HDMI
+To:     Rob Herring <robh@kernel.org>
+Cc:     linux-kernel <linux-kernel@vger.kernel.org>,
+        Hans Verkuil <hverkuil@xs4all.nl>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        "Luis R. Rodriguez" <mcgrof@kernel.org>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
-        "Cc: Shuah Khan" <shuah@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>, DTML <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        Tim Bird <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com,
-        Michal Marek <michal.lkml@markovi.net>
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Takashi Iwai <tiwai@suse.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Russell King <rmk+kernel@armlinux.org.uk>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Doug Anderson <dianders@chromium.org>,
+        Dylan Reid <dgreid@chromium.org>, tzungbi@chromium.org,
+        linux-media@vger.kernel.org,
+        "moderated list:SOUND - SOC LAYER / DYNAMIC AUDIO POWER MANAGEM..." 
+        <alsa-devel@alsa-project.org>, dri-devel@lists.freedesktop.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 9, 2019 at 3:34 PM Brendan Higgins
-<brendanhiggins@google.com> wrote:
+On Wed, Jul 10, 2019 at 4:01 AM Rob Herring <robh@kernel.org> wrote:
 >
-> KUnit is a new unit testing framework for the kernel and when used is
-> built into the kernel as a part of it. Add KUnit to the root Kconfig and
-> Makefile to allow it to be actually built.
+> On Mon, Jun 03, 2019 at 12:32:49PM +0800, Cheng-Yi Chiang wrote:
+> > Let user specify HDMI node so machine driver can use it to let codec
+> > driver register callback on correct hdmi-notifier.
+> >
+> > Signed-off-by: Cheng-Yi Chiang <cychiang@chromium.org>
+> > ---
+> >  Documentation/devicetree/bindings/sound/rockchip-max98090.txt | 2 ++
+> >  1 file changed, 2 insertions(+)
+> >
+> > diff --git a/Documentation/devicetree/bindings/sound/rockchip-max98090.txt b/Documentation/devicetree/bindings/sound/rockchip-max98090.txt
+> > index a805aa99ad75..dae57c14864e 100644
+> > --- a/Documentation/devicetree/bindings/sound/rockchip-max98090.txt
+> > +++ b/Documentation/devicetree/bindings/sound/rockchip-max98090.txt
+> > @@ -7,6 +7,7 @@ Required properties:
+> >    connected to the CODEC
+> >  - rockchip,audio-codec: The phandle of the MAX98090 audio codec
+> >  - rockchip,headset-codec: The phandle of Ext chip for jack detection
+> > +- rockchip,hdmi: The phandle of HDMI node for HDMI jack detection
+> >
+> >  Example:
+> >
+> > @@ -16,4 +17,5 @@ sound {
+> >       rockchip,i2s-controller = <&i2s>;
+> >       rockchip,audio-codec = <&max98090>;
+> >       rockchip,headset-codec = <&headsetcodec>;
+> > +     rockchip,hdmi= <&hdmi>;
 >
-> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> Cc: Masahiro Yamada <yamada.masahiro@socionext.com>
-> Cc: Michal Marek <michal.lkml@markovi.net>
-> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-> ---
->  Kconfig  | 2 ++
->  Makefile | 2 +-
->  2 files changed, 3 insertions(+), 1 deletion(-)
+> space                ^
 >
-> diff --git a/Kconfig b/Kconfig
-> index 48a80beab6853..10428501edb78 100644
-> --- a/Kconfig
-> +++ b/Kconfig
-> @@ -30,3 +30,5 @@ source "crypto/Kconfig"
->  source "lib/Kconfig"
+> With that,
 >
->  source "lib/Kconfig.debug"
-> +
-> +source "kunit/Kconfig"
-> diff --git a/Makefile b/Makefile
-> index 3e4868a6498b2..60cf4f0813e0d 100644
-> --- a/Makefile
-> +++ b/Makefile
-> @@ -991,7 +991,7 @@ endif
->  PHONY += prepare0
+> Acked-by: Rob Herring <robh@kernel.org>
 >
->  ifeq ($(KBUILD_EXTMOD),)
-> -core-y         += kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/
-> +core-y         += kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/ kunit/
->
->  vmlinux-dirs   := $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
->                      $(core-y) $(core-m) $(drivers-y) $(drivers-m) \
-> --
-> 2.22.0.410.gd8fdbe21b5-goog
-
-
-This is so trivial, and do not need to get ack from me.
-
-Just a nit.
-
-
-When CONFIG_KUNIT is disable, is there any point in descending into kunit/ ?
-
-core-$(CONFIG_KUNIT) += kunit/
-
-... might be useful to skip kunit/ entirely.
-
-If you look at the top-level Makefile, some entries are doing this:
-
-
-init-y          := init/
-drivers-y       := drivers/ sound/
-drivers-$(CONFIG_SAMPLES) += samples/
-drivers-$(CONFIG_KERNEL_HEADER_TEST) += include/
-net-y           := net/
-libs-y          := lib/
-core-y          := usr/
-
-
-
-
-
---
-Best Regards
-Masahiro Yamada
+Hi Rob,
+Thank you for the review.
+But I have changed the approach in v2 so there is no need for machine
+driver to expose this property.
+Thanks!
+> >  };
+> > --
+> > 2.22.0.rc1.257.g3120a18244-goog
+> >
