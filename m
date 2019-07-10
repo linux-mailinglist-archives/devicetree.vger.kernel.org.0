@@ -2,118 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93F536498E
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 17:29:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA052649BB
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 17:35:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727671AbfGJP3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 11:29:02 -0400
-Received: from foss.arm.com ([217.140.110.172]:35368 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727093AbfGJP3C (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Jul 2019 11:29:02 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 49FD82B;
-        Wed, 10 Jul 2019 08:29:01 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id AEC113F246;
-        Wed, 10 Jul 2019 08:28:58 -0700 (PDT)
-Date:   Wed, 10 Jul 2019 16:28:56 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Vidya Sagar <vidyas@nvidia.com>
-Cc:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, kishon@ti.com,
-        catalin.marinas@arm.com, will.deacon@arm.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, digetx@gmail.com,
-        mperttunen@nvidia.com, linux-pci@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        kthota@nvidia.com, mmaddireddy@nvidia.com, sagar.tv@gmail.com
-Subject: Re: [PATCH V13 08/12] dt-bindings: Add PCIe supports-clkreq property
-Message-ID: <20190710152856.GB8781@e121166-lin.cambridge.arm.com>
-References: <20190710062212.1745-1-vidyas@nvidia.com>
- <20190710062212.1745-9-vidyas@nvidia.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190710062212.1745-9-vidyas@nvidia.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1727063AbfGJPfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 11:35:11 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:45838 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727521AbfGJPe4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 11:34:56 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=7QYvFls9cFFESC1iCFjHNVMcABi/vx5KKko2y+ogruc=; b=DCTWJJmqSBmc
+        Cg/2D57XqG2bNMWH+/z9If72M7H90alUmHKY3e9c6j1/+lRKN4s6EColac2SYyUKff/GYuQNU2VNa
+        K/a5wqetVmYCREYGAqrxPv2DOK2JWZWcXqx+po0mBGD7H+p0vw/ZBCgci4yiOCi0PEnJ+ieTi+ZlB
+        8DybQ=;
+Received: from [217.140.106.53] (helo=fitzroy.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1hlEcQ-00083v-8X; Wed, 10 Jul 2019 15:34:54 +0000
+Received: by fitzroy.sirena.org.uk (Postfix, from userid 1000)
+        id F057BD02D84; Wed, 10 Jul 2019 16:34:53 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Rob Herring <robh@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>
+Subject: Applied "spi: dt-bindings: spi-controller: remove unnecessary 'maxItems: 1' from reg" to the spi tree
+In-Reply-To: <20190709192631.16394-1-robh@kernel.org>
+X-Patchwork-Hint: ignore
+Message-Id: <20190710153453.F057BD02D84@fitzroy.sirena.org.uk>
+Date:   Wed, 10 Jul 2019 16:34:53 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 10, 2019 at 11:52:08AM +0530, Vidya Sagar wrote:
-> Some host controllers need to know the existence of clkreq signal routing to
-> downstream devices to be able to advertise low power features like ASPM L1
-> substates. Without clkreq signal routing being present, enabling ASPM L1 sub
-> states might lead to downstream devices falling off the bus. Hence a new device
+The patch
 
-You mean "being disconnected from the bus" right ? I will update it.
+   spi: dt-bindings: spi-controller: remove unnecessary 'maxItems: 1' from reg
 
-Lorenzo
+has been applied to the spi tree at
 
-> tree property 'supports-clkreq' is added to make such host controllers
-> aware of clkreq signal routing to downstream devices.
-> 
-> Signed-off-by: Vidya Sagar <vidyas@nvidia.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> Reviewed-by: Thierry Reding <treding@nvidia.com>
-> ---
-> V13:
-> * None
-> 
-> V12:
-> * Rebased on top of linux-next top of the tree
-> 
-> V11:
-> * None
-> 
-> V10:
-> * None
-> 
-> V9:
-> * None
-> 
-> V8:
-> * None
-> 
-> V7:
-> * None
-> 
-> V6:
-> * s/Documentation\/devicetree/dt-bindings/ in the subject
-> 
-> V5:
-> * None
-> 
-> V4:
-> * Rebased on top of linux-next top of the tree
-> 
-> V3:
-> * None
-> 
-> V2:
-> * This is a new patch in v2 series
-> 
->  Documentation/devicetree/bindings/pci/pci.txt | 5 +++++
->  1 file changed, 5 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/pci/pci.txt b/Documentation/devicetree/bindings/pci/pci.txt
-> index 2a5d91024059..29bcbd88f457 100644
-> --- a/Documentation/devicetree/bindings/pci/pci.txt
-> +++ b/Documentation/devicetree/bindings/pci/pci.txt
-> @@ -27,6 +27,11 @@ driver implementation may support the following properties:
->  - reset-gpios:
->     If present this property specifies PERST# GPIO. Host drivers can parse the
->     GPIO and apply fundamental reset to endpoints.
-> +- supports-clkreq:
-> +   If present this property specifies that CLKREQ signal routing exists from
-> +   root port to downstream device and host bridge drivers can do programming
-> +   which depends on CLKREQ signal existence. For example, programming root port
-> +   not to advertise ASPM L1 Sub-States support if there is no CLKREQ signal.
->  
->  PCI-PCI Bridge properties
->  -------------------------
-> -- 
-> 2.17.1
-> 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.3
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 43167bb1f6bb7efa73adc40d2dd700bb6546cc2c Mon Sep 17 00:00:00 2001
+From: Rob Herring <robh@kernel.org>
+Date: Tue, 9 Jul 2019 13:26:31 -0600
+Subject: [PATCH] spi: dt-bindings: spi-controller: remove unnecessary
+ 'maxItems: 1' from reg
+
+Mixing array constraints like 'maxItems' and string or integer value
+constraints like 'minimum' don't make sense. Also, with only value
+constraints, it is implied we have a single value. So lets remove
+'maxItems: 1'.
+
+Cc: Mark Brown <broonie@kernel.org>
+Cc: linux-spi@vger.kernel.org
+Signed-off-by: Rob Herring <robh@kernel.org>
+Link: https://lore.kernel.org/r/20190709192631.16394-1-robh@kernel.org
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ Documentation/devicetree/bindings/spi/spi-controller.yaml | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/spi/spi-controller.yaml b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+index 876c0623f322..a02e2fe2bfb2 100644
+--- a/Documentation/devicetree/bindings/spi/spi-controller.yaml
++++ b/Documentation/devicetree/bindings/spi/spi-controller.yaml
+@@ -73,7 +73,6 @@ patternProperties:
+           Compatible of the SPI device.
+ 
+       reg:
+-        maxItems: 1
+         minimum: 0
+         maximum: 256
+         description:
+-- 
+2.20.1
+
