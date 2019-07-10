@@ -2,201 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2F8D64A14
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 17:50:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9937F64A2B
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 17:55:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727414AbfGJPt7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 11:49:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34000 "EHLO mail.kernel.org"
+        id S1727443AbfGJPzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 11:55:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36850 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727290AbfGJPt7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 10 Jul 2019 11:49:59 -0400
-Received: from mail-qt1-f169.google.com (mail-qt1-f169.google.com [209.85.160.169])
+        id S1727428AbfGJPzZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Jul 2019 11:55:25 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EAE5E21473;
-        Wed, 10 Jul 2019 15:49:58 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 883F5208C4;
+        Wed, 10 Jul 2019 15:55:24 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562773799;
-        bh=f3705MLDMz7ZVRIZ/2mbpGAvk6+s8V0oHG6b0/yE9pg=;
+        s=default; t=1562774124;
+        bh=qCL+I0bGVObTidwDwHaXu9MuDIyEKZp4oVrDcqJBmnE=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=dNr4F5HawxLIUhCtkX+gOEjtuf9BGR0CEIsliRqZH2O9ZtsdBVaq2kRHWU6Hi1+fo
-         XRZwgaoUmOgituexlwOZw6yF+zL0fvnshjkK4ofv79S4KQTO3bO3TnB7b8CachtiCF
-         KS0ZkAhzVzVQnnkBbUi8ZqjFD274etLB6JypO9QY=
-Received: by mail-qt1-f169.google.com with SMTP id n11so2948349qtl.5;
-        Wed, 10 Jul 2019 08:49:58 -0700 (PDT)
-X-Gm-Message-State: APjAAAWrcwvR9UpUlCeNMPJCVSE8VsdGFQEhmZHf8U4qvuKWJOrtWGvG
-        ciR3kcFKYWRp+/Mh+DpumQmy3ylLAIcuujOaow==
-X-Google-Smtp-Source: APXvYqz6I/p/hMSsLLeh44Lioj37XHZzwUteYHfVHSa7jufX40UundN85FK+bOouu15+3Q3HfQJkSkXH5cMd8kt4WyU=
-X-Received: by 2002:ac8:36b9:: with SMTP id a54mr25025832qtc.300.1562773798149;
- Wed, 10 Jul 2019 08:49:58 -0700 (PDT)
+        b=BqTAEyBoL49l6a9wlkoVxEC2QkECtLLQgg0p2FkHMetUlluZXPDwPsE2QW9d1TBqF
+         sF7c7Qnrz+MMhfdoGaZLj+erkj3gN7i8HX4bU4Ek6q9xWf40Jbjb4CUhv5T1mJDzHW
+         I1M7GeJeC4asrRo73RWTJBWK9C865hwA3GCjVKjI=
+Received: by mail-qk1-f178.google.com with SMTP id s145so2274324qke.7;
+        Wed, 10 Jul 2019 08:55:24 -0700 (PDT)
+X-Gm-Message-State: APjAAAU/b3nCGhfig6W4zYB/E8YdFzg11ZSxE6jXDU5DZ3TSFpLsaTPT
+        kzFBAtLKAmhPZp8NX3YGVGw3Wg+51YfJH4b1ZA==
+X-Google-Smtp-Source: APXvYqwKfK396n6gL35FIM1KH5iVePKtER3VtkXQjd6pS6o1UtucpUKv3qUu8+77/xQX/zm28J4oPAu1ze3k+toJGEU=
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr24536697qke.223.1562774123770;
+ Wed, 10 Jul 2019 08:55:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190710141611.21159-1-andrew@aj.id.au> <20190710141611.21159-2-andrew@aj.id.au>
-In-Reply-To: <20190710141611.21159-2-andrew@aj.id.au>
+References: <20190703193724.246854-1-mka@chromium.org> <20190703193724.246854-6-mka@chromium.org>
+ <e8fe7baf-e4e0-c713-7b93-07a3859c33c6@gmail.com> <20190703232331.GL250418@google.com>
+In-Reply-To: <20190703232331.GL250418@google.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 10 Jul 2019 09:49:45 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKrYcUbn_02z9GQO6U4rz7k=p3kB7_G0tKmv25MMZZNQg@mail.gmail.com>
-Message-ID: <CAL_JsqKrYcUbn_02z9GQO6U4rz7k=p3kB7_G0tKmv25MMZZNQg@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: Document Aspeed SD controller
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
+Date:   Wed, 10 Jul 2019 09:55:12 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqL_AU+JV0c2mNbXiPh2pvfYbPbLV-2PHHX0hC3vUH4QWg@mail.gmail.com>
+Message-ID: <CAL_JsqL_AU+JV0c2mNbXiPh2pvfYbPbLV-2PHHX0hC3vUH4QWg@mail.gmail.com>
+Subject: Re: [PATCH v2 6/7] dt-bindings: net: realtek: Add property to
+ configure LED mode
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
         Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed@lists.ozlabs.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        ryanchen.aspeed@gmail.com
+        Douglas Anderson <dianders@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 10, 2019 at 8:16 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+On Wed, Jul 3, 2019 at 5:23 PM Matthias Kaehlcke <mka@chromium.org> wrote:
 >
-> The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the
-> SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
-> data bus if only a single slot is enabled.
+> Hi Florian,
 >
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> ---
->  .../bindings/mmc/sdhci-of-aspeed.yaml         | 91 +++++++++++++++++++
+> On Wed, Jul 03, 2019 at 02:37:47PM -0700, Florian Fainelli wrote:
+> > On 7/3/19 12:37 PM, Matthias Kaehlcke wrote:
+> > > The LED behavior of some Realtek PHYs is configurable. Add the
+> > > property 'realtek,led-modes' to specify the configuration of the
+> > > LEDs.
+> > >
+> > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > > ---
+> > > Changes in v2:
+> > > - patch added to the series
+> > > ---
+> > >  .../devicetree/bindings/net/realtek.txt         |  9 +++++++++
+> > >  include/dt-bindings/net/realtek.h               | 17 +++++++++++++++++
+> > >  2 files changed, 26 insertions(+)
+> > >  create mode 100644 include/dt-bindings/net/realtek.h
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/net/realtek.txt b/Documentation/devicetree/bindings/net/realtek.txt
+> > > index 71d386c78269..40b0d6f9ee21 100644
+> > > --- a/Documentation/devicetree/bindings/net/realtek.txt
+> > > +++ b/Documentation/devicetree/bindings/net/realtek.txt
+> > > @@ -9,6 +9,12 @@ Optional properties:
+> > >
+> > >     SSC is only available on some Realtek PHYs (e.g. RTL8211E).
+> > >
+> > > +- realtek,led-modes: LED mode configuration.
+> > > +
+> > > +   A 0..3 element vector, with each element configuring the operating
+> > > +   mode of an LED. Omitted LEDs are turned off. Allowed values are
+> > > +   defined in "include/dt-bindings/net/realtek.h".
+> >
+> > This should probably be made more general and we should define LED modes
+> > that makes sense regardless of the PHY device, introduce a set of
+> > generic functions for validating and then add new function pointer for
+> > setting the LED configuration to the PHY driver. This would allow to be
+> > more future proof where each PHY driver could expose standard LEDs class
+> > devices to user-space, and it would also allow facilities like: ethtool
+> > -p to plug into that.
+> >
+> > Right now, each driver invents its own way of configuring LEDs, that
+> > does not scale, and there is not really a good reason for that other
+> > than reviewing drivers in isolation and therefore making it harder to
+> > extract the commonality. Yes, I realize that since you are the latest
+> > person submitting something in that area, you are being selected :)
 
-aspeed,sdhci.yaml
+I agree.
 
->  1 file changed, 91 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml
->
-> diff --git a/Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml b/Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml
-> new file mode 100644
-> index 000000000000..e98a2ac4d46d
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml
-> @@ -0,0 +1,91 @@
-> +# SPDX-License-Identifier: GPL-2.0-or-later
+> I see the merit of your proposal to come up with a generic mechanism
+> to configure Ethernet LEDs, however I can't justify spending much of
+> my work time on this. If it is deemed useful I'm happy to send another
+> version of the current patchset that addresses the reviewer's comments,
+> but if the implementation of a generic LED configuration interface is
+> a requirement I will have to abandon at least the LED configuration
+> part of this series.
 
-The preferred license is (GPL-2.0 OR BSD-2-Clause) if that is okay with you.
+Can you at least define a common binding for this. Maybe that's just
+removing 'realtek'. While the kernel side can evolve to a common
+infrastructure, the DT bindings can't.
 
-> +%YAML 1.2
-> +---
-> +$id: http://devicetree.org/schemas/mmc/sdhci-of-aspeed.yaml#
-> +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> +
-> +title: ASPEED SD/SDIO/eMMC Controller
-> +
-> +maintainers:
-> +  - Andrew Jeffery <andrew@aj.id.au>
-> +  - Ryan Chen <ryanchen.aspeed@gmail.com>
-> +
-> +description: |+
-> +  The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the SDIO
-> +  Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit data bus if
-> +  only a single slot is enabled.
-> +
-> +  The two slots are supported by a common configuration area. As the SDHCIs for
-> +  the slots are dependent on the common configuration area, they are described
-> +  as child nodes.
-> +
-> +properties:
-> +  compatible:
-> +    enum: [ aspeed,ast2400-sdc, aspeed,ast2500-sdc ]
-> +  reg:
-> +    description: Common configuration registers
-
-This should have a 'maxItems: 1'. Same for the child reg.
-
-> +  ranges: true
-> +  clocks:
-> +    maxItems: 1
-> +    description: The SD/SDIO controller clock gate
-> +  sdhci:
-
-This needs to be a pattern (under patternProperties) as these have
-unit-addresses.
-
-> +    type: object
-> +    properties:
-> +      compatible:
-> +        allOf:
-> +          - enum: [ aspeed,ast2400-sdhci, aspeed,ast2500-sdhci ]
-> +          - const: sdhci
-
-This condition can never be true. What you need is s/allOf/items/.
-However, 'sdhci' is not really a useful compatible because every
-implementation has quirks, so I'd drop it.
-
-> +      reg:
-> +        description: The SDHCI registers
-> +      clocks:
-> +        maxItems: 1
-> +        description: The SD bus clock
-> +      slot:
-> +        allOf:
-> +          - $ref: /schemas/types.yaml#/definitions/uint32
-> +          - enum: [0, 1]
-
-Is this really needed? Offset 0x100 is slot 0 and offset 0x200 is slot
-1. Does that ever change?
-
-> +      interrupts:
-> +        maxItems: 1
-> +        description: The SD interrupt shared between both slots
-> +    required:
-> +      - compatible
-> +      - reg
-> +      - clocks
-> +      - slot
-> +      - interrupts
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - ranges
-> +  - clocks
-
-#address-cells and #size-cells are required too.
-
-You should also add 'additionalProperties: false' here so other random
-properties can't be present.
-
-> +
-> +examples:
-> +  - |
-> +    #include <dt-bindings/clock/aspeed-clock.h>
-> +    sdc@1e740000 {
-> +            compatible = "aspeed,ast2500-sdc";
-> +            reg = <0x1e740000 0x100>;
-> +            #address-cells = <1>;
-> +            #size-cells = <1>;
-> +            ranges;
-
-It's preferred to limit the range here and then the child addresses
-are 0x100 and 0x200.
-
-> +            clocks = <&syscon ASPEED_CLK_GATE_SDCLK>;
-> +
-> +            sdhci0: sdhci@1e740100 {
-> +                    compatible = "aspeed,ast2500-sdhci", "sdhci";
-> +                    reg = <0x1e740100 0x100>;
-> +                    slot = <0>;
-> +                    interrupts = <26>;
-> +                    sdhci,auto-cmd12;
-> +                    clocks = <&syscon ASPEED_CLK_SDIO>;
-> +            };
-> +
-> +            sdhci1: sdhci@1e740200 {
-> +                    compatible = "aspeed,ast2500-sdhci", "sdhci";
-> +                    reg = <0x1e740200 0x100>;
-> +                    slot = <1>;
-> +                    interrupts = <26>;
-> +                    sdhci,auto-cmd12;
-> +                    clocks = <&syscon ASPEED_CLK_SDIO>;
-> +            };
-> +    };
-> --
-> 2.20.1
->
+Rob
