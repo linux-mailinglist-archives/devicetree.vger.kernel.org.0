@@ -2,129 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C70B564169
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 08:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C67FF6418F
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 08:46:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725994AbfGJGjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 02:39:25 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:27331 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725844AbfGJGjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 02:39:24 -0400
-X-UUID: 0ed553817a1347c0a387db5d197cb9de-20190710
-X-UUID: 0ed553817a1347c0a387db5d197cb9de-20190710
-Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw01.mediatek.com
-        (envelope-from <bibby.hsieh@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 686314786; Wed, 10 Jul 2019 14:39:17 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 10 Jul 2019 14:39:16 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 10 Jul 2019 14:39:16 +0800
-Message-ID: <1562740756.1879.1.camel@mtksdaap41>
-Subject: Re: [PATCH v10 03/12] dt-binding: gce: add binding for gce client
- reg property
-From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        CK HU <ck.hu@mediatek.com>,
-        Daniel Kurtz <djkurtz@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "Philipp Zabel" <p.zabel@pengutronix.de>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        "YT Shen" <yt.shen@mediatek.com>,
-        Daoyuan Huang <daoyuan.huang@mediatek.com>,
-        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <ginny.chen@mediatek.com>
-Date:   Wed, 10 Jul 2019 14:39:16 +0800
-In-Reply-To: <20190701074842.15401-4-bibby.hsieh@mediatek.com>
-References: <20190701074842.15401-1-bibby.hsieh@mediatek.com>
-         <20190701074842.15401-4-bibby.hsieh@mediatek.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726159AbfGJGqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 02:46:31 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:33270 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726111AbfGJGqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 02:46:31 -0400
+Received: by mail-ot1-f68.google.com with SMTP id q20so1097444otl.0;
+        Tue, 09 Jul 2019 23:46:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=goA0pqDvekqqmxZQjkpFHCZBNwrKPP7M5GIjZbuPPQs=;
+        b=Dn2ACj9EnzC10Mxhwl/GbLOGyx01LLVFuYvtNYMVexM46MKXlqDa9q/9MdvWqJVqR0
+         Vew3p7VZxbyZm3YfmpGi1m8fdc9zcfTpDR44iiEoXqqm+hcrsMpdTQfXA5jXE9DK11gs
+         JMZfBexPsnQDrKIwm6ZAYlN5xjMp5FYHYmBCl4V6scUR1Rx5aizZcK73SnaAqEv+ddZG
+         PhMwoKIRBgqJuSSC8LdZu0ZyDLEQhpGqTKjPG5G7LemRHVBbrwC34CkuDM/e11H0dIyU
+         cnNyIzFGj/RMZVldwOCXxkRfao+FWo4+CGQt7D60vcpk7dLEGnzgWfFOQy2IafyyOU2L
+         1ANw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=goA0pqDvekqqmxZQjkpFHCZBNwrKPP7M5GIjZbuPPQs=;
+        b=crHC6cjt9xtIA1B03GTiVnLof/zk8l8vLpC8jwOK68Xsr963o70GV9sW1cqzoliyfP
+         w/C/Q42vmlkfVNTvve3iYE4Opwmz8KlBrAbUkIL4EEquKX/lHTfmQJwFaIfRxhfFVfML
+         1H3VJzpiKPr3wIvgBHpnCiT7FGWAuMc7lb6fjTK6mh4APmxSQypT6nV0X8NND7qO+jFS
+         Gy6a6zgXk9wDROs6TrcDHS9T1A7cKtuEQ2jf0kqaINUceZlGXsfcl52Y5lnDDwpuRt9u
+         eiiieTi+CcYJXk+bKFqKMZxnkqiX8It0WGFLAdWolNoDDVjMqaWI/yvva62IZ7/KZrxK
+         CQAw==
+X-Gm-Message-State: APjAAAXoTW8QolsMVJYoVgfh4iwgTSrCvqegguWPBrY4NdVTw3EnrxLB
+        sGrsMIs1Xp4w47jIeD6JS8jOlm2g7GxDnCVH16DE9g2GXB8=
+X-Google-Smtp-Source: APXvYqwIcnkw7X8a0akZ3pqEHKADUO9UWrI7tCnP1Lkr6+Qi6xyfm75eWXyJ5YW6We8QcIF6f6RH7/N25eLs1jSfvKU=
+X-Received: by 2002:a05:6830:1350:: with SMTP id r16mr21391473otq.84.1562741190094;
+ Tue, 09 Jul 2019 23:46:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+References: <20190709182018.23193-1-gch981213@gmail.com> <20190709182018.23193-5-gch981213@gmail.com>
+In-Reply-To: <20190709182018.23193-5-gch981213@gmail.com>
+From:   Chuanhong Guo <gch981213@gmail.com>
+Date:   Wed, 10 Jul 2019 14:46:18 +0800
+Message-ID: <CAJsYDVJ-qJppkuvbYLmkWU0SBE=UrOoNLrM0kcOzhSTqNTeaWQ@mail.gmail.com>
+Subject: Re: [PATCH 4/5] staging: mt7621-dts: add dt nodes for mt7621-pll
+To:     "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        open list <linux-kernel@vger.kernel.org>,
+        "open list:MIPS" <linux-mips@vger.kernel.org>,
+        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
+        John Crispin <john@phrozen.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Weijie Gao <hackpascal@gmail.com>, NeilBrown <neil@brown.name>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rob,
+On Wed, Jul 10, 2019 at 2:22 AM Chuanhong Guo <gch981213@gmail.com> wrote:
+>
+> This commit adds device-tree node for mt7621-pll and use its clock
+> accordingly.
+>
+> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
 
-Sorry to bother you, could you please review this patch when you are
-available? Thanks.
+Oops. Please ignore this single patch for now. I forgot to drop
+cpuclock node in drivers/staging/mt7621-dts/gbpc1.dts
+I'll resend this patch with changes for gbpc1.dts after the other four
+patches are applied.
 
-
-On Mon, 2019-07-01 at 15:48 +0800, Bibby Hsieh wrote:
-> cmdq driver provide a function that get the relationship
-> of sub system number from device node for client.
-> add specification for #subsys-cells, mediatek,gce-client-reg.
-> 
-> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
 > ---
->  .../devicetree/bindings/mailbox/mtk-gce.txt    | 18 ++++++++++++++----
->  1 file changed, 14 insertions(+), 4 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> index 1f7f8f2a3f49..d48282d6b02d 100644
-> --- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> +++ b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
-> @@ -21,12 +21,21 @@ Required properties:
->  	priority: Priority of GCE thread.
->  	atomic_exec: GCE processing continuous packets of commands in atomic
->  		way.
-> +- #subsys-cells: Should be 3.
-> +	<&phandle subsys_number start_offset size>
-> +	phandle: Label name of a gce node.
-> +	subsys_number: specify the sub-system id which is corresponding
-> +		       to the register address.
-> +	start_offset: the start offset of register address that GCE can access.
-> +	size: the total size of register address that GCE can access.
->  
->  Required properties for a client device:
->  - mboxes: Client use mailbox to communicate with GCE, it should have this
->    property and list of phandle, mailbox specifiers.
-> -- mediatek,gce-subsys: u32, specify the sub-system id which is corresponding
-> -  to the register address.
-> +Optional properties for a client device:
-> +- mediatek,gce-client-reg: Specify the sub-system id which is corresponding
-> +  to the register address, it should have this property and list of phandle,
-> +  sub-system specifiers.
->  
->  Some vaules of properties are defined in 'dt-bindings/gce/mt8173-gce.h'
->  or 'dt-binding/gce/mt8183-gce.h'. Such as sub-system ids, thread priority, event ids.
-> @@ -40,6 +49,7 @@ Example:
->  		clocks = <&infracfg CLK_INFRA_GCE>;
->  		clock-names = "gce";
->  		#mbox-cells = <3>;
-> +		#subsys-cells = <3>;
->  	};
->  
->  Example for a client device:
-> @@ -48,9 +58,9 @@ Example for a client device:
->  		compatible = "mediatek,mt8173-mmsys";
->  		mboxes = <&gce 0 CMDQ_THR_PRIO_LOWEST 1>,
->  			 <&gce 1 CMDQ_THR_PRIO_LOWEST 1>;
-> -		mediatek,gce-subsys = <SUBSYS_1400XXXX>;
->  		mutex-event-eof = <CMDQ_EVENT_MUTEX0_STREAM_EOF
->  				CMDQ_EVENT_MUTEX1_STREAM_EOF>;
-> -
-> +		mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>,
-> +					  <&gce SUBSYS_1401XXXX 0x2000 0x100>;
->  		...
->  	};
-
--- 
-Bibby
-
+>  drivers/staging/mt7621-dts/mt7621.dtsi | 15 +++++++--------
+>  1 file changed, 7 insertions(+), 8 deletions(-)
+>
+> diff --git a/drivers/staging/mt7621-dts/mt7621.dtsi b/drivers/staging/mt7621-dts/mt7621.dtsi
+> index a4c08110094b..12717f570ceb 100644
+> --- a/drivers/staging/mt7621-dts/mt7621.dtsi
+> +++ b/drivers/staging/mt7621-dts/mt7621.dtsi
+> @@ -1,4 +1,5 @@
+>  #include <dt-bindings/interrupt-controller/mips-gic.h>
+> +#include <dt-bindings/clock/mt7621-clk.h>
+>  #include <dt-bindings/gpio/gpio.h>
+>
+>  / {
+> @@ -27,12 +28,11 @@
+>                 serial0 = &uartlite;
+>         };
+>
+> -       cpuclock: cpuclock@0 {
+> -               #clock-cells = <0>;
+> -               compatible = "fixed-clock";
+> +       pll: pll {
+> +               compatible = "mediatek,mt7621-pll", "syscon";
+>
+> -               /* FIXME: there should be way to detect this */
+> -               clock-frequency = <880000000>;
+> +               #clock-cells = <1>;
+> +               clock-output-names = "cpu", "bus";
+>         };
+>
+>         sysclock: sysclock@0 {
+> @@ -155,7 +155,6 @@
+>                         compatible = "ns16550a";
+>                         reg = <0xc00 0x100>;
+>
+> -                       clocks = <&sysclock>;
+>                         clock-frequency = <50000000>;
+>
+>                         interrupt-parent = <&gic>;
+> @@ -172,7 +171,7 @@
+>                         compatible = "ralink,mt7621-spi";
+>                         reg = <0xb00 0x100>;
+>
+> -                       clocks = <&sysclock>;
+> +                       clocks = <&pll MT7621_CLK_BUS>;
+>
+>                         resets = <&rstctrl 18>;
+>                         reset-names = "spi";
+> @@ -372,7 +371,7 @@
+>                 timer {
+>                         compatible = "mti,gic-timer";
+>                         interrupts = <GIC_LOCAL 1 IRQ_TYPE_NONE>;
+> -                       clocks = <&cpuclock>;
+> +                       clocks = <&pll MT7621_CLK_CPU>;
+>                 };
+>         };
+>
+> --
+> 2.21.0
+>
