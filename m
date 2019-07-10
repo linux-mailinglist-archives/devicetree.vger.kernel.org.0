@@ -2,90 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E92B64CB1
-	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 21:22:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6446A64D35
+	for <lists+devicetree@lfdr.de>; Wed, 10 Jul 2019 22:12:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728215AbfGJTWe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 15:22:34 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:39709 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727476AbfGJTWd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 15:22:33 -0400
-Received: by mail-lj1-f193.google.com with SMTP id v18so3230488ljh.6;
-        Wed, 10 Jul 2019 12:22:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tGcv9mcQt15OKP2ZEu09JZzCQ/XGig1FQYgLetE/8xA=;
-        b=ZzeJW1PJUKth0voeUgOV0grdDYJiJl9rzgRuVsTsVY/0zHthn/b5P3+GjkxprP/5cc
-         nsyBdbuqWVgiCLQhMGzB49INs8JHWayubzmHsCNP+U6x3Q8HLnAZ8s8e9noK/SVbuLQ6
-         8ShY79DDL2oL1MKHs8ztPJcsjDexHaVzycGzEjkd+BOtUXuCn2sQpAXpyGbiCHFk2S2D
-         2LvBbn4SBWpiLQqrIClQdbIn16XtzSuIhVjKUwcg5v61denofPV+JTNfan04JDUTnoYx
-         T7gkKAIsffoD2TSyYKoqv59lUQx+WonWZZc68TMgBdhZyPj04SiZ5vuX6zd91THxcMje
-         vnAw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tGcv9mcQt15OKP2ZEu09JZzCQ/XGig1FQYgLetE/8xA=;
-        b=hafuT4yA8PK350DX/6bVb4U9TRf0oxHaafKBWTpqEtZ0vTsB2akAmXZpA8kjrguJbS
-         wemNr3HLH91qGRNliuTYDEok9d6vMOwZVFIjomtONc1Teg2pJQAtqQ5qCQHEoqEClLwe
-         X0/rGjtimJ1knhD7GD37LuLD2Bz9uuhJerDj9h8bM4673a04VBQ1NJs3X4wPDBT2afIN
-         q35R5KuR/aZlI5GLtPD1BCxGzO3zsxflRLrxRQDUcOaMSQ2IVZyvUTZa6K2pYY3U63FG
-         IAgONrhM1Xm05bnOjjaf9PzL7Txo4xPZu3m5TbnXg5cgor6trX5JPanD0d5YvwyGRrcx
-         CByA==
-X-Gm-Message-State: APjAAAWqJEBVMN4AZzennbKDnwnlt6Hu0odo6Jr54USy9zSn8yPMIciB
-        mYSGEWaxneKx+mEBykUj2OCkaVKfTc8=
-X-Google-Smtp-Source: APXvYqymZd17Nknw20aGdU5Tfa+nKhRr2RcSQr4gpXh3XmnaL51jsFR2D/nFQyRgAUptPciSlA6Zbw==
-X-Received: by 2002:a2e:8602:: with SMTP id a2mr17767251lji.206.1562786550554;
-        Wed, 10 Jul 2019 12:22:30 -0700 (PDT)
-Received: from arch.lan (89-70-29-67.dynamic.chello.pl. [89.70.29.67])
-        by smtp.gmail.com with ESMTPSA id a70sm603515ljf.57.2019.07.10.12.22.29
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 10 Jul 2019 12:22:29 -0700 (PDT)
-From:   Tomasz Duszynski <tduszyns@gmail.com>
-To:     linux-iio@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        jic23@kernel.org, robh+dt@kernel.org,
-        Tomasz Duszynski <tduszyns@gmail.com>
-Subject: [PATCH 2/2] MAINTAINERS: add entry for plantower pms7003 driver
-Date:   Wed, 10 Jul 2019 21:21:55 +0200
-Message-Id: <20190710192155.11489-3-tduszyns@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190710192155.11489-1-tduszyns@gmail.com>
-References: <20190710192155.11489-1-tduszyns@gmail.com>
+        id S1727294AbfGJUMj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 16:12:39 -0400
+Received: from mail.kernel.org ([198.145.29.99]:50594 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726111AbfGJUMj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Jul 2019 16:12:39 -0400
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B160720844;
+        Wed, 10 Jul 2019 20:12:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562789558;
+        bh=arZwsIKK85xQA0UQRI89h6dbRX6S7Ni7CsW8dxaQYLs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=p82GYfHGIWdmUya4nJbUygxwyI1+XOLI/IFwoJT1Zp8cB1DTyNpEH7+7KTf9AsV0q
+         oDRhsN5b3wKb5+e5tP2DS900oefqYJkGYEpNDfh8IrBkyBs7QcLhLNMYg5oCI96Jny
+         iPqsvpaGPDJi6IIb/JpRgw/F/6eGC6IKLWLvWd5E=
+Received: by mail-qk1-f169.google.com with SMTP id s145so2961310qke.7;
+        Wed, 10 Jul 2019 13:12:38 -0700 (PDT)
+X-Gm-Message-State: APjAAAU0YZXKZVHbMqV+kE/OaMEztOP1L8cZeK0YuswcCN0Nm0mK6nnr
+        8A4xbjRYMPQOlQfmdOPT4gBPIv+MjND/hkMNAA==
+X-Google-Smtp-Source: APXvYqwQaQbDjnfpDjPm50aG8sIZxLG9tal9F/o52jr9suW9/+ne9DoY/hPPTpecvjX0l3Lhm/yKc8W+Q/UblrT2nyA=
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr25593665qke.223.1562789557982;
+ Wed, 10 Jul 2019 13:12:37 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190710192155.11489-1-tduszyns@gmail.com> <20190710192155.11489-2-tduszyns@gmail.com>
+In-Reply-To: <20190710192155.11489-2-tduszyns@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 10 Jul 2019 14:12:26 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJ8iLuif-UqVzpgwOLafVYr9aOo38EMeUnmYJ0a9aQ5DQ@mail.gmail.com>
+Message-ID: <CAL_JsqJ8iLuif-UqVzpgwOLafVYr9aOo38EMeUnmYJ0a9aQ5DQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: iio: chemical: pms7003: convert bindings
+ to yaml
+To:     Tomasz Duszynski <tduszyns@gmail.com>
+Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, Jonathan Cameron <jic23@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add myself as a plantower pms7003 driver maintainer.
+On Wed, Jul 10, 2019 at 1:22 PM Tomasz Duszynski <tduszyns@gmail.com> wrote:
+>
+> Convert existing device tree bindings to yaml.
+>
+> Signed-off-by: Tomasz Duszynski <tduszyns@gmail.com>
+> ---
+>  .../iio/chemical/plantower,pms7003.txt        | 26 ----------
+>  .../iio/chemical/plantower,pms7003.yaml       | 51 +++++++++++++++++++
+>  2 files changed, 51 insertions(+), 26 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/iio/chemical/plantower,pms7003.txt
+>  create mode 100644 Documentation/devicetree/bindings/iio/chemical/plantower,pms7003.yaml
 
-Signed-off-by: Tomasz Duszynski <tduszyns@gmail.com>
----
- MAINTAINERS | 6 ++++++
- 1 file changed, 6 insertions(+)
-
-diff --git a/MAINTAINERS b/MAINTAINERS
-index ad498428b38c..771de33ef737 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -12548,6 +12548,12 @@ F:	drivers/i2c/busses/i2c-puv3.c
- F:	drivers/video/fbdev/fb-puv3.c
- F:	drivers/rtc/rtc-puv3.c
- 
-+PLANTOWER PMS7003 AIR POLLUTION SENSOR DRIVER
-+M:	Tomasz Duszynski <tduszyns@gmail.com>
-+S:	Maintained
-+F:	drivers/iio/chemical/pms7003.c
-+F:	Documentation/devicetree/bindings/iio/chemical/plantower,pms7003.yaml
-+
- PMBUS HARDWARE MONITORING DRIVERS
- M:	Guenter Roeck <linux@roeck-us.net>
- L:	linux-hwmon@vger.kernel.org
--- 
-2.22.0
-
+Reviewed-by: Rob Herring <robh@kernel.org>
