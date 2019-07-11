@@ -2,91 +2,310 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 083876600C
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 21:39:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E4A30660D3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 22:45:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726362AbfGKTjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 15:39:01 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:51478 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726214AbfGKTjB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 15:39:01 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id DC24D803F1;
-        Thu, 11 Jul 2019 21:38:56 +0200 (CEST)
-Date:   Thu, 11 Jul 2019 21:38:55 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        id S1728583AbfGKUpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 16:45:02 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:34255 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728394AbfGKUpC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 16:45:02 -0400
+Received: by mail-pg1-f196.google.com with SMTP id p10so3500417pgn.1
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2019 13:45:01 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=aElOUa28IDV+Ms9r3bfrgzJICeP4nyAIWqfUYkJpGGU=;
+        b=KfICzL+zhG+iFMQSO5h96qlDv0Q4R/M/HLlUjjPtDF9xvFcNiGBvMnMsRpT42iQc5+
+         VS+bdk6ElH393b/7aREvh0oD+MbpUJc8/K8fBwW0gyrE4dwHL9SJyrTnP8s6ZkA7Fozg
+         oeo+8/OoXqIFNmDvQ3vDWDTuEVHa3i+PzTU9M=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=aElOUa28IDV+Ms9r3bfrgzJICeP4nyAIWqfUYkJpGGU=;
+        b=YSWy0qyzNq+R3YZRMHAEPALvv2j3LGM1kwGdx1QnAhU7bfm8+wBNFb1jt8PzQCVswh
+         J3mGp7Dertgw2uvrBSG1rxah1g19UeUvuu6xyIzDlbLpFAgh6jeHEeKwM2zQbv4UsWWZ
+         2FtM4pZua248Mpwy6NHRMqtmxMohwINEfnRJ8v3U6fV+ouN9SL1fm4zpwSv42sSLPe6w
+         yX5nV2amnbVwnYMQIsFMz7yIt/5iqU9x3EyoRtE3M5tSrYFomGO3LqerN12Xdb7QYUqm
+         bp2sjqeCtk8GpxCbfgd7rIryMYqEmG8rV79hrFUSB0FnEdozbcKmsCh2lUpU9pmYuXQ0
+         Zoqg==
+X-Gm-Message-State: APjAAAWaVoSZGEk6Q7yC/fFpjWS40HNr8tJhewuF46K2jkB63sLNIJcA
+        zbn3c1nmBArGhEzvM0oWtb/6/g==
+X-Google-Smtp-Source: APXvYqxWtmbfQ6xXRJMgZcr6q9t9MQEgBglf68LAJcm3jnErkAO8JgOtdlvX+3xb7vGMLCQ/B1BfZQ==
+X-Received: by 2002:a63:e010:: with SMTP id e16mr2005549pgh.285.1562877901085;
+        Thu, 11 Jul 2019 13:45:01 -0700 (PDT)
+Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
+        by smtp.gmail.com with ESMTPSA id f17sm5320110pgv.16.2019.07.11.13.45.00
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 11 Jul 2019 13:45:00 -0700 (PDT)
+From:   Douglas Anderson <dianders@chromium.org>
+To:     Thierry Reding <thierry.reding@gmail.com>,
         Heiko Stuebner <heiko@sntech.de>,
-        Sean Paul <seanpaul@chromium.org>, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Jeffy Chen <jeffy.chen@rock-chips.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Enric =?iso-8859-1?Q?Balletb=F2?= <enric.balletbo@collabora.com>,
-        =?iso-8859-1?Q?St=E9phane?= Marchesin <marcheu@chromium.org>,
+        Sean Paul <seanpaul@chromium.org>
+Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
         Ezequiel Garcia <ezequiel@collabora.com>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: Re: [PATCH v5 2/7] drm/panel: simple: Add ability to override
- typical timing
-Message-ID: <20190711193855.GB5912@ravnborg.org>
-References: <20190401171724.215780-1-dianders@chromium.org>
- <20190401171724.215780-3-dianders@chromium.org>
- <20190630202246.GB15102@ravnborg.org>
- <CAD=FV=V_wTD1xpkXRe-z2HsZ8QXKq7jmq8CsfhMnFxi-5XDJjw@mail.gmail.com>
- <20190708175007.GA3511@ravnborg.org>
- <CAD=FV=XnDTKkscdCwFE1137aX6pTtv=5zqXf=yqcnchpZpt5_Q@mail.gmail.com>
+        linux-rockchip@lists.infradead.org,
+        dri-devel@lists.freedesktop.org,
+        Boris Brezillon <boris.brezillon@collabora.com>,
+        mka@chromium.org, Rob Herring <robh+dt@kernel.org>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Doug Anderson <dianders@chromium.org>,
+        Eric Anholt <eric@anholt.net>,
+        Jeffy Chen <jeffy.chen@rock-chips.com>,
+        =?UTF-8?q?St=C3=A9phane=20Marchesin?= <marcheu@chromium.org>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Sam Ravnborg <sam@ravnborg.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>
+Subject: [PATCH v6 1/3] drm/panel: simple: Add ability to override typical timing
+Date:   Thu, 11 Jul 2019 13:34:53 -0700
+Message-Id: <20190711203455.125667-2-dianders@chromium.org>
+X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
+In-Reply-To: <20190711203455.125667-1-dianders@chromium.org>
+References: <20190711203455.125667-1-dianders@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAD=FV=XnDTKkscdCwFE1137aX6pTtv=5zqXf=yqcnchpZpt5_Q@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
-        a=Xl9dLsEvoqQTC_bOKBsA:9 a=CjuIK1q_8ugA:10
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Doug.
+From: Sean Paul <seanpaul@chromium.org>
 
-> > > > > @@ -91,6 +92,8 @@ struct panel_simple {
-> > > > >       struct i2c_adapter *ddc;
-> > > > >
-> > > > >       struct gpio_desc *enable_gpio;
-> > > > > +
-> > > > > +     struct drm_display_mode override_mode;
-> > > > I fail to see where this poiter is assigned.
-> > >
-> > > In panel_simple_parse_override_mode().  Specifically:
-> > >
-> > > drm_display_mode_from_videomode(&vm, &panel->override_mode);
-> >
-> > The above code-snippet is only called in the panel has specified display
-> > timings using display_timings - it is not called when display_mode is
-> > used.
-> > So override_mode is only assigned in some cases and not all cases.
-> > This needs to be fixed so we do not reference override_mode unless
-> > it is set.
-> 
-> I'm afraid I'm not following you here.
+This patch adds the ability to override the typical display timing for a
+given panel. This is useful for devices which have timing constraints
+that do not apply across the entire display driver (eg: to avoid
+crosstalk between panel and digitizer on certain laptops). The rules are
+as follows:
 
-> 
-> * override_mode is a structure that's directly part of "struct panel_simple".
-I had somehow confused myself to think this was a pointer.
-And you are right that override_mode is properly initialized when the
-structure is allocated.
+- panel must not specify fixed mode (since the override mode will
+  either be the same as the fixed mode, or we'll be unable to
+  check the bounds of the overried)
+- panel must specify at least one display_timing range which will be
+  used to ensure the override mode fits within its bounds
 
-Sorry for not reading the code and your replies carefully enough.
+Changes in v2:
+ - Parse the full display-timings node (using the native-mode) (Rob)
+Changes in v3:
+ - No longer parse display-timings subnode, use panel-timing (Rob)
+Changes in v4:
+ - Don't add mode from timing if override was specified (Thierry)
+ - Add warning if timing and fixed mode was specified (Thierry)
+ - Don't add fixed mode if timing was specified (Thierry)
+ - Refactor/rename a bit to avoid extra indentation from "if" tests
+ - i should be unsigned (Thierry)
+ - Add annoying WARN_ONs for some cases (Thierry)
+ - Simplify 'No display_timing found' handling (Thierry)
+ - Rename to panel_simple_parse_override_mode() (Thierry)
+Changes in v5:
+ - Added Heiko's Tested-by
+Changes in v6:
+ - Rebased to drm-misc next
+ - Added tags
 
-	Sam
+Cc: Doug Anderson <dianders@chromium.org>
+Cc: Eric Anholt <eric@anholt.net>
+Cc: Heiko Stuebner <heiko@sntech.de>
+Cc: Jeffy Chen <jeffy.chen@rock-chips.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Stéphane Marchesin <marcheu@chromium.org>
+Cc: Thierry Reding <thierry.reding@gmail.com>
+Cc: devicetree@vger.kernel.org
+Cc: dri-devel@lists.freedesktop.org
+Signed-off-by: Sean Paul <seanpaul@chromium.org>
+Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Tested-by: Heiko Stuebner <heiko@sntech.de>
+Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
+Acked-by: Thierry Reding <thierry.reding@gmail.com>
+---
+
+ drivers/gpu/drm/panel/panel-simple.c | 109 +++++++++++++++++++++++++--
+ 1 file changed, 104 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index af6bf5611b4e..1bee197821ef 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -30,6 +30,7 @@
+ #include <linux/regulator/consumer.h>
+ 
+ #include <video/display_timing.h>
++#include <video/of_display_timing.h>
+ #include <video/videomode.h>
+ 
+ #include <drm/drm_crtc.h>
+@@ -92,6 +93,8 @@ struct panel_simple {
+ 	struct i2c_adapter *ddc;
+ 
+ 	struct gpio_desc *enable_gpio;
++
++	struct drm_display_mode override_mode;
+ };
+ 
+ static inline struct panel_simple *to_panel_simple(struct drm_panel *panel)
+@@ -99,16 +102,13 @@ static inline struct panel_simple *to_panel_simple(struct drm_panel *panel)
+ 	return container_of(panel, struct panel_simple, base);
+ }
+ 
+-static int panel_simple_get_fixed_modes(struct panel_simple *panel)
++static unsigned int panel_simple_get_timings_modes(struct panel_simple *panel)
+ {
+ 	struct drm_connector *connector = panel->base.connector;
+ 	struct drm_device *drm = panel->base.drm;
+ 	struct drm_display_mode *mode;
+ 	unsigned int i, num = 0;
+ 
+-	if (!panel->desc)
+-		return 0;
+-
+ 	for (i = 0; i < panel->desc->num_timings; i++) {
+ 		const struct display_timing *dt = &panel->desc->timings[i];
+ 		struct videomode vm;
+@@ -132,6 +132,16 @@ static int panel_simple_get_fixed_modes(struct panel_simple *panel)
+ 		num++;
+ 	}
+ 
++	return num;
++}
++
++static unsigned int panel_simple_get_fixed_modes(struct panel_simple *panel)
++{
++	struct drm_connector *connector = panel->base.connector;
++	struct drm_device *drm = panel->base.drm;
++	struct drm_display_mode *mode;
++	unsigned int i, num = 0;
++
+ 	for (i = 0; i < panel->desc->num_modes; i++) {
+ 		const struct drm_display_mode *m = &panel->desc->modes[i];
+ 
+@@ -153,6 +163,44 @@ static int panel_simple_get_fixed_modes(struct panel_simple *panel)
+ 		num++;
+ 	}
+ 
++	return num;
++}
++
++static int panel_simple_get_non_edid_modes(struct panel_simple *panel)
++{
++	struct drm_connector *connector = panel->base.connector;
++	struct drm_device *drm = panel->base.drm;
++	struct drm_display_mode *mode;
++	bool has_override = panel->override_mode.type;
++	unsigned int num = 0;
++
++	if (!panel->desc)
++		return 0;
++
++	if (has_override) {
++		mode = drm_mode_duplicate(drm, &panel->override_mode);
++		if (mode) {
++			drm_mode_probed_add(connector, mode);
++			num = 1;
++		} else {
++			dev_err(drm->dev, "failed to add override mode\n");
++		}
++	}
++
++	/* Only add timings if override was not there or failed to validate */
++	if (num == 0 && panel->desc->num_timings)
++		num = panel_simple_get_timings_modes(panel);
++
++	/*
++	 * Only add fixed modes if timings/override added no mode.
++	 *
++	 * We should only ever have either the display timings specified
++	 * or a fixed mode. Anything else is rather bogus.
++	 */
++	WARN_ON(panel->desc->num_timings && panel->desc->num_modes);
++	if (num == 0)
++		num = panel_simple_get_fixed_modes(panel);
++
+ 	connector->display_info.bpc = panel->desc->bpc;
+ 	connector->display_info.width_mm = panel->desc->size.width;
+ 	connector->display_info.height_mm = panel->desc->size.height;
+@@ -269,7 +317,7 @@ static int panel_simple_get_modes(struct drm_panel *panel)
+ 	}
+ 
+ 	/* add hard-coded panel modes */
+-	num += panel_simple_get_fixed_modes(p);
++	num += panel_simple_get_non_edid_modes(p);
+ 
+ 	return num;
+ }
+@@ -300,10 +348,58 @@ static const struct drm_panel_funcs panel_simple_funcs = {
+ 	.get_timings = panel_simple_get_timings,
+ };
+ 
++#define PANEL_SIMPLE_BOUNDS_CHECK(to_check, bounds, field) \
++	(to_check->field.typ >= bounds->field.min && \
++	 to_check->field.typ <= bounds->field.max)
++static void panel_simple_parse_override_mode(struct device *dev,
++					     struct panel_simple *panel,
++					     const struct display_timing *ot)
++{
++	const struct panel_desc *desc = panel->desc;
++	struct videomode vm;
++	unsigned int i;
++
++	if (WARN_ON(desc->num_modes)) {
++		dev_err(dev, "Reject override mode: panel has a fixed mode\n");
++		return;
++	}
++	if (WARN_ON(!desc->num_timings)) {
++		dev_err(dev, "Reject override mode: no timings specified\n");
++		return;
++	}
++
++	for (i = 0; i < panel->desc->num_timings; i++) {
++		const struct display_timing *dt = &panel->desc->timings[i];
++
++		if (!PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, hactive) ||
++		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, hfront_porch) ||
++		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, hback_porch) ||
++		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, hsync_len) ||
++		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, vactive) ||
++		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, vfront_porch) ||
++		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, vback_porch) ||
++		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, vsync_len))
++			continue;
++
++		if (ot->flags != dt->flags)
++			continue;
++
++		videomode_from_timing(ot, &vm);
++		drm_display_mode_from_videomode(&vm, &panel->override_mode);
++		panel->override_mode.type |= DRM_MODE_TYPE_DRIVER |
++					     DRM_MODE_TYPE_PREFERRED;
++		break;
++	}
++
++	if (WARN_ON(!panel->override_mode.type))
++		dev_err(dev, "Reject override mode: No display_timing found\n");
++}
++
+ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
+ {
+ 	struct device_node *backlight, *ddc;
+ 	struct panel_simple *panel;
++	struct display_timing dt;
+ 	int err;
+ 
+ 	panel = devm_kzalloc(dev, sizeof(*panel), GFP_KERNEL);
+@@ -349,6 +445,9 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
+ 		}
+ 	}
+ 
++	if (!of_get_display_timing(dev->of_node, "panel-timing", &dt))
++		panel_simple_parse_override_mode(dev, panel, &dt);
++
+ 	drm_panel_init(&panel->base);
+ 	panel->base.dev = dev;
+ 	panel->base.funcs = &panel_simple_funcs;
+-- 
+2.22.0.410.gd8fdbe21b5-goog
+
