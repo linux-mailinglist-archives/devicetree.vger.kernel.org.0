@@ -2,310 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4A30660D3
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 22:45:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 92B58660C4
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 22:40:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728583AbfGKUpC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 16:45:02 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:34255 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728394AbfGKUpC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 16:45:02 -0400
-Received: by mail-pg1-f196.google.com with SMTP id p10so3500417pgn.1
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2019 13:45:01 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=aElOUa28IDV+Ms9r3bfrgzJICeP4nyAIWqfUYkJpGGU=;
-        b=KfICzL+zhG+iFMQSO5h96qlDv0Q4R/M/HLlUjjPtDF9xvFcNiGBvMnMsRpT42iQc5+
-         VS+bdk6ElH393b/7aREvh0oD+MbpUJc8/K8fBwW0gyrE4dwHL9SJyrTnP8s6ZkA7Fozg
-         oeo+8/OoXqIFNmDvQ3vDWDTuEVHa3i+PzTU9M=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=aElOUa28IDV+Ms9r3bfrgzJICeP4nyAIWqfUYkJpGGU=;
-        b=YSWy0qyzNq+R3YZRMHAEPALvv2j3LGM1kwGdx1QnAhU7bfm8+wBNFb1jt8PzQCVswh
-         J3mGp7Dertgw2uvrBSG1rxah1g19UeUvuu6xyIzDlbLpFAgh6jeHEeKwM2zQbv4UsWWZ
-         2FtM4pZua248Mpwy6NHRMqtmxMohwINEfnRJ8v3U6fV+ouN9SL1fm4zpwSv42sSLPe6w
-         yX5nV2amnbVwnYMQIsFMz7yIt/5iqU9x3EyoRtE3M5tSrYFomGO3LqerN12Xdb7QYUqm
-         bp2sjqeCtk8GpxCbfgd7rIryMYqEmG8rV79hrFUSB0FnEdozbcKmsCh2lUpU9pmYuXQ0
-         Zoqg==
-X-Gm-Message-State: APjAAAWaVoSZGEk6Q7yC/fFpjWS40HNr8tJhewuF46K2jkB63sLNIJcA
-        zbn3c1nmBArGhEzvM0oWtb/6/g==
-X-Google-Smtp-Source: APXvYqxWtmbfQ6xXRJMgZcr6q9t9MQEgBglf68LAJcm3jnErkAO8JgOtdlvX+3xb7vGMLCQ/B1BfZQ==
-X-Received: by 2002:a63:e010:: with SMTP id e16mr2005549pgh.285.1562877901085;
-        Thu, 11 Jul 2019 13:45:01 -0700 (PDT)
-Received: from tictac2.mtv.corp.google.com ([2620:15c:202:1:24fa:e766:52c9:e3b2])
-        by smtp.gmail.com with ESMTPSA id f17sm5320110pgv.16.2019.07.11.13.45.00
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 11 Jul 2019 13:45:00 -0700 (PDT)
-From:   Douglas Anderson <dianders@chromium.org>
-To:     Thierry Reding <thierry.reding@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sean Paul <seanpaul@chromium.org>
-Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        linux-rockchip@lists.infradead.org,
-        dri-devel@lists.freedesktop.org,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        mka@chromium.org, Rob Herring <robh+dt@kernel.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Doug Anderson <dianders@chromium.org>,
-        Eric Anholt <eric@anholt.net>,
-        Jeffy Chen <jeffy.chen@rock-chips.com>,
-        =?UTF-8?q?St=C3=A9phane=20Marchesin?= <marcheu@chromium.org>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Sam Ravnborg <sam@ravnborg.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>
-Subject: [PATCH v6 1/3] drm/panel: simple: Add ability to override typical timing
-Date:   Thu, 11 Jul 2019 13:34:53 -0700
-Message-Id: <20190711203455.125667-2-dianders@chromium.org>
-X-Mailer: git-send-email 2.22.0.410.gd8fdbe21b5-goog
-In-Reply-To: <20190711203455.125667-1-dianders@chromium.org>
-References: <20190711203455.125667-1-dianders@chromium.org>
+        id S1728497AbfGKUkZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 16:40:25 -0400
+Received: from vern.gendns.com ([98.142.107.122]:36922 "EHLO vern.gendns.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728355AbfGKUkZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Jul 2019 16:40:25 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=xvThRjH3X1TUzxAtTyWv1hFEkruW/blvpY6bT/bSK9Q=; b=ooWeI1qO4BAdXV3DI7FZd6Y60X
+        5OT2yCa5stfUIYc8lfWRFqw3RbGl+nu/96D7q2kOUKvVTE3jtQzohMVzSYrbU1uOmuctOCiquEJym
+        hvStBGW/uQBo3oCYoXA87WVp3mnU5ROITWqGMhnZxBLa3aI0tgfoKbIuncs+hZ8UhIfVVQPU9FKmb
+        ZnRXszBoAwOsxS+d1BioxjB1/IdGczkE20RRxtpZ6zaH3gqeiG3VzuPpUlEX/6QTshmyncOlshWKq
+        7HcxlXZBwlngRvM7lpqJQFqyW4AIUEpFfUayjmKzjY8VI/GXIxB1njiwKs6C5Y3iN7IX9PEz1wa+m
+        LMVboQNA==;
+Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:60730 helo=[192.168.0.134])
+        by vern.gendns.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <david@lechnology.com>)
+        id 1hlfra-004iz1-AV; Thu, 11 Jul 2019 16:40:22 -0400
+Subject: Re: [PATCH 5/6] irqchip/irq-pruss-intc: Add API to trigger a PRU
+ sysevent
+To:     Suman Anna <s-anna@ti.com>, Marc Zyngier <marc.zyngier@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>
+Cc:     Tony Lindgren <tony@atomide.com>, "Andrew F. Davis" <afd@ti.com>,
+        Roger Quadros <rogerq@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20190708035243.12170-1-s-anna@ti.com>
+ <20190708035243.12170-6-s-anna@ti.com>
+From:   David Lechner <david@lechnology.com>
+Message-ID: <49628f74-1081-894a-14a2-adc58b2051e8@lechnology.com>
+Date:   Thu, 11 Jul 2019 15:40:20 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190708035243.12170-6-s-anna@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Sean Paul <seanpaul@chromium.org>
+On 7/7/19 10:52 PM, Suman Anna wrote:
+> From: "Andrew F. Davis" <afd@ti.com>
+> 
+> The PRUSS INTC can generate an interrupt to various processor
+> subsystems on the SoC through a set of 64 possible PRU system
+> events. These system events can be used by PRU client drivers
+> or applications for event notifications/signalling between PRUs
+> and MPU or other processors. A new API, pruss_intc_trigger() is
+> provided to MPU-side PRU client drivers/applications to be able
+> to trigger an event/interrupt using IRQ numbers provided by the
+> PRUSS-INTC irqdomain chip.
+> 
+> Signed-off-by: Andrew F. Davis <afd@ti.com>
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> Signed-off-by: Roger Quadros <rogerq@ti.com>
+> ---
+>   drivers/irqchip/irq-pruss-intc.c | 31 +++++++++++++++++++++++++++++++
+>   include/linux/pruss_intc.h       | 26 ++++++++++++++++++++++++++
+>   2 files changed, 57 insertions(+)
+>   create mode 100644 include/linux/pruss_intc.h
+> 
+> diff --git a/drivers/irqchip/irq-pruss-intc.c b/drivers/irqchip/irq-pruss-intc.c
+> index 8118c2a2ac43..a0ad50b95cd5 100644
+> --- a/drivers/irqchip/irq-pruss-intc.c
+> +++ b/drivers/irqchip/irq-pruss-intc.c
+> @@ -421,6 +421,37 @@ static void pruss_intc_irq_relres(struct irq_data *data)
+>   	module_put(THIS_MODULE);
+>   }
+>   
+> +/**
+> + * pruss_intc_trigger() - trigger a PRU system event
+> + * @irq: linux IRQ number associated with a PRU system event
+> + *
+> + * Trigger an interrupt by signaling a specific PRU system event.
+> + * This can be used by PRUSS client users to raise/send an event to
+> + * a PRU or any other core that is listening on the host interrupt
+> + * mapped to that specific PRU system event. The @irq variable is the
+> + * Linux IRQ number associated with a specific PRU system event that
+> + * a client user/application uses. The interrupt mappings for this is
+> + * provided by the PRUSS INTC irqchip instance.
+> + *
+> + * Returns 0 on success, or an error value upon failure.
+> + */
+> +int pruss_intc_trigger(unsigned int irq)
+> +{
+> +	struct irq_desc *desc;
+> +
+> +	if (irq <= 0)
+> +		return -EINVAL;
+> +
+> +	desc = irq_to_desc(irq);
+> +	if (!desc)
+> +		return -EINVAL;
+> +
+> +	pruss_intc_irq_retrigger(&desc->irq_data);
+> +
+> +	return 0;
+> +}
+> +EXPORT_SYMBOL_GPL(pruss_intc_trigger);
 
-This patch adds the ability to override the typical display timing for a
-given panel. This is useful for devices which have timing constraints
-that do not apply across the entire display driver (eg: to avoid
-crosstalk between panel and digitizer on certain laptops). The rules are
-as follows:
+Although it is not quite as obvious, we can do the same thing with:
 
-- panel must not specify fixed mode (since the override mode will
-  either be the same as the fixed mode, or we'll be unable to
-  check the bounds of the overried)
-- panel must specify at least one display_timing range which will be
-  used to ensure the override mode fits within its bounds
+irq_set_irqchip_state(irq, IRQCHIP_STATE_PENDING, true);
 
-Changes in v2:
- - Parse the full display-timings node (using the native-mode) (Rob)
-Changes in v3:
- - No longer parse display-timings subnode, use panel-timing (Rob)
-Changes in v4:
- - Don't add mode from timing if override was specified (Thierry)
- - Add warning if timing and fixed mode was specified (Thierry)
- - Don't add fixed mode if timing was specified (Thierry)
- - Refactor/rename a bit to avoid extra indentation from "if" tests
- - i should be unsigned (Thierry)
- - Add annoying WARN_ONs for some cases (Thierry)
- - Simplify 'No display_timing found' handling (Thierry)
- - Rename to panel_simple_parse_override_mode() (Thierry)
-Changes in v5:
- - Added Heiko's Tested-by
-Changes in v6:
- - Rebased to drm-misc next
- - Added tags
+So I don't think a new API is needed. We just need to implement the
+irq_set_irqchip_state callback as in the following patch.
 
-Cc: Doug Anderson <dianders@chromium.org>
-Cc: Eric Anholt <eric@anholt.net>
-Cc: Heiko Stuebner <heiko@sntech.de>
-Cc: Jeffy Chen <jeffy.chen@rock-chips.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Stéphane Marchesin <marcheu@chromium.org>
-Cc: Thierry Reding <thierry.reding@gmail.com>
-Cc: devicetree@vger.kernel.org
-Cc: dri-devel@lists.freedesktop.org
-Signed-off-by: Sean Paul <seanpaul@chromium.org>
-Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
-Signed-off-by: Douglas Anderson <dianders@chromium.org>
-Tested-by: Heiko Stuebner <heiko@sntech.de>
-Reviewed-by: Boris Brezillon <boris.brezillon@collabora.com>
-Acked-by: Thierry Reding <thierry.reding@gmail.com>
 ---
+ From c5991a11a19858d74e2a184b76c3ef5823f09ef6 Mon Sep 17 00:00:00 2001
+From: David Lechner <david@lechnology.com>
+Date: Thu, 11 Jul 2019 15:33:29 -0500
+Subject: [PATCH] irqchip/irq-pruss-intc: implement irq_{get,set}_irqchip_state
 
- drivers/gpu/drm/panel/panel-simple.c | 109 +++++++++++++++++++++++++--
- 1 file changed, 104 insertions(+), 5 deletions(-)
+This implements the irq_get_irqchip_state and irq_set_irqchip_state
+callbacks for the TI PRUSS INTC driver. The set callback can be used
+by drivers to "kick" a PRU by enabling a PRU system event.
 
-diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index af6bf5611b4e..1bee197821ef 100644
---- a/drivers/gpu/drm/panel/panel-simple.c
-+++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -30,6 +30,7 @@
- #include <linux/regulator/consumer.h>
- 
- #include <video/display_timing.h>
-+#include <video/of_display_timing.h>
- #include <video/videomode.h>
- 
- #include <drm/drm_crtc.h>
-@@ -92,6 +93,8 @@ struct panel_simple {
- 	struct i2c_adapter *ddc;
- 
- 	struct gpio_desc *enable_gpio;
+Example:
+
+     irq_set_irqchip_state(irq, IRQCHIP_STATE_PENDING, true);
+
+Signed-off-by: David Lechner <david@lechnology.com>
+---
+  drivers/irqchip/irq-pruss-intc.c | 41 ++++++++++++++++++++++++++++++--
+  1 file changed, 39 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/irqchip/irq-pruss-intc.c b/drivers/irqchip/irq-pruss-intc.c
+index dd14addfd0b4..129dfd52248b 100644
+--- a/drivers/irqchip/irq-pruss-intc.c
++++ b/drivers/irqchip/irq-pruss-intc.c
+@@ -7,6 +7,7 @@
+   *	Suman Anna <s-anna@ti.com>
+   */
+  
++#include <linux/interrupt.h>
+  #include <linux/irq.h>
+  #include <linux/irqchip/chained_irq.h>
+  #include <linux/irqdomain.h>
+@@ -46,8 +47,7 @@
+  #define PRU_INTC_HIEISR		0x0034
+  #define PRU_INTC_HIDISR		0x0038
+  #define PRU_INTC_GPIR		0x0080
+-#define PRU_INTC_SRSR0		0x0200
+-#define PRU_INTC_SRSR1		0x0204
++#define PRU_INTC_SRSR(x)	(0x0200 + (x) * 4)
+  #define PRU_INTC_SECR0		0x0280
+  #define PRU_INTC_SECR1		0x0284
+  #define PRU_INTC_ESR0		0x0300
+@@ -386,6 +386,41 @@ static void pruss_intc_irq_relres(struct irq_data *data)
+  	module_put(THIS_MODULE);
+  }
+  
++static int pruss_intc_irq_get_irqchip_state(struct irq_data *data,
++					    enum irqchip_irq_state which,
++					    bool *state)
++{
++	struct pruss_intc *intc = irq_data_get_irq_chip_data(data);
++	u32 reg, mask, srsr;
 +
-+	struct drm_display_mode override_mode;
- };
- 
- static inline struct panel_simple *to_panel_simple(struct drm_panel *panel)
-@@ -99,16 +102,13 @@ static inline struct panel_simple *to_panel_simple(struct drm_panel *panel)
- 	return container_of(panel, struct panel_simple, base);
- }
- 
--static int panel_simple_get_fixed_modes(struct panel_simple *panel)
-+static unsigned int panel_simple_get_timings_modes(struct panel_simple *panel)
- {
- 	struct drm_connector *connector = panel->base.connector;
- 	struct drm_device *drm = panel->base.drm;
- 	struct drm_display_mode *mode;
- 	unsigned int i, num = 0;
- 
--	if (!panel->desc)
--		return 0;
--
- 	for (i = 0; i < panel->desc->num_timings; i++) {
- 		const struct display_timing *dt = &panel->desc->timings[i];
- 		struct videomode vm;
-@@ -132,6 +132,16 @@ static int panel_simple_get_fixed_modes(struct panel_simple *panel)
- 		num++;
- 	}
- 
-+	return num;
++	if (which != IRQCHIP_STATE_PENDING)
++		return -EINVAL;
++
++	reg = PRU_INTC_SRSR(data->hwirq / 32);
++	mask = BIT(data->hwirq % 32);
++
++	srsr = pruss_intc_read_reg(intc, reg);
++
++	*state = !!(srsr & mask);
++
++	return 0;
 +}
 +
-+static unsigned int panel_simple_get_fixed_modes(struct panel_simple *panel)
++static int pruss_intc_irq_set_irqchip_state(struct irq_data *data,
++					    enum irqchip_irq_state which,
++					    bool state)
 +{
-+	struct drm_connector *connector = panel->base.connector;
-+	struct drm_device *drm = panel->base.drm;
-+	struct drm_display_mode *mode;
-+	unsigned int i, num = 0;
++	struct pruss_intc *intc = irq_data_get_irq_chip_data(data);
 +
- 	for (i = 0; i < panel->desc->num_modes; i++) {
- 		const struct drm_display_mode *m = &panel->desc->modes[i];
- 
-@@ -153,6 +163,44 @@ static int panel_simple_get_fixed_modes(struct panel_simple *panel)
- 		num++;
- 	}
- 
-+	return num;
++	if (which != IRQCHIP_STATE_PENDING)
++		return -EINVAL;
++	
++	if (state)
++		return pruss_intc_check_write(intc, PRU_INTC_SISR, data->hwirq);
++
++	return pruss_intc_check_write(intc, PRU_INTC_SICR, data->hwirq);
 +}
 +
-+static int panel_simple_get_non_edid_modes(struct panel_simple *panel)
-+{
-+	struct drm_connector *connector = panel->base.connector;
-+	struct drm_device *drm = panel->base.drm;
-+	struct drm_display_mode *mode;
-+	bool has_override = panel->override_mode.type;
-+	unsigned int num = 0;
-+
-+	if (!panel->desc)
-+		return 0;
-+
-+	if (has_override) {
-+		mode = drm_mode_duplicate(drm, &panel->override_mode);
-+		if (mode) {
-+			drm_mode_probed_add(connector, mode);
-+			num = 1;
-+		} else {
-+			dev_err(drm->dev, "failed to add override mode\n");
-+		}
-+	}
-+
-+	/* Only add timings if override was not there or failed to validate */
-+	if (num == 0 && panel->desc->num_timings)
-+		num = panel_simple_get_timings_modes(panel);
-+
-+	/*
-+	 * Only add fixed modes if timings/override added no mode.
-+	 *
-+	 * We should only ever have either the display timings specified
-+	 * or a fixed mode. Anything else is rather bogus.
-+	 */
-+	WARN_ON(panel->desc->num_timings && panel->desc->num_modes);
-+	if (num == 0)
-+		num = panel_simple_get_fixed_modes(panel);
-+
- 	connector->display_info.bpc = panel->desc->bpc;
- 	connector->display_info.width_mm = panel->desc->size.width;
- 	connector->display_info.height_mm = panel->desc->size.height;
-@@ -269,7 +317,7 @@ static int panel_simple_get_modes(struct drm_panel *panel)
- 	}
- 
- 	/* add hard-coded panel modes */
--	num += panel_simple_get_fixed_modes(p);
-+	num += panel_simple_get_non_edid_modes(p);
- 
- 	return num;
- }
-@@ -300,10 +348,58 @@ static const struct drm_panel_funcs panel_simple_funcs = {
- 	.get_timings = panel_simple_get_timings,
- };
- 
-+#define PANEL_SIMPLE_BOUNDS_CHECK(to_check, bounds, field) \
-+	(to_check->field.typ >= bounds->field.min && \
-+	 to_check->field.typ <= bounds->field.max)
-+static void panel_simple_parse_override_mode(struct device *dev,
-+					     struct panel_simple *panel,
-+					     const struct display_timing *ot)
-+{
-+	const struct panel_desc *desc = panel->desc;
-+	struct videomode vm;
-+	unsigned int i;
-+
-+	if (WARN_ON(desc->num_modes)) {
-+		dev_err(dev, "Reject override mode: panel has a fixed mode\n");
-+		return;
-+	}
-+	if (WARN_ON(!desc->num_timings)) {
-+		dev_err(dev, "Reject override mode: no timings specified\n");
-+		return;
-+	}
-+
-+	for (i = 0; i < panel->desc->num_timings; i++) {
-+		const struct display_timing *dt = &panel->desc->timings[i];
-+
-+		if (!PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, hactive) ||
-+		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, hfront_porch) ||
-+		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, hback_porch) ||
-+		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, hsync_len) ||
-+		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, vactive) ||
-+		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, vfront_porch) ||
-+		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, vback_porch) ||
-+		    !PANEL_SIMPLE_BOUNDS_CHECK(ot, dt, vsync_len))
-+			continue;
-+
-+		if (ot->flags != dt->flags)
-+			continue;
-+
-+		videomode_from_timing(ot, &vm);
-+		drm_display_mode_from_videomode(&vm, &panel->override_mode);
-+		panel->override_mode.type |= DRM_MODE_TYPE_DRIVER |
-+					     DRM_MODE_TYPE_PREFERRED;
-+		break;
-+	}
-+
-+	if (WARN_ON(!panel->override_mode.type))
-+		dev_err(dev, "Reject override mode: No display_timing found\n");
-+}
-+
- static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
- {
- 	struct device_node *backlight, *ddc;
- 	struct panel_simple *panel;
-+	struct display_timing dt;
- 	int err;
- 
- 	panel = devm_kzalloc(dev, sizeof(*panel), GFP_KERNEL);
-@@ -349,6 +445,9 @@ static int panel_simple_probe(struct device *dev, const struct panel_desc *desc)
- 		}
- 	}
- 
-+	if (!of_get_display_timing(dev->of_node, "panel-timing", &dt))
-+		panel_simple_parse_override_mode(dev, panel, &dt);
-+
- 	drm_panel_init(&panel->base);
- 	panel->base.dev = dev;
- 	panel->base.funcs = &panel_simple_funcs;
+  static int
+  pruss_intc_irq_domain_xlate(struct irq_domain *d, struct device_node *node,
+  			    const u32 *intspec, unsigned int intsize,
+@@ -583,6 +618,8 @@ static int pruss_intc_probe(struct platform_device *pdev)
+  	irqchip->irq_retrigger = pruss_intc_irq_retrigger;
+  	irqchip->irq_request_resources = pruss_intc_irq_reqres;
+  	irqchip->irq_release_resources = pruss_intc_irq_relres;
++	irqchip->irq_get_irqchip_state = pruss_intc_irq_get_irqchip_state;
++	irqchip->irq_set_irqchip_state = pruss_intc_irq_set_irqchip_state;
+  	irqchip->parent_device = dev;
+  	irqchip->name = dev_name(dev);
+  	intc->irqchip = irqchip;
 -- 
-2.22.0.410.gd8fdbe21b5-goog
+2.17.1
 
