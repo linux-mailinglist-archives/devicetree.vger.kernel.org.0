@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 57D2165A6F
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 17:28:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38C5B65A7A
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 17:29:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728438AbfGKP2A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 11:28:00 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:42141 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728434AbfGKP2A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 11:28:00 -0400
-Received: by mail-pl1-f196.google.com with SMTP id ay6so3204970plb.9
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2019 08:27:59 -0700 (PDT)
+        id S1728705AbfGKP3F (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 11:29:05 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:41844 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728414AbfGKP3F (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 11:29:05 -0400
+Received: by mail-pg1-f195.google.com with SMTP id q4so3109173pgj.8
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2019 08:29:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=uMsVDicDOb3lhj4yIbuOZntxA7sECtLuV+gybGzQqeU=;
-        b=rgIByt6j+CT1bDeZ1dG5yEGPFHYKSyg+NPlvE5ax2UXaEqyinB3qWooX58sy7y537i
-         ZMT7aafv0DVnlW86rYn2QMv02OMIB7hmQbR7pOKbj5YQlSuIYmFnTZXfPpASzu68AteA
-         tkBbTDr89/zlXNs7mOSqOZs7UtNmCAqFBowjFlBGutQXB7GDTQCcVkeaGRknXA3q7wEJ
-         fPUim1MajW40r4S/kv4z/xfVjvzYuMQIIbGx6u8Y2YmUjGw8MBjZABWJPxbQUx3b7Jmq
-         /H+EFAin5UVLoubHVbRiwJwT3EiOnpBLZYYzNwkbjoigIhmnka0zO9EaM8nBu+OGgp3c
-         UkXQ==
+        bh=PcMRy6X0HHSU2uwIcDv40X8gHtVe1fCLvC/RPbbBFw4=;
+        b=VogL/o35kuGo3WvcW/9vQ/CmCcSo9r2owGFVwrFu27xYKAGlDQM88VY38U9w9AmJgW
+         boamIRHIiQBG4PAGALOc7K0FtqCU6KXpqWIz5/1lWvFPzEwNc1dBocfNLQDezt80rcX+
+         MvmAf8ekPVs3LZ9Xjk7hNP8oCmKd5RLpPng6wA/LDapUxGTXvc/Y4mRWQtX/XfRSu8++
+         +kOWZhY+F/SPRPnHjaFeqWkVXDajd8OVccJUa+tk9zJN48IIUVIDt60ZxcCV2UXMlo3S
+         cSW/pXxClE7zM0CdthbPUlJPlX57aUZLdnGWY2532RkdiYBRuXOwcKe0SxY6nsJREwIV
+         T/bA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=uMsVDicDOb3lhj4yIbuOZntxA7sECtLuV+gybGzQqeU=;
-        b=Ja3UZyTU3WJoCi6Vaqrbf0HL4QaCzKMB4Q23Yp5WqdaDfhuDp51PfZPt8KL3YxSWy9
-         Pe3lslGeap3yCZo1ntxawkAOwdOfpkBCJzv1wkMBiyfffz8q5yVrp4TEpmc57HYyr7u4
-         ISuhRs0BYqSd1D5o/4WW5GCAHNz7XWDqWLLcr5XONEx7usf92UmjQYA0bdsvatp6FQGE
-         t/3pOlj5+ye/OKNtbm/us546BxjJXfK2n6NjSVHoIgMYogq9GROiK96eZ94shshc1EVb
-         kg2q9oBq4det5e3JMDqOaPQnY15HVryMSG1vOuFhA2PrcZuBtcMNhHQYmOqDwN/+E3Tk
-         CTJw==
-X-Gm-Message-State: APjAAAWbmn/YLu3GDd/wm9tjiuDJB0AyedgVOwtVQW+QEd5Z12Yu6JFj
-        h/pGHJAX3VJ5caa3o1yPwGZQ9Q==
-X-Google-Smtp-Source: APXvYqwNbmI3JyRFZsBS7iOj0fl3s07h7X0FI9ixCmAonmnpaGSvvC0CiHoHMbDvsZcDftbZGo/7Rg==
-X-Received: by 2002:a17:902:ff05:: with SMTP id f5mr5168522plj.116.1562858879444;
-        Thu, 11 Jul 2019 08:27:59 -0700 (PDT)
+        bh=PcMRy6X0HHSU2uwIcDv40X8gHtVe1fCLvC/RPbbBFw4=;
+        b=CaI1jdd/4hcrTBf8K20+bp7a92l2sqnxcnoaPSp4de2wnkQZr0TrCE2aGRUHa9dD7D
+         PpsnHnjCbYfxSn9A4nQINkz6MBRNcPqYb5QCNcE9hgmGjsxKZX+7mrztSE1YDt3l26rW
+         c3T+wNjWAalGqzM5cbUm44effd5xVuQSSXWBV4/KVJhxVp6SZlZ5x/i5MbLXx7HzPvog
+         t1NiudPeVd50gSosN4MrofTSQTsgo1sGL2OxU2QFxYjbrAZ+wuSxXl508alFjiZnNe5q
+         UknH8cswM3HVK4cODFafEQZuPFtKL+G62sfQot9sJxZXBV/ipzV4sdjZIuM1QrcAdZh4
+         tLhQ==
+X-Gm-Message-State: APjAAAUFkaxG4mOXwafw+DgZ5Bt7SL0pMuCO1MXI4lrjx3rscA9wyKV/
+        eHdZcB1S3gi21cVrIU3ErYa1FA==
+X-Google-Smtp-Source: APXvYqye77G4dqCcEDk9TrwQUc54J1XQtP5On/iH7qLF9Xse0wzIzE59xj0a6xO3SOJ4Hb76Q4idjA==
+X-Received: by 2002:a65:62c4:: with SMTP id m4mr4876927pgv.243.1562858944051;
+        Thu, 11 Jul 2019 08:29:04 -0700 (PDT)
 Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id h14sm6439150pfq.22.2019.07.11.08.27.57
+        by smtp.gmail.com with ESMTPSA id s43sm8776852pjb.10.2019.07.11.08.29.01
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 11 Jul 2019 08:27:58 -0700 (PDT)
-Date:   Thu, 11 Jul 2019 08:29:09 -0700
+        Thu, 11 Jul 2019 08:29:03 -0700 (PDT)
+Date:   Thu, 11 Jul 2019 08:30:13 -0700
 From:   Bjorn Andersson <bjorn.andersson@linaro.org>
 To:     Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
 Cc:     sboyd@kernel.org, david.brown@linaro.org, jassisinghbrar@gmail.com,
@@ -57,14 +57,15 @@ Cc:     sboyd@kernel.org, david.brown@linaro.org, jassisinghbrar@gmail.com,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, khasim.mohammed@linaro.org
-Subject: Re: [PATCH v3 13/14] arm64: dts: qcom: qcs404: Add DVFS support
-Message-ID: <20190711152909.GO7234@tuxbook-pro>
+Subject: Re: [PATCH v3 01/14] clk: qcom: gcc: limit GPLL0_AO_OUT operating
+ frequency
+Message-ID: <20190711153013.GP7234@tuxbook-pro>
 References: <20190625164733.11091-1-jorge.ramirez-ortiz@linaro.org>
- <20190625164733.11091-14-jorge.ramirez-ortiz@linaro.org>
+ <20190625164733.11091-2-jorge.ramirez-ortiz@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190625164733.11091-14-jorge.ramirez-ortiz@linaro.org>
+In-Reply-To: <20190625164733.11091-2-jorge.ramirez-ortiz@linaro.org>
 User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -73,65 +74,66 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Tue 25 Jun 09:47 PDT 2019, Jorge Ramirez-Ortiz wrote:
 
-> Support dynamic voltage and frequency scaling on qcs404.
+> Limit the GPLL0_AO_OUT_MAIN operating frequency as per its hardware
+> specifications.
 > 
 > Co-developed-by: Niklas Cassel <niklas.cassel@linaro.org>
 > Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
 > Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-
-I agree with Niklas on the possibility of squashing this with the opp
-table. But unless you respin this
+> Acked-by: Stephen Boyd <sboyd@kernel.org>
 
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
 > ---
->  arch/arm64/boot/dts/qcom/qcs404.dtsi | 12 ++++++++++++
->  1 file changed, 12 insertions(+)
+>  drivers/clk/qcom/clk-alpha-pll.c | 8 ++++++++
+>  drivers/clk/qcom/clk-alpha-pll.h | 1 +
+>  drivers/clk/qcom/gcc-qcs404.c    | 2 +-
+>  3 files changed, 10 insertions(+), 1 deletion(-)
 > 
-> diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> index 9569686dbc41..4b4ce0b5df76 100644
-> --- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-> @@ -34,6 +34,9 @@
->  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&apcs_glb>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			cpu-supply = <&pms405_s3>;
->  		};
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.c b/drivers/clk/qcom/clk-alpha-pll.c
+> index 0ced4a5a9a17..ef51f302bdf0 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.c
+> +++ b/drivers/clk/qcom/clk-alpha-pll.c
+> @@ -730,6 +730,14 @@ static long alpha_pll_huayra_round_rate(struct clk_hw *hw, unsigned long rate,
+>  	return alpha_huayra_pll_round_rate(rate, *prate, &l, &a);
+>  }
 >  
->  		CPU1: cpu@101 {
-> @@ -43,6 +46,9 @@
->  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&apcs_glb>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			cpu-supply = <&pms405_s3>;
->  		};
+> +const struct clk_ops clk_alpha_pll_fixed_ops = {
+> +	.enable = clk_alpha_pll_enable,
+> +	.disable = clk_alpha_pll_disable,
+> +	.is_enabled = clk_alpha_pll_is_enabled,
+> +	.recalc_rate = clk_alpha_pll_recalc_rate,
+> +};
+> +EXPORT_SYMBOL_GPL(clk_alpha_pll_fixed_ops);
+> +
+>  const struct clk_ops clk_alpha_pll_ops = {
+>  	.enable = clk_alpha_pll_enable,
+>  	.disable = clk_alpha_pll_disable,
+> diff --git a/drivers/clk/qcom/clk-alpha-pll.h b/drivers/clk/qcom/clk-alpha-pll.h
+> index 66755f0f84fc..6b4eb74706b4 100644
+> --- a/drivers/clk/qcom/clk-alpha-pll.h
+> +++ b/drivers/clk/qcom/clk-alpha-pll.h
+> @@ -104,6 +104,7 @@ struct alpha_pll_config {
+>  };
 >  
->  		CPU2: cpu@102 {
-> @@ -52,6 +58,9 @@
->  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&apcs_glb>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			cpu-supply = <&pms405_s3>;
->  		};
->  
->  		CPU3: cpu@103 {
-> @@ -61,6 +70,9 @@
->  			enable-method = "psci";
->  			cpu-idle-states = <&CPU_SLEEP_0>;
->  			next-level-cache = <&L2_0>;
-> +			clocks = <&apcs_glb>;
-> +			operating-points-v2 = <&cpu_opp_table>;
-> +			cpu-supply = <&pms405_s3>;
->  		};
->  
->  		L2_0: l2-cache {
+>  extern const struct clk_ops clk_alpha_pll_ops;
+> +extern const struct clk_ops clk_alpha_pll_fixed_ops;
+>  extern const struct clk_ops clk_alpha_pll_hwfsm_ops;
+>  extern const struct clk_ops clk_alpha_pll_postdiv_ops;
+>  extern const struct clk_ops clk_alpha_pll_huayra_ops;
+> diff --git a/drivers/clk/qcom/gcc-qcs404.c b/drivers/clk/qcom/gcc-qcs404.c
+> index 29cf464dd2c8..18c6563889f3 100644
+> --- a/drivers/clk/qcom/gcc-qcs404.c
+> +++ b/drivers/clk/qcom/gcc-qcs404.c
+> @@ -330,7 +330,7 @@ static struct clk_alpha_pll gpll0_ao_out_main = {
+>  			.parent_names = (const char *[]){ "cxo" },
+>  			.num_parents = 1,
+>  			.flags = CLK_IS_CRITICAL,
+> -			.ops = &clk_alpha_pll_ops,
+> +			.ops = &clk_alpha_pll_fixed_ops,
+>  		},
+>  	},
+>  };
 > -- 
 > 2.21.0
 > 
