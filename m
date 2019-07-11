@@ -2,143 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 224D365942
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 16:44:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EBBCF65958
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 16:50:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728702AbfGKOos (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 10:44:48 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:42023 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728606AbfGKOos (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 10:44:48 -0400
-Received: by mail-pg1-f193.google.com with SMTP id t132so3045936pgb.9
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2019 07:44:47 -0700 (PDT)
+        id S1728796AbfGKOuM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 10:50:12 -0400
+Received: from smtp-fw-2101.amazon.com ([72.21.196.25]:43577 "EHLO
+        smtp-fw-2101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728538AbfGKOuL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 10:50:11 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=AeWgNBL0vGG9Q0W1XyAtTTadhrtMpodZjMiQ47VNvNo=;
-        b=jAcuVEQQIMZ8TtPCtZhvvkOswtz9kMXpu3/fl/zZ8r2p4lBere/WDYW8TgghDn2afu
-         Fl6E9jUg+eQKbEvv/wdRFpHjhczPrnpR5mV+JSSzuFvBpBnBvIeuSylHd1+G+y4gm8m/
-         WHejBbnCV+/tD3TGRTKQo0gCHz786gypWQuMPD6gZ5PqSYfzSg8ZJONaxqVNSimqfhfr
-         z/qYC+ij9SNjlI/oFpP5tVSy2t785VOBlar9uPk9Q2NnaKVczX3MfmeWMQplMkOxL8FU
-         rrVL4yRhgm7uTQBxiRofM6yk/8gBYjhhjLfj9GmvY5rUUnPYIc4CCwVzDDRjF12o1f8j
-         DE/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=AeWgNBL0vGG9Q0W1XyAtTTadhrtMpodZjMiQ47VNvNo=;
-        b=pAPHx28E3Ay/ywUVKx5wOS8jd1TQ7rZEebBbOJSabiK32mCf8QYJkAIYN5Xvqai6ev
-         RnFV4wIHrJMA7qTR2b882oJcF8oVcTi1MSDJS7Uhaj3b51f8CdFuyh9GjgN7BcE03Awg
-         RgNRmLU3m3znRu5Xzw0vMRU8lNslALGr/O8mkJkp8xPkSUI/rN2Q9uLgV2zH+5HbZUPD
-         2IebTdt3Na+HLJ1jtdANp3tUS8d8+3ncj0zciZKQeVVizGApcYxVSS+4yAfzEPoy+mdr
-         ru4MMn7Xu6n6qiz6gM9oBIvS/sAJsfrYPomHwFc/eyIbHgVf5VIIB5T+LOGWydS2hyfx
-         mVaQ==
-X-Gm-Message-State: APjAAAVJhvoUEgMYONIXaVTq0lgKj1JcgPpEY9E+76ZYu0GT0rsTirEL
-        T+w5BRc70Vl2ImnKQ/y/qUvdnQ==
-X-Google-Smtp-Source: APXvYqzZnI4QvrJWH5nNTwi3+akS6nULSvCsZQrVF3PWvIzD3Iw3lEJpqz8SxmHZU7/6w9TFNAqhAA==
-X-Received: by 2002:a17:90a:23ce:: with SMTP id g72mr5299751pje.77.1562856287236;
-        Thu, 11 Jul 2019 07:44:47 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id a5sm4953523pjv.21.2019.07.11.07.44.45
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 11 Jul 2019 07:44:46 -0700 (PDT)
-Date:   Thu, 11 Jul 2019 07:45:57 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Cc:     sboyd@kernel.org, david.brown@linaro.org, jassisinghbrar@gmail.com,
-        mark.rutland@arm.com, mturquette@baylibre.com, robh+dt@kernel.org,
-        will.deacon@arm.com, arnd@arndb.de, horms+renesas@verge.net.au,
-        heiko@sntech.de, sibis@codeaurora.org,
-        enric.balletbo@collabora.com, jagan@amarulasolutions.com,
-        olof@lixom.net, vkoul@kernel.org, niklas.cassel@linaro.org,
-        georgi.djakov@linaro.org, amit.kucheria@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, khasim.mohammed@linaro.org
-Subject: Re: [PATCH v3 04/14] dt-bindings: mailbox: qcom: Add clock-name
- optional property
-Message-ID: <20190711144557.GE7234@tuxbook-pro>
-References: <20190625164733.11091-1-jorge.ramirez-ortiz@linaro.org>
- <20190625164733.11091-5-jorge.ramirez-ortiz@linaro.org>
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1562856610; x=1594392610;
+  h=from:to:cc:message-id:mime-version:subject:resent-from:
+   resent-cc:date:content-transfer-encoding;
+  bh=cbNKXHdWGGN5N4ljL3044bGhDdetj8MItmt22zUHnUM=;
+  b=W1JL3mvtD1ckvn701aIaobkIN0tnEssc01Evbi2tdkgi2u+HZz76kB8x
+   uOGKuC5Mcf+w/6WcnZVlAjTI4ozNfjQslB1b3RKdwPe1tNMwNYzuxjbuU
+   vfUwtqOaEa566drug8FLMdmov1YOqo2WnIIpIi6EhHD1Ctp3LIZcoTeJr
+   w=;
+X-IronPort-AV: E=Sophos;i="5.62,478,1554768000"; 
+   d="scan'208";a="741352044"
+Received: from iad6-co-svc-p1-lb1-vlan2.amazon.com (HELO email-inbound-relay-2b-4ff6265a.us-west-2.amazon.com) ([10.124.125.2])
+  by smtp-border-fw-out-2101.iad2.amazon.com with ESMTP; 11 Jul 2019 14:50:08 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
+        by email-inbound-relay-2b-4ff6265a.us-west-2.amazon.com (Postfix) with ESMTPS id 9F981A17B9;
+        Thu, 11 Jul 2019 14:50:07 +0000 (UTC)
+Received: from EX13D01UWB004.ant.amazon.com (10.43.161.157) by
+ EX13MTAUWB001.ant.amazon.com (10.43.161.249) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Thu, 11 Jul 2019 14:50:06 +0000
+Received: from EX13MTAUWB001.ant.amazon.com (10.43.161.207) by
+ EX13d01UWB004.ant.amazon.com (10.43.161.157) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Thu, 11 Jul 2019 14:50:06 +0000
+Received: from u9ff250417f405e.ant.amazon.com (10.107.0.52) by
+ mail-relay.amazon.com (10.43.161.249) with Microsoft SMTP Server id
+ 15.0.1367.3 via Frontend Transport; Thu, 11 Jul 2019 14:50:05 +0000
+Received: from EX13D13UWA004.ant.amazon.com (10.43.160.251) by
+ EX13D13UWA001.ant.amazon.com (10.43.160.136) with Microsoft SMTP Server
+ (TLS) id 15.0.1367.3 via Mailbox Transport; Wed, 10 Jul 2019 16:45:28 +0000
+Received: from EX13MTAUWA001.ant.amazon.com (10.43.160.58) by
+ EX13D13UWA004.ant.amazon.com (10.43.160.251) with Microsoft SMTP Server
+ (TLS) id 15.0.1367.3; Wed, 10 Jul 2019 16:45:28 +0000
+Received: from email-inbound-relay-2b-c7131dcf.us-west-2.amazon.com
+ (10.25.10.214) by mail-relay.amazon.com (10.43.160.118) with Microsoft SMTP
+ Server id 15.0.1367.3 via Frontend Transport; Wed, 10 Jul 2019 16:45:28
+ +0000
+Received: by email-inbound-relay-2b-c7131dcf.us-west-2.amazon.com (Postfix)
+        id 1D462A2387; Wed, 10 Jul 2019 16:45:28 +0000 (UTC)
+Received: from u9ff250417f405e.ant.amazon.com
+ (pdx2-ws-svc-lb17-vlan3.amazon.com [10.247.140.70]) by
+ email-inbound-relay-2b-c7131dcf.us-west-2.amazon.com (Postfix) with ESMTPS
+ id 50D71A2361; Wed, 10 Jul 2019 16:45:27 +0000 (UTC)
+Received: from u9ff250417f405e.ant.amazon.com (localhost [127.0.0.1]) by
+ u9ff250417f405e.ant.amazon.com (8.15.2/8.15.2/Debian-10) with ESMTP id
+ x6AGjNOk021313; Wed, 10 Jul 2019 19:45:23 +0300
+Received: (from jonnyc@localhost)
+        by u9ff250417f405e.ant.amazon.com (8.15.2/8.15.2/Submit) id x6AGjK5C021200;
+        Wed, 10 Jul 2019 19:45:20 +0300
+From:   Jonathan Chocron <jonnyc@amazon.com>
+To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
+        <alisaidi@amazon.com>, <ronenk@amazon.com>, <barakw@amazon.com>,
+        <talel@amazon.com>, <hanochu@amazon.com>, <hhhawa@amazon.com>,
+        <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>, <jonnyc@amazon.com>
+Message-ID: <20190710164519.17883-1-jonnyc@amazon.com>
+Content-Type: text/plain
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190625164733.11091-5-jorge.ramirez-ortiz@linaro.org>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Subject: [PATCH 0/8] Amazon's Annapurna Labs DT-based PCIe host controller
+ driver
+Date:   Thu, 11 Jul 2019 17:50:03 +0300
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue 25 Jun 09:47 PDT 2019, Jorge Ramirez-Ortiz wrote:
+This series adds support for Amazon's Annapurna Labs DT-based PCIe host
+controller driver.
+Additionally, it adds 3 quirks (ACS, VPD and MSI-X) and 2 generic DWC patch=
+es.
 
-> When the APCS clock is registered (platform dependent), it retrieves
-> its parent names from hardcoded values in the driver.
-> 
-> The following commit allows the DT node to provide such clock names to
-> the platform data based clock driver therefore avoiding having to
-> explicitly embed those names in the clock driver source code.
-> 
-> Co-developed-by: Niklas Cassel <niklas.cassel@linaro.org>
-> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
-> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Regarding the 2nd DWC patch (PCI flags support), do you think this should
+be done in the context of a host-bridge driver at all (as opposed to PCI
+system-wide code)?
 
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-> ---
->  .../mailbox/qcom,apcs-kpss-global.txt         | 24 ++++++++++++++++---
->  1 file changed, 21 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt
-> index 1232fc9fc709..b69310322b09 100644
-> --- a/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt
-> +++ b/Documentation/devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt
-> @@ -18,10 +18,11 @@ platforms.
->  	Usage: required
->  	Value type: <prop-encoded-array>
->  	Definition: must specify the base address and size of the global block
-> +
->  - clocks:
-> -	Usage: required if #clocks-cells property is present
-> -	Value type: <phandle>
-> -	Definition: phandle to the input PLL, which feeds the APCS mux/divider
-> +	Usage: required if #clock-names property is present
-> +	Value type: <phandle array>
-> +	Definition: phandles to the two parent clocks of the clock driver.
->  
->  - #mbox-cells:
->  	Usage: required
-> @@ -33,6 +34,12 @@ platforms.
->  	Value type: <u32>
->  	Definition: as described in clock.txt, must be 0
->  
-> +- clock-names:
-> +	Usage: required if the platform data based clock driver needs to
-> +	retrieve the parent clock names from device tree.
-> +	This will requires two mandatory clocks to be defined.
-> +	Value type: <string-array>
-> +	Definition: must be "aux" and "pll"
->  
->  = EXAMPLE
->  The following example describes the APCS HMSS found in MSM8996 and part of the
-> @@ -65,3 +72,14 @@ Below is another example of the APCS binding on MSM8916 platforms:
->  		clocks = <&a53pll>;
->  		#clock-cells = <0>;
->  	};
-> +
-> +Below is another example of the APCS binding on QCS404 platforms:
-> +
-> +	apcs_glb: mailbox@b011000 {
-> +		compatible = "qcom,qcs404-apcs-apps-global", "syscon";
-> +		reg = <0x0b011000 0x1000>;
-> +		#mbox-cells = <1>;
-> +		clocks = <&gcc GCC_GPLL0_AO_OUT_MAIN>, <&apcs_hfpll>;
-> +		clock-names = "aux", "pll";
-> +		#clock-cells = <0>;
-> +	};
-> -- 
-> 2.21.0
-> 
+Ali Saidi (1):
+  PCI: Add ACS quirk for Amazon Annapurna Labs root ports
+
+Jonathan Chocron (7):
+  PCI: Add Amazon's Annapurna Labs vendor ID
+  PCI/VPD: Add VPD release quirk for Amazon Annapurna Labs host bridge
+  PCI: Add quirk to disable MSI support for Amazon's Annapurna Labs host
+    bridge
+  dt-bindings: PCI: Add Amazon's Annapurna Labs PCIe host bridge binding
+  PCI: al: Add support for DW based driver type
+  PCI: dw: Add validation that PCIe core is set to correct mode
+  PCI: dw: Add support for PCI_PROBE_ONLY/PCI_REASSIGN_ALL_BUS flags
+
+ .../devicetree/bindings/pci/pcie-al.txt       |  45 ++
+ MAINTAINERS                                   |   1 +
+ drivers/pci/controller/dwc/Kconfig            |  11 +
+ drivers/pci/controller/dwc/pcie-al.c          | 397 ++++++++++++++++++
+ .../pci/controller/dwc/pcie-designware-ep.c   |   8 +
+ .../pci/controller/dwc/pcie-designware-host.c |  31 +-
+ drivers/pci/quirks.c                          |  27 ++
+ drivers/pci/vpd.c                             |  12 +
+ include/linux/pci_ids.h                       |   2 +
+ 9 files changed, 530 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/pcie-al.txt
+
+--=20
+2.17.1
+
+
