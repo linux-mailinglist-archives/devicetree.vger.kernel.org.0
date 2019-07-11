@@ -2,114 +2,272 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27DEE64F17
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 01:10:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CAB264FB3
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 02:56:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727516AbfGJXKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 10 Jul 2019 19:10:19 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:40408 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726708AbfGJXKT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 10 Jul 2019 19:10:19 -0400
-Received: by mail-ot1-f67.google.com with SMTP id e8so3897535otl.7;
-        Wed, 10 Jul 2019 16:10:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=zOl/4QjBy1AW7qYuyDY5XT0hjYnXC6DcAJBpkzl0PHI=;
-        b=H1UDpQLEZcDHT2f5H5ImR/uneIMngNaFtHExhhRI1hPFxMbfZ4VUbowPJKrXdHu/Wt
-         smoBUScf5aczoqOoDJG9maeO0XjvWp+H4fNsfspzcmv31JCtuPqL0cXVz4GD8oLzbf2N
-         ZgGvav44nwUxj0RA6R0zBRV40Wfni/MkjCZJcSLJ7UgvH2O4e+2aZ7urVmR89RMHzfTZ
-         lxqTgljho97ZquaIlQ6yF05xR5M7ODf61hpv56An+RGS/nMpOODNSWTHDewJY2Wr3ct7
-         5Ghai8O3H2/tzyUAaj5QKonCrJceoW00furKv0qheUams9jV9kz+sYXaEglIe3CjMc+s
-         aR2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zOl/4QjBy1AW7qYuyDY5XT0hjYnXC6DcAJBpkzl0PHI=;
-        b=qAoIO/QF+L6wyO/vTKYqyMyzcQ65kcgMagqL/mkOqU4rejaWpCqZv3pgqQ9dd2Mohu
-         BFmBFju4ezKzKsa/SB370AynZAezXsqz3f+KFFRnOlmUo8hoDHZ5iKLewkugsoNNwlGc
-         /r0aovgJ/OBgO24ix8vmDSuf3KMPVBFMpGcyS0mdS4EnLy+zv3ppXwKxoP0ctjV1CYjb
-         s0ciC33qGtMkd+dHz71UupKxI//5XicWPWNYGcNzkbmKdTBfMQ/ONWfLWMFmjeI+5ixB
-         SP/8vZLcwjTrgo6bfrIREOwTr2mQw/5lKEGHznwNFInVrHohxc9dmHzw6WWXFrYL/RGn
-         +hUA==
-X-Gm-Message-State: APjAAAW93X2JOSH2ERM49E/7a6GWBu6cZRR/Andv81TRPowDVAUxfYB/
-        p16FJC3Tvtbwph1L7AXTN/gH8GGp1S3I1B+W/Mk=
-X-Google-Smtp-Source: APXvYqz2RpwH4pyPuxIqsY3Jk01l6pCxhtB+fsAoA6sP8HbGqCPKyFUN1rGcJxjdBY2aJ7m7PpF04jShUCcSnuc4/nQ=
-X-Received: by 2002:a05:6830:2010:: with SMTP id e16mr728916otp.344.1562800218410;
- Wed, 10 Jul 2019 16:10:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190623164206.7467-1-tiny.windzz@gmail.com>
-In-Reply-To: <20190623164206.7467-1-tiny.windzz@gmail.com>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Wed, 10 Jul 2019 16:09:52 -0700
-Message-ID: <CA+E=qVfhDEQER2UTj65hR9erzej9Ey2FrUa9GV=iCFYsWZ2ztw@mail.gmail.com>
-Subject: Re: [PATCH v4 00/11] add thermal driver for h6
-To:     Yangtao Li <tiny.windzz@gmail.com>
-Cc:     rui.zhang@intel.com, Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        paulmck@linux.ibm.com, devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        Linux PM <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1727708AbfGKA4i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 10 Jul 2019 20:56:38 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:33031 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727659AbfGKA4i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 10 Jul 2019 20:56:38 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id C158EBA1;
+        Wed, 10 Jul 2019 20:56:34 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Wed, 10 Jul 2019 20:56:34 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=oNe9eio8XYT1BZ4ZF/+0zEh/gS2//e+
+        l2qNxRtVLoLs=; b=aHdt9kG3CNNk/uJNVaKK+zTZTYd4G2PBndNMU3gfzXo3K8a
+        H793vKvHpSsnsJAc2+SKuNPiw+aOx+rfHrSZXKLZD1C30e+EbB10RphqxX0mM0p7
+        SWHCucYCRZQH3lcTXVq1C0V5JdOP6jhe6GN38FQiBfZCYTNaO/wJOElWgQ26lMoP
+        Vjuq4NX70Cc0ihAB5bD93RD3o84lCTNPB2wrytWuqOfH7XcoojwrjAF8yrEhK30q
+        60fJqLau8FubRMml3YZiWGSlqtunOHSy6b12Lk3eQubDHrz46VGNKQYmwX1YxSV+
+        450qZDGvD9Q0dcvxKpalpkFkE+SXeHiAp2WBL4g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=oNe9ei
+        o8XYT1BZ4ZF/+0zEh/gS2//e+l2qNxRtVLoLs=; b=I/65hYuq2zmn5keq+6C8PH
+        NxwdkOpfvf1nyNERs9UJOWKby6CQftNAf4LvRRAnnWhaXBoCrHzlrCi1GUjTv9XH
+        0OTvkchXsDFEo2zz0spJWg0hmKRr0qyqSlNlKNZqIkAN0kC5zCiVPzWaDVo88KMp
+        WzvkSivVALoHRvU1/MkAZtYbr/T8nRw6xRpBHJahFqlAxtfAE6agadB6hoorcXvh
+        J77GmLUM/FCzPx8XMJV8HgrnSGdZJPR2O4hWf2mVhjhHXQFUlBorVE4rbarjRBkF
+        1yjwPtcAuViFAVQDdUhBTAfJWWCzYh4TpytmwFrZILcWU893ypf1k87dCJYelFaA
+        ==
+X-ME-Sender: <xms:QYkmXR8lZT_adM_lv3N9h5gHa0sVr9t71HeQW5r_VtHynhQ44X3RpA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrgeejgdegtdcutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucffohhmrg
+    hinhepuggvvhhitggvthhrvggvrdhorhhgnecurfgrrhgrmhepmhgrihhlfhhrohhmpegr
+    nhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:QYkmXZ-dI5mb9WW_DtQ7ayc-IDbLdgupyOdtfYdKdxcwThFCQcC4Tw>
+    <xmx:QYkmXaDjBSZiQd2_f78ntiAjohRf-ODs9K0mhJsgmBdCop1P17LjZQ>
+    <xmx:QYkmXZy0giH8SK5oBoAtC5Ynbt3J9YMxpvD5u9L32f9cmjteRwnlkg>
+    <xmx:QokmXU5ofQenOuvHGAvTquwCH-_TqDcub4tzkQ7aKa6kmVdoIA-wKA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 925B3E0162; Wed, 10 Jul 2019 20:56:33 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-731-g19d3b16-fmstable-20190627v1
+Mime-Version: 1.0
+Message-Id: <3b0788cf-eee4-48b2-901d-d2ab6716ab1b@www.fastmail.com>
+In-Reply-To: <CAL_JsqKrYcUbn_02z9GQO6U4rz7k=p3kB7_G0tKmv25MMZZNQg@mail.gmail.com>
+References: <20190710141611.21159-1-andrew@aj.id.au>
+ <20190710141611.21159-2-andrew@aj.id.au>
+ <CAL_JsqKrYcUbn_02z9GQO6U4rz7k=p3kB7_G0tKmv25MMZZNQg@mail.gmail.com>
+Date:   Thu, 11 Jul 2019 10:26:39 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Rob Herring" <robh+dt@kernel.org>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        "Ulf Hansson" <ulf.hansson@linaro.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Ryan Chen" <ryanchen.aspeed@gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: mmc: Document Aspeed SD controller
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jun 23, 2019 at 9:42 AM Yangtao Li <tiny.windzz@gmail.com> wrote:
->
-> This patchset add support for H3 and H6 thermal sensor.
->
-> BTY, do a cleanup in thermal makfile.
->
-> Yangtao Li (11):
->   thermal: sun8i: add thermal driver for h6
->   dt-bindings: thermal: add binding document for h6 thermal controller
->   thermal: fix indentation in makefile
->   thermal: sun8i: get ths sensor number from device compatible
->   thermal: sun8i: rework for sun8i_ths_get_temp()
->   thermal: sun8i: get ths init func from device compatible
->   thermal: sun8i: rework for ths irq handler func
->   thermal: sun8i: support ahb clocks
->   thermal: sun8i: rework for ths calibrate func
->   dt-bindings: thermal: add binding document for h3 thermal controller
->   thermal: sun8i: add thermal driver for h3
-
-It would be nice to add dts changes to this series. It's unlikely that
-you'll get any "Tested-by" otherwise.
 
 
->  .../bindings/thermal/sun8i-thermal.yaml       |  94 +++
->  MAINTAINERS                                   |   7 +
->  drivers/thermal/Kconfig                       |  14 +
->  drivers/thermal/Makefile                      |   9 +-
->  drivers/thermal/sun8i_thermal.c               | 534 ++++++++++++++++++
->  5 files changed, 654 insertions(+), 4 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/thermal/sun8i-thermal.yaml
->  create mode 100644 drivers/thermal/sun8i_thermal.c
+On Thu, 11 Jul 2019, at 01:20, Rob Herring wrote:
+> On Wed, Jul 10, 2019 at 8:16 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+> >
+> > The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the
+> > SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
+> > data bus if only a single slot is enabled.
+> >
+> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> > ---
+> >  .../bindings/mmc/sdhci-of-aspeed.yaml         | 91 +++++++++++++++++++
+> 
+> aspeed,sdhci.yaml
+
+Ack. Previously I had separate documents for different compatibles, wasn't sure
+how to tackle name one document covering multiple compatibles.
+
+> 
+> >  1 file changed, 91 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml b/Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml
+> > new file mode 100644
+> > index 000000000000..e98a2ac4d46d
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mmc/sdhci-of-aspeed.yaml
+> > @@ -0,0 +1,91 @@
+> > +# SPDX-License-Identifier: GPL-2.0-or-later
+> 
+> The preferred license is (GPL-2.0 OR BSD-2-Clause) if that is okay with you.
+
+I should poke people internally again, I had asked, just haven't got a clear
+answer. What was the justification for the preference (just so I can pass that
+on)?
+
+> 
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mmc/sdhci-of-aspeed.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> > +
+> > +title: ASPEED SD/SDIO/eMMC Controller
+> > +
+> > +maintainers:
+> > +  - Andrew Jeffery <andrew@aj.id.au>
+> > +  - Ryan Chen <ryanchen.aspeed@gmail.com>
+> > +
+> > +description: |+
+> > +  The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the SDIO
+> > +  Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit data bus if
+> > +  only a single slot is enabled.
+> > +
+> > +  The two slots are supported by a common configuration area. As the SDHCIs for
+> > +  the slots are dependent on the common configuration area, they are described
+> > +  as child nodes.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum: [ aspeed,ast2400-sdc, aspeed,ast2500-sdc ]
+> > +  reg:
+> > +    description: Common configuration registers
+> 
+> This should have a 'maxItems: 1'. Same for the child reg.
+
+Ack.
+
+> 
+> > +  ranges: true
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: The SD/SDIO controller clock gate
+> > +  sdhci:
+> 
+> This needs to be a pattern (under patternProperties) as these have
+> unit-addresses.
+
+Ah, I didn't think about that.
+
+> 
+> > +    type: object
+> > +    properties:
+> > +      compatible:
+> > +        allOf:
+> > +          - enum: [ aspeed,ast2400-sdhci, aspeed,ast2500-sdhci ]
+> > +          - const: sdhci
+> 
+> This condition can never be true. What you need is s/allOf/items/.
+> However, 'sdhci' is not really a useful compatible because every
+> implementation has quirks, so I'd drop it.
+
+Yeah, I was tossing up whether to include "sdhci". I'll drop it as you
+suggest.
+
+Pity the shorthand doesn't work how I expected. Might explain
+some of the behaviour I was seeing with the bindings make targets
+though.
+
+> 
+> > +      reg:
+> > +        description: The SDHCI registers
+> > +      clocks:
+> > +        maxItems: 1
+> > +        description: The SD bus clock
+> > +      slot:
+> > +        allOf:
+> > +          - $ref: /schemas/types.yaml#/definitions/uint32
+> > +          - enum: [0, 1]
+> 
+> Is this really needed? Offset 0x100 is slot 0 and offset 0x200 is slot
+> 1. Does that ever change?
+
+It doesn't in the SoCs at hand, but the downstream impact (driver
+implementation) is that you need to derive the slot index from the
+address and I was trying to avoid that. The slot index influences
+some bit index calculations.
+
+> 
+> > +      interrupts:
+> > +        maxItems: 1
+> > +        description: The SD interrupt shared between both slots
+> > +    required:
+> > +      - compatible
+> > +      - reg
+> > +      - clocks
+> > +      - slot
+> > +      - interrupts
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - ranges
+> > +  - clocks
+> 
+> #address-cells and #size-cells are required too.
+
+Ack.
+
+> 
+> You should also add 'additionalProperties: false' here so other random
+> properties can't be present.
+
+Ah yes. Will fix.
+
+> 
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/aspeed-clock.h>
+> > +    sdc@1e740000 {
+> > +            compatible = "aspeed,ast2500-sdc";
+> > +            reg = <0x1e740000 0x100>;
+> > +            #address-cells = <1>;
+> > +            #size-cells = <1>;
+> > +            ranges;
+> 
+> It's preferred to limit the range here and then the child addresses
+> are 0x100 and 0x200.
+
+Okay. Was just trying to dodge mental arithmetic where I could, but
+if that's the preference then I'll fix it up.
+
+Thanks for the review!
+
+Andrew
+
+> 
+> > +            clocks = <&syscon ASPEED_CLK_GATE_SDCLK>;
+> > +
+> > +            sdhci0: sdhci@1e740100 {
+> > +                    compatible = "aspeed,ast2500-sdhci", "sdhci";
+> > +                    reg = <0x1e740100 0x100>;
+> > +                    slot = <0>;
+> > +                    interrupts = <26>;
+> > +                    sdhci,auto-cmd12;
+> > +                    clocks = <&syscon ASPEED_CLK_SDIO>;
+> > +            };
+> > +
+> > +            sdhci1: sdhci@1e740200 {
+> > +                    compatible = "aspeed,ast2500-sdhci", "sdhci";
+> > +                    reg = <0x1e740200 0x100>;
+> > +                    slot = <1>;
+> > +                    interrupts = <26>;
+> > +                    sdhci,auto-cmd12;
+> > +                    clocks = <&syscon ASPEED_CLK_SDIO>;
+> > +            };
+> > +    };
+> > --
+> > 2.20.1
+> >
 >
-> ---
-> v4:
-> -add h3 support
-> -fix yaml file
-> ---
-> 2.17.1
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
