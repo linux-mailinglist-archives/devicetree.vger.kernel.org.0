@@ -2,224 +2,187 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6B62B653F5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 11:40:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4663965405
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 11:41:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728227AbfGKJki (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 05:40:38 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:59921 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726088AbfGKJki (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 05:40:38 -0400
+        id S1728285AbfGKJla (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 05:41:30 -0400
+Received: from relay3-d.mail.gandi.net ([217.70.183.195]:35057 "EHLO
+        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728024AbfGKJla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 05:41:30 -0400
+X-Originating-IP: 86.250.200.211
 Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
         (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 68A69240011;
-        Thu, 11 Jul 2019 09:38:40 +0000 (UTC)
+        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 94CF06001F;
+        Thu, 11 Jul 2019 09:40:37 +0000 (UTC)
 From:   Maxime Ripard <maxime.ripard@bootlin.com>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Dmitry Torokhov <dmitry.torokhov@gmail.com>
-Cc:     devicetree@vger.kernel.org, linux-input@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     devicetree@vger.kernel.org, Chen-Yu Tsai <wens@csie.org>,
         Maxime Ripard <maxime.ripard@bootlin.com>,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] dt-bindings: input: Convert Allwinner LRADC to a schema
-Date:   Thu, 11 Jul 2019 11:38:35 +0200
-Message-Id: <20190711093835.20663-1-maxime.ripard@bootlin.com>
+Subject: [PATCH] dt-bindings: bus: Convert Allwinner DE2 bus to a schema
+Date:   Thu, 11 Jul 2019 11:40:36 +0200
+Message-Id: <20190711094036.21777-1-maxime.ripard@bootlin.com>
 X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Allwinner SoCs have an LRADC used to report keys and supported in
-Linux, with a matching Device Tree binding.
+The Allwinner SoCs using the second generation of the display engine have a
+bus for that display engine. The bus is supported in Linux, with a matching
+Device Tree binding.
 
 Now that we have the DT validation in place, let's convert the device tree
 bindings for that controller over to a YAML schemas.
 
 Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 ---
- .../input/allwinner,sun4i-a10-lradc-keys.yaml | 95 +++++++++++++++++++
- .../bindings/input/sun4i-lradc-keys.txt       | 65 -------------
- 2 files changed, 95 insertions(+), 65 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/input/allwinner,sun4i-a10-lradc-keys.yaml
- delete mode 100644 Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt
+ .../bus/allwinner,sun50i-a64-de2.yaml         | 84 +++++++++++++++++++
+ .../bindings/bus/sun50i-de2-bus.txt           | 40 ---------
+ 2 files changed, 84 insertions(+), 40 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml
+ delete mode 100644 Documentation/devicetree/bindings/bus/sun50i-de2-bus.txt
 
-diff --git a/Documentation/devicetree/bindings/input/allwinner,sun4i-a10-lradc-keys.yaml b/Documentation/devicetree/bindings/input/allwinner,sun4i-a10-lradc-keys.yaml
+diff --git a/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml b/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml
 new file mode 100644
-index 000000000000..b3bd8ef7fbd6
+index 000000000000..b9734f8109c6
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/input/allwinner,sun4i-a10-lradc-keys.yaml
-@@ -0,0 +1,95 @@
-+# SPDX-License-Identifier: GPL-2.0
++++ b/Documentation/devicetree/bindings/bus/allwinner,sun50i-a64-de2.yaml
+@@ -0,0 +1,84 @@
++# SPDX-License-Identifier: GPL2
 +%YAML 1.2
 +---
-+$id: http://devicetree.org/schemas/input/allwinner,sun4i-a10-lradc-keys.yaml#
++$id: http://devicetree.org/schemas/bus/allwinner,sun50i-a64-de2.yaml#
 +$schema: http://devicetree.org/meta-schemas/core.yaml#
 +
-+title: Allwinner A10 LRADC Device Tree Bindings
++title: Allwinner A64 Display Engine Bus Device Tree Bindings
 +
 +maintainers:
 +  - Chen-Yu Tsai <wens@csie.org>
 +  - Maxime Ripard <maxime.ripard@bootlin.com>
 +
 +properties:
++  $nodename:
++    pattern: "^bus(@[0-9a-f]+)?$"
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 1
++
 +  compatible:
 +    oneOf:
-+      - const: allwinner,sun4i-a10-lradc-keys
-+      - const: allwinner,sun8i-a83t-r-lradc
++      - const: allwinner,sun50i-a64-de2
 +      - items:
-+        - const: allwinner,sun50i-a64-lradc
-+        - const: allwinner,sun8i-a83t-r-lradc
++          - const: allwinner,sun50i-h6-de3
++          - const: allwinner,sun50i-a64-de2
 +
 +  reg:
 +    maxItems: 1
 +
-+  interrupts:
-+    maxItems: 1
-+
-+  vref-supply:
++  allwinner,sram:
++    allOf:
++      - $ref: /schemas/types.yaml#definitions/phandle-array
++      - maxItems: 1
 +    description:
-+      Regulator for the LRADC reference voltage
++      The SRAM that needs to be claimed to access the display engine
++      bus.
++
++  ranges: true
 +
 +patternProperties:
-+  "^button-[0-9]+$":
-+    type: object
++  # All other properties should be child nodes with unit-address and 'reg'
++  "^[a-zA-Z][a-zA-Z0-9,+\\-._]{0,63}@[0-9a-fA-F]+$":
 +    properties:
-+      label:
-+        $ref: /schemas/types.yaml#/definitions/string
-+        description: Descriptive name of the key
-+
-+      linux,code:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description: Keycode to emit
-+
-+      channel:
-+        allOf:
-+          - $ref: /schemas/types.yaml#/definitions/uint32
-+          - enum: [0, 1]
-+        description: ADC Channel this key is attached to
-+
-+      voltage:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          Voltage in microvolts at LRADC input when this key is
-+          pressed
++      reg:
++        maxItems: 1
 +
 +    required:
-+      - label
-+      - linux,code
-+      - channel
-+      - voltage
-+
-+    additionalProperties: false
++      - reg
 +
 +required:
 +  - compatible
 +  - reg
-+  - interrupts
-+  - vref-supply
++  - "#address-cells"
++  - "#size-cells"
++  - ranges
++  - allwinner,sram
 +
 +additionalProperties: false
 +
 +examples:
 +  - |
-+    lradc: lradc@1c22800 {
-+        compatible = "allwinner,sun4i-a10-lradc-keys";
-+        reg = <0x01c22800 0x100>;
-+        interrupts = <31>;
-+        vref-supply = <&reg_vcc3v0>;
++    bus@1000000 {
++        compatible = "allwinner,sun50i-a64-de2";
++        reg = <0x1000000 0x400000>;
++        allwinner,sram = <&de2_sram 1>;
++        #address-cells = <1>;
++        #size-cells = <1>;
++        ranges = <0 0x1000000 0x400000>;
 +
-+        button-191 {
-+            label = "Volume Up";
-+            linux,code = <115>;
-+            channel = <0>;
-+            voltage = <191274>;
-+        };
-+
-+        button-392 {
-+            label = "Volume Down";
-+            linux,code = <114>;
-+            channel = <0>;
-+            voltage = <392644>;
++        display_clocks: clock@0 {
++            compatible = "allwinner,sun50i-a64-de2-clk";
++            reg = <0x0 0x100000>;
++            clocks = <&ccu 52>, <&ccu 99>;
++            clock-names = "bus", "mod";
++            resets = <&ccu 30>;
++            #clock-cells = <1>;
++            #reset-cells = <1>;
 +        };
 +    };
 +
 +...
-diff --git a/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt b/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt
+diff --git a/Documentation/devicetree/bindings/bus/sun50i-de2-bus.txt b/Documentation/devicetree/bindings/bus/sun50i-de2-bus.txt
 deleted file mode 100644
-index 507b737612ea..000000000000
---- a/Documentation/devicetree/bindings/input/sun4i-lradc-keys.txt
+index b9d533717dff..000000000000
+--- a/Documentation/devicetree/bindings/bus/sun50i-de2-bus.txt
 +++ /dev/null
-@@ -1,65 +0,0 @@
--Allwinner sun4i low res adc attached tablet keys
--------------------------------------------------
+@@ -1,40 +0,0 @@
+-Device tree bindings for Allwinner DE2/3 bus
+-
+-The Allwinner A64 DE2 is on a special bus, which needs a SRAM region (SRAM C)
+-to be claimed for enabling the access. The DE3 on Allwinner H6 is at the same
+-situation, and the binding also applies.
 -
 -Required properties:
-- - compatible: should be one of the following string:
--		"allwinner,sun4i-a10-lradc-keys"
--		"allwinner,sun8i-a83t-r-lradc"
--		"allwinner,sun50i-a64-lradc", "allwinner,sun8i-a83t-r-lradc"
-- - reg: mmio address range of the chip
-- - interrupts: interrupt to which the chip is connected
-- - vref-supply: powersupply for the lradc reference voltage
 -
--Each key is represented as a sub-node of the compatible mentioned above:
--
--Required subnode-properties:
--	- label: Descriptive name of the key.
--	- linux,code: Keycode to emit.
--	- channel: Channel this key is attached to, must be 0 or 1.
--	- voltage: Voltage in µV at lradc input when this key is pressed.
+- - compatible:		Should be one of:
+-				- "allwinner,sun50i-a64-de2"
+-				- "allwinner,sun50i-h6-de3", "allwinner,sun50i-a64-de2"
+- - reg:			A resource specifier for the register space
+- - #address-cells:	Must be set to 1
+- - #size-cells:		Must be set to 1
+- - ranges:		Must be set up to map the address space inside the
+-			DE2, for the sub-blocks of DE2.
+- - allwinner,sram:	the SRAM that needs to be claimed
 -
 -Example:
 -
--#include <dt-bindings/input/input.h>
+-	de2@1000000 {
+-		compatible = "allwinner,sun50i-a64-de2";
+-		reg = <0x1000000 0x400000>;
+-		allwinner,sram = <&de2_sram 1>;
+-		#address-cells = <1>;
+-		#size-cells = <1>;
+-		ranges = <0 0x1000000 0x400000>;
 -
--	lradc: lradc@1c22800 {
--		compatible = "allwinner,sun4i-a10-lradc-keys";
--		reg = <0x01c22800 0x100>;
--		interrupts = <31>;
--		vref-supply = <&reg_vcc3v0>;
--
--		button@191 {
--			label = "Volume Up";
--			linux,code = <KEY_VOLUMEUP>;
--			channel = <0>;
--			voltage = <191274>;
--		};
--
--		button@392 {
--			label = "Volume Down";
--			linux,code = <KEY_VOLUMEDOWN>;
--			channel = <0>;
--			voltage = <392644>;
--		};
--
--		button@601 {
--			label = "Menu";
--			linux,code = <KEY_MENU>;
--			channel = <0>;
--			voltage = <601151>;
--		};
--
--		button@795 {
--			label = "Enter";
--			linux,code = <KEY_ENTER>;
--			channel = <0>;
--			voltage = <795090>;
--		};
--
--		button@987 {
--			label = "Home";
--			linux,code = <KEY_HOMEPAGE>;
--			channel = <0>;
--			voltage = <987387>;
+-		display_clocks: clock@0 {
+-			compatible = "allwinner,sun50i-a64-de2-clk";
+-			reg = <0x0 0x100000>;
+-			clocks = <&ccu CLK_DE>,
+-				 <&ccu CLK_BUS_DE>;
+-			clock-names = "mod",
+-				      "bus";
+-			resets = <&ccu RST_BUS_DE>;
+-			#clock-cells = <1>;
+-			#reset-cells = <1>;
 -		};
 -	};
 -- 
