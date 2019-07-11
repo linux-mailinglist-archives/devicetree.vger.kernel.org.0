@@ -2,152 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A55D06598B
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 16:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 778E46597F
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 16:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728414AbfGKO6A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 10:58:00 -0400
-Received: from smtp-fw-6002.amazon.com ([52.95.49.90]:14953 "EHLO
-        smtp-fw-6002.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728594AbfGKO6A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 10:58:00 -0400
+        id S1729003AbfGKO5f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 10:57:35 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:37787 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728765AbfGKO5e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 10:57:34 -0400
+Received: by mail-pl1-f196.google.com with SMTP id b3so3168545plr.4
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2019 07:57:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1562857079; x=1594393079;
-  h=from:to:cc:message-id:in-reply-to:references:
-   mime-version:subject:resent-from:resent-cc:date:
-   content-transfer-encoding;
-  bh=kBlveuRuLMfyuhTLyavKKcr81LjwYg6bfTMtC9Bgl7s=;
-  b=U3UKbA9oqtompUxBpLHxyZHTHIXOZJjcAu/JAfY+YTeZptq1JTx2VUXl
-   PNbJZ75P524YkMb4GA33BhcQJifZELeNvQ6z8r+Q9LvWLD8w6fmzfRj+1
-   36SOrLMWS8TXueagITfrWkjuHhfQbXQ/7MC38p6O0/QhgGq/tGk+Bs1sN
-   Y=;
-X-IronPort-AV: E=Sophos;i="5.62,478,1554768000"; 
-   d="scan'208";a="410282856"
-Received: from iad6-co-svc-p1-lb1-vlan3.amazon.com (HELO email-inbound-relay-1e-97fdccfd.us-east-1.amazon.com) ([10.124.125.6])
-  by smtp-border-fw-out-6002.iad6.amazon.com with ESMTP; 11 Jul 2019 14:57:57 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan3.iad.amazon.com [10.40.159.166])
-        by email-inbound-relay-1e-97fdccfd.us-east-1.amazon.com (Postfix) with ESMTPS id 12344A22F2;
-        Thu, 11 Jul 2019 14:57:56 +0000 (UTC)
-Received: from EX13D04UEA001.ant.amazon.com (10.43.61.40) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 11 Jul 2019 14:57:56 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (10.43.61.82) by
- EX13D04UEA001.ant.amazon.com (10.43.61.40) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 11 Jul 2019 14:57:56 +0000
-Received: from u9ff250417f405e.ant.amazon.com (10.107.0.52) by
- mail-relay.amazon.com (10.43.61.243) with Microsoft SMTP Server id
- 15.0.1367.3 via Frontend Transport; Thu, 11 Jul 2019 14:57:55 +0000
-Received: from EX13D13UWB004.ant.amazon.com (10.43.161.218) by
- EX13D13UWA001.ant.amazon.com (10.43.160.136) with Microsoft SMTP Server
- (TLS) id 15.0.1367.3 via Mailbox Transport; Wed, 10 Jul 2019 16:45:55 +0000
-Received: from EX13MTAUEB001.ant.amazon.com (10.43.60.96) by
- EX13D13UWB004.ant.amazon.com (10.43.161.218) with Microsoft SMTP Server
- (TLS) id 15.0.1367.3; Wed, 10 Jul 2019 16:45:54 +0000
-Received: from email-inbound-relay-2c-4e7c8266.us-west-2.amazon.com
- (10.124.125.2) by mail-relay.amazon.com (10.43.60.129) with Microsoft SMTP
- Server id 15.0.1367.3 via Frontend Transport; Wed, 10 Jul 2019 16:45:54
- +0000
-Received: by email-inbound-relay-2c-4e7c8266.us-west-2.amazon.com (Postfix)
-        id E2DCBA243C; Wed, 10 Jul 2019 16:45:52 +0000 (UTC)
-Received: from u9ff250417f405e.ant.amazon.com
- (pdx2-ws-svc-lb17-vlan3.amazon.com [10.247.140.70]) by
- email-inbound-relay-2c-4e7c8266.us-west-2.amazon.com (Postfix) with ESMTPS
- id 5579BA18F9; Wed, 10 Jul 2019 16:45:52 +0000 (UTC)
-Received: from u9ff250417f405e.ant.amazon.com (localhost [127.0.0.1]) by
- u9ff250417f405e.ant.amazon.com (8.15.2/8.15.2/Debian-10) with ESMTP id
- x6AGjmRh022241; Wed, 10 Jul 2019 19:45:48 +0300
-Received: (from jonnyc@localhost)
-        by u9ff250417f405e.ant.amazon.com (8.15.2/8.15.2/Submit) id x6AGjknT022047;
-        Wed, 10 Jul 2019 19:45:46 +0300
-From:   Jonathan Chocron <jonnyc@amazon.com>
-To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
-        <alisaidi@amazon.com>, <ronenk@amazon.com>, <barakw@amazon.com>,
-        <talel@amazon.com>, <hanochu@amazon.com>, <hhhawa@amazon.com>,
-        <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <jonnyc@amazon.com>
-Message-ID: <20190710164519.17883-9-jonnyc@amazon.com>
-In-Reply-To: <20190710164519.17883-1-jonnyc@amazon.com>
-References: <20190710164519.17883-1-jonnyc@amazon.com>
-Content-Type: text/plain
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=1/51w3laLLHPJ0Jx8O5jQMFKbvaBG/KhA0i4QusfUus=;
+        b=NUlVnSN1ZMozKzTTGTTf+dnmZy+oc7h+fkpA9vhU47HxFHvlVDPSulkA1Se+YW0lul
+         a2Hl+Y+UF18CpnIowTxwNNiel7ZRfnqqs8kywkv/NBUopy1XvcOOZJMB3iAT0EXbtseS
+         VAzcoF4h8N7Q9r6KXfZdvxPjGp0UjEV+v3L3IgsHLIyiRi7CrwchE/rsxF593RlIxYHi
+         3wiwOvkX6fhJh2rotOBUo9vVg2/Xyp0lUMABQezBmPnrFbCPGRndV2BOmlH/aWDp57+s
+         gfmEyQlNCfGHDvidcClyVlOqb9FZMYOAicIGBfnKPPwvWhttN9JYVRiE24tySch7kg15
+         oZXw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=1/51w3laLLHPJ0Jx8O5jQMFKbvaBG/KhA0i4QusfUus=;
+        b=h4dqFdDHxAWxLUOs+VdETPhQ3IRu29Mr2sWvHaqV85YWlr2mRmWLPeWcY2qBd1M/pt
+         GhMsoggrdVvgUda9YHQdVVzIi06ueWcOlonBnMH/6//qkb5BWD7Wn/S6PZIsXKHpj6+z
+         1YRH8o7Y1PwuXhZOHczmM79kfoJrZeJaCdF0Xo6/sdL1W4mYWjeGyZEDlgW1Qndpm7ia
+         3oIWXqTQyUZwOnvwkKf223IKdwJU1MAFeTths3igCXAFsu6UvTcby4gmBXCt6X2X7qmH
+         KXBlpj/kg4auh2Hvr9K30EZbrMb6UF9eVf4chYAwenOJdTlfEqqqzM5kXoabTgn5FhCd
+         majw==
+X-Gm-Message-State: APjAAAV2SuPc4wfa7BtL+T8n61dKJHFECpjdNG/si8tFh+vDEDumZJnU
+        hI09m/dedgxvroXDQih39EPMRg==
+X-Google-Smtp-Source: APXvYqz9ilITyyaY2+RDyr6nQhrALzPWqIjNUnMLGWpxZ53G74RZ+C2rjf+qUux7JInSF+mZPbR+/g==
+X-Received: by 2002:a17:902:848b:: with SMTP id c11mr5083756plo.217.1562857053720;
+        Thu, 11 Jul 2019 07:57:33 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id x13sm6878242pfn.6.2019.07.11.07.57.31
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 11 Jul 2019 07:57:33 -0700 (PDT)
+Date:   Thu, 11 Jul 2019 07:58:38 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+Cc:     sboyd@kernel.org, david.brown@linaro.org, jassisinghbrar@gmail.com,
+        mark.rutland@arm.com, mturquette@baylibre.com, robh+dt@kernel.org,
+        will.deacon@arm.com, arnd@arndb.de, horms+renesas@verge.net.au,
+        heiko@sntech.de, sibis@codeaurora.org,
+        enric.balletbo@collabora.com, jagan@amarulasolutions.com,
+        olof@lixom.net, vkoul@kernel.org, niklas.cassel@linaro.org,
+        georgi.djakov@linaro.org, amit.kucheria@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, khasim.mohammed@linaro.org
+Subject: Re: [PATCH v3 05/14] clk: qcom: apcs-msm8916: get parent clock names
+ from DT
+Message-ID: <20190711145838.GF7234@tuxbook-pro>
+References: <20190625164733.11091-1-jorge.ramirez-ortiz@linaro.org>
+ <20190625164733.11091-6-jorge.ramirez-ortiz@linaro.org>
 MIME-Version: 1.0
-Subject: [PATCH 8/8] PCI: dw: Add support for
- PCI_PROBE_ONLY/PCI_REASSIGN_ALL_BUS flags
-Date:   Thu, 11 Jul 2019 17:57:54 +0300
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190625164733.11091-6-jorge.ramirez-ortiz@linaro.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This basically aligns the usage of PCI_PROBE_ONLY and
-PCI_REASSIGN_ALL_BUS in dw_pcie_host_init() with the logic in
-pci_host_common_probe().
+On Tue 25 Jun 09:47 PDT 2019, Jorge Ramirez-Ortiz wrote:
 
-Now it will be possible to control via the devicetree whether to just
-probe the PCI bus (in cases where FW already configured it) or to fully
-configure it.
+> Allow accessing the parent clock names required for the driver
+> operation by using the device tree node.
+> 
+> This permits extending the driver to other platforms without having to
+> modify its source code.
+> 
+> For backwards compatibility leave previous values as default.
+> 
+> Co-developed-by: Niklas Cassel <niklas.cassel@linaro.org>
+> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
 
-Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
----
- .../pci/controller/dwc/pcie-designware-host.c | 23 +++++++++++++++----
- 1 file changed, 19 insertions(+), 4 deletions(-)
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pc=
-i/controller/dwc/pcie-designware-host.c
-index d2ca748e4c85..0a294d8aa21a 100644
---- a/drivers/pci/controller/dwc/pcie-designware-host.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -342,6 +342,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 	if (!bridge)
- 		return -ENOMEM;
-=20
-+	of_pci_check_probe_only();
-+
- 	ret =3D devm_of_pci_get_host_bridge_resources(dev, 0, 0xff,
- 					&bridge->windows, &pp->io_base);
- 	if (ret)
-@@ -474,6 +476,10 @@ int dw_pcie_host_init(struct pcie_port *pp)
-=20
- 	pp->root_bus_nr =3D pp->busn->start;
-=20
-+	/* Do not reassign bus nums if probe only */
-+	if (!pci_has_flag(PCI_PROBE_ONLY))
-+		pci_add_flags(PCI_REASSIGN_ALL_BUS);
-+
- 	bridge->dev.parent =3D dev;
- 	bridge->sysdata =3D pp;
- 	bridge->busnr =3D pp->root_bus_nr;
-@@ -490,11 +496,20 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 	if (pp->ops->scan_bus)
- 		pp->ops->scan_bus(pp);
-=20
--	pci_bus_size_bridges(pp->root_bus);
--	pci_bus_assign_resources(pp->root_bus);
-+	/*
-+	 * We insert PCI resources into the iomem_resource and
-+	 * ioport_resource trees in either pci_bus_claim_resources()
-+	 * or pci_bus_assign_resources().
-+	 */
-+	if (pci_has_flag(PCI_PROBE_ONLY)) {
-+		pci_bus_claim_resources(pp->root_bus);
-+	} else {
-+		pci_bus_size_bridges(pp->root_bus);
-+		pci_bus_assign_resources(pp->root_bus);
-=20
--	list_for_each_entry(child, &pp->root_bus->children, node)
--		pcie_bus_configure_settings(child);
-+		list_for_each_entry(child, &pp->root_bus->children, node)
-+			pcie_bus_configure_settings(child);
-+	}
-=20
- 	pci_bus_add_devices(pp->root_bus);
- 	return 0;
---=20
-2.17.1
-
-
+> ---
+>  drivers/clk/qcom/apcs-msm8916.c | 23 ++++++++++++++++++++---
+>  1 file changed, 20 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/clk/qcom/apcs-msm8916.c b/drivers/clk/qcom/apcs-msm8916.c
+> index a6c89a310b18..dd82eb1e5202 100644
+> --- a/drivers/clk/qcom/apcs-msm8916.c
+> +++ b/drivers/clk/qcom/apcs-msm8916.c
+> @@ -19,7 +19,7 @@
+>  
+>  static const u32 gpll0_a53cc_map[] = { 4, 5 };
+>  
+> -static const char * const gpll0_a53cc[] = {
+> +static const char *gpll0_a53cc[] = {
+>  	"gpll0_vote",
+>  	"a53pll",
+>  };
+> @@ -50,6 +50,8 @@ static int qcom_apcs_msm8916_clk_probe(struct platform_device *pdev)
+>  	struct regmap *regmap;
+>  	struct clk_init_data init = { };
+>  	int ret = -ENODEV;
+> +	const char *parents[2];
+> +	int pll_index = 0;
+>  
+>  	regmap = dev_get_regmap(parent, NULL);
+>  	if (!regmap) {
+> @@ -61,6 +63,16 @@ static int qcom_apcs_msm8916_clk_probe(struct platform_device *pdev)
+>  	if (!a53cc)
+>  		return -ENOMEM;
+>  
+> +	/* legacy bindings only defined the pll parent clock (index = 0) with no
+> +	 * name; when both of the parents are specified in the bindings, the
+> +	 * pll is the second one (index = 1).
+> +	 */
+> +	if (of_clk_parent_fill(parent->of_node, parents, 2) == 2) {
+> +		gpll0_a53cc[0] = parents[0];
+> +		gpll0_a53cc[1] = parents[1];
+> +		pll_index = 1;
+> +	}
+> +
+>  	init.name = "a53mux";
+>  	init.parent_names = gpll0_a53cc;
+>  	init.num_parents = ARRAY_SIZE(gpll0_a53cc);
+> @@ -76,10 +88,11 @@ static int qcom_apcs_msm8916_clk_probe(struct platform_device *pdev)
+>  	a53cc->src_shift = 8;
+>  	a53cc->parent_map = gpll0_a53cc_map;
+>  
+> -	a53cc->pclk = devm_clk_get(parent, NULL);
+> +	a53cc->pclk = of_clk_get(parent->of_node, pll_index);
+>  	if (IS_ERR(a53cc->pclk)) {
+>  		ret = PTR_ERR(a53cc->pclk);
+> -		dev_err(dev, "failed to get clk: %d\n", ret);
+> +		if (ret != -EPROBE_DEFER)
+> +			dev_err(dev, "failed to get clk: %d\n", ret);
+>  		return ret;
+>  	}
+>  
+> @@ -87,6 +100,7 @@ static int qcom_apcs_msm8916_clk_probe(struct platform_device *pdev)
+>  	ret = clk_notifier_register(a53cc->pclk, &a53cc->clk_nb);
+>  	if (ret) {
+>  		dev_err(dev, "failed to register clock notifier: %d\n", ret);
+> +		clk_put(a53cc->pclk);
+>  		return ret;
+>  	}
+>  
+> @@ -109,6 +123,8 @@ static int qcom_apcs_msm8916_clk_probe(struct platform_device *pdev)
+>  
+>  err:
+>  	clk_notifier_unregister(a53cc->pclk, &a53cc->clk_nb);
+> +	clk_put(a53cc->pclk);
+> +
+>  	return ret;
+>  }
+>  
+> @@ -117,6 +133,7 @@ static int qcom_apcs_msm8916_clk_remove(struct platform_device *pdev)
+>  	struct clk_regmap_mux_div *a53cc = platform_get_drvdata(pdev);
+>  
+>  	clk_notifier_unregister(a53cc->pclk, &a53cc->clk_nb);
+> +	clk_put(a53cc->pclk);
+>  
+>  	return 0;
+>  }
+> -- 
+> 2.21.0
+> 
