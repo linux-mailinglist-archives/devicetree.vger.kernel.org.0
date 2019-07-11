@@ -2,360 +2,231 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1754A656C2
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 14:23:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F6FA65630
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 13:54:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726016AbfGKMXL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 08:23:11 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:53947 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725926AbfGKMXK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 08:23:10 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id 26EE260093;
-        Thu, 11 Jul 2019 12:23:03 +0000 (UTC)
-Date:   Thu, 11 Jul 2019 12:01:00 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
-Cc:     Jagan Teki <jagan@amarulasolutions.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
-        Michael Turquette <mturquette@baylibre.com>,
+        id S1728349AbfGKLyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 07:54:12 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:26458 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728194AbfGKLyM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 07:54:12 -0400
+X-UUID: adde9b17e666416d966937a19d049ef3-20190711
+X-UUID: adde9b17e666416d966937a19d049ef3-20190711
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 315190674; Thu, 11 Jul 2019 19:54:00 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 11 Jul
+ 2019 19:53:57 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 11 Jul 2019 19:53:56 +0800
+Message-ID: <1562846036.31342.10.camel@mhfsdcap03>
+Subject: Re: [PATCH v8 07/21] iommu/io-pgtable-arm-v7s: Extend MediaTek 4GB
+ Mode
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Will Deacon <will@kernel.org>
+CC:     Joerg Roedel <joro@8bytes.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Robin Murphy <robin.murphy@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-amarula <linux-amarula@amarulasolutions.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for
- PLL_MIPI
-Message-ID: <20190711100100.cty3s6rs3w27low6@flea>
-References: <20190201143102.rcvrxstc365mezvx@flea>
- <CAMty3ZC3_+z1upH4Y08R1z=Uq1C=OpWETNrBO8nGRoHhuNrHSA@mail.gmail.com>
- <20190605064933.6bmskkxzzgn35xz7@flea>
- <CAMty3ZCCP=oCqm5=49BsjwoxdDETgBfU_5g8fQ=bz=iWApV0tw@mail.gmail.com>
- <20190614142406.ybdiqfppo5mc5bgq@flea>
- <CAMty3ZB45cHx3WeXnywBh2_UA_bTmFs6yBTqLWA1BNf4fQtVvQ@mail.gmail.com>
- <20190625144930.5hegt6bkzqzykjid@flea>
- <CAMty3ZCmj0Rz7MMhLqihsvLQi+1CHf0fAoJQ4QN65xB-bwxaJw@mail.gmail.com>
- <20190703114933.u3x4ej3v7ocewvif@flea>
- <CAOf5uw=ZEvMV1hFQE986rNG_ctpReGbjbZzv0m=OzKPdBh57uQ@mail.gmail.com>
+        Evan Green <evgreen@chromium.org>,
+        Tomasz Figa <tfiga@google.com>,
+        Will Deacon <will.deacon@arm.com>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <iommu@lists.linux-foundation.org>, <yingjoe.chen@mediatek.com>,
+        <youlin.pei@mediatek.com>, Nicolas Boichat <drinkcat@chromium.org>,
+        <anan.sun@mediatek.com>, Matthias Kaehlcke <mka@chromium.org>,
+        <chao.hao@mediatek.com>, <cui.zhang@mediatek.com>
+Date:   Thu, 11 Jul 2019 19:53:56 +0800
+In-Reply-To: <20190710143649.w5dplhzdpi3bxp7e@willie-the-truck>
+References: <1561774167-24141-1-git-send-email-yong.wu@mediatek.com>
+         <1561774167-24141-8-git-send-email-yong.wu@mediatek.com>
+         <20190710143649.w5dplhzdpi3bxp7e@willie-the-truck>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="zbkqgrivmn6xbgfb"
-Content-Disposition: inline
-In-Reply-To: <CAOf5uw=ZEvMV1hFQE986rNG_ctpReGbjbZzv0m=OzKPdBh57uQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 0C86952889D210679121FAA38297439300932F8917CA01830F3FF75C994BE39B2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 2019-07-10 at 15:36 +0100, Will Deacon wrote:
+> On Sat, Jun 29, 2019 at 10:09:13AM +0800, Yong Wu wrote:
+> > MediaTek extend the arm v7s descriptor to support the dram over 4GB.
+> > 
+> > In the mt2712 and mt8173, it's called "4GB mode", the physical address
+> > is from 0x4000_0000 to 0x1_3fff_ffff, but from EMI point of view, it
+> > is remapped to high address from 0x1_0000_0000 to 0x1_ffff_ffff, the
+> > bit32 is always enabled. thus, in the M4U, we always enable the bit9
+> > for all PTEs which means to enable bit32 of physical address.
+> > 
+> > but in mt8183, M4U support the dram from 0x4000_0000 to 0x3_ffff_ffff
+> > which isn't remaped. We extend the PTEs: the bit9 represent bit32 of
+> > PA and the bit4 represent bit33 of PA. Meanwhile the iova still is
+> > 32bits.
+> 
+> What happens if bit4 is set in the pte for mt2712 or mt8173? Perhaps the
 
---zbkqgrivmn6xbgfb
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+bit4 is ignored in mt2712 and mt8173(No effect).
 
-On Fri, Jul 05, 2019 at 07:52:27PM +0200, Michael Nazzareno Trimarchi wrote:
-> On Wed, Jul 3, 2019 at 1:49 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> >
-> > On Tue, Jun 25, 2019 at 09:00:36PM +0530, Jagan Teki wrote:
-> > > On Tue, Jun 25, 2019 at 8:19 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > >
-> > > > On Thu, Jun 20, 2019 at 11:57:44PM +0530, Jagan Teki wrote:
-> > > > > On Fri, Jun 14, 2019 at 7:54 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > > > >
-> > > > > > On Wed, Jun 05, 2019 at 01:03:16PM +0530, Jagan Teki wrote:
-> > > > > > > On Wed, Jun 5, 2019 at 12:19 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > > > > > >
-> > > > > > > > Hi,
-> > > > > > > >
-> > > > > > > > I've reordered the mail a bit to work on chunks
-> > > > > > > >
-> > > > > > > > On Fri, May 24, 2019 at 03:37:42PM +0530, Jagan Teki wrote:
-> > > > > > > > > > I wish it was in your commit log in the first place, instead of having
-> > > > > > > > > > to exchange multiple mails over this.
-> > > > > > > > > >
-> > > > > > > > > > However, I don't think that's quite true, and it might be a bug in
-> > > > > > > > > > Allwinner's implementation (or rather something quite confusing).
-> > > > > > > > > >
-> > > > > > > > > > You're right that the lcd_rate and pll_rate seem to be generated from
-> > > > > > > > > > the pixel clock, and it indeed looks like the ratio between the pixel
-> > > > > > > > > > clock and the TCON dotclock is defined through the number of bits per
-> > > > > > > > > > lanes.
-> > > > > > > > > >
-> > > > > > > > > > However, in this case, dsi_rate is actually the same than lcd_rate,
-> > > > > > > > > > since pll_rate is going to be divided by dsi_div:
-> > > > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L791
-> > > > > > > > > >
-> > > > > > > > > > Since lcd_div is 1, it also means that in this case, dsi_rate ==
-> > > > > > > > > > dclk_rate.
-> > > > > > > > > >
-> > > > > > > > > > The DSI module clock however, is always set to 148.5 MHz. Indeed, if
-> > > > > > > > > > we look at:
-> > > > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L804
-> > > > > > > > > >
-> > > > > > > > > > We can see that the rate in clk_info is used if it's different than
-> > > > > > > > > > 0. This is filled by disp_al_lcd_get_clk_info, which, in the case of a
-> > > > > > > > > > DSI panel, will hardcode it to 148.5 MHz:
-> > > > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L164
-> > > > > > > > >
-> > > > > > > > > Let me explain, something more.
-> > > > > > > > >
-> > > > > > > > > According to bsp there are clk_info.tcon_div which I will explain below.
-> > > > > > > > > clk_info.dsi_div which is dynamic and it depends on bpp/lanes, so it
-> > > > > > > > > is 6 for 24bpp and 4 lanes devices.
-> > > > > > > > >
-> > > > > > > > > PLL rate here depends on dsi_div (not tcon_div)
-> > > > > > > > >
-> > > > > > > > > Code here
-> > > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L784
-> > > > > > > > >
-> > > > > > > > > is computing the actual set rate, which depends on dsi_rate.
-> > > > > > > > >
-> > > > > > > > > lcd_rate = dclk_rate * clk_info.dsi_div;
-> > > > > > > > > dsi_rate = pll_rate / clk_info.dsi_div;
-> > > > > > > > >
-> > > > > > > > > Say if the dclk_rate 148MHz then the dsi_rate is 888MHz which set rate
-> > > > > > > > > for above link you mentioned.
-> > > > > > > > >
-> > > > > > > > > Here are the evidence with some prints.
-> > > > > > > > >
-> > > > > > > > > https://gist.github.com/openedev/9bae2d87d2fcc06b999fe48c998b7043
-> > > > > > > > > https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
-> > > > > > > >
-> > > > > > > > Ok, so we agree up to this point, and the prints confirm that the
-> > > > > > > > analysis above is the right one.
-> > > > > > > >
-> > > > > > > > > > So, the DSI clock is set to this here:
-> > > > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L805
-> > > > > > > >
-> > > > > > > > Your patch doesn't address that, so let's leave that one alone.
-> > > > > > >
-> > > > > > > Basically this is final pll set rate when sun4i_dotclock.c called the
-> > > > > > > desired rate with ccu_nkm.c so it ended the final rate with parent as
-> > > > > > > Line 8 of
-> > > > > > > https://gist.github.com/openedev/700de2e3701b2bf3ad1aa0f0fa862c9a
-> > > > > >
-> > > > > > If that's important to the driver, it should be set explicitly then,
-> > > > > > and not work by accident.
-> > > > > >
-> > > > > > > > > > The TCON *module* clock (the one in the clock controller) has been set
-> > > > > > > > > > to lcd_rate (so the pixel clock times the number of bits per lane) here:
-> > > > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L800
-> > > > > > > > > >
-> > > > > > > > > > And the PLL has been set to the same rate here:
-> > > > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L794
-> > > > > > > > > >
-> > > > > > > > > > Let's take a step back now: that function we were looking at,
-> > > > > > > > > > lcd_clk_config, is called by lcd_clk_enable, which is in turn called
-> > > > > > > > > > by disp_lcd_enable here:
-> > > > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L1328
-> > > > > > > > > >
-> > > > > > > > > > The next function being called is disp_al_lcd_cfg, and that function
-> > > > > > > > > > will hardcode the TCON dotclock divider to 4, here:
-> > > > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/disp_al.c#L240
-> > > > > > > > >
-> > > > > > > > > tcon_div from BSP point-of-view of there are two variants
-> > > > > > > > > 00) clk_info.tcon_div which is 4 and same is set the divider position
-> > > > > > > > > in SUN4I_TCON0_DCLK_REG (like above link refer)
-> > > > > > > > > 01) tcon_div which is 4 and used for edge timings computation
-> > > > > > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/lowlevel_sun50iw1/de_dsi.c#L12
-> > > > > > > > >
-> > > > > > > > > The real reason for 01) is again 4 is they set the divider to 4 in 00)
-> > > > > > > > > which is technically wrong because the dividers which used during
-> > > > > > > > > dotclock in above (dsi_div) should be used here as well. Since there
-> > > > > > > > > is no dynamic way of doing this BSP hard-coding these values.
-> > > > > > > > >
-> > > > > > > > > Patches 5,6,7 on this series doing this
-> > > > > > > > > https://patchwork.freedesktop.org/series/60847/
-> > > > > > > > >
-> > > > > > > > > Hope this explanation helps?
-> > > > > > > >
-> > > > > > > > It doesn't.
-> > > > > > > >
-> > > > > > > > The clock tree is this one:
-> > > > > > > >
-> > > > > > > > PLL(s) -> TCON module clock -> TCON dotclock.
-> > > > > > > >
-> > > > > > > > The links I mentioned above show that the clock set to lcd_rate is the
-> > > > > > > > TCON module clocks (and it should be the one taking the bpp and lanes
-> > > > > > > > into account), while the TCON dotclock uses a fixed divider of 4.
-> > > > > > >
-> > > > > > > Sorry, I can argue much other-than giving some code snips, according to [1]
-> > > > > > >
-> > > > > > > 00) Line 785, 786 with dclk_rate 148000000
-> > > > > > >
-> > > > > > > lcd_rate = dclk_rate * clk_info.dsi_div;
-> > > > > > > pll_rate = lcd_rate * clk_info.lcd_div;
-> > > > > > >
-> > > > > > > Since dsi_div is 6 (bpp/lanes), lcd_div 1
-> > > > > > >
-> > > > > > > lcd_rate = 888000000, pll_rate = 888000000
-> > > > > > >
-> > > > > > > 01)  Line 801, 804 are final rates computed as per clock driver (say
-> > > > > > > ccu_nkm in mainline)
-> > > > > > >
-> > > > > > > lcd_rate_set=891000000
-> > > > > > >
-> > > > > > > As per your comments if it would be 4 then the desired numbers are
-> > > > > > > would be 592000000 not 888000000.
-> > > > > > >
-> > > > > > > This is what I'm trying to say in all mails, and same as verified with
-> > > > > > > 2-lanes devices as well where the dsi_div is 12 so the final rate is
-> > > > > > > 290MHz * 12
-> > > > > >
-> > > > > > In the code you sent, you're forcing a divider on the internal TCON
-> > > > > > clock, while that one is fixed in the BSP.
-> > > > > >
-> > > > > > There's indeed the bpp / lanes divider, but it's used in the *parent*
-> > > > > > clock of the one you're changing.
-> > > > > >
-> > > > > > And the dsi0_clk clock you pointed out in the code snippet is yet
-> > > > > > another clock, the MIPI DSI module clock.
-> > > > >
-> > > > > Correct, look like I refereed wrong reference in the above mail. sorry
-> > > > > for the noise.
-> > > > >
-> > > > > Actually I'm trying to explain about pll_rate here which indeed
-> > > > > depends on dsi.div
-> > > > > https://github.com/BPI-SINOVOIP/BPI-M64-bsp/blob/master/linux-sunxi/drivers/video/sunxi/disp2/disp/de/disp_lcd.c#L786
-> > > > >
-> > > > > lcd_rate = dclk_rate * clk_info.dsi_div;
-> > > > > pll_rate = lcd_rate * clk_info.lcd_div;
-> > > > >
-> > > > > Say
-> > > > >
-> > > > > 1) For 148MHz dclk_rate with dsi_div is 6 (24/4) lcd_div is 1 which
-> > > > > resulting pll_rate is 888MHz.
-> > > > >
-> > > > > 2) For 30MHz dclk_rate with 4 lane and 24 RGB the resulting pll_rate is 180MHz
-> > > > >
-> > > > > 3) For 27.5MHz dclk_rate with 2 lane and 24 RGB the resulting pll_rate is 330MHz
-> > > > >
-> > > > > Here is the few more logs in code, for case 2)
-> > > > >
-> > > > > [    1.920441] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
-> > > > > [    1.920505] ideal = 180000000, rounded = 178200000
-> > > > > [    1.920509] sun4i_dclk_round_rate: div = 6 rate = 29700000
-> > > > > [    1.920514] sun4i_dclk_round_rate: min_div = 6 max_div = 6, rate = 30000000
-> > > > > [    1.920532] ideal = 1800ls and one DSI-RGB bridge. All of them do use
-> > > PLL_MIPI (pll_rate) and it indeed depends on bpp/lanes
-> > >00000, rounded = 178200000
-> > > > > [    1.920535] sun4i_dclk_round_rate: div = 6 rate = 29700000
-> > > > > [    1.920572] sun4i_dclk_recalc_rate: val = 1, rate = 178200000
-> > > > > [    1.920576] sun4i_dclk_recalc_rate: val = 1, rate = 178200000
-> > > > > [    1.920597] rate = 178200000
-> > > > > [    1.920599] parent_rate = 297000000
-> > > > > [    1.920602] reg = 0x90c00000
-> > > > > [    1.920605] _nkm.n = 3, nkm->n.offset = 0x1, nkm->n.shift = 8
-> > > > > [    1.920609] _nkm.k = 2, nkm->k.offset = 0x1, nkm->k.shift = 4
-> > > > > [    1.920612] _nkm.m = 10, nkm->m.offset = 0x1, nkm->m.shift = 0
-> > > > > [    1.920958] sun4i_dclk_set_rate div 6
-> > > > > [    1.920966] sun4i_dclk_recalc_rate: val = 6, rate = 29700000
-> > > > >
-> > > > > and clk_summary:
-> > > > >
-> > > > >     pll-video0                        1        1        1   297000000
-> > > > >         0     0  50000
-> > > > >        hdmi                           0        0        0   297000000
-> > > > >         0     0  50000
-> > > > >        tcon1                          0        0        0   297000000
-> > > > >         0     0  50000
-> > > > >        pll-mipi                       1        1        1   178200000
-> > > > >         0     0  50000
-> > > > >           tcon0                       2        2        1   178200000
-> > > > >         0     0  50000
-> > > > >              tcon-pixel-clock         1        1        1    29700000
-> > > > >         0     0  50000
-> > > > >        pll-video0-2x                  0        0        0   594000000
-> > > > >         0     0  50000
-> > > >
-> > > > This discussion is going nowhere. I'm telling you that your patch
-> > > > doesn't apply the divider you want on the proper clock, and you're
-> > > > replying that indeed, you're applying it on the wrong clock.
-> > > >
-> > > > It might work by accident in your case, but the board I have here
-> > > > clearly indicates otherwise, so there's two possible way out here:
-> > > >
-> > > >   - Either you apply that divider to the TCON *module* clock, and not
-> > > >     the dclk
-> > > >
-> > > >   - Or you point to somewhere in the allwinner code where the bpp /
-> > > >     lanes divider is used for the dclk divider.
-> > >
-> > > I don't know how to proceed further on this, as you say it might work
-> > > in accident but I have tested this in A33, A64 and R40 with 4
-> > > different DSI panels and one DSI-RGB bridge. All of them do use
-> > > PLL_MIPI (pll_rate) and it indeed depends on bpp/lanes
-> > >
-> > > 4-lane, 24-bit: Novatek NT35596 panel
-> > > 4-lane, 24-bit: Feiyang, FY07024di26a30d panel
-> > > 4-lane, 24-bit: Bananapi-s070wv20 panel
-> > > 2-lane, 24-bit: Techstar,ts8550b panel
-> > >
-> > > and
-> > >
-> > > 4-lane, 24-bit, ICN6211 DSI-to-RGB bridge panel
-> > >
-> > > All above listed panels and bridges are working as per BSP and do
-> > > follow bpp/lanes and for DIVIDER 4 no panel is working.
-> >
-> > Look. I'm not saying that there's no issue, I'm saying that your
-> > patch, applied to the clock you're applying it to, doesn't make sense
-> > and isn't what the BSP does.
->
-> tcon-pixel clock is the rate that you want to achive on display side
-> and if you have 4 lanes 32bit or lanes and different bit number that
-> you need to have a clock that is able to put outside bits and speed
-> equal to pixel-clock * bits / lanes. so If you want a pixel-clock of
-> 40 mhz and you have 32bits and 4 lanes you need to have a clock of
-> 40 * 32 / 4 in no-burst mode. I think that this is done but most of
-> the display.
+> io-pgtable backend should be allowing oas > 32 when
+> IO_PGTABLE_QUIRK_ARM_MTK_4GB is set, and then enforcing that itself.
 
-So this is what the issue is then?
+About oas, It looks the oas doesn't work in current the v7s. 
 
-This one does make sense, and you should just change the rate in the
-call to clk_set_rate in sun4i_tcon0_mode_set_cpu.
+How about I add a new simple preparing patch like this(copy from
+io-pgtable-arm.c)?
 
-I'm still wondering why that hasn't been brought up in either the
-discussion or the commit log before though.
+==========================================
+--- a/drivers/iommu/io-pgtable-arm-v7s.c
++++ b/drivers/iommu/io-pgtable-arm-v7s.c
+@@ -495,7 +495,8 @@ static int arm_v7s_map(struct io_pgtable_ops *ops,
+unsigned long iova,
+        if (!(prot & (IOMMU_READ | IOMMU_WRITE)))
+                return 0;
 
-> Now in burst mode I don't know how should work the calculation of
-> the clock for the require bandwidth and even I understand your
-> comment I would like to have your clock tree after you boot on the
-> display side and if it is possible I want to assemble a kit like you
-> have.
+-       if (WARN_ON(upper_32_bits(iova) || upper_32_bits(paddr)))
++       if (WARN_ON(iova >= (1ULL << data->iop.cfg.ias) ||
++                   paddr >= (1ULL << data->iop.cfg.oas)))
+                return -ERANGE;
 
-The setup is probably going to be a bit difficult to reproduce, it's a
-prototype that I have that can't really be found anywhere. Jagan asked
-me on IRC for the reference, and he found the part, but it's unclear
-to me if it can be easily adapted to a common board.
+===============================================
 
-However, I'm not even sure we need this. I'll test the next version
-and let you know if it works.
+Then, change the oas in MTK 4GB mode, like this:
 
-Maxime
+================================================
+--- a/drivers/iommu/io-pgtable-arm-v7s.c
++++ b/drivers/iommu/io-pgtable-arm-v7s.c
+@@ -721,7 +721,9 @@ static struct io_pgtable
+*arm_v7s_alloc_pgtable(struct io_pgtable_cfg *cfg,
+ {
+        struct arm_v7s_io_pgtable *data;
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+-       if (cfg->ias > ARM_V7S_ADDR_BITS || cfg->oas >
+ARM_V7S_ADDR_BITS)
++       if (cfg->ias > ARM_V7S_ADDR_BITS ||
++           (cfg->oas > ARM_V7S_ADDR_BITS &&
++            !(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_4GB)))
+                return NULL;
 
---zbkqgrivmn6xbgfb
-Content-Type: application/pgp-signature; name="signature.asc"
+        if (cfg->quirks & ~(IO_PGTABLE_QUIRK_ARM_NS |
 
------BEGIN PGP SIGNATURE-----
+--- a/drivers/iommu/mtk_iommu.c
++++ b/drivers/iommu/mtk_iommu.c
+@@ -274,7 +274,7 @@ static int mtk_iommu_domain_finalise(struct
+mtk_iommu_domain *dom)
+                        IO_PGTABLE_QUIRK_TLBI_ON_MAP,
+                .pgsize_bitmap = mtk_iommu_ops.pgsize_bitmap,
+                .ias = 32,
+-               .oas = 32,
++               .oas = 34,
+                .tlb = &mtk_iommu_gather_ops,
+                .iommu_dev = data->dev,
+        };
+================================================
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXScI3AAKCRDj7w1vZxhR
-xUbaAP4xJOkVcsTU6YsP7PgrbEEVYCxfND5F3dzzY7CYkSmGmAD8CWI81jn1Cfqz
-2/GeGO1J8aRi/AB2z0tHebbRQkgByg0=
-=rDWa
------END PGP SIGNATURE-----
 
---zbkqgrivmn6xbgfb--
+> 
+> > In order to unify code, in the "4GB mode", we add the bit32 for the
+> > physical address manually in our driver.
+> > 
+> > Correspondingly, Adding bit32 and bit33 for the PA in the iova_to_phys
+> > has to been moved into v7s.
+> > 
+> > Regarding whether the pagetable address could be over 4GB, the mt8183
+> > support it while the previous mt8173 don't. thus keep it as is.
+> > 
+> > Signed-off-by: Yong Wu <yong.wu@mediatek.com>
+> > Reviewed-by: Robin Murphy <robin.murphy@arm.com>
+> > Reviewed-by: Evan Green <evgreen@chromium.org>
+> > ---
+> > Comparing with the previous one:
+> > 1). Add a new patch "iommu/mediatek: Fix iova_to_phys PA start for 4GB
+> > mode" before this one. Thus rebase it.
+> > A little difference: in the 4gb mode, we add bit32 for PA. and the PA got
+> > from iova_to_phys always have bit32 here, thus we should adjust it to locate
+> > the valid pa.
+> > 2). Add this code suggested from Evan.
+> >  if (!data->plat_data->has_4gb_mode)
+> > 	       data->enable_4GB = false;
+> > ---
+> >  drivers/iommu/io-pgtable-arm-v7s.c | 31 ++++++++++++++++++++++++-------
+> >  drivers/iommu/mtk_iommu.c          | 29 ++++++++++++++++++-----------
+> >  drivers/iommu/mtk_iommu.h          |  1 +
+> >  3 files changed, 43 insertions(+), 18 deletions(-)
+> > 
+> > diff --git a/drivers/iommu/io-pgtable-arm-v7s.c b/drivers/iommu/io-pgtable-arm-v7s.c
+> > index 94c38db..4077822 100644
+> > --- a/drivers/iommu/io-pgtable-arm-v7s.c
+> > +++ b/drivers/iommu/io-pgtable-arm-v7s.c
+> > @@ -123,7 +123,9 @@
+> >  #define ARM_V7S_TEX_MASK		0x7
+> >  #define ARM_V7S_ATTR_TEX(val)		(((val) & ARM_V7S_TEX_MASK) << ARM_V7S_TEX_SHIFT)
+> >  
+> > -#define ARM_V7S_ATTR_MTK_4GB		BIT(9) /* MTK extend it for 4GB mode */
+> > +/* MediaTek extend the two bits below for over 4GB mode */
+> > +#define ARM_V7S_ATTR_MTK_PA_BIT32	BIT(9)
+> > +#define ARM_V7S_ATTR_MTK_PA_BIT33	BIT(4)
+> >  
+> >  /* *well, except for TEX on level 2 large pages, of course :( */
+> >  #define ARM_V7S_CONT_PAGE_TEX_SHIFT	6
+> > @@ -190,13 +192,22 @@ static dma_addr_t __arm_v7s_dma_addr(void *pages)
+> >  static arm_v7s_iopte paddr_to_iopte(phys_addr_t paddr, int lvl,
+> >  				    struct io_pgtable_cfg *cfg)
+> >  {
+> > -	return paddr & ARM_V7S_LVL_MASK(lvl);
+> > +	arm_v7s_iopte pte = paddr & ARM_V7S_LVL_MASK(lvl);
+> > +
+> > +	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_4GB) {
+> > +		if (paddr & BIT_ULL(32))
+> > +			pte |= ARM_V7S_ATTR_MTK_PA_BIT32;
+> > +		if (paddr & BIT_ULL(33))
+> > +			pte |= ARM_V7S_ATTR_MTK_PA_BIT33;
+> > +	}
+> > +	return pte;
+> >  }
+> >  
+> >  static phys_addr_t iopte_to_paddr(arm_v7s_iopte pte, int lvl,
+> >  				  struct io_pgtable_cfg *cfg)
+> >  {
+> >  	arm_v7s_iopte mask;
+> > +	phys_addr_t paddr;
+> >  
+> >  	if (ARM_V7S_PTE_IS_TABLE(pte, lvl))
+> >  		mask = ARM_V7S_TABLE_MASK;
+> > @@ -205,7 +216,14 @@ static phys_addr_t iopte_to_paddr(arm_v7s_iopte pte, int lvl,
+> >  	else
+> >  		mask = ARM_V7S_LVL_MASK(lvl);
+> >  
+> > -	return pte & mask;
+> > +	paddr = pte & mask;
+> > +	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_4GB) {
+> > +		if (pte & ARM_V7S_ATTR_MTK_PA_BIT32)
+> > +			paddr |= BIT_ULL(32);
+> > +		if (pte & ARM_V7S_ATTR_MTK_PA_BIT33)
+> > +			paddr |= BIT_ULL(33);
+> > +	}
+> > +	return paddr;
+> 
+> I think this relies on CONFIG_PHYS_ADDR_T_64BIT, which isn't always set on
+> 32-bit ARM.
+
+This was discussed at [1]. Robin commented that this is not needed and
+build won't complain about this.
+
+[1]
+http://lists.infradead.org/pipermail/linux-mediatek/2018-November/015688.html
+
+> 
+> Will
+
+
