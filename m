@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6901A6611E
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 23:28:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2C6B766126
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 23:30:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728792AbfGKV2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 17:28:19 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:36214 "EHLO gloria.sntech.de"
+        id S1728947AbfGKVaX convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 11 Jul 2019 17:30:23 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:36312 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726446AbfGKV2T (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 11 Jul 2019 17:28:19 -0400
+        id S1726446AbfGKVaX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Jul 2019 17:30:23 -0400
 Received: from ip5f5a6320.dynamic.kabel-deutschland.de ([95.90.99.32] helo=diego.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <heiko@sntech.de>)
-        id 1hlgbu-0006n4-SN; Thu, 11 Jul 2019 23:28:14 +0200
+        id 1hlgdn-0006o7-SB; Thu, 11 Jul 2019 23:30:11 +0200
 From:   Heiko =?ISO-8859-1?Q?St=FCbner?= <heiko@sntech.de>
 To:     Douglas Anderson <dianders@chromium.org>
 Cc:     Thierry Reding <thierry.reding@gmail.com>,
@@ -27,54 +27,50 @@ Cc:     Thierry Reding <thierry.reding@gmail.com>,
         Ezequiel Garcia <ezequiel@collabora.com>,
         Enric =?ISO-8859-1?Q?Balletb=F2?= <enric.balletbo@collabora.com>,
         Rob Herring <robh+dt@kernel.org>, mka@chromium.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Eric Anholt <eric@anholt.net>,
+        Jeffy Chen <jeffy.chen@rock-chips.com>,
+        =?ISO-8859-1?Q?St=E9phane?= Marchesin <marcheu@chromium.org>,
+        devicetree@vger.kernel.org,
+        Brian Norris <briannorris@chromium.org>,
+        Klaus Goger <klaus.goger@theobroma-systems.com>,
+        linux-kernel@vger.kernel.org,
+        Dmitry Torokhov <dmitry.torokhov@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
         linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v5 7/7] ARM: dts: rockchip: Specify rk3288-veyron-minnie's display timings
-Date:   Thu, 11 Jul 2019 23:28:14 +0200
-Message-ID: <10427933.3dknIRnSiX@diego>
-In-Reply-To: <20190401171724.215780-8-dianders@chromium.org>
-References: <20190401171724.215780-1-dianders@chromium.org> <20190401171724.215780-8-dianders@chromium.org>
+Subject: Re: [PATCH v5 3/7] arm64: dts: rockchip: Specify override mode for kevin panel
+Date:   Thu, 11 Jul 2019 23:30:10 +0200
+Message-ID: <2176386.nGWJ3FArxS@diego>
+In-Reply-To: <20190401171724.215780-4-dianders@chromium.org>
+References: <20190401171724.215780-1-dianders@chromium.org> <20190401171724.215780-4-dianders@chromium.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Montag, 1. April 2019, 19:17:24 CEST schrieb Douglas Anderson:
-> Just like we did for rk3288-veyron-chromebook, we want to be able to
-> use one of the fixed PLLs in the system to make the pixel clock for
-> minnie.
+Am Montag, 1. April 2019, 19:17:20 CEST schrieb Douglas Anderson:
+> From: Sean Paul <seanpaul@chromium.org>
 > 
-> Specifying these timings matches us with how the display is used on
-> the downstream Chrome OS kernel.  See https://crrev.com/c/323211.
+> This patch adds an override mode for kevin devices. The mode increases
+> both back porches to allow a pixel clock of 26666kHz as opposed to the
+> 'typical' value of 252750kHz. This is needed to avoid interference with
+> the touch digitizer on these laptops.
 > 
-> Unlike what we did for rk3288-veyron-chromebook, this CL actually
-> changes the timings (though not the pixel clock) that is used when
-> using the upstream kernel.  Booting up a minnie shows that it ended up
-> with a 66.67 MHz pixel clock but it was still using the
-> porches/blankings it would have wanted for a 72.5 MHz pixel clock.
-> 
-> NOTE: compared to the downstream kernel, this seems to cause a
-> slightly different result reported in the 'modetest' command on a
-> Chromebook.  The downstream kernel shows:
->   1280x800 60 1280 1298 1330 1351 800 804 822 830 66667
-> 
-> With this patch we have:
->   1280x800 59 1280 1298 1330 1351 800 804 822 830 66666
-> 
-> Specifically modetest was reporting 60 Hz on the downstream kernel but
-> the upstream kernel does the math and comesup with 59 (because we
-> actually achieve 59.45 Hz).  Also upstream doesn't round the Hz up
-> when converting to kHz--it seems to truncate.
-> 
-> ALSO NOTE: when I look at the EDID from the datasheet, I see:
->   -hsync -vsync
-> ...but it seems like we've never actually run with that so I've
-> continued leaving that out.
-> 
+> Cc: Doug Anderson <dianders@chromium.org>
+> Cc: Eric Anholt <eric@anholt.net>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Cc: Jeffy Chen <jeffy.chen@rock-chips.com>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Stéphane Marchesin <marcheu@chromium.org>
+> Cc: Thierry Reding <thierry.reding@gmail.com>
+> Cc: devicetree@vger.kernel.org
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: linux-rockchip@lists.infradead.org
+> Signed-off-by: Sean Paul <seanpaul@chromium.org>
+> Tested-by: Enric Balletbo i Serra <enric.balletbo@collabora.com>
 > Signed-off-by: Douglas Anderson <dianders@chromium.org>
 
 applied for 5.4
