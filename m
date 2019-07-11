@@ -2,99 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCE07651E5
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 08:39:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA288651ED
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 08:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726997AbfGKGjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 02:39:25 -0400
-Received: from smtp-fw-2101.amazon.com ([72.21.196.25]:4177 "EHLO
-        smtp-fw-2101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725963AbfGKGjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 02:39:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1562827163; x=1594363163;
-  h=from:to:subject:date:message-id:mime-version;
-  bh=3yDMhteaqF5Imx/WRe77nSJqYH+HoX6HUtBihhrqZRc=;
-  b=qEeq3U7YRj8ufXlxSwYlp9pRdmrOok8Wpid6Buwuv4y3q4r6xOw0vusn
-   m0tQr6dTQpVzACHTMQkrBAaSOp0ZjcTYY9l/AUmircJV9FzMRVx+7hMZr
-   oDZIwBzKeRZXa7GAkE7pvhOZ60EoQzZwWN/vuAq0Dk0ugSWoKy6gdSSUj
-   A=;
-X-IronPort-AV: E=Sophos;i="5.62,476,1554768000"; 
-   d="scan'208";a="741294779"
-Received: from iad6-co-svc-p1-lb1-vlan2.amazon.com (HELO email-inbound-relay-2a-90c42d1d.us-west-2.amazon.com) ([10.124.125.2])
-  by smtp-border-fw-out-2101.iad2.amazon.com with ESMTP; 11 Jul 2019 06:39:20 +0000
-Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
-        by email-inbound-relay-2a-90c42d1d.us-west-2.amazon.com (Postfix) with ESMTPS id BC8D7A2277;
-        Thu, 11 Jul 2019 06:39:19 +0000 (UTC)
-Received: from EX13D01EUB001.ant.amazon.com (10.43.166.194) by
- EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 11 Jul 2019 06:39:19 +0000
-Received: from udc4a3e82dbc15a031435.hfa15.amazon.com (10.43.160.211) by
- EX13D01EUB001.ant.amazon.com (10.43.166.194) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 11 Jul 2019 06:39:11 +0000
-From:   Talel Shenhar <talel@amazon.com>
-To:     <robh+dt@kernel.org>, <marc.zyngier@arm.com>, <tglx@linutronix.de>,
-        <jason@lakedaemon.net>, <mark.rutland@arm.com>,
-        <nicolas.ferre@microchip.com>, <mchehab+samsung@kernel.org>,
-        <shawn.lin@rock-chips.com>, <gregkh@linuxfoundation.org>,
-        <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
-        <talel@amazon.com>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: [PATCH 1/1] dt-bindings: interrupt-controller: al-fic: remove redundant binding
-Date:   Thu, 11 Jul 2019 09:38:59 +0300
-Message-ID: <1562827139-1666-1-git-send-email-talel@amazon.com>
-X-Mailer: git-send-email 2.7.4
+        id S1727479AbfGKGnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 02:43:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53520 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725963AbfGKGnI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Jul 2019 02:43:08 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D6B7F20838;
+        Thu, 11 Jul 2019 06:43:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562827388;
+        bh=PbD+vmI4bolEzqXxV3CbUbl9K6yA4WOQJXUIUJn9wpQ=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=zBxJvMzckpLQjJBAtUURZbYk9Uk2Zi8u1iTyFBrbw30JLwDtd/eeoifomILtKkVp3
+         WKmb8cA8lKoltqrAUTxD4mi0SIhVobLgzUWUwoK3acvlEBLwpS5Nr1JW3i5lvRLz5y
+         ApQ14ozND+1mDju9O64HlwXtw5s4R6+2+7Vk0xbk=
+Date:   Thu, 11 Jul 2019 08:43:05 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Ran Wang <ran.wang_1@nxp.com>
+Cc:     Sasha Levin <sashal@kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "stable@vger.kernel.org" <stable@vger.kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Xiaobo Xie <xiaobo.xie@nxp.com>
+Subject: Re: [PATCH AUTOSEL 5.1 08/39] arm64: dts: ls1028a: Fix CPU idle fail.
+Message-ID: <20190711064305.GA10089@kroah.com>
+References: <20190703021514.17727-1-sashal@kernel.org>
+ <20190703021514.17727-8-sashal@kernel.org>
+ <DB8PR04MB6826A4A8CE604F2570DC1EA7F1F30@DB8PR04MB6826.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.43.160.211]
-X-ClientProxiedBy: EX13D29UWA004.ant.amazon.com (10.43.160.33) To
- EX13D01EUB001.ant.amazon.com (10.43.166.194)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <DB8PR04MB6826A4A8CE604F2570DC1EA7F1F30@DB8PR04MB6826.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove dt binding description for standard binding.
+On Thu, Jul 11, 2019 at 05:04:24AM +0000, Ran Wang wrote:
+> Hi Sasha, 
+> 
+>     Thanks for helping port this patch to stable.
+>     May I know if I can submit other bug fixes which has been accepted by upstream to stable by myself?
+>     If yes, where I can find related process for reference?
 
-Signed-off-by: Talel Shenhar <talel@amazon.com>
----
- .../bindings/interrupt-controller/amazon,al-fic.txt      | 16 +++++++---------
- 1 file changed, 7 insertions(+), 9 deletions(-)
-
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt b/Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt
-index 4e82fd5..c676b03 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/amazon,al-fic.txt
-@@ -5,21 +5,19 @@ Required properties:
- - compatible: should be "amazon,al-fic"
- - reg: physical base address and size of the registers
- - interrupt-controller: identifies the node as an interrupt controller
--- #interrupt-cells: must be 2.
--  First cell defines the index of the interrupt within the controller.
--  Second cell is used to specify the trigger type and must be one of the
--  following:
--    - bits[3:0] trigger type and level flags
--	1 = low-to-high edge triggered
--	4 = active high level-sensitive
--- interrupt-parent: specifies the parent interrupt controller.
-+- #interrupt-cells : must be 2. Specifies the number of cells needed to encode
-+  an interrupt source. Supported trigger types are low-to-high edge
-+  triggered and active high level-sensitive.
- - interrupts: describes which input line in the interrupt parent, this
-   fic's output is connected to. This field property depends on the parent's
-   binding
- 
-+Please refer to interrupts.txt in this directory for details of the common
-+Interrupt Controllers bindings used by client devices.
-+
- Example:
- 
--amazon_fic: interrupt-controller@0xfd8a8500 {
-+amazon_fic: interrupt-controller@fd8a8500 {
- 	compatible = "amazon,al-fic";
- 	interrupt-controller;
- 	#interrupt-cells = <2>;
--- 
-2.7.4
+Sure!, please read:
+    https://www.kernel.org/doc/html/latest/process/stable-kernel-rules.html
 
