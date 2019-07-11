@@ -2,173 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8690F65FEB
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 21:17:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9548765FF8
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 21:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726689AbfGKTRD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 15:17:03 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:43477 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726207AbfGKTRC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 15:17:02 -0400
-Received: by mail-ot1-f68.google.com with SMTP id h59so3094894otb.10
-        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2019 12:17:01 -0700 (PDT)
+        id S1728394AbfGKT0c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 15:26:32 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:45228 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728354AbfGKT0b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 15:26:31 -0400
+Received: by mail-lj1-f195.google.com with SMTP id m23so6902962lje.12
+        for <devicetree@vger.kernel.org>; Thu, 11 Jul 2019 12:26:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=eUSi3tY9WQJoS1EY1aQXpWympsTqMdn0wVqqZqVdQVk=;
-        b=camATY/NzLRiATqzHBSW98RoE1F6AG2h2nePD+8Gk0Wz6ld60tDwdfxnWllAlmsPC7
-         gJvgepZ+57xnsETY8vt58D4GWCUEFDBocuGs4tVA5m/lyEVEiVpjJJ5HTFryb0qLF467
-         hp15q3BDSM1b8agHxbKLbt1CgRB79eLzxHwwQ=
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1Gj/TpYGciG5OCmfbf2dVn6FNmz3afk+DosbRV4MzoY=;
+        b=SEuD7woYh9OiLSQ1qqz/ru6e3z42i2sBTpzp8MOwXfr7/I//sRjs+uMPX7Uo/WUtIs
+         +AwJVNrx3GqT2kwzv3pSL+VHr0NLxNPaFkjII1VDIRgs99twXT0eBytNhdx/yFwvy2lN
+         hqE6hLa4AwQSyZ5Uq5JGDUvkqjBS3OnLM/mNEAo7yqYb/bJSDeDx1HqZ1OWLN/QIHvJC
+         oZc12rA0Jp/ZDSkfpQDwufjD9Zu66J8QqnnlIo5Rk+H3P9eR8IQ0xYVMoO97sTQW4Xbe
+         3Ui0eh2fGCWuhxiRNtCiD29GEt8YFc4IsNdQiPVoehP3xpWACHJpaHEn9OCeYUOOlCKE
+         mTnA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=eUSi3tY9WQJoS1EY1aQXpWympsTqMdn0wVqqZqVdQVk=;
-        b=NkgP6ft6FnkJTUSgFH8ijCNhUz8bdg+USHTDTVFGE2pHoApjSbGpmjHRQ/2sILN6Bc
-         BF2pnKFRVUQN/4Jr4o9jVf+GAwRdnCbfH5wc4sR+QPFv0vzGcUSOP1Bvu6d2CJrs0rQ1
-         OsrU6fdu+fELAdSAdNlGeiFgWkXM6uKyzprbdlUwPLZtqquBrb9nZuIoay9HL20Omn6k
-         8aOAZBrzwcEpx7q1m/alViDbKzqIWh32iSJuQIQ3Y/HD9IxBzv1fNaaTDYTcuSIOC9wd
-         APhD+g7lD8NLXu0VIJnoEtFWsRgUkhk/wNMcTpi1wYjCzWYvtSmE6hjq6rJR7MIsHl/T
-         ibiA==
-X-Gm-Message-State: APjAAAVaKtJvn+13bVYiOxSMP8T9b7J08qeVbdiri86tiV7HIGRecUjm
-        nrGhe8aRKWgYH/G16IeS5lH1Ck7q9fn/5Ye0SxEo7Q==
-X-Google-Smtp-Source: APXvYqyT3azAYT1KYEzwCu0KzckgoxzeydeLtzUfvllYHq5t/nPXgLIPQhVx2K9uef+PQK+83q8EDA+oX8va/BDSf+w=
-X-Received: by 2002:a9d:27c3:: with SMTP id c61mr4626820otb.291.1562872621393;
- Thu, 11 Jul 2019 12:17:01 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=1Gj/TpYGciG5OCmfbf2dVn6FNmz3afk+DosbRV4MzoY=;
+        b=B0swUmuT1AeijxCEuJZDcaBij1yKlWMmfMuNkrN2OGk5DrNeG8yNY3KfzC1+esxBDS
+         c+3tkT0a41qiv5MYL/iEEgGbPh571SO7300+OYzTrKwfwEPBIF9VVA4TfNf3xYhQCvXD
+         ruGT3WafoFvd4zyGWQdtv7UYUwvawEcC+Mc+0zsXpXS3hTOYijuq9I8tgVlpm1E33xS0
+         cZHq1Sea/qjN7Y9eDYVeMwCVI6I5ofKCRrpFl5BUtCQSC1SVMmL2xNDwKeRP5o6SEzdB
+         p68Dm9FOKNYz5l0D8d7P0aoF1AW+jm5ZojRtJKK9rWLVAnjLbtwzO00/TwF/ZbQCAMGI
+         weDg==
+X-Gm-Message-State: APjAAAUK7q4Tj+BAj2+DpKbxtdsDvDHE3H1sKsKwHWWfiW0xWZWcTQs1
+        JGyShHK60b3DLp3jpRS52ZbD1g==
+X-Google-Smtp-Source: APXvYqw0NR2+TFc5SfbPRhU4TviTWXjU5RRXRUxYbST9Ry9aqWtbT5Ta93nbQMGF/Y7Ssa+Uh36+Fg==
+X-Received: by 2002:a2e:9b84:: with SMTP id z4mr3542327lji.75.1562873189537;
+        Thu, 11 Jul 2019 12:26:29 -0700 (PDT)
+Received: from wasted.cogentembedded.com ([2a00:1fa0:6a9:2c74:93e5:edca:9c98:290d])
+        by smtp.gmail.com with ESMTPSA id j14sm1122764ljc.67.2019.07.11.12.26.27
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 11 Jul 2019 12:26:28 -0700 (PDT)
+Subject: Re: [PATCH v8 3/5] mtd: Add support for HyperBus memory devices
+To:     Vignesh Raghavendra <vigneshr@ti.com>,
+        Boris Brezillon <bbrezillon@kernel.org>,
+        Marek Vasut <marek.vasut@gmail.com>,
+        Richard Weinberger <richard@nod.at>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-mtd@lists.infradead.org,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        devicetree@vger.kernel.org, Mason Yang <masonccyang@mxic.com.tw>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Tokunori Ikegami <ikegami.t@gmail.com>
+References: <20190625075746.10439-1-vigneshr@ti.com>
+ <20190625075746.10439-4-vigneshr@ti.com>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Organization: Cogent Embedded
+Message-ID: <e5a7866d-bc34-887d-31d3-de4f745c8d65@cogentembedded.com>
+Date:   Thu, 11 Jul 2019 22:26:27 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.2.1
 MIME-Version: 1.0
-References: <20190401171724.215780-1-dianders@chromium.org>
- <20190401171724.215780-3-dianders@chromium.org> <20190630202246.GB15102@ravnborg.org>
- <20190630205514.GA17046@ravnborg.org> <CAD=FV=WH4kmhQA0kbKcAUx=oOeqTZiQOFCXYpVWwq+mG7Y7ofA@mail.gmail.com>
- <20190708175606.GB3511@ravnborg.org> <CAD=FV=VdkPLwyGhSnrHCcduQAPwby35Mqhk_r=O595bMoMT=6w@mail.gmail.com>
-In-Reply-To: <CAD=FV=VdkPLwyGhSnrHCcduQAPwby35Mqhk_r=O595bMoMT=6w@mail.gmail.com>
-From:   Sean Paul <seanpaul@chromium.org>
-Date:   Thu, 11 Jul 2019 15:16:50 -0400
-Message-ID: <CAEqLBR=jmc1zs75vfVP2b4d4dpLJjNpUX=5W5AYyCtCoLvK59A@mail.gmail.com>
-Subject: Re: [PATCH v5 2/7] drm/panel: simple: Add ability to override typical timing
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Sam Ravnborg <sam@ravnborg.org>, devicetree@vger.kernel.org,
-        David Airlie <airlied@linux.ie>,
-        Jeffy Chen <jeffy.chen@rock-chips.com>,
-        LKML <linux-kernel@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Boris Brezillon <boris.brezillon@collabora.com>,
-        =?UTF-8?Q?Enric_Balletb=C3=B2?= <enric.balletbo@collabora.com>,
-        =?UTF-8?Q?St=C3=A9phane_Marchesin?= <marcheu@chromium.org>,
-        Ezequiel Garcia <ezequiel@collabora.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190625075746.10439-4-vigneshr@ti.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 10, 2019 at 6:56 PM Doug Anderson <dianders@chromium.org> wrote:
->
-> Hi,
->
-> On Mon, Jul 8, 2019 at 10:56 AM Sam Ravnborg <sam@ravnborg.org> wrote:
-> >
-> > On Mon, Jul 01, 2019 at 09:39:06AM -0700, Doug Anderson wrote:
-> > > Hi,
-> > >
-> > > On Sun, Jun 30, 2019 at 1:55 PM Sam Ravnborg <sam@ravnborg.org> wrote:
-> > > >
-> > > > Hi Douglas.
-> > > >
-> > > > > > +
-> > > > > > +   /* Only add timings if override was not there or failed to validate */
-> > > > > > +   if (num == 0 && panel->desc->num_timings)
-> > > > > > +           num = panel_simple_get_timings_modes(panel);
-> > > > > > +
-> > > > > > +   /*
-> > > > > > +    * Only add fixed modes if timings/override added no mode.
-> > > > >
-> > > > > This part I fail to understand.
-> > > > > If we have a panel where we in panel-simple have specified the timings,
-> > > > > and done so using display_timing so with proper {min, typ, max} then it
-> > > > > should be perfectly legal to specify a more precise variant in the DT
-> > > > > file.
-> > > > > Or what did I miss here?
-> > > >
-> > > > Got it now.
-> > > > If display_mode is used for timings this is what you call "fixed mode".
-> > > > Hmm, if I got confused someone else may also be confused by this naming.
-> > >
-> > > The name "fixed mode" comes from the old code, though I guess in the
-> > > old code it used to refer to a mode that came from either the
-> > > display_timing or the display_mode.
-> > >
-> > > How about if I call it "panel_simple_get_from_fixed_display_mode"?
-> > > ...or if you have another suggestion feel free to chime in.
-> > What we really want to distingush here is the use of display_mode
-> > and display_timings (if I got the names right).
-> > That display_mode specify a fixed timing and display_timing specify
-> > a valid range is something in the semantics of the two types.
-> > So naming that refer to display_mode versus display_timing will make the
-> > code simpler to understand. and then a nice comment that when
-> > display_mode
-> > is used one looses the possibility to use override_mode.
-> > That would be fine to have in the struct in the driver.
->
-> OK, I can change the names here and try to find a good place to add a comment.
->
->
-> > > NOTE: Since this feedback is minor and this patch has been outstanding
-> > > for a while (and is blocking other work), I am assuming that the best
-> > > path forward is for Heiko to land this patch with Thierry's Ack and
-> > > I'll send a follow-up.  Please yell if you disagree.
-> > Let's give the patches a spin more as we have passed the possibility for
-> > the current merge window.
->
-> Any way I can convince you to change your mind here?  There are no
-> functional changes requested so far in your feedback and no bugs--it's
-> just a few variable names and comments.  By landing the existing
-> patches as-is:
->
-> 1. We stop spamming all the people CCed on this whole series (which
-> includes device tree patches) that might be interested in the series
-> as a whole but aren't interested in details.
->
-> 2. We can debate the bikeshed-type issues on their own merit and I
-> don't have to debate removing existing Acks / Reviewed-by / Tested-by
-> tags as I make changes.
->
-> 3. Even if it's not a good time to land the patches right now we know
-> that these patches will be ready to land as soon as the window opens.
-> As I mentioned earlier these patches are blocking other work [1] and
-> landing that patch is actually preventing Matthias from submitting
-> another series of patches to add support for rk3288-veyron-tiger and
-> rk3288-veyron-fievel.  Certainly I know that upstream doesn't make a
-> policy of landing things just to suit the timelines of a downstream
-> project, but in this case there seems very little downsides to landing
-> the existing patches and taking a later cleanup patch.
->
+Hello!
 
-[sending from my @chromium.org address so any appearance of bias is
-explicit :) ]
+On 06/25/2019 10:57 AM, Vignesh Raghavendra wrote:
 
-Agree with Doug here, the naming and casting discussion is pretty
-subjective and non-functional. We've got an Ack from Thierry and a
-Review from Boris (both seasoned drm_panel'ers), this patch has been
-sitting in review for a while. Let's not let the perfect be the enemy
-of the good.
+> Cypress' HyperBus is Low Signal Count, High Performance Double Data Rate
+> Bus interface between a host system master and one or more slave
+> interfaces. HyperBus is used to connect microprocessor, microcontroller,
+> or ASIC devices with random access NOR flash memory (called HyperFlash)
+> or self refresh DRAM (called HyperRAM).
+> 
+> Its a 8-bit data bus (DQ[7:0]) with  Read-Write Data Strobe (RWDS)
+> signal and either Single-ended clock(3.0V parts) or Differential clock
+> (1.8V parts). It uses ChipSelect lines to select b/w multiple slaves.
+> At bus level, it follows a separate protocol described in HyperBus
+> specification[1].
+> 
+> HyperFlash follows CFI AMD/Fujitsu Extended Command Set (0x0002) similar
+> to that of existing parallel NORs. Since HyperBus is x8 DDR bus,
+> its equivalent to x16 parallel NOR flash with respect to bits per clock
+> cycle. But HyperBus operates at >166MHz frequencies.
+> HyperRAM provides direct random read/write access to flash memory
+> array.
+> 
+> But, HyperBus memory controllers seem to abstract implementation details
+> and expose a simple MMIO interface to access connected flash.
+> 
+> Add support for registering HyperFlash devices with MTD framework. MTD
+> maps framework along with CFI chip support framework are used to support
+> communicating with flash.
+> 
+> Framework is modelled along the lines of spi-nor framework. HyperBus
+> memory controller (HBMC) drivers calls hyperbus_register_device() to
+> register a single HyperFlash device. HyperFlash core parses MMIO access
+> information from DT, sets up the map_info struct, probes CFI flash and
+> registers it with MTD framework.
+> 
+> Some HBMC masters need calibration/training sequence[3] to be carried
+> out, in order for DLL inside the controller to lock, by reading a known
+> string/pattern. This is done by repeatedly reading CFI Query
+> Identification String. Calibration needs to be done before trying to detect
+> flash as part of CFI flash probe.
+> 
+> HyperRAM is not supported at the moment.
+> 
+> HyperBus specification can be found at[1]
+> HyperFlash datasheet can be found at[2]
+> 
+> [1] https://www.cypress.com/file/213356/download
+> [2] https://www.cypress.com/file/213346/download
+> [3] http://www.ti.com/lit/ug/spruid7b/spruid7b.pdf
+>     Table 12-5741. HyperFlash Access Sequence
+> 
+> Signed-off-by: Vignesh Raghavendra <vigneshr@ti.com>
+[...]
 
-Sean
+> diff --git a/drivers/mtd/hyperbus/hyperbus-core.c b/drivers/mtd/hyperbus/hyperbus-core.c
+> new file mode 100644
+> index 000000000000..63a9e64895bc
+> --- /dev/null
+> +++ b/drivers/mtd/hyperbus/hyperbus-core.c
+> @@ -0,0 +1,154 @@
+[...]
+> +int hyperbus_register_device(struct hyperbus_device *hbdev)
+> +{
+[...]
+> +	map->name = dev_name(dev);
+> +	map->bankwidth = 2;
 
->
-> > I am on vacation at the moment and thus slow in responses, but will be back
-> > at the home office next week and will be more responsive again.
-> >
-> >         Sam - who is enjoying the alps in Austria
->
-> Hope you have had a great vacation!
->
-> [1] https://lkml.kernel.org/r/20190625222629.154619-1-mka@chromium.org
->
-> -Doug
+   I think this should really be 1, judging on the comment to that field (and on
+Cogent's own RPC-IF HF driver).
+
+> +	map->device_node = np;
+
+[...]
+
+MBR, Sergei
