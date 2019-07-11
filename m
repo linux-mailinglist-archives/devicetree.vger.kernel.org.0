@@ -2,85 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 718AC65A17
-	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 17:09:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 73D68659EB
+	for <lists+devicetree@lfdr.de>; Thu, 11 Jul 2019 17:04:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729018AbfGKPJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 11:09:28 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:60693 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726016AbfGKPJ2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 11:09:28 -0400
-X-Originating-IP: 92.137.69.152
-Received: from localhost (alyon-656-1-672-152.w92-137.abo.wanadoo.fr [92.137.69.152])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 6B866C000A;
-        Thu, 11 Jul 2019 15:09:24 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>, linux-kernel@vger.kernel.org,
-        iommu@lists.linux-foundation.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        =?UTF-8?q?Miqu=C3=A8l=20Raynal?= <miquel.raynal@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>
-Subject: [PATCH v2 4/4] arm64: dts: marvell: armada-ap806: add smmu support
-Date:   Thu, 11 Jul 2019 17:02:42 +0200
-Message-Id: <20190711150242.25290-5-gregory.clement@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190711150242.25290-1-gregory.clement@bootlin.com>
-References: <20190711150242.25290-1-gregory.clement@bootlin.com>
+        id S1728691AbfGKPEI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 11:04:08 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:34798 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726016AbfGKPEI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Jul 2019 11:04:08 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 6BEB8FB03;
+        Thu, 11 Jul 2019 17:04:05 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id vble_Z4Bb27E; Thu, 11 Jul 2019 17:04:04 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id D10E042CB4; Thu, 11 Jul 2019 17:04:03 +0200 (CEST)
+Date:   Thu, 11 Jul 2019 17:04:03 +0200
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+To:     Robert Chiras <robert.chiras@nxp.com>
+Cc:     Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 00/10] Improvements and fixes for mxsfb DRM driver
+Message-ID: <20190711150403.GB23195@bogon.m.sigxcpu.org>
+References: <1561555938-21595-1-git-send-email-robert.chiras@nxp.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <1561555938-21595-1-git-send-email-robert.chiras@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add IOMMU node for Marvell AP806 based SoCs.
+Hi Robert,
+On Wed, Jun 26, 2019 at 04:32:08PM +0300, Robert Chiras wrote:
+> This patch-set improves the use of eLCDIF block on iMX 8 SoCs (like 8MQ, 8MM
+> and 8QXP). Following, are the new features added and fixes from this
+> patch-set:
+> 
+> 1. Add support for drm_bridge
+> On 8MQ and 8MM, the LCDIF block is not directly connected to a parallel
+> display connector, where an LCD panel can be attached, but instead it is
+> connected to DSI controller. Since this DSI stands between the display
+> controller (eLCDIF) and the physical connector, the DSI can be implemented
+> as a DRM bridge. So, in order to be able to connect the mxsfb driver to
+> the DSI driver, the support for a drm_bridge was needed in mxsfb DRM
+> driver (the actual driver for the eLCDIF block).
 
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
----
- arch/arm64/boot/dts/marvell/armada-ap806.dtsi | 17 +++++++++++++++++
- 1 file changed, 17 insertions(+)
+So I wanted to test this but with both my somewhat cleaned up nwl
+driver¹ and the nwl driver forward ported from the nxp vendor tree I'm
+looking at a black screen with current mainline - while my dcss forward
+port gives me nice output on mipi dsi. Do you have a tree that uses mipi
+dsi on imx8mq where I could look at to check for differences?
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-ap806.dtsi b/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-index 91dad7e4ee59..8e29d593970a 100644
---- a/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-+++ b/arch/arm64/boot/dts/marvell/armada-ap806.dtsi
-@@ -115,6 +115,23 @@
- 				interrupts = <17>;
- 			};
- 
-+			smmu: iommu@5000000 {
-+				compatible = "marvell,mmu-500";
-+				reg = <0x100000 0x100000>;
-+				dma-coherent;
-+				#iommu-cells = <1>;
-+				#global-interrupts = <1>;
-+				interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					    <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					    <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					    <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					    <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					    <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					    <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					    <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>,
-+					    <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-+			};
-+
- 			odmi: odmi@300000 {
- 				compatible = "marvell,odmi-controller";
- 				interrupt-controller;
--- 
-2.20.1
+Cheers,
+ -- Guido
 
+> 
+> 2. Add support for additional pixel formats
+> Some of the pixel formats needed by Android were not implemented in this
+> driver, but they were actually supported. So, add support for them.
+> 
+> 3. Add support for horizontal stride
+> Having support for horizontal stride allows the use of eLCDIF with a GPU
+> (for example) that can only output resolution sizes multiple of a power of
+> 8. For example, 1080 is not a power of 16, so in order to support 1920x1080
+> output from GPUs that can produce linear buffers only in sizes multiple to 16,
+> this feature is needed.
+> 
+> 3. Few minor features and bug-fixing
+> The addition of max-res DT property was actually needed in order to limit
+> the bandwidth usage of the eLCDIF block. This is need on systems where
+> multiple display controllers are presend and the memory bandwidth is not
+> enough to handle all of them at maximum capacity (like it is the case on
+> 8MQ, where there are two display controllers: DCSS and eLCDIF).
+> The rest of the patches are bug-fixes.
+> 
+> Mirela Rabulea (1):
+>   drm/mxsfb: Signal mode changed when bpp changed
+> 
+> Robert Chiras (9):
+>   drm/mxsfb: Update mxsfb to support a bridge
+>   drm/mxsfb: Update mxsfb with additional pixel formats
+>   drm/mxsfb: Fix the vblank events
+>   dt-bindings: display: Add max-res property for mxsfb
+>   drm/mxsfb: Add max-res property for MXSFB
+>   drm/mxsfb: Update mxsfb to support LCD reset
+>   drm/mxsfb: Improve the axi clock usage
+>   drm/mxsfb: Clear OUTSTANDING_REQS bits
+>   drm/mxsfb: Add support for horizontal stride
+> 
+>  .../devicetree/bindings/display/mxsfb.txt          |   6 +
+>  drivers/gpu/drm/mxsfb/mxsfb_crtc.c                 | 290 ++++++++++++++++++---
+>  drivers/gpu/drm/mxsfb/mxsfb_drv.c                  | 189 +++++++++++---
+>  drivers/gpu/drm/mxsfb/mxsfb_drv.h                  |  10 +-
+>  drivers/gpu/drm/mxsfb/mxsfb_out.c                  |  26 +-
+>  drivers/gpu/drm/mxsfb/mxsfb_regs.h                 | 128 ++++++---
+>  6 files changed, 531 insertions(+), 118 deletions(-)
+> 
+> -- 
+> 2.7.4
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+
+¹ https://lists.freedesktop.org/archives/dri-devel/2019-March/209685.html
