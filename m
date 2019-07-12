@@ -2,70 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D2E466FA9
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 15:09:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E895D66FB2
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 15:10:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727189AbfGLNJQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 09:09:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57628 "EHLO mail.kernel.org"
+        id S1727171AbfGLNKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 09:10:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58196 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727157AbfGLNJQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 12 Jul 2019 09:09:16 -0400
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1727059AbfGLNKK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Jul 2019 09:10:10 -0400
+Received: from localhost (173-25-83-245.client.mchsi.com [173.25.83.245])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DF126216B7;
-        Fri, 12 Jul 2019 13:09:14 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 856892080A;
+        Fri, 12 Jul 2019 13:10:09 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1562936955;
-        bh=W6YIjaFSzzjtMDBKWJodMGbfMMX0VBoh4+APVLIt+SA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vUVTFwqC/zGAaW1/n5WXHjBkKD5Ypuvc083w2flxQ9TarX9sAG9ByX+2dIPw1VnBQ
-         /YYcR5XF85+qqJPxwWh9K7AmlV/l9CLUb3ty/1nToUwE0YKacb3+faHzp4yrfjm+yu
-         HU5arit/ux127/xK/l9dqc7i4fVFk64VHicdMbxY=
-Received: by mail-qk1-f181.google.com with SMTP id d79so6278170qke.11;
-        Fri, 12 Jul 2019 06:09:14 -0700 (PDT)
-X-Gm-Message-State: APjAAAWdF1OuTrpILhsv1LzlregNF6q2n/h4SWk4ZIYmEVq+NwJpsZY2
-        ASu1pcKFHEkkSUIgAzddKf+nUc53OhCWWHCZdA==
-X-Google-Smtp-Source: APXvYqwjdoQwR8x8UTFOyyGiPA50uzJD5f6PGF0aB6Ty2QtFOm2DGDacJSD7J67xZOfZmZOUg59B3SH4VdFNnGwzYkM=
-X-Received: by 2002:a37:a010:: with SMTP id j16mr6412048qke.152.1562936954182;
- Fri, 12 Jul 2019 06:09:14 -0700 (PDT)
+        s=default; t=1562937009;
+        bh=Y4fu5b10Lz5nbSlHs+QhwIoZP7DL4Djo1lCeP2/TmUo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=dQsV3LQzb+J5e3BU3RqQsQM2ATNq6oPo4YsTpDBACSBNWRbwMVlcCeTq9nTfUGTG3
+         XRb6/+OiYHi9mlb4RhYeN5ifVgxs/Jxcg0/zYY4AS2KQt7JcWAiv9JKa8jC5Ui7OvO
+         7F2T43bDVtSoFftpq/ow5AhgX/ju8tz7kNndfkLA=
+Date:   Fri, 12 Jul 2019 08:10:08 -0500
+From:   Bjorn Helgaas <helgaas@kernel.org>
+To:     Jonathan Chocron <jonnyc@amazon.com>
+Cc:     lorenzo.pieralisi@arm.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, dwmw@amazon.co.uk, benh@kernel.crashing.org,
+        alisaidi@amazon.com, ronenk@amazon.com, barakw@amazon.com,
+        talel@amazon.com, hanochu@amazon.com, hhhawa@amazon.com,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 3/8] PCI/VPD: Add VPD release quirk for Amazon Annapurna
+ Labs host bridge
+Message-ID: <20190712131008.GC46935@google.com>
+References: <20190710164519.17883-1-jonnyc@amazon.com>
+ <20190710164519.17883-4-jonnyc@amazon.com>
 MIME-Version: 1.0
-References: <20190711092158.14678-1-maxime.ripard@bootlin.com> <20190711092158.14678-2-maxime.ripard@bootlin.com>
-In-Reply-To: <20190711092158.14678-2-maxime.ripard@bootlin.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 12 Jul 2019 07:09:02 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLJkoudu3mw9wVuN1RM-VPGSWj+Vv6L=C=N-DtW_vOAdA@mail.gmail.com>
-Message-ID: <CAL_JsqLJkoudu3mw9wVuN1RM-VPGSWj+Vv6L=C=N-DtW_vOAdA@mail.gmail.com>
-Subject: Re: [PATCH 2/3] dt-bindings: dma: Convert Allwinner A10 DMA to a schema
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Vinod Koul <vkoul@kernel.org>, devicetree@vger.kernel.org,
-        "open list:DMA GENERIC OFFLOAD ENGINE SUBSYSTEM" 
-        <dmaengine@vger.kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190710164519.17883-4-jonnyc@amazon.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 11, 2019 at 3:36 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
->
-> The older Allwinner SoCs have a DMA controller supported in Linux, with a
-> matching Device Tree binding.
->
-> Now that we have the DT validation in place, let's convert the device tree
-> bindings for that controller over to a YAML schemas.
->
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> ---
->  .../bindings/dma/allwinner,sun4i-a10-dma.yaml | 55 +++++++++++++++++++
->  .../devicetree/bindings/dma/sun4i-dma.txt     | 45 ---------------
->  2 files changed, 55 insertions(+), 45 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/dma/allwinner,sun4i-a10-dma.yaml
->  delete mode 100644 Documentation/devicetree/bindings/dma/sun4i-dma.txt
+On Thu, Jul 11, 2019 at 05:55:56PM +0300, Jonathan Chocron wrote:
+> The Amazon Annapurna Labs pcie host bridge exposes the VPD capability,
+> but there is no actual support for it.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+s/pcie/PCIe/
+s/host bridge/Root Port/
+
+> The reason for not using the already existing quirk_blacklist_vpd()
+> is that, although this fails pci_vpd_read/write, the 'vpd' sysfs
+> entry still exists. When running lspci -vv, for example, this
+> results in the following error:
+> 
+> pcilib: sysfs_read_vpd: read failed: Input/output error
+> 
+> This quirk removes the sysfs entry, which avoids the error print.
+> 
+> Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
+> ---
+>  drivers/pci/vpd.c | 12 ++++++++++++
+>  1 file changed, 12 insertions(+)
+> 
+> diff --git a/drivers/pci/vpd.c b/drivers/pci/vpd.c
+> index 4963c2e2bd4c..b594b2895ffe 100644
+> --- a/drivers/pci/vpd.c
+> +++ b/drivers/pci/vpd.c
+> @@ -644,4 +644,16 @@ static void quirk_chelsio_extend_vpd(struct pci_dev *dev)
+>  DECLARE_PCI_FIXUP_FINAL(PCI_VENDOR_ID_CHELSIO, PCI_ANY_ID,
+>  			quirk_chelsio_extend_vpd);
+>  
+> +static void quirk_al_vpd_release(struct pci_dev *dev)
+> +{
+> +	if (dev->vpd) {
+> +		pci_vpd_release(dev);
+> +		dev->vpd = NULL;
+> +		pci_warn(dev, FW_BUG "Annapurna Labs pcie quirk - Releasing VPD capability (No support for VPD read/write transactions)\n");
+
+The "Annapurna Labs pcie quirk" text is superfluous.
+
+> +	}
+> +}
+> +
+> +DECLARE_PCI_FIXUP_CLASS_FINAL(PCI_VENDOR_ID_AMAZON_ANNAPURNA_LABS, 0x0031,
+> +			      PCI_CLASS_BRIDGE_PCI, 8, quirk_al_vpd_release);
+
+Why DECLARE_PCI_FIXUP_CLASS_FINAL()?  See comments on the MSI-X quirk
+patch.
+
+> +
+>  #endif
+> -- 
+> 2.17.1
+> 
+> 
