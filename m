@@ -2,90 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 192DE66E4F
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 14:38:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B9B866F0B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 14:43:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729001AbfGLM3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 08:29:32 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:35829 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728998AbfGLM3a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 08:29:30 -0400
-Received: by mail-ot1-f68.google.com with SMTP id j19so9289632otq.2;
-        Fri, 12 Jul 2019 05:29:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oEdcVtCqnAmcikhOKq8zHJ48dzBynV9gjlaZHvc/aWA=;
-        b=f4crqYI8oUH7sZA3Zkze8ETa5sFKl6o48gI3P4GH1UaISPKPKFrkztxP9vDHLWb/WT
-         cRDnH6VCdMsHQmY/eAFzHTxyME0W4JL3m7MJXJVKMAuQmyRMWudpArQr4Hg0lQScr/6j
-         Ru0n3RY/P+nzzD8/ZfBDHPSb8QRlmL9Ou+xCjOssI7SLnSZnY5356wUUG4GhY5KwAc4X
-         eXyWkHyAd2Kf8SOVmWD2ZskTLXNicpWMKfRyeIdCX9dtie22qllbPNyRFm920BK9t4RO
-         rLB+gszkbXnyjHCNned8f7pjuiKtDudCD5ATSsNMebRKXN77fDlHgro8H1DPqt/9Nr/K
-         WkPw==
-X-Gm-Message-State: APjAAAUx3KE57D6YOPbcR/68YM6MyoGXr/3EIoUUnMLokzeVBfCEt/pb
-        sFqD2HzU064Dsy7o3lV72ZPTuo+XhZC3HFfvbKg=
-X-Google-Smtp-Source: APXvYqw9RWe0Lk5Iw2vrCQIx/W+CQhgWkC9teDx9sc3MNmIW16eMpmIpD1KwHThNlDLBfxc6yXSTao6gi9bFb0xYxfI=
-X-Received: by 2002:a9d:69ce:: with SMTP id v14mr8468916oto.39.1562934569988;
- Fri, 12 Jul 2019 05:29:29 -0700 (PDT)
-MIME-Version: 1.0
-References: <1562321720-18735-1-git-send-email-biju.das@bp.renesas.com> <1562321720-18735-2-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1562321720-18735-2-git-send-email-biju.das@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 12 Jul 2019 14:29:18 +0200
-Message-ID: <CAMuHMdU79JQfEH5hY=wjyknE+sLpS6i3GeXYZ5Z=uzWkWDC-DA@mail.gmail.com>
-Subject: Re: [PATCH 1/3] arm64: dts: renesas: hihope-common: Add PCA9654 I/O expander
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1727117AbfGLMnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 08:43:09 -0400
+Received: from imap1.codethink.co.uk ([176.9.8.82]:49108 "EHLO
+        imap1.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727074AbfGLMnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 08:43:09 -0400
+Received: from [167.98.27.226] (helo=[10.35.6.255])
+        by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
+        id 1hlut4-0005pT-Ur; Fri, 12 Jul 2019 13:42:55 +0100
+Subject: Re: [PATCH v1 01/11] dt-bindings: display/bridge: Add bindings for
+ ti948
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Content-Type: text/plain; charset="UTF-8"
+        linux-kernel@lists.codethink.co.uk,
+        Patrick Glaser <pglaser@tesla.com>, Nate Case <ncase@tesla.com>
+References: <20190611140412.32151-1-michael.drake@codethink.co.uk>
+ <20190611140412.32151-2-michael.drake@codethink.co.uk>
+ <20190611180316.GS5016@pendragon.ideasonboard.com>
+From:   Michael Drake <michael.drake@codethink.co.uk>
+Message-ID: <4f8c1aa9-0c0b-0337-b273-2ffd76d83ee1@codethink.co.uk>
+Date:   Fri, 12 Jul 2019 13:42:54 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
+MIME-Version: 1.0
+In-Reply-To: <20190611180316.GS5016@pendragon.ideasonboard.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Biju,
+Hi Laurent,
 
-On Fri, Jul 5, 2019 at 12:20 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> Enable PCA9654 GPIO expander, so that we can configure its GPIOs later.
->
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+On 11/06/2019 19:03, Laurent Pinchart wrote:
+> Hi Michael,
+> 
+> Thank you for the patch.
 
-> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
-> @@ -162,6 +162,13 @@
->         clock-frequency = <400000>;
->         status = "okay";
->
-> +       gpio_expander: gpio@20 {
-> +               compatible = "onnn,pca9654";
-> +               reg = <0x20>;
-> +               gpio-controller;
-> +               #gpio-cells = <2>;
+My pleasure, and thank you for the feedback!  I'm sorry it's
+taken me a while to respond to it.
 
-You may want to describe that the interrupt output is tied to GP5_25?
+> On Tue, Jun 11, 2019 at 03:04:02PM +0100, Michael Drake wrote:
+>> Adds device tree bindings for:
+>>
+>>   TI DS90UB948-Q1 2K FPD-Link III to OpenLDI Deserializer
+>>
+>> The device has the compatible string "ti,ds90ub948", and
+>> and allows an arrray of strings to be provided as regulator
+> 
+> s/arrray/array/
 
-> +       };
-> +
+Thanks.  Fixed for the next version.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>> names to enable for operation of the device.
+>>
+>> Signed-off-by: Michael Drake <michael.drake@codethink.co.uk>
+>> Cc: Patrick Glaser <pglaser@tesla.com>
+>> Cc: Nate Case <ncase@tesla.com>
+>> ---
+>>  .../bindings/display/bridge/ti,ds90ub948.txt  | 24 +++++++++++++++++++
+>>  1 file changed, 24 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/display/bridge/ti,ds90ub948.txt
+>>
+>> diff --git a/Documentation/devicetree/bindings/display/bridge/ti,ds90ub948.txt b/Documentation/devicetree/bindings/display/bridge/ti,ds90ub948.txt
+>> new file mode 100644
+>> index 000000000000..f9e86cb22900
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/display/bridge/ti,ds90ub948.txt
+>> @@ -0,0 +1,24 @@
+>> +TI DS90UB948-Q1 2K FPD-Link III to OpenLDI Deserializer
+>> +=======================================================
+>> +
+>> +This is the binding for Texas Instruments DS90UB948-Q1 bridge deserializer.
+>> +
+>> +This device supports I2C only.
+> 
+> Then the DT node should be a child of its I2C controller, and have a reg
+> property.
 
-Gr{oetje,eeting}s,
+OK, thank you.  I'm not actually using DT, I'm using ACPI tables.
 
-                        Geert
+For DT, would this cause the device to get bound to the driver on
+startup?
+
+I tried adding a reg property with the value set to the device's
+I2C address with device tree compatible properties, coupled with
+the DT "compatible" string property, but that was insufficient to
+bind the device to the driver.  At the moment, I'm using the ACPI
+mechanism for achieving this.
+
+So all I've done for this is add the "reg" property to the device
+tree ti,ds90ub948.txt documentation file, in the Example section.
+
+Is this what you were expecting?
+
+For the other point, that the DT node should be a child of its I2C
+controller, I've made the devices descendants of the I2C controller
+in ACPI, but one of them is not a direct child.
+
+The ti949 is a child of its I2C controller node, but the ti948
+is a child of the ti949 node in the ACPI table.  I did this to
+ensure that linux was aware of the dependency of the devices, so
+that they would be brought up in the correct order and suspended
+and resumed in the correct order.
+
+>> +
+>> +Required properties:
+>> +
+>> +- compatible: "ti,ds90ub948"
+>> +
+>> +Optional properties:
+>> +
+>> +- regulators: List of regulator name strings to enable for operation of device.
+> 
+> There's a standard binding for regulators, using *-supply properties.
+> Please use them.
+
+Thank you!  I've switched to using that, and it is less code.  :)
+
+> You should also use the OF graph DT bindings to model the data
+> connections.
+
+I'm not clear on the implications of this from the driver code.
+Does it need any code changes to the driver to support these
+endpoints?  How are they used?
+
+If it's just a documentation thing, I can easily do it, but
+otherwise, I can't test Device Tree because we're using ACPI.
+
+>> +
+>> +Example
+>> +-------
+>> +
+>> +ti948: ds90ub948@0 {
+>> +	compatible = "ti,ds90ub948";
+>> +
+>> +	regulators: "vcc",
+>> +	            "vcc_disp";
+>> +};
+> 
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Michael Drake                 https://www.codethink.co.uk/
