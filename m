@@ -2,109 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 313A467396
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 18:49:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 832D46740B
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 19:16:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727035AbfGLQtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 12:49:35 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:50146 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726982AbfGLQte (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 12:49:34 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 2763B60A4E; Fri, 12 Jul 2019 16:49:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1562950174;
-        bh=b1svF/gTguro1nK1BVoRt1d04OC7/a9WZZ0GYcXlh8Q=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=oHQbmGmHLU25x9yoH6gar5agOqbHYYwLbTBTI7AnUFQ539bfMmqzyvxMQ9X5JSY1f
-         XcEudci5ZxW5guTKNvJo0dX9Yy2LtzCIOMpqpmacIxekLYt6l2qHCeAGTLZGtszkek
-         90vAhuwQbyUgp6TlnpCO3rblvYOYYTXSCUSDPNag=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED autolearn=no autolearn_force=no version=3.4.0
-Received: from mail.codeaurora.org (localhost.localdomain [127.0.0.1])
-        by smtp.codeaurora.org (Postfix) with ESMTP id 33FC960213;
-        Fri, 12 Jul 2019 16:49:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1562950173;
-        bh=b1svF/gTguro1nK1BVoRt1d04OC7/a9WZZ0GYcXlh8Q=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Z26V7meMV9wSWGr9zlpTxsWeTq+y5Z9D7WaIEAdBJkpsc7uQntNv+ZZNhYirWM+lS
-         5ya4cgcn3AFDmiWO2TBF2ZIl58c0kAHecFjXowk2W7RJT7fm4lmJqQNP9c7M7IALtg
-         ws8Dk7oOQzCd68ZquBweSEHPNux2Hzq67xFtFk/E=
+        id S1726930AbfGLRQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 13:16:42 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:42760 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726811AbfGLRQm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 13:16:42 -0400
+Received: by mail-io1-f68.google.com with SMTP id u19so21875425ior.9
+        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2019 10:16:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=iXtdpQd8nnhs4LGXKgAYAQvupi8/WOX4e9Rzt2Cr9CU=;
+        b=YT2j/iU40MxuBBXO9lb5IQbBE5jrkfnrRY9xLOdGAaikbSdl2YU6uISPilY0ddfipw
+         SPtU62qkG3Z5Z3Ogc2azK7ti8QpOISRgUsmIIABxcIsT1X+rWxrTo6IzUEhlO1bsVrAX
+         IveXj25vZsg7hNSxNfVrqRhQ0scEmYofrPVcosq7oaf1o1lzV41Pxc/GvnY5xxtmwY2K
+         fevC+u/BdbIWXOzlfkUy2QZuiBwhUm4UUuihyenGCKdHe92z/Ub/e3biIlISfJPE1eXI
+         plfC/5M62ssyRlos7GBsgbXMMsn21QEaFARhtqdvHLFp5TTp0Ko2bKH5YUaAl4pEeEEd
+         ub5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=iXtdpQd8nnhs4LGXKgAYAQvupi8/WOX4e9Rzt2Cr9CU=;
+        b=q4Yk8EXSeOBlxwDcx21LzYmMCh9w4jUEIxxbnqPyRUJZRAGl3jrbmUJiHZlqsDgVQV
+         CTcgRjoEGrgouFyqdhtdYSVrmzXGbVOBksUii2a3hYPdmT1fggVv/VGolYzvhhgEN4xE
+         wemcKSuU7HT8IIaeQmtJvYRDIbdYmkC6wVxr/T4gkEg1kFIA5VUgh0aEj4XriXdxbPtg
+         PBoXrmry4CAIlTKPO8tnU6JrWKAoSIqPov9sKpMXribyyZez8sd4uUhz+tI2p+z15gXn
+         XsiZbp0uMwVG1YMDy7j2etQNPj/dKXLaqROXuG/MSson4/B1JvFg3kc+a2cn8rSLncuB
+         jijw==
+X-Gm-Message-State: APjAAAXrq1euxBJkeBHzOMRgf1SY8MmWbNvLR7yMZvxa6YOV43bOxGL4
+        eqhB6EaW6399csQgeeq/2IDpNw==
+X-Google-Smtp-Source: APXvYqxp30Df9fi24c2tRwl/AdFAuK1PmmHMpS9VUIm5CnVMt7nYgcOw7iNzakTGt5JdeoZaczA5TQ==
+X-Received: by 2002:a6b:7d49:: with SMTP id d9mr12058493ioq.50.1562951801913;
+        Fri, 12 Jul 2019 10:16:41 -0700 (PDT)
+Received: from localhost (67-0-62-24.albq.qwest.net. [67.0.62.24])
+        by smtp.gmail.com with ESMTPSA id c81sm13381678iof.28.2019.07.12.10.16.41
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 12 Jul 2019 10:16:41 -0700 (PDT)
+Date:   Fri, 12 Jul 2019 10:16:40 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Atish Patra <atish.patra@wdc.com>
+cc:     linux-kernel@vger.kernel.org,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Johan Hovold <johan@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-riscv@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Otto Sabart <ottosabart@seberm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Will Deacon <will.deacon@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Russell King <linux@armlinux.org.uk>
+Subject: Re: [PATCH v8 0/7] Unify CPU topology across ARM & RISC-V 
+In-Reply-To: <20190627195302.28300-1-atish.patra@wdc.com>
+Message-ID: <alpine.DEB.2.21.9999.1907121012050.2267@viisi.sifive.com>
+References: <20190627195302.28300-1-atish.patra@wdc.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII;
- format=flowed
-Content-Transfer-Encoding: 7bit
-Date:   Fri, 12 Jul 2019 22:19:33 +0530
-From:   saiprakash.ranjan@codeaurora.org
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc:     gregkh@linuxfoundation.org, mathieu.poirier@linaro.org,
-        leo.yan@linaro.org, alexander.shishkin@linux.intel.com,
-        mike.leach@linaro.org, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        david.brown@linaro.org, mark.rutland@arm.com,
-        rnayak@codeaurora.org, vivek.gautam@codeaurora.org,
-        sibis@codeaurora.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        marc.w.gonzalez@free.fr, devicetree-owner@vger.kernel.org
-Subject: Re: [PATCHv8 1/5] arm64: dts: qcom: sdm845: Add Coresight support
-In-Reply-To: <06c1a087-53f7-4841-1ae3-07ccbed22a72@arm.com>
-References: <cover.1562940244.git.saiprakash.ranjan@codeaurora.org>
- <52550ed9bbc10dca860eb1700aef5c97f644327b.1562940244.git.saiprakash.ranjan@codeaurora.org>
- <06c1a087-53f7-4841-1ae3-07ccbed22a72@arm.com>
-Message-ID: <8b82793e7b693dbb922ef4fdbffdb76f@codeaurora.org>
-X-Sender: saiprakash.ranjan@codeaurora.org
-User-Agent: Roundcube Webmail/1.2.5
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Suzuki,
+Folks,
 
-On 2019-07-12 22:14, Suzuki K Poulose wrote:
-> Hi Sai,
-> 
-> On 12/07/2019 15:16, Sai Prakash Ranjan wrote:
->> Add coresight components found on Qualcomm SDM845 SoC.
-> 
->> 
->> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
->> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 451 
->> +++++++++++++++++++++++++++
->>   1 file changed, 451 insertions(+)
->> 
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi 
->> b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> index 4babff5f19b5..5d7e3f8e0f91 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> @@ -1815,6 +1815,457 @@
->>   			clock-names = "xo";
->>   		};
->>   +		stm@6002000 {
->> +			compatible = "arm,coresight-stm", "arm,primecell";
->> +			reg = <0 0x06002000 0 0x1000>,
->> +			      <0 0x16280000 0 0x180000>;
->> +			reg-names = "stm-base", "stm-stimulus-base";
->> +
->> +			clocks = <&aoss_qmp>;
->> +			clock-names = "apb_pclk";
-> 
-> 
-> Which tree is this based on ? I can't see aoss_qmp anywhere under 
-> dts/qcom
-> on 5.2-rc7.
-> 
+On Thu, 27 Jun 2019, Atish Patra wrote:
 
-It's based on linux-next.
+> The cpu-map DT entry in ARM can describe the CPU topology in much better
+> way compared to other existing approaches. RISC-V can easily adopt this
+> binding to represent its own CPU topology. Thus, both cpu-map DT
+> binding and topology parsing code can be moved to a common location so
+> that RISC-V or any other architecture can leverage that.
+> 
+> The relevant discussion regarding unifying cpu topology can be found in
+> [1].
+> 
+> arch_topology seems to be a perfect place to move the common code. I
+> have not introduced any significant functional changes in the moved code.
+> The only downside in this approach is that the capacity code will be
+> executed for RISC-V as well. But, it will exit immediately after not
+> able to find the appropriate DT node. If the overhead is considered too
+> much, we can always compile out capacity related functions under a
+> different config for the architectures that do not support them.
+> 
+> There was an opportunity to unify topology data structure for ARM32 done
+> by patch 3/4. But, I refrained from making any other changes as I am not
+> very well versed with original intention for some functions that
+> are present in arch_topology.c. I hope this patch series can be served
+> as a baseline for such changes in the future.
+> 
+> The patches have been tested for RISC-V, ARM64, ARM32 & compile tested for
+> x86.
 
-Thanks,
-Sai
+Since these patches touch files across several different architectures, 
+and thus really should sit in -next for a while; and because it's late in 
+the merge window, I'm planning to postpone sending these patches upstream 
+until after v5.3-rc1 is released.
+
+Once v5.3-rc1 is released, let's plan to get these patches rebased and 
+reposted and into linux-next as soon as possible.
+
+
+Sorry for the delay here,
+
+
+- Paul
