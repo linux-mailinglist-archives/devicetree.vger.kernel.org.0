@@ -2,129 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4DDF5669DE
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 11:25:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C62766A3D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 11:44:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726091AbfGLJZz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 05:25:55 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:41992 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725987AbfGLJZz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 05:25:55 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 218AA60A97; Fri, 12 Jul 2019 09:25:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1562923554;
-        bh=lfw/i17VNza47JF8I9sz0hN3tbZXkPak5SrFyt8d4CU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ATRurzyaYPBVFWHGYY1tGUvtd/0NV01+D4DFnnmvQTNJZ6LO4tnpYl1vvuxt2m/EU
-         4UPQLyrjehdy/2Zcvb9HMGOIswqu2mBJ7d5U2zLSy2sIbinuD480ftmEF4uZEgG46V
-         YGN2gry5oarAm+DB9OyB54HpiWqKvEWslUpwiMCU=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.79.43.141] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id F03CD60A97;
-        Fri, 12 Jul 2019 09:25:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1562923553;
-        bh=lfw/i17VNza47JF8I9sz0hN3tbZXkPak5SrFyt8d4CU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=dngCM7R9t8x14Twx4Pe1hOnBGa9Cl4J+RTmDwx1WaYs4lqF4eWb3ZmJ2Qdw4FL7fN
-         Zxmsf5vBGSVwxA5Xq+J+AQh+FAVL1g47KDGb9Ha1VPNJHSNuSa8FHq8Wkk+JyA1hXT
-         eKtxRaL5Zpa0bsnW16TPYNIedsnb5WXHUmV14xmE=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org F03CD60A97
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH v3] arm64: dts: sdm845: Add video nodes
-To:     Aniket Masule <amasule@codeaurora.org>, andy.gross@linaro.org,
-        david.brown@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, vgarodia@codeaurora.org,
-        Malathi Gottam <mgottam@codeaurora.org>
-References: <1562069549-25384-1-git-send-email-amasule@codeaurora.org>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <81590b01-e9e7-dbc7-c2c8-0d6093db7ce0@codeaurora.org>
-Date:   Fri, 12 Jul 2019 14:55:48 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1726138AbfGLJod (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 05:44:33 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:56731 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726057AbfGLJoc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 05:44:32 -0400
+X-UUID: ac40bddd1b784772b1ed6f55dee99109-20190712
+X-UUID: ac40bddd1b784772b1ed6f55dee99109-20190712
+Received: from mtkcas06.mediatek.inc [(172.21.101.30)] by mailgw02.mediatek.com
+        (envelope-from <macpaul.lin@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 201960188; Fri, 12 Jul 2019 17:44:27 +0800
+Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
+ mtkmbs08n2.mediatek.inc (172.21.101.56) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 12 Jul 2019 17:44:19 +0800
+Received: from mtkswgap22.mediatek.inc (172.21.77.33) by MTKCAS06.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 12 Jul 2019 17:44:19 +0800
+From:   Macpaul Lin <macpaul.lin@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Mars Cheng <mars.cheng@mediatek.com>,
+        Owen Chen <owen.chen@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+CC:     <wsd_upstream@mediatek.com>, CC Hwang <cc.hwang@mediatek.com>,
+        Loda Chou <loda.chou@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-serial@vger.kernel.org>,
+        <linux-clk@vger.kernel.org>, Macpaul Lin <macpaul.lin@mediatek.com>
+Subject: [PATCH v6 0/8] Add basic SoC support for mt6765
+Date:   Fri, 12 Jul 2019 17:43:36 +0800
+Message-ID: <1562924653-10056-1-git-send-email-macpaul.lin@mediatek.com>
+X-Mailer: git-send-email 1.7.9.5
 MIME-Version: 1.0
-In-Reply-To: <1562069549-25384-1-git-send-email-amasule@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-TM-SNTS-SMTP: 652D05AEE8BA6B315CF08EEE2E1D8453BBB4EB91AB589F2FB8116AA5BECD01822000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+This patch adds basic SoC support for Mediatek's new 8-core SoC,
+MT6765, which is mainly for smartphone application.
 
+Changes in V6:
+1. Adapt V5's patchset to latest kernel tree.
+   Origin V5 patchset.
+   https://lore.kernel.org/patchwork/cover/963612/
+2. Due to clk's common code has been submit by other platform,
+   this patch set will have dependencies with the following patchsets
+   as the following orders.
+   2.a. [v8,00/21] MT8183 IOMMU SUPPORT
+        https://patchwork.kernel.org/cover/11023585/
+   2.b. [v11,0/6] Add basic node support for Mediatek MT8183 SoC
+        https://patchwork.kernel.org/cover/10962385/
+   2.c. [v6,00/14] Mediatek MT8183 scpsys support
+        https://patchwork.kernel.org/cover/11005751/
+3. Correct power related patches into dt-binding patches.
+4. Re-order V5's 4/11, 6/11, and 7/11 due clk common code change
+   and make dependencies in order.
+5. Update some commit message in clk related patches.
 
-On 7/2/2019 5:42 PM, Aniket Masule wrote:
-> From: Malathi Gottam <mgottam@codeaurora.org>
-> 
-> This adds video nodes to sdm845 based on the examples
-> in the bindings.
-> 
-> Signed-off-by: Malathi Gottam <mgottam@codeaurora.org>
-> Co-developed-by: Aniket Masule <amasule@codeaurora.org>
-> Signed-off-by: Aniket Masule <amasule@codeaurora.org>
+Changes in V5:
+1. add clk support
 
-Reviewed-by: Rajendra Nayak <rnayak@codeaurora.org>
+Changes in V4:
+1. add gic's settings in reg properties
+2. remove some patches about dt-bindings since GKH already took them
 
-> ---
->   arch/arm64/boot/dts/qcom/sdm845.dtsi | 30 ++++++++++++++++++++++++++++++
->   1 file changed, 30 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index fcb9330..f3cd94f 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -1893,6 +1893,36 @@
->   			};
->   		};
->   
-> +		video-codec@aa00000 {
-> +			compatible = "qcom,sdm845-venus";
-> +			reg = <0 0x0aa00000 0 0xff000>;
-> +			interrupts = <GIC_SPI 174 IRQ_TYPE_LEVEL_HIGH>;
-> +			power-domains = <&videocc VENUS_GDSC>;
-> +			clocks = <&videocc VIDEO_CC_VENUS_CTL_CORE_CLK>,
-> +				 <&videocc VIDEO_CC_VENUS_AHB_CLK>,
-> +				 <&videocc VIDEO_CC_VENUS_CTL_AXI_CLK>;
-> +			clock-names = "core", "iface", "bus";
-> +			iommus = <&apps_smmu 0x10a0 0x8>,
-> +				 <&apps_smmu 0x10b0 0x0>;
-> +			memory-region = <&venus_mem>;
-> +
-> +			video-core0 {
-> +				compatible = "venus-decoder";
-> +				clocks = <&videocc VIDEO_CC_VCODEC0_CORE_CLK>,
-> +					 <&videocc VIDEO_CC_VCODEC0_AXI_CLK>;
-> +				clock-names = "core", "bus";
-> +				power-domains = <&videocc VCODEC0_GDSC>;
-> +			};
-> +
-> +			video-core1 {
-> +				compatible = "venus-encoder";
-> +				clocks = <&videocc VIDEO_CC_VCODEC1_CORE_CLK>,
-> +					 <&videocc VIDEO_CC_VCODEC1_AXI_CLK>;
-> +				clock-names = "core", "bus";
-> +				power-domains = <&videocc VCODEC1_GDSC>;
-> +			};
-> +		};
-> +
->   		videocc: clock-controller@ab00000 {
->   			compatible = "qcom,sdm845-videocc";
->   			reg = <0 0x0ab00000 0 0x10000>;
-> 
+Changes in V3:
+1. split dt-binding document patchs
+2. fix mt6765.dtsi warnings with W=12
+3. remove uncessary PPI affinity for timer
+4. add gicc base for gic dt node
+
+Changes in V2:
+1. fix clk properties in uart dts node
+2. fix typo in submit title
+3. add simple-bus in mt6765.dtsi
+4. use correct SPDX license format
+
+Mars Cheng (6):
+  dt-bindings: clock: mediatek: document clk bindings for Mediatek
+    MT6765 SoC
+  dt-bindings: mediatek: Add smi dts binding for Mediatek MT6765 SoC
+  dt-bindings: mediatek: add MT6765 power dt-bindings
+  clk: mediatek: add mt6765 clock IDs
+  soc: mediatek: add MT6765 scpsys and subdomain support
+  arm64: dts: mediatek: add mt6765 support
+
+Owen Chen (2):
+  clk: mediatek: Add MT6765 clock support
+  arm64: defconfig: add CONFIG_COMMON_CLK_MT6765_XXX clocks
+
+ .../arm/mediatek/mediatek,apmixedsys.txt      |   1 +
+ .../bindings/arm/mediatek/mediatek,audsys.txt |   1 +
+ .../bindings/arm/mediatek/mediatek,camsys.txt |   1 +
+ .../bindings/arm/mediatek/mediatek,imgsys.txt |   1 +
+ .../arm/mediatek/mediatek,infracfg.txt        |   1 +
+ .../bindings/arm/mediatek/mediatek,mipi0a.txt |  28 +
+ .../bindings/arm/mediatek/mediatek,mmsys.txt  |   1 +
+ .../arm/mediatek/mediatek,pericfg.txt         |   1 +
+ .../arm/mediatek/mediatek,topckgen.txt        |   1 +
+ .../arm/mediatek/mediatek,vcodecsys.txt       |  27 +
+ .../mediatek,smi-common.txt                   |   1 +
+ .../bindings/soc/mediatek/scpsys.txt          |   6 +
+ arch/arm64/boot/dts/mediatek/Makefile         |   1 +
+ arch/arm64/boot/dts/mediatek/mt6765-evb.dts   |  33 +
+ arch/arm64/boot/dts/mediatek/mt6765.dtsi      | 253 +++++
+ arch/arm64/configs/defconfig                  |   6 +
+ drivers/clk/mediatek/Kconfig                  |  86 ++
+ drivers/clk/mediatek/Makefile                 |   7 +
+ drivers/clk/mediatek/clk-mt6765-audio.c       | 109 ++
+ drivers/clk/mediatek/clk-mt6765-cam.c         |  83 ++
+ drivers/clk/mediatek/clk-mt6765-img.c         |  79 ++
+ drivers/clk/mediatek/clk-mt6765-mipi0a.c      |  77 ++
+ drivers/clk/mediatek/clk-mt6765-mm.c          | 105 ++
+ drivers/clk/mediatek/clk-mt6765-vcodec.c      |  79 ++
+ drivers/clk/mediatek/clk-mt6765.c             | 961 ++++++++++++++++++
+ drivers/soc/mediatek/mtk-scpsys.c             | 130 +++
+ include/dt-bindings/clock/mt6765-clk.h        | 313 ++++++
+ include/dt-bindings/power/mt6765-power.h      |  14 +
+ 28 files changed, 2406 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,mipi0a.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/mediatek/mediatek,vcodecsys.txt
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6765-evb.dts
+ create mode 100644 arch/arm64/boot/dts/mediatek/mt6765.dtsi
+ create mode 100644 drivers/clk/mediatek/clk-mt6765-audio.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6765-cam.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6765-img.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6765-mipi0a.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6765-mm.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6765-vcodec.c
+ create mode 100644 drivers/clk/mediatek/clk-mt6765.c
+ create mode 100644 include/dt-bindings/clock/mt6765-clk.h
+ create mode 100644 include/dt-bindings/power/mt6765-power.h
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.18.0
+
