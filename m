@@ -2,130 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 832D46740B
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 19:16:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9782867415
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 19:20:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726930AbfGLRQm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 13:16:42 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:42760 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726811AbfGLRQm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 13:16:42 -0400
-Received: by mail-io1-f68.google.com with SMTP id u19so21875425ior.9
-        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2019 10:16:42 -0700 (PDT)
+        id S1726993AbfGLRUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 13:20:52 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:44005 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726977AbfGLRUv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 13:20:51 -0400
+Received: by mail-pg1-f193.google.com with SMTP id f25so4809583pgv.10
+        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2019 10:20:51 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=iXtdpQd8nnhs4LGXKgAYAQvupi8/WOX4e9Rzt2Cr9CU=;
-        b=YT2j/iU40MxuBBXO9lb5IQbBE5jrkfnrRY9xLOdGAaikbSdl2YU6uISPilY0ddfipw
-         SPtU62qkG3Z5Z3Ogc2azK7ti8QpOISRgUsmIIABxcIsT1X+rWxrTo6IzUEhlO1bsVrAX
-         IveXj25vZsg7hNSxNfVrqRhQ0scEmYofrPVcosq7oaf1o1lzV41Pxc/GvnY5xxtmwY2K
-         fevC+u/BdbIWXOzlfkUy2QZuiBwhUm4UUuihyenGCKdHe92z/Ub/e3biIlISfJPE1eXI
-         plfC/5M62ssyRlos7GBsgbXMMsn21QEaFARhtqdvHLFp5TTp0Ko2bKH5YUaAl4pEeEEd
-         ub5Q==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=fDCFU21FX7iM5hltBSKXQsZERfbhCks0C3SkuZDn2cE=;
+        b=hs/4tn0aPaP+ck9KP/2MF+L9GRraPJWDLdGluAhn9MyOgAVPRH/7GePpo5Hy1x1XOc
+         cdVpTXeDtPXaxlVaHRFSawAMbTbMX5BJPysseSxoJPleGw+/jFCT9gWK6HCjj4wOeGw2
+         lSjyPogelCri9o41NPGUecEdHWIKz78j5bYNQ=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=iXtdpQd8nnhs4LGXKgAYAQvupi8/WOX4e9Rzt2Cr9CU=;
-        b=q4Yk8EXSeOBlxwDcx21LzYmMCh9w4jUEIxxbnqPyRUJZRAGl3jrbmUJiHZlqsDgVQV
-         CTcgRjoEGrgouFyqdhtdYSVrmzXGbVOBksUii2a3hYPdmT1fggVv/VGolYzvhhgEN4xE
-         wemcKSuU7HT8IIaeQmtJvYRDIbdYmkC6wVxr/T4gkEg1kFIA5VUgh0aEj4XriXdxbPtg
-         PBoXrmry4CAIlTKPO8tnU6JrWKAoSIqPov9sKpMXribyyZez8sd4uUhz+tI2p+z15gXn
-         XsiZbp0uMwVG1YMDy7j2etQNPj/dKXLaqROXuG/MSson4/B1JvFg3kc+a2cn8rSLncuB
-         jijw==
-X-Gm-Message-State: APjAAAXrq1euxBJkeBHzOMRgf1SY8MmWbNvLR7yMZvxa6YOV43bOxGL4
-        eqhB6EaW6399csQgeeq/2IDpNw==
-X-Google-Smtp-Source: APXvYqxp30Df9fi24c2tRwl/AdFAuK1PmmHMpS9VUIm5CnVMt7nYgcOw7iNzakTGt5JdeoZaczA5TQ==
-X-Received: by 2002:a6b:7d49:: with SMTP id d9mr12058493ioq.50.1562951801913;
-        Fri, 12 Jul 2019 10:16:41 -0700 (PDT)
-Received: from localhost (67-0-62-24.albq.qwest.net. [67.0.62.24])
-        by smtp.gmail.com with ESMTPSA id c81sm13381678iof.28.2019.07.12.10.16.41
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 12 Jul 2019 10:16:41 -0700 (PDT)
-Date:   Fri, 12 Jul 2019 10:16:40 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Atish Patra <atish.patra@wdc.com>
-cc:     linux-kernel@vger.kernel.org,
-        Jeremy Linton <jeremy.linton@arm.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup@brainfault.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Ingo Molnar <mingo@kernel.org>,
-        Johan Hovold <johan@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-riscv@lists.infradead.org,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=fDCFU21FX7iM5hltBSKXQsZERfbhCks0C3SkuZDn2cE=;
+        b=j3vSNavM1hkrr4s78yU1NHmxU/PvGE7bThY4D+ZBK0cGlMWcxLEBX3btZ9seQ1m2Ju
+         Usx2TT31h9wDiX46Myb2d+DqqBLEzQ20ZiK5P4JOYVQkOJ3OfHOSD67N6qCpKVoJk9Cn
+         Dv22MF+iVGHrCED6+M8xig+pdywmEuOgW9jlGe0Xd097DaXQFchMW9IdhmgVf+wLccd/
+         mmb+CPYauOH8R4G89KJmNUUOVvOcDzVBxA+bgMLgSOWAjvkOtINYMbKgMRXe5CpC0m/1
+         UFx3b5P4wkxdL7XwibH/Sz7UAxeNwDhz57GkzSBacdpM4GxWUqN0vfdIYSTkYym4goPF
+         SGmg==
+X-Gm-Message-State: APjAAAXEPM4ipbKl2iGn6YWXJQK8doGzPZtxs/C8s3iFBf6vP6M1qfuK
+        dPExIKQmkV5OAXgIaLBZaMlBhg==
+X-Google-Smtp-Source: APXvYqzRDHVjZQZvO/SrwW+PdfFvVs8Qylpul2+xzXOpUfwsEv0jARgp9zmgNN1kX2jftitaJA433Q==
+X-Received: by 2002:a63:6b46:: with SMTP id g67mr12122087pgc.45.1562952050999;
+        Fri, 12 Jul 2019 10:20:50 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id g9sm7275782pgs.78.2019.07.12.10.20.49
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 12 Jul 2019 10:20:49 -0700 (PDT)
+Date:   Fri, 12 Jul 2019 10:20:47 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Florian Fainelli <f.fainelli@gmail.com>,
+        "David S . Miller" <davem@davemloft.net>,
         Mark Rutland <mark.rutland@arm.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Morten Rasmussen <morten.rasmussen@arm.com>,
-        Otto Sabart <ottosabart@seberm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Will Deacon <will.deacon@arm.com>,
-        Will Deacon <will@kernel.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Russell King <linux@armlinux.org.uk>
-Subject: Re: [PATCH v8 0/7] Unify CPU topology across ARM & RISC-V 
-In-Reply-To: <20190627195302.28300-1-atish.patra@wdc.com>
-Message-ID: <alpine.DEB.2.21.9999.1907121012050.2267@viisi.sifive.com>
-References: <20190627195302.28300-1-atish.patra@wdc.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        Andrew Lunn <andrew@lunn.ch>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH v2 6/7] dt-bindings: net: realtek: Add property to
+ configure LED mode
+Message-ID: <20190712172047.GQ250418@google.com>
+References: <20190703193724.246854-1-mka@chromium.org>
+ <20190703193724.246854-6-mka@chromium.org>
+ <e8fe7baf-e4e0-c713-7b93-07a3859c33c6@gmail.com>
+ <20190703232331.GL250418@google.com>
+ <CAL_JsqL_AU+JV0c2mNbXiPh2pvfYbPbLV-2PHHX0hC3vUH4QWg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqL_AU+JV0c2mNbXiPh2pvfYbPbLV-2PHHX0hC3vUH4QWg@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Folks,
-
-On Thu, 27 Jun 2019, Atish Patra wrote:
-
-> The cpu-map DT entry in ARM can describe the CPU topology in much better
-> way compared to other existing approaches. RISC-V can easily adopt this
-> binding to represent its own CPU topology. Thus, both cpu-map DT
-> binding and topology parsing code can be moved to a common location so
-> that RISC-V or any other architecture can leverage that.
+On Wed, Jul 10, 2019 at 09:55:12AM -0600, Rob Herring wrote:
+> On Wed, Jul 3, 2019 at 5:23 PM Matthias Kaehlcke <mka@chromium.org> wrote:
+> >
+> > Hi Florian,
+> >
+> > On Wed, Jul 03, 2019 at 02:37:47PM -0700, Florian Fainelli wrote:
+> > > On 7/3/19 12:37 PM, Matthias Kaehlcke wrote:
+> > > > The LED behavior of some Realtek PHYs is configurable. Add the
+> > > > property 'realtek,led-modes' to specify the configuration of the
+> > > > LEDs.
+> > > >
+> > > > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > > > ---
+> > > > Changes in v2:
+> > > > - patch added to the series
+> > > > ---
+> > > >  .../devicetree/bindings/net/realtek.txt         |  9 +++++++++
+> > > >  include/dt-bindings/net/realtek.h               | 17 +++++++++++++++++
+> > > >  2 files changed, 26 insertions(+)
+> > > >  create mode 100644 include/dt-bindings/net/realtek.h
+> > > >
+> > > > diff --git a/Documentation/devicetree/bindings/net/realtek.txt b/Documentation/devicetree/bindings/net/realtek.txt
+> > > > index 71d386c78269..40b0d6f9ee21 100644
+> > > > --- a/Documentation/devicetree/bindings/net/realtek.txt
+> > > > +++ b/Documentation/devicetree/bindings/net/realtek.txt
+> > > > @@ -9,6 +9,12 @@ Optional properties:
+> > > >
+> > > >     SSC is only available on some Realtek PHYs (e.g. RTL8211E).
+> > > >
+> > > > +- realtek,led-modes: LED mode configuration.
+> > > > +
+> > > > +   A 0..3 element vector, with each element configuring the operating
+> > > > +   mode of an LED. Omitted LEDs are turned off. Allowed values are
+> > > > +   defined in "include/dt-bindings/net/realtek.h".
+> > >
+> > > This should probably be made more general and we should define LED modes
+> > > that makes sense regardless of the PHY device, introduce a set of
+> > > generic functions for validating and then add new function pointer for
+> > > setting the LED configuration to the PHY driver. This would allow to be
+> > > more future proof where each PHY driver could expose standard LEDs class
+> > > devices to user-space, and it would also allow facilities like: ethtool
+> > > -p to plug into that.
+> > >
+> > > Right now, each driver invents its own way of configuring LEDs, that
+> > > does not scale, and there is not really a good reason for that other
+> > > than reviewing drivers in isolation and therefore making it harder to
+> > > extract the commonality. Yes, I realize that since you are the latest
+> > > person submitting something in that area, you are being selected :)
 > 
-> The relevant discussion regarding unifying cpu topology can be found in
-> [1].
+> I agree.
 > 
-> arch_topology seems to be a perfect place to move the common code. I
-> have not introduced any significant functional changes in the moved code.
-> The only downside in this approach is that the capacity code will be
-> executed for RISC-V as well. But, it will exit immediately after not
-> able to find the appropriate DT node. If the overhead is considered too
-> much, we can always compile out capacity related functions under a
-> different config for the architectures that do not support them.
+> > I see the merit of your proposal to come up with a generic mechanism
+> > to configure Ethernet LEDs, however I can't justify spending much of
+> > my work time on this. If it is deemed useful I'm happy to send another
+> > version of the current patchset that addresses the reviewer's comments,
+> > but if the implementation of a generic LED configuration interface is
+> > a requirement I will have to abandon at least the LED configuration
+> > part of this series.
 > 
-> There was an opportunity to unify topology data structure for ARM32 done
-> by patch 3/4. But, I refrained from making any other changes as I am not
-> very well versed with original intention for some functions that
-> are present in arch_topology.c. I hope this patch series can be served
-> as a baseline for such changes in the future.
-> 
-> The patches have been tested for RISC-V, ARM64, ARM32 & compile tested for
-> x86.
+> Can you at least define a common binding for this. Maybe that's just
+> removing 'realtek'. While the kernel side can evolve to a common
+> infrastructure, the DT bindings can't.
 
-Since these patches touch files across several different architectures, 
-and thus really should sit in -next for a while; and because it's late in 
-the merge window, I'm planning to postpone sending these patches upstream 
-until after v5.3-rc1 is released.
-
-Once v5.3-rc1 is released, let's plan to get these patches rebased and 
-reposted and into linux-next as soon as possible.
-
-
-Sorry for the delay here,
-
-
-- Paul
+Defining a common binding sounds good to me, I will follow up on
+Florian's reply to this.
