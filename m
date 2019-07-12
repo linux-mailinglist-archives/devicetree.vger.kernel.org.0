@@ -2,92 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB9B96637E
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 03:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1650266387
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 03:55:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729324AbfGLByK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 11 Jul 2019 21:54:10 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:58997 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1729313AbfGLByK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 11 Jul 2019 21:54:10 -0400
-X-UUID: 4d6d757b1aab4299bc5ad7308f3dc51c-20190712
-X-UUID: 4d6d757b1aab4299bc5ad7308f3dc51c-20190712
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <chunfeng.yun@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1804235620; Fri, 12 Jul 2019 09:54:00 +0800
-Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Fri, 12 Jul
- 2019 09:53:55 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 12 Jul 2019 09:53:54 +0800
-Message-ID: <1562896434.32589.26.camel@mhfsdcap03>
-Subject: Re: [PATCH 3/5] dt-bindings: usb: mtk-xhci: add an optional xhci_ck
- clock
-From:   Chunfeng Yun <chunfeng.yun@mediatek.com>
+        id S1729363AbfGLBzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 11 Jul 2019 21:55:11 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56482 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729037AbfGLBzL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 11 Jul 2019 21:55:11 -0400
+Subject: Re: [GIT PULL] Devicetree updates for 5.3
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562896510;
+        bh=4oJRQbAb94vMBFp8ji5zLwTApaXBOLkBC6zI3acsPnA=;
+        h=From:In-Reply-To:References:Date:To:Cc:From;
+        b=2dtxCNnSfmH3oDbEH3LJxU23wXm90p2ER3AoEhzRWbDzSvnQQ/V8GqftoUtXwqeMj
+         mx/YLo6V2B1ozrDduefmXBJIeyeXjddVHjml5urFoFvhSNB/ooEQ2WO/foyEhIqhko
+         5deS9xEw+8+6sWMYifmkxBKK91o3LpkLg4BMacQk=
+From:   pr-tracker-bot@kernel.org
+In-Reply-To: <CAL_JsqJAydO3Zjx_9S+r8h5YAQbDBJjqHSFV-aKkN9n=MH7erg@mail.gmail.com>
+References: <CAL_JsqJAydO3Zjx_9S+r8h5YAQbDBJjqHSFV-aKkN9n=MH7erg@mail.gmail.com>
+X-PR-Tracked-List-Id: <linux-kernel.vger.kernel.org>
+X-PR-Tracked-Message-Id: <CAL_JsqJAydO3Zjx_9S+r8h5YAQbDBJjqHSFV-aKkN9n=MH7erg@mail.gmail.com>
+X-PR-Tracked-Remote: git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+ tags/devicetree-for-5.3
+X-PR-Tracked-Commit-Id: f59d261180f3b66367962f1974090815ce710056
+X-PR-Merge-Tree: torvalds/linux.git
+X-PR-Merge-Refname: refs/heads/master
+X-PR-Merge-Commit-Id: d06e4156430e7c5eb4f04dabcaa0d9e2fba335e3
+Message-Id: <156289651093.2089.8336732917653000086.pr-tracker-bot@kernel.org>
+Date:   Fri, 12 Jul 2019 01:55:10 +0000
 To:     Rob Herring <robh@kernel.org>
-CC:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Mathias Nyman" <mathias.nyman@intel.com>,
-        <linux-usb@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, Jumin Li <jumin.li@mediatek.com>
-Date:   Fri, 12 Jul 2019 09:53:54 +0800
-In-Reply-To: <20190709142235.GA11951@bogus>
-References: <5e06482a0be15476c7b5825f155accf98275afa8.1560246390.git.chunfeng.yun@mediatek.com>
-         <9b6ad8dee142d73b56d653ecb7475c4ed28e5eb8.1560246390.git.chunfeng.yun@mediatek.com>
-         <20190709142235.GA11951@bogus>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
-MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: AD446FD5990E933C4FDE78939AF1A0F49FEC44906C060D90748162CC59974F922000:8
-X-MTK:  N
+Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, David Miller <davem@davemloft.net>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-07-09 at 08:22 -0600, Rob Herring wrote:
-> On Wed, Jun 12, 2019 at 01:55:19PM +0800, Chunfeng Yun wrote:
-> > Add a new optional clock xhci_ck
-> > 
-> > Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> > ---
-> >  Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-> > index 266c2d917a28..91c0704b586b 100644
-> > --- a/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-> > +++ b/Documentation/devicetree/bindings/usb/mediatek,mtk-xhci.txt
-> > @@ -29,6 +29,7 @@ Required properties:
-> >  	"sys_ck": controller clock used by normal mode,
-> >  	the following ones are optional:
-> >  	"ref_ck": reference clock used by low power mode etc,
-> > +	"xhci_ck": controller clock,
-> >  	"mcu_ck": mcu_bus clock for register access,
-> >  	"dma_ck": dma_bus clock for data transfer by DMA
-> 
-> A new clock should go at the end to stay backwards compatible.
-Ok, will fix it, thanks
-> 
-> >  
-> > @@ -100,7 +101,7 @@ Required properties:
-> >   - clocks : a list of phandle + clock-specifier pairs, one for each
-> >  	entry in clock-names
-> >   - clock-names : must contain "sys_ck", and the following ones are optional:
-> > -	"ref_ck", "mcu_ck" and "dma_ck"
-> > +	"ref_ck", "xhci_ck", "mcu_ck" and "dma_ck"
-> >  
-> >  Optional properties:
-> >   - vbus-supply : reference to the VBUS regulator;
-> > -- 
-> > 2.21.0
-> > 
+The pull request you sent on Wed, 10 Jul 2019 14:50:01 -0600:
 
+> git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git tags/devicetree-for-5.3
 
+has been merged into torvalds/linux.git:
+https://git.kernel.org/torvalds/c/d06e4156430e7c5eb4f04dabcaa0d9e2fba335e3
+
+Thank you!
+
+-- 
+Deet-doot-dot, I am a bot.
+https://korg.wiki.kernel.org/userdoc/prtracker
