@@ -2,103 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F88F675C2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 22:15:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 744A6675CD
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 22:18:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727226AbfGLUPv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 16:15:51 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:47113 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727125AbfGLUPu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 16:15:50 -0400
-X-Originating-IP: 90.89.68.76
-Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id 5BEF640002;
-        Fri, 12 Jul 2019 20:15:44 +0000 (UTC)
-Date:   Fri, 12 Jul 2019 22:15:43 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Vasily Khoruzhick <anarsoul@gmail.com>
-Cc:     Andrzej Hajda <a.hajda@samsung.com>, Torsten Duwe <duwe@lst.de>,
-        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1727541AbfGLUSl convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 12 Jul 2019 16:18:41 -0400
+Received: from atlmailgw2.ami.com ([63.147.10.42]:50845 "EHLO
+        atlmailgw2.ami.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727125AbfGLUSl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 16:18:41 -0400
+X-AuditID: ac10606f-d27ff70000003324-2c-5d28eb20fe7f
+Received: from atlms1.us.megatrends.com (atlms1.us.megatrends.com [172.16.96.144])
+        (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by atlmailgw2.ami.com (Symantec Messaging Gateway) with SMTP id 2A.D9.13092.02BE82D5; Fri, 12 Jul 2019 16:18:40 -0400 (EDT)
+Received: from ATLMS2.us.megatrends.com ([fe80::29dc:a91e:ea0c:cdeb]) by
+ atlms1.us.megatrends.com ([fe80::8c55:daf0:ef05:5605%12]) with mapi id
+ 14.03.0415.000; Fri, 12 Jul 2019 16:18:40 -0400
+From:   Hongwei Zhang <Hongweiz@ami.com>
+To:     Andrew Jeffery <andrew@aj.id.au>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
- on Teres-I
-Message-ID: <20190712201543.krhsfjepd3cqndla@flea>
-References: <20190607094030.GA12373@lst.de>
- <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
- <20190612152022.c3cfhp4cauhzhfyr@flea>
- <bb2c2c00-b46e-1984-088f-861ac8952331@samsung.com>
- <20190701095842.fvganvycce2cy7jn@flea>
- <CA+E=qVdsYV2Bxk245=Myq=otd7-7WHzUnSJN8_1dciAzvSOG8g@mail.gmail.com>
- <20190709085532.cdqv7whuesrjs64c@flea>
- <CA+E=qVdz4vfU3rtTTKjYdM+4UA+=FWheJfWOMaDtFMnWQ1rHbw@mail.gmail.com>
- <20190710114042.ybgavnxb4hgqrtor@flea>
- <CA+E=qVdFoT137pADfxz3uMwhOqjqrA9+6hBeOfbJxuH-M-3Pjw@mail.gmail.com>
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [linux,dev-5.1 v1] dt-bindings: gpio: aspeed: Add SGPIO support
+Thread-Topic: [linux,dev-5.1 v1] dt-bindings: gpio: aspeed: Add SGPIO support
+Thread-Index: AQHVMdoYoxHDUhbFgEKYqLGYV+TuK6bDajmAgAQPB2A=
+Date:   Fri, 12 Jul 2019 20:18:39 +0000
+Message-ID: <14D3C8298A3B0F42A1EB31EE961CFF82AA8F46AD@atlms2.us.megatrends.com>
+References: <1562184069-22332-1-git-send-email-hongweiz@ami.com>
+ <9c998f5f-42ef-43bd-b024-839ee00126de@www.fastmail.com>
+In-Reply-To: <9c998f5f-42ef-43bd-b024-839ee00126de@www.fastmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.16.100.241]
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: 8BIT
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CA+E=qVdFoT137pADfxz3uMwhOqjqrA9+6hBeOfbJxuH-M-3Pjw@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFlrEIsWRmVeSWpSXmKPExsWyRiBhgq7Ca41Yg2ddlha7LnNYzD9yjtXi
+        9/m/zBZT/ixnsmhefY7Z4vKuOWwWS69fZLJo3XuE3YHD42r7LnaPNfPWMHpc/HiM2WPTqk42
+        jzvX9rB5nJ+xkNHj8ya5APYoLpuU1JzMstQifbsEroyJXbeZCnZLV8y/+4utgXGeWBcjJ4eE
+        gInE77YNLCC2kMAuJonpTZVdjFxA9mFGiRsHJrOCJNgE1CSe/mlgB0mICKxhlLh59igjiMMs
+        cJZRYs2lL8wgVcICPhInfi4HGyUi4CvRfaaFEcK2kthwpRksziKgKvHg8H8mEJtXwF/iat8M
+        dojVVRIrdveAbeMUcJFYMm0LG4jNKCAm8f3UGrB6ZgFxiVtP5jNBnC0gsWTPeWYIW1Ti5eN/
+        rBC2kkTDin9Q9ToSC3Z/YoOwtSWWLXzNDLFXUOLkzCcsExhFZyEZOwtJyywkLbOQtCxgZFnF
+        KJRYkpObmJmTXm6kl5ibqZecn7uJERKP+TsYP340P8TIxMF4iFGCg1lJhHfVf/VYId6UxMqq
+        1KL8+KLSnNTiQ4zSHCxK4ryr1nyLERJITyxJzU5NLUgtgskycXBKNTDOuNgu7FYhZ62Vr6Pq
+        paWRFbEkjbs2XfKugNzi21e3xUjVbLjafTqRc3HIdtGHGWXSfLwpk/dmy91riZzT2Lfkg/vV
+        fxaJzdebb7861LTeOGKN49vGJ3Vbvn9TvLlxxb4XpQaHNl1TS34WsVFsVZl5hPgsbbfv5V8c
+        GR9tV9GYu2/Z4d9hn/mVWIozEg21mIuKEwGO1G0stQIAAA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 10, 2019 at 03:11:04PM -0700, Vasily Khoruzhick wrote:
-> On Wed, Jul 10, 2019 at 4:40 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > > > There's another issue: if we introduce edp-connector we'll have to
-> > > > > specify power up delays somewhere (in dts? or in platform driver?), so
-> > > > > edp-connector doesn't really solve the issue of multiple panels with
-> > > > > same motherboard.
-> > > >
-> > > > And that's what that compatible is about :)
-> > >
-> > > Sorry, I fail to see how it would be different from using existing
-> > > panels infrastructure and different panels compatibles. I think Rob's
-> > > idea was to introduce generic edp-connector.
-> >
-> > Again, there's no such thing as a generic edp-connector. The spec
-> > doesn't define anything related to the power sequence for example.
-> >
-> > > If we can't make it generic then let's use panel infrastructure.
-> >
-> > Which uses a device specific compatible. Really, I'm not sure what
-> > your objection and / or argument is here.
-> >
-> > In addition, when that was brought up in the discussion, you rejected
-> > it because it was inconvenient:
-> > https://patchwork.freedesktop.org/patch/283012/?series=56163&rev=1#comment_535206
+Thanks for your review, Andrew,
+
+Just submitted an updated binding document, with new proper subject line:
+
+[PATCH 2/3 v2] dt-bindings: gpio: aspeed: Add SGPIO support
+
+Regards,
+--Hongwei
+
+-----Original Message-----
+From: Andrew Jeffery <andrew@aj.id.au> 
+Sent: Tuesday, July 9, 2019 10:16 PM
+To: Hongwei Zhang <Hongweiz@ami.com>; devicetree@vger.kernel.org; Joel Stanley <joel@jms.id.au>; Linus Walleij <linus.walleij@linaro.org>
+Cc: Rob Herring <robh+dt@kernel.org>; Mark Rutland <mark.rutland@arm.com>; linux-aspeed@lists.ozlabs.org; linux-kernel@vger.kernel.org
+Subject: Re: [linux,dev-5.1 v1] dt-bindings: gpio: aspeed: Add SGPIO support
+
+
+
+On Thu, 4 Jul 2019, at 05:31, Hongwei Zhang wrote:
+> Add bindings to support SGPIO on AST2400 or AST2500.
+> 
+> Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
+> ---
+>  .../devicetree/bindings/gpio/sgpio-aspeed.txt      | 36 ++++++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+>  create mode 100644 
+> Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> new file mode 100644
+> index 0000000..f5fc6ef
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> @@ -0,0 +1,36 @@
+> +Aspeed SGPIO controller Device Tree Bindings
+> +-------------------------------------------
+> +
+> +Required properties:
+> +- compatible		: Either "aspeed,ast2400-sgpio" or "aspeed,ast2500-sgpio"
+> +
+> +- #gpio-cells 		: Should be two
+> +			  - First cell is the GPIO line number
+> +			  - Second cell is used to specify optional
+> +			    parameters (unused)
+> +
+> +- reg			: Address and length of the register set for the device
+> +- gpio-controller	: Marks the device node as a GPIO controller.
+> +- interrupts		: Interrupt specifier (see interrupt bindings for
+> +			  details)
+> +- interrupt-controller	: Mark the GPIO controller as an 
+> interrupt-controller
+
+As this is a serial GPIO controller, a critical piece of configuration information is how many GPIOs we wish to serialise. This is done in multiples of 8, up to 80 pins.
+
+The bindings need to describe the "ngpios" property from the generic GPIO bindings and how this affects the behaviour of the controller.
+
+We also need to add the "bus-frequency" property here to control the rate of SGPMCK.
+
+> +
+> +Optional properties:
+> +
+> +- clocks                : A phandle to the clock to use for debounce 
+> timings
+
+We need this, but not for the reason specified, and it should be a required property. We need PCLK (the APB clock) to derive the SGPIO bus frequency. Despite what the datasheet blurb says, there's no debounce control for the SGPIO master (this is a copy/paste mistake from the description of the parallel GPIO master).
+
+> +
+> +The sgpio and interrupt properties are further described in their
+> respective
+> +bindings documentation:
+> +
+> +- Documentation/devicetree/bindings/sgpio/gpio.txt
+> +- 
+> +Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+> +
+> +  Example:
+> +	sgpio@1e780200 {
+> +		#gpio-cells = <2>;
+> +		compatible = "aspeed,ast2500-sgpio";
+> +		gpio-controller;
+> +		interrupts = <40>;
+> +		reg = <0x1e780200 0x0100>;
+> +		interrupt-controller;
+> +	};
+
+You'll need to fix up the example after making the changes mentioned above.
+
+Andrew
+
+> --
+> 2.7.4
+> 
 >
-> It is inconvenient, but I don't understand how having board-specific
-> connectors fixes it.
-
-How it would not fix it?
-
-You'll have one connector, without the need to describe each and every
-panel in the device tree and rely on the EDID instead, and you'll have
-the option to power up the regulator you need.
-
-I really don't understand what's the issue here, so let's take a step
-back. What are is the issue , what are your requirements, and how
-would you like that to be described ?
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
