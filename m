@@ -2,223 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FF0966B06
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 12:45:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E35D666BF1
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 13:59:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726196AbfGLKpw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 06:45:52 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:56918 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726057AbfGLKpv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 06:45:51 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190712104549euoutp028ff13d2edbb222edb452186209e7a87f~wow22tk522093820938euoutp02l
-        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2019 10:45:49 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190712104549euoutp028ff13d2edbb222edb452186209e7a87f~wow22tk522093820938euoutp02l
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1562928350;
-        bh=aCo4dkE6rEOyv2yvT87ApQTTuybWLW9vtX/jlJ54q9g=;
-        h=Subject:To:From:Date:In-Reply-To:References:From;
-        b=JJ0qoo9kiqYtf19WJN9IkLeKdaWCN9oavREgULfG8L1J1I+wdeJ0hqbA0YBCalS/5
-         WHs50IrMt/rbgQrzjyUxZB6FcGB7VZOr9VmR98rp7PW2jaO/3qqlMLdJRteq0udbHM
-         zgB2Ni3vJb8RqllMfu//5l0yfYJI0QntyhTfuD4Y=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190712104548eucas1p116308d1f3328809effaf08d7718ed583~wow1s_joc2269022690eucas1p1J;
-        Fri, 12 Jul 2019 10:45:48 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id 29.93.04377.CD4682D5; Fri, 12
-        Jul 2019 11:45:48 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190712104547eucas1p145220086debe94a8605502a235450e4d~wow02UqiW2083120831eucas1p1G;
-        Fri, 12 Jul 2019 10:45:47 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190712104547eusmtrp1bd1ba82f311f3346eb57a2dbed5f63e0~wow0oDhAS2846228462eusmtrp12;
-        Fri, 12 Jul 2019 10:45:47 +0000 (GMT)
-X-AuditID: cbfec7f4-12dff70000001119-1b-5d2864dc2612
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 02.C4.04140.BD4682D5; Fri, 12
-        Jul 2019 11:45:47 +0100 (BST)
-Received: from [106.120.51.74] (unknown [106.120.51.74]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190712104546eusmtip105110336ffc7dc8226bfe3c32e7d0337~wowz7tU-b2407824078eusmtip1L;
-        Fri, 12 Jul 2019 10:45:46 +0000 (GMT)
-Subject: Re: [PATCH 3/3] drm/bridge: sii902x: make audio mclk optional
-To:     Olivier Moysan <olivier.moysan@st.com>, narmstrong@baylibre.com,
-        Laurent.pinchart@ideasonboard.com, jonas@kwiboo.se,
-        jernej.skrabec@siol.net, airlied@linux.ie, daniel@ffwll.ch,
-        dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
-        benjamin.gaignard@st.com, alexandre.torgue@st.com,
-        linux-arm-kernel@lists.infradead.org,
-        linux-stm32@st-md-mailman.stormreply.com, jsarha@ti.com,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org
-From:   Andrzej Hajda <a.hajda@samsung.com>
-Message-ID: <beef9917-1e8b-1ddb-740b-5b2ca8cd379c@samsung.com>
-Date:   Fri, 12 Jul 2019 12:45:46 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:68.0) Gecko/20100101
-        Thunderbird/68.0
-MIME-Version: 1.0
-In-Reply-To: <1562082426-14876-4-git-send-email-olivier.moysan@st.com>
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SbUhTYRiGe/eeczwuJ8dl+ZQf0SisIK3wxxuGfRBxog+iH0GF1SkPa+RH
-        bVlZiFFpc2Z+YTYXaaBpy9BmaplGW9GSlWSlzig1nIjZ8IdmCpltnkX+u9/7ee6H64aXxcos
-        ZgmrST4japOFRBUjpxpfT7Wv+ZKwMn7t795QktveJiOPXA5EbpS5aDLTWIBJ2at2mnz6OcqQ
-        zl/DmLT96KRITraeJtkFFX7EMtBFk4/Ntxli6PIkKrs7ZMR24xApajExJLP1ld/mIL7mTg3i
-        R52ZfnzrRDnFm/RGmreYsxn+Tf4HGd800U/zfTl2GV9fkcG/yC2ieOvzdfzgZCvm7c4mGT9m
-        idgbeFC+MUFM1JwVtdFxR+UnCkvK8al7Yec7fvVRl9DoIgPyZ4GLgboH7xgDkrNKrhpBxYQD
-        S49xBGbjE1p6jCEoLuxl/kVqO01IGlQhGH445dtyI6gdqZAZEMsu4LbD28ZwbyCY68JQ4ua9
-        muFWwXR9z+whBRcHTr0VezXFrYAW5xTl1Qu5/TBVnu3bCYI2o2vW9/ecHB/pnvUxtxSuNJiw
-        pEPgs6tM5mUA7j4LP6wfkES6DYbMIz7qBfDd/thP0mHgKLpOSToD+qqvYimsR9BQ9xRLg1h4
-        ae+gvWWwh7q2OVqyt4D77SPKawMXCE53kMQQCIWNJViyFaDPUkrby6DvXYPvYAhUvv/po+Hh
-        Vvcok4+Wlc5pWTqnWemcZqX/GcoRZUYhYqouSS3q1ieL56J0QpIuNVkddTwlyYI8v9Pxxz7+
-        BDX/PmZDHItUAQrnhsh4JS2c1aUl2RCwWBWsMM94LEWCkHZB1KYc0aYmijobCmUpVYji4rz+
-        Q0pOLZwRT4riKVH7bypj/ZdcQjGawxm21ysFLFxYcS1sYKe1ekzdEqCJykvpmewduDl0qyq+
-        LDhvMryq0Lr52dfEkcg9GsO3x8un04vYO9WB+4lm/qJiuBtxX6CbrbvqHxTsWxiUtmswZ+n6
-        gHb3jmddJ9vk0Qm711rUxkjX5cVqh/pAf1zsaWNTZIRpa2XPpnRGRelOCOtWY61O+AvWDzUk
-        mQMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFuplleLIzCtJLcpLzFFi42I5/e/4Xd3bKRqxBh/aFSx6z51kstj45DSj
-        Rd/8J6wW/7dNZLaYf+Qcq8WVr+/ZLK5+f8lscfLNVRaL7s4OVovOiUvYLTY9vsZqcXnXHDaL
-        rmtAHUuvX2SyONQXbTF5z2w2i9a9R9gdBD3WzFvD6PH+Riu7x95vC1g8ZnfMZPXYtKqTzePE
-        hEtMHtu/PWD1uN99nMlj85J6jwO9k1k8Du4z9Hj6Yy+zx/Eb25k8Pm+SC+CL0rMpyi8tSVXI
-        yC8usVWKNrQw0jO0tNAzMrHUMzQ2j7UyMlXSt7NJSc3JLEst0rdL0MuYNH0Bc8EymYqL3++z
-        NDC+F+ti5OSQEDCRWH91NmMXIxeHkMBSRok5W+4yQiTEJXbPf8sMYQtL/LnWxQZR9JpRYllv
-        I3sXIweHsICbxJltsiBxEYFrzBK/dnaxQBRdZZT4suYCWDebgKbE38032UBsXgE7iRsdB8Hi
-        LAKqEntu/GQBGSQqECZx9EQeRImgxMmZT1hAbE6g+V9eXwdrZRZQl/gz7xIzhC0v0bx1NpQt
-        LnHryXymCYyCs5C0z0LSMgtJyywkLQsYWVYxiqSWFuem5xYb6RUn5haX5qXrJefnbmIEJoVt
-        x35u2cHY9S74EKMAB6MSD+8NS/VYIdbEsuLK3EOMEhzMSiK8q/4DhXhTEiurUovy44tKc1KL
-        DzGaAv02kVlKNDkfmLDySuINTQ3NLSwNzY3Njc0slMR5OwQOxggJpCeWpGanphakFsH0MXFw
-        SjUwMs9WytnMlb5UQ3G+zLZFjBdrTYs2Jv1LdJvrkmU15dkL26jEl9+9WPaxbnwVGb+cZbX6
-        uxzmWhv+j8f0hBZf4Vq+i/fXL5ckmdbce8v+PplyNnC2jaPigQfb9useeK8n/sf4oEqJl5Dz
-        nl/2MUlZjbo7n8jH57Lrza48OMd5WsLW8MgJn9IvKbEUZyQaajEXFScCAFW8Xj8gAwAA
-X-CMS-MailID: 20190712104547eucas1p145220086debe94a8605502a235450e4d
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190702154808epcas2p263688e1a3f29a656a86f5feda73aa6ab
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190702154808epcas2p263688e1a3f29a656a86f5feda73aa6ab
-References: <1562082426-14876-1-git-send-email-olivier.moysan@st.com>
-        <CGME20190702154808epcas2p263688e1a3f29a656a86f5feda73aa6ab@epcas2p2.samsung.com>
-        <1562082426-14876-4-git-send-email-olivier.moysan@st.com>
+        id S1726582AbfGLL7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 07:59:03 -0400
+Received: from bastet.se.axis.com ([195.60.68.11]:32778 "EHLO
+        bastet.se.axis.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726254AbfGLL7C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 07:59:02 -0400
+X-Greylist: delayed 353 seconds by postgrey-1.27 at vger.kernel.org; Fri, 12 Jul 2019 07:59:02 EDT
+Received: from localhost (localhost [127.0.0.1])
+        by bastet.se.axis.com (Postfix) with ESMTP id 4319E184F4;
+        Fri, 12 Jul 2019 13:53:08 +0200 (CEST)
+X-Axis-User: NO
+X-Axis-NonUser: YES
+X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
+Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
+        by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new, port 10024)
+        with LMTP id B8xvrNuuyqWV; Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
+Received: from boulder02.se.axis.com (boulder02.se.axis.com [10.0.8.16])
+        by bastet.se.axis.com (Postfix) with ESMTPS id 98D2118317;
+        Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
+Received: from boulder02.se.axis.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 7BB0F1A063;
+        Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
+Received: from boulder02.se.axis.com (unknown [127.0.0.1])
+        by IMSVA (Postfix) with ESMTP id 704B31A060;
+        Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
+Received: from seth.se.axis.com (unknown [10.0.2.172])
+        by boulder02.se.axis.com (Postfix) with ESMTP;
+        Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
+Received: from lnxpavelmn.se.axis.com (lnxpavelmn.se.axis.com [10.94.101.1])
+        by seth.se.axis.com (Postfix) with ESMTP id 6472C2D9D;
+        Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
+Received: by lnxpavelmn.se.axis.com (Postfix, from userid 11147)
+        id 534BB600F2; Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
+From:   Pavel Modilaynen <pavel.modilaynen@axis.com>
+To:     robh+dt@kernel.org, frowand.list@gmail.com
+Cc:     devicetree@vger.kernel.org, Pavel Modilaynen <pavelmn@axis.com>
+Subject: [PATCH] dtc: Use pkg-config to locate libyaml
+Date:   Fri, 12 Jul 2019 13:52:19 +0200
+Message-Id: <20190712115219.25997-1-pavelmn@axis.com>
+X-Mailer: git-send-email 2.11.0
+X-TM-AS-GCONF: 00
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02.07.2019 17:47, Olivier Moysan wrote:
-> The master clock on i2s bus is not mandatory,
-> as sii902X internal PLL can be used instead.
-> Make use of mclk optional.
->
-> Fixes: ff5781634c41 ("drm/bridge: sii902x: Implement HDMI audio support")
->
-> Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
-> ---
->  drivers/gpu/drm/bridge/sii902x.c | 39 +++++++++++++++++++++++----------------
->  1 file changed, 23 insertions(+), 16 deletions(-)
->
-> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
-> index 36acc256e67e..a08bd9fdc046 100644
-> --- a/drivers/gpu/drm/bridge/sii902x.c
-> +++ b/drivers/gpu/drm/bridge/sii902x.c
-> @@ -562,19 +562,21 @@ static int sii902x_audio_hw_params(struct device *dev, void *data,
->  		}
->  	}
->  
-> -	ret = clk_prepare_enable(sii902x->audio.mclk);
-> -	if (ret) {
-> -		dev_err(dev, "Enabling mclk failed: %d\n", ret);
-> -		return ret;
-> -	}
-> +	if (sii902x->audio.mclk) {
-> +		ret = clk_prepare_enable(sii902x->audio.mclk);
-> +		if (ret) {
-> +			dev_err(dev, "Enabling mclk failed: %d\n", ret);
-> +			return ret;
-> +		}
->  
-> -	mclk_rate = clk_get_rate(sii902x->audio.mclk);
-> +		mclk_rate = clk_get_rate(sii902x->audio.mclk);
->  
-> -	ret = sii902x_select_mclk_div(&i2s_config_reg, params->sample_rate,
-> -				      mclk_rate);
-> -	if (mclk_rate != ret * params->sample_rate)
-> -		dev_dbg(dev, "Inaccurate reference clock (%ld/%d != %u)\n",
-> -			mclk_rate, ret, params->sample_rate);
-> +		ret = sii902x_select_mclk_div(&i2s_config_reg,
-> +					      params->sample_rate, mclk_rate);
-> +		if (mclk_rate != ret * params->sample_rate)
-> +			dev_dbg(dev, "Inaccurate reference clock (%ld/%d != %u)\n",
-> +				mclk_rate, ret, params->sample_rate);
-> +	}
->  
->  	mutex_lock(&sii902x->mutex);
->  
-> @@ -640,7 +642,8 @@ static int sii902x_audio_hw_params(struct device *dev, void *data,
->  	mutex_unlock(&sii902x->mutex);
->  
->  	if (ret) {
-> -		clk_disable_unprepare(sii902x->audio.mclk);
-> +		if (sii902x->audio.mclk)
-> +			clk_disable_unprepare(sii902x->audio.mclk);
+From: Pavel Modilaynen <pavel.modilaynen@axis.com>
 
+Using Makefile's wildcard with absolute path to detect
+the presence of libyaml results in false-positive
+detection when cross-compiling e.g. in yocto environment.
+The latter results in build error:
+| scripts/dtc/yamltree.o: In function `yaml_propval_int':
+| yamltree.c: undefined reference to `yaml_sequence_start_event_initialize'
+| yamltree.c: undefined reference to `yaml_emitter_emit'
+| yamltree.c: undefined reference to `yaml_scalar_event_initialize'
+...
+Use pkg-config to locate libyaml to address this scenario.
 
-"if" clause is not necessary
+Signed-off-by: Pavel Modilaynen <pavel.modilaynen@axis.com>
+---
+ scripts/dtc/Makefile | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-
->  		dev_err(dev, "%s: hdmi audio enable failed: %d\n", __func__,
->  			ret);
->  	}
-> @@ -659,7 +662,8 @@ static void sii902x_audio_shutdown(struct device *dev, void *data)
->  
->  	mutex_unlock(&sii902x->mutex);
->  
-> -	clk_disable_unprepare(sii902x->audio.mclk);
-> +	if (sii902x->audio.mclk)
-
-ditto
-
-> +		clk_disable_unprepare(sii902x->audio.mclk);
->  }
->  
->  int sii902x_audio_digital_mute(struct device *dev, void *data, bool enable)
-> @@ -752,9 +756,12 @@ static int sii902x_audio_codec_init(struct sii902x *sii902x,
->  
->  	sii902x->audio.mclk = devm_clk_get(dev, "mclk");
->  	if (IS_ERR(sii902x->audio.mclk)) {
-> -		dev_err(dev, "%s: No clock (audio mclk) found: %ld\n",
-> -			__func__, PTR_ERR(sii902x->audio.mclk));
-> -		return 0;
-> +		if (PTR_ERR(sii902x->audio.mclk) != -ENOENT) {
-> +			dev_err(dev, "%s: No clock (audio mclk) found: %ld\n",
-> +				__func__, PTR_ERR(sii902x->audio.mclk));
-> +			return PTR_ERR(sii902x->audio.mclk);
-> +		}
-> +		sii902x->audio.mclk = NULL;
-
-
-devm_clk_get_optional should be used here.
-
-Summarizing, clk framework supports NULL clocks so you can adjust code
-to benefit from it: no need to checks "if (sii902x->audio.mclk)". The
-only place you should care is near clk_get_rate, for null clock it will
-return 0, so you should react appropriately.
-
-With that changed:
-
-Reviewed-by: Andrzej Hajda <a.hajda@samsung.com>
-
- --
-Regards
-Andrzej
-
-
->  	}
->  
->  	sii902x->audio.pdev = platform_device_register_data(
-
+diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
+index 82160808765c..99d51b665432 100644
+--- a/scripts/dtc/Makefile
++++ b/scripts/dtc/Makefile
+@@ -11,7 +11,7 @@ dtc-objs	+= dtc-lexer.lex.o dtc-parser.tab.o
+ # Source files need to get at the userspace version of libfdt_env.h to compile
+ HOST_EXTRACFLAGS := -I $(srctree)/$(src)/libfdt
+ 
+-ifeq ($(wildcard /usr/include/yaml.h),)
++ifeq ($(shell pkg-config --exists yaml-0.1 && echo yes),)
+ ifneq ($(CHECK_DTBS),)
+ $(error dtc needs libyaml for DT schema validation support. \
+ 	Install the necessary libyaml development package.)
+@@ -19,7 +19,7 @@ endif
+ HOST_EXTRACFLAGS += -DNO_YAML
+ else
+ dtc-objs	+= yamltree.o
+-HOSTLDLIBS_dtc	:= -lyaml
++HOSTLDLIBS_dtc	:= $(shell pkg-config yaml-0.1 --libs)
+ endif
+ 
+ # Generated files need one more search path to include headers in source tree
+-- 
+2.11.0
 
