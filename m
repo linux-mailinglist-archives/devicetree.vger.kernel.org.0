@@ -2,71 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7872566F48
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 14:54:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 868D866F7D
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 15:04:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727108AbfGLMyl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 08:54:41 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:36189 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727057AbfGLMyk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 08:54:40 -0400
-Received: by mail-ot1-f67.google.com with SMTP id r6so9343042oti.3;
-        Fri, 12 Jul 2019 05:54:40 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=feDbdkSVTosWDez5MLubLp1GBzoWIw6qYC5Za/vxjV4=;
-        b=a8EjjIIwCllHS91A+am5rC6fXAzth2NEeEbCjfC4hUS/tQac0OMu5l55gS4XZ/KRJH
-         ui5e9ED+dveoG1ejoCyRwXh7CeizfICMRZZiVkxsoBpotwQ1kutRVIslwyFtw7xb4Iam
-         WlXAQ+UTVvFLccCFOnSgwJ1Fhbx77pAcMk+aotnoz7WP6X8c4zjgbJTqCEhkempIyC05
-         UxG3SpsATIltQoSPEVU9Wx6v12Dja+fqZDrrAxHHBQmYa3/KT23v2IXEkxhZlbw6zYEH
-         OMEA6yoRAg1I2o0rJtPvm42ijWOekhmTvvczY4BrgpeCNj7BJ/hBjyML2vnv3RCUgPTZ
-         g7AA==
-X-Gm-Message-State: APjAAAUtJ+p7UztZwXRYn1YWPoUBjxuJv50iUVZPefZoyVktdxeIfye5
-        kYGkaMHfrE5aboQETLBr0Djxp+zzAoY7kZRt4f0=
-X-Google-Smtp-Source: APXvYqzrCfPmuG9cPm5Ik6O7axxU31y7JMykE3rvw8afQOpH81k2YF8MdfXKpeylwEtRmCl6CgHI40Pg+vgnsgZCzZw=
-X-Received: by 2002:a9d:69ce:: with SMTP id v14mr8564582oto.39.1562936080300;
- Fri, 12 Jul 2019 05:54:40 -0700 (PDT)
+        id S1727165AbfGLNEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 09:04:12 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53006 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726449AbfGLNEL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Jul 2019 09:04:11 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 83496216C4;
+        Fri, 12 Jul 2019 13:04:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1562936650;
+        bh=j08i/yzt8yihm95wbKxIa8ANHeLTJGyB1LowMPZRoQs=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=tn4/f9n/k299HHdLN0F6ScJZKf/VYffpnnAYh+PPAzA7ZjRWQFYrqKf+oTQV+fuy4
+         ACXtzrbqpM/naLe0Cz/a11svW1mUDqExyut4Wh/u8EXdbSDYghpYV5xdCObec1WWpU
+         LNbCdcMo3gwFzWE9scGST+eZVaGIXGMXzio+pSbQ=
+Received: by mail-qt1-f179.google.com with SMTP id k10so7990455qtq.1;
+        Fri, 12 Jul 2019 06:04:10 -0700 (PDT)
+X-Gm-Message-State: APjAAAVWKooERTk+d1Vgk3uqzGGJJaXeOFEhtduVtdPg6v8XdYb3lO6I
+        GLlMnQ+v9OfBMw/UKxIVh3xi2QbMAyh1cDJyog==
+X-Google-Smtp-Source: APXvYqy0Gw33CPTr5i9Ny8C1aCwNSn1BsAcArqdhs4L6Ao3k4lrTO3dV3h27CfJYvsBcR6H2d01/a3fqfjUcmFKloV0=
+X-Received: by 2002:a0c:b786:: with SMTP id l6mr6598069qve.148.1562936649734;
+ Fri, 12 Jul 2019 06:04:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <1562321720-18735-1-git-send-email-biju.das@bp.renesas.com> <1562321720-18735-4-git-send-email-biju.das@bp.renesas.com>
-In-Reply-To: <1562321720-18735-4-git-send-email-biju.das@bp.renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 12 Jul 2019 14:54:29 +0200
-Message-ID: <CAMuHMdWbZo1WK-fVGEXFwnjJy8ubazvq4aniCh1i5zw8m=-pVw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] arm64: dts: renesas: hihope-common: Add WLAN support
-To:     Biju Das <biju.das@bp.renesas.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20190712033214.24713-1-andrew@aj.id.au> <20190712033214.24713-2-andrew@aj.id.au>
+In-Reply-To: <20190712033214.24713-2-andrew@aj.id.au>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 12 Jul 2019 07:03:57 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq++J+K2goHiNrHJGnL6vrLjmKhM+vpYO=sTnmv6fm2sog@mail.gmail.com>
+Message-ID: <CAL_Jsq++J+K2goHiNrHJGnL6vrLjmKhM+vpYO=sTnmv6fm2sog@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: Document Aspeed SD controller
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+        Joel Stanley <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 5, 2019 at 12:20 PM Biju Das <biju.das@bp.renesas.com> wrote:
-> This patch enables WLAN support for the HiHope RZ/G2[MN] boards.
+On Thu, Jul 11, 2019 at 9:32 PM Andrew Jeffery <andrew@aj.id.au> wrote:
 >
-> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
+> The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the
+> SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
+> data bus if only a single slot is enabled.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> ---
+> In v2:
+>
+> * Rename to aspeed,sdhci.yaml
+> * Rename sd-controller compatible
+> * Add `maxItems: 1` for reg properties
+> * Move sdhci subnode description to patternProperties
+> * Drop sdhci compatible requirement
+> * #address-cells and #size-cells are required
+> * Prevent additional properties
+> * Implement explicit ranges in example
+> * Remove slot property
+>
+>  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Reviewed-by: Rob Herring <robh@kernel.org>
