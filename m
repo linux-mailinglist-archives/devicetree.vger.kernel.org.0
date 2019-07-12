@@ -2,271 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A6A167538
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 20:50:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CF19675BA
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 22:14:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726628AbfGLSuS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 14:50:18 -0400
-Received: from lelv0142.ext.ti.com ([198.47.23.249]:44448 "EHLO
-        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726867AbfGLSuS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 14:50:18 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6CIo9EC024168;
-        Fri, 12 Jul 2019 13:50:09 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1562957409;
-        bh=zqQ58ER/KkKEyQXdg8uscL61M3xULXtOuGlfXPiC+0g=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=dAaZQGHV1DwZdJc3UcxYwVwxsHGEIz6yobfLwkVrdJ8xlzPcRiFLnt5YhDoVz/jYR
-         YZPUa6bJPksA7hRv5TVSbBcil3pf+rn+aSPgKKUNZEelUV6Jc2CmrBWF+ksF5YIdOL
-         pLPtf1Lq32spU5PxbfkO8McmuC/BT5NJ6PdhBbsI=
-Received: from DFLE105.ent.ti.com (dfle105.ent.ti.com [10.64.6.26])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6CIo9B2120918
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 12 Jul 2019 13:50:09 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 12
- Jul 2019 13:50:09 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 12 Jul 2019 13:50:09 -0500
-Received: from [128.247.59.136] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6CIo9xY056447;
-        Fri, 12 Jul 2019 13:50:09 -0500
-Subject: Re: [PATCH 1/2] leds: Add control of the voltage/current regulator to
- the LED core
-To:     Jean-Jacques Hiblot <jjhiblot@ti.com>,
-        <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <daniel.thompson@linaro.org>
-CC:     <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        id S1727490AbfGLUOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 16:14:05 -0400
+Received: from atlmailgw1.ami.com ([63.147.10.40]:56173 "EHLO
+        atlmailgw1.ami.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727226AbfGLUOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 16:14:05 -0400
+X-AuditID: ac1060b2-3fdff70000003a7d-24-5d28ea136749
+Received: from atlms1.us.megatrends.com (atlms1.us.megatrends.com [172.16.96.144])
+        (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by atlmailgw1.ami.com (Symantec Messaging Gateway) with SMTP id F5.C9.14973.31AE82D5; Fri, 12 Jul 2019 16:14:11 -0400 (EDT)
+Received: from hongweiz-Ubuntu-AMI.us.megatrends.com (172.16.98.93) by
+ atlms1.us.megatrends.com (172.16.96.144) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Fri, 12 Jul 2019 16:14:03 -0400
+From:   Hongwei Zhang <hongweiz@ami.com>
+To:     Joel Stanley <joel@jms.id.au>, Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
         <devicetree@vger.kernel.org>
-References: <20190708103547.23528-1-jjhiblot@ti.com>
- <20190708103547.23528-2-jjhiblot@ti.com>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <56d16260-ff82-3439-4c1f-2a3a1552bc7d@ti.com>
-Date:   Fri, 12 Jul 2019 13:49:21 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+CC:     Hongwei Zhang <hongweiz@ami.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-gpio@vger.kernel.org>
+Subject: [PATCH 2/3 v2] dt-bindings: gpio: aspeed: Add SGPIO support
+Date:   Fri, 12 Jul 2019 16:14:00 -0400
+Message-ID: <1562962440-15908-1-git-send-email-hongweiz@ami.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <20190708103547.23528-2-jjhiblot@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain
+X-Originating-IP: [172.16.98.93]
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHLMWRmVeSWpSXmKPExsWyRiBhgq7wK41Yg6nnFSx2Xeaw+DL3FIvF
+        /CPnWC1+n//LbDHlz3Imi02Pr7FaNK8+x2yxef4fRovLu+awWSy9fpHJonXvEXYHbo+r7bvY
+        PdbMW8Po8f5GK7vHxY/HmD02repk87hzbQ+bx+Yl9R7nZyxk9Pi8SS6AM4rLJiU1J7MstUjf
+        LoErY9+ehUwF0wUqTn3eydzAOJu3i5GDQ0LARKJ9V0oXIxeHkMAuJonbr+6yQDiHGSWuv//O
+        3sXIycEmoCaxd/McJpCEiEAvo8TCr4vBHGaB1UwS7RuOg1UJC7hIrDjbywZiswioSnSduscC
+        YvMKOEj8/vcMrEZCQE7i5rlOZoi4oMTJmU/AapgFJCQOvngBFhcSkJW4degxE0S9gsTzvscs
+        Exj5ZiFpmYWkZQEj0ypGocSSnNzEzJz0ckO9xNxMveT83E2MkDDftIOx5aL5IUYmDsZDjBIc
+        zEoivKv+q8cK8aYkVlalFuXHF5XmpBYfYpTmYFES51255luMkEB6YklqdmpqQWoRTJaJg1Oq
+        gXHrH3H5dyUOYndeT792gKF/9TWfu/JlgYeeynnI3Y85Usbu+/belScZh3c/qHo/3/7V0+Yz
+        j6JvzazNPCyYoJQt2nG577PPld4XzYuFhApW35PqC5m+ib00fXuDtfr82ODzTw+W9XvZvf/v
+        /iLwx+r2r8VfFdf+bDk1c7K8xk7eexIfAoXeX7JUYinOSDTUYi4qTgQADUXdmGECAAA=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-JJ
+Add bindings to support SGPIO on AST2400 or AST2500.
 
-On 7/8/19 5:35 AM, Jean-Jacques Hiblot wrote:
-> A LED is usually powered by a voltage/current regulator. Let the LED core
-Let the LED core know
-> about it. This allows the LED core to turn on or off the power supply
-> as needed.
+Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
+---
+ .../devicetree/bindings/gpio/sgpio-aspeed.txt      | 43 ++++++++++++++++++++++
+ 1 file changed, 43 insertions(+)
+ create mode 100755 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
 
->
-> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
-> ---
->   drivers/leds/led-class.c | 10 ++++++++
->   drivers/leds/led-core.c  | 53 +++++++++++++++++++++++++++++++++++++---
->   include/linux/leds.h     |  4 +++
->   3 files changed, 64 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-> index 4793e77808e2..e01b2d982564 100644
-> --- a/drivers/leds/led-class.c
-> +++ b/drivers/leds/led-class.c
-> @@ -17,6 +17,7 @@
->   #include <linux/slab.h>
->   #include <linux/spinlock.h>
->   #include <linux/timer.h>
-> +#include <linux/regulator/consumer.h>
+diff --git a/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+new file mode 100755
+index 0000000..3ae2b79
+--- /dev/null
++++ b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+@@ -0,0 +1,43 @@
++Aspeed SGPIO controller Device Tree Bindings
++-------------------------------------------
++
++Required properties:
++- compatible		: Either "aspeed,ast2400-sgpio" or "aspeed,ast2500-sgpio"
++
++- #gpio-cells 		: Should be two
++			  - First cell is the GPIO line number
++			  - Second cell is used to specify optional
++			    parameters (unused)
++
++- reg			: Address and length of the register set for the device
++- gpio-controller	: Marks the device node as a GPIO controller.
++- interrupts		: Interrupt specifier (see interrupt bindings for
++			  details)
++
++- interrupt-controller	: Mark the GPIO controller as an interrupt-controller
++
++- nr-gpios		: number of GPIO pins to serialise. (should be multiple of 8, up to 80 pins)
++			  if not specified, defaults to 80.
++
++- clocks               : A phandle to the APB clock for SGPM clock division
++
++- bus-frequency	: SGPM CLK frequency, if not specified defaults to 1 MHz
++
++
++The sgpio and interrupt properties are further described in their respective bindings documentation:
++
++- Documentation/devicetree/bindings/sgpio/gpio.txt
++- Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
++
++  Example:
++	sgpio@1e780200 {
++		#gpio-cells = <2>;
++		compatible = "aspeed,ast2500-sgpio";
++		gpio-controller;
++		interrupts = <40>;
++		reg = <0x1e780200 0x0100>;
++		clocks = <&syscon ASPEED_CLK_APB>;
++		interrupt-controller;
++		nr-gpios = <80>;
++		bus-frequency = <1000000>;
++	};
+-- 
+2.7.4
 
-What if you move this to leds.h so core and class can both include it.
-
-
->   #include <uapi/linux/uleds.h>
->   #include "leds.h"
->   
-> @@ -272,6 +273,15 @@ int of_led_classdev_register(struct device *parent, struct device_node *np,
->   		dev_warn(parent, "Led %s renamed to %s due to name collision",
->   				led_cdev->name, dev_name(led_cdev->dev));
->   
-> +	led_cdev->regulator = devm_regulator_get(led_cdev->dev, "power");
-
-Is the regulator always going to be called power?
-
-> +	if (IS_ERR(led_cdev->regulator)) {
-> +		dev_err(led_cdev->dev, "Cannot get the power supply for %s\n",
-> +			led_cdev->name);
-> +		device_unregister(led_cdev->dev);
-> +		mutex_unlock(&led_cdev->led_access);
-> +		return PTR_ERR(led_cdev->regulator);
-
-This is listed as optional in the DT doc.  This appears to be required.
-
-I prefer to keep it optional.  Many LED drivers are connected to fixed 
-non-managed supplies.
-
-> +	}
-> +
->   	if (led_cdev->flags & LED_BRIGHT_HW_CHANGED) {
->   		ret = led_add_brightness_hw_changed(led_cdev);
->   		if (ret) {
-> diff --git a/drivers/leds/led-core.c b/drivers/leds/led-core.c
-> index 7107cd7e87cf..139de6b08cad 100644
-> --- a/drivers/leds/led-core.c
-> +++ b/drivers/leds/led-core.c
-> @@ -16,6 +16,7 @@
->   #include <linux/rwsem.h>
->   #include <linux/slab.h>
->   #include "leds.h"
-> +#include <linux/regulator/consumer.h>
->   
->   DECLARE_RWSEM(leds_list_lock);
->   EXPORT_SYMBOL_GPL(leds_list_lock);
-> @@ -23,6 +24,31 @@ EXPORT_SYMBOL_GPL(leds_list_lock);
->   LIST_HEAD(leds_list);
->   EXPORT_SYMBOL_GPL(leds_list);
->   
-> +static bool __led_need_regulator_update(struct led_classdev *led_cdev,
-> +					int brightness)
-> +{
-> +	bool new_regulator_state = (brightness != LED_OFF);
-> +
-> +	return led_cdev->regulator_state != new_regulator_state;
-> +}
-> +
-> +static int __led_handle_regulator(struct led_classdev *led_cdev,
-> +				int brightness)
-> +{
-> +	if (__led_need_regulator_update(led_cdev, brightness)) {
-> +		int ret;
-
-Prefer to this to be moved up.
-
-> +
-> +		if (brightness != LED_OFF)
-> +			ret = regulator_enable(led_cdev->regulator);
-> +		else
-> +			ret = regulator_disable(led_cdev->regulator);
-> +		if (ret)
-> +			return ret;
-new line
-> +		led_cdev->regulator_state = (brightness != LED_OFF);
-> +	}
-> +	return 0;
-> +}
-> +
->   static int __led_set_brightness(struct led_classdev *led_cdev,
->   				enum led_brightness value)
->   {
-> @@ -80,6 +106,7 @@ static void led_timer_function(struct timer_list *t)
->   	}
->   
->   	led_set_brightness_nosleep(led_cdev, brightness);
-> +	__led_handle_regulator(led_cdev, brightness);
-
-Again this seems to indicate that the regulator is a required property 
-for the LEDs
-
-This needs to be made optional.  And the same comment through out for 
-every call.
-
-
->   
->   	/* Return in next iteration if led is in one-shot mode and we are in
->   	 * the final blink state so that the led is toggled each delay_on +
-> @@ -115,6 +142,8 @@ static void set_brightness_delayed(struct work_struct *ws)
->   	if (ret == -ENOTSUPP)
->   		ret = __led_set_brightness_blocking(led_cdev,
->   					led_cdev->delayed_set_value);
-> +	__led_handle_regulator(led_cdev, led_cdev->delayed_set_value);
-> +
->   	if (ret < 0 &&
->   	    /* LED HW might have been unplugged, therefore don't warn */
->   	    !(ret == -ENODEV && (led_cdev->flags & LED_UNREGISTERING) &&
-> @@ -141,6 +170,7 @@ static void led_set_software_blink(struct led_classdev *led_cdev,
->   	/* never on - just set to off */
->   	if (!delay_on) {
->   		led_set_brightness_nosleep(led_cdev, LED_OFF);
-> +		__led_handle_regulator(led_cdev, LED_OFF);
->   		return;
->   	}
->   
-> @@ -148,6 +178,7 @@ static void led_set_software_blink(struct led_classdev *led_cdev,
->   	if (!delay_off) {
->   		led_set_brightness_nosleep(led_cdev,
->   					   led_cdev->blink_brightness);
-> +		__led_handle_regulator(led_cdev, led_cdev->blink_brightness);
->   		return;
->   	}
->   
-> @@ -256,8 +287,14 @@ void led_set_brightness_nopm(struct led_classdev *led_cdev,
->   			      enum led_brightness value)
->   {
->   	/* Use brightness_set op if available, it is guaranteed not to sleep */
-> -	if (!__led_set_brightness(led_cdev, value))
-> -		return;
-> +	if (!__led_set_brightness(led_cdev, value)) {
-> +		/*
-> +		 * if regulator state doesn't need to be changed, that is all/
-> +		 * Otherwise delegate the change to a work queue
-> +		 */
-> +		if (!__led_need_regulator_update(led_cdev, value))
-> +			return;
-> +	}
->   
->   	/* If brightness setting can sleep, delegate it to a work queue task */
->   	led_cdev->delayed_set_value = value;
-> @@ -280,6 +317,8 @@ EXPORT_SYMBOL_GPL(led_set_brightness_nosleep);
->   int led_set_brightness_sync(struct led_classdev *led_cdev,
->   			    enum led_brightness value)
->   {
-> +	int ret;
-> +
->   	if (led_cdev->blink_delay_on || led_cdev->blink_delay_off)
->   		return -EBUSY;
->   
-> @@ -288,7 +327,15 @@ int led_set_brightness_sync(struct led_classdev *led_cdev,
->   	if (led_cdev->flags & LED_SUSPENDED)
->   		return 0;
->   
-> -	return __led_set_brightness_blocking(led_cdev, led_cdev->brightness);
-> +	ret = __led_set_brightness_blocking(led_cdev, led_cdev->brightness);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = __led_handle_regulator(led_cdev, led_cdev->brightness);
-
-Can't you just return here?
-
-Dan
-
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
->   }
->   EXPORT_SYMBOL_GPL(led_set_brightness_sync);
->   
-> diff --git a/include/linux/leds.h b/include/linux/leds.h
-> index 9b2bf574a17a..bee8e3f8dddd 100644
-> --- a/include/linux/leds.h
-> +++ b/include/linux/leds.h
-> @@ -123,6 +123,10 @@ struct led_classdev {
->   
->   	/* Ensures consistent access to the LED Flash Class device */
->   	struct mutex		led_access;
-> +
-> +	/* regulator */
-> +	struct regulator	*regulator;
-> +	bool			regulator_state;
->   };
->   
->   extern int of_led_classdev_register(struct device *parent,
