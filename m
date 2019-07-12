@@ -2,78 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2EED66FF2
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 15:23:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A021C6700C
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 15:27:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727465AbfGLNXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 09:23:37 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:38660 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726318AbfGLNXh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 09:23:37 -0400
-Received: by mail-io1-f65.google.com with SMTP id j6so20266400ioa.5;
-        Fri, 12 Jul 2019 06:23:36 -0700 (PDT)
+        id S1727291AbfGLN1u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 09:27:50 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:41359 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726466AbfGLN1u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 09:27:50 -0400
+Received: by mail-ot1-f68.google.com with SMTP id o101so9427562ota.8;
+        Fri, 12 Jul 2019 06:27:49 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ED7nLvnywkFVSysEQZ0OXOazHI/ma8KNYWcu1c32QPE=;
-        b=WMC/sPErkaF5pH850n5h+uitn0l2BoT+D6RS4kkQpGPLmvucTDCARMURUfKW+jhJze
-         nO0EqG7nhfO035FsGIQo7uV1HvD3Bv76SoBq19CwQngKXRumut12PfSUhKlPetSFkGVi
-         J1eez7EjkGvCsJGEZWDrUHj1nG/76oqmr6Xrq8Y4OIi0KA2wa4rpoh4rY86gKxPWr+Eu
-         c+N9gefrY2FQx1lIisOQusBoNL0t3nIQHpDmF5GMEbPQyvhfrpM01TKkvmMxzRnvW5rm
-         uLGb71ZWHm84HOJ0M7jp1KcHRn8R8d6lLlv5X5TgGJUVcplR/pV+qAjkMvjPCjeyiu7u
-         5OFQ==
-X-Gm-Message-State: APjAAAUXua+7X0UFHcsEETKrGT26jas1btuGlEM5eF3gFwsmGn9Ba/2O
-        J8bkRl/xc+COUSdalQkwXg==
-X-Google-Smtp-Source: APXvYqwtZSqCWcobJ/R917NbEBSOARis/jLrEID6T8BhdTU1lDdG6dMatZvDE3fwzuxxAuJm+RHdiw==
-X-Received: by 2002:a5d:8416:: with SMTP id i22mr10620291ion.248.1562937816200;
-        Fri, 12 Jul 2019 06:23:36 -0700 (PDT)
-Received: from localhost ([64.188.179.251])
-        by smtp.gmail.com with ESMTPSA id z19sm9502604ioh.12.2019.07.12.06.23.35
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 12 Jul 2019 06:23:35 -0700 (PDT)
-Date:   Fri, 12 Jul 2019 07:23:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        "David S . Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, linux-crypto@vger.kernel.org,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH] dt-bindings: crypto: Convert Allwinner A10 Security
- Engine to a schema
-Message-ID: <20190712132335.GA14684@bogus>
-References: <20190711122301.8193-1-maxime.ripard@bootlin.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=F/AxuBHyjule2PmAV2Co3XWu6VUP6uzfm9l/yYzm/bs=;
+        b=EjUWV+zqhwwbZlFafxzXtyE/1IOSr464kZUcfVWVS3RoLcPy59jnPoVmKKiWbLdPZy
+         bXlZDM/USnRENZ1kY74nzn8ua3pkVs89SRmxztgbfZmsk1HRaQRynY4J4vmoGE3lUEvQ
+         x0oURAS7PsdjGF3XHiybQCMGDqEKbSe9eFCDobnbGa8OyHr9SE5FZQS09p3sR3i6t4bk
+         CvQ5vSKO04E3mhEDMyMO00Drqo8uqGNfs0AY9H56dqBSWLhkEKYZQTkYbtsQPV3MvGo2
+         tPtPVWbdJPeGFpH+VCn7c5KoznjmyOEmCWbk/+M+s6eFjcNnqLrERa+oK4+vrkNy/FHR
+         lc4A==
+X-Gm-Message-State: APjAAAVLCDmGZTJZn09yAtMUeais2LHkT9GshW4tRa6WhEarxlJcqAd0
+        evhPelbXtbF7C7Y4llpHVyTadXE2g35adAkZFK4=
+X-Google-Smtp-Source: APXvYqydszAjoQIrWBfzwBRTDzfK4eP2hqISbF6mlZvHXJxVWboAPcYNNMTNZF6cWaAT6zWJNoLDEfZ0bfgqBNUHBl8=
+X-Received: by 2002:a9d:7a90:: with SMTP id l16mr8585973otn.297.1562938069290;
+ Fri, 12 Jul 2019 06:27:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190711122301.8193-1-maxime.ripard@bootlin.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1562333979-28516-1-git-send-email-fabrizio.castro@bp.renesas.com> <1562333979-28516-3-git-send-email-fabrizio.castro@bp.renesas.com>
+In-Reply-To: <1562333979-28516-3-git-send-email-fabrizio.castro@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 12 Jul 2019 15:27:38 +0200
+Message-ID: <CAMuHMdXnwXaaQi9wcqRhHbfsbWFHOWW+HaK-ePpyxc3POPVBpQ@mail.gmail.com>
+Subject: Re: [PATCH 2/3] arm64: dts: renesas: r8a774a1: Add SSIU support for sound
+To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 11 Jul 2019 14:23:01 +0200, Maxime Ripard wrote:
-> The older Allwinner SoCs have a crypto engine that is supported in Linux,
-> with a matching Device Tree binding.
-> 
-> Now that we have the DT validation in place, let's convert the device tree
-> bindings for that controller over to a YAML schemas.
-> 
-> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> ---
->  .../crypto/allwinner,sun4i-a10-crypto.yaml    | 79 +++++++++++++++++++
->  .../devicetree/bindings/crypto/sun4i-ss.txt   | 23 ------
->  2 files changed, 79 insertions(+), 23 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/crypto/allwinner,sun4i-a10-crypto.yaml
->  delete mode 100644 Documentation/devicetree/bindings/crypto/sun4i-ss.txt
-> 
+On Fri, Jul 5, 2019 at 3:39 PM Fabrizio Castro
+<fabrizio.castro@bp.renesas.com> wrote:
+> Add SSIU support to the SoC DT as the sound driver supports
+> it now, and also since the sound driver can now handle
+> BUSIF0-7 via SSIU remove the no longer needed "rxu" and "txu"
+> properties.
+>
+> Based on similar work from Kuninori Morimoto and Simon Horman:
+> 8d14bfa074db ("arm64: dts: renesas: r8a7796: add SSIU support for
+> sound")
+> 10bd03fa896e ("arm64: dts: renesas: r8a7796: remove BUSIF0 settings from
+> rcar_sound,ssi")
+>
+> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
 
-Applied, thanks.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
-Rob
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
