@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A65767705
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2019 01:53:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 94B9A67701
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2019 01:53:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728692AbfGLXxU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 19:53:20 -0400
-Received: from mail-qt1-f201.google.com ([209.85.160.201]:42093 "EHLO
-        mail-qt1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728686AbfGLXxS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 19:53:18 -0400
-Received: by mail-qt1-f201.google.com with SMTP id x1so8542989qts.9
-        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2019 16:53:18 -0700 (PDT)
+        id S1727431AbfGLXxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 19:53:25 -0400
+Received: from mail-yw1-f73.google.com ([209.85.161.73]:39971 "EHLO
+        mail-yw1-f73.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728701AbfGLXxW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 19:53:22 -0400
+Received: by mail-yw1-f73.google.com with SMTP id r67so8978196ywg.7
+        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2019 16:53:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=date:in-reply-to:message-id:mime-version:references:subject:from:to
          :cc;
-        bh=aNfyFMFZafWi71b+o8VurVJ/Moxv/9An2Vz0MQSpw2E=;
-        b=SmTIoga6HOIwTIw08mAMeozQrZPePiLyKswn4zNjz2IPFPycWu6caDt6xVt2AFzVx6
-         pRqcSLKYRs6KGvzn+l8I0Tx5kMSe6Q22foMB1DRJnqLcM4QYCwXzTmwjkrIlKV7uvZWD
-         7nqtMqvQo1P/qkz/KWX0Of4toJREidB5YJB40WKmm/cGbLXVgbeEBz6jnF3slzWnNuRA
-         T0Ga2wZ05IJMko75q61JwavKkOX53+rAa7w+4pxthG/DiuKwnusJcZk1GO8uryDncRwS
-         WACxjkLMsEDf3yiGuouoIVNhGXbwfJoLn6Z3Q28q1Es1Xl4Ba8dj5UQrwJcyvSxRBX0s
-         Z0Uw==
+        bh=QW+zU+QNcjXCm1XYmfzCA7KbcESNkERoyOnm4EH5sTg=;
+        b=iWVWNVmGIYOFOC2EfUg0jOTE4wOOeyFoogk3TsEl3yexL33cERuEvCn12OgGpVGh/M
+         OtGuJMxBEMZlSnKf5FKH2pHfK/cKlC0cPi7DfFMYPXJf2yzxCIeq6XDuVcYAIB52RMUE
+         sQCLSp7AV9oM8CfGVUKXuOnQQEGwZsKT8oqLwfyNnzKtKfMUYVl+LcZFJ6obQYgrJKaY
+         1wZIOeEPIZ+d6h8cfkaSpG5mQ4so3XPUKFj5VV7qTtGb5LNApKngj/I4AntTthPzT6jK
+         rZQU5ZGWoTZmJxCaejE0tyBR1mgYCpmddN209JDQWcZNOPM8rlBclnqvoGaPAdreRY+c
+         SeEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:in-reply-to:message-id:mime-version
          :references:subject:from:to:cc;
-        bh=aNfyFMFZafWi71b+o8VurVJ/Moxv/9An2Vz0MQSpw2E=;
-        b=XA6fmlCV7V00fuxspTxp0qoNzUS4oo6qP+6OTCi8c89hTgAp6pWprhS4m4TsWxpfum
-         LUiEgUMHwoYR0se1oq8uEnuHPRZ47cIORlPDQZo5/YM6vc1hz5FuD8bgYL998PJt2dOg
-         5U4d64j3uK4acP5KRUgzoelUyKyxMdaSqvi1snBvUeVrd34uY/KfOX3hHUxZQmyQHc1M
-         ShJtYc+lGlGY9bOYQmb/bi/qzLByNCGNWAc3goh3F7OAPqlXVC1On+TajrTcCBNg1N3m
-         WKM9VvJeoiOEU0JzNN7ebQF7mCopRjtgCsNksiI/oDwbojTYRMNvPerfqZEhVxOFMeFR
-         5kBQ==
-X-Gm-Message-State: APjAAAWGku5h6ucsKGhDCGqLDNMQaSmugOEKJwIPHGymFA04yzkHrpPE
-        1PaazABAp+IFPwgE+JtDWgaN1np3152u4LE=
-X-Google-Smtp-Source: APXvYqyyIBmeECglDcsfHezEruplDPEH4/v5Nq5NAhyh+EhK+LjnFi7lONixaTVz6xmPPJp4ZzV0Vr5/ngo9sAI=
-X-Received: by 2002:a0c:99e6:: with SMTP id y38mr9095787qve.42.1562975597621;
- Fri, 12 Jul 2019 16:53:17 -0700 (PDT)
-Date:   Fri, 12 Jul 2019 16:52:42 -0700
+        bh=QW+zU+QNcjXCm1XYmfzCA7KbcESNkERoyOnm4EH5sTg=;
+        b=ohuo7vAiqM0z5HdYHiMQ37NbJx/7eyjClCc6Q8e8w91CLJxUdUsg5/gELxc9okZXuy
+         ECVKNhYD/i4sBmIXz2n4/tVDPkTjj7cmJ/weXeDx5Zo0GomS49BU7PubFpAgHT/owezQ
+         msP7mA1Y1j5Dmu7y8BwkLqQ1ZHcIYkjGtsZQVqm620Pv7GB6z/Jj+Ku+GDQomeiXRMr5
+         PpysZEZO7+gf+VPiZ2rYZGxzlLP+dDXQlNUPcGxPV+/CUs0TVZGiUfft7G7hipyd6xfi
+         6fWiOQkami2m8M542xguCHdoytUNfYj4eCAtevX9xJb0x/gyBSiSwNj7vp4MF3XuRkYN
+         Ihbg==
+X-Gm-Message-State: APjAAAWmnTHQSnuH9mc6SdAIC0Hx9x0wjpY+heg2p/dVPBi7YO1qL0og
+        XvMvBxjFohEhkvQatWdvYwn+P3veVRwYnsg=
+X-Google-Smtp-Source: APXvYqx7VbQ88nJ8oFqEGVqdvtIAtzH6D/4k0+SgF5oYk4u33PLfWUs4+rkdopyVpvfPqMy6v3uCdYVY04dxJk4=
+X-Received: by 2002:a81:3bd4:: with SMTP id i203mr7979284ywa.116.1562975600624;
+ Fri, 12 Jul 2019 16:53:20 -0700 (PDT)
+Date:   Fri, 12 Jul 2019 16:52:43 -0700
 In-Reply-To: <20190712235245.202558-1-saravanak@google.com>
-Message-Id: <20190712235245.202558-10-saravanak@google.com>
+Message-Id: <20190712235245.202558-11-saravanak@google.com>
 Mime-Version: 1.0
 References: <20190712235245.202558-1-saravanak@google.com>
 X-Mailer: git-send-email 2.22.0.510.g264f2c817a-goog
-Subject: [PATCH v5 09/11] of/platform: Create device links for all
- child-supplier depencencies
+Subject: [PATCH v5 10/11] of/platform: Add functional dependency link from DT
+ regulator bindings
 From:   Saravana Kannan <saravanak@google.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -64,134 +64,136 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-A parent device can have child devices that it adds when it probes. But
-this probing of the parent device can happen way after kernel init is done
--- for example, when the parent device's driver is loaded as a module.
-
-In such cases, if the child devices depend on a supplier in the system, we
-need to make sure the supplier gets the sync_state() callback only after
-these child devices are added and probed.
-
-To achieve this, when creating device links for a device by looking at its
-DT node, don't just look at DT references at the top node level. Look at DT
-references in all the descendant nodes too and create device links from the
-ancestor device to all these supplier devices.
-
-This way, when the parent device probes and adds child devices, the child
-devices can then create their own device links to the suppliers and further
-delay the supplier's sync_state() callback to after the child devices are
-probed.
-
-Example:
-In this illustration, -> denotes DT references and indentation
-represents child status.
-
-Device node A
-	Device node B -> D
-	Device node C -> B, D
-
-Device node D
-
-Assume all these devices have their drivers loaded as modules.
-
-Without this patch, this is the sequence of events:
-1. D is added.
-2. A is added.
-3. Device D probes.
-4. Device D gets its sync_state() callback.
-5. Device B and C might malfunction because their resources got
-   altered/turned off before they can make active requests for them.
-
-With this patch, this is the sequence of events:
-1. D is added.
-2. A is added and creates device links to D.
-3. Device link from A to B is not added because A is a parent of B.
-4. Device D probes.
-5. Device D does not get it's sync_state() callback because consumer A
-   hasn't probed yet.
-5. Device A probes.
-5. a. Devices B and C are added.
-5. b. Device links from B and C to D are added.
-5. c. Device A's probe completes.
-6. Device D does not get it's sync_state() callback because consumer A
-   has probed but consumers B and C haven't probed yet.
-7. Device B and C probe.
-8. Device D gets it's sync_state() callback because all its consumers
-   have probed.
-9. None of the devices malfunction.
+Similar to creating functional dependency links from clock and
+interconnect DT bindings, also create functional dependency links from
+regulator DT bindings.
 
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/of/platform.c | 29 ++++++++++++++++++++---------
- 1 file changed, 20 insertions(+), 9 deletions(-)
+ drivers/of/platform.c | 83 ++++++++++++++++++++++++++-----------------
+ 1 file changed, 51 insertions(+), 32 deletions(-)
 
 diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index cf8625abe30c..6523d07ef2d7 100644
+index 6523d07ef2d7..9f3b7e1801bc 100644
 --- a/drivers/of/platform.c
 +++ b/drivers/of/platform.c
-@@ -525,7 +525,7 @@ bool of_link_is_valid(struct device_node *con, struct device_node *sup)
+@@ -525,46 +525,50 @@ bool of_link_is_valid(struct device_node *con, struct device_node *sup)
  	return true;
  }
  
--static int of_link_binding(struct device *dev,
-+static int of_link_binding(struct device *dev, struct device_node *con_np,
- 			   const char *binding, const char *cell)
+-static int of_link_binding(struct device *dev, struct device_node *con_np,
+-			   const char *binding, const char *cell)
++static int of_link_to_phandle(struct device *dev, struct device_node *sup_np)
  {
- 	struct of_phandle_args sup_args;
-@@ -534,7 +534,7 @@ static int of_link_binding(struct device *dev,
- 	unsigned int i = 0, links = 0;
+-	struct of_phandle_args sup_args;
+-	struct device_node *sup_np;
+ 	struct platform_device *sup_dev;
+-	unsigned int i = 0, links = 0;
  	u32 dl_flags = DL_FLAG_AUTOPROBE_CONSUMER;
++	int ret = 0;
  
--	while (!of_parse_phandle_with_args(dev->of_node, binding, cell, i,
-+	while (!of_parse_phandle_with_args(con_np, binding, cell, i,
- 					   &sup_args)) {
- 		sup_np = sup_args.np;
- 		/*
-@@ -579,26 +579,37 @@ static const char * const link_bindings[] = {
+-	while (!of_parse_phandle_with_args(con_np, binding, cell, i,
+-					   &sup_args)) {
+-		sup_np = sup_args.np;
+-		/*
+-		 * Since we are trying to create device links, we need to find
+-		 * the actual device node that owns this supplier phandle.
+-		 * Often times it's the same node, but sometimes it can be one
+-		 * of the parents. So walk up the parent till you find a
+-		 * device.
+-		 */
+-		while (sup_np && !of_find_property(sup_np, "compatible", NULL))
+-			sup_np = of_get_next_parent(sup_np);
+-		if (!sup_np)
+-			continue;
++	/*
++	 * Since we are trying to create device links, we need to find
++	 * the actual device node that owns this supplier phandle.
++	 * Often times it's the same node, but sometimes it can be one
++	 * of the parents. So walk up the parent till you find a
++	 * device.
++	 */
++	while (sup_np && !of_find_property(sup_np, "compatible", NULL))
++		sup_np = of_get_next_parent(sup_np);
++	if (!sup_np)
++		return 0;
+ 
+-		if (!of_link_is_valid(dev->of_node, sup_np)) {
+-			of_node_put(sup_np);
+-			continue;
+-		}
+-		i++;
+-		sup_dev = of_find_device_by_node(sup_np);
++	if (!of_link_is_valid(dev->of_node, sup_np)) {
+ 		of_node_put(sup_np);
+-		if (!sup_dev)
+-			continue;
+-		if (device_link_add(dev, &sup_dev->dev, dl_flags))
+-			links++;
+-		put_device(&sup_dev->dev);
++		return 0;
+ 	}
+-	if (links < i)
++	sup_dev = of_find_device_by_node(sup_np);
++	of_node_put(sup_np);
++	if (!sup_dev)
+ 		return -ENODEV;
+-	return 0;
++	if (!device_link_add(dev, &sup_dev->dev, dl_flags))
++		ret = -ENODEV;
++	put_device(&sup_dev->dev);
++	return ret;
++}
++
++static int of_link_binding(struct device *dev, struct device_node *con_np,
++			   const char *binding, const char *cell)
++{
++	struct of_phandle_args sup_args;
++	unsigned int i = 0;
++	bool done = true;
++
++	while (!of_parse_phandle_with_args(con_np, binding, cell, i++,
++					   &sup_args))
++		if (of_link_to_phandle(dev, sup_args.np))
++			done = false;
++	return done ? 0 : -ENODEV;
+ }
+ 
+ static bool of_devlink;
+@@ -579,18 +583,33 @@ static const char * const link_bindings[] = {
  	"interconnects", "#interconnect-cells",
  };
  
--static int of_link_to_suppliers(struct device *dev)
-+static int __of_link_to_suppliers(struct device *dev,
-+				  struct device_node *con_np)
++#define REG_SUFFIX	"-supply"
+ static int __of_link_to_suppliers(struct device *dev,
+ 				  struct device_node *con_np)
  {
  	unsigned int i = 0;
  	bool done = true;
--
--	if (!of_devlink)
--		return 0;
--	if (unlikely(!dev->of_node))
--		return 0;
-+	struct device_node *child;
+ 	struct device_node *child;
++	struct property *p;
++	unsigned int len, reg_len;
  
  	for (i = 0; i < ARRAY_SIZE(link_bindings) / 2; i++)
--		if (of_link_binding(dev, link_bindings[i * 2],
-+		if (of_link_binding(dev, con_np, link_bindings[i * 2],
+ 		if (of_link_binding(dev, con_np, link_bindings[i * 2],
  					link_bindings[i * 2 + 1]))
  			done = false;
  
-+	for_each_child_of_node(con_np, child)
-+		if (__of_link_to_suppliers(dev, child))
++	reg_len = strlen(REG_SUFFIX);
++	for_each_property_of_node(con_np, p) {
++		len = strlen(p->name);
++		if (len <= reg_len)
++			continue;
++		if (strcmp(p->name + len - reg_len, REG_SUFFIX))
++			continue;
++		if (of_link_to_phandle(dev,
++				of_parse_phandle(con_np, p->name, 0)))
 +			done = false;
++	}
 +
- 	if (!done)
- 		return -ENODEV;
- 	return 0;
- }
- 
-+static int of_link_to_suppliers(struct device *dev)
-+{
-+	if (!of_devlink)
-+		return 0;
-+	if (unlikely(!dev->of_node))
-+		return 0;
-+
-+	return __of_link_to_suppliers(dev, dev->of_node);
-+}
-+
- #ifndef CONFIG_PPC
- static const struct of_device_id reserved_mem_matches[] = {
- 	{ .compatible = "qcom,rmtfs-mem" },
+ 	for_each_child_of_node(con_np, child)
+ 		if (__of_link_to_suppliers(dev, child))
+ 			done = false;
 -- 
 2.22.0.510.g264f2c817a-goog
 
