@@ -2,95 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E35D666BF1
-	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 13:59:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 192DE66E4F
+	for <lists+devicetree@lfdr.de>; Fri, 12 Jul 2019 14:38:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726582AbfGLL7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 07:59:03 -0400
-Received: from bastet.se.axis.com ([195.60.68.11]:32778 "EHLO
-        bastet.se.axis.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726254AbfGLL7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 07:59:02 -0400
-X-Greylist: delayed 353 seconds by postgrey-1.27 at vger.kernel.org; Fri, 12 Jul 2019 07:59:02 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by bastet.se.axis.com (Postfix) with ESMTP id 4319E184F4;
-        Fri, 12 Jul 2019 13:53:08 +0200 (CEST)
-X-Axis-User: NO
-X-Axis-NonUser: YES
-X-Virus-Scanned: Debian amavisd-new at bastet.se.axis.com
-Received: from bastet.se.axis.com ([IPv6:::ffff:127.0.0.1])
-        by localhost (bastet.se.axis.com [::ffff:127.0.0.1]) (amavisd-new, port 10024)
-        with LMTP id B8xvrNuuyqWV; Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
-Received: from boulder02.se.axis.com (boulder02.se.axis.com [10.0.8.16])
-        by bastet.se.axis.com (Postfix) with ESMTPS id 98D2118317;
-        Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
-Received: from boulder02.se.axis.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 7BB0F1A063;
-        Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
-Received: from boulder02.se.axis.com (unknown [127.0.0.1])
-        by IMSVA (Postfix) with ESMTP id 704B31A060;
-        Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
-Received: from seth.se.axis.com (unknown [10.0.2.172])
-        by boulder02.se.axis.com (Postfix) with ESMTP;
-        Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
-Received: from lnxpavelmn.se.axis.com (lnxpavelmn.se.axis.com [10.94.101.1])
-        by seth.se.axis.com (Postfix) with ESMTP id 6472C2D9D;
-        Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
-Received: by lnxpavelmn.se.axis.com (Postfix, from userid 11147)
-        id 534BB600F2; Fri, 12 Jul 2019 13:53:07 +0200 (CEST)
-From:   Pavel Modilaynen <pavel.modilaynen@axis.com>
-To:     robh+dt@kernel.org, frowand.list@gmail.com
-Cc:     devicetree@vger.kernel.org, Pavel Modilaynen <pavelmn@axis.com>
-Subject: [PATCH] dtc: Use pkg-config to locate libyaml
-Date:   Fri, 12 Jul 2019 13:52:19 +0200
-Message-Id: <20190712115219.25997-1-pavelmn@axis.com>
-X-Mailer: git-send-email 2.11.0
-X-TM-AS-GCONF: 00
+        id S1729001AbfGLM3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 08:29:32 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:35829 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728998AbfGLM3a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 08:29:30 -0400
+Received: by mail-ot1-f68.google.com with SMTP id j19so9289632otq.2;
+        Fri, 12 Jul 2019 05:29:30 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oEdcVtCqnAmcikhOKq8zHJ48dzBynV9gjlaZHvc/aWA=;
+        b=f4crqYI8oUH7sZA3Zkze8ETa5sFKl6o48gI3P4GH1UaISPKPKFrkztxP9vDHLWb/WT
+         cRDnH6VCdMsHQmY/eAFzHTxyME0W4JL3m7MJXJVKMAuQmyRMWudpArQr4Hg0lQScr/6j
+         Ru0n3RY/P+nzzD8/ZfBDHPSb8QRlmL9Ou+xCjOssI7SLnSZnY5356wUUG4GhY5KwAc4X
+         eXyWkHyAd2Kf8SOVmWD2ZskTLXNicpWMKfRyeIdCX9dtie22qllbPNyRFm920BK9t4RO
+         rLB+gszkbXnyjHCNned8f7pjuiKtDudCD5ATSsNMebRKXN77fDlHgro8H1DPqt/9Nr/K
+         WkPw==
+X-Gm-Message-State: APjAAAUx3KE57D6YOPbcR/68YM6MyoGXr/3EIoUUnMLokzeVBfCEt/pb
+        sFqD2HzU064Dsy7o3lV72ZPTuo+XhZC3HFfvbKg=
+X-Google-Smtp-Source: APXvYqw9RWe0Lk5Iw2vrCQIx/W+CQhgWkC9teDx9sc3MNmIW16eMpmIpD1KwHThNlDLBfxc6yXSTao6gi9bFb0xYxfI=
+X-Received: by 2002:a9d:69ce:: with SMTP id v14mr8468916oto.39.1562934569988;
+ Fri, 12 Jul 2019 05:29:29 -0700 (PDT)
+MIME-Version: 1.0
+References: <1562321720-18735-1-git-send-email-biju.das@bp.renesas.com> <1562321720-18735-2-git-send-email-biju.das@bp.renesas.com>
+In-Reply-To: <1562321720-18735-2-git-send-email-biju.das@bp.renesas.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 12 Jul 2019 14:29:18 +0200
+Message-ID: <CAMuHMdU79JQfEH5hY=wjyknE+sLpS6i3GeXYZ5Z=uzWkWDC-DA@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: renesas: hihope-common: Add PCA9654 I/O expander
+To:     Biju Das <biju.das@bp.renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Pavel Modilaynen <pavel.modilaynen@axis.com>
+Hi Biju,
 
-Using Makefile's wildcard with absolute path to detect
-the presence of libyaml results in false-positive
-detection when cross-compiling e.g. in yocto environment.
-The latter results in build error:
-| scripts/dtc/yamltree.o: In function `yaml_propval_int':
-| yamltree.c: undefined reference to `yaml_sequence_start_event_initialize'
-| yamltree.c: undefined reference to `yaml_emitter_emit'
-| yamltree.c: undefined reference to `yaml_scalar_event_initialize'
-...
-Use pkg-config to locate libyaml to address this scenario.
+On Fri, Jul 5, 2019 at 12:20 PM Biju Das <biju.das@bp.renesas.com> wrote:
+> Enable PCA9654 GPIO expander, so that we can configure its GPIOs later.
+>
+> Signed-off-by: Biju Das <biju.das@bp.renesas.com>
 
-Signed-off-by: Pavel Modilaynen <pavel.modilaynen@axis.com>
----
- scripts/dtc/Makefile | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+> --- a/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> +++ b/arch/arm64/boot/dts/renesas/hihope-common.dtsi
+> @@ -162,6 +162,13 @@
+>         clock-frequency = <400000>;
+>         status = "okay";
+>
+> +       gpio_expander: gpio@20 {
+> +               compatible = "onnn,pca9654";
+> +               reg = <0x20>;
+> +               gpio-controller;
+> +               #gpio-cells = <2>;
 
-diff --git a/scripts/dtc/Makefile b/scripts/dtc/Makefile
-index 82160808765c..99d51b665432 100644
---- a/scripts/dtc/Makefile
-+++ b/scripts/dtc/Makefile
-@@ -11,7 +11,7 @@ dtc-objs	+= dtc-lexer.lex.o dtc-parser.tab.o
- # Source files need to get at the userspace version of libfdt_env.h to compile
- HOST_EXTRACFLAGS := -I $(srctree)/$(src)/libfdt
- 
--ifeq ($(wildcard /usr/include/yaml.h),)
-+ifeq ($(shell pkg-config --exists yaml-0.1 && echo yes),)
- ifneq ($(CHECK_DTBS),)
- $(error dtc needs libyaml for DT schema validation support. \
- 	Install the necessary libyaml development package.)
-@@ -19,7 +19,7 @@ endif
- HOST_EXTRACFLAGS += -DNO_YAML
- else
- dtc-objs	+= yamltree.o
--HOSTLDLIBS_dtc	:= -lyaml
-+HOSTLDLIBS_dtc	:= $(shell pkg-config yaml-0.1 --libs)
- endif
- 
- # Generated files need one more search path to include headers in source tree
+You may want to describe that the interrupt output is tied to GP5_25?
+
+> +       };
+> +
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.11.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
