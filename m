@@ -2,123 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 67F4467A45
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2019 15:30:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7EC2467A8E
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2019 16:31:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727582AbfGMNam (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Jul 2019 09:30:42 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:45684 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726474AbfGMNam (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Jul 2019 09:30:42 -0400
-Received: by mail-pl1-f196.google.com with SMTP id y8so6108103plr.12;
-        Sat, 13 Jul 2019 06:30:41 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Vhd7eHDRllMaq6HzgrqszVE8HqXcINUKCzz6DuVzFvo=;
-        b=dE0UJy7o3IjgOT07ia5w/LEuxLU/nJS3SDq0wcVfusW0y+9wxSJ+MuHTGruokA/qhq
-         vmJTOy08Aw9LvIf0Q1y0A+G4bNRiTzNp5xoJ4TQnmgdWmk1XZJsYDKECcY00xzCL0lDb
-         p4CgcdSlBdSo3gn2Z89Xi2D2XJPcqqhKJgYxx3DyIELbtRNYa2JYrP3GBBQQvRjw5pcR
-         mamIJ7/CqTRc9o/L2YHZ9GdqsNr6AZx17KFuTg29LKRKMxY/ACu7l1gdXts9HTOTTxxz
-         JBzGc/bpe1HbrJdFwBK0Od5wXbHomBi33buu0zx2y4iORJhoftSZ4mSq0AGkl9DR1YB/
-         mo0g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Vhd7eHDRllMaq6HzgrqszVE8HqXcINUKCzz6DuVzFvo=;
-        b=RXmuvzymKX3i8SDOpJn98VeTgeUc0J0wba0k8jL1jmwwdQ68Or7VxEypiy3FhtkIAc
-         dTEzizNdgUunfgRMW+gQNgkTXdDj6x7VxHsKAezGqX/N5PmY0ty3MllGUhTsxuZEWFt2
-         lZ1sOC30n4DtAQHvS3zegXo41TuuUnRVxtLFjDgGls8Ribtnp7iamMJysFsIEhGQE0G/
-         EH6IHkDiGqGk9BH6egvsykeulJm1ov5k1LgTe46VzWwJhDDuXl+iFwa8hLAr+OniJlBi
-         fFtxOgeFyChOvGNm8r3ihgTERKpHpBHXSyriXyG6lyDOd3kPZM9jNXLca9Q+W9xKblBJ
-         iNdQ==
-X-Gm-Message-State: APjAAAWt+Syog7qcuDyMP1E7b8o9iEINZS1nHHhDx4+8f10ZTlqtS/w4
-        /pBP7I4zypAyBToDo9SGj/Y=
-X-Google-Smtp-Source: APXvYqx/gVWgAH4ezizLy0JZlrdh83W3IX6WzSGXLQTTyfkoZqpDI3MaALnLU3htZg5Well90uwhMA==
-X-Received: by 2002:a17:902:8bc1:: with SMTP id r1mr17793858plo.42.1563024641286;
-        Sat, 13 Jul 2019 06:30:41 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id i6sm11953992pgi.40.2019.07.13.06.30.40
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sat, 13 Jul 2019 06:30:40 -0700 (PDT)
-Date:   Sat, 13 Jul 2019 06:30:39 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Daniel Mack <daniel@zonque.org>
-Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
-        jdelvare@suse.com
-Subject: Re: [PATCH 2/2] drivers: hwmon: lm75: add support for PCT2075
-Message-ID: <20190713133039.GA32420@roeck-us.net>
-References: <20190711124504.7580-1-daniel@zonque.org>
- <20190711124504.7580-2-daniel@zonque.org>
+        id S1727751AbfGMObG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Jul 2019 10:31:06 -0400
+Received: from onstation.org ([52.200.56.107]:44382 "EHLO onstation.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727504AbfGMObG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 13 Jul 2019 10:31:06 -0400
+Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id 473DB3E838;
+        Sat, 13 Jul 2019 14:31:05 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1563028265;
+        bh=P3vNE5lNg+thFcJrJjk1r54W7S8rVsGTSQRhlpcn7lc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=mfq2GQ/Uy1dSl+lMhqUTDuwoomzGMJmUBucRgJO9OrIqTDUkBCvvXswxW5Ra0EvSt
+         5abCXCAuBQ0K0wB3LuuTfTSqNS8Qj5AGmeI6Aj40/sgUfn3BXgY9yIJyb7XmouZo/x
+         p3DqIpjDUz12tdHr8ReQnBscfzdApA8Rml3AusO0=
+Date:   Sat, 13 Jul 2019 10:31:04 -0400
+From:   Brian Masney <masneyb@onstation.org>
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     linux-arm-msm@vger.kernel.org,
+        ~martijnbraam/pmos-upstream@lists.sr.ht,
+        Andy Gross <agross@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] ARM: dts: msm8974-FP2: add reboot-mode node
+Message-ID: <20190713143104.GA11154@onstation.org>
+References: <20190620225824.2845-1-luca@z3ntu.xyz>
+ <4607058.UzJteFJyig@g550jk>
+ <20190622014302.GA20947@onstation.org>
+ <3733253.hEy9q5iLy3@g550jk>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190711124504.7580-2-daniel@zonque.org>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <3733253.hEy9q5iLy3@g550jk>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 11, 2019 at 02:45:04PM +0200, Daniel Mack wrote:
-> The NXP PCT2075 is largely compatible with other chips already supported
-> by the LM75 driver. It uses an 11-bit resolution and defaults to 100 ms
-> sampling period. The datasheet is here:
+On Sat, Jul 13, 2019 at 01:26:45PM +0200, Luca Weiss wrote:
+> Hi Brian,
+> how about something like that (formatting is surely broken because I'm not 
+> sending this with git-send-email^^)?
 > 
->   https://www.nxp.com/docs/en/data-sheet/PCT2075.pdf
+> I'd says this should be work fine with all devices as all modes are defined in 
+> the device-specific dts but the reg and offset values are in the board dts. 
+> Should I also add a status = "disabled" to the reboot-mode node in the board 
+> dts?
 > 
-> Signed-off-by: Daniel Mack <daniel@zonque.org>
+> diff --git a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts b/arch/arm/boot/
+> dts/qcom-msm8974-fairphone-fp2.dts
+> index 643c57f84818..ff4a3e0aa746 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
+> +++ b/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
+> @@ -338,6 +338,16 @@
+>  			};
+>  		};
+>  	};
+> +
+> +	imem@fe805000 {
+> +		status = "okay";
+> +
+> +		reboot-mode {
+> +			mode-normal	= <0x77665501>;
+> +			mode-bootloader	= <0x77665500>;
+> +			mode-recovery	= <0x77665502>;
+> +		};
+> +	};
+>  };
+>  
+>  &spmi_bus {
+> diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-
+> msm8974.dtsi
+> index 45b5c8ef0374..1927430bded7 100644
+> --- a/arch/arm/boot/dts/qcom-msm8974.dtsi
+> +++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
+> @@ -1085,6 +1085,17 @@
+>  				};
+>  			};
+>  		};
+> +
+> +		imem@fe805000 {
+> +			status = "disabled";
+> +			compatible = "syscon", "simple-mfd";
+> +			reg = <0xfe805000 0x1000>;
+> +
+> +			reboot-mode {
+> +				compatible = "syscon-reboot-mode";
+> +				offset = <0x65c>;
+> +			};
+> +		};
+>  	};
+>  
+>  	smd {
 
-Applied to hwmon-next. Note that I also updated Documentation/hwmon/lm75.rst.
+I think this sounds reasonable. 
 
-Guenter
+Reviewed-by: Brian Masney <masneyb@onstation.org>
 
-> ---
->  drivers/hwmon/lm75.c | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
-> diff --git a/drivers/hwmon/lm75.c b/drivers/hwmon/lm75.c
-> index 447af07450f1..a8aba628468e 100644
-> --- a/drivers/hwmon/lm75.c
-> +++ b/drivers/hwmon/lm75.c
-> @@ -49,6 +49,7 @@ enum lm75_type {		/* keep sorted in alphabetical order */
->  	max6626,
->  	max31725,
->  	mcp980x,
-> +	pct2075,
->  	stds75,
->  	stlm75,
->  	tcn75,
-> @@ -353,6 +354,10 @@ lm75_probe(struct i2c_client *client, const struct i2c_device_id *id)
->  		data->resolution = 9;
->  		data->sample_time = MSEC_PER_SEC / 8;
->  		break;
-> +	case pct2075:
-> +		data->resolution = 11;
-> +		data->sample_time = MSEC_PER_SEC / 10;
-> +		break;
->  	case mcp980x:
->  		data->resolution_limits = 9;
->  		/* fall through */
-> @@ -428,6 +433,7 @@ static const struct i2c_device_id lm75_ids[] = {
->  	{ "max31725", max31725, },
->  	{ "max31726", max31725, },
->  	{ "mcp980x", mcp980x, },
-> +	{ "pct2075", pct2075, },
->  	{ "stds75", stds75, },
->  	{ "stlm75", stlm75, },
->  	{ "tcn75", tcn75, },
-> @@ -496,6 +502,10 @@ static const struct of_device_id lm75_of_match[] = {
->  		.compatible = "maxim,mcp980x",
->  		.data = (void *)mcp980x
->  	},
-> +	{
-> +		.compatible = "nxp,pct2075",
-> +		.data = (void *)pct2075
-> +	},
->  	{
->  		.compatible = "st,stds75",
->  		.data = (void *)stds75
+You should resend this out with git send-email and see what Bjorn says.
+
+Brian
