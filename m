@@ -2,53 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FDD567919
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2019 09:57:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B805E6792F
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2019 10:05:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726393AbfGMH5W (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Jul 2019 03:57:22 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:33790 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726301AbfGMH5W (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Jul 2019 03:57:22 -0400
-Received: by mail-io1-f67.google.com with SMTP id z3so25479312iog.0
-        for <devicetree@vger.kernel.org>; Sat, 13 Jul 2019 00:57:21 -0700 (PDT)
+        id S1726804AbfGMIFG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Jul 2019 04:05:06 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:39121 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726395AbfGMIFG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Jul 2019 04:05:06 -0400
+Received: by mail-wm1-f66.google.com with SMTP id u25so420603wmc.4
+        for <devicetree@vger.kernel.org>; Sat, 13 Jul 2019 01:05:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:cc;
-        bh=YX+vc5IdaHQhuYULgHYSUJ8MAyF6VZOjha5lph1NGNE=;
-        b=SIVFzUDMtb/L9XjeRDbCK1w3oRXvja4st73MYBAwrTKdqD0xz88d61mT4ZQYeI0/xb
-         TqvEUMfSC1BRztBJYggIQR+CtPlvzjPg7YW1LLu4bAR7Cun147fEQnwzNbdXc3QVUjlb
-         aLcKqItDuLSsDvum8fIqezMop7uKUTbexre0f9RY9+WCAmpO7okCX7LGhMTodwRr9SEs
-         8IgOGkorOsRHrP94ll26vmWDNPlLVrUJGIpx8vo+f/JSEGp2/Ml01n1Lv95iZ0w75u+v
-         aJdCjbhoMdDppiWRk3g2+KgnFw1nDtXhHz3xqJELMTxvdyy52nDIOctW33xs4Cmf8QzG
-         N6oQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=crBMT3xDpFdt/DcdLHZD4Am4FS/boMU7JkN4C0dR2LU=;
+        b=s3rW1GYRQVlJ8DjwhU4sZ5eQZORVIhCYzjtFCnuvllOfgOrGEW3IDL0OYFJHa9rJ6y
+         C33H9tgpaCopN/NNlamYa1TA3kxaX4EUqEBVNNKvK+lEcqNMcCbuOuN0DVUcWqxwcCSn
+         DVUjDDaQAi90hm8fWJv4NQoJN9mftS/2FdY5y1kuYTnQWqH0TKyTlK7vtSbdwrEsU+7P
+         duv//N4FPYXg7z7nfiEri1FPPBrw8MGuPt2AMBvXhD5N2Ep99lTWHdFibiACmXHMFL3S
+         GB7xtI+SmD9jt+fauKIxTBwTos/L7idUAoCn2gCv+9tA0nRmCVL+rxTBBUuWPvSVCE3d
+         a2Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:cc;
-        bh=YX+vc5IdaHQhuYULgHYSUJ8MAyF6VZOjha5lph1NGNE=;
-        b=lH71Lk5tOZ3+kPvIFVhn7wvjP6LSt5cTtuTHm0yWAw9NhvkY7DdfKgO4SdoDlv2xFc
-         o2bZ613ZTsfunnDpy0e42KG792VwzJ7dF2QxRMiqxI83Njm8hmsGQVgFq8T58mQBCP3P
-         a4gu7xbfrTRa3FnwzVJ9H09+zLRlS+FKHIlcGBMv/gq+31HJzgcswCwV9p7IgUwokitK
-         WNICjgkWIM+7OtmygPSaKhiFHlh5DdJt7IzXTzpCSno9NCw6B7VfN3GgHVabmn6IE9Uz
-         6jcIFnLgGIdQA+ib6vQ2IePl1HeGXS1GHOCbdXryBTwq+2hoq38nWY4ITLFlIebJoWKv
-         rehg==
-X-Gm-Message-State: APjAAAXfF2ZCSZ2eYV5bup8pVH+gujDQcl/sClidJ6vEejSxoVIUfSqw
-        fPosH4UwS8+17e+8ZXmHI6jwSTwfhRupjfTov2EnwP2q
-X-Google-Smtp-Source: APXvYqyv+U7PmVuoZEWqbE0OCphFCzdsjZzBs/s4NdFXJn5FftuQoZDpTU4MFamfrwanBWtF28h9zgwg0GBks5esaMo=
-X-Received: by 2002:a5e:a712:: with SMTP id b18mr14582760iod.220.1563004641338;
- Sat, 13 Jul 2019 00:57:21 -0700 (PDT)
-MIME-Version: 1.0
-References: <15B09F895BF9AE09.30352@groups.io>
-In-Reply-To: <15B09F895BF9AE09.30352@groups.io>
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=crBMT3xDpFdt/DcdLHZD4Am4FS/boMU7JkN4C0dR2LU=;
+        b=sq5kw8yhZxE+tdmjyBmm1NmHHM5pqw9y0ncNXO1dd0EdZVqOUMxGn+AGceds+XzQI7
+         wxp8wtKlPx5ulgHfKH89AWg7yidyLBJMHQV66vZs/V1ntb5mwe9ON5lA/AcPWyTOBInh
+         KwudIjuEvRd+KnyL/QZsNnYC/S+eMClHu3OZwFlHVdvVIJ6pIsEm9F2GvuwL+jX5CKlK
+         Zn+g2zLHLn5e99NNP4dHc2HKr1A9OHgPHpg00/MJqURVlLwo7RJUkvP7+gNcVRV1HlhW
+         MI0LutDwxIVcqdclk+L9AAjlvao9KwZKD+yRCeK14AQOOgd6oH+VxH1R78op98bNTr6k
+         0OEg==
+X-Gm-Message-State: APjAAAXp2/tPaCJ1MonAtOyj/m0wkcDAISo8alaAJK51+BAXZ7W9MCOC
+        +mnig+M0IPwkpOuuxjHOx5giTg==
+X-Google-Smtp-Source: APXvYqyh0bSoYxaglNe3o+ajqe4aEtUDwJlLfU0lqLonTie6aJIi7TQcFHgbG1pZCVAq6kcPbiJ2HA==
+X-Received: by 2002:a05:600c:291:: with SMTP id 17mr13409688wmk.32.1563005103881;
+        Sat, 13 Jul 2019 01:05:03 -0700 (PDT)
+Received: from pop-os.baylibre.local ([2a01:e35:8ad2:2cb0:2dbb:fac9:5ec0:e3ef])
+        by smtp.googlemail.com with ESMTPSA id o26sm9621634wro.53.2019.07.13.01.05.02
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 13 Jul 2019 01:05:03 -0700 (PDT)
 From:   Alexandre Mergnat <amergnat@baylibre.com>
-Date:   Sat, 13 Jul 2019 09:57:10 +0200
-Message-ID: <CAFGrd9pHGF6hQpcD7+PGQGvUDt2nFdGei=GYCiW_cCsK5Jkv2g@mail.gmail.com>
-Subject: Fwd: [PATCH v4 0/3] Add PAT9125 optical tracker driver
-Cc:     devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-To:     unlisted-recipients:; (no To-header on input)
+To:     robh+dt@kernel.org, mark.rutland@arm.com, jic23@kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
+        baylibre-upstreaming@groups.io, dmitry.torokhov@gmail.com,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        Alexandre Mergnat <amergnat@baylibre.com>
+Subject: [PATCH v4 0/3] Add PAT9125 optical tracker driver
+Date:   Sat, 13 Jul 2019 10:04:52 +0200
+Message-Id: <20190713080455.17513-1-amergnat@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -141,16 +144,6 @@ Alexandre Mergnat (3):
  create mode 100644 drivers/iio/position/Makefile
  create mode 100644 drivers/iio/position/pat9125.c
 
---
+-- 
 2.17.1
 
-
--=-=-=-=-=-=-=-=-=-=-=-
-Groups.io Links: You receive all messages sent to this group.
-
-View/Reply Online (#161): https://groups.io/g/baylibre-upstreaming/message/161
-Mute This Topic: https://groups.io/mt/32440226/1769967
-Group Owner: baylibre-upstreaming+owner@groups.io
-Unsubscribe: https://groups.io/g/baylibre-upstreaming/unsub
-[amergnat@baylibre.com]
--=-=-=-=-=-=-=-=-=-=-=-
