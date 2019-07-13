@@ -2,103 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D3659679F4
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2019 13:26:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53D7167A42
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2019 15:25:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727418AbfGML0t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 13 Jul 2019 07:26:49 -0400
-Received: from mail.z3ntu.xyz ([128.199.32.197]:37368 "EHLO mail.z3ntu.xyz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726474AbfGML0t (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 13 Jul 2019 07:26:49 -0400
-Received: from g550jk.localnet (80-123-55-184.adsl.highway.telekom.at [80.123.55.184])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 40FDFC00ED;
-        Sat, 13 Jul 2019 11:26:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1563017206; bh=bSfORFWKc+/pN+2RMX10ijrg8NjEbUNxysCDmNwbQzA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=GuU+64IReyZBxYuFgXPVWS28qbjidsqSYqjpnV+hey5WtfVvEhhU6p01hOFBwp2zO
-         2roU3HuLCWnOxxX7G3mH64UiBtSFrf0UBORneqZUrWgJoDnCH6VbjXUcHryBo3YY9t
-         5VVpYgkdFEq2k0WEoXGdtQU3vuC04G50MYNChGLw=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        ~martijnbraam/pmos-upstream@lists.sr.ht,
-        Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: msm8974-FP2: add reboot-mode node
-Date:   Sat, 13 Jul 2019 13:26:45 +0200
-Message-ID: <3733253.hEy9q5iLy3@g550jk>
-In-Reply-To: <20190622014302.GA20947@onstation.org>
-References: <20190620225824.2845-1-luca@z3ntu.xyz> <4607058.UzJteFJyig@g550jk> <20190622014302.GA20947@onstation.org>
+        id S1727664AbfGMNZB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 13 Jul 2019 09:25:01 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:39297 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726474AbfGMNZA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 13 Jul 2019 09:25:00 -0400
+Received: by mail-pl1-f194.google.com with SMTP id b7so6115189pls.6;
+        Sat, 13 Jul 2019 06:25:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=1lBa4mcJkva9S5bC7+ha4hZyO8xurJu7hVx3I7DL1pI=;
+        b=CuOkXVLjkBIOfftdehBksYpZ4YeLO07CmiBBCzqx47G3I152FZrGEyZWQqh3ExweSM
+         T43XcsgvuTB5/0zPLrjyRa5o9vd8ZsGFJDP74zqISk0FGxPGhgTGxTrRbPbI8F2+Gh/r
+         lMoLtknkYcrktislbQh1pV6FHVbS8HUjvf/NM2HM+Xyvm+VoLjlRT1gUmZnLmuG8HPtP
+         GkcSPjKbv6B/kcIXMLV6PhPcKnpJW4mdCkDn9SNrXPnX/74thFIcONiUhLmQuwYsS0/7
+         dF+nkCsKrBdpYw6K18PnOA6WlWueUgBb97goxq0xPNWeS1auz1L9pRJFiDzYYc4e2E5C
+         s/7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=1lBa4mcJkva9S5bC7+ha4hZyO8xurJu7hVx3I7DL1pI=;
+        b=QUVCyKftpCAspD7sPxKz36K0FAcrW4L6QURkXfD6CcEb+BcR3Pr1AjhMfNpEcg64+w
+         SN9ALzIsCq4huXS7Hucg+ynyMgBUWQk4jY8ViFDHk2sxpF9wRJtPHcMOrvL4M/FjZfYt
+         sB1+I8PTO+kRHXP8ppM/WQhs3YR0Yxrn7HcT3hI09ju/aTTUyuLCSHwAPcv/rRpshvkO
+         L8xvsr/Csjj73wWc5v+8A/siuzqPXJiRC8pYz7fHNhwZPe8LT0zUuHXCvgM6jG/mviMg
+         gVr7ubtldGe8rSl8dQJ7lxRviDbU60mn1QrF4FeQrwtxRdPZvnfFs7A/b1vsC7HLvoLn
+         bu1Q==
+X-Gm-Message-State: APjAAAV1w6Upw894Xlz9Jx2s52H58AkhHGW3zS3FImqpDcYMlHr35JMe
+        XcGMB2p6PX3DWFGe19xmEy3qja2j
+X-Google-Smtp-Source: APXvYqyxw3BOuYkfawZOIgCHosgrFBKVzQuaCkYZcdHq/yzUqhOBqzrbcOSrQ8RJWTRhZm3YBElx3g==
+X-Received: by 2002:a17:902:9a07:: with SMTP id v7mr7480610plp.245.1563024300258;
+        Sat, 13 Jul 2019 06:25:00 -0700 (PDT)
+Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
+        by smtp.gmail.com with ESMTPSA id z2sm10370389pgg.58.2019.07.13.06.24.59
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 13 Jul 2019 06:24:59 -0700 (PDT)
+Date:   Sat, 13 Jul 2019 06:24:58 -0700
+From:   Guenter Roeck <linux@roeck-us.net>
+To:     Daniel Mack <daniel@zonque.org>
+Cc:     linux-hwmon@vger.kernel.org, devicetree@vger.kernel.org,
+        jdelvare@suse.com
+Subject: Re: [PATCH 1/2] device-tree: bindinds: add NXP PCT2075 as compatible
+ device to LM75
+Message-ID: <20190713132458.GA13733@roeck-us.net>
+References: <20190711124504.7580-1-daniel@zonque.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190711124504.7580-1-daniel@zonque.org>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Brian,
-how about something like that (formatting is surely broken because I'm not 
-sending this with git-send-email^^)?
+On Thu, Jul 11, 2019 at 02:45:03PM +0200, Daniel Mack wrote:
+> The PCT2075 is compatible to other chips that are already handled by
+> the LM75 driver.
+> 
+> Signed-off-by: Daniel Mack <daniel@zonque.org>
 
-I'd says this should be work fine with all devices as all modes are defined in 
-the device-specific dts but the reg and offset values are in the board dts. 
-Should I also add a status = "disabled" to the reboot-mode node in the board 
-dts?
+Applied to hwmon-next.
 
-diff --git a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts b/arch/arm/boot/
-dts/qcom-msm8974-fairphone-fp2.dts
-index 643c57f84818..ff4a3e0aa746 100644
---- a/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
-+++ b/arch/arm/boot/dts/qcom-msm8974-fairphone-fp2.dts
-@@ -338,6 +338,16 @@
- 			};
- 		};
- 	};
-+
-+	imem@fe805000 {
-+		status = "okay";
-+
-+		reboot-mode {
-+			mode-normal	= <0x77665501>;
-+			mode-bootloader	= <0x77665500>;
-+			mode-recovery	= <0x77665502>;
-+		};
-+	};
- };
- 
- &spmi_bus {
-diff --git a/arch/arm/boot/dts/qcom-msm8974.dtsi b/arch/arm/boot/dts/qcom-
-msm8974.dtsi
-index 45b5c8ef0374..1927430bded7 100644
---- a/arch/arm/boot/dts/qcom-msm8974.dtsi
-+++ b/arch/arm/boot/dts/qcom-msm8974.dtsi
-@@ -1085,6 +1085,17 @@
- 				};
- 			};
- 		};
-+
-+		imem@fe805000 {
-+			status = "disabled";
-+			compatible = "syscon", "simple-mfd";
-+			reg = <0xfe805000 0x1000>;
-+
-+			reboot-mode {
-+				compatible = "syscon-reboot-mode";
-+				offset = <0x65c>;
-+			};
-+		};
- 	};
- 
- 	smd {
+Thanks,
+Guenter
 
-
-Regards,
-Luca
-
-
+> ---
+>  Documentation/devicetree/bindings/hwmon/lm75.txt | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/hwmon/lm75.txt b/Documentation/devicetree/bindings/hwmon/lm75.txt
+> index 12d8cf7cf592..bfb22b249708 100644
+> --- a/Documentation/devicetree/bindings/hwmon/lm75.txt
+> +++ b/Documentation/devicetree/bindings/hwmon/lm75.txt
+> @@ -15,6 +15,7 @@ Required properties:
+>  		"maxim,max31725",
+>  		"maxim,max31726",
+>  		"maxim,mcp980x",
+> +		"nxp,pct2075",
+>  		"st,stds75",
+>  		"st,stlm75",
+>  		"microchip,tcn75",
