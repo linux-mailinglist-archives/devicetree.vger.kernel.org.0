@@ -2,93 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CE7D267703
-	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2019 01:53:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4478B677DA
+	for <lists+devicetree@lfdr.de>; Sat, 13 Jul 2019 05:47:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727417AbfGLXx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 12 Jul 2019 19:53:26 -0400
-Received: from mail-pl1-f202.google.com ([209.85.214.202]:56547 "EHLO
-        mail-pl1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728687AbfGLXxY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 12 Jul 2019 19:53:24 -0400
-Received: by mail-pl1-f202.google.com with SMTP id o6so5995502plk.23
-        for <devicetree@vger.kernel.org>; Fri, 12 Jul 2019 16:53:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=CFxxqGnefOXorhrwYqF3mwAy1+jiw4VOCKpjKBDoyT8=;
-        b=MnUPYPMpXRNJhnxIEOQkopnSiqM4LwT2KaAFhMGRiiQq8POudN9dt0VG4XPUeGz8ao
-         nmHisWeLgIwP+2I/ubn8KZSf+D8q7CVvWz7iqwv1T4Qw2D0qDYwiKc0yMnqdjd3p5Yg8
-         KLh8mRQ2Bd5E21GecWU9+bQ+p83bSYgh8W+1zJxQH5PM+NaikhlYF0spos9UT22/GD21
-         opWt+BWMDrRY8FmbN/kBOAYR9JnWDPi/cCefm7Oeo60EF5cDG7A7YR2JyQ+2S/1JlARM
-         Al2ilX4+kFDDQcvXTMQB1BuLNmh6oAZ2cY2FKNm15cK4Skj7hfX40d5iJEZ6HpjnRAdN
-         Nizw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=CFxxqGnefOXorhrwYqF3mwAy1+jiw4VOCKpjKBDoyT8=;
-        b=KmoFSVe11r3f37OpGMSXgz7/3VnIhqi3b2+XT1YNivshvjg81RCYOnXUs9eRnpbg9m
-         PQW4FqUJLlSzfEsp8LtNnF160bMNTThifv6EqP9aKcSAqhXyENLE5WDbLsT4/OAc5bNE
-         ez8a7p9zymVxt0QL48DB3gvmj6+92WIbnOYr5uldTs1KE4V6yzRipdX6e8WDSHAMZxHe
-         Kicg1nvQtgEwEPpo6oUmRFTPGRNDOGdzEO2C/L9iz/XDdPXx9dijD1BbjalQeSU+Qey+
-         gLAWejNFc3/JUcksTg9YxXZeLJyxaZg3hQhG+SABhrMlZJbv8qhzcy/JUjLw/fcin3Xm
-         THow==
-X-Gm-Message-State: APjAAAVD1w8SIchWNw2J5On8H332Aln1BotPFXdGpSx3DXpDgjTAsM9m
-        LGIuX48FRLEq6DG8UUuMliViAN/BTwUs5vQ=
-X-Google-Smtp-Source: APXvYqw0E6zYGebktTFqUus6/97NONkNo8swfiCbKYdrUTLEfjPBQAFkvFlxtjmj0xrbWbFHkzYe9KU4nWk7qtQ=
-X-Received: by 2002:a63:1658:: with SMTP id 24mr14469922pgw.167.1562975603646;
- Fri, 12 Jul 2019 16:53:23 -0700 (PDT)
-Date:   Fri, 12 Jul 2019 16:52:44 -0700
-In-Reply-To: <20190712235245.202558-1-saravanak@google.com>
-Message-Id: <20190712235245.202558-12-saravanak@google.com>
-Mime-Version: 1.0
-References: <20190712235245.202558-1-saravanak@google.com>
-X-Mailer: git-send-email 2.22.0.510.g264f2c817a-goog
-Subject: [PATCH v5 11/11] of/platform: Don't create device links default busses
-From:   Saravana Kannan <saravanak@google.com>
+        id S1727474AbfGMDrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 12 Jul 2019 23:47:11 -0400
+Received: from hermes.aosc.io ([199.195.250.187]:42637 "EHLO hermes.aosc.io"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727466AbfGMDrL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 12 Jul 2019 23:47:11 -0400
+Received: from localhost (localhost [127.0.0.1]) (Authenticated sender: icenowy@aosc.io)
+        by hermes.aosc.io (Postfix) with ESMTPSA id E474F6EA60;
+        Sat, 13 Jul 2019 03:47:04 +0000 (UTC)
+From:   Icenowy Zheng <icenowy@aosc.io>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        David Collins <collinsd@codeaurora.org>,
-        kernel-team@android.com
-Content-Type: text/plain; charset="UTF-8"
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Icenowy Zheng <icenowy@aosc.io>
+Subject: [PATCH v4 0/8] Support for Allwinner V3/S3L and Sochip S3
+Date:   Sat, 13 Jul 2019 11:46:26 +0800
+Message-Id: <20190713034634.44585-1-icenowy@aosc.io>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Default busses also have devices created for them. But there's no point
-in creating device links for them. It's especially wasteful as it'll
-cause the traversal of the entire device tree and also spend a lot of
-time checking and figuring out that creating those links isn't allowed.
-So check for default busses and skip trying to create device links for
-them.
+This patchset tries to add support for Allwinner V3/S3L and Sochip S3.
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/of/platform.c | 3 +++
- 1 file changed, 3 insertions(+)
+Allwinner V3/V3s/S3L and Sochip S3 share the same die, but with
+different package. V3 is BGA w/o co-packaged DDR, V3s is QFP w/ DDR2,
+S3L is BGA w/ DDR2 and S3 is BGA w/ DDR3. (S3 and S3L is compatible
+for pinout, but because of different DDR, DDR voltage is different
+between the two variants). Because of the pin count of V3s is
+restricted due to the package, some pins are not bound on V3s, but
+they're bound on V3/S3/S3L.
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 9f3b7e1801bc..b02dbaa01bfe 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -593,6 +593,9 @@ static int __of_link_to_suppliers(struct device *dev,
- 	struct property *p;
- 	unsigned int len, reg_len;
- 
-+	if (of_match_node(of_default_bus_match_table, con_np))
-+		return 0;
-+
- 	for (i = 0; i < ARRAY_SIZE(link_bindings) / 2; i++)
- 		if (of_link_binding(dev, con_np, link_bindings[i * 2],
- 					link_bindings[i * 2 + 1]))
+Currently the kernel is only prepared for the features available on V3s.
+This patchset adds the features missing on V3s for using them on
+V3/S3/S3L, and add bindings for V3/S3/S3L. It also adds a S3 SoM by
+Sipeed, called Lichee Zero Plus.
+
+Icenowy Zheng (8):
+  pinctrl: sunxi: v3s: introduce support for V3
+  clk: sunxi-ng: v3s: add the missing PLL_DDR1
+  dt-bindings: clk: sunxi-ccu: add compatible string for V3 CCU
+  clk: sunxi-ng: v3s: add missing clock slices for MMC2 module clocks
+  clk: sunxi-ng: v3s: add Allwinner V3 support
+  ARM: sunxi: dts: s3/s3l/v3: add DTSI files for S3/S3L/V3 SoCs
+  dt-bindings: arm: sunxi: add binding for Lichee Zero Plus core board
+  ARM: dts: sun8i: s3: add devicetree for Lichee zero plus w/ S3
+
+ .../devicetree/bindings/arm/sunxi.yaml        |   5 +
+ .../clock/allwinner,sun4i-a10-ccu.yaml        |   1 +
+ arch/arm/boot/dts/Makefile                    |   1 +
+ .../boot/dts/sun8i-s3-lichee-zero-plus.dts    |   8 +
+ .../dts/sun8i-s3-s3l-lichee-zero-plus.dtsi    |  46 +++
+ arch/arm/boot/dts/sun8i-s3.dtsi               |   6 +
+ arch/arm/boot/dts/sun8i-s3l.dtsi              |   6 +
+ arch/arm/boot/dts/sun8i-v3.dtsi               |  14 +
+ drivers/clk/sunxi-ng/ccu-sun8i-v3s.c          | 250 ++++++++++++++++-
+ drivers/clk/sunxi-ng/ccu-sun8i-v3s.h          |   6 +-
+ drivers/pinctrl/sunxi/pinctrl-sun8i-v3s.c     | 265 +++++++++++++++++-
+ drivers/pinctrl/sunxi/pinctrl-sunxi.h         |   2 +
+ include/dt-bindings/clock/sun8i-v3s-ccu.h     |   4 +
+ include/dt-bindings/reset/sun8i-v3s-ccu.h     |   3 +
+ 14 files changed, 604 insertions(+), 13 deletions(-)
+ create mode 100644 arch/arm/boot/dts/sun8i-s3-lichee-zero-plus.dts
+ create mode 100644 arch/arm/boot/dts/sun8i-s3-s3l-lichee-zero-plus.dtsi
+ create mode 100644 arch/arm/boot/dts/sun8i-s3.dtsi
+ create mode 100644 arch/arm/boot/dts/sun8i-s3l.dtsi
+ create mode 100644 arch/arm/boot/dts/sun8i-v3.dtsi
+
 -- 
-2.22.0.510.g264f2c817a-goog
+2.21.0
 
