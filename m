@@ -2,136 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 856D568151
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2019 23:42:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C098068176
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 00:54:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728898AbfGNVmC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Jul 2019 17:42:02 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:45631 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728701AbfGNVmB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 14 Jul 2019 17:42:01 -0400
-Received: by mail-lj1-f194.google.com with SMTP id m23so14112568lje.12;
-        Sun, 14 Jul 2019 14:41:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=A3OYivNwUGHYOSxix42WhhjLsPNywH0YEPeMJekZJ6E=;
-        b=g6KCcs9sN6lkHPEl+C6SGXrUseBxjgYpoKWZGD8zFz8jRohfB4D8n2ctU/wJY51H5q
-         uQibLj0cGWeUPl98B7JKR4CztJwwuDyE9tsHq7XDawzsZ+dSJHiXTJQJN5N0Lq+oloT5
-         KUL7XijFK785yi9gbhAXmuge9bwO+BflbYNOcOY1MNTFiyv5YQp2LfHBOCgDZxzTHPn/
-         xpbA/3hX7xJQQblD1saufJhh0s6j1JhAmeil6nHC5BYjCiopmArM+0/becVm3p7Y2ILq
-         U3ZXMk/lNAjkvTAxN312yHUvD6Ztjwkw+IXFDzna9jSkJLXOYOAv7uTo+v+S5/ZcX+NQ
-         q5dg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=A3OYivNwUGHYOSxix42WhhjLsPNywH0YEPeMJekZJ6E=;
-        b=n4AT9UnzlMAqGeILfd0PUWSKwG/kTqidvMBA0SPWef6LC+CBsQ6OtC55bQ9yNxp+jF
-         vbkIy7ruBU7iL0cRU9HGhk/MdtDzVL+4GnEecowVtwfLki9uU1VNfb+iCCJTfhGv649y
-         Mko6Na65dojI6yuxCo7Yo0O3XEK64hwR0HL43hZQGJNu871Vmfh9nlTtL/al7BeiuBIy
-         UjbYtm9nFP08yjcYbvBZrazPRU7YMjB2wAYFOaFWr6opG2XdsubHbrAVmtQQGUgZdipg
-         YQ1i6+eGzfT42bo27EaW4u9PT/P2ViEAo7w11ajkEwkuN/q0Erj4aOsXfzYw8zOz7qEH
-         Pn8Q==
-X-Gm-Message-State: APjAAAWuGslfD9vZ/V4Ni6h8RphegeoF6Qm0ddgpwkqeJdWE1xD1GFMB
-        LFj23UDaFDFY4w31ns4b6PHaf0TV
-X-Google-Smtp-Source: APXvYqzxHKe/eVV/wzCEUknf2UJgEROtblGr1hgbk1WhEjuuEfCTVKoQIiLXy9ri1qWdjAYtkZv5gQ==
-X-Received: by 2002:a2e:9643:: with SMTP id z3mr12289841ljh.43.1563140519056;
-        Sun, 14 Jul 2019 14:41:59 -0700 (PDT)
-Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
-        by smtp.googlemail.com with ESMTPSA id b192sm2025060lfg.75.2019.07.14.14.41.57
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 14 Jul 2019 14:41:58 -0700 (PDT)
-Subject: Re: [PATCH V5 02/18] pinctrl: tegra: Add suspend and resume support
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Linus Walleij <linus.walleij@linaro.org>
-Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        jckuo@nvidia.com, Joseph Lo <josephl@nvidia.com>, talho@nvidia.com,
-        linux-tegra@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mikko Perttunen <mperttunen@nvidia.com>, spatra@nvidia.com,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-References: <1561687972-19319-1-git-send-email-skomatineni@nvidia.com>
- <1561687972-19319-3-git-send-email-skomatineni@nvidia.com>
- <a262cbb3-845c-3ad1-16cc-375a24b9f7e9@gmail.com>
- <822867d6-4a4d-5f68-9b21-84a20d73c589@gmail.com>
- <CACRpkdYdCmT0ErTuewYbv7bPkjoFLrK9KSVuKVMkAXNQYAGV7g@mail.gmail.com>
- <66b5e81b-d468-e2aa-7336-3d4854c234ab@gmail.com>
- <db7ac8e6-bfad-bc60-b46e-d886025872e4@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <23f10791-3fff-0e94-2798-6f38a27745d1@gmail.com>
-Date:   Mon, 15 Jul 2019 00:41:57 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <db7ac8e6-bfad-bc60-b46e-d886025872e4@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S1728741AbfGNWyU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Jul 2019 18:54:20 -0400
+Received: from gate.crashing.org ([63.228.1.57]:38927 "EHLO gate.crashing.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728731AbfGNWyU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Jul 2019 18:54:20 -0400
+Received: from localhost (localhost.localdomain [127.0.0.1])
+        by gate.crashing.org (8.14.1/8.14.1) with ESMTP id x6EMs1Qm008612;
+        Sun, 14 Jul 2019 17:54:02 -0500
+Message-ID: <54a3e2de1baf2aab893ab6370f8f6ec0a83c45db.camel@kernel.crashing.org>
+Subject: Re: [PATCH 4/8] PCI: Add quirk to disable MSI support for Amazon's
+ Annapurna Labs host bridge
+From:   Benjamin Herrenschmidt <benh@kernel.crashing.org>
+To:     "Chocron, Jonathan" <jonnyc@amazon.com>,
+        "helgaas@kernel.org" <helgaas@kernel.org>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>,
+        "Hanoch, Uri" <hanochu@amazon.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "Wasserstrom, Barak" <barakw@amazon.com>,
+        "Saidi, Ali" <alisaidi@amazon.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "Hawa, Hanna" <hhhawa@amazon.com>,
+        "Shenhar, Talel" <talel@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>
+Date:   Mon, 15 Jul 2019 08:54:00 +1000
+In-Reply-To: <2cac43401f0cf76acb645b98c6543204f12d5c05.camel@amazon.com>
+References: <20190710164519.17883-1-jonnyc@amazon.com>
+         <20190710164519.17883-5-jonnyc@amazon.com>
+         <20190712130419.GA46935@google.com>
+         <2cac43401f0cf76acb645b98c6543204f12d5c05.camel@amazon.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-13.07.2019 8:31, Sowjanya Komatineni пишет:
+On Sun, 2019-07-14 at 15:09 +0000, Chocron, Jonathan wrote:
+> > s/host bridge/Root Port/, if I understand correctly.
+> > 
 > 
-> On 7/4/19 3:40 AM, Dmitry Osipenko wrote:
->> 04.07.2019 10:31, Linus Walleij пишет:
->>> On Sat, Jun 29, 2019 at 5:58 PM Dmitry Osipenko <digetx@gmail.com>
->>> wrote:
->>>
->>>> Oh, also what about GPIO-pinctrl suspend resume ordering .. is it
->>>> okay that pinctrl
->>>> will be resumed after GPIO? Shouldn't a proper pin-muxing be
->>>> selected at first?
->>> Thierry sent some initial patches about this I think. We need to use
->>> device links for this to work properly so he adds support for
->>> linking the pinctrl and GPIO devices through the ranges.
->>>
->>> For links between pin control handles and their consumers, see also:
->>> 036f394dd77f pinctrl: Enable device link creation for pin control
->>> c6045b4e3cad pinctrl: stmfx: enable links creations
->>> 489b64d66325 pinctrl: stm32: Add links to consumers
->>>
->>> I am using STM32 as guinea pig for this, consider adding links also
->>> from the Tegra pinctrl. I might simply make these pinctrl consumer
->>> to producer links default because I think it makes a lot sense.
->> IIUC, currently the plan is to resume pinctrl *after* GPIO for
->> Tegra210 [1]. But this
->> contradicts to what was traditionally done for older Tegras where
->> pinctrl was always
->> resumed first and apparently it won't work well for the GPIO ranges as
->> well. I think this
->> and the other patchsets related to suspend-resume still need some more
->> thought.
->>
->> [1] https://patchwork.kernel.org/patch/11012077/
+> Ack.
 > 
-> Park bit was introduced from Tegra210 onwards and during suspend/resume,
-> requirement of gpio restore prior to pinctrl restore is not required for
-> prior Tegra210.
-> 
-> Also currently pinctrl suspend/resume implementation for prior Tegra210
-> is not yet upstreamed but having gpio restore prior to pinmux during
-> suspend/resume should not cause any issue for prior tegra's as well as
-> gpio resume restores pins back to same gpio config as they were during
-> suspend entry.
-> 
+> BTW, what is the main difference between the 2 terms, since they seem
+> to be (mistakenly?) used interchangeably?
 
-Okay!
+The host bridge is the parent of the root port. You can have several
+root ports under a host bridge in fact. They tend to be part of the
+same silicon and somewhat intimately linked but they are distinct
+logical entities. The root port appears as a PCIe p2p bridge sitting on
+the top level bus provided by the host bridge. The Host Bridge doesn't
+have to have a representation in config space (it sometimes does
+historically, but as a sibling of the devices on that top level bus. In
+PCIe land, these are chipset built-in devices).
+
+Ben.
+
+
