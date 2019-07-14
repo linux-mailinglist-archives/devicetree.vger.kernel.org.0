@@ -2,90 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB60867EB6
-	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2019 12:58:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93D4E67EBB
+	for <lists+devicetree@lfdr.de>; Sun, 14 Jul 2019 13:06:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728346AbfGNK55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 14 Jul 2019 06:57:57 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59050 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728147AbfGNK54 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 14 Jul 2019 06:57:56 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C239520838;
-        Sun, 14 Jul 2019 10:57:53 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563101875;
-        bh=0m76HJOsBg14Tc7m46IhLWs8jfS+R/udjn8IIy6E7po=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=iUdA/GG3XGDCBM+czw+oPZkv9b4pbypQR4YU0NnVXTYtYlTgxbxK89s9G3syTSlZn
-         twSeR3xbMX37yvPWYveftDEvOt6bUW/4YaTAujvnNElYgX00tuGSWmJqtIkaM3HZ4v
-         Kmii7P8vR+y2BSwZNZv5SzdYDDHTw2zBWytbb1MM=
-Date:   Sun, 14 Jul 2019 11:57:50 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Alexandre Mergnat <amergnat@baylibre.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, linux-iio@vger.kernel.org,
-        baylibre-upstreaming@groups.io, dmitry.torokhov@gmail.com,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v4 2/3] dt-bindings: iio: position: Add docs pat9125
-Message-ID: <20190714115750.454f5ef0@archlinux>
-In-Reply-To: <20190713080455.17513-3-amergnat@baylibre.com>
-References: <20190713080455.17513-1-amergnat@baylibre.com>
-        <20190713080455.17513-3-amergnat@baylibre.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728164AbfGNLGK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 14 Jul 2019 07:06:10 -0400
+Received: from [46.101.26.142] ([46.101.26.142]:33092 "EHLO TEST.localdomain"
+        rhost-flags-FAIL-FAIL-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728147AbfGNLGK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 14 Jul 2019 07:06:10 -0400
+X-Greylist: delayed 10491 seconds by postgrey-1.27 at vger.kernel.org; Sun, 14 Jul 2019 07:06:10 EDT
+Received: from localhost (TEST [127.0.0.1])
+        by TEST.localdomain (Postfix) with SMTP id A2294F33BC0
+        for <devicetree@vger.kernel.org>; Sun, 14 Jul 2019 08:11:17 +0000 (UTC)
+From:   devicetree@vger.kernel.org
+Reply-To: prodawez@armyspy.com
+To:     rhwEdevicetree@vger.kernel.org
+Subject: =?utf-8?B?0JfQtNGA0LDQstGB0YLQstGD0LnRgtC1ISDQktCw0YEg?=
+        =?utf-8?B?0LjQvdGC0LXRgNC10YHRg9GO0YIg0LrQu9C40LXQvdGC?=
+        =?utf-8?B?0YHQutC40LUg0LHQsNC30Ysg0LTQsNC90L3Ri9GFPw==?=
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="utf-8";
+Content-Transfer-Encoding: base64
+Message-Id: <20190714081117.A2294F33BC0@TEST.localdomain>
+Date:   Sun, 14 Jul 2019 08:11:17 +0000 (UTC)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 13 Jul 2019 10:04:54 +0200
-Alexandre Mergnat <amergnat@baylibre.com> wrote:
-
-> Add documentation for the optical tracker PAT9125 and
-> "position" directory for chip which can provides position data.
-> 
-> Signed-off-by: Alexandre Mergnat <amergnat@baylibre.com>
-Whilst this one predates my statement that I wanted all bindings
-in YAML going forwards, it will want converting at some stage
-and if you have time now it would be great to do so!
-
-Thanks,
-
-Jonathan
-
-> ---
->  .../bindings/iio/position/pat9125.txt          | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/position/pat9125.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/position/pat9125.txt b/Documentation/devicetree/bindings/iio/position/pat9125.txt
-> new file mode 100644
-> index 000000000000..4028aeef9b42
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/iio/position/pat9125.txt
-> @@ -0,0 +1,18 @@
-> +PixArt Imaging PAT9125 Optical Tracking Miniature Chip device driver
-> +
-> +Required properties:
-> +	- compatible: must be "pixart,pat9125"
-> +	- reg: i2c address where to find the device
-> +	- interrupts: the sole interrupt generated by the device
-> +
-> +	Refer to interrupt-controller/interrupts.txt for generic
-> +	interrupt client node bindings.
-> +
-> +Example:
-> +
-> +pat9125@75 {
-> +	compatible = "pixart,pat9125";
-> +	reg = <0x75>;
-> +	interrupt-parent = <&gpio3>;
-> +	interrupts = <12 IRQ_TYPE_EDGE_FALLING>;
-> +};
-
+0JfQtNGA0LDQstGB0YLQstGD0LnRgtC1ISDQktCw0YEg0LjQvdGC0LXRgNC10YHRg9GO0YIg0LrQ
+u9C40LXQvdGC0YHQutC40LUg0LHQsNC30Ysg0LTQsNC90L3Ri9GFPw0K
