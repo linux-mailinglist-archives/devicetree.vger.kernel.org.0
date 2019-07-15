@@ -2,21 +2,21 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 712D568775
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 12:55:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DE72B68779
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 12:56:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729641AbfGOKz1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 06:55:27 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:45695 "EHLO
+        id S1729828AbfGOKzn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 06:55:43 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:35767 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729544AbfGOKz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 06:55:27 -0400
+        with ESMTP id S1729544AbfGOKzm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 06:55:42 -0400
 Received: from kresse.hi.pengutronix.de ([2001:67c:670:100:1d::2a])
         by metis.ext.pengutronix.de with esmtp (Exim 4.92)
         (envelope-from <l.stach@pengutronix.de>)
-        id 1hmydZ-0006OY-FK; Mon, 15 Jul 2019 12:55:17 +0200
-Message-ID: <1563188114.2307.7.camel@pengutronix.de>
-Subject: Re: [PATCH v2 1/2] arm64: dts: imx8mq: Add MIPI D-PHY
+        id 1hmydq-0006Ux-KD; Mon, 15 Jul 2019 12:55:34 +0200
+Message-ID: <1563188134.2307.8.camel@pengutronix.de>
+Subject: Re: [PATCH v2 2/2] arm64: dts: imx8mq-librem5: Enable MIPI D-PHY
 From:   Lucas Stach <l.stach@pengutronix.de>
 To:     Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -34,10 +34,10 @@ To:     Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
         Andrey Smirnov <andrew.smirnov@gmail.com>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-kernel@vger.kernel.org
-Date:   Mon, 15 Jul 2019 12:55:14 +0200
-In-Reply-To: <30c7622bf590670190b93c9b5b6dd1e8f809bbb2.1563187253.git.agx@sigxcpu.org>
+Date:   Mon, 15 Jul 2019 12:55:34 +0200
+In-Reply-To: <f80df8fcae320eb6eb4937fb5a07799fc610adae.1563187253.git.agx@sigxcpu.org>
 References: <cover.1563187253.git.agx@sigxcpu.org>
-         <30c7622bf590670190b93c9b5b6dd1e8f809bbb2.1563187253.git.agx@sigxcpu.org>
+         <f80df8fcae320eb6eb4937fb5a07799fc610adae.1563187253.git.agx@sigxcpu.org>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.22.6-1+deb9u2 
 Mime-Version: 1.0
@@ -52,7 +52,7 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Am Montag, den 15.07.2019, 12:43 +0200 schrieb Guido Günther:
-> Add a node for the Mixel MIPI D-PHY, "disabled" by default.
+> This enables the Mixel MIPI D-PHY on the Librem 5 devkit
 > 
 > Signed-off-by: Guido Günther <agx@sigxcpu.org>
 > Acked-by: Angus Ainslie (Purism) <angus@akkea.ca>
@@ -60,30 +60,22 @@ Am Montag, den 15.07.2019, 12:43 +0200 schrieb Guido Günther:
 Reviewed-by: Lucas Stach <l.stach@pengutronix.de>
 
 > ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>  arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts | 4 ++++
+>  1 file changed, 4 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index d09b808eff87..891ee7578c2d 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -728,6 +728,19 @@
->  				status = "disabled";
->  			};
+> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+> b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+> index 5179e22f5126..683a11035643 100644
+> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+> @@ -174,6 +174,10 @@
+>  	assigned-clock-rates = <786432000>, <722534400>;
+>  };
 >  
-> +			dphy: dphy@30a00300 {
-> +				compatible = "fsl,imx8mq-mipi-dphy";
-> +				reg = <0x30a00300 0x100>;
-> +				clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF>;
-> +				clock-names = "phy_ref";
-> +				assigned-clocks = <&clk IMX8MQ_CLK_DSI_PHY_REF>;
-> +				assigned-clock-parents = <&clk IMX8MQ_VIDEO_PLL1_OUT>;
-> +				assigned-clock-rates = <24000000>;
-> +				#phy-cells = <0>;
-> +				power-domains = <&pgc_mipi>;
-> +				status = "disabled";
-> +			};
+> +&dphy {
+> +	status = "okay";
+> +};
 > +
->  			i2c1: i2c@30a20000 {
->  				compatible = "fsl,imx8mq-i2c", "fsl,imx21-i2c";
->  				reg = <0x30a20000 0x10000>;
+>  &fec1 {
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_fec1>;
