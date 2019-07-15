@@ -2,307 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B6B4869AF3
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 20:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E630769B05
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 20:53:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729662AbfGOSlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 14:41:31 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:43731 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729277AbfGOSlb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 14:41:31 -0400
-Received: by mail-oi1-f194.google.com with SMTP id w79so13466608oif.10
-        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2019 11:41:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2Pu9jEeEMBlE3FFfJDwBAAR3JyOiDHCZwpmnVW6F2jk=;
-        b=D0O6nEvu/MDqMzpd4wWrUrH4m6jf8mBS7NBQ2xZKl6vUmoM53KA51Qs80BCrfTZdLP
-         UYuPwPjACcc8+7tOIxZ8eXxEPv1QjmTdIWa1xRNbUZn82Oc2uDOHA6PtjEnXJWfI8EOM
-         dVdVJ1PkahKfdrGXWo9mNg8L88F1kQJiLqnH5u88yJvGC4c9oEGsEq1+lZnSCcmMPGha
-         Pn0foO3PSYL9DGFpXq9tgZ2FleXvSiEI16dKDh/9U3PH35VC8u2FOrHxzadHUwh6yLry
-         2gPk7red3tN0ucQBuFKNpESUCi4brY2OvG034/bphTe99UppoR7K6GgAYys6q4XCp5xO
-         nCDg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2Pu9jEeEMBlE3FFfJDwBAAR3JyOiDHCZwpmnVW6F2jk=;
-        b=BigryWf5wJ3B5Zr9aSZNFAS3FND4RuHZ/GTwaCv1XtBtKaYYS9hb5SMKMyh+ZwkgQW
-         cMO1Y3ufkPUSYWKfYYQ5hK/InbNdsuJEZObJpJvtgZEdB4PU5nHUq5odQhJAi21oEjlc
-         BwxQtylvyLsF4msTLvrGhlyN/PpZtMw5k3Mr9efRUU98DMY4ddMNdQyKr2UzIl90A6ye
-         CawCNEqsW9bWqAP/SsWJScdTPJc03uvrqzNyae8NoONVdRt6N+Opk8o+9QW00toQ74eX
-         +7iNXCLTCMz5+R0PqjH8y9m6KCXLRDL4FrglWTgVUvPkPrMZ7y88G/jSMkO5tFn/kVnc
-         5vKQ==
-X-Gm-Message-State: APjAAAX5IlTOaoMwTr/QPuCzk48AGHQoYYjATw/R4IdMVQ/6h7c/XkGN
-        l1jhRZSb7LVv6dTbR552bM7WkQnd6U32CD9wZN62gg==
-X-Google-Smtp-Source: APXvYqwGcwHVHrCp7SdDV1RLDY4MkmCMG2ORzzkghzUIlu2jhT/0clB3rg2mZardKDz1khcGGLDs4jwDoSK/JpqfK1A=
-X-Received: by 2002:aca:6104:: with SMTP id v4mr14234264oib.172.1563216089632;
- Mon, 15 Jul 2019 11:41:29 -0700 (PDT)
+        id S1729525AbfGOSxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 14:53:09 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:34114 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729513AbfGOSxJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 14:53:09 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6FIr0mh012362;
+        Mon, 15 Jul 2019 13:53:00 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1563216780;
+        bh=maWJWUl3/uh4gzm/FxDXx4PW89IhYMuhbL/zvUUoXWA=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=MtPb6GlBSpe/QC6shP6MUsTHoj6yXZcQR8AF9vYp/Dhf4oN9RO0dHNKnHfGYLyLhd
+         Grqo55U7QHukjPhAZa8GjuuRsMAhatqeBfUa1r3mK99MR/xnd7QJhw5S14Bibx0gOe
+         kllcKbmwoEiXmp1QsipejvErZ9/QQQAQXsRZa7UQ=
+Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6FIr0TA077200
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 15 Jul 2019 13:53:00 -0500
+Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 15
+ Jul 2019 13:53:00 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
+ (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 15 Jul 2019 13:53:00 -0500
+Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6FIqxE1072403;
+        Mon, 15 Jul 2019 13:52:59 -0500
+Subject: Re: [PATCH v2 1/2] dt-bindings: leds: document the "power-supply"
+ property
+To:     Jean-Jacques Hiblot <jjhiblot@ti.com>,
+        <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <daniel.thompson@linaro.org>
+CC:     <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190715155657.22976-1-jjhiblot@ti.com>
+ <20190715155657.22976-2-jjhiblot@ti.com>
+From:   Dan Murphy <dmurphy@ti.com>
+Message-ID: <f0dcce32-2bc0-5106-9bd7-27df699bbf06@ti.com>
+Date:   Mon, 15 Jul 2019 13:52:58 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-References: <20190702004811.136450-1-saravanak@google.com> <20190702004811.136450-3-saravanak@google.com>
- <CAL_JsqLdvDpKB=iV6x3eTr2F4zY0bxU-Wjb+JeMjj5rdnRc-OQ@mail.gmail.com>
- <CAGETcx_i9353aRFbJXNS78EvqwmU-2-xSBJ+ySZX1gjjHpz_cg@mail.gmail.com>
- <9e75b3dd-380b-c868-728f-46379e53bc11@gmail.com> <07812739-0e6b-6598-ac58-8e0ea74a3331@gmail.com>
-In-Reply-To: <07812739-0e6b-6598-ac58-8e0ea74a3331@gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 15 Jul 2019 11:40:53 -0700
-Message-ID: <CAGETcx8YCCGxgXnByenVUb+q8pHPPTjwAjK3L_+9mwoCe=9SbA@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] of/platform: Add functional dependency link from
- DT bindings
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190715155657.22976-2-jjhiblot@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Replying again because the previous email accidentally included HTML.
+JJ
 
-Thanks for taking the time to reconsider the wording Frank. Your
-intention was clear to me in the first email too.
+On 7/15/19 10:56 AM, Jean-Jacques Hiblot wrote:
+> Most of the LEDs are powered by a voltage/current regulator. Describing it
+> in the device-tree makes it possible for the LED core to enable/disable it
+> when needed.
+>
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
+> ---
+>   Documentation/devicetree/bindings/leds/common.txt | 6 ++++++
+>   1 file changed, 6 insertions(+)
+>
+> diff --git a/Documentation/devicetree/bindings/leds/common.txt b/Documentation/devicetree/bindings/leds/common.txt
+> index 70876ac11367..539e124b1457 100644
+> --- a/Documentation/devicetree/bindings/leds/common.txt
+> +++ b/Documentation/devicetree/bindings/leds/common.txt
+> @@ -61,6 +61,11 @@ Optional properties for child nodes:
+>   - panic-indicator : This property specifies that the LED should be used,
+>   		    if at all possible, as a panic indicator.
+>   
+> +- power-supply : A voltage/current regulator used to to power the LED. When a
+Is the phandle to a voltage/current regulator used to to power the LED
+> +		 LED is turned off, the LED core disable its regulator. The
+The regulator is only disabled if it is the only consumer and/or the 
+number of users = 0.
+> +		 same regulator can power many LED (or other) devices. It is
+> +		 turned off only when all of its users disabled it.
+> +
+>   - trigger-sources : List of devices which should be used as a source triggering
+>   		    this LED activity. Some LEDs can be related to a specific
+>   		    device and should somehow indicate its state. E.g. USB 2.0
+> @@ -106,6 +111,7 @@ gpio-leds {
+>   		label = "Status";
+>   		linux,default-trigger = "heartbeat";
+>   		gpios = <&gpio0 0 GPIO_ACTIVE_HIGH>;
+> +		power-supply = <&led_regulator>;
+>   	};
+>   
+>   	usb {
 
-A kernel command line option can also completely disable this
-functionality easily and cleanly. Can we pick that as an option? I've
-an implementation of that in the v5 series I sent out last week.
 
--Saravana
+Reviewed-by: Dan Murphy <dmurphy@ti.com>
 
-On Mon, Jul 15, 2019 at 7:39 AM Frank Rowand <frowand.list@gmail.com> wrote:
->
-> On 7/15/19 7:26 AM, Frank Rowand wrote:
-> > HiRob,
-> >
-> > Sorry for such a late reply...
-> >
-> >
-> > On 7/1/19 8:25 PM, Saravana Kannan wrote:
-> >> On Mon, Jul 1, 2019 at 6:32 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >>>
-> >>> On Mon, Jul 1, 2019 at 6:48 PM Saravana Kannan <saravanak@google.com> wrote:
-> >>>>
-> >>>> Add device-links after the devices are created (but before they are
-> >>>> probed) by looking at common DT bindings like clocks and
-> >>>> interconnects.
-> >>>>
-> >>>> Automatically adding device-links for functional dependencies at the
-> >>>> framework level provides the following benefits:
-> >>>>
-> >>>> - Optimizes device probe order and avoids the useless work of
-> >>>>   attempting probes of devices that will not probe successfully
-> >>>>   (because their suppliers aren't present or haven't probed yet).
-> >>>>
-> >>>>   For example, in a commonly available mobile SoC, registering just
-> >>>>   one consumer device's driver at an initcall level earlier than the
-> >>>>   supplier device's driver causes 11 failed probe attempts before the
-> >>>>   consumer device probes successfully. This was with a kernel with all
-> >>>>   the drivers statically compiled in. This problem gets a lot worse if
-> >>>>   all the drivers are loaded as modules without direct symbol
-> >>>>   dependencies.
-> >>>>
-> >>>> - Supplier devices like clock providers, interconnect providers, etc
-> >>>>   need to keep the resources they provide active and at a particular
-> >>>>   state(s) during boot up even if their current set of consumers don't
-> >>>>   request the resource to be active. This is because the rest of the
-> >>>>   consumers might not have probed yet and turning off the resource
-> >>>>   before all the consumers have probed could lead to a hang or
-> >>>>   undesired user experience.
-> >>>>
-> >>>>   Some frameworks (Eg: regulator) handle this today by turning off
-> >>>>   "unused" resources at late_initcall_sync and hoping all the devices
-> >>>>   have probed by then. This is not a valid assumption for systems with
-> >>>>   loadable modules. Other frameworks (Eg: clock) just don't handle
-> >>>>   this due to the lack of a clear signal for when they can turn off
-> >>>>   resources. This leads to downstream hacks to handle cases like this
-> >>>>   that can easily be solved in the upstream kernel.
-> >>>>
-> >>>>   By linking devices before they are probed, we give suppliers a clear
-> >>>>   count of the number of dependent consumers. Once all of the
-> >>>>   consumers are active, the suppliers can turn off the unused
-> >>>>   resources without making assumptions about the number of consumers.
-> >>>>
-> >>>> By default we just add device-links to track "driver presence" (probe
-> >>>> succeeded) of the supplier device. If any other functionality provided
-> >>>> by device-links are needed, it is left to the consumer/supplier
-> >>>> devices to change the link when they probe.
-> >>>>
-> >>>> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> >>>> ---
-> >>>>  drivers/of/Kconfig    |  9 ++++++++
-> >>>>  drivers/of/platform.c | 52 +++++++++++++++++++++++++++++++++++++++++++
-> >>>>  2 files changed, 61 insertions(+)
-> >>>>
-> >>>> diff --git a/drivers/of/Kconfig b/drivers/of/Kconfig
-> >>>> index 37c2ccbefecd..7c7fa7394b4c 100644
-> >>>> --- a/drivers/of/Kconfig
-> >>>> +++ b/drivers/of/Kconfig
-> >>>> @@ -103,4 +103,13 @@ config OF_OVERLAY
-> >>>>  config OF_NUMA
-> >>>>         bool
-> >>>>
-> >>>> +config OF_DEVLINKS
-> >>>
-> >>> I'd prefer this not be a config option. After all, we want one kernel
-> >>> build that works for all platforms.
-> >>
-> >> We need a lot more changes before one kernel build can work for all
-> >> platforms. At least until then, I think we need this. Lot less chance
-> >> of breaking existing platforms before all the missing pieces are
-> >> created.
-> >>
-> >>> A kernel command line option to disable might be useful for debugging.
-> >>
-> >> Or we can have a command line to enable this for platforms that want
-> >> to use it and have it default off.
-> >
->
-> > Given the fragility of the current boot sequence (without this patch set)
-> > and the potential breakage of existing systems, I think that if we choose
-> > to accept this patch set that it should first bake in the -next tree for
-> > at least one major release cycle.  Maybe even two major release cycles.
->
-> I probably didn't state that very well.  I was trying to not sound like
-> I was accusing this patch series of being fragile.  The issue is that
-> adding the patches to systems that weren't expecting the new ordering
-> may cause boot problems for some systems.  I'm not concerned with
-> pointing fingers, just want to make sure that we proceed cautiously
-> until we know that the resulting system is robust.
->
-> -Frank
->
-> >
-> > -Frank
-> >
-> >
-> >>
-> >>>> +       bool "Device links from DT bindings"
-> >>>> +       help
-> >>>> +         Common DT bindings like clocks, interconnects, etc represent a
-> >>>> +         consumer device's dependency on suppliers devices. This option
-> >>>> +         creates device links from these common bindings so that consumers are
-> >>>> +         probed only after all their suppliers are active and suppliers can
-> >>>> +         tell when all their consumers are active.
-> >>>> +
-> >>>>  endif # OF
-> >>>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> >>>> index 04ad312fd85b..a53717168aca 100644
-> >>>> --- a/drivers/of/platform.c
-> >>>> +++ b/drivers/of/platform.c
-> >>>> @@ -61,6 +61,57 @@ struct platform_device *of_find_device_by_node(struct device_node *np)
-> >>>>  EXPORT_SYMBOL(of_find_device_by_node);
-> >>>>
-> >>>>  #ifdef CONFIG_OF_ADDRESS
-> >>>> +static int of_link_binding(struct device *dev, char *binding, char *cell)
-> >>>
-> >>> Under CONFIG_OF_ADDRESS seems like a strange location.
-> >>
-> >> Yeah, but the rest of the file seems to be under this. So I'm not
-> >> touching that. I can probably move this function further down (close
-> >> to platform populate) if you want that.
-> >>>
-> >>>> +{
-> >>>> +       struct of_phandle_args sup_args;
-> >>>> +       struct platform_device *sup_dev;
-> >>>> +       unsigned int i = 0, links = 0;
-> >>>> +       u32 dl_flags = DL_FLAG_AUTOPROBE_CONSUMER;
-> >>>> +
-> >>>> +       while (!of_parse_phandle_with_args(dev->of_node, binding, cell, i,
-> >>>> +                                          &sup_args)) {
-> >>>> +               i++;
-> >>>> +               sup_dev = of_find_device_by_node(sup_args.np);
-> >>>> +               if (!sup_dev)
-> >>>> +                       continue;
-> >>>> +               if (device_link_add(dev, &sup_dev->dev, dl_flags))
-> >>>> +                       links++;
-> >>>> +               put_device(&sup_dev->dev);
-> >>>> +       }
-> >>>> +       if (links < i)
-> >>>> +               return -ENODEV;
-> >>>> +       return 0;
-> >>>> +}
-> >>>> +
-> >>>> +/*
-> >>>> + * List of bindings and their cell names (use NULL if no cell names) from which
-> >>>> + * device links need to be created.
-> >>>> + */
-> >>>> +static char *link_bindings[] = {
-> >>>
-> >>> const
-> >>
-> >> Ack
-> >>
-> >>>
-> >>>> +#ifdef CONFIG_OF_DEVLINKS
-> >>>> +       "clocks", "#clock-cells",
-> >>>> +       "interconnects", "#interconnect-cells",
-> >>>
-> >>> Planning to add others?
-> >>
-> >> Not in this patch.
-> >>
-> >> Regulators are the other big missing piece that I'm aware of now but
-> >> they need a lot of discussion (see email from David and my reply).
-> >>
-> >> Not sure what other resources are shared where they can be "turned
-> >> off" and cause devices set up at boot to fail. For example, I don't
-> >> think interrupts need functional dependency tracking because they
-> >> aren't really turned off by consumer 1 in a way that breaks things for
-> >> consumer 2. Just masked and the consumer 2 can unmask and use it once
-> >> it probes.
-> >>
-> >> I'm only intimately familiar with clocks, interconnects and regulators
-> >> (to some extent). I'm open to adding other supplier categories in
-> >> future patches as I educate myself of those or if other people want to
-> >> add support for more categories.
-> >>
-> >> -Saravana
-> >>
-> >>>> +#endif
-> >>>> +};
-> >>>> +
-> >>>> +static int of_link_to_suppliers(struct device *dev)
-> >>>> +{
-> >>>> +       unsigned int i = 0;
-> >>>> +       bool done = true;
-> >>>> +
-> >>>> +       if (unlikely(!dev->of_node))
-> >>>> +               return 0;
-> >>>> +
-> >>>> +       for (i = 0; i < ARRAY_SIZE(link_bindings) / 2; i++)
-> >>>> +               if (of_link_binding(dev, link_bindings[i * 2],
-> >>>> +                                       link_bindings[i * 2 + 1]))
-> >>>> +                       done = false;
-> >>>> +
-> >>>> +       if (!done)
-> >>>> +               return -ENODEV;
-> >>>> +       return 0;
-> >>>> +}
-> >>>> +
-> >>>>  /*
-> >>>>   * The following routines scan a subtree and registers a device for
-> >>>>   * each applicable node.
-> >>>> @@ -524,6 +575,7 @@ static int __init of_platform_default_populate_init(void)
-> >>>>         if (!of_have_populated_dt())
-> >>>>                 return -ENODEV;
-> >>>>
-> >>>> +       platform_bus_type.add_links = of_link_to_suppliers;
-> >>>>         /*
-> >>>>          * Handle certain compatibles explicitly, since we don't want to create
-> >>>>          * platform_devices for every node in /reserved-memory with a
-> >>>> --
-> >>>> 2.22.0.410.gd8fdbe21b5-goog
-> >>>>
-> >>
-> >
-> >
->
