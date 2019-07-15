@@ -2,193 +2,317 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A2BB68611
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 11:12:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9672668643
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 11:24:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729404AbfGOJMN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 05:12:13 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:32922 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729257AbfGOJMN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 05:12:13 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
-        Content-Type:MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:
-        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
-        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=G74tw8/WRevpQR45VkSXUw895ku/QpK/SEIzWOOpE7M=; b=GIS8ohvL4nhs8885qyPsS4p/H
-        C/eZqHfFt6ngpx+bTOTkjUp4sw1so4Dk6MilrU5r9T1MB9hKY3BvPeSiNoyAfISpZJykRgMJKE8bP
-        tBcMBorFQvtMmtdN8JCujcCAus/rZoLknbrGsxNnF6kAaomADv5cEhV4y5vdofLDEILdmOJm+Kspw
-        Odam9/SbL1M+FHigZGZDcs9GlF9c7bcQUA3AXXLuMoLJw97xN35yxet/a4SkIa+U5+Nctc0gPKugY
-        V4I9DaKZfA3uv6F0LmBAc/hY3ojc8fubKl4Da7W3swYIUc2IFy80uUi+nXlwCyJFVqV750ACWI361
-        OYNjOzwJg==;
-Received: from [189.27.46.152] (helo=bombadil.infradead.org)
-        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-        id 1hmx1n-0005vg-N8; Mon, 15 Jul 2019 09:12:11 +0000
-Received: from mchehab by bombadil.infradead.org with local (Exim 4.92)
-        (envelope-from <mchehab@bombadil.infradead.org>)
-        id 1hmx1l-0001dt-Jf; Mon, 15 Jul 2019 06:12:09 -0300
-From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-To:     Jonathan Corbet <corbet@lwn.net>
-Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        rcu@vger.kernel.org, linux-doc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        esc.storagedev@microsemi.com, linux-scsi@vger.kernel.org
-Subject: [PATCH] docs: fix broken doc links due to renames
-Date:   Mon, 15 Jul 2019 06:12:08 -0300
-Message-Id: <93185ad3a67685429c84fceb94d20fb500c0aedb.1563181814.git.mchehab+samsung@kernel.org>
-X-Mailer: git-send-email 2.21.0
+        id S1729426AbfGOJYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 05:24:18 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:40131 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729452AbfGOJYG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 05:24:06 -0400
+Received: by mail-wr1-f65.google.com with SMTP id r1so16233557wrl.7
+        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2019 02:24:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=nfm6Ua4RrGb4WspYU/6CGmVhaLbOHYoHSE5D469nkM4=;
+        b=nUxlRHFEmdE//fmjfkSwYbzIynIsAnyHZUwgu6k0FB6rJdmYLn1JuaKI7GL+Or08qm
+         /HGIxW0JUuNh1P87D362eX4UINwyRltQtIAdPWZ5jzdhOvPEoYsdbm19qyy9LSa4BYMj
+         19mBueDluvMxyxuhKPDWjd5WxBAPDUSCsWMXuJDuuVK6xPYOEshMZsyOq6oIQEagQ5Bx
+         Xz74JAvKgmaa9W2rGpL8v3ORmqBOLPrK9+yQdLuKN9ziL/7AUbq5GKY5bZ4enS+ztBW1
+         VjjE3L5Rj/aaNY8X9f3BiuYpolJhC9Nn+pRwVw3CzhorEC/HiPOlfVNUgETAa0t4Xk6V
+         x3Cw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=nfm6Ua4RrGb4WspYU/6CGmVhaLbOHYoHSE5D469nkM4=;
+        b=gd2P4M8LX6ilCC0M4VuyRP01xKtddWybbn99NaFaZFZSJ7SFv+RJcgLXOPyTR+vC5M
+         PdRBOI8qANkHcb+m14dScLJsMMKORZYM0tDJ9BfH2+s6zH/Gg4LUI1Pr3zJIx5s00Mw7
+         LWkTQYe3CShYzJ7OP6qUVTxwW1nDHVyr+mWmIA6yrIHmQWdUEZc8O7T8z5hfKOAGuZC2
+         gWV4fE47NEQ28P/wjzChUXobKLt0MYW+M+8EZcJ7UuJHhvcVGDuAudYv8DfivxURW1F+
+         WFULqGBJOXpxXt7cxvSnmUoG7Jdv1x3jEuW286ZEr/zinZ04sb1n12lmM61XbKyNlFLx
+         dzuA==
+X-Gm-Message-State: APjAAAW/uvZn8Yujmd9l5nqk2kbXHyRdUWa+UyysUTjny9upHLshhlvV
+        vktKjygzht/5efe9DOPe1nZWng==
+X-Google-Smtp-Source: APXvYqy/+ExO8IuTAiFAaExvyr1yLeuxu4zrL0AJ5A1eSvxhI4KUOZVS3tFbBntpsYO2vgJahfMW8w==
+X-Received: by 2002:a5d:518c:: with SMTP id k12mr26872647wrv.116.1563182643036;
+        Mon, 15 Jul 2019 02:24:03 -0700 (PDT)
+Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
+        by smtp.gmail.com with ESMTPSA id n1sm13156524wrx.39.2019.07.15.02.24.02
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 15 Jul 2019 02:24:02 -0700 (PDT)
+Date:   Mon, 15 Jul 2019 10:24:00 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Jean-Jacques Hiblot <jjhiblot@ti.com>
+Cc:     Dan Murphy <dmurphy@ti.com>, jacek.anaszewski@gmail.com,
+        pavel@ucw.cz, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] leds: Add control of the voltage/current regulator
+ to the LED core
+Message-ID: <20190715092400.sedjumqkecglheyu@holly.lan>
+References: <20190708103547.23528-1-jjhiblot@ti.com>
+ <20190708103547.23528-2-jjhiblot@ti.com>
+ <56d16260-ff82-3439-4c1f-2a3a1552bc7d@ti.com>
+ <ab4818c0-bc7a-13e1-c6ce-e977b0234de0@ti.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <ab4818c0-bc7a-13e1-c6ce-e977b0234de0@ti.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some files got renamed but the patch was incomplete, as it forgot
-to update the documentation reference accordingly.
+On Mon, Jul 15, 2019 at 11:01:29AM +0200, Jean-Jacques Hiblot wrote:
+> Hi Dan,
+> 
+> On 12/07/2019 20:49, Dan Murphy wrote:
+> > JJ
+> > 
+> > On 7/8/19 5:35 AM, Jean-Jacques Hiblot wrote:
+> > > A LED is usually powered by a voltage/current regulator. Let the LED
+> > > core
+> > Let the LED core know
+> > > about it. This allows the LED core to turn on or off the power supply
+> > > as needed.
+> > 
+> > > 
+> > > Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
+> > > ---
+> > > † drivers/leds/led-class.c | 10 ++++++++
+> > > † drivers/leds/led-core.c† | 53 +++++++++++++++++++++++++++++++++++++---
+> > > † include/linux/leds.h†††† |† 4 +++
+> > > † 3 files changed, 64 insertions(+), 3 deletions(-)
+> > > 
+> > > diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
+> > > index 4793e77808e2..e01b2d982564 100644
+> > > --- a/drivers/leds/led-class.c
+> > > +++ b/drivers/leds/led-class.c
+> > > @@ -17,6 +17,7 @@
+> > > † #include <linux/slab.h>
+> > > † #include <linux/spinlock.h>
+> > > † #include <linux/timer.h>
+> > > +#include <linux/regulator/consumer.h>
+> > 
+> > What if you move this to leds.h so core and class can both include it.
+> > 
+> > 
+> > > † #include <uapi/linux/uleds.h>
+> > > † #include "leds.h"
+> > > † @@ -272,6 +273,15 @@ int of_led_classdev_register(struct device
+> > > *parent, struct device_node *np,
+> > > ††††††††† dev_warn(parent, "Led %s renamed to %s due to name collision",
+> > > ††††††††††††††††† led_cdev->name, dev_name(led_cdev->dev));
+> > > † +††† led_cdev->regulator = devm_regulator_get(led_cdev->dev, "power");
+> > 
+> > Is the regulator always going to be called power?
+> 
+> Actually in the dts, that will be "power-supply". I lacked the imagination
+> to come up with a better name.
+> 
+> 
+> 
+> > 
+> > > +††† if (IS_ERR(led_cdev->regulator)) {
+> > > +††††††† dev_err(led_cdev->dev, "Cannot get the power supply for %s\n",
+> > > +††††††††††† led_cdev->name);
+> > > +††††††† device_unregister(led_cdev->dev);
+> > > +††††††† mutex_unlock(&led_cdev->led_access);
+> > > +††††††† return PTR_ERR(led_cdev->regulator);
+> > 
+> > This is listed as optional in the DT doc.† This appears to be required.
+> 
+> The regulator core will provide a dummy regulator if none is given in the
+> device tree. I would rather have an error in that case, but that is not how
+> it works.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
----
+If you actively wanted to get -ENODEV back when there is no regulator
+then you can use devm_regulator_get_optional() for that.
 
-This patch is against current linus/master branch.
-
- Documentation/RCU/rculist_nulls.txt                   | 2 +-
- Documentation/devicetree/bindings/arm/idle-states.txt | 2 +-
- Documentation/locking/spinlocks.txt                   | 4 ++--
- Documentation/memory-barriers.txt                     | 2 +-
- Documentation/translations/ko_KR/memory-barriers.txt  | 2 +-
- MAINTAINERS                                           | 6 +++---
- drivers/scsi/hpsa.c                                   | 4 ++--
- 7 files changed, 11 insertions(+), 11 deletions(-)
-
-diff --git a/Documentation/RCU/rculist_nulls.txt b/Documentation/RCU/rculist_nulls.txt
-index 8151f0195f76..23f115dc87cf 100644
---- a/Documentation/RCU/rculist_nulls.txt
-+++ b/Documentation/RCU/rculist_nulls.txt
-@@ -1,7 +1,7 @@
- Using hlist_nulls to protect read-mostly linked lists and
- objects using SLAB_TYPESAFE_BY_RCU allocations.
- 
--Please read the basics in Documentation/RCU/listRCU.txt
-+Please read the basics in Documentation/RCU/listRCU.rst
- 
- Using special makers (called 'nulls') is a convenient way
- to solve following problem :
-diff --git a/Documentation/devicetree/bindings/arm/idle-states.txt b/Documentation/devicetree/bindings/arm/idle-states.txt
-index 326f29b270ad..2d325bed37e5 100644
---- a/Documentation/devicetree/bindings/arm/idle-states.txt
-+++ b/Documentation/devicetree/bindings/arm/idle-states.txt
-@@ -703,4 +703,4 @@ cpus {
-     https://www.devicetree.org/specifications/
- 
- [6] ARM Linux Kernel documentation - Booting AArch64 Linux
--    Documentation/arm64/booting.txt
-+    Documentation/arm64/booting.rst
-diff --git a/Documentation/locking/spinlocks.txt b/Documentation/locking/spinlocks.txt
-index ff35e40bdf5b..430b641ae072 100644
---- a/Documentation/locking/spinlocks.txt
-+++ b/Documentation/locking/spinlocks.txt
-@@ -74,7 +74,7 @@ itself.  The read lock allows many concurrent readers.  Anything that
- _changes_ the list will have to get the write lock.
- 
-    NOTE! RCU is better for list traversal, but requires careful
--   attention to design detail (see Documentation/RCU/listRCU.txt).
-+   attention to design detail (see Documentation/RCU/listRCU.rst).
- 
- Also, you cannot "upgrade" a read-lock to a write-lock, so if you at _any_
- time need to do any changes (even if you don't do it every time), you have
-@@ -82,7 +82,7 @@ to get the write-lock at the very beginning.
- 
-    NOTE! We are working hard to remove reader-writer spinlocks in most
-    cases, so please don't add a new one without consensus.  (Instead, see
--   Documentation/RCU/rcu.txt for complete information.)
-+   Documentation/RCU/rcu.rst for complete information.)
- 
- ----
- 
-diff --git a/Documentation/memory-barriers.txt b/Documentation/memory-barriers.txt
-index 045bb8148fe9..1adbb8a371c7 100644
---- a/Documentation/memory-barriers.txt
-+++ b/Documentation/memory-barriers.txt
-@@ -548,7 +548,7 @@ There are certain things that the Linux kernel memory barriers do not guarantee:
- 
- 	[*] For information on bus mastering DMA and coherency please read:
- 
--	    Documentation/PCI/pci.rst
-+	    Documentation/driver-api/pci/pci.rst
- 	    Documentation/DMA-API-HOWTO.txt
- 	    Documentation/DMA-API.txt
- 
-diff --git a/Documentation/translations/ko_KR/memory-barriers.txt b/Documentation/translations/ko_KR/memory-barriers.txt
-index a33c2a536542..2774624ee843 100644
---- a/Documentation/translations/ko_KR/memory-barriers.txt
-+++ b/Documentation/translations/ko_KR/memory-barriers.txt
-@@ -569,7 +569,7 @@ ACQUIRE Îäî Ìï¥Îãπ Ïò§ÌçºÎ†àÏù¥ÏÖòÏùò Î°úÎìú Î∂ÄÎ∂ÑÏóêÎßå Ï†ÅÏö©ÎêòÍ≥† RELEASE 
- 
- 	[*] Î≤ÑÏä§ ÎßàÏä§ÌÑ∞ÎßÅ DMA ÏôÄ ÏùºÍ¥ÄÏÑ±Ïóê ÎåÄÌï¥ÏÑúÎäî Îã§ÏùåÏùÑ Ï∞∏Í≥†ÌïòÏãúÍ∏∞ Î∞îÎûçÎãàÎã§:
- 
--	    Documentation/PCI/pci.rst
-+	    Documentation/driver-api/pci/pci.rst
- 	    Documentation/DMA-API-HOWTO.txt
- 	    Documentation/DMA-API.txt
- 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index f5533d1bda2e..51ad84a3f4e3 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -899,7 +899,7 @@ L:	linux-iio@vger.kernel.org
- W:	http://ez.analog.com/community/linux-device-drivers
- S:	Supported
- F:	drivers/iio/adc/ad7124.c
--F:	Documentation/devicetree/bindings/iio/adc/adi,ad7124.txt
-+F:	Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
- 
- ANALOG DEVICES INC AD7606 DRIVER
- M:	Stefan Popa <stefan.popa@analog.com>
-@@ -6828,7 +6828,7 @@ R:	Sagi Shahar <sagis@google.com>
- R:	Jon Olson <jonolson@google.com>
- L:	netdev@vger.kernel.org
- S:	Supported
--F:	Documentation/networking/device_drivers/google/gve.txt
-+F:	Documentation/networking/device_drivers/google/gve.rst
- F:	drivers/net/ethernet/google
- 
- GPD POCKET FAN DRIVER
-@@ -12077,7 +12077,7 @@ M:	Juergen Gross <jgross@suse.com>
- M:	Alok Kataria <akataria@vmware.com>
- L:	virtualization@lists.linux-foundation.org
- S:	Supported
--F:	Documentation/virtual/paravirt_ops.txt
-+F:	Documentation/virtual/paravirt_ops.rst
- F:	arch/*/kernel/paravirt*
- F:	arch/*/include/asm/paravirt*.h
- F:	include/linux/hypervisor.h
-diff --git a/drivers/scsi/hpsa.c b/drivers/scsi/hpsa.c
-index 43a6b5350775..eaf6177ac9ee 100644
---- a/drivers/scsi/hpsa.c
-+++ b/drivers/scsi/hpsa.c
-@@ -7798,7 +7798,7 @@ static void hpsa_free_pci_init(struct ctlr_info *h)
- 	hpsa_disable_interrupt_mode(h);		/* pci_init 2 */
- 	/*
- 	 * call pci_disable_device before pci_release_regions per
--	 * Documentation/PCI/pci.rst
-+	 * Documentation/driver-api/pci/pci.rst
- 	 */
- 	pci_disable_device(h->pdev);		/* pci_init 1 */
- 	pci_release_regions(h->pdev);		/* pci_init 2 */
-@@ -7881,7 +7881,7 @@ static int hpsa_pci_init(struct ctlr_info *h)
- clean1:
- 	/*
- 	 * call pci_disable_device before pci_release_regions per
--	 * Documentation/PCI/pci.rst
-+	 * Documentation/driver-api/pci/pci.rst
- 	 */
- 	pci_disable_device(h->pdev);
- 	pci_release_regions(h->pdev);
--- 
-2.21.0
+However perhaps be careful what you wish for. If you use get_optional()
+then you will have to sprinkle NULL or IS_ERR() checks everywhere. I'd
+favour using the current approach!
 
 
+Daniel.
+
+> 
+> 
+> > 
+> > I prefer to keep it optional.† Many LED drivers are connected to fixed
+> > non-managed supplies.
+> > 
+> > > +††† }
+> > > +
+> > > ††††† if (led_cdev->flags & LED_BRIGHT_HW_CHANGED) {
+> > > ††††††††† ret = led_add_brightness_hw_changed(led_cdev);
+> > > ††††††††† if (ret) {
+> > > diff --git a/drivers/leds/led-core.c b/drivers/leds/led-core.c
+> > > index 7107cd7e87cf..139de6b08cad 100644
+> > > --- a/drivers/leds/led-core.c
+> > > +++ b/drivers/leds/led-core.c
+> > > @@ -16,6 +16,7 @@
+> > > † #include <linux/rwsem.h>
+> > > † #include <linux/slab.h>
+> > > † #include "leds.h"
+> > > +#include <linux/regulator/consumer.h>
+> > > † † DECLARE_RWSEM(leds_list_lock);
+> > > † EXPORT_SYMBOL_GPL(leds_list_lock);
+> > > @@ -23,6 +24,31 @@ EXPORT_SYMBOL_GPL(leds_list_lock);
+> > > † LIST_HEAD(leds_list);
+> > > † EXPORT_SYMBOL_GPL(leds_list);
+> > > † +static bool __led_need_regulator_update(struct led_classdev
+> > > *led_cdev,
+> > > +††††††††††††††††††† int brightness)
+> > > +{
+> > > +††† bool new_regulator_state = (brightness != LED_OFF);
+> > > +
+> > > +††† return led_cdev->regulator_state != new_regulator_state;
+> > > +}
+> > > +
+> > > +static int __led_handle_regulator(struct led_classdev *led_cdev,
+> > > +††††††††††††††† int brightness)
+> > > +{
+> > > +††† if (__led_need_regulator_update(led_cdev, brightness)) {
+> > > +††††††† int ret;
+> > 
+> > Prefer to this to be moved up.
+> ok
+> > 
+> > > +
+> > > +††††††† if (brightness != LED_OFF)
+> > > +††††††††††† ret = regulator_enable(led_cdev->regulator);
+> > > +††††††† else
+> > > +††††††††††† ret = regulator_disable(led_cdev->regulator);
+> > > +††††††† if (ret)
+> > > +††††††††††† return ret;
+> > new line
+> > > +††††††† led_cdev->regulator_state = (brightness != LED_OFF);
+> > > +††† }
+> > > +††† return 0;
+> > > +}
+> > > +
+> > > † static int __led_set_brightness(struct led_classdev *led_cdev,
+> > > ††††††††††††††††† enum led_brightness value)
+> > > † {
+> > > @@ -80,6 +106,7 @@ static void led_timer_function(struct timer_list *t)
+> > > ††††† }
+> > > † ††††† led_set_brightness_nosleep(led_cdev, brightness);
+> > > +††† __led_handle_regulator(led_cdev, brightness);
+> > 
+> > Again this seems to indicate that the regulator is a required property
+> > for the LEDs
+> > 
+> > This needs to be made optional.† And the same comment through out for
+> > every call.
+> > 
+> > 
+> > > † ††††† /* Return in next iteration if led is in one-shot mode and
+> > > we are in
+> > > †††††† * the final blink state so that the led is toggled each
+> > > delay_on +
+> > > @@ -115,6 +142,8 @@ static void set_brightness_delayed(struct
+> > > work_struct *ws)
+> > > ††††† if (ret == -ENOTSUPP)
+> > > ††††††††† ret = __led_set_brightness_blocking(led_cdev,
+> > > ††††††††††††††††††††† led_cdev->delayed_set_value);
+> > > +††† __led_handle_regulator(led_cdev, led_cdev->delayed_set_value);
+> > > +
+> > > ††††† if (ret < 0 &&
+> > > ††††††††† /* LED HW might have been unplugged, therefore don't warn */
+> > > ††††††††† !(ret == -ENODEV && (led_cdev->flags & LED_UNREGISTERING) &&
+> > > @@ -141,6 +170,7 @@ static void led_set_software_blink(struct
+> > > led_classdev *led_cdev,
+> > > ††††† /* never on - just set to off */
+> > > ††††† if (!delay_on) {
+> > > ††††††††† led_set_brightness_nosleep(led_cdev, LED_OFF);
+> > > +††††††† __led_handle_regulator(led_cdev, LED_OFF);
+> > > ††††††††† return;
+> > > ††††† }
+> > > † @@ -148,6 +178,7 @@ static void led_set_software_blink(struct
+> > > led_classdev *led_cdev,
+> > > ††††† if (!delay_off) {
+> > > ††††††††† led_set_brightness_nosleep(led_cdev,
+> > > †††††††††††††††††††††††† led_cdev->blink_brightness);
+> > > +††††††† __led_handle_regulator(led_cdev, led_cdev->blink_brightness);
+> > > ††††††††† return;
+> > > ††††† }
+> > > † @@ -256,8 +287,14 @@ void led_set_brightness_nopm(struct
+> > > led_classdev *led_cdev,
+> > > ††††††††††††††††††† enum led_brightness value)
+> > > † {
+> > > ††††† /* Use brightness_set op if available, it is guaranteed not to
+> > > sleep */
+> > > -††† if (!__led_set_brightness(led_cdev, value))
+> > > -††††††† return;
+> > > +††† if (!__led_set_brightness(led_cdev, value)) {
+> > > +††††††† /*
+> > > +†††††††† * if regulator state doesn't need to be changed, that is all/
+> > > +†††††††† * Otherwise delegate the change to a work queue
+> > > +†††††††† */
+> > > +††††††† if (!__led_need_regulator_update(led_cdev, value))
+> > > +††††††††††† return;
+> > > +††† }
+> > > † ††††† /* If brightness setting can sleep, delegate it to a work
+> > > queue task */
+> > > ††††† led_cdev->delayed_set_value = value;
+> > > @@ -280,6 +317,8 @@ EXPORT_SYMBOL_GPL(led_set_brightness_nosleep);
+> > > † int led_set_brightness_sync(struct led_classdev *led_cdev,
+> > > ††††††††††††††††† enum led_brightness value)
+> > > † {
+> > > +††† int ret;
+> > > +
+> > > ††††† if (led_cdev->blink_delay_on || led_cdev->blink_delay_off)
+> > > ††††††††† return -EBUSY;
+> > > † @@ -288,7 +327,15 @@ int led_set_brightness_sync(struct
+> > > led_classdev *led_cdev,
+> > > ††††† if (led_cdev->flags & LED_SUSPENDED)
+> > > ††††††††† return 0;
+> > > † -††† return __led_set_brightness_blocking(led_cdev,
+> > > led_cdev->brightness);
+> > > +††† ret = __led_set_brightness_blocking(led_cdev,
+> > > led_cdev->brightness);
+> > > +††† if (ret)
+> > > +††††††† return ret;
+> > > +
+> > > +††† ret = __led_handle_regulator(led_cdev, led_cdev->brightness);
+> > 
+> > Can't you just return here?
+> 
+> ok
+> 
+> 
+> thanks for the review
+> 
+> JJ
+> 
+> > 
+> > Dan
+> > 
+> > > +††† if (ret)
+> > > +††††††† return ret;
+> > > +
+> > > +††† return 0;
+> > > † }
+> > > † EXPORT_SYMBOL_GPL(led_set_brightness_sync);
+> > > † diff --git a/include/linux/leds.h b/include/linux/leds.h
+> > > index 9b2bf574a17a..bee8e3f8dddd 100644
+> > > --- a/include/linux/leds.h
+> > > +++ b/include/linux/leds.h
+> > > @@ -123,6 +123,10 @@ struct led_classdev {
+> > > † ††††† /* Ensures consistent access to the LED Flash Class device */
+> > > ††††† struct mutex††††††† led_access;
+> > > +
+> > > +††† /* regulator */
+> > > +††† struct regulator††† *regulator;
+> > > +††† bool††††††††††† regulator_state;
+> > > † };
+> > > † † extern int of_led_classdev_register(struct device *parent,
