@@ -2,286 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 08E176833E
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 07:13:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 20BC8683D6
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 09:02:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729078AbfGOFNy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 01:13:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48000 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725954AbfGOFNy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Jul 2019 01:13:54 -0400
-Received: from localhost.localdomain (NE2965lan1.rev.em-net.ne.jp [210.141.244.193])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1B49320C01;
-        Mon, 15 Jul 2019 05:13:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563167633;
-        bh=ocyiAOK0maQsf4fwTu8SJPmes1IFrUNDDImmcOcRzgA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=0x4zRBJlyB4qhsMWQFX5X9YGqw/D4bFrU2lVuxZ18vOI870Ns8x+Cy7SA6r9IL8hj
-         E9sW4Jk3T4+JpuYRB/ZAXjk1CYHDFC7HOc6lZOjtu1sMS9OMS/gSEDQpiCTI/2Nm5G
-         ZRSURX++24TWnkTD1COM1xgO4jaCq2vngbJu/jbI=
-From:   Masami Hiramatsu <mhiramat@kernel.org>
-To:     Steven Rostedt <rostedt@goodmis.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Tim Bird <Tim.Bird@sony.com>
-Cc:     Ingo Molnar <mingo@redhat.com>, Namhyung Kim <namhyung@kernel.org>,
-        Jiri Olsa <jolsa@redhat.com>,
-        Arnaldo Carvalho de Melo <acme@kernel.org>,
-        Tom Zanussi <tom.zanussi@linux.intel.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [RFC PATCH v2 15/15] tracing: of: Add function-graph tracer option properties
-Date:   Mon, 15 Jul 2019 14:13:48 +0900
-Message-Id: <156316762864.23477.2115123246398911458.stgit@devnote2>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <156316746861.23477.5815110570539190650.stgit@devnote2>
-References: <156316746861.23477.5815110570539190650.stgit@devnote2>
-User-Agent: StGit/0.17.1-dirty
+        id S1729112AbfGOHCI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 03:02:08 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:8358 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725787AbfGOHCI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Jul 2019 03:02:08 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6F6uSio030992;
+        Mon, 15 Jul 2019 09:01:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=Zl4deGZbQ+vwkjKjMySHruoNEZ/Tdqr9qboU+Ck4czs=;
+ b=mNuPpWJUbgOtsdKvOrrjxjRe5FJn4yQ5m9gUfKCWt4Az42LPaH/qFaD6E5SKi5Sr3khE
+ P4urEGi0kp9oYCLif+cM3vFABuf0kmRFrSqlwBQD56IM5MGYxFfrAl/VM4NkZMqU5Ka0
+ W6bFfGJwZwgrRb8bYKCpUNvf98urVDrhNGBKdGuUSfvc/LqWGob3Pt3N+ltZTwN7Xknz
+ vaOPqmF5MasW0iGCW68hvqF4OpaWz0OHHcb8TAsHDMVJbVqFoA2byGwYpVN+3LZQJEec
+ bVWGt9WrvuwTOkuLPH63oj6+iboOzdKlQCi4yNn0bcqY4RqPsvilzISC+CYcZL1gGvY4 cQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2tq52u3xy5-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Mon, 15 Jul 2019 09:01:10 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 6839A38;
+        Mon, 15 Jul 2019 07:01:08 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas22.st.com [10.75.90.92])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0FEA515AB;
+        Mon, 15 Jul 2019 07:01:08 +0000 (GMT)
+Received: from SAFEX1HUBCAS24.st.com (10.75.90.95) by Safex1hubcas22.st.com
+ (10.75.90.92) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 15 Jul
+ 2019 09:01:07 +0200
+Received: from [10.48.0.167] (10.48.0.167) by webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 15 Jul 2019 09:01:07
+ +0200
+Subject: Re: [PATCH v2 3/3] ARM: dts: stm32: add syscfg to ADC on stm32mp157c
+To:     Jonathan Cameron <jic23@kernel.org>
+CC:     <robh+dt@kernel.org>, <alexandre.torgue@st.com>,
+        <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
+        <lars@metafoo.de>, <knaack.h@gmx.de>, <pmeerw@pmeerw.net>,
+        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1562148496-26789-1-git-send-email-fabrice.gasnier@st.com>
+ <1562148496-26789-4-git-send-email-fabrice.gasnier@st.com>
+ <20190714171310.1816afe3@archlinux>
+From:   Fabrice Gasnier <fabrice.gasnier@st.com>
+Message-ID: <c69cff23-b67e-2aed-f250-c237e9cd4a3d@st.com>
+Date:   Mon, 15 Jul 2019 09:01:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
+In-Reply-To: <20190714171310.1816afe3@archlinux>
 Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.48.0.167]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-15_02:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add following function-graph tracer related options
- - fgraph-filters : string array of filter
- - fgraph-notraces : string array of notrace-filter
- - fgraph-max-depth : u32 value of max depth
+On 7/14/19 6:13 PM, Jonathan Cameron wrote:
+> On Wed, 3 Jul 2019 12:08:16 +0200
+> Fabrice Gasnier <fabrice.gasnier@st.com> wrote:
+> 
+>> On stm32mp157c, the ADC inputs are multiplexed with analog switches which
+>> have reduced performances when their supply is below 2.7V (vdda by
+>> default).
+>> Add syscfg registers that can be used on stm32mp157c, to get full ADC
+>> analog performances.
+>>
+>> Signed-off-by: Fabrice Gasnier <fabrice.gasnier@st.com>
+> I've applied the patches using this on the assumption this will go via
+> the usual SoC route.
+> 
+> Thanks,
 
-Note that these properties are available on ftrace root node
-only, because these filters are globally applied.
+Hi Jonathan,
 
-Signed-off-by: Masami Hiramatsu <mhiramat@kernel.org>
----
- kernel/trace/ftrace.c   |   85 ++++++++++++++++++++++++++++++-----------------
- kernel/trace/trace_of.c |   68 ++++++++++++++++++++++++++++++++++++++
- 2 files changed, 123 insertions(+), 30 deletions(-)
+Many thanks,
+Fabrice
 
-diff --git a/kernel/trace/ftrace.c b/kernel/trace/ftrace.c
-index 5c3eadb143ed..7bc60ac4583e 100644
---- a/kernel/trace/ftrace.c
-+++ b/kernel/trace/ftrace.c
-@@ -1241,7 +1241,7 @@ static void clear_ftrace_mod_list(struct list_head *head)
- 	mutex_unlock(&ftrace_lock);
- }
- 
--static void free_ftrace_hash(struct ftrace_hash *hash)
-+void free_ftrace_hash(struct ftrace_hash *hash)
- {
- 	if (!hash || hash == EMPTY_HASH)
- 		return;
-@@ -4895,7 +4895,7 @@ __setup("ftrace_filter=", set_ftrace_filter);
- #ifdef CONFIG_FUNCTION_GRAPH_TRACER
- static char ftrace_graph_buf[FTRACE_FILTER_SIZE] __initdata;
- static char ftrace_graph_notrace_buf[FTRACE_FILTER_SIZE] __initdata;
--static int ftrace_graph_set_hash(struct ftrace_hash *hash, char *buffer);
-+int ftrace_graph_set_hash(struct ftrace_hash *hash, char *buffer);
- 
- static int __init set_graph_function(char *str)
- {
-@@ -5224,6 +5224,26 @@ __ftrace_graph_open(struct inode *inode, struct file *file,
- 	return ret;
- }
- 
-+struct ftrace_hash *ftrace_graph_copy_hash(bool enable)
-+{
-+	struct ftrace_hash *hash;
-+
-+	mutex_lock(&graph_lock);
-+
-+	if (enable)
-+		hash = rcu_dereference_protected(ftrace_graph_hash,
-+					lockdep_is_held(&graph_lock));
-+	else
-+		hash = rcu_dereference_protected(ftrace_graph_notrace_hash,
-+					lockdep_is_held(&graph_lock));
-+
-+	hash = alloc_and_copy_ftrace_hash(FTRACE_HASH_DEFAULT_BITS, hash);
-+
-+	mutex_unlock(&graph_lock);
-+
-+	return hash;
-+}
-+
- static int
- ftrace_graph_open(struct inode *inode, struct file *file)
- {
-@@ -5280,11 +5300,40 @@ ftrace_graph_notrace_open(struct inode *inode, struct file *file)
- 	return ret;
- }
- 
-+int ftrace_graph_apply_hash(struct ftrace_hash *hash, bool enable)
-+{
-+	struct ftrace_hash *old_hash, *new_hash;
-+
-+	new_hash = __ftrace_hash_move(hash);
-+	if (!new_hash)
-+		return -ENOMEM;
-+
-+	mutex_lock(&graph_lock);
-+
-+	if (enable) {
-+		old_hash = rcu_dereference_protected(ftrace_graph_hash,
-+				lockdep_is_held(&graph_lock));
-+		rcu_assign_pointer(ftrace_graph_hash, new_hash);
-+	} else {
-+		old_hash = rcu_dereference_protected(ftrace_graph_notrace_hash,
-+				lockdep_is_held(&graph_lock));
-+		rcu_assign_pointer(ftrace_graph_notrace_hash, new_hash);
-+	}
-+
-+	mutex_unlock(&graph_lock);
-+
-+	/* Wait till all users are no longer using the old hash */
-+	synchronize_rcu();
-+
-+	free_ftrace_hash(old_hash);
-+
-+	return 0;
-+}
-+
- static int
- ftrace_graph_release(struct inode *inode, struct file *file)
- {
- 	struct ftrace_graph_data *fgd;
--	struct ftrace_hash *old_hash, *new_hash;
- 	struct trace_parser *parser;
- 	int ret = 0;
- 
-@@ -5309,41 +5358,17 @@ ftrace_graph_release(struct inode *inode, struct file *file)
- 
- 		trace_parser_put(parser);
- 
--		new_hash = __ftrace_hash_move(fgd->new_hash);
--		if (!new_hash) {
--			ret = -ENOMEM;
--			goto out;
--		}
--
--		mutex_lock(&graph_lock);
--
--		if (fgd->type == GRAPH_FILTER_FUNCTION) {
--			old_hash = rcu_dereference_protected(ftrace_graph_hash,
--					lockdep_is_held(&graph_lock));
--			rcu_assign_pointer(ftrace_graph_hash, new_hash);
--		} else {
--			old_hash = rcu_dereference_protected(ftrace_graph_notrace_hash,
--					lockdep_is_held(&graph_lock));
--			rcu_assign_pointer(ftrace_graph_notrace_hash, new_hash);
--		}
--
--		mutex_unlock(&graph_lock);
--
--		/* Wait till all users are no longer using the old hash */
--		synchronize_rcu();
--
--		free_ftrace_hash(old_hash);
-+		ret = ftrace_graph_apply_hash(fgd->new_hash,
-+					fgd->type == GRAPH_FILTER_FUNCTION);
- 	}
- 
-- out:
- 	free_ftrace_hash(fgd->new_hash);
- 	kfree(fgd);
- 
- 	return ret;
- }
- 
--static int
--ftrace_graph_set_hash(struct ftrace_hash *hash, char *buffer)
-+int ftrace_graph_set_hash(struct ftrace_hash *hash, char *buffer)
- {
- 	struct ftrace_glob func_g;
- 	struct dyn_ftrace *rec;
-diff --git a/kernel/trace/trace_of.c b/kernel/trace/trace_of.c
-index 1ee6fab918f5..d78a082b1752 100644
---- a/kernel/trace/trace_of.c
-+++ b/kernel/trace/trace_of.c
-@@ -75,6 +75,71 @@ trace_of_set_instance_options(struct trace_array *tr, struct device_node *node)
- 	}
- }
- 
-+#ifdef CONFIG_FUNCTION_GRAPH_TRACER
-+extern unsigned int fgraph_max_depth;
-+extern struct ftrace_hash *ftrace_graph_copy_hash(bool enable);
-+extern int ftrace_graph_set_hash(struct ftrace_hash *hash, char *buffer);
-+extern int ftrace_graph_apply_hash(struct ftrace_hash *hash, bool enable);
-+extern void free_ftrace_hash(struct ftrace_hash *hash);
-+
-+static void __init
-+trace_of_set_fgraph_filter(struct device_node *node, const char *property,
-+			   bool enable)
-+{
-+	struct ftrace_hash *hash;
-+	struct property *prop;
-+	const char *p;
-+	char buf[MAX_BUF_LEN];
-+	int err;
-+
-+	if (!of_find_property(node, property, NULL))
-+		return;
-+
-+	/* Get current filter hash */
-+	hash = ftrace_graph_copy_hash(enable);
-+	if (!hash) {
-+		pr_err("Failed to copy hash\n");
-+		return;
-+	}
-+
-+	of_property_for_each_string(node, property, prop, p) {
-+		if (strlcpy(buf, p, ARRAY_SIZE(buf)) >= ARRAY_SIZE(buf)) {
-+			pr_err("filter string is too long: %s\n", p);
-+			goto free_hash;
-+		}
-+		err = ftrace_graph_set_hash(hash, buf);
-+		if (err) {
-+			pr_err("Failed to add %s: %s\n", property, buf);
-+			goto free_hash;
-+		}
-+	}
-+
-+	if (ftrace_graph_apply_hash(hash, enable) < 0) {
-+		pr_err("Failed to apply new hash\n");
-+		goto free_hash;
-+	}
-+
-+	return;
-+
-+free_hash:
-+	free_ftrace_hash(hash);
-+}
-+
-+static void __init
-+trace_of_set_fgraph_options(struct device_node *node)
-+{
-+	u32 v = 0;
-+
-+	trace_of_set_fgraph_filter(node, "fgraph-filters", true);
-+	trace_of_set_fgraph_filter(node, "fgraph-notraces", false);
-+
-+	if (!of_property_read_u32_index(node, "fgraph-max-depth", 0, &v))
-+		fgraph_max_depth = (unsigned int)v;
-+}
-+#else
-+#define trace_of_set_fgraph_options(node) do {} while (0)
-+#endif
-+
- static void __init
- trace_of_set_ftrace_options(struct trace_array *tr, struct device_node *node)
- {
-@@ -100,6 +165,9 @@ trace_of_set_ftrace_options(struct trace_array *tr, struct device_node *node)
- 		if (tracing_alloc_snapshot() < 0)
- 			pr_err("Failed to allocate snapshot buffer\n");
- 
-+	/* function graph filters are global settings. */
-+	trace_of_set_fgraph_options(node);
-+
- 	trace_of_set_instance_options(tr, node);
- }
- 
-
+> 
+> Jonathan
+> 
+>> ---
+>>  arch/arm/boot/dts/stm32mp157c.dtsi | 1 +
+>>  1 file changed, 1 insertion(+)
+>>
+>> diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp157c.dtsi
+>> index 2dd5162..b9a5b58 100644
+>> --- a/arch/arm/boot/dts/stm32mp157c.dtsi
+>> +++ b/arch/arm/boot/dts/stm32mp157c.dtsi
+>> @@ -862,6 +862,7 @@
+>>  			clocks = <&rcc ADC12>, <&rcc ADC12_K>;
+>>  			clock-names = "bus", "adc";
+>>  			interrupt-controller;
+>> +			st,syscfg = <&syscfg>;
+>>  			#interrupt-cells = <1>;
+>>  			#address-cells = <1>;
+>>  			#size-cells = <0>;
+> 
