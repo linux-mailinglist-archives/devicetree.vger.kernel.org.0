@@ -2,103 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DEA4769B89
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 21:39:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5970F69B9A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 21:47:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731020AbfGOTjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 15:39:01 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:33948 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730362AbfGOTjA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 15:39:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=uEtSh3X6xQ1lITiuNz9x5IdXNtqfNQ17vMJkyrNs1LY=; b=xhH0p1EXjiOkPBx2ciKgSWD71
-        u82dCi2hbyODuxO1uD0AIUppV8S/kASktp6GzA0pvZVBIBRjSO0Y0JF7eT/71rL66NWAZSpUCPURZ
-        Fn4rq67eYTNi5AjqGx17ZndeOaQtXV3j/YS/R78oQwOof/eNXxXEHD+jPULJP+irjSSCI=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hn6o6-0002Mz-PI; Mon, 15 Jul 2019 19:38:42 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 3C51B2742A1F; Mon, 15 Jul 2019 20:38:42 +0100 (BST)
-Date:   Mon, 15 Jul 2019 20:38:42 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: Re: [PATCH v4 0/7] Allwinner H6 SPDIF support
-Message-ID: <20190715193842.GC4503@sirena.org.uk>
-References: <20190527200627.8635-1-peron.clem@gmail.com>
- <CAJiuCcfUhBxEr=o7VVpPROQZadQh7z1QC0SkWSYt-53Sj3H2qw@mail.gmail.com>
- <CAJiuCcc3_1jZWV7G3+fFQYRZ8b6qcAbnH+K6pkRvww6_D=OMAw@mail.gmail.com>
+        id S1731262AbfGOTrH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 15:47:07 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:41865 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729598AbfGOTrH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 15:47:07 -0400
+Received: by mail-lf1-f65.google.com with SMTP id 62so6992175lfa.8;
+        Mon, 15 Jul 2019 12:47:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bONjuUbtQQH5jLsZ8thDiBK4rEqYehcmK7UxMShUto4=;
+        b=NlSh31vIROppItWXnHjJbFVJkxD0AyWAFmCqzruwRZ0IJ0IIUT9f+vJ2FWeoA9zJCH
+         iwhFAxyaXpVwchzAxpBrrn1eactGWwmJHI+kFbz223SobJ59kOPKbO7iqbfBuk6lgVCB
+         5Ght/sub9vvB3wavpA2f8t8Xci4Vs5H8BN3jJPsqsllE+mfkEb68N/vTIbLXqF179Y8v
+         a6cckuF6i5JwzsS+3Wwb00Esr1iw4Zcg2jclRTVI2QpKmL4bhEopcHokISUbL+uCkiCr
+         nOFM/lO7KhMumApjyG84oxTsbq+CXcTPTVNyazExbnxLcoe82uepb4KnRiMVw1gUFOr0
+         4ycA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=bONjuUbtQQH5jLsZ8thDiBK4rEqYehcmK7UxMShUto4=;
+        b=Qo8e4BIO3KGOI/gIf5WQya3h4366wz3JYb/j1H0+9TttFXDA/x/GAka2SuMVAO+1v7
+         HO45gRrXBjd4sDjCaTRBv6VpEdlPBy7ALssFzcwZrNBd1lU/aTnn65c/8ND+fHDUrwuf
+         vJa7v8GJZHq5ufNT7VgNIqvEuDPf69Z+oY587JnWXg741eHrt9N53J1SoOODuYu5c6nE
+         zPHbOSFzogmFMJK5/aHeHSxAOBaKBMLfpAhpE6XLlnzKDQ4VXzYgfFAK9XBjgU/ovVPT
+         Nkc0cLCmnN8FCYFUM3QXHapuYP+SK56/vR8xbSajTNmjtDLP0WLyXTkwB3Obd6Ra8RZl
+         u2FA==
+X-Gm-Message-State: APjAAAVNftvl5GhBFk5A9cSVWe3YelDkh4pZ5z8A1txhlGC+UwjPWYZq
+        h6C3DEdD5KChAolmZRip+OY=
+X-Google-Smtp-Source: APXvYqyrz4QTINSJX7yp2FooeWd7UWe+hqpIkShSDQICtMxLsN4gtSA8RJfqmLLZDps8UTQsPb21Zw==
+X-Received: by 2002:a19:c1cc:: with SMTP id r195mr12068899lff.95.1563220024867;
+        Mon, 15 Jul 2019 12:47:04 -0700 (PDT)
+Received: from localhost.localdomain (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
+        by smtp.gmail.com with ESMTPSA id y15sm2457311lfg.43.2019.07.15.12.47.03
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 15 Jul 2019 12:47:04 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v1 0/3] Support regulators coupling on NVIDIA Tegra20/30
+Date:   Mon, 15 Jul 2019 22:45:00 +0300
+Message-Id: <20190715194503.19100-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="aT9PWwzfKXlsBJM1"
-Content-Disposition: inline
-In-Reply-To: <CAJiuCcc3_1jZWV7G3+fFQYRZ8b6qcAbnH+K6pkRvww6_D=OMAw@mail.gmail.com>
-X-Cookie: Fremen add life to spice!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hello,
 
---aT9PWwzfKXlsBJM1
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+The voltage regulators need to be coupled on NVIDIA Tegra20 and Tegra30
+SoCs in order to provide voltage scaling functionality in a generic way.
+All necessary regulator-core patches that added support for the regulators
+coupling are already have been merge into mainline kernel. This series
+adds customized voltage couplers for Tegra20/30 SoCs, paving the way for
+a refined CPUFreq driver that will utilize voltage scaling and other neat
+features. This is a resend of a leftover patches from a previous series
+[1] that was partially applied by Mark Brown. Please review, thanks in
+advance!
 
-On Mon, Jul 15, 2019 at 09:21:01PM +0200, Cl=E9ment P=E9ron wrote:
-> Hi,
->=20
-> I'm missing ACK from ASoC Maintainers patch 2-3-4.
->=20
-> It's really small paches, if you could have a look at it.
+[1] https://patchwork.ozlabs.org/project/linux-tegra/list/?series=115626
 
-Please don't send content free pings and please allow a reasonable time
-for review.  People get busy, go on holiday, attend conferences and so=20
-on so unless there is some reason for urgency (like critical bug fixes)
-please allow at least a couple of weeks for review.  If there have been
-review comments then people may be waiting for those to be addressed.
+Dmitry Osipenko (3):
+  dt-bindings: regulator: Document regulators coupling of NVIDIA
+    Tegra20/30 SoCs
+  soc/tegra: regulators: Add regulators coupler for Tegra20
+  soc/tegra: regulators: Add regulators coupler for Tegra30
 
-Sending content free pings adds to the mail volume (if they are seen at
-all) which is often the problem and since they can't be reviewed
-directly if something has gone wrong you'll have to resend the patches
-anyway, so sending again is generally a better approach though there are
-some other maintainers who like them - if in doubt look at how patches
-for the subsystem are normally handled.
+ .../nvidia,tegra-regulators-coupling.txt      |  65 ++++
+ drivers/soc/tegra/Kconfig                     |  10 +
+ drivers/soc/tegra/Makefile                    |   2 +
+ drivers/soc/tegra/regulators-tegra20.c        | 350 ++++++++++++++++++
+ drivers/soc/tegra/regulators-tegra30.c        | 302 +++++++++++++++
+ 5 files changed, 729 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/nvidia,tegra-regulators-coupling.txt
+ create mode 100644 drivers/soc/tegra/regulators-tegra20.c
+ create mode 100644 drivers/soc/tegra/regulators-tegra30.c
 
---aT9PWwzfKXlsBJM1
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.22.0
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0s1kEACgkQJNaLcl1U
-h9Cw6Af+Lg1FCdunvHuQWgM9lkfW1yDRebhjo8R5qhgUtQE295gHjgjdqQ8xh6eM
-ZK1py52Bhvt7DJsJFZfrEBSzhkvLbYMENjj17tSpW3A6H7wHzkyGUOKq3FRIzG6m
-WciJzBWDsDtHEO6OUcrPDjvDJWOPeF8h2O+TOgsqOAGMDUPYG3l1iBozqVsFhwGA
-b79wc9pIIKvVsp71cE9ZF/m9Y9JTsIyf6Omq4m0zx7KD7nEP0oqnmtg+8AI+lkrC
-VEvioUOv9swbYdTsuPP+lwPqI/Wun1n4XDmppLD81iaZn8oHhW0FlU35PjoPRgGK
-oPWiRnOfQWTiKTZ5PFdwsicKK9ZQYg==
-=tPgX
------END PGP SIGNATURE-----
-
---aT9PWwzfKXlsBJM1--
