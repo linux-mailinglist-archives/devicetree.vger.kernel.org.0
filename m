@@ -2,185 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C7CB69E4A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 23:26:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB2F369E80
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 23:46:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731531AbfGOVZ6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 17:25:58 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:46649 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730647AbfGOVZ6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 17:25:58 -0400
-Received: by mail-pg1-f196.google.com with SMTP id i8so8304058pgm.13
-        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2019 14:25:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=L1iVnKb9KyH2VdRaa+1X1AxuS2MqitxfIlVlkn/kOv8=;
-        b=OKadg9adfR8FnEoQT6HdGl96SBZxASHai1a3d6JJ7kS2KeuZ1gp/Sww0dZ4FNnRfmX
-         dsWE9zqYktoShjIU+eYZsCRcFIJfFws6QoK2qlbR+qOq4rr/hOZP2M3LcnN2q482/I73
-         uk9eNSjzCb/KkfhP4BJ2nmSyKV5xwGPcSeH7IrIsnT+SSVepNWQYB1x9JIyW2ECp5yWy
-         v4jcSyoBZJSrmeWQFBgJn1mNjyDuuQcjVCEz7vy2pTS+5CwXEpnaX+c+7wd+NdqiTuWs
-         jLfiDc8e4oMqUtNtGi1qAx20ReiWP9Qgxngtq/5EbA2D41xPwKDuHWOLS0EUq/G9lFRU
-         uKpQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=L1iVnKb9KyH2VdRaa+1X1AxuS2MqitxfIlVlkn/kOv8=;
-        b=k3RN9wPUAhLIw+XzKYqzW1GE9/BejCJKfa0qyCGORw6Asm0j3PmYhS7EQO9AurbJ4X
-         clyY6we/7RMgDiPpZ1Y/5WM32BNEZjRay5v3RIfAY1BuFG+0SP/bwNFgzpAKi/T8kp1m
-         2l01RHIElC02lSlZDCcsi7sxx4RoTRTnOxMDVKfYXF+LuW0unotmVDWLWSwqOnLe5D1n
-         xVOQNGtWn/hszndhmN/+M5nNix+fGOVKcX6k23gAFsqj9Uq93F/0B92gN5FKriJhZKb9
-         Lir8g2zs6hitN0j1mXPYcRuRPZwvm7Y2/aFLrR2w7RpgApGo01lAWCxongBSa3CT0tYT
-         PfZw==
-X-Gm-Message-State: APjAAAWvkQInMnaiLvh8Zly5E7est1aU4IjGHvPeuKpWRAdwOp9xqyPl
-        VN8vnOJdbcqWQj+nw9MmZ7M3/mKbrDvBVa2rVc9Odg==
-X-Google-Smtp-Source: APXvYqxYpwH7M9Tn69WNYt23pvYEmwOFSLt2yT+zRsvwVW6B093wD7DIpVEsyGIo3whwBHoCVELofo1GZGIk7QmjTys=
-X-Received: by 2002:a63:205f:: with SMTP id r31mr29138784pgm.159.1563225956600;
- Mon, 15 Jul 2019 14:25:56 -0700 (PDT)
+        id S1732099AbfGOVph (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 17:45:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54666 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730984AbfGOVph (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Jul 2019 17:45:37 -0400
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1B8EE21738
+        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2019 21:45:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563227137;
+        bh=bOxv9M7FSpciDgt5fsuUf7+3jKRJ0QVRRRcpPCwYOrw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=WmLnbmURCH4WkzfOOmkBAw5lk7MnVQisf4J3MnwuyPiMhlhvBuN5JVyeGXEXB+Ixk
+         xX3e4vtAccficMlMVXAiP+KyuXptRzGS8NOXbwTY73S7l8pOXpdzc4RYjZ5jwf1aCS
+         Hxpz+CCxHWGCPJWm87wV8ehQ0urqeD+Y4R6DxHFs=
+Received: by mail-qt1-f182.google.com with SMTP id r6so13132126qtt.0
+        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2019 14:45:37 -0700 (PDT)
+X-Gm-Message-State: APjAAAWujRMgFVHb7sh69mEx/8uXlp1c16Np0bPiXzO5lQSeKsmsaHU7
+        M51g8ercElTv05gXRJDp4jkmCRdbLicM9rX4zQ==
+X-Google-Smtp-Source: APXvYqwx3zKms08dwfbW9Rrd7dTNSoAFjSjWmA1WWziCEAZ9wenpckHkrtk0kHSnx6k9ODHZtx+s9U+m7pB8Fa4kPOQ=
+X-Received: by 2002:a0c:b627:: with SMTP id f39mr21342915qve.72.1563227136354;
+ Mon, 15 Jul 2019 14:45:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190712081744.87097-1-brendanhiggins@google.com>
- <20190712081744.87097-2-brendanhiggins@google.com> <20190715201054.C69AA2086C@mail.kernel.org>
-In-Reply-To: <20190715201054.C69AA2086C@mail.kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Mon, 15 Jul 2019 14:25:45 -0700
-Message-ID: <CAFd5g44kWHYceo85qxL98JKH2FYBwVLFuLzqNR+APpMC1aKWUQ@mail.gmail.com>
-Subject: Re: [PATCH v9 01/18] kunit: test: add KUnit test runner core
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+References: <20190516225614.1458-1-robh@kernel.org> <20190520145830.GE3274@piout.net>
+In-Reply-To: <20190520145830.GE3274@piout.net>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 15 Jul 2019 15:45:24 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK0piWGQBeqcOceF=fSX4vSW7_vyv0qAAxz-bg25qEVow@mail.gmail.com>
+Message-ID: <CAL_JsqK0piWGQBeqcOceF=fSX4vSW7_vyv0qAAxz-bg25qEVow@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: at91: Avoid colliding 'display' node and
+ property names
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+Cc:     Nicolas Ferre <nicolas.ferre@microchip.com>,
+        devicetree@vger.kernel.org,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 15, 2019 at 1:10 PM Stephen Boyd <sboyd@kernel.org> wrote:
+On Mon, May 20, 2019 at 8:58 AM Alexandre Belloni
+<alexandre.belloni@bootlin.com> wrote:
 >
-> Quoting Brendan Higgins (2019-07-12 01:17:27)
-> > Add core facilities for defining unit tests; this provides a common way
-> > to define test cases, functions that execute code which is under test
-> > and determine whether the code under test behaves as expected; this also
-> > provides a way to group together related test cases in test suites (here
-> > we call them test_modules).
+> On 16/05/2019 17:56:14-0500, Rob Herring wrote:
+> > While properties and child nodes with the same name are valid DT, the
+> > practice is not encouraged.
+>
+> I don't see anything mentioning that in the devicetree specification. I
+> think this is something you should add if you don't want that to happen
+> again.
+
+I suppose, but I prefer tools to enforce it.
+
+>
+> > Furthermore, the collision is problematic for
+> > YAML encoded DT. Let's just avoid the issue and rename the nodes.
 > >
-> > Just define test cases and how to execute them for now; setting
-> > expectations on code will be defined later.
-> >
-> > Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
-> > Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
-> > Reviewed-by: Luis Chamberlain <mcgrof@kernel.org>
 >
-> Reviewed-by: Stephen Boyd <sboyd@kernel.org>
+> Or maybe you should fix the tool ;)
+
+You mean the YAML and JSON specifications because the problem is it is
+not valid YAML? (I think YAML allowed it at one time, but it is
+deprecated) The only way to fix it in the tool would be to define some
+way to handle the collision like renaming properties and then undoing
+that.
+
+> Do you plan to enforce it at some point? How close are you?
+
+Soon as this patch is merged. There's a switch in parsing tools to
+disallow the collision, so it will be an error instead of a warning.
+
+> > Cc: Nicolas Ferre <nicolas.ferre@microchip.com>
+> > Cc: Alexandre Belloni <alexandre.belloni@bootlin.com>
+> > Cc: Ludovic Desroches <ludovic.desroches@microchip.com>
+> > Cc: linux-arm-kernel@lists.infradead.org
+> > Signed-off-by: Rob Herring <robh@kernel.org>
 >
-> Minor nits below.
->
-> > diff --git a/kunit/test.c b/kunit/test.c
-> > new file mode 100644
-> > index 0000000000000..571e4c65deb5c
-> > --- /dev/null
-> > +++ b/kunit/test.c
-> > @@ -0,0 +1,189 @@
-> > +// SPDX-License-Identifier: GPL-2.0
-> > +/*
-> > + * Base unit test (KUnit) API.
-> > + *
-> > + * Copyright (C) 2019, Google LLC.
-> > + * Author: Brendan Higgins <brendanhiggins@google.com>
-> > + */
-> > +
-> > +#include <linux/kernel.h>
-> > +#include <kunit/test.h>
-> > +
-> > +static void kunit_set_failure(struct kunit *test)
-> > +{
-> > +       WRITE_ONCE(test->success, false);
-> > +}
-> > +
-> [...]
-> > +
-> > +void kunit_init_test(struct kunit *test, const char *name)
-> > +{
-> > +       test->name = name;
-> > +       test->success = true;
-> > +}
-> > +
-> > +/*
-> > + * Performs all logic to run a test case.
-> > + */
-> > +static void kunit_run_case(struct kunit_suite *suite,
-> > +                          struct kunit_case *test_case)
-> > +{
-> > +       struct kunit test;
-> > +       int ret = 0;
-> > +
-> > +       kunit_init_test(&test, test_case->name);
-> > +
-> > +       if (suite->init) {
-> > +               ret = suite->init(&test);
->
-> Can you push the ret definition into this if scope? That way we can
-> avoid default initialize to 0 for it.
+> Acked-by: Alexandre Belloni <alexandre.belloni@bootlin.com>
 
-Sure! I would actually prefer that from a cosmetic standpoint. I just
-thought that mixing declarations and code was against the style guide.
+Is someone going to apply this?
 
-> > +               if (ret) {
-> > +                       kunit_err(&test, "failed to initialize: %d\n", ret);
-> > +                       kunit_set_failure(&test);
->
-> Do we need to 'test_case->success = test.success' here too? Or is the
-> test failure extracted somewhere else?
-
-Er, yes. That's kind of embarrassing. Good catch.
-
-> > +                       return;
-> > +               }
-> > +       }
-> > +
-> > +       test_case->run_case(&test);
-> > +
-> > +       if (suite->exit)
-> > +               suite->exit(&test);
-> > +
-> > +       test_case->success = test.success;
-
-Thanks!
+Rob
