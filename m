@@ -2,156 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB303687ED
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 13:12:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 954C868883
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 14:05:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729748AbfGOLKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 07:10:33 -0400
-Received: from mail-eopbgr50078.outbound.protection.outlook.com ([40.107.5.78]:32211
-        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729698AbfGOLKd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Jul 2019 07:10:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tKziwcywrssm0dxIhnhfg0Y+NKkr3STw+WBNvsBQXrU=;
- b=ObDf2neaJnDzWT18L61iZPsWfmQ7u7QKnMrtlC/39F71Y2nxUYAihCKVjcj/gZIH3kS04BpLDIi7WOjZ8CryqDLbEdaxxD927SI7Lvrll00nlGakYwICaLM9ewaQVIWqBFN8qH0J3Eyjv4O8YbWA7Uddt6WAyrjVNB1/Wh7lmTM=
-Received: from AM0PR04MB5779.eurprd04.prod.outlook.com (20.178.202.151) by
- AM0PR04MB5041.eurprd04.prod.outlook.com (20.176.214.78) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2052.18; Mon, 15 Jul 2019 11:10:28 +0000
-Received: from AM0PR04MB5779.eurprd04.prod.outlook.com
- ([fe80::a126:d121:200:367]) by AM0PR04MB5779.eurprd04.prod.outlook.com
- ([fe80::a126:d121:200:367%7]) with mapi id 15.20.2073.012; Mon, 15 Jul 2019
- 11:10:28 +0000
-From:   Abel Vesa <abel.vesa@nxp.com>
-To:     =?iso-8859-1?Q?Guido_G=FCnther?= <agx@sigxcpu.org>
-CC:     Rob Herring <robh+dt@kernel.org>,
+        id S1729965AbfGOME7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 08:04:59 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:35492 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729827AbfGOMEe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 08:04:34 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190715120431euoutp022739089432b475bf70cd7294585bed02~xkxbNvsjJ1665116651euoutp02j
+        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2019 12:04:31 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190715120431euoutp022739089432b475bf70cd7294585bed02~xkxbNvsjJ1665116651euoutp02j
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1563192271;
+        bh=i3auGkJgw9SKm0S7pYs8dDdYpDEpYz2cgpDsLc2zkj4=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=CqFPTPXcAZ2vTTbELUe1bWzUwtkNa0FdfG2OUQShdziCO2Ze/PM4hvvU4y1Q8PlMC
+         uZ+4bK8xqAj8kTFGb3UsjgpSLkw7+1HELxdLaAqXVJqXaCoJaoslNhomXsY8hOSk1e
+         KGa6vfy25Br/UqZ4pGUBaqvz62LECMJ+a5DlvnrA=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190715120431eucas1p16622abacb55aff8972b4e96fdcbdd01f~xkxaio9qa3262432624eucas1p1O;
+        Mon, 15 Jul 2019 12:04:31 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 39.FF.04298.ECB6C2D5; Mon, 15
+        Jul 2019 13:04:30 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190715120430eucas1p1dd216e552403899e614845295373e467~xkxZomOa72398923989eucas1p1y;
+        Mon, 15 Jul 2019 12:04:30 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190715120429eusmtrp1688595b10dd7962aedaeec21a96fc766~xkxZaTJ_R1141311413eusmtrp1S;
+        Mon, 15 Jul 2019 12:04:29 +0000 (GMT)
+X-AuditID: cbfec7f2-f2dff700000010ca-c9-5d2c6bcee598
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id C9.12.04140.DCB6C2D5; Mon, 15
+        Jul 2019 13:04:29 +0100 (BST)
+Received: from AMDC3218.DIGITAL.local (unknown [106.120.51.18]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190715120429eusmtip16591f99b4d6c151d00956fc96a3415d5~xkxYsKTBJ1539615396eusmtip1Z;
+        Mon, 15 Jul 2019 12:04:29 +0000 (GMT)
+From:   Kamil Konieczny <k.konieczny@partner.samsung.com>
+To:     k.konieczny@partner.samsung.com
+Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>, Pavel Machek <pavel@ucw.cz>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Anson Huang <anson.huang@nxp.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] arm64: dts: imx8mq: Add MIPI D-PHY
-Thread-Topic: [PATCH v2 1/2] arm64: dts: imx8mq: Add MIPI D-PHY
-Thread-Index: AQHVOvoZN2tyYFG00UaL7nctnpGXwabLhduA
-Date:   Mon, 15 Jul 2019 11:10:27 +0000
-Message-ID: <20190715111027.a4wlpzex3taxymyr@fsr-ub1664-175>
-References: <cover.1563187253.git.agx@sigxcpu.org>
- <30c7622bf590670190b93c9b5b6dd1e8f809bbb2.1563187253.git.agx@sigxcpu.org>
-In-Reply-To: <30c7622bf590670190b93c9b5b6dd1e8f809bbb2.1563187253.git.agx@sigxcpu.org>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=abel.vesa@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9fcaa730-9ccd-43b7-2ca3-08d709150b09
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB5041;
-x-ms-traffictypediagnostic: AM0PR04MB5041:
-x-microsoft-antispam-prvs: <AM0PR04MB504107C66FCABA19235B61D4F6CF0@AM0PR04MB5041.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 00997889E7
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(7916004)(4636009)(346002)(396003)(136003)(366004)(39860400002)(376002)(189003)(199004)(76176011)(446003)(11346002)(25786009)(2906002)(476003)(91956017)(6506007)(102836004)(99286004)(76116006)(53546011)(6916009)(6116002)(6246003)(316002)(26005)(44832011)(64756008)(66446008)(33716001)(53936002)(66556008)(66946007)(66066001)(66476007)(6512007)(9686003)(486006)(54906003)(186003)(81156014)(81166006)(14444005)(6486002)(256004)(478600001)(68736007)(6436002)(8936002)(5660300002)(3846002)(7416002)(229853002)(66574012)(1076003)(71200400001)(8676002)(71190400001)(86362001)(4326008)(305945005)(7736002)(14454004)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB5041;H:AM0PR04MB5779.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: mMlL5jWwCBlVc3nPF0yXT4/UVIciINMhDa58/t71xSU/9GoLZdVpnxRWVd0CCSqvX6zMR3HO/hf2OrXVwyV5zsZxNI1k7bUP3RdgkjUyVa5s2hZQkD/cWjzYi/W1ochUbBRkVDSizZjgfwv6GP90M0rXJGNJs11biJq4nIEN1HLbKk9v9smpt+fYaz0Ug1QdW4vbvyibFuCmnp65SfhXAa+GlYjOKwJDLXgRMFf8p4p+WflBjq6T5rsSoD4dXShjWn8xjlH19FHwAsTfmilf8bZTY3dxruhPKbL6O6iDf96dBdWU6Lc9nPv+apI4fWEhT1O+lr7SWXKRfKa80HQzYF92WXWGv+3LJcH9USWlO5OU6QKB0FqEszz9aesPZmtGILMy8DRMt/8jSAM2NXUI6NtAGZwOpK13Ycw7UzjF6Vk=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-ID: <4AB6BC72093B9A4CBF3A5D208EC97346@eurprd04.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v2 0/4] add coupled regulators for Exynos5422/5800
+Date:   Mon, 15 Jul 2019 14:04:12 +0200
+Message-Id: <20190715120416.3561-1-k.konieczny@partner.samsung.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9fcaa730-9ccd-43b7-2ca3-08d709150b09
-X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2019 11:10:27.8739
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: abel.vesa@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB5041
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Se0iTURjGPftuU1p9TsvXDItF2E1NEDqQhV0ZQRD0T1RiK7/UdJvty8qK
+        spumlFpSmdm9SKamm+nEWzbFNW9zSpqZJpUa3cQbZYlr22flf7/zvM9z3vc9HDEhfUfNF0er
+        DnMalSJWRruRpfUTLf4tMSvDVrX+DsK6rEIKd44NUvhuXQuF06ptCKd/+EJgi6WIwc1nvzJY
+        /6GDwu3lOTQevVyHcJalWoQL6noY/LjTKsLdZ3Jp/PVnswhfqKpj8FSHjsTFffV0qFSefycf
+        yfXaFFpe/Oi0/MX3SpE87ZkWyU2vDSL5qN53O7PLLSSCi40+wmkC1+11i6oauMHE3Z51bOhW
+        Bp2IDK6pyFUMbDAY8n6QDpayuQgaTPtTkZudxxAUXC9HwmEUwW9tI/qbqHz1lhYKTxDUjpuJ
+        f5F2awHjcNHsanhvaBI52JNdDJm9N5wmgp0goahd5zR5sBtg4LvZySS7BNJyxygHS9iNMPbj
+        GiG0WwgpZRWkoLuD+eZHJxN2/VzJLeelwLYx0HN5RCQENkFPw09KYA/4bHrGCLwAGjMvkQIf
+        hf77aYwQPo+gL3l4urAGak1We1hs77AMCssDBXk9NNboaIcM7Gx4/c1dmGE2XC11LOaQJXAx
+        SSq4/eGOrWl6Ah9ItT2dZjkkD+ZRwluHQX3uXSoDLcqesVn2jM2y/89wDxFa5MXF88pIjg9S
+        cUcDeIWSj1dFBuxXK/XI/u0ap0wjZWi8bZ8RsWIkmyUJjVgRJqUUR/gEpRGBmJB5StaO2yVJ
+        hCLhOKdRh2viYzneiHzEpMxLcsKlb7eUjVQc5mI4Lo7T/K2KxK7zE1FMUn3AqW3GSd68derm
+        5gFdSi9bMlk7utQy9GDNVIhL95BtuKSstatrRE/vMTf3+1f1tZx6ma7/5e7R83DOQe3iNzpv
+        b73x08IYqSzR1+dk74F+P6/VRMUV4w7vwhpr3OemLcEvNCQRdWju4/DhnZAyTx3s5xk8UHvu
+        oClEnWN7LiP5KEXQckLDK/4ABW4T33IDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrGIsWRmVeSWpSXmKPExsVy+t/xu7pns3ViDVbdNLHYOGM9q8X1L89Z
+        LeYfOcdq0bfvP6NF/+PXzBbnz29gtzjb9IbdYtPja6wWl3fNYbP43HuE0WLG+X1MFmuP3GW3
+        WHr9IpPF7cYVbBZvfpxlsmjde4Td4t+1jSwWmx8cY3MQ8lgzbw2jx6ZVnWwem5fUexx8t4fJ
+        o2/LKkaP4ze2M3l83iQXwB6lZ1OUX1qSqpCRX1xiqxRtaGGkZ2hpoWdkYqlnaGwea2VkqqRv
+        Z5OSmpNZllqkb5egl7H32XT2grk8Fe9nT2BrYNzO2cXIySEhYCKx5+odti5GLg4hgaWMEh3H
+        57JBJKQlGk+vZoKwhSX+XOuCKvrEKNH8/x4zSIJNwFzi0fYzYEUiAsoSk+9NZwYpYhboZJVY
+        8eQI2CRhASeJZ+9OsoPYLAKqEn0rvrCC2LwCzhJfvk9lhtggL9G5YzcLRFxQ4uTMJ2A2M1C8
+        eets5gmMfLOQpGYhSS1gZFrFKJJaWpybnltspFecmFtcmpeul5yfu4kRGGfbjv3csoOx613w
+        IUYBDkYlHl6HFO1YIdbEsuLK3EOMEhzMSiK8tl+BQrwpiZVVqUX58UWlOanFhxhNgY6dyCwl
+        mpwPTAF5JfGGpobmFpaG5sbmxmYWSuK8HQIHY4QE0hNLUrNTUwtSi2D6mDg4pRoY5xSkh//Q
+        Zv/bVBwmmFD1wTHl59Tvdsm7E9TvGmqe/752sUJSBZtVe35lgcF8KckTNREaV46+Pr7unP9O
+        hTm7mqq8wjjy25OV3i7le1iz8/U78aKXa5c6Z/8T37Gdqf2N6oG5/0MSfxau3HXv9LGbWcXt
+        W1S/XZpQF29UOafgknhB0fXSjd92KLEUZyQaajEXFScCAOtXNgrJAgAA
+X-CMS-MailID: 20190715120430eucas1p1dd216e552403899e614845295373e467
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190715120430eucas1p1dd216e552403899e614845295373e467
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190715120430eucas1p1dd216e552403899e614845295373e467
+References: <CGME20190715120430eucas1p1dd216e552403899e614845295373e467@eucas1p1.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-07-15 12:43:05, Guido G=FCnther wrote:
-> Add a node for the Mixel MIPI D-PHY, "disabled" by default.
->=20
-> Signed-off-by: Guido G=FCnther <agx@sigxcpu.org>
-> Acked-by: Angus Ainslie (Purism) <angus@akkea.ca>
-> ---
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
->=20
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/=
-dts/freescale/imx8mq.dtsi
-> index d09b808eff87..891ee7578c2d 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -728,6 +728,19 @@
->  				status =3D "disabled";
->  			};
-> =20
-> +			dphy: dphy@30a00300 {
-> +				compatible =3D "fsl,imx8mq-mipi-dphy";
-> +				reg =3D <0x30a00300 0x100>;
-> +				clocks =3D <&clk IMX8MQ_CLK_DSI_PHY_REF>;
-> +				clock-names =3D "phy_ref";
-> +				assigned-clocks =3D <&clk IMX8MQ_CLK_DSI_PHY_REF>;
-> +				assigned-clock-parents =3D <&clk IMX8MQ_VIDEO_PLL1_OUT>;
-> +				assigned-clock-rates =3D <24000000>;
+Hi,
 
-We have the following in the clk-imx8mq in the vendor tree:
+The main purpose of this patch series is to add coupled regulators for
+Exynos5422/5800 to keep constrain on voltage difference between vdd_arm
+and vdd_int to be at most 300mV. In exynos-bus instead of using
+regulator_set_voltage_tol() with default voltage tolerance it should be
+used regulator_set_voltage_triplet() with volatege range, and this is
+already present in opp/core.c code, so it can be reused. While at this,
+move setting regulators into opp/core.
 
-	clk_set_parent(clks[IMX8MQ_VIDEO_PLL1_BYPASS], clks[IMX8MQ_VIDEO_PLL1]);
+This patchset was tested on Odroid XU3.
 
-This unbypasses the video pll 1. And then we also have this:
+The last patch depends on two previous.
 
-	/* config video_pll1 clock */
-	clk_set_parent(clks[IMX8MQ_VIDEO_PLL1_REF_SEL], clks[IMX8MQ_CLK_27M]);
-	clk_set_rate(clks[IMX8MQ_VIDEO_PLL1], 593999999);
+Changes in v2:
 
-But none of that is acceptable upstream since the clock provider should not
-use clock consumer API.
+- improve regulators enable/disable code in opp/core as suggested by
+  Viresh Kumar
+- add new patch for remove unused dt-bindings as suggested by Krzysztof
+  Kozlowski
 
-So please update the assigned-clock* properties to something like this:
-				assigned-clocks =3D <&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
-						  <&clk IMX8MQ_VIDEO_PLL1_BYPASS>,
-						  <&clk IMX8MQ_CLK_DSI_PHY_REF>,
-						  <&clk IMX8MQ_VIDEO_PLL1>;
-				assigned-clock-parents =3D <&clk IMX8MQ_CLK_27M>,
-							 <&clk IMX8MQ_VIDEO_PLL1>,
-							 <&clk IMX8MQ_VIDEO_PLL1_OUT>
-							 <0>;
-				assigned-clock-rates =3D <0>,
-						       <0>,
-						       <24000000>,            =20
-						       <593999999>;
+Regards,
+Kamil
 
-I've written this without testing, so please do test it on your setup.
+Kamil Konieczny (3):
+  opp: core: add regulators enable and disable
+  devfreq: exynos-bus: convert to use dev_pm_opp_set_rate()
+  dt-bindings: devfreq: exynos-bus: remove unused property
 
-> +				#phy-cells =3D <0>;
-> +				power-domains =3D <&pgc_mipi>;
-> +				status =3D "disabled";
-> +			};
-> +
->  			i2c1: i2c@30a20000 {
->  				compatible =3D "fsl,imx8mq-i2c", "fsl,imx21-i2c";
->  				reg =3D <0x30a20000 0x10000>;
-> --=20
-> 2.20.1
-> =
+Marek Szyprowski (1):
+  ARM: dts: exynos: add initial data for coupled regulators for
+    Exynos5422/5800
+
+ .../bindings/devfreq/exynos-bus.txt           |   2 -
+ arch/arm/boot/dts/exynos5420.dtsi             |  34 ++--
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi |   4 +
+ arch/arm/boot/dts/exynos5800-peach-pi.dts     |   4 +
+ arch/arm/boot/dts/exynos5800.dtsi             |  32 ++--
+ drivers/devfreq/exynos-bus.c                  | 172 +++++++-----------
+ drivers/opp/core.c                            |  18 +-
+ 7 files changed, 122 insertions(+), 144 deletions(-)
+
+-- 
+2.22.0
+
