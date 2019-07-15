@@ -2,149 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4E4F669B17
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 21:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF85269B4A
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 21:21:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730191AbfGOS7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 14:59:37 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:39400 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729237AbfGOS7g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 14:59:36 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6FIxSf4052471;
-        Mon, 15 Jul 2019 13:59:28 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1563217168;
-        bh=N3fMjata3zL3geeXyrSCAk5wL3P5q8EO2OfKf0/Z79c=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=SMvkglYAenP3PtJS0uEm6spz+vd28Q4Eeo4ap+M3fAWNKgw9IDFAVuwpEuhZ2/Vmt
-         O2JREk6zIEJ98l5FPiM3J4l7CmSkWUeqkRkPR2Hzwg8SJx+Zfoqv7bKP8OMGt9E+Za
-         ts/7dt6TGwsqi0KAw/KN4XQHKLkVONXMtghvi8TM=
-Received: from DLEE101.ent.ti.com (dlee101.ent.ti.com [157.170.170.31])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6FIxS7e083798
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 15 Jul 2019 13:59:28 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE101.ent.ti.com
- (157.170.170.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 15
- Jul 2019 13:59:28 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 15 Jul 2019 13:59:28 -0500
-Received: from [10.250.65.13] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6FIxRqk008774;
-        Mon, 15 Jul 2019 13:59:27 -0500
-Subject: Re: [PATCH v2 2/2] leds: Add control of the voltage/current regulator
- to the LED core
-To:     Jean-Jacques Hiblot <jjhiblot@ti.com>,
-        <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <daniel.thompson@linaro.org>
-CC:     <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <20190715155657.22976-1-jjhiblot@ti.com>
- <20190715155657.22976-3-jjhiblot@ti.com>
-From:   Dan Murphy <dmurphy@ti.com>
-Message-ID: <9c17e9cc-8162-7b5d-2db9-d2bed20969c5@ti.com>
-Date:   Mon, 15 Jul 2019 13:59:27 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.0
+        id S1729948AbfGOTVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 15:21:14 -0400
+Received: from mail-yw1-f67.google.com ([209.85.161.67]:42132 "EHLO
+        mail-yw1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729432AbfGOTVN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 15:21:13 -0400
+Received: by mail-yw1-f67.google.com with SMTP id z63so7734929ywz.9;
+        Mon, 15 Jul 2019 12:21:13 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=T6L/T//A/hr8zs4n7h5mkmSwRWcgvC/d4JNrZUI4Hm8=;
+        b=WNARhfF9FItohnvszMOVl4tf67FTBW8z6mVMLcqSbMbljIgUy+cX0Jp0YfAAn6kvUV
+         6B6qTRPgZBjVJy0+wx5Cj2BakLpiAiVZthmkB8RwCAJT4lZqVISu/fGLTrTZrrYiHF+U
+         yzM4+eKufO1eXC5AsamPg9bdbjtTI2uJcJPJsDIzAzR1eYQH2/3+DY2OOPuUGErHf+cH
+         6s29jnfo/oPHtq5a/H0Sy1cvGpnTzS1ni4CRff8wbQQa+ysZ+sXz3lWCtiOED27rdf1t
+         tkQL8IOHrjNfyHRrYx0QL8ftLKDHp1uf1JDapE1bQHyZKsu3iShgGsknBrH0rgd3UHOE
+         ETDw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=T6L/T//A/hr8zs4n7h5mkmSwRWcgvC/d4JNrZUI4Hm8=;
+        b=K4cSgTRJF26NeBuXwZ3+dfTANZMysO11wMBjvyBJWVkmWxqQF5jh7WsqD4co5BNOQw
+         oOsp861a4HAI/G5Rt2vAD8H4aMt61/BfDoFCveFbFpPhinLw92c0uoO1j6rpskdAMyS8
+         jYi3UOzjVVfLL+i0/o0zcX1vW/wP/0c3hrM7vJ9Qj9X7BOZXRCRbpEc5Vk/cz9xwyjlb
+         b2iSROxJ3bdx7O1Zf9u+XNnfROSO76LajvD7Rw7I+rlzMQOWFSZwMPXwtzhcizSecOgb
+         bcqaIh1X0u4QetQBDJLMyujkgyJdOIIeXlONQyEx+u/CLWOwtj58XT2u1YGYmXrdKNN6
+         3FUA==
+X-Gm-Message-State: APjAAAVhxSmJfckZUbEdw+Wv9rwvRbg6JlSLjRXe9NhGg2wAbg7hm9Za
+        fDVQAnSV5XSFyD+mz9L+pVBMIk050ilJW+0jhu0=
+X-Google-Smtp-Source: APXvYqxcM/GTLLwXLJ0XLGxzMQuEi34XclLyeCNzAgq1oLJCQsl7q05aszfWDHWZs0j8skZrYjD5o0W5JZ3MI1abTjQ=
+X-Received: by 2002:a0d:d884:: with SMTP id a126mr16542399ywe.349.1563218472776;
+ Mon, 15 Jul 2019 12:21:12 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190715155657.22976-3-jjhiblot@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 8bit
-Content-Language: en-US
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20190527200627.8635-1-peron.clem@gmail.com> <CAJiuCcfUhBxEr=o7VVpPROQZadQh7z1QC0SkWSYt-53Sj3H2qw@mail.gmail.com>
+In-Reply-To: <CAJiuCcfUhBxEr=o7VVpPROQZadQh7z1QC0SkWSYt-53Sj3H2qw@mail.gmail.com>
+From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Date:   Mon, 15 Jul 2019 21:21:01 +0200
+Message-ID: <CAJiuCcc3_1jZWV7G3+fFQYRZ8b6qcAbnH+K6pkRvww6_D=OMAw@mail.gmail.com>
+Subject: Re: [PATCH v4 0/7] Allwinner H6 SPDIF support
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
+Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Jagan Teki <jagan@amarulasolutions.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-JJ
+Hi,
 
-On 7/15/19 10:56 AM, Jean-Jacques Hiblot wrote:
-> A LED is usually powered by a voltage/current regulator. Let the LED core
-> know about it. This allows the LED core to turn on or off the power supply
-> as needed.
+I'm missing ACK from ASoC Maintainers patch 2-3-4.
 
-This allows the LED core to turn on or off managed power supplies.
+It's really small paches, if you could have a look at it.
+Many thanks,
+Cl=C3=A9ment
 
 
+
+On Fri, 14 Jun 2019 at 10:29, Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com=
+> wrote:
 >
-> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
-> ---
->   drivers/leds/led-class.c | 15 ++++++++++++
->   drivers/leds/led-core.c  | 50 +++++++++++++++++++++++++++++++++++++---
->   drivers/leds/leds.h      |  1 +
->   include/linux/leds.h     |  4 ++++
->   4 files changed, 67 insertions(+), 3 deletions(-)
+> Hi,
 >
-> diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-> index 4793e77808e2..cadd43c30d50 100644
-> --- a/drivers/leds/led-class.c
-> +++ b/drivers/leds/led-class.c
-> @@ -253,6 +253,7 @@ int of_led_classdev_register(struct device *parent, struct device_node *np,
->   {
->   	char name[LED_MAX_NAME_SIZE];
->   	int ret;
-> +	struct regulator *regulator;
->   
->   	ret = led_classdev_next_name(led_cdev->name, name, sizeof(name));
->   	if (ret < 0)
-> @@ -272,6 +273,20 @@ int of_led_classdev_register(struct device *parent, struct device_node *np,
->   		dev_warn(parent, "Led %s renamed to %s due to name collision",
->   				led_cdev->name, dev_name(led_cdev->dev));
->   
-> +	regulator = devm_regulator_get_optional(led_cdev->dev, "power");
-Store the regulator in  led_cdev->regulator and drop the else case below.
-> +	if (IS_ERR(regulator)) {
-> +		if (PTR_ERR(regulator) != -ENODEV) {
-> +			dev_err(led_cdev->dev, "Cannot get the power supply for %s\n",
-> +				led_cdev->name);
-> +			device_unregister(led_cdev->dev);
-> +			mutex_unlock(&led_cdev->led_access);
-> +			return PTR_ERR(regulator);
-> +		}
-> +		led_cdev->regulator = NULL;
-> +	} else {
-> +		led_cdev->regulator = regulator;
-> +	}
-> +
->   	if (led_cdev->flags & LED_BRIGHT_HW_CHANGED) {
->   		ret = led_add_brightness_hw_changed(led_cdev);
->   		if (ret) {
-> diff --git a/drivers/leds/led-core.c b/drivers/leds/led-core.c
-> index 7107cd7e87cf..a12b880b0a2f 100644
-> --- a/drivers/leds/led-core.c
-> +++ b/drivers/leds/led-core.c
-> @@ -23,6 +23,33 @@ EXPORT_SYMBOL_GPL(leds_list_lock);
->   LIST_HEAD(leds_list);
->   EXPORT_SYMBOL_GPL(leds_list);
->   
-> +static bool __led_need_regulator_update(struct led_classdev *led_cdev,
-> +					int brightness)
-> +{
-> +	bool new_state = (brightness != LED_OFF);
-> +
-> +	return led_cdev->regulator && led_cdev->regulator_state != new_state;
-> +}
-> +
-> +static int __led_handle_regulator(struct led_classdev *led_cdev,
-> +				int brightness)
-> +{
-> +	int rc;
-
-Should there be a check for the regulator pointer.
-
-If (!led_cdev->regulator)
-
-     return 0;
-
-
-Otherwise
-
-Reviewed-by: Dan Murphy <dmurphy@ti.com>
-
-<snip>
-
+> On Mon, 27 May 2019 at 22:10, Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.c=
+om> wrote:
+> >
+> > *H6 DMA support IS REQUIRED*
+>
+> DMA has been merged, so this series can be merge when ASoC maintainers
+> have reviewed it.
+>
+> Regards,
+> Cl=C3=A9ment
+>
+> >
+> > Allwinner H6 SoC has a SPDIF controller called One Wire Audio (OWA) whi=
+ch
+> > is different from the previous H3 generation and not compatible.
+> >
+> > Difference are an increase of fifo sizes, some memory mapping are diffe=
+rent
+> > and there is now the possibility to output the master clock on a pin.
+> >
+> > Actually all these features are unused and only a bit for flushing the =
+TX
+> > fifo is required.
+> >
+> > Also this series requires the DMA working on H6, a first version has be=
+en
+> > submitted by Jernej =C5=A0krabec[1] but has not been accepted yet.
+> >
+> > [1] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=
+=3D89011
+> >
+> > Changes since v3:
+> >  - rename reg_fctl_ftx to val_fctl_ftx
+> >  - rebase this series on sound-next
+> >  - fix dt-bindings due to change in sound-next
+> >  - change node name sound_spdif to sound-spdif
+> >
+> > Changes since v2:
+> >  - Split quirks and H6 support patch
+> >  - Add specific section for quirks comment
+> >
+> > Changes since v1:
+> >  - Remove H3 compatible
+> >  - Add TX fifo bit flush quirks
+> >  - Add H6 bindings in SPDIF driver
+> >
+> > Cl=C3=A9ment P=C3=A9ron (7):
+> >   dt-bindings: sound: sun4i-spdif: Add Allwinner H6 compatible
+> >   ASoC: sun4i-spdif: Move quirks to the top
+> >   ASoC: sun4i-spdif: Add TX fifo bit flush quirks
+> >   ASoC: sun4i-spdif: Add support for H6 SoC
+> >   arm64: dts: allwinner: Add SPDIF node for Allwinner H6
+> >   arm64: dts: allwinner: h6: Enable SPDIF for Beelink GS1
+> >   arm64: defconfig: Enable Sun4i SPDIF module
+> >
+> >  .../sound/allwinner,sun4i-a10-spdif.yaml      |  1 +
+> >  .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  4 ++
+> >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 38 ++++++++++++++
+> >  arch/arm64/configs/defconfig                  |  1 +
+> >  sound/soc/sunxi/sun4i-spdif.c                 | 49 ++++++++++++++++---
+> >  5 files changed, 87 insertions(+), 6 deletions(-)
+> >
+> > --
+> > 2.20.1
+> >
