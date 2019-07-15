@@ -2,166 +2,228 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79EDD6991D
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 18:33:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ACB469981
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 19:04:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731109AbfGOQbw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 12:31:52 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:46595 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731015AbfGOQbw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 12:31:52 -0400
-Received: by mail-vs1-f65.google.com with SMTP id r3so11781264vsr.13
-        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2019 09:31:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=l9coYjSe3XSNr091GZSS9724rWMOjYgkm8g/YPUGrBk=;
-        b=NYNAvMcRho+50ikquItIbaA8xyQqZTsW5KuU71/3Q+SoqDVsAy0+FM2d2PDcePt7/n
-         11RZxGJC6mTRC4h6FGCGzw5ghhxx3RwnG0GjedgAFNGGoDc3a9QiHq+8ObcMmIqDsmmR
-         J3Vsoi/0eyXbw2JYkw6d/qyG0Pcpoe3itkm/WnnZNuH1KiiwADvf3ntPy/+VrYE6PIw6
-         uIF81NM9pWUyOV4tcN7jlhU8hIQWnXcFmd8zg9BnmqlN0/rWPA8H02F6iWBLylvyWZNz
-         XJSLk/1VCaTu2yjDkpvSOUpRVRh2m0Rv0bmcg2VHCyu5QVYHl7BD6bBxYfh/jlUUzWJe
-         HABQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=l9coYjSe3XSNr091GZSS9724rWMOjYgkm8g/YPUGrBk=;
-        b=L8dQ8WZSVjMp7ftb3mhcIBDAWWWJXLeSj0GuVMYcEYXFMG1/roqLSisdAjviNQ7w9I
-         Oirgyvhx/IrJ+3DzrmD0nwKTfwzC4xx3aZo4Fnn+rxJr3QKyfFrhNWxsvsPlH11EYCf8
-         vLZ0BinECapYrhvqeblM3Y0JFNu8Bm6F2K2IbduNIooRnr1IqL+ZBXct5wQW7ggTY5MH
-         7d3IcGIMfA0OeEJsHX3nZMe9D0S8hDma5yMxV3J8qRG9shnTF45Kvzwj9x2kNIk4z8/w
-         1knIkdU9a0VtmtsPRx4d8ryDEp0wO5e3noo4F8BGktNc3mwNckjfaO13ikUfn2yyeot1
-         iL1A==
-X-Gm-Message-State: APjAAAWY+0o7d9Ddqn51bDRJp0hsTutG743neb0bwvJi3gA2oY29i+l8
-        6pEhqH0WbwWg3O5SyWwBXxr5f3fXz5DTUKhtX5cmNQ==
-X-Google-Smtp-Source: APXvYqyUVL5RPnQWYVDvWMTPG8b/y4kpVO36hdyZcWBMkgiuUbpz8JwBx7OzH4gYy2hAxp1kCITo99T3NjrGPMBeorE=
-X-Received: by 2002:a67:7a90:: with SMTP id v138mr16907417vsc.200.1563208311475;
- Mon, 15 Jul 2019 09:31:51 -0700 (PDT)
+        id S1731555AbfGORDT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 13:03:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49992 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730253AbfGORDS (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Jul 2019 13:03:18 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 596E62086C;
+        Mon, 15 Jul 2019 17:03:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563210196;
+        bh=k2nqdoFQ92VahnrcgHbA/tAELUqjZBrl9Qeta+k53Sk=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=lWAswUNNTt4GpACUeJpOUp5tQzH9wEFNNeoVRHFWio77gHmmJ+NeeNkKM+0d6Dozo
+         LeFbYj3BVXLtnXxg/w8OWiVAHfCjRX2Ks7g1rnbmQxOGPFGjlCM3sFarTdco0NcDYQ
+         SMdc1FNc56AiV/qPyOM8qPLKQbFb2NYveiy3dsVQ=
+Received: by mail-qk1-f173.google.com with SMTP id d79so12152732qke.11;
+        Mon, 15 Jul 2019 10:03:16 -0700 (PDT)
+X-Gm-Message-State: APjAAAVNwvco/VQdSsRteCWpnEWcvSkF4fBgqYLNSol0b5eTj43H/oX/
+        zrXZEf4JKeKWOWqnX52lkezSvg9vsQkq3WEB5w==
+X-Google-Smtp-Source: APXvYqx+8VKAvY/IfBFD75fj05NSLbDRiObogw7qXgNRqLXLSq7ia56/S4oerXDR960+R3wf7Kt+ezsVEvT6as7BL0E=
+X-Received: by 2002:a37:a010:: with SMTP id j16mr18090764qke.152.1563210195522;
+ Mon, 15 Jul 2019 10:03:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <1559577325-19266-1-git-send-email-ludovic.Barre@st.com> <1559577325-19266-2-git-send-email-ludovic.Barre@st.com>
-In-Reply-To: <1559577325-19266-2-git-send-email-ludovic.Barre@st.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 15 Jul 2019 18:31:15 +0200
-Message-ID: <CAPDyKFpJPbpTnfA2cynFURyxFY_YCm7MRXw3m2nQyU+z=ZWsFA@mail.gmail.com>
-Subject: Re: [PATCH V3 1/3] mmc: mmci: fix read status for busy detect
-To:     Ludovic Barre <ludovic.Barre@st.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        linux-stm32@st-md-mailman.stormreply.com
+References: <1563184103-8493-1-git-send-email-peng.fan@nxp.com> <1563184103-8493-2-git-send-email-peng.fan@nxp.com>
+In-Reply-To: <1563184103-8493-2-git-send-email-peng.fan@nxp.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 15 Jul 2019 11:03:03 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJkt7pX9F9NggL2EXxS=2oiF07VJCOqVTvF-Zwz=cjmvg@mail.gmail.com>
+Message-ID: <CAL_JsqJkt7pX9F9NggL2EXxS=2oiF07VJCOqVTvF-Zwz=cjmvg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mailbox: add binding doc for the ARM
+ SMC/HVC mailbox
+To:     Peng Fan <peng.fan@nxp.com>
+Cc:     "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "jassisinghbrar@gmail.com" <jassisinghbrar@gmail.com>,
+        "sudeep.holla@arm.com" <sudeep.holla@arm.com>,
+        "andre.przywara@arm.com" <andre.przywara@arm.com>,
+        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        dl-linux-imx <linux-imx@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 3 Jun 2019 at 17:55, Ludovic Barre <ludovic.Barre@st.com> wrote:
+On Mon, Jul 15, 2019 at 4:10 AM Peng Fan <peng.fan@nxp.com> wrote:
 >
-> From: Ludovic Barre <ludovic.barre@st.com>
+> From: Peng Fan <peng.fan@nxp.com>
 >
-> "busy_detect_flag" is used to read & clear busy value of mmci status.
-> "busy_detect_mask" is used to manage busy irq of mmci mask.
-> So to read mmci status the busy_detect_flag must be take account.
-> if the variant does not support busy detect feature the flag is null
-> and there is no impact.
-
-By reading the changelog, it doesn't tell me the purpose of this
-change. When going forward, please work harder on your changelogs.
-
-Make sure to answer the questions, *why* is this change needed,
-*what/how* does the change do.
-
+> The ARM SMC/HVC mailbox binding describes a firmware interface to trigger
+> actions in software layers running in the EL2 or EL3 exception levels.
+> The term "ARM" here relates to the SMC instruction as part of the ARM
+> instruction set, not as a standard endorsed by ARM Ltd.
 >
-> Not need to re-read the status register in mmci_cmd_irq, the
-> status parameter can be used.
->
-> Signed-off-by: Ludovic Barre <ludovic.barre@st.com>
+> Signed-off-by: Peng Fan <peng.fan@nxp.com>
 > ---
->  drivers/mmc/host/mmci.c | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
 >
-> diff --git a/drivers/mmc/host/mmci.c b/drivers/mmc/host/mmci.c
-> index 356833a..5b5cc45 100644
-> --- a/drivers/mmc/host/mmci.c
-> +++ b/drivers/mmc/host/mmci.c
-> @@ -1240,7 +1240,7 @@ mmci_cmd_irq(struct mmci_host *host, struct mmc_command *cmd,
->                  */
->                 if (!host->busy_status &&
->                     !(status & (MCI_CMDCRCFAIL|MCI_CMDTIMEOUT)) &&
-> -                   (readl(base + MMCISTATUS) & host->variant->busy_detect_flag)) {
-> +                   (status & host->variant->busy_detect_flag)) {
-
-I suggested you to do this change through some of my earlier comments,
-however I think it should be made as a stand alone change.
-
-Anyway, when looking at the details in your series, I decided to try
-to help out a bit, so I have prepared a couple of related patches for
-cleaning up and clarifying the busy detection code/comments in mmci. I
-have incorporated the above change, so let me post them asap.
-
+> V3:
+>  Convert to yaml
+>  Drop interrupt
+>  Introudce transports to indicate mem/reg
+>  The func id is still kept as optional, because like SCMI it only
+>  cares about message.
 >
->                         /* Clear the busy start IRQ */
->                         writel(host->variant->busy_detect_mask,
-> @@ -1517,7 +1517,8 @@ static irqreturn_t mmci_irq(int irq, void *dev_id)
->                  * to make sure that both start and end interrupts are always
->                  * cleared one after the other.
->                  */
-> -               status &= readl(host->base + MMCIMASK0);
-> +               status &= readl(host->base + MMCIMASK0) |
-> +                       host->variant->busy_detect_flag;
+> V2:
+>  Introduce interrupts as a property.
+>
+>  .../devicetree/bindings/mailbox/arm-smc.yaml       | 124 +++++++++++++++++++++
+>  1 file changed, 124 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mailbox/arm-smc.yaml b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+> new file mode 100644
+> index 000000000000..da9b1a03bc4e
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mailbox/arm-smc.yaml
+> @@ -0,0 +1,124 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mailbox/arm-smc.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ARM SMC Mailbox Interface
+> +
+> +maintainers:
+> +  - Peng Fan <peng.fan@nxp.com>
+> +
+> +description: |
+> +  This mailbox uses the ARM smc (secure monitor call) and hvc (hypervisor
+> +  call) instruction to trigger a mailbox-connected activity in firmware,
+> +  executing on the very same core as the caller. By nature this operation
+> +  is synchronous and this mailbox provides no way for asynchronous messages
+> +  to be delivered the other way round, from firmware to the OS, but
+> +  asynchronous notification could also be supported. However the value of
+> +  r0/w0/x0 the firmware returns after the smc call is delivered as a received
+> +  message to the mailbox framework, so a synchronous communication can be
+> +  established, for a asynchronous notification, no value will be returned.
+> +  The exact meaning of both the action the mailbox triggers as well as the
+> +  return value is defined by their users and is not subject to this binding.
+> +
+> +  One use case of this mailbox is the SCMI interface, which uses shared memory
+> +  to transfer commands and parameters, and a mailbox to trigger a function
+> +  call. This allows SoCs without a separate management processor (or when
+> +  such a processor is not available or used) to use this standardized
+> +  interface anyway.
+> +
+> +  This binding describes no hardware, but establishes a firmware interface.
+> +  Upon receiving an SMC using one of the described SMC function identifiers,
+> +  the firmware is expected to trigger some mailbox connected functionality.
+> +  The communication follows the ARM SMC calling convention.
+> +  Firmware expects an SMC function identifier in r0 or w0. The supported
+> +  identifiers are passed from consumers, or listed in the the arm,func-ids
+> +  properties as described below. The firmware can return one value in
+> +  the first SMC result register, it is expected to be an error value,
+> +  which shall be propagated to the mailbox client.
+> +
+> +  Any core which supports the SMC or HVC instruction can be used, as long as
+> +  a firmware component running in EL3 or EL2 is handling these calls.
+> +
+> +properties:
+> +  compatible:
+> +    const: arm,smc-mbox
+> +
+> +  "#mbox-cells":
+> +    const: 1
+> +
+> +  arm,num-chans:
+> +    description: The number of channels supported.
+> +    $ref: /schemas/types.yaml#/definitions/uint32
 
-As I told earlier in the review, this looks wrong to me.
+Constraints? 0 is valid? 2^32?
 
-It means that you will add the bit for the ->busy_detect_flag to the
-status field we have just read from the MMCISTATUS register. That
-means the busy status may be set when it shouldn't.
+> +
+> +  method:
+> +    items:
+> +      - enum:
+> +          - smc
+> +          - hvc
+> +
+> +  transports:
+> +    items:
+> +      - enum:
+> +          - mem
+> +          - reg
 
->                 if (host->variant->busy_detect)
->                         writel(status & ~host->variant->busy_detect_mask,
->                                host->base + MMCICLEAR);
+What if someone wants to configure this per channel? Perhaps
+#mbox-cells should be 2 and this can be a client parameter.
+
+Minimally, this needs a 'arm' vendor prefix if it stays.
+
+> +
+> +  arm,func-ids:
+> +    description: |
+> +      An array of 32-bit values specifying the function IDs used by each
+> +      mailbox channel. Those function IDs follow the ARM SMC calling
+> +      convention standard [1].
+
+What's the default if not specified? Or this should be required?
+
+> +
+> +      There is one identifier per channel and the number of supported
+> +      channels is determined by the length of this array.
+> +    minItems: 0
+> +    maxItems: 4096   # Should be enough?
+> +
+> +required:
+> +  - compatible
+> +  - "#mbox-cells"
+> +  - arm,num-chans
+> +  - transports
+> +  - method
+> +
+> +examples:
+> +  - |
+> +    sram@910000 {
+> +      compatible = "mmio-sram";
+> +      reg = <0x0 0x93f000 0x0 0x1000>;
+> +      #address-cells = <1>;
+> +      #size-cells = <1>;
+> +      ranges = <0 0x0 0x93f000 0x1000>;
+> +
+> +        cpu_scp_lpri: scp-shmem@0 {
+> +          compatible = "arm,scmi-shmem";
+> +          reg = <0x0 0x200>;
+> +        };
+> +
+> +        cpu_scp_hpri: scp-shmem@200 {
+> +          compatible = "arm,scmi-shmem";
+> +          reg = <0x200 0x200>;
+> +        };
+> +    };
+> +
+> +    firmware {
+> +      smc_mbox: mailbox {
+> +        #mbox-cells = <1>;
+> +        compatible = "arm,smc-mbox";
+> +        method = "smc";
+> +        arm,num-chans = <0x2>;
+> +        transports = "mem";
+> +        /* Optional */
+> +        arm,func-ids = <0xc20000fe>, <0xc20000ff>;
+> +      };
+> +
+> +      scmi {
+> +        compatible = "arm,scmi";
+> +        mboxes = <&mailbox 0 &mailbox 1>;
+> +        mbox-names = "tx", "rx";
+> +        shmem = <&cpu_scp_lpri &cpu_scp_hpri>;
+> +      };
+> +    };
+> +
+> +...
 > --
-> 2.7.4
+> 2.16.4
 >
-
-By looking at the other changes in the series, I assume @subject patch
-is intended to prepare for the other changes on top. But it's not
-really clear.
-
-Anyway, in that regards, the below is my observations of what seems to
-be important part, when supporting busy detection for the stm32 sdmmc
-variant (except the timeout things in patch2, which I intend to
-comment separately on).
-
-I figured, these are the involved register bits/masks:
-
-MMCISTATUS:
-MCI_STM32_BUSYD0 BIT(20)
-MCI_STM32_BUSYD0END BIT(21)
-
-MMCIMASK0:
-MCI_STM32_BUSYD0ENDMASK BIT(21)
-
-For the legacy ST variant, there is only one register bit in
-MMCISTATUS that is used for indicating busy (MCI_ST_CARDBUSY BIT(24)).
-There is no dedicated busy-end bit for the busy-end IRQ, which I
-believe is the reason to why the current code also is bit messy.
-
-It seems like the stm32 sdmmc variant have a separate status bit for
-the busy-end IRQ, correct?
-
-If I understand correctly by looking at patch3, you don't use the
-dedicated busy-end status bit (MCI_STM32_BUSYD0END), right? Then why
-not?
-
-Thoughts?
-
-Kind regards
-Uffe
