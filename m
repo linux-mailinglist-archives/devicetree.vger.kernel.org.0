@@ -2,257 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCC7069EC7
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 00:15:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9FA269EDC
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 00:19:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730917AbfGOWP4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 18:15:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35840 "EHLO mail.kernel.org"
+        id S1731774AbfGOWRI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 18:17:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36294 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727862AbfGOWP4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 15 Jul 2019 18:15:56 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1727862AbfGOWRH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Jul 2019 18:17:07 -0400
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8417320665;
-        Mon, 15 Jul 2019 22:15:54 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4B5182173C;
+        Mon, 15 Jul 2019 22:17:06 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563228954;
-        bh=i+e+XmewuTOKZMYujCCinWE6HQCvbqktbBhowFdAdPg=;
-        h=In-Reply-To:References:From:To:Cc:Subject:Date:From;
-        b=nit3wmf2HR893QM2K8DruIfSbcU7b/R5ef7zr8W96bJJyHcozB5YCZpfps75qxqEO
-         oicHCnXQygK86xyEFQeyuPLu1I0HibYMiVLkrgmRaDPIEiL9kInXH2fdL5MKbiGjz1
-         8gYmu0T+bLrbzSn3Rx2ZadHnq+yjFPagC4HFhmqk=
-Content-Type: text/plain; charset="utf-8"
+        s=default; t=1563229026;
+        bh=BlwpHGRzUKug6tnX6UBU925svxeIAUzPx9AZvkYOfuc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=qCV88PL5gv6dKBdE4udTyZH0Mew03T4PslZjo7f69A4VS3mujZNQnJukYk1RIBwGe
+         7gEEL7cR5AVZbNAcq4HXv9KvoXEIpIWNu0wH6aqqbuiMjFPb/RckAWHyqiLCd2TPQZ
+         BCqmABthxE36G96WtYzeEIuNPCaJZmkaYf9CYSaE=
+Received: by mail-qk1-f169.google.com with SMTP id r6so13001758qkc.0;
+        Mon, 15 Jul 2019 15:17:06 -0700 (PDT)
+X-Gm-Message-State: APjAAAVbp7twyf09MoD8YrAx7yFJz46WIdH7kzoFLLZIX4wrTRlbVOLK
+        AWKpzAMPxcWzTVxfauS2SPhv9iaefQuGfqLfGA==
+X-Google-Smtp-Source: APXvYqx/GbT4uRQgQ84L9Nym4k71tlUcZTQ8jCh8KLZ+3yf2bocUNGFhxoJY/nlG/vS0EgRIW62er26VYHNJB9FTr1c=
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr19091615qke.223.1563229025489;
+ Mon, 15 Jul 2019 15:17:05 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190712081744.87097-5-brendanhiggins@google.com>
-References: <20190712081744.87097-1-brendanhiggins@google.com> <20190712081744.87097-5-brendanhiggins@google.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     Brendan Higgins <brendanhiggins@google.com>,
-        frowand.list@gmail.com, gregkh@linuxfoundation.org,
-        jpoimboe@redhat.com, keescook@google.com,
-        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
-        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
-        tytso@mit.edu, yamada.masahiro@socionext.com
-Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
-        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
-        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
-        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
-        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
-        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
-        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
-        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
-        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
-        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
-Subject: Re: [PATCH v9 04/18] kunit: test: add kunit_stream a std::stream like logger
-User-Agent: alot/0.8.1
-Date:   Mon, 15 Jul 2019 15:15:53 -0700
-Message-Id: <20190715221554.8417320665@mail.kernel.org>
+References: <20190712033214.24713-1-andrew@aj.id.au> <20190712033214.24713-2-andrew@aj.id.au>
+In-Reply-To: <20190712033214.24713-2-andrew@aj.id.au>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 15 Jul 2019 16:16:54 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLkOtsAxj9NvNB=EEkH00k-dtNedNY042uuntSmcjhDhA@mail.gmail.com>
+Message-ID: <CAL_JsqLkOtsAxj9NvNB=EEkH00k-dtNedNY042uuntSmcjhDhA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: Document Aspeed SD controller
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Brendan Higgins (2019-07-12 01:17:30)
-> diff --git a/include/kunit/kunit-stream.h b/include/kunit/kunit-stream.h
+On Thu, Jul 11, 2019 at 9:32 PM Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the
+> SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
+> data bus if only a single slot is enabled.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> ---
+> In v2:
+>
+> * Rename to aspeed,sdhci.yaml
+> * Rename sd-controller compatible
+> * Add `maxItems: 1` for reg properties
+> * Move sdhci subnode description to patternProperties
+> * Drop sdhci compatible requirement
+> * #address-cells and #size-cells are required
+> * Prevent additional properties
+> * Implement explicit ranges in example
+> * Remove slot property
+>
+>  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 90 +++++++++++++++++++
+>  1 file changed, 90 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
 > new file mode 100644
-> index 0000000000000..a7b53eabf6be4
+> index 000000000000..67a691c3348c
 > --- /dev/null
-> +++ b/include/kunit/kunit-stream.h
-> @@ -0,0 +1,81 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * C++ stream style string formatter and printer used in KUnit for outpu=
-tting
-> + * KUnit messages.
-> + *
-> + * Copyright (C) 2019, Google LLC.
-> + * Author: Brendan Higgins <brendanhiggins@google.com>
-> + */
+> +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> @@ -0,0 +1,90 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +#ifndef _KUNIT_KUNIT_STREAM_H
-> +#define _KUNIT_KUNIT_STREAM_H
+> +title: ASPEED SD/SDIO/eMMC Controller
 > +
-> +#include <linux/types.h>
-> +#include <kunit/string-stream.h>
+> +maintainers:
+> +  - Andrew Jeffery <andrew@aj.id.au>
+> +  - Ryan Chen <ryanchen.aspeed@gmail.com>
 > +
-> +struct kunit;
+> +description: |+
+> +  The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the SDIO
+> +  Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit data bus if
+> +  only a single slot is enabled.
 > +
-> +/**
-> + * struct kunit_stream - a std::stream style string builder.
-> + *
-> + * A std::stream style string builder. Allows messages to be built up and
-> + * printed all at once.
-> + */
-> +struct kunit_stream {
-> +       /* private: internal use only. */
-> +       struct kunit *test;
-> +       const char *level;
+> +  The two slots are supported by a common configuration area. As the SDHCIs for
+> +  the slots are dependent on the common configuration area, they are described
+> +  as child nodes.
+> +
+> +properties:
+> +  compatible:
+> +    enum: [ aspeed,ast2400-sd-controller, aspeed,ast2500-sd-controller ]
 
-Is the level changed? See my comment below, but I wonder if this whole
-struct can go away and the wrappers can just operate on 'struct
-string_stream' instead.
+This is actually a list of 4 strings. Please reformat to 1 per line.
 
-> +       struct string_stream *internal_stream;
-> +};
-> diff --git a/kunit/kunit-stream.c b/kunit/kunit-stream.c
-> new file mode 100644
-> index 0000000000000..8bea1f22eafb5
-> --- /dev/null
-> +++ b/kunit/kunit-stream.c
-> @@ -0,0 +1,123 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * C++ stream style string formatter and printer used in KUnit for outpu=
-tting
-> + * KUnit messages.
-> + *
-> + * Copyright (C) 2019, Google LLC.
-> + * Author: Brendan Higgins <brendanhiggins@google.com>
-> + */
-> +
-> +#include <kunit/test.h>
-> +#include <kunit/kunit-stream.h>
-> +#include <kunit/string-stream.h>
-> +
-> +void kunit_stream_add(struct kunit_stream *kstream, const char *fmt, ...)
-> +{
-> +       va_list args;
-> +       struct string_stream *stream =3D kstream->internal_stream;
-> +
-> +       va_start(args, fmt);
-> +
-> +       if (string_stream_vadd(stream, fmt, args) < 0)
-> +               kunit_err(kstream->test,
-> +                         "Failed to allocate fragment: %s\n",
-> +                         fmt);
-> +
-> +       va_end(args);
-> +}
-> +
-> +void kunit_stream_append(struct kunit_stream *kstream,
-> +                               struct kunit_stream *other)
-> +{
-> +       struct string_stream *other_stream =3D other->internal_stream;
-> +       const char *other_content;
-> +
-> +       other_content =3D string_stream_get_string(other_stream);
-> +
-> +       if (!other_content) {
-> +               kunit_err(kstream->test,
-> +                         "Failed to get string from second argument for =
-appending\n");
-> +               return;
-> +       }
-> +
-> +       kunit_stream_add(kstream, other_content);
-> +}
-
-Why can't this function be implemented in the string_stream API? Seems
-valid to want to append one stream to another and that isn't
-kunit_stream specific.
-
-> +
-> +void kunit_stream_clear(struct kunit_stream *kstream)
-> +{
-> +       string_stream_clear(kstream->internal_stream);
-> +}
-> +
-> +void kunit_stream_commit(struct kunit_stream *kstream)
-> +{
-> +       struct string_stream *stream =3D kstream->internal_stream;
-> +       struct string_stream_fragment *fragment;
-> +       struct kunit *test =3D kstream->test;
-> +       char *buf;
-> +
-> +       buf =3D string_stream_get_string(stream);
-> +       if (!buf) {
-> +               kunit_err(test,
-> +                         "Could not allocate buffer, dumping stream:\n");
-> +               list_for_each_entry(fragment, &stream->fragments, node) {
-> +                       kunit_err(test, fragment->fragment);
-> +               }
-> +               kunit_err(test, "\n");
-> +               goto cleanup;
-> +       }
-> +
-> +       kunit_printk(kstream->level, test, buf);
-> +       kfree(buf);
-> +
-> +cleanup:
-
-Drop the goto and use an 'else' please.
-
-> +       kunit_stream_clear(kstream);
-> +}
-> +
-> +static int kunit_stream_init(struct kunit_resource *res, void *context)
-> +{
-> +       struct kunit *test =3D context;
-> +       struct kunit_stream *stream;
-> +
-> +       stream =3D kzalloc(sizeof(*stream), GFP_KERNEL);
-> +       if (!stream)
-> +               return -ENOMEM;
-> +
-> +       res->allocation =3D stream;
-> +       stream->test =3D test;
-> +       stream->internal_stream =3D alloc_string_stream(test);
-> +
-> +       if (!stream->internal_stream)
-> +               return -ENOMEM;
-> +
-> +       return 0;
-> +}
-> +
-> +static void kunit_stream_free(struct kunit_resource *res)
-> +{
-> +       struct kunit_stream *stream =3D res->allocation;
-> +
-> +       if (!string_stream_is_empty(stream->internal_stream)) {
-> +               kunit_err(stream->test,
-> +                         "End of test case reached with uncommitted stre=
-am entries\n");
-> +               kunit_stream_commit(stream);
-> +       }
-> +}
-> +
-
-Nitpick: Drop this extra newline.
-
-> diff --git a/kunit/test.c b/kunit/test.c
-> index f165c9d8e10b0..29edf34a89a37 100644
-> --- a/kunit/test.c
-> +++ b/kunit/test.c
-> @@ -120,6 +120,12 @@ static void kunit_print_test_case_ok_not_ok(struct k=
-unit_case *test_case,
->                               test_case->name);
->  }
-> =20
-> +void kunit_fail(struct kunit *test, struct kunit_stream *stream)
-
-Why doesn't 'struct kunit' have a 'struct kunit_stream' inside of it? It
-seems that the two are highly related, to the point that it might just
-make sense to have
-
-	struct kunit {
-		struct kunit_stream stream;
-		...
-	};
-
-> +{
-> +       kunit_set_failure(test);
-> +       kunit_stream_commit(stream);
-
-And then this function can just take a test and the stream can be
-associated with the test directly. Use container_of() to get to the test
-when the only pointer in hand is for the stream too.
-
-> +}
-> +
->  void kunit_init_test(struct kunit *test, const char *name)
->  {
->         mutex_init(&test->lock);
+Rob
