@@ -2,55 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF85269B4A
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 21:21:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEA4769B89
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 21:39:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729948AbfGOTVO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 15:21:14 -0400
-Received: from mail-yw1-f67.google.com ([209.85.161.67]:42132 "EHLO
-        mail-yw1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729432AbfGOTVN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 15:21:13 -0400
-Received: by mail-yw1-f67.google.com with SMTP id z63so7734929ywz.9;
-        Mon, 15 Jul 2019 12:21:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=T6L/T//A/hr8zs4n7h5mkmSwRWcgvC/d4JNrZUI4Hm8=;
-        b=WNARhfF9FItohnvszMOVl4tf67FTBW8z6mVMLcqSbMbljIgUy+cX0Jp0YfAAn6kvUV
-         6B6qTRPgZBjVJy0+wx5Cj2BakLpiAiVZthmkB8RwCAJT4lZqVISu/fGLTrTZrrYiHF+U
-         yzM4+eKufO1eXC5AsamPg9bdbjtTI2uJcJPJsDIzAzR1eYQH2/3+DY2OOPuUGErHf+cH
-         6s29jnfo/oPHtq5a/H0Sy1cvGpnTzS1ni4CRff8wbQQa+ysZ+sXz3lWCtiOED27rdf1t
-         tkQL8IOHrjNfyHRrYx0QL8ftLKDHp1uf1JDapE1bQHyZKsu3iShgGsknBrH0rgd3UHOE
-         ETDw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=T6L/T//A/hr8zs4n7h5mkmSwRWcgvC/d4JNrZUI4Hm8=;
-        b=K4cSgTRJF26NeBuXwZ3+dfTANZMysO11wMBjvyBJWVkmWxqQF5jh7WsqD4co5BNOQw
-         oOsp861a4HAI/G5Rt2vAD8H4aMt61/BfDoFCveFbFpPhinLw92c0uoO1j6rpskdAMyS8
-         jYi3UOzjVVfLL+i0/o0zcX1vW/wP/0c3hrM7vJ9Qj9X7BOZXRCRbpEc5Vk/cz9xwyjlb
-         b2iSROxJ3bdx7O1Zf9u+XNnfROSO76LajvD7Rw7I+rlzMQOWFSZwMPXwtzhcizSecOgb
-         bcqaIh1X0u4QetQBDJLMyujkgyJdOIIeXlONQyEx+u/CLWOwtj58XT2u1YGYmXrdKNN6
-         3FUA==
-X-Gm-Message-State: APjAAAVhxSmJfckZUbEdw+Wv9rwvRbg6JlSLjRXe9NhGg2wAbg7hm9Za
-        fDVQAnSV5XSFyD+mz9L+pVBMIk050ilJW+0jhu0=
-X-Google-Smtp-Source: APXvYqxcM/GTLLwXLJ0XLGxzMQuEi34XclLyeCNzAgq1oLJCQsl7q05aszfWDHWZs0j8skZrYjD5o0W5JZ3MI1abTjQ=
-X-Received: by 2002:a0d:d884:: with SMTP id a126mr16542399ywe.349.1563218472776;
- Mon, 15 Jul 2019 12:21:12 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190527200627.8635-1-peron.clem@gmail.com> <CAJiuCcfUhBxEr=o7VVpPROQZadQh7z1QC0SkWSYt-53Sj3H2qw@mail.gmail.com>
-In-Reply-To: <CAJiuCcfUhBxEr=o7VVpPROQZadQh7z1QC0SkWSYt-53Sj3H2qw@mail.gmail.com>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Mon, 15 Jul 2019 21:21:01 +0200
-Message-ID: <CAJiuCcc3_1jZWV7G3+fFQYRZ8b6qcAbnH+K6pkRvww6_D=OMAw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] Allwinner H6 SPDIF support
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>,
-        Jaroslav Kysela <perex@perex.cz>, Takashi Iwai <tiwai@suse.com>
-Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
+        id S1731020AbfGOTjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 15:39:01 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:33948 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730362AbfGOTjA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 15:39:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=uEtSh3X6xQ1lITiuNz9x5IdXNtqfNQ17vMJkyrNs1LY=; b=xhH0p1EXjiOkPBx2ciKgSWD71
+        u82dCi2hbyODuxO1uD0AIUppV8S/kASktp6GzA0pvZVBIBRjSO0Y0JF7eT/71rL66NWAZSpUCPURZ
+        Fn4rq67eYTNi5AjqGx17ZndeOaQtXV3j/YS/R78oQwOof/eNXxXEHD+jPULJP+irjSSCI=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hn6o6-0002Mz-PI; Mon, 15 Jul 2019 19:38:42 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 3C51B2742A1F; Mon, 15 Jul 2019 20:38:42 +0100 (BST)
+Date:   Mon, 15 Jul 2019 20:38:42 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
         devicetree <devicetree@vger.kernel.org>,
         linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -60,90 +43,62 @@ Cc:     Linux-ALSA <alsa-devel@alsa-project.org>,
         linux-kernel <linux-kernel@vger.kernel.org>,
         linux-sunxi <linux-sunxi@googlegroups.com>,
         Jagan Teki <jagan@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Subject: Re: [PATCH v4 0/7] Allwinner H6 SPDIF support
+Message-ID: <20190715193842.GC4503@sirena.org.uk>
+References: <20190527200627.8635-1-peron.clem@gmail.com>
+ <CAJiuCcfUhBxEr=o7VVpPROQZadQh7z1QC0SkWSYt-53Sj3H2qw@mail.gmail.com>
+ <CAJiuCcc3_1jZWV7G3+fFQYRZ8b6qcAbnH+K6pkRvww6_D=OMAw@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="aT9PWwzfKXlsBJM1"
+Content-Disposition: inline
+In-Reply-To: <CAJiuCcc3_1jZWV7G3+fFQYRZ8b6qcAbnH+K6pkRvww6_D=OMAw@mail.gmail.com>
+X-Cookie: Fremen add life to spice!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-I'm missing ACK from ASoC Maintainers patch 2-3-4.
+--aT9PWwzfKXlsBJM1
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-It's really small paches, if you could have a look at it.
-Many thanks,
-Cl=C3=A9ment
-
-
-
-On Fri, 14 Jun 2019 at 10:29, Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com=
-> wrote:
->
+On Mon, Jul 15, 2019 at 09:21:01PM +0200, Cl=E9ment P=E9ron wrote:
 > Hi,
->
-> On Mon, 27 May 2019 at 22:10, Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.c=
-om> wrote:
-> >
-> > *H6 DMA support IS REQUIRED*
->
-> DMA has been merged, so this series can be merge when ASoC maintainers
-> have reviewed it.
->
-> Regards,
-> Cl=C3=A9ment
->
-> >
-> > Allwinner H6 SoC has a SPDIF controller called One Wire Audio (OWA) whi=
-ch
-> > is different from the previous H3 generation and not compatible.
-> >
-> > Difference are an increase of fifo sizes, some memory mapping are diffe=
-rent
-> > and there is now the possibility to output the master clock on a pin.
-> >
-> > Actually all these features are unused and only a bit for flushing the =
-TX
-> > fifo is required.
-> >
-> > Also this series requires the DMA working on H6, a first version has be=
-en
-> > submitted by Jernej =C5=A0krabec[1] but has not been accepted yet.
-> >
-> > [1] https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=
-=3D89011
-> >
-> > Changes since v3:
-> >  - rename reg_fctl_ftx to val_fctl_ftx
-> >  - rebase this series on sound-next
-> >  - fix dt-bindings due to change in sound-next
-> >  - change node name sound_spdif to sound-spdif
-> >
-> > Changes since v2:
-> >  - Split quirks and H6 support patch
-> >  - Add specific section for quirks comment
-> >
-> > Changes since v1:
-> >  - Remove H3 compatible
-> >  - Add TX fifo bit flush quirks
-> >  - Add H6 bindings in SPDIF driver
-> >
-> > Cl=C3=A9ment P=C3=A9ron (7):
-> >   dt-bindings: sound: sun4i-spdif: Add Allwinner H6 compatible
-> >   ASoC: sun4i-spdif: Move quirks to the top
-> >   ASoC: sun4i-spdif: Add TX fifo bit flush quirks
-> >   ASoC: sun4i-spdif: Add support for H6 SoC
-> >   arm64: dts: allwinner: Add SPDIF node for Allwinner H6
-> >   arm64: dts: allwinner: h6: Enable SPDIF for Beelink GS1
-> >   arm64: defconfig: Enable Sun4i SPDIF module
-> >
-> >  .../sound/allwinner,sun4i-a10-spdif.yaml      |  1 +
-> >  .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  4 ++
-> >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 38 ++++++++++++++
-> >  arch/arm64/configs/defconfig                  |  1 +
-> >  sound/soc/sunxi/sun4i-spdif.c                 | 49 ++++++++++++++++---
-> >  5 files changed, 87 insertions(+), 6 deletions(-)
-> >
-> > --
-> > 2.20.1
-> >
+>=20
+> I'm missing ACK from ASoC Maintainers patch 2-3-4.
+>=20
+> It's really small paches, if you could have a look at it.
+
+Please don't send content free pings and please allow a reasonable time
+for review.  People get busy, go on holiday, attend conferences and so=20
+on so unless there is some reason for urgency (like critical bug fixes)
+please allow at least a couple of weeks for review.  If there have been
+review comments then people may be waiting for those to be addressed.
+
+Sending content free pings adds to the mail volume (if they are seen at
+all) which is often the problem and since they can't be reviewed
+directly if something has gone wrong you'll have to resend the patches
+anyway, so sending again is generally a better approach though there are
+some other maintainers who like them - if in doubt look at how patches
+for the subsystem are normally handled.
+
+--aT9PWwzfKXlsBJM1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0s1kEACgkQJNaLcl1U
+h9Cw6Af+Lg1FCdunvHuQWgM9lkfW1yDRebhjo8R5qhgUtQE295gHjgjdqQ8xh6eM
+ZK1py52Bhvt7DJsJFZfrEBSzhkvLbYMENjj17tSpW3A6H7wHzkyGUOKq3FRIzG6m
+WciJzBWDsDtHEO6OUcrPDjvDJWOPeF8h2O+TOgsqOAGMDUPYG3l1iBozqVsFhwGA
+b79wc9pIIKvVsp71cE9ZF/m9Y9JTsIyf6Omq4m0zx7KD7nEP0oqnmtg+8AI+lkrC
+VEvioUOv9swbYdTsuPP+lwPqI/Wun1n4XDmppLD81iaZn8oHhW0FlU35PjoPRgGK
+oPWiRnOfQWTiKTZ5PFdwsicKK9ZQYg==
+=tPgX
+-----END PGP SIGNATURE-----
+
+--aT9PWwzfKXlsBJM1--
