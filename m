@@ -2,317 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9672668643
-	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 11:24:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9CF5668653
+	for <lists+devicetree@lfdr.de>; Mon, 15 Jul 2019 11:29:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729426AbfGOJYS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 05:24:18 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:40131 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729452AbfGOJYG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 05:24:06 -0400
-Received: by mail-wr1-f65.google.com with SMTP id r1so16233557wrl.7
-        for <devicetree@vger.kernel.org>; Mon, 15 Jul 2019 02:24:03 -0700 (PDT)
+        id S1729525AbfGOJ3P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 05:29:15 -0400
+Received: from mail-eopbgr1400117.outbound.protection.outlook.com ([40.107.140.117]:33815
+        "EHLO JPN01-TY1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1729413AbfGOJ3P (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Jul 2019 05:29:15 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=XKhwUjTTYZ2tyi62fPC2ccVs8GZ1XZh+g3ZH7FkchGcq1oFU3se3u0pRXc4EWc9VNLrtN4Vj0EJiwbxXqxzLLL4egZg0bwnS65w239jkK2Vc3n5DE3lksiXnff821sOnrWT0v7/sOvxJe6oE7EaSYD2sgzbsukoWC6xanrWAK8QkpwZAPpTToyW8hZ9XxUWi2wbcR2OWs6Fwo7oivJzF4Lks1UEmcEElcTeyFHj2nhD37Rt5GBwz8cUdwR7rfOE8zShV57n+oauONFAUrQOltO6X0w30LQuTPR01rul6W6i3/nGhRXS4yU2Q5aPkf0KJ6X0hL+W68CMvwfluGhI5zQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JR/iLJSnNlX4nG7fgfL8RxpP1NhP2tfeGSPY2J2XoyA=;
+ b=JAj23qQZYczSc0n13Bc1XzqF0CQRTzfd2ZXElE3XgQ+AobZFNtmC7lK0CP7LZwn7Xq47SEmfhtwj9pEI9DaMA94jr2JlPkyyfDmZHNZxj8s4nu9bKf9H3cRr/vfqyFWonutudyKtDieedInSevUZ1D2aBwBh89BR7eeMEcW1kUA7K9X7H5k1LNWEYP5FlmQlyzLk1DRiSgFBHPnYeUKGGFR8EedH9iMfKO74ntOxhOomCKzBquu/w34+kuowizz2ACsh//86SN+w920bI0r3C+7aoioxsvsPfK/Y7/77xHmBJUPV01vGetEpp0qHNnsWkNNCyNxBZetgMKXnohN1hg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=bp.renesas.com;dmarc=pass action=none
+ header.from=bp.renesas.com;dkim=pass header.d=bp.renesas.com;arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=nfm6Ua4RrGb4WspYU/6CGmVhaLbOHYoHSE5D469nkM4=;
-        b=nUxlRHFEmdE//fmjfkSwYbzIynIsAnyHZUwgu6k0FB6rJdmYLn1JuaKI7GL+Or08qm
-         /HGIxW0JUuNh1P87D362eX4UINwyRltQtIAdPWZ5jzdhOvPEoYsdbm19qyy9LSa4BYMj
-         19mBueDluvMxyxuhKPDWjd5WxBAPDUSCsWMXuJDuuVK6xPYOEshMZsyOq6oIQEagQ5Bx
-         Xz74JAvKgmaa9W2rGpL8v3ORmqBOLPrK9+yQdLuKN9ziL/7AUbq5GKY5bZ4enS+ztBW1
-         VjjE3L5Rj/aaNY8X9f3BiuYpolJhC9Nn+pRwVw3CzhorEC/HiPOlfVNUgETAa0t4Xk6V
-         x3Cw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=nfm6Ua4RrGb4WspYU/6CGmVhaLbOHYoHSE5D469nkM4=;
-        b=gd2P4M8LX6ilCC0M4VuyRP01xKtddWybbn99NaFaZFZSJ7SFv+RJcgLXOPyTR+vC5M
-         PdRBOI8qANkHcb+m14dScLJsMMKORZYM0tDJ9BfH2+s6zH/Gg4LUI1Pr3zJIx5s00Mw7
-         LWkTQYe3CShYzJ7OP6qUVTxwW1nDHVyr+mWmIA6yrIHmQWdUEZc8O7T8z5hfKOAGuZC2
-         gWV4fE47NEQ28P/wjzChUXobKLt0MYW+M+8EZcJ7UuJHhvcVGDuAudYv8DfivxURW1F+
-         WFULqGBJOXpxXt7cxvSnmUoG7Jdv1x3jEuW286ZEr/zinZ04sb1n12lmM61XbKyNlFLx
-         dzuA==
-X-Gm-Message-State: APjAAAW/uvZn8Yujmd9l5nqk2kbXHyRdUWa+UyysUTjny9upHLshhlvV
-        vktKjygzht/5efe9DOPe1nZWng==
-X-Google-Smtp-Source: APXvYqy/+ExO8IuTAiFAaExvyr1yLeuxu4zrL0AJ5A1eSvxhI4KUOZVS3tFbBntpsYO2vgJahfMW8w==
-X-Received: by 2002:a5d:518c:: with SMTP id k12mr26872647wrv.116.1563182643036;
-        Mon, 15 Jul 2019 02:24:03 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id n1sm13156524wrx.39.2019.07.15.02.24.02
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 15 Jul 2019 02:24:02 -0700 (PDT)
-Date:   Mon, 15 Jul 2019 10:24:00 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Jean-Jacques Hiblot <jjhiblot@ti.com>
-Cc:     Dan Murphy <dmurphy@ti.com>, jacek.anaszewski@gmail.com,
-        pavel@ucw.cz, robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] leds: Add control of the voltage/current regulator
- to the LED core
-Message-ID: <20190715092400.sedjumqkecglheyu@holly.lan>
-References: <20190708103547.23528-1-jjhiblot@ti.com>
- <20190708103547.23528-2-jjhiblot@ti.com>
- <56d16260-ff82-3439-4c1f-2a3a1552bc7d@ti.com>
- <ab4818c0-bc7a-13e1-c6ce-e977b0234de0@ti.com>
+ d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=JR/iLJSnNlX4nG7fgfL8RxpP1NhP2tfeGSPY2J2XoyA=;
+ b=WpjGLpW1CdWJ70fzM9549E1Ng/49tQbZfeO5L3NuAT0Wmx8nYTOgx7D3R4uBgt6nk7OhdLTgqFIHNJK5jjHmcNMor5nVwkesZjkoM8BKVH3I0hlr4uUqEBX8Z/fTIahHaqxe/42Tb/LfcWcqZCKQbbNmNZyaZju7PFWhGpes0dk=
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
+ TY1PR01MB1466.jpnprd01.prod.outlook.com (52.133.163.141) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2073.14; Mon, 15 Jul 2019 09:29:10 +0000
+Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::d881:cb74:8277:5a16]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
+ ([fe80::d881:cb74:8277:5a16%7]) with mapi id 15.20.2073.012; Mon, 15 Jul 2019
+ 09:29:10 +0000
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+CC:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        "xu_shunji@hoperun.com" <xu_shunji@hoperun.com>
+Subject: RE: [PATCH 3/3] arm64: dts: renesas: hihope-common: Add HDMI audio
+ support
+Thread-Topic: [PATCH 3/3] arm64: dts: renesas: hihope-common: Add HDMI audio
+ support
+Thread-Index: AQHVMzciFTrbHJHhA0C75HFDsxZm2KbHCNuAgARvcOA=
+Date:   Mon, 15 Jul 2019 09:29:10 +0000
+Message-ID: <TY1PR01MB1770CEA1C7A658C84FCD4EE6C0CF0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
+References: <1562333979-28516-1-git-send-email-fabrizio.castro@bp.renesas.com>
+ <1562333979-28516-4-git-send-email-fabrizio.castro@bp.renesas.com>
+ <CAMuHMdUGfHyPp=5aBig4_Sh91hUku4Xx_Ho54X=EDcqrj_zXqA@mail.gmail.com>
+In-Reply-To: <CAMuHMdUGfHyPp=5aBig4_Sh91hUku4Xx_Ho54X=EDcqrj_zXqA@mail.gmail.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
+x-originating-ip: [193.141.220.21]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 459f23d9-0cf5-431a-0dd6-08d70906e4c4
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1466;
+x-ms-traffictypediagnostic: TY1PR01MB1466:
+x-microsoft-antispam-prvs: <TY1PR01MB1466302DFE211D1EDD398777C0CF0@TY1PR01MB1466.jpnprd01.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 00997889E7
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(346002)(376002)(136003)(39860400002)(396003)(366004)(189003)(199004)(186003)(26005)(76176011)(6506007)(53546011)(102836004)(3846002)(6116002)(229853002)(81156014)(8936002)(2906002)(5660300002)(25786009)(52536014)(7696005)(86362001)(81166006)(66066001)(74316002)(476003)(8676002)(6916009)(11346002)(55016002)(486006)(53936002)(9686003)(6436002)(99286004)(14454004)(6246003)(446003)(66476007)(44832011)(66556008)(64756008)(66946007)(66446008)(68736007)(76116006)(4326008)(54906003)(256004)(305945005)(7736002)(316002)(71190400001)(71200400001)(478600001)(33656002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1466;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:0;
+received-spf: None (protection.outlook.com: bp.renesas.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: jiGOVSzdfgSm5dSWVAfrp2m6nvQCbKOBdpO26xFcofYcaSFoG7oSSyCTjT5kex1rnNc0iUwL/rhQvRc6PV9On0TQHHx06QdoUvEqkfKzBwcA/HN+t1rTSz+5kLJ0FeFstnaDc8pd+MTCNmZrdidBBUbGb8DfRzEo5GdT+cb2e5PCmJImg5Uncl1+23X9FIwqfDAYGexWy6ERC/J+FPiMt+c2Yepn31YxYlKhJstQiN6LWD/MU8CybAD8gG+KuoXeLDhA+jVXQekIZk0C91JGYCPZ467rZwWDpfUw5VR4GtPyMzC3m0XEvq83CdoKLRNpHc60LDdzChDs8WVxLLVFvZyqDvYZMLszDl8qmJr4Z/DV4pc/3cJG3p2QUpK5xzuZNqoGrUFO8zAxRxPRCe5edM37NVNPe7+FM7xScCGPLsM=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <ab4818c0-bc7a-13e1-c6ce-e977b0234de0@ti.com>
-User-Agent: NeoMutt/20180716
+X-OriginatorOrg: bp.renesas.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 459f23d9-0cf5-431a-0dd6-08d70906e4c4
+X-MS-Exchange-CrossTenant-originalarrivaltime: 15 Jul 2019 09:29:10.6413
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: fabrizio.castro@bp.renesas.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1466
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 15, 2019 at 11:01:29AM +0200, Jean-Jacques Hiblot wrote:
-> Hi Dan,
-> 
-> On 12/07/2019 20:49, Dan Murphy wrote:
-> > JJ
-> > 
-> > On 7/8/19 5:35 AM, Jean-Jacques Hiblot wrote:
-> > > A LED is usually powered by a voltage/current regulator. Let the LED
-> > > core
-> > Let the LED core know
-> > > about it. This allows the LED core to turn on or off the power supply
-> > > as needed.
-> > 
-> > > 
-> > > Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
-> > > ---
-> > >   drivers/leds/led-class.c | 10 ++++++++
-> > >   drivers/leds/led-core.c  | 53 +++++++++++++++++++++++++++++++++++++---
-> > >   include/linux/leds.h     |  4 +++
-> > >   3 files changed, 64 insertions(+), 3 deletions(-)
-> > > 
-> > > diff --git a/drivers/leds/led-class.c b/drivers/leds/led-class.c
-> > > index 4793e77808e2..e01b2d982564 100644
-> > > --- a/drivers/leds/led-class.c
-> > > +++ b/drivers/leds/led-class.c
-> > > @@ -17,6 +17,7 @@
-> > >   #include <linux/slab.h>
-> > >   #include <linux/spinlock.h>
-> > >   #include <linux/timer.h>
-> > > +#include <linux/regulator/consumer.h>
-> > 
-> > What if you move this to leds.h so core and class can both include it.
-> > 
-> > 
-> > >   #include <uapi/linux/uleds.h>
-> > >   #include "leds.h"
-> > >   @@ -272,6 +273,15 @@ int of_led_classdev_register(struct device
-> > > *parent, struct device_node *np,
-> > >           dev_warn(parent, "Led %s renamed to %s due to name collision",
-> > >                   led_cdev->name, dev_name(led_cdev->dev));
-> > >   +    led_cdev->regulator = devm_regulator_get(led_cdev->dev, "power");
-> > 
-> > Is the regulator always going to be called power?
-> 
-> Actually in the dts, that will be "power-supply". I lacked the imagination
-> to come up with a better name.
-> 
-> 
-> 
-> > 
-> > > +    if (IS_ERR(led_cdev->regulator)) {
-> > > +        dev_err(led_cdev->dev, "Cannot get the power supply for %s\n",
-> > > +            led_cdev->name);
-> > > +        device_unregister(led_cdev->dev);
-> > > +        mutex_unlock(&led_cdev->led_access);
-> > > +        return PTR_ERR(led_cdev->regulator);
-> > 
-> > This is listed as optional in the DT doc.  This appears to be required.
-> 
-> The regulator core will provide a dummy regulator if none is given in the
-> device tree. I would rather have an error in that case, but that is not how
-> it works.
-
-If you actively wanted to get -ENODEV back when there is no regulator
-then you can use devm_regulator_get_optional() for that.
-
-However perhaps be careful what you wish for. If you use get_optional()
-then you will have to sprinkle NULL or IS_ERR() checks everywhere. I'd
-favour using the current approach!
-
-
-Daniel.
-
-> 
-> 
-> > 
-> > I prefer to keep it optional.  Many LED drivers are connected to fixed
-> > non-managed supplies.
-> > 
-> > > +    }
-> > > +
-> > >       if (led_cdev->flags & LED_BRIGHT_HW_CHANGED) {
-> > >           ret = led_add_brightness_hw_changed(led_cdev);
-> > >           if (ret) {
-> > > diff --git a/drivers/leds/led-core.c b/drivers/leds/led-core.c
-> > > index 7107cd7e87cf..139de6b08cad 100644
-> > > --- a/drivers/leds/led-core.c
-> > > +++ b/drivers/leds/led-core.c
-> > > @@ -16,6 +16,7 @@
-> > >   #include <linux/rwsem.h>
-> > >   #include <linux/slab.h>
-> > >   #include "leds.h"
-> > > +#include <linux/regulator/consumer.h>
-> > >     DECLARE_RWSEM(leds_list_lock);
-> > >   EXPORT_SYMBOL_GPL(leds_list_lock);
-> > > @@ -23,6 +24,31 @@ EXPORT_SYMBOL_GPL(leds_list_lock);
-> > >   LIST_HEAD(leds_list);
-> > >   EXPORT_SYMBOL_GPL(leds_list);
-> > >   +static bool __led_need_regulator_update(struct led_classdev
-> > > *led_cdev,
-> > > +                    int brightness)
-> > > +{
-> > > +    bool new_regulator_state = (brightness != LED_OFF);
-> > > +
-> > > +    return led_cdev->regulator_state != new_regulator_state;
-> > > +}
-> > > +
-> > > +static int __led_handle_regulator(struct led_classdev *led_cdev,
-> > > +                int brightness)
-> > > +{
-> > > +    if (__led_need_regulator_update(led_cdev, brightness)) {
-> > > +        int ret;
-> > 
-> > Prefer to this to be moved up.
-> ok
-> > 
-> > > +
-> > > +        if (brightness != LED_OFF)
-> > > +            ret = regulator_enable(led_cdev->regulator);
-> > > +        else
-> > > +            ret = regulator_disable(led_cdev->regulator);
-> > > +        if (ret)
-> > > +            return ret;
-> > new line
-> > > +        led_cdev->regulator_state = (brightness != LED_OFF);
-> > > +    }
-> > > +    return 0;
-> > > +}
-> > > +
-> > >   static int __led_set_brightness(struct led_classdev *led_cdev,
-> > >                   enum led_brightness value)
-> > >   {
-> > > @@ -80,6 +106,7 @@ static void led_timer_function(struct timer_list *t)
-> > >       }
-> > >         led_set_brightness_nosleep(led_cdev, brightness);
-> > > +    __led_handle_regulator(led_cdev, brightness);
-> > 
-> > Again this seems to indicate that the regulator is a required property
-> > for the LEDs
-> > 
-> > This needs to be made optional.  And the same comment through out for
-> > every call.
-> > 
-> > 
-> > >         /* Return in next iteration if led is in one-shot mode and
-> > > we are in
-> > >        * the final blink state so that the led is toggled each
-> > > delay_on +
-> > > @@ -115,6 +142,8 @@ static void set_brightness_delayed(struct
-> > > work_struct *ws)
-> > >       if (ret == -ENOTSUPP)
-> > >           ret = __led_set_brightness_blocking(led_cdev,
-> > >                       led_cdev->delayed_set_value);
-> > > +    __led_handle_regulator(led_cdev, led_cdev->delayed_set_value);
-> > > +
-> > >       if (ret < 0 &&
-> > >           /* LED HW might have been unplugged, therefore don't warn */
-> > >           !(ret == -ENODEV && (led_cdev->flags & LED_UNREGISTERING) &&
-> > > @@ -141,6 +170,7 @@ static void led_set_software_blink(struct
-> > > led_classdev *led_cdev,
-> > >       /* never on - just set to off */
-> > >       if (!delay_on) {
-> > >           led_set_brightness_nosleep(led_cdev, LED_OFF);
-> > > +        __led_handle_regulator(led_cdev, LED_OFF);
-> > >           return;
-> > >       }
-> > >   @@ -148,6 +178,7 @@ static void led_set_software_blink(struct
-> > > led_classdev *led_cdev,
-> > >       if (!delay_off) {
-> > >           led_set_brightness_nosleep(led_cdev,
-> > >                          led_cdev->blink_brightness);
-> > > +        __led_handle_regulator(led_cdev, led_cdev->blink_brightness);
-> > >           return;
-> > >       }
-> > >   @@ -256,8 +287,14 @@ void led_set_brightness_nopm(struct
-> > > led_classdev *led_cdev,
-> > >                     enum led_brightness value)
-> > >   {
-> > >       /* Use brightness_set op if available, it is guaranteed not to
-> > > sleep */
-> > > -    if (!__led_set_brightness(led_cdev, value))
-> > > -        return;
-> > > +    if (!__led_set_brightness(led_cdev, value)) {
-> > > +        /*
-> > > +         * if regulator state doesn't need to be changed, that is all/
-> > > +         * Otherwise delegate the change to a work queue
-> > > +         */
-> > > +        if (!__led_need_regulator_update(led_cdev, value))
-> > > +            return;
-> > > +    }
-> > >         /* If brightness setting can sleep, delegate it to a work
-> > > queue task */
-> > >       led_cdev->delayed_set_value = value;
-> > > @@ -280,6 +317,8 @@ EXPORT_SYMBOL_GPL(led_set_brightness_nosleep);
-> > >   int led_set_brightness_sync(struct led_classdev *led_cdev,
-> > >                   enum led_brightness value)
-> > >   {
-> > > +    int ret;
-> > > +
-> > >       if (led_cdev->blink_delay_on || led_cdev->blink_delay_off)
-> > >           return -EBUSY;
-> > >   @@ -288,7 +327,15 @@ int led_set_brightness_sync(struct
-> > > led_classdev *led_cdev,
-> > >       if (led_cdev->flags & LED_SUSPENDED)
-> > >           return 0;
-> > >   -    return __led_set_brightness_blocking(led_cdev,
-> > > led_cdev->brightness);
-> > > +    ret = __led_set_brightness_blocking(led_cdev,
-> > > led_cdev->brightness);
-> > > +    if (ret)
-> > > +        return ret;
-> > > +
-> > > +    ret = __led_handle_regulator(led_cdev, led_cdev->brightness);
-> > 
-> > Can't you just return here?
-> 
-> ok
-> 
-> 
-> thanks for the review
-> 
-> JJ
-> 
-> > 
-> > Dan
-> > 
-> > > +    if (ret)
-> > > +        return ret;
-> > > +
-> > > +    return 0;
-> > >   }
-> > >   EXPORT_SYMBOL_GPL(led_set_brightness_sync);
-> > >   diff --git a/include/linux/leds.h b/include/linux/leds.h
-> > > index 9b2bf574a17a..bee8e3f8dddd 100644
-> > > --- a/include/linux/leds.h
-> > > +++ b/include/linux/leds.h
-> > > @@ -123,6 +123,10 @@ struct led_classdev {
-> > >         /* Ensures consistent access to the LED Flash Class device */
-> > >       struct mutex        led_access;
-> > > +
-> > > +    /* regulator */
-> > > +    struct regulator    *regulator;
-> > > +    bool            regulator_state;
-> > >   };
-> > >     extern int of_led_classdev_register(struct device *parent,
+SGkgR2VlcnQsDQoNClRoYW5rIHlvdSBmb3IgeW91ciBmZWVkYmFjayENCg0KPiBGcm9tOiBHZWVy
+dCBVeXR0ZXJob2V2ZW4gPGdlZXJ0QGxpbnV4LW02OGsub3JnPg0KPiBTZW50OiAxMiBKdWx5IDIw
+MTkgMTQ6NDINCj4gU3ViamVjdDogUmU6IFtQQVRDSCAzLzNdIGFybTY0OiBkdHM6IHJlbmVzYXM6
+IGhpaG9wZS1jb21tb246IEFkZCBIRE1JIGF1ZGlvIHN1cHBvcnQNCj4gDQo+IEhpIEZhYnJpemlv
+LA0KPiANCj4gT24gRnJpLCBKdWwgNSwgMjAxOSBhdCAzOjQwIFBNIEZhYnJpemlvIENhc3Rybw0K
+PiA8ZmFicml6aW8uY2FzdHJvQGJwLnJlbmVzYXMuY29tPiB3cm90ZToNCj4gPiBUaGlzIHBhdGNo
+IGFkZHMgc3VwcG9ydCBmb3IgSERNSSBhdWRpbyB0byB0aGUgZGV2aWNlIHRyZWUNCj4gPiBjb21t
+b24gdG8gdGhlIEhpSG9wZSBSWi9HMk0gYW5kIHRoZSBIaUhvcGUgUlovRzJOLg0KPiA+DQo+ID4g
+U2lnbmVkLW9mZi1ieTogRmFicml6aW8gQ2FzdHJvIDxmYWJyaXppby5jYXN0cm9AYnAucmVuZXNh
+cy5jb20+DQo+IA0KPiBUaGFua3MgZm9yIHlvdXIgcGF0Y2ghDQo+IA0KPiA+IC0tLSBhL2FyY2gv
+YXJtNjQvYm9vdC9kdHMvcmVuZXNhcy9oaWhvcGUtY29tbW9uLmR0c2kNCj4gPiArKysgYi9hcmNo
+L2FybTY0L2Jvb3QvZHRzL3JlbmVzYXMvaGlob3BlLWNvbW1vbi5kdHNpDQo+IA0KPiA+IEBAIC0x
+NjgsNiArMTgwLDcgQEANCj4gPg0KPiA+ICAmaGRtaTAgew0KPiA+ICAgICAgICAgc3RhdHVzID0g
+Im9rYXkiOw0KPiA+ICsgICAgICAgI3NvdW5kLWRhaS1jZWxscyA9IDwwPjsNCj4gDQo+IFdoeSB0
+aGUgYWJvdmUgbGluZT8NCg0KSXQgZG9lc24ndCBiZWxvbmcgdGhlcmUsIGdvb2QgY2F0Y2gsIEkn
+bGwgc2VuZCBhIHYyIHNob3J0bHkgd2l0aG91dCBpdC4NCg0KVGhhbmtzLA0KRmFiDQoNCj4gDQo+
+IFdpdGggdGhlIGFib3ZlIHF1ZXN0aW9uIGFuc3dlcmVkOg0KPiANCj4gUmV2aWV3ZWQtYnk6IEdl
+ZXJ0IFV5dHRlcmhvZXZlbiA8Z2VlcnQrcmVuZXNhc0BnbGlkZXIuYmU+DQo+IA0KPiBHcntvZXRq
+ZSxlZXRpbmd9cywNCj4gDQo+ICAgICAgICAgICAgICAgICAgICAgICAgIEdlZXJ0DQo+IA0KPiAt
+LQ0KPiBHZWVydCBVeXR0ZXJob2V2ZW4gLS0gVGhlcmUncyBsb3RzIG9mIExpbnV4IGJleW9uZCBp
+YTMyIC0tIGdlZXJ0QGxpbnV4LW02OGsub3JnDQo+IA0KPiBJbiBwZXJzb25hbCBjb252ZXJzYXRp
+b25zIHdpdGggdGVjaG5pY2FsIHBlb3BsZSwgSSBjYWxsIG15c2VsZiBhIGhhY2tlci4gQnV0DQo+
+IHdoZW4gSSdtIHRhbGtpbmcgdG8gam91cm5hbGlzdHMgSSBqdXN0IHNheSAicHJvZ3JhbW1lciIg
+b3Igc29tZXRoaW5nIGxpa2UgdGhhdC4NCj4gICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAtLSBMaW51cyBUb3J2YWxkcw0K
