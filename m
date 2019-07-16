@@ -2,115 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7280B6A69F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 12:34:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C5C6C6A6B7
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 12:44:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732743AbfGPKek (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 06:34:40 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:33051 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728235AbfGPKej (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 06:34:39 -0400
-Received: by mail-pg1-f195.google.com with SMTP id f20so5pgj.0
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 03:34:39 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=QxxqH1klgQB/FyA39Y7OEvDvoonTizxWFfioa8D1t40=;
-        b=xf2P5LIO9hWNbapEX+fdvUfYtiVCakX+hLWMydt2yN3Vw7xSuw4LTrhAOlE9eHGkXV
-         ZXri5YpyaLoSXmY3UhvAza2hQiH7V5aDWUQJKmWcA3fL9aIk8wGtUJWMjmj1He+Qg6ge
-         Zs5cM3BcdYG/rKHm6etKXh3v7rMY5IVnEKdAmdggYSVhm7n52YYFfuzU/PLKuyvfq/GN
-         LVL0VYRUrdcsrZYUUn/E58oa3rUTCBl/BofHy4fSy/2EEXbk74k0yPXKUHP281Ya0kzR
-         +7SDzP1LeZzrJ/b4YlJfzNH02EC6UxB27fLNrLdUoLkwksGoT8hJSJByjJ9vuDxqP19B
-         YeaA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=QxxqH1klgQB/FyA39Y7OEvDvoonTizxWFfioa8D1t40=;
-        b=jw58fEEO3b9rAkya1FXSX8hlelpq9n338h6lO2yG2Dly2idLsbcjrhYI1t5RwUiaVg
-         M01jnhHdd4AYaNBOjoC2AKoxyJaCTcsvUNPAU7BygB+2fd+ByAeU8rWpyOvaaLwbxjTV
-         kWWhtB8RTg66srgFp8qTFK1ZAdWjVhs+XdK66FIr4RrwxGb2gTgcyl1oGEiriiVjVV79
-         ohZTqAas5jF2ofdYjbfT1UeSv5FirgWj6x5F7ComX5r29uC8rg6TibQQdfG6aRULfW1/
-         fbx1KTIqy3mZ2rbo0E4Vi+S7sdTu/D8JtkyxvkS07GM5DF3O7TxVHR8iszlU+Pbp1te2
-         J1Tw==
-X-Gm-Message-State: APjAAAXVe3r3Lg4APcWnXDZGne6wdSkhendw9eUjxQ9boxHC8fFDZewT
-        MC88BGKz6yT87vA/6xz7IFI2mA==
-X-Google-Smtp-Source: APXvYqw3Z2+vS2tUbGWfRTc7j//TaXFA8aoy7O2ZbYIm/MymR8ofJtuyFD8Y0klG0kA/ujSeBRNV/w==
-X-Received: by 2002:a63:5045:: with SMTP id q5mr24596211pgl.380.1563273279071;
-        Tue, 16 Jul 2019 03:34:39 -0700 (PDT)
-Received: from localhost ([122.172.28.117])
-        by smtp.gmail.com with ESMTPSA id d14sm27437543pfo.154.2019.07.16.03.34.37
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 16 Jul 2019 03:34:38 -0700 (PDT)
-Date:   Tue, 16 Jul 2019 16:04:36 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Niklas Cassel <niklas.cassel@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        jorge.ramirez-ortiz@linaro.org, sboyd@kernel.org,
-        vireshk@kernel.org, bjorn.andersson@linaro.org,
-        ulf.hansson@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/13] arm64: dts: qcom: qcs404: Add CPR and populate OPP
- table
-Message-ID: <20190716103436.az5rdk6f3yoa3apz@vireshk-i7>
-References: <20190705095726.21433-1-niklas.cassel@linaro.org>
- <20190705095726.21433-12-niklas.cassel@linaro.org>
- <20190710090303.tb5ue3wq6r7ofyev@vireshk-i7>
- <20190715132405.GA5040@centauri>
+        id S1733132AbfGPKow (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 06:44:52 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:58864 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732524AbfGPKow (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 06:44:52 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6GAiism017500;
+        Tue, 16 Jul 2019 05:44:44 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1563273884;
+        bh=xAUeoAyBbOBCb3mEnXWmyizdBhqwUzcNWgmgEUmhoeI=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=FKSFGu7JJ2KD4x1wu8mJ0wJw9dC9x0iMgIeiYpYtbNMsj4UDPDXXResfNsD/50bSd
+         nzJNjkoJISnwf9eOUM11U65sTxYBDzN7H4KkuzIuwdO+rl6J67697A8gjteVBCPzT5
+         678muO2ndffPko7HCBQsYZ0dSmj2QLx8vtcP2MMM=
+Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6GAiiju091125
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 16 Jul 2019 05:44:44 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE108.ent.ti.com
+ (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 16
+ Jul 2019 05:44:44 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 16 Jul 2019 05:44:43 -0500
+Received: from [10.250.98.116] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6GAie9C058777;
+        Tue, 16 Jul 2019 05:44:41 -0500
+Subject: Re: [RESEND PATCH next v2 0/6] ARM: keystone: update dt and enable
+ cpts support
+To:     <santosh.shilimkar@oracle.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>
+CC:     Sekhar Nori <nsekhar@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <20190705151247.30422-1-grygorii.strashko@ti.com>
+ <2ef8b34e-7a6e-b3e4-90e0-c4e7f16c2e99@oracle.com>
+From:   grygorii <grygorii.strashko@ti.com>
+Message-ID: <a2dae3a5-7e25-1de0-e722-8860b58cb3a2@ti.com>
+Date:   Tue, 16 Jul 2019 16:14:39 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190715132405.GA5040@centauri>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <2ef8b34e-7a6e-b3e4-90e0-c4e7f16c2e99@oracle.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15-07-19, 15:24, Niklas Cassel wrote:
-> This was actually my initial thought when talking to you 6+ months ago.
-> However, the problem was that, from the CPR drivers' perspective, it
-> only sees the CPR OPP table.
-> 
-> 
-> So this is the order things are called,
-> from qcom-cpufreq-nvmem.c perspective:
-> 
-> 1) dev_pm_opp_set_supported_hw()
-> 
-> 2) dev_pm_opp_attach_genpd() ->
-> which results in
-> int cpr_pd_attach_dev(struct generic_pm_domain *domain,
-> 		      struct device *dev)
-> being called.
-> This callback is inside the CPR driver, and here we have the
-> CPU's (genpd virtual) struct device, and this is where we would like to
-> know the opp-hz.
-> The problem here is that:
-> [    3.114979] cpr_pd_attach_dev: dev_pm_opp_get_opp_count for dev: genpd:0:cpu0: -19
-> [    3.119610] cpr_pd_attach_dev: dev_pm_opp_get_opp_count for dev: cpu0: 0
-> [    3.126489] cpr_pd_attach_dev: dev_pm_opp_get_opp_count for dev: cpr@b018000: 3
-> 
-> While we have the CPR OPP table in the attach callback, we don't
-> have the CPU OPP table, neither in the CPU struct device or the genpd virtual
-> struct device.
 
-If you can find CPU's physical number from the virtual device, then
-you can do get_cpu_device(X) and then life will be easy ?
 
-> Since we have called dev_pm_opp_attach_genpd(.., .., &virt_devs) which
-> attaches an OPP table to the CPU, I would have expected one of them to
-> be >= 0.
-> Especially since dev_name(virt_devs[0]) == genpd:0:cpu0
-> 
-> I guess it should still be possible to parse the required-opps manually here,
-> by iterating the OF nodes, however, we won't be able to use the CPU's struct
-> opp_table (which is the nice representation of the OF nodes).
-> 
-> Any suggestions?
+On 06/07/2019 05:18, santosh.shilimkar@oracle.com wrote:
+> On 7/5/19 8:12 AM, Grygorii Strashko wrote:
+>> Hi Santosh,
+>>
+>> This series is set of platform changes required to enable NETCP CPTS reference
+>> clock selection and final patch to enable CPTS for Keystone 66AK2E/L/HK SoCs.
+>>
+>> Those patches were posted already [1] together with driver's changes, so this
+>> is re-send of DT/platform specific changes only, as driver's changes have
+>> been merged already.
+>>
+>> Patches 1-5: CPTS DT nodes update for TI Keystone 2 66AK2HK/E/L SoCs.
+>> Patch 6: enables CPTS for TI Keystone 2 66AK2HK/E/L SoCs.
+>>
+>> [1] https://patchwork.kernel.org/cover/10980037/
+>>
+>> Grygorii Strashko (6):
+>>    ARM: dts: keystone-clocks: add input fixed clocks
+>>    ARM: dts: k2e-clocks: add input ext. fixed clocks tsipclka/b
+>>    ARM: dts: k2e-netcp: add cpts refclk_mux node
+>>    ARM: dts: k2hk-netcp: add cpts refclk_mux node
+>>    ARM: dts: k2l-netcp: add cpts refclk_mux node
+>>    ARM: configs: keystone: enable cpts
+>>
+> Will add these for 5.4 queue. Thanks !!
+
+Thank you
 
 -- 
-viresh
+Best regards,
+grygorii
