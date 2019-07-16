@@ -2,86 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14D6069F6C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 01:17:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E55C69FDE
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 02:30:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731909AbfGOXRG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 19:17:06 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:43810 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731058AbfGOXRG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 19:17:06 -0400
-Received: by mail-qt1-f193.google.com with SMTP id w17so17510614qto.10;
-        Mon, 15 Jul 2019 16:17:05 -0700 (PDT)
+        id S1731009AbfGPA3N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 20:29:13 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:43775 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730355AbfGPA3M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 20:29:12 -0400
+Received: by mail-ot1-f68.google.com with SMTP id h59so15205831otb.10;
+        Mon, 15 Jul 2019 17:29:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=jms.id.au; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=pTNuKPARTwySyUt6RIFwHeD+C8HBpvsST+SWVc23gcE=;
-        b=NciHeA2We081hI3Qkgy7AsZ4nH44Dn6IxDoqldO6ifze6wPVXdFKbE8AM5STJCFvLJ
-         zAzk1MW5K+j1l8Hw0gXSwU/9hPTUGMVRTKzA8V0temLm9qvAZdpESJ2GASDYsk/AcpMS
-         ueOHQEI6JDttZMhdVRPWTHypHdvviexml1ykc=
+        bh=5BYdUBysZ67vKMguvZgCh6yaor9Vs/Z93uWHz9zlur8=;
+        b=qrzqnSsAKZNB/gem9bh/PkqLvVoR1oPCSliwxzsHir00TcpgIFy8AqTQIBspieq+bY
+         oSinjoTFA9vRBFsRFOrXQbG3M9Xw0dvRlMoiIcewyU5D+7zxapkXZioy952S9ieXo8J3
+         dLEGfocIuYgtUOQ8Y89CqwaILV2mKIj47y1DGwoa84qicsAyMD2nX3HzDKqHZEZM0VoU
+         CYPCCAMkyM6+67xwDgCSc9rCBA++QDEQVW34C6PFmHyd7sqerODgwUXcAE3ynqQUQXOI
+         a3XMHvh26a4Lw21UNpCplFEdq1j6AKNJddJrQ0gLoN9URjYCbKhN8JyfnM1q7XosTYyS
+         GsSg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=pTNuKPARTwySyUt6RIFwHeD+C8HBpvsST+SWVc23gcE=;
-        b=NzQTGoFAHdVP2rTxjIVmrFj0LYhavgfuNuoX/R1oxdJe411D4ozjJeaPmZO6JhK4Km
-         MpuqbMBQLCfxFiEgD13TFMfWUUY1uWQmVGZeq/4V8IbPGGScvx6yjyD+hI2OZx7wIjHC
-         jZxY3sh3INIH3ZqbBK08dE88m/BNCJE5PACC1Ks/Mb50O0hKUfgbig6q5RxaE+8Y2Qfa
-         pKaSA6knPXXviuckamYb64NqbpAjZ7lofqpGmVSfoRY2ix1vnSR3kALnmvaZ+r8RzJYg
-         MVkaMK8CUCsRG0vhvhngjaXmpyWt4aGjuGuWOJTJkkzPqPeBq6DmUDkNs57OnNgrV6E5
-         wZ/g==
-X-Gm-Message-State: APjAAAVZ+mP42j6m6FZWOZ4tYPipbT3U0L9E2Trs3uJ2OkPTB72MK4m2
-        jCRelI6xUvCJBlswHQYW0nqGy3AkNy/d+FHs3zQ=
-X-Google-Smtp-Source: APXvYqxJc0v4ISkcLVlzLQuZxh/PhnbAl/t86nXT4ZSfAmxjOFMBAbcwYkAY/GLZVXs2nz+WYpc9JkkiXxXZDyNlGzw=
-X-Received: by 2002:ac8:2d69:: with SMTP id o38mr20058126qta.169.1563232625324;
- Mon, 15 Jul 2019 16:17:05 -0700 (PDT)
+        bh=5BYdUBysZ67vKMguvZgCh6yaor9Vs/Z93uWHz9zlur8=;
+        b=RFmTn/dASYH9Mrd6ofqO+W95hjGxm+4BcrqtQtQOFxI5Af+pvOiQAG+W774f7ePX8r
+         mqCAX/n98UlID1tI0YTiL+BFVkaEWq3R+GmcvdCXkzSwIURBEJBSXWJgbN4KgyKirgEW
+         89W2xjAeBaVGp/XhgTgeNQs1p0ZMHLGNfkRsku7fiJb0jsgji2LPoeIHljILxys4MO9K
+         FlZukemjWZcWTrdavoSjp/F9Y64xTU/MnkFJm/Dvc99oj4bLJsT27KY3xPMt+dHglLT4
+         vzsSZJ7Q/mhDa0qKsyM9U/6XSfgO26wR+GJ0V0EenGF8xXdeMAIckz//kLHdxqIPghby
+         sL6Q==
+X-Gm-Message-State: APjAAAXzpwMdbGSpsw5LolCPI0LFIc36FV/q9WLVemGojtJ+s9B1FlMV
+        h9/BFxWe0wIQQImkph9x+I9Kw50OlPw1Chh7sq4=
+X-Google-Smtp-Source: APXvYqyEwg0cMSPwazZQij8oSS8ufGofjpqsKvgU98cS9UwddqUTmsuhAclAe7DHgcfs5tJkXQ2qzoJLnu9bi6JTBlk=
+X-Received: by 2002:a9d:4b02:: with SMTP id q2mr2561759otf.312.1563236951460;
+ Mon, 15 Jul 2019 17:29:11 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190715223725.12924-1-robh@kernel.org>
-In-Reply-To: <20190715223725.12924-1-robh@kernel.org>
-From:   Joel Stanley <joel@jms.id.au>
-Date:   Mon, 15 Jul 2019 23:16:54 +0000
-Message-ID: <CACPK8Xdz98CQzgE2KCjz8eOhPtx=H8jTe1hVT7LvP77U_gGASQ@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: aspeed: Fix 'compatible' schema errors
-To:     Rob Herring <robh@kernel.org>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-aspeed@lists.ozlabs.org, linux-gpio@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+References: <20190607094030.GA12373@lst.de> <66707fcc-b48e-02d3-5ed7-6b7e77d53266@samsung.com>
+ <20190612152022.c3cfhp4cauhzhfyr@flea> <bb2c2c00-b46e-1984-088f-861ac8952331@samsung.com>
+ <20190701095842.fvganvycce2cy7jn@flea> <CA+E=qVdsYV2Bxk245=Myq=otd7-7WHzUnSJN8_1dciAzvSOG8g@mail.gmail.com>
+ <20190709085532.cdqv7whuesrjs64c@flea> <CA+E=qVdz4vfU3rtTTKjYdM+4UA+=FWheJfWOMaDtFMnWQ1rHbw@mail.gmail.com>
+ <20190710114042.ybgavnxb4hgqrtor@flea> <CA+E=qVdFoT137pADfxz3uMwhOqjqrA9+6hBeOfbJxuH-M-3Pjw@mail.gmail.com>
+ <20190712201543.krhsfjepd3cqndla@flea>
+In-Reply-To: <20190712201543.krhsfjepd3cqndla@flea>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Mon, 15 Jul 2019 17:28:53 -0700
+Message-ID: <CA+E=qVeDpLqAM6Qsd6oHfeYHB_JHdSb5GtY7i994GT5_RW4_Bg@mail.gmail.com>
+Subject: Re: [PATCH v2 7/7] arm64: dts: allwinner: a64: enable ANX6345 bridge
+ on Teres-I
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Andrzej Hajda <a.hajda@samsung.com>, Torsten Duwe <duwe@lst.de>,
+        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Jul 2019 at 22:37, Rob Herring <robh@kernel.org> wrote:
+On Fri, Jul 12, 2019 at 1:15 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 >
-> The Aspeed pinctl schema have errors in the 'compatible' schema:
+> On Wed, Jul 10, 2019 at 03:11:04PM -0700, Vasily Khoruzhick wrote:
+> > On Wed, Jul 10, 2019 at 4:40 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > > > > There's another issue: if we introduce edp-connector we'll have to
+> > > > > > specify power up delays somewhere (in dts? or in platform driver?), so
+> > > > > > edp-connector doesn't really solve the issue of multiple panels with
+> > > > > > same motherboard.
+> > > > >
+> > > > > And that's what that compatible is about :)
+> > > >
+> > > > Sorry, I fail to see how it would be different from using existing
+> > > > panels infrastructure and different panels compatibles. I think Rob's
+> > > > idea was to introduce generic edp-connector.
+> > >
+> > > Again, there's no such thing as a generic edp-connector. The spec
+> > > doesn't define anything related to the power sequence for example.
+> > >
+> > > > If we can't make it generic then let's use panel infrastructure.
+> > >
+> > > Which uses a device specific compatible. Really, I'm not sure what
+> > > your objection and / or argument is here.
+> > >
+> > > In addition, when that was brought up in the discussion, you rejected
+> > > it because it was inconvenient:
+> > > https://patchwork.freedesktop.org/patch/283012/?series=56163&rev=1#comment_535206
+> >
+> > It is inconvenient, but I don't understand how having board-specific
+> > connectors fixes it.
 >
-> Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml: \
-> properties:compatible:enum: ['aspeed', 'ast2400-pinctrl', 'aspeed', 'g4-pinctrl'] has non-unique elements
-> Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml: \
-> properties:compatible:enum: ['aspeed', 'ast2500-pinctrl', 'aspeed', 'g5-pinctrl'] has non-unique elements
+> How it would not fix it?
+
+I think I got your idea, but yet I think it's not the best solution.
+
+Do I understand correctly that you're proposing to introduce
+board-specific edp-connector driver that will be aware of worst case
+power up delays and will control backlight and power?
+
+Then why not to add another board-specific panel (e.g.
+"pine64,pinebook-panel") to simple-panel.c that does the same?
+
+> You'll have one connector, without the need to describe each and every
+> panel in the device tree and rely on the EDID instead, and you'll have
+> the option to power up the regulator you need.
 >
-> Flow style sequences have to be quoted if the vales contain ','. Fix
-> this by using the more common one line per entry formatting.
+> I really don't understand what's the issue here, so let's take a step
+> back. What are is the issue , what are your requirements, and how
+> would you like that to be described ?
 
+We have a device (Pinebook) that uses the same board with multiple edp
+panels. So far there're pinebooks with 3 different panels: 11" with
+768p panel, 11" with 1080p panel, 14" with 768p panel.
+
+Currently there's no way to describe all pinebooks with a single dts.
+There's a simple workaround though -- we can just specify a panel with
+worst power up delays in dts and it'll work since anx6345 driver
+ignores panel modes anyway and uses EDID.
+
+Originally I proposed to extend simple-panel driver to support generic
+edp-panel but it was rejected. I still believe that it's the best
+solution assuming we can specify delays in dts, since panels list is
+specific to particular device and it probably can't be reused, i.e.
+there's no good reason to move it into C code.
+
+Rob Herring proposed to introduce edp-connector. While I still believe
+that it's not accurate description of hardware since it'll have to
+have backlight node (backlight is actually panel property) I was OK
+with this approach assuming we can store delays in dts.
+
+Later it evolved into board-specific edp-connector.
+
+So far I don't understand why everyone is trying to avoid introducing
+edp-panel driver that can read delays from dts. Basically, I don't
+understand what's the magic behind simple-panel.c and why new panels
+should be added there rather than described in dts. [1] Doesn't
+explain that.
+
+[1] http://sietch-tagr.blogspot.com/2016/04/display-panels-are-not-special.html
+
+Regards,
+Vasily
+
+
+> Maxime
 >
->  properties:
->    compatible:
-> -    enum: [ aspeed,ast2400-pinctrl, aspeed,g4-pinctrl ]
-> +    enum:
-> +      - aspeed,ast2400-pinctrl
-> +      - aspeed,g4-pinctrl
-
-Thanks for the fix. However, we've standardised on the first form for
-all of our device trees, so we can drop the second compatible string
-from the bindings.
-
-I think Andrew already has a patch cooking to do this.
-
-Cheers,
-
-Joel
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
