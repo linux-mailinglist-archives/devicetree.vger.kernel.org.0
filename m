@@ -2,218 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52F8C6B288
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 01:54:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07D746B29B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 02:00:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728762AbfGPXyg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 19:54:36 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:38051 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728746AbfGPXyg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 19:54:36 -0400
-Received: by mail-oi1-f196.google.com with SMTP id v186so17043306oie.5
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 16:54:35 -0700 (PDT)
+        id S1728597AbfGPX7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 19:59:37 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:44631 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728235AbfGPX7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 19:59:37 -0400
+Received: by mail-qt1-f196.google.com with SMTP id 44so21445482qtg.11
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 16:59:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
+        d=chromium.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=L63UCSLKJ4OMT5NqgGQ8B7uM36pMA1wEj62intmncP0=;
-        b=shjR7DVNL9/TqVYpbphhQN3r77abb9oKtSvfh0HHoJ/pKSm/z7zVTZm0k9OfHSrl6j
-         dFxQ/xsD6Kwl02n6C0ddFcBEM7+i7cPQO7Lwzm6nLOE6i/GLwFvijfmehGqUEFjHvEvh
-         KQn8BHmxp5/w+PGKVwlON87XjUAafOgoyxi2DNsW9srz0tCjRUmNzSnscT8G9YISn0Nx
-         cpYQyFrA/T5AH5jPpm7j88I0mx6woFml5xFbD9VcxfmySpiEejRcblfYSdSliWNSxrfQ
-         TL/4Hmrp7Jdw/DEDsTRce5iqOOWn343nT/0xzEn0Lb+SCH1tI0H3JR0vSCAmQ0BLJ7yL
-         QOtw==
+        bh=zfE+1oH2ev9A7CB6B7OCM0HfuvGIKPETwgwy1wYPeZk=;
+        b=myAjYl3qrrjUdybw3rfkkqgxLpxX2EWxa6gWin7tovqVhvuC1kAEj0YUMz0a+INMKn
+         k34dHtcAcHsWoDetwCiVgDi03O2ZbX6tn7T6FBnKsTPf2BLewHVVFqVnoOY7p/UiUCEe
+         +2TMI/XehWPm3bOXRcM82WCBDwbCShBjLtw7Y=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=L63UCSLKJ4OMT5NqgGQ8B7uM36pMA1wEj62intmncP0=;
-        b=PUZJF9un26x2vPXZFw+r8Tj4B1POy2Nm6tcsgtGtz1CIRAaiw3hyg1p2KBy/UON3QC
-         PyyJZubBEcPYbLlx7BIRycQMgHX74GUNnznqxFEvKiuQGTKHy7C0bZ+TOC9ZQfK8XjnW
-         XLeB9bEl9IyLi84/P174e0CmsfLTl3nvfihUbZVnlnhegfFxVPb508r1HkQ1XoQu15RY
-         tVnPNA8Ym3bz9f4JKTc+ALdwXWwu9G6vz/VFRwHlriTtAklZeiz9fVVbK+ApT0aI6omP
-         ahgwRy4WIDj23lg5sDZ5IMWxZJxC5owLj0Dnm8Kd+F1DfVUQM3hCWVz70mtg1Odc2xE4
-         w76Q==
-X-Gm-Message-State: APjAAAU0bDPIPjxrdAxwQ5z+pH3J/Uu3umjd3Z5ZKWJ/Ny5dlCg8uqbC
-        o3gxCAhlwKVawYW+cpqPcx/0KoPfgsGUfMopseSv6g==
-X-Google-Smtp-Source: APXvYqyVadR4/niowxrLmenSGn1UzqhGhoAgJTC/7kpKDcwlbQspwuNL2la4zhD9hoopEjvAfsnd5+3pO1VQt6iVbTQ=
-X-Received: by 2002:aca:6104:: with SMTP id v4mr18318119oib.172.1563321274778;
- Tue, 16 Jul 2019 16:54:34 -0700 (PDT)
+        bh=zfE+1oH2ev9A7CB6B7OCM0HfuvGIKPETwgwy1wYPeZk=;
+        b=ah2nKOV6zJFVaAED1Glq25xmcRZBxxdpb7CJxW2UUXR+5lxwtyYQ6DFKd8174G2MXz
+         N6iSBKA2cFYwufa7iQC33s2N2PsuQrQiDCjk6ukk7NZ76E8jUE3ZrNQATx01R5yk9eKb
+         ggH3mLw3znO6nJMO5mC0+omXFjplB0Tf0Rt0gOqoqn85IGOPhmRHObwm14vp+vr+IGyO
+         P9G+FaO/LVFcK+QBTTq3tiw3WkD4bZnBCn8qZ5RxNga0qrWac7AkX3GeiGv0zEBiUpB8
+         5csTRZZq3kgYyx9A7eVBei4oW3aC/+lOhDf1JR0SJd1YtYs8FMrNO6lvw5shcj/IuGwF
+         4VxQ==
+X-Gm-Message-State: APjAAAWZtm8M4Q8Bqp7dfcumwYSQTUAF89wzjsgiP2ugMONEFGwNTu82
+        4AsJdoqP7O7q62tUtIsenyVCZCq/EXzMnGzNSoJpZg==
+X-Google-Smtp-Source: APXvYqyCn5WDabT9u/P+OGBvnjMb2lK0frfpzoQz2UZeeBoGFN9gytFn4nfFqeUwNxxQx3qvg3WhGoAnUFfps5oKIQ4=
+X-Received: by 2002:aed:3b1c:: with SMTP id p28mr24024945qte.312.1563321575377;
+ Tue, 16 Jul 2019 16:59:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190712235245.202558-1-saravanak@google.com> <20190712235245.202558-3-saravanak@google.com>
- <CAL_JsqJEmC5cttFavGH4iMh=3z2K4r4kjG44AFJCpxQZ9hPwQA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJEmC5cttFavGH4iMh=3z2K4r4kjG44AFJCpxQZ9hPwQA@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 16 Jul 2019 16:53:58 -0700
-Message-ID: <CAGETcx-5ykD=9X1Lo2-G+T5uokFncbY2FmiJM8eZrgQ9JaBgxw@mail.gmail.com>
-Subject: Re: [PATCH v5 02/11] of/platform: Add functional dependency link from
- DT bindings
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>
+References: <1562625253-29254-1-git-send-email-yongqiang.niu@mediatek.com> <1562625253-29254-7-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <1562625253-29254-7-git-send-email-yongqiang.niu@mediatek.com>
+From:   Ryan Case <ryandcase@chromium.org>
+Date:   Tue, 16 Jul 2019 16:59:23 -0700
+Message-ID: <CACjz--k0wVpxWTBXQeUHqm50RgvaCNkNb3DO+KviCOtq-e9gTQ@mail.gmail.com>
+Subject: Re: [PATCH v4, 06/33] dt-bindings: mediatek: add mutex description
+ for mt8183 display
+To:     yongqiang.niu@mediatek.com
+Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 16, 2019 at 4:43 PM Rob Herring <robh+dt@kernel.org> wrote:
+On Mon, Jul 8, 2019 at 3:37 PM <yongqiang.niu@mediatek.com> wrote:
 >
-> On Fri, Jul 12, 2019 at 5:52 PM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > Add device-links after the devices are created (but before they are
-> > probed) by looking at common DT bindings like clocks and
-> > interconnects.
-> >
-> > Automatically adding device-links for functional dependencies at the
-> > framework level provides the following benefits:
-> >
-> > - Optimizes device probe order and avoids the useless work of
-> >   attempting probes of devices that will not probe successfully
-> >   (because their suppliers aren't present or haven't probed yet).
-> >
-> >   For example, in a commonly available mobile SoC, registering just
-> >   one consumer device's driver at an initcall level earlier than the
-> >   supplier device's driver causes 11 failed probe attempts before the
-> >   consumer device probes successfully. This was with a kernel with all
-> >   the drivers statically compiled in. This problem gets a lot worse if
-> >   all the drivers are loaded as modules without direct symbol
-> >   dependencies.
-> >
-> > - Supplier devices like clock providers, interconnect providers, etc
-> >   need to keep the resources they provide active and at a particular
-> >   state(s) during boot up even if their current set of consumers don't
-> >   request the resource to be active. This is because the rest of the
-> >   consumers might not have probed yet and turning off the resource
-> >   before all the consumers have probed could lead to a hang or
-> >   undesired user experience.
-> >
-> >   Some frameworks (Eg: regulator) handle this today by turning off
-> >   "unused" resources at late_initcall_sync and hoping all the devices
-> >   have probed by then. This is not a valid assumption for systems with
-> >   loadable modules. Other frameworks (Eg: clock) just don't handle
-> >   this due to the lack of a clear signal for when they can turn off
-> >   resources. This leads to downstream hacks to handle cases like this
-> >   that can easily be solved in the upstream kernel.
-> >
-> >   By linking devices before they are probed, we give suppliers a clear
-> >   count of the number of dependent consumers. Once all of the
-> >   consumers are active, the suppliers can turn off the unused
-> >   resources without making assumptions about the number of consumers.
-> >
-> > By default we just add device-links to track "driver presence" (probe
-> > succeeded) of the supplier device. If any other functionality provided
-> > by device-links are needed, it is left to the consumer/supplier
-> > devices to change the link when they probe.
-> >
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > ---
-> >  .../admin-guide/kernel-parameters.txt         |  5 ++
-> >  drivers/of/platform.c                         | 57 +++++++++++++++++++
-> >  2 files changed, 62 insertions(+)
-> >
-> > diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-> > index 138f6664b2e2..109b4310844f 100644
-> > --- a/Documentation/admin-guide/kernel-parameters.txt
-> > +++ b/Documentation/admin-guide/kernel-parameters.txt
-> > @@ -3141,6 +3141,11 @@
-> >                         This can be set from sysctl after boot.
-> >                         See Documentation/sysctl/vm.txt for details.
-> >
-> > +       of_devlink      [KNL] Make device links from common DT bindings. Useful
-> > +                       for optimizing probe order and making sure resources
-> > +                       aren't turned off before the consumer devices have
-> > +                       probed.
-> > +
-> >         ohci1394_dma=early      [HW] enable debugging via the ohci1394 driver.
-> >                         See Documentation/debugging-via-ohci1394.txt for more
-> >                         info.
-> > diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> > index 04ad312fd85b..0930f9f89571 100644
-> > --- a/drivers/of/platform.c
-> > +++ b/drivers/of/platform.c
-> > @@ -509,6 +509,62 @@ int of_platform_default_populate(struct device_node *root,
-> >  }
-> >  EXPORT_SYMBOL_GPL(of_platform_default_populate);
-> >
-> > +static int of_link_binding(struct device *dev,
-> > +                          const char *binding, const char *cell)
-> > +{
-> > +       struct of_phandle_args sup_args;
-> > +       struct platform_device *sup_dev;
-> > +       unsigned int i = 0, links = 0;
-> > +       u32 dl_flags = DL_FLAG_AUTOPROBE_CONSUMER;
-> > +
-> > +       while (!of_parse_phandle_with_args(dev->of_node, binding, cell, i,
-> > +                                          &sup_args)) {
-> > +               i++;
-> > +               sup_dev = of_find_device_by_node(sup_args.np);
-> > +               of_node_put(sup_args.np);
-> > +               if (!sup_dev)
-> > +                       continue;
-> > +               if (device_link_add(dev, &sup_dev->dev, dl_flags))
-> > +                       links++;
-> > +               put_device(&sup_dev->dev);
-> > +       }
-> > +       if (links < i)
-> > +               return -ENODEV;
-> > +       return 0;
-> > +}
-> > +
-> > +static bool of_devlink;
-> > +core_param(of_devlink, of_devlink, bool, 0);
-> > +
-> > +/*
-> > + * List of bindings and their cell names (use NULL if no cell names) from which
-> > + * device links need to be created.
-> > + */
-> > +static const char * const link_bindings[] = {
-> > +       "clocks", "#clock-cells",
-> > +       "interconnects", "#interconnect-cells",
-> > +};
-> > +
-> > +static int of_link_to_suppliers(struct device *dev)
-> > +{
-> > +       unsigned int i = 0;
-> > +       bool done = true;
-> > +
-> > +       if (!of_devlink)
-> > +               return 0;
-> > +       if (unlikely(!dev->of_node))
-> > +               return 0;
-> > +
-> > +       for (i = 0; i < ARRAY_SIZE(link_bindings) / 2; i++)
-> > +               if (of_link_binding(dev, link_bindings[i * 2],
-> > +                                       link_bindings[i * 2 + 1]))
-> > +                       done = false;
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 >
-> Given the pending addition of regulators I think this should be
-> structured a bit differently so that we abstract out the matching and
-> phandle look-up so there's a clean separation of binding specifics.
-> It's kind of messy with 2 patterns to parse already and if we added a
-> 3rd? I would iterate over the properties as you do for regulators in
-> both cases and for each property call a binding specific match
-> function. The common pattern can of course be a common function. Let
-> me know if that makes sense. If not I can try to flesh it out some
-> more.
+> This patch add mutex description for mt8183 display
+>
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 1 +
+>  1 file changed, 1 insertion(+)
+>
+> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
+> index bb9274a..4a22d49 100644
+> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
+> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
+> @@ -53,6 +53,7 @@ Required properties (all function blocks):
+>    For most function blocks this is just a single clock input. Only the DSI and
+>    DPI controller nodes have multiple clock inputs. These are documented in
+>    mediatek,dsi.txt and mediatek,dpi.txt, respectively.
+> +  for MT8183 mutex, this hardware is always free run, has no clocks control
 
-I've added regulator support in this series and I've refactored this
-code as I went along. I fully expect to squash some of the refactors
-once the final result of the series is acceptable.
+This should have capitalization, punctuation, and drop the trailing space.
 
-It's not clear to me if you got to the end of the series and still
-think the final result needs to be refactored. Let me know what you
-think about this towards the end of the series and I can clean it up
-if you still think it needs some clean up.
+It also reads a little strangely. You may want something like "An
+exception is that the mt8183 mutex is always free running with no
+clocks property."
 
--Saravana
+>
+>  Required properties (DMA function blocks):
+>  - compatible: Should be one of
+> --
+> 1.8.1.1.dirty
+>
