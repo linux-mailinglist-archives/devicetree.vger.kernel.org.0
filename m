@@ -2,161 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD2AF6ABC4
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 17:30:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1E1C16ABE3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 17:36:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728634AbfGPPaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 11:30:03 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33784 "EHLO mail.kernel.org"
+        id S2387942AbfGPPgp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 11:36:45 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:48828 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725926AbfGPPaD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Jul 2019 11:30:03 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 49E292054F;
-        Tue, 16 Jul 2019 15:30:02 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563291002;
-        bh=Q8O6F/yaThVCvHW/cVKsV5tCbDe9BryORGQ4CN6Um0g=;
-        h=In-Reply-To:References:From:To:Cc:Subject:Date:From;
-        b=hmrRtRBTdm4kxBE8EvPPH4y/b/PKD8OaIKtKYc/eioDNf3b02pnbucEOFC99AWMzc
-         pk0CyxfUyQZeYOCLsyuxQzfqzfUvbYo5Iph+PD8JRiCTu/ejPd29269kFVfk3dJjt8
-         RJKmoux8/+m7uHXASWdbqf+lDk0usxb/6cFDsSio=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAFd5g44_axVHNMBzxSURQB_-R+Rif7cZcg7PyZ_SS+5hcy5jZA@mail.gmail.com>
-References: <20190712081744.87097-1-brendanhiggins@google.com> <20190712081744.87097-5-brendanhiggins@google.com> <20190715221554.8417320665@mail.kernel.org> <CAFd5g47ikJmA0uGoavAFsh+hQvDmgsOi26tyii0612R=rt7iiw@mail.gmail.com> <CAFd5g44_axVHNMBzxSURQB_-R+Rif7cZcg7PyZ_SS+5hcy5jZA@mail.gmail.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     Brendan Higgins <brendanhiggins@google.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        Theodore Ts'o <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Subject: Re: [PATCH v9 04/18] kunit: test: add kunit_stream a std::stream like logger
-User-Agent: alot/0.8.1
-Date:   Tue, 16 Jul 2019 08:30:01 -0700
-Message-Id: <20190716153002.49E292054F@mail.kernel.org>
+        id S1725926AbfGPPgp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jul 2019 11:36:45 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B2D30200055;
+        Tue, 16 Jul 2019 17:36:42 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B237520008E;
+        Tue, 16 Jul 2019 17:36:36 +0200 (CEST)
+Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 814C54029F;
+        Tue, 16 Jul 2019 23:36:29 +0800 (SGT)
+From:   Dong Aisheng <aisheng.dong@nxp.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     dongas86@gmail.com, kernel@pengutronix.de, shawnguo@kernel.org,
+        fabio.estevam@nxp.com, robh+dt@kernel.org, catalin.marinas@arm.com,
+        will.deacon@arm.com, devicetree@vger.kernel.org, linux-imx@nxp.com,
+        Dong Aisheng <aisheng.dong@nxp.com>
+Subject: [PATCH v2 00/15] arm64: dts: imx8: architecture improvement and adding imx8qm support
+Date:   Tue, 16 Jul 2019 23:14:34 +0800
+Message-Id: <1563290089-11085-1-git-send-email-aisheng.dong@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Brendan Higgins (2019-07-16 01:37:34)
-> On Tue, Jul 16, 2019 at 12:57 AM Brendan Higgins
-> <brendanhiggins@google.com> wrote:
-> >
-> > On Mon, Jul 15, 2019 at 3:15 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> > >
-> > > Quoting Brendan Higgins (2019-07-12 01:17:30)
-> > > > diff --git a/include/kunit/kunit-stream.h b/include/kunit/kunit-str=
-eam.h
-> > > > new file mode 100644
-> > > > index 0000000000000..a7b53eabf6be4
-> > > > --- /dev/null
-> > > > +++ b/include/kunit/kunit-stream.h
-> > > > +/**
-> > > > + * struct kunit_stream - a std::stream style string builder.
-> > > > + *
-> > > > + * A std::stream style string builder. Allows messages to be built=
- up and
-> > > > + * printed all at once.
-> > > > + */
-> > > > +struct kunit_stream {
-> > > > +       /* private: internal use only. */
-> > > > +       struct kunit *test;
-> > > > +       const char *level;
-> > >
-> > > Is the level changed? See my comment below, but I wonder if this whole
-> > > struct can go away and the wrappers can just operate on 'struct
-> > > string_stream' instead.
-> >
-> > I was inclined to agree with you when I first read your comment, but
-> > then I thought about the case that someone wants to add in a debug
-> > message (of which I currently have none). I think under most
-> > circumstances a user of kunit_stream would likely want to pick a
-> > default verbosity that maybe I should provide, but may still want
-> > different verbosity levels.
-> >
-> > The main reason I want to keep the types separate, string_stream vs.
-> > kunit_stream, is that they are intended to be used differently.
-> > string_stream is just a generic string builder. If you are using that,
-> > you are expecting to see someone building the string at some point and
-> > then doing something interesting with it. kunit_stream really tells
-> > you specifically that KUnit is putting together a message to
-> > communicate something to a user of KUnit. It is really used in a very
-> > specific way, and I wouldn't want to generalize its usage beyond how
-> > it is currently used. I think in order to preserve the author's
-> > intention it adds clarity to keep the types separate regardless of how
-> > similar they might be in reality.
+IMX SCU based platforms (e.g. MX8QM/MX8QXP) are comprised of a number of SS
+(Subsystems), those SS may be shared between different SoCs while most of them
+can be reused like Devices Resources, Clocks, Power domains and etc.
 
-You may want to add some of these reasons to the commit text.
+This patch series aims to improve the MX8 architecture to comply with the HW
+design to save a lot of duplicated codes and benefits us a better
+maintainability and scalability in the future.
 
-> > > > +
-> > > > +       if (!string_stream_is_empty(stream->internal_stream)) {
-> > > > +               kunit_err(stream->test,
-> > > > +                         "End of test case reached with uncommitte=
-d stream entries\n");
-> > > > +               kunit_stream_commit(stream);
-> > > > +       }
-> > > > +}
-> > > > +
-> > >
-> > > Nitpick: Drop this extra newline.
-> >
-> > Oops, nice catch.
->=20
-> Not super important, but I don't want you to think that I am ignoring
-> you. I think you must have unintentionally deleted the last function
-> in this file, or maybe you are referring to something that I am just
-> not seeing, but I don't see the extra newline here.
+This patch series depends on another clk new binding series:
+[v3,00/11] clk: imx8: add new clock binding for better pm support
+https://patchwork.kernel.org/cover/11046287/
 
-No worries. Sorry for the noise.
+NOTE: for the missing undocumented compatible strings for the new SoC IMX8QM
+in this patch series. It will be sent in another patch series later.
 
-> > property of the input, it may or may not be enough information on its
-> > own for the expectation to fail, but we want to share the result of
-> > the property check with the user regardless, BUT only if the
-> > expectation as a whole fails.
-> >
-> > Hence, we can have multiple `struct kunit_stream`s associated with a
-> > `struct kunit` active at any given time.
+ChangeLog:
+v1->v2:
+ * change to the new two cells scu clock binding, so original adding scu clocks
+   patches were removed.
+ * Move scu pd node above clk node
 
-Makes sense. I wasn't sure if there were more than one stream associated
-with a test. Sounds like there are many to one so it can't just be a
-member of the test. This could be documented somewhere so this question
-doesn't come up again.
+Dong Aisheng (15):
+  arm64: dts: imx8qxp: add fallback compatible string for scu pd
+  arm64: dts: imx8qxp: move scu pd node before scu clock node
+  arm64: dts: imx8qxp: orginize dts in subsystems
+  arm64: dts: imx8: add lsio lpcg clocks
+  arm64: dts: imx8: add conn lpcg clocks
+  arm64: dts: imx8: add adma lpcg clocks
+  arm64: dts: imx8: switch to two cell scu clock binding
+  arm64: dts: imx8: switch to new lpcg clock binding
+  arm64: dts: imx8qm: add lsio ss support
+  arm64: dts: imx8qm: add conn ss support
+  arm64: dts: imx8: split adma ss into dma and audio ss
+  arm64: dts: imx8qm: add dma ss support
+  arm64: dts: imx: add imx8qm common dts file
+  arm64: dts: imx: add imx8qm mek support
+  arm64: defconfig: add imx8qm mek support
+
+ arch/arm64/boot/dts/freescale/Makefile             |   1 +
+ arch/arm64/boot/dts/freescale/imx8-ss-adma.dtsi    |   7 +
+ arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi    | 185 ++++++++++
+ arch/arm64/boot/dts/freescale/imx8-ss-ddr.dtsi     |  19 +
+ arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi     | 205 +++++++++++
+ arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi    | 294 +++++++++++++++
+ arch/arm64/boot/dts/freescale/imx8qm-mek.dts       | 144 ++++++++
+ arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi  |  21 ++
+ arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi   |  50 +++
+ arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi  |  61 ++++
+ arch/arm64/boot/dts/freescale/imx8qm.dtsi          | 179 +++++++++
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts      |   6 +-
+ arch/arm64/boot/dts/freescale/imx8qxp-ss-adma.dtsi |  37 ++
+ arch/arm64/boot/dts/freescale/imx8qxp-ss-conn.dtsi |  21 ++
+ arch/arm64/boot/dts/freescale/imx8qxp-ss-lsio.dtsi |  61 ++++
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi         | 401 ++-------------------
+ arch/arm64/configs/defconfig                       |   1 +
+ 17 files changed, 1311 insertions(+), 382 deletions(-)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-adma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-conn.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-ddr.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-dma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8-ss-lsio.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-mek.dts
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-dma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-ss-lsio.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-adma.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-conn.dtsi
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ss-lsio.dtsi
+
+-- 
+2.7.4
 
