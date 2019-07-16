@@ -2,197 +2,449 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9FE896A223
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 08:11:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB1476A231
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 08:17:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733140AbfGPGLO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 02:11:14 -0400
-Received: from comms.puri.sm ([159.203.221.185]:40044 "EHLO comms.puri.sm"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726463AbfGPGLN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Jul 2019 02:11:13 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by comms.puri.sm (Postfix) with ESMTP id 8736BDFD5D;
-        Mon, 15 Jul 2019 23:11:12 -0700 (PDT)
-Received: from comms.puri.sm ([127.0.0.1])
-        by localhost (comms.puri.sm [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id xK_Em8X6S41n; Mon, 15 Jul 2019 23:11:11 -0700 (PDT)
-Subject: Re: [PATCH 1/3] iio: imu: st_lsm6sdx: move some register definitions
- to sensor_settings struct
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     lorenzo.bianconi83@gmail.com, jic23@kernel.org, knaack.h@gmx.de,
-        lars@metafoo.de, pmeerw@pmeerw.net, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-References: <20190715131919.31938-1-martin.kepplinger@puri.sm>
- <20190715211033.GA23126@localhost.localdomain>
-From:   Martin Kepplinger <martin.kepplinger@puri.sm>
-Openpgp: preference=signencrypt
-Autocrypt: addr=martin.kepplinger@puri.sm; keydata=
- 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
- WG//KA68tPVBR2xhy7Fp+qAa
-Message-ID: <b2ae7b2e-c96e-d819-c24d-0aaffcda3002@puri.sm>
-Date:   Tue, 16 Jul 2019 08:11:08 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-In-Reply-To: <20190715211033.GA23126@localhost.localdomain>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1730243AbfGPGRU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 02:17:20 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:47100 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729503AbfGPGRT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 02:17:19 -0400
+Received: by mail-lj1-f193.google.com with SMTP id v24so18704969ljg.13;
+        Mon, 15 Jul 2019 23:17:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=HeuWcdYmZJox92bgXbq5o6yBx52ax75wmk3KHe6bGH0=;
+        b=b5GgffahPrsbjQntiPiFbKepP+rYx1t1mqE7p83fFbp3vPgGqAomQDTuIUGBaZwIk0
+         yRA48p6KWFakeKhq6BFHA0zm6NenNsg7r/2dgoFFKGpJlCx0iYOc/Y3fTSE3ej+WtdG6
+         lnGZMlpiATzYj5ZoQvLf0mmclXWf6eu8SP0adUtF8aUOFVacYmUqtq7+3N/66y5Nfjx2
+         ucufmbEcFbVptg9ecZuemMmxw4oZbR7qR4L4e7PMKzG2rst2V1aL0xKPcZ1C1A4UT62D
+         nEtNIxOp74VtC46nO7Y4h8JgLZ0zlCt1bCCgRGBar9f7v+kBRJI20+PQfk9Oduaa64Ix
+         2cYg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=HeuWcdYmZJox92bgXbq5o6yBx52ax75wmk3KHe6bGH0=;
+        b=ibIFP/zNpiEji2/7Vr1EQ+yHW6I8Y7M5Fzs9hPfAODwqJ4I/5CxycJ2oiNRAvjJaEs
+         c9GT+EAkfaPmFiKDzaq/8J9Cy0uCC2b2FQ2IOKVV/5O8C0IKzrENV6899ITS2Ci3dZ6z
+         Wl2Cb5829sby7AunuhjG34BoPET87GbN1CxhxjwqvxO35FCqtw5JRGJaBbTjCiGi1358
+         QwoYGeDbwLGEPWgVIxftIS9dLvAlyf8FGuJp4iPeT6YpPaHp5LDXMnn0IJ9Xhe1cR4XM
+         hvjq+pP0F1hOaIu+IP9XrWCTBABwUOUKJetBFU4tofe3nUS6BwBDaXnwTU6WQMDYRvRZ
+         NhaQ==
+X-Gm-Message-State: APjAAAVoLhwzaR3oTmVLYSwtlY9ATRvPSYJw6xh8AQzVrdQjzupCldbj
+        U7/3uC8hkp/NGr1XDYbG+Ac=
+X-Google-Smtp-Source: APXvYqx79jpd6HhSRL2eB1FZRHFP4VXlkKmvMy1Q3w9+l7chN5QSGrcGicSH+m2e2S0XytLTwqkAMg==
+X-Received: by 2002:a2e:8892:: with SMTP id k18mr16750034lji.239.1563257835862;
+        Mon, 15 Jul 2019 23:17:15 -0700 (PDT)
+Received: from dimatab (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
+        by smtp.gmail.com with ESMTPSA id i9sm2656234lfl.10.2019.07.15.23.17.14
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 15 Jul 2019 23:17:15 -0700 (PDT)
+Date:   Tue, 16 Jul 2019 09:20:46 +0300
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>,
+        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
+        <stefan@agner.ch>, <mark.rutland@arm.com>,
+        <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
+        <josephl@nvidia.com>, <talho@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH V5 11/18] clk: tegra210: Add support for Tegra210 clocks
+Message-ID: <20190716092046.7e23b6b2@dimatab>
+In-Reply-To: <20190716083701.225f0fd9@dimatab>
+References: <1561687972-19319-1-git-send-email-skomatineni@nvidia.com>
+        <1561687972-19319-12-git-send-email-skomatineni@nvidia.com>
+        <a5e1a6df-dff7-9e0c-9551-f78103a5462f@gmail.com>
+        <a9b5c364-52b4-bee1-5881-47197f043950@nvidia.com>
+        <e9d4bc0e-fd5d-ae02-2d67-86c7f7c9620f@gmail.com>
+        <3938092a-bbc7-b304-641d-31677539598d@nvidia.com>
+        <932d4d50-120c-9191-6a9a-23bf9c96633b@nvidia.com>
+        <0ee055ad-d397-32e5-60ee-d62c14c6f77b@gmail.com>
+        <86fc07d5-ab2e-a52a-a570-b1dfff4c20fe@nvidia.com>
+        <20190716083701.225f0fd9@dimatab>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; arm-unknown-linux-gnueabihf)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15.07.19 23:10, Lorenzo Bianconi wrote:
->> Move some register definitions to the per-device array of struct
->> st_lsm6dsx_sensor_settings in order to simplify adding new sensor
->> devices to the driver.
->>
->> Also, remove completely unused register definitions.
->>
-> 
-> Hi Martin,
-> 
-> just few comments inline
-> 
-> Regards,
-> Lorenzo
-> 
->> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>
->> ---
->>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h      |  6 ++++
->>  drivers/iio/imu/st_lsm6dsx/st_lsm6dsx_core.c | 31 ++++++++++++++------
->>  2 files changed, 28 insertions(+), 9 deletions(-)
->>
->> diff --git a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
->> index c14bf533b66b..f072ac14f213 100644
->> --- a/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
->> +++ b/drivers/iio/imu/st_lsm6dsx/st_lsm6dsx.h
->> @@ -196,6 +196,9 @@ struct st_lsm6dsx_ext_dev_settings {
->>  /**
->>   * struct st_lsm6dsx_settings - ST IMU sensor settings
->>   * @wai: Sensor WhoAmI default value.
->> + * @reg_int1_addr: Control Register address for INT1
->> + * @reg_int2_addr: Control Register address for INT2
->> + * @reg_reset_addr: register address for reset/reboot
->>   * @max_fifo_size: Sensor max fifo length in FIFO words.
->>   * @id: List of hw id/device name supported by the driver configuration.
->>   * @decimator: List of decimator register info (addr + mask).
->> @@ -206,6 +209,9 @@ struct st_lsm6dsx_ext_dev_settings {
->>   */
->>  struct st_lsm6dsx_settings {
->>  	u8 wai;
->> +	u8 reg_int1_addr;
->> +	u8 reg_int2_addr;
->> +	u8 reg_reset_addr;
-> 
-> could you please rename them in int1_addr, int2_addr and reset_addr in order to
-> be inline with other st_lsm6dsx_settings fields?
-> 
+=D0=92 Tue, 16 Jul 2019 08:37:01 +0300
+Dmitry Osipenko <digetx@gmail.com> =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
 
-sure. thanks for reviewing!
+> =D0=92 Mon, 15 Jul 2019 21:37:09 -0700
+> Sowjanya Komatineni <skomatineni@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5=D1=
+=82:
+>=20
+> > On 7/15/19 8:50 PM, Dmitry Osipenko wrote: =20
+> > > 16.07.2019 6:00, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82: =
+  =20
+> > >> On 7/15/19 5:35 PM, Sowjanya Komatineni wrote:   =20
+> > >>> On 7/14/19 2:41 PM, Dmitry Osipenko wrote:   =20
+> > >>>> 13.07.2019 8:54, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=
+=82:   =20
+> > >>>>> On 6/29/19 8:10 AM, Dmitry Osipenko wrote:   =20
+> > >>>>>> 28.06.2019 5:12, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=
+=82:   =20
+> > >>>>>>> This patch adds system suspend and resume support for
+> > >>>>>>> Tegra210 clocks.
+> > >>>>>>>
+> > >>>>>>> All the CAR controller settings are lost on suspend when
+> > >>>>>>> core power goes off.
+> > >>>>>>>
+> > >>>>>>> This patch has implementation for saving and restoring all
+> > >>>>>>> the PLLs and clocks context during system suspend and resume
+> > >>>>>>> to have the clocks back to same state for normal operation.
+> > >>>>>>>
+> > >>>>>>> Acked-by: Thierry Reding <treding@nvidia.com>
+> > >>>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> > >>>>>>> ---
+> > >>>>>>>  =C2=A0=C2=A0 drivers/clk/tegra/clk-tegra210.c | 115
+> > >>>>>>> ++++++++++++++++++++++++++++++++++++++-
+> > >>>>>>>  =C2=A0=C2=A0 drivers/clk/tegra/clk.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 14 +++++
+> > >>>>>>>  =C2=A0=C2=A0 drivers/clk/tegra/clk.h=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
+> > >>>>>>>  =C2=A0=C2=A0 3 files changed, 127 insertions(+), 3 deletions(-)
+> > >>>>>>>
+> > >>>>>>> diff --git a/drivers/clk/tegra/clk-tegra210.c
+> > >>>>>>> b/drivers/clk/tegra/clk-tegra210.c
+> > >>>>>>> index 1c08c53482a5..1b839544e086 100644
+> > >>>>>>> --- a/drivers/clk/tegra/clk-tegra210.c
+> > >>>>>>> +++ b/drivers/clk/tegra/clk-tegra210.c
+> > >>>>>>> @@ -9,10 +9,12 @@
+> > >>>>>>>  =C2=A0=C2=A0 #include <linux/clkdev.h>
+> > >>>>>>>  =C2=A0=C2=A0 #include <linux/of.h>
+> > >>>>>>>  =C2=A0=C2=A0 #include <linux/of_address.h>
+> > >>>>>>> +#include <linux/of_platform.h>
+> > >>>>>>>  =C2=A0=C2=A0 #include <linux/delay.h>
+> > >>>>>>>  =C2=A0=C2=A0 #include <linux/export.h>
+> > >>>>>>>  =C2=A0=C2=A0 #include <linux/mutex.h>
+> > >>>>>>>  =C2=A0=C2=A0 #include <linux/clk/tegra.h>
+> > >>>>>>> +#include <linux/syscore_ops.h>
+> > >>>>>>>  =C2=A0=C2=A0 #include <dt-bindings/clock/tegra210-car.h>
+> > >>>>>>>  =C2=A0=C2=A0 #include <dt-bindings/reset/tegra210-car.h>
+> > >>>>>>>  =C2=A0=C2=A0 #include <linux/iopoll.h>
+> > >>>>>>> @@ -20,6 +22,7 @@
+> > >>>>>>>  =C2=A0=C2=A0 #include <soc/tegra/pmc.h>
+> > >>>>>>>  =C2=A0=C2=A0 =C2=A0 #include "clk.h"
+> > >>>>>>> +#include "clk-dfll.h"
+> > >>>>>>>  =C2=A0=C2=A0 #include "clk-id.h"
+> > >>>>>>>  =C2=A0=C2=A0 =C2=A0 /*
+> > >>>>>>> @@ -225,6 +228,7 @@
+> > >>>>>>>  =C2=A0=C2=A0 =C2=A0 #define CLK_RST_CONTROLLER_RST_DEV_Y_SET 0=
+x2a8
+> > >>>>>>>  =C2=A0=C2=A0 #define CLK_RST_CONTROLLER_RST_DEV_Y_CLR 0x2ac
+> > >>>>>>> +#define CPU_SOFTRST_CTRL 0x380
+> > >>>>>>>  =C2=A0=C2=A0 =C2=A0 #define LVL2_CLK_GATE_OVRA 0xf8
+> > >>>>>>>  =C2=A0=C2=A0 #define LVL2_CLK_GATE_OVRC 0x3a0
+> > >>>>>>> @@ -2820,6 +2824,7 @@ static int tegra210_enable_pllu(void)
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct tegra_clk_pll_freq=
+_table *fentry;
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct tegra_clk_pll pllu;
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 reg;
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 int ret;
+> > >>>>>>>  =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (fentry =3D pl=
+l_u_freq_table;
+> > >>>>>>> fentry->input_rate; fentry++) {
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 i=
+f (fentry->input_rate =3D=3D pll_ref_freq)
+> > >>>>>>> @@ -2847,10 +2852,10 @@ static int
+> > >>>>>>> tegra210_enable_pllu(void) fence_udelay(1, clk_base);
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg |=3D PLL_ENABLE;
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 writel(reg, clk_base + PL=
+LU_BASE);
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 fence_udelay(1, clk_base);
+> > >>>>>>>  =C2=A0=C2=A0 -=C2=A0=C2=A0=C2=A0 readl_relaxed_poll_timeout_at=
+omic(clk_base +
+> > >>>>>>> PLLU_BASE, reg,
+> > >>>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg & PL=
+L_BASE_LOCK, 2, 1000);
+> > >>>>>>> -=C2=A0=C2=A0=C2=A0 if (!(reg & PLL_BASE_LOCK)) {
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 ret =3D tegra210_wait_for_mask(&pllu, PLLU_=
+BASE,
+> > >>>>>>> PLL_BASE_LOCK);
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 if (ret) {
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 p=
+r_err("Timed out waiting for PLL_U to lock\n");
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 r=
+eturn -ETIMEDOUT;
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+> > >>>>>>> @@ -3283,6 +3288,103 @@ static void
+> > >>>>>>> tegra210_disable_cpu_clock(u32 cpu)
+> > >>>>>>>  =C2=A0=C2=A0 }
+> > >>>>>>>  =C2=A0=C2=A0 =C2=A0 #ifdef CONFIG_PM_SLEEP
+> > >>>>>>> +static u32 cpu_softrst_ctx[3];
+> > >>>>>>> +static struct platform_device *dfll_pdev;
+> > >>>>>>> +#define car_readl(_base, _off) readl_relaxed(clk_base +
+> > >>>>>>> (_base) + ((_off) * 4))
+> > >>>>>>> +#define car_writel(_val, _base, _off) \
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 writel_relaxed(_val=
+, clk_base + (_base) + ((_off) *
+> > >>>>>>> 4)) +
+> > >>>>>>> +static int tegra210_clk_suspend(void)
+> > >>>>>>> +{
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 unsigned int i;
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 struct device_node *node;
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 tegra_cclkg_burst_policy_save_context();
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 if (!dfll_pdev) {
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 node =3D of_find_co=
+mpatible_node(NULL, NULL,
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0 "nvidia,tegra210-dfll");
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (node)
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 dfll_pdev =3D of_find_device_by_node(node);
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of_node_put(node);
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!dfll_pdev)
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0 pr_err("dfll node not found. no suspend for
+> > >>>>>>> dfll\n");
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 }
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 if (dfll_pdev)
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_dfll_suspend(=
+dfll_pdev);
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 /* Enable PLLP_OUT_CPU after dfll suspend */
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 tegra_clk_set_pllp_out_cpu(true);
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 tegra_sclk_cclklp_burst_policy_save_context=
+();
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 clk_save_context();
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < ARRAY_SIZE(cpu_softrst_ct=
+x); i++)
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cpu_softrst_ctx[i] =
+=3D car_readl(CPU_SOFTRST_CTRL,
+> > >>>>>>> i); +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 return 0;
+> > >>>>>>> +}
+> > >>>>>>> +
+> > >>>>>>> +static void tegra210_clk_resume(void)
+> > >>>>>>> +{
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 unsigned int i;
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 struct clk_hw *parent;
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 struct clk *clk;
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 /*
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * clk_restore_context restores clocks=
+ as per the clock
+> > >>>>>>> tree.
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 *
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * dfllCPU_out is first in the clock t=
+ree to get
+> > >>>>>>> restored and it
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * involves programming DFLL controlle=
+r along with
+> > >>>>>>> restoring CPUG
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * clock burst policy.
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 *
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * DFLL programming needs dfll_ref and=
+ dfll_soc
+> > >>>>>>> peripheral clocks
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * to be restores which are part ofthe=
+ peripheral
+> > >>>>>>> clocks.   =20
+> > >>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
+=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^ white-space
+> > >>>>
+> > >>>> Please use spellchecker to avoid typos.
+> > >>>>   =20
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * So, peripheral clocks restore shoul=
+d happen prior to
+> > >>>>>>> dfll clock
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * restore.
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 tegra_clk_osc_resume(clk_base);
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < ARRAY_SIZE(cpu_softrst_ct=
+x); i++)
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 car_writel(cpu_soft=
+rst_ctx[i], CPU_SOFTRST_CTRL,
+> > >>>>>>> i); +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 /* restore all plls and peripheral clocks */
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 tegra210_init_pllu();
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 clk_restore_context();
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 fence_udelay(5, clk_base);
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 /* resume SCLK and CPULP clocks */
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 tegra_sclk_cpulp_burst_policy_restore_conte=
+xt();
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 /*
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * restore CPUG clocks:
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * - enable DFLL in open loop mode
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * - switch CPUG to DFLL clock source
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * - close DFLL loop
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * - sync PLLX state
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 */
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 if (dfll_pdev)
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_dfll_resume(d=
+fll_pdev, false);
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 tegra_cclkg_burst_policy_restore_context();
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 fence_udelay(2, clk_base);
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 if (dfll_pdev)
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_dfll_resume(d=
+fll_pdev, true);
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 parent =3D
+> > >>>>>>> clk_hw_get_parent(__clk_get_hw(clks[TEGRA210_CLK_CCLK_G]));
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 clk =3D clks[TEGRA210_CLK_PLL_X];
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 if (parent !=3D __clk_get_hw(clk))
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_clk_sync_stat=
+e_pll(__clk_get_hw(clk));
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 /* Disable PLL_OUT_CPU after DFLL resume */
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 tegra_clk_set_pllp_out_cpu(false);
+> > >>>>>>> +}
+> > >>>>>>> +
+> > >>>>>>>  =C2=A0=C2=A0 static void tegra210_cpu_clock_suspend(void)
+> > >>>>>>>  =C2=A0=C2=A0 {
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* switch coresite to clk=
+_m, save off original
+> > >>>>>>> source */ @@ -3298,6 +3400,11 @@ static void
+> > >>>>>>> tegra210_cpu_clock_resume(void) }
+> > >>>>>>>  =C2=A0=C2=A0 #endif
+> > >>>>>>>  =C2=A0=C2=A0 +static struct syscore_ops tegra_clk_syscore_ops =
+=3D {
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 .suspend =3D tegra210_clk_suspend,
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 .resume =3D tegra210_clk_resume,
+> > >>>>>>> +};
+> > >>>>>>> +
+> > >>>>>>>  =C2=A0=C2=A0 static struct tegra_cpu_car_ops tegra210_cpu_car_=
+ops =3D {
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .wait_for_reset=C2=A0=C2=
+=A0=C2=A0 =3D tegra210_wait_cpu_in_reset,
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .disable_clock=C2=A0=C2=
+=A0=C2=A0 =3D tegra210_disable_cpu_clock,
+> > >>>>>>> @@ -3583,5 +3690,7 @@ static void __init
+> > >>>>>>> tegra210_clock_init(struct device_node *np)
+> > >>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra210_mbist_clk_init();
+> > >>>>>>>  =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_cpu_car_ops =
+=3D &tegra210_cpu_car_ops;
+> > >>>>>>> +
+> > >>>>>>> +=C2=A0=C2=A0=C2=A0 register_syscore_ops(&tegra_clk_syscore_ops=
+);
+> > >>>>>>>  =C2=A0=C2=A0 }   =20
+> > >>>>>> Is it really worthwhile to use syscore_ops for suspend/resume
+> > >>>>>> given that drivers for
+> > >>>>>> won't resume before the CLK driver anyway? Are there any
+> > >>>>>> other options for CLK
+> > >>>>>> suspend/resume?
+> > >>>>>>
+> > >>>>>> I'm also not sure whether PM runtime API could be used at all
+> > >>>>>> in the context of
+> > >>>>>> syscore_ops ..
+> > >>>>>>
+> > >>>>>> Secondly, what about to use generic clk_save_context() /
+> > >>>>>> clk_restore_context()
+> > >>>>>> helpers for the suspend-resume? It looks to me that some
+> > >>>>>> other essential (and proper)
+> > >>>>>> platform driver (soc/tegra/? PMC?) should suspend-resume the
+> > >>>>>> clocks using the generic
+> > >>>>>> CLK Framework API.   =20
+> > >>>>> Clock resume should happen very early to restore peripheral
+> > >>>>> and cpu clocks very early than peripheral drivers resume
+> > >>>>> happens.   =20
+> > >>>> If all peripheral drivers properly requested all of the
+> > >>>> necessary clocks and CLK driver was a platform driver, then I
+> > >>>> guess the probe should have been naturally ordered. But that's
+> > >>>> not very achievable with the currently available infrastructure
+> > >>>> in the kernel, so I'm not arguing that the clocks should be
+> > >>>> explicitly resumed before the users.  =20
+> > >>>>> this patch series uses clk_save_context and
+> > >>>>> clk_restore_context for corresponding divider, pll, pllout..
+> > >>>>> save and restore context.   =20
+> > >>>> Now I see that indeed this API is utilized in this patch, thank
+> > >>>> you for the clarification.
+> > >>>>   =20
+> > >>>>> But as there is dependency on dfll resume and cpu and pllx
+> > >>>>> clocks restore, couldnt use clk_save_context and
+> > >>>>> clk_restore_context for dfll.
+> > >>>>>
+> > >>>>> So implemented recommended dfll resume sequence in main
+> > >>>>> Tegra210 clock driver along with invoking
+> > >>>>> clk_save_context/clk_restore_context where all other clocks
+> > >>>>> save/restore happens as per clock tree traversal.   =20
+> > >>>> Could you please clarify what part of peripherals clocks is
+> > >>>> required for DFLL's restore? Couldn't DFLL driver be changed to
+> > >>>> avoid that quirkness and thus to make DFLL driver
+> > >>>> suspend/resume the clock?   =20
+> > >>> DFLL source ref_clk and soc_clk need to be restored prior to
+> > >>> dfll.
+> > >>>
+> > >>> I see dfllCPU_out parent to CCLK_G first in the clock tree and
+> > >>> dfll_ref and dfll_soc peripheral clocks are not resumed by the
+> > >>> time dfll resume happens first.
+> > >>>
+> > >>> ref_clk and soc_clk source is from pll_p and clock tree has
+> > >>> these registered under pll_p which happens later.
+> > >>>
+> > >>> tegra210_clock_init registers in order plls, peripheral clocks,
+> > >>> super_clk init for cclk_g during clock driver probe and dfll
+> > >>> probe and register happens later.
+> > >>>   =20
+> > >> One more thing, CLDVFS peripheral clock enable is also needed to
+> > >> be enabled to program DFLL Controller and all peripheral clock
+> > >> context is restored only after their PLL sources are restored.
+> > >>
+> > >> DFLL restore involves dfll source clock resume along with CLDVFS
+> > >> periheral clock enable and reset
+> > >>   =20
+> > > I don't quite see why you can't simply add suspend/resume
+> > > callbacks to the CPUFreq driver to:
+> > >
+> > > On suspend:
+> > > 1. Switch CPU to PLLP (or whatever "safe" parent)
+> > > 2. Disable/teardown DFLL
+> > >
+> > > On resume:
+> > > 1. Enable/restore DFLL
+> > > 2. Switch CPU back to DFLL   =20
+> >=20
+> > dfll runtime suspend/resume are already part of dfll_pm_ops. Don't
+> > we want to use it for suspend/resume as well? =20
+>=20
+> Looks like no. Seems runtime PM of that driver is intended solely for
+> the DFLL's clk management.
+>=20
+> > currently no APIs are shared b/w clk/tegra driver and CPUFreq driver
+> > to invoke dfll suspend/resume in CPUFreq driver
+> >  =20
+>=20
+> Just add it. Also, please note that CPUFreq driver is optional and
+> thus you may need to switch CPU to a safe parent on clk-core suspend
+> as well in order to resume properly if CPU was running off unsafe
+> parent during boot and CPUFreq driver is disabled in kernel build (or
+> failed to load).
 
-                             martin
+Although, if PLLs are restored before CCLK, then it should be fine
+as-is.
+
+> The other thing that also need attention is that T124 CPUFreq driver
+> implicitly relies on DFLL driver to be probed first, which is icky.
+>=20
 
