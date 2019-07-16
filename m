@@ -2,183 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 844626ADFA
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 19:52:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E7F6AE33
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 20:13:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388343AbfGPRv6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 13:51:58 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:46486 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388309AbfGPRv6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 13:51:58 -0400
-Received: by mail-pg1-f194.google.com with SMTP id i8so9784419pgm.13
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 10:51:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nxEnHLXatCKhmQ8tqkHkTC9RIIficSilWz6s4BKeyXQ=;
-        b=IR8gpax66RigZJS8zzOEEHslcoRtMBTJQr+BwYoG5krQI/IrW7RBJJOb1HnDxCU/yV
-         QgfV9zvBkZxiaRdpVQ5UvleUCuWprZ5drSQYCn+Y2SQ0WJBxkU9y96Vg0A/X9/w6puUy
-         wJPZSB5OIH+Fs7UZF2sgnWroJ6gzdmui3EJVbxSAUEw1zlnflSZQkCP2CyGkcZhrQ2Ik
-         nTu4JglIMF5h/vJexddFclKM2bow42WXkycOAGCzBHj4V7nlFfCvnoPh2kZ9tat4r+lR
-         ldeIM3HQ86qC69oeN4VGJIE3aUlKeqjYM8fm2x0XfJ1yNou0BI3BeFip69rcKSz9jBAN
-         0rYw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nxEnHLXatCKhmQ8tqkHkTC9RIIficSilWz6s4BKeyXQ=;
-        b=r4sa23ruSLNr23Ba398hBxwO8fKt11/TU99VtjEtNWIShrmF6zdrFO+CLvM+nEsih7
-         wm0I/BD3zjM2OtxusmqPe2M5i5xL7FUUdNio5sVwEeYKnIPs6aw0GkFNY5hRJ2VmfqNc
-         wfJLyxs/3GHc62phDStCpmnQuB4ehrkAE3cyWyPpOD2hQrXY/jtfaAWXSPnUtbUcGZGe
-         V4CshuRf0QhCLzmK6fJUtyqkN7myINwL9DOalIUNtgO3NDviOXDD7qN+6IhZ7EZp3771
-         uc4PoNwfQQfGnXSYLSx/0IoDtEWxh+/GcDm+pm59PY1CepAQtuwMBjVpHL+ditXKZT82
-         3fbg==
-X-Gm-Message-State: APjAAAVNvo1i4ASwzXv6JwbC6dzWf+wnd+7owpocAtjpnJ7t2JGGR8b9
-        G7bWiMp5jJuiC23tmoN+VCoHEYE0evErzwyQAMIqxg==
-X-Google-Smtp-Source: APXvYqyaJ18vLD4kzF4vse9+yxk+DvjTEGfbRhJU4ABRtN/S/Q3OhUTQ5bxT7G2cnasvpqzT1qZSk1Dd9UfyhosJ/h0=
-X-Received: by 2002:a63:b919:: with SMTP id z25mr35314546pge.201.1563299516676;
- Tue, 16 Jul 2019 10:51:56 -0700 (PDT)
+        id S2388239AbfGPSNI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 14:13:08 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:32798 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728190AbfGPSNI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 14:13:08 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 7E9B16188E; Tue, 16 Jul 2019 18:13:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563300787;
+        bh=srM1eZBYfggNW2Yf3/i2BiDYN0hawmNXpAJQu3yeR6k=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=T5aZ8DAnYr1/JvnUJZ0eq+cz5Q9hpwxUuz6vy9xAtBy3YnAlgTe1nSdcjNd4h78n+
+         VDmZ/XIe1LjI0yK9l6ZQEBbnblfqJdPO8zfHNV9LPC26BbzZ4yhwiU7RNNAGtuidHY
+         KNU2wpdr8vWGaIaCLTlpywqnSl+xA0UL0TeAvJG0=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.79.43.230] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: sibis@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1CE27615E3;
+        Tue, 16 Jul 2019 18:12:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563300785;
+        bh=srM1eZBYfggNW2Yf3/i2BiDYN0hawmNXpAJQu3yeR6k=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=WyoUpwMBfHTs7k0DDAwHkBUEEx2hEiInVvPegg7NxC0J0Fxpc7OnUhC7uNfS6Y3xn
+         uBB5fCkd6C2XsgYFtLlH2FRiIb3kmaxhc1z/1qHuJDngVWJgsNHLI071XwoaTBjnxG
+         iSkBu3gip3D5+YzCXAxN4MlHKDUiSu5hrezdqPc0=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1CE27615E3
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
+Subject: Re: [PATCH v2 11/11] interconnect: Add devfreq support
+To:     Saravana Kannan <saravanak@google.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        amit.kucheria@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, evgreen@chromium.org,
+        Android Kernel Team <kernel-team@android.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, adharmap@codeaurora.org
+References: <20190614041733.120807-1-saravanak@google.com>
+ <20190614041733.120807-12-saravanak@google.com>
+ <5dc6c820-ead8-d0dc-44de-4d13f86df042@linaro.org>
+ <CAGETcx-xU9i1FJB5JecUoyZEfWpD8f+o9bC3SQmb-=3fLVbmQw@mail.gmail.com>
+From:   Sibi Sankar <sibis@codeaurora.org>
+Message-ID: <9f2bf3fd-f7c5-40e8-6415-f334e3ef8d5d@codeaurora.org>
+Date:   Tue, 16 Jul 2019 23:42:58 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <20190712081744.87097-1-brendanhiggins@google.com>
- <20190712081744.87097-5-brendanhiggins@google.com> <20190715221554.8417320665@mail.kernel.org>
- <CAFd5g47ikJmA0uGoavAFsh+hQvDmgsOi26tyii0612R=rt7iiw@mail.gmail.com>
- <CAFd5g44_axVHNMBzxSURQB_-R+Rif7cZcg7PyZ_SS+5hcy5jZA@mail.gmail.com> <20190716153002.49E292054F@mail.kernel.org>
-In-Reply-To: <20190716153002.49E292054F@mail.kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Tue, 16 Jul 2019 10:51:45 -0700
-Message-ID: <CAFd5g44jruCZLunpQuDPnQS995x0F+Gxp99z4BoP_pLt=Hr1BQ@mail.gmail.com>
-Subject: Re: [PATCH v9 04/18] kunit: test: add kunit_stream a std::stream like logger
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAGETcx-xU9i1FJB5JecUoyZEfWpD8f+o9bC3SQmb-=3fLVbmQw@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 16, 2019 at 8:30 AM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Brendan Higgins (2019-07-16 01:37:34)
-> > On Tue, Jul 16, 2019 at 12:57 AM Brendan Higgins
-> > <brendanhiggins@google.com> wrote:
-> > >
-> > > On Mon, Jul 15, 2019 at 3:15 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> > > >
-> > > > Quoting Brendan Higgins (2019-07-12 01:17:30)
-> > > > > diff --git a/include/kunit/kunit-stream.h b/include/kunit/kunit-stream.h
-> > > > > new file mode 100644
-> > > > > index 0000000000000..a7b53eabf6be4
-> > > > > --- /dev/null
-> > > > > +++ b/include/kunit/kunit-stream.h
-> > > > > +/**
-> > > > > + * struct kunit_stream - a std::stream style string builder.
-> > > > > + *
-> > > > > + * A std::stream style string builder. Allows messages to be built up and
-> > > > > + * printed all at once.
-> > > > > + */
-> > > > > +struct kunit_stream {
-> > > > > +       /* private: internal use only. */
-> > > > > +       struct kunit *test;
-> > > > > +       const char *level;
-> > > >
-> > > > Is the level changed? See my comment below, but I wonder if this whole
-> > > > struct can go away and the wrappers can just operate on 'struct
-> > > > string_stream' instead.
-> > >
-> > > I was inclined to agree with you when I first read your comment, but
-> > > then I thought about the case that someone wants to add in a debug
-> > > message (of which I currently have none). I think under most
-> > > circumstances a user of kunit_stream would likely want to pick a
-> > > default verbosity that maybe I should provide, but may still want
-> > > different verbosity levels.
-> > >
-> > > The main reason I want to keep the types separate, string_stream vs.
-> > > kunit_stream, is that they are intended to be used differently.
-> > > string_stream is just a generic string builder. If you are using that,
-> > > you are expecting to see someone building the string at some point and
-> > > then doing something interesting with it. kunit_stream really tells
-> > > you specifically that KUnit is putting together a message to
-> > > communicate something to a user of KUnit. It is really used in a very
-> > > specific way, and I wouldn't want to generalize its usage beyond how
-> > > it is currently used. I think in order to preserve the author's
-> > > intention it adds clarity to keep the types separate regardless of how
-> > > similar they might be in reality.
->
-> You may want to add some of these reasons to the commit text.
+Hey Saravana,
 
-Will do.
+On 6/18/19 2:48 AM, Saravana Kannan wrote:
+> On Mon, Jun 17, 2019 at 8:44 AM Georgi Djakov <georgi.djakov@linaro.org> wrote:
+>>
+>> Hi Saravana,
+>>
+>> On 6/14/19 07:17, Saravana Kannan wrote:
+>>> Add a icc_create_devfreq() and icc_remove_devfreq() to create and remove
+>>> devfreq devices for interconnect paths. A driver can create/remove devfreq
+>>> devices for the interconnects needed for its device by calling these APIs.
+>>> This would allow various devfreq governors to work with interconnect paths
+>>> and the device driver itself doesn't have to actively manage the bandwidth
+>>> votes for the interconnects.
+>>
+>> Thanks for the patches, but creating devfreq devices for each interconnect path
+>> seems odd to me - at least for consumers that already use a governor.
+> 
+> Each governor instance always handles one "frequency" (more like
+> performance) domain at a time. So if a consumer is already using a
+> governor to scale the hardware block, then using another governor to
+> scale the interconnect performance points is the right way to go about
+> it. In fact, that's exactly what devfreq passive governor's
+> documentation even says it's meant for. That's also what cpufreq does
+> for each cluster/CPU frequency domain too.
+> 
+>> So for DDR
+>> scaling for example, are you suggesting that we add a devfreq device from the
+>> cpufreq driver in order to scale the interconnect between CPU<->DDR?
+> 
+> Yes in general. Although, CPUs are a special case because CPUs don't
+> go through devfreq. So passive governor as it stands today won't work.
+> CPU<->DDR scaling might need a separate governor (unlikely) or some
+> changes to the passive governor that I'm happy to work on once we
+> settle this for general devices like GPU, etc. But the DT format for
+> CPUs will be identical to GPUs or any other device.
 
-> > > > > +
-> > > > > +       if (!string_stream_is_empty(stream->internal_stream)) {
-> > > > > +               kunit_err(stream->test,
-> > > > > +                         "End of test case reached with uncommitted stream entries\n");
-> > > > > +               kunit_stream_commit(stream);
-> > > > > +       }
-> > > > > +}
-> > > > > +
-> > > >
-> > > > Nitpick: Drop this extra newline.
-> > >
-> > > Oops, nice catch.
-> >
-> > Not super important, but I don't want you to think that I am ignoring
-> > you. I think you must have unintentionally deleted the last function
-> > in this file, or maybe you are referring to something that I am just
-> > not seeing, but I don't see the extra newline here.
->
-> No worries. Sorry for the noise.
->
-> > > property of the input, it may or may not be enough information on its
-> > > own for the expectation to fail, but we want to share the result of
-> > > the property check with the user regardless, BUT only if the
-> > > expectation as a whole fails.
-> > >
-> > > Hence, we can have multiple `struct kunit_stream`s associated with a
-> > > `struct kunit` active at any given time.
->
-> Makes sense. I wasn't sure if there were more than one stream associated
-> with a test. Sounds like there are many to one so it can't just be a
-> member of the test. This could be documented somewhere so this question
-> doesn't come up again.
+using icc_create_devfreq from the cpufreq-hw driver on SDM845 SoC
+to scale CPU<->DDR would cause a circular dependency. (i.e) with
+the addition of cpufreq notifier to the passive governor as in
+https://patchwork.kernel.org/patch/11046147/ devm_devfreq_add_device
+would require the cpufreq transistion notifier register and cpu
+freq_cpu_get to go through. Please add your thought on addressing this.
 
-Sounds good. Will do.
+> 
+>> Also if the
+>> GPU is already using devfreq, should we add a devfreq per each interconnect
+>> path? What would be the benefit in this case - using different governors for
+>> bandwidth scaling maybe?
+> 
+> When saying "separate/different governors" in this email, I mean both
+> different instance of the same governor logic with different tunables
+> AND actually different algorithms/governor logic entirely.
+> 
+> The heuristics to use for each interconnect path might be (more like,
+> will be) different based on hardware characteristics (Eg: what voltage
+> domains the interconnect is sitting on) and what interconnect
+> information is available (Eg: Just busy time vs bandwidth count vs no
+> information etc) -- so having separate governors for each interconnect
+> path makes a lot of sense. It also allows userspace to control the
+> policy for scaling each of those paths based on product use cases.
+> 
+> For example, when the GPU is just doing simple UI rendering, userspace
+> can use the max_freq sysfs file for the devfreq device to disallow high
+> bandwidth OPPs on the GPU<->DDR path, but those higher OPPs could be
+> allowed by userspace when the GPU is used for games. Having devfreq
+> device for each interconnect path also make it easy to debug
+> performance issues -- you can independently change the votes for each
+> path to figure out what is causing the bottleneck, etc.
+> 
+> Adding a devfreq device for interconnect voting with a few lines gives
+> all these features "for free".
+> 
+> This doesn't mean all users of interconnect framework NEED to use
+> devfreq for interconnect. They might do it simply based on
+> calculations based on the use case (Eg: display driver from display
+> resolution). But if they are trying to use any kind of
+> algorithm/heuristics, writing it as a devfreq governor should be
+> encouraged.
+> 
+> Also want to point out that BW OPPs also work for drivers that don't
+> use devfreq at all. The interconnect-opp-table just lists the
+> meaningful OPP leveld for the path and the device driver can pick one
+> entry from the table based on the use case.
+> 
+> Thanks,
+> Saravana
+> 
+> 
+> 
 
-Thanks!
+-- 
+Qualcomm Innovation Center, Inc.
+Qualcomm Innovation Center, Inc, is a member of Code Aurora Forum,
+a Linux Foundation Collaborative Project
