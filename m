@@ -2,151 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 64A736AF5C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 20:56:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11DAC6AF68
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 20:58:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388502AbfGPS4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 14:56:07 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:41809 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728190AbfGPS4H (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 14:56:07 -0400
-Received: by mail-pf1-f194.google.com with SMTP id m30so9549961pff.8
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 11:56:06 -0700 (PDT)
+        id S1726213AbfGPS6p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 14:58:45 -0400
+Received: from mail-oi1-f195.google.com ([209.85.167.195]:44355 "EHLO
+        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728753AbfGPS6p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 14:58:45 -0400
+Received: by mail-oi1-f195.google.com with SMTP id e189so16383722oib.11
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 11:58:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=ZybekRt/woJPUqImfzbAl3ncwjUgoXdjZVOXaEHk8I8=;
-        b=j9eLSBzu7vGeOp+9v4PjjMY8Y60gIHirQjt/95JgwPIeMch+f2SZ4m2BcsmqzLNPnA
-         y6mKbUvfRgB58Dd24aP06L/LHkjitHNk2jtHnbwOvIcJMeUwKyAY7Zj3rZzVz85nZG+R
-         H6nYqq0HtuMcKgj4ph8KvSOJ57XFS8xQJyN4O9EfZBueGH2zgw2CSiJKxHwffHaRiCZU
-         F2ZM5rxXlitmIEXm2ndwKKQaLdsI3EeFpaR3+KwtG2rjkMO/QifOGpG1dhcUu5Cz8T3g
-         tXwTsXzmF1fc22PaEHeit7cbJ2ZXrz0nkagsUOfmTF+46/GQqdl6HnMMZCq90oDQiUGy
-         RAXQ==
+        bh=bKqvJ4KVvMjZevsjiH9ZbBIG3O/bWHc4fStP7VeXPqo=;
+        b=N48FQRXzdJ0h2mmJ3Zu+1ca6vXioLCPWbJNDsqs2sjjBeE0x70GmtJG0N3iiBUAxaw
+         YDYmjybPLcsokdIDwwCx+rSIvAPeEIMkomRZbABlmW7+EEWMppv1Vh/BMwICt+r96JmV
+         3Yi8yhGJK0xq3FnjXl5FIyMXtUlV+XCXarAbDCe1DBsSuHzr4STvdk1cpPVAr+TU2FeN
+         vxR7KOxDGizVbKa+nY57AR1SvEJVYKZlxFRs8SPX+oxxY98PdcaoMsjbkaSSLMc1oGzT
+         GkFuX/d7KXofUK630+e/vQ0OBjdCBs7xhGG+ss1ZJVlkJip5rnLoUr8izDC8SacIWn2l
+         mgig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=ZybekRt/woJPUqImfzbAl3ncwjUgoXdjZVOXaEHk8I8=;
-        b=OHSzFPrU2xzufK0zhpFbeA/JB3QHqjwjV169OnxNuIIYPEQB1cleci6mZsJy2XLGme
-         A2hv/inZTbyVkpuxKsr1UYMgHNmvvpDc6wqj11a90wcMGVzU+iGLySSvf0RjvrKeetsQ
-         G/6EFB2SLrHq+SGqXceUh7VQ2fzmbykzdKIqu4EGeGNJ31TBPrF6mYCzGeNQPoi6sqyx
-         R6OGXfdup/c2h+1T9TobLejq6F+00jTdatyAXbXi4QN3pNXeF/h6dM+TAVoXxhTXmdKS
-         31P6CV2RCnH4SKwvxtnDxlZdauOLN5U08bUgtpiT1DJNFeF6s3E8elq6tbDamqy7gq3A
-         YoQQ==
-X-Gm-Message-State: APjAAAWTJ7g9W1jGjN7VDHZ86/LwxZXUq56jnBpirejJs3/lFKkmlGld
-        IEDLTcjYbcDUkBhi1VbW1p+1GNw2XhS1DBTRuRr+hg==
-X-Google-Smtp-Source: APXvYqwkl9ifterOK2ove6KXh9jZEcTxm4XlxkMBt5KD+9P3zl/wFtgkQs2T9gGivENnFOevPZS3P3oa9+3ivqemHYQ=
-X-Received: by 2002:a63:205f:: with SMTP id r31mr35946123pgm.159.1563303365863;
- Tue, 16 Jul 2019 11:56:05 -0700 (PDT)
+        bh=bKqvJ4KVvMjZevsjiH9ZbBIG3O/bWHc4fStP7VeXPqo=;
+        b=m5KoRvp2tAP78WyoC+/nbCN6bbaY0tCwQRDDVIqs/4MDNktDpVnjXyVafz0hSRhozH
+         8eKbMn+hIRYWlxCbRbMDCv9K2WrfAkyjeiPIbnZt8CJz06N+vLu2eE0QepHR4gsj1Fck
+         eX4jXTKpqhVYYKHnUJAGQ93gu9PnadXZx9WH/1GZ7raLhNP6NN9+mB6PCSZ3LLFrKTq+
+         f7C/Z2YFkN62stGqnCV09puxfYb77VxaqntzusyYDMa3VVBexHraYCFl7Ouzk7evcHGa
+         x06ZdIOZuwFCW8rNLo7VlXE4iux0UAlkKhcVXMmEaAXaAq95B09ElOXdCsIKO208fqdw
+         MGaA==
+X-Gm-Message-State: APjAAAWfcm7lCIdXLO1NS0ulOXiL+Ms0h/TXdhO82UUfj7zW9Xue69da
+        U0vHohgHM664b0eE4vNybJiEBJn8tFwrurRJU62oAg==
+X-Google-Smtp-Source: APXvYqxMQR/81HXmnAExIUv5kJyXmc10HoZQ6gjI2/nHBupxL139pCza9qYN/IuwOoitZ2NX9Ti/aFO2OkrTJ7DlOzc=
+X-Received: by 2002:aca:5106:: with SMTP id f6mr18154752oib.69.1563303523968;
+ Tue, 16 Jul 2019 11:58:43 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190712081744.87097-1-brendanhiggins@google.com>
- <20190712081744.87097-4-brendanhiggins@google.com> <20190715204356.4E3F92145D@mail.kernel.org>
- <CAFd5g47481sRaez=yEJN4_ghiXZbxayk1Y04tAZpuzPLsmnhKg@mail.gmail.com>
- <20190715220407.0030420665@mail.kernel.org> <CAFd5g44bE0F=wq_fOAnxFTtoOyx1dUshhDAkKWr5hX9ipJ4Sxw@mail.gmail.com>
- <CAFd5g47y4vDB2P=EsGN8305LGeQPCTveNs-Jd5-=6K-XKY==CA@mail.gmail.com> <20190716153400.5CB182054F@mail.kernel.org>
-In-Reply-To: <20190716153400.5CB182054F@mail.kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Tue, 16 Jul 2019 11:55:54 -0700
-Message-ID: <CAFd5g47Nawp7V8=hetgBQWzWqmEyAz1GtWWwMrb9k=CCR33inQ@mail.gmail.com>
-Subject: Re: [PATCH v9 03/18] kunit: test: add string_stream a std::stream
- like string builder
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Kees Cook <keescook@google.com>,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        kunit-dev@googlegroups.com,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Bird, Timothy" <Tim.Bird@sony.com>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Petr Mladek <pmladek@suse.com>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Richard Weinberger <richard@nod.at>,
-        David Rientjes <rientjes@google.com>,
-        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+References: <20190703011020.151615-1-saravanak@google.com> <20190703011020.151615-2-saravanak@google.com>
+ <98b2e315-e8da-80ad-1ef8-e6b222c1c6fe@codeaurora.org>
+In-Reply-To: <98b2e315-e8da-80ad-1ef8-e6b222c1c6fe@codeaurora.org>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 16 Jul 2019 11:58:08 -0700
+Message-ID: <CAGETcx9KSqvyzbM-S8LvBObkNBt38K683Ljm8nNQuhxk7MuvAg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: opp: Introduce opp-peak-KBps and
+ opp-avg-KBps bindings
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
+        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 16, 2019 at 8:34 AM Stephen Boyd <sboyd@kernel.org> wrote:
+On Tue, Jul 16, 2019 at 10:25 AM Sibi Sankar <sibis@codeaurora.org> wrote:
 >
-> Quoting Brendan Higgins (2019-07-15 15:43:20)
-> > On Mon, Jul 15, 2019 at 3:11 PM Brendan Higgins
-> > <brendanhiggins@google.com> wrote:
-> > >
-> > > On Mon, Jul 15, 2019 at 3:04 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> > > >
-> > > > Quoting Brendan Higgins (2019-07-15 14:11:50)
-> > > > > On Mon, Jul 15, 2019 at 1:43 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> > > > > >
-> > > > > > I also wonder if it would be better to just have a big slop buffer of a
-> > > > > > 4K page or something so that we almost never have to allocate anything
-> > > > > > with a string_stream and we can just rely on a reader consuming data
-> > > > > > while writers are writing. That might work out better, but I don't quite
-> > > > > > understand the use case for the string stream.
-> > > > >
-> > > > > That makes sense, but might that also waste memory since we will
-> > > > > almost never need that much memory?
-> > > >
-> > > > Why do we care? These are unit tests.
-> > >
-> > > Agreed.
-> > >
-> > > > Having allocations in here makes
-> > > > things more complicated, whereas it would be simpler to have a pointer
-> > > > and a spinlock operating on a chunk of memory that gets flushed out
-> > > > periodically.
-> > >
-> > > I am not so sure. I have to have the logic to allocate memory in some
-> > > case no matter what (what if I need more memory that my preallocated
-> > > chuck?). I think it is simpler to always request an allocation than to
-> > > only sometimes request an allocation.
+> Hey Saravana,
+>
+> https://patchwork.kernel.org/patch/10850815/
+> There was already a discussion ^^ on how bandwidth bindings were to be
+> named.
+
+Yes, I'm aware of that series. That series is trying to define a BW
+mapping for an existing frequency OPP table. This patch is NOT about
+adding a mapping to an existing table. This patch is about adding the
+notion of BW OPP tables where BW is the "key" instead of "frequency".
+
+So let's not mixed up these two series.
+
+-Saravana
+
+> On 7/3/19 6:40 AM, Saravana Kannan wrote:
+> > Interconnects often quantify their performance points in terms of
+> > bandwidth. So, add opp-peak-KBps (required) and opp-avg-KBps (optional) to
+> > allow specifying Bandwidth OPP tables in DT.
 > >
-> > Another even simpler alternative might be to just allocate memory
-> > using kunit_kmalloc as we need it and just let the kunit_resource code
-> > handle cleaning it all up when the test case finishes.
->
-> Sure, sounds like a nice way to avoid duplicating similar logic to
-> maintain a list of things to free later.
-
-I think I will go that route for now.
-
+> > opp-peak-KBps is a required property that replace opp-hz for Bandwidth OPP
+> > tables.
 > >
-> > What do you think?
+> > opp-avg-KBps is an optional property that can be used in Bandwidth OPP
+> > tables.
+> >
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > ---
+> >   Documentation/devicetree/bindings/opp/opp.txt | 15 ++++++++++++---
+> >   1 file changed, 12 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+> > index 76b6c79604a5..c869e87caa2a 100644
+> > --- a/Documentation/devicetree/bindings/opp/opp.txt
+> > +++ b/Documentation/devicetree/bindings/opp/opp.txt
+> > @@ -83,9 +83,14 @@ properties.
+> >
+> >   Required properties:
+> >   - opp-hz: Frequency in Hz, expressed as a 64-bit big-endian integer. This is a
+> > -  required property for all device nodes but devices like power domains. The
+> > -  power domain nodes must have another (implementation dependent) property which
+> > -  uniquely identifies the OPP nodes.
+> > +  required property for all device nodes but for devices like power domains or
+> > +  bandwidth opp tables. The power domain nodes must have another (implementation
+> > +  dependent) property which uniquely identifies the OPP nodes. The interconnect
+> > +  opps are required to have the opp-peak-bw property.
+> > +
+> > +- opp-peak-KBps: Peak bandwidth in kilobytes per second, expressed as a 32-bit
+> > +  big-endian integer. This is a required property for all devices that don't
+> > +  have opp-hz. For example, bandwidth OPP tables for interconnect paths.
+> >
+> >   Optional properties:
+> >   - opp-microvolt: voltage in micro Volts.
+> > @@ -132,6 +137,10 @@ Optional properties:
+> >   - opp-level: A value representing the performance level of the device,
+> >     expressed as a 32-bit integer.
+> >
+> > +- opp-avg-KBps: Average bandwidth in kilobytes per second, expressed as a
+> > +  32-bit big-endian integer. This property is only meaningful in OPP tables
+> > +  where opp-peak-KBps is present.
+> > +
+> >   - clock-latency-ns: Specifies the maximum possible transition latency (in
+> >     nanoseconds) for switching to this OPP from any other OPP.
+> >
+> >
 >
-> If you go the allocation route then you'll need to have the flags to
-> know what context you're in to allocate appropriately. Does that mean
-> all the string operations will now take GFP flags?
-
-We could set the GFP flags in the constructor, store them in a field,
-and then just reuse them.
-
-Thanks!
+> --
+> Qualcomm Innovation Center, Inc.
+> Qualcomm Innovation Center, Inc, is a member of Code Aurora Forum,
+> a Linux Foundation Collaborative Project
