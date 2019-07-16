@@ -2,54 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9FD16AF35
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 20:52:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64A736AF5C
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 20:56:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388491AbfGPSwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 14:52:16 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:37046 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388374AbfGPSwP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 14:52:15 -0400
-Received: by mail-pf1-f193.google.com with SMTP id 19so9544072pfa.4
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 11:52:14 -0700 (PDT)
+        id S2388502AbfGPS4H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 14:56:07 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:41809 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728190AbfGPS4H (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 14:56:07 -0400
+Received: by mail-pf1-f194.google.com with SMTP id m30so9549961pff.8
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 11:56:06 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=9Sc1kdmcO2G1QWedlTtE0HWQNxV/ni4EPFOSD4mvak8=;
-        b=ZCyVikwrrrr8sEcxgSZmPCownGxV/MYXa9j9+YIXCmXlRbEQ5VjfXvY6EcfEFY0pDg
-         6dohrkhT2K+GARGPKad8XT+z84UGHhs+1Xe2Gr3yLe4RfxNa6azK8YLYA8FUJ+8Rv6+s
-         uvS7hFRU5185+p2+YN1LU/ofoZnJQq4EfMM/ZPnOobUk19gIGry+csN0JORk+r8tTrbi
-         oUdOxHt9FJy5A/SvDK2g7lqyOVIMdSPer+OI1R5OSvoQyetli09vGD0rchW8OJF1qn6Z
-         Z0XcmPsHMRy9jdficyjdT0pE9Mk6Fp36dHk3laDmzAh/MRn5oNKkT6OgTaYUqdocn093
-         FUgQ==
+        bh=ZybekRt/woJPUqImfzbAl3ncwjUgoXdjZVOXaEHk8I8=;
+        b=j9eLSBzu7vGeOp+9v4PjjMY8Y60gIHirQjt/95JgwPIeMch+f2SZ4m2BcsmqzLNPnA
+         y6mKbUvfRgB58Dd24aP06L/LHkjitHNk2jtHnbwOvIcJMeUwKyAY7Zj3rZzVz85nZG+R
+         H6nYqq0HtuMcKgj4ph8KvSOJ57XFS8xQJyN4O9EfZBueGH2zgw2CSiJKxHwffHaRiCZU
+         F2ZM5rxXlitmIEXm2ndwKKQaLdsI3EeFpaR3+KwtG2rjkMO/QifOGpG1dhcUu5Cz8T3g
+         tXwTsXzmF1fc22PaEHeit7cbJ2ZXrz0nkagsUOfmTF+46/GQqdl6HnMMZCq90oDQiUGy
+         RAXQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=9Sc1kdmcO2G1QWedlTtE0HWQNxV/ni4EPFOSD4mvak8=;
-        b=FYP7J81i7A5sZn2JYbXIM6F/BFv9KzQBkbKIv2yvHnphm574oBLwqezGf8xsiO8oCX
-         bW+WfDCJJHUegITB6kYhqqs6LRZmtF7xkfVY3fa/irA3K0NSz754dlh92reVyZAH0U1K
-         tQ3nPn5Ta3fWxgN95J/J2jV72xanRCLLFO8KtiPAxLgCI7hrpfeYA+5fw2g5Bno6kvXU
-         yA+yfo1+Y7IWcmERAWgcFqBjU+EDTJfPEThb+Lzad2MwEkr+3nKieIoF5gRCCrfn495W
-         jbdCwq54GFQjdoVXYvb1yO3xOD9UK/d3EoFSNgi66Ce4JKfma6wcV2Y4KW4sKrpJaEmv
-         u0zg==
-X-Gm-Message-State: APjAAAXwkgDRyNX54U/+CMgFNoFpQwQmRtQ/GAqzgwIPcZ/Y041Cf7Kt
-        grB0yYNsPS3bEE9h4sllZrgF5Mpc2QsE8saGvnkcYw==
-X-Google-Smtp-Source: APXvYqyvfY7UpJRH7AXfo8+3L9F6UTsOiqoCvfNJ3LqUN5j48+NPSYN6SjLKREysI2CCnCLUFfoeygqKsabLc+vk6aw=
-X-Received: by 2002:a63:205f:: with SMTP id r31mr35929294pgm.159.1563303133100;
- Tue, 16 Jul 2019 11:52:13 -0700 (PDT)
+        bh=ZybekRt/woJPUqImfzbAl3ncwjUgoXdjZVOXaEHk8I8=;
+        b=OHSzFPrU2xzufK0zhpFbeA/JB3QHqjwjV169OnxNuIIYPEQB1cleci6mZsJy2XLGme
+         A2hv/inZTbyVkpuxKsr1UYMgHNmvvpDc6wqj11a90wcMGVzU+iGLySSvf0RjvrKeetsQ
+         G/6EFB2SLrHq+SGqXceUh7VQ2fzmbykzdKIqu4EGeGNJ31TBPrF6mYCzGeNQPoi6sqyx
+         R6OGXfdup/c2h+1T9TobLejq6F+00jTdatyAXbXi4QN3pNXeF/h6dM+TAVoXxhTXmdKS
+         31P6CV2RCnH4SKwvxtnDxlZdauOLN5U08bUgtpiT1DJNFeF6s3E8elq6tbDamqy7gq3A
+         YoQQ==
+X-Gm-Message-State: APjAAAWTJ7g9W1jGjN7VDHZ86/LwxZXUq56jnBpirejJs3/lFKkmlGld
+        IEDLTcjYbcDUkBhi1VbW1p+1GNw2XhS1DBTRuRr+hg==
+X-Google-Smtp-Source: APXvYqwkl9ifterOK2ove6KXh9jZEcTxm4XlxkMBt5KD+9P3zl/wFtgkQs2T9gGivENnFOevPZS3P3oa9+3ivqemHYQ=
+X-Received: by 2002:a63:205f:: with SMTP id r31mr35946123pgm.159.1563303365863;
+ Tue, 16 Jul 2019 11:56:05 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190712081744.87097-1-brendanhiggins@google.com>
- <20190712081744.87097-5-brendanhiggins@google.com> <20190715221554.8417320665@mail.kernel.org>
- <CAFd5g47ikJmA0uGoavAFsh+hQvDmgsOi26tyii0612R=rt7iiw@mail.gmail.com>
- <CAFd5g44_axVHNMBzxSURQB_-R+Rif7cZcg7PyZ_SS+5hcy5jZA@mail.gmail.com> <20190716175021.9CA412173C@mail.kernel.org>
-In-Reply-To: <20190716175021.9CA412173C@mail.kernel.org>
+ <20190712081744.87097-4-brendanhiggins@google.com> <20190715204356.4E3F92145D@mail.kernel.org>
+ <CAFd5g47481sRaez=yEJN4_ghiXZbxayk1Y04tAZpuzPLsmnhKg@mail.gmail.com>
+ <20190715220407.0030420665@mail.kernel.org> <CAFd5g44bE0F=wq_fOAnxFTtoOyx1dUshhDAkKWr5hX9ipJ4Sxw@mail.gmail.com>
+ <CAFd5g47y4vDB2P=EsGN8305LGeQPCTveNs-Jd5-=6K-XKY==CA@mail.gmail.com> <20190716153400.5CB182054F@mail.kernel.org>
+In-Reply-To: <20190716153400.5CB182054F@mail.kernel.org>
 From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Tue, 16 Jul 2019 11:52:01 -0700
-Message-ID: <CAFd5g453vXeSUCZenCk_CzJ-8a1ym9RaPo0NVF=FujF9ac-5Ag@mail.gmail.com>
-Subject: Re: [PATCH v9 04/18] kunit: test: add kunit_stream a std::stream like logger
+Date:   Tue, 16 Jul 2019 11:55:54 -0700
+Message-ID: <CAFd5g47Nawp7V8=hetgBQWzWqmEyAz1GtWWwMrb9k=CCR33inQ@mail.gmail.com>
+Subject: Re: [PATCH v9 03/18] kunit: test: add string_stream a std::stream
+ like string builder
 To:     Stephen Boyd <sboyd@kernel.org>
 Cc:     Frank Rowand <frowand.list@gmail.com>,
         Greg KH <gregkh@linuxfoundation.org>,
@@ -94,137 +96,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 16, 2019 at 10:50 AM Stephen Boyd <sboyd@kernel.org> wrote:
+On Tue, Jul 16, 2019 at 8:34 AM Stephen Boyd <sboyd@kernel.org> wrote:
 >
-> Quoting Brendan Higgins (2019-07-16 01:37:34)
-> > On Tue, Jul 16, 2019 at 12:57 AM Brendan Higgins
+> Quoting Brendan Higgins (2019-07-15 15:43:20)
+> > On Mon, Jul 15, 2019 at 3:11 PM Brendan Higgins
 > > <brendanhiggins@google.com> wrote:
 > > >
-> > > A `struct kunit_stream` is usually associated with a message that is
-> > > being built up over time like maybe an expectation; it is meant to
-> > > capture the idea that we might want to send some information out to
-> > > the user pertaining to some thing 'X', but we aren't sure that we
-> > > actually want to send it until 'X' is complete, but do to the nature
-> > > of 'X' it is easier to start constructing the message before 'X' is
-> > > complete.
+> > > On Mon, Jul 15, 2019 at 3:04 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > > >
+> > > > Quoting Brendan Higgins (2019-07-15 14:11:50)
+> > > > > On Mon, Jul 15, 2019 at 1:43 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > > > > >
+> > > > > > I also wonder if it would be better to just have a big slop buffer of a
+> > > > > > 4K page or something so that we almost never have to allocate anything
+> > > > > > with a string_stream and we can just rely on a reader consuming data
+> > > > > > while writers are writing. That might work out better, but I don't quite
+> > > > > > understand the use case for the string stream.
+> > > > >
+> > > > > That makes sense, but might that also waste memory since we will
+> > > > > almost never need that much memory?
+> > > >
+> > > > Why do we care? These are unit tests.
 > > >
-> > > Consider a complicated expectation, there might be multiple conditions
-> > > that satisfy it and multiple conditions which could make it fail. As
-> > > we start exploring the input to the expectation we gain information
-> > > that we might want to share back with the user if the expectation were
-> > > to fail and we might get that information before we are actually sure
-> > > that the expectation does indeed fail.
+> > > Agreed.
 > > >
-> > > When we first step into the expectation we immediately know the
-> > > function name, file name, and line number where we are called and
-> > > would want to put that information into any message we would send to
-> > > the user about this expectation. Next, we might want to check a
-> > > property of the input, it may or may not be enough information on its
-> > > own for the expectation to fail, but we want to share the result of
-> > > the property check with the user regardless, BUT only if the
-> > > expectation as a whole fails.
+> > > > Having allocations in here makes
+> > > > things more complicated, whereas it would be simpler to have a pointer
+> > > > and a spinlock operating on a chunk of memory that gets flushed out
+> > > > periodically.
 > > >
-> > > Hence, we can have multiple `struct kunit_stream`s associated with a
-> > > `struct kunit` active at any given time.
+> > > I am not so sure. I have to have the logic to allocate memory in some
+> > > case no matter what (what if I need more memory that my preallocated
+> > > chuck?). I think it is simpler to always request an allocation than to
+> > > only sometimes request an allocation.
+> >
+> > Another even simpler alternative might be to just allocate memory
+> > using kunit_kmalloc as we need it and just let the kunit_resource code
+> > handle cleaning it all up when the test case finishes.
 >
-> I'm coming back to this now after reading the rest of the patches that
-> deal with assertions and expectations. It looks like the string stream
-> is there to hold a few different pieces of information:
+> Sure, sounds like a nice way to avoid duplicating similar logic to
+> maintain a list of things to free later.
+
+I think I will go that route for now.
+
+> >
+> > What do you think?
 >
->  - Line Number
->  - File Name
->  - Function Name
->
-> The above items could be stored in a structure on the stack that then
-> gets printed and formatted when the expectation or assertion fails. That
-> would make the whole string stream structure and code unnecessary.
+> If you go the allocation route then you'll need to have the flags to
+> know what context you're in to allocate appropriately. Does that mean
+> all the string operations will now take GFP flags?
 
-Most of the expectations and assertions in this patchset are fairly
-simple, and what you are describing would probably work. However, I
-have some expectations I plan on adding in later patchsets that make
-much more complicated checks.
+We could set the GFP flags in the constructor, store them in a field,
+and then just reuse them.
 
-> The only hypothetical case where this can't be done is a complicated
-> assertion or expectation that does more than one check and can't be
-> written as a function that dumps out what went wrong. Is this a real
-> problem? Maybe such an assertion should just open code that logic so we
-> don't have to build up a string for all the other simple cases.
-
-I have some expectations in follow up patchsets for which I created a
-set of composable matchers for matching structures and function calls
-that by their nature cannot be written as a single function. The
-matcher thing is a bit speculative, I know, but for any kind of
-function call matching, you need to store a record of functions you
-are expecting to have called and then each one needs to have a set of
-expectations defined by the user; I don't think there is a way to do
-that that doesn't involve having multiple separate functions each
-having some information useful to constructing the message.
-
-I know the code in question isn't in this patchset; the function
-matching code was in one of the earlier versions of the RFC, but I
-dropped it to make this patchset smaller and more manageable. So I get
-it if you would like me to drop it and add it back in when I try to
-get the function and structure matching stuff in, but I would really
-prefer to keep it as is if you don't care too much.
-
-> It seems far simpler to get rid of the string stream API and just have a
-> struct for this.
->
->         struct kunit_fail_msg {
->                 const char *line;
->                 const char *file;
->                 const char *func;
->                 const char *msg;
->         };
->
-> Then you can have the assertion macros create this on the stack (with
-> another macro?).
->
->         #define DEFINE_KUNIT_FAIL_MSG(name, _msg) \
->                 struct kunit_fail_msg name = { \
->                         .line =  __LINE__, \
->                         .file = __FILE__, \
->                         .func = __func__, \
->                         .msg = _msg, \
->                 }
->
-> Note: I don't know if the __LINE__ above will use the macro location, so
-> this probably needs another wrapper to put the right line number there.
-
-No, that should work. It picks up where the macro ends up being
-finally evaluated.
-
-> I don't want to derail this whole series on this topic, but it seems
-> like a bunch of code is there to construct this same set of information
-> over and over again into a buffer a little bit at a time and then throw
-> it away when nothing fails just because we may want to support the case
-> where we have some unstructured data to inform the user about.
-
-Yeah, that's fair. I think there are a number of improvements to be
-made with how the expectations are defined other than that, but I was
-hoping I could do that after this patchset is merged. I just figured
-with the kinds of things I would like to do, it would lead to a whole
-new round of discussion.
-
-In either case, I think I would still like to use the `struct
-kunit_stream` as part of the interface to share the failure message
-with the test case runner code in test.c, at least eventually, so that
-I only have to have one way to receive data from expectations, but I
-think I can do that and still do what you suggest by just constructing
-the kunit_stream at the end of expectations where it is feasible.
-
-All in all I agree with what you are saying, but I would rather do it
-as a follow up possibly once we have some more code on the table. I
-could just see this opening up a whole new can of worms where we
-debate about exactly how expectations and assertions work for another
-several months, only to rip it all out shortly there after. I know
-that's how these things go, but that's my preference.
-
-I can do what you suggest if you feel strongly about it, but I would
-prefer to hold off until later. It's your call.
-
-> Why not build in the structured part into the framework (i.e. the struct
-> above) so that it's always there and then add the string building part
-> later when we have to?
-
-See above comments.
+Thanks!
