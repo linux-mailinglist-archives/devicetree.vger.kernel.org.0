@@ -2,232 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E9B76AEF3
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 20:43:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A9FD16AF35
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 20:52:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388518AbfGPSnW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 14:43:22 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:39366 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728137AbfGPSnV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 14:43:21 -0400
-Received: by mail-lf1-f65.google.com with SMTP id v85so14461543lfa.6;
-        Tue, 16 Jul 2019 11:43:19 -0700 (PDT)
+        id S2388491AbfGPSwQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 14:52:16 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:37046 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388374AbfGPSwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 14:52:15 -0400
+Received: by mail-pf1-f193.google.com with SMTP id 19so9544072pfa.4
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 11:52:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=ct6VuKDqu0yOaIOAQGNskNNMGjN2lhUjsRcKbgUX6uc=;
-        b=ch3kryCwLOJHjw1+WWT2pXE9wYSpfxE/C51MC921Gm9WftGAPK9A5aR1nBqEsTTSBG
-         RI7clARKc02ELRTnJoqqAY3yxyjpaMjrJqDRECfzXmnKAAOJD7Nt6xZ1+7xe8qJ+GxS4
-         993hncuvlA8OC8X6VtM3IJ2/eQskuBJxd/XlYg5K4ZKRP89v2TfIEzZslBnt7OTrLdK3
-         6+5nKBYrvaSowDM2MLvzR6ssxYkvgQ7EH96QyFstfUWlKcmri3wm+oJh/6kh4wJYt4pr
-         gKf9sgwCtXiCmUn5kNjH4wEIqjOpqYJJvuf1eumNM4MdWQpHsnchekeo9hzp6jxfaklh
-         e1kw==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9Sc1kdmcO2G1QWedlTtE0HWQNxV/ni4EPFOSD4mvak8=;
+        b=ZCyVikwrrrr8sEcxgSZmPCownGxV/MYXa9j9+YIXCmXlRbEQ5VjfXvY6EcfEFY0pDg
+         6dohrkhT2K+GARGPKad8XT+z84UGHhs+1Xe2Gr3yLe4RfxNa6azK8YLYA8FUJ+8Rv6+s
+         uvS7hFRU5185+p2+YN1LU/ofoZnJQq4EfMM/ZPnOobUk19gIGry+csN0JORk+r8tTrbi
+         oUdOxHt9FJy5A/SvDK2g7lqyOVIMdSPer+OI1R5OSvoQyetli09vGD0rchW8OJF1qn6Z
+         Z0XcmPsHMRy9jdficyjdT0pE9Mk6Fp36dHk3laDmzAh/MRn5oNKkT6OgTaYUqdocn093
+         FUgQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=ct6VuKDqu0yOaIOAQGNskNNMGjN2lhUjsRcKbgUX6uc=;
-        b=BFuk+8ZFYkkMKvOvyTPdqLrURilYChR5b2UmA3YFqu6a6YR3dF9WoGKd4keyNZuAMH
-         pTR5V3WMWvvNExgnD8o5K1r8f90iTsSHKngAvSzgmUvXS5j/COspuMTbbwQ5RJ2OrDu+
-         NpcG/5HzvXSLq8OuRv7fm079QyZciuWjzA3gNZ+qg7DG5vYmnth8JZXohi+f9e83uCMg
-         Mw/ce3LsgWeeMKRuR5yQGXFUiVb0BJqA0rdzORpji8R/IF+QcRkRWIGmrTmTgWo8PEsE
-         jBX4T5cs8Zv4AenIVQBwGonC/1dNLjtWgOrlgiOgOIoVkmwE7PbTlWR790xnGZzSh599
-         1yxQ==
-X-Gm-Message-State: APjAAAW/fcU/I/1U1LplYNMjtEuXn03I3EsDaOalU7u2PUI0p9gTHaXQ
-        nret0j9UoT5clZgCXiuOc1WhmQQn
-X-Google-Smtp-Source: APXvYqxdIRfoxBVjGBWC5eY+VkVnsnB7dGvzXKN+BHOaNOzoNxUduq783EhmGBs+w8gNm95yAFvX2g==
-X-Received: by 2002:a19:750b:: with SMTP id y11mr15611008lfe.16.1563302598390;
-        Tue, 16 Jul 2019 11:43:18 -0700 (PDT)
-Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
-        by smtp.googlemail.com with ESMTPSA id y25sm4277219lja.45.2019.07.16.11.43.17
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 16 Jul 2019 11:43:17 -0700 (PDT)
-Subject: Re: [PATCH V5 11/18] clk: tegra210: Add support for Tegra210 clocks
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Joseph Lo <josephl@nvidia.com>
-Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, marc.zyngier@arm.com,
-        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com,
-        pgaikwad@nvidia.com, sboyd@kernel.org, linux-clk@vger.kernel.org,
-        linux-gpio@vger.kernel.org, jckuo@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <a5e1a6df-dff7-9e0c-9551-f78103a5462f@gmail.com>
- <a9b5c364-52b4-bee1-5881-47197f043950@nvidia.com>
- <e9d4bc0e-fd5d-ae02-2d67-86c7f7c9620f@gmail.com>
- <3938092a-bbc7-b304-641d-31677539598d@nvidia.com>
- <932d4d50-120c-9191-6a9a-23bf9c96633b@nvidia.com>
- <0ee055ad-d397-32e5-60ee-d62c14c6f77b@gmail.com>
- <86fc07d5-ab2e-a52a-a570-b1dfff4c20fe@nvidia.com>
- <20190716083701.225f0fd9@dimatab>
- <21266e4f-16b1-4c87-067a-16c07c803b6e@nvidia.com>
- <c5853e1a-d812-2dbd-3bec-0a9b0b0f6f3e@nvidia.com>
- <20190716080610.GE12715@pdeschrijver-desktop.Nvidia.com>
- <d908d3a2-3013-7f92-0852-115f428d1c5f@gmail.com>
- <72b5df8c-8acb-d0d0-ebcf-b406e8404973@nvidia.com>
- <2b701832-5548-7c83-7c17-05cc2f1470c8@nvidia.com>
- <76e341be-6f38-2bc1-048e-1aa6883f9b88@gmail.com>
- <0706576a-ce61-1cf3-bed1-05f54a1e2489@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <5b2945c5-fcb2-2ac0-2bf2-df869dc9c713@gmail.com>
-Date:   Tue, 16 Jul 2019 21:43:16 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9Sc1kdmcO2G1QWedlTtE0HWQNxV/ni4EPFOSD4mvak8=;
+        b=FYP7J81i7A5sZn2JYbXIM6F/BFv9KzQBkbKIv2yvHnphm574oBLwqezGf8xsiO8oCX
+         bW+WfDCJJHUegITB6kYhqqs6LRZmtF7xkfVY3fa/irA3K0NSz754dlh92reVyZAH0U1K
+         tQ3nPn5Ta3fWxgN95J/J2jV72xanRCLLFO8KtiPAxLgCI7hrpfeYA+5fw2g5Bno6kvXU
+         yA+yfo1+Y7IWcmERAWgcFqBjU+EDTJfPEThb+Lzad2MwEkr+3nKieIoF5gRCCrfn495W
+         jbdCwq54GFQjdoVXYvb1yO3xOD9UK/d3EoFSNgi66Ce4JKfma6wcV2Y4KW4sKrpJaEmv
+         u0zg==
+X-Gm-Message-State: APjAAAXwkgDRyNX54U/+CMgFNoFpQwQmRtQ/GAqzgwIPcZ/Y041Cf7Kt
+        grB0yYNsPS3bEE9h4sllZrgF5Mpc2QsE8saGvnkcYw==
+X-Google-Smtp-Source: APXvYqyvfY7UpJRH7AXfo8+3L9F6UTsOiqoCvfNJ3LqUN5j48+NPSYN6SjLKREysI2CCnCLUFfoeygqKsabLc+vk6aw=
+X-Received: by 2002:a63:205f:: with SMTP id r31mr35929294pgm.159.1563303133100;
+ Tue, 16 Jul 2019 11:52:13 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <0706576a-ce61-1cf3-bed1-05f54a1e2489@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+References: <20190712081744.87097-1-brendanhiggins@google.com>
+ <20190712081744.87097-5-brendanhiggins@google.com> <20190715221554.8417320665@mail.kernel.org>
+ <CAFd5g47ikJmA0uGoavAFsh+hQvDmgsOi26tyii0612R=rt7iiw@mail.gmail.com>
+ <CAFd5g44_axVHNMBzxSURQB_-R+Rif7cZcg7PyZ_SS+5hcy5jZA@mail.gmail.com> <20190716175021.9CA412173C@mail.kernel.org>
+In-Reply-To: <20190716175021.9CA412173C@mail.kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Tue, 16 Jul 2019 11:52:01 -0700
+Message-ID: <CAFd5g453vXeSUCZenCk_CzJ-8a1ym9RaPo0NVF=FujF9ac-5Ag@mail.gmail.com>
+Subject: Re: [PATCH v9 04/18] kunit: test: add kunit_stream a std::stream like logger
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-16.07.2019 21:30, Sowjanya Komatineni пишет:
-> 
-> On 7/16/19 11:25 AM, Dmitry Osipenko wrote:
->> 16.07.2019 21:19, Sowjanya Komatineni пишет:
->>> On 7/16/19 9:50 AM, Sowjanya Komatineni wrote:
->>>> On 7/16/19 8:00 AM, Dmitry Osipenko wrote:
->>>>> 16.07.2019 11:06, Peter De Schrijver пишет:
->>>>>> On Tue, Jul 16, 2019 at 03:24:26PM +0800, Joseph Lo wrote:
->>>>>>>> OK, Will add to CPUFreq driver...
->>>>>>>>> The other thing that also need attention is that T124 CPUFreq
->>>>>>>>> driver
->>>>>>>>> implicitly relies on DFLL driver to be probed first, which is
->>>>>>>>> icky.
->>>>>>>>>
->>>>>>>> Should I add check for successful dfll clk register explicitly in
->>>>>>>> CPUFreq driver probe and defer till dfll clk registers?
->>>>> Probably you should use the "device links". See [1][2] for the
->>>>> example.
->>>>>
->>>>> [1]
->>>>> https://elixir.bootlin.com/linux/v5.2.1/source/drivers/gpu/drm/tegra/dc.c#L2383
->>>>>
->>>>>
->>>>>
->>>>> [2] https://www.kernel.org/doc/html/latest/driver-api/device_link.html
->>>>>
->>>>> Return EPROBE_DEFER instead of EINVAL if device_link_add() fails. And
->>>>> use of_find_device_by_node() to get the DFLL's device, see [3].
->>>>>
->>>>> [3]
->>>>> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/drivers/devfreq/tegra20-devfreq.c#n100
->>>>>
->>>>>
->>>> Will go thru and add...
->> Looks like I initially confused this case with getting orphaned clock.
->> I'm now seeing that the DFLL driver registers the clock and then
->> clk_get(dfll) should be returning EPROBE_DEFER until DFLL driver is
->> probed, hence everything should be fine as-is and there is no real need
->> for the 'device link'. Sorry for the confusion!
->>
->>>>>>> Sorry, I didn't follow the mail thread. Just regarding the DFLL
->>>>>>> part.
->>>>>>>
->>>>>>> As you know it, the DFLL clock is one of the CPU clock sources and
->>>>>>> integrated with DVFS control logic with the regulator. We will not
->>>>>>> switch
->>>>>>> CPU to other clock sources once we switched to DFLL. Because the
->>>>>>> CPU has
->>>>>>> been regulated by the DFLL HW with the DVFS table (CVB or OPP table
->>>>>>> you see
->>>>>>> in the driver.). We shouldn't reparent it to other sources with
->>>>>>> unknew
->>>>>>> freq/volt pair. That's not guaranteed to work. We allow switching to
->>>>>>> open-loop mode but different sources.
->>>>> Okay, then the CPUFreq driver will have to enforce DFLL freq to PLLP's
->>>>> rate before switching to PLLP in order to have a proper CPU voltage.
->>>> PLLP freq is safe to work for any CPU voltage. So no need to enforce
->>>> DFLL freq to PLLP rate before changing CCLK_G source to PLLP during
->>>> suspend
->>>>
->>> Sorry, please ignore my above comment. During suspend, need to change
->>> CCLK_G source to PLLP when dfll is in closed loop mode first and then
->>> dfll need to be set to open loop.
->> Okay.
->>
->>>>>>> And I don't exactly understand why we need to switch to PLLP in CPU
->>>>>>> idle
->>>>>>> driver. Just keep it on CL-DVFS mode all the time.
->>>>>>>
->>>>>>> In SC7 entry, the dfll suspend function moves it the open-loop
->>>>>>> mode. That's
->>>>>>> all. The sc7-entryfirmware will handle the rest of the sequence to
->>>>>>> turn off
->>>>>>> the CPU power.
->>>>>>>
->>>>>>> In SC7 resume, the warmboot code will handle the sequence to turn on
->>>>>>> regulator and power up the CPU cluster. And leave it on PLL_P. After
->>>>>>> resuming to the kernel, we re-init DFLL, restore the CPU clock
->>>>>>> policy (CPU
->>>>>>> runs on DFLL open-loop mode) and then moving to close-loop mode.
->>>>> The DFLL is re-inited after switching CCLK to DFLL parent during of
->>>>> the
->>>>> early clocks-state restoring by CaR driver. Hence instead of having
->>>>> odd
->>>>> hacks in the CaR driver, it is much nicer to have a proper
->>>>> suspend-resume sequencing of the device drivers. In this case CPUFreq
->>>>> driver is the driver that enables DFLL and switches CPU to that clock
->>>>> source, which means that this driver is also should be responsible for
->>>>> management of the DFLL's state during of suspend/resume process. If
->>>>> CPUFreq driver disables DFLL during suspend and re-enables it during
->>>>> resume, then looks like the CaR driver hacks around DFLL are not
->>>>> needed.
->>>>>
->>>>>>> The DFLL part looks good to me. BTW, change the patch subject to
->>>>>>> "Add
->>>>>>> suspend-resume support" seems more appropriate to me.
->>>>>>>
->>>>>> To clarify this, the sequences for DFLL use are as follows (assuming
->>>>>> all
->>>>>> required DFLL hw configuration has been done)
->>>>>>
->>>>>> Switch to DFLL:
->>>>>> 0) Save current parent and frequency
->>>>>> 1) Program DFLL to open loop mode
->>>>>> 2) Enable DFLL
->>>>>> 3) Change cclk_g parent to DFLL
->>>>>> For OVR regulator:
->>>>>> 4) Change PWM output pin from tristate to output
->>>>>> 5) Enable DFLL PWM output
->>>>>> For I2C regulator:
->>>>>> 4) Enable DFLL I2C output
->>>>>> 6) Program DFLL to closed loop mode
->>>>>>
->>>>>> Switch away from DFLL:
->>>>>> 0) Change cclk_g parent to PLLP so the CPU frequency is ok for any
->>>>>> vdd_cpu voltage
->>>>>> 1) Program DFLL to open loop mode
->>>>>>
->>> I see during switch away from DFLL (suspend), cclk_g parent is not
->>> changed to PLLP before changing dfll to open loop mode.
->>>
->>> Will add this ...
->> The CPUFreq driver switches parent to PLLP during the probe, similar
->> should be done on suspend.
->>
->> I'm also wondering if it's always safe to switch to PLLP in the probe.
->> If CPU is running on a lower freq than PLLP, then some other more
->> appropriate intermediate parent should be selected.
->>
-> CPU parents are PLL_X, PLL_P, and dfll. PLL_X always runs at higher rate
-> so switching to PLL_P during CPUFreq probe prior to dfll clock enable
-> should be safe.
+On Tue, Jul 16, 2019 at 10:50 AM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Brendan Higgins (2019-07-16 01:37:34)
+> > On Tue, Jul 16, 2019 at 12:57 AM Brendan Higgins
+> > <brendanhiggins@google.com> wrote:
+> > >
+> > > A `struct kunit_stream` is usually associated with a message that is
+> > > being built up over time like maybe an expectation; it is meant to
+> > > capture the idea that we might want to send some information out to
+> > > the user pertaining to some thing 'X', but we aren't sure that we
+> > > actually want to send it until 'X' is complete, but do to the nature
+> > > of 'X' it is easier to start constructing the message before 'X' is
+> > > complete.
+> > >
+> > > Consider a complicated expectation, there might be multiple conditions
+> > > that satisfy it and multiple conditions which could make it fail. As
+> > > we start exploring the input to the expectation we gain information
+> > > that we might want to share back with the user if the expectation were
+> > > to fail and we might get that information before we are actually sure
+> > > that the expectation does indeed fail.
+> > >
+> > > When we first step into the expectation we immediately know the
+> > > function name, file name, and line number where we are called and
+> > > would want to put that information into any message we would send to
+> > > the user about this expectation. Next, we might want to check a
+> > > property of the input, it may or may not be enough information on its
+> > > own for the expectation to fail, but we want to share the result of
+> > > the property check with the user regardless, BUT only if the
+> > > expectation as a whole fails.
+> > >
+> > > Hence, we can have multiple `struct kunit_stream`s associated with a
+> > > `struct kunit` active at any given time.
+>
+> I'm coming back to this now after reading the rest of the patches that
+> deal with assertions and expectations. It looks like the string stream
+> is there to hold a few different pieces of information:
+>
+>  - Line Number
+>  - File Name
+>  - Function Name
+>
+> The above items could be stored in a structure on the stack that then
+> gets printed and formatted when the expectation or assertion fails. That
+> would make the whole string stream structure and code unnecessary.
 
-AFAIK, PLLX could run at ~200MHz. There is also a divided output of PLLP
-which CCLKG supports, the PLLP_OUT4.
+Most of the expectations and assertions in this patchset are fairly
+simple, and what you are describing would probably work. However, I
+have some expectations I plan on adding in later patchsets that make
+much more complicated checks.
 
-Probably, realistically, CPU is always running off a fast PLLX during
-boot, but I'm wondering what may happen on KEXEC. I guess ideally
-CPUFreq driver should also have a 'shutdown' callback to teardown DFLL
-on a reboot, but likely that there are other clock-related problems as
-well that may break KEXEC and thus it is not very important at the moment.
+> The only hypothetical case where this can't be done is a complicated
+> assertion or expectation that does more than one check and can't be
+> written as a function that dumps out what went wrong. Is this a real
+> problem? Maybe such an assertion should just open code that logic so we
+> don't have to build up a string for all the other simple cases.
 
-[snip]
+I have some expectations in follow up patchsets for which I created a
+set of composable matchers for matching structures and function calls
+that by their nature cannot be written as a single function. The
+matcher thing is a bit speculative, I know, but for any kind of
+function call matching, you need to store a record of functions you
+are expecting to have called and then each one needs to have a set of
+expectations defined by the user; I don't think there is a way to do
+that that doesn't involve having multiple separate functions each
+having some information useful to constructing the message.
+
+I know the code in question isn't in this patchset; the function
+matching code was in one of the earlier versions of the RFC, but I
+dropped it to make this patchset smaller and more manageable. So I get
+it if you would like me to drop it and add it back in when I try to
+get the function and structure matching stuff in, but I would really
+prefer to keep it as is if you don't care too much.
+
+> It seems far simpler to get rid of the string stream API and just have a
+> struct for this.
+>
+>         struct kunit_fail_msg {
+>                 const char *line;
+>                 const char *file;
+>                 const char *func;
+>                 const char *msg;
+>         };
+>
+> Then you can have the assertion macros create this on the stack (with
+> another macro?).
+>
+>         #define DEFINE_KUNIT_FAIL_MSG(name, _msg) \
+>                 struct kunit_fail_msg name = { \
+>                         .line =  __LINE__, \
+>                         .file = __FILE__, \
+>                         .func = __func__, \
+>                         .msg = _msg, \
+>                 }
+>
+> Note: I don't know if the __LINE__ above will use the macro location, so
+> this probably needs another wrapper to put the right line number there.
+
+No, that should work. It picks up where the macro ends up being
+finally evaluated.
+
+> I don't want to derail this whole series on this topic, but it seems
+> like a bunch of code is there to construct this same set of information
+> over and over again into a buffer a little bit at a time and then throw
+> it away when nothing fails just because we may want to support the case
+> where we have some unstructured data to inform the user about.
+
+Yeah, that's fair. I think there are a number of improvements to be
+made with how the expectations are defined other than that, but I was
+hoping I could do that after this patchset is merged. I just figured
+with the kinds of things I would like to do, it would lead to a whole
+new round of discussion.
+
+In either case, I think I would still like to use the `struct
+kunit_stream` as part of the interface to share the failure message
+with the test case runner code in test.c, at least eventually, so that
+I only have to have one way to receive data from expectations, but I
+think I can do that and still do what you suggest by just constructing
+the kunit_stream at the end of expectations where it is feasible.
+
+All in all I agree with what you are saying, but I would rather do it
+as a follow up possibly once we have some more code on the table. I
+could just see this opening up a whole new can of worms where we
+debate about exactly how expectations and assertions work for another
+several months, only to rip it all out shortly there after. I know
+that's how these things go, but that's my preference.
+
+I can do what you suggest if you feel strongly about it, but I would
+prefer to hold off until later. It's your call.
+
+> Why not build in the structured part into the framework (i.e. the struct
+> above) so that it's always there and then add the string building part
+> later when we have to?
+
+See above comments.
