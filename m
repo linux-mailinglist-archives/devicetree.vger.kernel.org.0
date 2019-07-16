@@ -2,89 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F63E6B222
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 00:57:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 398D16B239
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 01:12:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387762AbfGPW5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 18:57:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36146 "EHLO mail.kernel.org"
+        id S1728681AbfGPXMP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 19:12:15 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42044 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731273AbfGPW5J (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Jul 2019 18:57:09 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        id S1728414AbfGPXMP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jul 2019 19:12:15 -0400
+Received: from mail-qt1-f181.google.com (mail-qt1-f181.google.com [209.85.160.181])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EE99721842;
-        Tue, 16 Jul 2019 22:57:07 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 911CB20880;
+        Tue, 16 Jul 2019 23:12:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563317828;
-        bh=3FziCkUhkic52Bz0GkIpF1K3lMHEHAHMOGGv+yHGAuw=;
+        s=default; t=1563318733;
+        bh=ZrMVMjZfiyo7aCNZthaYAClwMGeLU4tWWQ3/FztZONQ=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tHIuxFwbQhJ6bqRks348x26fjUooue674tNCmsDNaF7YctEzbVuTeO4vbdxLe5cLE
-         wr2dq4jGaVUuCBnAoPYfd5xhW8mPFOUrjiBVZ3pH1dpKxA3QNaKy9G2tZvThaVsBDo
-         xaqSPELdUJF49m3HgBXf5Is5Oh9fRrCtyJt9U1co=
-Received: by mail-qk1-f180.google.com with SMTP id s22so15963969qkj.12;
-        Tue, 16 Jul 2019 15:57:07 -0700 (PDT)
-X-Gm-Message-State: APjAAAV31bEK6SvV0nr0QjaAf4DZdvldR/3Ek1uDcLKhpktjRpTSjGbQ
-        Pv64Vx1F5EooBssnnA1EObH9bNPP7Zck9Qe1pA==
-X-Google-Smtp-Source: APXvYqwIhgBe3UyiAiUUqKGCswul0dCV5zLkXb+CtviKLJPbKPZ2Qp20piCgEBRULt10Vr9A8Ukl3eOF7cL98pjlPQY=
-X-Received: by 2002:a37:a44a:: with SMTP id n71mr22553428qke.393.1563317827063;
- Tue, 16 Jul 2019 15:57:07 -0700 (PDT)
+        b=L2wK49fqvZrOCA2UmMLJVRunNbS9bYwSsZWU7KO7RSPW/HF9FQoBgLuXl0sqbhV+p
+         /DPg+rCflLYYK+nUaItC88VE574wDb5bf/Q9qVyJY9TUtmajBwtHM8I+NmiCknHUUe
+         2IfOWacl96/EsvMd9z6LAKHSgOv6n0Oi032NWtjs=
+Received: by mail-qt1-f181.google.com with SMTP id 44so21356696qtg.11;
+        Tue, 16 Jul 2019 16:12:13 -0700 (PDT)
+X-Gm-Message-State: APjAAAUBDJU8wsH6G4bMr7ITSb3VvEPDryuRgdQjEHWmBngV30c0IP6P
+        PjkoHqtHrhcT9w2iqMKKjAr0345Wi4YcwOlVtQ==
+X-Google-Smtp-Source: APXvYqwuS/Dg8B+UFbtaAI3HpuroiCW8Ay+TBupg3TpQ4YyL58i2wfKjd7YT1BdI2CBnIuzGMm9qYpo0lGu4l9NncY0=
+X-Received: by 2002:a0c:b627:: with SMTP id f39mr26683553qve.72.1563318732830;
+ Tue, 16 Jul 2019 16:12:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190702004811.136450-1-saravanak@google.com> <20190702004811.136450-3-saravanak@google.com>
- <CAL_JsqLdvDpKB=iV6x3eTr2F4zY0bxU-Wjb+JeMjj5rdnRc-OQ@mail.gmail.com>
- <CAGETcx_i9353aRFbJXNS78EvqwmU-2-xSBJ+ySZX1gjjHpz_cg@mail.gmail.com>
- <9e75b3dd-380b-c868-728f-46379e53bc11@gmail.com> <07812739-0e6b-6598-ac58-8e0ea74a3331@gmail.com>
- <CAGETcx8YCCGxgXnByenVUb+q8pHPPTjwAjK3L_+9mwoCe=9SbA@mail.gmail.com> <3e340ff1-e842-2521-4344-da62802d472f@gmail.com>
-In-Reply-To: <3e340ff1-e842-2521-4344-da62802d472f@gmail.com>
+References: <20190703050827.173284-1-drinkcat@chromium.org> <815a8414-bfbe-c693-3208-1580779815ec@gmail.com>
+In-Reply-To: <815a8414-bfbe-c693-3208-1580779815ec@gmail.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 16 Jul 2019 16:56:55 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLySLMLanBJvyWqFGhVzXrEaUP-3t9MDmpnAXhQA_7y=g@mail.gmail.com>
-Message-ID: <CAL_JsqLySLMLanBJvyWqFGhVzXrEaUP-3t9MDmpnAXhQA_7y=g@mail.gmail.com>
-Subject: Re: [PATCH v3 2/4] of/platform: Add functional dependency link from
- DT bindings
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+Date:   Tue, 16 Jul 2019 17:12:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLETdazfnz5EU0Qw4TVVBhWmzk12Z5zYMo5Hm2ACPXh1w@mail.gmail.com>
+Message-ID: <CAL_JsqLETdazfnz5EU0Qw4TVVBhWmzk12Z5zYMo5Hm2ACPXh1w@mail.gmail.com>
+Subject: Re: [PATCH] of/fdt: Make sure no-map does not remove already reserved regions
+To:     Florian Fainelli <f.fainelli@gmail.com>,
+        KarimAllah Ahmed <karahmed@amazon.de>,
+        Nicolas Boichat <drinkcat@chromium.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>
+        Ian Campbell <ian.campbell@citrix.com>,
+        Grant Likely <grant.likely@linaro.org>,
+        Stephen Boyd <swboyd@chromium.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 15, 2019 at 7:05 PM Frank Rowand <frowand.list@gmail.com> wrote:
+On Tue, Jul 16, 2019 at 4:46 PM Florian Fainelli <f.fainelli@gmail.com> wrote:
 >
-> On 7/15/19 11:40 AM, Saravana Kannan wrote:
-> > Replying again because the previous email accidentally included HTML.
+> On 7/2/19 10:08 PM, Nicolas Boichat wrote:
+> > If the device tree is incorrectly configured, and attempts to
+> > define a "no-map" reserved memory that overlaps with the kernel
+> > data/code, the kernel would crash quickly after boot, with no
+> > obvious clue about the nature of the issue.
 > >
-> > Thanks for taking the time to reconsider the wording Frank. Your
-> > intention was clear to me in the first email too.
+> > For example, this would happen if we have the kernel mapped at
+> > these addresses (from /proc/iomem):
+> > 40000000-41ffffff : System RAM
+> >   40080000-40dfffff : Kernel code
+> >   40e00000-411fffff : reserved
+> >   41200000-413e0fff : Kernel data
 > >
-> > A kernel command line option can also completely disable this
-> > functionality easily and cleanly. Can we pick that as an option? I've
-> > an implementation of that in the v5 series I sent out last week.
+> > And we declare a no-map shared-dma-pool region at a fixed address
+> > within that range:
+> > mem_reserved: mem_region {
+> >       compatible = "shared-dma-pool";
+> >       reg = <0 0x40000000 0 0x01A00000>;
+> >       no-map;
+> > };
+> >
+> > To fix this, when removing memory regions at early boot (which is
+> > what "no-map" regions do), we need to make sure that the memory
+> > is not already reserved. If we do, __reserved_mem_reserve_reg
+> > will throw an error:
+> > [    0.000000] OF: fdt: Reserved memory: failed to reserve memory
+> >    for node 'mem_region': base 0x0000000040000000, size 26 MiB
+> > and the code that will try to use the region should also fail,
+> > later on.
+> >
+> > We do not do anything for non-"no-map" regions, as memblock
+> > explicitly allows reserved regions to overlap, and the commit
+> > that this fixes removed the check for that precise reason.
+> >
+> > Fixes: 094cb98179f19b7 ("of/fdt: memblock_reserve /memreserve/ regions in the case of partial overlap")
+> > Signed-off-by: Nicolas Boichat <drinkcat@chromium.org>
+> > ---
+> >  drivers/of/fdt.c | 10 +++++++++-
+> >  1 file changed, 9 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > index cd17dc62a71980a..a1ded43fc332d0c 100644
+> > --- a/drivers/of/fdt.c
+> > +++ b/drivers/of/fdt.c
+> > @@ -1138,8 +1138,16 @@ int __init __weak early_init_dt_mark_hotplug_memory_arch(u64 base, u64 size)
+> >  int __init __weak early_init_dt_reserve_memory_arch(phys_addr_t base,
+> >                                       phys_addr_t size, bool nomap)
+> >  {
+> > -     if (nomap)
+> > +     if (nomap) {
+> > +             /*
+> > +              * If the memory is already reserved (by another region), we
+> > +              * should not allow it to be removed altogether.
+> > +              */
+> > +             if (memblock_is_region_reserved(base, size))
+> > +                     return -EBUSY;
+> > +
+> >               return memblock_remove(base, size);
 >
-> Yes, Rob suggested a command line option for debugging, and I am fine with
-> that.  But even with that, I would like a lot of testing so that we have a
-> chance of finding systems that have trouble with the changes and could
-> potentially be fixed before impacting a large number of users.
+> While you are it, the nomap argument (introduced with
+> e8d9d1f5485b52ec3c4d7af839e6914438f6c285) predates the introduction of
+> memblock_is_nomap() (bf3d3cc580f9960883ebf9ea05868f336d9491c2), so
+> should just remove memblock_remove() and use memblock_mark_nomap()
+> instead here.
 
-Leaving it in -next for more than a cycle will not help. There's some
-number of users who test linux-next. Then there's more that test -rc
-kernels. Then there's more that test final releases and/or stable
-kernels. Probably, the more stable the h/w, the more it tends to be
-latter groups. (I don't get reports of breaking PowerMacs with the
-changes sitting in linux-next.)
-
-My main worry about this being off by default is it won't get tested.
-I'm not sure there's enough interest to drive folks to turn it on and
-test. Maybe it needs to be on until we see breakage.
+Perhaps like this patch[1]? Though the reasoning is different and the
+commit message here is more thorough, so can I get a combined patch.
+However, I don't under how handling a misconfigured DT and aligned
+with EFI are the same patch. What's considered valid for EFI is not
+for DT regions?
 
 Rob
+
+[1] https://patchwork.ozlabs.org/patch/1131232/
