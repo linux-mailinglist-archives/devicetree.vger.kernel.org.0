@@ -2,359 +2,560 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 341166A0FD
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 05:51:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFD9C6A103
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 05:53:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730676AbfGPDub (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 23:50:31 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:34361 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727862AbfGPDua (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 23:50:30 -0400
-Received: by mail-lj1-f193.google.com with SMTP id p17so18443655ljg.1;
-        Mon, 15 Jul 2019 20:50:28 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=L2StGz60DAZnFs/9q/QYqZYEsJczUjJVbxE1oqKMnqs=;
-        b=jPCQ7Wb6vEbcEqzNpkhiiVA11mSwuIKwKs4f4r4xvVwp1ypi0PjjiY+Y1nf9iyvXsN
-         +Zhk0pK1te5lpSMURhLc0CJKI3Ypx6KUcCHu8Xf+QDP+1JBfSlOb3ipQPl+5VhpXitwo
-         dsJ+q8Dto5gbAfEcYPj3i47NfJyinOUL2YY+gLvuTgFhJkGAqCxmguW5V90CdU9N1miY
-         pXxNBi4XAjE0Kd3To325+Cqs1hbcmIhINUyojKDJtdtcwhUkUid0I4t9+cMtv31iPM9e
-         tYQxPSdHTW4VA2JsHo0KMEPgOAE6lZ1LdmVmGQDQDdEnpI0H0iXC9miayX+AzKt3UOyu
-         wGgw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=L2StGz60DAZnFs/9q/QYqZYEsJczUjJVbxE1oqKMnqs=;
-        b=GmuOlDQgn1qEn8BKVaKHeA7QRURHa8FlE+tLNUr23g9gXttQuyuagzlpI7G7mRMnbZ
-         XM1GM020VfxGHUXpVAAkc+3uXthdTy4xyS5Gd/+1WRN8WnazwXcsauEyjRE17BuZG5DC
-         rFWOzatLsRg2emZuDKOSof/Qn42O1C7tJZ8hiTYq10kDShAgG2znG3zRPWmqIMQqPcFU
-         a35gcEELefng8/HtEmhuwEGretmYKXSMARY2SuKml8zAXZK3duKkJhaLjdoMJY08uDcP
-         JDGHpxob1IC1qoo8B5z/7oe3iLk+FFV3n5d+E1VrouLzgL5zNw2NT+Xt8ykBpq7pbUrC
-         2bCw==
-X-Gm-Message-State: APjAAAUkqfR3y8ZVKycwi2tt6LmrZDFcf9xMTvxWn79Wjt1YWRoj8lFq
-        zE+k1+x5PAujZ5eUgKY+NtNciQAI
-X-Google-Smtp-Source: APXvYqyW9afwFGPrk1CEXhpAczEA0ouI0l+USTQ+d5htSzazTX/fPL+IBzaGtQdAhzrkUOjZ1czHwA==
-X-Received: by 2002:a2e:800c:: with SMTP id j12mr15980363ljg.22.1563249027084;
-        Mon, 15 Jul 2019 20:50:27 -0700 (PDT)
-Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
-        by smtp.googlemail.com with ESMTPSA id u21sm3522685lju.2.2019.07.15.20.50.25
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 15 Jul 2019 20:50:26 -0700 (PDT)
-Subject: Re: [PATCH V5 11/18] clk: tegra210: Add support for Tegra210 clocks
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, marc.zyngier@arm.com,
-        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <1561687972-19319-1-git-send-email-skomatineni@nvidia.com>
- <1561687972-19319-12-git-send-email-skomatineni@nvidia.com>
- <a5e1a6df-dff7-9e0c-9551-f78103a5462f@gmail.com>
- <a9b5c364-52b4-bee1-5881-47197f043950@nvidia.com>
- <e9d4bc0e-fd5d-ae02-2d67-86c7f7c9620f@gmail.com>
- <3938092a-bbc7-b304-641d-31677539598d@nvidia.com>
- <932d4d50-120c-9191-6a9a-23bf9c96633b@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <0ee055ad-d397-32e5-60ee-d62c14c6f77b@gmail.com>
-Date:   Tue, 16 Jul 2019 06:50:24 +0300
+        id S1730981AbfGPDxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 23:53:22 -0400
+Received: from mailout1.samsung.com ([203.254.224.24]:33906 "EHLO
+        mailout1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730942AbfGPDxV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 23:53:21 -0400
+Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
+        by mailout1.samsung.com (KnoxPortal) with ESMTP id 20190716035315epoutp018cf92ec2ecaf141af8b2305472cc7d2c~xxtxKnIkW2671226712epoutp01a
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 03:53:15 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.samsung.com 20190716035315epoutp018cf92ec2ecaf141af8b2305472cc7d2c~xxtxKnIkW2671226712epoutp01a
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1563249195;
+        bh=xOrfF2V1TrRx6HR73KDvk6kIn5NuviCScjP9u9RMzGo=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=OYtb2z3wcaCoLAnKd55vnRr5w7c/ICsZ+Q1i1n5GOBmQ99jOEWr9Xv9rKUQv+ornU
+         2Wz5cSdeS9L7q6JfULe4+Rt1SdWMRutBv4pCjzYUsjbDiFKnJCqsFj6xCaBLMgI0Q9
+         SvDr+xOnMpURp3RvP6fY/aYI7Kq4xR9h/luNA+hw=
+Received: from epsnrtp2.localdomain (unknown [182.195.42.163]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190716035314epcas1p1f1025c2e606ef06dc96c8d6a002fba13~xxtwkzj4T2629426294epcas1p1Q;
+        Tue, 16 Jul 2019 03:53:14 +0000 (GMT)
+Received: from epsmges1p1.samsung.com (unknown [182.195.40.154]) by
+        epsnrtp2.localdomain (Postfix) with ESMTP id 45nmhS1BKSzMqYkh; Tue, 16 Jul
+        2019 03:53:12 +0000 (GMT)
+Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
+        epsmges1p1.samsung.com (Symantec Messaging Gateway) with SMTP id
+        1B.3F.04088.82A4D2D5; Tue, 16 Jul 2019 12:53:12 +0900 (KST)
+Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
+        epcas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190716035311epcas1p1424c1017594946117013e11c31479c22~xxtt10Rze2629426294epcas1p1E;
+        Tue, 16 Jul 2019 03:53:11 +0000 (GMT)
+Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
+        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190716035311epsmtrp2dc38d1fc8ae77259f25193da690def31~xxtt0-uE-2387423874epsmtrp2k;
+        Tue, 16 Jul 2019 03:53:11 +0000 (GMT)
+X-AuditID: b6c32a35-85dff70000000ff8-57-5d2d4a28c96e
+Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
+        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
+        4F.4D.03638.72A4D2D5; Tue, 16 Jul 2019 12:53:11 +0900 (KST)
+Received: from [10.113.221.102] (unknown [10.113.221.102]) by
+        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190716035311epsmtip140bf7c8efb4b5b9bb249b5a4818b165d~xxttoDJOn1311713117epsmtip1S;
+        Tue, 16 Jul 2019 03:53:11 +0000 (GMT)
+Subject: Re: [PATCH v2 2/4] devfreq: exynos-bus: convert to use
+ dev_pm_opp_set_rate()
+To:     Kamil Konieczny <k.konieczny@partner.samsung.com>
+Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+From:   Chanwoo Choi <cw00.choi@samsung.com>
+Organization: Samsung Electronics
+Message-ID: <7f7cf551-005a-c647-d571-77eb5426478a@samsung.com>
+Date:   Tue, 16 Jul 2019 12:56:17 +0900
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <932d4d50-120c-9191-6a9a-23bf9c96633b@nvidia.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <20190715120416.3561-3-k.konieczny@partner.samsung.com>
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrAJsWRmVeSWpSXmKPExsWy7bCmrq6Gl26swewlLBYbZ6xntZh/5Byr
+        Rd++/4wW/Y9fM1ucP7+B3eJs0xt2i02Pr7FaXN41h83ic+8RRosZ5/cxWaw9cpfdYun1i0wW
+        txtXsFm8+XGWyaJ17xF2i3/XNrJYbH5wjM1B0GPNvDWMHptWdbJ5bF5S73Hw3R4mj74tqxg9
+        jt/YzuTxeZNcAHtUtk1GamJKapFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKL
+        T4CuW2YO0AdKCmWJOaVAoYDE4mIlfTubovzSklSFjPziElul1IKUnALLAr3ixNzi0rx0veT8
+        XCtDAwMjU6DChOyM+987WQrOJFVcv7WZtYGxw7eLkZNDQsBE4sHaD6xdjFwcQgI7GCXW37/N
+        BOF8YpT4MeUaC4TzjVHi8aO3TDAtx899Y4RI7GWUaP00Har/PaNE78V97CBVwgLhEr/u72IE
+        sUUETCUerW4AK2IWuMwiMe3RJFaQBJuAlsT+FzfYQGx+AUWJqz8eAzVwcPAK2Em0zg8ACbMI
+        qEpcuPAArFxUIELi1JF5LCA2r4CgxMmZT8BsTgEXidczJ4HtZRYQl7j1ZD4ThC0v0bx1NjPI
+        XgmBc+wS62fPYwKZLwHUcHmxLMQ3whKvjm9hh7ClJD6/28sGYVdLrDx5hA2it4NRYsv+C6wQ
+        CWOJ/Usng81hFtCUWL9LHyKsKLHz91xGiL18Eu++9rBCrOKV6GgTgihRlrj84C40ECUlFrd3
+        sk1gVJqF5JtZSD6YheSDWQjLFjCyrGIUSy0ozk1PLTYsMESO7U2M4NStZbqDcco5n0OMAhyM
+        Sjy8Cvt1YoVYE8uKK3MPMUpwMCuJ8Np+1Y4V4k1JrKxKLcqPLyrNSS0+xGgKDOyJzFKiyfnA
+        vJJXEm9oamRsbGxhYmhmamioJM47749mrJBAemJJanZqakFqEUwfEwenVAOjTephw5I5L6L8
+        kvWDgid+qDPhjy+dEO2YfejHhpvHtv3kkMuV3s18nme+cXU138J77OfVXI/3O6eav/lu31mW
+        Hd6wwGMO797/qsIXXYz+fzqcJhadsDlgQ/JxbrU5X5RFhRWZF0z+eexuy+/tghM4bxbm310a
+        2Z/XsqZNfs7JNkdHkdsPLwkqsRRnJBpqMRcVJwIAmibJQfMDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNIsWRmVeSWpSXmKPExsWy7bCSnK66l26swYftshYbZ6xntZh/5Byr
+        Rd++/4wW/Y9fM1ucP7+B3eJs0xt2i02Pr7FaXN41h83ic+8RRosZ5/cxWaw9cpfdYun1i0wW
+        txtXsFm8+XGWyaJ17xF2i3/XNrJYbH5wjM1B0GPNvDWMHptWdbJ5bF5S73Hw3R4mj74tqxg9
+        jt/YzuTxeZNcAHsUl01Kak5mWWqRvl0CV8b9750sBWeSKq7f2szawNjh28XIySEhYCJx/Nw3
+        xi5GLg4hgd2MEnePNLFAJCQlpl08ytzFyAFkC0scPlwMUfOWUeLg9pVgNcIC4RK/7u9iBLFF
+        BEwlHq1uYAUpYha4yiJxfuMcNoiOi0AdO7exgVSxCWhJ7H9xA8zmF1CUuPrjMSPIBl4BO4nW
+        +QEgYRYBVYkLFx6wgtiiAhESk67tBFvGKyAocXLmEzCbU8BF4vXMSewgNrOAusSfeZeYIWxx
+        iVtP5jNB2PISzVtnM09gFJ6FpH0WkpZZSFpmIWlZwMiyilEytaA4Nz232LDAKC+1XK84Mbe4
+        NC9dLzk/dxMjOIq1tHYwnjgRf4hRgINRiYf3xB6dWCHWxLLiytxDjBIczEoivLZftWOFeFMS
+        K6tSi/Lji0pzUosPMUpzsCiJ88rnH4sUEkhPLEnNTk0tSC2CyTJxcEo1MOauNd/mpX904RaP
+        7QVT39o+DVrIIPne97OWyh7T5C1dFXZfjWrinzw1nsaVarFlTkOVjob/gtBKF82+P7c3lz+3
+        mxT8udnsfcaUimMqga/dkhluaa87EXhTLXEK+/eQ57ZPbbbf+Pq4lHPZvn/ZCzwObDjAKBa5
+        /1vWuSfcE3ac/cYhKbzv5hElluKMREMt5qLiRABHES1s3gIAAA==
+X-CMS-MailID: 20190716035311epcas1p1424c1017594946117013e11c31479c22
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-Sendblock-Type: SVC_REQ_APPROVE
+CMS-TYPE: 101P
+DLP-Filter: Pass
+X-CFilter-Loop: Reflected
+X-CMS-RootMailID: 20190715120431eucas1p215eae81d0ca772d7e2a22a803669068a
+References: <20190715120416.3561-1-k.konieczny@partner.samsung.com>
+        <CGME20190715120431eucas1p215eae81d0ca772d7e2a22a803669068a@eucas1p2.samsung.com>
+        <20190715120416.3561-3-k.konieczny@partner.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-16.07.2019 6:00, Sowjanya Komatineni пишет:
+Hi Kamil,
+
+Looks good to me. But, this patch has some issue.
+I added the detailed reviews.
+
+I recommend that you make the separate patches as following
+in order to clarify the role of which apply the dev_pm_opp_* function.
+
+First patch,
+Need to consolidate the following two function into one function.
+because the original exynos-bus.c has the problem that the regulator
+of parent devfreq device have to be enabled before enabling the clock.
+This issue did not happen because bootloader enables the bus-related
+regulators before kernel booting.
+- exynos_bus_parse_of()
+- exynos_bus_parent_parse_of()
+
+Second patch,
+Apply dev_pm_opp_set_regulators() and dev_pm_opp_set_rate()
+
+
+On 19. 7. 15. 오후 9:04, Kamil Konieczny wrote:
+> Reuse opp core code for setting bus clock and voltage. As a side
+> effect this allow useage of coupled regulators feature (required
+> for boards using Exynos5422/5800 SoCs) because dev_pm_opp_set_rate()
+> uses regulator_set_voltage_triplet() for setting regulator voltage
+> while the old code used regulator_set_voltage_tol() with fixed
+> tolerance. This patch also removes no longer needed parsing of DT
+> property "exynos,voltage-tolerance" (no Exynos devfreq DT node uses
+> it).
 > 
-> On 7/15/19 5:35 PM, Sowjanya Komatineni wrote:
->>
->> On 7/14/19 2:41 PM, Dmitry Osipenko wrote:
->>> 13.07.2019 8:54, Sowjanya Komatineni пишет:
->>>> On 6/29/19 8:10 AM, Dmitry Osipenko wrote:
->>>>> 28.06.2019 5:12, Sowjanya Komatineni пишет:
->>>>>> This patch adds system suspend and resume support for Tegra210
->>>>>> clocks.
->>>>>>
->>>>>> All the CAR controller settings are lost on suspend when core power
->>>>>> goes off.
->>>>>>
->>>>>> This patch has implementation for saving and restoring all the PLLs
->>>>>> and clocks context during system suspend and resume to have the
->>>>>> clocks back to same state for normal operation.
->>>>>>
->>>>>> Acked-by: Thierry Reding <treding@nvidia.com>
->>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>>>>> ---
->>>>>>    drivers/clk/tegra/clk-tegra210.c | 115
->>>>>> ++++++++++++++++++++++++++++++++++++++-
->>>>>>    drivers/clk/tegra/clk.c          |  14 +++++
->>>>>>    drivers/clk/tegra/clk.h          |   1 +
->>>>>>    3 files changed, 127 insertions(+), 3 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/clk/tegra/clk-tegra210.c
->>>>>> b/drivers/clk/tegra/clk-tegra210.c
->>>>>> index 1c08c53482a5..1b839544e086 100644
->>>>>> --- a/drivers/clk/tegra/clk-tegra210.c
->>>>>> +++ b/drivers/clk/tegra/clk-tegra210.c
->>>>>> @@ -9,10 +9,12 @@
->>>>>>    #include <linux/clkdev.h>
->>>>>>    #include <linux/of.h>
->>>>>>    #include <linux/of_address.h>
->>>>>> +#include <linux/of_platform.h>
->>>>>>    #include <linux/delay.h>
->>>>>>    #include <linux/export.h>
->>>>>>    #include <linux/mutex.h>
->>>>>>    #include <linux/clk/tegra.h>
->>>>>> +#include <linux/syscore_ops.h>
->>>>>>    #include <dt-bindings/clock/tegra210-car.h>
->>>>>>    #include <dt-bindings/reset/tegra210-car.h>
->>>>>>    #include <linux/iopoll.h>
->>>>>> @@ -20,6 +22,7 @@
->>>>>>    #include <soc/tegra/pmc.h>
->>>>>>      #include "clk.h"
->>>>>> +#include "clk-dfll.h"
->>>>>>    #include "clk-id.h"
->>>>>>      /*
->>>>>> @@ -225,6 +228,7 @@
->>>>>>      #define CLK_RST_CONTROLLER_RST_DEV_Y_SET 0x2a8
->>>>>>    #define CLK_RST_CONTROLLER_RST_DEV_Y_CLR 0x2ac
->>>>>> +#define CPU_SOFTRST_CTRL 0x380
->>>>>>      #define LVL2_CLK_GATE_OVRA 0xf8
->>>>>>    #define LVL2_CLK_GATE_OVRC 0x3a0
->>>>>> @@ -2820,6 +2824,7 @@ static int tegra210_enable_pllu(void)
->>>>>>        struct tegra_clk_pll_freq_table *fentry;
->>>>>>        struct tegra_clk_pll pllu;
->>>>>>        u32 reg;
->>>>>> +    int ret;
->>>>>>          for (fentry = pll_u_freq_table; fentry->input_rate;
->>>>>> fentry++) {
->>>>>>            if (fentry->input_rate == pll_ref_freq)
->>>>>> @@ -2847,10 +2852,10 @@ static int tegra210_enable_pllu(void)
->>>>>>        fence_udelay(1, clk_base);
->>>>>>        reg |= PLL_ENABLE;
->>>>>>        writel(reg, clk_base + PLLU_BASE);
->>>>>> +    fence_udelay(1, clk_base);
->>>>>>    -    readl_relaxed_poll_timeout_atomic(clk_base + PLLU_BASE, reg,
->>>>>> -                      reg & PLL_BASE_LOCK, 2, 1000);
->>>>>> -    if (!(reg & PLL_BASE_LOCK)) {
->>>>>> +    ret = tegra210_wait_for_mask(&pllu, PLLU_BASE, PLL_BASE_LOCK);
->>>>>> +    if (ret) {
->>>>>>            pr_err("Timed out waiting for PLL_U to lock\n");
->>>>>>            return -ETIMEDOUT;
->>>>>>        }
->>>>>> @@ -3283,6 +3288,103 @@ static void tegra210_disable_cpu_clock(u32
->>>>>> cpu)
->>>>>>    }
->>>>>>      #ifdef CONFIG_PM_SLEEP
->>>>>> +static u32 cpu_softrst_ctx[3];
->>>>>> +static struct platform_device *dfll_pdev;
->>>>>> +#define car_readl(_base, _off) readl_relaxed(clk_base + (_base) +
->>>>>> ((_off) * 4))
->>>>>> +#define car_writel(_val, _base, _off) \
->>>>>> +        writel_relaxed(_val, clk_base + (_base) + ((_off) * 4))
->>>>>> +
->>>>>> +static int tegra210_clk_suspend(void)
->>>>>> +{
->>>>>> +    unsigned int i;
->>>>>> +    struct device_node *node;
->>>>>> +
->>>>>> +    tegra_cclkg_burst_policy_save_context();
->>>>>> +
->>>>>> +    if (!dfll_pdev) {
->>>>>> +        node = of_find_compatible_node(NULL, NULL,
->>>>>> +                           "nvidia,tegra210-dfll");
->>>>>> +        if (node)
->>>>>> +            dfll_pdev = of_find_device_by_node(node);
->>>>>> +
->>>>>> +        of_node_put(node);
->>>>>> +        if (!dfll_pdev)
->>>>>> +            pr_err("dfll node not found. no suspend for dfll\n");
->>>>>> +    }
->>>>>> +
->>>>>> +    if (dfll_pdev)
->>>>>> +        tegra_dfll_suspend(dfll_pdev);
->>>>>> +
->>>>>> +    /* Enable PLLP_OUT_CPU after dfll suspend */
->>>>>> +    tegra_clk_set_pllp_out_cpu(true);
->>>>>> +
->>>>>> +    tegra_sclk_cclklp_burst_policy_save_context();
->>>>>> +
->>>>>> +    clk_save_context();
->>>>>> +
->>>>>> +    for (i = 0; i < ARRAY_SIZE(cpu_softrst_ctx); i++)
->>>>>> +        cpu_softrst_ctx[i] = car_readl(CPU_SOFTRST_CTRL, i);
->>>>>> +
->>>>>> +    return 0;
->>>>>> +}
->>>>>> +
->>>>>> +static void tegra210_clk_resume(void)
->>>>>> +{
->>>>>> +    unsigned int i;
->>>>>> +    struct clk_hw *parent;
->>>>>> +    struct clk *clk;
->>>>>> +
->>>>>> +    /*
->>>>>> +     * clk_restore_context restores clocks as per the clock tree.
->>>>>> +     *
->>>>>> +     * dfllCPU_out is first in the clock tree to get restored and it
->>>>>> +     * involves programming DFLL controller along with restoring
->>>>>> CPUG
->>>>>> +     * clock burst policy.
->>>>>> +     *
->>>>>> +     * DFLL programming needs dfll_ref and dfll_soc peripheral
->>>>>> clocks
->>>>>> +     * to be restores which are part ofthe peripheral clocks.
->>>                                              ^ white-space
->>>
->>> Please use spellchecker to avoid typos.
->>>
->>>>>> +     * So, peripheral clocks restore should happen prior to dfll
->>>>>> clock
->>>>>> +     * restore.
->>>>>> +     */
->>>>>> +
->>>>>> +    tegra_clk_osc_resume(clk_base);
->>>>>> +    for (i = 0; i < ARRAY_SIZE(cpu_softrst_ctx); i++)
->>>>>> +        car_writel(cpu_softrst_ctx[i], CPU_SOFTRST_CTRL, i);
->>>>>> +
->>>>>> +    /* restore all plls and peripheral clocks */
->>>>>> +    tegra210_init_pllu();
->>>>>> +    clk_restore_context();
->>>>>> +
->>>>>> +    fence_udelay(5, clk_base);
->>>>>> +
->>>>>> +    /* resume SCLK and CPULP clocks */
->>>>>> +    tegra_sclk_cpulp_burst_policy_restore_context();
->>>>>> +
->>>>>> +    /*
->>>>>> +     * restore CPUG clocks:
->>>>>> +     * - enable DFLL in open loop mode
->>>>>> +     * - switch CPUG to DFLL clock source
->>>>>> +     * - close DFLL loop
->>>>>> +     * - sync PLLX state
->>>>>> +     */
->>>>>> +    if (dfll_pdev)
->>>>>> +        tegra_dfll_resume(dfll_pdev, false);
->>>>>> +
->>>>>> +    tegra_cclkg_burst_policy_restore_context();
->>>>>> +    fence_udelay(2, clk_base);
->>>>>> +
->>>>>> +    if (dfll_pdev)
->>>>>> +        tegra_dfll_resume(dfll_pdev, true);
->>>>>> +
->>>>>> +    parent =
->>>>>> clk_hw_get_parent(__clk_get_hw(clks[TEGRA210_CLK_CCLK_G]));
->>>>>> +    clk = clks[TEGRA210_CLK_PLL_X];
->>>>>> +    if (parent != __clk_get_hw(clk))
->>>>>> +        tegra_clk_sync_state_pll(__clk_get_hw(clk));
->>>>>> +
->>>>>> +    /* Disable PLL_OUT_CPU after DFLL resume */
->>>>>> +    tegra_clk_set_pllp_out_cpu(false);
->>>>>> +}
->>>>>> +
->>>>>>    static void tegra210_cpu_clock_suspend(void)
->>>>>>    {
->>>>>>        /* switch coresite to clk_m, save off original source */
->>>>>> @@ -3298,6 +3400,11 @@ static void tegra210_cpu_clock_resume(void)
->>>>>>    }
->>>>>>    #endif
->>>>>>    +static struct syscore_ops tegra_clk_syscore_ops = {
->>>>>> +    .suspend = tegra210_clk_suspend,
->>>>>> +    .resume = tegra210_clk_resume,
->>>>>> +};
->>>>>> +
->>>>>>    static struct tegra_cpu_car_ops tegra210_cpu_car_ops = {
->>>>>>        .wait_for_reset    = tegra210_wait_cpu_in_reset,
->>>>>>        .disable_clock    = tegra210_disable_cpu_clock,
->>>>>> @@ -3583,5 +3690,7 @@ static void __init tegra210_clock_init(struct
->>>>>> device_node *np)
->>>>>>        tegra210_mbist_clk_init();
->>>>>>          tegra_cpu_car_ops = &tegra210_cpu_car_ops;
->>>>>> +
->>>>>> +    register_syscore_ops(&tegra_clk_syscore_ops);
->>>>>>    }
->>>>> Is it really worthwhile to use syscore_ops for suspend/resume given
->>>>> that drivers for
->>>>> won't resume before the CLK driver anyway? Are there any other options
->>>>> for CLK
->>>>> suspend/resume?
->>>>>
->>>>> I'm also not sure whether PM runtime API could be used at all in the
->>>>> context of
->>>>> syscore_ops ..
->>>>>
->>>>> Secondly, what about to use generic clk_save_context() /
->>>>> clk_restore_context()
->>>>> helpers for the suspend-resume? It looks to me that some other
->>>>> essential (and proper)
->>>>> platform driver (soc/tegra/? PMC?) should suspend-resume the clocks
->>>>> using the generic
->>>>> CLK Framework API.
->>>> Clock resume should happen very early to restore peripheral and cpu
->>>> clocks very early than peripheral drivers resume happens.
->>> If all peripheral drivers properly requested all of the necessary clocks
->>> and CLK driver was a platform driver, then I guess the probe should have
->>> been naturally ordered. But that's not very achievable with the
->>> currently available infrastructure in the kernel, so I'm not arguing
->>> that the clocks should be explicitly resumed before the users.
->>>
->>>> this patch series uses clk_save_context and clk_restore_context for
->>>> corresponding divider, pll, pllout.. save and restore context.
->>> Now I see that indeed this API is utilized in this patch, thank you for
->>> the clarification.
->>>
->>>> But as there is dependency on dfll resume and cpu and pllx clocks
->>>> restore, couldnt use clk_save_context and clk_restore_context for dfll.
->>>>
->>>> So implemented recommended dfll resume sequence in main Tegra210 clock
->>>> driver along with invoking clk_save_context/clk_restore_context where
->>>> all other clocks save/restore happens as per clock tree traversal.
->>> Could you please clarify what part of peripherals clocks is required for
->>> DFLL's restore? Couldn't DFLL driver be changed to avoid that quirkness
->>> and thus to make DFLL driver suspend/resume the clock?
->>
->> DFLL source ref_clk and soc_clk need to be restored prior to dfll.
->>
->> I see dfllCPU_out parent to CCLK_G first in the clock tree and
->> dfll_ref and dfll_soc peripheral clocks are not resumed by the time
->> dfll resume happens first.
->>
->> ref_clk and soc_clk source is from pll_p and clock tree has these
->> registered under pll_p which happens later.
->>
->> tegra210_clock_init registers in order plls, peripheral clocks,
->> super_clk init for cclk_g during clock driver probe and dfll probe and
->> register happens later.
->>
-> One more thing, CLDVFS peripheral clock enable is also needed to be
-> enabled to program DFLL Controller and all peripheral clock context is
-> restored only after their PLL sources are restored.
+> Signed-off-by: Kamil Konieczny <k.konieczny@partner.samsung.com>
+> ---
+>  drivers/devfreq/exynos-bus.c | 172 ++++++++++++++---------------------
+>  1 file changed, 66 insertions(+), 106 deletions(-)
 > 
-> DFLL restore involves dfll source clock resume along with CLDVFS
-> periheral clock enable and reset
+> diff --git a/drivers/devfreq/exynos-bus.c b/drivers/devfreq/exynos-bus.c
+> index 486cc5b422f1..7fc4f76bd848 100644
+> --- a/drivers/devfreq/exynos-bus.c
+> +++ b/drivers/devfreq/exynos-bus.c
+> @@ -25,7 +25,6 @@
+>  #include <linux/slab.h>
+>  
+>  #define DEFAULT_SATURATION_RATIO	40
+> -#define DEFAULT_VOLTAGE_TOLERANCE	2
+>  
+>  struct exynos_bus {
+>  	struct device *dev;
+> @@ -37,9 +36,9 @@ struct exynos_bus {
+>  
+>  	unsigned long curr_freq;
+>  
+> -	struct regulator *regulator;
+> +	struct opp_table *opp_table;
+> +
+>  	struct clk *clk;
+> -	unsigned int voltage_tolerance;
+>  	unsigned int ratio;
+>  };
+>  
+> @@ -99,56 +98,25 @@ static int exynos_bus_target(struct device *dev, unsigned long *freq, u32 flags)
+>  {
+>  	struct exynos_bus *bus = dev_get_drvdata(dev);
+>  	struct dev_pm_opp *new_opp;
+> -	unsigned long old_freq, new_freq, new_volt, tol;
+>  	int ret = 0;
+> -
+> -	/* Get new opp-bus instance according to new bus clock */
+> +	/*
+> +	 * New frequency for bus may not be exactly matched to opp, adjust
+> +	 * *freq to correct value.
+> +	 */
+
+You better to change this comment with following styles
+to keep the consistency:
+
+	/* Get correct frequency for bus ... */
+
+>  	new_opp = devfreq_recommended_opp(dev, freq, flags);
+>  	if (IS_ERR(new_opp)) {
+>  		dev_err(dev, "failed to get recommended opp instance\n");
+>  		return PTR_ERR(new_opp);
+>  	}
+>  
+> -	new_freq = dev_pm_opp_get_freq(new_opp);
+> -	new_volt = dev_pm_opp_get_voltage(new_opp);
+>  	dev_pm_opp_put(new_opp);
+>  
+> -	old_freq = bus->curr_freq;
+> -
+> -	if (old_freq == new_freq)
+> -		return 0;
+> -	tol = new_volt * bus->voltage_tolerance / 100;
+> -
+>  	/* Change voltage and frequency according to new OPP level */
+>  	mutex_lock(&bus->lock);
+> +	ret = dev_pm_opp_set_rate(dev, *freq);
+> +	if (!ret)
+> +		bus->curr_freq = *freq;
+
+Have to print the error log if ret has minus error value.
+Modify it as following:
+
+	if (ret < 0) {
+		dev_err(dev, "failed to set bus rate\n");
+		goto err:
+	}
+	bus->curr_freq = *freq;
+
+err:
+	mutex_unlock(&bus->lock);
+	
+	return ret;
+
+>  
+> -	if (old_freq < new_freq) {
+> -		ret = regulator_set_voltage_tol(bus->regulator, new_volt, tol);
+> -		if (ret < 0) {
+> -			dev_err(bus->dev, "failed to set voltage\n");
+> -			goto out;
+> -		}
+> -	}
+> -
+> -	ret = clk_set_rate(bus->clk, new_freq);
+> -	if (ret < 0) {
+> -		dev_err(dev, "failed to change clock of bus\n");
+> -		clk_set_rate(bus->clk, old_freq);
+> -		goto out;
+> -	}
+> -
+> -	if (old_freq > new_freq) {
+> -		ret = regulator_set_voltage_tol(bus->regulator, new_volt, tol);
+> -		if (ret < 0) {
+> -			dev_err(bus->dev, "failed to set voltage\n");
+> -			goto out;
+> -		}
+> -	}
+> -	bus->curr_freq = new_freq;
+> -
+> -	dev_dbg(dev, "Set the frequency of bus (%luHz -> %luHz, %luHz)\n",
+> -			old_freq, new_freq, clk_get_rate(bus->clk));
+> -out:
+>  	mutex_unlock(&bus->lock);
+>  
+>  	return ret;
+> @@ -194,10 +162,11 @@ static void exynos_bus_exit(struct device *dev)
+>  	if (ret < 0)
+>  		dev_warn(dev, "failed to disable the devfreq-event devices\n");
+>  
+> -	if (bus->regulator)
+> -		regulator_disable(bus->regulator);
+> +	if (bus->opp_table)
+> +		dev_pm_opp_put_regulators(bus->opp_table);
+
+Have to disable regulator after disabling the clock
+to prevent the h/w fault.
+
+I think that you should call them with following sequence:
+
+	clk_disable_unprepare(bus->clk);
+	if (bus->opp_table)
+		dev_pm_opp_put_regulators(bus->opp_table);
+	dev_pm_opp_of_remove_table(dev);
+
+>  
+>  	dev_pm_opp_of_remove_table(dev);
+> +
+>  	clk_disable_unprepare(bus->clk);
+>  }
+>  
+> @@ -209,39 +178,26 @@ static int exynos_bus_passive_target(struct device *dev, unsigned long *freq,
+>  {
+>  	struct exynos_bus *bus = dev_get_drvdata(dev);
+>  	struct dev_pm_opp *new_opp;
+> -	unsigned long old_freq, new_freq;
+> -	int ret = 0;
+> +	int ret;
+>  
+> -	/* Get new opp-bus instance according to new bus clock */
+> +	/*
+> +	 * New frequency for bus may not be exactly matched to opp, adjust
+> +	 * *freq to correct value.
+> +	 */
+
+You better to change this comment with following styles
+to keep the consistency:
+
+	/* Get correct frequency for bus ... */
+
+>  	new_opp = devfreq_recommended_opp(dev, freq, flags);
+>  	if (IS_ERR(new_opp)) {
+>  		dev_err(dev, "failed to get recommended opp instance\n");
+>  		return PTR_ERR(new_opp);
+>  	}
+>  
+> -	new_freq = dev_pm_opp_get_freq(new_opp);
+>  	dev_pm_opp_put(new_opp);
+>  
+> -	old_freq = bus->curr_freq;
+> -
+> -	if (old_freq == new_freq)
+> -		return 0;
+> -
+>  	/* Change the frequency according to new OPP level */
+>  	mutex_lock(&bus->lock);
+> +	ret = dev_pm_opp_set_rate(dev, *freq);
+> +	if (!ret)
+> +		bus->curr_freq = *freq;
+
+ditto. Have to print the error log, check above comment.
+
+>  
+> -	ret = clk_set_rate(bus->clk, new_freq);
+> -	if (ret < 0) {
+> -		dev_err(dev, "failed to set the clock of bus\n");
+> -		goto out;
+> -	}
+> -
+> -	*freq = new_freq;
+> -	bus->curr_freq = new_freq;
+> -
+> -	dev_dbg(dev, "Set the frequency of bus (%luHz -> %luHz, %luHz)\n",
+> -			old_freq, new_freq, clk_get_rate(bus->clk));
+> -out:
+>  	mutex_unlock(&bus->lock);
+>  
+>  	return ret;
+> @@ -259,20 +215,7 @@ static int exynos_bus_parent_parse_of(struct device_node *np,
+>  					struct exynos_bus *bus)
+>  {
+>  	struct device *dev = bus->dev;
+> -	int i, ret, count, size;
+> -
+> -	/* Get the regulator to provide each bus with the power */
+> -	bus->regulator = devm_regulator_get(dev, "vdd");
+> -	if (IS_ERR(bus->regulator)) {
+> -		dev_err(dev, "failed to get VDD regulator\n");
+> -		return PTR_ERR(bus->regulator);
+> -	}
+> -
+> -	ret = regulator_enable(bus->regulator);
+> -	if (ret < 0) {
+> -		dev_err(dev, "failed to enable VDD regulator\n");
+> -		return ret;
+> -	}
+> +	int i, count, size;
+>  
+>  	/*
+>  	 * Get the devfreq-event devices to get the current utilization of
+> @@ -281,24 +224,20 @@ static int exynos_bus_parent_parse_of(struct device_node *np,
+>  	count = devfreq_event_get_edev_count(dev);
+>  	if (count < 0) {
+>  		dev_err(dev, "failed to get the count of devfreq-event dev\n");
+> -		ret = count;
+> -		goto err_regulator;
+> +		return count;
+>  	}
+> +
+>  	bus->edev_count = count;
+>  
+>  	size = sizeof(*bus->edev) * count;
+>  	bus->edev = devm_kzalloc(dev, size, GFP_KERNEL);
+> -	if (!bus->edev) {
+> -		ret = -ENOMEM;
+> -		goto err_regulator;
+> -	}
+> +	if (!bus->edev)
+> +		return -ENOMEM;
+>  
+>  	for (i = 0; i < count; i++) {
+>  		bus->edev[i] = devfreq_event_get_edev_by_phandle(dev, i);
+> -		if (IS_ERR(bus->edev[i])) {
+> -			ret = -EPROBE_DEFER;
+> -			goto err_regulator;
+> -		}
+> +		if (IS_ERR(bus->edev[i]))
+> +			return -EPROBE_DEFER;
+>  	}
+>  
+>  	/*
+> @@ -314,22 +253,15 @@ static int exynos_bus_parent_parse_of(struct device_node *np,
+>  	if (of_property_read_u32(np, "exynos,saturation-ratio", &bus->ratio))
+>  		bus->ratio = DEFAULT_SATURATION_RATIO;
+>  
+> -	if (of_property_read_u32(np, "exynos,voltage-tolerance",
+> -					&bus->voltage_tolerance))
+> -		bus->voltage_tolerance = DEFAULT_VOLTAGE_TOLERANCE;
+> -
+>  	return 0;
+> -
+> -err_regulator:
+> -	regulator_disable(bus->regulator);
+> -
+> -	return ret;
+>  }
+>  
+>  static int exynos_bus_parse_of(struct device_node *np,
+> -			      struct exynos_bus *bus)
+> +			      struct exynos_bus *bus, bool passive)
+>  {
+>  	struct device *dev = bus->dev;
+> +	struct opp_table *opp_table;
+> +	const char *vdd = "vdd";
+>  	struct dev_pm_opp *opp;
+>  	unsigned long rate;
+>  	int ret;
+> @@ -347,11 +279,22 @@ static int exynos_bus_parse_of(struct device_node *np,
+>  		return ret;
+>  	}
+>  
+> +	if (!passive) {
+> +		opp_table = dev_pm_opp_set_regulators(dev, &vdd, 1);
+> +		if (IS_ERR(opp_table)) {
+> +			ret = PTR_ERR(opp_table);
+> +			dev_err(dev, "failed to set regulators %d\n", ret);
+> +			goto err_clk;/
+> +		}
+> +
+> +		bus->opp_table = opp_table;
+> +	}
+
+This driver has exynos_bus_parent_parse_of() function for parent devfreq device.
+dev_pm_opp_set_regulators() have to be called in exynos_bus_parent_parse_of()
+because the regulator is only used by parent devfreq device.
+
+> +
+>  	/* Get the freq and voltage from OPP table to scale the bus freq */
+>  	ret = dev_pm_opp_of_add_table(dev);
+>  	if (ret < 0) {
+>  		dev_err(dev, "failed to get OPP table\n");
+> -		goto err_clk;
+> +		goto err_regulator;
+>  	}
+>  
+>  	rate = clk_get_rate(bus->clk);
+> @@ -362,6 +305,7 @@ static int exynos_bus_parse_of(struct device_node *np,
+>  		ret = PTR_ERR(opp);
+>  		goto err_opp;
+>  	}
+> +
+>  	bus->curr_freq = dev_pm_opp_get_freq(opp);
+>  	dev_pm_opp_put(opp);
+>  
+> @@ -369,6 +313,13 @@ static int exynos_bus_parse_of(struct device_node *np,
+>  
+>  err_opp:
+>  	dev_pm_opp_of_remove_table(dev);
+> +
+> +err_regulator:
+> +	if (bus->opp_table) {
+> +		dev_pm_opp_put_regulators(bus->opp_table);
+> +		bus->opp_table = NULL;
+> +	}
+
+As I mentioned above, it it wrong to call dev_pm_opp_put_regulators()
+after removing the opp_table by dev_pm_opp_of_remove_table().
+
+> +
+>  err_clk:
+>  	clk_disable_unprepare(bus->clk);
+>  
+> @@ -386,6 +337,7 @@ static int exynos_bus_probe(struct platform_device *pdev)
+>  	struct exynos_bus *bus;
+>  	int ret, max_state;
+>  	unsigned long min_freq, max_freq;
+> +	bool passive = false;
+>  
+>  	if (!np) {
+>  		dev_err(dev, "failed to find devicetree node\n");
+> @@ -395,12 +347,18 @@ static int exynos_bus_probe(struct platform_device *pdev)
+>  	bus = devm_kzalloc(&pdev->dev, sizeof(*bus), GFP_KERNEL);
+>  	if (!bus)
+>  		return -ENOMEM;
+> +
+>  	mutex_init(&bus->lock);
+>  	bus->dev = &pdev->dev;
+>  	platform_set_drvdata(pdev, bus);
+> +	node = of_parse_phandle(dev->of_node, "devfreq", 0);
+> +	if (node) {
+> +		of_node_put(node);
+> +		passive = true;
+> +	}
+>  
+>  	/* Parse the device-tree to get the resource information */
+> -	ret = exynos_bus_parse_of(np, bus);
+> +	ret = exynos_bus_parse_of(np, bus, passive);
+>  	if (ret < 0)
+>  		return ret;
+>  
+> @@ -410,13 +368,10 @@ static int exynos_bus_probe(struct platform_device *pdev)
+>  		goto err;
+>  	}
+>  
+> -	node = of_parse_phandle(dev->of_node, "devfreq", 0);
+> -	if (node) {
+> -		of_node_put(node);
+> +	if (passive)
+>  		goto passive;
+> -	} else {
+> -		ret = exynos_bus_parent_parse_of(np, bus);
+> -	}
+> +
+> +	ret = exynos_bus_parent_parse_of(np, bus);
+>  
+
+Remove unneeded blank line.
+
+>  	if (ret < 0)
+>  		goto err;
+> @@ -509,6 +464,11 @@ static int exynos_bus_probe(struct platform_device *pdev)
+>  
+>  err:
+>  	dev_pm_opp_of_remove_table(dev);
+> +	if (bus->opp_table) {
+> +		dev_pm_opp_put_regulators(bus->opp_table);
+> +		bus->opp_table = NULL;
+> +	}
+> +
+
+ditto.
+Have to disable regulator after disabling the clock
+to prevent the h/w fault.
+
+I think that you should call them with following sequence:
+
+	clk_disable_unprepare(bus->clk);
+	if (bus->opp_table)
+		dev_pm_opp_put_regulators(bus->opp_table);
+	dev_pm_opp_of_remove_table(dev);
+
+>  	clk_disable_unprepare(bus->clk);
+>  
+>  	return ret;
 > 
 
-I don't quite see why you can't simply add suspend/resume callbacks to
-the CPUFreq driver to:
 
-On suspend:
-1. Switch CPU to PLLP (or whatever "safe" parent)
-2. Disable/teardown DFLL
-
-On resume:
-1. Enable/restore DFLL
-2. Switch CPU back to DFLL
+-- 
+Best Regards,
+Chanwoo Choi
+Samsung Electronics
