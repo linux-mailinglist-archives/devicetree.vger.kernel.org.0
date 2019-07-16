@@ -2,390 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B6F76A0E5
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 05:42:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DAC496A0F3
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 05:49:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731483AbfGPDlb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 15 Jul 2019 23:41:31 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:18969 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730275AbfGPDla (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 15 Jul 2019 23:41:30 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d2d47640002>; Mon, 15 Jul 2019 20:41:25 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 15 Jul 2019 20:41:26 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 15 Jul 2019 20:41:26 -0700
-Received: from [10.2.164.12] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 16 Jul
- 2019 03:41:25 +0000
-Subject: Re: [PATCH V5 11/18] clk: tegra210: Add support for Tegra210 clocks
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
-        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
-        <linus.walleij@linaro.org>, <stefan@agner.ch>,
-        <mark.rutland@arm.com>
-CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
-        <josephl@nvidia.com>, <talho@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <1561687972-19319-1-git-send-email-skomatineni@nvidia.com>
- <1561687972-19319-12-git-send-email-skomatineni@nvidia.com>
- <a5e1a6df-dff7-9e0c-9551-f78103a5462f@gmail.com>
- <a9b5c364-52b4-bee1-5881-47197f043950@nvidia.com>
- <e9d4bc0e-fd5d-ae02-2d67-86c7f7c9620f@gmail.com>
- <3938092a-bbc7-b304-641d-31677539598d@nvidia.com>
- <932d4d50-120c-9191-6a9a-23bf9c96633b@nvidia.com>
-Message-ID: <0fe01cb5-78fe-2523-c78f-34698ed95ca5@nvidia.com>
-Date:   Mon, 15 Jul 2019 20:41:24 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <932d4d50-120c-9191-6a9a-23bf9c96633b@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+        id S1730533AbfGPDt2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 15 Jul 2019 23:49:28 -0400
+Received: from mail-eopbgr10087.outbound.protection.outlook.com ([40.107.1.87]:51502
+        "EHLO EUR02-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727862AbfGPDt1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 15 Jul 2019 23:49:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=RcLakkmgmcE+Df/tF6PLrMlx5ndaK7pMG74Z1KlF/Atr+IYliyIkQ99dsLy7WBgqPLR/qic3bil8ULNJCbgf83XX4lgMdlsPaVRstkmq19lsXUDxGWyN6kwejaR6e/hh7xcEB61YUveOCW9a71ow0ijMKE/gjfL93NZQ+3ATPd3FGHve/klp7orZRLvf0IQjqleUipP+cOcU6rG7jL39wW89Lqz3Jom6+kksg3/9ZZjoWIbMi4uQ1W41kCCPnzG8vQph97r4QzBll1UpWnV0yhBEsyufWLpla84qHHbxq6XvhwCvD8gzeaiwlTbev1jv7nf00xrTK4yRWiExBTIGhw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZGnTzuQQQrAqq+ifg6DXn9NOtrbSQwkg5aToUensWvw=;
+ b=b1tAJvuJgtUkxClPIj5mms0lBrkgNh3mE1qO/oObnX2GRXQM43EdqHyPB/35EC5C897QiaeaTPUFzDI5j7GC+dh5QVFfI3QbxV4Ci/gSj1mMIVkXOf8F3fkDsEcR9xSwro3dHXno1qfVSUGyeqE8q7trQu5i7YsBsaqn+j9adRW/BPitqsENE84LuJAcAyqcTDvrTVFRU21DGr4/fLiiH+OcFbal/IDXbgqen6s2eBHGf0i9wwwev6JThiW/FfnWYY4uZhm+5ZUc9nZmsdEJLKNa88iwLEOvRdySUO37ZiGEdPVz4FvaWkQiOG+BR2rnNYahO8pGWITyDhugU2mShg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
+ header.d=nxp.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=ZGnTzuQQQrAqq+ifg6DXn9NOtrbSQwkg5aToUensWvw=;
+ b=dcP+2NPy6dO8S6QdLmr3iXDpsSzQYPX1RyvRAYn3isDRHd2sqZfTGEeptMJMW3xT9yKlJLqqFRWkMv/nk5bamxlDUbJ0soncopVe0SQ8rnXUpMY+tj1eD4dA/D69yFk1CsksO1Tr5tlx9iClocnhkZSHpd+r1+SDsAgaNGRmg3Y=
+Received: from DB7PR04MB4490.eurprd04.prod.outlook.com (52.135.138.150) by
+ DB7PR04MB5097.eurprd04.prod.outlook.com (20.176.233.91) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2073.14; Tue, 16 Jul 2019 03:49:23 +0000
+Received: from DB7PR04MB4490.eurprd04.prod.outlook.com
+ ([fe80::413e:84ea:f3bb:40bd]) by DB7PR04MB4490.eurprd04.prod.outlook.com
+ ([fe80::413e:84ea:f3bb:40bd%5]) with mapi id 15.20.2073.012; Tue, 16 Jul 2019
+ 03:49:23 +0000
+From:   Biwen Li <biwen.li@nxp.com>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
+CC:     "a.zummo@towertech.it" <a.zummo@towertech.it>,
+        Leo Li <leoyang.li@nxp.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-rtc@vger.kernel.org" <linux-rtc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Xiaobo Xie <xiaobo.xie@nxp.com>,
+        Jiafei Pan <jiafei.pan@nxp.com>, Ran Wang <ran.wang_1@nxp.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [EXT] Re: [v4,1/2] rtc/fsl: add FTM alarm driver as the wakeup
+ source
+Thread-Topic: [EXT] Re: [v4,1/2] rtc/fsl: add FTM alarm driver as the wakeup
+ source
+Thread-Index: AQHVOveTDIFqnCscBkeBgotIifHzIabLxRGAgADU0CA=
+Date:   Tue, 16 Jul 2019 03:49:22 +0000
+Message-ID: <DB7PR04MB449094EC27851F3DE0BA5BA08FCE0@DB7PR04MB4490.eurprd04.prod.outlook.com>
+References: <20190715101520.22562-1-biwen.li@nxp.com>
+ <20190715145637.GG4732@piout.net>
+In-Reply-To: <20190715145637.GG4732@piout.net>
+Accept-Language: zh-CN, en-US
 Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1563248485; bh=mb6zG9Kfw1XuqWJtWsxfhcIaSdl0n4fpf4XDSPnpyfg=;
-        h=X-PGP-Universal:Subject:From:To:CC:References:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=mp/8eSWM4AHTgEv51/VPvUxgq1UGR8V6tvVOhL5pb+P+guN21/ZE21ImQlA7i8Mu6
-         mKPPTYbCo2d9z5cMgREzPvNEKRP+uzSRuUQfpNCWZHsdEY8Eo33j55DMCcT5k13gk+
-         psO7aLb3x3sIeODXWu0Aa3cmPI/lTWcnarpBKfrC/qPtnLI7sg8lI16e07HHEhMAmD
-         kgWY9uYTKbgqOiTeqTeSuFXRVflPKFCr2Dwn0EQJ5hYrf1HUvAovdaA6YhF0wHMjsh
-         UMmSFtZr3qKyh6V1+KpK7AB6Y4RCLaUXwtUgZ70eH+Hxv8p2l10ev/QLObsSWU5drX
-         yf8eBKPBUtwvA==
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=biwen.li@nxp.com; 
+x-originating-ip: [119.31.174.73]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b2af4248-ea13-4734-aa41-08d709a09717
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB7PR04MB5097;
+x-ms-traffictypediagnostic: DB7PR04MB5097:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <DB7PR04MB50977395E3D4408D8ED5B92A8FCE0@DB7PR04MB5097.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2733;
+x-forefront-prvs: 0100732B76
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(376002)(346002)(39860400002)(366004)(136003)(189003)(199004)(66946007)(76176011)(3846002)(66556008)(66066001)(66446008)(64756008)(66476007)(8936002)(4744005)(44832011)(6306002)(102836004)(55016002)(8676002)(76116006)(7696005)(476003)(186003)(478600001)(6116002)(26005)(6506007)(68736007)(14454004)(9686003)(45080400002)(81156014)(6436002)(81166006)(53936002)(305945005)(71200400001)(256004)(99286004)(2906002)(7736002)(71190400001)(74316002)(6246003)(52536014)(446003)(54906003)(11346002)(966005)(486006)(4326008)(6916009)(86362001)(316002)(33656002)(229853002)(5660300002)(25786009);DIR:OUT;SFP:1101;SCL:1;SRVR:DB7PR04MB5097;H:DB7PR04MB4490.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: bvdGRNXV5Ks93xZE9Qyql0JuQXgrzZH7mJpatu7WHpSkuJz7ZdBGZZp3pv6vDndewlRqcsTPKH0cE8w+/1kxCUnwAL5BEcsa+mDAknDIn5Hgf4gn8SZ95uKpjWeNxHYBSrBOrx1feQCjyBs7UXtnqtAAb4jXIMbT9t6UH7InmX/CmSBN+/17gAqcaNVpRaAL4a9C2TYgVEmvckP+qZ9LxWncGF1C/XLk7tyoq+G52QJDmGIlTxJ7paG24isERPBxAbdgNooB0Die1J6//A1ARSGOY3HfMOGs1DyyjqNL1DOxDIfCHG3fc9sVfyWDGmR6LUwfksweD4PDy9xESez/+VGFNkaQ4ZHhbClldobxaSwMm4QjQEKJ9t+kdW9zhpa51pawMT3/pjonSYNBtY6Ht3DCh1/+Q3tMUuKl0hBxkMA=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b2af4248-ea13-4734-aa41-08d709a09717
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jul 2019 03:49:22.9443
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: biwen.li@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB7PR04MB5097
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 7/15/19 8:00 PM, Sowjanya Komatineni wrote:
->
-> On 7/15/19 5:35 PM, Sowjanya Komatineni wrote:
->>
->> On 7/14/19 2:41 PM, Dmitry Osipenko wrote:
->>> 13.07.2019 8:54, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>>> On 6/29/19 8:10 AM, Dmitry Osipenko wrote:
->>>>> 28.06.2019 5:12, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>>>>> This patch adds system suspend and resume support for Tegra210
->>>>>> clocks.
->>>>>>
->>>>>> All the CAR controller settings are lost on suspend when core power
->>>>>> goes off.
->>>>>>
->>>>>> This patch has implementation for saving and restoring all the PLLs
->>>>>> and clocks context during system suspend and resume to have the
->>>>>> clocks back to same state for normal operation.
->>>>>>
->>>>>> Acked-by: Thierry Reding <treding@nvidia.com>
->>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>>>>> ---
->>>>>> =C2=A0=C2=A0 drivers/clk/tegra/clk-tegra210.c | 115
->>>>>> ++++++++++++++++++++++++++++++++++++++-
->>>>>> =C2=A0=C2=A0 drivers/clk/tegra/clk.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 14 +++++
->>>>>> =C2=A0=C2=A0 drivers/clk/tegra/clk.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0=C2=A0 1 +
->>>>>> =C2=A0=C2=A0 3 files changed, 127 insertions(+), 3 deletions(-)
->>>>>>
->>>>>> diff --git a/drivers/clk/tegra/clk-tegra210.c
->>>>>> b/drivers/clk/tegra/clk-tegra210.c
->>>>>> index 1c08c53482a5..1b839544e086 100644
->>>>>> --- a/drivers/clk/tegra/clk-tegra210.c
->>>>>> +++ b/drivers/clk/tegra/clk-tegra210.c
->>>>>> @@ -9,10 +9,12 @@
->>>>>> =C2=A0=C2=A0 #include <linux/clkdev.h>
->>>>>> =C2=A0=C2=A0 #include <linux/of.h>
->>>>>> =C2=A0=C2=A0 #include <linux/of_address.h>
->>>>>> +#include <linux/of_platform.h>
->>>>>> =C2=A0=C2=A0 #include <linux/delay.h>
->>>>>> =C2=A0=C2=A0 #include <linux/export.h>
->>>>>> =C2=A0=C2=A0 #include <linux/mutex.h>
->>>>>> =C2=A0=C2=A0 #include <linux/clk/tegra.h>
->>>>>> +#include <linux/syscore_ops.h>
->>>>>> =C2=A0=C2=A0 #include <dt-bindings/clock/tegra210-car.h>
->>>>>> =C2=A0=C2=A0 #include <dt-bindings/reset/tegra210-car.h>
->>>>>> =C2=A0=C2=A0 #include <linux/iopoll.h>
->>>>>> @@ -20,6 +22,7 @@
->>>>>> =C2=A0=C2=A0 #include <soc/tegra/pmc.h>
->>>>>> =C2=A0=C2=A0 =C2=A0 #include "clk.h"
->>>>>> +#include "clk-dfll.h"
->>>>>> =C2=A0=C2=A0 #include "clk-id.h"
->>>>>> =C2=A0=C2=A0 =C2=A0 /*
->>>>>> @@ -225,6 +228,7 @@
->>>>>> =C2=A0=C2=A0 =C2=A0 #define CLK_RST_CONTROLLER_RST_DEV_Y_SET 0x2a8
->>>>>> =C2=A0=C2=A0 #define CLK_RST_CONTROLLER_RST_DEV_Y_CLR 0x2ac
->>>>>> +#define CPU_SOFTRST_CTRL 0x380
->>>>>> =C2=A0=C2=A0 =C2=A0 #define LVL2_CLK_GATE_OVRA 0xf8
->>>>>> =C2=A0=C2=A0 #define LVL2_CLK_GATE_OVRC 0x3a0
->>>>>> @@ -2820,6 +2824,7 @@ static int tegra210_enable_pllu(void)
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct tegra_clk_pll_freq_table=
- *fentry;
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct tegra_clk_pll pllu;
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 u32 reg;
->>>>>> +=C2=A0=C2=A0=C2=A0 int ret;
->>>>>> =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 for (fentry =3D pll_u_fr=
-eq_table; fentry->input_rate;=20
->>>>>> fentry++) {
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (fen=
-try->input_rate =3D=3D pll_ref_freq)
->>>>>> @@ -2847,10 +2852,10 @@ static int tegra210_enable_pllu(void)
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 fence_udelay(1, clk_base);
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg |=3D PLL_ENABLE;
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 writel(reg, clk_base + PLLU_BAS=
-E);
->>>>>> +=C2=A0=C2=A0=C2=A0 fence_udelay(1, clk_base);
->>>>>> =C2=A0=C2=A0 -=C2=A0=C2=A0=C2=A0 readl_relaxed_poll_timeout_atomic(c=
-lk_base + PLLU_BASE, reg,
->>>>>> -=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 reg & PLL_BASE=
-_LOCK, 2, 1000);
->>>>>> -=C2=A0=C2=A0=C2=A0 if (!(reg & PLL_BASE_LOCK)) {
->>>>>> +=C2=A0=C2=A0=C2=A0 ret =3D tegra210_wait_for_mask(&pllu, PLLU_BASE,=
- PLL_BASE_LOCK);
->>>>>> +=C2=A0=C2=A0=C2=A0 if (ret) {
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 pr_err(=
-"Timed out waiting for PLL_U to lock\n");
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return =
--ETIMEDOUT;
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
->>>>>> @@ -3283,6 +3288,103 @@ static void=20
->>>>>> tegra210_disable_cpu_clock(u32 cpu)
->>>>>> =C2=A0=C2=A0 }
->>>>>> =C2=A0=C2=A0 =C2=A0 #ifdef CONFIG_PM_SLEEP
->>>>>> +static u32 cpu_softrst_ctx[3];
->>>>>> +static struct platform_device *dfll_pdev;
->>>>>> +#define car_readl(_base, _off) readl_relaxed(clk_base + (_base) +
->>>>>> ((_off) * 4))
->>>>>> +#define car_writel(_val, _base, _off) \
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 writel_relaxed(_val, clk=
-_base + (_base) + ((_off) * 4))
->>>>>> +
->>>>>> +static int tegra210_clk_suspend(void)
->>>>>> +{
->>>>>> +=C2=A0=C2=A0=C2=A0 unsigned int i;
->>>>>> +=C2=A0=C2=A0=C2=A0 struct device_node *node;
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 tegra_cclkg_burst_policy_save_context();
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 if (!dfll_pdev) {
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 node =3D of_find_compati=
-ble_node(NULL, NULL,
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0 "nvidia,tegra210-dfll");
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (node)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-dfll_pdev =3D of_find_device_by_node(node);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 of_node_put(node);
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (!dfll_pdev)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-pr_err("dfll node not found. no suspend for dfll\n");
->>>>>> +=C2=A0=C2=A0=C2=A0 }
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 if (dfll_pdev)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_dfll_suspend(dfll_=
-pdev);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 /* Enable PLLP_OUT_CPU after dfll suspend */
->>>>>> +=C2=A0=C2=A0=C2=A0 tegra_clk_set_pllp_out_cpu(true);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 tegra_sclk_cclklp_burst_policy_save_context();
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 clk_save_context();
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < ARRAY_SIZE(cpu_softrst_ctx); i=
-++)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 cpu_softrst_ctx[i] =3D c=
-ar_readl(CPU_SOFTRST_CTRL, i);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 return 0;
->>>>>> +}
->>>>>> +
->>>>>> +static void tegra210_clk_resume(void)
->>>>>> +{
->>>>>> +=C2=A0=C2=A0=C2=A0 unsigned int i;
->>>>>> +=C2=A0=C2=A0=C2=A0 struct clk_hw *parent;
->>>>>> +=C2=A0=C2=A0=C2=A0 struct clk *clk;
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 /*
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * clk_restore_context restores clocks as p=
-er the clock tree.
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 *
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * dfllCPU_out is first in the clock tree t=
-o get restored=20
->>>>>> and it
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * involves programming DFLL controller alo=
-ng with restoring=20
->>>>>> CPUG
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * clock burst policy.
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 *
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * DFLL programming needs dfll_ref and dfll=
-_soc peripheral=20
->>>>>> clocks
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * to be restores which are part ofthe peri=
-pheral clocks.
->>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=
-=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ^ white-space
->>>
->>> Please use spellchecker to avoid typos.
->>>
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * So, peripheral clocks restore should hap=
-pen prior to dfll=20
->>>>>> clock
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * restore.
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 */
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 tegra_clk_osc_resume(clk_base);
->>>>>> +=C2=A0=C2=A0=C2=A0 for (i =3D 0; i < ARRAY_SIZE(cpu_softrst_ctx); i=
-++)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 car_writel(cpu_softrst_c=
-tx[i], CPU_SOFTRST_CTRL, i);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 /* restore all plls and peripheral clocks */
->>>>>> +=C2=A0=C2=A0=C2=A0 tegra210_init_pllu();
->>>>>> +=C2=A0=C2=A0=C2=A0 clk_restore_context();
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 fence_udelay(5, clk_base);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 /* resume SCLK and CPULP clocks */
->>>>>> +=C2=A0=C2=A0=C2=A0 tegra_sclk_cpulp_burst_policy_restore_context();
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 /*
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * restore CPUG clocks:
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * - enable DFLL in open loop mode
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * - switch CPUG to DFLL clock source
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * - close DFLL loop
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * - sync PLLX state
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 */
->>>>>> +=C2=A0=C2=A0=C2=A0 if (dfll_pdev)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_dfll_resume(dfll_p=
-dev, false);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 tegra_cclkg_burst_policy_restore_context();
->>>>>> +=C2=A0=C2=A0=C2=A0 fence_udelay(2, clk_base);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 if (dfll_pdev)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_dfll_resume(dfll_p=
-dev, true);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 parent =3D
->>>>>> clk_hw_get_parent(__clk_get_hw(clks[TEGRA210_CLK_CCLK_G]));
->>>>>> +=C2=A0=C2=A0=C2=A0 clk =3D clks[TEGRA210_CLK_PLL_X];
->>>>>> +=C2=A0=C2=A0=C2=A0 if (parent !=3D __clk_get_hw(clk))
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_clk_sync_state_pll=
-(__clk_get_hw(clk));
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 /* Disable PLL_OUT_CPU after DFLL resume */
->>>>>> +=C2=A0=C2=A0=C2=A0 tegra_clk_set_pllp_out_cpu(false);
->>>>>> +}
->>>>>> +
->>>>>> =C2=A0=C2=A0 static void tegra210_cpu_clock_suspend(void)
->>>>>> =C2=A0=C2=A0 {
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 /* switch coresite to clk_m, sa=
-ve off original source */
->>>>>> @@ -3298,6 +3400,11 @@ static void tegra210_cpu_clock_resume(void)
->>>>>> =C2=A0=C2=A0 }
->>>>>> =C2=A0=C2=A0 #endif
->>>>>> =C2=A0=C2=A0 +static struct syscore_ops tegra_clk_syscore_ops =3D {
->>>>>> +=C2=A0=C2=A0=C2=A0 .suspend =3D tegra210_clk_suspend,
->>>>>> +=C2=A0=C2=A0=C2=A0 .resume =3D tegra210_clk_resume,
->>>>>> +};
->>>>>> +
->>>>>> =C2=A0=C2=A0 static struct tegra_cpu_car_ops tegra210_cpu_car_ops =
-=3D {
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .wait_for_reset=C2=A0=C2=A0=C2=
-=A0 =3D tegra210_wait_cpu_in_reset,
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .disable_clock=C2=A0=C2=A0=C2=
-=A0 =3D tegra210_disable_cpu_clock,
->>>>>> @@ -3583,5 +3690,7 @@ static void __init tegra210_clock_init(struct
->>>>>> device_node *np)
->>>>>> =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra210_mbist_clk_init();
->>>>>> =C2=A0=C2=A0 =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_cpu_car_ops =3D &t=
-egra210_cpu_car_ops;
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 register_syscore_ops(&tegra_clk_syscore_ops);
->>>>>> =C2=A0=C2=A0 }
->>>>> Is it really worthwhile to use syscore_ops for suspend/resume given
->>>>> that drivers for
->>>>> won't resume before the CLK driver anyway? Are there any other=20
->>>>> options
->>>>> for CLK
->>>>> suspend/resume?
->>>>>
->>>>> I'm also not sure whether PM runtime API could be used at all in the
->>>>> context of
->>>>> syscore_ops ..
->>>>>
->>>>> Secondly, what about to use generic clk_save_context() /
->>>>> clk_restore_context()
->>>>> helpers for the suspend-resume? It looks to me that some other
->>>>> essential (and proper)
->>>>> platform driver (soc/tegra/? PMC?) should suspend-resume the clocks
->>>>> using the generic
->>>>> CLK Framework API.
->>>> Clock resume should happen very early to restore peripheral and cpu
->>>> clocks very early than peripheral drivers resume happens.
->>> If all peripheral drivers properly requested all of the necessary=20
->>> clocks
->>> and CLK driver was a platform driver, then I guess the probe should=20
->>> have
->>> been naturally ordered. But that's not very achievable with the
->>> currently available infrastructure in the kernel, so I'm not arguing
->>> that the clocks should be explicitly resumed before the users.
->>>
->>>> this patch series uses clk_save_context and clk_restore_context for
->>>> corresponding divider, pll, pllout.. save and restore context.
->>> Now I see that indeed this API is utilized in this patch, thank you for
->>> the clarification.
->>>
->>>> But as there is dependency on dfll resume and cpu and pllx clocks
->>>> restore, couldnt use clk_save_context and clk_restore_context for=20
->>>> dfll.
->>>>
->>>> So implemented recommended dfll resume sequence in main Tegra210 clock
->>>> driver along with invoking clk_save_context/clk_restore_context where
->>>> all other clocks save/restore happens as per clock tree traversal.
->>> Could you please clarify what part of peripherals clocks is required=20
->>> for
->>> DFLL's restore? Couldn't DFLL driver be changed to avoid that quirkness
->>> and thus to make DFLL driver suspend/resume the clock?
->>
->> DFLL source ref_clk and soc_clk need to be restored prior to dfll.
->>
->> I see dfllCPU_out parent to CCLK_G first in the clock tree and=20
->> dfll_ref and dfll_soc peripheral clocks are not resumed by the time=20
->> dfll resume happens first.
->>
->> ref_clk and soc_clk source is from pll_p and clock tree has these=20
->> registered under pll_p which happens later.
->>
->> tegra210_clock_init registers in order plls, peripheral clocks,=20
->> super_clk init for cclk_g during clock driver probe and dfll probe=20
->> and register happens later.
->>
-> One more thing, CLDVFS peripheral clock enable is also needed to be=20
-> enabled to program DFLL Controller and all peripheral clock context is=20
-> restored only after their PLL sources are restored.
->
-> DFLL restore involves dfll source clock resume along with CLDVFS=20
-> periheral clock enable and reset
->
-Will try with dfll_pm_ops instead of dfll suspend/resume in tegra210=20
-clock driver...
+> Caution: EXT Email
+>=20
+> On 15/07/2019 18:15:19+0800, Biwen Li wrote:
+> > +     device_init_wakeup(&pdev->dev, true);
+> > +     rtc->rtc_dev =3D devm_rtc_device_register(&pdev->dev, "ftm-alarm"=
+,
+> > +
+> &ftm_rtc_ops,
+> > +
+> THIS_MODULE);
+>=20
+> To be clear, I want you to not use devm_rtc_device_register and use
+> devm_rtc_allocate_device and rtc_register_device.
+I will correct it in v5.
+>=20
+> > +     if (IS_ERR(rtc->rtc_dev)) {
+> > +             dev_err(&pdev->dev, "can't register rtc device\n");
+> > +             return PTR_ERR(rtc->rtc_dev);
+> > +     }
+> > +
+>=20
+> --
+> Alexandre Belloni, Bootlin
+> Embedded Linux and Kernel engineering
+> https://eur01.safelinks.protection.outlook.com/?url=3Dhttps%3A%2F%2Fbootl=
+in.
+> com&amp;data=3D02%7C01%7Cbiwen.li%40nxp.com%7Cc5b1382ed1fb493cf69
+> f08d7093513b2%7C686ea1d3bc2b4c6fa92cd99c5c301635%7C0%7C0%7C63
+> 6987995881848030&amp;sdata=3DT71z2Rjw%2FZL444U8C1ow3WcoyDYl76Mq
+> niLIupXbXtI%3D&amp;reserved=3D0
