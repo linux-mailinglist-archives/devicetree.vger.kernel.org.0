@@ -2,52 +2,53 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C2576AF93
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 21:11:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 01D296AFA9
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 21:18:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728535AbfGPTLL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 15:11:11 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:45628 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726213AbfGPTLL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 15:11:11 -0400
-Received: by mail-ot1-f65.google.com with SMTP id x21so22268331otq.12
-        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 12:11:10 -0700 (PDT)
+        id S2388502AbfGPTSO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 15:18:14 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:33088 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728781AbfGPTSL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 15:18:11 -0400
+Received: by mail-oi1-f194.google.com with SMTP id u15so16530812oiv.0
+        for <devicetree@vger.kernel.org>; Tue, 16 Jul 2019 12:18:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=3H0cienAlZ+Zv0tFhkXjnmPbMEeRYyOryne9l976TMI=;
-        b=XSA1pWuhJTplykTcj9mU38IbFHPceiRxCZ+WTBXEDymwQlb9JFzlHwDnUcIRwawIS2
-         wH7ENYinK78KzmH4WXncBa0vPz3op3gMZ5Urp49G6PZQXtppUDNCsmLJfPRPF07IJHpU
-         xcdbjaqOmbsEImPcjGV1E2PMWj4FmJzFFvgrcg/PS8jMNwpvOuiJ7pE8WvL6qO3GESAk
-         JAqkQlI6RlcjO8h30vGF2DxLzr1lkXOYiSR5dAHYxCoVMPlkLpgirUpSb5uK7Tqvf0cq
-         h5Fsi8v9UAH8Rjo9ppO+2uE7z8c0N4vu0Ty4O5YdvsWygBOtacLw74jewcLXY7+EMHXn
-         BW4g==
+        bh=brIaX2RYp1IxrZ3yZn3EZu9yevRmYR9uZd9VeocVV/A=;
+        b=SHlT79ff4TphKMM6dtCfppLLkhwTUMV8N9Y6kvPrJluOI+OpuDpeuE71+GhDruE72y
+         K1Xss88yMBWRbpDwktKAEVld+i6x+CYIhsdrHZGXS6BBKncKvpVukj6mWATPqc+NpSvG
+         iGUH/b3NtnBOMh5i46bI7HYW0f18yrFxgKf/11vfxkmsHar6NfYZDe1cnTD4wZrcP1CN
+         q2phpoZVApjrC009ntjorLI8ISLM8C8kY2ploNosNMTqO11yMs8wkPjdTmuRHTfIS59+
+         2iWvZhlF/FosUxleQdGVPiFmxQusOlEZ/O984BOYis8LW+Idn58vxr6VnU6KoBgd5Uns
+         qAAQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=3H0cienAlZ+Zv0tFhkXjnmPbMEeRYyOryne9l976TMI=;
-        b=cha6CSsQvYq0EVSdtuhlp3IWz9MDANN8Iiik5f6OBGIOYmIej2ZxIHvAbJTUervp3L
-         U5ezPJlZbrlNZfniYOtTy0KIMCZ9NpuVXgpnYgQ9KM8TTRInuPWIMuqrjlBxKfWbaoHv
-         nKUhT07p7gH9F5Tx7a9zTtf/68ht8Kdq30Ooy4EbeKV+xIKuYUWbVO+rGN4HurLGjQeM
-         /BSfHb2Gzh0XstmpWmk763msRJL5vvsplX/oTGYiFX7dp52RM1p8jpVxN+4zl3NfFGJY
-         QzDILRIwPC/zbLGQIlFx5310tna7yyLWSWhbZ6061KdTslU9tvWfWdGNiGNi6ak9S2fF
-         L4sg==
-X-Gm-Message-State: APjAAAVyr/PQFnlkMPI9CfSLJRccatgQRWwwX0s+b3laEmHLmuAKjCfq
-        Qum6/AEXWJwbvTrUIAPUW/1IE40ANRSvLWSY62SkVw==
-X-Google-Smtp-Source: APXvYqzvfCt6sCR4T4XqzPAhOtvsYyVOWwVzg9O4IjGSyx0lFEbqjlUxvAZG44/eRFQK9LAUMu2c8h6yjV3U3zwUQ8U=
-X-Received: by 2002:a9d:6201:: with SMTP id g1mr26712811otj.195.1563304270351;
- Tue, 16 Jul 2019 12:11:10 -0700 (PDT)
+        bh=brIaX2RYp1IxrZ3yZn3EZu9yevRmYR9uZd9VeocVV/A=;
+        b=qdbzHcRISaMZPhpT/BTQ+SL9LbTqbDSnmZZEkZeS3BbCz5lJYx1F6RHSmaonuWtDd9
+         ypKCbX9xRIUGaWtxv1onSLnwpEonKNKeqdgXjLI+I08OZie9AsnoYSMLVhhHOjOSwBhA
+         EsLL9T2Wgsfu4hjCw1JNc5xy9iuBLQftwEP+KU+Rj3m+W8Dds6CIRIstAl3HTPxymiek
+         mQnYRQGEqAN3UZFXDzr+dodSb7V2MSUIQt8pxM6t/NH0o7DqRE00VlDxP/efc1c0DCb/
+         vAQqU9WdBX/r1DMDvOTBk4j3ZEdTmv3YuOTQNiefchI/lat7wT+urR8+A2CDmaHdCAr0
+         dOQQ==
+X-Gm-Message-State: APjAAAUlSnjf4MjUWnAubc+pqujibuAqhGtxhAA7jcMdBX0gmTAITllN
+        rwP8//Wo4asr+5+SDm82x2peKEqHSlPmeSaf1YOl7Q==
+X-Google-Smtp-Source: APXvYqx3+GgqwYBseeHlcjkPEuUSEs2Hyz9M1TGUi71nRbjb0OErHX0xZGg8c96y1ng0XHyCcYM1UYkyK/KqdUMvVqw=
+X-Received: by 2002:aca:6104:: with SMTP id v4mr17656619oib.172.1563304689299;
+ Tue, 16 Jul 2019 12:18:09 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190703011020.151615-1-saravanak@google.com> <20190703011020.151615-3-saravanak@google.com>
- <5dd35be3-fd03-c9cc-1eed-ce4bc1433363@codeaurora.org>
-In-Reply-To: <5dd35be3-fd03-c9cc-1eed-ce4bc1433363@codeaurora.org>
+References: <20190614041733.120807-1-saravanak@google.com> <20190614041733.120807-12-saravanak@google.com>
+ <5dc6c820-ead8-d0dc-44de-4d13f86df042@linaro.org> <CAGETcx-xU9i1FJB5JecUoyZEfWpD8f+o9bC3SQmb-=3fLVbmQw@mail.gmail.com>
+ <9f2bf3fd-f7c5-40e8-6415-f334e3ef8d5d@codeaurora.org>
+In-Reply-To: <9f2bf3fd-f7c5-40e8-6415-f334e3ef8d5d@codeaurora.org>
 From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 16 Jul 2019 12:10:34 -0700
-Message-ID: <CAGETcx9NpYY4OmXdjHHCjqN7eZ4=7H9TdGZvw2Qr0K9Aq==ENg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/6] OPP: Add support for bandwidth OPP tables
+Date:   Tue, 16 Jul 2019 12:17:33 -0700
+Message-ID: <CAGETcx8woxSpOcjosh3pasBJPw-bfzh+=4x4xkq6R-ZRV+dc4A@mail.gmail.com>
+Subject: Re: [PATCH v2 11/11] interconnect: Add devfreq support
 To:     Sibi Sankar <sibis@codeaurora.org>
 Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -55,11 +56,16 @@ Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
         Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
         Stephen Boyd <sboyd@kernel.org>,
         "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Jordan Crouse <jcrouse@codeaurora.org>,
         Vincent Guittot <vincent.guittot@linaro.org>,
-        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
-        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
+        amit.kucheria@linaro.org,
+        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
+        daidavid1@codeaurora.org, Evan Green <evgreen@chromium.org>,
         Android Kernel Team <kernel-team@android.com>,
         Linux PM <linux-pm@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
@@ -71,89 +77,112 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 16, 2019 at 10:33 AM Sibi Sankar <sibis@codeaurora.org> wrote:
+On Tue, Jul 16, 2019 at 11:13 AM Sibi Sankar <sibis@codeaurora.org> wrote:
 >
 > Hey Saravana,
 >
-> On 7/3/19 6:40 AM, Saravana Kannan wrote:
-> > Not all devices quantify their performance points in terms of frequency.
-> > Devices like interconnects quantify their performance points in terms of
-> > bandwidth. We need a way to represent these bandwidth levels in OPP. So,
-> > add support for parsing bandwidth OPPs from DT.
+> On 6/18/19 2:48 AM, Saravana Kannan wrote:
+> > On Mon, Jun 17, 2019 at 8:44 AM Georgi Djakov <georgi.djakov@linaro.org> wrote:
+> >>
+> >> Hi Saravana,
+> >>
+> >> On 6/14/19 07:17, Saravana Kannan wrote:
+> >>> Add a icc_create_devfreq() and icc_remove_devfreq() to create and remove
+> >>> devfreq devices for interconnect paths. A driver can create/remove devfreq
+> >>> devices for the interconnects needed for its device by calling these APIs.
+> >>> This would allow various devfreq governors to work with interconnect paths
+> >>> and the device driver itself doesn't have to actively manage the bandwidth
+> >>> votes for the interconnects.
+> >>
+> >> Thanks for the patches, but creating devfreq devices for each interconnect path
+> >> seems odd to me - at least for consumers that already use a governor.
 > >
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > ---
-> >   drivers/opp/of.c  | 34 ++++++++++++++++++++++++++++++++--
-> >   drivers/opp/opp.h |  4 +++-
-> >   2 files changed, 35 insertions(+), 3 deletions(-)
+> > Each governor instance always handles one "frequency" (more like
+> > performance) domain at a time. So if a consumer is already using a
+> > governor to scale the hardware block, then using another governor to
+> > scale the interconnect performance points is the right way to go about
+> > it. In fact, that's exactly what devfreq passive governor's
+> > documentation even says it's meant for. That's also what cpufreq does
+> > for each cluster/CPU frequency domain too.
 > >
-> > diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-> > index c10c782d15aa..54fa70ed2adc 100644
-> > --- a/drivers/opp/of.c
-> > +++ b/drivers/opp/of.c
-> > @@ -552,6 +552,35 @@ void dev_pm_opp_of_remove_table(struct device *dev)
-> >   }
-> >   EXPORT_SYMBOL_GPL(dev_pm_opp_of_remove_table);
+> >> So for DDR
+> >> scaling for example, are you suggesting that we add a devfreq device from the
+> >> cpufreq driver in order to scale the interconnect between CPU<->DDR?
 > >
-> > +static int _read_opp_key(struct dev_pm_opp *new_opp, struct device_node *np)
-> > +{
-> > +     int ret;
-> > +     u64 rate;
-> > +     u32 bw;
-> > +
-> > +     ret = of_property_read_u64(np, "opp-hz", &rate);
-> > +     if (!ret) {
-> > +             /*
-> > +              * Rate is defined as an unsigned long in clk API, and so
-> > +              * casting explicitly to its type. Must be fixed once rate is 64
-> > +              * bit guaranteed in clk API.
-> > +              */
-> > +             new_opp->rate = (unsigned long)rate
-> now that the rate gets set here, please remove the rate assignment in
-> _opp_add_static_v2
+> > Yes in general. Although, CPUs are a special case because CPUs don't
+> > go through devfreq. So passive governor as it stands today won't work.
+> > CPU<->DDR scaling might need a separate governor (unlikely) or some
+> > changes to the passive governor that I'm happy to work on once we
+> > settle this for general devices like GPU, etc. But the DT format for
+> > CPUs will be identical to GPUs or any other device.
 >
-> > +             return 0;
-> > +     }
-> > +
-> > +     ret = of_property_read_u32(np, "opp-peak-KBps", &bw);
-> > +     if (ret)
-> > +             return ret;
-> > +     new_opp->rate = (unsigned long) &bw;
->
-> should be bw instead
+> using icc_create_devfreq from the cpufreq-hw driver on SDM845 SoC
+> to scale CPU<->DDR would cause a circular dependency. (i.e) with
+> the addition of cpufreq notifier to the passive governor as in
+> https://patchwork.kernel.org/patch/11046147/ devm_devfreq_add_device
+> would require the cpufreq transistion notifier register and cpu
+> freq_cpu_get to go through. Please add your thought on addressing this.
 
-Good catch. Thanks!
+This is an old series. So not going to dive into this much.
 
->
-> > +
-> > +     ret = of_property_read_u32(np, "opp-avg-KBps", &bw);
-> > +     if (!ret)
-> > +             new_opp->avg_bw = (unsigned long) &bw;
->
-> ditto
->
-> > +
-> > +     return 0;
-> > +}
-> > +
-> >   /**
-> >    * _opp_add_static_v2() - Allocate static OPPs (As per 'v2' DT bindings)
-> >    * @opp_table:      OPP table
-> > @@ -589,11 +618,12 @@ static struct dev_pm_opp *_opp_add_static_v2(struct opp_table *opp_table,
-> >       if (!new_opp)
-> >               return ERR_PTR(-ENOMEM);
-> >
-> > -     ret = of_property_read_u64(np, "opp-hz", &rate);
-> > +     ret = _read_opp_key(new_opp, np);
-> >       if (ret < 0) {
-> >               /* "opp-hz" is optional for devices like power domains. */
-> >               if (!opp_table->is_genpd) {
-> > -                     dev_err(dev, "%s: opp-hz not found\n", __func__);
-> > +                     dev_err(dev, "%s: opp-hz or opp-peak-bw not found\n",
-> > +                             __func__);
->
-> please remove the else part where rate value will be reset.
-
-Ah! I flipped the meaning of the "if" check in my head. Thanks!
+But to answer your question, I wrote the cpufreq_map governor a long
+time ago. So not surprised if you are finding issues with it -- it
+needs a rewrite anyway.
 
 -Saravana
+
+> >
+> >> Also if the
+> >> GPU is already using devfreq, should we add a devfreq per each interconnect
+> >> path? What would be the benefit in this case - using different governors for
+> >> bandwidth scaling maybe?
+> >
+> > When saying "separate/different governors" in this email, I mean both
+> > different instance of the same governor logic with different tunables
+> > AND actually different algorithms/governor logic entirely.
+> >
+> > The heuristics to use for each interconnect path might be (more like,
+> > will be) different based on hardware characteristics (Eg: what voltage
+> > domains the interconnect is sitting on) and what interconnect
+> > information is available (Eg: Just busy time vs bandwidth count vs no
+> > information etc) -- so having separate governors for each interconnect
+> > path makes a lot of sense. It also allows userspace to control the
+> > policy for scaling each of those paths based on product use cases.
+> >
+> > For example, when the GPU is just doing simple UI rendering, userspace
+> > can use the max_freq sysfs file for the devfreq device to disallow high
+> > bandwidth OPPs on the GPU<->DDR path, but those higher OPPs could be
+> > allowed by userspace when the GPU is used for games. Having devfreq
+> > device for each interconnect path also make it easy to debug
+> > performance issues -- you can independently change the votes for each
+> > path to figure out what is causing the bottleneck, etc.
+> >
+> > Adding a devfreq device for interconnect voting with a few lines gives
+> > all these features "for free".
+> >
+> > This doesn't mean all users of interconnect framework NEED to use
+> > devfreq for interconnect. They might do it simply based on
+> > calculations based on the use case (Eg: display driver from display
+> > resolution). But if they are trying to use any kind of
+> > algorithm/heuristics, writing it as a devfreq governor should be
+> > encouraged.
+> >
+> > Also want to point out that BW OPPs also work for drivers that don't
+> > use devfreq at all. The interconnect-opp-table just lists the
+> > meaningful OPP leveld for the path and the device driver can pick one
+> > entry from the table based on the use case.
+> >
+> > Thanks,
+> > Saravana
+> >
+> >
+> >
+>
+> --
+> Qualcomm Innovation Center, Inc.
+> Qualcomm Innovation Center, Inc, is a member of Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+>
+> --
+> To unsubscribe from this group and stop receiving emails from it, send an email to kernel-team+unsubscribe@android.com.
+>
