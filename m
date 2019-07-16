@@ -2,82 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 81F0A6AB58
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 17:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3CE716AB66
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 17:08:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388009AbfGPPFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 11:05:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59284 "EHLO mail.kernel.org"
+        id S2387847AbfGPPIO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 11:08:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35880 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728513AbfGPPFA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 16 Jul 2019 11:05:00 -0400
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        id S1728384AbfGPPIO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jul 2019 11:08:14 -0400
+Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A42C5217D9;
-        Tue, 16 Jul 2019 15:04:59 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 4B44E2173C;
+        Tue, 16 Jul 2019 15:08:13 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563289499;
-        bh=qMHT4LhKbcv+81uzP1b96TgMB2OKJqjrClLOLrRU3oY=;
+        s=default; t=1563289693;
+        bh=KJhKHD7WlwSPz/YtNQ78gwhQw1tnMo7KNHFxIFPMNTA=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=oaUfITiv0hgNcoMzLW5x0E3tl1bFDM+0lhBpP6AXrQwJVWslnjSba/YecYFcrrIHJ
-         RAs7GpHEICPg/7+qPj5o9FC4PnFzSWAMw+CpiOTO4IQ1JqpquMsCTlhLGhy24nWOjQ
-         HYDDRSSPyYlI+2cI5N6rp8YSJpJQNE0bf6WvVQJk=
-Received: by mail-qk1-f169.google.com with SMTP id m14so14788295qka.10;
-        Tue, 16 Jul 2019 08:04:59 -0700 (PDT)
-X-Gm-Message-State: APjAAAUcgU+xP2q/JkShwuU4O7Q23wCdHaavchasOnDJkw58ueSKWmc5
-        0p2JlJnVyCnap/h2zbFC3FY4Mt3wcmny34yGFg==
-X-Google-Smtp-Source: APXvYqzc1lGEIRKUk6W2DI5gAbyEEw14Pfpx9QFeFOfiGi6kMZ0tKAfX5GbQ1wOWhsE111TtrPjFiaJgvs+cASy4LFY=
-X-Received: by 2002:a37:a44a:: with SMTP id n71mr21002339qke.393.1563289498889;
- Tue, 16 Jul 2019 08:04:58 -0700 (PDT)
+        b=v/wWP6CudN3LZ05a20mnKFBIGZbNnb/hXtgq8tq3n1lqPierjZLdSh1ugGYZMdlJo
+         iLmsI7+T9j86zGKMrvwfi40H63QdIYP7a9/1RK5xVRn+qBwJPz2p66C5s1gPmyYa6m
+         8vmQRNyzUohPEL6JvEv9V5sWOC/Zc+m4jNZg8hd0=
+Received: by mail-qk1-f181.google.com with SMTP id s145so14839171qke.7;
+        Tue, 16 Jul 2019 08:08:13 -0700 (PDT)
+X-Gm-Message-State: APjAAAXB4XtnPlJYYcjOWjionjj05n/SlOJPK5KvayhMGpYlsCvpWqZ+
+        +KPa+2VXaWFzki8Nuw97dOUdtkpuboNDgh8A0A==
+X-Google-Smtp-Source: APXvYqz5UF22FVhjr/olMVpSYsnaA/jqkKHMZ9iw0D7NDtGbXTHVkBbrbyHhvjWrTB3VdHeCTevV2u7jlIBsa3zOAy8=
+X-Received: by 2002:a37:a010:: with SMTP id j16mr22559615qke.152.1563289692548;
+ Tue, 16 Jul 2019 08:08:12 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190715223725.12924-1-robh@kernel.org> <CACPK8Xdz98CQzgE2KCjz8eOhPtx=H8jTe1hVT7LvP77U_gGASQ@mail.gmail.com>
-In-Reply-To: <CACPK8Xdz98CQzgE2KCjz8eOhPtx=H8jTe1hVT7LvP77U_gGASQ@mail.gmail.com>
+References: <20190626235759.3615-1-robh@kernel.org>
+In-Reply-To: <20190626235759.3615-1-robh@kernel.org>
 From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 16 Jul 2019 09:04:47 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+AJDNZ-676iP=vv6G-pjWqBJyZ3bJ26o7i=c=KWbozSw@mail.gmail.com>
-Message-ID: <CAL_Jsq+AJDNZ-676iP=vv6G-pjWqBJyZ3bJ26o7i=c=KWbozSw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: pinctrl: aspeed: Fix 'compatible' schema errors
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        linux-aspeed@lists.ozlabs.org,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Date:   Tue, 16 Jul 2019 09:08:01 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKmovGLxZj5jOLgXLtYD1cRHjtrQZm27Nk8cRQR9tsidg@mail.gmail.com>
+Message-ID: <CAL_JsqKmovGLxZj5jOLgXLtYD1cRHjtrQZm27Nk8cRQR9tsidg@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: riscv: Limit cpus schema to only check RiscV
+ 'cpu' nodes
+To:     Paul Walmsley <paul.walmsley@sifive.com>,
+        linux-riscv@lists.infradead.org, Palmer Dabbelt <palmer@sifive.com>
+Cc:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 15, 2019 at 5:17 PM Joel Stanley <joel@jms.id.au> wrote:
+On Wed, Jun 26, 2019 at 6:00 PM Rob Herring <robh@kernel.org> wrote:
 >
-> On Mon, 15 Jul 2019 at 22:37, Rob Herring <robh@kernel.org> wrote:
-> >
-> > The Aspeed pinctl schema have errors in the 'compatible' schema:
-> >
-> > Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml: \
-> > properties:compatible:enum: ['aspeed', 'ast2400-pinctrl', 'aspeed', 'g4-pinctrl'] has non-unique elements
-> > Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml: \
-> > properties:compatible:enum: ['aspeed', 'ast2500-pinctrl', 'aspeed', 'g5-pinctrl'] has non-unique elements
-> >
-> > Flow style sequences have to be quoted if the vales contain ','. Fix
-> > this by using the more common one line per entry formatting.
+> Matching on the 'cpus' node was a bad choice because the schema is
+> incorrectly applied to non-RiscV cpus nodes. As we now have a common cpus
+> schema which checks the general structure, it is also redundant to do so
+> in the Risc-V CPU schema.
 >
-> >
-> >  properties:
-> >    compatible:
-> > -    enum: [ aspeed,ast2400-pinctrl, aspeed,g4-pinctrl ]
-> > +    enum:
-> > +      - aspeed,ast2400-pinctrl
-> > +      - aspeed,g4-pinctrl
+> The downside is one could conceivably mix different architecture's cpu
+> nodes or have typos in the compatible string. The latter problem pretty
+> much exists for every schema.
 >
-> Thanks for the fix. However, we've standardised on the first form for
-> all of our device trees, so we can drop the second compatible string
-> from the bindings.
+> Signed-off-by: Rob Herring <robh@kernel.org>
+> ---
+>  .../devicetree/bindings/riscv/cpus.yaml       | 143 ++++++++----------
+>  1 file changed, 61 insertions(+), 82 deletions(-)
 
-Doing that would introduce validation warnings until the dts file is
-updated. So we still need this change until that happens.
+Paul, do you plan to apply this? I have several fixes to send to Linus
+if you want me to include this.
 
 Rob
