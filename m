@@ -2,193 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CC386AD1F
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 18:51:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80B2C6AD65
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 19:09:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728573AbfGPQuo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 12:50:44 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:11057 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728124AbfGPQuo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 12:50:44 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d2e00610002>; Tue, 16 Jul 2019 09:50:41 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Tue, 16 Jul 2019 09:50:41 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Tue, 16 Jul 2019 09:50:41 -0700
-Received: from [10.2.164.12] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 16 Jul
- 2019 16:50:39 +0000
-Subject: Re: [PATCH V5 11/18] clk: tegra210: Add support for Tegra210 clocks
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Joseph Lo <josephl@nvidia.com>
-CC:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <tglx@linutronix.de>, <jason@lakedaemon.net>,
-        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
-        <stefan@agner.ch>, <mark.rutland@arm.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
-        <talho@nvidia.com>, <linux-tegra@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <mperttunen@nvidia.com>,
-        <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <a5e1a6df-dff7-9e0c-9551-f78103a5462f@gmail.com>
- <a9b5c364-52b4-bee1-5881-47197f043950@nvidia.com>
- <e9d4bc0e-fd5d-ae02-2d67-86c7f7c9620f@gmail.com>
- <3938092a-bbc7-b304-641d-31677539598d@nvidia.com>
- <932d4d50-120c-9191-6a9a-23bf9c96633b@nvidia.com>
- <0ee055ad-d397-32e5-60ee-d62c14c6f77b@gmail.com>
- <86fc07d5-ab2e-a52a-a570-b1dfff4c20fe@nvidia.com>
- <20190716083701.225f0fd9@dimatab>
- <21266e4f-16b1-4c87-067a-16c07c803b6e@nvidia.com>
- <c5853e1a-d812-2dbd-3bec-0a9b0b0f6f3e@nvidia.com>
- <20190716080610.GE12715@pdeschrijver-desktop.Nvidia.com>
- <d908d3a2-3013-7f92-0852-115f428d1c5f@gmail.com>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <72b5df8c-8acb-d0d0-ebcf-b406e8404973@nvidia.com>
-Date:   Tue, 16 Jul 2019 09:50:38 -0700
+        id S1728248AbfGPRJX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 13:09:23 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:44156 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725926AbfGPRJX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 13:09:23 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6GH7wGu022595;
+        Tue, 16 Jul 2019 12:07:59 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1563296879;
+        bh=VQ/fp5ABUyt0fOaHGKlhXyBUzQD3cI800FDzOaTcw8o=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=yd5g/CALb31GGT87CeoGnogbhZ/u8y5VHXCC2ySvjip0C0JxwGiCfWx5k3o6XuSsq
+         nJ/1uakbglW4rgoUvz+E3GC2qf+LEKFIrzkBmVEiv8RD2yhCwHGLcsJwFGowMwGhXz
+         EC4HfAzbmWLuC5Nwe0BqmE0yyr2DA0Dglgg8Cjqg=
+Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6GH7w4v032498
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 16 Jul 2019 12:07:58 -0500
+Received: from DLEE106.ent.ti.com (157.170.170.36) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 16
+ Jul 2019 12:07:58 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE106.ent.ti.com
+ (157.170.170.36) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 16 Jul 2019 12:07:58 -0500
+Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6GH7wZu122924;
+        Tue, 16 Jul 2019 12:07:58 -0500
+Subject: Re: [PATCH 1/6] dt-bindings: irqchip: Add PRUSS interrupt controller
+ bindings
+To:     David Lechner <david@lechnology.com>,
+        "Andrew F. Davis" <afd@ti.com>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>
+CC:     Tony Lindgren <tony@atomide.com>, Roger Quadros <rogerq@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20190708035243.12170-1-s-anna@ti.com>
+ <20190708035243.12170-2-s-anna@ti.com>
+ <b67e8ce6-a291-ce4c-9972-b7fc7cd08bb4@ti.com>
+ <53868885-a78d-448a-1f2a-03a16251d028@ti.com>
+ <c3f0061f-22b0-c281-b8ff-4a2cb7e91aba@lechnology.com>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <2eb76f94-3d01-2620-89a0-207a4084be1b@ti.com>
+Date:   Tue, 16 Jul 2019 12:07:58 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-In-Reply-To: <d908d3a2-3013-7f92-0852-115f428d1c5f@gmail.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <c3f0061f-22b0-c281-b8ff-4a2cb7e91aba@lechnology.com>
+Content-Type: text/plain; charset="utf-8"
 Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1563295841; bh=7pjBgifE3aTLq2L4b9qGHZvK09QoCULCeWJyD2K0PfE=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=rKRNM3b6AR/twIO+klGOR7yQcyd1/szqYVIB/JHCnS0v/A2p+IwLo3xV5nGdBIYlw
-         2Wb2ArJblFTb22J0BP8/VFJzR4OoIWqxsQVeq3NeB9u8PL0g5CqCa3enXNy75Ojodl
-         32FGOGazfhcQab2EMMGRROqx7VjXokyzwq3tIWmKc3QGFSXMzI+q5gtjhG8IypQeYZ
-         zfvQy+UjMORSDD9T1V86kl5yp3pDSv2hlvnZzj/9mzPeRHK+d9mJUicQ6m9uN8ZGGb
-         rzt5gzbQQKU31iyjG98iUEfeIM1b3QsibAjlt8O4uIwLS+n5PeZ/v+GVc/ZRul4z92
-         /gmEu4Kpy2SJQ==
+Content-Transfer-Encoding: 8bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi David,
 
-On 7/16/19 8:00 AM, Dmitry Osipenko wrote:
-> 16.07.2019 11:06, Peter De Schrijver =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->> On Tue, Jul 16, 2019 at 03:24:26PM +0800, Joseph Lo wrote:
->>>> OK, Will add to CPUFreq driver...
->>>>> The other thing that also need attention is that T124 CPUFreq driver
->>>>> implicitly relies on DFLL driver to be probed first, which is icky.
->>>>>
->>>> Should I add check for successful dfll clk register explicitly in
->>>> CPUFreq driver probe and defer till dfll clk registers?
-> Probably you should use the "device links". See [1][2] for the example.
->
-> [1]
-> https://elixir.bootlin.com/linux/v5.2.1/source/drivers/gpu/drm/tegra/dc.c=
-#L2383
->
-> [2] https://www.kernel.org/doc/html/latest/driver-api/device_link.html
->
-> Return EPROBE_DEFER instead of EINVAL if device_link_add() fails. And
-> use of_find_device_by_node() to get the DFLL's device, see [3].
->
-> [3]
-> https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/=
-drivers/devfreq/tegra20-devfreq.c#n100
-Will go thru and add...
->>> Sorry, I didn't follow the mail thread. Just regarding the DFLL part.
+On 7/10/19 12:08 PM, David Lechner wrote:
+> 
+>>>> +- interrupts           : all the interrupts generated towards the
+>>>> main host
+>>>> +                         processor in the SoC. The format depends
+>>>> on the
+>>>> +                         interrupt specifier for the particular
+>>>> SoC's ARM GIC
+>>>> +                         parent interrupt controller. A shared
+>>>> interrupt can
+>>>> +                         be skipped if the desired destination and
+>>>> usage is by
+>>>> +                         a different processor/device.
+>>>> +- interrupt-names      : should use one of the following names for
+>>>> each valid
+>>>> +                         interrupt connected to ARM GIC, the name
+>>>> should match
+>>>> +                         the corresponding host interrupt number,
+>>>> +                             "host0", "host1", "host2", "host3",
+>>>> "host4",
+>>>> +                             "host5", "host6" or "host7"
+>>>> +- interrupt-controller : mark this node as an interrupt controller
+>>>> +- #interrupt-cells     : should be 1. Client users shall use the
+>>>> PRU System
+>>>> +                         event number (the interrupt source that
+>>>> the client
+>>>> +                         is interested in) as the value of the
+>>>> interrupts
+>>>> +                         property in their node
+>>>> +
+>>>> +Optional Properties:
+>>>> +--------------------
+>>>> +The following properties are _required_ only for some SoCs. If none
+>>>> of the below
+>>>> +properties are defined, it implies that all the host interrupts 2
+>>>> through 9 are
+>>>> +connected exclusively to the ARM GIC.
+>>>> +
+>>>> +- ti,irqs-reserved     : an array of 8-bit elements of host
+>>>> interrupts between
+>>>> +                         0 and 7 (corresponding to PRUSS INTC
+>>>> output interrupts
+>>>> +                         2 through 9) that are not connected to the
+>>>> ARM GIC.
 >>>
->>> As you know it, the DFLL clock is one of the CPU clock sources and
->>> integrated with DVFS control logic with the regulator. We will not swit=
-ch
->>> CPU to other clock sources once we switched to DFLL. Because the CPU ha=
-s
->>> been regulated by the DFLL HW with the DVFS table (CVB or OPP table you=
- see
->>> in the driver.). We shouldn't reparent it to other sources with unknew
->>> freq/volt pair. That's not guaranteed to work. We allow switching to
->>> open-loop mode but different sources.
-> Okay, then the CPUFreq driver will have to enforce DFLL freq to PLLP's
-> rate before switching to PLLP in order to have a proper CPU voltage.
-
-PLLP freq is safe to work for any CPU voltage. So no need to enforce=20
-DFLL freq to PLLP rate before changing CCLK_G source to PLLP during suspend
-
->>> And I don't exactly understand why we need to switch to PLLP in CPU idl=
-e
->>> driver. Just keep it on CL-DVFS mode all the time.
+>>> The reason for 0-7 mapping to 2-9 is not instantly clear to someone
+>>> reading this. If you respin this could you note that reason is
+>>> interrupts 0 and 1 are always routed back into the PRUSS.
+>>
+>> Yeah, this is always going to be somewhat confusing since the driver has
+>> to deal with all hosts from channel-mapping perspective, but only the 8
+>> interrupts at most that reach MPU for handling interrupts. TRM has
+>>
+>> Anyway, I have already mentioned the first 2 interrupt routing in the
+>> first paragraph above.
+>>
+>> Thinking more
+>>> on that, the same is true for interrupt 7 ("host5") on AM437x/66AK2G yet
+>>> we don't skip that in the naming.. now that we have the reserved IRQ
+>>> mechanism above, why not leave the one-to-one interrupt to name mapping,
+>>> but always have at least the first two marked as reserved for all the
+>>> current devices:
 >>>
->>> In SC7 entry, the dfll suspend function moves it the open-loop mode. Th=
-at's
->>> all. The sc7-entryfirmware will handle the rest of the sequence to turn=
- off
->>> the CPU power.
+>>> ti,irqs-reserved = /bits/ 8 <0 1>;
 >>>
->>> In SC7 resume, the warmboot code will handle the sequence to turn on
->>> regulator and power up the CPU cluster. And leave it on PLL_P. After
->>> resuming to the kernel, we re-init DFLL, restore the CPU clock policy (=
-CPU
->>> runs on DFLL open-loop mode) and then moving to close-loop mode.
-> The DFLL is re-inited after switching CCLK to DFLL parent during of the
-> early clocks-state restoring by CaR driver. Hence instead of having odd
-> hacks in the CaR driver, it is much nicer to have a proper
-> suspend-resume sequencing of the device drivers. In this case CPUFreq
-> driver is the driver that enables DFLL and switches CPU to that clock
-> source, which means that this driver is also should be responsible for
-> management of the DFLL's state during of suspend/resume process. If
-> CPUFreq driver disables DFLL during suspend and re-enables it during
-> resume, then looks like the CaR driver hacks around DFLL are not needed.
->
->>> The DFLL part looks good to me. BTW, change the patch subject to "Add
->>> suspend-resume support" seems more appropriate to me.
->>>
->> To clarify this, the sequences for DFLL use are as follows (assuming all
->> required DFLL hw configuration has been done)
+>>> Then any "hostx" listed as reserved need not be present in the host
+>>> interrupts property array. To me that would solve the "managing
+>>> interrupts not targeting the Linux running core" problem and keep the
+>>> names consistent, e.g.:
 >>
->> Switch to DFLL:
->> 0) Save current parent and frequency
->> 1) Program DFLL to open loop mode
->> 2) Enable DFLL
->> 3) Change cclk_g parent to DFLL
->> For OVR regulator:
->> 4) Change PWM output pin from tristate to output
->> 5) Enable DFLL PWM output
->> For I2C regulator:
->> 4) Enable DFLL I2C output
->> 6) Program DFLL to closed loop mode
+>> I had actually used the interrupt-names always starting from "host2"
+>> through "host9" (names from PRU perspective) previously, and I have
+>> changed this to start indexing from 0 in this series to address an
+>> internal review comment from Grygorii and to align with TRM. All the
+>> TRMs (except for AM572x) actually use the names/signals "host_intr0",
+>> "host_intr1".."host_intr7" etc for the interrupts going towards MPU.
+>> Maybe I should actually rename the interrupt-names to be host_intrX
+>> instead of hostX to avoid confusion and be exactly aligned with the TRM
+>> names. I will file a bug against AM57xx TRM to align the names with all
+>> other SoC TRMs.
 >>
->> Switch away from DFLL:
->> 0) Change cclk_g parent to PLLP so the CPU frequency is ok for any vdd_c=
-pu voltage
->> 1) Program DFLL to open loop mode
+>> I am using "output interrupt lines" to imply names w.r.t PRU vs "host
+>> interrupt" to imply ARM GIC names.
 >>
->> For OVR regulator:
->> 2) Change PWM output pin from output to tristate: vdd_cpu will go back
->>     to hardwired boot voltage.
->> 3) Disable DFLL PWM output
+>> regards
+>> Suman
 >>
->> For I2C regulator:
->> 2) Program vdd_cpu regulator voltage to the boot voltage
->> 3) Disable DFLL I2C output
->>
->> 4) Reprogram parent saved in step 0 of 'Switch to DFLL' to the saved
->>     frequency
->> 5) Change cclk_g parent to saved parent
->> 6) Disable DFLL
+> 
+> FWIW, the AM1808 TRM only uses PRU_EVTOUT0 to PRU_EVTOUT7 and does not
+> mention "host" in relation to these interrupts. The AM3xxx and AM4xxx
+> also use similar names (PRU_ICSS_EVTOUT0, PRU_ICSS1_EVTOUT0) although
+> they do mention that the source is "pr1_host[0] output/events exported
+> from PRU_ICSS1". (Also, the older processors have AINTC instead of GIC).
 
-This is the same sequence currently implemented. But dfll suspend/resume=20
-calls are thru Tegra210 clock driver.
+Indeed, EVTOUT was only used in the Interrupts chapter on AM1808, AM335x
+and AM437x. These TRMs are only getting very infrequent updates, so I
+doubt we will have these names synchronized to the other SoCs.
 
-Dmitry wants to have dfll suspend/resume along with CCLK_G restore to=20
-happen from CPUFreq driver pm_ops rather than tegra210 clock driver or=20
-tegra dfll driver.
+The descriptions in PRUSS INTC sections themselves always use the term
+host interrupts for all host events, but the output signals get
+re-indexed to 0, which tends to be confusing.
 
-Will move it to CPUFreq driver...
+> 
+> Maybe to help clarify here we could mention "event" in the docs:
+> 
+> 
+> +- interrupt-names      : should use one of the following names for each
+> valid
+> +                         host event interrupt connected to ARM interrupt
+> +                         controller,the name should match the
+> corresponding
+> +                         host event interrupt number,
 
-> Thanks!
+Yeah, I like your rewording. Will update for the next version.
+
+> +                             "host0", "host1", "host2", "host3", "host4",
+> +                             "host5", "host6" or "host7"
+
+I will be updating these names as well to add either a int or intr suffix.
+
+> 
+> 
+> 
+> ...
+> 
+>>>> +
+>>>> +Example:
+>>>> +--------
+>>>> +
+>>>> +1.    /* AM33xx PRU-ICSS */
+>>>> +    pruss: pruss@0 {
+> 
+> I don't suppose there is a generic name that could be used here
+> instead of pruss? It seems like there should be one for remote
+> processors that aren't DSPs or other specialized processors.
+> 
+
+Yeah, there is none. It is the overall PRU subsystem, the individual
+cores are called PRU. The subsystems are usually referred to as PRUSS,
+PRU-ICSS and ICSSG (on the newer K3 SoCs), so I simply chose the shorter
+pruss.
+
+regards
+Suman
+
+
