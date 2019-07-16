@@ -2,274 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BE4A06A86C
-	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 14:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5944D6A9B2
+	for <lists+devicetree@lfdr.de>; Tue, 16 Jul 2019 15:34:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731855AbfGPMLw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 08:11:52 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:42268 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728387AbfGPMLw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 08:11:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
-        Content-Type:MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:
-        To:From:Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=iZYeg9Nbps8f84ceOabjIWQOvWBOi7Zf+58kDSKfKw4=; b=SYnfqTRIRg+lXMoK+qjBAcWjJA
-        ukjt6ndWG1X2HGVA05EOW3eBW5FIo9Cz470o5K/fa+Bet69ocanRP1jSFnJDD0Q+CF5jJ/7Ewa9bz
-        cY5H3AR2T9VL+AoIk2h0uh1a436/Ipe5A9mwZYsb5CklukzZMl11r79DSv0pKbPc7g5p/CXLWVCO1
-        dHYPVggmNYesmyEKxBcLJc0Cojr0KKRtvlRmkH4ACHZ2VPsqXDEb7uvhgil1lJ965UtnBkZn9xYvk
-        aQxImhre7/hmN5ANVcgEiOzt4T4JbwjOPrMk9ALiinZ0MJ+BhU2LJIjdZGtWja7AC1+ZZz/RhmF3O
-        LCdCnauQ==;
-Received: from [189.27.46.152] (helo=bombadil.infradead.org)
-        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-        id 1hnMIL-0004i2-BI; Tue, 16 Jul 2019 12:10:57 +0000
-Received: from mchehab by bombadil.infradead.org with local (Exim 4.92)
-        (envelope-from <mchehab@bombadil.infradead.org>)
-        id 1hnMII-0000Qj-NF; Tue, 16 Jul 2019 09:10:54 -0300
-From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Josh Triplett <josh@joshtriplett.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
-        Lai Jiangshan <jiangshanlai@gmail.com>,
-        Joel Fernandes <joel@joelfernandes.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S2387524AbfGPNeY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 09:34:24 -0400
+Received: from mail-eopbgr30048.outbound.protection.outlook.com ([40.107.3.48]:50191
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726039AbfGPNeY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 16 Jul 2019 09:34:24 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=TxkHGrpsM0IRS/rjPSrhFJMBqUk5r+/tsi1Yoj6L1peL7K8fimZ24NzumXVSk/epyLrnSmzezSLKCtflMKNltNezHi0DxJOVxHS5a+jDAmHjDfNn7IWpGGWMtm1WyCxtDGt/LcLXOAffkSP9nTTU0ZqBBaHjTlIil25Hhl6cZXbu3BucNrhB8uZlkSL1XRS6i6VfYr2J1NV5/pfqQbGwMMY0mn4nKyG1DTDBT25AdCIqivhopkvO6jBh2lF02De5Fma+98xOacQLyMXRZJrO0SDiFNiSHoaQ3W5ty4C9x4TiXb0May/dNqcuNl0Nr44EGd+ei3OMxNLOyWu5MguIGg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V1N0IKwNV2MC25ith0msIDRKMXe7xDmopw1HY1vWJVQ=;
+ b=lS3O7BQPu3u7if4WNZocYVGAx+92jDGtc4qSNi1on4IiFrKlBlNYauUrHr6ocW0ASLwzinqGKZUeHO9+tWjWYVWuXKhJ3TRtOLGTCoXVGJDwzJ/6aH3MwEbx29V4pL5sm37+Pa7+72vwEpHcmnMzNCtcxOLTRLuq0DcxJefyeAAe8yCtRythjtxdZeh63uX3Mb1zYLfWrEAy8pH8o2QfDAagfZ9R8lsH61veZdD7dzwQcmNHIu81xTz478Ziyn6xCTtK0zv3W9s/swS7p4MmmhCYNLruFo6bvuY9y4BSRfDDRiUv6Km+Y1uEGh0ehPy/zHWCgnyj3dYJQR4ZUHHgHA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
+ header.d=nxp.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=V1N0IKwNV2MC25ith0msIDRKMXe7xDmopw1HY1vWJVQ=;
+ b=lwZ5ujfX+FIfrTGdBN/J8EJAfYvuulvPu9zkGlPEv9a+I2MN4mYEfdJwhTG7fcMY8nfz9Mt9DePWgENeNZn1BkPBfa4kZKOsqDK0Qi3d2YAnNWmC0kJB8h3bsC5km1+jskitlNplDJKbloK2YGc+6CLP1cDj/M+DYGKHRQOtwOs=
+Received: from VI1PR04MB4910.eurprd04.prod.outlook.com (20.177.49.159) by
+ VI1PR04MB4221.eurprd04.prod.outlook.com (52.134.31.20) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2073.10; Tue, 16 Jul 2019 13:34:17 +0000
+Received: from VI1PR04MB4910.eurprd04.prod.outlook.com
+ ([fe80::8577:908d:d4fa:67f4]) by VI1PR04MB4910.eurprd04.prod.outlook.com
+ ([fe80::8577:908d:d4fa:67f4%4]) with mapi id 15.20.2073.008; Tue, 16 Jul 2019
+ 13:34:17 +0000
+From:   Frank Li <frank.li@nxp.com>
+To:     Leonard Crestez <leonard.crestez@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>, Will Deacon <will@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Andrea Parri <andrea.parri@amarulasolutions.com>,
-        Boqun Feng <boqun.feng@gmail.com>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        David Howells <dhowells@redhat.com>,
-        Jade Alglave <j.alglave@ucl.ac.uk>,
-        Luc Maranget <luc.maranget@inria.fr>,
-        Akira Yokosawa <akiyks@gmail.com>,
-        Daniel Lustig <dlustig@nvidia.com>,
-        Jerry Hoemann <jerry.hoemann@hpe.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Ajay Gupta <ajayg@nvidia.com>,
-        Don Brace <don.brace@microsemi.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        rcu@vger.kernel.org, linux-doc@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arch@vger.kernel.org,
-        linux-watchdog@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-i2c@vger.kernel.org, esc.storagedev@microsemi.com,
-        linux-scsi@vger.kernel.org
-Subject: [PATCH 03/14] docs: fix broken doc references due to renames
-Date:   Tue, 16 Jul 2019 09:10:42 -0300
-Message-Id: <aa415583bf6b812b0249093a601aa31412f3a1cf.1563277838.git.mchehab+samsung@kernel.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <cover.1563277838.git.mchehab+samsung@kernel.org>
-References: <cover.1563277838.git.mchehab+samsung@kernel.org>
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH 1/3] perf/imx_ddr: Add MODULE_DEVICE_TABLE
+Thread-Topic: [PATCH 1/3] perf/imx_ddr: Add MODULE_DEVICE_TABLE
+Thread-Index: AQHVMkX3fhG3ntXnwU2AdTnhQDQH7KbNUZ+w
+Date:   Tue, 16 Jul 2019 13:34:17 +0000
+Message-ID: <VI1PR04MB49100BE846047F44034DB9E388CE0@VI1PR04MB4910.eurprd04.prod.outlook.com>
+References: <cover.1562230183.git.leonard.crestez@nxp.com>
+ <6e88abe2ed5f361469cbb8ccccd4586036fc2fa2.1562230183.git.leonard.crestez@nxp.com>
+In-Reply-To: <6e88abe2ed5f361469cbb8ccccd4586036fc2fa2.1562230183.git.leonard.crestez@nxp.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=frank.li@nxp.com; 
+x-originating-ip: [64.157.242.222]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5c30249c-d3f7-4472-d94e-08d709f24cf8
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB4221;
+x-ms-traffictypediagnostic: VI1PR04MB4221:
+x-microsoft-antispam-prvs: <VI1PR04MB42212A61A5FC8FA71EA15EAB88CE0@VI1PR04MB4221.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:626;
+x-forefront-prvs: 0100732B76
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(396003)(136003)(366004)(346002)(39860400002)(13464003)(189003)(199004)(44832011)(4326008)(2906002)(486006)(102836004)(54906003)(186003)(26005)(6436002)(6506007)(53546011)(68736007)(476003)(478600001)(14454004)(8936002)(110136005)(256004)(3846002)(6116002)(6246003)(33656002)(316002)(53936002)(55016002)(71200400001)(305945005)(229853002)(71190400001)(7736002)(5660300002)(9686003)(25786009)(66066001)(446003)(86362001)(99286004)(66946007)(76176011)(8676002)(66556008)(81166006)(64756008)(76116006)(66446008)(66476007)(7696005)(81156014)(52536014)(74316002)(11346002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4221;H:VI1PR04MB4910.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: PUXBfhK7sEvTIFD2vy7zEumtLqWzCjo90fF1ke9SFHtypPBxK4uX2XjclOQcBsHLsngFMKQFUgb6FV5uTZH9vOn/fRy/Yz6KZOzOLqxjam7q8RjuIeprGMvitu1USom8va4u9yIyC/wqUGjqOyWZIfbRax39KgBNhBUL/Mn3xsI8laIUT0YF4ScBh6tpNbrCAuP4gRRa4XaCCuDvIlg1+uNtvSVWX/uNN2QFRP5skg2FqUSZ7jTS06J5J4X171C7wJx1I22RLs6ZbCN39kjEVYdFaiiBk6VH0F21M2IsZI8UxSXIUBHm4Pf6fZycvjtPZdyQX53kNejbPUIaQCFLsEfwQK2hnJNHs6TNiesTCmIK+i7+COA1m2tfoeq/g4LSDzfGQDOgPtiedhWQepQ68Ek6bKrpx36tRdsIrLTVayY=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-To:     unlisted-recipients:; (no To-header on input)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5c30249c-d3f7-4472-d94e-08d709f24cf8
+X-MS-Exchange-CrossTenant-originalarrivaltime: 16 Jul 2019 13:34:17.2258
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: frank.li@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4221
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Some files got renamed but probably due to some merge conflicts,
-a few references still point to the old locations.
 
-Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
----
- Documentation/RCU/rculist_nulls.txt                   | 2 +-
- Documentation/devicetree/bindings/arm/idle-states.txt | 2 +-
- Documentation/locking/spinlocks.rst                   | 4 ++--
- Documentation/memory-barriers.txt                     | 2 +-
- Documentation/translations/ko_KR/memory-barriers.txt  | 2 +-
- Documentation/watchdog/hpwdt.rst                      | 2 +-
- MAINTAINERS                                           | 8 ++++----
- drivers/gpu/drm/drm_modes.c                           | 2 +-
- drivers/i2c/busses/i2c-nvidia-gpu.c                   | 2 +-
- drivers/scsi/hpsa.c                                   | 4 ++--
- 10 files changed, 15 insertions(+), 15 deletions(-)
 
-diff --git a/Documentation/RCU/rculist_nulls.txt b/Documentation/RCU/rculist_nulls.txt
-index 8151f0195f76..23f115dc87cf 100644
---- a/Documentation/RCU/rculist_nulls.txt
-+++ b/Documentation/RCU/rculist_nulls.txt
-@@ -1,7 +1,7 @@
- Using hlist_nulls to protect read-mostly linked lists and
- objects using SLAB_TYPESAFE_BY_RCU allocations.
- 
--Please read the basics in Documentation/RCU/listRCU.txt
-+Please read the basics in Documentation/RCU/listRCU.rst
- 
- Using special makers (called 'nulls') is a convenient way
- to solve following problem :
-diff --git a/Documentation/devicetree/bindings/arm/idle-states.txt b/Documentation/devicetree/bindings/arm/idle-states.txt
-index 326f29b270ad..2d325bed37e5 100644
---- a/Documentation/devicetree/bindings/arm/idle-states.txt
-+++ b/Documentation/devicetree/bindings/arm/idle-states.txt
-@@ -703,4 +703,4 @@ cpus {
-     https://www.devicetree.org/specifications/
- 
- [6] ARM Linux Kernel documentation - Booting AArch64 Linux
--    Documentation/arm64/booting.txt
-+    Documentation/arm64/booting.rst
-diff --git a/Documentation/locking/spinlocks.rst b/Documentation/locking/spinlocks.rst
-index 098107fb7d86..e93ec6645238 100644
---- a/Documentation/locking/spinlocks.rst
-+++ b/Documentation/locking/spinlocks.rst
-@@ -82,7 +82,7 @@ itself.  The read lock allows many concurrent readers.  Anything that
- **changes** the list will have to get the write lock.
- 
-    NOTE! RCU is better for list traversal, but requires careful
--   attention to design detail (see Documentation/RCU/listRCU.txt).
-+   attention to design detail (see Documentation/RCU/listRCU.rst).
- 
- Also, you cannot "upgrade" a read-lock to a write-lock, so if you at _any_
- time need to do any changes (even if you don't do it every time), you have
-@@ -90,7 +90,7 @@ to get the write-lock at the very beginning.
- 
-    NOTE! We are working hard to remove reader-writer spinlocks in most
-    cases, so please don't add a new one without consensus.  (Instead, see
--   Documentation/RCU/rcu.txt for complete information.)
-+   Documentation/RCU/rcu.rst for complete information.)
- 
- ----
- 
-diff --git a/Documentation/memory-barriers.txt b/Documentation/memory-barriers.txt
-index 045bb8148fe9..1adbb8a371c7 100644
---- a/Documentation/memory-barriers.txt
-+++ b/Documentation/memory-barriers.txt
-@@ -548,7 +548,7 @@ There are certain things that the Linux kernel memory barriers do not guarantee:
- 
- 	[*] For information on bus mastering DMA and coherency please read:
- 
--	    Documentation/PCI/pci.rst
-+	    Documentation/driver-api/pci/pci.rst
- 	    Documentation/DMA-API-HOWTO.txt
- 	    Documentation/DMA-API.txt
- 
-diff --git a/Documentation/translations/ko_KR/memory-barriers.txt b/Documentation/translations/ko_KR/memory-barriers.txt
-index a33c2a536542..2774624ee843 100644
---- a/Documentation/translations/ko_KR/memory-barriers.txt
-+++ b/Documentation/translations/ko_KR/memory-barriers.txt
-@@ -569,7 +569,7 @@ ACQUIRE 는 해당 오퍼레이션의 로드 부분에만 적용되고 RELEASE 
- 
- 	[*] 버스 마스터링 DMA 와 일관성에 대해서는 다음을 참고하시기 바랍니다:
- 
--	    Documentation/PCI/pci.rst
-+	    Documentation/driver-api/pci/pci.rst
- 	    Documentation/DMA-API-HOWTO.txt
- 	    Documentation/DMA-API.txt
- 
-diff --git a/Documentation/watchdog/hpwdt.rst b/Documentation/watchdog/hpwdt.rst
-index 94a96371113e..49c647dba8aa 100644
---- a/Documentation/watchdog/hpwdt.rst
-+++ b/Documentation/watchdog/hpwdt.rst
-@@ -59,7 +59,7 @@ Last reviewed: 08/20/2018
-  and loop forever.  This is generally not what a watchdog user wants.
- 
-  For those wishing to learn more please see:
--	Documentation/kdump/kdump.rst
-+	Documentation/admin-guide/kdump/kdump.rst
- 	Documentation/admin-guide/kernel-parameters.txt (panic=)
- 	Your Linux Distribution specific documentation.
- 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index b3a5c72f3298..b0acc138e9e9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -899,7 +899,7 @@ L:	linux-iio@vger.kernel.org
- W:	http://ez.analog.com/community/linux-device-drivers
- S:	Supported
- F:	drivers/iio/adc/ad7124.c
--F:	Documentation/devicetree/bindings/iio/adc/adi,ad7124.txt
-+F:	Documentation/devicetree/bindings/iio/adc/adi,ad7124.yaml
- 
- ANALOG DEVICES INC AD7606 DRIVER
- M:	Stefan Popa <stefan.popa@analog.com>
-@@ -4189,7 +4189,7 @@ M:	Jens Axboe <axboe@kernel.dk>
- L:	cgroups@vger.kernel.org
- L:	linux-block@vger.kernel.org
- T:	git git://git.kernel.dk/linux-block
--F:	Documentation/cgroup-v1/blkio-controller.rst
-+F:	Documentation/admin-guide/cgroup-v1/blkio-controller.rst
- F:	block/blk-cgroup.c
- F:	include/linux/blk-cgroup.h
- F:	block/blk-throttle.c
-@@ -6848,7 +6848,7 @@ R:	Sagi Shahar <sagis@google.com>
- R:	Jon Olson <jonolson@google.com>
- L:	netdev@vger.kernel.org
- S:	Supported
--F:	Documentation/networking/device_drivers/google/gve.txt
-+F:	Documentation/networking/device_drivers/google/gve.rst
- F:	drivers/net/ethernet/google
- 
- GPD POCKET FAN DRIVER
-@@ -12096,7 +12096,7 @@ M:	Juergen Gross <jgross@suse.com>
- M:	Alok Kataria <akataria@vmware.com>
- L:	virtualization@lists.linux-foundation.org
- S:	Supported
--F:	Documentation/virtual/paravirt_ops.txt
-+F:	Documentation/virtual/paravirt_ops.rst
- F:	arch/*/kernel/paravirt*
- F:	arch/*/include/asm/paravirt*.h
- F:	include/linux/hypervisor.h
-diff --git a/drivers/gpu/drm/drm_modes.c b/drivers/gpu/drm/drm_modes.c
-index 57e6408288c8..4645af681ef8 100644
---- a/drivers/gpu/drm/drm_modes.c
-+++ b/drivers/gpu/drm/drm_modes.c
-@@ -1680,7 +1680,7 @@ static int drm_mode_parse_cmdline_options(char *str, size_t len,
-  *
-  * Additionals options can be provided following the mode, using a comma to
-  * separate each option. Valid options can be found in
-- * Documentation/fb/modedb.txt.
-+ * Documentation/fb/modedb.rst.
-  *
-  * The intermediate drm_cmdline_mode structure is required to store additional
-  * options from the command line modline like the force-enable/disable flag.
-diff --git a/drivers/i2c/busses/i2c-nvidia-gpu.c b/drivers/i2c/busses/i2c-nvidia-gpu.c
-index cfc76b5de726..5a1235fd86bb 100644
---- a/drivers/i2c/busses/i2c-nvidia-gpu.c
-+++ b/drivers/i2c/busses/i2c-nvidia-gpu.c
-@@ -364,7 +364,7 @@ static void gpu_i2c_remove(struct pci_dev *pdev)
- /*
-  * We need gpu_i2c_suspend() even if it is stub, for runtime pm to work
-  * correctly. Without it, lspci shows runtime pm status as "D0" for the card.
-- * Documentation/power/pci.txt also insists for driver to provide this.
-+ * Documentation/power/pci.rst also insists for driver to provide this.
-  */
- static __maybe_unused int gpu_i2c_suspend(struct device *dev)
- {
-diff --git a/drivers/scsi/hpsa.c b/drivers/scsi/hpsa.c
-index 43a6b5350775..eaf6177ac9ee 100644
---- a/drivers/scsi/hpsa.c
-+++ b/drivers/scsi/hpsa.c
-@@ -7798,7 +7798,7 @@ static void hpsa_free_pci_init(struct ctlr_info *h)
- 	hpsa_disable_interrupt_mode(h);		/* pci_init 2 */
- 	/*
- 	 * call pci_disable_device before pci_release_regions per
--	 * Documentation/PCI/pci.rst
-+	 * Documentation/driver-api/pci/pci.rst
- 	 */
- 	pci_disable_device(h->pdev);		/* pci_init 1 */
- 	pci_release_regions(h->pdev);		/* pci_init 2 */
-@@ -7881,7 +7881,7 @@ static int hpsa_pci_init(struct ctlr_info *h)
- clean1:
- 	/*
- 	 * call pci_disable_device before pci_release_regions per
--	 * Documentation/PCI/pci.rst
-+	 * Documentation/driver-api/pci/pci.rst
- 	 */
- 	pci_disable_device(h->pdev);
- 	pci_release_regions(h->pdev);
--- 
-2.21.0
+> -----Original Message-----
+> From: Leonard Crestez <leonard.crestez@nxp.com>
+> Sent: Thursday, July 4, 2019 3:53 AM
+> To: Shawn Guo <shawnguo@kernel.org>; Will Deacon <will@kernel.org>; Frank
+> Li <frank.li@nxp.com>
+> Cc: Rob Herring <robh+dt@kernel.org>; Andrey Smirnov
+> <andrew.smirnov@gmail.com>; Mark Rutland <mark.rutland@arm.com>;
+> Aisheng Dong <aisheng.dong@nxp.com>; Fabio Estevam
+> <fabio.estevam@nxp.com>; Jacky Bai <ping.bai@nxp.com>;
+> devicetree@vger.kernel.org; kernel@pengutronix.de; dl-linux-imx <linux-
+> imx@nxp.com>; linux-arm-kernel@lists.infradead.org
+> Subject: [PATCH 1/3] perf/imx_ddr: Add MODULE_DEVICE_TABLE
+>=20
+> This is required for automatic probing when driver is built as a module.
+>=20
+> Fixes: 9a66d36cc7ac ("drivers/perf: imx_ddr: Add DDR performance counter
+> support to perf")
+> Signed-off-by: Leonard Crestez <leonard.crestez@nxp.com>
+
+Acked-by: Frank Li <frank.li@nxp.com>
+
+> ---
+>  drivers/perf/fsl_imx8_ddr_perf.c | 1 +
+>  1 file changed, 1 insertion(+)
+>=20
+> diff --git a/drivers/perf/fsl_imx8_ddr_perf.c b/drivers/perf/fsl_imx8_ddr=
+_perf.c
+> index 63fe21600072..0e3310dbb145 100644
+> --- a/drivers/perf/fsl_imx8_ddr_perf.c
+> +++ b/drivers/perf/fsl_imx8_ddr_perf.c
+> @@ -45,10 +45,11 @@ static DEFINE_IDA(ddr_ida);  static const struct
+> of_device_id imx_ddr_pmu_dt_ids[] =3D {
+>  	{ .compatible =3D "fsl,imx8-ddr-pmu",},
+>  	{ .compatible =3D "fsl,imx8m-ddr-pmu",},
+>  	{ /* sentinel */ }
+>  };
+> +MODULE_DEVICE_TABLE(of, imx_ddr_pmu_dt_ids);
+>=20
+>  struct ddr_pmu {
+>  	struct pmu pmu;
+>  	void __iomem *base;
+>  	unsigned int cpu;
+> --
+> 2.17.1
 
