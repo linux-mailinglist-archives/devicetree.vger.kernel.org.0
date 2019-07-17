@@ -2,95 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DF8966B782
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 09:48:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 24F3B6B7B1
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 09:54:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726135AbfGQHsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 03:48:06 -0400
-Received: from mail.dice.at ([217.10.52.18]:48619 "EHLO smtp2.infineon.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725912AbfGQHsG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 03:48:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
-  t=1563349685; x=1594885685;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=jLjRAVqSTndz5dE6IWJsxuPEGZffP354eiHvBjyHn60=;
-  b=avRws9aS+PBEzH0udYw4KuxPTCpQ6xRWzXpNLbhC9+FVc18hmg9MLigw
-   6YkDbk3ATtE4d/1cQu1UiJ1j4omja+rNu8myaGz98BUBUN5nSpcsw9l1L
-   RFrjiIKb7mv67fKEE/BBGDR/9b2CekIyFs9XflPb3+EJWt7ns62i/omaZ
-   Y=;
-IronPort-SDR: 0RGylmZ7q/+cpH2mZauRiES1hBIz41p8bF2nW1YB4JTnC/l8OARGfVjKX8yMHZXJDYRe/3Ldg5
- OwlU/xuq9lmg==
-X-SBRS: None
-X-IronPort-AV: E=McAfee;i="6000,8403,9320"; a="6748731"
-X-IronPort-AV: E=Sophos;i="5.64,273,1559512800"; 
-   d="scan'208";a="6748731"
-Received: from unknown (HELO mucxv001.muc.infineon.com) ([172.23.11.16])
-  by smtp2.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 17 Jul 2019 09:48:03 +0200
-Received: from MUCSE708.infineon.com (MUCSE708.infineon.com [172.23.7.82])
-        by mucxv001.muc.infineon.com (Postfix) with ESMTPS;
-        Wed, 17 Jul 2019 09:48:03 +0200 (CEST)
-Received: from [10.154.32.63] (172.23.8.247) by MUCSE708.infineon.com
- (172.23.7.82) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.1591.10; Wed, 17
- Jul 2019 09:48:03 +0200
-Subject: Re: [PATCH v2 0/2] char: tpm: add new driver for tpm i2c ptp
-To:     Tomer Maimon <tmaimon77@gmail.com>,
-        Oshri Alkobi <oshrialkoby85@gmail.com>,
-        Jarkko Sakkinen <jarkko.sakkinen@linux.intel.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, <peterhuewe@gmx.de>,
-        <jgg@ziepe.ca>, Arnd Bergmann <arnd@arndb.de>,
-        Greg KH <gregkh@linuxfoundation.org>,
-        IS20 Oshri Alkoby <oshri.alkoby@nuvoton.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        AP MS30 Linux Kernel community 
-        <linux-kernel@vger.kernel.org>, <linux-integrity@vger.kernel.org>,
-        <gcwilson@us.ibm.com>, <kgoldman@us.ibm.com>,
-        <nayna@linux.vnet.ibm.com>, IS30 Dan Morav <Dan.Morav@nuvoton.com>,
-        <eyal.cohen@nuvoton.com>
-References: <20190628151327.206818-1-oshrialkoby85@gmail.com>
- <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
- <79e8bfd2-2ed1-cf48-499c-5122229beb2e@infineon.com>
- <CAM9mBwJC2QD5-gV1eJUDzC2Fnnugr-oCZCoaH2sT_7ktFDkS-Q@mail.gmail.com>
- <45603af2fc8374a90ef9e81a67083395cc9c7190.camel@linux.intel.com>
- <6e7ff1b958d84f6e8e585fd3273ef295@NTILML02.nuvoton.com>
- <CAP6Zq1hPo9dG71YFyr7z9rjmi-DvoUZJOme4+2uqsfO+7nH+HQ@mail.gmail.com>
-From:   Alexander Steffen <Alexander.Steffen@infineon.com>
-Message-ID: <bccd2ebf-75b1-d02f-9283-4ffd7aa36616@infineon.com>
-Date:   Wed, 17 Jul 2019 09:48:02 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1725992AbfGQHyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 03:54:54 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:36053 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725873AbfGQHyy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 03:54:54 -0400
+Received: by mail-pg1-f195.google.com with SMTP id l21so10751628pgm.3
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 00:54:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=7CDBem+N4Y8GonyneakgYW4yRRjV6CTTMSRhiie6FvM=;
+        b=X91hHiq+XMv6rYqH0C1L60r5PFIPz0ALpX0L4rrxy3R0L7yIB7LB1wt2GigVavcOlw
+         6oNDhqTXYbkwuqZn8UJsLbssFwcot9lLbvTZCgauXQHyKkA3hbliqn/Pln2C0fQfx8x5
+         yx3XJh+N84gqLV5iCqeUMA5IGPCBhOJsd5+DRpIv8Kbgo3yq9BSgMAlkIy/j9JAqR/tD
+         3s8BLrcNBgsG36XBmNVIcnSSPm8aUnDU06iVjLVYRaV+9zQy5rcenYGaEiCbEompeLfl
+         HtejdgkFeaAnQYV7SuoOXrGEj355XnPS6yNbRH3RUNcCJ+cEEfsWiezir5dGcPT0xRLZ
+         DsnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=7CDBem+N4Y8GonyneakgYW4yRRjV6CTTMSRhiie6FvM=;
+        b=tHihnKQpOLXFFuYvol3OkACNAdWZG0gAn8bkY4ctstlyfivraNJ4Lr01NNK9pKxx6t
+         7ErFgFvF65Tutm/3gbcdZS/RBSX5g6npMA63N0X0Yrj9WdkcljIhFMvMdsnAuyVROaLX
+         N+/5ts8/tj+w8hML4tpZPPk3AI+x1Nhdt3Wz6HTXdkO43OsiSSsdshzrxAomUcfi8aB6
+         Df4kj7mfHSWB6FWH11Nm61AIqJx+2Wc6+n7fgcjJ4+ls6KMHjmHmFO7dhDKgMgm7fnL2
+         ZpBJpziEhYSuabklqB+s0RbQwCmioCeYvS1LuBvUTtXVy+IFDqLd7r74UJJ6vrYMwd+9
+         dJ0g==
+X-Gm-Message-State: APjAAAVCMJ0eDDGTNkG8YfJ0VH9txFabMNwlC3pPxkG/jHvwK2EYOnh4
+        WXiTPsUVhcsGG2+adxZiTcVuLA==
+X-Google-Smtp-Source: APXvYqwS793ra2K/Q8y9DiNBlQJ9AqGzBCIEAGcfR20+btRcZICeer3TBgT1cpHsLKOv5k3Z4wKZjQ==
+X-Received: by 2002:a17:90a:c391:: with SMTP id h17mr42645811pjt.131.1563350093035;
+        Wed, 17 Jul 2019 00:54:53 -0700 (PDT)
+Received: from localhost ([122.172.28.117])
+        by smtp.gmail.com with ESMTPSA id z20sm37644233pfk.72.2019.07.17.00.54.49
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 17 Jul 2019 00:54:50 -0700 (PDT)
+Date:   Wed, 17 Jul 2019 13:24:48 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        sibis@codeaurora.org, bjorn.andersson@linaro.org,
+        evgreen@chromium.org, kernel-team@android.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/6] dt-bindings: opp: Introduce opp-peak-KBps and
+ opp-avg-KBps bindings
+Message-ID: <20190717075448.xlyg2ddewlci3abg@vireshk-i7>
+References: <20190703011020.151615-1-saravanak@google.com>
+ <20190703011020.151615-2-saravanak@google.com>
 MIME-Version: 1.0
-In-Reply-To: <CAP6Zq1hPo9dG71YFyr7z9rjmi-DvoUZJOme4+2uqsfO+7nH+HQ@mail.gmail.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.23.8.247]
-X-ClientProxiedBy: MUCSE708.infineon.com (172.23.7.82) To
- MUCSE708.infineon.com (172.23.7.82)
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190703011020.151615-2-saravanak@google.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15.07.2019 10:08, Tomer Maimon wrote:
-> Hi Jarkko and All,
+On 02-07-19, 18:10, Saravana Kannan wrote:
+> Interconnects often quantify their performance points in terms of
+> bandwidth. So, add opp-peak-KBps (required) and opp-avg-KBps (optional) to
+> allow specifying Bandwidth OPP tables in DT.
 > 
-> Thanks for your feedback and sorry for the late response.
+> opp-peak-KBps is a required property that replace opp-hz for Bandwidth OPP
+> tables.
 > 
+> opp-avg-KBps is an optional property that can be used in Bandwidth OPP
+> tables.
 > 
-> Due to the amount of work required to handle this technical feedback and 
-> project constraints we need to put this task on hold for the near future.
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  Documentation/devicetree/bindings/opp/opp.txt | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
 > 
-> In the meantime, anyone from the community is welcome to take over this 
-> code and handle the re-design for the benefit of the entire TPM community.
+> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+> index 76b6c79604a5..c869e87caa2a 100644
+> --- a/Documentation/devicetree/bindings/opp/opp.txt
+> +++ b/Documentation/devicetree/bindings/opp/opp.txt
+> @@ -83,9 +83,14 @@ properties.
+>  
+>  Required properties:
+>  - opp-hz: Frequency in Hz, expressed as a 64-bit big-endian integer. This is a
+> -  required property for all device nodes but devices like power domains. The
+> -  power domain nodes must have another (implementation dependent) property which
+> -  uniquely identifies the OPP nodes.
+> +  required property for all device nodes but for devices like power domains or
+> +  bandwidth opp tables. The power domain nodes must have another (implementation
+> +  dependent) property which uniquely identifies the OPP nodes. The interconnect
+> +  opps are required to have the opp-peak-bw property.
 
-Too bad you lack the time to finish this.
+                                   ??
 
-If somebody else were to pick it up, would it be possible for you to 
-provide a couple of TPMs that implement this protocol, so that it can be 
-properly tested?
+> +
+> +- opp-peak-KBps: Peak bandwidth in kilobytes per second, expressed as a 32-bit
+> +  big-endian integer. This is a required property for all devices that don't
+> +  have opp-hz. For example, bandwidth OPP tables for interconnect paths.
+>  
+>  Optional properties:
+>  - opp-microvolt: voltage in micro Volts.
+> @@ -132,6 +137,10 @@ Optional properties:
+>  - opp-level: A value representing the performance level of the device,
+>    expressed as a 32-bit integer.
+>  
+> +- opp-avg-KBps: Average bandwidth in kilobytes per second, expressed as a
+> +  32-bit big-endian integer. This property is only meaningful in OPP tables
+> +  where opp-peak-KBps is present.
+> +
+>  - clock-latency-ns: Specifies the maximum possible transition latency (in
+>    nanoseconds) for switching to this OPP from any other OPP.
+>  
+> -- 
+> 2.22.0.410.gd8fdbe21b5-goog
 
-Alexander
+-- 
+viresh
