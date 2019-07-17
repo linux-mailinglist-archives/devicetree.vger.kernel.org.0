@@ -2,53 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C96A96B81D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 10:23:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B63886B837
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 10:31:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725992AbfGQIXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 04:23:32 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:42201 "EHLO
+        id S1725980AbfGQIbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 04:31:05 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:35575 "EHLO
         mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725932AbfGQIXc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 04:23:32 -0400
-Received: by mail-qt1-f193.google.com with SMTP id h18so22439543qtm.9
-        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 01:23:31 -0700 (PDT)
+        with ESMTP id S1725799AbfGQIbE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 04:31:04 -0400
+Received: by mail-qt1-f193.google.com with SMTP id d23so22486622qto.2
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 01:31:04 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=TwgvgwFAr9ZbQyJY7OLlrukFEYAp4mCTYSJJ8JLqJDI=;
-        b=LqN/2tU7/8cN6JIMAfFFhaNTFqe+tnHiecppE1yZpQYHqyUZs6w7PtqAVb9/wYk/DJ
-         Hw/P3qO0ZJVGfNgBuBk6uo3jshv+LhvpPWUYMfp1IXxQzEapsQzDgFmwlHIFT2oLmIBF
-         oyvjcWSD0BYEqkAo1SBqP+RpM01tuQWnxjfS6Prol/I42c65szJI9OTGnlxrneHDZGzw
-         KAMJh3jhtDtBQH/Pkf08SsUyP0YbNo8vCG3EYMpxZHlmqfsEX9j0KOZilAtJJ2ckYWKH
-         ZwZWymxn7ua/IvTKh704LOQmKeOhjLqmwkksCaqfAFaMEQ9pCSUfbYPcy1xWmYOb49wA
-         Acxg==
+        bh=pds/1gSMFiprMXZtpb+croEbMG/8G+VprC//ZL8i4YI=;
+        b=VGbsQRn6U6kYb6plw41KT49QLVKXHxnDeDUq6x8R9ZcUzR1KO/HRfF9mLflrbKfhXl
+         kC7+nMCwrTJ2J0fMWkJ6EdK+VY8VFHPjehYEPAJbRDI6Zza30WZk4fX72SFSNY7xdd0J
+         ql1uHNn6WR+PHkfIP7X5ZPSIKUnsQ5Sx/wOmjczvRWE+6xJVHIp5sEDfJ+8mcToIuiBb
+         HIkktiqqm0o/psr+iz0yxfugaTm17IZTqIJYjYuEvTgYiHWv1v1qQ1v6cW5jftkmAFbR
+         nFxFoWVi0RHazXTbuXbBD6Nt9MwjcN/jC1SBVDIA2iIPKBypHN6p718EW+1oQx7/aqkm
+         6Jpw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=TwgvgwFAr9ZbQyJY7OLlrukFEYAp4mCTYSJJ8JLqJDI=;
-        b=Wyt36uYMSgmVAp2DCW/DFlhgMbtkY2cAQQVq332o0TOB0nTLanZOgbrblHRNi/MP1b
-         bJ0ITlvaae/iih0FPeNFkFuaGTUCJOkvGOhd9HP4HVQxB7Xjvpc4DIOfdSIIFSV10kk6
-         EGS793xrRGAtluKMRYyFqyWPj6UarQv0kdRBujaJ/bivW8E/jiYfteJtPGM9HMIlGWxC
-         HjhZJK92oegbuK32YRO002W0feNi/wOhVic7CnylPdqlhTGOTyhxL1+Scdcdj5l7L+yM
-         MzIXCx4al3NYdss0pJg2pCWDA4yQHldXuleveezPbViVwRLyEJBx5pHhRf3Wj1oEyfoJ
-         SarA==
-X-Gm-Message-State: APjAAAUxCX88m+dQKU1J9V9Id74S+yClxpIzubXJCea2dgzzH6wkX+ZN
-        wItLDESm9emRSwtG2H9bVfJyCw6HsyGb7S2rsDPOiA==
-X-Google-Smtp-Source: APXvYqz4uw+BGfWaRI1pKAcWBiBCJ/F+kVqI+JVx9Yb6o8jGx7Ac6x2yJWAUJGKhx7FGXMrX+H6mpEe+Xh9h5nHDjeA=
-X-Received: by 2002:ac8:f8c:: with SMTP id b12mr27121586qtk.381.1563351811577;
- Wed, 17 Jul 2019 01:23:31 -0700 (PDT)
+        bh=pds/1gSMFiprMXZtpb+croEbMG/8G+VprC//ZL8i4YI=;
+        b=gxt33DDe6W80CtABhb7EFLnirDvo4SZcmPuKFWIDG04/FkfxQqcPbnRO9N+5AKu2Up
+         SWtGhJXYPJc9YClowGzNCo8XZAldpjsot7x2Ib3EXomsvJJVw50sOkT5NWH2PRSgp5Da
+         KOkeURq8wGKpET9e+cgq/jCTkLDIyARUM0XezNKme6mp9eN98eZ94JnjiJthrigXBWpB
+         gNoM4qb7wCDRk5lBNsT9smqTJ2EVcpaFbj7WC/95V5I2UEol4e4Jtfqy7f1Fzt82uUCM
+         Fk0YZOn5lO9+7hhxE5NH4f9jgcJXzHMMxCs1yRwSpMveJbRVScXcOIMPeBBi+uZxleVD
+         DqEw==
+X-Gm-Message-State: APjAAAXIyjPNatsuxEdM3fSbFhcEMIWSv68VS77jNoC50l34LWDBLUOE
+        Uu4a0yIzphB9eLYPbdEEg/QdtF8Fp2rxnJMFpWI=
+X-Google-Smtp-Source: APXvYqzp1lAk9uOOUY5V4b8FesQOhje/rpMg+PEM7ePcouMUEG9v/kRzcloJROLhQKhkpWkkIWQD+eAP4dyPGnHcwIc=
+X-Received: by 2002:a0c:8695:: with SMTP id 21mr28008087qvf.166.1563352264156;
+ Wed, 17 Jul 2019 01:31:04 -0700 (PDT)
 MIME-Version: 1.0
 References: <1563290089-11085-1-git-send-email-aisheng.dong@nxp.com>
- <1563290089-11085-3-git-send-email-aisheng.dong@nxp.com> <CAOMZO5CMM94rAOryvfmHpuAsJnCRj-98kX3rfiZSn5EZt_c0kA@mail.gmail.com>
-In-Reply-To: <CAOMZO5CMM94rAOryvfmHpuAsJnCRj-98kX3rfiZSn5EZt_c0kA@mail.gmail.com>
+ <1563290089-11085-7-git-send-email-aisheng.dong@nxp.com> <CAOMZO5CdBhJmdbavfWzpx0YPhAXgQvA+ik3GMz0e5U1j6ytyHg@mail.gmail.com>
+In-Reply-To: <CAOMZO5CdBhJmdbavfWzpx0YPhAXgQvA+ik3GMz0e5U1j6ytyHg@mail.gmail.com>
 From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Wed, 17 Jul 2019 16:14:35 +0800
-Message-ID: <CAA+hA=RknQ+EbZ258t-X_VktBFKs1Y7vBn_KTMkbyQAFW5k-Mw@mail.gmail.com>
-Subject: Re: [PATCH v2 02/15] arm64: dts: imx8qxp: move scu pd node before scu
- clock node
+Date:   Wed, 17 Jul 2019 16:22:08 +0800
+Message-ID: <CAA+hA=T29ek3B=s_aRS9Rk82cNHzx4-AD-TZh4T1_L1ja66rBw@mail.gmail.com>
+Subject: Re: [PATCH v2 06/15] arm64: dts: imx8: add adma lpcg clocks
 To:     Fabio Estevam <festevam@gmail.com>
 Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
@@ -68,21 +67,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 17, 2019 at 3:26 AM Fabio Estevam <festevam@gmail.com> wrote:
+On Wed, Jul 17, 2019 at 3:28 AM Fabio Estevam <festevam@gmail.com> wrote:
 >
 > On Tue, Jul 16, 2019 at 12:37 PM Dong Aisheng <aisheng.dong@nxp.com> wrote:
-> >
-> > SCU clock depends on SCU Power domain. So let's move scu pd node
-> > before scu clock to make it probe earlier.
 >
-> This looks like a fragile solution. Shouldn't this be handled via
-> probe deferring?
+> > +       uart0_lpcg: clock-controller@5a460000 {
+> > +               reg = <0x5a460000 0x10000>;
+> > +               #clock-cells = <1>;
+> > +               clocks = <&clk IMX_ADMA_UART0_CLK>,
+> > +                        <&dma_ipg_clk>;
+>
+> Putting the clocks into a single line helps readability, even if it is
+> over 80 col.
+>
 
-Not like a normal case that there may be only a few devices may get deferred,
-for qm/qxp, almost all the devices (~100) may get deferred without
-this patch. e.g. scu clk, lpcg clk and all other devices which depend on clk.
-
-So i think it's really unnecessary to do that.
+Is this a new rule? I'm not aware of this requirement.
+By looking at imx8mq.dts, it seems also have not followed that rule.
+I'm a bit concern that it might be super long for other lpcgs with 5 clocks.
+e.g. enet.
 
 Regards
 Aisheng
+
+> > +               bit-offset = <0 16>;
+> > +               clock-output-names = "uart0_lpcg_baud_clk",
+> > +                                    "uart0_lpcg_ipg_clk";
+>
+> Same here.
