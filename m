@@ -2,94 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D0756BA33
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 12:31:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 345496BA38
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 12:32:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726273AbfGQKbM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 06:31:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43368 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726085AbfGQKbM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 06:31:12 -0400
-Received: from mail-lj1-f172.google.com (mail-lj1-f172.google.com [209.85.208.172])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 377922184B;
-        Wed, 17 Jul 2019 10:31:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563359471;
-        bh=w1TbVMvUz2tK6FJesNjUIqjiZRhlXxyRUlrQtX3Zs/A=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=1aRaZgzMNwMc/cSnLPza1zZd8YLsXbjs8yBoKnyqbgvVFefJs7HEgdAk9k2xSEOvr
-         XUWnVRi6oroq7hDBml2YU8Es7DBdc4b3baiyr7cVFWvcTgsDL2WGXNEL92hwRVKOsv
-         t5FZ7capFlHWNOZBKFPhMEfomGeykqsK4zlnreJ8=
-Received: by mail-lj1-f172.google.com with SMTP id h10so23106754ljg.0;
-        Wed, 17 Jul 2019 03:31:11 -0700 (PDT)
-X-Gm-Message-State: APjAAAUEUhQwl0msMt2C1QDsxHEGdcVaTt5XvaujeBdhd61yOz9nFk0e
-        HPAvI7bb0btZyVMBxSFw1P0n0fIV4VSls96czCk=
-X-Google-Smtp-Source: APXvYqwzoJ1Cxx4+M2lANaxvQqdCL3041mmaU3c52UP1ABWgSTNdykCbwT/nVHS71aYau/97TYX1+5b60Eo6CrIfc68=
-X-Received: by 2002:a2e:50e:: with SMTP id 14mr20713536ljf.5.1563359469475;
- Wed, 17 Jul 2019 03:31:09 -0700 (PDT)
+        id S1726458AbfGQKcY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 06:32:24 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:37643 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726260AbfGQKcY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 06:32:24 -0400
+Received: by mail-pf1-f193.google.com with SMTP id 19so10630919pfa.4
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 03:32:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Jp8lk+XdDHx/WRkU1D5GuTsiUq4pyzz7UbpMROhU2ZE=;
+        b=MOmbQpeDaySamzTzRxIvnvpX4HkW3+1U/OzVaoTxLpP6WjNEghuOIG54DmhnLBEVUB
+         Gv4MX0Yp1QzSU0H9tyF2pWpMZIzF0KJbCAupNNzEMzr68ZS9+WhIuQQmv28CL5DrsNmt
+         C8ovN8ETD/P4jJcMkoMZEko1obD20GCi4h3BDU1Is/6IxqvWKZQfFGSVfOuuALec8LbJ
+         fhX59w96WZTzCy79irx+IZYzVGnLMenGkRcY+72ECSzzAdmRqMlislssJbw3NlvMk2DX
+         W0fKLSMLIekMkjKUi20BXVICF1dGLsuyPKeRyqsJjUdbtccs+DyB0eZFfr30N96xdA3J
+         wDKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Jp8lk+XdDHx/WRkU1D5GuTsiUq4pyzz7UbpMROhU2ZE=;
+        b=mQ81lLJ8f3RXUPj8l3bFGofFBhDwf2eyWCNZtKUXHv68p/rhiqbKlX1nngncEM7MBt
+         pPYC4SULiQtl3L4b0z0qTTfwwI1/nRMaGOm7Ja0FoFzESCwdU55+8XG3Nnur36e8/+K9
+         NPlwR6rzH1lZsuGc9w0DWgReXNk2Ria602nRx0lR0cOkR76rz3OWb1wpz2+ws0chG5ey
+         BonCAmt4mMcIbPB8wmH4oOAZTqJg8jnM/EBNnSVShUL0LJojunTzF/I1r+PqjyxBWsS7
+         lP5/rDq5vxWbgUk5o7t4Gm7DtVkjsVoFiV7pdYX8MPqO7rodVNycyO1FUkNazSK3knca
+         PzIA==
+X-Gm-Message-State: APjAAAUc14LwSFWUEjd0xllnR+fuvUnl4zgD/wBYb5Ps4srYks30yQcn
+        2gDUb0VXMkiklDzwsPUXnQH8kw==
+X-Google-Smtp-Source: APXvYqwzL9mzp2aY/MeHimwmrGDIE6cQH+Ek0FFpxQTvAEuh2tG8JwxKx/eWT+sFX3kvqFizrjbQXg==
+X-Received: by 2002:a63:f357:: with SMTP id t23mr7820293pgj.421.1563359543184;
+        Wed, 17 Jul 2019 03:32:23 -0700 (PDT)
+Received: from localhost ([122.172.28.117])
+        by smtp.gmail.com with ESMTPSA id h1sm30377545pfo.152.2019.07.17.03.32.21
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 17 Jul 2019 03:32:21 -0700 (PDT)
+Date:   Wed, 17 Jul 2019 16:02:20 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        sibis@codeaurora.org, bjorn.andersson@linaro.org,
+        evgreen@chromium.org, kernel-team@android.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 0/6] Introduce Bandwidth OPPs for interconnect paths
+Message-ID: <20190717103220.f7cys267hq23fbsb@vireshk-i7>
+References: <20190703011020.151615-1-saravanak@google.com>
 MIME-Version: 1.0
-References: <CGME20190715124459eucas1p2a1d8795e57a82704ff221567a8810485@eucas1p2.samsung.com>
- <20190715124417.4787-1-l.luba@partner.samsung.com> <20190715124417.4787-32-l.luba@partner.samsung.com>
-In-Reply-To: <20190715124417.4787-32-l.luba@partner.samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 17 Jul 2019 12:30:58 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPf1tZMLPT9pJrM5wM5wUEMdw1iEPVjaz6K3iq17KdbAxw@mail.gmail.com>
-Message-ID: <CAJKOXPf1tZMLPT9pJrM5wM5wUEMdw1iEPVjaz6K3iq17KdbAxw@mail.gmail.com>
-Subject: Re: [PATCH v1 31/50] ARM: dts: exynos: align lowest OPP in bus_jpeg
- in Exynos5420
-To:     Lukasz Luba <l.luba@partner.samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
-        <b.zolnierkie@samsung.com>, kgene@kernel.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
-        kyungmin.park@samsung.com, Andrzej Hajda <a.hajda@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190703011020.151615-1-saravanak@google.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 15 Jul 2019 at 14:45, Lukasz Luba <l.luba@partner.samsung.com> wrote:
->
-> Make the lowest OPP frequency possible to set using a clock divider keeping
-> in mind the master clock rate.
+On 02-07-19, 18:10, Saravana Kannan wrote:
+> Interconnects and interconnect paths quantify their performance levels in
+> terms of bandwidth and not in terms of frequency. So similar to how we have
+> frequency based OPP tables in DT and in the OPP framework, we need
+> bandwidth OPP table support in the OPP framework and in DT. Since there can
+> be more than one interconnect path used by a device, we also need a way to
+> assign a bandwidth OPP table to an interconnect path.
+> 
+> This patch series:
+> - Adds opp-peak-KBps and opp-avg-KBps properties to OPP DT bindings
+> - Adds interconnect-opp-table property to interconnect DT bindings
+> - Adds OPP helper functions for bandwidth OPP tables
+> - Adds icc_get_opp_table() to get the OPP table for an interconnect path
+> 
+> So with the DT bindings added in this patch series, the DT for a GPU
+> that does bandwidth voting from GPU to Cache and GPU to DDR would look
+> something like this:
+> 
+> gpu_cache_opp_table: gpu_cache_opp_table {
+> 	compatible = "operating-points-v2";
+> 
+> 	gpu_cache_3000: opp-3000 {
+> 		opp-peak-KBps = <3000>;
+> 		opp-avg-KBps = <1000>;
+> 	};
+> 	gpu_cache_6000: opp-6000 {
+> 		opp-peak-KBps = <6000>;
+> 		opp-avg-KBps = <2000>;
+> 	};
+> 	gpu_cache_9000: opp-9000 {
+> 		opp-peak-KBps = <9000>;
+> 		opp-avg-KBps = <9000>;
+> 	};
+> };
+> 
+> gpu_ddr_opp_table: gpu_ddr_opp_table {
+> 	compatible = "operating-points-v2";
+> 
+> 	gpu_ddr_1525: opp-1525 {
+> 		opp-peak-KBps = <1525>;
+> 		opp-avg-KBps = <452>;
+> 	};
+> 	gpu_ddr_3051: opp-3051 {
+> 		opp-peak-KBps = <3051>;
+> 		opp-avg-KBps = <915>;
+> 	};
+> 	gpu_ddr_7500: opp-7500 {
+> 		opp-peak-KBps = <7500>;
+> 		opp-avg-KBps = <3000>;
+> 	};
+> };
 
-As in previous patch - lowest->slowest. I think OPPs are not
-associated with the height or altitude but speed (slow/fast). You
-could also add "frequency" which would make it also correct and
-specific but slightly longer in title.
+Who is going to use the above tables and how ? These are the maximum
+BW available over these paths, right ?
 
-Best regards,
-Krzysztof
+> gpu_opp_table: gpu_opp_table {
+> 	compatible = "operating-points-v2";
+> 	opp-shared;
+> 
+> 	opp-200000000 {
+> 		opp-hz = /bits/ 64 <200000000>;
+> 	};
+> 	opp-400000000 {
+> 		opp-hz = /bits/ 64 <400000000>;
+> 	};
+> };
 
->
-> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
-> ---
->  arch/arm/boot/dts/exynos5420.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/arch/arm/boot/dts/exynos5420.dtsi b/arch/arm/boot/dts/exynos5420.dtsi
-> index f2e2e77a86d6..0be799f843dc 100644
-> --- a/arch/arm/boot/dts/exynos5420.dtsi
-> +++ b/arch/arm/boot/dts/exynos5420.dtsi
-> @@ -1250,7 +1250,7 @@
->                         compatible = "operating-points-v2";
->
->                         opp00 {
-> -                               opp-hz = /bits/ 64 <75000000>;
-> +                               opp-hz = /bits/ 64 <100000000>;
->                         };
->                         opp01 {
->                                 opp-hz = /bits/ 64 <150000000>;
-> --
-> 2.17.1
->
+Shouldn't this link back to the above tables via required-opp, etc ?
+How will we know how much BW is required by the GPU device for all the
+paths ?
+
+> gpu@7864000 {
+> 	...
+> 	operating-points-v2 = <&gpu_opp_table>, <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>;
+> 	interconnects = <&mmnoc MASTER_GPU_1 &bimc SLAVE_SYSTEM_CACHE>,
+> 			<&mmnoc MASTER_GPU_1 &bimc SLAVE_DDR>;
+> 	interconnect-names = "gpu-cache", "gpu-mem";
+> 	interconnect-opp-table = <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>
+> };
+
+-- 
+viresh
