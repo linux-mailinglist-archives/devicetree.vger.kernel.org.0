@@ -2,191 +2,270 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 733186BBE8
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 13:52:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD7A56BC8B
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 14:45:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732542AbfGQLvt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 07:51:49 -0400
-Received: from mx0b-00128a01.pphosted.com ([148.163.139.77]:42866 "EHLO
-        mx0b-00128a01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1732069AbfGQLvs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 07:51:48 -0400
-Received: from pps.filterd (m0167090.ppops.net [127.0.0.1])
-        by mx0b-00128a01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6HBmSrN024429;
-        Wed, 17 Jul 2019 07:51:43 -0400
-Received: from nam05-co1-obe.outbound.protection.outlook.com (mail-co1nam05lp2053.outbound.protection.outlook.com [104.47.48.53])
-        by mx0b-00128a01.pphosted.com with ESMTP id 2ts491myvj-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
-        Wed, 17 Jul 2019 07:51:43 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Xy0VOJCYAFoPHsIt83NSjgutx0FFy3LhdjDEmA6k+NQnVBkA0Fy/VfydlgNeiCii55JiLGCUpKaunqO7Gha2OXdUs458ESqP9F7G7OmxaYX4Lb4/e2FkB+jIRXopgYVXsIrDhjw4QqmqtavdCy8+GnM072B8Kf3+AYcWJA63HFOjXyAV8I3v2qW9sXHVKXfRfGZuifT6jILDi0FiMN8ujPU7kYCbm1XXKFEIw1pbcKwMaH0C6EPh2ewjMp1k8XrOp055T1WCS3Qi0lP1C05BKfc0GjYWwO4a5VR8B+ccsymuC8cUqid2KrdU2MUp4mNiT5ivqM2x7qnypAdJ35Unqg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LbVEdqT7vCnY5ogGVUu4BAWVGt4Dcsgei+RokeZjvCk=;
- b=CmpZ1G7zekAniBXaND95G7asw7CxC7wz5c4PIv8rsLzjAbkqf8L7aMTPvzyrT5VXNRcOamgXnoTKOmc7lE58dopns19ikPKmEg2HA2kTUbyfHGZiyYInv38Ye6hyX9SBqhleGzTPvpDw/bcQLFPAZM0zX+IJzpfneeD5TjDuJyqJfcdOAPRzszhBWdS6Rb2zvJF4TdX64d+bEZ/RCin/ufmyHwM+myz224bBTaFe2i21VZGc7xAPy5SuM7iji4xeu8cWjK9gmjrO9fdvWEL7+Lxe05I1N8TZjG8HaQUI2yXDXgMwuBzYnM5WXAiOJ53BzsJXaS2lEZDhR3TiA39glg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass (sender ip is
- 137.71.25.57) smtp.rcpttodomain=vger.kernel.org
- smtp.mailfrom=analog.com;dmarc=bestguesspass action=none
- header.from=analog.com;dkim=none (message not signed);arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=analog.onmicrosoft.com; s=selector1-analog-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LbVEdqT7vCnY5ogGVUu4BAWVGt4Dcsgei+RokeZjvCk=;
- b=LBHiMndEMxYA5WqGHP1jvHg0364tPGGPIPHiWkIgj+eEsd7T0n3Ytic3egc9tc4eLcryk4U1ClJ2tpP8wCShN/SZKdp9VPI2XX4Ofx9krrglobocKTRm22dCrCSJ0SpWDkB+Ta+7ITTKwikjQTgs13zE7Bu2It7ZFADIvjJVHsk=
-Received: from DM3PR03CA0007.namprd03.prod.outlook.com (2603:10b6:0:50::17) by
- DM6PR03MB4715.namprd03.prod.outlook.com (2603:10b6:5:181::25) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2073.14; Wed, 17 Jul 2019 11:51:41 +0000
-Received: from CY1NAM02FT019.eop-nam02.prod.protection.outlook.com
- (2a01:111:f400:7e45::204) by DM3PR03CA0007.outlook.office365.com
- (2603:10b6:0:50::17) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2073.14 via Frontend
- Transport; Wed, 17 Jul 2019 11:51:40 +0000
-Received-SPF: Pass (protection.outlook.com: domain of analog.com designates
- 137.71.25.57 as permitted sender) receiver=protection.outlook.com;
- client-ip=137.71.25.57; helo=nwd2mta2.analog.com;
-Received: from nwd2mta2.analog.com (137.71.25.57) by
- CY1NAM02FT019.mail.protection.outlook.com (10.152.75.177) with Microsoft SMTP
- Server (version=TLS1_0, cipher=TLS_RSA_WITH_AES_256_CBC_SHA) id 15.20.2052.25
- via Frontend Transport; Wed, 17 Jul 2019 11:51:40 +0000
-Received: from NWD2HUBCAS7.ad.analog.com (nwd2hubcas7.ad.analog.com [10.64.69.107])
-        by nwd2mta2.analog.com (8.13.8/8.13.8) with ESMTP id x6HBpdj0003310
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Wed, 17 Jul 2019 04:51:39 -0700
-Received: from saturn.ad.analog.com (10.48.65.145) by
- NWD2HUBCAS7.ad.analog.com (10.64.69.107) with Microsoft SMTP Server id
- 14.3.408.0; Wed, 17 Jul 2019 07:51:38 -0400
-From:   Alexandru Ardelean <alexandru.ardelean@analog.com>
-To:     <linux-iio@vger.kernel.org>, <linux-spi@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-CC:     <jic23@kernel.org>, <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <broonie@kernel.org>,
-        Alexandru Ardelean <alexandru.ardelean@analog.com>
-Subject: [PATCH 4/4][V2] dt-bindings: iio: imu: add bindings for ADIS16460
-Date:   Wed, 17 Jul 2019 14:51:09 +0300
-Message-ID: <20190717115109.15168-5-alexandru.ardelean@analog.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190717115109.15168-1-alexandru.ardelean@analog.com>
-References: <20190717115109.15168-1-alexandru.ardelean@analog.com>
+        id S1725873AbfGQMpX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 08:45:23 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:3376 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725906AbfGQMpX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 08:45:23 -0400
+X-UUID: a615da28752845cda54311e0e09bf035-20190717
+X-UUID: a615da28752845cda54311e0e09bf035-20190717
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 328166412; Wed, 17 Jul 2019 20:44:22 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS32N1.mediatek.inc
+ (172.27.4.71) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 17 Jul
+ 2019 20:44:20 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS36.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 17 Jul 2019 20:44:19 +0800
+Message-ID: <1563367459.31342.34.camel@mhfsdcap03>
+Subject: Re: [PATCH v8 07/21] iommu/io-pgtable-arm-v7s: Extend MediaTek 4GB
+ Mode
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Will Deacon <will@kernel.org>
+CC:     <youlin.pei@mediatek.com>, <devicetree@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <cui.zhang@mediatek.com>, <srv_heupstream@mediatek.com>,
+        <chao.hao@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will.deacon@arm.com>,
+        <linux-kernel@vger.kernel.org>, Evan Green <evgreen@chromium.org>,
+        "Tomasz Figa" <tfiga@google.com>,
+        <iommu@lists.linux-foundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <yingjoe.chen@mediatek.com>, <anan.sun@mediatek.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "Matthias Kaehlcke" <mka@chromium.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Wed, 17 Jul 2019 20:44:19 +0800
+In-Reply-To: <20190715095156.xczfkbm6zpjueq32@willie-the-truck>
+References: <1561774167-24141-1-git-send-email-yong.wu@mediatek.com>
+         <1561774167-24141-8-git-send-email-yong.wu@mediatek.com>
+         <20190710143649.w5dplhzdpi3bxp7e@willie-the-truck>
+         <1562846036.31342.10.camel@mhfsdcap03>
+         <20190711123129.da4rg35b54u4svfw@willie-the-truck>
+         <1563079280.31342.22.camel@mhfsdcap03>
+         <20190715095156.xczfkbm6zpjueq32@willie-the-truck>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-ADIRoutedOnPrem: True
-X-EOPAttributedMessage: 0
-X-MS-Office365-Filtering-HT: Tenant
-X-Forefront-Antispam-Report: CIP:137.71.25.57;IPV:NLI;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(136003)(39860400002)(396003)(346002)(376002)(2980300002)(199004)(189003)(48376002)(26005)(6666004)(356004)(54906003)(8676002)(2616005)(478600001)(86362001)(44832011)(486006)(11346002)(50226002)(7696005)(110136005)(8936002)(51416003)(446003)(47776003)(106002)(70586007)(2870700001)(336012)(2906002)(966005)(36756003)(1076003)(107886003)(305945005)(7636002)(4326008)(246002)(5660300002)(53376002)(186003)(126002)(426003)(6306002)(476003)(50466002)(316002)(70206006)(2201001)(76176011);DIR:OUT;SFP:1101;SCL:1;SRVR:DM6PR03MB4715;H:nwd2mta2.analog.com;FPR:;SPF:Pass;LANG:en;PTR:nwd2mail11.analog.com;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: f0076831-df31-4ba0-bfe6-08d70aad21b0
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(4709080)(1401327)(2017052603328);SRVR:DM6PR03MB4715;
-X-MS-TrafficTypeDiagnostic: DM6PR03MB4715:
-X-MS-Exchange-PUrlCount: 4
-X-Microsoft-Antispam-PRVS: <DM6PR03MB471595C1BC675C45CD01F8E7F9C90@DM6PR03MB4715.namprd03.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:2449;
-X-Forefront-PRVS: 01018CB5B3
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: mCajjOsM28zkg0Aku1AMf6ySDJSiS/kxkdzxrUzgigWCxx+UQay67awxgrIjvNOh5ZUWA311SAV7iDztqtSjbAoB1LRT1xE6l5gIyQM4tUTUvOBkO0D+MKv62QhnHw8haDBLOE2h0B8CFjCLkL3czUcWAE77mPhURZ/1rzNv+fxZH0kPnfIY0kmfaVh4ELgY0DvvEJ8c+4nakCgHMa3WrRMohSPIia4VL2dYQVFSk8BMs+5jvQpTyvEmOSzUTwS/j36bj1ZVvLncuDak119meCVgN0ws6EEaAdS2NEqOrbGlWzsdhzsBj2VuLRkwIjihT8jTYMKb8I+b86VMT6A51QwPG2Uf5lOccDQO6RBO3RSHqj/R8kv5yzfmyMIFe8Sdb/5KsiF4vZVa2RQUQBV1KN6HNJor4xXVfpl/FGTgK2s=
-X-OriginatorOrg: analog.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2019 11:51:40.0751
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: f0076831-df31-4ba0-bfe6-08d70aad21b0
-X-MS-Exchange-CrossTenant-Id: eaa689b4-8f87-40e0-9c6f-7228de4d754a
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=eaa689b4-8f87-40e0-9c6f-7228de4d754a;Ip=[137.71.25.57];Helo=[nwd2mta2.analog.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM6PR03MB4715
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-17_04:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_notspam policy=outbound score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1810050000 definitions=main-1907170145
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 517FF8854FED11BA2C61D9E820D360BA1874F27ED39F4A69084A223C5CAC34212000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This change adds device-tree bindings for the ADIS16460.
+On Mon, 2019-07-15 at 10:51 +0100, Will Deacon wrote:
+> On Sun, Jul 14, 2019 at 12:41:20PM +0800, Yong Wu wrote:
+> > On Thu, 2019-07-11 at 13:31 +0100, Will Deacon wrote:
+> > > This looks like the right sort of idea. Basically, I was thinking that you
+> > > can use the oas in conjunction with the quirk to specify whether or not
+> > > your two magic bits should be set. You could also then cap the oas using
+> > > the size of phys_addr_t to deal with my other comment.
+> > > 
+> > > Finally, I was hoping you could drop the |= BIT_ULL(32) and the &=
+> > > ~BIT_ULL(32) bits of the mtk driver if the pgtable code now accepts higher
+> > > addresses. Did that not work out?
+> > 
+> > After the current patch, the pgtable has accepted the higher address.
+> > the " |= BIT_ULL(32)" and "& = ~ BIT_ULL(32)" is for a special case(we
+> > call it 4GB mode).
+> > 
+> > Now MediaTek IOMMU support 2 kind memory:
+> > 1) normal case: PA is 0x4000_0000 - 0x3_ffff_ffff. the PA won't be
+> > remapped. mt8183 and the non-4GB mode of mt8173/mt2712 use this mode.
+> > 
+> > 2) 4GB Mode: PA is 0x4000_0000 - 0x1_3fff_ffff. But the PA will remapped
+> > to 0x1_0000_0000 to 0x1_ffff_ffff. This is for the 4GB mode of
+> > mt8173/mt2712. This case is so special that we should change the PA
+> > manually(add bit32).
+> > (mt2712 and mt8173 have both mode: 4GB and non-4GB.)
+> > 
+> > If we try to use oas and our quirk to cover this two case. Then I can
+> > use "oas == 33" only for this 4GB mode. and "oas == 34" for the normal
+> > case even though the PA mayn't reach 34bit. Also I should add some
+> > "workaround" for the 4GB mode(oas==33).
+> > 
+> > I copy the new patch in the mail below(have dropped the "|= BIT_ULL(32)"
+> > and the "&= ~BIT_ULL(32)) in mtk iommu". please help have a look if it
+> > is ok.
+> > (another thing: Current the PA can support over 4GB. So the quirk name
+> > "MTK_4GB" looks not suitable, I used a new patch rename to "MTK_EXT").
+> 
+> Makes sense, thanks. One comment below.
+> 
+> > @@ -205,7 +216,20 @@ static phys_addr_t iopte_to_paddr(arm_v7s_iopte
+> > pte, int lvl,
+> >  	else
+> >  		mask = ARM_V7S_LVL_MASK(lvl);
+> >  
+> > -	return pte & mask;
+> > +	paddr = pte & mask;
+> > +	if (IS_ENABLED(CONFIG_PHYS_ADDR_T_64BIT) &&
+> > +	    (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)) {
+> > +		/*
+> > +		 * Workaround for MTK 4GB Mode:
+> > +		 * Add BIT32 only when PA < 0x4000_0000.
+> > +		 */
+> > +		if ((cfg->oas == 33 && paddr < 0x40000000UL) ||
+> > +		    (cfg->oas > 33 && (pte & ARM_V7S_ATTR_MTK_PA_BIT32)))
+> > +			paddr |= BIT_ULL(32);
+> > +		if (pte & ARM_V7S_ATTR_MTK_PA_BIT33)
+> > +			paddr |= BIT_ULL(33);
+> > +	}
+> > +	return paddr;
+> >  }
+> >  
+> >  static arm_v7s_iopte *iopte_deref(arm_v7s_iopte pte, int lvl,
+> > @@ -326,9 +350,6 @@ static arm_v7s_iopte arm_v7s_prot_to_pte(int prot,
+> > int lvl,
+> >  	if (lvl == 1 && (cfg->quirks & IO_PGTABLE_QUIRK_ARM_NS))
+> >  		pte |= ARM_V7S_ATTR_NS_SECTION;
+> >  
+> > -	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)
+> > -		pte |= ARM_V7S_ATTR_MTK_4GB;
+> > -
+> >  	return pte;
+> >  }
+> >  
+> > @@ -742,7 +763,9 @@ static struct io_pgtable
+> > *arm_v7s_alloc_pgtable(struct io_pgtable_cfg *cfg,
+> >  {
+> >  	struct arm_v7s_io_pgtable *data;
+> >  
+> > -	if (cfg->ias > ARM_V7S_ADDR_BITS || cfg->oas > ARM_V7S_ADDR_BITS)
+> > +	if (cfg->ias > ARM_V7S_ADDR_BITS ||
+> > +	    (cfg->oas > ARM_V7S_ADDR_BITS &&
+> > +	     !(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)))
+> >  		return NULL;
+> 
+> I think you can rework this to do something like:
+> 
+> 	if (cfg->ias > ARM_V7S_ADDR_BITS)
+> 		return NULL;
+> 
+> 	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT) {
+> 		if (!IS_ENABLED(CONFIG_PHYS_ADDR_T_64BIT))
+> 			cfg->oas = min(cfg->oas, ARM_V7S_ADDR_BITS);
+> 		else if (cfg->oas > 34)
+> 			return NULL;
+> 	} else if (cfg->oas > ARM_V7S_ADDR_BITS) {
+> 		return NULL;
+> 	}
+> 
+> so that we clamp the oas when phys_addr_t is 32-bit for you. That should
+> allow you to remove lots of the checking from iopte_to_paddr() too if you
+> check against oas in the map() function.
+> 
+> Does that make sense?
 
-Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
----
- .../bindings/iio/imu/adi,adis16460.yaml       | 53 +++++++++++++++++++
- MAINTAINERS                                   |  1 +
- 2 files changed, 54 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+Of course I'm ok for this. I'm only afraid that this function has
+already 3 checking "if (x) return NULL", Here we add a new one and so
+many lines... Maybe the user should guarantee the right value of oas.
+How about move it into mtk_iommu.c?
 
-diff --git a/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-new file mode 100644
-index 000000000000..0c53009ba7d6
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
-@@ -0,0 +1,53 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/imu/adi,adis16460.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analog Devices ADIS16460 and similar IMUs
-+
-+maintainers:
-+  - Dragos Bogdan <dragos.bogdan@analog.com>
-+
-+description: |
-+  Analog Devices ADIS16460 and similar IMUs
-+  https://www.analog.com/media/en/technical-documentation/data-sheets/ADIS16460.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - adi,adis16460
-+
-+  reg:
-+    maxItems: 1
-+
-+  spi-cpha: true
-+
-+  spi-cpol: true
-+
-+  interrupts:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+
-+examples:
-+  - |
-+    #include <dt-bindings/gpio/gpio.h>
-+    #include <dt-bindings/interrupt-controller/irq.h>
-+    spi0 {
-+        #address-cells = <1>;
-+        #size-cells = <0>;
-+
-+        imu@0 {
-+            compatible = "adi,adis16460";
-+            reg = <0>;
-+            spi-max-frequency = <5000000>;
-+            spi-cpol;
-+            spi-cpha;
-+            interrupt-parent = <&gpio0>;
-+            interrupts = <0 IRQ_TYPE_LEVEL_HIGH>;
-+        };
-+    };
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 8e679504c087..c44fbe8e91e9 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -943,6 +943,7 @@ S:	Supported
- L:	linux-iio@vger.kernel.org
- W:	http://ez.analog.com/community/linux-device-drivers
- F:	drivers/iio/imu/adis16460.c
-+F:	Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+About the checking of iopte_to_paddr, I can not remove them. I know it
+may be a bit special and not readable. Hmm, I guess I should use a MACRO
+instead of the hard code 33 for the special 4GB mode case.
+
+Then the patch would be like:
+
+//=========================
+static phys_addr_t iopte_to_paddr(arm_v7s_iopte pte, int lvl,
+ 				  struct io_pgtable_cfg *cfg)
+ {
+ 	arm_v7s_iopte mask;
++	phys_addr_t paddr;
  
- ANALOG DEVICES INC ADP5061 DRIVER
- M:	Stefan Popa <stefan.popa@analog.com>
--- 
-2.20.1
+ 	if (ARM_V7S_PTE_IS_TABLE(pte, lvl))
+ 		mask = ARM_V7S_TABLE_MASK;
+@@ -205,7 +216,21 @@ static phys_addr_t iopte_to_paddr(arm_v7s_iopte
+pte, int lvl,
+ 	else
+ 		mask = ARM_V7S_LVL_MASK(lvl);
+ 
+-	return pte & mask;
++	paddr = pte & mask;
++	if (cfg->oas > ARM_V7S_ADDR_BITS &&
++	    (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)) {
++		/*
++		 * Workaround for MTK 4GB Mode:
++		 * Add BIT32 only when PA < 0x4000_0000.
++		 */
++		if (cfg->oas == ARM_V7S_MTK_4GB_OAS && paddr < 0x40000000UL)
++			paddr |= BIT_ULL(32);
++		else if (pte & ARM_V7S_ATTR_MTK_PA_BIT32)
++			paddr |= BIT_ULL(32);
++		if (pte & ARM_V7S_ATTR_MTK_PA_BIT33)
++			paddr |= BIT_ULL(33);
++	}
++	return paddr;
+ } 
+
+@@ -741,8 +763,10 @@ static struct io_pgtable
+*arm_v7s_alloc_pgtable(struct io_pgtable_cfg *cfg,
+ 						void *cookie)
+ {
+ 	struct arm_v7s_io_pgtable *data;
+-
+-	if (cfg->ias > ARM_V7S_ADDR_BITS || cfg->oas > ARM_V7S_ADDR_BITS)
++ 	
++	if (cfg->ias > ARM_V7S_ADDR_BITS ||
++	    (cfg->oas > ARM_V7S_ADDR_BITS &&
++	     !(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)))
+ 		return NULL;
+ 
+ 	if (cfg->quirks & ~(IO_PGTABLE_QUIRK_ARM_NS |
+diff --git a/drivers/iommu/mtk_iommu.c b/drivers/iommu/mtk_iommu.c
+index 85e71fb..4efc5a3 100644
+--- a/drivers/iommu/mtk_iommu.c
++++ b/drivers/iommu/mtk_iommu.c
+@@ -271,16 +271,20 @@ static int mtk_iommu_domain_finalise(struct
+mtk_iommu_domain *dom)
+ 	dom->cfg = (struct io_pgtable_cfg) {
+ 		.quirks = IO_PGTABLE_QUIRK_ARM_NS |
+ 			IO_PGTABLE_QUIRK_NO_PERMS |
+-			IO_PGTABLE_QUIRK_TLBI_ON_MAP,
++			IO_PGTABLE_QUIRK_TLBI_ON_MAP |
++			IO_PGTABLE_QUIRK_ARM_MTK_EXT,
+ 		.pgsize_bitmap = mtk_iommu_ops.pgsize_bitmap,
+ 		.ias = 32,
+-		.oas = 32,
+ 		.tlb = &mtk_iommu_gather_ops,
+ 		.iommu_dev = data->dev,
+ 	};
+ 
+-	if (data->enable_4GB)
+-		dom->cfg.quirks |= IO_PGTABLE_QUIRK_ARM_MTK_EXT;
++	if (!IS_ENABLED(CONFIG_PHYS_ADDR_T_64BIT))
++		dom->cfg.oas = 32;
++	else if (data->enable_4GB)
++		dom->cfg.oas = ARM_V7S_MTK_4GB_OAS;
++	else
++		dom->cfg.oas = 34;
+
+--- a/include/linux/io-pgtable.h
++++ b/include/linux/io-pgtable.h
+@@ -117,6 +116,8 @@ struct io_pgtable_cfg {
+ 	};
+ };
+ 
++#define ARM_V7S_MTK_4GB_OAS			33
++
+ /**
+  * struct io_pgtable_ops - Page table manipulation API for IOMMU
+drivers.
+  *
+=====================================
+> 
+> Will
+
 
