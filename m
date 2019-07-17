@@ -2,138 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C8566B804
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 10:18:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C96A96B81D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 10:23:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726148AbfGQISJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 04:18:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40150 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725890AbfGQISJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 04:18:09 -0400
-Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A60142173B;
-        Wed, 17 Jul 2019 08:18:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563351488;
-        bh=5GNQoM7T3OZ2EwjYuZ7fJtx8Y6qQF3hP9lT0ttHPpvQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=BMk82FbNEX+ScgsGCO0TrFEo5sKOIUbK5ki+a7Wp3dBgcRxNpGjwSOStaJ8QPCblm
-         KAKapKaVZTat/7/27NdE3ZLBc2oBo1+69lm3o387UzZc5uNX5PEPq7pqZHF0/lmGFM
-         OoSvbBOnZkfov7Tz20pMcQ1yN75tnvNVZPksyyuk=
-Received: by mail-lj1-f169.google.com with SMTP id p17so22723185ljg.1;
-        Wed, 17 Jul 2019 01:18:07 -0700 (PDT)
-X-Gm-Message-State: APjAAAUt7rdp+AVb1gC6sjNHwoY+sJ/Ic54JLXlXhIhtbSPn12qekBFS
-        4FiumNToRDC+zhhd5vAPglvRl4dyJjMPC/hWwZo=
-X-Google-Smtp-Source: APXvYqylYz7gNmzlXqUoO2oJVnfuYOhDlPlxB7yrdES0wr8vBhhh8uj9yF8LJHi/hEx9u2UnvjdI9FfTGNOF6wdZ8Fc=
-X-Received: by 2002:a2e:3008:: with SMTP id w8mr20519868ljw.13.1563351485856;
- Wed, 17 Jul 2019 01:18:05 -0700 (PDT)
+        id S1725992AbfGQIXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 04:23:32 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:42201 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725932AbfGQIXc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 04:23:32 -0400
+Received: by mail-qt1-f193.google.com with SMTP id h18so22439543qtm.9
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 01:23:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TwgvgwFAr9ZbQyJY7OLlrukFEYAp4mCTYSJJ8JLqJDI=;
+        b=LqN/2tU7/8cN6JIMAfFFhaNTFqe+tnHiecppE1yZpQYHqyUZs6w7PtqAVb9/wYk/DJ
+         Hw/P3qO0ZJVGfNgBuBk6uo3jshv+LhvpPWUYMfp1IXxQzEapsQzDgFmwlHIFT2oLmIBF
+         oyvjcWSD0BYEqkAo1SBqP+RpM01tuQWnxjfS6Prol/I42c65szJI9OTGnlxrneHDZGzw
+         KAMJh3jhtDtBQH/Pkf08SsUyP0YbNo8vCG3EYMpxZHlmqfsEX9j0KOZilAtJJ2ckYWKH
+         ZwZWymxn7ua/IvTKh704LOQmKeOhjLqmwkksCaqfAFaMEQ9pCSUfbYPcy1xWmYOb49wA
+         Acxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TwgvgwFAr9ZbQyJY7OLlrukFEYAp4mCTYSJJ8JLqJDI=;
+        b=Wyt36uYMSgmVAp2DCW/DFlhgMbtkY2cAQQVq332o0TOB0nTLanZOgbrblHRNi/MP1b
+         bJ0ITlvaae/iih0FPeNFkFuaGTUCJOkvGOhd9HP4HVQxB7Xjvpc4DIOfdSIIFSV10kk6
+         EGS793xrRGAtluKMRYyFqyWPj6UarQv0kdRBujaJ/bivW8E/jiYfteJtPGM9HMIlGWxC
+         HjhZJK92oegbuK32YRO002W0feNi/wOhVic7CnylPdqlhTGOTyhxL1+Scdcdj5l7L+yM
+         MzIXCx4al3NYdss0pJg2pCWDA4yQHldXuleveezPbViVwRLyEJBx5pHhRf3Wj1oEyfoJ
+         SarA==
+X-Gm-Message-State: APjAAAUxCX88m+dQKU1J9V9Id74S+yClxpIzubXJCea2dgzzH6wkX+ZN
+        wItLDESm9emRSwtG2H9bVfJyCw6HsyGb7S2rsDPOiA==
+X-Google-Smtp-Source: APXvYqz4uw+BGfWaRI1pKAcWBiBCJ/F+kVqI+JVx9Yb6o8jGx7Ac6x2yJWAUJGKhx7FGXMrX+H6mpEe+Xh9h5nHDjeA=
+X-Received: by 2002:ac8:f8c:: with SMTP id b12mr27121586qtk.381.1563351811577;
+ Wed, 17 Jul 2019 01:23:31 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190712141242.4915-1-krzk@kernel.org> <cde6f251-4b15-a4f0-57ed-ca2ed014b511@kontron.de>
-In-Reply-To: <cde6f251-4b15-a4f0-57ed-ca2ed014b511@kontron.de>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 17 Jul 2019 10:17:54 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPcLdfo6XCc--HneYjCHOYKdKgWDBDSVjxQBR+pc+1mcfg@mail.gmail.com>
-Message-ID: <CAJKOXPcLdfo6XCc--HneYjCHOYKdKgWDBDSVjxQBR+pc+1mcfg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx6ul-kontron-ul2: Add Exceet/Kontron iMX6-UL2 SoM
-To:     Schrempf Frieder <frieder.schrempf@kontron.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
+References: <1563290089-11085-1-git-send-email-aisheng.dong@nxp.com>
+ <1563290089-11085-3-git-send-email-aisheng.dong@nxp.com> <CAOMZO5CMM94rAOryvfmHpuAsJnCRj-98kX3rfiZSn5EZt_c0kA@mail.gmail.com>
+In-Reply-To: <CAOMZO5CMM94rAOryvfmHpuAsJnCRj-98kX3rfiZSn5EZt_c0kA@mail.gmail.com>
+From:   Dong Aisheng <dongas86@gmail.com>
+Date:   Wed, 17 Jul 2019 16:14:35 +0800
+Message-ID: <CAA+hA=RknQ+EbZ258t-X_VktBFKs1Y7vBn_KTMkbyQAFW5k-Mw@mail.gmail.com>
+Subject: Re: [PATCH v2 02/15] arm64: dts: imx8qxp: move scu pd node before scu
+ clock node
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, NXP Linux Team <linux-imx@nxp.com>,
+        Mark Rutland <mark.rutland@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Jul 2019 at 17:38, Schrempf Frieder
-<frieder.schrempf@kontron.de> wrote:
+On Wed, Jul 17, 2019 at 3:26 AM Fabio Estevam <festevam@gmail.com> wrote:
 >
-> Hi Krzysztof,
->
-> On 12.07.19 16:12, Krzysztof Kozlowski wrote:
-> > Add support for iMX6-UL2 modules from Kontron Electronics GmbH (before
-> > acquisition: Exceet Electronics) and evalkit boards based on it:
+> On Tue, Jul 16, 2019 at 12:37 PM Dong Aisheng <aisheng.dong@nxp.com> wrote:
 > >
-> > 1. i.MX6 UL System-on-Module, a 25x25 mm solderable module (LGA pads and
-> >     pin castellations) with 256 MB RAM, 1 MB NOR-Flash, 256 MB NAND and
-> >     other interfaces,
-> > 1. UL2 evalkit, w/wo eMMC, without display,
-> > 2. UL2 evalkit with 4.3" display,
-> > 3. UL2 evalkit with 5.0" display.
+> > SCU clock depends on SCU Power domain. So let's move scu pd node
+> > before scu clock to make it probe earlier.
 >
-> We will use a new naming scheme for these and other boards. The new
-> names would be:
->
-> 1. Kontron N6310 SOM    (i.MX6UL SoM with 256MB RAM/NAND)
-> 2. Kontron N6310 S      (Evalkit with SoM)
-> 3. Kontron N6310 S 43   (Evalkit with SoM and 4.3" display)
-> 4. Kontron N6310 S 50   (Evalkit with SoM and 5.0" display)
+> This looks like a fragile solution. Shouldn't this be handled via
+> probe deferring?
 
-OK (and OK for all other comments which I will skip below).
+Not like a normal case that there may be only a few devices may get deferred,
+for qm/qxp, almost all the devices (~100) may get deferred without
+this patch. e.g. scu clk, lpcg clk and all other devices which depend on clk.
 
-(...)
+So i think it's really unnecessary to do that.
 
-> > +
-> > +     memory@80000000 {
-> > +             reg = <0x80000000 0x10000000>;
-> > +     };
-> > +};
-> > +
-> > +&cpu0 {
-> > +     clock-frequency = <528000000>;
-> > +     operating-points = <
-> > +             /* kHz  uV */
-> > +             528000  1175000
-> > +             396000  1025000
-> > +             198000  950000
-> > +     >;
-> > +     fsl,soc-operating-points = <
-> > +             /* KHz  uV */
-> > +             528000  1175000
-> > +             396000  1175000
-> > +             198000  1175000
-> > +     >;
-> > +};
->
-> What's the reason behind overwriting the operating-points and setting
-> clock-frequency? Doesn't imx6q-cpufreq.c already read the speed grades
-> from the hardware and adjust the operating-points accordingly?
-
-Good point. From the driver point of view overwriting of opps is not
-needed. As you said, the driver will adjust the speed to the reported
-grade. This could have meaning for the completeness of hardware
-description however I see that there are no even bindings for CPU and
-other boards do not overwrite it. I'll skip it then.
-
-(...)
-
-> > +
-> > +     regulators {
-> > +             compatible = "simple-bus";
-> > +             #address-cells = <1>;
-> > +             #size-cells = <0>;
->
-> We copied this from some other devicetree and I'm not sure in what case
-> we should really group the regulators in a simple-bus, or what's the
-> reason behind this. But others do it like this, so it's probably not so
-> wrong.
-
-Either simple-bus with regulator@address or unique regulator node
-names (regulator-1, no unit address). Both are popular but I think in
-recent submissions and comments Rob Herring was proposing the second
-option - unique regulator names without addresses. I can use such
-approach (unless DTC complains).
-
-Thanks for review and feedback!
-
-Best regards,
-Krzysztof
+Regards
+Aisheng
