@@ -2,59 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1C256B6EB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 08:48:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5A3DC6B6FD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 08:55:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726894AbfGQGsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 02:48:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58286 "EHLO mail.kernel.org"
+        id S1725932AbfGQGzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 02:55:05 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41826 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725892AbfGQGsS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 02:48:18 -0400
+        id S1725912AbfGQGzE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jul 2019 02:55:04 -0400
 Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 324A42173B;
-        Wed, 17 Jul 2019 06:48:11 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 032C121743;
+        Wed, 17 Jul 2019 06:54:51 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563346097;
-        bh=8TSSlUu25GjlJzJHNZqy/p5YiZiWAHnMkii3qUW77U4=;
+        s=default; t=1563346504;
+        bh=3Xt4tfBlIS/KrhkQpP7kW1uAGP7uRrEmTBLu4gx2nbY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=D0LpctmEwrX5bVBj5X7YXhz67Pxjo1xVya1Hf9znqpNoxiieBGTu5Y2WbceKpJUEd
-         TKYZIIp1j+bC4beGFn+jeJoS7H0C/8XkjhCNEccoOKibeYPTddnITwtrR6yhP/cG8x
-         LSS+8R7QWlz2u3K7HKNK+29Pdw25isOSbybb6omU=
-Date:   Wed, 17 Jul 2019 14:48:02 +0800
+        b=PyMn41bYicm6bSdM1vgHd0VolUj1AD5wNiOa2GUoJ00QYsS3cFisakqUsC10GUcaZ
+         GDQFJ6DIGSbEo5+GPEVpdG/sgLRhC1q1YDjKGZdfquwyHpd0SZAPUIpYRfSrDg6VIc
+         n5TbotMhMW+k5GYa3aDH2rWVCsAbs3dS0l84WK+Y=
+Date:   Wed, 17 Jul 2019 14:54:42 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     yibin.gong@nxp.com
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, broonie@kernel.org, festevam@gmail.com,
-        vkoul@kernel.org, dan.j.williams@intel.com,
-        u.kleine-koenig@pengutronix.de, catalin.marinas@arm.com,
-        l.stach@pengutronix.de, will.deacon@arm.com,
-        linux-spi@vger.kernel.org, linux-imx@nxp.com,
+To:     Anson.Huang@nxp.com
+Cc:     aisheng.dong@nxp.com, festevam@gmail.com, stefan@agner.ch,
+        kernel@pengutronix.de, linus.walleij@linaro.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
+        catalin.marinas@arm.com, will.deacon@arm.com,
+        maxime.ripard@bootlin.com, olof@lixom.net,
+        horms+renesas@verge.net.au, jagan@amarulasolutions.com,
+        bjorn.andersson@linaro.org, leonard.crestez@nxp.com,
+        dinguyen@kernel.org, enric.balletbo@collabora.com,
+        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH v5 14/15]  arm64: defconfig: Enable SDMA on i.mx8mq/8mm
-Message-ID: <20190717064800.GC3738@dragon>
-References: <20190610081753.11422-1-yibin.gong@nxp.com>
- <20190610081753.11422-15-yibin.gong@nxp.com>
+        Linux-imx@nxp.com
+Subject: Re: [PATCH V2 3/3] arm64: defconfig: Select CONFIG_PINCTRL_IMX8MN by
+ default
+Message-ID: <20190717065441.GD3738@dragon>
+References: <20190611122535.23583-1-Anson.Huang@nxp.com>
+ <20190611122535.23583-3-Anson.Huang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190610081753.11422-15-yibin.gong@nxp.com>
+In-Reply-To: <20190611122535.23583-3-Anson.Huang@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jun 10, 2019 at 04:17:52PM +0800, yibin.gong@nxp.com wrote:
-> From: Robin Gong <yibin.gong@nxp.com>
+On Tue, Jun 11, 2019 at 08:25:35PM +0800, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
 > 
-> Enable SDMA support on i.mx8mq/8mm chips, including enabling
-> CONFIG_FW_LOADER_USER_HELPER/CONFIG_FW_LOADER_USER_HELPER_FALLBACK
-> for firmware loaded by udev.
+> Enable CONFIG_PINCTRL_IMX8MN by default to support i.MX8MN
+> pinctrl driver.
 > 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
 
 Applied, thanks.
