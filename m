@@ -2,132 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 24F3B6B7B1
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 09:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F94A6B7F9
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 10:16:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725992AbfGQHyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 03:54:54 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:36053 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725873AbfGQHyy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 03:54:54 -0400
-Received: by mail-pg1-f195.google.com with SMTP id l21so10751628pgm.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 00:54:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=7CDBem+N4Y8GonyneakgYW4yRRjV6CTTMSRhiie6FvM=;
-        b=X91hHiq+XMv6rYqH0C1L60r5PFIPz0ALpX0L4rrxy3R0L7yIB7LB1wt2GigVavcOlw
-         6oNDhqTXYbkwuqZn8UJsLbssFwcot9lLbvTZCgauXQHyKkA3hbliqn/Pln2C0fQfx8x5
-         yx3XJh+N84gqLV5iCqeUMA5IGPCBhOJsd5+DRpIv8Kbgo3yq9BSgMAlkIy/j9JAqR/tD
-         3s8BLrcNBgsG36XBmNVIcnSSPm8aUnDU06iVjLVYRaV+9zQy5rcenYGaEiCbEompeLfl
-         HtejdgkFeaAnQYV7SuoOXrGEj355XnPS6yNbRH3RUNcCJ+cEEfsWiezir5dGcPT0xRLZ
-         DsnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=7CDBem+N4Y8GonyneakgYW4yRRjV6CTTMSRhiie6FvM=;
-        b=tHihnKQpOLXFFuYvol3OkACNAdWZG0gAn8bkY4ctstlyfivraNJ4Lr01NNK9pKxx6t
-         7ErFgFvF65Tutm/3gbcdZS/RBSX5g6npMA63N0X0Yrj9WdkcljIhFMvMdsnAuyVROaLX
-         N+/5ts8/tj+w8hML4tpZPPk3AI+x1Nhdt3Wz6HTXdkO43OsiSSsdshzrxAomUcfi8aB6
-         Df4kj7mfHSWB6FWH11Nm61AIqJx+2Wc6+n7fgcjJ4+ls6KMHjmHmFO7dhDKgMgm7fnL2
-         ZpBJpziEhYSuabklqB+s0RbQwCmioCeYvS1LuBvUTtXVy+IFDqLd7r74UJJ6vrYMwd+9
-         dJ0g==
-X-Gm-Message-State: APjAAAVCMJ0eDDGTNkG8YfJ0VH9txFabMNwlC3pPxkG/jHvwK2EYOnh4
-        WXiTPsUVhcsGG2+adxZiTcVuLA==
-X-Google-Smtp-Source: APXvYqwS793ra2K/Q8y9DiNBlQJ9AqGzBCIEAGcfR20+btRcZICeer3TBgT1cpHsLKOv5k3Z4wKZjQ==
-X-Received: by 2002:a17:90a:c391:: with SMTP id h17mr42645811pjt.131.1563350093035;
-        Wed, 17 Jul 2019 00:54:53 -0700 (PDT)
-Received: from localhost ([122.172.28.117])
-        by smtp.gmail.com with ESMTPSA id z20sm37644233pfk.72.2019.07.17.00.54.49
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 17 Jul 2019 00:54:50 -0700 (PDT)
-Date:   Wed, 17 Jul 2019 13:24:48 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        id S1725980AbfGQIQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 04:16:29 -0400
+Received: from mail-eopbgr40083.outbound.protection.outlook.com ([40.107.4.83]:49356
+        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725890AbfGQIQ3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jul 2019 04:16:29 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Aq0vnfTyXGGdVg0hbgdJ1rPlzLCwSUstAyFIiFBPrT/depMiLmBxRyTqR0GzFxpjnZV55sISLXxnwhsrIZz4DM8RrKPVu/axFFLB0Jjba3IC3LYCIEIvI7O8Ydl56bDr/djHCUNzinn//jjPcWFzcPCqxPfHKNgbbYGaE4NGYk2sH9mcDockve5NDGIBF5eHz1DM0O83eanGkcHg2WoJESzlb9JtKMibF1PKSUnDr3mRhPeE8EYzRivnlwZOQrZLcLE5O+rRn1P/Kks6bNL60JdzBLDa21jyAuenjBfg3ftPcDBaYxERE7nnsTDHNSpF237BLR7JjZ6WThPxCmUSaA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NiEgK6ehxZIO0SdFuk/dMElR5TLP7K7n2KVDyt+2Ev8=;
+ b=RTFoBqCZRuTlHGf9oVztag/VFzb6of1SDtby57rOnS3Vt1CRmF9frM547rzOFlMzQ7BaFjcnMxYArpVsBdxxA566dMY3STGlunytHEqZkK6UP2TFev86Y5oyAdekZLn0fe7E0OFthJoCKOcTS6vC2VocKgJTwqeUfkBJxlPsEpMq/sCTfuk7ucy80Yz5oE5XzU5uxg+r83V2k1NYBn+9o8OLsr3+gI1wYTlfPFyA2+6gTNCB+REuuECpTcefmGzC5LGumHmOdpHwP5T9SXLozmheNBVmGNVmUyz1N6BQgBEO63AwOcHrnWc8NRxPxGzOo2pUr32uhIzmqDtG7mEs+w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
+ header.d=nxp.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=NiEgK6ehxZIO0SdFuk/dMElR5TLP7K7n2KVDyt+2Ev8=;
+ b=RLh6cFguTJtWnq5150oEXkgN2gZv84F9ALmBJIY16Rfpzrq80AvgoVb31YbHcwIya6gK1cQrmdEoVEvm19Nlzl/5vNKLqC9hx60sXOPgE13apRcvkAVpkNS8dniK9i5q4Eu7K9ZkZvtGVh1sNxLWpGFDssn8OQ5GnTuDI+4HC9U=
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
+ AM0PR04MB4130.eurprd04.prod.outlook.com (52.134.92.30) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2073.14; Wed, 17 Jul 2019 08:16:21 +0000
+Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::7882:51:e491:8431]) by AM0PR04MB4211.eurprd04.prod.outlook.com
+ ([fe80::7882:51:e491:8431%7]) with mapi id 15.20.2073.012; Wed, 17 Jul 2019
+ 08:16:21 +0000
+From:   Aisheng Dong <aisheng.dong@nxp.com>
+To:     Fabio Estevam <festevam@gmail.com>
+CC:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Dong Aisheng <dongas86@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
-        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        sibis@codeaurora.org, bjorn.andersson@linaro.org,
-        evgreen@chromium.org, kernel-team@android.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v3 1/6] dt-bindings: opp: Introduce opp-peak-KBps and
- opp-avg-KBps bindings
-Message-ID: <20190717075448.xlyg2ddewlci3abg@vireshk-i7>
-References: <20190703011020.151615-1-saravanak@google.com>
- <20190703011020.151615-2-saravanak@google.com>
+        Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will.deacon@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH v2 15/15] arm64: defconfig: add imx8qm mek support
+Thread-Topic: [PATCH v2 15/15] arm64: defconfig: add imx8qm mek support
+Thread-Index: AQHVO+xQyEr4H6miyEOxYbBKQCsvQabNoGEAgADXCLA=
+Date:   Wed, 17 Jul 2019 08:16:21 +0000
+Message-ID: <AM0PR04MB4211AF3216E3A641DA80B6C680C90@AM0PR04MB4211.eurprd04.prod.outlook.com>
+References: <1563290089-11085-1-git-send-email-aisheng.dong@nxp.com>
+ <1563290089-11085-16-git-send-email-aisheng.dong@nxp.com>
+ <CAOMZO5CTmAdxRK4FZu+Lw3WxkBzdufNJ=gE11TFSoizdYwXnbw@mail.gmail.com>
+In-Reply-To: <CAOMZO5CTmAdxRK4FZu+Lw3WxkBzdufNJ=gE11TFSoizdYwXnbw@mail.gmail.com>
+Accept-Language: zh-CN, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=aisheng.dong@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b1f69d4a-3f18-4048-30a5-08d70a8f0d68
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4130;
+x-ms-traffictypediagnostic: AM0PR04MB4130:
+x-microsoft-antispam-prvs: <AM0PR04MB413021A5B92892A29F0702E580C90@AM0PR04MB4130.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-forefront-prvs: 01018CB5B3
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(346002)(396003)(366004)(376002)(39860400002)(199004)(189003)(2906002)(1411001)(66066001)(54906003)(76176011)(71190400001)(33656002)(186003)(66556008)(26005)(4326008)(7736002)(229853002)(6916009)(486006)(7696005)(71200400001)(14454004)(4744005)(52536014)(5660300002)(74316002)(102836004)(86362001)(53546011)(8676002)(6506007)(44832011)(8936002)(6436002)(81156014)(81166006)(256004)(99286004)(14444005)(446003)(3846002)(53936002)(55016002)(6246003)(476003)(76116006)(316002)(66946007)(68736007)(9686003)(478600001)(66476007)(66446008)(305945005)(6116002)(11346002)(25786009)(64756008)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4130;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 7quooohflrF/rwwp/0BcaBYX0P3hLlom7YBecz9wSgrT/S6BuMRbMvIHJHFnz6SBqxKqZyZsl1YImmqZ7HSiWNGeCoxyvi+cBtypH5OovhJikr2w457heethI9TfmcmW3Fur5fFuvuOevrxUYRB87xpuj/9mpyvMcvYLxAqib/1EgDJn6nOgzbkTqbD8q7a212UyG8LOL1mXC8QNl+ZTGCovRG+j3wRxJmuJgbCSyB7OFG1WMQIRvU+MVwgiycqeHng/qOTRAmrsoJmhuZvkEymmSjYeXtUGHgKKclhlGBCSel6qaVQ4PBTos/g4k1x40tqKlfuD7wawBTCCXiYweMd7Uf3Wjw4nDMafNjm8ftUUEkH1eD/x1OHWrBGG7cJjIv0nLNtF17To9iiSG4ONZ/AFMM2Scd3rAd9tBkjpgpk=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190703011020.151615-2-saravanak@google.com>
-User-Agent: NeoMutt/20180716-391-311a52
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b1f69d4a-3f18-4048-30a5-08d70a8f0d68
+X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jul 2019 08:16:21.6368
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: aisheng.dong@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4130
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-07-19, 18:10, Saravana Kannan wrote:
-> Interconnects often quantify their performance points in terms of
-> bandwidth. So, add opp-peak-KBps (required) and opp-avg-KBps (optional) to
-> allow specifying Bandwidth OPP tables in DT.
-> 
-> opp-peak-KBps is a required property that replace opp-hz for Bandwidth OPP
-> tables.
-> 
-> opp-avg-KBps is an optional property that can be used in Bandwidth OPP
-> tables.
-> 
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  Documentation/devicetree/bindings/opp/opp.txt | 15 ++++++++++++---
->  1 file changed, 12 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
-> index 76b6c79604a5..c869e87caa2a 100644
-> --- a/Documentation/devicetree/bindings/opp/opp.txt
-> +++ b/Documentation/devicetree/bindings/opp/opp.txt
-> @@ -83,9 +83,14 @@ properties.
->  
->  Required properties:
->  - opp-hz: Frequency in Hz, expressed as a 64-bit big-endian integer. This is a
-> -  required property for all device nodes but devices like power domains. The
-> -  power domain nodes must have another (implementation dependent) property which
-> -  uniquely identifies the OPP nodes.
-> +  required property for all device nodes but for devices like power domains or
-> +  bandwidth opp tables. The power domain nodes must have another (implementation
-> +  dependent) property which uniquely identifies the OPP nodes. The interconnect
-> +  opps are required to have the opp-peak-bw property.
-
-                                   ??
-
-> +
-> +- opp-peak-KBps: Peak bandwidth in kilobytes per second, expressed as a 32-bit
-> +  big-endian integer. This is a required property for all devices that don't
-> +  have opp-hz. For example, bandwidth OPP tables for interconnect paths.
->  
->  Optional properties:
->  - opp-microvolt: voltage in micro Volts.
-> @@ -132,6 +137,10 @@ Optional properties:
->  - opp-level: A value representing the performance level of the device,
->    expressed as a 32-bit integer.
->  
-> +- opp-avg-KBps: Average bandwidth in kilobytes per second, expressed as a
-> +  32-bit big-endian integer. This property is only meaningful in OPP tables
-> +  where opp-peak-KBps is present.
-> +
->  - clock-latency-ns: Specifies the maximum possible transition latency (in
->    nanoseconds) for switching to this OPP from any other OPP.
->  
-> -- 
-> 2.22.0.410.gd8fdbe21b5-goog
-
--- 
-viresh
+PiBGcm9tOiBGYWJpbyBFc3RldmFtIDxmZXN0ZXZhbUBnbWFpbC5jb20+DQo+IFNlbnQ6IFdlZG5l
+c2RheSwgSnVseSAxNywgMjAxOSAzOjI1IEFNDQo+IA0KPiBIaSBEb25nLA0KPiANCj4gT24gVHVl
+LCBKdWwgMTYsIDIwMTkgYXQgMTI6MzggUE0gRG9uZyBBaXNoZW5nIDxhaXNoZW5nLmRvbmdAbnhw
+LmNvbT4NCj4gd3JvdGU6DQo+ID4NCj4gPiBhZGQgaW14OHFtIG1layBzdXBwb3J0DQo+IA0KPiBU
+aGUgU3ViamVjdCBhbmQgY29tbWl0IGxvZyBkb2VzIG5vdCBtYXRjaCB3aXRoIHRoZSBwYXRjaCBj
+b250ZW50Lg0KDQpCZWNhdXNlIG14OHFtIHNoYXJlcyB0aGUgbW9zdCB0aGluZ3MgZnJvbSBteDhx
+eHAgd2hpY2ggaGFzIGFscmVhZHkNCmJlZW4gZW5hYmxlZCBpbiBkZWZjb25maWcuIFRoZSBvbmx5
+IG9uZSBsZWZ0IGlzIHBpbmN0cmwgZHJpdmVyLg0KSSB3b3VsZCB1cGRhdGUgdGhlIHRpdGxlIGEg
+Yml0IHRvIGJlIG1vcmUgc3BlY2lmaWMgaW4gbmV4dCB2ZXJzaW9uLg0KDQpSZWdhcmRzDQpBaXNo
+ZW5nDQo=
