@@ -2,29 +2,29 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA6B06B507
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 05:37:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 878D86B519
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 05:41:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728124AbfGQDhx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 16 Jul 2019 23:37:53 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:60200 "EHLO
+        id S1728812AbfGQDkY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 16 Jul 2019 23:40:24 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:43102 "EHLO
         mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726069AbfGQDhw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 23:37:52 -0400
-X-UUID: d0db6bff8b214815abb3b0db654177db-20190717
-X-UUID: d0db6bff8b214815abb3b0db654177db-20190717
+        with ESMTP id S1728047AbfGQDkY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 16 Jul 2019 23:40:24 -0400
+X-UUID: 7d6be4e943c14964831c2514d83a5888-20190717
+X-UUID: 7d6be4e943c14964831c2514d83a5888-20190717
 Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
         (envelope-from <ck.hu@mediatek.com>)
         (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1155228632; Wed, 17 Jul 2019 11:37:33 +0800
+        with ESMTP id 499689010; Wed, 17 Jul 2019 11:40:17 +0800
 Received: from mtkcas08.mediatek.inc (172.21.101.126) by
  MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 17 Jul 2019 11:37:31 +0800
+ 15.0.1395.4; Wed, 17 Jul 2019 11:40:13 +0800
 Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 17 Jul 2019 11:37:31 +0800
-Message-ID: <1563334651.29169.8.camel@mtksdaap41>
-Subject: Re: [PATCH v4, 03/33] dt-bindings: mediatek: add ccorr description
+ Transport; Wed, 17 Jul 2019 11:40:13 +0800
+Message-ID: <1563334813.29169.9.camel@mtksdaap41>
+Subject: Re: [PATCH v4, 04/33] dt-bindings: mediatek: add dither description
  for mt8183 display
 From:   CK Hu <ck.hu@mediatek.com>
 To:     <yongqiang.niu@mediatek.com>
@@ -37,15 +37,15 @@ CC:     Philipp Zabel <p.zabel@pengutronix.de>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>
-Date:   Wed, 17 Jul 2019 11:37:31 +0800
-In-Reply-To: <1562625253-29254-4-git-send-email-yongqiang.niu@mediatek.com>
+Date:   Wed, 17 Jul 2019 11:40:13 +0800
+In-Reply-To: <1562625253-29254-5-git-send-email-yongqiang.niu@mediatek.com>
 References: <1562625253-29254-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1562625253-29254-4-git-send-email-yongqiang.niu@mediatek.com>
+         <1562625253-29254-5-git-send-email-yongqiang.niu@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 403168DAAE7D0F5F3260CBF4E27C82B0F49F3568C5D9161274FEC2680BC066432000:8
+X-TM-SNTS-SMTP: D6842BC495CF62E915E073AAD261C7B66CB325E65E78ABFCF8D683C1EF2B27432000:8
 X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -75,16 +75,16 @@ On Tue, 2019-07-09 at 06:33 +0800, yongqiang.niu@mediatek.com wrote:
 >  1 file changed, 1 insertion(+)
 > 
 > diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> index 8c4700f..cf5fb08 100644
+> index cf5fb08..afd3c90 100644
 > --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
 > +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> @@ -31,6 +31,7 @@ Required properties (all function blocks):
->  	"mediatek,<chip>-disp-ovl-2l"           - overlay (2 layers, blending, csc)
->  	"mediatek,<chip>-disp-rdma"  		- read DMA / line buffer
+> @@ -33,6 +33,7 @@ Required properties (all function blocks):
 >  	"mediatek,<chip>-disp-wdma"  		- write DMA
-> +	"mediatek,<chip>-disp-ccorr"            - color correction
+>  	"mediatek,<chip>-disp-ccorr"            - color correction
 >  	"mediatek,<chip>-disp-color" 		- color processor
+> +	"mediatek,<chip>-disp-dither"           - dither
 >  	"mediatek,<chip>-disp-aal"   		- adaptive ambient light controller
 >  	"mediatek,<chip>-disp-gamma" 		- gamma correction
+>  	"mediatek,<chip>-disp-merge" 		- merge streams from two RDMA sources
 
 
