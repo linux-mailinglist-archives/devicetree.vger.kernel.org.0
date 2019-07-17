@@ -2,298 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 583946C179
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 21:27:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 281E66C17D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 21:30:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727625AbfGQT0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 15:26:48 -0400
-Received: from foss.arm.com ([217.140.110.172]:50296 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727270AbfGQT0r (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 15:26:47 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1BD6F337;
-        Wed, 17 Jul 2019 12:26:46 -0700 (PDT)
-Received: from tuskha01.cambridge.arm.com (tuskha01.cambridge.arm.com [10.1.196.61])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id F10953F71A;
-        Wed, 17 Jul 2019 12:26:44 -0700 (PDT)
-From:   Tushar Khandelwal <tushar.khandelwal@arm.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     tushar.2nov@gmail.com, morten_bp@live.dk, jassisinghbrar@gmail.com,
-        nd@arm.com, Morten Borup Petersen <morten.petersen@arm.com>,
-        Tushar Khandelwal <tushar.khandelwal@arm.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 4/4] mailbox: arm_mhuv2: add multi word transport protocol operations
-Date:   Wed, 17 Jul 2019 20:26:16 +0100
-Message-Id: <20190717192616.1731-5-tushar.khandelwal@arm.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190717192616.1731-1-tushar.khandelwal@arm.com>
-References: <20190717192616.1731-1-tushar.khandelwal@arm.com>
+        id S1727225AbfGQTaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 15:30:12 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:41507 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727184AbfGQTaM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 15:30:12 -0400
+Received: by mail-io1-f66.google.com with SMTP id j5so43415801ioj.8
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 12:30:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=m+aYfYk3qqQFGYyIVUXqsjPB9Z++/CqoIZvcXZFm3io=;
+        b=NJcT4ReHcQvNMVZLMGPaZHK9eIDuuQdneBHhUpijosU4l0tZrd8F1G6YEvtqk2ueyi
+         ab1b1YjwcBKcTGWxeivJOOfmix6JaiRG0BR9tHga+fndXXM0hr+gs4SyrTWDVjI5fVGO
+         gghtcNGqRteT6wrHv4pRZLL+6qVEHLLDHbnV7njAfX4NdhGXmRAI1fqW5JYPRGRWDP0j
+         JARewp2Favgi9oXSi9PW9R61lRbyPMIvrMt+NZ+VbLzOVodM/REUULreUB03nEjs+Re5
+         8YIfejH0GL6sMcGo0GH4RrAnp7lwelNfWuMTgP/cEASY1Ecqq6iNP9z6EJNJMghFmDzH
+         TPsA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=m+aYfYk3qqQFGYyIVUXqsjPB9Z++/CqoIZvcXZFm3io=;
+        b=uRsb88d1C8TNBGoG7pStxnlB1/qHZJAdy1i0qZtK55139NTECKH/LF5cIdSuapX7hA
+         K3A/lf1bAg1zaubBcTUs0qb9BKUKd697rVpMU7lmJieHF2nWe+XIeizYllAArq8niYmB
+         zbU00m0QZHw9suZK4t1BIEhaSAtYHBbGnM+Y/HGEKxEJFO3h7VW3W8g6c+Mj1wTKTbxh
+         fYx4b/ZzBcO5UteFEzQKStx9jGCe9l7+WItg8pWQnxicxgRSOASMqmM5DyiimpyENEZj
+         7dQzPWJlvrQG8LJwgBgojDUGKRVZeD7EOYf2cY0kv8XqsImYOl+ek+bTx+OOSasaVSlX
+         t41Q==
+X-Gm-Message-State: APjAAAVtWtl3HrKauvskQDPNpHXnJPh0w8OoYsW5QvevlR+C3Ztu3se+
+        QNhUHbaAD04JypJo8Wh8+eACkA==
+X-Google-Smtp-Source: APXvYqzwcmx1BCDmjWpt1tOLywaYXaCeovXL+ydA1c7dOKNeaGYAADnZWQbu/jN5GlJF+0Dyzy9HYA==
+X-Received: by 2002:a02:8816:: with SMTP id r22mr43623986jai.60.1563391811445;
+        Wed, 17 Jul 2019 12:30:11 -0700 (PDT)
+Received: from localhost (67-0-62-24.albq.qwest.net. [67.0.62.24])
+        by smtp.gmail.com with ESMTPSA id l2sm17528673ioh.20.2019.07.17.12.30.10
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 17 Jul 2019 12:30:10 -0700 (PDT)
+Date:   Wed, 17 Jul 2019 12:30:10 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Yash Shah <yash.shah@sifive.com>
+cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-riscv@lists.infradead.org, linux-kernel@vger.kernel.org,
+        mark.rutland@arm.com, palmer@sifive.com, aou@eecs.berkeley.edu,
+        sachin.ghadi@sifive.com
+Subject: Re: [PATCH] riscv: dts: Add DT node for SiFive FU540 Ethernet
+ controller driver
+In-Reply-To: <1561097422-25130-2-git-send-email-yash.shah@sifive.com>
+Message-ID: <alpine.DEB.2.21.9999.1907171228560.22190@viisi.sifive.com>
+References: <1561097422-25130-1-git-send-email-yash.shah@sifive.com> <1561097422-25130-2-git-send-email-yash.shah@sifive.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Morten Borup Petersen <morten.petersen@arm.com>
+On Fri, 21 Jun 2019, Yash Shah wrote:
 
-When in multi-word mode, the mailbox controller will provide a single
-mailbox. It is required that the MHU device has at least 2 channel windows
-available for the MHU to function in multi-word mode.
+> DT node for SiFive FU540-C000 GEMGXL Ethernet controller driver added
+> 
+> Signed-off-by: Yash Shah <yash.shah@sifive.com>
 
-Transmitting and receiving data through the mailbox framework in
-multi-word mode is done through a struct arm_mbox_msg.
+Dropping this one until it's updated to align with whatever you pick for 
+the new driver DT compatible string, per
 
-Signed-off-by: Morten Borup Petersen <morten.petersen@arm.com>
-Signed-off-by: Tushar Khandelwal <tushar.khandelwal@arm.com>
-Cc: jassisinghbrar@gmail.com
-Cc: devicetree@vger.kernel.org
----
- drivers/mailbox/arm_mhu_v2.c | 225 +++++++++++++++++++++++++++++++++++
- 1 file changed, 225 insertions(+)
+https://lore.kernel.org/linux-riscv/1558611952-13295-1-git-send-email-yash.shah@sifive.com/T/#me298e16b2feeb481116cca61b94e014433cf2977
 
-diff --git a/drivers/mailbox/arm_mhu_v2.c b/drivers/mailbox/arm_mhu_v2.c
-index 0e3fa5917925..324b19bdb28a 100644
---- a/drivers/mailbox/arm_mhu_v2.c
-+++ b/drivers/mailbox/arm_mhu_v2.c
-@@ -430,6 +430,228 @@ static const struct mhuv2_ops mhuv2_single_word_ops = {
- };
- /* ========================================================================== */
- 
-+/* ================ Multi word transport protocol operations ================ */
-+static inline int mhuv2_read_data_multi_word(struct arm_mhuv2 *mhuv2,
-+					     struct mbox_chan *chan,
-+					     struct arm_mbox_msg *msg)
-+{
-+	int ch;
-+	const int channels =
-+		readl_relaxed_bitfield(&mhuv2->reg.recv->MHU_CFG, NUM_CH);
-+
-+	msg->data = kzalloc(MHUV2_STAT_BYTES * channels, GFP_KERNEL);
-+
-+	for (ch = 0; ch < channels; ch++) {
-+		/*
-+		 * Messages are expected to be received in order of most
-+		 * significant word to least significant word.
-+		 * (see mhuv2_send_data_multi_word)
-+		 */
-+		const mhuv2_stat_reg_t word =
-+			readl_relaxed(&mhuv2->reg.recv->channel[ch].STAT);
-+		((mhuv2_stat_reg_t *)msg->data)[channels - 1 - ch] = word;
-+	}
-+
-+	msg->len = channels * MHUV2_STAT_BYTES;
-+	return 0;
-+}
-+
-+static inline int mhuv2_clear_data_multi_word(struct arm_mhuv2 *mhuv2,
-+					      struct mbox_chan *chan,
-+					      struct arm_mbox_msg *msg)
-+{
-+	int ch;
-+	const int channels =
-+		readl_relaxed_bitfield(&mhuv2->reg.recv->MHU_CFG, NUM_CH);
-+
-+	for (ch = 0; ch < channels; ch++) {
-+		/*
-+		 * Last channel window must be cleared as the final operation.
-+		 * Upon clearing the last channel window register, which is
-+		 * unmasked in multi-word mode, the interrupt is deasserted.
-+		 */
-+		writel_relaxed(
-+			readl_relaxed(&mhuv2->reg.recv->channel[ch].STAT),
-+			&mhuv2->reg.recv->channel[ch].STAT_CLEAR);
-+	}
-+	return 0;
-+}
-+
-+static inline int __mhuv2_mw_bytes_to_send(const int bytes_in_round,
-+					    const int bytes_left)
-+{
-+	/*
-+	 * Bytes to send on the current channel will always be MHUV2_STAT_BYTES
-+	 * unless in the last round and
-+	 *	msg->len % MHUV2_STAT_BYTES != 0
-+	 */
-+	if (bytes_in_round % MHUV2_STAT_BYTES != 0) {
-+		const int bts = bytes_left % MHUV2_STAT_BYTES;
-+		return bts == 0 ? MHUV2_STAT_BYTES : bts;
-+	} else {
-+		return MHUV2_STAT_BYTES;
-+	}
-+}
-+
-+static inline int mhuv2_send_data_multi_word(struct arm_mhuv2 *mhuv2,
-+					     struct mbox_chan *chan,
-+					     const struct arm_mbox_msg *msg)
-+{
-+	/*
-+	 * Message will be transmitted from most significant to least
-+	 * significant word. This is to allow for messages shorter than
-+	 * $channels to still trigger the receiver interrupt which gets
-+	 * activated when the last STAT register is written. As an example, a
-+	 * 6-word message is to be written on a 4-channel MHU connection:
-+	 * Registers marked with '*' are masked, and will not generate an
-+	 * interrupt on the receiver side once written.
-+	 *
-+	 * uint32_t *data = [0x00000001],[0x00000002],[0x00000003],[0x00000004],
-+	 *		    [0x00000005], [0x00000006]
-+	 *
-+	 *  ROUND 1:
-+	 *   STAT reg      To write    Write sequence
-+	 *  [ STAT 3 ] <- [0x00000001]       4 <- triggers interrupt on receiver
-+	 * *[ STAT 2 ] <- [0x00000002]       3
-+	 * *[ STAT 1 ] <- [0x00000003]       2
-+	 * *[ STAT 0 ] <- [0x00000004]       1
-+	 *
-+	 *  data += 4 // Increment data pointer by number of STAT regs
-+	 *
-+	 *  ROUND 2:
-+	 *   STAT reg      To write    Write sequence
-+	 *  [ STAT 3 ] <- [0x00000005]       2 <- triggers interrupt on receiver
-+	 * *[ STAT 2 ] <- [0x00000006]       1
-+	 * *[ STAT 1 ] <- [0x00000000]
-+	 * *[ STAT 0 ] <- [0x00000000]
-+	 */
-+	int bytes_left, bytes_to_send, i, ch_idx;
-+	const int ch_windows =
-+		readl_relaxed_bitfield(&mhuv2->reg.recv->MHU_CFG, NUM_CH);
-+	const size_t round_capacity = ch_windows * MHUV2_STAT_BYTES;
-+
-+	bytes_left = msg->len;
-+	mhuv2_stat_reg_t *data = msg->data;
-+
-+	while (bytes_left > 0) {
-+		/* Note: Each entry of this loop indicates a new ROUND */
-+		if (*(u32 *)data == 0) {
-+			dev_err(mhuv2->dev,
-+				"values in *data aligned on NUM_STAT boundaries must not be zero to ensure that receiver interrupt is triggered\n",
-+				ch_windows);
-+			return -EINVAL;
-+		}
-+
-+		const int bytes_in_round = bytes_left > round_capacity ?
-+						   round_capacity :
-+						   bytes_left;
-+
-+		for (i = (ch_windows - 1); i >= 0; i--) {
-+			ch_idx = ch_windows - 1 - i;
-+			/*
-+			 * Check whether data should be transmitted in register
-+			 * of index 'ch'.
-+			 */
-+			if (bytes_in_round > (i * MHUV2_STAT_BYTES)) {
-+				mhuv2_stat_reg_t word = data[i];
-+
-+				bytes_to_send = __mhuv2_mw_bytes_to_send(
-+					bytes_in_round, bytes_left);
-+
-+				if (bytes_to_send != MHUV2_STAT_BYTES) {
-+					word &= LSB_MASK(bytes_to_send *
-+							 __CHAR_BIT__);
-+				}
-+				while (readl_relaxed(
-+					       &mhuv2->reg.send->channel[ch_idx]
-+							.STAT) != 0)
-+					continue;
-+
-+				writel_relaxed(
-+				    word,
-+				    &mhuv2->reg.send->channel[ch_idx].STAT_SET);
-+				bytes_left -= bytes_to_send;
-+			}
-+		}
-+
-+		data += ch_windows;
-+
-+		for (ch_idx = 0; ch_idx < ch_windows; ch_idx++) {
-+			while (readl_relaxed(
-+				   &mhuv2->reg.send->channel[ch_idx].STAT) != 0)
-+				continue;
-+		}
-+	}
-+	return 0;
-+}
-+
-+
-+static inline int mhuv2_last_tx_done_multi_word(struct arm_mhuv2 *mhuv2,
-+						struct mbox_chan *chan)
-+{
-+	int ch_idx;
-+	bool tx_done = true;
-+
-+	for (ch_idx = 0;
-+	     ch_idx < readl_relaxed_bitfield(&mhuv2->reg.send->MHU_CFG, NUM_CH);
-+	     ch_idx++) {
-+		tx_done &= readl_relaxed(
-+				   &mhuv2->reg.send->channel[ch_idx].STAT) == 0;
-+	}
-+	return tx_done;
-+}
-+
-+static inline int mhuv2_setup_multi_word(struct arm_mhuv2 *mhuv2)
-+{
-+	int ret, i;
-+
-+	const u32 channel_windows =
-+		readl_relaxed_bitfield(mhuv2->frame == RECEIVER_FRAME ?
-+					       &mhuv2->reg.recv->MHU_CFG :
-+					       &mhuv2->reg.send->MHU_CFG,
-+				       NUM_CH);
-+	if (channel_windows < 2) {
-+		dev_err(mhuv2->dev,
-+			"Error: at least 2 MHU channel windows are required for using the multi-word transfer protocol");
-+		return -ENODEV;
-+	}
-+
-+	if (mhuv2->frame == RECEIVER_FRAME) {
-+		/*
-+		 * The multi-word transport protocol mandates that all but
-+		 * the last status register must be masked.
-+		 */
-+		for (i = 0; i < (channel_windows - 1); i++) {
-+			writel_relaxed(-1,
-+				       &mhuv2->reg.recv->channel[i].MASK_SET);
-+		}
-+	}
-+
-+	mhuv2->mbox.num_chans = 1;
-+	mhuv2->mbox.chans =
-+		devm_kzalloc(mhuv2->dev,
-+			     mhuv2->mbox.num_chans * sizeof(struct mbox_chan),
-+			     GFP_KERNEL);
-+
-+	return 0;
-+}
-+
-+static inline struct mbox_chan *
-+	mhuv2_get_active_mbox_chan_multi_word(struct arm_mhuv2 *mhuv2)
-+{
-+	return &mhuv2->mbox.chans[0];
-+}
-+
-+static const struct mhuv2_ops mhuv2_multi_word_ops = {
-+	.read_data = mhuv2_read_data_multi_word,
-+	.clear_data = mhuv2_clear_data_multi_word,
-+	.send_data = mhuv2_send_data_multi_word,
-+	.setup = mhuv2_setup_multi_word,
-+	.last_tx_done = mhuv2_last_tx_done_multi_word,
-+	.get_active_mbox_chan = mhuv2_get_active_mbox_chan_multi_word,
-+};
-+/* ========================================================================== */
-+
- /* =================== Doorbell transport protocol operations =============== */
- 
- static inline int mhuv2_read_data_doorbell(struct arm_mhuv2 *mhuv2,
-@@ -740,6 +962,9 @@ static int mhuv2_probe(struct amba_device *adev, const struct amba_id *id)
- 
- 	/* Assign transport protocol-specific operations */
- 	switch (mhuv2->protocol) {
-+	case MULTI_WORD:
-+		mhuv2->ops = &mhuv2_multi_word_ops;
-+		break;
- 	case SINGLE_WORD:
- 		mhuv2->ops = &mhuv2_single_word_ops;
- 		break;
--- 
-2.17.1
+Please send an updated DT patch at your earliest convenience so we can get 
+it into the v5.3-rc series.
 
+
+- Paul
