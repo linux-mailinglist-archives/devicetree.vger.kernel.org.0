@@ -2,160 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BC746C039
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 19:16:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4713C6C048
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 19:21:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727331AbfGQRQj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 13:16:39 -0400
-Received: from vps.deutnet.info ([92.222.219.9]:60708 "EHLO vps.deutnet.info"
+        id S1729380AbfGQRVr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 13:21:47 -0400
+Received: from vern.gendns.com ([98.142.107.122]:41884 "EHLO vern.gendns.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726917AbfGQRQj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 13:16:39 -0400
+        id S1725873AbfGQRVr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jul 2019 13:21:47 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=deutnet.info; s=default; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:
-        To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=JdQW5yef3/oLdjTuLUcYjPBC8Xuj3agNuqkg0iaCI/0=; b=nFlfFWBYdBHEuafvpo+RbP7HTS
-        GI04vJPPD00ES7Hli6DLAaqlXo8+mjfV4L7R30WWDTG/WEfOJdOWByhAsoGcpvrzTkDHOHdkg8ZiR
-        LkN7oUv6ZtAllN+9j++w6pH1D3iV8deHDCpMwfMs4HneCqFYIUhyeZVZ7ar3N2GxryIVdXzDk1ZRw
-        pMtpyPrmX/DYhQjAKCDD2bc/V1fS66bq34xoe9Za3ThgBrmEa4J6GpzNpga6OCQUjX+NCuEjkffbK
-        KVcRhZrs1ETStZvwXk3PkhAfMB6CPZes/pP8NT54sTYBiNFvxGUUIYd2ps63KJskGZc0AFd4zT4Vl
-        4c8Z1/ew==;
-Received: from [2001:41d0:fe79:6700:cf3e:2f2c:b15:9bf9] (helo=sonata)
-        by vps.deutnet.info with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <agriveaux@deutnet.info>)
-        id 1hnn8N-0006tM-G7; Wed, 17 Jul 2019 18:50:27 +0200
-Received: from agriveaux by sonata with local (Exim 4.92)
-        (envelope-from <agriveaux@localhost.localdomain>)
-        id 1hnn8L-0003Du-DF; Wed, 17 Jul 2019 18:50:25 +0200
-Date:   Wed, 17 Jul 2019 18:50:25 +0200
-From:   Alexandre GRIVEAUX <agriveaux@deutnet.info>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        Alexandre GRIVEAUX <agriveaux@deutnet.info>
-Cc:     linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH] MIPS: JZ4740: DTS: Add I2C nodes
-Message-ID: <20190717165025.GA12362@localhost.localdomain>
+        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=0e5KXANYBSya6HFY+w50szT78V3hXoXrtYknRgw92PY=; b=gIlQDHNo+7ek+vYWfHdVTFxW6d
+        kMOJGCGKxDfLFXrwfXRbsKuHiUd4R8kXgAAcOU21r5PYa7/8bwhtTxieHeeyqReWP7Ems3tIbeXgR
+        XshlZ5r1AJDGwycXPa2SmDxjpa9B8vFOLM8PSnlnKgGa0reGv31ItWue3x42potZohs8AfGU6bY+D
+        vnNSt7UUdRH2ykv951H1d11lef/uaRiORrSFn4tL2puuHguaP1nu7dfreXkmqzlI1pWHwbhE3MTOJ
+        qHAGPh4VQcY32IMBta8JLWKUqv6fdG7eI79D8uom5XRz3YpLG/UU9aFgYKUWOGXtc5lguNmb41Ohq
+        tXtzIj+A==;
+Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:47560 helo=[192.168.0.134])
+        by vern.gendns.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <david@lechnology.com>)
+        id 1hnncd-007Yqa-Ka; Wed, 17 Jul 2019 13:21:43 -0400
+Subject: Re: [PATCH 2/6] irqchip/irq-pruss-intc: Add a PRUSS irqchip driver
+ for PRUSS interrupts
+To:     Suman Anna <s-anna@ti.com>, Marc Zyngier <marc.zyngier@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>
+Cc:     Tony Lindgren <tony@atomide.com>, "Andrew F. Davis" <afd@ti.com>,
+        Roger Quadros <rogerq@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+References: <20190708035243.12170-1-s-anna@ti.com>
+ <20190708035243.12170-3-s-anna@ti.com>
+ <3d91800b-e858-8c73-5ea8-e99e5ea30e8e@lechnology.com>
+ <54e871a8-dfa4-f65b-5869-d1661144cbf0@ti.com>
+From:   David Lechner <david@lechnology.com>
+Message-ID: <5241ecb9-4ab2-b01c-367c-38c554c056c4@lechnology.com>
+Date:   Wed, 17 Jul 2019 12:21:42 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <54e871a8-dfa4-f65b-5869-d1661144cbf0@ti.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the devicetree nodes for the I2C core of the JZ4780 SoC, disabled
-by default.
----
- arch/mips/boot/dts/ingenic/jz4780.dtsi | 86 ++++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
+On 7/16/19 12:21 PM, Suman Anna wrote:
+>>> +static int pruss_intc_probe(struct platform_device *pdev)
+>>> +{
+>>> +    static const char * const irq_names[] = {
+>>> +                "host0", "host1", "host2", "host3",
+>>> +                "host4", "host5", "host6", "host7", };
+>>> +    struct device *dev = &pdev->dev;
+>>> +    struct pruss_intc *intc;
+>>> +    struct resource *res;
+>>> +    struct irq_chip *irqchip;
+>>> +    int i, irq;
+>>> +
+>>> +    intc = devm_kzalloc(dev, sizeof(*intc), GFP_KERNEL);
+>>> +    if (!intc)
+>>> +        return -ENOMEM;
+>>> +    platform_set_drvdata(pdev, intc);
+>>> +
+>>> +    res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>>> +    intc->base = devm_ioremap_resource(dev, res);
+>>> +    if (IS_ERR(intc->base)) {
+>>> +        dev_err(dev, "failed to parse and map intc memory resource\n");
+>>> +        return PTR_ERR(intc->base);
+>>> +    }
+>>> +
+>>> +    dev_dbg(dev, "intc memory: pa %pa size 0x%zx va %pK\n", &res->start,
+>>> +        (size_t)resource_size(res), intc->base);
+>>> +
+>>> +    mutex_init(&intc->lock);
+>>> +
+>>> +    pruss_intc_init(intc);
+>>> +
+>>> +    irqchip = devm_kzalloc(dev, sizeof(*irqchip), GFP_KERNEL);
+>>> +    if (!irqchip)
+>>> +        return -ENOMEM;
+>>> +
+>>> +    irqchip->irq_ack = pruss_intc_irq_ack;
+>>> +    irqchip->irq_mask = pruss_intc_irq_mask;
+>>> +    irqchip->irq_unmask = pruss_intc_irq_unmask;
+>>> +    irqchip->irq_retrigger = pruss_intc_irq_retrigger;
+>>> +    irqchip->irq_request_resources = pruss_intc_irq_reqres;
+>>> +    irqchip->irq_release_resources = pruss_intc_irq_relres;
+>>> +    irqchip->name = dev_name(dev);
+>>
+>> Should we also set `irqchip->parent_device = dev;` here?
+>>
+>> I tried it and had to add pm runtime stuff as well, otherwise
+>> requesting irqs would fail.
+> 
+> I haven't seen any during my local testing. What sort of failure are you
+> seeing?
+> 
+> The clocking for the overall PRUSS module will be handled in either the
+> ti-sysc driver for OMAP SoCs or in the pruss platform driver.
+> 
+I was getting -EACCESS bubbling up from rpm_resume() in drivers/base/
+power/runtime.c. It was probably a mix of how I set up the device tree
+and the dummy PRUSS bus driver I made.
 
-diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-index b03cdec56de9..a76ecd69bfd0 100644
---- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-@@ -239,6 +239,92 @@
- 		status = "disabled";
- 	};
- 
-+	i2c0: i2c@10050000 {
-+		compatible = "ingenic,jz4780-i2c";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
-+		reg = <0x10050000 0x1000>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <60>;
-+
-+		clocks = <&cgu JZ4780_CLK_SMB0>;
-+		clock-frequency = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pins_i2c0_data>;
-+
-+		status = "disabled";
-+	};
-+
-+	i2c1: i2c@10051000 {
-+		compatible = "ingenic,jz4780-i2c";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x10051000 0x1000>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <59>;
-+
-+		clocks = <&cgu JZ4780_CLK_SMB1>;
-+		clock-frequency = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pins_i2c1_data>;
-+
-+		status = "disabled";
-+	};
-+
-+	i2c2: i2c@10052000 {
-+		compatible = "ingenic,jz4780-i2c";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x10052000 0x1000>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <58>;
-+
-+		clocks = <&cgu JZ4780_CLK_SMB2>;
-+		clock-frequency = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pins_i2c2_data>;
-+
-+		status = "disabled";
-+	};
-+
-+	i2c3: i2c@10053000 {
-+		compatible = "ingenic,jz4780-i2c";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x10053000 0x1000>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <57>;
-+
-+		clocks = <&cgu JZ4780_CLK_SMB3>;
-+		clock-frequency = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pins_i2c3_data>;
-+
-+		status = "disabled";
-+	};
-+
-+	i2c4: i2c@10054000 {
-+		compatible = "ingenic,jz4780-i2c";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x10054000 0x1000>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <56>;
-+
-+		clocks = <&cgu JZ4780_CLK_SMB4>;
-+		clock-frequency = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pins_i2c4_data>;
-+
-+		status = "disabled";
-+	};
-+
- 	watchdog: watchdog@10002000 {
- 		compatible = "ingenic,jz4780-watchdog";
- 		reg = <0x10002000 0x10>;
--- 
-2.20.1
-
+I'm sure it will be fine with a proper PRUSS platform driver.
