@@ -2,91 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9310C6BDBB
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 16:00:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 073296BDCD
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 16:04:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726081AbfGQOAA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 10:00:00 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:37350 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725873AbfGQOAA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 10:00:00 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6HDxqSk062883;
-        Wed, 17 Jul 2019 08:59:52 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1563371992;
-        bh=XbfWttQsD9HxjUDBssZl8Yh4lE+MdlmkC8ZSKN0ubjI=;
-        h=From:To:CC:Subject:Date;
-        b=u/wqkh9r280mzTDCWrrmUqWC9Xqq7FIa+nryqf62hRieZntb5ITucSR84049lMBQA
-         Os7pzsTXBvgq0khbrOeYDLFAzTFyovVWkuwRPkq1Yz+rdVOZMOwanrrstTlRxLcnXr
-         KPZAHtzfTa42+zAnf9EmBOv+9xYBtQHD0pV22Obg=
-Received: from DFLE110.ent.ti.com (dfle110.ent.ti.com [10.64.6.31])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6HDxqO8108183
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 17 Jul 2019 08:59:52 -0500
-Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 17
- Jul 2019 08:59:52 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE109.ent.ti.com
- (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 17 Jul 2019 08:59:52 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6HDxpQb069975;
-        Wed, 17 Jul 2019 08:59:52 -0500
-From:   Jean-Jacques Hiblot <jjhiblot@ti.com>
-To:     <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <daniel.thompson@linaro.org>
-CC:     <dmurphy@ti.com>, <linux-leds@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Jean-Jacques Hiblot <jjhiblot@ti.com>
-Subject: [PATCH v3 0/3] leds: Add control of the voltage/current regulator to the LED core
-Date:   Wed, 17 Jul 2019 15:59:45 +0200
-Message-ID: <20190717135948.19340-1-jjhiblot@ti.com>
-X-Mailer: git-send-email 2.17.1
+        id S1726934AbfGQOC4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 10:02:56 -0400
+Received: from relay1.mentorg.com ([192.94.38.131]:56925 "EHLO
+        relay1.mentorg.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726598AbfGQOC4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 10:02:56 -0400
+Received: from nat-ies.mentorg.com ([192.94.31.2] helo=svr-ies-mbx-01.mgc.mentorg.com)
+        by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
+        id 1hnkWC-0004kx-BJ from Harish_Kandiga@mentor.com ; Wed, 17 Jul 2019 07:02:52 -0700
+Received: from [10.0.3.15] (137.202.0.90) by svr-ies-mbx-01.mgc.mentorg.com
+ (139.181.222.1) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Wed, 17 Jul
+ 2019 15:02:47 +0100
+Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
+From:   Harish Jenny K N <harish_kandiga@mentor.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>
+CC:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Balasubramani Vivekanandan 
+        <balasubramani_vivekanandan@mentor.com>
+References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
+ <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
+ <06c95f15-d577-e43d-e046-ee222f86c406@mentor.com>
+ <CAL_JsqLQvjtnfUsZ2RP4eozvdwMLzNxtgmT+XFaxW4xzoFjL=w@mail.gmail.com>
+ <f1616784-4dbf-d0fa-b33e-c85fd569383a@mentor.com>
+Message-ID: <ec343df3-b374-fecf-6973-3b37614975a7@mentor.com>
+Date:   Wed, 17 Jul 2019 19:21:18 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <f1616784-4dbf-d0fa-b33e-c85fd569383a@mentor.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-Originating-IP: [137.202.0.90]
+X-ClientProxiedBy: SVR-IES-MBX-07.mgc.mentorg.com (139.181.222.7) To
+ svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This series makes it possible for the LED core to manage the power supply
-of a LED. It uses the regulator API to disable/enable the power if when the
-LED is turned on/off.
-This is especially useful in situations where the LED driver/controller is
-not supplying the power.
+Hi Linus,
 
-While at it, throw in a fix for led_set_brightness_sync() so that it can
-work with drivers that don't provide brightness_set_blocking()
+On 10/07/19 1:58 PM, Harish Jenny K N wrote:
+> Hi,
+>
+> On 09/07/19 9:38 PM, Rob Herring wrote:
+>> On Mon, Jul 8, 2019 at 11:25 PM Harish Jenny K N
+>> <harish_kandiga@mentor.com> wrote:
+>>> Hi Rob,
+>>>
+>>>
+>>> On 09/07/19 4:06 AM, Rob Herring wrote:
+>>>> On Fri, Jun 28, 2019 at 3:31 AM Harish Jenny K N
+>>>> <harish_kandiga@mentor.com> wrote:
+>>>>> Document the device tree binding for the inverter gpio
+>>>>> controller to configure the polarity of the gpio pins
+>>>>> used by the consumers.
+>>>>>
+>>>>> Signed-off-by: Harish Jenny K N <harish_kandiga@mentor.com>
+>>>>> ---
+>>>>>  .../devicetree/bindings/gpio/gpio-inverter.txt     | 29 ++++++++++++++++++++++
+>>>>>  1 file changed, 29 insertions(+)
+>>>>>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-inverter.txt
+>>>>>
+>>>>> diff --git a/Documentation/devicetree/bindings/gpio/gpio-inverter.txt b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
+>>>>> new file mode 100644
+>>>>> index 0000000..8bb6b2e
+>>>>> --- /dev/null
+>>>>> +++ b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
+>>>>> @@ -0,0 +1,29 @@
+>>>>> +GPIO-INVERTER
+>>>>> +======
+>>>>> +This binding defines the gpio-inverter. The gpio-inverter is a driver that
+>>>>> +allows to properly describe the gpio polarities on the hardware.
+>>>> I don't understand. Please explain this in terms of the hardware, not a driver.
+>>> gpio inverters can be used on different hardware to alter the polarity of gpio chips.
+>>> The polarity of pins can change from hardware to hardware with the use of inverters.
+>> Yes, I know what an inverter is.
+>>
+>>> This device tree binding models gpio inverters in the device tree to properly describe the hardware.
+>> We already define the active state of GPIOs in the consumers. If
+>> there's an inverter in the middle, the consumer active state is simply
+>> inverted. I don't agree that that is a hack as Linus said without some
+>> reasoning why an inverter needs to be modeled in DT. Anything about
+>> what 'userspace' needs is not a reason. That's a Linux thing that has
+>> little to do with hardware description.
+>
+> Yes we are talking about the hardware level inversions here. The usecase is for those without the gpio consumer driver. The usecase started with the concept of allowing an abstraction of the underlying hardware for the userland controlling program such that this program does not care whether the GPIO lines are inverted or not physically. In other words, a single userland controlling program can work unmodified across a variety of hardware platforms with the device tree mapping the logical to physical relationship of the GPIO hardware.
+> I totally understand anything about what 'userspace' needs is not a reason, but this is not restricted to userspace alone as kernel drivers may need this just as much. Also we are just modelling/describing the hardware state in the device tree.
+>
+> Just to mention that Linus Walleij had proposed this inverter model to describe the hardware and the gpio inverter driver is developed based on comments/review from him.
+>
+> Also my sincere request to Linus Walleij to please let his opinion know on this.
+>
+> Thanks,
+>
+> Best Regards,
+> Harish Jenny K N
 
-changes in v3:
-- reword device-tree description
-- reword commit log
-- remove regulator updates from functions used in atomic context. If the
-  regulator must be updated, it is defered to a workqueue.
-- Fix led_set_brightness_sync() to work with the non-blocking function
-  __led_set_brightness()
 
-changes in v2:
-- use devm_regulator_get_optional() to avoid using the dummy regulator and
-  do some unnecessary work
+Can you please give your opinion on this.
 
-Jean-Jacques Hiblot (3):
-  dt-bindings: leds: document the "power-supply" property
-  leds: Add control of the voltage/current regulator to the LED core
-  leds: Make led_set_brightness_sync() also use __led_set_brightness()
 
- .../devicetree/bindings/leds/common.txt       |  4 ++
- drivers/leds/led-class.c                      | 15 ++++++
- drivers/leds/led-core.c                       | 53 +++++++++++++++++--
- drivers/leds/leds.h                           |  1 +
- include/linux/leds.h                          |  4 ++
- 5 files changed, 73 insertions(+), 4 deletions(-)
+Thanks.
 
--- 
-2.17.1
+
+Best Regards,
+
+Harish Jenny K N
+
+>
 
