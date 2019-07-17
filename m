@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 980EC6B700
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 08:55:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 66AB06B716
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 09:02:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725912AbfGQGzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 02:55:08 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:59306 "EHLO
+        id S1725932AbfGQHCP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 03:02:15 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:46470 "EHLO
         mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727012AbfGQGzH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 02:55:07 -0400
-X-UUID: 9f1c975c797c4aa99fc512c38799216e-20190717
-X-UUID: 9f1c975c797c4aa99fc512c38799216e-20190717
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        with ESMTP id S1725873AbfGQHCP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 03:02:15 -0400
+X-UUID: 178f1f2683724f59a40625aed9c447b8-20190717
+X-UUID: 178f1f2683724f59a40625aed9c447b8-20190717
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
         (envelope-from <ck.hu@mediatek.com>)
         (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1132981241; Wed, 17 Jul 2019 14:55:03 +0800
+        with ESMTP id 1071939593; Wed, 17 Jul 2019 15:01:50 +0800
 Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 17 Jul 2019 14:55:01 +0800
+ MTKMBS31DR.mediatek.inc (172.27.6.102) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 17 Jul 2019 15:01:48 +0800
 Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
  (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 17 Jul 2019 14:55:01 +0800
-Message-ID: <1563346501.29169.25.camel@mtksdaap41>
-Subject: Re: [PATCH v4, 24/33] drm/mediatek: distinguish ovl and ovl_2l by
- layer_nr
+ Transport; Wed, 17 Jul 2019 15:01:48 +0800
+Message-ID: <1563346908.29169.28.camel@mtksdaap41>
+Subject: Re: [PATCH v4, 25/33] drm/mediatek: add clock property check before
+ get it
 From:   CK Hu <ck.hu@mediatek.com>
 To:     <yongqiang.niu@mediatek.com>
 CC:     Philipp Zabel <p.zabel@pengutronix.de>,
@@ -37,15 +37,15 @@ CC:     Philipp Zabel <p.zabel@pengutronix.de>,
         <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
         <linux-mediatek@lists.infradead.org>
-Date:   Wed, 17 Jul 2019 14:55:01 +0800
-In-Reply-To: <1562625253-29254-25-git-send-email-yongqiang.niu@mediatek.com>
+Date:   Wed, 17 Jul 2019 15:01:48 +0800
+In-Reply-To: <1562625253-29254-26-git-send-email-yongqiang.niu@mediatek.com>
 References: <1562625253-29254-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1562625253-29254-25-git-send-email-yongqiang.niu@mediatek.com>
+         <1562625253-29254-26-git-send-email-yongqiang.niu@mediatek.com>
 Content-Type: text/plain; charset="UTF-8"
 X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 11F1DE6BD2C0561D80B2B9B084DC8B4CE48F7F7536BCB170DD002279A4AB79AD2000:8
+X-TM-SNTS-SMTP: DBE8AFB5AD53D33AE2D0AB8EF4693F5CD67E9E7F3DEEF7454E41BD6BB0BDA92E2000:8
 X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -57,43 +57,41 @@ Hi, Yongqiang:
 On Tue, 2019-07-09 at 06:34 +0800, yongqiang.niu@mediatek.com wrote:
 > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > 
-> distinguish ovl and ovl_2l by layer_nr when get comp
-> id
+> This patch add clock property check before get it
 > 
-
-Reviewed-by: CK Hu <ck.hu@mediatek.com>
-
 > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
 > ---
->  drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 9 ++++++---
->  1 file changed, 6 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/mediatek/mtk_drm_ddp.c | 10 ++++++----
+>  1 file changed, 6 insertions(+), 4 deletions(-)
 > 
-> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-> index 8ca4965..7e99827 100644
-> --- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-> +++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
-> @@ -326,7 +326,12 @@ static int mtk_disp_ovl_probe(struct platform_device *pdev)
->  	if (irq < 0)
->  		return irq;
+> diff --git a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> index c57e7ab..a9d3e27 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_drm_ddp.c
+> @@ -668,10 +668,12 @@ static int mtk_ddp_probe(struct platform_device *pdev)
+>  	for (i = 0; i < 10; i++)
+>  		ddp->mutex[i].id = i;
 >  
-> -	comp_id = mtk_ddp_comp_get_id(dev->of_node, MTK_DISP_OVL);
-> +	priv->data = of_device_get_match_data(dev);
-> +
-> +	comp_id = mtk_ddp_comp_get_id(dev->of_node,
-> +				      priv->data->layer_nr == 4 ?
-> +				      MTK_DISP_OVL :
-> +				      MTK_DISP_OVL_2L);
->  	if (comp_id < 0) {
->  		dev_err(dev, "Failed to identify by alias: %d\n", comp_id);
->  		return comp_id;
-> @@ -339,8 +344,6 @@ static int mtk_disp_ovl_probe(struct platform_device *pdev)
->  		return ret;
+> -	ddp->clk = devm_clk_get(dev, NULL);
+> -	if (IS_ERR(ddp->clk)) {
+> -		dev_err(dev, "Failed to get clock\n");
+> -		return PTR_ERR(ddp->clk);
+> +	if (of_find_property(dev->of_node, "clocks", &i)) {
+> +		ddp->clk = devm_clk_get(dev, NULL);
+> +		if (IS_ERR(ddp->clk)) {
+> +			dev_err(dev, "Failed to get clock\n");
+> +			return PTR_ERR(ddp->clk);
+> +		}
+
+Only "mediatek,mt8133-disp-mutex" has no clock property. For other SoC,
+clock property is required. So I think this exception is just for
+mt8183.
+
+Regards,
+CK
+
 >  	}
 >  
-> -	priv->data = of_device_get_match_data(dev);
-> -
->  	platform_set_drvdata(pdev, priv);
->  
->  	ret = devm_request_irq(dev, irq, mtk_disp_ovl_irq_handler,
+>  	regs = platform_get_resource(pdev, IORESOURCE_MEM, 0);
 
 
