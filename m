@@ -2,234 +2,181 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C2AF6BAD9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 12:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B72806BAFF
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 13:06:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725932AbfGQK7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 06:59:25 -0400
-Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:52742 "EHLO
-        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725873AbfGQK7Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 06:59:25 -0400
-Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
-        by mx0a-0014ca01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6HAveav021805;
-        Wed, 17 Jul 2019 03:58:48 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=date : from : to :
- cc : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=proofpoint;
- bh=k5a0nbgCGii4YyS6eGeL9qKquO//93AyQ+mY231zwi0=;
- b=EQXLQFhnzL5eLpswgKhxnlX5RAzFMmLaB+zwJlHqgG2SbQxoPr6EucGB4Au6nv7diQTz
- o7IZA5Gsv9Unim+M0XpUylRiTrB/D3AnFkCLSWxqub62YmTXDw44C8DfEjlPs4r0S3yh
- CA/PFglHX/bTYCGEjUMd/u+kJxHytZ2jfRUiZG8l8pLlmF/6g9kLVHvH+WWDdD8JM6J6
- A948PKnl/4xxmgp2pn302aZP6uTSQ8AvJN7BJkMQ6OfBhR23c4PJIxsH6pstE8BMSvEi
- leX78rjFdcFPPs1BIPhSrlRGHn5+FREnCFyXRKECmnT+3K4MR/HyZzruHUdnFg8afX5z dA== 
-Authentication-Results: cadence.com;
-        spf=pass smtp.mailfrom=piotrs@cadence.com
-Received: from nam05-dm3-obe.outbound.protection.outlook.com (mail-dm3nam05lp2052.outbound.protection.outlook.com [104.47.49.52])
-        by mx0a-0014ca01.pphosted.com with ESMTP id 2tqbuw785b-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT);
-        Wed, 17 Jul 2019 03:58:48 -0700
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ALN8HtknUraVPpZWEz8qsoVbqiTzWrHiT4eu1rsIvAoYuU6rcEQHCSSxMp7hp2KpstdCAebiySYf1wF3nUwFnNPo2XInbt+8dR5Wmo+ir5Zea9MqwImxeqMVMIjyd5+I0audTuOhyAOtPfdebyfUqlm+pjgMwGDPY0ML8i+CQ71X+sAqx+Z+XfokmCUlNh5Has8RQEsKAOxLB2PleYHt9Qou42FeIKGh4oSoA2VuKUOaMVLwSVu0ZTeE/qWPCV9EmvzlLzr6z4R8mfvpe3XBU9LWsN3LwR9UKhFvoM0h1b2+faj2wca3uBQauOnJmHM8G0Lm02rFdhG8rbYwm7feIQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k5a0nbgCGii4YyS6eGeL9qKquO//93AyQ+mY231zwi0=;
- b=Sn8Ix4NjWn5ARwojpaK3tQYoQGiGc01n7wWLZcJDz0ekrLoqnwIvPMLoNiBi2dkhP2oxU2LXytqp4jFTqTZlFsQ1gnqTvvKzY5HshijVYbzmwZ1zXVOXpo7zrNmXySJRSkv4t99DvuZUHAZ/iAZTJnTjss3A19wmIqaU4I8J4w6FPUEOuSRpjR8B7OTK7T057TMjzLoUHlcdBZdMfrmgaek4G763F8t1r253u2zmYkvfQhugs8cxoT7UJ5rTJUoHgz0KFlZKZgMtDb/k/zOWumYcwx05eYIV96m0hYdrirB+FCKml4Ua5TphJ3yJI/KeNHudEaTPBrlOagBMSgMaIw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=softfail (sender ip is
- 199.43.4.28) smtp.rcpttodomain=gmail.com smtp.mailfrom=cadence.com;dmarc=fail
- (p=none sp=none pct=100) action=none header.from=cadence.com;dkim=none
- (message not signed);arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=k5a0nbgCGii4YyS6eGeL9qKquO//93AyQ+mY231zwi0=;
- b=gYbn6SXq4DCpvBdWc+9vvACuyuUnRNED7E7kdtA/w9M/dXhTEpgLfcv3OQ9DDXW4P0iv0302UhKVtXa40yS/YWJ3NzDtKucSVVEjXXTA3cY9jvz3NNXsJCMWHPkPjMpl1do6V/bdHWlM58meJpLugabxDjvn7OcDlP/Puh3Gqjk=
-Received: from DM5PR07CA0055.namprd07.prod.outlook.com (2603:10b6:4:ad::20) by
- BN6PR07MB2994.namprd07.prod.outlook.com (2603:10b6:404:a7::12) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2073.14; Wed, 17 Jul 2019 10:58:45 +0000
-Received: from DM3NAM05FT046.eop-nam05.prod.protection.outlook.com
- (2a01:111:f400:7e51::209) by DM5PR07CA0055.outlook.office365.com
- (2603:10b6:4:ad::20) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id 15.20.2073.14 via Frontend
- Transport; Wed, 17 Jul 2019 10:58:44 +0000
-Received-SPF: SoftFail (protection.outlook.com: domain of transitioning
- cadence.com discourages use of 199.43.4.28 as permitted sender)
-Received: from rmmaillnx1.cadence.com (199.43.4.28) by
- DM3NAM05FT046.mail.protection.outlook.com (10.152.98.160) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384) id
- 15.20.2052.8 via Frontend Transport; Wed, 17 Jul 2019 10:58:43 +0000
-Received: from mailsj6.global.cadence.com (mailsj6.cadence.com [158.140.32.112])
-        by rmmaillnx1.cadence.com (8.14.4/8.14.4) with ESMTP id x6HAwa2j006017
-        (version=TLSv1/SSLv3 cipher=AES256-SHA bits=256 verify=OK);
-        Wed, 17 Jul 2019 06:58:39 -0400
-X-CrossPremisesHeadersFilteredBySendConnector: mailsj6.global.cadence.com
-Received: from global.cadence.com (158.140.32.37) by
- mailsj6.global.cadence.com (158.140.32.112) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Wed, 17 Jul 2019 03:58:33 -0700
-Date:   Wed, 17 Jul 2019 11:58:27 +0100
-From:   Piotr Sroka <piotrs@cadence.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <linux-kernel@vger.kernel.org>,
-        David Woodhouse <dwmw2@infradead.org>,
-        BrianNorris <computersforpeace@gmail.com>,
-        Boris Brezillon <bbrezillon@kernel.org>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        "Richard Weinberger" <richard@nod.at>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-mtd@lists.infradead.org>, <devicetree@vger.kernel.org>
-Subject: Re: [v3 2/2] dt-bindings: nand: Add Cadence NAND controller driver
-Message-ID: <20190717105825.GA11796@global.cadence.com>
-References: <20190614150956.31244-1-piotrs@cadence.com>
- <20190614151301.5371-1-piotrs@cadence.com>
- <20190709144853.GA23699@bogus>
+        id S1726685AbfGQLGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 07:06:05 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:42800 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725932AbfGQLGF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 07:06:05 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190717110603euoutp01efd45ce84dcc8ea7b4892b91ce71e50d~yLQ8Qh1Ms3079930799euoutp01W
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 11:06:03 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190717110603euoutp01efd45ce84dcc8ea7b4892b91ce71e50d~yLQ8Qh1Ms3079930799euoutp01W
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1563361563;
+        bh=iAfrBLURBPFLNZXDcSr/kH1z/iFyZF4K7ye5pfu80hA=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=OOqUOaKaRD8FGqMiXxQeZlLEYrUp/V7KgIFAQtsrjxHTLgmykvwJXXZ6ozrfvGvuY
+         Fc3jLjgKMwc2Zb9wnUxk59TU9ayDEY1kBtBN900HqAJkPlLFaB1tBaZmfxDfKy1le+
+         9xDl4DDIEM9r6t3YxV7bUqR4Mqf59EiJ9NViUlmg=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190717110602eucas1p1e196030e637b25186941ad6015b25a9a~yLQ7dzRlu2807728077eucas1p1B;
+        Wed, 17 Jul 2019 11:06:02 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 47.7B.04325.A110F2D5; Wed, 17
+        Jul 2019 12:06:02 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190717110601eucas1p2ce5ccf9528a665b33dd6b31781887fc9~yLQ6Zvt671400914009eucas1p22;
+        Wed, 17 Jul 2019 11:06:01 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190717110601eusmtrp15dc480f29a41416857ad562989e230f8~yLQ6Lh3qY2223122231eusmtrp1K;
+        Wed, 17 Jul 2019 11:06:01 +0000 (GMT)
+X-AuditID: cbfec7f5-b8fff700000010e5-21-5d2f011ab3ef
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 8A.18.04140.8110F2D5; Wed, 17
+        Jul 2019 12:06:00 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190717110600eusmtip21ac2eeb6cfbe74f33dc73bb1188fa0a5~yLQ5Mmlyd0640006400eusmtip2x;
+        Wed, 17 Jul 2019 11:06:00 +0000 (GMT)
+Subject: Re: [PATCH v1 37/50] ARM: dts: exynos: change parent and rate of
+ bus_fsys in Exynos5422
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org, mark.rutland@arm.com,
+        robh+dt@kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com, Andrzej Hajda <a.hajda@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <518c26ca-4254-056c-d6d0-ae1b4b63709c@partner.samsung.com>
+Date:   Wed, 17 Jul 2019 13:05:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.7.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Disposition: inline
-In-Reply-To: <20190709144853.GA23699@bogus>
-User-Agent: Mutt/1.5.20 (2009-12-10)
-X-Originating-IP: [158.140.32.37]
-X-ClientProxiedBy: mailsj7.global.cadence.com (158.140.32.114) To
- mailsj6.global.cadence.com (158.140.32.112)
-X-OrganizationHeadersPreserved: mailsj6.global.cadence.com
-X-EOPAttributedMessage: 0
-X-Forefront-Antispam-Report: CIP:199.43.4.28;IPV:CAL;SCL:-1;CTRY:US;EFV:NLI;SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(136003)(346002)(376002)(396003)(2980300002)(36092001)(199004)(189003)(426003)(54906003)(23676004)(55016002)(11346002)(126002)(58126008)(336012)(2486003)(3846002)(476003)(67846002)(956004)(16586007)(53416004)(26005)(6116002)(186003)(76176011)(6666004)(386003)(316002)(16526019)(81156014)(446003)(70206006)(7696005)(1076003)(76130400001)(8936002)(356004)(6286002)(53936002)(47776003)(68736007)(7416002)(81166006)(486006)(6246003)(50466002)(478600001)(66066001)(4326008)(33656002)(26826003)(69596002)(2906002)(305945005)(5660300002)(86362001)(6916009)(229853002)(8676002)(70586007)(7736002);DIR:OUT;SFP:1101;SCL:1;SRVR:BN6PR07MB2994;H:rmmaillnx1.cadence.com;FPR:;SPF:SoftFail;LANG:en;PTR:InfoDomainNonexistent;A:1;MX:1;
-X-MS-PublicTrafficType: Email
-X-MS-Office365-Filtering-Correlation-Id: 3f15a167-4e23-4599-0855-08d70aa5bc96
-X-Microsoft-Antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BN6PR07MB2994;
-X-MS-TrafficTypeDiagnostic: BN6PR07MB2994:
-X-Microsoft-Antispam-PRVS: <BN6PR07MB2994D4D34A81799A6817A9CFDDC90@BN6PR07MB2994.namprd07.prod.outlook.com>
-X-MS-Oob-TLC-OOBClassifiers: OLM:6108;
-X-Forefront-PRVS: 01018CB5B3
-X-MS-Exchange-SenderADCheck: 1
-X-Microsoft-Antispam-Message-Info: enLAcxIdBvmK3OmsZO92prmJXwNN/iqzszJY1erJWO79sXaAr1VNUdEiYyDPAI8FSPWuY0Md5u/jugx3aDwUG+X9YkG/CtFo3geIiNunJKQQvdIInwzTKnQyxQrNOS1sccks4RjUd6B82pbO/Qp6Wd2Nl+DE71qjvd1WwVw0mw9ySB3APLAbJ2vsPbC9MS9yTyQjWETsZIr/neH28Sdv6/OCKWXBke942coOOZAjse082FAsP4rlIPQAdupoX9T9R5eFmCnB9KOPF9H1eWmOMcfnj8S0aGO07vQHsJxJ1Q4qfE+uN/WmdopXEVniXYafinUD9JA14ObFRs2W7uDDzPNVRPGaGM/ehiazcn5gMxs+5V8ItfdJW4i0kSNNRHbEd67O3kykDnJslzxfbTOUSZgGAdeOqwXo12Y3cAaPXjs=
-X-OriginatorOrg: cadence.com
-X-MS-Exchange-CrossTenant-OriginalArrivalTime: 17 Jul 2019 10:58:43.9760
- (UTC)
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3f15a167-4e23-4599-0855-08d70aa5bc96
-X-MS-Exchange-CrossTenant-Id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
-X-MS-Exchange-CrossTenant-OriginalAttributedTenantConnectingIp: TenantId=d36035c5-6ce6-4662-a3dc-e762e61ae4c9;Ip=[199.43.4.28];Helo=[rmmaillnx1.cadence.com]
-X-MS-Exchange-CrossTenant-FromEntityHeader: HybridOnPrem
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BN6PR07MB2994
-X-Proofpoint-SPF-Result: pass
-X-Proofpoint-SPF-Record: v=spf1 include:spf.smktg.jp include:_spf.salesforce.com
- include:mktomail.com include:spf-0014ca01.pphosted.com
- include:spf.protection.outlook.com include:auth.msgapp.com
- include:spf.mandrillapp.com ~all
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-17_04:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0
- priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
- spamscore=0 clxscore=1011 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1810050000 definitions=main-1907170134
+In-Reply-To: <CAJKOXPd3gm7no-0TnPmgFg+X3FgdiM6ov5rtzFSM6hKEdEzRCg@mail.gmail.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrPKsWRmVeSWpSXmKPExsWy7djP87pSjPqxBs83cVncWneO1WLjjPWs
+        Fte/PGe1mH8EyO1//JrZ4vz5DewWZ5vesFtsenyN1eJjzz1Wi8u75rBZzDi/j8li7ZG77BZL
+        r19ksrh4ytXiduMKNovWvUfYLQ6/aWe1+HdtI4uDkMeaeWsYPd7faGX32LSqk81j85J6j74t
+        qxg9Pm+SC2CL4rJJSc3JLEst0rdL4Mp4tZK74LxIRfM3swbGZoEuRk4OCQETidVN7exdjFwc
+        QgIrGCUun3/OAuF8YZTY+H4/lPOZUeLPmhlsXYwcYC1rV0VCxJczSnT/esEM4bxllDh+aj4b
+        yFxhgSSJU3teM4PYIgKaEtf/fmcFKWIWuMoi8eP+dxaQSWwCehI7VhWC1PAKuEnsmjKNBcRm
+        EVCVONT0HswWFYiQuLxlFyNEjaDEyZlPwFo5BQIlGvY4g4SZBcQlbj2ZzwRhy0tsfzsH7B4J
+        gU4OiQnHZ7NCHO0isfqYNcTLwhKvjm9hh7BlJE5P7mGBsIslGnoXMkLYNRKP++dC1VhLHD5+
+        EWwMM9Ar63fpQ4QdJaZeeA41nU/ixltBiAv4JCZtm84MEeaV6GgTgqjWkNjSc4EJwhaTWL5m
+        GvsERqVZSN6aheSXWUh+mYWwdwEjyypG8dTS4tz01GLjvNRyveLE3OLSvHS95PzcTYzAZHf6
+        3/GvOxj3/Uk6xCjAwajEw+txWDdWiDWxrLgy9xCjBAezkgiv7VftWCHelMTKqtSi/Pii0pzU
+        4kOM0hwsSuK81QwPooUE0hNLUrNTUwtSi2CyTBycUg2M6x47P7C6lVZxuUXjwvavj5u5Xisc
+        s87fefSoyZP2r+HmV2tEtlnuv25549rrTznM0n/eGx7zE+U7IMrjtbK+IvJV+N6FDdtjHrX8
+        35RirtZrqP6qTW35G9Ffd9/oLDvYdnuOp5SM1OqI8wcWhtecXK05feH7+UKqexm+7hVbvXdK
+        XZ70n0MGm5VYijMSDbWYi4oTAQICzopyAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrMIsWRmVeSWpSXmKPExsVy+t/xe7oSjPqxBrsmGFrcWneO1WLjjPWs
+        Fte/PGe1mH8EyO1//JrZ4vz5DewWZ5vesFtsenyN1eJjzz1Wi8u75rBZzDi/j8li7ZG77BZL
+        r19ksrh4ytXiduMKNovWvUfYLQ6/aWe1+HdtI4uDkMeaeWsYPd7faGX32LSqk81j85J6j74t
+        qxg9Pm+SC2CL0rMpyi8tSVXIyC8usVWKNrQw0jO0tNAzMrHUMzQ2j7UyMlXSt7NJSc3JLEst
+        0rdL0Mt4tZK74LxIRfM3swbGZoEuRg4OCQETibWrIrsYOTmEBJYySpx7mgJiSwiISUzat50d
+        whaW+HOti62LkQuo5jWjxOt3HxlBEsICSRKn9rxmBrFFBDQlrv/9zgpSxCxwlUViyquN7BAd
+        k5klWucsZQTZxiagJ7FjVSFIA6+Am8SuKdNYQGwWAVWJQ03vwWxRgQiJvrbZbBA1ghInZz5h
+        AWnlFAiUaNjjDBJmFjCTmLf5ITOELS5x68l8JghbXmL72znMExiFZiHpnoWkZRaSlllIWhYw
+        sqxiFEktLc5Nzy020itOzC0uzUvXS87P3cQIjPBtx35u2cHY9S74EKMAB6MSD6/HYd1YIdbE
+        suLK3EOMEhzMSiK8tl+1Y4V4UxIrq1KL8uOLSnNSiw8xmgL9NpFZSjQ5H5h88kriDU0NzS0s
+        Dc2NzY3NLJTEeTsEDsYICaQnlqRmp6YWpBbB9DFxcEo1MK4xS1e1LA8/yynzws5futglpOdC
+        ndazRVZ599zfnve3VmYXXVbwI+Kp05ye2cKqnxSm35p2QTZDdbkSQ0rOoVcRTRfXpky9aGOt
+        skFTUPCxs6j3mfobMtf9nmx677z1hIozl/G7cl1zxtO32yulTOt0Lt0/vXx61gLJV7P5ImuD
+        N6ctvzrnrBJLcUaioRZzUXEiANTgzhoGAwAA
+X-CMS-MailID: 20190717110601eucas1p2ce5ccf9528a665b33dd6b31781887fc9
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190715124504eucas1p1afe0da2c6ac3a8b45d85017a77ba9edf
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190715124504eucas1p1afe0da2c6ac3a8b45d85017a77ba9edf
+References: <CGME20190715124504eucas1p1afe0da2c6ac3a8b45d85017a77ba9edf@eucas1p1.samsung.com>
+        <20190715124417.4787-1-l.luba@partner.samsung.com>
+        <20190715124417.4787-38-l.luba@partner.samsung.com>
+        <CAJKOXPfrGgAczQ-=1aE453RpJ9BN10ZDmFcrEMPkNyF6GcGtNA@mail.gmail.com>
+        <2fe2e840-f4b2-773b-7d92-4ffb8502d4e6@partner.samsung.com>
+        <CAJKOXPd3gm7no-0TnPmgFg+X3FgdiM6ov5rtzFSM6hKEdEzRCg@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The 07/09/2019 08:48, Rob Herring wrote:
->EXTERNAL MAIL
->
->
->On Fri, Jun 14, 2019 at 04:13:01PM +0100, Piotr Sroka wrote:
->> Signed-off-by: Piotr Sroka <piotrs@cadence.com>
->> ---
->> Changes for v3:
->> - add unit suffix for board_delay
->> - move child description to proper place
->> - remove prefix cadence_ for reg and sdma fields
->> Changes for v2:
->> - remove chip dependends parameters from dts bindings
->> - add names for register ranges in dts bindings
->> - add generic bindings to describe NAND chip representation
->> ---
->>  .../bindings/mtd/cadence-nand-controller.txt       | 51 ++++++++++++++++++++++
->>  1 file changed, 51 insertions(+)
->>  create mode 100644 Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
->>
->> diff --git a/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
->> new file mode 100644
->> index 000000000000..e485b87075bd
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/mtd/cadence-nand-controller.txt
->> @@ -0,0 +1,51 @@
->> +* Cadence NAND controller
->> +
->> +Required properties:
->> +  - compatible : "cdns,hpnfc"
->
->Only 1 version of h/w features and bugs?
->
-At the moment, yes.
-
->'hp-nfc' would be a bit more readable IMO.
->
-I will replace it.
-
->> +  - reg : Contains two entries, each of which is a tuple consisting of a
->> +	  physical address and length. The first entry is the address and
->> +	  length of the controller register set. The second entry is the
->> +	  address and length of the Slave DMA data port.
->> +  - reg-names: should contain "reg" and "sdma"
->> +  - interrupts : The interrupt number.
->> +  - clocks: phandle of the controller core clock (nf_clk).
->> +
->> +Optional properties:
->> +  - dmas: shall reference DMA channel associated to the NAND controller
->> +  - cdns,board-delay_ps : Estimated Board delay. The value includes the total
->
->s/_/-/
->
->> +    round trip delay for the signals and is used for deciding on values
->> +    associated with data read capture. The example formula for SDR mode is
->> +    the following:
->> +    board_delay = RE#PAD_delay + PCB trace to device + PCB trace from device
->> +    + DQ PAD delay
->> +
->> +Children nodes represent the available NAND chips.
->
->Child nodes...
->
->> +
->> +Required properties of NAND chips:
->> +  - reg: shall contain the native Chip Select ids from 0 to max supported by
->> +    the cadence nand flash controller
->> +
->> +
->> +See Documentation/devicetree/bindings/mtd/nand.txt for more details on
->> +generic bindings.
->> +
->> +Example:
->> +
->> +nand_controller: nand-controller @60000000 {
->
->remove space                       ^
->
->> +
->> +	  compatible = "cdns,hpnfc";
->> +	  reg = <0x60000000 0x10000>, <0x80000000 0x10000>;
->> +	  reg-names = "reg", "sdma";
->> +	  clocks = <&nf_clk>;
->> +	  cdns,board-delay_ps = <4830>;
->> +	  interrupts = <2 0>;
->> +	  nand@0 {
->> +	      reg = <0>;
->> +	      label = "nand-1";
->> +	  };
->> +	  nand@1 {
->> +	      reg = <1>;
->> +	      label = "nand-2";
->> +	  };
->> +
->> +};
->> --
->> 2.15.0
->>
-Thanks
-Piotr
-  
 
 
+On 7/17/19 12:45 PM, Krzysztof Kozlowski wrote:
+> On Wed, 17 Jul 2019 at 12:39, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>>>>
+>>>>    &bus_fsys {
+>>>>           devfreq = <&bus_wcore>;
+>>>> +       assigned-clocks = <&clock CLK_MOUT_ACLK200_FSYS>,
+>>>> +                         <&clock CLK_DOUT_ACLK200_FSYS>,
+>>>> +                         <&clock CLK_FOUT_DPLL>;
+>>>> +       assigned-clock-parents = <&clock CLK_MOUT_SCLK_DPLL>;
+>>>> +       assigned-clock-rates = <0>, <240000000>,<1200000000>;
+>>>
+>>> Here and in all other patches:
+>>> I am not entirely sure that this should be here. It looks like
+>>> property of the SoC. Do we expect that buses will be configured to
+>>> different clock rates between different boards? Since the OPP tables
+>>> are shared (they are property of the SoC, not board) then I would
+>>> assume that default frequency is shared as well.
+>> These clocks they all relay on some bootloader configuration. It depends
+>> which version of the bootloader you have, then you might get different
+>> default configuration in the clocks.
+> 
+> I do not agree here. This configuration is not dependent on
+> bootloader. Although one bootloader might set the clocks to X and
+> other to Y, but still you provide here valid configuration setting
+> them, e.g. to Y (or to Z). What bootloader set before does not matter
+> because you always override it.
+This exactly the patch set is aim to do: overwrite any bootloader
+configuration which could be wrong set after boot.
+I don't know for how long it is left in such
+'bootloader-default-clock-settings' but it is not accurate
+configuration. The pattern in the DT to change the clock rates is
+there.
+
+> 
+>> The pattern of changing the parent
+>> or even rate is known in the DT files (or I am missing something).
+>> When you grep for it, you get 168 hits (38 for exynos*):
+>> git grep -n "assigned-clock-rates" ./arch/arm/boot/dts/ | wc -l
+> 
+> Yeah, and if you grep per type you got:
+> DTSI: 114
+> DTS: 54
+> so what do you want to say?
+Thus, It could be changed in DT.
+> 
+> My thinking is that all the boards have buses configured to the same
+> initial frequency. I am not questioning the use of
+> assigned-clock-rates at all. Just the place...
+It is not only 'initial frequency' as you name it. It has three changes:
+- re-parent to proper PLL
+- changing this PLL rate
+- change the OPPs frequency values to integer values derived from PLL
+
+The initial frequencies will be changed by devfreq governor using OPP
+tables and the load after the whole system boots.
+
+Regards,
+Lukasz
+> 
+> BR,
+> Krzysztof
+> 
+> 
