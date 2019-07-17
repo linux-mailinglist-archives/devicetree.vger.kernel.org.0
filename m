@@ -2,160 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 12E3E6C15D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 21:19:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C67696C172
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 21:27:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727106AbfGQTTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 15:19:45 -0400
-Received: from vps.deutnet.info ([92.222.219.9]:33340 "EHLO vps.deutnet.info"
+        id S1727356AbfGQT0g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 15:26:36 -0400
+Received: from foss.arm.com ([217.140.110.172]:50264 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727057AbfGQTTo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 15:19:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=deutnet.info; s=default; h=Content-Type:MIME-Version:Message-ID:Subject:Cc:
-        To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=JdQW5yef3/oLdjTuLUcYjPBC8Xuj3agNuqkg0iaCI/0=; b=IXY3N1uVXn3srXrAv5kYRi8FnR
-        Hw+AHgOzzGntAckgmCaG1hFPjheKH2of7BxHzbPOl/go2Cxo16GZXRtjGIYFouyhJt9gM+9f/H1hw
-        eAkq/70bCMtUnpqJqxofODO4fpNOede6peZeRYkK6aQkzKOL1n8uBBBY6kOfM6MOTqS4/vVOQUt4U
-        NvbmdiWe7pMTHO0R910jVTg8j0mFmMz++w6D+9ket0wv2nxU4HSXXNLmZwuXWqH0/PV1Tgb4NxrC1
-        /od9nZKBsTvmu3331SQ+FVLX05zx7zMBLcvoVCwtc8U3vb6Z/W8DHUNIXGWL+KL/b9QW2bMdRx71l
-        p1ok8w/A==;
-Received: from [2001:41d0:fe79:6700:cf3e:2f2c:b15:9bf9] (helo=sonata)
-        by vps.deutnet.info with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <agriveaux@deutnet.info>)
-        id 1hnpSj-0007J7-5L; Wed, 17 Jul 2019 21:19:38 +0200
-Received: from agriveaux by sonata with local (Exim 4.92)
-        (envelope-from <agriveaux@localhost.localdomain>)
-        id 1hnpSY-0001DM-4j; Wed, 17 Jul 2019 21:19:26 +0200
-Date:   Wed, 17 Jul 2019 21:19:26 +0200
-From:   Alexandre GRIVEAUX <agriveaux@deutnet.info>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        Alexandre GRIVEAUX <agriveaux@deutnet.info>
-Cc:     linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
+        id S1725873AbfGQT0g (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jul 2019 15:26:36 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AE170337;
+        Wed, 17 Jul 2019 12:26:35 -0700 (PDT)
+Received: from tuskha01.cambridge.arm.com (tuskha01.cambridge.arm.com [10.1.196.61])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPA id 58D6C3F71A;
+        Wed, 17 Jul 2019 12:26:34 -0700 (PDT)
+From:   Tushar Khandelwal <tushar.khandelwal@arm.com>
+To:     linux-kernel@vger.kernel.org
+Cc:     tushar.2nov@gmail.com, morten_bp@live.dk, jassisinghbrar@gmail.com,
+        nd@arm.com, Morten Borup Petersen <morten.petersen@arm.com>,
+        Tushar Khandelwal <tushar.khandelwal@arm.com>,
+        robh+dt@kernel.org, mark.rutland@arm.com,
         devicetree@vger.kernel.org
-Subject: [PATCHv3] MIPS: JZ4780: DTS: Add I2C nodes
-Message-ID: <20190717191926.GA4571@localhost.localdomain>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Subject: [PATCH 1/4] mailbox: arm_mhuv2: add device tree binding documentation
+Date:   Wed, 17 Jul 2019 20:26:13 +0100
+Message-Id: <20190717192616.1731-2-tushar.khandelwal@arm.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190717192616.1731-1-tushar.khandelwal@arm.com>
+References: <20190717192616.1731-1-tushar.khandelwal@arm.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the devicetree nodes for the I2C core of the JZ4780 SoC, disabled
-by default.
----
- arch/mips/boot/dts/ingenic/jz4780.dtsi | 86 ++++++++++++++++++++++++++
- 1 file changed, 86 insertions(+)
+From: Morten Borup Petersen <morten.petersen@arm.com>
 
-diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-index b03cdec56de9..a76ecd69bfd0 100644
---- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
-+++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
-@@ -239,6 +239,92 @@
- 		status = "disabled";
- 	};
- 
-+	i2c0: i2c@10050000 {
-+		compatible = "ingenic,jz4780-i2c";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
+This patch adds device tree binding for Message Handling Unit
+controller version 2 from Arm.
+
+Signed-off-by: Morten Borup Petersen <morten.petersen@arm.com>
+Signed-off-by: Tushar Khandelwal <tushar.khandelwal@arm.com>
+Cc: robh+dt@kernel.org
+Cc: mark.rutland@arm.com
+Cc: devicetree@vger.kernel.org
+Cc: jassisinghbrar@gmail.com
+---
+ .../devicetree/bindings/mailbox/arm,mhuv2.txt | 108 ++++++++++++++++++
+ 1 file changed, 108 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mailbox/arm,mhuv2.txt
+
+diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.txt b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.txt
+new file mode 100644
+index 000000000000..3a05593414bc
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.txt
+@@ -0,0 +1,108 @@
++Arm MHUv2 Mailbox Driver
++========================
 +
-+		reg = <0x10050000 0x1000>;
++The Arm Message-Handling-Unit (MHU) Version 2 is a mailbox controller that has
++between 1 and 124 channel windows to provide unidirectional communication with
++remote processor(s).
 +
-+		interrupt-parent = <&intc>;
-+		interrupts = <60>;
++Given the unidirectional nature of the device, an MHUv2 mailbox may only be
++written to or read from. If a pair of MHU devices is implemented between two
++processing elements to provide bidirectional communication, these must be
++specified as two separate mailboxes.
 +
-+		clocks = <&cgu JZ4780_CLK_SMB0>;
-+		clock-frequency = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pins_i2c0_data>;
++A device tree node for an Arm MHUv2 device must specify either a receiver frame
++or a sender frame, indicating which end of the unidirectional MHU device which
++the device node entry describes.
 +
-+		status = "disabled";
++An MHU device must be specified with a transport protocol. The transport
++protocol of an MHU device determines the method of data transmission as well as
++the number of provided mailboxes.
++Following are the possible transport protocol types:
++- Single-word:	An MHU device implements as many mailboxes as it
++		provides channel windows. Data is transmitted through
++		the MHU registers.
++- Multi-word:	An MHU device implements a single mailbox. All channel windows
++		will be used during transmission. Data is transmitted through
++		the MHU registers.
++- Doorbell:	An MHU device implements as many mailboxes as there are flag
++		bits available in its channel windows. Optionally, data may
++		be transmitted through a shared memory region, wherein the MHU
++		is used strictly as an interrupt generation mechanism.
++
++Mailbox Device Node:
++====================
++
++Required properties:
++--------------------
++- compatible:	Shall be "arm,mhuv2" & "arm,primecell"
++- reg:		Contains the mailbox register address range (base
++		address and length)
++- #mbox-cells	Shall be 1 - the index of the channel needed.
++- mhu-frame	Frame type of the device.
++		Shall be either "sender" or "receiver"
++- mhu-protocol	Transport protocol of the device. Shall be one of the
++		following: "single-word", "multi-word", "doorbell"
++
++Required properties (receiver frame):
++-------------------------------------
++- interrupts:	Contains the interrupt information corresponding to the
++		combined interrupt of the receiver frame
++
++Example:
++--------
++
++	mbox_mw_tx: mhu@10000000 {
++		compatible = "arm,mhuv2","arm,primecell";
++		reg = <0x10000000 0x1000>;
++		clocks = <&refclk100mhz>;
++		clock-names = "apb_pclk";
++		#mbox-cells = <1>;
++		mhu-protocol = "multi-word";
++		mhu-frame = "sender";
 +	};
 +
-+	i2c1: i2c@10051000 {
-+		compatible = "ingenic,jz4780-i2c";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x10051000 0x1000>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <59>;
-+
-+		clocks = <&cgu JZ4780_CLK_SMB1>;
-+		clock-frequency = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pins_i2c1_data>;
-+
-+		status = "disabled";
++	mbox_sw_tx: mhu@10000000 {
++		compatible = "arm,mhuv2","arm,primecell";
++		reg = <0x11000000 0x1000>;
++		clocks = <&refclk100mhz>;
++		clock-names = "apb_pclk";
++		#mbox-cells = <1>;
++		mhu-protocol = "single-word";
++		mhu-frame = "sender";
 +	};
 +
-+	i2c2: i2c@10052000 {
-+		compatible = "ingenic,jz4780-i2c";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x10052000 0x1000>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <58>;
-+
-+		clocks = <&cgu JZ4780_CLK_SMB2>;
-+		clock-frequency = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pins_i2c2_data>;
-+
-+		status = "disabled";
++	mbox_db_rx: mhu@10000000 {
++		compatible = "arm,mhuv2","arm,primecell";
++		reg = <0x12000000 0x1000>;
++		clocks = <&refclk100mhz>;
++		clock-names = "apb_pclk";
++		#mbox-cells = <1>;
++		interrupts = <0 45 4>;
++		interrupt-names = "mhu_rx";
++		mhu-protocol = "doorbell";
++		mhu-frame = "receiver";
 +	};
 +
-+	i2c3: i2c@10053000 {
-+		compatible = "ingenic,jz4780-i2c";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x10053000 0x1000>;
++	mhu_client: scb@2e000000 {
++	compatible = "fujitsu,mb86s70-scb-1.0";
++	reg = <0 0x2e000000 0x4000>;
++	mboxes =
++		// For multi-word frames, client may only instantiate a single
++		// mailbox for a mailbox controller
++		<&mbox_mw_tx 0>,
 +
-+		interrupt-parent = <&intc>;
-+		interrupts = <57>;
++		// For single-word frames, client may instantiate as many
++		// mailboxes as there are channel windows in the MHU
++		 <&mbox_sw_tx 0>,
++		 <&mbox_sw_tx 1>,
++		 <&mbox_sw_tx 2>,
++		 <&mbox_sw_tx 3>,
 +
-+		clocks = <&cgu JZ4780_CLK_SMB3>;
-+		clock-frequency = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pins_i2c3_data>;
-+
-+		status = "disabled";
++		// For doorbell frames, client may instantiate as many mailboxes
++		// as there are bits available in the combined number of channel
++		// windows ((channel windows * 32) mailboxes)
++		 <mbox_db_rx 0>,
++		 <mbox_db_rx 1>,
++		 ...
++		 <mbox_db_rx 17>;
 +	};
-+
-+	i2c4: i2c@10054000 {
-+		compatible = "ingenic,jz4780-i2c";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x10054000 0x1000>;
-+
-+		interrupt-parent = <&intc>;
-+		interrupts = <56>;
-+
-+		clocks = <&cgu JZ4780_CLK_SMB4>;
-+		clock-frequency = <100000>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pins_i2c4_data>;
-+
-+		status = "disabled";
-+	};
-+
- 	watchdog: watchdog@10002000 {
- 		compatible = "ingenic,jz4780-watchdog";
- 		reg = <0x10002000 0x10>;
+\ No newline at end of file
 -- 
-2.20.1
+2.17.1
 
