@@ -2,158 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C2E36BD7A
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 15:43:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B2DB96BD97
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 15:47:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725873AbfGQNnV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 09:43:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53824 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725799AbfGQNnV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 09:43:21 -0400
-Received: from mail-qt1-f170.google.com (mail-qt1-f170.google.com [209.85.160.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 261A721849;
-        Wed, 17 Jul 2019 13:43:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563371000;
-        bh=b+x+b4NCqFKQ+1PNG6IM4VpJY3IU3W3bJdwBExP8rdA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=u9xbWDZZC5YP0yalQ3negtPPV6BVZQ7wi56ltY7eHOOf0YgpNzBzoxcBwtzW7mOmx
-         WgxFC+nSg1y8MCnUwLtH2v+vmN1vTtdlMQNxWqrBKBKlMD9Z7XKDDL71WWbQa2P2OG
-         GvIirxmMJMNfM0J/46BHFApAo/Kj0P/Bk+RoUxgw=
-Received: by mail-qt1-f170.google.com with SMTP id w17so23330298qto.10;
-        Wed, 17 Jul 2019 06:43:20 -0700 (PDT)
-X-Gm-Message-State: APjAAAX8/Mz4/h6Z0400SnXJ3QwO2pg6Krsd6OQ4m8JOwVhNkrFz3Owp
-        n21cxFdD2VIqKeeUktGMn2dLp9lnpyOGL1Y+WQ==
-X-Google-Smtp-Source: APXvYqxemI43ftnjQzG6EZtYAR1PGmByDgQ7cM1LN44uorEnKyt8XBd/ehLX6DVgzgxWIxy+3Uz0PjttXYb+ejOST8U=
-X-Received: by 2002:a0c:acef:: with SMTP id n44mr29346792qvc.39.1563370999272;
- Wed, 17 Jul 2019 06:43:19 -0700 (PDT)
+        id S1726452AbfGQNr2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 09:47:28 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:59366 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725936AbfGQNr2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 09:47:28 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6HDlKab106607;
+        Wed, 17 Jul 2019 08:47:20 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1563371240;
+        bh=KE7ll8RGnYW0NspHb1Isx+it3u3F262JZfA7NFbvB3Y=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=OvE+rl3DHZ7If/K/1iJwdCLx5InQVBbexmSEQpkQ1Kme5IQpTazoz/ueXM1ClMQ6I
+         GdzxtbsgpT7rXrDsVr9Zxk10m5WmII+hj1yjSZwOhOaNtOAnTJ3ik54N8hvVcRQ5TZ
+         IbT8SqyWweaUefOfxcp1QobQtlEtCzRc89qOfR5A=
+Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6HDlK6C122361
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 17 Jul 2019 08:47:20 -0500
+Received: from DLEE114.ent.ti.com (157.170.170.25) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 17
+ Jul 2019 08:47:20 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE114.ent.ti.com
+ (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 17 Jul 2019 08:47:20 -0500
+Received: from [10.250.98.129] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6HDlIet039267;
+        Wed, 17 Jul 2019 08:47:18 -0500
+Subject: Re: [PATCH v2 2/2] leds: Add control of the voltage/current regulator
+ to the LED core
+To:     Daniel Thompson <daniel.thompson@linaro.org>
+CC:     <jacek.anaszewski@gmail.com>, <pavel@ucw.cz>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <dmurphy@ti.com>,
+        <linux-leds@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <20190715155657.22976-1-jjhiblot@ti.com>
+ <20190715155657.22976-3-jjhiblot@ti.com>
+ <20190716105032.thpcttko5do3u56n@holly.lan>
+From:   Jean-Jacques Hiblot <jjhiblot@ti.com>
+Message-ID: <9497174a-65b9-bd4f-8ce3-89176930a78c@ti.com>
+Date:   Wed, 17 Jul 2019 15:47:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-References: <20190712033214.24713-1-andrew@aj.id.au> <20190712033214.24713-2-andrew@aj.id.au>
- <CAL_JsqLkOtsAxj9NvNB=EEkH00k-dtNedNY042uuntSmcjhDhA@mail.gmail.com>
- <3fe55ea9-b949-48a0-9eab-90ad3bc1ee2a@www.fastmail.com> <CAL_JsqKMo_uv4Ur-D4NaUXk94hGJeRt5fg+0998dDjJCTgumGg@mail.gmail.com>
- <e7b472a8-73ae-4f39-a3e4-9e2d9dbcd01e@www.fastmail.com>
-In-Reply-To: <e7b472a8-73ae-4f39-a3e4-9e2d9dbcd01e@www.fastmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 17 Jul 2019 07:43:07 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKYL5yv8E=aKD1fJwXx1LLdUAs_ZFrc5k1dHsB9u+2ing@mail.gmail.com>
-Message-ID: <CAL_JsqKYL5yv8E=aKD1fJwXx1LLdUAs_ZFrc5k1dHsB9u+2ing@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: mmc: Document Aspeed SD controller
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Adrian Hunter <adrian.hunter@intel.com>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed@lists.ozlabs.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Ryan Chen <ryanchen.aspeed@gmail.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190716105032.thpcttko5do3u56n@holly.lan>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 16, 2019 at 9:58 PM Andrew Jeffery <andrew@aj.id.au> wrote:
->
->
->
-> On Wed, 17 Jul 2019, at 00:27, Rob Herring wrote:
-> > On Mon, Jul 15, 2019 at 6:36 PM Andrew Jeffery <andrew@aj.id.au> wrote:
-> > >
-> > >
-> > >
-> > > On Tue, 16 Jul 2019, at 07:47, Rob Herring wrote:
-> > > > On Thu, Jul 11, 2019 at 9:32 PM Andrew Jeffery <andrew@aj.id.au> wrote:
-> > > > >
-> > > > > The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the
-> > > > > SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
-> > > > > data bus if only a single slot is enabled.
-> > > > >
-> > > > > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> > > > > ---
-> > > > > In v2:
-> > > > >
-> > > > > * Rename to aspeed,sdhci.yaml
-> > > > > * Rename sd-controller compatible
-> > > > > * Add `maxItems: 1` for reg properties
-> > > > > * Move sdhci subnode description to patternProperties
-> > > > > * Drop sdhci compatible requirement
-> > > > > * #address-cells and #size-cells are required
-> > > > > * Prevent additional properties
-> > > > > * Implement explicit ranges in example
-> > > > > * Remove slot property
-> > > > >
-> > > > >  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 90 +++++++++++++++++++
-> > > > >  1 file changed, 90 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > > > >
-> > > > > diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > > > > new file mode 100644
-> > > > > index 000000000000..67a691c3348c
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
-> > > > > @@ -0,0 +1,90 @@
-> > > > > +# SPDX-License-Identifier: GPL-2.0-or-later
-> > > > > +%YAML 1.2
-> > > > > +---
-> > > > > +$id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
-> > > > > +$schema: http://devicetree.org/meta-schemas/core.yaml#
-> > > > > +
-> > > > > +title: ASPEED SD/SDIO/eMMC Controller
-> > > > > +
-> > > > > +maintainers:
-> > > > > +  - Andrew Jeffery <andrew@aj.id.au>
-> > > > > +  - Ryan Chen <ryanchen.aspeed@gmail.com>
-> > > > > +
-> > > > > +description: |+
-> > > > > +  The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the SDIO
-> > > > > +  Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit data bus if
-> > > > > +  only a single slot is enabled.
-> > > > > +
-> > > > > +  The two slots are supported by a common configuration area. As the SDHCIs for
-> > > > > +  the slots are dependent on the common configuration area, they are described
-> > > > > +  as child nodes.
-> > > > > +
-> > > > > +properties:
-> > > > > +  compatible:
-> > > > > +    enum: [ aspeed,ast2400-sd-controller, aspeed,ast2500-sd-controller ]
-> > > >
-> > > > This is actually a list of 4 strings. Please reformat to 1 per line.
-> > >
-> > > On reflection that's obvious, but also a somewhat subtle interaction with the
-> > > preference for no quotes (the obvious caveat being "except where required").
-> >
-> > It wasn't something I'd run into before. I'm working on a check, but
-> > unfortunately we can only check for quotes not needed and can't check
-> > for missing quotes.
-> >
-> > > Thanks for pointing it out.
-> > >
-> > > I have been running `make dt_binding_check` and `make dtbs_check` over
-> > > these, looks like I need to up my game a bit though. Do you do additional things
-> > > in your workflow?
-> >
-> > That should have thrown the warnings. If you aren't seeing those, do
-> > you have dtschema package installed (see
-> > Documentation/devicetree/writing-schema.md)?
->
-> I do have it installed, but as mentioned previously there's a fair few
-> warnings emitted currently by the Aspeed devicetrees, so it might have
-> got lost in the noise. I've started to clean that up, though probably need
-> some direction there too.
->
-> Separately I'm currently trying to track down an issue where I get errors
-> on the Aspeed dts cpu nodes about failing to match the riscv CPU
-> compatibles, it seems dt-validate isn't finding the ARM CPU compatible
-> strings. It feels more annoying to track down that I'd like.
 
-There's a fix in today's linux-next for that and it should be in
-Linus' tree in a few days.
+On 16/07/2019 12:50, Daniel Thompson wrote:
+> On Mon, Jul 15, 2019 at 05:56:57PM +0200, Jean-Jacques Hiblot wrote:
+>> A LED is usually powered by a voltage/current regulator. Let the LED core
+> This is almost certainly nitpicking but since there's enough other
+> review comments that you will have to respin anyway ;-)
+No problems. comments are welcome.
+> Is an LED really "usually powered by a voltage/current regulator"? Some
+> LEDs have a software controlled power supply but I'm not sure it is
+> the usual case.
+True. I'll reword this.
+> Likewise its a little confusing to be talking about LEDs with an
+> external current regulator since, although that is possible, it is also
+> one the main features provided by LED driver chips.
 
-Rob
+In my experience LED drivers are quite often current sinks. In that case 
+the power is provided externally, and sometimes by a managed regulator.
+
+Thanks,
+
+JJ
+
+>
+> Daniel.
