@@ -2,52 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 178316B83D
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 10:33:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF4C76B860
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 10:38:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725941AbfGQIda (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 04:33:30 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:37519 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725873AbfGQIda (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 04:33:30 -0400
-Received: by mail-qk1-f193.google.com with SMTP id d15so16804836qkl.4
-        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 01:33:29 -0700 (PDT)
+        id S1726081AbfGQIfN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 04:35:13 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:38730 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725873AbfGQIfM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 04:35:12 -0400
+Received: by mail-qt1-f194.google.com with SMTP id n11so22484365qtl.5
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 01:35:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=tIm4KlLOoNVt9Pt6U/trSBmscVAnv1Ig8wWdGFQn/hY=;
-        b=Gc2p+YiBGXCJnt1XJPMRd37VRMz9i9aEmp0M74zhniTKsjfTNV4cAC0ce27H/H+OED
-         m/sD0e/q92iRLFlM3+ydWCz8wgiFbEDb/e8QnpHjVEyGafhl1BFjOGNLOVXMPF2Tk8CD
-         viM42PTWZi74tlZHt9CTk7VI1yTtFxwBzn0agz7D+EcfOk0C/PBh5unBxDp2RXiy+nFf
-         LGz/yypuclxQTdhBBemaEjGItkO6VLtXaqCVKVARGvo4W7ciFR5Bsc3L/XELIXWJ1h2+
-         TLVGVgeX///EBiaOCE9TMgjrKSQOxqCh/rCJG+bKJU3pqi6wZrDqPOk8RRWun2eK9Bi+
-         tXIA==
+        bh=Ry+MzwHDIHpb/9BQL6U47IaqQPJx3BKYqS3CpMjifoY=;
+        b=vMLalo+L/IIAOYtRRggYh08gz4EUGIoknTz9dXt0nx1IEelHQMaTKDlgMsLeQr+Ckh
+         HUYqpBPeFUUUmUcAh2g+atuM10ImyWztAf7D+0NImSQd/NE65C7oCU4gQnjF5whflX6i
+         H50lbswKhrHASrFvTn70By5otCpgLgBNSdMshtHN7QAn8uuVPFjQVdpsuNNLxYmOXd4z
+         IPhr3XU2k95v24WvA0j1HZAUO3cK577MwxQbkXAC3yfAnuqA/2T9CDN28/QYa54SFSIH
+         3hCaKUiUH7JeBLFKmy0ZLt4LgyP6i+uQEa70PFHc7GLyap662g6pDpzo+jnpZXuo662W
+         vIVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=tIm4KlLOoNVt9Pt6U/trSBmscVAnv1Ig8wWdGFQn/hY=;
-        b=l+IDqzRCctmsSI9YnONeJMoMvAW6z2u9LR7db9RNPobpvHXxHVPMP2vHFL/An6OLCj
-         CtErjSX2jU2nCreZfkG59ccajoVcZw2L8vx7DrPSV11XMORELqyBRD8p0qqxMZlWsYSV
-         wGfXuzThk1LL1ieBCu/rLXz+mcfCKQCuFv+Zw4pXR1xVWcSkDmeakkqmkMh+EHdv9/59
-         Y9t61oP7uABi3Kq9WorwdU90dl7uurozYMVghUFwaWXwwL0G7rvB62H+c3cGT5ObS4WP
-         5CQpDUHjGRl4mzeiG4z6Enf7+ZYYEpqjT93krfwja0ZmooI+P+U1cmTuyOwGceqxUmX+
-         QBbw==
-X-Gm-Message-State: APjAAAXRICmS4Tk7bWZVtq89QsmbJN/cu5mQKc1f6Oe2Z4bklX77FiPc
-        GUwi1gU8WNZoiUvi+QPtKzqp+zqeN8JhJ16In28=
-X-Google-Smtp-Source: APXvYqxuYM6/C+OX9eNQbUfcLHpDXFqZ1XBtFE9lSmnzU48LoWDVyYEmqZVWCU/md+siv1MluEqAIxuKDWVy5k3Wrho=
-X-Received: by 2002:a37:4f16:: with SMTP id d22mr25526429qkb.307.1563352409491;
- Wed, 17 Jul 2019 01:33:29 -0700 (PDT)
+        bh=Ry+MzwHDIHpb/9BQL6U47IaqQPJx3BKYqS3CpMjifoY=;
+        b=P5maTc26Rf8mwE+ufN82hfB2SjVbl/3Py1WA30wuxOj8W9A0PY3GpGANfC/PccWHfY
+         dgc6O1LY4bG7tuXGaX0HWuaY8zX2ikEGjO7hkoHrNEkkJxC40rX0bthEHqWs94+/WVAW
+         2TafVSJfS2dUYp8x/AQ94S2IJPekTwwbiRyUbJtFPxMBuemvjkdamKyKOgr0qnlQP2PO
+         ijTjq3/tGwqWUMWUMev/Xs5cWA48O9orsLnZMzIIrPqn5jpP2aciL9XG8Wb6pGmB07Zh
+         T6fjXUfL6OqsX1y+5DI1z/8FqimUmbzh7GJvAxaIT7iK90e2ob+n/qvQtAJ+1zrseTzW
+         uJZQ==
+X-Gm-Message-State: APjAAAU6iHwFoWVeGZJ46Uyd/vsvJfy57wQwbtMqps+yRWhxW7v67iC6
+        sOr7xetK1fHB5aoeQPFQagCpPGEz6BJirKCSKxk=
+X-Google-Smtp-Source: APXvYqziPJO1KRjHolx5k/4Q2eX8wSDr3YvFQfFnKotTHXYJdSW7xA10kL7Hbc02A83aPhvErcljmU7bWXgKFLHZ+XU=
+X-Received: by 2002:ac8:354d:: with SMTP id z13mr27515741qtb.340.1563352512060;
+ Wed, 17 Jul 2019 01:35:12 -0700 (PDT)
 MIME-Version: 1.0
 References: <1563290089-11085-1-git-send-email-aisheng.dong@nxp.com>
- <1563290089-11085-10-git-send-email-aisheng.dong@nxp.com> <CAOMZO5DZDX4hGmLLT0+5e0VDhws-DknhAwyKyAxva8x5F2BYjw@mail.gmail.com>
-In-Reply-To: <CAOMZO5DZDX4hGmLLT0+5e0VDhws-DknhAwyKyAxva8x5F2BYjw@mail.gmail.com>
+ <1563290089-11085-11-git-send-email-aisheng.dong@nxp.com> <CAOMZO5B=yK_S=2xRFt_1pAJ2iYE7CCCenOKQ3rjOeF3e+=vQtQ@mail.gmail.com>
+In-Reply-To: <CAOMZO5B=yK_S=2xRFt_1pAJ2iYE7CCCenOKQ3rjOeF3e+=vQtQ@mail.gmail.com>
 From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Wed, 17 Jul 2019 16:24:33 +0800
-Message-ID: <CAA+hA=Sy3=6VF1eZJ-g_nhqbpCy+td+VEOUUK2pLrZAQpbAcFA@mail.gmail.com>
-Subject: Re: [PATCH v2 09/15] arm64: dts: imx8qm: add lsio ss support
+Date:   Wed, 17 Jul 2019 16:26:16 +0800
+Message-ID: <CAA+hA=S=JMZDsbeJdzCRH+pikfy9nry-8UHq9V-75LuM0gxH6A@mail.gmail.com>
+Subject: Re: [PATCH v2 10/15] arm64: dts: imx8qm: add conn ss support
 To:     Fabio Estevam <festevam@gmail.com>
 Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
@@ -67,17 +67,18 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 17, 2019 at 3:30 AM Fabio Estevam <festevam@gmail.com> wrote:
+On Wed, Jul 17, 2019 at 3:31 AM Fabio Estevam <festevam@gmail.com> wrote:
 >
 > On Tue, Jul 16, 2019 at 12:37 PM Dong Aisheng <aisheng.dong@nxp.com> wrote:
+> >
+> > The CONN SS of MX8QM is mostly the same as MX8QXP except it has one more
+> > USB HSIC module support. So we can fully reuse the exist CONN SS dtsi.
+> > Add <soc>-ss-conn.dtsi with compatible string updated according to
+> > imx8-ss-conn.dtsi.
 >
-> > +&lsio_gpio0 {
-> > +       compatible = "fsl,imx8qm-gpio", "fsl,imx35-gpio";
->
-> fsl,imx8qm-gpio needs to be documented.
+> Subject and commit log does not match what the patch is actually doing.
 
-Yes, as documented in cover-letter.
-Will submit in a separate patch.
+What 'not match' did you mean?
 
 Regards
 Aisheng
