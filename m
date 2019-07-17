@@ -2,125 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A561D6C206
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 22:17:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23D4D6C21D
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 22:31:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726917AbfGQURd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 16:17:33 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:34894 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725993AbfGQURd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 16:17:33 -0400
-Received: by mail-wm1-f65.google.com with SMTP id l2so23387736wmg.0;
-        Wed, 17 Jul 2019 13:17:31 -0700 (PDT)
+        id S1727562AbfGQUaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 16:30:25 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:34443 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727531AbfGQUaZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 16:30:25 -0400
+Received: by mail-oi1-f196.google.com with SMTP id l12so19636828oil.1
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 13:30:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=google.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=jDSjE56feL4M57HMVhhU1D7CrADaIyXAujaY2b7p0Rs=;
-        b=h5g8BUNGvMProBfMdpTh+q7hvyw/nnXkMstQBN2l2v0wVMu9JjnNFLf8G8UBbs8VVJ
-         ZK1iHpAE+DvFSamesInpnEeoVI7xvalKz1Gr9FkCem95LcYk+5ODLi/XzMcjGid6sc8C
-         pfG2Z66DSfSavp1cmi6zv6zOx7BuBuZbevyK4SKIOAgNp8oueRhPqcaoS0ZdE6CvUW7d
-         n7GO8Ye+0B1LccBd5UAITT+B1QMYYalCoox9TW0MC1y9eG5iGRKYKj1n91/3N9VLJPwU
-         mXp7GJRKEKpnMrR5jvH6/JMvGAIHZj5mS0z2YZ6N6pSWA0C+f3B2Xrhtt5JBsIJ6ESqR
-         esww==
+        bh=tXyn81JOWHSq0zYFzKJLpVAr80FpJaED0TIvbKHgfcQ=;
+        b=qbIEDAEBcSd3yvZNHQSfu64qF2mJXK+jikkEhIE7u5hGoiCEiJR7xNlQrJzvzU4pSi
+         Y7nub5uk5LGftKPxpMSvA/DkWQ8FuN+OnxRfoqvSM4AwVVrxMgUTWCFUu4Izkz7RySeZ
+         aKHx5y6hHhB1ht51x2UXZo8omt9iNPPWa2t1AI8lbd6fhE2eDB4oI3CiK6FUCRj14v7l
+         iagkIZogRaXVsNeFI+9V4YqUpfVCH0s8n01ZMx9Uh9aoh/c6aBEPCDQ7r1sdt1Z09fHI
+         lBtqmFIMr5/3dtZqMXGEAwm7ViBBZm3Guhg5bmYRQv/A4xdM04+URF6+SU6E7uIZyY4x
+         1+bQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=jDSjE56feL4M57HMVhhU1D7CrADaIyXAujaY2b7p0Rs=;
-        b=MfD0TSgf9bD5elKxGlPNsVnC/kCNiO6o+2yVj3PuJtX9ymls4hJ9rRIiu06AY5Cnod
-         xoi2csMYg1lN46nD6era4WD7+zC27M6L+guC81MsSC0ABFELa2dzShUH8AxznHZospKr
-         jPfa12ufAvlWy3aeoNMWXqC+cmO+BUTvovBHXiNgZzk60Z6mgCySWwgRRldJD1weBy2a
-         DWFdsmgf3U5nSdq5UtxFOfaweFFEpufBsscOacfTQltB7cXBESaqXeO5JkViiHyBcJeo
-         1LWe6mncJOo0HBt47cqVdDvRd6rbni+3ITUkowHzgf/Nq4RIHTSh2SjINXZtc+M3Fybn
-         xAkg==
-X-Gm-Message-State: APjAAAXc7TznpNMV4nHjCGKc9YKyvMCvSDkITYKQDHUmpOd7rNy24Q1R
-        RDgcHrV9HvAel9lMDuZ4Vjv+R24nnHv0tgUKyu4=
-X-Google-Smtp-Source: APXvYqxJ1bxS+Q8Df3UVfk+sVuMPo1SAEUkpQeAGT7wfV8seECEYiuw8rjMehNQ1vuSUoRjtsWP7h6JvJ5NmHMiYEWw=
-X-Received: by 2002:a1c:96c7:: with SMTP id y190mr35132650wmd.87.1563394650383;
- Wed, 17 Jul 2019 13:17:30 -0700 (PDT)
+        bh=tXyn81JOWHSq0zYFzKJLpVAr80FpJaED0TIvbKHgfcQ=;
+        b=KEOM0QAqjOXznEBWV15EAC1b41p6fkq8QsEHoUdYR4x43nhmq/e6sVkt4IKcaoJhCl
+         1DsKvbMT152ktWcIPeDEPZu4OHd59Sp7lKApv3v9lNFjoD5WS2nTxXTqKSuuPBBt/lvX
+         3TNTqoJWN+T9Wbv6kolXq+OCdWpREzXuG1uh8H1paHQmiEvIWcMld++1dArhG2TTYtbi
+         9HVVVw3ZUvcnTDErGpXfsDhGcmP31Svdec8sPao5649fTBdPnksnv1aljp3z7OOvbd0P
+         p7mmEQKkQND4nroaaDk+3MVDtOgwD2E4EJ1Z5mcxvY/Ye8839TfxlTA/c71AU0LU5QQZ
+         cubA==
+X-Gm-Message-State: APjAAAX31d7mKmnRyVa83VLp/fmHF67evLKK0I0l5aAJf53OW6fYSEGV
+        WZlHgbMWmlSCdObptP01QxcRSkEkoIhak6016siCsw==
+X-Google-Smtp-Source: APXvYqzM6K1i3WfJFZXjZCCdYIzAEiFq8msfJcBrvL+tocAgB9h7Z+36x6PjoSdCEhmN0F40EdaY10RmxbliqpAP3Nk=
+X-Received: by 2002:aca:5106:: with SMTP id f6mr21894902oib.69.1563395423899;
+ Wed, 17 Jul 2019 13:30:23 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190702152007.12190-1-daniel.baluta@nxp.com>
-In-Reply-To: <20190702152007.12190-1-daniel.baluta@nxp.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Wed, 17 Jul 2019 23:17:19 +0300
-Message-ID: <CAEnQRZB23GLVXp459+JieeqQdAKXBRyeTc=hxnovFZwje-tgCw@mail.gmail.com>
-Subject: Re: [PATCH] clk: imx8: Add DSP related clocks
-To:     Daniel Baluta <daniel.baluta@nxp.com>, Jacky Bai <ping.bai@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
+References: <20190703011020.151615-1-saravanak@google.com> <20190703011020.151615-2-saravanak@google.com>
+ <20190717075448.xlyg2ddewlci3abg@vireshk-i7>
+In-Reply-To: <20190717075448.xlyg2ddewlci3abg@vireshk-i7>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 17 Jul 2019 13:29:47 -0700
+Message-ID: <CAGETcx-kUM7MqNYowwNAL1Q0bnFzxPEO6yMg0YTkk16=OnPdmg@mail.gmail.com>
+Subject: Re: [PATCH v3 1/6] dt-bindings: opp: Introduce opp-peak-KBps and
+ opp-avg-KBps bindings
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>, weiyongjun1@huawei.com,
-        linux-clk@vger.kernel.org,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
+        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Aisheng/Jacky,
+On Wed, Jul 17, 2019 at 12:54 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+>
+> On 02-07-19, 18:10, Saravana Kannan wrote:
+> > Interconnects often quantify their performance points in terms of
+> > bandwidth. So, add opp-peak-KBps (required) and opp-avg-KBps (optional) to
+> > allow specifying Bandwidth OPP tables in DT.
+> >
+> > opp-peak-KBps is a required property that replace opp-hz for Bandwidth OPP
+> > tables.
+> >
+> > opp-avg-KBps is an optional property that can be used in Bandwidth OPP
+> > tables.
+> >
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > ---
+> >  Documentation/devicetree/bindings/opp/opp.txt | 15 ++++++++++++---
+> >  1 file changed, 12 insertions(+), 3 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+> > index 76b6c79604a5..c869e87caa2a 100644
+> > --- a/Documentation/devicetree/bindings/opp/opp.txt
+> > +++ b/Documentation/devicetree/bindings/opp/opp.txt
+> > @@ -83,9 +83,14 @@ properties.
+> >
+> >  Required properties:
+> >  - opp-hz: Frequency in Hz, expressed as a 64-bit big-endian integer. This is a
+> > -  required property for all device nodes but devices like power domains. The
+> > -  power domain nodes must have another (implementation dependent) property which
+> > -  uniquely identifies the OPP nodes.
+> > +  required property for all device nodes but for devices like power domains or
+> > +  bandwidth opp tables. The power domain nodes must have another (implementation
+> > +  dependent) property which uniquely identifies the OPP nodes. The interconnect
+> > +  opps are required to have the opp-peak-bw property.
+>
+>                                    ??
 
-Can you help with review on this?
+Sorry, what's the question? Was this an accidental email?
 
-On Tue, Jul 2, 2019 at 6:22 PM Daniel Baluta <daniel.baluta@nxp.com> wrote:
+-Saravana
+
 >
-> i.MX8QXP contains Hifi4 DSP. There are four clocks
-> associated with DSP:
->   * dsp_lpcg_core_clk
->   * dsp_lpcg_ipg_clk
->   * dsp_lpcg_adb_aclk
->   * ocram_lpcg_ipg_clk
+> > +
+> > +- opp-peak-KBps: Peak bandwidth in kilobytes per second, expressed as a 32-bit
+> > +  big-endian integer. This is a required property for all devices that don't
+> > +  have opp-hz. For example, bandwidth OPP tables for interconnect paths.
+> >
+> >  Optional properties:
+> >  - opp-microvolt: voltage in micro Volts.
+> > @@ -132,6 +137,10 @@ Optional properties:
+> >  - opp-level: A value representing the performance level of the device,
+> >    expressed as a 32-bit integer.
+> >
+> > +- opp-avg-KBps: Average bandwidth in kilobytes per second, expressed as a
+> > +  32-bit big-endian integer. This property is only meaningful in OPP tables
+> > +  where opp-peak-KBps is present.
+> > +
+> >  - clock-latency-ns: Specifies the maximum possible transition latency (in
+> >    nanoseconds) for switching to this OPP from any other OPP.
+> >
+> > --
+> > 2.22.0.410.gd8fdbe21b5-goog
 >
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> ---
->  drivers/clk/imx/clk-imx8qxp-lpcg.c     | 5 +++++
->  include/dt-bindings/clock/imx8-clock.h | 6 +++++-
->  2 files changed, 10 insertions(+), 1 deletion(-)
->
-> diff --git a/drivers/clk/imx/clk-imx8qxp-lpcg.c b/drivers/clk/imx/clk-imx8qxp-lpcg.c
-> index fb6edf1b8aa2..c0aff7ca6374 100644
-> --- a/drivers/clk/imx/clk-imx8qxp-lpcg.c
-> +++ b/drivers/clk/imx/clk-imx8qxp-lpcg.c
-> @@ -72,6 +72,11 @@ static const struct imx8qxp_lpcg_data imx8qxp_lpcg_adma[] = {
->         { IMX_ADMA_LPCG_I2C2_CLK, "i2c2_lpcg_clk", "i2c2_clk", 0, ADMA_LPI2C_2_LPCG, 0, 0, },
->         { IMX_ADMA_LPCG_I2C3_IPG_CLK, "i2c3_lpcg_ipg_clk", "dma_ipg_clk_root", 0, ADMA_LPI2C_3_LPCG, 16, 0, },
->         { IMX_ADMA_LPCG_I2C3_CLK, "i2c3_lpcg_clk", "i2c3_clk", 0, ADMA_LPI2C_3_LPCG, 0, 0, },
-> +
-> +       { IMX_ADMA_LPCG_DSP_CORE_CLK, "dsp_lpcg_core_clk", "dma_ipg_clk_root", 0, ADMA_HIFI_LPCG, 28, 0, },
-> +       { IMX_ADMA_LPCG_DSP_IPG_CLK, "dsp_lpcg_ipg_clk", "dma_ipg_clk_root", 0, ADMA_HIFI_LPCG, 20, 0, },
-> +       { IMX_ADMA_LPCG_DSP_ADB_CLK, "dsp_lpcg_adb_clk", "dma_ipg_clk_root", 0, ADMA_HIFI_LPCG, 16, 0, },
-> +       { IMX_ADMA_LPCG_OCRAM_IPG_CLK, "ocram_lpcg_ipg_clk", "dma_ipg_clk_root", 0, ADMA_OCRAM_LPCG, 16, 0, },
->  };
->
->  static const struct imx8qxp_ss_lpcg imx8qxp_ss_adma = {
-> diff --git a/include/dt-bindings/clock/imx8-clock.h b/include/dt-bindings/clock/imx8-clock.h
-> index 4236818e3be5..673a8c662340 100644
-> --- a/include/dt-bindings/clock/imx8-clock.h
-> +++ b/include/dt-bindings/clock/imx8-clock.h
-> @@ -283,7 +283,11 @@
->  #define IMX_ADMA_LPCG_PWM_IPG_CLK                      38
->  #define IMX_ADMA_LPCG_LCD_PIX_CLK                      39
->  #define IMX_ADMA_LPCG_LCD_APB_CLK                      40
-> +#define IMX_ADMA_LPCG_DSP_ADB_CLK                      41
-> +#define IMX_ADMA_LPCG_DSP_IPG_CLK                      42
-> +#define IMX_ADMA_LPCG_DSP_CORE_CLK                     43
-> +#define IMX_ADMA_LPCG_OCRAM_IPG_CLK                    44
->
-> -#define IMX_ADMA_LPCG_CLK_END                          41
-> +#define IMX_ADMA_LPCG_CLK_END                          45
->
->  #endif /* __DT_BINDINGS_CLOCK_IMX_H */
 > --
-> 2.17.1
+> viresh
+>
+> --
+> To unsubscribe from this group and stop receiving emails from it, send an email to kernel-team+unsubscribe@android.com.
 >
