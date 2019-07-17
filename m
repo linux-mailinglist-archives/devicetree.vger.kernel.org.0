@@ -2,63 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5A3DC6B6FD
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 08:55:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 980EC6B700
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 08:55:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725932AbfGQGzF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 02:55:05 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41826 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725912AbfGQGzE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 02:55:04 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 032C121743;
-        Wed, 17 Jul 2019 06:54:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563346504;
-        bh=3Xt4tfBlIS/KrhkQpP7kW1uAGP7uRrEmTBLu4gx2nbY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=PyMn41bYicm6bSdM1vgHd0VolUj1AD5wNiOa2GUoJ00QYsS3cFisakqUsC10GUcaZ
-         GDQFJ6DIGSbEo5+GPEVpdG/sgLRhC1q1YDjKGZdfquwyHpd0SZAPUIpYRfSrDg6VIc
-         n5TbotMhMW+k5GYa3aDH2rWVCsAbs3dS0l84WK+Y=
-Date:   Wed, 17 Jul 2019 14:54:42 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Anson.Huang@nxp.com
-Cc:     aisheng.dong@nxp.com, festevam@gmail.com, stefan@agner.ch,
-        kernel@pengutronix.de, linus.walleij@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        catalin.marinas@arm.com, will.deacon@arm.com,
-        maxime.ripard@bootlin.com, olof@lixom.net,
-        horms+renesas@verge.net.au, jagan@amarulasolutions.com,
-        bjorn.andersson@linaro.org, leonard.crestez@nxp.com,
-        dinguyen@kernel.org, enric.balletbo@collabora.com,
-        linux-gpio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Linux-imx@nxp.com
-Subject: Re: [PATCH V2 3/3] arm64: defconfig: Select CONFIG_PINCTRL_IMX8MN by
- default
-Message-ID: <20190717065441.GD3738@dragon>
-References: <20190611122535.23583-1-Anson.Huang@nxp.com>
- <20190611122535.23583-3-Anson.Huang@nxp.com>
+        id S1725912AbfGQGzI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 02:55:08 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:59306 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1727012AbfGQGzH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 02:55:07 -0400
+X-UUID: 9f1c975c797c4aa99fc512c38799216e-20190717
+X-UUID: 9f1c975c797c4aa99fc512c38799216e-20190717
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <ck.hu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1132981241; Wed, 17 Jul 2019 14:55:03 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 17 Jul 2019 14:55:01 +0800
+Received: from [172.21.77.4] (172.21.77.4) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 17 Jul 2019 14:55:01 +0800
+Message-ID: <1563346501.29169.25.camel@mtksdaap41>
+Subject: Re: [PATCH v4, 24/33] drm/mediatek: distinguish ovl and ovl_2l by
+ layer_nr
+From:   CK Hu <ck.hu@mediatek.com>
+To:     <yongqiang.niu@mediatek.com>
+CC:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "David Airlie" <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>
+Date:   Wed, 17 Jul 2019 14:55:01 +0800
+In-Reply-To: <1562625253-29254-25-git-send-email-yongqiang.niu@mediatek.com>
+References: <1562625253-29254-1-git-send-email-yongqiang.niu@mediatek.com>
+         <1562625253-29254-25-git-send-email-yongqiang.niu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190611122535.23583-3-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 11F1DE6BD2C0561D80B2B9B084DC8B4CE48F7F7536BCB170DD002279A4AB79AD2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 11, 2019 at 08:25:35PM +0800, Anson.Huang@nxp.com wrote:
-> From: Anson Huang <Anson.Huang@nxp.com>
-> 
-> Enable CONFIG_PINCTRL_IMX8MN by default to support i.MX8MN
-> pinctrl driver.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+Hi, Yongqiang:
 
-Applied, thanks.
+On Tue, 2019-07-09 at 06:34 +0800, yongqiang.niu@mediatek.com wrote:
+> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> 
+> distinguish ovl and ovl_2l by layer_nr when get comp
+> id
+> 
+
+Reviewed-by: CK Hu <ck.hu@mediatek.com>
+
+> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> ---
+>  drivers/gpu/drm/mediatek/mtk_disp_ovl.c | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> index 8ca4965..7e99827 100644
+> --- a/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> +++ b/drivers/gpu/drm/mediatek/mtk_disp_ovl.c
+> @@ -326,7 +326,12 @@ static int mtk_disp_ovl_probe(struct platform_device *pdev)
+>  	if (irq < 0)
+>  		return irq;
+>  
+> -	comp_id = mtk_ddp_comp_get_id(dev->of_node, MTK_DISP_OVL);
+> +	priv->data = of_device_get_match_data(dev);
+> +
+> +	comp_id = mtk_ddp_comp_get_id(dev->of_node,
+> +				      priv->data->layer_nr == 4 ?
+> +				      MTK_DISP_OVL :
+> +				      MTK_DISP_OVL_2L);
+>  	if (comp_id < 0) {
+>  		dev_err(dev, "Failed to identify by alias: %d\n", comp_id);
+>  		return comp_id;
+> @@ -339,8 +344,6 @@ static int mtk_disp_ovl_probe(struct platform_device *pdev)
+>  		return ret;
+>  	}
+>  
+> -	priv->data = of_device_get_match_data(dev);
+> -
+>  	platform_set_drvdata(pdev, priv);
+>  
+>  	ret = devm_request_irq(dev, irq, mtk_disp_ovl_irq_handler,
+
+
