@@ -2,104 +2,138 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F94A6B7F9
-	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 10:16:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C8566B804
+	for <lists+devicetree@lfdr.de>; Wed, 17 Jul 2019 10:18:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725980AbfGQIQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 04:16:29 -0400
-Received: from mail-eopbgr40083.outbound.protection.outlook.com ([40.107.4.83]:49356
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725890AbfGQIQ3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 04:16:29 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=Aq0vnfTyXGGdVg0hbgdJ1rPlzLCwSUstAyFIiFBPrT/depMiLmBxRyTqR0GzFxpjnZV55sISLXxnwhsrIZz4DM8RrKPVu/axFFLB0Jjba3IC3LYCIEIvI7O8Ydl56bDr/djHCUNzinn//jjPcWFzcPCqxPfHKNgbbYGaE4NGYk2sH9mcDockve5NDGIBF5eHz1DM0O83eanGkcHg2WoJESzlb9JtKMibF1PKSUnDr3mRhPeE8EYzRivnlwZOQrZLcLE5O+rRn1P/Kks6bNL60JdzBLDa21jyAuenjBfg3ftPcDBaYxERE7nnsTDHNSpF237BLR7JjZ6WThPxCmUSaA==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NiEgK6ehxZIO0SdFuk/dMElR5TLP7K7n2KVDyt+2Ev8=;
- b=RTFoBqCZRuTlHGf9oVztag/VFzb6of1SDtby57rOnS3Vt1CRmF9frM547rzOFlMzQ7BaFjcnMxYArpVsBdxxA566dMY3STGlunytHEqZkK6UP2TFev86Y5oyAdekZLn0fe7E0OFthJoCKOcTS6vC2VocKgJTwqeUfkBJxlPsEpMq/sCTfuk7ucy80Yz5oE5XzU5uxg+r83V2k1NYBn+9o8OLsr3+gI1wYTlfPFyA2+6gTNCB+REuuECpTcefmGzC5LGumHmOdpHwP5T9SXLozmheNBVmGNVmUyz1N6BQgBEO63AwOcHrnWc8NRxPxGzOo2pUr32uhIzmqDtG7mEs+w==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
- header.d=nxp.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=NiEgK6ehxZIO0SdFuk/dMElR5TLP7K7n2KVDyt+2Ev8=;
- b=RLh6cFguTJtWnq5150oEXkgN2gZv84F9ALmBJIY16Rfpzrq80AvgoVb31YbHcwIya6gK1cQrmdEoVEvm19Nlzl/5vNKLqC9hx60sXOPgE13apRcvkAVpkNS8dniK9i5q4Eu7K9ZkZvtGVh1sNxLWpGFDssn8OQ5GnTuDI+4HC9U=
-Received: from AM0PR04MB4211.eurprd04.prod.outlook.com (52.134.92.158) by
- AM0PR04MB4130.eurprd04.prod.outlook.com (52.134.92.30) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2073.14; Wed, 17 Jul 2019 08:16:21 +0000
-Received: from AM0PR04MB4211.eurprd04.prod.outlook.com
- ([fe80::7882:51:e491:8431]) by AM0PR04MB4211.eurprd04.prod.outlook.com
- ([fe80::7882:51:e491:8431%7]) with mapi id 15.20.2073.012; Wed, 17 Jul 2019
- 08:16:21 +0000
-From:   Aisheng Dong <aisheng.dong@nxp.com>
-To:     Fabio Estevam <festevam@gmail.com>
-CC:     "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Dong Aisheng <dongas86@gmail.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH v2 15/15] arm64: defconfig: add imx8qm mek support
-Thread-Topic: [PATCH v2 15/15] arm64: defconfig: add imx8qm mek support
-Thread-Index: AQHVO+xQyEr4H6miyEOxYbBKQCsvQabNoGEAgADXCLA=
-Date:   Wed, 17 Jul 2019 08:16:21 +0000
-Message-ID: <AM0PR04MB4211AF3216E3A641DA80B6C680C90@AM0PR04MB4211.eurprd04.prod.outlook.com>
-References: <1563290089-11085-1-git-send-email-aisheng.dong@nxp.com>
- <1563290089-11085-16-git-send-email-aisheng.dong@nxp.com>
- <CAOMZO5CTmAdxRK4FZu+Lw3WxkBzdufNJ=gE11TFSoizdYwXnbw@mail.gmail.com>
-In-Reply-To: <CAOMZO5CTmAdxRK4FZu+Lw3WxkBzdufNJ=gE11TFSoizdYwXnbw@mail.gmail.com>
-Accept-Language: zh-CN, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=aisheng.dong@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b1f69d4a-3f18-4048-30a5-08d70a8f0d68
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:AM0PR04MB4130;
-x-ms-traffictypediagnostic: AM0PR04MB4130:
-x-microsoft-antispam-prvs: <AM0PR04MB413021A5B92892A29F0702E580C90@AM0PR04MB4130.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-forefront-prvs: 01018CB5B3
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(346002)(396003)(366004)(376002)(39860400002)(199004)(189003)(2906002)(1411001)(66066001)(54906003)(76176011)(71190400001)(33656002)(186003)(66556008)(26005)(4326008)(7736002)(229853002)(6916009)(486006)(7696005)(71200400001)(14454004)(4744005)(52536014)(5660300002)(74316002)(102836004)(86362001)(53546011)(8676002)(6506007)(44832011)(8936002)(6436002)(81156014)(81166006)(256004)(99286004)(14444005)(446003)(3846002)(53936002)(55016002)(6246003)(476003)(76116006)(316002)(66946007)(68736007)(9686003)(478600001)(66476007)(66446008)(305945005)(6116002)(11346002)(25786009)(64756008)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:AM0PR04MB4130;H:AM0PR04MB4211.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 7quooohflrF/rwwp/0BcaBYX0P3hLlom7YBecz9wSgrT/S6BuMRbMvIHJHFnz6SBqxKqZyZsl1YImmqZ7HSiWNGeCoxyvi+cBtypH5OovhJikr2w457heethI9TfmcmW3Fur5fFuvuOevrxUYRB87xpuj/9mpyvMcvYLxAqib/1EgDJn6nOgzbkTqbD8q7a212UyG8LOL1mXC8QNl+ZTGCovRG+j3wRxJmuJgbCSyB7OFG1WMQIRvU+MVwgiycqeHng/qOTRAmrsoJmhuZvkEymmSjYeXtUGHgKKclhlGBCSel6qaVQ4PBTos/g4k1x40tqKlfuD7wawBTCCXiYweMd7Uf3Wjw4nDMafNjm8ftUUEkH1eD/x1OHWrBGG7cJjIv0nLNtF17To9iiSG4ONZ/AFMM2Scd3rAd9tBkjpgpk=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1726148AbfGQISJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 04:18:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40150 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725890AbfGQISJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jul 2019 04:18:09 -0400
+Received: from mail-lj1-f169.google.com (mail-lj1-f169.google.com [209.85.208.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A60142173B;
+        Wed, 17 Jul 2019 08:18:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563351488;
+        bh=5GNQoM7T3OZ2EwjYuZ7fJtx8Y6qQF3hP9lT0ttHPpvQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=BMk82FbNEX+ScgsGCO0TrFEo5sKOIUbK5ki+a7Wp3dBgcRxNpGjwSOStaJ8QPCblm
+         KAKapKaVZTat/7/27NdE3ZLBc2oBo1+69lm3o387UzZc5uNX5PEPq7pqZHF0/lmGFM
+         OoSvbBOnZkfov7Tz20pMcQ1yN75tnvNVZPksyyuk=
+Received: by mail-lj1-f169.google.com with SMTP id p17so22723185ljg.1;
+        Wed, 17 Jul 2019 01:18:07 -0700 (PDT)
+X-Gm-Message-State: APjAAAUt7rdp+AVb1gC6sjNHwoY+sJ/Ic54JLXlXhIhtbSPn12qekBFS
+        4FiumNToRDC+zhhd5vAPglvRl4dyJjMPC/hWwZo=
+X-Google-Smtp-Source: APXvYqylYz7gNmzlXqUoO2oJVnfuYOhDlPlxB7yrdES0wr8vBhhh8uj9yF8LJHi/hEx9u2UnvjdI9FfTGNOF6wdZ8Fc=
+X-Received: by 2002:a2e:3008:: with SMTP id w8mr20519868ljw.13.1563351485856;
+ Wed, 17 Jul 2019 01:18:05 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b1f69d4a-3f18-4048-30a5-08d70a8f0d68
-X-MS-Exchange-CrossTenant-originalarrivaltime: 17 Jul 2019 08:16:21.6368
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: aisheng.dong@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: AM0PR04MB4130
+References: <20190712141242.4915-1-krzk@kernel.org> <cde6f251-4b15-a4f0-57ed-ca2ed014b511@kontron.de>
+In-Reply-To: <cde6f251-4b15-a4f0-57ed-ca2ed014b511@kontron.de>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Wed, 17 Jul 2019 10:17:54 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPcLdfo6XCc--HneYjCHOYKdKgWDBDSVjxQBR+pc+1mcfg@mail.gmail.com>
+Message-ID: <CAJKOXPcLdfo6XCc--HneYjCHOYKdKgWDBDSVjxQBR+pc+1mcfg@mail.gmail.com>
+Subject: Re: [PATCH] ARM: dts: imx6ul-kontron-ul2: Add Exceet/Kontron iMX6-UL2 SoM
+To:     Schrempf Frieder <frieder.schrempf@kontron.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PiBGcm9tOiBGYWJpbyBFc3RldmFtIDxmZXN0ZXZhbUBnbWFpbC5jb20+DQo+IFNlbnQ6IFdlZG5l
-c2RheSwgSnVseSAxNywgMjAxOSAzOjI1IEFNDQo+IA0KPiBIaSBEb25nLA0KPiANCj4gT24gVHVl
-LCBKdWwgMTYsIDIwMTkgYXQgMTI6MzggUE0gRG9uZyBBaXNoZW5nIDxhaXNoZW5nLmRvbmdAbnhw
-LmNvbT4NCj4gd3JvdGU6DQo+ID4NCj4gPiBhZGQgaW14OHFtIG1layBzdXBwb3J0DQo+IA0KPiBU
-aGUgU3ViamVjdCBhbmQgY29tbWl0IGxvZyBkb2VzIG5vdCBtYXRjaCB3aXRoIHRoZSBwYXRjaCBj
-b250ZW50Lg0KDQpCZWNhdXNlIG14OHFtIHNoYXJlcyB0aGUgbW9zdCB0aGluZ3MgZnJvbSBteDhx
-eHAgd2hpY2ggaGFzIGFscmVhZHkNCmJlZW4gZW5hYmxlZCBpbiBkZWZjb25maWcuIFRoZSBvbmx5
-IG9uZSBsZWZ0IGlzIHBpbmN0cmwgZHJpdmVyLg0KSSB3b3VsZCB1cGRhdGUgdGhlIHRpdGxlIGEg
-Yml0IHRvIGJlIG1vcmUgc3BlY2lmaWMgaW4gbmV4dCB2ZXJzaW9uLg0KDQpSZWdhcmRzDQpBaXNo
-ZW5nDQo=
+On Tue, 16 Jul 2019 at 17:38, Schrempf Frieder
+<frieder.schrempf@kontron.de> wrote:
+>
+> Hi Krzysztof,
+>
+> On 12.07.19 16:12, Krzysztof Kozlowski wrote:
+> > Add support for iMX6-UL2 modules from Kontron Electronics GmbH (before
+> > acquisition: Exceet Electronics) and evalkit boards based on it:
+> >
+> > 1. i.MX6 UL System-on-Module, a 25x25 mm solderable module (LGA pads and
+> >     pin castellations) with 256 MB RAM, 1 MB NOR-Flash, 256 MB NAND and
+> >     other interfaces,
+> > 1. UL2 evalkit, w/wo eMMC, without display,
+> > 2. UL2 evalkit with 4.3" display,
+> > 3. UL2 evalkit with 5.0" display.
+>
+> We will use a new naming scheme for these and other boards. The new
+> names would be:
+>
+> 1. Kontron N6310 SOM    (i.MX6UL SoM with 256MB RAM/NAND)
+> 2. Kontron N6310 S      (Evalkit with SoM)
+> 3. Kontron N6310 S 43   (Evalkit with SoM and 4.3" display)
+> 4. Kontron N6310 S 50   (Evalkit with SoM and 5.0" display)
+
+OK (and OK for all other comments which I will skip below).
+
+(...)
+
+> > +
+> > +     memory@80000000 {
+> > +             reg = <0x80000000 0x10000000>;
+> > +     };
+> > +};
+> > +
+> > +&cpu0 {
+> > +     clock-frequency = <528000000>;
+> > +     operating-points = <
+> > +             /* kHz  uV */
+> > +             528000  1175000
+> > +             396000  1025000
+> > +             198000  950000
+> > +     >;
+> > +     fsl,soc-operating-points = <
+> > +             /* KHz  uV */
+> > +             528000  1175000
+> > +             396000  1175000
+> > +             198000  1175000
+> > +     >;
+> > +};
+>
+> What's the reason behind overwriting the operating-points and setting
+> clock-frequency? Doesn't imx6q-cpufreq.c already read the speed grades
+> from the hardware and adjust the operating-points accordingly?
+
+Good point. From the driver point of view overwriting of opps is not
+needed. As you said, the driver will adjust the speed to the reported
+grade. This could have meaning for the completeness of hardware
+description however I see that there are no even bindings for CPU and
+other boards do not overwrite it. I'll skip it then.
+
+(...)
+
+> > +
+> > +     regulators {
+> > +             compatible = "simple-bus";
+> > +             #address-cells = <1>;
+> > +             #size-cells = <0>;
+>
+> We copied this from some other devicetree and I'm not sure in what case
+> we should really group the regulators in a simple-bus, or what's the
+> reason behind this. But others do it like this, so it's probably not so
+> wrong.
+
+Either simple-bus with regulator@address or unique regulator node
+names (regulator-1, no unit address). Both are popular but I think in
+recent submissions and comments Rob Herring was proposing the second
+option - unique regulator names without addresses. I can use such
+approach (unless DTC complains).
+
+Thanks for review and feedback!
+
+Best regards,
+Krzysztof
