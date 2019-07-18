@@ -2,87 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E89B46D246
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 18:47:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 100586D290
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 19:10:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387763AbfGRQqn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 12:46:43 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:45178 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726608AbfGRQqn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 12:46:43 -0400
-Received: by mail-io1-f66.google.com with SMTP id g20so52461910ioc.12
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2019 09:46:43 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linux-foundation.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=TAlbIyymfZNkl7yksWgw8jwEXv/YyuJyJF2ZpI8avBU=;
-        b=Hj8MOVIwPyg22FhAteR+5dRP/oScFNTLPZy1R2S/xXmwnrdZ6TxhAupl4hJ8ok3SQP
-         Hp69WIQCQJvmQhYNcOOPU6qhx3niPsn/b39WGnYH1ZVQPLSZ9w4pblbASu/GRiQukXQl
-         kALkkQRGSPOds0ZYFrFBVBgy5N5Iwt2CNoG4k=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=TAlbIyymfZNkl7yksWgw8jwEXv/YyuJyJF2ZpI8avBU=;
-        b=TJ2FEf6piQ1QPKbfAemhnYJvoF/ROEnajnBl40Dv4JTxiambn6lpe6+j8+wC3idLRC
-         OP4r+dt53m6Pifv2FN3yMsrfYwwcYDLEzuIQ2PZtbrxyx6TAWMxDpwDLCxUGxSWjWJRk
-         E6TMYweKIOEpwqpwW6vkho6WfXMEnyE3or0V2BM/FRjuSz0fK8ytJQ1gvg1qzlL9WqrV
-         sKHqYKUAgIUoj2b7WtAJos456oou+6OCWjEVtAdY9dO4UdNObYMITqrMIyKQmYOEpGZh
-         RRnmAXrzIkBe1aKV7Q35v/0Sne/nfo1wmB4JWmjEW9k6zZemfiy/eGDyrJMIG7rZRd5x
-         RYQw==
-X-Gm-Message-State: APjAAAUnTJxU4eNIQz6E8ZLgdmi59JQWeQUpaO+Gzp4kC/Fmp+OZzO3w
-        2Q9UUomMUpEIHKM4EgIqTu9FXbZ94VwsGf3cueF/nO/J
-X-Google-Smtp-Source: APXvYqzpdpm3KGVnLha0U6+iptqQCL3xOtOk973C+aeEje1Ffp7OXF7uXrq2rxIDU4BAZkkWwvrgSCYz35dXS7s0SmQ=
-X-Received: by 2002:a02:cd82:: with SMTP id l2mr48974411jap.96.1563468403006;
- Thu, 18 Jul 2019 09:46:43 -0700 (PDT)
+        id S1727921AbfGRRKG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 13:10:06 -0400
+Received: from smtp11.infineon.com ([217.10.52.105]:53366 "EHLO
+        smtp11.infineon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726040AbfGRRKG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 13:10:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1563469806; x=1595005806;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=uYQpB2SpaLcCphJei8uoWMZ+wuxVK+eGJl7as7wxcWw=;
+  b=Getiwo6HDC7X5jixTRKAVPTKCsDAWsqxSb+rARyA7ZjqhgteZBvIINMQ
+   2lqYkXtOrQ/tQSuAuU0xpKcEdzx4BtGrCevIMGF+wwo1WarOA4xYejtSU
+   KwUCR/rXnRg507sAoFSErZDRjLtWA7vLhqwzP+Evu/naNQXHWPrf+7hn2
+   g=;
+IronPort-SDR: rHd4GE8rbjWoeoPfI8EXQQ+1NixxkdbxyuchgG3iLzVAzCtyI6EmxtNfwLf0/axLZVK91DdNNe
+ KOTgfRoSQDSWC0H3Zlt/ixVA2s4UQoJ+ZCg/P8U7KnnU2GZ/Za0Dew6+mb4lSVe6NhjWgG5cJw
+ sfFI1hCHCZ3mnovB2izFm6sv48SKfMRA9XmQJhh2NHrBEq/n2ZAAey8j9da1CS1j8Tj0nkXx8Q
+ HZ1tXBRa51n23zbZ1uRDo2XLZvGKTknDxpuy8jcQ0Owd97YUF/AK6JbbFifZcqZ/t20rXXvdnw
+ 0iE=
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6000,8403,9322"; a="128253562"
+X-IronPort-AV: E=Sophos;i="5.64,278,1559512800"; 
+   d="scan'208";a="128253562"
+Received: from unknown (HELO mucxv001.muc.infineon.com) ([172.23.11.16])
+  by smtp11.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 18 Jul 2019 19:10:04 +0200
+Received: from MUCSE708.infineon.com (MUCSE708.infineon.com [172.23.7.82])
+        by mucxv001.muc.infineon.com (Postfix) with ESMTPS;
+        Thu, 18 Jul 2019 19:10:03 +0200 (CEST)
+Received: from [10.154.32.63] (172.23.8.247) by MUCSE708.infineon.com
+ (172.23.7.82) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.1591.10; Thu, 18
+ Jul 2019 19:10:03 +0200
+Subject: Re: [PATCH v2 0/2] char: tpm: add new driver for tpm i2c ptp
+To:     <Eyal.Cohen@nuvoton.com>, <jarkko.sakkinen@linux.intel.com>,
+        <tmaimon77@gmail.com>
+CC:     <oshrialkoby85@gmail.com>, <robh+dt@kernel.org>,
+        <mark.rutland@arm.com>, <peterhuewe@gmx.de>, <jgg@ziepe.ca>,
+        <arnd@arndb.de>, <gregkh@linuxfoundation.org>,
+        <oshri.alkoby@nuvoton.com>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>, <linux-integrity@vger.kernel.org>,
+        <gcwilson@us.ibm.com>, <kgoldman@us.ibm.com>,
+        <nayna@linux.vnet.ibm.com>, <Dan.Morav@nuvoton.com>,
+        <oren.tanami@nuvoton.com>
+References: <20190628151327.206818-1-oshrialkoby85@gmail.com>
+ <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
+ <79e8bfd2-2ed1-cf48-499c-5122229beb2e@infineon.com>
+ <CAM9mBwJC2QD5-gV1eJUDzC2Fnnugr-oCZCoaH2sT_7ktFDkS-Q@mail.gmail.com>
+ <45603af2fc8374a90ef9e81a67083395cc9c7190.camel@linux.intel.com>
+ <6e7ff1b958d84f6e8e585fd3273ef295@NTILML02.nuvoton.com>
+ <CAP6Zq1hPo9dG71YFyr7z9rjmi-DvoUZJOme4+2uqsfO+7nH+HQ@mail.gmail.com>
+ <20190715094541.zjqxainggjuvjxd2@linux.intel.com>
+ <9c8e216dbc4f43dbaa1701dc166b05e0@NTILML02.nuvoton.com>
+From:   Alexander Steffen <Alexander.Steffen@infineon.com>
+Message-ID: <548d3727-4a8f-38d4-2193-8a09cbae1e64@infineon.com>
+Date:   Thu, 18 Jul 2019 19:10:02 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190717191926.GA4571@localhost.localdomain>
-In-Reply-To: <20190717191926.GA4571@localhost.localdomain>
-From:   Linus Torvalds <torvalds@linux-foundation.org>
-Date:   Thu, 18 Jul 2019 09:46:32 -0700
-Message-ID: <CAADWXX8VMDJao2mH2hk2omhLGzpTMRJCAtRRavFbykMaLRfLhA@mail.gmail.com>
-Subject: Re: [PATCHv3] MIPS: JZ4780: DTS: Add I2C nodes
-To:     Alexandre GRIVEAUX <agriveaux@deutnet.info>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        linux-mips <linux-mips@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <9c8e216dbc4f43dbaa1701dc166b05e0@NTILML02.nuvoton.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.23.8.247]
+X-ClientProxiedBy: MUCSE714.infineon.com (172.23.7.94) To
+ MUCSE708.infineon.com (172.23.7.82)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Your patches lack a sign-off, but the reason I am emailing is that
-they get marked as spam when going through the mailing list because
-the DKIM is bad.
+On 18.07.2019 14:51, Eyal.Cohen@nuvoton.com wrote:
+> Hi Jarkko and Alexander,
+> 
+> We have made an additional code review on the TPM TIS core driver, it looks quite good and we can connect our new I2C driver to this layer.
 
-The email does have what appears to be a find DKIM signature, but it
-adds _way_ too many headers to the list to be checked, including the
-"Sender" line, but also things like "List-Id" etc.
+Great :) In the meantime, I've done some experiments creating an I2C 
+driver based on tpm_tis_core, see 
+https://patchwork.kernel.org/patch/11049363/ Please have a look at that 
+and provide your feedback (and/or use it as a basis for further 
+implementations).
 
-Which is completely wrong usage of DKIM when you go through a mailing
-list (which is _supposed_ to change the Sender field!).
+> However, there are several differences between the SPI interface and the I2C interface that will require changes to the TIS core.
+> At a minimum we thought of:
+> 1. Handling TPM Localities in I2C is different
 
-It looks like somebody mis-understood what DKIM is about, and added
-all the lines they could find to the list of DKIM-protected headers.
+It turned out not to be that different in the end, see the code 
+mentioned above and my comment here: 
+https://patchwork.kernel.org/cover/11049365/
 
-You should generally protect the minimal core required set of headers:
-From/To/Date/Subject/Message-ID etc. Not the headers that are
-intentionally going to be rewritten by any list you might want to post
-to.
+> 2. Handling I2C CRC - relevant only to I2C bus hence not supported today by TIS core
 
-               Linus "hate spam, try to fix dkim" Torvalds
+That is completely optional, so there is no need to implement it in the 
+beginning. Also, do you expect a huge benefit from that functionality? 
+Are bit flips that much more likely on I2C compared to SPI, which has no 
+CRC at all, but still works fine?
 
-On Wed, Jul 17, 2019 at 12:20 PM Alexandre GRIVEAUX
-<agriveaux@deutnet.info> wrote:
->
-> Add the devicetree nodes for the I2C core of the JZ4780 SoC, disabled
-> by default.
-..
+> 3. Handling Chip specific issues, since I2C implementation might be slightly different across the various TPM vendors
+
+Right, that seems similar to the cr50 issues 
+(https://lkml.org/lkml/2019/7/17/677), so there should probably be a 
+similar way to do it.
+
+> 4. Modify tpm_tis_send_data and tpm_tis_recv_data to work according the TCG Device Driver Guide (optimization on TPM_STS access and send/recv retry)
+
+Optimizations are always welcome, but I'd expect basic communication to 
+work already with the current code (though maybe not as efficiently as 
+possible).
+
+> Besides this, during development we might encounter additional differences between SPI and I2C.
+> 
+> We currently target to allocate an eng. to work on this on the second half of August with a goal to have the driver ready for the next kernel merge window.
+> 
+> Regards,
+> Eyal.
