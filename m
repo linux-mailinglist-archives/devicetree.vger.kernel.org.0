@@ -2,186 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E67B6C8C9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 07:38:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9553D6C8E4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 07:47:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727621AbfGRFhw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 01:37:52 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:36862 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727632AbfGRFhw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 01:37:52 -0400
-Received: by mail-pf1-f193.google.com with SMTP id r7so12042111pfl.3
-        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 22:37:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=cFuA1lpQLfGAEPl1nEFaxlniB911ulQvQm5uHCNrLKw=;
-        b=as4v7Ko2dUT43t0bn5kPXJUfGkUB7NpfPcTN7tgnokmlLx/3EdGTCHuJm3sKWpNmS2
-         kbBsLklLEan+12lI+V2S5klivUMFkoIZ/tNKIFSYoV1CdA76e56BKRqMVM0xxscnzEa2
-         1rHeYh1gA7y9Hn+3maWN4q/wcLSRsTSAXfsfr5vo6FHq/54OBRud8F/jInlN3eQh5FLB
-         dZbGpoQDbsTDb+ZiZf6S2dYbdJ0+AeoGnCdVQXbdIMRVv0imbJqP/PwZc17AKH69+Zeo
-         ICwewFJnq6v7AqWr23fFwWwoCf0VK8imyXGlcm0s8l00RFXeRe/EvD83iea4mmQbOzoB
-         rzfg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=cFuA1lpQLfGAEPl1nEFaxlniB911ulQvQm5uHCNrLKw=;
-        b=RIAIAAFde5TMRjzOgWx0ZN9HlhH6zdsk95eOBFY06zGv3jEqeSG86AgLCbk4RQsEtK
-         68WCiPfLLpR3EV4VZzce8/wzEzdxbTW0QyMTzq9KJZzNAyahR6XLFZJi+3UpBGUmPpSH
-         9w1oEJgpwWzSWVpjwuPr5R5Y3/jGq+wwr3hByhCyyps6wsi7QCnMoSHfUdGDNa8ZfA14
-         nlhUTqt/N5BSZRT3Eq9/Dv169CG0Oz9N4YP1u1+rroLfSG280LwpmIxLA1oKh0m8shUh
-         YD8BUYJP8l6AhF/7x6kOo5Bf2N/Aulvwo+CNtIH0kLKt76bBBSKZZtxDmc0Jupe7pFe8
-         EWfw==
-X-Gm-Message-State: APjAAAUbti8QJyPuaYq8qqSFG4DrbXFO0iF/R75YqGFF6vgWr0riTJSE
-        HzSVo35ApKHRpMoqwzL1JCcy6g==
-X-Google-Smtp-Source: APXvYqwdjuF+Axdpruw+kIQpC0dUpNr8vbQzGxEG5BFvLwzw25Cuao2XGx28aKvAMXE1Hnsfh1IJmw==
-X-Received: by 2002:a17:90a:1c17:: with SMTP id s23mr49192637pjs.108.1563428270862;
-        Wed, 17 Jul 2019 22:37:50 -0700 (PDT)
-Received: from localhost ([122.172.28.117])
-        by smtp.gmail.com with ESMTPSA id y128sm40860470pgy.41.2019.07.17.22.37.49
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 17 Jul 2019 22:37:49 -0700 (PDT)
-Date:   Thu, 18 Jul 2019 11:07:46 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        id S1726669AbfGRFrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 01:47:17 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:55976 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726423AbfGRFrR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 01:47:17 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 52310606DC; Thu, 18 Jul 2019 05:47:15 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563428836;
+        bh=/ujdpFaJYkatN6CUI58Cr1STMKLWs0kR78sFppIFlsU=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=fvlwjest/4muTYx6f1AXoXmLjgK+YHkSGOdYwd6DYEv4sMD9+74KJjniWuJeqfyOc
+         CV0RwzgYpKrlDxgc6W+rtc+SO0LUETB8LYjzZIpW9THlw5kkmv//3AKxy5h55QOaI+
+         b2e7xOu//CwM4kPMVdNmXdtrm7zabTTwtsrvgrWg=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.43.47] (unknown [157.49.202.231])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 42CAB606DC;
+        Thu, 18 Jul 2019 05:47:04 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563428834;
+        bh=/ujdpFaJYkatN6CUI58Cr1STMKLWs0kR78sFppIFlsU=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=CHTV/o0iOuqtVwPxDqUslnjX+79s2m9N0cdasfNgCanHZ1SChWfzPHLowNJhzuuTq
+         0THxH+2jf4p8R1FGFPEe/3QclzXY32+2lVyfi98EVwHlLN4tghGDFjg7Qf+FdnChFU
+         CgTxtNKxFf0rXDy9Ye0zwyGwyzAL/TbLEpIw3I5Y=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 42CAB606DC
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
+Subject: Re: [PATCHv8 3/5] arm64: dts: qcom: msm8996: Add Coresight support
+To:     Mathieu Poirier <mathieu.poirier@linaro.org>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        Leo Yan <leo.yan@linaro.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Mike Leach <mike.leach@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
-        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/6] Introduce Bandwidth OPPs for interconnect paths
-Message-ID: <20190718053746.64drmonk72vwnt4s@vireshk-i7>
-References: <20190703011020.151615-1-saravanak@google.com>
- <20190717103220.f7cys267hq23fbsb@vireshk-i7>
- <CAGETcx-tbjVzRKW8D-564zgNOhrA_z-NC1q5U70bhoUDBhp6VA@mail.gmail.com>
+        devicetree@vger.kernel.org, David Brown <david.brown@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>
+References: <cover.1562940244.git.saiprakash.ranjan@codeaurora.org>
+ <2fa725fbc09306f1a95befc62715a708b4c0fad0.1562940244.git.saiprakash.ranjan@codeaurora.org>
+ <20190717170050.GB4271@xps15>
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Message-ID: <f28d9c8f-017c-c990-2f00-0ef5a62f3b40@codeaurora.org>
+Date:   Thu, 18 Jul 2019 11:17:01 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx-tbjVzRKW8D-564zgNOhrA_z-NC1q5U70bhoUDBhp6VA@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+In-Reply-To: <20190717170050.GB4271@xps15>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-I know you have explained lots of things earlier as well, but they are
-available over multiple threads and I don't know where to reply now :)
+Hi Mathieu,
 
-Lets have proper discussion (once again) here and be done with it.
-Sorry for the trouble of explaining things again.
-
-On 17-07-19, 13:34, Saravana Kannan wrote:
-> On Wed, Jul 17, 2019 at 3:32 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > On 02-07-19, 18:10, Saravana Kannan wrote:
-> > > gpu_cache_opp_table: gpu_cache_opp_table {
-> > >       compatible = "operating-points-v2";
-> > >
-> > >       gpu_cache_3000: opp-3000 {
-> > >               opp-peak-KBps = <3000>;
-> > >               opp-avg-KBps = <1000>;
-> > >       };
-> > >       gpu_cache_6000: opp-6000 {
-> > >               opp-peak-KBps = <6000>;
-> > >               opp-avg-KBps = <2000>;
-> > >       };
-> > >       gpu_cache_9000: opp-9000 {
-> > >               opp-peak-KBps = <9000>;
-> > >               opp-avg-KBps = <9000>;
-> > >       };
-> > > };
-> > >
-> > > gpu_ddr_opp_table: gpu_ddr_opp_table {
-> > >       compatible = "operating-points-v2";
-> > >
-> > >       gpu_ddr_1525: opp-1525 {
-> > >               opp-peak-KBps = <1525>;
-> > >               opp-avg-KBps = <452>;
-> > >       };
-> > >       gpu_ddr_3051: opp-3051 {
-> > >               opp-peak-KBps = <3051>;
-> > >               opp-avg-KBps = <915>;
-> > >       };
-> > >       gpu_ddr_7500: opp-7500 {
-> > >               opp-peak-KBps = <7500>;
-> > >               opp-avg-KBps = <3000>;
-> > >       };
-> > > };
-> >
-> > Who is going to use the above tables and how ?
+On 7/17/2019 10:30 PM, Mathieu Poirier wrote:
+> On Fri, Jul 12, 2019 at 07:46:25PM +0530, Sai Prakash Ranjan wrote:
+>> From: Vivek Gautam <vivek.gautam@codeaurora.org>
+>>
+>> Enable coresight support by adding device nodes for the
+>> available source, sinks and channel blocks on msm8996.
+>>
+>> This also adds coresight cpu debug nodes.
+>>
+>> Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
+>> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+>> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+>> Acked-By: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/msm8996.dtsi | 434 ++++++++++++++++++++++++++
+>>   1 file changed, 434 insertions(+)
+>>
 > 
-> In this example the GPU driver would use these. It'll go through these
-> and then decide what peak and average bw to pick based on whatever
-> criteria.
-
-Are you saying that the GPU driver will decide which bandwidth to
-choose while running at a particular frequency (say 2 GHz) ? And that
-it can choose 1525 or 3051 or 7500 from the ddr path ?
-
-Will it be possible to publicly share how we derive to these decisions
-?
-
-The thing is I don't like these separate OPP tables which will not be
-used by anyone else, but just GPU (or a single device). I would like
-to put this data in the GPU OPP table only. What about putting a
-range in the GPU OPP table for the Bandwidth if it can change so much
-for the same frequency.
-
-> > These are the maximum
-> > BW available over these paths, right ?
+> We've gone trhough 8 iteration of this set and I'm still finding checkpatch
+> problems, and I'm not referring to lines over 80 characters.
 > 
-> I wouldn't call them "maximum" because there can't be multiple
-> maximums :) But yes, these are the meaningful bandwidth from the GPU's
-> perspective to use over these paths.
-> 
-> >
-> > > gpu_opp_table: gpu_opp_table {
-> > >       compatible = "operating-points-v2";
-> > >       opp-shared;
-> > >
-> > >       opp-200000000 {
-> > >               opp-hz = /bits/ 64 <200000000>;
-> > >       };
-> > >       opp-400000000 {
-> > >               opp-hz = /bits/ 64 <400000000>;
-> > >       };
-> > > };
-> >
-> > Shouldn't this link back to the above tables via required-opp, etc ?
-> > How will we know how much BW is required by the GPU device for all the
-> > paths ?
-> 
-> If that's what the GPU driver wants to do, then yes. But the GPU
-> driver could also choose to scale the bandwidth for these paths based
-> on multiple other signals. Eg: bus port busy percentage, measure
-> bandwidth, etc.
 
-Lets say that the GPU is running at 2 GHz right now and based on above
-inputs it wants to increase the bandwidth to 7500 for ddr path, now
-does it make sense to run at 4 GHz instead of 2 so we utilize the
-bandwidth to the best of our ability and waste less power ?
+I only get below 2 checkpatch warnings:
 
-If something like that is acceptable, then what about keeping the
-bandwidth fixed for frequencies and rather scale the frequency of the
-GPU on the inputs your provided (like bus port busy percentage, etc).
+If you are talking about the below one, then it was not added manually.
+It was taken automatically when I pulled in the v7. Should I be
+resending this patch for this?
 
-The current proposal makes me wonder on why should we try to reuse OPP
-tables for providing these bandwidth values as the OPP tables for
-interconnect paths isn't really a lot of data, only bandwidth all the
-time and there is no linking from the device's OPP table as well.
+$ ./scripts/checkpatch.pl -g 2fa725fbc09306f1a95befc62715a708b4c0fad0
+WARNING: 'Acked-by:' is the preferred signature form
+#14:
+Acked-By: Suzuki K Poulose <suzuki.poulose@arm.com>
+
+WARNING: line over 80 characters
+#154: FILE: arch/arm64/boot/dts/qcom/msm8996.dtsi:763:
++                       compatible = "arm,coresight-dynamic-replicator", 
+"arm,primecell";
+
+total: 0 errors, 2 warnings, 440 lines checked
+
+
+-Sai
 
 -- 
-viresh
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
