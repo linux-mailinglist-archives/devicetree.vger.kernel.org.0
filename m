@@ -2,90 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1347A6CBF9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 11:36:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 261866CC01
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 11:37:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726608AbfGRJg2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 05:36:28 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37847 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726383AbfGRJg2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 05:36:28 -0400
-Received: by mail-wm1-f68.google.com with SMTP id f17so24915896wme.2
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2019 02:36:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rcydOW70nVBt2WhrQ5MEx1NUU78KyQhLgGrKfsLYnKE=;
-        b=XIc39DhVV6wP9pHG9VdjrepeAIErmxbaSyrZIDZWBwL2cz/IkGTEpnmmzos7L58uon
-         S0C1WwcM2PDrmVrjm05LUQqZ/53FWr5txzGmzl/Euuxd/vHpJeD5Z2K3tQlgfJGG96Ew
-         RMGf/MvvYrS9hLAbChxZYRxtDFcoQlcb9nnAX20CT5fznZMTzpfDhJyx/R0RoJf0+nOH
-         uZWVYazu+ITWtlRdHFKbrl4l1dwjkpA4VPmoxdEqc1actQGG++eYRT9HktMSDf59Y8zq
-         IEu3BwAcpvvH9pH/jZADQim8AynqAbPZ/8NF+//UdFPN+jjWw4+B2NYzFV8rLzM2O/B7
-         2/Ug==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rcydOW70nVBt2WhrQ5MEx1NUU78KyQhLgGrKfsLYnKE=;
-        b=QGbbj69oJlLqW347SkedhTRNCcpdfV/tHYSmRT/gtLybVE3ko85OIIe8Rmt88jppCM
-         gFCZ/TQlUvlfC2k1nQoCwRt6uXDDPJZeQ9bYO8bXlPOpMT2maUnxVBkI4g5poJgTP4ud
-         oaoXnN1NF9OO1zNsfUy+6jNevYv3Lml1NyJVUKzUWlOBOFff/y40hnk6YQQFZKtuTUZ2
-         lh+w8QJ7lVxNpkZxT3bd286OLNJpVI71tyB8xAeEJz0iIONMB57fG4C5q9Ftc+6a4FY/
-         y02+E18Q974jv22sRGwYK6q1JhzHUcFSsZe/bxGKLU4IQZAIh0WPyQLCNxYSejBWWs+2
-         KwbQ==
-X-Gm-Message-State: APjAAAXXiNzjsN2vtUfqSbQZLjBe5S4vFBa1HnPOw9mi1BAmd+Q8Z3/O
-        hjcQOxKC8ZHQasSL7HpnMP9ScA==
-X-Google-Smtp-Source: APXvYqxi617JdD5W+kC67+u9HU0QK3FbZtBaYU7SVdRiq0lXyfDfYn7ExO0wqjFAymUs/5beoqERcQ==
-X-Received: by 2002:a7b:c106:: with SMTP id w6mr43693379wmi.80.1563442585757;
-        Thu, 18 Jul 2019 02:36:25 -0700 (PDT)
-Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id u13sm31569350wrq.62.2019.07.18.02.36.24
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 18 Jul 2019 02:36:25 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Kevin Hilman <khilman@baylibre.com>
-Cc:     Jerome Brunet <jbrunet@baylibre.com>,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: meson8b: add ethernet fifo sizes
-Date:   Thu, 18 Jul 2019 11:36:23 +0200
-Message-Id: <20190718093623.23598-1-jbrunet@baylibre.com>
-X-Mailer: git-send-email 2.21.0
+        id S2389657AbfGRJhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 05:37:23 -0400
+Received: from foss.arm.com ([217.140.110.172]:56222 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726665AbfGRJhX (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Jul 2019 05:37:23 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A992D28;
+        Thu, 18 Jul 2019 02:37:22 -0700 (PDT)
+Received: from dawn-kernel.cambridge.arm.com (unknown [10.1.197.116])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 89B973F71A;
+        Thu, 18 Jul 2019 02:37:20 -0700 (PDT)
+Subject: Re: [PATCHv8 2/5] arm64: dts: qcom: msm8998: Add Coresight support
+To:     saiprakash.ranjan@codeaurora.org, gregkh@linuxfoundation.org,
+        mathieu.poirier@linaro.org, leo.yan@linaro.org,
+        alexander.shishkin@linux.intel.com, mike.leach@linaro.org,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org,
+        devicetree@vger.kernel.org, david.brown@linaro.org,
+        mark.rutland@arm.com
+Cc:     rnayak@codeaurora.org, vivek.gautam@codeaurora.org,
+        sibis@codeaurora.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        marc.w.gonzalez@free.fr
+References: <cover.1562940244.git.saiprakash.ranjan@codeaurora.org>
+ <e510df23f741205fac9030f2c95d06d607549caa.1562940244.git.saiprakash.ranjan@codeaurora.org>
+ <3b192063-f31f-b861-d913-61d737cecc57@arm.com>
+ <4854b0f7-6a81-bc87-3e63-d2b7c68a44f6@codeaurora.org>
+From:   Suzuki K Poulose <suzuki.poulose@arm.com>
+Message-ID: <281e3548-af53-f9a7-b9e4-813b448ab078@arm.com>
+Date:   Thu, 18 Jul 2019 10:37:19 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-X-Patchwork-Bot: notify
+In-Reply-To: <4854b0f7-6a81-bc87-3e63-d2b7c68a44f6@codeaurora.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-If unspecified in DT, the fifo sizes are not automatically detected by
-the dwmac1000 dma driver and the reported fifo sizes default to 0.
-Because of this, flow control will be turned off on the device.
 
-Add the fifo sizes provided by the datasheet in the SoC in DT so
-flow control may be enabled if necessary.
 
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
----
- arch/arm/boot/dts/meson8b.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+On 18/07/2019 10:14, Sai Prakash Ranjan wrote:
+> Hi Suzuki,
+> 
+> On 7/18/2019 1:58 PM, Suzuki K Poulose wrote:
+>> Hi Sai,
+>>
+>>
+>>           etr@6048000 {
+>>> +            compatible = "arm,coresight-tmc", "arm,primecell";
+>>> +            reg = <0x06048000 0x1000>;
+>>> +
+>>> +            clocks = <&rpmcc RPM_SMD_QDSS_CLK>, <&rpmcc
+>>> RPM_SMD_QDSS_A_CLK>;
+>>> +            clock-names = "apb_pclk", "atclk";
+>>> +            arm,scatter-gather;
+>>
+>> Please could you confirm that you have tested the scatter-gather mode
+>> with ETR ? Either via perf/sysfs. Please could you share your results ?
+>> Unless verified
+>> this is going to be fatal for the system.
+>>
+>> Similarly for other platforms.
+>>
+> 
+> Yes I have tested with scatter-gather mode with ETR on all platforms
+> which I have posted via sysfs(not perf) before on previous versions of
+> this patch series and no issues were found. And I suppose this was
+> discussed in v2 of this patch series [1].
 
-diff --git a/arch/arm/boot/dts/meson8b.dtsi b/arch/arm/boot/dts/meson8b.dtsi
-index fba2c70c2fda..b044ad78b475 100644
---- a/arch/arm/boot/dts/meson8b.dtsi
-+++ b/arch/arm/boot/dts/meson8b.dtsi
-@@ -410,6 +410,8 @@
- 		 <&clkc CLKID_MPLL2>,
- 		 <&clkc CLKID_MPLL2>;
- 	clock-names = "stmmaceth", "clkin0", "clkin1";
-+	rx-fifo-depth = <4096>;
-+	tx-fifo-depth = <2048>;
- 
- 	resets = <&reset RESET_ETHERNET>;
- 	reset-names = "stmmaceth";
--- 
-2.21.0
+Using the sysfs doesn't guarantee that the ETR actually uses SG mode, unless
+the buffer size selected is > 1M, which is why I am more interested in the
+perf usage. Alternatively you may configure a larger buffer size (say, 8MB) via:
 
+echo 0x800000 > /sys/bus/coresight/.../tmc_etr0/buffer_size
+
+
+> 
+> As said in one of the series initially [1], QCOM msm downstream kernels
+> have been using scatter gather mode and we haven't seen any fatal issues.
+> 
+> [1] https://patchwork.kernel.org/patch/10769535/
+
+I haven't seen any test results there either.
+
+Cheers
+Suzuki
