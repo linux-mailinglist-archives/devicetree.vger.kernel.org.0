@@ -2,88 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DD1886CBD5
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 11:25:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA16D6CBED
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 11:30:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727666AbfGRJYi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 05:24:38 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:41528 "EHLO inva020.nxp.com"
+        id S1727670AbfGRJaO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 05:30:14 -0400
+Received: from ns.iliad.fr ([212.27.33.1]:41924 "EHLO ns.iliad.fr"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389453AbfGRJYd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Jul 2019 05:24:33 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 938CF1A001B;
-        Thu, 18 Jul 2019 11:24:31 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 4F2171A034A;
-        Thu, 18 Jul 2019 11:24:26 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 90CF6402D6;
-        Thu, 18 Jul 2019 17:24:19 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 4/4] ARM: dts: imx6sll: move GIC to right location in DT
-Date:   Thu, 18 Jul 2019 17:15:08 +0800
-Message-Id: <20190718091508.3248-4-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20190718091508.3248-1-Anson.Huang@nxp.com>
-References: <20190718091508.3248-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727131AbfGRJaN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Jul 2019 05:30:13 -0400
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+        by ns.iliad.fr (Postfix) with ESMTP id 8CED0205CA;
+        Thu, 18 Jul 2019 11:30:11 +0200 (CEST)
+Received: from [192.168.108.49] (freebox.vlq16.iliad.fr [213.36.7.13])
+        by ns.iliad.fr (Postfix) with ESMTP id 76BD5205BC;
+        Thu, 18 Jul 2019 11:30:11 +0200 (CEST)
+Subject: Re: [PATCH v2] pinctrl: msm8998: Squash TSIF pins together
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Andy Gross <agross@kernel.org>
+Cc:     =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        gpio <linux-gpio@vger.kernel.org>,
+        DT <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>
+References: <503b2ae8-ead6-70cd-7b21-ce5f5166a23a@free.fr>
+ <20190704163527.GJ12249@tuxbook-pro>
+From:   Marc Gonzalez <marc.w.gonzalez@free.fr>
+Message-ID: <7431cf2d-4406-ff0c-331a-6ab82cf48b1f@free.fr>
+Date:   Thu, 18 Jul 2019 11:30:11 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190704163527.GJ12249@tuxbook-pro>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV using ClamSMTP ; ns.iliad.fr ; Thu Jul 18 11:30:11 2019 +0200 (CEST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+On 04/07/2019 18:35, Bjorn Andersson wrote:
 
-GIC is inside of SoC from architecture perspective, it should
-be located inside of soc node in DT.
+> On Thu 04 Jul 01:57 PDT 2019, Marc Gonzalez wrote:
+> 
+>> TSIF is the Transport Stream Interface.
+>> First, rename tsif1 to tsif0, and tsif2 to tsif1.
+>> Then squash all 5 tsif0 pins into a single function.
+>> Same for tsif1.
+>>
+>> Signed-off-by: Marc Gonzalez <marc.w.gonzalez@free.fr>
+> 
+> Thanks for the respin Marc.
+> 
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
----
- arch/arm/boot/dts/imx6sll.dtsi | 18 +++++++++---------
- 1 file changed, 9 insertions(+), 9 deletions(-)
+Can you or Andy pick it up for inclusion in linux-next?
 
-diff --git a/arch/arm/boot/dts/imx6sll.dtsi b/arch/arm/boot/dts/imx6sll.dtsi
-index b0a77ff..0e8116d 100644
---- a/arch/arm/boot/dts/imx6sll.dtsi
-+++ b/arch/arm/boot/dts/imx6sll.dtsi
-@@ -75,15 +75,6 @@
- 		};
- 	};
- 
--	intc: interrupt-controller@a01000 {
--		compatible = "arm,cortex-a9-gic";
--		#interrupt-cells = <3>;
--		interrupt-controller;
--		reg = <0x00a01000 0x1000>,
--		      <0x00a00100 0x100>;
--		interrupt-parent = <&intc>;
--	};
--
- 	ckil: clock-ckil {
- 		compatible = "fixed-clock";
- 		#clock-cells = <0>;
-@@ -134,6 +125,15 @@
- 			reg = <0x00900000 0x20000>;
- 		};
- 
-+		intc: interrupt-controller@a01000 {
-+			compatible = "arm,cortex-a9-gic";
-+			#interrupt-cells = <3>;
-+			interrupt-controller;
-+			reg = <0x00a01000 0x1000>,
-+			      <0x00a00100 0x100>;
-+			interrupt-parent = <&intc>;
-+		};
-+
- 		L2: l2-cache@a02000 {
- 			compatible = "arm,pl310-cache";
- 			reg = <0x00a02000 0x1000>;
--- 
-2.7.4
-
+Regards.
