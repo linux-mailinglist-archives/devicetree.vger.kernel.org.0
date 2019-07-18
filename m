@@ -2,126 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 898B06D59C
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 22:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 114FE6D5A2
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 22:16:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391057AbfGRULy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 16:11:54 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:41838 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727687AbfGRULy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 16:11:54 -0400
-Received: by mail-lj1-f196.google.com with SMTP id d24so28583900ljg.8;
-        Thu, 18 Jul 2019 13:11:51 -0700 (PDT)
+        id S2391413AbfGRUO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 16:14:58 -0400
+Received: from mail-io1-f53.google.com ([209.85.166.53]:36539 "EHLO
+        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2391319AbfGRUO5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 16:14:57 -0400
+Received: by mail-io1-f53.google.com with SMTP id o9so53724153iom.3;
+        Thu, 18 Jul 2019 13:14:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=9OoP+ogsy7Rl13GlG3dtRrDXYctB3Em7Ughy9fHmJoY=;
-        b=IBT9Unu8CAt5magtNHgN/3TRHpkacwbY7EaQeFguDuYVsR0cEnZf590wWs46d1vcy0
-         GLNJkt7fs3SkPVP8Cwrepy+FBwpGsXELIonoXZ3ZhC+CiRBH651BOvRuOM463I0ajOAu
-         Qquw+rkPdzP10fhbWouZDNbPpfe2XwRIl8+sZD2ZJcYiwujZIFG57Q7dvVA76p9WeH5g
-         NXW5uIKhWvE1gwoHCUdQpNxMyF1QCkv4IZlXMYLUqM47usnzC9u4IrRihYPZ3gVSg9mM
-         b6FLPq3IQLlmpxfxSC/mq4rJthGjqV39RR9IrOlopnZJqX6ycx/a78uCQHZnhDabaMKU
-         yzXg==
+        h=from:to:cc:subject:date:message-id;
+        bh=r2pTm0RwMQarnOMoV8lDgMG4J6XK5815xYl1WaBhWuw=;
+        b=jXt46JwdBMPM4AF2MXHtgaUsQMs3wXwa8Ez4IImyYL5lK0RzY+Por1cwu6pd3tf1GK
+         LrR59Z86usCvS5PmkGhF3DPyAYzBW9zSlJJMqBiO/DfbEJy4NJ+BGaB2eCH1E3ERB7it
+         hf9/1kg5cy1KyOyY/PlWh63D5KRrr8tLDGxHLUH0gxkLR1rYP0+NHe4sRkS08I6N0XrV
+         JU7TSwR1wWwxivUuoIpCQNY8YwM5drG9QWzXEwcQyhOrHW5HW7BGP0GICe9p6fZfIf1V
+         9Mzjq9NaONVeWjIHfoGxtbcHJ/60e/CclfhDs0EBmZQcAJ8WmTyhYeV6q0a9825w6QF3
+         Fa/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=9OoP+ogsy7Rl13GlG3dtRrDXYctB3Em7Ughy9fHmJoY=;
-        b=hSvbvWLwL3hjNdNxj/EXgfywvArKxoNI5rlzF6OCTxoUOX6gjSbIBxBa+uq3SiXd3R
-         h6JrvBwwF3xfKaspT85xDndxW5xR4ZTnRjG7YLvobFXJ2tULZvI9lcA3+xsw194hTlii
-         p6Z5L0ALextRznk7HWw/R6bvnCtysejve6xmCU+HC98iKK6MVpnWY9adGckaPE9dOZKH
-         +JYc5stvYBpIvi3TnqXlFW6gqfZyW8DO+8zIqSidGkDCU0uXb/1AYHtvCZWUQn1JgJ63
-         cErUXaDhWuLhYpR7aAjngHuSVmi/gn5GExnuZP/i2JTmLMOu20Jv65kBxDbHHxd7NuPy
-         ZB8A==
-X-Gm-Message-State: APjAAAWPZvmfWzNPjagZzcqOLxslFHAov8MlHIfpcKEAz3u7NXk+xuSa
-        ZOyg0Jg0uM3p5iP5RVo5wCwOzmR3
-X-Google-Smtp-Source: APXvYqzAXZjqhf3ouX0fmb+2SaXRmt54N0OP2U/KAb/xMyZ4UtTytn1FU3IQWXY3mxKqIfbmdXo5xA==
-X-Received: by 2002:a2e:900c:: with SMTP id h12mr24182091ljg.197.1563480710808;
-        Thu, 18 Jul 2019 13:11:50 -0700 (PDT)
-Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
-        by smtp.googlemail.com with ESMTPSA id t137sm4111643lff.78.2019.07.18.13.11.48
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 18 Jul 2019 13:11:49 -0700 (PDT)
-Subject: Re: [PATCH V5 11/18] clk: tegra210: Add support for Tegra210 clocks
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>
-Cc:     Joseph Lo <josephl@nvidia.com>, thierry.reding@gmail.com,
-        jonathanh@nvidia.com, tglx@linutronix.de, jason@lakedaemon.net,
-        marc.zyngier@arm.com, linus.walleij@linaro.org, stefan@agner.ch,
-        mark.rutland@arm.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, talho@nvidia.com, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mperttunen@nvidia.com,
-        spatra@nvidia.com, robh+dt@kernel.org, devicetree@vger.kernel.org
-References: <20190716083701.225f0fd9@dimatab>
- <21266e4f-16b1-4c87-067a-16c07c803b6e@nvidia.com>
- <c5853e1a-d812-2dbd-3bec-0a9b0b0f6f3e@nvidia.com>
- <20190716080610.GE12715@pdeschrijver-desktop.Nvidia.com>
- <d908d3a2-3013-7f92-0852-115f428d1c5f@gmail.com>
- <72b5df8c-8acb-d0d0-ebcf-b406e8404973@nvidia.com>
- <2b701832-5548-7c83-7c17-05cc2f1470c8@nvidia.com>
- <76e341be-6f38-2bc1-048e-1aa6883f9b88@gmail.com>
- <0706576a-ce61-1cf3-bed1-05f54a1e2489@nvidia.com>
- <5b2945c5-fcb2-2ac0-2bf2-df869dc9c713@gmail.com>
- <20190718191820.GG12715@pdeschrijver-desktop.Nvidia.com>
- <2274fccb-59d3-824c-cb97-55c23a4eaa75@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <5c6e17ed-bdbd-fa27-87e7-aa95dfa7c591@gmail.com>
-Date:   Thu, 18 Jul 2019 23:11:48 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <2274fccb-59d3-824c-cb97-55c23a4eaa75@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=r2pTm0RwMQarnOMoV8lDgMG4J6XK5815xYl1WaBhWuw=;
+        b=SQHJuno+MXcY9P/5NzVi4mOA+gfuygpaXZkFSxrIKaaBo/tpoxJuh5pXit5rF4ZOeW
+         9fKINWwcnZOy1bfWkRNfd0doOs7t51O/ZZj2itJIHJzL6KdxOOhc5+b/qfNNE0kRsRPH
+         AhQ+mYmLl5eZ4OY5RhqIv0HnTWa84U8aj280YPSnQwCxLaOmXkp//oPl/xWVAYby2NN+
+         PF9I0NVUWbWwJ6uMfsnRj5EUGW2Rj/GC9Fjqey0+JyWM5noJ/6zPPE1LoTJaxsqQz7o7
+         XjJf0gTPQERs8xOvd0RaNSBWGCizvRoKe5GHauuYnjQgZZOkQSAVOqXHa/LOKKeRQW1S
+         uJzg==
+X-Gm-Message-State: APjAAAVGrcYiIwfciNqVz8x5MRkRVVzCK/pgzutKiNKs5rJNxJk+BANW
+        Bvj401pAckoJDLVg9a9tCBo=
+X-Google-Smtp-Source: APXvYqxSMTFdNpWMpK6BWoxyGer9NJ15j1T9DNe6DsnJeFmfcT3n3z8uenJp6lvRsFHRyu9jM7R6XA==
+X-Received: by 2002:a5d:8b52:: with SMTP id c18mr44577354iot.89.1563480896915;
+        Thu, 18 Jul 2019 13:14:56 -0700 (PDT)
+Received: from svens-asus.arcx.com ([184.94.50.30])
+        by smtp.gmail.com with ESMTPSA id p3sm31399170iom.7.2019.07.18.13.14.56
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 18 Jul 2019 13:14:56 -0700 (PDT)
+From:   Sven Van Asbroeck <thesven73@gmail.com>
+X-Google-Original-From: Sven Van Asbroeck <TheSven73@gmail.com>
+To:     Fugang Duan <fugang.duan@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Andrew Lunn <andrew@lunn.ch>,
+        Fabio Estevam <festevam@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+Subject: [PATCH v1] dt-bindings: fec: explicitly mark deprecated properties
+Date:   Thu, 18 Jul 2019 16:14:53 -0400
+Message-Id: <20190718201453.13062-1-TheSven73@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-18.07.2019 22:24, Sowjanya Komatineni пишет:
-> 
-> On 7/18/19 12:18 PM, Peter De Schrijver wrote:
->> On Tue, Jul 16, 2019 at 09:43:16PM +0300, Dmitry Osipenko wrote:
->>>> CPU parents are PLL_X, PLL_P, and dfll. PLL_X always runs at higher
->>>> rate
->>>> so switching to PLL_P during CPUFreq probe prior to dfll clock enable
->>>> should be safe.
->>> AFAIK, PLLX could run at ~200MHz. There is also a divided output of PLLP
->>> which CCLKG supports, the PLLP_OUT4.
->>>
->>> Probably, realistically, CPU is always running off a fast PLLX during
->>> boot, but I'm wondering what may happen on KEXEC. I guess ideally
->>> CPUFreq driver should also have a 'shutdown' callback to teardown DFLL
->>> on a reboot, but likely that there are other clock-related problems as
->>> well that may break KEXEC and thus it is not very important at the
->>> moment.
->>>
->> If you turn off the DFLL, you have to be aware that the voltage margins
->> for DFLL use are lower than for PLL use. So you either need to be sure
->> to switch to a frequency below fmax @ Vmin or you program the boot
->> voltage and then you can use PLLX as setup by the bootloader. For OVR
->> regulators you can't program a voltage without the DFLL, so you have to
->> tristate the PWM output which will give you a hardwired boot voltage.
->>
->> Peter.
-> 
-> Yes, we switch CPU to PLLP and then disable DFLL during suspend.
+fec's gpio phy reset properties have been deprecated.
+Update the dt-bindings documentation to explicitly mark
+them as such, and provide a short description of the
+recommended alternative.
 
-I'm wondering what happens to T124 on resume from suspend, given that it
-switches CPU to PLLX [1]. I imagine that CPU voltage could be lower than
-needed if suspend happened on DFLL. I'm also now vaguely recalling that
-CPUFreq driver was disabled for T124 because of some problems.
+Signed-off-by: Sven Van Asbroeck <TheSven73@gmail.com>
+---
+ .../devicetree/bindings/net/fsl-fec.txt       | 30 +++++++++++--------
+ 1 file changed, 17 insertions(+), 13 deletions(-)
 
-Or maybe warmboot code is actually touching the voltage regulators?
+diff --git a/Documentation/devicetree/bindings/net/fsl-fec.txt b/Documentation/devicetree/bindings/net/fsl-fec.txt
+index 2d41fb96ce0a..5b88fae0307d 100644
+--- a/Documentation/devicetree/bindings/net/fsl-fec.txt
++++ b/Documentation/devicetree/bindings/net/fsl-fec.txt
+@@ -7,18 +7,6 @@ Required properties:
+ - phy-mode : See ethernet.txt file in the same directory
+ 
+ Optional properties:
+-- phy-reset-gpios : Should specify the gpio for phy reset
+-- phy-reset-duration : Reset duration in milliseconds.  Should present
+-  only if property "phy-reset-gpios" is available.  Missing the property
+-  will have the duration be 1 millisecond.  Numbers greater than 1000 are
+-  invalid and 1 millisecond will be used instead.
+-- phy-reset-active-high : If present then the reset sequence using the GPIO
+-  specified in the "phy-reset-gpios" property is reversed (H=reset state,
+-  L=operation state).
+-- phy-reset-post-delay : Post reset delay in milliseconds. If present then
+-  a delay of phy-reset-post-delay milliseconds will be observed after the
+-  phy-reset-gpios has been toggled. Can be omitted thus no delay is
+-  observed. Delay is in range of 1ms to 1000ms. Other delays are invalid.
+ - phy-supply : regulator that powers the Ethernet PHY.
+ - phy-handle : phandle to the PHY device connected to this device.
+ - fixed-link : Assume a fixed link. See fixed-link.txt in the same directory.
+@@ -47,11 +35,27 @@ Optional properties:
+   For imx6sx, "int0" handles all 3 queues and ENET_MII. "pps" is for the pulse
+   per second interrupt associated with 1588 precision time protocol(PTP).
+ 
+-
+ Optional subnodes:
+ - mdio : specifies the mdio bus in the FEC, used as a container for phy nodes
+   according to phy.txt in the same directory
+ 
++Deprecated optional properties:
++	To avoid these, create a phy node according to phy.txt in the same
++	directory, and point the fec's "phy-handle" property to it. Then use
++	the phy's reset binding, again described by phy.txt.
++- phy-reset-gpios : Should specify the gpio for phy reset
++- phy-reset-duration : Reset duration in milliseconds.  Should present
++  only if property "phy-reset-gpios" is available.  Missing the property
++  will have the duration be 1 millisecond.  Numbers greater than 1000 are
++  invalid and 1 millisecond will be used instead.
++- phy-reset-active-high : If present then the reset sequence using the GPIO
++  specified in the "phy-reset-gpios" property is reversed (H=reset state,
++  L=operation state).
++- phy-reset-post-delay : Post reset delay in milliseconds. If present then
++  a delay of phy-reset-post-delay milliseconds will be observed after the
++  phy-reset-gpios has been toggled. Can be omitted thus no delay is
++  observed. Delay is in range of 1ms to 1000ms. Other delays are invalid.
++
+ Example:
+ 
+ ethernet@83fec000 {
+-- 
+2.17.1
 
-[1]
-https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git/tree/arch/arm/mach-tegra/sleep-tegra30.S#n389
-
-That is also should be a problem for T30 if voltage scaling is happening
-and I have some patches in works that are switching CPU to PLLP instead
-of PLLX on suspend/resume.
