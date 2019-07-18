@@ -2,176 +2,159 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 377766C8B9
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 07:26:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 229E56C8C3
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 07:37:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726423AbfGRF0k (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 01:26:40 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:38782 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726304AbfGRF0k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 01:26:40 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190718052637euoutp02ee2d9cc5dcd06e54333f273b0da40045~yaR3tqji-2653226532euoutp02E
-        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2019 05:26:37 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190718052637euoutp02ee2d9cc5dcd06e54333f273b0da40045~yaR3tqji-2653226532euoutp02E
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1563427597;
-        bh=VqyitIjmHvd1mFt9nd0wLsDdOiN5IPoLZWqZmuqK4ow=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=T0ACcPj0kHSwPk9EgVyIF1GKa++mbBorSKnB1H8nVOmKIYqmtGjuqPyvPK/PrZ+25
-         s3Qeqdnypvmu0B4gGD6jMMoa+c/DFYmgjijFrBqzgAQf3IcEfyBdFEyL5i8bIlK91G
-         M0IrHvYiEvlxXLhFKA5oePoLkDs//Zp5D6MZUkww=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190718052637eucas1p1567714f8a8eb509d67286b296b342931~yaR3AAz9R1478114781eucas1p1C;
-        Thu, 18 Jul 2019 05:26:37 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 0E.10.04298.C03003D5; Thu, 18
-        Jul 2019 06:26:36 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190718052636eucas1p206de16a320293650767d73f1b7dd7da9~yaR18a2gT1160411604eucas1p20;
-        Thu, 18 Jul 2019 05:26:36 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190718052635eusmtrp2a01cb3b315ae1f78c419969913863525~yaR1toZgF1475514755eusmtrp2p;
-        Thu, 18 Jul 2019 05:26:35 +0000 (GMT)
-X-AuditID: cbfec7f2-f13ff700000010ca-2e-5d30030cbde6
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id F2.3D.04146.B03003D5; Thu, 18
-        Jul 2019 06:26:35 +0100 (BST)
-Received: from [106.120.51.20] (unknown [106.120.51.20]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190718052634eusmtip1cb652b3ec0e7b62a46944508f69ee866~yaR07zQdm2410324103eusmtip1U;
-        Thu, 18 Jul 2019 05:26:34 +0000 (GMT)
-Subject: Re: [PATCH v1 02/50] clk: samsung: add IDs for Exynos5420 NoC
- clocks
-To:     Chanwoo Choi <cw00.choi@samsung.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org
-Cc:     mturquette@baylibre.com, sboyd@kernel.org,
-        b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
-        mark.rutland@arm.com, robh+dt@kernel.org,
-        kyungmin.park@samsung.com, a.hajda@samsung.com,
-        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
-        myungjoo.ham@samsung.com
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-Message-ID: <5d3d1cb0-15db-8332-ee6d-946e2906fb87@partner.samsung.com>
-Date:   Thu, 18 Jul 2019 07:26:34 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.7.1
+        id S1726556AbfGRFhg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 01:37:36 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:55784 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726304AbfGRFhf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 01:37:35 -0400
+X-UUID: 56b8101c485841a88775199fbb1b285b-20190718
+X-UUID: 56b8101c485841a88775199fbb1b285b-20190718
+Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <yong.wu@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 208262468; Thu, 18 Jul 2019 13:37:29 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS32DR.mediatek.inc
+ (172.27.6.104) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Thu, 18 Jul
+ 2019 13:37:24 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 18 Jul 2019 13:37:23 +0800
+Message-ID: <1563428243.31342.39.camel@mhfsdcap03>
+Subject: Re: [PATCH v8 07/21] iommu/io-pgtable-arm-v7s: Extend MediaTek 4GB
+ Mode
+From:   Yong Wu <yong.wu@mediatek.com>
+To:     Will Deacon <will@kernel.org>
+CC:     <youlin.pei@mediatek.com>, <devicetree@vger.kernel.org>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        <cui.zhang@mediatek.com>, <srv_heupstream@mediatek.com>,
+        <chao.hao@mediatek.com>, Joerg Roedel <joro@8bytes.org>,
+        Will Deacon <will.deacon@arm.com>,
+        <linux-kernel@vger.kernel.org>, Evan Green <evgreen@chromium.org>,
+        "Tomasz Figa" <tfiga@google.com>,
+        <iommu@lists.linux-foundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <yingjoe.chen@mediatek.com>, <anan.sun@mediatek.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "Matthias Kaehlcke" <mka@chromium.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Date:   Thu, 18 Jul 2019 13:37:23 +0800
+In-Reply-To: <20190717142339.wltamw6wktwixqqn@willie-the-truck>
+References: <1561774167-24141-1-git-send-email-yong.wu@mediatek.com>
+         <1561774167-24141-8-git-send-email-yong.wu@mediatek.com>
+         <20190710143649.w5dplhzdpi3bxp7e@willie-the-truck>
+         <1562846036.31342.10.camel@mhfsdcap03>
+         <20190711123129.da4rg35b54u4svfw@willie-the-truck>
+         <1563079280.31342.22.camel@mhfsdcap03>
+         <20190715095156.xczfkbm6zpjueq32@willie-the-truck>
+         <1563367459.31342.34.camel@mhfsdcap03>
+         <20190717142339.wltamw6wktwixqqn@willie-the-truck>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <b8503015-732f-7ac5-1b25-50e943d27e55@samsung.com>
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SaUhUURTHvfPem3lKE9dR81RSMhQtmKMYdaXIopTpQ2TLhzAsR32Mlo42
-        Ty1byCytRs0oUpsylTKnSR13TNoYRVFxS3Nr0dDItCEsgxayfD4jv/3+5/zPdrkspRhilrCR
-        ujhOr9NEKaUOdE3jj/Z1CyivYK+h5g1ksLSdIeU5Fob0TX1gSF7DjMwcmaBIR0eZjLQlf5KR
-        ipFehkymv2VId91tKcnpeCohJQ1vZKSwr0tCulr8yatzJilJedIgI/WfLjJkurec3qpQF98p
-        RurP/SkydYX5slRdee+s+kqVGam/ViwLlAY5bA7noiITOL1qS4hDRF/PLyr2s8uJ+hsvURK6
-        rjAglgW8Hi5c8DEgB1aBTQimzO8oUUwh+GF+JjEg+xnxFcFvQ4DAQoGhrEUqmooQVP4x0aKw
-        Ieg3PmcElxPeDabXrbMuZ9yC4NywYbYVhbMkYLzjIsyWYk+oNR8TUI4DIDXVWUAar4TBfB/B
-        7IIPQHdVHRJYjh2h+eYoLbA99oO0dotMbOgKg6N5c82Xw/nqW5S4ZwoLOcWsyDugJDsPiewE
-        401VMpHd4M8jsRYwD0kZBXOe0zCSmTvn2QT1TV2MsBqF14ClTiWGt0GnzSYV33Ah9NscxQ0W
-        wrWabEoMy+FSqkJ0r4aq9M65QYugqDhLdhUpjfPuMs67xTjvFuP/ufmINiNXLp6P1nK8t447
-        7slrovl4ndYzLCa6As18u9bppi+16NuLUCvCLFIukCe5q4IVjCaBT4y2ImAppbP81ceZkDxc
-        k3iS08cc1sdHcbwVLWVppav8lN3wQQXWauK4oxwXy+n/ZSWs/ZIktGqvdc/dnWO2rRKPXfLG
-        NHfH/cNeA5QquxJ6f2Z6eBd5D/gm0r66+ytCVIl7PYd66Oq2BNX2U7klRyYl065nAifshov2
-        jYdexzvjNj7Efo8LLf4D7zMGUViy7/eCq4GL35tsee6HHpzILyc+ha1jo+Nupdrz5E1tjDYo
-        LfP0kzIlzUdovNdSel7zFw34wy5yAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrGIsWRmVeSWpSXmKPExsVy+t/xu7rczAaxBj1tmha31p1jtdg4Yz2r
-        xfUvz1kt5h8Bcvsfv2a2OH9+A7vF2aY37BabHl9jtfjYc4/V4vKuOWwWM87vY7JYe+Quu8XS
-        6xeZLC6ecrW43biCzaJ17xF2i8Nv2lkt/l3byOIg5LFm3hpGj/c3Wtk9Nq3qZPPYvKTeo2/L
-        KkaPz5vkAtii9GyK8ktLUhUy8otLbJWiDS2M9AwtLfSMTCz1DI3NY62MTJX07WxSUnMyy1KL
-        9O0S9DKuX/nNXPBetOLw1KuMDYyThboYOTkkBEwkujacYuti5OIQEljKKPHm834WiISYxKR9
-        29khbGGJP9e6oIpeM0r8vNIClhAW8JX4cHMOK0hCROAUo0T3o8VsIAlmgWlMEifWM0N0/GGU
-        OLGylbGLkYODTUBPYseqQhCTV8BNoq1NBMRkEVCVuLXAGKRTVCBCoq9tNtgUXgFBiZMzn4Dd
-        wylgL9F9bj07xHQziXmbHzJD2OISt57MZ4Kw5SWat85mnsAoNAtJ+ywkLbOQtMxC0rKAkWUV
-        o0hqaXFuem6xoV5xYm5xaV66XnJ+7iZGYJxvO/Zz8w7GSxuDDzEKcDAq8fDeUNKPFWJNLCuu
-        zD3EKMHBrCTCe/slUIg3JbGyKrUoP76oNCe1+BCjKdBvE5mlRJPzgSkoryTe0NTQ3MLS0NzY
-        3NjMQkmct0PgYIyQQHpiSWp2ampBahFMHxMHp1QDY8troQ9Kc0T+V6y+fcl75XzpqRarg3Z/
-        yueYFu+yqW5d72yTnYv7LGuj3ORdHfqktMIudTiv61531avxUXWlDpfBl9395ffSNfan34k9
-        t5d7yqyyu3vmKy68Gm/69uSKduX7mieyvwr6RzOzzZablyB8xnByT5lT2npHySNBaTFebt/Z
-        PnivU2Ipzkg01GIuKk4EAKFDpmYJAwAA
-X-CMS-MailID: 20190718052636eucas1p206de16a320293650767d73f1b7dd7da9
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190715124435eucas1p2099cd7670a3d85d9b11eb0ff86041a2a
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190715124435eucas1p2099cd7670a3d85d9b11eb0ff86041a2a
-References: <20190715124417.4787-1-l.luba@partner.samsung.com>
-        <CGME20190715124435eucas1p2099cd7670a3d85d9b11eb0ff86041a2a@eucas1p2.samsung.com>
-        <20190715124417.4787-3-l.luba@partner.samsung.com>
-        <b8503015-732f-7ac5-1b25-50e943d27e55@samsung.com>
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: FCC812B93959C45D6AFBE2DE9BA4C64EE9C5BF014909D9D18086284D23A8FC762000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Wed, 2019-07-17 at 15:23 +0100, Will Deacon wrote:
+> On Wed, Jul 17, 2019 at 08:44:19PM +0800, Yong Wu wrote:
+> > On Mon, 2019-07-15 at 10:51 +0100, Will Deacon wrote:
+> > > On Sun, Jul 14, 2019 at 12:41:20PM +0800, Yong Wu wrote:
+> > > > @@ -742,7 +763,9 @@ static struct io_pgtable
+> > > > *arm_v7s_alloc_pgtable(struct io_pgtable_cfg *cfg,
+> > > >  {
+> > > >  	struct arm_v7s_io_pgtable *data;
+> > > >  
+> > > > -	if (cfg->ias > ARM_V7S_ADDR_BITS || cfg->oas > ARM_V7S_ADDR_BITS)
+> > > > +	if (cfg->ias > ARM_V7S_ADDR_BITS ||
+> > > > +	    (cfg->oas > ARM_V7S_ADDR_BITS &&
+> > > > +	     !(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT)))
+> > > >  		return NULL;
+> > > 
+> > > I think you can rework this to do something like:
+> > > 
+> > > 	if (cfg->ias > ARM_V7S_ADDR_BITS)
+> > > 		return NULL;
+> > > 
+> > > 	if (cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT) {
+> > > 		if (!IS_ENABLED(CONFIG_PHYS_ADDR_T_64BIT))
+> > > 			cfg->oas = min(cfg->oas, ARM_V7S_ADDR_BITS);
+> > > 		else if (cfg->oas > 34)
+> > > 			return NULL;
+> > > 	} else if (cfg->oas > ARM_V7S_ADDR_BITS) {
+> > > 		return NULL;
+> > > 	}
+> > > 
+> > > so that we clamp the oas when phys_addr_t is 32-bit for you. That should
+> > > allow you to remove lots of the checking from iopte_to_paddr() too if you
+> > > check against oas in the map() function.
+> > > 
+> > > Does that make sense?
+> > 
+> > Of course I'm ok for this. I'm only afraid that this function has
+> > already 3 checking "if (x) return NULL", Here we add a new one and so
+> > many lines... Maybe the user should guarantee the right value of oas.
+> > How about move it into mtk_iommu.c?
+> > 
+> > About the checking of iopte_to_paddr, I can not remove them. I know it
+> > may be a bit special and not readable. Hmm, I guess I should use a MACRO
+> > instead of the hard code 33 for the special 4GB mode case.
+> 
+> Why can't you just do something like:
+> 
+> 	if (!(cfg->quirks & IO_PGTABLE_QUIRK_ARM_MTK_EXT))
+> 		return paddr;
+> 
+> 	if (pte & ARM_V7S_ATTR_MTK_PA_BIT33)
+> 		paddr |= BIT_ULL(33);
+
+OK here.
+
+> 
+> 	if (pte & ARM_V&S_ATTR_MTK_PA_BIT32)
+> 		paddr |= BIT_ULL(32);
+
+No here, The flow is a bit special for 4GB mode here.
+
+This is the detailed remap relationship for our 4GB mode.
+           CPU PA               ->    HW PA
+register: 0x0 ~ 0x3fff_ffff
+dram 1G:0x4000_0000~0x7fff_ffff ->0x1_4000_0000~0x1_7fff_ffff(Add bit32)
+dram 2G:0x8000_0000~0xbfff_ffff ->0x1_8000_0000~0x1_bfff_ffff(Add bit32)
+dram 3G:0xc000_0000~0xffff_ffff ->0x1_c000_0000~0x1_ffff_ffff(Add bit32)
+dram 4G:0x1_0000_0000~0x1_3fff_ffff->0x1_0000_0000~0x1_3fff_ffff
+
+Thus, in the 4GB mode, we should add always add bit9 in pte(for bit32
+PA). But we can not always add bit32 in the iova_to_phys. The valid PA
+range should be 0x4000_0000 - 0x1_3fff_ffff. Thus, we can only add bit32
+when the PA in pte < 0x4000_0000, keep it as-is if the PA in pte located
+from 0x4000_0000 to 0xffff_ffff.
+
+This issue exist all the time after we added 4GB mode for mt8173.
+
+Thus, I have to add a special flow for 4gb mode here:
+
+	/* Workaround for MTK 4GB Mode: Add BIT32 only when PA < 0x4000_0000.*/
+	if (cfg->oas == ARM_V7S_MTK_4GB_OAS && paddr < 0x40000000UL)
+		paddr |= BIT_ULL(32);
+	else if (pte & ARM_V7S_ATTR_MTK_PA_BIT32)
+		paddr |= BIT_ULL(32);
+
+> 
+> 	return paddr;
+> 
+> The diff I sent previously sanitises the oas at init time, and then you
+> can just enforce it in map().
+> 
+> Will
 
 
-On 7/16/19 11:26 AM, Chanwoo Choi wrote:
-> Hi,
-> 
-> You don't need to make the separate patches according to
-> the type of clock just in order to add the ID by handling them
-> from devicetree.
-> 
-> Please merge following patches to one patch
-> - patch2, patch4~patch7, patch9, patch11, patch12, patch14, patch17
-> and separate from patch13, patch15, patch16 for adding the ID
-I agree. The patches will be squashed.
-
-Regards,
-Lukasz
-> 
-> 
-> On 19. 7. 15. 오후 9:43, Lukasz Luba wrote:
->> The patch adds NoC WCORE clock IDs needed used for changing parent of the
->> main NoC clock from the DT device.
->>
->> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
->> ---
->>   drivers/clk/samsung/clk-exynos5420.c | 10 ++++++----
->>   1 file changed, 6 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/clk/samsung/clk-exynos5420.c b/drivers/clk/samsung/clk-exynos5420.c
->> index 16ad498e3f3f..d353870e7fda 100644
->> --- a/drivers/clk/samsung/clk-exynos5420.c
->> +++ b/drivers/clk/samsung/clk-exynos5420.c
->> @@ -463,7 +463,8 @@ static const struct samsung_fixed_factor_clock
->>   static const struct samsung_mux_clock exynos5800_mux_clks[] __initconst = {
->>   	MUX(0, "mout_aclk400_isp", mout_group3_5800_p, SRC_TOP0, 0, 3),
->>   	MUX(0, "mout_aclk400_mscl", mout_group3_5800_p, SRC_TOP0, 4, 3),
->> -	MUX(0, "mout_aclk400_wcore", mout_group2_5800_p, SRC_TOP0, 16, 3),
->> +	MUX(CLK_MOUT_ACLK400_WCORE, "mout_aclk400_wcore", mout_group2_5800_p,
->> +			SRC_TOP0, 16, 3),
->>   	MUX(0, "mout_aclk100_noc", mout_group1_5800_p, SRC_TOP0, 20, 2),
->>   
->>   	MUX(0, "mout_aclk333_432_gscl", mout_group6_5800_p, SRC_TOP1, 0, 2),
->> @@ -548,7 +549,8 @@ static const struct samsung_mux_clock exynos5420_mux_clks[] __initconst = {
->>   
->>   	MUX(0, "mout_aclk400_isp", mout_group1_p, SRC_TOP0, 0, 2),
->>   	MUX(0, "mout_aclk400_mscl", mout_group1_p, SRC_TOP0, 4, 2),
->> -	MUX(0, "mout_aclk400_wcore", mout_group1_p, SRC_TOP0, 16, 2),
->> +	MUX(CLK_MOUT_ACLK400_WCORE, "mout_aclk400_wcore", mout_group1_p,
->> +			SRC_TOP0, 16, 2),
->>   	MUX(0, "mout_aclk100_noc", mout_group1_p, SRC_TOP0, 20, 2),
->>   
->>   	MUX(0, "mout_aclk333_432_gscl", mout_group4_p, SRC_TOP1, 0, 2),
->> @@ -674,8 +676,8 @@ static const struct samsung_mux_clock exynos5x_mux_clks[] __initconst = {
->>   			SRC_TOP10, 8, 1),
->>   	MUX(0, "mout_sw_aclk200_fsys2", mout_sw_aclk200_fsys2_p,
->>   			SRC_TOP10, 12, 1),
->> -	MUX(0, "mout_sw_aclk400_wcore", mout_sw_aclk400_wcore_p,
->> -			SRC_TOP10, 16, 1),
->> +	MUX(CLK_MOUT_SW_ACLK400_WCORE, "mout_sw_aclk400_wcore",
->> +			mout_sw_aclk400_wcore_p, SRC_TOP10, 16, 1),
->>   	MUX(0, "mout_sw_aclk100_noc", mout_sw_aclk100_noc_p,
->>   			SRC_TOP10, 20, 1),
->>   	MUX(0, "mout_sw_pclk200_fsys", mout_sw_pclk200_fsys_p,
->>
-> 
-> 
