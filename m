@@ -2,133 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E8E36D41B
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 20:41:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BDE56D470
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 21:11:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726715AbfGRSk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 14:40:27 -0400
-Received: from mail-eopbgr130089.outbound.protection.outlook.com ([40.107.13.89]:44866
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726649AbfGRSk1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Jul 2019 14:40:27 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ZHDSKi2HhI4N2PbUxUh4vIi8MSHjcoQk4t0Dur/yekcxozx6LRDRMqIamoastFDlfposXzd6py9Tu3x5AV32WdS2Sfc3nwz4NtaCyvvrMDxvijusHDOZSTbVX8VUtlxoPp9l2qjE5WYFMYGIGwnNM1nCycEzvulQVjcv/T6PwkL4JeihlFcpDyh/yqIOHoiaYLO6BCXfvA2u7qujwvy+qpjq6l91B2hOTBMpHmDk+w2M6BpQR9qXArR/YHelX8Tsvw53vKwlPy11gGsJuXI3pwGpSMz9kIloTrkqFp3z1RSJW/b3Aj/HJVMInUFSJMnk+jZGQkT2jgSgBHkN93dBDw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U5z/Ifenn0Ea0WscxvVau60IyWfUN3larQpQb5fbRqQ=;
- b=fp/EcKhRWHMg+6u4tUiAkrGQB+rm7AWM8f2F9O8/SZOeQOykAVCLWNeCItP/oJIGLZ3M9rTJe6hCTFjsFqZ5yJCRJuw3l3XOASsoFnPQueDNP25A7DT2NKf7t2DuMz9WowIoPLeiCHJLPJmUu9YLBIH75kiVebyNsuj3DQRp1GD3P2kA11XIzPxeuJPXALF0TKfEgJvtgXNZDZzwmfGCD7X5I2q8ZWtVIzbLs2zQCRgaS7gxHwS/aMH8Ft0wxY0ojM9d7FikjEQgaEDbrtwrrZH/EGnHPu8YVe/SwzjwPLvEyt6XeJn30VgE2k/pSvNS6y7jv5YmwhpujrLEe7p0iw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
- header.d=nxp.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=U5z/Ifenn0Ea0WscxvVau60IyWfUN3larQpQb5fbRqQ=;
- b=sX2BlfWGPepYI+LW7AFO+0BRWwaxj+SZTICOIYKmgTL9K+FeydaVnSUCtlrx1twEFSqIKYrqNuH2rCpQgAOVMhgdZO4QazEpKccjCBEgDmqzBuDJkgT/p7sqPnAQkJGfoZK6aOo2RCQ5cZOy0sgvoJnOi4FzKZvLexEVTjyWOhs=
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com (20.177.50.140) by
- VI1PR04MB4158.eurprd04.prod.outlook.com (52.133.15.33) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2073.14; Thu, 18 Jul 2019 18:40:22 +0000
-Received: from VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::41:43ca:bf4c:7b99]) by VI1PR04MB5055.eurprd04.prod.outlook.com
- ([fe80::41:43ca:bf4c:7b99%3]) with mapi id 15.20.2073.012; Thu, 18 Jul 2019
- 18:40:22 +0000
-From:   Leonard Crestez <leonard.crestez@nxp.com>
-To:     Daniel Baluta <daniel.baluta@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        Paul Olaru <paul.olaru@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Frank Li <frank.li@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "sound-open-firmware@alsa-project.org" 
-        <sound-open-firmware@alsa-project.org>
-Subject: Re: [PATCH 3/3] dt-bindings: dsp: fsl: Add DSP core binding support
-Thread-Topic: [PATCH 3/3] dt-bindings: dsp: fsl: Add DSP core binding support
-Thread-Index: AQHVPXtpRs0t+Ow5FkKbZohqPX3Brg==
-Date:   Thu, 18 Jul 2019 18:40:22 +0000
-Message-ID: <VI1PR04MB5055597B7C3AC114FEB7E3E5EEC80@VI1PR04MB5055.eurprd04.prod.outlook.com>
-References: <20190718151346.3523-1-daniel.baluta@nxp.com>
- <20190718151346.3523-4-daniel.baluta@nxp.com>
- <CAL_JsqJ6o9mTjLYjnfcYgfSFKb95W8FseZBBb8RLosB__GNBcw@mail.gmail.com>
- <CAEnQRZBubFz90Xf8irDwc=erTXmByXX4rkzZy9r8ymfAuQEsZA@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=leonard.crestez@nxp.com; 
-x-originating-ip: [89.37.124.34]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: a93f303a-88bf-462c-f378-08d70baf6454
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB4158;
-x-ms-traffictypediagnostic: VI1PR04MB4158:
-x-microsoft-antispam-prvs: <VI1PR04MB41581B33C94FACC32065AB6EEEC80@VI1PR04MB4158.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3173;
-x-forefront-prvs: 01026E1310
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(39860400002)(376002)(346002)(366004)(396003)(199004)(189003)(478600001)(14454004)(71190400001)(14444005)(81166006)(81156014)(256004)(66446008)(3846002)(71200400001)(64756008)(76116006)(66556008)(66476007)(26005)(6116002)(6246003)(25786009)(68736007)(99286004)(8936002)(6916009)(66946007)(91956017)(6436002)(86362001)(486006)(229853002)(44832011)(74316002)(7736002)(53936002)(305945005)(4326008)(7696005)(54906003)(66066001)(76176011)(316002)(4744005)(55016002)(52536014)(9686003)(8676002)(53546011)(6506007)(102836004)(2906002)(33656002)(5660300002)(446003)(476003)(186003)(7416002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB4158;H:VI1PR04MB5055.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: sybdxMueYkvWskag7UkbwuyBQqtStjSaFiTq9xxScQ99Mjxmv9W+Rh66cxGsO2ixcck4j/T27k6dyKGSrCpYJkjsEi+LTj9/zF/66MzS4Cmx1giWLpBQei35DAPlHego5DN5vC54a73/F2Bp4CYtpjoaj2poICYv8sbrL3qOi9qLQJoD9U9vKa857xoLwwRyFrKw+zqsMFK82yW8d1dToDPDxVB5coyExPGGGRnnoz9De4r3gWOtyO0p6jncffXlgLxelcCjhUUhiocGR8aZTBXl3Ko1pp/xXCNZKUzmq8BudUbOPPAvSVYNlLh2gtq9siBAzEM+9qDCP3dxdD1idWmwgtYfll2e8rWzny1ytWY64Fe9Lxou7N9y8G63naX8B01QiKVsiGNd8OF36KdQ6Dvgvpt7ucC+gYENYa5HAyU=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S1727742AbfGRTLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 15:11:07 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:7266 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726040AbfGRTLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 15:11:07 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d30c44f0001>; Thu, 18 Jul 2019 12:11:11 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Thu, 18 Jul 2019 12:11:05 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Thu, 18 Jul 2019 12:11:05 -0700
+Received: from [10.110.103.56] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 18 Jul
+ 2019 19:11:04 +0000
+Subject: Re: [PATCH V5 11/18] clk: tegra210: Add support for Tegra210 clocks
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+To:     Dmitry Osipenko <digetx@gmail.com>, <sboyd@kernel.org>,
+        Michael Turquette <mturquette@baylibre.com>
+CC:     Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Joseph Lo <josephl@nvidia.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
+        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
+        <linus.walleij@linaro.org>, <stefan@agner.ch>,
+        <mark.rutland@arm.com>, <pgaikwad@nvidia.com>,
+        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
+        <jckuo@nvidia.com>, <talho@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <a5e1a6df-dff7-9e0c-9551-f78103a5462f@gmail.com>
+ <71272e9a-0f2a-c20d-6532-7e9057ad985c@gmail.com>
+ <78fd19b9-b652-8ac3-1f57-3b4adadee03f@nvidia.com>
+ <351a07d4-ba90-4793-129b-b1a733f95531@nvidia.com>
+ <e3e9beaf-b195-305e-4010-66e824813472@gmail.com>
+ <9271ae75-5663-e26e-df26-57cba94dab75@nvidia.com>
+ <7ae3df9a-c0e9-cf71-8e90-4284db8df82f@nvidia.com>
+ <b01e37aa-f14e-e628-ceef-b25a845c6359@gmail.com>
+ <46b55527-da5d-c0b7-1c14-43b5c6d49dfa@nvidia.com>
+ <2de9a608-cf38-f56c-b192-7ffed65092f8@nvidia.com>
+ <bff3e9c0-727d-9aef-a0e2-583e53c39afd@gmail.com>
+ <5eedd224-77b0-1fc9-4e5e-d884b41a64ed@nvidia.com>
+ <89f23878-d4b2-2305-03e5-8a3e781c2b02@gmail.com>
+ <c759d71b-1549-2562-f0cf-db5f9e51329e@nvidia.com>
+ <ef7928ad-239d-eca8-41bf-f76e72a9841d@nvidia.com>
+ <4141181d-7162-0321-71b6-33abf11f631c@gmail.com>
+ <ab8f2441-8f4b-3a2b-5bcd-1a889555176a@nvidia.com>
+ <419e1b16-683e-1b56-7334-50d87368c1b9@nvidia.com>
+ <8bca130c-c95c-591e-2f6e-f02538f8f8b8@nvidia.com>
+Message-ID: <7717c538-106e-743a-82be-feb627dfa12f@nvidia.com>
+Date:   Thu, 18 Jul 2019 12:11:03 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: a93f303a-88bf-462c-f378-08d70baf6454
-X-MS-Exchange-CrossTenant-originalarrivaltime: 18 Jul 2019 18:40:22.5256
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB4158
+In-Reply-To: <8bca130c-c95c-591e-2f6e-f02538f8f8b8@nvidia.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1563477071; bh=xPwhZANULVIKddNH5CkI2wuBM0ppp91PoJZspyi/WJE=;
+        h=X-PGP-Universal:Subject:From:To:CC:References:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=XuQfxovqwJkktmQkvhVF/YtdZ84NGAHWWJudNQWej5vdnsXVUlNxbffhRm7RuRQtj
+         0dIAbcDO8T3FAMxlV3CJf5Gg3Zh/zMjxWQ9zkJIMpUMx6FJIahon0R3v7qSh0RMy6c
+         9jdafi6kpRDJYDtM9+HuoOgaxjUvV98aLvrnWZys+G316kVlYPi7HpO2eEri8F4ugl
+         Lc9DRPfa162fIMRSTBgJUf5XYBw9eg0+uDN/V4WxVpG6EgVz2NoU6HUkp+U8Sr284Z
+         +4GkELbMaFvQWHoUnAXgnTptx/DwniBAutrD4pYDP0wyS1pKvC7oZqkpERrjZxP9XL
+         BJlzvVYvEf4YQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18.07.2019 21:24, Daniel Baluta wrote:=0A=
-> On Thu, Jul 18, 2019 at 7:41 PM Rob Herring <robh+dt@kernel.org> wrote:=
-=0A=
->>=0A=
->> On Thu, Jul 18, 2019 at 9:13 AM Daniel Baluta <daniel.baluta@nxp.com> wr=
-ote:=0A=
->>>=0A=
->>> This describes the DSP device tree node.=0A=
->>>=0A=
->>> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>=0A=
-=0A=
->>> +  power-domains:=0A=
->>> +    description:=0A=
->>> +      List of phandle and PM domain specifier as documented in=0A=
->>> +      Documentation/devicetree/bindings/power/power_domain.txt=0A=
->>=0A=
->> How many? 4?=0A=
-> =0A=
-> Yes, 4 for i.MX8QXP. Also, the same number is for i.MX8QM. Anyhow, I didn=
-'t=0A=
-> added added a limit here because I really don't know how many will be=0A=
-> in upcoming i.MX platforms.=0A=
-=0A=
-Which 4? It might help to use power-domain-names explicitly just like =0A=
-it's done for clocks and mboxes.=0A=
-=0A=
-This is very common for phandle lists.=0A=
-=0A=
---=0A=
-Regards,=0A=
-Leonard=0A=
+
+On 7/18/19 11:29 AM, Sowjanya Komatineni wrote:
+>
+> On 7/18/19 10:41 AM, Sowjanya Komatineni wrote:
+>>
+>> On 7/18/19 10:22 AM, Sowjanya Komatineni wrote:
+>>>
+>>> On 7/18/19 9:34 AM, Dmitry Osipenko wrote:
+>>>> 18.07.2019 4:15, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>>>>
+>>>> [snip]
+>>>>
+>>>>>>> Please try to fix all missing dependencies and orderings.
+>>>>>> Peter,
+>>>>>>
+>>>>>> dfllCPU_OUT is the first one to go thru restore when
+>>>>>> clk_restore_context traverses thru the list.
+>>>>>>
+>>>>>> dfllCPU_OUT has dependency on DFLL_ref and DFLL_SOC but this
+>>>>>> dependency is unknown to clock-tree.
+>>>>>>
+>>>>>> We can add DFLL_REF and DFLL_SOC as parents to dfllCPU_OUT during
+>>>>>> register so dfllCPU_OUT save/restore happens after their parents are
+>>>>>> restored.
+>>>>>>
+>>>>>> But DFLL needs both of these to be restored before DFLLCPU_Out=20
+>>>>>> and as
+>>>>>> DFLL_SOC restore always happens after the REF, thinking to add
+>>>>>> DFLL_SOC as parent to dfllCPU_OUT so save/restore follows after=20
+>>>>>> their
+>>>>>> dependencies.
+>>>>>>
+>>>>>> Please comment.
+>>>>>>
+>>>>> Did quick try and I see by adding dfll-soc as parent to=20
+>>>>> dfllCPU_OUT, its
+>>>>> in proper order after all its dependencies.
+>>>>>
+>>>>> Can now add dfll save/restore to do dfll reinit during restore..
+>>>>>
+>>>> If dfllCPU_OUT can work properly with dfll-soc being disabled, then=20
+>>>> this
+>>>> kind of dependency isn't very correct and just papers over the real
+>>>> problem, which is that there should be a way for CCF to specify=20
+>>>> multiple
+>>>> dependencies for the clock or the reverse ordering should be used for
+>>>> the restoring.
+>>>
+>>> dfll will not work without dfll-soc enabled.
+>>>
+>>> CLDVFS control logic is split into 2 clock domains. dvfs_ref_clk and=20
+>>> dvfs_soc_clk.
+>>>
+>>> Majority of the control logic is clocked from dvfs_soc_clk for=20
+>>> interfacing control registers.
+>>>
+>> Note on reverse ordering for restore. Currently restore order goes=20
+>> thru clock list and for each root goes thru parent -> child restore.
+>>
+>> this order is correct and also all clocks are parented properly so=20
+>> they follow proper order.
+>>
+>> dfllCPU is the only one where current driver doesn't take care of=20
+>> dependency in dfll_soc which gets enabled only after dfll_ref.
+>>
+>>
+>> Based on dfllCPU control logic module design, dfll_ref and dfll_soc=20
+>> should be enabled prior to dfll init/enable.
+>>
+>> So parenting dfll_soc to dfllCPU keeps proper order.
+>>
+>
+> 1. With dfllCPU parenting to dfll_soc, its keeps it in expected order=20
+> and we don't define any parent clk_ops anyway for this, so should be OK?
+>
+> OR
+>
+> 2. Any suggestion on how to define/specify dependencies for clock=20
+> other than parenting to follow proper order in clock tree as=20
+> clk_save_context and clk_restore_context strictly goes thru clock tree=20
+> order and all other clocks are parented properly except for dfllCPU=20
+> where there is no parent. Techinically dfll_ref & dfll_soc are not=20
+> parents but they need to be configured prior to dfll reinit.
+>
+> OR
+>
+> 3. I don't see way to override clk_save_context/clk_restore_context=20
+> APIs to change the way of traversal so I can modify to traverse in=20
+> expected order without dfllCPU parenting.
+
+instead of using core API of save/restore context, probably can change=20
+traversing to skip the 1st root in clock tree during initial traversing=20
+and at the end invoke restore for 1st node.
+
+>
+> OR
+>
+> 4. dfll re-init can be done in dfll-fcpu driver pm_ops which actually=20
+> registers dfll or at the end of tegra210_clock resume
+>
+Please suggest if you agree with either 1/3/4.
+
+
