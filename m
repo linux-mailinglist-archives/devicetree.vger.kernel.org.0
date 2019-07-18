@@ -2,127 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 114FE6D5A2
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 22:16:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D0ED6D5BB
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 22:27:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391413AbfGRUO6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 16:14:58 -0400
-Received: from mail-io1-f53.google.com ([209.85.166.53]:36539 "EHLO
-        mail-io1-f53.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2391319AbfGRUO5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 16:14:57 -0400
-Received: by mail-io1-f53.google.com with SMTP id o9so53724153iom.3;
-        Thu, 18 Jul 2019 13:14:57 -0700 (PDT)
+        id S2391589AbfGRU0Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 16:26:16 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:34425 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727972AbfGRU0Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 16:26:16 -0400
+Received: by mail-lf1-f68.google.com with SMTP id b29so12905585lfq.1;
+        Thu, 18 Jul 2019 13:26:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=r2pTm0RwMQarnOMoV8lDgMG4J6XK5815xYl1WaBhWuw=;
-        b=jXt46JwdBMPM4AF2MXHtgaUsQMs3wXwa8Ez4IImyYL5lK0RzY+Por1cwu6pd3tf1GK
-         LrR59Z86usCvS5PmkGhF3DPyAYzBW9zSlJJMqBiO/DfbEJy4NJ+BGaB2eCH1E3ERB7it
-         hf9/1kg5cy1KyOyY/PlWh63D5KRrr8tLDGxHLUH0gxkLR1rYP0+NHe4sRkS08I6N0XrV
-         JU7TSwR1wWwxivUuoIpCQNY8YwM5drG9QWzXEwcQyhOrHW5HW7BGP0GICe9p6fZfIf1V
-         9Mzjq9NaONVeWjIHfoGxtbcHJ/60e/CclfhDs0EBmZQcAJ8WmTyhYeV6q0a9825w6QF3
-         Fa/Q==
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=w31kF+V/Pg3wOfRqeq+cX6WjQGIznpGqubrdnMQea4M=;
+        b=d/KhGBFEn+mvcJNU3mO6VOCUuSspg8P4yd2FHyExdo4qXfDPdfaeuIingGcZxrMP8c
+         TnyfNEMJwN0PKNs5Rls/m3XJivqqJGRdhnQ0xanjJNuRmXL5RDFd7Y/Q+s1cGg7MP7Ek
+         811Vh8SyjjT7yB9mjqzx0JsKmdXp9lqzo9rYB7i9E21YMbIg4ySRx4ruLStqUCYz8Niq
+         6obxoXHL7smeW1+q+trlxI+3oyhxUbenlLXJLlkYmzmf17JVqJwvPEb5hFDJn3gO5MfX
+         +nMjbRyMUyqjURJR5SrHQEPD1WTRikbuJ5FtarswxiRhcHg1D1B002cOIW4D9xN/E3nU
+         IJxA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=r2pTm0RwMQarnOMoV8lDgMG4J6XK5815xYl1WaBhWuw=;
-        b=SQHJuno+MXcY9P/5NzVi4mOA+gfuygpaXZkFSxrIKaaBo/tpoxJuh5pXit5rF4ZOeW
-         9fKINWwcnZOy1bfWkRNfd0doOs7t51O/ZZj2itJIHJzL6KdxOOhc5+b/qfNNE0kRsRPH
-         AhQ+mYmLl5eZ4OY5RhqIv0HnTWa84U8aj280YPSnQwCxLaOmXkp//oPl/xWVAYby2NN+
-         PF9I0NVUWbWwJ6uMfsnRj5EUGW2Rj/GC9Fjqey0+JyWM5noJ/6zPPE1LoTJaxsqQz7o7
-         XjJf0gTPQERs8xOvd0RaNSBWGCizvRoKe5GHauuYnjQgZZOkQSAVOqXHa/LOKKeRQW1S
-         uJzg==
-X-Gm-Message-State: APjAAAVGrcYiIwfciNqVz8x5MRkRVVzCK/pgzutKiNKs5rJNxJk+BANW
-        Bvj401pAckoJDLVg9a9tCBo=
-X-Google-Smtp-Source: APXvYqxSMTFdNpWMpK6BWoxyGer9NJ15j1T9DNe6DsnJeFmfcT3n3z8uenJp6lvRsFHRyu9jM7R6XA==
-X-Received: by 2002:a5d:8b52:: with SMTP id c18mr44577354iot.89.1563480896915;
-        Thu, 18 Jul 2019 13:14:56 -0700 (PDT)
-Received: from svens-asus.arcx.com ([184.94.50.30])
-        by smtp.gmail.com with ESMTPSA id p3sm31399170iom.7.2019.07.18.13.14.56
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 18 Jul 2019 13:14:56 -0700 (PDT)
-From:   Sven Van Asbroeck <thesven73@gmail.com>
-X-Google-Original-From: Sven Van Asbroeck <TheSven73@gmail.com>
-To:     Fugang Duan <fugang.duan@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     "David S . Miller" <davem@davemloft.net>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Andrew Lunn <andrew@lunn.ch>,
-        Fabio Estevam <festevam@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: [PATCH v1] dt-bindings: fec: explicitly mark deprecated properties
-Date:   Thu, 18 Jul 2019 16:14:53 -0400
-Message-Id: <20190718201453.13062-1-TheSven73@gmail.com>
-X-Mailer: git-send-email 2.17.1
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=w31kF+V/Pg3wOfRqeq+cX6WjQGIznpGqubrdnMQea4M=;
+        b=ftsZkasiQ3ZXG5ekO5/aaYsxro5Hc34jEw4ZSxd5eHe7ma/Ktab6ZV9exoZBUB4Snj
+         atj8b7JUeNxaSdpWWhC893z1GGlwsqOOrf1Y95kGVzmc1hE2eMcLR7mpM2urteQJV1v4
+         LofXyKd7LdoVD4Ps3EJPSTF5SOSQI9C46AtyZUAqaF8ALct9WGeIjRPpSGAJDPxa8c/v
+         HSrFjvFbCsfQxI730CvKyx0bAgk1tMneeSSQV00qy1if6BwErIbcwLmM+ZLv1UBllLih
+         jJZxHFkcwFZKP9ufjsQ6t3EtjdD1hLc9zfbPuDE32/xx6ZHZGS1XzV5ppYifHNpNgAOt
+         P9sA==
+X-Gm-Message-State: APjAAAX69iZYtn4w54e2sYTYNWbOIhXjAgk+VedWjwdTrNMJTXfo3svG
+        XRienewmdxNAs8YqmjUN7guOKfZ7
+X-Google-Smtp-Source: APXvYqzbRmCFFqtgfHFKBiSes/LsRJlZpBRMHMsnYsccd13e2GKnbfR/q3V6eqbvJdDK1glD1hnjTw==
+X-Received: by 2002:a19:7616:: with SMTP id c22mr22470206lff.115.1563481572500;
+        Thu, 18 Jul 2019 13:26:12 -0700 (PDT)
+Received: from [192.168.2.145] (ppp79-139-233-208.pppoe.spdop.ru. [79.139.233.208])
+        by smtp.googlemail.com with ESMTPSA id h1sm4132665lfj.21.2019.07.18.13.26.11
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 18 Jul 2019 13:26:11 -0700 (PDT)
+Subject: Re: [PATCH V5 11/18] clk: tegra210: Add support for Tegra210 clocks
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>
+Cc:     Sowjanya Komatineni <skomatineni@nvidia.com>, sboyd@kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
+        Joseph Lo <josephl@nvidia.com>, thierry.reding@gmail.com,
+        jonathanh@nvidia.com, tglx@linutronix.de, jason@lakedaemon.net,
+        marc.zyngier@arm.com, linus.walleij@linaro.org, stefan@agner.ch,
+        mark.rutland@arm.com, pgaikwad@nvidia.com,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        jckuo@nvidia.com, talho@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mperttunen@nvidia.com,
+        spatra@nvidia.com, robh+dt@kernel.org, devicetree@vger.kernel.org
+References: <351a07d4-ba90-4793-129b-b1a733f95531@nvidia.com>
+ <e3e9beaf-b195-305e-4010-66e824813472@gmail.com>
+ <9271ae75-5663-e26e-df26-57cba94dab75@nvidia.com>
+ <7ae3df9a-c0e9-cf71-8e90-4284db8df82f@nvidia.com>
+ <b01e37aa-f14e-e628-ceef-b25a845c6359@gmail.com>
+ <46b55527-da5d-c0b7-1c14-43b5c6d49dfa@nvidia.com>
+ <2de9a608-cf38-f56c-b192-7ffed65092f8@nvidia.com>
+ <bff3e9c0-727d-9aef-a0e2-583e53c39afd@gmail.com>
+ <5eedd224-77b0-1fc9-4e5e-d884b41a64ed@nvidia.com>
+ <89f23878-d4b2-2305-03e5-8a3e781c2b02@gmail.com>
+ <20190718194222.GH12715@pdeschrijver-desktop.Nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <056496ed-9abf-6907-c61c-a99ccf23b834@gmail.com>
+Date:   Thu, 18 Jul 2019 23:26:10 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
+MIME-Version: 1.0
+In-Reply-To: <20190718194222.GH12715@pdeschrijver-desktop.Nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-fec's gpio phy reset properties have been deprecated.
-Update the dt-bindings documentation to explicitly mark
-them as such, and provide a short description of the
-recommended alternative.
+18.07.2019 22:42, Peter De Schrijver пишет:
+> On Thu, Jul 18, 2019 at 02:44:56AM +0300, Dmitry Osipenko wrote:
+>>>
+>>> dependencies I am referring are dfll_ref, dfll_soc, and DVFS peripheral
+>>> clocks which need to be restored prior to DFLL reinit.
+>>
+>> Okay, but that shouldn't be a problem if clock dependencies are set up
+>> properly.
+>>
+>>>>> reverse list order during restore might not work as all other clocks are
+>>>>> in proper order no with any ref clocks for plls getting restored prior
+>>>>> to their clients
+>>>> Why? The ref clocks should be registered first and be the roots for PLLs
+>>>> and the rest. If it's not currently the case, then this need to be
+>>>> fixed. You need to ensure that each clock is modeled properly. If some
+>>>> child clock really depends on multiple parents, then the parents need to
+>>>> in the correct order or CCF need to be taught about such
+>>>> multi-dependencies.
+>>>>
+>>>> If some required feature is missed, then you have to implement it
+>>>> properly and for all, that's how things are done in upstream. Sometimes
+>>>> it's quite a lot of extra work that everyone are benefiting from in
+>>>> the end.
+>>>>
+>>>> [snip]
+>>>
+>>> Yes, we should register ref/parents before their clients.
+>>>
+>>> cclk_g clk is registered last after all pll and peripheral clocks are
+>>> registers during clock init.
+>>>
+>>> dfllCPU_out clk is registered later during dfll-fcpu driver probe and
+>>> gets added to the clock list.
+>>>
+>>> Probably the issue seems to be not linking dfll_ref and dfll_soc
+>>> dependencies for dfllCPU_out thru clock list.
+>>>
+>>> clk-dfll driver during dfll_init_clks gets ref_clk and soc_clk reference
+>>> thru DT.
+> 
+> The dfll does not have any parents. It has some clocks which are needed
+> for the logic part of the dfll to function, but there's no parent clock
+> as such unlike for peripheral clocks or PLLs where the parent is at
+> least used as a reference. The I2C controller of the DFLL shares the
+> lines with a normal I2C controller using some arbitration logic. That
+> logic only works if the clock for the normal I2C controller is enabled.
+> So you need probably 3 clocks enabled to initialize the dfll in that
+> case. I don't think it makes sense to add complicated logic to the clock
+> core to deal with this rather strange case. To me it makes more sense to
+> use pmops and open code the sequence there.
 
-Signed-off-by: Sven Van Asbroeck <TheSven73@gmail.com>
----
- .../devicetree/bindings/net/fsl-fec.txt       | 30 +++++++++++--------
- 1 file changed, 17 insertions(+), 13 deletions(-)
+It looks to me that dfllCPU is a PLL and dfll_ref is its reference
+parent, while dfll_soc clocks the logic that dynamically reconfigures
+dfllCPU in background. I see that PLLP is defined as a parent for
+dfll_ref and dfll_soc in the code. Hence seems dfll_ref should be set as
+a parent for dfllCPU, no?
 
-diff --git a/Documentation/devicetree/bindings/net/fsl-fec.txt b/Documentation/devicetree/bindings/net/fsl-fec.txt
-index 2d41fb96ce0a..5b88fae0307d 100644
---- a/Documentation/devicetree/bindings/net/fsl-fec.txt
-+++ b/Documentation/devicetree/bindings/net/fsl-fec.txt
-@@ -7,18 +7,6 @@ Required properties:
- - phy-mode : See ethernet.txt file in the same directory
- 
- Optional properties:
--- phy-reset-gpios : Should specify the gpio for phy reset
--- phy-reset-duration : Reset duration in milliseconds.  Should present
--  only if property "phy-reset-gpios" is available.  Missing the property
--  will have the duration be 1 millisecond.  Numbers greater than 1000 are
--  invalid and 1 millisecond will be used instead.
--- phy-reset-active-high : If present then the reset sequence using the GPIO
--  specified in the "phy-reset-gpios" property is reversed (H=reset state,
--  L=operation state).
--- phy-reset-post-delay : Post reset delay in milliseconds. If present then
--  a delay of phy-reset-post-delay milliseconds will be observed after the
--  phy-reset-gpios has been toggled. Can be omitted thus no delay is
--  observed. Delay is in range of 1ms to 1000ms. Other delays are invalid.
- - phy-supply : regulator that powers the Ethernet PHY.
- - phy-handle : phandle to the PHY device connected to this device.
- - fixed-link : Assume a fixed link. See fixed-link.txt in the same directory.
-@@ -47,11 +35,27 @@ Optional properties:
-   For imx6sx, "int0" handles all 3 queues and ENET_MII. "pps" is for the pulse
-   per second interrupt associated with 1588 precision time protocol(PTP).
- 
--
- Optional subnodes:
- - mdio : specifies the mdio bus in the FEC, used as a container for phy nodes
-   according to phy.txt in the same directory
- 
-+Deprecated optional properties:
-+	To avoid these, create a phy node according to phy.txt in the same
-+	directory, and point the fec's "phy-handle" property to it. Then use
-+	the phy's reset binding, again described by phy.txt.
-+- phy-reset-gpios : Should specify the gpio for phy reset
-+- phy-reset-duration : Reset duration in milliseconds.  Should present
-+  only if property "phy-reset-gpios" is available.  Missing the property
-+  will have the duration be 1 millisecond.  Numbers greater than 1000 are
-+  invalid and 1 millisecond will be used instead.
-+- phy-reset-active-high : If present then the reset sequence using the GPIO
-+  specified in the "phy-reset-gpios" property is reversed (H=reset state,
-+  L=operation state).
-+- phy-reset-post-delay : Post reset delay in milliseconds. If present then
-+  a delay of phy-reset-post-delay milliseconds will be observed after the
-+  phy-reset-gpios has been toggled. Can be omitted thus no delay is
-+  observed. Delay is in range of 1ms to 1000ms. Other delays are invalid.
-+
- Example:
- 
- ethernet@83fec000 {
--- 
-2.17.1
-
+Either way is good to me, given that DFLL will be disabled during
+suspend. Resetting DFLL on DFLL's driver resume using PM ops should be
+good. And then it also will be better to error out if DFLL is active
+during suspend on the DFLL's driver suspend.
