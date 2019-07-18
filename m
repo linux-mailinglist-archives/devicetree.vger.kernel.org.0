@@ -2,593 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AA9726C82D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 05:55:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 626766C875
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 06:36:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727572AbfGRDzr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 23:55:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44760 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727544AbfGRDzr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 23:55:47 -0400
-Received: from X250 (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8DD06206DD;
-        Thu, 18 Jul 2019 03:55:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563422145;
-        bh=jvtzeRKJVDJgWXOHDvXSiviGFZZyWQ2Yheg8cVSEEew=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KM0KfnRHs2aUAJpxxrnXrx048R7w8CsybCifx/54hrZlmjXGNHumhNTGRZwgyvxIh
-         FngXMQIiQFPGkuVqmC4T+Rp5Ztvu4TWsqgqsBO5GKvfBeJyRPfBleLkw4nxsF/gvGR
-         3VpJnJmyeKhaZCqiGIouExkfx6azXNu+zWl6Ypj8=
-Date:   Thu, 18 Jul 2019 11:55:30 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Andra Danciu <andradanciu1997@gmail.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, leoyang.li@nxp.com,
-        festevam@gmail.com, aisheng.dong@nxp.com, l.stach@pengutronix.de,
-        angus@akkea.ca, vabhav.sharma@nxp.com, pankaj.bansal@nxp.com,
-        bhaskar.upadhaya@nxp.com, ping.bai@nxp.com,
-        manivannan.sadhasivam@linaro.org, richard.hu@technexion.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        matti.vaittinen@fi.rohmeurope.com, linux-imx@nxp.com,
-        daniel.baluta@nxp.com
-Subject: Re: [PATCH v2] arm64: dts: fsl: pico-pi: Add a device tree for the
- PICO-PI-IMX8M
-Message-ID: <20190718035523.GD11324@X250>
-References: <20190625123407.15888-1-andradanciu1997@gmail.com>
+        id S1726513AbfGREgD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 00:36:03 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:42646 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725976AbfGREgD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 00:36:03 -0400
+Received: by mail-pl1-f194.google.com with SMTP id ay6so13173256plb.9
+        for <devicetree@vger.kernel.org>; Wed, 17 Jul 2019 21:36:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=WGpriDmKg5A7CmpDzwHXbW6ZHoMuynu6Flk/8vZcrV4=;
+        b=tdM9d/DBJYMDRXBmqCsEwG0Ji9aifj2VKoNdoJhfF/pHOM6IKPiUdRjBC5AaEzz6Q6
+         Kjd8huAsSQxOu49t3oV2e6erYFObTSkT5pseVTYwHXJ+uIXbhk4N3Dc6yllJgXfLoDuA
+         Cmz1a6J+0vron0h04ZTfruurmpqec2vzltlAtYQAeDItiDyphalOKPvHVAtfV+QssyMd
+         F2xQf6FwWGOac0MiHbrikqIwNXyRFLjae5t4FmS+qSfi2K/TMCZDPS/xxICmQxQ9TY3B
+         +mLUuCezbFvWz9v7Qwce2DaBzgx6ZLcQsL6xKXbTZRaEU8vDkGcabpR2B52HkblxlX1I
+         W3Pw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=WGpriDmKg5A7CmpDzwHXbW6ZHoMuynu6Flk/8vZcrV4=;
+        b=UueRIpESiKA6UFIbM61LlobBjuaGPIOqj8nk14QlFJzHnH8jeAo4N6hn9GR2NeEKod
+         wq5RWYNjA9/5FBSMEzB9/xX7/wtZ4NNXK6SSg51KPdjEd80Is5+aAbZcWrNUkrSC+Aew
+         6NXZNutSem3uECg47z8VdUYQmwc/Qs9bpRD0NQWqv84Lo7p6+/xzhdstXkESw7IUgkxL
+         GcI5kXMoDVhExanMPDMG8OW6uxnvH4Du4EX4GHK1Rr0zCnHXAWTvYID7iE3UPrBU+x0F
+         r3viChFMx3ZnGq5Hjk4TnLuiqI77c5bUDqQbLlLhzEmhS3wYEmFNJaGRkJQ4M9b46z7l
+         0crw==
+X-Gm-Message-State: APjAAAVGTwOgfd1YBXzgTBWNWd2rEI3cNoVfV7XOxgxOfS7QevoYcw7q
+        SQgd1L6QnPC04qjL5UmjtvcViQ==
+X-Google-Smtp-Source: APXvYqyMnYIn3TaRAO3QMu/Oxrwx3Xg4Hm0cjdUzW+Ak8+N2c7rzoxUsvLt1u8rE+f/7W7B/iOjqmg==
+X-Received: by 2002:a17:902:8689:: with SMTP id g9mr44528906plo.252.1563424562578;
+        Wed, 17 Jul 2019 21:36:02 -0700 (PDT)
+Received: from localhost ([122.172.28.117])
+        by smtp.gmail.com with ESMTPSA id s6sm39616477pfs.122.2019.07.17.21.36.00
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 17 Jul 2019 21:36:00 -0700 (PDT)
+Date:   Thu, 18 Jul 2019 10:05:58 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
+        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v3 1/6] dt-bindings: opp: Introduce opp-peak-KBps and
+ opp-avg-KBps bindings
+Message-ID: <20190718043558.roi4j6jw5n4zkwky@vireshk-i7>
+References: <20190703011020.151615-1-saravanak@google.com>
+ <20190703011020.151615-2-saravanak@google.com>
+ <20190717075448.xlyg2ddewlci3abg@vireshk-i7>
+ <CAGETcx-kUM7MqNYowwNAL1Q0bnFzxPEO6yMg0YTkk16=OnPdmg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190625123407.15888-1-andradanciu1997@gmail.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <CAGETcx-kUM7MqNYowwNAL1Q0bnFzxPEO6yMg0YTkk16=OnPdmg@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 25, 2019 at 03:34:07PM +0300, Andra Danciu wrote:
-> From: Richard Hu <richard.hu@technexion.com>
+On 17-07-19, 13:29, Saravana Kannan wrote:
+> On Wed, Jul 17, 2019 at 12:54 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> >
+> > On 02-07-19, 18:10, Saravana Kannan wrote:
+> > > Interconnects often quantify their performance points in terms of
+> > > bandwidth. So, add opp-peak-KBps (required) and opp-avg-KBps (optional) to
+> > > allow specifying Bandwidth OPP tables in DT.
+> > >
+> > > opp-peak-KBps is a required property that replace opp-hz for Bandwidth OPP
+> > > tables.
+> > >
+> > > opp-avg-KBps is an optional property that can be used in Bandwidth OPP
+> > > tables.
+> > >
+> > > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/opp/opp.txt | 15 ++++++++++++---
+> > >  1 file changed, 12 insertions(+), 3 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+> > > index 76b6c79604a5..c869e87caa2a 100644
+> > > --- a/Documentation/devicetree/bindings/opp/opp.txt
+> > > +++ b/Documentation/devicetree/bindings/opp/opp.txt
+> > > @@ -83,9 +83,14 @@ properties.
+> > >
+> > >  Required properties:
+> > >  - opp-hz: Frequency in Hz, expressed as a 64-bit big-endian integer. This is a
+> > > -  required property for all device nodes but devices like power domains. The
+> > > -  power domain nodes must have another (implementation dependent) property which
+> > > -  uniquely identifies the OPP nodes.
+> > > +  required property for all device nodes but for devices like power domains or
+> > > +  bandwidth opp tables. The power domain nodes must have another (implementation
+> > > +  dependent) property which uniquely identifies the OPP nodes. The interconnect
+> > > +  opps are required to have the opp-peak-bw property.
+> >
+> >                                    ??
 > 
-> The current level of support yields a working console and is able to boot
-> userspace from an initial ramdisk copied via u-boot in RAM.
-> 
-> Additional subsystems that are active :
-> 	- Ethernet
-> 	- USB
-> 
-> Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> Signed-off-by: Richard Hu <richard.hu@technexion.com>
-> Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
-> ---
-> Changes since v1:
->  - renamed wandboard-pi-8m.dts to pico-pi-8m.dts
->  - removed pinctrl_csi1, pinctrl_wifi_ctrl
->  - used generic name for pmic
->  - removed gpo node
->  - delete regulator-virtuals node
->  - remove always-on property from buck1-8 and ldo3-7
->  - remove pmic-buck-uses-i2c-dvs property for buck1-4
-> 
->  arch/arm64/boot/dts/freescale/Makefile       |   1 +
->  arch/arm64/boot/dts/freescale/pico-pi-8m.dts | 458 +++++++++++++++++++++++++++
->  2 files changed, 459 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/pico-pi-8m.dts
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index c043aca66572..538422903e8a 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -26,3 +26,4 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-rmb3.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-zest.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += pico-pi-8m.dtb
-> diff --git a/arch/arm64/boot/dts/freescale/pico-pi-8m.dts b/arch/arm64/boot/dts/freescale/pico-pi-8m.dts
-> new file mode 100644
-> index 000000000000..23422c8fc43f
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/pico-pi-8m.dts
-> @@ -0,0 +1,458 @@
-> +// SPDX-License-Identifier: GPL-2.0+
-> +/*
-> + * Copyright 2018 Wandboard, Org.
-> + * Copyright 2017 NXP
-> + *
-> + * Author: Richard Hu <hakahu@gmail.com>
-> + */
-> +
-> +/dts-v1/;
-> +
-> +#include "imx8mq.dtsi"
-> +
-> +/ {
-> +	model = "PICO-PI-8M";
-> +	compatible = "wand,imx8mq-pico-pi", "fsl,imx8mq";
+> Sorry, what's the question? Was this an accidental email?
 
-The board compatible needs to be documented.
+Too much smartness is too bad sometimes, sorry about that :)
 
-> +
-> +	chosen {
-> +		bootargs = "console=ttymxc0,115200 earlycon=ec_imx6q,0x30860000,115200";
+I placed the ?? right below "opp-peak-bw", there is no property like
+that. You failed to update it :)
 
-The earlycon is only needed for debugging early hang issue.  Do you
-really want it by default?  If no, we can save the 'bootargs' here,
-since 'stdout-path' below will get you correct console setup.
-
-> +		stdout-path = &uart1;
-> +	};
-> +
-> +	regulators {
-> +		compatible = "simple-bus";
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-
-Drop this container node and put fixed regulator directly under root
-node.
-
-> +
-> +		reg_usb_otg_vbus: usb_otg_vbus {
-
-Please use node name like 'regulator-xxx'.
-
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pinctrl_otg_vbus>;
-> +			compatible = "regulator-fixed";
-> +			regulator-name = "usb_otg_vbus";
-> +			regulator-min-microvolt = <5000000>;
-> +			regulator-max-microvolt = <5000000>;
-> +			gpio = <&gpio3 14 GPIO_ACTIVE_LOW>;
-> +		};
-> +	};
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-
-The 'pinctrl-names' is pointless if there is no 'pinctrl' property.
-
-> +
-> +	wand-pi-8m {
-
-Drop this container node.
-
-> +		pinctrl_otg_vbus: otgvbusgrp {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_NAND_DQS_GPIO3_IO14		0x19   /* USB OTG VBUS Enable */
-> +			>;
-> +		};
-> +
-> +		pinctrl_enet_3v3: enet3v3grp {
-
-Sort these pinctrl nodes alphabetically.
-
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_GPIO1_IO00_GPIO1_IO0		0x19
-> +			>;
-> +		};
-> +
-> +		pinctrl_fec1: fec1grp {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_ENET_MDC_ENET1_MDC		0x3
-> +				MX8MQ_IOMUXC_ENET_MDIO_ENET1_MDIO	0x23
-> +				MX8MQ_IOMUXC_ENET_TD3_ENET1_RGMII_TD3	0x1f
-> +				MX8MQ_IOMUXC_ENET_TD2_ENET1_RGMII_TD2	0x1f
-> +				MX8MQ_IOMUXC_ENET_TD1_ENET1_RGMII_TD1	0x1f
-> +				MX8MQ_IOMUXC_ENET_TD0_ENET1_RGMII_TD0	0x1f
-> +				MX8MQ_IOMUXC_ENET_RD3_ENET1_RGMII_RD3	0x91
-> +				MX8MQ_IOMUXC_ENET_RD2_ENET1_RGMII_RD2	0x91
-> +				MX8MQ_IOMUXC_ENET_RD1_ENET1_RGMII_RD1	0x91
-> +				MX8MQ_IOMUXC_ENET_RD0_ENET1_RGMII_RD0	0x91
-> +				MX8MQ_IOMUXC_ENET_TXC_ENET1_RGMII_TXC	0x1f
-> +				MX8MQ_IOMUXC_ENET_RXC_ENET1_RGMII_RXC	0x91
-> +				MX8MQ_IOMUXC_ENET_RX_CTL_ENET1_RGMII_RX_CTL	0x91
-> +				MX8MQ_IOMUXC_ENET_TX_CTL_ENET1_RGMII_TX_CTL	0x1f
-> +				MX8MQ_IOMUXC_GPIO1_IO09_GPIO1_IO9	0x19
-> +			>;
-> +		};
-> +
-> +		pinctrl_i2c1: i2c1grp {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_I2C1_SCL_I2C1_SCL			0x4000007f
-> +				MX8MQ_IOMUXC_I2C1_SDA_I2C1_SDA			0x4000007f
-> +			>;
-> +		};
-> +
-> +		pinctrl_i2c2: i2c2grp {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_I2C2_SCL_I2C2_SCL			0x4000007f
-> +				MX8MQ_IOMUXC_I2C2_SDA_I2C2_SDA			0x4000007f
-> +			>;
-> +		};
-> +
-> +		pinctrl_uart1: uart1grp {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_UART1_RXD_UART1_DCE_RX		0x49
-> +				MX8MQ_IOMUXC_UART1_TXD_UART1_DCE_TX		0x49
-> +			>;
-> +		};
-> +
-> +		pinctrl_uart2: uart2grp {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_UART2_RXD_UART2_DCE_RX		0x49
-> +				MX8MQ_IOMUXC_UART2_TXD_UART2_DCE_TX		0x49
-> +				MX8MQ_IOMUXC_UART4_RXD_UART2_DCE_CTS_B		0x49
-> +				MX8MQ_IOMUXC_UART4_TXD_UART2_DCE_RTS_B		0x49
-> +			>;
-> +		};
-> +
-> +		pinctrl_usdhc1: usdhc1grp {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x83
-> +				MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xc3
-> +				MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xc3
-> +				MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xc3
-> +				MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xc3
-> +				MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xc3
-> +				MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xc3
-> +				MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xc3
-> +				MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xc3
-> +				MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xc3
-> +				MX8MQ_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x83
-> +			>;
-> +		};
-> +
-> +		pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x85
-> +				MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xc5
-> +				MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xc5
-> +				MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xc5
-> +				MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xc5
-> +				MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xc5
-> +				MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xc5
-> +				MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xc5
-> +				MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xc5
-> +				MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xc5
-> +				MX8MQ_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x85
-> +			>;
-> +		};
-> +
-> +		pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_SD1_CLK_USDHC1_CLK			0x87
-> +				MX8MQ_IOMUXC_SD1_CMD_USDHC1_CMD			0xc7
-> +				MX8MQ_IOMUXC_SD1_DATA0_USDHC1_DATA0		0xc7
-> +				MX8MQ_IOMUXC_SD1_DATA1_USDHC1_DATA1		0xc7
-> +				MX8MQ_IOMUXC_SD1_DATA2_USDHC1_DATA2		0xc7
-> +				MX8MQ_IOMUXC_SD1_DATA3_USDHC1_DATA3		0xc7
-> +				MX8MQ_IOMUXC_SD1_DATA4_USDHC1_DATA4		0xc7
-> +				MX8MQ_IOMUXC_SD1_DATA5_USDHC1_DATA5		0xc7
-> +				MX8MQ_IOMUXC_SD1_DATA6_USDHC1_DATA6		0xc7
-> +				MX8MQ_IOMUXC_SD1_DATA7_USDHC1_DATA7		0xc7
-> +				MX8MQ_IOMUXC_SD1_STROBE_USDHC1_STROBE		0x87
-> +			>;
-> +		};
-> +
-> +		pinctrl_usdhc2_gpio: usdhc2grpgpio {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_SD2_CD_B_GPIO2_IO12	0x41
-> +			>;
-> +		};
-> +
-> +		pinctrl_usdhc2: usdhc2grp {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x83
-> +				MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xc3
-> +				MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xc3
-> +				MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xc3
-> +				MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xc3
-> +				MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xc3
-> +				MX8MQ_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0xc1
-> +			>;
-> +		};
-> +
-> +		pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x85
-> +				MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xc5
-> +				MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xc5
-> +				MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xc5
-> +				MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xc5
-> +				MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xc5
-> +				MX8MQ_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0xc1
-> +			>;
-> +		};
-> +
-> +		pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_SD2_CLK_USDHC2_CLK			0x87
-> +				MX8MQ_IOMUXC_SD2_CMD_USDHC2_CMD			0xc7
-> +				MX8MQ_IOMUXC_SD2_DATA0_USDHC2_DATA0		0xc7
-> +				MX8MQ_IOMUXC_SD2_DATA1_USDHC2_DATA1		0xc7
-> +				MX8MQ_IOMUXC_SD2_DATA2_USDHC2_DATA2		0xc7
-> +				MX8MQ_IOMUXC_SD2_DATA3_USDHC2_DATA3		0xc7
-> +				MX8MQ_IOMUXC_GPIO1_IO04_USDHC2_VSELECT		0xc1
-> +			>;
-> +		};
-> +
-> +		pinctrl_wdog: wdoggrp {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_GPIO1_IO02_WDOG1_WDOG_B 0xc6
-> +			>;
-> +		};
-> +
-> +		pinctrl_pmic: pmicirq {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_GPIO1_IO03_GPIO1_IO3	0x41
-> +			>;
-> +		};
-> +
-> +		pinctrl_tusb320_irq: tusb320_irqgrp {
-
-Please name the pinctrl node in a more consistent way, i.e. no
-underscore.
-
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_NAND_DATA00_GPIO3_IO6	0x41
-> +			>;
-> +		};
-> +
-> +		pinctrl_typec_ss_sel: typec_ss_selgrp {
-> +			fsl,pins = <
-> +				MX8MQ_IOMUXC_NAND_CLE_GPIO3_IO5		0x19
-> +			>;
-> +		};
-> +	};
-> +};
-> +
-> +&fec1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_fec1 &pinctrl_enet_3v3>;
-> +	phy-mode = "rgmii-id";
-> +	pinctrl-assert-gpios = <&gpio1 0 GPIO_ACTIVE_HIGH>;
-> +	phy-handle = <&ethphy0>;
-> +	fsl,magic-packet;
-> +	status = "okay";
-> +
-> +	mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy0: ethernet-phy@1 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <1>;
-> +			at803x,led-act-blind-workaround;
-> +			at803x,eee-disabled;
-> +		};
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	status = "okay";
-> +
-> +	typec_tusb320:tusb320@47 {
-> +		compatible = "ti,tusb320";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_tusb320_irq &pinctrl_typec_ss_sel>;
-> +		reg = <0x47>;
-> +		vbus-supply = <&reg_usb_otg_vbus>;
-> +		ss-sel-gpios = <&gpio3 5 GPIO_ACTIVE_HIGH>;
-> +		tusb320,int-gpio = <&gpio3 6 GPIO_ACTIVE_LOW>;
-> +		tusb320,select-mode = <0>;
-> +		tusb320,dfp-power = <0>;
-> +	};
-
-Where is the bindings doc for this device?
-
-> +
-> +	pmic: pmic@4b {
-> +		reg = <0x4b>;
-> +		compatible = "rohm,bd71837";
-> +		/* PMIC BD71837 PMIC_nINT GPIO1_IO12 */
-> +		pinctrl-0 = <&pinctrl_pmic>;
-> +		gpio_intr = <&gpio1 3 GPIO_ACTIVE_LOW>;
-
-Where is the bindings for this property?
-
-> +
-> +		regulators {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			buck1: BUCK1 {
-> +				regulator-name = "buck1";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1300000>;
-> +				regulator-boot-on;
-> +				regulator-ramp-delay = <1250>;
-> +				rohm,dvs-run-voltage = <900000>;
-> +				rohm,dvs-idle-voltage = <850000>;
-> +				rohm,dvs-suspend-voltage = <800000>;
-> +			};
-> +
-> +			buck2: BUCK2 {
-> +				regulator-name = "buck2";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1300000>;
-> +				regulator-boot-on;
-> +				regulator-ramp-delay = <1250>;
-> +				rohm,dvs-run-voltage = <1000000>;
-> +				rohm,dvs-idle-voltage = <900000>;
-> +			};
-> +
-> +			buck3: BUCK3 {
-> +				regulator-name = "buck3";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1300000>;
-> +				regulator-boot-on;
-> +				rohm,dvs-run-voltage = <1000000>;
-> +			};
-> +
-> +			buck4: BUCK4 {
-> +				regulator-name = "buck4";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1300000>;
-> +				regulator-boot-on;
-> +				rohm,dvs-run-voltage = <1000000>;
-> +			};
-> +
-> +			buck5: BUCK5 {
-> +				regulator-name = "buck5";
-> +				regulator-min-microvolt = <700000>;
-> +				regulator-max-microvolt = <1350000>;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			buck6: BUCK6 {
-> +				regulator-name = "buck6";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			buck7: BUCK7 {
-> +				regulator-name = "buck7";
-> +				regulator-min-microvolt = <1605000>;
-> +				regulator-max-microvolt = <1995000>;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			buck8: BUCK8 {
-> +				regulator-name = "buck8";
-> +				regulator-min-microvolt = <800000>;
-> +				regulator-max-microvolt = <1400000>;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			ldo1: LDO1 {
-> +				regulator-name = "ldo1";
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo2: LDO2 {
-> +				regulator-name = "ldo2";
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-boot-on;
-> +				regulator-always-on;
-> +			};
-> +
-> +			ldo3: LDO3 {
-> +				regulator-name = "ldo3";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			ldo4: LDO4 {
-> +				regulator-name = "ldo4";
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			ldo5: LDO5 {
-> +				regulator-name = "ldo5";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			ldo6: LDO6 {
-> +				regulator-name = "ldo6";
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-boot-on;
-> +			};
-> +
-> +			ldo7: LDO7 {
-> +				regulator-name = "ldo7";
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <3300000>;
-> +				regulator-boot-on;
-> +			};
-> +		};
-> +	};
-> +};
-> +
-> +&i2c2 {
-> +	clock-frequency = <100000>;
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	status = "okay";
-> +};
-> +
-> +&uart1 { /* console */
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc1 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc1>;
-> +	pinctrl-1 = <&pinctrl_usdhc1_100mhz>;
-> +	pinctrl-2 = <&pinctrl_usdhc1_200mhz>;
-> +	bus-width = <8>;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +&usdhc2 {
-> +	pinctrl-names = "default", "state_100mhz", "state_200mhz";
-> +	pinctrl-0 = <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-1 = <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-> +	pinctrl-2 = <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-> +	bus-width = <4>;
-> +	cd-gpios = <&gpio2 12 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +};
-> +
-> +&usb3_phy0 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3_0 {
-> +	extcon = <&typec_tusb320>;
-> +	dr_mode = "otg";
-> +	status = "okay";
-> +};
-> +
-> +&usb3_phy1 {
-> +	status = "okay";
-> +};
-> +
-> +&usb_dwc3_1 {
-> +	status = "okay";
-> +	dr_mode = "host";
-
-We prefer to end the property list with 'status', so please flip the
-order here.
-
-Shawn
-
-> +};
-> +
-> +&wdog1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_wdog>;
-> +	fsl,ext-reset-output;
-> +	status = "okay";
-> +};
-> +
-> +&A53_0 {
-> +	operating-points = <
-> +		/* kHz    uV */
-> +		1500000 1000000
-> +		1300000 1000000
-> +		1000000 900000
-> +		800000  900000
-> +	>;
-> +};
-> -- 
-> 2.11.0
-> 
+-- 
+viresh
