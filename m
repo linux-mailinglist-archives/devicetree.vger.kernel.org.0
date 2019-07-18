@@ -2,126 +2,185 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9553D6C8E4
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 07:47:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 503C26C8FD
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 08:01:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726669AbfGRFrR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 01:47:17 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:55976 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726423AbfGRFrR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 01:47:17 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 52310606DC; Thu, 18 Jul 2019 05:47:15 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1563428836;
-        bh=/ujdpFaJYkatN6CUI58Cr1STMKLWs0kR78sFppIFlsU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=fvlwjest/4muTYx6f1AXoXmLjgK+YHkSGOdYwd6DYEv4sMD9+74KJjniWuJeqfyOc
-         CV0RwzgYpKrlDxgc6W+rtc+SO0LUETB8LYjzZIpW9THlw5kkmv//3AKxy5h55QOaI+
-         b2e7xOu//CwM4kPMVdNmXdtrm7zabTTwtsrvgrWg=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.43.47] (unknown [157.49.202.231])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 42CAB606DC;
-        Thu, 18 Jul 2019 05:47:04 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1563428834;
-        bh=/ujdpFaJYkatN6CUI58Cr1STMKLWs0kR78sFppIFlsU=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=CHTV/o0iOuqtVwPxDqUslnjX+79s2m9N0cdasfNgCanHZ1SChWfzPHLowNJhzuuTq
-         0THxH+2jf4p8R1FGFPEe/3QclzXY32+2lVyfi98EVwHlLN4tghGDFjg7Qf+FdnChFU
-         CgTxtNKxFf0rXDy9Ye0zwyGwyzAL/TbLEpIw3I5Y=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 42CAB606DC
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
-Subject: Re: [PATCHv8 3/5] arm64: dts: qcom: msm8996: Add Coresight support
-To:     Mathieu Poirier <mathieu.poirier@linaro.org>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        Leo Yan <leo.yan@linaro.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Mike Leach <mike.leach@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        devicetree@vger.kernel.org, David Brown <david.brown@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>
-References: <cover.1562940244.git.saiprakash.ranjan@codeaurora.org>
- <2fa725fbc09306f1a95befc62715a708b4c0fad0.1562940244.git.saiprakash.ranjan@codeaurora.org>
- <20190717170050.GB4271@xps15>
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Message-ID: <f28d9c8f-017c-c990-2f00-0ef5a62f3b40@codeaurora.org>
-Date:   Thu, 18 Jul 2019 11:17:01 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726608AbfGRGBV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 02:01:21 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:55539 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726397AbfGRGBU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 02:01:20 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190718060119euoutp01d9091d870f57f01cc3fbcf94f0b358c9~yawKJWV7a2091120911euoutp01Q
+        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2019 06:01:19 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190718060119euoutp01d9091d870f57f01cc3fbcf94f0b358c9~yawKJWV7a2091120911euoutp01Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1563429679;
+        bh=z61fGzgHQ0VATyWTsCRxlQY0ElDRLc0lESOGpAN4rSY=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=GiCzdX0NcnAKFHqRNkmiRAwX2L066zuAit/OznwTknFlRIpWeajcTGhl1XidVpjHy
+         1kkz8NceWRTLMXuG4pSsFak8XTppcSiejiyws4mhI3UgUA6tEoLwWSzFAdtYVWvto/
+         NILrTPQpaxvpBsn+46puxGKGDaNkKIHzr7Zbo1RM=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190718060118eucas1p1eccd454fd23a1f1395ed249a6e0faf69~yawJajnaG2681526815eucas1p1n;
+        Thu, 18 Jul 2019 06:01:18 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 93.5D.04325.E2B003D5; Thu, 18
+        Jul 2019 07:01:18 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190718060117eucas1p284ee6f2d6ce65627101cceb784cb62eb~yawIhrwH-1953619536eucas1p2J;
+        Thu, 18 Jul 2019 06:01:17 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190718060117eusmtrp27cfac19e6333c33d6297ff62e0ca2465~yawITds1x0409204092eusmtrp23;
+        Thu, 18 Jul 2019 06:01:17 +0000 (GMT)
+X-AuditID: cbfec7f5-b8fff700000010e5-e0-5d300b2e9a92
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 59.E6.04140.D2B003D5; Thu, 18
+        Jul 2019 07:01:17 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190718060116eusmtip219833ca52c831fc34803533efb850f3b~yawHmJ34m2012520125eusmtip2n;
+        Thu, 18 Jul 2019 06:01:16 +0000 (GMT)
+Subject: Re: [PATCH v1 13/50] clk: samsung: add DPLL rate table in
+ Exynos5420
+To:     Chanwoo Choi <cw00.choi@samsung.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-clk@vger.kernel.org
+Cc:     mturquette@baylibre.com, sboyd@kernel.org,
+        b.zolnierkie@samsung.com, krzk@kernel.org, kgene@kernel.org,
+        mark.rutland@arm.com, robh+dt@kernel.org,
+        kyungmin.park@samsung.com, a.hajda@samsung.com,
+        m.szyprowski@samsung.com, s.nawrocki@samsung.com,
+        myungjoo.ham@samsung.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <8d361a79-4147-e613-5b05-faf8efcef434@partner.samsung.com>
+Date:   Thu, 18 Jul 2019 08:01:16 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.7.1
 MIME-Version: 1.0
-In-Reply-To: <20190717170050.GB4271@xps15>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <9095a5be-3002-93c6-9d08-92eb84f5c103@samsung.com>
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sf0zMYRzuvbvvj67O3r7FfRahmzY/5mKYd/JzC/cH04bNpOnStx9TyX2l
+        wqYi0VLCyIViUjsXuk4qE6t0K3SdG1LD2YWhWCS1tej6XtN/z+d5ns/7PJ/tZaWck/Jn45MO
+        8LokbYKKlstqWobbF6q9FkUsetcmJ1232ylSVXSHIq8HPlOkpHlsLHB+kxKr9S5Dnmf1MsTk
+        fEWR/rx3FLHXX6ZJkbVBQiqb3zKk7LVNQmxt60l3ZgVNsh82M6SpN4cio6+qZGs5jfGqEWl+
+        dGYzGpPhFK2pvnFUk282IM0v08wweqd8ZTSfEH+Q1wWvjpTHfThXJklu9k8r+9RKZ6AXU3OR
+        Jwt4KVQYrlC5SM5yuAKB0TbIuAQODyC4Vb9cFH4hGLUcpyY2njkrpaJQjuD6RQstDn0IivuL
+        xl2+eAuU2huQS/DDbQgyHbkSlyDFFySgvzoWzrI0VkOtYb+LVuAN8KCqB7mwDAeBs9s6jqfi
+        HWA31yPR4wOtl3pkLuyJ18Bjw3n3k0ro6ilx41lw7F7xeDvA2SyUPs2nxdqhUPGk1I194avF
+        zIh4BvytE5cBC5Bx+hoS8RFwFlxxe0KgyWKjXJ2leB7cqQ8W6XXw+76edtGAp0Bnn49YYQqc
+        rbkoFWkFnDzBie65YM7rcAdNg3LjBeYMUuknHaafdIx+0jH6/7mlSGZASj5FSIzlhSVJfKpa
+        0CYKKUmx6j37Ek1o7Os9HbX8rkUNI1GNCLNI5a3ImB0cwVHag0J6YiMCVqryU3R/GaMU0dr0
+        Q7xu325dSgIvNKLprEylVBz2cIRzOFZ7gN/L88m8bkKVsJ7+GWjVy2pvQ0nyxxx7mJIzD/6J
+        7EdqxeK4z461oYNVJ+0mhi/cvHWES20yBhQ/iuLTwmyqupLCwOKOuWnD1Tcb7sY+W9FS3eGt
+        XGaN8Vj+pss/OgY6NxaFDATwP8Mj/3zPWjFr24I5Qbvbvp8dUgz17criNnl9ep/naA98sT1C
+        aI9Wq2RCnHbxfKlO0P4DU/BqHnYDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrBIsWRmVeSWpSXmKPExsVy+t/xe7q63AaxBmuPCFjcWneO1WLjjPWs
+        Fte/PGe1mH8EyO1//JrZ4vz5DewWZ5vesFtsenyN1eJjzz1Wi8u75rBZzDi/j8li7ZG77BZL
+        r19ksrh4ytXiduMKNovWvUfYLQ6/aWe1+HdtI4uDkMeaeWsYPd7faGX32LSqk81j85J6j74t
+        qxg9Pm+SC2CL0rMpyi8tSVXIyC8usVWKNrQw0jO0tNAzMrHUMzQ2j7UyMlXSt7NJSc3JLEst
+        0rdL0Mt4OHkpU8ERqYqlz06yNTBeEu1i5OSQEDCROPN4LXMXIxeHkMBSRol/Nx8wQyTEJCbt
+        284OYQtL/LnWxQZR9JpR4uX8K2BFwgK+EtvO3mcESYgInGKU6H60mA0kwSwwjUnixHqosX8Z
+        JRoe/gRyODjYBPQkdqwqBKnhFXCT2L3xCSOIzSKgKvH49nkwW1QgQqKvbTYbRI2gxMmZT1hA
+        bE4Be4kDq6YwQcw3k5i3+SEzhC0ucevJfKi4vETz1tnMExiFZiFpn4WkZRaSlllIWhYwsqxi
+        FEktLc5Nzy020itOzC0uzUvXS87P3cQIjPVtx35u2cHY9S74EKMAB6MSD+8NJf1YIdbEsuLK
+        3EOMEhzMSiK8t18ChXhTEiurUovy44tKc1KLDzGaAj03kVlKNDkfmIbySuINTQ3NLSwNzY3N
+        jc0slMR5OwQOxggJpCeWpGanphakFsH0MXFwSjUwWt8t/35nr1pYGq9T3Z2b66o8/cI9/9xi
+        TPmyvFdMXOrlob6/VeaNx4/qxPHX/HMHOosn7H7G14edJzw4zlW15L0/O4f9SJxVpkhyXv9M
+        lgXpodG/jrHFiS9+0H+PYxvXx1NHRSNM2V6Jvz2hcdePZ+b/1MTmjQuV7N9v5J2xeQEfw3P2
+        vfVKLMUZiYZazEXFiQAKIyRuCwMAAA==
+X-CMS-MailID: 20190718060117eucas1p284ee6f2d6ce65627101cceb784cb62eb
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190715124444eucas1p2683c9896e8be45d6a0cd4afeb681a2ea
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190715124444eucas1p2683c9896e8be45d6a0cd4afeb681a2ea
+References: <20190715124417.4787-1-l.luba@partner.samsung.com>
+        <CGME20190715124444eucas1p2683c9896e8be45d6a0cd4afeb681a2ea@eucas1p2.samsung.com>
+        <20190715124417.4787-14-l.luba@partner.samsung.com>
+        <9095a5be-3002-93c6-9d08-92eb84f5c103@samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mathieu,
+Hi Chanwoo,
 
-On 7/17/2019 10:30 PM, Mathieu Poirier wrote:
-> On Fri, Jul 12, 2019 at 07:46:25PM +0530, Sai Prakash Ranjan wrote:
->> From: Vivek Gautam <vivek.gautam@codeaurora.org>
+On 7/16/19 11:31 AM, Chanwoo Choi wrote:
+> Hi,
+> 
+> Also, you better to merge patch13/patch15/patch16 to one patch
+> in order to add the PLL table for DPLL/MPLL/SPLL.
+OK
+> 
+> And I have a question. Are there any use-case to change
+> the PLL frequency for DPLL/MPLL/SPLL?
+Yes, when you set a PLL frequency i.e. DPLL to 1200MHz (from 600MHz)
+you can attach a child to it which is running with 400, 300, 150 MHz
+and these frequencies are set only on this child clock divider
+(/3, /4, /8 - 3bit div) (and there is no set parent rate and
+reprogramming the master PLL). While 600MHz cannot satisfy 400MHz
+and 300MHz OPPs at the same time.
+If the child cannot change the PLL, because it could affect other
+children of this PLL and cause misalignment in their frequency after
+their dividers, it is better to stick with a rule: pin children to the
+PLL with frequency rate which could be divided without a rest and gives
+all OPPs rates of all children. This PLL rate could be calculated by
+hand, finding least common multiple, keeping in mind clock dividers
+width (i.e. 3bit).
+
+That's why I am changing the PLLs' rates and connect children to them
+also aligning OPPs to the values which are possible after DIV (3bit).
+
+Regards,
+Lukasz
+
+> 
+> On 19. 7. 15. 오후 9:43, Lukasz Luba wrote:
+>> The DPLL has fixed frequency left by the bootloader and it is not possible
+>> to change it. With this patch the DPLL gets rate table the same for the
+>> whole  PLL family (similar as APLL, KPLL according to RM) so the frequency
+>> might be changed to one of the values defined there.
+>> It is needed for further patches which change the DPLL frequency to feed
+>> the clocks with proper base.
+>> It also sets CLK_IS_CRITICAL for SCLK_DPLL due to some drivers which could
+>> disable master clock, which is then populated higher and tries to disable
+>> PLL, which casues system crash. The flag is needed for this kind of use
+>> cases.
 >>
->> Enable coresight support by adding device nodes for the
->> available source, sinks and channel blocks on msm8996.
->>
->> This also adds coresight cpu debug nodes.
->>
->> Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
->> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
->> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Acked-By: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
 >> ---
->>   arch/arm64/boot/dts/qcom/msm8996.dtsi | 434 ++++++++++++++++++++++++++
->>   1 file changed, 434 insertions(+)
+>>   drivers/clk/samsung/clk-exynos5420.c | 4 +++-
+>>   1 file changed, 3 insertions(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/clk/samsung/clk-exynos5420.c b/drivers/clk/samsung/clk-exynos5420.c
+>> index 7f8221527633..2395b02ce8c5 100644
+>> --- a/drivers/clk/samsung/clk-exynos5420.c
+>> +++ b/drivers/clk/samsung/clk-exynos5420.c
+>> @@ -694,7 +694,8 @@ static const struct samsung_mux_clock exynos5x_mux_clks[] __initconst = {
+>>   	MUX(0, "mout_sclk_rpll", mout_rpll_p, SRC_TOP6, 16, 1),
+>>   	MUX_F(CLK_MOUT_EPLL, "mout_sclk_epll", mout_epll_p, SRC_TOP6, 20, 1,
+>>   			CLK_SET_RATE_PARENT, 0),
+>> -	MUX(0, "mout_sclk_dpll", mout_dpll_p, SRC_TOP6, 24, 1),
+>> +	MUX_F(CLK_MOUT_SCLK_DPLL, "mout_sclk_dpll", mout_dpll_p,
+>> +			SRC_TOP6, 24, 1, CLK_IS_CRITICAL, 0),
+>>   	MUX(0, "mout_sclk_cpll", mout_cpll_p, SRC_TOP6, 28, 1),
+>>   
+>>   	MUX(CLK_MOUT_SW_ACLK400_ISP, "mout_sw_aclk400_isp",
+>> @@ -1514,6 +1515,7 @@ static void __init exynos5x_clk_init(struct device_node *np,
+>>   
+>>   	if (_get_rate("fin_pll") == 24 * MHZ) {
+>>   		exynos5x_plls[apll].rate_table = exynos5420_pll2550x_24mhz_tbl;
+>> +		exynos5x_plls[dpll].rate_table = exynos5420_pll2550x_24mhz_tbl;
+>>   		exynos5x_plls[epll].rate_table = exynos5420_epll_24mhz_tbl;
+>>   		exynos5x_plls[kpll].rate_table = exynos5420_pll2550x_24mhz_tbl;
+>>   	}
 >>
 > 
-> We've gone trhough 8 iteration of this set and I'm still finding checkpatch
-> problems, and I'm not referring to lines over 80 characters.
 > 
-
-I only get below 2 checkpatch warnings:
-
-If you are talking about the below one, then it was not added manually.
-It was taken automatically when I pulled in the v7. Should I be
-resending this patch for this?
-
-$ ./scripts/checkpatch.pl -g 2fa725fbc09306f1a95befc62715a708b4c0fad0
-WARNING: 'Acked-by:' is the preferred signature form
-#14:
-Acked-By: Suzuki K Poulose <suzuki.poulose@arm.com>
-
-WARNING: line over 80 characters
-#154: FILE: arch/arm64/boot/dts/qcom/msm8996.dtsi:763:
-+                       compatible = "arm,coresight-dynamic-replicator", 
-"arm,primecell";
-
-total: 0 errors, 2 warnings, 440 lines checked
-
-
--Sai
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
