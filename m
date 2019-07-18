@@ -2,55 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B308A6C50D
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 04:49:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AA8F6C6D4
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 05:19:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732510AbfGRCtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 22:49:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57016 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728079AbfGRCtd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 22:49:33 -0400
-Received: from X250 (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B76E5205F4;
-        Thu, 18 Jul 2019 02:49:26 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563418172;
-        bh=jdNPPY/nagQO4z4SbeSxOZ2+EDMQori7e6umb/X7wII=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=2scJcYPaWEnC8O4BuYyROLVOluc2QUVDfFyzDltCMUOGU1YaYhJXRkUz6OdZ/MFIh
-         tseMR2zXmwtg2wmQ+eP+MnVB1t+R6+CHVD+Og6kauZA4tWLC1cBk5JnS1SBMfQ5hsT
-         V6tnMol1y6TXf44Mb9hc2xH6I9DoPfIRwsPgefFU=
-Date:   Thu, 18 Jul 2019 10:49:21 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     yibin.gong@nxp.com
-Cc:     robh@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        mark.rutland@arm.com, vkoul@kernel.org, dan.j.williams@intel.com,
-        angelo@sysam.it, linux-imx@nxp.com,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de
-Subject: Re: [PATCH v5 6/6] ARM: dts: imx7ulp: add edma device node
-Message-ID: <20190718024920.GC11324@X250>
-References: <20190625094324.19196-1-yibin.gong@nxp.com>
- <20190625094324.19196-7-yibin.gong@nxp.com>
+        id S2390114AbfGRDTp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 23:19:45 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:36347 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2391350AbfGRDTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 17 Jul 2019 23:19:45 -0400
+X-UUID: ac384d41e70c43c7a6dc458b2e91b1de-20190718
+X-UUID: ac384d41e70c43c7a6dc458b2e91b1de-20190718
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <xia.jiang@mediatek.com>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 884264207; Thu, 18 Jul 2019 11:19:41 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Thu, 18 Jul 2019 11:19:40 +0800
+Received: from [10.17.3.153] (10.17.3.153) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Thu, 18 Jul 2019 11:19:39 +0800
+Message-ID: <1563419979.20220.12.camel@mhfsdcap03>
+Subject: Re: [PATCH 0/5]Add support for mt2701 JPEG ENC support
+From:   mtk12025 <xia.jiang@mediatek.com>
+To:     Hans Verkuil <hverkuil-cisco@xs4all.nl>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Rick Chang <rick.chang@mediatek.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Tomasz Figa <tfiga@chromium.org>, <srv_heupstream@mediatek.com>
+Date:   Thu, 18 Jul 2019 11:19:39 +0800
+In-Reply-To: <79316488-30fd-7ff3-7598-d29f85f663ab@xs4all.nl>
+References: <20190709032103.10291-1-xia.jiang@mediatek.com>
+         <79316488-30fd-7ff3-7598-d29f85f663ab@xs4all.nl>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190625094324.19196-7-yibin.gong@nxp.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+Content-Transfer-Encoding: 7bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 25, 2019 at 05:43:24PM +0800, yibin.gong@nxp.com wrote:
-> From: Robin Gong <yibin.gong@nxp.com>
-> 
-> Add edma device node in dts.
-> 
-> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+Dear Hans,
+Thank you for your reply.
 
-Applied, thanks.
+PATCH v2 has used the latest v4l2-compliance version for test.
+
+PATCH v2 has fixed the compliance test fail, and the driver checked the
+buffer size in queue_setup function.
+
+I am sorry for existence of change-id caused by my mistake in the new
+patch.
+
+Best Regards,
+Xia Jiang
+
+
