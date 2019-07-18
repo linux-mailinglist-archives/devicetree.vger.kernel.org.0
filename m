@@ -2,148 +2,219 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27AD66D2F6
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 19:42:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECF346D315
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 19:49:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728179AbfGRRl7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 13:41:59 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:14640 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728111AbfGRRl7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 13:41:59 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d30af630001>; Thu, 18 Jul 2019 10:41:55 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 18 Jul 2019 10:41:57 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 18 Jul 2019 10:41:57 -0700
-Received: from [10.110.103.56] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 18 Jul
- 2019 17:41:56 +0000
-Subject: Re: [PATCH V5 11/18] clk: tegra210: Add support for Tegra210 clocks
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>, <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>
-CC:     Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Joseph Lo <josephl@nvidia.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
-        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
-        <linus.walleij@linaro.org>, <stefan@agner.ch>,
-        <mark.rutland@arm.com>, <pgaikwad@nvidia.com>,
-        <linux-clk@vger.kernel.org>, <linux-gpio@vger.kernel.org>,
-        <jckuo@nvidia.com>, <talho@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-References: <a5e1a6df-dff7-9e0c-9551-f78103a5462f@gmail.com>
- <16f8b146-2581-a842-4997-53ab05b62c70@gmail.com>
- <d7892bfc-2cbf-27af-518d-dc7e243815b8@nvidia.com>
- <71272e9a-0f2a-c20d-6532-7e9057ad985c@gmail.com>
- <78fd19b9-b652-8ac3-1f57-3b4adadee03f@nvidia.com>
- <351a07d4-ba90-4793-129b-b1a733f95531@nvidia.com>
- <e3e9beaf-b195-305e-4010-66e824813472@gmail.com>
- <9271ae75-5663-e26e-df26-57cba94dab75@nvidia.com>
- <7ae3df9a-c0e9-cf71-8e90-4284db8df82f@nvidia.com>
- <b01e37aa-f14e-e628-ceef-b25a845c6359@gmail.com>
- <46b55527-da5d-c0b7-1c14-43b5c6d49dfa@nvidia.com>
- <2de9a608-cf38-f56c-b192-7ffed65092f8@nvidia.com>
- <bff3e9c0-727d-9aef-a0e2-583e53c39afd@gmail.com>
- <5eedd224-77b0-1fc9-4e5e-d884b41a64ed@nvidia.com>
- <89f23878-d4b2-2305-03e5-8a3e781c2b02@gmail.com>
- <c759d71b-1549-2562-f0cf-db5f9e51329e@nvidia.com>
- <ef7928ad-239d-eca8-41bf-f76e72a9841d@nvidia.com>
- <4141181d-7162-0321-71b6-33abf11f631c@gmail.com>
- <ab8f2441-8f4b-3a2b-5bcd-1a889555176a@nvidia.com>
-Message-ID: <419e1b16-683e-1b56-7334-50d87368c1b9@nvidia.com>
-Date:   Thu, 18 Jul 2019 10:41:55 -0700
+        id S1728242AbfGRRtV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 13:49:21 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:41311 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727685AbfGRRtV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 13:49:21 -0400
+Received: by mail-wr1-f67.google.com with SMTP id c2so26435604wrm.8;
+        Thu, 18 Jul 2019 10:49:18 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=pgafvxZ2WNWOqgq4j6/+Wz8LCOx0VkOfOwXK6KTHB34=;
+        b=VAxlwSVpmVGpT9xS2WTQl3NmzWZ20jUxLMaYhEhhFTBnQJ0smUNnpUv0E/+apDK+hY
+         DWKMVRrbqlhgT7uKkSv4S1xXRXNLsmwv+oOnjBZZyOSp89NpwsU0lSBiSeT0oTF6TcZ4
+         yOPeL4CzjUljTXllLsRszWlPsrWrtG2zBbfuX0BeHVO3MkjkAjPnC4MxTHS3fZEsPwMM
+         w2ohrzgn8v7/HX9TY1UMlDH3Nl+14RaLI39kzW61ULL0Tc7xv0aSFc/tjuYcIiNtRtg/
+         YZblwpMroF1o4LdvaaPUS4cq8aXDuQt2ULSnAQb/KMArm0J5WnyIqIl9DUPLHkpJBVRn
+         1tMA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=pgafvxZ2WNWOqgq4j6/+Wz8LCOx0VkOfOwXK6KTHB34=;
+        b=p4yHfiwsc680RFi65MYBsVNCuy5U44r7seRHAgCn9oVirAoTYuaC0EC03TBk79iVLj
+         Ok1Xgqgw+a+x3Z0LqRguSf25to+AoPEKp6X4feTU32Bthq1D1t5aEdCSLfMN09p0yUY+
+         kWpSvzU3T3V194ofPrJbKBb3tNYppWgkoo2I2Sv7ssdBN/+cyMYF84eXA87349wlepkF
+         rbv527xFzhASDeRA4Vxc45ctXRLIrfxOZNqivjUUtuKHbclK/5tRX1zbhpzKX7pwBClE
+         CKjf7SFfskiZDQDRffMAb7oEikNxcjHvTtcZX09XeEemLkvxrMU82JMiiXL1RRSLVRph
+         OBaA==
+X-Gm-Message-State: APjAAAW2rW0k9GKbZ/ot7bnG8v7L5v53zyA4PAIl2oeAf7UTKspcuVic
+        6Zc8kNu+jPFNhEvhBAZlcJTGpL//
+X-Google-Smtp-Source: APXvYqwX6QHAojsT4El/TU5a8Dhou+Cy9JrzDxlSR6Xq30IWTzmVa7RKLhI201PVB1QL3KxlQEsMng==
+X-Received: by 2002:a5d:518f:: with SMTP id k15mr10642655wrv.321.1563472157706;
+        Thu, 18 Jul 2019 10:49:17 -0700 (PDT)
+Received: from [192.168.1.19] (bkt159.neoplus.adsl.tpnet.pl. [83.28.187.159])
+        by smtp.gmail.com with ESMTPSA id t3sm20585948wmi.6.2019.07.18.10.49.16
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 18 Jul 2019 10:49:17 -0700 (PDT)
+Subject: Re: [PATCH v3 2/3] leds: Add control of the voltage/current regulator
+ to the LED core
+To:     Jean-Jacques Hiblot <jjhiblot@ti.com>, pavel@ucw.cz,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        daniel.thompson@linaro.org
+Cc:     dmurphy@ti.com, linux-leds@vger.kernel.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+References: <20190717135948.19340-1-jjhiblot@ti.com>
+ <20190717135948.19340-3-jjhiblot@ti.com>
+ <4bd3b558-ea5b-0d2e-16b2-5b2e8bb484d2@gmail.com>
+ <49152281-059c-6006-4c0f-a6be96a12707@ti.com>
+From:   Jacek Anaszewski <jacek.anaszewski@gmail.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=jacek.anaszewski@gmail.com; prefer-encrypt=mutual; keydata=
+ mQINBFWjfaEBEADd66EQbd6yd8YjG0kbEDT2QIkx8C7BqMXR8AdmA1OMApbfSvEZFT1D/ECR
+ eWFBS8XtApKQx1xAs1j5z70k3zebk2eeNs5ahxi6vM4Qh89vBM46biSKeeX5fLcv7asmGb/a
+ FnHPAfQaKFyG/Bj9V+//ef67hpjJWR3s74C6LZCFLcbZM0z/wTH+baA5Jwcnqr4h/ygosvhP
+ X3gkRzJLSFYekmEv+WHieeKXLrJdsUPUvPJTZtvi3ELUxHNOZwX2oRJStWpmL2QGMwPokRNQ
+ 29GvnueQdQrIl2ylhul6TSrClMrKZqOajDFng7TLgvNfyVZE8WQwmrkTrdzBLfu3kScjE14Q
+ Volq8OtQpTsw5570D4plVKh2ahlhrwXdneSot0STk9Dh1grEB/Jfw8dknvqkdjALUrrM45eF
+ FM4FSMxIlNV8WxueHDss9vXRbCUxzGw37Ck9JWYo0EpcpcvwPf33yntYCbnt+RQRjv7vy3w5
+ osVwRR4hpbL/fWt1AnZ+RvbP4kYSptOCPQ+Pp1tCw16BOaPjtlqSTcrlD2fo2IbaB5D21SUa
+ IsdZ/XkD+V2S9jCrN1yyK2iKgxtDoUkWiqlfRgH2Ep1tZtb4NLF/S0oCr7rNLO7WbqLZQh1q
+ ShfZR16h7YW//1/NFwnyCVaG1CP/L/io719dPWgEd/sVSKT2TwARAQABtC1KYWNlayBBbmFz
+ emV3c2tpIDxqYWNlay5hbmFzemV3c2tpQGdtYWlsLmNvbT6JAj4EEwEIACgCGwMHCwkIBwMC
+ AQYVCAIJCgsDFgIBAh4BAheABQJVo39tBQkJZgNMAAoJEL1qUBy3i3wmxLQQAK8QEQ0JqZEv
+ 5hrxiwT+Qtkx1TULYriK9sYcY9zbi18YxbKB0C4Znh5iP5o7k26WnPGLM+w4qWvTAkHjuAI7
+ aBrvb4nGRvE5s14PQ9IHgL7iL3zAAHT1azIZng9dUCCSontB+vQZu1x/Un0lVlVCvsvO7QVt
+ hAZUlT3iucNMO0jpCiS3raZkNfab8M+JWP/iplaV0Kn+O7LX3A/RdLmx5ZhuT+zvyHwl2c3K
+ T56UHaQnjkuHB2Ytk8HtOjNXGNYnm4nLx3ok3jEN1nWDRV/DeiPn8zz4Zebsp686OH9vvX/0
+ R4dk2YEjUCY/S7CbJxXzUnLjboUAGmtTVOu/uJ7y11iS9XEoJ09HEzijQwWctJXLojcTXCFw
+ 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
+ eGGiEQ==
+Message-ID: <928fd71b-d1d3-cbf3-1aed-ae7fa97f6cf0@gmail.com>
+Date:   Thu, 18 Jul 2019 19:49:14 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <ab8f2441-8f4b-3a2b-5bcd-1a889555176a@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <49152281-059c-6006-4c0f-a6be96a12707@ti.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1563471715; bh=QDI5IqDp9suDRjNaAkUm8piJMHGnuMn5yRUtK5Yo2lI=;
-        h=X-PGP-Universal:Subject:From:To:CC:References:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=pqmyfLvxFnfQ1aktHQK/J4AcWiSwU2R+a0KUdxArWu+4aFuEhJ0+cMjBL4vne6j7N
-         BruO6PUAtR/Coz64r22DvkTXeSDlJ9rySclJ/lWtpY+RTwKemflJv5YKTd3tooz10V
-         mkT49WPy0DlDRQiXX7Q7Sn7W4F/6VFLznxSc3yyektij5D6JVy/npmshn3kVId1LK4
-         8lQA7j6tOn/pL2oa6ZA/h2k/HPtWeHWXeb0cj12w+MK2AS/AG3iF63AVBx94tUX9az
-         h1JPxGQnub4ozmyGa3gdASyEeinSrJWBVPNlW1a/RKiqmrk0qxLmBDMpJmzQaSjZZI
-         b6TF+5P/SojHw==
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 7/18/19 10:22 AM, Sowjanya Komatineni wrote:
->
-> On 7/18/19 9:34 AM, Dmitry Osipenko wrote:
->> 18.07.2019 4:15, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+On 7/18/19 3:31 PM, Jean-Jacques Hiblot wrote:
+> 
+> On 18/07/2019 14:24, Jacek Anaszewski wrote:
+>> Hi Jean,
 >>
->> [snip]
+>> Thank you for the updated patch set.
 >>
->>>>> Please try to fix all missing dependencies and orderings.
->>>> Peter,
->>>>
->>>> dfllCPU_OUT is the first one to go thru restore when
->>>> clk_restore_context traverses thru the list.
->>>>
->>>> dfllCPU_OUT has dependency on DFLL_ref and DFLL_SOC but this
->>>> dependency is unknown to clock-tree.
->>>>
->>>> We can add DFLL_REF and DFLL_SOC as parents to dfllCPU_OUT during
->>>> register so dfllCPU_OUT save/restore happens after their parents are
->>>> restored.
->>>>
->>>> But DFLL needs both of these to be restored before DFLLCPU_Out and as
->>>> DFLL_SOC restore always happens after the REF, thinking to add
->>>> DFLL_SOC as parent to dfllCPU_OUT so save/restore follows after their
->>>> dependencies.
->>>>
->>>> Please comment.
->>>>
->>> Did quick try and I see by adding dfll-soc as parent to dfllCPU_OUT,=20
->>> its
->>> in proper order after all its dependencies.
->>>
->>> Can now add dfll save/restore to do dfll reinit during restore..
->>>
->> If dfllCPU_OUT can work properly with dfll-soc being disabled, then this
->> kind of dependency isn't very correct and just papers over the real
->> problem, which is that there should be a way for CCF to specify multiple
->> dependencies for the clock or the reverse ordering should be used for
->> the restoring.
->
-> dfll will not work without dfll-soc enabled.
->
-> CLDVFS control logic is split into 2 clock domains. dvfs_ref_clk and=20
-> dvfs_soc_clk.
->
-> Majority of the control logic is clocked from dvfs_soc_clk for=20
-> interfacing control registers.
->
-Note on reverse ordering for restore. Currently restore order goes thru=20
-clock list and for each root goes thru parent -> child restore.
+>> I have some more comments below.
+>>
+>> On 7/17/19 3:59 PM, Jean-Jacques Hiblot wrote:
+>>>   +static bool __led_need_regulator_update(struct led_classdev
+>>> *led_cdev,
+>>> +                    int brightness)
+>>> +{
+>>> +    bool new_state = (brightness != LED_OFF);
+>> How about:
+>>
+>> bool new_state = !!brightness;
+> 
+> Throughout the code LED_OFF is used when the LED is turned off. I think
+> it would be more consistent to use it there too.
 
-this order is correct and also all clocks are parented properly so they=20
-follow proper order.
+Basically brightness is a scalar and 0 always means off.
+We treat enum led_brightness as a legacy type - it is no
+longer valid on the whole its span since LED_FULL = 255
+was depreciated with addition of max_brightness property.
 
-dfllCPU is the only one where current driver doesn't take care of=20
-dependency in dfll_soc which gets enabled only after dfll_ref.
+IMHO use of reverse logic here only hinders code analysis.
 
+>>> +
+>>> +    return led_cdev->regulator && led_cdev->regulator_state !=
+>>> new_state;
+>>> +}
+>>> +static int __led_handle_regulator(struct led_classdev *led_cdev,
+>>> +                int brightness)
+>>> +{
+>>> +    int rc;
+>>> +
+>>> +    if (__led_need_regulator_update(led_cdev, brightness)) {
+>>> +
+>>> +        if (brightness != LED_OFF)
+>>> +            rc = regulator_enable(led_cdev->regulator);
+>>> +        else
+>>> +            rc = regulator_disable(led_cdev->regulator);
+>>> +        if (rc)
+>>> +            return rc;
+>>> +
+>>> +        led_cdev->regulator_state = (brightness != LED_OFF);
+>>> +    }
+>>> +    return 0;
+>>> +}
+>> Let's have these function names without leading underscores.
+> OK.
+>>
+>>>   static int __led_set_brightness(struct led_classdev *led_cdev,
+>>>                   enum led_brightness value)
+>>>   {
+>>> @@ -115,6 +142,8 @@ static void set_brightness_delayed(struct
+>>> work_struct *ws)
+>>>       if (ret == -ENOTSUPP)
+>>>           ret = __led_set_brightness_blocking(led_cdev,
+>>>                       led_cdev->delayed_set_value);
+>>> +    __led_handle_regulator(led_cdev, led_cdev->delayed_set_value)
+>> If you called it from __led_set_brightness() and
+> 
+> We cannot call it from __led_set_brightness() because it is supposed not
+> to block.
 
-Based on dfllCPU control logic module design, dfll_ref and dfll_soc=20
-should be enabled prior to dfll init/enable.
+You're right. The problematic part is that with regulator handling
+we cannot treat the whole brightness setting operation uniformly
+for brightness_set op case, i.e. without mediation of a workqueue.
 
-So parenting dfll_soc to dfllCPU keeps proper order.
+Now you have to fire workqueue in led_set_brightness_nopm()
+even for brightness_set() op path, if regulator state needs update.
+This is ugly and can be misleading. Can be also error prone and
+have non-obvious implications for software blink state transitions.
 
+I think we would first need to improve locking between the workqueue
+and led_timer_function(). I proposed a patch [0] over a year
+ago.
+
+Only then we could think of adding another asynchronous dependency
+to the brightness setting chain.
+
+[0] https://lkml.org/lkml/2018/1/17/1144
+
+-- 
+Best regards,
+Jacek Anaszewski
