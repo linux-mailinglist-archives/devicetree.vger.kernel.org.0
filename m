@@ -2,92 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B7556CD9E
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 13:44:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D88DA6CDEE
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 14:16:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390101AbfGRLoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 07:44:09 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:43592 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389994AbfGRLoJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 07:44:09 -0400
-Received: by mail-pf1-f194.google.com with SMTP id i189so12507554pfg.10;
-        Thu, 18 Jul 2019 04:44:08 -0700 (PDT)
+        id S1727685AbfGRMQv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 08:16:51 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:42137 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726608AbfGRMQv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 08:16:51 -0400
+Received: by mail-wr1-f68.google.com with SMTP id x1so13451720wrr.9;
+        Thu, 18 Jul 2019 05:16:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=from:to:cc:date:message-id:in-reply-to:references:subject;
-        bh=DeKDZOFHUlI3nMz/EaT1o5xWxfybZf2zd27CHn8oOdg=;
-        b=r+zSM5opOHjy7dH4d7v0u+BRJBKTy02dx42DCYFCSSgH5tsJvbfd/kPkhrAfVOLScA
-         YfBoN6vWyD1zEBAobw/aSdJX6ulvvpLC1aBNxZn0uvt8eGc8Vb8OC90ekh4DX/iOYKIw
-         +H/nrgue0rfam/MkX1gLpzub/79AepLYPWrr9oDTNFEKu07KQG5g45aRcB8nBfUvnYBQ
-         iPE6PR9DkS7hQ3uqDJdTwzRsdNcGS6SUabUDUgHv91VCXIigIxnNeG+QMsBzs2ZcSMiM
-         YeT2Zv9Ozqukq7Wxagdfgs3wXc6ixzvXjlgHG3E9wJQTnq1/nYjtDatSlHctEqau8o2C
-         IjMQ==
+        h=from:to:cc:subject:date:message-id;
+        bh=HlKgdAFzp18sETE1uDUVicMGRgYUwku23fLq36LfrKo=;
+        b=PI5+xloAJufCBhwAGyxRbfL4TwEOinM7rEWJhL5tQhF7gL75dcwscoNH3SuhECb2kH
+         V3KOiIEXFTUFOcOMoREj3YNwFu/q03NnYg5V+ACIAeloEY05ADjFPtRH2Br58TpTFd7i
+         wDYTIhfBxuiDYAAOkyGTufbU0bdrmTl4PJ03ybIogGU1VrMN+kwfpnZEqia6y1ypCXyc
+         6XbN8F4d1dKCWOyxV+cdd1aTAm2Sl9jNGHwZQA0/X/bAdO/hlL/ShDesqgQzh2/Fy3Yw
+         iCoShhyVpf6mCWugD5gpY0/5r4/CpbJksYX6SUrgHTwd0KfN+Tai0ahYkT8rJYzy1CNi
+         Z/og==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:date:message-id:in-reply-to
-         :references:subject;
-        bh=DeKDZOFHUlI3nMz/EaT1o5xWxfybZf2zd27CHn8oOdg=;
-        b=mJ9DAxRnw8AdqEZfvZjtX3GyYbyqDECxKYqutYHbuZZzlhZwZ8IYteohP5xSbxOzP/
-         JtJ16Hz/EapcemsHoEaMT8BPoW+O+tvoQ/S3bj/5CUA2WsWZYIY8uddjz3QV7wthiRBm
-         oJl/nponhVIAQnzUSgig1iaHjeupP28kf4Z5gbFT7a2MeIuQH4wigKz1vRIRVy/mNyKP
-         NI9t8lJ9yfPKX+qA3YiutSevlDmDuGNwm3NiVCFdwQ69s4p3pB20PxRbJlWtHBqHLBed
-         IgId0ZSxZKUXDaEltsIlQqtUwS3iSVXZ4KycokloZH9EQh8Ok7xKnkXSZkoMJTi2eaPT
-         69fQ==
-X-Gm-Message-State: APjAAAXGqwfA3inLr+OI5NgFd+E5hT0Zy1khsxxbLMNvWWTMsfd1GlKf
-        k13TQMlugDH9JfzO6MyyxGDp1Zxl
-X-Google-Smtp-Source: APXvYqyF+H2dhW1xjuLVeOTGT0sUgQRDWKxiKNoilbEq5kT1jdbnra2GxR7P7K2S2nrCzL4vBkFmUw==
-X-Received: by 2002:a17:90a:db52:: with SMTP id u18mr51038726pjx.107.1563450248226;
-        Thu, 18 Jul 2019 04:44:08 -0700 (PDT)
-Received: from [127.0.0.1] (FL1-133-202-12-40.iwa.mesh.ad.jp. [133.202.12.40])
-        by smtp.gmail.com with ESMTPSA id b136sm26298472pfb.73.2019.07.18.04.44.03
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=HlKgdAFzp18sETE1uDUVicMGRgYUwku23fLq36LfrKo=;
+        b=aM/V1ClCSk2LnODxOU+zZSRBvExexuyrehs053SY4W4qmhg+3EErOFarb9SLNoP43n
+         IarNlqTMhIIgVgXtl+jj7tfAAymNvQFdiLTRPWpjsUgAvnwgdZtbI6MLN9AO1zPVj97f
+         vs1qIJAYf8m2o0JJB8VmwsKTCXTHizK/MvcwFgyOovp89EB922mAMxzokyULbY1tePzC
+         C+zqVI3LDWdcr1eyMKwNTDHjMTOaobnHGzd6OVZEpLqmHd3hnWPpFzNg6x/7+0Zj8j1A
+         lI56Mq5t7XZGpPa+SsW3cHcPtEiyKb2n8fycLGCEyOkxwQ9LsDkWL70QAG0S4RmifOty
+         5GsA==
+X-Gm-Message-State: APjAAAXK7VLQg1bwKFX8aGd9VYJOua8+gyg/5rkIvLcmzUW2Hz/WQEYD
+        xPVAoc7KLU86CUsRsHSORK0=
+X-Google-Smtp-Source: APXvYqx2Vrkyj853VRaFPhtIGDn21ERmcu8ofvYr0lb7++IeNlIdeINLTBFtoYlWTCac/x3BBu0zvQ==
+X-Received: by 2002:a5d:46cf:: with SMTP id g15mr51486358wrs.93.1563452209900;
+        Thu, 18 Jul 2019 05:16:49 -0700 (PDT)
+Received: from localhost.localdomain ([212.146.100.6])
+        by smtp.gmail.com with ESMTPSA id f17sm22897463wmf.27.2019.07.18.05.16.47
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 18 Jul 2019 04:44:07 -0700 (PDT)
-From:   Magnus Damm <magnus.damm@gmail.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     mark.rutland@arm.com, devicetree@vger.kernel.org,
-        geert+renesas@glider.be, daniel.lezcano@linaro.org,
-        linux-renesas-soc@vger.kernel.org, robh+dt@kernel.org,
-        Magnus Damm <magnus.damm@gmail.com>, tglx@linutronix.de
-Date:   Thu, 18 Jul 2019 20:45:38 +0900
-Message-Id: <156345033835.5307.9206628986166423962.sendpatchset@octo>
-In-Reply-To: <156345023791.5307.6113391102648394591.sendpatchset@octo>
-References: <156345023791.5307.6113391102648394591.sendpatchset@octo>
-Subject: [PATCH 7/7] clocksource/drivers/sh_cmt: Document "cmt-48" as deprecated
+        Thu, 18 Jul 2019 05:16:49 -0700 (PDT)
+From:   Andra Danciu <andradanciu1997@gmail.com>
+To:     shawnguo@kernel.org
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        manivannan.sadhasivam@linaro.org, andrew.smirnov@gmail.com,
+        u.kleine-koenig@pengutronix.de, aisheng.dong@nxp.com,
+        andradanciu1997@gmail.com, leoyang.li@nxp.com, festevam@gmail.com,
+        sriram.dash@nxp.com, l.stach@pengutronix.de, pankaj.bansal@nxp.com,
+        ping.bai@nxp.com, pramod.kumar_1@nxp.com, bhaskar.upadhaya@nxp.com,
+        richard.hu@technexion.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] Add basic support for pico-pi-imx8m
+Date:   Thu, 18 Jul 2019 15:16:26 +0300
+Message-Id: <20190718121628.23991-1-andradanciu1997@gmail.com>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Magnus Damm <damm+renesas@opensource.se>
+Add support for TechNexion PICO-PI-IMX8M based on patches from Richard Hu
+Datasheet is at: https://s3.us-east-2.amazonaws.com/technexion/datasheets/picopiimx8m.pdf
 
-Update the CMT driver to mark "renesas,cmt-48" as deprecated.
+Changes since v2:
+ - changed PICO-PI-8M bord compatible from wand,imx8mq-pico-pi to
+   technexion,pico-pi-imx8m
+ - removed bootargs property
+ - removed regulators node and put fixed regulator directly under root node
+ - changed node name from usb_otg_vbus to regulator-usb-otg-vbus
+ - removed pinctrl-names property from iomuxc node
+ - removed wand-pi-8m container node
+ - sorted pinctrl nodes alphabetically
+ - removed tusb320_irqgrp, tusb320_irqgrp nodes because there is no upstream
+   driver
+ - changed properties' order in usb_dwc3_1 node
 
-Instead of documenting a theoretical hardware device based on current software
-support level, define DT bindings top-down based on available data sheet
-information and make use of part numbers in the DT compat string.
+Changes since v1:
+ - renamed wandboard-pi-8m.dts to pico-pi-8m.dts
+ - removed pinctrl_csi1, pinctrl_wifi_ctrl
+ - used generic name for pmic
+ - removed gpo node
+ - delete regulator-virtuals node
+ - remove always-on property from buck1-8 and ldo3-7
+ - remove pmic-buck-uses-i2c-dvs property for buck1-4
 
-In case of the only in-tree users r8a7740 and sh73a0 the compat strings
-"renesas,r8a7740-cmt1" and "renesas,sh73a0-cmt1" may be used instead.
+Andra Danciu (1):
+  dt-bindings: arm: fsl: Add the pico-pi-imx8m board
 
-Signed-off-by: Magnus Damm <damm+renesas@opensource.se>
----
+Richard Hu (1):
+  arm64: dts: fsl: pico-pi: Add a device tree for the PICO-PI-IMX8M
 
- drivers/clocksource/sh_cmt.c |    6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/arm/fsl.yaml |   1 +
+ arch/arm64/boot/dts/freescale/Makefile         |   1 +
+ arch/arm64/boot/dts/freescale/pico-pi-8m.dts   | 417 +++++++++++++++++++++++++
+ 3 files changed, 419 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/pico-pi-8m.dts
 
---- 0011/drivers/clocksource/sh_cmt.c
-+++ work/drivers/clocksource/sh_cmt.c	2019-07-18 19:31:01.917491800 +0900
-@@ -921,7 +921,11 @@ static const struct platform_device_id s
- MODULE_DEVICE_TABLE(platform, sh_cmt_id_table);
- 
- static const struct of_device_id sh_cmt_of_table[] __maybe_unused = {
--	{ .compatible = "renesas,cmt-48", .data = &sh_cmt_info[SH_CMT_48BIT] },
-+	{
-+		/* deprecated, preserved for backward compatibility */
-+		.compatible = "renesas,cmt-48",
-+		.data = &sh_cmt_info[SH_CMT_48BIT]
-+	},
- 	{
- 		/* deprecated, preserved for backward compatibility */
- 		.compatible = "renesas,cmt-48-gen2",
+-- 
+2.11.0
+
