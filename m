@@ -2,170 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB69A6CA8A
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 10:01:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9C9866CA98
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 10:05:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726000AbfGRIBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 04:01:36 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:40751 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2389321AbfGRIBf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 04:01:35 -0400
-X-UUID: 4512913e817a4a958b64f5ef79152754-20190718
-X-UUID: 4512913e817a4a958b64f5ef79152754-20190718
-Received: from mtkexhb01.mediatek.inc [(172.21.101.102)] by mailgw01.mediatek.com
-        (envelope-from <zhiyong.tao@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 556583377; Thu, 18 Jul 2019 16:01:27 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 18 Jul 2019 16:01:26 +0800
-Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 18 Jul 2019 16:01:25 +0800
-From:   Zhiyong Tao <zhiyong.tao@mediatek.com>
-To:     <robh+dt@kernel.org>, <jic23@kernel.org>, <knaack.h@gmx.de>,
-        <lars@metafoo.de>, <pmeerw@pmeerw.net>
-CC:     <srv_heupstream@mediatek.com>, <hui.liu@mediatek.com>,
-        <jg_poxu@mediatek.com>, <sj.huang@mediatek.com>,
-        <yingjoe.chen@mediatek.com>, <sean.wang@mediatek.com>,
-        <erin.lo@mediatek.com>, <eddie.huang@mediatek.com>,
-        <matthias.bgg@gmail.com>, <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-iio@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
-        Zhiyong Tao <zhiyong.tao@mediatek.com>
-Subject: [PATCH v1 2/2] auxadc: mediatek: support efuse calibration in auxadc driver
-Date:   Thu, 18 Jul 2019 16:01:19 +0800
-Message-ID: <20190718080119.30707-3-zhiyong.tao@mediatek.com>
-X-Mailer: git-send-email 2.12.5
-In-Reply-To: <20190718080119.30707-1-zhiyong.tao@mediatek.com>
-References: <20190718080119.30707-1-zhiyong.tao@mediatek.com>
+        id S2389194AbfGRIEU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 04:04:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43288 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726386AbfGRIEU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 18 Jul 2019 04:04:20 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 84F5D208C0;
+        Thu, 18 Jul 2019 08:04:10 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563437059;
+        bh=E0bLEAP3B1LCOK+JmfNMki+fkUB1oBDmiJFqCk7d3z4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=USpNpihtlTs5cwv+eEh3e1xNwu3qmdbLx7FNEBHVdjr6KnddtNezQJ6nvWZGKxlvR
+         /fJNvvgg3LFmupkj2VGQMcbCRVvN+OQW4Rz3cU+jVJMKWuQeIVRklIxTUVlxi/63Zm
+         4KhuoE3Zvl85Z7YSE55/hIQ39qAv/rP78deAwS4c=
+Date:   Thu, 18 Jul 2019 16:03:57 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Anson.Huang@nxp.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, leonard.crestez@nxp.com,
+        viresh.kumar@linaro.org, ping.bai@nxp.com, daniel.baluta@nxp.com,
+        l.stach@pengutronix.de, abel.vesa@nxp.com,
+        andrew.smirnov@gmail.com, ccaione@baylibre.com, angus@akkea.ca,
+        agx@sigxcpu.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Linux-imx@nxp.com
+Subject: Re: [PATCH V2 1/2] arm64: dts: imx8mm: Correct OPP table according
+ to latest datasheet
+Message-ID: <20190718080356.GL3738@dragon>
+References: <20190629102157.8026-1-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190629102157.8026-1-Anson.Huang@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch support efuse calibration in auxadc driver
+On Sat, Jun 29, 2019 at 06:21:56PM +0800, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
+> 
+> According to latest datasheet (Rev.0.2, 04/2019) from below links,
+> 1.8GHz is ONLY available for consumer part, so the market segment
+> bits for 1.8GHz opp should ONLY available for consumer part accordingly.
+> 
+> https://www.nxp.com/docs/en/data-sheet/IMX8MMIEC.pdf
+> https://www.nxp.com/docs/en/data-sheet/IMX8MMCEC.pdf
+> 
+> Fixes: f403a26c865b (arm64: dts: imx8mm: Add cpu speed grading and all OPPs)
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 
-Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-Signed-off-by: jg_poxu <jg_poxu@mediatek.com>
----
- drivers/iio/adc/mt6577_auxadc.c | 71 +++++++++++++++++++++++++++++++++++++++++
- 1 file changed, 71 insertions(+)
-
-diff --git a/drivers/iio/adc/mt6577_auxadc.c b/drivers/iio/adc/mt6577_auxadc.c
-index 95d76abb64ec..e30d9736b1a5 100644
---- a/drivers/iio/adc/mt6577_auxadc.c
-+++ b/drivers/iio/adc/mt6577_auxadc.c
-@@ -17,12 +17,14 @@
- #include <linux/err.h>
- #include <linux/kernel.h>
- #include <linux/module.h>
-+#include <linux/nvmem-consumer.h>
- #include <linux/of.h>
- #include <linux/of_device.h>
- #include <linux/platform_device.h>
- #include <linux/iopoll.h>
- #include <linux/io.h>
- #include <linux/iio/iio.h>
-+#include <linux/slab.h>
- 
- /* Register definitions */
- #define MT6577_AUXADC_CON0                    0x00
-@@ -42,6 +44,13 @@
- #define MT6577_AUXADC_POWER_READY_MS          1
- #define MT6577_AUXADC_SAMPLE_READY_US         25
- 
-+#define ADC_GE_A_SHIFT      10
-+#define ADC_GE_A_MASK       (0x3ff << ADC_GE_A_SHIFT)
-+#define ADC_OE_A_SHIFT      0
-+#define ADC_OE_A_MASK       (0x3ff << ADC_OE_A_SHIFT)
-+#define ADC_CALI_EN_A_SHIFT 20
-+#define ADC_CALI_EN_A_MASK  (0x1 << ADC_CALI_EN_A_SHIFT)
-+
- struct mt6577_auxadc_device {
- 	void __iomem *reg_base;
- 	struct clk *adc_clk;
-@@ -74,6 +83,64 @@ static const struct iio_chan_spec mt6577_auxadc_iio_channels[] = {
- 	MT6577_AUXADC_CHANNEL(15),
- };
- 
-+s32 cali_oe;
-+s32 cali_ge;
-+struct adc_cali_info {
-+	u32 cali_ge_a;
-+	u32 cali_oe_a;
-+	u32 gain;
-+};
-+static struct adc_cali_info adc_cali;
-+
-+static int mt6577_auxadc_update_cali(struct device *dev)
-+{
-+	struct nvmem_cell *cell;
-+	u32 *buf;
-+	size_t len;
-+	int ret = 0;
-+
-+	cali_oe = 0;
-+	cali_ge = 0;
-+
-+	cell = nvmem_cell_get(dev, "calibration-data");
-+	if (IS_ERR(cell)) {
-+		if (PTR_ERR(cell) == -EPROBE_DEFER)
-+			return PTR_ERR(cell);
-+		return 0;
-+	}
-+
-+	buf = (u32 *)nvmem_cell_read(cell, &len);
-+
-+	nvmem_cell_put(cell);
-+
-+	if (IS_ERR(buf))
-+		return PTR_ERR(buf);
-+
-+	if (len < sizeof(u32)) {
-+		dev_warn(dev, "invalid calibration data\n");
-+		ret = -EINVAL;
-+		goto out;
-+	}
-+
-+	if (((buf[0] & ADC_CALI_EN_A_MASK) >> ADC_CALI_EN_A_SHIFT) != 0) {
-+		adc_cali.cali_oe_a =
-+			(buf[0] & ADC_OE_A_MASK) >> ADC_OE_A_SHIFT;
-+		adc_cali.cali_ge_a =
-+			((buf[0] & ADC_GE_A_MASK) >> ADC_GE_A_SHIFT);
-+
-+		cali_ge = adc_cali.cali_ge_a - 512;
-+		cali_oe = adc_cali.cali_oe_a - 512;
-+		adc_cali.gain = 1 + cali_ge;
-+	}  else {
-+		dev_info(dev, "Device not calibrated, using default calibration values\n");
-+	}
-+
-+out:
-+	kfree(buf);
-+
-+	return ret;
-+}
-+
- static inline void mt6577_auxadc_mod_reg(void __iomem *reg,
- 					 u32 or_mask, u32 and_mask)
- {
-@@ -274,6 +341,10 @@ static int mt6577_auxadc_probe(struct platform_device *pdev)
- 		goto err_power_off;
- 	}
- 
-+	ret = mt6577_auxadc_update_cali(&pdev->dev);
-+	if (ret)
-+		return ret;
-+
- 	return 0;
- 
- err_power_off:
--- 
-2.12.5
-
+Applied both, thanks.
