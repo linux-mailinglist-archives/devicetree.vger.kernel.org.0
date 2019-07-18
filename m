@@ -2,66 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A4006C500
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 04:42:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B308A6C50D
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 04:49:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727811AbfGRCmV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 17 Jul 2019 22:42:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51824 "EHLO mail.kernel.org"
+        id S1732510AbfGRCtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 17 Jul 2019 22:49:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57016 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727804AbfGRCmV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 17 Jul 2019 22:42:21 -0400
+        id S1728079AbfGRCtd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 17 Jul 2019 22:49:33 -0400
 Received: from X250 (98.142.130.235.16clouds.com [98.142.130.235])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3C9DC205F4;
-        Thu, 18 Jul 2019 02:42:12 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id B76E5205F4;
+        Thu, 18 Jul 2019 02:49:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563417740;
-        bh=sjxuin9zTS4szxUyX8Q0ubzRlgU41diTfn7okIvvlkc=;
+        s=default; t=1563418172;
+        bh=jdNPPY/nagQO4z4SbeSxOZ2+EDMQori7e6umb/X7wII=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VG1DrduHwFM0tp6ajZDSCEp8z6g7EYUN7s7GURoz8uJRNBkcG+NAAZmFK1LwEMPRc
-         2m3BkuDyWpreNzFAMsl3h5phmzJwBmZNQCytg73gRL+FFTyK89BaxJrc8hM3NC1pgE
-         vwUBb7KKisIxy+S0RzBIrL+puo53mfkq5pcthwmc=
-Date:   Thu, 18 Jul 2019 10:42:08 +0800
+        b=2scJcYPaWEnC8O4BuYyROLVOluc2QUVDfFyzDltCMUOGU1YaYhJXRkUz6OdZ/MFIh
+         tseMR2zXmwtg2wmQ+eP+MnVB1t+R6+CHVD+Og6kauZA4tWLC1cBk5JnS1SBMfQ5hsT
+         V6tnMol1y6TXf44Mb9hc2xH6I9DoPfIRwsPgefFU=
+Date:   Thu, 18 Jul 2019 10:49:21 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pavel Machek <pavel@ucw.cz>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 0/2] arm64: dts: imx8mq: Add DT node for the Mixel MIPI
- D-PHY
-Message-ID: <20190718024207.GB11324@X250>
-References: <cover.1561451144.git.agx@sigxcpu.org>
+To:     yibin.gong@nxp.com
+Cc:     robh@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
+        mark.rutland@arm.com, vkoul@kernel.org, dan.j.williams@intel.com,
+        angelo@sysam.it, linux-imx@nxp.com,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        dmaengine@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v5 6/6] ARM: dts: imx7ulp: add edma device node
+Message-ID: <20190718024920.GC11324@X250>
+References: <20190625094324.19196-1-yibin.gong@nxp.com>
+ <20190625094324.19196-7-yibin.gong@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <cover.1561451144.git.agx@sigxcpu.org>
+In-Reply-To: <20190625094324.19196-7-yibin.gong@nxp.com>
 User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jun 25, 2019 at 10:27:19AM +0200, Guido Günther wrote:
-> Now that the driver is in linux-next as of 20190624 let's have a DT node
-> for the i.MX8mq and enable it on the Librem 5 devkit.
+On Tue, Jun 25, 2019 at 05:43:24PM +0800, yibin.gong@nxp.com wrote:
+> From: Robin Gong <yibin.gong@nxp.com>
 > 
-> Guido Günther (2):
->   arm64: dts: imx8mq: Add MIPI D-PHY
->   arm64: dts: imx8mq-librem5: Enable MIPI D-PHY
+> Add edma device node in dts.
+> 
+> Signed-off-by: Robin Gong <yibin.gong@nxp.com>
 
-Applied both, thanks.
+Applied, thanks.
