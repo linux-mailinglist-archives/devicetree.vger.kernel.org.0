@@ -2,125 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 59FCF6CC42
-	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 11:48:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DAEB6CC5C
+	for <lists+devicetree@lfdr.de>; Thu, 18 Jul 2019 11:54:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389963AbfGRJsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 05:48:00 -0400
-Received: from smtp-fw-9101.amazon.com ([207.171.184.25]:20365 "EHLO
-        smtp-fw-9101.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726649AbfGRJsA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 05:48:00 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1563443279; x=1594979279;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=r3UejI0fEyx4nycQ3vf7JrpqMGHRZyoys9vsmeuSdCk=;
-  b=GDC5OizS5WHpC3cbPd/r5NuDPuP1vwku0BiQd6EopTebsOWOmgEvdhdh
-   CsNwPPvTOLexzBRsuerepZpGzWRXy0hzPva5xjML/DGlch+IDfKVW0ZpY
-   RN5+jvWmckV2EqZaHZ5iTx5O+wsonJsmsjQwB6Ks4U40WXuU7fJmV0MVj
-   s=;
-X-IronPort-AV: E=Sophos;i="5.64,276,1559520000"; 
-   d="scan'208";a="816920794"
-Received: from sea3-co-svc-lb6-vlan2.sea.amazon.com (HELO email-inbound-relay-1d-f273de60.us-east-1.amazon.com) ([10.47.22.34])
-  by smtp-border-fw-out-9101.sea19.amazon.com with ESMTP; 18 Jul 2019 09:47:58 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
-        by email-inbound-relay-1d-f273de60.us-east-1.amazon.com (Postfix) with ESMTPS id 2F37AA28ED;
-        Thu, 18 Jul 2019 09:47:54 +0000 (UTC)
-Received: from EX13D13UWA001.ant.amazon.com (10.43.160.136) by
- EX13MTAUWA001.ant.amazon.com (10.43.160.118) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 18 Jul 2019 09:47:54 +0000
-Received: from u9ff250417f405e.ant.amazon.com (10.43.161.219) by
- EX13D13UWA001.ant.amazon.com (10.43.160.136) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Thu, 18 Jul 2019 09:47:48 +0000
-From:   Jonathan Chocron <jonnyc@amazon.com>
-To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
-        <alisaidi@amazon.com>, <ronenk@amazon.com>, <barakw@amazon.com>,
-        <talel@amazon.com>, <hanochu@amazon.com>, <hhhawa@amazon.com>,
-        <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <jonnyc@amazon.com>
-Subject: [PATCH v2 8/8] PCI: dw: Add support for PCI_PROBE_ONLY/PCI_REASSIGN_ALL_BUS flags
-Date:   Thu, 18 Jul 2019 12:47:18 +0300
-Message-ID: <20190718094718.25083-4-jonnyc@amazon.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190718094531.21423-1-jonnyc@amazon.com>
-References: <20190718094531.21423-1-jonnyc@amazon.com>
+        id S1727623AbfGRJyD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 05:54:03 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:48738 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727603AbfGRJyD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 05:54:03 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id C8B53616B8; Thu, 18 Jul 2019 09:54:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563443641;
+        bh=OQ/MD3YIdSMBrwnP8BDEG6Jw1d6HD1QPQooLjyZnEQ8=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=lO4z8bR5105oNnaJ6YcqkK653dcUmfzedbtUJtwc/RenDwLMrPdK0Otz+EyOT4ryt
+         nZCkTvARyn1XEnkCwYX08TiZacBZKelA9JKbzEbnpHgB3aRgrgar4kUkVeG/vEMlJl
+         LrjhdYQxpNXuBkvhTFn/VVRzByuMyOuDKu92zHx8=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.43.47] (unknown [157.49.202.231])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id B33D560E40;
+        Thu, 18 Jul 2019 09:53:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563443640;
+        bh=OQ/MD3YIdSMBrwnP8BDEG6Jw1d6HD1QPQooLjyZnEQ8=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=BNXObLhCuY1vX0ITvrPpNRCgTCe6f5MCZ4kxgDcu/KqePp1F9+dxW/G2tf/Way3I4
+         T3lXQ1F3tNbVeM1x13k3SeiQx+CHSwmidV42bBWJDBoSsWcPyv/jNo9FpzsCLhDbLS
+         PJ4RioLwbkRJDqaweKZ+gxgB/GOXPbm228lDX9X8=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org B33D560E40
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
+Subject: Re: [PATCHv8 2/5] arm64: dts: qcom: msm8998: Add Coresight support
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        gregkh@linuxfoundation.org, mathieu.poirier@linaro.org,
+        leo.yan@linaro.org, alexander.shishkin@linux.intel.com,
+        mike.leach@linaro.org, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        david.brown@linaro.org, mark.rutland@arm.com
+Cc:     rnayak@codeaurora.org, vivek.gautam@codeaurora.org,
+        sibis@codeaurora.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        marc.w.gonzalez@free.fr
+References: <cover.1562940244.git.saiprakash.ranjan@codeaurora.org>
+ <e510df23f741205fac9030f2c95d06d607549caa.1562940244.git.saiprakash.ranjan@codeaurora.org>
+ <3b192063-f31f-b861-d913-61d737cecc57@arm.com>
+ <4854b0f7-6a81-bc87-3e63-d2b7c68a44f6@codeaurora.org>
+ <281e3548-af53-f9a7-b9e4-813b448ab078@arm.com>
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Message-ID: <2b08943b-3900-ceb5-15ac-28ef2bbad03e@codeaurora.org>
+Date:   Thu, 18 Jul 2019 15:23:49 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.43.161.219]
-X-ClientProxiedBy: EX13D19UWC001.ant.amazon.com (10.43.162.64) To
- EX13D13UWA001.ant.amazon.com (10.43.160.136)
+In-Reply-To: <281e3548-af53-f9a7-b9e4-813b448ab078@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This basically aligns the usage of PCI_PROBE_ONLY and
-PCI_REASSIGN_ALL_BUS in dw_pcie_host_init() with the logic in
-pci_host_common_probe().
+Hi,
 
-Now it will be possible to control via the devicetree whether to just
-probe the PCI bus (in cases where FW already configured it) or to fully
-configure it.
+On 7/18/2019 3:07 PM, Suzuki K Poulose wrote:
+> 
+> 
+> Using the sysfs doesn't guarantee that the ETR actually uses SG mode, 
+> unless
+> the buffer size selected is > 1M, which is why I am more interested in the
+> perf usage. Alternatively you may configure a larger buffer size (say, 
+> 8MB) via:
+> 
+> echo 0x800000 > /sys/bus/coresight/.../tmc_etr0/buffer_size
+> 
 
-Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
----
- .../pci/controller/dwc/pcie-designware-host.c | 23 +++++++++++++++----
- 1 file changed, 19 insertions(+), 4 deletions(-)
+Yes, you had mentioned about setting buffer size > 1M in the same 
+thread[1] and I had followed the same.
 
-diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index d2ca748e4c85..0a294d8aa21a 100644
---- a/drivers/pci/controller/dwc/pcie-designware-host.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -342,6 +342,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 	if (!bridge)
- 		return -ENOMEM;
- 
-+	of_pci_check_probe_only();
-+
- 	ret = devm_of_pci_get_host_bridge_resources(dev, 0, 0xff,
- 					&bridge->windows, &pp->io_base);
- 	if (ret)
-@@ -474,6 +476,10 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 
- 	pp->root_bus_nr = pp->busn->start;
- 
-+	/* Do not reassign bus nums if probe only */
-+	if (!pci_has_flag(PCI_PROBE_ONLY))
-+		pci_add_flags(PCI_REASSIGN_ALL_BUS);
-+
- 	bridge->dev.parent = dev;
- 	bridge->sysdata = pp;
- 	bridge->busnr = pp->root_bus_nr;
-@@ -490,11 +496,20 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 	if (pp->ops->scan_bus)
- 		pp->ops->scan_bus(pp);
- 
--	pci_bus_size_bridges(pp->root_bus);
--	pci_bus_assign_resources(pp->root_bus);
-+	/*
-+	 * We insert PCI resources into the iomem_resource and
-+	 * ioport_resource trees in either pci_bus_claim_resources()
-+	 * or pci_bus_assign_resources().
-+	 */
-+	if (pci_has_flag(PCI_PROBE_ONLY)) {
-+		pci_bus_claim_resources(pp->root_bus);
-+	} else {
-+		pci_bus_size_bridges(pp->root_bus);
-+		pci_bus_assign_resources(pp->root_bus);
- 
--	list_for_each_entry(child, &pp->root_bus->children, node)
--		pcie_bus_configure_settings(child);
-+		list_for_each_entry(child, &pp->root_bus->children, node)
-+			pcie_bus_configure_settings(child);
-+	}
- 
- 	pci_bus_add_devices(pp->root_bus);
- 	return 0;
+[1] https://lkml.org/lkml/2019/1/18/311
+
+> 
+>>
+>> As said in one of the series initially [1], QCOM msm downstream kernels
+>> have been using scatter gather mode and we haven't seen any fatal issues.
+>>
+>> [1] https://patchwork.kernel.org/patch/10769535/
+> 
+> I haven't seen any test results there either.
+> 
+
+You did not ask for it there ;)
+
+I do not have the test results handy now and those platforms.
+I will arrange for them and post some test results.
+
+Just to confirm, do you need some traces or just the buffer size
+and sink set?
+
+Thanks,
+Sai
+
 -- 
-2.17.1
-
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
