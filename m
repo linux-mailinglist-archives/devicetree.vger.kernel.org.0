@@ -2,115 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DCB046E4CB
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 13:12:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D7286E4F7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 13:20:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727865AbfGSLLV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 07:11:21 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:34681 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727552AbfGSLLU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 07:11:20 -0400
-Received: by mail-pg1-f196.google.com with SMTP id n9so8101474pgc.1
-        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2019 04:11:20 -0700 (PDT)
+        id S1726075AbfGSLT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 07:19:57 -0400
+Received: from mail-lj1-f193.google.com ([209.85.208.193]:43279 "EHLO
+        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726931AbfGSLT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 07:19:56 -0400
+Received: by mail-lj1-f193.google.com with SMTP id y17so5859773ljk.10;
+        Fri, 19 Jul 2019 04:19:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=IKhuottjSxGgkbg5ejXRJ13eEQQXYdAPGmSw9/+AZpM=;
-        b=f0rfqSr8iPuQsrcdJa7bP1GKgSw6HqJLzd3G8kjOeeNfce2hkPx2LHfLaJkctQQWke
-         rwx70Ut7Mo2fXlmmQV9u6ige+fNLdxpOsqDXRtzjTQZWsKG6WabWBqJfKkcZigWGpSst
-         3BaZwFEFlTzxaIvyEgZ/WDWHbd2GqUQvW1DlF2vVaEK9lEuDUeF/sGDdDYywVkHoMZdW
-         FxmDYgLAOGpLPZFxWZnZ3jfFSuge4/HUzDzIbEi2mNUlAh0lxTWRtN953REBKy8zgGtj
-         4b8C3ElW6Z+VuHXNq7UhUc0qr/B5rp5hsUKwy6K7YH4RrpsQVrxkUuFQGZO5vzdHgdH2
-         mTRw==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=oa7kpDXrcCy8McuyUn5ga3FPCCt3ADMPU6Hul/X/yUM=;
+        b=j7qYAD+kzQ5zFcCG7d0p/5oYJbPJHNhQ8vG9lABZv5JKBjUe0FPzX8M7kjRFL0Ic56
+         PUxBY9hnbA+7mZ2UeH/j+OM6TQUga19wXGUyfj3lS935uRemxKXrgxQJVVb+kvgKTCVj
+         4qtA4weK0qCFLGLht52WVfvlYxwDF7lwY6bTcpWReEsdLs0Y/HGXoquLm9fCUjkGH7DJ
+         QEsTs4aN9JFk7Vu3DOnXBjJzzNF0aq2GdLeB/bY/bFfHpEN8dQTKn/vgJy699XoPZdwT
+         +aAUjkAUkYL6v3vVIM6W/5x4MeUbBykMRvqbCiH6oIroveMIcFN23c5L21xLg2jGBOos
+         SKCQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=IKhuottjSxGgkbg5ejXRJ13eEQQXYdAPGmSw9/+AZpM=;
-        b=mv8Ynj545/0ZhP5W1SzItd0BGMnRSVpVPESVjpfIGunv8wTssAgvLIwfJ+5T0W38as
-         ryODlAm10Izhe+vy4EDGPSmZggusvaEUGxuOmLwjIAXejekcjHsDP7W7/I/wGYUbDvNE
-         gnXc51Qkb4oEstn+6f8wyso5P8CzqZ2J1vZ3cBtpgLP8LfL6EdNqTmi0XYsBsqtAnF5Q
-         DOuEq0MFx2lQ7HKiAG3qJU9Bq0XVJhD3JrGBZGk0OdIOeV2sngUmux4G8Ka69/pKdWur
-         2948Hq98zdYEckzjnUyEk2OddfWfUalB1hGBKdu8mSDXZ3nG3laMXQVwXKEeDps3EGBe
-         Te+Q==
-X-Gm-Message-State: APjAAAWkI5VSeOI/tOTHlhg1M8EtiH9WOV8n3lFk5f4ycqtCRUtStQ4j
-        EdAstIH8qO5XmERAOmZ1vzvYxw==
-X-Google-Smtp-Source: APXvYqzZbKp8wDFScLKLbk1R27CUweZE7G31LV4oG/v3a7WShdgFSbpMho8p4fb5WJQzUoI3VtccEQ==
-X-Received: by 2002:a17:90a:5887:: with SMTP id j7mr56584685pji.136.1563534680244;
-        Fri, 19 Jul 2019 04:11:20 -0700 (PDT)
-Received: from buildserver-90.open-silicon.com ([114.143.65.226])
-        by smtp.googlemail.com with ESMTPSA id i9sm10196872pgg.38.2019.07.19.04.11.14
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Fri, 19 Jul 2019 04:11:19 -0700 (PDT)
-From:   Yash Shah <yash.shah@sifive.com>
-To:     davem@davemloft.net, robh+dt@kernel.org, paul.walmsley@sifive.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org
-Cc:     mark.rutland@arm.com, palmer@sifive.com, aou@eecs.berkeley.edu,
-        nicolas.ferre@microchip.com, ynezz@true.cz,
-        sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
-Subject: [PATCH 3/3] riscv: dts: Add DT node for SiFive FU540 Ethernet controller driver
-Date:   Fri, 19 Jul 2019 16:40:31 +0530
-Message-Id: <1563534631-15897-3-git-send-email-yash.shah@sifive.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1563534631-15897-1-git-send-email-yash.shah@sifive.com>
-References: <1563534631-15897-1-git-send-email-yash.shah@sifive.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=oa7kpDXrcCy8McuyUn5ga3FPCCt3ADMPU6Hul/X/yUM=;
+        b=e3nZsXbMqwLlUXnGRtcywFCLFDPIhhBt83oBWMd4Ohqr39sJD/jzBZrSDj8afvGi5T
+         6SEGd8YfbbG9G172KoMucEdahsP3BuifIkEe4S9+hRWMFLcj8AgHRs9e+As42d5JBfvE
+         kRxWGXUKCF3OxtYwy0XEMzP0tsZq7IdGjSgMp5vihwOs09Gq5J2wBiNHOCmrZPXEYzWH
+         cK90ULppRWo7woWAczvlUCJatgdrbgc5N8bKOXxXcl6LJHI0HRRsZLRhhFdTZxd/LwH4
+         C7r5O82pG1NpgJTLdgj5Km31f1kaIbtnTHjca+PER3BAt1hzCw6mmb+9TJplC/+XzGDg
+         9i1g==
+X-Gm-Message-State: APjAAAUy69M3EjpfPbfXP3f9016y9RUAkFuKsoNUjpZlOlDFqyJsQq+A
+        dpzSGnutc2rdNaochtCVNOBvHpP9HcCWEUa1V34=
+X-Google-Smtp-Source: APXvYqzBHXvvyxC4iFcPJJjFihiAgUmb5NF6oXKVWMbQdzkDX3RFp21crAVVLA28yDHF9lGH5qeEQdPJDZGMAPBIX9k=
+X-Received: by 2002:a2e:a311:: with SMTP id l17mr26523151lje.214.1563535194358;
+ Fri, 19 Jul 2019 04:19:54 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190719104802.18070-1-andradanciu1997@gmail.com> <20190719104802.18070-2-andradanciu1997@gmail.com>
+In-Reply-To: <20190719104802.18070-2-andradanciu1997@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Fri, 19 Jul 2019 08:19:43 -0300
+Message-ID: <CAOMZO5Btu1Shou=dGRrG74e5UjHnh7NtR4+4ETK0t_1Zt48Crw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/2] arm64: dts: fsl: pico-pi: Add a device tree for
+ the PICO-PI-IMX8M
+To:     andradanciu1997 <andradanciu1997@gmail.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Ping Bai <ping.bai@nxp.com>,
+        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <Michal.Vokac@ysoft.com>,
+        Li Yang <leoyang.li@nxp.com>, sriram.dash@nxp.com,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Vabhav Sharma <vabhav.sharma@nxp.com>,
+        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
+        Pramod Kumar <pramod.kumar_1@nxp.com>, pankaj.bansal@nxp.com,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Richard Hu <richard.hu@technexion.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-DT node for SiFive FU540-C000 GEMGXL Ethernet controller driver added
+Hi Andra,
 
-Signed-off-by: Yash Shah <yash.shah@sifive.com>
----
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi          | 15 +++++++++++++++
- arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts |  9 +++++++++
- 2 files changed, 24 insertions(+)
+On Fri, Jul 19, 2019 at 7:48 AM andradanciu1997
+<andradanciu1997@gmail.com> wrote:
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index cc73522..588669f0 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -231,5 +231,20 @@
- 			#size-cells = <0>;
- 			status = "disabled";
- 		};
-+		eth0: ethernet@10090000 {
-+			compatible = "sifive,fu540-c000-gem";
-+			interrupt-parent = <&plic0>;
-+			interrupts = <53>;
-+			reg = <0x0 0x10090000 0x0 0x2000
-+			       0x0 0x100a0000 0x0 0x1000>;
-+			local-mac-address = [00 00 00 00 00 00];
-+			clock-names = "pclk", "hclk";
-+			clocks = <&prci PRCI_CLK_GEMGXLPLL>,
-+				 <&prci PRCI_CLK_GEMGXLPLL>;
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			status = "disabled";
-+		};
-+
- 	};
- };
-diff --git a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-index 0b55c53..85c17a7 100644
---- a/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-+++ b/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts
-@@ -76,3 +76,12 @@
- 		disable-wp;
- 	};
- };
-+
-+&eth0 {
-+	status = "okay";
-+	phy-mode = "gmii";
-+	phy-handle = <&phy1>;
-+	phy1: ethernet-phy@0 {
-+		reg = <0>;
-+	};
-+};
--- 
-1.9.1
+> +       pmic: pmic@4b {
+> +               reg = <0x4b>;
+> +               compatible = "rohm,bd71837";
+> +               /* PMIC BD71837 PMIC_nINT GPIO1_IO12 */
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&pinctrl_pmic>;
+> +               clocks = <&pmic_osc>;
+> +               clock-names = "osc";
+> +               clock-output-names = "pmic_clk";
+> +               interrupt-parent = <&gpio1>;
+> +               interrupts = <3 GPIO_ACTIVE_LOW>;
+> +               interrupt-names = "irq";
+> +
+> +               regulators {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
 
+#address-cells and  #size-cells are not needed and they cause warnings with W=1:
+
+  DTC     arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dtb
+arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts:77.14-196.5: Warning
+(avoid_unnecessary_addr_size):
+/soc@0/bus@30800000/i2c@30a20000/pmic@4b/regulators: unnecessary
+#address-cells/#size-cells without "ranges" or child "reg" property
+
+Please remove them.
