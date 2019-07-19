@@ -2,136 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 116626E7B4
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 17:06:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78E8E6E822
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 17:46:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730018AbfGSPGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 11:06:05 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:51729 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729670AbfGSPF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 11:05:59 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190719150558euoutp018cc7ca1263836c7305a3b0462b3578d9~y10-L7TbO1872018720euoutp01L
-        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2019 15:05:58 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190719150558euoutp018cc7ca1263836c7305a3b0462b3578d9~y10-L7TbO1872018720euoutp01L
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1563548758;
-        bh=uK2H2CY5YVkbPXh3EKmhTQmAPpi5mTFt1H3u7NFbf9M=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Dv4tnf/AnT0cnBAVTYhsnwdjULtrEcwhihAwb6cftM4K/SYNaSUOK9FRLT4cX3XNE
-         SuOZHyUCI4RJdmQbZxnZy+yes3F3iV3EzNLnkGl1FnfRH+UA6KjEaSG5yXidmVtyI9
-         buYpQC1MciosWsMQ5MVkumLT8zHK6/dg2CgHKZgo=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190719150557eucas1p2266c376b4f71c2df9f0d45e273004c64~y10_f-qVu2491724917eucas1p2I;
-        Fri, 19 Jul 2019 15:05:57 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id A3.19.04377.55CD13D5; Fri, 19
-        Jul 2019 16:05:57 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190719150556eucas1p2bc6f133c48ec1be9b36119a414887969~y1092WE_s1668816688eucas1p2D;
-        Fri, 19 Jul 2019 15:05:56 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190719150556eusmtrp2e4660feafb9c13e5be61d014a8ff74d1~y109oQf353114831148eusmtrp2C;
-        Fri, 19 Jul 2019 15:05:56 +0000 (GMT)
-X-AuditID: cbfec7f4-113ff70000001119-7b-5d31dc553c0b
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 74.9F.04146.45CD13D5; Fri, 19
-        Jul 2019 16:05:56 +0100 (BST)
-Received: from AMDC3218.DIGITAL.local (unknown [106.120.51.18]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190719150555eusmtip1ce8f0fdb626b0b71e4a3c68029e11ac2~y108yjwBz2871128711eusmtip10;
-        Fri, 19 Jul 2019 15:05:55 +0000 (GMT)
-From:   k.konieczny@partner.samsung.com
-To:     k.konieczny@partner.samsung.com
-Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
+        id S1730266AbfGSPqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 11:46:03 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:41432 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728368AbfGSPqD (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 11:46:03 -0400
+Received: by mail-lf1-f65.google.com with SMTP id 62so17185172lfa.8
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2019 08:46:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=2i7XSW198CMKZZw/oRPpHFSGJvTtzgi6p+v7sLruFk0=;
+        b=OJWKwITsKyxbnlS0LH03nJUzIRgDj4HBhyT4vMEyGQ6EN06YQEuUoYb20H6Gsa8zQw
+         EwEWDH60b8cY6WpV7NqZXES7EIMgoFu3+J963adyTXX0uQO/Mf2BER3vU6A6a1IvlsaP
+         7l49OF0jxezm9cpK+OmzVJs2+RBEvd990hPYR7BC3TrIy5Djh5XaymkzZ5GU4ZUmbjEj
+         m7nm/WunQ7jFXL8gQcL2VYadccG9Q4cfQfe4xlZpCsxCkVJuC+wr4Zsrk8uYEAeZ2qOl
+         hJRCbd661qmRSRf0MTaGrsgFxcBqfyTsnMBr5cWLjs2R+zioMi3cvaVwx9BIcqxbfHp5
+         5YFQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=2i7XSW198CMKZZw/oRPpHFSGJvTtzgi6p+v7sLruFk0=;
+        b=mnTqFgFgHA9ZbHs5pvm96tYHaw3S0reQ8uMUpiuWixP1OOk7sb3CMVWOw+uvWsS+EQ
+         UwRBlZUa+vWyg2kS2qakpoUFnXNnqBGfgQ2UFCHS4u24GkuqS6e2QWR1UCdlflsXNlm4
+         93BLmFNMNoTa7HKxbo8OHNGNdp7Zu85PLBTJqud7aR+9t0qBTDhvDUPHR5HWIR5DDtdb
+         ZthSI4VOaIZg0DTn9nYHNUBbsU0d0avEixMTw72ohU2knQeiVfHNH1s5W/D0uBmq91Wg
+         LvrlwtCRxB4NYIMUzZ/4eK+E4VtVEnwpMHOIBKTQPvMpkVbCtpn99YBInZizCy36uhLO
+         9Jmw==
+X-Gm-Message-State: APjAAAVEaEe4tEqhZYSLlZoa9bpY9OyanJxV4L8gjY9p066ikP2e17mu
+        yfWJokAoeKBM+sQW+j6llLffWA==
+X-Google-Smtp-Source: APXvYqyBt2StFCI7rh2Sk0ml59+DBfBzrP0WyeRhK86P9lv3ycCs1xNa4cli07smdEAr/GbdpDk7YQ==
+X-Received: by 2002:a19:9111:: with SMTP id t17mr24403978lfd.113.1563551161408;
+        Fri, 19 Jul 2019 08:46:01 -0700 (PDT)
+Received: from centauri (ua-83-226-229-61.bbcust.telenor.se. [83.226.229.61])
+        by smtp.gmail.com with ESMTPSA id k82sm5733963lje.30.2019.07.19.08.45.59
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 19 Jul 2019 08:46:00 -0700 (PDT)
+Date:   Fri, 19 Jul 2019 17:45:58 +0200
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        jorge.ramirez-ortiz@linaro.org, sboyd@kernel.org,
+        vireshk@kernel.org, bjorn.andersson@linaro.org,
+        ulf.hansson@linaro.org, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Subject: [PATCH v3 5/5] dt-bindings: devfreq: exynos-bus: remove unused
- property
-Date:   Fri, 19 Jul 2019 17:05:35 +0200
-Message-Id: <20190719150535.15501-6-k.konieczny@partner.samsung.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190719150535.15501-1-k.konieczny@partner.samsung.com>
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 11/13] arm64: dts: qcom: qcs404: Add CPR and populate OPP
+ table
+Message-ID: <20190719154558.GA32518@centauri>
+References: <20190705095726.21433-1-niklas.cassel@linaro.org>
+ <20190705095726.21433-12-niklas.cassel@linaro.org>
+ <20190710090303.tb5ue3wq6r7ofyev@vireshk-i7>
+ <20190715132405.GA5040@centauri>
+ <20190716103436.az5rdk6f3yoa3apz@vireshk-i7>
+ <20190716105318.GA26592@centauri>
+ <20190717044923.ccmebeewbinlslkm@vireshk-i7>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Se0hTYRz1u4/d62pynYYfKoaLpILyQcEXRlQYLQgqe0APyZUXlZzKbvNV
-        kT00N2iZVtoKNdIU89HmMh8pvtp6+Egis3QiuShNLdtIjXK5Xa3+O7/zO+c7vwMfjYuHSG86
-        Nv4Uq4iXxUkEQqLWONu99sBgcETQz4teSJdfTaK3tk8kKuzoJpGm2Q7Q1ZEvOOrpeUihrgvj
-        FNKP9JHodcMdAbJe6QAov6cZQ5UdZgqVvO3F0MD5MgEan+nCUEZTB4Xm+nQEqhk2CraIpRUF
-        FUCqL1cJpDXF56Stk08wqcZQDqSm/seY1Kr320MdFm6KYuNik1hF4OZIYUxV/a5EM51ys6mQ
-        TAftlBq40pBZDzV53QI1ENJipgzAG9ctFD/YAFQNTBL8YAXQ1DBGLFpaB9UYvygFsKqij/hr
-        sVt7cYdKwKyEhvxRZ4gnswLmDuXhDhHOzBLw4Wudc+HBhEOtxQgcmJg3vMmsdZpFTBj88evR
-        woXLoaqu0RntymyHttavFK9xh89vWZw8Pq+5+Og2zusnKJj7zpPHYdCWVYjx2AOOmQwLb/pC
-        e/0inww/3tU4S0PmEoDDl6cWeobCdlMvqQb0fMBqWN0QyNNb4efvc4SDhowb7J9w509wgzm1
-        jo4OWgSzMsW8ei0ssHeSPPaBanvVApbCqQktyAb+2v/KaP8ro/2XWwTwcuDFKjl5NMuFxLPJ
-        6ziZnFPGR687kSDXg/lf93LOZKsDDb+OtwGGBpKlom/vgyPEpCyJS5W3AUjjEk/RwGhghFgU
-        JUtNYxUJxxTKOJZrAz40IfESnXYZPiJmomWn2JMsm8gqFrcY7eqdDiJXcTOV7O8XAeZlFuWZ
-        a/5+yGSrMUeGgfqxtJYdatWd4o1n65ZseHrvS+Y5TO2mS6qbdTl09GzOtmfGEItQHbCv12d/
-        0VB2askDfaPZPTzZ6LL3YP80JZ4yHP8Qm2caVmrcU0Jf7XaxGqdLN7QZwu936nxb5Bk9zGR/
-        0PROVbiE4GJkwWtwBSf7A16+BApxAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrLIsWRmVeSWpSXmKPExsVy+t/xu7ohdwxjDZZ9VbbYOGM9q8X1L89Z
-        LeYfOcdq0bfvP6NF/+PXzBbnz29gtzjb9IbdYtPja6wWl3fNYbP43HuE0WLG+X1MFmuP3GW3
-        WHr9IpPF7cYVbBZvfpxlsmjde4Td4t+1jSwWmx8cY3MQ8lgzbw2jx6ZVnWwem5fUexx8t4fJ
-        o2/LKkaP4ze2M3l83iQXwB6lZ1OUX1qSqpCRX1xiqxRtaGGkZ2hpoWdkYqlnaGwea2VkqqRv
-        Z5OSmpNZllqkb5egl7Fup0/BXY6KaXvnszYwHmbvYuTkkBAwkTh4p4upi5GLQ0hgKaPEqr+r
-        2CAS0hKNp1czQdjCEn+udbFBFH1ilLj5expYgk1AVWLLjJdgk0QElCUm35vODFLELNDJKrHi
-        yRGwScICARL/L/5kBbFZgBqutm1jBrF5BVwkvv3ZCnWGvETnjt0sIDangKvEl4PvweJCQDU7
-        Vs6DqheUODnzCVgNM1B989bZzBMYBWYhSc1CklrAyLSKUSS1tDg3PbfYUK84Mbe4NC9dLzk/
-        dxMjMCq3Hfu5eQfjpY3BhxgFOBiVeHg/3DKMFWJNLCuuzD3EKMHBrCTCe/ulfqwQb0piZVVq
-        UX58UWlOavEhRlOgJyYyS4km5wMTRl5JvKGpobmFpaG5sbmxmYWSOG+HwMEYIYH0xJLU7NTU
-        gtQimD4mDk6pBkbbbu/i7r5Vzu7Ob8+U790f9rBE/s/ShhvV7sXu//fm9emkBG5hf31zasVf
-        r0kOetdOOnHtuntpmpzI4ZRrpg/3rTjmX73yqsHe1WrP/L9dPXauWCA/v4Ypzfd1sxaLNuPM
-        J27vI7ZJTvzTr23Cd+DY7LNFIXe/ZU79YR8prH6J23jNGe1XK6SUWIozEg21mIuKEwGyGisE
-        4AIAAA==
-X-CMS-MailID: 20190719150556eucas1p2bc6f133c48ec1be9b36119a414887969
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190719150556eucas1p2bc6f133c48ec1be9b36119a414887969
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190719150556eucas1p2bc6f133c48ec1be9b36119a414887969
-References: <20190719150535.15501-1-k.konieczny@partner.samsung.com>
-        <CGME20190719150556eucas1p2bc6f133c48ec1be9b36119a414887969@eucas1p2.samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190717044923.ccmebeewbinlslkm@vireshk-i7>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Remove unused DT property "exynos,voltage-tolerance".
+On Wed, Jul 17, 2019 at 10:19:23AM +0530, Viresh Kumar wrote:
+> On 16-07-19, 12:53, Niklas Cassel wrote:
+> > Here I cheated and simply used get_cpu_device(0).
+> > 
+> > Since I cheated, I used get_cpu_device(0) always,
+> > so even when CPU1,CPU2,CPU3 is attached, dev_pm_opp_get_opp_count(cpu0) is
+> > still 0.
+> > 
+> > I added a print in
+> > [    3.836533] cpr_set_performance: number of OPPs for dev: cpu0: 3
+> > 
+> > And there I can see that OPP count is 3, so it appears that with the
+> > current code, we need to wait until cpufreq-dt.c:cpufreq_init()
+> > has been called, maybe dev_pm_opp_of_cpumask_add_table() needs
+> > to be called before dev_pm_opp_get_opp_count(cpu0) actually returns 3.
+> > 
+> > cpufreq_init() is called by platform_device_register_simple("cpufreq-dt", -1,
+> >                                                           NULL, 0);
+> > which is called after dev_pm_opp_attach_genpd().
+> > 
+> > What I don't understand is that dev_pm_opp_attach_genpd() actually returns
+> > a OPP table. So why do we need to wait for dev_pm_opp_of_cpumask_add_table(),
+> > before either dev_pm_opp_get_opp_count(cpu0) or
+> > dev_pm_opp_get_opp_count(genpd_virtdev_for_cpu0) returns 3?
+> 
+> Ah, I see the problems now. No, cpufreq table can't be available at
+> this point of time and we aren't going to change that. It is the right
+> thing to do.
+> 
+> Now, even if the kernel isn't written in a way which works for you, it
+> isn't right to put more things in DT than required. DT is (should be)
+> very much independent of the Linux kernel.
+> 
+> So we have to parse DT to find highest frequency for each
+> required-opp. Best is to put that code in the OPP core and use it from
+> your driver.
 
-Signed-off-by: Kamil Konieczny <k.konieczny@partner.samsung.com>
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
----
- Documentation/devicetree/bindings/devfreq/exynos-bus.txt | 2 --
- 1 file changed, 2 deletions(-)
+Hello Viresh,
 
-diff --git a/Documentation/devicetree/bindings/devfreq/exynos-bus.txt b/Documentation/devicetree/bindings/devfreq/exynos-bus.txt
-index f8e946471a58..e71f752cc18f 100644
---- a/Documentation/devicetree/bindings/devfreq/exynos-bus.txt
-+++ b/Documentation/devicetree/bindings/devfreq/exynos-bus.txt
-@@ -50,8 +50,6 @@ Required properties only for passive bus device:
- Optional properties only for parent bus device:
- - exynos,saturation-ratio: the percentage value which is used to calibrate
- 			the performance count against total cycle count.
--- exynos,voltage-tolerance: the percentage value for bus voltage tolerance
--			which is used to calculate the max voltage.
- 
- Detailed correlation between sub-blocks and power line according to Exynos SoC:
- - In case of Exynos3250, there are two power line as following:
--- 
-2.22.0
+Could you please have a look at the last two patches here:
+https://git.linaro.org/people/niklas.cassel/kernel.git/log/?h=cpr-opp-hz
 
+If you like my proposal then I could send out the first patch (the one to
+OPP core) as a real patch (with an improved commit message), and
+incorporate the second patch into my CPR patch series when I send out a V2.
+
+
+Kind regards,
+Niklas
