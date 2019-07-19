@@ -2,137 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6427E6E446
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 12:29:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ACC996E475
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 12:47:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726072AbfGSK3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 06:29:10 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:52336 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725794AbfGSK3J (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 06:29:09 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 7B75561633; Fri, 19 Jul 2019 10:29:08 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1563532148;
-        bh=VV9h9+j4OURu4RUr60QbOyNI3a2ZiA7WIr1P5diLdXY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=V1Z0kK5UI4uEc+a4c4JW2JUb1A17pWw7RbBr9UfKu9ALdbWrkLwoCV9r/hw//F0su
-         UH75FVFtqBtBQwsBhNZsyHx15dsZNod829rfw18b26O4cTuaYtJ5ungxJRv5nNtC4C
-         FahTl8+4rabBbtV8Q3HH8RpQ61uypevkdksXaitw=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [192.168.43.47] (unknown [157.49.206.83])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: saiprakash.ranjan@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 615F760275;
-        Fri, 19 Jul 2019 10:29:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1563532147;
-        bh=VV9h9+j4OURu4RUr60QbOyNI3a2ZiA7WIr1P5diLdXY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=EUFE27chUPuph25X/Y7xP28qz93qjEb1Y6tC3kgo296KaENOv9XuFs9NG6U+Uq5uF
-         tJxaWrPDKh1ArNq2/YhgCw1yZhhVokF2Hl5TEIIY8TKCZKCPy0dl4s5DSpchj2shLQ
-         1oLxm++aU0dhV3RurE9Om9f70GFRuSbMj2pfYUG8=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 615F760275
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
-Subject: Re: [PATCHv8 1/5] arm64: dts: qcom: sdm845: Add Coresight support
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        gregkh@linuxfoundation.org, mathieu.poirier@linaro.org,
-        leo.yan@linaro.org, alexander.shishkin@linux.intel.com,
-        mike.leach@linaro.org, robh+dt@kernel.org,
-        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
-        david.brown@linaro.org, mark.rutland@arm.com
-Cc:     rnayak@codeaurora.org, vivek.gautam@codeaurora.org,
-        sibis@codeaurora.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        marc.w.gonzalez@free.fr
-References: <cover.1562940244.git.saiprakash.ranjan@codeaurora.org>
- <52550ed9bbc10dca860eb1700aef5c97f644327b.1562940244.git.saiprakash.ranjan@codeaurora.org>
- <33215f68-1bf9-322a-d889-1d22514bdbdc@arm.com>
-From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-Message-ID: <a1a2a9c6-f58b-f849-76e4-3a76d6faaab5@codeaurora.org>
-Date:   Fri, 19 Jul 2019 15:58:58 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727719AbfGSKq0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 06:46:26 -0400
+Received: from mail.savoirfairelinux.com ([208.88.110.44]:41880 "EHLO
+        mail.savoirfairelinux.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725853AbfGSKq0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 06:46:26 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.savoirfairelinux.com (Postfix) with ESMTP id 08D8F9C01AF;
+        Fri, 19 Jul 2019 06:46:25 -0400 (EDT)
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+        by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id pDmCSr7ERjkb; Fri, 19 Jul 2019 06:46:24 -0400 (EDT)
+Received: from localhost (localhost [127.0.0.1])
+        by mail.savoirfairelinux.com (Postfix) with ESMTP id 4E0E09C0279;
+        Fri, 19 Jul 2019 06:46:24 -0400 (EDT)
+X-Virus-Scanned: amavisd-new at mail.savoirfairelinux.com
+Received: from mail.savoirfairelinux.com ([127.0.0.1])
+        by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id Yj8MoRMJPG9k; Fri, 19 Jul 2019 06:46:24 -0400 (EDT)
+Received: from localhost.localdomain (unknown [37.165.9.228])
+        by mail.savoirfairelinux.com (Postfix) with ESMTPSA id 0194D9C01AF;
+        Fri, 19 Jul 2019 06:46:21 -0400 (EDT)
+From:   Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Cc:     jerome.oufella@savoirfairelinux.com, rennes@savoirfairelinux.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com
+Subject: [PATCH v2] arm: dts: imx6qdl: add gpio expander pca9535
+Date:   Fri, 19 Jul 2019 12:46:15 +0200
+Message-Id: <20190719104615.5329-1-gilles.doffe@savoirfairelinux.com>
+X-Mailer: git-send-email 2.19.1
 MIME-Version: 1.0
-In-Reply-To: <33215f68-1bf9-322a-d889-1d22514bdbdc@arm.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Suzuki,
+The pca9535 gpio expander is present on the Rex baseboard, but missing
+from the dtsi.
 
-On 7/19/2019 3:16 PM, Suzuki K Poulose wrote:
-> 
-> Hi Sai,
-> 
-> 
-> On 12/07/2019 15:16, Sai Prakash Ranjan wrote:
->> Add coresight components found on Qualcomm SDM845 SoC.
->>
->> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
->> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
->> Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 451 +++++++++++++++++++++++++++
->>   1 file changed, 451 insertions(+)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi 
->> b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> index 4babff5f19b5..5d7e3f8e0f91 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> @@ -1815,6 +1815,457 @@
->>               clock-names = "xo";
->>           };
->> +        stm@6002000 {
->> +            compatible = "arm,coresight-stm", "arm,primecell";
->> +            reg = <0 0x06002000 0 0x1000>,
->> +                  <0 0x16280000 0 0x180000>;
->> +            reg-names = "stm-base", "stm-stimulus-base";
->> +
->> +            clocks = <&aoss_qmp>;
->> +            clock-names = "apb_pclk";
->> +
->> +            out-ports {
->> +                port {
->> +                    stm_out: endpoint {
->> +                        remote-endpoint =
->> +                          <&funnel0_in7>;
->> +                    };
->> +                };
->> +            };
->> +        };
->> +
->> +        funnel@6041000 {
->> +            compatible = "arm,coresight-funnel", "arm,primecell";
-> 
-> We added support for static funnels and have thus updated our DT 
-> bindings. And
-> that implies, the above binding is now obsolete.
-> As of the coresight/next tree, and thus linux-next, this must be 
-> arm,coresight-dynamic-funnel and same applies everywhere else in the 
-> series. Please could you
-> update the series ?
-> 
+Add the new gpio controller and the associated interrupt line
+MX6QDL_PAD_NANDF_CS3__GPIO6_IO16.
 
-Sure, will update in the next version of the series.
+Signed-off-by: Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
+---
+ arch/arm/boot/dts/imx6qdl-rex.dtsi | 19 +++++++++++++++++++
+ 1 file changed, 19 insertions(+)
 
-Thanks,
-Sai
+diff --git a/arch/arm/boot/dts/imx6qdl-rex.dtsi b/arch/arm/boot/dts/imx6q=
+dl-rex.dtsi
+index 97f1659144ea..b517efb22fcb 100644
+--- a/arch/arm/boot/dts/imx6qdl-rex.dtsi
++++ b/arch/arm/boot/dts/imx6qdl-rex.dtsi
+@@ -136,6 +136,19 @@
+ 		compatible =3D "atmel,24c02";
+ 		reg =3D <0x57>;
+ 	};
++
++	pca9535: gpio8@27 {
++		compatible =3D "nxp,pca9535";
++		reg =3D <0x27>;
++		gpio-controller;
++		#gpio-cells =3D <2>;
++		pinctrl-names =3D "default";
++		pinctrl-0 =3D <&pinctrl_pca9535>;
++		interrupt-parent =3D <&gpio6>;
++		interrupts =3D <16 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-controller;
++		#interrupt-cells =3D <2>;
++	};
+ };
+=20
+ &i2c3 {
+@@ -237,6 +250,12 @@
+ 			>;
+ 		};
+=20
++		pinctrl_pca9535: pca9535 {
++			fsl,pins =3D <
++				MX6QDL_PAD_NANDF_CS3__GPIO6_IO16	0x00017059
++		   >;
++		};
++
+ 		pinctrl_uart1: uart1grp {
+ 			fsl,pins =3D <
+ 				MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA	0x1b0b1
+--=20
+2.19.1
 
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
