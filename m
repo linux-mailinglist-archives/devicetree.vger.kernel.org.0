@@ -2,93 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C7F726E577
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 14:15:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C55A6E64E
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 15:27:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728281AbfGSMOx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 08:14:53 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:50340 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726373AbfGSMOw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 08:14:52 -0400
-Received: by mail-wm1-f65.google.com with SMTP id v15so28610440wml.0;
-        Fri, 19 Jul 2019 05:14:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=F6zESjJw5gi9GyaRx05z2263B816bds++z6rEjY7GBY=;
-        b=rBQxcCKPpAGT5kBMGgeyGoam1a9RgUnNe3XM3HwkofbHBS6aPNoGiV0fPWlLb0ogBv
-         4l0X7msaSLAx3jyTgQokU8FDURdSbPaY6wroGOAkvYz7RkrU/tje0XnuKmLRniacSaf9
-         Lc7i6xwUauO1mTQHvC4pqQZmswEJQTR1XX6c5O6kXVnHFI4RnYjvPh0qSUf2RMoTUi0m
-         TMmXi+PF84gspRd6gf0uAPqm8QjnNwXbnLlHp22E+n9h27jOC0aOK3TI1PN9ySQorCW/
-         nla9IkN82Hv9DjZ10cPU7D+8giGglW1hcnsPTB4vAmbGQK7PaLHLMQQJjYFFRDTmz9WE
-         GL8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=F6zESjJw5gi9GyaRx05z2263B816bds++z6rEjY7GBY=;
-        b=jB+5vMJtvgJnRQzhCF45vNUXdjQzu6npUI2nzhKlMYAmnnc5OKvJxqnvk7WTC+Ohnv
-         PzbDvoUV7Q6tlWAUe3HhTOQ34DWhAViqOaPK3I3BgrgJzDCVlSpRVOOd1b/biDnMDIi1
-         D41e1HymYauMj0OI/EClX8EyZf3VbI7hvCJeTnQeER1c5DvJgWbAg7WMSMZM0H7AN4ds
-         acqBE7+qv59ewlAI+B45uPsxOprwiElsq5B39tPf14jlI3XwerWffEARfNlVzNsWysje
-         pjwmC/ftTd58VA57mn+izVgvQe/64/W4EtOUTQofftzbXafzjvIREVJATVaHhYeBZQxi
-         h83w==
-X-Gm-Message-State: APjAAAXqTDDS1uXQgLhtWXRPOBrcdNxm8O2ta+d9sQrapzaX2pCG+T5g
-        rNHPh01DyeQGH9CdHPmhxFw=
-X-Google-Smtp-Source: APXvYqxSfE5k3AZUgLPNsy65WZQLQ7MoyydOZ3KjU7X2xwBYxVpD7OvWuV2qO7vQK9OyMDSH5V6ONA==
-X-Received: by 2002:a7b:c74a:: with SMTP id w10mr45643612wmk.99.1563538490401;
-        Fri, 19 Jul 2019 05:14:50 -0700 (PDT)
-Received: from localhost.localdomain ([212.146.100.6])
-        by smtp.gmail.com with ESMTPSA id y18sm30135261wmi.23.2019.07.19.05.14.48
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 19 Jul 2019 05:14:50 -0700 (PDT)
-From:   andradanciu1997 <andradanciu1997@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        manivannan.sadhasivam@linaro.org, andrew.smirnov@gmail.com,
-        j.neuschaefer@gmx.net, andradanciu1997@gmail.com,
-        aisheng.dong@nxp.com, leoyang.li@nxp.com, l.stach@pengutronix.de,
-        pankaj.bansal@nxp.com, bhaskar.upadhaya@nxp.com,
-        pramod.kumar_1@nxp.com, angus@akkea.ca, richard.hu@technexion.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v5 2/2] dt-bindings: arm: fsl: Add the pico-pi-imx8m board
-Date:   Fri, 19 Jul 2019 15:14:30 +0300
-Message-Id: <20190719121430.9318-3-andradanciu1997@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20190719121430.9318-1-andradanciu1997@gmail.com>
-References: <20190719121430.9318-1-andradanciu1997@gmail.com>
+        id S1727717AbfGSN1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 09:27:06 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:52154 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727344AbfGSN1G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Jul 2019 09:27:06 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=Pky9viuD0oMDaJSoHdvUAeTOz0jBwYPwJje4fFabTHU=; b=PVB/5sDt8JO1QPzJBKxZ8mraPo
+        F/njzXIy4mL2QNrBSOcPF5R9AhwgOgMGaDXTMT2tsinFyHLTqU0c8nC5u6ClaCqG0mE330J+R0SlS
+        lCzgjEz167T6Wj5iAT7pFI39Hc0tYOToCZVn8xH7TpVEyfO3bYfXCELlIUMHbAtza3pg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hoSuX-0006qO-Iq; Fri, 19 Jul 2019 15:26:57 +0200
+Date:   Fri, 19 Jul 2019 15:26:57 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Sagar Kadam <sagar.kadam@sifive.com>
+Cc:     Yash Shah <yash.shah@sifive.com>, davem@davemloft.net,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-riscv@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        nicolas.ferre@microchip.com,
+        Sachin Ghadi <sachin.ghadi@sifive.com>, ynezz@true.cz
+Subject: Re: [PATCH 3/3] riscv: dts: Add DT node for SiFive FU540 Ethernet
+ controller driver
+Message-ID: <20190719132657.GD24930@lunn.ch>
+References: <1563534631-15897-1-git-send-email-yash.shah@sifive.com>
+ <1563534631-15897-3-git-send-email-yash.shah@sifive.com>
+ <CAARK3H=D1N8gO0Z82_MCtgr5DtT1=E0wzYbn-y451ASgxV-qBg@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAARK3H=D1N8gO0Z82_MCtgr5DtT1=E0wzYbn-y451ASgxV-qBg@mail.gmail.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andra Danciu <andradanciu1997@gmail.com>
+On Fri, Jul 19, 2019 at 05:23:45PM +0530, Sagar Kadam wrote:
+> > +&eth0 {
+> > +       status = "okay";
+> > +       phy-mode = "gmii";
+> > +       phy-handle = <&phy1>;
+> > +       phy1: ethernet-phy@0 {
+> > +               reg = <0>;
+> > +       };
 
-Add an entry for TechNexion PICO-PI-IMX8M board based on i.MX8MQ SoC
-Datasheet can be found at:
-https://s3.us-east-2.amazonaws.com/technexion/datasheets/picopiimx8m.pdf
+Hi Sagar
 
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
----
- Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Is there a good reason to call it phy1? Is there a phy0?
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 7294ac36f4c0..54c094341121 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -219,6 +219,7 @@ properties:
-           - enum:
-               - fsl,imx8mq-evk            # i.MX8MQ EVK Board
-               - purism,librem5-devkit     # Purism Librem5 devkit
-+              - technexion,pico-pi-imx8m  # TechNexion PICO-PI-8M evk
-           - const: fsl,imx8mq
- 
-       - description: i.MX8QXP based Boards
--- 
-2.11.0
+Thanks
 
+   Andrew
