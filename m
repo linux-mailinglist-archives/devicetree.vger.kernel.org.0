@@ -2,196 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8EE186E429
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 12:21:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6427E6E446
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 12:29:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726075AbfGSKUw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 06:20:52 -0400
-Received: from mail-oi1-f193.google.com ([209.85.167.193]:40114 "EHLO
-        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725794AbfGSKUw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 06:20:52 -0400
-Received: by mail-oi1-f193.google.com with SMTP id w196so2549961oie.7;
-        Fri, 19 Jul 2019 03:20:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=s1PmZpw92veA1eto1LTZBUzfAFcyq0DgVKOAfp0MiE4=;
-        b=oiZEvxEPRshTOj8YoPaI8n0z8YGmSea439I4TBwmEPewhKtHo9ue3GqOTnaFdhKXsk
-         3G2GokHfW3XA1fgwPihs4HIV0y4zacKxwot/IH/dWrZtLMb7RPdGIsGZ3PGPJ0vWEvwd
-         0YS0RR7hbDgXwVqTsBMIvGKoen3Xbe5/Av+4RzFi9UwEtaI7cVjjjB0w+UqkWZbjci+9
-         0r/G9+uuIJ0RJluU6e5UvN+MrgDECIvrmY4jQO39rFe2t69f1nV0LhkTlNwNPCVf7CnI
-         48JcLqLSypP2U5al99kFU2FTuI+cJgdYFm/YQuXbrzRME0Js7U8h0Mla1qNBhAf7mKJn
-         E0gg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=s1PmZpw92veA1eto1LTZBUzfAFcyq0DgVKOAfp0MiE4=;
-        b=G21rC7h6a3ExECfoQctBrvbkBdvN6KDn/Xgs7qZXwlvizMTrjSUqhgx6NDHfwOTznj
-         HUTv8uHrl1Akfw8l7CKqCxgZpXB0iDx4lBHTcHnTvxbxxSl626gSkLcnst/Gm7FP2Wlo
-         V5/JuZRIxkbg2zUfcn0wW9NTWrXLU/+29BIjpaguO40xM5gac33mt8AFaJPnsAXOgJa9
-         BSIpOdeqrocCiq438D5S9snQZqLqgaJx7oI9Tr5ViZPwLPlyMH/zQqbd1KhrOOUnZ1hM
-         W0E2inUkupsdTz1ZAGt//wNbOsOO2df+G5AzTtRG8ROI2rSzi6pPSXe7MovutYBfTa/X
-         Bt+Q==
-X-Gm-Message-State: APjAAAVvvJYHPQxlYHfTJEMNVukp81bSw9vBvlXiDFbA+5oa36hMthAq
-        7s5eX0iHMdo0SaRdFMqqc/kxd+GWblJ4FM0vKCQ=
-X-Google-Smtp-Source: APXvYqzBAufPNh0LrT5elMfGn1t8/NkuW5Z43HoQwl2eH229QNfm5i5dp/CS/2mTz1UuuJDjR05tq8mPcvBU6W1B5bc=
-X-Received: by 2002:aca:90c:: with SMTP id 12mr24747271oij.91.1563531650797;
- Fri, 19 Jul 2019 03:20:50 -0700 (PDT)
+        id S1726072AbfGSK3K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 06:29:10 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:52336 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725794AbfGSK3J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 06:29:09 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 7B75561633; Fri, 19 Jul 2019 10:29:08 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563532148;
+        bh=VV9h9+j4OURu4RUr60QbOyNI3a2ZiA7WIr1P5diLdXY=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=V1Z0kK5UI4uEc+a4c4JW2JUb1A17pWw7RbBr9UfKu9ALdbWrkLwoCV9r/hw//F0su
+         UH75FVFtqBtBQwsBhNZsyHx15dsZNod829rfw18b26O4cTuaYtJ5ungxJRv5nNtC4C
+         FahTl8+4rabBbtV8Q3HH8RpQ61uypevkdksXaitw=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [192.168.43.47] (unknown [157.49.206.83])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: saiprakash.ranjan@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 615F760275;
+        Fri, 19 Jul 2019 10:29:01 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563532147;
+        bh=VV9h9+j4OURu4RUr60QbOyNI3a2ZiA7WIr1P5diLdXY=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=EUFE27chUPuph25X/Y7xP28qz93qjEb1Y6tC3kgo296KaENOv9XuFs9NG6U+Uq5uF
+         tJxaWrPDKh1ArNq2/YhgCw1yZhhVokF2Hl5TEIIY8TKCZKCPy0dl4s5DSpchj2shLQ
+         1oLxm++aU0dhV3RurE9Om9f70GFRuSbMj2pfYUG8=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 615F760275
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=saiprakash.ranjan@codeaurora.org
+Subject: Re: [PATCHv8 1/5] arm64: dts: qcom: sdm845: Add Coresight support
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        gregkh@linuxfoundation.org, mathieu.poirier@linaro.org,
+        leo.yan@linaro.org, alexander.shishkin@linux.intel.com,
+        mike.leach@linaro.org, robh+dt@kernel.org,
+        bjorn.andersson@linaro.org, devicetree@vger.kernel.org,
+        david.brown@linaro.org, mark.rutland@arm.com
+Cc:     rnayak@codeaurora.org, vivek.gautam@codeaurora.org,
+        sibis@codeaurora.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        marc.w.gonzalez@free.fr
+References: <cover.1562940244.git.saiprakash.ranjan@codeaurora.org>
+ <52550ed9bbc10dca860eb1700aef5c97f644327b.1562940244.git.saiprakash.ranjan@codeaurora.org>
+ <33215f68-1bf9-322a-d889-1d22514bdbdc@arm.com>
+From:   Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+Message-ID: <a1a2a9c6-f58b-f849-76e4-3a76d6faaab5@codeaurora.org>
+Date:   Fri, 19 Jul 2019 15:58:58 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190718121628.23991-1-andradanciu1997@gmail.com>
- <20190718121628.23991-2-andradanciu1997@gmail.com> <CAOMZO5B-9+JnbfrTWP8GTuc0VcnDDPEZq-iXGbYVx9a6O9gwRg@mail.gmail.com>
-In-Reply-To: <CAOMZO5B-9+JnbfrTWP8GTuc0VcnDDPEZq-iXGbYVx9a6O9gwRg@mail.gmail.com>
-From:   Andra Danciu <andradanciu1997@gmail.com>
-Date:   Fri, 19 Jul 2019 13:20:40 +0300
-Message-ID: <CAJNLGsxvTmoBjfj82i3Fc5v7WUiw7XYtXg8nQNHZ_xdtuB711Q@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] arm64: dts: fsl: pico-pi: Add a device tree for
- the PICO-PI-IMX8M
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
-        <u.kleine-koenig@pengutronix.de>,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>, sriram.dash@nxp.com,
-        Lucas Stach <l.stach@pengutronix.de>, pankaj.bansal@nxp.com,
-        Ping Bai <ping.bai@nxp.com>,
-        Pramod Kumar <pramod.kumar_1@nxp.com>,
-        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
-        Richard Hu <richard.hu@technexion.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <33215f68-1bf9-322a-d889-1d22514bdbdc@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio,
+Hi Suzuki,
 
-Please find my answers inline:
+On 7/19/2019 3:16 PM, Suzuki K Poulose wrote:
+> 
+> Hi Sai,
+> 
+> 
+> On 12/07/2019 15:16, Sai Prakash Ranjan wrote:
+>> Add coresight components found on Qualcomm SDM845 SoC.
+>>
+>> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
+>> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
+>> Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 451 +++++++++++++++++++++++++++
+>>   1 file changed, 451 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi 
+>> b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>> index 4babff5f19b5..5d7e3f8e0f91 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>> @@ -1815,6 +1815,457 @@
+>>               clock-names = "xo";
+>>           };
+>> +        stm@6002000 {
+>> +            compatible = "arm,coresight-stm", "arm,primecell";
+>> +            reg = <0 0x06002000 0 0x1000>,
+>> +                  <0 0x16280000 0 0x180000>;
+>> +            reg-names = "stm-base", "stm-stimulus-base";
+>> +
+>> +            clocks = <&aoss_qmp>;
+>> +            clock-names = "apb_pclk";
+>> +
+>> +            out-ports {
+>> +                port {
+>> +                    stm_out: endpoint {
+>> +                        remote-endpoint =
+>> +                          <&funnel0_in7>;
+>> +                    };
+>> +                };
+>> +            };
+>> +        };
+>> +
+>> +        funnel@6041000 {
+>> +            compatible = "arm,coresight-funnel", "arm,primecell";
+> 
+> We added support for static funnels and have thus updated our DT 
+> bindings. And
+> that implies, the above binding is now obsolete.
+> As of the coresight/next tree, and thus linux-next, this must be 
+> arm,coresight-dynamic-funnel and same applies everywhere else in the 
+> series. Please could you
+> update the series ?
+> 
 
-=C3=8En vin., 19 iul. 2019 la 02:05, Fabio Estevam <festevam@gmail.com> a s=
-cris:
->
-> Hi Andra,
->
-> On Thu, Jul 18, 2019 at 9:16 AM Andra Danciu <andradanciu1997@gmail.com> =
-wrote:
-> >
-> > From: Richard Hu <richard.hu@technexion.com>
->
-> Please put a few words about the board and a link to its webpage, if avai=
-lable.
-OK
->
-> > The current level of support yields a working console and is able to bo=
-ot
-> > userspace from NFS or init ramdisk.
-> >
-> > Additional subsystems that are active :
-> >         - Ethernet
-> >         - USB
-> >
-> > Cc: Daniel Baluta <daniel.baluta@nxp.com>
-> > Signed-off-by: Richard Hu <richard.hu@technexion.com>
-> > Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
-> > ---
-> >  arch/arm64/boot/dts/freescale/Makefile       |   1 +
-> >  arch/arm64/boot/dts/freescale/pico-pi-8m.dts | 417 +++++++++++++++++++=
-++++++++
-> >  2 files changed, 418 insertions(+)
-> >  create mode 100644 arch/arm64/boot/dts/freescale/pico-pi-8m.dts
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/d=
-ts/freescale/Makefile
-> > index c043aca66572..538422903e8a 100644
-> > --- a/arch/arm64/boot/dts/freescale/Makefile
-> > +++ b/arch/arm64/boot/dts/freescale/Makefile
-> > @@ -26,3 +26,4 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-librem5-devkit.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-zii-ultra-rmb3.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-zii-ultra-zest.dtb
-> >  dtb-$(CONFIG_ARCH_MXC) +=3D imx8qxp-mek.dtb
-> > +dtb-$(CONFIG_ARCH_MXC) +=3D pico-pi-8m.dtb
->
-> The convention we use with imx dtbs is to put the SoC name first, so
-> that would become:
->
-> imx8mq-pico-pi.dtb
-Will do.
->
->
-> > +&iomuxc {
->
-> Please place iomuxc node as the last one.
-Will do.
->
-> > +&fec1 {
-> > +       pinctrl-names =3D "default";
-> > +       pinctrl-0 =3D <&pinctrl_fec1 &pinctrl_enet_3v3>;
-> > +       phy-mode =3D "rgmii-id";
-> > +       pinctrl-assert-gpios =3D <&gpio1 0 GPIO_ACTIVE_HIGH>;
->
-> This property does not exist.
-OK, I will remove it.
->
-> > +       phy-handle =3D <&ethphy0>;
-> > +       fsl,magic-packet;
-> > +       status =3D "okay";
-> > +
-> > +       mdio {
-> > +               #address-cells =3D <1>;
-> > +               #size-cells =3D <0>;
-> > +
-> > +               ethphy0: ethernet-phy@1 {
-> > +                       compatible =3D "ethernet-phy-ieee802.3-c22";
-> > +                       reg =3D <1>;
-> > +                       at803x,led-act-blind-workaround;
-> > +                       at803x,eee-disabled;
->
-> These two properties do not exist.
-OK, I will remove them.
->
-> > +&i2c1 {
-> > +       clock-frequency =3D <100000>;
-> > +       pinctrl-names =3D "default";
-> > +       pinctrl-0 =3D <&pinctrl_i2c1>;
-> > +       status =3D "okay";
-> > +
-> > +       pmic: pmic@4b {
-> > +               reg =3D <0x4b>;
-> > +               compatible =3D "rohm,bd71837";
-> > +               /* PMIC BD71837 PMIC_nINT GPIO1_IO12 */
-> > +               pinctrl-0 =3D <&pinctrl_pmic>;
->
-> pinctrl-names =3D "default" is missing
-OK, will add.
->
-> > +               gpio_intr =3D <&gpio1 3 GPIO_ACTIVE_LOW>;
->
-> This is not documented.
->
-> Please look at Documentation/devicetree/bindings/regulator/rohm,bd71837-r=
-egulator.txt
-> for the valid bindings and also at
-> arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts for a
-> reference for adding the BD71837 support.
-OK, will do.
->
-> > +&A53_0 {
-> > +       operating-points =3D <
-> > +               /* kHz    uV */
-> > +               1500000 1000000
-> > +               1300000 1000000
-> > +               1000000 900000
-> > +               800000  900000
->
-> This is not needed as these operating points are already specified at
-> imx8mq.dtsi.
-OK, I will remove it.
+Sure, will update in the next version of the series.
+
+Thanks,
+Sai
+
+
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
