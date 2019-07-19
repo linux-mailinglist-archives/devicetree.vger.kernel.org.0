@@ -2,153 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E49636D921
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 04:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C9E756D92D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 04:49:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726072AbfGSCjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 22:39:40 -0400
-Received: from twhmllg4.macronix.com ([211.75.127.132]:52150 "EHLO
-        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726015AbfGSCjj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 22:39:39 -0400
-Received: from twhfmnt1.mxic.com.tw (twhfm1p2.macronix.com [172.17.20.92])
-        by TWHMLLG4.macronix.com with ESMTP id x6J2cuaQ072409;
-        Fri, 19 Jul 2019 10:38:56 +0800 (GMT-8)
-        (envelope-from masonccyang@mxic.com.tw)
-Received: from MXML06C.mxic.com.tw (mxml06c.macronix.com [172.17.14.55])
-        by Forcepoint Email with ESMTP id B17D5E65125DE4DC5AE3;
-        Fri, 19 Jul 2019 10:38:56 +0800 (CST)
-In-Reply-To: <CAMuHMdUPmj0tAhJ18DhQEbYxP7g4MMBMe0U_2eQFQ7mOq4ZFLQ@mail.gmail.com>
-References: <1561023046-20886-1-git-send-email-masonccyang@mxic.com.tw> <1561023046-20886-3-git-send-email-masonccyang@mxic.com.tw> <CAMuHMdUPmj0tAhJ18DhQEbYxP7g4MMBMe0U_2eQFQ7mOq4ZFLQ@mail.gmail.com>
-To:     "Geert Uytterhoeven" <geert@linux-m68k.org>
-Cc:     "Boris Brezillon" <bbrezillon@kernel.org>,
-        "Mark Brown" <broonie@kernel.org>,
+        id S1726066AbfGSCtd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 18 Jul 2019 22:49:33 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:43037 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726015AbfGSCtd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 18 Jul 2019 22:49:33 -0400
+Received: by mail-pl1-f193.google.com with SMTP id 4so7892079pld.10;
+        Thu, 18 Jul 2019 19:49:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=WorvBG2Kr7pCnEjo5HHl27HkaqxS8UZ7aIqwdxLHP1E=;
+        b=X4uUHgQDO+6EIudH3xSCwxzxAOK7xS7gps1kB1Jyohr+MjhyjT7h+oTqVylCld+nqE
+         La+BHTGMXHTwYDtg+x/4UGcvZSFtc+FnAH6Ru4zKCbGP+NIyOR+4QUlHqrQ3+fcKlxRz
+         MmW3i8v2KLkh8RXRBuzItAXVyLXkOfxVaZ61TV6kIADcsSpA7x2gwBD1t7yznizInMLS
+         cuej01dvCS/JyHFznqiko5uat2W6bccg69k/CWlC7O/WGcvF6P7dqih2t6d5MLvfOPkc
+         VD8GpNsl3B5Sai1XxVil3xJ2p4AIpCc0nVms/e7abgDzwyeXZAFX80lLx1/6542DztQj
+         nbLA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=WorvBG2Kr7pCnEjo5HHl27HkaqxS8UZ7aIqwdxLHP1E=;
+        b=LK+dDwTizqBHob5PpcV32wjDzjsx3C46Wqte2x3PL/WN53guZ+wkv/lU6jm+qLUi/m
+         qNmZ2z91g50x40ur4zdxO3z9NH0uuHqMam2zloHwKyPdnuu03scZ9o8YF8Zig6g7DfJ9
+         7BHrsliPBk0d8XKKIaLSU2TScu6f8fC8grWB4fdKe3EfOgP3v4hzkSZhmilFfR3CLFsm
+         SrXVGeZ4+kmtp08G0CJ1p8JBBafhX7Crb7ygJPNrHSieSZajGTl5pSkvoxdIiQ1hiHVH
+         xm1EnUAwhU14TcG4BQHhobEqd28NbGiomGGRKncGv9hmhf0QoK/nd5+MfwBMrl7Botaw
+         IpAg==
+X-Gm-Message-State: APjAAAUQJ/HciaVEDrDRlihYQltMErIGEldOAx3R6EI5ZkzWxhI2lhmc
+        ltWblDG3YfyKVSfINopuFrk=
+X-Google-Smtp-Source: APXvYqzPUL9hVzAmJ+j1+PMWu7SOQ7AKbgL2zGpJLqV2R19DRjcSBqmwLDHAad80gjHpKwQkZeP4jQ==
+X-Received: by 2002:a17:902:6b07:: with SMTP id o7mr52712692plk.180.1563504572849;
+        Thu, 18 Jul 2019 19:49:32 -0700 (PDT)
+Received: from [192.168.21.178] (115.42.148.210.bf.2iij.net. [210.148.42.115])
+        by smtp.gmail.com with ESMTPSA id i126sm30471863pfb.32.2019.07.18.19.49.29
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 18 Jul 2019 19:49:32 -0700 (PDT)
+Subject: Re: [PATCH v3 2/4] of/platform: Add functional dependency link from
+ DT bindings
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        "Geert Uytterhoeven" <geert+renesas@glider.be>,
-        "Simon Horman" <horms@verge.net.au>, juliensu@mxic.com.tw,
-        "Lee Jones" <lee.jones@linaro.org>,
-        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
-        "Linux-Renesas" <linux-renesas-soc@vger.kernel.org>,
-        "linux-spi" <linux-spi@vger.kernel.org>,
-        "Marek Vasut" <marek.vasut@gmail.com>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Miquel Raynal" <miquel.raynal@bootlin.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Sergei Shtylyov" <sergei.shtylyov@cogentembedded.com>
-Subject: Re: [PATCH v14 2/2] dt-bindings: spi: Document Renesas R-Car Gen3 RPC-IF
- controller bindings
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        David Collins <collinsd@codeaurora.org>,
+        Android Kernel Team <kernel-team@android.com>
+References: <20190702004811.136450-1-saravanak@google.com>
+ <20190702004811.136450-3-saravanak@google.com>
+ <CAL_JsqLdvDpKB=iV6x3eTr2F4zY0bxU-Wjb+JeMjj5rdnRc-OQ@mail.gmail.com>
+ <CAGETcx_i9353aRFbJXNS78EvqwmU-2-xSBJ+ySZX1gjjHpz_cg@mail.gmail.com>
+ <9e75b3dd-380b-c868-728f-46379e53bc11@gmail.com>
+ <07812739-0e6b-6598-ac58-8e0ea74a3331@gmail.com>
+ <CAGETcx8YCCGxgXnByenVUb+q8pHPPTjwAjK3L_+9mwoCe=9SbA@mail.gmail.com>
+ <3e340ff1-e842-2521-4344-da62802d472f@gmail.com>
+ <CAL_JsqLySLMLanBJvyWqFGhVzXrEaUP-3t9MDmpnAXhQA_7y=g@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <6d501755-7ee3-4c48-f6fc-b1416460ead0@gmail.com>
+Date:   Thu, 18 Jul 2019 19:49:24 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-X-KeepSent: 43DF9AAE:9EB63E41-4825843C:000C61B7;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
-Message-ID: <OF43DF9AAE.9EB63E41-ON4825843C.000C61B7-4825843C.000E8D45@mxic.com.tw>
-From:   masonccyang@mxic.com.tw
-Date:   Fri, 19 Jul 2019 10:38:56 +0800
-X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
- 2019/07/19 AM 10:38:56,
-        Serialize complete at 2019/07/19 AM 10:38:56
-Content-Type: text/plain; charset="US-ASCII"
-X-MAIL: TWHMLLG4.macronix.com x6J2cuaQ072409
+In-Reply-To: <CAL_JsqLySLMLanBJvyWqFGhVzXrEaUP-3t9MDmpnAXhQA_7y=g@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 7/16/19 3:56 PM, Rob Herring wrote:
+> On Mon, Jul 15, 2019 at 7:05 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>>
+>> On 7/15/19 11:40 AM, Saravana Kannan wrote:
+>>> Replying again because the previous email accidentally included HTML.
+>>>
+>>> Thanks for taking the time to reconsider the wording Frank. Your
+>>> intention was clear to me in the first email too.
+>>>
+>>> A kernel command line option can also completely disable this
+>>> functionality easily and cleanly. Can we pick that as an option? I've
+>>> an implementation of that in the v5 series I sent out last week.
+>>
+>> Yes, Rob suggested a command line option for debugging, and I am fine with
+>> that.  But even with that, I would like a lot of testing so that we have a
+>> chance of finding systems that have trouble with the changes and could
+>> potentially be fixed before impacting a large number of users.
+> 
+> Leaving it in -next for more than a cycle will not help. There's some
 
-Hi Geert, 
- 
-Thanks for your review!
+I have to agree with your scepticism of the value of -next for this
+specific case.  But I think there is a _tiny_ potential of additional
+testing if the feature is in more than one -next cycle.
 
-Will fix it as 
+> number of users who test linux-next. Then there's more that test -rc
+> kernels. Then there's more that test final releases and/or stable
+> kernels. Probably, the more stable the h/w, the more it tends to be
+> latter groups. (I don't get reports of breaking PowerMacs with the
+> changes sitting in linux-next.)
+> 
+> My main worry about this being off by default is it won't get tested.
+> I'm not sure there's enough interest to drive folks to turn it on and
+> test. Maybe it needs to be on until we see breakage.
 
-+Renesas R-Car Gen3 RPC-IF controller Device Tree Bindings
-+---------------------------------------------------------
-+
-+Required properties:
-+- compatible: should be an SoC-specific compatible value, followed by
-+                                "renesas,rcar-gen3-rpc" as a fallback.
-+                                supported SoC-specific values are:
-+                                "renesas,r8a77980-rpc"          (R-Car 
-V3H)
-+                                "renesas,r8a77995-rpc"          (R-Car 
-D3)
-+- reg: should contain three register areas:
-+       first for the base address of RPC-IF registers,
-+       second for the direct mapping read mode and
-+       third for the write buffer area.
-+- reg-names: should contain "regs", "dirmap" and "wbuf"
-+- clocks: should contain the clock phandle/specifier pair for the module 
-clock.
-+- clock-names: should contain "rpc"
-+- power-domains: should contain the power domain phandle/secifier pair.
-+- resets: should contain the reset controller phandle/specifier pair.
-+- #address-cells: should be 1
-+- #size-cells: should be 0
-+
-+  flash: should be represented by a subnode of the RPC-IF node, 
-+  which "compatible" property contains "jedec,spi-nor", it presents SPI 
-is used.
-+
-+Example:
-+
-+                rpc: spi@ee200000 {
-+                                compatible = "renesas,r8a77995-rpc", 
-"renesas,rcar-gen3-rpc";
-+                                reg = <0 0xee200000 0 0x200>, <0 
-0x08000000 0 0x4000000>,
-+                                      <0 0xee208000 0 0x100>;
-+                                reg-names = "regs", "dirmap", "wbuf";
-+                                clocks = <&cpg CPG_MOD 917>;
-+                                clock-names = "rpc";
-+                                power-domains = <&sysc 
-R8A77995_PD_ALWAYS_ON>;
-+                                resets = <&cpg 917>;
-+                                #address-cells = <1>;
-+                                #size-cells = <0>;
-+
-+                                flash@0 {
-+                                                compatible = 
-"jedec,spi-nor";
-+                                                reg = <0>;
-+                                                spi-max-frequency = 
-<40000000>;
-+                                                spi-tx-bus-width = <1>;
-+                                                spi-rx-bus-width = <1>;
-+                                };
-+                };
+Agreed, but worried about the potential disruption when breakage
+occurs.
 
-Is it OK ?
+-Frank
 
-thanks & best regards,
-Mason
-
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information 
-and/or personal data, which is protected by applicable laws. Please be 
-reminded that duplication, disclosure, distribution, or use of this e-mail 
-(and/or its attachments) or any part thereof is prohibited. If you receive 
-this e-mail in error, please notify us immediately and delete this mail as 
-well as its attachment(s) from your system. In addition, please be 
-informed that collection, processing, and/or use of personal data is 
-prohibited unless expressly permitted by personal data protection laws. 
-Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
-
-
-
-============================================================================
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
+> 
+> Rob
+> .
+> 
 
