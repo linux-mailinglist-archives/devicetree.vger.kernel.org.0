@@ -2,99 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 497436E3A9
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 11:46:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BB846E3F0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 12:08:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726072AbfGSJqg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 05:46:36 -0400
-Received: from foss.arm.com ([217.140.110.172]:41006 "EHLO foss.arm.com"
+        id S1727379AbfGSKIG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 06:08:06 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:43020 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725794AbfGSJqg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Jul 2019 05:46:36 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 9090F337;
-        Fri, 19 Jul 2019 02:46:35 -0700 (PDT)
-Received: from dawn-kernel.cambridge.arm.com (unknown [10.1.197.116])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 708043F59C;
-        Fri, 19 Jul 2019 02:46:33 -0700 (PDT)
-Subject: Re: [PATCHv8 1/5] arm64: dts: qcom: sdm845: Add Coresight support
-To:     saiprakash.ranjan@codeaurora.org, gregkh@linuxfoundation.org,
-        mathieu.poirier@linaro.org, leo.yan@linaro.org,
-        alexander.shishkin@linux.intel.com, mike.leach@linaro.org,
-        robh+dt@kernel.org, bjorn.andersson@linaro.org,
-        devicetree@vger.kernel.org, david.brown@linaro.org,
-        mark.rutland@arm.com
-Cc:     rnayak@codeaurora.org, vivek.gautam@codeaurora.org,
-        sibis@codeaurora.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        marc.w.gonzalez@free.fr
-References: <cover.1562940244.git.saiprakash.ranjan@codeaurora.org>
- <52550ed9bbc10dca860eb1700aef5c97f644327b.1562940244.git.saiprakash.ranjan@codeaurora.org>
-From:   Suzuki K Poulose <suzuki.poulose@arm.com>
-Message-ID: <33215f68-1bf9-322a-d889-1d22514bdbdc@arm.com>
-Date:   Fri, 19 Jul 2019 10:46:32 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <52550ed9bbc10dca860eb1700aef5c97f644327b.1562940244.git.saiprakash.ranjan@codeaurora.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1725794AbfGSKIG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Jul 2019 06:08:06 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 00CA01A0144;
+        Fri, 19 Jul 2019 12:08:05 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 41D0A1A0187;
+        Fri, 19 Jul 2019 12:07:59 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id F38B0402D5;
+        Fri, 19 Jul 2019 18:07:51 +0800 (SGT)
+From:   Wen He <wen.he_1@nxp.com>
+To:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, mark.rutland@arm.com,
+        liviu.dudau@arm.com, brian.starkey@arm.com, airlied@linux.ie,
+        daniel@ffwll.ch, robh+dt@kernel.org
+Cc:     leoyang.li@nxp.com, Wen He <wen.he_1@nxp.com>
+Subject: [v2 2/3] dt/bindings: display: Add optional property node defined for Mali DP500
+Date:   Fri, 19 Jul 2019 17:58:42 +0800
+Message-Id: <20190719095842.11683-1-wen.he_1@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add optional property node 'arm,malidp-arqos-value' for the Mali DP500.
+This property describe the ARQoS levels of DP500's QoS signaling.
 
-Hi Sai,
+Signed-off-by: Wen He <wen.he_1@nxp.com>
+---
+ Documentation/devicetree/bindings/display/arm,malidp.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
+diff --git a/Documentation/devicetree/bindings/display/arm,malidp.txt b/Documentation/devicetree/bindings/display/arm,malidp.txt
+index 2f7870983ef1..76a0e7251251 100644
+--- a/Documentation/devicetree/bindings/display/arm,malidp.txt
++++ b/Documentation/devicetree/bindings/display/arm,malidp.txt
+@@ -37,6 +37,8 @@ Optional properties:
+     Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt)
+     to be used for the framebuffer; if not present, the framebuffer may
+     be located anywhere in memory.
++  - arm,malidp-arqos-high-level: integer of u32 value describing the ARQoS
++    levels of DP500's QoS signaling.
+ 
+ 
+ Example:
+@@ -54,6 +56,7 @@ Example:
+ 		clocks = <&oscclk2>, <&fpgaosc0>, <&fpgaosc1>, <&fpgaosc1>;
+ 		clock-names = "pxlclk", "mclk", "aclk", "pclk";
+ 		arm,malidp-output-port-lines = /bits/ 8 <8 8 8>;
++		arm,malidp-arqos-high-level = <&rqosvalue>;
+ 		port {
+ 			dp0_output: endpoint {
+ 				remote-endpoint = <&tda998x_2_input>;
+-- 
+2.17.1
 
-On 12/07/2019 15:16, Sai Prakash Ranjan wrote:
-> Add coresight components found on Qualcomm SDM845 SoC.
-> 
-> Signed-off-by: Sai Prakash Ranjan <saiprakash.ranjan@codeaurora.org>
-> Reviewed-by: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Acked-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> ---
->   arch/arm64/boot/dts/qcom/sdm845.dtsi | 451 +++++++++++++++++++++++++++
->   1 file changed, 451 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> index 4babff5f19b5..5d7e3f8e0f91 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-> @@ -1815,6 +1815,457 @@
->   			clock-names = "xo";
->   		};
->   
-> +		stm@6002000 {
-> +			compatible = "arm,coresight-stm", "arm,primecell";
-> +			reg = <0 0x06002000 0 0x1000>,
-> +			      <0 0x16280000 0 0x180000>;
-> +			reg-names = "stm-base", "stm-stimulus-base";
-> +
-> +			clocks = <&aoss_qmp>;
-> +			clock-names = "apb_pclk";
-> +
-> +			out-ports {
-> +				port {
-> +					stm_out: endpoint {
-> +						remote-endpoint =
-> +						  <&funnel0_in7>;
-> +					};
-> +				};
-> +			};
-> +		};
-> +
-> +		funnel@6041000 {
-> +			compatible = "arm,coresight-funnel", "arm,primecell";
-
-We added support for static funnels and have thus updated our DT bindings. And
-that implies, the above binding is now obsolete.
-As of the coresight/next tree, and thus linux-next, this must be 
-arm,coresight-dynamic-funnel and same applies everywhere else in the series. 
-Please could you
-update the series ?
-
-Kind regards
-Suzuki
