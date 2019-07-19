@@ -2,112 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 604E36E14C
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 09:00:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82D8C6E167
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 09:09:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726410AbfGSHAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 03:00:09 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:52553 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726239AbfGSHAJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 03:00:09 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hoMsB-0007Ad-DF; Fri, 19 Jul 2019 09:00:07 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hoMs9-0003lG-Hi; Fri, 19 Jul 2019 09:00:05 +0200
-Date:   Fri, 19 Jul 2019 09:00:05 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     shawnguo@kernel.org, mark.rutland@arm.com, aisheng.dong@nxp.com,
-        peng.fan@nxp.com, anson.huang@nxp.com, devicetree@vger.kernel.org,
-        s.hauer@pengutronix.de, Frank.Li@nxp.com,
-        linux-kernel@vger.kernel.org, paul.olaru@nxp.com,
-        robh+dt@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de,
-        leonard.crestez@nxp.com, festevam@gmail.com, shengjiu.wang@nxp.com,
-        linux-arm-kernel@lists.infradead.org,
-        sound-open-firmware@alsa-project.org
-Subject: Re: [PATCH 0/3] Add DSP node on i.MX8QXP board
-Message-ID: <20190719070005.mkqvfhjras2jmo52@pengutronix.de>
-References: <20190718151346.3523-1-daniel.baluta@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190718151346.3523-1-daniel.baluta@nxp.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:55:39 up 62 days, 13:13, 49 users,  load average: 0.14, 0.13,
- 0.07
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1727467AbfGSHJq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 03:09:46 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:34455 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725616AbfGSHJq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 03:09:46 -0400
+Received: by mail-pg1-f196.google.com with SMTP id n9so7819546pgc.1
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2019 00:09:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=0LeeAyTVsmLsUpPz7KDXnnPyr4L05PS3OGLUvnsErUM=;
+        b=a86lshRVZo1JvdbvlNOzh2S2zd3nIg//DqFgL+WW7L8MWBICb0TJIBvAUGRdjviCYd
+         P3Ah6m1xBLXnE/VLnZg3N0YXLE+kbAjqtj5lrnkpMfi+V1ZCO95IWOmVw0uXR8R0yg80
+         Z/+Mf/94dAjeVtVmNJuhK1wRAOfJGdnjkDbQlgOO0bNu4kvIJ4ggnINhXHFSV9h3TP/r
+         oqA2EIOv5PyMwZHbc2hxBvkCzB4k/3BC6lr9SgVTixxwUD+H6o+819s+e0Jlk/bL/wxw
+         15YyeJwQAtV79qAHZ4k5Ntr/LumYeiJfUVxZ22pv5e9BV/lrkZkO0cESNWAJMBj4Ez7s
+         2d1A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=0LeeAyTVsmLsUpPz7KDXnnPyr4L05PS3OGLUvnsErUM=;
+        b=iYeMMIv222sy7peZtAS8P32dt0bxiXVrBfadmSNprPsSOExZgKhFwqvbyGw+Gv7TYx
+         wtvKCktMwGfKYjom6vdjAmx/kQNXb/ElBI0A2s1Az8g+OdtmoAWpC6LAlgWomNs2V+Xy
+         0G2y5SNjPsjh1PiVQXOGIMGvmP8gElg4fuyTZuWyZ01IyfFSXZ4kl9WhYJpArlV8bSQM
+         Fjl1vBH0CTIk0D8+To4PRtEmLJhQSO/nKkzSwVySerFBakunENXDjuvl1TkVeMIMQD6i
+         KnWypRN8FdvFhi8hkeAh90ADEPl7EokvLm4ygbmGaThhyVUdvDNDomwcaEeRmXph8Vnc
+         +Q9w==
+X-Gm-Message-State: APjAAAUBodg3WW4eFcy+RVX0CAQqJHquxi7FQoqIctTskJvSW9bpW654
+        nbE+hchSAncpSPLEqXdqe0sy
+X-Google-Smtp-Source: APXvYqzrr0Go2Vx0z9CClLEHsJMpXca4xfICOrN1UqAeij1rNOA6ZEyLzOT3xu7pceNkPRgvRU9bEA==
+X-Received: by 2002:a17:90a:360c:: with SMTP id s12mr56809775pjb.30.1563520185267;
+        Fri, 19 Jul 2019 00:09:45 -0700 (PDT)
+Received: from localhost.localdomain ([2405:204:730b:4a40:d09e:c7ec:fbb:1676])
+        by smtp.gmail.com with ESMTPSA id r6sm56259346pjb.22.2019.07.19.00.09.38
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 19 Jul 2019 00:09:44 -0700 (PDT)
+From:   Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     shawnguo@kernel.org, s.hauer@pengutronix.de, robh+dt@kernel.org
+Cc:     kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, Darshak.Patel@einfochips.com,
+        kinjan.patel@einfochips.com, prajose.john@einfochips.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Subject: [PATCH v2 0/3] Add support for i.MXQXP AI_ML board
+Date:   Fri, 19 Jul 2019 12:39:23 +0530
+Message-Id: <20190719070926.29114-1-manivannan.sadhasivam@linaro.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
+Hello,
 
-thanks for your patches :) but it's quite common to bundle the driver
-related and the dt related patches. Can you add the firmware related
-patch to this series in your v2?
+This patchset adds support for i.MXQXP AI_ML board from Einfochips.
+This board is one of the Consumer Edition boards of the 96Boards family
+based on i.MX8QXP SoC from NXP/Freescale.
 
-Regards,
-  Marco
+The initial support includes following peripherals which are tested and
+known to be working:
 
-On 19-07-18 18:13, Daniel Baluta wrote:
-> i.MX8QXP boards feature an Hifi4 DSP from Tensilica. This patch series
-> adds the DT node.
-> 
-> Note that we switched to the new yaml format for bindings documentation.
-> 
-> The DSP will run SOF Firmware [1]. Patches adding support for Linux DSP
-> driver are already sent for review to SOF folks [2].
-> 
-> This patch series also contains a patch introducing DT related clocks.
-> 
-> The patch was already reviewed here:
-> 	https://lkml.org/lkml/2019/7/17/975
-> 
-> but I added it in this patch series because it wasn't yet picked by
-> Shawn so patches 2/3 will not compiled without patch 1.
-> 
-> [1] https://github.com/thesofproject/sof
-> [2] https://github.com/thesofproject/linux/pull/1048/commits
-> 
-> Daniel Baluta (3):
->   clk: imx8: Add DSP related clocks
->   arm64: dts: imx8qxp: Add DSP DT node
->   dt-bindings: dsp: fsl: Add DSP core binding support
-> 
->  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 87 +++++++++++++++++++
->  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  4 +
->  arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 32 +++++++
->  drivers/clk/imx/clk-imx8qxp-lpcg.c            |  5 ++
->  include/dt-bindings/clock/imx8-clock.h        |  6 +-
->  5 files changed, 133 insertions(+), 1 deletion(-)
->  create mode 100644 Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
-> 
-> -- 
-> 2.17.1
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
-> 
+1. Debug serial via UART2
+2. uSD
+3. WiFi
+4. Ethernet
+
+More information about this board can be found in Arrow website:
+https://www.arrow.com/en/products/imx8-ai-ml/arrow-development-tools
+
+Thanks,
+Mani
+
+Changes in v2:
+
+* Incorporated review comments from Dong (small cleanups)
+
+Manivannan Sadhasivam (3):
+  dt-bindings: Add Vendor prefix for Einfochips
+  dt-bindings: arm: Document i.MX8QXP AI_ML board binding
+  arm64: dts: freescale: Add support for i.MX8QXP AI_ML board
+
+ .../devicetree/bindings/arm/fsl.yaml          |   1 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8qxp-ai_ml.dts      | 249 ++++++++++++++++++
+ 4 files changed, 253 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qxp-ai_ml.dts
 
 -- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+2.17.1
+
