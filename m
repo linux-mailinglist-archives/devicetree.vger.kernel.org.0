@@ -2,109 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D7286E4F7
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 13:20:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CE26E6E52D
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 13:47:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726075AbfGSLT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 07:19:57 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:43279 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726931AbfGSLT4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 07:19:56 -0400
-Received: by mail-lj1-f193.google.com with SMTP id y17so5859773ljk.10;
-        Fri, 19 Jul 2019 04:19:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=oa7kpDXrcCy8McuyUn5ga3FPCCt3ADMPU6Hul/X/yUM=;
-        b=j7qYAD+kzQ5zFcCG7d0p/5oYJbPJHNhQ8vG9lABZv5JKBjUe0FPzX8M7kjRFL0Ic56
-         PUxBY9hnbA+7mZ2UeH/j+OM6TQUga19wXGUyfj3lS935uRemxKXrgxQJVVb+kvgKTCVj
-         4qtA4weK0qCFLGLht52WVfvlYxwDF7lwY6bTcpWReEsdLs0Y/HGXoquLm9fCUjkGH7DJ
-         QEsTs4aN9JFk7Vu3DOnXBjJzzNF0aq2GdLeB/bY/bFfHpEN8dQTKn/vgJy699XoPZdwT
-         +aAUjkAUkYL6v3vVIM6W/5x4MeUbBykMRvqbCiH6oIroveMIcFN23c5L21xLg2jGBOos
-         SKCQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=oa7kpDXrcCy8McuyUn5ga3FPCCt3ADMPU6Hul/X/yUM=;
-        b=e3nZsXbMqwLlUXnGRtcywFCLFDPIhhBt83oBWMd4Ohqr39sJD/jzBZrSDj8afvGi5T
-         6SEGd8YfbbG9G172KoMucEdahsP3BuifIkEe4S9+hRWMFLcj8AgHRs9e+As42d5JBfvE
-         kRxWGXUKCF3OxtYwy0XEMzP0tsZq7IdGjSgMp5vihwOs09Gq5J2wBiNHOCmrZPXEYzWH
-         cK90ULppRWo7woWAczvlUCJatgdrbgc5N8bKOXxXcl6LJHI0HRRsZLRhhFdTZxd/LwH4
-         C7r5O82pG1NpgJTLdgj5Km31f1kaIbtnTHjca+PER3BAt1hzCw6mmb+9TJplC/+XzGDg
-         9i1g==
-X-Gm-Message-State: APjAAAUy69M3EjpfPbfXP3f9016y9RUAkFuKsoNUjpZlOlDFqyJsQq+A
-        dpzSGnutc2rdNaochtCVNOBvHpP9HcCWEUa1V34=
-X-Google-Smtp-Source: APXvYqzBHXvvyxC4iFcPJJjFihiAgUmb5NF6oXKVWMbQdzkDX3RFp21crAVVLA28yDHF9lGH5qeEQdPJDZGMAPBIX9k=
-X-Received: by 2002:a2e:a311:: with SMTP id l17mr26523151lje.214.1563535194358;
- Fri, 19 Jul 2019 04:19:54 -0700 (PDT)
+        id S1727952AbfGSLrG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 07:47:06 -0400
+Received: from foss.arm.com ([217.140.110.172]:42322 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726072AbfGSLrG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 19 Jul 2019 07:47:06 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 43AA3337;
+        Fri, 19 Jul 2019 04:47:05 -0700 (PDT)
+Received: from e110455-lin.cambridge.arm.com (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 240093F71A;
+        Fri, 19 Jul 2019 04:47:05 -0700 (PDT)
+Received: by e110455-lin.cambridge.arm.com (Postfix, from userid 1000)
+        id E41C868065E; Fri, 19 Jul 2019 12:47:03 +0100 (BST)
+Date:   Fri, 19 Jul 2019 12:47:03 +0100
+From:   Liviu Dudau <liviu.dudau@arm.com>
+To:     Wen He <wen.he_1@nxp.com>
+Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, mark.rutland@arm.com,
+        brian.starkey@arm.com, airlied@linux.ie, daniel@ffwll.ch,
+        robh+dt@kernel.org, leoyang.li@nxp.com
+Subject: Re: [v2 2/3] dt/bindings: display: Add optional property node
+ defined for Mali DP500
+Message-ID: <20190719114703.GC16673@e110455-lin.cambridge.arm.com>
+References: <20190719095842.11683-1-wen.he_1@nxp.com>
 MIME-Version: 1.0
-References: <20190719104802.18070-1-andradanciu1997@gmail.com> <20190719104802.18070-2-andradanciu1997@gmail.com>
-In-Reply-To: <20190719104802.18070-2-andradanciu1997@gmail.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Fri, 19 Jul 2019 08:19:43 -0300
-Message-ID: <CAOMZO5Btu1Shou=dGRrG74e5UjHnh7NtR4+4ETK0t_1Zt48Crw@mail.gmail.com>
-Subject: Re: [PATCH v4 1/2] arm64: dts: fsl: pico-pi: Add a device tree for
- the PICO-PI-IMX8M
-To:     andradanciu1997 <andradanciu1997@gmail.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Ping Bai <ping.bai@nxp.com>,
-        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <Michal.Vokac@ysoft.com>,
-        Li Yang <leoyang.li@nxp.com>, sriram.dash@nxp.com,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Vabhav Sharma <vabhav.sharma@nxp.com>,
-        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
-        Pramod Kumar <pramod.kumar_1@nxp.com>, pankaj.bansal@nxp.com,
-        Dong Aisheng <aisheng.dong@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Richard Hu <richard.hu@technexion.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190719095842.11683-1-wen.he_1@nxp.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andra,
+On Fri, Jul 19, 2019 at 05:58:42PM +0800, Wen He wrote:
+> Add optional property node 'arm,malidp-arqos-value' for the Mali DP500.
+> This property describe the ARQoS levels of DP500's QoS signaling.
+> 
+> Signed-off-by: Wen He <wen.he_1@nxp.com>
 
-On Fri, Jul 19, 2019 at 7:48 AM andradanciu1997
-<andradanciu1997@gmail.com> wrote:
+Acked-by: Liviu Dudau <liviu.dudau@arm.com>
 
-> +       pmic: pmic@4b {
-> +               reg = <0x4b>;
-> +               compatible = "rohm,bd71837";
-> +               /* PMIC BD71837 PMIC_nINT GPIO1_IO12 */
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&pinctrl_pmic>;
-> +               clocks = <&pmic_osc>;
-> +               clock-names = "osc";
-> +               clock-output-names = "pmic_clk";
-> +               interrupt-parent = <&gpio1>;
-> +               interrupts = <3 GPIO_ACTIVE_LOW>;
-> +               interrupt-names = "irq";
-> +
-> +               regulators {
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
+Thanks for the patch!
 
-#address-cells and  #size-cells are not needed and they cause warnings with W=1:
+Best regards,
+Liviu
 
-  DTC     arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dtb
-arch/arm64/boot/dts/freescale/imx8mq-pico-pi.dts:77.14-196.5: Warning
-(avoid_unnecessary_addr_size):
-/soc@0/bus@30800000/i2c@30a20000/pmic@4b/regulators: unnecessary
-#address-cells/#size-cells without "ranges" or child "reg" property
+> ---
+>  Documentation/devicetree/bindings/display/arm,malidp.txt | 3 +++
+>  1 file changed, 3 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/display/arm,malidp.txt b/Documentation/devicetree/bindings/display/arm,malidp.txt
+> index 2f7870983ef1..76a0e7251251 100644
+> --- a/Documentation/devicetree/bindings/display/arm,malidp.txt
+> +++ b/Documentation/devicetree/bindings/display/arm,malidp.txt
+> @@ -37,6 +37,8 @@ Optional properties:
+>      Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt)
+>      to be used for the framebuffer; if not present, the framebuffer may
+>      be located anywhere in memory.
+> +  - arm,malidp-arqos-high-level: integer of u32 value describing the ARQoS
+> +    levels of DP500's QoS signaling.
+>  
+>  
+>  Example:
+> @@ -54,6 +56,7 @@ Example:
+>  		clocks = <&oscclk2>, <&fpgaosc0>, <&fpgaosc1>, <&fpgaosc1>;
+>  		clock-names = "pxlclk", "mclk", "aclk", "pclk";
+>  		arm,malidp-output-port-lines = /bits/ 8 <8 8 8>;
+> +		arm,malidp-arqos-high-level = <&rqosvalue>;
+>  		port {
+>  			dp0_output: endpoint {
+>  				remote-endpoint = <&tda998x_2_input>;
+> -- 
+> 2.17.1
+> 
 
-Please remove them.
+-- 
+====================
+| I would like to |
+| fix the world,  |
+| but they're not |
+| giving me the   |
+ \ source code!  /
+  ---------------
+    ¯\_(ツ)_/¯
