@@ -2,134 +2,255 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCDCD6DA28
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 06:00:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0629B6DCD0
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 06:19:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728891AbfGSD7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 18 Jul 2019 23:59:53 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59628 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727739AbfGSD7w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 18 Jul 2019 23:59:52 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9FB2821873;
-        Fri, 19 Jul 2019 03:59:50 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563508791;
-        bh=QvlXDSoxkqqz4+28wmL0GcIAtj5yQiD+NHM8MahlxRw=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=CCZs4gazG2xpUNZXFdBEnZ5NQqzsQujhxKlDFnYJqkQ6tf77soCEFL6glgN0ioP/y
-         aCVRLjfrMMvEmwsfeggVlhBiWJxHyfIpMy/fjZP5LsXI7leCLAb6K+Gvvisqy8vi+l
-         VOigOYrapNJdjpHGEcUs1gduX4QghWKWWWZy99Dc=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Brian Masney <masneyb@onstation.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Daniel Thompson <daniel.thompson@linaro.org>,
-        Dan Murphy <dmurphy@ti.com>, Rob Herring <robh@kernel.org>,
-        Sasha Levin <sashal@kernel.org>,
-        dri-devel@lists.freedesktop.org, linux-leds@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.2 091/171] dt-bindings: backlight: lm3630a: correct schema validation
-Date:   Thu, 18 Jul 2019 23:55:22 -0400
-Message-Id: <20190719035643.14300-91-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190719035643.14300-1-sashal@kernel.org>
-References: <20190719035643.14300-1-sashal@kernel.org>
+        id S2389132AbfGSENR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 00:13:17 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:33246 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389119AbfGSENR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 00:13:17 -0400
+Received: by mail-oi1-f194.google.com with SMTP id u15so23312590oiv.0
+        for <devicetree@vger.kernel.org>; Thu, 18 Jul 2019 21:13:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=BBg/SpzJKxugafPWMMosPXw5SytgBm1YGaM4NNvGJDc=;
+        b=H5OjxIZoEkfuh+BaXpjX/pWe+iQGfanbT2bOd3sM4legsE4SiYE80Tj8KAU2jvds0e
+         Mxr/zcqZG87Twl/BXInO3u04qW6G8ozKzk73+dP4GSvDNQCkWRM8vmomFyqwybxWLiFv
+         M9MtWI16w0dfheM9PWO6MmKFfQdJQIh/r4LO1ug7rMYFsKt+o7YJn9md8X+eROEueJRi
+         ovy7Xv6UhsL+a1qx+HFlCXTOGrcZLZRH/HPwZt9ASIbuvmsQOAqGA++h7fvekfYDkRgc
+         XAKx9xe4wBCLPlgopB4mDWDYGLg7iX0Y5/fcPTSK6WZzeOE9IGl2JD6IFuO1q2De7z/u
+         uoGA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=BBg/SpzJKxugafPWMMosPXw5SytgBm1YGaM4NNvGJDc=;
+        b=IwTTv8KYjN5TFXO3a2D6oqUYBRpmCTAwvcZbgIK1dPoIgRnHVrzml751vSv0i6oGjx
+         +3YvAMwhWyUS29gF0D3GWQKV6JL5rXDpMuu407LFD6V6Qjpq4VJyVPcwbi4IJ7Zb26wc
+         Qh2N6Kvwu5f4/04Q1noZUx+i0m7b/A2maac/Ok/BayMXQND2BlSxiMdEgi2+XSyLm203
+         Yc4QAEoZkhrURYbnyxCCtSyQO8h+7s4uoNMXpSquw7kR2zeQou/Scqa5m/yUrvm/p67I
+         s5KVsD8n4Vao/5G0a8uzy8LlbaaoU73uWVfqDfd/3JACc83x/y/hcnsO6JD53CtJ+Q+z
+         yCEg==
+X-Gm-Message-State: APjAAAWMO/CXQvr4TzA86WqQqTyn3kxLvh8Er6hMzLURbhSjyWNEAazr
+        O26g207cD2VVEDBuckVQx9GI5t2buTiAWIXNhJyaHA==
+X-Google-Smtp-Source: APXvYqzBAJh1/b89Fa5lS5fErNWhLxSnISMCd/8kxoDRTJTCjc2JoU+Suem39K7FsH59IA+z2qcDYAK7qwDiGu5hcyc=
+X-Received: by 2002:aca:d8c2:: with SMTP id p185mr26312729oig.30.1563509595836;
+ Thu, 18 Jul 2019 21:13:15 -0700 (PDT)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+References: <20190703011020.151615-1-saravanak@google.com> <20190717103220.f7cys267hq23fbsb@vireshk-i7>
+ <CAGETcx-tbjVzRKW8D-564zgNOhrA_z-NC1q5U70bhoUDBhp6VA@mail.gmail.com> <20190718053746.64drmonk72vwnt4s@vireshk-i7>
+In-Reply-To: <20190718053746.64drmonk72vwnt4s@vireshk-i7>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 18 Jul 2019 21:12:39 -0700
+Message-ID: <CAGETcx_-=b3An9YdxLUnZap=0iaeczvWTEnw65FMLU8BwA3HfQ@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] Introduce Bandwidth OPPs for interconnect paths
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
+        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Brian Masney <masneyb@onstation.org>
+On Wed, Jul 17, 2019 at 10:37 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+>
+> I know you have explained lots of things earlier as well, but they are
+> available over multiple threads and I don't know where to reply now :)
+>
+> Lets have proper discussion (once again) here and be done with it.
+> Sorry for the trouble of explaining things again.
+>
+> On 17-07-19, 13:34, Saravana Kannan wrote:
+> > On Wed, Jul 17, 2019 at 3:32 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > > On 02-07-19, 18:10, Saravana Kannan wrote:
+> > > > gpu_cache_opp_table: gpu_cache_opp_table {
+> > > >       compatible = "operating-points-v2";
+> > > >
+> > > >       gpu_cache_3000: opp-3000 {
+> > > >               opp-peak-KBps = <3000>;
+> > > >               opp-avg-KBps = <1000>;
+> > > >       };
+> > > >       gpu_cache_6000: opp-6000 {
+> > > >               opp-peak-KBps = <6000>;
+> > > >               opp-avg-KBps = <2000>;
+> > > >       };
+> > > >       gpu_cache_9000: opp-9000 {
+> > > >               opp-peak-KBps = <9000>;
+> > > >               opp-avg-KBps = <9000>;
+> > > >       };
+> > > > };
+> > > >
+> > > > gpu_ddr_opp_table: gpu_ddr_opp_table {
+> > > >       compatible = "operating-points-v2";
+> > > >
+> > > >       gpu_ddr_1525: opp-1525 {
+> > > >               opp-peak-KBps = <1525>;
+> > > >               opp-avg-KBps = <452>;
+> > > >       };
+> > > >       gpu_ddr_3051: opp-3051 {
+> > > >               opp-peak-KBps = <3051>;
+> > > >               opp-avg-KBps = <915>;
+> > > >       };
+> > > >       gpu_ddr_7500: opp-7500 {
+> > > >               opp-peak-KBps = <7500>;
+> > > >               opp-avg-KBps = <3000>;
+> > > >       };
+> > > > };
+> > >
+> > > Who is going to use the above tables and how ?
+> >
+> > In this example the GPU driver would use these. It'll go through these
+> > and then decide what peak and average bw to pick based on whatever
+> > criteria.
+>
+> Are you saying that the GPU driver will decide which bandwidth to
+> choose while running at a particular frequency (say 2 GHz) ? And that
+> it can choose 1525 or 3051 or 7500 from the ddr path ?
+>
+> Will it be possible to publicly share how we derive to these decisions
+> ?
 
-[ Upstream commit ef4db28c1f45cda6989bc8a8e45294894786d947 ]
+GPU is just an example. So I can't really speak for how a random GPU
+driver might decide the bandwidth to pick.
 
-The '#address-cells' and '#size-cells' properties were not defined in
-the lm3630a bindings and would cause the following error when
-attempting to validate the examples against the schema:
+But one obvious way is to start at the lowest bandwidth and check the
+bus port busy%. If it's > 80% busy, it'll pick the next bandwidth,
+etc. So, something like what cpufreq ondemand or conservative governor
+used to do.
 
-Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
-'#address-cells', '#size-cells' do not match any of the regexes:
-'^led@[01]$', 'pinctrl-[0-9]+'
+> The thing is I don't like these separate OPP tables which will not be
+> used by anyone else, but just GPU (or a single device).
 
-Correct this by adding those two properties.
+The BW OPP table isn't always a secondary OPP table. It can be a
+primary OPP table too. For example, if you have a bandwidth monitoring
+device/HW IP that can measure for a path and make requests for that
+path, it'll have a BW OPP table and it'll pick from one of those BW
+OPP levels based on the hardware measurements. It will have it's own
+device driver. This is basically no different from a device being the
+only user of a freq OPP table.
 
-While we're here, move the ti,linear-mapping-mode property to the
-led@[01] child nodes to correct the following validation error:
+> I would like
+> to put this data in the GPU OPP table only. What about putting a
+> range in the GPU OPP table for the Bandwidth if it can change so much
+> for the same frequency.
 
-Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.example.dt.yaml:
-led@0: 'ti,linear-mapping-mode' does not match any of the regexes:
-'pinctrl-[0-9]+'
+I don't think the range is going to work. If a GPU is doing purely
+computational work, it's not unreasonable for it to vote for the
+lowest bandwidth for any GPU frequency.
 
-Fixes: 32fcb75c66a0 ("dt-bindings: backlight: Add lm3630a bindings")
-Signed-off-by: Brian Masney <masneyb@onstation.org>
-Reported-by: Rob Herring <robh+dt@kernel.org>
-Acked-by: Daniel Thompson <daniel.thompson@linaro.org>
-Acked-by: Dan Murphy <dmurphy@ti.com>
-[robh: also drop maxItems from child reg]
-Signed-off-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- .../leds/backlight/lm3630a-backlight.yaml     | 21 ++++++++++++-------
- 1 file changed, 14 insertions(+), 7 deletions(-)
+>
+> > > These are the maximum
+> > > BW available over these paths, right ?
+> >
+> > I wouldn't call them "maximum" because there can't be multiple
+> > maximums :) But yes, these are the meaningful bandwidth from the GPU's
+> > perspective to use over these paths.
+> >
+> > >
+> > > > gpu_opp_table: gpu_opp_table {
+> > > >       compatible = "operating-points-v2";
+> > > >       opp-shared;
+> > > >
+> > > >       opp-200000000 {
+> > > >               opp-hz = /bits/ 64 <200000000>;
+> > > >       };
+> > > >       opp-400000000 {
+> > > >               opp-hz = /bits/ 64 <400000000>;
+> > > >       };
+> > > > };
+> > >
+> > > Shouldn't this link back to the above tables via required-opp, etc ?
+> > > How will we know how much BW is required by the GPU device for all the
+> > > paths ?
+> >
+> > If that's what the GPU driver wants to do, then yes. But the GPU
+> > driver could also choose to scale the bandwidth for these paths based
+> > on multiple other signals. Eg: bus port busy percentage, measure
+> > bandwidth, etc.
+>
+> Lets say that the GPU is running at 2 GHz right now and based on above
+> inputs it wants to increase the bandwidth to 7500 for ddr path, now
+> does it make sense to run at 4 GHz instead of 2 so we utilize the
+> bandwidth to the best of our ability and waste less power ?
 
-diff --git a/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml b/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
-index 4d61fe0a98a4..dc129d9a329e 100644
---- a/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
-+++ b/Documentation/devicetree/bindings/leds/backlight/lm3630a-backlight.yaml
-@@ -23,16 +23,17 @@ properties:
-   reg:
-     maxItems: 1
- 
--  ti,linear-mapping-mode:
--    description: |
--      Enable linear mapping mode. If disabled, then it will use exponential
--      mapping mode in which the ramp up/down appears to have a more uniform
--      transition to the human eye.
--    type: boolean
-+  '#address-cells':
-+    const: 1
-+
-+  '#size-cells':
-+    const: 0
- 
- required:
-   - compatible
-   - reg
-+  - '#address-cells'
-+  - '#size-cells'
- 
- patternProperties:
-   "^led@[01]$":
-@@ -48,7 +49,6 @@ patternProperties:
-           in this property. The two current sinks can be controlled
-           independently with both banks, or bank A can be configured to control
-           both sinks with the led-sources property.
--        maxItems: 1
-         minimum: 0
-         maximum: 1
- 
-@@ -73,6 +73,13 @@ patternProperties:
-         minimum: 0
-         maximum: 255
- 
-+      ti,linear-mapping-mode:
-+        description: |
-+          Enable linear mapping mode. If disabled, then it will use exponential
-+          mapping mode in which the ramp up/down appears to have a more uniform
-+          transition to the human eye.
-+        type: boolean
-+
-     required:
-       - reg
- 
--- 
-2.20.1
+This is kinda hard to explain, but I'll try.
 
+Firstly, the GPU power increase might be so high that you might not
+want to do this anyway.
+
+Also, what you are proposing *might* improve the perf/mW (efficiency)
+but it doesn't decrease the actual power consumption. So, this doesn't
+really work towards saving power for mobile devices.
+
+Also, if the GPU is generating a lot of traffic to DDR and you
+increase the GPU frequency, it's only going to generate even more
+traffic. So you'll end up in a positive feedback loop that maxes out
+the frequency and bandwidth. Definitely not something you want for a
+mobile device.
+
+> If something like that is acceptable, then what about keeping the
+> bandwidth fixed for frequencies and rather scale the frequency of the
+> GPU on the inputs your provided (like bus port busy percentage, etc).
+
+I don't think it's acceptable.
+
+> The current proposal makes me wonder on why should we try to reuse OPP
+> tables for providing these bandwidth values as the OPP tables for
+> interconnect paths isn't really a lot of data, only bandwidth all the
+> time and there is no linking from the device's OPP table as well.
+
+I think everyone is getting too tied up on mapping device frequency to
+bandwidth requests. That's useful for a limited set of cases. But it
+doesn't work for a lot of use cases.
+
+Couple of benefits of using BW OPPs instead of with listing bandwidth
+values as part of frequency OPP tables:
+- Works better when the interconnect path has more useful levels that
+the device frequency levels. I think this might even be true on the
+SDM845 for GPU and DDR. The link from freq OPP to BW OPP could list
+the minimum bandwidth level to use for a particular device freq and
+then let the hardware monitoring heuristic take it higher from there.
+- Works even if no freq to bandwidth mapping heuristic is used but the
+device needs to skip certain bandwidth levels based on the platform's
+power/perf reasons.
+- More scalable as more properties are added to BW OPP levels. Traffic
+priority is one natural extension of the BW OPP "rows". Explicit
+latency is another possibility.
+- Currently devices that have use case specific bandwidth levels
+(that's not computed at runtime) have no way of capturing their use
+case level bandwidth needs in DT. Everyone is inventing their own
+scheme. Having BW OPP table would allow them capture all the use case
+specific bandwidth levels in DT and then pick one using the
+index/phandle/etc. We could even allow naming OPP rows and pick it
+that way. Not saying this is a main reason for BW OPP tables or we
+should do this, but this is a possibility to consider.
+
+Long story short, BW OPP tables make a lot of sense for anyone who has
+actually done bandwidth scaling on a commercial platform.
+
+If people are getting too tied up about the interconnect-opp-table we
+can just drop that. I just added that to avoid having any implicit
+ordering of tables in the operation-points-v2 property vs
+interconnects property and call it out more explicitly. But it's not a
+hill worth dying on.
+
+-Saravana
