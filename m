@@ -2,77 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10A836EB11
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 21:29:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 756F16EB97
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 22:32:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732591AbfGST2a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 15:28:30 -0400
-Received: from smtprelay-out1.synopsys.com ([198.182.61.142]:39142 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-FAIL-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728092AbfGST2a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Jul 2019 15:28:30 -0400
-Received: from mailhost.synopsys.com (mdc-mailhost1.synopsys.com [10.225.0.209])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 99EF0C0ABA;
-        Fri, 19 Jul 2019 19:28:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1563564510; bh=Hdp/JPcL7+oZycXcOcMtk5gY76vQ+jEs/4pUwlrEtss=;
+        id S1728783AbfGSUcf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 16:32:35 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:56414 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728057AbfGSUcf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 16:32:35 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 3A065611D1; Fri, 19 Jul 2019 20:32:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563568354;
+        bh=nOzlrnBEamhN2JgiNCP88vDUSaUd5wB7eTA/ysgT7+Y=;
         h=From:To:Cc:Subject:Date:From;
-        b=DFBj8XV0B/QuQE8aOgizpLS/br+cSX4K3124yNr6VkULKY9+CPMDapq+h3JPUpAOd
-         v48bGz7ugdpJgBV/C2r44iKci7U/4fC/VWapZWK151pqxzQpPK5wJQZTxnejEkkBxb
-         FgNFXRXjDOoIkfPIA2cxUcXdJmsgJgSGKRB2vjxeEfxTBnwpCtNEKxD0ZXcFnzsUOH
-         7rlCUyuxnPQJ5XOTQrZ8x1A49hZ0UoNpCTm44eahzbiOl4Bso1QDvP2mDr3GT/eepi
-         NXpCbmMpuMuVC/Ji29j5hCBD9XcOB0Y4+b0/Tp9pLJW7UlWBTnt/D6wkCyQwqRkAjg
-         8M9uUbI69imuw==
-Received: from paltsev-e7480.internal.synopsys.com (unknown [10.121.8.79])
-        by mailhost.synopsys.com (Postfix) with ESMTP id 0E70FA0057;
-        Fri, 19 Jul 2019 19:28:27 +0000 (UTC)
-From:   Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-To:     linux-kbuild@vger.kernel.org,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Michal Marek <michal.lkml@markovi.net>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-snps-arc@lists.infradead.org,
-        Vineet Gupta <Vineet.Gupta1@synopsys.com>,
-        Alexey Brodkin <Alexey.Brodkin@synopsys.com>,
-        Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-Subject: [TRIVIAL PATCH] of: per-file dtc preprocessor flags
-Date:   Fri, 19 Jul 2019 22:28:24 +0300
-Message-Id: <20190719192824.24639-1-Eugeniy.Paltsev@synopsys.com>
-X-Mailer: git-send-email 2.21.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        b=a70ZBH4EIBVxceERFjClWJxCJWOzK9nnbr1rAd7bNYiAQqPNW+NzZGnndqU5ZDTDb
+         pXIMvUAYHrr/x2yih7yPPVOQcjT0zKJmKYEmkiDyQECiLiJt1yPfNQNmgwuOIFtM2H
+         PTfRrCJw6WlmKwJlx5h5dyU5KEO23GVn+GxAS7U4=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from davidai-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: daidavid1@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0C18060ACA;
+        Fri, 19 Jul 2019 20:32:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563568353;
+        bh=nOzlrnBEamhN2JgiNCP88vDUSaUd5wB7eTA/ysgT7+Y=;
+        h=From:To:Cc:Subject:Date:From;
+        b=bfZWMo7/uLhZ5X3/fbuEjCzGmhOqeKzaKIkp37wmbcNKGHmCDMAhPPh9ndEORWLsZ
+         VH7XfUlyVR2l4z7Ab+GNbScfUqP4IyXbTsC/aDf+RwkAscPXispicbGgihr/JtbjB8
+         pIvJdFVNJcMkFV+cofopcAMQzFJbeckHjhHSKKnI=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0C18060ACA
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=daidavid1@codeaurora.org
+From:   David Dai <daidavid1@codeaurora.org>
+To:     georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
+        robh+dt@kernel.org
+Cc:     David Dai <daidavid1@codeaurora.org>, evgreen@google.com,
+        ilina@codeaurora.org, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+Subject: [PATCH 0/2] Redefine interconnect provider DT nodes for SDM845
+Date:   Fri, 19 Jul 2019 13:32:22 -0700
+Message-Id: <1563568344-1274-1-git-send-email-daidavid1@codeaurora.org>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As of today we are able to pass custom flags to dtc compiler but not
-to dtc preprocessor.
-This ability is required for including some board-specific header files.
-It allows us to pass defined constants to dts without their duplication
-in several places.
+Redefine the SDM845 interconnect device nodes as the previous definitions
+of using a single child node under the apps_rsc device did not accurately
+capture the description of the hardware. The Network-On-Chip (NoC) interconnect
+devices should be represented in a manner akin to QCS404 platforms[1]
+where there is a separation of NoC devices and its RPM/RPMh counterparts.
 
-Signed-off-by: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
----
- scripts/Makefile.lib | 2 ++
- 1 file changed, 2 insertions(+)
+The bcm-voter devices are representing the RPMh devices that the interconnect
+providers need to communicate with and there can be more than one instance of
+the Bus Clock Manager (BCM) which can live under different instances of Resource
+State Coordinators (RSC). There are display use cases where consumers may need
+to target a different bcm-voter (Some display specific RSC) than the default,
+and there needs to be a way to represent this connection in devicetree.
 
-diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-index f1f38c8cdc74..f2595a608dce 100644
---- a/scripts/Makefile.lib
-+++ b/scripts/Makefile.lib
-@@ -166,6 +166,8 @@ dtc_cpp_flags  = -Wp,-MD,$(depfile).pre.tmp -nostdinc                    \
- 		 $(addprefix -I,$(DTC_INCLUDE))                          \
- 		 -undef -D__DTS__
- 
-+dtc_cpp_flags  += $(DTC_CPP_FLAGS_$(basetarget))
-+
- # Useful for describing the dependency of composite objects
- # Usage:
- #   $(call multi_depend, multi_used_targets, suffix_to_remove, suffix_to_add)
+[1]: https://lkml.org/lkml/2019/6/13/143
+
+David Dai (2):
+  dt-bindings: interconnect: Update Qualcomm SDM845 DT bindings
+  arm64: dts: sdm845: Redefine interconnect provider DT nodes
+
+ .../bindings/interconnect/qcom,bcm-voter.txt       | 32 ++++++++++++
+ .../bindings/interconnect/qcom,sdm845.txt          | 40 ++++++++++----
+ arch/arm64/boot/dts/qcom/sdm845.dtsi               | 61 ++++++++++++++++++++--
+ 3 files changed, 121 insertions(+), 12 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.txt
+
 -- 
-2.21.0
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
