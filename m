@@ -2,112 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3A186E108
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 08:34:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 604E36E14C
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 09:00:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725853AbfGSGet (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 02:34:49 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:35060 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726067AbfGSGes (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 02:34:48 -0400
-Received: by mail-wr1-f67.google.com with SMTP id y4so31062318wrm.2;
-        Thu, 18 Jul 2019 23:34:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kMcKTsEVyji+n2fYLtlne8FEnWZcMA2/ktkd0SxT+VI=;
-        b=QSOwOufE4zhKaOthPkDk7gWdX3qwYegZikq56s0mkeTwW5vSbnTSAff0lcnACu34zb
-         vdRjrjSoxzugWQ5xieksmi9CByUQ5AnlvJvPceiVK6Sma4J2CcItR6GSqE/+xv2rjim9
-         hszdEfhJIQs0Cvwusfs52LSo1AccmTUPJozjSty8KUF6cjhaQHqgQxUAgI0dd8a4xTnH
-         BZ8cKAEWJkxNC2IOVZ6nJ+kTlghlY5buBFzyqooQ2Jiy3cOwUPAYOLNzB/9wFrTNfb72
-         p9dkMyMTd4O6yToPz/j1GJ9UScDq+CL+Hi80pQVbp5CH5uBdZp0mNnDg/VSEYBXXVgOE
-         ehYQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kMcKTsEVyji+n2fYLtlne8FEnWZcMA2/ktkd0SxT+VI=;
-        b=BILJIDFTiLJd6KQpuJOQE9102mtBhs0Gesstd355vEv53pVH5YpninYpuzepLU6/IK
-         5qx9irZVuyVpmP6sP65zYReupDmBrFUjWdeG8Sf7qSDk6poCR4pUBrtRC618QuWrnY9Y
-         9FdAkTAliSbif+WcdO38zFv/SzRv9r6Wn+f5dH1SHSg87UzteIi+PSgMqemtVNRbhqq3
-         YP4+L+qOsSaXNKcVgq/mj0oX6pYHnK1oYWPWkBfTLPRIepIoKlbhY2qBxtuFeT0QgUtq
-         JS8OPQ92ASJfRMRWhf3o35X2F/dCZzoHLQnVKXOHHHZyvYZiF6l+JeXE9GVu/MSXnHZ5
-         Nx1Q==
-X-Gm-Message-State: APjAAAUTuxFSwkXPusqmSGYuT4NSCRlEa+4gaKO9tspXTaUbOnR7biK8
-        lTq5yylCqjo3tcrihqOS+HpQsdYAjL/auJCOiB4=
-X-Google-Smtp-Source: APXvYqzkF6gS1MNZBLZ1Ty1LQtpQfLnkNKW7cn72gR9MP8uHzDu7PJQxe2xQB/GaBTVdYHWPDS52KzZOIEH2mFQtBgM=
-X-Received: by 2002:a05:6000:14b:: with SMTP id r11mr54574650wrx.196.1563518086309;
- Thu, 18 Jul 2019 23:34:46 -0700 (PDT)
+        id S1726410AbfGSHAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 03:00:09 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:52553 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726239AbfGSHAJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 03:00:09 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hoMsB-0007Ad-DF; Fri, 19 Jul 2019 09:00:07 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hoMs9-0003lG-Hi; Fri, 19 Jul 2019 09:00:05 +0200
+Date:   Fri, 19 Jul 2019 09:00:05 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     shawnguo@kernel.org, mark.rutland@arm.com, aisheng.dong@nxp.com,
+        peng.fan@nxp.com, anson.huang@nxp.com, devicetree@vger.kernel.org,
+        s.hauer@pengutronix.de, Frank.Li@nxp.com,
+        linux-kernel@vger.kernel.org, paul.olaru@nxp.com,
+        robh+dt@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de,
+        leonard.crestez@nxp.com, festevam@gmail.com, shengjiu.wang@nxp.com,
+        linux-arm-kernel@lists.infradead.org,
+        sound-open-firmware@alsa-project.org
+Subject: Re: [PATCH 0/3] Add DSP node on i.MX8QXP board
+Message-ID: <20190719070005.mkqvfhjras2jmo52@pengutronix.de>
+References: <20190718151346.3523-1-daniel.baluta@nxp.com>
 MIME-Version: 1.0
-References: <20190718151346.3523-1-daniel.baluta@nxp.com> <20190718151346.3523-4-daniel.baluta@nxp.com>
- <CAL_JsqJ6o9mTjLYjnfcYgfSFKb95W8FseZBBb8RLosB__GNBcw@mail.gmail.com>
- <CAEnQRZBubFz90Xf8irDwc=erTXmByXX4rkzZy9r8ymfAuQEsZA@mail.gmail.com> <VI1PR04MB5055597B7C3AC114FEB7E3E5EEC80@VI1PR04MB5055.eurprd04.prod.outlook.com>
-In-Reply-To: <VI1PR04MB5055597B7C3AC114FEB7E3E5EEC80@VI1PR04MB5055.eurprd04.prod.outlook.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Fri, 19 Jul 2019 09:34:34 +0300
-Message-ID: <CAEnQRZC+LyoZ_C3_0RVgRpBFVMuMT26KPVZunqqNKC=OJcERog@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: dsp: fsl: Add DSP core binding support
-To:     Leonard Crestez <leonard.crestez@nxp.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        Paul Olaru <paul.olaru@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Anson Huang <anson.huang@nxp.com>, Peng Fan <peng.fan@nxp.com>,
-        Frank Li <frank.li@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "sound-open-firmware@alsa-project.org" 
-        <sound-open-firmware@alsa-project.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190718151346.3523-1-daniel.baluta@nxp.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:55:39 up 62 days, 13:13, 49 users,  load average: 0.14, 0.13,
+ 0.07
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 18, 2019 at 9:40 PM Leonard Crestez <leonard.crestez@nxp.com> wrote:
->
-> On 18.07.2019 21:24, Daniel Baluta wrote:
-> > On Thu, Jul 18, 2019 at 7:41 PM Rob Herring <robh+dt@kernel.org> wrote:
-> >>
-> >> On Thu, Jul 18, 2019 at 9:13 AM Daniel Baluta <daniel.baluta@nxp.com> wrote:
-> >>>
-> >>> This describes the DSP device tree node.
-> >>>
-> >>> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
->
-> >>> +  power-domains:
-> >>> +    description:
-> >>> +      List of phandle and PM domain specifier as documented in
-> >>> +      Documentation/devicetree/bindings/power/power_domain.txt
-> >>
-> >> How many? 4?
-> >
-> > Yes, 4 for i.MX8QXP. Also, the same number is for i.MX8QM. Anyhow, I didn't
-> > added added a limit here because I really don't know how many will be
-> > in upcoming i.MX platforms.
->
-> Which 4? It might help to use power-domain-names explicitly just like
-> it's done for clocks and mboxes.
->
-> This is very common for phandle lists.
+Hi Daniel,
 
-4 like in the example at the bottom of the patch:
+thanks for your patches :) but it's quite common to bundle the driver
+related and the dt related patches. Can you add the firmware related
+patch to this series in your v2?
 
-+   power-domains = <&pd IMX_SC_R_MU_13A>,
-+                        <&pd IMX_SC_R_MU_13B>,
-+                        <&pd IMX_SC_R_DSP>,
-+                        <&pd IMX_SC_R_DSP_RAM>;
+Regards,
+  Marco
 
-Not sure if it makes sense to use power-domain-names as the driver parses
-directly the "power-domains" property.
+On 19-07-18 18:13, Daniel Baluta wrote:
+> i.MX8QXP boards feature an Hifi4 DSP from Tensilica. This patch series
+> adds the DT node.
+> 
+> Note that we switched to the new yaml format for bindings documentation.
+> 
+> The DSP will run SOF Firmware [1]. Patches adding support for Linux DSP
+> driver are already sent for review to SOF folks [2].
+> 
+> This patch series also contains a patch introducing DT related clocks.
+> 
+> The patch was already reviewed here:
+> 	https://lkml.org/lkml/2019/7/17/975
+> 
+> but I added it in this patch series because it wasn't yet picked by
+> Shawn so patches 2/3 will not compiled without patch 1.
+> 
+> [1] https://github.com/thesofproject/sof
+> [2] https://github.com/thesofproject/linux/pull/1048/commits
+> 
+> Daniel Baluta (3):
+>   clk: imx8: Add DSP related clocks
+>   arm64: dts: imx8qxp: Add DSP DT node
+>   dt-bindings: dsp: fsl: Add DSP core binding support
+> 
+>  .../devicetree/bindings/dsp/fsl,dsp.yaml      | 87 +++++++++++++++++++
+>  arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |  4 +
+>  arch/arm64/boot/dts/freescale/imx8qxp.dtsi    | 32 +++++++
+>  drivers/clk/imx/clk-imx8qxp-lpcg.c            |  5 ++
+>  include/dt-bindings/clock/imx8-clock.h        |  6 +-
+>  5 files changed, 133 insertions(+), 1 deletion(-)
+>  create mode 100644 Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+> 
+> -- 
+> 2.17.1
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
