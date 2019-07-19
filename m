@@ -2,132 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F17686E487
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 12:51:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 879116E493
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 12:57:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725853AbfGSKvL convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Fri, 19 Jul 2019 06:51:11 -0400
-Received: from mail.savoirfairelinux.com ([208.88.110.44]:42378 "EHLO
-        mail.savoirfairelinux.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726239AbfGSKvK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 06:51:10 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.savoirfairelinux.com (Postfix) with ESMTP id AB1B89C01AF;
-        Fri, 19 Jul 2019 06:51:09 -0400 (EDT)
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
-        by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id UITvdYQh0lmp; Fri, 19 Jul 2019 06:51:08 -0400 (EDT)
-Received: from localhost (localhost [127.0.0.1])
-        by mail.savoirfairelinux.com (Postfix) with ESMTP id CD8AD9C0279;
-        Fri, 19 Jul 2019 06:51:08 -0400 (EDT)
-X-Virus-Scanned: amavisd-new at mail.savoirfairelinux.com
-Received: from mail.savoirfairelinux.com ([127.0.0.1])
-        by localhost (mail.savoirfairelinux.com [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id DuBALd-RrgDk; Fri, 19 Jul 2019 06:51:08 -0400 (EDT)
-Received: from mail.savoirfairelinux.com (mail.savoirfairelinux.com [192.168.48.237])
-        by mail.savoirfairelinux.com (Postfix) with ESMTP id 9CA4D9C01AF;
-        Fri, 19 Jul 2019 06:51:08 -0400 (EDT)
-Date:   Fri, 19 Jul 2019 06:51:08 -0400 (EDT)
-From:   Gilles Doffe <gilles.doffe@savoirfairelinux.com>
-To:     Marco Felsch <m.felsch@pengutronix.de>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org, mark rutland <mark.rutland@arm.com>,
-        festevam@gmail.com, s hauer <s.hauer@pengutronix.de>,
-        robh+dt@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de,
-        shawnguo@kernel.org
-Message-ID: <405527661.6507550.1563533468485.JavaMail.zimbra@savoirfairelinux.com>
-In-Reply-To: <20190712135541.55fgchvyp33cl3uv@pengutronix.de>
-References: <20190712124522.571-1-gilles.doffe@savoirfairelinux.com> <20190712135541.55fgchvyp33cl3uv@pengutronix.de>
-Subject: Re: [PATCH] arm: dts: imx6qdl: add gpio expander pca9535
+        id S1726931AbfGSK5o (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 06:57:44 -0400
+Received: from lelv0142.ext.ti.com ([198.47.23.249]:34332 "EHLO
+        lelv0142.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725853AbfGSK5o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 06:57:44 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by lelv0142.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6JAvNAx059571;
+        Fri, 19 Jul 2019 05:57:23 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1563533843;
+        bh=e9BGRW2+AOOjzCcl3h71zGtY2pYY0ecnAlgV2kvpSCc=;
+        h=Subject:From:To:CC:References:Date:In-Reply-To;
+        b=WV7GmmB2tn+MyIA2xtlbs49BX1bLYllkU/9wBq75rO+4M1bphWMbv+v6UrRvaoGkL
+         bLZTqoIOnXz9vKXqExq0oDfVYRT/zDlMD0xGfG/OK1+zOZUvq629+2oUSgpctwyoi0
+         J+QWJRYxbD2lPOqto+JGPHcaDtJEuTYUSZzVr/VM=
+Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6JAvNco063487
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 19 Jul 2019 05:57:23 -0500
+Received: from DFLE101.ent.ti.com (10.64.6.22) by DFLE104.ent.ti.com
+ (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 19
+ Jul 2019 05:57:22 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE101.ent.ti.com
+ (10.64.6.22) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 19 Jul 2019 05:57:22 -0500
+Received: from [172.24.190.233] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6JAvGr8021490;
+        Fri, 19 Jul 2019 05:57:17 -0500
+Subject: Re: [RFC PATCH 23/30] of/platform: Export
+ of_platform_device_create_pdata()
+From:   Kishon Vijay Abraham I <kishon@ti.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+CC:     Tom Joseph <tjoseph@cadence.com>,
+        Bjorn Helgaas <bhelgaas@google.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Gustavo Pimentel <gustavo.pimentel@synopsys.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Jingoo Han <jingoohan1@gmail.com>, <linux-pci@vger.kernel.org>,
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-omap <linux-omap@vger.kernel.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+References: <20190604131516.13596-1-kishon@ti.com>
+ <20190604131516.13596-24-kishon@ti.com>
+ <CAL_JsqJ5gsctd7L3VOhTO1JdUqmMmSJRpos1XQyfxzmGO7wauw@mail.gmail.com>
+ <a80c7c33-7091-70d9-cd86-a19fe43d3bc6@ti.com>
+Message-ID: <f9034a1d-1906-54e8-62f0-cdacf95c42ab@ti.com>
+Date:   Fri, 19 Jul 2019 16:25:37 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Mailer: Zimbra 8.8.11_GA_3737 (ZimbraWebClient - GC75 (Linux)/8.8.11_GA_3737)
-Thread-Topic: imx6qdl: add gpio expander pca9535
-Thread-Index: vpg0c/hPAh+Ul1ZzEvqvEtVCDcLJKQ==
+In-Reply-To: <a80c7c33-7091-70d9-cd86-a19fe43d3bc6@ti.com>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Marco,
+Lorenzo,
 
-Thanks for your review.
-
-Corrected in v2.
-
-Regards,
-Gilles
-
------ Le 12 Juil 19, à 15:55, Marco Felsch m.felsch@pengutronix.de a écrit :
-
-Hi,
-
-On 19-07-12 14:45, Gilles DOFFE wrote:
-> The pca9535 gpio expander is present on the Rex baseboard, but missing
-> from the dtsi.
+On 11/06/19 10:08 AM, Kishon Vijay Abraham I wrote:
+> Hi Rob,
 > 
-> Add the new gpio controller and the associated interrupt line
-> MX6QDL_PAD_NANDF_CS3__GPIO6_IO16.
+> On 10/06/19 11:13 PM, Rob Herring wrote:
+>> On Tue, Jun 4, 2019 at 7:19 AM Kishon Vijay Abraham I <kishon@ti.com> wrote:
+>>>
+>>> Export of_platform_device_create_pdata() to be used by drivers to
+>>> create child devices with the given platform data. This can be used
+>>> by platform specific driver to send platform data core driver. For e.g.,
+>>> this will be used by TI's J721E SoC specific PCIe driver to send
+>>> ->start_link() ops and ->is_link_up() ops to Cadence core PCIe driver.
+>>
+>> NAK
+>>
+>> of_platform_device_create_pdata() is purely for legacy handling of
+>> auxdata which is something I hope to get rid of someday. Or to put it
+>> another way, auxdata use is a sign of platforms not fully converted to
+>> DT.
 > 
-> Signed-off-by: Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
-> ---
->  arch/arm/boot/dts/imx6qdl-rex.dtsi | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+> All right. Thanks for letting me know your thoughts.
 > 
-> diff --git a/arch/arm/boot/dts/imx6qdl-rex.dtsi b/arch/arm/boot/dts/imx6qdl-rex.dtsi
-> index 97f1659144ea..d5324c6761c1 100644
-> --- a/arch/arm/boot/dts/imx6qdl-rex.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-rex.dtsi
-> @@ -136,6 +136,19 @@
->  		compatible = "atmel,24c02";
->  		reg = <0x57>;
->  	};
-> +
-> +	gpio8: pca9535@27 {
-
-Just a nitpick, I would change that to
-
-	pca9535: gpio8@27 {
-
-Regards,
-  Marco
-
-> +		compatible = "nxp,pca9535";
-> +		reg = <0x27>;
-> +		gpio-controller;
-> +		#gpio-cells = <2>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_pca9535>;
-> +		interrupt-parent = <&gpio6>;
-> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-controller;
-> +		#interrupt-cells = <2>;
-> +	};
->  };
->  
->  &i2c3 {
-> @@ -237,6 +250,12 @@
->  			>;
->  		};
->  
-> +		pinctrl_pca9535: pca9535 {
-> +			fsl,pins = <
-> +				MX6QDL_PAD_NANDF_CS3__GPIO6_IO16	0x00017059
-> +		   >;
-> +		};
-> +
->  		pinctrl_uart1: uart1grp {
->  			fsl,pins = <
->  				MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA	0x1b0b1
-> -- 
-> 2.19.1
+> Lorenzo,
 > 
-> 
-> 
+> We've modeled Cadence PCIe core as a separate driver and for some of the
+> functionalities (for example starting LTSSM or checking link status) it has to
+> invoke the wrapper driver functions (The registers for these are present in
+> wrapper and not in Cadence Core). In the case of Designware, we modeled DWC
+> core as a library which provided APIs to be used by wrapper driver. Now that
+> Rob is not inclined for passing platform data from one driver to another (in
+> this case TI specific J721E driver to Cadence PCIe driver), should we model
+> Cadence core also as a library? If you agree, I can prepare patches for making
+> Cadence PCIe core as a library. Please let me know your thoughts.
 
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Can you share your thoughts on this?
+
+Thanks
+Kishon
