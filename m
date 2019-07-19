@@ -2,153 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7BCA06EB9F
-	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 22:33:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3AB966EBA7
+	for <lists+devicetree@lfdr.de>; Fri, 19 Jul 2019 22:38:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388067AbfGSUcn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 16:32:43 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:56646 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388011AbfGSUcj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 16:32:39 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 5A11661836; Fri, 19 Jul 2019 20:32:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1563568358;
-        bh=4lOKewWx4DPDxGEDzYunri8E48SbXykONHMaszyMNJk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=MuKW9PO3LhK8Z0Il7yDSpaw+SAFXMWLK9VM5ohg7L1e3qYimW3QZYGlkmN7fbnkQl
-         6rdx1SUOiblEWCH2sxBT5O9PBfzWtALT8nsK9dhi4DrmyJPmbMefBO76zPs3sFKL+L
-         TVZ7bS0kliC1Gm3GauDyLne6v08zogMADkD/HGbQ=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from davidai-linux.qualcomm.com (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: daidavid1@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 187386182E;
-        Fri, 19 Jul 2019 20:32:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1563568357;
-        bh=4lOKewWx4DPDxGEDzYunri8E48SbXykONHMaszyMNJk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=KsvKiwi3lTIfJjgyxHQ2OXd0AU64RWvMQiGAmdvWj/qF1ZR1371E3HrgNRh3vuopV
-         rI7wcjQ4F8ddQk7xTKUsCb++p2Hq+/O3EQVBNMP3fgmPQwvwjPitC+gxmsH0XEgLQu
-         t9EiVcHVKXgz7/H700x4pNWdQilF+T0MmuOTqa0o=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 187386182E
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=daidavid1@codeaurora.org
-From:   David Dai <daidavid1@codeaurora.org>
-To:     georgi.djakov@linaro.org, bjorn.andersson@linaro.org,
-        robh+dt@kernel.org
-Cc:     David Dai <daidavid1@codeaurora.org>, evgreen@google.com,
-        ilina@codeaurora.org, seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: sdm845: Redefine interconnect provider DT nodes
-Date:   Fri, 19 Jul 2019 13:32:24 -0700
-Message-Id: <1563568344-1274-3-git-send-email-daidavid1@codeaurora.org>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1563568344-1274-1-git-send-email-daidavid1@codeaurora.org>
-References: <1563568344-1274-1-git-send-email-daidavid1@codeaurora.org>
+        id S1731202AbfGSUi0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 16:38:26 -0400
+Received: from atlmailgw1.ami.com ([63.147.10.40]:44733 "EHLO
+        atlmailgw1.ami.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728346AbfGSUi0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 16:38:26 -0400
+X-AuditID: ac1060b2-3fdff70000003a7d-d3-5d322a4365dd
+Received: from atlms1.us.megatrends.com (atlms1.us.megatrends.com [172.16.96.144])
+        (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by atlmailgw1.ami.com (Symantec Messaging Gateway) with SMTP id AD.8C.14973.34A223D5; Fri, 19 Jul 2019 16:38:27 -0400 (EDT)
+Received: from hongweiz-Ubuntu-AMI.us.megatrends.com (172.16.98.93) by
+ atlms1.us.megatrends.com (172.16.96.144) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Fri, 19 Jul 2019 16:38:24 -0400
+From:   Hongwei Zhang <hongweiz@ami.com>
+To:     <hongweiz@ami.com>, Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Joel Stanley <joel@jms.id.au>, <devicetree@vger.kernel.org>,
+        <linux-aspeed@lists.ozlabs.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: dt-bindings: gpio: aspeed: Add SGPIO support 
+Date:   Fri, 19 Jul 2019 16:37:24 -0400
+Message-ID: <1563568644-10392-1-git-send-email-hongweiz@ami.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1563394325-15941-1-git-send-email-hongweiz@ami.com>
+References: <1563394325-15941-1-git-send-email-hongweiz@ami.com>
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [172.16.98.93]
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrGLMWRmVeSWpSXmKPExsWyRiBhgq6zllGswdyFsha7LnNYfJl7isVi
+        /pFzrBa/z/9ltpjyZzmTxabH11gtmlefY7bYPP8Po8XlXXPYLJZev8hk0br3CLsDt8fV9l3s
+        HmvmrWH0eH+jld3j4sdjzB6bVnWyedy5tofNY/OSeo/zMxYyenzeJBfAGcVlk5Kak1mWWqRv
+        l8CVcWw9S8ENuYqVz24yNjDOluhi5OSQEDCReLr4J2sXIxeHkMAuJonuExeZIJzDjBKr755i
+        BKliE1CT2Lt5DlhCRKCJUeJt02cwh1lgBZNE87Q37CBVwgJmEm8mnGQDsVkEVCXOrF7JCmLz
+        CjhIdJ5rZYbYJydx81wnmM0p4Cgx+eU8MFsIqObN02NMEPWCEidnPmEBsZkFJCQOvngBVSMr
+        cevQYyaIOQoSz/ses0xgFJiFpGUWkpYFjEyrGIUSS3JyEzNz0ssN9RJzM/WS83M3MULiYtMO
+        xpaL5ocYmTgYDzFKcDArifDefqkfK8SbklhZlVqUH19UmpNafIhRmoNFSZx35ZpvMUIC6Ykl
+        qdmpqQWpRTBZJg5OqQZGYXNpDvuN5RdiYoOenjvHVrb9X7Fv8IzT82acjtSboHD2/Jmzsra5
+        r3p7P1SvnKPE4hwU9vTjRdtPFWzX/QoF/fr3mUen9YhYzlyzs3fK5NczPa9/O/Kr7d5UZv62
+        DwrX7TidK9Qa91xjMO/8X8Pk8nWN2vurX/jSXqfo/E37yCryvX/eun4dJZbijERDLeai4kQA
+        krwKtHkCAAA=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the DT nodes for each of the Network-On-Chip interconnect
-buses found on SDM845 based platform and redefine the rsc_hlos
-child node as a bcm-voter device to better represent the hardware.
+Hello Andrew,
 
-Signed-off-by: David Dai <daidavid1@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 61 ++++++++++++++++++++++++++++++++++--
- 1 file changed, 58 insertions(+), 3 deletions(-)
+Thanks for reviewing and please see my inline comments.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index e7d78bc..204222e 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -610,6 +610,62 @@
- 			#power-domain-cells = <1>;
- 		};
- 
-+		aggre1_noc: interconnect@16e0000 {
-+			compatible = "qcom,sdm845-aggre1_noc";
-+			reg = <0 0x16e0000 0 0xd080>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voter = <&apps_bcm_voter>;
-+		};
-+
-+		aggre2_noc: interconnect@1700000 {
-+			compatible = "qcom,sdm845-aggre2_noc";
-+			reg = <0 0x1700000 0 0x3b100>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voter = <&apps_bcm_voter>;
-+		};
-+
-+		config_noc: interconnect@1500000 {
-+			compatible = "qcom,sdm845-config_noc";
-+			reg = <0 0x1500000 0 0x5080>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voter = <&apps_bcm_voter>;
-+		};
-+
-+		dc_noc: interconnect@14e0000 {
-+			compatible = "qcom,sdm845-dc_noc";
-+			reg = <0 0x14e0000 0 0x400>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voter = <&apps_bcm_voter>;
-+		};
-+
-+		gladiator_noc: interconnect@17900000 {
-+			compatible = "qcom,sdm845-gladiator_noc";
-+			reg = <0 0x17900000 0 0xd080>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voter = <&apps_bcm_voter>;
-+		};
-+
-+		mem_noc: interconnect@1380000 {
-+			compatible = "qcom,sdm845-mem_noc";
-+			reg = <0 0x1380000 0 0x27200>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voter = <&apps_bcm_voter>;
-+		};
-+
-+		mmss_noc: interconnect@1740000 {
-+			compatible = "qcom,sdm845-mmss_noc";
-+			reg = <0 0x1740000 0 0x1c1000>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voter = <&apps_bcm_voter>;
-+		};
-+
-+		system_noc: interconnect@1620000 {
-+			compatible = "qcom,sdm845-system_noc";
-+			reg = <0 0x1620000 0 0x18080>;
-+			#interconnect-cells = <1>;
-+			qcom,bcm-voter = <&apps_bcm_voter>;
-+		};
-+
- 		qfprom@784000 {
- 			compatible = "qcom,qfprom";
- 			reg = <0 0x00784000 0 0x8ff>;
-@@ -2801,9 +2857,8 @@
- 				};
- 			};
- 
--			rsc_hlos: interconnect {
--				compatible = "qcom,sdm845-rsc-hlos";
--				#interconnect-cells = <1>;
-+			apps_bcm_voter: bcm_voter {
-+				compatible = "qcom,sdm845-bcm-voter";
- 			};
- 		};
- 
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+--Hongwei
 
+> From:	Andrew Jeffery <andrew@aj.id.au>
+> Sent:	Wednesday, July 17, 2019 9:48 PM
+> To:	Hongwei Zhang; Joel Stanley; Linus Walleij; devicetree@vger.kernel.org
+> Cc:	Rob Herring; Mark Rutland; Bartosz Golaszewski; linux-aspeed@lists.ozlabs.org; linux-
+> kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-gpio@vger.kernel.org
+> Subject:	Re: [PATCH 2/3 v4] dt-bindings: gpio: aspeed: Add SGPIO support
+> 
+> The subject is largely correct, but please see the discussion on the driver patch about how to clean up 
+> the [PATCH ...] prefix.
+> 
+> On Thu, 18 Jul 2019, at 05:42, Hongwei Zhang wrote:
+> > Add bindings to support SGPIO on AST2400 or AST2500.
+> > 
+> > Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
+> > ---
+> >  .../devicetree/bindings/gpio/sgpio-aspeed.txt      | 55 ++++++++++++++++++++++
+> >  1 file changed, 55 insertions(+)
+> >  create mode 100644 
+> > Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> > b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> > new file mode 100644
+> > index 0000000..2d6305e
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> > @@ -0,0 +1,55 @@
+> > +Aspeed SGPIO controller Device Tree Bindings
+> > +-------------------------------------------
+> > +
+> > +This SGPIO controller is for ASPEED AST2500 SoC, it supports up to 80
+> > full
+> > +featured Serial GPIOs. Each of the Serial GPIO pins can be programmed
+> > to
+> > +support the following options:
+> > +- Support interrupt option for each input port and various interrupt
+> > +  sensitivity option (level-high, level-low, edge-high, edge-low)
+> > +- Support reset tolerance option for each output port
+> > +- Directly connected to APB bus and its shift clock is from APB bus
+> > clock
+> > +  divided by a programmable value.
+> > +- Co-work with external signal-chained TTL components 
+> > +(74LV165/74LV595)
+> > +
+> > +
+> > +Required properties:
+> > +
+> > +- compatible		: Either "aspeed,ast2400-sgpio" or "aspeed,ast2500-sgpio"
+> > +
+> > +- #gpio-cells 		: Should be two
+> > +			  - First cell is the GPIO line number
+> > +			  - Second cell is used to specify optional
+> > +			    parameters (unused)
+> > +
+> > +- reg			: Address and length of the register set for the device
+> > +- gpio-controller	: Marks the device node as a GPIO controller
+> > +- interrupts		: Interrupt specifier (see interrupt bindings for
+> > +			  details)
+> > +
+> > +- interrupt-controller	: Mark the GPIO controller as an 
+> > interrupt-controller
+> > +
+> > +- nr-gpios		: number of GPIO pins to serialise. 
+> > +			  (should be multiple of 8, up to 80 pins)
+> 
+> Please change the property name to "ngpios", as per the generic GPIO bindings[1].
+> 
+> [1] 
+> https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/Documentation/devicetree/bindi
+> ngs/gpio/gpio.txt?h=v5.2#n141
+
+done
+
+> 
+> Cheers,
+> 
+> Andrew
+> 
+> > +
+> > +- clocks                : A phandle to the APB clock for SGPM clock 
+> > division
+> > +
+> > +- bus-frequency		: SGPM CLK frequency
+> > +
+> > +
+> > +The sgpio and interrupt properties are further described in their
+> > respective bindings documentation:
+> > +
+> > +- Documentation/devicetree/bindings/sgpio/gpio.txt
+> > +- 
+> > +Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+> > +
+> > +  Example:
+> > +	sgpio: sgpio@1e780200 {
+> > +		#gpio-cells = <2>;
+> > +		compatible = "aspeed,ast2500-sgpio";
+> > +		gpio-controller;
+> > +		interrupts = <40>;
+> > +		reg = <0x1e780200 0x0100>;
+> > +		clocks = <&syscon ASPEED_CLK_APB>;
+> > +		interrupt-controller;
+> > +		nr-gpios = <8>;
+> > +		bus-frequency = <12000000>;
+> > +	};
+> > --
+> > 2.7.4
+> > 
+> >
