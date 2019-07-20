@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DC236EE27
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2019 09:16:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4900D6EE3D
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2019 09:35:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726623AbfGTHQk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Jul 2019 03:16:40 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:39107 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726616AbfGTHQj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Jul 2019 03:16:39 -0400
-Received: by mail-io1-f65.google.com with SMTP id f4so63178120ioh.6
-        for <devicetree@vger.kernel.org>; Sat, 20 Jul 2019 00:16:39 -0700 (PDT)
+        id S1726689AbfGTHfL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Jul 2019 03:35:11 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:36191 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726650AbfGTHfK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Jul 2019 03:35:10 -0400
+Received: by mail-io1-f66.google.com with SMTP id o9so63291068iom.3
+        for <devicetree@vger.kernel.org>; Sat, 20 Jul 2019 00:35:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=amarulasolutions.com; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=n6DYMx7wKaYROD5FVCd1p9bSE0uzUsWwaEufeVJ36kg=;
-        b=O+LMCWhNC4mcdV8FP4xRuBHbY/qrm0mhaC6qhO7vfXmdUVIfl+ZbpG0uXFN2n2vvem
-         b6oyea5YdCge1SWKMJwL9lkOSIxG0Yl2I1FZI6wJX41/+X/Hnio394p2D2aS51867md9
-         7H4fqIG6RAsadOgYhehPlzumQatmB1d/TxKA0=
+        bh=yo7l/PRy7h/Gb824LBKVuDwtwGequhTqIvXIp3adEwg=;
+        b=Hwc59WKWLtxrzArZ6J5z8eyuv9j8HpcYCexDbS5qTNlmj/dENQM/OZfD0JZOHjrBcd
+         e3gfY6b3SpgN3x87zCd7LrNgTX7gBvdwrDg8cO7a67MqaBUG2pv/cVmZWv8p2hGjXUAY
+         nXNf8gCxrjgsJRjgJNlbjQ0pOIa+0zdgPAPuA=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=n6DYMx7wKaYROD5FVCd1p9bSE0uzUsWwaEufeVJ36kg=;
-        b=Y0aWgVuMOxFrBKdsq6fXRo8msJhVkxK4e6CleM+ipPs8SlXUA2DA4sxo2IwRynIiCx
-         YrVq+XlsWCtDt3jpFA7jOsEz89uPKCGPcBuQWfvK4q2iXhWwzHQ/ekL91c5KlY1aO2C8
-         2IKTWVg6Q2VYrre8ppDNdb9b5Xh41sH1sgNCEz7Rn9GQXEdwYdU9ZDMZqmScmOrfv8Xt
-         XM4YU4abp5forwE6l0Zxv5b5qIJuUv65g1/0IAJDJ8VYV2nA/bcNTpkKpl/oEvKUeB5y
-         a8wkZVgDK9NGIv5B5eE/BcWRjYIPj0BYqM4KLwKRDaZDx/Yfi0aHbLEvo6yhAqT1/qfw
-         irxg==
-X-Gm-Message-State: APjAAAUlqojzc4Bq0YWeporjjRwwQh9sdNZlo+4xXvM7I/3mbjK0UgPu
-        YyEIM7lYHrCGIkMn8CqHX3amIxDC/toZecTDAjRezw==
-X-Google-Smtp-Source: APXvYqxrB0uRt9YtY4GDUUxefgLvzIIJ7vKZ4BIFtyOZPp//LSPjvCPr4jykQDuNHpHHozdXAz+HNCF1npTujMhRJDs=
-X-Received: by 2002:a6b:5115:: with SMTP id f21mr3228832iob.173.1563606998627;
- Sat, 20 Jul 2019 00:16:38 -0700 (PDT)
+        bh=yo7l/PRy7h/Gb824LBKVuDwtwGequhTqIvXIp3adEwg=;
+        b=FnIMucWmSrt98OPbBR4o8FQILQqcy0HX6J88gD78LjrlVlH/Pj84ZsSYO2AalkiRKV
+         wAuskd6N+BpvESsrWNb6H7x+LIIF02tl7sTzJlm+7meQ1PiMOIPEWKrIPN2tsb5PoSU+
+         LSLBx6GtLbWhbzPT8DMycNVL6wNrySEysddNJlGejP6v9v9MNA5lyCzsOXqicogL9f3T
+         qvTNQ+rj/QDpAzcYwovJoKHNK13WAtI4E0pmqCV0yP0Sg7oFwJhZMxkAhgm2sclPznBV
+         TcMmQWhbti7khz8m66nOWjnj5WJ/A3VB00/Qo7UZ5hsZlGpjYf8atgL2s3OCHqvRnCg8
+         GbJw==
+X-Gm-Message-State: APjAAAWmDRGRbO0VLhP3iPZg7Np9onoRuYiF9LgvE1ROjxWWPfhShtmt
+        6TTnqZRlGDpbewdp8Dj93rAb+yplaB0pURwjWGnZFg==
+X-Google-Smtp-Source: APXvYqwDavOgrhT4MQJkkvC8k6ZNFapMZUSf4ZAK47DcNazni4xVviIrlaRZatDMKMuGJBCB0akuEaXjv2s8zidOQVM=
+X-Received: by 2002:a02:bb08:: with SMTP id y8mr15097818jan.51.1563608109608;
+ Sat, 20 Jul 2019 00:35:09 -0700 (PDT)
 MIME-Version: 1.0
 References: <20190605064933.6bmskkxzzgn35xz7@flea> <CAMty3ZCCP=oCqm5=49BsjwoxdDETgBfU_5g8fQ=bz=iWApV0tw@mail.gmail.com>
  <20190614142406.ybdiqfppo5mc5bgq@flea> <CAMty3ZB45cHx3WeXnywBh2_UA_bTmFs6yBTqLWA1BNf4fQtVvQ@mail.gmail.com>
  <20190625144930.5hegt6bkzqzykjid@flea> <CAMty3ZCmj0Rz7MMhLqihsvLQi+1CHf0fAoJQ4QN65xB-bwxaJw@mail.gmail.com>
  <20190703114933.u3x4ej3v7ocewvif@flea> <CAOf5uw=ZEvMV1hFQE986rNG_ctpReGbjbZzv0m=OzKPdBh57uQ@mail.gmail.com>
  <20190711100100.cty3s6rs3w27low6@flea> <CAOf5uw=3fiMuhcj3kDtCaGNTsxHKRrYb79MXZ+yUZtmf0jU10A@mail.gmail.com>
- <20190720065830.zn3txpyduakywcva@flea>
-In-Reply-To: <20190720065830.zn3txpyduakywcva@flea>
+ <20190720065830.zn3txpyduakywcva@flea> <CAMty3ZDE1xiNgHVLihH378dY5szzkr14V-fwLZdvPs12tY+G1A@mail.gmail.com>
+In-Reply-To: <CAMty3ZDE1xiNgHVLihH378dY5szzkr14V-fwLZdvPs12tY+G1A@mail.gmail.com>
 From:   Jagan Teki <jagan@amarulasolutions.com>
-Date:   Sat, 20 Jul 2019 12:46:27 +0530
-Message-ID: <CAMty3ZDE1xiNgHVLihH378dY5szzkr14V-fwLZdvPs12tY+G1A@mail.gmail.com>
+Date:   Sat, 20 Jul 2019 13:04:58 +0530
+Message-ID: <CAMty3ZA0H_rbe2tJVeOmi=1v4dWXY1=0zK-+DoNawzQaHd=4ug@mail.gmail.com>
 Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for PLL_MIPI
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Michael Nazzareno Trimarchi <michael@amarulasolutions.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Chen-Yu Tsai <wens@csie.org>,
         Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -69,128 +69,141 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 20, 2019 at 12:28 PM Maxime Ripard
-<maxime.ripard@bootlin.com> wrote:
+On Sat, Jul 20, 2019 at 12:46 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
 >
-> On Thu, Jul 11, 2019 at 07:43:16PM +0200, Michael Nazzareno Trimarchi wrote:
-> > > > tcon-pixel clock is the rate that you want to achive on display side
-> > > > and if you have 4 lanes 32bit or lanes and different bit number that
-> > > > you need to have a clock that is able to put outside bits and speed
-> > > > equal to pixel-clock * bits / lanes. so If you want a pixel-clock of
-> > > > 40 mhz and you have 32bits and 4 lanes you need to have a clock of
-> > > > 40 * 32 / 4 in no-burst mode. I think that this is done but most of
-> > > > the display.
+> On Sat, Jul 20, 2019 at 12:28 PM Maxime Ripard
+> <maxime.ripard@bootlin.com> wrote:
+> >
+> > On Thu, Jul 11, 2019 at 07:43:16PM +0200, Michael Nazzareno Trimarchi wrote:
+> > > > > tcon-pixel clock is the rate that you want to achive on display side
+> > > > > and if you have 4 lanes 32bit or lanes and different bit number that
+> > > > > you need to have a clock that is able to put outside bits and speed
+> > > > > equal to pixel-clock * bits / lanes. so If you want a pixel-clock of
+> > > > > 40 mhz and you have 32bits and 4 lanes you need to have a clock of
+> > > > > 40 * 32 / 4 in no-burst mode. I think that this is done but most of
+> > > > > the display.
+> > > >
+> > > > So this is what the issue is then?
+> > > >
+> > > > This one does make sense, and you should just change the rate in the
+> > > > call to clk_set_rate in sun4i_tcon0_mode_set_cpu.
+> > > >
+> > > > I'm still wondering why that hasn't been brought up in either the
+> > > > discussion or the commit log before though.
+> > > >
+> > > Something like this?
 > > >
-> > > So this is what the issue is then?
+> > > drivers/gpu/drm/sun4i/sun4i_tcon.c     | 20 +++++++++++---------
+> > >  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h |  2 --
+> > >  2 files changed, 11 insertions(+), 11 deletions(-)
 > > >
-> > > This one does make sense, and you should just change the rate in the
-> > > call to clk_set_rate in sun4i_tcon0_mode_set_cpu.
+> > > diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > index 64c43ee6bd92..42560d5c327c 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > @@ -263,10 +263,11 @@ static int sun4i_tcon_get_clk_delay(const struct
+> > > drm_display_mode *mode,
+> > >  }
 > > >
-> > > I'm still wondering why that hasn't been brought up in either the
-> > > discussion or the commit log before though.
+> > >  static void sun4i_tcon0_mode_set_common(struct sun4i_tcon *tcon,
+> > > -                                       const struct drm_display_mode *mode)
+> > > +                                       const struct drm_display_mode *mode,
+> > > +                                       u32 tcon_mul)
+> > >  {
+> > >         /* Configure the dot clock */
+> > > -       clk_set_rate(tcon->dclk, mode->crtc_clock * 1000);
+> > > +       clk_set_rate(tcon->dclk, mode->crtc_clock * tcon_mul * 1000);
 > > >
-> > Something like this?
+> > >         /* Set the resolution */
+> > >         regmap_write(tcon->regs, SUN4I_TCON0_BASIC0_REG,
+> > > @@ -335,12 +336,13 @@ static void sun4i_tcon0_mode_set_cpu(struct
+> > > sun4i_tcon *tcon,
+> > >         u8 bpp = mipi_dsi_pixel_format_to_bpp(device->format);
+> > >         u8 lanes = device->lanes;
+> > >         u32 block_space, start_delay;
+> > > -       u32 tcon_div;
+> > > +       u32 tcon_div, tcon_mul;
+> > >
+> > > -       tcon->dclk_min_div = SUN6I_DSI_TCON_DIV;
+> > > -       tcon->dclk_max_div = SUN6I_DSI_TCON_DIV;
+> > > +       tcon->dclk_min_div = 4;
+> > > +       tcon->dclk_max_div = 127;
+> > >
+> > > -       sun4i_tcon0_mode_set_common(tcon, mode);
+> > > +       tcon_mul = bpp / lanes;
+> > > +       sun4i_tcon0_mode_set_common(tcon, mode, tcon_mul);
+> > >
+> > >         /* Set dithering if needed */
+> > >         sun4i_tcon0_mode_set_dithering(tcon, sun4i_tcon_get_connector(encoder));
+> > > @@ -366,7 +368,7 @@ static void sun4i_tcon0_mode_set_cpu(struct
+> > > sun4i_tcon *tcon,
+> > >          */
+> > >         regmap_read(tcon->regs, SUN4I_TCON0_DCLK_REG, &tcon_div);
+> > >         tcon_div &= GENMASK(6, 0);
+> > > -       block_space = mode->htotal * bpp / (tcon_div * lanes);
+> > > +       block_space = mode->htotal * tcon_div * tcon_mul;
+> > >         block_space -= mode->hdisplay + 40;
+> > >
+> > >         regmap_write(tcon->regs, SUN4I_TCON0_CPU_TRI0_REG,
+> > > @@ -408,7 +410,7 @@ static void sun4i_tcon0_mode_set_lvds(struct
+> > > sun4i_tcon *tcon,
+> > >
+> > >         tcon->dclk_min_div = 7;
+> > >         tcon->dclk_max_div = 7;
+> > > -       sun4i_tcon0_mode_set_common(tcon, mode);
+> > > +       sun4i_tcon0_mode_set_common(tcon, mode, 1);
+> > >
+> > >         /* Set dithering if needed */
+> > >         sun4i_tcon0_mode_set_dithering(tcon, sun4i_tcon_get_connector(encoder));
+> > > @@ -487,7 +489,7 @@ static void sun4i_tcon0_mode_set_rgb(struct
+> > > sun4i_tcon *tcon,
+> > >
+> > >         tcon->dclk_min_div = 6;
+> > >         tcon->dclk_max_div = 127;
+> > > -       sun4i_tcon0_mode_set_common(tcon, mode);
+> > > +       sun4i_tcon0_mode_set_common(tcon, mode, 1);
+> > >
+> > >         /* Set dithering if needed */
+> > >         sun4i_tcon0_mode_set_dithering(tcon, connector);
+> > > diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
+> > > b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
+> > > index 5c3ad5be0690..a07090579f84 100644
+> > > --- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
+> > > +++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
+> > > @@ -13,8 +13,6 @@
+> > >  #include <drm/drm_encoder.h>
+> > >  #include <drm/drm_mipi_dsi.h>
+> > >
+> > > -#define SUN6I_DSI_TCON_DIV     4
+> > > -
+> > >  struct sun6i_dsi {
+> > >         struct drm_connector    connector;
+> > >         struct drm_encoder      encoder;
 > >
-> > drivers/gpu/drm/sun4i/sun4i_tcon.c     | 20 +++++++++++---------
-> >  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h |  2 --
-> >  2 files changed, 11 insertions(+), 11 deletions(-)
-> >
-> > diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> > b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> > index 64c43ee6bd92..42560d5c327c 100644
-> > --- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> > +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
-> > @@ -263,10 +263,11 @@ static int sun4i_tcon_get_clk_delay(const struct
-> > drm_display_mode *mode,
-> >  }
-> >
-> >  static void sun4i_tcon0_mode_set_common(struct sun4i_tcon *tcon,
-> > -                                       const struct drm_display_mode *mode)
-> > +                                       const struct drm_display_mode *mode,
-> > +                                       u32 tcon_mul)
-> >  {
-> >         /* Configure the dot clock */
-> > -       clk_set_rate(tcon->dclk, mode->crtc_clock * 1000);
-> > +       clk_set_rate(tcon->dclk, mode->crtc_clock * tcon_mul * 1000);
-> >
-> >         /* Set the resolution */
-> >         regmap_write(tcon->regs, SUN4I_TCON0_BASIC0_REG,
-> > @@ -335,12 +336,13 @@ static void sun4i_tcon0_mode_set_cpu(struct
-> > sun4i_tcon *tcon,
-> >         u8 bpp = mipi_dsi_pixel_format_to_bpp(device->format);
-> >         u8 lanes = device->lanes;
-> >         u32 block_space, start_delay;
-> > -       u32 tcon_div;
-> > +       u32 tcon_div, tcon_mul;
-> >
-> > -       tcon->dclk_min_div = SUN6I_DSI_TCON_DIV;
-> > -       tcon->dclk_max_div = SUN6I_DSI_TCON_DIV;
-> > +       tcon->dclk_min_div = 4;
-> > +       tcon->dclk_max_div = 127;
-> >
-> > -       sun4i_tcon0_mode_set_common(tcon, mode);
-> > +       tcon_mul = bpp / lanes;
-> > +       sun4i_tcon0_mode_set_common(tcon, mode, tcon_mul);
-> >
-> >         /* Set dithering if needed */
-> >         sun4i_tcon0_mode_set_dithering(tcon, sun4i_tcon_get_connector(encoder));
-> > @@ -366,7 +368,7 @@ static void sun4i_tcon0_mode_set_cpu(struct
-> > sun4i_tcon *tcon,
-> >          */
-> >         regmap_read(tcon->regs, SUN4I_TCON0_DCLK_REG, &tcon_div);
-> >         tcon_div &= GENMASK(6, 0);
-> > -       block_space = mode->htotal * bpp / (tcon_div * lanes);
-> > +       block_space = mode->htotal * tcon_div * tcon_mul;
-> >         block_space -= mode->hdisplay + 40;
-> >
-> >         regmap_write(tcon->regs, SUN4I_TCON0_CPU_TRI0_REG,
-> > @@ -408,7 +410,7 @@ static void sun4i_tcon0_mode_set_lvds(struct
-> > sun4i_tcon *tcon,
-> >
-> >         tcon->dclk_min_div = 7;
-> >         tcon->dclk_max_div = 7;
-> > -       sun4i_tcon0_mode_set_common(tcon, mode);
-> > +       sun4i_tcon0_mode_set_common(tcon, mode, 1);
-> >
-> >         /* Set dithering if needed */
-> >         sun4i_tcon0_mode_set_dithering(tcon, sun4i_tcon_get_connector(encoder));
-> > @@ -487,7 +489,7 @@ static void sun4i_tcon0_mode_set_rgb(struct
-> > sun4i_tcon *tcon,
-> >
-> >         tcon->dclk_min_div = 6;
-> >         tcon->dclk_max_div = 127;
-> > -       sun4i_tcon0_mode_set_common(tcon, mode);
-> > +       sun4i_tcon0_mode_set_common(tcon, mode, 1);
-> >
-> >         /* Set dithering if needed */
-> >         sun4i_tcon0_mode_set_dithering(tcon, connector);
-> > diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
-> > b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
-> > index 5c3ad5be0690..a07090579f84 100644
-> > --- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
-> > +++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
-> > @@ -13,8 +13,6 @@
-> >  #include <drm/drm_encoder.h>
-> >  #include <drm/drm_mipi_dsi.h>
-> >
-> > -#define SUN6I_DSI_TCON_DIV     4
-> > -
-> >  struct sun6i_dsi {
-> >         struct drm_connector    connector;
-> >         struct drm_encoder      encoder;
+> > I had more something like this in mind:
+> > http://code.bulix.org/nlp5a4-803511
 >
-> I had more something like this in mind:
-> http://code.bulix.org/nlp5a4-803511
+> Worth to look at it. was it working on your panel? meanwhile I will check it.
+>
+> We have updated with below change [1], seems working on but is
+> actually checking the each divider as before start with 4... till 127.
+>
+> This new approach, is start looking the best divider from 4.. based on
+> the idea vs rounded it will ended up best divider like [2]
+>
+> https://gist.github.com/openedev/7e2c33248b372d29be9979e06d483673
+> https://gist.github.com/openedev/c72dfffc0ca59e7ec1edcd7ad360cdd1
 
-Worth to look at it. was it working on your panel? meanwhile I will check it.
+I made quick check on two possibilities.
 
-We have updated with below change [1], seems working on but is
-actually checking the each divider as before start with 4... till 127.
+1) with Maxime change
+https://gist.github.com/openedev/3b0b3d35ced6d89f5be0831f1cc9d840
+https://gist.github.com/openedev/dd6a9e528cde80ef0508cb54723f505d
 
-This new approach, is start looking the best divider from 4.. based on
-the idea vs rounded it will ended up best divider like [2]
+2) with Maxime change along with min 4, max 127 divider values.
+The outcome similar like 1)
 
-https://gist.github.com/openedev/7e2c33248b372d29be9979e06d483673
-https://gist.github.com/openedev/c72dfffc0ca59e7ec1edcd7ad360cdd1
+This look it will depends on divider, need to check further on this page.
 
 Jagan.
