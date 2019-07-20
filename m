@@ -2,66 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 094046EC95
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2019 00:49:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 129B46ED5A
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2019 04:41:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728887AbfGSWtu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 18:49:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40876 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727344AbfGSWtu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 19 Jul 2019 18:49:50 -0400
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id A42E721874;
-        Fri, 19 Jul 2019 22:49:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563576589;
-        bh=Klt7CebjyXqGVRbXNF1U3wyGJqIWQOIIcRLJT93OQ+g=;
+        id S2390084AbfGTClu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 22:41:50 -0400
+Received: from conssluserg-05.nifty.com ([210.131.2.90]:37830 "EHLO
+        conssluserg-05.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728058AbfGTClu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 22:41:50 -0400
+Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50]) (authenticated)
+        by conssluserg-05.nifty.com with ESMTP id x6K2faF9009523;
+        Sat, 20 Jul 2019 11:41:36 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com x6K2faF9009523
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1563590497;
+        bh=cjbTfQ+RiOWGnD+P3w8/hXI1uAkKHwox2bpmBIGRw+c=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=wCy7eeadZZYg4XZBwCEH/aG4rCHd2X8+WQJiqZrXJ05hWYYDpJXaZWmRfgv4FvYEM
-         EuINtaeTGaWgTB9XR5asYzOpIZ7b9GSBb0mTWM1ZHC/jGKTReSTIOeTeqvrCh0vAU+
-         cVlTZzQsQGSlXlgZiHR8eBtYlTA1QwdjIODnYyj0=
-Received: by mail-qk1-f171.google.com with SMTP id d79so24435899qke.11;
-        Fri, 19 Jul 2019 15:49:49 -0700 (PDT)
-X-Gm-Message-State: APjAAAV3xo+BhMweRPDC4rqsrvLxXr4Nw7WlqDWtAPj9/6Imc3E0QQYq
-        kJpn5wRCyQ57jyOfhK2pX8zCfiz1d6iHbuoBEQ==
-X-Google-Smtp-Source: APXvYqzTrjLNjpoGgXzQ/tPDhplfN9MU7nWEaESSUgvy6jdg+g0UISnO9ycXnTKR/7UlNhzEJDMiPYgAxXRtGPIff+g=
-X-Received: by 2002:a37:a48e:: with SMTP id n136mr37922560qke.223.1563576588892;
- Fri, 19 Jul 2019 15:49:48 -0700 (PDT)
+        b=tvyNq2C5QDy43yWSnQTrt9fZpvbhivoA8oLA/57KW00GlN16/rhWrebkxM6HocdKH
+         mHuneFcGH5VckWDQ+5kbfsZjgxxmVmb82pwMDwZRoPU7ue3btduMX9BQI8z26neN/6
+         5UPunKfdqKs+TJIwpEEMhdzPDGsdH0m7KpAdvA5kR4ZIcYjee8H5XYHTM9xGdSeeKV
+         TqNajkDZfGpSxHIWGip/ch/Q2pU1aeREd1/VsU65BtidqLvI8DjklJAXA8tNpN/+45
+         On67gegY5+J+I9Ujsk9rcMTdJdtGKoYyg6A1rRzA10+UMjKpcsX1Mv7AD6tmeey8kf
+         VeiA5kw5vXe0w==
+X-Nifty-SrcIP: [209.85.217.50]
+Received: by mail-vs1-f50.google.com with SMTP id h28so22727481vsl.12;
+        Fri, 19 Jul 2019 19:41:36 -0700 (PDT)
+X-Gm-Message-State: APjAAAU8mkzuAdyMGj2sKQ48+lWNQXwFCO6OL4TsGuI+xxZYnYt6hY63
+        cgDNRsQIgrWOIS/MgqtNiHMxtr0QyY2KNIust2U=
+X-Google-Smtp-Source: APXvYqyrP0gBJfWbNX2CrzcI4Xc86qn1ZOWEJC8CWA+yOCL9ygHgd4K3odEMTDiaNQd1kSnM1ODyQpuWXcK5AzVBdeM=
+X-Received: by 2002:a67:cd1a:: with SMTP id u26mr35031406vsl.155.1563590495717;
+ Fri, 19 Jul 2019 19:41:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190717115109.15168-1-alexandru.ardelean@analog.com> <20190717115109.15168-5-alexandru.ardelean@analog.com>
-In-Reply-To: <20190717115109.15168-5-alexandru.ardelean@analog.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 19 Jul 2019 16:49:37 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKZMoxdH_rpyD9kTEPtFZ=QxEV325wH=6qdhNX2nS=9ug@mail.gmail.com>
-Message-ID: <CAL_JsqKZMoxdH_rpyD9kTEPtFZ=QxEV325wH=6qdhNX2nS=9ug@mail.gmail.com>
-Subject: Re: [PATCH 4/4][V2] dt-bindings: iio: imu: add bindings for ADIS16460
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Mark Brown <broonie@kernel.org>
+References: <20190719192824.24639-1-Eugeniy.Paltsev@synopsys.com>
+In-Reply-To: <20190719192824.24639-1-Eugeniy.Paltsev@synopsys.com>
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+Date:   Sat, 20 Jul 2019 11:40:59 +0900
+X-Gmail-Original-Message-ID: <CAK7LNARJjb3fgdo_dxPSv-vs5x573OHKf-UAUJGMc89Jfmk+QA@mail.gmail.com>
+Message-ID: <CAK7LNARJjb3fgdo_dxPSv-vs5x573OHKf-UAUJGMc89Jfmk+QA@mail.gmail.com>
+Subject: Re: [TRIVIAL PATCH] of: per-file dtc preprocessor flags
+To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+Cc:     Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
+        Michal Marek <michal.lkml@markovi.net>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        arcml <linux-snps-arc@lists.infradead.org>,
+        Vineet Gupta <Vineet.Gupta1@synopsys.com>,
+        Alexey Brodkin <Alexey.Brodkin@synopsys.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 17, 2019 at 5:51 AM Alexandru Ardelean
-<alexandru.ardelean@analog.com> wrote:
+On Sat, Jul 20, 2019 at 4:28 AM Eugeniy Paltsev
+<Eugeniy.Paltsev@synopsys.com> wrote:
 >
-> This change adds device-tree bindings for the ADIS16460.
->
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-> ---
->  .../bindings/iio/imu/adi,adis16460.yaml       | 53 +++++++++++++++++++
->  MAINTAINERS                                   |  1 +
->  2 files changed, 54 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/iio/imu/adi,adis16460.yaml
+> As of today we are able to pass custom flags to dtc compiler but not
+> to dtc preprocessor.
+> This ability is required for including some board-specific header files.
+> It allows us to pass defined constants to dts without their duplication
+> in several places.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+How to use this option in a useful way?
+
+I see a bunch of defined constants under include/dt-bindings/.
+
+If you are talking about code duplication across architectures,
+you can include arm dtsi from arm64 dts, or vice versa.
+This was made possible by the symbolic links
+in scripts/dtc/include-prefixes/.
+
+Could you please elaborate your issues if you cannot solve them
+by the current strategy?
+
+
+
+> Signed-off-by: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
+> ---
+>  scripts/Makefile.lib | 2 ++
+>  1 file changed, 2 insertions(+)
+>
+> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
+> index f1f38c8cdc74..f2595a608dce 100644
+> --- a/scripts/Makefile.lib
+> +++ b/scripts/Makefile.lib
+> @@ -166,6 +166,8 @@ dtc_cpp_flags  = -Wp,-MD,$(depfile).pre.tmp -nostdinc                    \
+>                  $(addprefix -I,$(DTC_INCLUDE))                          \
+>                  -undef -D__DTS__
+>
+> +dtc_cpp_flags  += $(DTC_CPP_FLAGS_$(basetarget))
+> +
+>  # Useful for describing the dependency of composite objects
+>  # Usage:
+>  #   $(call multi_depend, multi_used_targets, suffix_to_remove, suffix_to_add)
+> --
+> 2.21.0
+>
+
+
+-- 
+Best Regards
+Masahiro Yamada
