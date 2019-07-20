@@ -2,212 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73BEC6EF9C
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2019 16:14:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA34C6EFC4
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2019 17:10:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728362AbfGTOOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Jul 2019 10:14:05 -0400
-Received: from mail-qk1-f194.google.com ([209.85.222.194]:43619 "EHLO
-        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728490AbfGTOOE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Jul 2019 10:14:04 -0400
-Received: by mail-qk1-f194.google.com with SMTP id m14so25363708qka.10
-        for <devicetree@vger.kernel.org>; Sat, 20 Jul 2019 07:14:03 -0700 (PDT)
+        id S1726103AbfGTPKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Jul 2019 11:10:01 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:40002 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726056AbfGTPKB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Jul 2019 11:10:01 -0400
+Received: by mail-lj1-f195.google.com with SMTP id m8so33439665lji.7;
+        Sat, 20 Jul 2019 08:10:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=rjy01hz76qJsGBlj89nPeHsxAVMf/NWX8i7ANc3NyP4=;
-        b=I+ScoAv8q6Te/9p4Qm1WL3NsGcfq1HXumf4DYD5boY31ZFYqRutFNJ1S92hcXfaKdW
-         ySGkDcfSmbEzvu3bCYyoyAniE54YCEDSk197kKGmTg4uC1O/yTTF/2skSaI2wwX6wvoy
-         /UYRUWxI/jlJK8siKJrmwj689HohB+ApkpM7Q=
+        bh=G/7F1h731rG/x69E6APl09eLqjBzw1oq0m56KVTtYAE=;
+        b=q8xa0PBUE3+La1glLJhHb/PNioRTIcZGbLAsAZLOYPwms0tK2P7fl/103CgCnIYNZh
+         LmtkV4Q58qViOfLju0o3tu3PNMbiYPh5uCt+CcnZ/cjSZT4OBZ3ac6Frfr7JkkP58uQ0
+         BGk6HpjOt81M6xtg5Z1jrftH+HQiuyLiMQ6TxgmxM9C4/dxwISz1CwyVxzX9K81g6lq2
+         Crdl9bq8kHBxQoa4iUnSDEaWGuPBjic8orDzehvAlpt3fbLnm31ZhXaGyJwb1HATMx2P
+         bpP5AHNpo8uBs2UuBA7W14NHirzCUk+PCUXHFipR2U+/A0rrC6xoMOyuzDI2Wxuom3AC
+         BeaA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=rjy01hz76qJsGBlj89nPeHsxAVMf/NWX8i7ANc3NyP4=;
-        b=NPhVqxCjKMjk2RfFh155eg6ab/uK8+7EsIFbp5HowOk0dnInmfeDatDz23nQ4KH0Sl
-         bASH8Yb4zW1E49yuZvUMuQ1D/eZa34qt3cPGyslUdE+1VCBcb892sT6d03pnAwmU77z9
-         mxTJb09uVUpI/qlcN2NwRpFrcyl/fJxhs8TjbvBI/d7iOsOwVridKhxjoWXBrkbXh4JF
-         YMkf7HI1ze0r1mE8pd9oOtdIFY4joW1N8SJX1R8hB8rblDGr9LiXbzZGdKobOW8GFjeR
-         S3eoutstSD5QR4ZpfIDdQkjG96KeDUeBU2KtqsmWZaWyEOc5VioOl1+9aNZ9lXyZE+6l
-         1B0g==
-X-Gm-Message-State: APjAAAXpupY3kSz1F3A9B6sabWCccx7FKEPJ8wzG04Z1nz52l0aqoKRw
-        yLAyaKGgKsNuH4Ua1MUFRTCr0TC/NAVUvEW/2O8cNA==
-X-Google-Smtp-Source: APXvYqwPDOsBteUqw3hytvAK4uoJj9IbndzbKZU8k0iNDt6pOzdf6KeidqoUr+AO9CQpwMmx2+ZqXLUueG4APAXdP9E=
-X-Received: by 2002:ae9:f017:: with SMTP id l23mr39448045qkg.457.1563632043392;
- Sat, 20 Jul 2019 07:14:03 -0700 (PDT)
+        bh=G/7F1h731rG/x69E6APl09eLqjBzw1oq0m56KVTtYAE=;
+        b=GZrmM7an4wdEer0WIVDmMnVzEyaBNi64o2qWssouVZXhk0M7FrvDU0Oq800SgQGXKA
+         VxOFEHoQ56MpbigrKeHzZ031LwDUkm9YMKaT3ef+zpvVBmYTK6+HEspNCb9N/JLmpDMf
+         pR+9/GWu3NBseVUl0waPRkHgcNpXx648ml9wbCIOLVq4Xr1N2GHsH9lQE4XmihMRdC25
+         8y6UE5iUZM6mG1aUsmQUR//U0gNQh6XU48440PkpHDTUGAtPXK6MsS/Dw1MxTujmP3pv
+         rcYj6rlOrC0CnyGEr0ZJPRZNrdupCj6vzQHmUgU3a+Q0uj9ZU+zzFROSunxIvbZ6jRZQ
+         AVHw==
+X-Gm-Message-State: APjAAAWuRBs+5cyerKDttjxPG67tN7xJw5G6lA1xKhmliYfdF1cdRdq4
+        oybDhBcmlYU3JXbbilqjOtiAbs7St4Jkqei9WjA=
+X-Google-Smtp-Source: APXvYqyYG4v45qqvBkCwlBj9rZwtEIrpLdtk2DT4/lHLxQoF9qrHutZIWi2Ws9aeHEu2lrBtoq76gRJVuQqDRa024A4=
+X-Received: by 2002:a2e:8650:: with SMTP id i16mr30702604ljj.178.1563635399310;
+ Sat, 20 Jul 2019 08:09:59 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190718080119.30707-1-zhiyong.tao@mediatek.com> <20190718080119.30707-3-zhiyong.tao@mediatek.com>
-In-Reply-To: <20190718080119.30707-3-zhiyong.tao@mediatek.com>
-From:   Nicolas Boichat <drinkcat@chromium.org>
-Date:   Sat, 20 Jul 2019 22:13:51 +0800
-Message-ID: <CANMq1KBzLjshQGqfULdPFbzzYxMx2+T+Ku6B4j0QoFRhgsP_nw@mail.gmail.com>
-Subject: Re: [PATCH v1 2/2] auxadc: mediatek: support efuse calibration in
- auxadc driver
-To:     Zhiyong Tao <zhiyong.tao@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>, jic23@kernel.org,
-        knaack.h@gmx.de, Lars-Peter Clausen <lars@metafoo.de>,
-        pmeerw@pmeerw.net, srv_heupstream <srv_heupstream@mediatek.com>,
-        hui.liu@mediatek.com, jg_poxu@mediatek.com, sj.huang@mediatek.com,
-        Yingjoe Chen <yingjoe.chen@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Erin Lo <erin.lo@mediatek.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
+References: <20190719121430.9318-1-andradanciu1997@gmail.com> <20190719121430.9318-2-andradanciu1997@gmail.com>
+In-Reply-To: <20190719121430.9318-2-andradanciu1997@gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Sat, 20 Jul 2019 12:09:51 -0300
+Message-ID: <CAOMZO5CAsTxEegEkBQ1uVaVD52WyLO7tV-GDSzYDDuEVpP6pmg@mail.gmail.com>
+Subject: Re: [PATCH v5 1/2] arm64: dts: fsl: pico-pi: Add a device tree for
+ the PICO-PI-IMX8M
+To:     andradanciu1997 <andradanciu1997@gmail.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        devicetree@vger.kernel.org, lkml <linux-kernel@vger.kernel.org>,
-        linux-arm Mailing List <linux-arm-kernel@lists.infradead.org>,
-        linux-iio@vger.kernel.org,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        =?UTF-8?Q?Jonathan_Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Li Yang <leoyang.li@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>, pankaj.bansal@nxp.com,
+        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
+        Pramod Kumar <pramod.kumar_1@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Richard Hu <richard.hu@technexion.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 18, 2019 at 4:01 PM Zhiyong Tao <zhiyong.tao@mediatek.com> wrote:
->
-> This patch support efuse calibration in auxadc driver
->
-> Signed-off-by: Zhiyong Tao <zhiyong.tao@mediatek.com>
-> Signed-off-by: jg_poxu <jg_poxu@mediatek.com>
-> ---
->  drivers/iio/adc/mt6577_auxadc.c | 71 +++++++++++++++++++++++++++++++++++++++++
->  1 file changed, 71 insertions(+)
->
-> diff --git a/drivers/iio/adc/mt6577_auxadc.c b/drivers/iio/adc/mt6577_auxadc.c
-> index 95d76abb64ec..e30d9736b1a5 100644
-> --- a/drivers/iio/adc/mt6577_auxadc.c
-> +++ b/drivers/iio/adc/mt6577_auxadc.c
-> @@ -17,12 +17,14 @@
->  #include <linux/err.h>
->  #include <linux/kernel.h>
->  #include <linux/module.h>
-> +#include <linux/nvmem-consumer.h>
->  #include <linux/of.h>
->  #include <linux/of_device.h>
->  #include <linux/platform_device.h>
->  #include <linux/iopoll.h>
->  #include <linux/io.h>
->  #include <linux/iio/iio.h>
-> +#include <linux/slab.h>
->
->  /* Register definitions */
->  #define MT6577_AUXADC_CON0                    0x00
-> @@ -42,6 +44,13 @@
->  #define MT6577_AUXADC_POWER_READY_MS          1
->  #define MT6577_AUXADC_SAMPLE_READY_US         25
->
-> +#define ADC_GE_A_SHIFT      10
-> +#define ADC_GE_A_MASK       (0x3ff << ADC_GE_A_SHIFT)
-> +#define ADC_OE_A_SHIFT      0
-> +#define ADC_OE_A_MASK       (0x3ff << ADC_OE_A_SHIFT)
-> +#define ADC_CALI_EN_A_SHIFT 20
-> +#define ADC_CALI_EN_A_MASK  (0x1 << ADC_CALI_EN_A_SHIFT)
-> +
->  struct mt6577_auxadc_device {
->         void __iomem *reg_base;
->         struct clk *adc_clk;
-> @@ -74,6 +83,64 @@ static const struct iio_chan_spec mt6577_auxadc_iio_channels[] = {
->         MT6577_AUXADC_CHANNEL(15),
->  };
->
-> +s32 cali_oe;
-> +s32 cali_ge;
+Hi Andra,
 
-Why do you need these 2 (global) variables? They are set in
-mt6577_auxadc_update_cali but never read anywhere.
+Just realized one minor issue:
 
-> +struct adc_cali_info {
-> +       u32 cali_ge_a;
-> +       u32 cali_oe_a;
-> +       u32 gain;
-> +};
-> +static struct adc_cali_info adc_cali;
+On Fri, Jul 19, 2019 at 9:14 AM andradanciu1997
+<andradanciu1997@gmail.com> wrote:
 
-This should be inside struct mt6577_auxadc_device structure. And... I
-still do not understand what this does, since nothing reads back
-adc_cali either...
+> +&i2c1 {
+> +       clock-frequency = <100000>;
+> +       pinctrl-names = "default";
+> +       pinctrl-0 = <&pinctrl_i2c1>;
+> +       status = "okay";
+> +
+> +       pmic: pmic@4b {
+> +               reg = <0x4b>;
+> +               compatible = "rohm,bd71837";
+> +               /* PMIC BD71837 PMIC_nINT GPIO1_IO12 */
 
-On gerrit (https://chromium-review.googlesource.com/c/chromiumos/third_party/kernel/+/1624410),
-you mentioned that thermal module will use these, can you please
-upload these changes as part of this series, so that we can review the
-whole thing in one piece (and understand better how to fix this
-interface).
+Comment says gpio1 12...
 
-> +
-> +static int mt6577_auxadc_update_cali(struct device *dev)
-> +{
-> +       struct nvmem_cell *cell;
-> +       u32 *buf;
-> +       size_t len;
-> +       int ret = 0;
-> +
-> +       cali_oe = 0;
-> +       cali_ge = 0;
-> +
-> +       cell = nvmem_cell_get(dev, "calibration-data");
-> +       if (IS_ERR(cell)) {
-> +               if (PTR_ERR(cell) == -EPROBE_DEFER)
-> +                       return PTR_ERR(cell);
-> +               return 0;
-> +       }
-> +
-> +       buf = (u32 *)nvmem_cell_read(cell, &len);
+> +               pinctrl-names = "default";
+> +               pinctrl-0 = <&pinctrl_pmic>;
+> +               clocks = <&pmic_osc>;
+> +               clock-names = "osc";
+> +               clock-output-names = "pmic_clk";
+> +               interrupt-parent = <&gpio1>;
+> +               interrupts = <3 GPIO_ACTIVE_LOW>;
 
-Cast is not necessary.
+but here you use gpio1 3 instead, so there is a mismatch.
 
-> +
-> +       nvmem_cell_put(cell);
-> +
-> +       if (IS_ERR(buf))
-> +               return PTR_ERR(buf);
-> +
-> +       if (len < sizeof(u32)) {
-> +               dev_warn(dev, "invalid calibration data\n");
-> +               ret = -EINVAL;
-> +               goto out;
-> +       }
-> +
-> +       if (((buf[0] & ADC_CALI_EN_A_MASK) >> ADC_CALI_EN_A_SHIFT) != 0) {
-> +               adc_cali.cali_oe_a =
-> +                       (buf[0] & ADC_OE_A_MASK) >> ADC_OE_A_SHIFT;
-> +               adc_cali.cali_ge_a =
-> +                       ((buf[0] & ADC_GE_A_MASK) >> ADC_GE_A_SHIFT);
-> +
-> +               cali_ge = adc_cali.cali_ge_a - 512;
-> +               cali_oe = adc_cali.cali_oe_a - 512;
-> +               adc_cali.gain = 1 + cali_ge;
-> +       }  else {
-> +               dev_info(dev, "Device not calibrated, using default calibration values\n");
-> +       }
-> +
-> +out:
-> +       kfree(buf);
-> +
-> +       return ret;
-> +}
-> +
->  static inline void mt6577_auxadc_mod_reg(void __iomem *reg,
->                                          u32 or_mask, u32 and_mask)
->  {
-> @@ -274,6 +341,10 @@ static int mt6577_auxadc_probe(struct platform_device *pdev)
->                 goto err_power_off;
->         }
->
-> +       ret = mt6577_auxadc_update_cali(&pdev->dev);
-> +       if (ret)
-> +               return ret;
-> +
->         return 0;
+Please check against the schematics and pick the correct one.
 
-Or just
-return mt6577_auxadc_update_cali(&pdev->dev);
+I would suggest removing the:
+/* PMIC BD71837 PMIC_nINT GPIO1_IO12 */
 
->
->  err_power_off:
-> --
-> 2.12.5
->
+comment entirely.
+
+For the next version you can:
+
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
+
+Thanks
