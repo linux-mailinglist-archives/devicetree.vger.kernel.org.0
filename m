@@ -2,105 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 129B46ED5A
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2019 04:41:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 572696ED86
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2019 05:27:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390084AbfGTClu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 22:41:50 -0400
-Received: from conssluserg-05.nifty.com ([210.131.2.90]:37830 "EHLO
-        conssluserg-05.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728058AbfGTClu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 22:41:50 -0400
-Received: from mail-vs1-f50.google.com (mail-vs1-f50.google.com [209.85.217.50]) (authenticated)
-        by conssluserg-05.nifty.com with ESMTP id x6K2faF9009523;
-        Sat, 20 Jul 2019 11:41:36 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-05.nifty.com x6K2faF9009523
+        id S1730305AbfGTD1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 19 Jul 2019 23:27:02 -0400
+Received: from conssluserg-02.nifty.com ([210.131.2.81]:51747 "EHLO
+        conssluserg-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728767AbfGTD1B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 23:27:01 -0400
+Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52]) (authenticated)
+        by conssluserg-02.nifty.com with ESMTP id x6K3QYjE010762;
+        Sat, 20 Jul 2019 12:26:35 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com x6K3QYjE010762
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1563590497;
-        bh=cjbTfQ+RiOWGnD+P3w8/hXI1uAkKHwox2bpmBIGRw+c=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=tvyNq2C5QDy43yWSnQTrt9fZpvbhivoA8oLA/57KW00GlN16/rhWrebkxM6HocdKH
-         mHuneFcGH5VckWDQ+5kbfsZjgxxmVmb82pwMDwZRoPU7ue3btduMX9BQI8z26neN/6
-         5UPunKfdqKs+TJIwpEEMhdzPDGsdH0m7KpAdvA5kR4ZIcYjee8H5XYHTM9xGdSeeKV
-         TqNajkDZfGpSxHIWGip/ch/Q2pU1aeREd1/VsU65BtidqLvI8DjklJAXA8tNpN/+45
-         On67gegY5+J+I9Ujsk9rcMTdJdtGKoYyg6A1rRzA10+UMjKpcsX1Mv7AD6tmeey8kf
-         VeiA5kw5vXe0w==
-X-Nifty-SrcIP: [209.85.217.50]
-Received: by mail-vs1-f50.google.com with SMTP id h28so22727481vsl.12;
-        Fri, 19 Jul 2019 19:41:36 -0700 (PDT)
-X-Gm-Message-State: APjAAAU8mkzuAdyMGj2sKQ48+lWNQXwFCO6OL4TsGuI+xxZYnYt6hY63
-        cgDNRsQIgrWOIS/MgqtNiHMxtr0QyY2KNIust2U=
-X-Google-Smtp-Source: APXvYqyrP0gBJfWbNX2CrzcI4Xc86qn1ZOWEJC8CWA+yOCL9ygHgd4K3odEMTDiaNQd1kSnM1ODyQpuWXcK5AzVBdeM=
-X-Received: by 2002:a67:cd1a:: with SMTP id u26mr35031406vsl.155.1563590495717;
- Fri, 19 Jul 2019 19:41:35 -0700 (PDT)
+        s=dec2015msa; t=1563593195;
+        bh=/cy4zkl9MBndlJPf309omN2x5BYB6od3xL14Bqq951k=;
+        h=From:Date:Subject:To:Cc:From;
+        b=YBL9SX8nGcdiSDqzzqhaCwQW4V/n+XvKYlm8sCuY3fUDN7SPLhzmnRVzsx+SE2Jvf
+         eNaza/lW5/OwBI17PmoK/W9nWBdI5rD0xRnCiA80SmEY5HHnBg2i6sttwv9d8Nz4ZM
+         LSLSw/f4andPN3Nu8ltIaR4rVSOoLCVtCoMFlQF2hNPMVk+TnA4CgnKNOoIUJLcwtl
+         RbfI2kFtP1wwHK/N6MC31iIO3u3tHCSCeLd0hsPWAiU44o6YLn2dqmJ+oZp52Rg0YM
+         ZWpFt/AQCsZ3RU0a0uNa+oq0v6pzg9kUYaJlO4jcDeZse1mgR6GLePk5DV6rzd0QwO
+         Xw84/ASDn7gzQ==
+X-Nifty-SrcIP: [209.85.222.52]
+Received: by mail-ua1-f52.google.com with SMTP id 8so13297460uaz.11;
+        Fri, 19 Jul 2019 20:26:34 -0700 (PDT)
+X-Gm-Message-State: APjAAAVWV+RQ+XS/6XeqH4EMrQmUh/uipTf8oLr741AgajDR1kvw5ktT
+        05QtnOr6Al18wqF/j71peGq6OcnRQdTAK9tjvyM=
+X-Google-Smtp-Source: APXvYqxMWol/Hq29+8CUkgjOAH9mDC4bKgEruVV4pjWDHDa2y3dUX8Vbo6R5vHcaU54H7hy2Je1Ilc698k/gWzOxwd0=
+X-Received: by 2002:ab0:5ea6:: with SMTP id y38mr35301733uag.40.1563593193773;
+ Fri, 19 Jul 2019 20:26:33 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190719192824.24639-1-Eugeniy.Paltsev@synopsys.com>
-In-Reply-To: <20190719192824.24639-1-Eugeniy.Paltsev@synopsys.com>
 From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-Date:   Sat, 20 Jul 2019 11:40:59 +0900
-X-Gmail-Original-Message-ID: <CAK7LNARJjb3fgdo_dxPSv-vs5x573OHKf-UAUJGMc89Jfmk+QA@mail.gmail.com>
-Message-ID: <CAK7LNARJjb3fgdo_dxPSv-vs5x573OHKf-UAUJGMc89Jfmk+QA@mail.gmail.com>
-Subject: Re: [TRIVIAL PATCH] of: per-file dtc preprocessor flags
-To:     Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-Cc:     Linux Kbuild mailing list <linux-kbuild@vger.kernel.org>,
-        Michal Marek <michal.lkml@markovi.net>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+Date:   Sat, 20 Jul 2019 12:25:58 +0900
+X-Gmail-Original-Message-ID: <CAK7LNASyzmYjjBkFxRc06rqf36-en-bvJvrKcg6iiRfjoPCxhQ@mail.gmail.com>
+Message-ID: <CAK7LNASyzmYjjBkFxRc06rqf36-en-bvJvrKcg6iiRfjoPCxhQ@mail.gmail.com>
+Subject: [Question] orphan platform data header
+To:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         DTML <devicetree@vger.kernel.org>,
-        arcml <linux-snps-arc@lists.infradead.org>,
-        Vineet Gupta <Vineet.Gupta1@synopsys.com>,
-        Alexey Brodkin <Alexey.Brodkin@synopsys.com>
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        masahiroy@kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 20, 2019 at 4:28 AM Eugeniy Paltsev
-<Eugeniy.Paltsev@synopsys.com> wrote:
->
-> As of today we are able to pass custom flags to dtc compiler but not
-> to dtc preprocessor.
-> This ability is required for including some board-specific header files.
-> It allows us to pass defined constants to dts without their duplication
-> in several places.
+Hi.
 
-How to use this option in a useful way?
-
-I see a bunch of defined constants under include/dt-bindings/.
-
-If you are talking about code duplication across architectures,
-you can include arm dtsi from arm64 dts, or vice versa.
-This was made possible by the symbolic links
-in scripts/dtc/include-prefixes/.
-
-Could you please elaborate your issues if you cannot solve them
-by the current strategy?
+I see several platform-data headers
+that are not used in upstream.
 
 
+For instance, please look at this driver:
+drivers/leds/leds-netxbig.c
 
-> Signed-off-by: Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>
-> ---
->  scripts/Makefile.lib | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/scripts/Makefile.lib b/scripts/Makefile.lib
-> index f1f38c8cdc74..f2595a608dce 100644
-> --- a/scripts/Makefile.lib
-> +++ b/scripts/Makefile.lib
-> @@ -166,6 +166,8 @@ dtc_cpp_flags  = -Wp,-MD,$(depfile).pre.tmp -nostdinc                    \
->                  $(addprefix -I,$(DTC_INCLUDE))                          \
->                  -undef -D__DTS__
->
-> +dtc_cpp_flags  += $(DTC_CPP_FLAGS_$(basetarget))
-> +
->  # Useful for describing the dependency of composite objects
->  # Usage:
->  #   $(call multi_depend, multi_used_targets, suffix_to_remove, suffix_to_add)
-> --
-> 2.21.0
->
+If I understood it correctly, this driver
+supports both device tree and legacy board-file.
 
 
--- 
+I grepped 'netxbig_led_platform_data', but
+I only found the driver and platform_data header.
+No board-file in upstream.
+
+masahiro@grover:~/ref/linux$ git grep netxbig_led_platform_data
+drivers/leds/leds-netxbig.c:                          struct
+netxbig_led_platform_data *pdata,
+drivers/leds/leds-netxbig.c:                                 struct
+netxbig_led_platform_data *pdata)
+drivers/leds/leds-netxbig.c:                      struct
+netxbig_led_platform_data *pdata)
+drivers/leds/leds-netxbig.c:    struct netxbig_led_platform_data
+*pdata = dev_get_platdata(&pdev->dev);
+include/linux/platform_data/leds-kirkwood-netxbig.h:struct
+netxbig_led_platform_data {
+
+
+
+So, what shall we do?
+
+Drop the board-file support? Or, keep it
+in case somebody is still using their board-files
+in downstream?
+
+
+
+
+--
 Best Regards
 Masahiro Yamada
