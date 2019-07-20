@@ -2,96 +2,164 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 572696ED86
-	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2019 05:27:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 52F5C6EDEF
+	for <lists+devicetree@lfdr.de>; Sat, 20 Jul 2019 08:16:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730305AbfGTD1C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 19 Jul 2019 23:27:02 -0400
-Received: from conssluserg-02.nifty.com ([210.131.2.81]:51747 "EHLO
-        conssluserg-02.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728767AbfGTD1B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 19 Jul 2019 23:27:01 -0400
-Received: from mail-ua1-f52.google.com (mail-ua1-f52.google.com [209.85.222.52]) (authenticated)
-        by conssluserg-02.nifty.com with ESMTP id x6K3QYjE010762;
-        Sat, 20 Jul 2019 12:26:35 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-02.nifty.com x6K3QYjE010762
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1563593195;
-        bh=/cy4zkl9MBndlJPf309omN2x5BYB6od3xL14Bqq951k=;
-        h=From:Date:Subject:To:Cc:From;
-        b=YBL9SX8nGcdiSDqzzqhaCwQW4V/n+XvKYlm8sCuY3fUDN7SPLhzmnRVzsx+SE2Jvf
-         eNaza/lW5/OwBI17PmoK/W9nWBdI5rD0xRnCiA80SmEY5HHnBg2i6sttwv9d8Nz4ZM
-         LSLSw/f4andPN3Nu8ltIaR4rVSOoLCVtCoMFlQF2hNPMVk+TnA4CgnKNOoIUJLcwtl
-         RbfI2kFtP1wwHK/N6MC31iIO3u3tHCSCeLd0hsPWAiU44o6YLn2dqmJ+oZp52Rg0YM
-         ZWpFt/AQCsZ3RU0a0uNa+oq0v6pzg9kUYaJlO4jcDeZse1mgR6GLePk5DV6rzd0QwO
-         Xw84/ASDn7gzQ==
-X-Nifty-SrcIP: [209.85.222.52]
-Received: by mail-ua1-f52.google.com with SMTP id 8so13297460uaz.11;
-        Fri, 19 Jul 2019 20:26:34 -0700 (PDT)
-X-Gm-Message-State: APjAAAVWV+RQ+XS/6XeqH4EMrQmUh/uipTf8oLr741AgajDR1kvw5ktT
-        05QtnOr6Al18wqF/j71peGq6OcnRQdTAK9tjvyM=
-X-Google-Smtp-Source: APXvYqxMWol/Hq29+8CUkgjOAH9mDC4bKgEruVV4pjWDHDa2y3dUX8Vbo6R5vHcaU54H7hy2Je1Ilc698k/gWzOxwd0=
-X-Received: by 2002:ab0:5ea6:: with SMTP id y38mr35301733uag.40.1563593193773;
- Fri, 19 Jul 2019 20:26:33 -0700 (PDT)
-MIME-Version: 1.0
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-Date:   Sat, 20 Jul 2019 12:25:58 +0900
-X-Gmail-Original-Message-ID: <CAK7LNASyzmYjjBkFxRc06rqf36-en-bvJvrKcg6iiRfjoPCxhQ@mail.gmail.com>
-Message-ID: <CAK7LNASyzmYjjBkFxRc06rqf36-en-bvJvrKcg6iiRfjoPCxhQ@mail.gmail.com>
-Subject: [Question] orphan platform data header
-To:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Linus Torvalds <torvalds@linux-foundation.org>,
+        id S1726247AbfGTGQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Jul 2019 02:16:56 -0400
+Received: from mail-pf1-f201.google.com ([209.85.210.201]:39174 "EHLO
+        mail-pf1-f201.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726190AbfGTGQ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Jul 2019 02:16:56 -0400
+Received: by mail-pf1-f201.google.com with SMTP id 6so20008085pfi.6
+        for <devicetree@vger.kernel.org>; Fri, 19 Jul 2019 23:16:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=ix0OFdDAy+PKeD1G3w5tyzwxeeMj3ANV8l3DdrszkYw=;
+        b=mfNDPj5Nvf2w78TVydj1ro7xvNs+5fVUwAYjlJoC+epjPXQcB3oOvuGPNl76OnzN4C
+         SSjecnQbIOKNDnfp44WejYatHrD2xXsaKzAxuzDUz7KUtLBLiJdrMYM3HInbkzdruOFT
+         2zhjmyM3UsZ2W/S6TcJ23Q57wCPc8cg0ERnD6MjytYDJcmCjHMHzsx6/PJjxriaA0iTz
+         lF8/5juzBPk7B7lEuHzeNonolcsfxjbgrBGhlICD+B39DUYhCjSDnNOlXSq8i9Gp8Ji6
+         Z+8d+eGWkhqy0qgxF3JpI02advwzZM0LCJozSVfOfVEeAOHRDncc8nUihlZJsGB61PO3
+         /IYQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=ix0OFdDAy+PKeD1G3w5tyzwxeeMj3ANV8l3DdrszkYw=;
+        b=DlaKaKym/VFDWtHFH7/9F7ex4SOfgVpQv86yeSrEjuQNqimAxJWd+Y9lNAzW+7Ycnr
+         UGeGmwihfq14drh98BzVyKEGEFnMptOucyo5b7FdweMWhQmdJ8xUSua/HIrFXk3RaEkQ
+         mYuKjCr7wGZx5ejJUgBigJpAmR7yo9c4y3gSaFOtUHhGmzHINIm8Y8RTYAfONEhVb06Q
+         y5yxjS+cSLXm09WsT6gG0vdZ72f48fc1G5eG37MmfNsfqYmHX8A21PXulU5Bj2MTHmHD
+         JE/7iTxBNhcAhXrgTW92p3SEp/HU7Y1fTXi58vaYHisr82bhCXNHdA6VLhEs9EUssTp4
+         9KNw==
+X-Gm-Message-State: APjAAAXeIuMdJtfjrTDUMP5xegEk/zptRrFmLkKDyK5qCPsGghwupEkz
+        1AZx9cJS4IeyTlGL6nBPe680JWxS5WmrMdQ=
+X-Google-Smtp-Source: APXvYqz41pmamoZ+APky4U5DJ1JTrgyo9lzO0O0y4SngPN8nulYMCF2E9hPAwTTE7I9jXbGqf6MWAuO5fJAMsAA=
+X-Received: by 2002:a65:4045:: with SMTP id h5mr59972449pgp.247.1563603414696;
+ Fri, 19 Jul 2019 23:16:54 -0700 (PDT)
+Date:   Fri, 19 Jul 2019 23:16:39 -0700
+Message-Id: <20190720061647.234852-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.22.0.657.g960e92d24f-goog
+Subject: [PATCH v6 0/7] Solve postboot supplier cleanup and optimize probe ordering
+From:   Saravana Kannan <saravanak@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        DTML <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        masahiroy@kernel.org
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        David Collins <collinsd@codeaurora.org>,
+        kernel-team@android.com
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi.
+Add device-links to track functional dependencies between devices
+after they are created (but before they are probed) by looking at
+their common DT bindings like clocks, interconnects, etc.
 
-I see several platform-data headers
-that are not used in upstream.
+Having functional dependencies automatically added before the devices
+are probed, provides the following benefits:
+
+- Optimizes device probe order and avoids the useless work of
+  attempting probes of devices that will not probe successfully
+  (because their suppliers aren't present or haven't probed yet).
+
+  For example, in a commonly available mobile SoC, registering just
+  one consumer device's driver at an initcall level earlier than the
+  supplier device's driver causes 11 failed probe attempts before the
+  consumer device probes successfully. This was with a kernel with all
+  the drivers statically compiled in. This problem gets a lot worse if
+  all the drivers are loaded as modules without direct symbol
+  dependencies.
+
+- Supplier devices like clock providers, interconnect providers, etc
+  need to keep the resources they provide active and at a particular
+  state(s) during boot up even if their current set of consumers don't
+  request the resource to be active. This is because the rest of the
+  consumers might not have probed yet and turning off the resource
+  before all the consumers have probed could lead to a hang or
+  undesired user experience.
+
+  Some frameworks (Eg: regulator) handle this today by turning off
+  "unused" resources at late_initcall_sync and hoping all the devices
+  have probed by then. This is not a valid assumption for systems with
+  loadable modules. Other frameworks (Eg: clock) just don't handle
+  this due to the lack of a clear signal for when they can turn off
+  resources. This leads to downstream hacks to handle cases like this
+  that can easily be solved in the upstream kernel.
+
+  By linking devices before they are probed, we give suppliers a clear
+  count of the number of dependent consumers. Once all of the
+  consumers are active, the suppliers can turn off the unused
+  resources without making assumptions about the number of consumers.
+
+By default we just add device-links to track "driver presence" (probe
+succeeded) of the supplier device. If any other functionality provided
+by device-links are needed, it is left to the consumer/supplier
+devices to change the link when they probe.
+
+v1 -> v2:
+- Drop patch to speed up of_find_device_by_node()
+- Drop depends-on property and use existing bindings
+
+v2 -> v3:
+- Refactor the code to have driver core initiate the linking of devs
+- Have driver core link consumers to supplier before it's probed
+- Add support for drivers to edit the device links before probing
+
+v3 -> v4:
+- Tested edit_links() on system with cyclic dependency. Works.
+- Added some checks to make sure device link isn't attempted from
+  parent device node to child device node.
+- Added way to pause/resume sync_state callbacks across
+  of_platform_populate().
+- Recursively parse DT node to create device links from parent to
+  suppliers of parent and all child nodes.
+
+v4 -> v5:
+- Fixed copy-pasta bugs with linked list handling
+- Walk up the phandle reference till I find an actual device (needed
+  for regulators to work)
+- Added support for linking devices from regulator DT bindings
+- Tested the whole series again to make sure cyclic dependencies are
+  broken with edit_links() and regulator links are created properly.
+
+v5 -> v6:
+- Split, squashed and reordered some of the patches.
+- Refactored the device linking code to follow the same code pattern for
+  any property.
+
+I've also not updated this patch series to handle the new patch [1] from
+Rafael. Will do that once this patch series is close to being Acked.
+
+[1] - https://lore.kernel.org/lkml/3121545.4lOhFoIcdQ@kreacher/
+
+-Saravana
 
 
-For instance, please look at this driver:
-drivers/leds/leds-netxbig.c
+Saravana Kannan (7):
+  driver core: Add support for linking devices during device addition
+  driver core: Add edit_links() callback for drivers
+  of/platform: Add functional dependency link from DT bindings
+  driver core: Add sync_state driver/bus callback
+  of/platform: Pause/resume sync state during init and
+    of_platform_populate()
+  of/platform: Create device links for all child-supplier depencencies
+  of/platform: Don't create device links for default busses
 
-If I understood it correctly, this driver
-supports both device tree and legacy board-file.
+ .../admin-guide/kernel-parameters.txt         |   5 +
+ drivers/base/core.c                           | 168 ++++++++++++++++
+ drivers/base/dd.c                             |  29 +++
+ drivers/of/platform.c                         | 182 ++++++++++++++++++
+ include/linux/device.h                        |  47 +++++
+ 5 files changed, 431 insertions(+)
 
+-- 
+2.22.0.657.g960e92d24f-goog
 
-I grepped 'netxbig_led_platform_data', but
-I only found the driver and platform_data header.
-No board-file in upstream.
-
-masahiro@grover:~/ref/linux$ git grep netxbig_led_platform_data
-drivers/leds/leds-netxbig.c:                          struct
-netxbig_led_platform_data *pdata,
-drivers/leds/leds-netxbig.c:                                 struct
-netxbig_led_platform_data *pdata)
-drivers/leds/leds-netxbig.c:                      struct
-netxbig_led_platform_data *pdata)
-drivers/leds/leds-netxbig.c:    struct netxbig_led_platform_data
-*pdata = dev_get_platdata(&pdev->dev);
-include/linux/platform_data/leds-kirkwood-netxbig.h:struct
-netxbig_led_platform_data {
-
-
-
-So, what shall we do?
-
-Drop the board-file support? Or, keep it
-in case somebody is still using their board-files
-in downstream?
-
-
-
-
---
-Best Regards
-Masahiro Yamada
