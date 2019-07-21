@@ -2,47 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC0146F164
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2019 05:45:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 454F36F25C
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2019 11:10:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726276AbfGUDpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Jul 2019 23:45:39 -0400
-Received: from conssluserg-04.nifty.com ([210.131.2.83]:49690 "EHLO
-        conssluserg-04.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726275AbfGUDpj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Jul 2019 23:45:39 -0400
-Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49]) (authenticated)
-        by conssluserg-04.nifty.com with ESMTP id x6L3jTUn006757;
-        Sun, 21 Jul 2019 12:45:30 +0900
-DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-04.nifty.com x6L3jTUn006757
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
-        s=dec2015msa; t=1563680730;
-        bh=+i1P1EOzIYuFKSpLhOGGexoKtgfai1r9bg5dNGXa6F0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=rWZqNizHxDGhLXiH5RLEM1t/LUAvsgmp8EZk2jKss2AVNYPU4fdHNbMwigsoLYMLs
-         UZE0/gzjudBE3rzE/Qh1bAbbpWMWEBhqyxX07k+ibiY0tTJQtkLW5cZ0Drmt9Um1Mi
-         +W1GvIBSh8z6IG/egE0QRACea1V6Ej3N06iCH29ThBUqz+5siQ63qPpIm7qQUdBIly
-         NaJ1C47+JSnH+6eArNrZ3vK40VJWjRfNyGrrP+SfXCyvkbDp8BYoqSrMQAym9DMf8s
-         3Z5FWGq6CI5Pqv2Zwz+2nXV3vKgrK14OVX41zB8MGi8vl8Jmv28l9R5CefDW9rghK+
-         Fyh6qQNdBFl2g==
-X-Nifty-SrcIP: [209.85.217.49]
-Received: by mail-vs1-f49.google.com with SMTP id a186so22376498vsd.7;
-        Sat, 20 Jul 2019 20:45:30 -0700 (PDT)
-X-Gm-Message-State: APjAAAVUWjvL/brrK+krPala2k4FqbnTWkuFgGUuE7Gg4qzyKBVEE4S9
-        klFJGiCZK/xGwdjiLruUFc8Vz2p8k9NRn5ESKjM=
-X-Google-Smtp-Source: APXvYqyXn4LIVIGhGfe4GQcWn8jAhDg5lBZ7sWrCxxc9wSyaVu8Ptfm6hbnzjFDumV0Hyo1hL7V34uRrK01YyrMzJ7Y=
-X-Received: by 2002:a67:8e0a:: with SMTP id q10mr15137391vsd.215.1563680729320;
- Sat, 20 Jul 2019 20:45:29 -0700 (PDT)
+        id S1725868AbfGUJKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 21 Jul 2019 05:10:13 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:43380 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725851AbfGUJKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 21 Jul 2019 05:10:13 -0400
+Received: by mail-qk1-f194.google.com with SMTP id m14so792775qka.10;
+        Sun, 21 Jul 2019 02:10:12 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PbP2X6NIQ0TsX6f4YAaWzUSD+G4Atkgs9bO3GMLpkFo=;
+        b=S8YBxnqkUM+kxxvnU5QZpqsAP8ZEEQVh2aL+5/6pYcwPD2TTOvWUQC2BUdbbTKWF2A
+         aukBFJjR0yFqDX8C1Io5MA71icVNCoIb01RlJPM7eBasbNbJO7FfqLE4PJ1gr9vwAW0o
+         FWlRTd1S9oaPJOQHPJZ1PuqNCJipWWRcXfsxAw8gY/WyCJN0AQ4b3lgAWJW5kjrKlaJn
+         GD78X1JSiM+wimy0vEKBx4BxaiZpKtNxr4V/50ERWDwQ9GcmGPoFkWnfIOwpcz4ISwoe
+         F4IsIVLOC6RdVbnHLrZO7u5epOIwE7EWOIOBaT089c6JQWlw2iiKpDWo3sRAqYE3gKvF
+         2SDw==
+X-Gm-Message-State: APjAAAWuJOyPUj0/iovPv3ZKtMH2Wf+DBQwaNai5kMT85g7NaJeIf1L/
+        kW2s6Xb2aMQ/6jEmV3yO74VRr+gJVMTz54UDJJ4=
+X-Google-Smtp-Source: APXvYqxjHmilE5N9LuNpTfJRWTexnfcMwdOlI/rw0tJewIMNf4YcI56JyWv6tb+DANtn3aJAz06JD3ezoAiIRcMhEcU=
+X-Received: by 2002:a37:4ac3:: with SMTP id x186mr40996804qka.138.1563700211845;
+ Sun, 21 Jul 2019 02:10:11 -0700 (PDT)
 MIME-Version: 1.0
 References: <CAK7LNASyzmYjjBkFxRc06rqf36-en-bvJvrKcg6iiRfjoPCxhQ@mail.gmail.com>
- <CAK8P3a2AeUpmNfFLJSvHT=AJ0kFRT2B=TWDm0HsTwoHt2jQ0gQ@mail.gmail.com>
-In-Reply-To: <CAK8P3a2AeUpmNfFLJSvHT=AJ0kFRT2B=TWDm0HsTwoHt2jQ0gQ@mail.gmail.com>
-From:   Masahiro Yamada <yamada.masahiro@socionext.com>
-Date:   Sun, 21 Jul 2019 12:44:53 +0900
-X-Gmail-Original-Message-ID: <CAK7LNATPbCjwzVnAigsQ8tQRXjC31uxgPg3jgi7pwp+N1RPgWw@mail.gmail.com>
-Message-ID: <CAK7LNATPbCjwzVnAigsQ8tQRXjC31uxgPg3jgi7pwp+N1RPgWw@mail.gmail.com>
+ <CAK8P3a2AeUpmNfFLJSvHT=AJ0kFRT2B=TWDm0HsTwoHt2jQ0gQ@mail.gmail.com> <CAK7LNATPbCjwzVnAigsQ8tQRXjC31uxgPg3jgi7pwp+N1RPgWw@mail.gmail.com>
+In-Reply-To: <CAK7LNATPbCjwzVnAigsQ8tQRXjC31uxgPg3jgi7pwp+N1RPgWw@mail.gmail.com>
+From:   Arnd Bergmann <arnd@arndb.de>
+Date:   Sun, 21 Jul 2019 11:09:55 +0200
+Message-ID: <CAK8P3a3cURmbGZc-6ESLjrF465VLnBroD4QENyfsSsCrNenRrA@mail.gmail.com>
 Subject: Re: [Question] orphan platform data header
-To:     Arnd Bergmann <arnd@arndb.de>
+To:     Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Ben Dooks <ben.dooks@codethink.co.uk>
 Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         Linus Torvalds <torvalds@linux-foundation.org>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
@@ -54,65 +50,52 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Arnd,
-
-On Sat, Jul 20, 2019 at 10:55 PM Arnd Bergmann <arnd@arndb.de> wrote:
+On Sun, Jul 21, 2019 at 5:45 AM Masahiro Yamada
+<yamada.masahiro@socionext.com> wrote:
+> On Sat, Jul 20, 2019 at 10:55 PM Arnd Bergmann <arnd@arndb.de> wrote:
+> > On Sat, Jul 20, 2019 at 5:26 AM Masahiro Yamada <yamada.masahiro@socionext.com> wrote:
+> > > So, what shall we do?
+> > >
+> > > Drop the board-file support? Or, keep it
+> > > in case somebody is still using their board-files
+> > > in downstream?
+>>
+> > For this file, all boards got converted to DT, and the old setup
+> > code removed in commit ebc278f15759 ("ARM: mvebu: remove static
+> > LED setup for netxbig boards"), four years ago, so it's a fairly
+> > easy decision to make it DT only.
 >
-> On Sat, Jul 20, 2019 at 5:26 AM Masahiro Yamada
-> <yamada.masahiro@socionext.com> wrote:
-> >
-> > masahiro@grover:~/ref/linux$ git grep netxbig_led_platform_data
-> > drivers/leds/leds-netxbig.c:                          struct
-> > netxbig_led_platform_data *pdata,
-> > drivers/leds/leds-netxbig.c:                                 struct
-> > netxbig_led_platform_data *pdata)
-> > drivers/leds/leds-netxbig.c:                      struct
-> > netxbig_led_platform_data *pdata)
-> > drivers/leds/leds-netxbig.c:    struct netxbig_led_platform_data
-> > *pdata = dev_get_platdata(&pdev->dev);
-> > include/linux/platform_data/leds-kirkwood-netxbig.h:struct
-> > netxbig_led_platform_data {
-> >
-> >
-> >
-> > So, what shall we do?
-> >
-> > Drop the board-file support? Or, keep it
-> > in case somebody is still using their board-files
-> > in downstream?
+> I see another case, which is difficult
+> to make a decision.
 >
-> Generally speaking, I'd remove the board file support in another
-> case like this, but it's worth looking at when it was last used and by
-> what.
+> For example, drivers/spi/spi-tle62x0.c
 >
-> For this file, all boards got converted to DT, and the old setup
-> code removed in commit ebc278f15759 ("ARM: mvebu: remove static
-> LED setup for netxbig boards"), four years ago, so it's a fairly
-> easy decision to make it DT only.
+> This driver supports only board-file, but the board-file
+> is not found in upstream.
+>
+> Unless I am terribly missing something,
+> there is no one who passes tle62x0_pdata
+> to this driver.
+>
+> $ git grep tle62x0_pdata
+> drivers/spi/spi-tle62x0.c:      struct tle62x0_pdata *pdata;
+> include/linux/spi/tle62x0.h:struct tle62x0_pdata {
+>
+> But, removing board-file support
+> makes this driver completely useless...
 
+Adding Ben Dooks to Cc.
 
-Thanks.
+I suspect this driver is completely obsolete and should be removed.
 
-I see another case, which is difficult
-to make a decision.
+For some reason, it's not an SPI controller driver like all the other
+files in that directory, but implements low-level access to the state
+of a particular SPI device.
 
-For example, drivers/spi/spi-tle62x0.c
+However, there should not really be a low-level driver for it that
+just exports the pins to user space. It should either be a gpiolib
+driver to let other drivers talk to the pins, or a high-level driver that
+exposes the intended functionality (watchdog, regulator, ...)
+to those respective subsystems.
 
-This driver supports only board-file, but the board-file
-is not found in upstream.
-
-Unless I am terribly missing something,
-there is no one who passes tle62x0_pdata
-to this driver.
-
-$ git grep tle62x0_pdata
-drivers/spi/spi-tle62x0.c:      struct tle62x0_pdata *pdata;
-include/linux/spi/tle62x0.h:struct tle62x0_pdata {
-
-But, removing board-file support
-makes this driver completely useless...
-
-
---
-Best Regards
-Masahiro Yamada
+       Arnd
