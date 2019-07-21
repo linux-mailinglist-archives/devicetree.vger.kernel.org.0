@@ -2,96 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6AE476F148
-	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2019 04:38:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC0146F164
+	for <lists+devicetree@lfdr.de>; Sun, 21 Jul 2019 05:45:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726095AbfGUCiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 20 Jul 2019 22:38:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37124 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725996AbfGUCiJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 20 Jul 2019 22:38:09 -0400
-Received: from mail-qk1-f177.google.com (mail-qk1-f177.google.com [209.85.222.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EBA512085A;
-        Sun, 21 Jul 2019 02:38:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563676688;
-        bh=oIEiqY1xwvEFE/GCq2zt35elf3GBQPS3hEr1gwpLbLA=;
-        h=From:Date:Subject:To:Cc:From;
-        b=Kc6LYfK9zSz5Fc0+PttYpDZv/1G8us56pEul1FAqfpn8hcuFdZiVzMN3cpr2r8W+a
-         SGAeDbTXj9n3nvBP6cRRfoWhnXLlMITdH107C8IuRFnYqStEjICdWIBblpc2eT2sc4
-         x1UUPAP57kfKWtIQW+yt5bZ9vEp7jSqK8j+C+m5s=
-Received: by mail-qk1-f177.google.com with SMTP id 201so26147446qkm.9;
-        Sat, 20 Jul 2019 19:38:07 -0700 (PDT)
-X-Gm-Message-State: APjAAAV/gMTX8uNd5QR6MSjcpgsF9qdt3fzXZE8iVVwc836A33XsaOQZ
-        8G9A1km8Ws6mjiSmpQk/AKLdKvzacn6cHpp85A==
-X-Google-Smtp-Source: APXvYqx1VkUKcWy/Z+hqTvwe0cgTg5Nvm/xp8bvl68kWSmNACZytAwEORwED1dqoSisKwShKtM1fstHsnPjS/qlB/k4=
-X-Received: by 2002:a37:a48e:: with SMTP id n136mr42600319qke.223.1563676687175;
- Sat, 20 Jul 2019 19:38:07 -0700 (PDT)
+        id S1726276AbfGUDpj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 20 Jul 2019 23:45:39 -0400
+Received: from conssluserg-04.nifty.com ([210.131.2.83]:49690 "EHLO
+        conssluserg-04.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726275AbfGUDpj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 20 Jul 2019 23:45:39 -0400
+Received: from mail-vs1-f49.google.com (mail-vs1-f49.google.com [209.85.217.49]) (authenticated)
+        by conssluserg-04.nifty.com with ESMTP id x6L3jTUn006757;
+        Sun, 21 Jul 2019 12:45:30 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-04.nifty.com x6L3jTUn006757
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1563680730;
+        bh=+i1P1EOzIYuFKSpLhOGGexoKtgfai1r9bg5dNGXa6F0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=rWZqNizHxDGhLXiH5RLEM1t/LUAvsgmp8EZk2jKss2AVNYPU4fdHNbMwigsoLYMLs
+         UZE0/gzjudBE3rzE/Qh1bAbbpWMWEBhqyxX07k+ibiY0tTJQtkLW5cZ0Drmt9Um1Mi
+         +W1GvIBSh8z6IG/egE0QRACea1V6Ej3N06iCH29ThBUqz+5siQ63qPpIm7qQUdBIly
+         NaJ1C47+JSnH+6eArNrZ3vK40VJWjRfNyGrrP+SfXCyvkbDp8BYoqSrMQAym9DMf8s
+         3Z5FWGq6CI5Pqv2Zwz+2nXV3vKgrK14OVX41zB8MGi8vl8Jmv28l9R5CefDW9rghK+
+         Fyh6qQNdBFl2g==
+X-Nifty-SrcIP: [209.85.217.49]
+Received: by mail-vs1-f49.google.com with SMTP id a186so22376498vsd.7;
+        Sat, 20 Jul 2019 20:45:30 -0700 (PDT)
+X-Gm-Message-State: APjAAAVUWjvL/brrK+krPala2k4FqbnTWkuFgGUuE7Gg4qzyKBVEE4S9
+        klFJGiCZK/xGwdjiLruUFc8Vz2p8k9NRn5ESKjM=
+X-Google-Smtp-Source: APXvYqyXn4LIVIGhGfe4GQcWn8jAhDg5lBZ7sWrCxxc9wSyaVu8Ptfm6hbnzjFDumV0Hyo1hL7V34uRrK01YyrMzJ7Y=
+X-Received: by 2002:a67:8e0a:: with SMTP id q10mr15137391vsd.215.1563680729320;
+ Sat, 20 Jul 2019 20:45:29 -0700 (PDT)
 MIME-Version: 1.0
-From:   Rob Herring <robh@kernel.org>
-Date:   Sat, 20 Jul 2019 20:37:56 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLTAAT1hEPkxD=BUvmovvA+rdsZdbVfQM6=1m9bvaEysQ@mail.gmail.com>
-Message-ID: <CAL_JsqLTAAT1hEPkxD=BUvmovvA+rdsZdbVfQM6=1m9bvaEysQ@mail.gmail.com>
-Subject: [GIT PULL] Devicetree fixes for 5.3-rc
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
+References: <CAK7LNASyzmYjjBkFxRc06rqf36-en-bvJvrKcg6iiRfjoPCxhQ@mail.gmail.com>
+ <CAK8P3a2AeUpmNfFLJSvHT=AJ0kFRT2B=TWDm0HsTwoHt2jQ0gQ@mail.gmail.com>
+In-Reply-To: <CAK8P3a2AeUpmNfFLJSvHT=AJ0kFRT2B=TWDm0HsTwoHt2jQ0gQ@mail.gmail.com>
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+Date:   Sun, 21 Jul 2019 12:44:53 +0900
+X-Gmail-Original-Message-ID: <CAK7LNATPbCjwzVnAigsQ8tQRXjC31uxgPg3jgi7pwp+N1RPgWw@mail.gmail.com>
+Message-ID: <CAK7LNATPbCjwzVnAigsQ8tQRXjC31uxgPg3jgi7pwp+N1RPgWw@mail.gmail.com>
+Subject: Re: [Question] orphan platform data header
+To:     Arnd Bergmann <arnd@arndb.de>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Linus Torvalds <torvalds@linux-foundation.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        DTML <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Linus,
+Hi Arnd,
 
-Please pull a couple of DT binding fixes for 5.3-rc.
+On Sat, Jul 20, 2019 at 10:55 PM Arnd Bergmann <arnd@arndb.de> wrote:
+>
+> On Sat, Jul 20, 2019 at 5:26 AM Masahiro Yamada
+> <yamada.masahiro@socionext.com> wrote:
+> >
+> > masahiro@grover:~/ref/linux$ git grep netxbig_led_platform_data
+> > drivers/leds/leds-netxbig.c:                          struct
+> > netxbig_led_platform_data *pdata,
+> > drivers/leds/leds-netxbig.c:                                 struct
+> > netxbig_led_platform_data *pdata)
+> > drivers/leds/leds-netxbig.c:                      struct
+> > netxbig_led_platform_data *pdata)
+> > drivers/leds/leds-netxbig.c:    struct netxbig_led_platform_data
+> > *pdata = dev_get_platdata(&pdev->dev);
+> > include/linux/platform_data/leds-kirkwood-netxbig.h:struct
+> > netxbig_led_platform_data {
+> >
+> >
+> >
+> > So, what shall we do?
+> >
+> > Drop the board-file support? Or, keep it
+> > in case somebody is still using their board-files
+> > in downstream?
+>
+> Generally speaking, I'd remove the board file support in another
+> case like this, but it's worth looking at when it was last used and by
+> what.
+>
+> For this file, all boards got converted to DT, and the old setup
+> code removed in commit ebc278f15759 ("ARM: mvebu: remove static
+> LED setup for netxbig boards"), four years ago, so it's a fairly
+> easy decision to make it DT only.
 
-Rob
 
-The following changes since commit abdfd52a295fb5731ab07b5c9013e2e39f4d1cbe:
+Thanks.
 
-  Merge tag 'armsoc-defconfig' of
-git://git.kernel.org/pub/scm/linux/kernel/git/soc/soc (2019-07-19
-17:27:27 -0700)
+I see another case, which is difficult
+to make a decision.
 
-are available in the Git repository at:
+For example, drivers/spi/spi-tle62x0.c
 
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
-tags/devicetree-fixes-for-5.3
+This driver supports only board-file, but the board-file
+is not found in upstream.
 
-for you to fetch changes up to e2297f7c3ab3b68dda2ac732b1767212019d3bdf:
+Unless I am terribly missing something,
+there is no one who passes tle62x0_pdata
+to this driver.
 
-  dt-bindings: pinctrl: stm32: Fix missing 'clocks' property in
-examples (2019-07-20 20:28:53 -0600)
+$ git grep tle62x0_pdata
+drivers/spi/spi-tle62x0.c:      struct tle62x0_pdata *pdata;
+include/linux/spi/tle62x0.h:struct tle62x0_pdata {
 
-----------------------------------------------------------------
-Devicetree fixes for 5.3:
+But, removing board-file support
+makes this driver completely useless...
 
-Fix several warnings/errors in validation of binding schemas.
 
-----------------------------------------------------------------
-Rob Herring (7):
-      dt-bindings: Ensure child nodes are of type 'object'
-      dt-bindings: riscv: Limit cpus schema to only check RiscV 'cpu' nodes
-      dt-bindings: pinctrl: aspeed: Fix 'compatible' schema errors
-      dt-bindings: pinctrl: aspeed: Fix AST2500 example errors
-      dt-bindings: iio: avia-hx711: Fix avdd-supply typo in example
-      dt-bindings: iio: ad7124: Fix dtc warnings in example
-      dt-bindings: pinctrl: stm32: Fix missing 'clocks' property in examples
-
- .../bindings/bus/allwinner,sun8i-a23-rsb.yaml      |   1 +
- .../devicetree/bindings/iio/adc/adi,ad7124.yaml    |  71 +++++-----
- .../devicetree/bindings/iio/adc/avia-hx711.yaml    |   2 +-
- .../bindings/mtd/allwinner,sun4i-a10-nand.yaml     |   1 +
- .../devicetree/bindings/mtd/nand-controller.yaml   |   1 +
- .../bindings/pinctrl/aspeed,ast2400-pinctrl.yaml   |   4 +-
- .../bindings/pinctrl/aspeed,ast2500-pinctrl.yaml   |   9 +-
- .../bindings/pinctrl/st,stm32-pinctrl.yaml         |   7 +
- Documentation/devicetree/bindings/riscv/cpus.yaml  | 143 +++++++++------------
- .../bindings/spi/allwinner,sun4i-a10-spi.yaml      |   1 +
- .../bindings/spi/allwinner,sun6i-a31-spi.yaml      |   1 +
- 11 files changed, 119 insertions(+), 122 deletions(-)
+--
+Best Regards
+Masahiro Yamada
