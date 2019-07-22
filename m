@@ -2,74 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96E6A70C54
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 00:06:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAA2770C5A
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 00:09:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730814AbfGVWGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 18:06:41 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:45101 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727170AbfGVWGl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 18:06:41 -0400
-Received: by mail-io1-f67.google.com with SMTP id g20so77445216ioc.12;
-        Mon, 22 Jul 2019 15:06:41 -0700 (PDT)
+        id S1726370AbfGVWJU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 18:09:20 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:46256 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726265AbfGVWJU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 18:09:20 -0400
+Received: by mail-io1-f65.google.com with SMTP id i10so77415496iol.13;
+        Mon, 22 Jul 2019 15:09:19 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=sRWJN0Pa0lu43wjFvqcKPLwhiVJDCNgY6Ir4WcVPL0g=;
-        b=s/8mh4RtBosHHrJgksmc5cEffwgZgsKmUcS57OVAnglBhBaQaogtLUYFHmNPdN5iCJ
-         b6Gxb5vRyMoCHAbc0pzBmYcJen5uRGHttnSnOrWISpXb+eDNfH9LWN8VBFBjGA6n+UHD
-         ZlQwFoILmHhIq7vWohXn0SHs+VZ+QyxJpQ9e76peMtFiIQFHcL1+xvsuahEOUes8MqsL
-         ygQMDsPWagFZOj2cjJ5rP71EP0IKVYQGbHf75dfC3az+XHh4sxMSUONMOdpX1RB7bEqy
-         8sfA9veV2yJZK03LuCa5bV2jGHaci7JgCkybmxK4i88VJvcUMmDp4eJ+4LrRK35t+D7r
-         r/cA==
-X-Gm-Message-State: APjAAAWOAeqso2Uor7ddNzeWrdXZ2kUMu8GvJwfQEIK15+1/eXhgnVPP
-        WpPmszunxkMWzE1h1BIWmw==
-X-Google-Smtp-Source: APXvYqxYaQypvjgJjL4nEq60H2lrbcBokHTCk9QsZW/tkXjnakchPi/nUyMhPfg5PNswHH6iJPMjCg==
-X-Received: by 2002:a02:1948:: with SMTP id b69mr76064747jab.55.1563833200601;
-        Mon, 22 Jul 2019 15:06:40 -0700 (PDT)
+        bh=oPO7PdmDzdqi5Fe+NgQYohceRPua/BoALQ80fACcCkI=;
+        b=Ipmr/AHU+o2vrCk5IrxCiJjFUi/pzFS53UJVtpZ6W+Vtnd07ahwEMnA0oP0dRQtwPs
+         yZBgMyJil6N9y6FEvp0JIxUFQB5X5UIyUiM1uLt2Cn2r8OgVZk0aIp9fVW9bGeK6tLZo
+         JO/huYy1tlUlbi8yeEGeFKJN1MY9VFn2nOY4eHIeYEE3G7J7ybcsL2xBJUVFj2V/jWA4
+         AKQjN/mV30QE9MFomS+/zG2seBMPqLTdGao/eBKrOHj1N83Gnx+gLyFUeF27cO12lVC4
+         Y7ifmiwNqevjgivDMzeCvkqy74nrg+BvHyA0q8pOCs53tiVOsY6adwG3bf4Srr7HLuMK
+         BjFQ==
+X-Gm-Message-State: APjAAAWUMALzdeWFNCdaTgC5UT6hDAPCa8YGG0eWw32XDj6v1SBDM77z
+        Of1Rop1vbFakkwNZpF5jaQ==
+X-Google-Smtp-Source: APXvYqwXrVpaoCfl2l8pHwCeHeZHWyE8eKMyGWzfhKD/58sdetuN/smodYWuDL1nzIhyX1pY+xdaTA==
+X-Received: by 2002:a5e:924d:: with SMTP id z13mr13556881iop.247.1563833359275;
+        Mon, 22 Jul 2019 15:09:19 -0700 (PDT)
 Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id r5sm37505920iom.42.2019.07.22.15.06.39
+        by smtp.gmail.com with ESMTPSA id m4sm36742519iok.68.2019.07.22.15.09.18
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 22 Jul 2019 15:06:39 -0700 (PDT)
-Date:   Mon, 22 Jul 2019 16:06:39 -0600
+        Mon, 22 Jul 2019 15:09:18 -0700 (PDT)
+Date:   Mon, 22 Jul 2019 16:09:18 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Manish Narani <manish.narani@xilinx.com>
-Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        heiko@sntech.de, michal.simek@xilinx.com, adrian.hunter@intel.com,
-        christoph.muellner@theobroma-systems.com,
-        philipp.tomsich@theobroma-systems.com, viresh.kumar@linaro.org,
-        scott.branden@broadcom.com, ayaka@soulik.info, kernel@esmil.dk,
-        tony.xie@rock-chips.com, rajan.vaja@xilinx.com,
-        jolly.shah@xilinx.com, nava.manne@xilinx.com, mdf@kernel.org,
-        manish.narani@xilinx.com, olof@lixom.net,
-        linux-mmc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org
-Subject: Re: [PATCH v2 10/11] dt-bindings: mmc: arasan: Document
- 'xlnx,zynqmp-8.9a' controller
-Message-ID: <20190722220639.GA24419@bogus>
-References: <1561958991-21935-1-git-send-email-manish.narani@xilinx.com>
- <1561958991-21935-11-git-send-email-manish.narani@xilinx.com>
+To:     Bibby Hsieh <bibby.hsieh@mediatek.com>
+Cc:     Jassi Brar <jassisinghbrar@gmail.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        CK HU <ck.hu@mediatek.com>,
+        Daniel Kurtz <djkurtz@chromium.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Nicolas Boichat <drinkcat@chromium.org>,
+        YT Shen <yt.shen@mediatek.com>,
+        Daoyuan Huang <daoyuan.huang@mediatek.com>,
+        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
+        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
+        Houlong Wei <houlong.wei@mediatek.com>, ginny.chen@mediatek.com
+Subject: Re: [PATCH v10 03/12] dt-binding: gce: add binding for gce client
+ reg property
+Message-ID: <20190722220918.GA24605@bogus>
+References: <20190701074842.15401-1-bibby.hsieh@mediatek.com>
+ <20190701074842.15401-4-bibby.hsieh@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1561958991-21935-11-git-send-email-manish.narani@xilinx.com>
+In-Reply-To: <20190701074842.15401-4-bibby.hsieh@mediatek.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  1 Jul 2019 10:59:50 +0530, Manish Narani wrote:
-> Add documentation for 'xlnx,zynqmp-8.9a' SDHCI controller and optional
-> properties followed by example.
+On Mon, Jul 01, 2019 at 03:48:33PM +0800, Bibby Hsieh wrote:
+> cmdq driver provide a function that get the relationship
+> of sub system number from device node for client.
+> add specification for #subsys-cells, mediatek,gce-client-reg.
 > 
-> Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+> Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
 > ---
->  .../devicetree/bindings/mmc/arasan,sdhci.txt          | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
+>  .../devicetree/bindings/mailbox/mtk-gce.txt    | 18 ++++++++++++++----
+>  1 file changed, 14 insertions(+), 4 deletions(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> index 1f7f8f2a3f49..d48282d6b02d 100644
+> --- a/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> +++ b/Documentation/devicetree/bindings/mailbox/mtk-gce.txt
+> @@ -21,12 +21,21 @@ Required properties:
+>  	priority: Priority of GCE thread.
+>  	atomic_exec: GCE processing continuous packets of commands in atomic
+>  		way.
+> +- #subsys-cells: Should be 3.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+You don't need this if it is always 3 and/or is always a single phandle.
+
+> +	<&phandle subsys_number start_offset size>
+> +	phandle: Label name of a gce node.
+> +	subsys_number: specify the sub-system id which is corresponding
+> +		       to the register address.
+> +	start_offset: the start offset of register address that GCE can access.
+> +	size: the total size of register address that GCE can access.
+>  
+>  Required properties for a client device:
+>  - mboxes: Client use mailbox to communicate with GCE, it should have this
+>    property and list of phandle, mailbox specifiers.
+> -- mediatek,gce-subsys: u32, specify the sub-system id which is corresponding
+> -  to the register address.
+> +Optional properties for a client device:
+> +- mediatek,gce-client-reg: Specify the sub-system id which is corresponding
+> +  to the register address, it should have this property and list of phandle,
+> +  sub-system specifiers.
+>  
+>  Some vaules of properties are defined in 'dt-bindings/gce/mt8173-gce.h'
+>  or 'dt-binding/gce/mt8183-gce.h'. Such as sub-system ids, thread priority, event ids.
+> @@ -40,6 +49,7 @@ Example:
+>  		clocks = <&infracfg CLK_INFRA_GCE>;
+>  		clock-names = "gce";
+>  		#mbox-cells = <3>;
+> +		#subsys-cells = <3>;
+>  	};
+>  
+>  Example for a client device:
+> @@ -48,9 +58,9 @@ Example for a client device:
+>  		compatible = "mediatek,mt8173-mmsys";
+>  		mboxes = <&gce 0 CMDQ_THR_PRIO_LOWEST 1>,
+>  			 <&gce 1 CMDQ_THR_PRIO_LOWEST 1>;
+> -		mediatek,gce-subsys = <SUBSYS_1400XXXX>;
+>  		mutex-event-eof = <CMDQ_EVENT_MUTEX0_STREAM_EOF
+>  				CMDQ_EVENT_MUTEX1_STREAM_EOF>;
+> -
+> +		mediatek,gce-client-reg = <&gce SUBSYS_1400XXXX 0x3000 0x1000>,
+> +					  <&gce SUBSYS_1401XXXX 0x2000 0x100>;
+>  		...
+>  	};
+> -- 
+> 2.18.0
+> 
