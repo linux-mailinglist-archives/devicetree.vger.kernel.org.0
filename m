@@ -2,83 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 65FD16F7FC
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 05:34:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 85E646F896
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 06:40:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728011AbfGVDer (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 21 Jul 2019 23:34:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36196 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726360AbfGVDer (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 21 Jul 2019 23:34:47 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 74CAB20821;
-        Mon, 22 Jul 2019 03:34:42 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563766486;
-        bh=KOxZPjyK9INnzYcIKi8Kw5IoLDhXg2vltv5ZVrxbMxM=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=XLWFiu9I+GRhAgwOajCy/jahWvlNp0VbvlmGCPVCn7KrwLgzbhPMYPctTP6ptiOU6
-         YvXZNLGgovVynGo5k2VM3qUA9/ZH6gJARzOjJ4L/9pr4J3jvUr/TrInrXBzj5bfq1I
-         8T4oWnuQoEtwoDtXutRtBgvxB+Cu1FP3HUrTWNMc=
-Date:   Mon, 22 Jul 2019 11:34:20 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     jun.li@nxp.com
-Cc:     sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, mturquette@baylibre.com, Peter.Chen@nxp.com,
-        ping.bai@nxp.com, leonard.crestez@nxp.com, daniel.baluta@nxp.com,
-        Anson.Huang@nxp.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-clk@vger.kernel.org
-Subject: Re: [PATCH 3/5] clk: imx8mm: correct the usb1_ctrl parent to be
- usb_bus
-Message-ID: <20190722033418.GX3738@dragon>
-References: <20190703072327.38165-1-jun.li@nxp.com>
+        id S1727722AbfGVEka (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 00:40:30 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:40647 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726547AbfGVEka (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 00:40:30 -0400
+Received: by mail-lf1-f66.google.com with SMTP id b17so25603163lff.7
+        for <devicetree@vger.kernel.org>; Sun, 21 Jul 2019 21:40:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=9ncs42SKDIyAXPYsF/YsHVruecC4cl/V7wjDZefhpkw=;
+        b=k2bbZ2b2oyVs0xaDgMXk4iGhoEBB5SNlDTYlq+jwwsMrg7WYd24sYe0mDHDlQSvoDX
+         vRx/T3SbjcAWD+kP5mFuzsgQ2m5N75YkNxvwp3OBsTs2n/LqG5cH18XvsLuHTHpeChRI
+         58rku89FNYqjt0vAT1GR0Om4Y1TenH7EpGIEbx1Rjn+gX6+YnEx8d5l5WmPSWmKkmcc0
+         Vy+VW7wLRHdd4wOYN58RXO07SK6yY7S7t8Es8IHlzBB6NdgENlcFfB3Hx77JdfFCB2mU
+         KMUBU0zBbQD8GI/T4Y0iRMawLQqjbap4/KZBz40ji+Kc3r6kVLxhakPmoLkXFytcFO/C
+         /vaQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=9ncs42SKDIyAXPYsF/YsHVruecC4cl/V7wjDZefhpkw=;
+        b=bcWERtopgZSuS6R+13byubvB6wIidErXoL0B2oSk6+lkorK7ssTwPHkBUh7b+KIiGC
+         X4OHa3+L+zUCC75i6GouA1z4tzUeQbjK9Wv7bLReCN50LYHdx7v72zzEM2W34qhn2LdY
+         E+ZHwaZleX/f+7Mw58Y5s5Pl7bg+JofOD806iekBjIEeFbZIRtpn/31ZNSHh4mR7RJ5o
+         +JGI1qSNn1CeKSS7StYLbZ1ofVKdCiZmI5l+w2tX5nl69jRg4qRUSQv9P8qbXQuTRLJt
+         bWPmZwdJ001Uid841LWBYznjF45MjNn5DCS+mf+ra3bF9mbu/4Ti6EWbq329IF+zEQrv
+         KvWw==
+X-Gm-Message-State: APjAAAWFlpUPgZaWrNf6O92J/eElkFq9fHQU1hGcAxf1NUugHOZfQioh
+        YPY6eoUo6PpqU+wkKBolbKPVTaitIdtjhp7LFE+ZaQ==
+X-Google-Smtp-Source: APXvYqwvAIdl55t6ZBi0sof5NGjfaHPKrALdFIaGt9ZEylIuJumZ5agEDn2OAQB5ZWTfVUpTC8ov8KSHgsYAMZ1msnk=
+X-Received: by 2002:a19:6602:: with SMTP id a2mr29671361lfc.25.1563770428381;
+ Sun, 21 Jul 2019 21:40:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190703072327.38165-1-jun.li@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+References: <1563534631-15897-1-git-send-email-yash.shah@sifive.com>
+ <1563534631-15897-2-git-send-email-yash.shah@sifive.com> <4075b955-a187-6fd7-a2e6-deb82b5d4fb6@microchip.com>
+In-Reply-To: <4075b955-a187-6fd7-a2e6-deb82b5d4fb6@microchip.com>
+From:   Yash Shah <yash.shah@sifive.com>
+Date:   Mon, 22 Jul 2019 10:09:52 +0530
+Message-ID: <CAJ2_jOEHoh+D76VpAoVq3XnpAZEQxdQtaVX5eiKw5X4r+ypKVw@mail.gmail.com>
+Subject: Re: [PATCH 2/3] macb: Update compatibility string for SiFive FU540-C000
+To:     Nicolas Ferre <Nicolas.Ferre@microchip.com>
+Cc:     David Miller <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Paul Walmsley <paul.walmsley@sifive.com>,
+        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        linux-riscv@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        =?UTF-8?Q?Petr_=C5=A0tetiar?= <ynezz@true.cz>,
+        Sachin Ghadi <sachin.ghadi@sifive.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 03, 2019 at 03:23:25PM +0800, jun.li@nxp.com wrote:
-> From: Li Jun <jun.li@nxp.com>
-> 
-> Per latest imx8mm datasheet of CCM, the parent of usb1_ctrl_root_clk
-> should be usb_bus.
-> 
-> Signed-off-by: Li Jun <jun.li@nxp.com>
+On Fri, Jul 19, 2019 at 5:36 PM <Nicolas.Ferre@microchip.com> wrote:
+>
+> On 19/07/2019 at 13:10, Yash Shah wrote:
+> > Update the compatibility string for SiFive FU540-C000 as per the new
+> > string updated in the binding doc.
+> > Reference: https://lkml.org/lkml/2019/7/17/200
+>
+> Maybe referring to lore.kernel.org is better:
+> https://lore.kernel.org/netdev/CAJ2_jOFEVZQat0Yprg4hem4jRrqkB72FKSeQj4p8P5KA-+rgww@mail.gmail.com/
 
-I only received 3 patches as a series.  In that case, the patches should
-have subject prefix like '[PATCH 1/3]' ...
+Sure. Will keep that in mind for future reference.
 
-The patches look good to me.  Applied all 3, thanks.
+>
+> > Signed-off-by: Yash Shah <yash.shah@sifive.com>
+>
+> Acked-by: Nicolas Ferre <nicolas.ferre@microchip.com>
 
-Shawn
+Thanks.
 
-> ---
->  drivers/clk/imx/clk-imx8mm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/imx/clk-imx8mm.c b/drivers/clk/imx/clk-imx8mm.c
-> index 6b8e75d..735cf9d 100644
-> --- a/drivers/clk/imx/clk-imx8mm.c
-> +++ b/drivers/clk/imx/clk-imx8mm.c
-> @@ -631,7 +631,7 @@ static int __init imx8mm_clocks_init(struct device_node *ccm_node)
->  	clks[IMX8MM_CLK_UART2_ROOT] = imx_clk_gate4("uart2_root_clk", "uart2", base + 0x44a0, 0);
->  	clks[IMX8MM_CLK_UART3_ROOT] = imx_clk_gate4("uart3_root_clk", "uart3", base + 0x44b0, 0);
->  	clks[IMX8MM_CLK_UART4_ROOT] = imx_clk_gate4("uart4_root_clk", "uart4", base + 0x44c0, 0);
-> -	clks[IMX8MM_CLK_USB1_CTRL_ROOT] = imx_clk_gate4("usb1_ctrl_root_clk", "usb_core_ref", base + 0x44d0, 0);
-> +	clks[IMX8MM_CLK_USB1_CTRL_ROOT] = imx_clk_gate4("usb1_ctrl_root_clk", "usb_bus", base + 0x44d0, 0);
->  	clks[IMX8MM_CLK_GPU3D_ROOT] = imx_clk_gate4("gpu3d_root_clk", "gpu3d_div", base + 0x44f0, 0);
->  	clks[IMX8MM_CLK_USDHC1_ROOT] = imx_clk_gate4("usdhc1_root_clk", "usdhc1", base + 0x4510, 0);
->  	clks[IMX8MM_CLK_USDHC2_ROOT] = imx_clk_gate4("usdhc2_root_clk", "usdhc2", base + 0x4520, 0);
-> -- 
-> 2.7.4
-> 
+- Yash
