@@ -2,96 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B80D06FDC3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 12:28:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7DF66FDD1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 12:30:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726846AbfGVK2C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 06:28:02 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:38751 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728306AbfGVK2C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 06:28:02 -0400
-Received: by mail-wm1-f66.google.com with SMTP id s15so13406691wmj.3;
-        Mon, 22 Jul 2019 03:28:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=KlMITGUupMUS+z7cYFJpkuySI0G3DrjFsP62Lu6OHIQ=;
-        b=nQZobyBxiZE42wghcJ4bHW7Gffd+ZlaEhHifNH/8x9rGQvmboMIohsKMQOxZqrbelF
-         D+OH0k+jHbJ7O+Ha2Ozlc9DECX2713tWbF+vb6OEoeLqG8j3s+DIsyzqfgjzIHrNWLTJ
-         cCOyLFUy8wdc7NfaAcHsYnSFFAdIXmS+mXmDxJE1mCLgD3duRvl0BN0oY7D4dMNIrK61
-         8lm2hMiWXGz9tJD5qAVEEfw1i6mpR6Vcqr0ihAEYmt+iUDd0Ort0IAyKLi1MsSUkShqk
-         bQJ5wQMXismOmS3/V4ep/5TO8mHo7Htpmnm9mb5j5TjTmAy2AKROSikcATpYllOEfBZl
-         v6QQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=KlMITGUupMUS+z7cYFJpkuySI0G3DrjFsP62Lu6OHIQ=;
-        b=VtgzZrMntLQAV8PmXSNxmI2gEpbccjqBA2WhHu+HD2XO57pDnfzWD6wOKhMc1pnv9C
-         DBJWC4iZLoSf1IcrL1rhh0ueqQoJIVayUHKKp9n/jQsLt1/frXnPNDGihf0Ivqf2kYNM
-         FGmXn08l9H/VPgE1NIuD9xwEz8ahIJfhIXTm9jPSQg2vZoYPd44xoJ9Zyfet+1yyXzcq
-         d7k0WV+cAcjKt1Wh92YYy1gwdxMHC8gO0imvU9EwVTVGApjpp78GZNBSHyZwMIDnurpN
-         ISNvlIEUZLBJSxeQjs6MjkjIVlNMaFtRnebpVnjnD40jpjZxLnHW43KyfN/wJAQz8Q2d
-         az/w==
-X-Gm-Message-State: APjAAAUyvc2DLlm4WvGNnsJQQO7GbayM2io0J6We4kwH+JBLvH8XAEN8
-        jRGZPdc+XnuaR5QVTzLQyJc=
-X-Google-Smtp-Source: APXvYqyCbpEyLuMrWq0ggNzOSPn1qsyScrquvPzvhxrzrIh0BwX9iIXoOo4TuaH8a49JuVmdGLV2lw==
-X-Received: by 2002:a7b:cae2:: with SMTP id t2mr62407969wml.157.1563791280183;
-        Mon, 22 Jul 2019 03:28:00 -0700 (PDT)
-Received: from localhost.localdomain ([212.146.100.6])
-        by smtp.gmail.com with ESMTPSA id o7sm34515181wmf.43.2019.07.22.03.27.57
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 22 Jul 2019 03:27:59 -0700 (PDT)
-From:   andradanciu1997 <andradanciu1997@gmail.com>
-To:     shawnguo@kernel.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        manivannan.sadhasivam@linaro.org, andrew.smirnov@gmail.com,
-        Michal.Vokac@ysoft.com, ping.bai@nxp.com,
-        u.kleine-koenig@pengutronix.de, leoyang.li@nxp.com,
-        aisheng.dong@nxp.com, l.stach@pengutronix.de,
-        pankaj.bansal@nxp.com, angus@akkea.ca, pramod.kumar_1@nxp.com,
-        bhaskar.upadhaya@nxp.com, vabhav.sharma@nxp.com,
-        andradanciu1997@gmail.com, richard.hu@technexion.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        id S1727581AbfGVKay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 06:30:54 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:60780 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726944AbfGVKay (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jul 2019 06:30:54 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6BBAE2001D1;
+        Mon, 22 Jul 2019 12:30:52 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5EDFD20023F;
+        Mon, 22 Jul 2019 12:30:52 +0200 (CEST)
+Received: from fsr-ub1464-137.ea.freescale.net (fsr-ub1464-137.ea.freescale.net [10.171.82.114])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 1E07A205DB;
+        Mon, 22 Jul 2019 12:30:52 +0200 (CEST)
+From:   Ioana Ciornei <ioana.ciornei@nxp.com>
+To:     shawnguo@kernel.org, devicetree@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v6 2/2] dt-bindings: arm: fsl: Add the pico-pi-imx8m board
-Date:   Mon, 22 Jul 2019 13:27:30 +0300
-Message-Id: <20190722102730.15763-3-andradanciu1997@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20190722102730.15763-1-andradanciu1997@gmail.com>
-References: <20190722102730.15763-1-andradanciu1997@gmail.com>
+Cc:     leoyang.li@nxp.com, Ioana Ciornei <ioana.ciornei@nxp.com>
+Subject: [PATCH v3] arm64: dts: add the console node for DPAA2 platforms
+Date:   Mon, 22 Jul 2019 13:30:43 +0300
+Message-Id: <1563791443-26372-1-git-send-email-ioana.ciornei@nxp.com>
+X-Mailer: git-send-email 1.9.1
+Reply-to: ioana.ciornei@nxp.com
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Andra Danciu <andradanciu1997@gmail.com>
+Add the console device tree node for the following
+DPAA2 based platforms: LS1088A, LS2080A, LS2088A and LX2160A.
 
-Add an entry for TechNexion PICO-PI-IMX8M board based on i.MX8MQ SoC
-Datasheet can be found at:
-https://s3.us-east-2.amazonaws.com/technexion/datasheets/picopiimx8m.pdf
-
-Cc: Daniel Baluta <daniel.baluta@nxp.com>
-Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 ---
- Documentation/devicetree/bindings/arm/fsl.yaml | 1 +
- 1 file changed, 1 insertion(+)
+Changes in v3:
+ - sort the node by unit address
 
-diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
-index 7294ac36f4c0..54c094341121 100644
---- a/Documentation/devicetree/bindings/arm/fsl.yaml
-+++ b/Documentation/devicetree/bindings/arm/fsl.yaml
-@@ -219,6 +219,7 @@ properties:
-           - enum:
-               - fsl,imx8mq-evk            # i.MX8MQ EVK Board
-               - purism,librem5-devkit     # Purism Librem5 devkit
-+              - technexion,pico-pi-imx8m  # TechNexion PICO-PI-8M evk
-           - const: fsl,imx8mq
+Changes in v2:
+ - use a generic node name
+ - remove leading zeros and 0x from the unit-address
+
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 5 +++++
+ arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 5 +++++
+ arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 5 +++++
+ 3 files changed, 15 insertions(+)
+
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+index dacd8cf03a7f..20f5ebd74200 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+@@ -609,6 +609,11 @@
+ 				     <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>;
+ 		};
  
-       - description: i.MX8QXP based Boards
++		console@8340020 {
++			compatible = "fsl,dpaa2-console";
++			reg = <0x00000000 0x08340020 0 0x2>;
++		};
++
+ 		ptp-timer@8b95000 {
+ 			compatible = "fsl,dpaa2-ptp";
+ 			reg = <0x0 0x8b95000 0x0 0x100>;
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+index 3ace91945b72..64101c9962ce 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
+@@ -321,6 +321,11 @@
+ 			};
+ 		};
+ 
++		console@8340020 {
++			compatible = "fsl,dpaa2-console";
++			reg = <0x00000000 0x08340020 0 0x2>;
++		};
++
+ 		ptp-timer@8b95000 {
+ 			compatible = "fsl,dpaa2-ptp";
+ 			reg = <0x0 0x8b95000 0x0 0x100>;
+diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+index e6fdba39453c..4720a8e7304c 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
+@@ -848,6 +848,11 @@
+ 			dma-coherent;
+ 		};
+ 
++		console@8340020 {
++			compatible = "fsl,dpaa2-console";
++			reg = <0x00000000 0x08340020 0 0x2>;
++		};
++
+ 		ptp-timer@8b95000 {
+ 			compatible = "fsl,dpaa2-ptp";
+ 			reg = <0x0 0x8b95000 0x0 0x100>;
 -- 
-2.11.0
+1.9.1
 
