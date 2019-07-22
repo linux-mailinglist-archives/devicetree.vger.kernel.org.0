@@ -2,82 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 046E170DAA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 01:53:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C81670DB9
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 01:54:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730820AbfGVXxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 19:53:02 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:36218 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730598AbfGVXxC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 19:53:02 -0400
-Received: by mail-io1-f68.google.com with SMTP id o9so77985029iom.3;
-        Mon, 22 Jul 2019 16:53:01 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=HaUvZHRPCOC2S8HOXJy0x3pda31cOo40y2gnBhVmOj4=;
-        b=LjQ+VKbwGJ+tG1ibBwpd19UKa//pbbbToV8tpBCaKvoKLcpugReskAhDaRGT7jbrRS
-         Gxa8WVAb1aHm1jYOD4pFIrsm7JUFIU69NDGCU/UGYIyJRiaV0lC7lHGi5OKrXz/+eaOu
-         7WFVzVIv6qkDhJZq25aVZPpFxuCLnF4bpA3GFSbr7w505l1jHii0WLfPrGm4P2/VxQ1t
-         02I6oFCY09GC3/YqMwNFicjtr7eB0VbtJXhMJg+9DEPB/2WPLVdQmkVS4xlwLmtSHPzN
-         cdHgv1G3hCzbrGmk58cMkW3iJG6029ZM4ag6cM1H7H5W0ArW971nMqX4zRf6n66aJ64U
-         5I6g==
-X-Gm-Message-State: APjAAAXmK2nvZMaAyTkpggfh0bD363hmlAnq/l8s5pN6Et6nJOxOZYyL
-        3fZXOrWcuYK73RQ51nytuw==
-X-Google-Smtp-Source: APXvYqxzZ6w7VsTX+lZvTdQtthtWohq+ukDLYC7IcHxx2PzdPFkCaSWEUxCSOKgJMJvjZ9AO2AlA9g==
-X-Received: by 2002:a5e:a710:: with SMTP id b16mr72912914iod.38.1563839581403;
-        Mon, 22 Jul 2019 16:53:01 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id y18sm41470824iob.64.2019.07.22.16.53.00
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 22 Jul 2019 16:53:00 -0700 (PDT)
-Date:   Mon, 22 Jul 2019 17:53:00 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Marc Gonzalez <marc.w.gonzalez@free.fr>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        gpio <linux-gpio@vger.kernel.org>,
-        DT <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v2] pinctrl: msm8998: Squash TSIF pins together
-Message-ID: <20190722235300.GA24879@bogus>
-References: <503b2ae8-ead6-70cd-7b21-ce5f5166a23a@free.fr>
+        id S1731045AbfGVXyN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 19:54:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47124 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731007AbfGVXyM (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jul 2019 19:54:12 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 06C1320840;
+        Mon, 22 Jul 2019 23:54:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563839651;
+        bh=7riE0sVQmQS5QgS4pP9ptPUvfmyCxgbuxcUzFNIX2L8=;
+        h=In-Reply-To:References:Subject:To:Cc:From:Date:From;
+        b=lMfzRRCskgjYJCyPlokQPKY6jX+VpgCrEwPkMIQvRxf8iOB5wgrS9PjXaN0wjtfWh
+         RiuaqfDlvSUHC1e16Pk0GMsnB1H5f28N5075BUdTFeSOe4/ZlQbTkjJF0oMcqI6dyP
+         T+b1BFHi89keU/CNeTzd05/B7YC7Rqku9pnyKVeY=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <503b2ae8-ead6-70cd-7b21-ce5f5166a23a@free.fr>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAFd5g45hdCxEavSxirr0un_uLzo5Z-J4gHRA06qjzcQrTzmjVg@mail.gmail.com>
+References: <20190712081744.87097-1-brendanhiggins@google.com> <CAFd5g47ikJmA0uGoavAFsh+hQvDmgsOi26tyii0612R=rt7iiw@mail.gmail.com> <CAFd5g44_axVHNMBzxSURQB_-R+Rif7cZcg7PyZ_SS+5hcy5jZA@mail.gmail.com> <20190716175021.9CA412173C@mail.kernel.org> <CAFd5g453vXeSUCZenCk_CzJ-8a1ym9RaPo0NVF=FujF9ac-5Ag@mail.gmail.com> <20190718175024.C3EC421019@mail.kernel.org> <CAFd5g46a7C1+R6ZcE_SkqaYqgrH5Rx3M=X7orFyaMgFLDbeYYA@mail.gmail.com> <20190719000834.GA3228@google.com> <20190722200347.261D3218C9@mail.kernel.org> <CAFd5g45hdCxEavSxirr0un_uLzo5Z-J4gHRA06qjzcQrTzmjVg@mail.gmail.com>
+Subject: Re: [PATCH v9 04/18] kunit: test: add kunit_stream a std::stream like logger
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        Theodore Ts'o <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+From:   Stephen Boyd <sboyd@kernel.org>
+User-Agent: alot/0.8.1
+Date:   Mon, 22 Jul 2019 16:54:10 -0700
+Message-Id: <20190722235411.06C1320840@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 04, 2019 at 10:57:06AM +0200, Marc Gonzalez wrote:
-> TSIF is the Transport Stream Interface.
-> First, rename tsif1 to tsif0, and tsif2 to tsif1.
-> Then squash all 5 tsif0 pins into a single function.
-> Same for tsif1.
+Quoting Brendan Higgins (2019-07-22 15:30:49)
+> On Mon, Jul 22, 2019 at 1:03 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> >
+> >
+> > What's the calling context of the assertions and expectations? I still
+> > don't like the fact that string stream needs to allocate buffers and
+> > throw them into a list somewhere because the calling context matters
+> > there.
+>=20
+> The calling context is the same as before, which is anywhere.
 
-Doesn't this break backwards compatibility? If so, you should say so and 
-say why that's okay for this platform. In any case, whether it's a 
-problem or not is up to the platform maintainer(s). 
+Ok. That's concerning then.
 
-> 
-> Signed-off-by: Marc Gonzalez <marc.w.gonzalez@free.fr>
-> ---
-> Changes from v1:
-> - Reword commit message for clarity (hopefully)
-> - Drop unrelated change in qcom,msm8998-pinctrl.txt
-> - CC DT
-> ---
->  .../bindings/pinctrl/qcom,msm8998-pinctrl.txt |  5 +-
+>=20
+> > I'd prefer we just wrote directly to the console/log via printk
+> > instead. That way things are simple because we use the existing
+> > buffering path of printk, but maybe there's some benefit to the string
+> > stream that I don't see? Right now it looks like it builds a string and
+> > then dumps it to printk so I'm sort of lost what the benefit is over
+> > just writing directly with printk.
+>=20
+> It's just buffering it so the whole string gets printed uninterrupted.
+> If we were to print out piecemeal to printk, couldn't we have another
+> call to printk come in causing it to garble the KUnit message we are
+> in the middle of printing?
 
-Acked-by: Rob Herring <robh@kernel.org>
+Yes, printing piecemeal by calling printk many times could lead to
+interleaving of messages if something else comes in such as an interrupt
+printing something. Printk has some support to hold "records" but I'm
+not sure how that would work here because KERN_CONT talks about only
+being used early on in boot code. I haven't looked at printk in detail
+though so maybe I'm all wrong and KERN_CONT just works?
 
->  drivers/pinctrl/qcom/pinctrl-msm8998.c        | 76 +++++--------------
->  2 files changed, 20 insertions(+), 61 deletions(-)
+Can printk be called once with whatever is in the struct? Otherwise if
+this is about making printk into a structured log then maybe printk
+isn't the proper solution anyway. Maybe a dev interface should be used
+instead that can handle starting and stopping tests (via ioctl) in
+addition to reading test results, records, etc. with read() and a
+clearing of the records. Then the seqfile API works naturally. All of
+this is a bit premature, but it looks like you're going down the path of
+making something akin to ftrace that stores binary formatted
+assertion/expectation records in a lockless ring buffer that then
+formats those records when the user asks for them.
+
+I can imagine someone wanting to write unit tests that check conditions
+from a simulated hardirq context via irq works (a driver mock
+framework?), so this doesn't seem far off.
+
