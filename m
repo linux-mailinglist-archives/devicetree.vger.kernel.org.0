@@ -2,1275 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8C6806FA2E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 09:19:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9F7AC6FA43
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 09:23:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726120AbfGVHTr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 03:19:47 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52442 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725773AbfGVHTr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 03:19:47 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6385821BE6;
-        Mon, 22 Jul 2019 07:19:36 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563779982;
-        bh=nwdq3eS0DIB8t4IUn/y0FOcWJ6hBllvhVnrlfR3fnMk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Cx7GE7bafHP1GDIZcGn66Yb7vq488rdOoFbxjsSyqalNur1ugy4Vnoul+PD2FUQEr
-         lL+zKNfcLm41lgcDaYYCjajz2f/Z6mHTfszPdspoGOgn4sRBSSkzE4oL2qnStA19uV
-         pbW9xjofGSY3UexOL2WZewFZdbKrQdOM+uYqWNns=
-Date:   Mon, 22 Jul 2019 15:19:13 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     =?iso-8859-1?Q?S=E9bastien?= Szymanski 
-        <sebastien.szymanski@armadeus.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 2/2] ARM: dts: opos6ul/opos6uldev: rework device tree to
- support i.MX6ULL
-Message-ID: <20190722071909.GE3738@dragon>
-References: <20190704142324.17675-1-sebastien.szymanski@armadeus.com>
- <20190704142324.17675-2-sebastien.szymanski@armadeus.com>
+        id S1727845AbfGVHXv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 03:23:51 -0400
+Received: from hqemgate15.nvidia.com ([216.228.121.64]:1627 "EHLO
+        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726905AbfGVHXu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 03:23:50 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d35648b0002>; Mon, 22 Jul 2019 00:23:55 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Mon, 22 Jul 2019 00:23:48 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Mon, 22 Jul 2019 00:23:48 -0700
+Received: from [10.2.164.85] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 22 Jul
+ 2019 07:23:46 +0000
+Subject: Re: [PATCH V6 09/21] clk: tegra: clk-super: Fix to enable PLLP
+ branches to CPU
+To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
+        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
+        <linus.walleij@linaro.org>, <stefan@agner.ch>,
+        <mark.rutland@arm.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
+        <josephl@nvidia.com>, <talho@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com>
+ <1563738060-30213-10-git-send-email-skomatineni@nvidia.com>
+ <0c86cd7f-81b5-40c5-6f1e-796e8f13b522@gmail.com>
+ <042f4b43-7b9c-533d-2548-d903b34363da@nvidia.com>
+ <7933a83c-3208-b551-d41d-70285ae528e3@nvidia.com>
+ <f6ac50af-c3a5-1fef-2e0d-a9ecadeb2495@gmail.com>
+ <d9bbe208-6cd3-6a28-3e43-fdd566699b1d@nvidia.com>
+ <07897688-2a02-b7a7-7048-72c4078d26a2@gmail.com>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <90e1a90b-1d33-a5db-9af8-dc5c5d45b65f@nvidia.com>
+Date:   Mon, 22 Jul 2019 00:24:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190704142324.17675-2-sebastien.szymanski@armadeus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <07897688-2a02-b7a7-7048-72c4078d26a2@gmail.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1563780235; bh=UQ0YMGzS5HHeJDikl5gEeLd1E8bvStNLrs6qMhE0DbA=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=MgqmwlB765Iesf5MvUwEFQY3mymP6n/qgl0Yn/Ba9yKR9nrnYFLjWL5RWe86l84FR
+         R3tqj90uSF9wqaLSXF3McZbhFensXxs3cffNVVTIsOzezaRPAaTiwnyxNUCR98dbNy
+         a7KUye3Y0rnZSmzYJ97fonXGNqLdPZVBQ0OKZPyuOd60uT9XOnvNh8qC0dFixoFQGY
+         aUiLI6tz6GrWySXNtsRe3uPOHJ9qi/LexNT0nWwiugAk67038X7+MCzQOfQH7pEo5W
+         SZcN5gB27kcp1rS5thV36Bx0Zz3jD0xuvEr/55JLtv6skPTr62x1kWr/i32EDaHTrb
+         olg+z+SX1iYSw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 04, 2019 at 04:23:24PM +0200, Sébastien Szymanski wrote:
-> Rework the device trees of the OPOS6UL and OPOS6ULDev boards to support
-> the OPOS6UL SoM with an i.MX6ULL SoC.  The device trees are now as
-> following:
-> - imx6ul-imx6ull-opos6ul.dtsi
-> - imx6ul-opos6ul.dtsi
-> - imx6ull-opos6ul.dtsi
-> - imx6ul-imx6ull-opos6uldev.dtsi
-> - imx6ul-opos6uldev.dts
-> - imx6ull-opos6uldev.dts
 
-Can you please explain a bit how this complex file hierarchy is created?
+On 7/22/19 12:17 AM, Dmitry Osipenko wrote:
+> 22.07.2019 10:12, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> On 7/21/19 11:32 PM, Dmitry Osipenko wrote:
+>>> 22.07.2019 6:17, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>>>> On 7/21/19 3:39 PM, Sowjanya Komatineni wrote:
+>>>>> On 7/21/19 2:16 PM, Dmitry Osipenko wrote:
+>>>>>> 21.07.2019 22:40, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82=
+:
+>>>>>>> This patch has a fix to enable PLLP branches to CPU before changing
+>>>>>>> the CPU clusters clock source to PLLP for Gen5 Super clock.
+>>>>>>>
+>>>>>>> During system suspend entry and exit, CPU source will be switched
+>>>>>>> to PLLP and this needs PLLP branches to be enabled to CPU prior to
+>>>>>>> the switch.
+>>>>>>>
+>>>>>>> On system resume, warmboot code enables PLLP branches to CPU and
+>>>>>>> powers up the CPU with PLLP clock source.
+>>>>>>>
+>>>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>>>>>>> ---
+>>>>>>>  =C2=A0=C2=A0 drivers/clk/tegra/clk-super.c=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 | 11 +++++++++++
+>>>>>>>  =C2=A0=C2=A0 drivers/clk/tegra/clk-tegra-super-gen4.c |=C2=A0 4 ++=
+--
+>>>>>>>  =C2=A0=C2=A0 drivers/clk/tegra/clk.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=
+=C2=A0 4 ++++
+>>>>>>>  =C2=A0=C2=A0 3 files changed, 17 insertions(+), 2 deletions(-)
+>>>>>>>
+>>>>>>> diff --git a/drivers/clk/tegra/clk-super.c
+>>>>>>> b/drivers/clk/tegra/clk-super.c
+>>>>>>> index 39ef31b46df5..d73c587e4853 100644
+>>>>>>> --- a/drivers/clk/tegra/clk-super.c
+>>>>>>> +++ b/drivers/clk/tegra/clk-super.c
+>>>>>>> @@ -28,6 +28,9 @@
+>>>>>>>  =C2=A0=C2=A0 #define super_state_to_src_shift(m, s) ((m->width * s=
+))
+>>>>>>>  =C2=A0=C2=A0 #define super_state_to_src_mask(m) (((1 << m->width) =
+- 1))
+>>>>>>>  =C2=A0=C2=A0 +#define CCLK_SRC_PLLP_OUT0 4
+>>>>>>> +#define CCLK_SRC_PLLP_OUT4 5
+>>>>>>> +
+>>>>>>>  =C2=A0=C2=A0 static u8 clk_super_get_parent(struct clk_hw *hw)
+>>>>>>>  =C2=A0=C2=A0 {
+>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 struct tegra_clk_super_mux *m=
+ux =3D to_clk_super_mux(hw);
+>>>>>>> @@ -97,6 +100,14 @@ static int clk_super_set_parent(struct clk_hw
+>>>>>>> *hw, u8 index)
+>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (i=
+ndex =3D=3D mux->div2_index)
+>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
+=C2=A0=C2=A0=C2=A0 index =3D mux->pllx_index;
+>>>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 }
+>>>>>>> +
+>>>>>>> +=C2=A0=C2=A0=C2=A0 /*
+>>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 * Enable PLLP branches to CPU before sele=
+cting PLLP source
+>>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0 */
+>>>>>>> +=C2=A0=C2=A0=C2=A0 if ((mux->flags & TEGRA_CPU_CLK) &&
+>>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 ((index =3D=3D CCLK_SRC=
+_PLLP_OUT0) || (index =3D=3D
+>>>>>>> CCLK_SRC_PLLP_OUT4)))
+>>>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 tegra_clk_set_pllp_out_=
+cpu(true);
+>>>>>> Should somewhere here be tegra_clk_set_pllp_out_cpu(false) when
+>>>>>> switching from PLLP?
+>>>>> PLLP may be used for other CPU clusters.
+>>>> Though to avoid flag and check needed to make sure other CPU is not
+>>>> using before disabling PLLP branch to CPU.
+>>>>
+>>>> But leaving it enabled shouldn't impact much as clock source mux is
+>>>> after this in design anyway.
+>>>>
+>>>> But can add as well if its clear that way.
+>>> The TRM doc says "The CPU subsystem supports a switch-cluster mode
+>>> meaning that only one of the clusters can be active at any given time".
+>>>
+>>> Given that cluster-switching isn't supported in upstream, I don't think
+>>> that you need to care about the other cluster at all, at least for now.
+>>>
+>>> The cluster-switching implementation in upstream is very complicated
+>>> because it requires a special "hotplugging" CPU governor, which
+>>> apparently no other platform needs.
+>>>
+>>> [snip]
+>> This patch enables PLLP branches to CPU for both CPUG & CPULP if they
+>> use PLLP source.
+>>
+>> So, to disable PLLP out CPU when not in use, we still need check for
+>> other cluster because during resume both LP CPU and G CPU gets restored.
+>> CPUG runs from PLLP on resume and when it does super clk restore for LP
+>> CPU which may not be using PLLP, but as both uses same super mux
+>> clk_ops, without check (for PLLP branch to CPU in use) disabling PLLP
+>> branch to CPU during LP CPU restore looses clock to CPU G as well which
+>> is running from PLLP.
+>>
+>> Will add check and disable PLLP if not in use in next version... this
+>> need extern flag as well to mark PLLP usage with either of CPU's.
+> I still don't understand why do you need to care about LP cluster at
+> all, given that it's always in a power-gated state.
 
-> 
-> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
-> ---
->  arch/arm/boot/dts/Makefile                    |   1 +
->  arch/arm/boot/dts/imx6ul-imx6ull-opos6ul.dtsi | 148 +++++++
->  .../boot/dts/imx6ul-imx6ull-opos6uldev.dtsi   | 338 ++++++++++++++++
->  arch/arm/boot/dts/imx6ul-opos6ul.dtsi         | 195 +--------
->  arch/arm/boot/dts/imx6ul-opos6uldev.dts       | 380 +-----------------
->  arch/arm/boot/dts/imx6ull-opos6ul.dtsi        |   6 +
->  arch/arm/boot/dts/imx6ull-opos6uldev.dts      |  42 ++
->  7 files changed, 546 insertions(+), 564 deletions(-)
->  create mode 100644 arch/arm/boot/dts/imx6ul-imx6ull-opos6ul.dtsi
->  create mode 100644 arch/arm/boot/dts/imx6ul-imx6ull-opos6uldev.dtsi
->  create mode 100644 arch/arm/boot/dts/imx6ull-opos6ul.dtsi
->  create mode 100644 arch/arm/boot/dts/imx6ull-opos6uldev.dts
-> 
-> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-> index dab2914fa293..e2ee3322c47c 100644
-> --- a/arch/arm/boot/dts/Makefile
-> +++ b/arch/arm/boot/dts/Makefile
-> @@ -580,6 +580,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
->  	imx6ull-14x14-evk.dtb \
->  	imx6ull-colibri-eval-v3.dtb \
->  	imx6ull-colibri-wifi-eval-v3.dtb \
-> +	imx6ull-opos6uldev.dtb \
->  	imx6ulz-14x14-evk.dtb
->  dtb-$(CONFIG_SOC_IMX7D) += \
->  	imx7d-cl-som-imx7.dtb \
-> diff --git a/arch/arm/boot/dts/imx6ul-imx6ull-opos6ul.dtsi b/arch/arm/boot/dts/imx6ul-imx6ull-opos6ul.dtsi
-> new file mode 100644
-> index 000000000000..50af2f571800
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6ul-imx6ull-opos6ul.dtsi
-> @@ -0,0 +1,148 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR X11
+cclk_lp is registered thru super clk mux which uses same clk_ops as cclk_g.
 
-DT maintainer prefer to MIT over X11.
+during restore, cclk_lp also gets restored. So both cclk_lp & cclk_g=20
+goes thru same clk_ops
 
-> +//
-> +// Copyright 2019 Armadeus Systems <support@armadeus.com>
-> +
-> +/ {
-> +	memory@80000000 {
-> +		device_type = "memory";
-> +		reg = <0x80000000 0>; /* will be filled by U-Boot */
-> +	};
-> +
-> +	reg_3v3: regulator-3v3 {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "3V3";
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +	};
-> +
-> +	usdhc3_pwrseq: usdhc3-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		reset-gpios = <&gpio2 9 GPIO_ACTIVE_LOW>;
-> +	};
-> +};
-> +
-> +&fec1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_enet1>;
-> +	phy-mode = "rmii";
-> +	phy-reset-duration = <1>;
-> +	phy-reset-gpios = <&gpio4 2 GPIO_ACTIVE_LOW>;
-> +	phy-handle = <&ethphy1>;
-> +	phy-supply = <&reg_3v3>;
-> +	status = "okay";
-> +
-> +	mdio: mdio {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +
-> +		ethphy1: ethernet-phy@1 {
-> +			compatible = "ethernet-phy-ieee802.3-c22";
-> +			reg = <1>;
-> +			interrupt-parent = <&gpio4>;
-> +			interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
-> +			status = "okay";
-> +		};
-> +	};
-> +};
-> +
-> +/* Bluetooth */
-> +&uart8 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart8>;
-> +	uart-has-rtscts;
-> +	status = "okay";
-> +};
-> +
-> +/* eMMC */
-> +&usdhc1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc1>;
-> +	bus-width = <8>;
-> +	no-1-8-v;
-> +	non-removable;
-> +	status = "okay";
-> +};
-> +
-> +/* WiFi */
-> +&usdhc2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usdhc2>;
-> +	bus-width = <4>;
-> +	no-1-8-v;
-> +	non-removable;
-> +	mmc-pwrseq = <&usdhc3_pwrseq>;
-> +	status = "okay";
-> +
-> +	#address-cells = <1>;
-> +	#size-cells = <0>;
-> +
-> +	brcmf: wifi@1 {
-> +		compatible = "brcm,bcm4329-fmac";
-> +		reg = <1>;
-> +		interrupt-parent = <&gpio2>;
-> +		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
-> +		interrupt-names = "host-wake";
-> +	};
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl_enet1: enet1grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_GPIO1_IO06__ENET1_MDIO	0x1b0b0
-> +			MX6UL_PAD_GPIO1_IO07__ENET1_MDC		0x1b0b0
-> +			MX6UL_PAD_ENET1_RX_ER__ENET1_RX_ER	0x130b0
-> +			MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN	0x130b0
-> +			MX6UL_PAD_ENET1_RX_DATA1__ENET1_RDATA01	0x130b0
-> +			MX6UL_PAD_ENET1_RX_DATA0__ENET1_RDATA00	0x130b0
-> +			MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00	0x1b0b0
-> +			MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01	0x1b0b0
-> +			MX6UL_PAD_ENET1_TX_EN__ENET1_TX_EN	0x1b0b0
-> +			/* INT# */
-> +			MX6UL_PAD_NAND_DQS__GPIO4_IO16		0x1b0b0
-> +			/* RST# */
-> +			MX6UL_PAD_NAND_DATA00__GPIO4_IO02	0x130b0
-> +			MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1	0x4001b031
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart8: uart8grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_ENET2_TX_EN__UART8_DCE_RX	0x1b0b0
-> +			MX6UL_PAD_ENET2_TX_DATA1__UART8_DCE_TX	0x1b0b0
-> +			MX6UL_PAD_ENET2_RX_ER__UART8_DCE_RTS	0x1b0b0
-> +			MX6UL_PAD_ENET2_TX_CLK__UART8_DCE_CTS	0x1b0b0
-> +			/* BT_REG_ON */
-> +			MX6UL_PAD_ENET2_RX_EN__GPIO2_IO10	0x130b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc1: usdhc1grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
-> +			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x10059
-> +			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
-> +			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
-> +			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
-> +			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
-> +			MX6UL_PAD_NAND_READY_B__USDHC1_DATA4	0x17059
-> +			MX6UL_PAD_NAND_CE0_B__USDHC1_DATA5	0x17059
-> +			MX6UL_PAD_NAND_CE1_B__USDHC1_DATA6	0x17059
-> +			MX6UL_PAD_NAND_CLE__USDHC1_DATA7	0x17059
-> +		>;
-> +	};
-> +
-> +	pinctrl_usdhc2: usdhc2grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_LCD_DATA18__USDHC2_CMD	0x1b0b0
-> +			MX6UL_PAD_LCD_DATA19__USDHC2_CLK	0x100b0
-> +			MX6UL_PAD_LCD_DATA20__USDHC2_DATA0	0x1b0b0
-> +			MX6UL_PAD_LCD_DATA21__USDHC2_DATA1	0x1b0b0
-> +			MX6UL_PAD_LCD_DATA22__USDHC2_DATA2	0x1b0b0
-> +			MX6UL_PAD_LCD_DATA23__USDHC2_DATA3	0x1b0b0
-> +			/* WL_REG_ON */
-> +			MX6UL_PAD_ENET2_RX_DATA1__GPIO2_IO09	0x130b0
-> +			/* WL_IRQ */
-> +			MX6UL_PAD_ENET2_RX_DATA0__GPIO2_IO08	0x1b0b0
-> +		>;
-> +	};
-> +};
-> diff --git a/arch/arm/boot/dts/imx6ul-imx6ull-opos6uldev.dtsi b/arch/arm/boot/dts/imx6ul-imx6ull-opos6uldev.dtsi
-> new file mode 100644
-> index 000000000000..350b7000fad2
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6ul-imx6ull-opos6uldev.dtsi
-> @@ -0,0 +1,338 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR X11
-> +//
-> +// Copyright 2019 Armadeus Systems <support@armadeus.com>
-> +
-> +/ {
-> +	chosen {
-> +		stdout-path = &uart1;
-> +	};
-> +
-> +	backlight: backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pwm3 0 191000>;
-> +		brightness-levels = <0 4 8 16 32 64 128 255>;
-> +		default-brightness-level = <7>;
-> +		power-supply = <&reg_5v>;
-> +		status = "okay";
-> +	};
-> +
-> +	gpio-keys {
-> +		compatible = "gpio-keys";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_gpio_keys>;
-> +
-> +		user-button {
-> +			label = "User button";
-> +			gpios = <&gpio2 11 GPIO_ACTIVE_LOW>;
-> +			linux,code = <BTN_MISC>;
-> +			wakeup-source;
-> +		};
-> +	};
-> +
-> +	leds {
-> +		compatible = "gpio-leds";
-> +
-> +		user-led {
-> +			label = "User";
-> +			pinctrl-names = "default";
-> +			pinctrl-0 = <&pinctrl_led>;
-> +			gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>;
-> +			linux,default-trigger = "heartbeat";
-> +		};
-> +	};
-> +
-> +	onewire {
-> +		compatible = "w1-gpio";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_w1>;
-> +		gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
-> +	};
-> +
-> +	panel: panel {
-> +		compatible = "armadeus,st0700-adapt";
-> +		power-supply = <&reg_3v3>;
-> +		backlight = <&backlight>;
-> +
-> +		port {
-> +			panel_in: endpoint {
-> +				remote-endpoint = <&lcdif_out>;
-> +			};
-> +		};
-> +	};
-> +
-> +	reg_5v: regulator-5v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "5V";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
-> +
-> +	reg_usbotg1_vbus: regulator-usbotg1vbus {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usbotg1vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_usbotg1_vbus>;
-> +		gpio = <&gpio1 5 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +	reg_usbotg2_vbus: regulator-usbotg2vbus {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "usbotg2vbus";
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pinctrl_usbotg2_vbus>;
-> +		gpio = <&gpio5 9 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +};
-> +
-> +&adc1 {
-> +	vref-supply = <&reg_3v3>;
-> +	status = "okay";
-> +};
-> +
-> +&can1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan1>;
-> +	xceiver-supply = <&reg_5v>;
-> +	status = "okay";
-> +};
-> +
-> +&can2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_flexcan2>;
-> +	xceiver-supply = <&reg_5v>;
-> +	status = "okay";
-> +};
-> +
-> +&ecspi4 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_ecspi4>;
-> +	cs-gpios = <&gpio4 9 GPIO_ACTIVE_LOW>, <&gpio4 3 GPIO_ACTIVE_LOW>;
-> +	status = "okay";
-> +
-> +	spidev0: spi@0 {
-> +		compatible = "spidev";
-> +		reg = <0>;
-> +		spi-max-frequency = <5000000>;
-> +	};
-> +
-> +	spidev1: spi@1 {
-> +		compatible = "spidev";
-> +		reg = <1>;
-> +		spi-max-frequency = <5000000>;
-> +	};
-> +};
-> +
-> +&i2c1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c1>;
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&i2c2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_i2c2>;
-> +	clock-frequency = <400000>;
-> +	status = "okay";
-> +};
-> +
-> +&lcdif {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_lcdif>;
-> +	status = "okay";
-> +
-> +	port {
-> +		lcdif_out: endpoint {
-> +			remote-endpoint = <&panel_in>;
-> +		};
-> +	};
-> +};
-> +
-> +&pwm3 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_pwm3>;
-> +	status = "okay";
-> +};
-> +
-> +&snvs_pwrkey {
-> +	status = "disabled";
-> +};
-> +
-> +&tsc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_tsc>;
-> +	xnur-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
-> +	measure-delay-time = <0xffff>;
-> +	pre-charge-time = <0xffff>;
-> +	status = "okay";
-> +};
-> +
-> +&uart1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart1>;
-> +	status = "okay";
-> +};
-> +
-> +&uart2 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_uart2>;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg1 {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_usbotg1_id>;
-> +	vbus-supply = <&reg_usbotg1_vbus>;
-> +	dr_mode = "otg";
-> +	disable-over-current;
-> +	status = "okay";
-> +};
-> +
-> +&usbotg2 {
-> +	vbus-supply = <&reg_usbotg2_vbus>;
-> +	dr_mode = "host";
-> +	disable-over-current;
-> +	status = "okay";
-> +};
-> +
-> +&iomuxc {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_gpios>;
-> +
-> +	pinctrl_ecspi4: ecspi4grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_NAND_DATA04__ECSPI4_SCLK	0x1b0b0
-> +			MX6UL_PAD_NAND_DATA05__ECSPI4_MOSI	0x1b0b0
-> +			MX6UL_PAD_NAND_DATA06__ECSPI4_MISO	0x1b0b0
-> +			MX6UL_PAD_NAND_DATA01__GPIO4_IO03	0x1b0b0
-> +			MX6UL_PAD_NAND_DATA07__GPIO4_IO09	0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan1: flexcan1grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX	0x0b0b0
-> +			MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x0b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan2: flexcan2grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_UART2_CTS_B__FLEXCAN2_TX	0x0b0b0
-> +			MX6UL_PAD_UART2_RTS_B__FLEXCAN2_RX	0x0b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_gpios: gpiosgrp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_GPIO1_IO09__GPIO1_IO09	0x0b0b0
-> +			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x0b0b0
-> +			MX6UL_PAD_UART3_TX_DATA__GPIO1_IO24	0x0b0b0
-> +			MX6UL_PAD_NAND_RE_B__GPIO4_IO00		0x0b0b0
-> +			MX6UL_PAD_GPIO1_IO08__GPIO1_IO08	0x0b0b0
-> +			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x0b0b0
-> +			MX6UL_PAD_UART1_RTS_B__GPIO1_IO19	0x0b0b0
-> +			MX6UL_PAD_NAND_WE_B__GPIO4_IO01		0x0b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_gpio_keys: gpiokeysgrp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_ENET2_TX_DATA0__GPIO2_IO11	0x0b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c1: i2c1grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_UART4_RX_DATA__I2C1_SDA	0x4001b8b0
-> +			MX6UL_PAD_UART4_TX_DATA__I2C1_SCL	0x4001b8b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_i2c2: i2c2grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_UART5_RX_DATA__I2C2_SDA	0x4001b8b0
-> +			MX6UL_PAD_UART5_TX_DATA__I2C2_SCL	0x4001b8b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_lcdif: lcdifgrp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_LCD_CLK__LCDIF_CLK	    0x100b1
-> +			MX6UL_PAD_LCD_ENABLE__LCDIF_ENABLE  0x100b1
-> +			MX6UL_PAD_LCD_HSYNC__LCDIF_HSYNC    0x100b1
-> +			MX6UL_PAD_LCD_VSYNC__LCDIF_VSYNC    0x100b1
-> +			MX6UL_PAD_LCD_DATA00__LCDIF_DATA00  0x100b1
-> +			MX6UL_PAD_LCD_DATA01__LCDIF_DATA01  0x100b1
-> +			MX6UL_PAD_LCD_DATA02__LCDIF_DATA02  0x100b1
-> +			MX6UL_PAD_LCD_DATA03__LCDIF_DATA03  0x100b1
-> +			MX6UL_PAD_LCD_DATA04__LCDIF_DATA04  0x100b1
-> +			MX6UL_PAD_LCD_DATA05__LCDIF_DATA05  0x100b1
-> +			MX6UL_PAD_LCD_DATA06__LCDIF_DATA06  0x100b1
-> +			MX6UL_PAD_LCD_DATA07__LCDIF_DATA07  0x100b1
-> +			MX6UL_PAD_LCD_DATA08__LCDIF_DATA08  0x100b1
-> +			MX6UL_PAD_LCD_DATA09__LCDIF_DATA09  0x100b1
-> +			MX6UL_PAD_LCD_DATA10__LCDIF_DATA10  0x100b1
-> +			MX6UL_PAD_LCD_DATA11__LCDIF_DATA11  0x100b1
-> +			MX6UL_PAD_LCD_DATA12__LCDIF_DATA12  0x100b1
-> +			MX6UL_PAD_LCD_DATA13__LCDIF_DATA13  0x100b1
-> +			MX6UL_PAD_LCD_DATA14__LCDIF_DATA14  0x100b1
-> +			MX6UL_PAD_LCD_DATA15__LCDIF_DATA15  0x100b1
-> +			MX6UL_PAD_LCD_DATA16__LCDIF_DATA16  0x100b1
-> +			MX6UL_PAD_LCD_DATA17__LCDIF_DATA17  0x100b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_led: ledgrp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_LCD_RESET__GPIO3_IO04		0x0b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_pwm3: pwm3grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_NAND_ALE__PWM3_OUT		0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_tsc: tscgrp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_GPIO1_IO01__GPIO1_IO01       0xb0
-> +			MX6UL_PAD_GPIO1_IO02__GPIO1_IO02       0xb0
-> +			MX6UL_PAD_GPIO1_IO03__GPIO1_IO03       0xb0
-> +			MX6UL_PAD_GPIO1_IO04__GPIO1_IO04       0xb0
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart1: uart1grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX	0x1b0b1
-> +			MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX	0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_uart2: uart2grp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_UART2_TX_DATA__UART2_DCE_TX	0x1b0b1
-> +			MX6UL_PAD_UART2_RX_DATA__UART2_DCE_RX	0x1b0b1
-> +		>;
-> +	};
-> +
-> +	pinctrl_usbotg1_id: usbotg1idgrp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_GPIO1_IO00__ANATOP_OTG1_ID	0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usbotg1_vbus: usbotg1vbusgrp {
-> +		fsl,pins = <
-> +			MX6UL_PAD_GPIO1_IO05__GPIO1_IO05	0x1b0b0
-> +		>;
-> +	};
-> +};
-> diff --git a/arch/arm/boot/dts/imx6ul-opos6ul.dtsi b/arch/arm/boot/dts/imx6ul-opos6ul.dtsi
-> index cf7faf4b9c47..ee11c3474aef 100644
-> --- a/arch/arm/boot/dts/imx6ul-opos6ul.dtsi
-> +++ b/arch/arm/boot/dts/imx6ul-opos6ul.dtsi
-> @@ -1,193 +1,6 @@
-> -/*
-> - * Copyright 2017 Armadeus Systems <support@armadeus.com>
-> - *
-> - * This file is dual-licensed: you can use it either under the terms
-> - * of the GPL or the X11 license, at your option. Note that this dual
-> - * licensing only applies to this file, and not this project as a
-> - * whole.
-> - *
-> - *  a) This file is free software; you can redistribute it and/or
-> - *     modify it under the terms of the GNU General Public License as
-> - *     published by the Free Software Foundation; either version 2 of
-> - *     the License, or (at your option) any later version.
-> - *
-> - *     This file is distributed in the hope that it will be useful,
-> - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-> - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> - *     GNU General Public License for more details.
-> - *
-> - *     You should have received a copy of the GNU General Public
-> - *     License along with this file; if not, write to the Free
-> - *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
-> - *     MA 02110-1301 USA
-> - *
-> - * Or, alternatively,
-> - *
-> - *  b) Permission is hereby granted, free of charge, to any person
-> - *     obtaining a copy of this software and associated documentation
-> - *     files (the "Software"), to deal in the Software without
-> - *     restriction, including without limitation the rights to use,
-> - *     copy, modify, merge, publish, distribute, sublicense, and/or
-> - *     sell copies of the Software, and to permit persons to whom the
-> - *     Software is furnished to do so, subject to the following
-> - *     conditions:
-> - *
-> - *     The above copyright notice and this permission notice shall be
-> - *     included in all copies or substantial portions of the Software.
-> - *
-> - *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-> - *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-> - *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-> - *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-> - *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-> - *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-> - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> - *     OTHER DEALINGS IN THE SOFTWARE.
-> - */
-> +// SPDX-License-Identifier: GPL-2.0 OR X11
-> +//
-> +// Copyright 2017 Armadeus Systems <support@armadeus.com>
->  
->  #include "imx6ul.dtsi"
-> -
-> -/ {
-> -	memory@80000000 {
-> -		device_type = "memory";
-> -		reg = <0x80000000 0>; /* will be filled by U-Boot */
-> -	};
-> -
-> -	reg_3v3: regulator-3v3 {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "3V3";
-> -		regulator-min-microvolt = <3300000>;
-> -		regulator-max-microvolt = <3300000>;
-> -	};
-> -
-> -	usdhc3_pwrseq: usdhc3-pwrseq {
-> -		compatible = "mmc-pwrseq-simple";
-> -		reset-gpios = <&gpio2 9 GPIO_ACTIVE_LOW>;
-> -	};
-> -};
-> -
-> -&fec1 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_enet1>;
-> -	phy-mode = "rmii";
-> -	phy-reset-duration = <1>;
-> -	phy-reset-gpios = <&gpio4 2 GPIO_ACTIVE_LOW>;
-> -	phy-handle = <&ethphy1>;
-> -	phy-supply = <&reg_3v3>;
-> -	status = "okay";
-> -
-> -	mdio: mdio {
-> -		#address-cells = <1>;
-> -		#size-cells = <0>;
-> -
-> -		ethphy1: ethernet-phy@1 {
-> -			compatible = "ethernet-phy-ieee802.3-c22";
-> -			reg = <1>;
-> -			interrupt-parent = <&gpio4>;
-> -			interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
-> -			status = "okay";
-> -		};
-> -	};
-> -};
-> -
-> -/* Bluetooth */
-> -&uart8 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_uart8>;
-> -	uart-has-rtscts;
-> -	status = "okay";
-> -};
-> -
-> -/* eMMC */
-> -&usdhc1 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_usdhc1>;
-> -	bus-width = <8>;
-> -	no-1-8-v;
-> -	non-removable;
-> -	status = "okay";
-> -};
-> -
-> -/* WiFi */
-> -&usdhc2 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_usdhc2>;
-> -	bus-width = <4>;
-> -	no-1-8-v;
-> -	non-removable;
-> -	mmc-pwrseq = <&usdhc3_pwrseq>;
-> -	status = "okay";
-> -
-> -	#address-cells = <1>;
-> -	#size-cells = <0>;
-> -
-> -	brcmf: wifi@1 {
-> -		compatible = "brcm,bcm4329-fmac";
-> -		reg = <1>;
-> -		interrupt-parent = <&gpio2>;
-> -		interrupts = <8 IRQ_TYPE_LEVEL_LOW>;
-> -		interrupt-names = "host-wake";
-> -	};
-> -};
-> -
-> -&iomuxc {
-> -	pinctrl_enet1: enet1grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_GPIO1_IO06__ENET1_MDIO	0x1b0b0
-> -			MX6UL_PAD_GPIO1_IO07__ENET1_MDC		0x1b0b0
-> -			MX6UL_PAD_ENET1_RX_ER__ENET1_RX_ER	0x130b0
-> -			MX6UL_PAD_ENET1_RX_EN__ENET1_RX_EN	0x130b0
-> -			MX6UL_PAD_ENET1_RX_DATA1__ENET1_RDATA01	0x130b0
-> -			MX6UL_PAD_ENET1_RX_DATA0__ENET1_RDATA00	0x130b0
-> -			MX6UL_PAD_ENET1_TX_DATA0__ENET1_TDATA00	0x1b0b0
-> -			MX6UL_PAD_ENET1_TX_DATA1__ENET1_TDATA01	0x1b0b0
-> -			MX6UL_PAD_ENET1_TX_EN__ENET1_TX_EN	0x1b0b0
-> -			/* INT# */
-> -			MX6UL_PAD_NAND_DQS__GPIO4_IO16		0x1b0b0
-> -			/* RST# */
-> -			MX6UL_PAD_NAND_DATA00__GPIO4_IO02	0x130b0
-> -			MX6UL_PAD_ENET1_TX_CLK__ENET1_REF_CLK1	0x4001b031
-> -		>;
-> -	};
-> -
-> -	pinctrl_uart8: uart8grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_ENET2_TX_EN__UART8_DCE_RX	0x1b0b0
-> -			MX6UL_PAD_ENET2_TX_DATA1__UART8_DCE_TX	0x1b0b0
-> -			MX6UL_PAD_ENET2_RX_ER__UART8_DCE_RTS	0x1b0b0
-> -			MX6UL_PAD_ENET2_TX_CLK__UART8_DCE_CTS	0x1b0b0
-> -			/* BT_REG_ON */
-> -			MX6UL_PAD_ENET2_RX_EN__GPIO2_IO10	0x130b0
-> -		>;
-> -	};
-> -
-> -	pinctrl_usdhc1: usdhc1grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_SD1_CMD__USDHC1_CMD		0x17059
-> -			MX6UL_PAD_SD1_CLK__USDHC1_CLK		0x10059
-> -			MX6UL_PAD_SD1_DATA0__USDHC1_DATA0	0x17059
-> -			MX6UL_PAD_SD1_DATA1__USDHC1_DATA1	0x17059
-> -			MX6UL_PAD_SD1_DATA2__USDHC1_DATA2	0x17059
-> -			MX6UL_PAD_SD1_DATA3__USDHC1_DATA3	0x17059
-> -			MX6UL_PAD_NAND_READY_B__USDHC1_DATA4	0x17059
-> -			MX6UL_PAD_NAND_CE0_B__USDHC1_DATA5	0x17059
-> -			MX6UL_PAD_NAND_CE1_B__USDHC1_DATA6	0x17059
-> -			MX6UL_PAD_NAND_CLE__USDHC1_DATA7	0x17059
-> -		>;
-> -	};
-> -
-> -	pinctrl_usdhc2: usdhc2grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_LCD_DATA18__USDHC2_CMD	0x1b0b0
-> -			MX6UL_PAD_LCD_DATA19__USDHC2_CLK	0x100b0
-> -			MX6UL_PAD_LCD_DATA20__USDHC2_DATA0	0x1b0b0
-> -			MX6UL_PAD_LCD_DATA21__USDHC2_DATA1	0x1b0b0
-> -			MX6UL_PAD_LCD_DATA22__USDHC2_DATA2	0x1b0b0
-> -			MX6UL_PAD_LCD_DATA23__USDHC2_DATA3	0x1b0b0
-> -			/* WL_REG_ON */
-> -			MX6UL_PAD_ENET2_RX_DATA1__GPIO2_IO09	0x130b0
-> -			/* WL_IRQ */
-> -			MX6UL_PAD_ENET2_RX_DATA0__GPIO2_IO08	0x1b0b0
-> -		>;
-> -	};
-> -};
-> +#include "imx6ul-imx6ull-opos6ul.dtsi"
-> diff --git a/arch/arm/boot/dts/imx6ul-opos6uldev.dts b/arch/arm/boot/dts/imx6ul-opos6uldev.dts
-> index 8ecdb9ad2b2e..44a5f0bce9a7 100644
-> --- a/arch/arm/boot/dts/imx6ul-opos6uldev.dts
-> +++ b/arch/arm/boot/dts/imx6ul-opos6uldev.dts
-> @@ -1,293 +1,21 @@
-> -/*
-> - * Copyright 2017 Armadeus Systems <support@armadeus.com>
-> - *
-> - * This file is dual-licensed: you can use it either under the terms
-> - * of the GPL or the X11 license, at your option. Note that this dual
-> - * licensing only applies to this file, and not this project as a
-> - * whole.
-> - *
-> - *  a) This file is free software; you can redistribute it and/or
-> - *     modify it under the terms of the GNU General Public License as
-> - *     published by the Free Software Foundation; either version 2 of
-> - *     the License, or (at your option) any later version.
-> - *
-> - *     This file is distributed in the hope that it will be useful,
-> - *     but WITHOUT ANY WARRANTY; without even the implied warranty of
-> - *     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-> - *     GNU General Public License for more details.
-> - *
-> - *     You should have received a copy of the GNU General Public
-> - *     License along with this file; if not, write to the Free
-> - *     Software Foundation, Inc., 51 Franklin St, Fifth Floor, Boston,
-> - *     MA 02110-1301 USA
-> - *
-> - * Or, alternatively,
-> - *
-> - *  b) Permission is hereby granted, free of charge, to any person
-> - *     obtaining a copy of this software and associated documentation
-> - *     files (the "Software"), to deal in the Software without
-> - *     restriction, including without limitation the rights to use,
-> - *     copy, modify, merge, publish, distribute, sublicense, and/or
-> - *     sell copies of the Software, and to permit persons to whom the
-> - *     Software is furnished to do so, subject to the following
-> - *     conditions:
-> - *
-> - *     The above copyright notice and this permission notice shall be
-> - *     included in all copies or substantial portions of the Software.
-> - *
-> - *     THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
-> - *     EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
-> - *     OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
-> - *     NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
-> - *     HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
-> - *     WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
-> - *     FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
-> - *     OTHER DEALINGS IN THE SOFTWARE.
-> - */
-> +// SPDX-License-Identifier: GPL-2.0 OR X11
-> +//
-> +// Copyright 2017 Armadeus Systems <support@armadeus.com>
->  
->  /dts-v1/;
->  #include "imx6ul-opos6ul.dtsi"
-> +#include "imx6ul-imx6ull-opos6uldev.dtsi"
->  
->  / {
-> -	model = "Armadeus Systems OPOS6UL SoM on OPOS6ULDev board";
-> +	model = "Armadeus Systems OPOS6UL SoM (i.MX6UL) on OPOS6ULDev board";
->  	compatible = "armadeus,opos6uldev", "armadeus,opos6ul", "fsl,imx6ul";
-> -
-> -	chosen {
-> -		stdout-path = &uart1;
-> -	};
-> -
-> -	backlight: backlight {
-> -		compatible = "pwm-backlight";
-> -		pwms = <&pwm3 0 191000>;
-> -		brightness-levels = <0 4 8 16 32 64 128 255>;
-> -		default-brightness-level = <7>;
-> -		power-supply = <&reg_5v>;
-> -		status = "okay";
-> -	};
-> -
-> -	gpio-keys {
-> -		compatible = "gpio-keys";
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&pinctrl_gpio_keys>;
-> -
-> -		user-button {
-> -			label = "User button";
-> -			gpios = <&gpio2 11 GPIO_ACTIVE_LOW>;
-> -			linux,code = <BTN_MISC>;
-> -			wakeup-source;
-> -		};
-> -	};
-> -
-> -	leds {
-> -		compatible = "gpio-leds";
-> -
-> -		user-led {
-> -			label = "User";
-> -			pinctrl-names = "default";
-> -			pinctrl-0 = <&pinctrl_led>;
-> -			gpios = <&gpio3 4 GPIO_ACTIVE_HIGH>;
-> -			linux,default-trigger = "heartbeat";
-> -		};
-> -	};
-> -
-> -	onewire {
-> -		compatible = "w1-gpio";
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&pinctrl_w1>;
-> -		gpios = <&gpio5 1 GPIO_ACTIVE_HIGH>;
-> -	};
-> -
-> -	panel: panel {
-> -		compatible = "armadeus,st0700-adapt";
-> -		power-supply = <&reg_3v3>;
-> -		backlight = <&backlight>;
-> -
-> -		port {
-> -			panel_in: endpoint {
-> -				remote-endpoint = <&lcdif_out>;
-> -			};
-> -		};
-> -	};
-> -
-> -	reg_5v: regulator-5v {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "5V";
-> -		regulator-min-microvolt = <5000000>;
-> -		regulator-max-microvolt = <5000000>;
-> -	};
-> -
-> -	reg_usbotg1_vbus: regulator-usbotg1vbus {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "usbotg1vbus";
-> -		regulator-min-microvolt = <5000000>;
-> -		regulator-max-microvolt = <5000000>;
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&pinctrl_usbotg1_vbus>;
-> -		gpio = <&gpio1 5 GPIO_ACTIVE_HIGH>;
-> -		enable-active-high;
-> -	};
-> -
-> -	reg_usbotg2_vbus: regulator-usbotg2vbus {
-> -		compatible = "regulator-fixed";
-> -		regulator-name = "usbotg2vbus";
-> -		regulator-min-microvolt = <5000000>;
-> -		regulator-max-microvolt = <5000000>;
-> -		pinctrl-names = "default";
-> -		pinctrl-0 = <&pinctrl_usbotg2_vbus>;
-> -		gpio = <&gpio5 9 GPIO_ACTIVE_HIGH>;
-> -		enable-active-high;
-> -	};
-> -};
-> -
-> -&adc1 {
-> -	vref-supply = <&reg_3v3>;
-> -	status = "okay";
-> -};
-> -
-> -&can1 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_flexcan1>;
-> -	xceiver-supply = <&reg_5v>;
-> -	status = "okay";
-> -};
-> -
-> -&can2 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_flexcan2>;
-> -	xceiver-supply = <&reg_5v>;
-> -	status = "okay";
-> -};
-> -
-> -&ecspi4 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_ecspi4>;
-> -	cs-gpios = <&gpio4 9 GPIO_ACTIVE_LOW>, <&gpio4 3 GPIO_ACTIVE_LOW>;
-> -	status = "okay";
-> -
-> -	spidev0: spi@0 {
-> -		compatible = "spidev";
-> -		reg = <0>;
-> -		spi-max-frequency = <5000000>;
-> -	};
-> -
-> -	spidev1: spi@1 {
-> -		compatible = "spidev";
-> -		reg = <1>;
-> -		spi-max-frequency = <5000000>;
-> -	};
-> -};
-> -
-> -&i2c1 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_i2c1>;
-> -	clock_frequency = <400000>;
-> -	status = "okay";
-> -};
-> -
-> -&i2c2 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_i2c2>;
-> -	clock_frequency = <400000>;
-> -	status = "okay";
-> -};
-> -
-> -&lcdif {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_lcdif>;
-> -	status = "okay";
-> -
-> -	port {
-> -		lcdif_out: endpoint {
-> -			remote-endpoint = <&panel_in>;
-> -		};
-> -	};
-> -};
-> -
-> -&pwm3 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_pwm3>;
-> -	status = "okay";
-> -};
-> -
-> -&snvs_pwrkey {
-> -	status = "disabled";
-> -};
-> -
-> -&tsc {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_tsc>;
-> -	xnur-gpio = <&gpio1 3 GPIO_ACTIVE_LOW>;
-> -	measure-delay-time = <0xffff>;
-> -	pre-charge-time = <0xffff>;
-> -	status = "okay";
-> -};
-> -
-> -&uart1 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_uart1>;
-> -	status = "okay";
-> -};
-> -
-> -&uart2 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_uart2>;
-> -	status = "okay";
-> -};
-> -
-> -&usbotg1 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_usbotg1_id>;
-> -	vbus-supply = <&reg_usbotg1_vbus>;
-> -	dr_mode = "otg";
-> -	disable-over-current;
-> -	status = "okay";
-> -};
-> -
-> -&usbotg2 {
-> -	vbus-supply = <&reg_usbotg2_vbus>;
-> -	dr_mode = "host";
-> -	disable-over-current;
-> -	status = "okay";
->  };
->  
->  &iomuxc {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_gpios>;
-> +	pinctrl-0 = <&pinctrl_gpios>, <&pinctrl_tamper_gpios>;
->  
-> -	pinctrl_ecspi4: ecspi4grp {
-> +	pinctrl_tamper_gpios: tampergpiosgrp {
->  		fsl,pins = <
-> -			MX6UL_PAD_NAND_DATA04__ECSPI4_SCLK	0x1b0b0
-> -			MX6UL_PAD_NAND_DATA05__ECSPI4_MOSI	0x1b0b0
-> -			MX6UL_PAD_NAND_DATA06__ECSPI4_MISO	0x1b0b0
-> -			MX6UL_PAD_NAND_DATA01__GPIO4_IO03	0x1b0b0
-> -			MX6UL_PAD_NAND_DATA07__GPIO4_IO09	0x1b0b0
-> -		>;
-> -	};
-> -
-> -	pinctrl_flexcan1: flexcan1grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_UART3_CTS_B__FLEXCAN1_TX	0x0b0b0
-> -			MX6UL_PAD_UART3_RTS_B__FLEXCAN1_RX	0x0b0b0
-> -		>;
-> -	};
-> -
-> -	pinctrl_flexcan2: flexcan2grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_UART2_CTS_B__FLEXCAN2_TX	0x0b0b0
-> -			MX6UL_PAD_UART2_RTS_B__FLEXCAN2_RX	0x0b0b0
-> -		>;
-> -	};
-> -
-> -	pinctrl_gpios: gpiosgrp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_GPIO1_IO09__GPIO1_IO09	0x0b0b0
-> -			MX6UL_PAD_UART3_RX_DATA__GPIO1_IO25	0x0b0b0
-> -			MX6UL_PAD_UART3_TX_DATA__GPIO1_IO24	0x0b0b0
-> -			MX6UL_PAD_NAND_RE_B__GPIO4_IO00		0x0b0b0
-> -			MX6UL_PAD_GPIO1_IO08__GPIO1_IO08	0x0b0b0
-> -			MX6UL_PAD_UART1_CTS_B__GPIO1_IO18	0x0b0b0
-> -			MX6UL_PAD_UART1_RTS_B__GPIO1_IO19	0x0b0b0
-> -			MX6UL_PAD_NAND_WE_B__GPIO4_IO01		0x0b0b0
->  			MX6UL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x0b0b0
->  			MX6UL_PAD_SNVS_TAMPER2__GPIO5_IO02	0x0b0b0
->  			MX6UL_PAD_SNVS_TAMPER3__GPIO5_IO03	0x0b0b0
-> @@ -299,100 +27,6 @@
->  		>;
->  	};
->  
-> -	pinctrl_gpio_keys: gpiokeysgrp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_ENET2_TX_DATA0__GPIO2_IO11	0x0b0b0
-> -		>;
-> -	};
-> -
-> -	pinctrl_i2c1: i2c1grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_UART4_RX_DATA__I2C1_SDA	0x4001b8b0
-> -			MX6UL_PAD_UART4_TX_DATA__I2C1_SCL	0x4001b8b0
-> -		>;
-> -	};
-> -
-> -	pinctrl_i2c2: i2c2grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_UART5_RX_DATA__I2C2_SDA	0x4001b8b0
-> -			MX6UL_PAD_UART5_TX_DATA__I2C2_SCL	0x4001b8b0
-> -		>;
-> -	};
-> -
-> -	pinctrl_lcdif: lcdifgrp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_LCD_CLK__LCDIF_CLK	    0x100b1
-> -			MX6UL_PAD_LCD_ENABLE__LCDIF_ENABLE  0x100b1
-> -			MX6UL_PAD_LCD_HSYNC__LCDIF_HSYNC    0x100b1
-> -			MX6UL_PAD_LCD_VSYNC__LCDIF_VSYNC    0x100b1
-> -			MX6UL_PAD_LCD_DATA00__LCDIF_DATA00  0x100b1
-> -			MX6UL_PAD_LCD_DATA01__LCDIF_DATA01  0x100b1
-> -			MX6UL_PAD_LCD_DATA02__LCDIF_DATA02  0x100b1
-> -			MX6UL_PAD_LCD_DATA03__LCDIF_DATA03  0x100b1
-> -			MX6UL_PAD_LCD_DATA04__LCDIF_DATA04  0x100b1
-> -			MX6UL_PAD_LCD_DATA05__LCDIF_DATA05  0x100b1
-> -			MX6UL_PAD_LCD_DATA06__LCDIF_DATA06  0x100b1
-> -			MX6UL_PAD_LCD_DATA07__LCDIF_DATA07  0x100b1
-> -			MX6UL_PAD_LCD_DATA08__LCDIF_DATA08  0x100b1
-> -			MX6UL_PAD_LCD_DATA09__LCDIF_DATA09  0x100b1
-> -			MX6UL_PAD_LCD_DATA10__LCDIF_DATA10  0x100b1
-> -			MX6UL_PAD_LCD_DATA11__LCDIF_DATA11  0x100b1
-> -			MX6UL_PAD_LCD_DATA12__LCDIF_DATA12  0x100b1
-> -			MX6UL_PAD_LCD_DATA13__LCDIF_DATA13  0x100b1
-> -			MX6UL_PAD_LCD_DATA14__LCDIF_DATA14  0x100b1
-> -			MX6UL_PAD_LCD_DATA15__LCDIF_DATA15  0x100b1
-> -			MX6UL_PAD_LCD_DATA16__LCDIF_DATA16  0x100b1
-> -			MX6UL_PAD_LCD_DATA17__LCDIF_DATA17  0x100b1
-> -		>;
-> -	};
-> -
-> -	pinctrl_led: ledgrp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_LCD_RESET__GPIO3_IO04		0x0b0b0
-> -		>;
-> -	};
-> -
-> -	pinctrl_pwm3: pwm3grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_NAND_ALE__PWM3_OUT		0x1b0b0
-> -		>;
-> -	};
-> -
-> -	pinctrl_tsc: tscgrp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_GPIO1_IO01__GPIO1_IO01       0xb0
-> -			MX6UL_PAD_GPIO1_IO02__GPIO1_IO02       0xb0
-> -			MX6UL_PAD_GPIO1_IO03__GPIO1_IO03       0xb0
-> -			MX6UL_PAD_GPIO1_IO04__GPIO1_IO04       0xb0
-> -		>;
-> -	};
-> -
-> -	pinctrl_uart1: uart1grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_UART1_TX_DATA__UART1_DCE_TX	0x1b0b1
-> -			MX6UL_PAD_UART1_RX_DATA__UART1_DCE_RX	0x1b0b1
-> -		>;
-> -	};
-> -
-> -	pinctrl_uart2: uart2grp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_UART2_TX_DATA__UART2_DCE_TX	0x1b0b1
-> -			MX6UL_PAD_UART2_RX_DATA__UART2_DCE_RX	0x1b0b1
-> -		>;
-> -	};
-> -
-> -	pinctrl_usbotg1_id: usbotg1idgrp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_GPIO1_IO00__ANATOP_OTG1_ID	0x1b0b0
-> -		>;
-> -	};
-> -
-> -	pinctrl_usbotg1_vbus: usbotg1vbusgrp {
-> -		fsl,pins = <
-> -			MX6UL_PAD_GPIO1_IO05__GPIO1_IO05	0x1b0b0
-> -		>;
-> -	};
-> -
->  	pinctrl_usbotg2_vbus: usbotg2vbusgrp {
->  		fsl,pins = <
->  			MX6UL_PAD_SNVS_TAMPER9__GPIO5_IO09	0x1b0b0
-> diff --git a/arch/arm/boot/dts/imx6ull-opos6ul.dtsi b/arch/arm/boot/dts/imx6ull-opos6ul.dtsi
-> new file mode 100644
-> index 000000000000..3bf1c69cc8a4
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6ull-opos6ul.dtsi
-> @@ -0,0 +1,6 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR X11
-> +//
-> +// Copyright 2019 Armadeus Systems <support@armadeus.com>
-> +
-> +#include "imx6ull.dtsi"
-> +#include "imx6ul-imx6ull-opos6ul.dtsi"
-> diff --git a/arch/arm/boot/dts/imx6ull-opos6uldev.dts b/arch/arm/boot/dts/imx6ull-opos6uldev.dts
-> new file mode 100644
-> index 000000000000..20642bcadf97
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/imx6ull-opos6uldev.dts
-> @@ -0,0 +1,42 @@
-> +// SPDX-License-Identifier: GPL-2.0 OR X11
-> +//
-> +// Copyright 2019 Armadeus Systems <support@armadeus.com>
-> +
-> +/dts-v1/;
-> +#include "imx6ull-opos6ul.dtsi"
-> +#include "imx6ul-imx6ull-opos6uldev.dtsi"
-> +
-> +/ {
-> +	model = "Armadeus Systems OPOS6UL SoM (i.MX6ULL) on OPOS6ULDev board";
-> +	compatible = "armadeus,opos6uldev", "armadeus,opos6ul", "fsl,imx6ull";
+In this patch, I marked super flags with TEGRA_CPU_CLK for both cclk_lp=20
+& cclk_g.
 
-It seems these board compatibles are not documented, though this is not
-the first time they are introduced.
+So when cclk_lp restore happens, it goes thru same set_parent clk_ops=20
+and as its source is not PLLP, it tries to disable PLLP_OUT_CPU if its=20
+disabled without adding check for PLLP being in use by other cluster.
 
-Shawn
+So either I should not mark cclk_lp as TEGRA_CPU_CLK and mark cclk_g=20
+only as TEGRA_CPU_CLK so PLLP out to CPU can be disabled without check=20
+if its not the source.
 
-> +};
-> +
-> +&iomuxc_snvs {
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&pinctrl_tamper_gpios>;
-> +
-> +	pinctrl_tamper_gpios: tampergpiosgrp {
-> +		fsl,pins = <
-> +			MX6ULL_PAD_SNVS_TAMPER0__GPIO5_IO00	0x0b0b0
-> +			MX6ULL_PAD_SNVS_TAMPER2__GPIO5_IO02	0x0b0b0
-> +			MX6ULL_PAD_SNVS_TAMPER3__GPIO5_IO03	0x0b0b0
-> +			MX6ULL_PAD_SNVS_TAMPER4__GPIO5_IO04	0x0b0b0
-> +			MX6ULL_PAD_SNVS_TAMPER5__GPIO5_IO05	0x0b0b0
-> +			MX6ULL_PAD_SNVS_TAMPER6__GPIO5_IO06	0x0b0b0
-> +			MX6ULL_PAD_SNVS_TAMPER7__GPIO5_IO07	0x0b0b0
-> +			MX6ULL_PAD_SNVS_TAMPER8__GPIO5_IO08	0x0b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_usbotg2_vbus: usbotg2vbusgrp {
-> +		fsl,pins = <
-> +			MX6ULL_PAD_SNVS_TAMPER9__GPIO5_IO09	0x1b0b0
-> +		>;
-> +	};
-> +
-> +	pinctrl_w1: w1grp {
-> +		fsl,pins = <
-> +			MX6ULL_PAD_SNVS_TAMPER1__GPIO5_IO01	0x0b0b0
-> +		>;
-> +	};
-> +};
-> -- 
-> 2.21.0
-> 
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+OR
+
+With TEGRA_CPU_CLK used for both cclk_lp & cclk_g, need to add check if=20
+PLLP is in use so during cclk_lp restore it doesnt disable PLLP out to CPU.
+
+
+To simplify without check, will just mark cclk_g super clock flag only=20
+as TEGRA_CPU_CLK so PLLP_OUT_CPU enable or disable happens only for CPUG
+
+
