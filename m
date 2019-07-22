@@ -2,91 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E01CE702C5
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 16:56:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 172F470312
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 17:04:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726652AbfGVO4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 10:56:47 -0400
-Received: from mout.kundenserver.de ([212.227.126.134]:39631 "EHLO
-        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725899AbfGVO4q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 10:56:46 -0400
-Received: from threadripper.lan ([149.172.19.189]) by mrelayeu.kundenserver.de
- (mreue012 [212.227.15.129]) with ESMTPA (Nemesis) id
- 1MK5BG-1i8jzE0TaY-00LSju; Mon, 22 Jul 2019 16:56:38 +0200
-From:   Arnd Bergmann <arnd@arndb.de>
-To:     soc@kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
-        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
-        bcm-kernel-feedback-list@broadcom.com
-Cc:     Arnd Bergmann <arnd@arndb.de>,
-        Vivek Unune <npcomplete13@gmail.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH] [RESEND] ARM: bcm47094: add missing #cells for mdio-bus-mux
-Date:   Mon, 22 Jul 2019 16:55:52 +0200
-Message-Id: <20190722145618.1155492-1-arnd@arndb.de>
-X-Mailer: git-send-email 2.20.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Provags-ID: V03:K1:58kYNxdp/4/OvhkcephOLG0lrEtZe2zmOjPbxM1QiGret2IP62K
- Do1CrdRVKb3+q8wqTdH7sLCUMztu0hZBtmcPCx2tU5t1bN6fqmAX5v7tFL5dTerwRm7NA78
- vBDVQPQJEQJr+H8tE7RL7zNIElfZINbjxoqrt3+SrLnqTjtOs72amePfZHcm3eh+Mva1jPh
- R6XjmO6j/3/U8K6YpL3fQ==
-X-Spam-Flag: NO
-X-UI-Out-Filterresults: notjunk:1;V03:K0:wKqZgt1dv0Q=:6PmNuljPMLdDh28rDeVivF
- OIkrLJ8ck2n9NBA9aF9puJX5cKE2GwHKs8yWZoMQhdvRJWx3YtzPYW93AezeahKzZ+FrdyGTY
- 2d8EU5ssFXVht9gwbWC0rabvnKxcMSUg0SIsZtaQlHE2z2OTUrNKwgFuHxPV0ln3AZBkMtiy/
- MW86BXbXaFkrjFGxlNaFiezYwBNZj9XlDk581sTpfH/TLoeYQuaA8AwHdW28zdc6q6PFqo9l/
- qH+yzwdMi4hyfpzGR1vy/K6s7sYlh5iqr4R1ILEWgQ/IvWMnPCEnkiARJGQ4BYRdBOuQ7dUbR
- CoWJaQ50nf3kyQ7RWFHbx5usz/syTZyjKnoo1BL4DB0H1joXwbsQgvHRrhr88WvPfcKwimLP9
- YQmTk6/G7eT7YHZjtVt+x0NjO0TGKpOoCfg92EALVOtaYBR9BR2jnq9wwNXmyEqh2MTILgxpW
- 15ivrfMNoJJYf4jU0aJ3BVgMPNMHPW1/XWT2gCJzcULM32KAQQFX1L1fv4qe4Z0wXRFJM/sEs
- qxu3D9H7fJTn/Xty1lgo01Tte8iaEp6rJ8rnRfBtYxk4ua3PaI+tHj6urOmpCukAIM93blLR/
- PfHzLFb8Sm0gn8xfJdKee7hp7BKpAMMDRZ7vQh95hSDKpR6DqaJY9ZGhHdGxnomSJwPV/5snS
- GBY/lJtCJZzp/LnetfqnTXyzS+Kohh+yF4IWXn4v8PM2nB2GJOdw+YhO9ZfHmaCKkimR5eHmt
- Wab3l4aEr9owkWzpYtmUxyF0l9N1ULaK3PNbyw==
+        id S1727207AbfGVPES (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 11:04:18 -0400
+Received: from verein.lst.de ([213.95.11.211]:32994 "EHLO verein.lst.de"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726713AbfGVPER (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jul 2019 11:04:17 -0400
+Received: by verein.lst.de (Postfix, from userid 2005)
+        id 9F97668B20; Mon, 22 Jul 2019 17:04:14 +0200 (CEST)
+From:   Torsten Duwe <duwe@lst.de>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Icenowy Zheng <icenowy@aosc.io>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vasily Khoruzhick <anarsoul@gmail.com>,
+        Harald Geyer <harald@ccbib.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        "Bcc:duwe"@lst.de
+Subject: [PATCH v2 0/7] Add anx6345 DP/eDP bridge for Olimex Teres-I
+Message-Id: <20190722150414.9F97668B20@verein.lst.de>
+Date:   Mon, 22 Jul 2019 17:04:14 +0200 (CEST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The mdio-bus-mux has no #address-cells/#size-cells property,
-which causes a few dtc warnings:
+ANX6345 LVTTL->eDP video bridge, driver with device tree bindings.
 
-arch/arm/boot/dts/bcm47094-linksys-panamera.dts:129.4-18: Warning (reg_format): /mdio-bus-mux/mdio@200:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
-arch/arm/boot/dts/bcm47094-linksys-panamera.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/bcm47094-linksys-panamera.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/bcm47094-linksys-panamera.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
-arch/arm/boot/dts/bcm47094-linksys-panamera.dts:128.22-132.5: Warning (avoid_default_addr_size): /mdio-bus-mux/mdio@200: Relying on default #address-cells value
-arch/arm/boot/dts/bcm47094-linksys-panamera.dts:128.22-132.5: Warning (avoid_default_addr_size): /mdio-bus-mux/mdio@200: Relying on default #size-cells value
+Changes from v2:
 
-Add the normal cell numbers.
+* use SPDX-IDs throughout
 
-Fixes: 2bebdfcdcd0f ("ARM: dts: BCM5301X: Add support for Linksys EA9500")
-Signed-off-by: Arnd Bergmann <arnd@arndb.de>
----
-As Florian is apparently on vacation at the moment, let's merge this
-as a bugfix through arm-soc directly to get closer to clean allmodconfig
-build.
----
- arch/arm/boot/dts/bcm47094-linksys-panamera.dts | 3 +++
- 1 file changed, 3 insertions(+)
+* removed the panel output again, as it was not what Maxime had in mind.
+  At least the Teres-I does very well without. No connector spec, no "quirks"[1],
+  just plain EDID at work.
 
-diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-index 18d0ae46e76c..0faae8950375 100644
---- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-+++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-@@ -124,6 +124,9 @@
- 	};
- 
- 	mdio-bus-mux {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+
- 		/* BIT(9) = 1 => external mdio */
- 		mdio_ext: mdio@200 {
- 			reg = <0x200>;
--- 
-2.20.0
+* binding clarifications and cosmetic changes as suggested by Andrzej
 
+Changes from v1:
+
+* fixed up copyright information. Most code changes are only moves and thus
+  retain copyright and module ownership. Even the new analogix-anx6345.c originates
+  from the old 1495-line analogix-anx78xx.c, with 306 insertions and 987 deletions
+  (ignoring the trivial anx78xx -> anx6345 replacements) 306 new vs. 508 old...
+
+* fixed all minor formatting issues brought up
+
+* merged previously separate new analogix_dp_i2c module into existing analogix_dp
+
+* split additional defines into a preparatory patch
+
+* renamed the factored-out common functions anx_aux_* -> anx_dp_aux_*, because
+  anx_...aux_transfer was exported globally. Besides, it is now GPL-only exported.
+
+* moved chip ID read into a separate function.
+
+* keep the chip powered after a successful probe.
+  (There's a good chance that this is the only display during boot!)
+
+* updated the binding document: LVTTL input is now required, only the output side
+  description is optional.
+
+ Laurent: I have also looked into the drm_panel_bridge infrastructure,
+ but it's not that trivial to convert these drivers to it.
+
+Changes from the respective previous versions:
+
+* the reset polarity is corrected in DT and the driver;
+  things should be clearer now.
+
+* as requested, add a panel (the known innolux,n116bge) and connect
+  the ports.
+
+* renamed dvdd?? to *-supply to match the established scheme
+
+* trivial update to the #include list, to make it compile in 5.2
+
+--------------
+[1] I hesitate to associate information about a connected panel with that term.
+    But should it be neccessary for maximum power saving (e.g. pinebooks),
+    it would be good to have something here, regardless of nomenclature.
+
+	Torsten
