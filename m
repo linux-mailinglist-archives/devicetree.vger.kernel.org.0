@@ -2,144 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA7FF70D9C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 01:49:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 046E170DAA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 01:53:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731754AbfGVXt1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 19:49:27 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:47018 "EHLO
+        id S1730820AbfGVXxC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 19:53:02 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:36218 "EHLO
         mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729728AbfGVXt0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 19:49:26 -0400
-Received: by mail-io1-f68.google.com with SMTP id i10so77834170iol.13;
-        Mon, 22 Jul 2019 16:49:26 -0700 (PDT)
+        with ESMTP id S1730598AbfGVXxC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 19:53:02 -0400
+Received: by mail-io1-f68.google.com with SMTP id o9so77985029iom.3;
+        Mon, 22 Jul 2019 16:53:01 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=OJLmbuthXALsnhPZhxE7MeJBMmONjl7w8T5HPyeenvc=;
-        b=W8E3iQVyRjdXFw0N3rKrjpPdQHtOwqWRxL/RsRe7X4P7IMLpvvR5LVVPCRxh6w13iK
-         vamc4AhwKvUEBNf8yPTL+HjKYym4CZFBDIgIwgQwIr9kNTvpdjRbKAgIX2rb6UB2LXLM
-         /iP1HfOtlBpqZMJzM5NhcaYfHnzxDHegsnACej0LjTzKcBAc+5I66qNqo+8pYlD5z3Yx
-         zfgKmUvdYKU4jcr+EYCE6mgyMP91+hIESH4ETpLi79n57ip4VZWs7elWUQLJVp4CrIDL
-         eF6X7B9pFP9JVheFesU15yOAah5pMzM8mTmbqocJ3BpOU3MgNfqrZYMxA7KZz9mn8Flc
-         c66w==
-X-Gm-Message-State: APjAAAXEFUwggL+jdjoqgqbP8U9sDeGZjdCAo8eXgvLcZrv5ZJ6QHhWO
-        R2klkZAGiZDLn9jWY8F2Iw==
-X-Google-Smtp-Source: APXvYqzkH8Tnp7m9jxTvF2W3kkBnlZgivGKMGBtOnCdqqnMHosHOQ0blCrKEmssR6DnsieQ9XjyLqw==
-X-Received: by 2002:a5d:8ccc:: with SMTP id k12mr67931100iot.141.1563839365957;
-        Mon, 22 Jul 2019 16:49:25 -0700 (PDT)
+        bh=HaUvZHRPCOC2S8HOXJy0x3pda31cOo40y2gnBhVmOj4=;
+        b=LjQ+VKbwGJ+tG1ibBwpd19UKa//pbbbToV8tpBCaKvoKLcpugReskAhDaRGT7jbrRS
+         Gxa8WVAb1aHm1jYOD4pFIrsm7JUFIU69NDGCU/UGYIyJRiaV0lC7lHGi5OKrXz/+eaOu
+         7WFVzVIv6qkDhJZq25aVZPpFxuCLnF4bpA3GFSbr7w505l1jHii0WLfPrGm4P2/VxQ1t
+         02I6oFCY09GC3/YqMwNFicjtr7eB0VbtJXhMJg+9DEPB/2WPLVdQmkVS4xlwLmtSHPzN
+         cdHgv1G3hCzbrGmk58cMkW3iJG6029ZM4ag6cM1H7H5W0ArW971nMqX4zRf6n66aJ64U
+         5I6g==
+X-Gm-Message-State: APjAAAXmK2nvZMaAyTkpggfh0bD363hmlAnq/l8s5pN6Et6nJOxOZYyL
+        3fZXOrWcuYK73RQ51nytuw==
+X-Google-Smtp-Source: APXvYqxzZ6w7VsTX+lZvTdQtthtWohq+ukDLYC7IcHxx2PzdPFkCaSWEUxCSOKgJMJvjZ9AO2AlA9g==
+X-Received: by 2002:a5e:a710:: with SMTP id b16mr72912914iod.38.1563839581403;
+        Mon, 22 Jul 2019 16:53:01 -0700 (PDT)
 Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id m4sm36990247iok.68.2019.07.22.16.49.25
+        by smtp.gmail.com with ESMTPSA id y18sm41470824iob.64.2019.07.22.16.53.00
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 22 Jul 2019 16:49:25 -0700 (PDT)
-Date:   Mon, 22 Jul 2019 17:49:24 -0600
+        Mon, 22 Jul 2019 16:53:00 -0700 (PDT)
+Date:   Mon, 22 Jul 2019 17:53:00 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     dongchun.zhu@mediatek.com
-Cc:     mchehab@kernel.org, mark.rutland@arm.com,
-        sakari.ailus@linux.intel.com, --to=drinkcat@chromium.org,
-        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
-        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [RFC,V2,1/2] media: dt-bindings: media: i2c: Add bindings for
- OV02A10
-Message-ID: <20190722234924.GA22604@bogus>
-References: <20190704084651.3105-1-dongchun.zhu@mediatek.com>
- <20190704084651.3105-2-dongchun.zhu@mediatek.com>
+To:     Marc Gonzalez <marc.w.gonzalez@free.fr>
+Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        gpio <linux-gpio@vger.kernel.org>,
+        DT <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v2] pinctrl: msm8998: Squash TSIF pins together
+Message-ID: <20190722235300.GA24879@bogus>
+References: <503b2ae8-ead6-70cd-7b21-ce5f5166a23a@free.fr>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190704084651.3105-2-dongchun.zhu@mediatek.com>
+In-Reply-To: <503b2ae8-ead6-70cd-7b21-ce5f5166a23a@free.fr>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 04, 2019 at 04:46:50PM +0800, dongchun.zhu@mediatek.com wrote:
-> From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+On Thu, Jul 04, 2019 at 10:57:06AM +0200, Marc Gonzalez wrote:
+> TSIF is the Transport Stream Interface.
+> First, rename tsif1 to tsif0, and tsif2 to tsif1.
+> Then squash all 5 tsif0 pins into a single function.
+> Same for tsif1.
+
+Doesn't this break backwards compatibility? If so, you should say so and 
+say why that's okay for this platform. In any case, whether it's a 
+problem or not is up to the platform maintainer(s). 
+
 > 
-> Add device tree binding documentation for the OV02A10 camera sensor.
-> 
-> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> Signed-off-by: Marc Gonzalez <marc.w.gonzalez@free.fr>
 > ---
->  .../devicetree/bindings/media/i2c/ov02a10.txt      | 43 ++++++++++++++++++++++
->  MAINTAINERS                                        |  7 ++++
->  2 files changed, 50 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/ov02a10.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/ov02a10.txt b/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
-> new file mode 100644
-> index 0000000..d40aa87
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/ov02a10.txt
-> @@ -0,0 +1,43 @@
-> +* Omnivision OV02A10 MIPI CSI-2 sensor
-> +
-> +Required Properties:
-> +- compatible: shall be "ovti,ov02a10"
-> +- clocks: reference to the xvclk input clock
-> +- clock-names: shall be "xvclk"
-> +- avdd-supply: Analog voltage supply, 2.8 volts
-> +- dovdd-supply: Digital I/O voltage supply, 1.8 volts
-> +- dvdd-supply: Digital core voltage supply, 1.8 volts
-> +- reset-gpios: Low active reset gpio
-> +
-> +The device node shall contain one 'port' child node with an
-> +'endpoint' subnode for its digital output video port,
-> +in accordance with the video interface bindings defined in
-> +Documentation/devicetree/bindings/media/video-interfaces.txt.
-> +The endpoint optional property 'data-lanes' shall be "<1>".
-> +
-> +Example:
-> +&i2c4 {
-> +	ov02a10: camera-sensor@3d {
-> +		compatible = "ovti,ov02a10";
-> +		reg = <0x3d>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&camera_pins_cam1_mclk_on>;
-> +
-> +		clocks = <&topckgen CLK_TOP_MUX_CAMTG2>,
-> +			<&topckgen CLK_TOP_UNIVP_192M_D8>;
-> +		clock-names = "xvclk", "freq_mux";
-> +
-> +		avdd-supply = <&mt6358_vcama1_reg>;
-> +		dvdd-supply = <&mt6358_vcn18_reg>;
-> +		dovdd-supply = <&mt6358_vcamio_reg>;
-> +		pwdn-gpios = <&pio 107 1>;
+> Changes from v1:
+> - Reword commit message for clarity (hopefully)
+> - Drop unrelated change in qcom,msm8998-pinctrl.txt
+> - CC DT
+> ---
+>  .../bindings/pinctrl/qcom,msm8998-pinctrl.txt |  5 +-
 
-Not documented. If you need this, use 'powerdown-gpios' instead.
+Acked-by: Rob Herring <robh@kernel.org>
 
-> +		reset-gpios = <&pio 109 1>;
-> +
-> +		port {
-> +		   ov02a10_core: endpoint {
-> +		       remote-endpoint = <&ov02a10_0>;
-> +			   data-lanes = <1>;
-> +			};
-> +		};
-> +	};
-> +};
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5cfbea4..62b81ff 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -11571,6 +11571,13 @@ T:	git git://linuxtv.org/media_tree.git
->  S:	Maintained
->  F:	drivers/media/i2c/ov13858.c
->  
-> +OMNIVISION OV02A10 SENSOR DRIVER
-> +M:	Dongchun Zhu <dongchun.zhu@mediatek.com>
-> +L:	linux-media@vger.kernel.org
-> +T:	git git://linuxtv.org/media_tree.git
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/i2c/ov02a10.txt
-> +
->  OMNIVISION OV2680 SENSOR DRIVER
->  M:	Rui Miguel Silva <rmfrfs@gmail.com>
->  L:	linux-media@vger.kernel.org
-> -- 
-> 2.9.2
-> 
+>  drivers/pinctrl/qcom/pinctrl-msm8998.c        | 76 +++++--------------
+>  2 files changed, 20 insertions(+), 61 deletions(-)
