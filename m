@@ -2,168 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 561186FE24
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 12:54:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A2406FE2E
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 12:57:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729597AbfGVKyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 06:54:44 -0400
-Received: from ns.iliad.fr ([212.27.33.1]:49240 "EHLO ns.iliad.fr"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728619AbfGVKyn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 06:54:43 -0400
-Received: from ns.iliad.fr (localhost [127.0.0.1])
-        by ns.iliad.fr (Postfix) with ESMTP id 88EBE20720;
-        Mon, 22 Jul 2019 12:54:41 +0200 (CEST)
-Received: from [192.168.108.49] (freebox.vlq16.iliad.fr [213.36.7.13])
-        by ns.iliad.fr (Postfix) with ESMTP id 7551A2005B;
-        Mon, 22 Jul 2019 12:54:41 +0200 (CEST)
-Subject: Re: [RFC v2] DT-based tuner/demod init
-From:   Marc Gonzalez <marc.w.gonzalez@free.fr>
-To:     linux-media <linux-media@vger.kernel.org>,
-        I2C <linux-i2c@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
-        Brad Love <brad@nextdimension.cc>,
-        Antti Palosaari <crope@iki.fi>,
-        Olli Salonen <olli.salonen@iki.fi>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
-        Wolfram Sang <wsa@the-dreams.de>,
-        Simon Horman <horms+renesas@verge.net.au>,
-        Peter Korsgaard <peter@korsgaard.com>,
-        Peter Rosin <peda@axentia.se>, DT <devicetree@vger.kernel.org>
-References: <6d38f9b1-a8cd-803d-b330-f92f7bcf08ca@free.fr>
-Message-ID: <7c7f05bc-26e6-7671-a5e2-265775744096@free.fr>
-Date:   Mon, 22 Jul 2019 12:54:40 +0200
+        id S1728373AbfGVK5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 06:57:34 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:41470 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726130AbfGVK5e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 06:57:34 -0400
+Received: by mail-lj1-f196.google.com with SMTP id d24so37130088ljg.8;
+        Mon, 22 Jul 2019 03:57:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=MfMbQo+3px3OA9BnZZv/vPC4tyxY+4Fa99yi+j6MVSs=;
+        b=IPH+KevhCcZGuzjzdQ0lz5atsUMe6SkDXi4+XrZuh259ziqgPwYr39ftyFmF6MozMv
+         0FuiimMJuXT9M81SWd6yIn7GIcsRO2RmTAtX+6bnHiQbOv6CwECBnCcQn24U29tC9Xws
+         mquHnECZoGFfUwH6Jio5Rzmdbcs9774hkOfwBqmbPm7kKpnmSXGk34iU98hZSsQEUap4
+         QKoCGxb7JqPUkku2oJcSC62tOPR1+ui6wKvZEXS38ZY8LeDbO+czhoikIFPROGbQrs7J
+         ijD5HKto3HhyrHLFZNx9EUkkKOsy/eJEEWb2LVMP3E+ldgpuVUcwQ1i5z4cfdG9hvJBw
+         RtSg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=MfMbQo+3px3OA9BnZZv/vPC4tyxY+4Fa99yi+j6MVSs=;
+        b=JORvly5QnOunbyYc67O8nK49l1EjjEx2ElqklyWyaTx8dS/QCQ555imF6PL9CaYp0c
+         ncrtydc/fRi+LAUcqzUW0glowBYDjYi22rid33tONB6Wl3tVaMDwrPrvE3fAdS0pdMoc
+         PKDE8Mc8i0XJzRhD5E7kMN/5bigYMux+Bt6l8Q9V72wKprMxpIlVF3X0q9dt+Fx2RPos
+         7qGr4Cb3yHir18JFhzQuzUXcDJklwqYzQetfffphrOB3c/FXill8kcTMwKLpeR/FFdom
+         kcbI6G7BaysxJurMc4B47Nmscy2J+18lSmfKs7TsxfcLS9VIotz77kpQ8qHwxdnNOkpF
+         vPZw==
+X-Gm-Message-State: APjAAAVMigEiMAdA5kYLskIBEH5GO+bn+k87CRgVluSoWC8qJG6mqOX1
+        q80npa0H7gzhqYAk2pqcDBGN8994
+X-Google-Smtp-Source: APXvYqxKBaaGhtcXgBX8AYLsoJaFMBoWGA/+yePSQ6iGvovI8f37U1Gps+nEDTjxrdgHmGvpFBkIbA==
+X-Received: by 2002:a2e:9117:: with SMTP id m23mr35967848ljg.134.1563793050348;
+        Mon, 22 Jul 2019 03:57:30 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
+        by smtp.googlemail.com with ESMTPSA id m4sm7464928ljc.56.2019.07.22.03.57.28
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 22 Jul 2019 03:57:29 -0700 (PDT)
+Subject: Re: [PATCH V6 01/21] irqchip: tegra: Do not disable COP IRQ during
+ suspend
+To:     Marc Zyngier <marc.zyngier@arm.com>,
+        Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
+        jason@lakedaemon.net, linus.walleij@linaro.org, stefan@agner.ch,
+        mark.rutland@arm.com
+Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org
+References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com>
+ <1563738060-30213-2-git-send-email-skomatineni@nvidia.com>
+ <f6582e43-168e-1b7e-9db8-3d263bc3ba0d@gmail.com>
+ <20c1d733-60f5-6375-c03c-639de5e41739@arm.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <0bee8775-756f-adad-4597-8cad53017718@gmail.com>
+Date:   Mon, 22 Jul 2019 13:57:28 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <6d38f9b1-a8cd-803d-b330-f92f7bcf08ca@free.fr>
+In-Reply-To: <20c1d733-60f5-6375-c03c-639de5e41739@arm.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Virus-Scanned: ClamAV using ClamSMTP ; ns.iliad.fr ; Mon Jul 22 12:54:41 2019 +0200 (CEST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 11/07/2019 18:21, Marc Gonzalez wrote:
-
-> This is a follow-up RFC to my first request for comments:
-> "[RFC] SW connection between DVB Transport Stream demuxer and I2C-based frontend"
-> https://www.spinics.net/lists/arm-kernel/msg739972.html
+22.07.2019 13:13, Marc Zyngier пишет:
+> On 22/07/2019 10:54, Dmitry Osipenko wrote:
+>> 21.07.2019 22:40, Sowjanya Komatineni пишет:
+>>> Tegra210 platforms use sc7 entry firmware to program Tegra LP0/SC7 entry
+>>> sequence and sc7 entry firmware is run from COP/BPMP-Lite.
+>>>
+>>> So, COP/BPMP-Lite still need IRQ function to finish SC7 suspend sequence
+>>> for Tegra210.
+>>>
+>>> This patch has fix for leaving the COP IRQ enabled for Tegra210 during
+>>> interrupt controller suspend operation.
+>>>
+>>> Acked-by: Thierry Reding <treding@nvidia.com>
+>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>>> ---
+>>>  drivers/irqchip/irq-tegra.c | 20 ++++++++++++++++++--
+>>>  1 file changed, 18 insertions(+), 2 deletions(-)
+>>>
+>>> diff --git a/drivers/irqchip/irq-tegra.c b/drivers/irqchip/irq-tegra.c
+>>> index e1f771c72fc4..851f88cef508 100644
+>>> --- a/drivers/irqchip/irq-tegra.c
+>>> +++ b/drivers/irqchip/irq-tegra.c
+>>> @@ -44,6 +44,7 @@ static unsigned int num_ictlrs;
+>>>  
+>>>  struct tegra_ictlr_soc {
+>>>  	unsigned int num_ictlrs;
+>>> +	bool supports_sc7;
+>>>  };
+>>>  
+>>>  static const struct tegra_ictlr_soc tegra20_ictlr_soc = {
+>>> @@ -56,6 +57,7 @@ static const struct tegra_ictlr_soc tegra30_ictlr_soc = {
+>>>  
+>>>  static const struct tegra_ictlr_soc tegra210_ictlr_soc = {
+>>>  	.num_ictlrs = 6,
+>>> +	.supports_sc7 = true,
+>>>  };
+>>>  
+>>>  static const struct of_device_id ictlr_matches[] = {
+>>> @@ -67,6 +69,7 @@ static const struct of_device_id ictlr_matches[] = {
+>>>  
+>>>  struct tegra_ictlr_info {
+>>>  	void __iomem *base[TEGRA_MAX_NUM_ICTLRS];
+>>> +	const struct tegra_ictlr_soc *soc;
+>>>  #ifdef CONFIG_PM_SLEEP
+>>>  	u32 cop_ier[TEGRA_MAX_NUM_ICTLRS];
+>>>  	u32 cop_iep[TEGRA_MAX_NUM_ICTLRS];
+>>> @@ -147,8 +150,20 @@ static int tegra_ictlr_suspend(void)
+>>>  		lic->cop_ier[i] = readl_relaxed(ictlr + ICTLR_COP_IER);
+>>>  		lic->cop_iep[i] = readl_relaxed(ictlr + ICTLR_COP_IEP_CLASS);
+>>>  
+>>> -		/* Disable COP interrupts */
+>>> -		writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
+>>> +		/*
+>>> +		 * AVP/COP/BPMP-Lite is the Tegra boot processor.
+>>> +		 *
+>>> +		 * Tegra210 system suspend flow uses sc7entry firmware which
+>>> +		 * is executed by COP/BPMP and it includes disabling COP IRQ,
+>>> +		 * clamping CPU rail, turning off VDD_CPU, and preparing the
+>>> +		 * system to go to SC7/LP0.
+>>> +		 *
+>>> +		 * COP/BPMP wakes up when COP IRQ is triggered and runs
+>>> +		 * sc7entry-firmware. So need to keep COP interrupt enabled.
+>>> +		 */
+>>> +		if (!lic->soc->supports_sc7)
+>>> +			/* Disable COP interrupts if SC7 is not supported */
+>>
+>> All Tegra SoCs support SC7, hence the 'supports_sc7' and the comment
+>> doesn't sound correct to me. Something like 'firmware_sc7' should suit
+>> better here.
 > 
-> Background: my SoC provides a "Transport Stream Interface" on-chip
-> (for which I wrote a small driver, tsif.c) as well as a tuner/demod combo
-> (si2141/si2168) on the board.
+> If what you're saying is true, then the whole patch is wrong, and the
+> SC7 property should come from DT.
+
+It should be safe to assume that all of existing Tegra210 devices use
+the firmware for SC7, hence I wouldn't say that the patch is entirely
+wrong. To me it's not entirely correct.
+
+>>
+>>> +			writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
+>>
+>> Secondly, I'm also not sure why COP interrupts need to be disabled for
+>> pre-T210 at all, since COP is unused. This looks to me like it was
+>> cut-n-pasted from downstream kernel without a good reason and could be
+>> simply removed.
 > 
-> My original goal was: being able to link the tuner/demod from the device tree,
-> instead of hard-coding them in the TSIF driver.
-> 
-> (Please see the resulting code at the end of this message)
+> Please verify that this is actually the case. Tegra-2 definitely needed
+> some level of poking, and I'm not keen on changing anything there until
+> you (or someone else) has verified it on actual HW (see e307cc8941fc).
 
-Below is an analysis of the proposed driver, after a few exchanges with Mauro
-on IRC.
+Tested on Tegra20 and Tegra30, LP1 suspend-resume works perfectly fine
+with all COP bits removed from the driver.
 
+AFAIK, the reason why downstream needed that disabling is that it uses
+proprietary firmware which is running on the COP and that firmware is
+usually a BLOB audio/video DEC-ENC driver which doesn't cleanup
+interrupts after itself. That firmware is not applicable for the
+upstream kernel, hence there is no need to care about it.
 
-> diff --git a/drivers/media/platform/tsif.c b/drivers/media/platform/tsif.c
-> new file mode 100644
-> index 000000000000..b136f334e9c6
-> --- /dev/null
-> +++ b/drivers/media/platform/tsif.c
-> @@ -0,0 +1,185 @@
-> +#include <linux/clk.h>
-> +#include <linux/interrupt.h>
-> +#include <linux/platform_device.h>
-> +#include <media/dvb_frontend.h>
-> +#include <media/dvb_demux.h>
-> +#include <media/dmxdev.h>
-> +
-> +/* TSIF register offsets */
-> +#define TSIF_STS_CTL	0x0	/* status and control */
-> +#define TSIF_DATA_PORT	0x100
-> +
-> +/* TSIF_STS_CTL bits */
-> +#define ENABLE_IRQ	BIT(28)
-> +#define TSIF_STOP	BIT(3)
-> +#define TSIF_START	BIT(0)
-> +
-> +struct tsif {
-> +	void __iomem *base;
-> +	struct clk *clk;
-> +	int ref_count; /*** TODO: use atomic_t ??? or refcount_t ??? or kref ??? ***/
-> +	u32 buf[48];
-> +	struct dvb_frontend *fe;
-> +	/*** DO I NEED ALL 4 ***/
-> +	//struct dmx_frontend dmx_frontend;
-> +	struct dvb_adapter dvb_adapter;
-> +	struct dvb_demux dvb_demux;
-> +	struct dmxdev dmxdev;
-> +};
-> +
-> +static int start_tsif(struct dvb_demux_feed *feed)
-> +{
-> +	struct tsif *tsif = feed->demux->priv;
-> +	printk("%s: feed PID=%u\n", __func__, feed->pid);
-> +
-> +	if (tsif->ref_count++ == 0) {
-> +		u32 val = TSIF_START | ENABLE_IRQ | BIT(29);
-> +		writel_relaxed(val, tsif->base + TSIF_STS_CTL);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int stop_tsif(struct dvb_demux_feed *feed)
-> +{
-> +	struct tsif *tsif = feed->demux->priv;
-> +	printk("%s: feed PID=%u\n", __func__, feed->pid);
-> +
-> +	if (--tsif->ref_count == 0) {
-> +		writel_relaxed(TSIF_STOP, tsif->base + TSIF_STS_CTL);
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static irqreturn_t tsif_isr(int irq, void *arg)
-> +{
-> +	int i;
-> +	u32 status;
-> +	struct tsif *tsif = arg;
-> +
-> +	status = readl_relaxed(tsif->base + TSIF_STS_CTL);
-> +	writel_relaxed(status, tsif->base + TSIF_STS_CTL);
-> +
-> +	for (i = 0; i < 48; ++i)
-> +		tsif->buf[i] = readl_relaxed(tsif->base + TSIF_DATA_PORT);
-> +
-> +	dvb_dmx_swfilter_packets(&tsif->dvb_demux, (void *)tsif->buf, 1);
-> +
-> +	return IRQ_HANDLED;
-> +}
+> Joseph, can you please shed some light here?
 
-What may not be apparent here is that (in this mode) the HW generates
-one interrupt for *every* *single* TS packet (i.e. 1504 bits). And it
-can buffer only a single packet. Pretty hard real-time constraints...
-
-Since I'm dealing with 25 Mbps streams (French DVB-T2 multiplex)
-25*10e6 / 1504 = 16600 packets per second -- i.e. 60 µs between IRQs
-
-Even after:
-
-1) moving the ISR to its own dedicated core,
-2) moving dvb_dmx_swfilter_packets() to a work_queue,
-3) removing interrupt masking from DVB functions,
-4) using large SW buffers (1024 TS packets)
-
-I still drop a few packets here and there (~1 per minute).
-
-Conclusion: it seems this HW mode cannot work reliably on the types
-of streams I'm interested in. Thus, there's no point in supporting it
-in the final driver. I need to test "advanced" mode.
-
-Regards.
