@@ -2,87 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4201E70272
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 16:38:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E01CE702C5
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 16:56:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729625AbfGVOic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 10:38:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59418 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728189AbfGVOic (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 10:38:32 -0400
-Received: from devnote2 (NE2965lan1.rev.em-net.ne.jp [210.141.244.193])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id C2EF621951;
-        Mon, 22 Jul 2019 14:38:28 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563806311;
-        bh=nI4H02Rs1Krn9fT6Xdh4P8gDKFBNE1yuNf5PosxFUOY=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=RKftx4fgX4wm2P05Sd2ay5mLZCSMLaRLeUuRjV8+CiggE+5MTLRVJkAVHZ8No/j1E
-         23Z+Dd6LRmnmkYW+PgWu/iKTyYNIdVJt/2bACs/dTyFcnWFzRNZZyKJapFz6k55gx+
-         CqqCw5m0yMLwW/6/2PrGZEuHZDCKlktv9nu6+fow=
-Date:   Mon, 22 Jul 2019 23:38:26 +0900
-From:   Masami Hiramatsu <mhiramat@kernel.org>
-To:     Masami Hiramatsu <mhiramat@kernel.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Rob Herring <robh+dt@kernel.org>, Tim Bird <Tim.Bird@sony.com>,
-        Ingo Molnar <mingo@redhat.com>,
-        Namhyung Kim <namhyung@kernel.org>,
-        Jiri Olsa <jolsa@redhat.com>,
-        Arnaldo Carvalho de Melo <acme@kernel.org>,
-        Tom Zanussi <tom.zanussi@linux.intel.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [RFC PATCH v2 00/15] tracing: of: Boot time tracing using
- devicetree
-Message-Id: <20190722233826.bafd7aeaad3b821157f2d2ff@kernel.org>
-In-Reply-To: <20190717000235.9ab100f0dac4af797a0fb76a@kernel.org>
-References: <156316746861.23477.5815110570539190650.stgit@devnote2>
-        <488a65e6-1d80-0acb-5092-80c18b7ff447@gmail.com>
-        <20190717000235.9ab100f0dac4af797a0fb76a@kernel.org>
-X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1726652AbfGVO4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 10:56:47 -0400
+Received: from mout.kundenserver.de ([212.227.126.134]:39631 "EHLO
+        mout.kundenserver.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725899AbfGVO4q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 10:56:46 -0400
+Received: from threadripper.lan ([149.172.19.189]) by mrelayeu.kundenserver.de
+ (mreue012 [212.227.15.129]) with ESMTPA (Nemesis) id
+ 1MK5BG-1i8jzE0TaY-00LSju; Mon, 22 Jul 2019 16:56:38 +0200
+From:   Arnd Bergmann <arnd@arndb.de>
+To:     soc@kernel.org, Hauke Mehrtens <hauke@hauke-m.de>,
+        =?UTF-8?q?Rafa=C5=82=20Mi=C5=82ecki?= <zajec5@gmail.com>,
+        bcm-kernel-feedback-list@broadcom.com
+Cc:     Arnd Bergmann <arnd@arndb.de>,
+        Vivek Unune <npcomplete13@gmail.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH] [RESEND] ARM: bcm47094: add missing #cells for mdio-bus-mux
+Date:   Mon, 22 Jul 2019 16:55:52 +0200
+Message-Id: <20190722145618.1155492-1-arnd@arndb.de>
+X-Mailer: git-send-email 2.20.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Provags-ID: V03:K1:58kYNxdp/4/OvhkcephOLG0lrEtZe2zmOjPbxM1QiGret2IP62K
+ Do1CrdRVKb3+q8wqTdH7sLCUMztu0hZBtmcPCx2tU5t1bN6fqmAX5v7tFL5dTerwRm7NA78
+ vBDVQPQJEQJr+H8tE7RL7zNIElfZINbjxoqrt3+SrLnqTjtOs72amePfZHcm3eh+Mva1jPh
+ R6XjmO6j/3/U8K6YpL3fQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:wKqZgt1dv0Q=:6PmNuljPMLdDh28rDeVivF
+ OIkrLJ8ck2n9NBA9aF9puJX5cKE2GwHKs8yWZoMQhdvRJWx3YtzPYW93AezeahKzZ+FrdyGTY
+ 2d8EU5ssFXVht9gwbWC0rabvnKxcMSUg0SIsZtaQlHE2z2OTUrNKwgFuHxPV0ln3AZBkMtiy/
+ MW86BXbXaFkrjFGxlNaFiezYwBNZj9XlDk581sTpfH/TLoeYQuaA8AwHdW28zdc6q6PFqo9l/
+ qH+yzwdMi4hyfpzGR1vy/K6s7sYlh5iqr4R1ILEWgQ/IvWMnPCEnkiARJGQ4BYRdBOuQ7dUbR
+ CoWJaQ50nf3kyQ7RWFHbx5usz/syTZyjKnoo1BL4DB0H1joXwbsQgvHRrhr88WvPfcKwimLP9
+ YQmTk6/G7eT7YHZjtVt+x0NjO0TGKpOoCfg92EALVOtaYBR9BR2jnq9wwNXmyEqh2MTILgxpW
+ 15ivrfMNoJJYf4jU0aJ3BVgMPNMHPW1/XWT2gCJzcULM32KAQQFX1L1fv4qe4Z0wXRFJM/sEs
+ qxu3D9H7fJTn/Xty1lgo01Tte8iaEp6rJ8rnRfBtYxk4ua3PaI+tHj6urOmpCukAIM93blLR/
+ PfHzLFb8Sm0gn8xfJdKee7hp7BKpAMMDRZ7vQh95hSDKpR6DqaJY9ZGhHdGxnomSJwPV/5snS
+ GBY/lJtCJZzp/LnetfqnTXyzS+Kohh+yF4IWXn4v8PM2nB2GJOdw+YhO9ZfHmaCKkimR5eHmt
+ Wab3l4aEr9owkWzpYtmUxyF0l9N1ULaK3PNbyw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+The mdio-bus-mux has no #address-cells/#size-cells property,
+which causes a few dtc warnings:
 
-I discussed with Frank and other kernel developers last week at OSSJ 2019.
-Eventually, I decided to leave from devicetree, because it can unstabilize
-current devicetree desgin and policy. Instead, aim to introduce a new
-generic structured kernel cmdline, something like "configtree".
+arch/arm/boot/dts/bcm47094-linksys-panamera.dts:129.4-18: Warning (reg_format): /mdio-bus-mux/mdio@200:reg: property has invalid length (4 bytes) (#address-cells == 2, #size-cells == 1)
+arch/arm/boot/dts/bcm47094-linksys-panamera.dtb: Warning (pci_device_bus_num): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/bcm47094-linksys-panamera.dtb: Warning (i2c_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/bcm47094-linksys-panamera.dtb: Warning (spi_bus_reg): Failed prerequisite 'reg_format'
+arch/arm/boot/dts/bcm47094-linksys-panamera.dts:128.22-132.5: Warning (avoid_default_addr_size): /mdio-bus-mux/mdio@200: Relying on default #address-cells value
+arch/arm/boot/dts/bcm47094-linksys-panamera.dts:128.22-132.5: Warning (avoid_default_addr_size): /mdio-bus-mux/mdio@200: Relying on default #size-cells value
 
-I thought JSON or other generic data format, but they look a bit bloated
-for my purpose. I just need something like "extended hierarchical kernel
-cmdline". For example,
+Add the normal cell numbers.
 
-ftrace {
-  options = "sym-addr"
-  events = "initcall:*"
-  tp-printk
-  event.0 {
-    name = "tasl:task_newtask"
-    filter = "pid < 128"
-  } 
-}
+Fixes: 2bebdfcdcd0f ("ARM: dts: BCM5301X: Add support for Linksys EA9500")
+Signed-off-by: Arnd Bergmann <arnd@arndb.de>
+---
+As Florian is apparently on vacation at the moment, let's merge this
+as a bugfix through arm-soc directly to get closer to clean allmodconfig
+build.
+---
+ arch/arm/boot/dts/bcm47094-linksys-panamera.dts | 3 +++
+ 1 file changed, 3 insertions(+)
 
-Which can be written as
-
-ftrace.options="sym-addr" ftrace.events="initcall:*" ftrace.tp-printk ftrace.event.0.name="tasl:task_newtask" ftrace.event.0.filter="pid < 128"
-
-on current kernel cmdline.
-
-So, the parameters are linearly extended from current kernel cmdline.
-Kernel internal APIs must be able to handle both of current cmdline
-key-values and configtree key-values.
-
-Thank you,
-
+diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+index 18d0ae46e76c..0faae8950375 100644
+--- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
++++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
+@@ -124,6 +124,9 @@
+ 	};
+ 
+ 	mdio-bus-mux {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
+ 		/* BIT(9) = 1 => external mdio */
+ 		mdio_ext: mdio@200 {
+ 			reg = <0x200>;
 -- 
-Masami Hiramatsu <mhiramat@kernel.org>
+2.20.0
+
