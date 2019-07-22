@@ -2,104 +2,258 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7DF66FDD1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 12:30:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49C7D6FDEF
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 12:39:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727581AbfGVKay (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 06:30:54 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:60780 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726944AbfGVKay (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 06:30:54 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6BBAE2001D1;
-        Mon, 22 Jul 2019 12:30:52 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5EDFD20023F;
-        Mon, 22 Jul 2019 12:30:52 +0200 (CEST)
-Received: from fsr-ub1464-137.ea.freescale.net (fsr-ub1464-137.ea.freescale.net [10.171.82.114])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 1E07A205DB;
-        Mon, 22 Jul 2019 12:30:52 +0200 (CEST)
-From:   Ioana Ciornei <ioana.ciornei@nxp.com>
-To:     shawnguo@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Cc:     leoyang.li@nxp.com, Ioana Ciornei <ioana.ciornei@nxp.com>
-Subject: [PATCH v3] arm64: dts: add the console node for DPAA2 platforms
-Date:   Mon, 22 Jul 2019 13:30:43 +0300
-Message-Id: <1563791443-26372-1-git-send-email-ioana.ciornei@nxp.com>
-X-Mailer: git-send-email 1.9.1
-Reply-to: ioana.ciornei@nxp.com
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1729424AbfGVKjB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 06:39:01 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:36187 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728513AbfGVKjB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 06:39:01 -0400
+Received: by mail-io1-f67.google.com with SMTP id o9so72868654iom.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 03:39:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=amarulasolutions.com; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=X785RGDb03Vq0xPt63zvV6RuQKZu42hQ10CfPa5muiI=;
+        b=L3PUE6BXdpA5N40F6qwOGK+dyroQkZ1FuWXkM0SPLMAnUlMAXykqnASqRtwbPCQfI3
+         S8JA11NUkZEDrmQcq9AxJy4+4SX9QoEvXwOATemdaG/vwWk2A1F/7QrAGQJ15PzbpVC2
+         pky69Fpti79diYMC8LFd46iAuc2Odrs96fqsM=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=X785RGDb03Vq0xPt63zvV6RuQKZu42hQ10CfPa5muiI=;
+        b=HXc3sb8xOY6DUnjRKkgPDQ75H3/nOW8dI11UV0cVjgex64Hk/JK2KfKs8NYBrhSDfm
+         I+NGI6EBHhvlUPvLqsIav1pioDuMuGnRdVKsajR+otdNbyGevHQElpxlUZ5iV9qP5nE1
+         78+b9cStrBnNOjirHXCSVUBZuAmV+KU+Vib1/Ww415MMnFX7Wc1mM15MWRGdgIrjC6a0
+         SDdi0S8LHTcaXAM4IrtkNAD11+wUvCJNJDzvV6IIRP6Ur2LpLj8fvG5uk5tMHUhiaNi7
+         Dh0+yvT3LbPFu6JTbv9NsOuUm7LVT3PLQnGJjshixeAWz2NeMXVXAVe/CJJQIWOS0x4B
+         5J8w==
+X-Gm-Message-State: APjAAAW4YzDtLp5BY7snP29mH0NCTqyxgWnUWvLouViv1TSbN9lDI77Q
+        ZzEVkfjbIt3plojg8lpvw0F78yGzPqtciFy3+uI7PA==
+X-Google-Smtp-Source: APXvYqxkgQKBaOceS6jITojTL/X3zdR1BTAIItg0O18lfygV1MiQAI59qRJfJF7MjiinnCKCiM8ngrOm6Vz/Wy+Xjtk=
+X-Received: by 2002:a05:6638:303:: with SMTP id w3mr18087166jap.103.1563791939954;
+ Mon, 22 Jul 2019 03:38:59 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190614142406.ybdiqfppo5mc5bgq@flea> <CAMty3ZB45cHx3WeXnywBh2_UA_bTmFs6yBTqLWA1BNf4fQtVvQ@mail.gmail.com>
+ <20190625144930.5hegt6bkzqzykjid@flea> <CAMty3ZCmj0Rz7MMhLqihsvLQi+1CHf0fAoJQ4QN65xB-bwxaJw@mail.gmail.com>
+ <20190703114933.u3x4ej3v7ocewvif@flea> <CAOf5uw=ZEvMV1hFQE986rNG_ctpReGbjbZzv0m=OzKPdBh57uQ@mail.gmail.com>
+ <20190711100100.cty3s6rs3w27low6@flea> <CAOf5uw=3fiMuhcj3kDtCaGNTsxHKRrYb79MXZ+yUZtmf0jU10A@mail.gmail.com>
+ <20190720065830.zn3txpyduakywcva@flea> <CAMty3ZDE1xiNgHVLihH378dY5szzkr14V-fwLZdvPs12tY+G1A@mail.gmail.com>
+ <20190720093202.6fn6xmhvsgawscnu@flea> <CAMty3ZDpOA1mD77t3RB6hEG7o3+ws8y64m1DU8=3HdZ4zy4AUw@mail.gmail.com>
+ <CAOf5uw=5j+8XNv_ZBhY0yrnjjNnaV_w=a4oiV11LoksAfEY7AA@mail.gmail.com>
+In-Reply-To: <CAOf5uw=5j+8XNv_ZBhY0yrnjjNnaV_w=a4oiV11LoksAfEY7AA@mail.gmail.com>
+From:   Jagan Teki <jagan@amarulasolutions.com>
+Date:   Mon, 22 Jul 2019 16:08:48 +0530
+Message-ID: <CAMty3ZCrj_9Lp15y6bcFErgXaATVjWibV3tO884G31RtVWmuxA@mail.gmail.com>
+Subject: Re: [PATCH v6 11/22] clk: sunxi-ng: a64: Add minimum rate for PLL_MIPI
+To:     Michael Nazzareno Trimarchi <michael@amarulasolutions.com>
+Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Chen-Yu Tsai <wens@csie.org>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-amarula <linux-amarula@amarulasolutions.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the console device tree node for the following
-DPAA2 based platforms: LS1088A, LS2080A, LS2088A and LX2160A.
+On Mon, Jul 22, 2019 at 3:55 PM Michael Nazzareno Trimarchi
+<michael@amarulasolutions.com> wrote:
+>
+> Hi Jagan
+>
+> On Mon, Jul 22, 2019 at 12:21 PM Jagan Teki <jagan@amarulasolutions.com> wrote:
+> >
+> > Hi Maxime,
+> >
+> > On Sat, Jul 20, 2019 at 3:02 PM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > >
+> > > On Sat, Jul 20, 2019 at 12:46:27PM +0530, Jagan Teki wrote:
+> > > > On Sat, Jul 20, 2019 at 12:28 PM Maxime Ripard
+> > > > <maxime.ripard@bootlin.com> wrote:
+> > > > >
+> > > > > On Thu, Jul 11, 2019 at 07:43:16PM +0200, Michael Nazzareno Trimarchi wrote:
+> > > > > > > > tcon-pixel clock is the rate that you want to achive on display side
+> > > > > > > > and if you have 4 lanes 32bit or lanes and different bit number that
+> > > > > > > > you need to have a clock that is able to put outside bits and speed
+> > > > > > > > equal to pixel-clock * bits / lanes. so If you want a pixel-clock of
+> > > > > > > > 40 mhz and you have 32bits and 4 lanes you need to have a clock of
+> > > > > > > > 40 * 32 / 4 in no-burst mode. I think that this is done but most of
+> > > > > > > > the display.
+> > > > > > >
+> > > > > > > So this is what the issue is then?
+> > > > > > >
+> > > > > > > This one does make sense, and you should just change the rate in the
+> > > > > > > call to clk_set_rate in sun4i_tcon0_mode_set_cpu.
+> > > > > > >
+> > > > > > > I'm still wondering why that hasn't been brought up in either the
+> > > > > > > discussion or the commit log before though.
+> > > > > > >
+> > > > > > Something like this?
+> > > > > >
+> > > > > > drivers/gpu/drm/sun4i/sun4i_tcon.c     | 20 +++++++++++---------
+> > > > > >  drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h |  2 --
+> > > > > >  2 files changed, 11 insertions(+), 11 deletions(-)
+> > > > > >
+> > > > > > diff --git a/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > > > > b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > > > > index 64c43ee6bd92..42560d5c327c 100644
+> > > > > > --- a/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > > > > +++ b/drivers/gpu/drm/sun4i/sun4i_tcon.c
+> > > > > > @@ -263,10 +263,11 @@ static int sun4i_tcon_get_clk_delay(const struct
+> > > > > > drm_display_mode *mode,
+> > > > > >  }
+> > > > > >
+> > > > > >  static void sun4i_tcon0_mode_set_common(struct sun4i_tcon *tcon,
+> > > > > > -                                       const struct drm_display_mode *mode)
+> > > > > > +                                       const struct drm_display_mode *mode,
+> > > > > > +                                       u32 tcon_mul)
+> > > > > >  {
+> > > > > >         /* Configure the dot clock */
+> > > > > > -       clk_set_rate(tcon->dclk, mode->crtc_clock * 1000);
+> > > > > > +       clk_set_rate(tcon->dclk, mode->crtc_clock * tcon_mul * 1000);
+> > > > > >
+> > > > > >         /* Set the resolution */
+> > > > > >         regmap_write(tcon->regs, SUN4I_TCON0_BASIC0_REG,
+> > > > > > @@ -335,12 +336,13 @@ static void sun4i_tcon0_mode_set_cpu(struct
+> > > > > > sun4i_tcon *tcon,
+> > > > > >         u8 bpp = mipi_dsi_pixel_format_to_bpp(device->format);
+> > > > > >         u8 lanes = device->lanes;
+> > > > > >         u32 block_space, start_delay;
+> > > > > > -       u32 tcon_div;
+> > > > > > +       u32 tcon_div, tcon_mul;
+> > > > > >
+> > > > > > -       tcon->dclk_min_div = SUN6I_DSI_TCON_DIV;
+> > > > > > -       tcon->dclk_max_div = SUN6I_DSI_TCON_DIV;
+> > > > > > +       tcon->dclk_min_div = 4;
+> > > > > > +       tcon->dclk_max_div = 127;
+> > > > > >
+> > > > > > -       sun4i_tcon0_mode_set_common(tcon, mode);
+> > > > > > +       tcon_mul = bpp / lanes;
+> > > > > > +       sun4i_tcon0_mode_set_common(tcon, mode, tcon_mul);
+> > > > > >
+> > > > > >         /* Set dithering if needed */
+> > > > > >         sun4i_tcon0_mode_set_dithering(tcon, sun4i_tcon_get_connector(encoder));
+> > > > > > @@ -366,7 +368,7 @@ static void sun4i_tcon0_mode_set_cpu(struct
+> > > > > > sun4i_tcon *tcon,
+> > > > > >          */
+> > > > > >         regmap_read(tcon->regs, SUN4I_TCON0_DCLK_REG, &tcon_div);
+> > > > > >         tcon_div &= GENMASK(6, 0);
+> > > > > > -       block_space = mode->htotal * bpp / (tcon_div * lanes);
+> > > > > > +       block_space = mode->htotal * tcon_div * tcon_mul;
+> > > > > >         block_space -= mode->hdisplay + 40;
+> > > > > >
+> > > > > >         regmap_write(tcon->regs, SUN4I_TCON0_CPU_TRI0_REG,
+> > > > > > @@ -408,7 +410,7 @@ static void sun4i_tcon0_mode_set_lvds(struct
+> > > > > > sun4i_tcon *tcon,
+> > > > > >
+> > > > > >         tcon->dclk_min_div = 7;
+> > > > > >         tcon->dclk_max_div = 7;
+> > > > > > -       sun4i_tcon0_mode_set_common(tcon, mode);
+> > > > > > +       sun4i_tcon0_mode_set_common(tcon, mode, 1);
+> > > > > >
+> > > > > >         /* Set dithering if needed */
+> > > > > >         sun4i_tcon0_mode_set_dithering(tcon, sun4i_tcon_get_connector(encoder));
+> > > > > > @@ -487,7 +489,7 @@ static void sun4i_tcon0_mode_set_rgb(struct
+> > > > > > sun4i_tcon *tcon,
+> > > > > >
+> > > > > >         tcon->dclk_min_div = 6;
+> > > > > >         tcon->dclk_max_div = 127;
+> > > > > > -       sun4i_tcon0_mode_set_common(tcon, mode);
+> > > > > > +       sun4i_tcon0_mode_set_common(tcon, mode, 1);
+> > > > > >
+> > > > > >         /* Set dithering if needed */
+> > > > > >         sun4i_tcon0_mode_set_dithering(tcon, connector);
+> > > > > > diff --git a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
+> > > > > > b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
+> > > > > > index 5c3ad5be0690..a07090579f84 100644
+> > > > > > --- a/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
+> > > > > > +++ b/drivers/gpu/drm/sun4i/sun6i_mipi_dsi.h
+> > > > > > @@ -13,8 +13,6 @@
+> > > > > >  #include <drm/drm_encoder.h>
+> > > > > >  #include <drm/drm_mipi_dsi.h>
+> > > > > >
+> > > > > > -#define SUN6I_DSI_TCON_DIV     4
+> > > > > > -
+> > > > > >  struct sun6i_dsi {
+> > > > > >         struct drm_connector    connector;
+> > > > > >         struct drm_encoder      encoder;
+> > > > >
+> > > > > I had more something like this in mind:
+> > > > > http://code.bulix.org/nlp5a4-803511
+> > > >
+> > > > Worth to look at it. was it working on your panel? meanwhile I will check it.
+> > >
+> > > I haven't tested it.
+> > >
+> > > > We have updated with below change [1], seems working on but is
+> > > > actually checking the each divider as before start with 4... till 127.
+> > > >
+> > > > This new approach, is start looking the best divider from 4.. based on
+> > > > the idea vs rounded it will ended up best divider like [2]
+> > >
+> > > But why?
+> > >
+> > > I mean, it's not like it's the first time I'm asking this...
+> > >
+> > > If the issue is what Micheal described, then the divider has nothing
+> > > to do with it. We've had that discussion over and over again.
+> >
+> > This is what Michael is mentioned in above mail
+> > "tcon-pixel clock is the rate that you want to achive on display side and
+> > if you have 4 lanes 32bit or lanes and different bit number that you need
+> > to have a clock that is able to put outside bits and speed equal to
+> > pixel-clock * bits / lanes. so If you want a pixel-clock of 40 mhz
+> > and you have 32bits and 4 lanes you need to have a clock of
+> > 40 * 32 / 4 in no-burst mode. "
+> >
+> > He is trying to manage the bpp/lanes into dclk_mul (in last mail) and
+> > it can multiply with pixel clock which is rate argument in
+> > sun4i_dclk_round_rate.
+> >
+> > The solution I have mentioned in dclk_min, max is bpp/lanes also
+> > multiple rate in dotclock sun4i_dclk_round_rate.
+> >
+> > In both cases the overall pll_rate depends on dividers, the one that I
+> > have on this patch is based on BSP and the Michael one is more generic
+> > way so-that it can not to touch other functionalities and looping
+> > dividers to find the best one.
+> >
+> > If dclk_min/max is bpp/lanes then dotclock directly using divider 6
+> > (assuming 24-bit and 4 lanes) and return the pll_rate and divider 6
+> > associated.
+> >
+> > if dclk_mul is bpp/lanes, on Michael new change, the dividers start
+> > with 4 and end with 127 but the constant ideal rate which rate *
+> > bpp/lanes but the loop from sun4i_dclk_round_rate computed the divider
+> > as 6 only, ie what I'm mentioned on the above mail.
+> >
+>
+> tcon-pixel clock and tcon are mutual connected. The code is done in a way
+> that optimal clock need to be search. Now the patch that I propose is more
+> connected to the description I gave.
 
-Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
----
-Changes in v3:
- - sort the node by unit address
+True, ie what I'm trying to say in above mail.  My idea on the above
+mail is to give more information on the both the solutions (one on the
+this patch and another you mentioned on above mail) are depends on
+divider value for computing desired pll_rate.
 
-Changes in v2:
- - use a generic node name
- - remove leading zeros and 0x from the unit-address
+>
+> I need some comment from Maxime, what he prefers or we need to search for
+> a different one. I don't had time to check Maxime proposal because I'm working
+> on other projects.
 
- arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 5 +++++
- arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 5 +++++
- arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi | 5 +++++
- 3 files changed, 15 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-index dacd8cf03a7f..20f5ebd74200 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-@@ -609,6 +609,11 @@
- 				     <GIC_SPI 209 IRQ_TYPE_LEVEL_HIGH>;
- 		};
- 
-+		console@8340020 {
-+			compatible = "fsl,dpaa2-console";
-+			reg = <0x00000000 0x08340020 0 0x2>;
-+		};
-+
- 		ptp-timer@8b95000 {
- 			compatible = "fsl,dpaa2-ptp";
- 			reg = <0x0 0x8b95000 0x0 0x100>;
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-index 3ace91945b72..64101c9962ce 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -321,6 +321,11 @@
- 			};
- 		};
- 
-+		console@8340020 {
-+			compatible = "fsl,dpaa2-console";
-+			reg = <0x00000000 0x08340020 0 0x2>;
-+		};
-+
- 		ptp-timer@8b95000 {
- 			compatible = "fsl,dpaa2-ptp";
- 			reg = <0x0 0x8b95000 0x0 0x100>;
-diff --git a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-index e6fdba39453c..4720a8e7304c 100644
---- a/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-lx2160a.dtsi
-@@ -848,6 +848,11 @@
- 			dma-coherent;
- 		};
- 
-+		console@8340020 {
-+			compatible = "fsl,dpaa2-console";
-+			reg = <0x00000000 0x08340020 0 0x2>;
-+		};
-+
- 		ptp-timer@8b95000 {
- 			compatible = "fsl,dpaa2-ptp";
- 			reg = <0x0 0x8b95000 0x0 0x100>;
--- 
-1.9.1
-
+I already provide my logs on Maxime change.if you want you can have a look.
