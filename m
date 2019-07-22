@@ -2,73 +2,238 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EF5170DC6
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 01:56:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81A2970DCB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 01:57:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731549AbfGVX43 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 19:56:29 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:44694 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726070AbfGVX43 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 19:56:29 -0400
-Received: by mail-io1-f68.google.com with SMTP id s7so77827554iob.11;
-        Mon, 22 Jul 2019 16:56:28 -0700 (PDT)
+        id S1731069AbfGVX5j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 19:57:39 -0400
+Received: from mail-pg1-f196.google.com ([209.85.215.196]:33082 "EHLO
+        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730445AbfGVX5j (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 19:57:39 -0400
+Received: by mail-pg1-f196.google.com with SMTP id f20so9191015pgj.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 16:57:39 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=XNBNNSCz0NurpUlM34BsDoF+zjgtIj/BeN2sdzZA8WU=;
+        b=XNv3iloizpXqSPNJCQVhGa9XDMUwN3wAWb+iBl7R+vSvtIQLPZQVLQocUDLh+tY+3E
+         YkHrSqVOkE/su5x439XtjJjduyNHqai01+7Qv6otfLPpk6h6Nug196wsPnv7DQ7Yf5xb
+         6GM7fsj7Rn36Wys8HOFtcstyEErrGj1aBM+G/MsQzXH0vsuSJKacojpyn1iJwRAoz/AK
+         Xz9iU/xvpHoUhjSx4IazJ+buBzx7QOClwKZs5hQnLTu8544aV7pW4DUDKUien1oCreF7
+         91cN/qCCJ5KmXE5Kh5ME18gXukkIb0wQCHewNTOX3nq2n4ruroGAdqFLfl+nlaIZ9K+U
+         mXHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=XUUEucdf5T/q+oP9Dd4eyb+UhdjwkWdUVolZWtaE55M=;
-        b=Pr2HiyiT+TCTywWpik6ujigtjeM+bOt7dbx/lPbkS5RVoc2uy7c55qcYdy/A2RSn+5
-         biZNZatNfSgg0N9IfYqLbOBJx6E8+wCjc/ueg/l3S/p1ePkvbjOJ75ma4x6YzbNtD3Pt
-         TBKn+KwDvTXXCIjObJcz15Kz37FSvjPYHPftbZTPXCGeYCeXuY4gQc9gIvMurgMgOtWr
-         02DtRV35LGA9Sv2JkVdhQLUcU61ZICuDPMFtv6ptepGWb2iaMNaLSKwqmlEbT7QXQ3vo
-         zidwCl/oIM4m0faFMNnbjWtagxC29WvSuRtLdAWpi26CG8QQtGEqCzFL+ayWcv/6dxEA
-         Vlew==
-X-Gm-Message-State: APjAAAUzDUjp5MbFO0wCFCqhIfUCkL82E0QkON10cVOyZdvjTHXdjitn
-        kO2EPvsMuMC361Nhy1CS2A==
-X-Google-Smtp-Source: APXvYqzG3dQHFCuA6ypYHdFZwx9UhmEjXjrpCvFnOpu8YvQ597D8wid4CFtIc1uEUSwyP3Pb43rAkQ==
-X-Received: by 2002:a6b:bf87:: with SMTP id p129mr59307174iof.253.1563839788473;
-        Mon, 22 Jul 2019 16:56:28 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id y20sm32775270ion.77.2019.07.22.16.56.27
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 22 Jul 2019 16:56:27 -0700 (PDT)
-Date:   Mon, 22 Jul 2019 17:56:27 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Anson.Huang@nxp.com
-Cc:     p.zabel@pengutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, leonard.crestez@nxp.com,
-        viresh.kumar@linaro.org, daniel.baluta@nxp.com, ping.bai@nxp.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Linux-imx@nxp.com
-Subject: Re: [PATCH V4 1/2] dt-bindings: reset: imx7: Add support for i.MX8MM
-Message-ID: <20190722235627.GA3749@bogus>
-References: <20190705085406.22483-1-Anson.Huang@nxp.com>
+        bh=XNBNNSCz0NurpUlM34BsDoF+zjgtIj/BeN2sdzZA8WU=;
+        b=t9wptVTA5PcJjRbISDDoKNkXtX/kTYeqxps5pYxx9jXjIhpwwp8RiyvqkXs9n8EA10
+         l6jXXZ7gXwan+K0dWZcIHRyhJvITxhMzSYf2ecxaZeiuWzttMTto1QczmVOehbQib3Q3
+         m06ARb4zaPTsk8h4QyNbyZGuFasQswYKnnKh6rt1SjlN01CHiQM+8D8FzmTZ8gnLAmU4
+         wTcgH91CvM1DjexabSCaaBm22WAH7TGtotl532hDK6g85rLpZMVjsm1xY18LxMYE3EoY
+         filI8LZYMAezlefpkxIzCCfkQ+Rqvt8r1q2NBairhejDHJmLybvsFMX2hTMnDrq53uY9
+         24wQ==
+X-Gm-Message-State: APjAAAU4Up3hujVepwofX12AN0R+srFdC7SciW8LojC0JQgGyO7tiDSj
+        HgmInyh64MpJ5TkLlOgEpuAHhA==
+X-Google-Smtp-Source: APXvYqzuRr/BcvaJOUHFxq2MD2sLSSYI3Dj4iu9bal0cEcSIDZkIFUs8ZlxO1COKd/5hmlDae6/vDA==
+X-Received: by 2002:a62:2ad3:: with SMTP id q202mr2874862pfq.161.1563839858549;
+        Mon, 22 Jul 2019 16:57:38 -0700 (PDT)
+Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id t9sm41161209pji.18.2019.07.22.16.57.37
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 22 Jul 2019 16:57:37 -0700 (PDT)
+Date:   Mon, 22 Jul 2019 16:57:35 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Govind Singh <govinds@codeaurora.org>
+Cc:     ath10k@lists.infradead.org, linux-wireless@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/3] ath10k: Move regulator config to driver private data
+Message-ID: <20190722235735.GA5828@builder>
+References: <20190703035711.25592-1-govinds@codeaurora.org>
+ <20190703035711.25592-3-govinds@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190705085406.22483-1-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190703035711.25592-3-govinds@codeaurora.org>
+User-Agent: Mutt/1.10.0 (2018-05-17)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  5 Jul 2019 16:54:05 +0800, Anson.Huang@nxp.com wrote:
-> From: Anson Huang <Anson.Huang@nxp.com>
-> 
-> i.MX8MM can reuse i.MX8MQ's reset driver, update the compatible
-> property and related info to support i.MX8MM.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> ---
-> Changes since V3:
-> 	- Add comments to those reset indices to indicate which are NOT supported on i.MX8MM.
-> ---
->  .../devicetree/bindings/reset/fsl,imx7-src.txt     |  6 +++--
->  include/dt-bindings/reset/imx8mq-reset.h           | 28 +++++++++++-----------
->  2 files changed, 18 insertions(+), 16 deletions(-)
+On Tue 02 Jul 20:57 PDT 2019, Govind Singh wrote:
+
+> WCN3990 Regulator config is varying b/w different MSM platforms.
+> In order to have scalable config, move regulator config to driver
+> private data.
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Regulators supplying clients with fixed voltage requirements should be
+specified in the board devicetree with these required voltage values,
+rather than in the driver.  So the appropriate solution is not to add
+and adjust these values but rather to drop this code from the driver.
+
+I was about to send a patch that does this, because I have an SDM845
+device where the voltage constraints specified on board level does not
+meet the ranges specified here in the driver.
+
+Regards,
+Bjorn
+
+> Signed-off-by: Govind Singh <govinds@codeaurora.org>
+> ---
+>  drivers/net/wireless/ath/ath10k/snoc.c | 38 +++++++++++++++++++++-----
+>  drivers/net/wireless/ath/ath10k/snoc.h | 23 +++++++++-------
+>  2 files changed, 44 insertions(+), 17 deletions(-)
+> 
+> diff --git a/drivers/net/wireless/ath/ath10k/snoc.c b/drivers/net/wireless/ath/ath10k/snoc.c
+> index ca1186ec4129..bd7d97924fe0 100644
+> --- a/drivers/net/wireless/ath/ath10k/snoc.c
+> +++ b/drivers/net/wireless/ath/ath10k/snoc.c
+> @@ -36,13 +36,20 @@ static char *const ce_name[] = {
+>  	"WLAN_CE_11",
+>  };
+>  
+> -static struct ath10k_vreg_info vreg_cfg[] = {
+> +static struct ath10k_vreg_info sdm845_reg_cfg[] = {
+>  	{NULL, "vdd-0.8-cx-mx", 800000, 850000, 0, 0, false},
+>  	{NULL, "vdd-1.8-xo", 1800000, 1850000, 0, 0, false},
+>  	{NULL, "vdd-1.3-rfa", 1300000, 1350000, 0, 0, false},
+>  	{NULL, "vdd-3.3-ch0", 3300000, 3350000, 0, 0, false},
+>  };
+>  
+> +static struct ath10k_vreg_info qcs40x_reg_cfg[] = {
+> +	{NULL, "vdd-0.8-cx-mx", 1224000, 1224000, 0, 0, false},
+> +	{NULL, "vdd-1.8-xo", 1800000, 1850000, 0, 0, false},
+> +	{NULL, "vdd-1.3-rfa", 1300000, 1350000, 0, 0, false},
+> +	{NULL, "vdd-3.3-ch0", 3300000, 3350000, 0, 0, false},
+> +};
+> +
+>  static struct ath10k_clk_info clk_cfg[] = {
+>  	{NULL, "cxo_ref_clk_pin", 0, false},
+>  };
+> @@ -54,10 +61,20 @@ static void ath10k_snoc_htt_rx_cb(struct ath10k_ce_pipe *ce_state);
+>  static void ath10k_snoc_htt_htc_rx_cb(struct ath10k_ce_pipe *ce_state);
+>  static void ath10k_snoc_pktlog_rx_cb(struct ath10k_ce_pipe *ce_state);
+>  
+> -static const struct ath10k_snoc_drv_priv drv_priv = {
+> +static const struct ath10k_snoc_drv_priv sdm845_wcn39xx_drv_priv = {
+> +	.hw_rev = ATH10K_HW_WCN3990,
+> +	.dma_mask = DMA_BIT_MASK(35),
+> +	.msa_size = 0x100000,
+> +	.vreg_cfg = sdm845_reg_cfg,
+> +	.vreg_count = ARRAY_SIZE(sdm845_reg_cfg),
+> +};
+> +
+> +static const struct ath10k_snoc_drv_priv qcs40x_wcn39xx_drv_priv = {
+>  	.hw_rev = ATH10K_HW_WCN3990,
+>  	.dma_mask = DMA_BIT_MASK(35),
+>  	.msa_size = 0x100000,
+> +	.vreg_cfg = qcs40x_reg_cfg,
+> +	.vreg_count =  ARRAY_SIZE(qcs40x_reg_cfg),
+>  };
+>  
+>  #define WCN3990_SRC_WR_IDX_OFFSET 0x3C
+> @@ -1465,7 +1482,7 @@ static int ath10k_snoc_vreg_on(struct ath10k *ar)
+>  	int ret = 0;
+>  	int i;
+>  
+> -	for (i = 0; i < ARRAY_SIZE(vreg_cfg); i++) {
+> +	for (i = 0; i < ar_snoc->vreg_count; i++) {
+>  		vreg_info = &ar_snoc->vreg[i];
+>  
+>  		if (!vreg_info->reg)
+> @@ -1498,7 +1515,7 @@ static int ath10k_snoc_vreg_off(struct ath10k *ar)
+>  	int ret = 0;
+>  	int i;
+>  
+> -	for (i = ARRAY_SIZE(vreg_cfg) - 1; i >= 0; i--) {
+> +	for (i = ar_snoc->vreg_count - 1; i >= 0; i--) {
+>  		vreg_info = &ar_snoc->vreg[i];
+>  
+>  		if (!vreg_info->reg)
+> @@ -1616,7 +1633,13 @@ static int ath10k_hw_power_off(struct ath10k *ar)
+>  
+>  static const struct of_device_id ath10k_snoc_dt_match[] = {
+>  	{ .compatible = "qcom,wcn3990-wifi",
+> -	 .data = &drv_priv,
+> +	 .data = &sdm845_wcn39xx_drv_priv,
+> +	},
+> +	{ .compatible = "qcom,sdm845-wcn39xx-wifi",
+> +	 .data = &sdm845_wcn39xx_drv_priv,
+> +	},
+> +	{ .compatible = "qcom,qcs40x-wcn39xx-wifi",
+> +	 .data = &qcs40x_wcn39xx_drv_priv,
+>  	},
+>  	{ }
+>  };
+> @@ -1680,8 +1703,9 @@ static int ath10k_snoc_probe(struct platform_device *pdev)
+>  		goto err_release_resource;
+>  	}
+>  
+> -	ar_snoc->vreg = vreg_cfg;
+> -	for (i = 0; i < ARRAY_SIZE(vreg_cfg); i++) {
+> +	ar_snoc->vreg = drv_data->vreg_cfg;
+> +	ar_snoc->vreg_count = drv_data->vreg_count;
+> +	for (i = 0; i < ar_snoc->vreg_count; i++) {
+>  		ret = ath10k_get_vreg_info(ar, dev, &ar_snoc->vreg[i]);
+>  		if (ret)
+>  			goto err_free_irq;
+> diff --git a/drivers/net/wireless/ath/ath10k/snoc.h b/drivers/net/wireless/ath/ath10k/snoc.h
+> index d62f53501fbb..0bdada11985c 100644
+> --- a/drivers/net/wireless/ath/ath10k/snoc.h
+> +++ b/drivers/net/wireless/ath/ath10k/snoc.h
+> @@ -10,10 +10,22 @@
+>  #include "ce.h"
+>  #include "qmi.h"
+>  
+> +struct ath10k_vreg_info {
+> +	struct regulator *reg;
+> +	const char *name;
+> +	u32 min_v;
+> +	u32 max_v;
+> +	u32 load_ua;
+> +	unsigned long settle_delay;
+> +	bool required;
+> +};
+> +
+>  struct ath10k_snoc_drv_priv {
+>  	enum ath10k_hw_rev hw_rev;
+>  	u64 dma_mask;
+>  	u32 msa_size;
+> +	struct ath10k_vreg_info *vreg_cfg;
+> +	u8 vreg_count;
+>  };
+>  
+>  struct snoc_state {
+> @@ -42,16 +54,6 @@ struct ath10k_snoc_ce_irq {
+>  	u32 irq_line;
+>  };
+>  
+> -struct ath10k_vreg_info {
+> -	struct regulator *reg;
+> -	const char *name;
+> -	u32 min_v;
+> -	u32 max_v;
+> -	u32 load_ua;
+> -	unsigned long settle_delay;
+> -	bool required;
+> -};
+> -
+>  struct ath10k_clk_info {
+>  	struct clk *handle;
+>  	const char *name;
+> @@ -77,6 +79,7 @@ struct ath10k_snoc {
+>  	struct ath10k_ce ce;
+>  	struct timer_list rx_post_retry;
+>  	struct ath10k_vreg_info *vreg;
+> +	u8 vreg_count;
+>  	struct ath10k_clk_info *clk;
+>  	struct ath10k_qmi *qmi;
+>  	unsigned long flags;
+> -- 
+> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+> a Linux Foundation Collaborative Project
+> 
