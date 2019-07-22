@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D95E6FAF9
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 10:12:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72CD96FAF3
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 10:12:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728034AbfGVIMr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 04:12:47 -0400
-Received: from relay6-d.mail.gandi.net ([217.70.183.198]:48457 "EHLO
-        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727590AbfGVIMr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 04:12:47 -0400
+        id S1726364AbfGVIMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 04:12:36 -0400
+Received: from relay5-d.mail.gandi.net ([217.70.183.197]:57645 "EHLO
+        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726339AbfGVIMg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 04:12:36 -0400
 X-Originating-IP: 90.89.68.76
 Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
         (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 7A1B9C0011;
-        Mon, 22 Jul 2019 08:12:45 +0000 (UTC)
+        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id 7DE491C000D;
+        Mon, 22 Jul 2019 08:12:33 +0000 (UTC)
 From:   Maxime Ripard <maxime.ripard@bootlin.com>
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -24,9 +24,9 @@ To:     Mark Rutland <mark.rutland@arm.com>,
         Maxime Ripard <maxime.ripard@bootlin.com>,
         daniel.lezcano@linaro.org, tglx@linutronix.de
 Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 02/11] dt-bindings: timer: Add missing compatibles
-Date:   Mon, 22 Jul 2019 10:12:20 +0200
-Message-Id: <20190722081229.22422-2-maxime.ripard@bootlin.com>
+Subject: [PATCH 03/11] clocksource: sun4i: Add missing compatibles
+Date:   Mon, 22 Jul 2019 10:12:21 +0200
+Message-Id: <20190722081229.22422-3-maxime.ripard@bootlin.com>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190722081229.22422-1-maxime.ripard@bootlin.com>
 References: <20190722081229.22422-1-maxime.ripard@bootlin.com>
@@ -42,53 +42,23 @@ different compatibles for all of them to deal with this properly.
 
 Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 ---
- .../timer/allwinner,sun4i-a10-timer.yaml      | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+ drivers/clocksource/timer-sun4i.c | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml b/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
-index 7292a424092c..20adc1c8e9cc 100644
---- a/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
-+++ b/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
-@@ -14,6 +14,8 @@ properties:
-   compatible:
-     enum:
-       - allwinner,sun4i-a10-timer
-+      - allwinner,sun8i-a23-timer
-+      - allwinner,sun8i-v3s-timer
-       - allwinner,suniv-f1c100s-timer
- 
-   reg:
-@@ -39,6 +41,30 @@ allOf:
-           minItems: 6
-           maxItems: 6
- 
-+  - if:
-+      properties:
-+        compatible:
-+          items:
-+            const: allwinner,sun8i-a23-timer
-+
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 2
-+          maxItems: 2
-+
-+  - if:
-+      properties:
-+        compatible:
-+          items:
-+            const: allwinner,sun8i-v3s-timer
-+
-+    then:
-+      properties:
-+        interrupts:
-+          minItems: 3
-+          maxItems: 3
-+
-   - if:
-       properties:
-         compatible:
+diff --git a/drivers/clocksource/timer-sun4i.c b/drivers/clocksource/timer-sun4i.c
+index 65f38f6ca714..0ba8155b8287 100644
+--- a/drivers/clocksource/timer-sun4i.c
++++ b/drivers/clocksource/timer-sun4i.c
+@@ -219,5 +219,9 @@ static int __init sun4i_timer_init(struct device_node *node)
+ }
+ TIMER_OF_DECLARE(sun4i, "allwinner,sun4i-a10-timer",
+ 		       sun4i_timer_init);
++TIMER_OF_DECLARE(sun8i_a23, "allwinner,sun8i-a23-timer",
++		 sun4i_timer_init);
++TIMER_OF_DECLARE(sun8i_v3s, "allwinner,sun8i-v3s-timer",
++		 sun4i_timer_init);
+ TIMER_OF_DECLARE(suniv, "allwinner,suniv-f1c100s-timer",
+ 		       sun4i_timer_init);
 -- 
 2.21.0
 
