@@ -2,142 +2,168 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71CD36FE0F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 12:47:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 561186FE24
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 12:54:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728431AbfGVKrK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 06:47:10 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:46528 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728415AbfGVKrH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 06:47:07 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190722104704euoutp01ccd8239c1c30f7d12963d6e12e9b00cc~ztOzVDMbS2670626706euoutp01t
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 10:47:04 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190722104704euoutp01ccd8239c1c30f7d12963d6e12e9b00cc~ztOzVDMbS2670626706euoutp01t
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1563792424;
-        bh=SU/b9A0zsnNhPkaLQo5sGUXkfyHQlTM+GWVxLlhikNU=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=R3LqS7NN1841cneVf+Eeq+NokM14T+0kmmzgTnw7z8DurcfRcGDWKcIeN1BLR7Znu
-         kF0aYIhxz+zV52YNv8lh373BBDhR3z91B1hJBe6zypoFaRefG5ZiRysJqsW2sXfS2N
-         mmfZZ+lCRze3dl1M6FqLb9F18iwGyxmA8w222uMc=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190722104703eucas1p1ca3ad44bf079e57560ed4abd64f1a90f~ztOyeqIGz1733317333eucas1p1C;
-        Mon, 22 Jul 2019 10:47:03 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 2E.38.04325.724953D5; Mon, 22
-        Jul 2019 11:47:03 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190722104703eucas1p2c5bdf87985b37b8e0ffdb3ffb5aae4de~ztOxtRcAh3223832238eucas1p2s;
-        Mon, 22 Jul 2019 10:47:03 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190722104702eusmtrp20dfdf63b5472e0e4ca7c4ca6353dafc3~ztOxe-CuS2917129171eusmtrp2Y;
-        Mon, 22 Jul 2019 10:47:02 +0000 (GMT)
-X-AuditID: cbfec7f5-b75ff700000010e5-48-5d3594273b62
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 61.D9.04146.624953D5; Mon, 22
-        Jul 2019 11:47:02 +0100 (BST)
-Received: from [106.120.51.20] (unknown [106.120.51.20]) by
-        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190722104702eusmtip1609c60234108be50719c9071fe202060~ztOwxnrdM1710317103eusmtip1Q;
-        Mon, 22 Jul 2019 10:47:02 +0000 (GMT)
-Subject: Re: [PATCH v1 21/50] ARM: dts: exynos: add OPP into FSYS APB bus in
- Exynos5420
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
-        <b.zolnierkie@samsung.com>, kgene@kernel.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
-        kyungmin.park@samsung.com, Andrzej Hajda <a.hajda@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com
-From:   Lukasz Luba <l.luba@partner.samsung.com>
-Message-ID: <7b662b86-f442-3de8-e357-88bf9eaffd5a@partner.samsung.com>
-Date:   Mon, 22 Jul 2019 12:47:00 +0200
+        id S1729597AbfGVKyo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 06:54:44 -0400
+Received: from ns.iliad.fr ([212.27.33.1]:49240 "EHLO ns.iliad.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728619AbfGVKyn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jul 2019 06:54:43 -0400
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+        by ns.iliad.fr (Postfix) with ESMTP id 88EBE20720;
+        Mon, 22 Jul 2019 12:54:41 +0200 (CEST)
+Received: from [192.168.108.49] (freebox.vlq16.iliad.fr [213.36.7.13])
+        by ns.iliad.fr (Postfix) with ESMTP id 7551A2005B;
+        Mon, 22 Jul 2019 12:54:41 +0200 (CEST)
+Subject: Re: [RFC v2] DT-based tuner/demod init
+From:   Marc Gonzalez <marc.w.gonzalez@free.fr>
+To:     linux-media <linux-media@vger.kernel.org>,
+        I2C <linux-i2c@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        =?UTF-8?Q?Jonathan_Neusch=c3=a4fer?= <j.neuschaefer@gmx.net>,
+        Brad Love <brad@nextdimension.cc>,
+        Antti Palosaari <crope@iki.fi>,
+        Olli Salonen <olli.salonen@iki.fi>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Wolfram Sang <wsa@the-dreams.de>,
+        Simon Horman <horms+renesas@verge.net.au>,
+        Peter Korsgaard <peter@korsgaard.com>,
+        Peter Rosin <peda@axentia.se>, DT <devicetree@vger.kernel.org>
+References: <6d38f9b1-a8cd-803d-b330-f92f7bcf08ca@free.fr>
+Message-ID: <7c7f05bc-26e6-7671-a5e2-265775744096@free.fr>
+Date:   Mon, 22 Jul 2019 12:54:40 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.7.1
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAJKOXPd0kzwZ9_eCK9r04Qj0Rf5SSSnMmwDj11cZozmu0gqsgw@mail.gmail.com>
+In-Reply-To: <6d38f9b1-a8cd-803d-b330-f92f7bcf08ca@free.fr>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Se0hTYRzt233s+ljdLdMfFQWDHhY+IoNPiqioGARRUKHJqKUXXc1pu85H
-        VpqQqVmaWpnY00yxZbnUTNBiSpJhpuIjc1pNKM1V4soEtbzeSf53zu93ft85Bz6GUAxSSxmt
-        PoYz6DU6Je1KVr+aeOuzJm+T2r/o5XrcW/6WwhX5jync7fhC4duNMzTL9o3Ara1PpLglZUSK
-        zbYuCo9m9lO4o7aQxvmt9RL8qNEqxcXdbRLc1rwLfzhXSuPzdY1S3DBygcLTXRXkNoXKdMuE
-        VD96zktV5rJ0WvX0fpLqcmUZUo2ZV+yjD7tuCeN02ljO4Lf1qGuEKbdZEj0hje+7+pBORsV0
-        BnJhgA2AovQWlIFcGQVbiuDFz3JaJA4EKeUlTjKGYKKlk5w7qSp3SMRFCYLpN8NOYkdgdTRL
-        BNViNhiyL1qRgD1Yb+ieGqcEEcF2kvBnYHzmKYahWV+oKTspaGTsbjC3WykBk+wqsPfZZ/ES
-        Ngg6KmuRqJHD6xuDsylc2P1QPfSZEDDBekHv4G2JiFfCM3shIXgBm85AxdBHJMbeCV8nzc4K
-        i2G4qVIq4uXw97l4DCwPyZfuOvWnwZZ106nZDA1NbZSQmZgp87jWTxxvh56Bh7QwBnYh9Njl
-        YoSFkFN9nRDHMkhLVYjqtVCZ+c5p5AklpmvSbKQsmFesYF6ZgnllCv773kFkGfLijHxkOMdv
-        1HNxvrwmkjfqw31DoyLNaObvvZlu+lWD6iePWRDLIKW7zL86QK2gNLF8QqQFAUMoPWR6/01q
-        hSxMk3CKM0QdMRh1HG9ByxhS6SVLXPAxRMGGa2K4ExwXzRnmthLGZWky4ke/f+otytqs2xPs
-        OOEdWLiaTv+9IyS+zjQ28mB94klLtA99MHVt62vtWWJRilxttOpIz+fFB0KvRE+3ZCV1B9kc
-        yfdj1d+D+q/ZpmT5U0ZLoPu9vXmJ8jP5uavupg1PjYT6nfEI/UGWwCE3v6M9cadyJqveo3a3
-        iODj9/bGyLVKko/QbFhHGHjNP53fZkJ3AwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrBIsWRmVeSWpSXmKPExsVy+t/xu7pqU0xjDT7ONre4te4cq8XGGetZ
-        La5/ec5qMf8IkNv/+DWzxfnzG9gtzja9YbfY9Pgaq8XHnnusFpd3zWGzmHF+H5PF2iN32S2W
-        Xr/IZHHxlKvF7cYVbBate4+wWxx+085q8e/aRhYHIY8189Ywery/0crusWlVJ5vH5iX1Hn1b
-        VjF6fN4kF8AWpWdTlF9akqqQkV9cYqsUbWhhpGdoaaFnZGKpZ2hsHmtlZKqkb2eTkpqTWZZa
-        pG+XoJexZvIppoKf7BV3pq5ma2BcytbFyMkhIWAisXXdF6YuRi4OIYGljBKL51xkhEiISUza
-        t50dwhaW+HOtiw2i6DWjxNm2J2AJYYFIiQndd8EaRAQ0Ja7//c4KUsQscJVFYsqrjewQHf1M
-        Er2L3gC1c3CwCehJ7FhVCNLAK+AmsenSXVYQm0VAVeLtnbdgtqhAhERf22w2iBpBiZMzn7CA
-        2JwCgRLbXj5iBrGZBcwk5m1+CGWLS9x6Mp8JwpaX2P52DvMERqFZSNpnIWmZhaRlFpKWBYws
-        qxhFUkuLc9Nziw31ihNzi0vz0vWS83M3MQJjfduxn5t3MF7aGHyIUYCDUYmH12CbSawQa2JZ
-        cWXuIUYJDmYlEd48A9NYId6UxMqq1KL8+KLSnNTiQ4ymQM9NZJYSTc4HpqG8knhDU0NzC0tD
-        c2NzYzMLJXHeDoGDMUIC6YklqdmpqQWpRTB9TBycUg2MotJz7a903I+4yl495wTTKcmiyfUP
-        lsxszbxmKRRu/NveKuub/7k1ul/WbFo6p2dx25rDDe713ge987hb5d/oJrNW7/+iZ1Z14EHX
-        u32nU456txXdsjHXfFsxyVIm3lTnlG9blIZVse5Gqbr5Iaqcuz/Jit+etoz10qW7u8NOnz/I
-        9+DXgc3aSizFGYmGWsxFxYkAD4ZHwgsDAAA=
-X-CMS-MailID: 20190722104703eucas1p2c5bdf87985b37b8e0ffdb3ffb5aae4de
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190715124451eucas1p2904b49f59cca0cbbc22381f168affbb5
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190715124451eucas1p2904b49f59cca0cbbc22381f168affbb5
-References: <CGME20190715124451eucas1p2904b49f59cca0cbbc22381f168affbb5@eucas1p2.samsung.com>
-        <20190715124417.4787-1-l.luba@partner.samsung.com>
-        <20190715124417.4787-22-l.luba@partner.samsung.com>
-        <CAJKOXPd0kzwZ9_eCK9r04Qj0Rf5SSSnMmwDj11cZozmu0gqsgw@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+X-Virus-Scanned: ClamAV using ClamSMTP ; ns.iliad.fr ; Mon Jul 22 12:54:41 2019 +0200 (CEST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On 11/07/2019 18:21, Marc Gonzalez wrote:
 
-On 7/17/19 10:48 AM, Krzysztof Kozlowski wrote:
-> On Mon, 15 Jul 2019 at 14:44, Lukasz Luba <l.luba@partner.samsung.com> wrote:
->>
->> Add an OPP for FSYS APB which reflects the real possible frequency.
->> The bus will have a new parent clock which speed has 600MHz, thus
->> a new possible frequency provided by the clock divider is 150MHz.
->> According to the documentation max possible frequency for this bus is
->> 200MHz.
+> This is a follow-up RFC to my first request for comments:
+> "[RFC] SW connection between DVB Transport Stream demuxer and I2C-based frontend"
+> https://www.spinics.net/lists/arm-kernel/msg739972.html
 > 
-> Commit msg is good but title could be improved. Focus in the title
-> what problem/issue you are solving - add intermediate step in scaling
-> of FSYS APB?
-The devfreq governor for this bus device follows the set OPP of the
-master device - WCORE bus and sets the OPP with corresponding ID.
-Thus, jumping to max frequency 200MHz when the WCORE bus and other
-devices are operating in the middle of their min-max speed is not
-needed for FSYS APB and this patch adds the intermediate speed step.
+> Background: my SoC provides a "Transport Stream Interface" on-chip
+> (for which I wrote a small driver, tsif.c) as well as a tuner/demod combo
+> (si2141/si2168) on the board.
+> 
+> My original goal was: being able to link the tuner/demod from the device tree,
+> instead of hard-coding them in the TSIF driver.
+> 
+> (Please see the resulting code at the end of this message)
 
-Regards,
-Lukasz
+Below is an analysis of the proposed driver, after a few exchanges with Mauro
+on IRC.
 
-> 
-> Best regards,
-> Krzysztof
-> 
-> 
+
+> diff --git a/drivers/media/platform/tsif.c b/drivers/media/platform/tsif.c
+> new file mode 100644
+> index 000000000000..b136f334e9c6
+> --- /dev/null
+> +++ b/drivers/media/platform/tsif.c
+> @@ -0,0 +1,185 @@
+> +#include <linux/clk.h>
+> +#include <linux/interrupt.h>
+> +#include <linux/platform_device.h>
+> +#include <media/dvb_frontend.h>
+> +#include <media/dvb_demux.h>
+> +#include <media/dmxdev.h>
+> +
+> +/* TSIF register offsets */
+> +#define TSIF_STS_CTL	0x0	/* status and control */
+> +#define TSIF_DATA_PORT	0x100
+> +
+> +/* TSIF_STS_CTL bits */
+> +#define ENABLE_IRQ	BIT(28)
+> +#define TSIF_STOP	BIT(3)
+> +#define TSIF_START	BIT(0)
+> +
+> +struct tsif {
+> +	void __iomem *base;
+> +	struct clk *clk;
+> +	int ref_count; /*** TODO: use atomic_t ??? or refcount_t ??? or kref ??? ***/
+> +	u32 buf[48];
+> +	struct dvb_frontend *fe;
+> +	/*** DO I NEED ALL 4 ***/
+> +	//struct dmx_frontend dmx_frontend;
+> +	struct dvb_adapter dvb_adapter;
+> +	struct dvb_demux dvb_demux;
+> +	struct dmxdev dmxdev;
+> +};
+> +
+> +static int start_tsif(struct dvb_demux_feed *feed)
+> +{
+> +	struct tsif *tsif = feed->demux->priv;
+> +	printk("%s: feed PID=%u\n", __func__, feed->pid);
+> +
+> +	if (tsif->ref_count++ == 0) {
+> +		u32 val = TSIF_START | ENABLE_IRQ | BIT(29);
+> +		writel_relaxed(val, tsif->base + TSIF_STS_CTL);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int stop_tsif(struct dvb_demux_feed *feed)
+> +{
+> +	struct tsif *tsif = feed->demux->priv;
+> +	printk("%s: feed PID=%u\n", __func__, feed->pid);
+> +
+> +	if (--tsif->ref_count == 0) {
+> +		writel_relaxed(TSIF_STOP, tsif->base + TSIF_STS_CTL);
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static irqreturn_t tsif_isr(int irq, void *arg)
+> +{
+> +	int i;
+> +	u32 status;
+> +	struct tsif *tsif = arg;
+> +
+> +	status = readl_relaxed(tsif->base + TSIF_STS_CTL);
+> +	writel_relaxed(status, tsif->base + TSIF_STS_CTL);
+> +
+> +	for (i = 0; i < 48; ++i)
+> +		tsif->buf[i] = readl_relaxed(tsif->base + TSIF_DATA_PORT);
+> +
+> +	dvb_dmx_swfilter_packets(&tsif->dvb_demux, (void *)tsif->buf, 1);
+> +
+> +	return IRQ_HANDLED;
+> +}
+
+What may not be apparent here is that (in this mode) the HW generates
+one interrupt for *every* *single* TS packet (i.e. 1504 bits). And it
+can buffer only a single packet. Pretty hard real-time constraints...
+
+Since I'm dealing with 25 Mbps streams (French DVB-T2 multiplex)
+25*10e6 / 1504 = 16600 packets per second -- i.e. 60 µs between IRQs
+
+Even after:
+
+1) moving the ISR to its own dedicated core,
+2) moving dvb_dmx_swfilter_packets() to a work_queue,
+3) removing interrupt masking from DVB functions,
+4) using large SW buffers (1024 TS packets)
+
+I still drop a few packets here and there (~1 per minute).
+
+Conclusion: it seems this HW mode cannot work reliably on the types
+of streams I'm interested in. Thus, there's no point in supporting it
+in the final driver. I need to test "advanced" mode.
+
+Regards.
