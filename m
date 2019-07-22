@@ -2,49 +2,46 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D42F36FA9F
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 09:46:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18E5A6FAC1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 09:53:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726595AbfGVHqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 03:46:31 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:44387 "EHLO
+        id S1726236AbfGVHxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 03:53:45 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:40119 "EHLO
         metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726236AbfGVHqb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 03:46:31 -0400
+        with ESMTP id S1726905AbfGVHxp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 03:53:45 -0400
 Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
         by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <mfe@pengutronix.de>)
-        id 1hpT1g-0004Nc-Kh; Mon, 22 Jul 2019 09:46:28 +0200
+        id 1hpT8h-0005Cj-1i; Mon, 22 Jul 2019 09:53:43 +0200
 Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
         (envelope-from <mfe@pengutronix.de>)
-        id 1hpT1e-0006Vc-I6; Mon, 22 Jul 2019 09:46:26 +0200
-Date:   Mon, 22 Jul 2019 09:46:26 +0200
+        id 1hpT8f-0006dh-CJ; Mon, 22 Jul 2019 09:53:41 +0200
+Date:   Mon, 22 Jul 2019 09:53:41 +0200
 From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Serge Semin <fancer.lancer@gmail.com>
-Cc:     Lucas Stach <l.stach@pengutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-usb@vger.kernel.org, patchwork-lst@pengutronix.de,
-        Rob Herring <robh+dt@kernel.org>, kernel@pengutronix.de,
-        Richard Leitner <richard.leitner@skidata.com>
-Subject: Re: [PATCH 1/3] Revert "usb: usb251xb: Add US lanes inversion
- dts-bindings"
-Message-ID: <20190722074626.wf523mw3uvymi5vo@pengutronix.de>
-References: <20190719084407.28041-1-l.stach@pengutronix.de>
- <20190719101337.36omwmqc4lbtw6do@mobilestation>
+To:     Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
+        festevam@gmail.com, s.hauer@pengutronix.de,
+        rennes@savoirfairelinux.com, robh+dt@kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, jerome.oufella@savoirfairelinux.com,
+        shawnguo@kernel.org
+Subject: Re: [PATCH v2] arm: dts: imx6qdl: add gpio expander pca9535
+Message-ID: <20190722075341.e4ve45rneusiogtk@pengutronix.de>
+References: <20190719104615.5329-1-gilles.doffe@savoirfairelinux.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190719101337.36omwmqc4lbtw6do@mobilestation>
+In-Reply-To: <20190719104615.5329-1-gilles.doffe@savoirfairelinux.com>
 X-Sent-From: Pengutronix Hildesheim
 X-URL:  http://www.pengutronix.de/
 X-IRC:  #ptxdist @freenode
 X-Accept-Language: de,en
 X-Accept-Content-Type: text/plain
-X-Uptime: 09:25:25 up 65 days, 13:43, 51 users,  load average: 0.27, 0.12,
- 0.07
+X-Uptime: 09:48:44 up 65 days, 14:06, 51 users,  load average: 0.05, 0.04,
+ 0.02
 User-Agent: NeoMutt/20170113 (1.7.2)
 X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
 X-SA-Exim-Mail-From: mfe@pengutronix.de
@@ -55,92 +52,77 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Serge,
+Hi Gilles,
 
-On 19-07-19 13:13, Serge Semin wrote:
-> Hello Lucas
+can you adapt the patch title, I assumed that the base dtsi is adding a
+gpio-expander which makes no sense.
+
+On 19-07-19 12:46, Gilles DOFFE wrote:
+> The pca9535 gpio expander is present on the Rex baseboard, but missing
+> from the dtsi.
 > 
-> On Fri, Jul 19, 2019 at 10:44:05AM +0200, Lucas Stach wrote:
-> > This reverts commit 3342ce35a1, as there is no need for this separate
-> > property and it breaks compatibility with existing devicetree files
-> > (arch/arm64/boot/dts/freescale/imx8mq.dtsi).
-> > 
+> Add the new gpio controller and the associated interrupt line
+> MX6QDL_PAD_NANDF_CS3__GPIO6_IO16.
 > 
-> Hmm, didn't know there had been anything staged to merge and touching this
-> property before submitting the update. We must have done it nearly at the same
-> time, or your patch hasn't been merged at the time I prepared mine.
+> Signed-off-by: Gilles DOFFE <gilles.doffe@savoirfairelinux.com>
+> ---
+
+Having a changelog would be nice too.
+
+>  arch/arm/boot/dts/imx6qdl-rex.dtsi | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
 > 
-> Anyway why would you prefer to change the interface again instead of
-> following the existing way? Firstly It is much easier to fix the dts-file
-> than to revert the interface back and break dts-files of possible other users.
+> diff --git a/arch/arm/boot/dts/imx6qdl-rex.dtsi b/arch/arm/boot/dts/imx6qdl-rex.dtsi
+> index 97f1659144ea..b517efb22fcb 100644
+> --- a/arch/arm/boot/dts/imx6qdl-rex.dtsi
+> +++ b/arch/arm/boot/dts/imx6qdl-rex.dtsi
+> @@ -136,6 +136,19 @@
+>  		compatible = "atmel,24c02";
+>  		reg = <0x57>;
+>  	};
+> +
+> +	pca9535: gpio8@27 {
+> +		compatible = "nxp,pca9535";
+> +		reg = <0x27>;
 
-Since the dtbs are firmware thats not possible everytime. You can't even
-say that nobody uses that binding because it's not grepable within the
-kernel repo. Most vendors do not publish their dts files but use the
-bindings and rely on stable bindings.
+The i2c devices are orderd by their i2c-addresses starting from the
+lowest.
 
-> Secondly the chip documentation doesn't have anything regarding port 0.
+> +		gpio-controller;
+> +		#gpio-cells = <2>;
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&pinctrl_pca9535>;
+> +		interrupt-parent = <&gpio6>;
+> +		interrupts = <16 IRQ_TYPE_LEVEL_LOW>;
+> +		interrupt-controller;
+> +		#interrupt-cells = <2>;
+> +	};
+>  };
+>  
+>  &i2c3 {
+> @@ -237,6 +250,12 @@
+>  			>;
+>  		};
+>  
+> +		pinctrl_pca9535: pca9535 {
+> +			fsl,pins = <
+> +				MX6QDL_PAD_NANDF_CS3__GPIO6_IO16	0x00017059
 
-Thats not true. I've checked the usb2517 documentation and PRTSP register
-description. Bit-0 points to the upstream port and the dt-binding
-is such generic to cover that too. By swap-dx-lanes I mean swap d+/d-
-lanes else it would be something like swap-downstream-lanes. Since the
-upstream port have d+/d- lanes too it would be covered too.
-
-> It states to swap the Ports from 1 to 4 (usb2514) corresponding to the bits
-> 1 - 4 of the 'PORT SWAP' register, while bit 0 is connected with explicitly
-> named Upstream Port (without any numbering). Thirdly having a separate
-> property for US port makes the driver bindings interface a bit better
-> readable/logical, since in current implementation there is no implicit/unspoken/hidden
-> rule that port 0 corresponds to the Upstream Port, Port 0 just doesn't exists
-> (following the chip datasheet text), and the other port-related properties are
-> only applicable for downstream ports. So the driver code rejects them being
-
-So the correct fix should be extending the documentation rather than
-introducing a new binding?
-
-> utilized for a port with 0 identifier. The only port-related setting being
-> exposed by the interface is the swap-port-one and it has a separately bound
-> property 'swap-us-lanes' for the Upstream port.
-> 
-> As for me, all of this makes more sense than having an implicit Port 0 - Upstream
-> port binding (as you suggest). Although the final decision of which solution is
-> better is after the subsystem maintainer after all.
-
-That's true but he had to cover the dt-backward compatibility.
+The pinmux below don't use the leading zero's if you are the first I
+would drop that.
 
 Regards,
   Marco
 
-> Regards,
-> -Sergey
+> +		   >;
+> +		};
+> +
+>  		pinctrl_uart1: uart1grp {
+>  			fsl,pins = <
+>  				MX6QDL_PAD_CSI0_DAT10__UART1_TX_DATA	0x1b0b1
+> -- 
+> 2.19.1
 > 
-> > CC: stable@vger.kernel.org #5.2
-> > Signed-off-by: Lucas Stach <l.stach@pengutronix.de>
-> > ---
-> >  Documentation/devicetree/bindings/usb/usb251xb.txt | 6 ++----
-> >  1 file changed, 2 insertions(+), 4 deletions(-)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/usb/usb251xb.txt b/Documentation/devicetree/bindings/usb/usb251xb.txt
-> > index bc7945e9dbfe..17915f64b8ee 100644
-> > --- a/Documentation/devicetree/bindings/usb/usb251xb.txt
-> > +++ b/Documentation/devicetree/bindings/usb/usb251xb.txt
-> > @@ -64,10 +64,8 @@ Optional properties :
-> >   - power-on-time-ms : Specifies the time it takes from the time the host
-> >  	initiates the power-on sequence to a port until the port has adequate
-> >  	power. The value is given in ms in a 0 - 510 range (default is 100ms).
-> > - - swap-dx-lanes : Specifies the downstream ports which will swap the
-> > -	differential-pair (D+/D-), default is not-swapped.
-> > - - swap-us-lanes : Selects the upstream port differential-pair (D+/D-)
-> > -	swapping (boolean, default is not-swapped)
-> > + - swap-dx-lanes : Specifies the ports which will swap the differential-pair
-> > +	(D+/D-), default is not-swapped.
-> >  
-> >  Examples:
-> >  	usb2512b@2c {
-> > -- 
-> > 2.20.1
-> > 
 > 
 > 
 
