@@ -2,178 +2,572 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A2406FE2E
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 12:57:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 86B476FE72
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 13:08:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728373AbfGVK5e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 06:57:34 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:41470 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726130AbfGVK5e (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 06:57:34 -0400
-Received: by mail-lj1-f196.google.com with SMTP id d24so37130088ljg.8;
-        Mon, 22 Jul 2019 03:57:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=MfMbQo+3px3OA9BnZZv/vPC4tyxY+4Fa99yi+j6MVSs=;
-        b=IPH+KevhCcZGuzjzdQ0lz5atsUMe6SkDXi4+XrZuh259ziqgPwYr39ftyFmF6MozMv
-         0FuiimMJuXT9M81SWd6yIn7GIcsRO2RmTAtX+6bnHiQbOv6CwECBnCcQn24U29tC9Xws
-         mquHnECZoGFfUwH6Jio5Rzmdbcs9774hkOfwBqmbPm7kKpnmSXGk34iU98hZSsQEUap4
-         QKoCGxb7JqPUkku2oJcSC62tOPR1+ui6wKvZEXS38ZY8LeDbO+czhoikIFPROGbQrs7J
-         ijD5HKto3HhyrHLFZNx9EUkkKOsy/eJEEWb2LVMP3E+ldgpuVUcwQ1i5z4cfdG9hvJBw
-         RtSg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=MfMbQo+3px3OA9BnZZv/vPC4tyxY+4Fa99yi+j6MVSs=;
-        b=JORvly5QnOunbyYc67O8nK49l1EjjEx2ElqklyWyaTx8dS/QCQ555imF6PL9CaYp0c
-         ncrtydc/fRi+LAUcqzUW0glowBYDjYi22rid33tONB6Wl3tVaMDwrPrvE3fAdS0pdMoc
-         PKDE8Mc8i0XJzRhD5E7kMN/5bigYMux+Bt6l8Q9V72wKprMxpIlVF3X0q9dt+Fx2RPos
-         7qGr4Cb3yHir18JFhzQuzUXcDJklwqYzQetfffphrOB3c/FXill8kcTMwKLpeR/FFdom
-         kcbI6G7BaysxJurMc4B47Nmscy2J+18lSmfKs7TsxfcLS9VIotz77kpQ8qHwxdnNOkpF
-         vPZw==
-X-Gm-Message-State: APjAAAVMigEiMAdA5kYLskIBEH5GO+bn+k87CRgVluSoWC8qJG6mqOX1
-        q80npa0H7gzhqYAk2pqcDBGN8994
-X-Google-Smtp-Source: APXvYqxKBaaGhtcXgBX8AYLsoJaFMBoWGA/+yePSQ6iGvovI8f37U1Gps+nEDTjxrdgHmGvpFBkIbA==
-X-Received: by 2002:a2e:9117:: with SMTP id m23mr35967848ljg.134.1563793050348;
-        Mon, 22 Jul 2019 03:57:30 -0700 (PDT)
-Received: from [192.168.2.145] (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
-        by smtp.googlemail.com with ESMTPSA id m4sm7464928ljc.56.2019.07.22.03.57.28
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 22 Jul 2019 03:57:29 -0700 (PDT)
-Subject: Re: [PATCH V6 01/21] irqchip: tegra: Do not disable COP IRQ during
- suspend
-To:     Marc Zyngier <marc.zyngier@arm.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, linus.walleij@linaro.org, stefan@agner.ch,
-        mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com>
- <1563738060-30213-2-git-send-email-skomatineni@nvidia.com>
- <f6582e43-168e-1b7e-9db8-3d263bc3ba0d@gmail.com>
- <20c1d733-60f5-6375-c03c-639de5e41739@arm.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <0bee8775-756f-adad-4597-8cad53017718@gmail.com>
-Date:   Mon, 22 Jul 2019 13:57:28 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1729867AbfGVLIJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 07:08:09 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:35630 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729828AbfGVLIA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 07:08:00 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
+        MIME-Version:References:In-Reply-To:Message-Id:Date:Subject:Cc:To:From:
+        Reply-To:Content-Type:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=EnOsrG4d5VuiZ8ZId8K/05VDXmNI8hz9v1O7aYYsAfg=; b=DMwnjeMjDE1+RSTZLUvD57csmJ
+        o5svIEzpvk6mHlcVU26viTllCyNKDKhHIAn97ipXlYQ7j3doF9AM0B37B2oN5LNaDyzrV7bmk1zOq
+        zlYPUW8QKmipBOcjGDTIjpG4JhnOx7JHGa3hyZOBqgN9Tmy5zAmXBWSDAxO01im9q9KMQfKHBB9LP
+        ZnQw4cLJeEZNE9v0ONG1fe63bdDYwrmi2tsn1CaaJO/U3KdnlSyLYypiZMucp8niNLpxJUoVZXotZ
+        q2Kb0+3ysTu3EmcviGVXDSZkJj0QFdlnb/ATNUb1GxT4q/NQS0CUrWJRXqC/E2+ohZUAxBSXDbS6T
+        Jal7uKsw==;
+Received: from 177.157.124.3.dynamic.adsl.gvt.net.br ([177.157.124.3] helo=bombadil.infradead.org)
+        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
+        id 1hpWAh-00025C-Ln; Mon, 22 Jul 2019 11:08:00 +0000
+Received: from mchehab by bombadil.infradead.org with local (Exim 4.92)
+        (envelope-from <mchehab@bombadil.infradead.org>)
+        id 1hpWAa-00040W-0a; Mon, 22 Jul 2019 08:07:52 -0300
+From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+        linux-doc@vger.kernel.org, Rob Herring <robh@kernel.org>
+Subject: [PATCH 01/22] docs: convert markdown documents to ReST
+Date:   Mon, 22 Jul 2019 08:07:28 -0300
+Message-Id: <40b78fbbe64108601c274d28b7c515b3cd29d206.1563792334.git.mchehab+samsung@kernel.org>
+X-Mailer: git-send-email 2.21.0
+In-Reply-To: <cover.1563792333.git.mchehab+samsung@kernel.org>
+References: <cover.1563792333.git.mchehab+samsung@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <20c1d733-60f5-6375-c03c-639de5e41739@arm.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-22.07.2019 13:13, Marc Zyngier пишет:
-> On 22/07/2019 10:54, Dmitry Osipenko wrote:
->> 21.07.2019 22:40, Sowjanya Komatineni пишет:
->>> Tegra210 platforms use sc7 entry firmware to program Tegra LP0/SC7 entry
->>> sequence and sc7 entry firmware is run from COP/BPMP-Lite.
->>>
->>> So, COP/BPMP-Lite still need IRQ function to finish SC7 suspend sequence
->>> for Tegra210.
->>>
->>> This patch has fix for leaving the COP IRQ enabled for Tegra210 during
->>> interrupt controller suspend operation.
->>>
->>> Acked-by: Thierry Reding <treding@nvidia.com>
->>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>> ---
->>>  drivers/irqchip/irq-tegra.c | 20 ++++++++++++++++++--
->>>  1 file changed, 18 insertions(+), 2 deletions(-)
->>>
->>> diff --git a/drivers/irqchip/irq-tegra.c b/drivers/irqchip/irq-tegra.c
->>> index e1f771c72fc4..851f88cef508 100644
->>> --- a/drivers/irqchip/irq-tegra.c
->>> +++ b/drivers/irqchip/irq-tegra.c
->>> @@ -44,6 +44,7 @@ static unsigned int num_ictlrs;
->>>  
->>>  struct tegra_ictlr_soc {
->>>  	unsigned int num_ictlrs;
->>> +	bool supports_sc7;
->>>  };
->>>  
->>>  static const struct tegra_ictlr_soc tegra20_ictlr_soc = {
->>> @@ -56,6 +57,7 @@ static const struct tegra_ictlr_soc tegra30_ictlr_soc = {
->>>  
->>>  static const struct tegra_ictlr_soc tegra210_ictlr_soc = {
->>>  	.num_ictlrs = 6,
->>> +	.supports_sc7 = true,
->>>  };
->>>  
->>>  static const struct of_device_id ictlr_matches[] = {
->>> @@ -67,6 +69,7 @@ static const struct of_device_id ictlr_matches[] = {
->>>  
->>>  struct tegra_ictlr_info {
->>>  	void __iomem *base[TEGRA_MAX_NUM_ICTLRS];
->>> +	const struct tegra_ictlr_soc *soc;
->>>  #ifdef CONFIG_PM_SLEEP
->>>  	u32 cop_ier[TEGRA_MAX_NUM_ICTLRS];
->>>  	u32 cop_iep[TEGRA_MAX_NUM_ICTLRS];
->>> @@ -147,8 +150,20 @@ static int tegra_ictlr_suspend(void)
->>>  		lic->cop_ier[i] = readl_relaxed(ictlr + ICTLR_COP_IER);
->>>  		lic->cop_iep[i] = readl_relaxed(ictlr + ICTLR_COP_IEP_CLASS);
->>>  
->>> -		/* Disable COP interrupts */
->>> -		writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
->>> +		/*
->>> +		 * AVP/COP/BPMP-Lite is the Tegra boot processor.
->>> +		 *
->>> +		 * Tegra210 system suspend flow uses sc7entry firmware which
->>> +		 * is executed by COP/BPMP and it includes disabling COP IRQ,
->>> +		 * clamping CPU rail, turning off VDD_CPU, and preparing the
->>> +		 * system to go to SC7/LP0.
->>> +		 *
->>> +		 * COP/BPMP wakes up when COP IRQ is triggered and runs
->>> +		 * sc7entry-firmware. So need to keep COP interrupt enabled.
->>> +		 */
->>> +		if (!lic->soc->supports_sc7)
->>> +			/* Disable COP interrupts if SC7 is not supported */
->>
->> All Tegra SoCs support SC7, hence the 'supports_sc7' and the comment
->> doesn't sound correct to me. Something like 'firmware_sc7' should suit
->> better here.
-> 
-> If what you're saying is true, then the whole patch is wrong, and the
-> SC7 property should come from DT.
+The documentation standard is ReST and not markdown.
 
-It should be safe to assume that all of existing Tegra210 devices use
-the firmware for SC7, hence I wouldn't say that the patch is entirely
-wrong. To me it's not entirely correct.
+Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Acked-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/writing-schema.md    | 130 ---------------
+ Documentation/devicetree/writing-schema.rst   | 153 ++++++++++++++++++
+ ...entication.md => ubifs-authentication.rst} |  70 +++++---
+ 3 files changed, 197 insertions(+), 156 deletions(-)
+ delete mode 100644 Documentation/devicetree/writing-schema.md
+ create mode 100644 Documentation/devicetree/writing-schema.rst
+ rename Documentation/filesystems/{ubifs-authentication.md => ubifs-authentication.rst} (95%)
 
->>
->>> +			writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
->>
->> Secondly, I'm also not sure why COP interrupts need to be disabled for
->> pre-T210 at all, since COP is unused. This looks to me like it was
->> cut-n-pasted from downstream kernel without a good reason and could be
->> simply removed.
-> 
-> Please verify that this is actually the case. Tegra-2 definitely needed
-> some level of poking, and I'm not keen on changing anything there until
-> you (or someone else) has verified it on actual HW (see e307cc8941fc).
-
-Tested on Tegra20 and Tegra30, LP1 suspend-resume works perfectly fine
-with all COP bits removed from the driver.
-
-AFAIK, the reason why downstream needed that disabling is that it uses
-proprietary firmware which is running on the COP and that firmware is
-usually a BLOB audio/video DEC-ENC driver which doesn't cleanup
-interrupts after itself. That firmware is not applicable for the
-upstream kernel, hence there is no need to care about it.
-
-> Joseph, can you please shed some light here?
+diff --git a/Documentation/devicetree/writing-schema.md b/Documentation/devicetree/writing-schema.md
+deleted file mode 100644
+index dc032db36262..000000000000
+--- a/Documentation/devicetree/writing-schema.md
++++ /dev/null
+@@ -1,130 +0,0 @@
+-# Writing DeviceTree Bindings in json-schema
+-
+-Devicetree bindings are written using json-schema vocabulary. Schema files are
+-written in a JSON compatible subset of YAML. YAML is used instead of JSON as it
+-considered more human readable and has some advantages such as allowing
+-comments (Prefixed with '#').
+-
+-## Schema Contents
+-
+-Each schema doc is a structured json-schema which is defined by a set of
+-top-level properties. Generally, there is one binding defined per file. The
+-top-level json-schema properties used are:
+-
+-- __$id__ - A json-schema unique identifier string. The string must be a valid
+-URI typically containing the binding's filename and path. For DT schema, it must
+-begin with "http://devicetree.org/schemas/". The URL is used in constructing
+-references to other files specified in schema "$ref" properties. A $ref values
+-with a leading '/' will have the hostname prepended. A $ref value a relative
+-path or filename only will be prepended with the hostname and path components
+-of the current schema file's '$id' value. A URL is used even for local files,
+-but there may not actually be files present at those locations.
+-
+-- __$schema__ - Indicates the meta-schema the schema file adheres to.
+-
+-- __title__ - A one line description on the contents of the binding schema.
+-
+-- __maintainers__ - A DT specific property. Contains a list of email address(es)
+-for maintainers of this binding.
+-
+-- __description__ - Optional. A multi-line text block containing any detailed
+-information about this binding. It should contain things such as what the block
+-or device does, standards the device conforms to, and links to datasheets for
+-more information.
+-
+-- __select__ - Optional. A json-schema used to match nodes for applying the
+-schema. By default without 'select', nodes are matched against their possible
+-compatible string values or node name. Most bindings should not need select.
+-
+-- __allOf__ - Optional. A list of other schemas to include. This is used to
+-include other schemas the binding conforms to. This may be schemas for a
+-particular class of devices such as I2C or SPI controllers.
+-
+-- __properties__ - A set of sub-schema defining all the DT properties for the
+-binding. The exact schema syntax depends on whether properties are known,
+-common properties (e.g. 'interrupts') or are binding/vendor specific properties.
+-
+-  A property can also define a child DT node with child properties defined
+-under it.
+-
+-  For more details on properties sections, see 'Property Schema' section.
+-
+-- __patternProperties__ - Optional. Similar to 'properties', but names are regex.
+-
+-- __required__ - A list of DT properties from the 'properties' section that
+-must always be present.
+-
+-- __examples__ - Optional. A list of one or more DTS hunks implementing the
+-binding. Note: YAML doesn't allow leading tabs, so spaces must be used instead.
+-
+-Unless noted otherwise, all properties are required.
+-
+-## Property Schema
+-
+-The 'properties' section of the schema contains all the DT properties for a
+-binding. Each property contains a set of constraints using json-schema
+-vocabulary for that property. The properties schemas are what is used for
+-validation of DT files.
+-
+-For common properties, only additional constraints not covered by the common
+-binding schema need to be defined such as how many values are valid or what
+-possible values are valid.
+-
+-Vendor specific properties will typically need more detailed schema. With the
+-exception of boolean properties, they should have a reference to a type in
+-schemas/types.yaml. A "description" property is always required.
+-
+-The Devicetree schemas don't exactly match the YAML encoded DT data produced by
+-dtc. They are simplified to make them more compact and avoid a bunch of
+-boilerplate. The tools process the schema files to produce the final schema for
+-validation. There are currently 2 transformations the tools perform.
+-
+-The default for arrays in json-schema is they are variable sized and allow more
+-entries than explicitly defined. This can be restricted by defining 'minItems',
+-'maxItems', and 'additionalItems'. However, for DeviceTree Schemas, a fixed
+-size is desired in most cases, so these properties are added based on the
+-number of entries in an 'items' list.
+-
+-The YAML Devicetree format also makes all string values an array and scalar
+-values a matrix (in order to define groupings) even when only a single value
+-is present. Single entries in schemas are fixed up to match this encoding.
+-
+-## Testing
+-
+-### Dependencies
+-
+-The DT schema project must be installed in order to validate the DT schema
+-binding documents and validate DTS files using the DT schema. The DT schema
+-project can be installed with pip:
+-
+-`pip3 install git+https://github.com/devicetree-org/dt-schema.git@master`
+-
+-dtc must also be built with YAML output support enabled. This requires that
+-libyaml and its headers be installed on the host system.
+-
+-### Running checks
+-
+-The DT schema binding documents must be validated using the meta-schema (the
+-schema for the schema) to ensure they are both valid json-schema and valid
+-binding schema. All of the DT binding documents can be validated using the
+-`dt_binding_check` target:
+-
+-`make dt_binding_check`
+-
+-In order to perform validation of DT source files, use the `dtbs_check` target:
+-
+-`make dtbs_check`
+-
+-This will first run the `dt_binding_check` which generates the processed schema.
+-
+-It is also possible to run checks with a single schema file by setting the
+-'DT_SCHEMA_FILES' variable to a specific schema file.
+-
+-`make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/trivial-devices.yaml`
+-
+-
+-## json-schema Resources
+-
+-[JSON-Schema Specifications](http://json-schema.org/)
+-
+-[Using JSON Schema Book](http://usingjsonschema.com/)
+diff --git a/Documentation/devicetree/writing-schema.rst b/Documentation/devicetree/writing-schema.rst
+new file mode 100644
+index 000000000000..8f71d1e2ac52
+--- /dev/null
++++ b/Documentation/devicetree/writing-schema.rst
+@@ -0,0 +1,153 @@
++:orphan:
++
++Writing DeviceTree Bindings in json-schema
++==========================================
++
++Devicetree bindings are written using json-schema vocabulary. Schema files are
++written in a JSON compatible subset of YAML. YAML is used instead of JSON as it
++considered more human readable and has some advantages such as allowing
++comments (Prefixed with '#').
++
++Schema Contents
++---------------
++
++Each schema doc is a structured json-schema which is defined by a set of
++top-level properties. Generally, there is one binding defined per file. The
++top-level json-schema properties used are:
++
++$id
++  A json-schema unique identifier string. The string must be a valid
++  URI typically containing the binding's filename and path. For DT schema, it must
++  begin with "http://devicetree.org/schemas/". The URL is used in constructing
++  references to other files specified in schema "$ref" properties. A $ref values
++  with a leading '/' will have the hostname prepended. A $ref value a relative
++  path or filename only will be prepended with the hostname and path components
++  of the current schema file's '$id' value. A URL is used even for local files,
++  but there may not actually be files present at those locations.
++
++$schema
++  Indicates the meta-schema the schema file adheres to.
++
++title
++  A one line description on the contents of the binding schema.
++
++maintainers
++  A DT specific property. Contains a list of email address(es)
++  for maintainers of this binding.
++
++description
++  Optional. A multi-line text block containing any detailed
++  information about this binding. It should contain things such as what the block
++  or device does, standards the device conforms to, and links to datasheets for
++  more information.
++
++select
++  Optional. A json-schema used to match nodes for applying the
++  schema. By default without 'select', nodes are matched against their possible
++  compatible string values or node name. Most bindings should not need select.
++
++ allOf
++  Optional. A list of other schemas to include. This is used to
++  include other schemas the binding conforms to. This may be schemas for a
++  particular class of devices such as I2C or SPI controllers.
++
++ properties
++  A set of sub-schema defining all the DT properties for the
++  binding. The exact schema syntax depends on whether properties are known,
++  common properties (e.g. 'interrupts') or are binding/vendor specific properties.
++
++A property can also define a child DT node with child properties defined
++under it.
++
++For more details on properties sections, see 'Property Schema' section.
++
++patternProperties
++  Optional. Similar to 'properties', but names are regex.
++
++required
++  A list of DT properties from the 'properties' section that
++  must always be present.
++
++examples
++  Optional. A list of one or more DTS hunks implementing the
++  binding. Note: YAML doesn't allow leading tabs, so spaces must be used instead.
++
++Unless noted otherwise, all properties are required.
++
++Property Schema
++---------------
++
++The 'properties' section of the schema contains all the DT properties for a
++binding. Each property contains a set of constraints using json-schema
++vocabulary for that property. The properties schemas are what is used for
++validation of DT files.
++
++For common properties, only additional constraints not covered by the common
++binding schema need to be defined such as how many values are valid or what
++possible values are valid.
++
++Vendor specific properties will typically need more detailed schema. With the
++exception of boolean properties, they should have a reference to a type in
++schemas/types.yaml. A "description" property is always required.
++
++The Devicetree schemas don't exactly match the YAML encoded DT data produced by
++dtc. They are simplified to make them more compact and avoid a bunch of
++boilerplate. The tools process the schema files to produce the final schema for
++validation. There are currently 2 transformations the tools perform.
++
++The default for arrays in json-schema is they are variable sized and allow more
++entries than explicitly defined. This can be restricted by defining 'minItems',
++'maxItems', and 'additionalItems'. However, for DeviceTree Schemas, a fixed
++size is desired in most cases, so these properties are added based on the
++number of entries in an 'items' list.
++
++The YAML Devicetree format also makes all string values an array and scalar
++values a matrix (in order to define groupings) even when only a single value
++is present. Single entries in schemas are fixed up to match this encoding.
++
++Testing
++-------
++
++Dependencies
++~~~~~~~~~~~~
++
++The DT schema project must be installed in order to validate the DT schema
++binding documents and validate DTS files using the DT schema. The DT schema
++project can be installed with pip::
++
++    pip3 install git+https://github.com/devicetree-org/dt-schema.git@master
++
++dtc must also be built with YAML output support enabled. This requires that
++libyaml and its headers be installed on the host system.
++
++Running checks
++~~~~~~~~~~~~~~
++
++The DT schema binding documents must be validated using the meta-schema (the
++schema for the schema) to ensure they are both valid json-schema and valid
++binding schema. All of the DT binding documents can be validated using the
++``dt_binding_check`` target::
++
++    make dt_binding_check
++
++In order to perform validation of DT source files, use the `dtbs_check` target::
++
++    make dtbs_check
++
++This will first run the `dt_binding_check` which generates the processed schema.
++
++It is also possible to run checks with a single schema file by setting the
++``DT_SCHEMA_FILES`` variable to a specific schema file.
++
++::
++
++    make dtbs_check DT_SCHEMA_FILES=Documentation/devicetree/bindings/trivial-devices.yaml
++
++
++json-schema Resources
++---------------------
++
++
++`JSON-Schema Specifications <http://json-schema.org/>`_
++
++`Using JSON Schema Book <http://usingjsonschema.com/>`_
+diff --git a/Documentation/filesystems/ubifs-authentication.md b/Documentation/filesystems/ubifs-authentication.rst
+similarity index 95%
+rename from Documentation/filesystems/ubifs-authentication.md
+rename to Documentation/filesystems/ubifs-authentication.rst
+index 23e698167141..6a9584f6ff46 100644
+--- a/Documentation/filesystems/ubifs-authentication.md
++++ b/Documentation/filesystems/ubifs-authentication.rst
+@@ -1,8 +1,11 @@
+-% UBIFS Authentication
+-% sigma star gmbh
+-% 2018
++:orphan:
+ 
+-# Introduction
++.. UBIFS Authentication
++.. sigma star gmbh
++.. 2018
++
++Introduction
++============
+ 
+ UBIFS utilizes the fscrypt framework to provide confidentiality for file
+ contents and file names. This prevents attacks where an attacker is able to
+@@ -33,7 +36,8 @@ existing features like key derivation can be utilized. It should however also
+ be possible to use UBIFS authentication without using encryption.
+ 
+ 
+-## MTD, UBI & UBIFS
++MTD, UBI & UBIFS
++----------------
+ 
+ On Linux, the MTD (Memory Technology Devices) subsystem provides a uniform
+ interface to access raw flash devices. One of the more prominent subsystems that
+@@ -47,7 +51,7 @@ UBIFS is a filesystem for raw flash which operates on top of UBI. Thus, wear
+ leveling and some flash specifics are left to UBI, while UBIFS focuses on
+ scalability, performance and recoverability.
+ 
+-
++::
+ 
+ 	+------------+ +*******+ +-----------+ +-----+
+ 	|            | * UBIFS * | UBI-BLOCK | | ... |
+@@ -84,7 +88,8 @@ persisted onto the flash directly. More details on UBIFS can also be found in
+ [UBIFS-WP].
+ 
+ 
+-### UBIFS Index & Tree Node Cache
++UBIFS Index & Tree Node Cache
++~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 
+ Basic on-flash UBIFS entities are called *nodes*. UBIFS knows different types
+ of nodes. Eg. data nodes (`struct ubifs_data_node`) which store chunks of file
+@@ -118,17 +123,18 @@ on-flash filesystem structures like the index. On every commit, the TNC nodes
+ marked as dirty are written to the flash to update the persisted index.
+ 
+ 
+-### Journal
++Journal
++~~~~~~~
+ 
+ To avoid wearing out the flash, the index is only persisted (*commited*) when
+-certain conditions are met (eg. `fsync(2)`). The journal is used to record
++certain conditions are met (eg. ``fsync(2)``). The journal is used to record
+ any changes (in form of inode nodes, data nodes etc.) between commits
+ of the index. During mount, the journal is read from the flash and replayed
+ onto the TNC (which will be created on-demand from the on-flash index).
+ 
+ UBIFS reserves a bunch of LEBs just for the journal called *log area*. The
+ amount of log area LEBs is configured on filesystem creation (using
+-`mkfs.ubifs`) and stored in the superblock node. The log area contains only
++``mkfs.ubifs``) and stored in the superblock node. The log area contains only
+ two types of nodes: *reference nodes* and *commit start nodes*. A commit start
+ node is written whenever an index commit is performed. Reference nodes are
+ written on every journal update. Each reference node points to the position of
+@@ -152,6 +158,7 @@ done for the last referenced LEB of the journal. Only this can become corrupt
+ because of a power cut. If the recovery fails, UBIFS will not mount. An error
+ for every other LEB will directly cause UBIFS to fail the mount operation.
+ 
++::
+ 
+        | ----    LOG AREA     ---- | ----------    MAIN AREA    ------------ |
+ 
+@@ -172,10 +179,11 @@ for every other LEB will directly cause UBIFS to fail the mount operation.
+                           containing their buds
+ 
+ 
+-### LEB Property Tree/Table
++LEB Property Tree/Table
++~~~~~~~~~~~~~~~~~~~~~~~
+ 
+ The LEB property tree is used to store per-LEB information. This includes the
+-LEB type and amount of free and *dirty* (old, obsolete content) space [1] on
++LEB type and amount of free and *dirty* (old, obsolete content) space [1]_ on
+ the LEB. The type is important, because UBIFS never mixes index nodes with data
+ nodes on a single LEB and thus each LEB has a specific purpose. This again is
+ useful for free space calculations. See [UBIFS-WP] for more details.
+@@ -185,19 +193,21 @@ index. Due to its smaller size it is always written as one chunk on every
+ commit. Thus, saving the LPT is an atomic operation.
+ 
+ 
+-[1] Since LEBs can only be appended and never overwritten, there is a
+-difference between free space ie. the remaining space left on the LEB to be
+-written to without erasing it and previously written content that is obsolete
+-but can't be overwritten without erasing the full LEB.
++.. [1] Since LEBs can only be appended and never overwritten, there is a
++   difference between free space ie. the remaining space left on the LEB to be
++   written to without erasing it and previously written content that is obsolete
++   but can't be overwritten without erasing the full LEB.
+ 
+ 
+-# UBIFS Authentication
++UBIFS Authentication
++====================
+ 
+ This chapter introduces UBIFS authentication which enables UBIFS to verify
+ the authenticity and integrity of metadata and file contents stored on flash.
+ 
+ 
+-## Threat Model
++Threat Model
++------------
+ 
+ UBIFS authentication enables detection of offline data modification. While it
+ does not prevent it, it enables (trusted) code to check the integrity and
+@@ -224,7 +234,8 @@ Additional measures like secure boot and trusted boot have to be taken to
+ ensure that only trusted code is executed on a device.
+ 
+ 
+-## Authentication
++Authentication
++--------------
+ 
+ To be able to fully trust data read from flash, all UBIFS data structures
+ stored on flash are authenticated. That is:
+@@ -236,7 +247,8 @@ stored on flash are authenticated. That is:
+ - The LPT which stores UBI LEB metadata which UBIFS uses for free space accounting
+ 
+ 
+-### Index Authentication
++Index Authentication
++~~~~~~~~~~~~~~~~~~~~
+ 
+ Through UBIFS' concept of a wandering tree, it already takes care of only
+ updating and persisting changed parts from leaf node up to the root node
+@@ -260,6 +272,7 @@ include a hash. All other types of nodes will remain unchanged. This reduces
+ the storage overhead which is precious for users of UBIFS (ie. embedded
+ devices).
+ 
++::
+ 
+                              +---------------+
+                              |  Master Node  |
+@@ -303,7 +316,8 @@ hashes to index nodes does not change this since each hash will be persisted
+ atomically together with its respective node.
+ 
+ 
+-### Journal Authentication
++Journal Authentication
++~~~~~~~~~~~~~~~~~~~~~~
+ 
+ The journal is authenticated too. Since the journal is continuously written
+ it is necessary to also add authentication information frequently to the
+@@ -316,7 +330,7 @@ of the hash chain. That way a journal can be authenticated up to the last
+ authentication node. The tail of the journal which may not have a authentication
+ node cannot be authenticated and is skipped during journal replay.
+ 
+-We get this picture for journal authentication:
++We get this picture for journal authentication::
+ 
+     ,,,,,,,,
+     ,......,...........................................
+@@ -352,7 +366,8 @@ the superblock struct. The superblock node is stored in LEB 0 and is only
+ modified on feature flag or similar changes, but never on file changes.
+ 
+ 
+-### LPT Authentication
++LPT Authentication
++~~~~~~~~~~~~~~~~~~
+ 
+ The location of the LPT root node on the flash is stored in the UBIFS master
+ node. Since the LPT is written and read atomically on every commit, there is
+@@ -363,7 +378,8 @@ be verified by verifying the authenticity of the master node and comparing the
+ LTP hash stored there with the hash computed from the read on-flash LPT.
+ 
+ 
+-## Key Management
++Key Management
++--------------
+ 
+ For simplicity, UBIFS authentication uses a single key to compute the HMACs
+ of superblock, master, commit start and reference nodes. This key has to be
+@@ -399,7 +415,8 @@ approach is similar to the approach proposed for fscrypt encryption policy v2
+ [FSCRYPT-POLICY2].
+ 
+ 
+-# Future Extensions
++Future Extensions
++=================
+ 
+ In certain cases where a vendor wants to provide an authenticated filesystem
+ image to customers, it should be possible to do so without sharing the secret
+@@ -411,7 +428,8 @@ to the way the IMA/EVM subsystem deals with such situations. The HMAC key
+ will then have to be provided beforehand in the normal way.
+ 
+ 
+-# References
++References
++==========
+ 
+ [CRYPTSETUP2]        http://www.saout.de/pipermail/dm-crypt/2017-November/005745.html
+ 
+-- 
+2.21.0
 
