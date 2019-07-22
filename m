@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9DFF70167
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 15:43:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46F0370172
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 15:44:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729828AbfGVNng (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 09:43:36 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:41586 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727805AbfGVNnf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 09:43:35 -0400
-Received: by mail-vs1-f67.google.com with SMTP id 2so26091114vso.8
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 06:43:35 -0700 (PDT)
+        id S1730055AbfGVNny (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 09:43:54 -0400
+Received: from mail-ua1-f68.google.com ([209.85.222.68]:35655 "EHLO
+        mail-ua1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729708AbfGVNnx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 09:43:53 -0400
+Received: by mail-ua1-f68.google.com with SMTP id j21so15320731uap.2
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 06:43:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=GzeJmpKD7dB1BcnAqy2fLUAETNrLhEZq/GzIzifX3rM=;
-        b=k9ec/yRYrEBUkxwk582HRuZ4bh/6llTYhV1Lyfw+mNJYkWylldnN6VCrx6g4FgIzOf
-         fFVYTtxL/EXr48ISMBlPUUt+SozF/0RKzg5JpMyJDF56m6g34zuYVofS6Kb3JBDWO5w1
-         BjfwU4DuUN9g1mQBXXBMm66PmXKSpUM7AcxKNOTuSQGH2+ma17JiRCGnnq7FLmqGO6/y
-         LRDeoMSaw74ZKM74DzzqPcgsplk46aQBAXlGpyia1xuy8Lw7R/sYRAeS7Z260ZzDU5SA
-         fm0eq7nLgw5Svdvk04NOKL/eBzFd18N2cO0L1dZV+uNWucq3jm+vdwKHXay0YfyKs1kX
-         pL7Q==
+        bh=iRYfNxmRGZxja2aVerHwx+L3OctiiirveEgY/SpoZGo=;
+        b=LyH7T9dlRo7g4lnuXgZU64vVwhjnpNVE0dmH0+KSUIiLJSNWCQgZoqIWq5XaHwhC3P
+         8ydM6v5YUdfeTPYmUnfjEaWYR71/3wbRj6bX555P9r6zI1LS/fttMxBXbkdw/wWvRLDU
+         4wsCi9S5vleIdvxmfzsrwtxs8rpXO/3bcIkqTngmeygsWEqdkzyqMgBelhlkBiwo+r8e
+         NLE4VgjkjPGj59aOXIT6Gh0EtoVYSYzqd29yGnndn89Kgfs5QqgwQKNycm+J0NcQuBSB
+         SFlNjifPIw+SBmO1a3hfIsuMspDoiRCucdhfptRR34hhCDLg66Rh9glIUFXAGZpIRBS0
+         6gFA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=GzeJmpKD7dB1BcnAqy2fLUAETNrLhEZq/GzIzifX3rM=;
-        b=G1O0U0TuXCtE4WG6hfv6J2oIOPFQVVUM5i0pfDUm6Vi4eyXbReDeRFfFekedhi528K
-         5/P8F5r0iqWV5QeEJu4i3rA05FzmLiWu6zmlpnJM+oLbowi/EzgtwcHSHBsjEW4MIShe
-         6rZulm54LSIA5oY5za3jlhsRlNr4GNEL8qwHRHE9d2QPr3muMHR8dsMVj/ukMNeodBCq
-         qRI59Y62Y8opJr/gdqL6KhTv/q4lwneM29GWaYLtWVIf/av8KHWV2IPcHcEHL+e/hF/v
-         emtFoEyg5iFtd8QDo09hOqYL14LREOUaNyegTJVwECFxkFbenIzkWXF79fIKCnMWB9Cv
-         QfRg==
-X-Gm-Message-State: APjAAAXy69iDYF/jkQs2B9zoJTBBT9JgVpkkwoJ7gycPTria69LbJ1kk
-        hbUA8h4x/qIoOqvEg0Jdzq18ABIgp2mmVpK8ODnIBA==
-X-Google-Smtp-Source: APXvYqysofOLp0mqm8qYUMlKBMjSTE6XdBRitpLtn07et9m3ZF2oRHXMEjMC127T6JQoRdvv8wb0ReINVSNZU/xMTKw=
-X-Received: by 2002:a67:8709:: with SMTP id j9mr42148022vsd.35.1563803014581;
- Mon, 22 Jul 2019 06:43:34 -0700 (PDT)
+        bh=iRYfNxmRGZxja2aVerHwx+L3OctiiirveEgY/SpoZGo=;
+        b=mtWjzkSuWdEOwe1aAicYwCmyc4+1DLiCqRlYDxQp/43Eok9hSz6LOYbE/XydTITgmQ
+         Y9Q+pIvTL+E7GUUgqNygdCkBKmXOHiKQQA5pKVYCE5lLYF5D7diHLc69Uyv4iiWiSK7K
+         fIfMAX8imaG6V7BbZOa724SDjCi+1RFB0fQHw81N/FLsf4qEKE4Oy87AltgP0vT6mHXs
+         RDaEzl50XIhFRqwCYePYSi9Nl1zDeBwrhAsGsRGlIfFiS46M39OfFDU291QEDi2l0nfi
+         GEnRFDLON60aroJ/ff0ArgXfXadwkuwBUcrjzb5CmQEMwZzlH9O3yO5WM8BzFNrEIyO+
+         l6yg==
+X-Gm-Message-State: APjAAAV0Z3d6REH8wj9tspJixbj+fOe1tsOJUdj56FXJ4a9AXMP3564m
+        Gg++48hy6Ipszkk6VlwzckbdHzaclDo1ED/qxD60aw==
+X-Google-Smtp-Source: APXvYqw3AfSjTqhb46VrvlwGb6HfSPyjBQ4zqei8hoJZ9u+BGXpYvPmlaOewG1Gyhz0LPpTnVsahsy6rkH67aXY7HR8=
+X-Received: by 2002:a9f:31a2:: with SMTP id v31mr41461397uad.15.1563803032923;
+ Mon, 22 Jul 2019 06:43:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190722120740.8966-1-maxime.ripard@bootlin.com>
-In-Reply-To: <20190722120740.8966-1-maxime.ripard@bootlin.com>
+References: <20190722120740.8966-1-maxime.ripard@bootlin.com> <20190722120740.8966-2-maxime.ripard@bootlin.com>
+In-Reply-To: <20190722120740.8966-2-maxime.ripard@bootlin.com>
 From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Mon, 22 Jul 2019 15:42:58 +0200
-Message-ID: <CAPDyKFo-HwgkuY1Dat=FXNior0fFcDdD_QtxWqFb5rYGCLNc6g@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: mmc: sunxi: reorder MMC compatibles
+Date:   Mon, 22 Jul 2019 15:43:16 +0200
+Message-ID: <CAPDyKFr+W4jofZb1Ajt4hyRFYBvB3M64cM=zW5AA0=gcp6OWnw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: mmc: sunxi: Add H5 compatibles
 To:     Maxime Ripard <maxime.ripard@bootlin.com>
 Cc:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
@@ -63,8 +63,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, 22 Jul 2019 at 14:07, Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 >
-> The MMC compatibles in the bindings are not ordered as they should, so
-> let's make sure it's sorted.
+> The conversion to the YAML binding left out two compatibles. Add them.
 >
 > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 
@@ -75,38 +74,26 @@ Uffe
 
 
 > ---
->  .../bindings/mmc/allwinner,sun4i-a10-mmc.yaml        | 12 ++++++------
->  1 file changed, 6 insertions(+), 6 deletions(-)
+>  .../devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml    | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >
 > diff --git a/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-> index df0280edef97..06329115dc6a 100644
+> index 06329115dc6a..d2d4308596b8 100644
 > --- a/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
 > +++ b/Documentation/devicetree/bindings/mmc/allwinner,sun4i-a10-mmc.yaml
-> @@ -29,18 +29,18 @@ properties:
->        - items:
->            - const: allwinner,sun8i-a83t-mmc
->            - const: allwinner,sun7i-a20-mmc
-> -      - items:
-> -          - const: allwinner,sun50i-h6-emmc
-> -          - const: allwinner,sun50i-a64-emmc
-> -      - items:
-> -          - const: allwinner,sun50i-h6-mmc
-> -          - const: allwinner,sun50i-a64-mmc
->        - items:
->            - const: allwinner,sun8i-r40-emmc
->            - const: allwinner,sun50i-a64-emmc
+> @@ -35,6 +35,12 @@ properties:
 >        - items:
 >            - const: allwinner,sun8i-r40-mmc
 >            - const: allwinner,sun50i-a64-mmc
 > +      - items:
-> +          - const: allwinner,sun50i-h6-emmc
+> +          - const: allwinner,sun50i-h5-emmc
 > +          - const: allwinner,sun50i-a64-emmc
 > +      - items:
-> +          - const: allwinner,sun50i-h6-mmc
+> +          - const: allwinner,sun50i-h5-mmc
 > +          - const: allwinner,sun50i-a64-mmc
->
->    reg:
->      maxItems: 1
+>        - items:
+>            - const: allwinner,sun50i-h6-emmc
+>            - const: allwinner,sun50i-a64-emmc
 > --
 > 2.21.0
 >
