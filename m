@@ -2,50 +2,50 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5E58770A89
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 22:20:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A14CD70A8A
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 22:20:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727808AbfGVUUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 16:20:43 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:53358 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729377AbfGVUUm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 16:20:42 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6MKKdoZ107367;
-        Mon, 22 Jul 2019 15:20:39 -0500
+        id S1729662AbfGVUUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 16:20:46 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:55414 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729377AbfGVUUq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 16:20:46 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6MKKgFp063272;
+        Mon, 22 Jul 2019 15:20:42 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1563826839;
-        bh=xSJYWr6Q8dYY3cdBz2U1xq3NTPqBkr/olNgj1NHVlMI=;
+        s=ti-com-17Q1; t=1563826842;
+        bh=UbNPxVMocMMUdGrJLZc4ntHoL1at3jSQapfzwYB+u1g=;
         h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=vvOKleEYyCUM4lW2vCR9ETAa3WjMlaau8FhJ0c+MZyOhIZqfaUaQVMnBnbU1wdT+O
-         vyUuBDWl9TgGx8Sg7RaWQlRavw2pOpR21+76HPhfOE9kLCWD47GnFIb9RbnYo+JlAl
-         fDUeCGp11+tjkwMqgwU0CZ11g8+RX2QNi5gYZQGE=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6MKKdDG001721
+        b=m0R3r9f0C2ZBrcjfgaospG07EJQn9qLRk+KatrCaOZ0gnqpZxBymbwZNcIOXOHSpi
+         97+P8PD1R0vF5nib33cyWYs5fZiRct9t/HjbISURgMlAP3StHIzFYxb/J/FLPhJ1X7
+         x6ILh5zLvf+Riso3RKtAUoil43HNWL9gMMGNbpwE=
+Received: from DFLE103.ent.ti.com (dfle103.ent.ti.com [10.64.6.24])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6MKKgWP115214
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 Jul 2019 15:20:39 -0500
-Received: from DLEE110.ent.ti.com (157.170.170.21) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
+        Mon, 22 Jul 2019 15:20:42 -0500
+Received: from DFLE112.ent.ti.com (10.64.6.33) by DFLE103.ent.ti.com
+ (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 22
- Jul 2019 15:20:38 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE110.ent.ti.com
- (157.170.170.21) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2019 15:20:41 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE112.ent.ti.com
+ (10.64.6.33) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 22 Jul 2019 15:20:38 -0500
+ Frontend Transport; Mon, 22 Jul 2019 15:20:41 -0500
 Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6MKKcUB099967;
-        Mon, 22 Jul 2019 15:20:38 -0500
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6MKKfEo040149;
+        Mon, 22 Jul 2019 15:20:41 -0500
 Received: from localhost (irmo.dhcp.ti.com [128.247.58.153])
-        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x6MKKcZ21510;
-        Mon, 22 Jul 2019 15:20:38 -0500 (CDT)
+        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x6MKKfZ21521;
+        Mon, 22 Jul 2019 15:20:41 -0500 (CDT)
 From:   Suman Anna <s-anna@ti.com>
 To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
 CC:     <devicetree@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH 2/4] arm64: dts: ti: k3-am65-main: Add IPC sub-mailbox nodes for R5Fs
-Date:   Mon, 22 Jul 2019 15:20:22 -0500
-Message-ID: <20190722202024.14867-3-s-anna@ti.com>
+Subject: [PATCH 3/4] arm64: dts: ti: k3-j721e-main: Add mailbox cluster nodes
+Date:   Mon, 22 Jul 2019 15:20:23 -0500
+Message-ID: <20190722202024.14867-4-s-anna@ti.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190722202024.14867-1-s-anna@ti.com>
 References: <20190722202024.14867-1-s-anna@ti.com>
@@ -58,61 +58,148 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the sub-mailbox nodes that are used to communicate between
-MPU and the two R5F remote processors present in the MCU domain.
-The parent mailbox cluster nodes are enabled and the interrupts
-associated with the Mailbox Cluster User interrupt used by the
-sub-mailbox nodes are also added. The GIC_SPI interrupt to be
-used is dynamically allocated and managed by the System Firmware
-through the ti-sci-intr irqchip driver.
+The J721E Main NavSS block contains a Mailbox IP instance with
+multiple clusters. Each cluster is equivalent to an Mailbox IP
+instance on OMAP platforms.
 
-The sub-mailbox nodes utilize the System Mailbox clusters 1 and 2.
-These sub-mailbox nodes are added to match the hard-coded mailbox
-configuration used within the TI RTOS IPC software packages. The
-Cortex R5F processor sub-system is assumed to be running in Split
-mode, so a sub-mailbox node is used by each of the R5F cores. Only
-the sub-mailbox node from cluster 0 is used in case of Lockstep
-mode.
+Add all the Mailbox clusters as their own nodes under the MAIN
+NavSS cbass_main_navss interconnect node instead of creating an
+almost empty parent node for the new K3 mailbox IP and the clusters
+as its child nodes. All these nodes are marked as disabled, and
+they need to be enabled along with the appropriate child nodes
+on a need basis.
+
+NOTE:
+The NavSS only has a limited number of interrupts, so all the
+interrupts generated by a Mailbox IP are not added by default.
+Only the needed interrupts that are targeted towards the A72
+GIC will need to be be added later on when some sub-mailbox
+child nodes are added.
 
 Signed-off-by: Suman Anna <s-anna@ti.com>
 ---
- arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 16 ++++++++++++++--
- 1 file changed, 14 insertions(+), 2 deletions(-)
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 108 ++++++++++++++++++++++
+ 1 file changed, 108 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-index 0b3ea2a871ee..317563c995b1 100644
---- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
-@@ -426,7 +426,13 @@
- 			#mbox-cells = <1>;
- 			ti,mbox-num-users = <4>;
- 			ti,mbox-num-fifos = <16>;
--			status = "disabled";
-+			interrupt-parent = <&intr_main_navss>;
-+			interrupts = <164 0>;
-+
-+			mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
-+				ti,mbox-tx = <1 0 0>;
-+				ti,mbox-rx = <0 0 0>;
-+			};
+diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+index a2e031f7d88e..319d423b3440 100644
+--- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
++++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
+@@ -95,6 +95,114 @@
+ 			reg = <0x00 0x30e00000 0x00 0x1000>;
+ 			#hwlock-cells = <1>;
  		};
- 
- 		mailbox0_cluster1: mailbox@31f81000 {
-@@ -435,7 +441,13 @@
- 			#mbox-cells = <1>;
- 			ti,mbox-num-users = <4>;
- 			ti,mbox-num-fifos = <16>;
--			status = "disabled";
-+			interrupt-parent = <&intr_main_navss>;
-+			interrupts = <165 0>;
 +
-+			mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
-+				ti,mbox-tx = <1 0 0>;
-+				ti,mbox-rx = <0 0 0>;
-+			};
- 		};
++		mailbox0_cluster0: mailbox@31f80000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f80000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster1: mailbox@31f81000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f81000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster2: mailbox@31f82000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f82000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster3: mailbox@31f83000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f83000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster4: mailbox@31f84000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f84000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster5: mailbox@31f85000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f85000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster6: mailbox@31f86000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f86000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster7: mailbox@31f87000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f87000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster8: mailbox@31f88000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f88000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster9: mailbox@31f89000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f89000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster10: mailbox@31f8a000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f8a000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
++
++		mailbox0_cluster11: mailbox@31f8b000 {
++			compatible = "ti,am654-mailbox";
++			reg = <0x00 0x31f8b000 0x00 0x200>;
++			#mbox-cells = <1>;
++			ti,mbox-num-users = <4>;
++			ti,mbox-num-fifos = <16>;
++			status = "disabled";
++		};
+ 	};
  
- 		mailbox0_cluster2: mailbox@31f82000 {
+ 	secure_proxy_main: mailbox@32c00000 {
 -- 
 2.22.0
 
