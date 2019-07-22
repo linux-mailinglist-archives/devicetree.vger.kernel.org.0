@@ -2,94 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD1E9707D4
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 19:48:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEBF0707E0
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 19:51:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727916AbfGVRsz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 13:48:55 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:46603 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727021AbfGVRsz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 13:48:55 -0400
-Received: by mail-io1-f67.google.com with SMTP id i10so75768956iol.13;
-        Mon, 22 Jul 2019 10:48:55 -0700 (PDT)
+        id S1730354AbfGVRv0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 13:51:26 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:42801 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727021AbfGVRvZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 13:51:25 -0400
+Received: by mail-io1-f68.google.com with SMTP id e20so45501369iob.9
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 10:51:25 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=CxrJ1h1Gj9qffdtw6gn6IuFX9kNT09jtgH+ckcJPTWk=;
-        b=CMvB803DUZ1IsKkDomdkjDfaomZ9p/zcCcdDhde2i62lFZ2wOaFo3u+jKPdWd5L9RV
-         I3i/gpUmVdOWno601py0CS9BzU9/iEctSNQCabBCvQN8EaZ2zzXG8socZDXqQz9lCJ2C
-         /WN2BamGmGw/fwFPljFSaAoLUcGOjNoZsB5BQclura6rRfkA3Pe5NLlmW3YHFpTpEDzE
-         dfbDmFiJKRAWhv2W3MIemXsqofWWAHiD4lBJ5CXvD+KC+OLSa58dIUU2o0eoHk8QTX2D
-         TRRzPpsfmDCvNwxo5vUN0GmbIs+Pi2brPGEdpxBcGQx47o76dTt3Y64xrTh1lKIphq6M
-         Pyfg==
-X-Gm-Message-State: APjAAAVT1CznYUZUUaTfl5TkgeBEwbOLERpj2NhBYV8NYTzAlpfEv3lX
-        cT2ByzxoWRGqDi0vhpgKiA==
-X-Google-Smtp-Source: APXvYqw0FDve9Mw/vkxriVI+KvJ+PlrXuiZ8o2qd7ioxmjQY7NUFYzDL8hVPS4tO0BHR0p8241W5WA==
-X-Received: by 2002:a02:90c8:: with SMTP id c8mr75947688jag.22.1563817734501;
-        Mon, 22 Jul 2019 10:48:54 -0700 (PDT)
+        bh=q6ryf7dSWkF7D9AkCTyTyLscKOsW89C8muD/l6dLf3s=;
+        b=glwe0LkIJT9PDjCaUXUQGxpCch1D4+jeLP0eC2PLpq6manrns8HpkEeWTiMpQ0Ji4p
+         QVph1sTSX6Q+Ju90hg0ewUec9B8CaZEuehCXxXC1rxDUF5qc/tVZPBJfmLS6/4x8XDLO
+         5NbDU80LAwhLvIloihyFoYSB14a0VoPPXTaXjHoIjq4Q0A8dLWIZhfbkFs89MTJs7xk0
+         jv7IfMQT0TkKFTWTJsHvNCwyrJg2K8L1/bUPSlXkRwKTFxqON/8cWf1GV2mOipAU4CMc
+         QbwgXe51le58RpmLVXRWkDV5t/fRJ/esA5VxxgoruV8ASl27/MbX8JNSMh5aMiLqYA2v
+         ipMw==
+X-Gm-Message-State: APjAAAW0GcHwzr9DvO2ouuvcjI+mZfGMzSk4QMTVFMWe1MdXoJpK5gGx
+        o8LjwJHyJ8bnYIh76v29rA==
+X-Google-Smtp-Source: APXvYqykd+mKWjnRVCCig9KLNbCG/u0Q9M25HHjkq5xt2zkgutt8OJ6MBG6FqCLepfHtjMEpcgwv4g==
+X-Received: by 2002:a02:4e05:: with SMTP id r5mr77720423jaa.27.1563817884669;
+        Mon, 22 Jul 2019 10:51:24 -0700 (PDT)
 Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id c81sm62071726iof.28.2019.07.22.10.48.53
+        by smtp.gmail.com with ESMTPSA id s2sm29186059ioj.8.2019.07.22.10.51.23
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 22 Jul 2019 10:48:54 -0700 (PDT)
-Date:   Mon, 22 Jul 2019 11:48:53 -0600
+        Mon, 22 Jul 2019 10:51:24 -0700 (PDT)
+Date:   Mon, 22 Jul 2019 11:51:23 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Robert Chiras <robert.chiras@nxp.com>
-Cc:     Marek Vasut <marex@denx.de>, Stefan Agner <stefan@agner.ch>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 05/10] dt-bindings: display: Add max-res property for
- mxsfb
-Message-ID: <20190722174853.GA31795@bogus>
-References: <1561555938-21595-1-git-send-email-robert.chiras@nxp.com>
- <1561555938-21595-6-git-send-email-robert.chiras@nxp.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        devicetree@vger.kernel.org,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-arm-kernel@lists.infradead.org,
+        Grzegorz Jaszczyk <jaz@semihalf.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: Re: [PATCH v2 13/19] dt-bindings: phy: Add Marvell COMPHY clocks
+Message-ID: <20190722175123.GA13655@bogus>
+References: <20190627095104.22529-1-miquel.raynal@bootlin.com>
+ <20190627122505.25774-1-miquel.raynal@bootlin.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1561555938-21595-6-git-send-email-robert.chiras@nxp.com>
+In-Reply-To: <20190627122505.25774-1-miquel.raynal@bootlin.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 26, 2019 at 04:32:13PM +0300, Robert Chiras wrote:
-> Add new optional property 'max-res', to limit the maximum supported
-> resolution by the MXSFB_DRM driver.
-
-Bindings are for h/w description, not driver config.
-
+On Thu, 27 Jun 2019 14:24:59 +0200, Miquel Raynal wrote:
+> Marvell CP110 COMPHY block is fed by 3 clocks. Describe each of them in the
+> bindings.
 > 
-> Signed-off-by: Robert Chiras <robert.chiras@nxp.com>
+> Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 > ---
->  Documentation/devicetree/bindings/display/mxsfb.txt | 6 ++++++
->  1 file changed, 6 insertions(+)
+>  .../devicetree/bindings/phy/phy-mvebu-comphy.txt       | 10 ++++++++++
+>  1 file changed, 10 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mxsfb.txt b/Documentation/devicetree/bindings/display/mxsfb.txt
-> index 472e1ea..55e22ed 100644
-> --- a/Documentation/devicetree/bindings/display/mxsfb.txt
-> +++ b/Documentation/devicetree/bindings/display/mxsfb.txt
-> @@ -17,6 +17,12 @@ Required properties:
->  Required sub-nodes:
->    - port: The connection to an encoder chip.
->  
-> +Optional properties:
-> +- max-res:	an array with a maximum of two integers, representing the
-> +		maximum supported resolution, in the form of
-> +		<maxX>, <maxY>; if one of the item is <0>, the default
-> +		driver-defined maximum resolution for that axis is used
 
-I suppose what you are after is bandwidth limits? IIRC, there's already 
-some bindings expressing such limits. Also, wouldn't you need to account 
-for bpp and using the 2nd plane (IIRC that there is one).
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
