@@ -2,112 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5CF877097C
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 21:15:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5AD8A709A9
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 21:25:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731853AbfGVTOP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 15:14:15 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:39265 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730873AbfGVTOO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 15:14:14 -0400
-Received: by mail-pl1-f195.google.com with SMTP id b7so19611555pls.6
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 12:14:14 -0700 (PDT)
+        id S1727600AbfGVTZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 15:25:20 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:33555 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726260AbfGVTZU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 15:25:20 -0400
+Received: by mail-io1-f68.google.com with SMTP id z3so76548932iog.0
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 12:25:19 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=O9BbPnmI+pHoI/NQDPXVHcO4RcOKDp2TZ+FeQcswyuI=;
-        b=H4APkLXJRK/q7ukCstH9qo49f7JrC1BR5KVMbG+8RY+d6vqMcg1vyfHihn4f1tfloM
-         WuNKUwAJlufYR0Qn0fAu83Z8xx1H7ZanZPEpW13uQ6ahzZm+rU5ixiOOUe+MRjd5xa+l
-         kzekOMj36vdf9V0CWtNVbnu6PnNGDIpzEkEiU=
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=rf8ryiSI7gM7VW/mCBLHJLZdnlhJlIXGezmFbO+mcVw=;
+        b=Xb5UwnBHkO/b7wAi1N5yXMS813VTh/5G24EzGuW5yJgQJgkjhUeKrTPSDkIp1KfUd6
+         Iv3pWmtQA4mpIFFovuwl6FoaHQR+QSADg5v7gsjVpmHM4SI31heH50S/PkRTLaYA9lce
+         +01E1ByorK9WOcBiaZz1FUtb3mjsV1xoqE6F7D9Yu4CWdB1e4XcdnZ0wBUR1TvQCcGr3
+         ckF18v2qRvhL6FFsnkyEXeWtWu9RH4YwxumHUnoMed1uigXSdgTxN3sMKYU/ijspqfyX
+         VfcYR7l9OaMGtYoRIf9WRepYgUU+N0FLHXUuyZvPMCKyhk68ZrFYinGWON2Tbg1EenkL
+         KhVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=O9BbPnmI+pHoI/NQDPXVHcO4RcOKDp2TZ+FeQcswyuI=;
-        b=M5S9wSAkHwg5iFSYBCzhOp7VqFEsPT6D5nxkCbUmNK0gFulZsBwHKt4zfjG0QMrMkJ
-         FGws8B3i+Qt0HGEsWtihtM9NxelL/WPgi2veXImYl/D5jGKYT9AUm0TWJ9ver2R3KwgO
-         BvpxN2tA1088hWuQVRCDQzOo9uX+c6iAdG5bh834A3qE3o7Jziajpjgj70Co/ebkAfRC
-         QeubeZtt9BK19cMvyYXg2gBUtZN8YBR46ixq1ibrYMh+exWlZr26XrOevDmBphFAD+2E
-         cQ0v64865kZs6KeVMeE1u0RGKgCQMNPFvSGr/MRa0Estbaa5YQ2/9XZ9cCx3LnGKJIiS
-         Arvw==
-X-Gm-Message-State: APjAAAXsmCvsJc7YwqzDeGvx62K44s9jiY7FSkQSVhRJjD1vZ5fExzEK
-        oWU+/HSI1rEEX8SbtXp1zwkOkA==
-X-Google-Smtp-Source: APXvYqye8KADnaKfIO2xcVLE1cwxtty5tPY77LPyY5ryPz/+MASHRSWvD9J4mt/y+V4sUlO4fxKuxg==
-X-Received: by 2002:a17:902:aa5:: with SMTP id 34mr79416847plp.166.1563822854072;
-        Mon, 22 Jul 2019 12:14:14 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id t96sm36367885pjb.1.2019.07.22.12.14.13
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 22 Jul 2019 12:14:13 -0700 (PDT)
-Date:   Mon, 22 Jul 2019 12:14:11 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=rf8ryiSI7gM7VW/mCBLHJLZdnlhJlIXGezmFbO+mcVw=;
+        b=ja5juVKQLrPTxyczWtHx50xv5eRJCeDeF97c4kDNoz+G+eu9Yg1rvREvuenWzxmyWL
+         gs+x21kYayq4uMqPf8IFWIsIzlQ5Y6Gm9ED5gGOcTp0VqHlyScSMJwzD3myZTjUqdjKy
+         V/dMOkXjFCq8Ks+rF2AWygKoDQJHwKTOGsPDCNabxlVnDC28zJ/qJlfc/jLKo3F72ROu
+         gtmwyxexGXwfIQqFN9Bcv3b9cUZAKudMTUbcsm/gPAiWEeDTEOqN85xyUe/oPyhKgaic
+         yqX23lkNDy6AQTcy1sS7bL1FKYBsuzb17kMFNW2xJuUXK/VJrZVx8p8xYH01F5f9RZeV
+         bXbA==
+X-Gm-Message-State: APjAAAUcFcZ+TY2lndTCex2UP5aBUcoz+70qB45ASllsefI1BWMbGqfl
+        TOwYRgTZjuWt2+trVu3D5mAn9Q==
+X-Google-Smtp-Source: APXvYqwYUcpO+JDt/loIDZQbYbOA1X6JHoiG+W3zU6bs1mBiztsz8Q1eqm+2GIS51glKmkkHqpFvIQ==
+X-Received: by 2002:a02:cd83:: with SMTP id l3mr39191324jap.66.1563823519409;
+        Mon, 22 Jul 2019 12:25:19 -0700 (PDT)
+Received: from localhost (67-0-62-24.albq.qwest.net. [67.0.62.24])
+        by smtp.gmail.com with ESMTPSA id n2sm41584533ioa.27.2019.07.22.12.25.18
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 22 Jul 2019 12:25:18 -0700 (PDT)
+Date:   Mon, 22 Jul 2019 12:25:17 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Atish Patra <atish.patra@wdc.com>
+cc:     linux-kernel@vger.kernel.org,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Johan Hovold <johan@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-riscv@lists.infradead.org,
         Mark Rutland <mark.rutland@arm.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v2 6/7] dt-bindings: net: realtek: Add property to
- configure LED mode
-Message-ID: <20190722191411.GW250418@google.com>
-References: <20190703193724.246854-1-mka@chromium.org>
- <20190703193724.246854-6-mka@chromium.org>
- <e8fe7baf-e4e0-c713-7b93-07a3859c33c6@gmail.com>
- <20190703232331.GL250418@google.com>
- <CAL_JsqL_AU+JV0c2mNbXiPh2pvfYbPbLV-2PHHX0hC3vUH4QWg@mail.gmail.com>
- <20190722171418.GV250418@google.com>
- <20190722190133.GF8972@lunn.ch>
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Otto Sabart <ottosabart@seberm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Will Deacon <will.deacon@arm.com>,
+        Will Deacon <will@kernel.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Russell King <linux@armlinux.org.uk>
+Subject: Re: [PATCH v8 0/7] Unify CPU topology across ARM & RISC-V 
+In-Reply-To: <alpine.DEB.2.21.9999.1907121012050.2267@viisi.sifive.com>
+Message-ID: <alpine.DEB.2.21.9999.1907221224170.23563@viisi.sifive.com>
+References: <20190627195302.28300-1-atish.patra@wdc.com> <alpine.DEB.2.21.9999.1907121012050.2267@viisi.sifive.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190722190133.GF8972@lunn.ch>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andrew,
+On Fri, 12 Jul 2019, Paul Walmsley wrote:
 
-On Mon, Jul 22, 2019 at 09:01:33PM +0200, Andrew Lunn wrote:
-> On Mon, Jul 22, 2019 at 10:14:18AM -0700, Matthias Kaehlcke wrote:
-> > I'm working on a generic binding.
-> > 
-> > I wonder what is the best process for reviewing/landing it, I'm
-> > doubting between two options:
-> > 
-> > a) only post the binding doc and the generic PHY code that reads
-> >    the configuration from the DT. Post Realtek patches once
-> >    the binding/generic code has been acked.
-> > 
-> >    pros: no churn from Realtek specific patches
-> >    cons: initially no (real) user of the new binding
-> > 
-> > b) post generic and Realtek changes together
-> > 
-> >    pros: the binding has a user initially
-> >    cons: churn from Realtek specific patches
-> > 
-> > I can do either, depending on what maintainers/reviewers prefer. I'm
-> > slightly inclined towards a)
+> On Thu, 27 Jun 2019, Atish Patra wrote:
 > 
-> Hi Matthias
-> 
-> It is normal to include one user of any generic API which is added,
-> just to make is clear how an API should be used.
+> > The cpu-map DT entry in ARM can describe the CPU topology in much better
+> > way compared to other existing approaches. RISC-V can easily adopt this
+> > binding to represent its own CPU topology. Thus, both cpu-map DT
+> > binding and topology parsing code can be moved to a common location so
+> > that RISC-V or any other architecture can leverage that.
+> > different config for the architectures that do not support them.
+>
+> Once v5.3-rc1 is released, let's plan to get these patches rebased and 
+> reposted and into linux-next as soon as possible.
 
-as of now it isn't even an API, the phy_device populates a new array
-in its struct with the values from the DT. PHY drivers access the
-array directly. Is it still preferable to post everything together?
+These CPU topology patches are now queued for v5.4-rc1.  They should enter 
+linux-next shortly.
 
-(maybe I'm too concerned about 'noise' from the driver patches while
- we are figuring out what exactly the binding should be).
 
-Thanks
-
-Matthias
+- Paul
