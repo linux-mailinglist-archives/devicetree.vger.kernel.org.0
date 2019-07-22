@@ -2,58 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB96A6F9C0
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 08:56:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D13E86F9C1
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 08:56:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726871AbfGVG4C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 02:56:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48034 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725920AbfGVG4B (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 02:56:01 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DAA9821E72;
-        Mon, 22 Jul 2019 06:55:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563778561;
-        bh=WHx/8PtqilzenP+A33iHgPhQ7REahuw7ZkuciVDraP4=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=0QkVA3V+q0c4XZXOncQBixEbeJ6rU3fHZtNe5kEoycPCqH815FvMiPjLblF6arwin
-         espVqWgCx0/ZUFBfgSjUptBbm+RmJFNAATt01Z7RUB999mKD+gTMsqLcYxF5cnNL5V
-         cK6aHFEKC2irb/iVlE9meYyTZPYTPTO+e9wOGgGs=
-Date:   Mon, 22 Jul 2019 14:55:33 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     =?iso-8859-1?Q?S=E9bastien?= Szymanski 
-        <sebastien.szymanski@armadeus.com>
-Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH 1/2] ARM: dts: opos6uldev: use OF graph to describe the
- display
-Message-ID: <20190722065531.GD3738@dragon>
-References: <20190704142324.17675-1-sebastien.szymanski@armadeus.com>
+        id S1726944AbfGVG4N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 02:56:13 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:36813 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725773AbfGVG4N (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 02:56:13 -0400
+Received: by mail-wr1-f68.google.com with SMTP id n4so38182333wrs.3
+        for <devicetree@vger.kernel.org>; Sun, 21 Jul 2019 23:56:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1scnAc3sjeh3WnhlFA65T1sb9Wb1g8NqJ7QEYKWinXI=;
+        b=dcq8pFqd4whWmN0hnHjTTI8gBlxfAFygZQYCUnkKG6l5Dnep7c1/qbOjMP1b8376Rg
+         xHUZOwwOLr3SuWX+LHjx1Gunrx3InG2MC335OZ9KQON3Q/+xtzeZI5b2V7BkvV19N4s6
+         D9w1mNn8rrFiGVPbDFWx2F8bROD6olINKM7DA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1scnAc3sjeh3WnhlFA65T1sb9Wb1g8NqJ7QEYKWinXI=;
+        b=gDGEW6yC5mVGLyukdP9oVb0vxzhnncIYGmg03BSZRQSVmZichKPtgiY17jBbWdhIQL
+         glL43WMlyFYjuBoOy5XYPl8vx+bLtsrNM9pm/et4+o5GgAhTcd9QGKk9rS06Fy5Pyv5R
+         u+SjSOzzwwg2TMNlllc1jrx1w5GfaborSzcgYYtgCVPe9PeD9J5s7JQL+Mnw53Pawlnv
+         WVWRbtVVaXNTBXBq/sR3s2bzEIw/WDeUmhgNGLrcE1Odx5zwpSfoJeHvpFIEqrGXcHID
+         KsiVN5lfopX23QFEFsezOBAaObA4nq9c1erRh95BOFRxt2S+EKfVqQki7jmbCHStQK2M
+         10QQ==
+X-Gm-Message-State: APjAAAWhvBE2qvCuCaPr+RBKJ/gTLLvQtJE4Xoswy0iVXA+BVG1cgkop
+        JZl0VtPd9/Mwicqf/wBR0PW58sL0C/hN/9r0RFwyCQ==
+X-Google-Smtp-Source: APXvYqwCsFlLcZIboFmBzsjOKnB2+3vm3wBmHSjjERq1FdF1fyAUmXB8XhbTC41jULay24oeapefuqgs+ZsLgVKZXYk=
+X-Received: by 2002:a5d:4284:: with SMTP id k4mr70423576wrq.194.1563778571585;
+ Sun, 21 Jul 2019 23:56:11 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190704142324.17675-1-sebastien.szymanski@armadeus.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+References: <20190708100641.2702-1-dongchun.zhu@mediatek.com>
+In-Reply-To: <20190708100641.2702-1-dongchun.zhu@mediatek.com>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Mon, 22 Jul 2019 15:56:00 +0900
+Message-ID: <CAHD77HkDrGgiTceE2jLX8Tqc8GH9R1UyRhiU83=HRvZKjoDYjw@mail.gmail.com>
+Subject: Re: [PATCH 0/2] media: add support for DW9768 VCM driver
+To:     Linux Media Mailing List <linux-media@vger.kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Sakari Ailus <sakari.ailus@linux.intel.com>,
+        Cao Bing Bu <bingbu.cao@intel.com>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        Sj Huang <sj.huang@mediatek.com>, devicetree@vger.kernel.org,
+        Louis Kuo <louis.kuo@mediatek.com>, shengnan.wang@mediatek.com,
+        dongchun.zhu@mediatek.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 04, 2019 at 04:23:23PM +0200, Sébastien Szymanski wrote:
-> To make use of the new eLCDIF DRM driver OF graph description is
-> required. Describe the display using OF graph nodes.
-> 
-> Reviewed-by: Fabio Estevam <festevam@gmail.com>
-> Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+On Mon, Jul 8, 2019 at 7:12 PM <dongchun.zhu@mediatek.com> wrote:
+>
+> From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+>
+> Hello,
+>
+> Add a v4l2 sub-device driver for Dongwoon's DW9768 lens voice coil.
+> This is a voice coil module using the i2c bus to control the focus position.
+>
+> The DW9768 can control the position with 10 bits value and
+> consists of two 8 bit registers show as below:
+> register 0x04(DW9768_REG_POSITION):
+>     +---+---+---+---+---+---+---+---+
+>     |D07|D06|D05|D04|D03|D02|D01|D00|
+>     +---+---+---+---+---+---+---+---+
+> register 0x03:
+>     +---+---+---+---+---+---+---+---+
+>     |---|---|---|---|---|---|D09|D08|
+>     +---+---+---+---+---+---+---+---+
+>
+> This driver support :
+>  - set DW9768 to standby mode once suspend and turn it back to active if resume
+>  - set the position via V4L2_CID_FOCUS_ABSOLUTE ctrl
+>
+> Dongchun Zhu (2):
+>   media: i2c: dw9768: Add DT support and MAINTAINERS entry
+>   media: i2c: dw9768: Add DW9768 VCM driver
+>
+>  .../bindings/media/i2c/dongwoon,dw9768.txt         |   9 +
+>  MAINTAINERS                                        |   8 +
+>  drivers/media/i2c/Kconfig                          |  10 +
+>  drivers/media/i2c/Makefile                         |   1 +
+>  drivers/media/i2c/dw9768.c                         | 458 +++++++++++++++++++++
+>  5 files changed, 486 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt
+>  create mode 100644 drivers/media/i2c/dw9768.c
+>
+> --
+> 2.9.2
+>
 
-Applied, thanks.
+Gentle ping. Some help with review would be appreciated!
+
+Best regards,
+Tomasz
