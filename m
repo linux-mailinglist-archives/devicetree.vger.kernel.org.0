@@ -2,111 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 683B1703F3
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 17:38:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B0C77044D
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 17:46:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727957AbfGVPiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 11:38:52 -0400
-Received: from smtp-fw-9102.amazon.com ([207.171.184.29]:28619 "EHLO
-        smtp-fw-9102.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727364AbfGVPiw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 11:38:52 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1563809931; x=1595345931;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=p+BFPwGgmyuthzqKYX1LJhl13bUmA6xYC+bpOYReBp0=;
-  b=S6d3yn/mFul4AJMAyI0sojVQWI6OLaGv8u7VO0KVDemA3UW31QqMb6xA
-   jo3sXSoLoAN3lq2nvDhxILktjBjmuazrOlMQ/ZNCSt1yo/WReRzB+bLse
-   n18FuPCCKRgRxTVP1/t9BETwLE4OncAZb9wy786VBDm/YHVg/YVdqgdG1
-   Y=;
-X-IronPort-AV: E=Sophos;i="5.64,295,1559520000"; 
-   d="scan'208";a="686990785"
-Received: from sea3-co-svc-lb6-vlan2.sea.amazon.com (HELO email-inbound-relay-2c-397e131e.us-west-2.amazon.com) ([10.47.22.34])
-  by smtp-border-fw-out-9102.sea19.amazon.com with ESMTP; 22 Jul 2019 15:38:48 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan3.pdx.amazon.com [10.170.41.166])
-        by email-inbound-relay-2c-397e131e.us-west-2.amazon.com (Postfix) with ESMTPS id 0B3F1A06CE;
-        Mon, 22 Jul 2019 15:38:47 +0000 (UTC)
-Received: from EX13D13UWA001.ant.amazon.com (10.43.160.136) by
- EX13MTAUWA001.ant.amazon.com (10.43.160.58) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Mon, 22 Jul 2019 15:38:47 +0000
-Received: from EX13D13UWA001.ant.amazon.com (10.43.160.136) by
- EX13D13UWA001.ant.amazon.com (10.43.160.136) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Mon, 22 Jul 2019 15:38:47 +0000
-Received: from EX13D13UWA001.ant.amazon.com ([10.43.160.136]) by
- EX13D13UWA001.ant.amazon.com ([10.43.160.136]) with mapi id 15.00.1367.000;
- Mon, 22 Jul 2019 15:38:46 +0000
-From:   "Chocron, Jonathan" <jonnyc@amazon.com>
-To:     "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>,
-        "Gustavo.Pimentel@synopsys.com" <Gustavo.Pimentel@synopsys.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "Hanoch, Uri" <hanochu@amazon.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "Wasserstrom, Barak" <barakw@amazon.com>,
-        "Saidi, Ali" <alisaidi@amazon.com>,
-        "Hawa, Hanna" <hhhawa@amazon.com>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "benh@kernel.crashing.org" <benh@kernel.crashing.org>,
-        "Chocron, Jonathan" <jonnyc@amazon.com>
-Subject: Re: [PATCH v2 6/8] PCI: al: Add support for DW based driver type
-Thread-Topic: [PATCH v2 6/8] PCI: al: Add support for DW based driver type
-Thread-Index: AQHVPU3XMXwgBID7IUCMB4MzIhERXqbRpMwAgAOM1wCAASn+AIAAcNuA
-Date:   Mon, 22 Jul 2019 15:38:46 +0000
-Message-ID: <27d8e8a8bba4aeb845d6c953f3a07a29875fef02.camel@amazon.com>
-References: <20190718094531.21423-1-jonnyc@amazon.com>
-         <20190718094718.25083-2-jonnyc@amazon.com>
-         <DM6PR12MB4010913E5408349A600762CADACB0@DM6PR12MB4010.namprd12.prod.outlook.com>
-         <d323007c6bf14cb9f90a497a26b66dac151164fc.camel@amazon.com>
-         <DM6PR12MB40101465C6D032B025473EFADAC40@DM6PR12MB4010.namprd12.prod.outlook.com>
-In-Reply-To: <DM6PR12MB40101465C6D032B025473EFADAC40@DM6PR12MB4010.namprd12.prod.outlook.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.43.161.8]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <BEE06177C9B70F46A85B8E622B3F6BA5@amazon.com>
-Content-Transfer-Encoding: base64
-MIME-Version: 1.0
+        id S1728771AbfGVPqU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 11:46:20 -0400
+Received: from vern.gendns.com ([98.142.107.122]:44082 "EHLO vern.gendns.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727123AbfGVPqU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jul 2019 11:46:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=lechnology.com; s=default; h=Message-Id:Date:Subject:Cc:To:From:Sender:
+        Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=1innLmemI1YK9z1CEeqUt59/OsFQDgFrRWTZveqQDFo=; b=et8rX0i0bdlwCoihML2rE8CE+n
+        WJlLtDVFMTum0shQ6D8BN1OfsfGGA/hRMaI+G0RP5LhKxJppFjFfSHj9OA57O+cbWy71lYBShYBO0
+        p0lEpgEGkLFZETJw6lwqJ3Oe5UF9Z9RJHiilz4oN0ZWwBnhHUHLaOgBj+c2M0ASps2h2ymfgNsu8d
+        /gyna72Cyg9n5ldNIAg3DIOJZ838RwxBiZQiC3sqBFTHQ+98Gfod4Axeum0HDsUGZV7Q3uWgTba/j
+        f38J10it5JtaduHPEn2eqWoX061t+RFBZbCHkgXp2nxLj1yDC4QvFT+aEMYnVwADJtNg0B9P4CBHJ
+        HLlDiGzA==;
+Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:44690 helo=freyr.lechnology.com)
+        by vern.gendns.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <david@lechnology.com>)
+        id 1hpaW1-006p1O-CJ; Mon, 22 Jul 2019 11:46:17 -0400
+From:   David Lechner <david@lechnology.com>
+To:     linux-iio@vger.kernel.org, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     David Lechner <david@lechnology.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: [PATCH 0/4] new driver for TI eQEP
+Date:   Mon, 22 Jul 2019 10:45:34 -0500
+Message-Id: <20190722154538.5314-1-david@lechnology.com>
+X-Mailer: git-send-email 2.17.1
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gTW9uLCAyMDE5LTA3LTIyIGF0IDA4OjU0ICswMDAwLCBHdXN0YXZvIFBpbWVudGVsIHdyb3Rl
-Og0KPiANCj4gPiANCj4gPiA+ID4gK3N0YXRpYyBpbmxpbmUgdm9pZCBhbF9wY2llX3RhcmdldF9i
-dXNfc2V0KHN0cnVjdCBhbF9wY2llDQo+ID4gPiA+ICpwY2llLA0KPiA+ID4gPiArCQkJCQkgIHU4
-IHRhcmdldF9idXMsDQo+ID4gPiA+ICsJCQkJCSAgdTggbWFza190YXJnZXRfYnVzKQ0KPiA+ID4g
-PiArew0KPiA+ID4gPiArCXZvaWQgX19pb21lbSAqY2ZnX2NvbnRyb2xfYWRkcjsNCj4gPiA+ID4g
-Kwl1MzIgcmVnOw0KPiA+ID4gPiArDQo+ID4gPiA+ICsJcmVnID0gRklFTERfUFJFUChDRkdfVEFS
-R0VUX0JVU19NQVNLX01BU0ssDQo+ID4gPiA+IG1hc2tfdGFyZ2V0X2J1cykgfA0KPiA+ID4gPiAr
-CSAgICAgIEZJRUxEX1BSRVAoQ0ZHX1RBUkdFVF9CVVNfQlVTTlVNX01BU0ssDQo+ID4gPiA+IHRh
-cmdldF9idXMpOw0KPiA+ID4gPiArDQo+ID4gPiA+ICsJY2ZnX2NvbnRyb2xfYWRkciA9ICh2b2lk
-IF9faW9tZW0gKikoKHVpbnRwdHJfdClwY2llLQ0KPiA+ID4gPiA+IGNvbnRyb2xsZXJfYmFzZSAr
-DQo+ID4gPiA+IA0KPiA+ID4gPiArCQkJICAgQVhJX0JBU0VfT0ZGU0VUICsgcGNpZS0NCj4gPiA+
-ID4gPnJlZ19vZmZzZXRzLm9iX2N0cmwNCj4gPiA+ID4gKw0KPiA+ID4gPiArCQkJICAgQ0ZHX1RB
-UkdFVF9CVVMpOw0KPiA+ID4gPiArDQo+ID4gPiA+ICsJd3JpdGVsKHJlZywgY2ZnX2NvbnRyb2xf
-YWRkcik7DQo+ID4gPiANCj4gPiA+IEZyb20gd2hhdCBJJ20gc2VlaW5nIHlvdSBjb21tb25seSB1
-c2Ugd3JpdGVsKCkgYW5kIHJlYWRsKCkgd2l0aCBhDQo+ID4gPiBjb21tb24gDQo+ID4gPiBiYXNl
-IGFkZHJlc3MsIHN1Y2ggYXMgcGNpZS0+Y29udHJvbGxlcl9iYXNlICsgQVhJX0JBU0VfT0ZGU0VU
-Lg0KPiA+ID4gSSdkIHN1Z2dlc3QgdG8gY3JlYXRpbmcgYSB3cml0ZWwgYW5kIHJlYWRsIHdpdGgg
-dGhhdCBvZmZzZXQNCj4gPiA+IGJ1aWx0LWluLg0KPiA+ID4gDQo+ID4gDQo+ID4gSSBwcmVmZXIg
-dG8ga2VlcCBpdCBnZW5lcmljLCBzaW5jZSBpbiBmdXR1cmUgcmV2aXNpb25zIHdlIG1pZ2h0DQo+
-ID4gd2FudCB0bw0KPiA+IGFjY2VzcyByZWdzIHdoaWNoIGFyZSBub3QgaW4gdGhlIEFYSSByZWdp
-b24uIFlvdSB0aGluayBJIHNob3VsZCBhZGQNCj4gPiB3cmFwcGVycyB3aGljaCBzaW1wbHkgaGlk
-ZSB0aGUgcGNpZS0+Y29udHJvbGxlcl9iYXNlIHBhcnQ/DQo+IA0KPiBJIGFuZCBvdGhlciBkZXZl
-bG9wZXJzIHR5cGljYWxseSBkbyB0aGF0LCBidXQgaXQncyBhIHN1Z2dlc3Rpb24uIElNSE8NCj4g
-aXQgDQo+IGhlbHBzIHRvIGtlZXAgdGhlIGNvZGUgY2xlYW5lciBhbmQgbW9yZSByZWFkYWJsZS4N
-Cj4gDQoNCkFkZGVkIGFsX3BjaWVfY29udHJvbGxlcl9yZWFkbC93cml0ZWwgd3JhcHBlcnMuDQoN
-Ci0tIA0KVGhhbmtzLA0KICAgSm9uYXRoYW4NCg==
+This series adds device tree bindings and a new counter driver for the Texas
+Instruments Enhanced Quadrature Encoder Pulse (eQEP).
+
+As mentioned in one of the commit messages, to start with, the driver only
+supports reading the current counter value and setting the min/max values.
+Other features can be added on an as-needed basis.
+
+The only other feature I am interested in is adding is getting time data in
+order to calculate the rotational speed of a motor. However, there probably
+needs to be a higher level discussion of how this can fit into the counter
+subsystem in general first.
+
+This series has been tested on a BeagleBone Blue with the following script:
+
+#!/usr/bin/env python3
+
+from os import path
+from time import sleep
+
+COUNTER_PATH = '/sys/bus/counter/devices'
+COUNTERS = ['counter0', 'counter1', 'counter2']
+COUNT0 = 'count0'
+COUNT = 'count'
+CEILING = 'ceiling'
+FLOOR = 'floor'
+ENABLE = 'enable'
+
+cnts = []
+
+for c in COUNTERS:
+    enable_path = path.join(COUNTER_PATH, c, COUNT0, ENABLE)
+    with open(enable_path, 'w') as f:
+        f.write('1')
+    ceiling_path = path.join(COUNTER_PATH, c, COUNT0, CEILING)
+    with open(ceiling_path, 'w') as f:
+        f.write(str(0xffffffff))
+
+    cnt_path = path.join(COUNTER_PATH, c, COUNT0, COUNT)
+    cnts.append(open(cnt_path, 'r'))
+
+while True:
+    for c in cnts:
+        c.seek(0)
+        val = int(c.read())
+        if val >= 0x80000000:
+            val -= 0x100000000
+        print(val, end=' ')
+    print()
+    sleep(1)
+
+David Lechner (4):
+  dt-bindings: counter: new bindings for TI eQEP
+  counter: new TI eQEP driver
+  ARM: dts: am33xx: Add nodes for eQEP
+  ARM: dts: am335x-boneblue: Enable eQEP
+
+ .../devicetree/bindings/counter/ti-eqep.txt   |  18 +
+ MAINTAINERS                                   |   6 +
+ arch/arm/boot/dts/am335x-boneblue.dts         |  54 +++
+ arch/arm/boot/dts/am33xx-l4.dtsi              |  27 ++
+ drivers/counter/Kconfig                       |  12 +
+ drivers/counter/Makefile                      |   1 +
+ drivers/counter/ti-eqep.c                     | 381 ++++++++++++++++++
+ drivers/pwm/Kconfig                           |   2 +-
+ 8 files changed, 500 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/counter/ti-eqep.txt
+ create mode 100644 drivers/counter/ti-eqep.c
+
+-- 
+2.17.1
+
