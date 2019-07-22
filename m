@@ -2,82 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 86A816FAF1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 10:12:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4DB856FAF2
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 10:12:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727465AbfGVIMS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 04:12:18 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:33064 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726339AbfGVIMR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 04:12:17 -0400
-Received: by mail-lf1-f67.google.com with SMTP id x3so26023123lfc.0
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 01:12:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:reply-to:from:date:message-id:subject:to;
-        bh=vJO11LsW2aM7Rr48nxV2HlBaAxaKgP0N57VF7dIApLA=;
-        b=g6XsfEuj2VEP4wARUwtdHB1wXZIuBVFUby7+40iVBF2hjyQ5gSEsLVq8W+19a/E8SR
-         VH8ccdQSURohtuwQG/cywk12PwwrSZf00TXIwgalyQgqc9pISa/B97gnDxAkBmKeBI29
-         ar3sT/iiw786YPuuFdeQoDHWkLsj77YEoL9WjTdtww2HcaLdLUUuXwseRRv97FFETSSO
-         Wz1p2dfG9Acnj50bGJuo+oERKED8GJn0zA+qlypL23CYmokhsrd7AlHUOaoJ/gDcfoZd
-         aBJ5ylxjwH1g6KZNdZ4iC/kmNJApL94AkiBogx5n7C8Aga3lvFejcpg52dFMfDYDLj7b
-         S4Kw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:reply-to:from:date:message-id
-         :subject:to;
-        bh=vJO11LsW2aM7Rr48nxV2HlBaAxaKgP0N57VF7dIApLA=;
-        b=EX4OgTH8c7gtCX+Ni7fCJB9I7/bV0s+wgyY6dp5LRb09Y7c0vGP5ErALrS/IBRmZ5V
-         DbOcevLDqhxxiqyAtdVCl1bdz/idE4P6llYXbIzjsptgF/eY1bd7cL+N9pGrGH2uVjma
-         1A2LEKC0XhZeWNnX++ia58Bw5IXDvI3WNfd4N51w0sw9iUl3ga0J+S+lIXz6Sc/SJZd8
-         EsC1rUjPRM5Ocg5AL+IiZdWP/kxqJJiTdOWFN/SQechr0l5bbczxu14JOBVc9ZMJhNp1
-         TXn5M3J/HRP66abAtFRfiCC5FD+qm5AfQ45wPvkFI0snj6RvYxZ3QnO9MgBV45enKKAD
-         zmDw==
-X-Gm-Message-State: APjAAAU46nv/KDzH8fvDhqpsy4HuyWih2fcyIvVYXQOpSd34QufiKTi9
-        Y4djdnJOKoO9B4XN798TUs5mLV86rqzSnhJWAvc=
-X-Google-Smtp-Source: APXvYqztIOE0NuEJrFdbW/+evbDTkdlNuhPiLUO+avKiqpeb06m4ZfTss1uPUZcMBDdIaF/+Mfn/pt8MsBgtYrWkYMI=
-X-Received: by 2002:ac2:5c42:: with SMTP id s2mr20337551lfp.61.1563783135889;
- Mon, 22 Jul 2019 01:12:15 -0700 (PDT)
+        id S1727510AbfGVIMe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 04:12:34 -0400
+Received: from relay10.mail.gandi.net ([217.70.178.230]:46253 "EHLO
+        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726339AbfGVIMe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 04:12:34 -0400
+Received: from localhost (lfbn-1-10718-76.w90-89.abo.wanadoo.fr [90.89.68.76])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay10.mail.gandi.net (Postfix) with ESMTPSA id E9485240002;
+        Mon, 22 Jul 2019 08:12:30 +0000 (UTC)
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        daniel.lezcano@linaro.org, tglx@linutronix.de
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 01/11] dt-bindings: timer: Convert Allwinner A10 Timer to a schema
+Date:   Mon, 22 Jul 2019 10:12:19 +0200
+Message-Id: <20190722081229.22422-1-maxime.ripard@bootlin.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Received: by 2002:a2e:7204:0:0:0:0:0 with HTTP; Mon, 22 Jul 2019 01:12:15
- -0700 (PDT)
-Reply-To: mgaddafi034@gmail.com
-From:   Aisha Gaddafi <asani4006@gmail.com>
-Date:   Mon, 22 Jul 2019 01:12:15 -0700
-Message-ID: <CADM5EyG6QeB642P12hLmf6mupDvB6xpoSffpW0nwoCvYQ2C63Q@mail.gmail.com>
-Subject: HELLO DEAR
-To:     undisclosed-recipients:;
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Assalamu Alaikum Wa Rahmatullahi Wa Barakatuh,
+The older Allwinner SoCs have a Timer supported in Linux, with a matching
+Device Tree binding.
 
-hello dear
+While the original binding only mentions one interrupt, the timer actually
+has 6 of them.
 
-I came across your e-mail contact prior a private search while in need
-of your assistance. I am Aisha Al-Qaddafi, the only biological
-Daughter of Former President of Libya Col. Muammar Al-Qaddafi. Am a
-single Mother and a Widow with three Children.
+Now that we have the DT validation in place, let's convert the device tree
+bindings for that controller over to a YAML schemas.
 
-I have investment funds worth Twenty Seven Million Five Hundred
-Thousand United State Dollar ($27.500.000.00 ) and i need a trusted
-investment Manager/Partner because of my current refugee status,
-however, I am interested in you for investment project assistance in
-your country, may be from there, we can build business relationship in
-the nearest future.
+Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
+---
+ .../timer/allwinner,sun4i-a10-timer.yaml      | 76 +++++++++++++++++++
+ .../bindings/timer/allwinner,sun4i-timer.txt  | 19 -----
+ 2 files changed, 76 insertions(+), 19 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
+ delete mode 100644 Documentation/devicetree/bindings/timer/allwinner,sun4i-timer.txt
 
-I am willing to negotiate investment/business profit sharing ratio
-with you base on the future investment earning profits.
+diff --git a/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml b/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
+new file mode 100644
+index 000000000000..7292a424092c
+--- /dev/null
++++ b/Documentation/devicetree/bindings/timer/allwinner,sun4i-a10-timer.yaml
+@@ -0,0 +1,76 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/timer/allwinner,sun4i-a10-timer.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Allwinner A10 Timer Device Tree Bindings
++
++maintainers:
++  - Chen-Yu Tsai <wens@csie.org>
++  - Maxime Ripard <maxime.ripard@bootlin.com>
++
++properties:
++  compatible:
++    enum:
++      - allwinner,sun4i-a10-timer
++      - allwinner,suniv-f1c100s-timer
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    description:
++      List of timers interrupts
++
++  clocks:
++    maxItems: 1
++
++allOf:
++  - if:
++      properties:
++        compatible:
++          items:
++            const: allwinner,sun4i-a10-timer
++
++    then:
++      properties:
++        interrupts:
++          minItems: 6
++          maxItems: 6
++
++  - if:
++      properties:
++        compatible:
++          items:
++            const: allwinner,suniv-f1c100s-timer
++
++    then:
++      properties:
++        interrupts:
++          minItems: 3
++          maxItems: 3
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++
++additionalProperties: false
++
++examples:
++  - |
++    timer {
++        compatible = "allwinner,sun4i-a10-timer";
++        reg = <0x01c20c00 0x400>;
++        interrupts = <22>,
++                     <23>,
++                     <24>,
++                     <25>,
++                     <67>,
++                     <68>;
++        clocks = <&osc>;
++    };
++
++...
+diff --git a/Documentation/devicetree/bindings/timer/allwinner,sun4i-timer.txt b/Documentation/devicetree/bindings/timer/allwinner,sun4i-timer.txt
+deleted file mode 100644
+index 3da9d515c03a..000000000000
+--- a/Documentation/devicetree/bindings/timer/allwinner,sun4i-timer.txt
++++ /dev/null
+@@ -1,19 +0,0 @@
+-Allwinner A1X SoCs Timer Controller
+-
+-Required properties:
+-
+-- compatible : should be one of the following:
+-              "allwinner,sun4i-a10-timer"
+-              "allwinner,suniv-f1c100s-timer"
+-- reg : Specifies base physical address and size of the registers.
+-- interrupts : The interrupt of the first timer
+-- clocks: phandle to the source clock (usually a 24 MHz fixed clock)
+-
+-Example:
+-
+-timer {
+-	compatible = "allwinner,sun4i-a10-timer";
+-	reg = <0x01c20c00 0x400>;
+-	interrupts = <22>;
+-	clocks = <&osc>;
+-};
+-- 
+2.21.0
 
-If you are willing to handle this project on my behalf kindly reply
-urgent to enable me provide you more information about the investment
-
-Your Urgent Reply Will Be Appreciated with this emailaddress
-(mgaddafi034@gmail.com)
-
-Best Regards
-Mrs Aisha Al-Qaddafi
