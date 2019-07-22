@@ -2,62 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5D709701EB
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 16:09:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4201E70272
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 16:38:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730647AbfGVOJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 10:09:25 -0400
-Received: from relay10.mail.gandi.net ([217.70.178.230]:51697 "EHLO
-        relay10.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729083AbfGVOJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 10:09:25 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay10.mail.gandi.net (Postfix) with ESMTPSA id 2BB34240015;
-        Mon, 22 Jul 2019 14:09:23 +0000 (UTC)
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rtc@vger.kernel.org
-Subject: [PATCH] dt-bindings: rtc: Remove the PCF8563 from the trivial RTCs
-Date:   Mon, 22 Jul 2019 16:09:21 +0200
-Message-Id: <20190722140921.22681-1-maxime.ripard@bootlin.com>
-X-Mailer: git-send-email 2.21.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1729625AbfGVOic (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 10:38:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59418 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728189AbfGVOic (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jul 2019 10:38:32 -0400
+Received: from devnote2 (NE2965lan1.rev.em-net.ne.jp [210.141.244.193])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C2EF621951;
+        Mon, 22 Jul 2019 14:38:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563806311;
+        bh=nI4H02Rs1Krn9fT6Xdh4P8gDKFBNE1yuNf5PosxFUOY=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=RKftx4fgX4wm2P05Sd2ay5mLZCSMLaRLeUuRjV8+CiggE+5MTLRVJkAVHZ8No/j1E
+         23Z+Dd6LRmnmkYW+PgWu/iKTyYNIdVJt/2bACs/dTyFcnWFzRNZZyKJapFz6k55gx+
+         CqqCw5m0yMLwW/6/2PrGZEuHZDCKlktv9nu6+fow=
+Date:   Mon, 22 Jul 2019 23:38:26 +0900
+From:   Masami Hiramatsu <mhiramat@kernel.org>
+To:     Masami Hiramatsu <mhiramat@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Rob Herring <robh+dt@kernel.org>, Tim Bird <Tim.Bird@sony.com>,
+        Ingo Molnar <mingo@redhat.com>,
+        Namhyung Kim <namhyung@kernel.org>,
+        Jiri Olsa <jolsa@redhat.com>,
+        Arnaldo Carvalho de Melo <acme@kernel.org>,
+        Tom Zanussi <tom.zanussi@linux.intel.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [RFC PATCH v2 00/15] tracing: of: Boot time tracing using
+ devicetree
+Message-Id: <20190722233826.bafd7aeaad3b821157f2d2ff@kernel.org>
+In-Reply-To: <20190717000235.9ab100f0dac4af797a0fb76a@kernel.org>
+References: <156316746861.23477.5815110570539190650.stgit@devnote2>
+        <488a65e6-1d80-0acb-5092-80c18b7ff447@gmail.com>
+        <20190717000235.9ab100f0dac4af797a0fb76a@kernel.org>
+X-Mailer: Sylpheed 3.5.1 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+Mime-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The PCF8563 has a binding of its own, with some, clocks related, additional
-properties.
+Hello,
 
-Remove it from the trivial RTC bindings.
+I discussed with Frank and other kernel developers last week at OSSJ 2019.
+Eventually, I decided to leave from devicetree, because it can unstabilize
+current devicetree desgin and policy. Instead, aim to introduce a new
+generic structured kernel cmdline, something like "configtree".
 
-Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
----
- Documentation/devicetree/bindings/rtc/trivial-rtc.yaml | 2 --
- 1 file changed, 2 deletions(-)
+I thought JSON or other generic data format, but they look a bit bloated
+for my purpose. I just need something like "extended hierarchical kernel
+cmdline". For example,
 
-diff --git a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-index 0c12ce9a9b45..18cb456752f6 100644
---- a/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-+++ b/Documentation/devicetree/bindings/rtc/trivial-rtc.yaml
-@@ -52,8 +52,6 @@ properties:
-       - nxp,pcf2127
-       # Real-time clock
-       - nxp,pcf2129
--      # Real-time clock/calendar
--      - nxp,pcf8563
-       # Real-time Clock Module
-       - pericom,pt7c4338
-       # I2C bus SERIAL INTERFACE REAL-TIME CLOCK IC
+ftrace {
+  options = "sym-addr"
+  events = "initcall:*"
+  tp-printk
+  event.0 {
+    name = "tasl:task_newtask"
+    filter = "pid < 128"
+  } 
+}
+
+Which can be written as
+
+ftrace.options="sym-addr" ftrace.events="initcall:*" ftrace.tp-printk ftrace.event.0.name="tasl:task_newtask" ftrace.event.0.filter="pid < 128"
+
+on current kernel cmdline.
+
+So, the parameters are linearly extended from current kernel cmdline.
+Kernel internal APIs must be able to handle both of current cmdline
+key-values and configtree key-values.
+
+Thank you,
+
 -- 
-2.21.0
-
+Masami Hiramatsu <mhiramat@kernel.org>
