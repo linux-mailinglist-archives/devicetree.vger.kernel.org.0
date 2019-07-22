@@ -2,89 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D11070B23
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 23:19:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48B0570B33
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 23:22:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730185AbfGVVTU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 17:19:20 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:50960 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728441AbfGVVTU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 17:19:20 -0400
-Received: by mail-wm1-f66.google.com with SMTP id v15so36556118wml.0;
-        Mon, 22 Jul 2019 14:19:18 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=lcHpQo876d02CYFiHQVItlAaSl/jfjKPiU6RN4TFprw=;
-        b=I1UeEi17GMEIe6au5rGLh3RvbccB2FY6dbNa1E9vsdRutTAF/j5zsxlFYgg12ObK85
-         u81bgOZDMP5ZBKa4ky4ep7OZgij8yIoNiw9ZNh4oH/XoqwCwDRnq/J6nxwpvlv6GRMrI
-         Ljsn6kcmeb5e/RdA+MlQ4AIUgSZMvzHQH6N0RRHnRcBrAy5c65FKe+6IL3CUSJa1R7Mv
-         qn1BkFvwOSGXF74VZsKGyEyaSwuA81rwkQTSIzlqFBI+w+tLgLCL3MgoZOOwo01o7ozR
-         OB0yw7PZRW75RY0lVv0FzfXdTrlkOVlTNcpE++qbI2eTPr2sIQE+njdtr8mljRzka2Nk
-         Nq5g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lcHpQo876d02CYFiHQVItlAaSl/jfjKPiU6RN4TFprw=;
-        b=RBRy/WqKR/PKQfVZJxYFEUkxfm2Qlmo/oFsDKJjrIKraJ83pWvtwA6N6V+6CNALgEU
-         9PSa8spHn0quXUF7999i/kw1RQayYQ4moUmw/S6gyKT6/tuxnUJga84cPFbc097BpMn6
-         zQMI/Tus7OPio3KQp2+l8H+P7KPfTHSC4zbFedbomyj7QMhptJFfMGMAL4aaJLxa7GxK
-         dMlGtHoDgdQOj2vZf8iOFHJ7kr3rjrlAbnl0pfL2CZWADX85fkgzuvbmt0TvXea3GAUi
-         U+YOpenRuIl5LmIGmStTFed18cnFrgorEX5Jd6wbWg/7AcZt9iQS7+xGqpAQqiBBa0Op
-         TzCA==
-X-Gm-Message-State: APjAAAXEkDrpMEfdGyc/8AIbKWy7l0NKat8CMSs67W+AQARZtz+cJt0G
-        W2y/xRwRsg3onBjU1zQ8PK/+JZXE+YZuXg/oIK0=
-X-Google-Smtp-Source: APXvYqz7N07i6ohLv6+0gi1iEmrCQkPrVsOixoIwNWebkS9RIprupSjMey4srEFKt2qONF8zx4PlqSB9BaObesJr6Ck=
-X-Received: by 2002:a1c:c188:: with SMTP id r130mr61772280wmf.73.1563830358070;
- Mon, 22 Jul 2019 14:19:18 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190625123407.15888-1-andradanciu1997@gmail.com>
- <20190718035523.GD11324@X250> <CAJNLGszB239AHpD+kRCPRWZaToTYHiq5YUHRjfRwTqknwHMdMA@mail.gmail.com>
- <20190722020345.GR3738@dragon> <042F8805D2046347BB8420BEAE397A40749E9BDA@WILL-MAIL002.REu.RohmEu.com>
-In-Reply-To: <042F8805D2046347BB8420BEAE397A40749E9BDA@WILL-MAIL002.REu.RohmEu.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Tue, 23 Jul 2019 00:19:06 +0300
-Message-ID: <CAEnQRZDDjvMA5imQK5cEfycMUm3DiJ6i=0uuoHma2PfY3cqS-Q@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: fsl: pico-pi: Add a device tree for the PICO-PI-IMX8M
-To:     "Vaittinen, Matti" <Matti.Vaittinen@fi.rohmeurope.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Andra Danciu <andradanciu1997@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "leoyang.li@nxp.com" <leoyang.li@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        "aisheng.dong@nxp.com" <aisheng.dong@nxp.com>,
-        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "angus@akkea.ca" <angus@akkea.ca>,
-        "vabhav.sharma@nxp.com" <vabhav.sharma@nxp.com>,
-        "pankaj.bansal@nxp.com" <pankaj.bansal@nxp.com>,
-        "bhaskar.upadhaya@nxp.com" <bhaskar.upadhaya@nxp.com>,
-        "ping.bai@nxp.com" <ping.bai@nxp.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Richard Hu <richard.hu@technexion.com>,
+        id S1732585AbfGVVWH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 17:22:07 -0400
+Received: from mail-eopbgr730127.outbound.protection.outlook.com ([40.107.73.127]:38141
+        "EHLO NAM05-DM3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1732574AbfGVVWG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jul 2019 17:22:06 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=bo+t8QY4lAFO57tHqU2jUQxgzqORDrffqM6iTEU/yF012wS90c9WjRjbO/ME2rbJJMF2xtLtTgPAjizZE9WX9WMsAfKN/zmhoGFxCwg8lT4h9NLfKfkRwgIAYu1YX9l0p2uvdHV4VI4B/lGU4SPVUXxK6GQ3cdNXajVxQkQVEI8A2uToqevFL2K7cXF3iPT/Er4O0ELkTnumHlloJ6eEsno24wWrLu4MkMFo1fgAw9gYfDRSgCKyLLq+Z8+5+shHyAWJiiQZtobfG6bFGCdSjTOUoEjPdir/eR4d7okwGdAugQzJWDBzJeh8vU1j7pd+8FKBcF/55jPwiHikc9GTXA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eP1F47k7v6w0gs5cw3weXd8Pf8jOX+jjksUNgU5Z/U4=;
+ b=NwLQ1UvIFt06wTW5E6oYEuYg0QIrvWPdqZrsQlL6Xt5xhFDDHCItoZvSQIGVLpaiOoxfFZyy+GpbOUpcE3kxKFpP7ERITF4u9NdS/lxeXILrjL5asJwk1pcqu9Ea9045VMHolbqwJIe16npq5dB6vVa9RCHC5z3KE/wB2lYfDcwk547ZEZzBr5gWJOsjDFyjkQcF4RHd9N174Qh0uMe4WWlYTZpMoi29pSWBwkwLCMnBOBr5moYDSdEVVg38mwLr1JBGEIcl5K/ZeYWXDhlXy5M+AAHfnriFTw8we3yTYwsAAFE1RDWhaND5yEuzIIuKGd9Idf9coJDOCblvk9K0og==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=wavecomp.com;dmarc=pass action=none
+ header.from=mips.com;dkim=pass header.d=mips.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=eP1F47k7v6w0gs5cw3weXd8Pf8jOX+jjksUNgU5Z/U4=;
+ b=jPo3yttNDtKXogcz3x8OGb+8JDOGSucsnN5Uj7I1yJG0sJLDyigqQdRMqd0bXwgbnzV3XiYbewrOhokJJh+BmUJ4+9RJ1y9uDfbfqmcc5kxV6G0gzuer7aR4p9ZOcLDRXSTt+klFNqfd4PaE5FKZFvVgv1WwJmTheGgFAKsl2Js=
+Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
+ MWHPR2201MB1757.namprd22.prod.outlook.com (10.164.133.167) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2094.11; Mon, 22 Jul 2019 21:22:04 +0000
+Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
+ ([fe80::49d3:37f8:217:c83]) by MWHPR2201MB1277.namprd22.prod.outlook.com
+ ([fe80::49d3:37f8:217:c83%6]) with mapi id 15.20.2094.017; Mon, 22 Jul 2019
+ 21:22:04 +0000
+From:   Paul Burton <paul.burton@mips.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <pburton@wavecomp.com>,
+        James Hogan <jhogan@kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH 2/3] MIPS: DTS: jz4740: Add node for the MMC driver
+Thread-Topic: [PATCH 2/3] MIPS: DTS: jz4740: Add node for the MMC driver
+Thread-Index: AQHUtOntLO/EgPGbyEyjPeWfCtJvS6bYPS6A
+Date:   Mon, 22 Jul 2019 21:22:04 +0000
+Message-ID: <MWHPR2201MB127739803859CA9A3917CFD8C1C40@MWHPR2201MB1277.namprd22.prod.outlook.com>
+References: <20190125200927.21045-2-paul@crapouillou.net>
+In-Reply-To: <20190125200927.21045-2-paul@crapouillou.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: BYAPR07CA0057.namprd07.prod.outlook.com
+ (2603:10b6:a03:60::34) To MWHPR2201MB1277.namprd22.prod.outlook.com
+ (2603:10b6:301:18::12)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=pburton@wavecomp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [12.94.197.246]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 66a96d5d-fba6-49a2-f5e0-08d70eeaa48d
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:MWHPR2201MB1757;
+x-ms-traffictypediagnostic: MWHPR2201MB1757:
+x-microsoft-antispam-prvs: <MWHPR2201MB17574E3380C3EB51B44CD1E9C1C40@MWHPR2201MB1757.namprd22.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 01068D0A20
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(396003)(376002)(39850400004)(346002)(136003)(366004)(199004)(189003)(66446008)(66476007)(3846002)(6116002)(66556008)(66066001)(6436002)(64756008)(66946007)(52536014)(25786009)(14454004)(558084003)(476003)(7416002)(8676002)(6916009)(9686003)(305945005)(74316002)(7736002)(99286004)(71190400001)(52116002)(256004)(71200400001)(4326008)(6246003)(26005)(81156014)(68736007)(186003)(8936002)(81166006)(2906002)(478600001)(486006)(11346002)(446003)(5660300002)(55016002)(53936002)(316002)(54906003)(42882007)(33656002)(386003)(7696005)(6506007)(102836004)(76176011)(229853002)(44832011);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1757;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: wavecomp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: btNdvlVYU5FXLy4+jBlOPIZsrb+AHblqkssVtOH26S49aiTvQDBIb1rZIBMcmHT4CLUiNbFUEQ8Z6tiyUR3+FMFVnZBxvpOxV+4EtqUZJMJ17fT0X8xXF8rDyIJxip+ZzR6sLkGDxwnXD3nAZySjjldIYFlar4iXTmyOarHwx1SF8nOBMna54T4N13dtOMogKjPsDnOCwfdwm3GzMg/3YOn2mgokdVNa2Y04j1Rr1yfVIe0gtVTs0ausDyFomYMOygNu4xRs5npGI7oocYDlYnOcnvQQuoyf+QYlO3oH9TbaIp8LbIDN1tp5oWAxVqjaWq18HsFZmikYU0PA5qyGNOJwvQKSbCkS0FfifV66TSqCuwMPywOSE0jRn5qlyaDDMcOptD8xAh2opZWogXGjZB5y+po/C1wHuFc8OilbWMA=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: mips.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 66a96d5d-fba6-49a2-f5e0-08d70eeaa48d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 22 Jul 2019 21:22:04.6391
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pburton@wavecomp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1757
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 22, 2019 at 9:30 PM Vaittinen, Matti
-<Matti.Vaittinen@fi.rohmeurope.com> wrote:
->
-> Sorry for top posting. I'm replying using mobile phone and outlook web app...
->
-> gpio_intr is not needed. Irq must be given using the standard irq property. gpio_intr has been used in an old draft driver - I assume the dts originates from NXP bsp which used the old driver.
+Hello,
 
-Thanks Matti for your observation! We already fixed this as we are now
-on v6 of the patches for review :).
+Paul Cercueil wrote:
+> Add a devicetree node for the jz4740-mmc driver.
+>=20
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
 
-yes the dts originates form TechNexion bsp tree which is based on NXP tree :).
+Applied to mips-next.
 
-Daniel.
+Thanks,
+    Paul
+
+[ This message was auto-generated; if you believe anything is incorrect
+  then please email paul.burton@mips.com to report it. ]
