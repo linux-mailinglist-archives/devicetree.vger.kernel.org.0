@@ -2,421 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 93DAA70331
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 17:11:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8CB7D70338
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 17:12:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726920AbfGVPLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 11:11:44 -0400
-Received: from verein.lst.de ([213.95.11.211]:33128 "EHLO verein.lst.de"
+        id S1726447AbfGVPMA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 11:12:00 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44114 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726554AbfGVPLo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 11:11:44 -0400
-Received: by verein.lst.de (Postfix, from userid 2005)
-        id 2AE8568B20; Mon, 22 Jul 2019 17:11:42 +0200 (CEST)
-From:   Torsten Duwe <duwe@lst.de>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <<20190722150414.9F97668B20@verein.lst.de>>
-Subject: [PATCH v3 3/7] drm/bridge: extract some Analogix I2C DP common code
-Message-Id: <20190722151142.2AE8568B20@verein.lst.de>
-Date:   Mon, 22 Jul 2019 17:11:42 +0200 (CEST)
+        id S1726571AbfGVPL6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jul 2019 11:11:58 -0400
+Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 39D3D21911;
+        Mon, 22 Jul 2019 15:11:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563808317;
+        bh=AsB3zI1/NGDyZMxT58jD8QlMzyTa4nRlRGFHlVX0dRQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=G/bGujWAaxwyjh/ZoDREmRWnWdjmkmMEzXbgh3dMGYDEuzY9SLEJftT8Jo1kRfXX8
+         2BMT0znomn4zwNKXF0h1kFDFcYSvlo0QWT1nZlIXyh5HtQJnBdjbKD7nrlqVCjvJep
+         yihmuGDINF55vtIuRhMl7+3R2xskSrwDBSmJyuTg=
+Received: by mail-qk1-f173.google.com with SMTP id s145so28858180qke.7;
+        Mon, 22 Jul 2019 08:11:57 -0700 (PDT)
+X-Gm-Message-State: APjAAAWhePPJI5Vowx92P5G95ccKyiIDw6zPx1u11Cl23lvNNV3aics/
+        cS5HArZLZGaTZqIZC9vlQM2f6i1wLZL1cKK08A==
+X-Google-Smtp-Source: APXvYqzlkeQGYN/h3FgK13LLtmJiDds4Ql6WIrIGjE9bOBxYWxSrxffd8YBqD08GQ3B1uVaq7Dl6FQ8Qdj9mcU9lXng=
+X-Received: by 2002:a37:a010:: with SMTP id j16mr48177105qke.152.1563808316481;
+ Mon, 22 Jul 2019 08:11:56 -0700 (PDT)
+MIME-Version: 1.0
+References: <cover.1563792333.git.mchehab+samsung@kernel.org> <40b78fbbe64108601c274d28b7c515b3cd29d206.1563792334.git.mchehab+samsung@kernel.org>
+In-Reply-To: <40b78fbbe64108601c274d28b7c515b3cd29d206.1563792334.git.mchehab+samsung@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 22 Jul 2019 09:11:44 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJT-moVXuwEndGfJZknHk8p+Vdv+k5hObhT1+x5TZKAPg@mail.gmail.com>
+Message-ID: <CAL_JsqJT-moVXuwEndGfJZknHk8p+Vdv+k5hObhT1+x5TZKAPg@mail.gmail.com>
+Subject: Re: [PATCH 01/22] docs: convert markdown documents to ReST
+To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Icenowy Zheng <icenowy@aosc.io>
+On Mon, Jul 22, 2019 at 5:08 AM Mauro Carvalho Chehab
+<mchehab+samsung@kernel.org> wrote:
+>
+> The documentation standard is ReST and not markdown.
+>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+> Acked-by: Rob Herring <robh@kernel.org>
+> ---
+>  Documentation/devicetree/writing-schema.md    | 130 ---------------
+>  Documentation/devicetree/writing-schema.rst   | 153 ++++++++++++++++++
 
-Some code can be shared within different DP bridges by Analogix.
-Extract them to analogix_dp.
+Thinking about this some more, can you split this to a separate patch
+for me to apply. I may have some changes to this file this cycle.
 
-Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-Signed-off-by: Torsten Duwe <duwe@suse.de>
-Reviewed-by: Andrzej Hajda <a.hajda@samsung.com>
----
- drivers/gpu/drm/bridge/analogix/Makefile           |   2 +-
- drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c | 146 +-----------------
- .../gpu/drm/bridge/analogix/analogix-i2c-dptx.c    | 165 +++++++++++++++++++++
- .../gpu/drm/bridge/analogix/analogix-i2c-dptx.h    |   3 +
- 4 files changed, 170 insertions(+), 146 deletions(-)
- create mode 100644 drivers/gpu/drm/bridge/analogix/analogix-i2c-dptx.c
-
-diff --git a/drivers/gpu/drm/bridge/analogix/Makefile b/drivers/gpu/drm/bridge/analogix/Makefile
-index 6fcbfd3ee560..7623b9b80167 100644
---- a/drivers/gpu/drm/bridge/analogix/Makefile
-+++ b/drivers/gpu/drm/bridge/analogix/Makefile
-@@ -1,4 +1,4 @@
- # SPDX-License-Identifier: GPL-2.0-only
--analogix_dp-objs := analogix_dp_core.o analogix_dp_reg.o
-+analogix_dp-objs := analogix_dp_core.o analogix_dp_reg.o analogix-i2c-dptx.o
- obj-$(CONFIG_DRM_ANALOGIX_ANX78XX) += analogix-anx78xx.o
- obj-$(CONFIG_DRM_ANALOGIX_DP) += analogix_dp.o
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-index 3c7cc5af735c..c36e2c9445a3 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-+++ b/drivers/gpu/drm/bridge/analogix/analogix-anx78xx.c
-@@ -35,8 +35,6 @@
- #define I2C_IDX_RX_P1		4
- 
- #define XTAL_CLK		270 /* 27M */
--#define AUX_CH_BUFFER_SIZE	16
--#define AUX_WAIT_TIMEOUT_MS	15
- 
- static const u8 anx78xx_i2c_addresses[] = {
- 	[I2C_IDX_TX_P0] = TX_P0,
-@@ -99,153 +97,11 @@ static int anx78xx_clear_bits(struct regmap *map, u8 reg, u8 mask)
- 	return regmap_update_bits(map, reg, mask, 0);
- }
- 
--static bool anx78xx_aux_op_finished(struct anx78xx *anx78xx)
--{
--	unsigned int value;
--	int err;
--
--	err = regmap_read(anx78xx->map[I2C_IDX_TX_P0], SP_DP_AUX_CH_CTRL2_REG,
--			  &value);
--	if (err < 0)
--		return false;
--
--	return (value & SP_AUX_EN) == 0;
--}
--
--static int anx78xx_aux_wait(struct anx78xx *anx78xx)
--{
--	unsigned long timeout;
--	unsigned int status;
--	int err;
--
--	timeout = jiffies + msecs_to_jiffies(AUX_WAIT_TIMEOUT_MS) + 1;
--
--	while (!anx78xx_aux_op_finished(anx78xx)) {
--		if (time_after(jiffies, timeout)) {
--			if (!anx78xx_aux_op_finished(anx78xx)) {
--				DRM_ERROR("Timed out waiting AUX to finish\n");
--				return -ETIMEDOUT;
--			}
--
--			break;
--		}
--
--		usleep_range(1000, 2000);
--	}
--
--	/* Read the AUX channel access status */
--	err = regmap_read(anx78xx->map[I2C_IDX_TX_P0], SP_AUX_CH_STATUS_REG,
--			  &status);
--	if (err < 0) {
--		DRM_ERROR("Failed to read from AUX channel: %d\n", err);
--		return err;
--	}
--
--	if (status & SP_AUX_STATUS) {
--		DRM_ERROR("Failed to wait for AUX channel (status: %02x)\n",
--			  status);
--		return -ETIMEDOUT;
--	}
--
--	return 0;
--}
--
--static int anx78xx_aux_address(struct anx78xx *anx78xx, unsigned int addr)
--{
--	int err;
--
--	err = regmap_write(anx78xx->map[I2C_IDX_TX_P0], SP_AUX_ADDR_7_0_REG,
--			   addr & 0xff);
--	if (err)
--		return err;
--
--	err = regmap_write(anx78xx->map[I2C_IDX_TX_P0], SP_AUX_ADDR_15_8_REG,
--			   (addr & 0xff00) >> 8);
--	if (err)
--		return err;
--
--	/*
--	 * DP AUX CH Address Register #2, only update bits[3:0]
--	 * [7:4] RESERVED
--	 * [3:0] AUX_ADDR[19:16], Register control AUX CH address.
--	 */
--	err = regmap_update_bits(anx78xx->map[I2C_IDX_TX_P0],
--				 SP_AUX_ADDR_19_16_REG,
--				 SP_AUX_ADDR_19_16_MASK,
--				 (addr & 0xf0000) >> 16);
--
--	if (err)
--		return err;
--
--	return 0;
--}
--
- static ssize_t anx78xx_aux_transfer(struct drm_dp_aux *aux,
- 				    struct drm_dp_aux_msg *msg)
- {
- 	struct anx78xx *anx78xx = container_of(aux, struct anx78xx, aux);
--	u8 ctrl1 = msg->request;
--	u8 ctrl2 = SP_AUX_EN;
--	u8 *buffer = msg->buffer;
--	int err;
--
--	/* The DP AUX transmit and receive buffer has 16 bytes. */
--	if (WARN_ON(msg->size > AUX_CH_BUFFER_SIZE))
--		return -E2BIG;
--
--	/* Zero-sized messages specify address-only transactions. */
--	if (msg->size < 1)
--		ctrl2 |= SP_ADDR_ONLY;
--	else	/* For non-zero-sized set the length field. */
--		ctrl1 |= (msg->size - 1) << SP_AUX_LENGTH_SHIFT;
--
--	if ((msg->request & DP_AUX_I2C_READ) == 0) {
--		/* When WRITE | MOT write values to data buffer */
--		err = regmap_bulk_write(anx78xx->map[I2C_IDX_TX_P0],
--					SP_DP_BUF_DATA0_REG, buffer,
--					msg->size);
--		if (err)
--			return err;
--	}
--
--	/* Write address and request */
--	err = anx78xx_aux_address(anx78xx, msg->address);
--	if (err)
--		return err;
--
--	err = regmap_write(anx78xx->map[I2C_IDX_TX_P0], SP_DP_AUX_CH_CTRL1_REG,
--			   ctrl1);
--	if (err)
--		return err;
--
--	/* Start transaction */
--	err = regmap_update_bits(anx78xx->map[I2C_IDX_TX_P0],
--				 SP_DP_AUX_CH_CTRL2_REG, SP_ADDR_ONLY |
--				 SP_AUX_EN, ctrl2);
--	if (err)
--		return err;
--
--	err = anx78xx_aux_wait(anx78xx);
--	if (err)
--		return err;
--
--	msg->reply = DP_AUX_I2C_REPLY_ACK;
--
--	if ((msg->size > 0) && (msg->request & DP_AUX_I2C_READ)) {
--		/* Read values from data buffer */
--		err = regmap_bulk_read(anx78xx->map[I2C_IDX_TX_P0],
--				       SP_DP_BUF_DATA0_REG, buffer,
--				       msg->size);
--		if (err)
--			return err;
--	}
--
--	err = anx78xx_clear_bits(anx78xx->map[I2C_IDX_TX_P0],
--				 SP_DP_AUX_CH_CTRL2_REG, SP_ADDR_ONLY);
--	if (err)
--		return err;
--
--	return msg->size;
-+	return anx_dp_aux_transfer(anx78xx->map[I2C_IDX_TX_P0], msg);
- }
- 
- static int anx78xx_set_hpd(struct anx78xx *anx78xx)
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix-i2c-dptx.c b/drivers/gpu/drm/bridge/analogix/analogix-i2c-dptx.c
-new file mode 100644
-index 000000000000..60707bb5afe7
---- /dev/null
-+++ b/drivers/gpu/drm/bridge/analogix/analogix-i2c-dptx.c
-@@ -0,0 +1,165 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+/*
-+ * Copyright(c) 2016, Analogix Semiconductor.
-+ *
-+ * Based on anx7808 driver obtained from chromeos with copyright:
-+ * Copyright(c) 2013, Google Inc.
-+ */
-+#include <linux/regmap.h>
-+
-+#include <drm/drm.h>
-+#include <drm/drm_dp_helper.h>
-+#include <drm/drm_print.h>
-+
-+#include "analogix-i2c-dptx.h"
-+
-+#define AUX_WAIT_TIMEOUT_MS	15
-+#define AUX_CH_BUFFER_SIZE	16
-+
-+static int anx_i2c_dp_clear_bits(struct regmap *map, u8 reg, u8 mask)
-+{
-+	return regmap_update_bits(map, reg, mask, 0);
-+}
-+
-+static bool anx_dp_aux_op_finished(struct regmap *map_dptx)
-+{
-+	unsigned int value;
-+	int err;
-+
-+	err = regmap_read(map_dptx, SP_DP_AUX_CH_CTRL2_REG, &value);
-+	if (err < 0)
-+		return false;
-+
-+	return (value & SP_AUX_EN) == 0;
-+}
-+
-+static int anx_dp_aux_wait(struct regmap *map_dptx)
-+{
-+	unsigned long timeout;
-+	unsigned int status;
-+	int err;
-+
-+	timeout = jiffies + msecs_to_jiffies(AUX_WAIT_TIMEOUT_MS) + 1;
-+
-+	while (!anx_dp_aux_op_finished(map_dptx)) {
-+		if (time_after(jiffies, timeout)) {
-+			if (!anx_dp_aux_op_finished(map_dptx)) {
-+				DRM_ERROR("Timed out waiting AUX to finish\n");
-+				return -ETIMEDOUT;
-+			}
-+
-+			break;
-+		}
-+
-+		usleep_range(1000, 2000);
-+	}
-+
-+	/* Read the AUX channel access status */
-+	err = regmap_read(map_dptx, SP_AUX_CH_STATUS_REG, &status);
-+	if (err < 0) {
-+		DRM_ERROR("Failed to read from AUX channel: %d\n", err);
-+		return err;
-+	}
-+
-+	if (status & SP_AUX_STATUS) {
-+		DRM_ERROR("Failed to wait for AUX channel (status: %02x)\n",
-+			  status);
-+		return -ETIMEDOUT;
-+	}
-+
-+	return 0;
-+}
-+
-+static int anx_dp_aux_address(struct regmap *map_dptx, unsigned int addr)
-+{
-+	int err;
-+
-+	err = regmap_write(map_dptx, SP_AUX_ADDR_7_0_REG, addr & 0xff);
-+	if (err)
-+		return err;
-+
-+	err = regmap_write(map_dptx, SP_AUX_ADDR_15_8_REG,
-+			   (addr & 0xff00) >> 8);
-+	if (err)
-+		return err;
-+
-+	/*
-+	 * DP AUX CH Address Register #2, only update bits[3:0]
-+	 * [7:4] RESERVED
-+	 * [3:0] AUX_ADDR[19:16], Register control AUX CH address.
-+	 */
-+	err = regmap_update_bits(map_dptx, SP_AUX_ADDR_19_16_REG,
-+				 SP_AUX_ADDR_19_16_MASK,
-+				 (addr & 0xf0000) >> 16);
-+
-+	if (err)
-+		return err;
-+
-+	return 0;
-+}
-+
-+ssize_t anx_dp_aux_transfer(struct regmap *map_dptx,
-+				struct drm_dp_aux_msg *msg)
-+{
-+	u8 ctrl1 = msg->request;
-+	u8 ctrl2 = SP_AUX_EN;
-+	u8 *buffer = msg->buffer;
-+	int err;
-+
-+	/* The DP AUX transmit and receive buffer has 16 bytes. */
-+	if (WARN_ON(msg->size > AUX_CH_BUFFER_SIZE))
-+		return -E2BIG;
-+
-+	/* Zero-sized messages specify address-only transactions. */
-+	if (msg->size < 1)
-+		ctrl2 |= SP_ADDR_ONLY;
-+	else	/* For non-zero-sized set the length field. */
-+		ctrl1 |= (msg->size - 1) << SP_AUX_LENGTH_SHIFT;
-+
-+	if ((msg->request & DP_AUX_I2C_READ) == 0) {
-+		/* When WRITE | MOT write values to data buffer */
-+		err = regmap_bulk_write(map_dptx,
-+					SP_DP_BUF_DATA0_REG, buffer,
-+					msg->size);
-+		if (err)
-+			return err;
-+	}
-+
-+	/* Write address and request */
-+	err = anx_dp_aux_address(map_dptx, msg->address);
-+	if (err)
-+		return err;
-+
-+	err = regmap_write(map_dptx, SP_DP_AUX_CH_CTRL1_REG, ctrl1);
-+	if (err)
-+		return err;
-+
-+	/* Start transaction */
-+	err = regmap_update_bits(map_dptx, SP_DP_AUX_CH_CTRL2_REG,
-+				 SP_ADDR_ONLY | SP_AUX_EN, ctrl2);
-+	if (err)
-+		return err;
-+
-+	err = anx_dp_aux_wait(map_dptx);
-+	if (err)
-+		return err;
-+
-+	msg->reply = DP_AUX_I2C_REPLY_ACK;
-+
-+	if ((msg->size > 0) && (msg->request & DP_AUX_I2C_READ)) {
-+		/* Read values from data buffer */
-+		err = regmap_bulk_read(map_dptx,
-+				       SP_DP_BUF_DATA0_REG, buffer,
-+				       msg->size);
-+		if (err)
-+			return err;
-+	}
-+
-+	err = anx_i2c_dp_clear_bits(map_dptx, SP_DP_AUX_CH_CTRL2_REG,
-+				    SP_ADDR_ONLY);
-+	if (err)
-+		return err;
-+
-+	return msg->size;
-+}
-+EXPORT_SYMBOL_GPL(anx_dp_aux_transfer);
-diff --git a/drivers/gpu/drm/bridge/analogix/analogix-i2c-dptx.h b/drivers/gpu/drm/bridge/analogix/analogix-i2c-dptx.h
-index 6295be668cae..430a039c10cd 100644
---- a/drivers/gpu/drm/bridge/analogix/analogix-i2c-dptx.h
-+++ b/drivers/gpu/drm/bridge/analogix/analogix-i2c-dptx.h
-@@ -244,4 +244,7 @@
- /* DP AUX Buffer Data Registers */
- #define SP_DP_BUF_DATA0_REG		0xf0
- 
-+ssize_t anx_dp_aux_transfer(struct regmap *map_dptx,
-+				struct drm_dp_aux_msg *msg);
-+
- #endif
--- 
-2.16.4
-
+>  ...entication.md => ubifs-authentication.rst} |  70 +++++---
+>  3 files changed, 197 insertions(+), 156 deletions(-)
+>  delete mode 100644 Documentation/devicetree/writing-schema.md
+>  create mode 100644 Documentation/devicetree/writing-schema.rst
+>  rename Documentation/filesystems/{ubifs-authentication.md => ubifs-authentication.rst} (95%)
