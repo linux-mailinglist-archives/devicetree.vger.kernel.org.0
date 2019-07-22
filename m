@@ -2,92 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F0F4709D1
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 21:38:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6112470A14
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 21:53:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732212AbfGVTil (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 15:38:41 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:57162 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726641AbfGVTik (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 15:38:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=W7vnDeoMM/iSr74EeN4MeRse8/vd2A2jqO++8QrETl8=; b=MVRVLB+90AS2iyjSpeb3vvOfx1
-        MlFyHG0sFFrwhQ9VZcHRxx3SkeShfLO7lXloVgx0SHvCQmBC86ajgzdlsCauLhpdcL0F2b+gyTbQI
-        ux/BkTFmue4zbsFV846raBxFBNkQHp7qbf1G5mgEyeqNxIpDbsZFRnTMRYBWgwHmy0hQ=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hpe8o-0004wK-41; Mon, 22 Jul 2019 21:38:34 +0200
-Date:   Mon, 22 Jul 2019 21:38:34 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        "David S . Miller" <davem@davemloft.net>,
+        id S1729272AbfGVTxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 15:53:19 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:55742 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728505AbfGVTxT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 15:53:19 -0400
+Received: by mail-wm1-f68.google.com with SMTP id a15so36329795wmj.5;
+        Mon, 22 Jul 2019 12:53:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8cpB3PKFs/+RNz6CzNu73YznyTKNKRjiULkUbbvNL4A=;
+        b=FMeIQosVJpsSyQizbAdM5w5gCoNZ9YjgkrhzQyFpPEZ6yGbnaVaGTKix5MpzA1+nFw
+         TPLF9F94ldsU+stwhCSShs0/EKCsuqeMcgvWDXIaN4um2tcwd3hEoAogW6Dh/fMr0uz0
+         ErIl9pc9vwThWFvq9+PsG0EKASzESlzNUxGe0SfrGPvnu0Wh2Zh5GbTwhFQglLasZUx0
+         IRSHPoybDQe40mn5Z/vt46KEz4GkAwZ+pFjFqXfTlgBgKmYxxXoLxET4ecnTGPQ9+lTp
+         QREBlHnF0q4kGWdHeKPc+oRLOwyy6RVY1+JMKxymOdPhsaWD5UjvVNTi3tmUXfgjwH50
+         yp4A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=8cpB3PKFs/+RNz6CzNu73YznyTKNKRjiULkUbbvNL4A=;
+        b=QGtRUwHemj6RxDXSybitXIFeXKZTfF+sVMNuxZ+Wmo2TrW7o+7MVqDDMlnAgB74Wvk
+         qMnAH+Js9ZVdJeHqbFSqsWAi4fH/KXBa1ypvC5Bbnm7GHT0wlAaOCfA4wlGDqNbwx561
+         5/zZS+fFtOojdfk5Rs24z4QvjP1iyMfOfQbLQCrlTp7WMLvCE9t3GYP2jZXhJaObD9tD
+         NL977gow/ji3YaFJgayKRi1CzD4FqIcyzrGhnctAUnNUbEuM5B2JvmKCodXS/pm/13Ek
+         /kL/TXQcQcHdlvHwiKhG/n21FsVHnBQ574Rohr82GRba1srOQdZu0LIaB8t7tT0XkxEn
+         9a9w==
+X-Gm-Message-State: APjAAAUS5X/VnmWDT5IF//OnJd2hJP9QsqQzK2uPBiR0fZbcvTqRZI99
+        5yTLBKoJ6Ne10AKpnq7yrNw=
+X-Google-Smtp-Source: APXvYqwLmtg3xVtKc23mGLVZUIKYCwmvX8GSvq1g5RqXzcH4QIoCHY9XDNowPeTdHmt+tEdUgSidRw==
+X-Received: by 2002:a05:600c:22ce:: with SMTP id 14mr66479064wmg.27.1563825196792;
+        Mon, 22 Jul 2019 12:53:16 -0700 (PDT)
+Received: from localhost.localdomain (nat-113.starnet.cz. [178.255.168.113])
+        by smtp.googlemail.com with ESMTPSA id c65sm37382975wma.44.2019.07.22.12.53.15
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 22 Jul 2019 12:53:16 -0700 (PDT)
+From:   Evgeny Kolesnikov <evgenyz@gmail.com>
+Cc:     Evgeny Kolesnikov <evgenyz@gmail.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH v2 6/7] dt-bindings: net: realtek: Add property to
- configure LED mode
-Message-ID: <20190722193834.GG8972@lunn.ch>
-References: <20190703193724.246854-1-mka@chromium.org>
- <20190703193724.246854-6-mka@chromium.org>
- <e8fe7baf-e4e0-c713-7b93-07a3859c33c6@gmail.com>
- <20190703232331.GL250418@google.com>
- <CAL_JsqL_AU+JV0c2mNbXiPh2pvfYbPbLV-2PHHX0hC3vUH4QWg@mail.gmail.com>
- <20190722171418.GV250418@google.com>
- <20190722190133.GF8972@lunn.ch>
- <20190722191411.GW250418@google.com>
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/5] Add support for WD MyCloud EX2 Ultra (+ versatile UART-based restart/poweroff drivers)
+Date:   Mon, 22 Jul 2019 21:53:00 +0200
+Message-Id: <cover.1563822216.git.evgenyz@gmail.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190722191411.GW250418@google.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
+To:     unlisted-recipients:; (no To-header on input)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> as of now it isn't even an API, the phy_device populates a new array
-> in its struct with the values from the DT. PHY drivers access the
-> array directly. Is it still preferable to post everything together?
-> 
-> (maybe I'm too concerned about 'noise' from the driver patches while
->  we are figuring out what exactly the binding should be).
+This patchset consists of the DTS, which describes the WD MyCloud EX2 Ultra device,
+'poweroff' and 'resert' drivers for power-managing MCUs connected to a board via UART
+(these drivers are more versatile than qnap-poweroff and could be used as a substitude),
+and DT bindings for these drivers.
 
-We should try to have the DT parsing made generic in phylib, and add
-new driver API calls to actually configure the LEDs.
+The difference between uart-poweroff and qnap-poweroff is small, but important:
+uart-poweroff is able to send to an MCU a command of arbitrary length, and the command
+itself is defined in a DTS file for a specific device/board, thus making this driver
+applicable to wider range of devices.
 
-Please also take a look at the Linux generic LED binding. It would be
-nice to have something compatible with that. With time, the code could
-morph into being part of the generic LED subsystem. So we are mostly
-talking about triggers. But we offload the trigger to the hardware,
-rather than have software trigger the blinking of the LEDs. So
-something like:
+Evgeny Kolesnikov (5):
+  power: reset: Add UART-based MCU poweroff DT bindings
+  power: reset: Add UART-based MCU restart DT bindings
+  power/reset: Add a power off driver for UART-based PM MCUs
+  power/reset: Add a restart driver for UART-based PM MCUs
+  ARM: dts: armada385-wd-mcex2u: Add DTS file for WD My Cloud EX2 Ultra
 
-ethernet-phy0  {
-	reg = <0>;
+ .../bindings/power/reset/uart-poweroff.txt    |  38 +++
+ .../bindings/power/reset/uart-restart.txt     |  39 +++
+ arch/arm/boot/dts/armada-385-wd-mcex2u.dts    | 313 ++++++++++++++++++
+ drivers/power/reset/Kconfig                   |  14 +
+ drivers/power/reset/Makefile                  |   2 +
+ drivers/power/reset/uart-poweroff.c           | 155 +++++++++
+ drivers/power/reset/uart-restart.c            | 204 ++++++++++++
+ 7 files changed, 765 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/power/reset/uart-poweroff.txt
+ create mode 100644 Documentation/devicetree/bindings/power/reset/uart-restart.txt
+ create mode 100644 arch/arm/boot/dts/armada-385-wd-mcex2u.dts
+ create mode 100644 drivers/power/reset/uart-poweroff.c
+ create mode 100644 drivers/power/reset/uart-restart.c
 
-	leds {
-		phy-led@0 {
-	     	      reg = <0>
-		      label = "left:green";
-		      linux,default-trigger = "phy_link_1000_active";
-		}
-		phy-led@1 {
-	     	      reg = <1>
-		      label = "right:red";
-		      linux,default-trigger = "phy_collision";
-		}
-	}
-}
-
-      Andrew
+-- 
+2.21.0
 
