@@ -2,121 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D5E5870506
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 18:06:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D22570547
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 18:20:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730515AbfGVQGi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 12:06:38 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:22594 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729753AbfGVQGh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 12:06:37 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6MG64sW016167;
-        Mon, 22 Jul 2019 18:06:06 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
- date : message-id : in-reply-to : references : mime-version :
- content-type; s=STMicroelectronics;
- bh=lMBXVdaWkpNK3eb/f1Th8IHqOU36gvkUYQ/xuGtXNQw=;
- b=LYkqkqea4BV4nkzQeT228vwRbHjFV7f7OhZhrHLXcGZtjQBUSO1GhqJWLzIVq9deWRh6
- e6b/FOCAu+HXpEBNsu4fU/Uxm8vmHwOSbqqlVY9WxcmOYaOAAIr/cNrkbi5c4iXL56UG
- gggeeJO4mxPS+kLnuKhJHiw6RpHtUyUvfasNUSZXTUf0K10bE5M5iIck+TGekRyZkWrK
- dJ3ACuS/2RfXP53EgcretzJ+9/PWgoGBkVkhCzDUpXOmgxnVD6CNbZvOUJyquRAYF7tp
- hcKTeBYuA6L3tWPpISLXPDiQvONw7p3zICdlD1/uqUsNvkPKMF8D4fOVmE/Uq8icBd6D iA== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2ture1chdv-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 22 Jul 2019 18:06:06 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id F053831;
-        Mon, 22 Jul 2019 16:06:05 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas22.st.com [10.75.90.92])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D3D6F52BB;
-        Mon, 22 Jul 2019 16:06:05 +0000 (GMT)
-Received: from SAFEX1HUBCAS21.st.com (10.75.90.45) by Safex1hubcas22.st.com
- (10.75.90.92) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 22 Jul
- 2019 18:06:05 +0200
-Received: from localhost (10.201.23.16) by Webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 22 Jul 2019 18:06:05
- +0200
-From:   Olivier Moysan <olivier.moysan@st.com>
-To:     <a.hajda@samsung.com>, <narmstrong@baylibre.com>,
-        <Laurent.pinchart@ideasonboard.com>, <jonas@kwiboo.se>,
-        <jernej.skrabec@siol.net>, <airlied@linux.ie>, <daniel@ffwll.ch>,
-        <dri-devel@lists.freedesktop.org>, <linux-kernel@vger.kernel.org>,
-        <benjamin.gaignard@st.com>, <alexandre.torgue@st.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <olivier.moysan@st.com>, <jsarha@ti.com>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <devicetree@vger.kernel.org>
-Subject: [PATCH v2 3/3] drm/bridge: sii902x: make audio mclk optional
-Date:   Mon, 22 Jul 2019 18:06:00 +0200
-Message-ID: <1563811560-29589-4-git-send-email-olivier.moysan@st.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1563811560-29589-1-git-send-email-olivier.moysan@st.com>
-References: <1563811560-29589-1-git-send-email-olivier.moysan@st.com>
+        id S1729139AbfGVQUs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 12:20:48 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:13460 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727743AbfGVQUs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 12:20:48 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d35e25c0000>; Mon, 22 Jul 2019 09:20:44 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Mon, 22 Jul 2019 09:20:46 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Mon, 22 Jul 2019 09:20:46 -0700
+Received: from [10.2.164.85] (172.20.13.39) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 22 Jul
+ 2019 16:20:44 +0000
+Subject: Re: [PATCH V6 01/21] irqchip: tegra: Do not disable COP IRQ during
+ suspend
+To:     Dmitry Osipenko <digetx@gmail.com>,
+        Marc Zyngier <marc.zyngier@arm.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>,
+        <linus.walleij@linaro.org>, <stefan@agner.ch>,
+        <mark.rutland@arm.com>
+CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
+        <josephl@nvidia.com>, <talho@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com>
+ <1563738060-30213-2-git-send-email-skomatineni@nvidia.com>
+ <f6582e43-168e-1b7e-9db8-3d263bc3ba0d@gmail.com>
+ <20c1d733-60f5-6375-c03c-639de5e41739@arm.com>
+ <0bee8775-756f-adad-4597-8cad53017718@gmail.com>
+From:   Sowjanya Komatineni <skomatineni@nvidia.com>
+Message-ID: <a2ecc3ad-b7e9-9398-d59b-c7d3fbbd10bb@nvidia.com>
+Date:   Mon, 22 Jul 2019 09:21:21 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.23.16]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-22_12:,,
- signatures=0
+In-Reply-To: <0bee8775-756f-adad-4597-8cad53017718@gmail.com>
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: quoted-printable
+Content-Language: en-US
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1563812444; bh=KoPOkUCxjwGMbG3Gc8WkHlcbvUciHbZClFWJEPeqvKI=;
+        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
+         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
+         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
+         Content-Language;
+        b=ZeKcmgRLqAEbKk/9mE2fo50mf6Mjn37p2pZwD5io4uj4T1brt7Eej/zHrd9sZDgTo
+         amTsFQ/aMMHwPtQQjnII++OF+hGNIwNn2FRRuZJ/Vf8AQ319NYmZbNNA6YGKIF7JhD
+         mm+Cn5O01FtI6GuCqCfVECWL0ds+VnuqIt+ukTiiC0qAU6lK1D6cXFSJn7fK81jICP
+         6k2XJqTj+VQEFI7x4F049l2w3z/2vv6h9ma4Zw6qh9fkkjrfVK/vtwQgvwSVToC1rg
+         avtfIzbPemIRLYP8bnEsT7Re6LOvJZcgdc0lj9GzWO0Mo3tAZOXgOZluQlI0WWDj/2
+         OKz3YiDwVLrCw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The master clock on i2s bus is not mandatory,
-as sii902X internal PLL can be used instead.
-Make use of mclk optional.
 
-Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
-Reviewed-by: Jyri Sarha <jsarha@ti.com>
-Acked-by: Andrzej Hajda <a.hajda@samsung.com>
----
- drivers/gpu/drm/bridge/sii902x.c | 19 ++++++++++---------
- 1 file changed, 10 insertions(+), 9 deletions(-)
+On 7/22/19 3:57 AM, Dmitry Osipenko wrote:
+> 22.07.2019 13:13, Marc Zyngier =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>> On 22/07/2019 10:54, Dmitry Osipenko wrote:
+>>> 21.07.2019 22:40, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+>>>> Tegra210 platforms use sc7 entry firmware to program Tegra LP0/SC7 ent=
+ry
+>>>> sequence and sc7 entry firmware is run from COP/BPMP-Lite.
+>>>>
+>>>> So, COP/BPMP-Lite still need IRQ function to finish SC7 suspend sequen=
+ce
+>>>> for Tegra210.
+>>>>
+>>>> This patch has fix for leaving the COP IRQ enabled for Tegra210 during
+>>>> interrupt controller suspend operation.
+>>>>
+>>>> Acked-by: Thierry Reding <treding@nvidia.com>
+>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>>>> ---
+>>>>   drivers/irqchip/irq-tegra.c | 20 ++++++++++++++++++--
+>>>>   1 file changed, 18 insertions(+), 2 deletions(-)
+>>>>
+>>>> diff --git a/drivers/irqchip/irq-tegra.c b/drivers/irqchip/irq-tegra.c
+>>>> index e1f771c72fc4..851f88cef508 100644
+>>>> --- a/drivers/irqchip/irq-tegra.c
+>>>> +++ b/drivers/irqchip/irq-tegra.c
+>>>> @@ -44,6 +44,7 @@ static unsigned int num_ictlrs;
+>>>>  =20
+>>>>   struct tegra_ictlr_soc {
+>>>>   	unsigned int num_ictlrs;
+>>>> +	bool supports_sc7;
+>>>>   };
+>>>>  =20
+>>>>   static const struct tegra_ictlr_soc tegra20_ictlr_soc =3D {
+>>>> @@ -56,6 +57,7 @@ static const struct tegra_ictlr_soc tegra30_ictlr_so=
+c =3D {
+>>>>  =20
+>>>>   static const struct tegra_ictlr_soc tegra210_ictlr_soc =3D {
+>>>>   	.num_ictlrs =3D 6,
+>>>> +	.supports_sc7 =3D true,
+>>>>   };
+>>>>  =20
+>>>>   static const struct of_device_id ictlr_matches[] =3D {
+>>>> @@ -67,6 +69,7 @@ static const struct of_device_id ictlr_matches[] =3D=
+ {
+>>>>  =20
+>>>>   struct tegra_ictlr_info {
+>>>>   	void __iomem *base[TEGRA_MAX_NUM_ICTLRS];
+>>>> +	const struct tegra_ictlr_soc *soc;
+>>>>   #ifdef CONFIG_PM_SLEEP
+>>>>   	u32 cop_ier[TEGRA_MAX_NUM_ICTLRS];
+>>>>   	u32 cop_iep[TEGRA_MAX_NUM_ICTLRS];
+>>>> @@ -147,8 +150,20 @@ static int tegra_ictlr_suspend(void)
+>>>>   		lic->cop_ier[i] =3D readl_relaxed(ictlr + ICTLR_COP_IER);
+>>>>   		lic->cop_iep[i] =3D readl_relaxed(ictlr + ICTLR_COP_IEP_CLASS);
+>>>>  =20
+>>>> -		/* Disable COP interrupts */
+>>>> -		writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
+>>>> +		/*
+>>>> +		 * AVP/COP/BPMP-Lite is the Tegra boot processor.
+>>>> +		 *
+>>>> +		 * Tegra210 system suspend flow uses sc7entry firmware which
+>>>> +		 * is executed by COP/BPMP and it includes disabling COP IRQ,
+>>>> +		 * clamping CPU rail, turning off VDD_CPU, and preparing the
+>>>> +		 * system to go to SC7/LP0.
+>>>> +		 *
+>>>> +		 * COP/BPMP wakes up when COP IRQ is triggered and runs
+>>>> +		 * sc7entry-firmware. So need to keep COP interrupt enabled.
+>>>> +		 */
+>>>> +		if (!lic->soc->supports_sc7)
+>>>> +			/* Disable COP interrupts if SC7 is not supported */
+>>> All Tegra SoCs support SC7, hence the 'supports_sc7' and the comment
+>>> doesn't sound correct to me. Something like 'firmware_sc7' should suit
+>>> better here.
+>> If what you're saying is true, then the whole patch is wrong, and the
+>> SC7 property should come from DT.
+> It should be safe to assume that all of existing Tegra210 devices use
+> the firmware for SC7, hence I wouldn't say that the patch is entirely
+> wrong. To me it's not entirely correct.
 
-diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/sii902x.c
-index 962931c20efe..a323815aa9b6 100644
---- a/drivers/gpu/drm/bridge/sii902x.c
-+++ b/drivers/gpu/drm/bridge/sii902x.c
-@@ -568,13 +568,14 @@ static int sii902x_audio_hw_params(struct device *dev, void *data,
- 		return ret;
- 	}
- 
--	mclk_rate = clk_get_rate(sii902x->audio.mclk);
--
--	ret = sii902x_select_mclk_div(&i2s_config_reg, params->sample_rate,
--				      mclk_rate);
--	if (mclk_rate != ret * params->sample_rate)
--		dev_dbg(dev, "Inaccurate reference clock (%ld/%d != %u)\n",
--			mclk_rate, ret, params->sample_rate);
-+	if (sii902x->audio.mclk) {
-+		mclk_rate = clk_get_rate(sii902x->audio.mclk);
-+		ret = sii902x_select_mclk_div(&i2s_config_reg,
-+					      params->sample_rate, mclk_rate);
-+		if (mclk_rate != ret * params->sample_rate)
-+			dev_dbg(dev, "Inaccurate reference clock (%ld/%d != %u)\n",
-+				mclk_rate, ret, params->sample_rate);
-+	}
- 
- 	mutex_lock(&sii902x->mutex);
- 
-@@ -751,11 +752,11 @@ static int sii902x_audio_codec_init(struct sii902x *sii902x,
- 		sii902x->audio.i2s_fifo_sequence[i] |= audio_fifo_id[i] |
- 			i2s_lane_id[lanes[i]] |	SII902X_TPI_I2S_FIFO_ENABLE;
- 
--	sii902x->audio.mclk = devm_clk_get(dev, "mclk");
-+	sii902x->audio.mclk = devm_clk_get_optional(dev, "mclk");
- 	if (IS_ERR(sii902x->audio.mclk)) {
- 		dev_err(dev, "%s: No clock (audio mclk) found: %ld\n",
- 			__func__, PTR_ERR(sii902x->audio.mclk));
--		return 0;
-+		return PTR_ERR(sii902x->audio.mclk);
- 	}
- 
- 	sii902x->audio.pdev = platform_device_register_data(
--- 
-2.7.4
+Yes, all existing Tegra210 platforms uses sc7 entry firmware for SC7 and=20
+AVP/COP IRQ need to be kept enabled as during suspend ATF triggers IRQ=20
+to COP for SC7 entry fw execution.
+
+
+>>>> +			writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
+>>> Secondly, I'm also not sure why COP interrupts need to be disabled for
+>>> pre-T210 at all, since COP is unused. This looks to me like it was
+>>> cut-n-pasted from downstream kernel without a good reason and could be
+>>> simply removed.
+>> Please verify that this is actually the case. Tegra-2 definitely needed
+>> some level of poking, and I'm not keen on changing anything there until
+>> you (or someone else) has verified it on actual HW (see e307cc8941fc).
+> Tested on Tegra20 and Tegra30, LP1 suspend-resume works perfectly fine
+> with all COP bits removed from the driver.
+>
+> AFAIK, the reason why downstream needed that disabling is that it uses
+> proprietary firmware which is running on the COP and that firmware is
+> usually a BLOB audio/video DEC-ENC driver which doesn't cleanup
+> interrupts after itself. That firmware is not applicable for the
+> upstream kernel, hence there is no need to care about it.
+>
+>> Joseph, can you please shed some light here?
+
+SC7 entry flow uses 3rd party ATF (arm-trusted FW) blob which is the one th=
+at actually loads SC7 entry firmware and triggers IRQ to AVP/COP which caus=
+es COP to wakeup and run SC7 entry FW.
+
+So when SC7 support is enabled, IRQ need to be kept enabled and when SC7 FW=
+ starts execution, it will disable COP IRQ.
+
 
