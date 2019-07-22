@@ -2,75 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E7C270BAF
-	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 23:41:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 60EEC70BEB
+	for <lists+devicetree@lfdr.de>; Mon, 22 Jul 2019 23:46:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732801AbfGVVkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 17:40:42 -0400
-Received: from mail.kernel.org ([198.145.29.99]:56700 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732789AbfGVVkk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 17:40:40 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E9D9F21951;
-        Mon, 22 Jul 2019 21:40:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563831640;
-        bh=y0mcCIsdo0FcATXDcOqG1yEJ21Gs2qykOfjRdssCnxw=;
-        h=In-Reply-To:References:Subject:To:Cc:From:Date:From;
-        b=LlEINdah35joUMLAd7h7JkAX4r+iajAkvWTpl0RJK1BI/wTmyCqxiaVOpZR6MmL5C
-         tShW8EN8CPJ5jy8e+ctwKH1V6MC+kxBVXl/FZNH8197I1dU170tYoYePP+4OsklIyt
-         GVBnYiV2pgosObI4Xw/E4i54QatiK2/6phwyLAlY=
-Content-Type: text/plain; charset="utf-8"
+        id S1732636AbfGVVqb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 17:46:31 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:36654 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729624AbfGVVqb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 17:46:31 -0400
+Received: by mail-io1-f66.google.com with SMTP id o9so77437161iom.3
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 14:46:31 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=VWIZBvI5lCbidvXKY6O84lqCZ2AjaGY2QVwWc2bhom0=;
+        b=QRxolnZMSRjr7BTm00Z8wwbzzUyOLZZvVERqLil5ipazTc2XhnIF6C70R84dF+etKK
+         WpObHA4zIcJv8+m05XstTbyF6sBH1EGDTFBnPfsk6yOxc+A+b+xply+hM1A5RzrT6HuM
+         ROpw+KdsvciRm3w1quQySFv3XIOP7tbwz4KFM/jO2etmZxVfPAwmNwqV/sHgdZ4lVw8X
+         0ucGKbgZRWgL5ixPf9JnKL7ngRO65i1fCFJI/CSQUr12AdIakOCqkGfZg29b/es/N/N0
+         aIHkJHZxbOYMPazFYdIeLMsmd2ecRQ5bVatC05ATHZI3daEtEXkF5QO2W7Nsv7frreB1
+         0NsQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=VWIZBvI5lCbidvXKY6O84lqCZ2AjaGY2QVwWc2bhom0=;
+        b=LTDA+erMzHwBMXKvVLw0ZPVkiMPnZgC/eIfsGsQl4GInedOJ47R/Zh8M4o+77AcFtI
+         h6PgxkREjVaQWmvj2rYXyG+4FRDxa6O9d7tZ89MJHHwEkMPNndukxaGhU8vNXUgW7SoL
+         dIqUxEjRNYgC+E3qku0otbk9eaYTA+vfvNi1VpTmuJeMxDUHGCE25/iumia3KXfuNfqR
+         rHdZET9tBv6OosIMvoaK2d+AOzMn5CYcZH1uC8b6MTIhTjxJL4dFSk1th5426qxr3qg7
+         TukACk1ruFMD/dOGwMBzlcVRn/FmHIVr8BQ7mQZptLK7LwhSOCpmBE11WLwawIr7npE1
+         Eo/w==
+X-Gm-Message-State: APjAAAU8yRE3dh847yQe02LKE27VxEpxxWJIEP9V5Qq7++icYfmnQ6cb
+        JcDAwj63+8iXKjV41slrwnxKXg==
+X-Google-Smtp-Source: APXvYqyd2dW888lhV8CkKjbqoz2NLahTQzYkKlmc3wSjVe+iOryGMbi075TFpJ6Xc0oCjN8Cgg19Lg==
+X-Received: by 2002:a02:1607:: with SMTP id a7mr73356673jaa.123.1563831990677;
+        Mon, 22 Jul 2019 14:46:30 -0700 (PDT)
+Received: from localhost (67-0-62-24.albq.qwest.net. [67.0.62.24])
+        by smtp.gmail.com with ESMTPSA id x13sm30725719ioj.18.2019.07.22.14.46.29
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 22 Jul 2019 14:46:29 -0700 (PDT)
+Date:   Mon, 22 Jul 2019 14:46:28 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Yash Shah <yash.shah@sifive.com>
+cc:     davem@davemloft.net, robh+dt@kernel.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-riscv@lists.infradead.org, mark.rutland@arm.com,
+        palmer@sifive.com, aou@eecs.berkeley.edu,
+        nicolas.ferre@microchip.com, ynezz@true.cz, sachin.ghadi@sifive.com
+Subject: Re: [PATCH 2/3] macb: Update compatibility string for SiFive
+ FU540-C000
+In-Reply-To: <1563534631-15897-2-git-send-email-yash.shah@sifive.com>
+Message-ID: <alpine.DEB.2.21.9999.1907221446090.5793@viisi.sifive.com>
+References: <1563534631-15897-1-git-send-email-yash.shah@sifive.com> <1563534631-15897-2-git-send-email-yash.shah@sifive.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190709182018.23193-2-gch981213@gmail.com>
-References: <20190709182018.23193-1-gch981213@gmail.com> <20190709182018.23193-2-gch981213@gmail.com>
-Subject: Re: [PATCH 1/5] MIPS: ralink: add dt binding header for mt7621-pll
-To:     "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        open list <linux-kernel@vger.kernel.org>
-Cc:     Michael Turquette <mturquette@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
-        John Crispin <john@phrozen.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Weijie Gao <hackpascal@gmail.com>, NeilBrown <neil@brown.name>,
-        Chuanhong Guo <gch981213@gmail.com>,
-        Rob Herring <robh@kernel.org>
-From:   Stephen Boyd <sboyd@kernel.org>
-User-Agent: alot/0.8.1
-Date:   Mon, 22 Jul 2019 14:40:39 -0700
-Message-Id: <20190722214039.E9D9F21951@mail.kernel.org>
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The subject of this patch is confusing. Not sure what it has to do with
-"MIPS:" so maybe remove that and prefix it "dt-bindings: clock:"
-instead.
+On Fri, 19 Jul 2019, Yash Shah wrote:
 
-Quoting Chuanhong Guo (2019-07-09 11:20:14)
-> This patch adds dt binding header for mediatek,mt7621-pll
->=20
-> Signed-off-by: Weijie Gao <hackpascal@gmail.com>
-> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-> ---
+> Update the compatibility string for SiFive FU540-C000 as per the new
+> string updated in the binding doc.
+> Reference: https://lkml.org/lkml/2019/7/17/200
+> 
+> Signed-off-by: Yash Shah <yash.shah@sifive.com>
 
-Otherwise looks ok to me. Should I apply it to clk tree?
+Tested-by: Paul Walmsley <paul.walmsley@sifive.com>
 
->  include/dt-bindings/clock/mt7621-clk.h | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
->  create mode 100644 include/dt-bindings/clock/mt7621-clk.h
->=20
+
+- Paul
