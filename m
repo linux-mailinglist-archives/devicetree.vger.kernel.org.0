@@ -2,150 +2,385 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F5770CFC
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 01:09:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0162A70D59
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 01:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387464AbfGVXJi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 19:09:38 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:42217 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733309AbfGVXJh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 19:09:37 -0400
-Received: by mail-io1-f66.google.com with SMTP id e20so47385407iob.9
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 16:09:37 -0700 (PDT)
+        id S1730790AbfGVXdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 19:33:24 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:37594 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730604AbfGVXdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 19:33:23 -0400
+Received: by mail-pl1-f196.google.com with SMTP id b3so19813476plr.4
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 16:33:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=TzlfJdYgrQoIt9U3A/d4qiVQDQEbWHWLcVCY5/nV3Ik=;
+        b=jzNyCvqdXI+gPekP2kX06K2bwc10ADvouwz8paxumGw+fYLrYsu8TkHyWZxl7MWbAg
+         33NcN3gdS6eJFgPb7/ljujmHYQmSc5NJ78mTYoqT5YEXUmn5mT956yR8VhPKrM1LbAx2
+         kTpZW0LA/se3jCZd6sZU0+UKJyWHbvBLFRKA9NvUFCG1n735WHXriy9Yme350DH8xXeh
+         nHn/X0rsSrcjqWdoo0Tcku880AXerzX4I37QmRnSgfp2AxHQrp99YlJY7x4AvSJ1xA9r
+         j3Wp0eID4u5oz/HuyafSOH1Chq7qdpbxlyLi5mXB8jt4e68lYC4ZsCI4j5Uw9L/Twqjb
+         WayQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=JIVY0scrws0n+0lS4g7V+Mq86JsRh+PQcJfUzcwZnkc=;
-        b=pXr4ruVl3+FklCsCOgHThIOErDasaNtCHfWQbzuSGZ79WnGrB+ICCZRSGZsqCkHK96
-         VVyobP33Ytway8n+OsgcIoqKVIZIurBVbf4thW2HsmmyovvtBhPcF53pd5IxeBt0U4jN
-         L53H2bHSCsRkoHmUq70zVsAKRvT2uHe9t8VxneiZaD120mHO8hvuF9IQuvbpWgm1EHIk
-         hdtMhQcC/OWp0FSC6nqOQNtprnKQezsvcb05KNrMycbfKntzUM7ICyadGpsYm72Ouog7
-         zdrcwFGLRveg2QZUwT8jixAGTdHb4qWcWbDuwFn5zzjy/SEQCpjQVy7nTh97FKszwHZc
-         ZGMQ==
-X-Gm-Message-State: APjAAAXR9WCjw5UMcVgh4hcNkiM3PpObzGMzXFn5d4vXTXm0Txx30l1I
-        p+4KgTqOEVV2p1+F1Yx0zQ==
-X-Google-Smtp-Source: APXvYqy9LgzrVPClKUkOR6sch9M8xhmpFW7pfZ2HI0ujejed2YdxMrSMy3Lx2Q76aZ3tL1ZxaCx5dg==
-X-Received: by 2002:a02:340d:: with SMTP id x13mr76570423jae.125.1563836977019;
-        Mon, 22 Jul 2019 16:09:37 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id p3sm59830908iom.7.2019.07.22.16.09.36
+        bh=TzlfJdYgrQoIt9U3A/d4qiVQDQEbWHWLcVCY5/nV3Ik=;
+        b=AU0Q45qACRpsaersz0GQY/b5Sw7whAr6nQB8eQKTdp/xSw1TcUGLjGlPE+D1l86a9i
+         JQKtksORsKfqNdAlG75ZBWvIlQUDLO6alpcjBy9jdIVy2ZjWq5dQK2+Owm1UZUsWN/JI
+         9a5SfVJhii0ek9BTphSgLlCHFFjiiQeVuizCIBYj57qyyfKy2ri5Kd323fml0PvDFiLj
+         plO3rhjEtWWa4XrA5Qq5Fi/SJ5PbWNTHvKc5unKP9cO1smlKegMzswTyDm2riqspfKFe
+         cwcNbfE//3XR7hK/3Yk80/ATsaX8rMziy7ii3ZWVJH833uXUtZ7lgI//Bkr8IDfd4cdL
+         zlfQ==
+X-Gm-Message-State: APjAAAWhKM8APUZOGsCG8z3b0UmKbXzcbKfoflJrJq/JkQHG2Rts2d6l
+        bYfuxD8yMsIMq0CZsZ0o7jIIxQ==
+X-Google-Smtp-Source: APXvYqync7PdiwzGEaE/N0XkQSXFteGf4DXRBZAS/FIRbPwBg8yeV9IuRcToWRndIhs3H91Dvh+7tw==
+X-Received: by 2002:a17:902:5ac4:: with SMTP id g4mr79482054plm.80.1563838402751;
+        Mon, 22 Jul 2019 16:33:22 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id o14sm33507506pjp.19.2019.07.22.16.33.21
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 22 Jul 2019 16:09:36 -0700 (PDT)
-Date:   Mon, 22 Jul 2019 17:09:35 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jacky Bai <ping.bai@nxp.com>
-Cc:     "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>
-Subject: Re: [RESEND PATCH 1/3] dt-bindings: power: Add power domain binding
- for i.mx8m family
-Message-ID: <20190722230935.GA12833@bogus>
-References: <20190702100832.29718-1-ping.bai@nxp.com>
- <20190702100832.29718-2-ping.bai@nxp.com>
+        Mon, 22 Jul 2019 16:33:22 -0700 (PDT)
+Date:   Mon, 22 Jul 2019 16:34:44 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Cc:     agross@kernel.org, benjamin.tissoires@redhat.com,
+        dmitry.torokhov@gmail.com, jikos@kernel.org, hdegoede@redhat.com,
+        lee.jones@linaro.org, xnox@ubuntu.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-input@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v8 3/5] arm64: dts: qcom: Add Lenovo Miix 630
+Message-ID: <20190722233444.GA7352@tuxbook-pro>
+References: <20190621144854.38568-1-jeffrey.l.hugo@gmail.com>
+ <20190621145450.38741-1-jeffrey.l.hugo@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190702100832.29718-2-ping.bai@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190621145450.38741-1-jeffrey.l.hugo@gmail.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 02, 2019 at 10:03:41AM +0000, Jacky Bai wrote:
-> Add the binding doc of power domain for i.MX8M SOC family.
+On Fri 21 Jun 07:54 PDT 2019, Jeffrey Hugo wrote:
+
+> This adds the initial DT for the Lenovo Miix 630 laptop.  Supported
+> functionality includes USB (host), microSD-card, keyboard, and trackpad.
 > 
-> Signed-off-by: Jacky Bai <ping.bai@nxp.com>
+> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+
+Applied patch 3-5
+
+Thanks,
+Bjorn
+
 > ---
->  .../bindings/power/fsl,imx8m-genpd.txt        | 46 +++++++++++++++++++
->  1 file changed, 46 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/power/fsl,imx8m-genpd.txt
+>  arch/arm64/boot/dts/qcom/Makefile             |   1 +
+>  .../boot/dts/qcom/msm8998-clamshell.dtsi      | 240 ++++++++++++++++++
+>  .../boot/dts/qcom/msm8998-lenovo-miix-630.dts |  30 +++
+>  3 files changed, 271 insertions(+)
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi
+>  create mode 100644 arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
 > 
-> diff --git a/Documentation/devicetree/bindings/power/fsl,imx8m-genpd.txt b/Documentation/devicetree/bindings/power/fsl,imx8m-genpd.txt
+> diff --git a/arch/arm64/boot/dts/qcom/Makefile b/arch/arm64/boot/dts/qcom/Makefile
+> index 21d548f02d39..c3e4307bcbd4 100644
+> --- a/arch/arm64/boot/dts/qcom/Makefile
+> +++ b/arch/arm64/boot/dts/qcom/Makefile
+> @@ -6,6 +6,7 @@ dtb-$(CONFIG_ARCH_QCOM)	+= msm8916-mtp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8992-bullhead-rev-101.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8994-angler-rev-101.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8996-mtp.dtb
+> +dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-lenovo-miix-630.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= msm8998-mtp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= sdm845-mtp.dtb
+>  dtb-$(CONFIG_ARCH_QCOM)	+= qcs404-evb-1000.dtb
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi b/arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi
 > new file mode 100644
-> index 000000000000..a92a7103de38
+> index 000000000000..9682d4dd7496
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/power/fsl,imx8m-genpd.txt
-> @@ -0,0 +1,46 @@
-> +Device Tree Bindings for Freescale i.MX8M Generic Power Domain
-> +==============================================================
-> +The binding for the i.MX8M Generic power Domain[1].
+> +++ b/arch/arm64/boot/dts/qcom/msm8998-clamshell.dtsi
+> @@ -0,0 +1,240 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright (c) 2019, Jeffrey Hugo. All rights reserved. */
 > +
-> +[1] Documentation/devicetree/bindings/power/power_domain.txt
+> +/*
+> + * Common include for MSM8998 clamshell devices, ie the Lenovo Miix 630,
+> + * Asus NovaGo TP370QL, and HP Envy x2.  All three devices are basically the
+> + * same, with differences in peripherals.
+> + */
 > +
-> +Required properties:
+> +#include "msm8998.dtsi"
+> +#include "pm8998.dtsi"
+> +#include "pm8005.dtsi"
 > +
-> + - compatible: should be of:
-> +	- "fsl,imx8m-power-domain"
-> + - #power-domain-cells: Number of cells in a PM domain Specifier, must be 0
-> + - domain-index: should be the domain index number need to pass to TF-A
-> + - domain-name: the name of this pm domain
-> +
-> +Optional properties:
-> + - clocks: a number of phandles to clocks that need to be enabled during
-> +   domain power-up sequence to ensure reset propagation into devices
-> +   located inside this power domain
-
-Isn't that firmware's problem?
-
-> + - power-supply: Power supply used to power the domain
-> + - parent-domains: the phandle to the parent power domain
-> +
-> +example:
-> +	vpu_g1_pd: vpug1-pd {
-
-What's this a child of?
-
-Use generic node names.
-
-> +		compatible = "fsl,imx8mm-pm-domain";
-> +		#power-domain-cells = <0>;
-
-I'm usually not a fan when I see a single domain per provider. Why can't 
-you have firmware be a single provider with multiple domains?
-
-> +		domain-index = <6>;
-
-Don't create your own index properties.
-
-> +		domain-name = "vpu_g1";
-
-Not a standard name. Why do you need this? (Hint: we'd already have a 
-standard name if you did.)
-
-> +		parent-domains = <&vpumix_pd>;
-
-We already have a standard way to do this.
-
-> +		clocks = <&clk IMX8MM_CLK_VPU_G1_ROOT>;
+> +/ {
+> +	chosen {
 > +	};
 > +
-> +
-> +Specifying Power domain for IP modules
-> +======================================
-> +
-> +IP cores belonging to a power domain should contain a 'power-domains'
-> +property that is a phandle for PGC node representing the domain.
-> +
-> +Example of a device that is part of the vpu_g1 power domain:
-> +	vpu_g1: vpu_g1@38300000 {
-
-video-codec@...
-
-> +		/* ... */
-> +		interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-> +		interrupt-names = "irq_hantro";
-> +		/* ... */
-> +		power-domains = <&vpu_g1_pd>;
+> +	vph_pwr: vph-pwr-regulator {
+> +		compatible = "regulator-fixed";
+> +		regulator-name = "vph_pwr";
+> +		regulator-always-on;
+> +		regulator-boot-on;
 > +	};
+> +};
+> +
+> +&qusb2phy {
+> +	status = "okay";
+> +
+> +	vdda-pll-supply = <&vreg_l12a_1p8>;
+> +	vdda-phy-dpdm-supply = <&vreg_l24a_3p075>;
+> +};
+> +
+> +&rpm_requests {
+> +	pm8998-regulators {
+> +		compatible = "qcom,rpm-pm8998-regulators";
+> +
+> +		vdd_s1-supply = <&vph_pwr>;
+> +		vdd_s2-supply = <&vph_pwr>;
+> +		vdd_s3-supply = <&vph_pwr>;
+> +		vdd_s4-supply = <&vph_pwr>;
+> +		vdd_s5-supply = <&vph_pwr>;
+> +		vdd_s6-supply = <&vph_pwr>;
+> +		vdd_s7-supply = <&vph_pwr>;
+> +		vdd_s8-supply = <&vph_pwr>;
+> +		vdd_s9-supply = <&vph_pwr>;
+> +		vdd_s10-supply = <&vph_pwr>;
+> +		vdd_s11-supply = <&vph_pwr>;
+> +		vdd_s12-supply = <&vph_pwr>;
+> +		vdd_s13-supply = <&vph_pwr>;
+> +		vdd_l1_l27-supply = <&vreg_s7a_1p025>;
+> +		vdd_l2_l8_l17-supply = <&vreg_s3a_1p35>;
+> +		vdd_l3_l11-supply = <&vreg_s7a_1p025>;
+> +		vdd_l4_l5-supply = <&vreg_s7a_1p025>;
+> +		vdd_l6-supply = <&vreg_s5a_2p04>;
+> +		vdd_l7_l12_l14_l15-supply = <&vreg_s5a_2p04>;
+> +		vdd_l9-supply = <&vph_pwr>;
+> +		vdd_l10_l23_l25-supply = <&vph_pwr>;
+> +		vdd_l13_l19_l21-supply = <&vph_pwr>;
+> +		vdd_l16_l28-supply = <&vph_pwr>;
+> +		vdd_l18_l22-supply = <&vph_pwr>;
+> +		vdd_l20_l24-supply = <&vph_pwr>;
+> +		vdd_l26-supply = <&vreg_s3a_1p35>;
+> +		vdd_lvs1_lvs2-supply = <&vreg_s4a_1p8>;
+> +
+> +		vreg_s3a_1p35: s3 {
+> +			regulator-min-microvolt = <1352000>;
+> +			regulator-max-microvolt = <1352000>;
+> +		};
+> +		vreg_s4a_1p8: s4 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +			regulator-allow-set-load;
+> +		};
+> +		vreg_s5a_2p04: s5 {
+> +			regulator-min-microvolt = <1904000>;
+> +			regulator-max-microvolt = <2040000>;
+> +		};
+> +		vreg_s7a_1p025: s7 {
+> +			regulator-min-microvolt = <900000>;
+> +			regulator-max-microvolt = <1028000>;
+> +		};
+> +		vreg_l1a_0p875: l1 {
+> +			regulator-min-microvolt = <880000>;
+> +			regulator-max-microvolt = <880000>;
+> +			regulator-allow-set-load;
+> +		};
+> +		vreg_l2a_1p2: l2 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +			regulator-allow-set-load;
+> +		};
+> +		vreg_l3a_1p0: l3 {
+> +			regulator-min-microvolt = <1000000>;
+> +			regulator-max-microvolt = <1000000>;
+> +		};
+> +		vreg_l5a_0p8: l5 {
+> +			regulator-min-microvolt = <800000>;
+> +			regulator-max-microvolt = <800000>;
+> +		};
+> +		vreg_l6a_1p8: l6 {
+> +			regulator-min-microvolt = <1808000>;
+> +			regulator-max-microvolt = <1808000>;
+> +		};
+> +		vreg_l7a_1p8: l7 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +		vreg_l8a_1p2: l8 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +		vreg_l9a_1p8: l9 {
+> +			regulator-min-microvolt = <1808000>;
+> +			regulator-max-microvolt = <2960000>;
+> +		};
+> +		vreg_l10a_1p8: l10 {
+> +			regulator-min-microvolt = <1808000>;
+> +			regulator-max-microvolt = <2960000>;
+> +		};
+> +		vreg_l11a_1p0: l11 {
+> +			regulator-min-microvolt = <1000000>;
+> +			regulator-max-microvolt = <1000000>;
+> +		};
+> +		vreg_l12a_1p8: l12 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +		vreg_l13a_2p95: l13 {
+> +			regulator-min-microvolt = <1808000>;
+> +			regulator-max-microvolt = <2960000>;
+> +		};
+> +		vreg_l14a_1p88: l14 {
+> +			regulator-min-microvolt = <1880000>;
+> +			regulator-max-microvolt = <1880000>;
+> +		};
+> +		vreg_15a_1p8: l15 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +		vreg_l16a_2p7: l16 {
+> +			regulator-min-microvolt = <2704000>;
+> +			regulator-max-microvolt = <2704000>;
+> +		};
+> +		vreg_l17a_1p3: l17 {
+> +			regulator-min-microvolt = <1304000>;
+> +			regulator-max-microvolt = <1304000>;
+> +		};
+> +		vreg_l18a_2p7: l18 {
+> +			regulator-min-microvolt = <2704000>;
+> +			regulator-max-microvolt = <2704000>;
+> +		};
+> +		vreg_l19a_3p0: l19 {
+> +			regulator-min-microvolt = <3008000>;
+> +			regulator-max-microvolt = <3008000>;
+> +		};
+> +		vreg_l20a_2p95: l20 {
+> +			regulator-min-microvolt = <2960000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-allow-set-load;
+> +		};
+> +		vreg_l21a_2p95: l21 {
+> +			regulator-min-microvolt = <2960000>;
+> +			regulator-max-microvolt = <2960000>;
+> +			regulator-allow-set-load;
+> +			regulator-system-load = <800000>;
+> +		};
+> +		vreg_l22a_2p85: l22 {
+> +			regulator-min-microvolt = <2864000>;
+> +			regulator-max-microvolt = <2864000>;
+> +		};
+> +		vreg_l23a_3p3: l23 {
+> +			regulator-min-microvolt = <3312000>;
+> +			regulator-max-microvolt = <3312000>;
+> +		};
+> +		vreg_l24a_3p075: l24 {
+> +			regulator-min-microvolt = <3088000>;
+> +			regulator-max-microvolt = <3088000>;
+> +		};
+> +		vreg_l25a_3p3: l25 {
+> +			regulator-min-microvolt = <3104000>;
+> +			regulator-max-microvolt = <3312000>;
+> +		};
+> +		vreg_l26a_1p2: l26 {
+> +			regulator-min-microvolt = <1200000>;
+> +			regulator-max-microvolt = <1200000>;
+> +		};
+> +		vreg_l28_3p0: l28 {
+> +			regulator-min-microvolt = <3008000>;
+> +			regulator-max-microvolt = <3008000>;
+> +		};
+> +
+> +		vreg_lvs1a_1p8: lvs1 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +		vreg_lvs2a_1p8: lvs2 {
+> +			regulator-min-microvolt = <1800000>;
+> +			regulator-max-microvolt = <1800000>;
+> +		};
+> +
+> +	};
+> +};
+> +
+> +&tlmm {
+> +	gpio-reserved-ranges = <0 4>, <81 4>;
+> +
+> +	touchpad: touchpad {
+> +		config {
+> +			pins = "gpio123";
+> +			bias-pull-up;           /* pull up */
+> +		};
+> +	};
+> +};
+> +
+> +&sdhc2 {
+> +	status = "okay";
+> +
+> +	vmmc-supply = <&vreg_l21a_2p95>;
+> +	vqmmc-supply = <&vreg_l13a_2p95>;
+> +
+> +	pinctrl-names = "default", "sleep";
+> +	pinctrl-0 = <&sdc2_clk_on  &sdc2_cmd_on  &sdc2_data_on  &sdc2_cd_on>;
+> +	pinctrl-1 = <&sdc2_clk_off &sdc2_cmd_off &sdc2_data_off &sdc2_cd_off>;
+> +};
+> +
+> +&usb3 {
+> +	status = "okay";
+> +};
+> +
+> +&usb3_dwc3 {
+> +	dr_mode = "host"; /* Force to host until we have Type-C hooked up */
+> +};
+> +
+> +&usb3phy {
+> +	status = "okay";
+> +
+> +	vdda-phy-supply = <&vreg_l1a_0p875>;
+> +	vdda-pll-supply = <&vreg_l2a_1p2>;
+> +};
+> diff --git a/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+> new file mode 100644
+> index 000000000000..407c6a32911c
+> --- /dev/null
+> +++ b/arch/arm64/boot/dts/qcom/msm8998-lenovo-miix-630.dts
+> @@ -0,0 +1,30 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/* Copyright (c) 2019, Jeffrey Hugo. All rights reserved. */
+> +
+> +/dts-v1/;
+> +
+> +#include "msm8998-clamshell.dtsi"
+> +
+> +/ {
+> +	model = "Lenovo Miix 630";
+> +	compatible = "lenovo,miix-630", "qcom,msm8998";
+> +};
+> +
+> +&blsp1_i2c6 {
+> +	status = "okay";
+> +
+> +	keyboard@3a {
+> +		compatible = "hid-over-i2c";
+> +		interrupt-parent = <&tlmm>;
+> +		interrupts = <0x79 IRQ_TYPE_LEVEL_LOW>;
+> +		reg = <0x3a>;
+> +		hid-descr-addr = <0x0001>;
+> +
+> +		pinctrl-names = "default";
+> +		pinctrl-0 = <&touchpad>;
+> +	};
+> +};
+> +
+> +&sdhc2 {
+> +	cd-gpios = <&tlmm 95 GPIO_ACTIVE_HIGH>;
+> +};
 > -- 
-> 2.21.0
+> 2.17.1
 > 
