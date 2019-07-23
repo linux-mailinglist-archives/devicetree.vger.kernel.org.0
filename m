@@ -2,138 +2,63 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C860D71B49
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 17:16:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A424171B61
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 17:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390835AbfGWPQB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 11:16:01 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:59536 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726819AbfGWPQB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 11:16:01 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 883192001D2;
-        Tue, 23 Jul 2019 17:15:58 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 7A1992000FF;
-        Tue, 23 Jul 2019 17:15:58 +0200 (CEST)
-Received: from fsr-ub1664-016.ea.freescale.net (fsr-ub1664-016.ea.freescale.net [10.171.71.216])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 1CEE9205DD;
-        Tue, 23 Jul 2019 17:15:58 +0200 (CEST)
-From:   Claudiu Manoil <claudiu.manoil@nxp.com>
-To:     "David S . Miller" <davem@davemloft.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        alexandru.marginean@nxp.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH net-next 3/3] arm64: dts: ls1028a: Enable eth port1 on the ls1028a QDS board
-Date:   Tue, 23 Jul 2019 18:15:55 +0300
-Message-Id: <1563894955-545-4-git-send-email-claudiu.manoil@nxp.com>
+        id S1730815AbfGWPSj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 11:18:39 -0400
+Received: from smtprelay-out1.synopsys.com ([198.182.61.142]:60730 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726405AbfGWPSi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 11:18:38 -0400
+Received: from mailhost.synopsys.com (mdc-mailhost1.synopsys.com [10.225.0.209])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id B9407C0C7D;
+        Tue, 23 Jul 2019 15:18:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1563895118; bh=+h2vDYvKU/Eqz/lBSbkDj8osIUzT6k7dY1OtU9w00zg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=lbgYaMQqZ9QqkfRQhzZ7pfqbF7+akNRNRB1qLjwphTRETosy78vv2HxZBhWcFFfmr
+         3hVLNPL+rq2VeMpc9O012q0rLnVqHaDxb4J/QaXp2KU2GtopnJzHCH0Yf3/P7VpC2x
+         595COp3jj9op/VALiB4cTtoc1y0qdc+Djp+2+yzi9dF2kkFp//bU8GylNZKkOBEbz+
+         sEfwXxe/2+1MUJNf7tlZZZuZO7G/lpL/nQTwKMsgk24aW3AKxWuiTgylXQVzwSaj7D
+         sMnxoqPlA+Vwr0i4zMwSU7ZjHdt1Fl6XTI05PTbAdDyODWFzYDshfBOEKrbAsvbtP0
+         Jbqll+MubWTcg==
+Received: from de02dwia024.internal.synopsys.com (de02dwia024.internal.synopsys.com [10.225.19.81])
+        by mailhost.synopsys.com (Postfix) with ESMTP id 14946A0057;
+        Tue, 23 Jul 2019 15:18:36 +0000 (UTC)
+From:   Luis Oliveira <Luis.Oliveira@synopsys.com>
+To:     p.zabel@pengutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Cc:     Joao.Pinto@synopsys.com, Luis Oliveira <Luis.Oliveira@synopsys.com>
+Subject: [RESEND V2 0/2] Add DesignWare IP support to simple reset
+Date:   Tue, 23 Jul 2019 17:17:26 +0200
+Message-Id: <1563895048-30038-1-git-send-email-luis.oliveira@synopsys.com>
 X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1563894955-545-1-git-send-email-claudiu.manoil@nxp.com>
-References: <1563894955-545-1-git-send-email-claudiu.manoil@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LS1028a has one Ethernet management interface. On the QDS board, the
-MDIO signals are multiplexed to either on-board AR8035 PHY device or
-to 4 PCIe slots allowing for SGMII cards.
-To enable the Ethernet ENETC Port 1, which can only be connected to a
-RGMII PHY, the multiplexer needs to be configured to route the MDIO to
-the AR8035 PHY.  The MDIO/MDC routing is controlled by bits 7:4 of FPGA
-board config register 0x54, and value 0 selects the on-board RGMII PHY.
-The FPGA board config registers are accessible on the i2c bus, at address
-0x66.
+This patch series adds a reset-simple compatible string for DesignWare
+IPs allowing active high and low resets inputs.
 
-The PF3 MDIO PCIe integrated endpoint device allows for centralized access
-to the MDIO bus.  Add the corresponding devicetree node and set it to be
-the MDIO bus parent.
+Also adds the corresponding documentation.
 
-Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
-Signed-off-by: Claudiu Manoil <claudiu.manoil@nxp.com>
----
- .../boot/dts/freescale/fsl-ls1028a-qds.dts    | 40 +++++++++++++++++++
- .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  6 +++
- 2 files changed, 46 insertions(+)
+Gustavo Pimentel (1):
+  reset: Add DesignWare IP support to simple reset
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-index de6ef39f3118..663c4b728c07 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-@@ -85,6 +85,26 @@
- 			system-clock-frequency = <25000000>;
- 		};
- 	};
-+
-+	mdio-mux {
-+		compatible = "mdio-mux-multiplexer";
-+		mux-controls = <&mux 0>;
-+		mdio-parent-bus = <&enetc_mdio_pf3>;
-+		#address-cells=<1>;
-+		#size-cells = <0>;
-+
-+		/* on-board RGMII PHY */
-+		mdio@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			qds_phy1: ethernet-phy@5 {
-+				/* Atheros 8035 */
-+				reg = <5>;
-+			};
-+		};
-+	};
- };
- 
- &duart0 {
-@@ -164,6 +184,26 @@
- 			};
- 		};
- 	};
-+
-+	fpga@66 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "fsl,ls1028aqds-fpga", "fsl,fpga-qixis-i2c",
-+			     "simple-mfd";
-+		reg = <0x66>;
-+
-+		mux: mux-controller {
-+			compatible = "reg-mux";
-+			#mux-control-cells = <1>;
-+			mux-reg-masks = <0x54 0xf0>; /* 0: reg 0x54, bits 7:4 */
-+		};
-+	};
-+
-+};
-+
-+&enetc_port1 {
-+	phy-handle = <&qds_phy1>;
-+	phy-connection-type = "rgmii-id";
- };
- 
- &sai1 {
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 7975519b4f56..de71153fda00 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -536,6 +536,12 @@
- 				compatible = "fsl,enetc";
- 				reg = <0x000100 0 0 0 0>;
- 			};
-+			enetc_mdio_pf3: mdio@0,3 {
-+				compatible = "fsl,enetc-mdio";
-+				reg = <0x000300 0 0 0 0>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
- 			ethernet@0,4 {
- 				compatible = "fsl,enetc-ptp";
- 				reg = <0x000400 0 0 0 0>;
+Luis Oliveira (1):
+  dt-bindings: Document the DesignWare IP reset bindings
+
+ .../devicetree/bindings/reset/snps,dw-reset.txt    | 30 ++++++++++++++++++++++
+ drivers/reset/Kconfig                              |  2 +-
+ drivers/reset/reset-simple.c                       |  3 +++
+ 3 files changed, 34 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/reset/snps,dw-reset.txt
+
 -- 
-2.17.1
+2.7.4
 
