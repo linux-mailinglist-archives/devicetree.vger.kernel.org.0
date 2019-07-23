@@ -2,97 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 98E6970EE1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 03:56:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4969270EED
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 04:04:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732139AbfGWB4l (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 21:56:41 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:42635 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727851AbfGWB4k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 21:56:40 -0400
-Received: by mail-pl1-f195.google.com with SMTP id ay6so19954726plb.9
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 18:56:40 -0700 (PDT)
+        id S1727607AbfGWCEy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 22:04:54 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:43514 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727224AbfGWCEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 22:04:54 -0400
+Received: by mail-pl1-f193.google.com with SMTP id 4so12954184pld.10
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 19:04:53 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=CzAyOVJiJ+crp0dyJDyW4Uoxcw0DAIBLgfBcpgWpRTE=;
-        b=LoYY1RAS2JNfm6BNv0oVp61iAaOaXZRwIMWDs+xz1wuORHIMPs5XMsgo95ZYK10qMV
-         Sk8m8TY1R2ZEqd17Nm1wVugMbXJkHIEEIPNvVfi+Mqxr/GdOGGVc2BqchZ5ie/vCOBX/
-         UZ1tOlpvGrLeUX+dNfUg6B9F2yTh3l78AwMin1IYI/NG1jC60eEFYPs3Mi95oggZZcbX
-         th9DY8cA3D4A8jbnTAdUPddIEaHBFJV5G+gW7dyTOw+rYf7ex45hyEbRBFGZaZKx6YCW
-         VNDP2zsaJJkyLJBw9HRjoLnkoIrkthWLHEx27PGfLqZI8JsgoxOZZMfKTyjVEt2ItovN
-         BmYg==
+        bh=c+fYefKdegWfzNVcvBNCZFAqK5d+WzXI5vtjxfFF6J8=;
+        b=zRFzuYvWEWhGryAT6Q8/QwGY+31z0WJLeKBR9uQowX7cZbFobNq11qUpTg8+BZ9xdX
+         geyyg7Y+iGQzwrwj3w8cE1UZojdY1o3jWGaU9cpggpJHJO1wmLY1aPQwKWhPKX7GxOIm
+         /NvsPv7aR2tvFuB2l39aNzgFqRfkVWHNr/zBjK6BcrfdIBv5z6Ljx1/ZPwVyrbRfH+fn
+         WC0xIll82mi599BW7YbJ6tFjpvgPx0Lgi5B03JE0YEPlBUchR3PWyTjQSVOMMOY5KJ2F
+         be5nLPczyeJJU4UOXcnq4KKqAfKifvC4IYRjLWX3B2c/N80/HngqF6zuF/cKP6wBQfJd
+         yM2g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=CzAyOVJiJ+crp0dyJDyW4Uoxcw0DAIBLgfBcpgWpRTE=;
-        b=OUcsKB5sedgK5sm9T0BebTmICW7XhQtmjWpn6UZOnVBzFIP66uqrhWfu+XVw3fm93Y
-         r540TGtFRE8b+WO4OON5qZuIVNTqmrla/VS8YYze35kLVEztbBHMwDJULe+0PSXQobCN
-         o0AcrLKDpVW8S4UaF4Rr9ZeOb3lWLmyXtYSyVpuBAcSjD2WSVjMvB5IslaQJbzDD/uFY
-         yliqwLuicMUhSgKOsgyL/ko7hPHFU49ptNQiazdiTph7Tr45nT1pVRtHacgPq0HvlsLl
-         p+ZB4GksZHySs90OWLUOJsJW1aNeExkbbzBUICnAl9wEHxhMJ1ymx2yNgdo12V5yFQq6
-         AvuA==
-X-Gm-Message-State: APjAAAVramoEoGACiZKSQdpM1mroCF/YQ+nvP8r0s+/nVsdYtw2ySTVH
-        l9nhliK9XurzhnDJkvNoFTM41g==
-X-Google-Smtp-Source: APXvYqwr3DtyxnI94tRYYNP8pfrGZYXogprcPFn8oIrkLVKv0frSc1VdTB+BJi+vXTMqvBSZJHv/5w==
-X-Received: by 2002:a17:902:24e:: with SMTP id 72mr36026735plc.65.1563846999629;
-        Mon, 22 Jul 2019 18:56:39 -0700 (PDT)
+        bh=c+fYefKdegWfzNVcvBNCZFAqK5d+WzXI5vtjxfFF6J8=;
+        b=MYzbk3HDkb+nXfXWxOWHJ8mO/CVFbvdceV1g971wv/yKWPktNJYDGXf7GVfYSbArAv
+         0008Dbq3gko/y+xeSgmRTf0OCbexSPHge1TyV7FbX7G6wNYmjpWmWXU2YtbGWuUj+hRy
+         9I8kHmxK3bgJITC8uA96K9Ro7oEkCvEqZdxISuGB7iTxswKiHw8d9oc0UgkDKpOHAlCc
+         a6LkDjrjxRQrUrQhIxJ3MhpFTA8Xs0Mue40X78fed6XY+UbgIK0T/as6KhwwjkKaVYVz
+         sVELnVzqhDCWK5fhnRindufSX2sksbGBPiotyn27F25AehJoYlxAT+XhJsoUJjDXuQD+
+         ZJVg==
+X-Gm-Message-State: APjAAAX1d3FKGO1+l17vJuQrNrQjDEvwP0O16i7CUE7lzXuJrZcc+GYC
+        dj8Oo5XtwyTLQyT6M68qRKf1hA==
+X-Google-Smtp-Source: APXvYqz1TZYMRg8AYFQKtJluS92AI/3l+SomVKMpEHPQggv0G3T/KfU0bla677YewN8LIbRxc6gdVw==
+X-Received: by 2002:a17:902:4623:: with SMTP id o32mr76901784pld.112.1563847493573;
+        Mon, 22 Jul 2019 19:04:53 -0700 (PDT)
 Received: from localhost ([122.172.28.117])
-        by smtp.gmail.com with ESMTPSA id o24sm77193811pfp.135.2019.07.22.18.56.38
+        by smtp.gmail.com with ESMTPSA id z63sm6349546pfb.98.2019.07.22.19.04.52
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 22 Jul 2019 18:56:38 -0700 (PDT)
-Date:   Tue, 23 Jul 2019 07:26:35 +0530
+        Mon, 22 Jul 2019 19:04:52 -0700 (PDT)
+Date:   Tue, 23 Jul 2019 07:34:50 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Niklas Cassel <niklas.cassel@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
-        jorge.ramirez-ortiz@linaro.org, sboyd@kernel.org,
-        vireshk@kernel.org, bjorn.andersson@linaro.org,
-        ulf.hansson@linaro.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 11/13] arm64: dts: qcom: qcs404: Add CPR and populate OPP
- table
-Message-ID: <20190723015635.rl5a2isjnjn23fzh@vireshk-i7>
-References: <20190705095726.21433-1-niklas.cassel@linaro.org>
- <20190705095726.21433-12-niklas.cassel@linaro.org>
- <20190710090303.tb5ue3wq6r7ofyev@vireshk-i7>
- <20190715132405.GA5040@centauri>
- <20190716103436.az5rdk6f3yoa3apz@vireshk-i7>
- <20190716105318.GA26592@centauri>
- <20190717044923.ccmebeewbinlslkm@vireshk-i7>
- <20190719154558.GA32518@centauri>
+To:     Sylwester Nawrocki <s.nawrocki@samsung.com>
+Cc:     krzk@kernel.org, robh+dt@kernel.org, vireshk@kernel.org,
+        devicetree@vger.kernel.org, kgene@kernel.org,
+        pankaj.dubey@samsung.com, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, b.zolnierkie@samsung.com,
+        m.szyprowski@samsung.com
+Subject: Re: [PATCH v2 0/9] Exynos Adaptive Supply Voltage support
+Message-ID: <20190723020450.z2pqwetkn2tfhacq@vireshk-i7>
+References: <CGME20190718143117eucas1p1e534b9075d10fbbbe427c66192205eb1@eucas1p1.samsung.com>
+ <20190718143044.25066-1-s.nawrocki@samsung.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190719154558.GA32518@centauri>
+In-Reply-To: <20190718143044.25066-1-s.nawrocki@samsung.com>
 User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 19-07-19, 17:45, Niklas Cassel wrote:
-> Hello Viresh,
+On 18-07-19, 16:30, Sylwester Nawrocki wrote:
+> This is second iteration of patch series adding ASV (Adaptive Supply 
+> Voltage) support for Exynos SoCs. The first one can be found at:
+> https://lore.kernel.org/lkml/20190404171735.12815-1-s.nawrocki@samsung.com
 > 
-> Could you please have a look at the last two patches here:
-> https://git.linaro.org/people/niklas.cassel/kernel.git/log/?h=cpr-opp-hz
+> The main changes comparing to the first (RFC) version are:
+>  - moving ASV data tables from DT to the driver,
+>  - converting the chipid and the ASV drivers to use regmap,
+>  - converting the ASV driver to proper platform driver.
+> 
+> I tried the opp-supported-hw bitmask approach as in the Qualcomm CPUFreq
+> DT bindings but it resulted in too many OPPs and DT nodes, around 200
+> per CPU cluster. So the ASV OPP tables are now in the ASV driver, as in
+> downstream kernels.
 
-There is no sane way of providing review comments with a link to the
-git tree :)
+Hmm. Can you explain why do you have so many OPPs? How many
+frequencies do you actually support per cluster and what all varies
+per frequency based on hw ? How many hw version do u have ?
 
-I still had a look and I see that you don't search for max frequency
-but just any OPP that has required-opps set to the level u want. Also,
-can't there be multiple phandles in required-opps in your case ?
-
-> If you like my proposal then I could send out the first patch (the one to
-> OPP core) as a real patch (with an improved commit message), and
-> incorporate the second patch into my CPR patch series when I send out a V2.
-
-Send them both in your series only, otherwise the first one is useless
-anyway.
+I am asking as the OPP core can be improved to support your case if
+possible. But I need to understand the problem first.
 
 -- 
 viresh
