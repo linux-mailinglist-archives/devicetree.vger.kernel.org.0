@@ -2,88 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49E807174C
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 13:42:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 18AD3717B2
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 14:06:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727805AbfGWLmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 07:42:40 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:44544 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726575AbfGWLmk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 07:42:40 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6NBgad7089998;
-        Tue, 23 Jul 2019 06:42:36 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1563882156;
-        bh=hHqEb6WqqOWvxYq7IGLLcdSIIDxJbA2QmoI51k0Osmc=;
-        h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=LuvOhq764KqneG41Fllk8uQ0ByaqxROVsarjgI43PxOBTUEbph2TUvws8bSesnG7m
-         FPpPVhqUrqsdmHXVE/p0wyWb8tyQt9weamqNoc/yJIeQ2Qqv9xmrhYCdGTsAv52eEu
-         C0HIlw8osUIyP5zEFnAZKNiKUhCsVHCmslI5pfEc=
-Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6NBgaLI033246
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 23 Jul 2019 06:42:36 -0500
-Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
- (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 23
- Jul 2019 06:42:36 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
- (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 23 Jul 2019 06:42:35 -0500
-Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6NBgaCw043934;
-        Tue, 23 Jul 2019 06:42:36 -0500
-Date:   Tue, 23 Jul 2019 06:42:13 -0500
-From:   Nishanth Menon <nm@ti.com>
-To:     Lokesh Vutla <lokeshvutla@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>, Sekhar Nori <nsekhar@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v4 0/5] soc: ti: k3: Allow for exclusive and shared
- device requests
-Message-ID: <20190723114213.ogypuwcp3mw3vmcn@kahuna>
-References: <20190722050757.29893-1-lokeshvutla@ti.com>
+        id S1729688AbfGWMGr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 08:06:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39472 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727789AbfGWMGr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 08:06:47 -0400
+Received: from mail-lf1-f51.google.com (mail-lf1-f51.google.com [209.85.167.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9D7942238E;
+        Tue, 23 Jul 2019 12:06:45 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563883606;
+        bh=DKrbsHStPDRY+4kxJ4/+/qAdj1UDVR+qwitPFb6G9XQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ts2zKnryAHCcWuV+jQCtZ1fXUaMYtk/rse8t/JdjssvTDla0eLrQ7l7Fy7A91meAb
+         4dq5/+DeF78UIQcOHR3q6qljcYC+4rwJc2IGbOzlxegYgRIX8xVXiAozEtcohEjzSQ
+         NgbJODdAIYTnBIHU6w/0RraMEYcpUUjG5MLfKfAY=
+Received: by mail-lf1-f51.google.com with SMTP id u10so29137682lfm.12;
+        Tue, 23 Jul 2019 05:06:45 -0700 (PDT)
+X-Gm-Message-State: APjAAAVbVfIZ0hJpoM11wp+xUFDO6jte7b6wvxP//so07W6yI3b3LePa
+        W7ZgxVpX8sLzxA1KJppeia6ej+kioGvRjjEoxWQ=
+X-Google-Smtp-Source: APXvYqw0eaw2TRxK/9H3Y8sqHS2pEMb0cITDxk01/sRGaTfe105d+yhQepbEgz1kqWQFScY4g8NDo+cJjofy04prss4=
+X-Received: by 2002:a19:f007:: with SMTP id p7mr34881578lfc.24.1563883603819;
+ Tue, 23 Jul 2019 05:06:43 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190722050757.29893-1-lokeshvutla@ti.com>
-User-Agent: NeoMutt/20171215
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <CGME20190715124504eucas1p1afe0da2c6ac3a8b45d85017a77ba9edf@eucas1p1.samsung.com>
+ <20190715124417.4787-1-l.luba@partner.samsung.com> <20190715124417.4787-38-l.luba@partner.samsung.com>
+ <CAJKOXPfrGgAczQ-=1aE453RpJ9BN10ZDmFcrEMPkNyF6GcGtNA@mail.gmail.com>
+ <2fe2e840-f4b2-773b-7d92-4ffb8502d4e6@partner.samsung.com>
+ <CAJKOXPd3gm7no-0TnPmgFg+X3FgdiM6ov5rtzFSM6hKEdEzRCg@mail.gmail.com>
+ <518c26ca-4254-056c-d6d0-ae1b4b63709c@partner.samsung.com>
+ <CAJKOXPfDX06s7eMctbnPabxho2EaWcTM4xAGKCd_+O6jCCDcRQ@mail.gmail.com> <7ad899c5-347d-546e-a2e9-d96f0203210c@partner.samsung.com>
+In-Reply-To: <7ad899c5-347d-546e-a2e9-d96f0203210c@partner.samsung.com>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Tue, 23 Jul 2019 14:06:32 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdC7U64dqFJzJNJJXPQ8_K_SXUOVrNGjOQqcDyNsmskwA@mail.gmail.com>
+Message-ID: <CAJKOXPdC7U64dqFJzJNJJXPQ8_K_SXUOVrNGjOQqcDyNsmskwA@mail.gmail.com>
+Subject: Re: [PATCH v1 37/50] ARM: dts: exynos: change parent and rate of
+ bus_fsys in Exynos5422
+To:     Lukasz Luba <l.luba@partner.samsung.com>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
+        mturquette@baylibre.com, sboyd@kernel.org,
+        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
+        <b.zolnierkie@samsung.com>, kgene@kernel.org, mark.rutland@arm.com,
+        robh+dt@kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
+        kyungmin.park@samsung.com, Andrzej Hajda <a.hajda@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 10:37-20190722, Lokesh Vutla wrote:
-> Sysfw provides an option for requesting exclusive access for a
-> device using the flags MSG_FLAG_DEVICE_EXCLUSIVE. If this flag is
-> not used, the device is meant to be shared across hosts. Once a device
-> is requested from a host with this flag set, any request to this
-> device from a different host will be nacked by sysfw.
-> 
-> Current tisci firmware and pm drivers always requests for device with
-> exclusive permissions set. But this is not be true for certain devices
-> that are expcted to be shared across different host contexts.
-> So add support for getting the shared or exclusive permissions from DT
-> and request firmware accordingly.
-> 
-> Changes since v3: https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=103447
-> - Rebased on top of v5.3-rc1
-> - Updated power-domain cells for j721e.
-> - Mark the console uart as shared in am65x-base-board
-> - Added Reviewed-by from Rob
+On Wed, 17 Jul 2019 at 14:56, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+>
+>
+> On 7/17/19 1:11 PM, Krzysztof Kozlowski wrote:
+> > On Wed, 17 Jul 2019 at 13:06, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+> >>
+> >>
+> >>
+> >> On 7/17/19 12:45 PM, Krzysztof Kozlowski wrote:
+> >>> On Wed, 17 Jul 2019 at 12:39, Lukasz Luba <l.luba@partner.samsung.com> wrote:
+> >>>>>>
+> >>>>>>     &bus_fsys {
+> >>>>>>            devfreq = <&bus_wcore>;
+> >>>>>> +       assigned-clocks = <&clock CLK_MOUT_ACLK200_FSYS>,
+> >>>>>> +                         <&clock CLK_DOUT_ACLK200_FSYS>,
+> >>>>>> +                         <&clock CLK_FOUT_DPLL>;
+> >>>>>> +       assigned-clock-parents = <&clock CLK_MOUT_SCLK_DPLL>;
+> >>>>>> +       assigned-clock-rates = <0>, <240000000>,<1200000000>;
+> >>>>>
+> >>>>> Here and in all other patches:
+> >>>>> I am not entirely sure that this should be here. It looks like
+> >>>>> property of the SoC. Do we expect that buses will be configured to
+> >>>>> different clock rates between different boards?
+> This is the board file for Exynos5420/5422/5800 which enables buses.
+> Thus, I have change them here. Patch 49/50 adds these buses to
+> Exynos5800 (Peach Pi). In Exynos5420 there is no clock tree for
+> bus_isp266. The parents for different devices could be also different.
+> It is because i.e. in 5420 there is 2 bit in the WCORE 1st mux while in
+> 5422 there is 3 bits (6 parents possible).
+> That's why I have picked exynos5422-odroid-core.dtsi to reference
+> the bus devices and pinned them into proper parent and changed rate.
+> When you check patch 49/50 for 5800 not all the parents are the same.
+>
+> (1) I could create a dedicated files like: exynos5422-bus.dtsi,
+> exynos5420-bus.dtsi, exynos5800-bus.dtsi which would include some
+> base file with the basic &bus_X and set the right parent, rate.
+> Then these files would be included into proper board file like:
+> exynos5800-peach-pi.dts.
+> Is this something that you would like to see?
 
-[...]
+I see now. Are there any differences in all these properties between
+Peach Pi and Odroids? Both of them are using exynos5800.dtsi so that
+could be a place for all clock assignments.
 
-Looks good to me.
-
-Reviewed-by: Nishanth Menon <nm@ti.com>
-
--- 
-Regards,
-Nishanth Menon
+Best regards,
+Krzysztof
