@@ -2,186 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 938F0712AB
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 09:20:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 671D8712DE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 09:29:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388252AbfGWHUk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 03:20:40 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:38875 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388231AbfGWHUj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 03:20:39 -0400
-Received: by mail-ed1-f68.google.com with SMTP id r12so8048073edo.5
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 00:20:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=1QlHARNuAEM55ng9LI2PK094YJbPBsPKwUhBWwwJxAE=;
-        b=GNlo2z9/gRyz2tn6m0dlRs6mqPEnRbD/asUCRnl1aF44DAofjVcSqECn/MAtb7YBsK
-         3kkr5Z7cG4HEpFGvQteQf8ss4x44lWI+LqVF6bIvIwIzNXpvPNckKyaTqNU1yNm8B3G4
-         68CHD0Jycaot+EixnKORpvZMw2xDl8mRupMfA=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=1QlHARNuAEM55ng9LI2PK094YJbPBsPKwUhBWwwJxAE=;
-        b=tLjiSkxADhxax0dyf5Qf4dKvwEUQicElvLuM5PqNj1vSLzIFd9IVHXdz1UUYDQ/S1b
-         P8MlNLtGrmactjqT70xr+F+xZwliA692HK4+sNnMwap2q7j2NnrLi04UF7X0eejNt5fl
-         2UaFSIEj3RhxPIxOju1JxVgzGZxmYZPjOlkSDTZCkJmKu9FCw3zUWvxzu1sfgVqGKkCe
-         p5zYjjtMVtmG1lrCTlHlOS0s1DsLCmaWkQbGGmcGft5j/kCZxYENyRSEYwkzpn+fyrPO
-         CoKeZje5tyXTcqpkr30MeqftFoz8F+E6eQFWdAAXqAUJQCELvv1nHBajLog1uKE1sUAy
-         rXFg==
-X-Gm-Message-State: APjAAAVgyY5yT3+x0voRvZSwxuFK5X78gkKgIsDVaDJSmguGH02KRTfj
-        6sA5OzKAnmp84hmhXgXNbxvEaPLzuM/6UA==
-X-Google-Smtp-Source: APXvYqwEFAIL5b61pJtKaI5xPq2lB9XsGthasCRRlDV+nZ2e/kxxQ/0XuNTvhDuWEB80wHYW2gjDfw==
-X-Received: by 2002:a17:906:d201:: with SMTP id w1mr26040026ejz.303.1563866437064;
-        Tue, 23 Jul 2019 00:20:37 -0700 (PDT)
-Received: from mail-wm1-f49.google.com (mail-wm1-f49.google.com. [209.85.128.49])
-        by smtp.gmail.com with ESMTPSA id d7sm11341114edr.39.2019.07.23.00.20.35
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Tue, 23 Jul 2019 00:20:36 -0700 (PDT)
-Received: by mail-wm1-f49.google.com with SMTP id v15so37438112wml.0
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 00:20:35 -0700 (PDT)
-X-Received: by 2002:a7b:c7d8:: with SMTP id z24mr67945684wmk.10.1563866435393;
- Tue, 23 Jul 2019 00:20:35 -0700 (PDT)
+        id S2388301AbfGWH3a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 03:29:30 -0400
+Received: from muru.com ([72.249.23.125]:55574 "EHLO muru.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729058AbfGWH3a (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 03:29:30 -0400
+Received: from hillo.muru.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTP id 9ACD3808C;
+        Tue, 23 Jul 2019 07:29:55 +0000 (UTC)
+From:   Tony Lindgren <tony@atomide.com>
+To:     linux-omap@vger.kernel.org
+Cc:     =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        devicetree@vger.kernel.org, David Lechner <david@lechnology.com>
+Subject: [PATCH] ARM: dts: Fix incomplete dts data for am3 and am4 mmc
+Date:   Tue, 23 Jul 2019 00:29:23 -0700
+Message-Id: <20190723072923.23750-1-tony@atomide.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <jungo.lin@mediatek.com> <20190611035344.29814-1-jungo.lin@mediatek.com>
- <20190611035344.29814-10-jungo.lin@mediatek.com> <20190701072532.GB137710@chromium.org>
- <1562297618.1212.46.camel@mtksdccf07> <CAAFQd5BaTQ-Q7gsE0X+d4_81OZq9WHaCYkmALt7_4A1JFo=_8g@mail.gmail.com>
- <1562313579.1212.73.camel@mtksdccf07>
-In-Reply-To: <1562313579.1212.73.camel@mtksdccf07>
-From:   Tomasz Figa <tfiga@chromium.org>
-Date:   Tue, 23 Jul 2019 16:20:23 +0900
-X-Gmail-Original-Message-ID: <CAAFQd5AaNFpMGCVJREY85n8UetEwd99TOka8-ECoLzMbMkos_g@mail.gmail.com>
-Message-ID: <CAAFQd5AaNFpMGCVJREY85n8UetEwd99TOka8-ECoLzMbMkos_g@mail.gmail.com>
-Subject: Re: [RFC,v3 9/9] media: platform: Add Mediatek ISP P1 shared memory device
-To:     Jungo Lin <jungo.lin@mediatek.com>
-Cc:     devicetree@vger.kernel.org,
-        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
-        <sean.cheng@mediatek.com>,
-        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
-        <frederic.chen@mediatek.com>,
-        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <rynn.wu@mediatek.com>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        =?UTF-8?B?UnlhbiBZdSAo5L2Z5a2f5L+uKQ==?= <ryan.yu@mediatek.com>,
-        =?UTF-8?B?RnJhbmtpZSBDaGl1ICjpgrHmloflh7Ep?= 
-        <frankie.chiu@mediatek.com>, Hans Verkuil <hverkuil@xs4all.nl>,
-        ddavenport@chromium.org, Sj Huang <sj.huang@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Jungo,
+Commit 4e27f752ab8c ("ARM: OMAP2+: Drop mmc platform data for am330x and
+am43xx") dropped legacy mmc platform data for am3 and am4, but missed the
+fact that we never updated the dts files for mmc3 that is directly on l3
+interconnect instead of l4 interconnect. This leads to a situation with
+no legacy platform data and incomplete dts data.
 
-On Fri, Jul 5, 2019 at 4:59 PM Jungo Lin <jungo.lin@mediatek.com> wrote:
->
-> Hi Tomasz:
->
-> On Fri, 2019-07-05 at 13:22 +0900, Tomasz Figa wrote:
-> > Hi Jungo,
-> >
-> > On Fri, Jul 5, 2019 at 12:33 PM Jungo Lin <jungo.lin@mediatek.com> wrote:
-> > >
-> > > Hi Tomasz,
->
-> [snip]
->
-> > > After applying your suggestion in SCP device driver, we could remove
-> > > mtk_cam-smem.h/c. Currently, we use dma_alloc_coherent with SCP device
-> > > to get SCP address. We could touch the buffer with this SCP address in
-> > > SCP processor.
-> > >
-> > > After that, we use dma_map_page_attrs with P1 device which supports
-> > > IOMMU domain to get IOVA address. For this address, we will assign
-> > > it to our ISP HW device to proceed.
-> > >
-> > > Below is the snippet for ISP P1 compose buffer initialization.
-> > >
-> > >         ptr = dma_alloc_coherent(p1_dev->cam_dev.smem_dev,
-> > >                                  MAX_COMPOSER_SIZE, &addr, GFP_KERNEL);
-> > >         if (!ptr) {
-> > >                 dev_err(dev, "failed to allocate compose memory\n");
-> > >                 return -ENOMEM;
-> > >         }
-> > >         isp_ctx->scp_mem_pa = addr;
-> >
-> > addr contains a DMA address, not a physical address. Could we call it
-> > scp_mem_dma instead?
-> >
-> > >         dev_dbg(dev, "scp addr:%pad\n", &addr);
-> > >
-> > >         /* get iova address */
-> > >         addr = dma_map_page_attrs(dev, phys_to_page(addr), 0,
-> >
-> > addr is a DMA address, so phys_to_page() can't be called on it. The
-> > simplest thing here would be to use dma_map_single() with ptr as the
-> > CPU address expected.
-> >
->
-> We have changed to use ma_map_single() with ptr, but encounter IOMMU
-> error. From the debug log of iommu_dma_map_page[3], we got
-> 0x0000000054800000 instead of expected address: 0x0000000050800000[2].
-> There is a address offset(0x4000000). If we change to use
-> dma_map_page_attrs with phys_to_page(addr), the address is correct as we
-> expected[2]. Do you have any suggestion on this issue? Do we miss
-> something?
+Let's update the mmc instances on l3 interconnect to probe properly with
+ti-sysc interconnect target module driver to make mmc3 work again. Let's
+still keep legacy "ti,hwmods" property around for v5.2 kernel and only
+drop it later on.
 
-Sorry for the late reply. Could you show me the code changes you made
-to use dma_map_single()? It would sound like the virtual address
-passed to dma_map_single() isn't correct.
+Note that there is no need to use property status = "disabled" for mmc3.
+The default for dts is enabled, and runtime PM will idle unused instances
+just fine.
 
-Best regards,
-Tomasz
+Fixes: 4e27f752ab8c ("ARM: OMAP2+: Drop mmc platform data for am330x and am43xx")
+Reported-by: David Lechner <david@lechnology.com>
+Tested-by: David Lechner <david@lechnology.com>
+Signed-off-by: Tony Lindgren <tony@atomide.com>
+---
+ arch/arm/boot/dts/am33xx.dtsi | 32 ++++++++++++++++++++++++++------
+ arch/arm/boot/dts/am4372.dtsi | 32 ++++++++++++++++++++++++++------
+ 2 files changed, 52 insertions(+), 12 deletions(-)
 
->
-> [1]
-> [    1.344786] __dma_alloc_from_coherent: 0x800000 PAGE_SHIFT:12
-> device_base:0x0000000050000000 dma:0x0000000050800000
-> virt_base:ffffff8014000000 va:ffffff8014800000
->
-> [    1.346890] mtk-cam 1a000000.camisp: scp addr:0x0000000050800000
-> va:ffffff8014800000
->
-> [    1.347864] iommu_dma_map_page:0x0000000054800000 offset:0
-> [    1.348562] mtk-cam 1a000000.camisp: iova addr:0x00000000fde00000
->
-> [2]
-> [    1.346738] __dma_alloc_from_coherent: 0x800000 PAGE_SHIFT:12
-> device_base:0x0000000050000000 dma:0x0000000050800000
-> virt_base:ffffff8014000000 va:ffffff8014800000
-> [    1.348841] mtk-cam 1a000000.camisp: scp addr:0x0000000050800000
-> va:ffffff8014800000
-> [    1.349816] iommu_dma_map_page:0x0000000050800000 offset:0
-> [    1.350514] mtk-cam 1a000000.camisp: iova addr:0x00000000fde00000
->
->
-> [3]
-> dma_addr_t iommu_dma_map_page(struct device *dev, struct page *page,
->                 unsigned long offset, size_t size, int prot)
-> {
->         phys_addr_t phys = page_to_phys(page);
->         pr_err("iommu_dma_map_page:%pa offset:%lu\n", &phys, offset);
->
->         return __iommu_dma_map(dev, page_to_phys(page) + offset, size, prot,
->                         iommu_get_dma_domain(dev));
-> }
->
-> [snip]
->
-> Best regards,
->
-> Jungo
->
+diff --git a/arch/arm/boot/dts/am33xx.dtsi b/arch/arm/boot/dts/am33xx.dtsi
+--- a/arch/arm/boot/dts/am33xx.dtsi
++++ b/arch/arm/boot/dts/am33xx.dtsi
+@@ -234,13 +234,33 @@
+ 			interrupt-names = "edma3_tcerrint";
+ 		};
+ 
+-		mmc3: mmc@47810000 {
+-			compatible = "ti,omap4-hsmmc";
++		target-module@47810000 {
++			compatible = "ti,sysc-omap2", "ti,sysc";
+ 			ti,hwmods = "mmc3";
+-			ti,needs-special-reset;
+-			interrupts = <29>;
+-			reg = <0x47810000 0x1000>;
+-			status = "disabled";
++			reg = <0x478102fc 0x4>,
++			      <0x47810110 0x4>,
++			      <0x47810114 0x4>;
++			reg-names = "rev", "sysc", "syss";
++			ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
++					 SYSC_OMAP2_ENAWAKEUP |
++					 SYSC_OMAP2_SOFTRESET |
++					 SYSC_OMAP2_AUTOIDLE)>;
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
++			ti,syss-mask = <1>;
++			clocks = <&l3s_clkctrl AM3_L3S_MMC3_CLKCTRL 0>;
++			clock-names = "fck";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x0 0x47810000 0x1000>;
++
++			mmc3: mmc@0 {
++				compatible = "ti,omap4-hsmmc";
++				ti,needs-special-reset;
++				interrupts = <29>;
++				reg = <0x0 0x1000>;
++			};
+ 		};
+ 
+ 		usb: usb@47400000 {
+diff --git a/arch/arm/boot/dts/am4372.dtsi b/arch/arm/boot/dts/am4372.dtsi
+--- a/arch/arm/boot/dts/am4372.dtsi
++++ b/arch/arm/boot/dts/am4372.dtsi
+@@ -228,13 +228,33 @@
+ 			interrupt-names = "edma3_tcerrint";
+ 		};
+ 
+-		mmc3: mmc@47810000 {
+-			compatible = "ti,omap4-hsmmc";
+-			reg = <0x47810000 0x1000>;
++		target-module@47810000 {
++			compatible = "ti,sysc-omap2", "ti,sysc";
+ 			ti,hwmods = "mmc3";
+-			ti,needs-special-reset;
+-			interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
+-			status = "disabled";
++			reg = <0x478102fc 0x4>,
++			      <0x47810110 0x4>,
++			      <0x47810114 0x4>;
++			reg-names = "rev", "sysc", "syss";
++			ti,sysc-mask = <(SYSC_OMAP2_CLOCKACTIVITY |
++					 SYSC_OMAP2_ENAWAKEUP |
++					 SYSC_OMAP2_SOFTRESET |
++					 SYSC_OMAP2_AUTOIDLE)>;
++			ti,sysc-sidle = <SYSC_IDLE_FORCE>,
++					<SYSC_IDLE_NO>,
++					<SYSC_IDLE_SMART>;
++			ti,syss-mask = <1>;
++			clocks = <&l3s_clkctrl AM4_L3S_MMC3_CLKCTRL 0>;
++			clock-names = "fck";
++			#address-cells = <1>;
++			#size-cells = <1>;
++			ranges = <0x0 0x47810000 0x1000>;
++
++			mmc3: mmc@0 {
++				compatible = "ti,omap4-hsmmc";
++				ti,needs-special-reset;
++				interrupts = <GIC_SPI 29 IRQ_TYPE_LEVEL_HIGH>;
++				reg = <0x0 0x1000>;
++			};
+ 		};
+ 
+ 		sham: sham@53100000 {
+-- 
+2.21.0
