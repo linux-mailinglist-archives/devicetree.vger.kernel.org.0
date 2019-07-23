@@ -2,83 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E0B0717D3
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 14:11:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 22C97717F3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 14:20:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389374AbfGWMLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 08:11:07 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:40327 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729441AbfGWMLH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 08:11:07 -0400
-Received: by mail-io1-f68.google.com with SMTP id h6so81221720iom.7;
-        Tue, 23 Jul 2019 05:11:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id;
-        bh=RfcQDeXv3vi4x+f0TWtpD+QCoOrOE8bGEkTmKPL9PsM=;
-        b=qPkyr+PHSqzeDPM0m6/PNEJJas7OaoN0n2nFK8voa4Ev+5xSfB+4F6dk2pLlcf+9SD
-         47YTXzrFDZYE9z5UPwms31LN578noNIRHJ1j656eV2gUYqu171V2SAoP3p4RDjVv8yOC
-         hX+pyDhufX8wiqNxJolSSKvmmwtTbS5dgM9r7ls1tGgbrX5+gFtm/fhMm5x28eB4KOMD
-         PtxA/fx5V+AcPfIQhqJJmhDXUsMPZ7QBPnPPEESul+cH0psWJ9igkeNKRLPjmOScrP6B
-         9BL5So9kdxdQ3hGt7IA+D+NvSlo/cb8PGK7Rdr7GrfgYh5cr+ylx4jeJNOM2GwDAs7RM
-         r5rw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=RfcQDeXv3vi4x+f0TWtpD+QCoOrOE8bGEkTmKPL9PsM=;
-        b=bzg2bUclDCMZBWhlFCRzU8+f/XkEeGpSYJBI+PlcUnFxXITGKyXRXeAWJYfQO8GDer
-         nLhmCvZ/9vOis4QFBqNUVHz0KlGslvsVPGNPp9fJPB3QqdQDDTHDSksLSU6Xxex9nyOP
-         CWm/xSXtetv3xPzHfofMVHb0QjfFC/2HxVsaml0KmUvYBHNkKT8XLrWe3HYaL6KXmGux
-         MiZkA+ud6aTc5wUF6p66bvX0WH3TSsNkXfT0nNTw6pmZC1SJybtfT7sTNJ9hwFmrt5Kt
-         yOvCYTol57nAR84CZ3yzfaiRgUdvjJfBG3krGbvKpYcvWMXEel72asaCZ6xB08noiPbS
-         enVQ==
-X-Gm-Message-State: APjAAAW6OhXbxK/A0a0CV7s6qnROtI1G8eNWafMSQDDen6S4fdqPp8lu
-        SNd1qWHMuUK6iJ3SGl1z44E=
-X-Google-Smtp-Source: APXvYqxkztg/xfJufiOkhmGbLxOjIO5U47Sjx6Mzk5DuGLVff8s8gwJqzW8JPIUDEY8r9zVDS18ZsA==
-X-Received: by 2002:a5e:9404:: with SMTP id q4mr8566734ioj.46.1563883866034;
-        Tue, 23 Jul 2019 05:11:06 -0700 (PDT)
-Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
-        by smtp.gmail.com with ESMTPSA id k2sm36656076iom.50.2019.07.23.05.11.05
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 23 Jul 2019 05:11:05 -0700 (PDT)
-From:   Adam Ford <aford173@gmail.com>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     adam.ford@logicpd.com, Adam Ford <aford173@gmail.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: da850-evm: Use generic jedec, spi-nor for flash
-Date:   Tue, 23 Jul 2019 07:10:42 -0500
-Message-Id: <20190723121042.28634-1-aford173@gmail.com>
+        id S2389692AbfGWMUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 08:20:25 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:38657 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389373AbfGWMUZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 08:20:25 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190723122023euoutp0104c78260b33680c4cafcb6d79ddd535f~0CJjw2Bka2863228632euoutp01g
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 12:20:23 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190723122023euoutp0104c78260b33680c4cafcb6d79ddd535f~0CJjw2Bka2863228632euoutp01g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1563884423;
+        bh=E/h0xeZuDlNNpc19sQ9I4e8CfCTnOd78afTD5lcFh3M=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=pPAsus1DBleQ6S8y5rermerrTyuGuh8KA86IlfNttrx3SsT70dFDlokUXrKMAmhTz
+         6s1kMTKHhe0xWel0esD7M8F1H+E3n7q1mFSJtGKrEq8l9ZVQPBmSFZd1rQCgZQxtx8
+         PRdxuz1Qz4jKXKJSzJMu/7pvTWBn4LdOVAllPjNA=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190723122023eucas1p14e0b1f612566a63f236384b167998f5d~0CJjR-aG73225832258eucas1p1M;
+        Tue, 23 Jul 2019 12:20:23 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id FF.4B.04298.68BF63D5; Tue, 23
+        Jul 2019 13:20:22 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190723122022eucas1p2f568f74f981f9de9012eb693c3b446d5~0CJinGERD2753327533eucas1p2K;
+        Tue, 23 Jul 2019 12:20:22 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190723122022eusmtrp1e012e5e4af5b700844603da16e8bca7f~0CJicZZZb2487524875eusmtrp1g;
+        Tue, 23 Jul 2019 12:20:22 +0000 (GMT)
+X-AuditID: cbfec7f2-f13ff700000010ca-75-5d36fb866a77
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 17.D8.04140.68BF63D5; Tue, 23
+        Jul 2019 13:20:22 +0100 (BST)
+Received: from AMDC3555.DIGITAL.local (unknown [106.120.51.67]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190723122021eusmtip2f9a8f6ab49accc2bea0b902873bf9f4f~0CJhzpRHb1612616126eusmtip2H;
+        Tue, 23 Jul 2019 12:20:21 +0000 (GMT)
+From:   =?UTF-8?q?Artur=20=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>
+To:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc:     krzk@kernel.org, cw00.choi@samsung.com, myungjoo.ham@samsung.com,
+        inki.dae@samsung.com, sw0312.kim@samsung.com,
+        georgi.djakov@linaro.org, m.szyprowski@samsung.com
+Subject: [RFC PATCH 00/11] Simple QoS for exynos-bus driver using
+ interconnect
+Date:   Tue, 23 Jul 2019 14:20:05 +0200
+Message-Id: <20190723122016.30279-1-a.swigon@partner.samsung.com>
 X-Mailer: git-send-email 2.17.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrAKsWRmVeSWpSXmKPExsWy7djPc7ptv81iDX5+1rM4dGwru8XGGetZ
+        La5/ec5qMf/IOVaLK1/fs1lM37uJzWLS/QksFufPb2C32PT4GqvF5V1z2Cw+9x5htJhxfh+T
+        xdojd9ktbjeuYLOYMfklmwO/x6ZVnWwed67tYfO4332cyWPzknqPg+/2MHn0bVnF6PF5k1wA
+        exSXTUpqTmZZapG+XQJXRuOWpYwF/yUr+o//YGpg3CjaxcjJISFgIrH/y0LWLkYuDiGBFYwS
+        Gzc+ZYFwvjBKfDjayg7hfGaUOHjiBgtMS9fGHqiq5YwSJ98fZ4ZrefjgEBNIFZuAp0TPxB1g
+        g0UEjjBKTF7wHqyFWWAVkPN9GyNIlbBAgMSXQ81gHSwCqhI3HtwCs3kFHCUO/n8DtU9eYvWG
+        A8wQcUGJkzOfgMWZgeLNW2czQ9RcY5eY+yUEwnaROPzyOjuELSzx6vgWKFtG4vTkHqiZxRJP
+        d94Hu05CoIFRYtOyI1CDrCUOH78IlOAAWqApsX6XPkTYUeL4kjfsIGEJAT6JG28FIU7gk5i0
+        bTozRJhXoqNNCMLUkljwOxqiUUKiafU1qNkeErfPvQQ7RkggVuLq6juMExgVZiH5axaSv2Yh
+        nLCAkXkVo3hqaXFuemqxYV5quV5xYm5xaV66XnJ+7iZGYDo7/e/4px2MXy8lHWIU4GBU4uHd
+        sMc0Vog1say4MvcQowQHs5IIb2CDWawQb0piZVVqUX58UWlOavEhRmkOFiVx3mqGB9FCAumJ
+        JanZqakFqUUwWSYOTqkGRp5b1xXn3Lnms+VgbuEj3xZpXpN+Nharrm0Ll9cFLD8VbrylTdGP
+        I/h5zfmixStMC7f8kjngOmfBssXpgQt2ZH9/JH9BZlXl7MeiEcH9P5kdM65s3OHW+uV7wLrC
+        NKbzs6SvHdc9Gc7Hk+KxgMf2sVHqPUb2kI4H/3c6pQdUi6zfmX9Cz2lKuBJLcUaioRZzUXEi
+        APXghPVjAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrHIsWRmVeSWpSXmKPExsVy+t/xe7ptv81iDc7cYLM4dGwru8XGGetZ
+        La5/ec5qMf/IOVaLK1/fs1lM37uJzWLS/QksFufPb2C32PT4GqvF5V1z2Cw+9x5htJhxfh+T
+        xdojd9ktbjeuYLOYMfklmwO/x6ZVnWwed67tYfO4332cyWPzknqPg+/2MHn0bVnF6PF5k1wA
+        e5SeTVF+aUmqQkZ+cYmtUrShhZGeoaWFnpGJpZ6hsXmslZGpkr6dTUpqTmZZapG+XYJeRuOW
+        pYwF/yUr+o//YGpg3CjaxcjJISFgItG1sYeli5GLQ0hgKaNE7/y1zBAJCYmP62+wQtjCEn+u
+        dbFBFH1ilFh3/D9YEZuAp0TPxB2sIAkRgVOMEluXnwOrYhbYxChx9/hEdpAqYQE/iS1HTrCA
+        2CwCqhI3HtxiArF5BRwlDv5/wwKxQl5i9YYDzBBxQYmTM58AxTmABqlLrJ8nBBJmBipp3jqb
+        eQIj/ywkVbMQqmYhqVrAyLyKUSS1tDg3PbfYSK84Mbe4NC9dLzk/dxMjMO62Hfu5ZQdj17vg
+        Q4wCHIxKPLwb9pjGCrEmlhVX5h5ilOBgVhLhDWwwixXiTUmsrEotyo8vKs1JLT7EaAr0wkRm
+        KdHkfGBKyCuJNzQ1NLewNDQ3Njc2s1AS5+0QOBgjJJCeWJKanZpakFoE08fEwSnVwKhfrc22
+        QHBfS/r2adPnBlrvbf5myrtp0atZ16Jk3370eNdxXeDrs7R2rsO6P3rdNqnWFPg0JvFMKuO2
+        aQu5ofssqHTVr79CgnuvMK79b9Dm+PbUzP+H9/x4Gvxxacs3VYGjDX8OK5g8f2H7SuCj/HTH
+        hKh7e1YdPqt6wEC34co96+kF4c4XWJ8psRRnJBpqMRcVJwIAZRGfl9ECAAA=
+X-CMS-MailID: 20190723122022eucas1p2f568f74f981f9de9012eb693c3b446d5
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190723122022eucas1p2f568f74f981f9de9012eb693c3b446d5
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190723122022eucas1p2f568f74f981f9de9012eb693c3b446d5
+References: <CGME20190723122022eucas1p2f568f74f981f9de9012eb693c3b446d5@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Logic PD re-spun the L138 and AM1808 SOM's with larger flash.
-The m25p80 driver has a generic 'jedec,spi-nor' compatible option
-which is requests to use whenever possible since it will read the
-JEDEC READ ID opcode.
+The following patchset adds interconnect[1][2] framework support to the
+exynos-bus devfreq driver. Extending the devfreq driver with interconnect
+capabilities started as a response to the issue referenced in [3]. The
+patches can be subdivided into four logical groups:
 
-Signed-off-by: Adam Ford <aford173@gmail.com>
+(a) Refactoring the existing devfreq driver in order to improve readability
+and accommodate for adding new code (patches 01--04/11).
 
-diff --git a/arch/arm/boot/dts/da850-evm.dts b/arch/arm/boot/dts/da850-evm.dts
-index 5b2b1ed04d51..f2e7609e5346 100644
---- a/arch/arm/boot/dts/da850-evm.dts
-+++ b/arch/arm/boot/dts/da850-evm.dts
-@@ -281,7 +281,7 @@
- 	flash: m25p80@0 {
- 		#address-cells = <1>;
- 		#size-cells = <1>;
--		compatible = "m25p64";
-+		compatible = "jedec,spi-nor";
- 		spi-max-frequency = <30000000>;
- 		m25p,fast-read;
- 		reg = <0>;
+(b) Tweaking the interconnect framework to support the exynos-bus use case
+(patches 05--07/11). Exporting of_icc_get_from_provider() allows us to
+avoid hardcoding every single graph edge in the DT or driver source, and
+relaxing the requirement contained in that function removes the need to
+provide dummy node IDs in the DT. Adjusting the logic in
+apply_constraints() (drivers/interconnect/core.c) accounts for the fact
+that every bus is a separate entity and therefore a separate interconnect
+provider, albeit constituting a part of a larger hierarchy.
+
+(c) Implementing interconnect providers in the exynos-bus devfreq driver
+and adding required DT properties for one selected platform, namely
+Exynos4412 (patches 08--09/11). Due to the fact that this aims to be a
+generic driver for various Exynos SoCs, node IDs are generated dynamically
+rather than hardcoded. This has been determined to be a simpler approach,
+but depends on changes described in (b).
+
+(d) Implementing a sample interconnect consumer for exynos-mixer targeted
+at the issue referenced in [3], again with DT info only for Exynos4412
+(patches 10--11/11).
+
+Integration of devfreq and interconnect functionalities comes down to one
+extra line in the devfreq target() callback, which selects either the
+frequency calculated by the devfreq governor, or the one requested with the
+interconnect API, whichever is higher. All new code works equally well when
+CONFIG_INTERCONNECT is 'n' (as in exynos_defconfig) in which case all
+interconnect API functions are no-ops.
+
+---
+Artur Świgoń
+Samsung R&D Institute Poland
+Samsung Electronics
+
+---
+References:
+[1] Documentation/interconnect/interconnect.rst
+[2] Documentation/devicetree/bindings/interconnect/interconnect.txt
+[3] https://patchwork.kernel.org/patch/10861757
+
+Artur Świgoń (10):
+  devfreq: exynos-bus: Extract exynos_bus_profile_init()
+  devfreq: exynos-bus: Extract exynos_bus_profile_init_passive()
+  devfreq: exynos-bus: Change goto-based logic to if-else logic
+  devfreq: exynos-bus: Clean up code
+  icc: Export of_icc_get_from_provider()
+  icc: Relax requirement in of_icc_get_from_provider()
+  icc: Relax condition in apply_constraints()
+  arm: dts: exynos: Add parents and #interconnect-cells to Exynos4412
+  devfreq: exynos-bus: Add interconnect functionality to exynos-bus
+  arm: dts: exynos: Add interconnects to Exynos4412 mixer
+
+Marek Szyprowski (1):
+  drm: exynos: mixer: Add interconnect support
+
+ .../boot/dts/exynos4412-odroid-common.dtsi    |   1 +
+ arch/arm/boot/dts/exynos4412.dtsi             |  10 +
+ drivers/devfreq/exynos-bus.c                  | 296 ++++++++++++++----
+ drivers/gpu/drm/exynos/exynos_mixer.c         |  68 +++-
+ drivers/interconnect/core.c                   |  12 +-
+ include/linux/interconnect-provider.h         |   6 +
+ 6 files changed, 314 insertions(+), 79 deletions(-)
+
 -- 
 2.17.1
 
