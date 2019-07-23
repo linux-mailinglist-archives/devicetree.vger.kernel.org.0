@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7594771C99
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 18:14:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A98F71CFA
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 18:32:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729139AbfGWQOV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 12:14:21 -0400
-Received: from mail.kernel.org ([198.145.29.99]:58180 "EHLO mail.kernel.org"
+        id S2388007AbfGWQc4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 12:32:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37746 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728815AbfGWQOV (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 12:14:21 -0400
-Received: from mail-yb1-f176.google.com (mail-yb1-f176.google.com [209.85.219.176])
+        id S1729903AbfGWQc4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 12:32:56 -0400
+Received: from mail-yw1-f47.google.com (mail-yw1-f47.google.com [209.85.161.47])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F1BB5227BF
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 16:14:19 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 96A7F227C0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 16:32:54 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563898460;
-        bh=lWPON7VBjbQx5DMKFjEWYTP1sMIlP0q/j6mSvaUBvhE=;
+        s=default; t=1563899574;
+        bh=UkC9CMAg2OA3YyFW059HsAnan8UVUBUydqVwz+KnGXo=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=D8KhtYZQrcoPEkkm3wYKnMsfIcM2e2yhkPUxvjgGgVS7D+jMQ4dkS3exde44rqTFX
-         sKdTgCo0CVqKbzns8jZN244/VJwXx1s1U8WkzpgJ40WGg/AJV4DYKF8xew2TCmd0sM
-         IFppg/5EnROqyfzvAAKxNcPOpHw19Cap/eCuIbKU=
-Received: by mail-yb1-f176.google.com with SMTP id d9so9914986ybf.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 09:14:19 -0700 (PDT)
-X-Gm-Message-State: APjAAAUN8AEV6eEBvcW3Y1KD4GoUQDgM1kvM3N+FYWG6A+QhRch5AdUq
-        zRoLGqd/pZ7LOtz1WvnRnE1rKq7GPLxJtavpUQ==
-X-Google-Smtp-Source: APXvYqyzeNUQAlAwydptK7cxSXY+LELavm+ycMB0Sosh3OqniGOOGEBzozTbgVuUCJlBnIXtiZlPwtUGhspw2Zn1rhI=
-X-Received: by 2002:a25:7c05:: with SMTP id x5mr47406679ybc.358.1563898459148;
- Tue, 23 Jul 2019 09:14:19 -0700 (PDT)
+        b=JFx1udfR2Smg079z8oHQ9gAztG5ijfvP0ayA7dJh/CWZ+dFoSF0CSse1tkcFPy/+j
+         dmrr4zl3dAdoODQEILGkWHAeR6RBe16FOqzohVwKhIrEUCsotVnaUudtjwAzTUAuvA
+         uWFSMcttwIlJLgdwfw0vGKTqDXmgJVLvsTtyJV80=
+Received: by mail-yw1-f47.google.com with SMTP id i138so17161623ywg.8
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 09:32:54 -0700 (PDT)
+X-Gm-Message-State: APjAAAWFYYkgpL93Cfb7xL2vD6Bq3pYWrTv17z8q0G1a2qpm2arjFejL
+        eYSHCZjWDEH+zAsckbv3IAbQlYo+QBTJqNfivQ==
+X-Google-Smtp-Source: APXvYqzTkj0IYYWKDgZSL/Io1oTkkh3szkCRGZDjVJgYHjvYn6KAws+dxyPhaOCU7BlGZaFaH9GYfScLchP2GVsEVbs=
+X-Received: by 2002:a81:6a05:: with SMTP id f5mr47818045ywc.368.1563899573743;
+ Tue, 23 Jul 2019 09:32:53 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190723132658.5068-1-maxime.ripard@bootlin.com>
-In-Reply-To: <20190723132658.5068-1-maxime.ripard@bootlin.com>
+References: <20190723132658.5068-1-maxime.ripard@bootlin.com> <20190723132658.5068-2-maxime.ripard@bootlin.com>
+In-Reply-To: <20190723132658.5068-2-maxime.ripard@bootlin.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 23 Jul 2019 10:14:06 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJJTwBwjXixjgr8KbiM-p6uTkVTcBwzUawdgkeybABxOQ@mail.gmail.com>
-Message-ID: <CAL_JsqJJTwBwjXixjgr8KbiM-p6uTkVTcBwzUawdgkeybABxOQ@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: irq: Convert Allwinner IRQ Controller to
+Date:   Tue, 23 Jul 2019 10:32:41 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJkTrCuscnWgm5cDmQj5RPGnd3qXkzR40XWKB2skZFwXA@mail.gmail.com>
+Message-ID: <CAL_JsqJkTrCuscnWgm5cDmQj5RPGnd3qXkzR40XWKB2skZFwXA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: irq: Convert Allwinner NMI Controller to
  a schema
 To:     Maxime Ripard <maxime.ripard@bootlin.com>
 Cc:     Mark Rutland <mark.rutland@arm.com>,
@@ -56,33 +56,33 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Tue, Jul 23, 2019 at 7:27 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 >
-> The Allwinner SoCs have an interrupt controller supported in Linux, with a
-> matching Device Tree binding.
+> The Allwinner SoCs have an interrupt controller called NMI supported in
+> Linux, with a matching Device Tree binding.
 >
 > Now that we have the DT validation in place, let's convert the device tree
 > bindings for that controller over to a YAML schemas.
 >
 > Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
 > ---
->  .../allwinner,sun4i-a10-ic.yaml               | 49 +++++++++++++++++++
->  .../allwinner,sun4i-ic.txt                    | 20 --------
->  2 files changed, 49 insertions(+), 20 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml
->  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-ic.txt
+>  .../allwinner,sun7i-a20-sc-nmi.yaml           | 83 +++++++++++++++++++
+>  .../allwinner,sunxi-nmi.txt                   | 29 -------
+>  2 files changed, 83 insertions(+), 29 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/interrupt-controller/allwinner,sunxi-nmi.txt
 >
-> diff --git a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
 > new file mode 100644
-> index 000000000000..806cf4770f75
+> index 000000000000..cb8077b0c8dd
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun4i-a10-ic.yaml
-> @@ -0,0 +1,49 @@
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml
+> @@ -0,0 +1,83 @@
 > +# SPDX-License-Identifier: GPL-2.0
 > +%YAML 1.2
 > +---
-> +$id: http://devicetree.org/schemas/interrupt-controller/allwinner,sun4i-a10-ic.yaml#
+> +$id: http://devicetree.org/schemas/interrupt-controller/allwinner,sun7i-a20-sc-nmi.yaml#
 > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > +
-> +title: Allwinner A10 Interrupt Controller Device Tree Bindings
+> +title: Allwinner A20 Non-Maskable Interrupt Controller Device Tree Bindings
 > +
 > +maintainers:
 > +  - Chen-Yu Tsai <wens@csie.org>
@@ -91,16 +91,55 @@ On Tue, Jul 23, 2019 at 7:27 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 > +allOf:
 > +  - $ref: /schemas/interrupt-controller.yaml#
 > +
+> +select:
+> +  properties:
+> +    compatible:
+> +      contains:
+> +        enum:
+> +          - allwinner,sun6i-a31-r-intc
+> +          - allwinner,sun7i-a20-sc-nmi
+> +          - allwinner,sun9i-a80-sc-nmi
+
+This should have all the possible compatibles in case all are not listed.
+
+> +
+> +          # Deprecated
+> +          - allwinner,sun6i-a31-sc-nmi
+
+I know we already did things this way before, but perhaps this should
+be listed below with the 'deprecated' property. The tools can include
+it in select, but then remove it from compatible property.
+
+> +
+> +  required:
+> +    - compatible
+> +
 > +properties:
 > +  "#interrupt-cells":
-> +    const: 1
+> +    const: 2
+> +    description:
+> +      The first cell is the IRQ number, the second cell the trigger
+> +      type as defined in interrupt.txt in this directory.
 > +
 > +  compatible:
-> +    enum:
-> +      - allwinner,sun4i-a10-ic
-> +      - allwinner,suniv-f1c100s-ic
+> +    oneOf:
+> +      - const: allwinner,sun6i-a31-r-intc
+> +      - const: allwinner,sun7i-a20-sc-nmi
+> +      - items:
+> +        - const: allwinner,sun8i-a83t-r-intc
+> +        - const: allwinner,sun6i-a31-r-intc
+> +      - const: allwinner,sun9i-a80-sc-nmi
+> +      - items:
+> +        - const: allwinner,sun50i-a64-r-intc
+> +        - const: allwinner,sun6i-a31-r-intc
+> +      - items:
+> +        - const: allwinner,sun50i-h6-r-intc
+> +        - const: allwinner,sun6i-a31-r-intc
 > +
 > +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
 > +    maxItems: 1
 > +
 > +  interrupt-controller: true
@@ -109,32 +148,22 @@ On Tue, Jul 23, 2019 at 7:27 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
 > +  - "#interrupt-cells"
 > +  - compatible
 > +  - reg
+> +  - interrupts
 > +  - interrupt-controller
 > +
 > +# FIXME: We should set it, but it would report all the generic
 > +# properties as additional properties.
 > +# additionalProperties: false
-
-Looks to me like you could enable this.
-
-BTW, I think the fix is going to be just the new
-'unevaluatedProperties: false'. We could start putting that in as
-unknown keys are ignored (though the meta-schema will need an update
-to allow it).
-
 > +
 > +examples:
 > +  - |
-> +    intc: interrupt-controller {
-
-unit-address needed.
-
-I need to figure out how to enable dtc warnings by default on the examples...
-
-> +        compatible = "allwinner,sun4i-a10-ic";
-> +        reg = <0x01c20400 0x400>;
+> +    interrupt-controller@1c00030 {
+> +        compatible = "allwinner,sun7i-a20-sc-nmi";
 > +        interrupt-controller;
-> +        #interrupt-cells = <1>;
+> +        #interrupt-cells = <2>;
+> +        reg = <0x01c00030 0x0c>;
+> +        interrupt-parent = <&gic>;
+> +        interrupts = <0 0 4>;
 > +    };
 > +
 > +...
