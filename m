@@ -2,95 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7C78717BD
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 14:08:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2E0B0717D3
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 14:11:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389523AbfGWMI3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 08:08:29 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40218 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387777AbfGWMI3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 08:08:29 -0400
-Received: from mail-lf1-f47.google.com (mail-lf1-f47.google.com [209.85.167.47])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D31B8223A2;
-        Tue, 23 Jul 2019 12:08:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563883708;
-        bh=nvBvzlCDrlw2nSkRwm+jqQZNCkb/0yrq0/hoIvGnykI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aw9YjpykC6CX2ocx7SES+UzwAHiNG+Ib9CZMBVPyP9nlsZbhnpBNtUhZEcT9KVGLH
-         NzQklg+qHhvhOmQ5lthnaX0c2YJgxon1P0NX6okYPwtGPgTOSSLylAGYVQpCHkA3vD
-         BB6l0JfAHHCHA06bXJiSGX8wxB+5+WuAN8fnslyo=
-Received: by mail-lf1-f47.google.com with SMTP id v85so29136006lfa.6;
-        Tue, 23 Jul 2019 05:08:27 -0700 (PDT)
-X-Gm-Message-State: APjAAAUGW/TvyI9lcnEVAFCfAgGkAx5YzJaiW/rwXxBsn3u9cD26AG3N
-        C0/E/DpSBWnEik+A+IsTJy6VtfB4HjQg1wn90vA=
-X-Google-Smtp-Source: APXvYqw13qDeDRLye0Xy8u0GjyA8nlXejZvwnJiEBw7A7WJmtQt6RJeCPKPpMebsqdZgD8QGynWSPGSgTW6n8UtRsn8=
-X-Received: by 2002:a19:f007:: with SMTP id p7mr34885531lfc.24.1563883705950;
- Tue, 23 Jul 2019 05:08:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <CGME20190715124456eucas1p2acf15d00e3fa7b77fe3a2b10ce1ab74f@eucas1p2.samsung.com>
- <20190715124417.4787-1-l.luba@partner.samsung.com> <20190715124417.4787-28-l.luba@partner.samsung.com>
- <CAJKOXPfFZL8q9hM1vPsLq+Qxe-gMz4c8j0jgFKfdf5qs68MTmA@mail.gmail.com> <15310bd0-0fd4-8d62-82a9-7a9df6a8ced3@partner.samsung.com>
-In-Reply-To: <15310bd0-0fd4-8d62-82a9-7a9df6a8ced3@partner.samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Tue, 23 Jul 2019 14:08:14 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPdoun-2ankrcNzC70tXZi40iONxM3yPstdaiGBMPDjyRQ@mail.gmail.com>
-Message-ID: <CAJKOXPdoun-2ankrcNzC70tXZi40iONxM3yPstdaiGBMPDjyRQ@mail.gmail.com>
-Subject: Re: [PATCH v1 27/50] ARM: dts: exynos: align bus_wcore OPPs in Exynos5420
-To:     Lukasz Luba <l.luba@partner.samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>, linux-clk@vger.kernel.org,
-        mturquette@baylibre.com, sboyd@kernel.org,
-        =?UTF-8?B?QmFydMWCb21pZWogxbtvxYJuaWVya2lld2ljeg==?= 
-        <b.zolnierkie@samsung.com>, kgene@kernel.org, mark.rutland@arm.com,
-        robh+dt@kernel.org, Chanwoo Choi <cw00.choi@samsung.com>,
-        kyungmin.park@samsung.com, Andrzej Hajda <a.hajda@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com
-Content-Type: text/plain; charset="UTF-8"
+        id S2389374AbfGWMLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 08:11:07 -0400
+Received: from mail-io1-f68.google.com ([209.85.166.68]:40327 "EHLO
+        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729441AbfGWMLH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 08:11:07 -0400
+Received: by mail-io1-f68.google.com with SMTP id h6so81221720iom.7;
+        Tue, 23 Jul 2019 05:11:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=RfcQDeXv3vi4x+f0TWtpD+QCoOrOE8bGEkTmKPL9PsM=;
+        b=qPkyr+PHSqzeDPM0m6/PNEJJas7OaoN0n2nFK8voa4Ev+5xSfB+4F6dk2pLlcf+9SD
+         47YTXzrFDZYE9z5UPwms31LN578noNIRHJ1j656eV2gUYqu171V2SAoP3p4RDjVv8yOC
+         hX+pyDhufX8wiqNxJolSSKvmmwtTbS5dgM9r7ls1tGgbrX5+gFtm/fhMm5x28eB4KOMD
+         PtxA/fx5V+AcPfIQhqJJmhDXUsMPZ7QBPnPPEESul+cH0psWJ9igkeNKRLPjmOScrP6B
+         9BL5So9kdxdQ3hGt7IA+D+NvSlo/cb8PGK7Rdr7GrfgYh5cr+ylx4jeJNOM2GwDAs7RM
+         r5rw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=RfcQDeXv3vi4x+f0TWtpD+QCoOrOE8bGEkTmKPL9PsM=;
+        b=bzg2bUclDCMZBWhlFCRzU8+f/XkEeGpSYJBI+PlcUnFxXITGKyXRXeAWJYfQO8GDer
+         nLhmCvZ/9vOis4QFBqNUVHz0KlGslvsVPGNPp9fJPB3QqdQDDTHDSksLSU6Xxex9nyOP
+         CWm/xSXtetv3xPzHfofMVHb0QjfFC/2HxVsaml0KmUvYBHNkKT8XLrWe3HYaL6KXmGux
+         MiZkA+ud6aTc5wUF6p66bvX0WH3TSsNkXfT0nNTw6pmZC1SJybtfT7sTNJ9hwFmrt5Kt
+         yOvCYTol57nAR84CZ3yzfaiRgUdvjJfBG3krGbvKpYcvWMXEel72asaCZ6xB08noiPbS
+         enVQ==
+X-Gm-Message-State: APjAAAW6OhXbxK/A0a0CV7s6qnROtI1G8eNWafMSQDDen6S4fdqPp8lu
+        SNd1qWHMuUK6iJ3SGl1z44E=
+X-Google-Smtp-Source: APXvYqxkztg/xfJufiOkhmGbLxOjIO5U47Sjx6Mzk5DuGLVff8s8gwJqzW8JPIUDEY8r9zVDS18ZsA==
+X-Received: by 2002:a5e:9404:: with SMTP id q4mr8566734ioj.46.1563883866034;
+        Tue, 23 Jul 2019 05:11:06 -0700 (PDT)
+Received: from aford-OptiPlex-7050.logicpd.com ([174.46.170.158])
+        by smtp.gmail.com with ESMTPSA id k2sm36656076iom.50.2019.07.23.05.11.05
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 23 Jul 2019 05:11:05 -0700 (PDT)
+From:   Adam Ford <aford173@gmail.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     adam.ford@logicpd.com, Adam Ford <aford173@gmail.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] ARM: dts: da850-evm: Use generic jedec, spi-nor for flash
+Date:   Tue, 23 Jul 2019 07:10:42 -0500
+Message-Id: <20190723121042.28634-1-aford173@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 17 Jul 2019 at 18:58, Lukasz Luba <l.luba@partner.samsung.com> wrote:
->
-> Hi Krzysztof,
->
-> On 7/17/19 12:15 PM, Krzysztof Kozlowski wrote:
-> > On Mon, 15 Jul 2019 at 14:44, Lukasz Luba <l.luba@partner.samsung.com> wrote:
-> >>
-> >> This is the most important bus in the Exynos5x SoC. The whole communication
-> >> inside SoC does through that bus (apart from direct requests from CCI to
-> >> DRAM controller). It is also modeled as a master bus in devfreq framework.
-> >> It is also the only one OPP table throughout other buses which has voltage
-> >> values. The devfreq software controls the speed of that bus and other
-> >> buses. The other buses follows the rate of the master. There is only one
-> >> regulator. The old lowest OPP had pair 925mV, 84MHz which is enough for
-> >
-> > s/lowest/slowest/
-> please see below
-> >
-> >> this frequency. However, due to the fact that the other buses follows the
-> >> WCORE bus by taking the OPP from their table with the same id, e.g. opp02,
-> >> the children frequency should be stable with the set voltage.
-> >> It could cause random faults very hard to debug.
-> >> Thus, the patch removes the lowest OPP to make other buses' lowest OPPs
-> >
-> > s/lowest/slowest/
-> Actually, I have double checked that, because we always used this
-> terminology: low OPP, high OPP, lower OPPs, higher OPPs. I can change
-> it here for you, but I think this is not something that people are used
-> to. Please check EAS pdf documentation or this file:
-> https://www.kernel.org/doc/Documentation/scheduler/sched-energy.txt
-> i.e. "running at a lower OPP" or "high OPPs", "lowest OPPs".
+Logic PD re-spun the L138 and AM1808 SOM's with larger flash.
+The m25p80 driver has a generic 'jedec,spi-nor' compatible option
+which is requests to use whenever possible since it will read the
+JEDEC READ ID opcode.
 
-Hmm, indeed, you're right. Don't change it then.
+Signed-off-by: Adam Ford <aford173@gmail.com>
 
-Best regards,
-Krzysztof
+diff --git a/arch/arm/boot/dts/da850-evm.dts b/arch/arm/boot/dts/da850-evm.dts
+index 5b2b1ed04d51..f2e7609e5346 100644
+--- a/arch/arm/boot/dts/da850-evm.dts
++++ b/arch/arm/boot/dts/da850-evm.dts
+@@ -281,7 +281,7 @@
+ 	flash: m25p80@0 {
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+-		compatible = "m25p64";
++		compatible = "jedec,spi-nor";
+ 		spi-max-frequency = <30000000>;
+ 		m25p,fast-read;
+ 		reg = <0>;
+-- 
+2.17.1
+
