@@ -2,72 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1903C71147
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 07:40:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E8A071144
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 07:40:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731126AbfGWFk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 01:40:26 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41146 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729349AbfGWFkZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 01:40:25 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2600C2229A;
-        Tue, 23 Jul 2019 05:40:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563860424;
-        bh=+j2AOuISZmiPQxHemG/b+OJjdIwmlnQX7SnFfbIvn7E=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=1sE6Dd8kroxZni3hrIzECi1WLHUUBaNidsUd5f4AswbX4xlfhFmlZZwkRB0Vg+ir7
-         /3ScQzQIzZFHSIJMaNljs5QPRp3XJz6hxwC1LPYwhCBUh+1yqsV2gInf1+c3lvGqik
-         1dPCPFeZFHUShI9MvWE++oBb5tQeSRFU0+gxL88Q=
-Date:   Tue, 23 Jul 2019 13:39:53 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Stefan Riedmueller <s.riedmueller@phytec.de>
-Cc:     s.hauer@pengutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, martyn.welch@collabora.com,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        kernel@pengutronix.de, festevam@gmail.com,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 00/10] Add further support for PHYTEC phyBOARD-Segin
-Message-ID: <20190723053951.GN3738@dragon>
-References: <1562656767-273566-1-git-send-email-s.riedmueller@phytec.de>
+        id S1729916AbfGWFkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 01:40:14 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:44942 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726550AbfGWFkO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 01:40:14 -0400
+Received: by mail-pf1-f194.google.com with SMTP id t16so18508079pfe.11
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 22:40:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=5nt2VugXjt5XrF3/XOR/oWFILicVPJkaeDN7wxmTV7U=;
+        b=X1YvonD3R6khALL7BjDbSfmeGb+oxFB0Yn8oSaY7vanh6Hs83Ohqkwv+euiD632z1e
+         WUi+KeGNsw5+gmHJ2bO3XJtc3mZljXxy/qpui12TO4jz7CXB1bJ5mp+gpodlkI/nWOGZ
+         rvBzo8LIOFkvjxQPflC17XaQI+Nac3FzfcryjNzEMEa/lBJaIfFQlHbopWUR9bxrQYVe
+         yyZbHJZ9JDSg1IJiGqx08/WiG2+5rN1fnAMpz9u+jrvGJ7hI0uaQVmqsi/vLyEGS+/bI
+         7oTzNegr32gKDR7QbPUd95mr8UIc1mbTEL0WjBsM42uJSRveXhwWwQbwSO4QRy/U0YVd
+         1o+A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=5nt2VugXjt5XrF3/XOR/oWFILicVPJkaeDN7wxmTV7U=;
+        b=RLg4aDpqgBWgO2XC0kbm77W5wJqnMvvG384BpnTHECEkdWpGduCX+7lCE3O5q4lLF1
+         E7hLq5HwHwazyydQtK028ALdzmcD85+U0DDvJn0aO75/fT+Z+5icYsB4s5SzIocOBZFB
+         3rGKfwABnV+zGNTZkQR8IHEuE1cCjzntXKcixBMlKgLkwr9T/KUifJlkQf4iuxIue1eA
+         +5Ja67/fiqTostWZHSer/X00CjruKKX7PZ62Ahta+K9S3gb+VE9BXCcO6uN3xM4GySHJ
+         O/zNmnqf38bDqF8wmaBxldjGAe3E8HzKjtXEscUWYFMN7cWdxbpUMo3y5cz4xmKHHNam
+         Tfgw==
+X-Gm-Message-State: APjAAAVT7CpjgeTKO2ULSVKHWk4WkIw6g2wqJI6YgF95vXMU1+WNsQw8
+        9xe7i09ztFhAWHwWh1zHR6D67w==
+X-Google-Smtp-Source: APXvYqwjjiGZqVdQpH4aZpzAsDjcY/hTViotRsKielUAYMaE/4MmwKXQ8bmTu5CBoKt30B6QXiYCJg==
+X-Received: by 2002:a63:c03:: with SMTP id b3mr10469564pgl.23.1563860413423;
+        Mon, 22 Jul 2019 22:40:13 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id a15sm46535560pfg.102.2019.07.22.22.40.12
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 22 Jul 2019 22:40:12 -0700 (PDT)
+Date:   Mon, 22 Jul 2019 22:41:36 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Amit Kucheria <amit.kucheria@verdurent.com>,
+        Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: sdm845-cheza: remove macro from
+ unit name
+Message-ID: <20190723054136.GK7234@tuxbook-pro>
+References: <20190722123422.4571-1-vkoul@kernel.org>
+ <20190722123422.4571-6-vkoul@kernel.org>
+ <CAHLCerPC0thO9gsaDAxc+XaexinrzG6JGJ8BhB4bFFuQ-P9Jxg@mail.gmail.com>
+ <20190723051426.GZ12733@vkoul-mobl.Dlink>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1562656767-273566-1-git-send-email-s.riedmueller@phytec.de>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+In-Reply-To: <20190723051426.GZ12733@vkoul-mobl.Dlink>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 09, 2019 at 09:19:17AM +0200, Stefan Riedmueller wrote:
-> This patchstack adjusts the already existing naming for the PHYTEC
-> phyBOARD-Segin to the PHYTEC naming scheme that is already used with the
-> phyCORE-i.MX 6 and the phyBOARD-Mira.
-> 
-> Furthermore it introduces some small fixes and adds support for the PHYTEC
-> phyCORE-i.MX 6ULL which also comes with the phyBORAD-Segin. It comes in a
-> full featured option with either NAND flash or eMMC and a low cost option
-> only with NAND flash.
-> 
-> Stefan Riedmueller (10):
->   ARM: dts: imx6ul: phyboard-segin: Rename dts to PHYTEC name scheme
->   ARM: dts: imx6ul: segin: Add boot media to dts filename
->   ARM: dts: imx6ul: segin: Reduce eth drive strength
->   ARM: dts: imx6ul: segin: Fix LED naming for phyCORE and PEB-EVAL-01
->   ARM: dts: imx6ul: segin: Make FEC and ethphy configurable in dts
->   ARM: dts: imx6ul: segin: Only enable NAND if it is populated
->   ARM: dts: imx6ul: phycore: Add eMMC at usdhc2
->   ARM: dts: imx6ul: segin: Move ECSPI interface to board include file
->   ARM: dts: imx6ul: segin: Move machine include to dts files
->   ARM: dts: imx6ull: Add support for PHYTEC phyBOARD-Segin with i.MX
->     6ULL
+On Mon 22 Jul 22:14 PDT 2019, Vinod Koul wrote:
 
-I applied the series, but please send a follow-up patch for those
-undocumented board compatibles.
+> On 23-07-19, 10:38, Amit Kucheria wrote:
+> > On Mon, Jul 22, 2019 at 6:06 PM Vinod Koul <vkoul@kernel.org> wrote:
+> > >
+> > > Unit name is supposed to be a number, using a macro with hex value is
+> > 
+> > /s/name/address?
+> 
+> Right, will fix.
+> 
+> > > not recommended, so add the value in unit name.
+> > >
+> > > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:966.16-969.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4d: unit name should not have leading "0x"
+> > > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:971.16-974.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4e: unit name should not have leading "0x"
+> > > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:976.16-979.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4f: unit name should not have leading "0x"
+> > > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:981.16-984.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x50: unit name should not have leading "0x"
+> > > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:986.16-989.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x51: unit name should not have leading "0x"
+> > >
+> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 10 +++++-----
+> > >  1 file changed, 5 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> > > index 1ebbd568dfd7..9b27b8346ba1 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> > > @@ -963,27 +963,27 @@ ap_ts_i2c: &i2c14 {
+> > >  };
+> > >
+> > >  &pm8998_adc {
+> > > -       adc-chan@ADC5_AMUX_THM1_100K_PU {
+> > > +       adc-chan@4d {
+> > >                 reg = <ADC5_AMUX_THM1_100K_PU>;
 
-Shawn
+When I read this define I instantly know which channel we're referring
+to. The 4d above is simply there for syntactical purposes and needs only
+to be cared about if the reg is ever changed.
+
+So I like this form.
+
+> > 
+> > I'm a little conflicted about this change. If we're replacing the
+> > address with actual values, perhaps we should do that same for the reg
+> > property to keep them in sync? Admittedly though, it is a bit easier
+> > to read the macro name and figure out its meaning.
+> 
+> Well this was how Bjorn suggested, am okay if we do in any
+> other way. This fixes warning but keeps it bit readable too
+> 
+> Other way would be to make defines decimal values instead of hex
+> 
+
+While the ePAPRR states that the unit address must match the first reg,
+dtc enforces that the unit address string matches "%x" of the reg.
+
+Regards,
+Bjorn
+
+> Any better suggestions :)
+> 
+> -- 
+> ~Vinod
