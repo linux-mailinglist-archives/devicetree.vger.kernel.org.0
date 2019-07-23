@@ -2,54 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 07F7C7173E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 13:37:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49E807174C
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 13:42:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729209AbfGWLh4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 07:37:56 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:39210 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726575AbfGWLh4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 07:37:56 -0400
+        id S1727805AbfGWLmk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 07:42:40 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:44544 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726575AbfGWLmk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 07:42:40 -0400
 Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6NBbqS3016483;
-        Tue, 23 Jul 2019 06:37:52 -0500
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6NBgad7089998;
+        Tue, 23 Jul 2019 06:42:36 -0500
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1563881872;
-        bh=2zIXaKvlmdQ+4eXFZ9b8mRYwrNLdv/Bb7q9iPGLVMC8=;
+        s=ti-com-17Q1; t=1563882156;
+        bh=hHqEb6WqqOWvxYq7IGLLcdSIIDxJbA2QmoI51k0Osmc=;
         h=Date:From:To:CC:Subject:References:In-Reply-To;
-        b=KNxgkAw/v8ZHGFow8lYM1xAcGwW66WS+/isYj2JaaMKjl45ghwhlAdEd42csBe0K9
-         LngMDPR90SUWEFLTve77ME/ENzjNXSFCRrEHCcOewHW0zMInIRN/30RyC8yv6iGvth
-         48kAqkV1HgxQrftTnV4vVTcIRF6J8zUFjW2LNwYI=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6NBbqMl028468
+        b=LuvOhq764KqneG41Fllk8uQ0ByaqxROVsarjgI43PxOBTUEbph2TUvws8bSesnG7m
+         FPpPVhqUrqsdmHXVE/p0wyWb8tyQt9weamqNoc/yJIeQ2Qqv9xmrhYCdGTsAv52eEu
+         C0HIlw8osUIyP5zEFnAZKNiKUhCsVHCmslI5pfEc=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6NBgaLI033246
         (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 23 Jul 2019 06:37:52 -0500
-Received: from DFLE103.ent.ti.com (10.64.6.24) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
+        Tue, 23 Jul 2019 06:42:36 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 23
- Jul 2019 06:37:52 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE103.ent.ti.com
- (10.64.6.24) with Microsoft SMTP Server (version=TLS1_2,
+ Jul 2019 06:42:36 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
  cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 23 Jul 2019 06:37:52 -0500
+ Frontend Transport; Tue, 23 Jul 2019 06:42:35 -0500
 Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6NBbqkG037717;
-        Tue, 23 Jul 2019 06:37:52 -0500
-Date:   Tue, 23 Jul 2019 06:37:29 -0500
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6NBgaCw043934;
+        Tue, 23 Jul 2019 06:42:36 -0500
+Date:   Tue, 23 Jul 2019 06:42:13 -0500
 From:   Nishanth Menon <nm@ti.com>
-To:     Suman Anna <s-anna@ti.com>
-CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH 3/4] arm64: dts: ti: k3-j721e-main: Add mailbox cluster
- nodes
-Message-ID: <20190723113729.gkgq3kf2mman5m4q@kahuna>
-References: <20190722202024.14867-1-s-anna@ti.com>
- <20190722202024.14867-4-s-anna@ti.com>
+To:     Lokesh Vutla <lokeshvutla@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>, Sekhar Nori <nsekhar@ti.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v4 0/5] soc: ti: k3: Allow for exclusive and shared
+ device requests
+Message-ID: <20190723114213.ogypuwcp3mw3vmcn@kahuna>
+References: <20190722050757.29893-1-lokeshvutla@ti.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <20190722202024.14867-4-s-anna@ti.com>
+In-Reply-To: <20190722050757.29893-1-lokeshvutla@ti.com>
 User-Agent: NeoMutt/20171215
 X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
@@ -57,48 +59,30 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 15:20-20190722, Suman Anna wrote:
-> The J721E Main NavSS block contains a Mailbox IP instance with
-> multiple clusters. Each cluster is equivalent to an Mailbox IP
-> instance on OMAP platforms.
+On 10:37-20190722, Lokesh Vutla wrote:
+> Sysfw provides an option for requesting exclusive access for a
+> device using the flags MSG_FLAG_DEVICE_EXCLUSIVE. If this flag is
+> not used, the device is meant to be shared across hosts. Once a device
+> is requested from a host with this flag set, any request to this
+> device from a different host will be nacked by sysfw.
 > 
-> Add all the Mailbox clusters as their own nodes under the MAIN
-> NavSS cbass_main_navss interconnect node instead of creating an
-> almost empty parent node for the new K3 mailbox IP and the clusters
-> as its child nodes. All these nodes are marked as disabled, and
-> they need to be enabled along with the appropriate child nodes
-> on a need basis.
+> Current tisci firmware and pm drivers always requests for device with
+> exclusive permissions set. But this is not be true for certain devices
+> that are expcted to be shared across different host contexts.
+> So add support for getting the shared or exclusive permissions from DT
+> and request firmware accordingly.
 > 
-> NOTE:
-> The NavSS only has a limited number of interrupts, so all the
-> interrupts generated by a Mailbox IP are not added by default.
-> Only the needed interrupts that are targeted towards the A72
-> GIC will need to be be added later on when some sub-mailbox
-> child nodes are added.
-> 
-> Signed-off-by: Suman Anna <s-anna@ti.com>
-> ---
->  arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 108 ++++++++++++++++++++++
->  1 file changed, 108 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> index a2e031f7d88e..319d423b3440 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-> @@ -95,6 +95,114 @@
->  			reg = <0x00 0x30e00000 0x00 0x1000>;
->  			#hwlock-cells = <1>;
->  		};
-> +
-> +		mailbox0_cluster0: mailbox@31f80000 {
-> +			compatible = "ti,am654-mailbox";
-> +			reg = <0x00 0x31f80000 0x00 0x200>;
-> +			#mbox-cells = <1>;
-> +			ti,mbox-num-users = <4>;
-> +			ti,mbox-num-fifos = <16>;
-> +			status = "disabled";
+> Changes since v3: https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=103447
+> - Rebased on top of v5.3-rc1
+> - Updated power-domain cells for j721e.
+> - Mark the console uart as shared in am65x-base-board
+> - Added Reviewed-by from Rob
 
-Please drop disabled.
+[...]
+
+Looks good to me.
+
+Reviewed-by: Nishanth Menon <nm@ti.com>
 
 -- 
 Regards,
