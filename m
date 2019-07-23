@@ -2,98 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0D19B71108
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 07:15:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1903C71147
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 07:40:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726546AbfGWFPk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 01:15:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34504 "EHLO mail.kernel.org"
+        id S1731126AbfGWFk0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 01:40:26 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41146 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725907AbfGWFPk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 01:15:40 -0400
-Received: from localhost (unknown [106.201.111.135])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1729349AbfGWFkZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 01:40:25 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6D3E22238E;
-        Tue, 23 Jul 2019 05:15:38 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2600C2229A;
+        Tue, 23 Jul 2019 05:40:19 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563858939;
-        bh=usJZ1bRJrEJDFlg8XL703kkMQCrG8lPR8EcTOdlRAIM=;
+        s=default; t=1563860424;
+        bh=+j2AOuISZmiPQxHemG/b+OJjdIwmlnQX7SnFfbIvn7E=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Mxe/o6G+L3VwPTin+6ZGAroz2lw7CeeSiYm5KzQ8mw/V1kBQsxuvJQoH1LSw1a1Zu
-         HgX6Q8zYq+IPEvxexjh7PX0mbvCa9RiomNS9lBcqtKakEEg0VU2Dwl1aJYdAmOS1zD
-         /QDPOJGEjsXbMJgz5MzIYCnt9vQfr1OiyZElQSaY=
-Date:   Tue, 23 Jul 2019 10:44:26 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Amit Kucheria <amit.kucheria@verdurent.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: sdm845-cheza: remove macro from
- unit name
-Message-ID: <20190723051426.GZ12733@vkoul-mobl.Dlink>
-References: <20190722123422.4571-1-vkoul@kernel.org>
- <20190722123422.4571-6-vkoul@kernel.org>
- <CAHLCerPC0thO9gsaDAxc+XaexinrzG6JGJ8BhB4bFFuQ-P9Jxg@mail.gmail.com>
+        b=1sE6Dd8kroxZni3hrIzECi1WLHUUBaNidsUd5f4AswbX4xlfhFmlZZwkRB0Vg+ir7
+         /3ScQzQIzZFHSIJMaNljs5QPRp3XJz6hxwC1LPYwhCBUh+1yqsV2gInf1+c3lvGqik
+         1dPCPFeZFHUShI9MvWE++oBb5tQeSRFU0+gxL88Q=
+Date:   Tue, 23 Jul 2019 13:39:53 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Stefan Riedmueller <s.riedmueller@phytec.de>
+Cc:     s.hauer@pengutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, martyn.welch@collabora.com,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        kernel@pengutronix.de, festevam@gmail.com,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 00/10] Add further support for PHYTEC phyBOARD-Segin
+Message-ID: <20190723053951.GN3738@dragon>
+References: <1562656767-273566-1-git-send-email-s.riedmueller@phytec.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAHLCerPC0thO9gsaDAxc+XaexinrzG6JGJ8BhB4bFFuQ-P9Jxg@mail.gmail.com>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+In-Reply-To: <1562656767-273566-1-git-send-email-s.riedmueller@phytec.de>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 23-07-19, 10:38, Amit Kucheria wrote:
-> On Mon, Jul 22, 2019 at 6:06 PM Vinod Koul <vkoul@kernel.org> wrote:
-> >
-> > Unit name is supposed to be a number, using a macro with hex value is
+On Tue, Jul 09, 2019 at 09:19:17AM +0200, Stefan Riedmueller wrote:
+> This patchstack adjusts the already existing naming for the PHYTEC
+> phyBOARD-Segin to the PHYTEC naming scheme that is already used with the
+> phyCORE-i.MX 6 and the phyBOARD-Mira.
 > 
-> /s/name/address?
-
-Right, will fix.
-
-> > not recommended, so add the value in unit name.
-> >
-> > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:966.16-969.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4d: unit name should not have leading "0x"
-> > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:971.16-974.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4e: unit name should not have leading "0x"
-> > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:976.16-979.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4f: unit name should not have leading "0x"
-> > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:981.16-984.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x50: unit name should not have leading "0x"
-> > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:986.16-989.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x51: unit name should not have leading "0x"
-> >
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 10 +++++-----
-> >  1 file changed, 5 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> > index 1ebbd568dfd7..9b27b8346ba1 100644
-> > --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> > @@ -963,27 +963,27 @@ ap_ts_i2c: &i2c14 {
-> >  };
-> >
-> >  &pm8998_adc {
-> > -       adc-chan@ADC5_AMUX_THM1_100K_PU {
-> > +       adc-chan@4d {
-> >                 reg = <ADC5_AMUX_THM1_100K_PU>;
+> Furthermore it introduces some small fixes and adds support for the PHYTEC
+> phyCORE-i.MX 6ULL which also comes with the phyBORAD-Segin. It comes in a
+> full featured option with either NAND flash or eMMC and a low cost option
+> only with NAND flash.
 > 
-> I'm a little conflicted about this change. If we're replacing the
-> address with actual values, perhaps we should do that same for the reg
-> property to keep them in sync? Admittedly though, it is a bit easier
-> to read the macro name and figure out its meaning.
+> Stefan Riedmueller (10):
+>   ARM: dts: imx6ul: phyboard-segin: Rename dts to PHYTEC name scheme
+>   ARM: dts: imx6ul: segin: Add boot media to dts filename
+>   ARM: dts: imx6ul: segin: Reduce eth drive strength
+>   ARM: dts: imx6ul: segin: Fix LED naming for phyCORE and PEB-EVAL-01
+>   ARM: dts: imx6ul: segin: Make FEC and ethphy configurable in dts
+>   ARM: dts: imx6ul: segin: Only enable NAND if it is populated
+>   ARM: dts: imx6ul: phycore: Add eMMC at usdhc2
+>   ARM: dts: imx6ul: segin: Move ECSPI interface to board include file
+>   ARM: dts: imx6ul: segin: Move machine include to dts files
+>   ARM: dts: imx6ull: Add support for PHYTEC phyBOARD-Segin with i.MX
+>     6ULL
 
-Well this was how Bjorn suggested, am okay if we do in any
-other way. This fixes warning but keeps it bit readable too
+I applied the series, but please send a follow-up patch for those
+undocumented board compatibles.
 
-Other way would be to make defines decimal values instead of hex
-
-Any better suggestions :)
-
--- 
-~Vinod
+Shawn
