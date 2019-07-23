@@ -2,103 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A5D2671601
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 12:26:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68D1471731
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 13:36:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732969AbfGWK0e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 06:26:34 -0400
-Received: from dc2-smtprelay2.synopsys.com ([198.182.61.142]:39818 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1730141AbfGWK0d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 06:26:33 -0400
-Received: from mailhost.synopsys.com (mdc-mailhost1.synopsys.com [10.225.0.209])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 334DAC018D;
-        Tue, 23 Jul 2019 10:26:32 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1563877593; bh=9EQdLFPCKtMvNPp2+VskSltaXSuqOCA6tYIGyuKj/eY=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TjhbK4O4Y4vQSRWm8bRpyvrgR9/6eL6pp3pX0mtSUq6kLI18Dld5+p9Y5IBD0iet8
-         CgKSh/4hQnHCFB03fma5I3yiK3LN7wmD1ENVN1FNir/5SgNXmvoYZk4CMHxWnQ2hw2
-         S8ZCojfMPAMvo5RXJ4Wnh0EdO+MrvdFi2wO2BLe0sk+tBUAmdC9R2c7jOY/JVLaiuo
-         43jbbdSmqbBPd9t5RJbLnZx94sKRX/4HTXy78Z7AjlyuNFUXtgT5bJcbFs53t8Qy+b
-         aCsmGL8gwngaAoABIqZDceGAgM5UzrNSKDwNnlYdrfRAwwfF6lT4dTvZomzUN5NaIu
-         /0PIdLNCzQJBw==
-Received: from de02arcdev1.internal.synopsys.com (de02arcdev1.internal.synopsys.com [10.225.22.192])
-        by mailhost.synopsys.com (Postfix) with ESMTP id F2776A005E;
-        Tue, 23 Jul 2019 10:26:30 +0000 (UTC)
-From:   Mischa Jonker <Mischa.Jonker@synopsys.com>
-To:     Vineet.Gupta1@synopsys.com, Alexey.Brodkin@synopsys.com,
-        kstewart@linuxfoundation.org, tglx@linutronix.de,
-        robh+dt@kernel.org, linux-snps-arc@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Mischa Jonker <Mischa.Jonker@synopsys.com>
-Subject: [PATCH 2/2] dt-bindings: IDU-intc: Add support for edge-triggered interrupts
-Date:   Tue, 23 Jul 2019 12:26:06 +0200
-Message-Id: <20190723102606.309089-2-mischa.jonker@synopsys.com>
-X-Mailer: git-send-email 2.8.3
-In-Reply-To: <20190723102606.309089-1-mischa.jonker@synopsys.com>
-References: <20190723102606.309089-1-mischa.jonker@synopsys.com>
+        id S1727821AbfGWLgI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 07:36:08 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:37694 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727619AbfGWLgI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 07:36:08 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6NBa4WK059633;
+        Tue, 23 Jul 2019 06:36:04 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1563881764;
+        bh=Mdvz9V3F/EJoekC406OcHAGxa1aQ5F1Ei0ziTB4OYVo=;
+        h=Date:From:To:CC:Subject:References:In-Reply-To;
+        b=dwT77SPm4jppVTT+nqJfPQWZ40dGm5Yko8eUleOVPG1+JmXMpHVOBYL31Qe67naIx
+         G+JCvjxlKadmWeoQLmu4+T3sWb/p6hSlK6jmhvrurkDdrZcxXiFmj5eVo1tNj1WANL
+         FjswM1g307Xb5cFPAi+MRULJY5cpOtWrzDsXLF3Y=
+Received: from DFLE111.ent.ti.com (dfle111.ent.ti.com [10.64.6.32])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6NBa4D7029303
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Tue, 23 Jul 2019 06:36:04 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE111.ent.ti.com
+ (10.64.6.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 23
+ Jul 2019 06:36:04 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Tue, 23 Jul 2019 06:36:03 -0500
+Received: from localhost (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6NBa35a053381;
+        Tue, 23 Jul 2019 06:36:03 -0500
+Date:   Tue, 23 Jul 2019 06:35:41 -0500
+From:   Nishanth Menon <nm@ti.com>
+To:     Suman Anna <s-anna@ti.com>
+CC:     Tero Kristo <t-kristo@ti.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH 1/4] arm64: dts: ti: k3-am65-main: Add mailbox cluster
+ nodes
+Message-ID: <20190723113540.xvhsrlbf66lr5aaq@kahuna>
+References: <20190722202024.14867-1-s-anna@ti.com>
+ <20190722202024.14867-2-s-anna@ti.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <20190722202024.14867-2-s-anna@ti.com>
+User-Agent: NeoMutt/20171215
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This updates the documentation for supporting  a optional extra interrupt
-cell to specify edge vs level triggered.
+On 15:20-20190722, Suman Anna wrote:
+> The AM65x Main NavSS block contains a Mailbox IP instance with
+> multiple clusters. Each cluster is equivalent to an Mailbox IP
+> instance on OMAP platforms.
+> 
+> Add all the Mailbox clusters as their own nodes under the MAIN
+> NavSS cbass_main_navss interconnect node instead of creating an
+> almost empty parent node for the new K3 mailbox IP and the clusters
+> as its child nodes. All these nodes are marked as disabled, and
+> they need to be enabled along with the appropriate child nodes
+> on a need basis.
+> 
+> NOTE:
+> The NavSS only has a limited number of interrupts, so all the
+> interrupts generated by a Mailbox IP are not added by default.
+> Only the needed interrupts that are targeted towards the A53
+> GIC will need to be be added later on when some sub-mailbox
+> child nodes are added.
+> 
+> Signed-off-by: Suman Anna <s-anna@ti.com>
+> ---
+>  arch/arm64/boot/dts/ti/k3-am65-main.dtsi | 108 +++++++++++++++++++++++
+>  1 file changed, 108 insertions(+)
+> 
+> diff --git a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> index 8413e80f9d3a..0b3ea2a871ee 100644
+> --- a/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> +++ b/arch/arm64/boot/dts/ti/k3-am65-main.dtsi
+> @@ -419,6 +419,114 @@
+>  			reg = <0x00 0x30e00000 0x00 0x1000>;
+>  			#hwlock-cells = <1>;
+>  		};
+> +
+> +		mailbox0_cluster0: mailbox@31f80000 {
+> +			compatible = "ti,am654-mailbox";
+> +			reg = <0x00 0x31f80000 0x00 0x200>;
+> +			#mbox-cells = <1>;
+> +			ti,mbox-num-users = <4>;
+> +			ti,mbox-num-fifos = <16>;
+> +			status = "disabled";
 
-Signed-off-by: Mischa Jonker <mischa.jonker@synopsys.com>
----
- .../interrupt-controller/snps,archs-idu-intc.txt   | 30 ++++++++++++++--------
- 1 file changed, 20 insertions(+), 10 deletions(-)
+We don't use status="disabled" as default so far.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt
-index 09fc02b..a5c1db9 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt
-@@ -1,20 +1,30 @@
- * ARC-HS Interrupt Distribution Unit
- 
--  This optional 2nd level interrupt controller can be used in SMP configurations for
--  dynamic IRQ routing, load balancing of common/external IRQs towards core intc.
-+  This optional 2nd level interrupt controller can be used in SMP configurations
-+  for dynamic IRQ routing, load balancing of common/external IRQs towards core
-+  intc.
- 
- Properties:
- 
- - compatible: "snps,archs-idu-intc"
- - interrupt-controller: This is an interrupt controller.
--- #interrupt-cells: Must be <1>.
--
--  Value of the cell specifies the "common" IRQ from peripheral to IDU. Number N
--  of the particular interrupt line of IDU corresponds to the line N+24 of the
--  core interrupt controller.
--
--  intc accessed via the special ARC AUX register interface, hence "reg" property
--  is not specified.
-+- #interrupt-cells: Must be <1> or <2>.
-+
-+  Value of the first cell specifies the "common" IRQ from peripheral to IDU.
-+  Number N of the particular interrupt line of IDU corresponds to the line N+24
-+  of the core interrupt controller.
-+
-+  The (optional) second cell specifies any of the following flags:
-+    - bits[3:0] trigger type and level flags
-+        1 = low-to-high edge triggered
-+        2 = NOT SUPPORTED (high-to-low edge triggered)
-+        4 = active high level-sensitive <<< DEFAULT
-+        8 = NOT SUPPORTED (active low level-sensitive)
-+  When no second cell is specified, the interrupt is assumed to be level
-+  sensitive.
-+
-+  The interrupt controller is accessed via the special ARC AUX register
-+  interface, hence "reg" property is not specified.
- 
- Example:
- 	core_intc: core-interrupt-controller {
+
 -- 
-2.8.3
-
+Regards,
+Nishanth Menon
