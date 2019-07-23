@@ -2,78 +2,326 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EC3B71E2A
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 19:59:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC1BB71E6D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 20:00:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388467AbfGWR67 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 13:58:59 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37677 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726513AbfGWR67 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 13:58:59 -0400
-Received: by mail-wm1-f68.google.com with SMTP id f17so39272063wme.2;
-        Tue, 23 Jul 2019 10:58:57 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=CFpgVgUuyNvxrMZCyKWuK3LuxqE0J5JekFNJ3K5eJds=;
-        b=K5GeyaF3MQzyfh8HKPHkp7UVdhhleiUyCDOpzd6uOWw/WuP+BP0sKx60NcAI75X5pW
-         +tMKLg647jsKWxebnxW9Upm3ewV4KelzdIRyQ3cEntTXNHuHC1DlhA0CXtJ8tXMsZfqS
-         KA2T8k3PnDujoXy3oeRJfZUymWKvo+wPbgMbUbODEwO723x3JSCwk+8/rARpNWxI5t6C
-         KduPQL+WvmVh0Dq7F3p/0h/lP75ABdD/diowYfQr+RdVPA1eQrjb/9OdEwWvzt9IOHOp
-         oJLCEfUW8LhzIS9fGNhyDGq4U4VsDFO5q0T2lMvUMIpwrO/sqLsTRstkCSg9z6juA5MT
-         9xjQ==
-X-Gm-Message-State: APjAAAX5LC1VIORWAgc56qTUgB81yFAY5zjxzdqdrL87NA6A6b7ZBQ1B
-        5QIgvPHWy+4S/xli7PEunhI=
-X-Google-Smtp-Source: APXvYqxGy6ti+aro/+Ugouk2LFlHDkwecPIxNJNr4s2bexkT5TLGoN0A8azJ3yLVlYBc1LN2slYaiA==
-X-Received: by 2002:a05:600c:291:: with SMTP id 17mr68446436wmk.32.1563904736737;
-        Tue, 23 Jul 2019 10:58:56 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.239])
-        by smtp.googlemail.com with ESMTPSA id o26sm84382672wro.53.2019.07.23.10.58.55
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 23 Jul 2019 10:58:55 -0700 (PDT)
-Date:   Tue, 23 Jul 2019 19:58:53 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Lukasz Luba <l.luba@partner.samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, b.zolnierkie@samsung.com,
-        robh+dt@kernel.org, mark.rutland@arm.com, cw00.choi@samsung.com,
-        kyungmin.park@samsung.com, m.szyprowski@samsung.com,
-        s.nawrocki@samsung.com, myungjoo.ham@samsung.com, kgene@kernel.org,
-        willy.mh.wolff.ml@gmail.com
-Subject: Re: [PATCH v4 5/5] DT: arm: exynos4412: add event data type which is
- monitored
-Message-ID: <20190723175853.GA29195@kozik-lap>
-References: <20190605091236.24263-1-l.luba@partner.samsung.com>
- <CGME20190605091305eucas1p136332cc3d1a299d90617bddcb365bee0@eucas1p1.samsung.com>
- <20190605091236.24263-6-l.luba@partner.samsung.com>
+        id S1730211AbfGWSAc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 14:00:32 -0400
+Received: from mx0a-00082601.pphosted.com ([67.231.145.42]:56242 "EHLO
+        mx0a-00082601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1733137AbfGWSAb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 14:00:31 -0400
+Received: from pps.filterd (m0044008.ppops.net [127.0.0.1])
+        by mx0a-00082601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6NHwdVQ001864
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 11:00:30 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=facebook;
+ bh=jJLfVvSjt2gQQF0iqPr4nzXmRhm9Q8kyfBU0ddiCAyE=;
+ b=gdtacbNDBnV0fakBVHGe279fuAC0qoRQFTvEKHva2j17cJH7pc4/kko7q44enxYTA0iR
+ znEQfeRKlyBs19NHWOhQK/Z6wNH5Sulie4KnNJfduV1Rz/fU9ZOX+EgP6e7roAWlfBOt
+ +oN5lauMp+lzVK4HkoF0bpH7w/Ndu+w1geE= 
+Received: from mail.thefacebook.com (mailout.thefacebook.com [199.201.64.23])
+        by mx0a-00082601.pphosted.com with ESMTP id 2tx61y8ajr-3
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 11:00:30 -0700
+Received: from mx-out.facebook.com (2620:10d:c081:10::13) by
+ mail.thefacebook.com (2620:10d:c081:35::127) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.1.1713.5;
+ Tue, 23 Jul 2019 11:00:29 -0700
+Received: by devvm4117.prn2.facebook.com (Postfix, from userid 167582)
+        id 325991159D9B0; Tue, 23 Jul 2019 10:58:22 -0700 (PDT)
+Smtp-Origin-Hostprefix: devvm
+From:   Vijay Khemka <vijaykhemka@fb.com>
+Smtp-Origin-Hostname: devvm4117.prn2.facebook.com
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+CC:     <vijaykhemka@fb.com>,
+        "openbmc @ lists . ozlabs . org" <openbmc@lists.ozlabs.org>,
+        <sdasari@fb.com>
+Smtp-Origin-Cluster: prn2c23
+Subject: [PATCH v2] ARM: dts: aspeed: tiogapass: Add Riser card
+Date:   Tue, 23 Jul 2019 10:58:20 -0700
+Message-ID: <20190723175820.1565972-1-vijaykhemka@fb.com>
+X-Mailer: git-send-email 2.17.1
+X-FB-Internal: Safe
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190605091236.24263-6-l.luba@partner.samsung.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-23_07:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1907230182
+X-FB-Internal: deliver
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jun 05, 2019 at 11:12:36AM +0200, Lukasz Luba wrote:
-> The patch adds new field in the PPMU event which shows explicitly
-> what kind of data the event is monitoring. It is possible to change it
-> using defined values in exynos_ppmu.h file.
-> 
-> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
-> ---
->  arch/arm/boot/dts/exynos4412-ppmu-common.dtsi | 10 ++++++++++
->  1 file changed, 10 insertions(+)
-> 
+Added i2c mux for riser card and multiple ava card and its sensor
+components for Facebook tiogapass platform
 
-I tried to apply this... but prerequisites were not merged into
-v5.3-rc1. This one will have to wait then till next release.
+Signed-off-by: Vijay Khemka <vijaykhemka@fb.com>
+---
+In V2: Modified ina219 to ina230 which is correct device.
 
-Best regards,
-Krzysztof
+ .../dts/aspeed-bmc-facebook-tiogapass.dts     | 230 ++++++++++++++++++
+ 1 file changed, 230 insertions(+)
+
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
+index e722e9aef907..d0c823e8fce5 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
+@@ -12,6 +12,27 @@
+ 	aliases {
+ 		serial0 = &uart1;
+ 		serial4 = &uart5;
++
++		/*
++		 * Hardcode the bus number of i2c switches' channels to
++		 * avoid breaking the legacy applications.
++		 */
++		i2c16 = &imux16;
++		i2c17 = &imux17;
++		i2c18 = &imux18;
++		i2c19 = &imux19;
++		i2c20 = &imux20;
++		i2c21 = &imux21;
++		i2c22 = &imux22;
++		i2c23 = &imux23;
++		i2c24 = &imux24;
++		i2c25 = &imux25;
++		i2c26 = &imux26;
++		i2c27 = &imux27;
++		i2c28 = &imux28;
++		i2c29 = &imux29;
++		i2c30 = &imux30;
++		i2c31 = &imux31;
+ 	};
+ 	chosen {
+ 		stdout-path = &uart5;
+@@ -124,6 +145,215 @@
+ &i2c1 {
+ 	status = "okay";
+ 	//X24 Riser
++	i2c-switch@71 {
++		compatible = "nxp,pca9544";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x71>;
++
++		imux16: i2c@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++
++			ina230@45 {
++				compatible = "ti,ina230";
++				reg = <0x45>;
++			};
++
++			tmp75@48 {
++				compatible = "ti,tmp75";
++				reg = <0x48>;
++			};
++
++			tmp421@49 {
++				compatible = "ti,tmp75";
++				reg = <0x49>;
++			};
++
++			eeprom@50 {
++				compatible = "atmel,24c64";
++				reg = <0x50>;
++				pagesize = <32>;
++			};
++
++			i2c-switch@73 {
++				compatible = "nxp,pca9546";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <0x73>;
++
++				imux20: i2c@0 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <0>;
++				};
++
++				imux21: i2c@1 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <1>;
++				};
++
++				imux22: i2c@2 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <2>;
++				};
++
++				imux23: i2c@3 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <3>;
++				};
++
++			};
++
++		};
++
++		imux17: i2c@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++
++			ina230@45 {
++				compatible = "ti,ina230";
++				reg = <0x45>;
++			};
++
++			tmp421@48 {
++				compatible = "ti,tmp75";
++				reg = <0x48>;
++			};
++
++			tmp421@49 {
++				compatible = "ti,tmp75";
++				reg = <0x49>;
++			};
++
++			eeprom@50 {
++				compatible = "atmel,24c64";
++				reg = <0x50>;
++				pagesize = <32>;
++			};
++
++			i2c-switch@73 {
++				compatible = "nxp,pca9546";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <0x73>;
++
++				imux24: i2c@0 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <0>;
++				};
++
++				imux25: i2c@1 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <1>;
++				};
++
++				imux26: i2c@2 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <2>;
++				};
++
++				imux27: i2c@3 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <3>;
++				};
++
++			};
++
++		};
++
++		imux18: i2c@2 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <2>;
++
++			ina230@45 {
++				compatible = "ti,ina230";
++				reg = <0x45>;
++			};
++
++			tmp421@48 {
++				compatible = "ti,tmp75";
++				reg = <0x48>;
++			};
++
++			tmp421@49 {
++				compatible = "ti,tmp75";
++				reg = <0x49>;
++			};
++
++			eeprom@50 {
++				compatible = "atmel,24c64";
++				reg = <0x50>;
++				pagesize = <32>;
++			};
++
++			i2c-switch@73 {
++				compatible = "nxp,pca9546";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <0x73>;
++
++				imux28: i2c@0 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <0>;
++				};
++
++				imux29: i2c@1 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <1>;
++				};
++
++				imux30: i2c@2 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <2>;
++				};
++
++				imux31: i2c@3 {
++					#address-cells = <1>;
++					#size-cells = <0>;
++					reg = <3>;
++				};
++
++			};
++
++		};
++
++		imux19: i2c@3 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <3>;
++
++			i2c-switch@40 {
++				compatible = "ti,ina230";
++				reg = <0x40>;
++			};
++
++			i2c-switch@41 {
++				compatible = "ti,ina230";
++				reg = <0x41>;
++			};
++
++			i2c-switch@45 {
++				compatible = "ti,ina230";
++				reg = <0x45>;
++			};
++
++		};
++
++	};
+ };
+ 
+ &i2c2 {
+-- 
+2.17.1
 
