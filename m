@@ -2,83 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D3F777140E
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 10:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CFEF47141B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 10:41:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727777AbfGWIfy convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Tue, 23 Jul 2019 04:35:54 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:38583 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727801AbfGWIfy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 04:35:54 -0400
-X-Originating-IP: 86.250.200.211
-Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 861C020010;
-        Tue, 23 Jul 2019 08:35:49 +0000 (UTC)
-Date:   Tue, 23 Jul 2019 10:35:48 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Russell King <linux@armlinux.org.uk>,
+        id S2387566AbfGWIlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 04:41:11 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:55926 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727801AbfGWIlK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 04:41:10 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9F1AD1A02DF;
+        Tue, 23 Jul 2019 10:41:08 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 920E31A02D1;
+        Tue, 23 Jul 2019 10:41:08 +0200 (CEST)
+Received: from fsr-ub1864-103.ea.freescale.net (fsr-ub1864-103.ea.freescale.net [10.171.82.17])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id AA798205DD;
+        Tue, 23 Jul 2019 10:41:07 +0200 (CEST)
+From:   Daniel Baluta <daniel.baluta@nxp.com>
+To:     m.felsch@pengutronix.de, shawnguo@kernel.org
+Cc:     mark.rutland@arm.com, aisheng.dong@nxp.com, peng.fan@nxp.com,
+        anson.huang@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
+        shengjiu.wang@nxp.com, paul.olaru@nxp.com, robh+dt@kernel.org,
+        kernel@pengutronix.de, leonard.crestez@nxp.com, festevam@gmail.com,
         linux-arm-kernel@lists.infradead.org,
-        Grzegorz Jaszczyk <jaz@semihalf.com>
-Subject: Re: [PATCH v2 14/19] dt-bindings: pci: add PHY properties to Armada
- 7K/8K controller bindings
-Message-ID: <20190723103548.59d1a652@xps13>
-In-Reply-To: <20190722175225.GA13801@bogus>
-References: <20190627095104.22529-1-miquel.raynal@bootlin.com>
-        <20190627122505.25774-1-miquel.raynal@bootlin.com>
-        <20190627122505.25774-2-miquel.raynal@bootlin.com>
-        <20190722175225.GA13801@bogus>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+        sound-open-firmware@alsa-project.org,
+        Daniel Baluta <daniel.baluta@nxp.com>
+Subject: [PATCH v2 0/5] Add DSP node for i.MX8QXP board to be used by DSP SOF driver
+Date:   Tue, 23 Jul 2019 11:40:59 +0300
+Message-Id: <20190723084104.12639-1-daniel.baluta@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob,
+i.MX8QXP boards feature an Hifi4 DSP from Tensilica.
 
-Rob Herring <robh@kernel.org> wrote on Mon, 22 Jul 2019 11:52:25 -0600:
+This patch series aims on adding the DT node describing the DSP,
+but it also contains the Linux SOF DSP driver that will use the DT node
+for easier review.
 
-> On Thu, Jun 27, 2019 at 02:25:00PM +0200, Miquel Raynal wrote:
-> > Armada CP110 PCIe controller can have a PHY (for configuring SERDES
-> > lanes). Describe these two properties in the bindings.
-> > 
-> > Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
-> > ---
-> >  Documentation/devicetree/bindings/pci/pci-armada8k.txt | 4 ++++
-> >  1 file changed, 4 insertions(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/pci/pci-armada8k.txt b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> > index 9e3fc15e1af8..a373a80524db 100644
-> > --- a/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> > +++ b/Documentation/devicetree/bindings/pci/pci-armada8k.txt
-> > @@ -17,6 +17,10 @@ Required properties:
-> >     name must be "core" for the first clock and "reg" for the second
-> >     one
-> >  
-> > +Optional properties:
-> > +- phys: phandle to the PHY node (generic PHY bindings).
-> > +- phy-names: names of the PHYs.  
-> 
-> How many? If only 1, you don't really need phy-names.
+Note that we switched to the new yaml format for bindings documentation.
 
-I thought it was preferred to always add phy-names, but ok, I'll drop
-the property.
+The DSP will run SOF Firmware [1]. Patches 1,2,3 are adding support
+for Linux DSP driver are already sent for review to SOF folks [2]
 
-Thanks,
-Miquèl
+[1] https://github.com/thesofproject/sof
+[2] https://github.com/thesofproject/linux/pull/1048/commits
+
+Changes since v1:
+	- removed 'clk: imx8: Add DSP related clocks' as it was already
+	  applied by Shawn
+	- add patches adding support for Linux DSP driver to make things
+	  clear for review
+	- add maxItems property for PM in DT bindings doc
+
+Daniel Baluta (5):
+  ASoC: SOF: imx: Add i.MX8 HW support
+  ASoC: SOF: topology: Add dummy support for i.MX8 DAIs
+  ASoC: SOF: Add DT DSP device support
+  arm64: dts: imx8qxp: Add DSP DT node
+  dt-bindings: dsp: fsl: Add DSP core binding support
+
+ .../devicetree/bindings/dsp/fsl,dsp.yaml      |  87 ++++
+ arch/arm64/boot/dts/freescale/imx8qxp-mek.dts |   4 +
+ arch/arm64/boot/dts/freescale/imx8qxp.dtsi    |  32 ++
+ include/sound/sof/dai.h                       |   2 +
+ include/uapi/sound/sof/tokens.h               |   8 +
+ sound/soc/sof/Kconfig                         |  10 +
+ sound/soc/sof/Makefile                        |   4 +
+ sound/soc/sof/imx/Kconfig                     |  21 +
+ sound/soc/sof/imx/Makefile                    |   7 +
+ sound/soc/sof/imx/imx8.c                      | 464 ++++++++++++++++++
+ sound/soc/sof/sof-dt-dev.c                    | 159 ++++++
+ sound/soc/sof/topology.c                      |  30 ++
+ 12 files changed, 828 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/dsp/fsl,dsp.yaml
+ create mode 100644 sound/soc/sof/imx/Kconfig
+ create mode 100644 sound/soc/sof/imx/Makefile
+ create mode 100644 sound/soc/sof/imx/imx8.c
+ create mode 100644 sound/soc/sof/sof-dt-dev.c
+
+-- 
+2.17.1
+
