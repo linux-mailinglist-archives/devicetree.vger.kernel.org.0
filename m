@@ -2,88 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9C6471ACA
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 16:50:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6371071AD1
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 16:51:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388330AbfGWOuc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 10:50:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51814 "EHLO mail.kernel.org"
+        id S2388345AbfGWOvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 10:51:05 -0400
+Received: from muru.com ([72.249.23.125]:55730 "EHLO muru.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732532AbfGWOuc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 10:50:32 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 152C4229E9;
-        Tue, 23 Jul 2019 14:50:31 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563893431;
-        bh=NWY3jIvmqwRnEzth0vMKEw2NgpGjrUlBjW0KeFbTm5o=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=IDFS8+WNAeGLOnDIvNmXlG7K9oKwlVq7Z+RmdL9ze2zCJFUZz5fvjP3elsU3XWct6
-         tVyeZxrFlS7zl0MIWuIyAUvMa0HUuQ4I5w6wcCdPzbRvoQe13OtzfjBPi+FTsf6Yem
-         y09h8D/vh1Vta4RvFOm8i+sZwmHxidcnx17LNy6o=
-Received: by mail-qt1-f178.google.com with SMTP id a15so42176272qtn.7;
-        Tue, 23 Jul 2019 07:50:31 -0700 (PDT)
-X-Gm-Message-State: APjAAAXsk/6k55/dKPMWpftR0wrVGGm0GrWNPUhEpx0M9SLt12HKspiR
-        795RBP0Sgw7iaOhFkr+KdPAJVLkWevMU/eUX/g==
-X-Google-Smtp-Source: APXvYqwBju742Uv1oJ/wgPhfyE4ujnFUKj5HTZyO6Z9MYKgunw2Xd7cpXwgfdumZPHvlQwtgggvcrJUV0jigeCY0Eso=
-X-Received: by 2002:a0c:b786:: with SMTP id l6mr55369242qve.148.1563893430142;
- Tue, 23 Jul 2019 07:50:30 -0700 (PDT)
+        id S2388251AbfGWOvE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 10:51:04 -0400
+Received: from atomide.com (localhost [127.0.0.1])
+        by muru.com (Postfix) with ESMTPS id 82FC2808C;
+        Tue, 23 Jul 2019 14:51:28 +0000 (UTC)
+Date:   Tue, 23 Jul 2019 07:51:00 -0700
+From:   Tony Lindgren <tony@atomide.com>
+To:     David Lechner <david@lechnology.com>
+Cc:     linux-iio@vger.kernel.org, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 3/4] ARM: dts: am33xx: Add nodes for eQEP
+Message-ID: <20190723145100.GS5447@atomide.com>
+References: <20190722154538.5314-1-david@lechnology.com>
+ <20190722154538.5314-4-david@lechnology.com>
+ <20190723084213.GR5447@atomide.com>
+ <af21fd76-7123-b317-896b-bfe18d293325@lechnology.com>
 MIME-Version: 1.0
-References: <20190723002052.2878847-1-vijaykhemka@fb.com>
-In-Reply-To: <20190723002052.2878847-1-vijaykhemka@fb.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 23 Jul 2019 08:50:18 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+uAjK6+xzkyOhcH96tZuqv7i6Nz5_nhUQkZ2adt2gutA@mail.gmail.com>
-Message-ID: <CAL_Jsq+uAjK6+xzkyOhcH96tZuqv7i6Nz5_nhUQkZ2adt2gutA@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: Add pxe1610 as a trivial device
-To:     Vijay Khemka <vijaykhemka@fb.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Jiri Kosina <trivial@kernel.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Patrick Venture <venture@google.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Anson Huang <anson.huang@nxp.com>,
-        Jeremy Gebben <jgebben@sweptlaser.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "openbmc @ lists . ozlabs . org" <openbmc@lists.ozlabs.org>,
-        Joel Stanley <joel@jms.id.au>, linux-aspeed@lists.ozlabs.org,
-        sdasari@fb.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <af21fd76-7123-b317-896b-bfe18d293325@lechnology.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 22, 2019 at 6:46 PM Vijay Khemka <vijaykhemka@fb.com> wrote:
->
-> The pxe1610 is a voltage regulator from Infineon. It also supports
-> other VRs pxe1110 and pxm1310 from Infineon.
->
-> Signed-off-by: Vijay Khemka <vijaykhemka@fb.com>
-> ---
->  Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml b/Documentation/devicetree/bindings/trivial-devices.yaml
-> index 2e742d399e87..1be648828a31 100644
-> --- a/Documentation/devicetree/bindings/trivial-devices.yaml
-> +++ b/Documentation/devicetree/bindings/trivial-devices.yaml
-> @@ -99,6 +99,8 @@ properties:
->              # Infineon IR38064 Voltage Regulator
->            - infineon,ir38064
->              # Infineon SLB9635 (Soft-) I2C TPM (old protocol, max 100khz)
-> +          - infineon,pxe1610
-> +            # Infineon PXE1610, PXE1110 and PXM1310 Voltage Regulators
+* David Lechner <david@lechnology.com> [190723 14:46]:
+> On 7/23/19 3:42 AM, Tony Lindgren wrote:
+> > * David Lechner <david@lechnology.com> [190722 15:46]:
+> > > This adds new nodes for the Texas Instruments Enhanced Quadrature
+> > > Encoder Pulse (eQEP) module in the PWM subsystem on AM33XX.
+> > > 
+> > > Signed-off-by: David Lechner <david@lechnology.com>
+> > > ---
+> > >   arch/arm/boot/dts/am33xx-l4.dtsi | 27 +++++++++++++++++++++++++++
+> > >   1 file changed, 27 insertions(+)
+> > > 
+> > > diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
+> > > index 3b1fb2ba4dff..7fdc2f61c553 100644
+> > > --- a/arch/arm/boot/dts/am33xx-l4.dtsi
+> > > +++ b/arch/arm/boot/dts/am33xx-l4.dtsi
+> > > @@ -1908,6 +1908,15 @@
+> > >   					status = "disabled";
+> > >   				};
+> > > +				eqep0: eqep@180 {
+> > > +					compatible = "ti,am3352-eqep";
+> > > +					reg = <0x180 0x80>;
+> > > +					clocks = <&l4ls_gclk>;
+> > > +					clock-names = "fck";
+> > > +					interrupts = <79>;
+> > > +					status = "disabled";
+> > > +				};
+> > > +
+> > 
+> > You probably no longer need to map any clocks here as this> is now a child of the interconnect target module managed
+> > by ti-sysc driver. I have not checked but probably l4ls_gclk
+> > is same as clocks = <&l4ls_clkctrl AM3_L4LS_EPWMSS0_CLKCTRL 0>
+> > already managed by ti-sysc. If so, then just using runtime PM
+> > calls in any of the child device drivers will keep it enabled.
+> > 
+> > If l4ls_gclk is a separate functional clock, then it still
+> > needs to be managed by the child device driver directly.
+> 
+> The clock is included so that we can get the clock rate for
+> the timing aspects of the eQEP, not for power management.
+> 
+> I chose to use the "fck" name to be consistent with the
+> sibling EHRPWM and ECAP nodes that already have the same
+> bindings for the same clock.
 
-The comment goes above the entry.
+OK makes sense to me thanks.
 
->            - infineon,slb9635tt
->              # Infineon SLB9645 I2C TPM (new protocol, max 400khz)
->            - infineon,slb9645tt
-> --
-> 2.17.1
->
+Tony
