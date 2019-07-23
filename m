@@ -2,79 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 50DF471434
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 10:42:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8BE571452
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 10:48:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731636AbfGWImS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 04:42:18 -0400
-Received: from muru.com ([72.249.23.125]:55596 "EHLO muru.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727109AbfGWImS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 04:42:18 -0400
-Received: from atomide.com (localhost [127.0.0.1])
-        by muru.com (Postfix) with ESMTPS id 5AD4F808C;
-        Tue, 23 Jul 2019 08:42:42 +0000 (UTC)
-Date:   Tue, 23 Jul 2019 01:42:13 -0700
-From:   Tony Lindgren <tony@atomide.com>
-To:     David Lechner <david@lechnology.com>
-Cc:     linux-iio@vger.kernel.org, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 3/4] ARM: dts: am33xx: Add nodes for eQEP
-Message-ID: <20190723084213.GR5447@atomide.com>
-References: <20190722154538.5314-1-david@lechnology.com>
- <20190722154538.5314-4-david@lechnology.com>
+        id S1728030AbfGWIso (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 04:48:44 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:59547 "EHLO
+        relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727994AbfGWIsn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 04:48:43 -0400
+X-Originating-IP: 86.250.200.211
+Received: from bootlin.com (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: maxime.chevallier@bootlin.com)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id E827EFF809;
+        Tue, 23 Jul 2019 08:48:37 +0000 (UTC)
+Date:   Tue, 23 Jul 2019 10:48:49 +0200
+From:   Maxime Chevallier <maxime.chevallier@bootlin.com>
+To:     Miquel Raynal <miquel.raynal@bootlin.com>
+Cc:     Gregory Clement <gregory.clement@bootlin.com>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        <devicetree@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Russell King <linux@armlinux.org.uk>,
+        <linux-arm-kernel@lists.infradead.org>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>
+Subject: Re: [PATCH v2 03/19] phy: mvebu-cp110-comphy: Add SMC call support
+Message-ID: <20190723104849.7158f634@bootlin.com>
+In-Reply-To: <20190627095104.22529-4-miquel.raynal@bootlin.com>
+References: <20190627095104.22529-1-miquel.raynal@bootlin.com>
+        <20190627095104.22529-4-miquel.raynal@bootlin.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190722154538.5314-4-david@lechnology.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-* David Lechner <david@lechnology.com> [190722 15:46]:
-> This adds new nodes for the Texas Instruments Enhanced Quadrature
-> Encoder Pulse (eQEP) module in the PWM subsystem on AM33XX.
-> 
-> Signed-off-by: David Lechner <david@lechnology.com>
-> ---
->  arch/arm/boot/dts/am33xx-l4.dtsi | 27 +++++++++++++++++++++++++++
->  1 file changed, 27 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
-> index 3b1fb2ba4dff..7fdc2f61c553 100644
-> --- a/arch/arm/boot/dts/am33xx-l4.dtsi
-> +++ b/arch/arm/boot/dts/am33xx-l4.dtsi
-> @@ -1908,6 +1908,15 @@
->  					status = "disabled";
->  				};
->  
-> +				eqep0: eqep@180 {
-> +					compatible = "ti,am3352-eqep";
-> +					reg = <0x180 0x80>;
-> +					clocks = <&l4ls_gclk>;
-> +					clock-names = "fck";
-> +					interrupts = <79>;
-> +					status = "disabled";
-> +				};
-> +
+Hi Miquel,
 
-You probably no longer need to map any clocks here as this
-is now a child of the interconnect target module managed
-by ti-sysc driver. I have not checked but probably l4ls_gclk
-is same as clocks = <&l4ls_clkctrl AM3_L4LS_EPWMSS0_CLKCTRL 0>
-already managed by ti-sysc. If so, then just using runtime PM
-calls in any of the child device drivers will keep it enabled.
+Thanks for this, I gave it a quick test and it looks good.
 
-If l4ls_gclk is a separate functional clock, then it still
-needs to be managed by the child device driver directly.
+On Thu, 27 Jun 2019 11:50:48 +0200
+Miquel Raynal <miquel.raynal@bootlin.com> wrote:
 
-Regards,
+>From: Grzegorz Jaszczyk <jaz@semihalf.com>
+>
+>Keep the exact same list of supported configurations but first try to
+>use the firmware's implementation. If it fails, try the legacy method:
+>Linux implementation.
+>
+>Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
+>[miquel.raynal@bootlin.com: adapt the content to the mainline driver]
+>Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 
-Tony
+[...]
+
+>+	dev_warn(priv->dev,
+>+		 "Firmware could not configure PHY %d with mode %d (ret: %d), trying legacy method\n",
+>+		 ret, lane->id, lane->mode);
+
+Small nit, you've got your parameters in the wrong order in that
+dev_warn.
+
+Besides that,
+
+Tested-by: Maxime Chevallier <maxime.chevallier@bootlin.com>
+
