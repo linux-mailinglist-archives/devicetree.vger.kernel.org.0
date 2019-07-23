@@ -2,169 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2383171053
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 06:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0F3BB710CB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 07:08:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727247AbfGWEK4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 00:10:56 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:45692 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725865AbfGWEKz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 00:10:55 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6N4AcQZ084842;
-        Mon, 22 Jul 2019 23:10:38 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1563855038;
-        bh=XVQwkygam6XUYEnTe8AJ648CRlJe+ilV+FEAKjn2rNk=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=i2oKgZIxxAGqvixuh0zwlHSsthhL4f5ATxJn75fKFU5poGsHBBOBlUB4Uf5XnzPKg
-         382ORi84YpgwMEpXRvUfkXu2QTZys2UrfnGJKw66QTRz4ABgTo1daN4PNEVVfwVcod
-         ehmrKWZ9j3qflQyzW+Z65JrzTX25le7sfZqMxyOg=
-Received: from DLEE102.ent.ti.com (dlee102.ent.ti.com [157.170.170.32])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6N4Ac2U090509
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Mon, 22 Jul 2019 23:10:38 -0500
-Received: from DLEE113.ent.ti.com (157.170.170.24) by DLEE102.ent.ti.com
- (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 22
- Jul 2019 23:10:37 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE113.ent.ti.com
- (157.170.170.24) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Mon, 22 Jul 2019 23:10:37 -0500
-Received: from [172.24.191.45] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6N4AYpB052900;
-        Mon, 22 Jul 2019 23:10:35 -0500
-Subject: Re: [RESEND PATCH 01/10] dt-bindings: crypto: k3: Add sa2ul bindings
- documentation
-To:     Rob Herring <robh@kernel.org>,
-        Peter Ujfalusi <peter.ujfalusi@ti.com>
-CC:     <herbert@gondor.apana.org.au>, <davem@davemloft.net>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <t-kristo@ti.com>,
-        <linux-crypto@vger.kernel.org>, <nm@ti.com>
-References: <20190628042745.28455-1-j-keerthy@ti.com>
- <20190628042745.28455-2-j-keerthy@ti.com> <20190722182945.GA24685@bogus>
-From:   Keerthy <j-keerthy@ti.com>
-Message-ID: <b8712fe4-4590-fdda-8a24-bf0f135ad567@ti.com>
-Date:   Tue, 23 Jul 2019 09:41:11 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1732645AbfGWFIV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 01:08:21 -0400
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:38220 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732384AbfGWFIV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 01:08:21 -0400
+Received: by mail-vs1-f68.google.com with SMTP id k9so27970582vso.5
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 22:08:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=verdurent-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=tDS4gSwn4vjiBJe81KYYzL7InQAaE1qq2PXrKhXqlTs=;
+        b=j2KDdcapzsm80aR134jUbGPOcIEjhGx/YtVlRLot6jVeXKbFVo2V6o2h1GGw8NGfQC
+         3A1QdC8IzxVAJqs2Ts+V5VbaKUmNDsxpnBgVGkb6yp792JEqQVZAk+Fiv6MVkaZUjCcd
+         MC/MWFWlp/PPKJs+hDTiDJdPKiIoE7/Avv5FZkpIhdH76Crk73OHLTGYm6G98STksvLL
+         DI1NuHdqP7pAPYkerHyXPKBDJzx5JxUdCtGyvDjjOuY5kbYc+uvmaP0/B9ea4m3cuD5j
+         XrPiAJRhJaLwmcM61oSGQoScFRtCqfLLOGa39hVcbEBed86bhpG1Ds/Lx+Ojewk/MIhm
+         C/Eg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=tDS4gSwn4vjiBJe81KYYzL7InQAaE1qq2PXrKhXqlTs=;
+        b=bTyrkm4akZTyPFJoD/uJKaIa2Z00Qhx+8iTeYNkAMeYEfpDo7KC/PRQDVnkpbikcDT
+         EtEGCZFLg5JY7M7ml1ka7KF9seRJ6p4YY72FW7Gj9DoPXabba5B5WAjBVhhYzFnHBHsY
+         JZFZbV/1EHQrtN0HPp9MhFBp60cM0pErXgoRiaxepDP/QIDQYOr0WiFmhatwr55YTyrx
+         i0i2dEEu1ANVr/xGGRzrmXMNMGh/DrK2/gUqFefrKPmvO3ntCGsZR7AyacgkwxX0BcNK
+         nmCOa8OEjFE1/9cr7auD8nzbIc8bz/Ya5fkHalfr4ypL9wQ1FNPJo3k3ylJKbdKmLnI5
+         nRjA==
+X-Gm-Message-State: APjAAAVn2uJmhOdIX0wHE2WujwgXtls2fFLSleN5Kg8kWMJthtu+Lr23
+        EgxNUVR7mwPDviWu+mze2TymIizAKjZUANdBw6c=
+X-Google-Smtp-Source: APXvYqxSMp8D+aU6wN4mzW36IwWXd8EVY96kOzI5ofuaEVtfyj5O46xSTrH7ZpBTy4a/02bd6633pdIqQcvPZfcuqxs=
+X-Received: by 2002:a67:2e0e:: with SMTP id u14mr46945969vsu.182.1563858500194;
+ Mon, 22 Jul 2019 22:08:20 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190722182945.GA24685@bogus>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+References: <20190722123422.4571-1-vkoul@kernel.org> <20190722123422.4571-6-vkoul@kernel.org>
+In-Reply-To: <20190722123422.4571-6-vkoul@kernel.org>
+From:   Amit Kucheria <amit.kucheria@verdurent.com>
+Date:   Tue, 23 Jul 2019 10:38:09 +0530
+Message-ID: <CAHLCerPC0thO9gsaDAxc+XaexinrzG6JGJ8BhB4bFFuQ-P9Jxg@mail.gmail.com>
+Subject: Re: [PATCH 5/5] arm64: dts: qcom: sdm845-cheza: remove macro from
+ unit name
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jul 22, 2019 at 6:06 PM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> Unit name is supposed to be a number, using a macro with hex value is
 
+/s/name/address?
 
-On 22/07/19 11:59 PM, Rob Herring wrote:
-> On Fri, Jun 28, 2019 at 09:57:36AM +0530, Keerthy wrote:
->> The series adds Crypto hardware accelerator support for SA2UL.
->> SA2UL stands for security accelerator ultra lite.
->>
->> The Security Accelerator (SA2_UL) subsystem provides hardware
->> cryptographic acceleration for the following use cases:
->> • Encryption and authentication for secure boot
->> • Encryption and authentication of content in applications
->>    requiring DRM (digital rights management) and
->>    content/asset protection
->> The device includes one instantiation of SA2_UL named SA2_UL0
->>
->> SA2UL needs on tx channel and a pair of rx dma channels.
->>
->> Signed-off-by: Keerthy <j-keerthy@ti.com>
->> ---
->>   .../devicetree/bindings/crypto/sa2ul.txt      | 47 +++++++++++++++++++
->>   1 file changed, 47 insertions(+)
->>   create mode 100644 Documentation/devicetree/bindings/crypto/sa2ul.txt
->>
->> diff --git a/Documentation/devicetree/bindings/crypto/sa2ul.txt b/Documentation/devicetree/bindings/crypto/sa2ul.txt
->> new file mode 100644
->> index 000000000000..81cc039673b4
->> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/crypto/sa2ul.txt
->> @@ -0,0 +1,47 @@
->> +K3 SoC SA2UL crypto module
->> +
->> +Required properties:
->> +
->> +- compatible : Should be:
->> +  - "ti,sa2ul-crypto"
-> 
-> Needs to be SoC specific.
+> not recommended, so add the value in unit name.
+>
+> arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:966.16-969.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4d: unit name should not have leading "0x"
+> arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:971.16-974.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4e: unit name should not have leading "0x"
+> arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:976.16-979.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4f: unit name should not have leading "0x"
+> arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:981.16-984.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x50: unit name should not have leading "0x"
+> arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:986.16-989.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x51: unit name should not have leading "0x"
+>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> index 1ebbd568dfd7..9b27b8346ba1 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
+> @@ -963,27 +963,27 @@ ap_ts_i2c: &i2c14 {
+>  };
+>
+>  &pm8998_adc {
+> -       adc-chan@ADC5_AMUX_THM1_100K_PU {
+> +       adc-chan@4d {
+>                 reg = <ADC5_AMUX_THM1_100K_PU>;
 
-okay
+I'm a little conflicted about this change. If we're replacing the
+address with actual values, perhaps we should do that same for the reg
+property to keep them in sync? Admittedly though, it is a bit easier
+to read the macro name and figure out its meaning.
 
-> 
->> +- reg : Offset and length of the register set for the module
->> +
->> +- dmas: DMA specifiers for tx and rx dma. sa2ul needs one tx channel
->> +	and 2 rx channels. First rx channel for < 256 bytes and
->> +	the other one for >=256 bytes. See the DMA client binding,
->> +        Documentation/devicetree/bindings/dma/dma.txt
->> +- dma-names: DMA request names has to have one tx and 2 rx names
->> +	corresponding to dmas abive.
->> +- ti,psil-config* - UDMA PSIL native Peripheral using packet mode.
->> +	SA2UL must have EPIB(Extended protocal information block)
->> +	and PSDATA(protocol specific data) properties.
-> 
-> If ti,needs-epib is required, then why do you need to specify it in DT?
-> In any case, this all seems like channel config info that should be part
-> of the #dma-cells.
-
-ti,needs-epib is the udma client(Here sa2ul) conveying the udma layer.
-Not every udma client needs epib.
-
-Peter,
-
-Any thoughts on the above?
-
-- Keerthy
-
-> 
-> Also, don't use vendor prefixes on node names.
-
-Okay
-
-> 
->> +
->> +Example AM654 SA2UL:
->> +crypto: crypto@4E00000 {
->> +	compatible = "ti,sa2ul-crypto";
->> +	reg = <0x0 0x4E00000 0x0 0x1200>;
->> +	ti,psil-base = <0x4000>;
->> +
->> +	dmas = <&main_udmap &crypto 0 UDMA_DIR_TX>,
->> +		<&main_udmap &crypto 0 UDMA_DIR_RX>,
->> +		<&main_udmap &crypto 1 UDMA_DIR_RX>;
->> +	dma-names = "tx", "rx1", "rx2";
->> +
->> +	ti,psil-config0 {
->> +		linux,udma-mode = <UDMA_PKT_MODE>;
->> +		ti,needs-epib;
->> +		ti,psd-size = <64>;
->> +	};
->> +
->> +	ti,psil-config1 {
->> +		linux,udma-mode = <UDMA_PKT_MODE>;
->> +		ti,needs-epib;
->> +		ti,psd-size = <64>;
->> +	};
->> +
->> +	ti,psil-config2 {
->> +		linux,udma-mode = <UDMA_PKT_MODE>;
->> +		ti,needs-epib;
->> +		ti,psd-size = <64>;
->> +	};
->> +};
->> -- 
->> 2.17.1
->>
+>                 label = "sdm_temp";
+>         };
+>
+> -       adc-chan@ADC5_AMUX_THM2_100K_PU {
+> +       adc-chan@4e {
+>                 reg = <ADC5_AMUX_THM2_100K_PU>;
+>                 label = "quiet_temp";
+>         };
+>
+> -       adc-chan@ADC5_AMUX_THM3_100K_PU {
+> +       adc-chan@4f {
+>                 reg = <ADC5_AMUX_THM3_100K_PU>;
+>                 label = "lte_temp_1";
+>         };
+>
+> -       adc-chan@ADC5_AMUX_THM4_100K_PU {
+> +       adc-chan@50 {
+>                 reg = <ADC5_AMUX_THM4_100K_PU>;
+>                 label = "lte_temp_2";
+>         };
+>
+> -       adc-chan@ADC5_AMUX_THM5_100K_PU {
+> +       adc-chan@51 {
+>                 reg = <ADC5_AMUX_THM5_100K_PU>;
+>                 label = "charger_temp";
+>         };
+> --
+> 2.20.1
+>
