@@ -2,138 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8588871BD9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 17:38:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5E2A871BEB
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 17:39:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727733AbfGWPiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 11:38:18 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:42659 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727266AbfGWPiR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 11:38:17 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190723153816euoutp02f996872f3577fa28856d641337fd792c~0E2VHwbkO1030610306euoutp02g
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 15:38:16 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190723153816euoutp02f996872f3577fa28856d641337fd792c~0E2VHwbkO1030610306euoutp02g
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1563896296;
-        bh=VjovTDiMt97xdGE3WlxPMJBYNl8cS2ld4czh4ywLQes=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=Fw/By5gb+Pvx3XHO0t9yo5Gd9XnioBXd+skD+fbX575MrlfciU1Vn4L34odu/7W9u
-         3+tLaEhTYxWs1njR95YvklWDgFCZX35Ysq7XaeRvMs+gqlYuSHAKVSjipWM3NE19o9
-         SXiqyNcREoSv+V6QFbfboXP6tC/CRdnZSwwTcDgo=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190723153815eucas1p20869e6ec0af05080bbd994a9b05de046~0E2UgeTqu2709827098eucas1p29;
-        Tue, 23 Jul 2019 15:38:15 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 94.EE.04325.7E9273D5; Tue, 23
-        Jul 2019 16:38:15 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190723153814eucas1p118ce10061c55ca4b9bf71c69b8430367~0E2Twm9u_3017730177eucas1p1h;
-        Tue, 23 Jul 2019 15:38:14 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190723153814eusmtrp1ea731f0262c19150a1d3a7a930df52aa~0E2Tihy5c2369023690eusmtrp1q;
-        Tue, 23 Jul 2019 15:38:14 +0000 (GMT)
-X-AuditID: cbfec7f5-b8fff700000010e5-eb-5d3729e77f68
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id BF.F1.04140.6E9273D5; Tue, 23
-        Jul 2019 16:38:14 +0100 (BST)
-Received: from [106.120.51.71] (unknown [106.120.51.71]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190723153814eusmtip2e135b2a37969fc61461c312583c20cae~0E2TF_Uaz0852608526eusmtip2i;
-        Tue, 23 Jul 2019 15:38:14 +0000 (GMT)
-Subject: Re: [PATCH 0/6] video: ssd1307fb: Support more displays
-To:     Marko Kohtala <marko.kohtala@okoko.fi>
-Cc:     linux-fbdev@vger.kernel.org, devicetree@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1727598AbfGWPjK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 11:39:10 -0400
+Received: from mga09.intel.com ([134.134.136.24]:46098 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725601AbfGWPjK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 11:39:10 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 23 Jul 2019 08:39:09 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,299,1559545200"; 
+   d="scan'208";a="344776871"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
+  by orsmga005.jf.intel.com with ESMTP; 23 Jul 2019 08:39:04 -0700
+Received: from andy by smile with local (Exim 4.92)
+        (envelope-from <andriy.shevchenko@linux.intel.com>)
+        id 1hpwsY-0004Nk-76; Tue, 23 Jul 2019 18:39:02 +0300
+Date:   Tue, 23 Jul 2019 18:39:02 +0300
+From:   Andy Shevchenko <andriy.shevchenko@linux.intel.com>
+To:     Linus Walleij <linus.walleij@linaro.org>
+Cc:     "H. Nikolaus Schaller" <hns@goldelico.com>,
+        Jonathan Cameron <jic23@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        David Airlie <airlied@linux.ie>,
-        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-From:   Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Message-ID: <f0d8be30-4980-7e7c-dcbb-3bd7621cff08@samsung.com>
-Date:   Tue, 23 Jul 2019 17:38:13 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.6.1
+        Mark Rutland <mark.rutland@arm.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Song Qiang <songqiang1304521@gmail.com>,
+        Jean-Baptiste Maneyrol <jmaneyrol@invensense.com>,
+        Martin Kelly <mkelly@xevo.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        Brian Masney <masneyb@onstation.org>,
+        Stephan Gerhold <stephan@gerhold.net>,
+        Discussions about the Letux Kernel 
+        <letux-kernel@openphoenux.org>, Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Gregor Boirie <gregor.boirie@parrot.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Samu Onkalo <samu.onkalo@intel.com>
+Subject: Re: [PATCH v2 02/10] iio: document bindings for mounting matrices
+Message-ID: <20190723153902.GM9224@smile.fi.intel.com>
+References: <cover.1550768574.git.hns@goldelico.com>
+ <32025b2a8ccc97cc01f8115ee962529eb5990f00.1550768574.git.hns@goldelico.com>
+ <CACRpkdZ5Z9VY457Fywt6X=K5XONgiPVcwbwSkwL_U+GCqZ+u5g@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <20190618074111.9309-1-marko.kohtala@okoko.fi>
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrKKsWRmVeSWpSXmKPExsWy7djP87rPNc1jDX7Ml7DoPXeSyeL/tonM
-        FvOPnGO1uPL1PZvFib4PrBZLr19kslh9eAGLxf/PT1gtWvceYXfg9Fgzbw2jx95vC1g8Nq3q
-        ZPPY/u0Bq8f97uNMHj+XLWXx+LxJzuPl3w/MARxRXDYpqTmZZalF+nYJXBkPZrczFvRwV+x7
-        1MzWwPifo4uRk0NCwETi083XzF2MXBxCAisYJU6u/MYC4XxhlJiz+y4rhPOZUWJC931WmJav
-        77azgdhCAssZJbrWyEAUvWWU2HVnMSNIQljAQeLsi21MILaIgJbEixdtYJOYBVYwSZztagTr
-        ZhOwkpjYvgqsgVfATmLHiiYwm0VAVWLJrh9gNaICERL3j21ghagRlDg58wkLiM0pYC3xo6OJ
-        HcRmFhCXuPVkPhOELS+x/e0csIckBK6xS0x9f4kd4mwXiVU7vjFB2MISr45vgYrLSJye3MMC
-        0bCOUeJvxwuo7u2MEssn/2ODqLKWOHz8ItAZHEArNCXW79KHCDtKPGtbxQ4SlhDgk7jxVhDi
-        CD6JSdumM0OEeSU62oQgqtUkNizbwAaztmvnSuYJjEqzkLw2C8k7s5C8Mwth7wJGllWM4qml
-        xbnpqcXGeanlesWJucWleel6yfm5mxiBiev0v+NfdzDu+5N0iFGAg1GJh7eCyTxWiDWxrLgy
-        9xCjBAezkghvYINZrBBvSmJlVWpRfnxRaU5q8SFGaQ4WJXHeaoYH0UIC6YklqdmpqQWpRTBZ
-        Jg5OqQbGg7y7c7dIbuEP2OOTY6X/vDHb8KS/zktngxJHk42Ll38oOPPhcMpi/f3/NzbonJ1j
-        U8/6a61JyKQQttfMSh8jfLwqq2uSz/RM2bZBaadHvssTN0u/rrnrdvy9djRmrdOGqv8Ty4Tj
-        XA993a+QnNKz1Vl6i+kSgzW2/crL5/3h0qnM3NvCuKhCiaU4I9FQi7moOBEAYNZPulgDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrKIsWRmVeSWpSXmKPExsVy+t/xe7rPNM1jDZ5tUrDoPXeSyeL/tonM
-        FvOPnGO1uPL1PZvFib4PrBZLr19kslh9eAGLxf/PT1gtWvceYXfg9Fgzbw2jx95vC1g8Nq3q
-        ZPPY/u0Bq8f97uNMHj+XLWXx+LxJzuPl3w/MARxRejZF+aUlqQoZ+cUltkrRhhZGeoaWFnpG
-        JpZ6hsbmsVZGpkr6djYpqTmZZalF+nYJehkPZrczFvRwV+x71MzWwPifo4uRk0NCwETi67vt
-        bF2MXBxCAksZJTYcu8fYxcgBlJCROL6+DKJGWOLPtS6omteMEouXdrCCJIQFHCTOvtjGBGKL
-        CGhJvHjRBhZnFljBJPFuuzCILSTQxyix5wjYMjYBK4mJ7asYQWxeATuJHSuawGwWAVWJJbt+
-        sIHYogIREmfer2CBqBGUODnzCZjNKWAt8aOjiR1ivrrEn3mXmCFscYlbT+YzQdjyEtvfzmGe
-        wCg0C0n7LCQts5C0zELSsoCRZRWjSGppcW56brGRXnFibnFpXrpecn7uJkZglG479nPLDsau
-        d8GHGAU4GJV4eCuYzGOFWBPLiitzDzFKcDArifAGNpjFCvGmJFZWpRblxxeV5qQWH2I0BXpu
-        IrOUaHI+MIHklcQbmhqaW1gamhubG5tZKInzdggcjBESSE8sSc1OTS1ILYLpY+LglGpgXCXN
-        Xnj02CpjzXcaT3ca+n7hmyXKUCzqlt2n3pJQFNq+asZJJ+XD69027j+eJ/s8dHeSQrCmRyl/
-        Yad19Q2mEyb707YZeN+Pf/lFsOe7asLdGeUl0+TW6Kh5Cy/aG3BpY+5mjqIHK/Z7WR16GlLz
-        pe3ego5pH0OMCrilXNvrDdR3Tbdz+39HiaU4I9FQi7moOBEAmpnqkugCAAA=
-X-CMS-MailID: 20190723153814eucas1p118ce10061c55ca4b9bf71c69b8430367
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190618074155epcas1p3fcfe7cf1058162c11e4b1780987ca394
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190618074155epcas1p3fcfe7cf1058162c11e4b1780987ca394
-References: <CGME20190618074155epcas1p3fcfe7cf1058162c11e4b1780987ca394@epcas1p3.samsung.com>
-        <20190618074111.9309-1-marko.kohtala@okoko.fi>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CACRpkdZ5Z9VY457Fywt6X=K5XONgiPVcwbwSkwL_U+GCqZ+u5g@mail.gmail.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, Jul 23, 2019 at 09:42:59AM +0200, Linus Walleij wrote:
+> On Thu, Feb 21, 2019 at 6:03 PM H. Nikolaus Schaller <hns@goldelico.com> wrote:
 
-On 6/18/19 9:41 AM, Marko Kohtala wrote:
-> The kernel driver for ssd1307fb did not allow for all proper
-> initialization for a Densitron 128x36 display. The trend in the driver
-> has been to add devicetree properties for the controller initialization
-> and these patches continue on that trend.
+> > From: Linus Walleij <linus.walleij@linaro.org>
 > 
-> There also were some sparse and Coccinelle errors.
-> 
-> A small bug causing scrolling on display updates with nonzero page_offset
-> was a bit surprising. It would seem the driver has only been used with
-> page_offset set to zero. Bug has been there since commit
-> 301bc0675b677a98475187050d56cd2b39ff0acf ("video: ssd1307fb: Make use of
-> horizontal addressing mode").
-> 
-> Marko Kohtala (6):
->   video: ssd1307fb: Use screen_buffer instead of screen_base
->   video: ssd1307fb: Remove unneeded semicolons
->   video: ssd1307fb: Start page range at page_offset
->   video: ssd1307fb: Handle width and height that are not multiple of 8
->   dt-bindings: display: ssd1307fb: Add initialization properties
->   video: ssd1307fb: Add devicetree configuration of display setup
-> 
->  .../devicetree/bindings/display/ssd1307fb.txt |  10 ++
->  drivers/video/fbdev/ssd1307fb.c               | 130 ++++++++++++------
->  2 files changed, 101 insertions(+), 39 deletions(-)
-Patch series queued for v5.4, thanks.
+> It is fair for you to change authorship to yourself at this point.
+> Just keeping my Signed-off-by is sufficient.
 
-Best regards,
---
-Bartlomiej Zolnierkiewicz
-Samsung R&D Institute Poland
-Samsung Electronics
+...or Co-developed-by: can be used.
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
