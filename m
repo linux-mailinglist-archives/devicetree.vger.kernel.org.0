@@ -2,56 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA95471175
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 07:54:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 29561711DE
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 08:26:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387891AbfGWFyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 01:54:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49484 "EHLO mail.kernel.org"
+        id S1730330AbfGWG0A (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 02:26:00 -0400
+Received: from gofer.mess.org ([88.97.38.141]:59597 "EHLO gofer.mess.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725788AbfGWFya (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 01:54:30 -0400
-Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1BA582238E;
-        Tue, 23 Jul 2019 05:54:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563861270;
-        bh=Uy/g0mAPtlYuOpPGEkYh9Jv9h93JNBY2oSf8mrwvnDk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Wpr+XjeweKguKZyI7EGUKeV0aHAAaEVZZfMsSoX0KsjhMPtBZSow8fA5SWKhAZIZ9
-         No3e/BgYLx1CtaCIFFGHwAeIQ4dTsXjbVQgC7sLbxNWjnGHiBf3kc8cOAQ59b6hQJj
-         dAAgBonS07ZeLZmUbVsAIW6BRyKy1NLV1CZf5dtM=
-Date:   Tue, 23 Jul 2019 13:53:52 +0800
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     jun.li@nxp.com
-Cc:     sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, mturquette@baylibre.com, peter.chen@nxp.com,
-        ping.bai@nxp.com, Anson.Huang@nxp.com, l.stach@pengutronix.de,
-        abel.vesa@nxp.com, andrew.smirnov@gmail.com, ccaione@baylibre.com,
-        angus@akkea.ca, agx@sigxcpu.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
-Subject: Re: [PATCH 1/2] clk: imx8mq: set correct parent for usb ctrl clocks
-Message-ID: <20190723055351.GP3738@dragon>
-References: <20190710111917.6615-1-jun.li@nxp.com>
+        id S1729953AbfGWG0A (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 02:26:00 -0400
+Received: by gofer.mess.org (Postfix, from userid 1000)
+        id 5807060439; Tue, 23 Jul 2019 07:25:57 +0100 (BST)
+Date:   Tue, 23 Jul 2019 07:25:57 +0100
+From:   Sean Young <sean@mess.org>
+To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v5 04/13] media: rc: sunxi: Add RXSTA bits definition
+Message-ID: <20190723062557.hnbi6hgrg4ecawkn@gofer.mess.org>
+References: <20190607231100.5894-1-peron.clem@gmail.com>
+ <20190607231100.5894-5-peron.clem@gmail.com>
+ <20190610095243.7xwp4xhauds22qzw@flea>
+ <CAJiuCcfyjGTBbsjZQYj2p3KD6O-WaXhFe5NZrnKQwJYACmatUw@mail.gmail.com>
+ <20190715121244.2vrsw6qa4fgp72fn@gofer.mess.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20190710111917.6615-1-jun.li@nxp.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190715121244.2vrsw6qa4fgp72fn@gofer.mess.org>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 10, 2019 at 07:19:16PM +0800, jun.li@nxp.com wrote:
-> From: Li Jun <jun.li@nxp.com>
-> 
-> Per latest imx8mq datasheet of CCM, the parent of usb1_ctrl_root_clk
-> and usb2_ctrl_root_clk is usb_bus.
-> 
-> Signed-off-by: Li Jun <jun.li@nxp.com>
+Hi,
 
-Applied both, thanks.
+On Mon, Jul 15, 2019 at 01:12:45PM +0100, Sean Young wrote:
+> On Sun, Jul 14, 2019 at 04:32:22PM +0200, Clément Péron wrote:
+> > Hi Sean,
+> > 
+> > You acked the whole v3 series but this patch has been introduced in v5
+> > could you ack this one too?
+> 
+> Acked-by: Sean Young <sean@mess.org>
+
+So who's tree should this series go through? It seems mostly device tree.
+Alternatively I'm happy to try it get merged via the media tree.
+
+Thanks
+Sean
