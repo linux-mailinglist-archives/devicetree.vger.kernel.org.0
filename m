@@ -2,53 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B155770F3F
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 04:46:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B8F070F45
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 04:50:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728170AbfGWCq7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 22:46:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41610 "EHLO mail.kernel.org"
+        id S1729076AbfGWCud (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 22:50:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42254 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726962AbfGWCq7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 22:46:59 -0400
+        id S1729066AbfGWCud (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 22 Jul 2019 22:50:33 -0400
 Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 27EE022387;
-        Tue, 23 Jul 2019 02:46:53 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 808C622387;
+        Tue, 23 Jul 2019 02:50:26 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563850018;
-        bh=B02LoeW7Qa1LMBUvgIbOHbzfXb4394XW0uY/PVbA/yc=;
+        s=default; t=1563850232;
+        bh=tk2ImME7wgkuCKMHXoNvdEiYanrybl4tu/Ko28YBUfU=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=TX18Xtdt61xVRBwQownmhcOuxApSYnUdt7ZcSDqkTYuo0sJqMUAQiw3+fm5lhFZJs
-         pmpGgEXcpRRm/tZVHEjJWV7PCItD5X8QNZAO/9HD+4lNYo7H5hD1aJWKt+PnGlVoqU
-         9IcRDcmA6MvbQqDFC/nFHjTzkb+V2I99rnkSaClQ=
-Date:   Tue, 23 Jul 2019 10:46:28 +0800
+        b=F963pTbce2NtBx2uERfIVEKelVGw9gmBe9W1/tv/fz6YwK3bB1zZuyu1ocFNO8N07
+         zpMWoRj1lDmUOW8+NC1D2XxUu7viIF8Xx+cKNwcWLxysNJ2HBO9PeU0LLP14W5HZ+R
+         eEqXo48ZCGkSmVI7wLRE1z03ggwKNEjzxqdqrT4M=
+Date:   Tue, 23 Jul 2019 10:50:01 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     fugang.duan@nxp.com
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        gregkh@linuxfoundation.org, festevam@gmail.com,
-        daniel.baluta@gmail.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH RESEND 1/1] dt-bindings: serial: lpuart: add the clock
- requirement for imx8qxp
-Message-ID: <20190723024627.GH3738@dragon>
-References: <20190704134355.2402-1-fugang.duan@nxp.com>
+To:     Anson.Huang@nxp.com
+Cc:     rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, mturquette@baylibre.com,
+        sboyd@kernel.org, l.stach@pengutronix.de, abel.vesa@nxp.com,
+        andrew.smirnov@gmail.com, angus@akkea.ca, ccaione@baylibre.com,
+        agx@sigxcpu.org, leonard.crestez@nxp.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        Linux-imx@nxp.com
+Subject: Re: [PATCH 5/6] clk: imx8mq: Remove CLK_IS_CRITICAL flag for
+ IMX8MQ_CLK_TMU_ROOT
+Message-ID: <20190723024959.GI3738@dragon>
+References: <20190705045612.27665-1-Anson.Huang@nxp.com>
+ <20190705045612.27665-5-Anson.Huang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190704134355.2402-1-fugang.duan@nxp.com>
+In-Reply-To: <20190705045612.27665-5-Anson.Huang@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 04, 2019 at 09:43:55PM +0800, fugang.duan@nxp.com wrote:
-> From: Fugang Duan <fugang.duan@nxp.com>
+On Fri, Jul 05, 2019 at 12:56:11PM +0800, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
 > 
-> Add the baud clock requirement for imx8qxp.
+> IMX8MQ_CLK_TMU_ROOT is ONLY used for thermal module, the driver
+> should manage this clock, so no need to have CLK_IS_CRITICAL flag
+> set.
 > 
-> Signed-off-by: Fugang Duan <fugang.duan@nxp.com>
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 
 Applied, thanks.
