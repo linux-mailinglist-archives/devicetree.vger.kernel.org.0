@@ -2,125 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB2B870E32
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 02:34:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 763FB70E23
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 02:32:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728708AbfGWAez (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 20:34:55 -0400
-Received: from mx0a-00082601.pphosted.com ([67.231.145.42]:8880 "EHLO
-        mx0a-00082601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726770AbfGWAez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 22 Jul 2019 20:34:55 -0400
-Received: from pps.filterd (m0109333.ppops.net [127.0.0.1])
-        by mx0a-00082601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6N0EPK5031553
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 17:34:54 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=facebook;
- bh=upxpwa+NHml6Xp6NZf6ZnaOWMnszUj5BKBn+ik5Bpgw=;
- b=S+RGh1ibHWnPvF8X2OO46KMOxdDxVIR57ENJoeUxzyPNW5ekVJBbfhxHz6h+hjqy1tuy
- +1QDQaJVH2Jyk9XEyG1no4bzuXk+K1CNExGFqd19ouZQLEWB7oiqkvkGYB7+G+FqD+YX
- BIg7M1/MfPmGJOBpTRX1yHoqScVJxUppQ0A= 
-Received: from maileast.thefacebook.com ([163.114.130.16])
-        by mx0a-00082601.pphosted.com with ESMTP id 2twghksppv-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 17:34:54 -0700
-Received: from mx-out.facebook.com (2620:10d:c0a8:1b::d) by
- mail.thefacebook.com (2620:10d:c0a8:83::7) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Mon, 22 Jul 2019 17:34:53 -0700
-Received: by devvm4117.prn2.facebook.com (Postfix, from userid 167582)
-        id E50481152F9BD; Mon, 22 Jul 2019 17:32:17 -0700 (PDT)
-Smtp-Origin-Hostprefix: devvm
-From:   Vijay Khemka <vijaykhemka@fb.com>
-Smtp-Origin-Hostname: devvm4117.prn2.facebook.com
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
-CC:     <vijaykhemka@fb.com>,
-        "openbmc @ lists . ozlabs . org" <openbmc@lists.ozlabs.org>,
-        <sdasari@fb.com>
-Smtp-Origin-Cluster: prn2c23
-Subject: [PATCH v2] ARM: dts: aspeed: tiogapass: Add VR devices
-Date:   Mon, 22 Jul 2019 17:32:16 -0700
-Message-ID: <20190723003216.2910042-1-vijaykhemka@fb.com>
-X-Mailer: git-send-email 2.17.1
-X-FB-Internal: Safe
+        id S1728960AbfGWAcd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 20:32:33 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:38699 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728378AbfGWAcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 20:32:32 -0400
+Received: by mail-pg1-f194.google.com with SMTP id f5so9634868pgu.5
+        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 17:32:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=vuvO2vdByXr9tZ4gIUtMWHJb47SWaOs3dPS9JirOd8A=;
+        b=Zl9GjnPN0xA37eJPDX7MMY5U59qIMhaH0oHaFDaQC5kc56db6tSm1k92X8vD9olKQv
+         OxaZTUgiRL7QcEtCdRCTPLyfWDQhRyOXO/nSFoU6NA2mvCQcdvEZ0WClLYkrEms7tZo/
+         izrTbbctUhAN1VB9J0Q7y+pRVPXmJcR9HPRnbtizx6ihsgsakAq/rgha1JCGMsgY2RiH
+         PJ1yTUdO8H1C8vedwH16edJ6CisD7/Lc2QkWysnWnCsUClX9aMwTBEN+KsRdmKr24KRk
+         pqLlahy+9/ouBHzutT221O182aQu5jXOaH8IgOSQxKXVRStd+1V11liNjuOCoEoDcsOL
+         bt9w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=vuvO2vdByXr9tZ4gIUtMWHJb47SWaOs3dPS9JirOd8A=;
+        b=W3Z2V8kfunJ5nTh+HI88ve7dTDiZmIw8K145DcRjEBipyH2cXjQaHrMNFR5QFqTxHa
+         o37+mHuXELzU916ozwlWIYxHw6aGvg5ajKUJntTxikQnl0tzZnhcG4fwPr4UXpnD+/Iv
+         llYX81BUyum+xQBhGYXZNCdg3VH4mmq4XXjHmmWKj7X+dBUu5IPf7cGnvZXdMI2QkxN6
+         jrlPrAPFZUYoQ1i9qRJz/nJqJcrfhvitBG+gf+j246+Q7RKmNiXgmZsp0ypWAYIKu4vB
+         qZGAWbTA8a8ORT3rb0qFnZaNRuSPXnBVjyase7hB9NKE9DD1krUyOLa5cZ6zx5bX6GBb
+         768A==
+X-Gm-Message-State: APjAAAWPSiV3+37ub3kAyzoPcQ4l1jwOyGKqWCVTpfoHa+SuHeHPP+YX
+        xLiiCqXaPL8YzEQuz1ZnMtTVwMS8a7ubDbTMzqXVPg==
+X-Google-Smtp-Source: APXvYqxh+VUvsGh5iLsrxoHbLc3jsob++DVglc3Oa483B1QKCacTy9ml6NDURiDh9l6nBgWwR+AIwjhgcbpU33mL7Pc=
+X-Received: by 2002:aa7:9191:: with SMTP id x17mr2893489pfa.23.1563841951086;
+ Mon, 22 Jul 2019 17:32:31 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-22_16:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1810050000 definitions=main-1907230000
-X-FB-Internal: deliver
+References: <20190712081744.87097-1-brendanhiggins@google.com>
+ <CAFd5g47ikJmA0uGoavAFsh+hQvDmgsOi26tyii0612R=rt7iiw@mail.gmail.com>
+ <CAFd5g44_axVHNMBzxSURQB_-R+Rif7cZcg7PyZ_SS+5hcy5jZA@mail.gmail.com>
+ <20190716175021.9CA412173C@mail.kernel.org> <CAFd5g453vXeSUCZenCk_CzJ-8a1ym9RaPo0NVF=FujF9ac-5Ag@mail.gmail.com>
+ <20190718175024.C3EC421019@mail.kernel.org> <CAFd5g46a7C1+R6ZcE_SkqaYqgrH5Rx3M=X7orFyaMgFLDbeYYA@mail.gmail.com>
+ <20190719000834.GA3228@google.com> <20190722200347.261D3218C9@mail.kernel.org>
+ <CAFd5g45hdCxEavSxirr0un_uLzo5Z-J4gHRA06qjzcQrTzmjVg@mail.gmail.com> <20190722235411.06C1320840@mail.kernel.org>
+In-Reply-To: <20190722235411.06C1320840@mail.kernel.org>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Mon, 22 Jul 2019 17:32:19 -0700
+Message-ID: <CAFd5g46h9XSRfA1H4kZR7u0Eh_F-fgPjoLPzqzLgFTXxeb105g@mail.gmail.com>
+Subject: Re: [PATCH v9 04/18] kunit: test: add kunit_stream a std::stream like logger
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Kees Cook <keescook@google.com>,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        kunit-dev@googlegroups.com,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Bird, Timothy" <Tim.Bird@sony.com>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Daniel Vetter <daniel@ffwll.ch>, Jeff Dike <jdike@addtoit.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Petr Mladek <pmladek@suse.com>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Richard Weinberger <richard@nod.at>,
+        David Rientjes <rientjes@google.com>,
+        Steven Rostedt <rostedt@goodmis.org>, wfg@linux.intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adds voltage regulators Infineon pxe1610 devices to Facebook
-tiogapass platform.
+On Mon, Jul 22, 2019 at 4:54 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Brendan Higgins (2019-07-22 15:30:49)
+> > On Mon, Jul 22, 2019 at 1:03 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > >
+> > >
+> > > What's the calling context of the assertions and expectations? I still
+> > > don't like the fact that string stream needs to allocate buffers and
+> > > throw them into a list somewhere because the calling context matters
+> > > there.
+> >
+> > The calling context is the same as before, which is anywhere.
+>
+> Ok. That's concerning then.
 
-Signed-off-by: Vijay Khemka <vijaykhemka@fb.com>
----
-In v2: Renamed vr to regulator and fixed some typo in commit message.
+Yeah. Luis suggested just not supporting the IRQ context until later.
+See my later comment.
 
- .../dts/aspeed-bmc-facebook-tiogapass.dts     | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
+> > > I'd prefer we just wrote directly to the console/log via printk
+> > > instead. That way things are simple because we use the existing
+> > > buffering path of printk, but maybe there's some benefit to the string
+> > > stream that I don't see? Right now it looks like it builds a string and
+> > > then dumps it to printk so I'm sort of lost what the benefit is over
+> > > just writing directly with printk.
+> >
+> > It's just buffering it so the whole string gets printed uninterrupted.
+> > If we were to print out piecemeal to printk, couldn't we have another
+> > call to printk come in causing it to garble the KUnit message we are
+> > in the middle of printing?
+>
+> Yes, printing piecemeal by calling printk many times could lead to
+> interleaving of messages if something else comes in such as an interrupt
+> printing something. Printk has some support to hold "records" but I'm
+> not sure how that would work here because KERN_CONT talks about only
+> being used early on in boot code. I haven't looked at printk in detail
+> though so maybe I'm all wrong and KERN_CONT just works?
 
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
-index c4521eda787c..e722e9aef907 100644
---- a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
-@@ -144,6 +144,42 @@
- &i2c5 {
- 	status = "okay";
- 	// CPU Voltage regulators
-+	regulator@48 {
-+		compatible = "infineon,pxe1610";
-+		reg = <0x48>;
-+	};
-+	regulator@4a {
-+		compatible = "infineon,pxe1610";
-+		reg = <0x4a>;
-+	};
-+	regulator@50 {
-+		compatible = "infineon,pxe1610";
-+		reg = <0x50>;
-+	};
-+	regulator@52 {
-+		compatible = "infineon,pxe1610";
-+		reg = <0x52>;
-+	};
-+	regulator@58 {
-+		compatible = "infineon,pxe1610";
-+		reg = <0x58>;
-+	};
-+	regulator@5a {
-+		compatible = "infineon,pxe1610";
-+		reg = <0x5a>;
-+	};
-+	regulator@68 {
-+		compatible = "infineon,pxe1610";
-+		reg = <0x68>;
-+	};
-+	regulator@70 {
-+		compatible = "infineon,pxe1610";
-+		reg = <0x70>;
-+	};
-+	regulator@72 {
-+		compatible = "infineon,pxe1610";
-+		reg = <0x72>;
-+	};
- };
- 
- &i2c6 {
--- 
-2.17.1
+It says KERN_CONT is not SMP safe, and it isn't supposed to contain
+newlines, so it doesn't sound like it does any buffering for you. I
+looked at it a while ago and those comments agreed with my
+understanding of the code, but I could be wrong.
 
+> Can printk be called once with whatever is in the struct?
+
+Unfortunately, no. That is part of what I was trying to illustrate
+with this patch. Most of the messages are deterministic, but
+hardcoding all the possible message types would lead to a massive
+number of hard coded strings. However, even this would break down for
+the mocking formatters. All the different ways a function can be
+called are just too complex to encode into a finite set of hard coded
+fmt strings.
+
+> Otherwise if
+> this is about making printk into a structured log then maybe printk
+> isn't the proper solution anyway. Maybe a dev interface should be used
+> instead that can handle starting and stopping tests (via ioctl) in
+> addition to reading test results, records, etc. with read() and a
+> clearing of the records. Then the seqfile API works naturally. All of
+
+Ehhh...I wouldn't mind providing such an interface, but I would really
+like to be able to provide the results without having to depend on a
+userland doing something to get test results. That has always been a
+pretty important goal for me.
+
+> this is a bit premature, but it looks like you're going down the path of
+> making something akin to ftrace that stores binary formatted
+> assertion/expectation records in a lockless ring buffer that then
+> formats those records when the user asks for them.
+
+Like you said, I think it is a bit premature to go that far.
+
+In anycase, I don't see a way to get rid of string_stream, without
+significantly sacrificing usability.
+
+> I can imagine someone wanting to write unit tests that check conditions
+> from a simulated hardirq context via irq works (a driver mock
+> framework?), so this doesn't seem far off.
+
+Yep, I actually presented the first pieces of that in the RFC v1 that
+I linked to you earlier in this discussion. I have a more fleshed out
+example here:
+
+https://kunit.googlesource.com/linux/+/e10484ad2f9fc7926412ec84739fe105981b4771/drivers/i2c/busses/i2c-aspeed-test.c
+
+I actually already have some people at Google playing around with it.
+So yeah, not far off at all! However, in these cases we are not
+actually running in the IRQ context (despite the fact that we are
+testing IRQ code) because we provide a fake IRQ chip, or some other
+fake mechanism that triggers the IRQ. Still, I could see someone
+wanting to do it in a non-fake-IRQ context.
+
+Luis' suggestion was just to hold off on the IRQ safe stuff at the
+outset, since that is going to require a lot more effort to review. I
+know that's kind of the future coding argument again, but maybe the
+answer will be to just restrict what features an IRQ user has access
+to (maybe just really simple expectations, for example). I mean, we
+will probably have to restrict what they are allowed to use anyway.
+
+Luis, do you have any ideas?
+
+Cheers
