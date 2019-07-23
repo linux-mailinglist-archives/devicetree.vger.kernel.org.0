@@ -2,125 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9767A71525
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 11:27:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC8597155E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 11:39:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728628AbfGWJ1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 05:27:46 -0400
-Received: from smtp-fw-9102.amazon.com ([207.171.184.29]:31440 "EHLO
-        smtp-fw-9102.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727408AbfGWJ1q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 05:27:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
-  t=1563874065; x=1595410065;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version;
-  bh=r3UejI0fEyx4nycQ3vf7JrpqMGHRZyoys9vsmeuSdCk=;
-  b=WpYunE6QvhuTBTT0kkM5lBnZ+I0Xcbplq16FNSNp3Cg+2wMmCyRyV7I4
-   JPqjjkOFzS+H4LZu5mbcGU9p85vScXytLx0h6e+Z4rZohlzHNFF21lVZI
-   +upfWVJLzI2iyKs3dcWLiPrVjHnMdFT9Kc7PnBQrW7aYlwZBDDT2Qe7LJ
-   M=;
-X-IronPort-AV: E=Sophos;i="5.64,298,1559520000"; 
-   d="scan'208";a="687150634"
-Received: from sea3-co-svc-lb6-vlan2.sea.amazon.com (HELO email-inbound-relay-2a-69849ee2.us-west-2.amazon.com) ([10.47.22.34])
-  by smtp-border-fw-out-9102.sea19.amazon.com with ESMTP; 23 Jul 2019 09:27:43 +0000
-Received: from EX13MTAUWA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan2.pdx.amazon.com [10.170.41.162])
-        by email-inbound-relay-2a-69849ee2.us-west-2.amazon.com (Postfix) with ESMTPS id BE1F9A2490;
-        Tue, 23 Jul 2019 09:27:42 +0000 (UTC)
-Received: from EX13D13UWA001.ant.amazon.com (10.43.160.136) by
- EX13MTAUWA001.ant.amazon.com (10.43.160.58) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Tue, 23 Jul 2019 09:27:42 +0000
-Received: from u9ff250417f405e.ant.amazon.com (10.43.161.85) by
- EX13D13UWA001.ant.amazon.com (10.43.160.136) with Microsoft SMTP Server (TLS)
- id 15.0.1367.3; Tue, 23 Jul 2019 09:27:37 +0000
-From:   Jonathan Chocron <jonnyc@amazon.com>
-To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
-        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>,
-        <robh+dt@kernel.org>, <mark.rutland@arm.com>
-CC:     <dwmw@amazon.co.uk>, <benh@kernel.crashing.org>,
-        <alisaidi@amazon.com>, <ronenk@amazon.com>, <barakw@amazon.com>,
-        <talel@amazon.com>, <hanochu@amazon.com>, <hhhawa@amazon.com>,
-        <linux-pci@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <devicetree@vger.kernel.org>, <jonnyc@amazon.com>
-Subject: [PATCH v3 8/8] PCI: dw: Add support for PCI_PROBE_ONLY/PCI_REASSIGN_ALL_BUS flags
-Date:   Tue, 23 Jul 2019 12:27:11 +0300
-Message-ID: <20190723092711.11786-4-jonnyc@amazon.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190723092529.11310-1-jonnyc@amazon.com>
-References: <20190723092529.11310-1-jonnyc@amazon.com>
+        id S1726483AbfGWJjn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 05:39:43 -0400
+Received: from mail-eopbgr30040.outbound.protection.outlook.com ([40.107.3.40]:22902
+        "EHLO EUR03-AM5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726370AbfGWJjn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 05:39:43 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=Q+yjdHciVj5lXPxtsk44IjEEnQKVGk6mxzjXN3g3YbMEBcDVRNWpF/UVkD9ag/JWlwgXnmuQcw+ujCxqWe8EUC/OJteuLO5+9qLgrP0R3tL5l2/od6PahV3phov7CijaRET71VuFbX5z3emazMVnADO5GSykqqYVUi7Yszq/VpU1MIfy1YIX7P46L7tHTvfvE/k2N2oNwd50xjI+GYTlrhgtX1plnbemxMYweaXTGuHIMBHn6BO4FxqFTnyuixgGvcCDepXcIO1P3D80HkXUdkoGrUU92hWytcADwfVuZgDX6mGRSkqy9pSvpuowJlstUvKoBjaExgnOHIxMI5ixhg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lLF0Y/Ec0tifAwySyObSrya9robouJG6vvPac0aewxI=;
+ b=eTrbFOmwzIZrtCU/uNzfY7O6ACgfDH0UwhZv/6OBVDd2Ko0WI6K+NAVR9hEgzo6DeLrN5EUYfIeutgqz8pLohjfJLSlpiGdzeUh6Z3mCcbz9sLH19iOu7cyR4w6CZx/WlnbH0N9qtpLKUspxNtu4kyUKy/039dZFG1QEA+lwj6Nv0lyEfBvt77KIldDTv9WqKP9b0FjZfU0bOj+JnkAwBtkBmIo+RiDmxXVU6cCMAO+1a7uhG1/lFbcpsVK+lSRw96L1+W5hSCmJIZUILX8PKPJIQyk1WeCHmn0pFACw2tkp4nIgCPbXBlIb/t8xXFDR3aKdvbCZS1SPom87Dnh1jQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
+ header.d=nxp.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=lLF0Y/Ec0tifAwySyObSrya9robouJG6vvPac0aewxI=;
+ b=kF/DMJXO0s5M8vS5hHzQJfgzgFFrkMj9ULhSO0itYxQ5c5vz9dRJzdOEwzOsMQoO+0R/jOzmeY0tJiTrz6uCzFrzVcscwsSqBsJaADcDZskmwzgKVSJt/c50TAopoihyuKIwgKAGlp+ZikDo32tTYIy5gFFhKA82LGT+l9lfUYM=
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com (20.179.235.81) by
+ VE1PR04MB6382.eurprd04.prod.outlook.com (20.179.232.13) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2094.16; Tue, 23 Jul 2019 09:39:39 +0000
+Received: from VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::905c:a110:72fc:3a49]) by VE1PR04MB6638.eurprd04.prod.outlook.com
+ ([fe80::905c:a110:72fc:3a49%7]) with mapi id 15.20.2094.017; Tue, 23 Jul 2019
+ 09:39:38 +0000
+From:   Robin Gong <yibin.gong@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>
+CC:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH v5 12/15] ARM: dts: imx6ul: add dma support on ecspi
+Thread-Topic: [PATCH v5 12/15] ARM: dts: imx6ul: add dma support on ecspi
+Thread-Index: AQHVH2TVoxrocaPAG0GbhXUgE95pRabOlrSAgAmbW7A=
+Date:   Tue, 23 Jul 2019 09:39:38 +0000
+Message-ID: <VE1PR04MB663894FA5BC88B130C70AC0789C70@VE1PR04MB6638.eurprd04.prod.outlook.com>
+References: <20190610081753.11422-1-yibin.gong@nxp.com>
+ <20190610081753.11422-13-yibin.gong@nxp.com> <20190717064204.GA3738@dragon>
+In-Reply-To: <20190717064204.GA3738@dragon>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=yibin.gong@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f96ff179-70ad-4cc7-b322-08d70f51ae70
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VE1PR04MB6382;
+x-ms-traffictypediagnostic: VE1PR04MB6382:
+x-ms-exchange-purlcount: 1
+x-microsoft-antispam-prvs: <VE1PR04MB6382F5CF2D04D6B5299B4BBC89C70@VE1PR04MB6382.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-forefront-prvs: 0107098B6C
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(346002)(396003)(136003)(39860400002)(366004)(189003)(199004)(7696005)(14454004)(81166006)(4744005)(305945005)(5660300002)(99286004)(446003)(6306002)(53936002)(6246003)(11346002)(68736007)(7736002)(26005)(9686003)(76176011)(55016002)(86362001)(3846002)(6116002)(81156014)(8936002)(2906002)(256004)(966005)(6436002)(316002)(25786009)(66066001)(71200400001)(66446008)(186003)(76116006)(74316002)(66476007)(4326008)(476003)(66946007)(33656002)(71190400001)(64756008)(52536014)(478600001)(8676002)(54906003)(7416002)(53546011)(486006)(102836004)(4001150100001)(229853002)(66556008)(6916009)(6506007)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:VE1PR04MB6382;H:VE1PR04MB6638.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: CAw1ylzESQ0pUt41QiT0W1vyWczgi4KPP5jwsEY8Jvwen4ano1FYETlB3gCaGWo/gc6bAQrPGmRFYmHP2rxbAxTpppF97/mQxn7ey3OOvEgYkzdYBsQdULxpkqqneGJVh6Kh1ptaI2+pV7m36P/dvLWf4qP2JrkITiBMHLX9o2rk1WEP5PIgbnPc1jSB13soI+OkpIamlNUXFNL23WX33bS8LU3T5rtfShmjPZmxNvAscxplPGfzYcScZgSb+jv32V+DVF0nSGzcT0Ej4g97VhrXO2zus8PV2AQgNy6wqJdFqop32+zXyG3vWsQekR9FmhPDGm901xD0WfhvhEHvXY0ZrLJTOKdgCiKPO2T1KNHCya2CKEJtXFQqm4U3gbW70tj6lIZV5dgPT7DOp4L1NLTyZwvDGQcTOcYSC5E1CAw=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.43.161.85]
-X-ClientProxiedBy: EX13D27UWB003.ant.amazon.com (10.43.161.195) To
- EX13D13UWA001.ant.amazon.com (10.43.160.136)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: f96ff179-70ad-4cc7-b322-08d70f51ae70
+X-MS-Exchange-CrossTenant-originalarrivaltime: 23 Jul 2019 09:39:38.8864
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: yibin.gong@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VE1PR04MB6382
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This basically aligns the usage of PCI_PROBE_ONLY and
-PCI_REASSIGN_ALL_BUS in dw_pcie_host_init() with the logic in
-pci_host_common_probe().
-
-Now it will be possible to control via the devicetree whether to just
-probe the PCI bus (in cases where FW already configured it) or to fully
-configure it.
-
-Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
----
- .../pci/controller/dwc/pcie-designware-host.c | 23 +++++++++++++++----
- 1 file changed, 19 insertions(+), 4 deletions(-)
-
-diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-index d2ca748e4c85..0a294d8aa21a 100644
---- a/drivers/pci/controller/dwc/pcie-designware-host.c
-+++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-@@ -342,6 +342,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 	if (!bridge)
- 		return -ENOMEM;
- 
-+	of_pci_check_probe_only();
-+
- 	ret = devm_of_pci_get_host_bridge_resources(dev, 0, 0xff,
- 					&bridge->windows, &pp->io_base);
- 	if (ret)
-@@ -474,6 +476,10 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 
- 	pp->root_bus_nr = pp->busn->start;
- 
-+	/* Do not reassign bus nums if probe only */
-+	if (!pci_has_flag(PCI_PROBE_ONLY))
-+		pci_add_flags(PCI_REASSIGN_ALL_BUS);
-+
- 	bridge->dev.parent = dev;
- 	bridge->sysdata = pp;
- 	bridge->busnr = pp->root_bus_nr;
-@@ -490,11 +496,20 @@ int dw_pcie_host_init(struct pcie_port *pp)
- 	if (pp->ops->scan_bus)
- 		pp->ops->scan_bus(pp);
- 
--	pci_bus_size_bridges(pp->root_bus);
--	pci_bus_assign_resources(pp->root_bus);
-+	/*
-+	 * We insert PCI resources into the iomem_resource and
-+	 * ioport_resource trees in either pci_bus_claim_resources()
-+	 * or pci_bus_assign_resources().
-+	 */
-+	if (pci_has_flag(PCI_PROBE_ONLY)) {
-+		pci_bus_claim_resources(pp->root_bus);
-+	} else {
-+		pci_bus_size_bridges(pp->root_bus);
-+		pci_bus_assign_resources(pp->root_bus);
- 
--	list_for_each_entry(child, &pp->root_bus->children, node)
--		pcie_bus_configure_settings(child);
-+		list_for_each_entry(child, &pp->root_bus->children, node)
-+			pcie_bus_configure_settings(child);
-+	}
- 
- 	pci_bus_add_devices(pp->root_bus);
- 	return 0;
--- 
-2.17.1
+On 2019-7-17 at 14:42 Shawn Guo <shawnguo@kernel.org> wrote:
+> On Mon, Jun 10, 2019 at 04:17:50PM +0800, yibin.gong@nxp.com wrote:
+> > From: Robin Gong <yibin.gong@nxp.com>
+> >
+> > Add dma support on ecspi.
+> >
+> > Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+>=20
+> Applied, thanks.
+Thanks Shawn, but how about other dts patches such as 01/15,02/15?
+Hi Mark and Vinod,
+ I got Ack from you last month on v5, https://patchwork.kernel.org/cover/10=
+984301/
+Is it the right time to apply v5 ? Any concern, please let me know, thanks.
 
