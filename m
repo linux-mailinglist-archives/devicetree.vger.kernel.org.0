@@ -2,101 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 262B0713E9
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 10:25:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499D2713F4
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 10:27:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730565AbfGWIZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 04:25:46 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46686 "EHLO mail.kernel.org"
+        id S1728275AbfGWI1R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 04:27:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:47648 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729099AbfGWIZq (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 04:25:46 -0400
+        id S1728083AbfGWI1R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 04:27:17 -0400
 Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
         (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CE6A421BF6;
-        Tue, 23 Jul 2019 08:25:36 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 17A9621BF6;
+        Tue, 23 Jul 2019 08:27:14 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563870345;
-        bh=w3B1ItU9af+2ThyYfj4Etfner4HloKJVaabGxBGnsmY=;
+        s=default; t=1563870436;
+        bh=SnqOIbK+0rIhgQ2hnfks3pxqj4Sta5RlGjVJ91yq/Mc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=p2s4gp6NpnNdE5rAbKTw9d+dy87bdiUMkX4lNqd+x30p3dZSTe0Vl8l1V1OuNVgPM
-         3U0rO05l9Bwc5XZSH9mlo/4JVtine1tevzdsA1d5mH+EbIaLVFGGO7AC07K1eZTX1S
-         RC35YUpUs76VokNk1DobN/Lx2Z/61BDjwftw8bJ0=
-Date:   Tue, 23 Jul 2019 16:25:10 +0800
+        b=RV1zQGx1yAJtbhwK+SsK9ysJpcTBzo+KRFapT1sPbS4zVFebBSrYEU8MzxTK/IBRA
+         h34tBrG/pjU115ZB48hzGHCZoo1YwhXywm6R6pVrUZTUtEyAKk76y90AH/Y2b5nM7P
+         C23cAMaDwCzFdye3dxB/fLJHYLbhb+y9X0Uyzc+w=
+Date:   Tue, 23 Jul 2019 16:26:49 +0800
 From:   Shawn Guo <shawnguo@kernel.org>
-To:     andradanciu1997 <andradanciu1997@gmail.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        manivannan.sadhasivam@linaro.org, andrew.smirnov@gmail.com,
-        Michal.Vokac@ysoft.com, ping.bai@nxp.com,
-        u.kleine-koenig@pengutronix.de, leoyang.li@nxp.com,
-        aisheng.dong@nxp.com, l.stach@pengutronix.de,
-        pankaj.bansal@nxp.com, angus@akkea.ca, pramod.kumar_1@nxp.com,
-        bhaskar.upadhaya@nxp.com, vabhav.sharma@nxp.com,
-        richard.hu@technexion.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v6 0/2] Add basic support for pico-pi-imx8m
-Message-ID: <20190723082509.GS15632@dragon>
-References: <20190722102730.15763-1-andradanciu1997@gmail.com>
+To:     Ioana Ciornei <ioana.ciornei@nxp.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        leoyang.li@nxp.com
+Subject: Re: [PATCH v3] arm64: dts: add the console node for DPAA2 platforms
+Message-ID: <20190723082648.GT15632@dragon>
+References: <1563791443-26372-1-git-send-email-ioana.ciornei@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190722102730.15763-1-andradanciu1997@gmail.com>
+In-Reply-To: <1563791443-26372-1-git-send-email-ioana.ciornei@nxp.com>
 User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 22, 2019 at 01:27:28PM +0300, andradanciu1997 wrote:
-> Add support for TechNexion PICO-PI-IMX8M based on patches from Richard Hu
-> Datasheet is at: https://s3.us-east-2.amazonaws.com/technexion/datasheets/picopiimx8m.pdf
+On Mon, Jul 22, 2019 at 01:30:43PM +0300, Ioana Ciornei wrote:
+> Add the console device tree node for the following
+> DPAA2 based platforms: LS1088A, LS2080A, LS2088A and LX2160A.
 > 
-> Changes since v5:
->  - removed comment /* PMIC BD71837 PMIC_nINT GPIO1_IO12 */
->  - added "Reviewed-by" tags
-> 
-> Changes since v4:
->  - removed #address-cells and  #size-cells from regulators node
-> 
-> Changes since v3:
->  - renamed pico-pi-8m.dts to imx8mq-pico-pi.dts
->  - moved iomuxc node as the last one
->  - removed pinctrl-assert-gpios property from fec1 node
->  - removed at803x,led-act-blind-workaround, at803x,eee-disabled
->    properties from mdio node
->  - added pinctrl-names = "default" to i2c1 node
->  - changed bd71837 pmic support properties according to
->    Documentation/devicetree/bindings/regulator/rohm,bd71837-regulator.txt
->  - removed A53_0 node
-> 
-> Changes since v2:
->  - changed PICO-PI-8M bord compatible from wand,imx8mq-pico-pi to
->    technexion,pico-pi-imx8m
->  - removed bootargs property
->  - removed regulators node and put fixed regulator directly under root node
->  - changed node name from usb_otg_vbus to regulator-usb-otg-vbus
->  - removed pinctrl-names property from iomuxc node
->  - removed wand-pi-8m container node
->  - sorted pinctrl nodes alphabetically
->  - removed tusb320_irqgrp, tusb320_irqgrp nodes because there is no upstream
->    driver
->  - changed properties' order in usb_dwc3_1 node
-> 
-> Changes since v1:
->  - renamed wandboard-pi-8m.dts to pico-pi-8m.dts
->  - removed pinctrl_csi1, pinctrl_wifi_ctrl
->  - used generic name for pmic
->  - removed gpo node
->  - delete regulator-virtuals node
->  - remove always-on property from buck1-8 and ldo3-7
->  - remove pmic-buck-uses-i2c-dvs property for buck1-4
-> 
-> Andra Danciu (1):
->   dt-bindings: arm: fsl: Add the pico-pi-imx8m board
-> 
-> Richard Hu (1):
->   arm64: dts: fsl: pico-pi: Add a device tree for the PICO-PI-IMX8M
+> Signed-off-by: Ioana Ciornei <ioana.ciornei@nxp.com>
 
-Applied both, thanks.
+Applied, thanks.
