@@ -2,136 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E8A071144
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 07:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EA95471175
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 07:54:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729916AbfGWFkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 01:40:14 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:44942 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726550AbfGWFkO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 01:40:14 -0400
-Received: by mail-pf1-f194.google.com with SMTP id t16so18508079pfe.11
-        for <devicetree@vger.kernel.org>; Mon, 22 Jul 2019 22:40:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=5nt2VugXjt5XrF3/XOR/oWFILicVPJkaeDN7wxmTV7U=;
-        b=X1YvonD3R6khALL7BjDbSfmeGb+oxFB0Yn8oSaY7vanh6Hs83Ohqkwv+euiD632z1e
-         WUi+KeGNsw5+gmHJ2bO3XJtc3mZljXxy/qpui12TO4jz7CXB1bJ5mp+gpodlkI/nWOGZ
-         rvBzo8LIOFkvjxQPflC17XaQI+Nac3FzfcryjNzEMEa/lBJaIfFQlHbopWUR9bxrQYVe
-         yyZbHJZ9JDSg1IJiGqx08/WiG2+5rN1fnAMpz9u+jrvGJ7hI0uaQVmqsi/vLyEGS+/bI
-         7oTzNegr32gKDR7QbPUd95mr8UIc1mbTEL0WjBsM42uJSRveXhwWwQbwSO4QRy/U0YVd
-         1o+A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=5nt2VugXjt5XrF3/XOR/oWFILicVPJkaeDN7wxmTV7U=;
-        b=RLg4aDpqgBWgO2XC0kbm77W5wJqnMvvG384BpnTHECEkdWpGduCX+7lCE3O5q4lLF1
-         E7hLq5HwHwazyydQtK028ALdzmcD85+U0DDvJn0aO75/fT+Z+5icYsB4s5SzIocOBZFB
-         3rGKfwABnV+zGNTZkQR8IHEuE1cCjzntXKcixBMlKgLkwr9T/KUifJlkQf4iuxIue1eA
-         +5Ja67/fiqTostWZHSer/X00CjruKKX7PZ62Ahta+K9S3gb+VE9BXCcO6uN3xM4GySHJ
-         O/zNmnqf38bDqF8wmaBxldjGAe3E8HzKjtXEscUWYFMN7cWdxbpUMo3y5cz4xmKHHNam
-         Tfgw==
-X-Gm-Message-State: APjAAAVT7CpjgeTKO2ULSVKHWk4WkIw6g2wqJI6YgF95vXMU1+WNsQw8
-        9xe7i09ztFhAWHwWh1zHR6D67w==
-X-Google-Smtp-Source: APXvYqwjjiGZqVdQpH4aZpzAsDjcY/hTViotRsKielUAYMaE/4MmwKXQ8bmTu5CBoKt30B6QXiYCJg==
-X-Received: by 2002:a63:c03:: with SMTP id b3mr10469564pgl.23.1563860413423;
-        Mon, 22 Jul 2019 22:40:13 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id a15sm46535560pfg.102.2019.07.22.22.40.12
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 22 Jul 2019 22:40:12 -0700 (PDT)
-Date:   Mon, 22 Jul 2019 22:41:36 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Amit Kucheria <amit.kucheria@verdurent.com>,
-        Andy Gross <agross@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 5/5] arm64: dts: qcom: sdm845-cheza: remove macro from
- unit name
-Message-ID: <20190723054136.GK7234@tuxbook-pro>
-References: <20190722123422.4571-1-vkoul@kernel.org>
- <20190722123422.4571-6-vkoul@kernel.org>
- <CAHLCerPC0thO9gsaDAxc+XaexinrzG6JGJ8BhB4bFFuQ-P9Jxg@mail.gmail.com>
- <20190723051426.GZ12733@vkoul-mobl.Dlink>
+        id S2387891AbfGWFyb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 01:54:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49484 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725788AbfGWFya (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 01:54:30 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1BA582238E;
+        Tue, 23 Jul 2019 05:54:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563861270;
+        bh=Uy/g0mAPtlYuOpPGEkYh9Jv9h93JNBY2oSf8mrwvnDk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=Wpr+XjeweKguKZyI7EGUKeV0aHAAaEVZZfMsSoX0KsjhMPtBZSow8fA5SWKhAZIZ9
+         No3e/BgYLx1CtaCIFFGHwAeIQ4dTsXjbVQgC7sLbxNWjnGHiBf3kc8cOAQ59b6hQJj
+         dAAgBonS07ZeLZmUbVsAIW6BRyKy1NLV1CZf5dtM=
+Date:   Tue, 23 Jul 2019 13:53:52 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     jun.li@nxp.com
+Cc:     sboyd@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        linux-imx@nxp.com, mturquette@baylibre.com, peter.chen@nxp.com,
+        ping.bai@nxp.com, Anson.Huang@nxp.com, l.stach@pengutronix.de,
+        abel.vesa@nxp.com, andrew.smirnov@gmail.com, ccaione@baylibre.com,
+        angus@akkea.ca, agx@sigxcpu.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org
+Subject: Re: [PATCH 1/2] clk: imx8mq: set correct parent for usb ctrl clocks
+Message-ID: <20190723055351.GP3738@dragon>
+References: <20190710111917.6615-1-jun.li@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190723051426.GZ12733@vkoul-mobl.Dlink>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+In-Reply-To: <20190710111917.6615-1-jun.li@nxp.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 22 Jul 22:14 PDT 2019, Vinod Koul wrote:
-
-> On 23-07-19, 10:38, Amit Kucheria wrote:
-> > On Mon, Jul 22, 2019 at 6:06 PM Vinod Koul <vkoul@kernel.org> wrote:
-> > >
-> > > Unit name is supposed to be a number, using a macro with hex value is
-> > 
-> > /s/name/address?
+On Wed, Jul 10, 2019 at 07:19:16PM +0800, jun.li@nxp.com wrote:
+> From: Li Jun <jun.li@nxp.com>
 > 
-> Right, will fix.
+> Per latest imx8mq datasheet of CCM, the parent of usb1_ctrl_root_clk
+> and usb2_ctrl_root_clk is usb_bus.
 > 
-> > > not recommended, so add the value in unit name.
-> > >
-> > > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:966.16-969.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4d: unit name should not have leading "0x"
-> > > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:971.16-974.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4e: unit name should not have leading "0x"
-> > > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:976.16-979.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4f: unit name should not have leading "0x"
-> > > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:981.16-984.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x50: unit name should not have leading "0x"
-> > > arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:986.16-989.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x51: unit name should not have leading "0x"
-> > >
-> > > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > > ---
-> > >  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 10 +++++-----
-> > >  1 file changed, 5 insertions(+), 5 deletions(-)
-> > >
-> > > diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> > > index 1ebbd568dfd7..9b27b8346ba1 100644
-> > > --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> > > +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> > > @@ -963,27 +963,27 @@ ap_ts_i2c: &i2c14 {
-> > >  };
-> > >
-> > >  &pm8998_adc {
-> > > -       adc-chan@ADC5_AMUX_THM1_100K_PU {
-> > > +       adc-chan@4d {
-> > >                 reg = <ADC5_AMUX_THM1_100K_PU>;
+> Signed-off-by: Li Jun <jun.li@nxp.com>
 
-When I read this define I instantly know which channel we're referring
-to. The 4d above is simply there for syntactical purposes and needs only
-to be cared about if the reg is ever changed.
-
-So I like this form.
-
-> > 
-> > I'm a little conflicted about this change. If we're replacing the
-> > address with actual values, perhaps we should do that same for the reg
-> > property to keep them in sync? Admittedly though, it is a bit easier
-> > to read the macro name and figure out its meaning.
-> 
-> Well this was how Bjorn suggested, am okay if we do in any
-> other way. This fixes warning but keeps it bit readable too
-> 
-> Other way would be to make defines decimal values instead of hex
-> 
-
-While the ePAPRR states that the unit address must match the first reg,
-dtc enforces that the unit address string matches "%x" of the reg.
-
-Regards,
-Bjorn
-
-> Any better suggestions :)
-> 
-> -- 
-> ~Vinod
+Applied both, thanks.
