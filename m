@@ -2,144 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BEC4C71F2D
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 20:24:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D656F7203E
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 21:56:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387520AbfGWSY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 14:24:27 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:52118 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731036AbfGWSY1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 14:24:27 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 88F5E60A0A; Tue, 23 Jul 2019 18:24:25 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1563906265;
-        bh=EFiHryTk48H4pBRZaqKt3GMJoO19kZx4TVSiPsgIF5E=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=B3TxerMcIuLVm2qeDzI0jP/nUXB5eVsbg9xR4yEjBGpJfcgTjgtuYrTT2UXD7OkTC
-         oIwEe0F263s1kSiKdwk4Zbc+Bxm2B8DkUcBE7B1YTfLONEmtJVX+3RwpQAvcEmvbpn
-         hLFZr1RXsK8eMBW3VXd7MrI38LvSoW3CFf/gVgeo=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.46.162.237] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: daidavid1@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2A455602F8;
-        Tue, 23 Jul 2019 18:24:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1563906264;
-        bh=EFiHryTk48H4pBRZaqKt3GMJoO19kZx4TVSiPsgIF5E=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=Sdr+knqWLxpSEJk8xow/oBUvhh5Ur560ZsQBjnw9tMD6AOwGmCOYn7uh4jgWyzn8c
-         4d1wtk98h4d9f719QbtsqjQfrrTN8rXX+0lfchOdbkoq045UlQ9g66fGgC4gY9jnBP
-         Xv1vGL+FIMeJ+pXHibTcwNp0FnnKhKUwnOuGd7eU=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2A455602F8
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=daidavid1@codeaurora.org
-Subject: Re: [PATCH 2/2] arm64: dts: sdm845: Redefine interconnect provider DT
- nodes
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     georgi.djakov@linaro.org, robh+dt@kernel.org, evgreen@google.com,
-        ilina@codeaurora.org, seansw@qti.qualcomm.com, elder@linaro.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
-References: <1563568344-1274-1-git-send-email-daidavid1@codeaurora.org>
- <1563568344-1274-3-git-send-email-daidavid1@codeaurora.org>
- <20190721191305.GI7234@tuxbook-pro>
-From:   David Dai <daidavid1@codeaurora.org>
-Message-ID: <0ecba781-ad08-0f09-f4a8-83473569a4c5@codeaurora.org>
-Date:   Tue, 23 Jul 2019 11:24:23 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1730596AbfGWT4L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 15:56:11 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:43259 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730398AbfGWT4L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 15:56:11 -0400
+Received: by mail-ot1-f68.google.com with SMTP id j11so21091752otp.10;
+        Tue, 23 Jul 2019 12:56:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rrOyyFy5rqW99rk0P5KQSSl5r6R/QDYqLHn4USJsL3A=;
+        b=vcM3eQorsGcT1LMegPoSDy7NqJel3thLcZ2N2Qhx0puRNsTkmNEiG0F+XQkCGOX1Ig
+         1/4OLol9nF+KTkFq94bP7V0gNccyrHqwFvBsL8WBQM5+kMzt7kkuhu6Y1jnOqPvXPAqa
+         Cp3VNRJ5JO6K9m4vIs+nQ491pbazijVwpD1Z7JkavJUwZPTK859ob7hylOnwT8BipmZd
+         Emu5jpBlPNjxdz60q6vN7ZKaoCSNrbo+2U4pXw+By02NFun+DnlVft68K1jVspPLqQuS
+         Fw32ofFtSNlZCeFfzCvc2088usKsI5DZh/eOdcbK4L+tZydcscA0m8oIEDABGvc+ZCbN
+         3XJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rrOyyFy5rqW99rk0P5KQSSl5r6R/QDYqLHn4USJsL3A=;
+        b=fHF0gH01ETWVQNsRz4QJaZ2zfCZN8PeOHDZVh5fzF21frJyPec2LFILA3/lUae5ej/
+         so9qpavzXY3zEqz/bwk918wNIneO8DDPcankt9y807742xR8cEw4kCeFCeZN1KS6GwR6
+         vZhZPpAhNvRQB9swd0Kbc5JariwET5YMUNaPlJuOHPdB9/gHWyo/2tuY508UV6q3KjL9
+         7Loma28twMqiAJAdDIxSiSc0z2dLruzAUNEj+x5doR08V48ajnRQUbgA8nOQukPMDYA1
+         FrWk166Hd16Z63R9uofIm6jCfQDmY94XCi1mRROIpejoIrI1iK65ltoWv8sMKoASiIrb
+         1+sQ==
+X-Gm-Message-State: APjAAAX2OExkreW4nuXHsoDdwoGgrRe1LOt729D2Hjrko4c7PGlXQEvW
+        vGoYGfKDICwFfw2IMhmBpZjuU5Wb1+rujUpIOrE=
+X-Google-Smtp-Source: APXvYqx9q9PX9Dg4p97MrcRHkmu4+GGoPQUy/wK1/SEPl6JfdseBURzpG2Mjqo4+UW71Mn/KARpQONAL+YxJ9rauNRc=
+X-Received: by 2002:a9d:39a6:: with SMTP id y35mr59597026otb.81.1563911770343;
+ Tue, 23 Jul 2019 12:56:10 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190721191305.GI7234@tuxbook-pro>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+References: <20190718090301.19283-1-jbrunet@baylibre.com>
+In-Reply-To: <20190718090301.19283-1-jbrunet@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 23 Jul 2019 21:55:59 +0200
+Message-ID: <CAFBinCDb0nq-HDbiAL4MjtmfjE=GLh0bns110BuEEJpr=ctGWw@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: meson: add ethernet fifo sizes
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     Kevin Hilman <khilman@baylibre.com>, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for looking over this, Bjorn.
+On Thu, Jul 18, 2019 at 11:03 AM Jerome Brunet <jbrunet@baylibre.com> wrote:
+>
+> If unspecified in DT, the fifo sizes are not automatically detected by
+> the dwmac1000 dma driver and the reported fifo sizes default to 0.
+> Because of this, flow control will be turned off on the device.
+>
+> Add the fifo sizes provided by the datasheets in the SoC in DT so
+> flow control may be enabled if necessary.
+(only worth updating if you have to re-send it for whatever reason)
+as far as I understand the stmmac code
+(dwmac1000_dma_operation_mode_{rx,tx}) "RX flow control" depends on
+the RX FIFO size but TX doesn't
 
-On 7/21/2019 12:13 PM, Bjorn Andersson wrote:
-> On Fri 19 Jul 13:32 PDT 2019, David Dai wrote:
->
->> Add the DT nodes for each of the Network-On-Chip interconnect
->> buses found on SDM845 based platform and redefine the rsc_hlos
->> child node as a bcm-voter device to better represent the hardware.
->>
->> Signed-off-by: David Dai <daidavid1@codeaurora.org>
->> ---
->>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 61 ++++++++++++++++++++++++++++++++++--
->>   1 file changed, 58 insertions(+), 3 deletions(-)
->>
->> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> index e7d78bc..204222e 100644
->> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
->> @@ -610,6 +610,62 @@
->>   			#power-domain-cells = <1>;
->>   		};
->>   
->> +		aggre1_noc: interconnect@16e0000 {
->> +			compatible = "qcom,sdm845-aggre1_noc";
->> +			reg = <0 0x16e0000 0 0xd080>;
-> Please pad the address to 8 digits and keep nodes sorted by address.
-Will fix.
->> +			#interconnect-cells = <1>;
->> +			qcom,bcm-voter = <&apps_bcm_voter>;
->> +		};
->> +
->> +		aggre2_noc: interconnect@1700000 {
->> +			compatible = "qcom,sdm845-aggre2_noc";
->> +			reg = <0 0x1700000 0 0x3b100>;
->> +			#interconnect-cells = <1>;
->> +			qcom,bcm-voter = <&apps_bcm_voter>;
->> +		};
->> +
->> +		config_noc: interconnect@1500000 {
->> +			compatible = "qcom,sdm845-config_noc";
->> +			reg = <0 0x1500000 0 0x5080>;
->> +			#interconnect-cells = <1>;
->> +			qcom,bcm-voter = <&apps_bcm_voter>;
->> +		};
-> [..]
->>   		qfprom@784000 {
->>   			compatible = "qcom,qfprom";
->>   			reg = <0 0x00784000 0 0x8ff>;
->> @@ -2801,9 +2857,8 @@
->>   				};
->>   			};
->>   
->> -			rsc_hlos: interconnect {
->> -				compatible = "qcom,sdm845-rsc-hlos";
->> -				#interconnect-cells = <1>;
->> +			apps_bcm_voter: bcm_voter {
-> No '_' in node names, so bcm-voter.
-Ok.
->
-> Apart from this nits this looks good.
->
-> Regards,
-> Bjorn
->
->> +				compatible = "qcom,sdm845-bcm-voter";
->>   			};
->>   		};
->>   
->> -- 
->> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
->> a Linux Foundation Collaborative Project
->>
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+> Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
