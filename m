@@ -2,133 +2,188 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3292971A82
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 16:36:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4192B71A9D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 16:42:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387770AbfGWOgB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 10:36:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45980 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732590AbfGWOgB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 10:36:01 -0400
-Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8D152227BE;
-        Tue, 23 Jul 2019 14:36:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563892560;
-        bh=RhgZmcSMrQfqbKW3yJR0qQgPijWPcwlwWIuyvyAMaj0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=wLzKco/ArT5Dvfhgx+RaF8Fzo9J01LD8d96HbTMMRKdSTPSycFxvhs5LCOraxZkJZ
-         JkUM874oADKHLP14egH8DMTatS/Yt2U7n9FBkCxywEqixwbZPny1z7mEeiOeM5TeiK
-         jnDroFl49M4ihJT2TP4q5KB7tPiKJpsXJPqPjJX8=
-Received: by mail-qk1-f170.google.com with SMTP id s22so31295834qkj.12;
-        Tue, 23 Jul 2019 07:36:00 -0700 (PDT)
-X-Gm-Message-State: APjAAAVnMfvA9112Z+IklUnI3TUlOV542NX0V7aAXidWh3Gwxr5cA9Se
-        BWWdbQQqCzkzoN2skbnvbzJTvQ833ug4/bsDPg==
-X-Google-Smtp-Source: APXvYqwO37a9Uf29MCK2pQZVWi4gKhtu8lPzPkbArTZ/nniUVYHOSr3nEpVeFoaSFAMyZM3mOkSYpKT/tr0qovfkO7M=
-X-Received: by 2002:a37:a48e:: with SMTP id n136mr51861407qke.223.1563892559731;
- Tue, 23 Jul 2019 07:35:59 -0700 (PDT)
+        id S2390402AbfGWOmt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 10:42:49 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:46517 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727819AbfGWOmt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 10:42:49 -0400
+Received: by mail-pl1-f196.google.com with SMTP id c2so20674088plz.13
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 07:42:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:subject:to:cc:from:user-agent:date;
+        bh=MivtH/AFd/UEBQTX1L8TkdX1tWBHqaY6Yrp0reG3yuY=;
+        b=F6O53VjEkHgJGSFWE/TyGmcDrTX0Wb2ZnWmoEgoElaJLQk0ljUEFxCdRC8tslzbYSO
+         OfVlVRNf1LgjAQ48ihB/FvdgfcuibxsMHLeZl2DqLHBiRRH/BmXEPvdXmeNHyorYgwQo
+         EvgECRgKQF92fVGNnSgLG06OLJ3lZh/arI5+8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:subject:to:cc:from
+         :user-agent:date;
+        bh=MivtH/AFd/UEBQTX1L8TkdX1tWBHqaY6Yrp0reG3yuY=;
+        b=nIz9rZJDOGCeNSOIBH+F+bXh8EYLm3eEGdWhHn2te/QKRCYNjsAw98wuqBmJouAK7l
+         5W5xLItjOFlPRc8hP0uohZx0zqE/oRrejXUzITPZAibFv0eMpVm11g9yNWtOj9YFKCCn
+         d0byhWPn7nsrtJp628FGc2rtYM0NKT2/eGoX1TuL2kFQLrzSK1Hv4A9nvShGa4N2SvND
+         yppCsgLDNG0yaHN75UK+B+cJRexDRQ0HR7pbtje8EgFf8EoimF2nz+zF3VtfxBzkPxIx
+         26saiq4xICsHUmFPLjNRiFlTeJ/F+aoCU1NqdpyuIdLJ8ryV5aDwxJmZM1EN/HZ22fBS
+         TS7w==
+X-Gm-Message-State: APjAAAWCXgT4A1D3eJv6bYyemxgzdfI8uSy3BUWOwvdE8c+aqATGrBtR
+        vOVzB7LvpdHCGdVTw8DH9sbG6g==
+X-Google-Smtp-Source: APXvYqwtTx+QcAkXyfMl6NVacF5zqtkUSMrP0EzvRLV+pzVxCuifqK7xZtp+fixLQIdo1o6i/27a2A==
+X-Received: by 2002:a17:902:8a8a:: with SMTP id p10mr82515691plo.88.1563892968559;
+        Tue, 23 Jul 2019 07:42:48 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id a6sm40156512pfa.162.2019.07.23.07.42.47
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 23 Jul 2019 07:42:47 -0700 (PDT)
+Message-ID: <5d371ce7.1c69fb81.9650.8239@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-References: <1561361052-13072-1-git-send-email-neal.liu@mediatek.com>
- <1561361052-13072-3-git-send-email-neal.liu@mediatek.com> <20190722171320.GA9806@bogus>
- <1563848465.31451.4.camel@mtkswgap22>
-In-Reply-To: <1563848465.31451.4.camel@mtkswgap22>
-From:   Rob Herring <robh@kernel.org>
-Date:   Tue, 23 Jul 2019 08:35:47 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+SRhd=-5O2G_CMfJX9Z188kvA05MQOXaU1J8iExwUixQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+SRhd=-5O2G_CMfJX9Z188kvA05MQOXaU1J8iExwUixQ@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: rng: add bindings for MediaTek ARMv8 SoCs
-To:     Neal Liu <neal.liu@mediatek.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        wsd_upstream <wsd_upstream@mediatek.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        =?UTF-8?B?Q3J5c3RhbCBHdW8gKOmDreaZtik=?= <Crystal.Guo@mediatek.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        Matt Mackall <mpm@selenic.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1563568344-1274-2-git-send-email-daidavid1@codeaurora.org>
+References: <1563568344-1274-1-git-send-email-daidavid1@codeaurora.org> <1563568344-1274-2-git-send-email-daidavid1@codeaurora.org>
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Update Qualcomm SDM845 DT bindings
+To:     David Dai <daidavid1@codeaurora.org>, bjorn.andersson@linaro.org,
+        georgi.djakov@linaro.org, robh+dt@kernel.org
+Cc:     David Dai <daidavid1@codeaurora.org>, evgreen@google.com,
+        ilina@codeaurora.org, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.8.1
+Date:   Tue, 23 Jul 2019 07:42:46 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 22, 2019 at 8:21 PM Neal Liu <neal.liu@mediatek.com> wrote:
->
+Quoting David Dai (2019-07-19 13:32:23)
+> Redefine the Network-on-Chip devices to more accurately describe
+> the interconnect topology on Qualcomm's SDM845 platform. Each
+> interconnect device can communicate with different instances of the
+> RPMh hardware which are described as RSCs(Resource State Coordinators).
+>=20
+> Signed-off-by: David Dai <daidavid1@codeaurora.org>
+> ---
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,bcm-vote=
+r.txt b/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.txt
+> new file mode 100644
+> index 0000000..2cf7da2
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,bcm-voter.txt
+> @@ -0,0 +1,32 @@
+> +Qualcomm BCM-Voter interconnect driver binding
+> +-----------------------------------------------------------
+> +
+> +The Bus Clock Manager (BCM) is a dedicated hardware accelerator
+> +that manages shared system resources by aggregating requests
+> +from multiple Resource State Coordinators (RSC). Interconnect
+> +providers are able to vote for aggregated thresholds values from
+> +consumers by communicating through their respective RSCs.
+> +
+> +Required properties :
+> +- compatible : shall contain only one of the following:
+> +                       "qcom,sdm845-bcm-voter",
+> +
+> +Examples:
+> +
+> +apps_rsc: rsc@179c0000 {
 
-Please don't top post to lists.
+But there isn't a reg property.
 
-> Dear Rob,
->         You can check my driver for detail:
->         http://patchwork.kernel.org/patch/11012475/ or patchset 3/3
+> +       label =3D "apps_rsc";
 
-I could, or you could just answer my question.
+Is label required?
 
->
->         This driver is registered as hardware random number generator, and
-> combines with rng-core.
->         We want to add one rng hw based on the dts. Is this proper or do you
-> have other suggestion to meet this requirement?
+> +       compatible =3D "qcom,rpmh-rsc";
+> +
+> +       apps_bcm_voter: bcm_voter {
+> +               compatible =3D "qcom,sdm845-bcm-voter";
+> +       };
+> +}
+> +
+> +disp_rsc: rsc@179d0000 {
+> +       label =3D "disp_rsc";
+> +       compatible =3D "qcom,rpmh-rsc";
+> +
+> +       disp_bcm_voter: bcm_voter {
+> +               compatible =3D "qcom,sdm845-bcm-voter";
+> +       };
+> +}
+> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm845.t=
+xt b/Documentation/devicetree/bindings/interconnect/qcom,sdm845.txt
+> index 5c4f1d9..27f9ed9 100644
+> --- a/Documentation/devicetree/bindings/interconnect/qcom,sdm845.txt
+> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sdm845.txt
+> @@ -4,21 +4,43 @@ Qualcomm SDM845 Network-On-Chip interconnect driver bin=
+ding
+>  SDM845 interconnect providers support system bandwidth requirements thro=
+ugh
+>  RPMh hardware accelerators known as Bus Clock Manager (BCM). The provide=
+r is
+>  able to communicate with the BCM through the Resource State Coordinator =
+(RSC)
+> -associated with each execution environment. Provider nodes must reside w=
+ithin
+> -an RPMh device node pertaining to their RSC and each provider maps to a =
+single
+> -RPMh resource.
+> +associated with each execution environment. Provider nodes must point to=
+ at
+> +least one RPMh device child node pertaining to their RSC and each provid=
+er
+> +can map to multiple RPMh resources.
+> =20
+>  Required properties :
+>  - compatible : shall contain only one of the following:
+> -                       "qcom,sdm845-rsc-hlos"
+> +                       "qcom,sdm845-aggre1_noc",
+> +                       "qcom,sdm845-aggre2_noc",
+> +                       "qcom,sdm845-config_noc",
+> +                       "qcom,sdm845-dc_noc",
+> +                       "qcom,sdm845-gladiator_noc",
+> +                       "qcom,sdm845-mem_noc",
+> +                       "qcom,sdm845-mmss_noc",
+> +                       "qcom,sdm845-system_noc",
+>  - #interconnect-cells : should contain 1
+> +- reg : shall contain base register location and length
+> +- qcom,bcm-voter : shall contain phandles to bcm voters
+> =20
+>  Examples:
+> =20
+> -apps_rsc: rsc {
+> -       rsc_hlos: interconnect {
+> -               compatible =3D "qcom,sdm845-rsc-hlos";
+> -               #interconnect-cells =3D <1>;
+> -       };
+> +aggre1_noc: interconnect@16e0000 {
+> +       compatible =3D "qcom,sdm845-aggre1_noc";
+> +       reg =3D <0x16e0000 0xd080>;
+> +       interconnect-cells =3D <1>;
+> +       qcom,bcm-voter =3D <&apps_bcm_voter>;
+>  };
+> =20
+> +mmss_noc: interconnect@1740000 {
+> +       compatible =3D "qcom,sdm845-mmss_noc";
+> +       reg =3D <0x1740000 0x1c1000>;
+> +       interconnect-cells =3D <1>;
+> +       qcom,bcm-voter =3D <&apps_bcm_voter>, <&disp_bcm_voter>;
+> +};
+> +
+> +mem_noc: interconnect@1380000 {
+> +       compatible =3D "qcom,sdm845-mem_noc";
+> +       reg =3D <0 0x1380000 0 0x27200>;
+> +       #interconnect-cells =3D <1>;
+> +       qcom,bcm-voter =3D <&apps_bcm_voter>, <&disp_bcm_voter>;
+> +};
 
-It depends. There doesn't appear to be any resource configuration, so
-why does it need to be in DT. DT is not the only way instantiate
-drivers.
+How does a consumer target a particular RSC? For example, how can
+display decide to use the disp_bcm_voter node from mem_noc here? Maybe
+you can add that consumer to the example?
 
-Rob
-
->
->         Thanks
->
->
-> On Tue, 2019-07-23 at 01:13 +0800, Rob Herring wrote:
-> > On Mon, Jun 24, 2019 at 03:24:11PM +0800, Neal Liu wrote:
-> > > Document the binding used by the MediaTek ARMv8 SoCs random
-> > > number generator with TrustZone enabled.
-> > >
-> > > Signed-off-by: Neal Liu <neal.liu@mediatek.com>
-> > > ---
-> > >  .../devicetree/bindings/rng/mtk-sec-rng.txt        |   10 ++++++++++
-> > >  1 file changed, 10 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/rng/mtk-sec-rng.txt
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/rng/mtk-sec-rng.txt b/Documentation/devicetree/bindings/rng/mtk-sec-rng.txt
-> > > new file mode 100644
-> > > index 0000000..c04ce15
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/rng/mtk-sec-rng.txt
-> > > @@ -0,0 +1,10 @@
-> > > +MediaTek random number generator with TrustZone enabled
-> > > +
-> > > +Required properties:
-> > > +- compatible : Should be "mediatek,mtk-sec-rng"
-> >
-> > What's the interface to access this?
-> >
-> > A node with a 'compatible' and nothing else is a sign of something that
-> > a parent device should instantiate and doesn't need to be in DT. IOW,
-> > what do complete bindings for firmware functions look like?
-> >
-> > > +
-> > > +Example:
-> > > +
-> > > +hwrng: hwrng {
-> > > +   compatible = "mediatek,mtk-sec-rng";
-> > > +}
-> > > --
-> > > 1.7.9.5
-> > >
-> >
-> > _______________________________________________
-> > Linux-mediatek mailing list
-> > Linux-mediatek@lists.infradead.org
-> > http://lists.infradead.org/mailman/listinfo/linux-mediatek
->
->
