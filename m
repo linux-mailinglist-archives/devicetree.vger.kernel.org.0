@@ -2,323 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5148C71EB1
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 20:06:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BEC4C71F2D
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 20:24:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387784AbfGWSGl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 14:06:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43504 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387766AbfGWSGl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 23 Jul 2019 14:06:41 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
+        id S2387520AbfGWSY1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 14:24:27 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:52118 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731036AbfGWSY1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 14:24:27 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 88F5E60A0A; Tue, 23 Jul 2019 18:24:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563906265;
+        bh=EFiHryTk48H4pBRZaqKt3GMJoO19kZx4TVSiPsgIF5E=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=B3TxerMcIuLVm2qeDzI0jP/nUXB5eVsbg9xR4yEjBGpJfcgTjgtuYrTT2UXD7OkTC
+         oIwEe0F263s1kSiKdwk4Zbc+Bxm2B8DkUcBE7B1YTfLONEmtJVX+3RwpQAvcEmvbpn
+         hLFZr1RXsK8eMBW3VXd7MrI38LvSoW3CFf/gVgeo=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.46.162.237] (i-global254.qualcomm.com [199.106.103.254])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0EF1A227B9;
-        Tue, 23 Jul 2019 18:06:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563905199;
-        bh=ATZxf7FiN3oB+M5mvyAZv00bjhePqLf7c5O+1PYZH80=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=F9B4OkqYLKKg87918iaCmoQkIOwRNQ7zR6LS7flzsQS6QJKst9O1qGtq2a0X5UTFE
-         jxoOpduoB5yMfd/5maT9utCt06jCXhxupXAec/7mAtkOY7NcSYkJU9qvxPQssLNfyA
-         xheGfGRkm1zpE0RRn68AcDmH9OKmWmXbxasq6M74=
-Received: by mail-qk1-f173.google.com with SMTP id r6so31837603qkc.0;
-        Tue, 23 Jul 2019 11:06:39 -0700 (PDT)
-X-Gm-Message-State: APjAAAUGWVEm5cYWP52wLCQzumB4t8S4s3tUMCf0Lc7TjJ1t93gCd9h2
-        bCFoPUoxOXpwMKz6olaPuDJOD0HarHBiGj4c9w==
-X-Google-Smtp-Source: APXvYqzLb9X8SJsIt1UslCRzXBn5OFdvPH3RBcYmZvdiceD0ex+msHgws7xNxSYJtScc/0u8o0DCvqncPOl93OWX1Cg=
-X-Received: by 2002:a37:a48e:: with SMTP id n136mr52410261qke.223.1563905198195;
- Tue, 23 Jul 2019 11:06:38 -0700 (PDT)
+        (Authenticated sender: daidavid1@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 2A455602F8;
+        Tue, 23 Jul 2019 18:24:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1563906264;
+        bh=EFiHryTk48H4pBRZaqKt3GMJoO19kZx4TVSiPsgIF5E=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Sdr+knqWLxpSEJk8xow/oBUvhh5Ur560ZsQBjnw9tMD6AOwGmCOYn7uh4jgWyzn8c
+         4d1wtk98h4d9f719QbtsqjQfrrTN8rXX+0lfchOdbkoq045UlQ9g66fGgC4gY9jnBP
+         Xv1vGL+FIMeJ+pXHibTcwNp0FnnKhKUwnOuGd7eU=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 2A455602F8
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=daidavid1@codeaurora.org
+Subject: Re: [PATCH 2/2] arm64: dts: sdm845: Redefine interconnect provider DT
+ nodes
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     georgi.djakov@linaro.org, robh+dt@kernel.org, evgreen@google.com,
+        ilina@codeaurora.org, seansw@qti.qualcomm.com, elder@linaro.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, linux-pm@vger.kernel.org
+References: <1563568344-1274-1-git-send-email-daidavid1@codeaurora.org>
+ <1563568344-1274-3-git-send-email-daidavid1@codeaurora.org>
+ <20190721191305.GI7234@tuxbook-pro>
+From:   David Dai <daidavid1@codeaurora.org>
+Message-ID: <0ecba781-ad08-0f09-f4a8-83473569a4c5@codeaurora.org>
+Date:   Tue, 23 Jul 2019 11:24:23 -0700
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190720061647.234852-1-saravanak@google.com> <20190720061647.234852-4-saravanak@google.com>
-In-Reply-To: <20190720061647.234852-4-saravanak@google.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 23 Jul 2019 12:06:26 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK9GTxxxjhhWwqxOW9XERFziu2O71ETV2RhXb7B1WFY2g@mail.gmail.com>
-Message-ID: <CAL_JsqK9GTxxxjhhWwqxOW9XERFziu2O71ETV2RhXb7B1WFY2g@mail.gmail.com>
-Subject: Re: [PATCH v6 3/7] of/platform: Add functional dependency link from
- DT bindings
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Jonathan Corbet <corbet@lwn.net>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190721191305.GI7234@tuxbook-pro>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 20, 2019 at 12:17 AM Saravana Kannan <saravanak@google.com> wrote:
->
-> Add device-links after the devices are created (but before they are
-> probed) by looking at common DT bindings like clocks and
-> interconnects.
+Thanks for looking over this, Bjorn.
 
-The structure now looks a lot better to me. A few minor things below.
+On 7/21/2019 12:13 PM, Bjorn Andersson wrote:
+> On Fri 19 Jul 13:32 PDT 2019, David Dai wrote:
+>
+>> Add the DT nodes for each of the Network-On-Chip interconnect
+>> buses found on SDM845 based platform and redefine the rsc_hlos
+>> child node as a bcm-voter device to better represent the hardware.
+>>
+>> Signed-off-by: David Dai <daidavid1@codeaurora.org>
+>> ---
+>>   arch/arm64/boot/dts/qcom/sdm845.dtsi | 61 ++++++++++++++++++++++++++++++++++--
+>>   1 file changed, 58 insertions(+), 3 deletions(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>> index e7d78bc..204222e 100644
+>> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+>> @@ -610,6 +610,62 @@
+>>   			#power-domain-cells = <1>;
+>>   		};
+>>   
+>> +		aggre1_noc: interconnect@16e0000 {
+>> +			compatible = "qcom,sdm845-aggre1_noc";
+>> +			reg = <0 0x16e0000 0 0xd080>;
+> Please pad the address to 8 digits and keep nodes sorted by address.
+Will fix.
+>> +			#interconnect-cells = <1>;
+>> +			qcom,bcm-voter = <&apps_bcm_voter>;
+>> +		};
+>> +
+>> +		aggre2_noc: interconnect@1700000 {
+>> +			compatible = "qcom,sdm845-aggre2_noc";
+>> +			reg = <0 0x1700000 0 0x3b100>;
+>> +			#interconnect-cells = <1>;
+>> +			qcom,bcm-voter = <&apps_bcm_voter>;
+>> +		};
+>> +
+>> +		config_noc: interconnect@1500000 {
+>> +			compatible = "qcom,sdm845-config_noc";
+>> +			reg = <0 0x1500000 0 0x5080>;
+>> +			#interconnect-cells = <1>;
+>> +			qcom,bcm-voter = <&apps_bcm_voter>;
+>> +		};
+> [..]
+>>   		qfprom@784000 {
+>>   			compatible = "qcom,qfprom";
+>>   			reg = <0 0x00784000 0 0x8ff>;
+>> @@ -2801,9 +2857,8 @@
+>>   				};
+>>   			};
+>>   
+>> -			rsc_hlos: interconnect {
+>> -				compatible = "qcom,sdm845-rsc-hlos";
+>> -				#interconnect-cells = <1>;
+>> +			apps_bcm_voter: bcm_voter {
+> No '_' in node names, so bcm-voter.
+Ok.
+>
+> Apart from this nits this looks good.
+>
+> Regards,
+> Bjorn
+>
+>> +				compatible = "qcom,sdm845-bcm-voter";
+>>   			};
+>>   		};
+>>   
+>> -- 
+>> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+>> a Linux Foundation Collaborative Project
+>>
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
->
-> Automatically adding device-links for functional dependencies at the
-> framework level provides the following benefits:
->
-> - Optimizes device probe order and avoids the useless work of
->   attempting probes of devices that will not probe successfully
->   (because their suppliers aren't present or haven't probed yet).
->
->   For example, in a commonly available mobile SoC, registering just
->   one consumer device's driver at an initcall level earlier than the
->   supplier device's driver causes 11 failed probe attempts before the
->   consumer device probes successfully. This was with a kernel with all
->   the drivers statically compiled in. This problem gets a lot worse if
->   all the drivers are loaded as modules without direct symbol
->   dependencies.
->
-> - Supplier devices like clock providers, interconnect providers, etc
->   need to keep the resources they provide active and at a particular
->   state(s) during boot up even if their current set of consumers don't
->   request the resource to be active. This is because the rest of the
->   consumers might not have probed yet and turning off the resource
->   before all the consumers have probed could lead to a hang or
->   undesired user experience.
->
->   Some frameworks (Eg: regulator) handle this today by turning off
->   "unused" resources at late_initcall_sync and hoping all the devices
->   have probed by then. This is not a valid assumption for systems with
->   loadable modules. Other frameworks (Eg: clock) just don't handle
->   this due to the lack of a clear signal for when they can turn off
->   resources. This leads to downstream hacks to handle cases like this
->   that can easily be solved in the upstream kernel.
->
->   By linking devices before they are probed, we give suppliers a clear
->   count of the number of dependent consumers. Once all of the
->   consumers are active, the suppliers can turn off the unused
->   resources without making assumptions about the number of consumers.
->
-> By default we just add device-links to track "driver presence" (probe
-> succeeded) of the supplier device. If any other functionality provided
-> by device-links are needed, it is left to the consumer/supplier
-> devices to change the link when they probe.
->
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  .../admin-guide/kernel-parameters.txt         |   5 +
->  drivers/of/platform.c                         | 158 ++++++++++++++++++
->  2 files changed, 163 insertions(+)
->
-> diff --git a/Documentation/admin-guide/kernel-parameters.txt b/Documentation/admin-guide/kernel-parameters.txt
-> index 138f6664b2e2..109b4310844f 100644
-> --- a/Documentation/admin-guide/kernel-parameters.txt
-> +++ b/Documentation/admin-guide/kernel-parameters.txt
-> @@ -3141,6 +3141,11 @@
->                         This can be set from sysctl after boot.
->                         See Documentation/sysctl/vm.txt for details.
->
-> +       of_devlink      [KNL] Make device links from common DT bindings. Useful
-> +                       for optimizing probe order and making sure resources
-> +                       aren't turned off before the consumer devices have
-> +                       probed.
-> +
->         ohci1394_dma=early      [HW] enable debugging via the ohci1394 driver.
->                         See Documentation/debugging-via-ohci1394.txt for more
->                         info.
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 04ad312fd85b..88a2086e26fa 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -509,6 +509,163 @@ int of_platform_default_populate(struct device_node *root,
->  }
->  EXPORT_SYMBOL_GPL(of_platform_default_populate);
->
-> +bool of_link_is_valid(struct device_node *con, struct device_node *sup)
-> +{
-> +       of_node_get(sup);
-> +       /*
-> +        * Don't allow linking a device node as a consumer of one of its
-> +        * descendant nodes. By definition, a child node can't be a functional
-> +        * dependency for the parent node.
-> +        */
-> +       while (sup) {
-> +               if (sup == con) {
-> +                       of_node_put(sup);
-> +                       return false;
-> +               }
-> +               sup = of_get_next_parent(sup);
-> +       }
-> +       return true;
-> +}
-> +
-> +static int of_link_to_phandle(struct device *dev, struct device_node *sup_np)
-> +{
-> +       struct platform_device *sup_dev;
-> +       u32 dl_flags = DL_FLAG_AUTOPROBE_CONSUMER;
-> +       int ret = 0;
-> +
-> +       /*
-> +        * Since we are trying to create device links, we need to find
-> +        * the actual device node that owns this supplier phandle.
-> +        * Often times it's the same node, but sometimes it can be one
-> +        * of the parents. So walk up the parent till you find a
-> +        * device.
-> +        */
-> +       while (sup_np && !of_find_property(sup_np, "compatible", NULL))
-> +               sup_np = of_get_next_parent(sup_np);
-> +       if (!sup_np)
-> +               return 0;
-> +
-> +       if (!of_link_is_valid(dev->of_node, sup_np)) {
-> +               of_node_put(sup_np);
-> +               return 0;
-> +       }
-> +       sup_dev = of_find_device_by_node(sup_np);
-> +       of_node_put(sup_np);
-> +       if (!sup_dev)
-> +               return -ENODEV;
-> +       if (!device_link_add(dev, &sup_dev->dev, dl_flags))
-> +               ret = -ENODEV;
-> +       put_device(&sup_dev->dev);
-> +       return ret;
-> +}
-> +
-> +static struct device_node *parse_prop_cells(struct device_node *np,
-> +                                           const char *prop, int i,
-
-I like 'i' for for loops, but less so for function params. Perhaps
-'index' instead like of_parse_phandle_with_args.
-
-> +                                           const char *binding,
-> +                                           const char *cell)
-> +{
-> +       struct of_phandle_args sup_args;
-> +
-> +       if (!i && strcmp(prop, binding))
-
-Why the '!i' test?
-
-> +               return NULL;
-> +
-> +       if (of_parse_phandle_with_args(np, binding, cell, i, &sup_args))
-> +               return NULL;
-> +
-> +       return sup_args.np;
-> +}
-> +
-> +static struct device_node *parse_clocks(struct device_node *np,
-> +                                       const char *prop, int i)
-> +{
-> +       return parse_prop_cells(np, prop, i, "clocks", "#clock-cells");
-> +}
-> +
-> +static struct device_node *parse_interconnects(struct device_node *np,
-> +                                              const char *prop, int i)
-> +{
-> +       return parse_prop_cells(np, prop, i, "interconnects",
-> +                               "#interconnect-cells");
-> +}
-> +
-> +static int strcmp_suffix(const char *str, const char *suffix)
-> +{
-> +       unsigned int len, suffix_len;
-> +
-> +       len = strlen(str);
-> +       suffix_len = strlen(suffix);
-> +       if (len <= suffix_len)
-> +               return -1;
-> +       return strcmp(str + len - suffix_len, suffix);
-> +}
-> +
-> +static struct device_node *parse_regulators(struct device_node *np,
-> +                                           const char *prop, int i)
-> +{
-> +       if (i || strcmp_suffix(prop, "-supply"))
-> +               return NULL;
-> +
-> +       return of_parse_phandle(np, prop, 0);
-> +}
-> +
-> +/**
-> + * struct supplier_bindings - Information for parsing supplier DT binding
-> + *
-> + * @parse_prop:                If the function cannot parse the property, return NULL.
-> + *                     Otherwise, return the phandle listed in the property
-> + *                     that corresponds to index i.
-> + */
-> +struct supplier_bindings {
-> +       struct device_node *(*parse_prop)(struct device_node *np,
-> +                                         const char *name, int i);
-> +};
-> +
-> +struct supplier_bindings bindings[] = {
-
-static const
-
-> +       { .parse_prop = parse_clocks, },
-> +       { .parse_prop = parse_interconnects, },
-> +       { .parse_prop = parse_regulators, },
-> +       { },
-> +};
-> +
-> +static bool of_link_property(struct device *dev, struct device_node *con_np,
-> +                            const char *prop)
-> +{
-> +       struct device_node *phandle;
-> +       struct supplier_bindings *s = bindings;
-> +       unsigned int i = 0;
-> +       bool done = true;
-> +
-> +       while (!i && s->parse_prop) {
-
-Using 'i' is a little odd. Perhaps a 'matched' bool would be easier to read.
-
-> +               while ((phandle = s->parse_prop(con_np, prop, i))) {
-> +                       i++;
-> +                       if (of_link_to_phandle(dev, phandle))
-> +                               done = false;
-
-Just return here. No point in continuing as 'done' is never set back to true.
-
-> +               }
-> +               s++;
-> +       }
-> +       return done ? 0 : -ENODEV;
-> +}
-> +
-> +static bool of_devlink;
-> +core_param(of_devlink, of_devlink, bool, 0);
-> +
-> +static int of_link_to_suppliers(struct device *dev)
-> +{
-> +       struct property *p;
-> +       bool done = true;
-> +
-> +       if (!of_devlink)
-> +               return 0;
-> +       if (unlikely(!dev->of_node))
-> +               return 0;
-> +
-> +       for_each_property_of_node(dev->of_node, p)
-> +               if (of_link_property(dev, dev->of_node, p->name))
-> +                       done = false;
-> +
-> +       return done ? 0 : -ENODEV;
-> +}
-> +
->  #ifndef CONFIG_PPC
->  static const struct of_device_id reserved_mem_matches[] = {
->         { .compatible = "qcom,rmtfs-mem" },
-> @@ -524,6 +681,7 @@ static int __init of_platform_default_populate_init(void)
->         if (!of_have_populated_dt())
->                 return -ENODEV;
->
-> +       platform_bus_type.add_links = of_link_to_suppliers;
->         /*
->          * Handle certain compatibles explicitly, since we don't want to create
->          * platform_devices for every node in /reserved-memory with a
-> --
-> 2.22.0.657.g960e92d24f-goog
->
