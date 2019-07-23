@@ -2,78 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8AD2170F02
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 04:16:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF7FC70F10
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 04:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727357AbfGWCQg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 22 Jul 2019 22:16:36 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:41235 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726825AbfGWCQg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 22:16:36 -0400
-Received: by mail-qk1-f193.google.com with SMTP id v22so30011192qkj.8;
-        Mon, 22 Jul 2019 19:16:35 -0700 (PDT)
+        id S1729111AbfGWCSn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 22 Jul 2019 22:18:43 -0400
+Received: from mail-qt1-f194.google.com ([209.85.160.194]:33033 "EHLO
+        mail-qt1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726432AbfGWCSn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 22 Jul 2019 22:18:43 -0400
+Received: by mail-qt1-f194.google.com with SMTP id r6so36228386qtt.0;
+        Mon, 22 Jul 2019 19:18:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=jms.id.au; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=7GgnchVxa85kofAIjboqJCKA6VShjGUyfwivNl63GJ8=;
-        b=enwqPukvvi2Os0t54GJuz6TCm4CbxxKrSuAL/QdPmtJdzjuFCj+I3xLRmS9ubxIVnU
-         BmX3XK1IKQ5Bp0Kt/rsUlcMLdEBkkWjkLRdZWwI1i4MFfM4/gIPrgaFA4uZFUnjSXwTo
-         BJKEsm19zmW8OfM4acCvQ/4de/DyLISE1/szE=
+        bh=vcC4RShVO4GBc+sW4MyK+3YODcf2RJ2zchY27GABnL8=;
+        b=TOwnZ4KgvqrleYyt69kjA8Pa9iW5g09uAt5QjslSfRRn8IKi1esZ7HH1t1kr3eWn62
+         HwvE1GIGFI6YVmc+kPriQ5kLlktrExjmXA39je9MWxpYWvJ3WHlYOp/XPt9YQGPAzJDw
+         l8DiX0FJaHPr+AY0jKpkagQRf57jvHPnKWM58=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7GgnchVxa85kofAIjboqJCKA6VShjGUyfwivNl63GJ8=;
-        b=aWP401S5NUvUAJWQoVWOXvRIGPvrERGQVvQrWxKAy2SQzliBOJblbrEfgGyLXpWOIh
-         L5iHptgwC2Ldi9TGRtubb0GAQJ/94hSs9rRGp6vUYDiUa1/QKPKjMDgDbCjPYTbgOYLZ
-         /MFp6seg7sZ//zhlVDahoFqZ+lEmTGrVZQAOaO/ZbW1od1H/UTa6ITMxYs2ftG9TswQH
-         d6JLYWFyvyOBk/ECkhfcMQPC1AjHvof+sGZRuZHNAR0J3JuEISkjjQXUom0uQn+mlYYt
-         eF88QenYofTZGHWyQ9yZrG298inGschoYWA0mjUW0GR1Ca8+8dIt6skWaZgu0qliTq7+
-         ToOA==
-X-Gm-Message-State: APjAAAU2ftNR4ta/H/m6Qcko+UwMb310vHVFXUQOidtCfG0/j/VxFDDS
-        w9ckG2mAQLMoSBKyPwaQWeeSq67/p4iVRTsmqUU=
-X-Google-Smtp-Source: APXvYqxU3suR2c+fS3yT0aq2lqnTUt++7MYnhK9oL6tGmvBmBmm6edtD6GqRPtAqNuBdgfYwI2gPuRDH4KkZOah0kFs=
-X-Received: by 2002:a05:620a:16d6:: with SMTP id a22mr49006146qkn.414.1563848195224;
- Mon, 22 Jul 2019 19:16:35 -0700 (PDT)
+        bh=vcC4RShVO4GBc+sW4MyK+3YODcf2RJ2zchY27GABnL8=;
+        b=sEQ8IKOsITG9M/T05azNU+ADDh8volKGrX3Um4AeOYAwBQeeZfEV9B7VXO++MangrY
+         eb3KzP4ITzlIlpLqK5wSmlgjmzaoULwrwtd8agoKPmteEHX4aUCoLVMeNKgzfzxGII2j
+         oNxOIjg+MFALQqlelgUJeH+WmHZEd9wo0SL8c8GcAHyki7DeYWFe/+xhTQCpEQEn0WqR
+         6I8lhVmwnsYCa+Q5SzsGFbTKNx80CKrQnRt72IuaiMcik5qyx8MZ/rgKX/JsMq4YEIZj
+         MLUCFLL29w5PkE09SJo0dIrvy6XV36artiojy6l6ATN9t+YtNDkRNh4BM0D3RVirpaVB
+         RvnQ==
+X-Gm-Message-State: APjAAAUpuw/ZM+WGY5tGObmjNHN6kKQsNuPlSkftErncWZN4nEZTweXX
+        WRurB+ykNIaoJOnv3RUsgHc6DMam2vrY6wbrRkM=
+X-Google-Smtp-Source: APXvYqyKa4qglKbb1MdjCrqmWrNbSYFG/mfrDWZwOC07dy0d8FYB/4HTZQLyEyfhsZkvbBQEqQWHNxVW+HOmbCsiWG0=
+X-Received: by 2002:a0c:afd5:: with SMTP id t21mr52827407qvc.105.1563848321880;
+ Mon, 22 Jul 2019 19:18:41 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190723003216.2910042-1-vijaykhemka@fb.com> <a0a8162e-c21b-4b3d-b096-1676c5cc9758@www.fastmail.com>
-In-Reply-To: <a0a8162e-c21b-4b3d-b096-1676c5cc9758@www.fastmail.com>
+References: <20190723002052.2878847-1-vijaykhemka@fb.com>
+In-Reply-To: <20190723002052.2878847-1-vijaykhemka@fb.com>
 From:   Joel Stanley <joel@jms.id.au>
-Date:   Tue, 23 Jul 2019 02:16:23 +0000
-Message-ID: <CACPK8XddLM934ArbA13GEN6m9KpgOkQattE5p8qBpv-yL4mJ9Q@mail.gmail.com>
-Subject: Re: [PATCH v2] ARM: dts: aspeed: tiogapass: Add VR devices
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     Vijay Khemka <vijaykhemka@fb.com>,
-        Rob Herring <robh+dt@kernel.org>,
+Date:   Tue, 23 Jul 2019 02:18:29 +0000
+Message-ID: <CACPK8XfGxUpBU4iNG5TwE=3J1aEZAZ=nnVvrT74LQ-F0kqkw2Q@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: Add pxe1610 as a trivial device
+To:     Vijay Khemka <vijaykhemka@fb.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
+        Jiri Kosina <trivial@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Patrick Venture <venture@google.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        Anson Huang <anson.huang@nxp.com>,
+        Jeremy Gebben <jgebben@sweptlaser.com>,
         devicetree <devicetree@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed@lists.ozlabs.org,
         Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
         "openbmc @ lists . ozlabs . org" <openbmc@lists.ozlabs.org>,
-        Sai Dasari <sdasari@fb.com>
+        linux-aspeed@lists.ozlabs.org, Sai Dasari <sdasari@fb.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Jul 2019 at 00:40, Andrew Jeffery <andrew@aj.id.au> wrote:
+On Tue, 23 Jul 2019 at 00:46, Vijay Khemka <vijaykhemka@fb.com> wrote:
 >
+> The pxe1610 is a voltage regulator from Infineon. It also supports
+> other VRs pxe1110 and pxm1310 from Infineon.
 >
->
-> On Tue, 23 Jul 2019, at 10:04, Vijay Khemka wrote:
-> > Adds voltage regulators Infineon pxe1610 devices to Facebook
-> > tiogapass platform.
-> >
-> > Signed-off-by: Vijay Khemka <vijaykhemka@fb.com>
->
-> Acked-by: Andrew Jeffery <andrew@aj.id.au>
+> Signed-off-by: Vijay Khemka <vijaykhemka@fb.com>
 
-Thanks, applied to aspeed's dt-for-5.4.
-
-Cheers,
-
-Joel
+Acked-by: Joel Stanley <joel@jms.id.au>
