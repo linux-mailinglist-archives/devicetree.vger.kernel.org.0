@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C00B771A36
-	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 16:23:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC1C971A3B
+	for <lists+devicetree@lfdr.de>; Tue, 23 Jul 2019 16:23:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388195AbfGWOXt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 10:23:49 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:46866 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388170AbfGWOXs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 10:23:48 -0400
-Received: by mail-lf1-f65.google.com with SMTP id z15so25215945lfh.13
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 07:23:47 -0700 (PDT)
+        id S1730124AbfGWOXw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 10:23:52 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:33440 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388170AbfGWOXv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 10:23:51 -0400
+Received: by mail-lj1-f196.google.com with SMTP id h10so41266412ljg.0
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 07:23:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=FbVR62JVrWT5p1YV/PXTQMK7g7u1TZfSbRIPAQh2zmI=;
-        b=pqjy30NaHFnw6pcJ57wAnzko3t4O4huqM2mhHodrJ9jmdvgIfV9Xwgo3+TI4xeE5zz
-         EO5h3MH9wLBV26uraJyi7ZHXlNWSElGcbmJJ2NWpEAL/lUyrxus7e7gGMT74MjAEYGAd
-         RkBfV9FPdETMqbGMNxilpx4IkRHXPqifArGJx3hRJTjrZaX4Ue9Z2n0hhGKl655gLaX3
-         hIwyFeuakmEQDACmmXaUOqs1Dv2FaeVv+RcOvEzhTpk1wIe+OO5/fSldby78OhcY36A5
-         4gYgp7pFqPNs7Qy8eRw2O9NN7gGESjem2m11n9aAuq/hpqsOPsDyAX9pgehNlcwBBEqB
-         ScCw==
+        bh=oYU5uExLdvkd3JySXo4ikuWuU9TKWBHt3CrzgnJWCNA=;
+        b=dPqki8ih91xsb4gJhR/9Xcf6J/YbqCIpXb1A5GmOjH8xwHK0jukrf0nRMY5ktPDnKW
+         a7Zju9SwtVgvgQydRt2flh2dnh345wbQNNbrlNAd+4rmnLxBQT9kMrvxNMJoC6NlEzOH
+         nHNWb7PdQ8PHp2NodheRMTJEsfNwKzooTXfUG0r1l2rtIk86/B88s9644QpxA5D5IXUT
+         4w0mc6DsRkH5tkTPsVhWwg0VISWjkwdei6T7ra1S0NRGaJWF8SJoIy2vEaupo6m+MHIM
+         43Q90SR/MY5DYD3ttiTelTV2T4pLxz4nwtpXY/hhz4EmkdxlsUaefL1+f6ye0hj6idZg
+         ifFw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=FbVR62JVrWT5p1YV/PXTQMK7g7u1TZfSbRIPAQh2zmI=;
-        b=ltLkAyx9FtZa4ihp7EQVKm0UUIxEztuIU4iuBbZ7hvAtTxUDXxtRYP06ZoJfXtK2cv
-         t8oc/bPyGlkgIINWPa5F+4qpHmL/D2tkwRd0tjOGfTTfju/BB/1aeHyqLVvzzCjqln+V
-         6cV+mgYbU3xqMYZ0aDPCrZLiPALrC+Co7YGWFl2UgUicUPn3soQtZfdX+6xG1XfxrYyD
-         fA8K7WRkFlC3HPbVmPJ6qegGzxkVykHiHVJGuUsuA9JOct39AA10DKTzU8+O2TFLJB3e
-         vmnJCwX0h+WbzsOrgZ7d1Q/qWHVbxfT2Q3n+Ecypg1yCDbCVw4hpj3NJ3KGFU5oATt0V
-         +tbA==
-X-Gm-Message-State: APjAAAUxjnE8SuIHP8zOjOxYQNjm7Mmko8k5BGKleq7neW2PveLYNEQ+
-        39fabHJL2XfNUIvVz7U0p3GTxQ==
-X-Google-Smtp-Source: APXvYqzm+0Y9jK/2eyE68QAnKnkn1PVf9JjRcCwYx8qimmf8Y88Rd6on9ttMUmDIXcorbmpWOlMtLA==
-X-Received: by 2002:a19:1d1:: with SMTP id 200mr35295422lfb.8.1563891827036;
-        Tue, 23 Jul 2019 07:23:47 -0700 (PDT)
+        bh=oYU5uExLdvkd3JySXo4ikuWuU9TKWBHt3CrzgnJWCNA=;
+        b=G78XeZy5ay1VyK0duJl6aAmkVK/qc5LmFF9ckytOXLiUh1lU1AIugBEr2P5KRW7AKx
+         SPX7NZbKyKnMP/+X5yen99uu+rHlWWBZ9JZCA7CwYBM/6DGJC0C/qcWOa20t9DMOnKPM
+         lbUElqU/44S3FQAxYPg/8p1NI2pM6yS7ExnU+QK6hpGCVZoGUOBAfUDh4xZ6BtosZefW
+         xxmn7JuQcQqD8wJ8/zHhuuRJwLTWMTbZmHSH0NR7uQRQh5zW6LSjN7BalgSIsD8KCb7+
+         XvydbgSH+3quDKgPDBvKQ1N6sNm79azMDBGf5lqyNBjvTDMQv6/jsCzKcVWGwTc1jCvX
+         SbKg==
+X-Gm-Message-State: APjAAAVLPeAat0enkcXX1tZ+z39sPQfIJd3Ans9/pMvuXSjOArC/oMya
+        2biKPwMe2bm404GYu38SYcTjhw==
+X-Google-Smtp-Source: APXvYqzQKMVJc6bZ4dymBIQWNd+dKbCefWlmWeLQmo6McVg2bKKvZjqnlYARDSeEQjKF3QbDSDFOtQ==
+X-Received: by 2002:a2e:9858:: with SMTP id e24mr16411197ljj.91.1563891828744;
+        Tue, 23 Jul 2019 07:23:48 -0700 (PDT)
 Received: from localhost.localdomain ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id z17sm8048519ljc.37.2019.07.23.07.23.45
+        by smtp.googlemail.com with ESMTPSA id z17sm8048519ljc.37.2019.07.23.07.23.47
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 23 Jul 2019 07:23:46 -0700 (PDT)
+        Tue, 23 Jul 2019 07:23:48 -0700 (PDT)
 From:   Georgi Djakov <georgi.djakov@linaro.org>
 To:     robh+dt@kernel.org, bjorn.andersson@linaro.org, agross@kernel.org,
         georgi.djakov@linaro.org
 Cc:     vkoul@kernel.org, evgreen@chromium.org, daidavid1@codeaurora.org,
         linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-arm-msm@vger.kernel.org
-Subject: [PATCH v5 2/5] soc: qcom: smd-rpm: Create RPM interconnect proxy child device
-Date:   Tue, 23 Jul 2019 17:23:36 +0300
-Message-Id: <20190723142339.27772-3-georgi.djakov@linaro.org>
+Subject: [PATCH v5 3/5] interconnect: qcom: Add interconnect SMD over SMD driver
+Date:   Tue, 23 Jul 2019 17:23:37 +0300
+Message-Id: <20190723142339.27772-4-georgi.djakov@linaro.org>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190723142339.27772-1-georgi.djakov@linaro.org>
 References: <20190723142339.27772-1-georgi.djakov@linaro.org>
@@ -63,78 +63,158 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register a platform device to handle the communication of bus bandwidth
-requests with the remote processor. The interconnect proxy device is part
-of this remote processor (RPM) hardware. Let's create a icc-smd-rpm proxy
-child device to represent the bus throughput functionality that is provided
-by the RPM.
+On some Qualcomm SoCs, there is a remote processor, which controls some of
+the Network-On-Chip interconnect resources. Other CPUs express their needs
+by communicating with this processor. Add a driver to handle communication
+with this remote processor.
 
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 Signed-off-by: Georgi Djakov <georgi.djakov@linaro.org>
 ---
 
 v5:
-- Picked Bjorn's r-b. 
+- Use the more succinct return !!icc_smd_rpm;
+- Picked Bjorn's r-b.
 
 v4:
-- Return error if platform_device_register_data() fails
-- Remove platform_set_drvdata() on the child device.
+- Hide the driver from config menu. It will be selected by other driver.
+- Add remove() function to zero out the rpm handle.
 
 v3:
 - New patch.
 
- drivers/soc/qcom/smd-rpm.c | 17 ++++++++++++++++-
- 1 file changed, 16 insertions(+), 1 deletion(-)
+ drivers/interconnect/qcom/Kconfig   |  3 ++
+ drivers/interconnect/qcom/Makefile  |  2 +
+ drivers/interconnect/qcom/smd-rpm.c | 77 +++++++++++++++++++++++++++++
+ drivers/interconnect/qcom/smd-rpm.h | 15 ++++++
+ 4 files changed, 97 insertions(+)
+ create mode 100644 drivers/interconnect/qcom/smd-rpm.c
+ create mode 100644 drivers/interconnect/qcom/smd-rpm.h
 
-diff --git a/drivers/soc/qcom/smd-rpm.c b/drivers/soc/qcom/smd-rpm.c
-index fa9dd12b5e39..34cdd638a6c1 100644
---- a/drivers/soc/qcom/smd-rpm.c
-+++ b/drivers/soc/qcom/smd-rpm.c
-@@ -19,12 +19,14 @@
- /**
-  * struct qcom_smd_rpm - state of the rpm device driver
-  * @rpm_channel:	reference to the smd channel
-+ * @icc:		interconnect proxy device
-  * @ack:		completion for acks
-  * @lock:		mutual exclusion around the send/complete pair
-  * @ack_status:		result of the rpm request
-  */
- struct qcom_smd_rpm {
- 	struct rpmsg_endpoint *rpm_channel;
-+	struct platform_device *icc;
- 	struct device *dev;
- 
- 	struct completion ack;
-@@ -193,6 +195,7 @@ static int qcom_smd_rpm_callback(struct rpmsg_device *rpdev,
- static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
- {
- 	struct qcom_smd_rpm *rpm;
-+	int ret;
- 
- 	rpm = devm_kzalloc(&rpdev->dev, sizeof(*rpm), GFP_KERNEL);
- 	if (!rpm)
-@@ -205,11 +208,23 @@ static int qcom_smd_rpm_probe(struct rpmsg_device *rpdev)
- 	rpm->rpm_channel = rpdev->ept;
- 	dev_set_drvdata(&rpdev->dev, rpm);
- 
--	return of_platform_populate(rpdev->dev.of_node, NULL, NULL, &rpdev->dev);
-+	rpm->icc = platform_device_register_data(&rpdev->dev, "icc_smd_rpm", -1,
-+						 NULL, 0);
-+	if (IS_ERR(rpm->icc))
-+		return PTR_ERR(rpm->icc);
+diff --git a/drivers/interconnect/qcom/Kconfig b/drivers/interconnect/qcom/Kconfig
+index d5e70ebc2410..03fd67173494 100644
+--- a/drivers/interconnect/qcom/Kconfig
++++ b/drivers/interconnect/qcom/Kconfig
+@@ -12,3 +12,6 @@ config INTERCONNECT_QCOM_SDM845
+ 	help
+ 	  This is a driver for the Qualcomm Network-on-Chip on sdm845-based
+ 	  platforms.
 +
-+	ret = of_platform_populate(rpdev->dev.of_node, NULL, NULL, &rpdev->dev);
-+	if (ret)
-+		platform_device_unregister(rpm->icc);
-+
-+	return ret;
- }
++config INTERCONNECT_QCOM_SMD_RPM
++	tristate
+diff --git a/drivers/interconnect/qcom/Makefile b/drivers/interconnect/qcom/Makefile
+index 1c1cea690f92..a600cf6cc272 100644
+--- a/drivers/interconnect/qcom/Makefile
++++ b/drivers/interconnect/qcom/Makefile
+@@ -1,5 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
  
- static void qcom_smd_rpm_remove(struct rpmsg_device *rpdev)
- {
-+	struct qcom_smd_rpm *rpm = dev_get_drvdata(&rpdev->dev);
-+
-+	platform_device_unregister(rpm->icc);
- 	of_platform_depopulate(&rpdev->dev);
- }
+ qnoc-sdm845-objs			:= sdm845.o
++icc-smd-rpm-objs			:= smd-rpm.o
  
+ obj-$(CONFIG_INTERCONNECT_QCOM_SDM845) += qnoc-sdm845.o
++obj-$(CONFIG_INTERCONNECT_QCOM_SMD_RPM) += icc-smd-rpm.o
+diff --git a/drivers/interconnect/qcom/smd-rpm.c b/drivers/interconnect/qcom/smd-rpm.c
+new file mode 100644
+index 000000000000..dc8ff8d133a9
+--- /dev/null
++++ b/drivers/interconnect/qcom/smd-rpm.c
+@@ -0,0 +1,77 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * RPM over SMD communication wrapper for interconnects
++ *
++ * Copyright (C) 2019 Linaro Ltd
++ * Author: Georgi Djakov <georgi.djakov@linaro.org>
++ */
++
++#include <linux/interconnect-provider.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_platform.h>
++#include <linux/platform_device.h>
++#include <linux/soc/qcom/smd-rpm.h>
++
++#include "smd-rpm.h"
++
++#define RPM_KEY_BW		0x00007762
++
++static struct qcom_smd_rpm *icc_smd_rpm;
++
++struct icc_rpm_smd_req {
++	__le32 key;
++	__le32 nbytes;
++	__le32 value;
++};
++
++bool qcom_icc_rpm_smd_available(void)
++{
++	return !!icc_smd_rpm;
++}
++EXPORT_SYMBOL_GPL(qcom_icc_rpm_smd_available);
++
++int qcom_icc_rpm_smd_send(int ctx, int rsc_type, int id, u32 val)
++{
++	struct icc_rpm_smd_req req = {
++		.key = cpu_to_le32(RPM_KEY_BW),
++		.nbytes = cpu_to_le32(sizeof(u32)),
++		.value = cpu_to_le32(val),
++	};
++
++	return qcom_rpm_smd_write(icc_smd_rpm, ctx, rsc_type, id, &req,
++				  sizeof(req));
++}
++EXPORT_SYMBOL_GPL(qcom_icc_rpm_smd_send);
++
++static int qcom_icc_rpm_smd_remove(struct platform_device *pdev)
++{
++	icc_smd_rpm = NULL;
++
++	return 0;
++}
++
++static int qcom_icc_rpm_smd_probe(struct platform_device *pdev)
++{
++	icc_smd_rpm = dev_get_drvdata(pdev->dev.parent);
++
++	if (!icc_smd_rpm) {
++		dev_err(&pdev->dev, "unable to retrieve handle to RPM\n");
++		return -ENODEV;
++	}
++
++	return 0;
++}
++
++static struct platform_driver qcom_interconnect_rpm_smd_driver = {
++	.driver = {
++		.name		= "icc_smd_rpm",
++	},
++	.probe = qcom_icc_rpm_smd_probe,
++	.remove = qcom_icc_rpm_smd_remove,
++};
++module_platform_driver(qcom_interconnect_rpm_smd_driver);
++MODULE_AUTHOR("Georgi Djakov <georgi.djakov@linaro.org>");
++MODULE_DESCRIPTION("Qualcomm SMD RPM interconnect proxy driver");
++MODULE_LICENSE("GPL v2");
++MODULE_ALIAS("platform:icc_smd_rpm");
+diff --git a/drivers/interconnect/qcom/smd-rpm.h b/drivers/interconnect/qcom/smd-rpm.h
+new file mode 100644
+index 000000000000..ca9d0327b8ac
+--- /dev/null
++++ b/drivers/interconnect/qcom/smd-rpm.h
+@@ -0,0 +1,15 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ * Copyright (c) 2019, Linaro Ltd.
++ * Author: Georgi Djakov <georgi.djakov@linaro.org>
++ */
++
++#ifndef __DRIVERS_INTERCONNECT_QCOM_SMD_RPM_H
++#define __DRIVERS_INTERCONNECT_QCOM_SMD_RPM_H
++
++#include <linux/soc/qcom/smd-rpm.h>
++
++bool qcom_icc_rpm_smd_available(void);
++int qcom_icc_rpm_smd_send(int ctx, int rsc_type, int id, u32 val);
++
++#endif
