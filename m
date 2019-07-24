@@ -2,151 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7E2D7299B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 10:13:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C11AA729E5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 10:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726323AbfGXINY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 04:13:24 -0400
-Received: from new3-smtp.messagingengine.com ([66.111.4.229]:44791 "EHLO
-        new3-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725955AbfGXINX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jul 2019 04:13:23 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 26E371315;
-        Wed, 24 Jul 2019 04:13:22 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 24 Jul 2019 04:13:22 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=DN2+Lj8I7jFnN
-        IMUgDd2QFBVg48TKo12C1rBwKfbzK4=; b=Q82/EoOGrisOx1VaTEyTN4D24J9MV
-        tjZq/hIz1OnnTwifcqwuT1bz23TkKgZTy9kFDunatTy4ydSsPzGQ25ZQPBoAqxXH
-        1xMxI6DCz/cXJlB98BHs6G5X/UN8ml4VR8lk8q5GoZTZdbpzUNJW2U/O3/YNQe1P
-        A++Y6wym4Uj2+IZP8/eGyidNZHcPjLrjgA6PSdc8OgdQkJKJ8gkOOBUma7IRxziA
-        S12PuTJr5JzIJ8zilGvJJNf214XrAvFJ5iZZV+ukc48ykw9iXJcx6aEJ1PlT+sbL
-        qabn/ioVgIMze6JIGvwP1k/KyzqKBsYtDU37J4nuXCHdObWeFGTRCyjjQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=DN2+Lj8I7jFnNIMUgDd2QFBVg48TKo12C1rBwKfbzK4=; b=nET6tHWd
-        JJ96qY49c4Za0UAt5MieK0yfLHxga23nXgtOjq2zcHTfeWUy2g2iXisRNa56DtVT
-        QRaccRzIveH3Rm9NgMSQO8f/dlhsoN2KhlDcg5pfQouSbDAxwvDuGNptP1I7v2X2
-        H9EQIU4S6R/m7P8nxW58k9sgx6Se7GkRr2L0LM9XHrfXspvujomH4qEd22/wtvko
-        bUo5saJ+DSm1ZSuqZFvYaq0OJKGbh6vfzl1P6hj1xJDN2A1BDvt0zQBGyzACtXLh
-        KLaUFiO+lT//88ql8SU1HcvK2dsFXS1kElJru/anvTVvbHSsVqYF49HU+HJ8aHeC
-        elVDEa7+FKUveg==
-X-ME-Sender: <xms:IRM4XfRui1gp9DZ0fTXg2AcK9atTVynS1ByzllgFP4tl756yashxUg>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrjeelgdduvdelucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegr
-    jhdrihgurdgruheqnecukfhppedvtddvrdekuddrudekrdeftdenucfrrghrrghmpehmrg
-    hilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghrufhiiigv
-    pedu
-X-ME-Proxy: <xmx:IRM4XZUom8hNEXdsDaO_Pl0qrubtZCQ2uD4ROZrk6eMgH_u9rXu2dg>
-    <xmx:IRM4XcnhiaevzQ-p6Kt2uYSDafesBSnp2jzbrADrBn-8OvY7Cr7xhQ>
-    <xmx:IRM4XX8dtMO-jIft6q_Qjsu2EmlWsbmS0SfdooGG5djvIEtWYP6b6A>
-    <xmx:IhM4XYLdsVgbWmJdVA2xzX5CefS3r9d7WaciF8TjGNXSdHWzTFavUg>
-Received: from mistburn.au.ibm.com (bh02i525f01.au.ibm.com [202.81.18.30])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 6A32680059;
-        Wed, 24 Jul 2019 04:13:18 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     linux-aspeed@lists.ozlabs.org
-Cc:     Andrew Jeffery <andrew@aj.id.au>, lee.jones@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, joel@jms.id.au,
-        linus.walleij@linaro.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-gpio@vger.kernel.org
-Subject: [PATCH 3/3] dt-bindings: aspeed: Remove mention of deprecated compatibles
-Date:   Wed, 24 Jul 2019 17:43:13 +0930
-Message-Id: <20190724081313.12934-4-andrew@aj.id.au>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190724081313.12934-1-andrew@aj.id.au>
-References: <20190724081313.12934-1-andrew@aj.id.au>
+        id S1725955AbfGXIZD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 04:25:03 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:45177 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725851AbfGXIZC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 04:25:02 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id BAE12E0009;
+        Wed, 24 Jul 2019 08:24:59 +0000 (UTC)
+Date:   Wed, 24 Jul 2019 10:24:59 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Sean Young <sean@mess.org>
+Cc:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v5 04/13] media: rc: sunxi: Add RXSTA bits definition
+Message-ID: <20190724082459.xsstansjxtyvu4st@flea>
+References: <20190607231100.5894-1-peron.clem@gmail.com>
+ <20190607231100.5894-5-peron.clem@gmail.com>
+ <20190610095243.7xwp4xhauds22qzw@flea>
+ <CAJiuCcfyjGTBbsjZQYj2p3KD6O-WaXhFe5NZrnKQwJYACmatUw@mail.gmail.com>
+ <20190715121244.2vrsw6qa4fgp72fn@gofer.mess.org>
+ <20190723062557.hnbi6hgrg4ecawkn@gofer.mess.org>
+ <20190723070440.nfmhbrfykumxayjj@flea>
+ <20190724053937.4ic5n35xtw2chjdy@gofer.mess.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="og4sfmz7wdyyword"
+Content-Disposition: inline
+In-Reply-To: <20190724053937.4ic5n35xtw2chjdy@gofer.mess.org>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Guide readers away from using the aspeed,g[45].* compatible patterns.
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
----
- Documentation/devicetree/bindings/mfd/aspeed-scu.txt         | 2 --
- Documentation/devicetree/bindings/misc/aspeed-p2a-ctrl.txt   | 2 --
- .../devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml  | 5 +----
- .../devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml  | 4 +---
- 4 files changed, 2 insertions(+), 11 deletions(-)
+--og4sfmz7wdyyword
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/Documentation/devicetree/bindings/mfd/aspeed-scu.txt b/Documentation/devicetree/bindings/mfd/aspeed-scu.txt
-index ce8cf0ec6279..4d92c0bb6687 100644
---- a/Documentation/devicetree/bindings/mfd/aspeed-scu.txt
-+++ b/Documentation/devicetree/bindings/mfd/aspeed-scu.txt
-@@ -4,9 +4,7 @@ configuring elements such as clocks, pinmux, and reset.
- Required properties:
- - compatible:	One of:
- 		"aspeed,ast2400-scu", "syscon", "simple-mfd"
--		"aspeed,g4-scu", "syscon", "simple-mfd"
- 		"aspeed,ast2500-scu", "syscon", "simple-mfd"
--		"aspeed,g5-scu", "syscon", "simple-mfd"
- 
- - reg:		contains the offset and length of the SCU memory region
- - #clock-cells: should be set to <1> - the system controller is also a
-diff --git a/Documentation/devicetree/bindings/misc/aspeed-p2a-ctrl.txt b/Documentation/devicetree/bindings/misc/aspeed-p2a-ctrl.txt
-index 854bd67ffec6..0e1fa5bc6a30 100644
---- a/Documentation/devicetree/bindings/misc/aspeed-p2a-ctrl.txt
-+++ b/Documentation/devicetree/bindings/misc/aspeed-p2a-ctrl.txt
-@@ -26,9 +26,7 @@ property:
- 
- - compatible : Should be one of the following:
- 		"aspeed,ast2400-scu", "syscon", "simple-mfd"
--		"aspeed,g4-scu", "syscon", "simple-mfd"
- 		"aspeed,ast2500-scu", "syscon", "simple-mfd"
--		"aspeed,g5-scu", "syscon", "simple-mfd"
- 
- Example
- ===================
-diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
-index 125599a2dc5e..9368e4b6d4d0 100644
---- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml
-@@ -15,16 +15,13 @@ description: |+
- 
-   - compatible:     Should be one of the following:
-                     "aspeed,ast2400-scu", "syscon", "simple-mfd"
--                    "aspeed,g4-scu", "syscon", "simple-mfd"
- 
-   Refer to the the bindings described in
-   Documentation/devicetree/bindings/mfd/syscon.txt
- 
- properties:
-   compatible:
--    enum:
--      - aspeed,ast2400-pinctrl
--      - aspeed,g4-pinctrl
-+    const: aspeed,ast2400-pinctrl
- 
- patternProperties:
-   '^.*$':
-diff --git a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
-index 3e6d85318577..939fb755a6db 100644
---- a/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
-+++ b/Documentation/devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml
-@@ -22,9 +22,7 @@ description: |+
- 
- properties:
-   compatible:
--    enum:
--      - aspeed,ast2500-pinctrl
--      - aspeed,g5-pinctrl
-+    const: aspeed,ast2500-pinctrl
-   aspeed,external-nodes:
-     minItems: 2
-     maxItems: 2
--- 
-2.20.1
+On Wed, Jul 24, 2019 at 06:39:37AM +0100, Sean Young wrote:
+> On Tue, Jul 23, 2019 at 09:04:40AM +0200, Maxime Ripard wrote:
+> > Hi Sean,
+> >
+> > On Tue, Jul 23, 2019 at 07:25:57AM +0100, Sean Young wrote:
+> > > On Mon, Jul 15, 2019 at 01:12:45PM +0100, Sean Young wrote:
+> > > > On Sun, Jul 14, 2019 at 04:32:22PM +0200, Cl=E9ment P=E9ron wrote:
+> > > > > Hi Sean,
+> > > > >
+> > > > > You acked the whole v3 series but this patch has been introduced =
+in v5
+> > > > > could you ack this one too?
+> > > >
+> > > > Acked-by: Sean Young <sean@mess.org>
+> > >
+> > > So who's tree should this series go through? It seems mostly device t=
+ree.
+> > > Alternatively I'm happy to try it get merged via the media tree.
+> >
+> > Ideally the media bits should go through the media tree, the DT bits
+> > will go through arm-soc
+> >
+> > So you can apply the patches 1-4, 7 and 10, I'll apply the rest.
+> >
+> > Does that work for you?
+>
+> Works for me, I'll add them to my next pull request to Mauro.
 
+Applied 5, 6, 8, 9 and 11 to 13.
+
+Thanks!
+Maxmie
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--og4sfmz7wdyyword
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXTgV2wAKCRDj7w1vZxhR
+xfJ7AP9T3lo+mjFXDqZN0Pz/4RMW3K3sSelGWolPV45h0MFvHAD/alxUyiaQdf/T
+yqmAR4Jmj9ViaeByiHDySDrorxlVhw0=
+=wgpG
+-----END PGP SIGNATURE-----
+
+--og4sfmz7wdyyword--
