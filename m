@@ -2,89 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5ECC073D61
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 22:16:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ED70473DAE
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 22:19:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2391934AbfGXUQi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 16:16:38 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:32821 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387586AbfGXUQh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 16:16:37 -0400
-Received: by mail-io1-f66.google.com with SMTP id z3so92392628iog.0;
-        Wed, 24 Jul 2019 13:16:37 -0700 (PDT)
+        id S2390557AbfGXUTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 16:19:02 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:40672 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388983AbfGXUTB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 16:19:01 -0400
+Received: by mail-io1-f67.google.com with SMTP id h6so5786802iom.7;
+        Wed, 24 Jul 2019 13:19:00 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=SleUqq6V31kzUwMjIX1qfrELhcVA/KVuaspMZ04YgL4=;
-        b=hnUrX0SNfyvI1kO1tKzrbX8dqiUXo+qlmeDnL0kQ5PfAA6cQdXdsJfNAJYpN4E5IOZ
-         S68LTpldBbjlPC7pHn6xDxx3koH9J0Lsp9u5M0tcATkFWbCDz+OKu5ajHmkH32srj87f
-         4fRJM+lV6OSBeNvIz3ClFjTSWL4+f2oIKlX5WzYSJ8+reYfIkzAs3CIcH+H8aFPNmznQ
-         m9vTwjhB1gmMKsthCFYlvrl4Zo+9HHD3spHPor0WDRiFmFrTBHxcqmPrgW+6w9VvKfkm
-         YxwropmcLAFUxBRuzAyHodSGBXZXirJFlzHWV7502mTx0OGsVzptCwgAwBvuDeBA3TTs
-         tFbg==
-X-Gm-Message-State: APjAAAX6DVF6Qh4T2mOapkZ7MsOvWbl+i1a9ZKbl7+dgANMmOQ9ulYBo
-        ZCA87vEIcy8pJN20PCxC1A==
-X-Google-Smtp-Source: APXvYqwqmUodaynFku7YClU/Ql2xFlbvkHEw7X/q17Yh5pYFol9maQFHH3YaP1av1prEvMzfEF8uMA==
-X-Received: by 2002:a6b:6f06:: with SMTP id k6mr2226288ioc.32.1563999397076;
-        Wed, 24 Jul 2019 13:16:37 -0700 (PDT)
+        bh=ApQotHQxWJr5zyqbEl1C9NpdXsHo5uhr1/je6Huq+bI=;
+        b=NqlLMQzTzcPx9v5G9pwHgv4DssgL3rdJXDK0N3kNiZHw80bZW9/HDDXM572fhL/5ZF
+         SvW0zaoIFkjcNHPvHhFL5+bY/Dr2ZrMtVRZukNucY4giAQ51AWd77YWVx3EKjTqLvy/c
+         vF2TNnzXapH26V15y8iHNzL4+Y/0edcMW2XfyUlkC1vbqvXoBuG9EfTta5XyMeTz4i+/
+         FsyFIGMHS6pWjTTC59lJ2wbf60VFxm9jrMCCIlnnkiwwgbgs35f+zCAKOFLaAcOKuD6h
+         BaAWDQ9TsG8y/A0DnQ2kEb/pkZ3RFVAddplsmpdTRyXJWZavjNbNd+oSUBM+oLjXxcLl
+         UIbA==
+X-Gm-Message-State: APjAAAUFM3vMfJN7kg+0pvfkn2amAYqiV5KS2tK6cEVVtAP3wVHrlhUY
+        Q3G7OTHc0rWSSxkrHDn1sA==
+X-Google-Smtp-Source: APXvYqxZ9dmUz3ZXKBjOYJnBYyOwokAXvh0AFf4QNJLoM+DksevICYOosUh4VFPZzV82gw2GdpbfrA==
+X-Received: by 2002:a6b:fb02:: with SMTP id h2mr53385887iog.289.1563999540221;
+        Wed, 24 Jul 2019 13:19:00 -0700 (PDT)
 Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id i23sm33894203ioj.24.2019.07.24.13.16.36
+        by smtp.gmail.com with ESMTPSA id r5sm43517794iom.42.2019.07.24.13.18.59
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 24 Jul 2019 13:16:36 -0700 (PDT)
-Date:   Wed, 24 Jul 2019 14:16:35 -0600
+        Wed, 24 Jul 2019 13:18:59 -0700 (PDT)
+Date:   Wed, 24 Jul 2019 14:18:58 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     yongqiang.niu@mediatek.com
-Cc:     CK Hu <ck.hu@mediatek.com>, Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org
-Subject: Re: [PATCH v4, 05/33] dt-bindings: mediatek: add RDMA1 description
- for mt8183 display
-Message-ID: <20190724201635.GA18345@bogus>
-References: <1562625253-29254-1-git-send-email-yongqiang.niu@mediatek.com>
- <1562625253-29254-6-git-send-email-yongqiang.niu@mediatek.com>
+To:     Anson.Huang@nxp.com
+Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
+        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
+        leonard.crestez@nxp.com, p.zabel@pengutronix.de, ping.bai@nxp.com,
+        daniel.baluta@nxp.com, l.stach@pengutronix.de, abel.vesa@nxp.com,
+        angus@akkea.ca, andrew.smirnov@gmail.com, ccaione@baylibre.com,
+        agx@sigxcpu.org, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, Linux-imx@nxp.com
+Subject: Re: [PATCH V2 1/4] dt-bindings: opp: Support multiple opp-suspend
+ properties
+Message-ID: <20190724201858.GA25048@bogus>
+References: <20190709080015.43442-1-Anson.Huang@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1562625253-29254-6-git-send-email-yongqiang.niu@mediatek.com>
+In-Reply-To: <20190709080015.43442-1-Anson.Huang@nxp.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 09, 2019 at 06:33:45AM +0800, yongqiang.niu@mediatek.com wrote:
-> From: Yongqiang Niu <yongqiang.niu@mediatek.com>
+On Tue,  9 Jul 2019 16:00:12 +0800, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
 > 
-> This patch add RDMA1 description for mt8183 display
+> Update opp-suspend property's description to support multiple
+> opp-suspend properties defined in DT, the OPP with highest opp-hz
+> and with opp-suspend property present will be used as suspend opp.
 > 
-> Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 > ---
->  Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 1 +
->  1 file changed, 1 insertion(+)
+> New patch.
+> ---
+>  Documentation/devicetree/bindings/opp/opp.txt | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> index afd3c90..bb9274a 100644
-> --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> @@ -30,6 +30,7 @@ Required properties (all function blocks):
->  	"mediatek,<chip>-disp-ovl"   		- overlay (4 layers, blending, csc)
->  	"mediatek,<chip>-disp-ovl-2l"           - overlay (2 layers, blending, csc)
->  	"mediatek,<chip>-disp-rdma"  		- read DMA / line buffer
-> +	"mediatek,<chip>-disp-rdma1"            - function is same with RDMA, fifo size is different
 
-This can't be determined by which chip it is? IOW, a chip may have both 
-rdma and rdma1?
-
->  	"mediatek,<chip>-disp-wdma"  		- write DMA
->  	"mediatek,<chip>-disp-ccorr"            - color correction
->  	"mediatek,<chip>-disp-color" 		- color processor
-> -- 
-> 1.8.1.1.dirty
-> 
+Reviewed-by: Rob Herring <robh@kernel.org>
