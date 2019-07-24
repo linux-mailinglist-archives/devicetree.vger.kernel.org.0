@@ -2,146 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C62D7341B
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 18:40:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A427A7342A
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 18:48:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725826AbfGXQkq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 12:40:46 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:49414 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726316AbfGXQkq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jul 2019 12:40:46 -0400
-Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6OGbU5Y003589;
-        Wed, 24 Jul 2019 18:40:34 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : references
- : from : message-id : date : mime-version : in-reply-to : content-type :
- content-transfer-encoding; s=STMicroelectronics;
- bh=Gu8PL+HPgCs9mmUoJ3vhnljVENbzJVpSz1qAO84aocw=;
- b=JAsZuyU3tjo6HSeBGSxRmEhD7qoTjF+evI+JBGMBu9r3sxJs6ep4hXIYfFolF7+p4goG
- B+gM6Tsdm/GlTegxus7N9bpX94fI5JBvOnIkaqlvcylFBHeSIWrIxwgUg+uoQKsCIih3
- EbnrC1IdesihaOFkTJyJeC+018uaJRUjYYB6TaqXzvkNzy8EU0HVRTEqmErvDzQUq/Wr
- 0HgtY9riCzrr6gOicQNZroYF6c+nCp/XqClpqra3FOuz+j/g5iZs0596NGz4rPtc0vne
- SWT4wWoHSN4vAEK9Dw1iooBqOATr/67xRRMzEY4LQUImbfiLQyOf7M0zzThPzSaVpu9A dw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2tx607xgbp-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Wed, 24 Jul 2019 18:40:34 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 71EBF31;
-        Wed, 24 Jul 2019 16:40:33 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 55A73521B;
-        Wed, 24 Jul 2019 16:40:33 +0000 (GMT)
-Received: from lmecxl0912.lme.st.com (10.75.127.48) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 24 Jul
- 2019 18:40:32 +0200
-Subject: Re: [PATCH] ARM: dts: stm32: add audio codec support on
- stm32mp157a-dk1 board
-To:     Olivier Moysan <olivier.moysan@st.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>, <robh@kernel.org>,
-        <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1562327580-19647-1-git-send-email-olivier.moysan@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <27476214-07fe-886b-1cab-20902837f29c@st.com>
-Date:   Wed, 24 Jul 2019 18:40:32 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2387554AbfGXQsA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 12:48:00 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:39117 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726316AbfGXQr7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 12:47:59 -0400
+Received: by mail-io1-f67.google.com with SMTP id f4so91034448ioh.6;
+        Wed, 24 Jul 2019 09:47:59 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=NaGPAivB1MBv9O5lVWBShae32bWUUsQkrf58j6a6XWY=;
+        b=gX1m7rA7wbPHnvd7/XqCaN/dXfTsUeaBwMPQaLAd5IyKnv/v1tZ0La18S3JU0EkNSi
+         Tk7NaZuk6gE7gfDJezU8b21I0vA13APrC5fSNAnh3mU2cG8I4zalK/5YQj2dXi96gEpV
+         U90ggHDLs3drk5nD/dSk2bvvcZ+9lMUEzui/ipA2jwvDTR+BngV+A+g3zxgO56Qm+YFN
+         zflPBHGWVt08mgJwsNuPocWFbJwUs/IuNIGTzjkSvFZ4ncZIqxxlR8r9wVSpTMszcXm4
+         y7F5KO5A7BNjC+T60kFiyQeDbZdeEqq6xxc/1lLudvJ5y92+xg3QerrLrwQBQfjykgCZ
+         t0iA==
+X-Gm-Message-State: APjAAAUVAiJCFX9YED5FxG/0ontDsffq+BTJGL3/nUqYJ+Rof5JVbUGD
+        YFCD8aUfjTRJ3RIA6GPEFg==
+X-Google-Smtp-Source: APXvYqwYAKj9Y6Xo4kgnFhQ30skobcWvL/jM5t0oA7OfBXz+vNRCAT4o/ffCCGaz6bY311xkT9x01Q==
+X-Received: by 2002:a5e:8f08:: with SMTP id c8mr77188637iok.52.1563986878841;
+        Wed, 24 Jul 2019 09:47:58 -0700 (PDT)
+Received: from localhost ([64.188.179.254])
+        by smtp.gmail.com with ESMTPSA id m20sm44390636ioh.4.2019.07.24.09.47.57
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 24 Jul 2019 09:47:58 -0700 (PDT)
+Date:   Wed, 24 Jul 2019 10:47:57 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Jean-Jacques Hiblot <jjhiblot@ti.com>
+Cc:     jacek.anaszewski@gmail.com, pavel@ucw.cz, mark.rutland@arm.com,
+        daniel.thompson@linaro.org, dmurphy@ti.com,
+        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: leds: document new "power-supply"
+ property
+Message-ID: <20190724164757.GA3723@bogus>
+References: <20190708103547.23528-1-jjhiblot@ti.com>
+ <20190708103547.23528-3-jjhiblot@ti.com>
 MIME-Version: 1.0
-In-Reply-To: <1562327580-19647-1-git-send-email-olivier.moysan@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG6NODE1.st.com (10.75.127.16) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-24_06:,,
- signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190708103547.23528-3-jjhiblot@ti.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Olivier
-
-On 7/5/19 1:53 PM, Olivier Moysan wrote:
-> Add support of Cirrus cs42l51 audio codec on stm32mp157a-dk1 board.
-> Configuration overview:
-> - SAI2A is the CPU interface used for the codec audio playback
-> - SAI2B is the CPU interface used for the codec audio record
-> - SAI2A is configured as a clock provider for the audio codec
-> - SAI2A&B are configured as slave of the audio codec
-> - SAI2A&B share the same interface of the audio codec
+On Mon, Jul 08, 2019 at 12:35:47PM +0200, Jean-Jacques Hiblot wrote:
+> Most of the LEDs are powered by a voltage/current regulator. describing in
+> the device-tree makes it possible for the LED core to enable/disable it
+> when needed.
 > 
-> Note:
-> In master mode, cs42l51 audio codec provides a bitclock
-> at 64 x FS, regardless of data width. This means that
-> slot width is always 32 bits.
-> Set slot width to 32 bits and slot number to 2
-> in SAI2A&B endpoint nodes, to match this constraint.
-> dai-tdm-slot-num and dai-tdm-slot-width properties are used here,
-> assuming that i2s is a special case of tdm, where slot number is 2.
-> 
-> Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
+> Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
 > ---
->   arch/arm/boot/dts/stm32mp157a-dk1.dts | 89 +++++++++++++++++++++++++++++++++++
->   1 file changed, 89 insertions(+)
+>  Documentation/devicetree/bindings/leds/common.txt | 5 +++++
+>  1 file changed, 5 insertions(+)
 > 
+> diff --git a/Documentation/devicetree/bindings/leds/common.txt b/Documentation/devicetree/bindings/leds/common.txt
+> index 70876ac11367..e093a2b7eb90 100644
+> --- a/Documentation/devicetree/bindings/leds/common.txt
+> +++ b/Documentation/devicetree/bindings/leds/common.txt
+> @@ -61,6 +61,11 @@ Optional properties for child nodes:
+>  - panic-indicator : This property specifies that the LED should be used,
+>  		    if at all possible, as a panic indicator.
+>  
+> +- power-supply : A voltage/current regulator used to to power the LED. When a
+> +		 LED is turned off, the LED core disable its regulator. The
+> +		 same regulator can power many LED (or other) devices. It is
+> +		 turned off only when all of its users disabled it.
 
-...
+Not sure this should be common. It wouldn't apply to cases where we have 
+an LED controller parent nor gpio and pwm LEDs and those are most cases.
 
->   
-> +&sai2 {
-> +	clocks = <&rcc SAI2>, <&rcc PLL3_Q>, <&rcc PLL3_R>;
-> +	clock-names = "pclk", "x8k", "x11k";
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&sai2a_pins_a>, <&sai2b_pins_b>;
-> +	pinctrl-1 = <&sai2a_sleep_pins_a>, <&sai2b_sleep_pins_b>;
-> +	status = "okay";
-> +
-> +	sai2a: audio-controller@4400b004 {
-> +		#clock-cells = <0>;
-> +		dma-names = "tx";
-> +		clocks = <&rcc SAI2_K>;
-> +		clock-names = "sai_ck";
-> +		status = "okay";
-> +
-> +		sai2a_port: port {
-> +			sai2a_endpoint: endpoint {
-> +				remote-endpoint = <&cs42l51_tx_endpoint>;
-> +				format = "i2s";
-> +				mclk-fs = <256>;
-> +				dai-tdm-slot-num = <2>;
-> +				dai-tdm-slot-width = <32>;
-> +			};
-> +		};
-> +	};
-> +
-You could use label to overload sai2a and sai2b. no ?
+Perhaps what makes sense here is an regulator-led binding.
 
-> +	sai2b: audio-controller@4400b024 {
-> +		dma-names = "rx";
-> +		st,sync = <&sai2a 2>;
-> +		clocks = <&rcc SAI2_K>, <&sai2a>;
-> +		clock-names = "sai_ck", "MCLK";
-> +		status = "okay";
 > +
-> +		sai2b_port: port {
-> +			sai2b_endpoint: endpoint {
-> +				remote-endpoint = <&cs42l51_rx_endpoint>;
-> +				format = "i2s";
-> +				mclk-fs = <256>;
-> +				dai-tdm-slot-num = <2>;
-> +				dai-tdm-slot-width = <32>;
-> +			};
-> +		};
-> +	};
-> +};
-> +
->   &sdmmc1 {
->   	pinctrl-names = "default", "opendrain", "sleep";
->   	pinctrl-0 = <&sdmmc1_b4_pins_a>;
+>  - trigger-sources : List of devices which should be used as a source triggering
+>  		    this LED activity. Some LEDs can be related to a specific
+>  		    device and should somehow indicate its state. E.g. USB 2.0
+> -- 
+> 2.17.1
 > 
