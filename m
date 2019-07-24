@@ -2,126 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9271372746
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 07:21:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ABCD772768
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 07:39:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725909AbfGXFVu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 01:21:50 -0400
-Received: from mail-ua1-f66.google.com ([209.85.222.66]:36017 "EHLO
-        mail-ua1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725970AbfGXFVu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 01:21:50 -0400
-Received: by mail-ua1-f66.google.com with SMTP id v20so17983850uao.3
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 22:21:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=verdurent-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Oi/OjsgOU/56zWqfJ08vj5GsGuTHtcSjKS7DehgEZ00=;
-        b=Ny/ccUmsgikYkzhJxwqhFM0rKqUpt+oemiMOdIlgorofwJaszzajLDUlrd3p94oiAt
-         cHMbiaokXpIHwJTdQURza4IV92tvAYWdb7Ul8EPdTh5rDmI1wbeS8dwuzmBHmt72JP1l
-         K7giyPr6ybXNVlnfO0+CRAs0g5ZieYtYQKrqQGthdoDQJ1hzRYcax91fYW2JL5I7gluf
-         nifWdnqbKT4vX7tcZ3CwOburD9zuBYjubfKgE/Fsxm7bpNaqpTxfzy3JEGFrSvw26cho
-         2H3OvtPUDmW+EaH53e7badSsivfa7GCl0hBmVQZFOmKhaGhgJXGrE3OtVYaHveOnF8qD
-         t3TQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Oi/OjsgOU/56zWqfJ08vj5GsGuTHtcSjKS7DehgEZ00=;
-        b=RYL+dD54gRQE0dIOHE1IV84/0x0LspU/tOa9pLKemzgK1JViByiUyYuo/NTwVw6/rO
-         EWrVnL2QxkrTb8SULZMaqbdT2E/Qz+tSy2t3fNU2ez/YUQ6qdXpr+PC63B6bZfp34MDJ
-         kaR5V4WiNC0OReVKFSufEfl5cM/px8+Ls3cYcGOIurdEPWmgVHi3S/V7if6CeFmRaFkB
-         5HIhsJm7UPHdc8L0uWH/a6SrgfQLFw8/cGQI3L1Ur58MwlE6c7R0r7XljQqJR/SBVIva
-         Mjt0U6LqQa7LfQFm/5zWfnQ4Y0CiBeFwja75Uz94zMpavjSlApxWK7U57rE/4YhQonkM
-         75Ww==
-X-Gm-Message-State: APjAAAUjH8KiOOK3keZeE0H3Yy6XtXKGG3WABTD94nFejovD94qLYXXS
-        ho2/9vUj556YVp209qJoYI1fSgJ2xBSSCWPwDDg=
-X-Google-Smtp-Source: APXvYqx0WauV/PjdF1lUUuZXSYyiqRlLYG/T7Zia0hA1FLzkRtsJ0o5mtJz3PFpQjgZM43vU8do8IXGnuxnc8EduObw=
-X-Received: by 2002:ab0:30f5:: with SMTP id d21mr49123116uam.67.1563945709074;
- Tue, 23 Jul 2019 22:21:49 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190724044906.12007-1-vkoul@kernel.org> <20190724044906.12007-6-vkoul@kernel.org>
-In-Reply-To: <20190724044906.12007-6-vkoul@kernel.org>
-From:   Amit Kucheria <amit.kucheria@verdurent.com>
-Date:   Wed, 24 Jul 2019 10:51:38 +0530
-Message-ID: <CAHLCerNWnjSYEqDOEdSzULLvTHkMxVMiEL2BaCY9R4eDF_uBrg@mail.gmail.com>
-Subject: Re: [PATCH v2 5/5] arm64: dts: qcom: sdm845-cheza: remove macro from
- unit name
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Andy Gross <agross@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        id S1725944AbfGXFjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 01:39:39 -0400
+Received: from gofer.mess.org ([88.97.38.141]:46635 "EHLO gofer.mess.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725894AbfGXFjj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jul 2019 01:39:39 -0400
+Received: by gofer.mess.org (Postfix, from userid 1000)
+        id 432CE60E91; Wed, 24 Jul 2019 06:39:37 +0100 (BST)
+Date:   Wed, 24 Jul 2019 06:39:37 +0100
+From:   Sean Young <sean@mess.org>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>
-Content-Type: text/plain; charset="UTF-8"
+        Chen-Yu Tsai <wens@csie.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-media@vger.kernel.org
+Subject: Re: [PATCH v5 04/13] media: rc: sunxi: Add RXSTA bits definition
+Message-ID: <20190724053937.4ic5n35xtw2chjdy@gofer.mess.org>
+References: <20190607231100.5894-1-peron.clem@gmail.com>
+ <20190607231100.5894-5-peron.clem@gmail.com>
+ <20190610095243.7xwp4xhauds22qzw@flea>
+ <CAJiuCcfyjGTBbsjZQYj2p3KD6O-WaXhFe5NZrnKQwJYACmatUw@mail.gmail.com>
+ <20190715121244.2vrsw6qa4fgp72fn@gofer.mess.org>
+ <20190723062557.hnbi6hgrg4ecawkn@gofer.mess.org>
+ <20190723070440.nfmhbrfykumxayjj@flea>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190723070440.nfmhbrfykumxayjj@flea>
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 24, 2019 at 10:20 AM Vinod Koul <vkoul@kernel.org> wrote:
->
-> Unit address is supposed to be a number, using a macro with hex value is
-> not recommended, so add the value in unit name.
->
-> arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:966.16-969.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4d: unit name should not have leading "0x"
-> arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:971.16-974.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4e: unit name should not have leading "0x"
-> arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:976.16-979.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x4f: unit name should not have leading "0x"
-> arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:981.16-984.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x50: unit name should not have leading "0x"
-> arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi:986.16-989.4: Warning (unit_address_format): /soc@0/spmi@c440000/pmic@0/adc@3100/adc-chan@0x51: unit name should not have leading "0x"
->
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
+On Tue, Jul 23, 2019 at 09:04:40AM +0200, Maxime Ripard wrote:
+> Hi Sean,
+> 
+> On Tue, Jul 23, 2019 at 07:25:57AM +0100, Sean Young wrote:
+> > On Mon, Jul 15, 2019 at 01:12:45PM +0100, Sean Young wrote:
+> > > On Sun, Jul 14, 2019 at 04:32:22PM +0200, Clément Péron wrote:
+> > > > Hi Sean,
+> > > >
+> > > > You acked the whole v3 series but this patch has been introduced in v5
+> > > > could you ack this one too?
+> > >
+> > > Acked-by: Sean Young <sean@mess.org>
+> >
+> > So who's tree should this series go through? It seems mostly device tree.
+> > Alternatively I'm happy to try it get merged via the media tree.
+> 
+> Ideally the media bits should go through the media tree, the DT bits
+> will go through arm-soc
+> 
+> So you can apply the patches 1-4, 7 and 10, I'll apply the rest.
+> 
+> Does that work for you?
 
-Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
+Works for me, I'll add them to my next pull request to Mauro.
 
+Thanks,
 
-> ---
->  arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi | 10 +++++-----
->  1 file changed, 5 insertions(+), 5 deletions(-)
->
-> diff --git a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> index 1ebbd568dfd7..9b27b8346ba1 100644
-> --- a/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> +++ b/arch/arm64/boot/dts/qcom/sdm845-cheza.dtsi
-> @@ -963,27 +963,27 @@ ap_ts_i2c: &i2c14 {
->  };
->
->  &pm8998_adc {
-> -       adc-chan@ADC5_AMUX_THM1_100K_PU {
-> +       adc-chan@4d {
->                 reg = <ADC5_AMUX_THM1_100K_PU>;
->                 label = "sdm_temp";
->         };
->
-> -       adc-chan@ADC5_AMUX_THM2_100K_PU {
-> +       adc-chan@4e {
->                 reg = <ADC5_AMUX_THM2_100K_PU>;
->                 label = "quiet_temp";
->         };
->
-> -       adc-chan@ADC5_AMUX_THM3_100K_PU {
-> +       adc-chan@4f {
->                 reg = <ADC5_AMUX_THM3_100K_PU>;
->                 label = "lte_temp_1";
->         };
->
-> -       adc-chan@ADC5_AMUX_THM4_100K_PU {
-> +       adc-chan@50 {
->                 reg = <ADC5_AMUX_THM4_100K_PU>;
->                 label = "lte_temp_2";
->         };
->
-> -       adc-chan@ADC5_AMUX_THM5_100K_PU {
-> +       adc-chan@51 {
->                 reg = <ADC5_AMUX_THM5_100K_PU>;
->                 label = "charger_temp";
->         };
-> --
-> 2.20.1
->
+Sean
