@@ -2,89 +2,62 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 936CB72E6E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 14:07:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C923E72E91
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 14:16:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727699AbfGXMHI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 08:07:08 -0400
-Received: from dc2-smtprelay2.synopsys.com ([198.182.61.142]:47286 "EHLO
-        smtprelay-out1.synopsys.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726256AbfGXMHH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jul 2019 08:07:07 -0400
-Received: from mailhost.synopsys.com (mdc-mailhost1.synopsys.com [10.225.0.209])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (No client certificate requested)
-        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id 54B66C1BE9;
-        Wed, 24 Jul 2019 12:07:07 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
-        t=1563970027; bh=9yLr3tHkJx37O0E/j4hIar6/6qoO+IpYNGwETfHlldA=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=cCpiPXF0AwsV7qgl0JUT5rMuBZUMTpVIf40gtQSj8H/6VvDmDEmYf3Ay1fSje8Kd3
-         PHQ0pROrmGyKjL1Wy2VyrO6vCSWqLWiiHHazBire7O1wIDUYh+uaogDsI4cp1r0Ul7
-         BCvTNwBe21KHWjvJcs2XhB2w/H10YHQDAJXR/6Y1jNY+FEhoQ40JWJJI4vahmrlCiF
-         8H5oyQZGQSL653hIQQu8eGIXAMRVnnDMwCLALwmeYHnkSkAg4WoUIgikcjrvTbK7hV
-         qCT8s97qLGD2plBUyj/IonY5FmGVQJhDl6F7RKB1CKib8s4CYMvsLedIObevANHx97
-         02BYz6DaB3NJg==
-Received: from de02arcdev1.internal.synopsys.com (de02arcdev1.internal.synopsys.com [10.225.22.192])
-        by mailhost.synopsys.com (Postfix) with ESMTP id 22187A005C;
-        Wed, 24 Jul 2019 12:07:06 +0000 (UTC)
-From:   Mischa Jonker <Mischa.Jonker@synopsys.com>
-To:     Alexey.Brodkin@synopsys.com, Vineet.Gupta1@synopsys.com,
-        kstewart@linuxfoundation.org, tglx@linutronix.de,
-        robh+dt@kernel.org, linux-snps-arc@lists.infradead.org,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Cc:     Mischa Jonker <Mischa.Jonker@synopsys.com>
-Subject: [PATCH v2 3/3] dt-bindings: IDU-intc: Add support for edge-triggered interrupts
-Date:   Wed, 24 Jul 2019 14:04:36 +0200
-Message-Id: <20190724120436.8537-3-mischa.jonker@synopsys.com>
-X-Mailer: git-send-email 2.8.3
-In-Reply-To: <20190724120436.8537-1-mischa.jonker@synopsys.com>
-References: <CY4PR1201MB0120EDD4173511912A9FC99EA1C60@CYPR1201MB0120.namprd12.prod.outlook.com>
- <20190724120436.8537-1-mischa.jonker@synopsys.com>
+        id S1728108AbfGXMQS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 08:16:18 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:49252 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727786AbfGXMQS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 08:16:18 -0400
+Received: from penelope.horms.nl (ip4dab7138.direct-adsl.nl [77.171.113.56])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 0E1EF25BE43;
+        Wed, 24 Jul 2019 22:16:14 +1000 (AEST)
+Received: by penelope.horms.nl (Postfix, from userid 7100)
+        id 0325EE2209B; Wed, 24 Jul 2019 14:16:11 +0200 (CEST)
+From:   Simon Horman <horms+renesas@verge.net.au>
+To:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Chris Brandt <chris.brandt@renesas.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Simon Horman <horms+renesas@verge.net.au>
+Subject: [PATCH 0/4] dt-bindings: i2c: renesas: Rename bindings documentation files
+Date:   Wed, 24 Jul 2019 14:15:55 +0200
+Message-Id: <20190724121559.19079-1-horms+renesas@verge.net.au>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This updates the documentation for supporting an optional extra interrupt
-cell to specify edge vs level triggered.
+Rename the bindings documentation file for Renesas I2C controllers.
 
-Signed-off-by: Mischa Jonker <mischa.jonker@synopsys.com>
----
- .../interrupt-controller/snps,archs-idu-intc.txt      | 19 ++++++++++++++-----
- 1 file changed, 14 insertions(+), 5 deletions(-)
+This is part of an ongoing effort to name bindings documentation files for
+Renesas IP blocks consistently, in line with the compat strings they
+document.
 
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt b/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt
-index c5a1c7b..a5c1db9 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt
-+++ b/Documentation/devicetree/bindings/interrupt-controller/snps,archs-idu-intc.txt
-@@ -8,11 +8,20 @@ Properties:
- 
- - compatible: "snps,archs-idu-intc"
- - interrupt-controller: This is an interrupt controller.
--- #interrupt-cells: Must be <1>.
--
--  Value of the cell specifies the "common" IRQ from peripheral to IDU. Number N
--  of the particular interrupt line of IDU corresponds to the line N+24 of the
--  core interrupt controller.
-+- #interrupt-cells: Must be <1> or <2>.
-+
-+  Value of the first cell specifies the "common" IRQ from peripheral to IDU.
-+  Number N of the particular interrupt line of IDU corresponds to the line N+24
-+  of the core interrupt controller.
-+
-+  The (optional) second cell specifies any of the following flags:
-+    - bits[3:0] trigger type and level flags
-+        1 = low-to-high edge triggered
-+        2 = NOT SUPPORTED (high-to-low edge triggered)
-+        4 = active high level-sensitive <<< DEFAULT
-+        8 = NOT SUPPORTED (active low level-sensitive)
-+  When no second cell is specified, the interrupt is assumed to be level
-+  sensitive.
- 
-   The interrupt controller is accessed via the special ARC AUX register
-   interface, hence "reg" property is not specified.
+Based on v5.3-rc1
+
+Simon Horman (4):
+  dt-bindings: i2c: sh_mobile: Rename bindings documentation file
+  dt-bindings: i2c: rcar: Rename bindings documentation file
+  dt-bindings: i2c: riic: Rename bindings documentation file
+  dt-bindings: i2c: riic: Rename bindings documentation file
+
+ .../devicetree/bindings/i2c/{i2c-rcar.txt => renesas,i2c.txt}     | 0
+ .../bindings/i2c/{i2c-emev2.txt => renesas,iic-emev2.txt}         | 0
+ .../bindings/i2c/{i2c-sh_mobile.txt => renesas,iic.txt}           | 0
+ .../devicetree/bindings/i2c/{i2c-riic.txt => renesas,riic.txt}    | 0
+ MAINTAINERS                                                       | 8 ++++----
+ 5 files changed, 4 insertions(+), 4 deletions(-)
+ rename Documentation/devicetree/bindings/i2c/{i2c-rcar.txt => renesas,i2c.txt} (100%)
+ rename Documentation/devicetree/bindings/i2c/{i2c-emev2.txt => renesas,iic-emev2.txt} (100%)
+ rename Documentation/devicetree/bindings/i2c/{i2c-sh_mobile.txt => renesas,iic.txt} (100%)
+ rename Documentation/devicetree/bindings/i2c/{i2c-riic.txt => renesas,riic.txt} (100%)
+
 -- 
-2.8.3
+2.11.0
 
