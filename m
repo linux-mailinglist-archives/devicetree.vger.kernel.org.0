@@ -2,72 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DA5173250
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 16:56:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5B26A73290
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 17:18:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728240AbfGXO40 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 10:56:26 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:36121 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726422AbfGXO40 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 10:56:26 -0400
-Received: by mail-io1-f65.google.com with SMTP id o9so90287382iom.3;
-        Wed, 24 Jul 2019 07:56:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3aE+MjGXqdyag2TVbnV9FXwm+spP+OBGssJslmm561I=;
-        b=SMW4Rl8PzGJkM9gZS7wjL6tkB3SPBP4IcjkeqB+WX5CoPzXTDhmEjH7wu8Mzjux0R2
-         hR1NPnjhWWjBBuRThP09CMA0nZ4A8D/IbXjbYhXUUhM2oWKFR/3CP7RSjKRwujqbLwJW
-         +bGvz8s+KJ5/MQDJyFKVpx36ekdeQvTLn52p8myJmz9lQedPhevpde7rxMDgs3CcPMfG
-         sGrHvBhPixUwWAkdZ2ObkTRwcDKe9p+WQ0ULiHTAC0HIye+Lq1OR8QEMZzu/b+y7ELa8
-         pwuhWYOCh+3HS7sJNB6DhSAJiI/BF/Q17k7qDfjT0J2PMs0Wi5fJSN5VWnI/l2C1caQM
-         Ddsg==
-X-Gm-Message-State: APjAAAUGmbp5s+aVk7MJuyA7wJuUcNkNWbHugLVWFFqy28yWUTxlf+G1
-        o78RuAnobnXXFTGvlaIdhA==
-X-Google-Smtp-Source: APXvYqxlveMV1sSzvivUTiDzl1Jd26ULb0CfbzN67a2r/0tk3STwV2602H4eUdIB7uxdvnryu0y5iw==
-X-Received: by 2002:a02:300b:: with SMTP id q11mr87478803jaq.54.1563980185089;
-        Wed, 24 Jul 2019 07:56:25 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id s15sm36464486ioe.88.2019.07.24.07.56.24
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 24 Jul 2019 07:56:24 -0700 (PDT)
-Date:   Wed, 24 Jul 2019 08:56:23 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Niklas Cassel <niklas.cassel@linaro.org>
-Cc:     Andy Gross <agross@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>, linux-arm-msm@vger.kernel.org,
-        jorge.ramirez-ortiz@linaro.org, bjorn.andersson@linaro.org,
-        ulf.hansson@linaro.org, Niklas Cassel <niklas.cassel@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 03/13] dt-bindings: cpufreq: qcom-nvmem: Make speedbin
- related properties optional
-Message-ID: <20190724145623.GA9855@bogus>
-References: <20190705095726.21433-1-niklas.cassel@linaro.org>
- <20190705095726.21433-4-niklas.cassel@linaro.org>
+        id S2387517AbfGXPSL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 11:18:11 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:34626 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387503AbfGXPSL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jul 2019 11:18:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=HhOq85evkFM/y15ZM/uScRYpMDK7uIWdehOeEOZxwf4=; b=aD9gCEO/FuimjgYQZxJxnzZ4v1
+        SEPBl3v97IkgN4q2SfajCnLPZCPyb9eAUvSJCSsM/ceXh7w22MSJIGZYynurXwVFVmUsi6Qkb6gy4
+        numZoJbK/AWNh/CnvIzhqder6Q5qnPPyuV1qWrQqWUAjRrDjAC982P5hwYPoiIoAFa8U=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hqJ1n-000061-9c; Wed, 24 Jul 2019 17:18:03 +0200
+Date:   Wed, 24 Jul 2019 17:18:03 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Claudiu Manoil <claudiu.manoil@nxp.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        alexandru.marginean@nxp.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v1 1/4] enetc: Clean up local mdio bus allocation
+Message-ID: <20190724151803.GR25635@lunn.ch>
+References: <1563979301-596-1-git-send-email-claudiu.manoil@nxp.com>
+ <1563979301-596-2-git-send-email-claudiu.manoil@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190705095726.21433-4-niklas.cassel@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1563979301-596-2-git-send-email-claudiu.manoil@nxp.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri,  5 Jul 2019 11:57:14 +0200, Niklas Cassel wrote:
-> Not all Qualcomm platforms need to care about the speedbin efuse,
-> nor the value blown into the speedbin efuse.
-> Therefore, make the nvmem-cells and opp-supported-hw properties
-> optional.
+On Wed, Jul 24, 2019 at 05:41:38PM +0300, Claudiu Manoil wrote:
+> Though it works, this is not how it should have been.
+> What's needed is a pointer to the mdio registers.
+> Store it properly inside bus->priv allocated space.
+> Use devm_* variant to further clean up the init error /
+> remove paths.
 > 
-> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+> Fixes following sparse warning:
+>  warning: incorrect type in assignment (different address spaces)
+>     expected void *priv
+>     got struct enetc_mdio_regs [noderef] <asn:2>*[assigned] regs
+> 
+> Fixes: ebfcb23d62ab ("enetc: Add ENETC PF level external MDIO support")
+> 
+> Signed-off-by: Claudiu Manoil <claudiu.manoil@nxp.com>
 > ---
->  Documentation/devicetree/bindings/opp/qcom-nvmem-cpufreq.txt | 4 ++++
->  1 file changed, 4 insertions(+)
+> v1 - added this patch
 > 
+>  .../net/ethernet/freescale/enetc/enetc_mdio.c | 31 +++++++------------
+>  1 file changed, 12 insertions(+), 19 deletions(-)
+> 
+> diff --git a/drivers/net/ethernet/freescale/enetc/enetc_mdio.c b/drivers/net/ethernet/freescale/enetc/enetc_mdio.c
+> index 77b9cd10ba2b..1e3cd21c13ee 100644
+> --- a/drivers/net/ethernet/freescale/enetc/enetc_mdio.c
+> +++ b/drivers/net/ethernet/freescale/enetc/enetc_mdio.c
+> @@ -15,7 +15,8 @@ struct enetc_mdio_regs {
+>  	u32	mdio_addr;	/* MDIO address */
+>  };
+>  
+> -#define bus_to_enetc_regs(bus)	(struct enetc_mdio_regs __iomem *)((bus)->priv)
+> +#define bus_to_enetc_regs(bus)	(*(struct enetc_mdio_regs __iomem **) \
+> +				((bus)->priv))
+>  
+>  #define ENETC_MDIO_REG_OFFSET	0x1c00
+>  #define ENETC_MDC_DIV		258
+> @@ -146,12 +147,12 @@ static int enetc_mdio_read(struct mii_bus *bus, int phy_id, int regnum)
+>  int enetc_mdio_probe(struct enetc_pf *pf)
+>  {
+>  	struct device *dev = &pf->si->pdev->dev;
+> -	struct enetc_mdio_regs __iomem *regs;
+> +	struct enetc_mdio_regs __iomem **regsp;
+>  	struct device_node *np;
+>  	struct mii_bus *bus;
+> -	int ret;
+> +	int err;
+>  
+> -	bus = mdiobus_alloc_size(sizeof(regs));
+> +	bus = devm_mdiobus_alloc_size(dev, sizeof(*regsp));
+>  	if (!bus)
+>  		return -ENOMEM;
+>  
+> @@ -159,41 +160,33 @@ int enetc_mdio_probe(struct enetc_pf *pf)
+>  	bus->read = enetc_mdio_read;
+>  	bus->write = enetc_mdio_write;
+>  	bus->parent = dev;
+> +	regsp = bus->priv;
+>  	snprintf(bus->id, MII_BUS_ID_SIZE, "%s", dev_name(dev));
+>  
+>  	/* store the enetc mdio base address for this bus */
+> -	regs = pf->si->hw.port + ENETC_MDIO_REG_OFFSET;
+> -	bus->priv = regs;
+> +	*regsp = pf->si->hw.port + ENETC_MDIO_REG_OFFSET;
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+This is all very odd and different to every other driver.
+
+If i get the code write, there are 4 registers, each u32 in size,
+starting at pf->si->hw.port + ENETC_MDIO_REG_OFFSET?
+
+There are macros like enetc_port_wr() and enetc_global_wr(). It think
+it would be much cleaner to add a macro enet_mdio_wr() which takes
+hw, off, val.
+
+#define enet_mdio_wr(hw, off, val) enet_port_wr(hw, off + ENETC_MDIO_REG_OFFSET, val)
+
+struct enetc_mdio_priv {
+       struct enetc_hw *hw;
+}
+
+	struct enetc_mdio_priv *mdio_priv;
+
+	bus = devm_mdiobus_alloc_size(dev, sizeof(*mdio_priv));
+
+	mdio_priv = bus->priv;
+	mdio_priv->hw = pf->si->hw;
+
+
+static int enetc_mdio_write(struct mii_bus *bus, int phy_id, int regnum,
+                            u16 value)
+{
+	struct enetc_mdio_priv *mdio_priv = bus->priv;
+...
+	enet_mdio_wr(priv->hw, ENETC_MDIO_CFG, mdio_cfg);
+}
+			    	
+All the horrible casts go away, the driver is structured like every
+other driver, sparse is probably happy, etc.
+
+      Andrew
