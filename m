@@ -2,140 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F8CA731F8
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 16:42:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 961DF73241
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 16:53:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728242AbfGXOlr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 10:41:47 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:41228 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725870AbfGXOlr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jul 2019 10:41:47 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id B46B0200348;
-        Wed, 24 Jul 2019 16:41:44 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id A786520033E;
-        Wed, 24 Jul 2019 16:41:44 +0200 (CEST)
-Received: from fsr-ub1664-016.ea.freescale.net (fsr-ub1664-016.ea.freescale.net [10.171.71.216])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 41CC6205D8;
-        Wed, 24 Jul 2019 16:41:44 +0200 (CEST)
-From:   Claudiu Manoil <claudiu.manoil@nxp.com>
-To:     "David S . Miller" <davem@davemloft.net>
-Cc:     andrew@lunn.ch, Rob Herring <robh+dt@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>, alexandru.marginean@nxp.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v1 4/4] arm64: dts: fsl: ls1028a: Enable eth port1 on the ls1028a QDS board
-Date:   Wed, 24 Jul 2019 17:41:41 +0300
-Message-Id: <1563979301-596-5-git-send-email-claudiu.manoil@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1563979301-596-1-git-send-email-claudiu.manoil@nxp.com>
-References: <1563979301-596-1-git-send-email-claudiu.manoil@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2387509AbfGXOxY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 10:53:24 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:40606 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726422AbfGXOxY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 10:53:24 -0400
+Received: by mail-io1-f65.google.com with SMTP id h6so3631032iom.7;
+        Wed, 24 Jul 2019 07:53:24 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=f1uxVtxe60Lcr7dI5TQEbK5Cmx2NSVJK7C4T4Q5hp2Y=;
+        b=Xs8OoW84Cso8psAS9wFCWPgdp7MSw98gEpsW47oWTUZorY1m8URStG3q5oMv9Yxp1T
+         GI8+81RFhsJyiMLSVaIDRmqGHvDZCPaLHxECeAr3wpkjbXaBdNEaYy1LHFP8gS3m1MvR
+         5iaXqQYCHwOQY1iGxFP2mxyReqbb/ZWuSzCHrtXNGIDONsTS908m7XcfyZVCL9U/Ewd6
+         hWbXY21reeirsSUK4CzxfcLLyzhYbeF85Q8juZhpFiPN+XzuE4fmA1T64JIzwthujUuM
+         Nri48FLqU2fXq3Rvas2cVD7tcJc821h4Ux9G1IWr51ce9NLVjqHkmKa0OKu+WvzvwyR1
+         HvlQ==
+X-Gm-Message-State: APjAAAWfZMlZdmtHhtHX1AINhLswppRnwgOzgDfmBueJ6c9ZlGgv/G4x
+        75O8d9tg5zc+YvB9Q+yrzqvPcxc=
+X-Google-Smtp-Source: APXvYqxz45jNhjF9OdeNK+P0XXsH47UQdfWWYJlbey+fEz9h4ZWF7VXuyUUr5GMcM9viKwV/q3AN8w==
+X-Received: by 2002:a6b:4f0d:: with SMTP id d13mr7295101iob.170.1563980003520;
+        Wed, 24 Jul 2019 07:53:23 -0700 (PDT)
+Received: from localhost ([64.188.179.254])
+        by smtp.gmail.com with ESMTPSA id n17sm37419022iog.63.2019.07.24.07.53.22
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 24 Jul 2019 07:53:22 -0700 (PDT)
+Date:   Wed, 24 Jul 2019 08:53:22 -0600
+From:   Rob Herring <robh@kernel.org>
+To:     Niklas Cassel <niklas.cassel@linaro.org>
+Cc:     Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Ilia Lin <ilia.lin@kernel.org>, Andy Gross <agross@kernel.org>,
+        linux-arm-msm@vger.kernel.org, jorge.ramirez-ortiz@linaro.org,
+        bjorn.andersson@linaro.org, ulf.hansson@linaro.org,
+        Sricharan R <sricharan@codeaurora.org>,
+        Niklas Cassel <niklas.cassel@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 01/13] dt-bindings: cpufreq: Re-organise kryo cpufreq to
+ use it for other nvmem based qcom socs
+Message-ID: <20190724145322.GA4233@bogus>
+References: <20190705095726.21433-1-niklas.cassel@linaro.org>
+ <20190705095726.21433-2-niklas.cassel@linaro.org>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190705095726.21433-2-niklas.cassel@linaro.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LS1028a has one Ethernet management interface. On the QDS board, the
-MDIO signals are multiplexed to either on-board AR8035 PHY device or
-to 4 PCIe slots allowing for SGMII cards.
-To enable the Ethernet ENETC Port 1, which can only be connected to a
-RGMII PHY, the multiplexer needs to be configured to route the MDIO to
-the AR8035 PHY.  The MDIO/MDC routing is controlled by bits 7:4 of FPGA
-board config register 0x54, and value 0 selects the on-board RGMII PHY.
-The FPGA board config registers are accessible on the i2c bus, at address
-0x66.
+On Fri,  5 Jul 2019 11:57:12 +0200, Niklas Cassel wrote:
+> From: Sricharan R <sricharan@codeaurora.org>
+> 
+> The kryo cpufreq driver reads the nvmem cell and uses that data to
+> populate the opps. There are other qcom cpufreq socs like krait which
+> does similar thing. Except for the interpretation of the read data,
+> rest of the driver is same for both the cases. So pull the common things
+> out for reuse.
+> 
+> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
+> [niklas.cassel@linaro.org: split dt-binding into a separate patch and
+> do not rename the compatible string.]
+> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+> ---
+> Changes since RFC:
+> -Made DT bindings a separate patch.
+> -Keep the original compatible string, since renaming it breaks DT
+> backwards compatibility.
+> 
+>  .../opp/{kryo-cpufreq.txt => qcom-nvmem-cpufreq.txt}   | 10 +++++-----
+>  1 file changed, 5 insertions(+), 5 deletions(-)
+>  rename Documentation/devicetree/bindings/opp/{kryo-cpufreq.txt => qcom-nvmem-cpufreq.txt} (98%)
+> 
 
-The PF3 MDIO PCIe integrated endpoint device allows for centralized access
-to the MDIO bus.  Add the corresponding devicetree node and set it to be
-the MDIO bus parent.
-
-Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
-Signed-off-by: Claudiu Manoil <claudiu.manoil@nxp.com>
----
-v1 - none
-
- .../boot/dts/freescale/fsl-ls1028a-qds.dts    | 40 +++++++++++++++++++
- .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  6 +++
- 2 files changed, 46 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-index de6ef39f3118..663c4b728c07 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-@@ -85,6 +85,26 @@
- 			system-clock-frequency = <25000000>;
- 		};
- 	};
-+
-+	mdio-mux {
-+		compatible = "mdio-mux-multiplexer";
-+		mux-controls = <&mux 0>;
-+		mdio-parent-bus = <&enetc_mdio_pf3>;
-+		#address-cells=<1>;
-+		#size-cells = <0>;
-+
-+		/* on-board RGMII PHY */
-+		mdio@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			qds_phy1: ethernet-phy@5 {
-+				/* Atheros 8035 */
-+				reg = <5>;
-+			};
-+		};
-+	};
- };
- 
- &duart0 {
-@@ -164,6 +184,26 @@
- 			};
- 		};
- 	};
-+
-+	fpga@66 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "fsl,ls1028aqds-fpga", "fsl,fpga-qixis-i2c",
-+			     "simple-mfd";
-+		reg = <0x66>;
-+
-+		mux: mux-controller {
-+			compatible = "reg-mux";
-+			#mux-control-cells = <1>;
-+			mux-reg-masks = <0x54 0xf0>; /* 0: reg 0x54, bits 7:4 */
-+		};
-+	};
-+
-+};
-+
-+&enetc_port1 {
-+	phy-handle = <&qds_phy1>;
-+	phy-connection-type = "rgmii-id";
- };
- 
- &sai1 {
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 7975519b4f56..de71153fda00 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -536,6 +536,12 @@
- 				compatible = "fsl,enetc";
- 				reg = <0x000100 0 0 0 0>;
- 			};
-+			enetc_mdio_pf3: mdio@0,3 {
-+				compatible = "fsl,enetc-mdio";
-+				reg = <0x000300 0 0 0 0>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
- 			ethernet@0,4 {
- 				compatible = "fsl,enetc-ptp";
- 				reg = <0x000400 0 0 0 0>;
--- 
-2.17.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
