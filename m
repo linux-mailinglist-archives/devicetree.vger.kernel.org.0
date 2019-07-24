@@ -2,76 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED70473DAE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 22:19:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B2CD73E25
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 22:22:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390557AbfGXUTC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 16:19:02 -0400
-Received: from mail-io1-f67.google.com ([209.85.166.67]:40672 "EHLO
-        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388983AbfGXUTB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 16:19:01 -0400
-Received: by mail-io1-f67.google.com with SMTP id h6so5786802iom.7;
-        Wed, 24 Jul 2019 13:19:00 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=ApQotHQxWJr5zyqbEl1C9NpdXsHo5uhr1/je6Huq+bI=;
-        b=NqlLMQzTzcPx9v5G9pwHgv4DssgL3rdJXDK0N3kNiZHw80bZW9/HDDXM572fhL/5ZF
-         SvW0zaoIFkjcNHPvHhFL5+bY/Dr2ZrMtVRZukNucY4giAQ51AWd77YWVx3EKjTqLvy/c
-         vF2TNnzXapH26V15y8iHNzL4+Y/0edcMW2XfyUlkC1vbqvXoBuG9EfTta5XyMeTz4i+/
-         FsyFIGMHS6pWjTTC59lJ2wbf60VFxm9jrMCCIlnnkiwwgbgs35f+zCAKOFLaAcOKuD6h
-         BaAWDQ9TsG8y/A0DnQ2kEb/pkZ3RFVAddplsmpdTRyXJWZavjNbNd+oSUBM+oLjXxcLl
-         UIbA==
-X-Gm-Message-State: APjAAAUFM3vMfJN7kg+0pvfkn2amAYqiV5KS2tK6cEVVtAP3wVHrlhUY
-        Q3G7OTHc0rWSSxkrHDn1sA==
-X-Google-Smtp-Source: APXvYqxZ9dmUz3ZXKBjOYJnBYyOwokAXvh0AFf4QNJLoM+DksevICYOosUh4VFPZzV82gw2GdpbfrA==
-X-Received: by 2002:a6b:fb02:: with SMTP id h2mr53385887iog.289.1563999540221;
-        Wed, 24 Jul 2019 13:19:00 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id r5sm43517794iom.42.2019.07.24.13.18.59
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 24 Jul 2019 13:18:59 -0700 (PDT)
-Date:   Wed, 24 Jul 2019 14:18:58 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Anson.Huang@nxp.com
-Cc:     vireshk@kernel.org, nm@ti.com, sboyd@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, shawnguo@kernel.org,
-        s.hauer@pengutronix.de, kernel@pengutronix.de, festevam@gmail.com,
-        leonard.crestez@nxp.com, p.zabel@pengutronix.de, ping.bai@nxp.com,
-        daniel.baluta@nxp.com, l.stach@pengutronix.de, abel.vesa@nxp.com,
-        angus@akkea.ca, andrew.smirnov@gmail.com, ccaione@baylibre.com,
-        agx@sigxcpu.org, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, Linux-imx@nxp.com
-Subject: Re: [PATCH V2 1/4] dt-bindings: opp: Support multiple opp-suspend
- properties
-Message-ID: <20190724201858.GA25048@bogus>
-References: <20190709080015.43442-1-Anson.Huang@nxp.com>
+        id S2390697AbfGXTnh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 15:43:37 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:48892 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2390213AbfGXTng (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 15:43:36 -0400
+Received: from lelv0265.itg.ti.com ([10.180.67.224])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6OJgYP0083356;
+        Wed, 24 Jul 2019 14:42:34 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1563997354;
+        bh=AJm71xiQOBjSdWSqksSb6orWtMZCBYh0pcNBwqXoWdQ=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=kK94ypqr0C9M7sOcw1gFudGjaHNocKLuwvjvdo3NuKOzadWnHKCH0m5/wmXuq59Qi
+         SBk4QiMOx+PAaNg8HjZr/fXwwRu/6ahQMFsWaIeGrhb9aPi9n8yaPkpplOtVdVMdMZ
+         JAf3XTh2E9j1Fh6PGEVYqIQuBk7Se1H0btTuyF8U=
+Received: from DLEE115.ent.ti.com (dlee115.ent.ti.com [157.170.170.26])
+        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6OJgYke104572
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 24 Jul 2019 14:42:34 -0500
+Received: from DLEE109.ent.ti.com (157.170.170.41) by DLEE115.ent.ti.com
+ (157.170.170.26) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 24
+ Jul 2019 14:42:33 -0500
+Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE109.ent.ti.com
+ (157.170.170.41) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 24 Jul 2019 14:42:33 -0500
+Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6OJgXvZ096227;
+        Wed, 24 Jul 2019 14:42:33 -0500
+Subject: Re: [PATCH 1/6] dt-bindings: irqchip: Add PRUSS interrupt controller
+ bindings
+To:     Rob Herring <robh@kernel.org>
+CC:     Marc Zyngier <marc.zyngier@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Tony Lindgren <tony@atomide.com>,
+        "Andrew F. Davis" <afd@ti.com>, Roger Quadros <rogerq@ti.com>,
+        Lokesh Vutla <lokeshvutla@ti.com>,
+        Grygorii Strashko <grygorii.strashko@ti.com>,
+        Sekhar Nori <nsekhar@ti.com>,
+        David Lechner <david@lechnology.com>,
+        Murali Karicheri <m-karicheri2@ti.com>,
+        <devicetree@vger.kernel.org>, <linux-omap@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <20190708035243.12170-1-s-anna@ti.com>
+ <20190708035243.12170-2-s-anna@ti.com> <20190724163419.GA29254@bogus>
+From:   Suman Anna <s-anna@ti.com>
+Message-ID: <6871c381-9fc6-f6be-6386-f183fcc5546a@ti.com>
+Date:   Wed, 24 Jul 2019 14:42:33 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190709080015.43442-1-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190724163419.GA29254@bogus>
+Content-Type: text/plain; charset="utf-8"
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  9 Jul 2019 16:00:12 +0800, Anson.Huang@nxp.com wrote:
-> From: Anson Huang <Anson.Huang@nxp.com>
+On 7/24/19 11:34 AM, Rob Herring wrote:
+> On Sun, 7 Jul 2019 22:52:38 -0500, Suman Anna wrote:
+>> The Programmable Real-Time Unit Subsystem (PRUSS) contains an interrupt
+>> controller (INTC) that can handle various system input events and post
+>> interrupts back to the device-level initiators. The INTC can support
+>> upto 64 input events on most SoCs with individual control configuration
+>> and hardware prioritization. These events are mapped onto 10 interrupt
+>> lines through two levels of many-to-one mapping support. Different
+>> interrupt lines are routed to the individual PRU cores or to the
+>> host CPU or to other PRUSS instances.
+>>
+>> The K3 AM65x and J721E SoCs have the next generation of the PRU-ICSS IP,
+>> commonly called ICSSG. The ICSSG interrupt controller on K3 SoCs provide
+>> a higher number of host interrupts (20 vs 10) and can handle an increased
+>> number of input events (160 vs 64) from various SoC interrupt sources.
+>>
+>> Add the bindings document for these interrupt controllers on all the
+>> applicable SoCs. It covers the OMAP architecture SoCs - AM33xx, AM437x
+>> and AM57xx; the Keystone 2 architecture based 66AK2G SoC; the Davinci
+>> architecture based OMAPL138 SoCs, and the K3 architecture based AM65x
+>> and J721E SoCs.
+>>
+>> Signed-off-by: Suman Anna <s-anna@ti.com>
+>> Signed-off-by: Andrew F. Davis <afd@ti.com>
+>> Signed-off-by: Roger Quadros <rogerq@ti.com>
+>> ---
+>> Prior version: https://patchwork.kernel.org/patch/10795771/
+>>
+>>  .../interrupt-controller/ti,pruss-intc.txt    | 92 +++++++++++++++++++
+>>  1 file changed, 92 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/interrupt-controller/ti,pruss-intc.txt
+>>
 > 
-> Update opp-suspend property's description to support multiple
-> opp-suspend properties defined in DT, the OPP with highest opp-hz
-> and with opp-suspend property present will be used as suspend opp.
-> 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> ---
-> New patch.
-> ---
->  Documentation/devicetree/bindings/opp/opp.txt | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
+> Reviewed-by: Rob Herring <robh@kernel.org>
 > 
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Thanks Rob. I am going to submit a v2 with some minor reword changes
+based on couple of comments, but no addition or removal of properties.
+Should I be retaining your Reviewed-by for v2?
+
+regards
+Suman
+
+
