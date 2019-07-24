@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F198E7339C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 18:24:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 72F2F733A9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 18:24:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728752AbfGXQYM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 12:24:12 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:46543 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726004AbfGXQYL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 12:24:11 -0400
-Received: by mail-wr1-f66.google.com with SMTP id z1so47622379wru.13
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2019 09:24:10 -0700 (PDT)
+        id S1728748AbfGXQYP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 12:24:15 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:40904 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728750AbfGXQYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 12:24:13 -0400
+Received: by mail-wm1-f67.google.com with SMTP id v19so42200777wmj.5
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2019 09:24:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rscQz3KUGOpkCDKHMcXdQe7Cl/GoBVV86V2E9kxxK1s=;
-        b=jITz/uDE43k3A8NB1nlk3u+xzG/Y0MTElmt4Smge4Q7/p2i4AQP+Ot+lzFSbs47nGs
-         nn730d5rJ1NTniNhwvL69qjT1i8otT5IErkH1IiOMTNxW24JI06varqHToVixQg9jubW
-         apzUCJPFyUzn7NKyoVzr34ZHbOSBLFFqurZhsZcz1QT5CYE5yCVjRWij5XwCt1SsMLH6
-         gO3Jx9ohRvjRTh/gNM246+tC38Ty8u7M+KUP7nIZiB3NUacjKhIFZsBmuWhWZ1skiHep
-         HHskYmreyeF6CvNKUjIf88ehFvrMJu1k0LGqCrX+Itgq1xAhb/3oczCVjg1ktXi2w5x3
-         +efA==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ocUEQSXynTuFhR8u/rePjf3f/sB3eXLVGjV4BtMdyVs=;
+        b=T0XHmH7fMTKgxRE+sBpYoKeEOwc7aBtGRsTgi4fQxLrOEfcW0U1YUrrDIw3Rn8GfcX
+         lhkdzqNgssqMuQEo4DlEKUn+PqiRDTIY4NzwiQSGNCWQYJT4nWBscmNenvtx/y77qByz
+         O8J4L/61kEPly3Vt5mbDYBXjERECUfgji3eBFFbA6oDgkOQBZ8258HWGNKxps1E1ytBc
+         yhcCI72ckTJOjSU/9LYbSvhgbXuhl++XmTvK3k18dhhjOxg4/KAzDMeMlj+t7BdxUBl4
+         j/DDcIcHQnT2kaq7UbX8BV78x4zpvLXHqdaoHZc5oUhkEUtplY4+LLtmUNuYSRCw2Q2N
+         fe6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=rscQz3KUGOpkCDKHMcXdQe7Cl/GoBVV86V2E9kxxK1s=;
-        b=MEW2PH7iAktwOgCVsmrOoeXTUupKglS6S9pTOqc/H/YW7esYssoEQYlMTysNJOsPuV
-         +42oTQv15Lscn0r1OTCEoJlmFEhtqZvFrONpXeE+EPV03ZhS3NH8W7MePxrZwGquitvi
-         hnZSpwenP/IY4mKkFUdY3p/jpbGbrsaapykS82k0d2wo3QpELIRi+FN7V6V0TI6LrH0s
-         DGou2J0HK3WpUNFhIv809oi8eKxJ9bbihemK9vpapAU9MrmfDBcFG1MwZYiMj460/zUw
-         lXZ9270ERqb7QaA5YzfdTxhn5WuV+VzbAdN/6rXN5wKYHIi+2lGORIRPn1JhHZjXs5sc
-         3LZQ==
-X-Gm-Message-State: APjAAAWfPjg8XZRhuUaEungoWLUFqoeKgQlI/w4Oulyk4o/nnfQuU6Do
-        asYr1cFOSH8iC27gAimfwEziRA==
-X-Google-Smtp-Source: APXvYqwzABCOBCOzXWxksAWXozHEuvx2wpN+ZOBXgno4LlJoOSdi7K6PGndRhEJOhxZWMIuNGujEzw==
-X-Received: by 2002:adf:8bc2:: with SMTP id w2mr5964754wra.7.1563985449460;
-        Wed, 24 Jul 2019 09:24:09 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ocUEQSXynTuFhR8u/rePjf3f/sB3eXLVGjV4BtMdyVs=;
+        b=ipUbBowsxq/9TUmn9/epO15Ko1gy0KG5vdk0Als+l5qAR8xk/fYvWr0BrLJRuU7D8S
+         zCYo0i+lbqGSkEQdHu3YhxwGFyau9VW6ZwshqfZUqEVmEmB2+SdhXBieX8+Do/2nP1Kf
+         4A8Evh/1KHzdSdOLDc+c5YMvX3aux5dg7cJVukRsg6XUEO9Civ8j/j6Mq2wOc1KbON9y
+         8RqML3WK1HCsw/Uh01VmPzJpro/JbOOh2VI95Dkgt0Fv+g4fdZZBBr1zb0i1fN41lcZx
+         O/UZYG5RoyuTQd4fAYMjU1C8SPrmw85Huw2ydALcXzW66IGbMA9JXPkihL0wIbkEpb8V
+         RapA==
+X-Gm-Message-State: APjAAAUDWxPuklTn7UBH98aVKO7lrPLjPTn3qUOSEOY+dC6+yw7l6YTE
+        qLh2j1gI0pEsDgVsMxwKE0gbqQ==
+X-Google-Smtp-Source: APXvYqz5KeYU3i1H08gJ6KW2smQMst4ZM+01sZk1tJDy733pmW2ILw3I6IwRuTSHXx60lHlH/0OyTA==
+X-Received: by 2002:a1c:f409:: with SMTP id z9mr4986239wma.176.1563985450593;
+        Wed, 24 Jul 2019 09:24:10 -0700 (PDT)
 Received: from starbuck.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.googlemail.com with ESMTPSA id f70sm55688960wme.22.2019.07.24.09.24.08
+        by smtp.googlemail.com with ESMTPSA id f70sm55688960wme.22.2019.07.24.09.24.09
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 24 Jul 2019 09:24:08 -0700 (PDT)
+        Wed, 24 Jul 2019 09:24:09 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Mark Brown <broonie@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
@@ -51,10 +51,12 @@ To:     Mark Brown <broonie@kernel.org>,
 Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-amlogic@lists.infradead.org
-Subject: [PATCH 0/6] ASoC: improve codec to codec link support
-Date:   Wed, 24 Jul 2019 18:23:59 +0200
-Message-Id: <20190724162405.6574-1-jbrunet@baylibre.com>
+Subject: [PATCH 1/6] ASoC: codec2codec: run callbacks in order
+Date:   Wed, 24 Jul 2019 18:24:00 +0200
+Message-Id: <20190724162405.6574-2-jbrunet@baylibre.com>
 X-Mailer: git-send-email 2.21.0
+In-Reply-To: <20190724162405.6574-1-jbrunet@baylibre.com>
+References: <20190724162405.6574-1-jbrunet@baylibre.com>
 MIME-Version: 1.0
 X-Patchwork-Bot: notify
 Content-Transfer-Encoding: 8bit
@@ -63,44 +65,88 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As explained in this previous series [0], on Amlogic, we are using codec to
-codec links to deal with the glue which is between the i2s backends and the
-synopsys hdmi controller.
+When handling dai_link events on codec to codec links, run all .startup()
+callbacks on sinks and sources before running any .hw_params(). Same goes
+for hw_free() and shutdown(). This is closer to the behavior of regular
+dai links
 
-This worked well until I tried to .get_eld() support in the dw-hdmi-i2s
-driver.  Doing so adds channel mapping controls to the codec. This shown
-several problem
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+---
+ sound/soc/soc-dapm.c | 38 ++++++++++++++++++++++++++++----------
+ 1 file changed, 28 insertions(+), 10 deletions(-)
 
-1) .pcm_new() is not called on codec to codec links.
-   struct snd_soc_pcm_runtime do not even have a valid .pcm
-2) struct snd_pcm_substream and struct snd_pcm_runtime are ephemeral
-   This is a problem if a control needs to access them
-
-The goal of this patchset is to resolve the above issues and improve the
-codec to codec link support enough to correctly handle the hdmi-codec
-
-The support of these codec to codec links could probably be improved in the
-future to behave like any other link and use soc_pcm_open(),
-soc_pcm_hw_params(), etc...
-
-The challenge lies in the dapm mutex. The soc_pcm call dapm function locking
-this mutex but the dapm mutex is already held in snd_soc_dai_link_event()
-
-[0]: https://lkml.kernel.org/r/20190515131858.32130-1-jbrunet@baylibre.com
-
-Jerome Brunet (6):
-  ASoC: codec2codec: run callbacks in order
-  ASoC: codec2codec: name link using stream direction
-  ASoC: codec2codec: deal with params when necessary
-  ASoC: create pcm for codec2codec links as well
-  ASoC: codec2codec: remove ephemeral variables
-  ASoC: codec2codec: fill some of the runtime stream parameters
-
- sound/soc/soc-core.c |  42 +++-------
- sound/soc/soc-dapm.c | 186 +++++++++++++++++++++++++++----------------
- sound/soc/soc-pcm.c  |  35 +++++++-
- 3 files changed, 162 insertions(+), 101 deletions(-)
-
+diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
+index 1d04612601ad..5348abda7ce2 100644
+--- a/sound/soc/soc-dapm.c
++++ b/sound/soc/soc-dapm.c
+@@ -3835,11 +3835,6 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 				goto out;
+ 			}
+ 			source->active++;
+-			ret = snd_soc_dai_hw_params(source, &substream, params);
+-			if (ret < 0)
+-				goto out;
+-
+-			dapm_update_dai_unlocked(&substream, params, source);
+ 		}
+ 
+ 		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
+@@ -3853,7 +3848,24 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 				goto out;
+ 			}
+ 			sink->active++;
+-			ret = snd_soc_dai_hw_params(sink, &substream, params);
++		}
++
++		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
++		snd_soc_dapm_widget_for_each_source_path(w, path) {
++			source = path->source->priv;
++
++			ret = soc_dai_hw_params(&substream, params, source);
++			if (ret < 0)
++				goto out;
++
++			dapm_update_dai_unlocked(&substream, params, source);
++		}
++
++		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
++		snd_soc_dapm_widget_for_each_sink_path(w, path) {
++			sink = path->sink->priv;
++
++			ret = soc_dai_hw_params(&substream, params, sink);
+ 			if (ret < 0)
+ 				goto out;
+ 
+@@ -3889,9 +3901,18 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
+ 		snd_soc_dapm_widget_for_each_source_path(w, path) {
+ 			source = path->source->priv;
+-
+ 			snd_soc_dai_hw_free(source, &substream);
++		}
+ 
++		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
++		snd_soc_dapm_widget_for_each_sink_path(w, path) {
++			sink = path->sink->priv;
++			snd_soc_dai_hw_free(sink, &substream);
++		}
++
++		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
++		snd_soc_dapm_widget_for_each_source_path(w, path) {
++			source = path->source->priv;
+ 			source->active--;
+ 			snd_soc_dai_shutdown(source, &substream);
+ 		}
+@@ -3899,9 +3920,6 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
+ 		snd_soc_dapm_widget_for_each_sink_path(w, path) {
+ 			sink = path->sink->priv;
+-
+-			snd_soc_dai_hw_free(sink, &substream);
+-
+ 			sink->active--;
+ 			snd_soc_dai_shutdown(sink, &substream);
+ 		}
 -- 
 2.21.0
 
