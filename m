@@ -2,113 +2,113 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 85C0073405
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 18:37:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 218A17340E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 18:38:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726946AbfGXQhl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 12:37:41 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:34418 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726316AbfGXQhl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 12:37:41 -0400
-Received: by mail-io1-f68.google.com with SMTP id k8so91003976iot.1;
-        Wed, 24 Jul 2019 09:37:41 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=aN3WiNJl0bfCZ6MqW9HUrJKO6cOxUKnLi8cPca8JyJ4=;
-        b=PXkLnpXrc225FlQ/IUjX8YWqOFAh82Ma4N7/JtL5wngdM7SoIazxcbU7DyrPlaWbQU
-         U6cozBESoJr1QeudKNIRORYrFA45yXj0FZQck3ecKJ4SQsrDrnxmKuV/0urqr5cBqDeO
-         vP8zfXaYpE3dJa/qHYJe+5iEt2vxFBsybecYY7knLuBh3mHYQ6rzZDJSp1/N5AXMq5eW
-         e9/aGHbC7pSKG6++sJwIkDw/baWVYomzEghH9zHEvbC/ejcB5kB9nfkEJAyOPZZeQWn6
-         WzHeFzfqKp0mPwtyGo6JuVut7/L3vDDV46xFYZ457x6vp5AVV0N6/cwdPuV9qwpsbMJm
-         Ve2w==
-X-Gm-Message-State: APjAAAUm8YYL6EMs7SQ93t6yEITKNsxcdwkPiTebdQqfq88jd5qLekb+
-        sn7gZ2MfrPZ0v68Cn0K0Cg==
-X-Google-Smtp-Source: APXvYqxBJFBHz4CQS6sQgG+9iwqs2ivKeU8rEkIxda0VNz5GfxhHcwnTFYOz14lhl0mS6oDzsTpOug==
-X-Received: by 2002:a5d:8195:: with SMTP id u21mr78103739ion.260.1563986260529;
-        Wed, 24 Jul 2019 09:37:40 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id l5sm80967912ioq.83.2019.07.24.09.37.39
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 24 Jul 2019 09:37:39 -0700 (PDT)
-Date:   Wed, 24 Jul 2019 10:37:39 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     dongchun.zhu@mediatek.com
-Cc:     mchehab@kernel.org, mark.rutland@arm.com, matthias.bgg@gmail.com,
-        sakari.ailus@linux.intel.com, tfiga@chromium.org,
-        bingbu.cao@intel.com, srv_heupstream@mediatek.com,
-        linux-mediatek@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
-Subject: Re: [PATCH 1/2] media: i2c: dw9768: Add DT support and MAINTAINERS
- entry
-Message-ID: <20190724163739.GA29502@bogus>
-References: <20190708100641.2702-1-dongchun.zhu@mediatek.com>
- <20190708100641.2702-2-dongchun.zhu@mediatek.com>
+        id S2387455AbfGXQif (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 12:38:35 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:54027 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2387410AbfGXQie (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jul 2019 12:38:34 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6OGZxKK003801;
+        Wed, 24 Jul 2019 18:38:07 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=LIYF+WcEyHaSveQjneiWBz5V/SW/gazjJXI0PW9I0e8=;
+ b=C2o/om1ItzSc3OdBwnt83hedbHngy+MPN/wTWy9hUMGQU+KNxgEHGTALLAHw+rV/VPpz
+ BFdTu8JaBosBTkGFtxJixvbaSahxZEHmk0W+mGhYXlRZsfcljHKawomaQ0rhZ6UNVJDq
+ kILBoPUa82+q8CTTOzCjTAIePw+qdzjyxkgJKVIqPOfa4rdwPkoLAz6qhWwHyunvh0W1
+ TsP4xXwq6+qTbOfRK0M+MtUhWOisZOmOW5Cvg4sGAsFoG6jm+sZ+ITLFoQKRYQgprTNs
+ PR0W9toqOQBoU/F5r3+YMZhPF+zmNwSeHnU0iwOOm+vDGwAyuwnfUc+H/Y1tOeSy/OLO 5w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2tx603xbgc-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Wed, 24 Jul 2019 18:38:07 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EE96A38;
+        Wed, 24 Jul 2019 16:38:06 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id C259F5212;
+        Wed, 24 Jul 2019 16:38:06 +0000 (GMT)
+Received: from lmecxl0912.lme.st.com (10.75.127.51) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 24 Jul
+ 2019 18:38:06 +0200
+Subject: Re: [PATCH 1/4] ARM: dts: stm32: add FMC2 NAND controller support on
+ stm32mp157c
+To:     Christophe Kerello <christophe.kerello@st.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <linux@armlinux.org.uk>, <olof@lixom.net>, <arnd@arndb.de>
+CC:     <mcoquelin.stm32@gmail.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+References: <1561128590-14621-1-git-send-email-christophe.kerello@st.com>
+ <1561128590-14621-2-git-send-email-christophe.kerello@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <4b6a8df1-593e-44b2-4bb3-2af9f732396c@st.com>
+Date:   Wed, 24 Jul 2019 18:38:05 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190708100641.2702-2-dongchun.zhu@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1561128590-14621-2-git-send-email-christophe.kerello@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG5NODE2.st.com (10.75.127.14) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-24_06:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 08, 2019 at 06:06:40PM +0800, dongchun.zhu@mediatek.com wrote:
-> From: Dongchun Zhu <dongchun.zhu@mediatek.com>
+Hi Christophe
+
+On 6/21/19 4:49 PM, Christophe Kerello wrote:
+> This patch adds FMC2 NAND controller support used by stm32mp157c SOC.
 > 
-> Add the Devicetree binding documentation and MAINTAINERS entry for dw9768.
-> 
-> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> Signed-off-by: Christophe Kerello <christophe.kerello@st.com>
 > ---
->  Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt | 9 +++++++++
->  MAINTAINERS                                                     | 7 +++++++
->  2 files changed, 16 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt
+>   arch/arm/boot/dts/stm32mp157c.dtsi | 19 +++++++++++++++++++
+>   1 file changed, 19 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt
-> new file mode 100644
-> index 0000000..94b8ec3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt
-> @@ -0,0 +1,9 @@
-> +Dongwoon Anatech DW9768 camera voice coil lens driver
-> +
-> +DW9768 is a 10-bit DAC with current sink capability. It is intended
-> +for driving voice coil lenses in camera modules.
-> +
-> +Mandatory properties:
-> +
-> +- compatible: "dongwoon,dw9768"
-> +- reg: I²C slave address
+> diff --git a/arch/arm/boot/dts/stm32mp157c.dtsi b/arch/arm/boot/dts/stm32mp157c.dtsi
+> index 0c4e6eb..f2bda28 100644
+> --- a/arch/arm/boot/dts/stm32mp157c.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp157c.dtsi
+> @@ -1239,6 +1239,25 @@
+>   			dma-requests = <48>;
+>   		};
+>   
+> +		fmc: nand-controller@58002000 {
+> +			compatible = "st,stm32mp15-fmc2";
+> +			reg = <0x58002000 0x1000>,
+> +			      <0x80000000 0x1000>,
+> +			      <0x88010000 0x1000>,
+> +			      <0x88020000 0x1000>,
+> +			      <0x81000000 0x1000>,
+> +			      <0x89010000 0x1000>,
+> +			      <0x89020000 0x1000>;
+> +			interrupts = <GIC_SPI 48 IRQ_TYPE_LEVEL_HIGH>;
+> +			dmas = <&mdma1 20 0x10 0x12000A02 0x0 0x0>,
+> +			       <&mdma1 20 0x10 0x12000A08 0x0 0x0>,
+> +			       <&mdma1 21 0x10 0x12000A0A 0x0 0x0>;
 
-Why not shared with the existing DW9807 binding? Or this could be a 
-trivial device.
+Please, don't use capital letter here.
 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index 5cfbea4..8f6ac93 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -4872,6 +4872,13 @@ S:	Maintained
->  F:	drivers/media/i2c/dw9714.c
->  F:	Documentation/devicetree/bindings/media/i2c/dongwoon,dw9714.txt
->  
-> +DONGWOON DW9768 LENS VOICE COIL DRIVER
-> +M:	Dongchun Zhu <dongchun.zhu@mediatek.com>
-> +L:	linux-media@vger.kernel.org
-> +T:	git git://linuxtv.org/media_tree.git
-> +S:	Maintained
-> +F:	Documentation/devicetree/bindings/media/i2c/dongwoon,dw9768.txt
+> +			dma-names = "tx", "rx", "ecc";
+> +			clocks = <&rcc FMC_K>;
+> +			resets = <&rcc FMC_R>;
+> +			status = "disabled";
+> +		};
 > +
->  DONGWOON DW9807 LENS VOICE COIL DRIVER
->  M:	Sakari Ailus <sakari.ailus@linux.intel.com>
->  L:	linux-media@vger.kernel.org
-> -- 
-> 2.9.2
+>   		qspi: spi@58003000 {
+>   			compatible = "st,stm32f469-qspi";
+>   			reg = <0x58003000 0x1000>, <0x70000000 0x10000000>;
 > 
