@@ -2,112 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41C9D72F90
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 15:09:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D424672F98
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 15:09:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728475AbfGXNJD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 09:09:03 -0400
-Received: from hermes.aosc.io ([199.195.250.187]:51846 "EHLO hermes.aosc.io"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726535AbfGXNJD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jul 2019 09:09:03 -0400
-Received: from localhost (localhost [127.0.0.1]) (Authenticated sender: icenowy@aosc.io)
-        by hermes.aosc.io (Postfix) with ESMTPSA id 9615D6DF8F;
-        Wed, 24 Jul 2019 13:09:01 +0000 (UTC)
+        id S2387476AbfGXNJm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 09:09:42 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:51881 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726535AbfGXNJl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 09:09:41 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hqH1X-0007kg-UH; Wed, 24 Jul 2019 15:09:39 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hqH1X-0000cL-5c; Wed, 24 Jul 2019 15:09:39 +0200
+Date:   Wed, 24 Jul 2019 15:09:39 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Peter Chen <peter.chen@nxp.com>,
+        "felipe.balbi@linux.intel.com" <felipe.balbi@linux.intel.com>,
+        Marco Felsch <m.felsch@pengutronix.de>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Fabio Estevam <festevam@gmail.com>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>
+Subject: Re: [PATCH] ARM: imx25: provide a fixed regulator for usb phys
+Message-ID: <20190724130939.43t66umrasbe4wwf@pengutronix.de>
+References: <20190625100412.11815-1-u.kleine-koenig@pengutronix.de>
+ <VI1PR04MB5327E09DB0DFEB7E868DB59D8BE20@VI1PR04MB5327.eurprd04.prod.outlook.com>
+ <20190626055409.jjiwptyths6p6jty@pengutronix.de>
+ <VI1PR04MB53270E979BA9817D47A7AFC88BFD0@VI1PR04MB5327.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8;
- format=flowed
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-Date:   Wed, 24 Jul 2019 21:09:01 +0800
-From:   Icenowy Zheng <icenowy@aosc.io>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
-        linux-sunxi@googlegroups.com, Rob Herring <robh+dt@kernel.org>,
-        Chen-Yu Tsai <wens@csie.org>, linux-clk@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v4 7/8] dt-bindings: arm: sunxi: add binding for Lichee
- Zero Plus core board
-In-Reply-To: <20190722192934.3jaf3r4rnyeslqyw@flea>
-References: <20190713034634.44585-1-icenowy@aosc.io>
- <20190713034634.44585-8-icenowy@aosc.io>
- <20190720101318.cwrvv5r42wxx5k4r@flea>
- <BDF0C9F6-DD0D-4343-8E24-06A07055004C@aosc.io>
- <20190722192934.3jaf3r4rnyeslqyw@flea>
-Message-ID: <7d24576697521f4985617113dbc4cc41@aosc.io>
-X-Sender: icenowy@aosc.io
+In-Reply-To: <VI1PR04MB53270E979BA9817D47A7AFC88BFD0@VI1PR04MB5327.eurprd04.prod.outlook.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-在 2019-07-23 03:29，Maxime Ripard 写道：
-> On Sat, Jul 20, 2019 at 07:39:08PM +0800, Icenowy Zheng wrote:
->> 
->> 
->> 于 2019年7月20日 GMT+08:00 下午6:13:18, Maxime Ripard 
->> <maxime.ripard@bootlin.com> 写到:
->> >On Sat, Jul 13, 2019 at 11:46:33AM +0800, Icenowy Zheng wrote:
->> >> The Lichee Zero Plus is a core board made by Sipeed, with a microUSB
->> >> connector on it, TF slot or WSON8 SD chip, optional eMMC or SPI
->> >Flash.
->> >> It has a gold finger connector for expansion, and UART is available
->> >from
->> >> reserved pins w/ 2.54mm pitch. The board can use either SoChip S3 or
->> >> Allwinner V3L SoCs.
->> >>
->> >> Add the device tree binding of the basic version of the core board --
->> >> w/o eMMC or SPI Flash, w/ TF slot or WSON8 SD, and use S3 SoC.
->> >>
->> >> Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
->> >> ---
->> >> No changes since v3.
->> >>
->> >> Patch introduced in v2.
->> >>
->> >>  Documentation/devicetree/bindings/arm/sunxi.yaml | 5 +++++
->> >>  1 file changed, 5 insertions(+)
->> >>
->> >> diff --git a/Documentation/devicetree/bindings/arm/sunxi.yaml
->> >b/Documentation/devicetree/bindings/arm/sunxi.yaml
->> >> index 000a00d12d6a..48c126a7a848 100644
->> >> --- a/Documentation/devicetree/bindings/arm/sunxi.yaml
->> >> +++ b/Documentation/devicetree/bindings/arm/sunxi.yaml
->> >> @@ -353,6 +353,11 @@ properties:
->> >>            - const: licheepi,licheepi-zero
->> >>            - const: allwinner,sun8i-v3s
->> >>
->> >> +      - description: Lichee Zero Plus (with S3, without eMMC/SPI
->> >Flash)
->> >> +        items:
->> >> +          - const: sipeed,lichee-zero-plus
->> >> +          - const: allwinner,sun8i-s3
->> >
->> >If the S3 is just a rebranded V3, then we should have the v3 compatile
->> >in that list too.
->> 
->> S3 is V3 with copackaged DDR3 DRAM.
->> 
->> It's pin incompatible w/ V3.
-> 
-> Does it matter though?
-> 
-> If the only thing that changes is the package, we're not manipulating
-> that, and any software that deals with the v3 can deal with the
-> s3. Which is what the compatible is about.
+Hello,
 
-Okay. Should the S3 compatible be kept befoer the V3 one?
+On Thu, Jun 27, 2019 at 03:15:10AM +0000, Peter Chen wrote:
+>  
+> > On 19-06-26 02:40, Peter Chen wrote:
+> > >
+> > > > Subject: [PATCH] ARM: imx25: provide a fixed regulator for usb phys
+> > > >
+> > > > The usb phys are internal to the SoC and so it their 5V supply. With
+> > > > this regulator added explicitly the following (harmless) boot messages go away:
+> > > >
+> > > > 	usb_phy_generic usbphy:usb-phy@0: usbphy:usb-phy@0 supply vcc not found, using dummy regulator
+> > > > 	usb_phy_generic usbphy:usb-phy@1: usbphy:usb-phy@1 supply vcc not found, using dummy regulator
+> > > >
+> > >
+> > > To eliminate the warning message, I suggest doing below changes, as
+> > > vcc supply is not mandatory.
+> > >
+> > > diff --git a/drivers/usb/phy/phy-generic.c
+> > > b/drivers/usb/phy/phy-generic.c index a53b89be5324..01a5ff1a0515
+> > > 100644
+> > > --- a/drivers/usb/phy/phy-generic.c
+> > > +++ b/drivers/usb/phy/phy-generic.c
+> > > @@ -275,7 +275,7 @@ int usb_phy_gen_create_phy(struct device *dev, struct usb_phy_generic *nop,
+> > >                 }
+> > >         }
+> > >
+> > > -       nop->vcc = devm_regulator_get(dev, "vcc");
+> > > +       nop->vcc = devm_regulator_get_optional(dev, "vcc");
+> > 
+> > Is the regulator optional? IMHO this shouldn't be the fix. I think the right fix is Uwe's
+> > approach.
+> > 
+> 
+> Add Felipe.
+> 
+> Some USB PHY's power are from the core system's power (eg, DDR), and some are
+> fixed at the board and no switch for it. So, it is transparent for software at some cases.
 
-> 
-> Maxime
-> 
-> --
-> Maxime Ripard, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
-> 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+It's not clear to me how to proceed. There are two opposing opinions and
+I don't know enough about USB on mx25 to judge myself.
+
+Felipe?
+
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-K�nig            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
