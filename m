@@ -2,124 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A02B7235A
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 02:19:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5664472384
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 02:49:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727357AbfGXATI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 23 Jul 2019 20:19:08 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:45391 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727317AbfGXATI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 23 Jul 2019 20:19:08 -0400
-Received: by mail-ot1-f68.google.com with SMTP id x21so7549555otq.12
-        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 17:19:08 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=HEWjLSp+3ZYUNuS4KEhJxXUV1NrMjDNJTyQjAT98l0c=;
-        b=KyTmnzEVvpYk+8Vlka2lOIuadkdcTW/Tz8dySg662PkCDcfqcEtDIWJHSQjNaXMk0C
-         haii7dxiHOazpNAsR3Z5uOs1P7uV2Vqw/MLZ02bTVjbLF8knC5hZGHCDpTU4NMPLpWuL
-         Xhx3HY2Hw65F9lEzCn6KA48uIWF57MLOLQvoohWT9KUUMS/pA7OUMytCzoKMUioppvFj
-         vWSTNw9ple229Kqqzr/vF/e++yp0Xaojca4wB+WeVU9cDFpKWtVztOMrEWXFACXsEgpL
-         FOKqSw6cChnRDA39sXL1mdr0XGu4PW1KThKsddz652YlAEIG+ce02Vei72xDob9tgh9J
-         HffQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=HEWjLSp+3ZYUNuS4KEhJxXUV1NrMjDNJTyQjAT98l0c=;
-        b=ZkJBTmztQGzGJgOXbm8IwfaRe76OS2GHFWdoWw3U+b29euECEM1DvZ5KphOmxc1A/o
-         tGQUQbbwlwbsp3v8BODl+yZGxjSjNpG5BojcmNtR82uwIY6xWgChRr1N81Qs/fgBoads
-         RCzGaZA69i2dj7LZKurXMyai9eeDQlxuvj55q8t+55aoLWUVRgYlkIIFVvTuBSb4SY0N
-         QzkpyheKv8LYOYxg1DN6DxzMlPZX/CnfEUC1AoQ8nGYhZjmFanMiObNxV/+5XcWQ9Kkz
-         Ht/nYBo3P2RdXp3LhVUM9qy3XpBM6z3SdpUf7fuQvR1fKvSbRpNX/wF1aewBvBbZCcqQ
-         ZxBA==
-X-Gm-Message-State: APjAAAWtT935dGhnNdAitVP0GOTebwW2bChopPL5o9QDIo1BjfNrxoGp
-        f4TgY+704QIWkF6h9u/A6xqXqIH+NZn1Pc8+X21Y9Q==
-X-Google-Smtp-Source: APXvYqzquNMPlzmL6KiNv9dmgPAQ6VX+Yc1CbsySXKc3HGl9ASNz/27eBQrBEGbA7tg6Cvx7smNnbzqfSRN1LoHdaAs=
-X-Received: by 2002:a05:6830:160c:: with SMTP id g12mr2293485otr.231.1563927547521;
- Tue, 23 Jul 2019 17:19:07 -0700 (PDT)
+        id S1726283AbfGXAtZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 23 Jul 2019 20:49:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52638 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725863AbfGXAtZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 23 Jul 2019 20:49:25 -0400
+Received: from dragon (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher DHE-RSA-AES128-SHA (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7D6132253D;
+        Wed, 24 Jul 2019 00:49:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563929364;
+        bh=f1BgHRD07iLgL/RGh4ch0V6HXKB6ToEvnZ787DM64e0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=UX3gv9jRpafjJM3CJy7HbkTSbt/ys7gAa35KrwrO23HsfEBMYrs3uAfjIb4Oo+6yl
+         3O8q/Fwca+iHDZkxXpAk9yp7xJCJYGn1Xisup3xheKcnBIvTH8bi6aDN4q+g+ZZWCt
+         5Nf+czS/e/GSOTlPGT7NCihNbmoXCQW/bjYkv0nM=
+Date:   Wed, 24 Jul 2019 08:48:51 +0800
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Robin Gong <yibin.gong@nxp.com>
+Cc:     "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "broonie@kernel.org" <broonie@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "vkoul@kernel.org" <vkoul@kernel.org>,
+        "dan.j.williams@intel.com" <dan.j.williams@intel.com>,
+        "u.kleine-koenig@pengutronix.de" <u.kleine-koenig@pengutronix.de>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        "will.deacon@arm.com" <will.deacon@arm.com>,
+        "linux-spi@vger.kernel.org" <linux-spi@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: Re: [PATCH v5 12/15] ARM: dts: imx6ul: add dma support on ecspi
+Message-ID: <20190724004848.GV15632@dragon>
+References: <20190610081753.11422-1-yibin.gong@nxp.com>
+ <20190610081753.11422-13-yibin.gong@nxp.com>
+ <20190717064204.GA3738@dragon>
+ <VE1PR04MB663894FA5BC88B130C70AC0789C70@VE1PR04MB6638.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-References: <20190703011020.151615-1-saravanak@google.com> <20190703011020.151615-2-saravanak@google.com>
- <98b2e315-e8da-80ad-1ef8-e6b222c1c6fe@codeaurora.org> <CAGETcx9KSqvyzbM-S8LvBObkNBt38K683Ljm8nNQuhxk7MuvAg@mail.gmail.com>
- <20190722233501.GA19594@bogus> <CAGETcx9GzQj0ZHNF+uR2cGHUkQ5sOPYEwyXKK1dJ2sJbHVSVyw@mail.gmail.com>
- <CAL_JsqJeGK2m6hVEqvFxW6dEhi22LXaRKgb5JmnJfmCp+J6XuA@mail.gmail.com>
-In-Reply-To: <CAL_JsqJeGK2m6hVEqvFxW6dEhi22LXaRKgb5JmnJfmCp+J6XuA@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 23 Jul 2019 17:18:31 -0700
-Message-ID: <CAGETcx9GkwDJHBuFBRheMqR80=JWnXa4xtPqQ+2xHcfvSd55+A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/6] dt-bindings: opp: Introduce opp-peak-KBps and
- opp-avg-KBps bindings
-To:     Rob Herring <robh@kernel.org>
-Cc:     Sibi Sankar <sibis@codeaurora.org>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
-        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <VE1PR04MB663894FA5BC88B130C70AC0789C70@VE1PR04MB6638.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.5.21 (2010-09-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 23, 2019 at 7:27 AM Rob Herring <robh@kernel.org> wrote:
->
-> On Mon, Jul 22, 2019 at 5:41 PM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > On Mon, Jul 22, 2019 at 4:35 PM Rob Herring <robh@kernel.org> wrote:
+On Tue, Jul 23, 2019 at 09:39:38AM +0000, Robin Gong wrote:
+> On 2019-7-17 at 14:42 Shawn Guo <shawnguo@kernel.org> wrote:
+> > On Mon, Jun 10, 2019 at 04:17:50PM +0800, yibin.gong@nxp.com wrote:
+> > > From: Robin Gong <yibin.gong@nxp.com>
 > > >
-> > > On Tue, Jul 16, 2019 at 11:58:08AM -0700, Saravana Kannan wrote:
-> > > > On Tue, Jul 16, 2019 at 10:25 AM Sibi Sankar <sibis@codeaurora.org> wrote:
-> > > > >
-> > > > > Hey Saravana,
-> > > > >
-> > > > > https://patchwork.kernel.org/patch/10850815/
-> > > > > There was already a discussion ^^ on how bandwidth bindings were to be
-> > > > > named.
-> > > >
-> > > > Yes, I'm aware of that series. That series is trying to define a BW
-> > > > mapping for an existing frequency OPP table. This patch is NOT about
-> > > > adding a mapping to an existing table. This patch is about adding the
-> > > > notion of BW OPP tables where BW is the "key" instead of "frequency".
-> > > >
-> > > > So let's not mixed up these two series.
+> > > Add dma support on ecspi.
 > > >
-> > > Maybe different reasons, but in the end we'd end up with 2 bandwidth
-> > > properties. We need to sort out how they'd overlap/coexist.
-> >
-> > Oh, I totally agree! My point is that the other mapping isn't the
-> > right approach because it doesn't handle a whole swath of use cases.
-> > The one I'm proposing can act as a super set of the other (as in, can
-> > handle that use case too).
-> >
-> > > The same comment in that series about defining a standard unit suffix
-> > > also applies to this one.
-> >
-> > I thought I read that whole series and I don't remember reading about
-> > the unit suffix. But I'll take a closer look. I've chosen to keep the
-> > DT units at least as "high of a resolution" as what the APIs accept
-> > today. The APIs take KB/s. So I make sure DT can capture KB/s
-> > differences. If we all agree that KB/s is "too accurate" then I think
-> > we should change everything to MB/s.
->
-> Either one is fine with me, but trying to align to what the OS picked
-> doesn't work. What does BSD use for example? More important is
-> aligning across DT properties so we don't have folks picking whatever
-> random unit they like. We generally try to go with the smallest units
-> that will have enough (32-bit) range for everyone, so that's probably
-> KB/s here.
+> > > Signed-off-by: Robin Gong <yibin.gong@nxp.com>
+> > 
+> > Applied, thanks.
+> Thanks Shawn, but how about other dts patches such as 01/15,02/15?
 
-Yeah, that makes sense.
+I need the authors of the commits being reverted agree on the reverting.
 
--Saravana
+  Sean Nyekjaer <sean.nyekjaer@prevas.dk>
+  Sascha Hauer <s.hauer@pengutronix.de>
+
+Shawn
