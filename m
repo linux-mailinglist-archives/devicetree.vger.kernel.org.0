@@ -2,68 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BE4273013
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 15:40:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB0197301E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 15:44:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726808AbfGXNkO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 09:40:14 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33828 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725826AbfGXNkO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jul 2019 09:40:14 -0400
-Received: from mail-qt1-f178.google.com (mail-qt1-f178.google.com [209.85.160.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1726801AbfGXNoZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 09:44:25 -0400
+Received: from mail-out.m-online.net ([212.18.0.10]:41312 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725944AbfGXNoY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 09:44:24 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 45txQt3LjVz1s4qB;
+        Wed, 24 Jul 2019 15:44:17 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 45txQn47BKz1qqkt;
+        Wed, 24 Jul 2019 15:44:17 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id z7DKvprgIk6z; Wed, 24 Jul 2019 15:44:16 +0200 (CEST)
+X-Auth-Info: E6D+IVqYZEXnu2uwFY/KuPsz+CLXYirpki6t9Y424Ck=
+Received: from kurokawa.lan (ip-86-49-35-8.net.upcbroadband.cz [86.49.35.8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D1AEF22BE9;
-        Wed, 24 Jul 2019 13:40:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563975613;
-        bh=bhFiWmjAtAurAZfHqqApK5Lonkxgn8fire9Ml19llMA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Kh2EK3z7boQ1vFzHVTtQyVdIJMc6U2hDBVe8wqCnfwr/Hkq0R4qBgmqyaPSzIxjJ9
-         Xr1slRXnvy3YItOg31pHypuA2fqiFL8HZUtgFP5jfVu9oB30TySWqzWeGnHnInC6j2
-         NmyRVDFA+u1DAqNSYM9uAncBaOxeJxqW5VGR8HA4=
-Received: by mail-qt1-f178.google.com with SMTP id y26so45485228qto.4;
-        Wed, 24 Jul 2019 06:40:12 -0700 (PDT)
-X-Gm-Message-State: APjAAAXkPQfM+dV73OJA5JlHq+E2FipacxD7pSgVgl91ALVnv1VUaF8+
-        gmV9CyGx9lhr7y706yY4m5W5YyKiBK5btZrgJQ==
-X-Google-Smtp-Source: APXvYqz8sLIH6MUVejBtheayK4y6FI9z7gtA6QpNEl7sUb8Pwb3fG+kRlf3uBz6GM3u3CxWrCbXWR7M2XCCDu0l0MGk=
-X-Received: by 2002:ac8:36b9:: with SMTP id a54mr58656327qtc.300.1563975612019;
- Wed, 24 Jul 2019 06:40:12 -0700 (PDT)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Wed, 24 Jul 2019 15:44:16 +0200 (CEST)
+From:   Marek Vasut <marex@denx.de>
+To:     netdev@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH 1/3] dt-bindings: net: dsa: ksz: document Microchip KSZ87xx family switches
+Date:   Wed, 24 Jul 2019 15:40:46 +0200
+Message-Id: <20190724134048.31029-2-marex@denx.de>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190724134048.31029-1-marex@denx.de>
+References: <20190724134048.31029-1-marex@denx.de>
 MIME-Version: 1.0
-References: <20190724081313.12934-1-andrew@aj.id.au> <20190724081313.12934-4-andrew@aj.id.au>
-In-Reply-To: <20190724081313.12934-4-andrew@aj.id.au>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 24 Jul 2019 07:40:00 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLEb3QSLAhm9BsFa+A_Jmgr4gDtV2nUCKkgwwQaMLBk9g@mail.gmail.com>
-Message-ID: <CAL_JsqLEb3QSLAhm9BsFa+A_Jmgr4gDtV2nUCKkgwwQaMLBk9g@mail.gmail.com>
-Subject: Re: [PATCH 3/3] dt-bindings: aspeed: Remove mention of deprecated compatibles
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     linux-aspeed@lists.ozlabs.org, Lee Jones <lee.jones@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 24, 2019 at 2:13 AM Andrew Jeffery <andrew@aj.id.au> wrote:
->
-> Guide readers away from using the aspeed,g[45].* compatible patterns.
->
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> ---
->  Documentation/devicetree/bindings/mfd/aspeed-scu.txt         | 2 --
->  Documentation/devicetree/bindings/misc/aspeed-p2a-ctrl.txt   | 2 --
->  .../devicetree/bindings/pinctrl/aspeed,ast2400-pinctrl.yaml  | 5 +----
->  .../devicetree/bindings/pinctrl/aspeed,ast2500-pinctrl.yaml  | 4 +---
->  4 files changed, 2 insertions(+), 11 deletions(-)
+Document Microchip KSZ87xx family switches. These include
+KSZ8765 - 5 port switch
+KSZ8794 - 4 port switch
+KSZ8795 - 5 port switch
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: David S. Miller <davem@davemloft.net>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Tristram Ha <Tristram.Ha@microchip.com>
+Cc: Vivien Didelot <vivien.didelot@gmail.com>
+Cc: Woojung Huh <woojung.huh@microchip.com>
+Cc: devicetree@vger.kernel.org
+---
+ Documentation/devicetree/bindings/net/dsa/ksz.txt | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/net/dsa/ksz.txt b/Documentation/devicetree/bindings/net/dsa/ksz.txt
+index 4ac21cef370e..5e8429b6f9ca 100644
+--- a/Documentation/devicetree/bindings/net/dsa/ksz.txt
++++ b/Documentation/devicetree/bindings/net/dsa/ksz.txt
+@@ -5,6 +5,9 @@ Required properties:
+ 
+ - compatible: For external switch chips, compatible string must be exactly one
+   of the following:
++  - "microchip,ksz8765"
++  - "microchip,ksz8794"
++  - "microchip,ksz8795"
+   - "microchip,ksz9477"
+   - "microchip,ksz9897"
+   - "microchip,ksz9896"
+-- 
+2.20.1
+
