@@ -2,214 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D419A73632
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 19:59:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8694A73646
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 20:04:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726987AbfGXR7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 13:59:03 -0400
-Received: from outils.crapouillou.net ([89.234.176.41]:56258 "EHLO
-        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726312AbfGXR7C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 13:59:02 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
-        s=mail; t=1563991140; h=from:from:sender:reply-to:subject:subject:date:date:
-         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
-         content-type:content-type:
-         content-transfer-encoding:content-transfer-encoding:
-         in-reply-to:in-reply-to:references:references;
-        bh=w7Ss6sBrQHMupDimQWwO95AVN89e91bf3yXBxmdm6jE=;
-        b=HMBUm4xr7tlEhCFt6PaX05OQdnJDOsbf+iiPbQaNv1FdSBMsmng4rvUDmmTlD+MLO72MTL
-        DodO/fj1dgfM302yjBbdgbKtmEYQolb7xmcXXccoIG6t6rmVAze60NJwKwJ0DH9SD10Knd
-        8s105L0qFYLSPN33HG9+U4UziLhHpcs=
-Date:   Wed, 24 Jul 2019 13:58:46 -0400
-From:   Paul Cercueil <paul@crapouillou.net>
-Subject: Re: [PATCH 2/2] MIPS: dts: ingenic: Add 'cpus' node
-To:     Paul Burton <paul.burton@mips.com>
-Cc:     Ralf Baechle <ralf@linux-mips.org>,
-        James Hogan <jhogan@kernel.org>,
+        id S1726312AbfGXSEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 14:04:37 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:35226 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725944AbfGXSEh (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jul 2019 14:04:37 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=UpzgCoPq0Wu6UDjrL//LrXChGIZ8cQyw8Fm5gnrCxag=; b=uSCiCyQURATsR/8rSFcWw4XWAi
+        SFtoSKMVeIDa2RmJc1V6rmyvW0kYyCPDOGcHOCEFtupgRlAqo6wTLZEh5RcntlIn+sspActh0D7CD
+        NIq3MQlbePLbM/hYbTyIJHrJoEsr79jvr7L8959e3/hdG9X/lzK5p3siuZhy8dLeLbXA=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hqLcs-0001VX-3i; Wed, 24 Jul 2019 20:04:30 +0200
+Date:   Wed, 24 Jul 2019 20:04:30 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, od@zcrc.me,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Message-Id: <1563991126.1918.0@crapouillou.net>
-In-Reply-To: <20190722222858.4nmhyzi45dg7u67u@pburton-laptop>
-References: <20190722175548.18434-1-paul@crapouillou.net>
-        <20190722175548.18434-2-paul@crapouillou.net>
-        <20190722222858.4nmhyzi45dg7u67u@pburton-laptop>
+        Mark Rutland <mark.rutland@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [RFC] dt-bindings: net: phy: Add subnode for LED configuration
+Message-ID: <20190724180430.GB28488@lunn.ch>
+References: <20190722223741.113347-1-mka@chromium.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1; format=flowed
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190722223741.113347-1-mka@chromium.org>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Jul 22, 2019 at 03:37:41PM -0700, Matthias Kaehlcke wrote:
+> The LED behavior of some Ethernet PHYs is configurable. Add an
+> optional 'leds' subnode with a child node for each LED to be
+> configured. The binding aims to be compatible with the common
+> LED binding (see devicetree/bindings/leds/common.txt).
+> 
+> A LED can be configured to be 'on' when a link with a certain speed
+> is active, or to blink on RX/TX activity. For the configuration to
+> be effective it needs to be supported by the hardware and the
+> corresponding PHY driver.
+> 
+> Suggested-by: Andrew Lunn <andrew@lunn.ch>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+> This RFC is a follow up of the discussion on "[PATCH v2 6/7]
+> dt-bindings: net: realtek: Add property to configure LED mode"
+> (https://lore.kernel.org/patchwork/patch/1097185/).
+> 
+> For now posting as RFC to get a basic agreement on the bindings
+> before proceding with the implementation in phylib and a specific
+> driver.
+> ---
+>  Documentation/devicetree/bindings/net/phy.txt | 33 +++++++++++++++++++
+>  1 file changed, 33 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/net/phy.txt b/Documentation/devicetree/bindings/net/phy.txt
+> index 9b9e5b1765dd..ad495d3abbbb 100644
+> --- a/Documentation/devicetree/bindings/net/phy.txt
+> +++ b/Documentation/devicetree/bindings/net/phy.txt
+> @@ -46,6 +46,25 @@ Optional Properties:
+>    Mark the corresponding energy efficient ethernet mode as broken and
+>    request the ethernet to stop advertising it.
+>  
+> +- leds: A sub-node which is a container of only LED nodes. Each child
+> +    node represents a PHY LED.
+> +
+> +  Required properties for LED child nodes:
+> +  - reg: The ID number of the LED, typically corresponds to a hardware ID.
+> +
+> +  Optional properties for child nodes:
+> +  - label: The label for this LED. If omitted, the label is taken from the node
+> +    name (excluding the unit address). It has to uniquely identify a device,
+> +    i.e. no other LED class device can be assigned the same label.
 
+Hi Matthias
 
-Le lun. 22 juil. 2019 =E0 18:28, Paul Burton <paul.burton@mips.com> a=20
-=E9crit :
-> Hi Paul,
->=20
-> On Mon, Jul 22, 2019 at 01:55:48PM -0400, Paul Cercueil wrote:
->>  Add 'cpus' node to the jz4740.dtsi, jz4770.dtsi, jz4780.dtsi files.
->=20
-> What's the motivation for this?
->=20
-> If it's to silence the "cacheinfo: Unable to detect cache hierarchy"
-> messages, does commit b8bea8a5e5d9 ("mips: fix cacheinfo") from
-> mips-fixes work for you instead?
->=20
-> I'm not seeing much point listing cache setup in DT when we already
-> detect it from cop0 anyway.
+I've thought about label a bit more. 
 
-Ok, just drop this patchset then.
+> +			label = "ethphy0:left:green";
 
->=20
-> Thanks,
->     Paul
->=20
->>  Signed-off-by: Paul Cercueil <paul@crapouillou.net>
->>  ---
->>   arch/mips/boot/dts/ingenic/jz4740.dtsi | 19 +++++++++++
->>   arch/mips/boot/dts/ingenic/jz4770.dtsi | 29 ++++++++++++++++
->>   arch/mips/boot/dts/ingenic/jz4780.dtsi | 47=20
->> ++++++++++++++++++++++++++
->>   3 files changed, 95 insertions(+)
->>=20
->>  diff --git a/arch/mips/boot/dts/ingenic/jz4740.dtsi=20
->> b/arch/mips/boot/dts/ingenic/jz4740.dtsi
->>  index 2beb78a62b7d..14d777dae87d 100644
->>  --- a/arch/mips/boot/dts/ingenic/jz4740.dtsi
->>  +++ b/arch/mips/boot/dts/ingenic/jz4740.dtsi
->>  @@ -6,6 +6,25 @@
->>   	#size-cells =3D <1>;
->>   	compatible =3D "ingenic,jz4740";
->>=20
->>  +	cpus {
->>  +		#address-cells =3D <1>;
->>  +		#size-cells =3D <0>;
->>  +
->>  +		cpu0: cpu@0 {
->>  +			device_type =3D "cpu";
->>  +			compatible =3D "ingenic,xburst-d0";
->>  +			reg =3D <0>;
->>  +			clocks =3D <&cgu JZ4740_CLK_CCLK>;
->>  +			clock-names =3D "cpu";
->>  +
->>  +			i-cache-size =3D <0x4000>;
->>  +			i-cache-block-size =3D <32>;
->>  +
->>  +			d-cache-size =3D <0x4000>;
->>  +			d-cache-block-size =3D <32>;
->>  +		};
->>  +	};
->>  +
->>   	cpuintc: interrupt-controller {
->>   		#address-cells =3D <0>;
->>   		#interrupt-cells =3D <1>;
->>  diff --git a/arch/mips/boot/dts/ingenic/jz4770.dtsi=20
->> b/arch/mips/boot/dts/ingenic/jz4770.dtsi
->>  index 49ede6c14ff3..83ee526fbe10 100644
->>  --- a/arch/mips/boot/dts/ingenic/jz4770.dtsi
->>  +++ b/arch/mips/boot/dts/ingenic/jz4770.dtsi
->>  @@ -7,6 +7,35 @@
->>   	#size-cells =3D <1>;
->>   	compatible =3D "ingenic,jz4770";
->>=20
->>  +	cpus {
->>  +		#address-cells =3D <1>;
->>  +		#size-cells =3D <0>;
->>  +
->>  +		cpu0: cpu@0 {
->>  +			device_type =3D "cpu";
->>  +			compatible =3D "ingenic,xburst-d1";
->>  +			reg =3D <0>;
->>  +			clocks =3D <&cgu JZ4770_CLK_CCLK>;
->>  +			clock-names =3D "cpu";
->>  +
->>  +			i-cache-size =3D <0x4000>;
->>  +			i-cache-block-size =3D <32>;
->>  +
->>  +			d-cache-size =3D <0x4000>;
->>  +			d-cache-block-size =3D <32>;
->>  +
->>  +			next-level-cache =3D <&L2_cache>;
->>  +
->>  +			L2_cache: cache-controller {
->>  +				compatible =3D "cache";
->>  +				cache-unified;
->>  +				cache-level =3D <2>;
->>  +				cache-size =3D <0x40000>;
->>  +				cache-block-size =3D <32>;
->>  +			};
->>  +		};
->>  +	};
->>  +
->>   	cpuintc: interrupt-controller {
->>   		#address-cells =3D <0>;
->>   		#interrupt-cells =3D <1>;
->>  diff --git a/arch/mips/boot/dts/ingenic/jz4780.dtsi=20
->> b/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>  index b03cdec56de9..3339b37101c0 100644
->>  --- a/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>  +++ b/arch/mips/boot/dts/ingenic/jz4780.dtsi
->>  @@ -7,6 +7,53 @@
->>   	#size-cells =3D <1>;
->>   	compatible =3D "ingenic,jz4780";
->>=20
->>  +	cpus {
->>  +		#address-cells =3D <1>;
->>  +		#size-cells =3D <0>;
->>  +
->>  +		cpu0: cpu@0 {
->>  +			device_type =3D "cpu";
->>  +			compatible =3D "ingenic,xburst-e1";
->>  +			reg =3D <0>;
->>  +
->>  +			clocks =3D <&cgu JZ4780_CLK_CPU>;
->>  +			clock-names =3D "cpu";
->>  +
->>  +			i-cache-size =3D <0x8000>;
->>  +			i-cache-block-size =3D <32>;
->>  +
->>  +			d-cache-size =3D <0x8000>;
->>  +			d-cache-block-size =3D <32>;
->>  +
->>  +			next-level-cache =3D <&L2_cache>;
->>  +
->>  +			L2_cache: l2-cache {
->>  +				compatible =3D "cache";
->>  +				cache-unified;
->>  +				cache-level =3D <2>;
->>  +				cache-size =3D <0x80000>;
->>  +				cache-block-size =3D <32>;
->>  +			};
->>  +		};
->>  +
->>  +		cpu1: cpu@1 {
->>  +			device_type =3D "cpu";
->>  +			compatible =3D "ingenic,xburst-e1";
->>  +			reg =3D <1>;
->>  +
->>  +			clocks =3D <&cgu JZ4780_CLK_CORE1>;
->>  +			clock-names =3D "cpu";
->>  +
->>  +			i-cache-size =3D <0x8000>;
->>  +			i-cache-block-size =3D <32>;
->>  +
->>  +			d-cache-size =3D <0x8000>;
->>  +			d-cache-block-size =3D <32>;
->>  +
->>  +			next-level-cache =3D <&L2_cache>;
->>  +		};
->>  +	};
->>  +
->>   	cpuintc: interrupt-controller {
->>   		#address-cells =3D <0>;
->>   		#interrupt-cells =3D <1>;
->>  --
->>  2.21.0.593.g511ec345e18
->>=20
+We need to be careful with names here. systemd etc renames
+interfaces. ethphy0 could in fact be connected to enp3s0, or eth0
+might get renamed to eth1, etc. So i think we should avoid things like
+ethphy0. Also, i'm not sure we actually need a label, at least not to
+start with.Do we have any way to expose it to the user?
 
-=
+If we do ever make it part of the generic LED framework, we can then
+use the label. At that point, i would probably combine the label with
+the interface name in a dynamic way to avoid issues like this.
 
+    Andrew
