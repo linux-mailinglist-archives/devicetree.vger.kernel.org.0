@@ -2,99 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5869172BCF
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 11:55:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7A36F72C1F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 12:09:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726686AbfGXJzJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 05:55:09 -0400
-Received: from mail-eopbgr140052.outbound.protection.outlook.com ([40.107.14.52]:47867
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725883AbfGXJzJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jul 2019 05:55:09 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=i5C7FKAbYrUjHgKVGu7npBMi88rFdl1WT4KCSY0wfL7sNNRDVtkiHnUudrtjm0KUS1MUcH+oxWfa2UmBoGrOInTLO/ycDKic7DM4pmQsxNRQDJEplA7uch/dhpeV+ExgsVZ6FwfEpmkidBBGjSHOd6D/8UnSCmExjwkMCIRYphkqvB7fjSNT+cPw+s5hgtQec64/h+scMVLirQ5Zyg5M4u6b+nMVl4Qjv/WbwApSFdnDlqMUd6YeHA53ZbcTm7Jiu35DMW2sLopYuJbfrVaII36TNeiN5NRVficnDAzWL+RRxRdFR2goen8lOghWUd6B8XgHrnCzBs5D1Fs0+GglRw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RqzCiSqhhGfCRhbKP8eXNNbvwPGWn+czIjP6QWQfG/M=;
- b=gO8NgbMuoHGDnbhTvzMUrTTAJRqC3ktPDA2g5ME+MDwuBS/coojww+FCHI4i4JNrktwGFX8nn7N6OOoEIMNBDX4JLWWFFKGpAXfg5Ij7JoPoYlRqg/qMNHmAQOxpzklO/Y1tWvoC+kcjP6iNqE/07RO1qgrBQWx1s/p7OgEDlGAiHFar5eDsDXrF/htLj4Ru0kY6FC6T/jTBc4s80VGYDWvLBcl4iCTIyjIa0acHZA0aEtRWQzlqmOup6ENUiX/gsf7H/NKoogmIa6e3jl16PsGYAPVpq6pmf5jd4eikwT84IyaA4TJ4D+mFfe8eZDGJNEdhiixosskM91CxhOWpKg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
- header.d=nxp.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=RqzCiSqhhGfCRhbKP8eXNNbvwPGWn+czIjP6QWQfG/M=;
- b=JuoKh2kqgiLERZ3rO5+nQlV/gK7kTuDUSAJPf2+5G3tXfZJUHo8GKCuOzy8O5Oax4Vd2etLN4FVMgXm0i5qINwCrnKSp735alb3HJfEon43cbYF+huBxV1POHCfmyvJJ0zV8ryWexDHRCy2uPwOQZpH5sYOM+8u2gT00UPQDm38=
-Received: from VI1PR04MB4880.eurprd04.prod.outlook.com (20.177.49.153) by
- VI1PR04MB6062.eurprd04.prod.outlook.com (20.179.25.16) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2094.17; Wed, 24 Jul 2019 09:55:05 +0000
-Received: from VI1PR04MB4880.eurprd04.prod.outlook.com
- ([fe80::e401:6546:3729:47c0]) by VI1PR04MB4880.eurprd04.prod.outlook.com
- ([fe80::e401:6546:3729:47c0%6]) with mapi id 15.20.2115.005; Wed, 24 Jul 2019
- 09:55:05 +0000
-From:   Claudiu Manoil <claudiu.manoil@nxp.com>
-To:     Saeed Mahameed <saeedm@mellanox.com>,
-        "davem@davemloft.net" <davem@davemloft.net>
-CC:     "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        Alexandru Marginean <alexandru.marginean@nxp.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH net-next 1/3] enetc: Add mdio bus driver for the PCIe MDIO
- endpoint
-Thread-Topic: [PATCH net-next 1/3] enetc: Add mdio bus driver for the PCIe
- MDIO endpoint
-Thread-Index: AQHVQWmTb9jG7sYluUe4Xi/RkNWlU6bYrWiAgADazCA=
-Date:   Wed, 24 Jul 2019 09:55:05 +0000
-Message-ID: <VI1PR04MB4880914975FCE9A37C4F3EFD96C60@VI1PR04MB4880.eurprd04.prod.outlook.com>
-References: <1563894955-545-1-git-send-email-claudiu.manoil@nxp.com>
-         <1563894955-545-2-git-send-email-claudiu.manoil@nxp.com>
- <2e3c565cacae6050656aeb7c0132736c60f9f4ee.camel@mellanox.com>
-In-Reply-To: <2e3c565cacae6050656aeb7c0132736c60f9f4ee.camel@mellanox.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=claudiu.manoil@nxp.com; 
-x-originating-ip: [212.146.100.6]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 9f66cbf8-cbfd-4b11-a6c9-08d7101d0152
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB6062;
-x-ms-traffictypediagnostic: VI1PR04MB6062:
-x-microsoft-antispam-prvs: <VI1PR04MB6062DDC94944D32E171205FA96C60@VI1PR04MB6062.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:4941;
-x-forefront-prvs: 0108A997B2
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(39860400002)(346002)(376002)(396003)(366004)(13464003)(189003)(199004)(33656002)(55016002)(2501003)(44832011)(2906002)(6436002)(486006)(66066001)(9686003)(25786009)(6116002)(8936002)(68736007)(7696005)(6506007)(478600001)(102836004)(76176011)(53936002)(52536014)(81166006)(64756008)(446003)(66476007)(74316002)(186003)(3846002)(99286004)(316002)(8676002)(14454004)(81156014)(305945005)(26005)(4326008)(7736002)(256004)(6246003)(76116006)(558084003)(5660300002)(54906003)(11346002)(66946007)(66556008)(86362001)(476003)(110136005)(71200400001)(66446008)(71190400001)(229853002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB6062;H:VI1PR04MB4880.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: EGXD/ldm9VF7WXqCGfzDCyPqzIFdQ6YqzkQN2P3VHq/MiXrzQakKJ9wETtMs7M+6Bl+sPkF61YH7vV4U/QKjJXAmfnKmL/DKolLgADJ92xV+NsBUTATCIuS3dgP7iF/6hNQW5tgF6UJj3tKAOA/EKmPDzqkV92Gcn+nfKxCSvNQMO6U8Lk5XZ/x0JCm9N4bQOpo6yrN4c82S4I4D2I0pbx1R+FMbGhiRK/WGjy7Dp63jSeXg4+L+/sXM7ytWOkO47aB20ozqUYGiKRwiAlNF+nRR+JG0iq06Uc5Cda++Qut2gujE/8eEATejhQXPl1iDSz48BWy602S3+J7ZWingt0jiKCpF47PDYuLh8NOPVTJiS1PZ4nFmwl4+2qVYRmosggCPs4PQWFLemmBLBbNeBUAXqznSBfADxr3xgx/ZCYw=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1727172AbfGXKJK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 06:09:10 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:58999 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727129AbfGXKJJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 06:09:09 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190724100907euoutp01cc9252515ed9e7c38fe73f8911bc5d22~0UAPUEnZ62246422464euoutp01M
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2019 10:09:07 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190724100907euoutp01cc9252515ed9e7c38fe73f8911bc5d22~0UAPUEnZ62246422464euoutp01M
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1563962948;
+        bh=XetWQSqaXs6nRe3zf5etzeWMxZUCaNusJKBqu7npMnU=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=hhLM2iJQPxFgojXY5kmm8dcM6yh+SMiJhK5fz3yF5sksiJEyxLbT+QqAcL6zdcNoz
+         4fp7cNdqd9cEtKCavVw6kPQdARRzbXlR/OvGH2nB3dKa1mUtQ6KTOjC8yeR0mA2Ol0
+         +xTB0NumOq2xZOAjf1pOG4L/W3VcZpx6GuIVletA=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190724100907eucas1p29ef5c6bfbe6f34cc2b5508c641f07a0e~0UAOj5ott2173521735eucas1p2Z;
+        Wed, 24 Jul 2019 10:09:07 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 78.51.04325.24E283D5; Wed, 24
+        Jul 2019 11:09:06 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190724100906eucas1p27521c0ef99eda8954fb6462f1a3c40cb~0UANyeGHq1967719677eucas1p2N;
+        Wed, 24 Jul 2019 10:09:06 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190724100906eusmtrp21c36cade0f3a6312c1cb5944314ec5cf~0UANkMPD91736717367eusmtrp2H;
+        Wed, 24 Jul 2019 10:09:06 +0000 (GMT)
+X-AuditID: cbfec7f5-b75ff700000010e5-da-5d382e42ee22
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 9A.57.04146.14E283D5; Wed, 24
+        Jul 2019 11:09:06 +0100 (BST)
+Received: from [106.120.51.20] (unknown [106.120.51.20]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190724100905eusmtip2dd6151f7506f21dbce67219eaad087da~0UAMxAXXg0828408284eusmtip2c;
+        Wed, 24 Jul 2019 10:09:05 +0000 (GMT)
+Subject: Re: [PATCH v4 5/5] DT: arm: exynos4412: add event data type which
+ is monitored
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, b.zolnierkie@samsung.com,
+        robh+dt@kernel.org, mark.rutland@arm.com, cw00.choi@samsung.com,
+        kyungmin.park@samsung.com, m.szyprowski@samsung.com,
+        s.nawrocki@samsung.com, myungjoo.ham@samsung.com, kgene@kernel.org,
+        willy.mh.wolff.ml@gmail.com
+From:   Lukasz Luba <l.luba@partner.samsung.com>
+Message-ID: <694617ed-5c02-40cc-2f27-82e8bb0ac6fe@partner.samsung.com>
+Date:   Wed, 24 Jul 2019 12:09:04 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.7.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 9f66cbf8-cbfd-4b11-a6c9-08d7101d0152
-X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2019 09:55:05.6795
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: claudiu.manoil@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB6062
+In-Reply-To: <20190723175853.GA29195@kozik-lap>
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrOKsWRmVeSWpSXmKPExsWy7djPc7pOehaxBpteG1tsnLGe1eL6l+es
+        FvOPnGO16H/8mtni/PkN7BZnm96wW2x6fI3V4vKuOWwWn3uPMFrMOL+PyWLtkbvsFkuvX2Sy
+        uN24gs2ide8RdovDb9pZLb6deMToIOCxZt4aRo+ds+6ye2xa1cnmsXlJvUffllWMHp83yQWw
+        RXHZpKTmZJalFunbJXBltC+ZwFawgq3i1rFTzA2MzaxdjJwcEgImEqtWT2DqYuTiEBJYwSjR
+        t34VM4TzhVFi/+rlbBDOZ0aJoz83MMO07N9+mh3EFhJYzijRfE4Hwn7LKPGqhR/EFhaIlHh/
+        bz1YjYiApsT1v99ZQQYxC8xilrh2fRaQw8HBJqAnsWNVIYjJK+AmseewCojJIqAqsX65M0in
+        qECExOUtuxhBbF4BQYmTM5+wgNicAvoSC///A7OZBcQlbj2ZzwRhy0tsfzsH7H4JgUYOifkz
+        TzFCnOwicW5tKxOELSzx6vgWdghbRuL/zvlQ8WKJht6FUPU1Eo/750LVWEscPn4R7GJmoFfW
+        79KHCDtK7N2/nwkkLCHAJ3HjrSDECXwSk7ZNZ4YI80p0tAlBVGtIbOm5ALVITGL5mmnsExiV
+        ZiF5bBaSZ2YheWYWwt4FjCyrGMVTS4tz01OLjfNSy/WKE3OLS/PS9ZLzczcxApPb6X/Hv+5g
+        3Pcn6RCjAAejEg9vBZN5rBBrYllxZe4hRgkOZiUR3sAGs1gh3pTEyqrUovz4otKc1OJDjNIc
+        LErivNUMD6KFBNITS1KzU1MLUotgskwcnFINjPrbvqiZpkhtWqZkW5Sz9WmC2MRwc82y516n
+        fzUvibngNrOwKlWreGt6XuK9Nh+RGwfv+Qaurv9v6vHZqr708sEHWWpXzkr4LHCwmblmrmaC
+        /ucLcpdrKiM2+fc2MRteUrug7rfyaJ3i28jw4zIhh7dvaS1LWazaNv1991Tht7NenK+SNZLo
+        UmIpzkg01GIuKk4EAN4fLctqAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrDIsWRmVeSWpSXmKPExsVy+t/xe7pOehaxBvvOMlpsnLGe1eL6l+es
+        FvOPnGO16H/8mtni/PkN7BZnm96wW2x6fI3V4vKuOWwWn3uPMFrMOL+PyWLtkbvsFkuvX2Sy
+        uN24gs2ide8RdovDb9pZLb6deMToIOCxZt4aRo+ds+6ye2xa1cnmsXlJvUffllWMHp83yQWw
+        RenZFOWXlqQqZOQXl9gqRRtaGOkZWlroGZlY6hkam8daGZkq6dvZpKTmZJalFunbJehltC+Z
+        wFawgq3i1rFTzA2MzaxdjJwcEgImEvu3n2bvYuTiEBJYyijxuv8OG0RCTGLSvu3sELawxJ9r
+        XWwQRa8ZJU48XwuU4OAQFoiUOHkgE6RGREBT4vrf76wgNcwCs5glVh48wATR8I5R4tnq6cwg
+        DWwCehI7VhWCmLwCbhJ7DquAmCwCqhLrlzuDjBEViJDoa5sNdgKvgKDEyZlPWEBsTgF9iYX/
+        /4HZzAJmEvM2P2SGsMUlbj2ZzwRhy0tsfzuHeQKj0Cwk7bOQtMxC0jILScsCRpZVjCKppcW5
+        6bnFhnrFibnFpXnpesn5uZsYgTG97djPzTsYL20MPsQowMGoxMNbwWQeK8SaWFZcmXuIUYKD
+        WUmEN7DBLFaINyWxsiq1KD++qDQntfgQoynQbxOZpUST84HpJq8k3tDU0NzC0tDc2NzYzEJJ
+        nLdD4GCMkEB6YklqdmpqQWoRTB8TB6dUA6OOtYbRg8gtrc/zv15umr5x5Zak1DaOt/ahW869
+        PnTtf8PffJW4e9vrok+b1exk3cK1TZNrZU79dUXm7v2ya0RvWijHTRKQlnv5bE1Qt9eX28+W
+        T204NnfzyiN2fA0Nxo4valyF/v7x1WRnqlrOMult17rqniMnNvJY1dfvfPlPZC233TSOyweU
+        WIozEg21mIuKEwHH8dNt/wIAAA==
+X-CMS-MailID: 20190724100906eucas1p27521c0ef99eda8954fb6462f1a3c40cb
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190605091305eucas1p136332cc3d1a299d90617bddcb365bee0
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190605091305eucas1p136332cc3d1a299d90617bddcb365bee0
+References: <20190605091236.24263-1-l.luba@partner.samsung.com>
+        <CGME20190605091305eucas1p136332cc3d1a299d90617bddcb365bee0@eucas1p1.samsung.com>
+        <20190605091236.24263-6-l.luba@partner.samsung.com>
+        <20190723175853.GA29195@kozik-lap>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogU2FlZWQgTWFoYW1lZWQgPHNhZWVk
-bUBtZWxsYW5veC5jb20+DQpbLi4uXQ0KPg0KPm1kaW9idXNfZnJlZShidXMpIGlzIG1pc3Npbmcg
-aGVyZSBhbmQgaW4gZXZlcnkgZXJyb3IgcGF0aC4NCj4NClsuLi5dDQo+DQo+dGhpcyBzaG91bGQg
-Y29tZSBsYXN0IHRvIGJlIHN5bW1ldHJpY2FsIHdpdGggcHJvYmUgZmxvdy4NCj4NCg0KV2lsbCBj
-bGVhbiB0aGVzZSB1cCB0b28uIFRoYW5rcy4NCg==
+Hi Krzysztof,
+
+On 7/23/19 7:58 PM, Krzysztof Kozlowski wrote:
+> On Wed, Jun 05, 2019 at 11:12:36AM +0200, Lukasz Luba wrote:
+>> The patch adds new field in the PPMU event which shows explicitly
+>> what kind of data the event is monitoring. It is possible to change it
+>> using defined values in exynos_ppmu.h file.
+>>
+>> Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
+>> Signed-off-by: Lukasz Luba <l.luba@partner.samsung.com>
+>> ---
+>>   arch/arm/boot/dts/exynos4412-ppmu-common.dtsi | 10 ++++++++++
+>>   1 file changed, 10 insertions(+)
+>>
+> 
+> I tried to apply this... but prerequisites were not merged into
+> v5.3-rc1. This one will have to wait then till next release.
+Indeed, I will ask Chanwoo for ack for patch 4/5.
+
+Regards,
+Lukasz
+> 
+> Best regards,
+> Krzysztof
+> 
+> 
+> 
