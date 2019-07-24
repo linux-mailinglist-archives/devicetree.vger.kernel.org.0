@@ -2,150 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 471AF7359C
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 19:34:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D17C0735CD
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 19:48:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726458AbfGXRe3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 13:34:29 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:41064 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726158AbfGXRe3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 13:34:29 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 19FE260850; Wed, 24 Jul 2019 17:23:00 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1563988981;
-        bh=vSXvWkVwtHyHIwWUq+YF/QA1K+5/2Kp0EBP1AfqkbhI=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=ahaf0mBKbTF+F1aeJUQ79kAK029bTV05MMJUx6I25xzFFVkbqPodr7nhHfiCuHfcj
-         z1bAYe3rMsxMMN3BlMpwB9UR0xVvbTD72R3dYcd8dQfZ6clZOERjwJt5tWYuMdfwNX
-         Df2osXI7bUgqz8Evv1f3HCiQA0tkPDyrUc9SlyGA=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.46.162.237] (i-global254.qualcomm.com [199.106.103.254])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: daidavid1@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5439B602FC;
-        Wed, 24 Jul 2019 17:22:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1563988979;
-        bh=vSXvWkVwtHyHIwWUq+YF/QA1K+5/2Kp0EBP1AfqkbhI=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=YRiSSkVp3Wv93Z7oE+oJRIxrX2AUGkwjCFkS/7vr09crL6MtezV8F4R3jTbbGjSFA
-         FP6Lp7c2I/FkaVIkXVmK77hA22QLFJ9tey92w3lTLJeBp94rRYZaMOoNcrXlyKEsbP
-         3xW6iuqoARl0wlfW4VkjYwajnGjfNTuTyhfMeg9U=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5439B602FC
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=daidavid1@codeaurora.org
-Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Update Qualcomm SDM845 DT
- bindings
-To:     Stephen Boyd <swboyd@chromium.org>, bjorn.andersson@linaro.org,
-        georgi.djakov@linaro.org, robh+dt@kernel.org
-Cc:     evgreen@google.com, ilina@codeaurora.org, seansw@qti.qualcomm.com,
-        elder@linaro.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        linux-pm@vger.kernel.org
-References: <1563568344-1274-1-git-send-email-daidavid1@codeaurora.org>
- <1563568344-1274-2-git-send-email-daidavid1@codeaurora.org>
- <5d371ce7.1c69fb81.9650.8239@mx.google.com>
- <8c181f08-559b-5d77-a617-65cfd3d5da55@codeaurora.org>
- <5d3868a9.1c69fb81.876aa.ac30@mx.google.com>
-From:   David Dai <daidavid1@codeaurora.org>
-Message-ID: <8efd5c48-5d3a-97e1-1dec-6a9cdc4c8ef6@codeaurora.org>
-Date:   Wed, 24 Jul 2019 10:22:57 -0700
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726354AbfGXRsf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 13:48:35 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:9188 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725851AbfGXRsf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 13:48:35 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d3899ee0001>; Wed, 24 Jul 2019 10:48:30 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Wed, 24 Jul 2019 10:48:32 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Wed, 24 Jul 2019 10:48:32 -0700
+Received: from HQMAIL111.nvidia.com (172.20.187.18) by HQMAIL108.nvidia.com
+ (172.18.146.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 24 Jul
+ 2019 17:48:32 +0000
+Received: from HQMAIL105.nvidia.com (172.20.187.12) by HQMAIL111.nvidia.com
+ (172.20.187.18) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 24 Jul
+ 2019 17:48:31 +0000
+Received: from hqnvemgw01.nvidia.com (172.20.150.20) by HQMAIL105.nvidia.com
+ (172.20.187.12) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
+ Transport; Wed, 24 Jul 2019 17:48:31 +0000
+Received: from vidyas-desktop.nvidia.com (Not Verified[10.24.37.38]) by hqnvemgw01.nvidia.com with Trustwave SEG (v7,5,8,10121)
+        id <B5d3899ea0001>; Wed, 24 Jul 2019 10:48:31 -0700
+From:   Vidya Sagar <vidyas@nvidia.com>
+To:     <lorenzo.pieralisi@arm.com>, <bhelgaas@google.com>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <kishon@ti.com>, <catalin.marinas@arm.com>, <will.deacon@arm.com>,
+        <jingoohan1@gmail.com>, <gustavo.pimentel@synopsys.com>
+CC:     <digetx@gmail.com>, <mperttunen@nvidia.com>,
+        <linux-pci@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <kthota@nvidia.com>,
+        <mmaddireddy@nvidia.com>, <vidyas@nvidia.com>, <sagar.tv@gmail.com>
+Subject: [PATCH V14 00/13] PCI: tegra: Add Tegra194 PCIe support
+Date:   Wed, 24 Jul 2019 23:18:11 +0530
+Message-ID: <20190724174824.20933-1-vidyas@nvidia.com>
+X-Mailer: git-send-email 2.17.1
+X-NVConfidentiality: public
 MIME-Version: 1.0
-In-Reply-To: <5d3868a9.1c69fb81.876aa.ac30@mx.google.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
+Content-Type: text/plain
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1563990510; bh=zqJ/9nwKkPmIjSFIL+tOvZoM+amycJsdDpAxogstYCA=;
+        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
+         X-NVConfidentiality:MIME-Version:Content-Type;
+        b=idbrUpL0Um3bkHxuifL0R2f2SJKgH90kO3XsmU6SlVpHnDWiQfhNbJC/8nYBoKO4C
+         I/R+2+4T+BHY6yvCzjvTTlFsJE6/jR9UmmBJhTPA909N/jYM0eCnWWe/HotlPhQSOL
+         Wc3c1w5dgm/3NgNQO3zZbCY4vLc/JMfhoS4P56IIX6Y3aGu12CcWvEsZiAQml7QD3J
+         AM/fNNUCofJ4S5v4xbQB+9KiXh4TqTjiLE7EuTIG4Gf2Gu2BqUV2kICDdI8KTToFmF
+         7P0t1KRhUqLIY1zdyCOJAf0YHGA7ag9rUbuRgjnBRdv1U2qywXcIy6L5W5w6sIYBIn
+         4+lmIeXMyV4Lw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Tegra194 has six PCIe controllers based on Synopsys DesignWare core.
+There are two Universal PHY (UPHY) blocks with each supporting 12(HSIO:
+Hisg Speed IO) and 8(NVHS: NVIDIA High Speed) lanes respectively.
+Controllers:0~4 use UPHY lanes from HSIO brick whereas Controller:5 uses
+UPHY lanes from NVHS brick. Lane mapping in HSIO UPHY brick to each PCIe
+controller (0~4) is controlled in XBAR module by BPMP-FW. Since PCIe
+core has PIPE interface, a glue module called PIPE-to-UPHY (P2U) is used
+to connect each UPHY lane (applicable to both HSIO and NVHS UPHY bricks)
+to PCIe controller
+This patch series
+- Adds support for P2U PHY driver
+- Adds support for PCIe host controller
+- Adds device tree nodes each PCIe controllers
+- Enables nodes applicable to p2972-0000 platform
+- Adds helper APIs in Designware core driver to get capability regs offset
+- Adds defines for new feature registers of PCIe spec revision 4
+- Makes changes in DesignWare core driver to get Tegra194 PCIe working
 
-On 7/24/2019 7:18 AM, Stephen Boyd wrote:
-> Quoting David Dai (2019-07-23 14:48:42)
->> On 7/23/2019 7:42 AM, Stephen Boyd wrote:
->>> Quoting David Dai (2019-07-19 13:32:23)
->>>> +- compatible : shall contain only one of the following:
->>>> +                       "qcom,sdm845-bcm-voter",
->>>> +
->>>> +Examples:
->>>> +
->>>> +apps_rsc: rsc@179c0000 {
->>> But there isn't a reg property.
->> I'll change this to the generic example with just apps_rsc: rsc {
->>>> +       label = "apps_rsc";
->>> Is label required?
-> Any answer?
-Not required.
->>>> +       compatible = "qcom,rpmh-rsc";
->>>> +
->>>> +       apps_bcm_voter: bcm_voter {
->>>> +               compatible = "qcom,sdm845-bcm-voter";
->>>> +       };
->>>> +}
->>>> +
->>>> +disp_rsc: rsc@179d0000 {
->>>> +       label = "disp_rsc";
->>>> +       compatible = "qcom,rpmh-rsc";
->>>> +
->>>> +       disp_bcm_voter: bcm_voter {
->>>> +               compatible = "qcom,sdm845-bcm-voter";
->>>> +       };
->>>> +}
->>>> diff --git a/Documentation/devicetree/bindings/interconnect/qcom,sdm845.txt b/Documentation/devicetree/bindings/interconnect/qcom,sdm845.txt
->>>> index 5c4f1d9..27f9ed9 100644
->>>> --- a/Documentation/devicetree/bindings/interconnect/qcom,sdm845.txt
->>>> +++ b/Documentation/devicetree/bindings/interconnect/qcom,sdm845.txt
-> [...]
->>>> +
->>>> +mem_noc: interconnect@1380000 {
->>>> +       compatible = "qcom,sdm845-mem_noc";
->>>> +       reg = <0 0x1380000 0 0x27200>;
->>>> +       #interconnect-cells = <1>;
->>>> +       qcom,bcm-voter = <&apps_bcm_voter>, <&disp_bcm_voter>;
->>>> +};
->>> How does a consumer target a particular RSC? For example, how can
->>> display decide to use the disp_bcm_voter node from mem_noc here? Maybe
->>> you can add that consumer to the example?
->> I was thinking that the association between the bcm voters and the icc
->> nodes would be handled by the interconnect provider, and that there
->> would be a set of display specific icc nodes with their own unique IDs
->> that the consumers could reference. I will mention this as part of the
->> description and provide an example.
->>
->> Ex: interconnects = <&mmss_noc MASTER_MDP0_DISP &mem_noc SLAVE_EBI_DISP>;
->>
-> It looks backwards to me. Don't the consumers want to consume a
-> particular RSC, i.e. apps or display RSC, so they can choose where to
-> put the bcm vote and then those RSCs want to find MMIO registers for
-> mmss_noc or mem_noc that they have to write to tune something else like
-> QoS? If the MMIO space is the provider then I'm lost how it can
-> differentiate between the RSCs that may be targetting the particular
-> NoC.
-The way that I view this is that the consumers consume both bandwidth 
-and QoS from these physical NoC devices by getting some path between two 
-endpoints on these different NoCs and applying some constraints. The NoC 
-providers can accomplish that either by writing to MMIO spaces or by 
-talking to some remote processor/hardware to tune its clock speed. The 
-consumer doesn't interact with the RSCs directly, but can select a 
-different bcm voter based on the endpoints that are associated with a 
-particular bcm(apps or disp rsc). Each node(endpoints) will have its own 
-BCM designation and an unique bcm voter.
-> Maybe I've just completely missed something and this is all decided
-> already. If so, sorry, I'm just trying to understand.
-No problem, this just means I need to do a better job of explaining.
+Testing done on P2972-0000 platform
+- Able to get PCIe link up with on-board Marvel eSATA controller
+- Able to get PCIe link up with NVMe cards connected to M.2 Key-M slot
+- Able to do data transfers with both SATA drives and NVMe cards
+
+Note
+- Enabling x8 slot on P2972-0000 platform requires pinmux driver for Tegra194.
+  It is being worked on currently and hence Controller:5 (i.e. x8 slot) is
+  disabled in this patch series. A future patch series would enable this.
+- This series is based on top of the following series
+  Jisheng's patches to add support to .remove() in Designware sub-system
+  https://patchwork.kernel.org/project/linux-pci/list/?series=98559
+  (Update: Jisheng's patches are now accepted and applied for v5.2)
+  My patches made on top of Jisheng's patches to export various symbols
+  http://patchwork.ozlabs.org/project/linux-pci/list/?series=115671
+  (Update: My above patch series is accepted and applied for v5.3)
+
+V14:
+* Addressed Lorenzo's review comments in pcie-tegra194.c file (Patch 13/13)
+* Added a new patch to export dw_pcie_wait_for_link() API
+
+V13:
+* Addressed Bjorn's review comments for adding Gen-4 specific defines to pci_regs.h header file
+
+V12:
+* Modified the commit message of patch-3 in this series to address review
+  comments from Lorenzo
+
+V11:
+* Removed device-tree patches from the series as they are applied to relevant
+  Tegra specific trees by Thierry Reding.
+* Included older Tegra chips to extend quirk that disables MSI interrupt being
+  used for Tegra PCIe root ports.
+* Addressed review comments in P2U driver file.
+
+V10:
+* Used _relaxed() versions of readl() & writel()
+
+V9:
+* Made the drivers dependent on ARCH_TEGRA_194_SOC directly
+* Addressed review comments from Dmitry
+
+V8:
+* Changed P2U driver file name from pcie-p2u-tegra194.c to phy-tegra194-p2u.c
+* Addressed review comments from Thierry and Rob
+
+V7:
+* Took care of review comments from Rob
+* Added a quirk to disable MSI for root ports
+* Removed using pcie_pme_disable_msi() API in host controller driver
+
+V6:
+* Removed patch that exports pcie_bus_config symbol
+* Took care of review comments from Thierry and Rob
+
+V5:
+* Removed redundant APIs in pcie-designware-ep.c file after moving them
+  to pcie-designware.c file based on Bjorn's review comments
+
+V4:
+* Rebased on top of linux-next top of the tree
+* Addressed Gustavo's comments and added his Ack for some of the changes.
+
+V3:
+* Addressed review comments from Thierry
+
+V2:
+* Addressed review comments from Bjorn, Thierry, Jonathan, Rob & Kishon
+* Added more patches in v2 series
+
+Vidya Sagar (13):
+  PCI: Add #defines for some of PCIe spec r4.0 features
+  PCI: Disable MSI for Tegra root ports
+  PCI: dwc: Perform dbi regs write lock towards the end
+  PCI: dwc: Move config space capability search API
+  PCI: dwc: Add ext config space capability search API
+  PCI: dwc: Export dw_pcie_wait_for_link() API
+  dt-bindings: PCI: designware: Add binding for CDM register check
+  PCI: dwc: Add support to enable CDM register check
+  dt-bindings: Add PCIe supports-clkreq property
+  dt-bindings: PCI: tegra: Add device tree support for Tegra194
+  dt-bindings: PHY: P2U: Add Tegra194 P2U block
+  phy: tegra: Add PCIe PIPE2UPHY support
+  PCI: tegra: Add Tegra194 PCIe support
+
+ .../bindings/pci/designware-pcie.txt          |    5 +
+ .../bindings/pci/nvidia,tegra194-pcie.txt     |  155 ++
+ Documentation/devicetree/bindings/pci/pci.txt |    5 +
+ .../bindings/phy/phy-tegra194-p2u.txt         |   28 +
+ drivers/pci/controller/dwc/Kconfig            |   10 +
+ drivers/pci/controller/dwc/Makefile           |    1 +
+ .../pci/controller/dwc/pcie-designware-ep.c   |   37 +-
+ .../pci/controller/dwc/pcie-designware-host.c |   14 +-
+ drivers/pci/controller/dwc/pcie-designware.c  |   88 +
+ drivers/pci/controller/dwc/pcie-designware.h  |   12 +
+ drivers/pci/controller/dwc/pcie-tegra194.c    | 1630 +++++++++++++++++
+ drivers/pci/quirks.c                          |   53 +
+ drivers/phy/tegra/Kconfig                     |    7 +
+ drivers/phy/tegra/Makefile                    |    1 +
+ drivers/phy/tegra/phy-tegra194-p2u.c          |  120 ++
+ include/uapi/linux/pci_regs.h                 |   14 +-
+ 16 files changed, 2138 insertions(+), 42 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/pci/nvidia,tegra194-pcie.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/phy-tegra194-p2u.txt
+ create mode 100644 drivers/pci/controller/dwc/pcie-tegra194.c
+ create mode 100644 drivers/phy/tegra/phy-tegra194-p2u.c
 
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.17.1
 
