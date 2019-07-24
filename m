@@ -2,100 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F6F7740C6
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 23:19:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38679740D9
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 23:29:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727868AbfGXVTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 17:19:49 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:39346 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726818AbfGXVTt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 17:19:49 -0400
-Received: by mail-io1-f66.google.com with SMTP id f4so92714472ioh.6
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2019 14:19:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=U42kawvbKkJEpel5zVan/ikF9rLZvUvs8OMQwcRg1UQ=;
-        b=Hj+vv5UDzb40nMOp/TYlwPPAC+V4UscPzE4W3bfNlI7Qb97uhVRuGULd4B00296MSj
-         EjBIE+XYJXv2DiYixI2xTEUG2Ph2XZ7Ubm85jxcyt/IVI4nCKYZpit8TBHwruNP9ATlo
-         bQ8Up4xTuUPB8AJubgG7inQlixBfoprr1mWVM=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=U42kawvbKkJEpel5zVan/ikF9rLZvUvs8OMQwcRg1UQ=;
-        b=kOWJ085otIP5/dgUi0zke8wl/MGKapIvU6PzqEiaYZhnJfxQ/tQG2xqwIU5VtYwWuT
-         pLfgRVht0w23PJkWGhWt9fvoncrgmdiBgAdLheythwkUA9oRYuTtBvpooeNUHRaxex9k
-         zNF7g15hiZktMYq/IzOeNLxWlFh1UmY10y3tl8RD5Fgl+Ra4fngVPS4PYxVsEfPQP/Cm
-         2j3tayY2PeWgg+CaisFwMr+HAkOlSz2Agfq5IuRo+ol1VsqDxe40WooTy8lYztC9eMgQ
-         C8DnFLyxaoSUsxECbJvdSzLGi/9RT6dg3GmkCelFlDPQiI6rDEsFYzkZhmZejET3tHpw
-         ZJxw==
-X-Gm-Message-State: APjAAAXufEpMJGlKaQxeRiTo4WP5sO8V5iELcC2Uk70Fasc8ucdIR5Im
-        XrLO52xqgy9hTfFzRo+LwEHr0r0//jg=
-X-Google-Smtp-Source: APXvYqye7hqrzeEKfZQuc69cdCxg5igKa5fqDmgTl1QBjBcTSYxLbdnqhkq5ki1vOBa5k7JBeoVE/Q==
-X-Received: by 2002:a5d:8747:: with SMTP id k7mr64360387iol.20.1564003188292;
-        Wed, 24 Jul 2019 14:19:48 -0700 (PDT)
-Received: from mail-io1-f43.google.com (mail-io1-f43.google.com. [209.85.166.43])
-        by smtp.gmail.com with ESMTPSA id p25sm38115568iol.48.2019.07.24.14.19.47
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Wed, 24 Jul 2019 14:19:47 -0700 (PDT)
-Received: by mail-io1-f43.google.com with SMTP id e20so62303491iob.9
-        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2019 14:19:47 -0700 (PDT)
-X-Received: by 2002:a5e:c241:: with SMTP id w1mr73854059iop.58.1564003187386;
- Wed, 24 Jul 2019 14:19:47 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190711223455.12210-1-mka@chromium.org>
-In-Reply-To: <20190711223455.12210-1-mka@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Wed, 24 Jul 2019 14:19:35 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=U5Z4QqyjzJpERwhvJFPATS+khVWBCStnaJKZR0hHBWNQ@mail.gmail.com>
-Message-ID: <CAD=FV=U5Z4QqyjzJpERwhvJFPATS+khVWBCStnaJKZR0hHBWNQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] ARM: dts: rockchip: move rk3288-veryon display
- settings into a separate file
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Heiko Stuebner <heiko@sntech.de>, Rob Herring <robh+dt@kernel.org>,
+        id S2388015AbfGXV3s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 17:29:48 -0400
+Received: from vern.gendns.com ([98.142.107.122]:58406 "EHLO vern.gendns.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726087AbfGXV3q (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jul 2019 17:29:46 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=lechnology.com; s=default; h=Message-Id:Date:Subject:Cc:To:From:Sender:
+        Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=FK7kA+WWZ4kZ6RCye8o+1VU69VmtjkxSH/+NyFwhvnU=; b=yclmgoCE+WA4mh0m1r5KDmCubB
+        ixiZz59c16yhdmmn55Tbg7ZpcuFz+ixYvC72VvJ3phAzwM5spCWhtInI+BhEiHYuHh1MKOgNoVDRW
+        OnulIuqysIYeysYlfQjsbSv1cnmFNAd/Zu624BiQVjubI87pC8j1pYCxt1C5FQV93cUMv2vG8Wn/4
+        15EpQPglDDH+11MdLJzvIV1Yx0Nbtng1uVO7Oxg92IUHQw/sIwajDLVlWVo+e4SGNdZ8aKv3/P2ju
+        WvEleaSenwIgcPiH1beZm1BXUiS75XV9HzF7d+ZG0w9+MUd3AQH4hU2PYE6WZl8/0ga1K9yi4gHA4
+        ghBxQbMw==;
+Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:40080 helo=freyr.lechnology.com)
+        by vern.gendns.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <david@lechnology.com>)
+        id 1hqOpT-00EGFs-Bp; Wed, 24 Jul 2019 17:29:43 -0400
+From:   David Lechner <david@lechnology.com>
+To:     linux-omap@vger.kernel.org
+Cc:     David Lechner <david@lechnology.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Robert Nelson <robertcnelson@gmail.com>
+Subject: [PATCH] ARM: dts: am335x-boneblue: Use of am335x-osd335x-common.dtsi
+Date:   Wed, 24 Jul 2019 16:26:16 -0500
+Message-Id: <20190724212616.17945-1-david@lechnology.com>
+X-Mailer: git-send-email 2.17.1
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+This makes use of the am335x-osd335x-common.dtsi file that contains the
+common device tree components for Octavo Systems AM335x System-in-
+Package that is used on the BeagleBone Blue.
 
-On Thu, Jul 11, 2019 at 3:35 PM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> diff --git a/arch/arm/boot/dts/rk3288-veyron-edp.dtsi b/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
-> new file mode 100644
-> index 000000000000..5d812e9e78aa
-> --- /dev/null
-> +++ b/arch/arm/boot/dts/rk3288-veyron-edp.dtsi
-> @@ -0,0 +1,124 @@
-> +// SPDX-License-Identifier: GPL-2.0
+This has two minor side-effects:
+1. pinmux_i2c0_pins is renamed to pinmux-i2c0-pins
+2. the 1MHz cpufreq operating point is enabled
 
-Please allow MIT license:
+Cc: Robert Nelson <robertcnelson@gmail.com>
+Signed-off-by: David Lechner <david@lechnology.com>
+---
+ arch/arm/boot/dts/am335x-boneblue.dts | 92 +--------------------------
+ 1 file changed, 2 insertions(+), 90 deletions(-)
 
-// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
+diff --git a/arch/arm/boot/dts/am335x-boneblue.dts b/arch/arm/boot/dts/am335x-boneblue.dts
+index 0257576d5d16..2f6652ef9a15 100644
+--- a/arch/arm/boot/dts/am335x-boneblue.dts
++++ b/arch/arm/boot/dts/am335x-boneblue.dts
+@@ -5,23 +5,13 @@
+ /dts-v1/;
+ 
+ #include "am33xx.dtsi"
++#include "am335x-osd335x-common.dtsi"
+ #include <dt-bindings/interrupt-controller/irq.h>
+ 
+ / {
+ 	model = "TI AM335x BeagleBone Blue";
+ 	compatible = "ti,am335x-bone-blue", "ti,am33xx";
+ 
+-	cpus {
+-		cpu@0 {
+-			cpu0-supply = <&dcdc2_reg>;
+-		};
+-	};
+-
+-	memory@80000000 {
+-		device_type = "memory";
+-		reg = <0x80000000 0x20000000>; /* 512 MB */
+-	};
+-
+ 	chosen {
+ 		stdout-path = &uart0;
+ 	};
+@@ -142,13 +132,6 @@
+ 		>;
+ 	};
+ 
+-	i2c0_pins: pinmux_i2c0_pins {
+-		pinctrl-single,pins = <
+-			AM33XX_PADCONF(AM335X_PIN_I2C0_SDA, PIN_INPUT_PULLUP, MUX_MODE0)	/* (C17) I2C0_SDA.I2C0_SDA */
+-			AM33XX_PADCONF(AM335X_PIN_I2C0_SCL, PIN_INPUT_PULLUP, MUX_MODE0)	/* (C16) I2C0_SCL.I2C0_SCL */
+-		>;
+-	};
+-
+ 	i2c2_pins: pinmux_i2c2_pins {
+ 		pinctrl-single,pins = <
+ 			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, PIN_INPUT_PULLUP, MUX_MODE3)	/* (D18) uart1_ctsn.I2C2_SDA */
+@@ -328,16 +311,6 @@
+ };
+ 
+ &i2c0 {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&i2c0_pins>;
+-
+-	status = "okay";
+-	clock-frequency = <400000>;
+-
+-	tps: tps@24 {
+-		reg = <0x24>;
+-	};
+-
+ 	baseboard_eeprom: baseboard_eeprom@50 {
+ 		compatible = "atmel,24c256";
+ 		reg = <0x50>;
+@@ -381,66 +354,13 @@
+ /include/ "tps65217.dtsi"
+ 
+ &tps {
+-	interrupts = <7>; /* NMI */
+-	interrupt-parent = <&intc>;
++	/delete-property/ ti,pmic-shutdown-controller;
+ 
+ 	charger {
+ 		interrupts = <0>, <1>;
+ 		interrupt-names = "USB", "AC";
+ 		status = "okay";
+ 	};
+-
+-	pwrbutton {
+-		interrupts = <2>;
+-		status = "okay";
+-	};
+-
+-	regulators {
+-		dcdc1_reg: regulator@0 {
+-			regulator-name = "vdds_dpr";
+-			regulator-always-on;
+-		};
+-
+-		dcdc2_reg: regulator@1 {
+-			/* VDD_MPU voltage limits 0.95V - 1.26V with +/-4% tolerance */
+-			regulator-name = "vdd_mpu";
+-			regulator-min-microvolt = <925000>;
+-			regulator-max-microvolt = <1351500>;
+-			regulator-boot-on;
+-			regulator-always-on;
+-		};
+-
+-		dcdc3_reg: regulator@2 {
+-			/* VDD_CORE voltage limits 0.95V - 1.1V with +/-4% tolerance */
+-			regulator-name = "vdd_core";
+-			regulator-min-microvolt = <925000>;
+-			regulator-max-microvolt = <1150000>;
+-			regulator-boot-on;
+-			regulator-always-on;
+-		};
+-
+-		ldo1_reg: regulator@3 {
+-			regulator-name = "vio,vrtc,vdds";
+-			regulator-always-on;
+-		};
+-
+-		ldo2_reg: regulator@4 {
+-			regulator-name = "vdd_3v3aux";
+-			regulator-always-on;
+-		};
+-
+-		ldo3_reg: regulator@5 {
+-			regulator-name = "vdd_1v8";
+-			regulator-min-microvolt = <1800000>;
+-			regulator-max-microvolt = <1800000>;
+-			regulator-always-on;
+-		};
+-
+-		ldo4_reg: regulator@6 {
+-			regulator-name = "vdd_3v3a";
+-			regulator-always-on;
+-		};
+-	};
+ };
+ 
+ &mmc1 {
+@@ -502,14 +422,6 @@
+ 	};
+ };
+ 
+-&aes {
+-	status = "okay";
+-};
+-
+-&sham {
+-	status = "okay";
+-};
+-
+ &rtc {
+ 	system-power-controller;
+ 	clocks = <&clk_32768_ck>, <&clk_24mhz_clkctrl AM3_CLK_24MHZ_CLKDIV32K_CLKCTRL 0>;
+-- 
+2.17.1
 
-
-> +&pinctrl {
-> +       backlight {
-> +               bl_en: bl-en {
-> +                       rockchip,pins = <7 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
-> +               };
-> +       };
-> +};
-
-nit: convention on Rockchip device tree files is that all pinctrl
-stuff is at the bottom.  Downstream I think I added comments about
-this but those didn't make it upstream.
-
-Also: why did you move "bl_en" here but not "edp_hpd"?
-
--Doug
