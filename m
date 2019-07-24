@@ -2,86 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB0197301E
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 15:44:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89A8B7302E
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 15:47:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726801AbfGXNoZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 09:44:25 -0400
-Received: from mail-out.m-online.net ([212.18.0.10]:41312 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725944AbfGXNoY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 09:44:24 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 45txQt3LjVz1s4qB;
-        Wed, 24 Jul 2019 15:44:17 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 45txQn47BKz1qqkt;
-        Wed, 24 Jul 2019 15:44:17 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id z7DKvprgIk6z; Wed, 24 Jul 2019 15:44:16 +0200 (CEST)
-X-Auth-Info: E6D+IVqYZEXnu2uwFY/KuPsz+CLXYirpki6t9Y424Ck=
-Received: from kurokawa.lan (ip-86-49-35-8.net.upcbroadband.cz [86.49.35.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726769AbfGXNri (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 09:47:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38042 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726767AbfGXNri (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jul 2019 09:47:38 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Wed, 24 Jul 2019 15:44:16 +0200 (CEST)
-From:   Marek Vasut <marex@denx.de>
-To:     netdev@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 1/3] dt-bindings: net: dsa: ksz: document Microchip KSZ87xx family switches
-Date:   Wed, 24 Jul 2019 15:40:46 +0200
-Message-Id: <20190724134048.31029-2-marex@denx.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190724134048.31029-1-marex@denx.de>
-References: <20190724134048.31029-1-marex@denx.de>
+        by mail.kernel.org (Postfix) with ESMTPSA id 5FA8C22ADB
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2019 13:47:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1563976057;
+        bh=tSZqyd/3UKG9x8EIlcarZf4zf4HWCH7HlHiD/EC9nXQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mu/gavjtChRtZ7XCGlmqLxjp58HY2x0F6BH9fayVlXqp8KbUPQ/09QRhLy7vl/7NW
+         8GgzKqQQsUxkWzB6909TRnVmDob12rdcNPxBzMOOC6A6LAxwWTf5ETLi3Ir8wAuFuT
+         t/XflKThN3Jz807fXbVLGx8Y7ZaQqZhvPxiJc0Q4=
+Received: by mail-qt1-f179.google.com with SMTP id r6so41295644qtt.0
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2019 06:47:37 -0700 (PDT)
+X-Gm-Message-State: APjAAAU1JB8ZR/tidXWKRXbX+MuuqyQGTyJW1+X5v2MdpQN7AGH6zWXN
+        xp6KY40EtQbnL2ROFsgc8YikLupMPxTXBWaWCQ==
+X-Google-Smtp-Source: APXvYqwJMiXcCBvfaImQYBS4b/Leeh7lF/cCqXtyPUgsaqog6UFyMDuLHIvhOJLs2oQA4er68tf0IPvdJ+PtGpqy0HA=
+X-Received: by 2002:ac8:3908:: with SMTP id s8mr12412078qtb.224.1563976056600;
+ Wed, 24 Jul 2019 06:47:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190724120623.2385-1-sebastien.szymanski@armadeus.com> <20190724120623.2385-2-sebastien.szymanski@armadeus.com>
+In-Reply-To: <20190724120623.2385-2-sebastien.szymanski@armadeus.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Wed, 24 Jul 2019 07:47:24 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK84CrUseGbnNRhnsOdOyvDuO0o_ycuVfnwd=vQELk_Eg@mail.gmail.com>
+Message-ID: <CAL_JsqK84CrUseGbnNRhnsOdOyvDuO0o_ycuVfnwd=vQELk_Eg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: arm: Document Armadeus SoM and Dev
+ boards devicetree binding
+To:     =?UTF-8?Q?S=C3=A9bastien_Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document Microchip KSZ87xx family switches. These include
-KSZ8765 - 5 port switch
-KSZ8794 - 4 port switch
-KSZ8795 - 5 port switch
+On Wed, Jul 24, 2019 at 6:44 AM S=C3=A9bastien Szymanski
+<sebastien.szymanski@armadeus.com> wrote:
+>
+> Document the following Armadeus SoM and Dev boards devicetree binding
+> already supported:
+> - armadeus,imx27-apf27 and armadeus,imx27-apf27dev
+> - armadeus,imx28-apf28 and armadeus,imx28-apf28dev
+> - armadeus,imx51-apf51 and armadeus,imx51-apf51dev
+> - armadeus,imx6{q,dl}-apf6 and armadeus,imx{q,dl}-apf6dev
+> - armadeus,imx6{ul,ull}-opos6ul and armadeus,imx{ul,ull}-opos6uldev
+>
+> Signed-off-by: S=C3=A9bastien Szymanski <sebastien.szymanski@armadeus.com=
+>
+> ---
+>
+> Changes for v2:
+> - new patch
+>
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 15 ++++++++++++++-
+>  1 file changed, 14 insertions(+), 1 deletion(-)
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: David S. Miller <davem@davemloft.net>
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Tristram Ha <Tristram.Ha@microchip.com>
-Cc: Vivien Didelot <vivien.didelot@gmail.com>
-Cc: Woojung Huh <woojung.huh@microchip.com>
-Cc: devicetree@vger.kernel.org
----
- Documentation/devicetree/bindings/net/dsa/ksz.txt | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/net/dsa/ksz.txt b/Documentation/devicetree/bindings/net/dsa/ksz.txt
-index 4ac21cef370e..5e8429b6f9ca 100644
---- a/Documentation/devicetree/bindings/net/dsa/ksz.txt
-+++ b/Documentation/devicetree/bindings/net/dsa/ksz.txt
-@@ -5,6 +5,9 @@ Required properties:
- 
- - compatible: For external switch chips, compatible string must be exactly one
-   of the following:
-+  - "microchip,ksz8765"
-+  - "microchip,ksz8794"
-+  - "microchip,ksz8795"
-   - "microchip,ksz9477"
-   - "microchip,ksz9897"
-   - "microchip,ksz9896"
--- 
-2.20.1
-
+Reviewed-by: Rob Herring <robh@kernel.org>
