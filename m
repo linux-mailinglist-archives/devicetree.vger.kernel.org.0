@@ -2,140 +2,361 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D619272722
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 07:04:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 893E772740
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 07:21:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725883AbfGXFEL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 01:04:11 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:59979 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1725870AbfGXFEL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 01:04:11 -0400
-X-UUID: e0f47eec30464f22bd9e18ba89f1f95a-20190724
-X-UUID: e0f47eec30464f22bd9e18ba89f1f95a-20190724
-Received: from mtkmrs01.mediatek.inc [(172.21.131.159)] by mailgw01.mediatek.com
-        (envelope-from <neal.liu@mediatek.com>)
-        (mhqrelay.mediatek.com ESMTP with TLS)
-        with ESMTP id 29376682; Wed, 24 Jul 2019 13:04:03 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs07n1.mediatek.inc (172.21.101.16) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Wed, 24 Jul 2019 13:04:02 +0800
-Received: from [172.21.77.33] (172.21.77.33) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 24 Jul 2019 13:04:02 +0800
-Message-ID: <1563944642.13531.0.camel@mtkswgap22>
-Subject: Re: [PATCH v4 2/3] dt-bindings: rng: add bindings for MediaTek
- ARMv8 SoCs
-From:   Neal Liu <neal.liu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        wsd_upstream <wsd_upstream@mediatek.com>,
-        Sean Wang <sean.wang@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Crystal Guo =?UTF-8?Q?=28=E9=83=AD=E6=99=B6=29?= 
-        <Crystal.Guo@mediatek.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        Matt Mackall <mpm@selenic.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Wed, 24 Jul 2019 13:04:02 +0800
-In-Reply-To: <CAL_Jsq+SRhd=-5O2G_CMfJX9Z188kvA05MQOXaU1J8iExwUixQ@mail.gmail.com>
-References: <1561361052-13072-1-git-send-email-neal.liu@mediatek.com>
-         <1561361052-13072-3-git-send-email-neal.liu@mediatek.com>
-         <20190722171320.GA9806@bogus> <1563848465.31451.4.camel@mtkswgap22>
-         <CAL_Jsq+SRhd=-5O2G_CMfJX9Z188kvA05MQOXaU1J8iExwUixQ@mail.gmail.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1725887AbfGXFVK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 01:21:10 -0400
+Received: from mail-vs1-f67.google.com ([209.85.217.67]:34445 "EHLO
+        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725883AbfGXFVK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 01:21:10 -0400
+Received: by mail-vs1-f67.google.com with SMTP id m23so30554422vso.1
+        for <devicetree@vger.kernel.org>; Tue, 23 Jul 2019 22:21:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=verdurent-com.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=k/eNVz2Gv3iMOFCg2AdyVAu7xAsfyLCtEzF/NktEOgU=;
+        b=R4yhWNRPmdXkwJRdn+s+5aJJB+VbHlkpuqSZC04pdadEiR3evwImFA+aaB+9aaKdWk
+         biKBL45VJSOAtaB6bxzzUYkNhIAE/+QsGtTP5rWt5rXPd8nXQdVxGSoMHAH0yZemIGzq
+         pjS7KTr2a2z0M8BaP0Ofng1oGdYoIQwULvKNJbnGD9jTAn3YptaMzdCimSxfGsursQRv
+         CAoHgj0JEVn5IxYEBTMb64YSs4MUiy7VpzmiSXQ68bFgC25Y82gksvLAGdKaMznfnZMA
+         RCVLQJuzp5uA5Ehn4flK087NEQtd1MqPsiLMLukyOeryOLk+Njalmz1vchjRKRFvCbbr
+         Zp7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=k/eNVz2Gv3iMOFCg2AdyVAu7xAsfyLCtEzF/NktEOgU=;
+        b=Nw9zpoqHr/TF4YBlAIelpHF8qmPpyuD7+KoZ2EcA1+BJmxZ1JyORi6cujlHhiPul1g
+         txnrNmqjIhaf+jY4FakpFyM8Xs81IlLLBBAwnMZMnA2xSTupiiMOHOzcv5irxC+p8xGc
+         4IslIXhfiBeznuPrLSy2MtnIxRJiQYN1NOep8Ome68cMJyYn+YJl3BywnQ8Qk5MTdufx
+         hm1pPIjXgPh3faaoTtVPkM/P8SFJ2CSO0FLSPjPq9htQusbYN2ar8vy+jSsBj3NuGx6X
+         hJKUoO20HIgxYdVZo9c/g+s1GonVEwZ77ZP6Xdm6vVbykV6Hc4VY7/2ubZBOlmpkNvXO
+         3isQ==
+X-Gm-Message-State: APjAAAWQNFSi94bAuhO+VuVPi+n2lkXdrFC+wooFSL1kM+HyYIMADvLq
+        dAwAiKm9t7ZPbk/baE8Yf3DEIjmIrp+axF0mjW4=
+X-Google-Smtp-Source: APXvYqwxjkD6dGzt/PeAHHclFyFju/OEpRaPtlopsHdKsks/3sgcc5VLdmlEJszA9OpFozSYbnczrZA+pgiTdPijW2s=
+X-Received: by 2002:a67:f899:: with SMTP id h25mr3287593vso.159.1563945668489;
+ Tue, 23 Jul 2019 22:21:08 -0700 (PDT)
 MIME-Version: 1.0
-X-MTK:  N
+References: <20190724044906.12007-1-vkoul@kernel.org> <20190724044906.12007-4-vkoul@kernel.org>
+In-Reply-To: <20190724044906.12007-4-vkoul@kernel.org>
+From:   Amit Kucheria <amit.kucheria@verdurent.com>
+Date:   Wed, 24 Jul 2019 10:50:57 +0530
+Message-ID: <CAHLCerMap8LwK_QgSFohpMMsNUHscuqO99xL9nQiHJwCcjVVCw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/5] arm64: dts: qcom: sdm845: remove unit name for
+ thermal trip points
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
+        Stephen Boyd <swboyd@chromium.org>,
+        Marc Gonzalez <marc.w.gonzalez@free.fr>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-07-23 at 08:35 -0600, Rob Herring wrote:
-> On Mon, Jul 22, 2019 at 8:21 PM Neal Liu <neal.liu@mediatek.com> wrote:
-> >
-> 
-> Please don't top post to lists.
-> 
-> > Dear Rob,
-> >         You can check my driver for detail:
-> >         http://patchwork.kernel.org/patch/11012475/ or patchset 3/3
-> 
-> I could, or you could just answer my question.
-> 
-> >
-> >         This driver is registered as hardware random number generator, and
-> > combines with rng-core.
-> >         We want to add one rng hw based on the dts. Is this proper or do you
-> > have other suggestion to meet this requirement?
-> 
-> It depends. There doesn't appear to be any resource configuration, so
-> why does it need to be in DT. DT is not the only way instantiate
-> drivers.
-> 
-> Rob
+On Wed, Jul 24, 2019 at 10:20 AM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> The thermal trip points have unit name but no reg property, so we can
+> remove them
+>
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:2824.31-2828.7: Warning (unit_address_vs_reg): /thermal-zones/cpu0-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:2830.31-2834.7: Warning (unit_address_vs_reg): /thermal-zones/cpu0-thermal/trips/trip-point@1: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:2868.31-2872.7: Warning (unit_address_vs_reg): /thermal-zones/cpu1-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:2874.31-2878.7: Warning (unit_address_vs_reg): /thermal-zones/cpu1-thermal/trips/trip-point@1: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:2912.31-2916.7: Warning (unit_address_vs_reg): /thermal-zones/cpu2-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:2918.31-2922.7: Warning (unit_address_vs_reg): /thermal-zones/cpu2-thermal/trips/trip-point@1: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:2956.31-2960.7: Warning (unit_address_vs_reg): /thermal-zones/cpu3-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:2962.31-2966.7: Warning (unit_address_vs_reg): /thermal-zones/cpu3-thermal/trips/trip-point@1: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3000.31-3004.7: Warning (unit_address_vs_reg): /thermal-zones/cpu4-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3006.31-3010.7: Warning (unit_address_vs_reg): /thermal-zones/cpu4-thermal/trips/trip-point@1: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3044.31-3048.7: Warning (unit_address_vs_reg): /thermal-zones/cpu5-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3050.31-3054.7: Warning (unit_address_vs_reg): /thermal-zones/cpu5-thermal/trips/trip-point@1: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3088.31-3092.7: Warning (unit_address_vs_reg): /thermal-zones/cpu6-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3094.31-3098.7: Warning (unit_address_vs_reg): /thermal-zones/cpu6-thermal/trips/trip-point@1: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3132.31-3136.7: Warning (unit_address_vs_reg): /thermal-zones/cpu7-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3138.31-3142.7: Warning (unit_address_vs_reg): /thermal-zones/cpu7-thermal/trips/trip-point@1: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3176.32-3180.7: Warning (unit_address_vs_reg): /thermal-zones/aoss0-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3191.35-3195.7: Warning (unit_address_vs_reg): /thermal-zones/cluster0-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3211.35-3215.7: Warning (unit_address_vs_reg): /thermal-zones/cluster1-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3231.31-3235.7: Warning (unit_address_vs_reg): /thermal-zones/gpu-thermal-top/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3246.31-3250.7: Warning (unit_address_vs_reg): /thermal-zones/gpu-thermal-bottom/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3261.32-3265.7: Warning (unit_address_vs_reg): /thermal-zones/aoss1-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3276.35-3280.7: Warning (unit_address_vs_reg): /thermal-zones/q6-modem-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3291.30-3295.7: Warning (unit_address_vs_reg): /thermal-zones/mem-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3306.31-3310.7: Warning (unit_address_vs_reg): /thermal-zones/wlan-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3321.33-3325.7: Warning (unit_address_vs_reg): /thermal-zones/q6-hvx-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3336.33-3340.7: Warning (unit_address_vs_reg): /thermal-zones/camera-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3351.32-3355.7: Warning (unit_address_vs_reg): /thermal-zones/video-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> arch/arm64/boot/dts/qcom/sdm845.dtsi:3366.32-3370.7: Warning (unit_address_vs_reg): /thermal-zones/modem-thermal/trips/trip-point@0: node has a unit name, but no reg property
+>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> Reviewed-by: Stephen Boyd <swboyd@chromium.org>
 
-This hwrng is only supported on some chipsets. It needs DT to identify
-which platform is supported or not. Is there any better idea to meet
-this requirement?
+Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
 
-Neal
-
-> >
-> >         Thanks
-> >
-> >
-> > On Tue, 2019-07-23 at 01:13 +0800, Rob Herring wrote:
-> > > On Mon, Jun 24, 2019 at 03:24:11PM +0800, Neal Liu wrote:
-> > > > Document the binding used by the MediaTek ARMv8 SoCs random
-> > > > number generator with TrustZone enabled.
-> > > >
-> > > > Signed-off-by: Neal Liu <neal.liu@mediatek.com>
-> > > > ---
-> > > >  .../devicetree/bindings/rng/mtk-sec-rng.txt        |   10 ++++++++++
-> > > >  1 file changed, 10 insertions(+)
-> > > >  create mode 100644 Documentation/devicetree/bindings/rng/mtk-sec-rng.txt
-> > > >
-> > > > diff --git a/Documentation/devicetree/bindings/rng/mtk-sec-rng.txt b/Documentation/devicetree/bindings/rng/mtk-sec-rng.txt
-> > > > new file mode 100644
-> > > > index 0000000..c04ce15
-> > > > --- /dev/null
-> > > > +++ b/Documentation/devicetree/bindings/rng/mtk-sec-rng.txt
-> > > > @@ -0,0 +1,10 @@
-> > > > +MediaTek random number generator with TrustZone enabled
-> > > > +
-> > > > +Required properties:
-> > > > +- compatible : Should be "mediatek,mtk-sec-rng"
-> > >
-> > > What's the interface to access this?
-> > >
-> > > A node with a 'compatible' and nothing else is a sign of something that
-> > > a parent device should instantiate and doesn't need to be in DT. IOW,
-> > > what do complete bindings for firmware functions look like?
-> > >
-> > > > +
-> > > > +Example:
-> > > > +
-> > > > +hwrng: hwrng {
-> > > > +   compatible = "mediatek,mtk-sec-rng";
-> > > > +}
-> > > > --
-> > > > 1.7.9.5
-> > > >
-> > >
-> > > _______________________________________________
-> > > Linux-mediatek mailing list
-> > > Linux-mediatek@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-mediatek
-> >
-> >
-
-
+> ---
+>  arch/arm64/boot/dts/qcom/sdm845.dtsi | 58 ++++++++++++++--------------
+>  1 file changed, 29 insertions(+), 29 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> index 2985df032179..48bd07646eb4 100644
+> --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> @@ -2815,13 +2815,13 @@
+>                         thermal-sensors = <&tsens0 1>;
+>
+>                         trips {
+> -                               cpu0_alert0: trip-point@0 {
+> +                               cpu0_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+>                                 };
+>
+> -                               cpu0_alert1: trip-point@1 {
+> +                               cpu0_alert1: trip-point1 {
+>                                         temperature = <95000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+> @@ -2859,13 +2859,13 @@
+>                         thermal-sensors = <&tsens0 2>;
+>
+>                         trips {
+> -                               cpu1_alert0: trip-point@0 {
+> +                               cpu1_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+>                                 };
+>
+> -                               cpu1_alert1: trip-point@1 {
+> +                               cpu1_alert1: trip-point1 {
+>                                         temperature = <95000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+> @@ -2903,13 +2903,13 @@
+>                         thermal-sensors = <&tsens0 3>;
+>
+>                         trips {
+> -                               cpu2_alert0: trip-point@0 {
+> +                               cpu2_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+>                                 };
+>
+> -                               cpu2_alert1: trip-point@1 {
+> +                               cpu2_alert1: trip-point1 {
+>                                         temperature = <95000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+> @@ -2947,13 +2947,13 @@
+>                         thermal-sensors = <&tsens0 4>;
+>
+>                         trips {
+> -                               cpu3_alert0: trip-point@0 {
+> +                               cpu3_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+>                                 };
+>
+> -                               cpu3_alert1: trip-point@1 {
+> +                               cpu3_alert1: trip-point1 {
+>                                         temperature = <95000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+> @@ -2991,13 +2991,13 @@
+>                         thermal-sensors = <&tsens0 7>;
+>
+>                         trips {
+> -                               cpu4_alert0: trip-point@0 {
+> +                               cpu4_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+>                                 };
+>
+> -                               cpu4_alert1: trip-point@1 {
+> +                               cpu4_alert1: trip-point1 {
+>                                         temperature = <95000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+> @@ -3035,13 +3035,13 @@
+>                         thermal-sensors = <&tsens0 8>;
+>
+>                         trips {
+> -                               cpu5_alert0: trip-point@0 {
+> +                               cpu5_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+>                                 };
+>
+> -                               cpu5_alert1: trip-point@1 {
+> +                               cpu5_alert1: trip-point1 {
+>                                         temperature = <95000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+> @@ -3079,13 +3079,13 @@
+>                         thermal-sensors = <&tsens0 9>;
+>
+>                         trips {
+> -                               cpu6_alert0: trip-point@0 {
+> +                               cpu6_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+>                                 };
+>
+> -                               cpu6_alert1: trip-point@1 {
+> +                               cpu6_alert1: trip-point1 {
+>                                         temperature = <95000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+> @@ -3123,13 +3123,13 @@
+>                         thermal-sensors = <&tsens0 10>;
+>
+>                         trips {
+> -                               cpu7_alert0: trip-point@0 {
+> +                               cpu7_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+>                                 };
+>
+> -                               cpu7_alert1: trip-point@1 {
+> +                               cpu7_alert1: trip-point1 {
+>                                         temperature = <95000>;
+>                                         hysteresis = <2000>;
+>                                         type = "passive";
+> @@ -3167,7 +3167,7 @@
+>                         thermal-sensors = <&tsens0 0>;
+>
+>                         trips {
+> -                               aoss0_alert0: trip-point@0 {
+> +                               aoss0_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3182,7 +3182,7 @@
+>                         thermal-sensors = <&tsens0 5>;
+>
+>                         trips {
+> -                               cluster0_alert0: trip-point@0 {
+> +                               cluster0_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3202,7 +3202,7 @@
+>                         thermal-sensors = <&tsens0 6>;
+>
+>                         trips {
+> -                               cluster1_alert0: trip-point@0 {
+> +                               cluster1_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3222,7 +3222,7 @@
+>                         thermal-sensors = <&tsens0 11>;
+>
+>                         trips {
+> -                               gpu1_alert0: trip-point@0 {
+> +                               gpu1_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3237,7 +3237,7 @@
+>                         thermal-sensors = <&tsens0 12>;
+>
+>                         trips {
+> -                               gpu2_alert0: trip-point@0 {
+> +                               gpu2_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3252,7 +3252,7 @@
+>                         thermal-sensors = <&tsens1 0>;
+>
+>                         trips {
+> -                               aoss1_alert0: trip-point@0 {
+> +                               aoss1_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3267,7 +3267,7 @@
+>                         thermal-sensors = <&tsens1 1>;
+>
+>                         trips {
+> -                               q6_modem_alert0: trip-point@0 {
+> +                               q6_modem_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3282,7 +3282,7 @@
+>                         thermal-sensors = <&tsens1 2>;
+>
+>                         trips {
+> -                               mem_alert0: trip-point@0 {
+> +                               mem_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3297,7 +3297,7 @@
+>                         thermal-sensors = <&tsens1 3>;
+>
+>                         trips {
+> -                               wlan_alert0: trip-point@0 {
+> +                               wlan_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3312,7 +3312,7 @@
+>                         thermal-sensors = <&tsens1 4>;
+>
+>                         trips {
+> -                               q6_hvx_alert0: trip-point@0 {
+> +                               q6_hvx_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3327,7 +3327,7 @@
+>                         thermal-sensors = <&tsens1 5>;
+>
+>                         trips {
+> -                               camera_alert0: trip-point@0 {
+> +                               camera_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3342,7 +3342,7 @@
+>                         thermal-sensors = <&tsens1 6>;
+>
+>                         trips {
+> -                               video_alert0: trip-point@0 {
+> +                               video_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> @@ -3357,7 +3357,7 @@
+>                         thermal-sensors = <&tsens1 7>;
+>
+>                         trips {
+> -                               modem_alert0: trip-point@0 {
+> +                               modem_alert0: trip-point0 {
+>                                         temperature = <90000>;
+>                                         hysteresis = <2000>;
+>                                         type = "hot";
+> --
+> 2.20.1
+>
