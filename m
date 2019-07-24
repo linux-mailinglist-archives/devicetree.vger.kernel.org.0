@@ -2,131 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DDE4972EDE
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 14:29:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C01BD72EFF
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 14:38:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726949AbfGXM3j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 08:29:39 -0400
-Received: from mx2.freebsd.org ([96.47.72.81]:60519 "EHLO mx2.freebsd.org"
+        id S1726031AbfGXMiw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 08:38:52 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:51490 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726763AbfGXM3i (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jul 2019 08:29:38 -0400
-X-Greylist: delayed 354 seconds by postgrey-1.27 at vger.kernel.org; Wed, 24 Jul 2019 08:29:36 EDT
-Received: from mx1.freebsd.org (mx1.freebsd.org [IPv6:2610:1c1:1:606c::19:1])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
-        (Client CN "mx1.freebsd.org", Issuer "Let's Encrypt Authority X3" (verified OK))
-        by mx2.freebsd.org (Postfix) with ESMTPS id 58B996BAB9;
-        Wed, 24 Jul 2019 12:23:44 +0000 (UTC)
-        (envelope-from manu@freebsd.org)
-Received: from smtp.freebsd.org (smtp.freebsd.org [96.47.72.83])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         server-signature RSA-PSS (4096 bits)
-         client-signature RSA-PSS (4096 bits) client-digest SHA256)
-        (Client CN "smtp.freebsd.org", Issuer "Let's Encrypt Authority X3" (verified OK))
-        by mx1.freebsd.org (Postfix) with ESMTPS id AED8D77C79;
-        Wed, 24 Jul 2019 12:23:43 +0000 (UTC)
-        (envelope-from manu@freebsd.org)
-Received: from localhost.localdomain (ip-9.net-89-3-105.rev.numericable.fr [89.3.105.9])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (Client did not present a certificate)
-        (Authenticated sender: manu)
-        by smtp.freebsd.org (Postfix) with ESMTPSA id 9E65A2BB04;
-        Wed, 24 Jul 2019 12:23:42 +0000 (UTC)
-        (envelope-from manu@freebsd.org)
-From:   Emmanuel Vadot <manu@freebsd.org>
-To:     bcousson@baylibre.com, tony@atomide.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-omap@vger.kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Emmanuel Vadot <manu@freebsd.org>
-Subject: [PATCH 1/1] ARM: dts: am335x: Fix UARTs length
-Date:   Wed, 24 Jul 2019 14:23:29 +0200
-Message-Id: <20190724122329.21231-2-manu@freebsd.org>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190724122329.21231-1-manu@freebsd.org>
-References: <20190724122329.21231-1-manu@freebsd.org>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Rspamd-Queue-Id: AED8D77C79
-X-Spamd-Bar: --
-Authentication-Results: mx1.freebsd.org
-X-Spamd-Result: default: False [-2.94 / 15.00];
-         TAGGED_RCPT(0.00)[dt];
-         local_wl_from(0.00)[freebsd.org];
-         NEURAL_HAM_SHORT(-0.94)[-0.940,0];
-         NEURAL_HAM_MEDIUM(-1.00)[-1.000,0];
-         ASN(0.00)[asn:11403, ipnet:96.47.64.0/20, country:US];
-         NEURAL_HAM_LONG(-1.00)[-1.000,0]
+        id S1725826AbfGXMiw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jul 2019 08:38:52 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 3BC6D1A01FD;
+        Wed, 24 Jul 2019 14:38:51 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 2D2CB1A0148;
+        Wed, 24 Jul 2019 14:38:51 +0200 (CEST)
+Received: from fsr-ub1864-112.ea.freescale.net (fsr-ub1864-112.ea.freescale.net [10.171.82.98])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id ED221205D8;
+        Wed, 24 Jul 2019 14:38:49 +0200 (CEST)
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Will Deacon <will@kernel.org>, Stephen Boyd <sboyd@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Anson Huang <Anson.Huang@nxp.com>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        Dong Aisheng <aisheng.dong@nxp.com>,
+        Viresh Kumar <viresh.kumar@linaro.org>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Alexandre Bailon <abailon@baylibre.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Frank Li <Frank.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [RFCv2 0/3] PM / devfreq: Add imx driver
+Date:   Wed, 24 Jul 2019 15:38:43 +0300
+Message-Id: <cover.1563971855.git.leonard.crestez@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-As seen on the AM335x TRM all the UARTs controller only are 0x1000 in size.
-Fix this in the DTS.
+This series attempts to add devfreq support for imx8mm, covering dynamic
+scaling of internal buses and dram.
 
-Signed-off-by: Emmanuel Vadot <manu@freebsd.org>
----
- arch/arm/boot/dts/am33xx-l4.dtsi | 12 ++++++------
- 1 file changed, 6 insertions(+), 6 deletions(-)
+Actual scaling is performed through the clk framework: The NOC and main
+NICs are driven by composite clks and a new 'imx8m-dram' clk is used for
+scaling dram using firmware calls.
 
-diff --git a/arch/arm/boot/dts/am33xx-l4.dtsi b/arch/arm/boot/dts/am33xx-l4.dtsi
-index ced1a19d5f89..a20b04b72be4 100644
---- a/arch/arm/boot/dts/am33xx-l4.dtsi
-+++ b/arch/arm/boot/dts/am33xx-l4.dtsi
-@@ -185,7 +185,7 @@
- 			uart0: serial@0 {
- 				compatible = "ti,am3352-uart", "ti,omap3-uart";
- 				clock-frequency = <48000000>;
--				reg = <0x0 0x2000>;
-+				reg = <0x0 0x1000>;
- 				interrupts = <72>;
- 				status = "disabled";
- 				dmas = <&edma 26 0>, <&edma 27 0>;
-@@ -934,7 +934,7 @@
- 			uart1: serial@0 {
- 				compatible = "ti,am3352-uart", "ti,omap3-uart";
- 				clock-frequency = <48000000>;
--				reg = <0x0 0x2000>;
-+				reg = <0x0 0x1000>;
- 				interrupts = <73>;
- 				status = "disabled";
- 				dmas = <&edma 28 0>, <&edma 29 0>;
-@@ -966,7 +966,7 @@
- 			uart2: serial@0 {
- 				compatible = "ti,am3352-uart", "ti,omap3-uart";
- 				clock-frequency = <48000000>;
--				reg = <0x0 0x2000>;
-+				reg = <0x0 0x1000>;
- 				interrupts = <74>;
- 				status = "disabled";
- 				dmas = <&edma 30 0>, <&edma 31 0>;
-@@ -1614,7 +1614,7 @@
- 			uart3: serial@0 {
- 				compatible = "ti,am3352-uart", "ti,omap3-uart";
- 				clock-frequency = <48000000>;
--				reg = <0x0 0x2000>;
-+				reg = <0x0 0x1000>;
- 				interrupts = <44>;
- 				status = "disabled";
- 			};
-@@ -1644,7 +1644,7 @@
- 			uart4: serial@0 {
- 				compatible = "ti,am3352-uart", "ti,omap3-uart";
- 				clock-frequency = <48000000>;
--				reg = <0x0 0x2000>;
-+				reg = <0x0 0x1000>;
- 				interrupts = <45>;
- 				status = "disabled";
- 			};
-@@ -1674,7 +1674,7 @@
- 			uart5: serial@0 {
- 				compatible = "ti,am3352-uart", "ti,omap3-uart";
- 				clock-frequency = <48000000>;
--				reg = <0x0 0x2000>;
-+				reg = <0x0 0x1000>;
- 				interrupts = <46>;
- 				status = "disabled";
- 			};
+Frequency target is set via "clk_set_min_rate", this allows an unrelated
+subsystem (for example interconnect) to also request minimum rates as a
+form for proactive scaling.
+
+The dram controller (DDRC) has a performance monitoring block attached
+for which a perf driver already exists. Instead of reimplementing that
+as devfreq-events the perf in-kernel API is used.
+
+Changes since v2:
+* Solve review comments
+* Add yaml binding doc
+* Add perf event support
+Link to v2: https://patchwork.kernel.org/patch/11021571/
+
+DRAM frequency switching through clk framework is here:
+* https://patchwork.kernel.org/patch/11049429/
+That part might not be accepted in clk and it might have to be moved to
+devfreq also.
+
+Leonard Crestez (3):
+  dt-bindings: devfreq: Add initial bindings for i.MX
+  PM / devfreq: Add imx driver
+  PM / devfreq: Add imx perf event support
+
+ .../devicetree/bindings/devfreq/imx.yaml      |  59 ++++
+ drivers/devfreq/Kconfig                       |  10 +
+ drivers/devfreq/Makefile                      |   1 +
+ drivers/devfreq/imx-devfreq.c                 | 278 ++++++++++++++++++
+ 4 files changed, 348 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/devfreq/imx.yaml
+ create mode 100644 drivers/devfreq/imx-devfreq.c
+
 -- 
-2.22.0
+2.17.1
 
