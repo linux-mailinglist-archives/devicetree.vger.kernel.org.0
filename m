@@ -2,95 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16704736EA
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 20:49:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2021E736F5
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 20:52:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726650AbfGXStt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 14:49:49 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:48336 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725883AbfGXStt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 14:49:49 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id AA94E80622;
-        Wed, 24 Jul 2019 20:49:44 +0200 (CEST)
-Date:   Wed, 24 Jul 2019 20:49:43 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     dri-devel@lists.freedesktop.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>,
-        linux-arm-kernel@lists.infradead.org,
-        Pawel Moll <pawel.moll@arm.com>,
-        Liviu Dudau <Liviu.Dudau@arm.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 1/2] drm/pl111: Deprecate the pads from the DT binding
-Message-ID: <20190724184943.GA22640@ravnborg.org>
-References: <20190724134959.2365-1-linus.walleij@linaro.org>
+        id S1728320AbfGXSwk convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 24 Jul 2019 14:52:40 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:37810 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726623AbfGXSwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 14:52:40 -0400
+Received: by mail-wm1-f65.google.com with SMTP id f17so42524383wme.2;
+        Wed, 24 Jul 2019 11:52:38 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=3hQEInE7wPS7npsqDdyReFD8+DVG0G6gksarFiD+BUE=;
+        b=p1QXjmSjibShYD8ZOl1TAGs1sAhM/9Y59m8s4PH/SNL0JLri/rNK6Ro6goiffhHlxA
+         2WI7eVxfIJoCI8ZAQIluAteADtY9YRzlyOIaEz+c+1ekoDTtPb2dvn0gYiWMl1aE8qJ3
+         eHnMEI3rjh/pZ3dKWzDBA8nfIF+wFFWxtgOJDAuREd2L4EYW8xGpSGxRUp8bO2XnJChJ
+         vJ0lq7leBZu15G1ecw7uDvbuwY83/J9Z+i7BmVl0ifcWb7Z7UAcNIfBHrS55gEZkGx2U
+         BqyIdDlrz3Xin5KC1U7TrEckWQ/Dw9hSHUPkqlqtTKfCMuNldTNlPnsdPrszjHKQi7YG
+         DjIg==
+X-Gm-Message-State: APjAAAUrbaHUuQcrFfPwL8KrSqmBYOybatflkWMpXNYOk9cnfgustWwj
+        pDTtr0zCbU1KSsCfei1cTbA=
+X-Google-Smtp-Source: APXvYqybZTUdLFKKpdj8xlUt1rpHKS6FMa+wFWKprezrQieSHRxtcvXpOkuvDUOeXbkAfzPmH5YXgQ==
+X-Received: by 2002:a05:600c:10ce:: with SMTP id l14mr73562275wmd.118.1563994357830;
+        Wed, 24 Jul 2019 11:52:37 -0700 (PDT)
+Received: from kozik-lap ([194.230.155.239])
+        by smtp.googlemail.com with ESMTPSA id w24sm37230033wmc.30.2019.07.24.11.52.36
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 24 Jul 2019 11:52:36 -0700 (PDT)
+Date:   Wed, 24 Jul 2019 20:52:34 +0200
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Artur =?utf-8?B?xZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        cw00.choi@samsung.com, myungjoo.ham@samsung.com,
+        inki.dae@samsung.com, sw0312.kim@samsung.com,
+        georgi.djakov@linaro.org, m.szyprowski@samsung.com
+Subject: Re: [RFC PATCH 11/11] drm: exynos: mixer: Add interconnect support
+Message-ID: <20190724185234.GB14346@kozik-lap>
+References: <20190723122016.30279-1-a.swigon@partner.samsung.com>
+ <CGME20190723122029eucas1p2915f536d9ef43a7bd043a878a553439f@eucas1p2.samsung.com>
+ <20190723122016.30279-12-a.swigon@partner.samsung.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190724134959.2365-1-linus.walleij@linaro.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=7gkXJVJtAAAA:8
-        a=7CQSdrXTAAAA:8 a=VwQbUJbxAAAA:8 a=KKAkSRfTAAAA:8 a=ynT33n6li-2ytY4JJ7wA:9
-        a=CjuIK1q_8ugA:10 a=E9Po1WZjFZOl8hwRPBS3:22 a=a-qgeE7W1pNrGK8U0ZQC:22
-        a=AjGcO6oz07-iQ99wixmX:22 a=cvBusfyB2V15izCimMoJ:22
+Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20190723122016.30279-12-a.swigon@partner.samsung.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus.
-
-On Wed, Jul 24, 2019 at 03:49:58PM +0200, Linus Walleij wrote:
-> The pads were an earlier workaround for the internal image
-> pipeline in the Linux fbdev subsystem. As we move to generic
-> definition of display properties and drivers that no longer
-> need this to work, deprecate this property.
+On Tue, Jul 23, 2019 at 02:20:16PM +0200, Artur Świgoń wrote:
+> From: Marek Szyprowski <m.szyprowski@samsung.com>
 > 
-> Cc: Sam Ravnborg <sam@ravnborg.org>
-> Cc: Pawel Moll <pawel.moll@arm.com>
-> Cc: Liviu Dudau <Liviu.Dudau@arm.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Linus Walleij <linus.walleij@linaro.org>
-
-Acked-by: Sam Ravnborg <sam@ravnborg.org>
+> This patch adds interconnect support to exynos-mixer. Please note that the
+> mixer works the same as before when CONFIG_INTERCONNECT is 'n'.
+> 
+> Co-developed-by: Artur Świgoń <a.swigon@partner.samsung.com>
+> Signed-off-by: Artur Świgoń <a.swigon@partner.samsung.com>
+> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
 > ---
->  Documentation/devicetree/bindings/display/arm,pl11x.txt | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
+>  drivers/gpu/drm/exynos/exynos_mixer.c | 68 +++++++++++++++++++++++++--
+>  1 file changed, 63 insertions(+), 5 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/arm,pl11x.txt b/Documentation/devicetree/bindings/display/arm,pl11x.txt
-> index 572fa2773ec4..3f977e72a200 100644
-> --- a/Documentation/devicetree/bindings/display/arm,pl11x.txt
-> +++ b/Documentation/devicetree/bindings/display/arm,pl11x.txt
-> @@ -39,9 +39,11 @@ Required sub-nodes:
+> diff --git a/drivers/gpu/drm/exynos/exynos_mixer.c b/drivers/gpu/drm/exynos/exynos_mixer.c
+> index 7b24338fad3c..fb763854b300 100644
+> --- a/drivers/gpu/drm/exynos/exynos_mixer.c
+> +++ b/drivers/gpu/drm/exynos/exynos_mixer.c
+> @@ -13,6 +13,7 @@
+>  #include <linux/component.h>
+>  #include <linux/delay.h>
+>  #include <linux/i2c.h>
+> +#include <linux/interconnect.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/irq.h>
+>  #include <linux/kernel.h>
+> @@ -97,6 +98,7 @@ struct mixer_context {
+>  	struct exynos_drm_crtc	*crtc;
+>  	struct exynos_drm_plane	planes[MIXER_WIN_NR];
+>  	unsigned long		flags;
+> +	struct icc_path		*soc_path;
 >  
->  - port: describes LCD panel signals, following the common binding
->  	for video transmitter interfaces; see
-> -	Documentation/devicetree/bindings/media/video-interfaces.txt;
-> -	when it is a TFT panel, the port's endpoint must define the
-> -	following property:
-> +	Documentation/devicetree/bindings/media/video-interfaces.txt
+>  	int			irq;
+>  	void __iomem		*mixer_regs;
+> @@ -931,6 +933,37 @@ static void mixer_disable_vblank(struct exynos_drm_crtc *crtc)
+>  	mixer_reg_writemask(mixer_ctx, MXR_INT_EN, 0, MXR_INT_EN_VSYNC);
+>  }
+>  
+> +static void mixer_set_memory_bandwidth(struct exynos_drm_crtc *crtc)
+> +{
+> +	struct drm_display_mode *mode = &crtc->base.state->adjusted_mode;
+> +	struct mixer_context *ctx = crtc->ctx;
+> +	unsigned long bw, bandwidth = 0;
+> +	int i, j, sub;
 > +
-> +Deprecated properties:
-> +	The port's endbpoint subnode had this, now deprecated property
-> +	in the past. Drivers should be able to survive without it:
->  
->  	- arm,pl11x,tft-r0g0b0-pads: an array of three 32-bit values,
->  		defining the way CLD pads are wired up; first value
-> @@ -80,7 +82,6 @@ Example:
->  		port {
->  			clcd_pads: endpoint {
->  				remote-endpoint = <&clcd_panel>;
-> -				arm,pl11x,tft-r0g0b0-pads = <0 8 16>;
->  			};
->  		};
->  
-> -- 
-> 2.21.0
+
+Early exit if !ctx->soc_path, no need to figure out the bandwidth.
+Optionally check it before calling mixer_set_memory_bandwidth() - should
+not hurt readability.
+
+> +	for (i = 0; i < MIXER_WIN_NR; i++) {
+> +		struct drm_plane *plane = &ctx->planes[i].base;
+> +		const struct drm_format_info *format;
+> +
+> +		if (plane->state && plane->state->crtc && plane->state->fb) {
+> +			format = plane->state->fb->format;
+> +			bw = mode->hdisplay * mode->vdisplay *
+> +							drm_mode_vrefresh(mode);
+> +			if (mode->flags & DRM_MODE_FLAG_INTERLACE)
+> +				bw /= 2;
+> +			for (j = 0; j < format->num_planes; j++) {
+> +				sub = j ? (format->vsub * format->hsub) : 1;
+> +				bandwidth += format->cpp[j] * bw / sub;
+> +			}
+> +		}
+> +	}
+> +
+> +	/* add 20% safety margin */
+> +	bandwidth = 5UL * bandwidth / 4;
+> +
+> +	pr_info("exynos-mixer: safe bandwidth %ld Bps\n", bandwidth);
+
+dev_dbg()
+
+Best regards,
+Krzysztof
+
+
