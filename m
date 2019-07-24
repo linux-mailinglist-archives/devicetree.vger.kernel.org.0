@@ -2,56 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C9DC872D23
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 13:13:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0279472D3C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 13:16:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727202AbfGXLNd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 07:13:33 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:45686 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726960AbfGXLNc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 07:13:32 -0400
-Received: from penelope.horms.nl (ip4dab7138.direct-adsl.nl [77.171.113.56])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id ED88425B7BE;
-        Wed, 24 Jul 2019 21:13:29 +1000 (AEST)
-Received: by penelope.horms.nl (Postfix, from userid 7100)
-        id C18CFE22041; Wed, 24 Jul 2019 13:13:27 +0200 (CEST)
-Date:   Wed, 24 Jul 2019 13:13:27 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Magnus Damm <magnus.damm@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, geert+renesas@glider.be,
-        daniel.lezcano@linaro.org, linux-renesas-soc@vger.kernel.org,
-        robh+dt@kernel.org, tglx@linutronix.de
-Subject: Re: [PATCH 7/7] clocksource/drivers/sh_cmt: Document "cmt-48" as
- deprecated
-Message-ID: <20190724111327.gwurememjdhsbgtf@verge.net.au>
-References: <156345023791.5307.6113391102648394591.sendpatchset@octo>
- <156345033835.5307.9206628986166423962.sendpatchset@octo>
+        id S1727322AbfGXLQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 07:16:53 -0400
+Received: from ns.iliad.fr ([212.27.33.1]:56064 "EHLO ns.iliad.fr"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726070AbfGXLQw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jul 2019 07:16:52 -0400
+Received: from ns.iliad.fr (localhost [127.0.0.1])
+        by ns.iliad.fr (Postfix) with ESMTP id A083C20609;
+        Wed, 24 Jul 2019 13:16:50 +0200 (CEST)
+Received: from [192.168.108.49] (freebox.vlq16.iliad.fr [213.36.7.13])
+        by ns.iliad.fr (Postfix) with ESMTP id 88C652018B;
+        Wed, 24 Jul 2019 13:16:50 +0200 (CEST)
+Subject: Re: [PATCH] arm64: dts: qcom: msm8998: Node ordering, address
+ cleanups
+To:     Jeffrey Hugo <jeffrey.l.hugo@gmail.com>,
+        Andy Gross <agross@kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        DT <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+References: <20190722165823.21539-1-jeffrey.l.hugo@gmail.com>
+From:   Marc Gonzalez <marc.w.gonzalez@free.fr>
+Message-ID: <2165bbd3-aa60-bec0-4ee7-dfb7dc1dd1ad@free.fr>
+Date:   Wed, 24 Jul 2019 13:16:50 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <156345033835.5307.9206628986166423962.sendpatchset@octo>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+In-Reply-To: <20190722165823.21539-1-jeffrey.l.hugo@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Virus-Scanned: ClamAV using ClamSMTP ; ns.iliad.fr ; Wed Jul 24 13:16:50 2019 +0200 (CEST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 18, 2019 at 08:45:38PM +0900, Magnus Damm wrote:
-> From: Magnus Damm <damm+renesas@opensource.se>
-> 
-> Update the CMT driver to mark "renesas,cmt-48" as deprecated.
-> 
-> Instead of documenting a theoretical hardware device based on current software
-> support level, define DT bindings top-down based on available data sheet
-> information and make use of part numbers in the DT compat string.
-> 
-> In case of the only in-tree users r8a7740 and sh73a0 the compat strings
-> "renesas,r8a7740-cmt1" and "renesas,sh73a0-cmt1" may be used instead.
-> 
-> Signed-off-by: Magnus Damm <damm+renesas@opensource.se>
+On 22/07/2019 18:58, Jeffrey Hugo wrote:
 
-Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
+> DT nodes should be ordered by address, then node name, and finally label.
+> The msm8998 dtsi does not follow this, so clean it up by reordering the
+> nodes.  While we are at it, extend the addresses to be fully 32-bits wide
+> so that ordering is easy to determine when adding new nodes.  Also, two
+> or so nodes had the wrong address value in their node name (did not match
+> the reg property), so fix those up as well.
+> 
+> Hopefully going forward, things can be maintained so that a cleanup like
+> this is not needed.
+> 
+> Signed-off-by: Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+> ---
+>  arch/arm64/boot/dts/qcom/msm8998.dtsi | 254 +++++++++++++-------------
+>  1 file changed, 127 insertions(+), 127 deletions(-)
 
+LGTM.
+
+Reviewed-by: Marc Gonzalez <marc.w.gonzalez@free.fr>
+
+Rob, Mark: when there are multiple reg properties, why is the convention
+to use the *first* address in the node's name, rather than the lowest
+address?
+
+e.g.
+
+		spmi_bus: spmi@800f000 {
+			compatible = "qcom,spmi-pmic-arb";
+			reg =	<0x0800f000 0x1000>,
+				<0x08400000 0x1000000>,
+				<0x09400000 0x1000000>,
+				<0x0a400000 0x220000>,
+				<0x0800a000 0x3000>;
+			reg-names = "core", "chnls", "obsrvr", "intr", "cnfg";
+
+"spmi@800f000" instead of "spmi@800a000"
+
+Especially, since the reg props could be in any order here, given the
+lookup by name.
+
+Regards.
