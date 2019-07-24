@@ -2,199 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 62E9473373
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 18:14:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7554F73388
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 18:18:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725851AbfGXQOo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 12:14:44 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:45865 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726099AbfGXQOn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 12:14:43 -0400
-Received: by mail-io1-f65.google.com with SMTP id g20so90765560ioc.12;
-        Wed, 24 Jul 2019 09:14:43 -0700 (PDT)
+        id S1728659AbfGXQSc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 12:18:32 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:45913 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728677AbfGXQSc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 12:18:32 -0400
+Received: by mail-io1-f66.google.com with SMTP id g20so90791799ioc.12;
+        Wed, 24 Jul 2019 09:18:31 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=U+1/75xZAzRWTYlUhVUY0io4DCPgugEaKO5dzrfUzCg=;
-        b=Jom3cCcKCdIjdKHK36v0+Rixw+zNQp9Y1uZS2BLcrqFec8yf/tPySNh6DIXI2BLp0G
-         HClAupm8QqbjVgzD8YmgE9z5BkhaGKdTVXm8HP0BgnPL+FbKYSL7/+rgp3cvx5btXg7k
-         PafbhZoMQvBb7zOcfhgfC27fUhWwn+kQyLA/lea9twrePAv/AXy1FgUquNLtQXGqkhdq
-         d4Ycwg6U6/uehqQO95vTCL7e3cYBTlSa3VB48qKLOK/Qp6vFmDTMQJqhrr/ylhBuAdWV
-         d1LlVk7JM6HTtGBJzWQ2p/dsCeXyWQ8TcMu4EbyIJMW05yOgLkYmhoGHpugs3lQ5cPuL
-         vS4A==
-X-Gm-Message-State: APjAAAWespELFb/DIv+ASbUS7MkZITUpCfU0ax2uxi0Dkg/EudoF9FBZ
-        /tRVo4CA3628NrmigRH5KQ==
-X-Google-Smtp-Source: APXvYqw/2u0AejiCtJ2dnt2U6+ugYb6v99MWFKK9mR3zL7gqP8joHRKeGopKNVlAvpBse3T2Pg2/Nw==
-X-Received: by 2002:a5d:8347:: with SMTP id q7mr72718745ior.277.1563984882457;
-        Wed, 24 Jul 2019 09:14:42 -0700 (PDT)
+        bh=NiEvOyYVhlLilgSFE1mlRwHXS6W3gSeLb1b8lQMXBOQ=;
+        b=e6iEfHQAe0xlSQQD94fofT147/LAEdu5QGfh4St0snk6MLbHHv+2u8RB68w69zkoV9
+         oXUyrNxkAGaPtA0o8eKUfAPYrsywNX6SUMOZpOZNVpFTXTF5i5LV4Kbf5EbTztNz30Z6
+         wgHzB5gsfQYkZSBfC04EPqtQjd4XV2LayoqUH0w18Oa0Og2DRwHL00Ww5NtYFl7N9CdG
+         D1m4HKvKOO/m8TDnsiw+lS3Azeaa16FrJ3j7dVqKfzb5tKS/smNIYgUGiJ/uxA3lXec8
+         2SaxqZYG6lV9yogFh38gtr1PShewnm8LolQnFy1sHlkE2aU88TmKEq77c56tZU80ka0Z
+         C8zA==
+X-Gm-Message-State: APjAAAXZAiEURFRvTkS6lqMmgVyePNdmhJQQf/Hls9Te62O7j2Qlrk1p
+        5K0Ls5iIZUWHTx6WMPEzCA==
+X-Google-Smtp-Source: APXvYqx80bAdAvJF00+PN/mFyPi4UNJY/h6LQp8Akm1NxxdhOq+ov9gIYj6vopYyGsh5Ktydz/4jiQ==
+X-Received: by 2002:a6b:6012:: with SMTP id r18mr77134590iog.241.1563985110886;
+        Wed, 24 Jul 2019 09:18:30 -0700 (PDT)
 Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id t14sm39192427ioi.60.2019.07.24.09.14.40
+        by smtp.gmail.com with ESMTPSA id m4sm41525223iok.68.2019.07.24.09.18.30
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 24 Jul 2019 09:14:41 -0700 (PDT)
-Date:   Wed, 24 Jul 2019 10:14:36 -0600
+        Wed, 24 Jul 2019 09:18:30 -0700 (PDT)
+Date:   Wed, 24 Jul 2019 10:18:29 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Nagarjuna Kristam <nkristam@nvidia.com>
-Cc:     balbi@kernel.org, gregkh@linuxfoundation.org,
-        thierry.reding@gmail.com, jonathanh@nvidia.com,
-        mark.rutland@arm.com, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-usb@vger.kernel.org
-Subject: Re: [Patch V5 4/8] dt-bindings: usb: Add NVIDIA Tegra XUSB device
- mode controller binding
-Message-ID: <20190724161436.GA9624@bogus>
-References: <1562326911-26855-1-git-send-email-nkristam@nvidia.com>
- <1562326911-26855-5-git-send-email-nkristam@nvidia.com>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+Cc:     sboyd@kernel.org, mturquette@baylibre.com,
+        linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        haitao.suo@bitmain.com, darren.tsao@bitmain.com,
+        fisher.cheng@bitmain.com, alec.lin@bitmain.com
+Subject: Re: [PATCH 1/5] dt-bindings: clock: Add Bitmain BM1880 SoC clock
+ controller binding
+Message-ID: <20190724161829.GA26249@bogus>
+References: <20190705151440.20844-1-manivannan.sadhasivam@linaro.org>
+ <20190705151440.20844-2-manivannan.sadhasivam@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1562326911-26855-5-git-send-email-nkristam@nvidia.com>
+In-Reply-To: <20190705151440.20844-2-manivannan.sadhasivam@linaro.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 05, 2019 at 05:11:47PM +0530, Nagarjuna Kristam wrote:
-> Add device-tree binding documentation for the XUSB device mode controller
-> present on Tegra210 SoC. This controller supports the USB 3.0
-> specification.
+On Fri, Jul 05, 2019 at 08:44:36PM +0530, Manivannan Sadhasivam wrote:
+> Add devicetree binding for Bitmain BM1880 SoC clock controller.
 > 
-> Signed-off-by: Nagarjuna Kristam <nkristam@nvidia.com>
-> Reviewed-by: JC Kuo <jckuo@nvidia.com>
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
 > ---
->  .../devicetree/bindings/usb/nvidia,tegra-xudc.txt  | 110 +++++++++++++++++++++
->  1 file changed, 110 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
+>  .../bindings/clock/bitmain,bm1880-clk.txt     | 47 +++++++++++
+>  include/dt-bindings/clock/bm1880-clock.h      | 82 +++++++++++++++++++
+>  2 files changed, 129 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.txt
+>  create mode 100644 include/dt-bindings/clock/bm1880-clock.h
 > 
-> diff --git a/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
+> diff --git a/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.txt b/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.txt
 > new file mode 100644
-> index 0000000..c6a1b81
+> index 000000000000..9c967095d430
 > --- /dev/null
-> +++ b/Documentation/devicetree/bindings/usb/nvidia,tegra-xudc.txt
-> @@ -0,0 +1,110 @@
-> +Device tree binding for NVIDIA Tegra XUSB device mode controller (XUDC)
-> +=======================================================================
+> +++ b/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.txt
+> @@ -0,0 +1,47 @@
+> +* Bitmain BM1880 Clock Controller
 > +
-> +The Tegra XUDC controller supports both USB 2.0 HighSpeed/FullSpeed and
-> +USB 3.0 SuperSpeed protocols.
-> +
-> +Required properties:
-> +--------------------
-> +- compatible: For Tegra210, must contain "nvidia,tegra210-xudc".
-> +- reg: Must contain the base and length of all registers used.
-> +- interrupts: Must contain the XUSB device interrupt.
-> +- clocks: Must contain an entry for all clocks used.
-> +  See ../clock/clock-bindings.txt for details.
-> +- clock-names: Must include the following entries:
-> +   - dev: Clock to enable core XUSB dev clock.
-> +   - ss: Clock to enable XUSB super speed clock.
-> +   - ss_src: Clock to enable XUSB super speed dev clock.
-> +   - hs_src: Clock to enable XUSB high speed dev clock.
-> +   - fs_src: Clock to enable XUSB full speed dev clock.
-> +- nvidia,xusb-padctl: phandle to the XUSB pad controller that is used to
-> +  configure the USB pads used by the XUDC controller.
-> +- power-domains: A list of PM domain specifiers that reference each power-domain
-> +  used by the XUSB device mode controller. This list must comprise of a specifier
-> +  for the XUSBA and XUSBB power-domains. See ../power/power_domain.txt and
-> +  ../arm/tegra/nvidia,tegra20-pmc.txt for details.
-> +- power-domain-names: A list of names that represent each of the specifiers in
-> +  the 'power-domains' property. Must include 'ss' and 'dev'.
+> +The Bitmain BM1880 clock controler generates and supplies clock to
 
-The order matters and is the opposite of the example.
+checkpatch.pl reports a spelling error...
 
-> +- phys: Must contain an entry for each entry in phy-names.
-> +  See ../phy/phy-bindings.txt for details.
-> +- phy-names: Should include an entry for each PHY used by the controller.
-> +  Names must be "usb2", and "usb3" if support SuperSpeed device mode.
-> +  - "usb3" phy, SuperSpeed (SSTX+/SSTX-/SSRX+/SSRX-) data lines.
-> +  - "usb2" phy, USB 2.0 (D+/D-) data lines.
+> +various peripherals within the SoC.
 > +
-> +For Tegra210:
-> +- reg-names: Must include the following entries:
-> +   - base: XUSB device controller registers.
-> +   - fpci: XUSB device PCI Config registers.
-> +   - ipfs: XUSB device registers.
-> +- avddio-usb-supply: PCIe/USB3 analog logic power supply. Must supply 1.05 V.
-> +- hvdd-usb-supply: USB controller power supply. Must supply 3.3 V.
+> +Required Properties:
 > +
+> +- compatible: Should be "bitmain,bm1880-clk"
+> +- reg :	Register address and size of PLL and SYS control domains
+> +- reg-names : Register domain names: "pll" and "sys"
+> +- clocks : Phandle of the input reference clock.
+> +- #clock-cells: Should be 1.
 > +
-> +Optional properties:
-> +--------------------
-> +- usb-role-switch: boolean property to indicate use of USB Role Switch driver.
+> +Each clock is assigned an identifier, and client nodes can use this identifier
+> +to specify the clock which they consume.
 > +
-> +Sub-nodes:
-> +----------
-> +- The port would be added as subnode if use "usb-role-switch" property.
-> +  see graph.txt.
+> +All available clocks are defined as preprocessor macros in corresponding
+> +dt-bindings/clock/bm1880-clock.h header and can be used in device tree sources.
 > +
-> +Example:
-> +--------
-> +	pmc: pmc@7000e400 {
-> +		compatible = "nvidia,tegra210-pmc";
-> +		reg = <0x0 0x7000e400 0x0 0x400>;
-> +		clocks = <&tegra_car TEGRA210_CLK_PCLK>, <&clk32k_in>;
-> +		clock-names = "pclk", "clk32k_in";
+> +External clocks:
 > +
-> +		powergates {
-> +			pd_xusbss: xusba {
-> +				clocks = <&tegra_car TEGRA210_CLK_XUSB_SS>;
-> +				resets = <&tegra_car 156>;
-> +				#power-domain-cells = <0>;
-> +			};
+> +The osc clock used as the input for the plls is generated outside the SoC.
+> +It is expected that it is defined using standard clock bindings as "osc".
 > +
-> +			pd_xusbdev: xusbb {
-> +				clocks = <&tegra_car TEGRA210_CLK_XUSB_DEV>;
-> +				resets = <&tegra_car 95>;
-> +				#power-domain-cells = <0>;
-> +			};
-> +		};
-> +	};
+> +Example: 
 > +
-> +	xudc@700d0000 {
+> +        clk: clock-controller@800 {
 
-usb@...
+Usually the unit-address is from the first entry.
 
-> +		compatible = "nvidia,tegra210-xudc";
-> +		reg = <0x0 0x700d0000 0x0 0x8000>,
-> +		      <0x0 0x700d8000 0x0 0x1000>,
-> +		      <0x0 0x700d9000 0x0 0x1000>;
-> +		reg-names = "base", "fpci", "ipfs";
-> +
-> +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
-> +
-> +		clocks = <&tegra_car TEGRA210_CLK_XUSB_DEV>,
-> +			 <&tegra_car TEGRA210_CLK_XUSB_SS>,
-> +			 <&tegra_car TEGRA210_CLK_XUSB_SSP_SRC>,
-> +			 <&tegra_car TEGRA210_CLK_XUSB_HS_SRC>,
-> +			 <&tegra_car TEGRA210_CLK_XUSB_FS_SRC>;
-> +		clock-names = "dev", "ss", "ss_src", "hs_src", "fs_src";
-> +
-> +		power-domains = <&pd_xusbdev>, <&pd_xusbss>;
-> +		power-domain-names = "dev", "ss";
-> +
-> +		nvidia,xusb-padctl = <&padctl>;
-> +
-> +		phys = <&{/padctl@7009f000/pads/usb2/lanes/usb2-0}>;
+> +                compatible = "bitmain,bm1880-clk";
+> +                reg = <0xe8 0x0c>,<0x800 0xb0>;
 
-Use a label.
+space                                ^
 
-> +		phy-names = "usb2;
+> +                reg-names = "pll", "sys";
+> +                clocks = <&osc>;
+> +                #clock-cells = <1>;
+> +        };
 > +
-> +		avddio-usb-supply = <&vdd_pex_1v05>;
-> +		hvdd-usb-supply = <&vdd_3v3_sys>;
+> +Example: UART controller node that consumes clock generated by the clock
+> +controller:
 > +
-> +		usb-role-switch;
-> +		port {
-> +			usb_role_switch: endpoint@0 {
+> +        uart0: serial@58018000 {
+> +                compatible = "snps,dw-apb-uart";
+> +                reg = <0x0 0x58018000 0x0 0x2000>;
+> +                clocks = <&clk BM1880_CLK_UART_500M>;
+> +                         <&clk BM1880_CLK_APB_UART>;
+> +                clock-names = "baudclk", "apb_pclk";
+> +                interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
+> +                reg-shift = <2>;
+> +                reg-io-width = <4>;
+> +        };
+> diff --git a/include/dt-bindings/clock/bm1880-clock.h b/include/dt-bindings/clock/bm1880-clock.h
+> new file mode 100644
+> index 000000000000..764472b9a4fd
+> --- /dev/null
+> +++ b/include/dt-bindings/clock/bm1880-clock.h
+> @@ -0,0 +1,82 @@
+> +/* SPDX-License-Identifier: GPL-2.0 */
+> +/*
+> + * Device Tree binding constants for Bitmain BM1880 SoC
+> + *
+> + * Copyright (c) 2019 Linaro Ltd.
+> + */
+> +
+> +#ifndef __DT_BINDINGS_CLOCK_BM1880_H
+> +#define __DT_BINDINGS_CLOCK_BM1880_H
+> +
+> +#define BM1880_CLK_OSC			0
+> +#define BM1880_CLK_MPLL			1
+> +#define BM1880_CLK_SPLL			2
+> +#define BM1880_CLK_FPLL			3
+> +#define BM1880_CLK_DDRPLL 		4
 
-Don't need a unit address.
+space before tab
 
-> +				remote-endpoint = <&bconn_ep>;
-> +			};
-> +		};
+> +#define BM1880_CLK_A53			5
+> +#define BM1880_CLK_50M_A53		6
+> +#define BM1880_CLK_AHB_ROM		7
+> +#define BM1880_CLK_AXI_SRAM		8
+> +#define BM1880_CLK_DDR_AXI		9
+> +#define BM1880_CLK_EFUSE		10
+> +#define BM1880_CLK_APB_EFUSE		11
+> +#define BM1880_CLK_AXI5_EMMC		12
+> +#define BM1880_CLK_EMMC			13
+> +#define BM1880_CLK_100K_EMMC		14
+> +#define BM1880_CLK_AXI5_SD		15
+> +#define BM1880_CLK_SD			16
+> +#define BM1880_CLK_100K_SD		17
+> +#define BM1880_CLK_500M_ETH0		18
+> +#define BM1880_CLK_AXI4_ETH0		19
+> +#define BM1880_CLK_500M_ETH1		20
+> +#define BM1880_CLK_AXI4_ETH1		21
+> +#define BM1880_CLK_AXI1_GDMA		22
+> +#define BM1880_CLK_APB_GPIO		23
+> +#define BM1880_CLK_APB_GPIO_INTR	24
+> +#define BM1880_CLK_GPIO_DB		25
+> +#define BM1880_CLK_AXI1_MINER		26
+> +#define BM1880_CLK_AHB_SF		27
+> +#define BM1880_CLK_SDMA_AXI		28
+> +#define BM1880_CLK_SDMA_AUD		29
+> +#define BM1880_CLK_APB_I2C		30
+> +#define BM1880_CLK_APB_WDT		31
+> +#define BM1880_CLK_APB_JPEG		32
+> +#define BM1880_CLK_JPEG_AXI		33
+> +#define BM1880_CLK_AXI5_NF		34
+> +#define BM1880_CLK_APB_NF		35
+> +#define BM1880_CLK_NF			36
+> +#define BM1880_CLK_APB_PWM		37
+> +#define BM1880_CLK_DIV_0_RV		38
+> +#define BM1880_CLK_DIV_1_RV		39
+> +#define BM1880_CLK_MUX_RV		40
+> +#define BM1880_CLK_RV			41
+> +#define BM1880_CLK_APB_SPI		42
+> +#define BM1880_CLK_TPU_AXI		43
+> +#define BM1880_CLK_DIV_UART_500M	44
+> +#define BM1880_CLK_UART_500M		45
+> +#define BM1880_CLK_APB_UART		46
+> +#define BM1880_CLK_APB_I2S		47
+> +#define BM1880_CLK_AXI4_USB		48
+> +#define BM1880_CLK_APB_USB		49
+> +#define BM1880_CLK_125M_USB		50
+> +#define BM1880_CLK_33K_USB		51
+> +#define BM1880_CLK_DIV_12M_USB		52
+> +#define BM1880_CLK_12M_USB		53
+> +#define BM1880_CLK_APB_VIDEO		54
+> +#define BM1880_CLK_VIDEO_AXI		55
+> +#define BM1880_CLK_VPP_AXI		56
+> +#define BM1880_CLK_APB_VPP		57
+> +#define BM1880_CLK_DIV_0_AXI1		58
+> +#define BM1880_CLK_DIV_1_AXI1		59
+> +#define BM1880_CLK_AXI1			60
+> +#define BM1880_CLK_AXI2			61
+> +#define BM1880_CLK_AXI3			62
+> +#define BM1880_CLK_AXI4			63
+> +#define BM1880_CLK_AXI5			64
+> +#define BM1880_CLK_DIV_0_AXI6		65
+> +#define BM1880_CLK_DIV_1_AXI6		66
+> +#define BM1880_CLK_MUX_AXI6		67
+> +#define BM1880_CLK_AXI6			68
+> +#define BM1880_NR_CLKS			69
 > +
-> +	};
+> +#endif /* __DT_BINDINGS_CLOCK_BM1880_H */
 > -- 
-> 2.7.4
+> 2.17.1
 > 
