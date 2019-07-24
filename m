@@ -2,243 +2,177 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9739472C85
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 12:47:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BC9E872C8F
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 12:48:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726441AbfGXKrb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 06:47:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:50032 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726087AbfGXKra (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jul 2019 06:47:30 -0400
-Received: from mail-lf1-f44.google.com (mail-lf1-f44.google.com [209.85.167.44])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1727111AbfGXKsB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 06:48:01 -0400
+Received: from smtprelay-out1.synopsys.com ([198.182.61.142]:44896 "EHLO
+        smtprelay-out1.synopsys.com" rhost-flags-OK-FAIL-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726087AbfGXKsA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jul 2019 06:48:00 -0400
+Received: from mailhost.synopsys.com (dc2-mailhost1.synopsys.com [10.12.135.161])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 740DD229FA;
-        Wed, 24 Jul 2019 10:47:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1563965249;
-        bh=XqKYmTUOX1jzb8jQJM2UMIUVBoEiIefjBqEXYZC6+Q8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OoGNIGo9n4Dw84KdQMXHr14YIuwr2v8gYyq0EpRSCa9WKf+y7ws5X9/vH4LRw6p+8
-         SFkjNiyvQVYGlIeX6ckPa0c4raZaFSEN47cp/ldLMzJbn7Up0Ewl89osIHve4t2YQ+
-         BVe0+JzQteGkevspNOcHU9wHbFz3urZEyVZ27h2M=
-Received: by mail-lf1-f44.google.com with SMTP id h28so31595219lfj.5;
-        Wed, 24 Jul 2019 03:47:29 -0700 (PDT)
-X-Gm-Message-State: APjAAAVB0sEi4uWalFek4V1AiMFr2wUOuHO9542zz4BABQoUX2SLR3Bx
-        0Q4k5zTwQNPviarwR8hNKZbODZc5+62xCYshOMM=
-X-Google-Smtp-Source: APXvYqy9K5E4hGCz/s/b0MY68jWI8cr4JC7OTnKDyAKC2ApiptG9TrpIaoDaLUgFlFXSddwxu9vPHeV69/haNP5yOT0=
-X-Received: by 2002:a19:4f4a:: with SMTP id a10mr37712878lfk.30.1563965247598;
- Wed, 24 Jul 2019 03:47:27 -0700 (PDT)
+        by smtprelay-out1.synopsys.com (Postfix) with ESMTPS id A7DE1C0177;
+        Wed, 24 Jul 2019 10:47:59 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=synopsys.com; s=mail;
+        t=1563965280; bh=8SCncZ9d0yiM5NxICKBEFxskB53j5pekm3OWkUQP4mY=;
+        h=From:To:CC:Subject:Date:References:In-Reply-To:From;
+        b=McxbtvD29OSnEo3zx9zYdppC5MzXDRbWdCboPO09tXjN7QBRRl/1zyHc/tQOXNYiv
+         6c39NKkRl9JcUgBgYo5m0fDh5OM9h1I4gUb1Qzw3AzDmutDV7ah8phWZnsnjB5v8gU
+         LT7WIJqX5otLF8OnXoXgcd+f/6wriX23uqKHTAOeCz2F6ecE3u5SpOIXVNmWGUpMYR
+         FI8w0nPzvkxHg4iQjB6bgZhkRRxgFGSfsTYCrDaLKPNBxL8bvjOuBmwrbQ9ieKQ04z
+         3aX0D7joecOCzcKhyqVsIA34Tv7aGeLcAC/E7ne1dnnapS4N5ZyqiKwlVhxoIGrpXR
+         ibOw9pXfsMf2g==
+Received: from us01wehtc1.internal.synopsys.com (us01wehtc1-vip.internal.synopsys.com [10.12.239.236])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mailhost.synopsys.com (Postfix) with ESMTPS id E57FCA0093;
+        Wed, 24 Jul 2019 10:47:50 +0000 (UTC)
+Received: from US01HYBRID2.internal.synopsys.com (10.15.246.24) by
+ us01wehtc1.internal.synopsys.com (10.12.239.235) with Microsoft SMTP Server
+ (TLS) id 14.3.408.0; Wed, 24 Jul 2019 03:47:34 -0700
+Received: from NAM01-SN1-obe.outbound.protection.outlook.com (10.13.134.195)
+ by mrs.synopsys.com (10.15.246.24) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Wed, 24 Jul 2019 03:47:34 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=N49R/gClEBq8JBOhkgcIeQ15PNwOhZlAqNw6RNTGRw8DzWzAGU2LXRQ2HBaAwVhfVUgj4+vWyCt/jBU/8Lsg0tBGOliy4gy3S5MeOp0IIv4A42LubddoEr/wgFtR25KO40yt66Kr1BbSHtQx/d1RUGg3A6ZBHAwAXKEqbzoWXx7SmBKdnCiwj0e4o08lZVA7Wdv2mdB2zcDUD4BZrepsk0SGg9mM5UluWn4F+RTfzqTDZBJIkQRKQcslzaWcVF325ov3rfayKxpcsGdtP+L5pWn3eUX6M4nbjI3k3TLjox1Ro/MiSMBII3ShCLn2VDtlllEvi6qXFF74aUocNZuSoA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FbO3+YOLwp+tDFcvoIHmi4IhGiqpgnG+7rXrGB9yos8=;
+ b=TOA8Nk0ui2RgMdG2Ajxh05vaC9WPIPvNCPSRPCD4yDHRynDvaxzg6i00j15a1bgX+nNzZ3eAZYq9UNWaUmOlcX+xfuxMhmwR2lTX0PigRDhNpUK4b1rAOXb23I8UsesBvIjTR4OAoqLT+AF/qODljyRsH8mCU/tTQ8or+zf0zUR2MFxCa8SiO0+4npHJP5AE+N2A6f90bj4ICoqxFhm3AdkAuJjXDWVBff5W4IadZmPcYNaXJeny6OfKGH+6tl9v2dyRQ3XryYbdgJnzBg8xIsXToUSKG2sbOGdBCTWd+OulczJi3q65HfY55kAsFt3hWN9pkQdOvVEi4UTxxprubg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=synopsys.com;dmarc=pass action=none
+ header.from=synopsys.com;dkim=pass header.d=synopsys.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=synopsys.onmicrosoft.com; s=selector1-synopsys-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=FbO3+YOLwp+tDFcvoIHmi4IhGiqpgnG+7rXrGB9yos8=;
+ b=Tml0Y6JKvYeiCHDJ3hsNLHZEkfklcOMdmVKTfCYQGjquIZ8SvmTMYc0bHud9CLJrVxxkszjDyuy/2L3V38ZxRC8sbwIJ0NnHH4390uayZKqK2H+d/x6fBfGdrGszBUiIobtGHSbBC3SP0rVyDFeuWFOwX1KKgwHKG5/RReV0KpY=
+Received: from CY4PR1201MB0120.namprd12.prod.outlook.com (10.172.78.14) by
+ CY4PR1201MB2501.namprd12.prod.outlook.com (10.172.117.135) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2094.14; Wed, 24 Jul 2019 10:47:31 +0000
+Received: from CY4PR1201MB0120.namprd12.prod.outlook.com
+ ([fe80::1c8d:9b3c:7538:477b]) by CY4PR1201MB0120.namprd12.prod.outlook.com
+ ([fe80::1c8d:9b3c:7538:477b%4]) with mapi id 15.20.2094.017; Wed, 24 Jul 2019
+ 10:47:31 +0000
+From:   Alexey Brodkin <Alexey.Brodkin@synopsys.com>
+To:     Mischa Jonker <Mischa.Jonker@synopsys.com>
+CC:     Vineet Gupta <Vineet.Gupta1@synopsys.com>,
+        "kstewart@linuxfoundation.org" <kstewart@linuxfoundation.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "linux-snps-arc@lists.infradead.org" 
+        <linux-snps-arc@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+Subject: RE: [PATCH 1/2] ARCv2: IDU-intc: Add support for edge-triggered
+ interrupts
+Thread-Topic: [PATCH 1/2] ARCv2: IDU-intc: Add support for edge-triggered
+ interrupts
+Thread-Index: AQHVQUE0HZQCxaDVMkWPRiR2w9FjAabZlNWA
+Date:   Wed, 24 Jul 2019 10:47:31 +0000
+Message-ID: <CY4PR1201MB0120EDD4173511912A9FC99EA1C60@CY4PR1201MB0120.namprd12.prod.outlook.com>
+References: <20190723102606.309089-1-mischa.jonker@synopsys.com>
+In-Reply-To: <20190723102606.309089-1-mischa.jonker@synopsys.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=abrodkin@synopsys.com; 
+x-originating-ip: [91.237.150.126]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: f2b40524-c757-4e1e-dd6d-08d71024547d
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:CY4PR1201MB2501;
+x-ms-traffictypediagnostic: CY4PR1201MB2501:
+x-microsoft-antispam-prvs: <CY4PR1201MB250163EB51C8B7210AE94F4CA1C60@CY4PR1201MB2501.namprd12.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0108A997B2
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(979002)(136003)(396003)(39860400002)(346002)(376002)(366004)(199004)(189003)(13464003)(66476007)(74316002)(53936002)(6246003)(76176011)(25786009)(478600001)(305945005)(4326008)(14454004)(33656002)(68736007)(229853002)(186003)(7736002)(6506007)(102836004)(2906002)(26005)(256004)(486006)(55016002)(6862004)(53546011)(446003)(7696005)(14444005)(11346002)(9686003)(476003)(81156014)(3846002)(66066001)(6116002)(52536014)(76116006)(6436002)(71190400001)(6636002)(8936002)(316002)(86362001)(54906003)(99286004)(66946007)(66446008)(8676002)(66556008)(64756008)(5660300002)(71200400001)(81166006)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1102;SCL:1;SRVR:CY4PR1201MB2501;H:CY4PR1201MB0120.namprd12.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: synopsys.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: wn+2RXjXVsmx1Ee4AIl+t6GTrEcy0D5OlqsebUzY4Odolv4E2N5vTql7rjhUeQdaneiveTQe9gRxVkGrsaeQRxb1fJgEH6c1lfk/BJBjPXBEV3PBT7STkmMwjUO6b5qG+U087NSUZbdQGQF4dvyeAEWb/kJr9X3T4zdG9l0xWF42RdKbyVSJqhjDTDz9VBhVCu4KCLWil+RTkoAmyKwm8AqP1g/nZ7E8FwR5403ERec0O3s2YO4HsG27DUy3n5X8xW+mWU/lGM7NXbgRxqutSFAm3zqn1jyAnjC3CSkswcTtQuJ/gucd9ncnwCVRUCLAp2sFBc5EHbWIhQvZiWPYZUcSMKLy/bseoXmkXkdceMrGAKy9G4s0yjDKeKiDPXUAXBjTAdpko+3cmKMzRndF14Y3yucWAtUbT1LP1HAMiNc=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-References: <CGME20190718143127eucas1p13b1e2c98d270140a87f09562ef46c9a3@eucas1p1.samsung.com>
- <20190718143044.25066-1-s.nawrocki@samsung.com> <20190718143044.25066-2-s.nawrocki@samsung.com>
- <CAJKOXPfLBif-=09B9jZ3qN1kWdTAcrBQZGvZ+A-MUifXK4si9Q@mail.gmail.com> <1117f432-8adf-fbe9-f4af-f8acb755326e@samsung.com>
-In-Reply-To: <1117f432-8adf-fbe9-f4af-f8acb755326e@samsung.com>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Wed, 24 Jul 2019 12:47:16 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPf2dsnaV4cRT3JxvY=uFEH1hr8SempEHUXq5GiLwmwEzA@mail.gmail.com>
-Message-ID: <CAJKOXPf2dsnaV4cRT3JxvY=uFEH1hr8SempEHUXq5GiLwmwEzA@mail.gmail.com>
-Subject: Re: [PATCH v2 1/9] soc: samsung: Add exynos chipid driver support
-To:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-Cc:     Sylwester Nawrocki <s.nawrocki@samsung.com>, robh+dt@kernel.org,
-        vireshk@kernel.org, devicetree@vger.kernel.org, kgene@kernel.org,
-        pankaj.dubey@samsung.com,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
+X-MS-Exchange-CrossTenant-Network-Message-Id: f2b40524-c757-4e1e-dd6d-08d71024547d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 24 Jul 2019 10:47:31.6227
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: c33c9f88-1eb7-4099-9700-16013fd9e8aa
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: abrodkin@synopsys.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR1201MB2501
+X-OriginatorOrg: synopsys.com
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Jul 2019 at 16:10, Bartlomiej Zolnierkiewicz
-<b.zolnierkie@samsung.com> wrote:
->
->
-> Hi Krzysztof,
->
-> On 7/23/19 2:57 PM, Krzysztof Kozlowski wrote:
-> > On Thu, 18 Jul 2019 at 16:31, Sylwester Nawrocki <s.nawrocki@samsung.com> wrote:
-> >>
-> >> From: Pankaj Dubey <pankaj.dubey@samsung.com>
-> >>
-> >> Exynos SoCs have Chipid, for identification of product IDs and SoC
-> >> revisions. This patch intends to provide initialization code for all
-> >> these functionalities, at the same time it provides some sysfs entries
-> >> for accessing these information to user-space.
-> >>
-> >> This driver uses existing binding for exynos-chipid.
-> >>
-> >> Changes by Bartlomiej:
-> >> - fixed return values on errors
-> >> - removed bogus kfree_const()
-> >> - added missing Exynos4210 EVT0 id
-> >> - converted code to use EXYNOS_MASK define
-> >> - fixed np use after of_node_put()
-> >> - fixed too early use of dev_info()
-> >> - made driver fail for unknown SoC-s
-> >> - added SPDX tag
-> >> - updated Copyrights
-> >>
-> >> Signed-off-by: Pankaj Dubey <pankaj.dubey@samsung.com>
-> >> [m.szyprowski: for suggestion and code snippet of product_id_to_soc_id]
-> >> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> >> Signed-off-by: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-> >> [s.nawrocki: updated copyright date]
-> >> Signed-off-by: Sylwester Nawrocki <s.nawrocki@samsung.com>
-> >> ---
-> >>  drivers/soc/samsung/Kconfig         |   5 ++
-> >>  drivers/soc/samsung/Makefile        |   2 +
-> >>  drivers/soc/samsung/exynos-chipid.c | 111 ++++++++++++++++++++++++++++
-> >>  3 files changed, 118 insertions(+)
-> >>  create mode 100644 drivers/soc/samsung/exynos-chipid.c
-> >>
-> >> diff --git a/drivers/soc/samsung/Kconfig b/drivers/soc/samsung/Kconfig
-> >> index 2186285fda92..2905f5262197 100644
-> >> --- a/drivers/soc/samsung/Kconfig
-> >> +++ b/drivers/soc/samsung/Kconfig
-> >> @@ -7,6 +7,11 @@ menuconfig SOC_SAMSUNG
-> >>
-> >>  if SOC_SAMSUNG
-> >>
-> >> +config EXYNOS_CHIPID
-> >> +       bool "Exynos Chipid controller driver" if COMPILE_TEST
-> >> +       depends on ARCH_EXYNOS || COMPILE_TEST
-> >> +       select SOC_BUS
-> >> +
-> >>  config EXYNOS_PMU
-> >>         bool "Exynos PMU controller driver" if COMPILE_TEST
-> >>         depends on ARCH_EXYNOS || ((ARM || ARM64) && COMPILE_TEST)
-> >> diff --git a/drivers/soc/samsung/Makefile b/drivers/soc/samsung/Makefile
-> >> index 29f294baac6e..3b6a8797416c 100644
-> >> --- a/drivers/soc/samsung/Makefile
-> >> +++ b/drivers/soc/samsung/Makefile
-> >> @@ -1,4 +1,6 @@
-> >>  # SPDX-License-Identifier: GPL-2.0
-> >> +
-> >> +obj-$(CONFIG_EXYNOS_CHIPID)    += exynos-chipid.o
-> >>  obj-$(CONFIG_EXYNOS_PMU)       += exynos-pmu.o
-> >>
-> >>  obj-$(CONFIG_EXYNOS_PMU_ARM_DRIVERS)   += exynos3250-pmu.o exynos4-pmu.o \
-> >> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
-> >> new file mode 100644
-> >> index 000000000000..78b123ee60c0
-> >> --- /dev/null
-> >> +++ b/drivers/soc/samsung/exynos-chipid.c
-> >> @@ -0,0 +1,111 @@
-> >> +// SPDX-License-Identifier: GPL-2.0
-> >> +/*
-> >> + * Copyright (c) 2019 Samsung Electronics Co., Ltd.
-> >> + *           http://www.samsung.com/
-> >> + *
-> >> + * EXYNOS - CHIP ID support
-> >> + * Author: Pankaj Dubey <pankaj.dubey@samsung.com>
-> >> + * Author: Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>
-> >> + */
-> >> +
-> >> +#include <linux/io.h>
-> >> +#include <linux/of.h>
-> >> +#include <linux/of_address.h>
-> >> +#include <linux/of_platform.h>
-> >> +#include <linux/platform_device.h>
-> >
-> > Any changes here from my previous comments?
-> >
-> > I have also one more new thought later.
-> >
-> >> +#include <linux/slab.h>
-> >> +#include <linux/sys_soc.h>
-> >> +
-> >> +#define EXYNOS_SUBREV_MASK     (0xF << 4)
-> >> +#define EXYNOS_MAINREV_MASK    (0xF << 0)
-> >> +#define EXYNOS_REV_MASK                (EXYNOS_SUBREV_MASK | EXYNOS_MAINREV_MASK)
-> >> +#define EXYNOS_MASK            0xFFFFF000
-> >> +
-> >> +static const struct exynos_soc_id {
-> >> +       const char *name;
-> >> +       unsigned int id;
-> >> +} soc_ids[] = {
-> >> +       { "EXYNOS3250", 0xE3472000 },
-> >> +       { "EXYNOS4210", 0x43200000 },   /* EVT0 revision */
-> >> +       { "EXYNOS4210", 0x43210000 },
-> >> +       { "EXYNOS4212", 0x43220000 },
-> >> +       { "EXYNOS4412", 0xE4412000 },
-> >> +       { "EXYNOS5250", 0x43520000 },
-> >> +       { "EXYNOS5260", 0xE5260000 },
-> >> +       { "EXYNOS5410", 0xE5410000 },
-> >> +       { "EXYNOS5420", 0xE5420000 },
-> >> +       { "EXYNOS5440", 0xE5440000 },
-> >> +       { "EXYNOS5800", 0xE5422000 },
-> >> +       { "EXYNOS7420", 0xE7420000 },
-> >> +       { "EXYNOS5433", 0xE5433000 },
-> >> +};
-> >> +
-> >> +static const char * __init product_id_to_soc_id(unsigned int product_id)
-> >> +{
-> >> +       int i;
-> >> +
-> >> +       for (i = 0; i < ARRAY_SIZE(soc_ids); i++)
-> >> +               if ((product_id & EXYNOS_MASK) == soc_ids[i].id)
-> >> +                       return soc_ids[i].name;
-> >> +       return NULL;
-> >> +}
-> >> +
-> >> +int __init exynos_chipid_early_init(void)
-> >> +{
-> >> +       struct soc_device_attribute *soc_dev_attr;
-> >> +       void __iomem *exynos_chipid_base;
-> >> +       struct soc_device *soc_dev;
-> >> +       struct device_node *root;
-> >> +       struct device_node *np;
-> >> +       u32 product_id;
-> >> +       u32 revision;
-> >> +
-> >> +       /* look up for chipid node */
-> >> +       np = of_find_compatible_node(NULL, NULL, "samsung,exynos4210-chipid");
-> >> +       if (!np)
-> >> +               return -ENODEV;
-> >> +
-> >> +       exynos_chipid_base = of_iomap(np, 0);
-> >> +       of_node_put(np);
-> >> +
-> >> +       if (!exynos_chipid_base) {
-> >> +               pr_err("Failed to map SoC chipid\n");
-> >> +               return -ENXIO;
-> >> +       }
-> >> +
-> >> +       product_id = readl_relaxed(exynos_chipid_base);
-> >> +       revision = product_id & EXYNOS_REV_MASK;
-> >> +       iounmap(exynos_chipid_base);
-> >> +
-> >> +       soc_dev_attr = kzalloc(sizeof(*soc_dev_attr), GFP_KERNEL);
-> >> +       if (!soc_dev_attr)
-> >> +               return -ENOMEM;
-> >> +
-> >> +       soc_dev_attr->family = "Samsung Exynos";
-> >> +
-> >> +       root = of_find_node_by_path("/");
-> >> +       of_property_read_string(root, "model", &soc_dev_attr->machine);
-> >> +       of_node_put(root);
-> >> +
-> >> +       soc_dev_attr->revision = kasprintf(GFP_KERNEL, "%x", revision);
-> >> +       soc_dev_attr->soc_id = product_id_to_soc_id(product_id);
-> >> +       if (!soc_dev_attr->soc_id) {
-> >> +               pr_err("Unknown SoC\n");
-> >
-> > In case of running old kernel on unknown SoC (new revision of existing
-> > one or older design not longer supported like 4415), the device will
-> > not bind. This was added by Bartlomiej. Why? I imagine that soc driver
-> > could be still matched and just report "Unknown". I am not sure if
-> > this changes anything, though.
->
-> I was thinking that we shouldn't be pretending that we know how to
-> handle unsupported SoCs, i.e. that we know how to correctly read its
-> product_id and revision.
+Hi Mischa,
 
-Reasonable, thanks for explanation.
-Best regards,
-Krzysztof
+> -----Original Message-----
+> From: Mischa Jonker <mischa.jonker@synopsys.com>
+> Sent: Tuesday, July 23, 2019 1:26 PM
+> To: Vineet Gupta <vgupta@synopsys.com>; Alexey Brodkin <abrodkin@synopsys=
+.com>;
+> kstewart@linuxfoundation.org; tglx@linutronix.de; robh+dt@kernel.org; lin=
+ux-snps-
+> arc@lists.infradead.org; linux-kernel@vger.kernel.org; devicetree@vger.ke=
+rnel.org
+> Cc: Mischa Jonker <mischa.jonker@synopsys.com>
+> Subject: [PATCH 1/2] ARCv2: IDU-intc: Add support for edge-triggered inte=
+rrupts
+>=20
+> This adds support for an optional extra interrupt cell to specify edge
+> vs level triggered. It is backward compatible with dts files with only
+> one cell, and will default to level-triggered in such a case.
+
+In general LGTM. Still a couple of comments.
+
+It might be useful to explain changes
+made to idu_irq_set_affinity() as it's not immediately clear what affinity
+has to do with IRQ modes (in theory it should be orthogonal).
+
+But what happens we're actually fixing previously implemented short-cut
+when instead of a separately set IRQ mode we were doing it together with
+setup of distribution since it's done with the same one command
+(anyways we relied on the one and only IRQ type being supported).
+
+And now we have a proper implementation with separated setup of IRQ mode an=
+d
+affinity.
+
+>  static int
+>  idu_irq_set_affinity(struct irq_data *data, const struct cpumask *cpumas=
+k,
+>  		     bool force)
+> @@ -263,13 +285,32 @@ idu_irq_set_affinity(struct irq_data *data, const s=
+truct cpumask *cpumask,
+>  	else
+>  		distribution_mode =3D IDU_M_DISTRI_RR;
+>=20
+> -	idu_set_mode(data->hwirq, IDU_M_TRIG_LEVEL, distribution_mode);
+> +	idu_set_mode(data->hwirq, false, 0, true, distribution_mode);
+>=20
+>  	raw_spin_unlock_irqrestore(&mcip_lock, flags);
+>=20
+>  	return IRQ_SET_MASK_OK;
+>  }
+>=20
+> +static int idu_irq_set_type(struct irq_data *data, u32 type)
+> +{
+> +	unsigned long flags;
+> +
+> +	if (type & ~(IRQ_TYPE_EDGE_RISING | IRQ_TYPE_LEVEL_HIGH))
+> +		return -EINVAL;
+
+Maybe add an explanation why only these types are supported?
+
+-Alexey
