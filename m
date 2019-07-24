@@ -2,74 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A1F2973798
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 21:16:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C0CDA737B4
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 21:18:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727247AbfGXTQV convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 24 Jul 2019 15:16:21 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:40398 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726430AbfGXTQU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 15:16:20 -0400
-Received: by mail-wm1-f66.google.com with SMTP id v19so42618385wmj.5;
-        Wed, 24 Jul 2019 12:16:19 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=LNAmuM+7si//N0400TDsq2MUrZ/1PI7eiz92D6aickY=;
-        b=kTvSXQOahR1/dB+rAkHPAElnMplr/uvHOJitNGie4gQo/U3UNvq0bp+XEdQnLA+PGv
-         SbQ7lyyk+9UT0z2gFqjnfP0EV1GU6PipTFLC8P008m4tEqHRYkr+3dOB8fbucIJADTgp
-         bkTtW1I/wtmc4D75ZHnq6tf7WCbpRri1Z4uFsHck9J20dp9G9w4qHQLRCY4EH2+BTzF+
-         XhJSwU2XsToLfFX78ynTndJw7UsQCOaASTR4xdp9HBokDsdJeI8d+c/nsvpTUxIkTIh1
-         koBiwhibmkpsR16QxOqs6e3raCB/FxualzQ5aR4PRoDUfI5hBRUJmRiQLk7PpxG5AWzH
-         0nNQ==
-X-Gm-Message-State: APjAAAWU/3+M3fDHXxzeaHlqIbLz6deHJ3VzirHeiHqj22WNB8Jhl9J+
-        Pr2l9p7e4b8JdVo3FGRaFlI=
-X-Google-Smtp-Source: APXvYqznKz1ACVYFK8RxfQFmQ7H1Q2wBIzpGBssnn1iwZQnb6SjaP8h75HCTkprLc/WEfC65AVtrsg==
-X-Received: by 2002:a05:600c:da:: with SMTP id u26mr73188753wmm.108.1563995778325;
-        Wed, 24 Jul 2019 12:16:18 -0700 (PDT)
-Received: from kozik-lap ([194.230.155.239])
-        by smtp.googlemail.com with ESMTPSA id f70sm56473772wme.22.2019.07.24.12.16.17
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Wed, 24 Jul 2019 12:16:17 -0700 (PDT)
-Date:   Wed, 24 Jul 2019 21:16:15 +0200
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-To:     Artur =?utf-8?B?xZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        cw00.choi@samsung.com, myungjoo.ham@samsung.com,
-        inki.dae@samsung.com, sw0312.kim@samsung.com,
-        georgi.djakov@linaro.org, m.szyprowski@samsung.com
-Subject: Re: [RFC PATCH 06/11] icc: Relax requirement in
- of_icc_get_from_provider()
-Message-ID: <20190724191615.GI14346@kozik-lap>
-References: <20190723122016.30279-1-a.swigon@partner.samsung.com>
- <CGME20190723122026eucas1p2acf705de2a47ba54f383d916f5383144@eucas1p2.samsung.com>
- <20190723122016.30279-7-a.swigon@partner.samsung.com>
+        id S1726430AbfGXTSp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 15:18:45 -0400
+Received: from mx.0dd.nl ([5.2.79.48]:52734 "EHLO mx.0dd.nl"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726666AbfGXTSm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 24 Jul 2019 15:18:42 -0400
+Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd01::250])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mx.0dd.nl (Postfix) with ESMTPS id 0FA3B5FD5A;
+        Wed, 24 Jul 2019 21:18:38 +0200 (CEST)
+Authentication-Results: mx.0dd.nl;
+        dkim=pass (2048-bit key; secure) header.d=vdorst.com header.i=@vdorst.com header.b="qk4AZsEl";
+        dkim-atps=neutral
+Received: from pc-rene.vdorst.com (pc-rene.vdorst.com [192.168.2.125])
+        by mail.vdorst.com (Postfix) with ESMTPA id B55091D25CA9;
+        Wed, 24 Jul 2019 21:18:37 +0200 (CEST)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com B55091D25CA9
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
+        s=default; t=1563995917;
+        bh=weikOzuhvuizQxHFtpYezAOwp5TBaaOl/uv7IuspKpQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=qk4AZsEllY3v75JVxR6ajoFWPeuoPeo2b6yXCZTaYGB8drhLwBYb6jjhjdejvvZ8i
+         XX/8uhoWK57x3pVsZjs/vBQyo1Ghxy5qYRSesADZgTRsKt9i8TUbEpHjfaoy5Fgqx2
+         BwLEt2NsYOUnEiXi8ZD7fiYuvop1rEDc4M/nrMD5f3EHxIv3wfla0tQqKcyUzmjZat
+         pmE92U+n8xil0eXTHse1/d580opj0BS6+6P6ZIalndBhHrWbtypE9Q8qSWufBiu9Sb
+         GXdZYezkOylEG7wHzkfG/FL7mGfh5WTYuAz/YcIBgj5yV0ePzP1ECBE6DUpCA5NbOw
+         b6GxLdGQ+0TNA==
+From:   =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>
+To:     netdev@vger.kernel.org
+Cc:     =?UTF-8?q?Ren=C3=A9=20van=20Dorst?= <opensource@vdorst.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Frank Wunderlich <frank-w@public-files.de>,
+        Russell King <linux@armlinux.org.uk>,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        John Crispin <john@phrozen.org>
+Subject: [PATCH net-next 0/3] net: ethernet: mediatek: convert to phylink.
+Date:   Wed, 24 Jul 2019 21:17:23 +0200
+Message-Id: <20190724191725.3903-1-opensource@vdorst.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8BIT
-In-Reply-To: <20190723122016.30279-7-a.swigon@partner.samsung.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 23, 2019 at 02:20:11PM +0200, Artur Świgoń wrote:
-> This patch relaxes the condition in of_icc_get_from_provider() so that it
-> is no longer required to set #interconnect-cells = <1> in the DT. In case
-> of the devfreq driver for exynos-bus, #interconnect-cells is always zero.
-> 
-> Signed-off-by: Artur Świgoń <a.swigon@partner.samsung.com>
-> ---
+These patches converts mediatek driver to phylink api.
+SGMII support is only tested with fixed speed of 2.5Gbit on a Bananapi R64.
+Frank tested these patches on this Bananapi R64 (mt7622) and
+Bananapi R2 (mt7623).
+Tested on hardware: mt7621, mt7622 and mt7623.
 
-Makes sense to me:
-Acked-by: Krzysztof Kozlowski <krzk@kernel.org>
+René van Dorst (3):
+  net: ethernet: mediatek: Add basic PHYLINK support
+  net: ethernet: mediatek: Re-add support SGMII
+  dt-bindings: net: ethernet: Update mt7622 docs and dts to reflect the
+    new phylink API
 
-Best regards,
-Krzysztof
+ .../arm/mediatek/mediatek,sgmiisys.txt        |   2 -
+ .../dts/mediatek/mt7622-bananapi-bpi-r64.dts  |  28 +-
+ arch/arm64/boot/dts/mediatek/mt7622.dtsi      |   1 -
+ drivers/net/ethernet/mediatek/Kconfig         |   2 +-
+ drivers/net/ethernet/mediatek/mtk_eth_path.c  |  72 +--
+ drivers/net/ethernet/mediatek/mtk_eth_soc.c   | 486 ++++++++++++------
+ drivers/net/ethernet/mediatek/mtk_eth_soc.h   |  67 ++-
+ drivers/net/ethernet/mediatek/mtk_sgmii.c     |  65 ++-
+ 8 files changed, 436 insertions(+), 287 deletions(-)
+
+To: <netdev@vger.kernel.org>
+Cc: Sean Wang <sean.wang@mediatek.com>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: David S. Miller <davem@davemloft.net>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: devicetree@vger.kernel.org
+Cc: Frank Wunderlich <frank-w@public-files.de>
+Cc: Russell King <linux@armlinux.org.uk>
+Cc: linux-mediatek@lists.infradead.org
+Cc: linux-mips@vger.kernel.org
+Cc: John Crispin <john@phrozen.org>
+-- 
+2.20.1
+
