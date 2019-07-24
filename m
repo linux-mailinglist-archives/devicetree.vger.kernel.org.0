@@ -2,94 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3C04872AE4
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 10:59:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0EE1D72AF8
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 11:01:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725999AbfGXI7M (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 04:59:12 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:36670 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726980AbfGXI7L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 04:59:11 -0400
-Received: by mail-wr1-f65.google.com with SMTP id n4so46123747wrs.3;
-        Wed, 24 Jul 2019 01:59:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=uLD0FIohOIaMjbj7E0OOl2DyS6RV1bLULju5D5/jTY0=;
-        b=lpjg1MqhUsOo7tkaEJrwfY2Sbjfd+C+NxcHvLoN+uP+ea1X5D/LzA8U9UqfIOf+jtp
-         HP37lrCo8XZL9ygrn8K2ciiMXnWIdLfPTCvPTXysPyIzQak6nDvRBsRE5MXh317hrMDp
-         7HE5zV5/sw1DszulN9iEs9PO51bVTkmTqzJ1Kv1mUKVnjvSCGP2PzruV5Z2QRaC0Y5yE
-         gg0ArZ1AmS/yBrz8Yd4t5IH8FE4s5dQQY5AmJkR0mkYc+7LsCI3n50WdVLdpmaoGNPkj
-         7cOk1aBDmK3pohX8ukFNVvHeH3iXs4Iho0dBAesi+OE9/Xe8k1W9RUwyOXknVD6Gz6Mu
-         GlDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=uLD0FIohOIaMjbj7E0OOl2DyS6RV1bLULju5D5/jTY0=;
-        b=ul+1msj1SyRvMw6U+JnApLGXAwnkCfDjJ+Wg9ceKKqQWxJ2rhOyvr7u5bqE5QH0aE3
-         Qjk/BaB+pkqjcaFKXQHr9Mz+Dn7TQ7XntsCtd2rYj/tfm3NNpUzepHvE6tIerrOnTxUF
-         IJuaZO++fcmao2BFRPjYH6oN4fY67kJDGUCXl56tT7sV06QQ1gT08W+58OMkPVTDXnk2
-         AlkKDVG6I/MZ5C5iwjSAkrQZappuGukhYo3Kv8HCkWcmFEQsSAPX4lDPzkrq7u428rTS
-         cLwLrPC2a1tJqZDR/d3UCVjTDXp1wyhsn2cw1QhZW4uxMN/3HWZzj8mW/NlvmgCsc9iR
-         s0Vw==
-X-Gm-Message-State: APjAAAXc+dLzhBaE9wpmZOXmOyVT4eSL+i0mkTxRD7gQFpHoTE7PGrC3
-        Ph5bWRBLJCm+/XuHvl4zA+OZg449KTz8IUPoq70=
-X-Google-Smtp-Source: APXvYqzDa65ZZuqbBz0Y9LKy5ttZgCPxfD6HONFDo1ej5tX89DOctwjYr4B8EOdL7v6XaKJGVXfdSB6Urjocukqv+IY=
-X-Received: by 2002:a05:6000:14b:: with SMTP id r11mr12742240wrx.196.1563958750049;
- Wed, 24 Jul 2019 01:59:10 -0700 (PDT)
+        id S1726824AbfGXJBS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 05:01:18 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:30480 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726845AbfGXJBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 05:01:17 -0400
+X-UUID: e67dbddc74e740a39f091c19eced7d67-20190724
+X-UUID: e67dbddc74e740a39f091c19eced7d67-20190724
+Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
+        (envelope-from <ryder.lee@kernel.org>)
+        (mhqrelay.mediatek.com ESMTP with TLS)
+        with ESMTP id 891942373; Wed, 24 Jul 2019 17:01:03 +0800
+Received: from mtkcas09.mediatek.inc (172.21.101.178) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 24 Jul 2019 17:01:01 +0800
+Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas09.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 24 Jul 2019 17:01:01 +0800
+From:   <ryder.lee@kernel.org>
+To:     Matthias Brugger <matthias.bgg@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Weijie Gao <weijie.gao@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Ryder Lee <ryder.lee@mediatek.com>
+Subject: [PATCH 1/2] arm: dts: mt7623: add Mali-450 device node
+Date:   Wed, 24 Jul 2019 17:00:59 +0800
+Message-ID: <af7b5a2e00eb3a4b6262807c378e43afd5f74779.1563867856.git.ryder.lee@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-References: <20190723084104.12639-1-daniel.baluta@nxp.com> <20190723084104.12639-2-daniel.baluta@nxp.com>
- <a5d44d96-4d50-ee46-a6bf-3ce108b1994a@linux.intel.com> <CAEnQRZCuB2QKzz-08K0z+x+p0qCpqR_wDc=q2GChvJiw4E9hBA@mail.gmail.com>
- <1563957164.2311.28.camel@pengutronix.de>
-In-Reply-To: <1563957164.2311.28.camel@pengutronix.de>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Wed, 24 Jul 2019 11:58:58 +0300
-Message-ID: <CAEnQRZAEsPFp36hD7XiWihTe2KQOJV6Eq9C8hjn0Z1kiUZjzyQ@mail.gmail.com>
-Subject: Re: [Sound-open-firmware] [PATCH v2 1/5] ASoC: SOF: imx: Add i.MX8 HW support
-To:     Lucas Stach <l.stach@pengutronix.de>
-Cc:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Anson Huang <anson.huang@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Paul Olaru <paul.olaru@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        sound-open-firmware@alsa-project.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 24, 2019 at 11:32 AM Lucas Stach <l.stach@pengutronix.de> wrote:
->
-> Hi Daniel,
->
-> Am Mittwoch, den 24.07.2019, 09:54 +0300 schrieb Daniel Baluta:
-> > On Tue, Jul 23, 2019 at 6:18 PM Pierre-Louis Bossart
-> [...]
-> >
-> > > Also are all the resources device-managed, I don't see a remove()?
-> >
-> > Good catch for pm stuff. We mostly didn't care about remove because
-> > drivers are always Y in our distribution.
->
-> Linux drivers need to be hotplug aware, even if they are not built as a
-> module. You can test things by manually unbinding the driver from the
-> device via sysfs.
+From: Ryder Lee <ryder.lee@mediatek.com>
 
-Agree. Will take this into consideration when sending next version!
+Add a node for Mali-450.
+
+Signed-off-by: Sean Wang <sean.wang@mediatek.com>
+Signed-off-by: Ryder Lee <ryder.lee@mediatek.com>
+---
+kmscube as well as X11 EGL tests work fine (use Lima driver).
+---
+ arch/arm/boot/dts/mt7623.dtsi | 25 +++++++++++++++++++++++++
+ 1 file changed, 25 insertions(+)
+
+diff --git a/arch/arm/boot/dts/mt7623.dtsi b/arch/arm/boot/dts/mt7623.dtsi
+index a79f0b6c3429..6a9c5afb9a36 100644
+--- a/arch/arm/boot/dts/mt7623.dtsi
++++ b/arch/arm/boot/dts/mt7623.dtsi
+@@ -3,6 +3,7 @@
+  * Copyright (c) 2017-2018 MediaTek Inc.
+  * Author: John Crispin <john@phrozen.org>
+  *	   Sean Wang <sean.wang@mediatek.com>
++ *	   Ryder Lee <ryder.lee@mediatek.com>
+  *
+  */
+ 
+@@ -733,6 +734,30 @@
+ 		#reset-cells = <1>;
+ 	};
+ 
++	mali: gpu@13040000 {
++		compatible = "mediatek,mt7623-mali", "arm,mali-450";
++		reg = <0 0x13040000 0 0x30000>;
++		interrupts = <GIC_SPI 170 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 171 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 172 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 173 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 174 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 175 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 176 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 177 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 178 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 179 IRQ_TYPE_LEVEL_LOW>,
++			     <GIC_SPI 180 IRQ_TYPE_LEVEL_LOW>;
++		interrupt-names = "gp", "gpmmu", "pp0", "ppmmu0", "pp1",
++				  "ppmmu1", "pp2", "ppmmu2", "pp3", "ppmmu3",
++				  "pp";
++		clocks = <&topckgen CLK_TOP_MMPLL>,
++			 <&g3dsys CLK_G3DSYS_CORE>;
++		clock-names = "bus", "core";
++		power-domains = <&scpsys MT2701_POWER_DOMAIN_MFG>;
++		resets = <&g3dsys MT2701_G3DSYS_CORE_RST>;
++	};
++
+ 	mmsys: syscon@14000000 {
+ 		compatible = "mediatek,mt7623-mmsys",
+ 			     "mediatek,mt2701-mmsys",
+-- 
+2.18.0
+
