@@ -2,108 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8694A73646
-	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 20:04:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48B167368C
+	for <lists+devicetree@lfdr.de>; Wed, 24 Jul 2019 20:27:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726312AbfGXSEh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 14:04:37 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:35226 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725944AbfGXSEh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 24 Jul 2019 14:04:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=UpzgCoPq0Wu6UDjrL//LrXChGIZ8cQyw8Fm5gnrCxag=; b=uSCiCyQURATsR/8rSFcWw4XWAi
-        SFtoSKMVeIDa2RmJc1V6rmyvW0kYyCPDOGcHOCEFtupgRlAqo6wTLZEh5RcntlIn+sspActh0D7CD
-        NIq3MQlbePLbM/hYbTyIJHrJoEsr79jvr7L8959e3/hdG9X/lzK5p3siuZhy8dLeLbXA=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hqLcs-0001VX-3i; Wed, 24 Jul 2019 20:04:30 +0200
-Date:   Wed, 24 Jul 2019 20:04:30 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [RFC] dt-bindings: net: phy: Add subnode for LED configuration
-Message-ID: <20190724180430.GB28488@lunn.ch>
-References: <20190722223741.113347-1-mka@chromium.org>
+        id S1728368AbfGXS1n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 14:27:43 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:46513 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728356AbfGXS1m (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 14:27:42 -0400
+Received: by mail-pf1-f194.google.com with SMTP id c73so21349986pfb.13
+        for <devicetree@vger.kernel.org>; Wed, 24 Jul 2019 11:27:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:subject:to:cc:from:user-agent:date;
+        bh=O8KSpuegrQcuLlIvANi3GzaCz0IAnlhPFWU+ls63xJI=;
+        b=mQmyCM/JzJTSir4LVGUDWBXP64zF/ZdQ8YHl2ZNHASHdC0wClyPOuEhOwmCYqBXW2r
+         dgw4PX/WK9HQdHxHhjxjwoZHy1jfvV8J6dw+05QdNqRdAWiEOotRaKqLBydCid+KCbjG
+         RNSqrQmBfD17PYef51RePXqFOdFa/tumsBGwA=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:subject:to:cc:from
+         :user-agent:date;
+        bh=O8KSpuegrQcuLlIvANi3GzaCz0IAnlhPFWU+ls63xJI=;
+        b=g2UxhKmgqszgVHQ/Kfh/8+/1wcWZ+jMLlEaL1stzkN5w1jTgIjtkCFYC/XR5CbbXgp
+         gZXXXhiYuhFBJUhWl/MqYT7gbWoDxSS3zCP74O0n8ir1TFLRERZiZ1SVLrinuHb+gPVc
+         bsQqs24YqgDYgmfbu/8TakKiMGSrECEHR9Es0v3Byp7Xye6qu8ydeMuDtsaSyvf6aDBJ
+         JXxqTBNcE12YK+uuvjfG816hzpl97nTpTAK/imAqyQvgjW5IAaIoZTdFyizGY+AMaWGZ
+         Cu8XO40fegncor0nyxk3BsS0gg8E+luJ3vWXQ/ZpH4X6dPgJWgEWqM/+PaqYcBcWlcYY
+         m/lA==
+X-Gm-Message-State: APjAAAVxUNNSkyj/V7ZmJNbh0NsL144GNvXcaeGD30jubNZSO9bkXNq7
+        UgYjg9ZywUzhfGdZB38Ka7RziQ==
+X-Google-Smtp-Source: APXvYqxYUOgU6ZTbFdmr1+V3ryT+wQolntdEKyYxOf4gT45JL7Kbaks+zMFv6ljbzrz2qHppJ3rABg==
+X-Received: by 2002:a17:90a:2506:: with SMTP id j6mr54600864pje.129.1563992862010;
+        Wed, 24 Jul 2019 11:27:42 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id x65sm47383855pfd.139.2019.07.24.11.27.41
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 24 Jul 2019 11:27:41 -0700 (PDT)
+Message-ID: <5d38a31d.1c69fb81.80992.0052@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190722223741.113347-1-mka@chromium.org>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <8efd5c48-5d3a-97e1-1dec-6a9cdc4c8ef6@codeaurora.org>
+References: <1563568344-1274-1-git-send-email-daidavid1@codeaurora.org> <1563568344-1274-2-git-send-email-daidavid1@codeaurora.org> <5d371ce7.1c69fb81.9650.8239@mx.google.com> <8c181f08-559b-5d77-a617-65cfd3d5da55@codeaurora.org> <5d3868a9.1c69fb81.876aa.ac30@mx.google.com> <8efd5c48-5d3a-97e1-1dec-6a9cdc4c8ef6@codeaurora.org>
+Subject: Re: [PATCH 1/2] dt-bindings: interconnect: Update Qualcomm SDM845 DT bindings
+To:     David Dai <daidavid1@codeaurora.org>, bjorn.andersson@linaro.org,
+        georgi.djakov@linaro.org, robh+dt@kernel.org
+Cc:     evgreen@google.com, ilina@codeaurora.org, seansw@qti.qualcomm.com,
+        elder@linaro.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-msm@vger.kernel.org,
+        linux-pm@vger.kernel.org
+From:   Stephen Boyd <swboyd@chromium.org>
+User-Agent: alot/0.8.1
+Date:   Wed, 24 Jul 2019 11:27:40 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 22, 2019 at 03:37:41PM -0700, Matthias Kaehlcke wrote:
-> The LED behavior of some Ethernet PHYs is configurable. Add an
-> optional 'leds' subnode with a child node for each LED to be
-> configured. The binding aims to be compatible with the common
-> LED binding (see devicetree/bindings/leds/common.txt).
-> 
-> A LED can be configured to be 'on' when a link with a certain speed
-> is active, or to blink on RX/TX activity. For the configuration to
-> be effective it needs to be supported by the hardware and the
-> corresponding PHY driver.
-> 
-> Suggested-by: Andrew Lunn <andrew@lunn.ch>
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> This RFC is a follow up of the discussion on "[PATCH v2 6/7]
-> dt-bindings: net: realtek: Add property to configure LED mode"
-> (https://lore.kernel.org/patchwork/patch/1097185/).
-> 
-> For now posting as RFC to get a basic agreement on the bindings
-> before proceding with the implementation in phylib and a specific
-> driver.
-> ---
->  Documentation/devicetree/bindings/net/phy.txt | 33 +++++++++++++++++++
->  1 file changed, 33 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/phy.txt b/Documentation/devicetree/bindings/net/phy.txt
-> index 9b9e5b1765dd..ad495d3abbbb 100644
-> --- a/Documentation/devicetree/bindings/net/phy.txt
-> +++ b/Documentation/devicetree/bindings/net/phy.txt
-> @@ -46,6 +46,25 @@ Optional Properties:
->    Mark the corresponding energy efficient ethernet mode as broken and
->    request the ethernet to stop advertising it.
->  
-> +- leds: A sub-node which is a container of only LED nodes. Each child
-> +    node represents a PHY LED.
-> +
-> +  Required properties for LED child nodes:
-> +  - reg: The ID number of the LED, typically corresponds to a hardware ID.
-> +
-> +  Optional properties for child nodes:
-> +  - label: The label for this LED. If omitted, the label is taken from the node
-> +    name (excluding the unit address). It has to uniquely identify a device,
-> +    i.e. no other LED class device can be assigned the same label.
+Quoting David Dai (2019-07-24 10:22:57)
+>=20
+> The way that I view this is that the consumers consume both bandwidth=20
+> and QoS from these physical NoC devices by getting some path between two =
 
-Hi Matthias
+> endpoints on these different NoCs and applying some constraints. The NoC =
 
-I've thought about label a bit more. 
+> providers can accomplish that either by writing to MMIO spaces or by=20
+> talking to some remote processor/hardware to tune its clock speed. The=20
+> consumer doesn't interact with the RSCs directly, but can select a=20
+> different bcm voter based on the endpoints that are associated with a=20
+> particular bcm(apps or disp rsc). Each node(endpoints) will have its own =
 
-> +			label = "ethphy0:left:green";
+> BCM designation and an unique bcm voter.
 
-We need to be careful with names here. systemd etc renames
-interfaces. ethphy0 could in fact be connected to enp3s0, or eth0
-might get renamed to eth1, etc. So i think we should avoid things like
-ethphy0. Also, i'm not sure we actually need a label, at least not to
-start with.Do we have any way to expose it to the user?
+Ok. I get it now. The MMIO nodes will be interconnect providers and
+they'll know what RSCs they can use by exposing the same RSC "resource"
+multiple times for each RSC that can be targeted? This is what the
+postfix is with _DISP on your examples? Presumably there's an _APPS
+version of the same prefixed endpoint in case the consumer wants to use
+the APPS RSC instead of the DISP one, or maybe there's just no postfix
+in this case because APPS is the "default".
 
-If we do ever make it part of the generic LED framework, we can then
-use the label. At that point, i would probably combine the label with
-the interface name in a dynamic way to avoid issues like this.
-
-    Andrew
