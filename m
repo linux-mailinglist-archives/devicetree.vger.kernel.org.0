@@ -2,112 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EBDA74A39
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 11:46:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE13074A74
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 11:55:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390764AbfGYJqD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 05:46:03 -0400
-Received: from relay2-d.mail.gandi.net ([217.70.183.194]:46217 "EHLO
-        relay2-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729162AbfGYJqC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 05:46:02 -0400
-X-Originating-IP: 92.137.69.152
-Received: from localhost (alyon-656-1-672-152.w92-137.abo.wanadoo.fr [92.137.69.152])
-        (Authenticated sender: gregory.clement@bootlin.com)
-        by relay2-d.mail.gandi.net (Postfix) with ESMTPSA id ED6D040006;
-        Thu, 25 Jul 2019 09:45:58 +0000 (UTC)
-From:   Gregory CLEMENT <gregory.clement@bootlin.com>
-To:     Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-kernel@vger.kernel.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Tony Lindgren <tony@atomide.com>, linux-omap@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Gregory CLEMENT <gregory.clement@bootlin.com>
-Subject: [PATCH 3/3] regulator: twl6030: workaround the VMMC reset behavior
-Date:   Thu, 25 Jul 2019 11:45:42 +0200
-Message-Id: <20190725094542.16547-4-gregory.clement@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190725094542.16547-1-gregory.clement@bootlin.com>
-References: <20190725094542.16547-1-gregory.clement@bootlin.com>
+        id S1728172AbfGYJzG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 05:55:06 -0400
+Received: from hqemgate16.nvidia.com ([216.228.121.65]:16966 "EHLO
+        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725808AbfGYJzG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 05:55:06 -0400
+Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d397c760004>; Thu, 25 Jul 2019 02:55:02 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate101.nvidia.com (PGP Universal service);
+  Thu, 25 Jul 2019 02:55:05 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate101.nvidia.com on Thu, 25 Jul 2019 02:55:05 -0700
+Received: from tbergstrom-lnx.Nvidia.com (172.20.13.39) by
+ HQMAIL107.nvidia.com (172.20.187.13) with Microsoft SMTP Server (TLS) id
+ 15.0.1473.3; Thu, 25 Jul 2019 09:55:04 +0000
+Received: by tbergstrom-lnx.Nvidia.com (Postfix, from userid 1000)
+        id 8EF8E4286A; Thu, 25 Jul 2019 12:55:02 +0300 (EEST)
+Date:   Thu, 25 Jul 2019 12:55:02 +0300
+From:   Peter De Schrijver <pdeschrijver@nvidia.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+CC:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
+        <tglx@linutronix.de>, <jason@lakedaemon.net>,
+        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
+        <stefan@agner.ch>, <mark.rutland@arm.com>, <pgaikwad@nvidia.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
+        <josephl@nvidia.com>, <talho@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH V6 01/21] irqchip: tegra: Do not disable COP IRQ during
+ suspend
+Message-ID: <20190725095502.GM12715@pdeschrijver-desktop.Nvidia.com>
+References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com>
+ <1563738060-30213-2-git-send-email-skomatineni@nvidia.com>
+ <f6582e43-168e-1b7e-9db8-3d263bc3ba0d@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <f6582e43-168e-1b7e-9db8-3d263bc3ba0d@gmail.com>
+X-NVConfidentiality: public
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [172.20.13.39]
+X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1564048503; bh=ssTZBE+UvhxmRscb1bfFWkAue53y1Iqmywo1qz9iIgE=;
+        h=X-PGP-Universal:Date:From:To:CC:Subject:Message-ID:References:
+         MIME-Version:Content-Type:Content-Disposition:In-Reply-To:
+         X-NVConfidentiality:User-Agent:X-Originating-IP:X-ClientProxiedBy;
+        b=G0VLQQDUsh89ujpB7kNRnhX8LTxDvmLjwLern2fdpLIa7ywejvMlg4se10jcnfOLD
+         C+ylHNnfkSRtwQ/bOfYoZZpbdnnRbVFP2keOiR81Al2jdH4DwybrOnxreVYmz8xbgP
+         YMFrbSI6NNAsWW+d7jMeI8D6nTzJq2LNafeQ4xS8GcCmUeqRt7NNeqQjYVoJl8l4Sc
+         iI8F4gmdsKdfHp1+QhEhzptQosW8c71p0JK9HgUP/nSyc1PeK3Mly/3hdzv5aEDO5Q
+         Fxuq6XFE+P4jOPeQ6vwLfUHRLlNbIt609ThbLD1lQMqvxga4R6ZQisIcNyVj7w5D/U
+         32KNTGavqPdkQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-During reset the VMMC regulator doesn't reach 0V and only drops to
-1.8V, furthermore the pulse width is under 200us whereas the SD
-specification expect 1ms.
+On Mon, Jul 22, 2019 at 12:54:51PM +0300, Dmitry Osipenko wrote:
+> 
+> All Tegra SoCs support SC7, hence the 'supports_sc7' and the comment
+> doesn't sound correct to me. Something like 'firmware_sc7' should suit
+> better here.
+> 
+> > +			writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
+> 
+> Secondly, I'm also not sure why COP interrupts need to be disabled for
+> pre-T210 at all, since COP is unused. This looks to me like it was
+> cut-n-pasted from downstream kernel without a good reason and could be
+> simply removed.
 
-The WR_S bit allows the TWL6030 to no reset at all the VMMC during warm
-reset and keep the current voltage. Thanks to this workaround the SD
-card doesn't reach a undefined reset stage.
+I don't think we can rely on the fact that COP is unused. People can
+write their own code to run on COP.
 
-Actually this behavior is available for all the LDO regulator, so the
-driver will also allow to use it with any of these regulator.
-
-Signed-off-by: Gregory CLEMENT <gregory.clement@bootlin.com>
----
- drivers/regulator/twl6030-regulator.c | 15 ++++++++++++++-
- 1 file changed, 14 insertions(+), 1 deletion(-)
-
-diff --git a/drivers/regulator/twl6030-regulator.c b/drivers/regulator/twl6030-regulator.c
-index d73c81542ceb..b8100c3cedad 100644
---- a/drivers/regulator/twl6030-regulator.c
-+++ b/drivers/regulator/twl6030-regulator.c
-@@ -57,6 +57,9 @@ struct twlreg_info {
- #define VREG_BC_PROC		3
- #define VREG_BC_CLK_RST		4
- 
-+/* TWL6030 LDO register values for VREG_VOLTAGE */
-+#define TWL6030_VREG_VOLTAGE_WR_S   BIT(7)
-+
- /* TWL6030 LDO register values for CFG_STATE */
- #define TWL6030_CFG_STATE_OFF	0x00
- #define TWL6030_CFG_STATE_ON	0x01
-@@ -68,9 +71,10 @@ struct twlreg_info {
- #define TWL6030_CFG_STATE_APP(v)	(((v) & TWL6030_CFG_STATE_APP_MASK) >>\
- 						TWL6030_CFG_STATE_APP_SHIFT)
- 
--/* Flags for SMPS Voltage reading */
-+/* Flags for SMPS Voltage reading and LDO reading*/
- #define SMPS_OFFSET_EN		BIT(0)
- #define SMPS_EXTENDED_EN	BIT(1)
-+#define TWL_6030_WARM_RESET	BIT(3)
- 
- /* twl6032 SMPS EPROM values */
- #define TWL6030_SMPS_OFFSET		0xB0
-@@ -250,6 +254,9 @@ twl6030ldo_set_voltage_sel(struct regulator_dev *rdev, unsigned selector)
- {
- 	struct twlreg_info	*info = rdev_get_drvdata(rdev);
- 
-+	if (info->flags & TWL_6030_WARM_RESET)
-+		selector |= TWL6030_VREG_VOLTAGE_WR_S;
-+
- 	return twlreg_write(info, TWL_MODULE_PM_RECEIVER, VREG_VOLTAGE,
- 			    selector);
- }
-@@ -259,6 +266,9 @@ static int twl6030ldo_get_voltage_sel(struct regulator_dev *rdev)
- 	struct twlreg_info	*info = rdev_get_drvdata(rdev);
- 	int vsel = twlreg_read(info, TWL_MODULE_PM_RECEIVER, VREG_VOLTAGE);
- 
-+	if (info->flags & TWL_6030_WARM_RESET)
-+		vsel &= ~TWL6030_VREG_VOLTAGE_WR_S;
-+
- 	return vsel;
- }
- 
-@@ -710,6 +720,9 @@ static int twlreg_probe(struct platform_device *pdev)
- 		break;
- 	}
- 
-+	if (of_get_property(np, "ti,retain-on-reset", NULL))
-+		info->flags |= TWL_6030_WARM_RESET;
-+
- 	config.dev = &pdev->dev;
- 	config.init_data = initdata;
- 	config.driver_data = info;
--- 
-2.20.1
-
+Peter.
