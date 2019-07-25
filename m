@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C486975AA5
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 00:20:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB52275AA7
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 00:20:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727202AbfGYWTf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 18:19:35 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:42101 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727198AbfGYWTf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 18:19:35 -0400
-Received: by mail-pf1-f194.google.com with SMTP id q10so23423502pff.9
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 15:19:34 -0700 (PDT)
+        id S1727237AbfGYWTj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 18:19:39 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:43303 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727201AbfGYWTi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 18:19:38 -0400
+Received: by mail-pg1-f193.google.com with SMTP id f25so23700692pgv.10
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 15:19:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :in-reply-to:references;
-        bh=JdFpkP7pbSMH9B4M7FTkhgG/lqjyJ6OOE6axVL6CUAA=;
-        b=GYJfW3Nk1FciY+HZgW4xr/BxUwR7yovYnBpJcN1IbpNy1g1p3YsR/uwxoB2IEi7P4K
-         KcbL5OybLLonmU2MsMy5Q4cq3vm39gIgZPoP+xBpaaLSREG8FuBZvYcrvWnRYDY+Tt4K
-         gKHCBwaODfRdhdGG2E9Qc6dEl/hlqAj2VffQcXz8erUZ8nbzYhE6deP/J+tDFIaeOC8M
-         PEiDGmTj8kVDTzuXHPslBfvdhR0WOBZvo6Yh52qvN9S085CKrLZNVi28rcG9vlHXyp9T
-         kfczcZmu9/OshGnXY7I0YVHqA4igGLAg1y2t58VzSN23q3RidX2i5UPwStT+unPXrT47
-         00lA==
+        bh=kYY2KGeTwdILF2FlXV59Zq9qsKbWJTGhUy3mp43RMqs=;
+        b=MGdVaAiayGKurKmlzzCapq5eHfl991sITtHwnpq57sUvocciiP2DfUAFGrLQwQ5b3E
+         Q4Pl6pdJhnsUGMO/96C17+R8qtS6XLJIY0EV3Ddf5i4vq52lxUrMHIswICArv0rEZWZi
+         wVJ99efLWVwxJwHhpdcLNTj41W5Ygfhk2PAGcLa4iD1JZGPgvQDFcEly4Tm+brAYeAMU
+         SyuVLdpHehJg5DH/WlqEitRMLyMPQkOYrwF2deaULOQlqG5MJTMbiej+AqMIzXQbeAfF
+         QVWDkwkkbQt4RhI100prhoolWmR7+Z22BA8mOnOB5UJ+bqULJrlcm/Iv3lT/yw+fa3gN
+         NhIg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:in-reply-to:references;
-        bh=JdFpkP7pbSMH9B4M7FTkhgG/lqjyJ6OOE6axVL6CUAA=;
-        b=VzUMSMLpWvTGcDDSO/ZC6s5ye4ajZvFmj7h+LoAqJMhqW6DDeHEBujP049voIKBz/J
-         oNjtl1LMUGpjkWuvacG50SsGooWaMbMNEic1m4EyzWMyPy35m7CTpzEAuSY1yQg0IVOk
-         lJ/XZwqCHjoB/EJr3tp/JwuVxJ51PZ+18RB5m0pew+wjUHfi5y6fHAMp/SqHJcZhwQSs
-         vtT+el0Bv+SScdH9UofavsIF1XJ7Vj0cQFnkgyi2Rqnlg3q+jnBwG8fyeMjZy/CzFXU1
-         s4Xx2jIAc6/JPPOtV9TucJs3/HBSroM8Q5yOIe3AMOmHq3O62GQuytrUd3r6kJ1icIBR
-         3Uvw==
-X-Gm-Message-State: APjAAAX2M3wDdmvTK1JSMr4eHlRJYZYLGFcs6dHle4qHOc2VpfL6b3A0
-        efwCUV0v/wl6RYC6dww2eXVhKQ==
-X-Google-Smtp-Source: APXvYqxyocB2IP0VmLclM747d+dY4/1ESTdssmPD05O6XV57QvN96aFcvgfeq5qNasSkKs0RwQQuow==
-X-Received: by 2002:a62:8494:: with SMTP id k142mr18672822pfd.75.1564093174334;
-        Thu, 25 Jul 2019 15:19:34 -0700 (PDT)
+        bh=kYY2KGeTwdILF2FlXV59Zq9qsKbWJTGhUy3mp43RMqs=;
+        b=hO9AX5HRThvdOGX51Cnmsp6SjtBkbZj9RxhImvsA3ADrfUYL2ptwJxeu7evSCozeBx
+         JZJA5q8n+/Y4oJyxSyU9KAMkD9kA5J1slecs72t14MikbMrJlnYlIIqsjSv9L3CZiJuf
+         /h6EMk+yVVDccvMfeKnPaDQ8QqykPCrPDGqvt5uOgTpIz17jTeFXT9bqdp9ZipKKEjKK
+         mjKCMjb/WHqPH9VzVISO9tIVGL4TMLF5LM346AKdzOqo+E5nmjRoiWokykrWzi33qOOe
+         ZKoj4L4U5z1NxzyZ/7lNDe7Q0ZN9oBv7Yq5SaTyudDVbwkqYlR74bSzhdIcJMm8E4lTz
+         QTvQ==
+X-Gm-Message-State: APjAAAVao3ilv06/ieyn2NPur2BD0ov6b8j/QaOLXnqlKduSSH45SJ51
+        DiWmcT7YFT9OGd0cPLha+7k+kA==
+X-Google-Smtp-Source: APXvYqy2Ew9ZKhyHpGk0sa36SAHnwcZ5CszF19xs6yPflfZBT66Pz95YNGXuwSZB9XM+QdXPe/QOJw==
+X-Received: by 2002:a17:90a:fa07:: with SMTP id cm7mr92107753pjb.138.1564093177830;
+        Thu, 25 Jul 2019 15:19:37 -0700 (PDT)
 Received: from localhost ([49.248.170.216])
-        by smtp.gmail.com with ESMTPSA id 81sm45632927pfa.86.2019.07.25.15.19.33
+        by smtp.gmail.com with ESMTPSA id v13sm61288573pfe.105.2019.07.25.15.19.36
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 25 Jul 2019 15:19:33 -0700 (PDT)
+        Thu, 25 Jul 2019 15:19:37 -0700 (PDT)
 From:   Amit Kucheria <amit.kucheria@linaro.org>
 To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         bjorn.andersson@linaro.org, edubezval@gmail.com,
@@ -52,10 +52,10 @@ To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Zhang Rui <rui.zhang@intel.com>
-Cc:     marc.w.gonzalez@free.fr, devicetree@vger.kernel.org
-Subject: [PATCH 10/15] arm64: dts: msm8998: thermal: Add interrupt support
-Date:   Fri, 26 Jul 2019 03:48:45 +0530
-Message-Id: <d87cc6488923fcb7358ebf8b37449f17d8161fe8.1564091601.git.amit.kucheria@linaro.org>
+Cc:     devicetree@vger.kernel.org
+Subject: [PATCH 11/15] arm64: dts: qcs404: thermal: Add interrupt support
+Date:   Fri, 26 Jul 2019 03:48:46 +0530
+Message-Id: <cbe0d4c260a903f2df2c9705368abe0bd812466a.1564091601.git.amit.kucheria@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1564091601.git.amit.kucheria@linaro.org>
 References: <cover.1564091601.git.amit.kucheria@linaro.org>
@@ -66,185 +66,60 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Register upper-lower interrupts for each of the two tsens controllers.
+Register upper-lower interrupt for the tsens controller.
 
 Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
 ---
-Cc: marc.w.gonzalez@free.fr
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 42 +++++++++++++++-------------
+ 1 file changed, 22 insertions(+), 20 deletions(-)
 
- arch/arm64/boot/dts/qcom/msm8998.dtsi | 82 ++++++++++++++-------------
- 1 file changed, 42 insertions(+), 40 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/qcom/msm8998.dtsi b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-index c13ed7aeb1e0..f9abd652a544 100644
---- a/arch/arm64/boot/dts/qcom/msm8998.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8998.dtsi
-@@ -440,8 +440,8 @@
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index 3d0789775009..0c715f9cc011 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -280,6 +280,8 @@
+ 			nvmem-cells = <&tsens_caldata>;
+ 			nvmem-cell-names = "calib";
+ 			#qcom,sensors = <10>;
++			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "tsens";
+ 			#thermal-sensor-cells = <1>;
+ 		};
+ 
+@@ -1071,8 +1073,8 @@
  
  	thermal-zones {
- 		cpu0-thermal {
+ 		aoss-thermal {
 -			polling-delay-passive = <250>;
 -			polling-delay = <1000>;
 +			polling-delay-passive = <0>;
 +			polling-delay = <0>;
  
- 			thermal-sensors = <&tsens0 1>;
+ 			thermal-sensors = <&tsens 0>;
  
-@@ -461,8 +461,8 @@
+@@ -1086,8 +1088,8 @@
  		};
  
- 		cpu1-thermal {
+ 		q6-hvx-thermal {
 -			polling-delay-passive = <250>;
 -			polling-delay = <1000>;
 +			polling-delay-passive = <0>;
 +			polling-delay = <0>;
  
- 			thermal-sensors = <&tsens0 2>;
+ 			thermal-sensors = <&tsens 1>;
  
-@@ -482,8 +482,8 @@
+@@ -1101,8 +1103,8 @@
  		};
  
- 		cpu2-thermal {
+ 		lpass-thermal {
 -			polling-delay-passive = <250>;
 -			polling-delay = <1000>;
 +			polling-delay-passive = <0>;
 +			polling-delay = <0>;
  
- 			thermal-sensors = <&tsens0 3>;
+ 			thermal-sensors = <&tsens 2>;
  
-@@ -503,8 +503,8 @@
- 		};
- 
- 		cpu3-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 4>;
- 
-@@ -524,8 +524,8 @@
- 		};
- 
- 		cpu4-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 7>;
- 
-@@ -545,8 +545,8 @@
- 		};
- 
- 		cpu5-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 8>;
- 
-@@ -566,8 +566,8 @@
- 		};
- 
- 		cpu6-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 9>;
- 
-@@ -587,8 +587,8 @@
- 		};
- 
- 		cpu7-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 10>;
- 
-@@ -608,8 +608,8 @@
- 		};
- 
- 		gpu-thermal-bottom {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 12>;
- 
-@@ -623,8 +623,8 @@
- 		};
- 
- 		gpu-thermal-top {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 13>;
- 
-@@ -638,8 +638,8 @@
- 		};
- 
- 		clust0-mhm-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 5>;
- 
-@@ -653,8 +653,8 @@
- 		};
- 
- 		clust1-mhm-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 6>;
- 
-@@ -668,8 +668,8 @@
- 		};
- 
- 		cluster1-l2-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens0 11>;
- 
-@@ -683,8 +683,8 @@
- 		};
- 
- 		modem-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 1>;
- 
-@@ -698,8 +698,8 @@
- 		};
- 
- 		mem-thermal {
--			polling-delay-passive = <250>;
--			polling-delay = <1000>;
-+			polling-delay-passive = <0>;
-+			polling-delay = <0>;
- 
- 			thermal-sensors = <&tsens1 2>;
- 
-@@ -713,8 +713,8 @@
+@@ -1116,8 +1118,8 @@
  		};
  
  		wlan-thermal {
@@ -253,62 +128,73 @@ index c13ed7aeb1e0..f9abd652a544 100644
 +			polling-delay-passive = <0>;
 +			polling-delay = <0>;
  
- 			thermal-sensors = <&tsens1 3>;
+ 			thermal-sensors = <&tsens 3>;
  
-@@ -728,8 +728,8 @@
+@@ -1131,8 +1133,8 @@
  		};
  
- 		q6-dsp-thermal {
+ 		cluster-thermal {
 -			polling-delay-passive = <250>;
 -			polling-delay = <1000>;
 +			polling-delay-passive = <0>;
 +			polling-delay = <0>;
  
- 			thermal-sensors = <&tsens1 4>;
+ 			thermal-sensors = <&tsens 4>;
  
-@@ -743,8 +743,8 @@
+@@ -1165,8 +1167,8 @@
  		};
  
- 		camera-thermal {
+ 		cpu0-thermal {
 -			polling-delay-passive = <250>;
 -			polling-delay = <1000>;
 +			polling-delay-passive = <0>;
 +			polling-delay = <0>;
  
- 			thermal-sensors = <&tsens1 5>;
+ 			thermal-sensors = <&tsens 5>;
  
-@@ -758,8 +758,8 @@
+@@ -1199,8 +1201,8 @@
  		};
  
- 		multimedia-thermal {
+ 		cpu1-thermal {
 -			polling-delay-passive = <250>;
 -			polling-delay = <1000>;
 +			polling-delay-passive = <0>;
 +			polling-delay = <0>;
  
- 			thermal-sensors = <&tsens1 6>;
+ 			thermal-sensors = <&tsens 6>;
  
-@@ -845,8 +845,9 @@
- 			compatible = "qcom,msm8998-tsens", "qcom,tsens-v2";
- 			reg = <0x10ab000 0x1000>, /* TM */
- 			      <0x10aa000 0x1000>; /* SROT */
--
- 			#qcom,sensors = <14>;
-+			interrupts = <GIC_SPI 458 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tsens0";
- 			#thermal-sensor-cells = <1>;
+@@ -1233,8 +1235,8 @@
  		};
  
-@@ -854,8 +855,9 @@
- 			compatible = "qcom,msm8998-tsens", "qcom,tsens-v2";
- 			reg = <0x10ae000 0x1000>, /* TM */
- 			      <0x10ad000 0x1000>; /* SROT */
--
- 			#qcom,sensors = <8>;
-+			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
-+			interrupt-names = "tsens1";
- 			#thermal-sensor-cells = <1>;
+ 		cpu2-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens 7>;
+ 
+@@ -1267,8 +1269,8 @@
  		};
+ 
+ 		cpu3-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens 8>;
+ 
+@@ -1301,8 +1303,8 @@
+ 		};
+ 
+ 		gpu-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens 9>;
  
 -- 
 2.17.1
