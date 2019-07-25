@@ -2,146 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CDE55755F7
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 19:44:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEDF97560B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 19:47:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389137AbfGYRnx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 13:43:53 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36628 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730058AbfGYRnq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 13:43:46 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=ANMpYSDNY6oEnY6y25VTsTy96X4rP+mF/SNqvsiqdGc=; b=T8D604aqzVVJ
-        Duk4kaKnMxAxRnPCj5r5XAKqalKsudgHJe3rBjW8ZdIA+LY6CYgSBE4CdJolyW8qJqlau0KJXR++/
-        +VdCXXyqPRgg4UrjpEeNhJ62/GQD0ROtsaFD07lLC2sVFNgBfsBKAeJZG6u7dMK2X83q2Mquxcnrf
-        zo+a0=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hqhmG-0003NG-MR; Thu, 25 Jul 2019 17:43:40 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id BAF9D2742B60; Thu, 25 Jul 2019 18:43:39 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>
-Subject: Applied "ASoC: codec2codec: name link using stream direction" to the asoc tree
-In-Reply-To: <20190725165949.29699-3-jbrunet@baylibre.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190725174339.BAF9D2742B60@ypsilon.sirena.org.uk>
-Date:   Thu, 25 Jul 2019 18:43:39 +0100 (BST)
+        id S2387492AbfGYRrw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 13:47:52 -0400
+Received: from mx0a-00082601.pphosted.com ([67.231.145.42]:54928 "EHLO
+        mx0a-00082601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2388955AbfGYRrv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 13:47:51 -0400
+Received: from pps.filterd (m0044008.ppops.net [127.0.0.1])
+        by mx0a-00082601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6PHliX9002448
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 10:47:50 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=facebook;
+ bh=gU2NXoAIDe4kG/3Zgh8Jxlt2+T68VVp6jk3LMMeyHvg=;
+ b=hMITGBVMgMYEiiGX0CJfJFpEokR1ePC1quMsG1/GSD2RSmtWgKNVQERrMFE5Z0sIQz9e
+ X0GMoL6r/OPDdBrV4aXZA8lHxhTUTgBaJu7yqt77130yng04pZwpNQPEMp1TCm05AZvy
+ 0KtUDnzBvr8XEnTIhTr+lS7H7TicDeeOxMQ= 
+Received: from maileast.thefacebook.com ([163.114.130.16])
+        by mx0a-00082601.pphosted.com with ESMTP id 2ty9n69wxq-4
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 10:47:50 -0700
+Received: from mx-out.facebook.com (2620:10d:c0a8:1b::d) by
+ mail.thefacebook.com (2620:10d:c0a8:82::c) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 25 Jul 2019 10:47:23 -0700
+Received: by devvm4117.prn2.facebook.com (Postfix, from userid 167582)
+        id 29F73116FDE13; Thu, 25 Jul 2019 10:45:14 -0700 (PDT)
+Smtp-Origin-Hostprefix: devvm
+From:   Vijay Khemka <vijaykhemka@fb.com>
+Smtp-Origin-Hostname: devvm4117.prn2.facebook.com
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>
+CC:     <vijaykhemka@fb.com>,
+        "openbmc @ lists . ozlabs . org" <openbmc@lists.ozlabs.org>,
+        <sdasari@fb.com>
+Smtp-Origin-Cluster: prn2c23
+Subject: [PATCH] ARM: dts: aspeed: tiogapass: Move battery sensor
+Date:   Thu, 25 Jul 2019 10:45:11 -0700
+Message-ID: <20190725174512.1380735-1-vijaykhemka@fb.com>
+X-Mailer: git-send-email 2.17.1
+X-FB-Internal: Safe
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-25_06:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=943 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1907250209
+X-FB-Internal: deliver
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+Moved adc7 hwmon battery sensor to correct label to be read
+by single applications for all adc sensors.
 
-   ASoC: codec2codec: name link using stream direction
-
-has been applied to the asoc tree at
-
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
-
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
-
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From 054d65004c6a008dfefbdae4fc1b46a3ad4e94c1 Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 25 Jul 2019 18:59:45 +0200
-Subject: [PATCH] ASoC: codec2codec: name link using stream direction
-
-At the moment, codec to codec dai link widgets are named after the
-cpu dai and the 1st codec valid on the link. This might be confusing
-if there is multiple valid codecs on the link for one stream
-direction.
-
-Instead, use the dai link name and the stream direction to name the
-the dai link widget
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20190725165949.29699-3-jbrunet@baylibre.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
+Signed-off-by: Vijay Khemka <vijaykhemka@fb.com>
 ---
- sound/soc/soc-dapm.c | 12 ++++--------
- 1 file changed, 4 insertions(+), 8 deletions(-)
+ arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
 
-diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
-index 034b31fd2ecb..7db4abd9a0a5 100644
---- a/sound/soc/soc-dapm.c
-+++ b/sound/soc/soc-dapm.c
-@@ -4056,8 +4056,7 @@ snd_soc_dapm_alloc_kcontrol(struct snd_soc_card *card,
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
+index d0c823e8fce5..682f729ea25e 100644
+--- a/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-tiogapass.dts
+@@ -46,13 +46,9 @@
+ 	iio-hwmon {
+ 		compatible = "iio-hwmon";
+ 		io-channels = <&adc 0>, <&adc 1>, <&adc 2>, <&adc 3>,
+-					<&adc 4>, <&adc 5>, <&adc 6>;
++			      <&adc 4>, <&adc 5>, <&adc 6>, <&adc 7>;
+ 	};
  
- static struct snd_soc_dapm_widget *
- snd_soc_dapm_new_dai(struct snd_soc_card *card, struct snd_soc_pcm_runtime *rtd,
--		     struct snd_soc_dapm_widget *source,
--		     struct snd_soc_dapm_widget *sink)
-+		     char *id)
- {
- 	struct snd_soc_dapm_widget template;
- 	struct snd_soc_dapm_widget *w;
-@@ -4067,7 +4066,7 @@ snd_soc_dapm_new_dai(struct snd_soc_card *card, struct snd_soc_pcm_runtime *rtd,
- 	int ret;
+-	iio-hwmon-battery {
+-		compatible = "iio-hwmon";
+-		io-channels = <&adc 7>;
+-	};
+ };
  
- 	link_name = devm_kasprintf(card->dev, GFP_KERNEL, "%s-%s",
--				   source->name, sink->name);
-+				   rtd->dai_link->name, id);
- 	if (!link_name)
- 		return ERR_PTR(-ENOMEM);
- 
-@@ -4247,15 +4246,13 @@ static void dapm_connect_dai_link_widgets(struct snd_soc_card *card,
- 	}
- 
- 	for_each_rtd_codec_dai(rtd, i, codec_dai) {
--
- 		/* connect BE DAI playback if widgets are valid */
- 		codec = codec_dai->playback_widget;
- 
- 		if (playback_cpu && codec) {
- 			if (!playback) {
- 				playback = snd_soc_dapm_new_dai(card, rtd,
--								playback_cpu,
--								codec);
-+								"playback");
- 				if (IS_ERR(playback)) {
- 					dev_err(rtd->dev,
- 						"ASoC: Failed to create DAI %s: %ld\n",
-@@ -4284,8 +4281,7 @@ static void dapm_connect_dai_link_widgets(struct snd_soc_card *card,
- 		if (codec && capture_cpu) {
- 			if (!capture) {
- 				capture = snd_soc_dapm_new_dai(card, rtd,
--							       codec,
--							       capture_cpu);
-+							       "capture");
- 				if (IS_ERR(capture)) {
- 					dev_err(rtd->dev,
- 						"ASoC: Failed to create DAI %s: %ld\n",
+ &fmc {
 -- 
-2.20.1
+2.17.1
 
