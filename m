@@ -2,89 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 79C25754D1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 18:58:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CAE49754D6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 18:59:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389806AbfGYQ6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 12:58:33 -0400
-Received: from foss.arm.com ([217.140.110.172]:33038 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388177AbfGYQ6c (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Jul 2019 12:58:32 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C98E919BF;
-        Thu, 25 Jul 2019 09:58:31 -0700 (PDT)
-Received: from [10.1.194.48] (e123572-lin.cambridge.arm.com [10.1.194.48])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6FF8F3F71A;
-        Thu, 25 Jul 2019 09:58:30 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: fast models: Increase clcd's
- max-memory-bandwidth
-To:     Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, Pawel Moll <pawel.moll@arm.com>,
-        Ruben Ayrapetyan <ruben.ayrapetyan@arm.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        dri-devel@lists.freedesktop.org,
-        Sudeep Holla <sudeep.holla@arm.com>,
-        Brian Starkey <brian.starkey@arm.com>
-References: <20190725145040.42182-1-kevin.brodsky@arm.com>
- <042d5c3d-96fe-5466-3869-a0a3a08b964d@arm.com>
-From:   Kevin Brodsky <kevin.brodsky@arm.com>
-Message-ID: <1d7929a2-273e-e695-6700-36aacf38f61a@arm.com>
-Date:   Thu, 25 Jul 2019 17:58:25 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S2389805AbfGYQ7y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 12:59:54 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:40451 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388471AbfGYQ7y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 12:59:54 -0400
+Received: by mail-wm1-f67.google.com with SMTP id v19so45402205wmj.5
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 09:59:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5T1q+s41fPQD7eof6Tqonl1CLLGxvvozknwhIlqSeIY=;
+        b=vSIN5SQO0xC2DiwEc0YeIVtaqLm9xmsTf3t4eAWsBsGaCKiGOK2vgJal9mP8efVMko
+         b7K7SHaczX6wzGVIJLowJ89Sig8RGT2vQBqW3UKxd6ok4KM/4XfH2Z1u0WaYmzbvgVka
+         e5zhJaCjapKNyqA9aVJLo6T6SStoKByttTvZPPWMNKOQvkMLS/Z3tPyJGSLt7jJp/tqc
+         ARjufuz5KjsxoP9SlZp+lrMhoet+SUuKk6IN1bJcohCnML3Z5VOZVa+wVErhZyfKF1C/
+         NnjdXCeQAzlByQinXhS1sXYZwHRbaQwyN0r7MpBvmz6N3/lNSs62XIwO3PatT85KPyYa
+         I0pA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=5T1q+s41fPQD7eof6Tqonl1CLLGxvvozknwhIlqSeIY=;
+        b=FJD1J4J6qUX2QPdpmJkLk6O0sFco/BYAY+3JB3+nTijL/8kn25C03ycVybA2x7y8H7
+         aYMouhZvpc9cMI2eTuCtyYaqJpFwcwOQlu1dILPakBk4b7q0xHnFa5mPhzju+UXb/Isx
+         mAmxbPWiQT8ftuvwdtvb1DmXVixajZ7UF73iQZ8i4BI14nLyB7w4FKaKQ4F/wgFAEsfp
+         yspLbhkK8GgMmTNWy7HZRUA7dVoD24YiWfyEEE+fwy+A9586sRKP81cOvbrNMZed+auO
+         agMG8PzKZAQXKQqXss1114hrXbbPZukD6xYeExrxZZA/lVXyOZswDK5P664y3YVEV+Ax
+         RutA==
+X-Gm-Message-State: APjAAAW8nYlBJM5vkqdgjRmRfNneRpTSRqTnpzs+kc2lW9aNpJ6ARuio
+        xq9hVEfOzAn4i9baFFfN9Qu8JQ==
+X-Google-Smtp-Source: APXvYqz87XeGxJ4blumupC5s6LoHjrpUGm7ver3gc6XTezwuwOx9Uc66ViyO7ps4q4zmS4zTE9TXGg==
+X-Received: by 2002:a1c:acc8:: with SMTP id v191mr82951769wme.177.1564073992368;
+        Thu, 25 Jul 2019 09:59:52 -0700 (PDT)
+Received: from starbuck.baylibre.local (uluru.liltaz.com. [163.172.81.188])
+        by smtp.googlemail.com with ESMTPSA id q10sm53627199wrf.32.2019.07.25.09.59.51
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 25 Jul 2019 09:59:51 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Mark Brown <broonie@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     Jerome Brunet <jbrunet@baylibre.com>, alsa-devel@alsa-project.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-amlogic@lists.infradead.org
+Subject: [PATCH v2 0/6] ASoC: improve codec to codec link support
+Date:   Thu, 25 Jul 2019 18:59:43 +0200
+Message-Id: <20190725165949.29699-1-jbrunet@baylibre.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <042d5c3d-96fe-5466-3869-a0a3a08b964d@arm.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-GB
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25/07/2019 16:15, Robin Murphy wrote:
-> Hi Kevin,
+As explained in this previous series [0], on Amlogic, we are using codec to
+codec links to deal with the glue which is between the i2s backends and the
+synopsys hdmi controller.
 
-Hi Robin,
+This worked well until I tried to .get_eld() support in the dw-hdmi-i2s
+driver.  Doing so adds channel mapping controls to the codec. This shown
+several problem
 
-> On 25/07/2019 15:50, Kevin Brodsky wrote:
->> It may be desirable on certain platforms, such as Android, to
->> use 32bpp buffers. Since there is no clear bandwidth limit for the
->> CLCD component on the fast model, let's increase
->> max-memory-bandwidth to allow using 32bpp buffers.
-> Given that the property is optional anyway, would it hurt to just remove
-> it? After trying to dig up any relevant internal email history, it's
-> still far from clear how and why it got here in the first place.
+1) .pcm_new() is not called on codec to codec links.
+   struct snd_soc_pcm_runtime do not even have a valid .pcm
+2) struct snd_pcm_substream and struct snd_pcm_runtime are ephemeral
+   This is a problem if a control needs to access them
 
-Very good point, I hadn't realised it was an optional property. Removing it 
-completely seems to work fine. I'll send a v2 removing it from both fvp-base-revc.dts 
-and rtsm_ve-motherboard.dtsi. Thanks!
+The goal of this patchset is to resolve the above issues and improve the
+codec to codec link support enough to correctly handle the hdmi-codec
 
-Kevin
+The support of these codec to codec links could probably be improved in the
+future to behave like any other link and use soc_pcm_open(),
+soc_pcm_hw_params(), etc...
 
-> Robin.
->
->> Reported-by: Ruben Ayrapetyan <ruben.ayrapetyan@arm.com>
->> Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
->> ---
->>    arch/arm64/boot/dts/arm/fvp-base-revc.dts | 2 +-
->>    1 file changed, 1 insertion(+), 1 deletion(-)
->>
->> diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
->> index 687707020ec1..3aee49ed6d88 100644
->> --- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
->> +++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
->> @@ -269,7 +269,7 @@
->>    		motherboard {
->>    			iofpga@3,00000000 {
->>    				clcd@1f0000 {
->> -					max-memory-bandwidth = <130000000>; /* 16bpp @ 63.5MHz */
->> +					max-memory-bandwidth = <260000000>; /* 32bpp @ 63.5MHz */
->>    				};
->>    			};
->>    		};
->>
+The challenge lies in the dapm mutex. The soc_pcm call dapm function locking
+this mutex but the dapm mutex is already held in snd_soc_dai_link_event()
+
+Changes since v1 [1]:
+* Fix rebase on Murimoto-san's patches
+* Allocate params dynamically again and refactor the pre_pmu code to
+  simplify the error handling and rollback a bit
+
+[0]: https://lkml.kernel.org/r/20190515131858.32130-1-jbrunet@baylibre.com
+[1]: https://lkml.kernel.org/r/20190724162405.6574-1-jbrunet@baylibre.com
+
+Jerome Brunet (6):
+  ASoC: codec2codec: run callbacks in order
+  ASoC: codec2codec: name link using stream direction
+  ASoC: codec2codec: deal with params when necessary
+  ASoC: create pcm for codec2codec links as well
+  ASoC: codec2codec: remove ephemeral variables
+  ASoC: codec2codec: fill some of the runtime stream parameters
+
+ sound/soc/soc-core.c |  42 +++------
+ sound/soc/soc-dapm.c | 220 +++++++++++++++++++++++++++----------------
+ sound/soc/soc-pcm.c  |  35 ++++++-
+ 3 files changed, 182 insertions(+), 115 deletions(-)
+
+-- 
+2.21.0
 
