@@ -2,170 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7591F7588D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 22:02:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 35EFA758C0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 22:21:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726303AbfGYUCb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 16:02:31 -0400
-Received: from retiisi.org.uk ([95.216.213.190]:37126 "EHLO
-        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726115AbfGYUCb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Jul 2019 16:02:31 -0400
-Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
-         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
-        (No client certificate requested)
-        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id D7633634C87;
-        Thu, 25 Jul 2019 23:02:11 +0300 (EEST)
-Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
-        (envelope-from <sakari.ailus@retiisi.org.uk>)
-        id 1hqjwJ-0001Ev-7L; Thu, 25 Jul 2019 23:02:11 +0300
-Date:   Thu, 25 Jul 2019 23:02:11 +0300
-From:   Sakari Ailus <sakari.ailus@iki.fi>
-To:     Luis de Oliveira <Luis.Oliveira@synopsys.com>
-Cc:     "mchehab@kernel.org" <mchehab@kernel.org>,
-        "davem@davemloft.net" <davem@davemloft.net>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "Jonathan.Cameron@huawei.com" <Jonathan.Cameron@huawei.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "nicolas.ferre@microchip.com" <nicolas.ferre@microchip.com>,
-        "paulmck@linux.ibm.com" <paulmck@linux.ibm.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "kishon@ti.com" <kishon@ti.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-media@vger.kernel.org" <linux-media@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Joao.Pinto@synopsys.com" <Joao.Pinto@synopsys.com>
-Subject: Re: [v4 1/6] dt-bindings: media: Document bindings for DW MIPI CSI-2
- Host
-Message-ID: <20190725200211.GK1263@valkosipuli.retiisi.org.uk>
-References: <1560280855-18085-1-git-send-email-luis.oliveira@synopsys.com>
- <1560280855-18085-2-git-send-email-luis.oliveira@synopsys.com>
- <20190628141326.swgl3kg4fj5pmlqx@valkosipuli.retiisi.org.uk>
- <MN2PR12MB37109D7AADCE4823CB458CB9CBF60@MN2PR12MB3710.namprd12.prod.outlook.com>
- <20190709182500.3x544axnrgy72aje@valkosipuli.retiisi.org.uk>
- <MN2PR12MB371026A6547B449EEC0439B1CBF00@MN2PR12MB3710.namprd12.prod.outlook.com>
+        id S1726692AbfGYUVZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 16:21:25 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:38342 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726166AbfGYUVZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 16:21:25 -0400
+Received: by mail-pf1-f193.google.com with SMTP id y15so23305936pfn.5
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 13:21:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=t0Cra5QTZMEsQQCWtg/IrgmE1EkzXk2wzdHi6GNLFH4=;
+        b=icwWCIiUgBV1wHTICVJ8PDBYNM56j1SL56zOuqzadtL/FTJftG29M/5i37umQn5pat
+         98vgN9o4wCCUl6zlUntg1M2/HAqBcuf46VrRvHnBderCK2JzVC1N/QGeaiGfSXK9s4n5
+         D6RwN5DHnLXKOq4Ny6b8fOnc2KVD7SZxUUSdcyUfbAIVnumy+pkl0n1aZfxPSnWyIL72
+         hfdMtqkGubCbZVDRysKpCuE9QGl7AC7BSboaOfM49zJPp3eOwApBz0fXZ3/p4ovL/zBt
+         OQN9pJSLbaG8HsrL0EiinQXd3Ip1iSW8gF7p8zWj9INScAI2FFyHb72jeSzAyZtgcUhN
+         wuPw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=t0Cra5QTZMEsQQCWtg/IrgmE1EkzXk2wzdHi6GNLFH4=;
+        b=bTEZrGISPmDLlQkP8aeusjvfiVWTZw/k0w1v9cAlc4rIHrhu91ifR6sqLfMHma7Q92
+         3qc+8EZ5pplYx7wZ+mufueTsIO2L8Fj2ph/jtnFIEGCdqNWQwwYvenY6vKAmfU9DEaHj
+         kCUt4wRXWcvbui33yzGWboiLb+kCFqez272qqC21S+ykXA9vQkZI4DDTCaAU8FIcgTNt
+         K83cv5iJKZ8KhysPZeUzyNjqyXa9M8CTIzhF4da7UVEos0nI1FnLgvyhemhStZYJN3R1
+         FkHyBffSkP7nVf4jMkXDCwyjkOIr0xs9/wd6/eJZCpStQL1PB4u/IkSO9P0+It3TlyBz
+         bBSQ==
+X-Gm-Message-State: APjAAAUTQTiQFN7eTxSqIZ6TOcpYQovmPplWqyKpZt41d/u3bywWoFu1
+        0C6lEUrUQyJrWTGoxB2SGOa/erdaPHHmnGyz7+q5SA==
+X-Google-Smtp-Source: APXvYqxzvrolA8VKWhh/PCWTspZ6X1ImHyHFsNde4xNXJqWmdb4kpAbmdfPWVY+GfuBUC1O9mftgHi7aVHIiE4jBL10=
+X-Received: by 2002:a63:b919:: with SMTP id z25mr87114130pge.201.1564086083398;
+ Thu, 25 Jul 2019 13:21:23 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <MN2PR12MB371026A6547B449EEC0439B1CBF00@MN2PR12MB3710.namprd12.prod.outlook.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <CAFd5g47ikJmA0uGoavAFsh+hQvDmgsOi26tyii0612R=rt7iiw@mail.gmail.com>
+ <CAFd5g44_axVHNMBzxSURQB_-R+Rif7cZcg7PyZ_SS+5hcy5jZA@mail.gmail.com>
+ <20190716175021.9CA412173C@mail.kernel.org> <CAFd5g453vXeSUCZenCk_CzJ-8a1ym9RaPo0NVF=FujF9ac-5Ag@mail.gmail.com>
+ <20190718175024.C3EC421019@mail.kernel.org> <CAFd5g46a7C1+R6ZcE_SkqaYqgrH5Rx3M=X7orFyaMgFLDbeYYA@mail.gmail.com>
+ <20190719000834.GA3228@google.com> <20190722200347.261D3218C9@mail.kernel.org>
+ <CAFd5g45hdCxEavSxirr0un_uLzo5Z-J4gHRA06qjzcQrTzmjVg@mail.gmail.com>
+ <20190722235411.06C1320840@mail.kernel.org> <20190724073125.xyzfywctrcvg6fmh@pathway.suse.cz>
+In-Reply-To: <20190724073125.xyzfywctrcvg6fmh@pathway.suse.cz>
+From:   Brendan Higgins <brendanhiggins@google.com>
+Date:   Thu, 25 Jul 2019 13:21:12 -0700
+Message-ID: <CAFd5g47v3Mr4GEGOjqyYy9Jwwm+ow7ypbu9j88rxEN06QCzdxQ@mail.gmail.com>
+Subject: Re: [PATCH v9 04/18] kunit: test: add kunit_stream a std::stream like logger
+To:     Petr Mladek <pmladek@suse.com>
+Cc:     Stephen Boyd <sboyd@kernel.org>, Jeff Dike <jdike@addtoit.com>,
+        Kevin Hilman <khilman@baylibre.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Kees Cook <keescook@google.com>,
+        David Rientjes <rientjes@google.com>,
+        kunit-dev@googlegroups.com,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
+        wfg@linux.intel.com, Greg KH <gregkh@linuxfoundation.org>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        "Theodore Ts'o" <tytso@mit.edu>,
+        Richard Weinberger <richard@nod.at>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Timothy Bird <Tim.Bird@sony.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luis,
+On Wed, Jul 24, 2019 at 12:31 AM Petr Mladek <pmladek@suse.com> wrote:
+>
+> On Mon 2019-07-22 16:54:10, Stephen Boyd wrote:
+> > Quoting Brendan Higgins (2019-07-22 15:30:49)
+> > > On Mon, Jul 22, 2019 at 1:03 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > > >
+> > > >
+> > > > What's the calling context of the assertions and expectations? I still
+> > > > don't like the fact that string stream needs to allocate buffers and
+> > > > throw them into a list somewhere because the calling context matters
+> > > > there.
+> > >
+> > > The calling context is the same as before, which is anywhere.
+> >
+> > Ok. That's concerning then.
+> >
+> > >
+> > > > I'd prefer we just wrote directly to the console/log via printk
+> > > > instead. That way things are simple because we use the existing
+> > > > buffering path of printk, but maybe there's some benefit to the string
+> > > > stream that I don't see? Right now it looks like it builds a string and
+> > > > then dumps it to printk so I'm sort of lost what the benefit is over
+> > > > just writing directly with printk.
+> > >
+> > > It's just buffering it so the whole string gets printed uninterrupted.
+> > > If we were to print out piecemeal to printk, couldn't we have another
+> > > call to printk come in causing it to garble the KUnit message we are
+> > > in the middle of printing?
+> >
+> > Yes, printing piecemeal by calling printk many times could lead to
+> > interleaving of messages if something else comes in such as an interrupt
+> > printing something. Printk has some support to hold "records" but I'm
+> > not sure how that would work here because KERN_CONT talks about only
+> > being used early on in boot code. I haven't looked at printk in detail
+> > though so maybe I'm all wrong and KERN_CONT just works?
+>
+> KERN_CONT does not guarantee that the message will get printed
+> together. The pieces get interleaved with messages printed in
+> parallel.
+>
+> Note that KERN_CONT was originally really meant to be used only during
+> boot. It was later used more widely and ended in the best effort category.
+>
+> There were several attempts to make it more reliable. But it was
+> always either too complicated or error prone or both.
+>
+> You need to use your own buffering if you rely want perfect output.
+> The question is if it is really worth the complexity. Also note that
+> any buffering reduces the chance that the messages will reach
+> the console.
 
-On Wed, Jul 10, 2019 at 10:20:55AM +0000, Luis de Oliveira wrote:
-> Hi Sakari,
-> 
-> From: Sakari Ailus <sakari.ailus@iki.fi>
-> Date: Tue, Jul 09, 2019 at 19:25:00
-> 
-> > Hi Luis,
-> > 
-> > On Mon, Jul 08, 2019 at 03:21:50PM +0000, Luis de Oliveira wrote:
-> > > Hi Sakari,
-> > > 
-> > > Thank you for your feedback.
-> > > I have my comments inline.
-> > > 
-> > > From: Sakari Ailus <sakari.ailus@iki.fi>
-> > > Date: Fri, Jun 28, 2019 at 15:13:26
-> > > 
-> > > > Hi Luis,
-> > > > 
-> > > > Thank you for the patchset.
-> > > > 
-> > > > On Tue, Jun 11, 2019 at 09:20:50PM +0200, Luis Oliveira wrote:
-> > > > > From: Luis Oliveira <lolivei@synopsys.com>
-> > > > > 
-> > > > > Add bindings for Synopsys DesignWare MIPI CSI-2 host.
-> > > > > 
-> > > > > Signed-off-by: Luis Oliveira <lolivei@synopsys.com>
-> > > > > ---
-> > > > > Changelog
-> > > > > v3-v4
-> > > > > - remove "plat" from the block name @rob @laurent
-> > > > > - remove "phy-names" when single-entry @rob
-> > > > > - remove "snps,output-type" -> went to the driver config @laurent
-> > > > > 
-> > > > >  .../devicetree/bindings/media/snps,dw-csi.txt      | 41 ++++++++++++++++++++++
-> > > > >  1 file changed, 41 insertions(+)
-> > > > >  create mode 100644 Documentation/devicetree/bindings/media/snps,dw-csi.txt
-> > > > > 
-> > > > > diff --git a/Documentation/devicetree/bindings/media/snps,dw-csi.txt b/Documentation/devicetree/bindings/media/snps,dw-csi.txt
-> > > > > new file mode 100644
-> > > > > index 0000000..613b7f9
-> > > > > --- /dev/null
-> > > > > +++ b/Documentation/devicetree/bindings/media/snps,dw-csi.txt
-> > > > > @@ -0,0 +1,41 @@
-> > > > > +Synopsys DesignWare CSI-2 Host controller
-> > > > > +
-> > > > > +Description
-> > > > > +-----------
-> > > > > +
-> > > > > +This HW block is used to receive image coming from an MIPI CSI-2 compatible
-> > > > > +camera.
-> > > > > +
-> > > > > +Required properties:
-> > > > > +- compatible		: shall be "snps,dw-csi"
-> > > > > +- reg			: physical base address and size of the device memory
-> > > > > +			  mapped registers;
-> > > > > +- interrupts		: DW CSI-2 Host interrupts
-> > > > > +- phys			: List of one PHY specifier (as defined in
-> > > > > +			  Documentation/devicetree/bindings/phy/phy-bindings.txt).
-> > > > > +			  This PHY is a MIPI DPHY working in RX mode.
-> > > > > +- resets		: Reference to a reset controller (optional)
-> > > > > +
-> > > > > +The per-board settings:
-> > > > > + - port sub-node describing a single endpoint connected to the camera as
-> > > > > +   described in video-interfaces.txt[1].
-> > > > 
-> > > > Which endpoint properties in video-interfaces.txt are relevant for the
-> > > > hardware? Which values may they have?
-> > > > 
-> > > 
-> > > Currently I'm using only two properties "data-lanes" and "bus-width", but 
-> > > I have plans to add blanking info also.
-> > > I will add more info.
-> > 
-> > Isn't blanking defined by what the transmitter seneds? Or do you have
-> > hardware limitations on the receiver side?
-> > 
-> 
-> When we use this IP in prototyping we configure blanking at the receiver 
-> side.
-> Some cameras don't have blanking configuration capabilities so we 
-> configure it on the RX side.
+Seems like that settles it then. Thanks!
 
-I haven't come across a CSI-2 connected camera without some kind of
-blanking configuration capabilities. Even if there was one, you couldn't
-configure blanking from the receiver side.
+> BTW: There is a work in progress on a lockless printk ring buffer.
+> It will make printk() more secure regarding deadlocks. But it might
+> make transparent handling of continuous lines even more tricky.
+>
+> I guess that local buffering, before calling printk(), will be
+> even more important then. Well, it might really force us to create
+> an API for it.
 
-Please document that the data-lanes property is required, and which values
-are possible.
+Cool! Can you CC me on that discussion?
 
-> 
-> > I've only heard of one such case before, and it was a very old parallel
-> > receiver.
-> > 
-> > If you have a CSI-2 receiver, bus-width isn't relevant --- it's for paralle
-> > interfaces only. Please add data-lanes to required endpoint properties.
-> > 
-> 
-> I used bus-width property in the Synopsys IPI (Image Pixel Interface) 
-> that enables direct video stream access.
-> This interface is an output that can be 16-bit or 48-bit, that's why I 
-> used bus-width property.
+> > Can printk be called once with whatever is in the struct? Otherwise if
+> > this is about making printk into a structured log then maybe printk
+> > isn't the proper solution anyway. Maybe a dev interface should be used
+> > instead that can handle starting and stopping tests (via ioctl) in
+> > addition to reading test results, records, etc. with read() and a
+> > clearing of the records. Then the seqfile API works naturally. All of
+> > this is a bit premature, but it looks like you're going down the path of
+> > making something akin to ftrace that stores binary formatted
+> > assertion/expectation records in a lockless ring buffer that then
+> > formats those records when the user asks for them.
+>
+> IMHO, ftrace postpones the text formatting primary because it does not
+> not want to slow down the traced code more than necessary. It is yet
+> another layer and there should be some strong reason for it.
 
-Does this device write the image data to system memory, or is it another
-device? If there's another one, then you should probably have another port
-to describe that connection.
+Noted. Yeah, I would prefer avoiding printing out the info at a separate time.
 
--- 
-Kind regards,
+> > I can imagine someone wanting to write unit tests that check conditions
+> > from a simulated hardirq context via irq works (a driver mock
+> > framework?), so this doesn't seem far off.
+>
+> Note that stroring the messages into the printk log is basically safe in any
+> context. It uses temporary per-CPU buffers for recursive messages and
+> in NMI. The only problem is panic() when some CPU gets stuck with the
+> lock taken. This will get solved by the lockless ringbuffer. Also
+> the temporary buffers will not be necessary any longer.
 
-Sakari Ailus
+Sure, I think Stephen's concern is all the supporting code that is
+involved. Not printk specifically. It just means a lot more of KUnit
+has to be IRQ safe.
+
+> Much bigger problems are with consoles. There are many of them. It
+> means a lot of code and more locks involved, including scheduler
+> locks. Note that console lock is a semaphore.
+
+That shouldn't affect us though, right? As long as we continue to use
+the printk interface?
