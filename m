@@ -2,194 +2,484 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DE0974F2F
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 15:23:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFFFD74F20
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 15:21:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728974AbfGYNWw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 09:22:52 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:41894 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725852AbfGYNWw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 09:22:52 -0400
-Received: by mail-lj1-f195.google.com with SMTP id d24so47966558ljg.8;
-        Thu, 25 Jul 2019 06:22:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
-         :subject:to:cc:content-transfer-encoding;
-        bh=KgKbQn+sVtaYeJftRwYKqZockp8kTGU+oulqwixLW+w=;
-        b=Kf3Z1S3rHqrjO1JoxJdWnKuBq8hN1KQIwgSpoPR00GOKJL3nGmYGed+tcTpj8qr2GB
-         +v7HJMt9fxA+2jZBPUgP9hhAnYFR72DdyTp8/ATGS/ewqTcf0ASA7K9KfaJKhMZA4vZd
-         6vDFnnJDlMGVnajKl23G3fJSHXPaANDNf+UlcHmUe46sXRl5tpCzGSSsx6xF1L2sCMkw
-         pTKPI0gZ9GkMqW2QIEOv6uyth18zlsjxH3vH+AC/3Vi56ujnMtPqEd1M/9tFpNqVStkl
-         prodH09bb738Mr8sstAKfx6tK16+abbu1SV26muDqEUtaUc1ZzAraUZr13LdSnrKtafX
-         hyMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
-         :from:date:message-id:subject:to:cc:content-transfer-encoding;
-        bh=KgKbQn+sVtaYeJftRwYKqZockp8kTGU+oulqwixLW+w=;
-        b=mBDAuogFJpRAq0OwaXa7oY5TQO9W7RgJyRL4hj9vGXoukf0aoPpfz33RQZvXOU77Qx
-         QXBABq4sJH8NBCUfZHOpxUtAfvIOUSuItYpq+g0JuC6gRqHB9glLk4ayHhPfjiKNxh5+
-         ckQbf63mAWHWq6QDe8I6/AT77i188XEae0JUcAROSEm1ECPUIti++4JB95R5Jx3Dg/Ux
-         FSvQkmse7CQUEJN9OQGjlzG2qF33hvsabBTMUyzWidUkCDSpkpPi4tS1McWj1z+SUA1b
-         O5UW55bzuUacFJ1zz/b7Esl6KsPWz5+l0k0DnEcp9rS9uLbHrHIyzGLfA4Bh4+RmGi4M
-         /MKg==
-X-Gm-Message-State: APjAAAVyhsrLMXBlFdXKoNFsd1Q6awHZYUSxuVJ4EPCSh9Lls5L36U1w
-        zosszob/x+XlLKOL4DCIsQONCsKUbt1Rpea4zwR/v/bg
-X-Google-Smtp-Source: APXvYqyTTtkZSLGybeBnj2BYoFqYLkzK/AMLxamssTlKXEad8A8gaXQC1+CN5OL/YGc0pcrVbBBEQ1iENKDqhDFdKKU=
-X-Received: by 2002:a2e:9198:: with SMTP id f24mr46939627ljg.221.1564060446021;
- Thu, 25 Jul 2019 06:14:06 -0700 (PDT)
+        id S1729237AbfGYNVe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 09:21:34 -0400
+Received: from mga01.intel.com ([192.55.52.88]:38169 "EHLO mga01.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727466AbfGYNVd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 09:21:33 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga001.fm.intel.com ([10.253.24.23])
+  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 25 Jul 2019 06:19:47 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,306,1559545200"; 
+   d="scan'208";a="189318286"
+Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.122]) ([10.237.72.122])
+  by fmsmga001.fm.intel.com with ESMTP; 25 Jul 2019 06:19:44 -0700
+Subject: Re: [PATCH v2 2/2] mmc: Add support for the ASPEED SD controller
+To:     Andrew Jeffery <andrew@aj.id.au>, linux-mmc@vger.kernel.org
+Cc:     ulf.hansson@linaro.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        joel@jms.id.au, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        ryanchen.aspeed@gmail.com
+References: <20190712033214.24713-1-andrew@aj.id.au>
+ <20190712033214.24713-3-andrew@aj.id.au>
+From:   Adrian Hunter <adrian.hunter@intel.com>
+Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
+ Business Identity Code: 0357606 - 4, Domiciled in Helsinki
+Message-ID: <d6f7fdf2-07ed-354a-ca29-f3175623679c@intel.com>
+Date:   Thu, 25 Jul 2019 16:18:26 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <CGME20190723122027eucas1p24b1d76e3139f7cc52614d7613ff9ba98@eucas1p2.samsung.com>
- <20190723122016.30279-1-a.swigon@partner.samsung.com> <20190723122016.30279-9-a.swigon@partner.samsung.com>
-In-Reply-To: <20190723122016.30279-9-a.swigon@partner.samsung.com>
-Reply-To: cwchoi00@gmail.com
-From:   Chanwoo Choi <cwchoi00@gmail.com>
-Date:   Thu, 25 Jul 2019 22:13:29 +0900
-Message-ID: <CAGTfZH1_Qk+vNa_AJW_8OA8MJbnZa3yCTLLRs2w23bNTm72gyQ@mail.gmail.com>
-Subject: Re: [RFC PATCH 08/11] arm: dts: exynos: Add parents and
- #interconnect-cells to Exynos4412
-To:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>
-Cc:     devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>, inki.dae@samsung.com,
-        Seung-Woo Kim <sw0312.kim@samsung.com>,
-        georgi.djakov@linaro.org,
-        Marek Szyprowski <m.szyprowski@samsung.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190712033214.24713-3-andrew@aj.id.au>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-2019=EB=85=84 7=EC=9B=94 24=EC=9D=BC (=EC=88=98) =EC=98=A4=EC=A0=84 8:07, A=
-rtur =C5=9Awigo=C5=84 <a.swigon@partner.samsung.com>=EB=8B=98=EC=9D=B4 =EC=
-=9E=91=EC=84=B1:
->
-> This patch adds two fields tp the Exynos4412 DTS:
->   - parent: to declare connections between nodes that are not in a
->     parent-child relation in devfreq;
->   - #interconnect-cells: required by the interconnect framework.
->
-> Please note that #interconnect-cells is always zero and node IDs are not
-> hardcoded anywhere.
->
-> Signed-off-by: Artur =C5=9Awigo=C5=84 <a.swigon@partner.samsung.com>
+On 12/07/19 6:32 AM, Andrew Jeffery wrote:
+> Add a minimal driver for ASPEED's SD controller, which exposes two
+> SDHCIs.
+> 
+> The ASPEED design implements a common register set for the SDHCIs, and
+> moves some of the standard configuration elements out to this common
+> area (e.g. 8-bit mode, and card detect configuration which is not
+> currently supported).
+> 
+> The SD controller has a dedicated hardware interrupt that is shared
+> between the slots. The common register set exposes information on which
+> slot triggered the interrupt; early revisions of the patch introduced an
+> irqchip for the register, but reality is it doesn't behave as an
+> irqchip, and the result fits awkwardly into the irqchip APIs. Instead
+> I've taken the simple approach of using the IRQ as a shared IRQ with
+> some minor performance impact for the second slot.
+> 
+> Ryan was the original author of the patch - I've taken his work and
+> massaged it to drop the irqchip support and rework the devicetree
+> integration. The driver has been smoke tested under qemu against a
+> minimal SD controller model and lightly tested on an ast2500-evb.
+> 
+> Signed-off-by: Ryan Chen <ryanchen.aspeed@gmail.com>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+
+Looks fine.  Few minor comments below.
+
 > ---
->  arch/arm/boot/dts/exynos4412-odroid-common.dtsi | 1 +
->  arch/arm/boot/dts/exynos4412.dtsi               | 9 +++++++++
->  2 files changed, 10 insertions(+)
->
-> diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi b/arch/arm/b=
-oot/dts/exynos4412-odroid-common.dtsi
-> index ea55f377d17c..bdd61ae86103 100644
-> --- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-> +++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
-> @@ -106,6 +106,7 @@
->  &bus_leftbus {
->         devfreq-events =3D <&ppmu_leftbus_3>, <&ppmu_rightbus_3>;
->         vdd-supply =3D <&buck3_reg>;
-> +       parent =3D <&bus_dmc>;
+> In v2:
+> 
+> * Drop unnecesasry MODULE_DEVICE_TABLE()
+> * Rename sd-controller compatible
+> * Add IBM copyright
+> * Drop unnecesary data assignment in of match table entries
+> * Derive the slot from the SDHCI offset
+> 
+>  drivers/mmc/host/Kconfig           |  12 ++
+>  drivers/mmc/host/Makefile          |   1 +
+>  drivers/mmc/host/sdhci-of-aspeed.c | 326 +++++++++++++++++++++++++++++
+>  3 files changed, 339 insertions(+)
+>  create mode 100644 drivers/mmc/host/sdhci-of-aspeed.c
+> 
+> diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
+> index 931770f17087..2bb5e1264b3d 100644
+> --- a/drivers/mmc/host/Kconfig
+> +++ b/drivers/mmc/host/Kconfig
+> @@ -154,6 +154,18 @@ config MMC_SDHCI_OF_ARASAN
+>  
+>  	  If unsure, say N.
+>  
+> +config MMC_SDHCI_OF_ASPEED
+> +	tristate "SDHCI OF support for the ASPEED SDHCI controller"
+> +	depends on MMC_SDHCI_PLTFM
+> +	depends on OF
+> +	help
+> +	  This selects the ASPEED Secure Digital Host Controller Interface.
+> +
+> +	  If you have a controller with this interface, say Y or M here. You
+> +	  also need to enable an appropriate bus interface.
+> +
+> +	  If unsure, say N.
+> +
+>  config MMC_SDHCI_OF_AT91
+>  	tristate "SDHCI OF support for the Atmel SDMMC controller"
+>  	depends on MMC_SDHCI_PLTFM
+> diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
+> index 73578718f119..390ee162fe71 100644
+> --- a/drivers/mmc/host/Makefile
+> +++ b/drivers/mmc/host/Makefile
+> @@ -84,6 +84,7 @@ obj-$(CONFIG_MMC_SDHCI_ESDHC_IMX)	+= sdhci-esdhc-imx.o
+>  obj-$(CONFIG_MMC_SDHCI_DOVE)		+= sdhci-dove.o
+>  obj-$(CONFIG_MMC_SDHCI_TEGRA)		+= sdhci-tegra.o
+>  obj-$(CONFIG_MMC_SDHCI_OF_ARASAN)	+= sdhci-of-arasan.o
+> +obj-$(CONFIG_MMC_SDHCI_OF_ASPEED)	+= sdhci-of-aspeed.o
+>  obj-$(CONFIG_MMC_SDHCI_OF_AT91)		+= sdhci-of-at91.o
+>  obj-$(CONFIG_MMC_SDHCI_OF_ESDHC)	+= sdhci-of-esdhc.o
+>  obj-$(CONFIG_MMC_SDHCI_OF_HLWD)		+= sdhci-of-hlwd.o
+> diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-aspeed.c
+> new file mode 100644
+> index 000000000000..9528e43c257d
+> --- /dev/null
+> +++ b/drivers/mmc/host/sdhci-of-aspeed.c
+> @@ -0,0 +1,326 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/* Copyright (C) 2019 ASPEED Technology Inc. */
+> +/* Copyright (C) 2019 IBM Corp. */
+> +
+> +#include <linux/clk.h>
+> +#include <linux/delay.h>
+> +#include <linux/device.h>
+> +#include <linux/io.h>
+> +#include <linux/mmc/host.h>
+> +#include <linux/module.h>
+> +#include <linux/of_address.h>
+> +#include <linux/of.h>
+> +#include <linux/of_platform.h>
+> +#include <linux/platform_device.h>
+> +#include <linux/spinlock.h>
+> +
+> +#include "sdhci-pltfm.h"
+> +
+> +#define ASPEED_SDC_INFO		0x00
+> +#define   ASPEED_SDC_S1MMC8	BIT(25)
+> +#define   ASPEED_SDC_S0MMC8	BIT(24)
+> +
+> +struct aspeed_sdc {
+> +	struct clk *clk;
+> +	struct resource *res;
+> +
+> +	spinlock_t lock;
+> +	void __iomem *regs;
+> +};
+> +
+> +struct aspeed_sdhci {
+> +	struct aspeed_sdc *parent;
+> +	u32 width_mask;
+> +};
+> +
+> +static void aspeed_sdc_bus_width(struct aspeed_sdc *sdc,
+> +				 struct aspeed_sdhci *sdhci, bool bus8)
 
-It is wrong. 'bus_leftbus' has not any h/w dependency of 'bus_dmc'
-and 'bus_leftbus' is not child of 'bus_dmc'.
+The function name threw me at first.  I suggest:
 
-Even it there are some PMQoS requirement between them,
-it it not proper to tie both 'bus_leftbus' and 'bus_dmc'.
+static void aspeed_sdhci_set_clr_8_bit_mode(struct aspeed_sdhci *aspeed_sdhci,
+					    bool bus8)
+{
+	struct aspeed_sdc *aspeed_sdc = aspeed_sdhci->parent;
 
->         status =3D "okay";
->  };
->
-> diff --git a/arch/arm/boot/dts/exynos4412.dtsi b/arch/arm/boot/dts/exynos=
-4412.dtsi
-> index d20db2dfe8e2..a70a671acacd 100644
-> --- a/arch/arm/boot/dts/exynos4412.dtsi
-> +++ b/arch/arm/boot/dts/exynos4412.dtsi
-> @@ -390,6 +390,7 @@
->                         clocks =3D <&clock CLK_DIV_DMC>;
->                         clock-names =3D "bus";
->                         operating-points-v2 =3D <&bus_dmc_opp_table>;
-> +                       #interconnect-cells =3D <0>;
->                         status =3D "disabled";
->                 };
->
-> @@ -398,6 +399,7 @@
->                         clocks =3D <&clock CLK_DIV_ACP>;
->                         clock-names =3D "bus";
->                         operating-points-v2 =3D <&bus_acp_opp_table>;
-> +                       #interconnect-cells =3D <0>;
->                         status =3D "disabled";
->                 };
->
-> @@ -406,6 +408,7 @@
->                         clocks =3D <&clock CLK_DIV_C2C>;
->                         clock-names =3D "bus";
->                         operating-points-v2 =3D <&bus_dmc_opp_table>;
-> +                       #interconnect-cells =3D <0>;
->                         status =3D "disabled";
->                 };
->
-> @@ -459,6 +462,7 @@
->                         clocks =3D <&clock CLK_DIV_GDL>;
->                         clock-names =3D "bus";
->                         operating-points-v2 =3D <&bus_leftbus_opp_table>;
-> +                       #interconnect-cells =3D <0>;
->                         status =3D "disabled";
->                 };
->
-> @@ -467,6 +471,7 @@
->                         clocks =3D <&clock CLK_DIV_GDR>;
->                         clock-names =3D "bus";
->                         operating-points-v2 =3D <&bus_leftbus_opp_table>;
-> +                       #interconnect-cells =3D <0>;
->                         status =3D "disabled";
->                 };
->
-> @@ -475,6 +480,7 @@
->                         clocks =3D <&clock CLK_ACLK160>;
->                         clock-names =3D "bus";
->                         operating-points-v2 =3D <&bus_display_opp_table>;
-> +                       #interconnect-cells =3D <0>;
->                         status =3D "disabled";
->                 };
->
-> @@ -483,6 +489,7 @@
->                         clocks =3D <&clock CLK_ACLK133>;
->                         clock-names =3D "bus";
->                         operating-points-v2 =3D <&bus_fsys_opp_table>;
-> +                       #interconnect-cells =3D <0>;
->                         status =3D "disabled";
->                 };
->
-> @@ -491,6 +498,7 @@
->                         clocks =3D <&clock CLK_ACLK100>;
->                         clock-names =3D "bus";
->                         operating-points-v2 =3D <&bus_peri_opp_table>;
-> +                       #interconnect-cells =3D <0>;
->                         status =3D "disabled";
->                 };
->
-> @@ -499,6 +507,7 @@
->                         clocks =3D <&clock CLK_SCLK_MFC>;
->                         clock-names =3D "bus";
->                         operating-points-v2 =3D <&bus_leftbus_opp_table>;
-> +                       #interconnect-cells =3D <0>;
->                         status =3D "disabled";
->                 };
->
-> --
-> 2.17.1
->
+> +{
+> +	u32 info;
+> +
+> +	/* Set/clear 8 bit mode */
+> +	spin_lock(&sdc->lock);
+> +	info = readl(sdc->regs + ASPEED_SDC_INFO);
+> +	if (bus8)
+> +		info |= sdhci->width_mask;
+> +	else
+> +		info &= ~sdhci->width_mask;
+> +	writel(info, sdc->regs + ASPEED_SDC_INFO);
+> +	spin_unlock(&sdc->lock);
+> +}
+> +
+> +static void aspeed_sdhci_set_clock(struct sdhci_host *host, unsigned int clock)
+> +{
+> +	unsigned long timeout;
+> +	int div;
+> +	u16 clk;
+> +
+> +	if (clock == host->clock)
+> +		return;
+> +
+> +	sdhci_writew(host, 0, SDHCI_CLOCK_CONTROL);
+> +
+> +	if (clock == 0)
+> +		goto out;
+> +
+> +	for (div = 1; div < 256; div *= 2) {
+> +		if ((host->max_clk / div) <= clock)
+> +			break;
+> +	}
+> +	div >>= 1;
+> +
+> +	clk = div << SDHCI_DIVIDER_SHIFT;
 
+Could call sdhci_enable_clk() here.
 
---=20
-Best Regards,
-Chanwoo Choi
+> +	clk |= SDHCI_CLOCK_INT_EN;
+> +	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
+> +
+> +	/* Wait max 20 ms */
+> +	timeout = 20;
+> +	while (!((clk = sdhci_readw(host, SDHCI_CLOCK_CONTROL))
+> +		 & SDHCI_CLOCK_INT_STABLE)) {
+> +		if (timeout == 0) {
+> +			pr_err("%s: Internal clock never stabilised.\n",
+> +			       mmc_hostname(host->mmc));
+> +			return;
+> +		}
+> +		timeout--;
+> +		mdelay(1);
+> +	}
+> +
+> +	clk |= SDHCI_CLOCK_CARD_EN;
+> +	sdhci_writew(host, clk, SDHCI_CLOCK_CONTROL);
+> +
+> +out:
+> +	host->clock = clock;
+> +}
+> +
+> +static void aspeed_sdhci_set_bus_width(struct sdhci_host *host, int width)
+> +{
+> +	struct sdhci_pltfm_host *pltfm_priv;
+> +	struct aspeed_sdhci *aspeed_sdhci;
+> +	struct aspeed_sdc *aspeed_sdc;
+> +	u8 ctrl;
+> +
+> +	pltfm_priv = sdhci_priv(host);
+> +	aspeed_sdhci = sdhci_pltfm_priv(pltfm_priv);
+> +	aspeed_sdc = aspeed_sdhci->parent;
+> +
+> +	/* Set/clear 8-bit mode */
+> +	aspeed_sdc_bus_width(aspeed_sdc, aspeed_sdhci,
+> +			     width == MMC_BUS_WIDTH_8);
+> +
+> +	/* Set/clear 1 or 4 bit mode */
+> +	ctrl = sdhci_readb(host, SDHCI_HOST_CONTROL);
+> +	if (width == MMC_BUS_WIDTH_4)
+> +		ctrl |= SDHCI_CTRL_4BITBUS;
+> +	else
+> +		ctrl &= ~SDHCI_CTRL_4BITBUS;
+> +	sdhci_writeb(host, ctrl, SDHCI_HOST_CONTROL);
+> +}
+> +
+> +static const struct sdhci_ops aspeed_sdhci_ops = {
+> +	.set_clock = aspeed_sdhci_set_clock,
+> +	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
+> +	.set_bus_width = aspeed_sdhci_set_bus_width,
+> +	.get_timeout_clock = sdhci_pltfm_clk_get_max_clock,
+> +	.reset = sdhci_reset,
+> +	.set_uhs_signaling = sdhci_set_uhs_signaling,
+> +};
+> +
+> +static const struct sdhci_pltfm_data aspeed_sdc_pdata = {
+
+Up to you, but this is for the aspeed_sdhci driver, so I would
+have expected it to be called aspeed_sdhci_pdata
+
+> +	.ops = &aspeed_sdhci_ops,
+> +	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
+> +	.quirks2 = SDHCI_QUIRK2_CLOCK_DIV_ZERO_BROKEN,
+
+You don't use sdhci_set_clock() or sdhci_calc_clk(), so it doesn't
+look like SDHCI_QUIRK2_CLOCK_DIV_ZERO_BROKEN is needed.
+
+> +};
+> +
+> +static inline int aspeed_sdhci_calculate_slot(struct aspeed_sdhci *dev,
+> +					      struct resource *res)
+> +{
+> +	resource_size_t delta;
+> +
+> +	if (!res || resource_type(res) != IORESOURCE_MEM)
+> +		return -EINVAL;
+> +
+> +	if (res->start < dev->parent->res->start)
+> +		return -EINVAL;
+> +
+> +	delta = res->start - dev->parent->res->start;
+> +	if (delta & (0x100 - 1))
+> +		return -EINVAL;
+> +
+> +	return (delta / 0x100) - 1;
+> +}
+> +
+> +static int aspeed_sdhci_probe(struct platform_device *pdev)
+> +{
+> +	struct sdhci_pltfm_host *pltfm_host;
+> +	struct aspeed_sdhci *dev;
+> +	struct sdhci_host *host;
+> +	struct resource *res;
+> +	int slot;
+> +	int ret;
+> +
+> +	host = sdhci_pltfm_init(pdev, &aspeed_sdc_pdata, sizeof(*dev));
+> +	if (IS_ERR(host))
+> +		return PTR_ERR(host);
+> +
+> +	pltfm_host = sdhci_priv(host);
+> +	dev = sdhci_pltfm_priv(pltfm_host);
+> +	dev->parent = dev_get_drvdata(pdev->dev.parent);
+> +
+> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	slot = aspeed_sdhci_calculate_slot(dev, res);
+> +	if (slot < 0)
+> +		return slot;
+> +	dev_info(&pdev->dev, "Configuring for slot %d\n", slot);
+> +	dev->width_mask = !slot ? ASPEED_SDC_S0MMC8 : ASPEED_SDC_S1MMC8;
+
+That implies that you only support 2 slots which begs the question why
+you don't validate slot.
+
+> +
+> +	sdhci_get_of_property(pdev);
+> +
+> +	pltfm_host->clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(pltfm_host->clk))
+> +		return PTR_ERR(pltfm_host->clk);
+> +
+> +	ret = clk_prepare_enable(pltfm_host->clk);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "Unable to enable SDIO clock\n");
+> +		goto err_pltfm_free;
+> +	}
+> +
+> +	ret = mmc_of_parse(host->mmc);
+> +	if (ret)
+> +		goto err_sdhci_add;
+> +
+> +	ret = sdhci_add_host(host);
+> +	if (ret)
+> +		goto err_sdhci_add;
+> +
+> +	return 0;
+> +
+> +err_sdhci_add:
+> +	clk_disable_unprepare(pltfm_host->clk);
+> +err_pltfm_free:
+> +	sdhci_pltfm_free(pdev);
+> +	return ret;
+> +}
+> +
+> +static int aspeed_sdhci_remove(struct platform_device *pdev)
+> +{
+> +	struct sdhci_pltfm_host *pltfm_host;
+> +	struct sdhci_host *host;
+> +	int dead;
+> +
+> +	host = platform_get_drvdata(pdev);
+> +	pltfm_host = sdhci_priv(host);
+> +
+> +	dead = readl(host->ioaddr + SDHCI_INT_STATUS) == 0xffffffff;
+
+'dead' only makes sense for PCI. Just set it to zero.
+
+> +
+> +	sdhci_remove_host(host, dead);
+> +
+> +	clk_disable_unprepare(pltfm_host->clk);
+> +
+> +	sdhci_pltfm_free(pdev);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id aspeed_sdhci_of_match[] = {
+> +	{ .compatible = "aspeed,ast2400-sdhci", },
+> +	{ .compatible = "aspeed,ast2500-sdhci", },
+> +	{ }
+> +};
+> +
+> +static struct platform_driver aspeed_sdhci_driver = {
+> +	.driver		= {
+> +		.name	= "sdhci-aspeed",
+> +		.of_match_table = aspeed_sdhci_of_match,
+> +	},
+> +	.probe		= aspeed_sdhci_probe,
+> +	.remove		= aspeed_sdhci_remove,
+> +};
+> +
+> +module_platform_driver(aspeed_sdhci_driver);
+> +
+> +static int aspeed_sdc_probe(struct platform_device *pdev)
+> +
+> +{
+> +	struct device_node *parent, *child;
+> +	struct aspeed_sdc *sdc;
+> +	int ret;
+> +
+> +	sdc = devm_kzalloc(&pdev->dev, sizeof(*sdc), GFP_KERNEL);
+> +	if (!sdc)
+> +		return -ENOMEM;
+> +
+> +	spin_lock_init(&sdc->lock);
+> +
+> +	sdc->clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(sdc->clk))
+> +		return PTR_ERR(sdc->clk);
+> +
+> +	ret = clk_prepare_enable(sdc->clk);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "Unable to enable SDCLK\n");
+> +		return ret;
+> +	}
+> +
+> +	sdc->res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> +	sdc->regs = devm_ioremap_resource(&pdev->dev, sdc->res);
+> +	if (IS_ERR(sdc->regs)) {
+> +		ret = PTR_ERR(sdc->regs);
+> +		goto err_clk;
+> +	}
+> +
+> +	dev_set_drvdata(&pdev->dev, sdc);
+> +
+> +	parent = pdev->dev.of_node;
+> +	for_each_available_child_of_node(parent, child) {
+> +		struct platform_device *cpdev;
+> +
+> +		cpdev = of_platform_device_create(child, NULL, &pdev->dev);
+> +		if (IS_ERR(cpdev)) {
+> +			of_node_put(child);
+> +			ret = PTR_ERR(pdev);
+> +			goto err_clk;
+> +		}
+> +	}
+> +
+> +	return 0;
+> +
+> +err_clk:
+> +	clk_disable_unprepare(sdc->clk);
+> +	return ret;
+> +}
+> +
+> +static int aspeed_sdc_remove(struct platform_device *pdev)
+> +{
+> +	struct aspeed_sdc *sdc = dev_get_drvdata(&pdev->dev);
+> +
+> +	clk_disable_unprepare(sdc->clk);
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct of_device_id aspeed_sdc_of_match[] = {
+> +	{ .compatible = "aspeed,ast2400-sd-controller", },
+> +	{ .compatible = "aspeed,ast2500-sd-controller", },
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, aspeed_sdc_of_match);
+> +
+> +static struct platform_driver aspeed_sdc_driver = {
+> +	.driver		= {
+> +		.name	= "sd-controller-aspeed",
+> +		.pm	= &sdhci_pltfm_pmops,
+> +		.of_match_table = aspeed_sdc_of_match,
+> +	},
+> +	.probe		= aspeed_sdc_probe,
+> +	.remove		= aspeed_sdc_remove,
+> +};
+> +
+> +module_platform_driver(aspeed_sdc_driver);
+> +
+> +MODULE_DESCRIPTION("Driver for the ASPEED SD/SDIO/SDHCI Controllers");
+> +MODULE_AUTHOR("Ryan Chen <ryan_chen@aspeedtech.com>");
+> +MODULE_AUTHOR("Andrew Jeffery <andrew@aj.id.au>");
+> +MODULE_LICENSE("GPL v2");
+> 
+
