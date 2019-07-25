@@ -2,81 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 89BFE74E92
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 14:55:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9CC874E9E
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 14:57:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727136AbfGYMzk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 08:55:40 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:60686 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725901AbfGYMzk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 08:55:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=T6VBY4zfiy3MSxSKbCuz8zMQX5tnpNzxcWkHlxGBC1w=; b=FFdsSjhRbkNH5xwbBGATMKGW4
-        HVVY+8OydWs93YxTv3Cm32qq9W92+AZZynxhgJNA1HFLYmdzdoqkKtRnUw+vTYGncKTgKNAn+biXT
-        5O7xXBeHXNy7D5iNtkRunzSBAtQhxk5KkduTa+RStmcbbSn1u13jq3C8qZxkpPqDXfFgE=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hqdHT-0002oT-Ky; Thu, 25 Jul 2019 12:55:35 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id A616F2742B52; Thu, 25 Jul 2019 13:55:34 +0100 (BST)
-Date:   Thu, 25 Jul 2019 13:55:34 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 3/6] ASoC: codec2codec: deal with params when necessary
-Message-ID: <20190725125534.GB4213@sirena.org.uk>
-References: <20190724162405.6574-1-jbrunet@baylibre.com>
- <20190724162405.6574-4-jbrunet@baylibre.com>
+        id S2389615AbfGYM52 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 08:57:28 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:37839 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387901AbfGYM52 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 08:57:28 -0400
+Received: by mail-lf1-f66.google.com with SMTP id c9so34421524lfh.4;
+        Thu, 25 Jul 2019 05:57:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=xM6KrE+i6GTD27vbYKn5cqDmPVp4Sc2Sjq00mSvmh2U=;
+        b=XXpK0Ruyln89lB3FtPJQlFIHzkNrM+OFf+i4hux201WJ2ZQ8HIQVoKrEtlgpvzYKl8
+         oMsc2mWrk11bd2G5oHFfJO1z+s0WY7Dl0onn1RinPh3VwNrcKIGFzJOq9Qe6lhWUu3O7
+         Q//XStbzPtGgslB+AyFj7C9tNlGfnBI+gRo9FIMgyx0jEwMeLn2x4F8wKA6r5N3IX9ub
+         wCJNweqMuL6PuOwrtsjlvREok7Xhb1Sh6VxWtKC+zMYOCm8oUvl5uU6BQ/NfWo+uDRP7
+         UjdD/7nLSbX5rRAp8Cy+mf/717jZ4SR7ewR9CiHXWoYJNISCHqvUACA5Bth2MyT6Bu1t
+         9G8w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=xM6KrE+i6GTD27vbYKn5cqDmPVp4Sc2Sjq00mSvmh2U=;
+        b=XxTcQPNy++k2IO6C3G3CX+gEGk1N8U/xxazqUq49qorA+iMWQc5rKPiPK1cgESQ+ZM
+         kLQFVtwyP68qwJ/f/DEjqUzaPooFc7nVD78L+JqfYCQEK+Kqqdv0moF/vSxU8K5Uy4Kn
+         HxHxA1NFrjDUGMnl+XGYR25bHRyOcOIfwmCoNVVmXpqZiW9HN5XADNiVkvy+/ZZ8WVSZ
+         4PiM97tJnHNt4EI4p9P+Gk5/MMXAjrSYLJFIcrxTe7Y3vx+IY/TD/cJK1QL4z/HjKKNt
+         fTokDp41UpypVFLKWKAbkFDUPLbKibODRdcVgSycfIPVQEFK7INH3kn+bUKFV+CHJtGq
+         RvTw==
+X-Gm-Message-State: APjAAAX+x8tKlm9QyLFv4pNS9rVbz0UXpF+LdJYvp0oMwREua9lRS9mH
+        H+fPMirdox3+JTC1lAT5jwj+gDBLJqwde/YCsmo=
+X-Google-Smtp-Source: APXvYqy87nc1SZfVl4oFMMftjXVfgZz3Rbm0BYNTg4fKAWIu9Eqqr7bor/GS6c2HKFxbPTv05+jyugcTeGyUoK+wC+g=
+X-Received: by 2002:ac2:42ca:: with SMTP id n10mr23728905lfl.121.1564059445077;
+ Thu, 25 Jul 2019 05:57:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SkvwRMAIpAhPCcCJ"
-Content-Disposition: inline
-In-Reply-To: <20190724162405.6574-4-jbrunet@baylibre.com>
-X-Cookie: Jenkinson's Law:
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <CGME20190723122024eucas1p1ff060d072132bfbc8a8a1d10fa1f90f8@eucas1p1.samsung.com>
+ <20190723122016.30279-1-a.swigon@partner.samsung.com> <20190723122016.30279-4-a.swigon@partner.samsung.com>
+In-Reply-To: <20190723122016.30279-4-a.swigon@partner.samsung.com>
+Reply-To: cwchoi00@gmail.com
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Date:   Thu, 25 Jul 2019 21:56:48 +0900
+Message-ID: <CAGTfZH09n9UOLMwNrCvcdeRCHYFO4TiB-YG2rMVuxA4bxuLCVw@mail.gmail.com>
+Subject: Re: [RFC PATCH 03/11] devfreq: exynos-bus: Change goto-based logic to
+ if-else logic
+To:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>, inki.dae@samsung.com,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        georgi.djakov@linaro.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+2019=EB=85=84 7=EC=9B=94 24=EC=9D=BC (=EC=88=98) =EC=98=A4=EC=A0=84 8:08, A=
+rtur =C5=9Awigo=C5=84 <a.swigon@partner.samsung.com>=EB=8B=98=EC=9D=B4 =EC=
+=9E=91=EC=84=B1:
+>
+> This patch improves code readability by changing the following construct:
+>
+> >    if (cond)
+> >        goto passive;
+> >    foo();
+> >    goto out;
+> >passive:
+> >    bar();
+> >out:
+>
+> into this:
+>
+> >    if (cond)
+> >        bar();
+> >    else
+> >        foo();
+>
+> Signed-off-by: Artur =C5=9Awigo=C5=84 <a.swigon@partner.samsung.com>
+> ---
+>  drivers/devfreq/exynos-bus.c | 24 +++++++++---------------
+>  1 file changed, 9 insertions(+), 15 deletions(-)
+>
+> diff --git a/drivers/devfreq/exynos-bus.c b/drivers/devfreq/exynos-bus.c
+> index cf6f6cbd0f55..4bb83b945bf7 100644
+> --- a/drivers/devfreq/exynos-bus.c
+> +++ b/drivers/devfreq/exynos-bus.c
+> @@ -505,25 +505,19 @@ static int exynos_bus_probe(struct platform_device =
+*pdev)
+>         node =3D of_parse_phandle(dev->of_node, "devfreq", 0);
+>         if (node) {
+>                 of_node_put(node);
+> -               goto passive;
+> +               ret =3D exynos_bus_profile_init_passive(bus, profile);
+> +               if (ret < 0)
+> +                       goto err;
+>         } else {
+>                 ret =3D exynos_bus_parent_parse_of(np, bus);
+> +               if (ret < 0)
+> +                       goto err;
+> +
+> +               ret =3D exynos_bus_profile_init(bus, profile);
+> +               if (ret < 0)
+> +                       goto err;
+>         }
+>
+> -       if (ret < 0)
+> -               goto err;
+> -
+> -       ret =3D exynos_bus_profile_init(bus, profile);
+> -       if (ret < 0)
+> -               goto err;
+> -
+> -       goto out;
+> -passive:
+> -       ret =3D exynos_bus_profile_init_passive(bus, profile);
+> -       if (ret < 0)
+> -               goto err;
+> -
+> -out:
+>         max_state =3D bus->devfreq->profile->max_state;
+>         min_freq =3D (bus->devfreq->profile->freq_table[0] / 1000);
+>         max_freq =3D (bus->devfreq->profile->freq_table[max_state - 1] / =
+1000);
+> --
+> 2.17.1
+>
 
---SkvwRMAIpAhPCcCJ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+It seems more simple than before.
+Instead, please merge patch1/2/3 to one patch. and drop the patch4.
 
-On Wed, Jul 24, 2019 at 06:24:02PM +0200, Jerome Brunet wrote:
-
-> Also, params does not need to be dynamically allocated as it does not
-> need to survive the event.
-
-It's dynamically allocated because it's a pretty large structure and so
-the limited stack sizes the kernel has make it a bit uncomfortable to
-put it on the stack.
-
---SkvwRMAIpAhPCcCJ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl05psUACgkQJNaLcl1U
-h9BPRQf/TWxfdv1adKppGIBtuqwmpBS+DoFYnHcZDpi77bESSWpws7sxnJQocVHi
-R4/NkWuIBihp5crQr4F1z7G68tmtVTxFRDni9rutYtQxaVloBZ9OFkesJLaaLG5Y
-7e/uDcl2Q7Dlw7jo7NsboC1WTLq3vCDRpioZja9GjL6X/YNxLAmcoQEA3EeWvwtp
-2cvDAI/Ah34hsYvfQwyaIFKPzS5UNcPdkb3MN03010mqR3xmVTnJTvWQp7A0l2sd
-tliUrBzMtpqW3gTD5ZCjI6dHOp6eeI7BZ26v49WUJtOpawsibdFpkGI4PdZeeuf0
-1wJevZvP7lpr4zNMaCWpLwA5LkAY3A==
-=XabL
------END PGP SIGNATURE-----
-
---SkvwRMAIpAhPCcCJ--
+--=20
+Best Regards,
+Chanwoo Choi
