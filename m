@@ -2,224 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29DB7753EE
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 18:27:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9944075496
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 18:48:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390507AbfGYQ04 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 12:26:56 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:38549 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390685AbfGYQ04 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 12:26:56 -0400
-Received: by mail-pg1-f196.google.com with SMTP id f5so14477945pgu.5
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 09:26:55 -0700 (PDT)
+        id S2387591AbfGYQsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 12:48:54 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:34886 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729555AbfGYQsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 12:48:54 -0400
+Received: by mail-io1-f65.google.com with SMTP id m24so98718110ioo.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 09:48:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=bqpcsXZmBNcNCZ+dJ5YsfXapSa3gvNcFkNQXkC4vToI=;
-        b=RKyMMI/Kn9+HymtnLVsfU62zok5NKwyMWy080+tuDHrjHg3CQdVIunMlikxImeB+13
-         epl7Mz5md669zlsqUunFSV1SBFPTHWkxl1I7XtyjWoDRJBa0m63qwLI4Yt7vCIjEX3Cd
-         9ghZBAG9xWMiyEH9kbwGmHsT++TunZU02kHxY=
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=y98fApz06JAWtv7lUwUx5g2Y+VKbfux7cYr11jtX85M=;
+        b=Oq3bWQYZfePc311A34AbLZpfdLSyWQ9zAmOxY8w/LT5D3Z7amPYgg7slXVnLbaYT5s
+         dApXuC+dvlXm4a7wKv0nZdbyayoNVDZ4t5PoK8tbVG3OE7LmMafdc1Ctd/dWKEzxKHln
+         xwxF9Q7T9eZPyvnh7tT9vMxAjquvbNlDsV/PY=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=bqpcsXZmBNcNCZ+dJ5YsfXapSa3gvNcFkNQXkC4vToI=;
-        b=Tz0z3TMxlpo0aJzmfqyNJx4hxD6Z1jmZrrd7GA6//TCG0Ddbj+C/rOYND8RPX3tO18
-         lAA6/3yW4AOd8yNeHhXX5HFBCIMSNaU09/+TMEn1/6uPqj04pFzsM6veWU7XDrV1b6Yv
-         YZ+OSMoU089qNeU//853DKGHDtfSzcwE4QSBXa46Lg0FvA9ZuYO0F2V+zdZPCouZ3blS
-         egMlmXxZjVKat9lM5K/rMJyiav3XdJBEVsqlZGQsAr2hbz4ClAK+2f1eMC5+ox8NLUi9
-         snSEPUGk6ZHWCiaQDAyDjagshLvhtnzY5yaa0lSqcxC3Ik030x7dEwEI+XxRJ5/ygZhP
-         dE6A==
-X-Gm-Message-State: APjAAAUjJv/mZo5t06QmZlFAYGmRSN5hfa99wzKrnXMVE/ZD/xnYlAB4
-        PxM2XDrkOaps1dGIH3rJKUEayQ==
-X-Google-Smtp-Source: APXvYqyhnLfzaeqlRMgj+1CqP/hxlhYEVfu77cZafSafbH23Lhved39ayAYvsJ5mZyG6HybRfWSf7A==
-X-Received: by 2002:a17:90a:20c6:: with SMTP id f64mr94433218pjg.57.1564072015359;
-        Thu, 25 Jul 2019 09:26:55 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id y12sm58898004pfn.187.2019.07.25.09.26.54
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 25 Jul 2019 09:26:54 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v3 5/5] ARM: dts: rockchip: add veyron-tiger board
-Date:   Thu, 25 Jul 2019 09:26:42 -0700
-Message-Id: <20190725162642.250709-6-mka@chromium.org>
-X-Mailer: git-send-email 2.22.0.709.g102302147b-goog
-In-Reply-To: <20190725162642.250709-1-mka@chromium.org>
-References: <20190725162642.250709-1-mka@chromium.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=y98fApz06JAWtv7lUwUx5g2Y+VKbfux7cYr11jtX85M=;
+        b=I1sR3MbyvzBJg9yhrQ4wy8AndIntgb0tXhjOyN2FqCnx7aF0RI3aDCESzebimQNCLY
+         94rEWWQismj0BiA961KRAM5IPnBwekn3O4MT7XG1M33JfOF7uhZ/JIc9/Gi10iTdolj4
+         emSfQj5DcmjmsccBfBoGWppP1iXCJ0enI2UAlipK7AJY9MnfCXKMLGZQ+x8OXkKqrPEz
+         vcgBiPoA5G/GXrTHgm2+ZJej79DtxLU+T/QfzN2ff95DltQxBomJzdQ1Yy7E03813RiN
+         sbZR8ZxrJIzR840S5boGHkTc3bgkhNTC4Z/jFWXI0brCT7FRm3djAUwGS85AptVxgGB1
+         1A1A==
+X-Gm-Message-State: APjAAAWxN3eQnv1TlObthDV+fWPRPf/BUI5h9QEg+BY2xpmDJojcnCPl
+        7IkBMXjVN2z53j5KzGYfmALHluOhFqc=
+X-Google-Smtp-Source: APXvYqxBDxzg/++8sLyUXc8Sty/wFZtEtA04dEVAGSq4eZ+MxeRjOM3fAaLZnDN5dJ5fS1CQE0/B5w==
+X-Received: by 2002:a02:230a:: with SMTP id u10mr9830211jau.117.1564073333548;
+        Thu, 25 Jul 2019 09:48:53 -0700 (PDT)
+Received: from mail-io1-f41.google.com (mail-io1-f41.google.com. [209.85.166.41])
+        by smtp.gmail.com with ESMTPSA id z17sm69816715iol.73.2019.07.25.09.48.52
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Thu, 25 Jul 2019 09:48:52 -0700 (PDT)
+Received: by mail-io1-f41.google.com with SMTP id k8so98718108iot.1
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 09:48:52 -0700 (PDT)
+X-Received: by 2002:a02:ac03:: with SMTP id a3mr94891125jao.132.1564073332377;
+ Thu, 25 Jul 2019 09:48:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190725162642.250709-1-mka@chromium.org> <20190725162642.250709-2-mka@chromium.org>
+In-Reply-To: <20190725162642.250709-2-mka@chromium.org>
+From:   Doug Anderson <dianders@chromium.org>
+Date:   Thu, 25 Jul 2019 09:48:40 -0700
+X-Gmail-Original-Message-ID: <CAD=FV=X85ACbN79foy_f4qQ=9a+8XFf0a3cE7S4BMn6pWvMmPA@mail.gmail.com>
+Message-ID: <CAD=FV=X85ACbN79foy_f4qQ=9a+8XFf0a3cE7S4BMn6pWvMmPA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/5] ARM: dts: rockchip: move rk3288-veryon display
+ settings into a separate file
+To:     Matthias Kaehlcke <mka@chromium.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Also known as the AOpen Chromebase Mini.
+Hi,
 
-tiger and fievel are share the same board, tiger has a display and
-touchscreen, fievel not. Use the fievel .dts as base and add the
-extra bits.
+On Thu, Jul 25, 2019 at 9:26 AM Matthias Kaehlcke <mka@chromium.org> wrote:
+>
+> The chromebook .dtsi file contains common settings for veyron
+> Chromebooks with eDP displays. Some veyron devices with a display
+> aren't Chromebooks (e.g. 'tiger' aka 'AOpen Chromebase Mini'), move
+> display related bits from the chromebook .dtsi into a separate file
+> to avoid redundant DT settings.
+>
+> The new file is included from the chromebook .dtsi and can be
+> included by non-Chromebook devices with a display.
+>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> ---
+> Changes in v3:
+> - allow MIT license
+> - move pinctrl section to the bottom
+>
+> Changes in v2:
+> - rebased on v5.4-armsoc/dts32 (0d19541e3b45)
+> ---
+>  .../boot/dts/rk3288-veyron-chromebook.dtsi    | 115 +---------------
+>  arch/arm/boot/dts/rk3288-veyron-edp.dtsi      | 124 ++++++++++++++++++
+>  2 files changed, 125 insertions(+), 114 deletions(-)
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
-Changes in v3:
-- patch added to the series
----
- arch/arm/boot/dts/Makefile                |   1 +
- arch/arm/boot/dts/rk3288-veyron-tiger.dts | 125 ++++++++++++++++++++++
- 2 files changed, 126 insertions(+)
- create mode 100644 arch/arm/boot/dts/rk3288-veyron-tiger.dts
-
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 9fd1e075c624..64b08922e75d 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -927,6 +927,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
- 	rk3288-veyron-minnie.dtb \
- 	rk3288-veyron-pinky.dtb \
- 	rk3288-veyron-speedy.dtb \
-+	rk3288-veyron-tiger.dtb \
- 	rk3288-vyasa.dtb
- dtb-$(CONFIG_ARCH_S3C24XX) += \
- 	s3c2416-smdk2416.dtb
-diff --git a/arch/arm/boot/dts/rk3288-veyron-tiger.dts b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-new file mode 100644
-index 000000000000..fae26d530841
---- /dev/null
-+++ b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-@@ -0,0 +1,125 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Google Veyron Tiger Rev 0+ board device tree source
-+ *
-+ * Copyright 2016 Google, Inc
-+ */
-+
-+/dts-v1/;
-+#include "rk3288-veyron-fievel.dts"
-+#include "rk3288-veyron-edp.dtsi"
-+
-+/ {
-+	model = "Google Tiger";
-+	compatible = "google,veyron-tiger-rev8", "google,veyron-tiger-rev7",
-+		     "google,veyron-tiger-rev6", "google,veyron-tiger-rev5",
-+		     "google,veyron-tiger-rev4", "google,veyron-tiger-rev3",
-+		     "google,veyron-tiger-rev2", "google,veyron-tiger-rev1",
-+		     "google,veyron-tiger-rev0", "google,veyron-tiger",
-+		     "google,veyron", "rockchip,rk3288";
-+
-+	/delete-node/ vcc18-lcd;
-+
-+	vccsys: vccsys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vccsys";
-+		regulator-boot-on;
-+		regulator-always-on;
-+	};
-+};
-+
-+&backlight {
-+	/* Tiger panel PWM must be >= 1%, so start non-zero brightness at 3 */
-+	brightness-levels = <
-+		  0   3   4   5   6   7
-+		  8   9  10  11  12  13  14  15
-+		 16  17  18  19  20  21  22  23
-+		 24  25  26  27  28  29  30  31
-+		 32  33  34  35  36  37  38  39
-+		 40  41  42  43  44  45  46  47
-+		 48  49  50  51  52  53  54  55
-+		 56  57  58  59  60  61  62  63
-+		 64  65  66  67  68  69  70  71
-+		 72  73  74  75  76  77  78  79
-+		 80  81  82  83  84  85  86  87
-+		 88  89  90  91  92  93  94  95
-+		 96  97  98  99 100 101 102 103
-+		104 105 106 107 108 109 110 111
-+		112 113 114 115 116 117 118 119
-+		120 121 122 123 124 125 126 127
-+		128 129 130 131 132 133 134 135
-+		136 137 138 139 140 141 142 143
-+		144 145 146 147 148 149 150 151
-+		152 153 154 155 156 157 158 159
-+		160 161 162 163 164 165 166 167
-+		168 169 170 171 172 173 174 175
-+		176 177 178 179 180 181 182 183
-+		184 185 186 187 188 189 190 191
-+		192 193 194 195 196 197 198 199
-+		200 201 202 203 204 205 206 207
-+		208 209 210 211 212 213 214 215
-+		216 217 218 219 220 221 222 223
-+		224 225 226 227 228 229 230 231
-+		232 233 234 235 236 237 238 239
-+		240 241 242 243 244 245 246 247
-+		248 249 250 251 252 253 254 255>;
-+};
-+
-+&backlight_regulator {
-+	vin-supply = <&vccsys>;
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+
-+	clock-frequency = <400000>;
-+	i2c-scl-falling-time-ns = <50>;
-+	i2c-scl-rising-time-ns = <300>;
-+
-+	touchscreen@10 {
-+		compatible = "elan,ekth3500";
-+		reg = <0x10>;
-+		interrupt-parent = <&gpio2>;
-+		interrupts = <RK_PB6 IRQ_TYPE_EDGE_FALLING>;
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&touch_int &touch_rst>;
-+		reset-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_LOW>;
-+		vcc33-supply = <&vcc33_io>;
-+		vccio-supply = <&vcc33_io>;
-+		wakeup-source;
-+	};
-+};
-+
-+&panel {
-+	compatible = "auo,b101ean01", "simple-panel";
-+
-+	/delete-node/ panel-timing;
-+
-+	panel-timing {
-+		clock-frequency = <66666667>;
-+		hactive = <1280>;
-+		hfront-porch = <18>;
-+		hback-porch = <21>;
-+		hsync-len = <32>;
-+		vactive = <800>;
-+		vfront-porch = <4>;
-+		vback-porch = <8>;
-+		vsync-len = <18>;
-+	};
-+};
-+
-+&pinctrl {
-+	lcd {
-+		/delete-node/ avdd-1v8-disp-en;
-+	};
-+
-+	touchscreen {
-+		touch_int: touch-int {
-+			rockchip,pins = <2 RK_PB6 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
-+		touch_rst: touch-rst {
-+			rockchip,pins = <2 RK_PB7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+	};
-+};
--- 
-2.22.0.709.g102302147b-goog
-
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
