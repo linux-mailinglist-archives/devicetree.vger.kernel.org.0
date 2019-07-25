@@ -2,117 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B4D375AD0
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 00:43:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DFAC475ADB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 00:46:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726888AbfGYWnH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 18:43:07 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55084 "EHLO mail.kernel.org"
+        id S1726828AbfGYWqT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 18:46:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56334 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726704AbfGYWnH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Jul 2019 18:43:07 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        id S1726819AbfGYWqT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 18:46:19 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 8E8BB22BF5;
-        Thu, 25 Jul 2019 22:43:05 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id A0A2322C7D;
+        Thu, 25 Jul 2019 22:46:17 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564094585;
-        bh=lBESfuT3DmI+rgGQfA5Bgd1cqeRkqGQxNUSPLRT7J/w=;
+        s=default; t=1564094777;
+        bh=+yOmooT9QWh7AbjuO31467LcogPWsKg5AFMXWo7T700=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Nv80oMNgEN71r3/BbqLh/q7zx+mZrVMhluqgvK4uigmTgyG2Qrpej99va5ARTRYqz
-         hNJlcDNZ5zVI3+fa4g9d0ZUUDegPlf28mUu6+eCDC/czkZ0H05t/GEVU1VfhMYABRd
-         1/+T5bnkyHC2A6g6LO4gPGxap4XYNjcZRILpeRwo=
-Received: by mail-qt1-f180.google.com with SMTP id z4so50787195qtc.3;
-        Thu, 25 Jul 2019 15:43:05 -0700 (PDT)
-X-Gm-Message-State: APjAAAX3lNwfuIZomWaUDY6UePS9LWFNB8ZwsoP68vLsCDLHse9OPlIg
-        q/gviR489Nggv9+Uu89u1gtUHUPhZN4ilTLH6Q==
-X-Google-Smtp-Source: APXvYqxdeWh9cmjbYBWJqGtuD2MR1ApRKd+If++ai9lKP0uWwFcRMyo2Qs/i7JSDX0ekJFmk7Df2ahT9V7pGKFBaufs=
-X-Received: by 2002:a0c:b627:: with SMTP id f39mr66634624qve.72.1564094584748;
- Thu, 25 Jul 2019 15:43:04 -0700 (PDT)
+        b=2NY7EDO/OcNRmUyUyLBIZTcv9FVdsaZSvv5tiAvlZrgJqlEFflIm8Q09vAKqKJs3S
+         Dxj/hVbtY4tKmC9xiCz0JG62XhgmOdJ31a2Zk2OI+ryJDZJgo1giXBK663MrYP1Xj8
+         HOKKAmaAQC67PDIpDh2H05SyAZqr4fkgCOtoMjIA=
+Received: by mail-qk1-f178.google.com with SMTP id r21so37755952qke.2;
+        Thu, 25 Jul 2019 15:46:17 -0700 (PDT)
+X-Gm-Message-State: APjAAAVyoaNv6VEtg1b043zGnpwgvxSE6bcnv3lMvZSRyAixfx1sagqJ
+        2CcB06wHOpwIXNP2nB8b0oQk1gicAe4gSp+LAg==
+X-Google-Smtp-Source: APXvYqzZai0T5TpNkhTsnFB4Whg+K+mPYE/uKM+k/JTM7iHa4ZE58MujPQVrEuptFYuh2O7tHVBB0VYgbWbfTEpNrq0=
+X-Received: by 2002:a37:6944:: with SMTP id e65mr55648212qkc.119.1564094776738;
+ Thu, 25 Jul 2019 15:46:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1562597164.git.hns@goldelico.com> <8ae7cf816b22ef9cecee0d789fcf9e8a06495c39.1562597164.git.hns@goldelico.com>
- <20190724194259.GA25847@bogus> <2EA06398-E45B-481B-9A26-4DD2E043BF9C@goldelico.com>
-In-Reply-To: <2EA06398-E45B-481B-9A26-4DD2E043BF9C@goldelico.com>
+References: <1561990354-4084-1-git-send-email-akinobu.mita@gmail.com>
+ <1561990354-4084-3-git-send-email-akinobu.mita@gmail.com> <20190722221645.GA32515@bogus>
+ <CAC5umyh5d7Ya-Ou8BZmPfpXKT+WkMCWnRKkCw8xhe9upNKqVbg@mail.gmail.com>
+In-Reply-To: <CAC5umyh5d7Ya-Ou8BZmPfpXKT+WkMCWnRKkCw8xhe9upNKqVbg@mail.gmail.com>
 From:   Rob Herring <robh@kernel.org>
-Date:   Thu, 25 Jul 2019 16:42:53 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLe_Y9Z6MRt7ojgSVKAb9n95S8j=eGidSVNz2T83j-zPQ@mail.gmail.com>
-Message-ID: <CAL_JsqLe_Y9Z6MRt7ojgSVKAb9n95S8j=eGidSVNz2T83j-zPQ@mail.gmail.com>
-Subject: Re: [PATCH 2/2] DTS: ARM: gta04: introduce legacy spi-cs-high to make
- display work again
-To:     "H. Nikolaus Schaller" <hns@goldelico.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Discussions about the Letux Kernel 
-        <letux-kernel@openphoenux.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Linux-OMAP <linux-omap@vger.kernel.org>,
-        stable <stable@vger.kernel.org>
+Date:   Thu, 25 Jul 2019 16:46:05 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq++7TkihOTrcx+3NVqYsS502h-1Og7h9H2YCA_YY5av2A@mail.gmail.com>
+Message-ID: <CAL_Jsq++7TkihOTrcx+3NVqYsS502h-1Og7h9H2YCA_YY5av2A@mail.gmail.com>
+Subject: Re: [PATCH v5 2/4] dt-bindings: thermal: nvme: Add binding documentation
+To:     Akinobu Mita <akinobu.mita@gmail.com>
+Cc:     linux-nvme@lists.infradead.org,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND..." <devicetree@vger.kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Keith Busch <kbusch@kernel.org>, Jens Axboe <axboe@fb.com>,
+        Christoph Hellwig <hch@lst.de>,
+        Sagi Grimberg <sagi@grimberg.me>,
+        Minwoo Im <minwoo.im.dev@gmail.com>,
+        Kenneth Heitke <kenneth.heitke@intel.com>,
+        Chaitanya Kulkarni <Chaitanya.Kulkarni@wdc.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 25, 2019 at 12:23 AM H. Nikolaus Schaller <hns@goldelico.com> wrote:
+On Thu, Jul 25, 2019 at 8:24 AM Akinobu Mita <akinobu.mita@gmail.com> wrote=
+:
 >
-> Hi Rob,
->
-> > Am 24.07.2019 um 21:42 schrieb Rob Herring <robh@kernel.org>:
+> 2019=E5=B9=B47=E6=9C=8823=E6=97=A5(=E7=81=AB) 7:16 Rob Herring <robh@kern=
+el.org>:
 > >
-> > On Mon, Jul 08, 2019 at 04:46:05PM +0200, H. Nikolaus Schaller wrote:
-> >> commit 6953c57ab172 "gpio: of: Handle SPI chipselect legacy bindings"
-> >>
-> >> did introduce logic to centrally handle the legacy spi-cs-high property
-> >> in combination with cs-gpios. This assumes that the polarity
-> >> of the CS has to be inverted if spi-cs-high is missing, even
-> >> and especially if non-legacy GPIO_ACTIVE_HIGH is specified.
-> >>
-> >> The DTS for the GTA04 was orginally introduced under the assumption
-> >> that there is no need for spi-cs-high if the gpio is defined with
-> >> proper polarity GPIO_ACTIVE_HIGH.
+> > On Mon, Jul 01, 2019 at 11:12:32PM +0900, Akinobu Mita wrote:
+> > > Add thermal binding documentation for NVMe temperature sensor.
+> > >
+> > > Cc: Rob Herring <robh@kernel.org>
+> > > Cc: Zhang Rui <rui.zhang@intel.com>
+> > > Cc: Eduardo Valentin <edubezval@gmail.com>
+> > > Cc: Daniel Lezcano <daniel.lezcano@linaro.org>
+> > > Cc: Keith Busch <kbusch@kernel.org>
+> > > Cc: Jens Axboe <axboe@fb.com>
+> > > Cc: Christoph Hellwig <hch@lst.de>
+> > > Cc: Sagi Grimberg <sagi@grimberg.me>
+> > > Cc: Minwoo Im <minwoo.im.dev@gmail.com>
+> > > Cc: Kenneth Heitke <kenneth.heitke@intel.com>
+> > > Cc: Chaitanya Kulkarni <Chaitanya.Kulkarni@wdc.com>
+> > > Signed-off-by: Akinobu Mita <akinobu.mita@gmail.com>
+> > > ---
+> > > * v5
+> > > - New patch
+> > >
+> > >  Documentation/devicetree/bindings/thermal/nvme.txt | 56 ++++++++++++=
+++++++++++
+> > >  1 file changed, 56 insertions(+)
+> > >  create mode 100644 Documentation/devicetree/bindings/thermal/nvme.tx=
+t
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/thermal/nvme.txt b/Doc=
+umentation/devicetree/bindings/thermal/nvme.txt
+> > > new file mode 100644
+> > > index 0000000..60b90de
+> > > --- /dev/null
+> > > +++ b/Documentation/devicetree/bindings/thermal/nvme.txt
+> > > @@ -0,0 +1,56 @@
+> > > +Binding for NVMe temperature sensor
+> > > +
+> > > +An NVMe controller reports up to nine temperature values in the SMAR=
+T / Health
+> > > +log.
+> > > +
+> > > +Required properties:
+> > > +- reg: A five-cell address encoded as (phys.hi phys.mid phys.lo size=
+.hi
+> > > +  size.lo). phys.hi should contain the device's BDF (Bus/Device/Func=
+tion)
+> > > +  as 0b00000000 bbbbbbbb dddddfff 00000000. The other cells should b=
+e zero.
+> > > +  See also Documentation/devicetree/bindings/pci/pci.txt
+> > > +
+> > > +- #thermal-sensor-cells: Must be 1. See ./thermal.txt for a descript=
+ion.
+> > > +  In the thermal-sensors property, the sensor ID 0 for composite tem=
+perature,
+> > > +  1 through 8 for NVMe temperature sensor N.
+> > > +
+> > > +Example:
+> > > +
+> > > +&pcie0 {
+> > > +     ...
+> > > +     nvme: nvme@0,0 {
+> > > +             reg =3D <0x0000 0 0 0 0>;
+> > > +             #address-cells =3D <3>;
+> > > +             #size-cells =3D <2>;
+> > > +
+> > > +             nvmetemp: nvmetemp {
+> > > +                     reg =3D <0x0000 0 0 0 0>; /* DEVFN =3D 0x00 (0:=
+0) */
 > >
-> > Given that spi-cs-high is called legacy, that would imply that DT's
-> > should not have to use spi-cs-high.
->
-> Yes.
->
+> > I'm not sure this is really valid PCI addressing as the parent has the
+> > same address.
 > >
-> >> This was not a problem until gpiolib changed the interpretation of
-> >> GPIO_ACTIVE_HIGH and missing spi-cs-high.
+> > > +                     #thermal-sensor-cells =3D <1>;
 > >
-> > Then we should fix gpiolib...
+> > Can't you just put this in the parent? Is this really a separate
+> > addressable device from the parent?
 >
-> I tried to convince Linus that this is the right way but he convinced
-> me that a fix that handles all cases does not exist.
+> How about this?
 >
-> There seem to be embedded devices with older DTB (potentially in ROM)
-> which provide a plain 0 value for a gpios definition. And either with
-> or without spi-cs-high.
+> &pcie0 {
+> ...
+>         pci-bridge@0 {
+>                 reg =3D <0x00000 0 0 0 0>;
+>                 #address-cells =3D <3>;
+>                 #size-cells =3D <2>;
 >
-> Since "0" is the same as "GPIO_ACTIVE_HIGH", the absence of
-> spi-cs-high was and must be interpreted as active low for these
-> devices. This leads to the inversion logic in code.
+>                 nvme: nvme@0,0 {
+>                         reg =3D <0x10000 0 0 0 0>;
+>                         #thermal-sensor-cells =3D <1>;
+>                 };
+>         };
+> };
 >
-> AFAIR it boils down to the question if gpiolib and the bindings
-> should still support such legacy devices with out-of tree DTB,
-> but force in-tree DTS to add the legacy spi-cs-high property.
+> and
 >
-> Or if we should fix the 2 or 3 cases of in-tree legacy cases
-> and potentially break out-of tree DTBs.
+> &thermal_zones {
+> ...
+> thermal-sensors =3D <&nvme 0>;
+> };
+>
+> I tested this with the RockPro64 and edited
+> arch/arm64/boot/dts/rockchip/rk3399-rockpro64.dts.
+>
+> $ lspci
+> 00:00.0 PCI bridge: Fuzhou Rockchip Electronics Co., Ltd Device 0100
+> 01:00.0 Non-Volatile memory controller: Micron/Crucial Technology
+> Device 2263 (rev 03)
+>
+> $ lspci -tv
+> -[0000:00]---00.0-[01]----00.0  Micron/Crucial Technology Device 2263
 
-If it is small number of platforms, then the kernel could handle those
-cases explicitly as needed.
-
-> IMHO it is more general to keep the out-of-tree DTBs working
-> and "fix" what we can control (in-tree DTS).
-
-If we do this, then we need to not call spi-cs-high legacy because
-we're stuck with it forever.
+Looks better to me.
 
 Rob
