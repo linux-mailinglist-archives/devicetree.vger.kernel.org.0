@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3E41E74B25
+	by mail.lfdr.de (Postfix) with ESMTP id AE78E74B27
 	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 12:07:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387997AbfGYKFo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 06:05:44 -0400
-Received: from mail-qk1-f193.google.com ([209.85.222.193]:42340 "EHLO
-        mail-qk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387956AbfGYKFo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 06:05:44 -0400
-Received: by mail-qk1-f193.google.com with SMTP id 201so35944397qkm.9
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 03:05:43 -0700 (PDT)
+        id S2388443AbfGYKGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 06:06:01 -0400
+Received: from mail-qt1-f196.google.com ([209.85.160.196]:46471 "EHLO
+        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388139AbfGYKGB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 06:06:01 -0400
+Received: by mail-qt1-f196.google.com with SMTP id h21so48413620qtn.13
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 03:06:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=7MqY5TdYDukrmEcvyvH1Gy2JxiZVpxAfuPKcTJpAIOc=;
-        b=bZG05YAAVga3Lrh/0yIRiZu0OwBZ1sptqRJR8ItXyufWxbjZiVGIoqJ0QpP+TPerhF
-         VS0hlrNFycUS3jM5WWtRoTESWbMzjpbMJgoMIj2JvhSvGV8FVTTpKMFtDJdX9DvdLpM6
-         9DRwIIX/Qy19YhgVSoNRaga21XU0ELRRBHGN2XVRcrCVDHwsYoEyrRoa/m2wMLE0DfON
-         diKx1f2P1O9zbznpnDIteD9wOHwQ/zzPS3GCxbbLKKO1EAKn3XcjR9ESC3eEnrRNBXfq
-         D5x8VcJmwr7IFSNLpFwemFmEYv6f9thE4MW8BI/eQmHOwtYrPEkfgzCM7MUc4qpuJRo3
-         GiUw==
+        bh=dY1dpg/OHfGT/mutmAs25ca6whmcjcdibSv9ZWjkmsM=;
+        b=Jfhn1IH6hkL03mon/JSCxCgfxtUbbHpAWLvoKakLq9+OvKHCgOwv54x4UYs6F+oQMn
+         pYkQIJEg75i+hHconcv4V1/srr2zzQ2gLAF18fBF3ME7Lvqc9OSkQogjIIcoEHtIYzD7
+         NNOk23BB7KD8mkF2N8cBwWxrirrIwIZ3Q64/Qs4CiRdRhGrXqGztvhuRIsUjCcx7OsNh
+         1K2hL6DNo+hoWiB/V+VadwE/INHTA+S7S2oEyb+FW0F1AAaeEosEGU3YUvgpHt443Dvu
+         NWKMDxuEbXYfUF6UQWng1gU1awRncLz4AvRJgscAlnEgrW9grqqxYPfBxrxKl2dxOCEc
+         99bw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=7MqY5TdYDukrmEcvyvH1Gy2JxiZVpxAfuPKcTJpAIOc=;
-        b=L2de/do1cOTKsdZAgSUt8QMptoCs8HlpFkveCknQalPgPxpnFwMvQDCQCSCxQOkj/f
-         NaXiQRytohKIBkj8KTN0Jhl2st8BrOajawMP1PObCkFKkma9whu326d2dV/eDehuQ/43
-         Fs1VYJli4JcMJLxuJQWfZe36d61Ltp6pCjQA9ap1DRJqvKFK8i3bTXRG5uiuM/knR5Ha
-         KVYPuJKBY+fdddwBHPGs4qKxYnquuNjoY46Uo2KJBqWjAkb7gLYDa+XLETq3SjiEirLr
-         AlBpKFhWySYVx+7eTBXT/ycnOkYaNYMmzGQzFz/unQfYEYQHQlsrGP30Skvzf1ab4fTz
-         x1Tg==
-X-Gm-Message-State: APjAAAXSuydHjiaZggIs16Ik+phVezijDHpguitVNjyaBxrM6zQ05VMe
-        DPzogda0FYMxIp+Dr3iaSNjT4z9hNninb8sVeA7S5Q==
-X-Google-Smtp-Source: APXvYqyhCeRsfUMKnaFdLn3aJWF2r7C0su+s5w1UqLu1cTlcNydCdWit5JkkqefwAGH3hmKajOG/V6rCyDq9aRuGQfA=
-X-Received: by 2002:a37:bcc7:: with SMTP id m190mr56245928qkf.433.1564049143158;
- Thu, 25 Jul 2019 03:05:43 -0700 (PDT)
+        bh=dY1dpg/OHfGT/mutmAs25ca6whmcjcdibSv9ZWjkmsM=;
+        b=Rx03QpW5SjnuhGRFsJzYo7oLgCdYrPdGNexpLhTRVEinnFf1akrfdlNPoWO5Z79v1i
+         LaXxCko0H4QxMYM20FOENFPYBkeqL1b9Qnv5Y3MAoyLvHNaxTUwFiWOz5dCnAHIx/mQC
+         9HUU2fgiFr57tfnZit+dM09x42kuDGtT0bqyBfSfdFdALbrorvYRfk1hErK7f4FQxdPU
+         IIOZog73vhAkBtQRctHdjOXPdu6slaE/mrH+QzsHgmmZek3tgET1yAeWZkBS8oYh8C7V
+         pCpWhcWcw2y1XXOw8iJvJZPAfhn+iS2IJa/tY1qpqADeFvCgb09bgoX0kCR33h4hSWub
+         OG9A==
+X-Gm-Message-State: APjAAAUHcu+GrVnze4zti3UNSs70V4IHNQ5fJeW+pmSYtZY5PfZff3sc
+        sWzsgv05HezU8Lzihu4lQEceTb3J+rDATZ67qz6Veg==
+X-Google-Smtp-Source: APXvYqyNGztGQcRtMMJsWvdYYDKXUmMJH8KY8KYoJe4UVpVBo8GDSkeBtSiY93R7Znfd5M96vEy07a17By30LwrGnqE=
+X-Received: by 2002:aed:36c5:: with SMTP id f63mr62620869qtb.239.1564049160250;
+ Thu, 25 Jul 2019 03:06:00 -0700 (PDT)
 MIME-Version: 1.0
-References: <1563811560-29589-1-git-send-email-olivier.moysan@st.com> <1563811560-29589-2-git-send-email-olivier.moysan@st.com>
-In-Reply-To: <1563811560-29589-2-git-send-email-olivier.moysan@st.com>
+References: <1563811560-29589-1-git-send-email-olivier.moysan@st.com> <1563811560-29589-3-git-send-email-olivier.moysan@st.com>
+In-Reply-To: <1563811560-29589-3-git-send-email-olivier.moysan@st.com>
 From:   Benjamin Gaignard <benjamin.gaignard@linaro.org>
-Date:   Thu, 25 Jul 2019 12:05:32 +0200
-Message-ID: <CA+M3ks5v7vF_mPBr4mkwsHidc-N4jfJDgqWWE7qRv0LDsYJ-pQ@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] drm/bridge: sii902x: fix missing reference to mclk clock
+Date:   Thu, 25 Jul 2019 12:05:49 +0200
+Message-ID: <CA+M3ks6aA2YpHG3Kb+JxxECvdWYkgOVabYqL4-QTUDYkM6N67Q@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: display: sii902x: Change audio mclk binding
 To:     Olivier Moysan <olivier.moysan@st.com>
 Cc:     Andrzej Hajda <a.hajda@samsung.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
@@ -72,38 +72,40 @@ X-Mailing-List: devicetree@vger.kernel.org
 Le lun. 22 juil. 2019 =C3=A0 18:06, Olivier Moysan <olivier.moysan@st.com> =
 a =C3=A9crit :
 >
-> Add devm_clk_get call to retrieve reference to master clock.
+> As stated in SiL9022/24 datasheet, master clock is not required for I2S.
+> Make mclk property optional in DT bindings.
 >
-> Fixes: ff5781634c41 ("drm/bridge: sii902x: Implement HDMI audio support")
+> Fixes: 3f18021f43a3 ("dt-bindings: display: sii902x: Add HDMI audio bindi=
+ngs")
 >
-> Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
-> Reviewed-by: Jyri Sarha <jsarha@ti.com>
-> Acked-by: Andrzej Hajda <a.hajda@samsung.com
-
 Applied on drm-misc-next.
 Thanks,
 Benjamin
 
+> Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
+> Reviewed-by: Jyri Sarha <jsarha@ti.com>
+> Acked-by: Andrzej Hajda <a.hajda@samsung.com>
 > ---
->  drivers/gpu/drm/bridge/sii902x.c | 1 +
->  1 file changed, 1 insertion(+)
+>  Documentation/devicetree/bindings/display/bridge/sii902x.txt | 5 ++---
+>  1 file changed, 2 insertions(+), 3 deletions(-)
 >
-> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/si=
-i902x.c
-> index c2f97e5997a1..962931c20efe 100644
-> --- a/drivers/gpu/drm/bridge/sii902x.c
-> +++ b/drivers/gpu/drm/bridge/sii902x.c
-> @@ -751,6 +751,7 @@ static int sii902x_audio_codec_init(struct sii902x *s=
-ii902x,
->                 sii902x->audio.i2s_fifo_sequence[i] |=3D audio_fifo_id[i]=
- |
->                         i2s_lane_id[lanes[i]] | SII902X_TPI_I2S_FIFO_ENAB=
-LE;
+> diff --git a/Documentation/devicetree/bindings/display/bridge/sii902x.txt=
+ b/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> index 2df44b7d3821..6e14e087c0d0 100644
+> --- a/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> +++ b/Documentation/devicetree/bindings/display/bridge/sii902x.txt
+> @@ -26,9 +26,8 @@ Optional properties:
+>         - clocks: phandle and clock specifier for each clock listed in
+>             the clock-names property
+>         - clock-names: "mclk"
+> -          Describes SII902x MCLK input. MCLK is used to produce
+> -          HDMI audio CTS values. This property is required if
+> -          "#sound-dai-cells"-property is present. This property follows
+> +          Describes SII902x MCLK input. MCLK can be used to produce
+> +          HDMI audio CTS values. This property follows
+>            Documentation/devicetree/bindings/clock/clock-bindings.txt
+>            consumer binding.
 >
-> +       sii902x->audio.mclk =3D devm_clk_get(dev, "mclk");
->         if (IS_ERR(sii902x->audio.mclk)) {
->                 dev_err(dev, "%s: No clock (audio mclk) found: %ld\n",
->                         __func__, PTR_ERR(sii902x->audio.mclk));
 > --
 > 2.7.4
 >
