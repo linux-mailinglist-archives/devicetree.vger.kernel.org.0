@@ -2,283 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6BB0574A7C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 11:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3A6F74B20
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 12:07:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728174AbfGYJzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 05:55:45 -0400
-Received: from mailout3.samsung.com ([203.254.224.33]:47874 "EHLO
-        mailout3.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729274AbfGYJzo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 05:55:44 -0400
-Received: from epcas1p4.samsung.com (unknown [182.195.41.48])
-        by mailout3.samsung.com (KnoxPortal) with ESMTP id 20190725095542epoutp0366227866cf259c50289879ca8be22585~0ndzXA3WX2028120281epoutp03-
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 09:55:42 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout3.samsung.com 20190725095542epoutp0366227866cf259c50289879ca8be22585~0ndzXA3WX2028120281epoutp03-
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1564048542;
-        bh=APvyhy0eQAA2wXp8WTSoXGWXI9/At5nyAp+5gePsgVg=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=h29K8wMHJjYi+fuUrkwfTfFMLgzeOV52qOxzjXWKSsnMJrADIsNojY5pZWFLpkVCh
-         StoScMhnOUGugLejS72qOZp0f2ch+GHsv8oJlIs91Mbm7wLD5QgOGftC7/lA1UrkXt
-         5jBkEm65QeP9piuf1D2JSzmTjGAHWXiD4U/4gDFs=
-Received: from epsnrtp4.localdomain (unknown [182.195.42.165]) by
-        epcas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190725095541epcas1p23ae99ffd69957e3dd1bbbd877aacb535~0ndytmimj0831308313epcas1p2C;
-        Thu, 25 Jul 2019 09:55:41 +0000 (GMT)
-Received: from epsmges1p2.samsung.com (unknown [182.195.40.157]) by
-        epsnrtp4.localdomain (Postfix) with ESMTP id 45vSJW2gBtzMqYkY; Thu, 25 Jul
-        2019 09:55:39 +0000 (GMT)
-Received: from epcas1p4.samsung.com ( [182.195.41.48]) by
-        epsmges1p2.samsung.com (Symantec Messaging Gateway) with SMTP id
-        15.22.04075.B9C793D5; Thu, 25 Jul 2019 18:55:39 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTPA id
-        20190725095538epcas1p323a4e0d70b4a906ffb5927b2e43dc00f~0ndwDjd_B0042800428epcas1p3T;
-        Thu, 25 Jul 2019 09:55:38 +0000 (GMT)
-Received: from epsmgms1p1new.samsung.com (unknown [182.195.42.41]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190725095538epsmtrp2fc287fb53405ebd9e0d5370c0341322b~0ndv-668u1824718247epsmtrp2a;
-        Thu, 25 Jul 2019 09:55:38 +0000 (GMT)
-X-AuditID: b6c32a36-b49ff70000000feb-5f-5d397c9baee1
-Received: from epsmtip2.samsung.com ( [182.195.34.31]) by
-        epsmgms1p1new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        F9.7C.03706.A9C793D5; Thu, 25 Jul 2019 18:55:38 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190725095538epsmtip2f38872b5e416bf14678ccd1a705babdf~0ndvtvIEv1344113441epsmtip26;
-        Thu, 25 Jul 2019 09:55:38 +0000 (GMT)
-Subject: Re: [PATCH v3 1/5] devfreq: exynos-bus: correct clock enable
- sequence
-To:     k.konieczny@partner.samsung.com
-Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <9c29db92-2452-0ff3-3ffa-d861e4327bc9@samsung.com>
-Date:   Thu, 25 Jul 2019 18:58:43 +0900
+        id S1726808AbfGYKFS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 06:05:18 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:33639 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725852AbfGYKFS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 06:05:18 -0400
+Received: by mail-lf1-f67.google.com with SMTP id x3so34197420lfc.0;
+        Thu, 25 Jul 2019 03:05:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=EKGBnPRNMQNc9c9kgqMJBhw6DFuZQGwpCZJogF2MaZg=;
+        b=Mbxv8ci6nzGefUESUHjOMV75rUO6ArywAbipEhmQEBOp2AusXaN/t21VxPDrwZj0zX
+         tg1cgl2dELyEoQLCcpexXw8GiEr3n302aNCdComu76SMygLRp0NxdblIWVc4DZ9SM0xV
+         70KzquV0sF/IvmFBB5ymQesH3vQYHz23J3+ke/H5/uU//mPcSBjQRBQwqjjtZnrzQg12
+         gckxCpw5zQKTyO/eIr6P365O7Ni0Vxwobf9WcrB+y9j7mLJsTK6zc/F0TkoZmJpX4mju
+         nRHj1ht+R4AmFKtEsj1lLfxjjUbpo1CME6UdEcgY6QPKyXyoO5BUGJsCv5aI/ToMGZiO
+         Eaog==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=EKGBnPRNMQNc9c9kgqMJBhw6DFuZQGwpCZJogF2MaZg=;
+        b=iHzvB+tcnxMZWAeiIgiyIYHXBeAFRiYkj2E8GgXxqLRSB3OWe2CcK2zaf81ywrVQXh
+         5g+NEos4iQa4z4lk4StnMm9Akbl/MC8brmqYDgeNVWmS7apa96gMZg9yIaUbTAxlbiiu
+         AgHP7xjaobGJ4B16jGmMF/aR7FMXV5OKKkci1oMhBTMXtYHQHdLt3kKxQX5fyZZcjgBL
+         HBHYiRWvaKs5uKe+IaFC5B6EVL3uWuA2fsOdcrL88f4kXThtr/uH3+rVnS3hW4H3P15a
+         ml6M2sc913gQJ655yI7Fpd+gmbbuPlS0KuIktyNIsIsf+JTRF0J7HhmMNURn8nJBsSYU
+         8GZg==
+X-Gm-Message-State: APjAAAUZg8MjJ3Xrjisebt2JKiWz/p5HL6Y5RF2O7gkuPCxbbEqaYvPT
+        M+EOM9rrpmerlmBnqFSqxQtA7hEb
+X-Google-Smtp-Source: APXvYqyKGrgx4KlLtWLdFzerbA6rG1TqKd5VD2bcY2S2vM2ra+b4zFkApoBC/JVpk0sKzJa3r5MVXg==
+X-Received: by 2002:ac2:43bb:: with SMTP id t27mr6127331lfl.187.1564049115258;
+        Thu, 25 Jul 2019 03:05:15 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
+        by smtp.googlemail.com with ESMTPSA id q22sm9107599lje.75.2019.07.25.03.05.13
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 25 Jul 2019 03:05:14 -0700 (PDT)
+Subject: Re: [PATCH V6 01/21] irqchip: tegra: Do not disable COP IRQ during
+ suspend
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>
+Cc:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
+        jason@lakedaemon.net, marc.zyngier@arm.com,
+        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com,
+        pgaikwad@nvidia.com, sboyd@kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, jckuo@nvidia.com, josephl@nvidia.com,
+        talho@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mperttunen@nvidia.com,
+        spatra@nvidia.com, robh+dt@kernel.org, devicetree@vger.kernel.org
+References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com>
+ <1563738060-30213-2-git-send-email-skomatineni@nvidia.com>
+ <f6582e43-168e-1b7e-9db8-3d263bc3ba0d@gmail.com>
+ <20190725095502.GM12715@pdeschrijver-desktop.Nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <dd01be5d-bab9-1329-c7ac-c3c893d49dd1@gmail.com>
+Date:   Thu, 25 Jul 2019 13:05:13 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.8.0
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <20190719150535.15501-2-k.konieczny@partner.samsung.com>
+In-Reply-To: <20190725095502.GM12715@pdeschrijver-desktop.Nvidia.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrIJsWRmVeSWpSXmKPExsWy7bCmge7sGstYg/0XRCw2zljPajH/yDlW
-        i759/xkt+h+/ZrY4f34Du8XZpjfsFpseX2O1uLxrDpvF594jjBYzzu9jslh75C67xdLrF5ks
-        bjeuYLN48+Msk0Xr3iPsFv+ubWSx2PzgGJuDoMeaeWsYPTat6mTz2Lyk3uPguz1MHn1bVjF6
-        HL+xncnj8ya5APaobJuM1MSU1CKF1Lzk/JTMvHRbJe/geOd4UzMDQ11DSwtzJYW8xNxUWyUX
-        nwBdt8wcoA+UFMoSc0qBQgGJxcVK+nY2RfmlJakKGfnFJbZKqQUpOQWWBXrFibnFpXnpesn5
-        uVaGBgZGpkCFCdkZ/S9XMxVcU6n4e/YqUwPjZZkuRg4OCQETiQ+T5bsYuTiEBHYwSix5eZYV
-        wvnEKDHxyzZmCOcbo0T/1MVAGU6wjjmrVzBCJPYySrw+fxzKec8o8f7fU7AqYYEAiV8LtjKB
-        2CICyhKT700HG8UscJlFYtqjSWBFbAJaEvtf3GADsfkFFCWu/njMCGLzCthJ7H61BizOIqAq
-        0bLmK9ggUYEIiU8PDrNC1AhKnJz5hAXE5hRwlfi/FGIxs4C4xK0n85kgbHmJ5q2zwRZLCJxj
-        l9je3Qz1g4vEvHkwtrDEq+Nb2CFsKYnP7/ayQdjVEitPHmGDaO5glNiy/wJUg7HE/qWTmUDB
-        xyygKbF+lz5EWFFi5++5jBCL+STefe1hhYQwr0RHmxBEibLE5Qd3mSBsSYnF7Z1sExiVZiF5
-        ZxaSF2YheWEWwrIFjCyrGMVSC4pz01OLDQuMkKN7EyM4eWuZ7WBcdM7nEKMAB6MSDy9HkkWs
-        EGtiWXFl7iFGCQ5mJRHewAazWCHelMTKqtSi/Pii0pzU4kOMpsDQnsgsJZqcD8wseSXxhqZG
-        xsbGFiaGZqaGhkrivAt/AM0RSE8sSc1OTS1ILYLpY+LglGpglGZ5qzav4bVdHE9+2RHfqdcs
-        P/X85C35yV7r8cS9e59A0uRDG3gld9d++KvwrY3nV+uUytJczkK/v8/+rhVl27Yg7PPFPRll
-        xb47uBbqPih2TgizOudXxF0ft8utrcFzwdQtsqssDx/mlTsZdNat02Kuk3bx7VC9LOkvZ6M7
-        U6/809i+yyZZiaU4I9FQi7moOBEAFCo0ovQDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDIsWRmVeSWpSXmKPExsWy7bCSvO6sGstYgy/PNC02zljPajH/yDlW
-        i759/xkt+h+/ZrY4f34Du8XZpjfsFpseX2O1uLxrDpvF594jjBYzzu9jslh75C67xdLrF5ks
-        bjeuYLN48+Msk0Xr3iPsFv+ubWSx2PzgGJuDoMeaeWsYPTat6mTz2Lyk3uPguz1MHn1bVjF6
-        HL+xncnj8ya5APYoLpuU1JzMstQifbsEroz+l6uZCq6pVPw9e5WpgfGyTBcjJ4eEgInEnNUr
-        GLsYuTiEBHYzSrxd38oKkZCUmHbxKHMXIweQLSxx+HAxRM1bRonfy2Yxg9QIC/hJ3JryF6xe
-        REBZYvK96cwgRcwCV1kkzm+cwwbRcZlRYumt+ewgVWwCWhL7X9xgA7H5BRQlrv54zAhi8wrY
-        Sex+tQYsziKgKtGy5isTiC0qECFxeMcsqBpBiZMzn7CA2JwCrhL/lz4F28wsoC7xZ94lZghb
-        XOLWk/lMELa8RPPW2cwTGIVnIWmfhaRlFpKWWUhaFjCyrGKUTC0ozk3PLTYsMMxLLdcrTswt
-        Ls1L10vOz93ECI5jLc0djJeXxB9iFOBgVOLh3RBvESvEmlhWXJl7iFGCg1lJhDewwSxWiDcl
-        sbIqtSg/vqg0J7X4EKM0B4uSOO/TvGORQgLpiSWp2ampBalFMFkmDk6pBkauuJ+VcxmmnDwX
-        w/aWc1G75f1F/YzuHxVSxHK2FCmrea0/W7TwbvPB5SVPKn+ILHa7wMt77tGLwD1Gk1UrPC8U
-        eu6OPeZ7f4VRqGZ98aHzzG75yzLy38ka6Hpvfu67dcd32asffl1aYhprkXdYSmm9yWnBDbe+
-        /Ky3Eqo6n/hM+431tDMTbT8rsRRnJBpqMRcVJwIAF0CQiN8CAAA=
-X-CMS-MailID: 20190725095538epcas1p323a4e0d70b4a906ffb5927b2e43dc00f
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20190719150553eucas1p1665462f3fc0e06fc9c082e258be3a851
-References: <20190719150535.15501-1-k.konieczny@partner.samsung.com>
-        <CGME20190719150553eucas1p1665462f3fc0e06fc9c082e258be3a851@eucas1p1.samsung.com>
-        <20190719150535.15501-2-k.konieczny@partner.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kamil,
+25.07.2019 12:55, Peter De Schrijver пишет:
+> On Mon, Jul 22, 2019 at 12:54:51PM +0300, Dmitry Osipenko wrote:
+>>
+>> All Tegra SoCs support SC7, hence the 'supports_sc7' and the comment
+>> doesn't sound correct to me. Something like 'firmware_sc7' should suit
+>> better here.
+>>
+>>> +			writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
+>>
+>> Secondly, I'm also not sure why COP interrupts need to be disabled for
+>> pre-T210 at all, since COP is unused. This looks to me like it was
+>> cut-n-pasted from downstream kernel without a good reason and could be
+>> simply removed.
+> 
+> I don't think we can rely on the fact that COP is unused. People can
+> write their own code to run on COP.
 
-On 19. 7. 20. 오전 12:05, k.konieczny@partner.samsung.com wrote:
-> Regulators should be enabled before clocks to avoid h/w hang. This
-> require change in exynos_bus_probe() to move exynos_bus_parse_of()
-> after exynos_bus_parent_parse_of() and change in enabling sequence
-> of regulator and clock in exynos_bus_parse_of(). Similar change is
-> needed in exynos_bus_exit() where clock should be disabled first.
-> 
-> Signed-off-by: Kamil Konieczny <k.konieczny@partner.samsung.com>
-> ---
-> This patch is new to this series.
-> 
-> ---
->  drivers/devfreq/exynos-bus.c | 58 ++++++++++++++++++++----------------
->  1 file changed, 32 insertions(+), 26 deletions(-)
-> 
-> diff --git a/drivers/devfreq/exynos-bus.c b/drivers/devfreq/exynos-bus.c
-> index 486cc5b422f1..f391044aa39d 100644
-> --- a/drivers/devfreq/exynos-bus.c
-> +++ b/drivers/devfreq/exynos-bus.c
-> @@ -194,11 +194,11 @@ static void exynos_bus_exit(struct device *dev)
->  	if (ret < 0)
->  		dev_warn(dev, "failed to disable the devfreq-event devices\n");
->  
-> +	clk_disable_unprepare(bus->clk);
->  	if (bus->regulator)
->  		regulator_disable(bus->regulator);
->  
->  	dev_pm_opp_of_remove_table(dev);
-> -	clk_disable_unprepare(bus->clk);
->  }
->  
->  /*
-> @@ -326,8 +326,7 @@ static int exynos_bus_parent_parse_of(struct device_node *np,
->  	return ret;
->  }
->  
-> -static int exynos_bus_parse_of(struct device_node *np,
-> -			      struct exynos_bus *bus)
-> +static int exynos_bus_parse_of(struct exynos_bus *bus)
->  {
->  	struct device *dev = bus->dev;
->  	struct dev_pm_opp *opp;
-> @@ -341,36 +340,35 @@ static int exynos_bus_parse_of(struct device_node *np,
->  		return PTR_ERR(bus->clk);
->  	}
->  
-> -	ret = clk_prepare_enable(bus->clk);
-> +	/* Get the freq and voltage from OPP table to scale the bus freq */
-> +	ret = dev_pm_opp_of_add_table(dev);
->  	if (ret < 0) {
-> -		dev_err(dev, "failed to get enable clock\n");
-> +		dev_err(dev, "failed to get OPP table\n");
->  		return ret;
->  	}
->  
-> -	/* Get the freq and voltage from OPP table to scale the bus freq */
-> -	ret = dev_pm_opp_of_add_table(dev);
-> +	ret = clk_prepare_enable(bus->clk);
->  	if (ret < 0) {
-> -		dev_err(dev, "failed to get OPP table\n");
-> +		dev_err(dev, "failed to enable clock\n");
->  		goto err_clk;
->  	}
-> -
->  	rate = clk_get_rate(bus->clk);
->  
->  	opp = devfreq_recommended_opp(dev, &rate, 0);
->  	if (IS_ERR(opp)) {
->  		dev_err(dev, "failed to find dev_pm_opp\n");
->  		ret = PTR_ERR(opp);
-> -		goto err_opp;
-> +		goto err;
->  	}
->  	bus->curr_freq = dev_pm_opp_get_freq(opp);
->  	dev_pm_opp_put(opp);
->  
->  	return 0;
->  
-> -err_opp:
-> -	dev_pm_opp_of_remove_table(dev);
-> -err_clk:
-> +err:
->  	clk_disable_unprepare(bus->clk);
-> +err_clk:
-> +	dev_pm_opp_of_remove_table(dev);
->  
->  	return ret;
->  }
-> @@ -386,6 +384,7 @@ static int exynos_bus_probe(struct platform_device *pdev)
->  	struct exynos_bus *bus;
->  	int ret, max_state;
->  	unsigned long min_freq, max_freq;
-> +	bool passive = false;
->  
->  	if (!np) {
->  		dev_err(dev, "failed to find devicetree node\n");
-> @@ -399,27 +398,31 @@ static int exynos_bus_probe(struct platform_device *pdev)
->  	bus->dev = &pdev->dev;
->  	platform_set_drvdata(pdev, bus);
->  
-> -	/* Parse the device-tree to get the resource information */
-> -	ret = exynos_bus_parse_of(np, bus);
-> -	if (ret < 0)
-> -		return ret;
-> -
->  	profile = devm_kzalloc(dev, sizeof(*profile), GFP_KERNEL);
-> -	if (!profile) {
-> -		ret = -ENOMEM;
-> -		goto err;
-> -	}
-> +	if (!profile)
-> +		return -ENOMEM;
->  
->  	node = of_parse_phandle(dev->of_node, "devfreq", 0);
->  	if (node) {
->  		of_node_put(node);
-> -		goto passive;
-> +		passive = true;
->  	} else {
->  		ret = exynos_bus_parent_parse_of(np, bus);
-> +		if (ret < 0)
-> +			return ret;
->  	}
->  
-> -	if (ret < 0)
-> -		goto err;
-> +	/* Parse the device-tree to get the resource information */
-> +	ret = exynos_bus_parse_of(bus);
-> +	if (ret < 0) {
-> +		if (!passive)
-> +			regulator_disable(bus->regulator);
-> +
-> +		return ret;
-> +	}
-> +
-> +	if (passive)
-> +		goto passive;
->  
->  	/* Initialize the struct profile and governor data for parent device */
->  	profile->polling_ms = 50;
-> @@ -508,8 +511,11 @@ static int exynos_bus_probe(struct platform_device *pdev)
->  	return 0;
->  
->  err:
-> -	dev_pm_opp_of_remove_table(dev);
->  	clk_disable_unprepare(bus->clk);
-> +	if (!passive)
-> +		regulator_disable(bus->regulator);
-> +
-> +	dev_pm_opp_of_remove_table(dev);
->  
->  	return ret;
->  }
-> 
+1. Not upstream - doesn't matter.
 
-Acked-by: Chanwoo Choi <cw00.choi@samsung.com>
-
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+2. That's not very good if something unknown is running on COP and then
+kernel suddenly intervenes, don't you think so?
