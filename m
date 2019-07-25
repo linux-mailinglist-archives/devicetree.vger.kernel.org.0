@@ -2,124 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 52399759B1
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 23:33:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E35F0759C0
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 23:37:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726692AbfGYVdl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 17:33:41 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:39940 "EHLO gloria.sntech.de"
+        id S1726635AbfGYVhi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 17:37:38 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37616 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726524AbfGYVdl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Jul 2019 17:33:41 -0400
-Received: from d57e23da.static.ziggozakelijk.nl ([213.126.35.218] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1hqlMn-00029f-Ju; Thu, 25 Jul 2019 23:33:37 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Doug Anderson <dianders@chromium.org>
-Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH] Revert "ARM: dts: rockchip: add startup delay to rk3288-veyron panel-regulators"
-Date:   Thu, 25 Jul 2019 23:33:36 +0200
-Message-ID: <3386344.sHu1S4gNag@phil>
-In-Reply-To: <CAD=FV=UhNfhVG422=huthFSptoV4FXED=xPtArO2KkyNb1U3Xw@mail.gmail.com>
-References: <20190620182056.61552-1-dianders@chromium.org> <CAD=FV=Wi21Emjg7CpCJfSRiKr_EisR20UO1tbPjAeJzdJNbSVw@mail.gmail.com> <CAD=FV=UhNfhVG422=huthFSptoV4FXED=xPtArO2KkyNb1U3Xw@mail.gmail.com>
+        id S1726524AbfGYVhi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 17:37:38 -0400
+Received: from mail-qt1-f179.google.com (mail-qt1-f179.google.com [209.85.160.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7024522C7C;
+        Thu, 25 Jul 2019 21:37:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564090657;
+        bh=DEqG5QVpqjFk6fDTKmZueo9OEbXtd2kkOwCkB9pcwsw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ChBuyG/zLWJRz7CNaa1J+2pTEKGQ5mPVZxhgAryltV3xIru5iRsalCt70Lgc+2swf
+         OaUz0nXNxLffPqB602194PwAB1rEqPC8bnnh+EmKVVt2iF2akDyn7gCayH3wQD+9Gp
+         1QMBZQQe+ocmwqbpkCawFcUezrKhOamAIJS4HUdo=
+Received: by mail-qt1-f179.google.com with SMTP id y26so50588637qto.4;
+        Thu, 25 Jul 2019 14:37:37 -0700 (PDT)
+X-Gm-Message-State: APjAAAVFqEB/IMriJV2MXTLzv2Frktdgt07eRlzyGioKA7wE3jCbagb6
+        IQ5edU5ewexGZmyhiyaRcMJedLBIZJ8gRkarXQ==
+X-Google-Smtp-Source: APXvYqwh/T3W6Tp6QVzMKguGCdgOPe7mHm3zxACkzb6VLbhzRa4V1o3Vyr0DiCBcMEJFji5FQ4vwo8d9PagXgK58joc=
+X-Received: by 2002:ac8:368a:: with SMTP id a10mr63961851qtc.143.1564090656611;
+ Thu, 25 Jul 2019 14:37:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
+References: <20190725020551.27034-1-Anson.Huang@nxp.com> <20190725210619.5EB94218D4@mail.kernel.org>
+In-Reply-To: <20190725210619.5EB94218D4@mail.kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 25 Jul 2019 15:37:24 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKZHG-y_cKitU0=EksgyVU-YLOi1gAcFXx4ve21CMki1g@mail.gmail.com>
+Message-ID: <CAL_JsqKZHG-y_cKitU0=EksgyVU-YLOi1gAcFXx4ve21CMki1g@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: clock: imx8mn: Fix tab indentation for yaml file
+To:     Stephen Boyd <sboyd@kernel.org>
+Cc:     Anson Huang <Anson.Huang@nxp.com>, devicetree@vger.kernel.org,
+        Fabio Estevam <festevam@gmail.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <Linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 3. Juli 2019, 06:54:58 CEST schrieb Doug Anderson:
-> Hi,
-> 
-> On Thu, Jun 20, 2019 at 1:31 PM Doug Anderson <dianders@chromium.org> wrote:
+On Thu, Jul 25, 2019 at 3:06 PM Stephen Boyd <sboyd@kernel.org> wrote:
+>
+> Quoting Anson.Huang@nxp.com (2019-07-24 19:05:51)
+> > From: Anson Huang <Anson.Huang@nxp.com>
 > >
-> > Hi,
+> > YAML file can NOT contain tab as indentation, fix it.
 > >
-> > On Thu, Jun 20, 2019 at 11:21 AM Douglas Anderson <dianders@chromium.org> wrote:
-> > >
-> > > This reverts commit 1f45e8c6d0161f044d679f242fe7514e2625af4a.
-> > >
-> > > This 100 ms mystery delay is not on downstream kernels and no longer
-> > > seems needed on upstream kernels either [1].  Presumably something in the
-> > > meantime has made things better.  A few possibilities for patches that
-> > > have landed in the meantime that could have made this better are
-> > > commit 3157694d8c7f ("pwm-backlight: Add support for PWM delays
-> > > proprieties."), commit 5fb5caee92ba ("pwm-backlight: Enable/disable
-> > > the PWM before/after LCD enable toggle."), and commit 6d5922dd0d60
-> > > ("ARM: dts: rockchip: set PWM delay backlight settings for Veyron")
-> > >
-> > > Let's revert and get our 100 ms back.
-> > >
-> > > [1] https://lkml.kernel.org/r/2226970.BAPq4liE1j@diego
-> > >
-> > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > ---
-> > >
-> > >  arch/arm/boot/dts/rk3288-veyron-jaq.dts    | 1 -
-> > >  arch/arm/boot/dts/rk3288-veyron-jerry.dts  | 1 -
-> > >  arch/arm/boot/dts/rk3288-veyron-minnie.dts | 1 -
-> > >  arch/arm/boot/dts/rk3288-veyron-speedy.dts | 1 -
-> > >  4 files changed, 4 deletions(-)
-> >
-> > Maybe wait before applying.  I've been running reboot tests now with
-> > this patch applied (among others) and with enough reboots I managed to
-> > see:
-> >
-> > [    5.682418] rockchip-dp ff970000.dp: eDP link training failed (-5)
-> >
-> > I'll see if I can confirm that it's this patch and why things are
-> > different compared to downstream.
-> 
-> OK, I finally got back to this and confirmed:
-> 
-> 1. The above error is actually somewhat harmless.  The eDP failure
-> will be retried automatically despite the scary message.  Specifically
-> see the loop in analogix_dp_bridge_enable().  I confirmed that after
-> seeing the error the screen came up just fine (I looked at the screen
-> in two actual instances but I believe it's pretty much always fine).
-> 
-> 2. I haven't seen any evidence that the eDP link training happens any
-> more often with this revert in place.  Specifically, I see the same
-> message in the logs (at what appears to be the same rate) with or
-> without this revert.
-> 
-> 3. Probably the link-training failures here are the same ones we
-> debugged for PSR for rk3399-gru-kevin that we fixed by making the eDP
-> PCLK rate exactly 24 MHz.  See <https://crrev.com/c/433393> for
-> details.  On rk3399-gru-kevin it was super important to resolve the
-> root cause of these errors because we had PSR (which meant we were
-> constantly taking to the eDP controller).  On rk3288-veyron devices
-> with no PSR the retry should be a fine solution and it doesn't seem
-> like a good idea to fully rejigger our clock plan to fix the root
-> cause.
-> 
-> 
-> NOTE: I saw _one_ case on rk3288-veyron-minnie where the screen looked
-> wonky at bootup and I saw the eDP link training error in the logs.
-> That's what originally made me cautious.  I haven't been able to
-> reproduce this, but presumably I just got super unlucky in that one
-> case.  I've left devices rebooting all day at work and haven't seen
-> the wonky screen since then.
-> 
-> 
-> Summary: I think this revert is just fine.
+>
+> Would be nice if checkpatch could check for this.
 
-it looks like by picking Matthias' cleanups of the veyron displays
-first I broke this patch. I guess we just need to remove the
-	startup-delay-us = <100000>;
-from the panel_regulator in the new rk3288-veyron-edp.dtsi ?
+Would be nice if folks just ran 'make dt_binding_check'. :) It
+wouldn't be hard to add a tab check to checkpatch, but that's just one
+potential problem.
 
-
-Heiko
-
-
+Rob
