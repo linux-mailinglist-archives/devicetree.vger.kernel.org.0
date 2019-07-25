@@ -2,131 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C1806757CC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 21:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 14466757E9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 21:31:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726709AbfGYTZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 15:25:15 -0400
-Received: from sauhun.de ([88.99.104.3]:55052 "EHLO pokefinder.org"
+        id S1726823AbfGYTbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 15:31:43 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:38260 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726597AbfGYTZO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Jul 2019 15:25:14 -0400
-Received: from localhost (p5486CDF3.dip0.t-ipconnect.de [84.134.205.243])
-        by pokefinder.org (Postfix) with ESMTPSA id 8B57C4A1209;
-        Thu, 25 Jul 2019 21:25:11 +0200 (CEST)
-Date:   Thu, 25 Jul 2019 21:25:11 +0200
-From:   Wolfram Sang <wsa@the-dreams.de>
-To:     Suzuki K Poulose <suzuki.poulose@arm.com>
-Cc:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
-        rafael@kernel.org, linux-arm-kernel@lists.infradead.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Liam Girdwood <lgirdwood@gmail.com>, linux-i2c@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-spi@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Takashi Iwai <tiwai@suse.com>, Alan Tull <atull@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>, linux-fpga@vger.kernel.org,
-        Peter Rosin <peda@axentia.se>, Mark Brown <broonie@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>, Lee Jones <lee.jones@linaro.org>,
-        Thor Thayer <thor.thayer@linux.intel.com>,
-        Jiri Slaby <jslaby@suse.com>
-Subject: Re: [PATCH v3 2/7] drivers: Introduce device lookup variants by
- of_node
-Message-ID: <20190725192510.GA1440@kunai>
-References: <20190723221838.12024-1-suzuki.poulose@arm.com>
- <20190723221838.12024-3-suzuki.poulose@arm.com>
+        id S1726597AbfGYTbn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 15:31:43 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
+        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=KYKJAsQl/3fSVyf82GMSuAEJy0Hh3t3UkutHSaqd1NA=; b=Zco4aUzE7sl1jwbIpksKFVSaDw
+        5j2uRWiykdEUK/4b1jYTr1RyaDas7UoYKt9N/w6xXtyVuJiLxSQhvxLkK4nAfAIuq80yrO/B+fbTP
+        Ao5ou59rBf0CMXo+ObfmhnYYW4xWXczLqe1Sequw+UxSidgRVmXnrRZvA1rK+FyHaOTY=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hqjSV-0000JG-Cr; Thu, 25 Jul 2019 21:31:23 +0200
+Date:   Thu, 25 Jul 2019 21:31:23 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>
+Cc:     netdev@vger.kernel.org, frank-w@public-files.de,
+        sean.wang@mediatek.com, f.fainelli@gmail.com,
+        linux@armlinux.org.uk, davem@davemloft.net, matthias.bgg@gmail.com,
+        vivien.didelot@gmail.com, john@phrozen.org,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 3/3] dt-bindings: net: ethernet: Update mt7622
+ docs and dts to reflect the new phylink API
+Message-ID: <20190725193123.GA32542@lunn.ch>
+References: <20190724192411.20639-1-opensource@vdorst.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="zYM0uCDKw75PZbzx"
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20190723221838.12024-3-suzuki.poulose@arm.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190724192411.20639-1-opensource@vdorst.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+> +	gmac0: mac@0 {
+> +		compatible = "mediatek,eth-mac";
+> +		reg = <0>;
+> +		phy-mode = "sgmii";
+> +
+> +		fixed-link {
+> +			speed = <2500>;
+> +			full-duplex;
+> +			pause;
+> +		};
+> +	};
 
---zYM0uCDKw75PZbzx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+Hi René
 
-On Tue, Jul 23, 2019 at 11:18:33PM +0100, Suzuki K Poulose wrote:
-> Introduce wrappers for {bus/driver/class}_find_device() to
-> locate devices by its of_node.
->=20
-> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-> Cc: dri-devel@lists.freedesktop.org
-> Cc: David Airlie <airlied@linux.ie>
-> Cc: Daniel Vetter <daniel@ffwll.ch>
-> Cc: devicetree@vger.kernel.org
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: Heiko Stuebner <heiko@sntech.de>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: linux-i2c@vger.kernel.org
-> Cc: linux-rockchip@lists.infradead.org
-> Cc: linux-spi@vger.kernel.org
-> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> Cc: Takashi Iwai <tiwai@suse.com>
-> Cc: Wolfram Sang <wsa@the-dreams.de>
-> Cc: Alan Tull <atull@kernel.org>
-> Cc: Moritz Fischer <mdf@kernel.org>
-> Cc: linux-fpga@vger.kernel.org
-> Cc: Peter Rosin <peda@axentia.se>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Florian Fainelli <f.fainelli@gmail.com>
-> Cc: Heiner Kallweit <hkallweit1@gmail.com>
-> Cc: "David S. Miller" <davem@davemloft.net>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Liam Girdwood <lgirdwood@gmail.com>
-> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-> Cc: Lee Jones <lee.jones@linaro.org>
-> Cc: Thor Thayer <thor.thayer@linux.intel.com>
-> Cc: Jiri Slaby <jslaby@suse.com>
-> Cc: Mark Brown <broonie@kernel.org>
-> Cc: Andrew Lunn <andrew@lunn.ch>
-> Cc: Peter Rosin <peda@axentia.se>
-> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> ---
->  - Dropped the reviewed-by tags from Thor, Mark, Andrew and Peter as the
->    patches are mereged, though there are no functional changes.
+SGMII and fixed-link is rather odd. Why do you need this combination?
 
-Acked-by: Wolfram Sang <wsa@the-dreams.de> # I2C part
-
-
---zYM0uCDKw75PZbzx
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl06AhIACgkQFA3kzBSg
-KbZNIA/9HLsMnNVbTacVYltjXILzMKZYQ0kihekXpZMQbl+jlUgeNb0ge8XrGl47
-3ssjlN6wpc7uMNy9T6ScDTjzESHgvFKzKssjfoJ5fp+MDd3KFChbvSmLmm5vVOGc
-VjnjK+ls5meWoG4XdmJuqzlYbdnHOBI/7di4xhfzgN5TvJOjs83YHr7peNVJQgjv
-gTYT2flkrgONnfGKofDGJ4Bk60xOOT/w6oYY3CkzLxbKkaUd5BiIJriXCcKYVNXd
-uLLv5bw/yoU6Smilkgaq8ZdKSbid6VUbXul2Xi6/EEaxQX4Isvx3XNlplBogeAsB
-Jy39hEz2I+UEQHfWNKAIVJJSWyMH/HxwuGYeHB6e9pLqF93rBbXZla+/Uu+u00yW
-BzThKuVHqdQ4FDSbeLz69vJgjvStNgDG/XcYn9PbGtkPiSIrIDJbH1Wq8Wk/PKLX
-XvYAUkM5O/PYp0K4oS6G+7SmDPMLoCCem1PGJsN9QkWfV4b05MtFQFRvRE/voO7Z
-IeUCD1KiM4RUDNd6f9n7DM25OxMtwknJIbT7wuLjDe2KvPvF8/FTI2u2pY0GMaJe
-QZ1uZsSqL7qIUxud5DdTNEyIHgjJDybwyYs/abejIwxMK/tbyl3CiKC2ozg7pc0y
-myVXYa1A9Ecw3n86cwAqQON/rD/j1Bw+dQ/I85BaWBgSb1rPjzI=
-=uZDa
------END PGP SIGNATURE-----
-
---zYM0uCDKw75PZbzx--
+      Andrew
