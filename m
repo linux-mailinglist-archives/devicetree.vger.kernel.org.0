@@ -2,171 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E427074F67
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 15:28:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DD4E74F5D
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 15:27:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726605AbfGYN2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 09:28:33 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:39608 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726519AbfGYN2d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 09:28:33 -0400
-Received: by mail-oi1-f194.google.com with SMTP id m202so37662762oig.6
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 06:28:32 -0700 (PDT)
+        id S1726801AbfGYN10 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 09:27:26 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:36224 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725851AbfGYN10 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 09:27:26 -0400
+Received: by mail-lf1-f68.google.com with SMTP id q26so34570026lfc.3;
+        Thu, 25 Jul 2019 06:27:24 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=B1z3qSqeis7KRp59LvW3GrIz3rWu/CFv+sXSsB3MIv0=;
-        b=S7zg9NIJWKApcIDLjPg7XBK9rjPeDYoBWNVm005ZjT5gIbIyVfUK1xk1sLRQw2MM6x
-         0Mdkbzf6ixFn9ev3RGLQI0Euk3fBpj38V9Um9YNXmB8Nig9Gqm7yu3MXe9SGvtsSF/wm
-         cBMTtWscvwBj58mpSYQZHP82mWWmXezEv903XajiM4H7GkdESKIQ2TWthd1ygp1tVdlf
-         auy3V0rc8NfdYnkaaXDknQrzs7TI038ABRxdFGjrDH+niO5voLKTNLeZJ3SjiHVtixc8
-         lxDg71dtEjf+ShJe5QILrIeZjUXh+f9GR/ZH/Tfe/MfFQcGDLs78lnMBTM2MtL7glJNB
-         5yWw==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=WXiBayTqTdkKTq09rjY6tipJqJtsUSTf9qvOhgtptXE=;
+        b=l61Pt9f2xC+aDtypRt0x2wON8TQwif0kEQaB9wG4yMNYHVMH1B56FKjgcRsrZ0faFe
+         3GPlEaprv7OncIBA5s1Q6ImyRuZk3GXPShB9sE1juXK0z8yUwR8pPeC5l1WP9dWUPafi
+         Ed/34bGH+qMk1dUj3ViF+UCHnhe6jLJ/mA5UOdxt4r+fMOWRXX6s8EhNBRJBisWWy3j0
+         +pbOkjPCzOqgohgd3/NWnJ7UluS8cZQ0/Vkrz6RUUz4YOgdztrfBgkGGz91I6PW/0o1d
+         DIuFSkZ2HBg61DLk/SG1shV9emIytsU40xnOcaY8vMyvbw+tB6Cy97HfuGXZRpvtsz5T
+         BZLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=B1z3qSqeis7KRp59LvW3GrIz3rWu/CFv+sXSsB3MIv0=;
-        b=OdPMpZCyQH+cpxh7QGlwINyvh+RdwknPCUl/vVuivJJTBNK9MOcszQFQJy5KbNqrdL
-         OFGU3AcDY6ia1IkhU58EQeB/bvSMg2ZfAqWVtBi0LugMLja1IaXZIKRfK21YTP09DjHb
-         vtc5khYy5KgQMtDPZ7EmOmQDNbR8PQWUPM/UAr8c+2xlpi1pBbQD/SyjJr3efSYZ36Yd
-         YIJ7CLU+hptStMPRrow/ktOUoc1mz5925L2rO/4CE7CpZIXcGxhRGtxgO9yxBxhNDpLt
-         NyYQdZmHLvOtLY1zeU2z5az+nJML/eHVhsIweN+dbgT71FnfOgDHCqMISqw/itraUv5A
-         VRZA==
-X-Gm-Message-State: APjAAAXVxak2tdoeGxqOlVx8zPybSJG3FIJU57C2mR1+4Q7vPBFjphF+
-        b3ifoSN/YKe33EK659Uzfzauag/5lKaluI2/aTU17po/PnE=
-X-Google-Smtp-Source: APXvYqzWSaFSn1p/xkKu/nTk8JDTShS1XkRJNDVHcXJf+E/HgRUTiWRJNBpO14sGxRyKRreBRD1/QWYHKp73a7558FA=
-X-Received: by 2002:a1f:f282:: with SMTP id q124mr34325145vkh.4.1564059690186;
- Thu, 25 Jul 2019 06:01:30 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=WXiBayTqTdkKTq09rjY6tipJqJtsUSTf9qvOhgtptXE=;
+        b=sXMbfjpwSr+TrNmHbAdSa6NqU5I1QHwYP9cA7FojopfxGpogvlPlD06yRgGWwb7x0x
+         i0+vE87qgXvUKlsXvlkE58AhH/TKjnD+fbau/3YVSdxrM0nUnrBDp0likQXP7HcxkMhM
+         qLsf2J3MK5BbG1NW0c2HmMgBrQN2SSoaWgZxcYiNEtoLKm7mEqeNUACZHDHmNKiS43an
+         O4tLUa+uak1hKFTzlqBePYjjXZXJt6LjRrw6AS2DogxNteVwDzcwWaX5FEhYt/QY6/6d
+         lxJXkIOhP4gTogtYu8/zk9eWUqAuMTEqhb/s3uH2ry/xzL0QcQo/WnpXYF5h8hp9i3E7
+         JyVw==
+X-Gm-Message-State: APjAAAWKmaRl6FgK7Vp/9xEcZw1LQoa6+2NXsIFKk0lxhyXeJIYXp2ib
+        PX0dDW3qnJeG93NAcLmxCA8htcVmO4yRA4CK6r0u+5tFWW4=
+X-Google-Smtp-Source: APXvYqw4Ed1+h8H7qf66p3bgbVK3gmUySWTmYzoU/O47r6Wa7RjMhhccNUNPE6lXOnU4XDyXX1GQMhICP//rsdR1lZc=
+X-Received: by 2002:ac2:47e8:: with SMTP id b8mr25974255lfp.84.1564059772302;
+ Thu, 25 Jul 2019 06:02:52 -0700 (PDT)
 MIME-Version: 1.0
-References: <1561958991-21935-1-git-send-email-manish.narani@xilinx.com>
- <1561958991-21935-2-git-send-email-manish.narani@xilinx.com>
- <20190722215404.GA28292@bogus> <MN2PR02MB602907616249FF19C1A737D8C1C70@MN2PR02MB6029.namprd02.prod.outlook.com>
-In-Reply-To: <MN2PR02MB602907616249FF19C1A737D8C1C70@MN2PR02MB6029.namprd02.prod.outlook.com>
-From:   Ulf Hansson <ulf.hansson@linaro.org>
-Date:   Thu, 25 Jul 2019 15:00:53 +0200
-Message-ID: <CAPDyKFostBKYipTkCsDbggsrux7w8BPqARx7fwRsL1XqEEX2NQ@mail.gmail.com>
-Subject: Re: [PATCH v2 01/11] dt-bindings: mmc: arasan: Update documentation
- for SD Card Clock
-To:     Manish Narani <MNARANI@xilinx.com>
-Cc:     Rob Herring <robh@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "heiko@sntech.de" <heiko@sntech.de>,
-        Michal Simek <michals@xilinx.com>,
-        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
-        "christoph.muellner@theobroma-systems.com" 
-        <christoph.muellner@theobroma-systems.com>,
-        "philipp.tomsich@theobroma-systems.com" 
-        <philipp.tomsich@theobroma-systems.com>,
-        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
-        "scott.branden@broadcom.com" <scott.branden@broadcom.com>,
-        "ayaka@soulik.info" <ayaka@soulik.info>,
-        "kernel@esmil.dk" <kernel@esmil.dk>,
-        "tony.xie@rock-chips.com" <tony.xie@rock-chips.com>,
-        Rajan Vaja <RAJANV@xilinx.com>, Jolly Shah <JOLLYS@xilinx.com>,
-        Nava kishore Manne <navam@xilinx.com>,
-        "mdf@kernel.org" <mdf@kernel.org>,
-        "olof@lixom.net" <olof@lixom.net>,
-        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-rockchip@lists.infradead.org" 
-        <linux-rockchip@lists.infradead.org>
+References: <CGME20190723122024eucas1p1ff060d072132bfbc8a8a1d10fa1f90f8@eucas1p1.samsung.com>
+ <20190723122016.30279-1-a.swigon@partner.samsung.com> <20190723122016.30279-4-a.swigon@partner.samsung.com>
+ <CAGTfZH09n9UOLMwNrCvcdeRCHYFO4TiB-YG2rMVuxA4bxuLCVw@mail.gmail.com>
+In-Reply-To: <CAGTfZH09n9UOLMwNrCvcdeRCHYFO4TiB-YG2rMVuxA4bxuLCVw@mail.gmail.com>
+Reply-To: cwchoi00@gmail.com
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Date:   Thu, 25 Jul 2019 22:02:14 +0900
+Message-ID: <CAGTfZH2pPh5VVQuHV1d_8Wj1N3TPAh6w4KUkQtssBhEdPgQiuA@mail.gmail.com>
+Subject: Re: [RFC PATCH 03/11] devfreq: exynos-bus: Change goto-based logic to
+ if-else logic
+To:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>, inki.dae@samsung.com,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        georgi.djakov@linaro.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 23 Jul 2019 at 10:23, Manish Narani <MNARANI@xilinx.com> wrote:
+2019=EB=85=84 7=EC=9B=94 25=EC=9D=BC (=EB=AA=A9) =EC=98=A4=ED=9B=84 9:56, C=
+hanwoo Choi <cwchoi00@gmail.com>=EB=8B=98=EC=9D=B4 =EC=9E=91=EC=84=B1:
 >
-> Hi Rob,
+> 2019=EB=85=84 7=EC=9B=94 24=EC=9D=BC (=EC=88=98) =EC=98=A4=EC=A0=84 8:08,=
+ Artur =C5=9Awigo=C5=84 <a.swigon@partner.samsung.com>=EB=8B=98=EC=9D=B4 =
+=EC=9E=91=EC=84=B1:
+> >
+> > This patch improves code readability by changing the following construc=
+t:
+> >
+> > >    if (cond)
+> > >        goto passive;
+> > >    foo();
+> > >    goto out;
+> > >passive:
+> > >    bar();
+> > >out:
+> >
+> > into this:
+> >
+> > >    if (cond)
+> > >        bar();
+> > >    else
+> > >        foo();
+> >
+> > Signed-off-by: Artur =C5=9Awigo=C5=84 <a.swigon@partner.samsung.com>
+> > ---
+> >  drivers/devfreq/exynos-bus.c | 24 +++++++++---------------
+> >  1 file changed, 9 insertions(+), 15 deletions(-)
+> >
+> > diff --git a/drivers/devfreq/exynos-bus.c b/drivers/devfreq/exynos-bus.=
+c
+> > index cf6f6cbd0f55..4bb83b945bf7 100644
+> > --- a/drivers/devfreq/exynos-bus.c
+> > +++ b/drivers/devfreq/exynos-bus.c
+> > @@ -505,25 +505,19 @@ static int exynos_bus_probe(struct platform_devic=
+e *pdev)
+> >         node =3D of_parse_phandle(dev->of_node, "devfreq", 0);
+> >         if (node) {
+> >                 of_node_put(node);
+> > -               goto passive;
+> > +               ret =3D exynos_bus_profile_init_passive(bus, profile);
+> > +               if (ret < 0)
+> > +                       goto err;
+> >         } else {
+> >                 ret =3D exynos_bus_parent_parse_of(np, bus);
+> > +               if (ret < 0)
+> > +                       goto err;
+> > +
+> > +               ret =3D exynos_bus_profile_init(bus, profile);
+> > +               if (ret < 0)
+> > +                       goto err;
+> >         }
+> >
+> > -       if (ret < 0)
+> > -               goto err;
+> > -
+> > -       ret =3D exynos_bus_profile_init(bus, profile);
+> > -       if (ret < 0)
+> > -               goto err;
+> > -
+> > -       goto out;
+> > -passive:
+> > -       ret =3D exynos_bus_profile_init_passive(bus, profile);
+> > -       if (ret < 0)
+> > -               goto err;
+> > -
+> > -out:
+> >         max_state =3D bus->devfreq->profile->max_state;
+> >         min_freq =3D (bus->devfreq->profile->freq_table[0] / 1000);
+> >         max_freq =3D (bus->devfreq->profile->freq_table[max_state - 1] =
+/ 1000);
+> > --
+> > 2.17.1
+> >
 >
-> Thanks a lot for the review!
->
->
-> > -----Original Message-----
-> > From: Rob Herring <robh@kernel.org>
-> > Sent: Tuesday, July 23, 2019 3:24 AM
-> > To: Manish Narani <MNARANI@xilinx.com>
-> > Cc: ulf.hansson@linaro.org; mark.rutland@arm.com; heiko@sntech.de; Michal
-> > Simek <michals@xilinx.com>; adrian.hunter@intel.com;
-> > christoph.muellner@theobroma-systems.com; philipp.tomsich@theobroma-
-> > systems.com; viresh.kumar@linaro.org; scott.branden@broadcom.com;
-> > ayaka@soulik.info; kernel@esmil.dk; tony.xie@rock-chips.com; Rajan Vaja
-> > <RAJANV@xilinx.com>; Jolly Shah <JOLLYS@xilinx.com>; Nava kishore Manne
-> > <navam@xilinx.com>; mdf@kernel.org; olof@lixom.net; linux-
-> > mmc@vger.kernel.org; devicetree@vger.kernel.org; linux-
-> > kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
-> > rockchip@lists.infradead.org
-> > Subject: Re: [PATCH v2 01/11] dt-bindings: mmc: arasan: Update
-> > documentation for SD Card Clock
-> >
-> > On Mon, Jul 01, 2019 at 10:59:41AM +0530, Manish Narani wrote:
-> > > The clock handling is to be updated in the Arasan SDHCI. As the
-> > > 'devm_clk_register' is deprecated in the clock framework, this needs to
-> > > specify one more clock named 'clk_sdcard' to get the clock in the driver
-> > > via 'devm_clk_get()'. This clock represents the clock from controller to
-> > > the card.
-> >
-> > Please explain why in terms of the binding, not some driver calls.
-> Okay.
->
-> >
-> >
-> > > Signed-off-by: Manish Narani <manish.narani@xilinx.com>
-> > > ---
-> > >  Documentation/devicetree/bindings/mmc/arasan,sdhci.txt | 15 ++++++++++-
-> > ----
-> > >  1 file changed, 10 insertions(+), 5 deletions(-)
-> > >
-> > > diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
-> > b/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
-> > > index 1edbb04..15c6397 100644
-> > > --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
-> > > +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
-> > > @@ -23,6 +23,10 @@ Required Properties:
-> > >    - reg: From mmc bindings: Register location and length.
-> > >    - clocks: From clock bindings: Handles to clock inputs.
-> > >    - clock-names: From clock bindings: Tuple including "clk_xin" and "clk_ahb"
-> > > +            Apart from these two there is one more optional clock which
-> > > +            is "clk_sdcard". This clock represents output clock from
-> > > +            controller and card. This must be specified when #clock-cells
-> > > +            is specified.
-> > >    - interrupts: Interrupt specifier
-> > >
-> > >  Required Properties for "arasan,sdhci-5.1":
-> > > @@ -36,9 +40,10 @@ Optional Properties:
-> > >    - clock-output-names: If specified, this will be the name of the card clock
-> > >      which will be exposed by this device.  Required if #clock-cells is
-> > >      specified.
-> > > -  - #clock-cells: If specified this should be the value <0>.  With this property
-> > > -    in place we will export a clock representing the Card Clock.  This clock
-> > > -    is expected to be consumed by our PHY.  You must also specify
-> > > +  - #clock-cells: If specified this should be the value <0>. With this
-> > > +    property in place we will export one clock representing the Card
-> > > +    Clock. This clock is expected to be consumed by our PHY. You must also
-> > > +    specify
-> >
-> > specify what?
-> I think this line was already there, I missed to correct it, Will update in v3.
->
-> >
-> > The 3rd clock input I assume? This statement means any existing users
-> > with 2 clock inputs and #clock-cells are in error now. Is that correct?
-> Yes, this is correct. So far there was only one vendor using '#clock-cells'  which is Rockchip. I have sent DT patch (02/11) for that also.
-> Here this is needed as earlier implementation isn't correct as suggested by Uffe. (https://lkml.org/lkml/2019/6/20/486) .
+> It seems more simple than before.
+> Instead, please merge patch1/2/3 to one patch. and drop the patch4.
 
-I am not sure how big of a problem the backwards compatible thingy
-with DT is, in general we must not break it. What do you say Manish?
+But, I think that you better to drop the cleanup patch from this series
+because the series[1] touch the exynos-bus.c driver for coupled regulator.
+[1] https://www.spinics.net/lists/arm-kernel/msg741971.html
 
-As a workaround, would it be possible to use
-of_clk_get_from_provider() somehow to address the compatibility issue?
-Or maybe there is another clock API that can help.
+I recommend that you send the cleanup patch with my comment
+either after reviewing the Kamil's patch[1] or rebase this series base
+on patch[1].
 
-Kind regards
-Uffe
+>
+> --
+> Best Regards,
+> Chanwoo Choi
+
+
+
+--=20
+Best Regards,
+Chanwoo Choi
