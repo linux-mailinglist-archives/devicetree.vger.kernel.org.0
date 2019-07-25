@@ -2,286 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 39B9574BFC
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 12:43:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 992BB74C43
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 12:56:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388311AbfGYKnK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 06:43:10 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:33727 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390827AbfGYKnK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 06:43:10 -0400
-Received: by mail-lf1-f67.google.com with SMTP id x3so34275287lfc.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 03:43:09 -0700 (PDT)
+        id S1728726AbfGYK4p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 06:56:45 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:38535 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727284AbfGYK4p (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 06:56:45 -0400
+Received: by mail-ed1-f67.google.com with SMTP id r12so15028136edo.5
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 03:56:43 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=g1WczPtOCOQXnt3Wx/wOQkCZbBrZjrn9x6sFyhVYPzI=;
-        b=YRuXsYU1PxEaj/wYsUphuXMEJhfOsEF8lNjvb04BtAaEJiGFNZYB0/MjC4vypMKN9c
-         m92tRl2wSNmikQC1z/diPIKaw2xmF5khLMywDDJSOdY1OJQXC5FuW55QRtQVICgZ1Gl/
-         7GjPzH3qFctzv7+8ErMcEdMwpcEBa2gPCxVVTAlP8jd8NZa9nrh0c2fVVH+Sw7jRgTt3
-         RDqH1cncC3Tvh1Q1oxxb4JwcKDXUPnVYiZCRgfpBselwWE19hhCPNOVQVpHHtH05Y70A
-         IqIQCTIOFCbSpLeODUDczDDp92OZorc+toPYxx4UQem7dWbgJbYSPPqiyjeMNxYzmUvX
-         9QQA==
+        d=chromium.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=k+VmJx2qHC6IoWcUVPga9JSh1E7Qu0Q0gAer0TQntYM=;
+        b=Bv3+Nes2Q+ALJZRs1cdOeFsomrNoG29LQ9rzUKD8y5Jq4FvKKXDIX6u7vGvo4j5Ydh
+         RDNNXZq1byNAJhYlWdmZcIDxxxqAf8WrYk9w4nFlhcn9LVk1iuezwnnsm8eqrgDKKipT
+         5G5ReK1RMANSGUYwwKf1BIOtYh+nKwBnzg6lk=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=g1WczPtOCOQXnt3Wx/wOQkCZbBrZjrn9x6sFyhVYPzI=;
-        b=FJxAwrqC89wyBzXxW6XjfA8lebrP4f8vXX2BC9rwaFHxaHpjrJzzc8vqbBI1nYalX6
-         gjmkG98Oh5x/VhUj8Ce1D0QC/WlM+Ow/iemLHxvWfsptKFftnidu5nDLMhBA0ftIO+Mt
-         Sxwkz8xmVz2YYlen5MoMi7MqleRLhq6W/T9uKyKOvrWP2OmkoAxC8RZs3BVK6vh8ejMx
-         Br9qGMdT3F4km4jq1MOGD7dvur6NZtWny6ZYUtjOa2yxHldNuzaMn+NfWkwyaYlhTXAB
-         OuhL2FgZsJ1z2cZKR/fNTitLVikkG3rdSL8+rjuLg/7Se+pgZ+d16hvum7OXEezzhgdC
-         Giag==
-X-Gm-Message-State: APjAAAXiiekIWQLJ7vK4V6BW8ika2ZU4oL6DxCSXkCbWI414oKaCd59D
-        uOq+liXOe4CMyHUnJ76Q37J5BtxKQio=
-X-Google-Smtp-Source: APXvYqzlYM5YqOM0wZ6YcVar/FadCXNZJx0rXt146YtLh1Z9l80+vBpXLCAmmh9F8kXlZOOEKM3JKw==
-X-Received: by 2002:ac2:4ace:: with SMTP id m14mr6280459lfp.99.1564051388390;
-        Thu, 25 Jul 2019 03:43:08 -0700 (PDT)
-Received: from localhost.localdomain (ua-83-226-44-230.bbcust.telenor.se. [83.226.44.230])
-        by smtp.gmail.com with ESMTPSA id 63sm9139580ljs.84.2019.07.25.03.43.07
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 25 Jul 2019 03:43:07 -0700 (PDT)
-From:   Niklas Cassel <niklas.cassel@linaro.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org, jorge.ramirez-ortiz@linaro.org,
-        sboyd@kernel.org, vireshk@kernel.org, bjorn.andersson@linaro.org,
-        ulf.hansson@linaro.org, Niklas Cassel <niklas.cassel@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v2 12/14] arm64: dts: qcom: qcs404: Add CPR and populate OPP table
-Date:   Thu, 25 Jul 2019 12:41:40 +0200
-Message-Id: <20190725104144.22924-13-niklas.cassel@linaro.org>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190725104144.22924-1-niklas.cassel@linaro.org>
-References: <20190725104144.22924-1-niklas.cassel@linaro.org>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=k+VmJx2qHC6IoWcUVPga9JSh1E7Qu0Q0gAer0TQntYM=;
+        b=bSVFCsQAZVJ80jocCPT/xtC2vylHQ2jrW1kjDEH9TXGfZQKKboQq1px4aypd6B1p62
+         EZBUC8lB+jJibz2rvhWbVEmxLUX1pv17S1/1CnoimgxLA3jW012Z+CuH7sajEbZiWhNq
+         ZHhJ44+FO9EifPczfAOihMyGb+1P+puERsh4wXlHoLy/Y3EBJW9ZsIMUjBMMgfi1Gfxg
+         6yQUMxSlhQyaTlwIlOWQRXa6htMGeATyMqg2xeDmIGGW/j5Aa0hZ6GgReZmMpt8oHTlt
+         CuG25WHXpbs/B3sxS4Bz9ubPm1hJPqfYAIQWb6SRwV+zaJTmZiBW3Us1PbXbtw5y32+i
+         mp7Q==
+X-Gm-Message-State: APjAAAX/LK+93Lz/nLyWT4RaEKYFahZaw7flP8zYW+z1b7yGIDRw7UYE
+        f7Lv+1N/XnH+7jya+4seknasASvftDzEfA==
+X-Google-Smtp-Source: APXvYqx+kY3bIVwHLAgn8Z7DxIjEXNgzDdF0dpEH/8B3N0H8xRPB6zcDuvgAmb8tTub/s93Of5nJxg==
+X-Received: by 2002:a50:a784:: with SMTP id i4mr75080355edc.3.1564052202798;
+        Thu, 25 Jul 2019 03:56:42 -0700 (PDT)
+Received: from mail-wr1-f42.google.com (mail-wr1-f42.google.com. [209.85.221.42])
+        by smtp.gmail.com with ESMTPSA id by12sm9596949ejb.37.2019.07.25.03.56.41
+        for <devicetree@vger.kernel.org>
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Thu, 25 Jul 2019 03:56:41 -0700 (PDT)
+Received: by mail-wr1-f42.google.com with SMTP id z1so50243229wru.13
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 03:56:41 -0700 (PDT)
+X-Received: by 2002:adf:ed41:: with SMTP id u1mr89782001wro.162.1564052200774;
+ Thu, 25 Jul 2019 03:56:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <jungo.lin@mediatek.com> <20190611035344.29814-1-jungo.lin@mediatek.com>
+ <20190611035344.29814-9-jungo.lin@mediatek.com> <20190710095827.GC181405@chromium.org>
+ <1563675513.1212.444.camel@mtksdccf07>
+In-Reply-To: <1563675513.1212.444.camel@mtksdccf07>
+From:   Tomasz Figa <tfiga@chromium.org>
+Date:   Thu, 25 Jul 2019 19:56:28 +0900
+X-Gmail-Original-Message-ID: <CAAFQd5BT7M425AbFicYuX+wr-twgS_cxQ937+Rgxo6Y2fA6_gA@mail.gmail.com>
+Message-ID: <CAAFQd5BT7M425AbFicYuX+wr-twgS_cxQ937+Rgxo6Y2fA6_gA@mail.gmail.com>
+Subject: Re: [RFC,v3 8/9] media: platform: Add Mediatek ISP P1 SCP communication
+To:     Jungo Lin <jungo.lin@mediatek.com>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        devicetree@vger.kernel.org,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        ddavenport@chromium.org, Rob Herring <robh@kernel.org>,
+        =?UTF-8?B?U2VhbiBDaGVuZyAo6YSt5piH5byYKQ==?= 
+        <sean.cheng@mediatek.com>, Sj Huang <sj.huang@mediatek.com>,
+        =?UTF-8?B?RnJlZGVyaWMgQ2hlbiAo6Zmz5L+K5YWDKQ==?= 
+        <frederic.chen@mediatek.com>,
+        =?UTF-8?B?UnlhbiBZdSAo5L2Z5a2f5L+uKQ==?= <ryan.yu@mediatek.com>,
+        =?UTF-8?B?UnlubiBXdSAo5ZCz6IKy5oGpKQ==?= <rynn.wu@mediatek.com>,
+        =?UTF-8?B?RnJhbmtpZSBDaGl1ICjpgrHmloflh7Ep?= 
+        <frankie.chiu@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add CPR and populate OPP table.
+Hi Jungo,
 
-Co-developed-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
----
-Changes since V1:
--Removed opp-hz from CPR OPP table.
+On Sun, Jul 21, 2019 at 11:18 AM Jungo Lin <jungo.lin@mediatek.com> wrote:
+[snip]
+> > > +           wake_up_interruptible(&isp_ctx->composer_tx_thread.wq);
+> > > +           isp_ctx->composer_tx_thread.thread = NULL;
+> > > +   }
+> > > +
+> > > +   if (isp_ctx->composer_deinit_thread.thread) {
+> > > +           wake_up(&isp_ctx->composer_deinit_thread.wq);
+> > > +           isp_ctx->composer_deinit_thread.thread = NULL;
+> > > +   }
+> > > +   mutex_unlock(&isp_ctx->lock);
+> > > +
+> > > +   pm_runtime_put_sync(&p1_dev->pdev->dev);
+> >
+> > No need to use the sync variant.
+> >
+>
+> We don't get this point. If we will call pm_runtime_get_sync in
+> mtk_isp_hw_init function, will we need to call
+> pm_runtime_put_sync_autosuspend in mtk_isp_hw_release in next patch?
+> As we know, we should call runtime pm functions in pair.
+>
 
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 142 +++++++++++++++++++++++++--
- 1 file changed, 134 insertions(+), 8 deletions(-)
+My point is that pm_runtime_put_sync() is only needed if one wants the
+runtime count to be decremented after the function returns. Normally
+there is no need to do so and one would call pm_runtime_put(), or if
+autosuspend is used, pm_runtime_put_autosuspend() (note there is no
+"sync" in the name).
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index ff9198740431..5519422b762d 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -38,7 +38,8 @@
- 			#cooling-cells = <2>;
- 			clocks = <&apcs_glb>;
- 			operating-points-v2 = <&cpu_opp_table>;
--			cpu-supply = <&pms405_s3>;
-+			power-domains = <&cprpd>;
-+			power-domain-names = "cpr";
- 		};
- 
- 		CPU1: cpu@101 {
-@@ -51,7 +52,8 @@
- 			#cooling-cells = <2>;
- 			clocks = <&apcs_glb>;
- 			operating-points-v2 = <&cpu_opp_table>;
--			cpu-supply = <&pms405_s3>;
-+			power-domains = <&cprpd>;
-+			power-domain-names = "cpr";
- 		};
- 
- 		CPU2: cpu@102 {
-@@ -64,7 +66,8 @@
- 			#cooling-cells = <2>;
- 			clocks = <&apcs_glb>;
- 			operating-points-v2 = <&cpu_opp_table>;
--			cpu-supply = <&pms405_s3>;
-+			power-domains = <&cprpd>;
-+			power-domain-names = "cpr";
- 		};
- 
- 		CPU3: cpu@103 {
-@@ -77,7 +80,8 @@
- 			#cooling-cells = <2>;
- 			clocks = <&apcs_glb>;
- 			operating-points-v2 = <&cpu_opp_table>;
--			cpu-supply = <&pms405_s3>;
-+			power-domains = <&cprpd>;
-+			power-domain-names = "cpr";
- 		};
- 
- 		L2_0: l2-cache {
-@@ -101,20 +105,37 @@
- 	};
- 
- 	cpu_opp_table: cpu-opp-table {
--		compatible = "operating-points-v2";
-+		compatible = "operating-points-v2-kryo-cpu";
- 		opp-shared;
- 
- 		opp-1094400000 {
- 			opp-hz = /bits/ 64 <1094400000>;
--			opp-microvolt = <1224000 1224000 1224000>;
-+			required-opps = <&cpr_opp1>;
- 		};
- 		opp-1248000000 {
- 			opp-hz = /bits/ 64 <1248000000>;
--			opp-microvolt = <1288000 1288000 1288000>;
-+			required-opps = <&cpr_opp2>;
- 		};
- 		opp-1401600000 {
- 			opp-hz = /bits/ 64 <1401600000>;
--			opp-microvolt = <1384000 1384000 1384000>;
-+			required-opps = <&cpr_opp3>;
-+		};
-+	};
-+
-+	cpr_opp_table: cpr-opp-table {
-+		compatible = "operating-points-v2-qcom-level";
-+
-+		cpr_opp1: opp1 {
-+			opp-level = <1>;
-+			qcom,opp-fuse-level = <1>;
-+		};
-+		cpr_opp2: opp2 {
-+			opp-level = <2>;
-+			qcom,opp-fuse-level = <2>;
-+		};
-+		cpr_opp3: opp3 {
-+			opp-level = <3>;
-+			qcom,opp-fuse-level = <3>;
- 		};
- 	};
- 
-@@ -294,6 +315,62 @@
- 			tsens_caldata: caldata@d0 {
- 				reg = <0x1f8 0x14>;
- 			};
-+			cpr_efuse_speedbin: speedbin@13c {
-+				reg = <0x13c 0x4>;
-+				bits = <2 3>;
-+			};
-+			cpr_efuse_quot_offset1: qoffset1@231 {
-+				reg = <0x231 0x4>;
-+				bits = <4 7>;
-+			};
-+			cpr_efuse_quot_offset2: qoffset2@232 {
-+				reg = <0x232 0x4>;
-+				bits = <3 7>;
-+			};
-+			cpr_efuse_quot_offset3: qoffset3@233 {
-+				reg = <0x233 0x4>;
-+				bits = <2 7>;
-+			};
-+			cpr_efuse_init_voltage1: ivoltage1@229 {
-+				reg = <0x229 0x4>;
-+				bits = <4 6>;
-+			};
-+			cpr_efuse_init_voltage2: ivoltage2@22a {
-+				reg = <0x22a 0x4>;
-+				bits = <2 6>;
-+			};
-+			cpr_efuse_init_voltage3: ivoltage3@22b {
-+				reg = <0x22b 0x4>;
-+				bits = <0 6>;
-+			};
-+			cpr_efuse_quot1: quot1@22b {
-+				reg = <0x22b 0x4>;
-+				bits = <6 12>;
-+			};
-+			cpr_efuse_quot2: quot2@22d {
-+				reg = <0x22d 0x4>;
-+				bits = <2 12>;
-+			};
-+			cpr_efuse_quot3: quot3@230 {
-+				reg = <0x230 0x4>;
-+				bits = <0 12>;
-+			};
-+			cpr_efuse_ring1: ring1@228 {
-+				reg = <0x228 0x4>;
-+				bits = <0 3>;
-+			};
-+			cpr_efuse_ring2: ring2@228 {
-+				reg = <0x228 0x4>;
-+				bits = <4 3>;
-+			};
-+			cpr_efuse_ring3: ring3@229 {
-+				reg = <0x229 0x4>;
-+				bits = <0 3>;
-+			};
-+			cpr_efuse_revision: revision@218 {
-+				reg = <0x218 0x4>;
-+				bits = <3 3>;
-+			};
- 		};
- 
- 		rng: rng@e3000 {
-@@ -901,6 +978,55 @@
- 			clock-names = "xo";
- 		};
- 
-+		cprpd: cpr@b018000 {
-+			compatible = "qcom,qcs404-cpr", "qcom,cpr";
-+			reg = <0x0b018000 0x1000>;
-+			interrupts = <0 15 IRQ_TYPE_EDGE_RISING>;
-+			clocks = <&xo_board>;
-+			clock-names = "ref";
-+			vdd-apc-supply = <&pms405_s3>;
-+			#power-domain-cells = <0>;
-+			operating-points-v2 = <&cpr_opp_table>;
-+			acc-syscon = <&tcsr>;
-+
-+			nvmem-cells = <&cpr_efuse_quot_offset1>,
-+				<&cpr_efuse_quot_offset2>,
-+				<&cpr_efuse_quot_offset3>,
-+				<&cpr_efuse_init_voltage1>,
-+				<&cpr_efuse_init_voltage2>,
-+				<&cpr_efuse_init_voltage3>,
-+				<&cpr_efuse_quot1>,
-+				<&cpr_efuse_quot2>,
-+				<&cpr_efuse_quot3>,
-+				<&cpr_efuse_ring1>,
-+				<&cpr_efuse_ring2>,
-+				<&cpr_efuse_ring3>,
-+				<&cpr_efuse_revision>;
-+			nvmem-cell-names = "cpr_quotient_offset1",
-+				"cpr_quotient_offset2",
-+				"cpr_quotient_offset3",
-+				"cpr_init_voltage1",
-+				"cpr_init_voltage2",
-+				"cpr_init_voltage3",
-+				"cpr_quotient1",
-+				"cpr_quotient2",
-+				"cpr_quotient3",
-+				"cpr_ring_osc1",
-+				"cpr_ring_osc2",
-+				"cpr_ring_osc3",
-+				"cpr_fuse_revision";
-+
-+			qcom,cpr-timer-delay-us = <5000>;
-+			qcom,cpr-timer-cons-up = <0>;
-+			qcom,cpr-timer-cons-down = <2>;
-+			qcom,cpr-up-threshold = <1>;
-+			qcom,cpr-down-threshold = <3>;
-+			qcom,cpr-idle-clocks = <15>;
-+			qcom,cpr-gcnt-us = <1>;
-+			qcom,vdd-apc-step-up-limit = <1>;
-+			qcom,vdd-apc-step-down-limit = <1>;
-+		};
-+
- 		timer@b120000 {
- 			#address-cells = <1>;
- 			#size-cells = <1>;
--- 
-2.21.0
+[snip]
+> > +static void isp_composer_handler(void *data, unsigned int len, void *priv)
+> > > +{
+> > > +   struct mtk_isp_p1_ctx *isp_ctx = (struct mtk_isp_p1_ctx *)priv;
+> > > +   struct isp_p1_device *p1_dev = p1_ctx_to_dev(isp_ctx);
+> > > +   struct device *dev = &p1_dev->pdev->dev;
+> > > +   struct mtk_isp_scp_p1_cmd *ipi_msg;
+> > > +
+> > > +   ipi_msg = (struct mtk_isp_scp_p1_cmd *)data;
+> >
+> > Should we check that len == sizeof(*ipi_msg)? (Or at least >=, if data could
+> > contain some extra bytes at the end.)
+> >
+>
+> The len parameter is the actual sending bytes from SCP to kernel.
+> In the runtime, it is only 6 bytes for isp_ack_info command
+> However, sizeof(*ipi_msg) is large due to struct mtk_isp_scp_p1_cmd is
+> union structure.
+>
 
+That said we still should check if len is enough to cover the data
+we're accessing below.
+
+> > > +
+> > > +   if (ipi_msg->cmd_id != ISP_CMD_ACK)
+> > > +           return;
+> > > +
+> > > +   if (ipi_msg->ack_info.cmd_id == ISP_CMD_FRAME_ACK) {
+> > > +           dev_dbg(dev, "ack frame_num:%d",
+> > > +                   ipi_msg->ack_info.frame_seq_no);
+> > > +           atomic_set(&isp_ctx->composed_frame_id,
+> > > +                      ipi_msg->ack_info.frame_seq_no);
+> >
+> > I suppose we are expecting here that ipi_msg->ack_info.frame_seq_no would be
+> > just isp_ctx->composed_frame_id + 1, right? If not, we probably dropped some
+> > frames and we should handle that somehow.
+> >
+>
+> No, we use isp_ctx->composed_frame_id to save which frame sequence
+> number are composed done in SCP. In new design, we will move this from
+> isp_ctx to p1_dev.
+
+But we compose the frames in order, don't we? Wouldn't every composed
+frame would be just previous frame ID + 1?
+
+[snip]
+> > > +void isp_composer_hw_init(struct device *dev)
+> > > +{
+> > > +   struct mtk_isp_scp_p1_cmd composer_tx_cmd;
+> > > +   struct isp_p1_device *p1_dev = get_p1_device(dev);
+> > > +   struct mtk_isp_p1_ctx *isp_ctx = &p1_dev->isp_ctx;
+> > > +
+> > > +   memset(&composer_tx_cmd, 0, sizeof(composer_tx_cmd));
+> > > +   composer_tx_cmd.cmd_id = ISP_CMD_INIT;
+> > > +   composer_tx_cmd.frameparam.hw_module = isp_ctx->isp_hw_module;
+> > > +   composer_tx_cmd.frameparam.cq_addr.iova = isp_ctx->scp_mem_iova;
+> > > +   composer_tx_cmd.frameparam.cq_addr.scp_addr = isp_ctx->scp_mem_pa;
+> >
+> > Should we also specify the size of the buffer? Otherwise we could end up
+> > with some undetectable overruns.
+> >
+>
+> The size of SCP composer's memory is fixed to 0x200000.
+> Is it necessary to specify the size of this buffer?
+>
+> #define MTK_ISP_COMPOSER_MEM_SIZE 0x200000
+>
+> ptr = dma_alloc_coherent(p1_dev->cam_dev.smem_dev,
+>                         MTK_ISP_COMPOSER_MEM_SIZE, &addr, GFP_KERNEL);
+>
+
+Okay, but please add a comment saying that this is an implicit
+requirement of the firmware.
+
+Best regards,
+Tomasz
