@@ -2,110 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 362FD74BBB
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 12:38:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5743374BC8
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 12:40:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727301AbfGYKiS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 06:38:18 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:3506 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725944AbfGYKiR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 06:38:17 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d3986960000>; Thu, 25 Jul 2019 03:38:14 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Thu, 25 Jul 2019 03:38:16 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Thu, 25 Jul 2019 03:38:16 -0700
-Received: from tbergstrom-lnx.Nvidia.com (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 25 Jul
- 2019 10:38:16 +0000
-Received: by tbergstrom-lnx.Nvidia.com (Postfix, from userid 1000)
-        id 0BD124286E; Thu, 25 Jul 2019 13:38:14 +0300 (EEST)
-Date:   Thu, 25 Jul 2019 13:38:14 +0300
-From:   Peter De Schrijver <pdeschrijver@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-CC:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <tglx@linutronix.de>, <jason@lakedaemon.net>,
-        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
-        <stefan@agner.ch>, <mark.rutland@arm.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
-        <josephl@nvidia.com>, <talho@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH V6 01/21] irqchip: tegra: Do not disable COP IRQ during
- suspend
-Message-ID: <20190725103813.GO12715@pdeschrijver-desktop.Nvidia.com>
-References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com>
- <1563738060-30213-2-git-send-email-skomatineni@nvidia.com>
- <f6582e43-168e-1b7e-9db8-3d263bc3ba0d@gmail.com>
- <20190725095502.GM12715@pdeschrijver-desktop.Nvidia.com>
- <dd01be5d-bab9-1329-c7ac-c3c893d49dd1@gmail.com>
- <20190725103348.GN12715@pdeschrijver-desktop.Nvidia.com>
+        id S2387615AbfGYKkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 06:40:36 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:40611 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387605AbfGYKkg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 06:40:36 -0400
+Received: by mail-lf1-f68.google.com with SMTP id b17so34189161lff.7
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 03:40:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=+UWD3xYaSGOyTzdv6esnqt7Upp+zoX6rMbyHIp+AOY4=;
+        b=LRA93SCm5QQuPJ6N6Qfi90MXp6KuO+w3c8jbPxdOZFNgztdWErMFHqN1EcFYyzYdQ0
+         sdGMNhKOvpnrS7wxjtdCQ9gS/PLfXOSadeZmRLRHME9HvGUcD322RyALyQz8Nfs9gTGG
+         03/kqLr99SEtkpPoneETS/y65I8m7nXrcLzBPWSDVZ3PCFaN4sz9qfW2AUUqHSHcA/+4
+         hFH4jiEmQ2Zr/KglfFp1AAzrXuYxAJc6TBJ2ZkdT+6gPezz77i6h2ywYNKzCIFySlgCD
+         bTGifd4WQ01KI/JL7q5k7o0MF941I1LgbPdR0NrwaULx/yiFm2IQ/rAX2FbHlcHo8jYk
+         a7uw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=+UWD3xYaSGOyTzdv6esnqt7Upp+zoX6rMbyHIp+AOY4=;
+        b=CGA4fOMtszW3CLT/fFH7v8hgmweTAWA8+yM7TNvH4giv9BX1AeZxN7dMtF5Es6Y7+E
+         bsIEumBLQu2islsXiaPdXhARewtC4hC2makTM+6jld12YrAtpkQWzYRxbwR4mY1XOgzA
+         Xl+VLX6Xtm/7w0JgsnoXqNYlOQWV5kzvkGH623gwTzRsJ7MQE2qqa86FM8DrJylrLOrj
+         zdE+J4t11ODN3v62ID+f9tInCvTA54HbIEiX5Fc5JdIr5NsvAKDRTim5VIus2MchLLYK
+         +mYVEupHc7K0M/mruUM1/755YFLdjVXfDMeKo+X0wFjBTOiBlWXZPxG9XxjIizobTbx0
+         tZbw==
+X-Gm-Message-State: APjAAAVLJSXnE9LkEUrLS2WPlfvPeap7864eHAH/b+NTdPdct//s2w80
+        I/zgP1MZFFRXnFd/Twqphb8zgg==
+X-Google-Smtp-Source: APXvYqzGbt4oOeH84QtqSxX8UF4CG2N1aap1JmO0v04H5OhO70HwR0JJTLr+iTx4GIfqRX7wfRqMZQ==
+X-Received: by 2002:ac2:414d:: with SMTP id c13mr2229756lfi.47.1564051234400;
+        Thu, 25 Jul 2019 03:40:34 -0700 (PDT)
+Received: from centauri (ua-83-226-44-230.bbcust.telenor.se. [83.226.44.230])
+        by smtp.gmail.com with ESMTPSA id b17sm9057244ljf.34.2019.07.25.03.40.32
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 25 Jul 2019 03:40:33 -0700 (PDT)
+Date:   Thu, 25 Jul 2019 12:40:31 +0200
+From:   Niklas Cassel <niklas.cassel@linaro.org>
+To:     Viresh Kumar <viresh.kumar@linaro.org>
+Cc:     Andy Gross <agross@kernel.org>, linux-arm-msm@vger.kernel.org,
+        jorge.ramirez-ortiz@linaro.org, sboyd@kernel.org,
+        vireshk@kernel.org, bjorn.andersson@linaro.org,
+        ulf.hansson@linaro.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 11/13] arm64: dts: qcom: qcs404: Add CPR and populate OPP
+ table
+Message-ID: <20190725104031.GA21998@centauri>
+References: <20190705095726.21433-1-niklas.cassel@linaro.org>
+ <20190705095726.21433-12-niklas.cassel@linaro.org>
+ <20190710090303.tb5ue3wq6r7ofyev@vireshk-i7>
+ <20190715132405.GA5040@centauri>
+ <20190716103436.az5rdk6f3yoa3apz@vireshk-i7>
+ <20190716105318.GA26592@centauri>
+ <20190717044923.ccmebeewbinlslkm@vireshk-i7>
+ <20190719154558.GA32518@centauri>
+ <20190723015635.rl5a2isjnjn23fzh@vireshk-i7>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190725103348.GN12715@pdeschrijver-desktop.Nvidia.com>
-X-NVConfidentiality: public
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1564051094; bh=8atxpgUUE7s0o3aVODCbIbQya4DrDoFmnAvE9OLg7S8=;
-        h=X-PGP-Universal:Date:From:To:CC:Subject:Message-ID:References:
-         MIME-Version:Content-Type:Content-Disposition:
-         Content-Transfer-Encoding:In-Reply-To:X-NVConfidentiality:
-         User-Agent:X-Originating-IP:X-ClientProxiedBy;
-        b=gmAiEXeMK31lqMuyOlsg8JxkSrXrl5EJ4BuPSBE8I+4FouPnlCzCJRPP1GUUrTgBh
-         2jJy0xjm5dLQ66WUgf5MAxStSikZg9qrTRlw9kdrtJTrFXi6e4OEstoFzp/3UGrESz
-         +Y8+eem1kXUph3/4sBObFx8oMJSvEp3k7V90VnXkqjl2DzS72ntjVr1NOX3OaI2Ryw
-         +iNoX355EvcS03RZ2zPMecVn4+YXrLCOpegifeNCODWwMz4wdK0Y5/xT93ITzGTLke
-         F9HSf55EsyTDxVsTsB00OsVH7jIIk/ZEDAePAoYoNUEcHC0Tz/cv9NpBlyLjvLZm9c
-         3hilrLCdZznhw==
+In-Reply-To: <20190723015635.rl5a2isjnjn23fzh@vireshk-i7>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 25, 2019 at 01:33:48PM +0300, Peter De Schrijver wrote:
-> On Thu, Jul 25, 2019 at 01:05:13PM +0300, Dmitry Osipenko wrote:
-> > 25.07.2019 12:55, Peter De Schrijver =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > > On Mon, Jul 22, 2019 at 12:54:51PM +0300, Dmitry Osipenko wrote:
-> > >>
-> > >> All Tegra SoCs support SC7, hence the 'supports_sc7' and the comment
-> > >> doesn't sound correct to me. Something like 'firmware_sc7' should su=
-it
-> > >> better here.
-> > >>
-> > >>> +			writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
-> > >>
-> > >> Secondly, I'm also not sure why COP interrupts need to be disabled f=
-or
-> > >> pre-T210 at all, since COP is unused. This looks to me like it was
-> > >> cut-n-pasted from downstream kernel without a good reason and could =
-be
-> > >> simply removed.
-> > >=20
-> > > I don't think we can rely on the fact that COP is unused. People can
-> > > write their own code to run on COP.
-> >=20
-> > 1. Not upstream - doesn't matter.
-> >=20
->=20
-> The code is not part of the kernel, so obviously it's not upstream?
->=20
-> > 2. That's not very good if something unknown is running on COP and then
-> > kernel suddenly intervenes, don't you think so?
->=20
-> Unless the code was written with this in mind.
->=20
+On Tue, Jul 23, 2019 at 07:26:35AM +0530, Viresh Kumar wrote:
+> On 19-07-19, 17:45, Niklas Cassel wrote:
+> > Hello Viresh,
+> > 
+> > Could you please have a look at the last two patches here:
+> > https://git.linaro.org/people/niklas.cassel/kernel.git/log/?h=cpr-opp-hz
+> 
+> There is no sane way of providing review comments with a link to the
+> git tree :)
+> 
+> I still had a look and I see that you don't search for max frequency
+> but just any OPP that has required-opps set to the level u want. Also,
+> can't there be multiple phandles in required-opps in your case ?
 
-Looking at this again, I don't think we need to enable the IRQ at all.
+For each OPP in the CPR OPP table, we need three things,
+opp-level, qcom,fuse-level and opp-hz.
+The first two can simply be parsed from the OPP node
+itself while iterating the CPR OPP table.
+The opp-hz has to be fetched from the CPU OPP table.
 
-Peter.
+Several OPPs might have the same qcom,fuse-level value.
+However, they will have unique opp-level values and unique
+opp-hz values. Each opp-level has a matching opp-hz.
+
+required-opps is basically a connection between a opp-hz
+(CPU OPP table) and and a opp-level (CPR OPP table).
+
+So there will be only one match. No need to search for
+max frequency.
+
+I think you are confusing this with something else.
+The CPR hardware has to be programmed with the highest
+frequency for each qcom,fuse-corner.
+This is done here:
+https://git.linaro.org/people/niklas.cassel/kernel.git/tree/drivers/power/avs/qcom-cpr.c?h=cpr-full#n1219
+by saving the highest frequency for each fuse level
+while iterating the OPP table.
+
+
+There can be only one phandle in the required-opps in my case,
+this is one of the reasons why I prefer implementing it in the
+CPR driver. If it were to be implemented in OPP core, it probably
+has to handle multiple phandles.
+
+> 
+> > If you like my proposal then I could send out the first patch (the one to
+> > OPP core) as a real patch (with an improved commit message), and
+> > incorporate the second patch into my CPR patch series when I send out a V2.
+> 
+> Send them both in your series only, otherwise the first one is useless
+> anyway.
+
+Ok, will do.
+
+
+Kind regards,
+Niklas
