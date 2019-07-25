@@ -2,84 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 857C5754AD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 18:53:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79C25754D1
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 18:58:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729633AbfGYQxi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 12:53:38 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:42387 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729083AbfGYQxh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 12:53:37 -0400
-Received: by mail-io1-f68.google.com with SMTP id e20so68301451iob.9
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 09:53:37 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=kolA9oGTMt2kJuYg8zC6oRG5UHIMOnhc3kiBOYsRrZA=;
-        b=IPSevJy2liwkLBHgCIP++Od2vm8pxaK7qAFqKLBz212Z655uA/9ROOg+s5IaImVzfs
-         mp32U3H4iTgV7TrIOZ+ToG924T9y/qluKpRZOuijot3YOobPniwSFgN0j+k3iBv5Ur+V
-         vqSmZD4y6I1UTcz6Rz2aS0nGWj9Ge5ijQbM4c=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=kolA9oGTMt2kJuYg8zC6oRG5UHIMOnhc3kiBOYsRrZA=;
-        b=gmPcqamWJZkbRcV6yvl9ixaBW12jkqmBruk8lUf3+fxU85v4rjKGrD1xd/44JDjSLD
-         nju2K9xJNynJ54ZNQ0eqycfTJZiQpenObDrRns1PmsTsws7ZtulvgnUlY+V58KnquWsM
-         W95s7Uy9oAgb0QbdLnqLRhdOX6GNApQ45p2wut46t38QdZySecDg0WnJi8/XzRMdfiIv
-         BnPrOnJSd/fnof4a89U+MOCE1s9rcfSgoH2yCptibvoJVjvyiL6pWRLVFQIu86d7Ij/r
-         CNlWv/4T8saCqYkNupP6Hd9Wiw/zi9MvfAWU63ZG4nx7zcwMCeRo8GY9Nubb0eJVSA8Z
-         xH+g==
-X-Gm-Message-State: APjAAAXHDog7HkssEsxwP6xNZW4zjVIutdxtYX17wEN8hB+0V6iA346k
-        qaPimhK8bk9/CcT7H26bF1US3HCiWhk=
-X-Google-Smtp-Source: APXvYqwrE/ZQ868QTfZFMf54lUAYn6/pjKk61ZSG32v0zFcvi5OHz6EWC/nvC80WgEwqgq/W8gmE4Q==
-X-Received: by 2002:a5e:c302:: with SMTP id a2mr73459361iok.62.1564073616557;
-        Thu, 25 Jul 2019 09:53:36 -0700 (PDT)
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com. [209.85.166.45])
-        by smtp.gmail.com with ESMTPSA id a7sm39789501iok.19.2019.07.25.09.53.35
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Thu, 25 Jul 2019 09:53:36 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id k8so98747792iot.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 09:53:35 -0700 (PDT)
-X-Received: by 2002:a5e:c241:: with SMTP id w1mr77963588iop.58.1564073615649;
- Thu, 25 Jul 2019 09:53:35 -0700 (PDT)
+        id S2389806AbfGYQ6d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 12:58:33 -0400
+Received: from foss.arm.com ([217.140.110.172]:33038 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388177AbfGYQ6c (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 12:58:32 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id C98E919BF;
+        Thu, 25 Jul 2019 09:58:31 -0700 (PDT)
+Received: from [10.1.194.48] (e123572-lin.cambridge.arm.com [10.1.194.48])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 6FF8F3F71A;
+        Thu, 25 Jul 2019 09:58:30 -0700 (PDT)
+Subject: Re: [PATCH] arm64: dts: fast models: Increase clcd's
+ max-memory-bandwidth
+To:     Robin Murphy <robin.murphy@arm.com>,
+        linux-arm-kernel@lists.infradead.org
+Cc:     devicetree@vger.kernel.org, Pawel Moll <pawel.moll@arm.com>,
+        Ruben Ayrapetyan <ruben.ayrapetyan@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        dri-devel@lists.freedesktop.org,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Brian Starkey <brian.starkey@arm.com>
+References: <20190725145040.42182-1-kevin.brodsky@arm.com>
+ <042d5c3d-96fe-5466-3869-a0a3a08b964d@arm.com>
+From:   Kevin Brodsky <kevin.brodsky@arm.com>
+Message-ID: <1d7929a2-273e-e695-6700-36aacf38f61a@arm.com>
+Date:   Thu, 25 Jul 2019 17:58:25 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-References: <20190725162642.250709-1-mka@chromium.org> <20190725162642.250709-4-mka@chromium.org>
-In-Reply-To: <20190725162642.250709-4-mka@chromium.org>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 25 Jul 2019 09:53:23 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=VZur9gPvUnRtdwieqkjMxx1nOabaRXjMsQ7hZwgNVE5Q@mail.gmail.com>
-Message-ID: <CAD=FV=VZur9gPvUnRtdwieqkjMxx1nOabaRXjMsQ7hZwgNVE5Q@mail.gmail.com>
-Subject: Re: [PATCH v3 3/5] dt-bindings: ARM: dts: rockchip: Add bindings for rk3288-veyron-{fievel,tiger}
-To:     Matthias Kaehlcke <mka@chromium.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>, devicetree@vger.kernel.org,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <042d5c3d-96fe-5466-3869-a0a3a08b964d@arm.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On 25/07/2019 16:15, Robin Murphy wrote:
+> Hi Kevin,
 
-On Thu, Jul 25, 2019 at 9:27 AM Matthias Kaehlcke <mka@chromium.org> wrote:
->
-> Fievel is a Chromebox and Tiger a Chromebase with a 10" display and
-> touchscreen. Tiger and Fievel are based on the same board.
->
-> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
-> Changes in v3:
-> - patch added to the series
-> ---
->  .../devicetree/bindings/arm/rockchip.yaml     | 30 +++++++++++++++++++
->  1 file changed, 30 insertions(+)
+Hi Robin,
 
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
+> On 25/07/2019 15:50, Kevin Brodsky wrote:
+>> It may be desirable on certain platforms, such as Android, to
+>> use 32bpp buffers. Since there is no clear bandwidth limit for the
+>> CLCD component on the fast model, let's increase
+>> max-memory-bandwidth to allow using 32bpp buffers.
+> Given that the property is optional anyway, would it hurt to just remove
+> it? After trying to dig up any relevant internal email history, it's
+> still far from clear how and why it got here in the first place.
+
+Very good point, I hadn't realised it was an optional property. Removing it 
+completely seems to work fine. I'll send a v2 removing it from both fvp-base-revc.dts 
+and rtsm_ve-motherboard.dtsi. Thanks!
+
+Kevin
+
+> Robin.
+>
+>> Reported-by: Ruben Ayrapetyan <ruben.ayrapetyan@arm.com>
+>> Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
+>> ---
+>>    arch/arm64/boot/dts/arm/fvp-base-revc.dts | 2 +-
+>>    1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+>> index 687707020ec1..3aee49ed6d88 100644
+>> --- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+>> +++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+>> @@ -269,7 +269,7 @@
+>>    		motherboard {
+>>    			iofpga@3,00000000 {
+>>    				clcd@1f0000 {
+>> -					max-memory-bandwidth = <130000000>; /* 16bpp @ 63.5MHz */
+>> +					max-memory-bandwidth = <260000000>; /* 32bpp @ 63.5MHz */
+>>    				};
+>>    			};
+>>    		};
+>>
+
