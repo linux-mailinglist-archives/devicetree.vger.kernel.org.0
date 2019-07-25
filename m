@@ -2,162 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3499275B43
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 01:35:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0A62475B93
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 01:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725819AbfGYXf2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 19:35:28 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:37299 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726835AbfGYXf2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 19:35:28 -0400
-Received: by mail-io1-f65.google.com with SMTP id q22so100924244iog.4
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 16:35:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FkpQNBEJyUYlZ+foMWEjwOOmDuvJ1KqLXtHOKeziXTU=;
-        b=P4GXONjnr2ejlxTjuq3SyzpJD9nBSLIDYncSudn+pYgmDEbwzBYfQ+s1k01XDE9c2T
-         DWDFqDVeLm7azJLocwwU2rxApr+ds4l+E3vMIYAJrFqMV6T8SG8WKRbRQc0aHo5wFHLv
-         B62GJTBtjmJUkYJ0CJ4UU2A+Bndr5O6Fytp6g=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FkpQNBEJyUYlZ+foMWEjwOOmDuvJ1KqLXtHOKeziXTU=;
-        b=TlI7K2fUsJm4gppIFafWfJnOKZt0OK277+9LG66z3lRoGi6O9TwUo6kzmdiu2hNQSb
-         vD6bp5SdlVtWrAwBBzJKjohAWqhtOKWFtruEXpEQoIxsE1yF0HGDr/gp40wIdzShateY
-         2tKLSUvc66EforA2iiRSgLKPK2J/l28a6kmGH8Xx2ia+e2/eaV3xfVuYDZXXYtYQ8IBw
-         RqZ67H8agXI/QWvXoS/vkVSVvCyHqjaxzyTNz+6HJKqNOMhJxwOs8Pd6cdqKhBGMxjGh
-         iozui8B5rxny4H5riusMcBemPfGpfJiD/e9mz8xgzR73c4ZkyIJz6MTOEUxIeLBzYwXB
-         bqLw==
-X-Gm-Message-State: APjAAAXuZY6azS7Qc89MEA+xOPN8+KHeq6sb/ZRY7TvrKEkgib+yJMlg
-        +HpSmvWmxtDP+AauDYoIQHdgbb/E2Lg=
-X-Google-Smtp-Source: APXvYqwDk7CnIZybcoPDYpgzqMCcoTfsS09Iea1MNlITZU/KB/T9qFDhnzWrL5zyIrwjr5HF9lfYOw==
-X-Received: by 2002:a02:716e:: with SMTP id n46mr96175219jaf.137.1564097727270;
-        Thu, 25 Jul 2019 16:35:27 -0700 (PDT)
-Received: from mail-io1-f45.google.com (mail-io1-f45.google.com. [209.85.166.45])
-        by smtp.gmail.com with ESMTPSA id z19sm61579013ioh.12.2019.07.25.16.35.25
-        for <devicetree@vger.kernel.org>
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Thu, 25 Jul 2019 16:35:26 -0700 (PDT)
-Received: by mail-io1-f45.google.com with SMTP id i10so100891424iol.13
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 16:35:25 -0700 (PDT)
-X-Received: by 2002:a02:c6a9:: with SMTP id o9mr38028054jan.90.1564097725615;
- Thu, 25 Jul 2019 16:35:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190620182056.61552-1-dianders@chromium.org> <CAD=FV=Wi21Emjg7CpCJfSRiKr_EisR20UO1tbPjAeJzdJNbSVw@mail.gmail.com>
- <CAD=FV=UhNfhVG422=huthFSptoV4FXED=xPtArO2KkyNb1U3Xw@mail.gmail.com> <3386344.sHu1S4gNag@phil>
-In-Reply-To: <3386344.sHu1S4gNag@phil>
-From:   Doug Anderson <dianders@chromium.org>
-Date:   Thu, 25 Jul 2019 16:35:12 -0700
-X-Gmail-Original-Message-ID: <CAD=FV=XNSc+-a6ytx2fsUnh54g64i6FW+6WsHMFqwEMWbBPZ5Q@mail.gmail.com>
-Message-ID: <CAD=FV=XNSc+-a6ytx2fsUnh54g64i6FW+6WsHMFqwEMWbBPZ5Q@mail.gmail.com>
-Subject: Re: [PATCH] Revert "ARM: dts: rockchip: add startup delay to
- rk3288-veyron panel-regulators"
-To:     Heiko Stuebner <heiko@sntech.de>
-Cc:     Enric Balletbo i Serra <enric.balletbo@collabora.com>,
-        Matthias Kaehlcke <mka@chromium.org>,
-        devicetree@vger.kernel.org, LKML <linux-kernel@vger.kernel.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
+        id S1726736AbfGYXrp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 19:47:45 -0400
+Received: from mail-eopbgr700128.outbound.protection.outlook.com ([40.107.70.128]:7937
+        "EHLO NAM04-SN1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726357AbfGYXrp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 19:47:45 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=PiGRQXd8nlgpIvGf554PjweZhrBlt8K+l1TcfkHQjBEmAEZK2T7FFXXd2zfhEdWu/TEkn16vB7iueaPotCEelI793bQS8dGZkSdHivKFHT4DerVOVnm3HYZCaoT9NXp0wMttnek5xEXb/TQ/S9vWhJcqTNcSfFYc5jiARHgRWyV4HFkpIvCo62VyNWSWXkrDWb2BotSLkGRkuVGgkRc2tn2Qd2B6wkD6QqH1wuCHPV6agpzk/pq3V6Me/qjQAnlgIzfUlf0mztHxe+ep8+Jfi6zbSzLC6Y592VnSfGZPg6SJEnan+xHXPXZtrRTzWG8sNB4IYwIT2RV/Xb/bnHActg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wI2KyNQLE7IhRLZwhZv0udYhgOmLXOWv5ZIVnLBdQh8=;
+ b=UGM8OBXVtThHbckw/Ttm0qcKpzBpuD6NOh1wnKoQRyCABNeJgPVGQlfepruYIJ1/Sg8SzHKpmjhAMZaVXuaBmpvd12hbsz6wJKun2J/0ZjUeM27G39wQR4mEhveCpiYEEdShoFAI9IqgBLM16pE0hIgXHkli/1NcKoJzhv7t7OKC7WQswHzM4wLDMYGmFx9296g5/Sqk+Om8Q3blm9HgvWtALnevVPSPTrs6efW8bf93Y1R/1NwVYU+Cs2SVVTzPV0CuGDGRu2q4rGlSjMmR5ZkXejtaQzKOeH5Q5HxOmsuG5ugqFkpS8C4qyFOFS/FCWhcpr9Sxc2Hawq2tt0rXyw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=wavecomp.com;dmarc=pass action=none
+ header.from=mips.com;dkim=pass header.d=mips.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=wI2KyNQLE7IhRLZwhZv0udYhgOmLXOWv5ZIVnLBdQh8=;
+ b=QCa1aGtGfGRnOv5+EsHd7hnho1khRhdXjNTZC5r/6YYn88HUZSFtCnfxUoB54ai7jfUfM9BT6ks87ljlx1/95UxkHl2xitUWJq6Wn92cVRMTyIfPHfofX7oHbqIP1OWT9UTjZOdGBienZugfa2xCGR/5fID8U7LjukDxPS4ctfM=
+Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
+ MWHPR2201MB1503.namprd22.prod.outlook.com (10.174.170.152) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2115.10; Thu, 25 Jul 2019 23:47:39 +0000
+Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
+ ([fe80::49d3:37f8:217:c83]) by MWHPR2201MB1277.namprd22.prod.outlook.com
+ ([fe80::49d3:37f8:217:c83%6]) with mapi id 15.20.2094.017; Thu, 25 Jul 2019
+ 23:47:37 +0000
+From:   Paul Burton <paul.burton@mips.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+CC:     Ralf Baechle <ralf@linux-mips.org>,
+        James Hogan <jhogan@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+        Vinod Koul <vkoul@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, "od@zcrc.me" <od@zcrc.me>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Artur Rojek <contact@artur-rojek.eu>
+Subject: Re: [PATCH 02/11] MIPS: qi_lb60: Migrate to devicetree
+Thread-Topic: [PATCH 02/11] MIPS: qi_lb60: Migrate to devicetree
+Thread-Index: AQHVQ0NWCLVfx8mbpE6E+nYkLom38g==
+Date:   Thu, 25 Jul 2019 23:47:37 +0000
+Message-ID: <20190725234735.h7qmtt26qpkjw3n6@pburton-laptop>
+References: <20190725220215.460-1-paul@crapouillou.net>
+ <20190725220215.460-3-paul@crapouillou.net>
+In-Reply-To: <20190725220215.460-3-paul@crapouillou.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: BYAPR21CA0026.namprd21.prod.outlook.com
+ (2603:10b6:a03:114::36) To MWHPR2201MB1277.namprd22.prod.outlook.com
+ (2603:10b6:301:18::12)
+user-agent: NeoMutt/20180716
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=pburton@wavecomp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [12.94.197.246]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 8a3ef576-5f6d-4b9b-063f-08d7115a7909
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:MWHPR2201MB1503;
+x-ms-traffictypediagnostic: MWHPR2201MB1503:
+x-microsoft-antispam-prvs: <MWHPR2201MB15030536C74C6D8B37D85931C1C10@MWHPR2201MB1503.namprd22.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-forefront-prvs: 0109D382B0
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(7916004)(346002)(396003)(136003)(366004)(39850400004)(376002)(199004)(189003)(7736002)(53936002)(99286004)(66946007)(6246003)(6506007)(81166006)(81156014)(102836004)(68736007)(76176011)(6916009)(26005)(186003)(9686003)(58126008)(8676002)(6512007)(52116002)(66066001)(66476007)(54906003)(256004)(6436002)(6486002)(6116002)(8936002)(386003)(7416002)(66446008)(64756008)(316002)(229853002)(71200400001)(71190400001)(25786009)(486006)(44832011)(1076003)(478600001)(4326008)(5660300002)(3846002)(14454004)(33716001)(66556008)(446003)(2906002)(42882007)(11346002)(305945005)(476003);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1503;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: wavecomp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: iSGvlzuhrUfH7o2YaKIXla9eXn/K/4/8jf/mNeKIxX4RDEG4gzC54Ibj4Jgnp7R+oq+1+xP0cwKpROSvpK0+xI9nNhPEDq26CCycbSfM7iHpAK4GpTa014MsRRhRSkCjU1yKE0KME5rxtOm/lLXWiNE5AuiYXcBy/zee1z/OTtVE4awlsuuNhQ3cSvEFej1pCOaaYblLJ79mnEdYg41Oi2HFLDnkkZ7Ut244N6FVv9zxZsJ6RqKe0//qsFom3rxEb8diKUgqgbESGaFFjvDTjJ9N5GRzgiXoRmX+rs1F2B/m7Rlj9pQETJh2u6wCDJg4q/necjY+sqf/6TdlbxId05iFN+4KVIlmh+OH+CpjlR+srV3EUp5JDwOVkTBkqovmE4GX32GzLyzAvC6e61ymiAlktpPvMHEdUIhiDFFvylk=
+Content-Type: text/plain; charset="us-ascii"
+Content-ID: <D8ACA55FCC1F804CB7F8CE8CFDE41571@namprd22.prod.outlook.com>
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: mips.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 8a3ef576-5f6d-4b9b-063f-08d7115a7909
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2019 23:47:37.6021
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pburton@wavecomp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1503
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Paul,
 
-On Thu, Jul 25, 2019 at 2:33 PM Heiko Stuebner <heiko@sntech.de> wrote:
->
-> Am Mittwoch, 3. Juli 2019, 06:54:58 CEST schrieb Doug Anderson:
-> > Hi,
-> >
-> > On Thu, Jun 20, 2019 at 1:31 PM Doug Anderson <dianders@chromium.org> wrote:
-> > >
-> > > Hi,
-> > >
-> > > On Thu, Jun 20, 2019 at 11:21 AM Douglas Anderson <dianders@chromium.org> wrote:
-> > > >
-> > > > This reverts commit 1f45e8c6d0161f044d679f242fe7514e2625af4a.
-> > > >
-> > > > This 100 ms mystery delay is not on downstream kernels and no longer
-> > > > seems needed on upstream kernels either [1].  Presumably something in the
-> > > > meantime has made things better.  A few possibilities for patches that
-> > > > have landed in the meantime that could have made this better are
-> > > > commit 3157694d8c7f ("pwm-backlight: Add support for PWM delays
-> > > > proprieties."), commit 5fb5caee92ba ("pwm-backlight: Enable/disable
-> > > > the PWM before/after LCD enable toggle."), and commit 6d5922dd0d60
-> > > > ("ARM: dts: rockchip: set PWM delay backlight settings for Veyron")
-> > > >
-> > > > Let's revert and get our 100 ms back.
-> > > >
-> > > > [1] https://lkml.kernel.org/r/2226970.BAPq4liE1j@diego
-> > > >
-> > > > Signed-off-by: Douglas Anderson <dianders@chromium.org>
-> > > > ---
-> > > >
-> > > >  arch/arm/boot/dts/rk3288-veyron-jaq.dts    | 1 -
-> > > >  arch/arm/boot/dts/rk3288-veyron-jerry.dts  | 1 -
-> > > >  arch/arm/boot/dts/rk3288-veyron-minnie.dts | 1 -
-> > > >  arch/arm/boot/dts/rk3288-veyron-speedy.dts | 1 -
-> > > >  4 files changed, 4 deletions(-)
-> > >
-> > > Maybe wait before applying.  I've been running reboot tests now with
-> > > this patch applied (among others) and with enough reboots I managed to
-> > > see:
-> > >
-> > > [    5.682418] rockchip-dp ff970000.dp: eDP link training failed (-5)
-> > >
-> > > I'll see if I can confirm that it's this patch and why things are
-> > > different compared to downstream.
-> >
-> > OK, I finally got back to this and confirmed:
-> >
-> > 1. The above error is actually somewhat harmless.  The eDP failure
-> > will be retried automatically despite the scary message.  Specifically
-> > see the loop in analogix_dp_bridge_enable().  I confirmed that after
-> > seeing the error the screen came up just fine (I looked at the screen
-> > in two actual instances but I believe it's pretty much always fine).
-> >
-> > 2. I haven't seen any evidence that the eDP link training happens any
-> > more often with this revert in place.  Specifically, I see the same
-> > message in the logs (at what appears to be the same rate) with or
-> > without this revert.
-> >
-> > 3. Probably the link-training failures here are the same ones we
-> > debugged for PSR for rk3399-gru-kevin that we fixed by making the eDP
-> > PCLK rate exactly 24 MHz.  See <https://crrev.com/c/433393> for
-> > details.  On rk3399-gru-kevin it was super important to resolve the
-> > root cause of these errors because we had PSR (which meant we were
-> > constantly taking to the eDP controller).  On rk3288-veyron devices
-> > with no PSR the retry should be a fine solution and it doesn't seem
-> > like a good idea to fully rejigger our clock plan to fix the root
-> > cause.
-> >
-> >
-> > NOTE: I saw _one_ case on rk3288-veyron-minnie where the screen looked
-> > wonky at bootup and I saw the eDP link training error in the logs.
-> > That's what originally made me cautious.  I haven't been able to
-> > reproduce this, but presumably I just got super unlucky in that one
-> > case.  I've left devices rebooting all day at work and haven't seen
-> > the wonky screen since then.
-> >
-> >
-> > Summary: I think this revert is just fine.
->
-> it looks like by picking Matthias' cleanups of the veyron displays
-> first I broke this patch. I guess we just need to remove the
->         startup-delay-us = <100000>;
-> from the panel_regulator in the new rk3288-veyron-edp.dtsi ?
+On Thu, Jul 25, 2019 at 06:02:06PM -0400, Paul Cercueil wrote:
+> Move all the platform data to devicetree.
 
-Oops, I only checked Matthias's change against the current status of
-your for-next tree and forgot about this change.  Yes, the
-startup-delay should be removed there.  Do you want to resolve that
-when applying the patch or would you prefer a resend?
+Nice! :)
 
--Doug
+> The only bit dropped is the PWM beeper, which requires the PWM driver
+> to be updated. I figured it's okay to remove it here since it's really
+> a non-critical device, and it'll be re-introduced soon enough.
+
+OK, I can see that being a price worth paying. Though it's possible to
+include the binding at least for that in this series I'd be even
+happier. Actually I see we already have
+
+  Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+
+in mainline - what needs to change with it?
+
+> +	spi {
+> +		compatible =3D "spi-gpio";
+> +		#address-cells =3D <1>;
+> +		#size-cells =3D <0>;
+> +
+> +		sck-gpios =3D <&gpc 23 GPIO_ACTIVE_HIGH>;
+> +		mosi-gpios =3D <&gpc 22 GPIO_ACTIVE_HIGH>;
+> +		cs-gpios =3D <&gpc 21 GPIO_ACTIVE_LOW>;
+> +		num-chipselects =3D <1>;
+> +
+> +		spi@0 {
+> +			compatible =3D "ili8960";
+
+Should this be "ilitek,ili8960"?
+
+Is there a binding & driver for this submitted somewhere? If not then do
+we need this at all? It doesn't look like the existing platform data
+would actually lead to a driver being loaded so I'm wondering if we can
+just drop this until such a driver (or at least a documented DT binding)
+exists.
+
+Thanks,
+    Paul
