@@ -2,196 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3093F7503D
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 15:54:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D94575046
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 15:54:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403976AbfGYNxp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 09:53:45 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51804 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2403960AbfGYNxn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Jul 2019 09:53:43 -0400
-Received: from localhost.localdomain (unknown [106.200.241.217])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id CDCF022BF5;
-        Thu, 25 Jul 2019 13:53:39 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564062822;
-        bh=1RyZBeqHQzJ5r1QzsyTUC7ywOmtNXt1CFBQWsPSBtig=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=2GRz6dDHX64Jbz2OXilCwqVKtespEE6XKRiJAJqeHVfcgZgZ0opeVOG/uwwUgVCKv
-         paIIiJyX6aghmR4lk/7/lLyz4JOv/vinY8Fr6Q74FGFyFXI/69r8qyGALfK3yrMuQc
-         IqaX88hRLAB7NYFxkL2vpVTfiQhM3iY29hZznLAA=
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Andy Gross <agross@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S1726108AbfGYNyc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 09:54:32 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:40790 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728230AbfGYNyc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 09:54:32 -0400
+Received: by mail-wr1-f67.google.com with SMTP id r1so50888179wrl.7
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 06:54:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=kiGD59LaW0LszoAZzmVLJ1Hft59fIaEtybxXjg0U4OU=;
+        b=sQQDJiby1lR9rJnYwpFayBJL1RCmEUHrXJL5ktfkxstXcB1e72/IJ+7W0b7G/ZBDE7
+         l2/Oe7WGAKBlaplOUnR9eKLvijJm+yqgNtv1e2Xt94tpqVPUHg4DEcD9UGsRs0szMquI
+         gd0SnX7mYKDLhjJOaB+OD74kiTzZcmfgGeIajBjxHk8HORwabuVH5qYZ14shV48okQcq
+         oV1q3+hmkLuRmabQQ4N1s3WbE9w1LtffyarQQhGJ98ItiO4babxYtOZPj/d8HElgIXh3
+         +7ifv5dKadFG/B1N65t8KG2r29CwpiyOZg/YA0MfSDcC9TY3HZioK4MipWty6YP9bw5P
+         6xWg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=kiGD59LaW0LszoAZzmVLJ1Hft59fIaEtybxXjg0U4OU=;
+        b=KG3f6uUnkhyXauiXi7kJ48w94jbLThqdL6BiWYeArax1Rowr1U8RYw3pgLOs3cFk/O
+         s/RICZU6xNEW08pPCEuGF6/OVe6cUbLVFxJ3PYPnv0gWP5F0oE6tB7ifmPnqwM3b8+V1
+         wJBjiw4u/htZBETZBH9OEYIKkKJcsFka+L266822x5V7TK1eQwssCxtI51d5mXXhwEoS
+         n50qVp3v2r/ZlUAFX7ccxdyJbH6VsASNVZV7qo8yu/umVK8MxR9r33cYnT/U7v9llf/d
+         3pCZhdKmE4/FZGOmBgQ4vPsFywsgykvwC5aAy9eUVAF0ze3Yoc6b4XpqdWavNjWLN9AA
+         l0kw==
+X-Gm-Message-State: APjAAAUHNpavqzRBoMLHJsZ5zVJ9CvKWdYOndxS/hznAydw8Mt2B2THB
+        z2thxIp9QOETAEy9hLmyOn05iA==
+X-Google-Smtp-Source: APXvYqyi+7SaHwgU0aK/nQJij+0evagD7L54rP/lc55M34rnwnlBR+KX1Ln1iOdMtsPd3Xr0XJt2kw==
+X-Received: by 2002:adf:f3d1:: with SMTP id g17mr64650717wrp.38.1564062869954;
+        Thu, 25 Jul 2019 06:54:29 -0700 (PDT)
+Received: from dell ([2.27.35.164])
+        by smtp.gmail.com with ESMTPSA id c9sm40786310wml.41.2019.07.25.06.54.08
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Thu, 25 Jul 2019 06:54:29 -0700 (PDT)
+Date:   Thu, 25 Jul 2019 14:54:02 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
+        rafael@kernel.org, linux-arm-kernel@lists.infradead.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>, linux-i2c@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-spi@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 3/3] arm64: dts: qcom: qcs404: remove unit name for thermal trip points
-Date:   Thu, 25 Jul 2019 19:21:50 +0530
-Message-Id: <20190725135150.9972-4-vkoul@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190725135150.9972-1-vkoul@kernel.org>
-References: <20190725135150.9972-1-vkoul@kernel.org>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Wolfram Sang <wsa@the-dreams.de>, Alan Tull <atull@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>, linux-fpga@vger.kernel.org,
+        Peter Rosin <peda@axentia.se>, Mark Brown <broonie@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Thor Thayer <thor.thayer@linux.intel.com>,
+        Jiri Slaby <jslaby@suse.com>
+Subject: Re: [PATCH v3 2/7] drivers: Introduce device lookup variants by
+ of_node
+Message-ID: <20190725135402.GL23883@dell>
+References: <20190723221838.12024-1-suzuki.poulose@arm.com>
+ <20190723221838.12024-3-suzuki.poulose@arm.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190723221838.12024-3-suzuki.poulose@arm.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The thermal trip points have unit name but no reg property, so we can
-remove them
+On Tue, 23 Jul 2019, Suzuki K Poulose wrote:
 
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1080.31-1084.7: Warning (unit_address_vs_reg): /thermal-zones/aoss-thermal/trips/trip-point@0: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1095.33-1099.7: Warning (unit_address_vs_reg): /thermal-zones/q6-hvx-thermal/trips/trip-point@0: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1110.32-1114.7: Warning (unit_address_vs_reg): /thermal-zones/lpass-thermal/trips/trip-point@0: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1125.31-1129.7: Warning (unit_address_vs_reg): /thermal-zones/wlan-thermal/trips/trip-point@0: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1140.34-1144.7: Warning (unit_address_vs_reg): /thermal-zones/cluster-thermal/trips/trip-point@0: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1145.34-1149.7: Warning (unit_address_vs_reg): /thermal-zones/cluster-thermal/trips/trip-point@1: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1174.31-1178.7: Warning (unit_address_vs_reg): /thermal-zones/cpu0-thermal/trips/trip-point@0: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1179.31-1183.7: Warning (unit_address_vs_reg): /thermal-zones/cpu0-thermal/trips/trip-point@1: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1208.31-1212.7: Warning (unit_address_vs_reg): /thermal-zones/cpu1-thermal/trips/trip-point@0: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1213.31-1217.7: Warning (unit_address_vs_reg): /thermal-zones/cpu1-thermal/trips/trip-point@1: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1242.31-1246.7: Warning (unit_address_vs_reg): /thermal-zones/cpu2-thermal/trips/trip-point@0: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1247.31-1251.7: Warning (unit_address_vs_reg): /thermal-zones/cpu2-thermal/trips/trip-point@1: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1276.31-1280.7: Warning (unit_address_vs_reg): /thermal-zones/cpu3-thermal/trips/trip-point@0: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1281.31-1285.7: Warning (unit_address_vs_reg): /thermal-zones/cpu3-thermal/trips/trip-point@1: node has a unit name, but no reg property
-arch/arm64/boot/dts/qcom/qcs404.dtsi:1310.30-1314.7: Warning (unit_address_vs_reg): /thermal-zones/gpu-thermal/trips/trip-point@0: node has a unit name, but no reg property
+> Introduce wrappers for {bus/driver/class}_find_device() to
+> locate devices by its of_node.
+> 
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <maxime.ripard@bootlin.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: devicetree@vger.kernel.org
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: linux-i2c@vger.kernel.org
+> Cc: linux-rockchip@lists.infradead.org
+> Cc: linux-spi@vger.kernel.org
+> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Cc: Takashi Iwai <tiwai@suse.com>
+> Cc: Wolfram Sang <wsa@the-dreams.de>
+> Cc: Alan Tull <atull@kernel.org>
+> Cc: Moritz Fischer <mdf@kernel.org>
+> Cc: linux-fpga@vger.kernel.org
+> Cc: Peter Rosin <peda@axentia.se>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Cc: Thor Thayer <thor.thayer@linux.intel.com>
+> Cc: Jiri Slaby <jslaby@suse.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Peter Rosin <peda@axentia.se>
+> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> ---
+>  - Dropped the reviewed-by tags from Thor, Mark, Andrew and Peter as the
+>    patches are mereged, though there are no functional changes.
+> ---
+>  drivers/amba/tegra-ahb.c              | 11 +-------
+>  drivers/fpga/fpga-bridge.c            |  8 +-----
+>  drivers/fpga/fpga-mgr.c               |  8 +-----
+>  drivers/gpu/drm/drm_mipi_dsi.c        |  7 +----
+>  drivers/i2c/i2c-core-of.c             |  7 +----
+>  drivers/mfd/altera-sysmgr.c           | 14 ++--------
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 30 ++++++++++++++--------------
- 1 file changed, 15 insertions(+), 15 deletions(-)
+For my own reference:
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index 3d0789775009..6d91dae5aee0 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -1077,7 +1077,7 @@
- 			thermal-sensors = <&tsens 0>;
- 
- 			trips {
--				aoss_alert0: trip-point@0 {
-+				aoss_alert0: trip-point0 {
- 					temperature = <105000>;
- 					hysteresis = <2000>;
- 					type = "hot";
-@@ -1092,7 +1092,7 @@
- 			thermal-sensors = <&tsens 1>;
- 
- 			trips {
--				q6_hvx_alert0: trip-point@0 {
-+				q6_hvx_alert0: trip-point0 {
- 					temperature = <105000>;
- 					hysteresis = <2000>;
- 					type = "hot";
-@@ -1107,7 +1107,7 @@
- 			thermal-sensors = <&tsens 2>;
- 
- 			trips {
--				lpass_alert0: trip-point@0 {
-+				lpass_alert0: trip-point0 {
- 					temperature = <105000>;
- 					hysteresis = <2000>;
- 					type = "hot";
-@@ -1122,7 +1122,7 @@
- 			thermal-sensors = <&tsens 3>;
- 
- 			trips {
--				wlan_alert0: trip-point@0 {
-+				wlan_alert0: trip-point0 {
- 					temperature = <105000>;
- 					hysteresis = <2000>;
- 					type = "hot";
-@@ -1137,12 +1137,12 @@
- 			thermal-sensors = <&tsens 4>;
- 
- 			trips {
--				cluster_alert0: trip-point@0 {
-+				cluster_alert0: trip-point0 {
- 					temperature = <95000>;
- 					hysteresis = <2000>;
- 					type = "hot";
- 				};
--				cluster_alert1: trip-point@1 {
-+				cluster_alert1: trip-point1 {
- 					temperature = <105000>;
- 					hysteresis = <2000>;
- 					type = "passive";
-@@ -1171,12 +1171,12 @@
- 			thermal-sensors = <&tsens 5>;
- 
- 			trips {
--				cpu0_alert0: trip-point@0 {
-+				cpu0_alert0: trip-point0 {
- 					temperature = <95000>;
- 					hysteresis = <2000>;
- 					type = "hot";
- 				};
--				cpu0_alert1: trip-point@1 {
-+				cpu0_alert1: trip-point1 {
- 					temperature = <105000>;
- 					hysteresis = <2000>;
- 					type = "passive";
-@@ -1205,12 +1205,12 @@
- 			thermal-sensors = <&tsens 6>;
- 
- 			trips {
--				cpu1_alert0: trip-point@0 {
-+				cpu1_alert0: trip-point0 {
- 					temperature = <95000>;
- 					hysteresis = <2000>;
- 					type = "hot";
- 				};
--				cpu1_alert1: trip-point@1 {
-+				cpu1_alert1: trip-point1 {
- 					temperature = <105000>;
- 					hysteresis = <2000>;
- 					type = "passive";
-@@ -1239,12 +1239,12 @@
- 			thermal-sensors = <&tsens 7>;
- 
- 			trips {
--				cpu2_alert0: trip-point@0 {
-+				cpu2_alert0: trip-point0 {
- 					temperature = <95000>;
- 					hysteresis = <2000>;
- 					type = "hot";
- 				};
--				cpu2_alert1: trip-point@1 {
-+				cpu2_alert1: trip-point1 {
- 					temperature = <105000>;
- 					hysteresis = <2000>;
- 					type = "passive";
-@@ -1273,12 +1273,12 @@
- 			thermal-sensors = <&tsens 8>;
- 
- 			trips {
--				cpu3_alert0: trip-point@0 {
-+				cpu3_alert0: trip-point0 {
- 					temperature = <95000>;
- 					hysteresis = <2000>;
- 					type = "hot";
- 				};
--				cpu3_alert1: trip-point@1 {
-+				cpu3_alert1: trip-point1 {
- 					temperature = <105000>;
- 					hysteresis = <2000>;
- 					type = "passive";
-@@ -1307,7 +1307,7 @@
- 			thermal-sensors = <&tsens 9>;
- 
- 			trips {
--				gpu_alert0: trip-point@0 {
-+				gpu_alert0: trip-point0 {
- 					temperature = <95000>;
- 					hysteresis = <2000>;
- 					type = "hot";
+What's the merge plan for this patch?
+
+Is anyone prepared to create an immutable branch for us to pull from?
+I'm happy to do it if no one else steps up.
+
+>  drivers/mux/core.c                    |  7 +----
+>  drivers/net/phy/mdio_bus.c            |  9 +------
+>  drivers/nvmem/core.c                  |  7 +----
+>  drivers/of/of_mdio.c                  |  8 +-----
+>  drivers/of/platform.c                 |  7 +----
+>  drivers/regulator/of_regulator.c      |  7 +----
+>  drivers/spi/spi.c                     | 20 +++------------
+>  include/linux/device.h                | 37 +++++++++++++++++++++++++++
+>  sound/soc/rockchip/rk3399_gru_sound.c |  9 ++-----
+>  15 files changed, 56 insertions(+), 110 deletions(-)
+
 -- 
-2.20.1
-
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
