@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B40275A8E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 00:19:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 858BD75A9B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 00:19:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727081AbfGYWTZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 18:19:25 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:46479 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727071AbfGYWTY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 18:19:24 -0400
-Received: by mail-pl1-f195.google.com with SMTP id c2so23902037plz.13
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 15:19:24 -0700 (PDT)
+        id S1726635AbfGYWTq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 18:19:46 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:42073 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727273AbfGYWTp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 18:19:45 -0400
+Received: by mail-pl1-f196.google.com with SMTP id ay6so23964214plb.9
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 15:19:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :in-reply-to:references;
-        bh=amjpNRleha+KN/EuHRyzTUgCt6MkSmYthRSSTGRJeLk=;
-        b=cc4FhF/zO5NxWck5NRRbEzVCBekK3ZlKjGzUReO9izSEdqV9t/vA0x8UlJcDEYNz9S
-         gFdGWsMoYXFnoOrsbhwgJFKIg+JQD9DdqJCL24K4mszOrf4QsAR4GscI5ZJoteuJfqLD
-         plgixsXge/LHkeiMYc2lX34OH6pQbQ0gqridn1qii9eWgGbUAwRcw42Qe5nx0SNvfvei
-         LVamvvA/gmzss9Agus4cbSGg4rUlZ19FgNss8J6wMkNVx1z8h1bnYBZOJ9To6cjRISVY
-         e7IEw43MEAoTp11jeowtIAG5+DYli8+dhDKZ6GTwXWfJHk7L9rXDSLR6EIlzgtWjLk69
-         d3Ew==
+        bh=aNjPKzyo6hMwnV5/FxL6BFlsZjKINMXfLX+sOTPPGgw=;
+        b=R4IbPtu14lVzwjLml/VV6llOaDJhPxOcQxNKK86jt7NrYwJQMEAeOm+pk0fnHP8ZGk
+         Vg6OSP3yGlD1/8MRMWr0UyRW22EUlpB2Ic0BuiUqGwucMK6nXrDsDptzQBbBfx1LbYzx
+         JS9Dqw5nTqzk3aFcTsjt/CK7055SaTSfb1pQDtfF+Gw8wXGxcmJp+3mvj01yD4b6Xpaq
+         OWMQDFfEFZWJ1CU92Y1W5wn5YHLxMFiKyB5VeC73xdYXVAlhXr7fTS+Gt0Go+9Fu0Q8+
+         TkdRBkWCVODWrRiQWIPa0k2G9HflNBloEcWA1ebIQCcReoBLKBI/JyyK6Op1TKIJ6bmW
+         O8ww==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:in-reply-to:references;
-        bh=amjpNRleha+KN/EuHRyzTUgCt6MkSmYthRSSTGRJeLk=;
-        b=cHppBY2Uol/KftesS1Xif49xSPCyM0OruujwC59b8pb5qDjRLC4rqBDZjGPES6EGHN
-         jC10jhHHPDK0hJsHg1+os0cADpQkO468634sjuKyeE7Io6DrHVUYMFy7LxjRRsPjb/U9
-         QqssOFRaYR9tGYdV51FT5KEQ/7dVpqsMN3FufOtX+stOpyYI4CmuiANUHqojReIg5Flb
-         qcrQFDqyH60G2CUqdlsxR5y3MwAE5VvDh2qhDmmp4O+xu8A8j76KU2LUKzqReTvm6C5O
-         kWavwzCBGvFZLY0DqzFVy3ehsaebt5qe1iXMdohHbY1FedTxcPsWOUJiV3Q6/sYk5yME
-         /u2Q==
-X-Gm-Message-State: APjAAAUZ4nLYOcJcWS6rJmOz0wupFwtfheu44rOcw7gEM/FJQDTINJvG
-        +6667emRPlsmei1hi6jH0XuFBg==
-X-Google-Smtp-Source: APXvYqzTJsiFKu9NIQp8XByePsHuTBie+TyiE7Ko6FeqH3s31ixG9OJlPkCgk8n/UIiQyF6EAKi5RA==
-X-Received: by 2002:a17:902:106:: with SMTP id 6mr94863155plb.64.1564093163818;
-        Thu, 25 Jul 2019 15:19:23 -0700 (PDT)
+        bh=aNjPKzyo6hMwnV5/FxL6BFlsZjKINMXfLX+sOTPPGgw=;
+        b=QJdym3lIiUG/QW2iHy1WHKV0XkG/u91o+9E6Cm19jMKjRwkaNDMWpBhNkum/aNmV1W
+         ztd8Ae8UVA09uKVQa133YuR04z8xyzTodMFPysotJrt1vyFVI9fm5IPS99Kd3lZ6lnaW
+         S4OheRr/lsd+kd375Om8RIwKPp5zO3Kr3hkTZHFe0uXGN0DstKLwr5M+zmwNAQXv1YjQ
+         49FRJONY4C2ySyLW1D6dNmHRo5iwbNgeSiZPeeZEL9vo3LpAhXD0WNlHOQWNYi1fY6Vb
+         jdO+0y5Yz8fAr1QhO58q6+65tojpOtuOncEBmKhBsf3MEgoq4Kd5Kk7Wph6kQay4jwPP
+         Xbcw==
+X-Gm-Message-State: APjAAAXYR0v0UiQol643WJyPcF9LcfjZasNP8m1f9S/F8wASgMppOL2u
+        bxgo5JHi3bvqtr392g+mQLHhKA==
+X-Google-Smtp-Source: APXvYqxuB1RRysz+k/guHccaq+T0RlG93QbmWhv3mHmu7KtPSwMjgwcHIGftzmLG3/9gLbntE7AVAw==
+X-Received: by 2002:a17:902:8d92:: with SMTP id v18mr94249402plo.211.1564093184755;
+        Thu, 25 Jul 2019 15:19:44 -0700 (PDT)
 Received: from localhost ([49.248.170.216])
-        by smtp.gmail.com with ESMTPSA id x26sm65297712pfq.69.2019.07.25.15.19.22
+        by smtp.gmail.com with ESMTPSA id t26sm39405317pgu.43.2019.07.25.15.19.43
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 25 Jul 2019 15:19:23 -0700 (PDT)
+        Thu, 25 Jul 2019 15:19:44 -0700 (PDT)
 From:   Amit Kucheria <amit.kucheria@linaro.org>
 To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         bjorn.andersson@linaro.org, edubezval@gmail.com,
@@ -52,10 +52,10 @@ To:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
         Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Zhang Rui <rui.zhang@intel.com>
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 07/15] dt: thermal: tsens: Document interrupt support in tsens driver
-Date:   Fri, 26 Jul 2019 03:48:42 +0530
-Message-Id: <72bce036fa8cba3db6e5ba82249837ee46e9c077.1564091601.git.amit.kucheria@linaro.org>
+Cc:     devicetree@vger.kernel.org
+Subject: [PATCH 13/15] arm64: dts: msm8916: thermal: Add interrupt support
+Date:   Fri, 26 Jul 2019 03:48:48 +0530
+Message-Id: <380196111ac2b6faa6dfb27f26189ddaa1e6e606.1564091601.git.amit.kucheria@linaro.org>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <cover.1564091601.git.amit.kucheria@linaro.org>
 References: <cover.1564091601.git.amit.kucheria@linaro.org>
@@ -66,36 +66,80 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Define two new required properties to define interrupts and
-interrupt-names for tsens.
+Register upper-lower interrupt for the tsens controller.
 
 Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
 ---
- Documentation/devicetree/bindings/thermal/qcom-tsens.txt | 5 +++++
- 1 file changed, 5 insertions(+)
+ arch/arm64/boot/dts/qcom/msm8916.dtsi | 22 ++++++++++++----------
+ 1 file changed, 12 insertions(+), 10 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/thermal/qcom-tsens.txt b/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
-index 673cc1831ee9..3d3dd5dc6d36 100644
---- a/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
-+++ b/Documentation/devicetree/bindings/thermal/qcom-tsens.txt
-@@ -22,6 +22,8 @@ Required properties:
+diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+index 8686e101905c..400045a100ca 100644
+--- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
++++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
+@@ -176,8 +176,8 @@
  
- - #thermal-sensor-cells : Should be 1. See ./thermal.txt for a description.
- - #qcom,sensors: Number of sensors in tsens block
-+- interrupts: Interrupts generated from Always-On subsystem (AOSS)
-+- interrupt-names: The name of the interrupt e.g. "tsens0", "tsens1"
- - Refer to Documentation/devicetree/bindings/nvmem/nvmem.txt to know how to specify
- nvmem cells
+ 	thermal-zones {
+ 		cpu0_1-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
  
-@@ -40,6 +42,9 @@ tsens0: thermal-sensor@c263000 {
- 		reg = <0xc263000 0x1ff>, /* TM */
- 			<0xc222000 0x1ff>; /* SROT */
- 		#qcom,sensors = <13>;
-+		interrupts = <GIC_SPI 506 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "tsens0";
-+
- 		#thermal-sensor-cells = <1>;
- 	};
+ 			thermal-sensors = <&tsens 5>;
+ 
+@@ -206,8 +206,8 @@
+ 		};
+ 
+ 		cpu2_3-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens 4>;
+ 
+@@ -236,8 +236,8 @@
+ 		};
+ 
+ 		gpu-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens 2>;
+ 
+@@ -256,8 +256,8 @@
+ 		};
+ 
+ 		camera-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens 1>;
+ 
+@@ -271,8 +271,8 @@
+ 		};
+ 
+ 		modem-thermal {
+-			polling-delay-passive = <250>;
+-			polling-delay = <1000>;
++			polling-delay-passive = <0>;
++			polling-delay = <0>;
+ 
+ 			thermal-sensors = <&tsens 0>;
+ 
+@@ -816,6 +816,8 @@
+ 			nvmem-cells = <&tsens_caldata>, <&tsens_calsel>;
+ 			nvmem-cell-names = "calib", "calib_sel";
+ 			#qcom,sensors = <5>;
++			interrupts = <GIC_SPI 184 IRQ_TYPE_LEVEL_HIGH>;
++			interrupt-names = "tsens";
+ 			#thermal-sensor-cells = <1>;
+ 		};
  
 -- 
 2.17.1
