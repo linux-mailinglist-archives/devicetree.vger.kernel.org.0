@@ -2,111 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A093F751C4
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 16:50:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E66B4751D7
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 16:53:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388201AbfGYOuA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 10:50:00 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:33441 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388159AbfGYOuA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 10:50:00 -0400
-Received: by mail-lj1-f195.google.com with SMTP id h10so48305157ljg.0
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 07:49:58 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:organization:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=6wnAGGabQ71U78o4knoiSKA6pj8ghCt55D9V1wo+T0U=;
-        b=B2IYRqLxUH1+yV5JsUcKz1/ZA+iccTO0ufD34R4byQxZe7CXU3NbtHo9tyPuLSiW87
-         /jfTp7pPZqqDJkeWd7NyZU0KqqbvGv12Qr+Nb9kyskTiZuABrjsxV9cKcmjF0e72KdSm
-         MssRnvOCrLO36PJWr1KlgMV24aABKeJpQy0F7bW9yGhdrOwRAVhl/oeVFZ1SMIa1hpVr
-         kvMyCUIgqACnih1DZJmdmeCYCDSKcrIfvcmSb+yusMcEKryJ4A3mSswtgNW/useWALsE
-         owKKVrwkAuaR26qlCtSEa6R2rjFuZUqYzF0Azr5MdIJgXbtKRAwEu2UBb7m5rSvJ9ibc
-         vxQA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=6wnAGGabQ71U78o4knoiSKA6pj8ghCt55D9V1wo+T0U=;
-        b=V+dEGwrpNulsiwdDHtw+qwLnFdlh9PFeMT8+SCWnAKd/rs7sEzQWrBqXI2Ehrb2xA6
-         ej37gSjouyDcPzUKKs3ierGzXFMrRQRnafqylWwPTardK8WkmldOlglEyxinah4JddWp
-         PiUHoeEsvupr2e63uMVbor3MHCGBJPLjOd+lczkL2bjQXmonoWUE3b5KjnJc9AIwdHe0
-         T+7l5yNobRFoaiZ+zXd3YxdVHCBlv0xLhGH8ua68d4d52NBnWiVdETQKEmodA3t6UW90
-         x2hWK1778UxN/ky5GouCAI3gR7csusyE/8q5SW+C0cVV8HrP2H190j6ScwEdIiA75O4r
-         xwKA==
-X-Gm-Message-State: APjAAAWjgtupzYby2s8AVROGHfuufESuAUjvVJ//KkmWtYEptr8UVpho
-        dyvIiQVt13P6BkpxjWklQVtt/Q==
-X-Google-Smtp-Source: APXvYqwrCKqf4m+8KV0D4fmENaffy3HRKJJq6mh6Y4FyQ1BPvI6qdmY0bGVRwsAXaiGfVrkPGRJQrw==
-X-Received: by 2002:a2e:a415:: with SMTP id p21mr46282699ljn.111.1564066197927;
-        Thu, 25 Jul 2019 07:49:57 -0700 (PDT)
-Received: from wasted.cogentembedded.com ([2a00:1fa0:669:e7fc:391:1b4e:d17c:23d6])
-        by smtp.gmail.com with ESMTPSA id z25sm7546587lfi.51.2019.07.25.07.49.56
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 25 Jul 2019 07:49:57 -0700 (PDT)
-Subject: Re: [PATCH net-next v2 3/4] dt-bindings: net: fsl: enetc: Add
- bindings for the central MDIO PCIe endpoint
-To:     Claudiu Manoil <claudiu.manoil@nxp.com>,
-        "David S . Miller" <davem@davemloft.net>
-Cc:     andrew@lunn.ch, Rob Herring <robh+dt@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>, alexandru.marginean@nxp.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <1564053568-20522-1-git-send-email-claudiu.manoil@nxp.com>
- <1564053568-20522-4-git-send-email-claudiu.manoil@nxp.com>
-From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-Organization: Cogent Embedded
-Message-ID: <927717df-1a74-3253-f905-6a2f742fda63@cogentembedded.com>
-Date:   Thu, 25 Jul 2019 17:49:54 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
- Thunderbird/52.2.1
+        id S2388652AbfGYOxZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 10:53:25 -0400
+Received: from foss.arm.com ([217.140.110.172]:58852 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388617AbfGYOxY (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 10:53:24 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 136E728;
+        Thu, 25 Jul 2019 07:53:24 -0700 (PDT)
+Received: from e123572-lin.arm.com (e123572-lin.cambridge.arm.com [10.1.194.48])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B26E83F71F;
+        Thu, 25 Jul 2019 07:53:22 -0700 (PDT)
+From:   Kevin Brodsky <kevin.brodsky@arm.com>
+To:     linux-arm-kernel@lists.infradead.org
+Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Pawel Moll <pawel.moll@arm.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        Brian Starkey <brian.starkey@arm.com>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Kevin Brodsky <kevin.brodsky@arm.com>,
+        Ruben Ayrapetyan <ruben.ayrapetyan@arm.com>
+Subject: [PATCH] arm64: dts: fast models: Increase clcd's max-memory-bandwidth
+Date:   Thu, 25 Jul 2019 15:50:40 +0100
+Message-Id: <20190725145040.42182-1-kevin.brodsky@arm.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-In-Reply-To: <1564053568-20522-4-git-send-email-claudiu.manoil@nxp.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-MW
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello!
+It may be desirable on certain platforms, such as Android, to
+use 32bpp buffers. Since there is no clear bandwidth limit for the
+CLCD component on the fast model, let's increase
+max-memory-bandwidth to allow using 32bpp buffers.
 
-On 07/25/2019 02:19 PM, Claudiu Manoil wrote:
+Reported-by: Ruben Ayrapetyan <ruben.ayrapetyan@arm.com>
+Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
+---
+ arch/arm64/boot/dts/arm/fvp-base-revc.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-> The on-chip PCIe root complex that integrates the ENETC ethernet
-> controllers also integrates a PCIe enpoint for the MDIO controller
-> provinding for cetralized control of the ENETC mdio bus.
+diff --git a/arch/arm64/boot/dts/arm/fvp-base-revc.dts b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+index 687707020ec1..3aee49ed6d88 100644
+--- a/arch/arm64/boot/dts/arm/fvp-base-revc.dts
++++ b/arch/arm64/boot/dts/arm/fvp-base-revc.dts
+@@ -269,7 +269,7 @@
+ 		motherboard {
+ 			iofpga@3,00000000 {
+ 				clcd@1f0000 {
+-					max-memory-bandwidth = <130000000>; /* 16bpp @ 63.5MHz */
++					max-memory-bandwidth = <260000000>; /* 32bpp @ 63.5MHz */
+ 				};
+ 			};
+ 		};
+-- 
+2.22.0
 
-   Providing, centralized.
-
-> Add bindings for this "central" MDIO Integrated PCIe Endpoit.
-> 
-> Signed-off-by: Claudiu Manoil <claudiu.manoil@nxp.com>
-> ---
-> v1 - none
-> v2 - none
-> 
->  .../devicetree/bindings/net/fsl-enetc.txt     | 42 +++++++++++++++++--
->  1 file changed, 39 insertions(+), 3 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/net/fsl-enetc.txt b/Documentation/devicetree/bindings/net/fsl-enetc.txt
-> index 25fc687419db..c090f6df7a39 100644
-> --- a/Documentation/devicetree/bindings/net/fsl-enetc.txt
-> +++ b/Documentation/devicetree/bindings/net/fsl-enetc.txt
-[...]
-> @@ -47,8 +49,42 @@ Example:
->  		};
->  	};
->  
-> -2) The ENETC port is an internal port or has a fixed-link external
-> -connection:
-> +1.2. Using the central MDIO PCIe enpoint device
-
-   Endpoint. -ETOOMANYTYPOS. :-)
-
-[...]
-
-MBR, Sergei
