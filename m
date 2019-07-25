@@ -2,33 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 69878758C9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 22:23:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6602B75911
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 22:45:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726333AbfGYUXJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 16:23:09 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:39448 "EHLO gloria.sntech.de"
+        id S1726230AbfGYUp4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 16:45:56 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:39546 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725923AbfGYUXJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Jul 2019 16:23:09 -0400
+        id S1726542AbfGYUp4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 16:45:56 -0400
 Received: from d57e23da.static.ziggozakelijk.nl ([213.126.35.218] helo=phil.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <heiko@sntech.de>)
-        id 1hqkGX-0001vF-QE; Thu, 25 Jul 2019 22:23:05 +0200
+        id 1hqkcZ-0001ze-Q9; Thu, 25 Jul 2019 22:45:51 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
 To:     Matthias Kaehlcke <mka@chromium.org>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [PATCH] ARM: dts: rockchip: Limit WiFi TX power on rk3288-veyron-jerry
-Date:   Thu, 25 Jul 2019 22:23:04 +0200
-Message-ID: <2130412.AuREfPFnmH@phil>
-In-Reply-To: <20190723225258.93058-1-mka@chromium.org>
-References: <20190723225258.93058-1-mka@chromium.org>
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 1/5] ARM: dts: rockchip: move rk3288-veryon display settings into a separate file
+Date:   Thu, 25 Jul 2019 22:45:50 +0200
+Message-ID: <3004515.D41uJgjoEG@phil>
+In-Reply-To: <20190725162642.250709-2-mka@chromium.org>
+References: <20190725162642.250709-1-mka@chromium.org> <20190725162642.250709-2-mka@chromium.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -37,46 +35,19 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Am Mittwoch, 24. Juli 2019, 00:52:58 CEST schrieb Matthias Kaehlcke:
-> The downstream Chrome OS 3.14 kernel for jerry limits WiFi TX power
-> through calibration data in the device tree [1]. Add a DT node for
-> the WiFi chip and use the downstream calibration data.
+Am Donnerstag, 25. Juli 2019, 18:26:38 CEST schrieb Matthias Kaehlcke:
+> The chromebook .dtsi file contains common settings for veyron
+> Chromebooks with eDP displays. Some veyron devices with a display
+> aren't Chromebooks (e.g. 'tiger' aka 'AOpen Chromebase Mini'), move
+> display related bits from the chromebook .dtsi into a separate file
+> to avoid redundant DT settings.
 > 
-> Not all calibration data entries have the length specified in the
-> binding (Documentation/devicetree/bindings/net/wireless/marvell-8xxx.txt),
-> however this is the data used by the downstream ('official') kernel
-> and the binding mentions that "the length can vary between hw
-> versions".
-> 
-> [1] https://crrev.com/c/271237
+> The new file is included from the chromebook .dtsi and can be
+> included by non-Chromebook devices with a display.
 > 
 > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-> ---
->  arch/arm/boot/dts/rk3288-veyron-jerry.dts | 147 ++++++++++++++++++++++
->  1 file changed, 147 insertions(+)
-> 
-> diff --git a/arch/arm/boot/dts/rk3288-veyron-jerry.dts b/arch/arm/boot/dts/rk3288-veyron-jerry.dts
-> index b1613af83d5d..2d0d5a4603ba 100644
-> --- a/arch/arm/boot/dts/rk3288-veyron-jerry.dts
-> +++ b/arch/arm/boot/dts/rk3288-veyron-jerry.dts
-> @@ -82,6 +82,153 @@
->  	};
->  };
->  
-> +&sdio0 {
 
-added #address-cells = <1> and #size-cells = <0> here
-as it was creating dtc warnings due to the reg=1 below
-
-> +	mwifiex: wifi@1 {
-> +		compatible = "marvell,sd8897";
-> +		reg = <1>;
-> +		status = "okay";
-
-dropped status ... okay is the default and the wifi node only was
-added to this board, not before.
-
-and applied for 5.4
+applied for 5.4
 
 Thanks
 Heiko
