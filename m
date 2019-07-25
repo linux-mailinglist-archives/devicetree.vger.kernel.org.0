@@ -2,198 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F5C77426E
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 02:10:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DAA6742D9
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 03:24:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388601AbfGYAKe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 20:10:34 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:49506 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388569AbfGYAKe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 20:10:34 -0400
-Received: from lelv0265.itg.ti.com ([10.180.67.224])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6P0AVjI015380;
-        Wed, 24 Jul 2019 19:10:31 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1564013431;
-        bh=r6VFLcRsIVD2QJoHeMzGmZVijy4Xhtp+jaJARX48jrs=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=pwlCvcTKa9n29g16AhqMmhEgz+VH1MCJst9MTeYm9rwYXXqUqPHTiHUjmHYVqVC8R
-         TJXCd8kDDK6lEpp5Uvfosh2sZ8ywZmmm/12Wsex47gDukrj92JcexDZ62h+zy4DQWW
-         G0p7HpUN2u2vmysV7QVHuTU+Q5KlzcLeGZDkZJVk=
-Received: from DFLE104.ent.ti.com (dfle104.ent.ti.com [10.64.6.25])
-        by lelv0265.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6P0AVVF026501
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 24 Jul 2019 19:10:31 -0500
-Received: from DFLE114.ent.ti.com (10.64.6.35) by DFLE104.ent.ti.com
- (10.64.6.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 24
- Jul 2019 19:10:31 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DFLE114.ent.ti.com
- (10.64.6.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 24 Jul 2019 19:10:31 -0500
-Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6P0AVil108012;
-        Wed, 24 Jul 2019 19:10:31 -0500
-Received: from localhost (irmo.dhcp.ti.com [128.247.58.153])
-        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x6P0AVZ03284;
-        Wed, 24 Jul 2019 19:10:31 -0500 (CDT)
-From:   Suman Anna <s-anna@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
-Subject: [PATCH v2 4/4] arm64: dts: ti: k3-j721e-common-proc-board: Add IPC sub-mailbox nodes
-Date:   Wed, 24 Jul 2019 19:10:20 -0500
-Message-ID: <20190725001020.23781-5-s-anna@ti.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190725001020.23781-1-s-anna@ti.com>
-References: <20190725001020.23781-1-s-anna@ti.com>
+        id S1726698AbfGYBY0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 24 Jul 2019 21:24:26 -0400
+Received: from esa3.hgst.iphmx.com ([216.71.153.141]:52961 "EHLO
+        esa3.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726300AbfGYBY0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 21:24:26 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1564017866; x=1595553866;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=p+jTfu4cIazD5eixTiPopv5has0130QcUTKO/yKoUes=;
+  b=D3QuifCWvZS6icOtQ87nXQcroQJQUn3LW6ymqpc5EIqwowcxVF2E6ow9
+   hbOyGJXDwHZWTL/HoB4RK7tD6vMbW6/glAmjrHv46ixZPQzUVSzyGmJrL
+   k0RKwad1PHQYZ5TF/SK47oDKNLbZCZQ0Beo55SCP4vrvnlHiRgAmZ0f3H
+   hxAp6NZluMyumuH8pGEYUevlhliyuT1pbhO3k6DV3Dh/3vDYK4jpB0/W0
+   yGpPcbdBSQe7QWuFEX0ZxTSifJbAXNI8MCAtRADvAiRMht5b0lPoPhsxU
+   esph9IQxLTPvKJ1MUKM4SMLZe+zjM1y3jt39MTAaPZ48mq0xZi9hi2I+C
+   g==;
+IronPort-SDR: cW0BElLLnCTpzNBGZPQr9PHZ7dHM/ut4Tb4mhvEyKrJqmnsRfLb1eztM8kxUsrPW3IsaoKgd3N
+ vlfXWJPO336YC7XAKFEy28jMx/wga2pUj6oldYZ7+eZTKNFw+OsSAK786vcyk7etwDeJ32S/Gu
+ LTAcTU06AFPFD1hgCJmstMYjDf/VSOd7m4mJJuw0WCpSZDwfGc/7uxAl8QsxsBq22l37wI3W8U
+ dKKARjJ4V13lHBsxl+U2tt9PKmVz7n4iPcPHdWxqFdgGiBmMkSAlARsUSLGNJgMXzQxBkini2u
+ siU=
+X-IronPort-AV: E=Sophos;i="5.64,304,1559491200"; 
+   d="scan'208";a="118681832"
+Received: from h199-255-45-14.hgst.com (HELO uls-op-cesaep01.wdc.com) ([199.255.45.14])
+  by ob1.hgst.iphmx.com with ESMTP; 25 Jul 2019 09:24:26 +0800
+IronPort-SDR: J7qUuy2KO4+m2pnPnLLxGvsIj/7q3AE8v2o/lvvqVqMI+hmlTVF0J+flbNQmjKDGR9Zm1aUvT8
+ dkI1rgCsnL+uvlV3nr72LJcpdj7m/jYpQK37kfocuDtdl8uJ8R37OL/upu2zXl4zGIuguElOLw
+ 3yOhBas6GNrI9tjDVnfPgm6nEHkSXE2P6WIRo/1G1c0nLVhxnhArqT9scqkFyK3Eaj4kNSNEM8
+ P/DDuIvXZrF5Sbf1ekjqzoSyQagVRyViaJV4d0v3+MPsqw1CJykHsq6nVMK7/bqgAB/1Iyjbwg
+ 5H9EAuEnfOvYWVhPWCBt2kXI
+Received: from uls-op-cesaip02.wdc.com ([10.248.3.37])
+  by uls-op-cesaep01.wdc.com with ESMTP; 24 Jul 2019 18:22:37 -0700
+IronPort-SDR: V40xfE9gili+44NnP3tPlPZ2UZfyLw5G2k1ffUp3o9aNa94g6a0EQQzDNiFNIxamCt67BvNlyN
+ ZGvjsXZempGW2czFlejGBR0PiLWWQ4yDXhugkuGPBv9/uk+J7VPYqwZAAbktNZCMUFnKT+3hn3
+ /sfby85RS1py25X+dAL4O6KmG/qeVSPieHigi0K0Y1S1wB2ZAnHQykLenqJL5RQjpChOQpUYrV
+ pes/KNeXeL28/On8K5wifkMeeQnVLcCOOZmbtYE8vB3ccGhofWq+D1uFHJxa1UXS+9DbKpCq5c
+ O0I=
+Received: from r6220.sdcorp.global.sandisk.com (HELO [192.168.1.2]) ([10.196.157.143])
+  by uls-op-cesaip02.wdc.com with ESMTP; 24 Jul 2019 18:24:23 -0700
+Subject: Re: [PATCH v8 0/7] Unify CPU topology across ARM & RISC-V
+To:     Paul Walmsley <paul.walmsley@sifive.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Jeremy Linton <jeremy.linton@arm.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup@brainfault.org>,
+        Catalin Marinas <catalin.marinas@arm.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Ingo Molnar <mingo@kernel.org>,
+        Johan Hovold <johan@kernel.org>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
+        Mark Rutland <Mark.Rutland@arm.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Morten Rasmussen <morten.rasmussen@arm.com>,
+        Otto Sabart <ottosabart@seberm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        "Peter Zijlstra (Intel)" <peterz@infradead.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Will Deacon <will.deacon@arm.com>,
+        Will Deacon <will@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Russell King <linux@armlinux.org.uk>
+References: <20190627195302.28300-1-atish.patra@wdc.com>
+ <alpine.DEB.2.21.9999.1907121012050.2267@viisi.sifive.com>
+ <alpine.DEB.2.21.9999.1907221224170.23563@viisi.sifive.com>
+From:   Atish Patra <atish.patra@wdc.com>
+Message-ID: <ea88d4f4-eff8-adba-3135-0d480f501d48@wdc.com>
+Date:   Wed, 24 Jul 2019 18:24:22 -0700
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
+ Gecko/20100101 Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+In-Reply-To: <alpine.DEB.2.21.9999.1907221224170.23563@viisi.sifive.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the sub-mailbox nodes that are used to communicate between MPU and
-various remote processors present in the J721E SoCs to the J721E common
-processor board. These include the R5F remote processors in the dual-R5F
-cluster (MCU_R5FSS0) in the MCU domain and the two dual-R5F clusters
-(MAIN_R5FSS0 & MAIN_R5FSS1) in the MAIN domain; the two C66x DSP remote
-processors and the single C71x DSP remote processor in the MAIN domain.
-These sub-mailbox nodes utilize the System Mailbox clusters 0 through 4.
-All the remaining mailbox clusters are currently not used on A72 core,
-and so are disabled.
+On 7/22/19 12:25 PM, Paul Walmsley wrote:
+> On Fri, 12 Jul 2019, Paul Walmsley wrote:
+> 
+>> On Thu, 27 Jun 2019, Atish Patra wrote:
+>>
+>>> The cpu-map DT entry in ARM can describe the CPU topology in much better
+>>> way compared to other existing approaches. RISC-V can easily adopt this
+>>> binding to represent its own CPU topology. Thus, both cpu-map DT
+>>> binding and topology parsing code can be moved to a common location so
+>>> that RISC-V or any other architecture can leverage that.
+>>> different config for the architectures that do not support them.
+>>
+>> Once v5.3-rc1 is released, let's plan to get these patches rebased and
+>> reposted and into linux-next as soon as possible.
+> 
+> These CPU topology patches are now queued for v5.4-rc1.  They should enter
+> linux-next shortly.
+> 
+> 
+> - Paul
+> 
 
-The sub-mailbox nodes added match the hard-coded mailbox configuration
-used within the TI RTOS IPC software packages. The R5F processor
-sub-systems are assumed to be running in Split mode, so a sub-mailbox
-node is used by each of the R5F cores. Only the sub-mailbox node for
-the first R5F core in each cluster is used in case of a Lockstep mode
-for that R5F cluster.
+Thanks!!
 
-NOTE:
-The GIC_SPI interrupts to be used are dynamically allocated and managed
-by the System Firmware through the ti-sci-intr irqchip driver. So, only
-valid interrupts (each cluster's User 0 IRQ output) that are used by the
-sub-mailbox devices are enabled. This is done to minimize the number of
-NavSS Interrupt Router outputs utilized.
-
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
-v2:
- - Sub-mailboxes added in board dts file instead of base dtsi file
- - Unused mailbox clusters 5 through 11 disabled
- - Patch description and title updated
-v1: https://patchwork.kernel.org/patch/11053409/
-
- .../dts/ti/k3-j721e-common-proc-board.dts     | 93 +++++++++++++++++++
- 1 file changed, 93 insertions(+)
-
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-index c680123f067c..93ae1d49dcc1 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-@@ -48,3 +48,96 @@
- 	/* UART not brought out */
- 	status = "disabled";
- };
-+
-+&mailbox0_cluster0 {
-+	interrupts = <214 0>;
-+
-+	mbox_mcu_r5fss0_core0: mbox-mcu-r5fss0-core0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_mcu_r5fss0_core1: mbox-mcu-r5fss0-core1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster1 {
-+	interrupts = <215 0>;
-+
-+	mbox_main_r5fss0_core0: mbox-main-r5fss0-core0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_main_r5fss0_core1: mbox-main-r5fss0-core1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster2 {
-+	interrupts = <216 0>;
-+
-+	mbox_main_r5fss1_core0: mbox-main-r5fss1-core0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_main_r5fss1_core1: mbox-main-r5fss1-core1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster3 {
-+	interrupts = <217 0>;
-+
-+	mbox_c66_0: mbox-c66-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+
-+	mbox_c66_1: mbox-c66-1 {
-+		ti,mbox-rx = <2 0 0>;
-+		ti,mbox-tx = <3 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster4 {
-+	interrupts = <218 0>;
-+
-+	mbox_c71_0: mbox-c71-0 {
-+		ti,mbox-rx = <0 0 0>;
-+		ti,mbox-tx = <1 0 0>;
-+	};
-+};
-+
-+&mailbox0_cluster5 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster6 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster7 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster8 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster9 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster10 {
-+	status = "disabled";
-+};
-+
-+&mailbox0_cluster11 {
-+	status = "disabled";
-+};
 -- 
-2.22.0
-
+Regards,
+Atish
