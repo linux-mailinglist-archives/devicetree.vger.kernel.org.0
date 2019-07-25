@@ -2,101 +2,237 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7B48674E4C
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 14:41:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5CB8974E60
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 14:44:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388580AbfGYMk5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 08:40:57 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:39330 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388147AbfGYMk5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 08:40:57 -0400
-Received: by mail-pf1-f195.google.com with SMTP id f17so18714567pfn.6;
-        Thu, 25 Jul 2019 05:40:57 -0700 (PDT)
+        id S2388637AbfGYMoM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 08:44:12 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:41688 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387824AbfGYMoM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 08:44:12 -0400
+Received: by mail-lf1-f65.google.com with SMTP id 62so29561915lfa.8;
+        Thu, 25 Jul 2019 05:44:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=J/ML/61niP752oM19bE97gL7v9QOrp5SMkL6UiNcqYE=;
-        b=PY7ogkWJSakBzZPZF4n2rjhfrfmSkjdugD/7CnQ2AqUGOsDzDMnWigVTfJnXOSd/nG
-         OHvI4U1bWrzJc10q0ELDmuahZITR4TYwVJ3U2w7H6z7M1oLchLHnOOLYol3n/ELqfIHN
-         +0MsLULuJdKSSZKIOOevgIyn+nmTJawaLgthP5bamahLF47jndtaNLyi+gIXTQobQVkL
-         BIoSjO7QJEgIPzV6C2CyBOvtdA8yhr4972R5ZnEwIgmCPjEarOszKBCWPqWlaGYKnNaa
-         yI1pmOeXcdlYxTV7oKBhiOVlLC7umlDnqTBUZOm4Z/uTcEkK6sKwX540uFSaK9HVZHFu
-         OWvg==
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=eknW/TOhMypD0xkCLP+fL/Yr6TV2yqEhmiGmkOzq3EY=;
+        b=SGrHQnGamBfhL9h2LIZhaX7f9KvB10ttFxb277iUL+BvpuX19DWhTckbrOHBS4+bB+
+         m9YetynEB8y7ypr4B8nFLVAGyapGKxWjoZxUPkuSEeDirKOx+jYujLjma9zqPA4jRlS3
+         GqwZ7gFTVqcgMYaMp5hSI+XykjFFYKDAt78k+JUDX26g+tebTeWpVj7PKL3tuV7FVjHN
+         JuE8XfOXKZUJ/QTUpnBfsy4KGo+SEGF8wT74VSYK0JXj9TD9qMCge0cJS9XqIsPcrFd7
+         r8QfBLlVMx5sLRIa7z3M/0UhksbtUTCZ/ao0mZ7+K907kG9CK9zFquLPd5PxSCf8UdbU
+         grbA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=J/ML/61niP752oM19bE97gL7v9QOrp5SMkL6UiNcqYE=;
-        b=YjYhDo3BE4SFpmr7ovwvKcdoCLIjldpREzmO76ZQUcZaR9HNPaTttkBl3rIKfYDAfA
-         TMIGl6TInS+Tu5nrbJHO8kAOjAM5YwXgLDNLOk+MPdlolsn9y21m6KCYDlQCYTNgtXqr
-         5E0V6KI1Nx7cFSkGphjWjOQn7t0/afJFD9GmrRBL5JjupMHmV6f7NJUH8KChPRabVF0y
-         x8F6GvlBb5AkKVxqR+HNbUW7tuqMiVTyKTfvOEyJRribVQJpTXJxTJnb59xDdZDAZ4sn
-         d3f+ilsO81DCyXY8vQYMAfAl6zibI6LpqEul26zb0h3xpomttGazBApKLiCmKMGa47qZ
-         EeuA==
-X-Gm-Message-State: APjAAAW2X71VreSNqLWvQGsb23pNn/zXDtCWk2c6DhpJ5wrtVYIGME9a
-        N7ty6BdjW34ZljQwAxGeCSE=
-X-Google-Smtp-Source: APXvYqzZVtmGtPxVfQ7kMqq6RGu0TK7XEyvGUo+ip6f/tN4SU+bt3iJP2qgOxVj7+4bnA9svqwtsOQ==
-X-Received: by 2002:aa7:9786:: with SMTP id o6mr16119807pfp.222.1564058456426;
-        Thu, 25 Jul 2019 05:40:56 -0700 (PDT)
-Received: from icarus ([2001:268:c144:ff3:774d:cc30:25fc:d4ac])
-        by smtp.gmail.com with ESMTPSA id n7sm57496320pff.59.2019.07.25.05.40.52
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 25 Jul 2019 05:40:55 -0700 (PDT)
-Date:   Thu, 25 Jul 2019 21:40:37 +0900
-From:   William Breathitt Gray <vilhelm.gray@gmail.com>
-To:     David Lechner <david@lechnology.com>
-Cc:     linux-iio@vger.kernel.org, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 0/4] new driver for TI eQEP
-Message-ID: <20190725124037.GA4802@icarus>
-References: <20190722154538.5314-1-david@lechnology.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=eknW/TOhMypD0xkCLP+fL/Yr6TV2yqEhmiGmkOzq3EY=;
+        b=mfTzABfxm8CpRRZbTq1wgaJ85AiA/btb6CDHTVLj03ucLhZVkcRTJ1s8s3/6sgsHU8
+         0TdKoaxbyEBLAnVH66usqEuCBtvOfXq3EBHYp49w3w/6ac+yROVlr8iwAgW78x6yLM7x
+         qdomT6yrbCfCjndaoC/kdkriaMD3WcCse5NXsR93fF/RGWEoQlL5r7ScqrJ++bW8CTHP
+         JVJTVwkQ00zO+V9ioJHi8Koywc7OJwFWlwWqBUEitQkn+uM7fQDMO6D7wVBB2/pdPu2B
+         gnePJJLy/bmB1t5F5eqVFwPbj+AUekWlt2c672DCJmX3LMnsJ5M3cnMmc0QDixGXLCFC
+         GOTQ==
+X-Gm-Message-State: APjAAAVsMZmJPDOmCPg6Rhp77vtzy/eIA2GjsiouLt/XgUK6VoxuScod
+        QpMsbKio7TvVtlptZc9KtkHvclMbTuHsWkPwmF8=
+X-Google-Smtp-Source: APXvYqwpmD94AweNs5qa5XTy4hbRxs01Hq1+o+UpAxFYnCbprWQUIs8wQla3LFmrbYj8sb8whiJOm8JPZnPJaxTAFyo=
+X-Received: by 2002:a19:7f17:: with SMTP id a23mr44348217lfd.49.1564058649021;
+ Thu, 25 Jul 2019 05:44:09 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190722154538.5314-1-david@lechnology.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <CGME20190723122022eucas1p1266d90873d564894bd852c20140f8474@eucas1p1.samsung.com>
+ <20190723122016.30279-1-a.swigon@partner.samsung.com> <20190723122016.30279-2-a.swigon@partner.samsung.com>
+In-Reply-To: <20190723122016.30279-2-a.swigon@partner.samsung.com>
+Reply-To: cwchoi00@gmail.com
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Date:   Thu, 25 Jul 2019 21:43:31 +0900
+Message-ID: <CAGTfZH0JE0PmiCHaT3vMrDaP0-8eZ3afyHy_zT9aFmMOGNTR8g@mail.gmail.com>
+Subject: Re: [RFC PATCH 01/11] devfreq: exynos-bus: Extract exynos_bus_profile_init()
+To:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>, inki.dae@samsung.com,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        georgi.djakov@linaro.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 22, 2019 at 10:45:34AM -0500, David Lechner wrote:
-> This series adds device tree bindings and a new counter driver for the Texas
-> Instruments Enhanced Quadrature Encoder Pulse (eQEP).
-> 
-> As mentioned in one of the commit messages, to start with, the driver only
-> supports reading the current counter value and setting the min/max values.
-> Other features can be added on an as-needed basis.
-> 
-> The only other feature I am interested in is adding is getting time data in
-> order to calculate the rotational speed of a motor. However, there probably
-> needs to be a higher level discussion of how this can fit into the counter
-> subsystem in general first.
+2019=EB=85=84 7=EC=9B=94 24=EC=9D=BC (=EC=88=98) =EC=98=A4=EC=A0=84 8:09, A=
+rtur =C5=9Awigo=C5=84 <a.swigon@partner.samsung.com>=EB=8B=98=EC=9D=B4 =EC=
+=9E=91=EC=84=B1:
+>
+> This patch adds a new static function, exynos_bus_profile_init(), extract=
+ed
+> from exynos_bus_probe().
+>
+> Signed-off-by: Artur =C5=9Awigo=C5=84 <a.swigon@partner.samsung.com>
+> ---
+>  drivers/devfreq/exynos-bus.c | 106 ++++++++++++++++++++---------------
+>  1 file changed, 60 insertions(+), 46 deletions(-)
+>
+> diff --git a/drivers/devfreq/exynos-bus.c b/drivers/devfreq/exynos-bus.c
+> index d9f377912c10..d8f1efaf2d49 100644
+> --- a/drivers/devfreq/exynos-bus.c
+> +++ b/drivers/devfreq/exynos-bus.c
+> @@ -372,12 +372,69 @@ static int exynos_bus_parse_of(struct device_node *=
+np,
+>         return ret;
+>  }
+>
+> +static int exynos_bus_profile_init(struct exynos_bus *bus,
+> +                                  struct devfreq_dev_profile *profile)
+> +{
+> +       struct device *dev =3D bus->dev;
+> +       struct devfreq_simple_ondemand_data *ondemand_data;
+> +       int ret;
+> +
+> +       /* Initialize the struct profile and governor data for parent dev=
+ice */
+> +       profile->polling_ms =3D 50;
+> +       profile->target =3D exynos_bus_target;
+> +       profile->get_dev_status =3D exynos_bus_get_dev_status;
+> +       profile->exit =3D exynos_bus_exit;
+> +
+> +       ondemand_data =3D devm_kzalloc(dev, sizeof(*ondemand_data), GFP_K=
+ERNEL);
+> +       if (!ondemand_data) {
+> +               ret =3D -ENOMEM;
+> +               goto err;
+> +       }
+> +       ondemand_data->upthreshold =3D 40;
+> +       ondemand_data->downdifferential =3D 5;
+> +
+> +       /* Add devfreq device to monitor and handle the exynos bus */
+> +       bus->devfreq =3D devm_devfreq_add_device(dev, profile,
+> +                                               DEVFREQ_GOV_SIMPLE_ONDEMA=
+ND,
+> +                                               ondemand_data);
+> +       if (IS_ERR(bus->devfreq)) {
+> +               dev_err(dev, "failed to add devfreq device\n");
+> +               ret =3D PTR_ERR(bus->devfreq);
+> +               goto err;
+> +       }
+> +
+> +       /* Register opp_notifier to catch the change of OPP  */
+> +       ret =3D devm_devfreq_register_opp_notifier(dev, bus->devfreq);
+> +       if (ret < 0) {
+> +               dev_err(dev, "failed to register opp notifier\n");
+> +               goto err;
+> +       }
+> +
+> +       /*
+> +        * Enable devfreq-event to get raw data which is used to determin=
+e
+> +        * current bus load.
+> +        */
+> +       ret =3D exynos_bus_enable_edev(bus);
+> +       if (ret < 0) {
+> +               dev_err(dev, "failed to enable devfreq-event devices\n");
+> +               goto err;
+> +       }
+> +
+> +       ret =3D exynos_bus_set_event(bus);
+> +       if (ret < 0) {
+> +               dev_err(dev, "failed to set event to devfreq-event device=
+s\n");
+> +               goto err;
+> +       }
+> +
+> +err:
+> +       return ret;
+> +}
+> +
+>  static int exynos_bus_probe(struct platform_device *pdev)
+>  {
+>         struct device *dev =3D &pdev->dev;
+>         struct device_node *np =3D dev->of_node, *node;
+>         struct devfreq_dev_profile *profile;
+> -       struct devfreq_simple_ondemand_data *ondemand_data;
+>         struct devfreq_passive_data *passive_data;
+>         struct devfreq *parent_devfreq;
+>         struct exynos_bus *bus;
+> @@ -418,52 +475,9 @@ static int exynos_bus_probe(struct platform_device *=
+pdev)
+>         if (ret < 0)
+>                 goto err;
+>
+> -       /* Initialize the struct profile and governor data for parent dev=
+ice */
+> -       profile->polling_ms =3D 50;
+> -       profile->target =3D exynos_bus_target;
+> -       profile->get_dev_status =3D exynos_bus_get_dev_status;
+> -       profile->exit =3D exynos_bus_exit;
+> -
+> -       ondemand_data =3D devm_kzalloc(dev, sizeof(*ondemand_data), GFP_K=
+ERNEL);
+> -       if (!ondemand_data) {
+> -               ret =3D -ENOMEM;
+> +       ret =3D exynos_bus_profile_init(bus, profile);
+> +       if (ret < 0)
+>                 goto err;
+> -       }
+> -       ondemand_data->upthreshold =3D 40;
+> -       ondemand_data->downdifferential =3D 5;
+> -
+> -       /* Add devfreq device to monitor and handle the exynos bus */
+> -       bus->devfreq =3D devm_devfreq_add_device(dev, profile,
+> -                                               DEVFREQ_GOV_SIMPLE_ONDEMA=
+ND,
+> -                                               ondemand_data);
+> -       if (IS_ERR(bus->devfreq)) {
+> -               dev_err(dev, "failed to add devfreq device\n");
+> -               ret =3D PTR_ERR(bus->devfreq);
+> -               goto err;
+> -       }
+> -
+> -       /* Register opp_notifier to catch the change of OPP  */
+> -       ret =3D devm_devfreq_register_opp_notifier(dev, bus->devfreq);
+> -       if (ret < 0) {
+> -               dev_err(dev, "failed to register opp notifier\n");
+> -               goto err;
+> -       }
+> -
+> -       /*
+> -        * Enable devfreq-event to get raw data which is used to determin=
+e
+> -        * current bus load.
+> -        */
+> -       ret =3D exynos_bus_enable_edev(bus);
+> -       if (ret < 0) {
+> -               dev_err(dev, "failed to enable devfreq-event devices\n");
+> -               goto err;
+> -       }
+> -
+> -       ret =3D exynos_bus_set_event(bus);
+> -       if (ret < 0) {
+> -               dev_err(dev, "failed to set event to devfreq-event device=
+s\n");
+> -               goto err;
+> -       }
+>
+>         goto out;
+>  passive:
+> --
+> 2.17.1
+>
 
-I believe exposing some sort of time data has merit. Quadrature counter
-devices in particular are commonly used for position tracking of
-automation systems, and such systems would benefit from velocity/speed
-information. So let's try to introduce that sort of functionality in this
-driver if possible.
+NACK.
 
-First, let's discuss your specific use case and requirements, and hopefully we
-can generalize it enough to be of use for future drivers. From your description,
-it sounds like you're attaching some sort of rotary encoder to the eQEP device.
-Is that correct? What sort of time data are you hoping to use; does the eQEP
-device provide a clock value, or would you be grabbing a timestamp from the
-system?
+It has not any benefit and I don't understand reason why it is necessary.
+I don't agree. Please drop it.
 
-I'm not sure yet if it would make sense to expose rotational speed directly as
-an attribute. If we were to expose just the count value and timestamp since the
-last read, that should be enough for a user to compute the delta and derive
-speed. I'll think more about this since some devices may simplify that case if
-the hardware is able to compute the speed for us.
-
-William Breathitt Gray
+--=20
+Best Regards,
+Chanwoo Choi
