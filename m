@@ -2,141 +2,282 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 94BD574EA2
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 14:57:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6441E74E85
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 14:51:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387901AbfGYM54 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 08:57:56 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:45476 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725901AbfGYM54 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 08:57:56 -0400
-Received: by mail-io1-f66.google.com with SMTP id g20so96956347ioc.12;
-        Thu, 25 Jul 2019 05:57:55 -0700 (PDT)
+        id S2388546AbfGYMve (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 08:51:34 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:40955 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388100AbfGYMve (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 08:51:34 -0400
+Received: by mail-lf1-f68.google.com with SMTP id b17so34470432lff.7;
+        Thu, 25 Jul 2019 05:51:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Zw8QWpG8j0EL+1f/JxBtB+EVg+jXBaOVcDPpFEI42q0=;
-        b=K6mND/fi/g9b/swg/IUZ42XnbpDHKj16AQz9cokoGFAaoRHMFlgIA+VRavfg0qZdrP
-         PRxBqZdTliJJ/ZrTCh61/TI4RDHCo3WwsqLyYMGieu0NET1ILmWr9n3mkBHz7YqdDX8q
-         Zu4Mz9NChgH8jm+IoKyn3iiHduRNNqpGehhSXAiFX9bdxraHF5Bj7r2cH73+w6VzlvMs
-         gsgBl5xndi9okj0QAEutDNMmmrkc7V2I8I0HOimYiOtOmb0qYSLP7YOw6fLowFsufD7s
-         hwj3AQbXw1VEzftSQpUKs21ZzJ5nH+XBKWct1kyCwsnqxnyQPwWVHyZTqNEY4kvPi8cT
-         D/jg==
+        h=mime-version:references:in-reply-to:reply-to:from:date:message-id
+         :subject:to:cc:content-transfer-encoding;
+        bh=/Xsj00ljhBsEGtdT+wj7N34Rn+B2eibrc+3bGLHtXVM=;
+        b=KrxMTzFAhzWFqULF0MbgezdmTCddBLW97aZPw3roEOocGi9PDJFCSZH+TnwulnpeHu
+         3dXe6bI5xxyAEbMIqJ7cE0SM5Oidx/BetTLPcq2iPyBBaZJUK4Fu316uFx+7yYEtQspd
+         7Wd9dy9MMx4pEro5eP9OpYcYTFB+yFEDUswcHd8NvJXkH/qh9HqcXpCcPo98DeGgu+Fz
+         yDYtoOYw+cgpWw0MTtZg/sSmqRJkcceW1Rw7N/o+FwuIIM4y7hjxM6d7sVHRcrlWfviM
+         tdoCkMRczvDnAkzxE4hW0IdrhEwqrpzzmBZ/wdXyF8q8+hkBo2kecS8AtzQnc4HOXUYY
+         4dAA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Zw8QWpG8j0EL+1f/JxBtB+EVg+jXBaOVcDPpFEI42q0=;
-        b=XJYw3g6uWzzSMWcwmgIb7ZDr5iQzBg8JY03XzKPlwjpfQz/WMe4RqU6SB/9777k3Fr
-         htJ1tZGYzjXl2xNdkRPzBFDDIEv0v1z6BqXWzs1FHPQYbWGFt6edkX26WelnnHxMffpj
-         phnX5rbgv48y+mo1dekQtT5sUILs6tUuIv9FuU0xYmpm0ADm2k6CVmxEeaeVDiKtLEWE
-         ZZ3W70KpvChyYEo5A2aNA0zi8t/jDTmoOwIxXIksaNqr4gX7zrI83CDP48QoSY9tN97c
-         qsU5xgwNKRbuL8ya1ZoD0zpm7q3FkcHt6qAnop4z24ua5Gr466NqPD6Lm+gHSujQ6Ym4
-         3qAg==
-X-Gm-Message-State: APjAAAUp1YlaDvcd+eFaRoZWPMyM7tFWmB3/XClGXhPnfWK2m+znarji
-        YDJnHkNIv+80JGSIFm0iavKXU4Er6Mws1ZhZ2QaG/O7dsN4=
-X-Google-Smtp-Source: APXvYqzHz5gmDpIh7oRLyBA4Be4IO2T4r3a6v0TWU+RMO1HPrrr8i8irOjmDme2npo3kVJOMoLPw5dECOj3YQVEcW+0=
-X-Received: by 2002:a6b:bf01:: with SMTP id p1mr51679827iof.181.1564059475453;
- Thu, 25 Jul 2019 05:57:55 -0700 (PDT)
+        h=x-gm-message-state:mime-version:references:in-reply-to:reply-to
+         :from:date:message-id:subject:to:cc:content-transfer-encoding;
+        bh=/Xsj00ljhBsEGtdT+wj7N34Rn+B2eibrc+3bGLHtXVM=;
+        b=ZVT5j4lZyHk5Z290cj99uRQ/hFuvQxsCgrVSyhSPiJCGNkpyrgoJjkAZRyP5dpZT1/
+         xvl78D10Oy9T9PwldTjVHarvnYvqn6eubZSBFntjLpBZMeS17NUaXlkYsumQ3S1tDMoa
+         ajzNHvwXoEZQRd43Clx1Lxs/IVCDbnLknCwQpYUnrBmraqDu0I0ea9vxCtRlim5uZyZe
+         SEdss2eYWVJgEPtNNHeFiMVS/ZdsfFP7BMZOI3PpQGd/Xxw9ZuynVwgNyf10P0xuc3ox
+         FZQ5bU9Chfm/xeUFOJexF/a1HWxPx1j6aXhd0MQNM6ME8IMUi/OVy5fpcn1ZJwbzmU+S
+         EbeA==
+X-Gm-Message-State: APjAAAU/W3x1jCfafWxhbgGHssldwjF631wi5GrBr4utXSsmuTGULu4t
+        cb0iZwLSP5tKuWQFtb7dmd/UOSmVnxd8Zl5uXkE=
+X-Google-Smtp-Source: APXvYqxevdANPfOlkVtzMQ882vgwBXm0Jbm6vzvza8p7XXpVnciz9Vl5i1ZzZxjAhKyc6EfZHmf4aPb+4/23UDQiUlw=
+X-Received: by 2002:a19:914c:: with SMTP id y12mr41019898lfj.108.1564059090602;
+ Thu, 25 Jul 2019 05:51:30 -0700 (PDT)
 MIME-Version: 1.0
-References: <1563289265-10977-1-git-send-email-aisheng.dong@nxp.com>
-In-Reply-To: <1563289265-10977-1-git-send-email-aisheng.dong@nxp.com>
-From:   Dong Aisheng <dongas86@gmail.com>
-Date:   Thu, 25 Jul 2019 20:48:47 +0800
-Message-ID: <CAA+hA=TkrwzWbJQu7Cc6njdQSP--u=Zf+=FcPg-wCZ=rRXoRuQ@mail.gmail.com>
-Subject: Re: [PATCH v3 00/11] clk: imx8: add new clock binding for better pm support
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     linux-clk <linux-clk@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, sboyd@kernel.org,
-        Michael Turquette <mturquette@baylibre.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
+References: <CGME20190723122024eucas1p25a480ccddaa69ee1d0f1a07960ca3f22@eucas1p2.samsung.com>
+ <20190723122016.30279-1-a.swigon@partner.samsung.com> <20190723122016.30279-5-a.swigon@partner.samsung.com>
+In-Reply-To: <20190723122016.30279-5-a.swigon@partner.samsung.com>
+Reply-To: cwchoi00@gmail.com
+From:   Chanwoo Choi <cwchoi00@gmail.com>
+Date:   Thu, 25 Jul 2019 21:50:53 +0900
+Message-ID: <CAGTfZH3Z334D3OKpBOGSfS9RoHkOX-s_2M858z1Ye2NoMtVh4g@mail.gmail.com>
+Subject: Re: [RFC PATCH 04/11] devfreq: exynos-bus: Clean up code
+To:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>, inki.dae@samsung.com,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        georgi.djakov@linaro.org,
+        Marek Szyprowski <m.szyprowski@samsung.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Rob & Stephen & Shawn,
+2019=EB=85=84 7=EC=9B=94 24=EC=9D=BC (=EC=88=98) =EC=98=A4=EC=A0=84 8:07, A=
+rtur =C5=9Awigo=C5=84 <a.swigon@partner.samsung.com>=EB=8B=98=EC=9D=B4 =EC=
+=9E=91=EC=84=B1:
+>
+> This patch adds minor improvements to the exynos-bus driver.
+>
+> Signed-off-by: Artur =C5=9Awigo=C5=84 <a.swigon@partner.samsung.com>
+> ---
+>  drivers/devfreq/exynos-bus.c | 49 ++++++++++++++++--------------------
+>  1 file changed, 22 insertions(+), 27 deletions(-)
+>
+> diff --git a/drivers/devfreq/exynos-bus.c b/drivers/devfreq/exynos-bus.c
+> index 4bb83b945bf7..412511ca7703 100644
+> --- a/drivers/devfreq/exynos-bus.c
+> +++ b/drivers/devfreq/exynos-bus.c
+> @@ -15,11 +15,10 @@
+>  #include <linux/device.h>
+>  #include <linux/export.h>
+>  #include <linux/module.h>
+> -#include <linux/of_device.h>
+> +#include <linux/of.h>
+>  #include <linux/pm_opp.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/regulator/consumer.h>
+> -#include <linux/slab.h>
+>
+>  #define DEFAULT_SATURATION_RATIO       40
+>  #define DEFAULT_VOLTAGE_TOLERANCE      2
+> @@ -256,7 +255,7 @@ static int exynos_bus_parent_parse_of(struct device_n=
+ode *np,
+>                                         struct exynos_bus *bus)
+>  {
+>         struct device *dev =3D bus->dev;
+> -       int i, ret, count, size;
+> +       int i, ret, count;
+>
+>         /* Get the regulator to provide each bus with the power */
+>         bus->regulator =3D devm_regulator_get(dev, "vdd");
+> @@ -283,8 +282,7 @@ static int exynos_bus_parent_parse_of(struct device_n=
+ode *np,
+>         }
+>         bus->edev_count =3D count;
+>
+> -       size =3D sizeof(*bus->edev) * count;
+> -       bus->edev =3D devm_kzalloc(dev, size, GFP_KERNEL);
+> +       bus->edev =3D devm_kcalloc(dev, count, sizeof(*bus->edev), GFP_KE=
+RNEL);
+>         if (!bus->edev) {
+>                 ret =3D -ENOMEM;
+>                 goto err_regulator;
+> @@ -388,7 +386,7 @@ static int exynos_bus_profile_init(struct exynos_bus =
+*bus,
+>         ondemand_data =3D devm_kzalloc(dev, sizeof(*ondemand_data), GFP_K=
+ERNEL);
+>         if (!ondemand_data) {
+>                 ret =3D -ENOMEM;
+> -               goto err;
+> +               goto out;
+>         }
+>         ondemand_data->upthreshold =3D 40;
+>         ondemand_data->downdifferential =3D 5;
+> @@ -400,14 +398,14 @@ static int exynos_bus_profile_init(struct exynos_bu=
+s *bus,
+>         if (IS_ERR(bus->devfreq)) {
+>                 dev_err(dev, "failed to add devfreq device\n");
+>                 ret =3D PTR_ERR(bus->devfreq);
+> -               goto err;
+> +               goto out;
+>         }
+>
+>         /* Register opp_notifier to catch the change of OPP  */
+>         ret =3D devm_devfreq_register_opp_notifier(dev, bus->devfreq);
+>         if (ret < 0) {
+>                 dev_err(dev, "failed to register opp notifier\n");
+> -               goto err;
+> +               goto out;
+>         }
+>
+>         /*
+> @@ -417,16 +415,16 @@ static int exynos_bus_profile_init(struct exynos_bu=
+s *bus,
+>         ret =3D exynos_bus_enable_edev(bus);
+>         if (ret < 0) {
+>                 dev_err(dev, "failed to enable devfreq-event devices\n");
+> -               goto err;
+> +               goto out;
+>         }
+>
+>         ret =3D exynos_bus_set_event(bus);
+>         if (ret < 0) {
+>                 dev_err(dev, "failed to set event to devfreq-event device=
+s\n");
+> -               goto err;
+> +               goto out;
+>         }
+>
+> -err:
+> +out:
+>         return ret;
+>  }
+>
+> @@ -446,27 +444,28 @@ static int exynos_bus_profile_init_passive(struct e=
+xynos_bus *bus,
+>         parent_devfreq =3D devfreq_get_devfreq_by_phandle(dev, 0);
+>         if (IS_ERR(parent_devfreq)) {
+>                 ret =3D -EPROBE_DEFER;
+> -               goto err;
+> +               goto out;
+>         }
+>
+>         passive_data =3D devm_kzalloc(dev, sizeof(*passive_data), GFP_KER=
+NEL);
+>         if (!passive_data) {
+>                 ret =3D -ENOMEM;
+> -               goto err;
+> +               goto out;
+>         }
+>         passive_data->parent =3D parent_devfreq;
+>
+>         /* Add devfreq device for exynos bus with passive governor */
+> -       bus->devfreq =3D devm_devfreq_add_device(dev, profile, DEVFREQ_GO=
+V_PASSIVE,
+> +       bus->devfreq =3D devm_devfreq_add_device(dev, profile,
+> +                                               DEVFREQ_GOV_PASSIVE,
+>                                                 passive_data);
+>         if (IS_ERR(bus->devfreq)) {
+>                 dev_err(dev,
+>                         "failed to add devfreq dev with passive governor\=
+n");
+>                 ret =3D PTR_ERR(bus->devfreq);
+> -               goto err;
+> +               goto out;
+>         }
+>
+> -err:
+> +out:
+>         return ret;
+>  }
+>
+> @@ -484,11 +483,11 @@ static int exynos_bus_probe(struct platform_device =
+*pdev)
+>                 return -EINVAL;
+>         }
+>
+> -       bus =3D devm_kzalloc(&pdev->dev, sizeof(*bus), GFP_KERNEL);
+> +       bus =3D devm_kzalloc(dev, sizeof(*bus), GFP_KERNEL);
+>         if (!bus)
+>                 return -ENOMEM;
+>         mutex_init(&bus->lock);
+> -       bus->dev =3D &pdev->dev;
+> +       bus->dev =3D dev;
+>         platform_set_drvdata(pdev, bus);
+>
+>         /* Parse the device-tree to get the resource information */
+> @@ -502,7 +501,7 @@ static int exynos_bus_probe(struct platform_device *p=
+dev)
+>                 goto err;
+>         }
+>
+> -       node =3D of_parse_phandle(dev->of_node, "devfreq", 0);
+> +       node =3D of_parse_phandle(np, "devfreq", 0);
+>         if (node) {
+>                 of_node_put(node);
+>                 ret =3D exynos_bus_profile_init_passive(bus, profile);
+> @@ -547,12 +546,10 @@ static int exynos_bus_resume(struct device *dev)
+>         int ret;
+>
+>         ret =3D exynos_bus_enable_edev(bus);
+> -       if (ret < 0) {
+> +       if (ret < 0)
+>                 dev_err(dev, "failed to enable the devfreq-event devices\=
+n");
+> -               return ret;
+> -       }
+>
+> -       return 0;
+> +       return ret;
+>  }
+>
+>  static int exynos_bus_suspend(struct device *dev)
+> @@ -561,12 +558,10 @@ static int exynos_bus_suspend(struct device *dev)
+>         int ret;
+>
 
-Could you help review this patchset?
-We're pretty stuck here for a long time and a lot continued work are blocked.
-We really need your kind help.
-
-The related DT patches could be found here:
-https://patchwork.kernel.org/cover/11046341/
-
-Regards
-Aisheng
-
-On Tue, Jul 16, 2019 at 11:23 PM Dong Aisheng <aisheng.dong@nxp.com> wrote:
+NACK.
+>         ret =3D exynos_bus_disable_edev(bus);
+> -       if (ret < 0) {
+> +       if (ret < 0)
+>                 dev_err(dev, "failed to disable the devfreq-event devices=
+\n");
+> -               return ret;
+> -       }
 >
-> This is a follow up of this patch series.
-> https://patchwork.kernel.org/cover/10924029/
-> [V2,0/2] clk: imx: scu: add parsing clocks from device tree support
->
-> This patch series is a preparation for the MX8 Architecture improvement.
-> As for IMX SCU based platforms like MX8QM and MX8QXP, they are comprised
-> of a couple of SS(Subsystems) while most of them within the same SS
-> can be shared. e.g. Clocks, Devices and etc.
->
-> However, current clock binding is using SW IDs for device tree to use
-> which can cause troubles in writing the common <soc>-ss-xx.dtsi file for
-> different SoCs.
->
-> This patch series aims to introduce a new binding which is more close to
-> hardware and platform independent and can makes us write a more general
-> drivers for different SCU based SoCs.
->
-> Another important thing is that on MX8, each Clock resource is associated
-> with a power domain. So we have to attach that clock device to the power
-> domain in order to make it work properly. Further more, the clock state
-> will be lost when its power domain is completely off during suspend/resume,
-> so we also introduce the clock state save&restore mechanism.
->
-> ChangeLog:
-> v2->v3:
->  * change scu clk into two cells binding
->  * add clk pm patches to ease the understand of the changes
-> v1->v2:
->  * SCU clock changed to one cell clock binding inspired by arm,scpi.txt
->    Documentation/devicetree/bindings/arm/arm,scpi.txt
->  * Add required power domain property
->  * Dropped PATCH 3&4 first, will send the updated version accordingly
->    after the binding is finally determined,
->
-> Dong Aisheng (11):
->   dt-bindings: firmware: imx-scu: new binding to parse clocks from
->     device tree
->   dt-bindings: clock: imx-lpcg: add support to parse clocks from device
->     tree
->   clk: imx: scu: add two cells binding support
->   clk: imx: scu: bypass cpu power domains
->   clk: imx: scu: allow scu clk to take device pointer
->   clk: imx: scu: add runtime pm support
->   clk: imx: scu: add suspend/resume support
->   clk: imx: imx8qxp-lpcg: add parsing clocks from device tree
->   clk: imx: lpcg: allow lpcg clk to take device pointer
->   clk: imx: clk-imx8qxp-lpcg: add runtime pm support
->   clk: imx: lpcg: add suspend/resume support
->
->  .../devicetree/bindings/arm/freescale/fsl,scu.txt  |  12 +-
->  .../devicetree/bindings/clock/imx8qxp-lpcg.txt     |  34 +++-
->  drivers/clk/imx/clk-imx8qxp-lpcg.c                 | 103 ++++++++++
->  drivers/clk/imx/clk-imx8qxp.c                      |   9 +-
->  drivers/clk/imx/clk-lpcg-scu.c                     |  41 +++-
->  drivers/clk/imx/clk-scu.c                          | 216 ++++++++++++++++++++-
->  drivers/clk/imx/clk-scu.h                          |  50 ++++-
->  include/dt-bindings/firmware/imx/rsrc.h            |  17 ++
->  8 files changed, 452 insertions(+), 30 deletions(-)
+> -       return 0;
+> +       return ret;
+>  }
+>  #endif
 >
 > --
-> 2.7.4
+> 2.17.1
 >
+
+NACK.
+
+As I already commented, It has never any benefit.
+I think that it is not usful. Please drop it.
+
+
+
+--=20
+Best Regards,
+Chanwoo Choi
