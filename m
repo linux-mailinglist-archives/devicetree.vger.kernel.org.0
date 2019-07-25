@@ -2,87 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3308C74F22
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 15:21:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3155C74F44
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 15:25:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728887AbfGYNVo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 09:21:44 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:38974 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728985AbfGYNVo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 09:21:44 -0400
-Received: by mail-wr1-f65.google.com with SMTP id x4so50730944wrt.6
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 06:21:43 -0700 (PDT)
+        id S1729787AbfGYNZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 09:25:14 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:52419 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728143AbfGYNZN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 09:25:13 -0400
+Received: by mail-wm1-f65.google.com with SMTP id s3so44990311wms.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 06:25:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version:content-transfer-encoding;
-        bh=ZUGd2jspUiG+FAZ+7RGXuDLiEmYs11194A8ngHTeyP8=;
-        b=T56ZL0tUgVYFHxu5umztZcIPeZ+Y8EP8VLpHuXaydTQ2sRYjlSuJGRW7wGkv6BaLef
-         2rmXbB+mslBhrq6hpaJjKktJCFFSUwgbuDnRy2lrDzGwgtfptspfvaPBQlwIq9p1FT29
-         nEDaROkdDc+VuBxTand+b9z8uQVgKmntkAOI9EsNO9SJdWKJfFsxEvzyi7MTrxF58qg2
-         18CPs3hYcN08R3Q14dvUsVLIjfvne6Kh6IXf3qeU4yNgaxrJ5gWLu8IycArfQ+MP1U/v
-         z1wYqGOsp9S8aZ1vMY0UrW3uMRaq+kn1Lwz8zRr16qOkrdhgYj4LmulNozig/NxmAYNr
-         5gUw==
+         :mime-version;
+        bh=6aDJ94uyyhxgWSyExse9QYlquEyyOJ9JE7SxUePnMhA=;
+        b=D5N9xFESPh6uCOxGlZuTzAA4mb7oWHRhDyTjlYtFlwi6bJdhcbNT5E59VtjKhctWnn
+         WdkJDf7qZM6dH8RhDOONw43oJBVvhk44/kZjXkF71AncceV6SsngmzIu48GsS/b2XqQo
+         l6JJY+duWSKVwsmsptTyrXnzjpENPoQ2DL8Q3TcuNpihHyUaeSlxw+onu3zGEpFbnT91
+         hHoJO8pSkk7svMhzZo2foJg5rEyD2QvGIQJTsJJXuAkUenK4O9J3vG1S7kxcH7aX10j8
+         FPkQCcXcehBkj79s3Upnry4gyUmatXOHp1WPmbIHRGmmXDWYeBwwQWKnqvK30Z9kbiR3
+         eQYg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version:content-transfer-encoding;
-        bh=ZUGd2jspUiG+FAZ+7RGXuDLiEmYs11194A8ngHTeyP8=;
-        b=d4ju1+Hfxh/MjBfiVtk/FJcoZvmuqWesOiI5+CPPcDoAcjXbHB0xJOLVQNMwSvCERV
-         h4Bb2Lpm+ny//H04J51WBai7pWo6QdAWweRJ4Ovl4LK20JA0inbt+Oo6oMXCgblB1njQ
-         6flCOXgksoUmbe8aE09TUimKzqiU5SSrBbabinxp42QNYH1TE4uUZ5yFih30GX2t4Kr4
-         zGFTY2Qwh1qx2T+QRdPZNGLR9r1u33SGOBXGFndArqbcf7UCvK1r7jxLiKhf1s84259e
-         4Vy0cwZGCWuV5z0oWDxEyESeBevQXNrpSgclh9bx0rH8dR8c9SDnnUV0AxFbnGBnfdSg
-         0WNg==
-X-Gm-Message-State: APjAAAWbE4rdKt/9gh/9+TWhO2v6l5nm5PIm7VUYO0rDPzzQb1Vr4HYB
-        EOqVFMOWo87SdJ9/EZj9BekKxQ==
-X-Google-Smtp-Source: APXvYqwwDUYgCEVbqCOrCIRQ3IOn2d2MD6ZRphM4OAuYE08YMKhoSF7VOHW0dgqJ4VhM8pmfOrVkog==
-X-Received: by 2002:a5d:4108:: with SMTP id l8mr93347933wrp.113.1564060902228;
-        Thu, 25 Jul 2019 06:21:42 -0700 (PDT)
+         :message-id:mime-version;
+        bh=6aDJ94uyyhxgWSyExse9QYlquEyyOJ9JE7SxUePnMhA=;
+        b=BDEyrylwbbC9CdrNTBL651GM6cM1mOJPdz/MBnaNSSFGsEkgZaCgWnKkPCq6QJxsM7
+         rIkQFNSQPRtmwPrDoAILwnivgUn1O/MktkZ588H5Pf0HNZiau+ytkkcgkbRQ56LJbPWy
+         esz8rWClj/GuRqfU1ZTHFNCsKTRSApC9poxZHy9cEcuExKpFXlODZ60AG/pYsJ43a7aX
+         xohn9S532IMYxnxNIf7MNXjZ0RdPwuh8uFPl/sL7FUMRAm1WSSaJLP/T9I8rZL4m+VBo
+         dhDbDpfC2I9JZdQ1J/TUtcta7JT6UHH9WhGZ1u2oVyjsidFjQC8nEI/JSnwZx60fdZ7J
+         P6ig==
+X-Gm-Message-State: APjAAAUszdgnyqPF43NGkmUKdpzxtsGa3mcQ1wK3Fm0i/M5GUBLB2DzH
+        mkKf/jBwwpEAPYQL9vRzjBiudA==
+X-Google-Smtp-Source: APXvYqzkB7UJ5b3t6lNCXexFXjlZMe0BgyF3qfh59IwBeXFA97QLF/U3xl/ncqsPvbVWUg8lQVWfpA==
+X-Received: by 2002:a7b:c8c3:: with SMTP id f3mr15113128wml.124.1564061111601;
+        Thu, 25 Jul 2019 06:25:11 -0700 (PDT)
 Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id s2sm39836778wmj.33.2019.07.25.06.21.41
+        by smtp.gmail.com with ESMTPSA id h1sm35852177wrt.20.2019.07.25.06.25.10
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 25 Jul 2019 06:21:41 -0700 (PDT)
+        Thu, 25 Jul 2019 06:25:11 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Mark Brown <broonie@kernel.org>
 Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Kevin Hilman <khilman@baylibre.com>,
         alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 1/6] ASoC: codec2codec: run callbacks in order
-In-Reply-To: <20190725130016.GC4213@sirena.org.uk>
-References: <20190724162405.6574-1-jbrunet@baylibre.com> <20190724162405.6574-2-jbrunet@baylibre.com> <20190725130016.GC4213@sirena.org.uk>
-Date:   Thu, 25 Jul 2019 15:21:40 +0200
-Message-ID: <1jlfwmxna3.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH 3/6] ASoC: codec2codec: deal with params when necessary
+In-Reply-To: <20190725125534.GB4213@sirena.org.uk>
+References: <20190724162405.6574-1-jbrunet@baylibre.com> <20190724162405.6574-4-jbrunet@baylibre.com> <20190725125534.GB4213@sirena.org.uk>
+Date:   Thu, 25 Jul 2019 15:25:10 +0200
+Message-ID: <1jimrqxn49.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu 25 Jul 2019 at 14:00, Mark Brown <broonie@kernel.org> wrote:
+On Thu 25 Jul 2019 at 13:55, Mark Brown <broonie@kernel.org> wrote:
 
-> On Wed, Jul 24, 2019 at 06:24:00PM +0200, Jerome Brunet wrote:
->> When handling dai_link events on codec to codec links, run all .startup()
->> callbacks on sinks and sources before running any .hw_params(). Same goes
->> for hw_free() and shutdown(). This is closer to the behavior of regular
->> dai links
+> On Wed, Jul 24, 2019 at 06:24:02PM +0200, Jerome Brunet wrote:
 >
-> This looks good but needs rebasing against -next due to Morimoto-san's
-> recent DAI changes:
+>> Also, params does not need to be dynamically allocated as it does not
+>> need to survive the event.
 >
->   CC      sound/soc/soc-dapm.o
-> sound/soc/soc-dapm.c: In function =E2=80=98snd_soc_dai_link_event=E2=80=
-=99:
-> sound/soc/soc-dapm.c:3857:10: error: implicit declaration of function =E2=
-=80=98soc_dai_hw_params=E2=80=99; did you mean =E2=80=98snd_soc_dai_hw_para=
-ms=E2=80=99? [-Werror=3Dimplicit-function-declaration]
->     ret =3D soc_dai_hw_params(&substream, params, source);
->           ^~~~~~~~~~~~~~~~~
->           snd_soc_dai_hw_params
+> It's dynamically allocated because it's a pretty large structure and so
+> the limited stack sizes the kernel has make it a bit uncomfortable to
+> put it on the stack.
 
-I did rebase against next and saw Morimoto-san's patchset. I must have
-messed up when formatting the patches, sorry about that. I'll resend.
+Ok, I'll revert this in v2
