@@ -2,610 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F3BEC75171
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 16:40:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F038E75198
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 16:44:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388167AbfGYOkS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 10:40:18 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:34003 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388164AbfGYOkS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 10:40:18 -0400
-Received: by mail-lj1-f196.google.com with SMTP id p17so48268026ljg.1;
-        Thu, 25 Jul 2019 07:40:15 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=rRtKwLAv+HGdCjSEwGiot0Z0x7eUFWZTIZUWFY+cWR0=;
-        b=IfmT6be4nlhH9Srjk9i2gdOdERk2WFbuXIJ+hoQhemJy+G6RXHjsyMqrKbshfOtU8F
-         5TwOL5lC8bxzSNi/YTw7pVNG2VwREAJQ+oeRXiorM+cyGfZn0/VXc3p0D/xbOGq5H4bF
-         ziZM6v7/AzIqpjXq5JTVDU5cyBRYTm48CTGVUC2MxpBg0dLyTBKPG0IRBJwt7qEV5ff8
-         f/YnRz0K6KG8myDJ8373OnW7/4Mk4QLetSY1UnCnWD3k4517GEk8VSveIrhDDrJLIjZs
-         t6ZizajXF1Qx49W5Lokwdmo8wvS0x3iFMTGriBrJTz5hLVWzxS+FnYeKWeeoN+IoQlRN
-         LX7w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=rRtKwLAv+HGdCjSEwGiot0Z0x7eUFWZTIZUWFY+cWR0=;
-        b=OoOKXL1qY4MEM79Ok7BmeOPj1CP+EU6DawOXMklcOHjoRE2Hdxz5akYH+rAO79+PyO
-         bKHYIcetZ9eBezTLWC+Gu9FyQfguiT6kcTQcux5IKtfhTo+NMzaex4iT+u3thRCKsCIu
-         qMt9nrM/41vBNQDMZAMHJWGF2DXRS47MX1EFTnp9WeMLkxsDDa12u53cE9k1eCH07xcA
-         BRKq5L6Hqwi/nI22jcqktpmn/+Mil6kBSNb+a881J0UKb10UxBXFusm4tcOTNsffENKe
-         22jq0SqjJOI6NFaloXcLfH1a4+Ek7Tl5qTWoMbahN35LzXjXz3/z1TJ2DZxLg4rn7rvt
-         iT8g==
-X-Gm-Message-State: APjAAAVVYq88pgLxd2UNoUuR3LFewAihyFQMtDUk/5HaOfY4M102aRBR
-        lNFE1rRwAXi1ruarLysCUos=
-X-Google-Smtp-Source: APXvYqzCo6DsJQRKk0eHl0uRdcNPtoN3YDbSRTDtIGBC6/FKJLeCExjSDu/v7KfKcQ01dUvUOD03Pg==
-X-Received: by 2002:a2e:9753:: with SMTP id f19mr46074547ljj.113.1564065614686;
-        Thu, 25 Jul 2019 07:40:14 -0700 (PDT)
-Received: from localhost ([188.170.223.67])
-        by smtp.gmail.com with ESMTPSA id b11sm9143315ljf.8.2019.07.25.07.40.11
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Thu, 25 Jul 2019 07:40:12 -0700 (PDT)
-Date:   Thu, 25 Jul 2019 17:40:09 +0300
-From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
-To:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1728692AbfGYOn1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 10:43:27 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:50363 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727625AbfGYOn1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 10:43:27 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190725144325euoutp014033600e231a88fe4f86cb415d31ec2c~0rZA5I7_42945929459euoutp01j
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 14:43:25 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190725144325euoutp014033600e231a88fe4f86cb415d31ec2c~0rZA5I7_42945929459euoutp01j
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1564065805;
+        bh=fTxsTItMIO6fk/T/Y/JJ5cFwuR3QiqOaNKtLjYnGyLk=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=XRHtCxDONwi74D0Km6mjvW2+TKkaJgV9GypOJ3Y7l/mnPZLO7vL3zKluDnNl1ook0
+         GtlgsM8YLDhXiMfUkfHQuH11FJ8VwJhN/N5/tSob+6TKmlMsgmCWt1L8+BIJWzH2mE
+         dKhMnmer50Mq055wGlQBsvIFAyozpzOihVkGJiiM=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190725144325eucas1p18cf1b48a38ea5edc5ca14cfb02667bd9~0rZAcUfzw0610606106eucas1p1q;
+        Thu, 25 Jul 2019 14:43:25 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id FA.CA.04377.C00C93D5; Thu, 25
+        Jul 2019 15:43:24 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190725144324eucas1p211802237e336852ea3d1aa003e4d5d04~0rY-ufs-E1530115301eucas1p2j;
+        Thu, 25 Jul 2019 14:43:24 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190725144324eusmtrp1574d00d9799d7541f670120b75db0286~0rY-gBYh00712207122eusmtrp1g;
+        Thu, 25 Jul 2019 14:43:24 +0000 (GMT)
+X-AuditID: cbfec7f4-113ff70000001119-8f-5d39c00c32a1
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 4C.2E.04146.B00C93D5; Thu, 25
+        Jul 2019 15:43:24 +0100 (BST)
+Received: from AMDC3218.DIGITAL.local (unknown [106.120.51.18]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190725144323eusmtip1e5504cd19a90caef2209149ce0b9ebce~0rY_yRF4u0146301463eusmtip1j;
+        Thu, 25 Jul 2019 14:43:23 +0000 (GMT)
+From:   k.konieczny@partner.samsung.com
+To:     k.konieczny@partner.samsung.com
+Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>
-Subject: Re: [RFC PATCH v2 0/4] Input: mpr121-polled: Add polled driver for
- MPR121
-Message-ID: <20190725144009.GA27432@penguin>
-References: <1558098773-47416-1-git-send-email-michal.vokac@ysoft.com>
- <20190521053705.GI183429@dtor-ws>
- <ef172b24-cd27-5bb0-d8b1-718f835d0647@ysoft.com>
- <20190725085753.GA26665@penguin>
- <ac436c3c-fa89-f777-85b2-f38adf842e10@ysoft.com>
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Subject: [PATCH v4 0/5] add coupled regulators for Exynos5422/5800
+Date:   Thu, 25 Jul 2019 16:42:55 +0200
+Message-Id: <20190725144300.25014-1-k.konieczny@partner.samsung.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <ac436c3c-fa89-f777-85b2-f38adf842e10@ysoft.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Brightmail-Tracker: H4sIAAAAAAAAA02Sa0hTYRjHe3d2do6y2XEKvmmYLYQM1OyCrxSieWFfhKg+dEFq5UElrzte
+        WkGZZV5S08SczkwrUdRS5zWnZrqcZma2vBXmwPKSFpQL0sy17Vj57ff8n+f/8PzhITHhFG5P
+        hkfF0dIoSYSIZ8lt7l0ecuV3eQXvvtnjjurltTga08/i6J76FY6yOw0A3ZpewNDQUB2BBpMX
+        CaScHsWRtq2Yh5ay1ADJhzo56JF6kkDlY8Mc9P5qJQ8t/hzkoJQONYHWRuu5qEHXy/MRimtK
+        aoBYWZXOEzc8vCJ+9rWdI85urAJizXgLR7ykdDxMnLQ8GEJHhCfQUnfvM5Zhmpx2ImZceKHk
+        xxRIAimbM4AFCal9sHhghcgAlqSQqgRwoqmMwxZ6AJOGZzC2WAKwYuSXcYw0W7R9nqxeAaDq
+        7Szxz5GiL8JNe3mUM2yUzxMmtqV2wLwPBeZNGLXMhXXaenPDhjoE07sqzcw1GuSK+5iJBZQ/
+        VKkmAXvgNpjequKyujXsL/xoZsyoX2tSmJdCapSAfdV1HNbgD+UvvnNZtoGfNY0Ey1vhQF7m
+        up4IP5VlE6z5OoC61G/rjQOwRzOMm3JilAusbXNnZV/4JDUNsPGt4PgXa/YGK3i72RTMJAtg
+        2g0hO+0KSwwvcZYdYIbh8TqL4ZunqeaIQioY5j5YwHKAU9GGZEUbkhX9v6EUYFXAjo5nIkNp
+        Zk8UnejGSCKZ+KhQt3PRkUpgfLuBNY2+FbStnu0GFAlEfMHOKq9gIS5JYGSR3QCSmMhW0NRq
+        lAQhEtlFWhp9WhofQTPdwIHkiuwElzbpTgmpUEkcfZ6mY2jp3y6HtLBPAmEG/m+D7PiK1aw+
+        JLVFI5d5xxUe6XZ4l6tyLF/NSppPqM7vcVHqBrUBPgOOFRkdBVZ+eHvu7POsEcrudUTm3MTl
+        UmdRYFD2Xa2bYq9Hf/Sx5PhYBeXnELj9hDv/Du4tZ7aEBqliDUpyZF43l59T6Rl+NJjvu39U
+        0d7l1DMTIOIyYRKPXZiUkfwBwuj3Z3IDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrKIsWRmVeSWpSXmKPExsVy+t/xu7o8ByxjDRqeM1psnLGe1eL6l+es
+        FvOPnGO16Nv3n9Gi//FrZovz5zewW5xtesNusenxNVaLy7vmsFl87j3CaDHj/D4mi7VH7rJb
+        LL1+kcniduMKNos3P84yWbTuPcJu8e/aRhaLzQ+OsTkIeayZt4bRY9OqTjaPzUvqPQ6+28Pk
+        0bdlFaPH8RvbmTw+b5ILYI/SsynKLy1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3
+        s0lJzcksSy3St0vQyzg+YQ97wQ2hinlf7zM2MLbydzFycEgImEhcPmHexcjFISSwlFHiXesH
+        9i5GTqC4tETj6dVMELawxJ9rXWwQRZ8YJS5NOc4KkmATUJXYMuMlWIOIgLLE5HvTmUGKmAU6
+        WSVWPDnCBpIQFnCS6DywAqyIBahhxuxFzCA2r4CLxO7ddxkhNshLdO7YzQIRF5Q4OfMJmM0M
+        FG/eOpt5AiPfLCSpWUhSCxiZVjGKpJYW56bnFhvqFSfmFpfmpesl5+duYgRG2bZjPzfvYLy0
+        MfgQowAHoxIP74XllrFCrIllxZW5hxglOJiVRHi37gAK8aYkVlalFuXHF5XmpBYfYjQFOnYi
+        s5Rocj4wAeSVxBuaGppbWBqaG5sbm1koifN2CByMERJITyxJzU5NLUgtgulj4uCUamCsl9/2
+        TW4Ol888OwO/7MIHe5ikAwse71vZeG1xrSff/qAL8fO4f8hX+u7NOvvqtveL8wurWoTWHmg2
+        DD9dutcp9ZJDE/Pp+qSLgraGanfVDolttZmebbKYkWeyN8s0dz6fgzsnPN83x+96+fWiv7Pn
+        2VyakdnQYxW+lacj88ijYxoPHv2cELtPiaU4I9FQi7moOBEA3JUTeMgCAAA=
+X-CMS-MailID: 20190725144324eucas1p211802237e336852ea3d1aa003e4d5d04
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190725144324eucas1p211802237e336852ea3d1aa003e4d5d04
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190725144324eucas1p211802237e336852ea3d1aa003e4d5d04
+References: <CGME20190725144324eucas1p211802237e336852ea3d1aa003e4d5d04@eucas1p2.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 25, 2019 at 02:58:02PM +0200, Michal Vokáč wrote:
-> On 25. 07. 19 10:57, Dmitry Torokhov wrote:
-> > Hi Michal,
-> > 
-> > On Tue, May 21, 2019 at 08:51:17AM +0200, Michal Vokáč wrote:
-> > > On 21. 05. 19 7:37, Dmitry Torokhov wrote:
-> > > > Hi Michal,
-> > > > 
-> > > > On Fri, May 17, 2019 at 03:12:49PM +0200, Michal Vokáč wrote:
-> > > > > Hi,
-> > > > > 
-> > > > > I have to deal with a situation where we have a custom i.MX6 based
-> > > > > platform in production that uses the MPR121 touchkey controller.
-> > > > > Unfortunately the chip is connected using only the I2C interface.
-> > > > > The interrupt line is not used. Back in 2015 (Linux v3.14), my
-> > > > > colleague modded the existing mpr121_touchkey.c driver to use polling
-> > > > > instead of interrupt.
-> > > > > 
-> > > > > For quite some time yet I am in a process of updating the product from
-> > > > > the ancient Freescale v3.14 kernel to the latest mainline and pushing
-> > > > > any needed changes upstream. The DT files for our imx6dl-yapp4 platform
-> > > > > already made it into v5.1-rc.
-> > > > > 
-> > > > > I rebased and updated our mpr121 patch to the latest mainline.
-> > > > > It is created as a separate driver, similarly to gpio_keys_polled.
-> > > > > 
-> > > > > The I2C device is quite susceptible to ESD. An ESD test quite often
-> > > > > causes reset of the chip or some register randomly changes its value.
-> > > > > The [PATCH 3/4] adds a write-through register cache. With the cache
-> > > > > this state can be detected and the device can be re-initialied.
-> > > > > 
-> > > > > The main question is: Is there any chance that such a polled driver
-> > > > > could be accepted? Is it correct to implement it as a separate driver
-> > > > > or should it be done as an option in the existing driver? I can not
-> > > > > really imagine how I would do that though..
-> > > > > 
-> > > > > There are also certain worries that the MPR121 chip may no longer be
-> > > > > available in nonspecifically distant future. In case of EOL I will need
-> > > > > to add a polled driver for an other touchkey chip. May it be already
-> > > > > in mainline or a completely new one.
-> > > > 
-> > > > I think that my addition of input_polled_dev was ultimately a wrong
-> > > > thing to do. I am looking into enabling polling mode for regular input
-> > > > devices as we then can enable polling mode in existing drivers.
-> > > 
-> > > OK, that sounds good. Especially when one needs to switch from one chip
-> > > to another that is already in tree, the need for a whole new polling
-> > > driver is eliminated.
-> > 
-> > Could you please try the patch below and see if it works for your use
-> > case? Note that I have not tried running it, but it compiles so it must
-> > be good ;)
-> 
-> Hi Dmitry,
-> Thank you very much for the patch!
-> I gave it a shot and it seems you forgot to add the input-poller.h file
-> to the patch.. it does not compile on my side :(
+Hi,
 
-Oops ;) Please see the updated patch below.
+The main purpose of this patch series is to add coupled regulators for
+Exynos5422/5800 to keep constrain on voltage difference between vdd_arm
+and vdd_int to be at most 300mV. In exynos-bus instead of using
+regulator_set_voltage_tol() with default voltage tolerance it should be
+used regulator_set_voltage_triplet() with volatege range, and this is
+already present in opp/core.c code, so it can be reused. While at this,
+move setting regulators into opp/core.
 
-> 
-> > Input: add support for polling to input devices
-> > 
-> > From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-> > 
-> > Separating "normal" and "polled" input devices was a mistake, as often we want
-> > to allow the very same device work on both interrupt-driven and polled mode,
-> > depending on the board on which the device is used.
-> > 
-> > This introduces new APIs:
-> > 
-> > - input_setup_polling
-> > - input_set_poll_interval
-> > - input_set_min_poll_interval
-> > - input_set_max_poll_interval
-> > 
-> > These new APIs allow switching an input device into polled mode with sysfs
-> > attributes matching drivers using input_polled_dev APIs that will be eventually
-> > removed.
-> 
-> After reading this I am not really sure what else needs to be done
-> to test/use the poller. I suspect I need to modify the input device
-> driver (mpr121_touchkey.c in my case) like this:
-> 
-> If the interrupt gpio is not provided in DT, the device driver probe
-> function should:
->  - not request the threaded interrupt
->  - call input_setup_polling and provide it with poll_fn
->    Can the mpr_touchkey_interrupt function be used as is for this
->    purpose? The only problem I see is it returns IRQ_HANDLED.
+This patchset was tested on Odroid XU3.
 
-I'd factor out code suitable for polling from mpr_touchkey_interrupt()
-and then do
+The DTS coupled regulators patch depends on previous patches.
 
-static irqreturn_t mpr_touchkey_interrupt(...)
-{
-	mpr_touchkey_report(...);
-	return IRQ_HANDLED;
-}
+Changes:
+v4:
+- removed "opp: core: add regulators enable and disable" from patchset
+  as it was applied by Viresh Kumar and changed cover letter
+- fix patch "devfreq: exynos-bus: correct clock enable sequence" to
+  correct order of enable/disable
+- removed unrelated changes in "devfreq: exynos-bus: convert to use
+  dev_pm_opp_set_rate()"
+- added new patch "devfreq: exynos-bus: remove exynos_bus_passive_target()"
+  as suggested by Chanwoo Choi
+v3:
+- added new exynos-bus patch to correct clock and regulator enabling
+  and disabling sequence as suggested by Chanwoo Choi
+- corrected error path in enable and improved commit message in opp/core
+- improve comment in devfreq/exynos-bus.c before devfreq_recommended_opp()
+- change cover letter as there is new patch
+- added note before Signed-off-by in 4th patch
+v2:
+- improve regulators enable/disable code in opp/core as suggested by
+  Viresh Kumar
+- add new patch for remove unused dt-bindings as suggested by Krzysztof
+  Kozlowski
 
-> 
->  - set the poll interval + min/max interval
->  - register the input device as usual (input_register_device)
+Kamil Konieczny (4):
+  devfreq: exynos-bus: correct clock enable sequence
+  devfreq: exynos-bus: convert to use dev_pm_opp_set_rate()
+  dt-bindings: devfreq: exynos-bus: remove unused property
+  devfreq: exynos-bus: remove exynos_bus_passive_target()
 
-Yes.
+Marek Szyprowski (1):
+  ARM: dts: exynos: add initial data for coupled regulators for
+    Exynos5422/5800
 
->  - What about the device_init_wakeup? It does not make sense for
->    polling I think.
-
-We can either trust DT not to have the property for polled case, or add
-more checks. I think we should simply trust DT. Even if it is wrong it
-will not cause any issues.
-
-> 
-> Just nitpicking - I also ran checkpatch.pl on the patch and it spits
-> out some warnings. I am not sure whether some of those should not
-> be fixed.
-
-I think in this particular case checkpatch is full of it.
-
-Thanks.
-
-
-Input: add support for polling to input devices
-
-From: Dmitry Torokhov <dmitry.torokhov@gmail.com>
-
-Separating "normal" and "polled" input devices was a mistake, as often we want
-to allow the very same device work on both interrupt-driven and polled mode,
-depending on the board on which the device is used.
-
-This introduces new APIs:
-
-- input_setup_polling
-- input_set_poll_interval
-- input_set_min_poll_interval
-- input_set_max_poll_interval
-
-These new APIs allow switching an input device into polled mode with sysfs
-attributes matching drivers using input_polled_dev APIs that will be eventually
-removed.
-
-Signed-off-by: Dmitry Torokhov <dmitry.torokhov@gmail.com>
----
- drivers/input/Makefile       |    2 
- drivers/input/input-poller.c |  207 ++++++++++++++++++++++++++++++++++++++++++
- drivers/input/input-poller.h |   18 ++++
- drivers/input/input.c        |   36 ++++++-
- include/linux/input.h        |   10 ++
- 5 files changed, 265 insertions(+), 8 deletions(-)
- create mode 100644 drivers/input/input-poller.c
- create mode 100644 drivers/input/input-poller.h
-
-diff --git a/drivers/input/Makefile b/drivers/input/Makefile
-index 40de6a7be641..e35650930371 100644
---- a/drivers/input/Makefile
-+++ b/drivers/input/Makefile
-@@ -6,7 +6,7 @@
- # Each configuration option enables a list of files.
- 
- obj-$(CONFIG_INPUT)		+= input-core.o
--input-core-y := input.o input-compat.o input-mt.o ff-core.o
-+input-core-y := input.o input-compat.o input-mt.o input-poller.o ff-core.o
- 
- obj-$(CONFIG_INPUT_FF_MEMLESS)	+= ff-memless.o
- obj-$(CONFIG_INPUT_POLLDEV)	+= input-polldev.o
-diff --git a/drivers/input/input-poller.c b/drivers/input/input-poller.c
-new file mode 100644
-index 000000000000..008d6f362d60
---- /dev/null
-+++ b/drivers/input/input-poller.c
-@@ -0,0 +1,207 @@
-+// SPDX-License-Identifier: GPL-2.0-only
-+/*
-+ * Support for polling mode for input devices.
-+ */
-+
-+#include <linux/device.h>
-+#include <linux/input.h>
-+#include <linux/jiffies.h>
-+#include <linux/mutex.h>
-+#include <linux/slab.h>
-+#include <linux/types.h>
-+#include <linux/workqueue.h>
-+#include "input-poller.h"
-+
-+struct input_dev_poller {
-+	void (*poll)(struct input_dev *dev);
-+
-+	unsigned int poll_interval; /* msec */
-+	unsigned int poll_interval_max; /* msec */
-+	unsigned int poll_interval_min; /* msec */
-+
-+	struct input_dev *input;
-+	struct delayed_work work;
-+};
-+
-+static void input_dev_poller_queue_work(struct input_dev_poller *poller)
-+{
-+	unsigned long delay;
-+
-+	delay = msecs_to_jiffies(poller->poll_interval);
-+	if (delay >= HZ)
-+		delay = round_jiffies_relative(delay);
-+
-+	queue_delayed_work(system_freezable_wq, &poller->work, delay);
-+}
-+
-+static void input_dev_poller_work(struct work_struct *work)
-+{
-+	struct input_dev_poller *poller =
-+		container_of(work, struct input_dev_poller, work.work);
-+
-+	poller->poll(poller->input);
-+	input_dev_poller_queue_work(poller);
-+}
-+
-+void input_dev_poller_finalize(struct input_dev_poller *poller)
-+{
-+	if (!poller->poll_interval)
-+		poller->poll_interval = 500;
-+	if (!poller->poll_interval_max)
-+		poller->poll_interval_max = poller->poll_interval;
-+}
-+
-+void input_dev_poller_start(struct input_dev_poller *poller)
-+{
-+	/* Only start polling if polling is enabled */
-+	if (poller->poll_interval > 0) {
-+		poller->poll(poller->input);
-+		input_dev_poller_queue_work(poller);
-+	}
-+}
-+
-+void input_dev_poller_stop(struct input_dev_poller *poller)
-+{
-+	cancel_delayed_work_sync(&poller->work);
-+}
-+
-+int input_setup_polling(struct input_dev *dev,
-+			void (*poll_fn)(struct input_dev *dev))
-+{
-+	struct input_dev_poller *poller;
-+
-+	poller = kzalloc(sizeof(*poller), GFP_KERNEL);
-+	if (!poller) {
-+		dev_err(dev->dev.parent ?: &dev->dev,
-+			"%s: unable to allocate poller structure\n", __func__);
-+		return -ENOMEM;
-+	}
-+
-+	INIT_DELAYED_WORK(&poller->work, input_dev_poller_work);
-+	poller->poll = poll_fn;
-+
-+	dev->poller = poller;
-+	return 0;
-+}
-+EXPORT_SYMBOL(input_setup_polling);
-+
-+static bool input_dev_ensure_poller(struct input_dev *dev)
-+{
-+	if (!dev->poller) {
-+		dev_err(dev->dev.parent ?: &dev->dev,
-+			"poller structure has not been set up\n");
-+		return false;
-+	}
-+
-+	return true;
-+}
-+
-+void input_set_poll_interval(struct input_dev *dev, unsigned int interval)
-+{
-+	if (input_dev_ensure_poller(dev))
-+		dev->poller->poll_interval = interval;
-+}
-+EXPORT_SYMBOL(input_set_poll_interval);
-+
-+void input_set_min_poll_interval(struct input_dev *dev, unsigned int interval)
-+{
-+	if (input_dev_ensure_poller(dev))
-+		dev->poller->poll_interval_min = interval;
-+}
-+EXPORT_SYMBOL(input_set_min_poll_interval);
-+
-+void input_set_max_poll_interval(struct input_dev *dev, unsigned int interval)
-+{
-+	if (input_dev_ensure_poller(dev))
-+		dev->poller->poll_interval_max = interval;
-+}
-+EXPORT_SYMBOL(input_set_max_poll_interval);
-+
-+/* SYSFS interface */
-+
-+static ssize_t input_dev_get_poll_interval(struct device *dev,
-+					   struct device_attribute *attr,
-+					   char *buf)
-+{
-+	struct input_dev *input = to_input_dev(dev);
-+
-+	return sprintf(buf, "%d\n", input->poller->poll_interval);
-+}
-+
-+static ssize_t input_dev_set_poll_interval(struct device *dev,
-+					   struct device_attribute *attr,
-+					   const char *buf, size_t count)
-+{
-+	struct input_dev *input = to_input_dev(dev);
-+	struct input_dev_poller *poller = input->poller;
-+	unsigned int interval;
-+	int err;
-+
-+	err = kstrtouint(buf, 0, &interval);
-+	if (err)
-+		return err;
-+
-+	if (interval < poller->poll_interval_min)
-+		return -EINVAL;
-+
-+	if (interval > poller->poll_interval_max)
-+		return -EINVAL;
-+
-+	mutex_lock(&input->mutex);
-+
-+	poller->poll_interval = interval;
-+
-+	if (input->users) {
-+		cancel_delayed_work_sync(&poller->work);
-+		if (poller->poll_interval > 0)
-+			input_dev_poller_queue_work(poller);
-+	}
-+
-+	mutex_unlock(&input->mutex);
-+
-+	return count;
-+}
-+
-+static DEVICE_ATTR(poll, S_IRUGO | S_IWUSR,
-+		   input_dev_get_poll_interval, input_dev_set_poll_interval);
-+
-+static ssize_t input_dev_get_poll_max(struct device *dev,
-+				      struct device_attribute *attr, char *buf)
-+{
-+	struct input_dev *input = to_input_dev(dev);
-+
-+	return sprintf(buf, "%d\n", input->poller->poll_interval_max);
-+}
-+
-+static DEVICE_ATTR(max, S_IRUGO, input_dev_get_poll_max, NULL);
-+
-+static ssize_t input_dev_get_poll_min(struct device *dev,
-+				     struct device_attribute *attr, char *buf)
-+{
-+	struct input_dev *input = to_input_dev(dev);
-+
-+	return sprintf(buf, "%d\n", input->poller->poll_interval_min);
-+}
-+
-+static DEVICE_ATTR(min, S_IRUGO, input_dev_get_poll_min, NULL);
-+
-+static umode_t input_poller_attrs_visible(struct kobject *kobj,
-+					  struct attribute *attr, int n)
-+{
-+	struct device *dev = kobj_to_dev(kobj);
-+	struct input_dev *input = to_input_dev(dev);
-+
-+	return input->poller ? attr->mode : 0;
-+}
-+
-+static struct attribute *input_poller_attrs[] = {
-+	&dev_attr_poll.attr,
-+	&dev_attr_max.attr,
-+	&dev_attr_min.attr,
-+	NULL
-+};
-+
-+struct attribute_group input_poller_attribute_group = {
-+	.is_visible	= input_poller_attrs_visible,
-+	.attrs		= input_poller_attrs,
-+};
-diff --git a/drivers/input/input-poller.h b/drivers/input/input-poller.h
-new file mode 100644
-index 000000000000..e3fca0be1d32
---- /dev/null
-+++ b/drivers/input/input-poller.h
-@@ -0,0 +1,18 @@
-+/* SPDX-License-Identifier: GPL-2.0-only */
-+#ifndef _INPUT_POLLER_H
-+#define _INPUT_POLLER_H
-+
-+/*
-+ * Support for polling mode for input devices.
-+ */
-+#include <linux/sysfs.h>
-+
-+struct input_dev_poller;
-+
-+void input_dev_poller_finalize(struct input_dev_poller *poller);
-+void input_dev_poller_start(struct input_dev_poller *poller);
-+void input_dev_poller_stop(struct input_dev_poller *poller);
-+
-+extern struct attribute_group input_poller_attribute_group;
-+
-+#endif /* _INPUT_POLLER_H */
-diff --git a/drivers/input/input.c b/drivers/input/input.c
-index 7494a0dede79..c08aa3596144 100644
---- a/drivers/input/input.c
-+++ b/drivers/input/input.c
-@@ -24,6 +24,7 @@
- #include <linux/mutex.h>
- #include <linux/rcupdate.h>
- #include "input-compat.h"
-+#include "input-poller.h"
- 
- MODULE_AUTHOR("Vojtech Pavlik <vojtech@suse.cz>");
- MODULE_DESCRIPTION("Input core");
-@@ -603,20 +604,31 @@ int input_open_device(struct input_handle *handle)
- 
- 	handle->open++;
- 
--	if (!dev->users++ && dev->open)
--		retval = dev->open(dev);
-+	if (dev->users++) {
-+		/*
-+		 * Device is already opened, so we can exit immediately and
-+		 * report success.
-+		 */
-+		goto out;
-+	}
- 
--	if (retval) {
--		dev->users--;
--		if (!--handle->open) {
-+	if (dev->open) {
-+		retval = dev->open(dev);
-+		if (retval) {
-+			dev->users--;
-+			handle->open--;
- 			/*
- 			 * Make sure we are not delivering any more events
- 			 * through this handle
- 			 */
- 			synchronize_rcu();
-+			goto out;
- 		}
- 	}
- 
-+	if (dev->poller)
-+		input_dev_poller_start(dev->poller);
-+
-  out:
- 	mutex_unlock(&dev->mutex);
- 	return retval;
-@@ -655,8 +667,13 @@ void input_close_device(struct input_handle *handle)
- 
- 	__input_release_device(handle);
- 
--	if (!--dev->users && dev->close)
--		dev->close(dev);
-+	if (!--dev->users) {
-+		if (dev->poller)
-+			input_dev_poller_stop(dev->poller);
-+
-+		if (dev->close)
-+			dev->close(dev);
-+	}
- 
- 	if (!--handle->open) {
- 		/*
-@@ -1502,6 +1519,7 @@ static const struct attribute_group *input_dev_attr_groups[] = {
- 	&input_dev_attr_group,
- 	&input_dev_id_attr_group,
- 	&input_dev_caps_attr_group,
-+	&input_poller_attribute_group,
- 	NULL
- };
- 
-@@ -1511,6 +1529,7 @@ static void input_dev_release(struct device *device)
- 
- 	input_ff_destroy(dev);
- 	input_mt_destroy_slots(dev);
-+	kfree(dev->poller);
- 	kfree(dev->absinfo);
- 	kfree(dev->vals);
- 	kfree(dev);
-@@ -2175,6 +2194,9 @@ int input_register_device(struct input_dev *dev)
- 	if (!dev->setkeycode)
- 		dev->setkeycode = input_default_setkeycode;
- 
-+	if (dev->poller)
-+		input_dev_poller_finalize(dev->poller);
-+
- 	error = device_add(&dev->dev);
- 	if (error)
- 		goto err_free_vals;
-diff --git a/include/linux/input.h b/include/linux/input.h
-index e95a439d8bd5..10346211ff15 100644
---- a/include/linux/input.h
-+++ b/include/linux/input.h
-@@ -21,6 +21,8 @@
- #include <linux/timer.h>
- #include <linux/mod_devicetable.h>
- 
-+struct input_dev_poller;
-+
- /**
-  * struct input_value - input value representation
-  * @type: type of value (EV_KEY, EV_ABS, etc)
-@@ -156,6 +158,8 @@ struct input_dev {
- 
- 	struct ff_device *ff;
- 
-+	struct input_dev_poller *poller;
-+
- 	unsigned int repeat_key;
- 	struct timer_list timer;
- 
-@@ -372,6 +376,12 @@ void input_unregister_device(struct input_dev *);
- 
- void input_reset_device(struct input_dev *);
- 
-+int input_setup_polling(struct input_dev *dev,
-+			void (*poll_fn)(struct input_dev *dev));
-+void input_set_poll_interval(struct input_dev *dev, unsigned int interval);
-+void input_set_min_poll_interval(struct input_dev *dev, unsigned int interval);
-+void input_set_max_poll_interval(struct input_dev *dev, unsigned int interval);
-+
- int __must_check input_register_handler(struct input_handler *);
- void input_unregister_handler(struct input_handler *);
- 
-
+ .../bindings/devfreq/exynos-bus.txt           |   2 -
+ arch/arm/boot/dts/exynos5420.dtsi             |  34 ++--
+ arch/arm/boot/dts/exynos5422-odroid-core.dtsi |   4 +
+ arch/arm/boot/dts/exynos5800-peach-pi.dts     |   4 +
+ arch/arm/boot/dts/exynos5800.dtsi             |  32 ++--
+ drivers/devfreq/exynos-bus.c                  | 153 +++++-------------
+ 6 files changed, 78 insertions(+), 151 deletions(-)
 
 -- 
-Dmitry
+2.22.0
+
