@@ -2,91 +2,171 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4096874EB3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 15:00:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E427074F67
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 15:28:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729903AbfGYNAV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 09:00:21 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:40332 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725901AbfGYNAV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 09:00:21 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=cwFiHQ+8lVnRhkC8EwJXQy9RvFDx6GKVTnbtr172hKw=; b=ntrHtbgTrK5RrFAcAKNPtbEk3
-        hmGXUqTzSj2WgIAxbRXdUcV+DuGJBu9t7rYLai2X11kbG5uggytpi7YflTWu8UsY3LqosdntXd3Wu
-        1u8GqHV3tp6ykZ/SPq7OJ41vTJZnTEClmjCK8dyUsirsOJOYox59O+WG+UEWLn9xVTTzs=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hqdM1-0002p8-II; Thu, 25 Jul 2019 13:00:17 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 06E062742B52; Thu, 25 Jul 2019 14:00:16 +0100 (BST)
-Date:   Thu, 25 Jul 2019 14:00:16 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-amlogic@lists.infradead.org
-Subject: Re: [PATCH 1/6] ASoC: codec2codec: run callbacks in order
-Message-ID: <20190725130016.GC4213@sirena.org.uk>
-References: <20190724162405.6574-1-jbrunet@baylibre.com>
- <20190724162405.6574-2-jbrunet@baylibre.com>
+        id S1726605AbfGYN2d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 09:28:33 -0400
+Received: from mail-oi1-f194.google.com ([209.85.167.194]:39608 "EHLO
+        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726519AbfGYN2d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 09:28:33 -0400
+Received: by mail-oi1-f194.google.com with SMTP id m202so37662762oig.6
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 06:28:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=B1z3qSqeis7KRp59LvW3GrIz3rWu/CFv+sXSsB3MIv0=;
+        b=S7zg9NIJWKApcIDLjPg7XBK9rjPeDYoBWNVm005ZjT5gIbIyVfUK1xk1sLRQw2MM6x
+         0Mdkbzf6ixFn9ev3RGLQI0Euk3fBpj38V9Um9YNXmB8Nig9Gqm7yu3MXe9SGvtsSF/wm
+         cBMTtWscvwBj58mpSYQZHP82mWWmXezEv903XajiM4H7GkdESKIQ2TWthd1ygp1tVdlf
+         auy3V0rc8NfdYnkaaXDknQrzs7TI038ABRxdFGjrDH+niO5voLKTNLeZJ3SjiHVtixc8
+         lxDg71dtEjf+ShJe5QILrIeZjUXh+f9GR/ZH/Tfe/MfFQcGDLs78lnMBTM2MtL7glJNB
+         5yWw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=B1z3qSqeis7KRp59LvW3GrIz3rWu/CFv+sXSsB3MIv0=;
+        b=OdPMpZCyQH+cpxh7QGlwINyvh+RdwknPCUl/vVuivJJTBNK9MOcszQFQJy5KbNqrdL
+         OFGU3AcDY6ia1IkhU58EQeB/bvSMg2ZfAqWVtBi0LugMLja1IaXZIKRfK21YTP09DjHb
+         vtc5khYy5KgQMtDPZ7EmOmQDNbR8PQWUPM/UAr8c+2xlpi1pBbQD/SyjJr3efSYZ36Yd
+         YIJ7CLU+hptStMPRrow/ktOUoc1mz5925L2rO/4CE7CpZIXcGxhRGtxgO9yxBxhNDpLt
+         NyYQdZmHLvOtLY1zeU2z5az+nJML/eHVhsIweN+dbgT71FnfOgDHCqMISqw/itraUv5A
+         VRZA==
+X-Gm-Message-State: APjAAAXVxak2tdoeGxqOlVx8zPybSJG3FIJU57C2mR1+4Q7vPBFjphF+
+        b3ifoSN/YKe33EK659Uzfzauag/5lKaluI2/aTU17po/PnE=
+X-Google-Smtp-Source: APXvYqzWSaFSn1p/xkKu/nTk8JDTShS1XkRJNDVHcXJf+E/HgRUTiWRJNBpO14sGxRyKRreBRD1/QWYHKp73a7558FA=
+X-Received: by 2002:a1f:f282:: with SMTP id q124mr34325145vkh.4.1564059690186;
+ Thu, 25 Jul 2019 06:01:30 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="KDt/GgjP6HVcx58l"
-Content-Disposition: inline
-In-Reply-To: <20190724162405.6574-2-jbrunet@baylibre.com>
-X-Cookie: Jenkinson's Law:
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <1561958991-21935-1-git-send-email-manish.narani@xilinx.com>
+ <1561958991-21935-2-git-send-email-manish.narani@xilinx.com>
+ <20190722215404.GA28292@bogus> <MN2PR02MB602907616249FF19C1A737D8C1C70@MN2PR02MB6029.namprd02.prod.outlook.com>
+In-Reply-To: <MN2PR02MB602907616249FF19C1A737D8C1C70@MN2PR02MB6029.namprd02.prod.outlook.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 25 Jul 2019 15:00:53 +0200
+Message-ID: <CAPDyKFostBKYipTkCsDbggsrux7w8BPqARx7fwRsL1XqEEX2NQ@mail.gmail.com>
+Subject: Re: [PATCH v2 01/11] dt-bindings: mmc: arasan: Update documentation
+ for SD Card Clock
+To:     Manish Narani <MNARANI@xilinx.com>
+Cc:     Rob Herring <robh@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "heiko@sntech.de" <heiko@sntech.de>,
+        Michal Simek <michals@xilinx.com>,
+        "adrian.hunter@intel.com" <adrian.hunter@intel.com>,
+        "christoph.muellner@theobroma-systems.com" 
+        <christoph.muellner@theobroma-systems.com>,
+        "philipp.tomsich@theobroma-systems.com" 
+        <philipp.tomsich@theobroma-systems.com>,
+        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
+        "scott.branden@broadcom.com" <scott.branden@broadcom.com>,
+        "ayaka@soulik.info" <ayaka@soulik.info>,
+        "kernel@esmil.dk" <kernel@esmil.dk>,
+        "tony.xie@rock-chips.com" <tony.xie@rock-chips.com>,
+        Rajan Vaja <RAJANV@xilinx.com>, Jolly Shah <JOLLYS@xilinx.com>,
+        Nava kishore Manne <navam@xilinx.com>,
+        "mdf@kernel.org" <mdf@kernel.org>,
+        "olof@lixom.net" <olof@lixom.net>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-rockchip@lists.infradead.org" 
+        <linux-rockchip@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Tue, 23 Jul 2019 at 10:23, Manish Narani <MNARANI@xilinx.com> wrote:
+>
+> Hi Rob,
+>
+> Thanks a lot for the review!
+>
+>
+> > -----Original Message-----
+> > From: Rob Herring <robh@kernel.org>
+> > Sent: Tuesday, July 23, 2019 3:24 AM
+> > To: Manish Narani <MNARANI@xilinx.com>
+> > Cc: ulf.hansson@linaro.org; mark.rutland@arm.com; heiko@sntech.de; Michal
+> > Simek <michals@xilinx.com>; adrian.hunter@intel.com;
+> > christoph.muellner@theobroma-systems.com; philipp.tomsich@theobroma-
+> > systems.com; viresh.kumar@linaro.org; scott.branden@broadcom.com;
+> > ayaka@soulik.info; kernel@esmil.dk; tony.xie@rock-chips.com; Rajan Vaja
+> > <RAJANV@xilinx.com>; Jolly Shah <JOLLYS@xilinx.com>; Nava kishore Manne
+> > <navam@xilinx.com>; mdf@kernel.org; olof@lixom.net; linux-
+> > mmc@vger.kernel.org; devicetree@vger.kernel.org; linux-
+> > kernel@vger.kernel.org; linux-arm-kernel@lists.infradead.org; linux-
+> > rockchip@lists.infradead.org
+> > Subject: Re: [PATCH v2 01/11] dt-bindings: mmc: arasan: Update
+> > documentation for SD Card Clock
+> >
+> > On Mon, Jul 01, 2019 at 10:59:41AM +0530, Manish Narani wrote:
+> > > The clock handling is to be updated in the Arasan SDHCI. As the
+> > > 'devm_clk_register' is deprecated in the clock framework, this needs to
+> > > specify one more clock named 'clk_sdcard' to get the clock in the driver
+> > > via 'devm_clk_get()'. This clock represents the clock from controller to
+> > > the card.
+> >
+> > Please explain why in terms of the binding, not some driver calls.
+> Okay.
+>
+> >
+> >
+> > > Signed-off-by: Manish Narani <manish.narani@xilinx.com>
+> > > ---
+> > >  Documentation/devicetree/bindings/mmc/arasan,sdhci.txt | 15 ++++++++++-
+> > ----
+> > >  1 file changed, 10 insertions(+), 5 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
+> > b/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
+> > > index 1edbb04..15c6397 100644
+> > > --- a/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
+> > > +++ b/Documentation/devicetree/bindings/mmc/arasan,sdhci.txt
+> > > @@ -23,6 +23,10 @@ Required Properties:
+> > >    - reg: From mmc bindings: Register location and length.
+> > >    - clocks: From clock bindings: Handles to clock inputs.
+> > >    - clock-names: From clock bindings: Tuple including "clk_xin" and "clk_ahb"
+> > > +            Apart from these two there is one more optional clock which
+> > > +            is "clk_sdcard". This clock represents output clock from
+> > > +            controller and card. This must be specified when #clock-cells
+> > > +            is specified.
+> > >    - interrupts: Interrupt specifier
+> > >
+> > >  Required Properties for "arasan,sdhci-5.1":
+> > > @@ -36,9 +40,10 @@ Optional Properties:
+> > >    - clock-output-names: If specified, this will be the name of the card clock
+> > >      which will be exposed by this device.  Required if #clock-cells is
+> > >      specified.
+> > > -  - #clock-cells: If specified this should be the value <0>.  With this property
+> > > -    in place we will export a clock representing the Card Clock.  This clock
+> > > -    is expected to be consumed by our PHY.  You must also specify
+> > > +  - #clock-cells: If specified this should be the value <0>. With this
+> > > +    property in place we will export one clock representing the Card
+> > > +    Clock. This clock is expected to be consumed by our PHY. You must also
+> > > +    specify
+> >
+> > specify what?
+> I think this line was already there, I missed to correct it, Will update in v3.
+>
+> >
+> > The 3rd clock input I assume? This statement means any existing users
+> > with 2 clock inputs and #clock-cells are in error now. Is that correct?
+> Yes, this is correct. So far there was only one vendor using '#clock-cells'  which is Rockchip. I have sent DT patch (02/11) for that also.
+> Here this is needed as earlier implementation isn't correct as suggested by Uffe. (https://lkml.org/lkml/2019/6/20/486) .
 
---KDt/GgjP6HVcx58l
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+I am not sure how big of a problem the backwards compatible thingy
+with DT is, in general we must not break it. What do you say Manish?
 
-On Wed, Jul 24, 2019 at 06:24:00PM +0200, Jerome Brunet wrote:
-> When handling dai_link events on codec to codec links, run all .startup()
-> callbacks on sinks and sources before running any .hw_params(). Same goes
-> for hw_free() and shutdown(). This is closer to the behavior of regular
-> dai links
+As a workaround, would it be possible to use
+of_clk_get_from_provider() somehow to address the compatibility issue?
+Or maybe there is another clock API that can help.
 
-This looks good but needs rebasing against -next due to Morimoto-san's
-recent DAI changes:
-
-  CC      sound/soc/soc-dapm.o
-sound/soc/soc-dapm.c: In function =E2=80=98snd_soc_dai_link_event=E2=80=99:
-sound/soc/soc-dapm.c:3857:10: error: implicit declaration of function =E2=
-=80=98soc_dai_hw_params=E2=80=99; did you mean =E2=80=98snd_soc_dai_hw_para=
-ms=E2=80=99? [-Werror=3Dimplicit-function-declaration]
-    ret =3D soc_dai_hw_params(&substream, params, source);
-          ^~~~~~~~~~~~~~~~~
-          snd_soc_dai_hw_params
-
---KDt/GgjP6HVcx58l
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl05p+AACgkQJNaLcl1U
-h9AP+gf+KYWXJgB5nW6jPKjIT4VghTppSU3QuuCdZrhY/sNBJSzzMz6wo1IPyz97
-fyMJDcDemoa6wbn2EdzxffFQKt7DlKNs8fNe1TSu6SaQaITcI5iGYaeeQ0U+t1ps
-bydYObp41RlNN66PWCqoObTjwrtmbT4KjZt6VVD/rpUA+TYVaT4lAlC43lYdGOwS
-s1U3cqK0UhnJ2tl7ijvp1GbohlH7hG+STTgSwMVHjnqTvDAnLJrQ7aXO4U39m4mc
-GKQ2VtknUOXH4SmQ/HCyLdKOHXSv2fWdEMSeD65MBUxRnfW9ivMoQabStIA39rk9
-m1xUbylnxDjw8hciPEbmbsQapqiavg==
-=HgG8
------END PGP SIGNATURE-----
-
---KDt/GgjP6HVcx58l--
+Kind regards
+Uffe
