@@ -2,46 +2,47 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EFF4D75826
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 21:43:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3C5D75829
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 21:43:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726230AbfGYTnJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 15:43:09 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:52187 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726327AbfGYTnI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 15:43:08 -0400
-Received: by mail-wm1-f68.google.com with SMTP id 207so46006490wma.1
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 12:43:07 -0700 (PDT)
+        id S1726646AbfGYTnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 15:43:11 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:35379 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726364AbfGYTnJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 15:43:09 -0400
+Received: by mail-wr1-f68.google.com with SMTP id y4so52005583wrm.2
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 12:43:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id;
-        bh=HpwqwqbOJStimlLPjV2WsSVvFoS5zR7dipevAmhXn+I=;
-        b=UQg/tDmQSfp9ChPaHt8EGlDQzZ6S/EdbxNg82he/Mzh8kwJ1qDpcDDkFMwLldt0cJc
-         lCF8BYMyw+DpR0ybV0yCoNWYL08yFyuTbTqO6aSQREaMO43xW88KfpTm8GecjxL8rJGw
-         GyauPYbXAUfd+wepxHqkp3tFKGMm0w8zorbYNjo6KTprUZWLwZ/Fo8VRDIu+/lxrhFXM
-         eDgKBYvOFPyY6b3EkW8UL0kebH0JQ+M7KxuybGZKYAD/kf7iDXT6S2sTLL26ra0MIe4W
-         Qa6E4+gr7U08eq2pNnQbGEPANNHi3nhHnEMX5iaonM8eETL+dQ37+c+wg0iR530FfwHU
-         Nk5Q==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references;
+        bh=71zYLXTlisczUvOPC0g8GNny5+TtCvKfT2pyo6fGJ9c=;
+        b=py8c1rPUaxb6LfpTZULVE5wEow4Ig/y0vI4laAKs1jK5qDuf2LJkdKobWT+rg7RI7m
+         wFUYFn/E+DZ2sQq6mKRDo1naRmF9pJp1AYYe56I8ZIgodq/kNB9sYjOhuoXLu6L99noU
+         hhAWFcc/bYt1E0IT9Pthq2bsOgk6Uo1SiCeVPtH3PhTYqKvkEVPIAF+4UJ+XjXNFb4oz
+         stpVoUdeEuLMF/TLEjzWK9aYjKt4Hw6H4SAJbWPBpNybsXEc3NyEwjq2sZGwdVG+5RLk
+         ia4Mkj9ZTsUju+cKbPNSiBaWdlmz/E+GZkjEGsPdT+XnLEII7hsOIJSxgi0stAOm3hvD
+         XI5w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=HpwqwqbOJStimlLPjV2WsSVvFoS5zR7dipevAmhXn+I=;
-        b=iCVyEzs4zxgiS3n4rPt7NamdnDJMax47iTgFFSDcq9xpTUMJ8cjeaSo1S88jdRx/W4
-         ofBA8NN2dEdhR/FA6msalFrxNzc4tURZUm66H9QG06E5dOZEAuzThIIoRUXbCGmkROIU
-         NQVTOv4NyigAPs/57xopPix0Y+qMISn0l7jYOOWOFsyi6TWv30M71FVyRGML/+goUWiu
-         KUwfXb5vpYeTucUU+QX5ohuP9gGJ2gooZJon/WMzWDqA7RY3BPBIDKJ8MdlgjjKEIA7A
-         B8R3ADgThucVSJ0KSDFGVKsnkmFULJMKwCAtnM/48SyuADblOnJmFf9DgZD4WrHOZqWY
-         V9OA==
-X-Gm-Message-State: APjAAAVAxw/zIYBPrPvAl51w5nr5jsr/IL+Uu7UgsfBkBpIPML0EbHWI
-        /hSPKc/ZcacpNCnr/UrEJL4eIQ==
-X-Google-Smtp-Source: APXvYqxpAh0jfU//NVh88rL1qSwss1rtJWAjuYNhw8soBe0yFJ+ERG4l4cq/Ofn+pyhmxoEsDSGiRA==
-X-Received: by 2002:a1c:cb43:: with SMTP id b64mr82451700wmg.86.1564083786567;
-        Thu, 25 Jul 2019 12:43:06 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references;
+        bh=71zYLXTlisczUvOPC0g8GNny5+TtCvKfT2pyo6fGJ9c=;
+        b=WatDBhmH3SIQsQrelN6tuKE0VAFT0reeM7Il9+C8b59DwqpYLEVEQ/0uAGC25+ZB2p
+         oA9PeFOESmwL2hTVAztkuDAbj1KxKCCbpeok5OqkVY21EGeOfxnSM/KwvyXaXCDYm9zA
+         Txs3YOY58O9hQE3K1c9ektiz49A4NMTnhIXpinqSyu5C7zjGYYv5yIuUfzoSfoRtz1lC
+         oPXBsGdBSvP5K6i2/5+REEtfILpsfmsPuC7xCdzRPvoAfzMuA+tnxuLGIVxCzG/x5eiY
+         pvwXU0gblC7AFWEK4PiloM8ruG1xlcs4CV2AQcH8RK5ddsNsGHXBJg98xvTeGOVldj/L
+         zDVA==
+X-Gm-Message-State: APjAAAVmvetTtaoUTOHBz54EvsukqwyCaFRZ/bx5qH5SnDTUJyN07ew5
+        pFMCd3LvvK33piBCeBmKKoujKg==
+X-Google-Smtp-Source: APXvYqw72jesc7xJzzreRGaFI1bWXggNaMx7Vpt35ZvVydkI9rJHOxhJjt0/7QZNpnnjlbQp3BNJdw==
+X-Received: by 2002:adf:f08f:: with SMTP id n15mr13801539wro.213.1564083787509;
+        Thu, 25 Jul 2019 12:43:07 -0700 (PDT)
 Received: from localhost.localdomain ([51.15.160.169])
-        by smtp.googlemail.com with ESMTPSA id y16sm103410662wrg.85.2019.07.25.12.43.05
+        by smtp.googlemail.com with ESMTPSA id y16sm103410662wrg.85.2019.07.25.12.43.06
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 25 Jul 2019 12:43:05 -0700 (PDT)
+        Thu, 25 Jul 2019 12:43:06 -0700 (PDT)
 From:   Corentin Labbe <clabbe@baylibre.com>
 To:     davem@davemloft.net, herbert@gondor.apana.org.au,
         khilman@baylibre.com, mark.rutland@arm.com, robh+dt@kernel.org
@@ -49,48 +50,77 @@ Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
         linux-kernel@vger.kernel.org, baylibre-upstreaming@groups.io,
         Corentin Labbe <clabbe@baylibre.com>
-Subject: [PATCH 0/4] crypto: add amlogic crypto offloader driver
-Date:   Thu, 25 Jul 2019 19:42:52 +0000
-Message-Id: <1564083776-20540-1-git-send-email-clabbe@baylibre.com>
+Subject: [PATCH 1/4] dt-bindings: crypto: Add DT bindings documentation for amlogic-crypto
+Date:   Thu, 25 Jul 2019 19:42:53 +0000
+Message-Id: <1564083776-20540-2-git-send-email-clabbe@baylibre.com>
 X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1564083776-20540-1-git-send-email-clabbe@baylibre.com>
+References: <1564083776-20540-1-git-send-email-clabbe@baylibre.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello
+This patch adds documentation for Device-Tree bindings for the
+Amlogic GXL cryptographic offloader driver.
 
-This serie adds support for the crypto offloader present on amlogic GXL
-SoCs.
-
-Tested on meson-gxl-s905x-khadas-vim and meson-gxl-s905x-libretech-cc
-
-Regards
-
-Corentin Labbe (4):
-  dt-bindings: crypto: Add DT bindings documentation for amlogic-crypto
-  crypto: amlogic: Add crypto accelerator for amlogic GXL
-  MAINTAINERS: Add myself as maintainer of amlogic crypto
-  ARM64: dts: amlogic: adds crypto hardware node
-
- .../bindings/crypto/amlogic-gxl-crypto.yaml   |  45 +++
- MAINTAINERS                                   |   7 +
- arch/arm64/boot/dts/amlogic/meson-gxl.dtsi    |  11 +
- drivers/crypto/Kconfig                        |   2 +
- drivers/crypto/Makefile                       |   1 +
- drivers/crypto/amlogic/Kconfig                |  24 ++
- drivers/crypto/amlogic/Makefile               |   2 +
- drivers/crypto/amlogic/amlogic-cipher.c       | 358 ++++++++++++++++++
- drivers/crypto/amlogic/amlogic-core.c         | 326 ++++++++++++++++
- drivers/crypto/amlogic/amlogic.h              | 172 +++++++++
- 10 files changed, 948 insertions(+)
+Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+---
+ .../bindings/crypto/amlogic-gxl-crypto.yaml   | 45 +++++++++++++++++++
+ 1 file changed, 45 insertions(+)
  create mode 100644 Documentation/devicetree/bindings/crypto/amlogic-gxl-crypto.yaml
- create mode 100644 drivers/crypto/amlogic/Kconfig
- create mode 100644 drivers/crypto/amlogic/Makefile
- create mode 100644 drivers/crypto/amlogic/amlogic-cipher.c
- create mode 100644 drivers/crypto/amlogic/amlogic-core.c
- create mode 100644 drivers/crypto/amlogic/amlogic.h
 
+diff --git a/Documentation/devicetree/bindings/crypto/amlogic-gxl-crypto.yaml b/Documentation/devicetree/bindings/crypto/amlogic-gxl-crypto.yaml
+new file mode 100644
+index 000000000000..41265e57c00b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/crypto/amlogic-gxl-crypto.yaml
+@@ -0,0 +1,45 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/crypto/amlogic-gxl-crypto.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Amlogic GXL Cryptographic Offloader
++
++maintainers:
++  - Corentin Labbe <clabbe@baylibre.com>
++
++properties:
++  compatible:
++    oneOf:
++      - const: amlogic,gxl-crypto
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    maxItems: 1
++
++  clock-names:
++    const: blkmv
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++
++examples:
++  - |
++    crypto: crypto@c883e000 {
++        compatible = "amlogic,gxl-crypto";
++        reg = <0x0 0xc883e000 0x0 0x36>;
++        interrupts = <GIC_SPI 188 IRQ_TYPE_EDGE_RISING>,
++            <GIC_SPI 189 IRQ_TYPE_EDGE_RISING>;
++        clocks = <&clkc CLKID_BLKMV>;
++        clock-names = "blkmv";
++    };
 -- 
 2.21.0
 
