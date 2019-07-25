@@ -2,65 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14466757E9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 21:31:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D460B757EC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 21:32:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726823AbfGYTbn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 15:31:43 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:38260 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726597AbfGYTbn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Jul 2019 15:31:43 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Transfer-Encoding:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=KYKJAsQl/3fSVyf82GMSuAEJy0Hh3t3UkutHSaqd1NA=; b=Zco4aUzE7sl1jwbIpksKFVSaDw
-        5j2uRWiykdEUK/4b1jYTr1RyaDas7UoYKt9N/w6xXtyVuJiLxSQhvxLkK4nAfAIuq80yrO/B+fbTP
-        Ao5ou59rBf0CMXo+ObfmhnYYW4xWXczLqe1Sequw+UxSidgRVmXnrRZvA1rK+FyHaOTY=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hqjSV-0000JG-Cr; Thu, 25 Jul 2019 21:31:23 +0200
-Date:   Thu, 25 Jul 2019 21:31:23 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>
-Cc:     netdev@vger.kernel.org, frank-w@public-files.de,
-        sean.wang@mediatek.com, f.fainelli@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, matthias.bgg@gmail.com,
-        vivien.didelot@gmail.com, john@phrozen.org,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 3/3] dt-bindings: net: ethernet: Update mt7622
- docs and dts to reflect the new phylink API
-Message-ID: <20190725193123.GA32542@lunn.ch>
-References: <20190724192411.20639-1-opensource@vdorst.com>
+        id S1726829AbfGYTcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 15:32:32 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:35613 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726597AbfGYTcc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 15:32:32 -0400
+Received: by mail-lj1-f194.google.com with SMTP id x25so49175225ljh.2;
+        Thu, 25 Jul 2019 12:32:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Kp0EWNt1hJYOLXDTYlF7zykP3Zq2TsBvXEhXEloAP6c=;
+        b=C4AxvAwobnSSddWK24zoACbWa2WjxylpFNge6tKlmOW+LLRo+AXD/ZpOa2ItZLWQ0V
+         rca8/YgVzcRihbJdusIc8NP6R3JF6C/L5frSIAc/ApkYxB0wzAc/FRwDJCtahPQgb0Hs
+         n6AYQKp2AyOCm6dUCMFiWExIrr7KlAr2OSGThds/zl6FzBQwutPcxhg8gmCHra/5nXrQ
+         IFypJzMVv81BoUmg/179zDv95k+wq9BmQCIE/v38M6QgpT2vp1mZDuyRiUPuPDsu6wJo
+         ThpgtWT10jqE3omLZRtngj0C7o/10Ew8qAXeJP224fMyanvN2BdJ790hY3vFN7KL3lgf
+         A13w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Kp0EWNt1hJYOLXDTYlF7zykP3Zq2TsBvXEhXEloAP6c=;
+        b=koKc9XOcM/qE/rJBKkRGiU665hLLAf/2m4JxY+Qr22IMgHnZATzEh2bsWuD7K+aRvP
+         qzAx3zOx5ElDLPrfDCUUk7Bz9so2Pd7xMuGNVWCcKUqf+FSRRcZFJ3dc71lIAiXJEgtS
+         ASZxGOG/Ldvi3wPGWAhsBXSKm4+M2+pFPTNokPole8o4dkRxibndTpMJOKbi3tLdJnm4
+         TGIkOMkDhDjXxMJ7suqKuyAKdned6S4RVl/R0lgih14AIWmRpiIVW+tI+WmAEg49Y2pz
+         Nc3V+WrIG4e6My7Aw4h7psslC3U64B0QyqFzKaNk7FQ2iTRqvvtfGAXEe7itjTRF7L+o
+         sPWQ==
+X-Gm-Message-State: APjAAAVNCyA40QDw9r/LX/hfFJt1B2KDszVt9geKBCYr68gT/SNOq6qf
+        CNCZssJHH/cUVtWFkgoTPLDuNnn5Wxwl6z1Px0s=
+X-Google-Smtp-Source: APXvYqyDf3rdKYXqiXUlgdRjLq+Vaz3jmCLYtBCYErQSevesbRjPKuJmugaeK1C2zffMG++H1hJFxitGJxEZjTaH6lU=
+X-Received: by 2002:a2e:5dc6:: with SMTP id v67mr47345282lje.240.1564083149838;
+ Thu, 25 Jul 2019 12:32:29 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190724192411.20639-1-opensource@vdorst.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+References: <20190712204316.16783-1-TheSven73@gmail.com> <CAGngYiVb_-A4Au749GD6SKi=UqKKBm4yxim8YOCbgVjfz7xtvg@mail.gmail.com>
+In-Reply-To: <CAGngYiVb_-A4Au749GD6SKi=UqKKBm4yxim8YOCbgVjfz7xtvg@mail.gmail.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Thu, 25 Jul 2019 16:32:31 -0300
+Message-ID: <CAOMZO5CrUZ1C0i8ofuiG8thsPgfxPiY5XOnvUsmnkYYSKJBMNQ@mail.gmail.com>
+Subject: Re: [PATCH 1/2] bus: imx-weim: optionally enable burst clock mode
+To:     Sven Van Asbroeck <thesven73@gmail.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Kees Cook <keescook@chromium.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Arnd Bergmann <arnd@arndb.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-> +	gmac0: mac@0 {
-> +		compatible = "mediatek,eth-mac";
-> +		reg = <0>;
-> +		phy-mode = "sgmii";
-> +
-> +		fixed-link {
-> +			speed = <2500>;
-> +			full-duplex;
-> +			pause;
-> +		};
-> +	};
+Hi Sven,
 
-Hi René
+On Thu, Jul 25, 2019 at 11:30 AM Sven Van Asbroeck <thesven73@gmail.com> wrote:
+>
+> On Fri, Jul 12, 2019 at 4:43 PM Sven Van Asbroeck <thesven73@gmail.com> wrote:
+> >
+> > To enable burst clock mode, add the fsl,burst-clk-enable
+> > property to the weim bus's devicetree node.
+> >
+>
+> Any feedback on this patch, positive or negative?
 
-SGMII and fixed-link is rather odd. Why do you need this combination?
+Looks good to me:
 
-      Andrew
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
