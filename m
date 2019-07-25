@@ -2,98 +2,120 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E18A9743DD
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 05:20:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF7367449B
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 07:01:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387707AbfGYDUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 24 Jul 2019 23:20:34 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:46963 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2387752AbfGYDUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 24 Jul 2019 23:20:33 -0400
-X-UUID: ed85f5d1925b4024b7446fdc12bebcaf-20190725
-X-UUID: ed85f5d1925b4024b7446fdc12bebcaf-20190725
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <ck.hu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 461284809; Thu, 25 Jul 2019 11:20:21 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- MTKMBS31N2.mediatek.inc (172.27.4.87) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Thu, 25 Jul 2019 11:20:19 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Thu, 25 Jul 2019 11:20:19 +0800
-Message-ID: <1564024819.2621.4.camel@mtksdaap41>
-Subject: Re: [PATCH v4, 05/33] dt-bindings: mediatek: add RDMA1 description
- for mt8183 display
-From:   CK Hu <ck.hu@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <yongqiang.niu@mediatek.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <dri-devel@lists.freedesktop.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
+        id S2390277AbfGYFBL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 01:01:11 -0400
+Received: from mail-eopbgr150072.outbound.protection.outlook.com ([40.107.15.72]:1720
+        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2390276AbfGYFBL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 01:01:11 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=W1uqln14pPNXeBBG06PljrKrep6/JF8Zv+uDRZVA6NLDUrPa/5OeXpVgi26bI8SQaq2Lhu4ODuWxpE5lKSTJCW24Qiuwa6W0XRsjaxFYNL4FENiI/8HRFctz2FZMsekClEVJyD76tJLn8jxw7zSoU9IUVCkuhD74aBrKe32zNEjX0+KMgJyJ9rlhD+JLbX8IYNqa8F6HPznqCtErrZM/z3AzCWSnQqG8MFhW+avwP2s51FLZSlyQgsvBm7VleAQQHtFK41dJRf7hX1zMlM1Y+6IGOMcCMBnQitAGlE2bjlFj1RW/P0RHdT93cceTcBexEJqqmNNsM7I4CVCOUd1ssA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a0QMxqmWkFDkSsvkTqEc8WQd+7/KxSQSAZ5sD/pnr6I=;
+ b=f76Okh12szXQ+vOt55C2A+RovguDrS/MyNOsmxNFDeNvxV9C67+KJj7ppp/zmlflxkFavk8L1ihBxy4/QvCbJl21++R1GY3qW5E8H/FD3KVy4A5sz3P2mQ8oLgV3uDx2tBQOgPrWan0yZ7MubmCwlb4UFFngo95WPgyfTz2yAbhD2NpzfYzO7e0ZuC0ZIz96KtAt3tLiTsltEY6A12j6wqNc1+gNrfzBHpclFe0eoChftcC35x/W/GbpnE+BuKAXZjdie1nkcYgWJ55WBvTG2+XxbMK6eTVpegpbm7B14bU/8UwZ/ZKzgZEVtiNt5m4rJqr/jd7p4mZA6GHFkqFT0w==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
+ header.d=nxp.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=a0QMxqmWkFDkSsvkTqEc8WQd+7/KxSQSAZ5sD/pnr6I=;
+ b=SYoHO8XWFUC+1wG1qZzC0HDU7shXenrck2t8SClzXb2hFHvKdBPEEdAiL+9NI2nR0xupyKnnizQAwbSJZoAcIJBkjc2d/cyaXduxMxUzgTFI7My5rTG3SoV7gWEKRw5P66oq1BQICUxMxJY1tjoQLovaGtZJXrVLvhY46JSKpq4=
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
+ DB3PR0402MB3754.eurprd04.prod.outlook.com (52.134.67.26) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2094.16; Thu, 25 Jul 2019 05:01:07 +0000
+Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::7cdf:bddc:212c:f77e]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
+ ([fe80::7cdf:bddc:212c:f77e%4]) with mapi id 15.20.2094.017; Thu, 25 Jul 2019
+ 05:01:07 +0000
+From:   Anson Huang <anson.huang@nxp.com>
+To:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Shawn Guo <shawnguo@kernel.org>
+CC:     "vireshk@kernel.org" <vireshk@kernel.org>, "nm@ti.com" <nm@ti.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        "p.zabel@pengutronix.de" <p.zabel@pengutronix.de>,
+        Jacky Bai <ping.bai@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        "l.stach@pengutronix.de" <l.stach@pengutronix.de>,
+        Abel Vesa <abel.vesa@nxp.com>,
+        "angus@akkea.ca" <angus@akkea.ca>,
+        "andrew.smirnov@gmail.com" <andrew.smirnov@gmail.com>,
+        "ccaione@baylibre.com" <ccaione@baylibre.com>,
+        "agx@sigxcpu.org" <agx@sigxcpu.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Thu, 25 Jul 2019 11:20:19 +0800
-In-Reply-To: <20190724201635.GA18345@bogus>
-References: <1562625253-29254-1-git-send-email-yongqiang.niu@mediatek.com>
-         <1562625253-29254-6-git-send-email-yongqiang.niu@mediatek.com>
-         <20190724201635.GA18345@bogus>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        dl-linux-imx <linux-imx@nxp.com>
+Subject: RE: [PATCH V2 1/4] dt-bindings: opp: Support multiple opp-suspend
+ properties
+Thread-Topic: [PATCH V2 1/4] dt-bindings: opp: Support multiple opp-suspend
+ properties
+Thread-Index: AQHVNi2qV9keysXgFk2WQTpmSP5dxqbatEqAgAAq9PA=
+Date:   Thu, 25 Jul 2019 05:01:06 +0000
+Message-ID: <DB3PR0402MB3916B85B1CEAADF83DA04C68F5C10@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+References: <20190709080015.43442-1-Anson.Huang@nxp.com>
+ <20190725022611.f6dirdstu3yndcwy@vireshk-i7>
+In-Reply-To: <20190725022611.f6dirdstu3yndcwy@vireshk-i7>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=anson.huang@nxp.com; 
+x-originating-ip: [119.31.174.66]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 43b77ee7-6127-4938-de61-08d710bd1a4a
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB3PR0402MB3754;
+x-ms-traffictypediagnostic: DB3PR0402MB3754:
+x-microsoft-antispam-prvs: <DB3PR0402MB3754E440152CEFCA1BC7275EF5C10@DB3PR0402MB3754.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-forefront-prvs: 0109D382B0
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(136003)(396003)(39860400002)(376002)(366004)(346002)(199004)(189003)(25786009)(14444005)(8936002)(5660300002)(6116002)(110136005)(54906003)(6246003)(81156014)(8676002)(74316002)(4326008)(3846002)(15650500001)(2906002)(316002)(14454004)(53936002)(305945005)(446003)(81166006)(256004)(186003)(53546011)(476003)(7736002)(52536014)(66066001)(478600001)(66476007)(68736007)(64756008)(66556008)(76176011)(44832011)(7696005)(66446008)(33656002)(76116006)(4744005)(486006)(71190400001)(9686003)(6506007)(71200400001)(26005)(229853002)(55016002)(86362001)(11346002)(99286004)(102836004)(6436002)(66946007)(7416002);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3754;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: cr308nxpIAAhlvWK3El329hoZGhvE12f2oXKylq76FoESYD0LgKcTMJtKD43CCpw2Z52jjd9hnjAxmC3uFxK5ZWXEZswborGpDzhSLTv9QlG4F42A6QipW1wZDl/TEakOkws+ThlGeNYqsie1/dXZxX2wd6VOm8lkyM4JWsP+7iSbflDYi+C2ihOQcq90i6j3Ok1sW82nsrZSur3JkJst6MB1+RehhqUZI9usfGwjqQpi1wpLHi5tYB3ZkefIuLY0IYC852vU+Au+4lxiYA+TSPK2viBgwoYFSj7sxZLJvtAPVmmvoJwMCM3x6rpxvLb/siCJ+V3f9yRadKebbkotKqYYEvtgJqdWl50ry0c2DhVLftNwLpMCcCI0fgavS5UgdLzshoQJGwo2QPJ1PAHV+RWSLIuQhgA/F4C9nks+4M=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 7D8A1CCF38AD247D3F162A72E891F36A49E6C52CAB3DEA3F413B16EB119711E62000:8
-X-MTK:  N
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 43b77ee7-6127-4938-de61-08d710bd1a4a
+X-MS-Exchange-CrossTenant-originalarrivaltime: 25 Jul 2019 05:01:06.8554
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3754
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi, Rob:
-
-On Wed, 2019-07-24 at 14:16 -0600, Rob Herring wrote:
-> On Tue, Jul 09, 2019 at 06:33:45AM +0800, yongqiang.niu@mediatek.com wrote:
-> > From: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> > 
-> > This patch add RDMA1 description for mt8183 display
-> > 
-> > Signed-off-by: Yongqiang Niu <yongqiang.niu@mediatek.com>
-> > ---
-> >  Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt | 1 +
-> >  1 file changed, 1 insertion(+)
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> > index afd3c90..bb9274a 100644
-> > --- a/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> > +++ b/Documentation/devicetree/bindings/display/mediatek/mediatek,disp.txt
-> > @@ -30,6 +30,7 @@ Required properties (all function blocks):
-> >  	"mediatek,<chip>-disp-ovl"   		- overlay (4 layers, blending, csc)
-> >  	"mediatek,<chip>-disp-ovl-2l"           - overlay (2 layers, blending, csc)
-> >  	"mediatek,<chip>-disp-rdma"  		- read DMA / line buffer
-> > +	"mediatek,<chip>-disp-rdma1"            - function is same with RDMA, fifo size is different
-> 
-> This can't be determined by which chip it is? IOW, a chip may have both 
-> rdma and rdma1?
-
-In MT8183, there are two different rdma. The difference is the fifo size
-in each one. I've a question: is it better to have two compatible string
-for each one, or just one compatible string for both but with a property
-to set fifo size?
-
-Regards,
-CK
-
-> 
-> >  	"mediatek,<chip>-disp-wdma"  		- write DMA
-> >  	"mediatek,<chip>-disp-ccorr"            - color correction
-> >  	"mediatek,<chip>-disp-color" 		- color processor
-> > -- 
-> > 1.8.1.1.dirty
-> > 
-
-
+SGksIFNoYXduDQoNCj4gT24gMDktMDctMTksIDE2OjAwLCBBbnNvbi5IdWFuZ0BueHAuY29tIHdy
+b3RlOg0KPiA+IEZyb206IEFuc29uIEh1YW5nIDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KPiA+DQo+
+ID4gVXBkYXRlIG9wcC1zdXNwZW5kIHByb3BlcnR5J3MgZGVzY3JpcHRpb24gdG8gc3VwcG9ydCBt
+dWx0aXBsZQ0KPiA+IG9wcC1zdXNwZW5kIHByb3BlcnRpZXMgZGVmaW5lZCBpbiBEVCwgdGhlIE9Q
+UCB3aXRoIGhpZ2hlc3Qgb3BwLWh6IGFuZA0KPiA+IHdpdGggb3BwLXN1c3BlbmQgcHJvcGVydHkg
+cHJlc2VudCB3aWxsIGJlIHVzZWQgYXMgc3VzcGVuZCBvcHAuDQo+ID4NCj4gPiBTaWduZWQtb2Zm
+LWJ5OiBBbnNvbiBIdWFuZyA8QW5zb24uSHVhbmdAbnhwLmNvbT4NCj4gPiAtLS0NCj4gPiBOZXcg
+cGF0Y2guDQo+ID4gLS0tDQo+ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9v
+cHAvb3BwLnR4dCB8IDQgKystLQ0KPiA+ICAxIGZpbGUgY2hhbmdlZCwgMiBpbnNlcnRpb25zKCsp
+LCAyIGRlbGV0aW9ucygtKQ0KPiANCj4gQXBwbGllZC4gVGhhbmtzLg0KDQpXb3VsZCB5b3UgcGlj
+ayB1cCB0aGUgRFQgcGF0Y2hlcyBpbiB0aGlzIHNlcmllcz8gVGhhbmtzLg0KDQpBbnNvbg0K
