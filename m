@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 021E775091
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 16:07:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B49C0750A6
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 16:11:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726690AbfGYOHg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 10:07:36 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:46299 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726099AbfGYOHg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 10:07:36 -0400
-Received: by mail-lf1-f68.google.com with SMTP id z15so30353739lfh.13;
-        Thu, 25 Jul 2019 07:07:34 -0700 (PDT)
+        id S1725981AbfGYOLS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 10:11:18 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:45673 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728482AbfGYOLS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 10:11:18 -0400
+Received: by mail-lj1-f196.google.com with SMTP id m23so48072888lje.12;
+        Thu, 25 Jul 2019 07:11:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=rC7CJ3Us0JHdnFwo5M1FbCnSzpf/yZ4Z3VE1tDizNCA=;
-        b=rUySh5lsYoDX6So5KaiKnCykcehQFNsmsNlgnnSGBL4Nq6j0qUO7iAkhwwqjWSWmhC
-         zemDKCKpV6ugv6dVkspNpL4nf+cI2rpoOpGuCp/zAJosNgXUqF2WZHOFnWftSu5MagJv
-         JNxYhLjW7sSE03ic4ibRUdrhd6i1gdOBeIZudZlLTvcuoxflzCua91YhbITRAn5VW/Ow
-         P2Q/VAyIphqfLYs5ZlqOUZ3wVimx7WC6C6Eq3fJ3JpqNIY1ELqwI51uAOdGF1snVBn5N
-         l6MkTgRLMYzfpXo386oWBP7CIpUxEPWqdkqIlncILwrny8r+LrIPKKUn1K7sYk6kZmX6
-         JahA==
+        bh=jrNLPp3bYzLEDpFwB8WgHdHYREWfUZXv7BJCALM4nMs=;
+        b=e+/2hx5NHVl51pt1NoaAoxtOSPUgJyMBrXs5dukRJ1aHbWbr/J+zpahxrXK3AgWKqf
+         SWfpzTsD1VTIIL/Qay3uuk5XlDjRcihMMzNXo6umEyByVYASmGDPvndRWcis7ufx4och
+         tu/PHfw2z1mk7WqODC9xEAeEY47OnalZSUBE9HEG8BR+Bq7Vuvra7Aa4FeOW3LweYqkZ
+         /ie7cwtrsfgLO9UEYPqp9zk5WxuMh8X28QhSGeEP+L7jW5qMdvrZZuCy7XG07gdmn4lj
+         wY6olIf2XlYDqFyJrpcLxCyHWe5oyMc/YrSsmY57AKlKb7H6SxFaVl2Pkbd11PH+5BLv
+         xixw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=rC7CJ3Us0JHdnFwo5M1FbCnSzpf/yZ4Z3VE1tDizNCA=;
-        b=eTbpduCXUWjFDQxdX0z8SKSqSYncCuCl8kwVfsKfD+rIa85PFJLxHOHTxSAeROrLPV
-         +lH3qo6WNdkt8yOsQhWaQYVXoorhvXZEv/SyjwJ7Td+FImpSB96sYWEzCkzxsQcjhXjg
-         JJPVAx8qzEXd9W+seU5VgGHWafvbSAcWKFUpoP1eju4x5KqK573kHxWDQByDvnn9Lq1v
-         uyyI4p9Y4mzRkMrIT8fO1S6unO8nZMcmR8GksSTJ1On5ZoNSnktCHFkYZsADewOjITYR
-         yY2WUq7UDTge83vhZj//QEVcvs2wkPP53nlODrvpnbIFslpmA+IjI75Do04dhGJAU5/W
-         h77w==
-X-Gm-Message-State: APjAAAWFUVUQMIFS/VVnklJrdOGRM6D/2TFlCVTaxInLia4AEDnVkHhF
-        1XgHIHxQd4iTOJdy93c4dE3yJl+3g2grVv8YnN4=
-X-Google-Smtp-Source: APXvYqybVQQ6LELvat6wI1HX6srPrUA8LGsWE6tcmgtfjJZ13dyU1yiUAYM5W7zhul+DXGPFfOjwvdPhUuNASVk2vLo=
-X-Received: by 2002:a19:6e41:: with SMTP id q1mr31289910lfk.20.1564063653383;
- Thu, 25 Jul 2019 07:07:33 -0700 (PDT)
+        bh=jrNLPp3bYzLEDpFwB8WgHdHYREWfUZXv7BJCALM4nMs=;
+        b=E99etn3zEhEexjRtHvWBPthtL2iUGM8yC1jbw/ltdEulmov8+tNE5bb7P90tYr0Rgx
+         uwh8sDcHsUgyTT8/iaJf+S55HcgGUmK6FovUewqSPXn46jaNkKXcdzCKPYnFI6ouX8Cy
+         sRUKNQXmU+GwHygqIpJ9juCPW6MoS525F6bUKlbvVJjltNMGDEKhp+LvsXGs/8IjlKX/
+         JBBp8CQOZGmaHqZE8Hstb58lYU2FwGcqi5OF8CsKfqj705HScNf/o+Pn1YPAycKX9dJQ
+         uN0wJLNMhQXV9lT6R4PCFIgpzuEhzNunsaR2zbGxKtNQdP0GfG+JdowidO6LuzlWF/Xk
+         Sx7w==
+X-Gm-Message-State: APjAAAUEc8d/FA/r/M9AUuFA6KfvxBQXknAxrDAACrBLXJBj7rbBp9Fa
+        wGmLeSJ4ZUf3pMX9ImhybuM9OHxq49SEbn9BeS0=
+X-Google-Smtp-Source: APXvYqyZ2xU3Q3DBuDrKPPtRFmzwXjv7b2fsezBfSsrDgdvw3PESauQBwgujk6jS3/yZmnECnwmNvlSxES79Qhh42rw=
+X-Received: by 2002:a2e:2c07:: with SMTP id s7mr9166631ljs.44.1564063876251;
+ Thu, 25 Jul 2019 07:11:16 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190724171747.26076-1-dafna.hirschfeld@collabora.com>
-In-Reply-To: <20190724171747.26076-1-dafna.hirschfeld@collabora.com>
+References: <20190725121452.16607-1-dafna.hirschfeld@collabora.com> <20190725121452.16607-2-dafna.hirschfeld@collabora.com>
+In-Reply-To: <20190725121452.16607-2-dafna.hirschfeld@collabora.com>
 From:   Fabio Estevam <festevam@gmail.com>
-Date:   Thu, 25 Jul 2019 11:07:34 -0300
-Message-ID: <CAOMZO5AJwocYFaKtUBZbo0NareGmdAySwDjouxh5KMvnGz2o0A@mail.gmail.com>
-Subject: Re: [PATCH 2/2] arm64: dts: imx: Add i.mx8mq nitrogen8m basic dts support
+Date:   Thu, 25 Jul 2019 11:11:17 -0300
+Message-ID: <CAOMZO5BWarNdbCc5eVW7TTO9ahkG5wMwX_3XXKkngzKcjk+mpg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: arm: imx: add imx8mq nitrogen support
 To:     Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -59,7 +59,8 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
         <linux-arm-kernel@lists.infradead.org>,
         Ezequiel Garcia <ezequiel@collabora.com>, kernel@collabora.com,
-        Gary Bisson <gary.bisson@boundarydevices.com>
+        Gary Bisson <gary.bisson@boundarydevices.com>,
+        Troy Kisky <troy.kisky@boundarydevices.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -68,141 +69,34 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hi Dafna,
 
-On Wed, Jul 24, 2019 at 2:51 PM Dafna Hirschfeld
+On Thu, Jul 25, 2019 at 10:56 AM Dafna Hirschfeld
 <dafna.hirschfeld@collabora.com> wrote:
 >
-> From: dafna <dafna.hirschfeld@collabora.com>
+> From: Gary Bisson <gary.bisson@boundarydevices.com>
 >
-> Add basic dts support for i.MX8MQ NITROGEN8M.
+> i.MX 8Quad is a quad (4x) Cortex-A53 processor with powerful
+> graphic and multimedia features.
+> This patch adds Nitrogen8M board support.
 >
 > Signed-off-by: Gary Bisson <gary.bisson@boundarydevices.com>
+> Signed-off-by: Troy Kisky <troy.kisky@boundarydevices.com>
+> [Dafna: porting vendor's code to mainline]
 > Signed-off-by: Dafna Hirschfeld <dafna.hirschfeld@collabora.com>
-
-Your From and Signed-off-by tags do not match.
-
 > ---
->  arch/arm64/boot/dts/freescale/Makefile             |   1 +
->  .../arm64/boot/dts/freescale/imx8mq-nitrogen8m.dts | 411 +++++++++++++++++++++
->  2 files changed, 412 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/freescale/imx8mq-nitrogen8m.dts
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/freescale/Makefile
-> index c043aca66572..54a5c18c5c30 100644
-> --- a/arch/arm64/boot/dts/freescale/Makefile
-> +++ b/arch/arm64/boot/dts/freescale/Makefile
-> @@ -26,3 +26,4 @@ dtb-$(CONFIG_ARCH_MXC) += imx8mq-librem5-devkit.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-rmb3.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8mq-zii-ultra-zest.dtb
->  dtb-$(CONFIG_ARCH_MXC) += imx8qxp-mek.dtb
-> +dtb-$(CONFIG_ARCH_MXC) += imx8mq-nitrogen8m.dtb
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index 7294ac36f4c0..728c41ef83bb 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -227,6 +227,12 @@ properties:
+>                - fsl,imx8qxp-mek           # i.MX8QXP MEK Board
+>            - const: fsl,imx8qxp
+>
+> +      - description: i.MX8MQ based Boards
 
-Please keep it in alphabetical order.
+This line is already present in latest code as we already have some
+i.MX8MQ boards listed.
 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-nitrogen8m.dts b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen8m.dts
-> new file mode 100644
-> index 000000000000..cfd4915d2916
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-nitrogen8m.dts
-
-Isn't the 8m in the end redundant? What about just naming it
-imx8mq-nitrogen.dts instead?
-
-> +&a53_opp_table {
-> +               opp-1500000000 {
-> +                       opp-hz = /bits/ 64 <1500000000>;
-> +                       opp-microvolt = <1000000>;
-> +               };
-> +
-> +               opp-1000000000 {
-> +                       opp-hz = /bits/ 64 <1000000000>;
-> +                       opp-microvolt = <900000>;
-> +               };
-
-Couldn't this be dropped and just use the operational points defined
-at imx8mq.dtsi?
-
-> +};
-> +
-> +&iomuxc {
-
-We usually prefer to place iomux as the last node.
-
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_hog>;
-
-You could place the "pinctrl_hog: hoggrp {" here
-
-> +&i2c1 {
-> +       clock-frequency = <400000>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_i2c1>;
-> +       status = "okay";
-> +
-> +       i2cmux@70 {
-> +               compatible = "pca9546";
-
-You missed the manufacturer string: "nxp,pca9546"
-
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&pinctrl_i2c1_pca9546>;
-> +               reg = <0x70>;
-> +               reset-gpios = <&gpio1 8 GPIO_ACTIVE_LOW>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               i2c1a: i2c1@0 {
-> +                       reg = <0>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +                       reg_arm_dram: fan53555@60 {
-
-Node names should be generic:
-
-regulator@60
-
-> +                               compatible = "fcs,fan53555";
-> +                               pinctrl-names = "default";
-> +                               pinctrl-0 = <&pinctrl_reg_arm_dram>;
-> +                               reg = <0x60>;
-> +                               regulator-min-microvolt =  <900000>;
-> +                               regulator-max-microvolt = <1000000>;
-> +                               regulator-always-on;
-> +                               vsel-gpios = <&gpio3 24 GPIO_ACTIVE_HIGH>;
-> +                       };
-> +               };
-> +
-> +               i2c1b: i2c1@1 {
-> +                       reg = <1>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +                       reg_dram_1p1v: fan53555@60 {
-
-regulator@60
-
-> +                               compatible = "fcs,fan53555";
-> +                               pinctrl-names = "default";
-> +                               pinctrl-0 = <&pinctrl_reg_dram_1p1v>;
-> +                               reg = <0x60>;
-> +                               regulator-min-microvolt = <1100000>;
-> +                               regulator-max-microvolt = <1100000>;
-> +                               regulator-always-on;
-> +                               vsel-gpios = <&gpio2 11 GPIO_ACTIVE_HIGH>;
-> +                       };
-> +               };
-> +
-> +               i2c1c: i2c1@2 {
-> +                       reg = <2>;
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +                       reg_soc_gpu_vpu: fan53555@60 {
-
-regulator@60
-
-> +&usdhc1 {
-> +       bus-width = <8>;
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&pinctrl_usdhc1>;
-> +       non-removable;
-> +       vqmmc-1-8-v;
-
-This property does not exist. Please remove it.
+Please rebase it against linux-next.
