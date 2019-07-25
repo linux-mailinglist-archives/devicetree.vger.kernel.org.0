@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AE78E74B27
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 12:07:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9716374B29
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 12:07:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388443AbfGYKGB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 06:06:01 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:46471 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388139AbfGYKGB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 06:06:01 -0400
-Received: by mail-qt1-f196.google.com with SMTP id h21so48413620qtn.13
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 03:06:00 -0700 (PDT)
+        id S1728906AbfGYKGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 06:06:22 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:36109 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726765AbfGYKGW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 06:06:22 -0400
+Received: by mail-qt1-f193.google.com with SMTP id z4so48519808qtc.3
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 03:06:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc:content-transfer-encoding;
-        bh=dY1dpg/OHfGT/mutmAs25ca6whmcjcdibSv9ZWjkmsM=;
-        b=Jfhn1IH6hkL03mon/JSCxCgfxtUbbHpAWLvoKakLq9+OvKHCgOwv54x4UYs6F+oQMn
-         pYkQIJEg75i+hHconcv4V1/srr2zzQ2gLAF18fBF3ME7Lvqc9OSkQogjIIcoEHtIYzD7
-         NNOk23BB7KD8mkF2N8cBwWxrirrIwIZ3Q64/Qs4CiRdRhGrXqGztvhuRIsUjCcx7OsNh
-         1K2hL6DNo+hoWiB/V+VadwE/INHTA+S7S2oEyb+FW0F1AAaeEosEGU3YUvgpHt443Dvu
-         NWKMDxuEbXYfUF6UQWng1gU1awRncLz4AvRJgscAlnEgrW9grqqxYPfBxrxKl2dxOCEc
-         99bw==
+        bh=zQMVxe3WoXIZNphAhnksatgFc1GF8rTdTdgr2SLV9iE=;
+        b=kDPaigz0G8Pu7nH11KHGXyzXzcWIGm8p48us4Zolu2noXTfmgTxNEGRY9ENB0JwjaL
+         GAuiJMo3VWyDGeJ8iaGqgT7ou/XAFWXqi4J7XyA3YnPE2QbNirtXBhWdIiQ3j0sJGPL+
+         55c+K3owfz2iMnuXKKivBARspjVkdOjLySJyyNiiNhiEY0yHomFtSMJp6HDRLu5fnQrg
+         iNLM1w9zDj/QxyOFNkat6bw50e6EP0NMzk6p3cBmi5UGRM4XhEXiRpCCienLXFg6+RJB
+         lgjO869eVfc0mfQSTuuUSAJxC0LmLbDN9AfP4IqsCCvOOtPrjuZVxSZ75f3PRtPV4oXj
+         9KVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc:content-transfer-encoding;
-        bh=dY1dpg/OHfGT/mutmAs25ca6whmcjcdibSv9ZWjkmsM=;
-        b=Rx03QpW5SjnuhGRFsJzYo7oLgCdYrPdGNexpLhTRVEinnFf1akrfdlNPoWO5Z79v1i
-         LaXxCko0H4QxMYM20FOENFPYBkeqL1b9Qnv5Y3MAoyLvHNaxTUwFiWOz5dCnAHIx/mQC
-         9HUU2fgiFr57tfnZit+dM09x42kuDGtT0bqyBfSfdFdALbrorvYRfk1hErK7f4FQxdPU
-         IIOZog73vhAkBtQRctHdjOXPdu6slaE/mrH+QzsHgmmZek3tgET1yAeWZkBS8oYh8C7V
-         pCpWhcWcw2y1XXOw8iJvJZPAfhn+iS2IJa/tY1qpqADeFvCgb09bgoX0kCR33h4hSWub
-         OG9A==
-X-Gm-Message-State: APjAAAUHcu+GrVnze4zti3UNSs70V4IHNQ5fJeW+pmSYtZY5PfZff3sc
-        sWzsgv05HezU8Lzihu4lQEceTb3J+rDATZ67qz6Veg==
-X-Google-Smtp-Source: APXvYqyNGztGQcRtMMJsWvdYYDKXUmMJH8KY8KYoJe4UVpVBo8GDSkeBtSiY93R7Znfd5M96vEy07a17By30LwrGnqE=
-X-Received: by 2002:aed:36c5:: with SMTP id f63mr62620869qtb.239.1564049160250;
- Thu, 25 Jul 2019 03:06:00 -0700 (PDT)
+        bh=zQMVxe3WoXIZNphAhnksatgFc1GF8rTdTdgr2SLV9iE=;
+        b=s7ArDO0bakRoOGuuNSQAoit4OD9IXzpEZzGBdF1tx0eBY5qyjPTRPRTRPDgp0jznIw
+         tEVLwJoAo3i+V95MJmTrE0yBj07gPGDKm4Q1LzPZ+mNDM4dPYBdDEdoUlCS1LZbhIhG2
+         gp2cs9YvBX51rI7kgC8F7Lf5EzHxgYnhg3GRKX12l18fQm9M+XQHnBSDbklkhuyIK07F
+         WKEYuRx13XQFYCsfFi0TNcLrpQ71paVmjDkR6UYkdYMH+LlFXw0mtXl5lQK2TjiWrypr
+         /BlpBAbH423LgEp0FkQOMrI17ljs2x5OzHcyM8NKndnil9+l5w+kGl88VTFqTDiqEhRA
+         APQw==
+X-Gm-Message-State: APjAAAW+XAEcHCbkGdAJSmBYcH4IpeJuWDdw8EwjjlvOsSH5RftXOu3e
+        /OLNPu9vUBI11GSSdY76BVqKgk2XmieOp0Itypw7Dw==
+X-Google-Smtp-Source: APXvYqxiUgtD1Oqp5s64OPc9Tv6xDA0YAOE0HLwM37Elo/1REVFSdGgH6ZMP+A2uMINEanG0dwqemHajRYVCdHtY8NM=
+X-Received: by 2002:ac8:7402:: with SMTP id p2mr59799351qtq.250.1564049181185;
+ Thu, 25 Jul 2019 03:06:21 -0700 (PDT)
 MIME-Version: 1.0
-References: <1563811560-29589-1-git-send-email-olivier.moysan@st.com> <1563811560-29589-3-git-send-email-olivier.moysan@st.com>
-In-Reply-To: <1563811560-29589-3-git-send-email-olivier.moysan@st.com>
+References: <1563811560-29589-1-git-send-email-olivier.moysan@st.com> <1563811560-29589-4-git-send-email-olivier.moysan@st.com>
+In-Reply-To: <1563811560-29589-4-git-send-email-olivier.moysan@st.com>
 From:   Benjamin Gaignard <benjamin.gaignard@linaro.org>
-Date:   Thu, 25 Jul 2019 12:05:49 +0200
-Message-ID: <CA+M3ks6aA2YpHG3Kb+JxxECvdWYkgOVabYqL4-QTUDYkM6N67Q@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: display: sii902x: Change audio mclk binding
+Date:   Thu, 25 Jul 2019 12:06:10 +0200
+Message-ID: <CA+M3ks6ZRrLAa=xMPi5UfdLEzMCBCjeovUei2O9m8V4PW3bh-Q@mail.gmail.com>
+Subject: Re: [PATCH v2 3/3] drm/bridge: sii902x: make audio mclk optional
 To:     Olivier Moysan <olivier.moysan@st.com>
 Cc:     Andrzej Hajda <a.hajda@samsung.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
@@ -72,40 +72,71 @@ X-Mailing-List: devicetree@vger.kernel.org
 Le lun. 22 juil. 2019 =C3=A0 18:06, Olivier Moysan <olivier.moysan@st.com> =
 a =C3=A9crit :
 >
-> As stated in SiL9022/24 datasheet, master clock is not required for I2S.
-> Make mclk property optional in DT bindings.
->
-> Fixes: 3f18021f43a3 ("dt-bindings: display: sii902x: Add HDMI audio bindi=
-ngs")
->
+> The master clock on i2s bus is not mandatory,
+> as sii902X internal PLL can be used instead.
+> Make use of mclk optional.
+
 Applied on drm-misc-next.
 Thanks,
 Benjamin
 
+>
 > Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
 > Reviewed-by: Jyri Sarha <jsarha@ti.com>
 > Acked-by: Andrzej Hajda <a.hajda@samsung.com>
 > ---
->  Documentation/devicetree/bindings/display/bridge/sii902x.txt | 5 ++---
->  1 file changed, 2 insertions(+), 3 deletions(-)
+>  drivers/gpu/drm/bridge/sii902x.c | 19 ++++++++++---------
+>  1 file changed, 10 insertions(+), 9 deletions(-)
 >
-> diff --git a/Documentation/devicetree/bindings/display/bridge/sii902x.txt=
- b/Documentation/devicetree/bindings/display/bridge/sii902x.txt
-> index 2df44b7d3821..6e14e087c0d0 100644
-> --- a/Documentation/devicetree/bindings/display/bridge/sii902x.txt
-> +++ b/Documentation/devicetree/bindings/display/bridge/sii902x.txt
-> @@ -26,9 +26,8 @@ Optional properties:
->         - clocks: phandle and clock specifier for each clock listed in
->             the clock-names property
->         - clock-names: "mclk"
-> -          Describes SII902x MCLK input. MCLK is used to produce
-> -          HDMI audio CTS values. This property is required if
-> -          "#sound-dai-cells"-property is present. This property follows
-> +          Describes SII902x MCLK input. MCLK can be used to produce
-> +          HDMI audio CTS values. This property follows
->            Documentation/devicetree/bindings/clock/clock-bindings.txt
->            consumer binding.
+> diff --git a/drivers/gpu/drm/bridge/sii902x.c b/drivers/gpu/drm/bridge/si=
+i902x.c
+> index 962931c20efe..a323815aa9b6 100644
+> --- a/drivers/gpu/drm/bridge/sii902x.c
+> +++ b/drivers/gpu/drm/bridge/sii902x.c
+> @@ -568,13 +568,14 @@ static int sii902x_audio_hw_params(struct device *d=
+ev, void *data,
+>                 return ret;
+>         }
 >
+> -       mclk_rate =3D clk_get_rate(sii902x->audio.mclk);
+> -
+> -       ret =3D sii902x_select_mclk_div(&i2s_config_reg, params->sample_r=
+ate,
+> -                                     mclk_rate);
+> -       if (mclk_rate !=3D ret * params->sample_rate)
+> -               dev_dbg(dev, "Inaccurate reference clock (%ld/%d !=3D %u)=
+\n",
+> -                       mclk_rate, ret, params->sample_rate);
+> +       if (sii902x->audio.mclk) {
+> +               mclk_rate =3D clk_get_rate(sii902x->audio.mclk);
+> +               ret =3D sii902x_select_mclk_div(&i2s_config_reg,
+> +                                             params->sample_rate, mclk_r=
+ate);
+> +               if (mclk_rate !=3D ret * params->sample_rate)
+> +                       dev_dbg(dev, "Inaccurate reference clock (%ld/%d =
+!=3D %u)\n",
+> +                               mclk_rate, ret, params->sample_rate);
+> +       }
+>
+>         mutex_lock(&sii902x->mutex);
+>
+> @@ -751,11 +752,11 @@ static int sii902x_audio_codec_init(struct sii902x =
+*sii902x,
+>                 sii902x->audio.i2s_fifo_sequence[i] |=3D audio_fifo_id[i]=
+ |
+>                         i2s_lane_id[lanes[i]] | SII902X_TPI_I2S_FIFO_ENAB=
+LE;
+>
+> -       sii902x->audio.mclk =3D devm_clk_get(dev, "mclk");
+> +       sii902x->audio.mclk =3D devm_clk_get_optional(dev, "mclk");
+>         if (IS_ERR(sii902x->audio.mclk)) {
+>                 dev_err(dev, "%s: No clock (audio mclk) found: %ld\n",
+>                         __func__, PTR_ERR(sii902x->audio.mclk));
+> -               return 0;
+> +               return PTR_ERR(sii902x->audio.mclk);
+>         }
+>
+>         sii902x->audio.pdev =3D platform_device_register_data(
 > --
 > 2.7.4
 >
