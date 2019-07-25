@@ -2,151 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9B45975262
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 17:18:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D73C75275
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 17:20:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389050AbfGYPSe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 11:18:34 -0400
-Received: from verein.lst.de ([213.95.11.211]:36197 "EHLO verein.lst.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2389047AbfGYPSd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Jul 2019 11:18:33 -0400
-Received: by verein.lst.de (Postfix, from userid 2005)
-        id DC20968B02; Thu, 25 Jul 2019 17:18:29 +0200 (CEST)
-From:   Torsten Duwe <duwe@lst.de>
-To:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S2388840AbfGYPU6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 11:20:58 -0400
+Received: from mail-lf1-f67.google.com ([209.85.167.67]:44416 "EHLO
+        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388270AbfGYPU6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 11:20:58 -0400
+Received: by mail-lf1-f67.google.com with SMTP id r15so17821562lfm.11;
+        Thu, 25 Jul 2019 08:20:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LDW/FJUrsVu6k7T07Pr+H7tkQH/WLpxDim2Ftq6lvk8=;
+        b=B6ZsRsEqN8Zh0idaADwGb4x9RAwcSBnpeuKnZayoZHOJrUb+l0bvaz9a1VFzJ72+2v
+         HF2QuqbQRC45Nn78C1FMVW/SfrftgrfYkxDchUL8TyFqzJRrh+M3gA8Mnc8rUdk3PRk6
+         WkfnYbT7/H7YnC7q10pvBQ1iU5sfLH5R/khQxmDf2wqyQ+rrXa06D2u8sait/Bsl8J2d
+         LiGwyGn13EuwR6yDjVnzdVijr2rbRiCgI/91wO5fsWjLq1Exx79GgeHzY+jNTgRRIvWa
+         z5u5Ps3PMrYon6ql0eGzYusvSnS9O1PEWarfXBQeqTyuw1s7g8pWTk9217SNl18gvGPZ
+         0OAQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=LDW/FJUrsVu6k7T07Pr+H7tkQH/WLpxDim2Ftq6lvk8=;
+        b=CZi6yZVafb1UquIPuW2mRhAasU+om3xLifI367M5Rh7u2E35o5ip0VaxvEl6G/N+6M
+         AP3OGk0QPhusgu0qrjW/iCdKtV4gZOrA6yZ5mvsGDDkC0dzQd+Nxb25q4SoTqnJ7JRL0
+         PMDJHhb/wdIdIZTPUCmUvjdIYq3EuqjQXAPnQN8l3W1A0GE6NHPpRycD+tgFIYwlncJ1
+         jXTZNPqHFBHIgoek/l3Js899mBnsu94v38zSFGW75xff0O2fufRA333BkqLMGE8nFqWX
+         DZmssijrONDVZRK/SLnRnr10mUYu9CrJzc7KJ0byApJXX777OJDdhqUZkMe6soZHsuP6
+         WELA==
+X-Gm-Message-State: APjAAAW6A03M+JiKsnj6UuN6AMwWNWfWVh3L6/cXOuZCz7BaSZV74K0V
+        BLbjbicWuXe1bmG0O0YxOyQ=
+X-Google-Smtp-Source: APXvYqx8YvOPn9GvdCLiMGAu2EV1xlTrSrVOqxrRUY0MeAQA7lrEb0GBpmSEvYLU+kVIhM8L4WbOgQ==
+X-Received: by 2002:ac2:482d:: with SMTP id 13mr30015249lft.132.1564068056133;
+        Thu, 25 Jul 2019 08:20:56 -0700 (PDT)
+Received: from localhost.localdomain (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
+        by smtp.gmail.com with ESMTPSA id e87sm10452281ljf.54.2019.07.25.08.20.54
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 25 Jul 2019 08:20:55 -0700 (PDT)
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>,
         Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Icenowy Zheng <icenowy@aosc.io>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vasily Khoruzhick <anarsoul@gmail.com>,
-        Harald Geyer <harald@ccbib.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Cc:     dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190722150414.9F97668B20@verein.lst.de>
-Subject: [PATCH v3 6a/7] dt-bindings: Add ANX6345 DP/eDP transmitter binding
-Message-Id: <20190725151829.DC20968B02@verein.lst.de>
-Date:   Thu, 25 Jul 2019 17:18:29 +0200 (CEST)
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] Support regulators coupling on NVIDIA Tegra20/30
+Date:   Thu, 25 Jul 2019 18:18:29 +0300
+Message-Id: <20190725151832.9802-1-digetx@gmail.com>
+X-Mailer: git-send-email 2.22.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The anx6345 is an ultra-low power DisplayPort/eDP transmitter designed
-for portable devices.
+Hello,
 
-Add a binding document for it.
+The voltage regulators need to be coupled on NVIDIA Tegra20 and Tegra30
+SoCs in order to provide voltage scaling functionality in a generic way.
+All necessary regulator-core patches that added support for the regulators
+coupling are already have been merge into mainline kernel. This series
+adds customized voltage couplers for Tegra20/30 SoCs, paving the way for
+a refined CPUFreq driver that will utilize voltage scaling and other neat
+features. This is a resend of a leftover patches from a previous series
+[1] that was partially applied by Mark Brown. Please review, thanks in
+advance!
 
-Signed-off-by: Icenowy Zheng <icenowy@aosc.io>
-Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Torsten Duwe <duwe@suse.de>
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
- .../devicetree/bindings/display/bridge/anx6345.yaml |   90 ++++++++++
- 1 file changed, 90 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/bridge/anx6345.yaml
+[1] https://patchwork.ozlabs.org/project/linux-tegra/list/?series=115626
 
-diff --git a/Documentation/devicetree/bindings/display/bridge/anx6345.yaml b/Documentation/devicetree/bindings/display/bridge/anx6345.yaml
-new file mode 100644
-index 000000000000..0af092d101c5
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/bridge/anx6345.yaml
-@@ -0,0 +1,90 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/bridge/anx6345.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Analogix ANX6345 eDP Transmitter Device Tree Bindings
-+
-+maintainers:
-+  - Torsten Duwe <duwe@lst.de>
-+
-+description: |
-+  The ANX6345 is an ultra-low power Full-HD eDP transmitter designed for
-+  portable devices.
-+
-+properties:
-+  compatible:
-+    const: analogix,anx6345
-+
-+  reg:
-+    maxItems: 1
-+    description: I2C address of the device
-+
-+  reset-gpios:
-+    maxItems: 1
-+    description: active low GPIO to use for reset
-+
-+  dvdd12-supply:
-+    maxItems: 1
-+    description: Regulator for 1.2V digital core power.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  dvdd25-supply:
-+    maxItems: 1
-+    description: Regulator for 2.5V digital core power.
-+    $ref: /schemas/types.yaml#/definitions/phandle
-+
-+  ports:
-+    type: object
-+    minItems: 1
-+    maxItems: 2
-+    description: |
-+      Video port 0 for LVTTL input,
-+      Video port 1 for eDP output (panel or connector)
-+      using the DT bindings defined in
-+      Documentation/devicetree/bindings/media/video-interfaces.txt
-+
-+required:
-+  - compatible
-+  - reg
-+  - reset-gpios
-+  - dvdd12-supply
-+  - dvdd25-supply
-+  - ports
-+
-+examples:
-+ - |
-+  anx6345: anx6345@38 {
-+      compatible = "analogix,anx6345";
-+      reg = <0x38>;
-+      reset-gpios = <&pio 3 24 GPIO_ACTIVE_LOW>; /* PD24 */
-+      dvdd25-supply = <&reg_dldo2>;
-+      dvdd12-supply = <&reg_fldo1>;
-+
-+      ports {
-+          #address-cells = <1>;
-+          #size-cells = <0>;
-+
-+          anx6345_in: port@0 {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+              reg = <0>;
-+              anx6345_in_tcon0: endpoint@0 {
-+                  reg = <0>;
-+                  remote-endpoint = <&tcon0_out_anx6345>;
-+              };
-+          };
-+
-+          anx6345_out: port@1 {
-+              #address-cells = <1>;
-+              #size-cells = <0>;
-+              reg = <1>;
-+
-+              anx6345_out_panel: endpoint@0 {
-+                  reg = <0>;
-+                  remote-endpoint = <&panel_in_edp>;
-+              };
-+          };
-+      };
-+  };
+Changelog:
+
+v2: - Some days ago OPP framework got a change that makes CPU regulator
+      to be enabled at the time of CPUFreq's driver initializing OPPs.
+      In a result the CPU's voltage is dropped to a minimum value on
+      CPUFreq's setting up because there are no consumers at the time
+      of regulator's enabling, thus CPU is getting into a big trouble.
+      This problem is now resolved in the couplers code by assuming
+      that min_uV=current_uV for CPU's regulator if it doesn't have
+      any active consumers.
+
+Dmitry Osipenko (3):
+  dt-bindings: regulator: Document regulators coupling of NVIDIA
+    Tegra20/30 SoCs
+  soc/tegra: regulators: Add regulators coupler for Tegra20
+  soc/tegra: regulators: Add regulators coupler for Tegra30
+
+ .../nvidia,tegra-regulators-coupling.txt      |  65 ++++
+ drivers/soc/tegra/Kconfig                     |  10 +
+ drivers/soc/tegra/Makefile                    |   2 +
+ drivers/soc/tegra/regulators-tegra20.c        | 364 ++++++++++++++++++
+ drivers/soc/tegra/regulators-tegra30.c        | 316 +++++++++++++++
+ 5 files changed, 757 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/regulator/nvidia,tegra-regulators-coupling.txt
+ create mode 100644 drivers/soc/tegra/regulators-tegra20.c
+ create mode 100644 drivers/soc/tegra/regulators-tegra30.c
+
+-- 
+2.22.0
+
