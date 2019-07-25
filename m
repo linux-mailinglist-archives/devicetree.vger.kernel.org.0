@@ -2,80 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 90ADA757B3
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 21:18:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1806757CC
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 21:25:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726575AbfGYTSb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 15:18:31 -0400
-Received: from mail-pg1-f176.google.com ([209.85.215.176]:41004 "EHLO
-        mail-pg1-f176.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726065AbfGYTSa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 15:18:30 -0400
-Received: by mail-pg1-f176.google.com with SMTP id x15so13164006pgg.8
-        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 12:18:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=aDAwL5Cdh2i3pmbUFIvBo+BF+mpIwQmrHQFud17yoiU=;
-        b=KvdIQeU2WyS6Rj3t/8oofxoNMqb33x+F//0Oquki/4v1RGRk66CPLW2JcPQSNb3LoB
-         j39AP945iuSEjh/0KnJc7ItgLIB4NYrQQkf+mm9V9hoGN0RJI0vQeKWGg+lsxmN810TR
-         X/KUiY77g1CY+6JhePmWhdmXMEdRoHCz8yciY=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=aDAwL5Cdh2i3pmbUFIvBo+BF+mpIwQmrHQFud17yoiU=;
-        b=s3MSB5AHWjci5bzTciuehPeDm6ZkirXMMYrv9ixQJtzFUbA8jpSXt76V7U+5WT6pi0
-         noQYsOhFlzD8Ct4qNEsd27eGUHOQPKMtEz93vRCIvQZQqmZcnATcdOeyJb4ZbdbB9Giy
-         48cOE4c+7mndQZxzCC3I8jk/jZMn/9DVffZjzT+APbvU905OT/1Mn3TujJHGwlKHp2oy
-         oPbPVnf4/Sw2hZnBc1dI3q4AZH4SlcPf+8OFgbmMGfYyhGt9dbRWy+RTrq7dwpAk+kQ2
-         ix0tmuSoEAgXCS5W1WxmX02B6kLOqmyO+fyA3HpRGwhlfSx1e6ade8582R7yXfxrrvTS
-         v0/A==
-X-Gm-Message-State: APjAAAXcSKQ9PN75/Fdgm9UvvYIHEF270OUYRWF8elQAMfMs39zAx3Xw
-        iLR7AFm0NaGVGQa7v/oFiHTMLg==
-X-Google-Smtp-Source: APXvYqyCcBWmg6tvDPsrLgmH0sYeAY28oba+EPqncQmOdGW/32zXvf1WUPg3MaIyYU4E6Pss9CvKVw==
-X-Received: by 2002:a63:30c6:: with SMTP id w189mr84852127pgw.398.1564082309986;
-        Thu, 25 Jul 2019 12:18:29 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id a5sm43642552pjv.21.2019.07.25.12.18.28
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 25 Jul 2019 12:18:28 -0700 (PDT)
-Date:   Thu, 25 Jul 2019 12:18:25 -0700
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S1726709AbfGYTZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 15:25:15 -0400
+Received: from sauhun.de ([88.99.104.3]:55052 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726597AbfGYTZO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 25 Jul 2019 15:25:14 -0400
+Received: from localhost (p5486CDF3.dip0.t-ipconnect.de [84.134.205.243])
+        by pokefinder.org (Postfix) with ESMTPSA id 8B57C4A1209;
+        Thu, 25 Jul 2019 21:25:11 +0200 (CEST)
+Date:   Thu, 25 Jul 2019 21:25:11 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
+        rafael@kernel.org, linux-arm-kernel@lists.infradead.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
         Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>
-Subject: Re: [RFC] dt-bindings: net: phy: Add subnode for LED configuration
-Message-ID: <20190725191825.GF250418@google.com>
-References: <20190722223741.113347-1-mka@chromium.org>
- <20190724180430.GB28488@lunn.ch>
- <20190725175258.GE250418@google.com>
- <20190725183441.GL21952@lunn.ch>
+        Frank Rowand <frowand.list@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>, linux-i2c@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-spi@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Takashi Iwai <tiwai@suse.com>, Alan Tull <atull@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>, linux-fpga@vger.kernel.org,
+        Peter Rosin <peda@axentia.se>, Mark Brown <broonie@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>, Lee Jones <lee.jones@linaro.org>,
+        Thor Thayer <thor.thayer@linux.intel.com>,
+        Jiri Slaby <jslaby@suse.com>
+Subject: Re: [PATCH v3 2/7] drivers: Introduce device lookup variants by
+ of_node
+Message-ID: <20190725192510.GA1440@kunai>
+References: <20190723221838.12024-1-suzuki.poulose@arm.com>
+ <20190723221838.12024-3-suzuki.poulose@arm.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="zYM0uCDKw75PZbzx"
 Content-Disposition: inline
-In-Reply-To: <20190725183441.GL21952@lunn.ch>
+In-Reply-To: <20190723221838.12024-3-suzuki.poulose@arm.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 25, 2019 at 08:34:41PM +0200, Andrew Lunn wrote:
-> > As of now I don't plan to expose the label to userspace by the PHY
-> > driver/framework itself.
-> 
-> Great.
-> 
-> With that change, i think this proposed binding is O.K.
 
-Great, thanks for your feedback!
+--zYM0uCDKw75PZbzx
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-I'll probably post a new version with actual code next week, unless
-there is more discussion before I get to it.
+On Tue, Jul 23, 2019 at 11:18:33PM +0100, Suzuki K Poulose wrote:
+> Introduce wrappers for {bus/driver/class}_find_device() to
+> locate devices by its of_node.
+>=20
+> Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> Cc: Maxime Ripard <maxime.ripard@bootlin.com>
+> Cc: dri-devel@lists.freedesktop.org
+> Cc: David Airlie <airlied@linux.ie>
+> Cc: Daniel Vetter <daniel@ffwll.ch>
+> Cc: devicetree@vger.kernel.org
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Frank Rowand <frowand.list@gmail.com>
+> Cc: Heiko Stuebner <heiko@sntech.de>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: linux-i2c@vger.kernel.org
+> Cc: linux-rockchip@lists.infradead.org
+> Cc: linux-spi@vger.kernel.org
+> Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> Cc: Takashi Iwai <tiwai@suse.com>
+> Cc: Wolfram Sang <wsa@the-dreams.de>
+> Cc: Alan Tull <atull@kernel.org>
+> Cc: Moritz Fischer <mdf@kernel.org>
+> Cc: linux-fpga@vger.kernel.org
+> Cc: Peter Rosin <peda@axentia.se>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Florian Fainelli <f.fainelli@gmail.com>
+> Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> Cc: "David S. Miller" <davem@davemloft.net>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Liam Girdwood <lgirdwood@gmail.com>
+> Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+> Cc: Lee Jones <lee.jones@linaro.org>
+> Cc: Thor Thayer <thor.thayer@linux.intel.com>
+> Cc: Jiri Slaby <jslaby@suse.com>
+> Cc: Mark Brown <broonie@kernel.org>
+> Cc: Andrew Lunn <andrew@lunn.ch>
+> Cc: Peter Rosin <peda@axentia.se>
+> Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> ---
+>  - Dropped the reviewed-by tags from Thor, Mark, Andrew and Peter as the
+>    patches are mereged, though there are no functional changes.
+
+Acked-by: Wolfram Sang <wsa@the-dreams.de> # I2C part
+
+
+--zYM0uCDKw75PZbzx
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl06AhIACgkQFA3kzBSg
+KbZNIA/9HLsMnNVbTacVYltjXILzMKZYQ0kihekXpZMQbl+jlUgeNb0ge8XrGl47
+3ssjlN6wpc7uMNy9T6ScDTjzESHgvFKzKssjfoJ5fp+MDd3KFChbvSmLmm5vVOGc
+VjnjK+ls5meWoG4XdmJuqzlYbdnHOBI/7di4xhfzgN5TvJOjs83YHr7peNVJQgjv
+gTYT2flkrgONnfGKofDGJ4Bk60xOOT/w6oYY3CkzLxbKkaUd5BiIJriXCcKYVNXd
+uLLv5bw/yoU6Smilkgaq8ZdKSbid6VUbXul2Xi6/EEaxQX4Isvx3XNlplBogeAsB
+Jy39hEz2I+UEQHfWNKAIVJJSWyMH/HxwuGYeHB6e9pLqF93rBbXZla+/Uu+u00yW
+BzThKuVHqdQ4FDSbeLz69vJgjvStNgDG/XcYn9PbGtkPiSIrIDJbH1Wq8Wk/PKLX
+XvYAUkM5O/PYp0K4oS6G+7SmDPMLoCCem1PGJsN9QkWfV4b05MtFQFRvRE/voO7Z
+IeUCD1KiM4RUDNd6f9n7DM25OxMtwknJIbT7wuLjDe2KvPvF8/FTI2u2pY0GMaJe
+QZ1uZsSqL7qIUxud5DdTNEyIHgjJDybwyYs/abejIwxMK/tbyl3CiKC2ozg7pc0y
+myVXYa1A9Ecw3n86cwAqQON/rD/j1Bw+dQ/I85BaWBgSb1rPjzI=
+=uZDa
+-----END PGP SIGNATURE-----
+
+--zYM0uCDKw75PZbzx--
