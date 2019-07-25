@@ -2,131 +2,308 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B342755D9
-	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 19:39:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EE356755EE
+	for <lists+devicetree@lfdr.de>; Thu, 25 Jul 2019 19:43:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725854AbfGYRji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 13:39:38 -0400
-Received: from aserp2120.oracle.com ([141.146.126.78]:55956 "EHLO
-        aserp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725774AbfGYRjh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 13:39:37 -0400
-Received: from pps.filterd (aserp2120.oracle.com [127.0.0.1])
-        by aserp2120.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x6PGtg9G088204;
-        Thu, 25 Jul 2019 17:39:27 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=corp-2018-07-02;
- bh=Dx4wlx5XcwUKUwRpxJkEQH+P2ArgbGIeyktwM5rZk+4=;
- b=aJV4RqkoLTOlTi/GWEGH2CZQh1hE1yv5tWXWEK/SybBheCS0gEUYpyYPTc/auDdE9zdh
- orlDxlf7hzdWXwY4Saj/MUl2285FcRdPDg9NzGy2wmoUpBdaycNXB944O3H6fyFp+TgM
- qJZMZqKpw2vvZHQo/mOxcOuT8YxrPzixdcUD9JWx3jMA3ApEi1FlPK9wIcTjTWsQu9gN
- 3y7jwNJlyfeaXbvWVkNcOXCVeHcmoaX6Z61sV4Rt/aOmUGhF4l6MJoHXvqrgI1lCKMZK
- 6W0X8M01fMj6yAQpGoNCP40H/XlETWHzqwyJg0uJCkHm8GZxLbk9ypexL1rEsXD9UKnv 7g== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
-        by aserp2120.oracle.com with ESMTP id 2tx61c5j4c-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 25 Jul 2019 17:39:26 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
-        by userp3030.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x6PFwH15078851;
-        Thu, 25 Jul 2019 17:39:26 GMT
-Received: from userv0122.oracle.com (userv0122.oracle.com [156.151.31.75])
-        by userp3030.oracle.com with ESMTP id 2tx60yf0h4-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 25 Jul 2019 17:39:25 +0000
-Received: from abhmp0006.oracle.com (abhmp0006.oracle.com [141.146.116.12])
-        by userv0122.oracle.com (8.14.4/8.14.4) with ESMTP id x6PHdOV7022696;
-        Thu, 25 Jul 2019 17:39:24 GMT
-Received: from [10.159.250.232] (/10.159.250.232)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Thu, 25 Jul 2019 10:39:24 -0700
-Subject: Re: [PATCH v4 0/5] soc: ti: k3: Allow for exclusive and shared device
- requests
-To:     Lokesh Vutla <lokeshvutla@ti.com>, Nishanth Menon <nm@ti.com>,
-        Tero Kristo <t-kristo@ti.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     Sekhar Nori <nsekhar@ti.com>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>
-References: <20190722050757.29893-1-lokeshvutla@ti.com>
-From:   santosh.shilimkar@oracle.com
-Organization: Oracle Corporation
-Message-ID: <d549d2e9-c375-2c46-e4bc-e3a572c90f11@oracle.com>
-Date:   Thu, 25 Jul 2019 10:39:23 -0700
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.14; rv:60.0)
- Gecko/20100101 Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <20190722050757.29893-1-lokeshvutla@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9329 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1906280000 definitions=main-1907250188
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9329 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1906280000
- definitions=main-1907250188
+        id S2388806AbfGYRns (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 25 Jul 2019 13:43:48 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36590 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726738AbfGYRnr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 25 Jul 2019 13:43:47 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=3hutWYgyTBe2VUCgMXkh7pO498CqD2Amxaael5ohZis=; b=tlZl7MQqLsJ/
+        lQTNVWyixo4iVFlVzdZW4OfTzD2PA02QNv/6Bx9lhYkrcNB4/VMSIBRvBfEnO8a1tkFLVnQOBETm/
+        MrNfZjEouLs2e6PdYfYrTPKyw46hhEcxBwdYrpLQrFFZm4ikZyE/2Uty+isnTxsH6AbfgZBChg3cj
+        Cdu7U=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hqhmG-0003NH-QJ; Thu, 25 Jul 2019 17:43:40 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 8B8752742B5F; Thu, 25 Jul 2019 18:43:39 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Jerome Brunet <jbrunet@baylibre.com>
+Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        Kevin Hilman <khilman@baylibre.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>
+Subject: Applied "ASoC: codec2codec: deal with params when necessary" to the asoc tree
+In-Reply-To: <20190725165949.29699-4-jbrunet@baylibre.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190725174339.8B8752742B5F@ypsilon.sirena.org.uk>
+Date:   Thu, 25 Jul 2019 18:43:39 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The patch
 
+   ASoC: codec2codec: deal with params when necessary
 
-On 7/21/19 10:07 PM, Lokesh Vutla wrote:
-> Sysfw provides an option for requesting exclusive access for a
-> device using the flags MSG_FLAG_DEVICE_EXCLUSIVE. If this flag is
-> not used, the device is meant to be shared across hosts. Once a device
-> is requested from a host with this flag set, any request to this
-> device from a different host will be nacked by sysfw.
-> 
-> Current tisci firmware and pm drivers always requests for device with
-> exclusive permissions set. But this is not be true for certain devices
-> that are expcted to be shared across different host contexts.
-> So add support for getting the shared or exclusive permissions from DT
-> and request firmware accordingly.
-> 
-> Changes since v3: https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=103447
-> - Rebased on top of v5.3-rc1
-> - Updated power-domain cells for j721e.
-> - Mark the console uart as shared in am65x-base-board
-> - Added Reviewed-by from Rob
-> 
-> Lokesh Vutla (5):
->    firmware: ti_sci: Allow for device shared and exclusive requests
->    dt-bindings: ti_sci_pm_domains: Add support for exclusive and shared
->      access
->    soc: ti: ti_sci_pm_domains: Add support for exclusive and shared
->      access
->    arm64: dts: ti: k3-am654: Update the power domain cells
->    arm64: dts: ti: k3-j721e: Update the power domain cells
-> 
->   .../bindings/soc/ti/sci-pm-domain.txt         | 11 ++++-
->   MAINTAINERS                                   |  1 +
->   arch/arm64/boot/dts/ti/k3-am65-main.dtsi      | 44 +++++++++---------
->   arch/arm64/boot/dts/ti/k3-am65-mcu.dtsi       | 10 ++---
->   arch/arm64/boot/dts/ti/k3-am65-wakeup.dtsi    |  6 +--
->   arch/arm64/boot/dts/ti/k3-am65.dtsi           |  1 +
->   .../arm64/boot/dts/ti/k3-am654-base-board.dts |  1 +
->   .../dts/ti/k3-j721e-common-proc-board.dts     |  4 ++
->   arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 20 ++++-----
->   .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  6 +--
->   arch/arm64/boot/dts/ti/k3-j721e.dtsi          |  1 +
->   drivers/firmware/ti_sci.c                     | 45 ++++++++++++++++++-
->   drivers/soc/ti/ti_sci_pm_domains.c            | 23 +++++++++-
->   include/dt-bindings/soc/ti,sci_pm_domain.h    |  9 ++++
->   include/linux/soc/ti/ti_sci_protocol.h        |  3 ++
->   15 files changed, 136 insertions(+), 49 deletions(-)
->   create mode 100644 include/dt-bindings/soc/ti,sci_pm_domain.h
-> 
-Please split this patch series so that drivers and arch, dts patches
-can be queued by respective trees.
+has been applied to the asoc tree at
 
-Regards,
-Santosh
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From 3dcfb397dad2ad55bf50de3c5d5a57090d35a18a Mon Sep 17 00:00:00 2001
+From: Jerome Brunet <jbrunet@baylibre.com>
+Date: Thu, 25 Jul 2019 18:59:46 +0200
+Subject: [PATCH] ASoC: codec2codec: deal with params when necessary
+
+When there is an event on codec to codec dai_link, we only need to deal
+with params if the event is SND_SOC_DAPM_PRE_PMU, when .hw_params() is
+called. For the other events, it is useless.
+
+Also, dealing with the codec to codec params just before calling
+.hw_params() callbacks give change to either party on the link to alter
+params content in .startup(), which might be useful in some cases
+
+Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
+Link: https://lore.kernel.org/r/20190725165949.29699-4-jbrunet@baylibre.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ sound/soc/soc-dapm.c | 159 +++++++++++++++++++++++++------------------
+ 1 file changed, 92 insertions(+), 67 deletions(-)
+
+diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
+index 7db4abd9a0a5..6dcaf9ff6eb5 100644
+--- a/sound/soc/soc-dapm.c
++++ b/sound/soc/soc-dapm.c
+@@ -3764,25 +3764,59 @@ int snd_soc_dapm_new_controls(struct snd_soc_dapm_context *dapm,
+ }
+ EXPORT_SYMBOL_GPL(snd_soc_dapm_new_controls);
+ 
+-static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+-				  struct snd_kcontrol *kcontrol, int event)
++static int
++snd_soc_dai_link_event_pre_pmu(struct snd_soc_dapm_widget *w,
++			       struct snd_pcm_substream *substream)
+ {
+ 	struct snd_soc_dapm_path *path;
+ 	struct snd_soc_dai *source, *sink;
+-	struct snd_soc_pcm_runtime *rtd = w->priv;
+-	const struct snd_soc_pcm_stream *config;
+-	struct snd_pcm_substream substream;
++	struct snd_soc_pcm_runtime *rtd = substream->private_data;
+ 	struct snd_pcm_hw_params *params = NULL;
+-	struct snd_pcm_runtime *runtime = NULL;
++	const struct snd_soc_pcm_stream *config = NULL;
+ 	unsigned int fmt;
+-	int ret = 0;
++	int ret;
+ 
+-	config = rtd->dai_link->params + rtd->params_select;
++	params = kzalloc(sizeof(*params), GFP_KERNEL);
++	if (!params)
++		return -ENOMEM;
+ 
+-	if (WARN_ON(!config) ||
+-	    WARN_ON(list_empty(&w->edges[SND_SOC_DAPM_DIR_OUT]) ||
+-		    list_empty(&w->edges[SND_SOC_DAPM_DIR_IN])))
+-		return -EINVAL;
++	substream->stream = SNDRV_PCM_STREAM_CAPTURE;
++	snd_soc_dapm_widget_for_each_source_path(w, path) {
++		source = path->source->priv;
++
++		ret = snd_soc_dai_startup(source, substream);
++		if (ret < 0) {
++			dev_err(source->dev,
++				"ASoC: startup() failed: %d\n", ret);
++			goto out;
++		}
++		source->active++;
++	}
++
++	substream->stream = SNDRV_PCM_STREAM_PLAYBACK;
++	snd_soc_dapm_widget_for_each_sink_path(w, path) {
++		sink = path->sink->priv;
++
++		ret = snd_soc_dai_startup(sink, substream);
++		if (ret < 0) {
++			dev_err(sink->dev,
++				"ASoC: startup() failed: %d\n", ret);
++			goto out;
++		}
++		sink->active++;
++	}
++
++	/*
++	 * Note: getting the config after .startup() gives a chance to
++	 * either party on the link to alter the configuration if
++	 * necessary
++	 */
++	config = rtd->dai_link->params + rtd->params_select;
++	if (WARN_ON(!config)) {
++		dev_err(w->dapm->dev, "ASoC: link config missing\n");
++		ret = -EINVAL;
++		goto out;
++	}
+ 
+ 	/* Be a little careful as we don't want to overflow the mask array */
+ 	if (config->formats) {
+@@ -3790,27 +3824,62 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 	} else {
+ 		dev_warn(w->dapm->dev, "ASoC: Invalid format %llx specified\n",
+ 			 config->formats);
+-		fmt = 0;
+-	}
+ 
+-	/* Currently very limited parameter selection */
+-	params = kzalloc(sizeof(*params), GFP_KERNEL);
+-	if (!params) {
+-		ret = -ENOMEM;
++		ret = -EINVAL;
+ 		goto out;
+ 	}
+-	snd_mask_set(hw_param_mask(params, SNDRV_PCM_HW_PARAM_FORMAT), fmt);
+ 
++	snd_mask_set(hw_param_mask(params, SNDRV_PCM_HW_PARAM_FORMAT), fmt);
+ 	hw_param_interval(params, SNDRV_PCM_HW_PARAM_RATE)->min =
+ 		config->rate_min;
+ 	hw_param_interval(params, SNDRV_PCM_HW_PARAM_RATE)->max =
+ 		config->rate_max;
+-
+ 	hw_param_interval(params, SNDRV_PCM_HW_PARAM_CHANNELS)->min
+ 		= config->channels_min;
+ 	hw_param_interval(params, SNDRV_PCM_HW_PARAM_CHANNELS)->max
+ 		= config->channels_max;
+ 
++	substream->stream = SNDRV_PCM_STREAM_CAPTURE;
++	snd_soc_dapm_widget_for_each_source_path(w, path) {
++		source = path->source->priv;
++
++		ret = snd_soc_dai_hw_params(source, substream, params);
++		if (ret < 0)
++			goto out;
++
++		dapm_update_dai_unlocked(substream, params, source);
++	}
++
++	substream->stream = SNDRV_PCM_STREAM_PLAYBACK;
++	snd_soc_dapm_widget_for_each_sink_path(w, path) {
++		sink = path->sink->priv;
++
++		ret = snd_soc_dai_hw_params(sink, substream, params);
++		if (ret < 0)
++			goto out;
++
++		dapm_update_dai_unlocked(substream, params, sink);
++	}
++
++out:
++	kfree(params);
++	return 0;
++}
++
++static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
++				  struct snd_kcontrol *kcontrol, int event)
++{
++	struct snd_soc_dapm_path *path;
++	struct snd_soc_dai *source, *sink;
++	struct snd_soc_pcm_runtime *rtd = w->priv;
++	struct snd_pcm_substream substream;
++	struct snd_pcm_runtime *runtime = NULL;
++	int ret = 0;
++
++	if (WARN_ON(list_empty(&w->edges[SND_SOC_DAPM_DIR_OUT]) ||
++		    list_empty(&w->edges[SND_SOC_DAPM_DIR_IN])))
++		return -EINVAL;
++
+ 	memset(&substream, 0, sizeof(substream));
+ 
+ 	/* Allocate a dummy snd_pcm_runtime for startup() and other ops() */
+@@ -3824,53 +3893,10 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 
+ 	switch (event) {
+ 	case SND_SOC_DAPM_PRE_PMU:
+-		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
+-		snd_soc_dapm_widget_for_each_source_path(w, path) {
+-			source = path->source->priv;
+-
+-			ret = snd_soc_dai_startup(source, &substream);
+-			if (ret < 0) {
+-				dev_err(source->dev,
+-					"ASoC: startup() failed: %d\n", ret);
+-				goto out;
+-			}
+-			source->active++;
+-		}
+-
+-		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
+-		snd_soc_dapm_widget_for_each_sink_path(w, path) {
+-			sink = path->sink->priv;
+-
+-			ret = snd_soc_dai_startup(sink, &substream);
+-			if (ret < 0) {
+-				dev_err(sink->dev,
+-					"ASoC: startup() failed: %d\n", ret);
+-				goto out;
+-			}
+-			sink->active++;
+-		}
+-
+-		substream.stream = SNDRV_PCM_STREAM_CAPTURE;
+-		snd_soc_dapm_widget_for_each_source_path(w, path) {
+-			source = path->source->priv;
+-
+-			ret = snd_soc_dai_hw_params(source, &substream, params);
+-			if (ret < 0)
+-				goto out;
+-
+-			dapm_update_dai_unlocked(&substream, params, source);
+-		}
+-
+-		substream.stream = SNDRV_PCM_STREAM_PLAYBACK;
+-		snd_soc_dapm_widget_for_each_sink_path(w, path) {
+-			sink = path->sink->priv;
+-
+-			ret = snd_soc_dai_hw_params(sink, &substream, params);
+-			if (ret < 0)
+-				goto out;
++		ret = snd_soc_dai_link_event_pre_pmu(w, &substream);
++		if (ret < 0)
++			goto out;
+ 
+-			dapm_update_dai_unlocked(&substream, params, sink);
+-		}
+ 		break;
+ 
+ 	case SND_SOC_DAPM_POST_PMU:
+@@ -3932,7 +3958,6 @@ static int snd_soc_dai_link_event(struct snd_soc_dapm_widget *w,
+ 
+ out:
+ 	kfree(runtime);
+-	kfree(params);
+ 	return ret;
+ }
+ 
+-- 
+2.20.1
+
