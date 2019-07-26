@@ -2,76 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 419CF76F75
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 19:04:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5DD1876FA0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 19:18:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728987AbfGZREy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 13:04:54 -0400
-Received: from mga05.intel.com ([192.55.52.43]:60576 "EHLO mga05.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728985AbfGZREy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 13:04:54 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from fmsmga007.fm.intel.com ([10.253.24.52])
-  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 26 Jul 2019 10:04:53 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,311,1559545200"; 
-   d="scan'208";a="172279192"
-Received: from haiyuewa-mobl.ccr.corp.intel.com (HELO [10.255.31.18]) ([10.255.31.18])
-  by fmsmga007.fm.intel.com with ESMTP; 26 Jul 2019 10:04:51 -0700
-Subject: Re: [RFC PATCH 14/17] ipmi: kcs: Finish configuring ASPEED KCS device
- before enable
-To:     Andrew Jeffery <andrew@aj.id.au>, linux-aspeed@lists.ozlabs.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com, joel@jms.id.au,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, Corey Minyard <minyard@acm.org>,
-        Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        openipmi-developer@lists.sourceforge.net
-References: <20190726053959.2003-1-andrew@aj.id.au>
- <20190726053959.2003-15-andrew@aj.id.au>
-From:   "Wang, Haiyue" <haiyue.wang@linux.intel.com>
-Message-ID: <29a2d999-23bd-8e95-a1b8-f00e25a11df5@linux.intel.com>
-Date:   Sat, 27 Jul 2019 01:04:51 +0800
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727491AbfGZRSW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 13:18:22 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:42016 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726402AbfGZRSW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 13:18:22 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=ZTdXXHzjtIECvcH9SRFxgzEXd0AdlsTme63IMTdWnT8=; b=P584lDKfa4NmiJ8hHfzMke5wr
+        8M1Wua8DsotsnkRBbK/U70BiaP+amK32eFaySdFJf3m7YxOvLi0+64I67QalcnMzT1cz+RyP+iwq1
+        GyxdLMz/ORUNmCMDt2OjgwNVzp/ypcWvUcHuLP7vT1C7iDCvdA/xsISEn2P9vWxbSrH18=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hr3r1-0002uT-Sa; Fri, 26 Jul 2019 17:18:03 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 996452742B63; Fri, 26 Jul 2019 18:18:02 +0100 (BST)
+Date:   Fri, 26 Jul 2019 18:18:02 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Suzuki K Poulose <suzuki.poulose@arm.com>
+Cc:     linux-kernel@vger.kernel.org, gregkh@linuxfoundation.org,
+        rafael@kernel.org, linux-arm-kernel@lists.infradead.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>, linux-i2c@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-spi@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Wolfram Sang <wsa@the-dreams.de>, Alan Tull <atull@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>, linux-fpga@vger.kernel.org,
+        Peter Rosin <peda@axentia.se>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>, Lee Jones <lee.jones@linaro.org>,
+        Thor Thayer <thor.thayer@linux.intel.com>,
+        Jiri Slaby <jslaby@suse.com>
+Subject: Re: [PATCH v3 2/7] drivers: Introduce device lookup variants by
+ of_node
+Message-ID: <20190726171802.GD55803@sirena.org.uk>
+References: <20190723221838.12024-1-suzuki.poulose@arm.com>
+ <20190723221838.12024-3-suzuki.poulose@arm.com>
 MIME-Version: 1.0
-In-Reply-To: <20190726053959.2003-15-andrew@aj.id.au>
-Content-Type: text/plain; charset=gbk; format=flowed
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="fOHHtNG4YXGJ0yqR"
+Content-Disposition: inline
+In-Reply-To: <20190723221838.12024-3-suzuki.poulose@arm.com>
+X-Cookie: Think sideways!
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-ÔÚ 2019-07-26 13:39, Andrew Jeffery Ð´µÀ:
-> The currently interrupts are configured after the channel was enabled.
->
-> Cc: Haiyue Wang<haiyue.wang@linux.intel.com>
-> Cc: Corey Minyard<minyard@acm.org>
-> Cc: Arnd Bergmann<arnd@arndb.de>
-> Cc: Greg Kroah-Hartman<gregkh@linuxfoundation.org>
-> Cc:openipmi-developer@lists.sourceforge.net
-> Signed-off-by: Andrew Jeffery<andrew@aj.id.au>
-> ---
->   drivers/char/ipmi/kcs_bmc_aspeed.c | 7 ++++---
->   1 file changed, 4 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/char/ipmi/kcs_bmc_aspeed.c b/drivers/char/ipmi/kcs_bmc_aspeed.c
-> index 3c955946e647..e3dd09022589 100644
-> --- a/drivers/char/ipmi/kcs_bmc_aspeed.c
-> +++ b/drivers/char/ipmi/kcs_bmc_aspeed.c
-> @@ -268,13 +268,14 @@ static int aspeed_kcs_probe(struct platform_device *pdev)
->   	kcs_bmc->io_inputb = aspeed_kcs_inb;
->   	kcs_bmc->io_outputb = aspeed_kcs_outb;
->   
-> +	rc = aspeed_kcs_config_irq(kcs_bmc, pdev);
-> +	if (rc)
-> +		return rc;
-> +
->   	dev_set_drvdata(dev, kcs_bmc);
 
+--fOHHtNG4YXGJ0yqR
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Thanks for catching this, for not miss the data.
+On Tue, Jul 23, 2019 at 11:18:33PM +0100, Suzuki K Poulose wrote:
+> Introduce wrappers for {bus/driver/class}_find_device() to
+> locate devices by its of_node.
 
+Acked-by: Mark Brown <broonie@kernel.org>
+
+--fOHHtNG4YXGJ0yqR
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl07NckACgkQJNaLcl1U
+h9A0GAf/Qv4GC1ywijdMO9/GL0PzTuBBqL46oM94b0OCt9PYllKoQ2MkrwSN+eAS
+DGfHngyqVnoUtqjC/RksDFvWLJ7/Hg6BRJf0zkPspIu7s/DC2tW4x7C8CTIvfbF3
+LbDl5DdTKcj/+2cS7yypDLGUkmUVs0pmfQJ5e9gk0l8qX8UUIoycnIQCKtctvUlr
+LZgOv6gh5nuo2Vh8vuJIMi9rUHfe8zeSvMhnDhM/cU4ufM81bxjTeRw/9wdv1KOO
+WLCRZm1nIAYCZajxTVgQdYhI/c7w6Dl9ZSc9/dJmzVp5RZyoV7KYT6IcjRwPVnRt
+UZpTwC9oSD2mXZB30cpoNy7JmGFAKw==
+=+DYp
+-----END PGP SIGNATURE-----
+
+--fOHHtNG4YXGJ0yqR--
