@@ -2,152 +2,241 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B4139764FA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 13:59:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 37ECC76516
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 14:02:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726759AbfGZL7z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 07:59:55 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:30432 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726000AbfGZL7y (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 07:59:54 -0400
-X-UUID: 7f884de187424569bf5cd7ef18904073-20190726
-X-UUID: 7f884de187424569bf5cd7ef18904073-20190726
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
-        (envelope-from <jungo.lin@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
-        with ESMTP id 1644991987; Fri, 26 Jul 2019 19:59:46 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 26 Jul 2019 19:59:46 +0800
-Received: from [172.21.84.99] (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 26 Jul 2019 19:59:46 +0800
-Message-ID: <1564142386.1212.621.camel@mtksdccf07>
-Subject: Re: [RFC, v3 9/9] media: platform: Add Mediatek ISP P1 shared
- memory device
-From:   Jungo Lin <jungo.lin@mediatek.com>
-To:     Robin Murphy <robin.murphy@arm.com>
-CC:     Tomasz Figa <tfiga@chromium.org>,
-        Christoph Hellwig <hch@infradead.org>,
-        <devicetree@vger.kernel.org>,
-        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
-        <sean.cheng@mediatek.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
-        <rynn.wu@mediatek.com>,
-        "Linux Media Mailing List" <linux-media@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Rob Herring <robh@kernel.org>,
-        Ryan Yu =?UTF-8?Q?=28=E4=BD=99=E5=AD=9F=E4=BF=AE=29?= 
-        <ryan.yu@mediatek.com>,
-        Frankie Chiu =?UTF-8?Q?=28=E9=82=B1=E6=96=87=E5=87=B1=29?= 
-        <frankie.chiu@mediatek.com>, Hans Verkuil <hverkuil@xs4all.nl>,
-        Sj Huang <sj.huang@mediatek.com>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        <ddavenport@chromium.org>,
-        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
-        <frederic.chen@mediatek.com>,
-        "list@263.net:IOMMU DRIVERS" <iommu@lists.linux-foundation.org>,
-        "Joerg Roedel" <joro@8bytes.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        "Matthias Brugger" <matthias.bgg@gmail.com>
-Date:   Fri, 26 Jul 2019 19:59:46 +0800
-In-Reply-To: <4460bc91-352a-7f3a-cbed-1b95e743ca8c@arm.com>
-References: <jungo.lin@mediatek.com>
-         <20190611035344.29814-1-jungo.lin@mediatek.com>
-         <20190611035344.29814-10-jungo.lin@mediatek.com>
-         <20190701072532.GB137710@chromium.org>
-         <1562297618.1212.46.camel@mtksdccf07>
-         <CAAFQd5BaTQ-Q7gsE0X+d4_81OZq9WHaCYkmALt7_4A1JFo=_8g@mail.gmail.com>
-         <1562313579.1212.73.camel@mtksdccf07>
-         <CAAFQd5AaNFpMGCVJREY85n8UetEwd99TOka8-ECoLzMbMkos_g@mail.gmail.com>
-         <1563870117.1212.455.camel@mtksdccf07>
-         <CAAFQd5Bh80N+cMhz=eyHUGJLaE5uuypOawQvHrTgGSMDvmcpLA@mail.gmail.com>
-         <20190726074116.GA19745@infradead.org>
-         <CAAFQd5CXwRm-3jD+rfNNDNLH=gT_i0QYSAG3XBo3SJnPTY56_w@mail.gmail.com>
-         <4460bc91-352a-7f3a-cbed-1b95e743ca8c@arm.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1726888AbfGZMCn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 08:02:43 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:56962 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726026AbfGZMCm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 08:02:42 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190726120239euoutp029be9746082ba4169a23f5cf23354b15a~08179Q_hJ3058430584euoutp02V
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 12:02:39 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190726120239euoutp029be9746082ba4169a23f5cf23354b15a~08179Q_hJ3058430584euoutp02V
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1564142559;
+        bh=DpZBxh2b3FgthXala1yFlfzP7R3sugOAntJqovIx5ks=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=gkZItRGkiEfS246wY2lcNcwXj1+9oKYG/cG/j0IFhNQI4up5bXH43DY/Eo7ILurcL
+         LNogapGj+FApDzNMGsX1lgXEwGsfR/aiC0ugaf87G1p9v3jkyoMRpZEY1KZyqCV5cb
+         ypjeiakYVqv/zpJMgiESU5X1LFkjwM11kPVrxpPU=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190726120239eucas1p20656c7e558391a8f78390c795dafdbbe~0817JtnK02738827388eucas1p2t;
+        Fri, 26 Jul 2019 12:02:39 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id CE.45.04377.EDBEA3D5; Fri, 26
+        Jul 2019 13:02:38 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
+        20190726120238eucas1p243c54e3f3ff3d514e3873d40e2bdf3ab~0816VHYQC0843408434eucas1p2o;
+        Fri, 26 Jul 2019 12:02:38 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190726120237eusmtrp21bb6a34874d8337ecbd2413f228e72b4~0816EElWM1338313383eusmtrp2e;
+        Fri, 26 Jul 2019 12:02:37 +0000 (GMT)
+X-AuditID: cbfec7f4-113ff70000001119-dc-5d3aebdef158
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 21.DF.04140.DDBEA3D5; Fri, 26
+        Jul 2019 13:02:37 +0100 (BST)
+Received: from [106.120.50.63] (unknown [106.120.50.63]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190726120237eusmtip2c70175156eed774cdc329002f19d0590~0815ZG3vE1048010480eusmtip2N;
+        Fri, 26 Jul 2019 12:02:37 +0000 (GMT)
+Subject: Re: [RFC PATCH 08/11] arm: dts: exynos: Add parents and
+ #interconnect-cells to Exynos4412
+To:     cwchoi00@gmail.com,
+        =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>
+Cc:     devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-samsung-soc <linux-samsung-soc@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>, inki.dae@samsung.com,
+        Seung-Woo Kim <sw0312.kim@samsung.com>,
+        georgi.djakov@linaro.org
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+Message-ID: <cc4c48c3-06a5-c58f-20de-0aa18ae8667e@samsung.com>
+Date:   Fri, 26 Jul 2019 14:02:34 +0200
+User-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64; rv:60.0) Gecko/20100101
+        Thunderbird/60.8.0
 MIME-Version: 1.0
-X-MTK:  N
+In-Reply-To: <CAGTfZH1_Qk+vNa_AJW_8OA8MJbnZa3yCTLLRs2w23bNTm72gyQ@mail.gmail.com>
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
+X-Brightmail-Tracker: H4sIAAAAAAAAA01SaUwTYRD16263S0Pxs6BM0ABpgihGEKJxBaNoMNk/GDz+eBCosuGQcrRQ
+        PGLkSDwQEDAEKAjG4JEmeBRKKCBSBCoQAVFR5I6IoIIJrT84BCkryr83b97Mm5cMTUj7hE50
+        ZEwCp4yRR8soMVnVMtOxffC7b/CO1FseTGOLXsR8sHwVMmPN25jSpg4h8+7XT4rJf66jmNyh
+        bJLp7HwqYnSfe4TM25piijFnNiGmoLNewPSlPKKYgtsTlL8da9AMiFid9gbF9vfUUezQTZOA
+        rSi7whqn6gRsVqUWsWadcxB9Urw3jIuOVHNKr32h4oj7IxmCuEX38wv9RpSM2iEd2dCAd8JE
+        wyBKR2Jaih8haKttFfCFBcFsRxnJF2YEOcUjwpWRnPtGgm88RJA31vt3ZBKB+ZVBZFXZ4zAY
+        r3+NrNgBn4Bc09VlEwLPEZB1Z25ZRGFvSJ9Mp6xYgvfB6ND0EqZpErtBQ8V+K70enwbDjwyC
+        l6yD1sJR0opt8BEwFJcsjxLYBdL0RQSPHeHTaOnyQYB/iyD78XuRdSfgAHgxsJZPYA/fTJUi
+        Hm+CRcOKPg3BSEe5iC8yELxNLUC8yg9emt4IrYsIvBWe1Hjx9AGwtF8j+f128HFyHX+DHeRW
+        5RM8LYHrV6W8ejNoTI//2Rq7uolsJNOsSqZZlUazKo3mv+9dRGqRI5eoUoRzKp8YLslTJVeo
+        EmPCPc/GKnRo6eXaF0yWalQzf6YRYRrJbCVbtHuCpUK5WnVB0YiAJmQOEn31EiUJk1+4yClj
+        Q5SJ0ZyqEW2kSZmj5NKa4VNSHC5P4M5xXBynXOkKaBunZJQkVh5NSUVj8cVNx20PWgTds4eL
+        jjVDSNe92sL4jSXeifOZltoBlzXDisvmeDWbVP5gIVCBt7i32U6luNplTEc9m3lwfVfohqii
+        CLcydaDPnviE8f5Fbe96fQA3dMjJVv9kxh/tftjlEJnn6xHqUYCD1PbO3BeTG1EX6MpO+8lI
+        VYTc24NQquR/AB0p7rFuAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrHIsWRmVeSWpSXmKPExsVy+t/xe7p3X1vFGlzdpGdx6NhWdovrX56z
+        Wjw7qm0x/8g5VosrX9+zWUzfu4nNYtL9CSwW589vYLfY9Pgaq8XlXXPYLD73HmG0mHF+H5PF
+        7cYVbBYzJr9kc+Dz2DnrLrvHplWdbB53ru1h87jffZzJY/OSeo+D7/YwefRtWcXo8XmTXABH
+        lJ5NUX5pSapCRn5xia1StKGFkZ6hpYWekYmlnqGxeayVkamSvp1NSmpOZllqkb5dgl7G0oc9
+        TAX/1Sv+3TnI2MB4WqKLkZNDQsBEYuLSg8xdjFwcQgJLGSX+TjrBBpGQkTg5rYEVwhaW+HOt
+        iw2i6DWjxOYJL1lAEsICKRIv9p1lBLFFBCIlGpZPYQIpYhb4yyyxf80dRoiOKUwS/V8vgHWw
+        CRhKdL3tAlvBK2An8eT+JyCbg4NFQFXiwGZ7kLCoQIzEvjPb2SFKBCVOznwC1sopECixc848
+        sFZmATOJeZsfMkPY8hLNW2dD2eISt57MZ5rAKDQLSfssJC2zkLTMQtKygJFlFaNIamlxbnpu
+        sZFecWJucWleul5yfu4mRmBcbzv2c8sOxq53wYcYBTgYlXh4Lyy3jBViTSwrrsw9xCjBwawk
+        wrt1B1CINyWxsiq1KD++qDQntfgQoynQbxOZpUST84EpJ68k3tDU0NzC0tDc2NzYzEJJnLdD
+        4GCMkEB6YklqdmpqQWoRTB8TB6dUA2NYbcmhy2fqTspY9euu6pqnIX6Fe8qX91pm/4+lM/L/
+        z/33OtY9cZ/AuWUqhcfN/vol6zwv13h0uOBgu9WHumdBBp8Vtz6aVSiU7/R62hNj8z9Fxyds
+        XsxXoPvNyWglu+ah+w8Yp9mePq0SEvrt6+5Jz142rZzLlm049+gVk/jFyV6CgT0L4pYrsRRn
+        JBpqMRcVJwIArD3n3wEDAAA=
+X-CMS-MailID: 20190726120238eucas1p243c54e3f3ff3d514e3873d40e2bdf3ab
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190723122027eucas1p24b1d76e3139f7cc52614d7613ff9ba98
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190723122027eucas1p24b1d76e3139f7cc52614d7613ff9ba98
+References: <CGME20190723122027eucas1p24b1d76e3139f7cc52614d7613ff9ba98@eucas1p2.samsung.com>
+        <20190723122016.30279-1-a.swigon@partner.samsung.com>
+        <20190723122016.30279-9-a.swigon@partner.samsung.com>
+        <CAGTfZH1_Qk+vNa_AJW_8OA8MJbnZa3yCTLLRs2w23bNTm72gyQ@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Robin:
+Hi
 
-On Fri, 2019-07-26 at 12:04 +0100, Robin Murphy wrote:
-> On 26/07/2019 08:42, Tomasz Figa wrote:
-> > On Fri, Jul 26, 2019 at 4:41 PM Christoph Hellwig <hch@infradead.org> wrote:
-> >>
-> >> On Fri, Jul 26, 2019 at 02:15:14PM +0900, Tomasz Figa wrote:
-> >>> Could you try dma_get_sgtable() with the SCP struct device and then
-> >>> dma_map_sg() with the P1 struct device?
-> >>
-> >> Please don't do that.  dma_get_sgtable is a pretty broken API (see
-> >> the common near the arm implementation) and we should not add more
-> >> users of it.  If you want a piece of memory that can be mapped to
-> >> multiple devices allocate it using alloc_pages and then just map
-> >> it to each device.
-> > 
-> > Thanks for taking a look at this thread.
-> > 
-> > Unfortunately that wouldn't work. We have a specific reserved memory
-> > pool that is the only memory area accessible to one of the devices.
-> > Any idea how to handle this?
-> 
-> If it's reserved in the sense of being outside struct-page-backed 
-> "kernel memory", then provided you have a consistent CPU physical 
-> address it might be reasonable for other devices to access it via 
-> dma_map_resource().
-> 
-> Robin.
+On 2019-07-25 15:13, Chanwoo Choi wrote:
+> 2019년 7월 24일 (수) 오전 8:07, Artur Świgoń <a.swigon@partner.samsung.com>님이 작성:
+>> This patch adds two fields tp the Exynos4412 DTS:
+>>    - parent: to declare connections between nodes that are not in a
+>>      parent-child relation in devfreq;
+>>    - #interconnect-cells: required by the interconnect framework.
+>>
+>> Please note that #interconnect-cells is always zero and node IDs are not
+>> hardcoded anywhere.
+>>
+>> Signed-off-by: Artur Świgoń <a.swigon@partner.samsung.com>
+>> ---
+>>   arch/arm/boot/dts/exynos4412-odroid-common.dtsi | 1 +
+>>   arch/arm/boot/dts/exynos4412.dtsi               | 9 +++++++++
+>>   2 files changed, 10 insertions(+)
+>>
+>> diff --git a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+>> index ea55f377d17c..bdd61ae86103 100644
+>> --- a/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+>> +++ b/arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+>> @@ -106,6 +106,7 @@
+>>   &bus_leftbus {
+>>          devfreq-events = <&ppmu_leftbus_3>, <&ppmu_rightbus_3>;
+>>          vdd-supply = <&buck3_reg>;
+>> +       parent = <&bus_dmc>;
+> It is wrong. 'bus_leftbus' has not any h/w dependency of 'bus_dmc'
+> and 'bus_leftbus' is not child of 'bus_dmc'.
+>
+> Even it there are some PMQoS requirement between them,
+> it it not proper to tie both 'bus_leftbus' and 'bus_dmc'.
 
-Thank you for your suggestion.
+There is strict dependency between them. DMC bus running at frequency 
+lower than left (or right) bus really doesn't make much sense, because 
+it will limit the left bus performance. This dependency should be 
+modeled somehow.
 
-After revising to use dma_map_resource(), it is worked. Below is the
-current implementation. Pleas kindly help us to check if there is any
-misunderstanding.
-
-#define MTK_ISP_COMPOSER_MEM_SIZE		0x200000
-
-	/*
-	 * Allocate coherent reserved memory for SCP firmware usage.
-	 * The size of SCP composer's memory is fixed to 0x200000
-	 * for the requirement of firmware.
-	 */
-	ptr = dma_alloc_coherent(p1_dev->cam_dev.smem_dev,
-				 MTK_ISP_COMPOSER_MEM_SIZE, &addr, GFP_KERNEL);
-	if (!ptr) {
-		dev_err(dev, "failed to allocate compose memory\n");
-		return -ENOMEM;
-	}
-	p1_dev->composer_scp_addr = addr;
-	p1_dev->composer_virt_addr = ptr;
-	dev_dbg(dev, "scp addr:%pad va:%pK\n", &addr, ptr);
-
-	/*
-	 * This reserved memory is also be used by ISP P1 HW.
-	 * Need to get iova address for ISP P1 DMA.
-	 */
-	addr = dma_map_resource(dev, addr, MTK_ISP_COMPOSER_MEM_SIZE,
-				DMA_BIDIRECTIONAL, DMA_ATTR_SKIP_CPU_SYNC);
-	if (dma_mapping_error(dev, addr)) {
-		dev_err(dev, "Failed to map scp iova\n");
-		ret = -ENOMEM;
-		goto fail_free_mem;
-	}
-	p1_dev->composer_iova = addr;
-	dev_info(dev, "scp iova addr:%pad\n", &addr);
-
-Moreover, appropriate Tomasz & Christoph's help on this issue.
-
-Best regards,
-
-Jungo
+>>          status = "okay";
+>>   };
+>>
+>> diff --git a/arch/arm/boot/dts/exynos4412.dtsi b/arch/arm/boot/dts/exynos4412.dtsi
+>> index d20db2dfe8e2..a70a671acacd 100644
+>> --- a/arch/arm/boot/dts/exynos4412.dtsi
+>> +++ b/arch/arm/boot/dts/exynos4412.dtsi
+>> @@ -390,6 +390,7 @@
+>>                          clocks = <&clock CLK_DIV_DMC>;
+>>                          clock-names = "bus";
+>>                          operating-points-v2 = <&bus_dmc_opp_table>;
+>> +                       #interconnect-cells = <0>;
+>>                          status = "disabled";
+>>                  };
+>>
+>> @@ -398,6 +399,7 @@
+>>                          clocks = <&clock CLK_DIV_ACP>;
+>>                          clock-names = "bus";
+>>                          operating-points-v2 = <&bus_acp_opp_table>;
+>> +                       #interconnect-cells = <0>;
+>>                          status = "disabled";
+>>                  };
+>>
+>> @@ -406,6 +408,7 @@
+>>                          clocks = <&clock CLK_DIV_C2C>;
+>>                          clock-names = "bus";
+>>                          operating-points-v2 = <&bus_dmc_opp_table>;
+>> +                       #interconnect-cells = <0>;
+>>                          status = "disabled";
+>>                  };
+>>
+>> @@ -459,6 +462,7 @@
+>>                          clocks = <&clock CLK_DIV_GDL>;
+>>                          clock-names = "bus";
+>>                          operating-points-v2 = <&bus_leftbus_opp_table>;
+>> +                       #interconnect-cells = <0>;
+>>                          status = "disabled";
+>>                  };
+>>
+>> @@ -467,6 +471,7 @@
+>>                          clocks = <&clock CLK_DIV_GDR>;
+>>                          clock-names = "bus";
+>>                          operating-points-v2 = <&bus_leftbus_opp_table>;
+>> +                       #interconnect-cells = <0>;
+>>                          status = "disabled";
+>>                  };
+>>
+>> @@ -475,6 +480,7 @@
+>>                          clocks = <&clock CLK_ACLK160>;
+>>                          clock-names = "bus";
+>>                          operating-points-v2 = <&bus_display_opp_table>;
+>> +                       #interconnect-cells = <0>;
+>>                          status = "disabled";
+>>                  };
+>>
+>> @@ -483,6 +489,7 @@
+>>                          clocks = <&clock CLK_ACLK133>;
+>>                          clock-names = "bus";
+>>                          operating-points-v2 = <&bus_fsys_opp_table>;
+>> +                       #interconnect-cells = <0>;
+>>                          status = "disabled";
+>>                  };
+>>
+>> @@ -491,6 +498,7 @@
+>>                          clocks = <&clock CLK_ACLK100>;
+>>                          clock-names = "bus";
+>>                          operating-points-v2 = <&bus_peri_opp_table>;
+>> +                       #interconnect-cells = <0>;
+>>                          status = "disabled";
+>>                  };
+>>
+>> @@ -499,6 +507,7 @@
+>>                          clocks = <&clock CLK_SCLK_MFC>;
+>>                          clock-names = "bus";
+>>                          operating-points-v2 = <&bus_leftbus_opp_table>;
+>> +                       #interconnect-cells = <0>;
+>>                          status = "disabled";
+>>                  };
+>>
+>> --
+>> 2.17.1
+>>
+>
+Best regards
+-- 
+Marek Szyprowski, PhD
+Samsung R&D Institute Poland
 
