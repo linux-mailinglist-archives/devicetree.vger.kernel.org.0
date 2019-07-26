@@ -2,67 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27A8D774C4
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 01:01:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E69C3774D5
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 01:16:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727899AbfGZXBg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 19:01:36 -0400
-Received: from mail-io1-f65.google.com ([209.85.166.65]:36736 "EHLO
-        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726871AbfGZXBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 19:01:36 -0400
-Received: by mail-io1-f65.google.com with SMTP id o9so4452114iom.3;
-        Fri, 26 Jul 2019 16:01:36 -0700 (PDT)
+        id S1728174AbfGZXQF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 19:16:05 -0400
+Received: from mail-pl1-f202.google.com ([209.85.214.202]:43740 "EHLO
+        mail-pl1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727660AbfGZXQE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 19:16:04 -0400
+Received: by mail-pl1-f202.google.com with SMTP id t2so29296083plo.10
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 16:16:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=cpXw17kbjpY+4NI0A8ywBRzRbBcUV30TBmJ29JFZSu8=;
+        b=lGeUakeOQjQpoRbjD3eQTccJQgPrsvuP1WdT/liYx7Tq4s/KNjmGm7SiRV+T/GO/9u
+         YWiGATr1gNWtXgVWidLbG4uLV5w27wVYiH72EFZ5EBpetALJZMJotGMiioYxzJ/7QXF4
+         D3WPjrZ/bGa2vn4yHXpsDyijYQuJOgC8gJw3ebo9oU9IAzsEP+O84JwPlOy8yym3io0s
+         OVIMEsVaCh7+brCgiFB87+mCAMmIs3QEmHlxASphKIK2SPhxWBgiNl9AhSiPneEENtWn
+         cXwtId0Hz9cKJG0NRap3E9lfm4x0wdY+ycCU+1qZ5uEmAKpZyjh/uW242uPqyM4DaIet
+         iY3g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=W9aJHw1S9UNrc+mERSpNWt7mOmycq6fdw0EF/39Vags=;
-        b=GxQ8fIY7tEl9P4fqes6jdL0dBBaAKe2ArTOWkU3exgaZjcoiaw9bH0VHZ+EqDvkri5
-         7E6Q6Ce5WLkRToYgSm4yqdg2TFJkPsO8BS0ANjwrqyRKdB1z99GU6Y5PMawJ0e6xCRzj
-         m0cufhEKInVgwe94917cR6Qns8dX1jwCLvLuUbnXWlXzjEJhnjy9h2Apn5/2LSJCRXNY
-         5j9IlyfZ4qQfyKPX+TKlewoVBw+2VSCvq2I+iCs1k3FX/WONxpPnCutTsu7TTCHJhFAq
-         Y/5DhyBW+77tMygdHivTQEVfYcwvhX0Mulp6F6hfRZJ+5OnXIbgMuwrQw24YLIPmFBl8
-         c4rg==
-X-Gm-Message-State: APjAAAXuJiHv4x5/Ddl+ivFCWicjxWbU5rLDszHM1E1nIuUkfoJ0sXQk
-        jg7+nxVuEbEQ7ATLVT2m+A==
-X-Google-Smtp-Source: APXvYqxPyJPHExO+MTu/7+6H+tPoiDVGmxEamiEz/kzHRo5pS/oMtad7oaypn7kmMQMsm2/VQdnY3A==
-X-Received: by 2002:a5e:de4d:: with SMTP id e13mr67504232ioq.272.1564182095539;
-        Fri, 26 Jul 2019 16:01:35 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id k2sm47708711iom.50.2019.07.26.16.01.34
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 26 Jul 2019 16:01:35 -0700 (PDT)
-Date:   Fri, 26 Jul 2019 17:01:34 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Thierry Reding <thierry.reding@gmail.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] of: Fix typo in kerneldoc
-Message-ID: <20190726230134.GA30632@bogus>
-References: <20190726101744.27118-1-thierry.reding@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190726101744.27118-1-thierry.reding@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=cpXw17kbjpY+4NI0A8ywBRzRbBcUV30TBmJ29JFZSu8=;
+        b=YrobQxZd3dnHqxLdUEh3l1kCyIzFcvWZjreFSV6QRt7uCk1NWVfVm6bmUINCyIUbqR
+         etAQ6O+cPyzLbt9r7cGaJ3UwKg05TeGzanYRrEZ4acwrxMIWOA0dH+ga2ZTOSiVxIev7
+         vxyYrtUn2rdNFgAsk13TzX9lCFWRUm6u0nvWP1B6/QAAQVxzkYbVqTUcRiLLjaWLwaE3
+         U5QSsn8BXNgKfTi21bkwboAQs1QuNpJm+oWXrLEZAud1BZ9vqy/JVNhwCpoE0WhH1p/x
+         3jGoD3D+y6S9zcTKpKUowdj6GsgPo4co3MteXqQ86aVVx3+2zznKrrO0rKpJybLkD8EE
+         /9qA==
+X-Gm-Message-State: APjAAAWcDjmRW6yx5M5KL59nVz3exJqSxCnrwYRI+k8mdWWy2kbirxkO
+        6LsC9v0rShhpaHSqPUfGjpc6GwQHE3Z1BmQ=
+X-Google-Smtp-Source: APXvYqyLFXzg7wzzQqNVNsI8TFZ+iafyw/A7sv3S5RiRtNoVmsGtyF3JmmM3anWSx8u0e6UhM5jUYxwYZmhQdZo=
+X-Received: by 2002:a63:c442:: with SMTP id m2mr95101718pgg.286.1564182963590;
+ Fri, 26 Jul 2019 16:16:03 -0700 (PDT)
+Date:   Fri, 26 Jul 2019 16:15:54 -0700
+Message-Id: <20190726231558.175130-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.22.0.709.g102302147b-goog
+Subject: [PATCH v4 0/3] Introduce Bandwidth OPPs for interconnects
+From:   Saravana Kannan <saravanak@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, adharmap@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>, sibis@codeaurora.org,
+        bjorn.andersson@linaro.org, evgreen@chromium.org,
+        kernel-team@android.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Jul 2019 12:17:44 +0200, Thierry Reding wrote:
-> From: Thierry Reding <treding@nvidia.com>
-> 
-> "Findfrom" is not a word. Replace the function synopsis by something
-> that makes sense.
-> 
-> Signed-off-by: Thierry Reding <treding@nvidia.com>
-> ---
->  include/linux/of.h | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
+Interconnects and interconnect paths quantify their performance levels in
+terms of bandwidth and not in terms of frequency. So similar to how we have
+frequency based OPP tables in DT and in the OPP framework, we need
+bandwidth OPP table support in DT and in the OPP framework.
 
-Applied, thanks.
+So with the DT bindings added in this patch series, the DT for a GPU
+that does bandwidth voting from GPU to Cache and GPU to DDR would look
+something like this:
 
-Rob
+gpu_cache_opp_table: gpu_cache_opp_table {
+	compatible = "operating-points-v2";
+
+	gpu_cache_3000: opp-3000 {
+		opp-peak-KBps = <3000000>;
+		opp-avg-KBps = <1000000>;
+	};
+	gpu_cache_6000: opp-6000 {
+		opp-peak-KBps = <6000000>;
+		opp-avg-KBps = <2000000>;
+	};
+	gpu_cache_9000: opp-9000 {
+		opp-peak-KBps = <9000000>;
+		opp-avg-KBps = <9000000>;
+	};
+};
+
+gpu_ddr_opp_table: gpu_ddr_opp_table {
+	compatible = "operating-points-v2";
+
+	gpu_ddr_1525: opp-1525 {
+		opp-peak-KBps = <1525000>;
+		opp-avg-KBps = <452000>;
+	};
+	gpu_ddr_3051: opp-3051 {
+		opp-peak-KBps = <3051000>;
+		opp-avg-KBps = <915000>;
+	};
+	gpu_ddr_7500: opp-7500 {
+		opp-peak-KBps = <7500000>;
+		opp-avg-KBps = <3000000>;
+	};
+};
+
+gpu_opp_table: gpu_opp_table {
+	compatible = "operating-points-v2";
+	opp-shared;
+
+	opp-200000000 {
+		opp-hz = /bits/ 64 <200000000>;
+	};
+	opp-400000000 {
+		opp-hz = /bits/ 64 <400000000>;
+	};
+};
+
+gpu@7864000 {
+	...
+	operating-points-v2 = <&gpu_opp_table>, <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>;
+	...
+};
+
+v1 -> v3:
+- Lots of patch additions that were later dropped
+v3 -> v4:
+- Fixed typo bugs pointed out by Sibi.
+- Fixed bug that incorrectly reset rate to 0 all the time
+- Added units documentation
+- Dropped interconnect-opp-table property and related changes
+
+Cheers,
+Saravana
+
+Saravana Kannan (3):
+  dt-bindings: opp: Introduce opp-peak-KBps and opp-avg-KBps bindings
+  OPP: Add support for bandwidth OPP tables
+  OPP: Add helper function for bandwidth OPP tables
+
+ Documentation/devicetree/bindings/opp/opp.txt | 15 ++++--
+ .../devicetree/bindings/property-units.txt    |  4 ++
+ drivers/opp/core.c                            | 51 +++++++++++++++++++
+ drivers/opp/of.c                              | 41 +++++++++++----
+ drivers/opp/opp.h                             |  4 +-
+ include/linux/pm_opp.h                        | 19 +++++++
+ 6 files changed, 121 insertions(+), 13 deletions(-)
+
+-- 
+2.22.0.709.g102302147b-goog
+
