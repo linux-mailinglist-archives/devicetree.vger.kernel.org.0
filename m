@@ -2,198 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40523761C7
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 11:23:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68922761CF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 11:23:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726001AbfGZJXZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 05:23:25 -0400
-Received: from asavdk3.altibox.net ([109.247.116.14]:55767 "EHLO
-        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725842AbfGZJXZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 05:23:25 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726508AbfGZJXl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 05:23:41 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:57732 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726065AbfGZJXl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 05:23:41 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id AA39B60ACA; Fri, 26 Jul 2019 09:23:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1564133019;
+        bh=q/P8XBCE/VMBesWTeQ09sbF5NyjaaLCNmistF0ToxCw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PrakyVUJEdQCCRMaJeLqvfPHz6a0mEn3o7YyqOJsA9Ne1AKq41SlW9vGvd3W7jxYQ
+         AB3bZaOaOUPtFLvATFfG1IK/jUW2d0Y9FWwo/rWPSAqAC5Z+FTVpX71MYRIXl5x+iA
+         ztakjTaqVPDtae3C22w/DFEHaTzQ1tX1JJsRO2Qk=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from govinds-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by asavdk3.altibox.net (Postfix) with ESMTPS id 3483420026;
-        Fri, 26 Jul 2019 11:23:17 +0200 (CEST)
-Date:   Fri, 26 Jul 2019 11:23:15 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Robert Chiras <robert.chiras@nxp.com>
-Subject: Re: [PATCH 2/3] dt-bindings: display/bridge: Add binding for IMX NWL
- mipi dsi host controller
-Message-ID: <20190726092315.GA9754@ravnborg.org>
-References: <cover.1563983037.git.agx@sigxcpu.org>
- <70a5c6617936a4a095e7608b96e3f9fae5ddfbb1.1563983037.git.agx@sigxcpu.org>
+        (Authenticated sender: govinds@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5FF2D607DE;
+        Fri, 26 Jul 2019 09:23:36 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1564133019;
+        bh=q/P8XBCE/VMBesWTeQ09sbF5NyjaaLCNmistF0ToxCw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=PrakyVUJEdQCCRMaJeLqvfPHz6a0mEn3o7YyqOJsA9Ne1AKq41SlW9vGvd3W7jxYQ
+         AB3bZaOaOUPtFLvATFfG1IK/jUW2d0Y9FWwo/rWPSAqAC5Z+FTVpX71MYRIXl5x+iA
+         ztakjTaqVPDtae3C22w/DFEHaTzQ1tX1JJsRO2Qk=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5FF2D607DE
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=govinds@codeaurora.org
+From:   Govind Singh <govinds@codeaurora.org>
+To:     bjorn.andersson@linaro.org, linux-remoteproc@vger.kernel.org,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     andy.gross@linaro.org, linux-soc@vger.kernel.org,
+        devicetree@vger.kernel.org, Govind Singh <govinds@codeaurora.org>
+Subject: [PATCH v5 0/7] Add non PAS wcss Q6 support for QCS404
+Date:   Fri, 26 Jul 2019 14:53:25 +0530
+Message-Id: <20190726092332.25202-1-govinds@codeaurora.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <70a5c6617936a4a095e7608b96e3f9fae5ddfbb1.1563983037.git.agx@sigxcpu.org>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=8nJEP1OIZ-IA:10 a=ze386MxoAAAA:8
-        a=e5mUnYsNAAAA:8 a=uEMGSPKFWDNqce5SinMA:9 a=NMl6CGBPn1O5J89H:21
-        a=Vgy-7kDX4t5A4FfJ:21 a=wPNLvfGTeEIA:10 a=iBZjaW-pnkserzjvUTHh:22
-        a=Vxmtnl_E_bksehYqCbjh:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guido.
-
-A few comments follows.
-
-	Sam
-
-On Wed, Jul 24, 2019 at 05:52:25PM +0200, Guido Günther wrote:
-> The Northwest Logic MIPI DSI IP core can be found in NXPs i.MX8 SoCs.
-> 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> ---
->  .../bindings/display/bridge/imx-nwl-dsi.txt   | 89 +++++++++++++++++++
-
-New binding. Any chance we can get this in yaml format?
-This is the way forward and we have to convert the file anyway.
-
-None of the other bridges use yaml format, but someone has to be the
-first.
-
->  1 file changed, 89 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt b/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
-> new file mode 100644
-> index 000000000000..288fdb726d5a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
-> @@ -0,0 +1,89 @@
-> +Northwest Logic MIPI-DSI on imx SoCs
-> +=====================================
-> +
-> +NWL MIPI-DSI host controller found on i.MX8 platforms. This is a
-> +dsi bridge for the for the NWL MIPI-DSI host.
-
-To my best understanding a bridge is something that converts from one
-format to another format.
-Something that in the drm world are connected to an encoder.
-
-I do not know the HW here - but from this very brif description this
-sounds more like a display controller and not a bridge?
+Add non PAS(Peripheral Authentication System) WCSS remoteproc
+driver support and wcss clock/reset controls for QCS404 SOC.
+Add WCSS q6 bootup and shutdown sequence handled from
+Application Processor SubSystem(APSS).
 
 
-> +
-> +Required properties:
-> +- compatible: 		"fsl,<chip>-nwl-dsi"
-> +	The following strings are expected:
-> +			"fsl,imx8mq-nwl-dsi"
-> +- reg: 			the register range of the MIPI-DSI controller
-> +- interrupts: 		the interrupt number for this module
-> +- clock, clock-names: 	phandles to the MIPI-DSI clocks
-> +	The following clocks are expected on all platforms:
-> +		"core"    - DSI core clock
-> +		"tx_esc"  - TX_ESC clock (used in escape mode)
-> +		"rx_esc"  - RX_ESC clock (used in escape mode)
-> +		"phy_ref" - PHY_REF clock. Clock is managed by the phy. Only
-> +                            used to read the clock rate.
-> +- assigned-clocks:	phandles to clocks that require initial configuration
-> +- assigned-clock-rates:	rates of the clocks that require initial configuration
-> +	The following clocks need to have an initial configuration:
-> +	"tx_esc" (20 MHz) and "rx_esc" (80 Mhz).
-> +- phys: 		phandle to the phy module representing the DPHY
-> +			inside the MIPI-DSI IP block
-> +- phy-names: 		should be "dphy"
-> +
-> +Optional properties:
-> +- power-domains 	phandle to the power domain
-> +- src			phandle to the system reset controller (required on
-> +			i.MX8MQ)
-Name is not very descriptive.
-Other bindings seems to use "resets" here?
+Changes since v4:
+ removed QDSP6SS clock controls and moved to wcss rproc.
+ renamed wcsccc to q6sstopcc.
+ cleanup/refactoring.
 
-> +- mux-sel		phandle to the MUX register set (required on i.MX8MQ)
-> +- assigned-clock-parents phandles to parent clocks that needs to be assigned as
-> +			parents to clocks defined in assigned-clocks
-> +
-> +Example:
-> +	mipi_dsi: mipi_dsi@30a00000 {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "fsl,imx8mq-nwl-dsi";
-> +		reg = <0x30A00000 0x300>;
-> +		clocks = <&clk IMX8MQ_CLK_DSI_CORE>,
-> +			 <&clk IMX8MQ_CLK_DSI_AHB>,
-> +			 <&clk IMX8MQ_CLK_DSI_IPG_DIV>,
-> +			 <&clk IMX8MQ_CLK_DSI_PHY_REF>;
-> +		clock-names = "core", "rx_esc", "tx_esc", "phy_ref";
-> +		assigned-clocks = <&clk IMX8MQ_CLK_DSI_AHB>,
-> +				  <&clk IMX8MQ_CLK_DSI_CORE>,
-> +				  <&clk IMX8MQ_CLK_DSI_IPG_DIV>;
-> +		assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>,
-> +					 <&clk IMX8MQ_SYS1_PLL_266M>;
-> +		assigned-clock-rates = <80000000>,
-> +				       <266000000>,
-> +				       <20000000>;
-> +		interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&pgc_mipi>;
-> +		src = <&src>;
-> +		mux-sel = <&iomuxc_gpr>;
-> +		phys = <&dphy>;
-> +		phy-names = "dphy";
-> +		status = "okay";
-I recall status should not be included in examples.
+Changes since v3:
+ dt binding cleanup.
+ Fixed remoteproc recovery.
+ Added remoteproc dump support.
+ wcsscc cleanup/refactoring.
 
-> +
-> +		panel@0 {
-> +			compatible = "...";
-> +			port {
-> +			     panel_in: endpoint {
-> +				       remote-endpoint = <&mipi_dsi_out>;
-> +			     };
-> +			};
-> +		};
-> +
-> +		ports {
-> +		      #address-cells = <1>;
-> +		      #size-cells = <0>;
-> +
-> +		      port@0 {
-> +			     reg = <0>;
-> +			     mipi_dsi_in: endpoint {
-> +					  remote-endpoint = <&dcss_disp0_mipi_dsi>;
-> +			     };
-> +		      };
-> +		      port@1 {
-> +			     reg = <1>;
-> +			     mipi_dsi_out: endpoint {
-> +					   remote-endpoint = <&panel_in>;
-> +			     };
-> +		      };
-> +		};
-> +	};
-> -- 
-> 2.20.1
-> 
-> _______________________________________________
-> dri-devel mailing list
-> dri-devel@lists.freedesktop.org
-> https://lists.freedesktop.org/mailman/listinfo/dri-devel
+Changes since v2:
+ Removed unused properties.
+ Refactored code to have common logic b/w ipq8074 and QCS404, wherever possible.
+ Added compatible example.
+ Removed wcss-protected bool.
+
+Changes since v1:
+  Corrected clock names as per comments in v1 patch.
+
+Govind Singh (7):
+  clk: qcom: Add WCSS gcc clock control for QCS404
+  dt-bindings: clock: qcom: Add QCOM Q6SSTOP clock controller bindings
+  clk: qcom: define probe by index API as common API
+  clk: qcom: Add Q6SSTOP clock controller for QCS404
+  remoteproc: qcom: wcss: populate hardcoded param using driver data
+  remoteproc: qcom: wcss: Add non pas wcss Q6 support for QCS404
+  remoteproc: qcom: wcss: explicitly request exclusive reset control
+
+ .../bindings/clock/qcom,q6sstopcc.txt         |  26 +
+ drivers/clk/qcom/Kconfig                      |   8 +
+ drivers/clk/qcom/Makefile                     |   1 +
+ drivers/clk/qcom/common.c                     |  20 +
+ drivers/clk/qcom/common.h                     |   2 +
+ drivers/clk/qcom/gcc-qcs404.c                 |  30 +
+ drivers/clk/qcom/lpasscc-sdm845.c             |  23 +-
+ drivers/clk/qcom/q6sstop-qcs404.c             | 223 +++++++
+ drivers/remoteproc/qcom_q6v5_wcss.c           | 599 ++++++++++++++++--
+ include/dt-bindings/clock/qcom,gcc-qcs404.h   |   3 +
+ .../dt-bindings/clock/qcom,q6sstopcc-qcs404.h |  18 +
+ 11 files changed, 890 insertions(+), 63 deletions(-)
+ create mode 100755 Documentation/devicetree/bindings/clock/qcom,q6sstopcc.txt
+ create mode 100644 drivers/clk/qcom/q6sstop-qcs404.c
+ create mode 100644 include/dt-bindings/clock/qcom,q6sstopcc-qcs404.h
+
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
+
