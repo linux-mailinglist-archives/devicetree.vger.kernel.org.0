@@ -2,202 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4596076EF3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 18:23:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B028876EFA
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 18:24:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727357AbfGZQXc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 12:23:32 -0400
-Received: from pandora.armlinux.org.uk ([78.32.30.218]:53432 "EHLO
-        pandora.armlinux.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727171AbfGZQXc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 12:23:32 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=armlinux.org.uk; s=pandora-2019; h=Sender:In-Reply-To:
-        Content-Transfer-Encoding:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=W2ljXYKvw+N3+JyqB9djvy0nICZnexsB0k2AWLfEhxk=; b=i8uUQer4IUEBCEI/fTZJTguWH
-        rTo+NRo2hdVicx26QBI4L28j//yvWJIiqo667kCy6slRLWXFNF8wNaOEBRqMXyN1DpiwPXkBtFezZ
-        0JvRsrBjv5eKmED+5jPycoPREMQeBFWBoUNme/KmeZoc2ibefV8mMwwxzYcD9tUkNnpRlDUuWCcrz
-        JjeUQBWIFIvc1mYqjQkWEUCCtM6fuTlwnfcks9MBZLXTGOajVHcb3javJL2943QqGNcmI773Vod/o
-        JCliJ0hoq1gbHq0TV3b22926hMUQt3XEWspgP6bVmO8Wgl+yBThTRexueVSEcbBicyp6dbQaokDpp
-        +A6k6ZQRQ==;
-Received: from shell.armlinux.org.uk ([fd8f:7570:feb6:1:5054:ff:fe00:4ec]:48972)
-        by pandora.armlinux.org.uk with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.90_1)
-        (envelope-from <linux@armlinux.org.uk>)
-        id 1hr30A-0007Ec-GB; Fri, 26 Jul 2019 17:23:26 +0100
-Received: from linux by shell.armlinux.org.uk with local (Exim 4.92)
-        (envelope-from <linux@shell.armlinux.org.uk>)
-        id 1hr306-0006vE-2k; Fri, 26 Jul 2019 17:23:22 +0100
-Date:   Fri, 26 Jul 2019 17:23:22 +0100
-From:   Russell King - ARM Linux admin <linux@armlinux.org.uk>
-To:     =?iso-8859-1?Q?Ren=E9?= van Dorst <opensource@vdorst.com>
-Cc:     Andrew Lunn <andrew@lunn.ch>, netdev@vger.kernel.org,
-        frank-w@public-files.de, sean.wang@mediatek.com,
-        f.fainelli@gmail.com, davem@davemloft.net, matthias.bgg@gmail.com,
-        vivien.didelot@gmail.com, john@phrozen.org,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 3/3] dt-bindings: net: ethernet: Update mt7622
- docs and dts to reflect the new phylink API
-Message-ID: <20190726162321.GQ1330@shell.armlinux.org.uk>
-References: <20190724192411.20639-1-opensource@vdorst.com>
- <20190725193123.GA32542@lunn.ch>
- <20190726071956.Horde.s4rfuzovwXB-d3LnV0PLRc8@www.vdorst.com>
- <20190726131604.GA18223@lunn.ch>
- <20190726151622.Horde.1AA717IbQrC7_YJcSBe4M-0@www.vdorst.com>
+        id S1727171AbfGZQY4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 12:24:56 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:44108 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727304AbfGZQY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 12:24:56 -0400
+Received: by mail-lf1-f65.google.com with SMTP id r15so20476647lfm.11
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 09:24:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=GZJKtg+uuTl8N9vrfufJKhww0TktrWg1jm5WlPFiizU=;
+        b=YtyAGuHxGQdEOCg9CQGxNHUVlLhu4G2uz96aayH4WQd7o3jkixvjbgN5GqjwIN+xdr
+         CYfa0ZhbN9s/W4OfRJItcAqojLZtM6SnZX2n97hu6Vy1qUlDgAdByddti358EO3a+Snd
+         mHcnVvauAQjjdduYKRbadtx66t5GZKGFX3ROXobOT19Ww0rZLYl3oNKj45hqFIjKxp2A
+         GhHWUdWlAZfpbHOYsPOE7Y5Z/uYCcDG98+vS6bhFsjveQgAZZlkWmJMPkNjfEPnPn31f
+         MotNXr1I8jPjWM7KxZN3FGLdJ1pdsHv1d8ZfI6xdV1MxAUYXcXpbZl9AN/eCpbZkzwoj
+         bCnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=GZJKtg+uuTl8N9vrfufJKhww0TktrWg1jm5WlPFiizU=;
+        b=HNWUkk0vvGaq978VSiI4Jlh8SkNLA6WceoEQ2555y77ycjtwsnriyOxc8c4/54QPVV
+         YGxB/vgzAkF29x+ojZ/Nsuzg/zJj2A4YzPASHInMNNIhjaGXBVDx65aoI5sVsCWTloZU
+         BjJ/mmftivrnzkXRb9XLnXG//DRM9Gspaf6GtBp5Tp4BeGEZQr6YxuoihqEwIBUoUM6y
+         J+tCiKkw5E80anG/8i09S/UyhU/qrbdjZdy3tyxRd3XBzOSXtfrlUUKWXYSNP1NYBXS+
+         V1uBLav161Uui/pqthbGL0TsDUsSzxUxuZ2XYAIKcc4zxQUUouAhof8RuzC82uTo8YM1
+         S6Jw==
+X-Gm-Message-State: APjAAAXlZr5i0lqGhoDNcMtALFYA8EoS6rdRSq2+Gfy/vAcHZh8zLiAp
+        By/xGcYaSNm7mlC4J51e8jjyew==
+X-Google-Smtp-Source: APXvYqzXYXn+x4B9XatU7XMA1916CNPE+khuYH1iohNLtjxvxvQb0V2AlWWRuMy7CIbMvf4ANw6GPQ==
+X-Received: by 2002:ac2:4a78:: with SMTP id q24mr2687132lfp.59.1564158293308;
+        Fri, 26 Jul 2019 09:24:53 -0700 (PDT)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id b25sm8487967lfq.11.2019.07.26.09.24.51
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 26 Jul 2019 09:24:52 -0700 (PDT)
+Subject: Re: [PATCH v3 1/6] dt-bindings: opp: Introduce opp-peak-KBps and
+ opp-avg-KBps bindings
+To:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc:     vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
+        sibis@codeaurora.org, bjorn.andersson@linaro.org,
+        evgreen@chromium.org, kernel-team@android.com,
+        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+References: <20190703011020.151615-1-saravanak@google.com>
+ <20190703011020.151615-2-saravanak@google.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
+ mQINBFjTuRcBEACyAOVzghvyN19Sa/Nit4LPBWkICi5W20p6bwiZvdjhtuh50H5q4ktyxJtp
+ 1+s8dMSa/j58hAWhrc2SNL3fttOCo+MM1bQWwe8uMBQJP4swgXf5ZUYkSssQlXxGKqBSbWLB
+ uFHOOBTzaQBaNgsdXo+mQ1h8UCgM0zQOmbs2ort8aHnH2i65oLs5/Xgv/Qivde/FcFtvEFaL
+ 0TZ7odM67u+M32VetH5nBVPESmnEDjRBPw/DOPhFBPXtal53ZFiiRr6Bm1qKVu3dOEYXHHDt
+ nF13gB+vBZ6x5pjl02NUEucSHQiuCc2Aaavo6xnuBc3lnd4z/xk6GLBqFP3P/eJ56eJv4d0B
+ 0LLgQ7c1T3fU4/5NDRRCnyk6HJ5+HSxD4KVuluj0jnXW4CKzFkKaTxOp7jE6ZD/9Sh74DM8v
+ etN8uwDjtYsM07I3Szlh/I+iThxe/4zVtUQsvgXjwuoOOBWWc4m4KKg+W4zm8bSCqrd1DUgL
+ f67WiEZgvN7tPXEzi84zT1PiUOM98dOnmREIamSpKOKFereIrKX2IcnZn8jyycE12zMkk+Sc
+ ASMfXhfywB0tXRNmzsywdxQFcJ6jblPNxscnGMh2VlY2rezmqJdcK4G4Lprkc0jOHotV/6oJ
+ mj9h95Ouvbq5TDHx+ERn8uytPygDBR67kNHs18LkvrEex/Z1cQARAQABtChHZW9yZ2kgRGph
+ a292IDxnZW9yZ2kuZGpha292QGxpbmFyby5vcmc+iQI+BBMBAgAoBQJY07kXAhsDBQkHhM4A
+ BgsJCAcDAgYVCAIJCgsEFgIDAQIeAQIXgAAKCRCyi/eZcnWWUuvsD/4miikUeAO6fU2Xy3fT
+ l7RUCeb2Uuh1/nxYoE1vtXcow6SyAvIVTD32kHXucJJfYy2zFzptWpvD6Sa0Sc58qe4iLY4j
+ M54ugOYK7XeRKkQHFqqR2T3g/toVG1BOLS2atooXEU+8OFbpLkBXbIdItqJ1M1SEw8YgKmmr
+ JlLAaKMq3hMb5bDQx9erq7PqEKOB/Va0nNu17IL58q+Q5Om7S1x54Oj6LiG/9kNOxQTklOQZ
+ t61oW1Ewjbl325fW0/Lk0QzmfLCrmGXXiedFEMRLCJbVImXVKdIt/Ubk6SAAUrA5dFVNBzm2
+ L8r+HxJcfDeEpdOZJzuwRyFnH96u1Xz+7X2V26zMU6Wl2+lhvr2Tj7spxjppR+nuFiybQq7k
+ MIwyEF0mb75RLhW33sdGStCZ/nBsXIGAUS7OBj+a5fm47vQKv6ekg60oRTHWysFSJm1mlRyq
+ exhI6GwUo5GM/vE36rIPSJFRRgkt6nynoba/1c4VXxfhok2rkP0x3CApJ5RimbvITTnINY0o
+ CU6f1ng1I0A1UTi2YcLjFq/gmCdOHExT4huywfu1DDf0p1xDyPA1FJaii/gJ32bBP3zK53hM
+ dj5S7miqN7F6ZpvGSGXgahQzkGyYpBR5pda0m0k8drV2IQn+0W8Qwh4XZ6/YdfI81+xyFlXc
+ CJjljqsMCJW6PdgEH7kCDQRY07kXARAAvupGd4Jdd8zRRiF+jMpv6ZGz8L55Di1fl1YRth6m
+ lIxYTLwGf0/p0oDLIRldKswena3fbWh5bbTMkJmRiOQ/hffhPSNSyyh+WQeLY2kzl6geiHxD
+ zbw37e2hd3rWAEfVFEXOLnmenaUeJFyhA3Wd8OLdRMuoV+RaLhNfeHctiEn1YGy2gLCq4VNb
+ 4Wj5hEzABGO7+LZ14hdw3hJIEGKtQC65Jh/vTayGD+qdwedhINnIqslk9tCQ33a+jPrCjXLW
+ X29rcgqigzsLHH7iVHWA9R5Aq7pCy5hSFsl4NBn1uV6UHlyOBUuiHBDVwTIAUnZ4S8EQiwgv
+ WQxEkXEWLM850V+G6R593yZndTr3yydPgYv0xEDACd6GcNLR/x8mawmHKzNmnRJoOh6Rkfw2
+ fSiVGesGo83+iYq0NZASrXHAjWgtZXO1YwjW9gCQ2jYu9RGuQM8zIPY1VDpQ6wJtjO/KaOLm
+ NehSR2R6tgBJK7XD9it79LdbPKDKoFSqxaAvXwWgXBj0Oz+Y0BqfClnAbxx3kYlSwfPHDFYc
+ R/ppSgnbR5j0Rjz/N6Lua3S42MDhQGoTlVkgAi1btbdV3qpFE6jglJsJUDlqnEnwf03EgjdJ
+ 6KEh0z57lyVcy5F/EUKfTAMZweBnkPo+BF2LBYn3Qd+CS6haZAWaG7vzVJu4W/mPQzsAEQEA
+ AYkCJQQYAQIADwUCWNO5FwIbDAUJB4TOAAAKCRCyi/eZcnWWUhlHD/0VE/2x6lKh2FGP+QHH
+ UTKmiiwtMurYKJsSJlQx0T+j/1f+zYkY3MDX+gXa0d0xb4eFv8WNlEjkcpSPFr+pQ7CiAI33
+ 99kAVMQEip/MwoTYvM9NXSMTpyRJ/asnLeqa0WU6l6Z9mQ41lLzPFBAJ21/ddT4xeBDv0dxM
+ GqaH2C6bSnJkhSfSja9OxBe+F6LIAZgCFzlogbmSWmUdLBg+sh3K6aiBDAdZPUMvGHzHK3fj
+ gHK4GqGCFK76bFrHQYgiBOrcR4GDklj4Gk9osIfdXIAkBvRGw8zg1zzUYwMYk+A6v40gBn00
+ OOB13qJe9zyKpReWMAhg7BYPBKIm/qSr82aIQc4+FlDX2Ot6T/4tGUDr9MAHaBKFtVyIqXBO
+ xOf0vQEokkUGRKWBE0uA3zFVRfLiT6NUjDQ0vdphTnsdA7h01MliZLQ2lLL2Mt5lsqU+6sup
+ Tfql1omgEpjnFsPsyFebzcKGbdEr6vySGa3Cof+miX06hQXKe99a5+eHNhtZJcMAIO89wZmj
+ 7ayYJIXFqjl/X0KBcCbiAl4vbdBw1bqFnO4zd1lMXKVoa29UHqby4MPbQhjWNVv9kqp8A39+
+ E9xw890l1xdERkjVKX6IEJu2hf7X3MMl9tOjBK6MvdOUxvh1bNNmXh7OlBL1MpJYY/ydIm3B
+ KEmKjLDvB0pePJkdTw==
+Message-ID: <2befbd75-e0f4-dbcc-e9b1-9a9f99c084d3@linaro.org>
+Date:   Fri, 26 Jul 2019 19:24:50 +0300
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190726151622.Horde.1AA717IbQrC7_YJcSBe4M-0@www.vdorst.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190703011020.151615-2-saravanak@google.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 26, 2019 at 03:16:22PM +0000, René van Dorst wrote:
-> Quoting Andrew Lunn <andrew@lunn.ch>:
-> > On Fri, Jul 26, 2019 at 07:19:56AM +0000, René van Dorst wrote:
-> > > Quoting Andrew Lunn <andrew@lunn.ch>:
-> > > 
-> > > >>+	gmac0: mac@0 {
-> > > >>+		compatible = "mediatek,eth-mac";
-> > > >>+		reg = <0>;
-> > > >>+		phy-mode = "sgmii";
-> > > >>+
-> > > >>+		fixed-link {
-> > > >>+			speed = <2500>;
-> > > >>+			full-duplex;
-> > > >>+			pause;
-> > > >>+		};
-> > > >>+	};
-> > > >
-> > > >Hi René
-> > > >
-> > > 
-> > > Hi Andrew,
-> > > 
-> > > >SGMII and fixed-link is rather odd. Why do you need this combination?
-> > > 
-> > > BananaPi R64 has a RTL8367S 5+2-port switch, switch interfaces with the SOC
-> > > by a
-> > > (H)SGMII and/or RGMII interface. SGMII is mainly used for the LAN ports and
-> > > RGMII for the WAN port.
-> > > 
-> > > I mimic the SDK software which puts SGMII interface in 2.5GBit fixed-link
-> > > mode.
-> > > The RTL8367S switch code also put switch mac in forge 2.5GBit mode.
-> > > 
-> > > So this is the reason why I put a fixed-link mode here.
-> > 
-> > Are you sure it is using SGMII and not 2500BaseX? Can you get access
-> > to the signalling word? SGMII is supposed to indicate to the MAC what
-> > speed it is using, via inband signalling. So there should not be any
-> > need for a fixed-link. 2500BaseX however does not have such
-> > signalling, so there would need to be a fixed link.
+Hi Saravana,
+
+On 7/3/19 04:10, Saravana Kannan wrote:
+> Interconnects often quantify their performance points in terms of
+> bandwidth. So, add opp-peak-KBps (required) and opp-avg-KBps (optional) to
+> allow specifying Bandwidth OPP tables in DT.
 > 
-> I am not sure.
+> opp-peak-KBps is a required property that replace opp-hz for Bandwidth OPP
+> tables.
 > 
-> I just converted the current mainline code to support phylink and mimic the
-> DTS
-> of the SDK. But the SDK seems to be incorrect.
+> opp-avg-KBps is an optional property that can be used in Bandwidth OPP
+> tables.
 > 
-> Realtek[0] calls these modes:
-> * SGMII (1.25GHz) Interface
-> * High SGMII (3.125GHz) Interface
-> Also the datasheet that I have doesn't talk about base-x modes.
-
-So this is RTL8367S-CG, which is a switch.  It's entirely possible that
-it really does support what it says it does.
-
-> But MT7622 Reference manual[1] page 1960 says:
->  The core leverages the 1000Base-X PCS and Auto-Negotiation from IEEE 802.3
->  specification (clause 36/37). This IP can support up to 3.125G baud for
-> 2.5Gbps
->  (proprietary 2500Base-X) data rate of MAC by overclocking.
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  Documentation/devicetree/bindings/opp/opp.txt | 15 ++++++++++++---
+>  1 file changed, 12 insertions(+), 3 deletions(-)
 > 
-> So I think it phy-mode should be 2500Base-X in this case.
+> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentation/devicetree/bindings/opp/opp.txt
+> index 76b6c79604a5..c869e87caa2a 100644
+> --- a/Documentation/devicetree/bindings/opp/opp.txt
+> +++ b/Documentation/devicetree/bindings/opp/opp.txt
+> @@ -83,9 +83,14 @@ properties.
+>  
+>  Required properties:
+>  - opp-hz: Frequency in Hz, expressed as a 64-bit big-endian integer. This is a
+> -  required property for all device nodes but devices like power domains. The
+> -  power domain nodes must have another (implementation dependent) property which
+> -  uniquely identifies the OPP nodes.
+> +  required property for all device nodes but for devices like power domains or
+> +  bandwidth opp tables. The power domain nodes must have another (implementation
+> +  dependent) property which uniquely identifies the OPP nodes. The interconnect
+> +  opps are required to have the opp-peak-bw property.
+> +
+> +- opp-peak-KBps: Peak bandwidth in kilobytes per second, expressed as a 32-bit
 
-Right, so this suggests that it only supports 1000BASE-X and 2500BASE-X
-via the normal method of "over-clocking" 1000BASE-X.
+As Rob already mentioned, KBps should be documented. See [1].
 
-1000BASE-X and SGMII are compatible _if_ and only if you ignore the
-contents of the 16-bit control word which is used for auto-negotiation
-in the case of 1000BASE-X, or for communicating the negotiation results
-in the case of SGMII.  Apart from that 16-bit control word, and the
-semantics of it, at the data link level the two are the same.
+Thanks,
+Georgi
 
-> SGMII part is a bit hard for me to support, I don't have the hardware,
-> MediaTek datasheets are mostly incomplete and also I am a not familiar with
-> it.
-> 
-> But I think I know what I have to change.
-> Based on your explanation above.
-> 
-> I think this more correct implementation:
-> 
-> * 1000base-x and 2500base-x always force the link.
-
-I think the above is why you have to force the link: a link consisting
-of one end configured for SGMII and the other end configured for
-1000BASE-X is not a good idea at the best of times, but if you ignore
-the 16-bit control word and force it, it will work.
-
-What this means is that you _should_ be forcing it in DT to be a
-fixed link, and not trying to do auto-neg.
-
-> * SGMII is always inband but I need in phylink_mac_link_status() to readout
->   "PCS_SPEED_ABILITY Clause 45 3.5" register to see the inband status?
->   Or is it just the GMAC PSMR register? For me it is a bit confusing.
->   SGMII block has a register to set the link speed and etc. But tests on the
->   bananapi R64 board shows that I also need to set the GMAC register else it
->   didn't work. Also it is not easy to debug if you don't have the board.
-
-phylink_mac_link_status() is expected to read the results of SGMII
-or 1000BASE-X negotiation at the MAC side of the link.  To see why,
-consider a fiber link:
-
-MAC-PCS --- SFP ----- fiber ----- SFP --- MAC-PCS
-
-The fiber is passive, the SFP merely converts between light and
-electrical signals - there's nothing apart from the MAC's own PCS
-that can report what the negotiation state of the link is.  So,
-you need to read from whatever bit of hardware on the MAC side
-which will report that - basically, the results of the 1000BASE-X
-negotiation.
-
-phylink currently expects results from the PCS to be automatically
-propagated to the MAC through hardware, since that's what happens
-on Marvell setups - however, that can be changed if there are
-setups which need manual propagation.
-
-If we do need to do that, I'd suggest we rename
-phylink_mac_link_status() to be phylink_macpcs_link_status() to
-clarify which bit of hardware it's supposed to be reading from.
-
-> 
-> > Maybe we should really consider what phy-mode = "sgmii"; means. Should
-> > this include the overclocked 2.5G speed, or should we add a 2500sgmii
-> > link mode?
-> 
-> No.
-
-I'm really not in favour of "sgmii" being used to also describe the
-over-clocked SGMII variants.  It's a different protocol - many data
-sheets (e.g. for PHYs that support it) explicitly state that the
-speed bits in the SGMII 16-bit control word are not valid, and
-over-clocked vs normal SGMII can not be auto-negotiated.  Both ends
-must be running at the same speed in order to successfully transfer
-even the 16-bit control word that dictates the link speed.
-
-So, SGMII at 3.125Gbps is really a different interface mode from
-SGMII at 1.25Gbps.
-
--- 
-RMK's Patch system: https://www.armlinux.org.uk/developer/patches/
-FTTC broadband for 0.8mile line in suburbia: sync at 12.1Mbps down 622kbps up
-According to speedtest.net: 11.9Mbps down 500kbps up
+[1] https://lore.kernel.org/lkml/20190423132823.7915-2-georgi.djakov@linaro.org/
