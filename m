@@ -2,181 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BDEE876B51
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 16:17:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9516476B88
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 16:24:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728299AbfGZORY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 10:17:24 -0400
-Received: from iolanthe.rowland.org ([192.131.102.54]:34016 "HELO
-        iolanthe.rowland.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with SMTP id S1727655AbfGZORY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 10:17:24 -0400
-Received: (qmail 1779 invoked by uid 2102); 26 Jul 2019 10:17:23 -0400
-Received: from localhost (sendmail-bs@127.0.0.1)
-  by localhost with SMTP; 26 Jul 2019 10:17:23 -0400
-Date:   Fri, 26 Jul 2019 10:17:23 -0400 (EDT)
-From:   Alan Stern <stern@rowland.harvard.edu>
-X-X-Sender: stern@iolanthe.rowland.org
-To:     Marek Szyprowski <m.szyprowski@samsung.com>
-cc:     linux-usb@vger.kernel.org, <linux-samsung-soc@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Markus Reichl <m.reichl@fivetechno.de>,
-        =?UTF-8?q?M=C3=A5ns=20Rullg=C3=A5rd?= <mans@mansr.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Peter Chen <peter.chen@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH v2 2/3] usb: exynos: add support for getting PHYs from
- the standard dt array
-In-Reply-To: <20190726081453.9456-3-m.szyprowski@samsung.com>
-Message-ID: <Pine.LNX.4.44L0.1907261016440.1569-100000@iolanthe.rowland.org>
+        id S2387397AbfGZOY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 10:24:57 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:35097 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727850AbfGZOY4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 10:24:56 -0400
+Received: by mail-ed1-f68.google.com with SMTP id w20so53429255edd.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 07:24:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ffwll.ch; s=google;
+        h=sender:date:from:to:cc:subject:message-id:mail-followup-to
+         :references:mime-version:content-disposition:in-reply-to:user-agent;
+        bh=iKvptB00eRJtAAyTA2xD7jIbIFN8n5r7X55dRtJg5Cw=;
+        b=f5L5IA3ayQmsQHY5KhIVuOFZAzingVgEcKk8EvRC5mL0KaqQyGnWAI0cbPTrNNuCz7
+         K18hM9pz10KIe5v0Z75fubUwSrYuFdOojHzAiYoIdyx9DO1Z5oW1vH1CNjwbsYziO6sT
+         /QI7SGtnnJxli3UbqAjXRyOHKL5kB7R4In+E8=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
+         :mail-followup-to:references:mime-version:content-disposition
+         :in-reply-to:user-agent;
+        bh=iKvptB00eRJtAAyTA2xD7jIbIFN8n5r7X55dRtJg5Cw=;
+        b=sJho1jtVd3jyquocrqYWp8iy4t7eMpiI/Xe1zC1fhzKns48npNySlm0N8/hhXkeZix
+         wE1/elHt+eMmqb9lxKa9kldxwbCIK/iGIy2dm6TEVXPCseOT9VdM/nMGs1WjnsAdgVfn
+         s3qqlcrILCVYND/TLIq/gOQZ6XTHImsVPl9Y+RwlwMBKm+Jvxj2Bm1rWwvCyBHr6GZpf
+         yrvg440n54IRU2apRJMkgDPD+Q5Hwk1NJbFou5Sb42RAKQZhFJZNc90j5/I79dwzjFKW
+         B6UkUgnmlZn72Z3/1/Ew7RqQJQXRwL8NIkOIkoTTR4FYqkjJHwf2S+MRpQ3IZtFm+xES
+         ri6g==
+X-Gm-Message-State: APjAAAUP+HAa8iXfOgsfC6Qw8Mmd2UU3dfBjmrK7sXjg2IcG33pw7Wpz
+        eZWGoqEma0cNZWoONK0ePFg=
+X-Google-Smtp-Source: APXvYqziEeXaDKlMzj6WkqFhfWfsWvSAtDFO47Ob8pLZS5KABUGhUNYgZNlFDTi49ewicGXyP7F9Dg==
+X-Received: by 2002:a50:ad48:: with SMTP id z8mr82669671edc.66.1564151094716;
+        Fri, 26 Jul 2019 07:24:54 -0700 (PDT)
+Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
+        by smtp.gmail.com with ESMTPSA id m31sm14121701edd.42.2019.07.26.07.24.52
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 26 Jul 2019 07:24:53 -0700 (PDT)
+Date:   Fri, 26 Jul 2019 16:24:50 +0200
+From:   Daniel Vetter <daniel@ffwll.ch>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Josh Triplett <josh@joshtriplett.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+        Lai Jiangshan <jiangshanlai@gmail.com>,
+        Joel Fernandes <joel@joelfernandes.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Andrea Parri <andrea.parri@amarulasolutions.com>,
+        Boqun Feng <boqun.feng@gmail.com>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        David Howells <dhowells@redhat.com>,
+        Jade Alglave <j.alglave@ucl.ac.uk>,
+        Luc Maranget <luc.maranget@inria.fr>,
+        Akira Yokosawa <akiyks@gmail.com>,
+        Daniel Lustig <dlustig@nvidia.com>,
+        Jerry Hoemann <jerry.hoemann@hpe.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Ajay Gupta <ajayg@nvidia.com>,
+        Don Brace <don.brace@microsemi.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        rcu@vger.kernel.org,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        esc.storagedev@microsemi.com, SCSI <linux-scsi@vger.kernel.org>,
+        Wolfram Sang <wsa@the-dreams.de>
+Subject: Re: [PATCH 1/7] docs: fix broken doc references due to renames
+Message-ID: <20190726142450.GJ15868@phenom.ffwll.local>
+Mail-Followup-To: Rob Herring <robh+dt@kernel.org>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Josh Triplett <josh@joshtriplett.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+        Lai Jiangshan <jiangshanlai@gmail.com>,
+        Joel Fernandes <joel@joelfernandes.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Andrea Parri <andrea.parri@amarulasolutions.com>,
+        Boqun Feng <boqun.feng@gmail.com>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        David Howells <dhowells@redhat.com>,
+        Jade Alglave <j.alglave@ucl.ac.uk>,
+        Luc Maranget <luc.maranget@inria.fr>,
+        Akira Yokosawa <akiyks@gmail.com>,
+        Daniel Lustig <dlustig@nvidia.com>,
+        Jerry Hoemann <jerry.hoemann@hpe.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Ajay Gupta <ajayg@nvidia.com>, Don Brace <don.brace@microsemi.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        rcu@vger.kernel.org,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" <linux-arch@vger.kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>, esc.storagedev@microsemi.com,
+        SCSI <linux-scsi@vger.kernel.org>, Wolfram Sang <wsa@the-dreams.de>
+References: <cover.1564140865.git.mchehab+samsung@kernel.org>
+ <430ed96cb234805d1deb216e8c8559da22cc6bac.1564140865.git.mchehab+samsung@kernel.org>
+ <CAL_JsqK_rfHehrKW_NS89BOV0=dYoao0H=zOzG=D-724vKduKw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: TEXT/PLAIN; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAL_JsqK_rfHehrKW_NS89BOV0=dYoao0H=zOzG=D-724vKduKw@mail.gmail.com>
+X-Operating-System: Linux phenom 4.19.0-5-amd64 
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Jul 2019, Marek Szyprowski wrote:
+On Fri, Jul 26, 2019 at 07:41:35AM -0600, Rob Herring wrote:
+> On Fri, Jul 26, 2019 at 5:47 AM Mauro Carvalho Chehab
+> <mchehab+samsung@kernel.org> wrote:
+> >
+> > Some files got renamed but probably due to some merge conflicts,
+> > a few references still point to the old locations.
+> >
+> > Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+> > Acked-by: Wolfram Sang <wsa@the-dreams.de> # I2C part
+> > Reviewed-by: Jerry Hoemann <jerry.hoemann@hpe.com> # hpwdt.rst
+> > ---
+> >  Documentation/RCU/rculist_nulls.txt                   |  2 +-
+> >  Documentation/devicetree/bindings/arm/idle-states.txt |  2 +-
+> >  Documentation/locking/spinlocks.rst                   |  4 ++--
+> >  Documentation/memory-barriers.txt                     |  2 +-
+> >  Documentation/translations/ko_KR/memory-barriers.txt  |  2 +-
+> >  Documentation/watchdog/hpwdt.rst                      |  2 +-
+> >  MAINTAINERS                                           | 10 +++++-----
+> >  drivers/gpu/drm/drm_modes.c                           |  2 +-
 
-> Add the code for getting generic PHYs from standard device tree array
-> from the main controller device node. This is a first step in resolving
-> the conflict between Exynos EHCI/OHCI sub-nodes and generic USB device
-> bindings. Later the sub-nodes currently used for assigning PHYs to root
-> ports of the controller will be removed making a place for the generic
-> USB device bindings nodes.
+for the drm part:
+
+Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+
+> >  drivers/i2c/busses/i2c-nvidia-gpu.c                   |  2 +-
+> >  drivers/scsi/hpsa.c                                   |  4 ++--
+> >  10 files changed, 16 insertions(+), 16 deletions(-)
 > 
-> Suggested-by: Måns Rullgård <mans@mansr.com>
-> Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
-> ---
+> Acked-by: Rob Herring <robh@kernel.org>
 
-Acked-by: Alan Stern <stern@rowland.harvard.edu>
-
->  drivers/usb/host/ehci-exynos.c | 23 +++++++++++++++++++----
->  drivers/usb/host/ohci-exynos.c | 23 +++++++++++++++++++----
->  2 files changed, 38 insertions(+), 8 deletions(-)
-> 
-> diff --git a/drivers/usb/host/ehci-exynos.c b/drivers/usb/host/ehci-exynos.c
-> index 3a29a1a8519c..01debfd03d4a 100644
-> --- a/drivers/usb/host/ehci-exynos.c
-> +++ b/drivers/usb/host/ehci-exynos.c
-> @@ -41,6 +41,7 @@ struct exynos_ehci_hcd {
->  	struct clk *clk;
->  	struct device_node *of_node;
->  	struct phy *phy[PHY_NUMBER];
-> +	bool legacy_phy;
->  };
->  
->  #define to_exynos_ehci(hcd) (struct exynos_ehci_hcd *)(hcd_to_ehci(hcd)->priv)
-> @@ -50,10 +51,22 @@ static int exynos_ehci_get_phy(struct device *dev,
->  {
->  	struct device_node *child;
->  	struct phy *phy;
-> -	int phy_number;
-> +	int phy_number, num_phys;
->  	int ret;
->  
->  	/* Get PHYs for the controller */
-> +	num_phys = of_count_phandle_with_args(dev->of_node, "phys",
-> +					      "#phy-cells");
-> +	for (phy_number = 0; phy_number < num_phys; phy_number++) {
-> +		phy = devm_of_phy_get_by_index(dev, dev->of_node, phy_number);
-> +		if (IS_ERR(phy))
-> +			return PTR_ERR(phy);
-> +		exynos_ehci->phy[phy_number] = phy;
-> +	}
-> +	if (num_phys > 0)
-> +		return 0;
-> +
-> +	/* Get PHYs using legacy bindings */
->  	for_each_available_child_of_node(dev->of_node, child) {
->  		ret = of_property_read_u32(child, "reg", &phy_number);
->  		if (ret) {
-> @@ -84,6 +97,7 @@ static int exynos_ehci_get_phy(struct device *dev,
->  		}
->  	}
->  
-> +	exynos_ehci->legacy_phy = true;
->  	return 0;
->  }
->  
-> @@ -205,11 +219,12 @@ static int exynos_ehci_probe(struct platform_device *pdev)
->  	ehci->caps = hcd->regs;
->  
->  	/*
-> -	 * Workaround: reset of_node pointer to avoid conflict between Exynos
-> -	 * EHCI port subnodes and generic USB device bindings
-> +	 * Workaround: reset of_node pointer to avoid conflict between legacy
-> +	 * Exynos EHCI port subnodes and generic USB device bindings
->  	 */
->  	exynos_ehci->of_node = pdev->dev.of_node;
-> -	pdev->dev.of_node = NULL;
-> +	if (exynos_ehci->legacy_phy)
-> +		pdev->dev.of_node = NULL;
->  
->  	/* DMA burst Enable */
->  	writel(EHCI_INSNREG00_ENABLE_DMA_BURST, EHCI_INSNREG00(hcd->regs));
-> diff --git a/drivers/usb/host/ohci-exynos.c b/drivers/usb/host/ohci-exynos.c
-> index 905c6317e0c3..d5ce98e205c7 100644
-> --- a/drivers/usb/host/ohci-exynos.c
-> +++ b/drivers/usb/host/ohci-exynos.c
-> @@ -32,6 +32,7 @@ struct exynos_ohci_hcd {
->  	struct clk *clk;
->  	struct device_node *of_node;
->  	struct phy *phy[PHY_NUMBER];
-> +	bool legacy_phy;
->  };
->  
->  static int exynos_ohci_get_phy(struct device *dev,
-> @@ -39,10 +40,22 @@ static int exynos_ohci_get_phy(struct device *dev,
->  {
->  	struct device_node *child;
->  	struct phy *phy;
-> -	int phy_number;
-> +	int phy_number, num_phys;
->  	int ret;
->  
->  	/* Get PHYs for the controller */
-> +	num_phys = of_count_phandle_with_args(dev->of_node, "phys",
-> +					      "#phy-cells");
-> +	for (phy_number = 0; phy_number < num_phys; phy_number++) {
-> +		phy = devm_of_phy_get_by_index(dev, dev->of_node, phy_number);
-> +		if (IS_ERR(phy))
-> +			return PTR_ERR(phy);
-> +		exynos_ohci->phy[phy_number] = phy;
-> +	}
-> +	if (num_phys > 0)
-> +		return 0;
-> +
-> +	/* Get PHYs using legacy bindings */
->  	for_each_available_child_of_node(dev->of_node, child) {
->  		ret = of_property_read_u32(child, "reg", &phy_number);
->  		if (ret) {
-> @@ -73,6 +86,7 @@ static int exynos_ohci_get_phy(struct device *dev,
->  		}
->  	}
->  
-> +	exynos_ohci->legacy_phy = true;
->  	return 0;
->  }
->  
-> @@ -172,11 +186,12 @@ static int exynos_ohci_probe(struct platform_device *pdev)
->  	}
->  
->  	/*
-> -	 * Workaround: reset of_node pointer to avoid conflict between Exynos
-> -	 * OHCI port subnodes and generic USB device bindings
-> +	 * Workaround: reset of_node pointer to avoid conflict between legacy
-> +	 * Exynos OHCI port subnodes and generic USB device bindings
->  	 */
->  	exynos_ohci->of_node = pdev->dev.of_node;
-> -	pdev->dev.of_node = NULL;
-> +	if (exynos_ohci->legacy_phy)
-> +		pdev->dev.of_node = NULL;
->  
->  	err = usb_add_hcd(hcd, irq, IRQF_SHARED);
->  	if (err) {
-> 
-
+-- 
+Daniel Vetter
+Software Engineer, Intel Corporation
+http://blog.ffwll.ch
