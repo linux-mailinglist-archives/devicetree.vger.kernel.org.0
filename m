@@ -2,174 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9516476B88
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 16:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 17CF376BB0
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 16:31:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387397AbfGZOY5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 10:24:57 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:35097 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727850AbfGZOY4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 10:24:56 -0400
-Received: by mail-ed1-f68.google.com with SMTP id w20so53429255edd.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 07:24:55 -0700 (PDT)
+        id S1726434AbfGZOb0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 10:31:26 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:34182 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726265AbfGZOb0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 10:31:26 -0400
+Received: by mail-io1-f66.google.com with SMTP id k8so105244875iot.1;
+        Fri, 26 Jul 2019 07:31:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ffwll.ch; s=google;
-        h=sender:date:from:to:cc:subject:message-id:mail-followup-to
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=iKvptB00eRJtAAyTA2xD7jIbIFN8n5r7X55dRtJg5Cw=;
-        b=f5L5IA3ayQmsQHY5KhIVuOFZAzingVgEcKk8EvRC5mL0KaqQyGnWAI0cbPTrNNuCz7
-         K18hM9pz10KIe5v0Z75fubUwSrYuFdOojHzAiYoIdyx9DO1Z5oW1vH1CNjwbsYziO6sT
-         /QI7SGtnnJxli3UbqAjXRyOHKL5kB7R4In+E8=
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=rZ/UBeNiBanOLKs9K5WAA6k/h0iDCXstzGMvYChhbN8=;
+        b=Qkr83lkT49ARvGJVqpIAVKE+c3OskLUv7tZduSwYle/0YBDI1fhM3M35Dcm10CPOD6
+         oGBJhLWanlvfEu/PCaAedYdFu3iFX9GnV0PyK5Gcoz6j0Y5iEEBn3sYWFz5Hd+F2arb0
+         T2sokMAFO0/Sygfx4x/RYdUfRKTMg+sJlzbw2E0TxCmNd95v35OovB5jQws5FGWwQVKp
+         tGbHGXnypMThoSExSEfOyJyB0uds+q5lX9GPtaJeVTzfIjhGoFtp10AqYWIz/UUmowJr
+         MnV9vSAvagmcnnWHdHv8NZVXwoR9uoiCBznhNgb6GaRVLk+lD2nfRmPOfcHfvK9a+HV/
+         4NqA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :mail-followup-to:references:mime-version:content-disposition
-         :in-reply-to:user-agent;
-        bh=iKvptB00eRJtAAyTA2xD7jIbIFN8n5r7X55dRtJg5Cw=;
-        b=sJho1jtVd3jyquocrqYWp8iy4t7eMpiI/Xe1zC1fhzKns48npNySlm0N8/hhXkeZix
-         wE1/elHt+eMmqb9lxKa9kldxwbCIK/iGIy2dm6TEVXPCseOT9VdM/nMGs1WjnsAdgVfn
-         s3qqlcrILCVYND/TLIq/gOQZ6XTHImsVPl9Y+RwlwMBKm+Jvxj2Bm1rWwvCyBHr6GZpf
-         yrvg440n54IRU2apRJMkgDPD+Q5Hwk1NJbFou5Sb42RAKQZhFJZNc90j5/I79dwzjFKW
-         B6UkUgnmlZn72Z3/1/Ew7RqQJQXRwL8NIkOIkoTTR4FYqkjJHwf2S+MRpQ3IZtFm+xES
-         ri6g==
-X-Gm-Message-State: APjAAAUP+HAa8iXfOgsfC6Qw8Mmd2UU3dfBjmrK7sXjg2IcG33pw7Wpz
-        eZWGoqEma0cNZWoONK0ePFg=
-X-Google-Smtp-Source: APXvYqziEeXaDKlMzj6WkqFhfWfsWvSAtDFO47Ob8pLZS5KABUGhUNYgZNlFDTi49ewicGXyP7F9Dg==
-X-Received: by 2002:a50:ad48:: with SMTP id z8mr82669671edc.66.1564151094716;
-        Fri, 26 Jul 2019 07:24:54 -0700 (PDT)
-Received: from phenom.ffwll.local ([2a02:168:569e:0:3106:d637:d723:e855])
-        by smtp.gmail.com with ESMTPSA id m31sm14121701edd.42.2019.07.26.07.24.52
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 26 Jul 2019 07:24:53 -0700 (PDT)
-Date:   Fri, 26 Jul 2019 16:24:50 +0200
-From:   Daniel Vetter <daniel@ffwll.ch>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Josh Triplett <josh@joshtriplett.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
-        Lai Jiangshan <jiangshanlai@gmail.com>,
-        Joel Fernandes <joel@joelfernandes.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Andrea Parri <andrea.parri@amarulasolutions.com>,
-        Boqun Feng <boqun.feng@gmail.com>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        David Howells <dhowells@redhat.com>,
-        Jade Alglave <j.alglave@ucl.ac.uk>,
-        Luc Maranget <luc.maranget@inria.fr>,
-        Akira Yokosawa <akiyks@gmail.com>,
-        Daniel Lustig <dlustig@nvidia.com>,
-        Jerry Hoemann <jerry.hoemann@hpe.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Ajay Gupta <ajayg@nvidia.com>,
-        Don Brace <don.brace@microsemi.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        rcu@vger.kernel.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        esc.storagedev@microsemi.com, SCSI <linux-scsi@vger.kernel.org>,
-        Wolfram Sang <wsa@the-dreams.de>
-Subject: Re: [PATCH 1/7] docs: fix broken doc references due to renames
-Message-ID: <20190726142450.GJ15868@phenom.ffwll.local>
-Mail-Followup-To: Rob Herring <robh+dt@kernel.org>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Josh Triplett <josh@joshtriplett.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
-        Lai Jiangshan <jiangshanlai@gmail.com>,
-        Joel Fernandes <joel@joelfernandes.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Andrea Parri <andrea.parri@amarulasolutions.com>,
-        Boqun Feng <boqun.feng@gmail.com>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        David Howells <dhowells@redhat.com>,
-        Jade Alglave <j.alglave@ucl.ac.uk>,
-        Luc Maranget <luc.maranget@inria.fr>,
-        Akira Yokosawa <akiyks@gmail.com>,
-        Daniel Lustig <dlustig@nvidia.com>,
-        Jerry Hoemann <jerry.hoemann@hpe.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Ajay Gupta <ajayg@nvidia.com>, Don Brace <don.brace@microsemi.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        rcu@vger.kernel.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" <linux-arch@vger.kernel.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>, esc.storagedev@microsemi.com,
-        SCSI <linux-scsi@vger.kernel.org>, Wolfram Sang <wsa@the-dreams.de>
-References: <cover.1564140865.git.mchehab+samsung@kernel.org>
- <430ed96cb234805d1deb216e8c8559da22cc6bac.1564140865.git.mchehab+samsung@kernel.org>
- <CAL_JsqK_rfHehrKW_NS89BOV0=dYoao0H=zOzG=D-724vKduKw@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=rZ/UBeNiBanOLKs9K5WAA6k/h0iDCXstzGMvYChhbN8=;
+        b=PoONsJBRJGh19vgP30/rfsPxo1wnj6wMzIxTW5s7UKHt3Tsd8/EP6tFZfsb5islFvO
+         VfboKd16KPUKdyPCJ7t6C9q9MbB7Mufx2kW/KzQHkaP6u5JcWjvk0R+QP9ydXnfk4VRs
+         IAhJ0buEYTTEB4rAxDowiM6MD3Z3i3y6r+r0jrMmmIvY/FH8BTnI5f0GqJoTei7CImkB
+         MWT+l+gdjlqr/G2pK0fnJBGezz1JyeOP84qo/zQ4jMxGXKlN6urdXgmG6/FZLMsPyhGY
+         fd76lPvCmUwY2CqVDTSPuLeij/J/MjQwufIOXhnFJNzcVWPkT34CfJejb6/9eZJUnwRo
+         VLVw==
+X-Gm-Message-State: APjAAAWWCW2C8d1/q7UCRetIifjAZ5tqdrQqGDTaJ6PmSwtnfLHjPCYO
+        WhMUgybSN/82qq6/ryJ/ktnHRZ1Q+S8fr6KX99Q=
+X-Google-Smtp-Source: APXvYqyoFusi9rRAzb8Sz4ryxauK7V4EPDxozJDRC9Dy92L8oHNobVWt0IqcIZkUd2t5E2rbe4hpr1GOx/+E7EEzITA=
+X-Received: by 2002:a6b:901:: with SMTP id t1mr13636701ioi.42.1564151485320;
+ Fri, 26 Jul 2019 07:31:25 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqK_rfHehrKW_NS89BOV0=dYoao0H=zOzG=D-724vKduKw@mail.gmail.com>
-X-Operating-System: Linux phenom 4.19.0-5-amd64 
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190708165647.46224-1-jeffrey.l.hugo@gmail.com> <20190726123625.GA17037@ravnborg.org>
+In-Reply-To: <20190726123625.GA17037@ravnborg.org>
+From:   Jeffrey Hugo <jeffrey.l.hugo@gmail.com>
+Date:   Fri, 26 Jul 2019 08:31:15 -0600
+Message-ID: <CAOCk7NqU7G-afjHwTnQxqrRFcH9=kqDJAUABPHuwRWsdm6xENQ@mail.gmail.com>
+Subject: Re: [PATCH v2 0/2] Add Sharp panel option for Lenovo Miix 630
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, thierry.reding@gmail.com,
+        Dave Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        DTML <devicetree@vger.kernel.org>,
+        MSM <linux-arm-msm@vger.kernel.org>,
+        lkml <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 26, 2019 at 07:41:35AM -0600, Rob Herring wrote:
-> On Fri, Jul 26, 2019 at 5:47 AM Mauro Carvalho Chehab
-> <mchehab+samsung@kernel.org> wrote:
+On Fri, Jul 26, 2019 at 6:36 AM Sam Ravnborg <sam@ravnborg.org> wrote:
+>
+> Hi Jeffrey.
+>
+> On Mon, Jul 08, 2019 at 09:56:47AM -0700, Jeffrey Hugo wrote:
+> > The Lenovo Miix 630 laptop can be found with one of two panels - a BOE
+> > or Sharp option.  This likely provides options during manufacturing.
 > >
-> > Some files got renamed but probably due to some merge conflicts,
-> > a few references still point to the old locations.
+> > These panels connect via eDP, however they sit behind a DSI to eDP
+> > bridge on the laptop, so they can easily be handled by the existing
+> > simple panel code.
 > >
-> > Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-> > Acked-by: Wolfram Sang <wsa@the-dreams.de> # I2C part
-> > Reviewed-by: Jerry Hoemann <jerry.hoemann@hpe.com> # hpwdt.rst
-> > ---
-> >  Documentation/RCU/rculist_nulls.txt                   |  2 +-
-> >  Documentation/devicetree/bindings/arm/idle-states.txt |  2 +-
-> >  Documentation/locking/spinlocks.rst                   |  4 ++--
-> >  Documentation/memory-barriers.txt                     |  2 +-
-> >  Documentation/translations/ko_KR/memory-barriers.txt  |  2 +-
-> >  Documentation/watchdog/hpwdt.rst                      |  2 +-
-> >  MAINTAINERS                                           | 10 +++++-----
-> >  drivers/gpu/drm/drm_modes.c                           |  2 +-
+> > This series adds support for the Sharp option.
+> >
+> > v2:
+> > -removed no-hpd from dt example
+> > -added .bus_format and .bus_flags fields based on reviews
+> > -added .flags after Bjorn pointed me to something I missed
+> > -added Sam's reviewed-by tags
+> >
+> > Jeffrey Hugo (2):
+> >   dt-bindings: panel: Add Sharp LD-D5116Z01B
+> >   drm/panel: simple: Add support for Sharp LD-D5116Z01B panel
+>
+> Thanks.
+> Both patches applied and pushed to drm-misc-next.
 
-for the drm part:
+Excellent.  Thanks
 
-Acked-by: Daniel Vetter <daniel.vetter@ffwll.ch>
+> Are you up to a little janitorial work?
+> Today the preferred format for bindings files are the new yaml format.
+> Could you update 'your' file, and maybe the other sharp files too?
 
-> >  drivers/i2c/busses/i2c-nvidia-gpu.c                   |  2 +-
-> >  drivers/scsi/hpsa.c                                   |  4 ++--
-> >  10 files changed, 16 insertions(+), 16 deletions(-)
-> 
-> Acked-by: Rob Herring <robh@kernel.org>
-
--- 
-Daniel Vetter
-Software Engineer, Intel Corporation
-http://blog.ffwll.ch
+I confess I haven't yet familiarized myself with the yaml format yet,
+but I'll take a look and do an update once I understand the
+requirements.
