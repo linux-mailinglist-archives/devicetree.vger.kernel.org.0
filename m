@@ -2,346 +2,193 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EE77776080
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 10:15:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1762C760C8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 10:32:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726191AbfGZIPP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 04:15:15 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:40294 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726447AbfGZIPJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 04:15:09 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190726081508euoutp02c98797d75fea3472ac69e11f1734de89~05vRyZHsw0303103031euoutp02O
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 08:15:08 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190726081508euoutp02c98797d75fea3472ac69e11f1734de89~05vRyZHsw0303103031euoutp02O
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1564128908;
-        bh=nupSiFsT5yy8+L2dB5gm6N0NcU+S+TTvT8bj9kaAqE4=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=TGH88jOQiVeNBloV7MwYsZIVWReBDwb3kyAWjAEpGUmaq6VEWTD+tybwoWYrPzURP
-         q2oNjEU5Gx1xsbTO3JCZMHKoaRP6dUMKAA+t0i/hqlTdnroFZDHvkv2G/nFUGGQX9h
-         gSKJkdltkr1kOYztiEp8OqJl6YoiRvE0NLxmNCKc=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190726081507eucas1p11396e7b33a62f9047b080fd036027fcf~05vRC-CVR2125221252eucas1p1o;
-        Fri, 26 Jul 2019 08:15:07 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id DA.C1.04325.B86BA3D5; Fri, 26
-        Jul 2019 09:15:07 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190726081506eucas1p20e7e633e89529b862952fe9f783f72e5~05vQUUhY92724627246eucas1p20;
-        Fri, 26 Jul 2019 08:15:06 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190726081506eusmtrp2bac053102a57f227f356df2b2ebc961c~05vQGNc_O3187231872eusmtrp2t;
-        Fri, 26 Jul 2019 08:15:06 +0000 (GMT)
-X-AuditID: cbfec7f5-b8fff700000010e5-41-5d3ab68a8e78
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 1D.84.04140.A86BA3D5; Fri, 26
-        Jul 2019 09:15:06 +0100 (BST)
-Received: from AMDC2765.DIGITAL.local (unknown [106.120.51.73]) by
-        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
-        20190726081505eusmtip25bfe43a5d6730b026b3327de952e0286~05vPfVDeR3050330503eusmtip2t;
-        Fri, 26 Jul 2019 08:15:05 +0000 (GMT)
-From:   Marek Szyprowski <m.szyprowski@samsung.com>
-To:     linux-usb@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Markus Reichl <m.reichl@fivetechno.de>,
-        =?UTF-8?q?M=C3=A5ns=20Rullg=C3=A5rd?= <mans@mansr.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Peter Chen <peter.chen@nxp.com>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 3/3] ARM: dts: exynos: Use standard arrays of generic
- PHYs for EHCI/OHCI devices
-Date:   Fri, 26 Jul 2019 10:14:53 +0200
-Message-Id: <20190726081453.9456-4-m.szyprowski@samsung.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190726081453.9456-1-m.szyprowski@samsung.com>
+        id S1726026AbfGZIb4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 04:31:56 -0400
+Received: from mx2.suse.de ([195.135.220.15]:43146 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725842AbfGZIb4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jul 2019 04:31:56 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id C45C9B606;
+        Fri, 26 Jul 2019 08:31:52 +0000 (UTC)
+Date:   Fri, 26 Jul 2019 10:31:48 +0200
+From:   Petr Mladek <pmladek@suse.com>
+To:     Brendan Higgins <brendanhiggins@google.com>
+Cc:     Jeff Dike <jdike@addtoit.com>, Kevin Hilman <khilman@baylibre.com>,
+        Logan Gunthorpe <logang@deltatee.com>,
+        Michael Ellerman <mpe@ellerman.id.au>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Amir Goldstein <amir73il@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Kees Cook <keescook@google.com>,
+        David Rientjes <rientjes@google.com>,
+        kunit-dev@googlegroups.com,
+        Kieran Bingham <kieran.bingham@ideasonboard.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Randy Dunlap <rdunlap@infradead.org>,
+        Joel Stanley <joel@jms.id.au>,
+        Luis Chamberlain <mcgrof@kernel.org>,
+        Rob Herring <robh@kernel.org>, Stephen Boyd <sboyd@kernel.org>,
+        shuah <shuah@kernel.org>, wfg@linux.intel.com,
+        Greg KH <gregkh@linuxfoundation.org>,
+        Julia Lawall <julia.lawall@lip6.fr>,
+        linux-nvdimm <linux-nvdimm@lists.01.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        linux-um@lists.infradead.org,
+        Sasha Levin <Alexander.Levin@microsoft.com>,
+        Theodore Ts'o <tytso@mit.edu>,
+        Richard Weinberger <richard@nod.at>,
+        Dan Carpenter <dan.carpenter@oracle.com>,
+        Knut Omang <knut.omang@oracle.com>,
+        Josh Poimboeuf <jpoimboe@redhat.com>,
+        Masahiro Yamada <yamada.masahiro@socionext.com>,
+        Timothy Bird <Tim.Bird@sony.com>,
+        John Ogness <john.ogness@linutronix.de>,
+        devicetree <devicetree@vger.kernel.org>,
+        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
+        linux-fsdevel@vger.kernel.org,
+        linux-kbuild <linux-kbuild@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "open list:KERNEL SELFTEST FRAMEWORK" 
+        <linux-kselftest@vger.kernel.org>
+Subject: Re: [PATCH v9 04/18] kunit: test: add kunit_stream a std::stream
+ like logger
+Message-ID: <20190726083148.d4gf57w2nt5k7t6n@pathway.suse.cz>
+References: <20190716175021.9CA412173C@mail.kernel.org>
+ <CAFd5g453vXeSUCZenCk_CzJ-8a1ym9RaPo0NVF=FujF9ac-5Ag@mail.gmail.com>
+ <20190718175024.C3EC421019@mail.kernel.org>
+ <CAFd5g46a7C1+R6ZcE_SkqaYqgrH5Rx3M=X7orFyaMgFLDbeYYA@mail.gmail.com>
+ <20190719000834.GA3228@google.com>
+ <20190722200347.261D3218C9@mail.kernel.org>
+ <CAFd5g45hdCxEavSxirr0un_uLzo5Z-J4gHRA06qjzcQrTzmjVg@mail.gmail.com>
+ <20190722235411.06C1320840@mail.kernel.org>
+ <20190724073125.xyzfywctrcvg6fmh@pathway.suse.cz>
+ <CAFd5g47v3Mr4GEGOjqyYy9Jwwm+ow7ypbu9j88rxEN06QCzdxQ@mail.gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA02SfyyUcRzH+z7P3T0PdfY4Nt8k1m2Jyq9+2JNoyB/Pwmb90xbG4QnLHd35
-        kUzMpelSo9mIonHJroQbwnZ+XDdHDFEJp3FZS/mxojmL6h6Pyn+v7+f7+nw/7+93XxwV9HHt
-        8URJKi2ViJKEPEtOa+/6kNvtVp9IT+NnhGwqa+CSVbohLimvaeCRw8ONGDnW8YBHlg13ImR1
-        bT5KzutMgKzXTWOkabYUITc+GLhkvkaHkUU/R3j+fGrSkEOpVbd4VNfDZxi1MPAKo5qW2hCq
-        YtoEqLvNKkCtqB3D8IuWvnF0UmI6LfU4E22ZMD34FaT0eF2tKypBcoHRWQEscEicgN03tByG
-        BUQdgN1z3iyvAlgxFasAlmZeAbBkasIs4VsN66azrPMEwMpCLuuY/fHRdpTZ4BFeULGo4DFs
-        S/hD5WMDj5FQYgiFNesFCHOQDUHDigIR43CIg3C5bwYwzCd84WaxDmXDOcGnjd1bbEH4wTuf
-        6hHWsYb99+e2QqNmR95SgTLnQ8KIQWXX2nZzENRsargs28Av+maMZQf4u70KYRvkAM4O1WPs
-        ohDAsbwywFqn4Uv9ay6TFCVcYUOHB1sOgMaP1Qj7Elbw/aI1G8IK3mstRdkyHxbcFLC2MyzX
-        P/83tmdkdDsaBRe+9yBF4ED5juuU77hO+f+5jwCqAnZ0mkwcT8uOS+gMd5lILEuTxLvHJovV
-        wPy/Bn7pf7SBzo0YLSBwINzDd1GdihRwRemyTLEWQBwV2vJb2swlfpwo8xotTY6SpiXRMi3Y
-        h3OEdvysXTPhAiJelEpfpukUWvp3F8Et7HNB8HL9W6crIcHvsEp1mKE4EDnk+s2ejPBT6l1a
-        +MbGgahl+WLgi/NRu03eg8HjtTb7lQnOaKPnhElDGHNU4rVJxTnp3pOKwejQgksGFM248Ga+
-        Xxl6Pcu+VLMU0uE4/mBRArKPbBKjQTDctlhR4lzikxfQG+OwevSYPDvCLU/IkSWIvA6jUpno
-        D06GCB1bAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPIsWRmVeSWpSXmKPExsVy+t/xe7pd26xiDW71C1hsnLGe1WL+kXOs
-        Fs2L17NZnD+/gd3i8q45bBYzzu9jsli0rJXZ4uWRH4wWa4/cZbf48XA6k8Wfe3dYLVr3HmG3
-        mPD7ApsDr8etO/Uem1Z1snnsn7uG3ePN6VPsHhvf7WDymH33B6NH35ZVjB6fN8kFcETp2RTl
-        l5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZKunb2aSk5mSWpRbp2yXoZdw985qx4KBh
-        xYoJU5gaGB+pdTFycEgImEj8/OHcxcjFISSwlFHi1OotzF2MnEBxGYmT0xpYIWxhiT/Xutgg
-        ij4xSvz69J8JJMEmYCjR9RYkwckhIuAk0bn2NFgRs8A1ZokdFzvBEsICyRJnlz1kBLFZBFQl
-        3p94AGbzCthI/J14BGqbvMTqDQfAbE4BW4neZ2vBFggB1ez/tZsNol5Q4uTMJywgVzMLqEus
-        nycEEmYGam3eOpt5AqPgLCRVsxCqZiGpWsDIvIpRJLW0ODc9t9hIrzgxt7g0L10vOT93EyMw
-        Mrcd+7llB2PXu+BDjAIcjEo8vBeWW8YKsSaWFVfmHmKU4GBWEuHdugMoxJuSWFmVWpQfX1Sa
-        k1p8iNEU6LWJzFKiyfnApJFXEm9oamhuYWlobmxubGahJM7bIXAwRkggPbEkNTs1tSC1CKaP
-        iYNTqoFx53lWJw7xmtLpDVwV8uKyITO7fgt22SV4G3Sea+WcyXlk6q2NN/Ze6XUtLJD41rFB
-        fndqTPZcjnIRwal7LPfbzT7pFCdk/vbP5XtmEtt3HP505k/ljhPNF9/c6jBsz5/k2+HBcNrb
-        viop8J1P58Gp/zUZH0ZOfClfYnCPecbb7U0hZ1V6n4YrsRRnJBpqMRcVJwIAFnq9A+ICAAA=
-X-CMS-MailID: 20190726081506eucas1p20e7e633e89529b862952fe9f783f72e5
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190726081506eucas1p20e7e633e89529b862952fe9f783f72e5
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190726081506eucas1p20e7e633e89529b862952fe9f783f72e5
-References: <20190726081453.9456-1-m.szyprowski@samsung.com>
-        <CGME20190726081506eucas1p20e7e633e89529b862952fe9f783f72e5@eucas1p2.samsung.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFd5g47v3Mr4GEGOjqyYy9Jwwm+ow7ypbu9j88rxEN06QCzdxQ@mail.gmail.com>
+User-Agent: NeoMutt/20170912 (1.9.0)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Move USB PHYs to a standard arrays for Exynos EHCI/OHCI devices. This
-resolves the conflict between Exynos EHCI/OHCI sub-nodes and generic USB
-device bindings. Once the Exynos EHCI/OHCI sub-nodes are removed, the
-boards can finally provide sub-nodes for the USB devices using generic USB
-device bindings.
+On Thu 2019-07-25 13:21:12, Brendan Higgins wrote:
+> On Wed, Jul 24, 2019 at 12:31 AM Petr Mladek <pmladek@suse.com> wrote:
+> >
+> > On Mon 2019-07-22 16:54:10, Stephen Boyd wrote:
+> > > Quoting Brendan Higgins (2019-07-22 15:30:49)
+> > > > On Mon, Jul 22, 2019 at 1:03 PM Stephen Boyd <sboyd@kernel.org> wrote:
+> > > > >
+> > > > >
+> > > > > What's the calling context of the assertions and expectations? I still
+> > > > > don't like the fact that string stream needs to allocate buffers and
+> > > > > throw them into a list somewhere because the calling context matters
+> > > > > there.
+> > > >
+> > > > The calling context is the same as before, which is anywhere.
+> > >
+> > > Ok. That's concerning then.
+> > >
+> > > >
+> > > > > I'd prefer we just wrote directly to the console/log via printk
+> > > > > instead. That way things are simple because we use the existing
+> > > > > buffering path of printk, but maybe there's some benefit to the string
+> > > > > stream that I don't see? Right now it looks like it builds a string and
+> > > > > then dumps it to printk so I'm sort of lost what the benefit is over
+> > > > > just writing directly with printk.
+> > > >
+> > > > It's just buffering it so the whole string gets printed uninterrupted.
+> > > > If we were to print out piecemeal to printk, couldn't we have another
+> > > > call to printk come in causing it to garble the KUnit message we are
+> > > > in the middle of printing?
+> > >
+> > > Yes, printing piecemeal by calling printk many times could lead to
+> > > interleaving of messages if something else comes in such as an interrupt
+> > > printing something. Printk has some support to hold "records" but I'm
+> > > not sure how that would work here because KERN_CONT talks about only
+> > > being used early on in boot code. I haven't looked at printk in detail
+> > > though so maybe I'm all wrong and KERN_CONT just works?
+> >
+> > KERN_CONT does not guarantee that the message will get printed
+> > together. The pieces get interleaved with messages printed in
+> > parallel.
+> >
+> > Note that KERN_CONT was originally really meant to be used only during
+> > boot. It was later used more widely and ended in the best effort category.
+> >
+> > There were several attempts to make it more reliable. But it was
+> > always either too complicated or error prone or both.
+> >
+> > You need to use your own buffering if you rely want perfect output.
+> > The question is if it is really worth the complexity. Also note that
+> > any buffering reduces the chance that the messages will reach
+> > the console.
+> 
+> Seems like that settles it then. Thanks!
+> 
+> > BTW: There is a work in progress on a lockless printk ring buffer.
+> > It will make printk() more secure regarding deadlocks. But it might
+> > make transparent handling of continuous lines even more tricky.
+> >
+> > I guess that local buffering, before calling printk(), will be
+> > even more important then. Well, it might really force us to create
+> > an API for it.
+> 
+> Cool! Can you CC me on that discussion?
 
-Suggested-by: Måns Rullgård <mans@mansr.com>
-Signed-off-by: Marek Szyprowski <m.szyprowski@samsung.com>
----
- arch/arm/boot/dts/exynos4.dtsi                | 28 +++----------------
- .../boot/dts/exynos4210-universal_c210.dts    |  8 ++----
- arch/arm/boot/dts/exynos4412-itop-elite.dts   |  9 ++----
- arch/arm/boot/dts/exynos4412-odroidu3.dts     |  8 ++----
- arch/arm/boot/dts/exynos4412-odroidx.dts      |  5 ++--
- arch/arm/boot/dts/exynos4412-origen.dts       |  9 ++----
- arch/arm/boot/dts/exynos5250.dtsi             | 16 +++--------
- arch/arm/boot/dts/exynos54xx.dtsi             | 18 +++---------
- 8 files changed, 22 insertions(+), 79 deletions(-)
+Adding John Oggness into CC.
 
-diff --git a/arch/arm/boot/dts/exynos4.dtsi b/arch/arm/boot/dts/exynos4.dtsi
-index 1264cc431ff6..433f109d97ca 100644
---- a/arch/arm/boot/dts/exynos4.dtsi
-+++ b/arch/arm/boot/dts/exynos4.dtsi
-@@ -380,23 +380,8 @@
- 			clocks = <&clock CLK_USB_HOST>;
- 			clock-names = "usbhost";
- 			status = "disabled";
--			#address-cells = <1>;
--			#size-cells = <0>;
--			port@0 {
--				reg = <0>;
--				phys = <&exynos_usbphy 1>;
--				status = "disabled";
--			};
--			port@1 {
--				reg = <1>;
--				phys = <&exynos_usbphy 2>;
--				status = "disabled";
--			};
--			port@2 {
--				reg = <2>;
--				phys = <&exynos_usbphy 3>;
--				status = "disabled";
--			};
-+			phys = <&exynos_usbphy 1>, <&exynos_usbphy 2>, <&exynos_usbphy 3>;
-+			phy-names = "host", "hsic0", "hsic1";
- 		};
- 
- 		ohci: ohci@12590000 {
-@@ -406,13 +391,8 @@
- 			clocks = <&clock CLK_USB_HOST>;
- 			clock-names = "usbhost";
- 			status = "disabled";
--			#address-cells = <1>;
--			#size-cells = <0>;
--			port@0 {
--				reg = <0>;
--				phys = <&exynos_usbphy 1>;
--				status = "disabled";
--			};
-+			phys = <&exynos_usbphy 1>;
-+			phy-names = "host";
- 		};
- 
- 		gpu: gpu@13000000 {
-diff --git a/arch/arm/boot/dts/exynos4210-universal_c210.dts b/arch/arm/boot/dts/exynos4210-universal_c210.dts
-index 82a8b5449978..09d3d54d09ff 100644
---- a/arch/arm/boot/dts/exynos4210-universal_c210.dts
-+++ b/arch/arm/boot/dts/exynos4210-universal_c210.dts
-@@ -204,9 +204,8 @@
- 
- &ehci {
- 	status = "okay";
--	port@0 {
--		status = "okay";
--	};
-+	phys = <&exynos_usbphy 1>;
-+	phy-names = "host";
- };
- 
- &exynos_usbphy {
-@@ -520,9 +519,6 @@
- 
- &ohci {
- 	status = "okay";
--	port@0 {
--		status = "okay";
--	};
- };
- 
- &pinctrl_1 {
-diff --git a/arch/arm/boot/dts/exynos4412-itop-elite.dts b/arch/arm/boot/dts/exynos4412-itop-elite.dts
-index 0dedeba89b5f..f6d0a5f5d339 100644
---- a/arch/arm/boot/dts/exynos4412-itop-elite.dts
-+++ b/arch/arm/boot/dts/exynos4412-itop-elite.dts
-@@ -146,13 +146,8 @@
- 	/* In order to reset USB ethernet */
- 	samsung,vbus-gpio = <&gpc0 1 GPIO_ACTIVE_HIGH>;
- 
--	port@0 {
--		status = "okay";
--	};
--
--	port@2 {
--		status = "okay";
--	};
-+	phys = <&exynos_usbphy 1>, <&exynos_usbphy 3>;
-+	phy-names = "host", "hsic1";
- };
- 
- &exynos_usbphy {
-diff --git a/arch/arm/boot/dts/exynos4412-odroidu3.dts b/arch/arm/boot/dts/exynos4412-odroidu3.dts
-index 96d99887bceb..8ff243ba4542 100644
---- a/arch/arm/boot/dts/exynos4412-odroidu3.dts
-+++ b/arch/arm/boot/dts/exynos4412-odroidu3.dts
-@@ -105,12 +105,8 @@
- };
- 
- &ehci {
--	port@1 {
--		status = "okay";
--	};
--	port@2 {
--		status = "okay";
--	};
-+	phys = <&exynos_usbphy 2>, <&exynos_usbphy 3>;
-+	phy-names = "hsic0", "hsic1";
- };
- 
- &sound {
-diff --git a/arch/arm/boot/dts/exynos4412-odroidx.dts b/arch/arm/boot/dts/exynos4412-odroidx.dts
-index a2251581f6b6..3ea2a0101e80 100644
---- a/arch/arm/boot/dts/exynos4412-odroidx.dts
-+++ b/arch/arm/boot/dts/exynos4412-odroidx.dts
-@@ -72,9 +72,8 @@
- };
- 
- &ehci {
--	port@1 {
--		status = "okay";
--	};
-+	phys = <&exynos_usbphy 2>;
-+	phy-names = "hsic0";
- };
- 
- &mshc_0 {
-diff --git a/arch/arm/boot/dts/exynos4412-origen.dts b/arch/arm/boot/dts/exynos4412-origen.dts
-index 698de4345d16..ecd14b283a6b 100644
---- a/arch/arm/boot/dts/exynos4412-origen.dts
-+++ b/arch/arm/boot/dts/exynos4412-origen.dts
-@@ -88,13 +88,8 @@
- &ehci {
- 	samsung,vbus-gpio = <&gpx3 5 1>;
- 	status = "okay";
--
--	port@1 {
--		status = "okay";
--	};
--	port@2 {
--		status = "okay";
--	};
-+	phys = <&exynos_usbphy 2>, <&exynos_usbphy 3>;
-+	phy-names = "hsic0", "hsic1";
- };
- 
- &fimd {
-diff --git a/arch/arm/boot/dts/exynos5250.dtsi b/arch/arm/boot/dts/exynos5250.dtsi
-index d5e0392b409e..c5584f40ebfb 100644
---- a/arch/arm/boot/dts/exynos5250.dtsi
-+++ b/arch/arm/boot/dts/exynos5250.dtsi
-@@ -617,12 +617,8 @@
- 
- 			clocks = <&clock CLK_USB2>;
- 			clock-names = "usbhost";
--			#address-cells = <1>;
--			#size-cells = <0>;
--			port@0 {
--				reg = <0>;
--				phys = <&usb2_phy_gen 1>;
--			};
-+			phys = <&usb2_phy_gen 1>;
-+			phy-names = "host";
- 		};
- 
- 		ohci: usb@12120000 {
-@@ -632,12 +628,8 @@
- 
- 			clocks = <&clock CLK_USB2>;
- 			clock-names = "usbhost";
--			#address-cells = <1>;
--			#size-cells = <0>;
--			port@0 {
--				reg = <0>;
--				phys = <&usb2_phy_gen 1>;
--			};
-+			phys = <&usb2_phy_gen 1>;
-+			phy-names = "host";
- 		};
- 
- 		usb2_phy_gen: phy@12130000 {
-diff --git a/arch/arm/boot/dts/exynos54xx.dtsi b/arch/arm/boot/dts/exynos54xx.dtsi
-index 0b27bebf9528..9c3b63b7cac6 100644
---- a/arch/arm/boot/dts/exynos54xx.dtsi
-+++ b/arch/arm/boot/dts/exynos54xx.dtsi
-@@ -189,26 +189,16 @@
- 			compatible = "samsung,exynos4210-ehci";
- 			reg = <0x12110000 0x100>;
- 			interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
--
--			#address-cells = <1>;
--			#size-cells = <0>;
--			port@0 {
--				reg = <0>;
--				phys = <&usb2_phy 1>;
--			};
-+			phys = <&usb2_phy 1>;
-+			phy-names = "host";
- 		};
- 
- 		usbhost1: usb@12120000 {
- 			compatible = "samsung,exynos4210-ohci";
- 			reg = <0x12120000 0x100>;
- 			interrupts = <GIC_SPI 71 IRQ_TYPE_LEVEL_HIGH>;
--
--			#address-cells = <1>;
--			#size-cells = <0>;
--			port@0 {
--				reg = <0>;
--				phys = <&usb2_phy 1>;
--			};
-+			phys = <&usb2_phy 1>;
-+			phy-names = "host";
- 		};
- 
- 		usb2_phy: phy@12130000 {
--- 
-2.17.1
+John, please CC Brendan Higgins on the patchsets eventually switching
+printk() into the lockless buffer. The test framework is going to
+do its own buffering to keep the related messages together.
 
+The lockless ringbuffer might make handling of related (partial)
+lines worse or better. It might justify KUnit's extra buffering
+or it might allow to get rid of it.
+
+> > Note that stroring the messages into the printk log is basically safe in any
+> > context. It uses temporary per-CPU buffers for recursive messages and
+> > in NMI. The only problem is panic() when some CPU gets stuck with the
+> > lock taken. This will get solved by the lockless ringbuffer. Also
+> > the temporary buffers will not be necessary any longer.
+> 
+> Sure, I think Stephen's concern is all the supporting code that is
+> involved. Not printk specifically. It just means a lot more of KUnit
+> has to be IRQ safe.
+
+I see.
+
+BTW: I wonder if KUnit could reuse the existing seq_buf implementation
+for buffering messages.
+
+I am sorry if it has already been proposed and rejected for some
+reason. I might have missed it. Feel free to just point me to
+same older mail.
+
+> > Much bigger problems are with consoles. There are many of them. It
+> > means a lot of code and more locks involved, including scheduler
+> > locks. Note that console lock is a semaphore.
+> 
+> That shouldn't affect us though, right? As long as we continue to use
+> the printk interface?
+
+I guess that it should not affect KUnit.
+
+The only problem might be if the testing framework calls printk()
+inside scheduler or console code. And only when the tested code
+uses the same locks that will be used by the called printk().
+
+To be honest I do not fully understand KUnit design. I am not
+completely sure how the tested code is isolated from the running
+system. Namely, I do not know if the tested code shares
+the same locks with the system running the test.
+
+Best Regards,
+Petr
