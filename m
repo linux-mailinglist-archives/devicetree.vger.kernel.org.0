@@ -2,67 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A576762A3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 11:50:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E13A576300
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 12:02:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726001AbfGZJu3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 05:50:29 -0400
-Received: from foss.arm.com ([217.140.110.172]:40500 "EHLO foss.arm.com"
+        id S1726139AbfGZKCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 06:02:40 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37180 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725842AbfGZJu3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 05:50:29 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id ACF58344;
-        Fri, 26 Jul 2019 02:50:28 -0700 (PDT)
-Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 3D5903F71A;
-        Fri, 26 Jul 2019 02:50:27 -0700 (PDT)
-Date:   Fri, 26 Jul 2019 10:50:25 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Kevin Brodsky <kevin.brodsky@arm.com>
-Cc:     linux-arm-kernel@lists.infradead.org,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Pawel Moll <pawel.moll@arm.com>,
-        Liviu Dudau <liviu.dudau@arm.com>,
-        Brian Starkey <brian.starkey@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Ruben Ayrapetyan <ruben.ayrapetyan@arm.com>,
-        Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH v2] arm64: dts: fast models: Remove clcd's
- max-memory-bandwidth
-Message-ID: <20190726095025.GB11177@e107155-lin>
-References: <20190725171215.71801-1-kevin.brodsky@arm.com>
+        id S1725815AbfGZKCj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jul 2019 06:02:39 -0400
+Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 544AE22CB9;
+        Fri, 26 Jul 2019 10:02:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564135358;
+        bh=7MJ+vCNVbPSQe5xb35xJesroJsELZsRfJAQgN2m8Yo0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=YqZlO8xaCrORR7NUWRK1YWzCAoX0fQGCAruiUvd0EbGpIcxG7y98zfuBT2WRffOtp
+         rLYVGVw70r+Q97IxDQosEpuYSC7i+iFzWd0XKqxj7MT33yDLIHZqL/5Qvv9kvIfAb3
+         47QnWfX36rb6cJH5/SPwNc6vSmEE34SAQhP1ANMY=
+Received: by mail-lj1-f171.google.com with SMTP id z28so50991900ljn.4;
+        Fri, 26 Jul 2019 03:02:38 -0700 (PDT)
+X-Gm-Message-State: APjAAAVVLHp4//7eIhsfcrIpr22da/wwNVI4UkjL/RNeZf00VkgFWUvY
+        Vnlv5T6rKHjc1wKNHGoUYQjUZmGD6c/VvH1LPWs=
+X-Google-Smtp-Source: APXvYqyOZ17x945oZf2yalALHm6hxXvu7W9AcifjqVUkBG7YT744y3x06dMet0dxxzuVhl2gudIP27bO87jyn3ITadI=
+X-Received: by 2002:a2e:7818:: with SMTP id t24mr21589590ljc.210.1564135356368;
+ Fri, 26 Jul 2019 03:02:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190725171215.71801-1-kevin.brodsky@arm.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20190726061705.14764-1-krzk@kernel.org> <963ba555-dde0-9c3c-1e15-740ca200853f@kontron.de>
+In-Reply-To: <963ba555-dde0-9c3c-1e15-740ca200853f@kontron.de>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Fri, 26 Jul 2019 12:02:25 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPdbBXEy0zzjZ1ytts0y5STQ5x9xQVBmU1vn46tmu8uCGg@mail.gmail.com>
+Message-ID: <CAJKOXPdbBXEy0zzjZ1ytts0y5STQ5x9xQVBmU1vn46tmu8uCGg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: vendor-prefixes: Add Admatec AG
+To:     Schrempf Frieder <frieder.schrempf@kontron.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 25, 2019 at 06:12:14PM +0100, Kevin Brodsky wrote:
-> It is unclear why max-memory-bandwidth should be set for CLCD on the
-> fast model. Removing that property allows allocating and using 32bpp
-> buffers, which may be desirable on certain platforms such as
-> Android.
-> 
-> Reported-by: Ruben Ayrapetyan <ruben.ayrapetyan@arm.com>
-> Signed-off-by: Kevin Brodsky <kevin.brodsky@arm.com>
-> ---
-> 
-> Changes in v2:
-> - Remove the attribute completely instead of increasing its value. It is
->   optional and there is no clear reason why it should be set at all.
-> 
->  arch/arm64/boot/dts/arm/fvp-base-revc.dts        | 8 --------
->  arch/arm64/boot/dts/arm/rtsm_ve-motherboard.dtsi | 2 --
+On Fri, 26 Jul 2019 at 11:48, Schrempf Frieder
+<frieder.schrempf@kontron.de> wrote:
+>
+> On 26.07.19 08:17, Krzysztof Kozlowski wrote:
+> > Add vendor prefix for Admatec AG.
+>
+> We get the displays used with the Kontron eval kits from "admatec GmbH"
+> in Hamburg, not "Admatec AG" in Switzerland. I think we have to
+> differentiate here.
+>
+> I will review patch 2/2 soon...
 
-I was about to ask about the above file in v1, and then saw v2.
-I will take this for v5.4. Thanks
+What a coincidence... they have so similar portfolio. After looking at
+vendor prefixes that would be the first duplication of name.
 
---
-Regards,
-Sudeep
+To avoid conflict, how about: "admatecde"?
+
+Best regards,
+Krzysztof
