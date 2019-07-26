@@ -2,391 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ABF967730A
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 22:56:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B27FF77322
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 23:02:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727530AbfGZU4K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 16:56:10 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:34198 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726184AbfGZU4K (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 16:56:10 -0400
-Received: from hades.home (unknown [IPv6:2a00:23c5:58d:db00:68bb:47d:d5ca:9abd])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: martyn)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id E4CC528C59F;
-        Fri, 26 Jul 2019 21:56:08 +0100 (BST)
-From:   Martyn Welch <martyn.welch@collabora.com>
-To:     Mark Rutland <mark.rutland@arm.com>,
-        Jonathan Cameron <jic23@kernel.org>
-Cc:     Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
-        kernel@lists.collabora.co.uk, devicetree@vger.kernel.org,
-        Martyn Welch <martyn.welch@collabora.com>,
-        Sergei M <fizik1@yandex.com>
-Subject: [PATCH v3 2/2] iio: light: noa1305: Add support for NOA1305
-Date:   Fri, 26 Jul 2019 21:55:13 +0100
-Message-Id: <20190726205513.31291-2-martyn.welch@collabora.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190726205513.31291-1-martyn.welch@collabora.com>
-References: <20190726205513.31291-1-martyn.welch@collabora.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1727564AbfGZVCr convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 26 Jul 2019 17:02:47 -0400
+Received: from shards.monkeyblade.net ([23.128.96.9]:54996 "EHLO
+        shards.monkeyblade.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726102AbfGZVCr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 17:02:47 -0400
+Received: from localhost (unknown [IPv6:2601:601:9f80:35cd::d71])
+        (using TLSv1 with cipher AES256-SHA (256/256 bits))
+        (Client did not present a certificate)
+        (Authenticated sender: davem-davemloft)
+        by shards.monkeyblade.net (Postfix) with ESMTPSA id 7EE3912665347;
+        Fri, 26 Jul 2019 14:02:46 -0700 (PDT)
+Date:   Fri, 26 Jul 2019 14:02:45 -0700 (PDT)
+Message-Id: <20190726.140245.129199617321965171.davem@davemloft.net>
+To:     opensource@vdorst.com
+Cc:     netdev@vger.kernel.org, frank-w@public-files.de,
+        sean.wang@mediatek.com, f.fainelli@gmail.com,
+        linux@armlinux.org.uk, matthias.bgg@gmail.com, andrew@lunn.ch,
+        vivien.didelot@gmail.com, john@phrozen.org,
+        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH net-next 1/3] net: ethernet: mediatek: Add basic
+ PHYLINK support
+From:   David Miller <davem@davemloft.net>
+In-Reply-To: <20190724192340.18978-1-opensource@vdorst.com>
+References: <20190724192340.18978-1-opensource@vdorst.com>
+X-Mailer: Mew version 6.8 on Emacs 26.1
+Mime-Version: 1.0
+Content-Type: Text/Plain; charset=iso-8859-1
+Content-Transfer-Encoding: 8BIT
+X-Greylist: Sender succeeded SMTP AUTH, not delayed by milter-greylist-4.5.12 (shards.monkeyblade.net [149.20.54.216]); Fri, 26 Jul 2019 14:02:47 -0700 (PDT)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This driver adds the initial support for the ON Semiconductor
-NOA1305 Ambient Light Sensor.
+From: René van Dorst <opensource@vdorst.com>
+Date: Wed, 24 Jul 2019 21:23:40 +0200
 
-Originally written by Sergei Miroshnichenko. Found here:
-  https://github.com/EmcraftSystems/linux-upstream/commit/196d6cf897e632d2cb82d45484bd7a1bfdd5b6d9
+> @@ -186,165 +187,219 @@ static void mtk_gmac0_rgmii_adjust(struct mtk_eth *eth, int speed)
+>  	mtk_w32(eth, val, TRGMII_TCK_CTRL);
+>  }
+>  
+> -static void mtk_phy_link_adjust(struct net_device *dev)
+> +static void mtk_mac_config(struct phylink_config *config, unsigned int mode,
+> +			   const struct phylink_link_state *state)
+>  {
+> -	struct mtk_mac *mac = netdev_priv(dev);
+> -	u16 lcl_adv = 0, rmt_adv = 0;
+> -	u8 flowctrl;
+> -	u32 mcr = MAC_MCR_MAX_RX_1536 | MAC_MCR_IPG_CFG |
+> -		  MAC_MCR_FORCE_MODE | MAC_MCR_TX_EN |
+> -		  MAC_MCR_RX_EN | MAC_MCR_BACKOFF_EN |
+> -		  MAC_MCR_BACKPR_EN;
+> +	struct mtk_mac *mac = container_of(config, struct mtk_mac,
+> +					   phylink_config);
+> +	struct mtk_eth *eth = mac->hw;
+>  
+> -	if (unlikely(test_bit(MTK_RESETTING, &mac->hw->state)))
+> -		return;
+> +	u32 ge_mode = 0, val, mcr_cur, mcr_new;
 
-Signed-off-by: Sergei M <fizik1@yandex.com>
-Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
----
+Please elminiate the empty line in the middle of the local variabel
+declarations and adhere to reverse christmas tree ordering.
+> @@ -1798,6 +1853,13 @@ static int mtk_open(struct net_device *dev)
+>  {
+>  	struct mtk_mac *mac = netdev_priv(dev);
+>  	struct mtk_eth *eth = mac->hw;
+> +	int err = phylink_of_phy_connect(mac->phylink, mac->of_node, 0);
 
-Changes:
-v2:
- - Correcting authorship and SOB.
-v3:
- - Improve register define naming.
- - Follow IIO convention of interleaving register bit definitions with
-   register defintions.
- - Use proper endian swapping.
- - Process raw sensor count into Lux.
- - Avoid setting variables to zero when not needed.
- - Check return value of i2c writes.
- - Implement disabling of regulator as a devm action.
- - Remove excessive white spacing.
+Reverse christmas tree please.
 
- drivers/iio/light/Kconfig   |  10 ++
- drivers/iio/light/Makefile  |   1 +
- drivers/iio/light/noa1305.c | 278 ++++++++++++++++++++++++++++++++++++
- 3 files changed, 289 insertions(+)
- create mode 100644 drivers/iio/light/noa1305.c
+> @@ -2375,9 +2407,10 @@ static const struct net_device_ops mtk_netdev_ops = {
+>  
+>  static int mtk_add_mac(struct mtk_eth *eth, struct device_node *np)
+>  {
+> +	struct phylink *phylink;
+>  	struct mtk_mac *mac;
+>  	const __be32 *_id = of_get_property(np, "reg", NULL);
+> -	int id, err;
+> +	int phy_mode, id, err;
 
-diff --git a/drivers/iio/light/Kconfig b/drivers/iio/light/Kconfig
-index 954c958cfc43..d1db0ec0d0f5 100644
---- a/drivers/iio/light/Kconfig
-+++ b/drivers/iio/light/Kconfig
-@@ -309,6 +309,16 @@ config MAX44009
- 	 To compile this driver as a module, choose M here:
- 	 the module will be called max44009.
- 
-+config NOA1305
-+	tristate "ON Semiconductor NOA1305 ambient light sensor"
-+	depends on I2C
-+	help
-+	 Say Y here if you want to build support for the ON Semiconductor
-+	 NOA1305 ambient light sensor.
-+
-+	 To compile this driver as a module, choose M here:
-+	 The module will be called noa1305.
-+
- config OPT3001
- 	tristate "Texas Instruments OPT3001 Light Sensor"
- 	depends on I2C
-diff --git a/drivers/iio/light/Makefile b/drivers/iio/light/Makefile
-index e40794fbb435..00d1f9b98f39 100644
---- a/drivers/iio/light/Makefile
-+++ b/drivers/iio/light/Makefile
-@@ -29,6 +29,7 @@ obj-$(CONFIG_LTR501)		+= ltr501.o
- obj-$(CONFIG_LV0104CS)		+= lv0104cs.o
- obj-$(CONFIG_MAX44000)		+= max44000.o
- obj-$(CONFIG_MAX44009)		+= max44009.o
-+obj-$(CONFIG_NOA1305)		+= noa1305.o
- obj-$(CONFIG_OPT3001)		+= opt3001.o
- obj-$(CONFIG_PA12203001)	+= pa12203001.o
- obj-$(CONFIG_RPR0521)		+= rpr0521.o
-diff --git a/drivers/iio/light/noa1305.c b/drivers/iio/light/noa1305.c
-new file mode 100644
-index 000000000000..02b0cf48c2be
---- /dev/null
-+++ b/drivers/iio/light/noa1305.c
-@@ -0,0 +1,278 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+/*
-+ * Support for ON Semiconductor NOA1305 ambient light sensor
-+ *
-+ * Copyright (C) 2016 Emcraft Systems
-+ * Copyright (C) 2019 Collabora Ltd.
-+ */
-+
-+#include <linux/delay.h>
-+#include <linux/err.h>
-+#include <linux/i2c.h>
-+#include <linux/iio/iio.h>
-+#include <linux/iio/sysfs.h>
-+#include <linux/module.h>
-+#include <linux/regmap.h>
-+#include <linux/regulator/consumer.h>
-+
-+#define NOA1305_REG_POWER_CONTROL	0x0
-+#define   NOA1305_POWER_CONTROL_DOWN	0x00
-+#define   NOA1305_POWER_CONTROL_ON	0x08
-+#define NOA1305_REG_RESET		0x1
-+#define   NOA1305_RESET_RESET		0x10
-+#define NOA1305_REG_INTEGRATION_TIME	0x2
-+#define   NOA1305_INTEGR_TIME_800MS	0x00
-+#define   NOA1305_INTEGR_TIME_400MS	0x01
-+#define   NOA1305_INTEGR_TIME_200MS	0x02
-+#define   NOA1305_INTEGR_TIME_100MS	0x03
-+#define   NOA1305_INTEGR_TIME_50MS	0x04
-+#define   NOA1305_INTEGR_TIME_25MS	0x05
-+#define   NOA1305_INTEGR_TIME_12_5MS	0x06
-+#define   NOA1305_INTEGR_TIME_6_25MS	0x07
-+#define NOA1305_REG_INT_SELECT		0x3
-+#define   NOA1305_INT_SEL_ACTIVE_HIGH	0x01
-+#define   NOA1305_INT_SEL_ACTIVE_LOW	0x02
-+#define   NOA1305_INT_SEL_INACTIVE	0x03
-+#define NOA1305_REG_INT_THRESH_LSB	0x4
-+#define NOA1305_REG_INT_THRESH_MSB	0x5
-+#define NOA1305_REG_ALS_DATA_LSB	0x6
-+#define NOA1305_REG_ALS_DATA_MSB	0x7
-+#define NOA1305_REG_DEVICE_ID_LSB	0x8
-+#define NOA1305_REG_DEVICE_ID_MSB	0x9
-+
-+#define NOA1305_DEVICE_ID	0x0519
-+#define NOA1305_DRIVER_NAME	"noa1305"
-+
-+struct noa1305_priv {
-+	struct i2c_client *client;
-+	struct regmap *regmap;
-+	struct regulator *vin_reg;
-+};
-+
-+static int noa1305_measure(struct noa1305_priv *priv)
-+{
-+	__le16 data;
-+	int count;
-+	int ret;
-+
-+	ret = regmap_bulk_read(priv->regmap, NOA1305_REG_ALS_DATA_LSB, &data,
-+			       2);
-+	if (ret < 0)
-+		return ret;
-+
-+	/*
-+	 * Lux = count / (<Integration Constant> * <Integration Time>)
-+	 *
-+	 * Integration Constant = 7.7
-+	 * Integration Time in Seconds (currently) = 800ms
-+	 */
-+	return (le16_to_cpu(data) * 100) / (77 * 8);
-+}
-+
-+static const struct iio_chan_spec noa1305_channels[] = {
-+	{
-+		.type = IIO_LIGHT,
-+		.info_mask_separate = BIT(IIO_CHAN_INFO_PROCESSED),
-+	}
-+};
-+
-+static int noa1305_read_raw(struct iio_dev *indio_dev,
-+				struct iio_chan_spec const *chan,
-+				int *val, int *val2, long mask)
-+{
-+	int ret = -EINVAL;
-+	struct noa1305_priv *priv = iio_priv(indio_dev);
-+
-+	switch (mask) {
-+	case IIO_CHAN_INFO_PROCESSED:
-+		switch (chan->type) {
-+		case IIO_LIGHT:
-+			ret = noa1305_measure(priv);
-+			if (ret < 0)
-+				return ret;
-+			*val = ret;
-+			ret = IIO_VAL_INT;
-+			break;
-+		default:
-+			break;
-+		}
-+		break;
-+	default:
-+		break;
-+	}
-+
-+	return ret;
-+}
-+
-+static const struct iio_info noa1305_info = {
-+	.read_raw = noa1305_read_raw,
-+};
-+
-+static bool noa1305_writable_reg(struct device *dev, unsigned int reg)
-+{
-+	switch (reg) {
-+	case NOA1305_REG_POWER_CONTROL:
-+	case NOA1305_REG_RESET:
-+	case NOA1305_REG_INTEGRATION_TIME:
-+	case NOA1305_REG_INT_SELECT:
-+	case NOA1305_REG_INT_THRESH_LSB:
-+	case NOA1305_REG_INT_THRESH_MSB:
-+		return true;
-+	default:
-+		return false;
-+	}
-+}
-+
-+static const struct regmap_config noa1305_regmap_config = {
-+	.name = NOA1305_DRIVER_NAME,
-+	.reg_bits = 8,
-+	.val_bits = 8,
-+	.max_register = NOA1305_REG_DEVICE_ID_MSB,
-+	.writeable_reg = noa1305_writable_reg,
-+};
-+
-+static void noa1305_reg_remove(void *data)
-+{
-+	struct noa1305_priv *priv = data;
-+
-+	regulator_disable(priv->vin_reg);
-+}
-+
-+static int noa1305_probe(struct i2c_client *client,
-+			 const struct i2c_device_id *id)
-+{
-+	struct noa1305_priv *priv;
-+	struct iio_dev *indio_dev;
-+	struct regmap *regmap;
-+	__le16 data;
-+	unsigned int dev_id;
-+	int ret;
-+
-+	indio_dev = devm_iio_device_alloc(&client->dev, sizeof(*priv));
-+	if (!indio_dev)
-+		return -ENOMEM;
-+
-+	regmap = devm_regmap_init_i2c(client, &noa1305_regmap_config);
-+	if (IS_ERR(regmap)) {
-+		dev_err(&client->dev, "Regmap initialization failed.\n");
-+		return PTR_ERR(regmap);
-+	}
-+
-+	priv = iio_priv(indio_dev);
-+
-+	priv->vin_reg = devm_regulator_get(&client->dev, "vin");
-+	if (IS_ERR(priv->vin_reg)) {
-+		dev_err(&client->dev, "get regulator vin failed\n");
-+		return PTR_ERR(priv->vin_reg);
-+	}
-+
-+	ret = regulator_enable(priv->vin_reg);
-+	if (ret) {
-+		dev_err(&client->dev, "enable regulator vin failed\n");
-+		return ret;
-+	}
-+
-+	ret = devm_add_action_or_reset(&client->dev, noa1305_reg_remove, priv);
-+	if (ret) {
-+		dev_err(&client->dev, "addition of devm action failed\n");
-+		return ret;
-+	}
-+
-+	i2c_set_clientdata(client, indio_dev);
-+	priv->client = client;
-+	priv->regmap = regmap;
-+
-+	ret = regmap_bulk_read(regmap, NOA1305_REG_DEVICE_ID_LSB, &data, 2);
-+	if (ret < 0) {
-+		dev_err(&client->dev, "ID reading failed: %d\n", ret);
-+		return ret;
-+	}
-+
-+	dev_id = le16_to_cpu(data);
-+	if (dev_id != NOA1305_DEVICE_ID) {
-+		dev_err(&client->dev, "Unknown device ID: 0x%x\n", dev_id);
-+		ret = -ENODEV;
-+		return ret;
-+	}
-+
-+	ret = regmap_write(regmap, NOA1305_REG_POWER_CONTROL,
-+			   NOA1305_POWER_CONTROL_ON);
-+	if (ret < 0) {
-+		dev_err(&client->dev, "Enabling power control failed\n");
-+		return ret;
-+	}
-+
-+	ret = regmap_write(regmap, NOA1305_REG_RESET, NOA1305_RESET_RESET);
-+	if (ret < 0) {
-+		dev_err(&client->dev, "Device reset failed\n");
-+		return ret;
-+	}
-+
-+	ret = regmap_write(regmap, NOA1305_REG_INTEGRATION_TIME,
-+			   NOA1305_INTEGR_TIME_800MS);
-+	if (ret < 0) {
-+		dev_err(&client->dev, "Setting integration time failed\n");
-+		return ret;
-+	}
-+
-+	ret = regmap_write(regmap, NOA1305_REG_INT_SELECT,
-+			   NOA1305_INT_SEL_INACTIVE);
-+	if (ret < 0) {
-+		dev_err(&client->dev, "Disabling interrupts failed\n");
-+		return ret;
-+	}
-+
-+	indio_dev->dev.parent = &client->dev;
-+	indio_dev->info = &noa1305_info;
-+	indio_dev->channels = noa1305_channels;
-+	indio_dev->num_channels = ARRAY_SIZE(noa1305_channels);
-+	indio_dev->name = NOA1305_DRIVER_NAME;
-+	indio_dev->modes = INDIO_DIRECT_MODE;
-+
-+	ret = devm_iio_device_register(&client->dev, indio_dev);
-+	if (ret) {
-+		dev_err(&client->dev, "registering device failed\n");
-+		return ret;
-+	}
-+
-+	return ret;
-+}
-+
-+static int noa1305_remove(struct i2c_client *client)
-+{
-+	struct iio_dev *indio_dev = i2c_get_clientdata(client);
-+	struct noa1305_priv *priv = iio_priv(indio_dev);
-+
-+	regulator_disable(priv->vin_reg);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id noa1305_of_match[] = {
-+	{ .compatible = "onnn,noa1305" },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(of, noa1305_of_match);
-+
-+static const struct i2c_device_id noa1305_ids[] = {
-+	{ "noa1305", 0 },
-+	{ }
-+};
-+MODULE_DEVICE_TABLE(i2c, noa1305_id);
-+
-+static struct i2c_driver noa1305_driver = {
-+	.driver = {
-+		.name		= NOA1305_DRIVER_NAME,
-+		.of_match_table	= noa1305_of_match,
-+	},
-+	.probe		= noa1305_probe,
-+	.remove		= noa1305_remove,
-+	.id_table	= noa1305_ids,
-+};
-+
-+module_i2c_driver(noa1305_driver);
-+
-+MODULE_AUTHOR("Sergei Miroshnichenko <sergeimir@emcraft.com>");
-+MODULE_AUTHOR("Martyn Welch <martyn.welch@collabora.com");
-+MODULE_DESCRIPTION("ON Semiconductor NOA1305 ambient light sensor");
-+MODULE_LICENSE("GPL");
--- 
-2.20.1
-
+While you are here please fix up the reverse christmas tree ordering, and
+definitely don't make it worse :)
