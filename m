@@ -2,132 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 54E2376763
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 15:26:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF449767A5
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 15:36:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727367AbfGZNZs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 09:25:48 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:43830 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726819AbfGZNZr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 09:25:47 -0400
-Received: by mail-pg1-f193.google.com with SMTP id f25so24788263pgv.10;
-        Fri, 26 Jul 2019 06:25:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=DCfqG2JMRKwxzIsSj479KFdZDqfmx3j+5mtM0thRZ58=;
-        b=LoDzl5dV4EQI2pUj8qVRXOAIoTnhZqceQpnFZnYzGnjVxpbtUcLiRPGuN6wt1cfrk8
-         9puIruzvHJiQfOZv5PZZd+FF2dgvSd71Ci1ZZsjg7m86JizzgmNPqKMYoXdTIvJXHsOq
-         NwrVoe5f9PBdtRH6N66l5YJxfuFP/gD2F802dhFBTC1SiuwOy1MruAO0NLhYsCq4wZOf
-         W0p7+pUa1PZq7pPtfk6RsgItcl4726Ceg/Hk1AB1UoURdYRIUBJi5U5lW32rWnPFVBmL
-         ZLWuVXX3k3ADP/NhY8j8zdnTzj7neDsmjmOy8n4vuaEr5QmFHjVNvBHoTOFwObaHUPMG
-         zgDA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=DCfqG2JMRKwxzIsSj479KFdZDqfmx3j+5mtM0thRZ58=;
-        b=dSgZbhFaPOd6smCzXFf27KK8rhKxAHLgrpl/aWCEdzEMboGPCcyFgng1ihvC0mRV+A
-         vgcWDsCTRn2dBH48ZJ/Nj6yf1unzuE+3R6NyYCxE1/9iYHUodk7PPCZGSW1JC6ITmqMB
-         UlrbbOA+mDh9l9iP+BJdGA3m2wIu6hUmHUv6L6BjW7/w/wfqMcH3brU6Bz5FkvEsmemQ
-         SAFE52FWnbEl3fsC+jKWSNszuRVOGguxoYR3alQ1kA7GcnGTrSIf7BbjB32rKeBO8lXD
-         OIIY6LeohitMqOXzT+ztndkfx/wqTDwUXeSmnf1m6s6g6TKMB3bSEgoUBZSbSIdBH0eR
-         umrg==
-X-Gm-Message-State: APjAAAV7AezxmRLSzgXevXT5lRbGKk/IWKyzSWW38DKky9ODOa3exO47
-        jHPkvMcvnVqmrcqnQF5jWTY=
-X-Google-Smtp-Source: APXvYqxJ0TvnmiWTXBEyq2/z1dvr4VEXVLgB/9ZQJw4kX1R9wOUtS6Lanafe6ZYS4kpvndxZEF77AQ==
-X-Received: by 2002:a65:5b8e:: with SMTP id i14mr90112067pgr.188.1564147546371;
-        Fri, 26 Jul 2019 06:25:46 -0700 (PDT)
-Received: from Pilot130.192.168.0.22 (211-20-114-70.HINET-IP.hinet.net. [211.20.114.70])
-        by smtp.googlemail.com with ESMTPSA id k36sm54544603pgl.42.2019.07.26.06.25.43
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Fri, 26 Jul 2019 06:25:45 -0700 (PDT)
-From:   "sudheer.v" <open.sudheer@gmail.com>
-To:     gregkh@linuxfoundation.org, jslaby@suse.com, joel@jms.id.au,
-        andrew@aj.id.au, benh@kernel.crashing.org, robh+dt@kernel.org,
-        mark.rutland@arm.com,
-        shivahshankar.shankarnarayanrao@aspeedtech.com,
-        sudheer.veliseti@aspeedtech.com
-Cc:     sudheer veliseti <sudheer.open@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
-Subject: [patch v4 5/5] Documentation: DT bindings AST2500 DMA UART driver
-Date:   Fri, 26 Jul 2019 18:57:20 +0530
-Message-Id: <1564147640-30753-6-git-send-email-open.sudheer@gmail.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1564147640-30753-1-git-send-email-open.sudheer@gmail.com>
-References: <1564147640-30753-1-git-send-email-open.sudheer@gmail.com>
+        id S1727241AbfGZNgv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 09:36:51 -0400
+Received: from foss.arm.com ([217.140.110.172]:43644 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726265AbfGZNgv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jul 2019 09:36:51 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 262F3337;
+        Fri, 26 Jul 2019 06:36:51 -0700 (PDT)
+Received: from big-swifty.misterjones.org (unknown [172.31.20.19])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9A4B33F694;
+        Fri, 26 Jul 2019 06:36:49 -0700 (PDT)
+Date:   Fri, 26 Jul 2019 14:36:48 +0100
+Message-ID: <865znoor2n.wl-marc.zyngier@arm.com>
+From:   Marc Zyngier <marc.zyngier@arm.com>
+To:     Zhou Yanjie <zhouyanjie@zoho.com>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, paul.burton@mips.com,
+        tglx@linutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
+        jason@lakedaemon.net
+Subject: Re: [PATCH v3 3/8] dt-bindings: interrupt-controller: Add JZ4760 and JZ4760B bindings.
+In-Reply-To: <1563192595-53546-4-git-send-email-zhouyanjie@zoho.com>
+References: <1548517123-60058-1-git-send-email-zhouyanjie@zoho.com>
+        <1563192595-53546-1-git-send-email-zhouyanjie@zoho.com>
+        <1563192595-53546-4-git-send-email-zhouyanjie@zoho.com>
+User-Agent: Wanderlust/2.15.9 (Almost Unreal) SEMI-EPG/1.14.7 (Harue)
+ FLIM/1.14.9 (=?UTF-8?B?R29qxY0=?=) APEL/10.8 EasyPG/1.0.0 Emacs/26
+ (aarch64-unknown-linux-gnu) MULE/6.0 (HANACHIRUSATO)
+Organization: ARM Ltd
+MIME-Version: 1.0 (generated by SEMI-EPG 1.14.7 - "Harue")
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: sudheer veliseti <sudheer.open@gmail.com>
+On Mon, 15 Jul 2019 13:09:50 +0100,
+Zhou Yanjie <zhouyanjie@zoho.com> wrote:
+> 
+> Add the interrupt-controller bindings for the JZ4760 Soc and
+> the JZ4760B Soc from Ingenic.
+> 
+> Signed-off-by: Zhou Yanjie <zhouyanjie@zoho.com>
+> ---
+>  Documentation/devicetree/bindings/interrupt-controller/ingenic,intc.txt | 2 ++
+>  1 file changed, 2 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/interrupt-controller/ingenic,intc.txt b/Documentation/devicetree/bindings/interrupt-controller/ingenic,intc.txt
+> index d4373d0..fa1ad54 100644
+> --- a/Documentation/devicetree/bindings/interrupt-controller/ingenic,intc.txt
+> +++ b/Documentation/devicetree/bindings/interrupt-controller/ingenic,intc.txt
+> @@ -5,6 +5,8 @@ Required properties:
+>  - compatible : should be "ingenic,<socname>-intc". Valid strings are:
+>      ingenic,jz4740-intc
+>      ingenic,jz4725b-intc
+> +    ingenic,jz4760-intc
+> +    ingenic,jz4760b-intc
+>      ingenic,jz4770-intc
+>      ingenic,jz4775-intc
+>      ingenic,jz4780-intc
+> -- 
+> 2.7.4
+> 
+> 
 
-documentation for Dt bindings for DMA based UARTs in AST2500
+This should be combined with patches 5 and 7. I don't see the need for
+multiple patches. Same thing should happen with patches 4, 6 and 8.
 
-Signed-off-by: sudheer veliseti <sudheer.open@gmail.com>
----
+Thanks,
 
-Changes in v4:
--
-Changes in v3:
-- change logs added
+	M.
 
-.../bindings/serial/ast2500-dma-uart.txt      | 43 +++++++++++++++++++
- 1 file changed, 43 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt
-
-diff --git a/Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt b/Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt
-new file mode 100644
-index 000000000000..6ebc60b51d4c
---- /dev/null
-+++ b/Documentation/devicetree/bindings/serial/ast2500-dma-uart.txt
-@@ -0,0 +1,43 @@
-+DT Bindings DMA UART for AST25XX:
-+
-+node for DMA controller:
-+                       ast_uart_sdma: uart_sdma@1e79e000 {
-+                               compatible = "aspeed,ast-uart-sdma";
-+                               reg = <0x1e79e000 0x400>;
-+                               interrupts = <50>;
-+                               status = "disabled";
-+                       };
-+this node  doesn't binds with any driver.
-+DMA controller is handled as a separate SW layer,
-+and is included in the same driver.
-+This DMA controller node is included in DT
-+just for Register and interrupt details
-+
-+
-+
-+node for DMA-UARTS :
-+
-+
-+Required properties:
-+
-+- compatible: "aspeed,ast-sdma-uart"
-+- reg: The base address of the UART register bank
-+- interrupts: should contain interrupt specifier.
-+- clocks: Clock driving the hardware;
-+- pinctrl-0 : list of pinconfigurations
-+- dma-channel: channel of DMA-controller which is used
-+
-+Example:
-+
-+	dma_uart1: dma_uart1@1e783000{
-+        compatible = "aspeed,ast-sdma-uart";
-+        reg = <0x1e783000 0x1000>;
-+        reg-shift = <2>;
-+        interrupts = <9>;
-+        clocks = <&syscon ASPEED_CLK_GATE_UART1CLK>;
-+        dma-channel = <0>;
-+        no-loopback-test;
-+        pinctrl-names = "default";
-+        pinctrl-0 = <&pinctrl_txd1_default &pinctrl_rxd1_default>;
-+        status = "disabled";
-+        };
 -- 
-2.17.1
-
+Jazz is not dead, it just smells funny.
