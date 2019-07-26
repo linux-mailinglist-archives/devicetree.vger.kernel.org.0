@@ -2,97 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35B7476E6C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 18:01:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D92B76EAC
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 18:14:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726166AbfGZQBB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 12:01:01 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:16842 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726000AbfGZQBB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 12:01:01 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6QFuGIF006272;
-        Fri, 26 Jul 2019 18:00:09 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=Y75BNG+ZG7vXH0PyAhO98l9SHQ/zPoys4fP5bNxiSws=;
- b=xElqh+q7EgccAjNQffkCsqWxvs1nv14CqX4moJ8gnskKJjhmcurLrp+L6KGCmIbqUU+8
- idG0GWPq5KfFQxUHs/pA/fE6LLVPbe7a//MWkqB3C3kuTz85tjREBD/c7kMCXbmU+VDB
- ZC6tyHrW+L6KDVBw1ohv2H7vYRBm05IizZ0hIoVNFb6M+jS+aiJjfX0TQTpcih7j9TTW
- qgnLb3PZdzbMD0Y+9EHvhA/SBUIzrbd4I2DDFeb7ifE2VD2+/+uonT2CbxWm710JcTWu
- +AeFXe3AmdqjLHxLmPQtNZeRXVbkrVWIvDieTT/1KAwarNxxemk09vbJe5BS4jHwJvG7 2w== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2tx60abn3e-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 26 Jul 2019 18:00:08 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id A40D634;
-        Fri, 26 Jul 2019 16:00:07 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 4EF254F17;
-        Fri, 26 Jul 2019 16:00:07 +0000 (GMT)
-Received: from lmecxl0912.lme.st.com (10.75.127.49) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 26 Jul
- 2019 18:00:06 +0200
-Subject: Re: [PATCH 0/5] Add missing vdda-supply to STM32 ADC
-To:     Fabrice Gasnier <fabrice.gasnier@st.com>, <jic23@kernel.org>,
-        <robh+dt@kernel.org>
-CC:     <mark.rutland@arm.com>, <mcoquelin.stm32@gmail.com>,
-        <lars@metafoo.de>, <knaack.h@gmx.de>, <pmeerw@pmeerw.net>,
-        <linux-iio@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>
-References: <1560947398-11592-1-git-send-email-fabrice.gasnier@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <b91163f5-ad6f-0a22-eb8a-ceb0b0c056c6@st.com>
-Date:   Fri, 26 Jul 2019 18:00:06 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727609AbfGZQOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 12:14:09 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:44838 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726705AbfGZQOJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 12:14:09 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 5548A80582;
+        Fri, 26 Jul 2019 18:14:04 +0200 (CEST)
+Date:   Fri, 26 Jul 2019 18:14:03 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Daniel Vetter <daniel@ffwll.ch>,
+        Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Josef Lusticky <josef@lusticky.cz>,
+        Rob Herring <robh@kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Dave Airlie <airlied@linux.ie>
+Subject: Re: Controllers with several interface options - one or more drivers?
+Message-ID: <20190726161403.GA25593@ravnborg.org>
+References: <20190304125033.28841-1-josef@lusticky.cz>
+ <20190708145618.26031-1-josef@lusticky.cz>
+ <20190726122510.GA14341@ravnborg.org>
+ <20190726145513.GK15868@phenom.ffwll.local>
+ <CAKMK7uESP5D4e_Qx6W7amURqxJ=5Y4JHduZYCtkyVQY9jKJQeA@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1560947398-11592-1-git-send-email-fabrice.gasnier@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG8NODE3.st.com (10.75.127.24) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-26_12:,,
- signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAKMK7uESP5D4e_Qx6W7amURqxJ=5Y4JHduZYCtkyVQY9jKJQeA@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=25-AhOLfAAAA:8
+        a=vxpcmmc7qeB5gxik3AUA:9 a=CjuIK1q_8ugA:10 a=dnuY3_Gu-P7Vi9ynLKQe:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrice
+Hi Daniel.
 
-On 6/19/19 2:29 PM, Fabrice Gasnier wrote:
-> Add missing vdda-supply, analog power supply, to STM32 ADC. When vdda is
-> an independent supply, it needs to be properly turned on or off to supply
-> the ADC.
-> This series proposes fixes for the dt-bindings, IIO driver and relevant
-> device tree files.
-> 
-> Fabrice Gasnier (5):
->    dt-bindings: iio: adc: stm32: add missing vdda supply
->    iio: adc: stm32-adc: add missing vdda-supply
->    ARM: dts: stm32: remove fixed regulator unit address on stm32429i-eval
->    ARM: dts: stm32: add missing vdda-supply to adc on stm32429i-eval
->    ARM: dts: stm32: add missing vdda-supply to adc on stm32h743i-eval
-> 
->   .../devicetree/bindings/iio/adc/st,stm32-adc.txt   |  1 +
->   arch/arm/boot/dts/stm32429i-eval.dts               | 25 +++++++++++-----------
->   arch/arm/boot/dts/stm32h743i-eval.dts              |  1 +
->   drivers/iio/adc/stm32-adc-core.c                   | 21 +++++++++++++++++-
->   4 files changed, 35 insertions(+), 13 deletions(-)
-> 
+Added Noralf - somehow I missed him on the original mail.
 
-DT patches applied on stm32-next. I plan to add them in my PR for v5.4.
-However those patches are marked as "fixes", do you see an issue to only 
-send it for v5.4 ?
+On Fri, Jul 26, 2019 at 05:06:03PM +0200, Daniel Vetter wrote:
+> Also probably should add a few more (drm_bridge) people, I think
+> that's also somewhat relevant here.
+> -Daniel
+> 
+> On Fri, Jul 26, 2019 at 4:55 PM Daniel Vetter <daniel@ffwll.ch> wrote:
+> >
+> > On Fri, Jul 26, 2019 at 02:25:10PM +0200, Sam Ravnborg wrote:
+> > > Hi Josef, Daniel et al.
+> > >
+> > > The driver that triggered this reply is a driver that adds parallel
+> > > support to ili9341 in a dedicated panel driver.
+> > > The issue here is that we already have a tiny driver that supports the
+> > > ili9341 controller - but with a slightly different configuration.
+> > >
+> > > The ili9341 supports several interfaces - from the datasheet:
+> > >     "ILI9341 supports parallel 8-/9-/16-/18-bit data bus
+> > >      MCU interface, 6-/16-/18-bit data bus RGB interface and
+> > >      3-/4-line serial peripheral interface (SPI)"
+> > >
+> > > Noralf - in another mail explained:
+> > > "
+> > > The MIPI Alliance has lots of standards some wrt. display controller
+> > > interfaces:
+> > > - MIPI DBI - Display Bus Interface (used for commands and optionally pixels)
+> > > - MIPI DPI - Display Pixel Interface (also called RGB interface or
+> > > DOTCLK interface)
+> > > - MIPI DSI - Display Serial Interface (commands and pixels)
+> > >
+> > > The ili9341 supports both MIPI DBI and DPI.
+> > > "
+> > >
+> > > MIPI DPI - is a good fit for a drm_panel driver.
+> > > MIPI DBI - requires a full display controller driver.
+> > >
+> > > There are many other examples of driver SoC that in the same way
+> > > can be seen only as a panel or as a full display controller driver.
+> > >
+> > > The open question here is if we should try to support both cases in the
+> > > same driver / file. Or shall we implment two different drivers.
+> > > One for the panel use-case. And one for the display controller usecase?
+> > >
+> > > Not sure - so asking for feedback.
+> >
+> > I'm not sure. Currently we do have DSI and dumb RGB panels all in
+> > drm/panel. I don't think we have DBI panels in there yet, but then
+> > drm/tiny is the only one supporting these.
+> >
+> > I guess we could look into move some of the DBI panel drivers into panel
+> > drivers, but that needs a bit more glue all around. I'm honestly not sure
+> > how the current DSI drivers in drm_panel work exactly, especially for
+> > command mode.
+> >
+> > Or maybe we need a new interface for command mode.
+If I get around to do a driver for the ssd1306 then I will try to sewhat
+makes sense then. For now we shall not stall the ili9341 driver.
+> >
+> > Wrt sharing code between drivers for the same chip, but different
+> > interfaces: I wouldn't worry too much about that. Maybe try to have a
+> > shared header file at least for registers.
+This part should be the minimum. Somthing like include/drm/mipi/?
 
-Regards
-alex
+	Sam
+
+> > Long term we could end up with
+> > one driver module which exposes different flavours of the same chip, so
+> > multiple drm_panel drivers, or maybe we'll get something more specific for
+> > dsi/dbi.
+> > -Daniel
+> > --
+> > Daniel Vetter
+> > Software Engineer, Intel Corporation
+> > http://blog.ffwll.ch
+> 
+> 
+> 
+> -- 
+> Daniel Vetter
+> Software Engineer, Intel Corporation
+> +41 (0) 79 365 57 48 - http://blog.ffwll.ch
