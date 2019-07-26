@@ -2,150 +2,267 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A46D75D79
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 05:32:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9035275DEB
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 06:44:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725942AbfGZDaD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 25 Jul 2019 23:30:03 -0400
-Received: from mail-eopbgr40089.outbound.protection.outlook.com ([40.107.4.89]:29842
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725867AbfGZDaD (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 25 Jul 2019 23:30:03 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=PwxS0bgX36ycN1x/VzYnkAGgZgiWl5A7fMjH57DwJaCm2LW/lUxh3KT1+tBGgTpiMzC2b/hzEQQmHLRpH8FfqUw4WqdBNobYz1/nPCX0uampPBV4neYNLkWaDhYyMeM6UcXfGKLRwO+anUW1NioPGdILVopyTD9OcZoYjFlMEa/zmChdSd5obSXLiHdgrUpMWWdjfU4jyM6nQXRSJ2kQDzbUAysUvT5bFZShZZIF4mXNvyYgQb4IwUl3eqrc0MEZDMyadX60sgaCV1VsIO2oXoGwYJD09j+JfFNCuaXhl8tYnMBV/TaGHxvxQQpA+QlaGDPkrRTXuPY5D8iu7LHuSg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=30ybZcZYZ7Gg9RaQ5UBxXIiY3ecXscRBdDVG74npcNs=;
- b=K2nCgle87AGQAmZ3xeHwJbCV76noaLM7ZlGFvxbJ7Zg3/a5ph9HfpcQgvKGdmUZxFJhyzcgLHXjgiLZuRyNqZBcuE9EX4RwGeTNAh2ONuKkfV5bS1EB7SUDDeMdB2FDrswQeK1hEegH89Kfn1qeHusJTgjbOUmW5WiXwUYM1RHsVKqObdKX7/A5oqS3zGXDg41yHuSf9LsbdMX6VJr9EJ/oi3uFdZWV+KZFR0cfI9kVrFaO1x2Oo2EXqr9aHsh9VFCMZZwOstpukMSih4ykKqTytN7LDVEinOLkHmh5S5JaoEbFxY/d8wMI1wWvHig7RnL/Xbwmz3r0I3XDuw4cgAA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
- header.d=nxp.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=30ybZcZYZ7Gg9RaQ5UBxXIiY3ecXscRBdDVG74npcNs=;
- b=LQz+4QgW1ZoC38i/rnDR8x4s/sZO9opWcSUomsRTN5ocxEHpgL54RELvWptqexPObGO0/DXMzVJq8cjIH7OaO08fGZzXtgt736DdasPyncvBBEPFMgA1VyWntL6wU0+BeKmNGADmyjRmIm82V0VhSR33OdcPpewWAYr7m75HTbU=
-Received: from DB8PR04MB6826.eurprd04.prod.outlook.com (52.133.240.82) by
- DB8PR04MB5914.eurprd04.prod.outlook.com (20.179.12.95) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2115.10; Fri, 26 Jul 2019 03:29:57 +0000
-Received: from DB8PR04MB6826.eurprd04.prod.outlook.com
- ([fe80::a5a4:22ca:7b9b:2d92]) by DB8PR04MB6826.eurprd04.prod.outlook.com
- ([fe80::a5a4:22ca:7b9b:2d92%2]) with mapi id 15.20.2115.005; Fri, 26 Jul 2019
- 03:29:57 +0000
-From:   Ran Wang <ran.wang_1@nxp.com>
-To:     Felipe Balbi <balbi@kernel.org>
-CC:     Rob Herring <robh@kernel.org>, Leo Li <leoyang.li@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: RE: [PATCH V2 1/2] usb: dwc3: Add node to update cache type setting
-Thread-Topic: [PATCH V2 1/2] usb: dwc3: Add node to update cache type setting
-Thread-Index: AQHVOH5G67Ou1TF8sk6MaGtvp7Q7iKbaT5kAgABcbSCAAUpwgIAATItw
-Date:   Fri, 26 Jul 2019 03:29:57 +0000
-Message-ID: <DB8PR04MB68263E97EAF455751DB8506BF1C00@DB8PR04MB6826.eurprd04.prod.outlook.com>
-References: <20190712064206.48249-1-ran.wang_1@nxp.com>
- <20190724204222.GA1234@bogus>
- <DB8PR04MB6826B4479A5A67A66025E89CF1C10@DB8PR04MB6826.eurprd04.prod.outlook.com>
- <CAL_JsqKd=+0kXyUJkTZezMfcv-SQznzefi_0J0VjdsXcP8qZ5w@mail.gmail.com>
-In-Reply-To: <CAL_JsqKd=+0kXyUJkTZezMfcv-SQznzefi_0J0VjdsXcP8qZ5w@mail.gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=ran.wang_1@nxp.com; 
-x-originating-ip: [92.121.36.197]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 7f8ecbbe-5a8c-4972-5d37-08d7117988c5
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:DB8PR04MB5914;
-x-ms-traffictypediagnostic: DB8PR04MB5914:
-x-microsoft-antispam-prvs: <DB8PR04MB59145740A724DDBD54E93248F1C00@DB8PR04MB5914.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 01106E96F6
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(396003)(136003)(39860400002)(366004)(376002)(346002)(199004)(189003)(6246003)(54906003)(2906002)(316002)(8936002)(4326008)(68736007)(81156014)(86362001)(102836004)(81166006)(8676002)(6436002)(71190400001)(74316002)(5660300002)(446003)(7696005)(305945005)(53546011)(7736002)(26005)(6506007)(53936002)(55016002)(33656002)(486006)(478600001)(71200400001)(66066001)(66446008)(66946007)(76116006)(66476007)(229853002)(3846002)(6116002)(25786009)(476003)(256004)(66556008)(6916009)(52536014)(99286004)(15650500001)(11346002)(14444005)(76176011)(14454004)(186003)(9686003)(64756008);DIR:OUT;SFP:1101;SCL:1;SRVR:DB8PR04MB5914;H:DB8PR04MB6826.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: llu5logXBpmHtc3ZAgWwNiP4WyVTq2xHUkQP8EKVHUm+AXALXxAu9clu6F4bB8W7x/xMAL2Q/DbzPAXQDoEHF/7nIwyi2+FfcTLLEjw2ZDbUcIAJqQq46fHej2y3cX7Cze+c0MudfTwzJGOzA8Q5bWY6LHDU3MjbQm/Hbco/Yv2STqkPXGfoYtLNVn2gGZGKBzM7Ki+vNs7KSWcg7D+ViJseP1cmBEig19Cg7QDdD+tJsullpFfh/JsiCQznEYLzVNNGbcn5q6FeZxtdyjWopJgFBEFEJkTQELH16D1qqVFO8wM///7hUFOhnivITDFqt1yjZJnRIZjlba2d0NDAnfzuLlvR8MUpWdLLWBrVhVLdS7uvHcFCpRyELheQ3Jl1p60y/O6KtonxNOfomepxuTP4L7gziAjDur6CC3ETekQ=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1725955AbfGZEoK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 00:44:10 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:44837 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725878AbfGZEoK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 00:44:10 -0400
+Received: by mail-lj1-f195.google.com with SMTP id k18so50124725ljc.11;
+        Thu, 25 Jul 2019 21:44:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=ddKYrjjxQVZy1vzqyvQ03cufSd4ixhsISnMnPz3FUcs=;
+        b=r9kaSqHqiAHIcReMARRWKIyfVP5VC5W/LQHd9P2osloDdTzRnUanqJRbRWnJLAI5Yr
+         r45kRozMsAz99gCOL8FQ9Olm4AS4jQOcSEimjvds5Hvx8rrOQIhIpBpzyEzFfVQLzAx2
+         bTFQXN5QMFVt334oTCNuwbt0MJk7NdRXdb2tMB0sZtpq9vuKP4B8mNgjmjeWk1hC+/sA
+         ZdQRejSGZ6CcnxOMtEyk6M9vUv3GJwgkOSJ4BTWkTbmj54u00vjwBVwS9PHMNcGUF/1G
+         23P5Key3UFtwrGgjHSw8+1EJcBVu1KftaW0Lrs9XuoFWCe8R6+BoUeoqjM5EXD8cqGiz
+         iGIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=ddKYrjjxQVZy1vzqyvQ03cufSd4ixhsISnMnPz3FUcs=;
+        b=hvb2IyH6im9Q6puC6snA3PHOHnhx+fWB5k/qwnvb64kKctRQDpjymSkxX2sf/bh1Vt
+         c/Zyn7UXqlnTyonHcQ2Egyp6oltTWGWuI17GMu85pvAFSniQ04tDlMwo6kOC5J3wjFuu
+         VX9s5/jf/r+vC9Ut0T1H2KK9dsxBaE3wLEYzkFYJsWWj06w7RV/NS7Z0jII48jeD2DB9
+         1Jv8bK7W4BspEwUTlfndimaIY2WZwPxi15RLqaJfqwKHQBON+NgdiLO1NXSUEs1fDDfF
+         E1OZkEjoBVVYbLK4+UFU4nv7SUG3GK85YIXvlbWZ/ITMKqMIJugrRAJNr/9J2/y8tDJ8
+         qD4w==
+X-Gm-Message-State: APjAAAU4ZapEgtiBBMQ89a/cYbfoVjQvi+JUnTcyygekIKfr81vQS+o7
+        FHEKB0V7UTjzp/P1BA7i9LY=
+X-Google-Smtp-Source: APXvYqzAbBXS/Pspf14pcogy8TzAjC+6RtxW/CcFGivVvTbxtJwi/ndW0Kfk4F3PKX4TdgRplKjulg==
+X-Received: by 2002:a2e:85d7:: with SMTP id h23mr48987610ljj.53.1564116246273;
+        Thu, 25 Jul 2019 21:44:06 -0700 (PDT)
+Received: from dimatab (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
+        by smtp.gmail.com with ESMTPSA id m17sm9719440lji.16.2019.07.25.21.44.05
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 25 Jul 2019 21:44:05 -0700 (PDT)
+Date:   Fri, 26 Jul 2019 07:48:11 +0300
+From:   Dmitry Osipenko <digetx@gmail.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     Marc Zyngier <marc.zyngier@arm.com>, <thierry.reding@gmail.com>,
+        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
+        <jason@lakedaemon.net>, <linus.walleij@linaro.org>,
+        <stefan@agner.ch>, <mark.rutland@arm.com>,
+        <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
+        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
+        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
+        <josephl@nvidia.com>, <talho@nvidia.com>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        <devicetree@vger.kernel.org>
+Subject: Re: [PATCH V6 01/21] irqchip: tegra: Do not disable COP IRQ during
+ suspend
+Message-ID: <20190726074811.39e0e6cb@dimatab>
+In-Reply-To: <78d5af07-2556-b60d-01d7-3684ebe7040b@nvidia.com>
+References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com>
+        <1563738060-30213-2-git-send-email-skomatineni@nvidia.com>
+        <f6582e43-168e-1b7e-9db8-3d263bc3ba0d@gmail.com>
+        <20c1d733-60f5-6375-c03c-639de5e41739@arm.com>
+        <0bee8775-756f-adad-4597-8cad53017718@gmail.com>
+        <a2ecc3ad-b7e9-9398-d59b-c7d3fbbd10bb@nvidia.com>
+        <20190722193838.0d7cd2ad@why>
+        <8e9f821c-3717-510d-c64f-8a1cc2452c25@gmail.com>
+        <78d5af07-2556-b60d-01d7-3684ebe7040b@nvidia.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; arm-unknown-linux-gnueabihf)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 7f8ecbbe-5a8c-4972-5d37-08d7117988c5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 26 Jul 2019 03:29:57.8454
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: ran.wang_1@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5914
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgRmVsaXBlLA0KDQpPbiBGcmlkYXksIEp1bHkgMjYsIDIwMTkgMDU6NTYsIFJvYiBIZXJyaW5n
-IDxyb2JoQGtlcm5lbC5vcmc+IHdyb3RlOg0KPiANCj4gT24gV2VkLCBKdWwgMjQsIDIwMTkgYXQg
-ODoyOSBQTSBSYW4gV2FuZyA8cmFuLndhbmdfMUBueHAuY29tPiB3cm90ZToNCj4gPg0KPiA+IEhp
-IFJvYiwNCj4gPg0KPiA+IE9uIFRodXJzZGF5LCBKdWx5IDI1LCAyMDE5IDA0OjQyIFJvYiBIZXJy
-aW5nIDxyb2JoQGtlcm5lbC5vcmc+IHdyb3RlOg0KPiA+ID4NCj4gPiA+IE9uIEZyaSwgSnVsIDEy
-LCAyMDE5IGF0IDAyOjQyOjA1UE0gKzA4MDAsIFJhbiBXYW5nIHdyb3RlOg0KPiA+ID4gPiBTb21l
-IExheWVyc2NhcGUgcGFsdGZvcm1zIChzdWNoIGFzIExTMTA4OEEsIExTMjA4OEEsIGV0YykNCj4g
-PiA+ID4gZW5jb3VudGVyIFVTQiBkZXRlY3QgZmFpbHVlcyB3aGVuIGFkZGluZyBkbWEtY29oZXJl
-bnQgdG8gRFdDMw0KPiA+ID4gPiBub2RlLiBUaGlzIGlzIGJlY2F1c2UgdGhlIEhXIGRlZmF1bHQg
-Y2FjaGUgdHlwZSBjb25maWd1cmF0aW9uIG9mDQo+ID4gPiA+IHRob3NlIFNvQyBhcmUgbm90IHJp
-Z2h0LCBuZWVkIHRvIGJlIHVwZGF0ZWQgaW4gRFRTLg0KPiA+ID4gPg0KPiA+ID4gPiBTaWduZWQt
-b2ZmLWJ5OiBSYW4gV2FuZyA8cmFuLndhbmdfMUBueHAuY29tPg0KPiA+ID4gPiAtLS0NCj4gPiA+
-ID4gQ2hhbmdlIGluIHYyOg0KPiA+ID4gPiAgICAgLSBOZXcgZmlsZS4NCj4gPiA+ID4NCj4gPiA+
-ID4gIERvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvZHdjMy50eHQgfCA0Mw0K
-PiA+ID4gPiArKysrKysrKysrKysrKysrKysrKysrKysrKw0KPiA+ID4gPiAgMSBmaWxlIGNoYW5n
-ZWQsIDQzIGluc2VydGlvbnMoKykNCj4gPiA+ID4NCj4gPiA+ID4gZGlmZiAtLWdpdCBhL0RvY3Vt
-ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy91c2IvZHdjMy50eHQNCj4gPiA+ID4gYi9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvdXNiL2R3YzMudHh0DQo+ID4gPiA+IGluZGV4
-IDhlNTI2NWUuLjdiYzFjZWYgMTAwNjQ0DQo+ID4gPiA+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2
-aWNldHJlZS9iaW5kaW5ncy91c2IvZHdjMy50eHQNCj4gPiA+ID4gKysrIGIvRG9jdW1lbnRhdGlv
-bi9kZXZpY2V0cmVlL2JpbmRpbmdzL3VzYi9kd2MzLnR4dA0KPiA+ID4gPiBAQCAtMTEwLDYgKzEx
-MCw0MyBAQCBPcHRpb25hbCBwcm9wZXJ0aWVzOg0KPiA+ID4gPiAgIC0gaW4gYWRkaXRpb24gYWxs
-IHByb3BlcnRpZXMgZnJvbSB1c2IteGhjaS50eHQgZnJvbSB0aGUgY3VycmVudCBkaXJlY3Rvcnkg
-YXJlDQo+ID4gPiA+ICAgICBzdXBwb3J0ZWQgYXMgd2VsbA0KPiA+ID4gPg0KPiA+ID4gPiArKiBD
-YWNoZSB0eXBlIG5vZGVzIChvcHRpb25hbCkNCj4gPiA+ID4gKw0KPiA+ID4gPiArVGhlIENhY2hl
-IHR5cGUgbm9kZSBpcyB1c2VkIHRvIHRlbGwgaG93IHRvIGNvbmZpZ3VyZSBjYWNoZSB0eXBlDQo+
-ID4gPiA+ICtvbiA0IGRpZmZlcmVudCB0cmFuc2ZlciB0eXBlczogRGF0YSBSZWFkLCBEZXNjIFJl
-YWQsIERhdGEgV3JpdGUNCj4gPiA+ID4gK2FuZCBEZXNjIHdyaXRlLiBGb3IgZWFjaCB0cmVhc2Zl
-ciB0eXBlLCBjb250cm9sbGVyIGhhcyBhIDQtYml0DQo+ID4gPiA+ICtyZWdpc3RlciBmaWVsZCB0
-byBlbmFibGUgZGlmZmVyZW50IGNhY2hlIHR5cGUuIFF1b3RlZCBmcm9tIERXQzMNCj4gPiA+ID4g
-K2RhdGEgYm9vayBUYWJsZSA2LTUNCj4gPiA+IENhY2hlIFR5cGUgQml0IEFzc2lnbm1lbnRzOg0K
-PiA+ID4gPiArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLQ0KPiA+ID4gPiArTUJVU19UWVBFfCBiaXRbM10gICAgICAgfGJpdFsy
-XSAgICAgICB8Yml0WzFdICAgICB8Yml0WzBdDQo+ID4gPiA+ICstLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tDQo+ID4gPiA+ICtB
-SEIgICAgICB8Q2FjaGVhYmxlICAgICB8QnVmZmVyYWJsZSAgIHxQcml2aWxlZ2dlIHxEYXRhDQo+
-ID4gPiA+ICtBWEkzICAgICB8V3JpdGUgQWxsb2NhdGV8UmVhZCBBbGxvY2F0ZXxDYWNoZWFibGUg
-IHxCdWZmZXJhYmxlDQo+ID4gPiA+ICtBWEk0ICAgICB8QWxsb2NhdGUgT3RoZXJ8QWxsb2NhdGUg
-ICAgIHxNb2RpZmlhYmxlIHxCdWZmZXJhYmxlDQo+ID4gPiA+ICtBWEk0ICAgICB8T3RoZXIgQWxs
-b2NhdGV8QWxsb2NhdGUgICAgIHxNb2RpZmlhYmxlIHxCdWZmZXJhYmxlDQo+ID4gPiA+ICtOYXRp
-dmUgICB8U2FtZSBhcyBBWEkgICB8U2FtZSBhcyBBWEkgIHxTYW1lIGFzIEFYSXxTYW1lIGFzIEFY
-SQ0KPiA+ID4gPiArLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0t
-LS0tLS0tLS0tLS0tLS0tLS0tLQ0KPiA+ID4gPiArTm90ZTogVGhlIEFIQiwgQVhJMywgQVhJNCwg
-YW5kIFBDSWUgYnVzc2VzIHVzZSBkaWZmZXJlbnQgbmFtZXMNCj4gPiA+ID4gK2ZvciBjZXJ0YWlu
-IHNpZ25hbHMsIHdoaWNoIGhhdmUgdGhlIHNhbWUgbWVhbmluZzoNCj4gPiA+ID4gKyAgQnVmZmVy
-YWJsZSA9IFBvc3RlZA0KPiA+ID4gPiArICBDYWNoZWFibGUgPSBNb2RpZmlhYmxlID0gU25vb3Ag
-KG5lZ2F0aW9uIG9mIE5vIFNub29wKQ0KPiA+ID4NCj4gPiA+IFRoaXMgc2hvdWxkIGFsbCBiZSBp
-bXBsaWVkIGZyb20gdGhlIFNvQyBzcGVjaWZpYyBjb21wYXRpYmxlIHN0cmluZ3MuDQo+ID4NCj4g
-PiBEaWQgeW91IG1lYW4gSSBjb3VsZCBpbXBsZW1lbnQgYSBzb2MgZHJpdmVyIHdoaWNoIGNhbiBi
-ZSBtYXRjaGVkIGJ5DQo+IGNvbXBhdGlibGUgb2YgJ2ZzbCxsczEwODhhLWR3YzMnIHdoaWNoIHdp
-bGwgcGFzcyBrbm93biBidXMgdHlwZSB0byBEV0MzIGRyaXZlcj8NCj4gSWYgeWVzLCBob3cgdG8g
-cGFzcz8NCj4gDQo+IFllcy4gVGhlIERUIG1hdGNoIHRhYmxlIGNhbiBoYXZlIGRhdGEgYXNzb2Np
-YXRlZCB3aXRoIHRoYXQgY29tcGF0aWJsZSBzdHJpbmcuDQo+IEJleW9uZCB0aGF0LCBJJ20gbm90
-IHJlYWxseSBmYW1pbGlhciB3aXRoIHRoZSBEV0MzIGRyaXZlci4NCg0KRG8geW91IGhhdmUgYW55
-IHN1Z2dlc3Rpb24gaGVyZT8NCklmIEkgYWRkIGEgZ2x1ZSBkcml2ZXIgb24gRFdDMyBjb3JlIGRy
-aXZlciAoSSBrbm93IHlvdSBhcmUgbm90IGhhcHB5IG9uIHRoaXMgd2F5KSwgSSBkb24ndA0Ka25v
-dyBob3cgdG8gcGFzcyB0aGUgTUJVU19UWVBFIGluZm8uIGZyb20gbXkgZ2x1ZSBkcml2ZXIgdG8g
-RFdDMyBjb3JlIGRyaXZlciAoSSB0aGluayBjYWNoZQ0KdHlwZSByZWxhdGVkIHByb2dyYW1taW5n
-IHNob3VsZCBiZSBkb25lIGJ5IERXQzMgY29yZSBkcml2ZXIsIGFtIEkgcmlnaHQ/KQ0KDQpUaGFu
-a3MNClJhbg0K
+=D0=92 Wed, 24 Jul 2019 16:09:53 -0700
+Sowjanya Komatineni <skomatineni@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+
+> On 7/22/19 4:35 PM, Dmitry Osipenko wrote:
+> > 22.07.2019 21:38, Marc Zyngier =D0=BF=D0=B8=D1=88=D0=B5=D1=82: =20
+> >> On Mon, 22 Jul 2019 09:21:21 -0700
+> >> Sowjanya Komatineni <skomatineni@nvidia.com> wrote:
+> >> =20
+> >>> On 7/22/19 3:57 AM, Dmitry Osipenko wrote: =20
+> >>>> 22.07.2019 13:13, Marc Zyngier =D0=BF=D0=B8=D1=88=D0=B5=D1=82: =20
+> >>>>> On 22/07/2019 10:54, Dmitry Osipenko wrote: =20
+> >>>>>> 21.07.2019 22:40, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=
+=82: =20
+> >>>>>>> Tegra210 platforms use sc7 entry firmware to program Tegra
+> >>>>>>> LP0/SC7 entry sequence and sc7 entry firmware is run from
+> >>>>>>> COP/BPMP-Lite.
+> >>>>>>>
+> >>>>>>> So, COP/BPMP-Lite still need IRQ function to finish SC7
+> >>>>>>> suspend sequence for Tegra210.
+> >>>>>>>
+> >>>>>>> This patch has fix for leaving the COP IRQ enabled for
+> >>>>>>> Tegra210 during interrupt controller suspend operation.
+> >>>>>>>
+> >>>>>>> Acked-by: Thierry Reding <treding@nvidia.com>
+> >>>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> >>>>>>> ---
+> >>>>>>>    drivers/irqchip/irq-tegra.c | 20 ++++++++++++++++++--
+> >>>>>>>    1 file changed, 18 insertions(+), 2 deletions(-)
+> >>>>>>>
+> >>>>>>> diff --git a/drivers/irqchip/irq-tegra.c
+> >>>>>>> b/drivers/irqchip/irq-tegra.c index
+> >>>>>>> e1f771c72fc4..851f88cef508 100644 ---
+> >>>>>>> a/drivers/irqchip/irq-tegra.c +++
+> >>>>>>> b/drivers/irqchip/irq-tegra.c @@ -44,6 +44,7 @@ static
+> >>>>>>> unsigned int num_ictlrs;=20
+> >>>>>>>    struct tegra_ictlr_soc {
+> >>>>>>>    	unsigned int num_ictlrs;
+> >>>>>>> +	bool supports_sc7;
+> >>>>>>>    };
+> >>>>>>>   =20
+> >>>>>>>    static const struct tegra_ictlr_soc tegra20_ictlr_soc =3D {
+> >>>>>>> @@ -56,6 +57,7 @@ static const struct tegra_ictlr_soc
+> >>>>>>> tegra30_ictlr_soc =3D {=20
+> >>>>>>>    static const struct tegra_ictlr_soc tegra210_ictlr_soc =3D {
+> >>>>>>>    	.num_ictlrs =3D 6,
+> >>>>>>> +	.supports_sc7 =3D true,
+> >>>>>>>    };
+> >>>>>>>   =20
+> >>>>>>>    static const struct of_device_id ictlr_matches[] =3D {
+> >>>>>>> @@ -67,6 +69,7 @@ static const struct of_device_id
+> >>>>>>> ictlr_matches[] =3D {=20
+> >>>>>>>    struct tegra_ictlr_info {
+> >>>>>>>    	void __iomem *base[TEGRA_MAX_NUM_ICTLRS];
+> >>>>>>> +	const struct tegra_ictlr_soc *soc;
+> >>>>>>>    #ifdef CONFIG_PM_SLEEP
+> >>>>>>>    	u32 cop_ier[TEGRA_MAX_NUM_ICTLRS];
+> >>>>>>>    	u32 cop_iep[TEGRA_MAX_NUM_ICTLRS];
+> >>>>>>> @@ -147,8 +150,20 @@ static int tegra_ictlr_suspend(void)
+> >>>>>>>    		lic->cop_ier[i] =3D readl_relaxed(ictlr +
+> >>>>>>> ICTLR_COP_IER); lic->cop_iep[i] =3D readl_relaxed(ictlr +
+> >>>>>>> ICTLR_COP_IEP_CLASS);=20
+> >>>>>>> -		/* Disable COP interrupts */
+> >>>>>>> -		writel_relaxed(~0ul, ictlr +
+> >>>>>>> ICTLR_COP_IER_CLR);
+> >>>>>>> +		/*
+> >>>>>>> +		 * AVP/COP/BPMP-Lite is the Tegra boot
+> >>>>>>> processor.
+> >>>>>>> +		 *
+> >>>>>>> +		 * Tegra210 system suspend flow uses
+> >>>>>>> sc7entry firmware which
+> >>>>>>> +		 * is executed by COP/BPMP and it includes
+> >>>>>>> disabling COP IRQ,
+> >>>>>>> +		 * clamping CPU rail, turning off VDD_CPU,
+> >>>>>>> and preparing the
+> >>>>>>> +		 * system to go to SC7/LP0.
+> >>>>>>> +		 *
+> >>>>>>> +		 * COP/BPMP wakes up when COP IRQ is
+> >>>>>>> triggered and runs
+> >>>>>>> +		 * sc7entry-firmware. So need to keep COP
+> >>>>>>> interrupt enabled.
+> >>>>>>> +		 */
+> >>>>>>> +		if (!lic->soc->supports_sc7)
+> >>>>>>> +			/* Disable COP interrupts if SC7 is
+> >>>>>>> not supported */ =20
+> >>>>>> All Tegra SoCs support SC7, hence the 'supports_sc7' and the
+> >>>>>> comment doesn't sound correct to me. Something like
+> >>>>>> 'firmware_sc7' should suit better here. =20
+> >>>>> If what you're saying is true, then the whole patch is wrong,
+> >>>>> and the SC7 property should come from DT. =20
+> >>>> It should be safe to assume that all of existing Tegra210
+> >>>> devices use the firmware for SC7, hence I wouldn't say that the
+> >>>> patch is entirely wrong. To me it's not entirely correct. =20
+> >>> Yes, all existing Tegra210 platforms uses sc7 entry firmware for
+> >>> SC7 and AVP/COP IRQ need to be kept enabled as during suspend ATF
+> >>> triggers IRQ to COP for SC7 entry fw execution. =20
+> > Okay, as I already wrote before, it looks to me that a more proper
+> > solution should be to just remove everything related to COP from
+> > this driver instead of adding custom quirks for T210.
+> >
+> > The disabling / restoring of COP interrupts should be relevant only
+> > for the multimedia firmware on older Tegra SoCs. That firmware
+> > won't be ever supported in the upstream simply because NVIDIA
+> > abandoned the support for older hardware in the downstream and
+> > because it is not possible due to some legal weirdness (IIUC). The
+> > only variant for upstream is reverse-engineering of hardware (not
+> > the firmware BLOB) and writing proper opensource drivers for the
+> > upstream kernel, which we're already doing and have success to a
+> > some extent.=20
+> >> That's not the question. Dmitry says that the SC7 support is not a
+> >> property of the SoC, but mostly a platform decision on whether the
+> >> firmware supports SC7 or not.
+> >>
+> >> To me, that's a clear indication that this should not be hardcoded
+> >> in the driver, but instead obtained dynamically, via DT or
+> >> otherwise. =20
+> > We already have an nvidia,suspend-mode property in the device-tree
+> > of the Power Management Controller node (all Tegra SoCs) which
+> > defines what suspending type is supported by a particular board.
+> > =20
+> >>>>>>> +			writel_relaxed(~0ul, ictlr +
+> >>>>>>> ICTLR_COP_IER_CLR); =20
+> >>>>>> Secondly, I'm also not sure why COP interrupts need to be
+> >>>>>> disabled for pre-T210 at all, since COP is unused. This looks
+> >>>>>> to me like it was cut-n-pasted from downstream kernel without
+> >>>>>> a good reason and could be simply removed. =20
+> >>>>> Please verify that this is actually the case. Tegra-2
+> >>>>> definitely needed some level of poking, and I'm not keen on
+> >>>>> changing anything there until you (or someone else) has
+> >>>>> verified it on actual HW (see e307cc8941fc). =20
+> >>>> Tested on Tegra20 and Tegra30, LP1 suspend-resume works
+> >>>> perfectly fine with all COP bits removed from the driver.
+> >>>>
+> >>>> AFAIK, the reason why downstream needed that disabling is that
+> >>>> it uses proprietary firmware which is running on the COP and
+> >>>> that firmware is usually a BLOB audio/video DEC-ENC driver which
+> >>>> doesn't cleanup interrupts after itself. That firmware is not
+> >>>> applicable for the upstream kernel, hence there is no need to
+> >>>> care about it.=20
+> >>>>> Joseph, can you please shed some light here? =20
+> >>> SC7 entry flow uses 3rd party ATF (arm-trusted FW) blob which is
+> >>> the one that actually loads SC7 entry firmware and triggers IRQ to
+> >>> AVP/COP which causes COP to wakeup and run SC7 entry FW.
+> >>>
+> >>> So when SC7 support is enabled, IRQ need to be kept enabled and
+> >>> when SC7 FW starts execution, it will disable COP IRQ. =20
+> >> This looks like a lot of undocumented assumptions on what firmware
+> >> does, as well as what firmware *is*. What I gather from this
+> >> thread is that there is at least two versions of firmware (a
+> >> "proprietary firmware" for "downstream kernels", and another one
+> >> for mainline), and that they do different things.
+> >>
+> >> Given that we cannot know what people actually run, I don't think
+> >> we can safely remove anything unless this gets tested on the full
+> >> spectrum of HW/FW combination. =20
+> > I'm not sure whether multiple firmware variations exist in the wild
+> > for Tegra210. Maybe Sowjanya or somebody else from NVIDIA could
+> > clarify. I think there should be some efforts in regards to a fully
+> > opensource firmware on Tegra210, but I'm not following it and have
+> > no idea about the status.
+> >
+> > You're right that there are multiple variants of suspend-resuming
+> > flow on Tegra SoCs. The older 32bit Tegra SoC generations have a
+> > variety of options in regards to suspend-resuming, including
+> > firmware-less variants on platforms that are having kernel running
+> > in secure mode (dev boards, most of Tegra20 consumer devices) and
+> > Trusted-Foundations firmware variant for insecure platforms
+> > (consumer devices). And yes, vendor firmware creates a lot of
+> > headache in regards to bringing support into upstream because it
+> > usually does a lot of odd undocumented things which may also vary
+> > depending on a firmware version (bootloader, etc) and it also
+> > usually difficult to replace it with an opensource alternative due
+> > to a crypto signing. =20
+>=20
+> Tried without this patch which keeps COP IRQ disabled and I see SC7=20
+> entry FW execution happens still.
+>=20
+> Digging through the ATF FW code, I see on SC7 entry firmware loading=20
+> into IRAM, COP processor is reset with RESET VECTOR set to SC7 entry=20
+> firmware location in IRAM and on reset de-assert & unhalt COP, SC7=20
+> firmware starts execution.
+>=20
+> Will remove this patch in next version...
+>=20
+
+Good, sounds like you also verified that SC7 COP firmware doesn't use
+interrupts.
