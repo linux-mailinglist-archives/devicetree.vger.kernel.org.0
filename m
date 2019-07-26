@@ -2,126 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C0FC76316
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 12:06:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDC7576325
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 12:07:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725815AbfGZKGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 06:06:13 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:42131 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725945AbfGZKGM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 06:06:12 -0400
-Received: by mail-wr1-f68.google.com with SMTP id x1so3902270wrr.9
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 03:06:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=3Hjrv9ZYKJu8+kghKGHOb5+hoAyVj3/mf5z92bGiL1s=;
-        b=lYz/UGbt8WDlJYVQroy8L1dI9habJK1BZbzR3fmaHoEoywC9cmqtnAJ9MKT3QtyWQL
-         Ek3HiF6h5r1hgWYb3zXbc7gCi9LSq0ODyWswtsvGxCzmR4tQkwSAFS34t/ZrUi9ntojB
-         3mxFYDym25DUz8RLbKTCzVicgQdJ1GPDmJI9TRPBKVRBzK166CPdkAf08id7H1Ewoqf8
-         lkEJuTEftRC235Fols9XsmEjyKvSqVE8pYCJo+VEl0Kdcv//qP/eF8uS86DTiZ3/VAwh
-         qlFJr9FWZiZW6MiA8TlnsWt0KOn6vWuIEg0rMdPHVZM9caXjsAza6akYhLU5BHpiwTsN
-         DHiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=3Hjrv9ZYKJu8+kghKGHOb5+hoAyVj3/mf5z92bGiL1s=;
-        b=m8CHKhhNZjd9SqMOZ7npFwiLWxtcQb1KBY4hHNusgTSSGSULSWUYVQu8sNP0t2CGdY
-         OZQo6JzotyKUSFPKqNVNG1BPqTr+7F0OXWtHCE95p0ZHaEARWEY7mm/RyN+X9A/YlRCP
-         YiiOPlfrWOwZEq4nuc6/qb/VEE9nGTft4btnLGLlircANjsTz+Jx0NxX300gqD57l/Cr
-         zfCaHTFbjPbqcMMQfyXstMAkrpwoMFcLqEeAz6PwkQvDuCOf7EAsKgs6s4ry3+NVNJ9O
-         VP77YuDtWfKtWr0QlmHpFPejuu4dD9AZqie56bT+eJ9ul0SI/zd7XeLzyrILdpdr38GN
-         Dvnw==
-X-Gm-Message-State: APjAAAXdokGEm02IfZIQnM07g85yZrvJBksxKGZzNqkj2w4c/J0/h5ug
-        fjH+sleEmqR5Af1VxdJ+Rk+yGw==
-X-Google-Smtp-Source: APXvYqyvpbvw/+SBDxbhu5SzhvXM0cbpOSVyDtC4qDYfx8TaqUQ3+OT+m3w46EiLP53umHEa72/Ofg==
-X-Received: by 2002:adf:9486:: with SMTP id 6mr69762173wrr.242.1564135569988;
-        Fri, 26 Jul 2019 03:06:09 -0700 (PDT)
-Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
-        by smtp.gmail.com with ESMTPSA id i6sm46180031wrv.47.2019.07.26.03.06.08
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 26 Jul 2019 03:06:09 -0700 (PDT)
-Date:   Fri, 26 Jul 2019 11:06:07 +0100
-From:   Daniel Thompson <daniel.thompson@linaro.org>
-To:     Jean-Jacques Hiblot <jjhiblot@ti.com>
-Cc:     Rob Herring <robh@kernel.org>, jacek.anaszewski@gmail.com,
-        pavel@ucw.cz, mark.rutland@arm.com, dmurphy@ti.com,
-        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: leds: document new "power-supply"
- property
-Message-ID: <20190726100607.j5bdmuuk33zpwa2r@holly.lan>
-References: <20190708103547.23528-1-jjhiblot@ti.com>
- <20190708103547.23528-3-jjhiblot@ti.com>
- <20190724164757.GA3723@bogus>
- <753b2c8d-e8fc-ec6e-f372-a84d4452fd33@ti.com>
+        id S1726277AbfGZKHF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 06:07:05 -0400
+Received: from skedge03.snt-world.com ([91.208.41.68]:55904 "EHLO
+        skedge03.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725978AbfGZKHF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 06:07:05 -0400
+Received: from sntmail12r.snt-is.com (unknown [10.203.32.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by skedge03.snt-world.com (Postfix) with ESMTPS id E9BC367A931;
+        Fri, 26 Jul 2019 12:07:02 +0200 (CEST)
+Received: from sntmail12r.snt-is.com (10.203.32.182) by sntmail12r.snt-is.com
+ (10.203.32.182) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Fri, 26 Jul
+ 2019 12:07:02 +0200
+Received: from sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305]) by
+ sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305%3]) with mapi id
+ 15.01.1713.004; Fri, 26 Jul 2019 12:07:02 +0200
+From:   Schrempf Frieder <frieder.schrempf@kontron.de>
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v2 1/2] dt-bindings: vendor-prefixes: Add Admatec AG
+Thread-Topic: [PATCH v2 1/2] dt-bindings: vendor-prefixes: Add Admatec AG
+Thread-Index: AQHVQ3nM8O6SL9DjWUGGlVFpIsOB6KbchhcAgAAD4YCAAAFJgA==
+Date:   Fri, 26 Jul 2019 10:07:02 +0000
+Message-ID: <5a61b9f1-86d5-438e-204b-0db3ef0796e3@kontron.de>
+References: <20190726061705.14764-1-krzk@kernel.org>
+ <963ba555-dde0-9c3c-1e15-740ca200853f@kontron.de>
+ <CAJKOXPdbBXEy0zzjZ1ytts0y5STQ5x9xQVBmU1vn46tmu8uCGg@mail.gmail.com>
+In-Reply-To: <CAJKOXPdbBXEy0zzjZ1ytts0y5STQ5x9xQVBmU1vn46tmu8uCGg@mail.gmail.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.9.193]
+x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <F58E547739A13444B5B7088FBEE0A607@snt-world.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <753b2c8d-e8fc-ec6e-f372-a84d4452fd33@ti.com>
-User-Agent: NeoMutt/20180716
+X-SnT-MailScanner-Information: Please contact the ISP for more information
+X-SnT-MailScanner-ID: E9BC367A931.AFBCE
+X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
+X-SnT-MailScanner-SpamCheck: 
+X-SnT-MailScanner-From: frieder.schrempf@kontron.de
+X-SnT-MailScanner-To: devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, krzk@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
+        robh+dt@kernel.org, s.hauer@pengutronix.de, shawnguo@kernel.org
+X-Spam-Status: No
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 25, 2019 at 01:08:46PM +0200, Jean-Jacques Hiblot wrote:
-> Hi Rob,
-> 
-> On 24/07/2019 18:47, Rob Herring wrote:
-> > On Mon, Jul 08, 2019 at 12:35:47PM +0200, Jean-Jacques Hiblot wrote:
-> > > Most of the LEDs are powered by a voltage/current regulator. describing in
-> > > the device-tree makes it possible for the LED core to enable/disable it
-> > > when needed.
-> > > 
-> > > Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
-> > > ---
-> > >   Documentation/devicetree/bindings/leds/common.txt | 5 +++++
-> > >   1 file changed, 5 insertions(+)
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/leds/common.txt b/Documentation/devicetree/bindings/leds/common.txt
-> > > index 70876ac11367..e093a2b7eb90 100644
-> > > --- a/Documentation/devicetree/bindings/leds/common.txt
-> > > +++ b/Documentation/devicetree/bindings/leds/common.txt
-> > > @@ -61,6 +61,11 @@ Optional properties for child nodes:
-> > >   - panic-indicator : This property specifies that the LED should be used,
-> > >   		    if at all possible, as a panic indicator.
-> > > +- power-supply : A voltage/current regulator used to to power the LED. When a
-> > > +		 LED is turned off, the LED core disable its regulator. The
-> > > +		 same regulator can power many LED (or other) devices. It is
-> > > +		 turned off only when all of its users disabled it.
-> > Not sure this should be common. It wouldn't apply to cases where we have
-> > an LED controller parent nor gpio and pwm LEDs and those are most cases.
-> 
-> It does make sense for GPIO and PWM bindings if the anode of LED is tied to
-> a regulated voltage and the cathod to the control line.
-> 
-> The same is true for a certain class of true LED controller that do not
-> deliver power but act like current sinks.
-> 
-> JJ
-> 
-> > 
-> > Perhaps what makes sense here is an regulator-led binding.
-
-You didn't comment on this alternative... and I confess I'm not quite
-sure what Rob means by a regulator-led binding so I can't really comment
-either.
-
-Rob, is there any analogous example for a regulator-<something-else> binding
-to compare with?
-
-
-Daniel.
-
-> > 
-> > > +
-> > >   - trigger-sources : List of devices which should be used as a source triggering
-> > >   		    this LED activity. Some LEDs can be related to a specific
-> > >   		    device and should somehow indicate its state. E.g. USB 2.0
-> > > -- 
-> > > 2.17.1
-> > > 
+T24gMjYuMDcuMTkgMTI6MDIsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+IE9uIEZyaSwg
+MjYgSnVsIDIwMTkgYXQgMTE6NDgsIFNjaHJlbXBmIEZyaWVkZXINCj4gPGZyaWVkZXIuc2NocmVt
+cGZAa29udHJvbi5kZT4gd3JvdGU6DQo+Pg0KPj4gT24gMjYuMDcuMTkgMDg6MTcsIEtyenlzenRv
+ZiBLb3psb3dza2kgd3JvdGU6DQo+Pj4gQWRkIHZlbmRvciBwcmVmaXggZm9yIEFkbWF0ZWMgQUcu
+DQo+Pg0KPj4gV2UgZ2V0IHRoZSBkaXNwbGF5cyB1c2VkIHdpdGggdGhlIEtvbnRyb24gZXZhbCBr
+aXRzIGZyb20gImFkbWF0ZWMgR21iSCINCj4+IGluIEhhbWJ1cmcsIG5vdCAiQWRtYXRlYyBBRyIg
+aW4gU3dpdHplcmxhbmQuIEkgdGhpbmsgd2UgaGF2ZSB0bw0KPj4gZGlmZmVyZW50aWF0ZSBoZXJl
+Lg0KPj4NCj4+IEkgd2lsbCByZXZpZXcgcGF0Y2ggMi8yIHNvb24uLi4NCj4gDQo+IFdoYXQgYSBj
+b2luY2lkZW5jZS4uLiB0aGV5IGhhdmUgc28gc2ltaWxhciBwb3J0Zm9saW8uIEFmdGVyIGxvb2tp
+bmcgYXQNCj4gdmVuZG9yIHByZWZpeGVzIHRoYXQgd291bGQgYmUgdGhlIGZpcnN0IGR1cGxpY2F0
+aW9uIG9mIG5hbWUuDQoNCkkgaGF2ZSBubyBpZGVhLCB3aGV0aGVyIHRoZXkgYXJlIHJlbGF0ZWQg
+c29tZWhvdyBvciBoYXZlIGEgY29tbW9uIGhpc3RvcnkuLi4NCg0KPiANCj4gVG8gYXZvaWQgY29u
+ZmxpY3QsIGhvdyBhYm91dDogImFkbWF0ZWNkZSI/DQoNCldvdWxkIGJlIG9rLCBJIGd1ZXNzLg0K
+DQo+IA0KPiBCZXN0IHJlZ2FyZHMsDQo+IEtyenlzenRvZg0KPiA=
