@@ -2,150 +2,221 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 85D0C76052
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 10:05:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0976F7605C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 10:07:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725878AbfGZIF0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 04:05:26 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:37763 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725903AbfGZIF0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 04:05:26 -0400
-Received: by mail-lj1-f195.google.com with SMTP id z28so50670689ljn.4
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 01:05:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=gmIWHPU81qKM4NmobEtN8vwuP0TkPt9eT4OsJzhaUjk=;
-        b=y5xEgzE5jtlcpATZyzdxzyFTpGnrCxRIL7uzSmvkqqaSjqn773+lPi7JptM/oC82B2
-         ERbV/Kkph8WF/vpS0iK1HE0VExJSalljlox2f3+vos5IQ68Ky88FaraUeLkAT6RUDfUQ
-         WflUBgR2r9hdpzovWsdhbDIC+11PpgdKGFgOf09LxXdcO0t94ubgDe/S5ge0F0ghX/bB
-         wcPqo+munS6NtHkwWgIbjGJxSqOMfifD5YvAY5y981NrOtWmuFn3qI/ni14t4DFzksHZ
-         p83f77Ch5gFRkm9/lPngDbBvSVlhEkKxoSs2aNdOgnRO4Am3tgc/9SeKJq0PjwoQxzPJ
-         d5zQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=gmIWHPU81qKM4NmobEtN8vwuP0TkPt9eT4OsJzhaUjk=;
-        b=S46ng+YMXy/jSPkqbS/5nAC2pXGCyByAN8Zmc7vggWNZrO0zOrTM2vlS2+f0v8w/2a
-         X+6t09L9f7u5GjfKeRpPU8OV+WANrD31D9AS7TNvw5XHJluINb86vIOV6gwoydvvmafS
-         0MfKIP8fDqQKC0d2i9h4+GgArxYFh0Qi1FigWQRlWuOncTrW6GZ3NKEEwXXHZ75PlISB
-         k/436cOcr9HnLqdrumNEjW9zThNCIeGAvANzqAxYkvknBqiRIkEAQCgjxrhX73grWvdC
-         rHrPIqIdQunKG5tKRJ96bpThV2SUvCGResvjFgKh4OvXbJE3lnlOUFncl/48xctB2OyW
-         99xA==
-X-Gm-Message-State: APjAAAWXkXmnEfRWy+1TRmzWCWgzSaoGN5ZvzFT+XmXdCpDdb0i1g6wh
-        GD4LakVzx4xRwpu3yFiB2D4X/g==
-X-Google-Smtp-Source: APXvYqzCVMfgKRMsARKSPF+KtDsxiocfdKwq11AIhpxQkPycGioijfy6CGbrfH0vqHwXLn2vGixe4Q==
-X-Received: by 2002:a2e:9a10:: with SMTP id o16mr48004571lji.95.1564128323508;
-        Fri, 26 Jul 2019 01:05:23 -0700 (PDT)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id u9sm8233986lfk.64.2019.07.26.01.05.21
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 26 Jul 2019 01:05:22 -0700 (PDT)
-Subject: Re: [RFC PATCH 09/11] devfreq: exynos-bus: Add interconnect
- functionality to exynos-bus
-To:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc:     krzk@kernel.org, cw00.choi@samsung.com, myungjoo.ham@samsung.com,
-        inki.dae@samsung.com, sw0312.kim@samsung.com,
-        m.szyprowski@samsung.com
-References: <20190723122016.30279-1-a.swigon@partner.samsung.com>
- <CGME20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b@eucas1p2.samsung.com>
- <20190723122016.30279-10-a.swigon@partner.samsung.com>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
- 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
- KEmKjLDvB0pePJkdTw==
-Message-ID: <6e8b2081-2fb3-9ab8-37d1-8b5fe5fd8e11@linaro.org>
-Date:   Fri, 26 Jul 2019 11:05:18 +0300
+        id S1725944AbfGZIHY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 04:07:24 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:52894 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725815AbfGZIHX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 04:07:23 -0400
+X-UUID: cbf2136ac42e4a648bc565fa019146ae-20190726
+X-UUID: cbf2136ac42e4a648bc565fa019146ae-20190726
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
+        (envelope-from <jungo.lin@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
+        with ESMTP id 1274394466; Fri, 26 Jul 2019 16:07:17 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 26 Jul 2019 16:07:17 +0800
+Received: from [172.21.84.99] (172.21.84.99) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 26 Jul 2019 16:07:17 +0800
+Message-ID: <1564128437.1212.615.camel@mtksdccf07>
+Subject: Re: [RFC,v3 8/9] media: platform: Add Mediatek ISP P1 SCP
+ communication
+From:   Jungo Lin <jungo.lin@mediatek.com>
+To:     Tomasz Figa <tfiga@chromium.org>
+CC:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        <ddavenport@chromium.org>, Rob Herring <robh@kernel.org>,
+        Sean Cheng =?UTF-8?Q?=28=E9=84=AD=E6=98=87=E5=BC=98=29?= 
+        <sean.cheng@mediatek.com>, "Sj Huang" <sj.huang@mediatek.com>,
+        Frederic Chen =?UTF-8?Q?=28=E9=99=B3=E4=BF=8A=E5=85=83=29?= 
+        <frederic.chen@mediatek.com>,
+        Ryan Yu =?UTF-8?Q?=28=E4=BD=99=E5=AD=9F=E4=BF=AE=29?= 
+        <ryan.yu@mediatek.com>,
+        Rynn Wu =?UTF-8?Q?=28=E5=90=B3=E8=82=B2=E6=81=A9=29?= 
+        <rynn.wu@mediatek.com>,
+        Frankie Chiu =?UTF-8?Q?=28=E9=82=B1=E6=96=87=E5=87=B1=29?= 
+        <frankie.chiu@mediatek.com>
+Date:   Fri, 26 Jul 2019 16:07:17 +0800
+In-Reply-To: <CAAFQd5BT7M425AbFicYuX+wr-twgS_cxQ937+Rgxo6Y2fA6_gA@mail.gmail.com>
+References: <jungo.lin@mediatek.com>
+         <20190611035344.29814-1-jungo.lin@mediatek.com>
+         <20190611035344.29814-9-jungo.lin@mediatek.com>
+         <20190710095827.GC181405@chromium.org>
+         <1563675513.1212.444.camel@mtksdccf07>
+         <CAAFQd5BT7M425AbFicYuX+wr-twgS_cxQ937+Rgxo6Y2fA6_gA@mail.gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-In-Reply-To: <20190723122016.30279-10-a.swigon@partner.samsung.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Artur,
+Hi, Tomasz:
 
-On 7/23/19 15:20, Artur Świgoń wrote:
-> This patch adds interconnect functionality to the exynos-bus devfreq
-> driver.
+On Thu, 2019-07-25 at 19:56 +0900, Tomasz Figa wrote:
+> Hi Jungo,
 > 
-> The SoC topology is a graph (or, more specifically, a tree) and most of its
-> edges are taken from the devfreq parent-child hierarchy (cf.
-> Documentation/devicetree/bindings/devfreq/exynos-bus.txt). The previous
-> patch adds missing edges to the DT (under the name 'parent'). Due to
-> unspecified relative probing order, -EPROBE_DEFER may be propagated to
-> guarantee that a child is probed before its parent.
+> On Sun, Jul 21, 2019 at 11:18 AM Jungo Lin <jungo.lin@mediatek.com> wrote:
+> [snip]
+> > > > +           wake_up_interruptible(&isp_ctx->composer_tx_thread.wq);
+> > > > +           isp_ctx->composer_tx_thread.thread = NULL;
+> > > > +   }
+> > > > +
+> > > > +   if (isp_ctx->composer_deinit_thread.thread) {
+> > > > +           wake_up(&isp_ctx->composer_deinit_thread.wq);
+> > > > +           isp_ctx->composer_deinit_thread.thread = NULL;
+> > > > +   }
+> > > > +   mutex_unlock(&isp_ctx->lock);
+> > > > +
+> > > > +   pm_runtime_put_sync(&p1_dev->pdev->dev);
+> > >
+> > > No need to use the sync variant.
+> > >
+> >
+> > We don't get this point. If we will call pm_runtime_get_sync in
+> > mtk_isp_hw_init function, will we need to call
+> > pm_runtime_put_sync_autosuspend in mtk_isp_hw_release in next patch?
+> > As we know, we should call runtime pm functions in pair.
+> >
 > 
-> Each bus is now an interconnect provider and an interconnect node as well
-> (cf. Documentation/interconnect/interconnect.rst), i.e. every bus registers
-> itself as a node. Node IDs are not hardcoded but rather assigned at
-> runtime, in probing order (subject to the above-mentioned exception
-> regarding relative order). This approach allows for using this driver with
-> various Exynos SoCs.
+> My point is that pm_runtime_put_sync() is only needed if one wants the
+> runtime count to be decremented after the function returns. Normally
+> there is no need to do so and one would call pm_runtime_put(), or if
+> autosuspend is used, pm_runtime_put_autosuspend() (note there is no
+> "sync" in the name).
+> 
+> [snip]
 
-I am not familiar with the Exynos bus topology, but it seems to me that it's not
-represented correctly. An interconnect provider with just a single node (port)
-is odd. I would expect that each provider consists of multiple master and slave
-nodes. This data would be used by a framework to understand what are the links
-and how the traffic flows between the IP blocks and through which buses.
+Ok, got your point.
+We will change to use pm_runtime_put_autosuspend() which has ASYNC flag.
 
-> The devfreq target() callback provided by exynos-bus now selects either the
-> frequency calculated by the devfreq governor or the frequency requested via
-> the interconnect API for the given node, whichever is higher.
+> > > +static void isp_composer_handler(void *data, unsigned int len, void *priv)
+> > > > +{
+> > > > +   struct mtk_isp_p1_ctx *isp_ctx = (struct mtk_isp_p1_ctx *)priv;
+> > > > +   struct isp_p1_device *p1_dev = p1_ctx_to_dev(isp_ctx);
+> > > > +   struct device *dev = &p1_dev->pdev->dev;
+> > > > +   struct mtk_isp_scp_p1_cmd *ipi_msg;
+> > > > +
+> > > > +   ipi_msg = (struct mtk_isp_scp_p1_cmd *)data;
+> > >
+> > > Should we check that len == sizeof(*ipi_msg)? (Or at least >=, if data could
+> > > contain some extra bytes at the end.)
+> > >
+> >
+> > The len parameter is the actual sending bytes from SCP to kernel.
+> > In the runtime, it is only 6 bytes for isp_ack_info command
+> > However, sizeof(*ipi_msg) is large due to struct mtk_isp_scp_p1_cmd is
+> > union structure.
+> >
+> 
+> That said we still should check if len is enough to cover the data
+> we're accessing below.
+> 
 
-This completely makes sense. We just need to be sure that the interconnect
-framework is used correctly.
+Ok, we will add the len checking before accessing the data.
 
-Thanks,
-Georgi
+> > > > +
+> > > > +   if (ipi_msg->cmd_id != ISP_CMD_ACK)
+> > > > +           return;
+> > > > +
+> > > > +   if (ipi_msg->ack_info.cmd_id == ISP_CMD_FRAME_ACK) {
+> > > > +           dev_dbg(dev, "ack frame_num:%d",
+> > > > +                   ipi_msg->ack_info.frame_seq_no);
+> > > > +           atomic_set(&isp_ctx->composed_frame_id,
+> > > > +                      ipi_msg->ack_info.frame_seq_no);
+> > >
+> > > I suppose we are expecting here that ipi_msg->ack_info.frame_seq_no would be
+> > > just isp_ctx->composed_frame_id + 1, right? If not, we probably dropped some
+> > > frames and we should handle that somehow.
+> > >
+> >
+> > No, we use isp_ctx->composed_frame_id to save which frame sequence
+> > number are composed done in SCP. In new design, we will move this from
+> > isp_ctx to p1_dev.
+> 
+> But we compose the frames in order, don't we? Wouldn't every composed
+> frame would be just previous frame ID + 1?
+> 
+> [snip]
+
+Yes, we compose the frames in order.
+At the same time, we already increased "frame ID + 1" in
+mtk_isp_req_enqueue() for each new request before sending to SCP for
+composing. After receiving the ACK from SCP, we think the frame ID is
+composed done and save by isp_ctx->composed_frame_id(v3).
+
+[RFC v3]
+void mtk_isp_req_enqueue(struct device *dev, struct media_request *req)
+{
+	...
+	frameparams.frame_seq_no = isp_ctx->frame_seq_no++;
+
+[RFC v4]
+void mtk_isp_req_enqueue(struct mtk_cam_dev *cam,
+			 struct mtk_cam_dev_request *req)
+{
+	struct mtk_isp_p1_device *p1_dev = dev_get_drvdata(cam->dev);
+
+	/* Accumulated frame sequence number */
+	req->frame_params.frame_seq_no = ++p1_dev->enqueue_frame_seq_no;
+
+ 
+
+> > > > +void isp_composer_hw_init(struct device *dev)
+> > > > +{
+> > > > +   struct mtk_isp_scp_p1_cmd composer_tx_cmd;
+> > > > +   struct isp_p1_device *p1_dev = get_p1_device(dev);
+> > > > +   struct mtk_isp_p1_ctx *isp_ctx = &p1_dev->isp_ctx;
+> > > > +
+> > > > +   memset(&composer_tx_cmd, 0, sizeof(composer_tx_cmd));
+> > > > +   composer_tx_cmd.cmd_id = ISP_CMD_INIT;
+> > > > +   composer_tx_cmd.frameparam.hw_module = isp_ctx->isp_hw_module;
+> > > > +   composer_tx_cmd.frameparam.cq_addr.iova = isp_ctx->scp_mem_iova;
+> > > > +   composer_tx_cmd.frameparam.cq_addr.scp_addr = isp_ctx->scp_mem_pa;
+> > >
+> > > Should we also specify the size of the buffer? Otherwise we could end up
+> > > with some undetectable overruns.
+> > >
+> >
+> > The size of SCP composer's memory is fixed to 0x200000.
+> > Is it necessary to specify the size of this buffer?
+> >
+> > #define MTK_ISP_COMPOSER_MEM_SIZE 0x200000
+> >
+> > ptr = dma_alloc_coherent(p1_dev->cam_dev.smem_dev,
+> >                         MTK_ISP_COMPOSER_MEM_SIZE, &addr, GFP_KERNEL);
+> >
+> 
+> Okay, but please add a comment saying that this is an implicit
+> requirement of the firmware.
+> 
+> Best regards,
+> Tomasz
+
+Ok, we will add comments.
+
+Best regards,
+
+
+Jungo
+
+
+
+
