@@ -2,93 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 23DC076059
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 10:06:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7F1DD7604F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 10:04:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726391AbfGZIGF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 04:06:05 -0400
-Received: from mta-02.yadro.com ([89.207.88.252]:36846 "EHLO mta-01.yadro.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726384AbfGZIGF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 04:06:05 -0400
-X-Greylist: delayed 546 seconds by postgrey-1.27 at vger.kernel.org; Fri, 26 Jul 2019 04:06:04 EDT
-Received: from localhost (unknown [127.0.0.1])
-        by mta-01.yadro.com (Postfix) with ESMTP id 2AB0A412D2;
-        Fri, 26 Jul 2019 07:56:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=yadro.com; h=
-        user-agent:in-reply-to:content-disposition:content-type
-        :content-type:mime-version:references:message-id:subject:subject
-        :from:from:date:date:received:received:received; s=mta-01; t=
-        1564127814; x=1565942215; bh=t7R6X8nvFz+0QciEa3VrF8VwhbSoAtsuItD
-        wYQ0loc4=; b=hpcgBbvByqr1Xb893BxdoU1Cbaaf36vBPH9hCTucba2X0xOPeyb
-        O0RdOn5CcQzjxevvIR7J7f0PsQG+BICWXFCRKWdoRA/Uk2dHCcxvOrz3ATANxP6e
-        EdLoB6R8qbQMg0lDsbc/25vKxrFDq+YySIcgsNhCuA4L5+oMhrH/DmPQ=
-X-Virus-Scanned: amavisd-new at yadro.com
-Received: from mta-01.yadro.com ([127.0.0.1])
-        by localhost (mta-01.yadro.com [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id XJyaxH08dzGi; Fri, 26 Jul 2019 10:56:54 +0300 (MSK)
-Received: from T-EXCH-02.corp.yadro.com (t-exch-02.corp.yadro.com [172.17.10.102])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mta-01.yadro.com (Postfix) with ESMTPS id 0BB6741185;
-        Fri, 26 Jul 2019 10:56:53 +0300 (MSK)
-Received: from localhost (172.17.14.115) by T-EXCH-02.corp.yadro.com
- (172.17.10.102) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P384) id 15.1.669.32; Fri, 26
- Jul 2019 10:56:53 +0300
-Date:   Fri, 26 Jul 2019 10:56:53 +0300
-From:   "Alexander A. Filippov" <a.filippov@yadro.com>
-To:     Andrew Jeffery <andrew@aj.id.au>
-CC:     <linux-aspeed@lists.ozlabs.org>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <joel@jms.id.au>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        Alexander Filippov <a.filippov@yadro.com>
-Subject: Re: [PATCH 04/17] ARM: dts: vesnin: Add unit address for memory node
-Message-ID: <20190726075653.GA10397@bbwork.lan>
-References: <20190726053959.2003-1-andrew@aj.id.au>
- <20190726053959.2003-5-andrew@aj.id.au>
+        id S1726026AbfGZIEV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 04:04:21 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:39449 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725842AbfGZIEV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 04:04:21 -0400
+Received: by mail-pf1-f195.google.com with SMTP id f17so20131487pfn.6
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 01:04:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=RvwPhyEIP2C1GmNkk4CaBRsJ7LL1kgFaxYotbYvMHPg=;
+        b=TYUJvMUexVnsX0m0MLXy24SyzzBqxoROwI7Uc7k8Jawjx30BNj/P3fgvOFd6mgF1ub
+         gMVRPVNnGlbMn9NCKeeCRsnJEAJyRti2+XO2Cidy1kRVFPi37z0pc6C6sl6nml6arwGc
+         Fe3IOu2AU/BEX1zbbAf3j+/uxFr2E2/wfJudYBKmpnOEyuAlRvQuWNkURmXId2PaGK3N
+         iOGNsLw9G/mWislf38UtZ7PUMUIOQwb13WIAANRonntJ5JaszUsHIqMcn7tijUGIWr4e
+         UQkx7dd5w0uacRGojJgwxU9+gJEApSPq6Xf8RPPY5kmnAtloZB6KcmHH+c7Iukhd46by
+         zpZQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=RvwPhyEIP2C1GmNkk4CaBRsJ7LL1kgFaxYotbYvMHPg=;
+        b=psCPTr/jDK16qf1x+eErOJ8dC5efNsOOy8rfPfI3IhYPIeQ91jTM8jCPTdmlxRhNlS
+         qUGZXeGhvEemeFxaupcoTP78LDbWYdPj2z2xsWvFALCvRDS6s/cvAtfw84QE0AMgL9D4
+         91ZNctkyrBM+kmypOyTj82CspWzgJJiCBnkf/jrdm4A+4i0wjnYLdcU4YpTex7qM3vup
+         cF7I1rYqKb6N2dQJZMrVJyGUN4HrzdlLJQuGYnF0NZ6t9jjtmV9ryWtqHvFBRk8ka3jN
+         MTOiwmjJHvrp0WlCAltkT4kcL0yfc4JsEVPyUu4NCljL4WK8ZEXdyLtXRYOYnWasKwJc
+         U23Q==
+X-Gm-Message-State: APjAAAWofCSmyLcCIa5GsHhRquf2VVNVbDzdSVWQGuT+w467I5YHWOCs
+        yeVwTgWeh9kz0G4bWxAWDYKBfw==
+X-Google-Smtp-Source: APXvYqxTsDwHnJcVzgc3D4+iVqCkMgf3qQEn4QWbmVPCdg1WXTAvCSSDgDPosNz3oyuEWm6Zp3gYRw==
+X-Received: by 2002:a63:d852:: with SMTP id k18mr18912708pgj.313.1564128260209;
+        Fri, 26 Jul 2019 01:04:20 -0700 (PDT)
+Received: from localhost ([122.172.28.117])
+        by smtp.gmail.com with ESMTPSA id c12sm38958764pgb.83.2019.07.26.01.04.19
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 26 Jul 2019 01:04:19 -0700 (PDT)
+Date:   Fri, 26 Jul 2019 13:34:17 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Niklas Cassel <niklas.cassel@linaro.org>
+Cc:     Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Andy Gross <agross@kernel.org>, Ilia Lin <ilia.lin@kernel.org>,
+        linux-arm-msm@vger.kernel.org, jorge.ramirez-ortiz@linaro.org,
+        bjorn.andersson@linaro.org, ulf.hansson@linaro.org,
+        Sricharan R <sricharan@codeaurora.org>,
+        Rob Herring <robh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 02/14] dt-bindings: cpufreq: Re-organise kryo cpufreq
+ to use it for other nvmem based qcom socs
+Message-ID: <20190726080417.ohsgedbtyxbxfyj7@vireshk-i7>
+References: <20190725104144.22924-1-niklas.cassel@linaro.org>
+ <20190725104144.22924-3-niklas.cassel@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190726053959.2003-5-andrew@aj.id.au>
-User-Agent: Mutt/1.12.0 (2019-05-25)
-X-Originating-IP: [172.17.14.115]
-X-ClientProxiedBy: T-EXCH-01.corp.yadro.com (172.17.10.101) To
- T-EXCH-02.corp.yadro.com (172.17.10.102)
+In-Reply-To: <20190725104144.22924-3-niklas.cassel@linaro.org>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 26, 2019 at 03:09:46PM +0930, Andrew Jeffery wrote:
-> Fixes the following warnings:
-> 
->     arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dt.yaml: /: memory: False schema does not allow {'reg': [[1073741824, 536870912]]}
->     arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dt.yaml: memory: 'device_type' is a required property
-> 
-> Cc: Alexander Filippov <a.filippov@yadro.com>
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-> ---
->  arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts b/arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts
-> index 0b9e29c3212e..81d9dcb752a0 100644
-> --- a/arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts
-> +++ b/arch/arm/boot/dts/aspeed-bmc-opp-vesnin.dts
-> @@ -14,7 +14,7 @@
->  		bootargs = "console=ttyS4,115200 earlyprintk";
->  	};
->  
-> -	memory {
-> +	memory@40000000 {
->  		reg = <0x40000000 0x20000000>;
->  	};
->  
-> -- 
-> 2.20.1
-> 
+$subject of this and few more binding patches updated to:
 
-Tested-by: Alexander Filippov <a.filippov@yadro.com>
+"dt-bindings: opp: XXX"
+
+On 25-07-19, 12:41, Niklas Cassel wrote:
+> From: Sricharan R <sricharan@codeaurora.org>
+> 
+> The kryo cpufreq driver reads the nvmem cell and uses that data to
+> populate the opps. There are other qcom cpufreq socs like krait which
+> does similar thing. Except for the interpretation of the read data,
+> rest of the driver is same for both the cases. So pull the common things
+> out for reuse.
+> 
+> Signed-off-by: Sricharan R <sricharan@codeaurora.org>
+> [niklas.cassel@linaro.org: split dt-binding into a separate patch and
+> do not rename the compatible string.]
+> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+> Reviewed-by: Ilia Lin <ilia.lin@kernel.org>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> Changes since V1:
+> -Picked up tags.
+
+-- 
+viresh
