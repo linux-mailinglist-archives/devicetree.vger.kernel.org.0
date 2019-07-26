@@ -2,108 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37D0676060
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 10:08:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11E537608C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 10:15:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726007AbfGZII0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 04:08:26 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:33974 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725815AbfGZII0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 04:08:26 -0400
-Received: by mail-pf1-f195.google.com with SMTP id b13so24131128pfo.1
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 01:08:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=6GhmKWt6x6g4JeMnsdkEsHpQSie6HYXc08TEONF6ep4=;
-        b=n6WXmFb6NJb1VDNPQg4jO1cjrEDb4DE4V1d3nSxW/tUAj9eTVtMjjNTCSj6+ASZCdl
-         G/scPEuJI+Abaxi6NlVvFlnoIYsmxxtE89knUPK5NJbQIf+dRZRBG0igszN4qomenA/H
-         2SrVjLOALgmb08gzV4+vi9TF4xsXqPcLyqS0cNFoz3OJETJLwCJj9ypLQPnYp4yzJS/u
-         4gWQQU79QYRQbhul4Tz8t4v+krSOvI85dXy5PURGtflyjER6T7mTlZ0U84JwYDJC2fa9
-         LVZhryGsJjM577AfdBHTm7wX8gjvGJYZ8n3736xs92Z4hHhha/man1T9uPe3xG8IurgI
-         AmPw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=6GhmKWt6x6g4JeMnsdkEsHpQSie6HYXc08TEONF6ep4=;
-        b=I5CwHe6vmGAHY5NyfUnKVtHTPQ+6njo09gturLwfU6ZYmNlrdxT1YxrZ5FHCDU/PaH
-         8P+n/mJhgRvh5KKMzxIwuuJC3KSTuClU3CVhRbNd6GZuDjElfH3zzHm41DRZE6vRezNJ
-         OYT8+4ba+QAWJ/SRbnxxe6f24s3X+cF0LIwpKuLrb0yKDOFakl5QlzyFOHvZVsi4RQ1x
-         RrtoJ/RmiXx8M0AdTVXG8jUVGAMsYU8ApNrdm98Z1lHnW4ic8WKuBhMNrTENzmN9tLeA
-         LuSgYbKjT3cy2VPf9ougvaZut1Q4A0SdUKCmeGMKKKq+dIVGzVWCU+zxsTDJjUkUmyeA
-         +2qA==
-X-Gm-Message-State: APjAAAXaY3WYWx4EHuu3JsAEH0RIDfO0SAe8fGh5YiibJgfMzyzMKhcP
-        q/GZR1lpWEUvNJdIB1pESu/8XA==
-X-Google-Smtp-Source: APXvYqyT9ZKXFFPNPq9JhH0XdJl1BiqKPW6iP2gtCefxpHHM+yjax7AxEbe1z2UP56YTq6iXpWC95A==
-X-Received: by 2002:a62:3895:: with SMTP id f143mr20705053pfa.116.1564128505484;
-        Fri, 26 Jul 2019 01:08:25 -0700 (PDT)
-Received: from localhost ([122.172.28.117])
-        by smtp.gmail.com with ESMTPSA id a1sm5500514pgh.61.2019.07.26.01.08.24
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 26 Jul 2019 01:08:24 -0700 (PDT)
-Date:   Fri, 26 Jul 2019 13:38:23 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Niklas Cassel <niklas.cassel@linaro.org>
-Cc:     linux-pm@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        jorge.ramirez-ortiz@linaro.org, sboyd@kernel.org,
-        vireshk@kernel.org, bjorn.andersson@linaro.org,
-        ulf.hansson@linaro.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH v2 00/14] Add support for QCOM Core Power Reduction
-Message-ID: <20190726080823.xwhxagv5iuhudmic@vireshk-i7>
-References: <20190725104144.22924-1-niklas.cassel@linaro.org>
+        id S1725955AbfGZIPa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 04:15:30 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:40253 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726300AbfGZIPI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 04:15:08 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190726081506euoutp023198b5db8fc5f1c020d51f86a471892f~05vQG7xl20303103031euoutp02K
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 08:15:06 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190726081506euoutp023198b5db8fc5f1c020d51f86a471892f~05vQG7xl20303103031euoutp02K
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1564128906;
+        bh=3R+Wre3FOCx6/iSnf7C3qlkiBEqiGVoT3ado/K8D+IQ=;
+        h=From:To:Cc:Subject:Date:References:From;
+        b=Rm9n3DMMhVDkTbb3Mj59G+Qb0wOfWC4uyPv3OFvkI1xaxZ74UVXXUILSo53u6eF3k
+         4BVheh0vfakq9fxwm4af+hiXhkWcST8K/fCEl3T23DcSw87j3RBW2BP3AIgQSxw2AW
+         4s0wxtSybAlDDcc9ifTUkF5AmoJd4KoQKE6rw+34=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190726081505eucas1p1b960891bdc4f4c788ae2937176c128ef~05vPXCdcM2134621346eucas1p1-;
+        Fri, 26 Jul 2019 08:15:05 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 88.C1.04325.986BA3D5; Fri, 26
+        Jul 2019 09:15:05 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190726081504eucas1p1aea5376ff300f6baca21c5e1cb6e4b43~05vOpc28s2124521245eucas1p1h;
+        Fri, 26 Jul 2019 08:15:04 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190726081504eusmtrp2f940047ea3b349df00ef1f066915c868~05vObRsaQ3187231872eusmtrp2p;
+        Fri, 26 Jul 2019 08:15:04 +0000 (GMT)
+X-AuditID: cbfec7f5-b8fff700000010e5-3b-5d3ab6893376
+Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id EB.7C.04146.886BA3D5; Fri, 26
+        Jul 2019 09:15:04 +0100 (BST)
+Received: from AMDC2765.DIGITAL.local (unknown [106.120.51.73]) by
+        eusmtip2.samsung.com (KnoxPortal) with ESMTPA id
+        20190726081503eusmtip2cfd9407539630e3f2d0c0c6b0569c336~05vN2YGXV3050330503eusmtip2s;
+        Fri, 26 Jul 2019 08:15:03 +0000 (GMT)
+From:   Marek Szyprowski <m.szyprowski@samsung.com>
+To:     linux-usb@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Markus Reichl <m.reichl@fivetechno.de>,
+        =?UTF-8?q?M=C3=A5ns=20Rullg=C3=A5rd?= <mans@mansr.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Peter Chen <peter.chen@nxp.com>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 0/3] Exynos EHCI/OHCI: resolve conflict with the generic
+ USB device bindings
+Date:   Fri, 26 Jul 2019 10:14:50 +0200
+Message-Id: <20190726081453.9456-1-m.szyprowski@samsung.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190725104144.22924-1-niklas.cassel@linaro.org>
-User-Agent: NeoMutt/20180716-391-311a52
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrFKsWRmVeSWpSXmKPExsWy7djPc7qd26xiDfoahS02zljPajH/yDlW
+        i+bF69kszp/fwG5xedccNosZ5/cxWSxa1sps8fLID0aLtUfuslv8eDidyeLPvTusFq17j7Bb
+        TPh9gc2B1+PWnXqPTas62Tz2z13D7vHm9Cl2j43vdjB5zL77g9Gjb8sqRo/Pm+QCOKK4bFJS
+        czLLUov07RK4Mm5eP81YsEOk4uG9+4wNjCsFuhg5OSQETCTmtH1h7WLk4hASWMEosezXOxYI
+        5wujRNPhSWwQzmdGiTUPvzPBtDQdfs8IkVjOKPFl7zl2kARYS9dNKRCbTcBQouttFxuILSLg
+        ILFk6R2wScwC55glFv/sAJskLJAo8XF1A1gRi4CqxNzlt1hAbF4BG4lFOx4xQ2yTl1i94QAz
+        RFxQ4uTMJ2A1zEDx5q2zmUGGSggcY5do77nOCtHgIrHmxUGoZmGJV8e3sEPYMhL/d85ngmho
+        ZpR4eG4tO4TTwyhxuWkGI0SVtcTh4xeBJnEArdCUWL9LH8SUEHCUaNktDmHySdx4KwhxA5/E
+        pG3TmSHCvBIdbUIQM9QkZh1fB7f14IVLUCUeEp0d5ZCgipVYeu8T+wRGhVlIHpuF5LFZCBcs
+        YGRexSieWlqcm55abJyXWq5XnJhbXJqXrpecn7uJEZjCTv87/nUH474/SYcYBTgYlXh4NVZZ
+        xgqxJpYVV+YeYpTgYFYS4d26AyjEm5JYWZValB9fVJqTWnyIUZqDRUmct5rhQbSQQHpiSWp2
+        ampBahFMlomDU6qB8foPj3n2v6Ptg2t3F3c+N7M2CLHLt4qoby4rYr107HUQ59lb2YxusWtn
+        HhQUubtDpPOiUQH3oqt/julVG/uGWEex9XFcvWHOppG5qHG51/6KKWmHnf0Pbvy28Gboid/m
+        sl/2ZLO5aLzjnLVCt//S43We/Bqbo1L3lP+SfxSxWf7BU4mHm1IqlFiKMxINtZiLihMBTjxv
+        sl0DAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFtrBIsWRmVeSWpSXmKPExsVy+t/xe7od26xiDR49lLPYOGM9q8X8I+dY
+        LZoXr2ezOH9+A7vF5V1z2CxmnN/HZLFoWSuzxcsjPxgt1h65y27x4+F0Jos/9+6wWrTuPcJu
+        MeH3BTYHXo9bd+o9Nq3qZPPYP3cNu8eb06fYPTa+28HkMfvuD0aPvi2rGD0+b5IL4IjSsynK
+        Ly1JVcjILy6xVYo2tDDSM7S00DMysdQzNDaPtTIyVdK3s0lJzcksSy3St0vQy7h5/TRjwQ6R
+        iof37jM2MK4U6GLk5JAQMJFoOvyesYuRi0NIYCmjxK/5r9kgEjISJ6c1sELYwhJ/rnWxQRR9
+        YpR4tvASI0iCTcBQouttF1iDiICTROfa02BFzALXmCV2XOwESwgLxEt8mb8AzGYRUJWYu/wW
+        C4jNK2AjsWjHI2aIDfISqzccYIaIC0qcnPkEqIYDaJC6xPp5QiBhZqCS5q2zmScw8s9CUjUL
+        oWoWkqoFjMyrGEVSS4tz03OLDfWKE3OLS/PS9ZLzczcxAmNt27Gfm3cwXtoYfIhRgINRiYf3
+        wnLLWCHWxLLiytxDjBIczEoivFt3AIV4UxIrq1KL8uOLSnNSiw8xmgK9MJFZSjQ5H5gG8kri
+        DU0NzS0sDc2NzY3NLJTEeTsEDsYICaQnlqRmp6YWpBbB9DFxcEo1MOq37Diz/Pleng2NC5zn
+        Rrw58+ZJzY2aYx+vf79TpOYtLlLeYJDTxhXry3Y7ZIKFxdvMlUXsXKwhRYYe7bc/ffd9PKNZ
+        e3Yjf/6aoH+WS++eDo7qye0zmHlB/qm4Z9ubjsvGvC8UfzDf8WP6dTzHc35qbD/znvJJ2Xo3
+        A3eWbP8THFKy8s13TyWW4oxEQy3mouJEADR98rvLAgAA
+X-CMS-MailID: 20190726081504eucas1p1aea5376ff300f6baca21c5e1cb6e4b43
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190726081504eucas1p1aea5376ff300f6baca21c5e1cb6e4b43
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190726081504eucas1p1aea5376ff300f6baca21c5e1cb6e4b43
+References: <CGME20190726081504eucas1p1aea5376ff300f6baca21c5e1cb6e4b43@eucas1p1.samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 25-07-19, 12:41, Niklas Cassel wrote:
-> This series adds support for Core Power Reduction (CPR), a form of
-> Adaptive Voltage Scaling (AVS), found on certain Qualcomm SoCs.
-> 
-> This series is based on top of the qcs404 cpufreq patch series that
-> hasn't landed yet:
-> https://patchwork.kernel.org/project/linux-arm-msm/list/?series=137809
-> 
-> CPR is a technology that reduces core power on a CPU or on other device.
-> It reads voltage settings from efuses (that have been written in
-> production), it uses these voltage settings as initial values, for each
-> OPP.
-> 
-> After moving to a certain OPP, CPR monitors dynamic factors such as
-> temperature, etc. and adjusts the voltage for that frequency accordingly
-> to save power and meet silicon characteristic requirements.
-> 
-> This driver has been developed together with Jorge Ramirez-Ortiz, and
-> is based on an RFC by Stephen Boyd[1], which in turn is based on work
-> by others on codeaurora.org[2].
-> 
-> [1] https://lkml.org/lkml/2015/9/18/833
-> [2] https://www.codeaurora.org/cgit/quic/la/kernel/msm-3.10/tree/drivers/regulator/cpr-regulator.c?h=msm-3.10
-> 
-> Changes since V1:
-> Added a new patch implementing dev_pm_opp_find_level_exact() in order to
-> make the CPR OPP table in device tree cleaner.
-> For more detailed changes, check the "Changes since V1" as comments in
-> the individual patches, where applicable.
+Dear All,
 
-Applied patches [1-9/14] to cpufreq and OPP trees and done some
-reordering as well to keep all binding patches together.
+Commit 69bec7259853 ("USB: core: let USB device know device node") added
+support for attaching devicetree node for USB devices. Those nodes are
+children of their USB host controller. However Exynos EHCI and OHCI
+driver bindings already define child-nodes for each physical root hub
+port and assigns respective PHY controller and parameters to them. This
+leads to the conflict. A workaround for it has been merged as commit
+01d4071486fe ("usb: exynos: add workaround for the USB device bindings
+conflict"), but it disabled support for USB device binding for Exynos
+EHCI/OHCI controllers.
 
-Rob's Ack is missing on two of the binding patches and I will add them
-later once he provides it.
+This patchset tries to resolve this binding conflict by changing Exynos
+EHCI/OHCI bindings: PHYs are moved from the sub-nodes to a standard array
+under the 'phys' property. Such solution has been suggested by Måns
+Rullgård in the following thread: https://lkml.org/lkml/2019/5/13/228
 
-Everything should be available here for you to base rest of the stuff.
+To keep everything working during the transitional time, the changes has
+been split into 2 steps. First the changes to Exynos OHCI and EHCI
+drivers have to be merged, then in the next kernel release the DTS can be
+finally updated to the new bindings.
 
-git://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git cpufreq/arm/linux-next
+This patchset has been tested on various Exynos boards with different
+USB host controller configurations (Odroids family: X2, U3, XU3).
+
+Best regards
+Marek Szyprowski
+Samsung R&D Institute Poland
+
+
+Changelog:
+v2:
+- rearranged the code as suggested by Måns Rullgård, kept support for
+  legacy bindings the Exynos EHCI/OHCI drivers
+
+v1: https://patchwork.kernel.org/cover/10953495/
+- initial version
+
+
+Patch summary:
+
+Marek Szyprowski (3):
+  dt-bindings: switch Exynos EHCI/OHCI bindings to use array of generic
+    PHYs
+  usb: exynos: add support for getting PHYs from the standard dt array
+  ARM: dts: exynos: Use standard arrays of generic PHYs for EHCI/OHCI
+    devices
+
+ .../devicetree/bindings/usb/exynos-usb.txt    | 41 +++++++------------
+ arch/arm/boot/dts/exynos4.dtsi                | 28 ++-----------
+ .../boot/dts/exynos4210-universal_c210.dts    |  8 +---
+ arch/arm/boot/dts/exynos4412-itop-elite.dts   |  9 +---
+ arch/arm/boot/dts/exynos4412-odroidu3.dts     |  8 +---
+ arch/arm/boot/dts/exynos4412-odroidx.dts      |  5 +--
+ arch/arm/boot/dts/exynos4412-origen.dts       |  9 +---
+ arch/arm/boot/dts/exynos5250.dtsi             | 16 ++------
+ arch/arm/boot/dts/exynos54xx.dtsi             | 18 ++------
+ drivers/usb/host/ehci-exynos.c                | 23 +++++++++--
+ drivers/usb/host/ohci-exynos.c                | 23 +++++++++--
+ 11 files changed, 74 insertions(+), 114 deletions(-)
 
 -- 
-viresh
+2.17.1
+
