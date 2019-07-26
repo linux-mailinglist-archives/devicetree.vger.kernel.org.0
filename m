@@ -2,99 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DE1B76EEC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 18:22:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6BC076F03
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 18:26:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727964AbfGZQWf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 12:22:35 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:26872 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727461AbfGZQWf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 12:22:35 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6QG7fWM014148;
-        Fri, 26 Jul 2019 18:22:27 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
- references : from : message-id : date : mime-version : in-reply-to :
- content-type : content-transfer-encoding; s=STMicroelectronics;
- bh=8uknQWRYc0ctwojlhiO1IFxUbdNNf9KGmiNaqsxedGA=;
- b=hK/jrgE+HR7IWIPUmAZBr74PpQh9KHWaD3+owSOCBUwcODXMOIvjvCjoufdDHeeT85/6
- OihgaQ8odbwYk2ppO6W/SdZNGlcb9CzOOSMN4o7WffzWivV75G6OdFNdO6IvuZl3uHeR
- Rr41uYaC8zctr1fH5ju7K/R7xFrj0S/66Gaahi6frYu8ifvZUEGlroSbovaUpUsDkE57
- f0oPhrkBXfcQn8Yznf/EkKtPFAwosc3J/SwW8QZdjuISmSo/Pjsq6ltMJH/pTBfsXd5x
- lRxyopZIM7SA9l6PFTgFhkyAPj8zpF/UpMb1xHlvGTJZSO1ydKdIkn/fDZgvFXoma2d6 sw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2tx60abrvn-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 26 Jul 2019 18:22:27 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 49A0D31;
-        Fri, 26 Jul 2019 16:22:26 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2B2514FB8;
-        Fri, 26 Jul 2019 16:22:26 +0000 (GMT)
-Received: from lmecxl0912.lme.st.com (10.75.127.49) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 26 Jul
- 2019 18:22:25 +0200
-Subject: Re: [PATCH v2 0/4] regulator: add support for the STM32 ADC booster
-To:     Fabrice Gasnier <fabrice.gasnier@st.com>, <broonie@kernel.org>,
-        <lgirdwood@gmail.com>, <robh+dt@kernel.org>
-CC:     <mcoquelin.stm32@gmail.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <devicetree@vger.kernel.org>
-References: <1561968865-22037-1-git-send-email-fabrice.gasnier@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <d8bc0f0d-adc6-abd6-f248-94c72b360b00@st.com>
-Date:   Fri, 26 Jul 2019 18:22:25 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1728818AbfGZQ0a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 12:26:30 -0400
+Received: from mail-out.m-online.net ([212.18.0.9]:45220 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727554AbfGZQ0a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 12:26:30 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 45wDx01dQsz1rJhX;
+        Fri, 26 Jul 2019 18:26:28 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 45wDx00gynz1qqkT;
+        Fri, 26 Jul 2019 18:26:28 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id JMbysYmC5yQD; Fri, 26 Jul 2019 18:26:25 +0200 (CEST)
+X-Auth-Info: mV9JwZLuzEltqVV4qYjlyg5n7bhnR7y4hSXyYuIFvbI=
+Received: from kurokawa.lan (ip-86-49-35-8.net.upcbroadband.cz [86.49.35.8])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Fri, 26 Jul 2019 18:26:25 +0200 (CEST)
+From:   Marek Vasut <marex@denx.de>
+To:     netdev@vger.kernel.org
+Cc:     Marek Vasut <marex@denx.de>, Andrew Lunn <andrew@lunn.ch>,
+        "David S . Miller" <davem@davemloft.net>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Tristram Ha <Tristram.Ha@microchip.com>,
+        Vivien Didelot <vivien.didelot@gmail.com>,
+        Woojung Huh <woojung.huh@microchip.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH V3 1/3] dt-bindings: net: dsa: ksz: document Microchip KSZ87xx family switches
+Date:   Fri, 26 Jul 2019 18:23:06 +0200
+Message-Id: <20190726162308.16764-2-marex@denx.de>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190726162308.16764-1-marex@denx.de>
+References: <20190726162308.16764-1-marex@denx.de>
 MIME-Version: 1.0
-In-Reply-To: <1561968865-22037-1-git-send-email-fabrice.gasnier@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [10.75.127.49]
-X-ClientProxiedBy: SFHDAG4NODE3.st.com (10.75.127.12) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-26_12:,,
- signatures=0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrice
+Document Microchip KSZ87xx family switches. These include
+KSZ8765 - 5 port switch
+KSZ8794 - 4 port switch
+KSZ8795 - 5 port switch
 
-On 7/1/19 10:14 AM, Fabrice Gasnier wrote:
-> Add support for the 3.3V booster regulator embedded in stm32h7 and stm32mp1
-> devices, that can be used to supply ADC analog input switches.
-> It's useful to reach full ADC performance when their supply is below 2.7V
-> (vdda by default).
-> 
-> Changes in v2:
-> - rebase on top of for-next branch
-> 
-> Fabrice Gasnier (4):
->    dt-bindings: regulator: add support for the stm32-booster
->    regulator: add support for the stm32-booster
->    ARM: multi_v7_defconfig: enable STM32 booster regulator
->    ARM: dts: stm32: add booster for ADC analog switches on stm32mp157c
-> 
->   .../bindings/regulator/st,stm32-booster.txt        |  18 +++
->   arch/arm/boot/dts/stm32mp157c.dtsi                 |   6 +
->   arch/arm/configs/multi_v7_defconfig                |   1 +
->   drivers/regulator/Kconfig                          |  11 ++
->   drivers/regulator/Makefile                         |   1 +
->   drivers/regulator/stm32-booster.c                  | 132 +++++++++++++++++++++
->   6 files changed, 169 insertions(+)
->   create mode 100644 Documentation/devicetree/bindings/regulator/st,stm32-booster.txt
->   create mode 100644 drivers/regulator/stm32-booster.c
-> 
+Signed-off-by: Marek Vasut <marex@denx.de>
+Cc: Andrew Lunn <andrew@lunn.ch>
+Cc: David S. Miller <davem@davemloft.net>
+Cc: Florian Fainelli <f.fainelli@gmail.com>
+Cc: Rob Herring <robh+dt@kernel.org>
+Cc: Tristram Ha <Tristram.Ha@microchip.com>
+Cc: Vivien Didelot <vivien.didelot@gmail.com>
+Cc: Woojung Huh <woojung.huh@microchip.com>
+Cc: devicetree@vger.kernel.org
+---
+V2: No change
+V3: No change
+---
+ Documentation/devicetree/bindings/net/dsa/ksz.txt | 3 +++
+ 1 file changed, 3 insertions(+)
 
-DT patch + config applied in stm32-next.
+diff --git a/Documentation/devicetree/bindings/net/dsa/ksz.txt b/Documentation/devicetree/bindings/net/dsa/ksz.txt
+index 4ac21cef370e..5e8429b6f9ca 100644
+--- a/Documentation/devicetree/bindings/net/dsa/ksz.txt
++++ b/Documentation/devicetree/bindings/net/dsa/ksz.txt
+@@ -5,6 +5,9 @@ Required properties:
+ 
+ - compatible: For external switch chips, compatible string must be exactly one
+   of the following:
++  - "microchip,ksz8765"
++  - "microchip,ksz8794"
++  - "microchip,ksz8795"
+   - "microchip,ksz9477"
+   - "microchip,ksz9897"
+   - "microchip,ksz9896"
+-- 
+2.20.1
 
-regards
-alex
