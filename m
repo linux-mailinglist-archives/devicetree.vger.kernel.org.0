@@ -2,81 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E23B17652E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 14:08:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AAED37653F
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 14:10:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726524AbfGZMIu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 08:08:50 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:58272 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726124AbfGZMIt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 08:08:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=gS6TFmtoV9RB8J3VH+YKQUJjv20M7Idf7n3sD7CqGlY=; b=dgTcrG54HaVxyxusxxEABL2XU
-        5jK19DpyIw1uRl38Bwa3O+yVbls8pylB1S0cuIJlWBLs9+x2tDstnvkvGhrTWPF4w4wBWco5EGIGr
-        lwuGdx63F3HJhbt2cidBT1pkGnrZ0YXy1CQMxwy1OEMi5xbFD1K2r+E/HWwGfBcwajLwU=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hqz1e-0001YP-KU; Fri, 26 Jul 2019 12:08:42 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 881C42742B63; Fri, 26 Jul 2019 13:08:41 +0100 (BST)
-Date:   Fri, 26 Jul 2019 13:08:41 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 7/7] docs: dt: fix a sound binding broken reference
-Message-ID: <20190726120841.GA55803@sirena.org.uk>
-References: <cover.1564140865.git.mchehab+samsung@kernel.org>
- <9932608f32030c886d906ea656eda8408c544776.1564140865.git.mchehab+samsung@kernel.org>
+        id S1726065AbfGZMKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 08:10:15 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:35359 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726191AbfGZMKP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 08:10:15 -0400
+Received: by mail-ot1-f66.google.com with SMTP id j19so16640612otq.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 05:10:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=JrQTsqOEOykeYsYpjUAu93byMK1KwkPcKibV3U5vnJs=;
+        b=n/Tfy/qYbxxPMGO0GtR4PSwWNzJiHr/teYhJWdmOLIQXeIGRhXlrNAOjHxIg44X/c8
+         rTMphlu7MEMszPQPE7i0KXL/fg/5WjYEzxco2QaaRD1yrK2bg+KCzZWa39ZRgNTM2LtM
+         lCI+/my1YocZGIgiqhq3JHhPYzlOqgYvp6ZdftyiDQSF1s5Nqn4vzv+ZzYEuh31enYTk
+         jjQ04X5nn2NicQK3HyVuUjV+toViPvNj+wcJA44R4DusLvIx9mXjaDaZ27VLOEOxPKkn
+         k32sNyCUvsUw8nN+h7F+9P8EGFwgzyFqenM4BP1xKx9k2fNKMAwbFIXSWbIArOH/RDFF
+         Qdtg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=JrQTsqOEOykeYsYpjUAu93byMK1KwkPcKibV3U5vnJs=;
+        b=RNgL/duut/fZ0QUFxaLGY2h1bsYc6PMYy+2Z+mgY89dQKVYMjRNzYgTESFMq4MnMIa
+         P9f8mm6uMtN5HH3UBtKlauO/I5sujiZOrgJvP0fhUkSlVWONiYJLaYv/1uJtkmogEyCH
+         97rqICKsBV3mB9nBrCXT2KsH0vPlMev6MXEarJY+N48MOXSzMZqLnVmHgdPXbTUcYw5z
+         B8PDjO0FZIjj35wD8ipFCq+Dq8A7NiCi4eoY6/VPxQ1vspcQCkgUxXMZoxtlVXfA0Vss
+         CZ7cPxacf4tXaEakj9HHBl5RA+ufZbQ/1/p9b7byDC49xoZx5IdvUgb6QBzOzT2uULwC
+         hMrA==
+X-Gm-Message-State: APjAAAWw6XBTIqNMYnfsNCdje69NRDdI/4xiz1TRJaC/uqupykerKL/x
+        ecp+/CttQ2YNXzjRrKTm6KmaQkjmY7fOZniL4On+pg==
+X-Google-Smtp-Source: APXvYqywRN7n6lzmjA5a4KHs4TPzxtEcwP96gaeiFcPkyYj2chffCIcDU5MoSxlTXx3/N/hta8tMsIUOdAnpviY8SDk=
+X-Received: by 2002:a9d:529:: with SMTP id 38mr69587609otw.145.1564143014185;
+ Fri, 26 Jul 2019 05:10:14 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="SLDf9lqlvOQaIe6s"
-Content-Disposition: inline
-In-Reply-To: <9932608f32030c886d906ea656eda8408c544776.1564140865.git.mchehab+samsung@kernel.org>
-X-Cookie: Think sideways!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <cover.1564125131.git.baolin.wang@linaro.org> <23d51f5d9c9cc647ad0c5a1fb950d3d9fb9c1303.1564125131.git.baolin.wang@linaro.org>
+ <20190726112901.GC4902@sirena.org.uk>
+In-Reply-To: <20190726112901.GC4902@sirena.org.uk>
+From:   Baolin Wang <baolin.wang@linaro.org>
+Date:   Fri, 26 Jul 2019 20:10:02 +0800
+Message-ID: <CAMz4ku+3FVOYr7Gvh-Yrdhvw2cfntbnEkhONYGbC71UmCgZA-A@mail.gmail.com>
+Subject: Re: [PATCH 6/6] dt-bindings: spi: sprd: Change the hwlock support to
+ be optional
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>, weicx@spreadst.com,
+        sherry.zong@unisoc.com,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi Mark,
 
---SLDf9lqlvOQaIe6s
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+On Fri, 26 Jul 2019 at 19:29, Mark Brown <broonie@kernel.org> wrote:
+>
+> On Fri, Jul 26, 2019 at 03:20:53PM +0800, Baolin Wang wrote:
+> > No need to add hardware spinlock proctection due to add multiple
+> > msater channel, so change it to be optional in documentation.
+>
+> Please use subject lines matching the style for the subsystem.  This
+> makes it easier for people to identify relevant patches.
 
-On Fri, Jul 26, 2019 at 08:47:27AM -0300, Mauro Carvalho Chehab wrote:
-> Address this rename:
-> 	Documentation/devicetree/bindings/sound/{sun4i-i2s.txt -> allwinner,sun4i-a10-i2s.yaml}
+The subject lines format 'dt-bindings: xxx' was recommended by Rob, so
+I am not sure if I need to change the format as 'spi: sprd:'? Thanks.
 
-Please use subject lines matching the style for the subsystem.  This
-makes it easier for people to identify relevant patches.
-
---SLDf9lqlvOQaIe6s
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl067UgACgkQJNaLcl1U
-h9DZ3gf/XVyELAxpK+iOsyrIIgOtkynK4H9wknGxpl2rZE0a6qJHb4tUp+EVM5k7
-BP3tcLa5QVeuWG3k2rqMwoL86wXC7QLc+So1k5s612+LqO7tkgHRPQv0fFZFYFU+
-iQ7E6+MUeBW4LoqA4pSOQvpeU7oNy4amI/X639LTk7qjrTwnmwcH5aagkPRGOvPL
-KC+Hf/saAF5T9eue6updywRGYPWffVpQkoCO6NpwfWMk5UV071OneiL3SKXf/y+2
-7ZgIh2qwDFvkrpgmTUowa8D+iODO0/P6YP3m7Q8WZXS3YBSrnp0c9pDUUG38QVVG
-jB89EPyDbXAjR7L2WTMO1GCnC/j9Dg==
-=gcDY
------END PGP SIGNATURE-----
-
---SLDf9lqlvOQaIe6s--
+-- 
+Baolin Wang
+Best Regards
