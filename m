@@ -2,108 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2793876A25
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 15:56:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D08D76996
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 15:53:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728310AbfGZN4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 09:56:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48914 "EHLO mail.kernel.org"
+        id S2387664AbfGZNxE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 09:53:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51398 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387777AbfGZNlu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 09:41:50 -0400
-Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
+        id S2388249AbfGZNnf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jul 2019 09:43:35 -0400
+Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2672A22CF5;
-        Fri, 26 Jul 2019 13:41:49 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 926C922CEA;
+        Fri, 26 Jul 2019 13:43:34 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564148509;
-        bh=zX30Y7I8lGQSE39mcBLgCQnD1zhzLqgkvgnTgW8bI/U=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=k7/MYg0MGLbki0g3EqS6d5XoAuDjmxLmZ5gir1IHBeua4yDd4S/goV17so5PiFt8n
-         +FJh7ZVsJa/LcxUvub/nflNlyhoyELQboQqE6meOYLtPh7zlfMdNwoyEKTbOxO4dvN
-         n1+yN7Rq6NuEbvgyeiChNQerVHe6alV6d3tfnU8g=
-Received: by mail-qk1-f172.google.com with SMTP id v22so39029500qkj.8;
-        Fri, 26 Jul 2019 06:41:49 -0700 (PDT)
-X-Gm-Message-State: APjAAAW6M4OTnD6ssHM6XypNkKeXuIX16MHEhAhKgQNS9mb8d+YFTD4h
-        wk3szdOcuFgO0FJ3KMpWPvDVUqaPGOoQOF9q9Q==
-X-Google-Smtp-Source: APXvYqxjuwBX7ksE7JbZB0mI6ceV0xcxiT8SPZ6Gi56d7P4U1vzH0bY2zZ15ZhXiikKw8Sd4XxO8RlHxVifobutyBU8=
-X-Received: by 2002:a37:a010:: with SMTP id j16mr64220208qke.152.1564148507205;
- Fri, 26 Jul 2019 06:41:47 -0700 (PDT)
+        s=default; t=1564148615;
+        bh=3xVYBERJTrE1AyNi27bN6GYOlyuafegPFm+RMVy+xCI=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=YXwUMPiqs60IgpbQUI56amQuatbE9KMSkRXH3g8v5RsgAg2e90DqFezBtk1L+EmPc
+         QYjhPQSMrXANXWEajXGtYdKCGQXaPmF0ouGfhJcCXGdT3oQOvuEO2SA3U8wzrab2PU
+         rCh2eZDRzThyewUFnrTpLX9jF8i8pwjQnegbdmDg=
+From:   Sasha Levin <sashal@kernel.org>
+To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Cc:     Douglas Anderson <dianders@chromium.org>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Sasha Levin <sashal@kernel.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.14 02/37] ARM: dts: rockchip: Make rk3288-veyron-minnie run at hs200
+Date:   Fri, 26 Jul 2019 09:42:57 -0400
+Message-Id: <20190726134332.12626-2-sashal@kernel.org>
+X-Mailer: git-send-email 2.20.1
+In-Reply-To: <20190726134332.12626-1-sashal@kernel.org>
+References: <20190726134332.12626-1-sashal@kernel.org>
 MIME-Version: 1.0
-References: <cover.1564140865.git.mchehab+samsung@kernel.org> <430ed96cb234805d1deb216e8c8559da22cc6bac.1564140865.git.mchehab+samsung@kernel.org>
-In-Reply-To: <430ed96cb234805d1deb216e8c8559da22cc6bac.1564140865.git.mchehab+samsung@kernel.org>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 26 Jul 2019 07:41:35 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK_rfHehrKW_NS89BOV0=dYoao0H=zOzG=D-724vKduKw@mail.gmail.com>
-Message-ID: <CAL_JsqK_rfHehrKW_NS89BOV0=dYoao0H=zOzG=D-724vKduKw@mail.gmail.com>
-Subject: Re: [PATCH 1/7] docs: fix broken doc references due to renames
-To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-Cc:     "Paul E. McKenney" <paulmck@linux.ibm.com>,
-        Josh Triplett <josh@joshtriplett.org>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
-        Lai Jiangshan <jiangshanlai@gmail.com>,
-        Joel Fernandes <joel@joelfernandes.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
-        Alan Stern <stern@rowland.harvard.edu>,
-        Andrea Parri <andrea.parri@amarulasolutions.com>,
-        Boqun Feng <boqun.feng@gmail.com>,
-        Nicholas Piggin <npiggin@gmail.com>,
-        David Howells <dhowells@redhat.com>,
-        Jade Alglave <j.alglave@ucl.ac.uk>,
-        Luc Maranget <luc.maranget@inria.fr>,
-        Akira Yokosawa <akiyks@gmail.com>,
-        Daniel Lustig <dlustig@nvidia.com>,
-        Jerry Hoemann <jerry.hoemann@hpe.com>,
-        Wim Van Sebroeck <wim@linux-watchdog.org>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, Ajay Gupta <ajayg@nvidia.com>,
-        Don Brace <don.brace@microsemi.com>,
-        "James E.J. Bottomley" <jejb@linux.ibm.com>,
-        "Martin K. Petersen" <martin.petersen@oracle.com>,
-        rcu@vger.kernel.org,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        devicetree@vger.kernel.org,
-        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
-        <linux-arch@vger.kernel.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        Linux I2C <linux-i2c@vger.kernel.org>,
-        esc.storagedev@microsemi.com, SCSI <linux-scsi@vger.kernel.org>,
-        Wolfram Sang <wsa@the-dreams.de>
-Content-Type: text/plain; charset="UTF-8"
+X-stable: review
+X-Patchwork-Hint: Ignore
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 26, 2019 at 5:47 AM Mauro Carvalho Chehab
-<mchehab+samsung@kernel.org> wrote:
->
-> Some files got renamed but probably due to some merge conflicts,
-> a few references still point to the old locations.
->
-> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-> Acked-by: Wolfram Sang <wsa@the-dreams.de> # I2C part
-> Reviewed-by: Jerry Hoemann <jerry.hoemann@hpe.com> # hpwdt.rst
-> ---
->  Documentation/RCU/rculist_nulls.txt                   |  2 +-
->  Documentation/devicetree/bindings/arm/idle-states.txt |  2 +-
->  Documentation/locking/spinlocks.rst                   |  4 ++--
->  Documentation/memory-barriers.txt                     |  2 +-
->  Documentation/translations/ko_KR/memory-barriers.txt  |  2 +-
->  Documentation/watchdog/hpwdt.rst                      |  2 +-
->  MAINTAINERS                                           | 10 +++++-----
->  drivers/gpu/drm/drm_modes.c                           |  2 +-
->  drivers/i2c/busses/i2c-nvidia-gpu.c                   |  2 +-
->  drivers/scsi/hpsa.c                                   |  4 ++--
->  10 files changed, 16 insertions(+), 16 deletions(-)
+From: Douglas Anderson <dianders@chromium.org>
 
-Acked-by: Rob Herring <robh@kernel.org>
+[ Upstream commit 1c0479023412ab7834f2e98b796eb0d8c627cd62 ]
+
+As some point hs200 was failing on rk3288-veyron-minnie.  See commit
+984926781122 ("ARM: dts: rockchip: temporarily remove emmc hs200 speed
+from rk3288 minnie").  Although I didn't track down exactly when it
+started working, it seems to work OK now, so let's turn it back on.
+
+To test this, I booted from SD card and then used this script to
+stress the enumeration process after fixing a memory leak [1]:
+  cd /sys/bus/platform/drivers/dwmmc_rockchip
+  for i in $(seq 1 3000); do
+    echo "========================" $i
+    echo ff0f0000.dwmmc > unbind
+    sleep .5
+    echo ff0f0000.dwmmc > bind
+    while true; do
+      if [ -e /dev/mmcblk2 ]; then
+        break;
+      fi
+      sleep .1
+    done
+  done
+
+It worked fine.
+
+[1] https://lkml.kernel.org/r/20190503233526.226272-1-dianders@chromium.org
+
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ arch/arm/boot/dts/rk3288-veyron-minnie.dts | 4 ----
+ 1 file changed, 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+index 544de6027aaa..6000dca1cf05 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+@@ -125,10 +125,6 @@
+ 	power-supply = <&backlight_regulator>;
+ };
+ 
+-&emmc {
+-	/delete-property/mmc-hs200-1_8v;
+-};
+-
+ &gpio_keys {
+ 	pinctrl-0 = <&pwr_key_l &ap_lid_int_l &volum_down_l &volum_up_l>;
+ 
+-- 
+2.20.1
+
