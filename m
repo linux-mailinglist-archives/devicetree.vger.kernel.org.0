@@ -2,37 +2,37 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB39B76AC9
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 16:01:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1505A76AB9
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 16:00:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727537AbfGZNkB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 09:40:01 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45864 "EHLO mail.kernel.org"
+        id S1726364AbfGZOAr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 10:00:47 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46040 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726364AbfGZNj7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 09:39:59 -0400
+        id S1727584AbfGZNkJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jul 2019 09:40:09 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D79D222BF5;
-        Fri, 26 Jul 2019 13:39:57 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3B75722CBB;
+        Fri, 26 Jul 2019 13:40:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564148398;
-        bh=6pfJv0Z3H6UEml4/RtAsomE5oH9gg2HYiIJovd7fvfw=;
+        s=default; t=1564148408;
+        bh=GS0t9ejWfMJx8u+jiXzlJqATgam2UjS8xzz2i1Kfo70=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=vnP06DDw6/V1a9TgG7pvlYgqhqqFMpAlAZTWaYQXg515zXRYt9Y/7VNCziSqMr+kO
-         RcCLxvEXtYIpzKPy8ZVTFb932Nx2hmEJtBJySaPbDJJOddIja85gzzgBByhpjySihk
-         ZdBa9fgu2pxdP6Gbu4e6YQzZW/0WferYgswofgEc=
+        b=Ck0FiNcQjy4xFqS5XBGVeVPQzPL4hLByZ/ZJabWU7lfYdMS1XLGrMXNXK0opmmP5v
+         jOI5N+qcFBKEc5t2KaBNUkIhwvEdiSi4lUlJJyC6gIEPAIrCnGDXRxK6VSU+D0bzot
+         ZzCVtYve4efxLwQKowFsAHhqSv/7qOTOTa7eAzAU=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Helen Koike <helen.koike@collabora.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.2 12/85] arm64: dts: rockchip: fix isp iommu clocks and power domain
-Date:   Fri, 26 Jul 2019 09:38:22 -0400
-Message-Id: <20190726133936.11177-12-sashal@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        Niklas Cassel <niklas.cassel@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Olof Johansson <olof@lixom.net>,
+        Sasha Levin <sashal@kernel.org>, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 5.2 17/85] arm64: qcom: qcs404: Add reset-cells to GCC node
+Date:   Fri, 26 Jul 2019 09:38:27 -0400
+Message-Id: <20190726133936.11177-17-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190726133936.11177-1-sashal@kernel.org>
 References: <20190726133936.11177-1-sashal@kernel.org>
@@ -45,63 +45,45 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Helen Koike <helen.koike@collabora.com>
+From: Andy Gross <agross@kernel.org>
 
-[ Upstream commit c432a29d3fc9ee928caeca2f5cf68b3aebfa6817 ]
+[ Upstream commit 0763d0c2273a3c72247d325c48fbac3d918d6b87 ]
 
-isp iommu requires wrapper variants of the clocks.
-noc variants are always on and using the wrapper variants will activate
-{A,H}CLK_ISP{0,1} due to the hierarchy.
+This patch adds a reset-cells property to the gcc controller on the QCS404.
+Without this in place, we get warnings like the following if nodes reference
+a gcc reset:
 
-Tested using the pending isp patch set (which is not upstream
-yet). Without this patch, streaming from the isp stalls.
+arch/arm64/boot/dts/qcom/qcs404.dtsi:261.38-310.5: Warning (resets_property):
+/soc@0/remoteproc@b00000: Missing property '#reset-cells' in node
+/soc@0/clock-controller@1800000 or bad phandle (referred from resets[0])
+  also defined at arch/arm64/boot/dts/qcom/qcs404-evb.dtsi:82.18-84.3
+  DTC     arch/arm64/boot/dts/qcom/qcs404-evb-4000.dtb
+arch/arm64/boot/dts/qcom/qcs404.dtsi:261.38-310.5: Warning (resets_property):
+/soc@0/remoteproc@b00000: Missing property '#reset-cells' in node
+/soc@0/clock-controller@1800000 or bad phandle (referred from resets[0])
+  also defined at arch/arm64/boot/dts/qcom/qcs404-evb.dtsi:82.18-84.3
 
-Also add the respective power domain and remove the "disabled" status.
-
-Refer:
- RK3399 TRM v1.4 Fig. 2-4 RK3399 Clock Architecture Diagram
- RK3399 TRM v1.4 Fig. 8-1 RK3399 Power Domain Partition
-
-Signed-off-by: Helen Koike <helen.koike@collabora.com>
-Tested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
+Signed-off-by: Andy Gross <agross@kernel.org>
+Reviewed-by: Niklas Cassel <niklas.cassel@linaro.org>
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
+Signed-off-by: Olof Johansson <olof@lixom.net>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index 196ac9b78076..89594a7276f4 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1706,11 +1706,11 @@
- 		reg = <0x0 0xff914000 0x0 0x100>, <0x0 0xff915000 0x0 0x100>;
- 		interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH 0>;
- 		interrupt-names = "isp0_mmu";
--		clocks = <&cru ACLK_ISP0_NOC>, <&cru HCLK_ISP0_NOC>;
-+		clocks = <&cru ACLK_ISP0_WRAPPER>, <&cru HCLK_ISP0_WRAPPER>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-+		power-domains = <&power RK3399_PD_ISP0>;
- 		rockchip,disable-mmu-reset;
--		status = "disabled";
- 	};
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index ffedf9640af7..65a2cbeb28be 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -383,6 +383,7 @@
+ 			compatible = "qcom,gcc-qcs404";
+ 			reg = <0x01800000 0x80000>;
+ 			#clock-cells = <1>;
++			#reset-cells = <1>;
  
- 	isp1_mmu: iommu@ff924000 {
-@@ -1718,11 +1718,11 @@
- 		reg = <0x0 0xff924000 0x0 0x100>, <0x0 0xff925000 0x0 0x100>;
- 		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH 0>;
- 		interrupt-names = "isp1_mmu";
--		clocks = <&cru ACLK_ISP1_NOC>, <&cru HCLK_ISP1_NOC>;
-+		clocks = <&cru ACLK_ISP1_WRAPPER>, <&cru HCLK_ISP1_WRAPPER>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-+		power-domains = <&power RK3399_PD_ISP1>;
- 		rockchip,disable-mmu-reset;
--		status = "disabled";
- 	};
- 
- 	hdmi_sound: hdmi-sound {
+ 			assigned-clocks = <&gcc GCC_APSS_AHB_CLK_SRC>;
+ 			assigned-clock-rates = <19200000>;
 -- 
 2.20.1
 
