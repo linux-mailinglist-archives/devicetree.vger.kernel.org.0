@@ -2,83 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6657775F04
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 08:26:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5654E75F44
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 08:49:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726166AbfGZG0x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 02:26:53 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:35409 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725864AbfGZG0x (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 02:26:53 -0400
-Received: by mail-lf1-f66.google.com with SMTP id p197so36241838lfa.2;
-        Thu, 25 Jul 2019 23:26:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=nnLng03yKzoOCov75qSA3MqCcOmyhGOuTFn/YZRC6bw=;
-        b=QY77d0thwiUD4ElvhVAy5MKyD6fafSxKbtUv9VmsptPFHHlvme/Z5bDd9kco83+dOz
-         CJ1t8DkfHzgcMv66CGkufSFrQ6n5xX1QBja5olBDwVAevTLMlXef1BbefBr3tHHrLpFK
-         XK01aB7P2BDn2Bn8YP/I4KGqK7/vKpw7Qf7Q6C7hz31pREPZpTvVdpMWcJGUILzoTv+T
-         QM6N/YfrpJzm0vXuptrAaE2BUOax/gA9Y3ArgX4Lhrqb9QsDVllkWQd5TBNvmVWvVc/a
-         dMXl4XuC6Dq3uFjwMkRbaAVeIAnCwIOoXUe76JsyaUS7+cqO1ASTJmQDItIWMIvv+66A
-         tbVQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=nnLng03yKzoOCov75qSA3MqCcOmyhGOuTFn/YZRC6bw=;
-        b=oArE1I4lE9NBJ91fqswpzYjAt80Zj4u+z34Oj5Bzg0fZbuXtOSWgjc4tU047gvnuHu
-         i9MIqMLyXd2NLkBotlWhYo96Cf//9ZiAoqffohWAVa0FZ9R2bnhPLrnKg00nKD5LN3se
-         zprugjYnNh494kywRxdt5Zvnfbxg55aI/+DlFOLy/6Pw6Gr8k38UAMSAVOvmXw5s6U7g
-         9+3VLZXce2xI3JZEji5IYPzY4TB8ozIQz1aZ74vRaYBg5koxvOiZQvKXPbOrChaURFc0
-         aOo5hhME2CxEVOM7t5oO/67/fnG6tBjdHBldZlSNvXI7kNXyJZjGTV8g1lbWRTdFaDl8
-         CUhg==
-X-Gm-Message-State: APjAAAWdo0I/zJ3VjjhZZi6cQuFw1HZj/Wdb7F4odKzGCi/k25xNTmnw
-        U4LRZYU5lVSSK8s+k+Eys2Q=
-X-Google-Smtp-Source: APXvYqxQGcfDkp5SBeDAZqV+MRX5iBECRKA/CnzStUstMtYBdbgt64kzQ037siw3JTVdCCysd7N8QQ==
-X-Received: by 2002:ac2:59c6:: with SMTP id x6mr8532542lfn.169.1564122411084;
-        Thu, 25 Jul 2019 23:26:51 -0700 (PDT)
-Received: from dimatab (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
-        by smtp.gmail.com with ESMTPSA id z12sm8129347lfe.2.2019.07.25.23.26.49
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 25 Jul 2019 23:26:50 -0700 (PDT)
-Date:   Fri, 26 Jul 2019 09:30:55 +0300
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     <thierry.reding@gmail.com>, <jonathanh@nvidia.com>,
-        <tglx@linutronix.de>, <jason@lakedaemon.net>,
-        <marc.zyngier@arm.com>, <linus.walleij@linaro.org>,
-        <stefan@agner.ch>, <mark.rutland@arm.com>,
-        <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
-        <josephl@nvidia.com>, <talho@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>
-Subject: Re: [PATCH V6 17/21] arm64: tegra: Enable wake from deep sleep on
- RTC alarm.
-Message-ID: <20190726093055.4d8fe3ff@dimatab>
-In-Reply-To: <1563738060-30213-18-git-send-email-skomatineni@nvidia.com>
-References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com>
-        <1563738060-30213-18-git-send-email-skomatineni@nvidia.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; arm-unknown-linux-gnueabihf)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+        id S1725878AbfGZGtl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 02:49:41 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:37845 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725867AbfGZGtl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jul 2019 02:49:41 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 2F89342BA;
+        Fri, 26 Jul 2019 02:49:40 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Fri, 26 Jul 2019 02:49:40 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=kokOQgzIABuKcOf13CmoUQh+Gn2cv69
+        dV+LTjmU8rAk=; b=jXDTHisiOlQRsj/JEm7c0JiMRIHipx0N+6scM50gRBSdCwm
+        MXdU6grcxma8/9ibQjvhXQGFQ/yKqYPP1C6km9DaNzuzVfojUiBtICogtZcK4tRK
+        aPDqdXZfsrQ8Wzks7bmcskSnxEGrjFxRJpW9M89mo/p6YvkIQnnGR1Y49Q8aUJPy
+        PxrxENHZfHf80gdUCZ/29i7IASp38NW6T5aBAhFVKItrPPRt5jUXMCLrgWYt2dzF
+        FBJIGo9Rro1nsCdnGgrAXuQ4Il8fSeBgntVynmytaPco9iPle531hVK4wroVm8eY
+        fRevtX684DvtQDS0zoerDdoNKvV0XETKPkxwKrA==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=kokOQg
+        zIABuKcOf13CmoUQh+Gn2cv69dV+LTjmU8rAk=; b=A/lTXR68tPAlyjt76lGNWv
+        D6td6Cm4rdBWDvxB8Z3be9tUf+A+c7ltv+sjTLU5MmcUiKOKfTc9XFapQeFg13U5
+        +GUWPBdq29YdoTJkoURl1/PyPHR0UYnPk7eOR4Af6xaGV9xSiupuB2mlK7+3xkvQ
+        DdutVXz2D706AB4uDOsRPSP18SOkmGNiHi1KXhjFpNnwu7Qmg89sKmKj9wurDwBH
+        txfrthKLxE+ETW3Ooc3S+D47Tnz+pWXh0GoMCjgooXvcigx2bdU7cZL3dJXb8jEk
+        y5Bcb5MNoQlmBlFqcgY5S+P+U1bSz45PjGcohYHHtJSC8O0rw20JZxiW36P2xB8A
+        ==
+X-ME-Sender: <xms:gqI6Xd1eXtuKPIeCF7vKxebDRJaLOq4jc5OcyklJNCoJyMnOUbkE7Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrkeefgdduudefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecurfgrrh
+    grmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgv
+    rhfuihiivgeptd
+X-ME-Proxy: <xmx:gqI6XTLtjdjlhZAP8lYDylnGOoIU5_qwErskFxXawOBDdepaVpDIgQ>
+    <xmx:gqI6XUGoLVGo134sbxvXj2ZXOiq-x4iSUONdHhGZ3jMmyqh_1acQaw>
+    <xmx:gqI6XXUncIRQVtAYKxT9MV7Qrg7N7wAzOZGdG5qG8JsNMYavcpi3MQ>
+    <xmx:hKI6XVMTy-7dFx0q_FrEmhKBR337Tk9zQ4hVoRgyf4f6uzv34pkImA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id B948AE00A2; Fri, 26 Jul 2019 02:49:38 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-736-gdfb8e44-fmstable-20190718v2
+Mime-Version: 1.0
+Message-Id: <4c6c020d-5985-4c57-aaae-c2393f9cc2fc@www.fastmail.com>
+In-Reply-To: <8a7bfe52-83ca-7601-7d75-e5615da7b5de@intel.com>
+References: <20190712033214.24713-1-andrew@aj.id.au>
+ <20190712033214.24713-3-andrew@aj.id.au>
+ <d6f7fdf2-07ed-354a-ca29-f3175623679c@intel.com>
+ <7cd30f3d-43fd-42da-9301-091eb2625c65@www.fastmail.com>
+ <8a7bfe52-83ca-7601-7d75-e5615da7b5de@intel.com>
+Date:   Fri, 26 Jul 2019 16:17:31 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Adrian Hunter" <adrian.hunter@intel.com>,
+        linux-mmc <linux-mmc@vger.kernel.org>
+Cc:     "Ulf Hansson" <ulf.hansson@linaro.org>,
+        "Rob Herring" <robh+dt@kernel.org>, mark.rutland@arm.com,
+        "Joel Stanley" <joel@jms.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        "Ryan Chen" <ryanchen.aspeed@gmail.com>
+Subject: Re: [PATCH v2 2/2] mmc: Add support for the ASPEED SD controller
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-=D0=92 Sun, 21 Jul 2019 12:40:56 -0700
-Sowjanya Komatineni <skomatineni@nvidia.com> =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
 
-> This patch updates device tree for RTC and PMC to allow system wake
-> from deep sleep on RTC alarm.
->=20
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
 
-The dot in the end of the commit's title is unnecessary.
+On Fri, 26 Jul 2019, at 15:27, Adrian Hunter wrote:
+> On 26/07/19 3:52 AM, Andrew Jeffery wrote:
+> > On Thu, 25 Jul 2019, at 22:49, Adrian Hunter wrote:
+> >> On 12/07/19 6:32 AM, Andrew Jeffery wrote:
+> >>> +static int aspeed_sdhci_probe(struct platform_device *pdev)
+> >>> +{
+> >>> +	struct sdhci_pltfm_host *pltfm_host;
+> >>> +	struct aspeed_sdhci *dev;
+> >>> +	struct sdhci_host *host;
+> >>> +	struct resource *res;
+> >>> +	int slot;
+> >>> +	int ret;
+> >>> +
+> >>> +	host = sdhci_pltfm_init(pdev, &aspeed_sdc_pdata, sizeof(*dev));
+> >>> +	if (IS_ERR(host))
+> >>> +		return PTR_ERR(host);
+> >>> +
+> >>> +	pltfm_host = sdhci_priv(host);
+> >>> +	dev = sdhci_pltfm_priv(pltfm_host);
+> >>> +	dev->parent = dev_get_drvdata(pdev->dev.parent);
+> >>> +
+> >>> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+> >>> +	slot = aspeed_sdhci_calculate_slot(dev, res);
+> >>> +	if (slot < 0)
+> >>> +		return slot;
+> >>> +	dev_info(&pdev->dev, "Configuring for slot %d\n", slot);
+> >>> +	dev->width_mask = !slot ? ASPEED_SDC_S0MMC8 : ASPEED_SDC_S1MMC8;
+> >>
+> >> That implies that you only support 2 slots which begs the question why
+> >> you don't validate slot.
+> > 
+> > I'm not sure what you mean here, but I'll dig into it.
+> 
+> I just meant, if you only support 2 slots:
+> 
+> 	if (slot > 1)
+> 		return -EINVAL;
+>
+
+Oh, sure.
