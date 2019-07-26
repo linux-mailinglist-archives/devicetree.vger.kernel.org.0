@@ -2,87 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 618AA75EAA
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 07:57:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69C2875EA8
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 07:57:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725981AbfGZF5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 01:57:30 -0400
-Received: from mga01.intel.com ([192.55.52.88]:39876 "EHLO mga01.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725842AbfGZF5a (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 01:57:30 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga001.jf.intel.com ([10.7.209.18])
-  by fmsmga101.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 25 Jul 2019 22:57:30 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,309,1559545200"; 
-   d="scan'208";a="254223291"
-Received: from ahunter-desktop.fi.intel.com (HELO [10.237.72.122]) ([10.237.72.122])
-  by orsmga001.jf.intel.com with ESMTP; 25 Jul 2019 22:57:26 -0700
-Subject: Re: [PATCH v2 2/2] mmc: Add support for the ASPEED SD controller
-To:     Andrew Jeffery <andrew@aj.id.au>,
-        linux-mmc <linux-mmc@vger.kernel.org>
-Cc:     Ulf Hansson <ulf.hansson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>, mark.rutland@arm.com,
-        Joel Stanley <joel@jms.id.au>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        Ryan Chen <ryanchen.aspeed@gmail.com>
-References: <20190712033214.24713-1-andrew@aj.id.au>
- <20190712033214.24713-3-andrew@aj.id.au>
- <d6f7fdf2-07ed-354a-ca29-f3175623679c@intel.com>
- <7cd30f3d-43fd-42da-9301-091eb2625c65@www.fastmail.com>
-From:   Adrian Hunter <adrian.hunter@intel.com>
-Organization: Intel Finland Oy, Registered Address: PL 281, 00181 Helsinki,
- Business Identity Code: 0357606 - 4, Domiciled in Helsinki
-Message-ID: <8a7bfe52-83ca-7601-7d75-e5615da7b5de@intel.com>
-Date:   Fri, 26 Jul 2019 08:56:08 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726099AbfGZF5J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 01:57:09 -0400
+Received: from mail-ua1-f67.google.com ([209.85.222.67]:46150 "EHLO
+        mail-ua1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725842AbfGZF5J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 01:57:09 -0400
+Received: by mail-ua1-f67.google.com with SMTP id o19so20859497uap.13
+        for <devicetree@vger.kernel.org>; Thu, 25 Jul 2019 22:57:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lusticky.cz; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ritHirmxie1YVxX8gsEBGYKgo9674hDWBBrNSNHU6lA=;
+        b=OZ16Wy3VqClU7qnmMtLfqHy3JNEfEiLqD1tZaDeShgmqyxUHNGIvxBvwZ/Mgfo3J8h
+         WLwQ0Q50ShXjHe8XgqCUTZwQDe+qJaKK+sMdgdvLg09NEndmHrkoqebpHgzQ6OWdsjUZ
+         ewnC82U+uXYVFDmjCfOUpy56h81LUQkJbKp3N/5ammyJlUBV7v3kieDOyZl+hMqjoANn
+         2qfsBKu3OMTkc/Sp35HDTKk3ES2fNJ3v7ntaSA7eqF7r5sAChNoQCf8fFgrJq6SvnlgZ
+         w2m+UlkpZ/I2qPyV+mx9t8jr2Zqy5vEcdk/xH7w7S7oYhbpTkPiYdkArWre3bVRrj8Z5
+         CmmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ritHirmxie1YVxX8gsEBGYKgo9674hDWBBrNSNHU6lA=;
+        b=tkVyS7yn8lDlPertPXxVsEdKixp5ocwyntcrny2tdOeJQy/a9Tgy1C97LEke2z25Uc
+         cop0mDb6Svrzqsb7UfgqBpo0JngJm1oKZZzbVSZ3PhjYGpCk1AGtE5QA/8QCqH2Wt69r
+         ZmejZn1dx+FYWsSs2edtkdkC8W4skV9hYxG8UQZCMVeMlUdxOyLEjlB3Hxqp+J07DApV
+         RjoZjx2hu4fVibOs9cut1+/YXu5Sp0Qr/BtZLCgtR2z8VW9GpkjuF9gekXCn671ROBrh
+         4+n0ErzDyeD26Tf6oZrsoLVyygW/E1tO0xxsePoCkh2fciJsgxx03rk7Y09pVd19PvK3
+         X30Q==
+X-Gm-Message-State: APjAAAWNR+R5/WprKS4YZ2C09XcpkWC7tjS5lrtNSy2vEXT++Vu4ADCd
+        3SVyi3QFkBwZTE212LJc3c6CXWK8beemoh6azEQ=
+X-Google-Smtp-Source: APXvYqzYMhqIoJam8Xvkd7XcgGAlGjhpj9bY8DK1N/Fqd8iyTTM4rj/7btyKQ0xCTWBpRKcWG8Ve1eHTPky5aD/JvRQ=
+X-Received: by 2002:ab0:66:: with SMTP id 93mr4068238uai.135.1564120627632;
+ Thu, 25 Jul 2019 22:57:07 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <7cd30f3d-43fd-42da-9301-091eb2625c65@www.fastmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190304125033.28841-1-josef@lusticky.cz> <20190708145618.26031-1-josef@lusticky.cz>
+ <20190708145618.26031-2-josef@lusticky.cz> <20190724195744.GA22947@bogus>
+In-Reply-To: <20190724195744.GA22947@bogus>
+From:   =?UTF-8?B?Sm9zZWYgTHXFoXRpY2vDvQ==?= <josef@lusticky.cz>
+Date:   Fri, 26 Jul 2019 07:56:31 +0200
+Message-ID: <CAMqqaJFKUfodEf50EuJvCURKS+3pA2mesk4Dt1K-GHZuOh24xA@mail.gmail.com>
+Subject: Re: [PATCH v2 1/2] dt-bindings: panel: Add parallel RGB mode for
+ Ilitek ILI9341 panels
+To:     Rob Herring <robh@kernel.org>
+Cc:     Sam Ravnborg <sam@ravnborg.org>, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, Daniel Vetter <daniel@ffwll.ch>,
+        thierry.reding@gmail.com, airlied@linux.ie
+Content-Type: multipart/mixed; boundary="00000000000065ce3d058e8f3608"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/19 3:52 AM, Andrew Jeffery wrote:
-> On Thu, 25 Jul 2019, at 22:49, Adrian Hunter wrote:
->> On 12/07/19 6:32 AM, Andrew Jeffery wrote:
->>> +static int aspeed_sdhci_probe(struct platform_device *pdev)
->>> +{
->>> +	struct sdhci_pltfm_host *pltfm_host;
->>> +	struct aspeed_sdhci *dev;
->>> +	struct sdhci_host *host;
->>> +	struct resource *res;
->>> +	int slot;
->>> +	int ret;
->>> +
->>> +	host = sdhci_pltfm_init(pdev, &aspeed_sdc_pdata, sizeof(*dev));
->>> +	if (IS_ERR(host))
->>> +		return PTR_ERR(host);
->>> +
->>> +	pltfm_host = sdhci_priv(host);
->>> +	dev = sdhci_pltfm_priv(pltfm_host);
->>> +	dev->parent = dev_get_drvdata(pdev->dev.parent);
->>> +
->>> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
->>> +	slot = aspeed_sdhci_calculate_slot(dev, res);
->>> +	if (slot < 0)
->>> +		return slot;
->>> +	dev_info(&pdev->dev, "Configuring for slot %d\n", slot);
->>> +	dev->width_mask = !slot ? ASPEED_SDC_S0MMC8 : ASPEED_SDC_S1MMC8;
->>
->> That implies that you only support 2 slots which begs the question why
->> you don't validate slot.
-> 
-> I'm not sure what you mean here, but I'll dig into it.
+--00000000000065ce3d058e8f3608
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
-I just meant, if you only support 2 slots:
+Hello Rob,
+my fault, sorry, backlight should not be required.
+I'll fix this in the next patch version.
 
-	if (slot > 1)
-		return -EINVAL;
+I'd like to post the DT bindings in the YAML format.
+Work-in-progress YAML bindings file is in the attachment,
+any comments would be highly appreciated.
+
+Kind regards
+Josef
+
+st 24. 7. 2019 v 21:57 odes=C3=ADlatel Rob Herring <robh@kernel.org> napsal=
+:
+>
+> On Mon, Jul 08, 2019 at 04:56:17PM +0200, Josef Lusticky wrote:
+> > ILI9341 supports both SPI input mode and parallel RGB input mode.
+> > This commit adds parallel RGB input mode bindings.
+> >
+> > Signed-off-by: Josef Lusticky <josef@lusticky.cz>
+> > ---
+> >  .../bindings/display/ilitek,ili9341.txt       | 67 ++++++++++++++++---
+> >  1 file changed, 56 insertions(+), 11 deletions(-)
+> >
+> > diff --git a/Documentation/devicetree/bindings/display/ilitek,ili9341.t=
+xt b/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+> > index 169b32e4ee4e..629f38a1d0cd 100644
+> > --- a/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+> > +++ b/Documentation/devicetree/bindings/display/ilitek,ili9341.txt
+> > @@ -1,27 +1,72 @@
+> >  Ilitek ILI9341 display panels
+> >
+> > -This binding is for display panels using an Ilitek ILI9341 controller =
+in SPI
+> > -mode.
+> > +This binding is for display panels using an Ilitek ILI9341 controller.
+> > +The display panels are supported in the following graphical input mode=
+s:
+> > +- SPI input mode
+> > +     MIPI-DBI Type 3 Option 1 or Option 3 is used to transfer
+> > +     commands and graphical data
+> > +- parallel RGB input mode
+> > +     MIPI-DBI Type 3 Option 1 or Option 3 is used for commands
+> > +     MIPI-DPI 18-bit parallel RGB connection is used to transfer
+> > +     graphical data
+> >
+> > -Required properties:
+> > -- compatible:        "adafruit,yx240qv29", "ilitek,ili9341"
+> > -- dc-gpios:  D/C pin
+> > -- reset-gpios:       Reset pin
+> > +
+> > +SPI input mode:
+> >
+> >  The node for this driver must be a child node of a SPI controller, hen=
+ce
+> > -all mandatory properties described in ../spi/spi-bus.txt must be speci=
+fied.
+> > +all mandatory properties described in spi/spi-bus.txt must be specifie=
+d.
+> > +
+> > +Required properties in SPI input mode:
+> > +- compatible:   "adafruit,yx240qv29", "ilitek,ili9341"
+> > +- backlight:    phandle of the backlight device attached to the panel
+>
+> Why is backlight now required?
+>
+> > +
+> > +Optional properties in SPI input mode:
+> > +- rotation:     panel rotation in degrees counter clockwise (0,90,180,=
+270)
+> > +- dc-gpios:     GPIO spec for the D/C pin, see gpio/gpio.txt
+> > +- reset-gpios:  GPIO spec for the reset pin, see gpio/gpio.txt
+> > +
+> > +
+> > +Parallel RGB input mode:
+> > +
+> > +The node for this driver must be a child node of a SPI controller, hen=
+ce
+> > +all mandatory properties described in spi/spi-bus.txt must be specifie=
+d.
+> > +
+> > +Required properties in parallel RGB input mode:
+> > +- compatible:   "displaytech,dt024ctft", "ilitek,ili9341"
+> > +- backlight:    phandle of the backlight device attached to the panel
+> > +
+> > +Optional properties in parallel RGB input mode:
+> > +- dc-gpios:     GPIO spec for the D/C pin, see gpio/gpio.txt
+> > +- reset-gpios:  GPIO spec for the reset pin, see gpio/gpio.txt
+> >
+> > -Optional properties:
+> > -- rotation:  panel rotation in degrees counter clockwise (0,90,180,270=
+)
+> > -- backlight: phandle of the backlight device attached to the panel
+> > +In parallel RGB input mode,
+> > +the device node can contain one 'port' child node with one child
+> > +'endpoint' node, according to the bindings defined in
+> > +media/video-interfaces.txt. This node should describe panel's video bu=
+s.
+> >
+> > -Example:
+> > +
+> > +Example in SPI input mode:
+> >       display@0{
+> >               compatible =3D "adafruit,yx240qv29", "ilitek,ili9341";
+> >               reg =3D <0>;
+> >               spi-max-frequency =3D <32000000>;
+> >               dc-gpios =3D <&gpio0 9 GPIO_ACTIVE_HIGH>;
+> >               reset-gpios =3D <&gpio0 8 GPIO_ACTIVE_HIGH>;
+> > +             backlight =3D <&backlight>;
+> >               rotation =3D <270>;
+> > +     };
+> > +
+> > +Example in parallel RGB input mode:
+> > +     panel@{
+> > +             compatible =3D "displaytech,dt024ctft", "ilitek,ili9341";
+> > +             reg =3D <0>;
+> > +             spi-max-frequency =3D <32000000>;
+> > +             dc-gpios =3D <&gpio0 9 GPIO_ACTIVE_HIGH>;
+> > +             reset-gpios =3D <&gpio0 8 GPIO_ACTIVE_HIGH>;
+> >               backlight =3D <&backlight>;
+> > +             port {
+> > +                     panel_in: endpoint {
+> > +                             remote-endpoint =3D <&display_out>;
+> > +                     };
+> > +             };
+> >       };
+> > --
+> > 2.20.1
+> >
+
+--00000000000065ce3d058e8f3608
+Content-Type: text/plain; charset="US-ASCII"; name="ilitek,ili9341.txt"
+Content-Disposition: attachment; filename="ilitek,ili9341.txt"
+Content-Transfer-Encoding: base64
+Content-ID: <f_jyjou8by0>
+X-Attachment-Id: f_jyjou8by0
+
+IyBTUERYLUxpY2Vuc2UtSWRlbnRpZmllcjogR1BMLTIuMAolWUFNTCAxLjIKLS0tCiRpZDogaHR0
+cDovL2RldmljZXRyZWUub3JnL3NjaGVtYXMvZGlzcGxheS9wYW5lbC9pbGl0ZWssaWxpOTM0MS55
+YW1sIwokc2NoZW1hOiBodHRwOi8vZGV2aWNldHJlZS5vcmcvbWV0YS1zY2hlbWFzL2NvcmUueWFt
+bCMKCnRpdGxlOiBJbGl0ZWsgSUxJOTM0MSBkaXNwbGF5IHBhbmVscwoKbWFpbnRhaW5lcnM6CiAg
+LSBKb3NlZiBMdXN0aWNreSA8am9zZWZAbHVzdGlja3kuY3o+CgpkZXNjcmlwdGlvbjogfAogIFRo
+aXMgYmluZGluZyBpcyBmb3IgZGlzcGxheSBwYW5lbHMgdXNpbmcgYW4gSWxpdGVrIElMSTkzNDEg
+Y29udHJvbGxlci4KICBUaGUgZGlzcGxheSBwYW5lbHMgYXJlIHN1cHBvcnRlZCBpbiB0aGUgZm9s
+bG93aW5nIGdyYXBoaWNhbCBpbnB1dCBtb2RlczoKICBTUEkgaW5wdXQgbW9kZQogICAgTUlQSS1E
+QkkgVHlwZSAzIE9wdGlvbiAxIG9yIE9wdGlvbiAzIGlzIHVzZWQgdG8gdHJhbnNmZXIKICAgIGNv
+bW1hbmRzIGFuZCBncmFwaGljYWwgZGF0YQogIFBhcmFsbGVsIFJHQiBpbnB1dCBtb2RlCiAgICBN
+SVBJLURCSSBUeXBlIDMgT3B0aW9uIDEgb3IgT3B0aW9uIDMgaXMgdXNlZCBmb3IgY29tbWFuZHMK
+ICAgIE1JUEktRFBJIDE4LWJpdCBwYXJhbGxlbCBSR0IgY29ubmVjdGlvbiBpcyB1c2VkIHRvIHRy
+YW5zZmVyCiAgICBncmFwaGljYWwgZGF0YQoKYWxsT2Y6CiAgLSAkcmVmOiAvc2NoZW1hcy9zcGkv
+c3BpLWNvbnRyb2xsZXIueWFtbCMKCnByb3BlcnRpZXM6CiAgY29tcGF0aWJsZToKICAgIGl0ZW1z
+OgogICAgICAtIGNvbnN0OiBhZGFmcnVpdCx5eDI0MHF2MjkKCiAgYmFja2xpZ2h0OiB0cnVlCiAg
+cmVzZXQtZ3Bpb3M6IHRydWUKICBkYy1ncGlvczogdHJ1ZQogIHJvdGF0aW9uOiB0cnVlCiAgcG9y
+dDogdHJ1ZQoKYWRkaXRpb25hbFByb3BlcnRpZXM6IGZhbHNlCgpyZXF1aXJlZDoKICAtIGNvbXBh
+dGlibGUKICAtIGJhY2tsaWdodAoKRXhhbXBsZSBpbiBTUEkgaW5wdXQgbW9kZToKCWRpc3BsYXlA
+MHsKCQljb21wYXRpYmxlID0gImFkYWZydWl0LHl4MjQwcXYyOSIsICJpbGl0ZWssaWxpOTM0MSI7
+CgkJcmVnID0gPDA+OwoJCXNwaS1tYXgtZnJlcXVlbmN5ID0gPDMyMDAwMDAwPjsKCQlkYy1ncGlv
+cyA9IDwmZ3BpbzAgOSBHUElPX0FDVElWRV9ISUdIPjsKCQlyZXNldC1ncGlvcyA9IDwmZ3BpbzAg
+OCBHUElPX0FDVElWRV9ISUdIPjsKCQliYWNrbGlnaHQgPSA8JmJhY2tsaWdodD47CgkJcm90YXRp
+b24gPSA8MjcwPjsKCX07CgpFeGFtcGxlIGluIHBhcmFsbGVsIFJHQiBpbnB1dCBtb2RlOgoJcGFu
+ZWxAewoJCWNvbXBhdGlibGUgPSAiZGlzcGxheXRlY2gsZHQwMjRjdGZ0IiwgImlsaXRlayxpbGk5
+MzQxIjsKCQlyZWcgPSA8MD47CgkJc3BpLW1heC1mcmVxdWVuY3kgPSA8MzIwMDAwMDA+OwoJCWRj
+LWdwaW9zID0gPCZncGlvMCA5IEdQSU9fQUNUSVZFX0hJR0g+OwoJCXJlc2V0LWdwaW9zID0gPCZn
+cGlvMCA4IEdQSU9fQUNUSVZFX0hJR0g+OwoJCWJhY2tsaWdodCA9IDwmYmFja2xpZ2h0PjsKCQlw
+b3J0IHsKCQkJcGFuZWxfaW46IGVuZHBvaW50IHsKCQkJCXJlbW90ZS1lbmRwb2ludCA9IDwmZGlz
+cGxheV9vdXQ+OwoJCQl9OwoJCX07Cgl9Owo=
+--00000000000065ce3d058e8f3608--
