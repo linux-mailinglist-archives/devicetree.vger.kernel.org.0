@@ -2,83 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AAED37653F
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 14:10:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 863537655C
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 14:12:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726065AbfGZMKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 08:10:15 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:35359 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726191AbfGZMKP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 08:10:15 -0400
-Received: by mail-ot1-f66.google.com with SMTP id j19so16640612otq.2
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 05:10:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=JrQTsqOEOykeYsYpjUAu93byMK1KwkPcKibV3U5vnJs=;
-        b=n/Tfy/qYbxxPMGO0GtR4PSwWNzJiHr/teYhJWdmOLIQXeIGRhXlrNAOjHxIg44X/c8
-         rTMphlu7MEMszPQPE7i0KXL/fg/5WjYEzxco2QaaRD1yrK2bg+KCzZWa39ZRgNTM2LtM
-         lCI+/my1YocZGIgiqhq3JHhPYzlOqgYvp6ZdftyiDQSF1s5Nqn4vzv+ZzYEuh31enYTk
-         jjQ04X5nn2NicQK3HyVuUjV+toViPvNj+wcJA44R4DusLvIx9mXjaDaZ27VLOEOxPKkn
-         k32sNyCUvsUw8nN+h7F+9P8EGFwgzyFqenM4BP1xKx9k2fNKMAwbFIXSWbIArOH/RDFF
-         Qdtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JrQTsqOEOykeYsYpjUAu93byMK1KwkPcKibV3U5vnJs=;
-        b=RNgL/duut/fZ0QUFxaLGY2h1bsYc6PMYy+2Z+mgY89dQKVYMjRNzYgTESFMq4MnMIa
-         P9f8mm6uMtN5HH3UBtKlauO/I5sujiZOrgJvP0fhUkSlVWONiYJLaYv/1uJtkmogEyCH
-         97rqICKsBV3mB9nBrCXT2KsH0vPlMev6MXEarJY+N48MOXSzMZqLnVmHgdPXbTUcYw5z
-         B8PDjO0FZIjj35wD8ipFCq+Dq8A7NiCi4eoY6/VPxQ1vspcQCkgUxXMZoxtlVXfA0Vss
-         CZ7cPxacf4tXaEakj9HHBl5RA+ufZbQ/1/p9b7byDC49xoZx5IdvUgb6QBzOzT2uULwC
-         hMrA==
-X-Gm-Message-State: APjAAAWw6XBTIqNMYnfsNCdje69NRDdI/4xiz1TRJaC/uqupykerKL/x
-        ecp+/CttQ2YNXzjRrKTm6KmaQkjmY7fOZniL4On+pg==
-X-Google-Smtp-Source: APXvYqywRN7n6lzmjA5a4KHs4TPzxtEcwP96gaeiFcPkyYj2chffCIcDU5MoSxlTXx3/N/hta8tMsIUOdAnpviY8SDk=
-X-Received: by 2002:a9d:529:: with SMTP id 38mr69587609otw.145.1564143014185;
- Fri, 26 Jul 2019 05:10:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1564125131.git.baolin.wang@linaro.org> <23d51f5d9c9cc647ad0c5a1fb950d3d9fb9c1303.1564125131.git.baolin.wang@linaro.org>
- <20190726112901.GC4902@sirena.org.uk>
-In-Reply-To: <20190726112901.GC4902@sirena.org.uk>
-From:   Baolin Wang <baolin.wang@linaro.org>
-Date:   Fri, 26 Jul 2019 20:10:02 +0800
-Message-ID: <CAMz4ku+3FVOYr7Gvh-Yrdhvw2cfntbnEkhONYGbC71UmCgZA-A@mail.gmail.com>
-Subject: Re: [PATCH 6/6] dt-bindings: spi: sprd: Change the hwlock support to
- be optional
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1726203AbfGZMM1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 08:12:27 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36184 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726277AbfGZMM1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 08:12:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=Skzanq6VQpDThygBClqVy35KX/v/j8u+eJd8QBN7EtI=; b=g2nKAPJz/rUe
+        NbmXRiSttKEORjAqttEhrCUVXc34mefcepBxwvnjh6wWcsN7X8vS+1ecmVqG+Rv28qHTCYIHXhke/
+        MsATFMP1URCY7Fgr0DPcrnEnpxXMw3gvDDFlus+lffwH66/Q9THj39j/tb/BJK1JggIgsy45Gq/KJ
+        FJPCg=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hqz58-0001Zm-4O; Fri, 26 Jul 2019 12:12:18 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 9EDDC2742B63; Fri, 26 Jul 2019 13:12:17 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc:     alsa-devel@alsa-project.org, "Cc:"@sirena.org.uk,
+        "Cc:"@sirena.org.uk, Chen-Yu Tsai <wens@csie.org>,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Mark Brown <broonie@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Orson Zhai <orsonzhai@gmail.com>,
-        Chunyan Zhang <zhang.lyra@gmail.com>, weicx@spreadst.com,
-        sherry.zong@unisoc.com,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        DTML <devicetree@vger.kernel.org>,
-        LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Subject: Applied "ASoC: sunxi: fix a sound binding broken reference" to the asoc tree
+In-Reply-To: <9932608f32030c886d906ea656eda8408c544776.1564140865.git.mchehab+samsung@kernel.org>
+X-Patchwork-Hint: ignore
+Message-Id: <20190726121217.9EDDC2742B63@ypsilon.sirena.org.uk>
+Date:   Fri, 26 Jul 2019 13:12:17 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+The patch
 
-On Fri, 26 Jul 2019 at 19:29, Mark Brown <broonie@kernel.org> wrote:
->
-> On Fri, Jul 26, 2019 at 03:20:53PM +0800, Baolin Wang wrote:
-> > No need to add hardware spinlock proctection due to add multiple
-> > msater channel, so change it to be optional in documentation.
->
-> Please use subject lines matching the style for the subsystem.  This
-> makes it easier for people to identify relevant patches.
+   ASoC: sunxi: fix a sound binding broken reference
 
-The subject lines format 'dt-bindings: xxx' was recommended by Rob, so
-I am not sure if I need to change the format as 'spi: sprd:'? Thanks.
+has been applied to the asoc tree at
 
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From d8481155a3219ef427c6384022931758fbbe8ebe Mon Sep 17 00:00:00 2001
+From: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Date: Fri, 26 Jul 2019 08:47:27 -0300
+Subject: [PATCH] ASoC: sunxi: fix a sound binding broken reference
+
+Address this rename:
+	Documentation/devicetree/bindings/sound/{sun4i-i2s.txt -> allwinner,sun4i-a10-i2s.yaml}
+
+Fixes: 0a0ca8e94ca3 ("dt-bindings: sound: Convert Allwinner I2S binding to YAML")
+Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Link: https://lore.kernel.org/r/9932608f32030c886d906ea656eda8408c544776.1564140865.git.mchehab+samsung@kernel.org
+Signed-off-by: Mark Brown <broonie@kernel.org>
+---
+ Documentation/devicetree/bindings/sound/sun8i-a33-codec.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/sound/sun8i-a33-codec.txt b/Documentation/devicetree/bindings/sound/sun8i-a33-codec.txt
+index 2ca3d138528e..7ecf6bd60d27 100644
+--- a/Documentation/devicetree/bindings/sound/sun8i-a33-codec.txt
++++ b/Documentation/devicetree/bindings/sound/sun8i-a33-codec.txt
+@@ -4,7 +4,7 @@ Allwinner SUN8I audio codec
+ On Sun8i-A33 SoCs, the audio is separated in different parts:
+ 	  - A DAI driver. It uses the "sun4i-i2s" driver which is
+ 	  documented here:
+-	  Documentation/devicetree/bindings/sound/sun4i-i2s.txt
++	  Documentation/devicetree/bindings/sound/allwinner,sun4i-a10-i2s.yaml
+ 	  - An analog part of the codec which is handled as PRCM registers.
+ 	  See Documentation/devicetree/bindings/sound/sun8i-codec-analog.txt
+ 	  - An digital part of the codec which is documented in this current
 -- 
-Baolin Wang
-Best Regards
+2.20.1
+
