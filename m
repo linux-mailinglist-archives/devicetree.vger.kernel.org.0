@@ -2,135 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D92B76EAC
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 18:14:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4BCCB76EBF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 18:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727609AbfGZQOJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 12:14:09 -0400
-Received: from asavdk4.altibox.net ([109.247.116.15]:44838 "EHLO
-        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726705AbfGZQOJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 12:14:09 -0400
-Received: from ravnborg.org (unknown [158.248.194.18])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by asavdk4.altibox.net (Postfix) with ESMTPS id 5548A80582;
-        Fri, 26 Jul 2019 18:14:04 +0200 (CEST)
-Date:   Fri, 26 Jul 2019 18:14:03 +0200
-From:   Sam Ravnborg <sam@ravnborg.org>
-To:     Daniel Vetter <daniel@ffwll.ch>,
-        Noralf =?iso-8859-1?Q?Tr=F8nnes?= <noralf@tronnes.org>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Josef Lusticky <josef@lusticky.cz>,
-        Rob Herring <robh@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Dave Airlie <airlied@linux.ie>
-Subject: Re: Controllers with several interface options - one or more drivers?
-Message-ID: <20190726161403.GA25593@ravnborg.org>
-References: <20190304125033.28841-1-josef@lusticky.cz>
- <20190708145618.26031-1-josef@lusticky.cz>
- <20190726122510.GA14341@ravnborg.org>
- <20190726145513.GK15868@phenom.ffwll.local>
- <CAKMK7uESP5D4e_Qx6W7amURqxJ=5Y4JHduZYCtkyVQY9jKJQeA@mail.gmail.com>
+        id S1726748AbfGZQSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 12:18:55 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:52813 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726007AbfGZQSy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jul 2019 12:18:54 -0400
+Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6QG6Hpo030144;
+        Fri, 26 Jul 2019 18:18:39 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=IXxLWvTNmiUU59JMUeszE0o+fXSHf9wp+bJ4iqAv/do=;
+ b=U88KFzuVSXQpIKzDDIIFqcilRxMXyICiEVyjCMNY+rbxk9rSKnFDcH/P278PPIbd4rLf
+ aPDtJWnkFTk9gQFloRyeusVw4Dx/TADtO+SHjPK2xrfnFjXoc0gGkfxP8zWKu7IN5wFh
+ AiC+yx8mYfw3irtzXVPlv690ZPfQvA1xaKmmxypjVC2uIeQC6vfR9w8T6W4QnM85zDet
+ wWQNU8sEubADekjpmE28/XSiEcRq/cGjNXAqKvvmfW5X3HCC/8IJOIOffSRUpFb9yljP
+ CuB400jQn4GQzeKNj69eW6R8Okf8JVlYPImBfQCVDv7HKdhS2zXXb62smI2pbOKo8rhJ bA== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2tx604bj0f-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Fri, 26 Jul 2019 18:18:39 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 08D2E31;
+        Fri, 26 Jul 2019 16:18:39 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D00874FB7;
+        Fri, 26 Jul 2019 16:18:38 +0000 (GMT)
+Received: from lmecxl0912.lme.st.com (10.75.127.48) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 26 Jul
+ 2019 18:18:37 +0200
+Subject: Re: [PATCH v4 0/8] stm32 m4 remoteproc on STM32MP157c
+To:     Fabien Dessenne <fabien.dessenne@st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Ohad Ben-Cohen <ohad@wizery.com>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>, <linux-remoteproc@vger.kernel.org>
+CC:     Loic Pallardy <loic.pallardy@st.com>,
+        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
+        Ludovic Barre <ludovic.barre@st.com>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+References: <1557822423-22658-1-git-send-email-fabien.dessenne@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <334f2829-fa5e-3f81-5872-730b2aa8b757@st.com>
+Date:   Fri, 26 Jul 2019 18:18:37 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAKMK7uESP5D4e_Qx6W7amURqxJ=5Y4JHduZYCtkyVQY9jKJQeA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-CMAE-Score: 0
-X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
-        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
-        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=25-AhOLfAAAA:8
-        a=vxpcmmc7qeB5gxik3AUA:9 a=CjuIK1q_8ugA:10 a=dnuY3_Gu-P7Vi9ynLKQe:22
+In-Reply-To: <1557822423-22658-1-git-send-email-fabien.dessenne@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.48]
+X-ClientProxiedBy: SFHDAG2NODE3.st.com (10.75.127.6) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-26_12:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel.
+Hi Fabien
 
-Added Noralf - somehow I missed him on the original mail.
+On 5/14/19 10:26 AM, Fabien Dessenne wrote:
+> STMicrolectronics STM32MP157 MPU are based on a Dual Arm Cortex-A7 core and a
+> Cortex-M4.
+> This patchset adds the support of the stm32_rproc driver allowing to control
+> the M4 remote processor.
+> 
 
-On Fri, Jul 26, 2019 at 05:06:03PM +0200, Daniel Vetter wrote:
-> Also probably should add a few more (drm_bridge) people, I think
-> that's also somewhat relevant here.
-> -Daniel
-> 
-> On Fri, Jul 26, 2019 at 4:55 PM Daniel Vetter <daniel@ffwll.ch> wrote:
-> >
-> > On Fri, Jul 26, 2019 at 02:25:10PM +0200, Sam Ravnborg wrote:
-> > > Hi Josef, Daniel et al.
-> > >
-> > > The driver that triggered this reply is a driver that adds parallel
-> > > support to ili9341 in a dedicated panel driver.
-> > > The issue here is that we already have a tiny driver that supports the
-> > > ili9341 controller - but with a slightly different configuration.
-> > >
-> > > The ili9341 supports several interfaces - from the datasheet:
-> > >     "ILI9341 supports parallel 8-/9-/16-/18-bit data bus
-> > >      MCU interface, 6-/16-/18-bit data bus RGB interface and
-> > >      3-/4-line serial peripheral interface (SPI)"
-> > >
-> > > Noralf - in another mail explained:
-> > > "
-> > > The MIPI Alliance has lots of standards some wrt. display controller
-> > > interfaces:
-> > > - MIPI DBI - Display Bus Interface (used for commands and optionally pixels)
-> > > - MIPI DPI - Display Pixel Interface (also called RGB interface or
-> > > DOTCLK interface)
-> > > - MIPI DSI - Display Serial Interface (commands and pixels)
-> > >
-> > > The ili9341 supports both MIPI DBI and DPI.
-> > > "
-> > >
-> > > MIPI DPI - is a good fit for a drm_panel driver.
-> > > MIPI DBI - requires a full display controller driver.
-> > >
-> > > There are many other examples of driver SoC that in the same way
-> > > can be seen only as a panel or as a full display controller driver.
-> > >
-> > > The open question here is if we should try to support both cases in the
-> > > same driver / file. Or shall we implment two different drivers.
-> > > One for the panel use-case. And one for the display controller usecase?
-> > >
-> > > Not sure - so asking for feedback.
-> >
-> > I'm not sure. Currently we do have DSI and dumb RGB panels all in
-> > drm/panel. I don't think we have DBI panels in there yet, but then
-> > drm/tiny is the only one supporting these.
-> >
-> > I guess we could look into move some of the DBI panel drivers into panel
-> > drivers, but that needs a bit more glue all around. I'm honestly not sure
-> > how the current DSI drivers in drm_panel work exactly, especially for
-> > command mode.
-> >
-> > Or maybe we need a new interface for command mode.
-If I get around to do a driver for the ssd1306 then I will try to sewhat
-makes sense then. For now we shall not stall the ili9341 driver.
-> >
-> > Wrt sharing code between drivers for the same chip, but different
-> > interfaces: I wouldn't worry too much about that. Maybe try to have a
-> > shared header file at least for registers.
-This part should be the minimum. Somthing like include/drm/mipi/?
+...
 
-	Sam
+>      driver
+>    remoteproc: stm32: add an ST stm32_rproc driver
+>    ARM: dts: stm32: add m4 remoteproc support on STM32MP157c
+>    ARM: dts: stm32: declare copro reserved memories on STM32MP157c-ed1
+>    ARM: dts: stm32: enable m4 coprocessor support on STM32MP157c-ed1
+>    ARM: dts: stm32: declare copro reserved memories on STM32MP157a-dk1
+>    ARM: dts: stm32: enable m4 coprocessor support on STM32MP157a-dk1
+> 
 
-> > Long term we could end up with
-> > one driver module which exposes different flavours of the same chip, so
-> > multiple drm_panel drivers, or maybe we'll get something more specific for
-> > dsi/dbi.
-> > -Daniel
-> > --
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > http://blog.ffwll.ch
-> 
-> 
-> 
-> -- 
-> Daniel Vetter
-> Software Engineer, Intel Corporation
-> +41 (0) 79 365 57 48 - http://blog.ffwll.ch
+DT patches applied on stm32-next.
+
+Regards
+Alexandre
