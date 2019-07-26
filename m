@@ -2,84 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F08E177190
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 20:48:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BC877717B
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 20:45:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388230AbfGZSs5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 14:48:57 -0400
-Received: from mailoutvs9.siol.net ([185.57.226.200]:56219 "EHLO mail.siol.net"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2387394AbfGZSs5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 14:48:57 -0400
-X-Greylist: delayed 479 seconds by postgrey-1.27 at vger.kernel.org; Fri, 26 Jul 2019 14:48:55 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTP id A51F8523041;
-        Fri, 26 Jul 2019 20:41:08 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta10.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta10.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id vwG4zhWBUSbu; Fri, 26 Jul 2019 20:41:08 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Postfix) with ESMTPS id 686A0523044;
-        Fri, 26 Jul 2019 20:41:08 +0200 (CEST)
-Received: from localhost.localdomain (cpe-194-152-11-237.cable.triera.net [194.152.11.237])
-        (Authenticated sender: 031275009)
-        by mail.siol.net (Postfix) with ESMTPSA id 1CB6F523041;
-        Fri, 26 Jul 2019 20:41:06 +0200 (CEST)
-From:   Jernej Skrabec <jernej.skrabec@siol.net>
-To:     thierry.reding@gmail.com, mripard@kernel.org, wens@csie.org
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: [PATCH 6/6] arm64: dts: allwinner: h6: Add PWM node
-Date:   Fri, 26 Jul 2019 20:40:45 +0200
-Message-Id: <20190726184045.14669-7-jernej.skrabec@siol.net>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190726184045.14669-1-jernej.skrabec@siol.net>
-References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+        id S2388145AbfGZSpb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 14:45:31 -0400
+Received: from asavdk3.altibox.net ([109.247.116.14]:43974 "EHLO
+        asavdk3.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387440AbfGZSpb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 14:45:31 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk3.altibox.net (Postfix) with ESMTPS id 05C2720117;
+        Fri, 26 Jul 2019 20:45:23 +0200 (CEST)
+Date:   Fri, 26 Jul 2019 20:45:22 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        Artur Rojek <contact@artur-rojek.eu>,
+        alsa-devel@alsa-project.org, linux-pm@vger.kernel.org,
+        linux-mips@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-kernel@vger.kernel.org, od@zcrc.me,
+        linux-mtd@lists.infradead.org, dmaengine@vger.kernel.org
+Subject: Re: [PATCH 05/11] video/fbdev: Drop JZ4740 driver
+Message-ID: <20190726184522.GB14981@ravnborg.org>
+References: <20190725220215.460-1-paul@crapouillou.net>
+ <20190725220215.460-6-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190725220215.460-6-paul@crapouillou.net>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=dqr19Wo4 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10 a=ER_8r6IbAAAA:8
+        a=p6pI0oa4AAAA:8 a=7gkXJVJtAAAA:8 a=_OfsqKrkMx9ODVYiAzcA:9
+        a=CjuIK1q_8ugA:10 a=9LHmKk7ezEChjTCyhBa9:22 a=9cw2y2bKwytFd151gpuR:22
+        a=E9Po1WZjFZOl8hwRPBS3:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Allwinner H6 PWM is similar to that in A20 except that it has additional
-bus clock and reset line.
+Hi Paul.
 
-Note that first PWM channel is connected to output pin and second
-channel is used internally, as a clock source to AC200 co-packaged chip.
-This means that any combination of these two channels can be used and
-thus it doesn't make sense to add pinctrl nodes at this point.
+On Thu, Jul 25, 2019 at 06:02:09PM -0400, Paul Cercueil wrote:
+> The JZ4740 fbdev driver has been replaced with the ingenic-drm driver.
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> Tested-by: Artur Rojek <contact@artur-rojek.eu>
+> ---
+>  drivers/video/fbdev/Kconfig     |   9 -
+>  drivers/video/fbdev/Makefile    |   1 -
+>  drivers/video/fbdev/jz4740_fb.c | 690 --------------------------------
+>  3 files changed, 700 deletions(-)
+>  delete mode 100644 drivers/video/fbdev/jz4740_fb.c
+Nice work of you and others involved.
 
-Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
----
- arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Acked-by: Sam Ravnborg <sam@ravnborg.org>
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/bo=
-ot/dts/allwinner/sun50i-h6.dtsi
-index e8bed58e7246..c1abd805cfdc 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-@@ -229,6 +229,16 @@
- 			status =3D "disabled";
- 		};
-=20
-+		pwm: pwm@300a000 {
-+			compatible =3D "allwinner,sun50i-h6-pwm";
-+			reg =3D <0x0300a000 0x400>;
-+			clocks =3D <&osc24M>, <&ccu CLK_BUS_PWM>;
-+			clock-names =3D "pwm", "bus";
-+			resets =3D <&ccu RST_BUS_PWM>;
-+			#pwm-cells =3D <3>;
-+			status =3D "disabled";
-+		};
-+
- 		pio: pinctrl@300b000 {
- 			compatible =3D "allwinner,sun50i-h6-pinctrl";
- 			reg =3D <0x0300b000 0x400>;
---=20
-2.22.0
-
+	Sam
