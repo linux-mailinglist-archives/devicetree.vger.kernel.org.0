@@ -2,236 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 996D676EFD
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 18:25:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 98ACA76F09
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 18:27:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728629AbfGZQZM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 12:25:12 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:32927 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727981AbfGZQZM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 12:25:12 -0400
-Received: by mail-lf1-f66.google.com with SMTP id x3so37560653lfc.0
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 09:25:10 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=jJr+mv+3Bku2kcxf6e7N0HYCTZd2RY5/zWLci9WVBdY=;
-        b=FMr7HUFndh/+mlDCOhrYAubF+h/5Wh04nOfHpjDKkgiz7k+J82TnFn/DYzZJooHjQK
-         Y8GOVxxSt61fAe4fGOSexE7oS3DDozGg7r/3YxG7QVqtlBf/sm3FvNbtHQjcYN0ioi+P
-         seUeVr3PsyvcFU1IhqG0dGtpx2L9/lRkU/jFJuVaCNADmPB5PUjTd0uyfpwxCjR9c2XB
-         R/CP2v9+fC8b9yK7DsRN0K1omvxBnipsLsaQhu5YN1Zvxn4aDM593UxnLhMrIruCn2gu
-         MS722OBFU+z0BwbnCK+ab8XxDLFLBZm1mPLtC0pH/aZxci26KUfkNxFqDPfpOAJR2SU3
-         KnRA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=jJr+mv+3Bku2kcxf6e7N0HYCTZd2RY5/zWLci9WVBdY=;
-        b=WkNZsZUKICrBEc7tMFnO0bp8FtB0prh2oRmI+YST2BHNV5Rwol8RJErYN5PYRXvBjj
-         e2pRFq2h0bTkryocsY95xfbvZbo6cWAf0N0UPSrduAIMGUUSFn32TAt8vq97uSMCUGZu
-         Qv8J8jpeashNiUFq3b1EWugSC4HAD9gArGm9AXiGPP+RSIMcivYbQ/nz9FBbcJcw35Uu
-         P+v3FMEF8eUmj9IEqoxLAJuU2eQH2balk8bx0l7Ifhju6921oWAb8qu58lnyijlTrQNB
-         3QwG5H8Omoy6ReIovydWxtWIo38WQCzayXIlGdEqdlS3aHHuLU3RBIto4ya31/JKqTGP
-         CGkg==
-X-Gm-Message-State: APjAAAW8Bk5+AdffO3pW3fhDNDDiOM9VIYFc+v+swGhD3infROYi8zvN
-        dgKnhPq7yIp0dvBfKYleMDawag==
-X-Google-Smtp-Source: APXvYqwAOv7nMvSXK7zBLGzWO2lkM4lXZ2foX0Ydk01HBVMN7bP2yVrDQqjXAjBtpwThlj+DgA8dSA==
-X-Received: by 2002:a19:c1cc:: with SMTP id r195mr43881045lff.95.1564158309555;
-        Fri, 26 Jul 2019 09:25:09 -0700 (PDT)
-Received: from [10.44.66.8] ([212.45.67.2])
-        by smtp.googlemail.com with ESMTPSA id i9sm8563026lfl.10.2019.07.26.09.25.07
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 26 Jul 2019 09:25:09 -0700 (PDT)
-Subject: Re: [PATCH v3 6/6] interconnect: Add OPP table support for
- interconnects
-To:     Saravana Kannan <saravanak@google.com>,
+        id S1728830AbfGZQ1N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 12:27:13 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:27616 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727554AbfGZQ1M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jul 2019 12:27:12 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6QG7fWq014148;
+        Fri, 26 Jul 2019 18:27:03 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : cc :
+ references : from : message-id : date : mime-version : in-reply-to :
+ content-type : content-transfer-encoding; s=STMicroelectronics;
+ bh=n6HKe0PgjUg51eRmGPMx0Q+MwoGoF4rstkH/lFHzWaM=;
+ b=JsisJ/fpUkrGVDfSbnAzLrhU0vpu091fbUaYeaRC1Do+Xg5R8AE1Wdflko+wosp4+R7F
+ ya+MTVXY6X0yGUrx2znky65+IAwBMKRttphn0UXtGe3GuDxucpAACX+UQmTk3q3poqeC
+ /DcYKUe81hr1OIfNwuVYApiAUVhWiMLl2SDq6d1fn6P/iPB0ORPk8iXb+1Hy1XIeQQA8
+ gM2gLphuWIzte4rglgFqd7h56FKz+gcjVNe5DiVtVuYPCroIYfnHwgXM83CWu3yPYQGz
+ X3sch1vB/47ieQ44MWFKSwACSBmJYcw/smxwLA/hkavoRMvNjBkqXJ9CtUS6zsD0HViW dw== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2tx60absu1-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Fri, 26 Jul 2019 18:27:03 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 10B1231;
+        Fri, 26 Jul 2019 16:27:03 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id DF60D4FD0;
+        Fri, 26 Jul 2019 16:27:02 +0000 (GMT)
+Received: from lmecxl0912.lme.st.com (10.75.127.51) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 26 Jul
+ 2019 18:27:02 +0200
+Subject: Re: [PATCH] ARM: dts: stm32: fix -Wall W=1 compilation warnings for
+ can1_sleep pinctrl
+To:     Erwan Le Ray <erwan.leray@st.com>,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>
-Cc:     vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
-        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        sibis@codeaurora.org, bjorn.andersson@linaro.org,
-        evgreen@chromium.org, kernel-team@android.com,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190703011020.151615-1-saravanak@google.com>
- <20190703011020.151615-7-saravanak@google.com>
-From:   Georgi Djakov <georgi.djakov@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
- 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
- KEmKjLDvB0pePJkdTw==
-Message-ID: <fde02417-dc72-acad-727d-452a3ae3cbd0@linaro.org>
-Date:   Fri, 26 Jul 2019 19:25:06 +0300
+        Mark Rutland <mark.rutland@arm.com>
+CC:     <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <bich.hemon@st.com>
+References: <1561972686-23281-1-git-send-email-erwan.leray@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <8cb628b9-dbbf-98d6-e09a-2ecc082315d4@st.com>
+Date:   Fri, 26 Jul 2019 18:27:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190703011020.151615-7-saravanak@google.com>
-Content-Type: text/plain; charset=utf-8
+In-Reply-To: <1561972686-23281-1-git-send-email-erwan.leray@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG2NODE1.st.com (10.75.127.4) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-26_12:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Saravana,
+Hi Erwan		
 
-On 7/3/19 04:10, Saravana Kannan wrote:
-> Interconnect paths can have different performance points. Now that OPP
-> framework supports bandwidth OPP tables, add OPP table support for
-> interconnects.
+On 7/1/19 11:18 AM, Erwan Le Ray wrote:
+> Fix compilations warnings detected by -Wall W=1 compilation option:
+> - node has a unit name, but no reg property
 > 
-> Devices can use the interconnect-opp-table DT property to specify OPP
-> tables for interconnect paths. And the driver can obtain the OPP table for
-> an interconnect path by calling icc_get_opp_table().
+> Signed-off-by: Erwan Le Ray <erwan.leray@st.com>
 > 
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/interconnect/core.c  | 27 ++++++++++++++++++++++++++-
->  include/linux/interconnect.h |  7 +++++++
->  2 files changed, 33 insertions(+), 1 deletion(-)
+> diff --git a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+> index 140a983..ce98fd8 100644
+> --- a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+> @@ -427,7 +427,7 @@
+>   				};
+>   			};
+>   
+> -			m_can1_sleep_pins_a: m_can1-sleep@0 {
+> +			m_can1_sleep_pins_a: m_can1-sleep-0 {
+>   				pins {
+>   					pinmux = <STM32_PINMUX('H', 13, ANALOG)>, /* CAN1_TX */
+>   						 <STM32_PINMUX('I', 9, ANALOG)>; /* CAN1_RX */
 > 
-> diff --git a/drivers/interconnect/core.c b/drivers/interconnect/core.c
-> index 871eb4bc4efc..881bac80bc1e 100644
-> --- a/drivers/interconnect/core.c
-> +++ b/drivers/interconnect/core.c
-> @@ -47,6 +47,7 @@ struct icc_req {
->   */
->  struct icc_path {
->  	size_t num_nodes;
-> +	struct opp_table *opp_table;
 
-I am a bit worried that these tables might be abused and size of the DT will
-grow with many OPP tables of all existing paths.
+Thanks for cleaning the STM32 DT. Applied on stm32-next. Note that I 
+changed commit title to indicate which STM32 platform is targeted by 
+this patch.
 
->  	struct icc_req reqs[];
->  };
->  
-> @@ -313,7 +314,7 @@ struct icc_path *of_icc_get(struct device *dev, const char *name)
->  {
->  	struct icc_path *path = ERR_PTR(-EPROBE_DEFER);
->  	struct icc_node *src_node, *dst_node;
-> -	struct device_node *np = NULL;
-> +	struct device_node *np = NULL, *opp_node;
->  	struct of_phandle_args src_args, dst_args;
->  	int idx = 0;
->  	int ret;
-> @@ -381,10 +382,34 @@ struct icc_path *of_icc_get(struct device *dev, const char *name)
->  		dev_err(dev, "%s: invalid path=%ld\n", __func__, PTR_ERR(path));
->  	mutex_unlock(&icc_lock);
->  
-> +	opp_node = of_parse_phandle(np, "interconnect-opp-table", idx);
-
-Can't we figure out if the device OPP table contains bandwidth even without this
-property?
-
-Thanks,
-Georgi
-
-> +	if (opp_node) {
-> +		path->opp_table = dev_pm_opp_of_find_table_from_node(opp_node);
-> +		of_node_put(opp_node);
-> +	}
-> +
-> +
->  	return path;
->  }
->  EXPORT_SYMBOL_GPL(of_icc_get);
->  
-> +/**
-> + * icc_get_opp_table() - Get the OPP table that corresponds to a path
-> + * @path: reference to the path returned by icc_get()
-> + *
-> + * This function will return the OPP table that corresponds to a path handle.
-> + * If the interconnect API is disabled, NULL is returned and the consumer
-> + * drivers will still build. Drivers are free to handle this specifically, but
-> + * they don't have to.
-> + *
-> + * Return: opp_table pointer on success. NULL is returned when the API is
-> + * disabled or the OPP table is missing.
-> + */
-> +struct opp_table *icc_get_opp_table(struct icc_path *path)
-> +{
-> +	return path->opp_table;
-> +}
-> +
->  /**
->   * icc_set_bw() - set bandwidth constraints on an interconnect path
->   * @path: reference to the path returned by icc_get()
-> diff --git a/include/linux/interconnect.h b/include/linux/interconnect.h
-> index dc25864755ba..0c0bc55f0e89 100644
-> --- a/include/linux/interconnect.h
-> +++ b/include/linux/interconnect.h
-> @@ -9,6 +9,7 @@
->  
->  #include <linux/mutex.h>
->  #include <linux/types.h>
-> +#include <linux/pm_opp.h>
->  
->  /* macros for converting to icc units */
->  #define Bps_to_icc(x)	((x) / 1000)
-> @@ -28,6 +29,7 @@ struct device;
->  struct icc_path *icc_get(struct device *dev, const int src_id,
->  			 const int dst_id);
->  struct icc_path *of_icc_get(struct device *dev, const char *name);
-> +struct opp_table *icc_get_opp_table(struct icc_path *path);
->  void icc_put(struct icc_path *path);
->  int icc_set_bw(struct icc_path *path, u32 avg_bw, u32 peak_bw);
->  
-> @@ -49,6 +51,11 @@ static inline void icc_put(struct icc_path *path)
->  {
->  }
->  
-> +static inline struct opp_table *icc_get_opp_table(struct icc_path *path)
-> +{
-> +	return NULL;
-> +}
-> +
->  static inline int icc_set_bw(struct icc_path *path, u32 avg_bw, u32 peak_bw)
->  {
->  	return 0;
-> 
+Regards
+Alex
