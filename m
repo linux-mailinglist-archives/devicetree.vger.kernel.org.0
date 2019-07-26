@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FB2076AA3
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 16:00:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB9E1769FF
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 15:55:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727497AbfGZN74 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 09:59:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46418 "EHLO mail.kernel.org"
+        id S2387888AbfGZNmO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 09:42:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49460 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387395AbfGZNkX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 09:40:23 -0400
+        id S2387880AbfGZNmN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jul 2019 09:42:13 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 6C9F622CBB;
-        Fri, 26 Jul 2019 13:40:21 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 24FDE22CD2;
+        Fri, 26 Jul 2019 13:42:12 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564148422;
-        bh=qUDUVLtmZIyXHd2fhXS7k3Cp3hGJM9arf5K+CPuawhs=;
+        s=default; t=1564148532;
+        bh=FAr2Y4OwpI1SNqxHOwFQI3SQBJHuAdZFWRAgm7Pbr+Y=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=2f6oeWvW17t1G62zvSmS+wl6Q3nBw4LFTwrL6a6QcaGpkq74r91jVSqn0hS+lIRNw
-         HOrmaXiZSjtZyGL+5qgNGumajAo4+paK5GH8sknIFLvsfMGO3djT5ZHDPNNOnhyg/S
-         znwSf2g6ckP2gkP9mT2yFfhMTC2r5MOR0KVfyehg=
+        b=S5yJdpdzyZamuLJh+ANiE2W8IA6vk/ISOJC32+huQCXFbiGor8stSeplu2zzpl6TY
+         UbKCFuUUrAL6A6muD3yE35NKG8AZ5ybg++aB9oZbDhlq1HyXUT+oot9bnfXCZegX8z
+         zVDjYCPAP4kkHsroEIV5fC01iAYow6VUMa4AIUO0=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Vicente Bergas <vicencb@gmail.com>,
+Cc:     Douglas Anderson <dianders@chromium.org>,
         Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 5.2 25/85] arm64: dts: rockchip: Fix USB3 Type-C on rk3399-sapphire
-Date:   Fri, 26 Jul 2019 09:38:35 -0400
-Message-Id: <20190726133936.11177-25-sashal@kernel.org>
+        Sasha Levin <sashal@kernel.org>,
+        linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [PATCH AUTOSEL 4.19 02/47] ARM: dts: rockchip: Make rk3288-veyron-minnie run at hs200
+Date:   Fri, 26 Jul 2019 09:41:25 -0400
+Message-Id: <20190726134210.12156-2-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190726133936.11177-1-sashal@kernel.org>
-References: <20190726133936.11177-1-sashal@kernel.org>
+In-Reply-To: <20190726134210.12156-1-sashal@kernel.org>
+References: <20190726134210.12156-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -44,66 +44,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Vicente Bergas <vicencb@gmail.com>
+From: Douglas Anderson <dianders@chromium.org>
 
-[ Upstream commit e1d9149e8389f1690cdd4e4056766dd26488a0fe ]
+[ Upstream commit 1c0479023412ab7834f2e98b796eb0d8c627cd62 ]
 
-Before this patch, the Type-C port on the Sapphire board is dead.
-If setting the 'regulator-always-on' property to 'vcc5v0_typec0'
-then the port works for about 4 seconds at start-up. This is a
-sample trace with a memory stick plugged in:
-1.- The memory stick LED lights on and kernel reports:
-[    4.782999] scsi 0:0:0:0: Direct-Access USB DISK PMAP PQ: 0 ANSI: 4
-[    5.904580] sd 0:0:0:0: [sdb] 3913344 512-byte logical blocks: (2.00 GB/1.87 GiB)
-[    5.906860] sd 0:0:0:0: [sdb] Write Protect is off
-[    5.908973] sd 0:0:0:0: [sdb] Mode Sense: 23 00 00 00
-[    5.909122] sd 0:0:0:0: [sdb] No Caching mode page found
-[    5.911214] sd 0:0:0:0: [sdb] Assuming drive cache: write through
-[    5.951585]  sdb: sdb1
-[    5.954816] sd 0:0:0:0: [sdb] Attached SCSI removable disk
-2.- 4 seconds later the memory stick LED lights off and kernel reports:
-[    9.082822] phy phy-ff770000.syscon:usb2-phy@e450.2: charger = USB_DCP_CHARGER
-3.- After a minute the kernel reports:
-[   71.666761] usb 5-1: USB disconnect, device number 2
-It has been checked that, although the LED is off, VBUS is present.
+As some point hs200 was failing on rk3288-veyron-minnie.  See commit
+984926781122 ("ARM: dts: rockchip: temporarily remove emmc hs200 speed
+from rk3288 minnie").  Although I didn't track down exactly when it
+started working, it seems to work OK now, so let's turn it back on.
 
-If, instead, the dr_mode is changed to host and the phy-supply changed
-accordingly, then it works. It has only been tested in host mode.
+To test this, I booted from SD card and then used this script to
+stress the enumeration process after fixing a memory leak [1]:
+  cd /sys/bus/platform/drivers/dwmmc_rockchip
+  for i in $(seq 1 3000); do
+    echo "========================" $i
+    echo ff0f0000.dwmmc > unbind
+    sleep .5
+    echo ff0f0000.dwmmc > bind
+    while true; do
+      if [ -e /dev/mmcblk2 ]; then
+        break;
+      fi
+      sleep .1
+    done
+  done
 
-Signed-off-by: Vicente Bergas <vicencb@gmail.com>
+It worked fine.
+
+[1] https://lkml.kernel.org/r/20190503233526.226272-1-dianders@chromium.org
+
+Signed-off-by: Douglas Anderson <dianders@chromium.org>
 Signed-off-by: Heiko Stuebner <heiko@sntech.de>
 Signed-off-by: Sasha Levin <sashal@kernel.org>
 ---
- arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi | 5 ++---
- 1 file changed, 2 insertions(+), 3 deletions(-)
+ arch/arm/boot/dts/rk3288-veyron-minnie.dts | 4 ----
+ 1 file changed, 4 deletions(-)
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
-index 04623e52ac5d..1bc1579674e5 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399-sapphire.dtsi
-@@ -565,12 +565,11 @@
- 	status = "okay";
- 
- 	u2phy0_otg: otg-port {
--		phy-supply = <&vcc5v0_typec0>;
- 		status = "okay";
- 	};
- 
- 	u2phy0_host: host-port {
--		phy-supply = <&vcc5v0_host>;
-+		phy-supply = <&vcc5v0_typec0>;
- 		status = "okay";
- 	};
- };
-@@ -620,7 +619,7 @@
- 
- &usbdrd_dwc3_0 {
- 	status = "okay";
--	dr_mode = "otg";
-+	dr_mode = "host";
+diff --git a/arch/arm/boot/dts/rk3288-veyron-minnie.dts b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+index f95d0c5fcf71..6e8946052c78 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-minnie.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-minnie.dts
+@@ -90,10 +90,6 @@
+ 	pwm-off-delay-ms = <200>;
  };
  
- &usbdrd3_1 {
+-&emmc {
+-	/delete-property/mmc-hs200-1_8v;
+-};
+-
+ &gpio_keys {
+ 	pinctrl-0 = <&pwr_key_l &ap_lid_int_l &volum_down_l &volum_up_l>;
+ 
 -- 
 2.20.1
 
