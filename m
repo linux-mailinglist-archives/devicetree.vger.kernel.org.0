@@ -2,76 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E13A576300
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 12:02:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C0FC76316
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 12:06:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726139AbfGZKCk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 06:02:40 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37180 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725815AbfGZKCj (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 06:02:39 -0400
-Received: from mail-lj1-f171.google.com (mail-lj1-f171.google.com [209.85.208.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 544AE22CB9;
-        Fri, 26 Jul 2019 10:02:38 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564135358;
-        bh=7MJ+vCNVbPSQe5xb35xJesroJsELZsRfJAQgN2m8Yo0=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=YqZlO8xaCrORR7NUWRK1YWzCAoX0fQGCAruiUvd0EbGpIcxG7y98zfuBT2WRffOtp
-         rLYVGVw70r+Q97IxDQosEpuYSC7i+iFzWd0XKqxj7MT33yDLIHZqL/5Qvv9kvIfAb3
-         47QnWfX36rb6cJH5/SPwNc6vSmEE34SAQhP1ANMY=
-Received: by mail-lj1-f171.google.com with SMTP id z28so50991900ljn.4;
-        Fri, 26 Jul 2019 03:02:38 -0700 (PDT)
-X-Gm-Message-State: APjAAAVVLHp4//7eIhsfcrIpr22da/wwNVI4UkjL/RNeZf00VkgFWUvY
-        Vnlv5T6rKHjc1wKNHGoUYQjUZmGD6c/VvH1LPWs=
-X-Google-Smtp-Source: APXvYqyOZ17x945oZf2yalALHm6hxXvu7W9AcifjqVUkBG7YT744y3x06dMet0dxxzuVhl2gudIP27bO87jyn3ITadI=
-X-Received: by 2002:a2e:7818:: with SMTP id t24mr21589590ljc.210.1564135356368;
- Fri, 26 Jul 2019 03:02:36 -0700 (PDT)
+        id S1725815AbfGZKGN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 06:06:13 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:42131 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725945AbfGZKGM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 06:06:12 -0400
+Received: by mail-wr1-f68.google.com with SMTP id x1so3902270wrr.9
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 03:06:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=3Hjrv9ZYKJu8+kghKGHOb5+hoAyVj3/mf5z92bGiL1s=;
+        b=lYz/UGbt8WDlJYVQroy8L1dI9habJK1BZbzR3fmaHoEoywC9cmqtnAJ9MKT3QtyWQL
+         Ek3HiF6h5r1hgWYb3zXbc7gCi9LSq0ODyWswtsvGxCzmR4tQkwSAFS34t/ZrUi9ntojB
+         3mxFYDym25DUz8RLbKTCzVicgQdJ1GPDmJI9TRPBKVRBzK166CPdkAf08id7H1Ewoqf8
+         lkEJuTEftRC235Fols9XsmEjyKvSqVE8pYCJo+VEl0Kdcv//qP/eF8uS86DTiZ3/VAwh
+         qlFJr9FWZiZW6MiA8TlnsWt0KOn6vWuIEg0rMdPHVZM9caXjsAza6akYhLU5BHpiwTsN
+         DHiQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=3Hjrv9ZYKJu8+kghKGHOb5+hoAyVj3/mf5z92bGiL1s=;
+        b=m8CHKhhNZjd9SqMOZ7npFwiLWxtcQb1KBY4hHNusgTSSGSULSWUYVQu8sNP0t2CGdY
+         OZQo6JzotyKUSFPKqNVNG1BPqTr+7F0OXWtHCE95p0ZHaEARWEY7mm/RyN+X9A/YlRCP
+         YiiOPlfrWOwZEq4nuc6/qb/VEE9nGTft4btnLGLlircANjsTz+Jx0NxX300gqD57l/Cr
+         zfCaHTFbjPbqcMMQfyXstMAkrpwoMFcLqEeAz6PwkQvDuCOf7EAsKgs6s4ry3+NVNJ9O
+         VP77YuDtWfKtWr0QlmHpFPejuu4dD9AZqie56bT+eJ9ul0SI/zd7XeLzyrILdpdr38GN
+         Dvnw==
+X-Gm-Message-State: APjAAAXdokGEm02IfZIQnM07g85yZrvJBksxKGZzNqkj2w4c/J0/h5ug
+        fjH+sleEmqR5Af1VxdJ+Rk+yGw==
+X-Google-Smtp-Source: APXvYqyvpbvw/+SBDxbhu5SzhvXM0cbpOSVyDtC4qDYfx8TaqUQ3+OT+m3w46EiLP53umHEa72/Ofg==
+X-Received: by 2002:adf:9486:: with SMTP id 6mr69762173wrr.242.1564135569988;
+        Fri, 26 Jul 2019 03:06:09 -0700 (PDT)
+Received: from holly.lan (cpc141214-aztw34-2-0-cust773.18-1.cable.virginm.net. [86.9.19.6])
+        by smtp.gmail.com with ESMTPSA id i6sm46180031wrv.47.2019.07.26.03.06.08
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 26 Jul 2019 03:06:09 -0700 (PDT)
+Date:   Fri, 26 Jul 2019 11:06:07 +0100
+From:   Daniel Thompson <daniel.thompson@linaro.org>
+To:     Jean-Jacques Hiblot <jjhiblot@ti.com>
+Cc:     Rob Herring <robh@kernel.org>, jacek.anaszewski@gmail.com,
+        pavel@ucw.cz, mark.rutland@arm.com, dmurphy@ti.com,
+        linux-leds@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] dt-bindings: leds: document new "power-supply"
+ property
+Message-ID: <20190726100607.j5bdmuuk33zpwa2r@holly.lan>
+References: <20190708103547.23528-1-jjhiblot@ti.com>
+ <20190708103547.23528-3-jjhiblot@ti.com>
+ <20190724164757.GA3723@bogus>
+ <753b2c8d-e8fc-ec6e-f372-a84d4452fd33@ti.com>
 MIME-Version: 1.0
-References: <20190726061705.14764-1-krzk@kernel.org> <963ba555-dde0-9c3c-1e15-740ca200853f@kontron.de>
-In-Reply-To: <963ba555-dde0-9c3c-1e15-740ca200853f@kontron.de>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Fri, 26 Jul 2019 12:02:25 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPdbBXEy0zzjZ1ytts0y5STQ5x9xQVBmU1vn46tmu8uCGg@mail.gmail.com>
-Message-ID: <CAJKOXPdbBXEy0zzjZ1ytts0y5STQ5x9xQVBmU1vn46tmu8uCGg@mail.gmail.com>
-Subject: Re: [PATCH v2 1/2] dt-bindings: vendor-prefixes: Add Admatec AG
-To:     Schrempf Frieder <frieder.schrempf@kontron.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <753b2c8d-e8fc-ec6e-f372-a84d4452fd33@ti.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 26 Jul 2019 at 11:48, Schrempf Frieder
-<frieder.schrempf@kontron.de> wrote:
->
-> On 26.07.19 08:17, Krzysztof Kozlowski wrote:
-> > Add vendor prefix for Admatec AG.
->
-> We get the displays used with the Kontron eval kits from "admatec GmbH"
-> in Hamburg, not "Admatec AG" in Switzerland. I think we have to
-> differentiate here.
->
-> I will review patch 2/2 soon...
+On Thu, Jul 25, 2019 at 01:08:46PM +0200, Jean-Jacques Hiblot wrote:
+> Hi Rob,
+> 
+> On 24/07/2019 18:47, Rob Herring wrote:
+> > On Mon, Jul 08, 2019 at 12:35:47PM +0200, Jean-Jacques Hiblot wrote:
+> > > Most of the LEDs are powered by a voltage/current regulator. describing in
+> > > the device-tree makes it possible for the LED core to enable/disable it
+> > > when needed.
+> > > 
+> > > Signed-off-by: Jean-Jacques Hiblot <jjhiblot@ti.com>
+> > > ---
+> > >   Documentation/devicetree/bindings/leds/common.txt | 5 +++++
+> > >   1 file changed, 5 insertions(+)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/leds/common.txt b/Documentation/devicetree/bindings/leds/common.txt
+> > > index 70876ac11367..e093a2b7eb90 100644
+> > > --- a/Documentation/devicetree/bindings/leds/common.txt
+> > > +++ b/Documentation/devicetree/bindings/leds/common.txt
+> > > @@ -61,6 +61,11 @@ Optional properties for child nodes:
+> > >   - panic-indicator : This property specifies that the LED should be used,
+> > >   		    if at all possible, as a panic indicator.
+> > > +- power-supply : A voltage/current regulator used to to power the LED. When a
+> > > +		 LED is turned off, the LED core disable its regulator. The
+> > > +		 same regulator can power many LED (or other) devices. It is
+> > > +		 turned off only when all of its users disabled it.
+> > Not sure this should be common. It wouldn't apply to cases where we have
+> > an LED controller parent nor gpio and pwm LEDs and those are most cases.
+> 
+> It does make sense for GPIO and PWM bindings if the anode of LED is tied to
+> a regulated voltage and the cathod to the control line.
+> 
+> The same is true for a certain class of true LED controller that do not
+> deliver power but act like current sinks.
+> 
+> JJ
+> 
+> > 
+> > Perhaps what makes sense here is an regulator-led binding.
 
-What a coincidence... they have so similar portfolio. After looking at
-vendor prefixes that would be the first duplication of name.
+You didn't comment on this alternative... and I confess I'm not quite
+sure what Rob means by a regulator-led binding so I can't really comment
+either.
 
-To avoid conflict, how about: "admatecde"?
+Rob, is there any analogous example for a regulator-<something-else> binding
+to compare with?
 
-Best regards,
-Krzysztof
+
+Daniel.
+
+> > 
+> > > +
+> > >   - trigger-sources : List of devices which should be used as a source triggering
+> > >   		    this LED activity. Some LEDs can be related to a specific
+> > >   		    device and should somehow indicate its state. E.g. USB 2.0
+> > > -- 
+> > > 2.17.1
+> > > 
