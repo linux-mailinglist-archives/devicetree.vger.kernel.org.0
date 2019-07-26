@@ -2,81 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C28AE75F9D
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 09:21:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A481075FA2
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 09:21:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726357AbfGZHVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 03:21:21 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:38586 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725864AbfGZHVV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 03:21:21 -0400
-Received: by mail-pf1-f194.google.com with SMTP id y15so24068157pfn.5
-        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 00:21:21 -0700 (PDT)
+        id S1726391AbfGZHV0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 03:21:26 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:35639 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725903AbfGZHVZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 03:21:25 -0400
+Received: by mail-pg1-f194.google.com with SMTP id s1so18026536pgr.2
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 00:21:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id;
-        bh=DPFbvaM0ffzn/S9lvtDvQ6X/wXEPD6IvdQw6DnygcpE=;
-        b=Dcn0TQ5iRKLiq9la/u8PnkLoh/bQ2HK/pp5dNWDnoSTPgId5B1ES2XCZi8js0tnVhC
-         KXOtq22CVWqlrrr+aJObx2rwiuJsfIl7mY9R3xWmrAFgRkh9A0GLxELmkTaWSiy/d51P
-         s0bap92JtiqtNfdeVMzIxqhcUx6GIyuEaMsWzjldAXjQdkBdQjzVZXq03JkOdlEqsCr7
-         +/7+BNEovq0MpwM8KHegM16BSHvp9FATaTzBq6pse5fXCApisAoCGuNKaecOlGBVxX9n
-         LmfGDxRULfqXvBm7lRINK7qgeM4mx9z+WK8g8Cm7S5UQc9jKSK0AonVKhg+tPDB2PiFo
-         qIIQ==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :in-reply-to:references;
+        bh=bryuP5AdFGVr6HHrw1EtAVKw7WCYNq7V2nl1DGECvfA=;
+        b=gps6OGJTOEXQrFDHI9KKDyeJAzkYfi0TmbZdKCbEVIfNPXO1MGIyvHCxKJZKZ2908D
+         8XhglJ9iu97qcWacqggfiZbM3MgPQAxKVysMA1FLX022aoa88vdKAroM1s8uWc2h0PT0
+         Kpn0ecFWdL5evyDt/j6yMWM6Q8Zng4FpW/EpDk/7uSf7lrykUAdOTdU5J+vuOry7coOp
+         guNCY1bzr+id756TYU4TSqeXOb4oOORc+SXP1I6ZwkiyJoYwtMbjooqI2nfXC9f5jwVi
+         uINDC8XBa8bXnc5pzc8jVs3S/HmX9owAqK91YB8T0EPBFtqSV2efYSE6gkZN9fd9bKVg
+         5COw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=DPFbvaM0ffzn/S9lvtDvQ6X/wXEPD6IvdQw6DnygcpE=;
-        b=AdJoQfiSAsyRJnP6pYNH6wLCTqcIo3bpY1DIBQISalXn/6PCBZb4iIMBY1ncL8+xvn
-         yU291B8Yx3hutbM3CQx785sudqNa60H6WOA+8esH9rE6LweBk06SW5zhJLvaTHitrtfJ
-         UYvJIbenarp0rvVIVbrq/jOKIvUI8AcbAsEVwkkkSHMGEG2KGz1oILK0AcYN//P5x4Em
-         /g/uNhiKFI8PEXXotfnm0I9xdzbUrMuA9xKkHzefth0FaSafUWMJstDCMucecA7UgKHQ
-         kEiwR+k2bTBkFSnANwypUKK1pLNL/UrP8DiJnUNlZDoqgwhkIytXsdTJcQ5clb42K+Q8
-         UAxw==
-X-Gm-Message-State: APjAAAUtIuE4ZC650IFKufviMGlgtCYNyDxed8iApo/FIlcRjg89HezB
-        rRRs6ml9y48s5VatxVPg4cO9Hw==
-X-Google-Smtp-Source: APXvYqyF4Tr6KpqzUUg1uyFSW7cNnma7IjvzfFuYcV2VA1wP1hJQrdEzG7PNSHLazixsMdq0cLRW9Q==
-X-Received: by 2002:a63:c006:: with SMTP id h6mr56329731pgg.290.1564125680781;
-        Fri, 26 Jul 2019 00:21:20 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:in-reply-to:references;
+        bh=bryuP5AdFGVr6HHrw1EtAVKw7WCYNq7V2nl1DGECvfA=;
+        b=JKjl2A/czLQkZ+KebYiQQceg4yuB5yjpvkJRHQTbvP4mzpWgbJfE9Gr7CRNBWQs9/X
+         5dL36q0gXu3DC+niOmmifLd1FrUbpIGHBNAvsXe592FHDHE51GjdY0O9bCSmlhiKN8bO
+         S1BIrb31TM5ZgKx4FGaJMZeNK3COdGiPt6CGJ9aI9QuIEEwU6hJVbRmqP4sg9dOGsfp/
+         OMtDaSPMxgTOsOQmTvHTav4cQF9ZtgX7vklG0/9pyWGezyy3/sT6h2JWBrJEPNy0FLvS
+         h/sK62YNgPtOm3WfExLagjULzsAhVDPr3HkTPXpt2G6lCyfdPbQilJjbspA+oQJmRGvZ
+         jMKQ==
+X-Gm-Message-State: APjAAAWqQ77W7ngGCBAbsOeWlOT56pUQV2LtzMPglrslu4mv9mu3+DU7
+        51rfeIdDcOLoBjHFzhJtWqEKEw==
+X-Google-Smtp-Source: APXvYqzS59p+DlCx6jRNsTMAnzW6kRqAEKsib4wA9AHCRCnW1gi6S9Ot0/7XGf3sPxBezwzHe9aWmg==
+X-Received: by 2002:a17:90a:1aa4:: with SMTP id p33mr98101963pjp.27.1564125684991;
+        Fri, 26 Jul 2019 00:21:24 -0700 (PDT)
 Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id o12sm39216152pjr.22.2019.07.26.00.21.17
+        by smtp.gmail.com with ESMTPSA id o12sm39216152pjr.22.2019.07.26.00.21.21
         (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Fri, 26 Jul 2019 00:21:20 -0700 (PDT)
+        Fri, 26 Jul 2019 00:21:24 -0700 (PDT)
 From:   Baolin Wang <baolin.wang@linaro.org>
 To:     broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
         orsonzhai@gmail.com, zhang.lyra@gmail.com
 Cc:     weicx@spreadst.com, sherry.zong@unisoc.com, baolin.wang@linaro.org,
         vincent.guittot@linaro.org, linux-spi@vger.kernel.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 0/6] Optimize Spreadtrum ADI driver
-Date:   Fri, 26 Jul 2019 15:20:47 +0800
-Message-Id: <cover.1564125131.git.baolin.wang@linaro.org>
+Subject: [PATCH 1/6] spi: sprd: adi: Remove redundant address bits setting
+Date:   Fri, 26 Jul 2019 15:20:48 +0800
+Message-Id: <3cb57b8aadb7747a9f833e9b4fe8596ba738d9f6.1564125131.git.baolin.wang@linaro.org>
 X-Mailer: git-send-email 1.7.9.5
+In-Reply-To: <cover.1564125131.git.baolin.wang@linaro.org>
+References: <cover.1564125131.git.baolin.wang@linaro.org>
+In-Reply-To: <cover.1564125131.git.baolin.wang@linaro.org>
+References: <cover.1564125131.git.baolin.wang@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset did some optimization to remove some redundant code,
-add more reboot mode support and change hardware spinlock support
-to be optional.
+The ADI default transfer address bits is 12bit on Spreadtrum SC9860
+platform, thus there is no need to set again, remove it.
 
-Baolin Wang (3):
-  spi: sprd: adi: Remove redundant address bits setting
-  spi: sprd: adi: Change hwlock to be optional
-  dt-bindings: spi: sprd: Change the hwlock support to be optional
+Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+---
+ drivers/spi/spi-sprd-adi.c |    3 ---
+ 1 file changed, 3 deletions(-)
 
-Chenxu Wei (1):
-  spi: sprd: adi: Add a reset reason for TOS panic
-
-Sherry Zong (2):
-  spi: sprd: adi: Add a reset reason for factory test mode
-  spi: sprd: adi: Add a reset reason for watchdog mode
-
- .../devicetree/bindings/spi/spi-sprd-adi.txt       |   11 ++-
- drivers/spi/spi-sprd-adi.c                         |   92 ++++++++++++++------
- 2 files changed, 71 insertions(+), 32 deletions(-)
-
+diff --git a/drivers/spi/spi-sprd-adi.c b/drivers/spi/spi-sprd-adi.c
+index df5960b..11880db 100644
+--- a/drivers/spi/spi-sprd-adi.c
++++ b/drivers/spi/spi-sprd-adi.c
+@@ -380,9 +380,6 @@ static void sprd_adi_hw_init(struct sprd_adi *sadi)
+ 	const __be32 *list;
+ 	u32 tmp;
+ 
+-	/* Address bits select default 12 bits */
+-	writel_relaxed(0, sadi->base + REG_ADI_CTRL0);
+-
+ 	/* Set all channels as default priority */
+ 	writel_relaxed(0, sadi->base + REG_ADI_CHN_PRIL);
+ 	writel_relaxed(0, sadi->base + REG_ADI_CHN_PRIH);
 -- 
 1.7.9.5
 
