@@ -2,103 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C4CC275F92
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 09:19:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C28AE75F9D
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 09:21:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725953AbfGZHT7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 03:19:59 -0400
-Received: from mx.0dd.nl ([5.2.79.48]:58308 "EHLO mx.0dd.nl"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725864AbfGZHT7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 03:19:59 -0400
-Received: from mail.vdorst.com (mail.vdorst.com [IPv6:fd01::250])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mx.0dd.nl (Postfix) with ESMTPS id CEE665FB2B;
-        Fri, 26 Jul 2019 09:19:56 +0200 (CEST)
-Authentication-Results: mx.0dd.nl;
-        dkim=pass (2048-bit key; secure) header.d=vdorst.com header.i=@vdorst.com header.b="R+SjCCX3";
-        dkim-atps=neutral
-Received: from www (www.vdorst.com [192.168.2.222])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.vdorst.com (Postfix) with ESMTPSA id 895E21D28756;
-        Fri, 26 Jul 2019 09:19:56 +0200 (CEST)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mail.vdorst.com 895E21D28756
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=vdorst.com;
-        s=default; t=1564125596;
-        bh=+Hr304FY5Zea1KSklbNGrmwPH40tCpigRiaIOPfi1RQ=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=R+SjCCX3t+stiSOsHLt+RuKxZavYZr5Nma3Z+T79/74SyqB1MfgGWveqiesV40IYS
-         ElsHum7l9RTHy7CxUKVvWANJ7AtTThK48tui/25wjevLDn1Nuhvt6DO9NzzXqhu7yr
-         Z/IKbzuLRR1V2xHdEN5sD9B48Mk2wRBF0XUAFd0+iU3UWDddaTdioFn0fq7CXEGe5N
-         pxu19y0Er8Peo1tOTfkyHsf4UtsIAPa4tkTVLUfrR+i3Bw33V+6lEFA77VkyR7aLgI
-         L+aMyTahXnv2g9eVEdraRm6nbA81YDxHIjBOgyGhzTXNXeWDyQdFyK/EiLSoj6eLH2
-         vtWCg/nad6Zyw==
-Received: from localhost.localdomain (localhost.localdomain [127.0.0.1]) by
- www.vdorst.com (Horde Framework) with HTTPS; Fri, 26 Jul 2019 07:19:56 +0000
-Date:   Fri, 26 Jul 2019 07:19:56 +0000
-Message-ID: <20190726071956.Horde.s4rfuzovwXB-d3LnV0PLRc8@www.vdorst.com>
-From:   =?utf-8?b?UmVuw6k=?= van Dorst <opensource@vdorst.com>
-To:     Andrew Lunn <andrew@lunn.ch>
-Cc:     netdev@vger.kernel.org, frank-w@public-files.de,
-        sean.wang@mediatek.com, f.fainelli@gmail.com,
-        linux@armlinux.org.uk, davem@davemloft.net, matthias.bgg@gmail.com,
-        vivien.didelot@gmail.com, john@phrozen.org,
-        linux-mediatek@lists.infradead.org, linux-mips@vger.kernel.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH net-next 3/3] dt-bindings: net: ethernet: Update mt7622
- docs and dts to reflect the new phylink API
-References: <20190724192411.20639-1-opensource@vdorst.com>
- <20190725193123.GA32542@lunn.ch>
-In-Reply-To: <20190725193123.GA32542@lunn.ch>
-User-Agent: Horde Application Framework 5
-Content-Type: text/plain; charset=utf-8; format=flowed; DelSp=Yes
-MIME-Version: 1.0
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
+        id S1726357AbfGZHVV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 03:21:21 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:38586 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725864AbfGZHVV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 03:21:21 -0400
+Received: by mail-pf1-f194.google.com with SMTP id y15so24068157pfn.5
+        for <devicetree@vger.kernel.org>; Fri, 26 Jul 2019 00:21:21 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=DPFbvaM0ffzn/S9lvtDvQ6X/wXEPD6IvdQw6DnygcpE=;
+        b=Dcn0TQ5iRKLiq9la/u8PnkLoh/bQ2HK/pp5dNWDnoSTPgId5B1ES2XCZi8js0tnVhC
+         KXOtq22CVWqlrrr+aJObx2rwiuJsfIl7mY9R3xWmrAFgRkh9A0GLxELmkTaWSiy/d51P
+         s0bap92JtiqtNfdeVMzIxqhcUx6GIyuEaMsWzjldAXjQdkBdQjzVZXq03JkOdlEqsCr7
+         +/7+BNEovq0MpwM8KHegM16BSHvp9FATaTzBq6pse5fXCApisAoCGuNKaecOlGBVxX9n
+         LmfGDxRULfqXvBm7lRINK7qgeM4mx9z+WK8g8Cm7S5UQc9jKSK0AonVKhg+tPDB2PiFo
+         qIIQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=DPFbvaM0ffzn/S9lvtDvQ6X/wXEPD6IvdQw6DnygcpE=;
+        b=AdJoQfiSAsyRJnP6pYNH6wLCTqcIo3bpY1DIBQISalXn/6PCBZb4iIMBY1ncL8+xvn
+         yU291B8Yx3hutbM3CQx785sudqNa60H6WOA+8esH9rE6LweBk06SW5zhJLvaTHitrtfJ
+         UYvJIbenarp0rvVIVbrq/jOKIvUI8AcbAsEVwkkkSHMGEG2KGz1oILK0AcYN//P5x4Em
+         /g/uNhiKFI8PEXXotfnm0I9xdzbUrMuA9xKkHzefth0FaSafUWMJstDCMucecA7UgKHQ
+         kEiwR+k2bTBkFSnANwypUKK1pLNL/UrP8DiJnUNlZDoqgwhkIytXsdTJcQ5clb42K+Q8
+         UAxw==
+X-Gm-Message-State: APjAAAUtIuE4ZC650IFKufviMGlgtCYNyDxed8iApo/FIlcRjg89HezB
+        rRRs6ml9y48s5VatxVPg4cO9Hw==
+X-Google-Smtp-Source: APXvYqyF4Tr6KpqzUUg1uyFSW7cNnma7IjvzfFuYcV2VA1wP1hJQrdEzG7PNSHLazixsMdq0cLRW9Q==
+X-Received: by 2002:a63:c006:: with SMTP id h6mr56329731pgg.290.1564125680781;
+        Fri, 26 Jul 2019 00:21:20 -0700 (PDT)
+Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
+        by smtp.gmail.com with ESMTPSA id o12sm39216152pjr.22.2019.07.26.00.21.17
+        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Fri, 26 Jul 2019 00:21:20 -0700 (PDT)
+From:   Baolin Wang <baolin.wang@linaro.org>
+To:     broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        orsonzhai@gmail.com, zhang.lyra@gmail.com
+Cc:     weicx@spreadst.com, sherry.zong@unisoc.com, baolin.wang@linaro.org,
+        vincent.guittot@linaro.org, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/6] Optimize Spreadtrum ADI driver
+Date:   Fri, 26 Jul 2019 15:20:47 +0800
+Message-Id: <cover.1564125131.git.baolin.wang@linaro.org>
+X-Mailer: git-send-email 1.7.9.5
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Andrew Lunn <andrew@lunn.ch>:
+This patchset did some optimization to remove some redundant code,
+add more reboot mode support and change hardware spinlock support
+to be optional.
 
->> +	gmac0: mac@0 {
->> +		compatible = "mediatek,eth-mac";
->> +		reg = <0>;
->> +		phy-mode = "sgmii";
->> +
->> +		fixed-link {
->> +			speed = <2500>;
->> +			full-duplex;
->> +			pause;
->> +		};
->> +	};
->
-> Hi René
->
+Baolin Wang (3):
+  spi: sprd: adi: Remove redundant address bits setting
+  spi: sprd: adi: Change hwlock to be optional
+  dt-bindings: spi: sprd: Change the hwlock support to be optional
 
-Hi Andrew,
+Chenxu Wei (1):
+  spi: sprd: adi: Add a reset reason for TOS panic
 
-> SGMII and fixed-link is rather odd. Why do you need this combination?
+Sherry Zong (2):
+  spi: sprd: adi: Add a reset reason for factory test mode
+  spi: sprd: adi: Add a reset reason for watchdog mode
 
-BananaPi R64 has a RTL8367S 5+2-port switch, switch interfaces with  
-the SOC by a
-(H)SGMII and/or RGMII interface. SGMII is mainly used for the LAN ports and
-RGMII for the WAN port.
+ .../devicetree/bindings/spi/spi-sprd-adi.txt       |   11 ++-
+ drivers/spi/spi-sprd-adi.c                         |   92 ++++++++++++++------
+ 2 files changed, 71 insertions(+), 32 deletions(-)
 
-I mimic the SDK software which puts SGMII interface in 2.5GBit  
-fixed-link mode.
-The RTL8367S switch code also put switch mac in forge 2.5GBit mode.
-
-So this is the reason why I put a fixed-link mode here.
-
-Greats,
-
-René
-
->       Andrew
-
-
+-- 
+1.7.9.5
 
