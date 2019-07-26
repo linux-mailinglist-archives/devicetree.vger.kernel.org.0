@@ -2,106 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41A617655E
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 14:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B3A0765A1
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 14:25:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726989AbfGZMMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 08:12:36 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36544 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726595AbfGZMMg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 08:12:36 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=BMtU9YJUxgrsyYdv4yLoBRiCh3Jg5LDz29y8MvcJIpo=; b=fVDrdNX2Mzfc
-        RFWfg+HAikW6jEmkqYX4BPF/R4nKboZXDGEvdnd0JdgXqaRX8ChT+5Q3DfgskS10hZV5K/BmKFz/r
-        4memv61usG+3A1h0UqcuNq9heoBswCLJcTcpwDPhV6pogbPqQvPpOV1s5HnIes286ixoNwpo4+4pa
-        +MOEA=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hqz5F-0001ad-CG; Fri, 26 Jul 2019 12:12:25 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id BD6AA2742B66; Fri, 26 Jul 2019 13:12:24 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Baolin Wang <baolin.wang@linaro.org>
-Cc:     baolin.wang@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        mark.rutland@arm.com, orsonzhai@gmail.com, robh+dt@kernel.org,
-        sherry.zong@unisoc.com, vincent.guittot@linaro.org,
-        weicx@spreadst.com, zhang.lyra@gmail.com
-Subject: Applied "spi: sprd: adi: Remove redundant address bits setting" to the spi tree
-In-Reply-To: <3cb57b8aadb7747a9f833e9b4fe8596ba738d9f6.1564125131.git.baolin.wang@linaro.org>
-X-Patchwork-Hint: ignore
-Message-Id: <20190726121224.BD6AA2742B66@ypsilon.sirena.org.uk>
-Date:   Fri, 26 Jul 2019 13:12:24 +0100 (BST)
+        id S1726391AbfGZMZO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 08:25:14 -0400
+Received: from asavdk4.altibox.net ([109.247.116.15]:33192 "EHLO
+        asavdk4.altibox.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726277AbfGZMZO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 08:25:14 -0400
+Received: from ravnborg.org (unknown [158.248.194.18])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by asavdk4.altibox.net (Postfix) with ESMTPS id 7024E804B4;
+        Fri, 26 Jul 2019 14:25:11 +0200 (CEST)
+Date:   Fri, 26 Jul 2019 14:25:10 +0200
+From:   Sam Ravnborg <sam@ravnborg.org>
+To:     Josef Lusticky <josef@lusticky.cz>, Daniel Vetter <daniel@ffwll.ch>
+Cc:     robh@kernel.org, dri-devel@lists.freedesktop.org,
+        devicetree@vger.kernel.org, daniel@ffwll.ch,
+        thierry.reding@gmail.com, airlied@linux.ie
+Subject: Controllers with several interface options - one or more drivers?
+Message-ID: <20190726122510.GA14341@ravnborg.org>
+References: <20190304125033.28841-1-josef@lusticky.cz>
+ <20190708145618.26031-1-josef@lusticky.cz>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190708145618.26031-1-josef@lusticky.cz>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-CMAE-Score: 0
+X-CMAE-Analysis: v=2.3 cv=VcLZwmh9 c=1 sm=1 tr=0
+        a=UWs3HLbX/2nnQ3s7vZ42gw==:117 a=UWs3HLbX/2nnQ3s7vZ42gw==:17
+        a=jpOVt7BSZ2e4Z31A5e1TngXxSK0=:19 a=kj9zAlcOel0A:10
+        a=wt4kVBOfN0H4b_kmb9MA:9 a=CjuIK1q_8ugA:10 a=Z5ABNNGmrOfJ6cZ5bIyy:22
+        a=UDnyf2zBuKT2w-IlGP_r:22
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+Hi Josef, Daniel et al.
 
-   spi: sprd: adi: Remove redundant address bits setting
+The driver that triggered this reply is a driver that adds parallel
+support to ili9341 in a dedicated panel driver.
+The issue here is that we already have a tiny driver that supports the
+ili9341 controller - but with a slightly different configuration.
 
-has been applied to the spi tree at
+The ili9341 supports several interfaces - from the datasheet:
+    "ILI9341 supports parallel 8-/9-/16-/18-bit data bus
+     MCU interface, 6-/16-/18-bit data bus RGB interface and
+     3-/4-line serial peripheral interface (SPI)"
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git for-5.4
+Noralf - in another mail explained:
+"
+The MIPI Alliance has lots of standards some wrt. display controller
+interfaces:
+- MIPI DBI - Display Bus Interface (used for commands and optionally pixels)
+- MIPI DPI - Display Pixel Interface (also called RGB interface or
+DOTCLK interface)
+- MIPI DSI - Display Serial Interface (commands and pixels)
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+The ili9341 supports both MIPI DBI and DPI.
+"
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+MIPI DPI - is a good fit for a drm_panel driver.
+MIPI DBI - requires a full display controller driver.
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+There are many other examples of driver SoC that in the same way
+can be seen only as a panel or as a full display controller driver.
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+The open question here is if we should try to support both cases in the
+same driver / file. Or shall we implment two different drivers.
+One for the panel use-case. And one for the display controller usecase?
 
-Thanks,
-Mark
+Not sure - so asking for feedback.
 
-From c627c58acdc48055a9e4d40d6f9f1b434222a68d Mon Sep 17 00:00:00 2001
-From: Baolin Wang <baolin.wang@linaro.org>
-Date: Fri, 26 Jul 2019 15:20:48 +0800
-Subject: [PATCH] spi: sprd: adi: Remove redundant address bits setting
-
-The ADI default transfer address bits is 12bit on Spreadtrum SC9860
-platform, thus there is no need to set again, remove it.
-
-Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
-Link: https://lore.kernel.org/r/3cb57b8aadb7747a9f833e9b4fe8596ba738d9f6.1564125131.git.baolin.wang@linaro.org
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- drivers/spi/spi-sprd-adi.c | 3 ---
- 1 file changed, 3 deletions(-)
-
-diff --git a/drivers/spi/spi-sprd-adi.c b/drivers/spi/spi-sprd-adi.c
-index df5960bddfe6..11880db08ce9 100644
---- a/drivers/spi/spi-sprd-adi.c
-+++ b/drivers/spi/spi-sprd-adi.c
-@@ -380,9 +380,6 @@ static void sprd_adi_hw_init(struct sprd_adi *sadi)
- 	const __be32 *list;
- 	u32 tmp;
- 
--	/* Address bits select default 12 bits */
--	writel_relaxed(0, sadi->base + REG_ADI_CTRL0);
--
- 	/* Set all channels as default priority */
- 	writel_relaxed(0, sadi->base + REG_ADI_CHN_PRIL);
- 	writel_relaxed(0, sadi->base + REG_ADI_CHN_PRIH);
--- 
-2.20.1
-
+	Sam
