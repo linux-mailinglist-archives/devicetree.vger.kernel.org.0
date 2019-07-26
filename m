@@ -2,14 +2,14 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7DEEF7656C
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 14:12:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B10F276560
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 14:12:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726595AbfGZMMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727034AbfGZMMh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Fri, 26 Jul 2019 08:12:37 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36542 "EHLO
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36546 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726277AbfGZMMh (ORCPT
+        with ESMTP id S1726739AbfGZMMh (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 08:12:37 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
@@ -17,30 +17,31 @@ DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
         List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=0JaOym/8/1xYTPj/lo5DfsfdR6OwtKMSwBUpWlF89z0=; b=hnGLPn1FdiHl
-        v3Z8uQinKEdqNQGi4zdGQZwpSG/IHSsABkF/uQSQA+UwhUIDEhestFvojqz32XVGIH4jxNARq4Rkq
-        EJ+NTVhZcyL809+hqpgpPt5YG1KIX6WKbI4RykYu5fUjqY9D7KOUV3w5ENCGQQrIgxK6cHZ0UmHzU
-        Xs4Hk=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        List-Archive; bh=ZSAFp4Q6v+yIVYlu0OxWtsyuhfSD5zJfL+9vw/k5KdM=; b=RLFSTwJa8Aka
+        Da5Awmtb0PtcUM6vmjvwCyrYta+1Nd+Kpnh9NgA5ZrMdoEkglqtZ9bD59VeiB6iL0/tGBak74gIEF
+        C0AlgFew+6ppy4+84fNJpE4dX5NyoHqBzJdV267I/4tBvqdeXkOrwOSxwHJYQxb+7ptIxD8Z6k6Gq
+        BHmX4=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hqz5E-0001aO-3f; Fri, 26 Jul 2019 12:12:24 +0000
+        id 1hqz5F-0001aa-4t; Fri, 26 Jul 2019 12:12:25 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 99EF52742B63; Fri, 26 Jul 2019 13:12:23 +0100 (BST)
+        id 8440C2742BAB; Fri, 26 Jul 2019 13:12:24 +0100 (BST)
 From:   Mark Brown <broonie@kernel.org>
-To:     Baolin Wang <baolin.wang@linaro.org>
-Cc:     baolin.wang@linaro.org, broonie@kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-spi@vger.kernel.org, Mark Brown <broonie@kernel.org>,
-        mark.rutland@arm.com, orsonzhai@gmail.com, robh+dt@kernel.org,
-        sherry.zong@unisoc.com, vincent.guittot@linaro.org,
-        weicx@spreadst.com, zhang.lyra@gmail.com
-Subject: Applied "spi: sprd: Change the hwlock support to be optional" to the spi tree
-In-Reply-To: <23d51f5d9c9cc647ad0c5a1fb950d3d9fb9c1303.1564125131.git.baolin.wang@linaro.org>
+To:     Chenxu Wei <weicx@spreadst.com>
+Cc:     Baolin Wang <baolin.wang@linaro.org>, baolin.wang@linaro.org,
+        broonie@kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        Mark Brown <broonie@kernel.org>, mark.rutland@arm.com,
+        orsonzhai@gmail.com, robh+dt@kernel.org, sherry.zong@unisoc.com,
+        vincent.guittot@linaro.org, weicx@spreadst.com,
+        zhang.lyra@gmail.com
+Subject: Applied "spi: sprd: adi: Add a reset reason for TOS panic" to the spi tree
+In-Reply-To: <97583aad1f2b849d69b4e76e8d29113da72a9fff.1564125131.git.baolin.wang@linaro.org>
 X-Patchwork-Hint: ignore
-Message-Id: <20190726121223.99EF52742B63@ypsilon.sirena.org.uk>
-Date:   Fri, 26 Jul 2019 13:12:23 +0100 (BST)
+Message-Id: <20190726121224.8440C2742BAB@ypsilon.sirena.org.uk>
+Date:   Fri, 26 Jul 2019 13:12:24 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -48,7 +49,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 The patch
 
-   spi: sprd: Change the hwlock support to be optional
+   spi: sprd: adi: Add a reset reason for TOS panic
 
 has been applied to the spi tree at
 
@@ -73,52 +74,42 @@ to this mail.
 Thanks,
 Mark
 
-From 70f69f481b87da0614360e57e05a3ba962d60439 Mon Sep 17 00:00:00 2001
-From: Baolin Wang <baolin.wang@linaro.org>
-Date: Fri, 26 Jul 2019 15:20:53 +0800
-Subject: [PATCH] spi: sprd: Change the hwlock support to be optional
+From cc6b3431b36a1109d44cb8e4015cc68dddc75208 Mon Sep 17 00:00:00 2001
+From: Chenxu Wei <weicx@spreadst.com>
+Date: Fri, 26 Jul 2019 15:20:49 +0800
+Subject: [PATCH] spi: sprd: adi: Add a reset reason for TOS panic
 
-No need to add hardware spinlock proctection due to add multiple
-msater channel, so change it to be optional in documentation.
+Add a new reset flag to indicate the reset reason is caused by TOS.
 
+Signed-off-by: Chenxu Wei <weicx@spreadst.com>
 Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
-Link: https://lore.kernel.org/r/23d51f5d9c9cc647ad0c5a1fb950d3d9fb9c1303.1564125131.git.baolin.wang@linaro.org
+Link: https://lore.kernel.org/r/97583aad1f2b849d69b4e76e8d29113da72a9fff.1564125131.git.baolin.wang@linaro.org
 Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
- .../devicetree/bindings/spi/spi-sprd-adi.txt          | 11 ++++++++---
- 1 file changed, 8 insertions(+), 3 deletions(-)
+ drivers/spi/spi-sprd-adi.c | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/spi/spi-sprd-adi.txt b/Documentation/devicetree/bindings/spi/spi-sprd-adi.txt
-index 8de589b376ce..2567c829e2dc 100644
---- a/Documentation/devicetree/bindings/spi/spi-sprd-adi.txt
-+++ b/Documentation/devicetree/bindings/spi/spi-sprd-adi.txt
-@@ -25,18 +25,23 @@ data by ADI software channels at the same time, or two parallel routine of setti
- ADI registers will make ADI controller registers chaos to lead incorrect results.
- Then we need one hardware spinlock to synchronize between the multiple subsystems.
+diff --git a/drivers/spi/spi-sprd-adi.c b/drivers/spi/spi-sprd-adi.c
+index 11880db08ce9..0b3f23ad6479 100644
+--- a/drivers/spi/spi-sprd-adi.c
++++ b/drivers/spi/spi-sprd-adi.c
+@@ -86,6 +86,7 @@
+ #define BIT_WDG_EN			BIT(2)
  
-+The new version ADI controller supplies multiple master channels for different
-+subsystem accessing, that means no need to add hardware spinlock to synchronize,
-+thus change the hardware spinlock support to be optional to keep backward
-+compatibility.
-+
- Required properties:
- - compatible: Should be "sprd,sc9860-adi".
- - reg: Offset and length of ADI-SPI controller register space.
--- hwlocks: Reference to a phandle of a hwlock provider node.
--- hwlock-names: Reference to hwlock name strings defined in the same order
--	as the hwlocks, should be "adi".
- - #address-cells: Number of cells required to define a chip select address
- 	on the ADI-SPI bus. Should be set to 1.
- - #size-cells: Size of cells required to define a chip select address size
- 	on the ADI-SPI bus. Should be set to 0.
+ /* Definition of PMIC reset status register */
++#define HWRST_STATUS_SECURITY		0x02
+ #define HWRST_STATUS_RECOVERY		0x20
+ #define HWRST_STATUS_NORMAL		0x40
+ #define HWRST_STATUS_ALARM		0x50
+@@ -336,6 +337,8 @@ static int sprd_adi_restart_handler(struct notifier_block *this,
+ 		reboot_mode = HWRST_STATUS_IQMODE;
+ 	else if (!strncmp(cmd, "sprdisk", 7))
+ 		reboot_mode = HWRST_STATUS_SPRDISK;
++	else if (!strncmp(cmd, "tospanic", 8))
++		reboot_mode = HWRST_STATUS_SECURITY;
+ 	else
+ 		reboot_mode = HWRST_STATUS_NORMAL;
  
- Optional properties:
-+- hwlocks: Reference to a phandle of a hwlock provider node.
-+- hwlock-names: Reference to hwlock name strings defined in the same order
-+	as the hwlocks, should be "adi".
- - sprd,hw-channels: This is an array of channel values up to 49 channels.
- 	The first value specifies the hardware channel id which is used to
- 	transfer data triggered by hardware automatically, and the second
 -- 
 2.20.1
 
