@@ -2,106 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EB5876A04
-	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 15:55:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2793876A25
+	for <lists+devicetree@lfdr.de>; Fri, 26 Jul 2019 15:56:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387874AbfGZNmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 09:42:20 -0400
-Received: from mail.kernel.org ([198.145.29.99]:49598 "EHLO mail.kernel.org"
+        id S1728310AbfGZN4a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 09:56:30 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48914 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387916AbfGZNmU (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 26 Jul 2019 09:42:20 -0400
-Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
+        id S2387777AbfGZNlu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 26 Jul 2019 09:41:50 -0400
+Received: from mail-qk1-f172.google.com (mail-qk1-f172.google.com [209.85.222.172])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3353722BF5;
-        Fri, 26 Jul 2019 13:42:19 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2672A22CF5;
+        Fri, 26 Jul 2019 13:41:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564148540;
-        bh=yWv4w82eJ4DUrjGMKIX9faGTTSZolnoRlKDkvEU6Osg=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=W6FNxRoJLtF4OurkX65gp7xlr6j1bGMGzW1ivCmEWZxHXqZAjAlreYjCslAkcmvq0
-         HU4FYLMwXyaDphRIIGTrL1fMv36y4b/USlB+NFb25Ni0lD+go8LHj3xsDzDG/yj6CV
-         UwTaHLqK3tXkuall4Zu8Boo5+oF09EktDYOHTERs=
-From:   Sasha Levin <sashal@kernel.org>
-To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
-Cc:     Helen Koike <helen.koike@collabora.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Sasha Levin <sashal@kernel.org>, devicetree@vger.kernel.org,
-        linux-rockchip@lists.infradead.org
-Subject: [PATCH AUTOSEL 4.19 07/47] arm64: dts: rockchip: fix isp iommu clocks and power domain
-Date:   Fri, 26 Jul 2019 09:41:30 -0400
-Message-Id: <20190726134210.12156-7-sashal@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190726134210.12156-1-sashal@kernel.org>
-References: <20190726134210.12156-1-sashal@kernel.org>
+        s=default; t=1564148509;
+        bh=zX30Y7I8lGQSE39mcBLgCQnD1zhzLqgkvgnTgW8bI/U=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=k7/MYg0MGLbki0g3EqS6d5XoAuDjmxLmZ5gir1IHBeua4yDd4S/goV17so5PiFt8n
+         +FJh7ZVsJa/LcxUvub/nflNlyhoyELQboQqE6meOYLtPh7zlfMdNwoyEKTbOxO4dvN
+         n1+yN7Rq6NuEbvgyeiChNQerVHe6alV6d3tfnU8g=
+Received: by mail-qk1-f172.google.com with SMTP id v22so39029500qkj.8;
+        Fri, 26 Jul 2019 06:41:49 -0700 (PDT)
+X-Gm-Message-State: APjAAAW6M4OTnD6ssHM6XypNkKeXuIX16MHEhAhKgQNS9mb8d+YFTD4h
+        wk3szdOcuFgO0FJ3KMpWPvDVUqaPGOoQOF9q9Q==
+X-Google-Smtp-Source: APXvYqxjuwBX7ksE7JbZB0mI6ceV0xcxiT8SPZ6Gi56d7P4U1vzH0bY2zZ15ZhXiikKw8Sd4XxO8RlHxVifobutyBU8=
+X-Received: by 2002:a37:a010:: with SMTP id j16mr64220208qke.152.1564148507205;
+ Fri, 26 Jul 2019 06:41:47 -0700 (PDT)
 MIME-Version: 1.0
-X-stable: review
-X-Patchwork-Hint: Ignore
-Content-Transfer-Encoding: 8bit
+References: <cover.1564140865.git.mchehab+samsung@kernel.org> <430ed96cb234805d1deb216e8c8559da22cc6bac.1564140865.git.mchehab+samsung@kernel.org>
+In-Reply-To: <430ed96cb234805d1deb216e8c8559da22cc6bac.1564140865.git.mchehab+samsung@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 26 Jul 2019 07:41:35 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK_rfHehrKW_NS89BOV0=dYoao0H=zOzG=D-724vKduKw@mail.gmail.com>
+Message-ID: <CAL_JsqK_rfHehrKW_NS89BOV0=dYoao0H=zOzG=D-724vKduKw@mail.gmail.com>
+Subject: Re: [PATCH 1/7] docs: fix broken doc references due to renames
+To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+Cc:     "Paul E. McKenney" <paulmck@linux.ibm.com>,
+        Josh Triplett <josh@joshtriplett.org>,
+        Steven Rostedt <rostedt@goodmis.org>,
+        Mathieu Desnoyers <mathieu.desnoyers@efficios.com>,
+        Lai Jiangshan <jiangshanlai@gmail.com>,
+        Joel Fernandes <joel@joelfernandes.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Peter Zijlstra <peterz@infradead.org>,
+        Ingo Molnar <mingo@redhat.com>, Will Deacon <will@kernel.org>,
+        Alan Stern <stern@rowland.harvard.edu>,
+        Andrea Parri <andrea.parri@amarulasolutions.com>,
+        Boqun Feng <boqun.feng@gmail.com>,
+        Nicholas Piggin <npiggin@gmail.com>,
+        David Howells <dhowells@redhat.com>,
+        Jade Alglave <j.alglave@ucl.ac.uk>,
+        Luc Maranget <luc.maranget@inria.fr>,
+        Akira Yokosawa <akiyks@gmail.com>,
+        Daniel Lustig <dlustig@nvidia.com>,
+        Jerry Hoemann <jerry.hoemann@hpe.com>,
+        Wim Van Sebroeck <wim@linux-watchdog.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Sean Paul <sean@poorly.run>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, Ajay Gupta <ajayg@nvidia.com>,
+        Don Brace <don.brace@microsemi.com>,
+        "James E.J. Bottomley" <jejb@linux.ibm.com>,
+        "Martin K. Petersen" <martin.petersen@oracle.com>,
+        rcu@vger.kernel.org,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "open list:GENERIC INCLUDE/ASM HEADER FILES" 
+        <linux-arch@vger.kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        esc.storagedev@microsemi.com, SCSI <linux-scsi@vger.kernel.org>,
+        Wolfram Sang <wsa@the-dreams.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Helen Koike <helen.koike@collabora.com>
+On Fri, Jul 26, 2019 at 5:47 AM Mauro Carvalho Chehab
+<mchehab+samsung@kernel.org> wrote:
+>
+> Some files got renamed but probably due to some merge conflicts,
+> a few references still point to the old locations.
+>
+> Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+> Acked-by: Wolfram Sang <wsa@the-dreams.de> # I2C part
+> Reviewed-by: Jerry Hoemann <jerry.hoemann@hpe.com> # hpwdt.rst
+> ---
+>  Documentation/RCU/rculist_nulls.txt                   |  2 +-
+>  Documentation/devicetree/bindings/arm/idle-states.txt |  2 +-
+>  Documentation/locking/spinlocks.rst                   |  4 ++--
+>  Documentation/memory-barriers.txt                     |  2 +-
+>  Documentation/translations/ko_KR/memory-barriers.txt  |  2 +-
+>  Documentation/watchdog/hpwdt.rst                      |  2 +-
+>  MAINTAINERS                                           | 10 +++++-----
+>  drivers/gpu/drm/drm_modes.c                           |  2 +-
+>  drivers/i2c/busses/i2c-nvidia-gpu.c                   |  2 +-
+>  drivers/scsi/hpsa.c                                   |  4 ++--
+>  10 files changed, 16 insertions(+), 16 deletions(-)
 
-[ Upstream commit c432a29d3fc9ee928caeca2f5cf68b3aebfa6817 ]
-
-isp iommu requires wrapper variants of the clocks.
-noc variants are always on and using the wrapper variants will activate
-{A,H}CLK_ISP{0,1} due to the hierarchy.
-
-Tested using the pending isp patch set (which is not upstream
-yet). Without this patch, streaming from the isp stalls.
-
-Also add the respective power domain and remove the "disabled" status.
-
-Refer:
- RK3399 TRM v1.4 Fig. 2-4 RK3399 Clock Architecture Diagram
- RK3399 TRM v1.4 Fig. 8-1 RK3399 Power Domain Partition
-
-Signed-off-by: Helen Koike <helen.koike@collabora.com>
-Tested-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
-Signed-off-by: Heiko Stuebner <heiko@sntech.de>
-Signed-off-by: Sasha Levin <sashal@kernel.org>
----
- arch/arm64/boot/dts/rockchip/rk3399.dtsi | 8 ++++----
- 1 file changed, 4 insertions(+), 4 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/rockchip/rk3399.dtsi b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-index df7e62d9a670..cea44a7c7cf9 100644
---- a/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3399.dtsi
-@@ -1643,11 +1643,11 @@
- 		reg = <0x0 0xff914000 0x0 0x100>, <0x0 0xff915000 0x0 0x100>;
- 		interrupts = <GIC_SPI 43 IRQ_TYPE_LEVEL_HIGH 0>;
- 		interrupt-names = "isp0_mmu";
--		clocks = <&cru ACLK_ISP0_NOC>, <&cru HCLK_ISP0_NOC>;
-+		clocks = <&cru ACLK_ISP0_WRAPPER>, <&cru HCLK_ISP0_WRAPPER>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-+		power-domains = <&power RK3399_PD_ISP0>;
- 		rockchip,disable-mmu-reset;
--		status = "disabled";
- 	};
- 
- 	isp1_mmu: iommu@ff924000 {
-@@ -1655,11 +1655,11 @@
- 		reg = <0x0 0xff924000 0x0 0x100>, <0x0 0xff925000 0x0 0x100>;
- 		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH 0>;
- 		interrupt-names = "isp1_mmu";
--		clocks = <&cru ACLK_ISP1_NOC>, <&cru HCLK_ISP1_NOC>;
-+		clocks = <&cru ACLK_ISP1_WRAPPER>, <&cru HCLK_ISP1_WRAPPER>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
-+		power-domains = <&power RK3399_PD_ISP1>;
- 		rockchip,disable-mmu-reset;
--		status = "disabled";
- 	};
- 
- 	hdmi_sound: hdmi-sound {
--- 
-2.20.1
-
+Acked-by: Rob Herring <robh@kernel.org>
