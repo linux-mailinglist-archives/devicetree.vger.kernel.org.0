@@ -2,57 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB0267785A
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 13:06:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 491FD77872
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 13:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387443AbfG0LG4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Jul 2019 07:06:56 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41968 "EHLO mail.kernel.org"
+        id S1726384AbfG0L3e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Jul 2019 07:29:34 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:59832 "EHLO honk.sigxcpu.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387442AbfG0LG4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 27 Jul 2019 07:06:56 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 37F2C2075C;
-        Sat, 27 Jul 2019 11:06:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564225615;
-        bh=uGlMJNh8VE7kip7O24qK6wOKHfho1CIUNRdJQAgqSwI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Gpux8TCJhkRSm+bf32EPFxXwvIirUMbtaEJILvxLsa6oI0aRrbfCz05NklaU41ddr
-         jW0CC+R+A0pyk+6Wb9uh2aFd+qXBPaVp1UR9p06ewp41PUVjZioM55FI4WhdWkrgPD
-         s2pbd1Djh6hoLoc3Z3GL+08Rf6N+ty/BBimZAakY=
-Date:   Sat, 27 Jul 2019 13:06:53 +0200
-From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-To:     Rob Herring <robherring2@gmail.com>
-Cc:     Linus Torvalds <torvalds@linux-foundation.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [GIT PULL] Devicetree fixes for 5.3-rc, take 2
-Message-ID: <20190727110653.GF458@kroah.com>
-References: <CAL_JsqJLB4q6wqTOX0oXAGQF4wuZ0irNT8nmpFEmuUKjvv38BQ@mail.gmail.com>
+        id S1725875AbfG0L3e (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Jul 2019 07:29:34 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 08761FB03;
+        Sat, 27 Jul 2019 13:29:32 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 3Mjeha8KiY-P; Sat, 27 Jul 2019 13:29:31 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id D550146B09; Sat, 27 Jul 2019 13:29:30 +0200 (CEST)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        linux-clk@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] dt-bindings: imx: i.MX8MN: Use space instead of tab
+Date:   Sat, 27 Jul 2019 13:29:30 +0200
+Message-Id: <35f999387bca037731dd963a5901909d6e6d0a17.1564226824.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJLB4q6wqTOX0oXAGQF4wuZ0irNT8nmpFEmuUKjvv38BQ@mail.gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 26, 2019 at 06:03:50PM -0600, Rob Herring wrote:
-> Hi Linus,
-> 
-> Please pull some more DT fixes for 5.3. The nvmem changes would
-> typically go thru Greg's tree, but they were missed in the merge
-> window and I've been unable to get a response (partly because Srinivas
-> is out on vacation it appears).
+This fixes 'make dt_binding_check'
 
-No objection from me for this.
+Signed-off-by: Guido Günther <agx@sigxcpu.org>
+---
+Seen on next-20190726
 
-thanks,
+ Documentation/devicetree/bindings/clock/imx8mn-clock.yaml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-greg k-h
+diff --git a/Documentation/devicetree/bindings/clock/imx8mn-clock.yaml b/Documentation/devicetree/bindings/clock/imx8mn-clock.yaml
+index 454c5b44b2ee..622f3658bd9f 100644
+--- a/Documentation/devicetree/bindings/clock/imx8mn-clock.yaml
++++ b/Documentation/devicetree/bindings/clock/imx8mn-clock.yaml
+@@ -71,7 +71,7 @@ examples:
+         compatible = "fixed-clock";
+         #clock-cells = <0>;
+         clock-frequency = <32768>;
+-	clock-output-names = "osc_32k";
++        clock-output-names = "osc_32k";
+     };
+ 
+     osc_24m: clock-osc-24m {
+-- 
+2.20.1
+
