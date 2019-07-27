@@ -2,215 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 35D3B77542
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 01:44:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 538C077557
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 02:04:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727569AbfGZXo3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 19:44:29 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:42784 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727368AbfGZXo3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 19:44:29 -0400
-Received: by mail-io1-f68.google.com with SMTP id e20so77791053iob.9;
-        Fri, 26 Jul 2019 16:44:28 -0700 (PDT)
+        id S1726779AbfG0AED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 20:04:03 -0400
+Received: from mail-qk1-f195.google.com ([209.85.222.195]:42621 "EHLO
+        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726102AbfG0AED (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 20:04:03 -0400
+Received: by mail-qk1-f195.google.com with SMTP id 201so40324985qkm.9;
+        Fri, 26 Jul 2019 17:04:02 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=mEmoQBaRl/1lmhoeCdF1FJ9rNewOoyZM5tGW1krtLhQ=;
+        b=lpSRNYnLTr6knLzzD5T8+yNV4l2vBrfi7rdECTBpP0f8jHhB3ziOvo0o2wGL7jT2r4
+         iTBNCN2F7ZXyBDV0+gQcbfuTi01U9Rdd/ZPjDSX6FRBcVut3gLXPjVJQGy/SnNJDHtwP
+         T4mwcbP03RWplN7dWSqi07/1zcNw0G5XvRQvtosS8jn8UVvM4nsoiO8n2ijPOe+2PhAp
+         aOnyIdd4a0oZbs9x/o6jnhcWFORM99lHu5ZrmsCGj9UVCFbfqgWJjtOrObh42vBLO/qP
+         d1i2YjLKBVvjuEmpSvTRk5IhgIiB7tjMz3+bXqeNoHjnMbxrNK1DQEE4/k62IVyE6RpZ
+         jhxg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=isOGfonjSVlz/20It2ApZb+DJMa7oypnD9utkEMLW8A=;
-        b=U+fSrliFl0j2dfnW9kp8Z/JDaN4mSf21VK3ykFsSd4I7wcGjzCMAjxDqKKgHcT0x44
-         YjgZtMGlrhFgZxjUvehj4cpHOEc9BOoyV+X8VP1wAD3YNUoXCjz9UxIF4955K9INHk2M
-         V/jLWiTikS9sewRLJts2GarJZAGf4npi9G5YouV/rV1xduktvs6p4TGkN4nUKeJid2U5
-         JQfh005t1SUCjWqBq1bvKwd8NEiPBvKArZirZhRQY0/oqfY/g8nUInnsCMCCd60tLZlQ
-         qov7aLtVQRTtiZv+cgBlJuhAyL+mrhg8jGvOA6ny1CW/qjRxDbfVIK3H3Ohaev85hs1I
-         AYDw==
-X-Gm-Message-State: APjAAAUkdmmFPghkmk/ktPXOKVPsLm52uqSpxCnK+t1v7lIFhx/KK9XH
-        xUoF3yge+THNwZ1Ji7I2rcpbR2Q=
-X-Google-Smtp-Source: APXvYqxqOigAeDJ+2leQBiW4TqZw24zT+ar5DyGuvO6nrp/2jiBfdDy6PdfQH670DHIRG7tvxuUNjA==
-X-Received: by 2002:a05:6638:149:: with SMTP id y9mr100565982jao.76.1564184667858;
-        Fri, 26 Jul 2019 16:44:27 -0700 (PDT)
-Received: from xps15.herring.priv ([64.188.179.254])
-        by smtp.googlemail.com with ESMTPSA id e84sm65576304iof.39.2019.07.26.16.44.27
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 26 Jul 2019 16:44:27 -0700 (PDT)
-From:   Rob Herring <robh@kernel.org>
-To:     devicetree@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: Fix more $id value mismatches filenames
-Date:   Fri, 26 Jul 2019 17:44:26 -0600
-Message-Id: <20190726234426.16267-1-robh@kernel.org>
-X-Mailer: git-send-email 2.20.1
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=mEmoQBaRl/1lmhoeCdF1FJ9rNewOoyZM5tGW1krtLhQ=;
+        b=C21ZZ/rFhmbMuaHtX2OgrKPLF8mZnoCeqS2CqMZKe74fGNHnXg6U2VGCvwCT81qL/o
+         Fxgwku9jeIwTljQYtSJfhSnxj6bssoWLP72rVbwImydN6ay03/hPlCsCkY6menH1x4eg
+         YNPA1TGdC/nTnHpK5Mjs1sWdnlUtXJHLVNkEcela6qj5xbtJyWWDtU0eZWjZoAdEGUnQ
+         50twwcK0pfsl000u4EFC36Zzld+aBeIkKVVFpg2l8cVDYaQYxwlKBXzH7OxntWH7iZms
+         s5G7DnfeVlGEd0/G01EY9p6kucFOI5WZm+d2C6MPUj235WOyFvhPUXlETQFgbDmRPSWJ
+         LpIA==
+X-Gm-Message-State: APjAAAXYkzQ0fQ1K6Zfg2oRCfxaq1RCPNkdW8DLLSIAZPZlXuFOLHPVw
+        of6tr09qi6gp8BbB1FFv+FQhUfy3IbpJJlvpSw==
+X-Google-Smtp-Source: APXvYqz45qkkRxLjIFzWjMdTB9431UDpqGzcxQe3BhFkJ0qBwtyWxN5dc7AzrErI8ijfXBbJ8J+BInZVsK8m7Orbtqw=
+X-Received: by 2002:a37:6944:: with SMTP id e65mr59809231qkc.119.1564185841934;
+ Fri, 26 Jul 2019 17:04:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+From:   Rob Herring <robherring2@gmail.com>
+Date:   Fri, 26 Jul 2019 18:03:50 -0600
+Message-ID: <CAL_JsqJLB4q6wqTOX0oXAGQF4wuZ0irNT8nmpFEmuUKjvv38BQ@mail.gmail.com>
+Subject: [GIT PULL] Devicetree fixes for 5.3-rc, take 2
+To:     Linus Torvalds <torvalds@linux-foundation.org>
+Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The path in the schema '$id' values are wrong. Fix them.
+Hi Linus,
 
-Signed-off-by: Rob Herring <robh@kernel.org>
----
- Documentation/devicetree/bindings/arm/renesas.yaml              | 2 +-
- Documentation/devicetree/bindings/arm/socionext/milbeaut.yaml   | 2 +-
- Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml        | 2 +-
- .../firmware/intel,ixp4xx-network-processing-engine.yaml        | 2 +-
- Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml    | 2 +-
- Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml    | 2 +-
- .../bindings/interrupt-controller/intel,ixp4xx-interrupt.yaml   | 2 +-
- ...x-queue-manager.yaml => intel,ixp4xx-ahb-queue-manager.yaml} | 2 +-
- .../devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml      | 2 +-
- .../devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml  | 2 +-
- Documentation/devicetree/bindings/timer/intel,ixp4xx-timer.yaml | 2 +-
- 11 files changed, 11 insertions(+), 11 deletions(-)
- rename Documentation/devicetree/bindings/misc/{intel,ixp4xx-queue-manager.yaml => intel,ixp4xx-ahb-queue-manager.yaml} (95%)
+Please pull some more DT fixes for 5.3. The nvmem changes would
+typically go thru Greg's tree, but they were missed in the merge
+window and I've been unable to get a response (partly because Srinivas
+is out on vacation it appears).
 
-diff --git a/Documentation/devicetree/bindings/arm/renesas.yaml b/Documentation/devicetree/bindings/arm/renesas.yaml
-index 08c923f8c257..28eb458f761a 100644
---- a/Documentation/devicetree/bindings/arm/renesas.yaml
-+++ b/Documentation/devicetree/bindings/arm/renesas.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/arm/shmobile.yaml#
-+$id: http://devicetree.org/schemas/arm/renesas.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Renesas SH-Mobile, R-Mobile, and R-Car Platform Device Tree Bindings
-diff --git a/Documentation/devicetree/bindings/arm/socionext/milbeaut.yaml b/Documentation/devicetree/bindings/arm/socionext/milbeaut.yaml
-index aae53fc3cb1e..2bd519d2e855 100644
---- a/Documentation/devicetree/bindings/arm/socionext/milbeaut.yaml
-+++ b/Documentation/devicetree/bindings/arm/socionext/milbeaut.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/arm/milbeaut.yaml#
-+$id: http://devicetree.org/schemas/arm/socionext/milbeaut.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Milbeaut platforms device tree bindings
-diff --git a/Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml b/Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml
-index 4326d2cfa15d..a8765ba29476 100644
---- a/Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml
-+++ b/Documentation/devicetree/bindings/arm/ti/ti,davinci.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/arm/ti/davinci.yaml#
-+$id: http://devicetree.org/schemas/arm/ti/ti,davinci.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Texas Instruments DaVinci Platforms Device Tree Bindings
-diff --git a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
-index 8cb136c376fb..4f0db8ee226a 100644
---- a/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
-+++ b/Documentation/devicetree/bindings/firmware/intel,ixp4xx-network-processing-engine.yaml
-@@ -2,7 +2,7 @@
- # Copyright 2019 Linaro Ltd.
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/firmware/intel-ixp4xx-network-processing-engine.yaml#"
-+$id: "http://devicetree.org/schemas/firmware/intel,ixp4xx-network-processing-engine.yaml#"
- $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- 
- title: Intel IXP4xx Network Processing Engine
-diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-index 7ba167e2e1ea..c602b6fe1c0c 100644
---- a/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-+++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl345.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/iio/accelerometers/adi,adxl345.yaml#
-+$id: http://devicetree.org/schemas/iio/accel/adi,adxl345.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Analog Devices ADXL345/ADXL375 3-Axis Digital Accelerometers
-diff --git a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
-index a7fafb9bf5c6..e7daffec88d3 100644
---- a/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
-+++ b/Documentation/devicetree/bindings/iio/accel/adi,adxl372.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/iio/accelerometers/adi,adxl372.yaml#
-+$id: http://devicetree.org/schemas/iio/accel/adi,adxl372.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Analog Devices ADXL372 3-Axis, +/-(200g) Digital Accelerometer
-diff --git a/Documentation/devicetree/bindings/interrupt-controller/intel,ixp4xx-interrupt.yaml b/Documentation/devicetree/bindings/interrupt-controller/intel,ixp4xx-interrupt.yaml
-index bae10e261fa9..507c141ea760 100644
---- a/Documentation/devicetree/bindings/interrupt-controller/intel,ixp4xx-interrupt.yaml
-+++ b/Documentation/devicetree/bindings/interrupt-controller/intel,ixp4xx-interrupt.yaml
-@@ -2,7 +2,7 @@
- # Copyright 2018 Linaro Ltd.
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/interrupt/intel-ixp4xx-interrupt.yaml#"
-+$id: "http://devicetree.org/schemas/interrupt-controller/intel,ixp4xx-interrupt.yaml#"
- $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- 
- title: Intel IXP4xx XScale Networking Processors Interrupt Controller
-diff --git a/Documentation/devicetree/bindings/misc/intel,ixp4xx-queue-manager.yaml b/Documentation/devicetree/bindings/misc/intel,ixp4xx-ahb-queue-manager.yaml
-similarity index 95%
-rename from Documentation/devicetree/bindings/misc/intel,ixp4xx-queue-manager.yaml
-rename to Documentation/devicetree/bindings/misc/intel,ixp4xx-ahb-queue-manager.yaml
-index d2313b1d9405..0ea21a6f70b4 100644
---- a/Documentation/devicetree/bindings/misc/intel,ixp4xx-queue-manager.yaml
-+++ b/Documentation/devicetree/bindings/misc/intel,ixp4xx-ahb-queue-manager.yaml
-@@ -2,7 +2,7 @@
- # Copyright 2019 Linaro Ltd.
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/misc/intel-ixp4xx-ahb-queue-manager.yaml#"
-+$id: "http://devicetree.org/schemas/misc/intel,ixp4xx-ahb-queue-manager.yaml#"
- $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- 
- title: Intel IXP4xx AHB Queue Manager
-diff --git a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-index d4084c149768..3fb0714e761e 100644
---- a/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-+++ b/Documentation/devicetree/bindings/net/allwinner,sun8i-a83t-emac.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-gmac.yaml#
-+$id: http://devicetree.org/schemas/net/allwinner,sun8i-a83t-emac.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Allwinner A83t EMAC Device Tree Bindings
-diff --git a/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml b/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml
-index 250f9d5aabdf..fa46670de299 100644
---- a/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml
-+++ b/Documentation/devicetree/bindings/phy/allwinner,sun6i-a31-mipi-dphy.yaml
-@@ -1,7 +1,7 @@
- # SPDX-License-Identifier: GPL-2.0
- %YAML 1.2
- ---
--$id: http://devicetree.org/schemas/display/allwinner,sun6i-a31-mipi-dphy.yaml#
-+$id: http://devicetree.org/schemas/phy/allwinner,sun6i-a31-mipi-dphy.yaml#
- $schema: http://devicetree.org/meta-schemas/core.yaml#
- 
- title: Allwinner A31 MIPI D-PHY Controller Device Tree Bindings
-diff --git a/Documentation/devicetree/bindings/timer/intel,ixp4xx-timer.yaml b/Documentation/devicetree/bindings/timer/intel,ixp4xx-timer.yaml
-index a36a0746c056..2807225db902 100644
---- a/Documentation/devicetree/bindings/timer/intel,ixp4xx-timer.yaml
-+++ b/Documentation/devicetree/bindings/timer/intel,ixp4xx-timer.yaml
-@@ -2,7 +2,7 @@
- # Copyright 2018 Linaro Ltd.
- %YAML 1.2
- ---
--$id: "http://devicetree.org/schemas/timer/intel-ixp4xx-timer.yaml#"
-+$id: "http://devicetree.org/schemas/timer/intel,ixp4xx-timer.yaml#"
- $schema: "http://devicetree.org/meta-schemas/core.yaml#"
- 
- title: Intel IXP4xx XScale Networking Processors Timers
--- 
-2.20.1
+Rob
 
+
+The following changes since commit e2297f7c3ab3b68dda2ac732b1767212019d3bdf:
+
+  dt-bindings: pinctrl: stm32: Fix missing 'clocks' property in
+examples (2019-07-20 20:28:53 -0600)
+
+are available in the Git repository at:
+
+  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
+tags/devicetree-fixes-for-5.3-2
+
+for you to fetch changes up to e1ff7390f58e609aa113a2452a953f669abce6cc:
+
+  dt-bindings: Fix more $id value mismatches filenames (2019-07-26
+17:41:41 -0600)
+
+----------------------------------------------------------------
+Devicetree fixes for 5.3-rc:
+
+- Fix mismatches in $id values and actual filenames. Now checked by
+  tools.
+
+- Convert nvmem binding to DT schema
+
+- Fix a typo in of_property_read_bool() kerneldoc
+
+- Remove some redundant description in al-fic interrupt-controller
+
+----------------------------------------------------------------
+Maxime Ripard (2):
+      dt-bindings: nvmem: Add YAML schemas for the generic NVMEM bindings
+      dt-bindings: nvmem: SID: Fix the examples node names
+
+Rob Herring (2):
+      dt-bindings: clk: allwinner,sun4i-a10-ccu: Correct path in $id
+      dt-bindings: Fix more $id value mismatches filenames
+
+Talel Shenhar (1):
+      dt-bindings: interrupt-controller: al-fic: remove redundant binding
+
+Thierry Reding (1):
+      of: Fix typo in kerneldoc
+
+ Documentation/devicetree/bindings/arm/renesas.yaml |  2 +-
+ .../bindings/arm/socionext/milbeaut.yaml           |  2 +-
+ .../devicetree/bindings/arm/ti/ti,davinci.yaml     |  2 +-
+ .../bindings/clock/allwinner,sun4i-a10-ccu.yaml    |  2 +-
+ .../intel,ixp4xx-network-processing-engine.yaml    |  2 +-
+ .../devicetree/bindings/iio/accel/adi,adxl345.yaml |  2 +-
+ .../devicetree/bindings/iio/accel/adi,adxl372.yaml |  2 +-
+ .../interrupt-controller/amazon,al-fic.txt         | 16 ++--
+ .../intel,ixp4xx-interrupt.yaml                    |  2 +-
+ ...er.yaml => intel,ixp4xx-ahb-queue-manager.yaml} |  2 +-
+ .../bindings/net/allwinner,sun8i-a83t-emac.yaml    |  2 +-
+ .../bindings/nvmem/allwinner,sun4i-a10-sid.yaml    |  4 +-
+ .../devicetree/bindings/nvmem/nvmem-consumer.yaml  | 45 +++++++++++
+ Documentation/devicetree/bindings/nvmem/nvmem.txt  | 81 +------------------
+ Documentation/devicetree/bindings/nvmem/nvmem.yaml | 93 ++++++++++++++++++++++
+ .../phy/allwinner,sun6i-a31-mipi-dphy.yaml         |  2 +-
+ .../bindings/timer/intel,ixp4xx-timer.yaml         |  2 +-
+ include/linux/of.h                                 |  2 +-
+ 18 files changed, 161 insertions(+), 104 deletions(-)
+ rename Documentation/devicetree/bindings/misc/{intel,ixp4xx-queue-manager.yaml
+=> intel,ixp4xx-ahb-queue-manager.yaml} (95%)
+ create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
+ create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem.yaml
