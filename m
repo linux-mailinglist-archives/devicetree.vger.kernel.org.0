@@ -2,129 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 538C077557
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 02:04:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C053377594
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 03:23:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726779AbfG0AED (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 20:04:03 -0400
-Received: from mail-qk1-f195.google.com ([209.85.222.195]:42621 "EHLO
-        mail-qk1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726102AbfG0AED (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 20:04:03 -0400
-Received: by mail-qk1-f195.google.com with SMTP id 201so40324985qkm.9;
-        Fri, 26 Jul 2019 17:04:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:from:date:message-id:subject:to:cc;
-        bh=mEmoQBaRl/1lmhoeCdF1FJ9rNewOoyZM5tGW1krtLhQ=;
-        b=lpSRNYnLTr6knLzzD5T8+yNV4l2vBrfi7rdECTBpP0f8jHhB3ziOvo0o2wGL7jT2r4
-         iTBNCN2F7ZXyBDV0+gQcbfuTi01U9Rdd/ZPjDSX6FRBcVut3gLXPjVJQGy/SnNJDHtwP
-         T4mwcbP03RWplN7dWSqi07/1zcNw0G5XvRQvtosS8jn8UVvM4nsoiO8n2ijPOe+2PhAp
-         aOnyIdd4a0oZbs9x/o6jnhcWFORM99lHu5ZrmsCGj9UVCFbfqgWJjtOrObh42vBLO/qP
-         d1i2YjLKBVvjuEmpSvTRk5IhgIiB7tjMz3+bXqeNoHjnMbxrNK1DQEE4/k62IVyE6RpZ
-         jhxg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
-        bh=mEmoQBaRl/1lmhoeCdF1FJ9rNewOoyZM5tGW1krtLhQ=;
-        b=C21ZZ/rFhmbMuaHtX2OgrKPLF8mZnoCeqS2CqMZKe74fGNHnXg6U2VGCvwCT81qL/o
-         Fxgwku9jeIwTljQYtSJfhSnxj6bssoWLP72rVbwImydN6ay03/hPlCsCkY6menH1x4eg
-         YNPA1TGdC/nTnHpK5Mjs1sWdnlUtXJHLVNkEcela6qj5xbtJyWWDtU0eZWjZoAdEGUnQ
-         50twwcK0pfsl000u4EFC36Zzld+aBeIkKVVFpg2l8cVDYaQYxwlKBXzH7OxntWH7iZms
-         s5G7DnfeVlGEd0/G01EY9p6kucFOI5WZm+d2C6MPUj235WOyFvhPUXlETQFgbDmRPSWJ
-         LpIA==
-X-Gm-Message-State: APjAAAXYkzQ0fQ1K6Zfg2oRCfxaq1RCPNkdW8DLLSIAZPZlXuFOLHPVw
-        of6tr09qi6gp8BbB1FFv+FQhUfy3IbpJJlvpSw==
-X-Google-Smtp-Source: APXvYqz45qkkRxLjIFzWjMdTB9431UDpqGzcxQe3BhFkJ0qBwtyWxN5dc7AzrErI8ijfXBbJ8J+BInZVsK8m7Orbtqw=
-X-Received: by 2002:a37:6944:: with SMTP id e65mr59809231qkc.119.1564185841934;
- Fri, 26 Jul 2019 17:04:01 -0700 (PDT)
-MIME-Version: 1.0
-From:   Rob Herring <robherring2@gmail.com>
-Date:   Fri, 26 Jul 2019 18:03:50 -0600
-Message-ID: <CAL_JsqJLB4q6wqTOX0oXAGQF4wuZ0irNT8nmpFEmuUKjvv38BQ@mail.gmail.com>
-Subject: [GIT PULL] Devicetree fixes for 5.3-rc, take 2
-To:     Linus Torvalds <torvalds@linux-foundation.org>
-Cc:     Frank Rowand <frowand.list@gmail.com>, devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+        id S2387458AbfG0BXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 21:23:48 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:26686 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S2387457AbfG0BXr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 21:23:47 -0400
+X-UUID: fd71b6eea81b4bb5bce1dbe77ea48a38-20190727
+X-UUID: fd71b6eea81b4bb5bce1dbe77ea48a38-20190727
+Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <qii.wang@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1997973271; Sat, 27 Jul 2019 09:23:38 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
+ (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sat, 27 Jul
+ 2019 09:23:34 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Sat, 27 Jul 2019 09:23:33 +0800
+Message-ID: <1564190613.24702.11.camel@mhfsdcap03>
+Subject: Re: [PATCH v3 1/2] dt-bindings: i3c: Document MediaTek I3C master
+ bindings
+From:   Qii Wang <qii.wang@mediatek.com>
+To:     Rob Herring <robh@kernel.org>
+CC:     <bbrezillon@kernel.org>, <matthias.bgg@gmail.com>,
+        <mark.rutland@arm.com>, <linux-i3c@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
+        <liguo.zhang@mediatek.com>, <xinping.qian@mediatek.com>
+Date:   Sat, 27 Jul 2019 09:23:33 +0800
+In-Reply-To: <20190724202119.GA26566@bogus>
+References: <1562677762-24067-1-git-send-email-qii.wang@mediatek.com>
+         <1562677762-24067-2-git-send-email-qii.wang@mediatek.com>
+         <20190724202119.GA26566@bogus>
 Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 3115CDD7324A6A0F4379AC19364C2F37546642D4CAA4C5EC9B050BD991421A8C2000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Wed, 2019-07-24 at 14:21 -0600, Rob Herring wrote:
+> On Tue, Jul 09, 2019 at 09:09:21PM +0800, Qii Wang wrote:
+> > Document MediaTek I3C master DT bindings.
+> > 
+> > Signed-off-by: Qii Wang <qii.wang@mediatek.com>
+> > ---
+> >  .../devicetree/bindings/i3c/mtk,i3c-master.txt     |   48 ++++++++++++++++++++
+> >  1 file changed, 48 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> > new file mode 100644
+> > index 0000000..d32eda6
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
+> > @@ -0,0 +1,48 @@
+> > +Bindings for MediaTek I3C master block
+> > +=====================================
+> > +
+> > +Required properties:
+> > +--------------------
+> > +- compatible: shall be "mediatek,i3c-master"
+> 
+> Needs to be SoC specific.
+> 
 
-Please pull some more DT fixes for 5.3. The nvmem changes would
-typically go thru Greg's tree, but they were missed in the merge
-window and I've been unable to get a response (partly because Srinivas
-is out on vacation it appears).
+We hope that the SOCs will use the same driver and try to avoid big
+changes. If there are inevitable changes in the future, then we will
+modify the compatible to be SoC specific. cdns,i3c-master.txt is not SoC
+specific either.
 
-Rob
+> > +- reg: physical base address of the controller and apdma base, length of
+> > +  memory mapped region.
+> > +- reg-names: shall be "main" for master controller and "dma" for apdma.
+> > +- interrupts: the interrupt line connected to this I3C master.
+> > +- clocks: shall reference the i3c and apdma clocks.
+> > +- clock-names: shall include "main" and "dma".
+> > +
+> > +Mandatory properties defined by the generic binding (see
+> > +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> > +
+> > +- #address-cells: shall be set to 3
+> > +- #size-cells: shall be set to 0
+> > +
+> > +Optional properties defined by the generic binding (see
+> > +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
+> > +
+> > +- i2c-scl-hz
+> > +- i3c-scl-hz
+> > +
+> > +I3C device connected on the bus follow the generic description (see
+> > +Documentation/devicetree/bindings/i3c/i3c.txt for more details).
+> > +
+> > +Example:
+> > +
+> > +	i3c0: i3c@1100d000 {
+> > +		compatible = "mediatek,i3c-master";
+> > +		reg = <0x1100d000 0x1000>,
+> > +		      <0x11000300 0x80>;
+> > +		reg-names = "main", "dma";
+> > +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
+> > +		clocks = <&infracfg CLK_INFRA_I3C0>,
+> > +			 <&infracfg CLK_INFRA_AP_DMA>;
+> > +		clock-names = "main", "dma";
+> > +		#address-cells = <3>;
+> > +		#size-cells = <0>;
+> > +		i2c-scl-hz = <100000>;
+> > +
+> > +		nunchuk: nunchuk@52 {
+> > +			compatible = "nintendo,nunchuk";
+> > +			reg = <0x52 0x0 0x10>;
+> > +		};
+> > +	};
+> > -- 
+> > 1.7.9.5
+> > 
 
 
-The following changes since commit e2297f7c3ab3b68dda2ac732b1767212019d3bdf:
-
-  dt-bindings: pinctrl: stm32: Fix missing 'clocks' property in
-examples (2019-07-20 20:28:53 -0600)
-
-are available in the Git repository at:
-
-  git://git.kernel.org/pub/scm/linux/kernel/git/robh/linux.git
-tags/devicetree-fixes-for-5.3-2
-
-for you to fetch changes up to e1ff7390f58e609aa113a2452a953f669abce6cc:
-
-  dt-bindings: Fix more $id value mismatches filenames (2019-07-26
-17:41:41 -0600)
-
-----------------------------------------------------------------
-Devicetree fixes for 5.3-rc:
-
-- Fix mismatches in $id values and actual filenames. Now checked by
-  tools.
-
-- Convert nvmem binding to DT schema
-
-- Fix a typo in of_property_read_bool() kerneldoc
-
-- Remove some redundant description in al-fic interrupt-controller
-
-----------------------------------------------------------------
-Maxime Ripard (2):
-      dt-bindings: nvmem: Add YAML schemas for the generic NVMEM bindings
-      dt-bindings: nvmem: SID: Fix the examples node names
-
-Rob Herring (2):
-      dt-bindings: clk: allwinner,sun4i-a10-ccu: Correct path in $id
-      dt-bindings: Fix more $id value mismatches filenames
-
-Talel Shenhar (1):
-      dt-bindings: interrupt-controller: al-fic: remove redundant binding
-
-Thierry Reding (1):
-      of: Fix typo in kerneldoc
-
- Documentation/devicetree/bindings/arm/renesas.yaml |  2 +-
- .../bindings/arm/socionext/milbeaut.yaml           |  2 +-
- .../devicetree/bindings/arm/ti/ti,davinci.yaml     |  2 +-
- .../bindings/clock/allwinner,sun4i-a10-ccu.yaml    |  2 +-
- .../intel,ixp4xx-network-processing-engine.yaml    |  2 +-
- .../devicetree/bindings/iio/accel/adi,adxl345.yaml |  2 +-
- .../devicetree/bindings/iio/accel/adi,adxl372.yaml |  2 +-
- .../interrupt-controller/amazon,al-fic.txt         | 16 ++--
- .../intel,ixp4xx-interrupt.yaml                    |  2 +-
- ...er.yaml => intel,ixp4xx-ahb-queue-manager.yaml} |  2 +-
- .../bindings/net/allwinner,sun8i-a83t-emac.yaml    |  2 +-
- .../bindings/nvmem/allwinner,sun4i-a10-sid.yaml    |  4 +-
- .../devicetree/bindings/nvmem/nvmem-consumer.yaml  | 45 +++++++++++
- Documentation/devicetree/bindings/nvmem/nvmem.txt  | 81 +------------------
- Documentation/devicetree/bindings/nvmem/nvmem.yaml | 93 ++++++++++++++++++++++
- .../phy/allwinner,sun6i-a31-mipi-dphy.yaml         |  2 +-
- .../bindings/timer/intel,ixp4xx-timer.yaml         |  2 +-
- include/linux/of.h                                 |  2 +-
- 18 files changed, 161 insertions(+), 104 deletions(-)
- rename Documentation/devicetree/bindings/misc/{intel,ixp4xx-queue-manager.yaml
-=> intel,ixp4xx-ahb-queue-manager.yaml} (95%)
- create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem-consumer.yaml
- create mode 100644 Documentation/devicetree/bindings/nvmem/nvmem.yaml
