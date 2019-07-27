@@ -2,134 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB897777DA
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 11:19:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E470577833
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 12:42:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727885AbfG0JTG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Jul 2019 05:19:06 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:39062 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728264AbfG0JTF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Jul 2019 05:19:05 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        id S1726010AbfG0KmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Jul 2019 06:42:13 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35936 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725875AbfG0KmN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Jul 2019 06:42:13 -0400
+Received: from localhost (lfbn-1-17239-195.w86-248.abo.wanadoo.fr [86.248.61.195])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 6A01527DC68;
-        Sat, 27 Jul 2019 10:19:03 +0100 (BST)
-Date:   Sat, 27 Jul 2019 11:18:59 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Qii Wang <qii.wang@mediatek.com>
-Cc:     Rob Herring <robh@kernel.org>, <bbrezillon@kernel.org>,
-        <matthias.bgg@gmail.com>, <mark.rutland@arm.com>,
-        <linux-i3c@lists.infradead.org>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <liguo.zhang@mediatek.com>, <xinping.qian@mediatek.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: i3c: Document MediaTek I3C master
- bindings
-Message-ID: <20190727111859.315994c3@collabora.com>
-In-Reply-To: <1564190613.24702.11.camel@mhfsdcap03>
-References: <1562677762-24067-1-git-send-email-qii.wang@mediatek.com>
-        <1562677762-24067-2-git-send-email-qii.wang@mediatek.com>
-        <20190724202119.GA26566@bogus>
-        <1564190613.24702.11.camel@mhfsdcap03>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        by mail.kernel.org (Postfix) with ESMTPSA id A75412081B;
+        Sat, 27 Jul 2019 10:42:11 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564224132;
+        bh=UybUBfvBzantNilF1ZV5JV3PyFP6cC+3I7g4mp/0Vs4=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=00/f/PUT34J5BgZ+rLwXSfqsj5XcE78vGy7ynsIP/f4bC0MHNKmzwuEF0Y8p3N9J3
+         nBtBbQUYEp76+3k7yx5HnGEOF+2ZE3kryIwYjPEYrOlqXXs+YiygKeXy9/THIpEfuq
+         KiCEJ8Lst82KuOp9FenkqubRmon4DGdyT/0NS180=
+Date:   Sat, 27 Jul 2019 12:42:08 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     thierry.reding@gmail.com, wens@csie.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 1/6] dt-bindings: pwm: allwinner: Add H6 PWM description
+Message-ID: <20190727104208.my62iypgwjy5pkxz@flea.home>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+ <20190726184045.14669-2-jernej.skrabec@siol.net>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190726184045.14669-2-jernej.skrabec@siol.net>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 27 Jul 2019 09:23:33 +0800
-Qii Wang <qii.wang@mediatek.com> wrote:
+Hi,
 
-> On Wed, 2019-07-24 at 14:21 -0600, Rob Herring wrote:
-> > On Tue, Jul 09, 2019 at 09:09:21PM +0800, Qii Wang wrote:  
-> > > Document MediaTek I3C master DT bindings.
-> > > 
-> > > Signed-off-by: Qii Wang <qii.wang@mediatek.com>
-> > > ---
-> > >  .../devicetree/bindings/i3c/mtk,i3c-master.txt     |   48 ++++++++++++++++++++
-> > >  1 file changed, 48 insertions(+)
-> > >  create mode 100644 Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
-> > > 
-> > > diff --git a/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
-> > > new file mode 100644
-> > > index 0000000..d32eda6
-> > > --- /dev/null
-> > > +++ b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
-> > > @@ -0,0 +1,48 @@
-> > > +Bindings for MediaTek I3C master block
-> > > +=====================================
-> > > +
-> > > +Required properties:
-> > > +--------------------
-> > > +- compatible: shall be "mediatek,i3c-master"  
-> > 
-> > Needs to be SoC specific.
-> >   
-> 
-> We hope that the SOCs will use the same driver and try to avoid big
-> changes. If there are inevitable changes in the future, then we will
-> modify the compatible to be SoC specific. cdns,i3c-master.txt is not SoC
-> specific either.
+On Fri, Jul 26, 2019 at 08:40:40PM +0200, Jernej Skrabec wrote:
+> H6 PWM block is basically the same as A20 PWM, except that it also has
+> bus clock and reset line which needs to be handled accordingly.
+>
+> Expand Allwinner PWM binding with H6 PWM specifics.
+>
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> ---
+>  .../bindings/pwm/allwinner,sun4i-a10-pwm.yaml | 36 ++++++++++++++++++-
+>  1 file changed, 35 insertions(+), 1 deletion(-)
+>
+> diff --git a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
+> index 0ac52f83a58c..deca5d81802f 100644
+> --- a/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
+> +++ b/Documentation/devicetree/bindings/pwm/allwinner,sun4i-a10-pwm.yaml
+> @@ -30,13 +30,47 @@ properties:
+>        - items:
+>            - const: allwinner,sun50i-h5-pwm
+>            - const: allwinner,sun5i-a13-pwm
+> +      - const: allwinner,sun50i-h6-pwm
+>
+>    reg:
+>      maxItems: 1
+>
+> -  clocks:
+> +  # Even though it only applies to subschemas under the conditionals,
+> +  # not listing them here will trigger a warning because of the
+> +  # additionalsProperties set to false.
+> +  clocks: true
+> +  clock-names: true
+> +  resets:
+>      maxItems: 1
+>
+> +allOf:
+> +  - if:
 
-The cadence case is a bit different I think. When the driver was
-developed there was no SoC integrating this IP. I guess Mediatek knows
-already which SoC(s) will embed the I3C master block.
+There's only one condition, so you don't really need the allOf.
 
-> 
-> > > +- reg: physical base address of the controller and apdma base, length of
-> > > +  memory mapped region.
-> > > +- reg-names: shall be "main" for master controller and "dma" for apdma.
-> > > +- interrupts: the interrupt line connected to this I3C master.
-> > > +- clocks: shall reference the i3c and apdma clocks.
-> > > +- clock-names: shall include "main" and "dma".
-> > > +
-> > > +Mandatory properties defined by the generic binding (see
-> > > +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-> > > +
-> > > +- #address-cells: shall be set to 3
-> > > +- #size-cells: shall be set to 0
-> > > +
-> > > +Optional properties defined by the generic binding (see
-> > > +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-> > > +
-> > > +- i2c-scl-hz
-> > > +- i3c-scl-hz
-> > > +
-> > > +I3C device connected on the bus follow the generic description (see
-> > > +Documentation/devicetree/bindings/i3c/i3c.txt for more details).
-> > > +
-> > > +Example:
-> > > +
-> > > +	i3c0: i3c@1100d000 {
-> > > +		compatible = "mediatek,i3c-master";
-> > > +		reg = <0x1100d000 0x1000>,
-> > > +		      <0x11000300 0x80>;
-> > > +		reg-names = "main", "dma";
-> > > +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
-> > > +		clocks = <&infracfg CLK_INFRA_I3C0>,
-> > > +			 <&infracfg CLK_INFRA_AP_DMA>;
-> > > +		clock-names = "main", "dma";
-> > > +		#address-cells = <3>;
-> > > +		#size-cells = <0>;
-> > > +		i2c-scl-hz = <100000>;
-> > > +
-> > > +		nunchuk: nunchuk@52 {
-> > > +			compatible = "nintendo,nunchuk";
-> > > +			reg = <0x52 0x0 0x10>;
-> > > +		};
-> > > +	};
-> > > -- 
-> > > 1.7.9.5
-> > >   
-> 
-> 
+Maxime
 
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
