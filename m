@@ -2,30 +2,30 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9402177A48
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 17:33:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25D7477A53
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 17:38:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729049AbfG0Pdo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Jul 2019 11:33:44 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:52692 "EHLO gloria.sntech.de"
+        id S2387770AbfG0Pio (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Jul 2019 11:38:44 -0400
+Received: from gloria.sntech.de ([185.11.138.130]:52740 "EHLO gloria.sntech.de"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729038AbfG0Pdo (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 27 Jul 2019 11:33:44 -0400
+        id S2387673AbfG0Pio (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Jul 2019 11:38:44 -0400
 Received: from d57e23da.static.ziggozakelijk.nl ([213.126.35.218] helo=phil.localnet)
         by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.89)
         (envelope-from <heiko@sntech.de>)
-        id 1hrOhX-0002VP-9k; Sat, 27 Jul 2019 17:33:39 +0200
+        id 1hrOmP-0002WQ-1J; Sat, 27 Jul 2019 17:38:41 +0200
 From:   Heiko Stuebner <heiko@sntech.de>
 To:     Krzysztof Kozlowski <krzk@kernel.org>
 Cc:     linux-arm-kernel@lists.infradead.org,
         linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org
-Subject: Re: [PATCH 2/2] ARM: dts: rockchip: Add missing unit address to memory node on rk3288-veyron
-Date:   Sat, 27 Jul 2019 17:33:38 +0200
-Message-ID: <86910491.m50tbimVMv@phil>
-In-Reply-To: <20190727142736.23188-2-krzk@kernel.org>
-References: <20190727142736.23188-1-krzk@kernel.org> <20190727142736.23188-2-krzk@kernel.org>
+Subject: Re: [PATCH 1/2] ARM: dts: rockchip: Cleanup style around assignment operator
+Date:   Sat, 27 Jul 2019 17:38:40 +0200
+Message-ID: <3124198.T2BTvMcTHZ@phil>
+In-Reply-To: <20190727142736.23188-1-krzk@kernel.org>
+References: <20190727142736.23188-1-krzk@kernel.org>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 7Bit
 Content-Type: text/plain; charset="us-ascii"
@@ -34,40 +34,16 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-Am Samstag, 27. Juli 2019, 16:27:36 CEST schrieb Krzysztof Kozlowski:
-> Fix DTC warning:
+Am Samstag, 27. Juli 2019, 16:27:35 CEST schrieb Krzysztof Kozlowski:
+> Use a space before and after assignment operator to have consistent
+> style.
 > 
->     arch/arm/boot/dts/rk3288-veyron.dtsi:21.9-24.4:
->     Warning (unit_address_vs_reg): /memory: node has a reg or ranges property, but no unit name
-
-please see the comment directly above the memory node on why that needs
-to stay that way. So no, we'll keep the veyron memory node as is.
-
-
-Heiko
-
 > Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
-> ---
->  arch/arm/boot/dts/rk3288-veyron.dtsi | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
-> index 8fc8eac699bf..02243ff46a65 100644
-> --- a/arch/arm/boot/dts/rk3288-veyron.dtsi
-> +++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
-> @@ -18,7 +18,7 @@
->  	 * The default coreboot on veyron devices ignores memory@0 nodes
->  	 * and would instead create another memory node.
->  	 */
-> -	memory {
-> +	memory@0 {
->  		device_type = "memory";
->  		reg = <0x0 0x0 0x0 0x80000000>;
->  	};
-> 
 
+I've adapted the patch around recent chromebook display changes
+(regarding veyron-chromebook.dtsi) and applied the result for 5.4
 
+Thanks
+Heiko
 
 
