@@ -2,87 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C2CB77B9B
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 21:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7163777BB4
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 21:59:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387975AbfG0Tsm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Jul 2019 15:48:42 -0400
-Received: from saturn.retrosnub.co.uk ([46.235.226.198]:45078 "EHLO
-        saturn.retrosnub.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387841AbfG0Tsm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Jul 2019 15:48:42 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        by saturn.retrosnub.co.uk (Postfix; Retrosnub mail submission) with ESMTPSA id 69FA69E774D;
-        Sat, 27 Jul 2019 20:48:39 +0100 (BST)
-Date:   Sat, 27 Jul 2019 20:48:36 +0100
-From:   Jonathan Cameron <jic23@jic23.retrosnub.co.uk>
-To:     David Lechner <david@lechnology.com>
-Cc:     linux-iio@vger.kernel.org, linux-omap@vger.kernel.org,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        id S2388265AbfG0T7h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Jul 2019 15:59:37 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:38529 "EHLO
+        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388261AbfG0T7h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Jul 2019 15:59:37 -0400
+X-Originating-IP: 195.189.32.242
+Received: from pc.localdomain (unknown [195.189.32.242])
+        (Authenticated sender: contact@artur-rojek.eu)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 444A0E0008;
+        Sat, 27 Jul 2019 19:59:33 +0000 (UTC)
+From:   Artur Rojek <contact@artur-rojek.eu>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        =?UTF-8?B?QmVub8OudA==?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        William Breathitt Gray <vilhelm.gray@gmail.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: counter: new bindings for TI eQEP
-Message-ID: <20190727204836.1514265d@archlinux>
-In-Reply-To: <20190722154538.5314-2-david@lechnology.com>
-References: <20190722154538.5314-1-david@lechnology.com>
-        <20190722154538.5314-2-david@lechnology.com>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        Paul Cercueil <paul@crapouillou.net>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Artur Rojek <contact@artur-rojek.eu>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v2 1/3] dt-bindings: iio/adc: Add a compatible string for JZ4770 SoC ADC
+Date:   Sat, 27 Jul 2019 21:59:38 +0200
+Message-Id: <20190727195940.14010-1-contact@artur-rojek.eu>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 22 Jul 2019 10:45:35 -0500
-David Lechner <david@lechnology.com> wrote:
+Add a compatible string for the ADC controller present on
+Ingenic JZ4770 SoC.
 
-> This documents device tree binding for the Texas Instruments Enhanced
-> Quadrature Encoder Pulse (eQEP) Module found in various TI SoCs.
-> 
-> Signed-off-by: David Lechner <david@lechnology.com>
+Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
 
-Up to William given it is a counter binding, (unless Rob overrules)
-but new bindings are generally preferred as yaml.
+Changes:
 
-Content looks fine to me.
+v2: no change
 
-Thanks,
+ Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-Jonathan
-
-> ---
->  .../devicetree/bindings/counter/ti-eqep.txt    | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/counter/ti-eqep.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/counter/ti-eqep.txt b/Documentation/devicetree/bindings/counter/ti-eqep.txt
-> new file mode 100644
-> index 000000000000..fbcebc2c2cc2
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/counter/ti-eqep.txt
-> @@ -0,0 +1,18 @@
-> +Texas Instruments Enhanced Quadrature Encoder Pulse (eQEP) Module
-> +
-> +Required properties:
-> +- compatible:		Must be "ti,am3352-eqep".
-> +- reg:			Physical base address and size of the registers map.
-> +- clocks:		Handle to the PWM's functional clock.
-> +- clock-names:		Must be "fck".
-> +- interrupts:		Handle to the eQEP event interrupt
-> +
-> +Example:
-> +
-> +	eqep0: eqep@180 {
-> +		compatible = "ti,am3352-eqep";
-> +		reg = <0x180 0x80>;
-> +		clocks = <&l4ls_gclk>;
-> +		clock-names = "fck";
-> +		interrupts = <79>;
-> +	};
+diff --git a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
+index f01159f20d87..cd9048cf9dcf 100644
+--- a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
++++ b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
+@@ -5,6 +5,7 @@ Required properties:
+ - compatible: Should be one of:
+   * ingenic,jz4725b-adc
+   * ingenic,jz4740-adc
++  * ingenic,jz4770-adc
+ - reg: ADC controller registers location and length.
+ - clocks: phandle to the SoC's ADC clock.
+ - clock-names: Must be set to "adc".
+-- 
+2.22.0
 
