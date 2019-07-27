@@ -2,132 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 70E287788C
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 14:04:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2339778AD
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 14:17:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387607AbfG0MEn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Jul 2019 08:04:43 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:37311 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387566AbfG0MEm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Jul 2019 08:04:42 -0400
-Received: by mail-wm1-f65.google.com with SMTP id f17so49681423wme.2;
-        Sat, 27 Jul 2019 05:04:41 -0700 (PDT)
+        id S1728839AbfG0MRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Jul 2019 08:17:51 -0400
+Received: from mail-oi1-f193.google.com ([209.85.167.193]:41339 "EHLO
+        mail-oi1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728797AbfG0MRu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Jul 2019 08:17:50 -0400
+Received: by mail-oi1-f193.google.com with SMTP id g7so42149640oia.8;
+        Sat, 27 Jul 2019 05:17:50 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=Au6/RZg4uG1yjTUrNE1TtFncQkGuc7/u4mr9IkIEock=;
-        b=bQf1bqXlGZAgCIUG5KVPwTyj/e2ta2sCmbq4RigEms3WHUYE+6DrbX+TQTgdex8KXF
-         SSeOdd8634ONiC5yQX8mRA1m+WRNTvsfxPbxxq2EVDetarcoQpbO5hBz+wJKjSIsKXY7
-         /q3+657Ka0YshwFKybxUP3g/9jR9mF92hM4cKsW4lh98z3rWsVocoDnfBFOaQgDmet2U
-         bQXE0GqxLOoJ3w3plzdqMT1jjRFfbEnv5//Ej5gWiCncHgF2+arAA1uZVOoBe+VNKkFV
-         DwRFo66bnk11qMIM6jiHWZkX77mfZgejXNJegPLkR/x9iR9IWZGUG44QUigzloY1xV/r
-         fZ8A==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=CNhzHRz2iYbGXTP3IdkSPFEl3dlcBhQ0pu5ysWhbMII=;
+        b=cG6Q289SNMExyqzT4BzCmFr+agW8QLE1G4qTS2lsKXwVxXNT3vnliR9NUCiJkWb4xa
+         vv0mIgP2g9+350JqUUFYxCyArFuss1h1e6tua1+bGGeJIhxODu3Ca8AYeU1w9FP/v8iI
+         MhZRHQjeTZU9ZhOSTQHw5+MavL3KVbpg3gYGy75V492PRmtmOQP1h0HsWUIrqQYsJEE6
+         VGA92fXomnLb+NbLAV1HnkMtcWqbTipnp/jgiQRN2/fkFoHYEBEpHZX99vlLQQe95XU+
+         zY7eAKlSeOxuKctyhesPANP5vpf2YzPuKkrEdLbrHf10PIAjG8cms8yoMCAMLto5iGBG
+         3UHg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=Au6/RZg4uG1yjTUrNE1TtFncQkGuc7/u4mr9IkIEock=;
-        b=lmFPth62Rdi762oj85fds7RXU4yy41wkzg/VSauOQ0sVsHx7sxiaE3fF2IVCHJV/aq
-         DLe3F+oJcwzl/vaKktsdq42LUbyRRiAwj3vmoYLDbQmhQkn+DqpjD0VuSNurcEN64ycY
-         gONPl2iYjUUnM1V2XbmM05RjiGkJlwV51tjXQv//STZgHnwldDTleokPe8mULCrz6joo
-         Q5UCzzaEjAiYAM28ne783RUwXILDo8/YqcJ01HfOU9DI0QUknsO2Xlq1Tp8V8B84ysaG
-         snx77HjAyAkF6NTcxoMxVtYnpga23uX6mTKNe5c7w4i3tMoV3EtIiGw02lOmJ8VdFY2M
-         5OCA==
-X-Gm-Message-State: APjAAAU7FumEaTmr73ku0sVSQZIarUWmArnq1i+jRbtN61aMZMK6mzr8
-        lY4xROvMnOP2t2LT0VMuE5SmruJQ
-X-Google-Smtp-Source: APXvYqzU8VW52Y656rz/HojqVA9YkRLKJOeG/Dq909S2JfESbbf48qEPup4niHIfXStrWZrOCnk4Ww==
-X-Received: by 2002:a1c:b146:: with SMTP id a67mr88076976wmf.124.1564229080440;
-        Sat, 27 Jul 2019 05:04:40 -0700 (PDT)
-Received: from blackbox.darklights.net (p200300F133C65C00B418D0F4A25A19EC.dip0.t-ipconnect.de. [2003:f1:33c6:5c00:b418:d0f4:a25a:19ec])
-        by smtp.googlemail.com with ESMTPSA id r5sm58596219wmh.35.2019.07.27.05.04.39
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sat, 27 Jul 2019 05:04:39 -0700 (PDT)
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-To:     linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        john@phrozen.org, kishon@ti.com, paul.burton@mips.com,
-        ralf@linux-mips.org
-Cc:     robh+dt@kernel.org, linux-kernel@vger.kernel.org, hauke@hauke-m.de,
-        mark.rutland@arm.com, ms@dev.tdt.de,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Subject: [PATCH v3 4/4] MIPS: lantiq: update the clock alias' for the mainline PCIe PHY driver
-Date:   Sat, 27 Jul 2019 14:04:15 +0200
-Message-Id: <20190727120415.15859-5-martin.blumenstingl@googlemail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190727120415.15859-1-martin.blumenstingl@googlemail.com>
-References: <20190727120415.15859-1-martin.blumenstingl@googlemail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=CNhzHRz2iYbGXTP3IdkSPFEl3dlcBhQ0pu5ysWhbMII=;
+        b=XurtJnElZr6EQ9oVtfq357hi7cGXNm6F+PzYj8QczJ1AGjHrFfWO/SV9DwdBrw/NPY
+         vXHH6MMj0j/2ZX0hvN6xtjK8T+M/utgWJSFES5RDs4Mz9mnisOi59zhreO6N6Fwq7uar
+         k6GVWyP/WuumGDYZXw7svprGUHoC6qM38Z3BN+Pjqdj6X0VLKoTMGfHAklwHbw6VA2Ws
+         mkY++fhUvF7sggK+819SwOg1DpPBXgHMLchsQkNvVovsQJLBPdjrAQJAYxE+kL6r43lD
+         rKTl3/gD+0Pv2artgkmxloXI56kSdfUmrDHBS7E48V/bXwwMXDG7sUB7F8E46LCNjPuS
+         NG1A==
+X-Gm-Message-State: APjAAAUlx8qCb+pO9jOKChq0Nsggo1kML90SXEXEFdWMIoaiNpvYT1i/
+        fl840f6lfLmhp/IL4gKVu8uojdfkIVqorTYOQV7Xow==
+X-Google-Smtp-Source: APXvYqwYmHppUXdfjPmHAHr52sRX654Hjj0LrUImUSO2z34wUj15h3dYIjxdcEN6XIljQQh4wx43Te/Ly0JritXHa9A=
+X-Received: by 2002:aca:4ad2:: with SMTP id x201mr48673019oia.129.1564229869688;
+ Sat, 27 Jul 2019 05:17:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1564083776-20540-1-git-send-email-clabbe@baylibre.com> <1564083776-20540-3-git-send-email-clabbe@baylibre.com>
+In-Reply-To: <1564083776-20540-3-git-send-email-clabbe@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Sat, 27 Jul 2019 14:17:38 +0200
+Message-ID: <CAFBinCD7pgUaBJgeGHTOu-uZRA9a6K2kxPsu+huKe23wcnKPoA@mail.gmail.com>
+Subject: Re: [PATCH 2/4] crypto: amlogic: Add crypto accelerator for amlogic GXL
+To:     Corentin Labbe <clabbe@baylibre.com>
+Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
+        khilman@baylibre.com, mark.rutland@arm.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, baylibre-upstreaming@groups.io,
+        linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The mainline PCIe PHY driver has it's own devicetree node. Update the
-clock alias so the mainline driver finds the clocks.
+Hi Corentin,
 
-The first PCIe PHY is located at 0x1f106800 and exists on VRX200, ARX300
-and GRX390.
-The second PCIe PHY is located at 0x1f700400 and exists on ARX300 and
-GRX390.
-The third PCIe PHY is located at 0x1f106a00 and exists onl on GRX390.
-Lantiq's board support package (called "UGW") names these registers
-"PDI".
+it's great to see you working on this :)
 
-Signed-off-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
----
- arch/mips/lantiq/xway/sysctrl.c | 16 ++++++++--------
- 1 file changed, 8 insertions(+), 8 deletions(-)
+On Thu, Jul 25, 2019 at 9:45 PM Corentin Labbe <clabbe@baylibre.com> wrote:
+>
+> This patch adds support for the amlogic GXL cryptographic offloader present
+> on GXL SoCs.
+>
+> This driver supports AES cipher in CBC/ECB mode.
+>
+> Signed-off-by: Corentin Labbe <clabbe@baylibre.com>
+> ---
+>  drivers/crypto/Kconfig                  |   2 +
+>  drivers/crypto/Makefile                 |   1 +
+>  drivers/crypto/amlogic/Kconfig          |  24 ++
+>  drivers/crypto/amlogic/Makefile         |   2 +
+>  drivers/crypto/amlogic/amlogic-cipher.c | 358 ++++++++++++++++++++++++
+>  drivers/crypto/amlogic/amlogic-core.c   | 326 +++++++++++++++++++++
+>  drivers/crypto/amlogic/amlogic.h        | 172 ++++++++++++
+>  7 files changed, 885 insertions(+)
+>  create mode 100644 drivers/crypto/amlogic/Kconfig
+>  create mode 100644 drivers/crypto/amlogic/Makefile
+>  create mode 100644 drivers/crypto/amlogic/amlogic-cipher.c
+>  create mode 100644 drivers/crypto/amlogic/amlogic-core.c
+>  create mode 100644 drivers/crypto/amlogic/amlogic.h
+there are two different crypto IPs on Amlogic SoCs:
+- GXL and newer use the "BLKMV" crypto IP
+- GXBB, Meson8/Meson8b/Meson8m2 (and probably older SoCs) use the
+"NDMA" crypto IP
 
-diff --git a/arch/mips/lantiq/xway/sysctrl.c b/arch/mips/lantiq/xway/sysctrl.c
-index b4323b2214e2..156a95ac5c72 100644
---- a/arch/mips/lantiq/xway/sysctrl.c
-+++ b/arch/mips/lantiq/xway/sysctrl.c
-@@ -468,14 +468,14 @@ void __init ltq_soc_init(void)
- 		clkdev_add_pmu("1f203018.usb2-phy", "phy", 1, 2, PMU_ANALOG_USB0_P);
- 		clkdev_add_pmu("1f203034.usb2-phy", "phy", 1, 2, PMU_ANALOG_USB1_P);
- 		/* rc 0 */
--		clkdev_add_pmu("1d900000.pcie", "phy", 1, 2, PMU_ANALOG_PCIE0_P);
-+		clkdev_add_pmu("1f106800.phy", "phy", 1, 2, PMU_ANALOG_PCIE0_P);
- 		clkdev_add_pmu("1d900000.pcie", "msi", 1, 1, PMU1_PCIE_MSI);
--		clkdev_add_pmu("1d900000.pcie", "pdi", 1, 1, PMU1_PCIE_PDI);
-+		clkdev_add_pmu("1f106800.phy", "pdi", 1, 1, PMU1_PCIE_PDI);
- 		clkdev_add_pmu("1d900000.pcie", "ctl", 1, 1, PMU1_PCIE_CTL);
- 		/* rc 1 */
--		clkdev_add_pmu("19000000.pcie", "phy", 1, 2, PMU_ANALOG_PCIE1_P);
-+		clkdev_add_pmu("1f700400.phy", "phy", 1, 2, PMU_ANALOG_PCIE1_P);
- 		clkdev_add_pmu("19000000.pcie", "msi", 1, 1, PMU1_PCIE1_MSI);
--		clkdev_add_pmu("19000000.pcie", "pdi", 1, 1, PMU1_PCIE1_PDI);
-+		clkdev_add_pmu("1f700400.phy", "pdi", 1, 1, PMU1_PCIE1_PDI);
- 		clkdev_add_pmu("19000000.pcie", "ctl", 1, 1, PMU1_PCIE1_CTL);
- 	}
- 
-@@ -499,9 +499,9 @@ void __init ltq_soc_init(void)
- 		clkdev_add_pmu("1e101000.usb", "otg", 1, 0, PMU_USB0);
- 		clkdev_add_pmu("1e106000.usb", "otg", 1, 0, PMU_USB1);
- 		/* rc 2 */
--		clkdev_add_pmu("1a800000.pcie", "phy", 1, 2, PMU_ANALOG_PCIE2_P);
-+		clkdev_add_pmu("1f106a00.pcie", "phy", 1, 2, PMU_ANALOG_PCIE2_P);
- 		clkdev_add_pmu("1a800000.pcie", "msi", 1, 1, PMU1_PCIE2_MSI);
--		clkdev_add_pmu("1a800000.pcie", "pdi", 1, 1, PMU1_PCIE2_PDI);
-+		clkdev_add_pmu("1f106a00.pcie", "pdi", 1, 1, PMU1_PCIE2_PDI);
- 		clkdev_add_pmu("1a800000.pcie", "ctl", 1, 1, PMU1_PCIE2_CTL);
- 		clkdev_add_pmu("1e10b308.eth", NULL, 0, 0, PMU_SWITCH | PMU_PPE_DP);
- 		clkdev_add_pmu("1da00000.usif", "NULL", 1, 0, PMU_USIF);
-@@ -526,10 +526,10 @@ void __init ltq_soc_init(void)
- 		clkdev_add_pmu("1e101000.usb", "otg", 1, 0, PMU_USB0 | PMU_AHBM);
- 		clkdev_add_pmu("1f203034.usb2-phy", "phy", 1, 0, PMU_USB1_P);
- 		clkdev_add_pmu("1e106000.usb", "otg", 1, 0, PMU_USB1 | PMU_AHBM);
--		clkdev_add_pmu("1d900000.pcie", "phy", 1, 1, PMU1_PCIE_PHY);
-+		clkdev_add_pmu("1f106800.phy", "phy", 1, 1, PMU1_PCIE_PHY);
- 		clkdev_add_pmu("1d900000.pcie", "bus", 1, 0, PMU_PCIE_CLK);
- 		clkdev_add_pmu("1d900000.pcie", "msi", 1, 1, PMU1_PCIE_MSI);
--		clkdev_add_pmu("1d900000.pcie", "pdi", 1, 1, PMU1_PCIE_PDI);
-+		clkdev_add_pmu("1f106800.phy", "pdi", 1, 1, PMU1_PCIE_PDI);
- 		clkdev_add_pmu("1d900000.pcie", "ctl", 1, 1, PMU1_PCIE_CTL);
- 		clkdev_add_pmu(NULL, "ahb", 1, 0, PMU_AHBM | PMU_AHBS);
- 
--- 
-2.22.0
+personally I think it makes sense to either have the IP name (blkmv)
+or SoC name (GXL) in the file or directory names as well as being
+consistent with that in the Kconfig option names
 
+(I have no experience with the crypto framework so I cannot comment on
+the driver implementation itself)
+
+
+Martin
