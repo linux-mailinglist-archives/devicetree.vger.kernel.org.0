@@ -2,131 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C053377594
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 03:23:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 598EC775C4
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 03:57:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387458AbfG0BXs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 21:23:48 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:26686 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S2387457AbfG0BXr (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 21:23:47 -0400
-X-UUID: fd71b6eea81b4bb5bce1dbe77ea48a38-20190727
-X-UUID: fd71b6eea81b4bb5bce1dbe77ea48a38-20190727
-Received: from mtkcas36.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <qii.wang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 1997973271; Sat, 27 Jul 2019 09:23:38 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N1.mediatek.inc
- (172.27.4.69) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sat, 27 Jul
- 2019 09:23:34 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Sat, 27 Jul 2019 09:23:33 +0800
-Message-ID: <1564190613.24702.11.camel@mhfsdcap03>
-Subject: Re: [PATCH v3 1/2] dt-bindings: i3c: Document MediaTek I3C master
- bindings
-From:   Qii Wang <qii.wang@mediatek.com>
-To:     Rob Herring <robh@kernel.org>
-CC:     <bbrezillon@kernel.org>, <matthias.bgg@gmail.com>,
-        <mark.rutland@arm.com>, <linux-i3c@lists.infradead.org>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>, <leilk.liu@mediatek.com>,
-        <liguo.zhang@mediatek.com>, <xinping.qian@mediatek.com>
-Date:   Sat, 27 Jul 2019 09:23:33 +0800
-In-Reply-To: <20190724202119.GA26566@bogus>
-References: <1562677762-24067-1-git-send-email-qii.wang@mediatek.com>
-         <1562677762-24067-2-git-send-email-qii.wang@mediatek.com>
-         <20190724202119.GA26566@bogus>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726908AbfG0B50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 21:57:26 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:52528 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726115AbfG0B50 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 21:57:26 -0400
+Received: from pendragon.ideasonboard.com (om126200118163.15.openmobile.ne.jp [126.200.118.163])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1C7D12E7;
+        Sat, 27 Jul 2019 03:57:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1564192643;
+        bh=uI0bqTAW3t85cdKpK+aJtIq1FdKPSDyFmGcCRL27uww=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=IHOZFXWK6i11B9Y5Yp8r4rV/SwPIw8+i8amu6nqTFpW25jE/5BxkgNnqkQ8LXj4ep
+         f0OWUvcY17E0rmisWI5XM2/NqWyAbteTdPbnQCLX+oMpNFeNCrIBv9Sz7/noGheFp4
+         uB5GA8vnAmhDHDWaaqcza7FOFKEeB9Vcn5UbDOv4=
+Date:   Sat, 27 Jul 2019 04:57:16 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>
+Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Robert Chiras <robert.chiras@nxp.com>
+Subject: Re: [PATCH 2/3] dt-bindings: display/bridge: Add binding for IMX NWL
+ mipi dsi host controller
+Message-ID: <20190727015716.GA4902@pendragon.ideasonboard.com>
+References: <cover.1563983037.git.agx@sigxcpu.org>
+ <70a5c6617936a4a095e7608b96e3f9fae5ddfbb1.1563983037.git.agx@sigxcpu.org>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 3115CDD7324A6A0F4379AC19364C2F37546642D4CAA4C5EC9B050BD991421A8C2000:8
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <70a5c6617936a4a095e7608b96e3f9fae5ddfbb1.1563983037.git.agx@sigxcpu.org>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-07-24 at 14:21 -0600, Rob Herring wrote:
-> On Tue, Jul 09, 2019 at 09:09:21PM +0800, Qii Wang wrote:
-> > Document MediaTek I3C master DT bindings.
-> > 
-> > Signed-off-by: Qii Wang <qii.wang@mediatek.com>
-> > ---
-> >  .../devicetree/bindings/i3c/mtk,i3c-master.txt     |   48 ++++++++++++++++++++
-> >  1 file changed, 48 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
-> > new file mode 100644
-> > index 0000000..d32eda6
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/i3c/mtk,i3c-master.txt
-> > @@ -0,0 +1,48 @@
-> > +Bindings for MediaTek I3C master block
-> > +=====================================
-> > +
-> > +Required properties:
-> > +--------------------
-> > +- compatible: shall be "mediatek,i3c-master"
+Hi Guido,
+
+Thank you for the patch.
+
+On Wed, Jul 24, 2019 at 05:52:25PM +0200, Guido Günther wrote:
+> The Northwest Logic MIPI DSI IP core can be found in NXPs i.MX8 SoCs.
 > 
-> Needs to be SoC specific.
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> ---
+>  .../bindings/display/bridge/imx-nwl-dsi.txt   | 89 +++++++++++++++++++
+>  1 file changed, 89 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
 > 
+> diff --git a/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt b/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
+> new file mode 100644
+> index 000000000000..288fdb726d5a
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
+> @@ -0,0 +1,89 @@
+> +Northwest Logic MIPI-DSI on imx SoCs
+> +=====================================
 
-We hope that the SOCs will use the same driver and try to avoid big
-changes. If there are inevitable changes in the future, then we will
-modify the compatible to be SoC specific. cdns,i3c-master.txt is not SoC
-specific either.
+There's one too many =.
 
-> > +- reg: physical base address of the controller and apdma base, length of
-> > +  memory mapped region.
-> > +- reg-names: shall be "main" for master controller and "dma" for apdma.
-> > +- interrupts: the interrupt line connected to this I3C master.
-> > +- clocks: shall reference the i3c and apdma clocks.
-> > +- clock-names: shall include "main" and "dma".
-> > +
-> > +Mandatory properties defined by the generic binding (see
-> > +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-> > +
-> > +- #address-cells: shall be set to 3
-> > +- #size-cells: shall be set to 0
-> > +
-> > +Optional properties defined by the generic binding (see
-> > +Documentation/devicetree/bindings/i3c/i3c.txt for more details):
-> > +
-> > +- i2c-scl-hz
-> > +- i3c-scl-hz
-> > +
-> > +I3C device connected on the bus follow the generic description (see
-> > +Documentation/devicetree/bindings/i3c/i3c.txt for more details).
-> > +
-> > +Example:
-> > +
-> > +	i3c0: i3c@1100d000 {
-> > +		compatible = "mediatek,i3c-master";
-> > +		reg = <0x1100d000 0x1000>,
-> > +		      <0x11000300 0x80>;
-> > +		reg-names = "main", "dma";
-> > +		interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_LOW>;
-> > +		clocks = <&infracfg CLK_INFRA_I3C0>,
-> > +			 <&infracfg CLK_INFRA_AP_DMA>;
-> > +		clock-names = "main", "dma";
-> > +		#address-cells = <3>;
-> > +		#size-cells = <0>;
-> > +		i2c-scl-hz = <100000>;
-> > +
-> > +		nunchuk: nunchuk@52 {
-> > +			compatible = "nintendo,nunchuk";
-> > +			reg = <0x52 0x0 0x10>;
-> > +		};
-> > +	};
-> > -- 
-> > 1.7.9.5
-> > 
+> +
+> +NWL MIPI-DSI host controller found on i.MX8 platforms. This is a
+> +dsi bridge for the for the NWL MIPI-DSI host.
 
+s/dsi/DSI/
+s/for the for the /for the /
 
+> +
+> +Required properties:
+> +- compatible: 		"fsl,<chip>-nwl-dsi"
+> +	The following strings are expected:
+> +			"fsl,imx8mq-nwl-dsi"
+> +- reg: 			the register range of the MIPI-DSI controller
+> +- interrupts: 		the interrupt number for this module
+
+It's not just a number but a specifier (with flags).
+
+> +- clock, clock-names: 	phandles to the MIPI-DSI clocks
+
+That should be phandles and names.
+
+> +	The following clocks are expected on all platforms:
+
+Expected or required ?
+
+s/ on all platforms// as you only support a single platform.
+
+> +		"core"    - DSI core clock
+> +		"tx_esc"  - TX_ESC clock (used in escape mode)
+> +		"rx_esc"  - RX_ESC clock (used in escape mode)
+> +		"phy_ref" - PHY_REF clock. Clock is managed by the phy. Only
+> +                            used to read the clock rate.
+> +- assigned-clocks:	phandles to clocks that require initial configuration
+> +- assigned-clock-rates:	rates of the clocks that require initial configuration
+> +	The following clocks need to have an initial configuration:
+> +	"tx_esc" (20 MHz) and "rx_esc" (80 Mhz).
+
+I think those two properties are out of scope for these bindings.
+
+> +- phys: 		phandle to the phy module representing the DPHY
+> +			inside the MIPI-DSI IP block
+> +- phy-names: 		should be "dphy"
+> +
+> +Optional properties:
+> +- power-domains 	phandle to the power domain
+> +- src			phandle to the system reset controller (required on
+> +			i.MX8MQ)
+
+Should this use the standard resets property ?
+
+> +- mux-sel		phandle to the MUX register set (required on i.MX8MQ)
+> +- assigned-clock-parents phandles to parent clocks that needs to be assigned as
+> +			parents to clocks defined in assigned-clocks
+
+This property is also out of scope.
+
+> +
+> +Example:
+> +	mipi_dsi: mipi_dsi@30a00000 {
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		compatible = "fsl,imx8mq-nwl-dsi";
+> +		reg = <0x30A00000 0x300>;
+> +		clocks = <&clk IMX8MQ_CLK_DSI_CORE>,
+> +			 <&clk IMX8MQ_CLK_DSI_AHB>,
+> +			 <&clk IMX8MQ_CLK_DSI_IPG_DIV>,
+> +			 <&clk IMX8MQ_CLK_DSI_PHY_REF>;
+> +		clock-names = "core", "rx_esc", "tx_esc", "phy_ref";
+> +		assigned-clocks = <&clk IMX8MQ_CLK_DSI_AHB>,
+> +				  <&clk IMX8MQ_CLK_DSI_CORE>,
+> +				  <&clk IMX8MQ_CLK_DSI_IPG_DIV>;
+> +		assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>,
+> +					 <&clk IMX8MQ_SYS1_PLL_266M>;
+> +		assigned-clock-rates = <80000000>,
+> +				       <266000000>,
+> +				       <20000000>;
+> +		interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> +		power-domains = <&pgc_mipi>;
+> +		src = <&src>;
+> +		mux-sel = <&iomuxc_gpr>;
+> +		phys = <&dphy>;
+> +		phy-names = "dphy";
+> +		status = "okay";
+> +
+> +		panel@0 {
+> +			compatible = "...";
+> +			port {
+> +			     panel_in: endpoint {
+> +				       remote-endpoint = <&mipi_dsi_out>;
+> +			     };
+> +			};
+> +		};
+> +
+> +		ports {
+> +		      #address-cells = <1>;
+> +		      #size-cells = <0>;
+> +
+> +		      port@0 {
+> +			     reg = <0>;
+> +			     mipi_dsi_in: endpoint {
+> +					  remote-endpoint = <&dcss_disp0_mipi_dsi>;
+> +			     };
+> +		      };
+> +		      port@1 {
+> +			     reg = <1>;
+> +			     mipi_dsi_out: endpoint {
+> +					   remote-endpoint = <&panel_in>;
+> +			     };
+> +		      };
+> +		};
+
+The ports should be documented too. There are multiple example bindings
+available.
+
+> +	};
+
+-- 
+Regards,
+
+Laurent Pinchart
