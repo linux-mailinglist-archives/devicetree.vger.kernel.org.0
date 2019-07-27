@@ -2,207 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 19CE27777F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 09:51:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C1FD77787
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 10:02:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727890AbfG0Hvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Jul 2019 03:51:43 -0400
-Received: from Mailgw01.mediatek.com ([1.203.163.78]:23368 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726197AbfG0Hvm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Jul 2019 03:51:42 -0400
-X-UUID: 1bcd27e4c7944f1bab7eb96d63b4cb02-20190727
-X-UUID: 1bcd27e4c7944f1bab7eb96d63b4cb02-20190727
-Received: from mtkcas35.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
-        (envelope-from <yong.wu@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 682007720; Sat, 27 Jul 2019 15:51:35 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sat, 27 Jul
- 2019 15:51:28 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Sat, 27 Jul 2019 15:51:28 +0800
-Message-ID: <1564213888.22908.4.camel@mhfsdcap03>
-Subject: Re: [PATCH v2 00/12] Clean up "mediatek,larb" after adding
- device_link
-From:   Yong Wu <yong.wu@mediatek.com>
-To:     CK Hu <ck.hu@mediatek.com>
-CC:     Matthias Brugger <matthias.bgg@gmail.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        Rob Herring <robh+dt@kernel.org>, <youlin.pei@mediatek.com>,
-        <devicetree@vger.kernel.org>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        <srv_heupstream@mediatek.com>, Will Deacon <will.deacon@arm.com>,
-        <linux-kernel@vger.kernel.org>, Evan Green <evgreen@chromium.org>,
-        Tomasz Figa <tfiga@google.com>,
-        <iommu@lists.linux-foundation.org>,
-        <linux-mediatek@lists.infradead.org>, <yingjoe.chen@mediatek.com>,
-        <anan.sun@mediatek.com>, Robin Murphy <robin.murphy@arm.com>,
-        <linux-arm-kernel@lists.infradead.org>, <joey.pan@mediatek.com>
-Date:   Sat, 27 Jul 2019 15:51:28 +0800
-In-Reply-To: <1563849109.27558.14.camel@mtksdaap41>
-References: <1560171313-28299-1-git-send-email-yong.wu@mediatek.com>
-         <1563849109.27558.14.camel@mtksdaap41>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1727997AbfG0IB7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Jul 2019 04:01:59 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:45390 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726197AbfG0IB7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Jul 2019 04:01:59 -0400
+Received: by mail-lj1-f194.google.com with SMTP id m23so53586640lje.12;
+        Sat, 27 Jul 2019 01:01:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=DZuSQOs3k+A8iZ0Th3QCScF8T/FNqRHuvkaRAFfzCjQ=;
+        b=J4WwLXz0LZtHeNNm+zdpdsx6I7sBZ0PdZJay9gcTUXbWdMbrfOIm41Ys3osdjg2Gvq
+         sNTFALR2bnvakIlmyTK3ItLx1juacv4j/4QOeFfLATguhE85FcpSq5SzWHoVu12oTz1U
+         vC2C3+MSujfaazA8qdzMTBN/oKxVRb2KA/AEufzKAKP5iv4lLg/dnRepVogMPt6kGk57
+         ChMs2auDA7APL80KJH20d01FkQhaXcFnZFSk5BTZhq4/EPW2CT3X+Br1TJ0+/Uhh3l1l
+         gTOQ3ou1VDzR3eNct5N4bxlUp56L/zdQym6QDCTqyVrR9tRipvC9QymP/O3S/5oUAiYR
+         Db2Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=DZuSQOs3k+A8iZ0Th3QCScF8T/FNqRHuvkaRAFfzCjQ=;
+        b=HJjNVFaYShyXd0fZ5iBTiGb4Z/kpdLEJw/5DqT5tBbSuCTXU2fE7NssnFNJtsPyO/Z
+         JlqRSrvUnNFFH8X4g9Z19cYMcm/mRPelU3zgCVgeUdSIV7DLG8Pzk/y4B8saVg944Tvl
+         jm4hiWDYNfH8IwAuZcf8wjoN92HaA3Mr3FZirEL9IY65YRipsQdyXdN55jwAYhQpdDY2
+         KpDhnEvaZleFIp07LM2CDNhf/Ju+rl3pOK2pLDUUaw6mujl9FdfXrxmF4Car3FsIR7sH
+         0kfDniLl5aKYyifb6GfrH+2U46W93N0FiN5CKuIUOGABMSFQ13Y+iZqcFRavURg7nDIn
+         IXlA==
+X-Gm-Message-State: APjAAAXgsWh8Xb3I3xbU5DbFouoJPIdKssyK9LaqHU5Oo5gp5BmYlj1l
+        fPfQqBSnNTfmU3V3dAVzuAZVhGSRzoA=
+X-Google-Smtp-Source: APXvYqwwtc2SvQedMjkrDVrz3wum5JVvlUZoBzcjO0kJwDjXy7TW1e+8jQaOl1ck55kr6K94NtEoEw==
+X-Received: by 2002:a05:651c:1105:: with SMTP id d5mr8223817ljo.161.1564214516765;
+        Sat, 27 Jul 2019 01:01:56 -0700 (PDT)
+Received: from localhost ([188.170.223.67])
+        by smtp.gmail.com with ESMTPSA id n1sm9092825lfk.19.2019.07.27.01.01.55
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sat, 27 Jul 2019 01:01:55 -0700 (PDT)
+Date:   Sat, 27 Jul 2019 11:01:54 +0300
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Rob Herring <robh@kernel.org>
+Cc:     Michal =?utf-8?B?Vm9rw6HEjQ==?= <michal.vokac@ysoft.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>
+Subject: Re: [RFC PATCH v2 1/4] dt-bindings: input: Add support for the
+ MPR121 without interrupt line
+Message-ID: <20190727080154.GB795@penguin>
+References: <1558098773-47416-1-git-send-email-michal.vokac@ysoft.com>
+ <1558098773-47416-2-git-send-email-michal.vokac@ysoft.com>
+ <20190613223945.GA938@bogus>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: B3B5B4BEFFF99C65728AE2E1DD572EDEE773F4B9A5223F313A27C88854DAF4DC2000:8
-X-MTK:  N
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190613223945.GA938@bogus>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 2019-07-23 at 10:31 +0800, CK Hu wrote:
-> Hi, Yong:
+On Thu, Jun 13, 2019 at 04:39:45PM -0600, Rob Herring wrote:
+> On Fri, May 17, 2019 at 03:12:50PM +0200, Michal Vokáč wrote:
+> > Normally, the MPR121 controller uses separate interrupt line to notify
+> > the I2C host that a key was touched/released. To support platforms that
+> > can not use the interrupt line, polling of the MPR121 registers can be
+> > used.
 > 
-> I've added log  in mtk_smi_clk_enable() and mtk_smi_clk_disable(), and I
-> boot MT8183 with display, the log is
+> 'separate' from what?
 > 
-> [    4.020340] mtk-smi-common 14019000.smi: mtk_smi_clk_enable()
-> [    4.331371] mtk-smi-common 14019000.smi: mtk_smi_clk_disable()
-> [    4.429578] mtk-smi-common 14019000.smi: mtk_smi_clk_enable()
-> [    4.719743] mtk-smi-common 14019000.smi: mtk_smi_clk_disable()
-> [    5.084770] mtk-smi-common 14019000.smi: mtk_smi_clk_enable()
-> [    5.904310] mtk-smi-common 14019000.smi: mtk_smi_clk_disable()
+> > 
+> > Signed-off-by: Michal Vokáč <michal.vokac@ysoft.com>
+> > ---
+> > Changes since v1:
+> > - Document the polled binding in the original file, do not create a new one.
+> >   (Rob)
+> > 
+> >  Documentation/devicetree/bindings/input/mpr121-touchkey.txt | 9 +++++++--
+> >  1 file changed, 7 insertions(+), 2 deletions(-)
+> > 
+> > diff --git a/Documentation/devicetree/bindings/input/mpr121-touchkey.txt b/Documentation/devicetree/bindings/input/mpr121-touchkey.txt
+> > index b7c61ee5841b..97f55273d473 100644
+> > --- a/Documentation/devicetree/bindings/input/mpr121-touchkey.txt
+> > +++ b/Documentation/devicetree/bindings/input/mpr121-touchkey.txt
+> > @@ -1,9 +1,14 @@
+> > -* Freescale MPR121 Controllor
+> > +* Freescale MPR121 Controller
+> >  
+> >  Required Properties:
+> > -- compatible:		Should be "fsl,mpr121-touchkey"
+> > +- compatible:		Should be one of:
+> > +			- "fsl,mpr121-touchkey" - MPR121 with interrupt line
+> > +			- "fsl,mpr121-touchkey-polled" - MPR121 with polling
+> >  - reg:			The I2C slave address of the device.
+> >  - interrupts:		The interrupt number to the cpu.
+> > +			In case of "fsl,mpr121-touchkey-polled" the interrupt
+> > +			line is not used and hence the interrupts property is
+> > +			not required.
 > 
-> From the log, the clock is finally turned off, but the display works
-> normally. This is because scpsys has turn the clock on,
-> 
-> 		scpsys: syscon@10006000 {
-> 			compatible = "mediatek,mt8183-scpsys", "syscon";
-> 			#power-domain-cells = <1>;
-> 			reg = <0 0x10006000 0 0x1000>;
-> 			clocks = <&topckgen CLK_TOP_MUX_AUD_INTBUS>,
-> 				 <&mmsys CLK_MM_SMI_COMMON>,
-> 				 <&mmsys CLK_MM_GALS_COMM0>,
-> 				 <&mmsys CLK_MM_GALS_COMM1>,
-> 			clock-names = "audio","mm-0",
-> 				      "mm-1", "mm-2";
-> 		}
-> 
-> I'm worried that for MT8173, scpsys would not turn on subsys clock, this
-> series would let display work abnormally, so I think smi common should
-> not depend on scpsys to turn on the clock.
-> 
-> You could simply remove the clock parameter in scpsys device node, and
-> you would see the display works abnormally.
+> Absence of the interrupts property is enough to determine polled mode 
+> and you don't need a separate compatible string.
 
-Thanks for the report. I have reproduced this issue by removing the smi
-clock in scpsys node.
+I would prefer if we could distinguish between chip working in polled
+mode intentionally vs DT writer simply forgetting to specify interrupt
+property. Should we key the polling mode off "linux,poll-interval"
+property? We probably going to need it anyway as not everyone needs the
+same polling frequency.
 
-Now the probe sequence is like this:
-a) mtk scpsys (genpd) probe
-b) smi probe
-c) iommu probe
-d) display and the other MM probe.
+Thanks.
 
-The log above are called from device_link_add and rpm_idle which is
-called between iommu-probe and display-probe.
-
-At the beginning, all the clocks are enabled. But after this
-mtk_smi_clk_enable and mtk_smi_clk_disable, the display clock will be
-turned off. If the fastlogo is displayed before kernel, then the display
-HW will work abnormally.
-
-I have no mt8173 evb board now, I remembered that the screen only is
-showed in display driver of kernel in mt8173, It may be ok in that case.
-But It really is a problem when the fastlogo is showed before kernel.
-
-This clock issue happened before display driver, It looks display driver
-can not help this. I will try to fix it in SMI(smi try to help
-display(larb0) to pm_runtime_get_sync one time and put later).
-
-
-> 
-> Regards,
-> CK
-> 
-> 
-> On Mon, 2019-06-10 at 20:55 +0800, Yong Wu wrote:
-> > MediaTek IOMMU block diagram always like below:
-> > 
-> >         M4U
-> >          |
-> >     smi-common
-> >          |
-> >   -------------
-> >   |         |  ...
-> >   |         |
-> > larb1     larb2
-> >   |         |
-> > vdec       venc
-> > 
-> > All the consumer connect with smi-larb, then connect with smi-common.
-> > 
-> > MediaTek IOMMU don't have its power-domain. When the consumer works,
-> > it should enable the smi-larb's power which also need enable the smi-common's
-> > power firstly.
-> > 
-> > Thus, Firstly, use the device link connect the consumer and the
-> > smi-larbs. then add device link between the smi-larb and smi-common.
-> > 
-> > After adding the device_link, then "mediatek,larb" property can be removed.
-> > the iommu consumer don't need call the mtk_smi_larb_get/put to enable
-> > the power and clock of smi-larb and smi-common.
-> > 
-> > This patchset depends on "MT8183 IOMMU SUPPORT"[1].
-> > 
-> > [1] https://lists.linuxfoundation.org/pipermail/iommu/2019-June/036552.html
-> > 
-> > Change notes:
-> > v2:
-> >    1) rebase on v5.2-rc1.
-> >    2) Move adding device_link between the consumer and smi-larb into
-> > iommu_add_device from Robin.
-> >    3) add DL_FLAG_AUTOREMOVE_CONSUMER even though the smi is built-in from Evan.
-> >    4) Remove the shutdown callback in iommu.   
-> > 
-> > v1: https://lists.linuxfoundation.org/pipermail/iommu/2019-January/032387.html
-> > 
-> > Yong Wu (12):
-> >   dt-binding: mediatek: Get rid of mediatek,larb for multimedia HW
-> >   iommu/mediatek: Add probe_defer for smi-larb
-> >   iommu/mediatek: Add device_link between the consumer and the larb
-> >     devices
-> >   memory: mtk-smi: Add device-link between smi-larb and smi-common
-> >   media: mtk-jpeg: Get rid of mtk_smi_larb_get/put
-> >   media: mtk-mdp: Get rid of mtk_smi_larb_get/put
-> >   media: mtk-vcodec: Get rid of mtk_smi_larb_get/put
-> >   drm/mediatek: Get rid of mtk_smi_larb_get/put
-> >   memory: mtk-smi: Get rid of mtk_smi_larb_get/put
-> >   iommu/mediatek: Use builtin_platform_driver
-> >   arm: dts: mediatek: Get rid of mediatek,larb for MM nodes
-> >   arm64: dts: mediatek: Get rid of mediatek,larb for MM nodes
-> > 
-> >  .../bindings/display/mediatek/mediatek,disp.txt    |  9 -----
-> >  .../bindings/media/mediatek-jpeg-decoder.txt       |  4 --
-> >  .../devicetree/bindings/media/mediatek-mdp.txt     |  8 ----
-> >  .../devicetree/bindings/media/mediatek-vcodec.txt  |  4 --
-> >  arch/arm/boot/dts/mt2701.dtsi                      |  1 -
-> >  arch/arm/boot/dts/mt7623.dtsi                      |  1 -
-> >  arch/arm64/boot/dts/mediatek/mt8173.dtsi           | 15 -------
-> >  drivers/gpu/drm/mediatek/mtk_drm_crtc.c            | 11 -----
-> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.c        | 26 ------------
-> >  drivers/gpu/drm/mediatek/mtk_drm_ddp_comp.h        |  1 -
-> >  drivers/iommu/mtk_iommu.c                          | 45 +++++++--------------
-> >  drivers/iommu/mtk_iommu_v1.c                       | 39 +++++++-----------
-> >  drivers/media/platform/mtk-jpeg/mtk_jpeg_core.c    | 22 ----------
-> >  drivers/media/platform/mtk-jpeg/mtk_jpeg_core.h    |  2 -
-> >  drivers/media/platform/mtk-mdp/mtk_mdp_comp.c      | 38 -----------------
-> >  drivers/media/platform/mtk-mdp/mtk_mdp_comp.h      |  2 -
-> >  drivers/media/platform/mtk-mdp/mtk_mdp_core.c      |  1 -
-> >  .../media/platform/mtk-vcodec/mtk_vcodec_dec_pm.c  | 21 ----------
-> >  drivers/media/platform/mtk-vcodec/mtk_vcodec_drv.h |  3 --
-> >  drivers/media/platform/mtk-vcodec/mtk_vcodec_enc.c |  1 -
-> >  .../media/platform/mtk-vcodec/mtk_vcodec_enc_pm.c  | 47 ----------------------
-> >  drivers/memory/mtk-smi.c                           | 31 ++++----------
-> >  include/soc/mediatek/smi.h                         | 20 ---------
-> >  23 files changed, 36 insertions(+), 316 deletions(-)
-> > 
-> 
-> 
-
-
+-- 
+Dmitry
