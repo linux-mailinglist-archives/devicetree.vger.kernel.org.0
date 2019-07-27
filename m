@@ -2,76 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 36D0C7794A
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 16:30:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B9BC77959
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 16:55:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728824AbfG0Oax (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Jul 2019 10:30:53 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:39203 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726370AbfG0Oax (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Jul 2019 10:30:53 -0400
-Received: by mail-lf1-f66.google.com with SMTP id v85so39003974lfa.6;
-        Sat, 27 Jul 2019 07:30:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Wv1yLIt8dyUH9BThIfQWfGHvzo6b2SQHOoH8T3cW6qg=;
-        b=HU22+crbqQCvc6CPEy5y1z7SVkNPS/QEvJ51JimvDWp//wOJiEM3zWPyqjNL3wS06Y
-         fVbQrEuRmpVr+j8PEhI1yqgP37EyXPkm3xYurGfhzYeHaGNZw++ukOxrwuyRwsUszXP+
-         jRrk2KaPx5y0x+FXCyY93DHzSJKs96IzdsmPQ2znhsZwbgi0PANwuhaPvqNOpENejlH+
-         /Cz4qdEA+n5sxseRCqHAQ7qF0qPscBas7zfOqRZ2iIEIhQNJrMW/F4VAn06whl9nyWod
-         yDBdBHPoUDsn8CeUroBpQH5bh9RVV5Folr5W06bU5JylOFdS0DHW5W52DTRT7oK0eEQL
-         zmrA==
+        id S1728969AbfG0Oyr convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sat, 27 Jul 2019 10:54:47 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:42513 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726370AbfG0Oyr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 27 Jul 2019 10:54:47 -0400
+Received: by mail-ed1-f65.google.com with SMTP id v15so55674672eds.9;
+        Sat, 27 Jul 2019 07:54:46 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Wv1yLIt8dyUH9BThIfQWfGHvzo6b2SQHOoH8T3cW6qg=;
-        b=dH/aisWRCNlLKuqnJBohcevKRlEhP15zf+S0hlWtzHE4A06+2mUhefldIGbbtRyNNJ
-         7ReVMEfS8NyQ18a5GXyhBnmQexrqgx4Mo62JdBEDSgAvcX+4it0d+BksQ6CIvc64+SGY
-         wsxTcvHd3NNaJRijA1EBYLK82CvJ0jagX3fkkL0O149SRB6rizlyXYJHwN69I717hYgu
-         UgT5/o0H0nPaUNjTjVttf13D2EGriDinFE/MyVpUiYqI2zxWShYrLn5qHhi3iG2sFTC5
-         aA0s66uyLDvWYABPhWWKGWXUOGbbJnOj51Lxkg/0uLA4lcGZCdGeabby1kGjxzW48jWp
-         NTog==
-X-Gm-Message-State: APjAAAXB6BBjEo481fgRhPGZEpS0IJL5Odql3IKKH0tHAd859pzxvwk5
-        pRxsQD1Y+dZyrWCJ3+5xkBNG6vzEqAN4h7xyN88=
-X-Google-Smtp-Source: APXvYqzYz0/B0l1VoUh0y8S3xTIl3qB04gaGoqLIzQpM/BhZYYpP4jZDP9b0wf97pRFVTUmhqAl80aYJE+WkKg576I0=
-X-Received: by 2002:a05:6512:21e:: with SMTP id a30mr27577350lfo.107.1564237850846;
- Sat, 27 Jul 2019 07:30:50 -0700 (PDT)
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=rbC/42M5pQNTgrVBuOqW03/stnb0sjIXK4Z9mFvmX3A=;
+        b=RIa/n4tnS+k0bUsd9V0Mer+nEASCjRvuBTRrBiTzpe3sa+584Eoq5XpG4lIX9LafZw
+         IS1Vt7yBf8N+OOasjDnJOWsmnKypFi1ymbNS4NTGptXdTSbp8FSbVOxvlDngab+SVnq6
+         R/xx82f8qujLz0H6YjodSbIoiheEJQk741UWMz2H3i23vfS7+mJZvqJxMD0SJHFb/+FP
+         ySfpEfIdfzENeae3dPqIuu5uyn1gveEdDHVZapvMleHLpTw0VxYezT7TXyNwKA1hi1U1
+         +mRcgIg4817OBFtSpDZThW/t88GkhgAJzxe/WufVX7Mq8dsVHDQ6W8PmWrGgZVqJSGXs
+         TY7g==
+X-Gm-Message-State: APjAAAXxaFsPZdnsr+I7V4wJjEVgKx5QcX7ru1hRctGbyatMy4x/PHIS
+        3oWyr48hRvfbxl1P+W+a0egXw1CWlmg=
+X-Google-Smtp-Source: APXvYqzPxueSo0tS5nsoPY8gjziQrMRw5Eo68k/J6/nzzWbMpQWvPLTgKLJJ/eQNQHtEt5hPuts09A==
+X-Received: by 2002:a50:fd0c:: with SMTP id i12mr90575170eds.55.1564239285065;
+        Sat, 27 Jul 2019 07:54:45 -0700 (PDT)
+Received: from mail-wr1-f52.google.com (mail-wr1-f52.google.com. [209.85.221.52])
+        by smtp.gmail.com with ESMTPSA id g22sm6240782eje.84.2019.07.27.07.54.44
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Sat, 27 Jul 2019 07:54:44 -0700 (PDT)
+Received: by mail-wr1-f52.google.com with SMTP id n9so57382599wru.0;
+        Sat, 27 Jul 2019 07:54:44 -0700 (PDT)
+X-Received: by 2002:a5d:568e:: with SMTP id f14mr27625205wrv.167.1564239284357;
+ Sat, 27 Jul 2019 07:54:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190727142640.23014-1-krzk@kernel.org>
-In-Reply-To: <20190727142640.23014-1-krzk@kernel.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Sat, 27 Jul 2019 11:30:52 -0300
-Message-ID: <CAOMZO5BWdDZSitFTWOOR1dPK6TKAwZLZ_U5YWuCOqcPVRL8yWQ@mail.gmail.com>
-Subject: Re: [PATCH] ARM: dts: imx: Cleanup style around assignment operator
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+ <20190726184045.14669-6-jernej.skrabec@siol.net> <20190727105008.he35sixfvoyl2lm7@flea.home>
+ <4063694.66Ui2fGJfo@jernej-laptop>
+In-Reply-To: <4063694.66Ui2fGJfo@jernej-laptop>
+From:   Chen-Yu Tsai <wens@csie.org>
+Date:   Sat, 27 Jul 2019 22:54:32 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65a9jF3QsEQgTim_XxXjhd9K0KwDRxtqYMqsiy2yWLeBg@mail.gmail.com>
+Message-ID: <CAGb2v65a9jF3QsEQgTim_XxXjhd9K0KwDRxtqYMqsiy2yWLeBg@mail.gmail.com>
+Subject: Re: [linux-sunxi] Re: [PATCH 5/6] pwm: sun4i: Add support to output
+ source clock directly
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     Maxime Ripard <mripard@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
-
-On Sat, Jul 27, 2019 at 11:26 AM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+On Sat, Jul 27, 2019 at 10:28 PM Jernej Škrabec <jernej.skrabec@siol.net> wrote:
 >
-> Use a space before and after assignment operator to have consistent
-> style.
+> Dne sobota, 27. julij 2019 ob 12:50:08 CEST je Maxime Ripard napisal(a):
+> > On Fri, Jul 26, 2019 at 08:40:44PM +0200, Jernej Skrabec wrote:
+> > > PWM core has an option to bypass whole logic and output unchanged source
+> > > clock as PWM output. This is achieved by enabling bypass bit.
+> > >
+> > > Note that when bypass is enabled, no other setting has any meaning, not
+> > > even enable bit.
+> > >
+> > > This mode of operation is needed to achieve high enough frequency to
+> > > serve as clock source for AC200 chip, which is integrated into same
+> > > package as H6 SoC.
+> > >
+> > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> >
+> > It doesn't seem to be available on the A10 (at least) though. The A13
+> > seem to have it, so you should probably check that, and make that
+> > conditional to the compatible if not available on all of them.
 >
-> Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+> Ok, can you suggest the name for the quirk? "has_bypass" is suspiciously
+> similar to "has_prescaler_bypass".
 
-Thanks for doing this cleanup:
+has_direct_mod_clk_output?
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+> Also, how to name these sun4i_pwm_data structures? Now that there are (will
+> be) three new quirks, name of the structure would be just too long, like
+> "sun50i_pwm_dual_prescaler_bypass_clk_rst_bypass".
+
+Just use the SoC model. Any later ones that have the same quirks will likely
+use the same compatible string anyway.
+
+ChenYu
