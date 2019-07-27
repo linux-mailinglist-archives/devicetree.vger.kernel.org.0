@@ -2,29 +2,31 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 598EC775C4
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 03:57:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E42E3775CA
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 03:59:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726908AbfG0B50 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 21:57:26 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:52528 "EHLO
+        id S1726766AbfG0B7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 21:59:34 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:52584 "EHLO
         perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726115AbfG0B50 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 21:57:26 -0400
+        with ESMTP id S1726115AbfG0B7d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 21:59:33 -0400
 Received: from pendragon.ideasonboard.com (om126200118163.15.openmobile.ne.jp [126.200.118.163])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1C7D12E7;
-        Sat, 27 Jul 2019 03:57:21 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3DA4B31B;
+        Sat, 27 Jul 2019 03:59:29 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1564192643;
-        bh=uI0bqTAW3t85cdKpK+aJtIq1FdKPSDyFmGcCRL27uww=;
+        s=mail; t=1564192771;
+        bh=6t+jAtBCGWrb64hybjYFjRUbVdoEv4zxqtatGFJf+Oc=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=IHOZFXWK6i11B9Y5Yp8r4rV/SwPIw8+i8amu6nqTFpW25jE/5BxkgNnqkQ8LXj4ep
-         f0OWUvcY17E0rmisWI5XM2/NqWyAbteTdPbnQCLX+oMpNFeNCrIBv9Sz7/noGheFp4
-         uB5GA8vnAmhDHDWaaqcza7FOFKEeB9Vcn5UbDOv4=
-Date:   Sat, 27 Jul 2019 04:57:16 +0300
+        b=hhfUF5uOPmjdISVzt0ArAAmJZOZWdE7qk/uMhMytLvazxdlh/Bc6YEu3ScOUIbyje
+         OMnhaaoIjUX20cEzYAeCITnqdtJHs3b+4BLDodLgfrgPpHFq09QHctNBfOhA5QjJz4
+         PcYkg4iUwywBvJV5bWFCRYrSJRczt8D2cE5KN3Ek=
+Date:   Sat, 27 Jul 2019 04:59:25 +0300
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
+To:     Sam Ravnborg <sam@ravnborg.org>
+Cc:     Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Shawn Guo <shawnguo@kernel.org>,
@@ -42,159 +44,151 @@ Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
         Robert Chiras <robert.chiras@nxp.com>
 Subject: Re: [PATCH 2/3] dt-bindings: display/bridge: Add binding for IMX NWL
  mipi dsi host controller
-Message-ID: <20190727015716.GA4902@pendragon.ideasonboard.com>
+Message-ID: <20190727015925.GB4902@pendragon.ideasonboard.com>
 References: <cover.1563983037.git.agx@sigxcpu.org>
  <70a5c6617936a4a095e7608b96e3f9fae5ddfbb1.1563983037.git.agx@sigxcpu.org>
+ <20190726092315.GA9754@ravnborg.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <70a5c6617936a4a095e7608b96e3f9fae5ddfbb1.1563983037.git.agx@sigxcpu.org>
+In-Reply-To: <20190726092315.GA9754@ravnborg.org>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guido,
+Hello,
 
-Thank you for the patch.
-
-On Wed, Jul 24, 2019 at 05:52:25PM +0200, Guido Günther wrote:
-> The Northwest Logic MIPI DSI IP core can be found in NXPs i.MX8 SoCs.
+On Fri, Jul 26, 2019 at 11:23:15AM +0200, Sam Ravnborg wrote:
+> On Wed, Jul 24, 2019 at 05:52:25PM +0200, Guido Günther wrote:
+> > The Northwest Logic MIPI DSI IP core can be found in NXPs i.MX8 SoCs.
+> > 
+> > Signed-off-by: Guido Günther <agx@sigxcpu.org>
+> > ---
+> >  .../bindings/display/bridge/imx-nwl-dsi.txt   | 89 +++++++++++++++++++
 > 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> ---
->  .../bindings/display/bridge/imx-nwl-dsi.txt   | 89 +++++++++++++++++++
->  1 file changed, 89 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
+> New binding. Any chance we can get this in yaml format?
+> This is the way forward and we have to convert the file anyway.
 > 
-> diff --git a/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt b/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
-> new file mode 100644
-> index 000000000000..288fdb726d5a
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
-> @@ -0,0 +1,89 @@
-> +Northwest Logic MIPI-DSI on imx SoCs
-> +=====================================
+> None of the other bridges use yaml format, but someone has to be the
+> first.
+> 
+> >  1 file changed, 89 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt b/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
+> > new file mode 100644
+> > index 000000000000..288fdb726d5a
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
+> > @@ -0,0 +1,89 @@
+> > +Northwest Logic MIPI-DSI on imx SoCs
+> > +=====================================
+> > +
+> > +NWL MIPI-DSI host controller found on i.MX8 platforms. This is a
+> > +dsi bridge for the for the NWL MIPI-DSI host.
+> 
+> To my best understanding a bridge is something that converts from one
+> format to another format.
+> Something that in the drm world are connected to an encoder.
+> 
+> I do not know the HW here - but from this very brif description this
+> sounds more like a display controller and not a bridge?
 
-There's one too many =.
+I would call it an encoder, that's the term usually employed for such
+devices (similar to HDMI encoder).
 
-> +
-> +NWL MIPI-DSI host controller found on i.MX8 platforms. This is a
-> +dsi bridge for the for the NWL MIPI-DSI host.
-
-s/dsi/DSI/
-s/for the for the /for the /
-
-> +
-> +Required properties:
-> +- compatible: 		"fsl,<chip>-nwl-dsi"
-> +	The following strings are expected:
-> +			"fsl,imx8mq-nwl-dsi"
-> +- reg: 			the register range of the MIPI-DSI controller
-> +- interrupts: 		the interrupt number for this module
-
-It's not just a number but a specifier (with flags).
-
-> +- clock, clock-names: 	phandles to the MIPI-DSI clocks
-
-That should be phandles and names.
-
-> +	The following clocks are expected on all platforms:
-
-Expected or required ?
-
-s/ on all platforms// as you only support a single platform.
-
-> +		"core"    - DSI core clock
-> +		"tx_esc"  - TX_ESC clock (used in escape mode)
-> +		"rx_esc"  - RX_ESC clock (used in escape mode)
-> +		"phy_ref" - PHY_REF clock. Clock is managed by the phy. Only
-> +                            used to read the clock rate.
-> +- assigned-clocks:	phandles to clocks that require initial configuration
-> +- assigned-clock-rates:	rates of the clocks that require initial configuration
-> +	The following clocks need to have an initial configuration:
-> +	"tx_esc" (20 MHz) and "rx_esc" (80 Mhz).
-
-I think those two properties are out of scope for these bindings.
-
-> +- phys: 		phandle to the phy module representing the DPHY
-> +			inside the MIPI-DSI IP block
-> +- phy-names: 		should be "dphy"
-> +
-> +Optional properties:
-> +- power-domains 	phandle to the power domain
-> +- src			phandle to the system reset controller (required on
-> +			i.MX8MQ)
-
-Should this use the standard resets property ?
-
-> +- mux-sel		phandle to the MUX register set (required on i.MX8MQ)
-> +- assigned-clock-parents phandles to parent clocks that needs to be assigned as
-> +			parents to clocks defined in assigned-clocks
-
-This property is also out of scope.
-
-> +
-> +Example:
-> +	mipi_dsi: mipi_dsi@30a00000 {
-> +		#address-cells = <1>;
-> +		#size-cells = <0>;
-> +		compatible = "fsl,imx8mq-nwl-dsi";
-> +		reg = <0x30A00000 0x300>;
-> +		clocks = <&clk IMX8MQ_CLK_DSI_CORE>,
-> +			 <&clk IMX8MQ_CLK_DSI_AHB>,
-> +			 <&clk IMX8MQ_CLK_DSI_IPG_DIV>,
-> +			 <&clk IMX8MQ_CLK_DSI_PHY_REF>;
-> +		clock-names = "core", "rx_esc", "tx_esc", "phy_ref";
-> +		assigned-clocks = <&clk IMX8MQ_CLK_DSI_AHB>,
-> +				  <&clk IMX8MQ_CLK_DSI_CORE>,
-> +				  <&clk IMX8MQ_CLK_DSI_IPG_DIV>;
-> +		assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>,
-> +					 <&clk IMX8MQ_SYS1_PLL_266M>;
-> +		assigned-clock-rates = <80000000>,
-> +				       <266000000>,
-> +				       <20000000>;
-> +		interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-> +		power-domains = <&pgc_mipi>;
-> +		src = <&src>;
-> +		mux-sel = <&iomuxc_gpr>;
-> +		phys = <&dphy>;
-> +		phy-names = "dphy";
-> +		status = "okay";
-> +
-> +		panel@0 {
-> +			compatible = "...";
-> +			port {
-> +			     panel_in: endpoint {
-> +				       remote-endpoint = <&mipi_dsi_out>;
-> +			     };
-> +			};
-> +		};
-> +
-> +		ports {
-> +		      #address-cells = <1>;
-> +		      #size-cells = <0>;
-> +
-> +		      port@0 {
-> +			     reg = <0>;
-> +			     mipi_dsi_in: endpoint {
-> +					  remote-endpoint = <&dcss_disp0_mipi_dsi>;
-> +			     };
-> +		      };
-> +		      port@1 {
-> +			     reg = <1>;
-> +			     mipi_dsi_out: endpoint {
-> +					   remote-endpoint = <&panel_in>;
-> +			     };
-> +		      };
-> +		};
-
-The ports should be documented too. There are multiple example bindings
-available.
-
-> +	};
+> > +
+> > +Required properties:
+> > +- compatible: 		"fsl,<chip>-nwl-dsi"
+> > +	The following strings are expected:
+> > +			"fsl,imx8mq-nwl-dsi"
+> > +- reg: 			the register range of the MIPI-DSI controller
+> > +- interrupts: 		the interrupt number for this module
+> > +- clock, clock-names: 	phandles to the MIPI-DSI clocks
+> > +	The following clocks are expected on all platforms:
+> > +		"core"    - DSI core clock
+> > +		"tx_esc"  - TX_ESC clock (used in escape mode)
+> > +		"rx_esc"  - RX_ESC clock (used in escape mode)
+> > +		"phy_ref" - PHY_REF clock. Clock is managed by the phy. Only
+> > +                            used to read the clock rate.
+> > +- assigned-clocks:	phandles to clocks that require initial configuration
+> > +- assigned-clock-rates:	rates of the clocks that require initial configuration
+> > +	The following clocks need to have an initial configuration:
+> > +	"tx_esc" (20 MHz) and "rx_esc" (80 Mhz).
+> > +- phys: 		phandle to the phy module representing the DPHY
+> > +			inside the MIPI-DSI IP block
+> > +- phy-names: 		should be "dphy"
+> > +
+> > +Optional properties:
+> > +- power-domains 	phandle to the power domain
+> > +- src			phandle to the system reset controller (required on
+> > +			i.MX8MQ)
+> Name is not very descriptive.
+> Other bindings seems to use "resets" here?
+> 
+> > +- mux-sel		phandle to the MUX register set (required on i.MX8MQ)
+> > +- assigned-clock-parents phandles to parent clocks that needs to be assigned as
+> > +			parents to clocks defined in assigned-clocks
+> > +
+> > +Example:
+> > +	mipi_dsi: mipi_dsi@30a00000 {
+> > +		#address-cells = <1>;
+> > +		#size-cells = <0>;
+> > +		compatible = "fsl,imx8mq-nwl-dsi";
+> > +		reg = <0x30A00000 0x300>;
+> > +		clocks = <&clk IMX8MQ_CLK_DSI_CORE>,
+> > +			 <&clk IMX8MQ_CLK_DSI_AHB>,
+> > +			 <&clk IMX8MQ_CLK_DSI_IPG_DIV>,
+> > +			 <&clk IMX8MQ_CLK_DSI_PHY_REF>;
+> > +		clock-names = "core", "rx_esc", "tx_esc", "phy_ref";
+> > +		assigned-clocks = <&clk IMX8MQ_CLK_DSI_AHB>,
+> > +				  <&clk IMX8MQ_CLK_DSI_CORE>,
+> > +				  <&clk IMX8MQ_CLK_DSI_IPG_DIV>;
+> > +		assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>,
+> > +					 <&clk IMX8MQ_SYS1_PLL_266M>;
+> > +		assigned-clock-rates = <80000000>,
+> > +				       <266000000>,
+> > +				       <20000000>;
+> > +		interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
+> > +		power-domains = <&pgc_mipi>;
+> > +		src = <&src>;
+> > +		mux-sel = <&iomuxc_gpr>;
+> > +		phys = <&dphy>;
+> > +		phy-names = "dphy";
+> > +		status = "okay";
+> I recall status should not be included in examples.
+> 
+> > +
+> > +		panel@0 {
+> > +			compatible = "...";
+> > +			port {
+> > +			     panel_in: endpoint {
+> > +				       remote-endpoint = <&mipi_dsi_out>;
+> > +			     };
+> > +			};
+> > +		};
+> > +
+> > +		ports {
+> > +		      #address-cells = <1>;
+> > +		      #size-cells = <0>;
+> > +
+> > +		      port@0 {
+> > +			     reg = <0>;
+> > +			     mipi_dsi_in: endpoint {
+> > +					  remote-endpoint = <&dcss_disp0_mipi_dsi>;
+> > +			     };
+> > +		      };
+> > +		      port@1 {
+> > +			     reg = <1>;
+> > +			     mipi_dsi_out: endpoint {
+> > +					   remote-endpoint = <&panel_in>;
+> > +			     };
+> > +		      };
+> > +		};
+> > +	};
 
 -- 
 Regards,
