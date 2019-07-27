@@ -2,28 +2,28 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E42E3775CA
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 03:59:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 25B61775D3
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 04:04:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726766AbfG0B7e (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 26 Jul 2019 21:59:34 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:52584 "EHLO
+        id S1726947AbfG0CEx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 26 Jul 2019 22:04:53 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:52650 "EHLO
         perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726115AbfG0B7d (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 21:59:33 -0400
+        with ESMTP id S1726115AbfG0CEx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 26 Jul 2019 22:04:53 -0400
 Received: from pendragon.ideasonboard.com (om126200118163.15.openmobile.ne.jp [126.200.118.163])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 3DA4B31B;
-        Sat, 27 Jul 2019 03:59:29 +0200 (CEST)
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id AD2869B1;
+        Sat, 27 Jul 2019 04:04:49 +0200 (CEST)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1564192771;
-        bh=6t+jAtBCGWrb64hybjYFjRUbVdoEv4zxqtatGFJf+Oc=;
+        s=mail; t=1564193090;
+        bh=vVlrigtV/4n1LRYGHmQgWdMF36/DcZ6Ryvzw8aTcvZE=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=hhfUF5uOPmjdISVzt0ArAAmJZOZWdE7qk/uMhMytLvazxdlh/Bc6YEu3ScOUIbyje
-         OMnhaaoIjUX20cEzYAeCITnqdtJHs3b+4BLDodLgfrgPpHFq09QHctNBfOhA5QjJz4
-         PcYkg4iUwywBvJV5bWFCRYrSJRczt8D2cE5KN3Ek=
-Date:   Sat, 27 Jul 2019 04:59:25 +0300
+        b=UGHkk32aSXSYBC9k0S8TYWWPJ71pvNcd6rc7G1goNemIr54JKb6ChRFqMrEYDjHb8
+         Ax+tke8BzXReGpoaoSFuTNo8DxEGkVvLBj7qIvWKmH4ja72XH3ZfC5jBJr3uqTV1Ws
+         Gglj4E5HHE/FjKncIgOJFdHhCU6i5Z9wAK7g4w18=
+Date:   Sat, 27 Jul 2019 05:04:44 +0300
 From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Sam Ravnborg <sam@ravnborg.org>
+To:     Fabio Estevam <festevam@gmail.com>
 Cc:     Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
         David Airlie <airlied@linux.ie>,
         Daniel Vetter <daniel@ffwll.ch>,
@@ -32,27 +32,30 @@ Cc:     Guido =?utf-8?Q?G=C3=BCnther?= <agx@sigxcpu.org>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
         NXP Linux Team <linux-imx@nxp.com>,
         Andrzej Hajda <a.hajda@samsung.com>,
         Neil Armstrong <narmstrong@baylibre.com>,
         Jonas Karlman <jonas@kwiboo.se>,
         Jernej Skrabec <jernej.skrabec@siol.net>,
         Lee Jones <lee.jones@linaro.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Robert Chiras <robert.chiras@nxp.com>
-Subject: Re: [PATCH 2/3] dt-bindings: display/bridge: Add binding for IMX NWL
- mipi dsi host controller
-Message-ID: <20190727015925.GB4902@pendragon.ideasonboard.com>
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Chris Healy <cphealy@gmail.com>
+Subject: Re: [PATCH 3/3] drm/bridge: Add NWL MIPI DSI host controller support
+Message-ID: <20190727020444.GC4902@pendragon.ideasonboard.com>
 References: <cover.1563983037.git.agx@sigxcpu.org>
- <70a5c6617936a4a095e7608b96e3f9fae5ddfbb1.1563983037.git.agx@sigxcpu.org>
- <20190726092315.GA9754@ravnborg.org>
+ <3158f4f8c97c21f98c394e5631d74bc60d796522.1563983037.git.agx@sigxcpu.org>
+ <CAOMZO5BRbV_1du1b9eJqcBvvXSE2Mon3yxSPJxPpZgBqYNjBSg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190726092315.GA9754@ravnborg.org>
+In-Reply-To: <CAOMZO5BRbV_1du1b9eJqcBvvXSE2Mon3yxSPJxPpZgBqYNjBSg@mail.gmail.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -61,134 +64,27 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 Hello,
 
-On Fri, Jul 26, 2019 at 11:23:15AM +0200, Sam Ravnborg wrote:
-> On Wed, Jul 24, 2019 at 05:52:25PM +0200, Guido Günther wrote:
-> > The Northwest Logic MIPI DSI IP core can be found in NXPs i.MX8 SoCs.
-> > 
-> > Signed-off-by: Guido Günther <agx@sigxcpu.org>
-> > ---
-> >  .../bindings/display/bridge/imx-nwl-dsi.txt   | 89 +++++++++++++++++++
+On Fri, Jul 26, 2019 at 05:01:52PM -0300, Fabio Estevam wrote:
+> Hi Guido,
 > 
-> New binding. Any chance we can get this in yaml format?
-> This is the way forward and we have to convert the file anyway.
+> Thanks for your work on this driver!
 > 
-> None of the other bridges use yaml format, but someone has to be the
-> first.
+> On Wed, Jul 24, 2019 at 12:52 PM Guido Günther <agx@sigxcpu.org> wrote:
 > 
-> >  1 file changed, 89 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt b/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
-> > new file mode 100644
-> > index 000000000000..288fdb726d5a
 > > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/display/bridge/imx-nwl-dsi.txt
-> > @@ -0,0 +1,89 @@
-> > +Northwest Logic MIPI-DSI on imx SoCs
-> > +=====================================
-> > +
-> > +NWL MIPI-DSI host controller found on i.MX8 platforms. This is a
-> > +dsi bridge for the for the NWL MIPI-DSI host.
+> > +++ b/drivers/gpu/drm/bridge/imx-nwl/Kconfig
+> > @@ -0,0 +1,15 @@
+> > +config DRM_IMX_NWL_DSI
+> > +       tristate "Support for Northwest Logic MIPI DSI Host controller"
+> > +       depends on DRM && (ARCH_MXC || ARCH_MULTIPLATFORM || COMPILE_TEST)
 > 
-> To my best understanding a bridge is something that converts from one
-> format to another format.
-> Something that in the drm world are connected to an encoder.
-> 
-> I do not know the HW here - but from this very brif description this
-> sounds more like a display controller and not a bridge?
+> This IP could potentially be found on other SoCs, so no need to make
+> it depend on ARCH_MXC.
 
-I would call it an encoder, that's the term usually employed for such
-devices (similar to HDMI encoder).
+I'd go even further and not use the prefix imx in the driver name or
+anywhere in the code.
 
-> > +
-> > +Required properties:
-> > +- compatible: 		"fsl,<chip>-nwl-dsi"
-> > +	The following strings are expected:
-> > +			"fsl,imx8mq-nwl-dsi"
-> > +- reg: 			the register range of the MIPI-DSI controller
-> > +- interrupts: 		the interrupt number for this module
-> > +- clock, clock-names: 	phandles to the MIPI-DSI clocks
-> > +	The following clocks are expected on all platforms:
-> > +		"core"    - DSI core clock
-> > +		"tx_esc"  - TX_ESC clock (used in escape mode)
-> > +		"rx_esc"  - RX_ESC clock (used in escape mode)
-> > +		"phy_ref" - PHY_REF clock. Clock is managed by the phy. Only
-> > +                            used to read the clock rate.
-> > +- assigned-clocks:	phandles to clocks that require initial configuration
-> > +- assigned-clock-rates:	rates of the clocks that require initial configuration
-> > +	The following clocks need to have an initial configuration:
-> > +	"tx_esc" (20 MHz) and "rx_esc" (80 Mhz).
-> > +- phys: 		phandle to the phy module representing the DPHY
-> > +			inside the MIPI-DSI IP block
-> > +- phy-names: 		should be "dphy"
-> > +
-> > +Optional properties:
-> > +- power-domains 	phandle to the power domain
-> > +- src			phandle to the system reset controller (required on
-> > +			i.MX8MQ)
-> Name is not very descriptive.
-> Other bindings seems to use "resets" here?
-> 
-> > +- mux-sel		phandle to the MUX register set (required on i.MX8MQ)
-> > +- assigned-clock-parents phandles to parent clocks that needs to be assigned as
-> > +			parents to clocks defined in assigned-clocks
-> > +
-> > +Example:
-> > +	mipi_dsi: mipi_dsi@30a00000 {
-> > +		#address-cells = <1>;
-> > +		#size-cells = <0>;
-> > +		compatible = "fsl,imx8mq-nwl-dsi";
-> > +		reg = <0x30A00000 0x300>;
-> > +		clocks = <&clk IMX8MQ_CLK_DSI_CORE>,
-> > +			 <&clk IMX8MQ_CLK_DSI_AHB>,
-> > +			 <&clk IMX8MQ_CLK_DSI_IPG_DIV>,
-> > +			 <&clk IMX8MQ_CLK_DSI_PHY_REF>;
-> > +		clock-names = "core", "rx_esc", "tx_esc", "phy_ref";
-> > +		assigned-clocks = <&clk IMX8MQ_CLK_DSI_AHB>,
-> > +				  <&clk IMX8MQ_CLK_DSI_CORE>,
-> > +				  <&clk IMX8MQ_CLK_DSI_IPG_DIV>;
-> > +		assigned-clock-parents = <&clk IMX8MQ_SYS1_PLL_80M>,
-> > +					 <&clk IMX8MQ_SYS1_PLL_266M>;
-> > +		assigned-clock-rates = <80000000>,
-> > +				       <266000000>,
-> > +				       <20000000>;
-> > +		interrupts = <GIC_SPI 34 IRQ_TYPE_LEVEL_HIGH>;
-> > +		power-domains = <&pgc_mipi>;
-> > +		src = <&src>;
-> > +		mux-sel = <&iomuxc_gpr>;
-> > +		phys = <&dphy>;
-> > +		phy-names = "dphy";
-> > +		status = "okay";
-> I recall status should not be included in examples.
-> 
-> > +
-> > +		panel@0 {
-> > +			compatible = "...";
-> > +			port {
-> > +			     panel_in: endpoint {
-> > +				       remote-endpoint = <&mipi_dsi_out>;
-> > +			     };
-> > +			};
-> > +		};
-> > +
-> > +		ports {
-> > +		      #address-cells = <1>;
-> > +		      #size-cells = <0>;
-> > +
-> > +		      port@0 {
-> > +			     reg = <0>;
-> > +			     mipi_dsi_in: endpoint {
-> > +					  remote-endpoint = <&dcss_disp0_mipi_dsi>;
-> > +			     };
-> > +		      };
-> > +		      port@1 {
-> > +			     reg = <1>;
-> > +			     mipi_dsi_out: endpoint {
-> > +					   remote-endpoint = <&panel_in>;
-> > +			     };
-> > +		      };
-> > +		};
-> > +	};
+[snip]
 
 -- 
 Regards,
