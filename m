@@ -2,98 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4EFFB77B0F
-	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 20:26:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 47C1A77B18
+	for <lists+devicetree@lfdr.de>; Sat, 27 Jul 2019 20:35:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388014AbfG0S0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 27 Jul 2019 14:26:43 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:38766 "EHLO honk.sigxcpu.org"
+        id S2387890AbfG0Sfi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 27 Jul 2019 14:35:38 -0400
+Received: from nbd.name ([46.4.11.11]:55988 "EHLO nbd.name"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388091AbfG0S0m (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 27 Jul 2019 14:26:42 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 442EEFB03;
-        Sat, 27 Jul 2019 20:26:38 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id vRGa6_JKtNHm; Sat, 27 Jul 2019 20:26:37 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id DDD4B46B22; Sat, 27 Jul 2019 20:26:36 +0200 (CEST)
-Date:   Sat, 27 Jul 2019 20:26:36 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Daniel Baluta <daniel.baluta@gmail.com>
-Cc:     Anson Huang <Anson.Huang@nxp.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>, linux-clk@vger.kernel.org,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        daniel.lezcano@linaro.org, dl-linux-imx <Linux-imx@nxp.com>,
-        rui.zhang@intel.com, Michael Turquette <mturquette@baylibre.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-pm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
-        edubezval@gmail.com, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH 5/6] clk: imx8mq: Remove CLK_IS_CRITICAL flag for
- IMX8MQ_CLK_TMU_ROOT
-Message-ID: <20190727182636.GA7170@bogon.m.sigxcpu.org>
-References: <20190705045612.27665-1-Anson.Huang@nxp.com>
- <20190705045612.27665-5-Anson.Huang@nxp.com>
- <CAEnQRZAZNMBx3ApVmRP8hYPw0XY_QgR-saE6WLcT8oZmHPCxSA@mail.gmail.com>
+        id S2387841AbfG0Sfi (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 27 Jul 2019 14:35:38 -0400
+Received: from pd95fd1e9.dip0.t-ipconnect.de ([217.95.209.233] helo=[192.168.45.104])
+        by ds12 with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <john@phrozen.org>)
+        id 1hrRXa-0000Dh-HQ; Sat, 27 Jul 2019 20:35:34 +0200
+Subject: Re: [PATCH 2/5] MIPS: lantiq: use a generic "EBU" driver for Falcon
+ and XWAY SoCs
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        tglx@linutronix.de, jason@lakedaemon.net, maz@kernel.org,
+        ralf@linux-mips.org, paul.burton@mips.com, jhogan@kernel.org,
+        robh+dt@kernel.org, linux-mips@vger.kernel.org,
+        devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, mark.rutland@arm.com,
+        hauke@hauke-m.de
+References: <20190727175315.28834-1-martin.blumenstingl@googlemail.com>
+ <20190727175315.28834-3-martin.blumenstingl@googlemail.com>
+From:   John Crispin <john@phrozen.org>
+Message-ID: <d0ef8f73-3555-b53a-eb2b-40066827b6d9@phrozen.org>
+Date:   Sat, 27 Jul 2019 20:35:33 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAEnQRZAZNMBx3ApVmRP8hYPw0XY_QgR-saE6WLcT8oZmHPCxSA@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190727175315.28834-3-martin.blumenstingl@googlemail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 8bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
-On Sat, Jul 27, 2019 at 01:26:50AM +0300, Daniel Baluta wrote:
-> Hi all,
-> 
-> latest linux-next hangs at boot.
-> 
-> commit fde50b96be821ac9673a7e00847cc4605bd88f34 (HEAD -> master, tag:
-> next-20190726, origin/master, origin/HEAD)
-> Author: Stephen Rothwell <sfr@canb.auug.org.au>
-> Date:   Fri Jul 26 15:18:02 2019 +1000
-> 
->     Add linux-next specific files for 20190726
-> 
->     Signed-off-by: Stephen Rothwell <sfr@canb.auug.org.au>
-> 
-> 
-> I know this is crazy but reverting commit:
-> 
-> commit 431bdd1df48ee2896ea9980d9153e3aeaf0c81ef (refs/bisect/bad)
-> Author: Anson Huang <Anson.Huang@nxp.com>
-> Date:   Fri Jul 5 12:56:11 2019 +0800
-> 
->     clk: imx8mq: Remove CLK_IS_CRITICAL flag for IMX8MQ_CLK_TMU_ROOT
-> 
->     IMX8MQ_CLK_TMU_ROOT is ONLY used for thermal module, the driver
->     should manage this clock, so no need to have CLK_IS_CRITICAL flag
->     set.
-> 
-> 
-> 
-> makes the boot work again.
 
-I noticed a boot hang yesterday on next-20190726 when loading the
-qoriq_thermal which I worked around by blacklisting it. The
-fsl,imx8mq-tmu node specifies a clock (IMX8MQ_CLK_TMU_ROOT) but does not
-seem to enable, shouldn't it do so?
+On 27/07/2019 19:53, Martin Blumenstingl wrote:
+> + *  Copyright (C) 2011-2012 John Crispin<blogic@openwrt.org>
 
-Cheers,
- -- Guido
+could you change that to john@phrozen.org please
+
+     John
+
