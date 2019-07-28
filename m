@@ -2,112 +2,156 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14700780C1
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 19:39:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 53A0B780CD
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 19:52:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726082AbfG1RjZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 13:39:25 -0400
-Received: from sender4-pp-o95.zoho.com ([136.143.188.95]:25570 "EHLO
-        sender4-pp-o95.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726046AbfG1RjY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 13:39:24 -0400
-ARC-Seal: i=1; a=rsa-sha256; t=1564335555; cv=none; 
-        d=zoho.com; s=zohoarc; 
-        b=XsK9eqGfO9QyneAvg9JvLsqRRXp4nCUZwjrZkiHsUSJEf4HWHlr3mGeT5vsqoq/0waQ1Ojnn0c9kXLHWZNsoBW+PofIeHA9VswSE2gBigi929FcSZ3b0SthgwTKxYrPTTJsHb/8srDkPxx36lxn5xdO3y3mV2evcCGKkbFz6OgM=
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com; s=zohoarc; 
-        t=1564335555; h=Content-Type:Content-Transfer-Encoding:Cc:Date:From:In-Reply-To:MIME-Version:Message-ID:References:Subject:To:ARC-Authentication-Results; 
-        bh=EVwHbEiiGifKfoO+KrCFNaKJshu4Crq1DoWO+5YurGA=; 
-        b=Ulpto2wg9Vux7209jYVI9Yh2DBO/LWdCRzsQpVmq49wr/GtkPK6lehIpyWzWa1N8cr/XnP26+uot3CTsh+WgSsNyidCXojpMTnQSWOzUCHZPd/++fJt/J8Z0PFsX7QnoB3UIUp/rISwGHdLxoOQSOu+tcuGUKF1Ye/ToKuYS4So=
-ARC-Authentication-Results: i=1; mx.zoho.com;
-        dkim=pass  header.i=zoho.com;
-        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
-        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
-DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
-  s=zapps768; d=zoho.com; 
-  h=subject:to:references:cc:from:message-id:date:user-agent:mime-version:in-reply-to:content-type; 
-  b=HCfU15Bd2IFV2jmXzPl2sZ0WH1y7HFMcGBM3jUgZPXDKrNmZBrXow6dBtNdLtFCja/NAPDgo3zgU
-    xtIxES+N1qvUOT8bmDYpWnIv7sAlsi/8aDp2uWvLtTixgvEXCJDh  
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1564335555;
-        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
-        h=Subject:To:References:Cc:From:Message-ID:Date:MIME-Version:In-Reply-To:Content-Type:Content-Transfer-Encoding;
-        l=1368; bh=EVwHbEiiGifKfoO+KrCFNaKJshu4Crq1DoWO+5YurGA=;
-        b=q1sHDKAJnzZZGjX/7Vl84weg6ujuwYkW4NseQt2jsa0Zfy3U/fozInDzT3c/QTDJ
-        9FvNp1O1tGgk+c/rlyFUjVgxZrzacJkkTKb9+O4kf9b5OUKzppLL1Lbj0ynWaoCRJha
-        RADmh6Otn1dgv2a8q+v0L5K6tCRLVWzTslXZB0R4=
-Received: from [192.168.88.139] (171.221.113.137 [171.221.113.137]) by mx.zohomail.com
-        with SMTPS id 1564335554304611.6885982302678; Sun, 28 Jul 2019 10:39:14 -0700 (PDT)
-Subject: Re: [PATCH v3 3/8] dt-bindings: interrupt-controller: Add JZ4760 and
- JZ4760B bindings.
-To:     Marc Zyngier <marc.zyngier@arm.com>
-References: <1548517123-60058-1-git-send-email-zhouyanjie@zoho.com>
- <1563192595-53546-1-git-send-email-zhouyanjie@zoho.com>
- <1563192595-53546-4-git-send-email-zhouyanjie@zoho.com>
- <865znoor2n.wl-marc.zyngier@arm.com>
-Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, paul.burton@mips.com,
-        tglx@linutronix.de, robh+dt@kernel.org, mark.rutland@arm.com,
-        jason@lakedaemon.net
-From:   Zhou Yanjie <zhouyanjie@zoho.com>
-Message-ID: <5D3DDDB9.20507@zoho.com>
-Date:   Mon, 29 Jul 2019 01:39:05 +0800
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:38.0) Gecko/20100101
- Thunderbird/38.8.0
+        id S1726105AbfG1Rwm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 13:52:42 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39190 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726099AbfG1Rwm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 28 Jul 2019 13:52:42 -0400
+Received: from lore-desk-wlan.lan (unknown [151.66.36.246])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B73A02075C;
+        Sun, 28 Jul 2019 17:52:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564336360;
+        bh=ZZe+81SreSVGPqP1Jj7PbXG/THnOdvbavPJEtJjxHuo=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=W7lAJtnbIdP4Orxh+gc8R6bzKvyJnnC7TL1jLtcnPUQG/wK2P1WZ743eXQSROwAu5
+         MAg0353GwQ39WfiIMOwYhD2blXACxlzGSTNo87DSeZXFnh4eHkkVR22nvDm3oiOz+c
+         c7j1zwfWCSaY9A9tMa1fK9UU9MlZjea9VNrSQM+I=
+Date:   Sun, 28 Jul 2019 19:52:34 +0200
+From:   Lorenzo Bianconi <lorenzo@kernel.org>
+To:     Jonathan Cameron <jic23@kernel.org>
+Cc:     Martin Kepplinger <martin.kepplinger@puri.sm>,
+        lorenzo.bianconi83@gmail.com, knaack.h@gmx.de, lars@metafoo.de,
+        pmeerw@pmeerw.net, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/5] iio: imu: st_lsm6dsx: add support for accel/gyro
+ unit of lsm9sd1
+Message-ID: <20190728175234.GA7652@lore-desk-wlan.lan>
+References: <20190725053132.9589-1-martin.kepplinger@puri.sm>
+ <20190725053132.9589-5-martin.kepplinger@puri.sm>
+ <20190727184844.307255a2@archlinux>
+ <a2f6d5fe-04c6-f5d8-ad38-56b8fa033295@puri.sm>
+ <20190728093414.5d3ca94d@archlinux>
 MIME-Version: 1.0
-In-Reply-To: <865znoor2n.wl-marc.zyngier@arm.com>
-Content-Type: text/plain; charset=UTF-8; format=flowed
-Content-Transfer-Encoding: quoted-printable
-X-ZohoMailClient: External
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="RnlQjJ0d97Da+TV1"
+Content-Disposition: inline
+In-Reply-To: <20190728093414.5d3ca94d@archlinux>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
 
-These patches has been combined in v4.
+--RnlQjJ0d97Da+TV1
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Thanks
+> On Sun, 28 Jul 2019 08:04:51 +0200
+> Martin Kepplinger <martin.kepplinger@puri.sm> wrote:
+>=20
+> > On 27.07.19 19:48, Jonathan Cameron wrote:
+> > > On Thu, 25 Jul 2019 07:31:31 +0200
+> > > Martin Kepplinger <martin.kepplinger@puri.sm> wrote:
+> > >  =20
+> > >> The LSM9DS1's accelerometer / gyroscope unit and it's magnetometer (=
+separately
+> > >> supported in iio/magnetometer/st_magn*) are located on a separate i2=
+c addresses
+> > >> on the bus.
+> > >>
+> > >> For the datasheet, see https://www.st.com/resource/en/datasheet/lsm9=
+ds1.pdf
+> > >>
+> > >> Treat it just like the LSM6* devices and, despite it's name, hook it=
+ up
+> > >> to the st_lsm6dsx driver, using it's basic functionality.
+> > >>
+> > >> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm> =20
+> > > I'm a little confused on this hardware.
+> > >=20
+> > > How does buffered output work if these are independently clocked?
+> > >=20
+> > > I took a quick look at the datasheet, and 'suspect' the answer is that
+> > > it runs at the gyro frequencies if both are enable. Is that right?
+> > >  =20
+> >=20
+> > Thanks for reviewing, Jonathan,
+> >=20
+> > Correct. It says so in chapter 7.12. But that's a "problem" with all
+> > these imu devices, not specific to this addition right?
+> It's not a problem as such, but there is a related difference in this
+> device to the others supported by this driver.
+>=20
+> The other parts seem to allow for independent data rate setting, with
+> streaming to the buffer that isn't in 'lock step'.  I.e you can get
+>=20
+> Ax_1, Ay_1, Az_1, Gx_1, Gy_1, Gz_1, Gx_2, Gy_2, Gz_2, Ax_2, Ay_2, Az_2, G=
+y_3...
 
-On 2019=E5=B9=B407=E6=9C=8826=E6=97=A5 21:36, Marc Zyngier wrote:
-> On Mon, 15 Jul 2019 13:09:50 +0100,
-> Zhou Yanjie <zhouyanjie@zoho.com> wrote:
->> Add the interrupt-controller bindings for the JZ4760 Soc and
->> the JZ4760B Soc from Ingenic.
->>
->> Signed-off-by: Zhou Yanjie <zhouyanjie@zoho.com>
->> ---
->>   Documentation/devicetree/bindings/interrupt-controller/ingenic,intc.tx=
-t | 2 ++
->>   1 file changed, 2 insertions(+)
->>
->> diff --git a/Documentation/devicetree/bindings/interrupt-controller/inge=
-nic,intc.txt b/Documentation/devicetree/bindings/interrupt-controller/ingen=
-ic,intc.txt
->> index d4373d0..fa1ad54 100644
->> --- a/Documentation/devicetree/bindings/interrupt-controller/ingenic,int=
-c.txt
->> +++ b/Documentation/devicetree/bindings/interrupt-controller/ingenic,int=
-c.txt
->> @@ -5,6 +5,8 @@ Required properties:
->>   - compatible : should be "ingenic,<socname>-intc". Valid strings are:
->>       ingenic,jz4740-intc
->>       ingenic,jz4725b-intc
->> +    ingenic,jz4760-intc
->> +    ingenic,jz4760b-intc
->>       ingenic,jz4770-intc
->>       ingenic,jz4775-intc
->>       ingenic,jz4780-intc
->> --=20
->> 2.7.4
->>
->>
-> This should be combined with patches 5 and 7. I don't see the need for
-> multiple patches. Same thing should happen with patches 4, 6 and 8.
->
-> Thanks,
->
-> =09M.
->
+correct
 
+>=20
+> That required us to split them up into two devices and means that, to fuse
+> data from these two source, userspace has to do the harder job of
+> aligning the two datasets.
+>=20
+> For this device, things are simpler in that you always a 'scan' that goes
+> across both accelerometer and gyroscope channels.  That allows us to
+> represent it as a single IIO device with a single buffer.
+>=20
+> I'm not seeing any reference in the lsm9ds1 to the pattern registers
+> that are used to handle difference in frequency for the other
+> parts by letting us know what is actually present in each data set
+> in the fifo.
+>=20
+> Now, that doesn't meant we can't still handle them separately given
+> we already do that for other parts.
 
+what about reusing st_lsm6dsx_read_fifo() for lsm6ds0/lsm9ds1 but setting h=
+w->sip to:
+- hw->sip =3D 1 (acc_sip =3D 1, gyro_sip =3D 0) when just the acc is enabled
+- hw->sip =3D 2 (acc_sip =3D 1, gyro_sip =3D 1) when both devices are enabl=
+ed
 
+I guess it is just a matter of adding a 'bool fixed_pattern' in
+st_lsm6dsx_settings. What do you think?
+
+Regards,
+Lorenzo
+
+>=20
+> Anyhow, is my understanding correct?
+>=20
+> Jonathan
+>=20
+> >=20
+> > Sidenote: I thought about renaming things to "lsm6ds0" here just because
+> > of the name and because the registers are (almost) the same as for my
+> > lsm9ds1. But I'm not a fan of blindly doing that without being able to
+> > test. When the current patchset looks good to you, let's keep it that w=
+ay.
+> >=20
+> >                             martin
+>=20
+
+--RnlQjJ0d97Da+TV1
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQTquNwa3Txd3rGGn7Y6cBh0uS2trAUCXT3g3wAKCRA6cBh0uS2t
+rGupAQCt+nMZtGSwipK9+ymzax7tfEW+pxfeFjw/zMEAu1c1gwD/bN3E83uTG5Nf
+SrhTtz0NnIlKgEyO09ceZtLisuQUXA0=
+=BiVb
+-----END PGP SIGNATURE-----
+
+--RnlQjJ0d97Da+TV1--
