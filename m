@@ -2,87 +2,112 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 210F677E81
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 09:59:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B44C877E95
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 10:34:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725961AbfG1H7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 03:59:03 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:51808 "EHLO honk.sigxcpu.org"
+        id S1726013AbfG1IeU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 04:34:20 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58066 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725880AbfG1H7D (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 28 Jul 2019 03:59:03 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 41444FB03;
-        Sun, 28 Jul 2019 09:59:00 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id Wyg7IDtmtuoB; Sun, 28 Jul 2019 09:58:59 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id BF96646B51; Sun, 28 Jul 2019 09:58:58 +0200 (CEST)
-Date:   Sun, 28 Jul 2019 09:58:58 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Daniel Baluta <daniel.baluta@gmail.com>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Carlo Caione <ccaione@baylibre.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        Abel Vesa <abel.vesa@nxp.com>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        dl-linux-imx <Linux-imx@nxp.com>,
-        "rui.zhang" <rui.zhang@intel.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-pm@vger.kernel.org, Sascha Hauer <s.hauer@pengutronix.de>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [PATCH 5/6] clk: imx8mq: Remove CLK_IS_CRITICAL flag for
- IMX8MQ_CLK_TMU_ROOT
-Message-ID: <20190728075858.GA15144@bogon.m.sigxcpu.org>
-References: <20190705045612.27665-1-Anson.Huang@nxp.com>
- <20190705045612.27665-5-Anson.Huang@nxp.com>
- <CAEnQRZAZNMBx3ApVmRP8hYPw0XY_QgR-saE6WLcT8oZmHPCxSA@mail.gmail.com>
- <20190727182636.GA7170@bogon.m.sigxcpu.org>
- <CAOMZO5C_g5bO-yqhoLbb6geUcmzi4necjdQ_P2tROq2vzEPOqQ@mail.gmail.com>
+        id S1725880AbfG1IeU (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 28 Jul 2019 04:34:20 -0400
+Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5B3462085A;
+        Sun, 28 Jul 2019 08:34:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564302858;
+        bh=MbqHmXO5YZd8uWQm+FlJEdearXUQPKipfL5ob5AhD0c=;
+        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
+        b=UVprk842MaZ9gG3VyxDNa4nsWau/ZfI+QDa5L30JlH90ZABceUMQXpQwd8zoCM6ZO
+         E42jUnOE+8VM6i1xPKPjQlhV/EgKR/qvnWx49RMwUENcSM5hHfb6aGneh3kQGvXuOd
+         g+J0nLaO/onIpmCdt2AudcNQdvhg5wa41Wl4aLZg=
+Date:   Sun, 28 Jul 2019 09:34:14 +0100
+From:   Jonathan Cameron <jic23@kernel.org>
+To:     Martin Kepplinger <martin.kepplinger@puri.sm>
+Cc:     lorenzo.bianconi83@gmail.com, knaack.h@gmx.de, lars@metafoo.de,
+        pmeerw@pmeerw.net, linux-iio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v3 4/5] iio: imu: st_lsm6dsx: add support for accel/gyro
+ unit of lsm9sd1
+Message-ID: <20190728093414.5d3ca94d@archlinux>
+In-Reply-To: <a2f6d5fe-04c6-f5d8-ad38-56b8fa033295@puri.sm>
+References: <20190725053132.9589-1-martin.kepplinger@puri.sm>
+        <20190725053132.9589-5-martin.kepplinger@puri.sm>
+        <20190727184844.307255a2@archlinux>
+        <a2f6d5fe-04c6-f5d8-ad38-56b8fa033295@puri.sm>
+X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAOMZO5C_g5bO-yqhoLbb6geUcmzi4necjdQ_P2tROq2vzEPOqQ@mail.gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabio,
-On Sat, Jul 27, 2019 at 05:17:50PM -0300, Fabio Estevam wrote:
-> Hi Guido,
-> 
-> On Sat, Jul 27, 2019 at 3:26 PM Guido Günther <agx@sigxcpu.org> wrote:
-> 
-> > I noticed a boot hang yesterday on next-20190726 when loading the
-> > qoriq_thermal which I worked around by blacklisting it. The
-> > fsl,imx8mq-tmu node specifies a clock (IMX8MQ_CLK_TMU_ROOT) but does not
-> > seem to enable, shouldn't it do so?
-> 
-> Yes, I think you are right.
-> 
-> I don't have access to a imx8mq board at the moment, but something
-> like below would probably help:
-> http://code.bulix.org/pd88jp-812381
-> 
-> If it helps, I can send it as a formal patch.
+On Sun, 28 Jul 2019 08:04:51 +0200
+Martin Kepplinger <martin.kepplinger@puri.sm> wrote:
 
-Yes, this fixes it for me, thanks!
- -- Guido
+> On 27.07.19 19:48, Jonathan Cameron wrote:
+> > On Thu, 25 Jul 2019 07:31:31 +0200
+> > Martin Kepplinger <martin.kepplinger@puri.sm> wrote:
+> >   
+> >> The LSM9DS1's accelerometer / gyroscope unit and it's magnetometer (separately
+> >> supported in iio/magnetometer/st_magn*) are located on a separate i2c addresses
+> >> on the bus.
+> >>
+> >> For the datasheet, see https://www.st.com/resource/en/datasheet/lsm9ds1.pdf
+> >>
+> >> Treat it just like the LSM6* devices and, despite it's name, hook it up
+> >> to the st_lsm6dsx driver, using it's basic functionality.
+> >>
+> >> Signed-off-by: Martin Kepplinger <martin.kepplinger@puri.sm>  
+> > I'm a little confused on this hardware.
+> > 
+> > How does buffered output work if these are independently clocked?
+> > 
+> > I took a quick look at the datasheet, and 'suspect' the answer is that
+> > it runs at the gyro frequencies if both are enable. Is that right?
+> >   
+> 
+> Thanks for reviewing, Jonathan,
+> 
+> Correct. It says so in chapter 7.12. But that's a "problem" with all
+> these imu devices, not specific to this addition right?
+It's not a problem as such, but there is a related difference in this
+device to the others supported by this driver.
+
+The other parts seem to allow for independent data rate setting, with
+streaming to the buffer that isn't in 'lock step'.  I.e you can get
+
+Ax_1, Ay_1, Az_1, Gx_1, Gy_1, Gz_1, Gx_2, Gy_2, Gz_2, Ax_2, Ay_2, Az_2, Gy_3...
+
+That required us to split them up into two devices and means that, to fuse
+data from these two source, userspace has to do the harder job of
+aligning the two datasets.
+
+For this device, things are simpler in that you always a 'scan' that goes
+across both accelerometer and gyroscope channels.  That allows us to
+represent it as a single IIO device with a single buffer.
+
+I'm not seeing any reference in the lsm9ds1 to the pattern registers
+that are used to handle difference in frequency for the other
+parts by letting us know what is actually present in each data set
+in the fifo.
+
+Now, that doesn't meant we can't still handle them separately given
+we already do that for other parts.
+
+Anyhow, is my understanding correct?
+
+Jonathan
+
+> 
+> Sidenote: I thought about renaming things to "lsm6ds0" here just because
+> of the name and because the registers are (almost) the same as for my
+> lsm9ds1. But I'm not a fan of blindly doing that without being able to
+> test. When the current patchset looks good to you, let's keep it that way.
+> 
+>                             martin
+
