@@ -2,88 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 89BA678149
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 21:42:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3E4978154
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 21:52:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726314AbfG1TmR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 15:42:17 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:54183 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726203AbfG1TmQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 15:42:16 -0400
-Received: by mail-wm1-f65.google.com with SMTP id x15so51986885wmj.3
-        for <devicetree@vger.kernel.org>; Sun, 28 Jul 2019 12:42:15 -0700 (PDT)
+        id S1726151AbfG1TwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 15:52:24 -0400
+Received: from smtp-fw-9102.amazon.com ([207.171.184.29]:50815 "EHLO
+        smtp-fw-9102.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726129AbfG1TwX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 15:52:23 -0400
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=cZDsP6Vjh3qAchq5bA/Y9mmlq5ggucZoGBTvUsBqZwY=;
-        b=kBrMw64w8gKf1todfhDdsIKKZmXKC6CCIhiFXHRQnj8umEefttWPZlBNP8Zo5WYV+s
-         JU3IcM1QagwKNUKJIWn7RjXL/rZBHj2Fd3AjEW67vicePxs8sbnKzjgFOJYfkU7oNEdR
-         cjsuNjxPfeHfTV/FknaxlGZZEPWo/ivyeuoCJ12E8U0Durrq7T5LKDaIHT1Xhiz8jiKc
-         s6LeT1DX7/gLob/k/Dxio+0kUTvxqCv5RsdZQZtFQz51kMqT5tFNXJS9ZvSE7liLDAfZ
-         rCZ1568QBESuMV1b/QktAYD3Jv6miQYVwvhH30OaP86iiW8oGr7Dp4W+QMIMRLLV7KGm
-         mKWA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=cZDsP6Vjh3qAchq5bA/Y9mmlq5ggucZoGBTvUsBqZwY=;
-        b=EeD2hqxFqt/y0CRRbOQ1OsxE83PjqXsf3wmT24SHy5b4aXqzx1ODLNM0zcJ1DTxQLq
-         6afiaGYR8JZezWnx0RgEstg3I3DR4JBxHu08zCx/tX6dE2AEFHVA7vz188JYJVzQV6wL
-         lwp9VAznPNxv/dW9jjiyKtQLuhuCQKVYawvgYuW12f2WItwdz52g9ocnkMmGhsPhcLNI
-         tXgk24yIRYvJbKaUH81TmZfylU+I/lbNxxzyGW6IA1MjXpEDYkFCnloNOugTJRCI8LGh
-         v+GSWTHjSTby4/HHpPPzP2THtqR0HNIPhq9hvtzuKPb/0LllWBi3KtPKgS6coXekMImr
-         ZiIw==
-X-Gm-Message-State: APjAAAXdLuRa+2zLZkZ/NK4468JqC2ObVArpAZCIE4gzSqzV1r8Xq7Et
-        8IZPGHAQy4Vi62q6BrPOUZiCig==
-X-Google-Smtp-Source: APXvYqzIGsx/VwsniuHVTl0QO3Oov9lrT/Mj3/pwgJwPSU5voW/QBxHEjrOMbARMEqeEAiO9dnkabg==
-X-Received: by 2002:a7b:c081:: with SMTP id r1mr45595665wmh.76.1564342934763;
-        Sun, 28 Jul 2019 12:42:14 -0700 (PDT)
-Received: from Red ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
-        by smtp.googlemail.com with ESMTPSA id o24sm65369199wmh.2.2019.07.28.12.42.13
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 28 Jul 2019 12:42:14 -0700 (PDT)
-Date:   Sun, 28 Jul 2019 21:42:11 +0200
-From:   LABBE Corentin <clabbe@baylibre.com>
-To:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        khilman@baylibre.com, mark.rutland@arm.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, baylibre-upstreaming@groups.io
-Subject: Re: [PATCH 0/4] crypto: add amlogic crypto offloader driver
-Message-ID: <20190728194211.GA29444@Red>
-References: <1564083776-20540-1-git-send-email-clabbe@baylibre.com>
- <20190728184803.GA14920@sol.localdomain>
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1564343543; x=1595879543;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=TQZHxFyuKFJqN7+q9YByiunsHnWg6Vq9Zg3jp/Zcago=;
+  b=EXI6OBGccST6dMss/9saEKnOz7Pjiuvg3xBhKCETJsX/FFxd9Y9qTXxH
+   xctKMEaNs9c7c+IcsYTd9NLkX50D5b5gMnCfQmIR2jOpnWCRg3nI67KEk
+   ydrlVQEKWpMJny+3bMA44RnlEJh6FHDwCH0uXL1M2R7ytwb9dRB36WBeE
+   8=;
+X-IronPort-AV: E=Sophos;i="5.64,319,1559520000"; 
+   d="scan'208";a="688577182"
+Received: from sea3-co-svc-lb6-vlan2.sea.amazon.com (HELO email-inbound-relay-2a-53356bf6.us-west-2.amazon.com) ([10.47.22.34])
+  by smtp-border-fw-out-9102.sea19.amazon.com with ESMTP; 28 Jul 2019 19:52:08 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (pdx4-ws-svc-p6-lb7-vlan2.pdx.amazon.com [10.170.41.162])
+        by email-inbound-relay-2a-53356bf6.us-west-2.amazon.com (Postfix) with ESMTPS id B6940A220D;
+        Sun, 28 Jul 2019 19:52:07 +0000 (UTC)
+Received: from EX13D05EUC002.ant.amazon.com (10.43.164.231) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.82) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Sun, 28 Jul 2019 19:52:07 +0000
+Received: from u18dbf258377358bea500.amazon.com (10.43.160.25) by
+ EX13D05EUC002.ant.amazon.com (10.43.164.231) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Sun, 28 Jul 2019 19:51:58 +0000
+From:   Ronen Krupnik <ronenk@amazon.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <barakw@amazon.com>, <dwmw@amazon.co.uk>, <benh@amazon.com>,
+        <jonnyc@amazon.com>, <talel@amazon.com>, <hhhawa@amazon.com>,
+        <hanochu@amazon.com>, Ronen Krupnik <ronenk@amazon.com>
+Subject: [PATCH 0/2] Amazon Annapurna Labs Alpine v3 device-tree
+Date:   Sun, 28 Jul 2019 22:51:33 +0300
+Message-ID: <20190728195135.12661-1-ronenk@amazon.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190728184803.GA14920@sol.localdomain>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.43.160.25]
+X-ClientProxiedBy: EX13P01UWA002.ant.amazon.com (10.43.160.46) To
+ EX13D05EUC002.ant.amazon.com (10.43.164.231)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 28, 2019 at 11:48:03AM -0700, Eric Biggers wrote:
-> Hi Corentin,
-> 
-> On Thu, Jul 25, 2019 at 07:42:52PM +0000, Corentin Labbe wrote:
-> > Hello
-> > 
-> > This serie adds support for the crypto offloader present on amlogic GXL
-> > SoCs.
-> > 
-> > Tested on meson-gxl-s905x-khadas-vim and meson-gxl-s905x-libretech-cc
-> > 
-> > Regards
-> > 
-> 
-> Does this new driver pass all the crypto self-tests?
-> Including with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y?
-> 
+This series introduces the device tree for Amazon Annapurna Labs Alpine v3
+SoC and Evaluation Board.
 
-Yes it pass all extra self-tests.
-I forgot to write it in the cover letter.
+Ronen Krupnik (2):
+  dt-bindings: amazon: add Amazon Annapurna Labs Alpine support
+  arm64: dts: amazon: add Amazon Annapurna Labs Alpine v3 support
 
-Regards
+ .../devicetree/bindings/arm/amazon,alpine.txt |  23 ++
+ arch/arm64/boot/dts/Makefile                  |   1 +
+ arch/arm64/boot/dts/amazon/Makefile           |   1 +
+ arch/arm64/boot/dts/amazon/alpine-v3-evp.dts  |  23 ++
+ arch/arm64/boot/dts/amazon/alpine-v3.dtsi     | 371 ++++++++++++++++++
+ 5 files changed, 419 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/arm/amazon,alpine.txt
+ create mode 100644 arch/arm64/boot/dts/amazon/Makefile
+ create mode 100644 arch/arm64/boot/dts/amazon/alpine-v3-evp.dts
+ create mode 100644 arch/arm64/boot/dts/amazon/alpine-v3.dtsi
+
+-- 
+2.21.0
+
