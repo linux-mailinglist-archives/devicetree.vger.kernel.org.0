@@ -2,110 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2759278015
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 17:20:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F3597801A
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 17:24:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726082AbfG1PUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 11:20:47 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:51204 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726046AbfG1PUr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 28 Jul 2019 11:20:47 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D7C042011E2;
-        Sun, 28 Jul 2019 17:20:44 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C90682011D4;
-        Sun, 28 Jul 2019 17:20:44 +0200 (CEST)
-Received: from fsr-ub1864-103.ea.freescale.net (fsr-ub1864-103.ea.freescale.net [10.171.82.17])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 1B2C52060A;
-        Sun, 28 Jul 2019 17:20:44 +0200 (CEST)
-From:   Daniel Baluta <daniel.baluta@nxp.com>
-To:     shawnguo@kernel.org
-Cc:     s.hauer@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
-        l.stach@pengutronix.de, ccaione@baylibre.com, abel.vesa@nxp.com,
-        baruch@tkos.co.il, andrew.smirnov@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, shengjiu.wang@nxp.com,
-        angus@akkea.ca, agx@sigxcpu.org, Anson.Huang@nxp.com,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [PATCH v4] arm64: dts: imx8mq: Init rates and parents configs for clocks
-Date:   Sun, 28 Jul 2019 18:20:40 +0300
-Message-Id: <20190728152040.15323-1-daniel.baluta@nxp.com>
-X-Mailer: git-send-email 2.17.1
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726060AbfG1PYT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 11:24:19 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:53385 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726046AbfG1PYS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 11:24:18 -0400
+Received: by mail-wm1-f68.google.com with SMTP id x15so51698050wmj.3;
+        Sun, 28 Jul 2019 08:24:17 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=HtRVmybXb1C2x1A/QbBumlyEcgeYu6CTnhrpwjpKg90=;
+        b=Muda7dGbveNH73T9XmXzmaPZ3E+lp1CgdTK6jTTybXWpC2RQd+j5YCcCbzH40Qjf+Q
+         DOM7gMaS6ZjkJlSAv/cj/9ZY80u2z9PjUnshpErTukYv7xmPF78sYaqCQz8Y/EONv/VC
+         VJ1wSLVGlYoTStTq0zv14zdv+Vh55Qxiq9hiRbhbgaEtUM18oO04wUvNLndFyMqx32az
+         wNVVSWafOWpDhrfpzqdQiAK0WjpBAZW4gcY5rRnz8vcMiPRr0kkfc90mGls5HVcaAOuc
+         7Rzub5mT7hIEOr/eOd6bm84Spo8UOpbC4934HpLVVlQk6a/TVNu5RHm0OGOPGwKoWhix
+         5uXQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=HtRVmybXb1C2x1A/QbBumlyEcgeYu6CTnhrpwjpKg90=;
+        b=gxLVaBL6gw1rWDIiQTyqGhc+G6wBpAHRBEW4kOhu5BTlw/5Lcf2J832t+ZtWPtqjEP
+         f2cnjt5OrBcDn+pM9uFO3vFX53NxmwVALi5Gdaxx4lP2NRJOV6TfNQxafJENsgwF1co8
+         aQesBdqxI9aJLueI+F1UmKg9rVqEekON2ub2tHvX8YBzZcSz+D0k2/rCigUyHQumnKGH
+         e1MugabJvOZOr+4HRhuP/AeiUR8lVEsoqv9NQ1xenySjBt7XMHCji9IaIIJr7/85wSyY
+         roPrG/vwGoLWrH4QVXScBtgiPvHG6rUeTu975oC2ldBQRZaVyazk/AHPRq4xMwP8Sxj3
+         gukg==
+X-Gm-Message-State: APjAAAVRwC3InTPRh4Toxl6eZSeqoL2mpCbPbIj1ibzkQEgYJG7YTzac
+        9jBN+WBuB5wto3t8DnrMEByLAHkI9IpGKMQepoHIaXB0cfg=
+X-Google-Smtp-Source: APXvYqwVL8oWViukuPqmsa31Rg2hE8bmHJXDbuuSpxO+52WwcONISLQsSSg2nN1hGJtGrbA0wGzK79tZ7dQXW02hVlY=
+X-Received: by 2002:a1c:c188:: with SMTP id r130mr90251544wmf.73.1564327456436;
+ Sun, 28 Jul 2019 08:24:16 -0700 (PDT)
+MIME-Version: 1.0
+References: <1562155311-24696-1-git-send-email-abel.vesa@nxp.com> <CAEnQRZBK7EYVhbGpFeC79HxU=h0OcXU_SSeaMWbp+Qk=rf=14g@mail.gmail.com>
+In-Reply-To: <CAEnQRZBK7EYVhbGpFeC79HxU=h0OcXU_SSeaMWbp+Qk=rf=14g@mail.gmail.com>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Sun, 28 Jul 2019 18:24:05 +0300
+Message-ID: <CAEnQRZDrTZ-KFs0fCYorpiRHJFud9twoe-B4fRjekd6DJiODhw@mail.gmail.com>
+Subject: Re: [PATCH v2] arm64: dts: imx8mq: Init rates and parents configs for clocks
+To:     Abel Vesa <abel.vesa@nxp.com>
+Cc:     Rob Herring <robh@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Abel Vesa <abel.vesa@nxp.com>
+On Wed, Jul 3, 2019 at 4:05 PM Daniel Baluta <daniel.baluta@gmail.com> wrote:
+>
+> On Wed, Jul 3, 2019 at 3:03 PM Abel Vesa <abel.vesa@nxp.com> wrote:
+> >
+> > Add the initial configuration for clocks that need default parent and rate
+> > setting. This is based on the vendor tree clock provider parents and rates
+> > configuration except this is doing the setup in dts rather then using clock
+> > consumer API in a clock provider driver.
+> >
+> > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+>
+> For audio related clock:
+> Acked-by: Daniel Baluta <daniel.baluta@nxp.com>
 
-Add the initial configuration for clocks that need default parent and rate
-setting. This is based on the vendor tree clock provider parents and rates
-configuration except this is doing the setup in dts rather then using clock
-consumer API in a clock provider driver.
+Shawn,
 
-Note that by adding the initial rate setting for audio_pll1/audio_pll
-setting we need to remove it from imx8mq-librem5-devkit.dts
+Please ignore this patch. I've added some improvements.
 
-Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-Tested-by: Angus Ainslie (Purism) <angus@akkea.ca>
----
-Changes since v3:
-	- fix extra new lines
-
- .../dts/freescale/imx8mq-librem5-devkit.dts   |  5 -----
- arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 19 +++++++++++++++++++
- 2 files changed, 19 insertions(+), 5 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-index 683a11035643..c702ccc82867 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-+++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-@@ -169,11 +169,6 @@
- 	};
- };
- 
--&clk {
--	assigned-clocks = <&clk IMX8MQ_AUDIO_PLL1>, <&clk IMX8MQ_AUDIO_PLL2>;
--	assigned-clock-rates = <786432000>, <722534400>;
--};
--
- &dphy {
- 	status = "okay";
- };
-diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-index 02fbd0625318..a55d72ba2e05 100644
---- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-+++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-@@ -494,6 +494,25 @@
- 				clock-names = "ckil", "osc_25m", "osc_27m",
- 				              "clk_ext1", "clk_ext2",
- 				              "clk_ext3", "clk_ext4";
-+				assigned-clocks = <&clk IMX8MQ_VIDEO_PLL1>,
-+					<&clk IMX8MQ_AUDIO_PLL1>,
-+					<&clk IMX8MQ_AUDIO_PLL2>,
-+					<&clk IMX8MQ_CLK_AHB>,
-+					<&clk IMX8MQ_CLK_NAND_USDHC_BUS>,
-+					<&clk IMX8MQ_CLK_AUDIO_AHB>,
-+					<&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
-+					<&clk IMX8MQ_CLK_NOC>;
-+				assigned-clock-parents = <0>,
-+						<0>,
-+						<0>,
-+						<&clk IMX8MQ_SYS1_PLL_133M>,
-+						<&clk IMX8MQ_SYS1_PLL_266M>,
-+						<&clk IMX8MQ_SYS2_PLL_500M>,
-+						<&clk IMX8MQ_CLK_27M>,
-+						<&clk IMX8MQ_SYS1_PLL_800M>;
-+				assigned-clock-rates = <593999999>,
-+						<786432000>,
-+						<722534400>;
- 			};
- 
- 			src: reset-controller@30390000 {
--- 
-2.17.1
-
+New patch is:
+[PATCH v4] arm64: dts: imx8mq: Init rates and parents configs for clocks
