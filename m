@@ -2,61 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 552B177F8F
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 15:20:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CCF877FA3
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 15:40:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726291AbfG1NU5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 09:20:57 -0400
-Received: from atrey.karlin.mff.cuni.cz ([195.113.26.193]:58888 "EHLO
-        atrey.karlin.mff.cuni.cz" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726032AbfG1NU4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 09:20:56 -0400
-Received: by atrey.karlin.mff.cuni.cz (Postfix, from userid 512)
-        id 02D3F80234; Sun, 28 Jul 2019 15:20:40 +0200 (CEST)
-Date:   Sun, 28 Jul 2019 15:20:47 +0200
-From:   Pavel Machek <pavel@ucw.cz>
-To:     Evgeny Kolesnikov <evgenyz@gmail.com>
-Cc:     Sebastian Reichel <sre@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 0/5] Add support for WD MyCloud EX2 Ultra (+ versatile
- UART-based restart/poweroff drivers)
-Message-ID: <20190728132047.GA8718@xo-6d-61-c0.localdomain>
-References: <cover.1563822216.git.evgenyz@gmail.com>
+        id S1726082AbfG1Nkm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 09:40:42 -0400
+Received: from mail-ed1-f67.google.com ([209.85.208.67]:40866 "EHLO
+        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726032AbfG1Nkm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 09:40:42 -0400
+Received: by mail-ed1-f67.google.com with SMTP id k8so57033023eds.7;
+        Sun, 28 Jul 2019 06:40:41 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/N4pBS+wzG7+cVkEEmHSw6pNTtAYb7dDfOSm3I7p1oM=;
+        b=qSckxRVkUtkrI3T63z01gTkOz1QXroD736U0Lu0+7KoWAl2iJMO9Qp29pATJ7/e2Bj
+         1UffHHo/J8QJaKujQ6rDOlgKsfeIbLilO2+thQShb3Yolf8+xHnAp8F/V97tKvL7BCm0
+         tnSPXAG6zoAiMaFeJaFZtlBl5++4/WQF/TkSoV9ov8aVWLjR2cM6MndqCqZCQIYlra8u
+         4kswHPvcZRUyCx7JgkawhgHr6QDMgE4NA9r9j70cR7BIgGseXfl37qxKUTk5MRgPP84U
+         4gQDgNDJun5NSKvSInJh+8IztC+VmHfT2mMdvJXewdbsH91WslW8BrlVRhyX13NYDgF7
+         OROA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/N4pBS+wzG7+cVkEEmHSw6pNTtAYb7dDfOSm3I7p1oM=;
+        b=QNsq6FHSkdQCgyann4n51B+d3kjOcEWRFRJA2jlImTAS/gNA8x6TxMhSahf2nv84QB
+         VWHkfgLqDMIT1hRTPoDp6Z3sZh+iiHrwFyZ/C5MlcVVA8sqG2sPv/ghHTQ6qf3PxaM80
+         CefBON4RuRevLcEvWl8ovoFXUM/ylLrW+B+kFvijvH91GPoPhAua4o+QofUKxqJLjrKH
+         QZOG3F+y+Z65mKivpI6vsJ/a/J+foqf8XlO5m5VnQKvOLATNIOegB0u7ic2Z2G4NCAm3
+         BLPFxGjeHOPxLdHMdqKNJlvTPo5qN1u4sRLfvPNGZ6r9Npm4x8ygYGQ9vAyQ1kGstpFR
+         4WCg==
+X-Gm-Message-State: APjAAAUeOHG5SI5lHdp/Iv4++C9OWpYNBqNtnChgrtCScCvebbEDvQlq
+        kpTci4iFMZBp/AALANSlfLqjdTVl/Nbqckrt8PRbZZc1
+X-Google-Smtp-Source: APXvYqxrdx60nP74vKeV9PJU/NlokFcEKb4pT2kFy7UFBCuBn92G77ltXyW197yRIj65YGGATN7XscVngZvnAYQGATg=
+X-Received: by 2002:a17:906:a481:: with SMTP id m1mr56063760ejz.87.1564321240719;
+ Sun, 28 Jul 2019 06:40:40 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <cover.1563822216.git.evgenyz@gmail.com>
-User-Agent: Mutt/1.5.21 (2010-09-15)
+References: <alpine.DEB.2.21.9999.1907251429420.32766@viisi.sifive.com>
+In-Reply-To: <alpine.DEB.2.21.9999.1907251429420.32766@viisi.sifive.com>
+From:   Bin Meng <bmeng.cn@gmail.com>
+Date:   Sun, 28 Jul 2019 21:40:29 +0800
+Message-ID: <CAEUhbmVHjy86js51u-VP=X8h4xg19kBjKkGRu+C2T2pUwQz6Qw@mail.gmail.com>
+Subject: Re: [PATCH] riscv: dts: fu540-c000: drop "timebase-frequency"
+To:     Paul Walmsley <paul.walmsley@sifive.com>
+Cc:     linux-riscv <linux-riscv@lists.infradead.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 2019-07-22 21:53:00, Evgeny Kolesnikov wrote:
-> This patchset consists of the DTS, which describes the WD MyCloud EX2 Ultra device,
-> 'poweroff' and 'resert' drivers for power-managing MCUs connected to a board via UART
-> (these drivers are more versatile than qnap-poweroff and could be used as a substitude),
-> and DT bindings for these drivers.
-> 
-> The difference between uart-poweroff and qnap-poweroff is small, but important:
-> uart-poweroff is able to send to an MCU a command of arbitrary length, and the command
-> itself is defined in a DTS file for a specific device/board, thus making this driver
-> applicable to wider range of devices.
-> 
->  drivers/power/reset/uart-poweroff.c           | 155 +++++++++
->  drivers/power/reset/uart-restart.c            | 204 ++++++++++++
+On Fri, Jul 26, 2019 at 5:31 AM Paul Walmsley <paul.walmsley@sifive.com> wrote:
+>
+>
+> On FU540-based systems, the "timebase-frequency" (RTCCLK) is sourced
+> from an external crystal located on the PCB.  Thus the
+> timebase-frequency DT property should be defined by the board that
+> uses the SoC, not the SoC itself.  Drop the superfluous
+> timebase-frequency property from the SoC DT data.  (It's already
+> present in the board DT data.)
+>
+> Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
+> ---
+>  arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 1 -
+>  1 file changed, 1 deletion(-)
+>
 
-These twon really need to be combined somehow.
-
-Plus... does it have mini-16550 driver in it? Should it use serdev instead?
-										Pavel
--- 
-(english) http://www.livejournal.com/~pavelmachek
-(cesky, pictures) http://atrey.karlin.mff.cuni.cz/~pavel/picture/horses/blog.html
+Reviewed-by: Bin Meng <bmeng.cn@gmail.com>
