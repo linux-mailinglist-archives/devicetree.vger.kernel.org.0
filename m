@@ -2,128 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 303CD77FAB
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 15:45:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E04B977FC5
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 16:08:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726060AbfG1Npd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 09:45:33 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:43657 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726046AbfG1Npd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 09:45:33 -0400
-Received: by mail-ed1-f68.google.com with SMTP id e3so57069954edr.10
-        for <devicetree@vger.kernel.org>; Sun, 28 Jul 2019 06:45:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2zp7VZgo7gRFXS38Tm1zr34TgnjCWRWdIBcQSP1RHuo=;
-        b=sgfNebPeC/Q743cR44AI97kFXhFTzrd62akNIUz49b6KNl/WXGYYOeqSdxmh0X/GLa
-         wM7T/wlg00lDg53ul8meQswE8zZnKUu0hMo3oTpdWMYCP7iTZQzrIWGJ1Lu7DxyfShXZ
-         YJlZZD4ykunOFsEEGbmIvy54JnV8LFHgDVkAZJP0/JbjZXZpPi1crfosPIVkfR1cDvoR
-         rlcpZdVTrADupOvaVtzIVOp+etlcKxs7HCE5WrP+Z8qJOHP67GnD/xQlnqYxD1esHmTT
-         tKrYjefQkQNt8bWTBZQD+YYfpx9YyLJ41T+qv5F3cHXqADjYuxZ/nNIyxWSJ9r1FX0tX
-         xO8Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2zp7VZgo7gRFXS38Tm1zr34TgnjCWRWdIBcQSP1RHuo=;
-        b=MKJE0FlSjj4cjBU+mprpL8LvYome3/rFmc+EhDxlf7LuUu5i61u3RUBFAT3gQLZ1IF
-         TAsAR6s6Vkt4oB5uEnvl00fSXKfWjz8wZ2NMmB00Sj79Xge1vYZ45tpQhs+V0VdpdSJx
-         5Tb8/8sMLkhQRg8ilRNHcTe/Szc5uTKLKvJr5nGKQcAonC1fR7wWZas8rvlii1XVT8Yr
-         aGoJAZawHe6IDLQm0argxOan+/LsobNDq1/MqLSoh/00ZT9cNEtz4FQhOcMcYL6wpD32
-         IXPZR2xBn87YJez9WnG767nvivykV7NCL5WDVgJJrCHDUA9WFo6UcI1uecm5OvbaVnRX
-         J7Xg==
-X-Gm-Message-State: APjAAAUxg1EsLHa9X3ECEKBe30TA1mGlRMTiEqStyEhvr+KuO8vIKcHd
-        sn8m7tcOg1eZt5ve7EEugxPvia9NPMLPIw75oFE=
-X-Google-Smtp-Source: APXvYqxZF5BQ5WWg803jI2sv2cFegFLpIDrN1WzdSX6Eb/wxCph/GHviMtFAJZwBBLp1CqEsXEX6fsVsEoCdCzQylno=
-X-Received: by 2002:a50:ad0c:: with SMTP id y12mr89789151edc.25.1564321531714;
- Sun, 28 Jul 2019 06:45:31 -0700 (PDT)
-MIME-Version: 1.0
-References: <1562298766-25066-1-git-send-email-bmeng.cn@gmail.com>
- <MN2PR04MB60611BD1B89E3D76ABFBE94A8DF50@MN2PR04MB6061.namprd04.prod.outlook.com>
- <CAEUhbmWdLoRU1QGVZtwmymtYyQw43UMR8WDB17rJRmvXGbuBTg@mail.gmail.com>
- <20190722081157.rojxwc6qrsplpduo@salmiak> <CAEUhbmWLuFKdM0UhAvp2hjrDwYc5yxX91pZKOt9DHmb_oV-mJA@mail.gmail.com>
-In-Reply-To: <CAEUhbmWLuFKdM0UhAvp2hjrDwYc5yxX91pZKOt9DHmb_oV-mJA@mail.gmail.com>
-From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Sun, 28 Jul 2019 21:45:20 +0800
-Message-ID: <CAEUhbmWJe=wk9VV9dRAmVYUPVTogW6q9ULwm1xFxi5iLJOdSBw@mail.gmail.com>
-Subject: Re: [PATCH] riscv: dts: fu540-c000: Add "status" property to cpu node
-To:     Mark Rutland <mark.rutland@arm.com>
-Cc:     Anup Patel <Anup.Patel@wdc.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Yash Shah <yash.shah@sifive.com>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726089AbfG1OIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 10:08:31 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:42778 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726032AbfG1OIa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 28 Jul 2019 10:08:30 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0C96B2011AF;
+        Sun, 28 Jul 2019 16:08:29 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id F25252011AB;
+        Sun, 28 Jul 2019 16:08:28 +0200 (CEST)
+Received: from fsr-ub1864-103.ea.freescale.net (fsr-ub1864-103.ea.freescale.net [10.171.82.17])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 4D0B52060A;
+        Sun, 28 Jul 2019 16:08:28 +0200 (CEST)
+From:   Daniel Baluta <daniel.baluta@nxp.com>
+To:     shawnguo@kernel.org
+Cc:     s.hauer@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        l.stach@pengutronix.de, ccaione@baylibre.com, abel.vesa@nxp.com,
+        baruch@tkos.co.il, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, shengjiu.wang@nxp.com,
+        angus@akkea.ca, Daniel Baluta <daniel.baluta@nxp.com>
+Subject: [PATCH] arm64: dts: imx8mq-evk: Unbypass audio_pll1
+Date:   Sun, 28 Jul 2019 17:08:17 +0300
+Message-Id: <20190728140817.12509-1-daniel.baluta@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 22, 2019 at 9:35 PM Bin Meng <bmeng.cn@gmail.com> wrote:
->
-> Hi Mark,
->
-> On Mon, Jul 22, 2019 at 4:18 PM Mark Rutland <mark.rutland@arm.com> wrote:
-> >
-> > On Fri, Jul 05, 2019 at 01:11:01PM +0800, Bin Meng wrote:
-> > > On Fri, Jul 5, 2019 at 11:59 AM Anup Patel <Anup.Patel@wdc.com> wrote:
-> > > >
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: linux-riscv <linux-riscv-bounces@lists.infradead.org> On Behalf Of Bin
-> > > > > Meng
-> > > > > Sent: Friday, July 5, 2019 9:23 AM
-> > > > > To: linux-riscv <linux-riscv@lists.infradead.org>; devicetree
-> > > > > <devicetree@vger.kernel.org>; Rob Herring <robh+dt@kernel.org>; Mark
-> > > > > Rutland <mark.rutland@arm.com>; Albert Ou <aou@eecs.berkeley.edu>;
-> > > > > Paul Walmsley <paul.walmsley@sifive.com>; Palmer Dabbelt
-> > > > > <palmer@sifive.com>; Yash Shah <yash.shah@sifive.com>
-> > > > > Subject: [PATCH] riscv: dts: fu540-c000: Add "status" property to cpu node
-> > > > >
-> > > > > Per device tree spec, the "status" property property shall be present for
-> > > > > nodes representing CPUs in a SMP configuration. This property is currently
-> > > > > missing in cpu 1/2/3/4 node in the fu540-c000.dtsi.
-> > > >
-> > > > We don't need explicit "status = okay" for SOC internal devices
-> > > > (such as PLIC, INTC, etc) which are always enabled by default.
-> > > >
-> > >
-> > > Yes, that's fine because those device bindings do not require them.
-> > >
-> > > > Absence of "status" DT prop is treated as enabled by default.
-> > > >
-> > >
-> > > But per current device tree spec, "status" in cpu node is mandatory.
-> > > (spec uses "shall"). Missing it is a spec violation.
-> >
-> > I think this is a spec bug (or at least misleading wording in the spec).
-> >
-> > IEEE 1275 says (for status as a generic property):
-> >
-> >   The absence of this property menas that the operational status is unknown or
-> >   okay.
->
-> Yes, I checked IEEE 1275 doc, and it indeed says like you mentioned.
->
-> However, it says "unknown" _or_ "okay", yet provides a definite value.
->
-> >
-> > ... and I think it's fine to treat that the same as an explicit "okay" here, as
-> > we do generically in Linux.
->
-> So what Linux does is a defacto interpretation?
->
-> If everyone agrees this is a device tree spec bug, I will submit the
-> patch to devicetree spec then.
+Making audio_pll1 parent of audio_pll1_bypass, will allow
+setting rates multiple of 8000 for children.
 
-Any comments from the device tree folks? thanks!
+After unbypass clk hierarchy looks like this:
+ * osc_25m
+   * audio_pll1
+     * audio_pll1_bypass
+       * audio_pll1_out
+         * sai2
+           * sai2_root_clk
 
-Regards,
-Bin
+Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/imx8mq-evk.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+index e3df9b8cd9ca..05958124f173 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-evk.dts
+@@ -118,9 +118,9 @@
+ &sai2 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_sai2>;
+-	assigned-clocks = <&clk IMX8MQ_CLK_SAI2>;
+-	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1_OUT>;
+-	assigned-clock-rates = <24576000>;
++	assigned-clocks = <&clk IMX8MQ_AUDIO_PLL1_BYPASS>, <&clk IMX8MQ_CLK_SAI2>;
++	assigned-clock-parents = <&clk IMX8MQ_AUDIO_PLL1>, <&clk IMX8MQ_AUDIO_PLL1_OUT>;
++	assigned-clock-rates = <0>, <24576000>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.17.1
+
