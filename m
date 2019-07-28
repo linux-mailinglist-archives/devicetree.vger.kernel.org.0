@@ -2,109 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 43E0D77FEF
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 16:59:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2759278015
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 17:20:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726043AbfG1O7w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 10:59:52 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42558 "EHLO mail.kernel.org"
+        id S1726082AbfG1PUr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 11:20:47 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:51204 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726032AbfG1O7w (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 28 Jul 2019 10:59:52 -0400
-Received: from wens.tw (mirror2.csie.ntu.edu.tw [140.112.30.76])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2180F2077C;
-        Sun, 28 Jul 2019 14:59:51 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564325991;
-        bh=DpUGmLY8RrR8zxdN3nN3Mo7lThZhDLYKhs1tZUEsSXs=;
-        h=From:To:Cc:Subject:Date:From;
-        b=nlRAI/BIC/ZmVdyBmc95Sd/sRgE9StTHGWhfwdhiG+VYsug161KgDP4MrN7w3/+JP
-         0aJcA9O47R1VRCgDDz0pqPDbRSQBLYNPJx0HcaG5/CQbtGAWpMwJxTrmP3brgpTLgr
-         4PXkhdR7ZfZgzd20cI1G0Py29WJC23hcnMQy7psM=
-Received: by wens.tw (Postfix, from userid 1000)
-        id 2E25B5FD59; Sun, 28 Jul 2019 22:59:48 +0800 (CST)
-From:   Chen-Yu Tsai <wens@kernel.org>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Chen-Yu Tsai <wens@csie.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] ARM: dts: sun8i: a83t: Enable HDMI output on Cubietruck Plus
-Date:   Sun, 28 Jul 2019 22:59:44 +0800
-Message-Id: <20190728145944.4091-1-wens@kernel.org>
-X-Mailer: git-send-email 2.20.1
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1726046AbfG1PUr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 28 Jul 2019 11:20:47 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D7C042011E2;
+        Sun, 28 Jul 2019 17:20:44 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C90682011D4;
+        Sun, 28 Jul 2019 17:20:44 +0200 (CEST)
+Received: from fsr-ub1864-103.ea.freescale.net (fsr-ub1864-103.ea.freescale.net [10.171.82.17])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 1B2C52060A;
+        Sun, 28 Jul 2019 17:20:44 +0200 (CEST)
+From:   Daniel Baluta <daniel.baluta@nxp.com>
+To:     shawnguo@kernel.org
+Cc:     s.hauer@pengutronix.de, festevam@gmail.com, linux-imx@nxp.com,
+        l.stach@pengutronix.de, ccaione@baylibre.com, abel.vesa@nxp.com,
+        baruch@tkos.co.il, andrew.smirnov@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, shengjiu.wang@nxp.com,
+        angus@akkea.ca, agx@sigxcpu.org, Anson.Huang@nxp.com,
+        Daniel Baluta <daniel.baluta@nxp.com>
+Subject: [PATCH v4] arm64: dts: imx8mq: Init rates and parents configs for clocks
+Date:   Sun, 28 Jul 2019 18:20:40 +0300
+Message-Id: <20190728152040.15323-1-daniel.baluta@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Chen-Yu Tsai <wens@csie.org>
+From: Abel Vesa <abel.vesa@nxp.com>
 
-The Cubietruck Plus has an HDMI connector tied to the HDMI output of the
-SoC.
+Add the initial configuration for clocks that need default parent and rate
+setting. This is based on the vendor tree clock provider parents and rates
+configuration except this is doing the setup in dts rather then using clock
+consumer API in a clock provider driver.
 
-Enables display output via HDMI on the Cubietruck Plus. The connector
-device node is named "hdmi-connector" as there is also a display port
-connector, which is tied to the MIPI DSI output of the SoC through a
-MIPI-DSI-to-DP bridge. This part is not supported yet.
+Note that by adding the initial rate setting for audio_pll1/audio_pll
+setting we need to remove it from imx8mq-librem5-devkit.dts
 
-Signed-off-by: Chen-Yu Tsai <wens@csie.org>
+Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
+Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+Tested-by: Angus Ainslie (Purism) <angus@akkea.ca>
 ---
- .../boot/dts/sun8i-a83t-cubietruck-plus.dts   | 25 +++++++++++++++++++
- 1 file changed, 25 insertions(+)
+Changes since v3:
+	- fix extra new lines
 
-diff --git a/arch/arm/boot/dts/sun8i-a83t-cubietruck-plus.dts b/arch/arm/boot/dts/sun8i-a83t-cubietruck-plus.dts
-index ea299d3d84d0..fb928503ad45 100644
---- a/arch/arm/boot/dts/sun8i-a83t-cubietruck-plus.dts
-+++ b/arch/arm/boot/dts/sun8i-a83t-cubietruck-plus.dts
-@@ -60,6 +60,17 @@
- 		stdout-path = "serial0:115200n8";
+ .../dts/freescale/imx8mq-librem5-devkit.dts   |  5 -----
+ arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 19 +++++++++++++++++++
+ 2 files changed, 19 insertions(+), 5 deletions(-)
+
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+index 683a11035643..c702ccc82867 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
++++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
+@@ -169,11 +169,6 @@
  	};
- 
-+	hdmi-connector {
-+		compatible = "hdmi-connector";
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -153,6 +164,10 @@
- 	cpu-supply = <&reg_dcdc3>;
  };
  
-+&de {
-+	status = "okay";
-+};
-+
- &ehci0 {
- 	/* GL830 USB-to-SATA bridge here */
- 	status = "okay";
-@@ -172,6 +187,16 @@
+-&clk {
+-	assigned-clocks = <&clk IMX8MQ_AUDIO_PLL1>, <&clk IMX8MQ_AUDIO_PLL2>;
+-	assigned-clock-rates = <786432000>, <722534400>;
+-};
+-
+ &dphy {
  	status = "okay";
  };
+diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+index 02fbd0625318..a55d72ba2e05 100644
+--- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
+@@ -494,6 +494,25 @@
+ 				clock-names = "ckil", "osc_25m", "osc_27m",
+ 				              "clk_ext1", "clk_ext2",
+ 				              "clk_ext3", "clk_ext4";
++				assigned-clocks = <&clk IMX8MQ_VIDEO_PLL1>,
++					<&clk IMX8MQ_AUDIO_PLL1>,
++					<&clk IMX8MQ_AUDIO_PLL2>,
++					<&clk IMX8MQ_CLK_AHB>,
++					<&clk IMX8MQ_CLK_NAND_USDHC_BUS>,
++					<&clk IMX8MQ_CLK_AUDIO_AHB>,
++					<&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
++					<&clk IMX8MQ_CLK_NOC>;
++				assigned-clock-parents = <0>,
++						<0>,
++						<0>,
++						<&clk IMX8MQ_SYS1_PLL_133M>,
++						<&clk IMX8MQ_SYS1_PLL_266M>,
++						<&clk IMX8MQ_SYS2_PLL_500M>,
++						<&clk IMX8MQ_CLK_27M>,
++						<&clk IMX8MQ_SYS1_PLL_800M>;
++				assigned-clock-rates = <593999999>,
++						<786432000>,
++						<722534400>;
+ 			};
  
-+&hdmi {
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
- &mdio {
- 	rgmii_phy: ethernet-phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
+ 			src: reset-controller@30390000 {
 -- 
-2.20.1
+2.17.1
 
