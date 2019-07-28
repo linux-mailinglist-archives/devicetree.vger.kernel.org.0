@@ -2,68 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 023E3780F0
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 20:48:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C06878115
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 21:24:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726105AbfG1SsG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 14:48:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48006 "EHLO mail.kernel.org"
+        id S1726245AbfG1TYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 15:24:48 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:48028 "EHLO inva021.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726098AbfG1SsG (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 28 Jul 2019 14:48:06 -0400
-Received: from sol.localdomain (c-24-5-143-220.hsd1.ca.comcast.net [24.5.143.220])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1F4F9206A2;
-        Sun, 28 Jul 2019 18:48:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564339685;
-        bh=4DYiX1iZmDAb/6QIy02mrj5YucN4V4gh5wPN40oeVcU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=1x6CdvMFhhJpAqMrHpTg8s1dw/3onqj82ebkAM634Qi9JtPrLS2d41BDRyleQF8rc
-         z8ez9kt631w8KhvzEa8NB2GGiD7L2QdgmE8nUQeZdO0Bm2BPRmjruLsOjQh4v3nMJC
-         lBf5+MClR7Io/D3CHcsbKBpNz5sfw37TOm+n1UPI=
-Date:   Sun, 28 Jul 2019 11:48:03 -0700
-From:   Eric Biggers <ebiggers@kernel.org>
-To:     Corentin Labbe <clabbe@baylibre.com>
-Cc:     davem@davemloft.net, herbert@gondor.apana.org.au,
-        khilman@baylibre.com, mark.rutland@arm.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, baylibre-upstreaming@groups.io
-Subject: Re: [PATCH 0/4] crypto: add amlogic crypto offloader driver
-Message-ID: <20190728184803.GA14920@sol.localdomain>
-Mail-Followup-To: Corentin Labbe <clabbe@baylibre.com>, davem@davemloft.net,
-        herbert@gondor.apana.org.au, khilman@baylibre.com,
-        mark.rutland@arm.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-kernel@vger.kernel.org, baylibre-upstreaming@groups.io
-References: <1564083776-20540-1-git-send-email-clabbe@baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1564083776-20540-1-git-send-email-clabbe@baylibre.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        id S1726105AbfG1TYs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sun, 28 Jul 2019 15:24:48 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 26F60201282;
+        Sun, 28 Jul 2019 21:24:46 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 15AE6201275;
+        Sun, 28 Jul 2019 21:24:46 +0200 (CEST)
+Received: from fsr-ub1864-103.ea.freescale.net (fsr-ub1864-103.ea.freescale.net [10.171.82.17])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 5B56E2060A;
+        Sun, 28 Jul 2019 21:24:45 +0200 (CEST)
+From:   Daniel Baluta <daniel.baluta@nxp.com>
+To:     broonie@kernel.org
+Cc:     l.stach@pengutronix.de, mihai.serban@gmail.com,
+        alsa-devel@alsa-project.org, viorel.suman@nxp.com,
+        timur@kernel.org, shengjiu.wang@nxp.com, angus@akkea.ca,
+        tiwai@suse.com, nicoleotsuka@gmail.com, linux-imx@nxp.com,
+        kernel@pengutronix.de, festevam@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, Daniel Baluta <daniel.baluta@nxp.com>
+Subject: [PATCH v2 0/7] Add support for new SAI IP version
+Date:   Sun, 28 Jul 2019 22:24:22 +0300
+Message-Id: <20190728192429.1514-1-daniel.baluta@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Corentin,
+So far SAI IPs integrated with imx6 only supported one data line.
+Starting with imx7 and imx8 SAI integration support up to 8 data
+lines.
 
-On Thu, Jul 25, 2019 at 07:42:52PM +0000, Corentin Labbe wrote:
-> Hello
-> 
-> This serie adds support for the crypto offloader present on amlogic GXL
-> SoCs.
-> 
-> Tested on meson-gxl-s905x-khadas-vim and meson-gxl-s905x-libretech-cc
-> 
-> Regards
-> 
+New SAI IP version introduces two new registers (Version and Parmeter
+registers) which are placed at the beginning of register address space.
+For this reason we need to fix the register's address.
 
-Does this new driver pass all the crypto self-tests?
-Including with CONFIG_CRYPTO_MANAGER_EXTRA_TESTS=y?
+Changes since v1:
+	- removed patches from Lucas as they were already accepted
+	- addressed comments from Lucas and Nicolin regarding
+	device tree property naming
+	- removed comment saying that "datalines" must be always
+	consecutively enabled (this is not true, checked with IP owner)
+	- added new patch to document newly introduced compatbile
+	  strings
+	- removed patch introducing combined mode as I will still need
+	some time to figure out how to properly allow users to set it.
 
-- Eric
+Nicolin,
+
+Unfortunately I couldn't find any clean solution on handling registers
+address shifts. As mentioned in patch 5/7 Tx/Rx data registers and
+Tx/Rx FIFO registers keep their addresses while others are shifted
+by 8 bytes.
+
+Even if I could create two regmaps as suggested I will still need
+to update each call of regmap_functions.
+
+Daniel Baluta (7):
+  ASoC: fsl_sai: Add registers definition for multiple datalines
+  ASoC: fsl_sai: Update Tx/Rx channel enable mask
+  ASoC: fsl_sai: Add support to enable multiple data lines
+  ASoC: dt-bindings: Document dl-mask property
+  ASoC: fsl_sai: Add support for SAI new version
+  ASoC: fsl_sai: Add support for imx7ulp/imx8mq
+  ASoC: dt-bindings: Introduce compatible strings for 7ULP and 8MQ
+
+ .../devicetree/bindings/sound/fsl-sai.txt     |  10 +-
+ sound/soc/fsl/fsl_sai.c                       | 331 ++++++++++++------
+ sound/soc/fsl/fsl_sai.h                       |  82 +++--
+ 3 files changed, 293 insertions(+), 130 deletions(-)
+
+-- 
+2.17.1
+
