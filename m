@@ -2,157 +2,59 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9F1B78022
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 17:25:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B5458780AC
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 19:35:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726080AbfG1PZU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 11:25:20 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:39993 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726046AbfG1PZT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 11:25:19 -0400
-Received: by mail-wm1-f67.google.com with SMTP id v19so51371413wmj.5;
-        Sun, 28 Jul 2019 08:25:17 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=0OnbAgSPJwvUbw2tRezNGTvwhfaWECDe+MXcGqH5rpM=;
-        b=tvJGjGNCiGu81qsWG9UW1f56ISoykEzQxe69HGgPuJWY1vWh2BToE4P1lQr7o5zhty
-         Y2DXk41Rk9LE1SFSiWTRbXOLb3Ahyjyh3LwqbXk+RU9t0fS6e+lp4lMHC2jEoTiGo3q/
-         8/iuL/uplQQPaE1s+4RoUDSg4F5g7RMbV+4g9nIA74D8p7dTNgg5YCEDhPJg8uDP4ndy
-         gQ5Q36Ltmq/rQZfnqMOaz8qyOzAyc03cAux98RtGT56OwjoJ1Mo27sJ1WLyV5VggUoF1
-         0+QxYug6KjR5HKu80bJZYdugQqf5bNZNv/vvWMNATeNBdgw7RYpPCeeiqtRoNGjFerIR
-         QOiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=0OnbAgSPJwvUbw2tRezNGTvwhfaWECDe+MXcGqH5rpM=;
-        b=tKg/BHVWaeiLMU+Vryut8ytGUVcU3O8S4NEgsVT5RbxgEnuKWPkUxgdZULP8iVxk67
-         DAST7XhS9qTHwuURvZdnUZ5PGyVKqDKbEBK1TNREXQb0eSSGOguXYjgWYcZypg1rDMEi
-         d4gfMuTu468xyA8tj00MjION2jHwnN0XYA3mjoHKid9OrsxdsHAIBHP6qcq3vehAxfVv
-         PgMTsCt5d9Q372jPhtdSnJONxHi9Q0bNubmv03Y40hTBnB/7yF53OLKv/YJAIJd8k7F9
-         O3IvExCnJBeDy6FCWBvxeQnZCDAcrjlutRnLKDmZx40FcbbTRJ/o201MDHJgqYE7wdIr
-         +QNw==
-X-Gm-Message-State: APjAAAXITFsC0SFxUJL0t5vMylnos1VsQQOhT2Twsn0yesgx3JSmfODD
-        FLyCnXqAfIxc4hlmqSITGNdDzoaMjPgv/oIbx6E=
-X-Google-Smtp-Source: APXvYqwqMHY/y3WFu0ZR36r/YOmks/hkw86Ydao02mX6fAJoEhqh32A4SVNoT8E4xKHv5jx67NZn+rRHRT2VWzP/WGU=
-X-Received: by 2002:a7b:c247:: with SMTP id b7mr99117091wmj.13.1564327516506;
- Sun, 28 Jul 2019 08:25:16 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190728141218.12702-1-daniel.baluta@nxp.com> <b6506f6579f823e4c1e26ef3a7d1eed2@akkea.ca>
-In-Reply-To: <b6506f6579f823e4c1e26ef3a7d1eed2@akkea.ca>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Sun, 28 Jul 2019 18:25:05 +0300
-Message-ID: <CAEnQRZCyyfoVeG90Qbt8nQaEJYS7ywsSRFAy7a7WR6JrKfq-yg@mail.gmail.com>
-Subject: Re: [PATCH v3] arm64: dts: imx8mq: Init rates and parents configs for clocks
-To:     Angus Ainslie <angus@akkea.ca>
-Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Carlo Caione <ccaione@baylibre.com>,
-        Abel Vesa <abel.vesa@nxp.com>, baruch@tkos.co.il,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Anson Huang <Anson.Huang@nxp.com>,
-        linux-kernel-owner@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+        id S1726098AbfG1RfA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 13:35:00 -0400
+Received: from sender4-pp-o95.zoho.com ([136.143.188.95]:25529 "EHLO
+        sender4-pp-o95.zoho.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726046AbfG1RfA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 13:35:00 -0400
+ARC-Seal: i=1; a=rsa-sha256; t=1564335289; cv=none; 
+        d=zoho.com; s=zohoarc; 
+        b=FkkEcpJMTmydDx2O2mE7TXkW7mjkMPKwGHl7ASueQGkdg2J7SDhIuzmK73NOGZblhP3z47fC4uPK4DqaBgBAJcyK8ovHKbtX4BQ4PSNjZBc2d1+t8UxQAY5kw4LNzkUORIiOKp8aFDoTV50cSeAZaARzsJwmhCpfP4MmUTrfTWg=
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=zoho.com; s=zohoarc; 
+        t=1564335289; h=Cc:Date:From:In-Reply-To:Message-ID:References:Subject:To:ARC-Authentication-Results; 
+        bh=G6oQedkI8J0YrP2JXslPEck2U7srvknFaEmDIBRZKdE=; 
+        b=onE3tNhCMnEcbFwsxqJMAdb32lbjYmqhcDtjpbWsmzzGAeQhZ+A9O3FLaxMmwtr5C2ECWfmNe4tZmQmIzM+y8xGhRyWZG025IOEBbzJfJnEHD/hvSBxESRYo7jn6bqmbR9pImk8OFEMAuH1Zb87Q7ZqSXpSRQ/o+LjZwXUsSifA=
+ARC-Authentication-Results: i=1; mx.zoho.com;
+        dkim=pass  header.i=zoho.com;
+        spf=pass  smtp.mailfrom=zhouyanjie@zoho.com;
+        dmarc=pass header.from=<zhouyanjie@zoho.com> header.from=<zhouyanjie@zoho.com>
+DomainKey-Signature: a=rsa-sha1; q=dns; c=nofws; 
+  s=zapps768; d=zoho.com; 
+  h=from:to:cc:subject:date:message-id:in-reply-to:references; 
+  b=iebehV1jM85MXTDn4KFFK2phE8K5R/jxbi2eI5cD2eWnBGmJeiEoqISpzyorVnZzTN5lDcOI8/SO
+    69uyO7bz7Nzq6IJp3OW2pUxFKfBVxNrVQXQ290UZlw2dkxmRtBDj  
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; t=1564335289;
+        s=zm2019; d=zoho.com; i=zhouyanjie@zoho.com;
+        h=From:To:Cc:Subject:Date:Message-Id:In-Reply-To:References; l=230;
+        bh=G6oQedkI8J0YrP2JXslPEck2U7srvknFaEmDIBRZKdE=;
+        b=VvKIDMFBhNgTJCT0vdrNoc1qbrAJyzYfBq8k63O8wxg47yQGLd8Xm0i9yDACn5SV
+        syF+OR0DxnC/+v29Ib6DYIivGyArqlgFDpoKh0OnIiHNVvFs1SChnPa12BBiHWARFuS
+        530RBO5V61iAZ+qfbDXuU2OSkxE3Pciw1Oj+qglg=
+Received: from zhouyanjie-virtual-machine.localdomain (171.221.113.137 [171.221.113.137]) by mx.zohomail.com
+        with SMTPS id 1564335287626688.0546299602289; Sun, 28 Jul 2019 10:34:47 -0700 (PDT)
+From:   Zhou Yanjie <zhouyanjie@zoho.com>
+To:     linux-mips@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh+dt@kernel.org, paul.burton@mips.com, tglx@linutronix.de,
+        mark.rutland@arm.com, jason@lakedaemon.net, marc.zyngier@arm.com
+Subject: Add Ingenic JZ4760 and X1000 and X1500 irqchip support v4.
+Date:   Mon, 29 Jul 2019 01:34:29 +0800
+Message-Id: <1564335273-22931-1-git-send-email-zhouyanjie@zoho.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1548517123-60058-1-git-send-email-zhouyanjie@zoho.com>
+References: <1548517123-60058-1-git-send-email-zhouyanjie@zoho.com>
+X-ZohoMailClient: External
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 28, 2019 at 5:53 PM Angus Ainslie <angus@akkea.ca> wrote:
->
-> Hi Daniel,
->
-> On 2019-07-28 07:12, Daniel Baluta wrote:
-> > From: Abel Vesa <abel.vesa@nxp.com>
-> >
-> > Add the initial configuration for clocks that need default parent and
-> > rate
-> > setting. This is based on the vendor tree clock provider parents and
-> > rates
-> > configuration except this is doing the setup in dts rather then using
-> > clock
-> > consumer API in a clock provider driver.
-> >
-> > Note that by adding the initial rate setting for audio_pll1/audio_pll
-> > setting we need to remove it from imx8mq-librem5-devkit.dts
-> > imx8mq-librem5-devkit.dts
-> >
-> > Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
->
-> This works with our board. One small nit below
->
-> Tested-by: Angus Ainslie (Purism) <angus@akkea.ca>
->
-> > ---
-> > Changes since v2:
-> >       - set rate for audio_pll1/audio_pll2  in the dtsi file and
-> >       remove the setting from imx8mq-librem5-devkit.dts
-> >
-> >  .../dts/freescale/imx8mq-librem5-devkit.dts   |  5 -----
-> >  arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 21 +++++++++++++++++++
-> >  2 files changed, 21 insertions(+), 5 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> > b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> > index 683a11035643..c702ccc82867 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> > @@ -169,11 +169,6 @@
-> >       };
-> >  };
-> >
-> > -&clk {
-> > -     assigned-clocks = <&clk IMX8MQ_AUDIO_PLL1>, <&clk IMX8MQ_AUDIO_PLL2>;
-> > -     assigned-clock-rates = <786432000>, <722534400>;
-> > -};
-> > -
-> >  &dphy {
-> >       status = "okay";
-> >  };
-> > diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > index 02fbd0625318..c67625a881a4 100644
-> > --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> > @@ -494,6 +494,27 @@
-> >                               clock-names = "ckil", "osc_25m", "osc_27m",
-> >                                             "clk_ext1", "clk_ext2",
-> >                                             "clk_ext3", "clk_ext4";
-> > +                             assigned-clocks = <&clk IMX8MQ_VIDEO_PLL1>,
-> > +                                     <&clk IMX8MQ_AUDIO_PLL1>,
-> > +                                     <&clk IMX8MQ_AUDIO_PLL2>,
-> > +                                     <&clk IMX8MQ_CLK_AHB>,
-> > +                                     <&clk IMX8MQ_CLK_NAND_USDHC_BUS>,
-> > +                                     <&clk IMX8MQ_CLK_AUDIO_AHB>,
-> > +                                     <&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
-> > +                                     <&clk IMX8MQ_CLK_NOC>;
-> > +                             assigned-clock-parents = <0>,
-> > +                                             <0>,
-> > +                                             <0>,
-> > +                                             <&clk IMX8MQ_SYS1_PLL_133M>,
-> > +                                             <&clk IMX8MQ_SYS1_PLL_266M>,
-> > +                                             <&clk IMX8MQ_SYS2_PLL_500M>,
-> > +                                             <&clk IMX8MQ_CLK_27M>,
-> > +                                             <&clk IMX8MQ_SYS1_PLL_800M>;
-> > +                             assigned-clock-rates = <593999999>,
-> > +                                             <786432000>,
-> > +                                             <722534400>;
-> > +
-> > +
->
-> Extra whitespace
+v1->v2: Replace "__fls(pending)" with "bit" in function "generic_handle_irq".
+v2->v3: Add support for probing irq-ingenic driver on JZ4760 and X1500 Soc.
+v3->v4: Combined with patches 5 and 7, combined with patches 4, 6 and 8.
 
-Thanks Angus for testing. Fixed in v4.
+
