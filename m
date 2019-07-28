@@ -2,90 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8F69C77EAA
-	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 10:45:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEA4877ECD
+	for <lists+devicetree@lfdr.de>; Sun, 28 Jul 2019 11:30:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725937AbfG1Ipa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 04:45:30 -0400
-Received: from mail.kernel.org ([198.145.29.99]:59518 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725880AbfG1Ipa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sun, 28 Jul 2019 04:45:30 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3D44A2085A;
-        Sun, 28 Jul 2019 08:45:27 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564303529;
-        bh=/5r3rYZjAroH9klgA3A3a0rKTbHeBYnKF2HDF1+EAzw=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=em3yfMQjkjLr7fBs+kgwtzRpXzjQmy4heVAtAqHs4GXaffz3PpYrdderzejYuejwS
-         cP4TsQd06lza6cbSqVueJcAT+coNAZRiolIEvYJcIGcccVIi3mrojQ1G60Jr9Y8YwR
-         2Hp0vvfRjrJxV1ywuSKxIcNFUXZK1CL6HvgOMYIc=
-Date:   Sun, 28 Jul 2019 09:45:23 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Artur Rojek <contact@artur-rojek.eu>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Rob Herring <robh@kernel.org>
-Subject: Re: [PATCH v2 1/3] dt-bindings: iio/adc: Add a compatible string
- for JZ4770 SoC ADC
-Message-ID: <20190728094523.2a161231@archlinux>
-In-Reply-To: <20190727195940.14010-1-contact@artur-rojek.eu>
-References: <20190727195940.14010-1-contact@artur-rojek.eu>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1725975AbfG1Jaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 05:30:52 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:46718 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725937AbfG1Jav (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 05:30:51 -0400
+Received: by mail-pf1-f195.google.com with SMTP id c3so3382346pfa.13;
+        Sun, 28 Jul 2019 02:30:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:subject:date:message-id;
+        bh=5Pz4rCVD0vWLA17p+mMhsqMFpeVJDTz+U0y7lXimbeo=;
+        b=rxb3WBd0NCoKGgDCvLUZ9MwueRLsV2bBb8hisfN3xX8w6/eJB0NovX4//X771U1zp4
+         rWGBGpoZpRvwgW8Kvuwwnei8pKU0OmhGWscNi75ufVCaOwwmhVDqM9ppJElD1a0rqCTI
+         1sj+QGGHyEptASUvqtgtXOCTTDaiFLj/8RLVuiz6rq54uRY1x3+qy4rbQ4O0lRwgMuhJ
+         ab01hKUXR3t5KGydKYZHPCcQ/axBEO08aaAT5B0kIZRxJpHMofJW6xtujcD88BWe5Aqv
+         wfBUPYsd611bgcIv5HifAAHNpRNkhCg0h9NIwu1C6H7IUhmmiy4kCHBPd1079P/2uUY2
+         08Ug==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:subject:date:message-id;
+        bh=5Pz4rCVD0vWLA17p+mMhsqMFpeVJDTz+U0y7lXimbeo=;
+        b=qhyry8/h5Ev54DdO8MQewI1PY/lxgc5CJHww0ocoOQfHcvfn1zfCYYH3KA7LPIsfue
+         flM6n23yToVOksuUJUxFgyZY9Pi9TZNTY52h13k1TmsgVDfhuXkD8BDye/etp37rkeZf
+         glri9m8KcECF+4cJBF0xXPsCK/sSsiwC6RKsSIVWqrBtA6XNIrbYJSrUuPRl5+PL0/d2
+         h0WafzkQ0mVgpNFwMkDd6h1NBhFcZI6Z1y07hxpvbUuK2pPUlf75BHoQNrQdi2gislbm
+         XjrL1beHHOONEPfJ5ZuRpYpreiyg7Xkyi323POp9Stnj6SMsStu7KMW30cf/D9+jFkF0
+         lKjA==
+X-Gm-Message-State: APjAAAXO+5+BwALk7GDVl4mkZz20vK3dYZ8lz9zXRnw+EJTJvGGOt5gk
+        YDV2HjKDi4r5W8MnEkd8FuM=
+X-Google-Smtp-Source: APXvYqwZ2IM4/sha2sxku6bqL2fendny9Jm6t5sLo8mngCSairpU4j2k6G5G9vIgUsDB4arnpUlXXw==
+X-Received: by 2002:aa7:9254:: with SMTP id 20mr31908859pfp.212.1564306251153;
+        Sun, 28 Jul 2019 02:30:51 -0700 (PDT)
+Received: from localhost.localdomain (unknown-224-80.windriver.com. [147.11.224.80])
+        by smtp.gmail.com with ESMTPSA id s20sm66237380pfe.169.2019.07.28.02.30.50
+        (version=TLS1 cipher=AES128-SHA bits=128/128);
+        Sun, 28 Jul 2019 02:30:50 -0700 (PDT)
+From:   Bin Meng <bmeng.cn@gmail.com>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>
+Subject: [PATCH 1/2] dt-bindings: interrupt-controller: msi: Correct msi-controller@c's reg
+Date:   Sun, 28 Jul 2019 02:30:18 -0700
+Message-Id: <1564306219-17439-1-git-send-email-bmeng.cn@gmail.com>
+X-Mailer: git-send-email 1.7.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, 27 Jul 2019 21:59:38 +0200
-Artur Rojek <contact@artur-rojek.eu> wrote:
+The base address of msi-controller@c should be set to c.
 
-> Add a compatible string for the ADC controller present on
-> Ingenic JZ4770 SoC.
-> 
-> Signed-off-by: Artur Rojek <contact@artur-rojek.eu>
-> Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
+---
 
-Hi Artur,
+ Documentation/devicetree/bindings/interrupt-controller/msi.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-I'll have to hold this series for a few weeks as the fix for the
-clock rate divider isn't in my upstream for the togreg branch yet
-(as I haven't sent a pull request since the merge window).
-
-Give me a poke if I seem to have forgotten these in a few weeks
-time.
-
-Thanks,
-
-Jonathan
-
-> ---
-> 
-> Changes:
-> 
-> v2: no change
-> 
->  Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
-> index f01159f20d87..cd9048cf9dcf 100644
-> --- a/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
-> +++ b/Documentation/devicetree/bindings/iio/adc/ingenic,adc.txt
-> @@ -5,6 +5,7 @@ Required properties:
->  - compatible: Should be one of:
->    * ingenic,jz4725b-adc
->    * ingenic,jz4740-adc
-> +  * ingenic,jz4770-adc
->  - reg: ADC controller registers location and length.
->  - clocks: phandle to the SoC's ADC clock.
->  - clock-names: Must be set to "adc".
+diff --git a/Documentation/devicetree/bindings/interrupt-controller/msi.txt b/Documentation/devicetree/bindings/interrupt-controller/msi.txt
+index c60c034..c20b51d 100644
+--- a/Documentation/devicetree/bindings/interrupt-controller/msi.txt
++++ b/Documentation/devicetree/bindings/interrupt-controller/msi.txt
+@@ -98,7 +98,7 @@ Example
+ 	};
+ 
+ 	msi_c: msi-controller@c {
+-		reg = <0xb 0xf00>;
++		reg = <0xc 0xf00>;
+ 		compatible = "vendor-b,another-controller";
+ 		msi-controller;
+ 		/* Each device has some unique ID */
+-- 
+2.7.4
 
