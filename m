@@ -2,93 +2,80 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 140E578235
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 01:02:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A1D0078248
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 01:14:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726180AbfG1XC2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 19:02:28 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:34151 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726103AbfG1XC1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 19:02:27 -0400
-Received: by mail-lf1-f67.google.com with SMTP id b29so33460558lfq.1
-        for <devicetree@vger.kernel.org>; Sun, 28 Jul 2019 16:02:26 -0700 (PDT)
+        id S1726183AbfG1XOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 28 Jul 2019 19:14:50 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:42968 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726139AbfG1XOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 19:14:50 -0400
+Received: by mail-lj1-f194.google.com with SMTP id t28so56689070lje.9
+        for <devicetree@vger.kernel.org>; Sun, 28 Jul 2019 16:14:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=0QvDMg/A2Rt5fxMboau0/0oy3s1qZzYfLl1+37OTI2s=;
-        b=rOPuD9CEWBL/GqqiVJQfMsc1b77FhN/cFmrFSXMvy18LLdz2cpUFHiOEgM4Ui6HDvi
-         t5i8t1jJIlnqjiu0+Y0BZDXmwudaKW5WWp5QPeEqe7CJ64wwP59256ecvHcgm6/aOGtf
-         HQD31UlAJv+owg50Bk6UqwAbszE5fmwsUCAqhykwcaX4LXpGQkJeh90677sC0+Yvh1rw
-         jJiLuQdIR0QgnWPzQjnXHdmawGf1OyaYRw/NjdtSHp7CA3Mdlyo3tBnG41zrOb5rgqV+
-         TzHqxS/tAU1qrQLwPGiGLl/hkl4MaGpkf4cSqJjw9pQXwpbLu93YfDP3l5pCwVt6UL/K
-         B9xQ==
+        bh=uqbaLb+DoYfmkQkeju/D4dfpefzvGhqE/NA7IyXYHDs=;
+        b=mecH4VhtykhjOehOVm7m8Pa5YP6LbhZHxuLFQA2XocGjWKuVwaUD5JKujEe9aVixYW
+         cawoMpzpCuo6PsH/Y5+Y7tXwV3d7SoDRDfjjcoukQScCk9CzzHAMPo1pS4yrzvyXmqyJ
+         2yMjXxSUUQvzemHru0Os3ufWRvyApCPQMYjePIqEYdIr8dqIpeHbncxd/W99X2KbFg2j
+         jbwANzOROhAvP10F0iLcxqbviHMgDbZ6aAMO7bHOLzMbrE+YgCLY6qUQqtoboNujm0Gj
+         U73hnvjkMlVYKlUDbpdLF67Z+MpbkHJo3vfCQ+e8YPRfhiYgmC3LZ5+TDpH4eiTfU3zX
+         7Iyg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=0QvDMg/A2Rt5fxMboau0/0oy3s1qZzYfLl1+37OTI2s=;
-        b=soC/U3cS7V5Wt2UzPX06PVLO1nF5ni1Jm11XXJxidp/dPBVRkO+/Qj+Qs06qRYblCy
-         LL20S+bJ8+/FmWT/DQGQiNn95IcV8h+J3mnizSqTo0l4Wd2jrbvUXV4AQ17JwfocmOYM
-         mcPQ4l9AZgt7ZgAk0wy0PIfLhycMEEuNSkIthP/acU+lnjFWGXTjxgNYWsm/0B72ij8N
-         qGocYQaS6CBUfe9bm8mffdSQ4pSdJ8qHiQbhvXQyF/kaL1e6MQVUVJ1uUQGXD4h2buD2
-         nuwrrKGLiAb9dtDCFH1UAKNdNIypszthRf6DLhEDnVTBwEYithT6vJemclilCmzP87om
-         yHbw==
-X-Gm-Message-State: APjAAAWWWeWXYQPhbtYmXZE2pSRiaCW+HdqxjF2vABG3aXQDuJx5B9ux
-        6wR76RmTZhnhxVx4gjpARMCs2ND8/YBvVr2mSCn/1w==
-X-Google-Smtp-Source: APXvYqya5Tifa7claX2zxKxD5LFpUDCnOFeYo+T/QCqZpDuQ1qDiu99i+WGV5cNGo8hr2+lSDSPdmp+GoRHq3uI19PQ=
-X-Received: by 2002:a19:7616:: with SMTP id c22mr51050132lff.115.1564354945858;
- Sun, 28 Jul 2019 16:02:25 -0700 (PDT)
+        bh=uqbaLb+DoYfmkQkeju/D4dfpefzvGhqE/NA7IyXYHDs=;
+        b=h7PHXY1tIicU95lrWr+CyF9oy33j6obOCRLHTXTtHqOx+Z2YX9ryvLSqJodmXDYW/l
+         4VBcvrDbnUKqMLVJKAcydRA46Yfd1VPu7Fj8yTUwQESqB+dWgDDkkFtRAPk5G4zn8IQM
+         CiMGP46J/5ATiSb8pvcks+9p16B4SmmwuAFA8CuZ9NOSvx36svqLERGlD2RT0l/NwwjR
+         mKiEI/oql9J634SHpx4AR+zOwx/Gt53gDxB5EhKE+5ATIrIuvSa1w2+8xtlmTqNh1v8M
+         40aUfcpaP4OmKuAXCpKVumbvbEfHaHr18MgOBTxsXWgrtoEht+wltlNvjgxG+HIJD8Z8
+         0b3g==
+X-Gm-Message-State: APjAAAV0+CDnD1vu5mFdNyxpvXdp8qeZuFLnoMKF6FBTpj2SHCtu3xOF
+        zKeg3ginfghrDCcdtI1u2h0/Z8dfrNJD98TbMk8mHA==
+X-Google-Smtp-Source: APXvYqxZn/ye7KzmbCXTelv16sXPVMTT2jnKOOv6eVhlkoDzFB17aRJoEaL7U1kzdaeMP7q7K+fcGcM99btdobKE65w=
+X-Received: by 2002:a2e:9593:: with SMTP id w19mr8822011ljh.69.1564355688739;
+ Sun, 28 Jul 2019 16:14:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <1562576868-8124-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1562576868-8124-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1562576868-8124-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+References: <20190711041942.23202-1-andrew@aj.id.au>
+In-Reply-To: <20190711041942.23202-1-andrew@aj.id.au>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 29 Jul 2019 01:02:14 +0200
-Message-ID: <CACRpkdZqTaA04bja16xh338JiwoSqFpH_2rV95FaF7YhawQzMg@mail.gmail.com>
-Subject: Re: [PATCH RFC 2/7] pinctrl: sh-pfc: remove incomplete flag "cfg->type"
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+Date:   Mon, 29 Jul 2019 01:14:37 +0200
+Message-ID: <CACRpkdb4pEdPHbo=3+fJXe9WG8K7A2_xVMtKWCJCfEawDO5wBw@mail.gmail.com>
+Subject: Re: [PATCH 0/6] pinctrl: aspeed: Add AST2600 pinmux support
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        linux-pwm@vger.kernel.org,
+        Joel Stanley <joel@jms.id.au>, ryanchen.aspeed@gmail.com,
+        johnny_huang@aspeedtech.com, linux-aspeed@lists.ozlabs.org,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 8, 2019 at 11:08 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
+On Thu, Jul 11, 2019 at 6:19 AM Andrew Jeffery <andrew@aj.id.au> wrote:
 
-> The old commit c58d9c1b26e3 ("sh-pfc: Implement generic pinconf
-> support") broke the cfg->type flag to PINMUX_TYPE_FUNCTION because
-> sh_pfc_pinconf_set() didn't call sh_pfc_reconfig_pin().
-> Now if we fix the cfg->type condition, it gets worse because:
->  - Some drivers might be deferred so that .set_mux() will be called
->    multiple times.
->  - In such the case, the sh-pfc driver returns -EBUSY even if
->    the group is the same, and then that driver fails to probe.
+> This series adds pinmux support for the AST2600. Some more rework was required
+> on top of the previous cleanup series, but this rework was focussed on
+> supporting features of the AST2600 pinmux rather than fixing issues with the
+> existing infrastructure for the ASPEED drivers. Due to the dependences it's
+> based on top of pinctrl/devel, so should avoid any more SPDX issues.
 >
-> Since the pinctrl subsystem already has such conditions according
-> to @set_mux and @gpio_request_enable, this patch just remove
-> the incomplete flag from sh-pfc/pinctrl.c.
->
-> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ASPEED have been testing the patches on hardware, so even for an initial pass
+> there's some confidence in the implementation.
 
-This looks like it should have a Fixes: tag as well.
-
-Geert will decide what to do with this.
-
-Can all the pinctrl patches be applied independently of the other
-changes so Geert can apply and send me those patches in his pull
-requests?
+I'm unsure if I need to wait for the DT bindings to be fixed on this
+series?
 
 Yours,
 Linus Walleij
