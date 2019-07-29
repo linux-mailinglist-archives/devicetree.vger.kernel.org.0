@@ -2,68 +2,141 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F80D7907E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 18:13:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0DC4679086
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 18:14:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728410AbfG2QN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 12:13:27 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:45246 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728903AbfG2QN1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 12:13:27 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=E8+StAJi8iR+10hnQNem7TjVI3Aa8ZKLhuLix4pgEFU=; b=Glj5iqr8L2yWUK8p+I64wgdP9q
-        DZOE9qPw6xIsieVDpKTkB1Y/FmeR8En9e9crk2+PXwgDl7axcaxmAX9YslGJySYLZbDIsuh1p89rQ
-        Ps3ONpBtXfyrGD5OoRmNMw7K0SJagtQkNh7iJv97bmLTOSbF7YvCilxzuOkF0y/TrHs4=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hs7ib-0002Wc-2C; Mon, 29 Jul 2019 17:37:45 +0200
-Date:   Mon, 29 Jul 2019 17:37:45 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Claudiu Manoil <claudiu.manoil@nxp.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        alexandru.marginean@nxp.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 4/4] arm64: dts: fsl: ls1028a: Enable eth
- port1 on the ls1028a QDS board
-Message-ID: <20190729153745.GI4110@lunn.ch>
-References: <1564394627-3810-1-git-send-email-claudiu.manoil@nxp.com>
- <1564394627-3810-5-git-send-email-claudiu.manoil@nxp.com>
+        id S1726847AbfG2QOj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 12:14:39 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:41891 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726327AbfG2QOj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 12:14:39 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hs8IG-0007Bj-LI; Mon, 29 Jul 2019 18:14:36 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hs8IF-0005n0-HF; Mon, 29 Jul 2019 18:14:35 +0200
+Date:   Mon, 29 Jul 2019 18:14:35 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>
+Cc:     mark.rutland@arm.com, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-sunxi@googlegroups.com,
+        linux-kernel@vger.kernel.org, mripard@kernel.org, wens@csie.org,
+        robh+dt@kernel.org, thierry.reding@gmail.com,
+        kernel@pengutronix.de, linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH 3/6] pwm: sun4i: Add a quirk for bus clock
+Message-ID: <20190729161435.5bnj3ikocsyep4dd@pengutronix.de>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+ <20190726184045.14669-4-jernej.skrabec@siol.net>
+ <20190729063825.wxfky6nswcru26g7@pengutronix.de>
+ <4022372.WfP88Fa4Lu@jernej-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <1564394627-3810-5-git-send-email-claudiu.manoil@nxp.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <4022372.WfP88Fa4Lu@jernej-laptop>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 01:03:47PM +0300, Claudiu Manoil wrote:
-> LS1028a has one Ethernet management interface. On the QDS board, the
-> MDIO signals are multiplexed to either on-board AR8035 PHY device or
-> to 4 PCIe slots allowing for SGMII cards.
-> To enable the Ethernet ENETC Port 1, which can only be connected to a
-> RGMII PHY, the multiplexer needs to be configured to route the MDIO to
-> the AR8035 PHY.  The MDIO/MDC routing is controlled by bits 7:4 of FPGA
-> board config register 0x54, and value 0 selects the on-board RGMII PHY.
-> The FPGA board config registers are accessible on the i2c bus, at address
-> 0x66.
-> 
-> The PF3 MDIO PCIe integrated endpoint device allows for centralized access
-> to the MDIO bus.  Add the corresponding devicetree node and set it to be
-> the MDIO bus parent.
-> 
-> Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
-> Signed-off-by: Claudiu Manoil <claudiu.manoil@nxp.com>
+Hello Jernej,
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+On Mon, Jul 29, 2019 at 05:48:36PM +0200, Jernej Škrabec wrote:
+> Dne ponedeljek, 29. julij 2019 ob 08:38:25 CEST je Uwe Kleine-König 
+> napisal(a):
+> > Hello,
+> > 
+> > On Fri, Jul 26, 2019 at 08:40:42PM +0200, Jernej Skrabec wrote:
+> > > H6 PWM core needs bus clock to be enabled in order to work.
+> > > 
+> > > Add a quirk for it.
+> > > 
+> > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> > > ---
+> > > 
+> > >  drivers/pwm/pwm-sun4i.c | 15 +++++++++++++++
+> > >  1 file changed, 15 insertions(+)
+> > > 
+> > > diff --git a/drivers/pwm/pwm-sun4i.c b/drivers/pwm/pwm-sun4i.c
+> > > index 1b7be8fbde86..7d3ac3f2dc3f 100644
+> > > --- a/drivers/pwm/pwm-sun4i.c
+> > > +++ b/drivers/pwm/pwm-sun4i.c
+> > > @@ -72,6 +72,7 @@ static const u32 prescaler_table[] = {
+> > > 
+> > >  };
+> > >  
+> > >  struct sun4i_pwm_data {
+> > > 
+> > > +	bool has_bus_clock;
+> > > 
+> > >  	bool has_prescaler_bypass;
+> > >  	bool has_reset;
+> > >  	unsigned int npwm;
+> > > 
+> > > @@ -79,6 +80,7 @@ struct sun4i_pwm_data {
+> > > 
+> > >  struct sun4i_pwm_chip {
+> > >  
+> > >  	struct pwm_chip chip;
+> > > 
+> > > +	struct clk *bus_clk;
+> > > 
+> > >  	struct clk *clk;
+> > >  	struct reset_control *rst;
+> > >  	void __iomem *base;
+> > > 
+> > > @@ -382,6 +384,16 @@ static int sun4i_pwm_probe(struct platform_device
+> > > *pdev)> 
+> > >  		reset_control_deassert(pwm->rst);
+> > >  	
+> > >  	}
+> > > 
+> > > +	if (pwm->data->has_bus_clock) {
+> > > +		pwm->bus_clk = devm_clk_get(&pdev->dev, "bus");
+> > 
+> > Similar to my suggestion in patch 2: I'd use devm_clk_get_optional() and
+> > drop struct sun4i_pwm_data::has_bus_clock.
+> 
+> This one is not so simple. This patch has incorrect logic. Correct logic would 
+> be to use "devm_clk_get(&pdev->dev, NULL)" for variants without bus clock as 
+> it is done already and "devm_clk_get(&pdev->dev, "bus")" and 
+> "devm_clk_get(&pdev->dev, "mod")" for variants with bus clock.
 
-    Andrew
+Then maybe something like the following?:
+
+	busclk = devm_clk_get_optional(..., "bus");
+	modclk = devm_clk_get_optional(..., "mod");
+
+	/*
+	 * old dtbs might have a single clock but no clock names. Fall
+	 * back to this for compatibility reasons.
+	 */
+	if (!modclk) {
+		modclk = devm_clk_get(..., NULL);
+	}
+ 
+> You see, DT nodes for other variants don't have clock-names property at all. 
+> If it would be specified, it would be "mod". So, DT nodes for other variants 
+> have "mod" clock specified on first place (the only one), while H6 DT node will 
+> have "mod" clock specified on second place (see one of e-mails from Maxime), so 
+> "NULL" can't be used instead of "mod" in both cases.
+> 
+> So I would say quirk is beneficial to know if you have to look up clocks by 
+> name or you just take first clock specified.
+
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
