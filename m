@@ -2,52 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D94379CEC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 01:40:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A41C479CF7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 01:44:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729374AbfG2Xkc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 19:40:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:34822 "EHLO mail.kernel.org"
+        id S1729709AbfG2XoJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 19:44:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37238 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727165AbfG2Xkb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 19:40:31 -0400
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        id S1728492AbfG2XoI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 19:44:08 -0400
+Received: from mail-qk1-f175.google.com (mail-qk1-f175.google.com [209.85.222.175])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 850F921773;
-        Mon, 29 Jul 2019 23:40:30 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6F83421773;
+        Mon, 29 Jul 2019 23:44:07 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564443630;
-        bh=7+dKYuXRCa5ZF1sBBLaJXHlVEQeYcSawe/De6ZYjmjc=;
+        s=default; t=1564443847;
+        bh=IxOu/iSvnh/L0ZVNT/mjrBwuShkqS1cn9KOIl+RrKJk=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=0vDcQ4xj3eYYqyHRsoPwWx4XMC9sn9G3ZnGDzKIxtBwXez3BEMlcv+otZT3btTl1j
-         o9/II04NLT9fbKTQsjCZHrJeE7u9Dss/066Bou0MdQFSlAmalvBllLKkVu5hukB6Jw
-         9WnY5rgoztDcU/orTdQkZ5PGL1fqvcDi7lINf4sI=
-Received: by mail-qt1-f177.google.com with SMTP id l9so61210727qtu.6;
-        Mon, 29 Jul 2019 16:40:30 -0700 (PDT)
-X-Gm-Message-State: APjAAAVSR4cMGDKKGuJkEhfJi5QjTysSUVt8Wrw387OY5baB3MkptdBS
-        ja/HVqbFmYsvMj8WoljWhIjJcqTEnA2M85b8pA==
-X-Google-Smtp-Source: APXvYqyaCa+KVNuh9jCj7c0XvJUMcuDC4MQz9V9TU0flj76XUMhpBDn4frU2dByCzFiQI8HP63DdqNt3RAGN9tT5U6Q=
-X-Received: by 2002:a0c:baa1:: with SMTP id x33mr82268862qvf.200.1564443629749;
- Mon, 29 Jul 2019 16:40:29 -0700 (PDT)
+        b=r95SCpHEMs9q9vTklvT2DcO7DVoioYsxCpnyXW/92OPQywcixAqLI0Yt1IOES73b5
+         UATEroFniVQYZxHsWqsby/Gv9drl9vt1OTX6duOvubSzXHVG2amm7nHTiuFtiF24+z
+         8gv+0ph9NR1IdjzZaGOrFMpKY5MhiGs0Uduzgncs=
+Received: by mail-qk1-f175.google.com with SMTP id w190so45288035qkc.6;
+        Mon, 29 Jul 2019 16:44:07 -0700 (PDT)
+X-Gm-Message-State: APjAAAUy6gzZCUzvXQC0+KPVtqKATAvMMXQXE3SmOtau52D+PAt/fdeV
+        QMtkY1YpzuQwNQvCt/YleNhtFuTCHYpE0RAwXQ==
+X-Google-Smtp-Source: APXvYqzgNhcznp2+LVmYunsMkWxwj73/VsAe1JVQ931+ebUN7alNApAeftUQlmusggGCH8szHpLFoGVGMQwGn00/cZ4=
+X-Received: by 2002:a37:a44a:: with SMTP id n71mr9950009qke.393.1564443846662;
+ Mon, 29 Jul 2019 16:44:06 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190729055604.13239-1-andrew@aj.id.au> <20190729055604.13239-2-andrew@aj.id.au>
-In-Reply-To: <20190729055604.13239-2-andrew@aj.id.au>
+References: <20190721175915.27192-1-martin@kaiser.cx> <20190729114531.12386-1-martin@kaiser.cx>
+ <20190729114531.12386-2-martin@kaiser.cx>
+In-Reply-To: <20190729114531.12386-2-martin@kaiser.cx>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 29 Jul 2019 17:40:17 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+0f=jWJ2QTNzi+pmvzTpVacbP_C0zgpOwTumwJU7Gh=w@mail.gmail.com>
-Message-ID: <CAL_Jsq+0f=jWJ2QTNzi+pmvzTpVacbP_C0zgpOwTumwJU7Gh=w@mail.gmail.com>
-Subject: Re: [PATCH v2 1/6] dt-bindings: pinctrl: aspeed: Document AST2600 pinmux
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Ryan Chen <ryanchen.aspeed@gmail.com>,
-        Johnny Huang <johnny_huang@aspeedtech.com>,
-        linux-aspeed@lists.ozlabs.org, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
+Date:   Mon, 29 Jul 2019 17:43:54 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLfMhR819mxTtam8AJQmy321-b1ut0az+tpPARE3HWzmg@mail.gmail.com>
+Message-ID: <CAL_JsqLfMhR819mxTtam8AJQmy321-b1ut0az+tpPARE3HWzmg@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] dt-bindings: iio: potentiometer: add max5432.yaml binding
+To:     Martin Kaiser <martin@kaiser.cx>
+Cc:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
+        devicetree@vger.kernel.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
@@ -55,20 +52,79 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 28, 2019 at 11:56 PM Andrew Jeffery <andrew@aj.id.au> wrote:
+On Mon, Jul 29, 2019 at 5:46 AM Martin Kaiser <martin@kaiser.cx> wrote:
 >
-> The AST260 differs from the 2400 and 2500 in that it supports multiple
-> groups for a subset of functions.
+> Add a binding for the Maxim Integrated MAX5432-MAX5435 family of digital
+> potentiometers.
 >
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
->
+> Signed-off-by: Martin Kaiser <martin@kaiser.cx>
 > ---
-> v2:
-> * Avoid patternProperties for fixed strings
-> * Don't needlessly quote strings
-> ---
->  .../pinctrl/aspeed,ast2600-pinctrl.yaml       | 115 ++++++++++++++++++
->  1 file changed, 115 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/pinctrl/aspeed,ast2600-pinctrl.yaml
+> changes in v3
+>  - split dt bindings and driver code into separate patches
+>  - use yaml format for dt bindings
+>  - fix formatting of parameter lists
+>
+> changes in v2
+>  - use MAX5432_ prefix for all defines
+>  - fix indentation
+>  - convert void * to unsigned long, not to u32
+>    (warning from kbuild test robot)
+>
+>  .../bindings/iio/potentiometer/max5432.yaml        | 35 ++++++++++++++++++++++
+>  1 file changed, 35 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/iio/potentiometer/max5432.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/iio/potentiometer/max5432.yaml b/Documentation/devicetree/bindings/iio/potentiometer/max5432.yaml
+> new file mode 100644
+> index 000000000000..448781b80f39
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/iio/potentiometer/max5432.yaml
+> @@ -0,0 +1,35 @@
+> +# SPDX-License-Identifier: GPL-2.0
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/iio/potentiometer/max5432.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Maxim Integrated MAX5432-MAX5435 Digital Potentiometers
+> +
+> +maintainers:
+> +  - Martin Kaiser <martin@kaiser.cx>
+> +
+> +description: |
+> +  Maxim Integrated MAX5432-MAX5435 Digital Potentiometers connected via I2C
+> +
+> +  Datasheet:
+> +    https://datasheets.maximintegrated.com/en/ds/MAX5432-MAX5435.pdf
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - maxim,max5432
+> +      - maxim,max5433
+> +      - maxim,max5434
+> +      - maxim,max5435
+> +
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+reg?
+
+Also, add an 'additionalProperties: false' line. This means other
+properties can't be present (except 'status' and a few we
+automatically add).
+
+> +examples:
+> +  - |
+> +    i2c0 {
+
+i2c {
+
+> +      #address-cells = <1>;
+> +      #size-cells = <0>;
+> +      max5434@28 {
+> +        compatible = "maxim,max5434";
+> +        reg = <0x28>;
+> +      };
+> +    };
+> --
+> 2.11.0
+>
