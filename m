@@ -2,100 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 628B678710
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 10:13:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BCA557871A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 10:14:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727517AbfG2IN1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 04:13:27 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:34686 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726690AbfG2IN1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 04:13:27 -0400
-Received: by mail-wm1-f67.google.com with SMTP id w9so42409795wmd.1;
-        Mon, 29 Jul 2019 01:13:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=SyFl8pL1iDZjmoOSkzXlnQ91ZUZpLkZdLRiM5vUWoME=;
-        b=RMc4NRl9Idazs+XYRc2PCVJrla+XcMB5QI9fW4vskcW4AWdCAjW114u0ltcwv3J3kS
-         MejM0+8lWjKST59WU3AMIZxd4/R8oxvP5WYmQZ/s+MfdW0r6aFSv4SZMNIv8js7Nr4IX
-         7Gaa0m/10cn1v9XCIjcejFparxRsgjkUPGkLrC907ae/L4wg583BzHLdcoNoI1Xw+JJL
-         J4QUDcdP7QMkggQGmKsgFfCqz9l+OvK80s89AN0hnR8wIaN8/pIPLxO/Jq7oo4ieNU4W
-         2n2Ym18F3HuEavyXhWQ9Wbjei3xF1zzsbxx0b3hGtD55UjczEVPEeLSlS6D+SvQpiqid
-         wP1w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=SyFl8pL1iDZjmoOSkzXlnQ91ZUZpLkZdLRiM5vUWoME=;
-        b=EOTzOhZSouXAe9wGvfqX8QNJf3XlGPafKuOvNgKeB/TkSASVeeW40rBN1KuIQoXIqt
-         4pwMAVBsxcyVRPACcINZ+I/kaGgb+Ka5C91KSzZVENB/s321KJ3N2LfjlsiEuMdLhZ22
-         jfO4WBxgL/dFzwn/BH/O0RXlO8p381udF3xxBDQ9jelJiZVA0VVq7lgOexOeYYFoXyf2
-         sAi4UKlzX9Lex3PgOgf8vJQ9TBek8UI6MP2M9xJwAzliShy6pd9Gw6R6ZHnaCJMF1CaW
-         r37HrFP4DzwC5ZD9Nx4y47KZrkeIO13o5Shwj1HP3F7TfsahdAcvreg/zDA38HyFO8Br
-         5jXQ==
-X-Gm-Message-State: APjAAAXw2JaYHpBjkta+ERTioOoc0IL8Aomsh1YsubRdopSHt05tKELL
-        Qfcv6fFOdnGjmVKggncR3l7NvUMzM6vQq7JVwF4=
-X-Google-Smtp-Source: APXvYqyJSF9giFQVsItTxUvBm5InpdKI0AD91vYK8YMt/vMVNe8Bcy9zHxVTrPIj7PKEgF2MKDJZ8Wm9t5JIOx9xuEE=
-X-Received: by 2002:a7b:c247:: with SMTP id b7mr102240187wmj.13.1564388004695;
- Mon, 29 Jul 2019 01:13:24 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190705045612.27665-1-Anson.Huang@nxp.com> <20190705045612.27665-5-Anson.Huang@nxp.com>
- <CAEnQRZAZNMBx3ApVmRP8hYPw0XY_QgR-saE6WLcT8oZmHPCxSA@mail.gmail.com>
- <DB3PR0402MB3916233A56CF5DF778115716F5C30@DB3PR0402MB3916.eurprd04.prod.outlook.com>
- <CAEnQRZCrZybzcy__u4p_Eq4zSVc2ESyfKLk5sPf1JYba1JSOiA@mail.gmail.com>
- <20190727161736.4dkfqgwftre67v56@fsr-ub1664-175> <DB3PR0402MB391600891BA75DFFA9674058F5DD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
- <CAEnQRZB6tmYFA8wwh0Fm49LTTDuCLq-SWVfrcUkRWWBo=0U13w@mail.gmail.com>
- <DB3PR0402MB391627F725AA7237BCACBE87F5DD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
- <CAEnQRZBrmikenTvnh7syhy=PDPcTL3fn2TJ+ya=ToZ+SFmH5tw@mail.gmail.com>
- <CAEnQRZDSjmcU8Q7+kMeFf12tx0NuMNjrcsgnXayvHpu4ChwHGA@mail.gmail.com> <DB3PR0402MB3916F32F03E542AEFBD39A43F5DD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-In-Reply-To: <DB3PR0402MB3916F32F03E542AEFBD39A43F5DD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Mon, 29 Jul 2019 11:13:12 +0300
-Message-ID: <CAEnQRZBqdGY9A69ew=ukdp1iWVR_jvJih-cZPx_XzAri+xWppA@mail.gmail.com>
-Subject: Re: [PATCH 5/6] clk: imx8mq: Remove CLK_IS_CRITICAL flag for IMX8MQ_CLK_TMU_ROOT
-To:     Anson Huang <anson.huang@nxp.com>
-Cc:     Abel Vesa <abel.vesa@nxp.com>,
-        "rui.zhang@intel.com" <rui.zhang@intel.com>,
-        "edubezval@gmail.com" <edubezval@gmail.com>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        id S1726832AbfG2IOp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 04:14:45 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:34948 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726690AbfG2IOp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 04:14:45 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id 0A12A25B73B;
+        Mon, 29 Jul 2019 18:14:43 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id E09EF9403F0; Mon, 29 Jul 2019 10:14:40 +0200 (CEST)
+Date:   Mon, 29 Jul 2019 10:14:40 +0200
+From:   Simon Horman <horms@verge.net.au>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Geert Uytterhoeven <geert@linux-m68k.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        USB list <linux-usb@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Andrey Smirnov <andrew.smirnov@gmail.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Carlo Caione <ccaione@baylibre.com>,
-        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Niklas =?utf-8?Q?S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Subject: Re: [PATCH v2 2/2] dt-bindings: usb: renesas_gen3: Rename bindings
+ documentation file
+Message-ID: <20190729081440.ftgchumfoszlht4q@verge.net.au>
+References: <20190703083514.32385-1-horms+renesas@verge.net.au>
+ <20190703083514.32385-3-horms+renesas@verge.net.au>
+ <CAMuHMdVgx9N0yeeei5qcg1yz2WEdDf0gQ6GcwUOAz7u09S_D4A@mail.gmail.com>
+ <20190711080302.qeotxueyvlr7pvhe@verge.net.au>
+ <20190725090946.GA3311@kroah.com>
+ <TYAPR01MB4544F226C06730C5611EB025D8C00@TYAPR01MB4544.jpnprd01.prod.outlook.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <TYAPR01MB4544F226C06730C5611EB025D8C00@TYAPR01MB4544.jpnprd01.prod.outlook.com>
+Organisation: Horms Solutions BV
+User-Agent: NeoMutt/20170113 (1.7.2)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 10:49 AM Anson Huang <anson.huang@nxp.com> wrote:
+On Fri, Jul 26, 2019 at 01:22:48AM +0000, Yoshihiro Shimoda wrote:
+> Hi Greg,
+> 
+> > From: Greg Kroah-Hartman, Sent: Thursday, July 25, 2019 6:10 PM
+> > 
+> > On Thu, Jul 11, 2019 at 10:03:03AM +0200, Simon Horman wrote:
+> > > On Wed, Jul 03, 2019 at 02:28:51PM +0200, Geert Uytterhoeven wrote:
+> > > > Hi Simon,
+> > > >
+> > > > On Wed, Jul 3, 2019 at 10:35 AM Simon Horman <horms+renesas@verge.net.au> wrote:
+> > > > > For consistency with the naming of (most) other documentation files for DT
+> > > > > bindings for Renesas IP blocks rename the Renesas USB3.0 peripheral
+> > > > > documentation file from renesas-gen3.txt to renesas,usb3-peri.txt
+> > > > >
+> > > > > Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> > > > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > > > Reviewed-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> > > > > Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > > > >
+> > > > > ---
+> > > > > v2
+> > > > > * Accumulate review tags
+> > > > > * Use renesas,usb3-peri.txt as new filename as suggested by Shimoda-san
+> > > >
+> > > > Unfortunately the previous version has already made it into usb-next
+> > > > 23c46801d14cb647 dt-bindings: usb: renesas_gen3: Rename bindings
+> > > > documentation file
+> > >
+> > > Ok, I guess we should go with that version.
+> > 
+> > So can you resend this series based on 5.3-rc1 so I know what to apply?
+> 
+> Since your usb-testing branch already has it which is merged from Felipe's usb-next branch,
+> I don't think Simon has to resend this series.
+> 
+> https://www.spinics.net/lists/linux-usb/msg182103.html
 
-> > We are all set then. Thanks Anson for clarifications!
->
-> Thanks, so we are all clear about this issue, need to wait thermal maintainer to review
-> the rest patch in this series, but I did NOT receive any response from thermal sub-system
-> maintainer for really long time, NOT sure when the thermal patches can be accepted.
+Thanks and sorry for the confusion.
 
-This is really unfortunate. I think it is safe to do a RESEND of the
-patches as it has
-been at least 3 weeks since your first send them.
+In v5.2-rc1 we had:
 
-Pick any reviewed-by you got and do a resend.
+  devicetree/bindings/usb/renesas_usb3.txt
+  devicetree/bindings/usb/renesas_usbhs.txt
+
+
+In v5.3-rc1 we have:
+
+  devicetree/bindings/usb/renesas,usb3.txt
+  devicetree/bindings/usb/renesas,usbhs.txt
+
+Which reflects v1 of this patchset. And I think this is an improvement.
+
+Shimoda-san, can you let me know if you would like me to rebase v2
+on v5.3-rc1? That would would give us:
+
+  devicetree/bindings/usb/renesas,usb3-peri.txt
+  devicetree/bindings/usb/renesas,usbhs.txt		[unchanged]
+
