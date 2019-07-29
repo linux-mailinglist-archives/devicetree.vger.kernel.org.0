@@ -2,117 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16EA2799C5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 22:20:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B887799CC
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 22:21:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726876AbfG2UUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 16:20:16 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:37558 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726129AbfG2UUQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 16:20:16 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=wwTzfyTq9xH2jVCB72SSD9pIFJfoUBESNUKZEPJQU/c=; b=nn7AqtlNX0eCysL+6//+UX/4T
-        +AAPNROZ8E/00SYlmowzHnKikJN/2tuR5XgXgOdSAu891tr8GB/hO0snXfBkcCawN7AVTmMNAoFaA
-        FS7E5u5xeF/skleakEMEGT2Lqrl7asvHfRWJavS0/NBOivAh5rdMDIKuJ9E8xW5U8VaZo=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hsC7m-0005MB-Uu; Mon, 29 Jul 2019 20:20:03 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 6B92C2742AAD; Mon, 29 Jul 2019 21:20:01 +0100 (BST)
-Date:   Mon, 29 Jul 2019 21:20:01 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Daniel Baluta <daniel.baluta@gmail.com>
-Cc:     Nicolin Chen <nicoleotsuka@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Timur Tabi <timur@kernel.org>, Rob Herring <robh@kernel.org>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Takashi Iwai <tiwai@suse.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Mihai Serban <mihai.serban@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [alsa-devel] [PATCH v2 1/7] ASoC: fsl_sai: Add registers
- definition for multiple datalines
-Message-ID: <20190729202001.GC4787@sirena.org.uk>
+        id S1728915AbfG2UVH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 16:21:07 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:46595 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728367AbfG2UVG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 16:21:06 -0400
+Received: by mail-pf1-f194.google.com with SMTP id c3so5446564pfa.13;
+        Mon, 29 Jul 2019 13:21:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=6re2IOy9UuGPutWHpeGmXvl/6Yqi6FxHUujTvDV/BjQ=;
+        b=V2bEtTKvIsIZP7A1vJKuVqPpf7homhWyKeJgc0gsY5Z3kXNvZlP58HtatQ2APTHTQL
+         w/yt1hQJSg5pQ8g7O8I+F5FjAHS+wqDRDwU9COzkhvC72JlHa8fTfT+GuFGPm4JCenk+
+         YIA6hQJykR5s4FxUuMqNlbBI6QxKAhY93l2iHCHqYlXQwUn6IrYjlmFNWIF1bw/g6Pwc
+         15OsgbiVs+8hC61RgeXG5KfunptQicwUnYVKZKQ1iSdD8P6X7MMT+r5xyGhnkvZjE60I
+         gFFkwH4Lmojxh4FbeDcEL3/ZaumoV+Ue1iQmfQObzj4OGWcwlNY5c8w3ZNdOABpWWPwf
+         4L2g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=6re2IOy9UuGPutWHpeGmXvl/6Yqi6FxHUujTvDV/BjQ=;
+        b=AX7X0OD+ElxjMiweQO3Fu8gFJBeoMzcK+BxEShOSj7bzOE4T/GlcvM4gbIDQ0QtQEo
+         mf8NuhqU+4bvEYpa913EDc2+on6vH/zrWgFuxrni5BimxyAs+Gob/jjUYCD1JNQ8Eyk0
+         3VAWtzc+zVuAbKaXPdzefSvEyXhAqREKu86ub2xtV/QsrBKBerXoSPwUBxcNmxK9Mvh2
+         g7M0dPubZWuL31puvzZa7V+2OhDLlsT6Z6xF80ZkuVTfM0Hq2WNMfQO2HsJOWtDBHcBu
+         wuZ+qhYZAGhAeU607go51bwwJ8j1et4CGZdx6+6yiQtf9/PPNY0Db24NYYoZC6WbtdB0
+         lcGw==
+X-Gm-Message-State: APjAAAV8kRDdEfKWcYKKEIPKh7KUQyvLjmf0/dP3C+Db7XFj8mT0GFXi
+        HJug3yFy1aJbwVLchEtk7rM=
+X-Google-Smtp-Source: APXvYqyWLQm4Cgt5unABdbXidAVUUD4LbAvUUcL7RPKc8STUBXVR75FNm4vHlTcuIbVnqszh/IXkPg==
+X-Received: by 2002:a65:6846:: with SMTP id q6mr67264436pgt.150.1564431666039;
+        Mon, 29 Jul 2019 13:21:06 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id d129sm67610834pfc.168.2019.07.29.13.21.05
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 29 Jul 2019 13:21:05 -0700 (PDT)
+Date:   Mon, 29 Jul 2019 13:21:54 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     broonie@kernel.org, l.stach@pengutronix.de, mihai.serban@gmail.com,
+        alsa-devel@alsa-project.org, viorel.suman@nxp.com,
+        timur@kernel.org, shengjiu.wang@nxp.com, angus@akkea.ca,
+        tiwai@suse.com, linux-imx@nxp.com, kernel@pengutronix.de,
+        festevam@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org
+Subject: Re: [PATCH v2 3/7] ASoC: fsl_sai: Add support to enable multiple
+ data lines
+Message-ID: <20190729202154.GC20594@Asurada-Nvidia.nvidia.com>
 References: <20190728192429.1514-1-daniel.baluta@nxp.com>
- <20190728192429.1514-2-daniel.baluta@nxp.com>
- <20190729194214.GA20594@Asurada-Nvidia.nvidia.com>
- <CAEnQRZDmnAmgUkRGv3V5S7b5EnYTd2BO5NFuME2CfGb1=nAHzQ@mail.gmail.com>
+ <20190728192429.1514-4-daniel.baluta@nxp.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="ABTtc+pdwF7KHXCz"
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAEnQRZDmnAmgUkRGv3V5S7b5EnYTd2BO5NFuME2CfGb1=nAHzQ@mail.gmail.com>
-X-Cookie: A man's house is his hassle.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190728192429.1514-4-daniel.baluta@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sun, Jul 28, 2019 at 10:24:25PM +0300, Daniel Baluta wrote:
+> SAI supports up to 8 Rx/Tx data lines which can be enabled
+> using TCE/RCE bits of TCR3/RCR3 registers.
+> 
+> Data lines to be enabled are read from DT fsl,dl-mask property.
+> By default (if no DT entry is provided) only data line 0 is enabled.
+> 
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> ---
+>  sound/soc/fsl/fsl_sai.c | 11 ++++++++++-
+>  sound/soc/fsl/fsl_sai.h |  4 +++-
+>  2 files changed, 13 insertions(+), 2 deletions(-)
+> 
+> diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
+> index 637b1d12a575..5e7cb7fd29f5 100644
+> --- a/sound/soc/fsl/fsl_sai.c
+> +++ b/sound/soc/fsl/fsl_sai.c
+> @@ -601,7 +601,7 @@ static int fsl_sai_startup(struct snd_pcm_substream *substream,
+>  
+>  	regmap_update_bits(sai->regmap, FSL_SAI_xCR3(tx),
+>  			   FSL_SAI_CR3_TRCE_MASK,
+> -			   FSL_SAI_CR3_TRCE);
+> +			   FSL_SAI_CR3_TRCE(sai->soc_data->dl_mask[tx]);
+>  
+>  	ret = snd_pcm_hw_constraint_list(substream->runtime, 0,
+>  			SNDRV_PCM_HW_PARAM_RATE, &fsl_sai_rate_constraints);
+> @@ -888,6 +888,15 @@ static int fsl_sai_probe(struct platform_device *pdev)
+>  		}
+>  	}
+>  
+> +	/*
+> +	 * active data lines mask for TX/RX, defaults to 1 (only the first
+> +	 * data line is enabled
+> +	 */
+> +	sai->dl_mask[RX] = 1;
+> +	sai->dl_mask[TX] = 1;
+> +	of_property_read_u32_index(np, "fsl,dl-mask", RX, &sai->dl_mask[RX]);
+> +	of_property_read_u32_index(np, "fsl,dl-mask", TX, &sai->dl_mask[TX]);
 
---ABTtc+pdwF7KHXCz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Jul 29, 2019 at 10:57:43PM +0300, Daniel Baluta wrote:
-> On Mon, Jul 29, 2019 at 10:42 PM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
-> > On Sun, Jul 28, 2019 at 10:24:23PM +0300, Daniel Baluta wrote:
-
-> > > @@ -704,7 +711,14 @@ static bool fsl_sai_readable_reg(struct device *dev, unsigned int reg)
-> > >       case FSL_SAI_TCR3:
-> > >       case FSL_SAI_TCR4:
-> > >       case FSL_SAI_TCR5:
-> > > -     case FSL_SAI_TFR:
-> > > +     case FSL_SAI_TFR0:
-
-> > A tricky thing here is that those SAI instances on older SoC don't
-> > support multi data lines physically, while seemly having registers
-> > pre-defined. So your change doesn't sound doing anything wrong to
-> > them at all, I am still wondering if it is necessary to apply them
-> > to newer compatible only though, as for older compatibles of SAI,
-> > these registers would be useless and confusing if being exposed.
-
-> > What do you think?
-
-> Yes, I thought about this too. But, I tried to keep the code as short
-> as possible and technically it is not wrong. When 1 data line is supported
-> for example application will only care about TDR0, TFR0, etc.
-
-So long as it's safe to read the registers (you don't get a bus error or
-anything) I'd say it's more trouble than it's worth to have separate
-regmap configuations just for this.  The main reasons for restricting
-readability are where there's physical problems with doing the reads or
-to keep the size of the debugfs files under control for usability and
-performance reasons.
-
---ABTtc+pdwF7KHXCz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0/VPAACgkQJNaLcl1U
-h9DrPwf9F9mjf8fAHvxxejGLd/jN+TU84DVsVv13Qp3jhAgobbWx/oF2xmX3A+b6
-uyfWch7Ud2SYvm2wXm/31JAXXi3aTlTq7niolXa7Hal3cLO4JAGCyFl6ex5knCHa
-D6ddUZyPG8Rag+kjm/ef2DQpTGHxKcP9nV6OTsn3v6QfOtZZiyl0nzaZnuEpUoxW
-Qz2WR2OxuRoA0Q/KaPiQCCP72GHZ5Vr2qDdteQXunE49dMnI6M0+e/WSbbJu+1tO
-toN2vyGNnUtNZK9IKgLbes65ihBd0026Otqg+cQEehLspgy8pwSap7TyZ123sVhM
-Z+xhfS+8ong2rDpferXo+La8/+Tx0Q==
-=PIWO
------END PGP SIGNATURE-----
-
---ABTtc+pdwF7KHXCz--
+Just curious what if we enable 8 data lines through DT bindings
+while an audio file only has 1 or 2 channels. Will TRCE bits be
+okay to stay with 8 data channels configurations? Btw, how does
+DMA work for the data registers? ESAI has one entry at a fixed
+address for all data channels while SAI seems to have different
+data registers.
