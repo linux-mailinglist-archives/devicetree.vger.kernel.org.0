@@ -2,212 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB1D87862A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 09:20:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 76C1D7862C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 09:20:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726432AbfG2HUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 03:20:17 -0400
-Received: from mail-vs1-f67.google.com ([209.85.217.67]:42716 "EHLO
-        mail-vs1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725917AbfG2HUR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 03:20:17 -0400
-Received: by mail-vs1-f67.google.com with SMTP id 190so40103515vsf.9
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 00:20:16 -0700 (PDT)
+        id S1726508AbfG2HUi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 03:20:38 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:38565 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725917AbfG2HUh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 03:20:37 -0400
+Received: by mail-wr1-f67.google.com with SMTP id g17so60570356wrr.5;
+        Mon, 29 Jul 2019 00:20:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lusticky.cz; s=google;
+        d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=5lUJA0iJhyzKYvhCyFqhgnUxSvOXAYlL2Baf8tIEZVk=;
-        b=A2dJVgWPTFrK9GuBU4+6jMBlHWIDgluypfShitl5ozdIqM1ExY0UYry2RmVEAMPpca
-         AJOEt9luDHl5R6gQuo74HAQ88BDoYPmbrVP3OEz4nem217KWcv4zIJXH90x2iEboKHqF
-         lWpQHzIFsnzPOjrjTYPthi0/+doLPi+897xmt7I+eFxFV1mwm4zJgxZsf8LlOX23Nm+N
-         mLSWzJ+wDtoFz8Kz8ehNMZLLkeneAJyJkgvqmEKGmaMxbwR+L6/AtTbm4TlH2nG+PYhT
-         LbgO1VdwBzJKPv2FyWNF5nTsN4eKp1C6SrhRJOYYAL/6Ftu+nmmCE+l83dCXb+nMzr//
-         gFVw==
+         :cc;
+        bh=NGAnXdnyTlrtK65biDfN+R0xcD/6ajBIRQzlf8iLxcA=;
+        b=IVzn3FU5qq9wRwY7u5JJs1BkiXHdMdTrBdvwk8Jt4WShqOZBA47c3hzZDNZ3RYW4KW
+         +IdO3+kqx0CQmXVR/5w//0hTu5ZLepZQk4+nIvMr70w/cMQ8Sc46OHlSGD4RQ4jGnhnJ
+         4AeA1gTdhfVop/9UZJHN0bAoo7Iv5ACel8XHK/J85Sd5PQCQfOSbBB3nYWHVhfj5myz0
+         f7xcEQ8Vn5CYlOh2UzkE/KszbJSLki6CA5Wz5JIhhZ6ZAqkNP7VhhzHwYuZmVlYtgpFq
+         lqPe6Iwn9TMTSoXgRBoW7BbsEzBhvbZNdU670/nGINNOj0yJo2CH4aeeqm9LrD7aG38m
+         lV8w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=5lUJA0iJhyzKYvhCyFqhgnUxSvOXAYlL2Baf8tIEZVk=;
-        b=DBYAIxq8RnLe7qrUmBoZv1K2ruePM4ik3e7RAFTB2s8cUpXaih6DZi918Lo1HBjm/r
-         GaXt+aFvMjr2wBLGheQgSzCvMux/+05nDkxU5A0q11DUofhSTe2vHRGi6+N7JDFDjsWk
-         n98xyo7D/xiny3RsHwXhieAel/maa8BjK3hdNTXjwXXza614GHMmG0PFDtdrKTr5GKtb
-         C9/w03L0Xg7STeixEYZ9O9Bd/QmdpFYrMUmHK/QxHDz8sCMQio/OXVm64F46iTcEfrmv
-         pbu1goVXArRkqB9ikRGrS3ThbyDgM5MNLkJQhcxJGtZTKWeUXgATMxRbOlPYyYar5Cen
-         2nbQ==
-X-Gm-Message-State: APjAAAVm0jlBoHOgy/x773v/G6H2kUfkPLDrnQrKnwYRE7AbX8Z4NwOU
-        V5FV6Vn14XE9QG/a6S+4ZRHo3xbc6RRErI63POg=
-X-Google-Smtp-Source: APXvYqy3TbL/fo0oTMEf0SZLiHOV7rWzsGAz4aJK5EcRQl+8LgiUSSSkkjau59jUNJo5+ckl5sd9v1lm8P0nzyq62OY=
-X-Received: by 2002:a67:ff19:: with SMTP id v25mr67966172vsp.48.1564384815776;
- Mon, 29 Jul 2019 00:20:15 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=NGAnXdnyTlrtK65biDfN+R0xcD/6ajBIRQzlf8iLxcA=;
+        b=cWo8cs+B3MR6Z+hlot7LjHNpdmXhB2AZabB1G6uc8WXl3uAuV57dPZOm+HqYrZqf9d
+         19dA8bu6lKhSB56oUIiepSL4IsZcx2L5FcrHGma+pJvMIDJ1wfRgHejAbD2reRPkbyA/
+         9mQm4JMBKFANUONfHF77EGf4pIwJfhfp+Tz+UoAm7rN2WkVtTJUWGgq7yCfXFGazuwlQ
+         gSWYAs/0icqq0booVy8PyW0EbrVCv2YW1gdn53E0SOMEJn0Y2rUfViV8K5+dfJemwDUW
+         jYcmZgcI64s5tZB4CvnZqAzXPk8O5oWzkApoNLMfDr5GsSP6ERC1kR+groOFwBL8GYUE
+         ZS5w==
+X-Gm-Message-State: APjAAAWsfMouc7/N73mP3oWW9irNDxiCFDXb7S14s6QhaRgtlhRSbr4l
+        SjUSFd5oaNY3Nb+RyC6haJGXUVLWMLdqI8VKCbQ=
+X-Google-Smtp-Source: APXvYqxtBXh9XypbQCggtX40yh034dlUxuLKuPCiBaZSuYbNdbqeWex1ATByZQcE6PXfNMdArNjf9paTKtKnFSuc4uI=
+X-Received: by 2002:adf:c70e:: with SMTP id k14mr15959399wrg.201.1564384835131;
+ Mon, 29 Jul 2019 00:20:35 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190304125033.28841-1-josef@lusticky.cz> <20190708145618.26031-1-josef@lusticky.cz>
- <20190726122510.GA14341@ravnborg.org> <20190726145513.GK15868@phenom.ffwll.local>
- <CAKMK7uESP5D4e_Qx6W7amURqxJ=5Y4JHduZYCtkyVQY9jKJQeA@mail.gmail.com> <20190726161403.GA25593@ravnborg.org>
-In-Reply-To: <20190726161403.GA25593@ravnborg.org>
-From:   =?UTF-8?B?Sm9zZWYgTHXFoXRpY2vDvQ==?= <josef@lusticky.cz>
-Date:   Mon, 29 Jul 2019 09:19:39 +0200
-Message-ID: <CAMqqaJERwmZj-AX+7HvOOdDob24StxHoeniWOfz9ppUj1uzdZA@mail.gmail.com>
-Subject: Re: Controllers with several interface options - one or more drivers?
-To:     Sam Ravnborg <sam@ravnborg.org>
-Cc:     Daniel Vetter <daniel@ffwll.ch>,
-        =?UTF-8?Q?Noralf_Tr=C3=B8nnes?= <noralf@tronnes.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Rob Herring <robh@kernel.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Dave Airlie <airlied@linux.ie>
+References: <20190705045612.27665-1-Anson.Huang@nxp.com> <20190705045612.27665-5-Anson.Huang@nxp.com>
+ <CAEnQRZAZNMBx3ApVmRP8hYPw0XY_QgR-saE6WLcT8oZmHPCxSA@mail.gmail.com>
+ <DB3PR0402MB3916233A56CF5DF778115716F5C30@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+ <CAEnQRZCrZybzcy__u4p_Eq4zSVc2ESyfKLk5sPf1JYba1JSOiA@mail.gmail.com>
+ <20190727161736.4dkfqgwftre67v56@fsr-ub1664-175> <DB3PR0402MB391600891BA75DFFA9674058F5DD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+ <CAEnQRZB6tmYFA8wwh0Fm49LTTDuCLq-SWVfrcUkRWWBo=0U13w@mail.gmail.com> <DB3PR0402MB391627F725AA7237BCACBE87F5DD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+In-Reply-To: <DB3PR0402MB391627F725AA7237BCACBE87F5DD0@DB3PR0402MB3916.eurprd04.prod.outlook.com>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Mon, 29 Jul 2019 10:20:23 +0300
+Message-ID: <CAEnQRZBrmikenTvnh7syhy=PDPcTL3fn2TJ+ya=ToZ+SFmH5tw@mail.gmail.com>
+Subject: Re: [PATCH 5/6] clk: imx8mq: Remove CLK_IS_CRITICAL flag for IMX8MQ_CLK_TMU_ROOT
+To:     Anson Huang <anson.huang@nxp.com>
+Cc:     Abel Vesa <abel.vesa@nxp.com>,
+        "rui.zhang@intel.com" <rui.zhang@intel.com>,
+        "edubezval@gmail.com" <edubezval@gmail.com>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Lucas Stach <l.stach@pengutronix.de>,
+        Andrey Smirnov <andrew.smirnov@gmail.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Carlo Caione <ccaione@baylibre.com>,
+        =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
-I am happy to see this discussion.
-
-I like Noralf's late work to move mipi_dbi to drm/ and remove tinydrm.
-This helps to simplify implementation and maintenance of drivers for
-displays that conform to MIPI_DBI set of commands,
-no matter if they use MIPI_DBI to transfer the image data or not.
-
-There are already MIPI_DBI compliant panels in drm/panel, but until
-Noralf's refactor they needed to implement custom
-functions (on top SPI) to initialize the display. See the following
-drivers as examples:
-- drm/panel/panel-sitronix-st7789v.c
-- drivers/gpu/drm/panel/panel-tpo-tpg110.c
-- drivers/gpu/drm/panel/panel-lg-lg4573.c
-- drivers/gpu/drm/panel/panel-samsung-ld9040.c
-- drivers/gpu/drm/panel/panel-samsung-s6e63m0.c
-there may be more...
-
-There are also at least two drivers for the same chip ili9341. See:
-- drm/tinydrm/mi0283qt.c
-- drm/tinydrm/ili9341.c
-+ another driver for the same chip, but with parallel RGB initial
-configuration, was submitted
-
-I think there should be a single driver supporting all of the chip's
-capabilities / configurations
-to avoid maintenance burden and user confusion:
-
-As a user, I can see the following use cases if a display conforms to MIPI_=
-DBI.
-a) it has its internal GRAM and MIPI_DBI can be used to transfer image data
-b) internal GRAM is not present, parallel RGB must be used to transfer
-image data
-c) the display supports both - ili9341 case (but also others available)
-
-As a user I want to specify displays that are going to use option a)
-and/or b) - i.e.
-I can have multiple ili9341 displays connected to the same parallel
-RGB MCU interface,
-but on a different SPI bus (or just different chip_select).
-The same image data can be transferred to the displays over the parallel RG=
-B
-or I can switch some of the displays to use the MIPI_DBI (SPI) for
-different image data transfer.
-
-Kind regards
-Josef Lusticky
-
-p=C3=A1 26. 7. 2019 v 18:14 odes=C3=ADlatel Sam Ravnborg <sam@ravnborg.org>=
- napsal:
->
-> Hi Daniel.
->
-> Added Noralf - somehow I missed him on the original mail.
->
-> On Fri, Jul 26, 2019 at 05:06:03PM +0200, Daniel Vetter wrote:
-> > Also probably should add a few more (drm_bridge) people, I think
-> > that's also somewhat relevant here.
-> > -Daniel
+<snip>
+> > Your explanation makes a lot of sense. We will take care today of Abel's
+> > patch.
+> > What do you think about Fabio's patch? I also think this is a valid patch:
 > >
-> > On Fri, Jul 26, 2019 at 4:55 PM Daniel Vetter <daniel@ffwll.ch> wrote:
-> > >
-> > > On Fri, Jul 26, 2019 at 02:25:10PM +0200, Sam Ravnborg wrote:
-> > > > Hi Josef, Daniel et al.
-> > > >
-> > > > The driver that triggered this reply is a driver that adds parallel
-> > > > support to ili9341 in a dedicated panel driver.
-> > > > The issue here is that we already have a tiny driver that supports =
-the
-> > > > ili9341 controller - but with a slightly different configuration.
-> > > >
-> > > > The ili9341 supports several interfaces - from the datasheet:
-> > > >     "ILI9341 supports parallel 8-/9-/16-/18-bit data bus
-> > > >      MCU interface, 6-/16-/18-bit data bus RGB interface and
-> > > >      3-/4-line serial peripheral interface (SPI)"
-> > > >
-> > > > Noralf - in another mail explained:
-> > > > "
-> > > > The MIPI Alliance has lots of standards some wrt. display controlle=
-r
-> > > > interfaces:
-> > > > - MIPI DBI - Display Bus Interface (used for commands and optionall=
-y pixels)
-> > > > - MIPI DPI - Display Pixel Interface (also called RGB interface or
-> > > > DOTCLK interface)
-> > > > - MIPI DSI - Display Serial Interface (commands and pixels)
-> > > >
-> > > > The ili9341 supports both MIPI DBI and DPI.
-> > > > "
-> > > >
-> > > > MIPI DPI - is a good fit for a drm_panel driver.
-> > > > MIPI DBI - requires a full display controller driver.
-> > > >
-> > > > There are many other examples of driver SoC that in the same way
-> > > > can be seen only as a panel or as a full display controller driver.
-> > > >
-> > > > The open question here is if we should try to support both cases in=
- the
-> > > > same driver / file. Or shall we implment two different drivers.
-> > > > One for the panel use-case. And one for the display controller usec=
-ase?
-> > > >
-> > > > Not sure - so asking for feedback.
-> > >
-> > > I'm not sure. Currently we do have DSI and dumb RGB panels all in
-> > > drm/panel. I don't think we have DBI panels in there yet, but then
-> > > drm/tiny is the only one supporting these.
-> > >
-> > > I guess we could look into move some of the DBI panel drivers into pa=
-nel
-> > > drivers, but that needs a bit more glue all around. I'm honestly not =
-sure
-> > > how the current DSI drivers in drm_panel work exactly, especially for
-> > > command mode.
-> > >
-> > > Or maybe we need a new interface for command mode.
-> If I get around to do a driver for the ssd1306 then I will try to sewhat
-> makes sense then. For now we shall not stall the ili9341 driver.
-> > >
-> > > Wrt sharing code between drivers for the same chip, but different
-> > > interfaces: I wouldn't worry too much about that. Maybe try to have a
-> > > shared header file at least for registers.
-> This part should be the minimum. Somthing like include/drm/mipi/?
+<snip>
+
 >
->         Sam
+> Hmm, when did Fabio sent out this patch? I can NOT find it...
+> I also have a patch in this series (#4/6) doing same thing on July 5th...
 >
-> > > Long term we could end up with
-> > > one driver module which exposes different flavours of the same chip, =
-so
-> > > multiple drm_panel drivers, or maybe we'll get something more specifi=
-c for
-> > > dsi/dbi.
-> > > -Daniel
-> > > --
-> > > Daniel Vetter
-> > > Software Engineer, Intel Corporation
-> > > http://blog.ffwll.ch
-> >
-> >
-> >
-> > --
-> > Daniel Vetter
-> > Software Engineer, Intel Corporation
-> > +41 (0) 79 365 57 48 - http://blog.ffwll.ch
+> https://patchwork.kernel.org/patch/11032783/
+
+He didn't send the patch yet. It was just a request for test here:
+
+http://code.bulix.org/pd88jp-812381
+
+But, now I see is exactly like your patch here:
