@@ -2,90 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1EEE678DF9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 16:29:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 11BD378F50
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 17:32:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727519AbfG2O33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 10:29:29 -0400
-Received: from mx08-00178001.pphosted.com ([91.207.212.93]:7928 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1728045AbfG2O33 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 10:29:29 -0400
-Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
-        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6TERLrM022428;
-        Mon, 29 Jul 2019 16:29:17 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
- date : message-id : mime-version : content-type :
- content-transfer-encoding; s=STMicroelectronics;
- bh=/E0GksnkJiKefciHBvFyL+s1X3i9mUeBZFhV3J5bfCA=;
- b=MejLdAC5egEPFYo+PeRI2KZ59gQepBm4PjuE4dYHUmy2ipCTkYeM8cPmcIuSB5SWQNZc
- RWkDgdoUWvw3LPq0VRRbTRfja20BeoQ43YZJjo73gjX75besD6SIgzfQwDq3U6bS6jX4
- L9ELCvaiRoeRT73MTMLKzNRLuVenb8F1Kp+dQ3QMliTZWXCRQIjCAtmzQdq5k/AfDJSE
- Jcm28weMNsKgnLktPyiKeaCpGOtZrBUi0IA3MLu/DH7f+Jm0RWGCxy/j4HwaUzG1/tlU
- Sm0oYVM+dOOe63K/wy8W/kCEDgi0jnnm8h05EyWzJ4dJZfn1fAhTIaGveh3kVOEjKjcL +A== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx08-00178001.pphosted.com with ESMTP id 2u0br9n7jv-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 29 Jul 2019 16:29:17 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1F17F34;
-        Mon, 29 Jul 2019 14:29:16 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D1D6B5A7C;
-        Mon, 29 Jul 2019 14:29:15 +0000 (GMT)
-Received: from SAFEX1HUBCAS23.st.com (10.75.90.47) by Safex1hubcas24.st.com
- (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 29 Jul
- 2019 16:29:15 +0200
-Received: from localhost (10.201.23.97) by webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 29 Jul 2019 16:29:15
- +0200
-From:   =?UTF-8?q?Yannick=20Fertr=C3=A9?= <yannick.fertre@st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>,
-        Yannick Fertre <yannick.fertre@st.com>,
-        Philippe Cornu <philippe.cornu@st.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-Subject: [PATCH] ARM: dts: stm32: add phy-dsi-supply property on stm32mp157c-ev1
-Date:   Mon, 29 Jul 2019 16:29:08 +0200
-Message-ID: <1564410548-20436-1-git-send-email-yannick.fertre@st.com>
-X-Mailer: git-send-email 2.7.4
+        id S2388037AbfG2PcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 11:32:10 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:45042 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387983AbfG2PcK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 11:32:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=87rbIchsoG1YbtVeld/osip7Rb3mOAkZcZQFZiCcJK0=; b=I8G1Uh04QiypKHAkVqakyYRmnv
+        l7sTDr2lgKbI0wUx5hsN86wuPvbyKc3s1+JCbyYsdwysrCppBAXbdEq2CudWEbbb1Awm9kl3D6Oz+
+        QDKrg34UxvREmqS2GP579i1YPyUEea0YxgWsGIjnNCYAfdEk5a5f5/Noazw5+f2CALwo=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hs7d4-0002R2-28; Mon, 29 Jul 2019 17:32:02 +0200
+Date:   Mon, 29 Jul 2019 17:32:02 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Claudiu Manoil <claudiu.manoil@nxp.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
+        alexandru.marginean@nxp.com, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH net-next v3 1/4] enetc: Clean up local mdio bus allocation
+Message-ID: <20190729153202.GF4110@lunn.ch>
+References: <1564394627-3810-1-git-send-email-claudiu.manoil@nxp.com>
+ <1564394627-3810-2-git-send-email-claudiu.manoil@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.201.23.97]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-29_07:,,
- signatures=0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1564394627-3810-2-git-send-email-claudiu.manoil@nxp.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The dsi physical layer is powered by the 1v8 power controller supply.
+On Mon, Jul 29, 2019 at 01:03:44PM +0300, Claudiu Manoil wrote:
+> What's needed is basically a pointer to the mdio registers.
+> This is one way to store it inside bus->priv allocated space,
+> without upsetting sparse.
+> Reworked accessors to avoid __iomem casting.
+> Used devm_* variant to further clean up the init error /
+> remove paths.
+> 
+> Fixes following sparse warning:
+>  warning: incorrect type in assignment (different address spaces)
+>     expected void *priv
+>     got struct enetc_mdio_regs [noderef] <asn:2>*[assigned] regs
+> 
+> Fixes: ebfcb23d62ab ("enetc: Add ENETC PF level external MDIO support")
+> 
+> Signed-off-by: Claudiu Manoil <claudiu.manoil@nxp.com>
 
-Signed-off-by: Yannick Fertré <yannick.fertre@st.com>
----
- arch/arm/boot/dts/stm32mp157c-ev1.dts | 1 +
- 1 file changed, 1 insertion(+)
 
-diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-index feb8f77..19d69d0 100644
---- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
-+++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
-@@ -101,6 +101,7 @@
- &dsi {
- 	#address-cells = <1>;
- 	#size-cells = <0>;
-+	phy-dsi-supply = <&reg18>;
- 	status = "okay";
- 
- 	ports {
--- 
-2.7.4
+Thanks, much nicer.
 
+Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+
+    Andrew
