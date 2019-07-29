@@ -2,130 +2,100 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 672C978A22
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 13:07:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A503278A5E
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 13:23:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387469AbfG2LHj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 07:07:39 -0400
-Received: from relay1.mentorg.com ([192.94.38.131]:57042 "EHLO
-        relay1.mentorg.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387457AbfG2LHj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 07:07:39 -0400
-Received: from nat-ies.mentorg.com ([192.94.31.2] helo=svr-ies-mbx-01.mgc.mentorg.com)
-        by relay1.mentorg.com with esmtps (TLSv1.2:ECDHE-RSA-AES256-SHA384:256)
-        id 1hs3V8-0001fF-QA from Harish_Kandiga@mentor.com ; Mon, 29 Jul 2019 04:07:34 -0700
-Received: from [10.0.3.15] (137.202.0.90) by svr-ies-mbx-01.mgc.mentorg.com
- (139.181.222.1) with Microsoft SMTP Server (TLS) id 15.0.1320.4; Mon, 29 Jul
- 2019 12:07:29 +0100
-Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
-From:   Harish Jenny K N <harish_kandiga@mentor.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Linus Walleij <linus.walleij@linaro.org>
-CC:     Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Balasubramani Vivekanandan 
-        <balasubramani_vivekanandan@mentor.com>
-References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
- <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
- <06c95f15-d577-e43d-e046-ee222f86c406@mentor.com>
- <CAL_JsqLQvjtnfUsZ2RP4eozvdwMLzNxtgmT+XFaxW4xzoFjL=w@mail.gmail.com>
- <f1616784-4dbf-d0fa-b33e-c85fd569383a@mentor.com>
- <ec343df3-b374-fecf-6973-3b37614975a7@mentor.com>
-Message-ID: <2a9ecbce-f5d7-b7dc-7f4e-56030041c04e@mentor.com>
-Date:   Mon, 29 Jul 2019 16:37:20 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2387638AbfG2LXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 07:23:24 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:44567 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387450AbfG2LXY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 07:23:24 -0400
+Received: by mail-wr1-f66.google.com with SMTP id p17so61392212wrf.11;
+        Mon, 29 Jul 2019 04:23:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=7FSTYRCDuN8ugCkUACc2sS4c/sxO9MPaWoEgh7iEEsE=;
+        b=bVgt5oMZu9vka1vXyxfezj5eUPF8tafHtuB8RDF5PL5XefOI5mn84bdcGgEYFQWdBD
+         v3/RzVElyj8HrIjajPHz9JfYqtYa1a1yA8hfjYuu81uuZW+L4M6UDlbC+97IeFIaW79S
+         VyfhVHIyNKEDN8aDRs1lSXylanKCL5tamDdd0LGZFSuGIdZhIA5YtQMSnnlPGOXYI+uB
+         otASFE6nLMIXfBJnLYqx5jtskcjMG1v7YFrGQrTtLxogh4D9ruZUok7QnLA9zT0nF3y9
+         Mad/lcbjmcAfGQ+6KgMGFjkt1CTbHPYd7gc6HCKZGD+kgkTJ+bsGFjbvG/audBf5AYAL
+         O2cQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=7FSTYRCDuN8ugCkUACc2sS4c/sxO9MPaWoEgh7iEEsE=;
+        b=dMkc5k2gWxxoAQgaJU6mKcEv6bVxVspczfTKRuDOZ2NfcHG2MF4EsNUgmfIXE0XYw0
+         GLcr1SqxK+e8X0sDbobOIZ+z3aW+R7oiR7CAj30B04oMy6Qpw1SmOd3H/C/+Wcyj86ZW
+         ytXaMyoxqgYiEQ4AXmzBJ/cmtkKmlWGoFKgFJcXM1exRFaFI5J5niFkFDnMYji2+KOkJ
+         OX9PJ+D4oghLAOChwV+HiM/kc9MTHBLlnWnUXqWd08J06xloCZswIHcAaGRyTHFx5v6u
+         U44tQlgXG4+UY0ZkVbPpyy195BSP1G7YMF7534LCOm5Y2nPJrDg5HOa51dQLlZ0p8j7s
+         wC8Q==
+X-Gm-Message-State: APjAAAUETAvd7ZCTC+tqyM9seHLNOmA2xniwhgJq6rrqr7VZifwnd8IS
+        aslE1QdHMzRZhvcJQjU23W2k18oL5yHLJpIEPGY=
+X-Google-Smtp-Source: APXvYqyKS6i0fcHmOYx363DJnPTuu/xw0bA5xIlQXAB08qPtFUJYujyOTv9lxMWA//8NpJVOebpAE1xkHqBFV70jCHw=
+X-Received: by 2002:a5d:514f:: with SMTP id u15mr21122702wrt.183.1564399401730;
+ Mon, 29 Jul 2019 04:23:21 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <ec343df3-b374-fecf-6973-3b37614975a7@mentor.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-X-Originating-IP: [137.202.0.90]
-X-ClientProxiedBy: SVR-IES-MBX-04.mgc.mentorg.com (139.181.222.4) To
- svr-ies-mbx-01.mgc.mentorg.com (139.181.222.1)
+References: <20190725220215.460-1-paul@crapouillou.net>
+In-Reply-To: <20190725220215.460-1-paul@crapouillou.net>
+From:   Richard Weinberger <richard.weinberger@gmail.com>
+Date:   Mon, 29 Jul 2019 13:23:10 +0200
+Message-ID: <CAFLxGvyi0+0E3M12A7cRoHfEKd8-7Yr8EMG9J=2XcjCxPWY5pA@mail.gmail.com>
+Subject: Re: [PATCH 00/11] JZ4740 SoC cleanup
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        alsa-devel <alsa-devel@alsa-project.org>,
+        linux-pm@vger.kernel.org, linux-mips@vger.kernel.org,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        LKML <linux-kernel@vger.kernel.org>, od@zcrc.me,
+        linux-mtd@lists.infradead.org, dmaengine@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Linus,
+On Fri, Jul 26, 2019 at 12:02 AM Paul Cercueil <paul@crapouillou.net> wrote:
+>
+> Hi,
+>
+> This patchset converts the Qi LB60 MIPS board to devicetree and makes it
+> use all the shiny new drivers that have been developed or updated
+> recently.
+>
+> All the crappy old drivers and custom code can be dropped since they
+> have been replaced by better alternatives.
+>
+> Some of these alternatives are not yet in 5.3-rc1 but have already been
+> accepted by their respective maintainer for inclusion in 5.4-rc1.
+>
+> To upstream this patchset, I think that as soon as MIPS maintainers
+> agree to take patches 01-03/11 and 11/11, the other patches can go
+> through their respective maintainer's tree.
 
-On 17/07/19 7:21 PM, Harish Jenny K N wrote:
-> Hi Linus,
->
-> On 10/07/19 1:58 PM, Harish Jenny K N wrote:
->> Hi,
->>
->> On 09/07/19 9:38 PM, Rob Herring wrote:
->>> On Mon, Jul 8, 2019 at 11:25 PM Harish Jenny K N
->>> <harish_kandiga@mentor.com> wrote:
->>>> Hi Rob,
->>>>
->>>>
->>>> On 09/07/19 4:06 AM, Rob Herring wrote:
->>>>> On Fri, Jun 28, 2019 at 3:31 AM Harish Jenny K N
->>>>> <harish_kandiga@mentor.com> wrote:
->>>>>> Document the device tree binding for the inverter gpio
->>>>>> controller to configure the polarity of the gpio pins
->>>>>> used by the consumers.
->>>>>>
->>>>>> Signed-off-by: Harish Jenny K N <harish_kandiga@mentor.com>
->>>>>> ---
->>>>>>  .../devicetree/bindings/gpio/gpio-inverter.txt     | 29 ++++++++++++++++++++++
->>>>>>  1 file changed, 29 insertions(+)
->>>>>>  create mode 100644 Documentation/devicetree/bindings/gpio/gpio-inverter.txt
->>>>>>
->>>>>> diff --git a/Documentation/devicetree/bindings/gpio/gpio-inverter.txt b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
->>>>>> new file mode 100644
->>>>>> index 0000000..8bb6b2e
->>>>>> --- /dev/null
->>>>>> +++ b/Documentation/devicetree/bindings/gpio/gpio-inverter.txt
->>>>>> @@ -0,0 +1,29 @@
->>>>>> +GPIO-INVERTER
->>>>>> +======
->>>>>> +This binding defines the gpio-inverter. The gpio-inverter is a driver that
->>>>>> +allows to properly describe the gpio polarities on the hardware.
->>>>> I don't understand. Please explain this in terms of the hardware, not a driver.
->>>> gpio inverters can be used on different hardware to alter the polarity of gpio chips.
->>>> The polarity of pins can change from hardware to hardware with the use of inverters.
->>> Yes, I know what an inverter is.
->>>
->>>> This device tree binding models gpio inverters in the device tree to properly describe the hardware.
->>> We already define the active state of GPIOs in the consumers. If
->>> there's an inverter in the middle, the consumer active state is simply
->>> inverted. I don't agree that that is a hack as Linus said without some
->>> reasoning why an inverter needs to be modeled in DT. Anything about
->>> what 'userspace' needs is not a reason. That's a Linux thing that has
->>> little to do with hardware description.
->> Yes we are talking about the hardware level inversions here. The usecase is for those without the gpio consumer driver. The usecase started with the concept of allowing an abstraction of the underlying hardware for the userland controlling program such that this program does not care whether the GPIO lines are inverted or not physically. In other words, a single userland controlling program can work unmodified across a variety of hardware platforms with the device tree mapping the logical to physical relationship of the GPIO hardware.
->> I totally understand anything about what 'userspace' needs is not a reason, but this is not restricted to userspace alone as kernel drivers may need this just as much. Also we are just modelling/describing the hardware state in the device tree.
->>
->> Just to mention that Linus Walleij had proposed this inverter model to describe the hardware and the gpio inverter driver is developed based on comments/review from him.
->>
->> Also my sincere request to Linus Walleij to please let his opinion know on this.
->>
->> Thanks,
->>
->> Best Regards,
->> Harish Jenny K N
->
-> Can you please give your opinion on this.
->
->
-> Thanks.
->
->
-> Best Regards,
->
-> Harish Jenny K N
->
+Was this series tested with the Ben Nanonote device?
+I have one of these and from time to time I upgrade the kernel on it.
 
-sorry for the repeated mail. can you please give your opinion on this ?
-
-Thanks.
-
-Harish
-
-
+-- 
+Thanks,
+//richard
