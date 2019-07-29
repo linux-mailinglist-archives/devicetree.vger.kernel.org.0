@@ -2,69 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11BD378F50
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 17:32:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C2DF978F60
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 17:33:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388037AbfG2PcK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 11:32:10 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:45042 "EHLO vps0.lunn.ch"
+        id S2388000AbfG2Pdt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 11:33:49 -0400
+Received: from foss.arm.com ([217.140.110.172]:45822 "EHLO foss.arm.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387983AbfG2PcK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 11:32:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=87rbIchsoG1YbtVeld/osip7Rb3mOAkZcZQFZiCcJK0=; b=I8G1Uh04QiypKHAkVqakyYRmnv
-        l7sTDr2lgKbI0wUx5hsN86wuPvbyKc3s1+JCbyYsdwysrCppBAXbdEq2CudWEbbb1Awm9kl3D6Oz+
-        QDKrg34UxvREmqS2GP579i1YPyUEea0YxgWsGIjnNCYAfdEk5a5f5/Noazw5+f2CALwo=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hs7d4-0002R2-28; Mon, 29 Jul 2019 17:32:02 +0200
-Date:   Mon, 29 Jul 2019 17:32:02 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Claudiu Manoil <claudiu.manoil@nxp.com>
-Cc:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        alexandru.marginean@nxp.com, netdev@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v3 1/4] enetc: Clean up local mdio bus allocation
-Message-ID: <20190729153202.GF4110@lunn.ch>
-References: <1564394627-3810-1-git-send-email-claudiu.manoil@nxp.com>
- <1564394627-3810-2-git-send-email-claudiu.manoil@nxp.com>
+        id S2387887AbfG2Pdt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 11:33:49 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id AEAE3337;
+        Mon, 29 Jul 2019 08:33:48 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 1D6103F694;
+        Mon, 29 Jul 2019 08:33:46 -0700 (PDT)
+Date:   Mon, 29 Jul 2019 16:33:41 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>
+Cc:     Bjorn Helgaas <bhelgaas@google.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, youlin.pei@mediatek.com
+Subject: Re: [v2,2/2] PCI: mediatek: Add controller support for MT7629
+Message-ID: <20190729153341.GA23266@e121166-lin.cambridge.arm.com>
+References: <20190628073425.25165-1-jianjun.wang@mediatek.com>
+ <20190628073425.25165-3-jianjun.wang@mediatek.com>
+ <1564385918.17211.6.camel@mhfsdcap03>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1564394627-3810-2-git-send-email-claudiu.manoil@nxp.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <1564385918.17211.6.camel@mhfsdcap03>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 01:03:44PM +0300, Claudiu Manoil wrote:
-> What's needed is basically a pointer to the mdio registers.
-> This is one way to store it inside bus->priv allocated space,
-> without upsetting sparse.
-> Reworked accessors to avoid __iomem casting.
-> Used devm_* variant to further clean up the init error /
-> remove paths.
+On Mon, Jul 29, 2019 at 03:38:38PM +0800, Jianjun Wang wrote:
+> On Fri, 2019-06-28 at 15:34 +0800, Jianjun Wang wrote:
+> > MT7629 is an ARM platform SoC which has the same PCIe IP with MT7622.
+> > 
+> > The HW default value of its Device ID is invalid, fix its Device ID to
+> > match the hardware implementation.
+> > 
+> > Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > ---
+> >  drivers/pci/controller/pcie-mediatek.c | 18 ++++++++++++++++++
+> >  include/linux/pci_ids.h                |  1 +
+> >  2 files changed, 19 insertions(+)
+> > 
+> > diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> > index 80601e1b939e..e5e6740b635d 100644
+> > --- a/drivers/pci/controller/pcie-mediatek.c
+> > +++ b/drivers/pci/controller/pcie-mediatek.c
+> > @@ -73,6 +73,7 @@
+> >  #define PCIE_MSI_VECTOR		0x0c0
+> >  
+> >  #define PCIE_CONF_VEND_ID	0x100
+> > +#define PCIE_CONF_DEVICE_ID	0x102
+> >  #define PCIE_CONF_CLASS_ID	0x106
+> >  
+> >  #define PCIE_INT_MASK		0x420
+> > @@ -141,12 +142,16 @@ struct mtk_pcie_port;
+> >  /**
+> >   * struct mtk_pcie_soc - differentiate between host generations
+> >   * @need_fix_class_id: whether this host's class ID needed to be fixed or not
+> > + * @need_fix_device_id: whether this host's Device ID needed to be fixed or not
+> > + * @device_id: Device ID which this host need to be fixed
+> >   * @ops: pointer to configuration access functions
+> >   * @startup: pointer to controller setting functions
+> >   * @setup_irq: pointer to initialize IRQ functions
+> >   */
+> >  struct mtk_pcie_soc {
+> >  	bool need_fix_class_id;
+> > +	bool need_fix_device_id;
+> > +	unsigned int device_id;
+> >  	struct pci_ops *ops;
+> >  	int (*startup)(struct mtk_pcie_port *port);
+> >  	int (*setup_irq)(struct mtk_pcie_port *port, struct device_node *node);
+> > @@ -696,6 +701,9 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+> >  		writew(val, port->base + PCIE_CONF_CLASS_ID);
+> >  	}
+> >  
+> > +	if (soc->need_fix_device_id)
+> > +		writew(soc->device_id, port->base + PCIE_CONF_DEVICE_ID);
+> > +
+> >  	/* 100ms timeout value should be enough for Gen1/2 training */
+> >  	err = readl_poll_timeout(port->base + PCIE_LINK_STATUS_V2, val,
+> >  				 !!(val & PCIE_PORT_LINKUP_V2), 20,
+> > @@ -1216,11 +1224,21 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt7622 = {
+> >  	.setup_irq = mtk_pcie_setup_irq,
+> >  };
+> >  
+> > +static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
+> > +	.need_fix_class_id = true,
+> > +	.need_fix_device_id = true,
+> > +	.device_id = PCI_DEVICE_ID_MEDIATEK_7629,
+> > +	.ops = &mtk_pcie_ops_v2,
+> > +	.startup = mtk_pcie_startup_port_v2,
+> > +	.setup_irq = mtk_pcie_setup_irq,
+> > +};
+> > +
+> >  static const struct of_device_id mtk_pcie_ids[] = {
+> >  	{ .compatible = "mediatek,mt2701-pcie", .data = &mtk_pcie_soc_v1 },
+> >  	{ .compatible = "mediatek,mt7623-pcie", .data = &mtk_pcie_soc_v1 },
+> >  	{ .compatible = "mediatek,mt2712-pcie", .data = &mtk_pcie_soc_mt2712 },
+> >  	{ .compatible = "mediatek,mt7622-pcie", .data = &mtk_pcie_soc_mt7622 },
+> > +	{ .compatible = "mediatek,mt7629-pcie", .data = &mtk_pcie_soc_mt7629 },
+> >  	{},
+> >  };
+> >  
+> > diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
+> > index 70e86148cb1e..aa32962759b2 100644
+> > --- a/include/linux/pci_ids.h
+> > +++ b/include/linux/pci_ids.h
+> > @@ -2131,6 +2131,7 @@
+> >  #define PCI_VENDOR_ID_MYRICOM		0x14c1
+> >  
+> >  #define PCI_VENDOR_ID_MEDIATEK		0x14c3
+> > +#define PCI_DEVICE_ID_MEDIATEK_7629	0x7629
+> >  
+> >  #define PCI_VENDOR_ID_TITAN		0x14D2
+> >  #define PCI_DEVICE_ID_TITAN_010L	0x8001
 > 
-> Fixes following sparse warning:
->  warning: incorrect type in assignment (different address spaces)
->     expected void *priv
->     got struct enetc_mdio_regs [noderef] <asn:2>*[assigned] regs
+> Hi Bjorn & Lorenzo,
 > 
-> Fixes: ebfcb23d62ab ("enetc: Add ENETC PF level external MDIO support")
-> 
-> Signed-off-by: Claudiu Manoil <claudiu.manoil@nxp.com>
+> Is this patch ok or is there anything I need to fixed?
 
+We are getting to it shortly, thanks for your patience.
 
-Thanks, much nicer.
-
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
-
-    Andrew
+Lorenzo
