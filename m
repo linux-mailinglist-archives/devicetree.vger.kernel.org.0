@@ -2,141 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1AAA678DCA
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 16:25:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1EEE678DF9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 16:29:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727529AbfG2OZI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 10:25:08 -0400
-Received: from mga14.intel.com ([192.55.52.115]:45406 "EHLO mga14.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726780AbfG2OZH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 10:25:07 -0400
-X-Amp-Result: UNKNOWN
-X-Amp-Original-Verdict: FILE UNKNOWN
-X-Amp-File-Uploaded: False
-Received: from fmsmga001.fm.intel.com ([10.253.24.23])
-  by fmsmga103.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 29 Jul 2019 07:25:06 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,323,1559545200"; 
-   d="scan'208";a="190601545"
-Received: from kuha.fi.intel.com ([10.237.72.189])
-  by fmsmga001.fm.intel.com with SMTP; 29 Jul 2019 07:25:01 -0700
-Received: by kuha.fi.intel.com (sSMTP sendmail emulation); Mon, 29 Jul 2019 17:25:00 +0300
-Date:   Mon, 29 Jul 2019 17:25:00 +0300
-From:   Heikki Krogerus <heikki.krogerus@linux.intel.com>
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Biju Das <biju.das@bp.renesas.com>,
+        id S1727519AbfG2O33 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 10:29:29 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:7928 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728045AbfG2O33 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 10:29:29 -0400
+Received: from pps.filterd (m0046660.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6TERLrM022428;
+        Mon, 29 Jul 2019 16:29:17 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding; s=STMicroelectronics;
+ bh=/E0GksnkJiKefciHBvFyL+s1X3i9mUeBZFhV3J5bfCA=;
+ b=MejLdAC5egEPFYo+PeRI2KZ59gQepBm4PjuE4dYHUmy2ipCTkYeM8cPmcIuSB5SWQNZc
+ RWkDgdoUWvw3LPq0VRRbTRfja20BeoQ43YZJjo73gjX75besD6SIgzfQwDq3U6bS6jX4
+ L9ELCvaiRoeRT73MTMLKzNRLuVenb8F1Kp+dQ3QMliTZWXCRQIjCAtmzQdq5k/AfDJSE
+ Jcm28weMNsKgnLktPyiKeaCpGOtZrBUi0IA3MLu/DH7f+Jm0RWGCxy/j4HwaUzG1/tlU
+ Sm0oYVM+dOOe63K/wy8W/kCEDgi0jnnm8h05EyWzJ4dJZfn1fAhTIaGveh3kVOEjKjcL +A== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2u0br9n7jv-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Mon, 29 Jul 2019 16:29:17 +0200
+Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1F17F34;
+        Mon, 29 Jul 2019 14:29:16 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
+        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id D1D6B5A7C;
+        Mon, 29 Jul 2019 14:29:15 +0000 (GMT)
+Received: from SAFEX1HUBCAS23.st.com (10.75.90.47) by Safex1hubcas24.st.com
+ (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 29 Jul
+ 2019 16:29:15 +0200
+Received: from localhost (10.201.23.97) by webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Mon, 29 Jul 2019 16:29:15
+ +0200
+From:   =?UTF-8?q?Yannick=20Fertr=C3=A9?= <yannick.fertre@st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-usb@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org,
-        Linus Walleij <linus.walleij@linaro.org>
-Subject: Re: [PATCH v8 08/11] usb: roles: get usb-role-switch from parent
-Message-ID: <20190729142500.GE28600@kuha.fi.intel.com>
-References: <1563958245-6321-1-git-send-email-chunfeng.yun@mediatek.com>
- <1563958245-6321-9-git-send-email-chunfeng.yun@mediatek.com>
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Philippe Cornu <philippe.cornu@st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Subject: [PATCH] ARM: dts: stm32: add phy-dsi-supply property on stm32mp157c-ev1
+Date:   Mon, 29 Jul 2019 16:29:08 +0200
+Message-ID: <1564410548-20436-1-git-send-email-yannick.fertre@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1563958245-6321-9-git-send-email-chunfeng.yun@mediatek.com>
-User-Agent: Mutt/1.12.0 (2019-05-25)
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.23.97]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-29_07:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 24, 2019 at 04:50:42PM +0800, Chunfeng Yun wrote:
-> when the USB host controller is the parent of the connector,
-> usually type-B, sometimes don't need the graph, so we should
-> check whether it's parent registers usb-role-switch or not
-> firstly, and get it if exists.
-> 
-> Signed-off-by: Heikki Krogerus <heikki.krogerus@linux.intel.com>
+The dsi physical layer is powered by the 1v8 power controller supply.
 
-I don't think I actually wrote the patch. I may have proposed the code
-for you, but I never prepared a patch out out that. Please drop the
-above Signed-off-by line if that is the case. I case I really did
-write the patch, then you are missing the "From: Heikki..." first
-line, but I really don't remember preparing the patch.
+Signed-off-by: Yannick Fertré <yannick.fertre@st.com>
+---
+ arch/arm/boot/dts/stm32mp157c-ev1.dts | 1 +
+ 1 file changed, 1 insertion(+)
 
-If the idea came from me, you can use for example the suggested-by
-tag: "Suggested-by: Heikki Krogerus <heikki.krogerus...".
-
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> ---
-> v8: no changes
-> v7:
->   add signed-off-by Chunfeng
-> 
-> v6:
->   new patch
-> ---
->  drivers/usb/roles/class.c | 25 +++++++++++++++++++++----
->  1 file changed, 21 insertions(+), 4 deletions(-)
-> 
-> diff --git a/drivers/usb/roles/class.c b/drivers/usb/roles/class.c
-> index 5b637aaf311f..87439a84c983 100644
-> --- a/drivers/usb/roles/class.c
-> +++ b/drivers/usb/roles/class.c
-> @@ -114,6 +114,19 @@ static void *usb_role_switch_match(struct device_connection *con, int ep,
->  	return dev ? to_role_switch(dev) : ERR_PTR(-EPROBE_DEFER);
->  }
->  
-> +static struct usb_role_switch *
-> +usb_role_switch_is_parent(struct fwnode_handle *fwnode)
-> +{
-> +	struct fwnode_handle *parent = fwnode_get_parent(fwnode);
-> +	struct device *dev;
-> +
-> +	if (!parent || !fwnode_property_present(parent, "usb-role-switch"))
-> +		return NULL;
-> +
-> +	dev = class_find_device(role_class, NULL, parent, switch_fwnode_match);
-> +	return dev ? to_role_switch(dev) : ERR_PTR(-EPROBE_DEFER);
-> +}
-> +
->  /**
->   * usb_role_switch_get - Find USB role switch linked with the caller
->   * @dev: The caller device
-> @@ -125,8 +138,10 @@ struct usb_role_switch *usb_role_switch_get(struct device *dev)
->  {
->  	struct usb_role_switch *sw;
->  
-> -	sw = device_connection_find_match(dev, "usb-role-switch", NULL,
-> -					  usb_role_switch_match);
-> +	sw = usb_role_switch_is_parent(dev_fwnode(dev));
-> +	if (!sw)
-> +		sw = device_connection_find_match(dev, "usb-role-switch", NULL,
-> +						  usb_role_switch_match);
->  
->  	if (!IS_ERR_OR_NULL(sw))
->  		WARN_ON(!try_module_get(sw->dev.parent->driver->owner));
-> @@ -146,8 +161,10 @@ struct usb_role_switch *fwnode_usb_role_switch_get(struct fwnode_handle *fwnode)
->  {
->  	struct usb_role_switch *sw;
->  
-> -	sw = fwnode_connection_find_match(fwnode, "usb-role-switch", NULL,
-> -					  usb_role_switch_match);
-> +	sw = usb_role_switch_is_parent(fwnode);
-> +	if (!sw)
-> +		sw = fwnode_connection_find_match(fwnode, "usb-role-switch",
-> +						  NULL, usb_role_switch_match);
->  	if (!IS_ERR_OR_NULL(sw))
->  		WARN_ON(!try_module_get(sw->dev.parent->driver->owner));
->  
-> -- 
-> 2.21.0
-
-thanks,
-
+diff --git a/arch/arm/boot/dts/stm32mp157c-ev1.dts b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+index feb8f77..19d69d0 100644
+--- a/arch/arm/boot/dts/stm32mp157c-ev1.dts
++++ b/arch/arm/boot/dts/stm32mp157c-ev1.dts
+@@ -101,6 +101,7 @@
+ &dsi {
+ 	#address-cells = <1>;
+ 	#size-cells = <0>;
++	phy-dsi-supply = <&reg18>;
+ 	status = "okay";
+ 
+ 	ports {
 -- 
-heikki
+2.7.4
+
