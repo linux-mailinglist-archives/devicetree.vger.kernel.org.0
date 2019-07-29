@@ -2,92 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E399A79C47
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 00:12:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6D5B379C7A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 00:34:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388185AbfG2WLa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 18:11:30 -0400
-Received: from mail-qt1-f202.google.com ([209.85.160.202]:49269 "EHLO
-        mail-qt1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387676AbfG2WL3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 18:11:29 -0400
-Received: by mail-qt1-f202.google.com with SMTP id l16so49762826qtq.16
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 15:11:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
-         :cc;
-        bh=q/JO0jIzFDUcBLNa0OLAVEbtuFfd8ssnFHaHdmtCpxU=;
-        b=RAfvxQcl4h2BOyaK31H1/xWYCyBx/eMduTNV0vQvG5cGkn5cGK3RzQnHoHIatewHnm
-         Fg1LrxZP4gf7iMy/GnI+7ngsBGnaRAZjvWfL4bpRWJKpKv0/5v8jJJ54kIYZll1fkhrs
-         CXXej9PXznYSVaqvLO4jibT0OH+iqf5eceI834QosZHeYCIlkQTBEqAYfwFwSt4dLmuw
-         p49wppWLaI3vC7K4KJRvbYvAbQ8Uu8YGMIn/Ymu/YE8ZZOEgVLlGivl3A6edYaBM1xtW
-         +v4tiDen5L66O2NJg/9wyISohBTn/MqJv8xjwO5aYduPo5+sY0d122+2EzQXQz0RNUx5
-         j4nQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=q/JO0jIzFDUcBLNa0OLAVEbtuFfd8ssnFHaHdmtCpxU=;
-        b=gDuN/4tEuNZaL7P9F/TMdPrHRgLEpMwjblAym32IZSwIpPhCigL9m0kMp9Y4fIVanO
-         hkTfDQDqpdpn/AnQSQdX6seEqLb15Ro1pVvrBs2VrqkqQBo8rfRMj/eTlhzeqYqK+zSu
-         NOsKw/qq4w4ZdLWdWrArTdQCWMKg2wnedQOX1mpqz3pUJYc0ebebDfpLGg3K9f0igiit
-         aGC2dk4wE7Q6EPWPHi9n5Yt7rbLQljvrLIQ0eiBNh38u+P926Zgza46SYXBUeub18bKc
-         976boQ1JuQGYyrdyYsQhAFrNN+QLBz3jaI9WvzAsfPpQGJzZXruJeVX70xVzWXE0P58l
-         9KIQ==
-X-Gm-Message-State: APjAAAUU8v+n6YgnJg349KIM4u9IuN33BISRygJBUH4flXqtlMz3FSLg
-        5ek1jJ5ppCGln4pyTZkKgEeslbrpbnWJnJk=
-X-Google-Smtp-Source: APXvYqydELxRbsHighcxSWgGx87UveXV5heA+fTgZ2mjwG8HEYlndd5i5Hfoa3E9mNglZFW6alDPgxqaqeQ/Og8=
-X-Received: by 2002:a05:620a:1228:: with SMTP id v8mr29782991qkj.357.1564438288576;
- Mon, 29 Jul 2019 15:11:28 -0700 (PDT)
-Date:   Mon, 29 Jul 2019 15:11:01 -0700
-In-Reply-To: <20190729221101.228240-1-saravanak@google.com>
-Message-Id: <20190729221101.228240-8-saravanak@google.com>
-Mime-Version: 1.0
-References: <20190729221101.228240-1-saravanak@google.com>
-X-Mailer: git-send-email 2.22.0.709.g102302147b-goog
-Subject: [PATCH v8 7/7] of/platform: Don't create device links for default busses
-From:   Saravana Kannan <saravanak@google.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        David Collins <collinsd@codeaurora.org>,
-        kernel-team@android.com
+        id S1729397AbfG2WeO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 18:34:14 -0400
+Received: from mail.kernel.org ([198.145.29.99]:36894 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729401AbfG2WeO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 18:34:14 -0400
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 77F0C217D6
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 22:34:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564439653;
+        bh=UL/gBnx9jYfrVHist4KYUvcwtJIvyBWv6hvZPCsoOW0=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=L9aNKM184YGpqCtVjDjY3zQkee2318qVdo3hl9dUXGd/3Wzi5kgwHDUM93BkqSDYX
+         dF6kJSc6i6cenx0UFnN3WcahCKUpxg/DkySSa3a4SP4+EIujV1R9Nqe3q5UMyQHJcb
+         wCaSI9vpzZxHwMQ5ZWiG2SD9vMnwiDe4E/d7k73c=
+Received: by mail-qt1-f174.google.com with SMTP id x22so56199400qtp.12
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 15:34:13 -0700 (PDT)
+X-Gm-Message-State: APjAAAXrWevNsdiNLJ7dwP1ZRoVJe0uWyIhhMSdj51J9JG1nCXGiv+sH
+        xcko+j/N0WrUxAfmVTmw5AikVGrVL3lSH/D3gQ==
+X-Google-Smtp-Source: APXvYqxDddh1YcE9UAN2JJmIBUYbYYMf+ygtncXzM0eKfGj2ABWdU6BIO8Hr98PRgT9kvxxiZxUr7IATx650642VdH8=
+X-Received: by 2002:ac8:36b9:: with SMTP id a54mr80565581qtc.300.1564439652644;
+ Mon, 29 Jul 2019 15:34:12 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190728210403.2730-1-uwe@kleine-koenig.org> <20190728210403.2730-2-uwe@kleine-koenig.org>
+In-Reply-To: <20190728210403.2730-2-uwe@kleine-koenig.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 29 Jul 2019 16:34:00 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+G-kk3_UHC=nAEJFXQ22-gBL0AFUrCXv=CZNy-GXHH3Q@mail.gmail.com>
+Message-ID: <CAL_Jsq+G-kk3_UHC=nAEJFXQ22-gBL0AFUrCXv=CZNy-GXHH3Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dts: add vendor prefix "acme" for "Acme Systems srl"
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= <uwe@kleine-koenig.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Ludovic Desroches <ludovic.desroches@microchip.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        info@acmesystems.it
 Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Default busses also have devices created for them. But there's no point
-in creating device links for them. It's especially wasteful as it'll
-cause the traversal of the entire device tree and also spend a lot of
-time checking and figuring out that creating those links isn't allowed.
-So check for default busses and skip trying to create device links for
-them.
+On Sun, Jul 28, 2019 at 3:04 PM Uwe Kleine-K=C3=B6nig <uwe@kleine-koenig.or=
+g> wrote:
+>
+> Signed-off-by: Uwe Kleine-K=C3=B6nig <uwe@kleine-koenig.org>
+> ---
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+>  1 file changed, 2 insertions(+)
 
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/of/platform.c | 2 ++
- 1 file changed, 2 insertions(+)
+It's not Apr 1st, so I guess this is a real company and not the coyote's. :=
+)
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 41499ddc8d95..676b2f730d1b 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -682,6 +682,8 @@ static int of_link_to_suppliers(struct device *dev)
- 		return 0;
- 	if (unlikely(!dev->of_node))
- 		return 0;
-+	if (of_match_node(of_default_bus_match_table, dev->of_node))
-+		return 0;
- 
- 	return __of_link_to_suppliers(dev, dev->of_node);
- }
--- 
-2.22.0.709.g102302147b-goog
-
+Acked-by: Rob Herring <robh@kernel.org>
