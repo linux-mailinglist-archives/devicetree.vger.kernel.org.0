@@ -2,142 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1830178653
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 09:24:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9BBD47866F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 09:39:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726765AbfG2HYY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 03:24:24 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:22458 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725917AbfG2HYY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 03:24:24 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6T7Lfvg024841;
-        Mon, 29 Jul 2019 09:24:10 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : references
- : from : message-id : date : mime-version : in-reply-to : content-type :
- content-transfer-encoding; s=STMicroelectronics;
- bh=ag3607f4rZRHcp8HUBaVypYdYUkemynvgAUvHb2YYs0=;
- b=cTa6HUutdsFxJUHgsniQS2DcXuwLLWJsFjrVZtH8En5C2JGiJZ2b/TGEgzSPi0kJRVQe
- ejdE0EP46/cWqytEhxJasHdNELl3Tty51MdQxdAdKkjBHBsnmDg6ibXRh/jicctJCY1S
- qjVPxUSYrYpx1uct2CopUHWbLjevIw9utzejE0aexuXIky5ooOCUO3YKesuC12yucoPT
- FEKdY8MrsoVBnzRDxtSnyWlmyYUmgVN6MMhRNyOGKDPYCMEnqlqGFKhLIE0bsKYePFzI
- 1CAWdNkAHFnNrSHfezPxkIDy1V2pssTGHMOJrYnk385lHt1AcipeBrX+zTd9KetUwU+z 2g== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2u0ccwanxs-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Mon, 29 Jul 2019 09:24:10 +0200
-Received: from zeta.dmz-eu.st.com (zeta.dmz-eu.st.com [164.129.230.9])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 5051342;
-        Mon, 29 Jul 2019 07:24:01 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
-        by zeta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 332AC56D1;
-        Mon, 29 Jul 2019 07:24:01 +0000 (GMT)
-Received: from lmecxl0912.lme.st.com (10.75.127.48) by SFHDAG3NODE2.st.com
- (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Mon, 29 Jul
- 2019 09:24:00 +0200
-Subject: Re: [PATCH] ARM: dts: stm32: add audio codec support on
- stm32mp157a-dk1 board
-To:     Olivier MOYSAN <olivier.moysan@st.com>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "robh@kernel.org" <robh@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-References: <1562327580-19647-1-git-send-email-olivier.moysan@st.com>
- <27476214-07fe-886b-1cab-20902837f29c@st.com>
- <f43b8af7-e2c0-6193-d666-9fa60050e07d@st.com>
-From:   Alexandre Torgue <alexandre.torgue@st.com>
-Message-ID: <f87aaed6-1aa4-fd52-9476-b22f9b122aeb@st.com>
-Date:   Mon, 29 Jul 2019 09:23:59 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726557AbfG2HjL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 03:39:11 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:2214 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1725917AbfG2HjK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 03:39:10 -0400
+X-UUID: 956ec71b12d64041beb42b8c6da990ec-20190729
+X-UUID: 956ec71b12d64041beb42b8c6da990ec-20190729
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <jianjun.wang@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1541818433; Mon, 29 Jul 2019 15:38:44 +0800
+Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31DR.mediatek.inc
+ (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Mon, 29 Jul
+ 2019 15:38:39 +0800
+Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
+ (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Mon, 29 Jul 2019 15:38:38 +0800
+Message-ID: <1564385918.17211.6.camel@mhfsdcap03>
+Subject: Re: [v2,2/2] PCI: mediatek: Add controller support for MT7629
+From:   Jianjun Wang <jianjun.wang@mediatek.com>
+To:     Bjorn Helgaas <bhelgaas@google.com>,
+        Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>,
+        Ryder Lee <ryder.lee@mediatek.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-pci@vger.kernel.org>, <linux-mediatek@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, <youlin.pei@mediatek.com>,
+        <jianjun.wang@mediatek.com>
+Date:   Mon, 29 Jul 2019 15:38:38 +0800
+In-Reply-To: <20190628073425.25165-3-jianjun.wang@mediatek.com>
+References: <20190628073425.25165-1-jianjun.wang@mediatek.com>
+         <20190628073425.25165-3-jianjun.wang@mediatek.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.10.4-0ubuntu2 
 MIME-Version: 1.0
-In-Reply-To: <f43b8af7-e2c0-6193-d666-9fa60050e07d@st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.75.127.48]
-X-ClientProxiedBy: SFHDAG7NODE2.st.com (10.75.127.20) To SFHDAG3NODE2.st.com
- (10.75.127.8)
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-29_04:,,
- signatures=0
+Content-Transfer-Encoding: 7bit
+X-TM-SNTS-SMTP: 736AECADBE0E85D306CDAE61C7316ECFE7F8B270E6112EAB74CF5017161808C82000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 7/25/19 11:41 AM, Olivier MOYSAN wrote:
+On Fri, 2019-06-28 at 15:34 +0800, Jianjun Wang wrote:
+> MT7629 is an ARM platform SoC which has the same PCIe IP with MT7622.
 > 
+> The HW default value of its Device ID is invalid, fix its Device ID to
+> match the hardware implementation.
 > 
-> On 7/24/19 6:40 PM, Alexandre Torgue wrote:
->> Hi Olivier
->> 
->> On 7/5/19 1:53 PM, Olivier Moysan wrote:
->>> Add support of Cirrus cs42l51 audio codec on stm32mp157a-dk1 board.
->>> Configuration overview:
->>> - SAI2A is the CPU interface used for the codec audio playback
->>> - SAI2B is the CPU interface used for the codec audio record
->>> - SAI2A is configured as a clock provider for the audio codec
->>> - SAI2A&B are configured as slave of the audio codec
->>> - SAI2A&B share the same interface of the audio codec
->>>
->>> Note:
->>> In master mode, cs42l51 audio codec provides a bitclock
->>> at 64 x FS, regardless of data width. This means that
->>> slot width is always 32 bits.
->>> Set slot width to 32 bits and slot number to 2
->>> in SAI2A&B endpoint nodes, to match this constraint.
->>> dai-tdm-slot-num and dai-tdm-slot-width properties are used here,
->>> assuming that i2s is a special case of tdm, where slot number is 2.
->>>
->>> Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
->>> ---
->>>    arch/arm/boot/dts/stm32mp157a-dk1.dts | 89 +++++++++++++++++++++++++++++++++++
->>>    1 file changed, 89 insertions(+)
->>>
->> 
->> ...
->> 
->>>    
->>> +&sai2 {
->>> +    clocks = <&rcc SAI2>, <&rcc PLL3_Q>, <&rcc PLL3_R>;
->>> +    clock-names = "pclk", "x8k", "x11k";
->>> +    pinctrl-names = "default", "sleep";
->>> +    pinctrl-0 = <&sai2a_pins_a>, <&sai2b_pins_b>;
->>> +    pinctrl-1 = <&sai2a_sleep_pins_a>, <&sai2b_sleep_pins_b>;
->>> +    status = "okay";
->>> +
->>> +    sai2a: audio-controller@4400b004 {
->>> +            #clock-cells = <0>;
->>> +            dma-names = "tx";
->>> +            clocks = <&rcc SAI2_K>;
->>> +            clock-names = "sai_ck";
->>> +            status = "okay";
->>> +
->>> +            sai2a_port: port {
->>> +                    sai2a_endpoint: endpoint {
->>> +                            remote-endpoint = <&cs42l51_tx_endpoint>;
->>> +                            format = "i2s";
->>> +                            mclk-fs = <256>;
->>> +                            dai-tdm-slot-num = <2>;
->>> +                            dai-tdm-slot-width = <32>;
->>> +                    };
->>> +            };
->>> +    };
->>> +
->> You could use label to overload sai2a and sai2b. no ?
-> I propose to keep it unchanged for better readability
->> 
+> Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> ---
+>  drivers/pci/controller/pcie-mediatek.c | 18 ++++++++++++++++++
+>  include/linux/pci_ids.h                |  1 +
+>  2 files changed, 19 insertions(+)
+> 
+> diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> index 80601e1b939e..e5e6740b635d 100644
+> --- a/drivers/pci/controller/pcie-mediatek.c
+> +++ b/drivers/pci/controller/pcie-mediatek.c
+> @@ -73,6 +73,7 @@
+>  #define PCIE_MSI_VECTOR		0x0c0
+>  
+>  #define PCIE_CONF_VEND_ID	0x100
+> +#define PCIE_CONF_DEVICE_ID	0x102
+>  #define PCIE_CONF_CLASS_ID	0x106
+>  
+>  #define PCIE_INT_MASK		0x420
+> @@ -141,12 +142,16 @@ struct mtk_pcie_port;
+>  /**
+>   * struct mtk_pcie_soc - differentiate between host generations
+>   * @need_fix_class_id: whether this host's class ID needed to be fixed or not
+> + * @need_fix_device_id: whether this host's Device ID needed to be fixed or not
+> + * @device_id: Device ID which this host need to be fixed
+>   * @ops: pointer to configuration access functions
+>   * @startup: pointer to controller setting functions
+>   * @setup_irq: pointer to initialize IRQ functions
+>   */
+>  struct mtk_pcie_soc {
+>  	bool need_fix_class_id;
+> +	bool need_fix_device_id;
+> +	unsigned int device_id;
+>  	struct pci_ops *ops;
+>  	int (*startup)(struct mtk_pcie_port *port);
+>  	int (*setup_irq)(struct mtk_pcie_port *port, struct device_node *node);
+> @@ -696,6 +701,9 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+>  		writew(val, port->base + PCIE_CONF_CLASS_ID);
+>  	}
+>  
+> +	if (soc->need_fix_device_id)
+> +		writew(soc->device_id, port->base + PCIE_CONF_DEVICE_ID);
+> +
+>  	/* 100ms timeout value should be enough for Gen1/2 training */
+>  	err = readl_poll_timeout(port->base + PCIE_LINK_STATUS_V2, val,
+>  				 !!(val & PCIE_PORT_LINKUP_V2), 20,
+> @@ -1216,11 +1224,21 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt7622 = {
+>  	.setup_irq = mtk_pcie_setup_irq,
+>  };
+>  
+> +static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
+> +	.need_fix_class_id = true,
+> +	.need_fix_device_id = true,
+> +	.device_id = PCI_DEVICE_ID_MEDIATEK_7629,
+> +	.ops = &mtk_pcie_ops_v2,
+> +	.startup = mtk_pcie_startup_port_v2,
+> +	.setup_irq = mtk_pcie_setup_irq,
+> +};
+> +
+>  static const struct of_device_id mtk_pcie_ids[] = {
+>  	{ .compatible = "mediatek,mt2701-pcie", .data = &mtk_pcie_soc_v1 },
+>  	{ .compatible = "mediatek,mt7623-pcie", .data = &mtk_pcie_soc_v1 },
+>  	{ .compatible = "mediatek,mt2712-pcie", .data = &mtk_pcie_soc_mt2712 },
+>  	{ .compatible = "mediatek,mt7622-pcie", .data = &mtk_pcie_soc_mt7622 },
+> +	{ .compatible = "mediatek,mt7629-pcie", .data = &mtk_pcie_soc_mt7629 },
+>  	{},
+>  };
+>  
+> diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
+> index 70e86148cb1e..aa32962759b2 100644
+> --- a/include/linux/pci_ids.h
+> +++ b/include/linux/pci_ids.h
+> @@ -2131,6 +2131,7 @@
+>  #define PCI_VENDOR_ID_MYRICOM		0x14c1
+>  
+>  #define PCI_VENDOR_ID_MEDIATEK		0x14c3
+> +#define PCI_DEVICE_ID_MEDIATEK_7629	0x7629
+>  
+>  #define PCI_VENDOR_ID_TITAN		0x14D2
+>  #define PCI_DEVICE_ID_TITAN_010L	0x8001
 
-Ok. Applied on stm32-next.
+Hi Bjorn & Lorenzo,
 
-Regards
-Alex
+Is this patch ok or is there anything I need to fixed?
+
+Thanks.
+
 
