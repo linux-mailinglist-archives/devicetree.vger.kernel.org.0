@@ -2,222 +2,172 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 828A479C2A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 00:05:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1032C79C38
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 00:11:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729157AbfG2WEy convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Jul 2019 18:04:54 -0400
-Received: from mailoutvs39.siol.net ([185.57.226.230]:34773 "EHLO
-        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1728032AbfG2WEy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 18:04:54 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by mail.siol.net (Zimbra) with ESMTP id 490F8522CFE;
-        Tue, 30 Jul 2019 00:04:49 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
-Received: from mail.siol.net ([127.0.0.1])
-        by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id WKzvpPpu-wT9; Tue, 30 Jul 2019 00:04:48 +0200 (CEST)
-Received: from mail.siol.net (localhost [127.0.0.1])
-        by mail.siol.net (Zimbra) with ESMTPS id 923D1522CD2;
-        Tue, 30 Jul 2019 00:04:48 +0200 (CEST)
-Received: from jernej-laptop.localnet (cpe-194-152-11-237.cable.triera.net [194.152.11.237])
-        (Authenticated sender: jernej.skrabec@siol.net)
-        by mail.siol.net (Zimbra) with ESMTPA id DCAB5522CFE;
-        Tue, 30 Jul 2019 00:04:47 +0200 (CEST)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
-To:     Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-Cc:     linux-sunxi@googlegroups.com, Chen-Yu Tsai <wens@csie.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Maxime Ripard <mripard@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        kernel@pengutronix.de,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [linux-sunxi] Re: [PATCH 4/6] pwm: sun4i: Add support for H6 PWM
-Date:   Tue, 30 Jul 2019 00:04:47 +0200
-Message-ID: <2452836.v7ux4bnEjb@jernej-laptop>
-In-Reply-To: <20190729185108.tpilwoooxvi2z72e@pengutronix.de>
-References: <20190726184045.14669-1-jernej.skrabec@siol.net> <173825848.1FZsmuHfpq@jernej-laptop> <20190729185108.tpilwoooxvi2z72e@pengutronix.de>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
+        id S1729705AbfG2WLH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 18:11:07 -0400
+Received: from mail-vk1-f202.google.com ([209.85.221.202]:41925 "EHLO
+        mail-vk1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728470AbfG2WLG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 18:11:06 -0400
+Received: by mail-vk1-f202.google.com with SMTP id r4so27002637vkr.8
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 15:11:06 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=J/HMClv+Qs0qZrH9UG+BYxmogIYQGmmSIGEo1BZEiYc=;
+        b=KWJm69CueVQLRyf5hIJOJ/XbzHZbr9DgW2lgzu/UitcF10Bt8wV2n9G7RGNm0YBk2j
+         R2PcEYmPf6FybYk8NkKraE/JYMPPWJXUK1hizVgep8AvTqB89d2sfeTzRhsWQiq+CNIB
+         K1i+cGKmGlYzBYWuwNfUQspS3ZqjeNPX5+b85LTb8pvKEWvkc3ScwKMgiI7O/HoKn4WH
+         Ye3EH5Cu66G9d36ZftAv+w21d5zUS+CEon6Ttk1z/RQO1QNPl95/lFYx5HhrWwAO0GNS
+         1ldXPKJ35jztl6THPMExgFu7zqUIgm0dCzhw+o1GxNe4OHvFdx6voT6Bmk+AoHM+HCRo
+         Gz3w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=J/HMClv+Qs0qZrH9UG+BYxmogIYQGmmSIGEo1BZEiYc=;
+        b=bKECNFR+i4pS/ys5NM3qPt0mqCbPgQL0BvbdUL3JSDCN1QX/C5AoV7i2mdyZwOOI9Y
+         3oKf8S+WABd4vsXUsvOiiZkJR2jTq82KcPZ+KBOvhHsLRL9T1BWFpXdccWWQrj/nLb/F
+         E3bePOAkSbA4qoi23yNZursIb83KPtAAllazNuNtTIrxqVQOHlYFGbLJLxYIzHW9/NL6
+         9WD9rOOEvBfir8/KIJ+oSLKKXg5U+gqzUfv8mbwVbHi5Wa5LDmqxpQyJv/qh5chkPs0f
+         UJjFkTV0VitViFoMPrCNd9XUbsf7CgNOlgVfvK0z/rTSOQfadnrEdXS3lDa9b8be4Btn
+         G/Zw==
+X-Gm-Message-State: APjAAAWLlHfyEPX1An9IJDqHSjxuFuEb42ZH9rZoKd9MxVizPtEMdnGE
+        4+4pEwwQBEpvs3EpC1rtHznLYWtt0NkJjiI=
+X-Google-Smtp-Source: APXvYqz1+OixMzZgXRLKjvjE7/CpPTIa6dEjtH4f1jMfEF7N/JxANYKuVQzddzc8XiVJgQ3n99c6Sf3KFoK+R7Q=
+X-Received: by 2002:ab0:4307:: with SMTP id k7mr3628736uak.45.1564438265657;
+ Mon, 29 Jul 2019 15:11:05 -0700 (PDT)
+Date:   Mon, 29 Jul 2019 15:10:54 -0700
+Message-Id: <20190729221101.228240-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.22.0.709.g102302147b-goog
+Subject: [PATCH v8 0/7] Solve postboot supplier cleanup and optimize probe ordering
+From:   Saravana Kannan <saravanak@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Saravana Kannan <saravanak@google.com>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        David Collins <collinsd@codeaurora.org>,
+        kernel-team@android.com
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne ponedeljek, 29. julij 2019 ob 20:51:08 CEST je Uwe Kleine-König 
-napisal(a):
-> On Mon, Jul 29, 2019 at 08:46:25PM +0200, Jernej Škrabec wrote:
-> > Dne ponedeljek, 29. julij 2019 ob 20:40:41 CEST je Uwe Kleine-König
-> > 
-> > napisal(a):
-> > > On Mon, Jul 29, 2019 at 06:40:15PM +0200, Jernej Škrabec wrote:
-> > > > Dne ponedeljek, 29. julij 2019 ob 18:24:28 CEST je Uwe Kleine-König
-> > > > 
-> > > > napisal(a):
-> > > > > Hello,
-> > > > > 
-> > > > > On Tue, Jul 30, 2019 at 12:09:40AM +0800, Chen-Yu Tsai wrote:
-> > > > > > On Tue, Jul 30, 2019 at 12:07 AM Uwe Kleine-König
-> > > > > > 
-> > > > > > <u.kleine-koenig@pengutronix.de> wrote:
-> > > > > > > On Mon, Jul 29, 2019 at 05:55:52PM +0200, Jernej Škrabec wrote:
-> > > > > > > > Dne ponedeljek, 29. julij 2019 ob 08:40:30 CEST je Uwe
-> > > > > > > > Kleine-König
-> > > > > > > > 
-> > > > > > > > napisal(a):
-> > > > > > > > > On Fri, Jul 26, 2019 at 08:40:43PM +0200, Jernej Skrabec 
-wrote:
-> > > > > > > > > > --- a/drivers/pwm/pwm-sun4i.c
-> > > > > > > > > > +++ b/drivers/pwm/pwm-sun4i.c
-> > > > > > > > > > @@ -331,6 +331,13 @@ static const struct sun4i_pwm_data
-> > > > > > > > > > sun4i_pwm_single_bypass = {>
-> > > > > > > > > > 
-> > > > > > > > > >   .npwm = 1,
-> > > > > > > > > >  
-> > > > > > > > > >  };
-> > > > > > > > > > 
-> > > > > > > > > > +static const struct sun4i_pwm_data
-> > > > > > > > > > sun50i_pwm_dual_bypass_clk_rst
-> > > > > > > > > > = {
-> > > > > > > > > > + .has_bus_clock = true,
-> > > > > > > > > > + .has_prescaler_bypass = true,
-> > > > > > > > > > + .has_reset = true,
-> > > > > > > > > > + .npwm = 2,
-> > > > > > > > > > +};
-> > > > > > > > > > +
-> > > > > > > > > > 
-> > > > > > > > > >  static const struct of_device_id sun4i_pwm_dt_ids[] = {
-> > > > > > > > > >  
-> > > > > > > > > >   {
-> > > > > > > > > >   
-> > > > > > > > > >           .compatible = "allwinner,sun4i-a10-pwm",
-> > > > > > > > > > 
-> > > > > > > > > > @@ -347,6 +354,9 @@ static const struct of_device_id
-> > > > > > > > > > sun4i_pwm_dt_ids[] =
-> > > > > > > > > > {
-> > > > > > > > > > 
-> > > > > > > > > >   }, {
-> > > > > > > > > >   
-> > > > > > > > > >           .compatible = "allwinner,sun8i-h3-pwm",
-> > > > > > > > > >           .data = &sun4i_pwm_single_bypass,
-> > > > > > > > > > 
-> > > > > > > > > > + }, {
-> > > > > > > > > > +         .compatible = "allwinner,sun50i-h6-pwm",
-> > > > > > > > > > +         .data = &sun50i_pwm_dual_bypass_clk_rst,
-> > > > > > > > > 
-> > > > > > > > > If you follow my suggestion for the two previous patches,
-> > > > > > > > > you
-> > > > > > > > > can
-> > > > > > > > > just
-> > > > > > > > > 
-> > > > > > > > > use:
-> > > > > > > > >     compatible = "allwinner,sun50i-h6-pwm",
-> > > > > > > > >     "allwinner,sun5i-a10s-pwm";
-> > > > > > > > > 
-> > > > > > > > > and drop this patch.
-> > > > > > > > 
-> > > > > > > > Maxime found out that it's not compatible with A10s due to
-> > > > > > > > difference
-> > > > > > > > in bypass bit, but yes, I know what you mean.
-> > > > > > > > 
-> > > > > > > > Since H6 requires reset line and bus clock to be specified,
-> > > > > > > > it's
-> > > > > > > > not
-> > > > > > > > compatible from DT binding side. New yaml based binding must
-> > > > > > > > somehow
-> > > > > > > > know that in order to be able to validate DT node, so it needs
-> > > > > > > > standalone compatible. However, depending on conclusions of
-> > > > > > > > other
-> > > > > > > > discussions, this new compatible can be associated with
-> > > > > > > > already
-> > > > > > > > available quirks structure or have it's own.> >
-> > > > > > > 
-> > > > > > > I cannot follow. You should be able to specify in the binding
-> > > > > > > that
-> > > > > > > the
-> > > > > > > reset line and bus clock is optional. Then
-> > > > > > > allwinner,sun50i-h6-pwm
-> > > > > > > without a reset line and bus clock also verifies, but this
-> > > > > > > doesn't
-> > > > > > > really hurt (and who knows, maybe the next allwinner chip needs
-> > > > > > > exactly
-> > > > > > > this).
-> > > > > > 
-> > > > > > It is not optional. It will not work if either the clocks or reset
-> > > > > > controls
-> > > > > > are missing. How would these be optional anyway? Either it's
-> > > > > > connected
-> > > > > > and
-> > > > > > thus required, or it's not and therefore should be omitted from
-> > > > > > the
-> > > > > > description.
-> > > > > 
-> > > > > [Just arguing about the clock here, the argumentation is analogous
-> > > > > for
-> > > > > the reset control.]
-> > > > > 
-> > > > > From the driver's perspective it's optional: There are devices with
-> > > > > and
-> > > > > without a bus clock. This doesn't mean that you can just ignore this
-> > > > > clock if it's specified. It's optional in the sense "If dt doesn't
-> > > > > specify it, then assume this is a device that doesn't have it and so
-> > > > > you
-> > > > > don't need to handle it." but not in the sense "it doesn't matter if
-> > > > > you handle it or not.".
-> > > > > 
-> > > > > Other than that I'm on your side. So for example I think it's not
-> > > > > optimal that gpiod_get_optional returns NULL if GPIOLIB=n or that
-> > > > > devm_reset_control_get_optional returns NULL if RESET_CONTROLLER=n
-> > > > > because this hides exactly the kind of problem you point out here.
-> > > > 
-> > > > I think there's misunderstanding. I only argued that we can't use
-> > > > 
-> > > > compatible = "allwinner,sun50i-h6-pwm",
-> > > > 
-> > > > 	 "allwinner,sun5i-a10s-pwm";
-> > > > 
-> > > > as you suggested and only
-> > > > 
-> > > > compatible = "allwinner,sun50i-h6-pwm";
-> > > > 
-> > > > will work. Not because of driver itself (it can still use _optional()
-> > > > variants), but because of DT binding, which should be able to validate
-> > > > H6
-> > > > PWM node - reset and bus clock references are required in this case.
-> > > 
-> > > I think I understood. In my eyes there is no need to let validation of
-> > > the DT bindings catch a missing "optional" property that is needed on
-> > > H6.
-> > > 
-> > > You have to draw the line somewhere which information the driver has
-> > > hard-coded and what is only provided by the device tree and just assumed
-> > > to be correct by the driver. You argue the driver should know that
-> > 
-> > No, in this thread I argue that DT validation tool, executed by
-> > 
-> > make ARCH=arm64 dtbs_check
-> > 
-> > should catch that. This is not a driver, but DT binding described in YAML.
-> 
-> The argumentation is the same. dtbs_check doesn't notice if the base
-> address of your "allwinner,sun50i-h6-pwm" device is wrong. So why should
-> it catch a missing reset controller phandle?
+Add device-links to track functional dependencies between devices
+after they are created (but before they are probed) by looking at
+their common DT bindings like clocks, interconnects, etc.
 
-Of course checking actual values of node properties doesn't make sense in 
-dtbs_check, otherwise we would have million DT bindings. If you have 10 copies 
-of the same IP core, of course you would use same compatible, but actual 
-register ranges, interrupts, etc. would be different in DT nodes.
+Having functional dependencies automatically added before the devices
+are probed, provides the following benefits:
 
-At this point I would make same argument as were made before, but there is no 
-point going in circles. I'm interested what have DT maintainers to say.
+- Optimizes device probe order and avoids the useless work of
+  attempting probes of devices that will not probe successfully
+  (because their suppliers aren't present or haven't probed yet).
 
-Best regards,
-Jernej
+  For example, in a commonly available mobile SoC, registering just
+  one consumer device's driver at an initcall level earlier than the
+  supplier device's driver causes 11 failed probe attempts before the
+  consumer device probes successfully. This was with a kernel with all
+  the drivers statically compiled in. This problem gets a lot worse if
+  all the drivers are loaded as modules without direct symbol
+  dependencies.
 
+- Supplier devices like clock providers, interconnect providers, etc
+  need to keep the resources they provide active and at a particular
+  state(s) during boot up even if their current set of consumers don't
+  request the resource to be active. This is because the rest of the
+  consumers might not have probed yet and turning off the resource
+  before all the consumers have probed could lead to a hang or
+  undesired user experience.
+
+  Some frameworks (Eg: regulator) handle this today by turning off
+  "unused" resources at late_initcall_sync and hoping all the devices
+  have probed by then. This is not a valid assumption for systems with
+  loadable modules. Other frameworks (Eg: clock) just don't handle
+  this due to the lack of a clear signal for when they can turn off
+  resources. This leads to downstream hacks to handle cases like this
+  that can easily be solved in the upstream kernel.
+
+  By linking devices before they are probed, we give suppliers a clear
+  count of the number of dependent consumers. Once all of the
+  consumers are active, the suppliers can turn off the unused
+  resources without making assumptions about the number of consumers.
+
+By default we just add device-links to track "driver presence" (probe
+succeeded) of the supplier device. If any other functionality provided
+by device-links are needed, it is left to the consumer/supplier
+devices to change the link when they probe.
+
+v1 -> v2:
+- Drop patch to speed up of_find_device_by_node()
+- Drop depends-on property and use existing bindings
+
+v2 -> v3:
+- Refactor the code to have driver core initiate the linking of devs
+- Have driver core link consumers to supplier before it's probed
+- Add support for drivers to edit the device links before probing
+
+v3 -> v4:
+- Tested edit_links() on system with cyclic dependency. Works.
+- Added some checks to make sure device link isn't attempted from
+  parent device node to child device node.
+- Added way to pause/resume sync_state callbacks across
+  of_platform_populate().
+- Recursively parse DT node to create device links from parent to
+  suppliers of parent and all child nodes.
+
+v4 -> v5:
+- Fixed copy-pasta bugs with linked list handling
+- Walk up the phandle reference till I find an actual device (needed
+  for regulators to work)
+- Added support for linking devices from regulator DT bindings
+- Tested the whole series again to make sure cyclic dependencies are
+  broken with edit_links() and regulator links are created properly.
+
+v5 -> v6:
+- Split, squashed and reordered some of the patches.
+- Refactored the device linking code to follow the same code pattern for
+  any property.
+
+v6 -> v7:
+- No functional changes.
+- Renamed i to index
+- Added comment to clarify not having to check property name for every
+  index
+- Added "matched" variable to clarify code. No functional change.
+- Added comments to include/linux/device.h for add_links()
+
+v7 -> v8:
+- Rebased on top of linux-next to handle device link changes in [1]
+
+[1] - https://lore.kernel.org/lkml/2305283.AStDPdUUnE@kreacher/
+
+-Saravana
+
+
+Saravana Kannan (7):
+  driver core: Add support for linking devices during device addition
+  driver core: Add edit_links() callback for drivers
+  of/platform: Add functional dependency link from DT bindings
+  driver core: Add sync_state driver/bus callback
+  of/platform: Pause/resume sync state during init and
+    of_platform_populate()
+  of/platform: Create device links for all child-supplier depencencies
+  of/platform: Don't create device links for default busses
+
+ .../admin-guide/kernel-parameters.txt         |   5 +
+ drivers/base/core.c                           | 168 ++++++++++++++++
+ drivers/base/dd.c                             |  29 +++
+ drivers/of/platform.c                         | 189 ++++++++++++++++++
+ include/linux/device.h                        |  55 +++++
+ 5 files changed, 446 insertions(+)
+
+-- 
+2.22.0.709.g102302147b-goog
 
