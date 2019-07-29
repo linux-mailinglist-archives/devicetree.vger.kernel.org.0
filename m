@@ -2,81 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B28337876A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 10:32:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E19C7787BF
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 10:49:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727243AbfG2IcI convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Jul 2019 04:32:08 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:35984 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726810AbfG2IcH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 04:32:07 -0400
-Received: by mail-wm1-f67.google.com with SMTP id g67so48511780wme.1;
-        Mon, 29 Jul 2019 01:32:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=0AEuwjUbA2WWjmfEUB61BWLIevtOs5YQ5R/vw1LG+ec=;
-        b=Wxv0e4Ctj34QIiolH1MA5Aj8YtjacEMpUchd/8W/2BTLO8WRWGBo+w/Vx2UDifzE/Q
-         V3BA0ndQkVSrkogq3irEtv8cHAaWi/xRdYrh/VjHrvBJXYoJu3a6m+hJkUxPGdgz1jD3
-         c3S/Al0K4HVld1wISxMgD6MKLBTRa19nWS1gEx94sqAlJ2TqWUyTABPxvJANbSBsp2Jt
-         UGNiWSuWU5z2Gl2+OiYogMGj4Ww8udYZLEFOUVpjQmYPPdxYTPee/29N/vWn0Jy91S/7
-         WBMUNlGqGdkqGJf8HZ8vPvQHBqYDLJQl7eF8HncBfKKbnzGTf3FRHEfXGGEAEZiGCzui
-         pHaQ==
-X-Gm-Message-State: APjAAAU7QF7NySDbRSbczoyMaOIoYSFOA7q2cXCqLM/jcEiwRNs+I+pf
-        vg/2aHM1g1o7Kc44csHEedv098BoS72MYjr172JJ0g==
-X-Google-Smtp-Source: APXvYqyYSyPIpspu1jeNNlQcyFUH0rozyhJBU8SsP7iQuajgts+eEhWZ7kOGvJ8pFQoiBP2nLuZI5T3rOpvFKPh75v8=
-X-Received: by 2002:a1c:1f4e:: with SMTP id f75mr95842692wmf.137.1564389124619;
- Mon, 29 Jul 2019 01:32:04 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190729074757.9581-1-horms+renesas@verge.net.au>
-In-Reply-To: <20190729074757.9581-1-horms+renesas@verge.net.au>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 29 Jul 2019 10:31:52 +0200
-Message-ID: <CAMuHMdUkogXnd6_H_q=STyVS0zxpKYif_iJH0pw753onCeU3gw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: rcar-imr: Rename bindings documentation file
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        id S1727681AbfG2Ist (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 04:48:49 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:43186 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727109AbfG2Ist (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 04:48:49 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 1B865201492;
+        Mon, 29 Jul 2019 10:48:47 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3EB2C20149E;
+        Mon, 29 Jul 2019 10:48:42 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 0E185402E8;
+        Mon, 29 Jul 2019 16:48:35 +0800 (SGT)
+From:   Anson.Huang@nxp.com
+To:     rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+Subject: [PATCH V2 1/4] thermal: qoriq: Use devm_platform_ioremap_resource() instead of of_iomap()
+Date:   Mon, 29 Jul 2019 16:39:12 +0800
+Message-Id: <20190729083915.4855-1-Anson.Huang@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 9:48 AM Simon Horman <horms+renesas@verge.net.au> wrote:
-> Renesas media binding documentation files uses a naming schema of
+From: Anson Huang <Anson.Huang@nxp.com>
 
-use
+Use devm_platform_ioremap_resource() instead of of_iomap() to
+save the iounmap() call in error handle path;
 
-> 'renesas,<module>.txt'. Rename IMR file to match this pattern.
+Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+---
+No changes.
+---
+ drivers/thermal/qoriq_thermal.c | 18 ++++++------------
+ 1 file changed, 6 insertions(+), 12 deletions(-)
 
-the IMR file?
-
->
-> Cc: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/drivers/thermal/qoriq_thermal.c b/drivers/thermal/qoriq_thermal.c
+index 7b36493..c7c7de2 100644
+--- a/drivers/thermal/qoriq_thermal.c
++++ b/drivers/thermal/qoriq_thermal.c
+@@ -202,32 +202,27 @@ static int qoriq_tmu_probe(struct platform_device *pdev)
+ 
+ 	data->little_endian = of_property_read_bool(np, "little-endian");
+ 
+-	data->regs = of_iomap(np, 0);
+-	if (!data->regs) {
++	data->regs = devm_platform_ioremap_resource(pdev, 0);
++	if (IS_ERR(data->regs)) {
+ 		dev_err(&pdev->dev, "Failed to get memory region\n");
+-		ret = -ENODEV;
+-		goto err_iomap;
++		return PTR_ERR(data->regs);
+ 	}
+ 
+ 	qoriq_tmu_init_device(data);	/* TMU initialization */
+ 
+ 	ret = qoriq_tmu_calibration(pdev);	/* TMU calibration */
+ 	if (ret < 0)
+-		goto err_tmu;
++		goto err;
+ 
+ 	ret = qoriq_tmu_register_tmu_zone(pdev);
+ 	if (ret < 0) {
+ 		dev_err(&pdev->dev, "Failed to register sensors\n");
+-		ret = -ENODEV;
+-		goto err_iomap;
++		goto err;
+ 	}
+ 
+ 	return 0;
+ 
+-err_tmu:
+-	iounmap(data->regs);
+-
+-err_iomap:
++err:
+ 	platform_set_drvdata(pdev, NULL);
+ 
+ 	return ret;
+@@ -240,7 +235,6 @@ static int qoriq_tmu_remove(struct platform_device *pdev)
+ 	/* Disable monitoring */
+ 	tmu_write(data, TMR_DISABLE, &data->regs->tmr);
+ 
+-	iounmap(data->regs);
+ 	platform_set_drvdata(pdev, NULL);
+ 
+ 	return 0;
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.7.4
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
