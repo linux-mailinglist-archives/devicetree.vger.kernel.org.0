@@ -2,88 +2,222 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F43779BA5
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 23:57:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 828A479C2A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 00:05:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387534AbfG2V5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 17:57:31 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:42777 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726704AbfG2V5a (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 17:57:30 -0400
-Received: by mail-lf1-f67.google.com with SMTP id s19so43148483lfb.9
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 14:57:29 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=WhB+RZ2P4weNNxlV3JiaH27Cy16VoQbodVkM+yi6FAA=;
-        b=sVE9zpEAJSM4jgNF+JxW1v7N1fcEZmKVkBwXW6KNsVWmVQFLHqD9d+xWPT9I2jAv7d
-         TWVaNyRqpnOg3/0m2gk7Ch7jfca9Jh7XmgTvTp/mhbO/osy8RPidS52ZbciVLnLEwdVN
-         13aomLVoHqKP8mi75hzRriyJh55sc4+nlArQq/OmMsDigdVM12/m5kKoc0QeQ0A/N+rn
-         uT5q2dRFCTZxrWDs9LEKNvSy227d40I8Q4tKWwgJf09KBFWvYLj22dKO7HSBJthn38/j
-         qYBSQpexpirObv7xVzyDVw0nZYVjTHFYX1mCs0JG/ZipMEBdkq6//TrU3cy7vGuxUxj1
-         Nt8w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=WhB+RZ2P4weNNxlV3JiaH27Cy16VoQbodVkM+yi6FAA=;
-        b=VICXTAPsSO8CdXXpXQhl8twdAKBxv/eHjPqM6Ecj6MSG7sD+P9btpW3JcrO8yB1pGq
-         WWWzZTdR17kxXbpIUIXQ+LdVlDy0mqa9tUEb0+LmZeuDVzSl0wb2bqxvS/RCmwakJnzc
-         kQYu5n1RgM3KoJ65H8A7hanqr1I6cOGI/jmWq17XF8LMpQQ3AFaiZe5MUUS+Q4JZcdTu
-         Yf5klPASSWAl/Nksquy/yc98L4R+ivDsJWRKNDP2MzuuWJSjJHZy9cBssV4MnlLM0Qdg
-         RBhSu4NCbGsQkpckTLhtl15MH9A3NVizV/Bgz6b2KejXVOstGJMGz9PbAz6T/xZxKXs5
-         xMgQ==
-X-Gm-Message-State: APjAAAVWj6JyWT8UFfD9v7xBVR7net3h/wLvffrHFxcjByWzAP6IMWO4
-        lMPg2CdHV6n+Qq95GoYwX7r9togtyeKX9kQ5u/esmA==
-X-Google-Smtp-Source: APXvYqyBnwkv1VRTZGXZco57yirARpTFLPJRJ/RvgElvK8IXTHcFCH30jet7L01e4aA0VROLzr8OPXOGn2X/EdVc1D0=
-X-Received: by 2002:ac2:4891:: with SMTP id x17mr54444437lfc.60.1564437448905;
- Mon, 29 Jul 2019 14:57:28 -0700 (PDT)
-MIME-Version: 1.0
-References: <1563564291-9692-1-git-send-email-hongweiz@ami.com>
- <1563564291-9692-2-git-send-email-hongweiz@ami.com> <CACRpkdYhVoP75ZDfASW+DH5yf-a5diitiXsh7eLsJx5hsTC9sQ@mail.gmail.com>
- <ef9d9c17-6e2d-4a4e-ac44-f8da4bb3b8eb@www.fastmail.com> <CACRpkdZxsF9gQj0VicVLsPKXg6rKA1mLwbywmazOf0w8PLnOfA@mail.gmail.com>
- <f2875111-9ba9-43b7-b2a4-d00c8725f5a0@www.fastmail.com>
-In-Reply-To: <f2875111-9ba9-43b7-b2a4-d00c8725f5a0@www.fastmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 29 Jul 2019 23:57:16 +0200
-Message-ID: <CACRpkdZcLNe+oM1jWPpva0LECc-P48ab3H-kG7eabMmSvmvioA@mail.gmail.com>
-Subject: Re: [v5 1/2] dt-bindings: gpio: aspeed: Add SGPIO support
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     Hongwei Zhang <hongweiz@ami.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Joel Stanley <joel@jms.id.au>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        id S1729157AbfG2WEy convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Jul 2019 18:04:54 -0400
+Received: from mailoutvs39.siol.net ([185.57.226.230]:34773 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728032AbfG2WEy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 18:04:54 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Zimbra) with ESMTP id 490F8522CFE;
+        Tue, 30 Jul 2019 00:04:49 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id WKzvpPpu-wT9; Tue, 30 Jul 2019 00:04:48 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Zimbra) with ESMTPS id 923D1522CD2;
+        Tue, 30 Jul 2019 00:04:48 +0200 (CEST)
+Received: from jernej-laptop.localnet (cpe-194-152-11-237.cable.triera.net [194.152.11.237])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Zimbra) with ESMTPA id DCAB5522CFE;
+        Tue, 30 Jul 2019 00:04:47 +0200 (CEST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Uwe =?ISO-8859-1?Q?Kleine=2DK=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     linux-sunxi@googlegroups.com, Chen-Yu Tsai <wens@csie.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>
+        Thierry Reding <thierry.reding@gmail.com>,
+        kernel@pengutronix.de,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [linux-sunxi] Re: [PATCH 4/6] pwm: sun4i: Add support for H6 PWM
+Date:   Tue, 30 Jul 2019 00:04:47 +0200
+Message-ID: <2452836.v7ux4bnEjb@jernej-laptop>
+In-Reply-To: <20190729185108.tpilwoooxvi2z72e@pengutronix.de>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net> <173825848.1FZsmuHfpq@jernej-laptop> <20190729185108.tpilwoooxvi2z72e@pengutronix.de>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8BIT
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 2:19 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+Dne ponedeljek, 29. julij 2019 ob 20:51:08 CEST je Uwe Kleine-König 
+napisal(a):
+> On Mon, Jul 29, 2019 at 08:46:25PM +0200, Jernej Škrabec wrote:
+> > Dne ponedeljek, 29. julij 2019 ob 20:40:41 CEST je Uwe Kleine-König
+> > 
+> > napisal(a):
+> > > On Mon, Jul 29, 2019 at 06:40:15PM +0200, Jernej Škrabec wrote:
+> > > > Dne ponedeljek, 29. julij 2019 ob 18:24:28 CEST je Uwe Kleine-König
+> > > > 
+> > > > napisal(a):
+> > > > > Hello,
+> > > > > 
+> > > > > On Tue, Jul 30, 2019 at 12:09:40AM +0800, Chen-Yu Tsai wrote:
+> > > > > > On Tue, Jul 30, 2019 at 12:07 AM Uwe Kleine-König
+> > > > > > 
+> > > > > > <u.kleine-koenig@pengutronix.de> wrote:
+> > > > > > > On Mon, Jul 29, 2019 at 05:55:52PM +0200, Jernej Škrabec wrote:
+> > > > > > > > Dne ponedeljek, 29. julij 2019 ob 08:40:30 CEST je Uwe
+> > > > > > > > Kleine-König
+> > > > > > > > 
+> > > > > > > > napisal(a):
+> > > > > > > > > On Fri, Jul 26, 2019 at 08:40:43PM +0200, Jernej Skrabec 
+wrote:
+> > > > > > > > > > --- a/drivers/pwm/pwm-sun4i.c
+> > > > > > > > > > +++ b/drivers/pwm/pwm-sun4i.c
+> > > > > > > > > > @@ -331,6 +331,13 @@ static const struct sun4i_pwm_data
+> > > > > > > > > > sun4i_pwm_single_bypass = {>
+> > > > > > > > > > 
+> > > > > > > > > >   .npwm = 1,
+> > > > > > > > > >  
+> > > > > > > > > >  };
+> > > > > > > > > > 
+> > > > > > > > > > +static const struct sun4i_pwm_data
+> > > > > > > > > > sun50i_pwm_dual_bypass_clk_rst
+> > > > > > > > > > = {
+> > > > > > > > > > + .has_bus_clock = true,
+> > > > > > > > > > + .has_prescaler_bypass = true,
+> > > > > > > > > > + .has_reset = true,
+> > > > > > > > > > + .npwm = 2,
+> > > > > > > > > > +};
+> > > > > > > > > > +
+> > > > > > > > > > 
+> > > > > > > > > >  static const struct of_device_id sun4i_pwm_dt_ids[] = {
+> > > > > > > > > >  
+> > > > > > > > > >   {
+> > > > > > > > > >   
+> > > > > > > > > >           .compatible = "allwinner,sun4i-a10-pwm",
+> > > > > > > > > > 
+> > > > > > > > > > @@ -347,6 +354,9 @@ static const struct of_device_id
+> > > > > > > > > > sun4i_pwm_dt_ids[] =
+> > > > > > > > > > {
+> > > > > > > > > > 
+> > > > > > > > > >   }, {
+> > > > > > > > > >   
+> > > > > > > > > >           .compatible = "allwinner,sun8i-h3-pwm",
+> > > > > > > > > >           .data = &sun4i_pwm_single_bypass,
+> > > > > > > > > > 
+> > > > > > > > > > + }, {
+> > > > > > > > > > +         .compatible = "allwinner,sun50i-h6-pwm",
+> > > > > > > > > > +         .data = &sun50i_pwm_dual_bypass_clk_rst,
+> > > > > > > > > 
+> > > > > > > > > If you follow my suggestion for the two previous patches,
+> > > > > > > > > you
+> > > > > > > > > can
+> > > > > > > > > just
+> > > > > > > > > 
+> > > > > > > > > use:
+> > > > > > > > >     compatible = "allwinner,sun50i-h6-pwm",
+> > > > > > > > >     "allwinner,sun5i-a10s-pwm";
+> > > > > > > > > 
+> > > > > > > > > and drop this patch.
+> > > > > > > > 
+> > > > > > > > Maxime found out that it's not compatible with A10s due to
+> > > > > > > > difference
+> > > > > > > > in bypass bit, but yes, I know what you mean.
+> > > > > > > > 
+> > > > > > > > Since H6 requires reset line and bus clock to be specified,
+> > > > > > > > it's
+> > > > > > > > not
+> > > > > > > > compatible from DT binding side. New yaml based binding must
+> > > > > > > > somehow
+> > > > > > > > know that in order to be able to validate DT node, so it needs
+> > > > > > > > standalone compatible. However, depending on conclusions of
+> > > > > > > > other
+> > > > > > > > discussions, this new compatible can be associated with
+> > > > > > > > already
+> > > > > > > > available quirks structure or have it's own.> >
+> > > > > > > 
+> > > > > > > I cannot follow. You should be able to specify in the binding
+> > > > > > > that
+> > > > > > > the
+> > > > > > > reset line and bus clock is optional. Then
+> > > > > > > allwinner,sun50i-h6-pwm
+> > > > > > > without a reset line and bus clock also verifies, but this
+> > > > > > > doesn't
+> > > > > > > really hurt (and who knows, maybe the next allwinner chip needs
+> > > > > > > exactly
+> > > > > > > this).
+> > > > > > 
+> > > > > > It is not optional. It will not work if either the clocks or reset
+> > > > > > controls
+> > > > > > are missing. How would these be optional anyway? Either it's
+> > > > > > connected
+> > > > > > and
+> > > > > > thus required, or it's not and therefore should be omitted from
+> > > > > > the
+> > > > > > description.
+> > > > > 
+> > > > > [Just arguing about the clock here, the argumentation is analogous
+> > > > > for
+> > > > > the reset control.]
+> > > > > 
+> > > > > From the driver's perspective it's optional: There are devices with
+> > > > > and
+> > > > > without a bus clock. This doesn't mean that you can just ignore this
+> > > > > clock if it's specified. It's optional in the sense "If dt doesn't
+> > > > > specify it, then assume this is a device that doesn't have it and so
+> > > > > you
+> > > > > don't need to handle it." but not in the sense "it doesn't matter if
+> > > > > you handle it or not.".
+> > > > > 
+> > > > > Other than that I'm on your side. So for example I think it's not
+> > > > > optimal that gpiod_get_optional returns NULL if GPIOLIB=n or that
+> > > > > devm_reset_control_get_optional returns NULL if RESET_CONTROLLER=n
+> > > > > because this hides exactly the kind of problem you point out here.
+> > > > 
+> > > > I think there's misunderstanding. I only argued that we can't use
+> > > > 
+> > > > compatible = "allwinner,sun50i-h6-pwm",
+> > > > 
+> > > > 	 "allwinner,sun5i-a10s-pwm";
+> > > > 
+> > > > as you suggested and only
+> > > > 
+> > > > compatible = "allwinner,sun50i-h6-pwm";
+> > > > 
+> > > > will work. Not because of driver itself (it can still use _optional()
+> > > > variants), but because of DT binding, which should be able to validate
+> > > > H6
+> > > > PWM node - reset and bus clock references are required in this case.
+> > > 
+> > > I think I understood. In my eyes there is no need to let validation of
+> > > the DT bindings catch a missing "optional" property that is needed on
+> > > H6.
+> > > 
+> > > You have to draw the line somewhere which information the driver has
+> > > hard-coded and what is only provided by the device tree and just assumed
+> > > to be correct by the driver. You argue the driver should know that
+> > 
+> > No, in this thread I argue that DT validation tool, executed by
+> > 
+> > make ARCH=arm64 dtbs_check
+> > 
+> > should catch that. This is not a driver, but DT binding described in YAML.
+> 
+> The argumentation is the same. dtbs_check doesn't notice if the base
+> address of your "allwinner,sun50i-h6-pwm" device is wrong. So why should
+> it catch a missing reset controller phandle?
 
-> The behaviour is to periodically emit the state of all enabled GPIOs
-> (i.e. the ngpios value), one per bus clock cycle. There's no explicit
-> addressing scheme, the protocol encodes the value for a given GPIO
-> by its position in the data stream relative to a pulse on the "load data"
-> (LD) line, whose envelope covers the clock cycle for the last GPIO in
-> the sequence. Similar to SPI the bus has both out and in lines, which
-> cater to output/input GPIOs.
->
-> A rough timing diagram for a 16-GPIO configuration looks like what
-> I've pasted here:
->
-> https://gist.github.com/amboar/c9543af1957854474b8c05ab357f0675
+Of course checking actual values of node properties doesn't make sense in 
+dtbs_check, otherwise we would have million DT bindings. If you have 10 copies 
+of the same IP core, of course you would use same compatible, but actual 
+register ranges, interrupts, etc. would be different in DT nodes.
 
-OK that is complex. I agree we need to keep this driver together.
+At this point I would make same argument as were made before, but there is no 
+point going in circles. I'm interested what have DT maintainers to say.
 
-Yours,
-Linus Walleij
+Best regards,
+Jernej
+
+
