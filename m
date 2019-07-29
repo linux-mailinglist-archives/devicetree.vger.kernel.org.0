@@ -2,100 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A503278A5E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 13:23:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 340C378AB5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 13:40:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387638AbfG2LXY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 07:23:24 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:44567 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387450AbfG2LXY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 07:23:24 -0400
-Received: by mail-wr1-f66.google.com with SMTP id p17so61392212wrf.11;
-        Mon, 29 Jul 2019 04:23:22 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=7FSTYRCDuN8ugCkUACc2sS4c/sxO9MPaWoEgh7iEEsE=;
-        b=bVgt5oMZu9vka1vXyxfezj5eUPF8tafHtuB8RDF5PL5XefOI5mn84bdcGgEYFQWdBD
-         v3/RzVElyj8HrIjajPHz9JfYqtYa1a1yA8hfjYuu81uuZW+L4M6UDlbC+97IeFIaW79S
-         VyfhVHIyNKEDN8aDRs1lSXylanKCL5tamDdd0LGZFSuGIdZhIA5YtQMSnnlPGOXYI+uB
-         otASFE6nLMIXfBJnLYqx5jtskcjMG1v7YFrGQrTtLxogh4D9ruZUok7QnLA9zT0nF3y9
-         Mad/lcbjmcAfGQ+6KgMGFjkt1CTbHPYd7gc6HCKZGD+kgkTJ+bsGFjbvG/audBf5AYAL
-         O2cQ==
+        id S2387777AbfG2Lj7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 07:39:59 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:34413 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387467AbfG2Lj6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 07:39:58 -0400
+Received: by mail-wr1-f67.google.com with SMTP id 31so61512700wrm.1;
+        Mon, 29 Jul 2019 04:39:56 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=7FSTYRCDuN8ugCkUACc2sS4c/sxO9MPaWoEgh7iEEsE=;
-        b=dMkc5k2gWxxoAQgaJU6mKcEv6bVxVspczfTKRuDOZ2NfcHG2MF4EsNUgmfIXE0XYw0
-         GLcr1SqxK+e8X0sDbobOIZ+z3aW+R7oiR7CAj30B04oMy6Qpw1SmOd3H/C/+Wcyj86ZW
-         ytXaMyoxqgYiEQ4AXmzBJ/cmtkKmlWGoFKgFJcXM1exRFaFI5J5niFkFDnMYji2+KOkJ
-         OX9PJ+D4oghLAOChwV+HiM/kc9MTHBLlnWnUXqWd08J06xloCZswIHcAaGRyTHFx5v6u
-         U44tQlgXG4+UY0ZkVbPpyy195BSP1G7YMF7534LCOm5Y2nPJrDg5HOa51dQLlZ0p8j7s
-         wC8Q==
-X-Gm-Message-State: APjAAAUETAvd7ZCTC+tqyM9seHLNOmA2xniwhgJq6rrqr7VZifwnd8IS
-        aslE1QdHMzRZhvcJQjU23W2k18oL5yHLJpIEPGY=
-X-Google-Smtp-Source: APXvYqyKS6i0fcHmOYx363DJnPTuu/xw0bA5xIlQXAB08qPtFUJYujyOTv9lxMWA//8NpJVOebpAE1xkHqBFV70jCHw=
-X-Received: by 2002:a5d:514f:: with SMTP id u15mr21122702wrt.183.1564399401730;
- Mon, 29 Jul 2019 04:23:21 -0700 (PDT)
+        bh=mtJdzbW3OOpjsEtmQxM3ki8nrSOXvXY0ubiY8BKmPl0=;
+        b=bDM6wAzqzUPDQPK1u8I5YAC+Elo8N8L8XcItoO58fuMCSb66b37k/KAqrQGoEDjtXD
+         M1B6lCHfiyTT3iNK7UAEav7yERU3tYcvKTeEIXuD+BmzqlfEg9Wxf7roe23J8bwgeEEF
+         k6/0OPubnZGt/WvGBxbOqF9GsN9b5UPdJ9kCPH0eqljdDM3wyyTGRFuPEYnI6EAUa/f6
+         1Q250Pdotgq5GLq3ToUqTGJy9GOx6yKosWeRag/PnTQYtPYByK/V1H5pZ/g5/9N/P3xk
+         lmCKkcp4m9Xq30YJLB8n15MMmH2y5QldUEjl8V6sHlNPa2ugycRflbzhYZcrAPw7PIIi
+         jQ+Q==
+X-Gm-Message-State: APjAAAUm5mrrUffKUY9Bfo1JXqXFqLJs9oaGMUn7ZaWAIRsLfRXKExcG
+        LTYF59O6XOvlsknxbx/AiMeO4ry1u8z7TTzWelA=
+X-Google-Smtp-Source: APXvYqwsv0EP2D3Ic1LzSkwSX02GY0PnXhgzpnFiIdu6QLxaYoTsm4jdSzeorUlunM5h+Z3JxZLDkICDq21xY7TBAak=
+X-Received: by 2002:a5d:4b91:: with SMTP id b17mr346128wrt.57.1564400396173;
+ Mon, 29 Jul 2019 04:39:56 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190725220215.460-1-paul@crapouillou.net>
-In-Reply-To: <20190725220215.460-1-paul@crapouillou.net>
-From:   Richard Weinberger <richard.weinberger@gmail.com>
-Date:   Mon, 29 Jul 2019 13:23:10 +0200
-Message-ID: <CAFLxGvyi0+0E3M12A7cRoHfEKd8-7Yr8EMG9J=2XcjCxPWY5pA@mail.gmail.com>
-Subject: Re: [PATCH 00/11] JZ4740 SoC cleanup
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
+References: <20190724121559.19079-1-horms+renesas@verge.net.au> <20190724121559.19079-2-horms+renesas@verge.net.au>
+In-Reply-To: <20190724121559.19079-2-horms+renesas@verge.net.au>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 29 Jul 2019 13:39:44 +0200
+Message-ID: <CAMuHMdVmTSinvJ9RbG0MdFd9LoxtFHRPqZV31dju2n=PLbYG6w@mail.gmail.com>
+Subject: Re: [PATCH 1/4] dt-bindings: i2c: sh_mobile: Rename bindings
+ documentation file
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Richard Weinberger <richard@nod.at>,
-        Sebastian Reichel <sre@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        alsa-devel <alsa-devel@alsa-project.org>,
-        linux-pm@vger.kernel.org, linux-mips@vger.kernel.org,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        LKML <linux-kernel@vger.kernel.org>, od@zcrc.me,
-        linux-mtd@lists.infradead.org, dmaengine@vger.kernel.org
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 26, 2019 at 12:02 AM Paul Cercueil <paul@crapouillou.net> wrote:
+On Wed, Jul 24, 2019 at 3:25 PM Simon Horman <horms+renesas@verge.net.au> wrote:
+> Rename the bindings documentation file for sh_mobile I2C controller
+> from i2c-sh_mobile.txt to renesas,iic.txt.
 >
-> Hi,
+> This is part of an ongoing effort to name bindings documentation files for
+> Renesas IP blocks consistently, in line with the compat strings they
+> document.
 >
-> This patchset converts the Qi LB60 MIPS board to devicetree and makes it
-> use all the shiny new drivers that have been developed or updated
-> recently.
->
-> All the crappy old drivers and custom code can be dropped since they
-> have been replaced by better alternatives.
->
-> Some of these alternatives are not yet in 5.3-rc1 but have already been
-> accepted by their respective maintainer for inclusion in 5.4-rc1.
->
-> To upstream this patchset, I think that as soon as MIPS maintainers
-> agree to take patches 01-03/11 and 11/11, the other patches can go
-> through their respective maintainer's tree.
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 
-Was this series tested with the Ben Nanonote device?
-I have one of these and from time to time I upgrade the kernel on it.
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
 
 -- 
-Thanks,
-//richard
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
