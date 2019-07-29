@@ -2,74 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E262678BA9
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 14:21:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A8FA78BB6
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 14:25:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725818AbfG2MVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 08:21:13 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:39353 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725956AbfG2MVM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 08:21:12 -0400
-Received: by mail-lj1-f194.google.com with SMTP id v18so58336375ljh.6;
-        Mon, 29 Jul 2019 05:21:11 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=Lus5TxJaffuFpsnjVsSfL9Xup/2Q5tADoKnscqx0e0o=;
-        b=InwwDQ224lgQiDVL9i6pVtS0Vvh/lrCRZAxHHs4uW1jMEQPzbbUSxpf4sKK/Q3pwIl
-         ZdTz2bXA7p1Cdp5KBxKh3ZZxvyU+r3a6IPnDAaLC1vMZ2LgYDpx3ybkwByC86vuTMmTz
-         3rAuPRhyobMGW1t8u/jALQxJRjDYuL1EVqIdME9w0sIrUSuAKhm5KzRM/scP+HLr9lMy
-         En33fmBmbL8yfRBJ15NY4JFAwox6OLvV/nhvbKL0YYnVyOvfOtcuFtW8cft3f5iLfRF7
-         HI5LsUGxSdhYCDDCOdSi/p6WntIlRfnF+CsTLP05zNREVNWGEBzHJxKIZlHCS38Ke5f/
-         1LQg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Lus5TxJaffuFpsnjVsSfL9Xup/2Q5tADoKnscqx0e0o=;
-        b=St3YIIhTddGRxK2ntSzVI3rRabNipzaIVRRq35hT0ik16PV6DybuQ6J88aDpDGDpsC
-         F+9rwK7JilCck8FF8A/DyWAW6WTCASM9tWnGHkmUBpuTK5OYQrbMRE15dlP8EBolUao4
-         ypKqhsEZy0iMB6vjUIF2+ysdrSKrukbmwZqllDy3k3rP1VwZODLtcstux6HAOo5srPYw
-         3QhLyw//yBK4flyMtVe4jaaeI85wt5k0NPfd2zCMaZMDZqJbwJZjyOwT29LhnOY0nM8r
-         BPMoKa+05ziVaLzSIqjfFPmZaQjl/0TMWpafPA7CsbKU54Ic6PIcCaJU/EGYQadxFbXG
-         XO2g==
-X-Gm-Message-State: APjAAAWL+NTtwSx20QI0m7kEIOKwg4vLxFc4fPVDenRWP3IMQw2Oxdcb
-        MHOCqbSF/0llxqMyWIpHzw7B8Gs2umJckRXLUpM=
-X-Google-Smtp-Source: APXvYqxkW5SmThMalAQq31UlmmO81GX4lGXENqxdVeAnVIsK+llwHK4DqHkMcrejGumyqG/qS1DuqMlt/5yp0CWS+HM=
-X-Received: by 2002:a2e:a311:: with SMTP id l17mr55967735lje.214.1564402870592;
- Mon, 29 Jul 2019 05:21:10 -0700 (PDT)
+        id S1726738AbfG2MZu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 08:25:50 -0400
+Received: from fllv0016.ext.ti.com ([198.47.19.142]:33448 "EHLO
+        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726281AbfG2MZu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 08:25:50 -0400
+Received: from fllv0034.itg.ti.com ([10.64.40.246])
+        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6TCPeoP047169;
+        Mon, 29 Jul 2019 07:25:40 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1564403140;
+        bh=QONql/qooBcZcno2oWPNpb0xDksuazYqT9igEM/PyUM=;
+        h=From:To:CC:Subject:Date;
+        b=yEkpozwsyUme1bx5Lm9ChpOKaMf20NsOgwyL9ZM7YnfcxnfBUW67bUPsYeaQpFFxU
+         axrBFS+3u1YE2LVRDByTlzkpivF9FpfN7N/pqesJw+/Jfr9PR4jhQl2zDNDI9aBQyz
+         8jrdZZpXkGqPG8WH7ENpyDQLRMCGH++mKzpAOkek=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6TCPeeo089945
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Mon, 29 Jul 2019 07:25:40 -0500
+Received: from DLEE108.ent.ti.com (157.170.170.38) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Mon, 29
+ Jul 2019 07:25:40 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DLEE108.ent.ti.com
+ (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Mon, 29 Jul 2019 07:25:40 -0500
+Received: from uda0131933.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6TCPbCC085709;
+        Mon, 29 Jul 2019 07:25:37 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Nishanth Menon <nm@ti.com>, Tero Kristo <t-kristo@ti.com>,
+        Santosh Shilimkar <ssantosh@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>
+CC:     Sekhar Nori <nsekhar@ti.com>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH v5 0/3] soc: ti: k3: Allow for exclusive and shared device requests
+Date:   Mon, 29 Jul 2019 17:54:50 +0530
+Message-ID: <20190729122453.32252-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20190729083915.4855-1-Anson.Huang@nxp.com> <20190729083915.4855-3-Anson.Huang@nxp.com>
-In-Reply-To: <20190729083915.4855-3-Anson.Huang@nxp.com>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Mon, 29 Jul 2019 09:21:15 -0300
-Message-ID: <CAOMZO5Ao8aNGfj3KHd+rsX=kj528BvzeSHFvQR6pEWXN3BD98g@mail.gmail.com>
-Subject: Re: [PATCH V2 3/4] dt-bindings: thermal: qoriq: Add optional clocks property
-To:     Yongcai Huang <Anson.Huang@nxp.com>
-Cc:     "rui.zhang" <rui.zhang@intel.com>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        NXP Linux Team <Linux-imx@nxp.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anson,
+Sysfw provides an option for requesting exclusive access for a
+device using the flags MSG_FLAG_DEVICE_EXCLUSIVE. If this flag is
+not used, the device is meant to be shared across hosts. Once a device
+is requested from a host with this flag set, any request to this
+device from a different host will be nacked by sysfw.
 
-On Mon, Jul 29, 2019 at 6:04 AM <Anson.Huang@nxp.com> wrote:
->
-> From: Anson Huang <Anson.Huang@nxp.com>
->
-> Some platforms have clock control for TMU, add optional
-> clocks property to the binding doc.
+Current tisci firmware and pm drivers always requests for device with
+exclusive permissions set. But this is not be true for certain devices
+that are expcted to be shared across different host contexts.
+So add support for getting the shared or exclusive permissions from DT
+and request firmware accordingly.
 
-Please add a note that this is needed for i.MX8M.
+Changes since v4: https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=148371
+- Split the driver and arch changes into a separate series.
+- Added Reviewed-by from Nishanth M
+- Rebased on top of v5.3-rc2
+
+Lokesh Vutla (3):
+  firmware: ti_sci: Allow for device shared and exclusive requests
+  dt-bindings: ti_sci_pm_domains: Add support for exclusive and shared
+    access
+  soc: ti: ti_sci_pm_domains: Add support for exclusive and shared
+    access
+
+ .../bindings/soc/ti/sci-pm-domain.txt         | 11 ++++-
+ MAINTAINERS                                   |  1 +
+ drivers/firmware/ti_sci.c                     | 45 ++++++++++++++++++-
+ drivers/soc/ti/ti_sci_pm_domains.c            | 23 +++++++++-
+ include/dt-bindings/soc/ti,sci_pm_domain.h    |  9 ++++
+ include/linux/soc/ti/ti_sci_protocol.h        |  3 ++
+ 6 files changed, 86 insertions(+), 6 deletions(-)
+ create mode 100644 include/dt-bindings/soc/ti,sci_pm_domain.h
+
+-- 
+2.21.0
+
