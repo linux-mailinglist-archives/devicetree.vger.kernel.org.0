@@ -2,177 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 55E2E783AF
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 05:39:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5295478427
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 06:39:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726455AbfG2DjY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 28 Jul 2019 23:39:24 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:59753 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726312AbfG2DjX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 28 Jul 2019 23:39:23 -0400
-X-UUID: 7d8b31c80a0946a4b0520df025bb2c97-20190729
-X-UUID: 7d8b31c80a0946a4b0520df025bb2c97-20190729
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <roger.lu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
-        with ESMTP id 450280008; Mon, 29 Jul 2019 11:39:15 +0800
-Received: from mtkcas07.mediatek.inc (172.21.101.84) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 29 Jul 2019 11:39:15 +0800
-Received: from [172.21.77.4] (172.21.77.4) by mtkcas07.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 29 Jul 2019 11:39:15 +0800
-Message-ID: <1564371555.18434.11.camel@mtksdaap41>
-Subject: Re: [PATCH 6/8] PM / OPP: Support adjusting OPP voltages at runtime
-From:   Roger Lu <roger.lu@mediatek.com>
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Stephen Boyd <sboyd@codeaurora.org>
-CC:     Andrew-sh Cheng =?UTF-8?Q?=28=E9=84=AD=E5=BC=8F=E5=8B=B3=29?= 
-        <andrew-sh.cheng@mediatek.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
-        Chanwoo Choi <cw00.choi@samsung.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Fan Chen =?UTF-8?Q?=28=E9=99=B3=E5=87=A1=29?= 
-        <fan.chen@mediatek.com>, <yt.lee@mediatek.com>
-Date:   Mon, 29 Jul 2019 11:39:15 +0800
-In-Reply-To: <20190520044704.unftq6q5vy73z5bo@vireshk-i7>
-References: <1557997725-12178-1-git-send-email-andrew-sh.cheng@mediatek.com>
-         <1557997725-12178-7-git-send-email-andrew-sh.cheng@mediatek.com>
-         <20190520044704.unftq6q5vy73z5bo@vireshk-i7>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726605AbfG2Eja (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 00:39:30 -0400
+Received: from new2-smtp.messagingengine.com ([66.111.4.224]:38925 "EHLO
+        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726622AbfG2Eja (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 00:39:30 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id E8AD31D33;
+        Mon, 29 Jul 2019 00:39:28 -0400 (EDT)
+Received: from mailfrontend1 ([10.202.2.162])
+  by compute4.internal (MEProxy); Mon, 29 Jul 2019 00:39:28 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=aqDU4EJqoCCG0sbaEmhbBDMZxp
+        GS5Qk0n3blj0qrY7s=; b=V0DU1Qt5FZp2J8YCNbDMJyQtL4gS/RKuZT2t0NtFUy
+        IDWhwX6cGUDRQa26nQDLF+V6VVDkqGpaFLdbJ7o7Y6Myk5+E/CPSGG/w2y9SjSCi
+        en6xKY1hTNyGV3YOtkOXZC7gjEjNh80gduqWqnhCX7E6VgnltjIItXObqeEMTEGl
+        9FEx4hzjwax5DtfosqZKs7RG2rOXs3eGJU8y1r0sYIaQPS/yHkekThacH0EpA9b8
+        wKccBW0mzv/LWu0/Z98GeXsQh1uzxZBwj+UsKStqBbZXw5ns5sv2jSP/wevw3A4d
+        RlUPo5Dk2hTO+CFGUlraDPUeqzMkND00zAUvwfHN3NHg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=aqDU4EJqoCCG0sbaE
+        mhbBDMZxpGS5Qk0n3blj0qrY7s=; b=D7o1MtGycyf+htTiAJA4NOCFllGhivzeq
+        7hYqitUWcC7lsVKvXIoOhcug1xfHv5m18WatdzHbY9A0iJpmBDhyMYXhEI1UHdcc
+        cyp9TNo3XGqKUi1+CrjbeaQQuFamE2wSvC+8WiA8U4kHseelIwO/zKA0dyCxONN9
+        J8UHTxZ+bsKzV5Vrp9KBiyVcQ5AbPxX3TDbBAzyClM6pdmyio7U+Gvx40BDZDbKi
+        6UKi1yO/4fd0ocnGOCmiJNqIAerQuzJqHBKp21B+thgeWzILAm+y2GpEwFBN7lUh
+        Hmp8heM/7GdArQmxiUQJVZlXGJ88faWiMzJvFpJ9sinUNBoIrWauA==
+X-ME-Sender: <xms:e3g-XcWXJeCMW08lzP5IQ4N8b_zBlmLVOkeBx_Qxe-zp4UKaopDlXA>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrledtgdekgecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffoggfgsedtkeertdertd
+    dtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghjrdhi
+    ugdrrghuqeenucfkphepvddtvddrkedurddukedrfedtnecurfgrrhgrmhepmhgrihhlfh
+    hrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:e3g-Xc6Jo7c1iONOpE6_x2Z9U-0esifmvVZrk7eWf_rKYIvyfAAGpw>
+    <xmx:e3g-XTLKV9uNT0_8vZLHnnPFZsR-ZOmGGBSloVn_IONUH07iDuABcQ>
+    <xmx:e3g-XdKitd4qu_YK8gF3pFubhbbK4EBCw6x__LyEt3G4KMvMe3ACNg>
+    <xmx:gHg-XcMbgkzccTTFY5IJnxncxLjKr1gqTVrlah7BZMhvlwzvPoq7xg>
+Received: from mistburn.au.ibm.com (bh02i525f01.au.ibm.com [202.81.18.30])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 8E5788005C;
+        Mon, 29 Jul 2019 00:39:19 -0400 (EDT)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     netdev@vger.kernel.org
+Cc:     Andrew Jeffery <andrew@aj.id.au>, davem@davemloft.net,
+        robh+dt@kernel.org, mark.rutland@arm.com, joel@jms.id.au,
+        andrew@lunn.ch, f.fainelli@gmail.com, hkallweit1@gmail.com,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/4] net: phy: Add AST2600 MDIO support
+Date:   Mon, 29 Jul 2019 14:09:22 +0930
+Message-Id: <20190729043926.32679-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Stephen Boyd,
+Hello,
 
-This patch is derived from [1]. Please kindly shares the suggestion to
-us. Thanks very much.
+This series adds support for the MDIO controllers found in the AST2600. In the
+AST2500 and earlier the MDIO controller was embedded in the MAC; this has now
+been separated out and the register interface rearranged (again).
 
-[1]: https://lore.kernel.org/patchwork/patch/599279/
+Please review!
 
-Dear Viresh,
+Andrew
 
-I followed _opp_set_availability() coding style to refine
-dev_pm_opp_adjust_voltage() from this patch. Is this refinement suitable
-for OPP core? Thanks a lot.
+Andrew Jeffery (4):
+  dt-bindings: net: Add aspeed,ast2600-mdio binding
+  net: phy: Add mdio-aspeed
+  net: ftgmac100: Add support for DT phy-handle property
+  net: ftgmac100: Select ASPEED MDIO driver for the AST2600
 
-On Mon, 2019-05-20 at 12:47 +0800, Viresh Kumar wrote:
-> On 16-05-19, 17:08, Andrew-sh.Cheng wrote:
-> > From: Stephen Boyd <sboyd@codeaurora.org>
-> > 
-> > On some SoCs the Adaptive Voltage Scaling (AVS) technique is
-> > employed to optimize the operating voltage of a device. At a
-> > given frequency, the hardware monitors dynamic factors and either
-> > makes a suggestion for how much to adjust a voltage for the
-> > current frequency, or it automatically adjusts the voltage
-> > without software intervention. Add an API to the OPP library for
-> > the former case, so that AVS type devices can update the voltages
-> > for an OPP when the hardware determines the voltage should
-> > change. The assumption is that drivers like CPUfreq or devfreq
-> > will register for the OPP notifiers and adjust the voltage
-> > according to suggestions that AVS makes.
-> > 
-> > This patch is devired from [1] submitted by Stephen.
-> > [1] https://lore.kernel.org/patchwork/patch/599279/
-> > 
-> > Signed-off-by: Stephen Boyd <sboyd@codeaurora.org>
-> > Signed-off-by: Roger Lu <roger.lu@mediatek.com>
-> > ---
-> >  drivers/opp/core.c     | 78 ++++++++++++++++++++++++++++++++++++++++++++++++++
-> >  include/linux/pm_opp.h | 11 +++++++
-> >  2 files changed, 89 insertions(+)
-> 
-> This is an rcu implementation which got removed long back from OPP core. Please
-> align this with the latest changes.
-> 
+ .../bindings/net/aspeed,ast2600-mdio.yaml     |  61 +++++++
+ drivers/net/ethernet/faraday/Kconfig          |   1 +
+ drivers/net/ethernet/faraday/ftgmac100.c      |  37 +++-
+ drivers/net/phy/Kconfig                       |  13 ++
+ drivers/net/phy/Makefile                      |   1 +
+ drivers/net/phy/mdio-aspeed.c                 | 159 ++++++++++++++++++
+ 6 files changed, 268 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+ create mode 100644 drivers/net/phy/mdio-aspeed.c
 
-
-/**
- * dev_pm_opp_adjust_voltage() - helper to change the voltage of an OPP
- * @dev:		device for which we do this operation
- * @freq:		OPP frequency to adjust voltage of
- * @u_volt:		new OPP voltage
- *
- * Return: -EINVAL for bad pointers, -ENOMEM if no memory available for
-the
- * copy operation, returns 0 if no modifcation was done OR modification
-was
- * successful.
- */
-int dev_pm_opp_adjust_voltage(struct device *dev, unsigned long freq,
-			      unsigned long u_volt)
-{
-	struct opp_table *opp_table;
-	struct dev_pm_opp *tmp_opp, *opp = ERR_PTR(-ENODEV);
-	int r = 0;
-
-	/* Find the opp_table */
-	opp_table = _find_opp_table(dev);
-	if (IS_ERR(opp_table)) {
-		r = PTR_ERR(opp_table);
-		dev_warn(dev, "%s: Device OPP not found (%d)\n", __func__, r);
-		return r;
-	}
-
-	mutex_lock(&opp_table->lock);
-
-	/* Do we have the frequency? */
-	list_for_each_entry(tmp_opp, &opp_table->opp_list, node) {
-		if (tmp_opp->rate == freq) {
-			opp = tmp_opp;
-			break;
-		}
-	}
-
-	if (IS_ERR(opp)) {
-		r = PTR_ERR(opp);
-		goto adjust_unlock;
-	}
-
-	/* Is update really needed? */
-	if (opp->supplies->u_volt == u_volt)
-		goto adjust_unlock;
-
-	opp->supplies->u_volt = u_volt;
-
-	dev_pm_opp_get(opp);
-	mutex_unlock(&opp_table->lock);
-
-	/* Notify the voltage change of the OPP */
-	blocking_notifier_call_chain(&opp_table->head,
-OPP_EVENT_ADJUST_VOLTAGE,
-				     opp);
-
-	dev_pm_opp_put(opp);
-	goto adjust_put_table;
-
-adjust_unlock:
-	mutex_unlock(&opp_table->lock);
-adjust_put_table:
-	dev_pm_opp_put_opp_table(opp_table);
-	return r;
-}
-
-Sincerely,
-Roger Lu.
+-- 
+2.20.1
 
