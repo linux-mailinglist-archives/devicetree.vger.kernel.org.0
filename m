@@ -2,120 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DB247881B
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 11:15:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C25787882D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 11:20:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726953AbfG2JPz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 05:15:55 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:46573 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726496AbfG2JPz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 05:15:55 -0400
-Received: by mail-wr1-f67.google.com with SMTP id z1so60942688wru.13;
-        Mon, 29 Jul 2019 02:15:53 -0700 (PDT)
+        id S1727022AbfG2JUR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 05:20:17 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:35828 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726818AbfG2JUR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 05:20:17 -0400
+Received: by mail-pl1-f196.google.com with SMTP id w24so27272726plp.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 02:20:16 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=3alocEzQkvOwDh436VckIPvqKCkr1/ONfYhyc3HCC6U=;
+        b=lP5GqG55Dyw5q7dJRePrFeD4Vo+xWMP9VbWvK9qbiZWztz9sX0u3JEEg9bwi3Qelv/
+         K4Bbd4gXh8SI2XTM6SudJHqwrUpriyQVaKkV7Q3w2QBfJs8/ksKNgnNvs8Kq17eqjGwO
+         IZkacmtTUtHNlN+nSxwxrtuInYWAaQidOdLLAxd0ULiL+dCihfleLcIWD8iL4SXRSWme
+         +Z5O2ciwWgeBg1W61hhEY6T5YtIPR7YzHvKtiZ0AipJOglTfkqdaipfmVVjMudZz4i2O
+         6O3PlX4Te4WeGuVUDovJAGSfp0T/xmiChZDDLIjKbsExzEe656X+11lNfimOHjyxlKgy
+         eW/Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=lX+8f/ul557VUvmKfQ5/rLyi40udmS9GdSHCWxQEpMY=;
-        b=Ytr4b5inOd6rHWzdTBUm+jO64HpHkm9J6gtxtJiO0HuUOqtHqyuDJmJICItykEpa6K
-         BgHwfKnnm87fYOKc4MlyOmu4AUW0xjODEQgkLp5WjmGbCK++ZtofKmdXLfaLcfc2gvhJ
-         W+XrYXo/P47eSeeZYkx7AoiLsQ0vK5yCwRoiVgcIJjmwxTKXgRM3w+A6NASYHpSKH90K
-         Qzgb5HHO9w+Vab0Ezs29ERQDt9ywqzn9580cWaTAljbo2f9srMFBky59DbU7si+UKBi0
-         LVFJMx8pSf4tYtP735sZoCgSPG2rwZlwbfLKrhFnRMbKrvEHQDW+UZPEs7up1gB7XoFV
-         Tu0w==
-X-Gm-Message-State: APjAAAWq7vWYZ4sSB4uyZvUM57ObVsD02+lkUyZlT+W85SxVcV+WHcPA
-        EpDQw7hpVcsPbFKSmJvdw7zD2r5iRemqLgk8a2A=
-X-Google-Smtp-Source: APXvYqxGx0Im9VeJH1b6YeB64dzXITkccBaAUZ+m0f2WtWbs7Fi1L9DQElT8KAMMrGxdtE1jg7uiYwM1yPygWtq4cjE=
-X-Received: by 2002:adf:cd81:: with SMTP id q1mr117458151wrj.16.1564391752564;
- Mon, 29 Jul 2019 02:15:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <1564108975-27423-1-git-send-email-masonccyang@mxic.com.tw> <1564108975-27423-3-git-send-email-masonccyang@mxic.com.tw>
-In-Reply-To: <1564108975-27423-3-git-send-email-masonccyang@mxic.com.tw>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 29 Jul 2019 11:15:40 +0200
-Message-ID: <CAMuHMdWVuQa1LLXPqrdSw6wdRzwQapAkk6Est=XrjESPF9zQwg@mail.gmail.com>
-Subject: Re: [PATCH v15 2/2] dt-bindings: spi: Document Renesas R-Car Gen3
- RPC-IF controller bindings
-To:     Mason Yang <masonccyang@mxic.com.tw>
-Cc:     Mark Brown <broonie@kernel.org>, Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=3alocEzQkvOwDh436VckIPvqKCkr1/ONfYhyc3HCC6U=;
+        b=eDRf0Ut6uNDCTiVK/OfEzoZ0M8pyHqYe2DeFJX5h35f2XS1H92c0wcytsvE3vkRqjd
+         kkeZBNJVJ14HkjxePTzatPej8UMSseunNkgtlTf3+fSHFWZOSK9i5c5gzWItWifLyWbX
+         G3Ap7JSjWJXFn3HDUp8IK5aUrvbarNv2WoijQMD8YP/92sYgs+gxmfaIULe6i0kpPaGU
+         Q3EJE+BEFbzW+OrSbaFNzyuAL4t/+ZzWhfebdswoNAmhlBxeIFPzRnWiEER5M5JYbKJd
+         ermpY/JQ5ClachXhhzspXmMTbNHhVp2/9HAgqP5XEpmVhU0yc1PMoEKLZ2u1CS/r9HR6
+         r6zg==
+X-Gm-Message-State: APjAAAV14IsHu83VZFeBm41/0OFLt0p8fdX2yNMwAaLlqQSWxCZ0/gtT
+        xcGTvNDyWK5FOi3sLz7sNuwFDw==
+X-Google-Smtp-Source: APXvYqzKLa/htnlBgwYP5UIMstM9Hmp8PWyPwF3BGDnYJXIAoSflXEa4GnCszC/9bxndDaHastGyKw==
+X-Received: by 2002:a17:902:3103:: with SMTP id w3mr111071711plb.84.1564392016316;
+        Mon, 29 Jul 2019 02:20:16 -0700 (PDT)
+Received: from localhost ([122.172.28.117])
+        by smtp.gmail.com with ESMTPSA id m4sm73215197pgs.71.2019.07.29.02.20.15
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Jul 2019 02:20:15 -0700 (PDT)
+Date:   Mon, 29 Jul 2019 14:50:13 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Roger Lu <roger.lu@mediatek.com>
+Cc:     Stephen Boyd <sboyd@codeaurora.org>,
+        Andrew-sh Cheng =?utf-8?B?KOmEreW8j+WLsyk=?= 
+        <andrew-sh.cheng@mediatek.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Chanwoo Choi <cw00.choi@samsung.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, juliensu@mxic.com.tw,
-        Simon Horman <horms@verge.net.au>,
-        Lee Jones <lee.jones@linaro.org>,
-        Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>,
-        Marek Vasut <marek.vasut@gmail.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Content-Type: text/plain; charset="UTF-8"
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Nishanth Menon <nm@ti.com>, Stephen Boyd <sboyd@kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        srv_heupstream <srv_heupstream@mediatek.com>,
+        Fan Chen =?utf-8?B?KOmZs+WHoSk=?= <fan.chen@mediatek.com>,
+        yt.lee@mediatek.com
+Subject: Re: [PATCH 6/8] PM / OPP: Support adjusting OPP voltages at runtime
+Message-ID: <20190729092013.5sz2mdqicrit5nta@vireshk-i7>
+References: <1557997725-12178-1-git-send-email-andrew-sh.cheng@mediatek.com>
+ <1557997725-12178-7-git-send-email-andrew-sh.cheng@mediatek.com>
+ <20190520044704.unftq6q5vy73z5bo@vireshk-i7>
+ <1564371555.18434.11.camel@mtksdaap41>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1564371555.18434.11.camel@mtksdaap41>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mason,
+On 29-07-19, 11:39, Roger Lu wrote:
+> Dear Stephen Boyd,
+> 
+> This patch is derived from [1]. Please kindly shares the suggestion to
+> us. Thanks very much.
+> 
+> [1]: https://lore.kernel.org/patchwork/patch/599279/
+> 
+> Dear Viresh,
+> 
+> I followed _opp_set_availability() coding style to refine
+> dev_pm_opp_adjust_voltage() from this patch. Is this refinement suitable
+> for OPP core? Thanks a lot.
 
-Thanks for the update!
-
-On Fri, Jul 26, 2019 at 4:19 AM Mason Yang <masonccyang@mxic.com.tw> wrote:
-> Dcument the bindings used by the Renesas R-Car Gen3 RPC-IF controller.
-
-Document
-
->
-> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/spi-renesas-rpc.txt
-> @@ -0,0 +1,46 @@
-
-[...]
-
-> +- flash: should be represented by a subnode of the RPC-IF node,
-> +        which "compatible" property contains "jedec,spi-nor", it presents
-> +        SPI is used.
-
-Sorry, I failed to parse the last subsentence.
-
-> +
-> +Example:
-> +
-> +       rpc: spi@ee200000 {
-> +               compatible = "renesas,r8a77995-rpc", "renesas,rcar-gen3-rpc";
-> +               reg = <0 0xee200000 0 0x200>, <0 0x08000000 0 0x4000000>,
-> +                     <0 0xee208000 0 0x100>;
-> +               reg-names = "regs", "dirmap", "wbuf";
-> +               clocks = <&cpg CPG_MOD 917>;
-> +               clock-names = "rpc";
-> +               power-domains = <&sysc R8A77995_PD_ALWAYS_ON>;
-> +               resets = <&cpg 917>;
-> +               #address-cells = <1>;
-> +               #size-cells = <0>;
-> +
-> +               flash@0 {
-> +                       compatible = "jedec,spi-nor";
-> +                       reg = <0>;
-> +                       spi-max-frequency = <40000000>;
-> +                       spi-tx-bus-width = <1>;
-> +                       spi-rx-bus-width = <1>;
-
-Shouldn't those <1> be <4>, as this is QSPI?
-
-> +               };
-> +       };
-
-Gr{oetje,eeting}s,
-
-                        Geert
+Looks okay from a quick look.
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+viresh
