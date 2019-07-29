@@ -2,149 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28565799BD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 22:17:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16EA2799C5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 22:20:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727317AbfG2UQ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 16:16:56 -0400
-Received: from mail-oi1-f196.google.com ([209.85.167.196]:39677 "EHLO
-        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727660AbfG2UQ4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 16:16:56 -0400
-Received: by mail-oi1-f196.google.com with SMTP id m202so46238479oig.6
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 13:16:55 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=r8zi81LHOHqEUYJ5h1qiWav8ZTAlVex16b4xeeFlwaI=;
-        b=I6/EVoszemoOmGnO4iFjE+KkZf4mW8yad0zcnup0o2vWzk84+cO5qrk8H0szXoY/yT
-         dF/VG41/bLAp3LCro842eoAFVplvHIxwGBEpTU/93OM6j7gkkopwHpAJvhLbBWUoa2c2
-         ZNOWp8QWsyddeXwnUn00kHkCslGISArM1EWlRfLoh0nYkvglI+yW2KAZhojjjvK85wzI
-         RDRoh+mkhNIob/680owAhI9JomaSkwGmk7B89s2SD8EwAkFlhJplFkrqu57X92lglO0y
-         Kj1ugsHCxSV3muxvPQhnL1vEEgylOpVZ0Uf2YVjK34Vcxy11LZCmMGRZVZyYkR9KurSW
-         VZNA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=r8zi81LHOHqEUYJ5h1qiWav8ZTAlVex16b4xeeFlwaI=;
-        b=ABYCgm7Ul3YvNSi9LB9/uGtmQOoSxV2I5HuSNouHo/o9cATEqi7oznbVoBBggfrxuv
-         /+9I7iHuXYWbXslK7nsWdiQ7tsDgEVMhz5oUkLYHQbJnGtBUlZbFC25/RMCJJwttNXPG
-         Yu+B1FzkHrLCn3n3n1y4i0+S9YBt3/QNbphAQwNM8pdQIkCMepevwmy5dM6xkIoJIh5F
-         DDxplmqmcXdEi4p1PAsruYpvh4RppUgShtcbRmU2nzhkVE+4SH+ytkAh+Nd4lZVNood8
-         tyr/qjyLvPKUB71vk11LxsgkMeQRODcN/tNrzurRbONW+2ZKaxuXnUC4XKg8w7irSFlO
-         0yOA==
-X-Gm-Message-State: APjAAAVHJoN3PiuIVwaUDEhKrI61zFmqGgIUNm9sAkbra4NNA+BOdT40
-        BliXAjNd5ADUu6ej7QKs+e50JDeSeEm8HANVlf3dFg==
-X-Google-Smtp-Source: APXvYqxQuUTl19e48sL3aGXbBTswfN2yF1G00rWJlxlH7ntf6qvxnBji1ehL0VdV8MXOEHv2+7g2wo55rorywH6+dhw=
-X-Received: by 2002:aca:1803:: with SMTP id h3mr21244210oih.24.1564431415085;
- Mon, 29 Jul 2019 13:16:55 -0700 (PDT)
+        id S1726876AbfG2UUQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 16:20:16 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:37558 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726129AbfG2UUQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 16:20:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=wwTzfyTq9xH2jVCB72SSD9pIFJfoUBESNUKZEPJQU/c=; b=nn7AqtlNX0eCysL+6//+UX/4T
+        +AAPNROZ8E/00SYlmowzHnKikJN/2tuR5XgXgOdSAu891tr8GB/hO0snXfBkcCawN7AVTmMNAoFaA
+        FS7E5u5xeF/skleakEMEGT2Lqrl7asvHfRWJavS0/NBOivAh5rdMDIKuJ9E8xW5U8VaZo=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hsC7m-0005MB-Uu; Mon, 29 Jul 2019 20:20:03 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 6B92C2742AAD; Mon, 29 Jul 2019 21:20:01 +0100 (BST)
+Date:   Mon, 29 Jul 2019 21:20:01 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Daniel Baluta <daniel.baluta@gmail.com>
+Cc:     Nicolin Chen <nicoleotsuka@gmail.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Timur Tabi <timur@kernel.org>, Rob Herring <robh@kernel.org>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Takashi Iwai <tiwai@suse.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Viorel Suman <viorel.suman@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Mihai Serban <mihai.serban@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [alsa-devel] [PATCH v2 1/7] ASoC: fsl_sai: Add registers
+ definition for multiple datalines
+Message-ID: <20190729202001.GC4787@sirena.org.uk>
+References: <20190728192429.1514-1-daniel.baluta@nxp.com>
+ <20190728192429.1514-2-daniel.baluta@nxp.com>
+ <20190729194214.GA20594@Asurada-Nvidia.nvidia.com>
+ <CAEnQRZDmnAmgUkRGv3V5S7b5EnYTd2BO5NFuME2CfGb1=nAHzQ@mail.gmail.com>
 MIME-Version: 1.0
-References: <20190726231558.175130-1-saravanak@google.com> <20190729093545.kvnqxjkyx4nogddk@vireshk-i7>
-In-Reply-To: <20190729093545.kvnqxjkyx4nogddk@vireshk-i7>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 29 Jul 2019 13:16:19 -0700
-Message-ID: <CAGETcx8OBFGgP1-hj717Sk-_N95-kacVsz0yb288n3pej12n1Q@mail.gmail.com>
-Subject: Re: [PATCH v4 0/3] Introduce Bandwidth OPPs for interconnects
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
-        David Dai <daidavid1@codeaurora.org>, adharmap@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ABTtc+pdwF7KHXCz"
+Content-Disposition: inline
+In-Reply-To: <CAEnQRZDmnAmgUkRGv3V5S7b5EnYTd2BO5NFuME2CfGb1=nAHzQ@mail.gmail.com>
+X-Cookie: A man's house is his hassle.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 2:35 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> On 26-07-19, 16:15, Saravana Kannan wrote:
-> > Interconnects and interconnect paths quantify their performance levels in
-> > terms of bandwidth and not in terms of frequency. So similar to how we have
-> > frequency based OPP tables in DT and in the OPP framework, we need
-> > bandwidth OPP table support in DT and in the OPP framework.
-> >
-> > So with the DT bindings added in this patch series, the DT for a GPU
-> > that does bandwidth voting from GPU to Cache and GPU to DDR would look
-> > something like this:
-> >
-> > gpu_cache_opp_table: gpu_cache_opp_table {
-> >       compatible = "operating-points-v2";
-> >
-> >       gpu_cache_3000: opp-3000 {
-> >               opp-peak-KBps = <3000000>;
-> >               opp-avg-KBps = <1000000>;
-> >       };
-> >       gpu_cache_6000: opp-6000 {
-> >               opp-peak-KBps = <6000000>;
-> >               opp-avg-KBps = <2000000>;
-> >       };
-> >       gpu_cache_9000: opp-9000 {
-> >               opp-peak-KBps = <9000000>;
-> >               opp-avg-KBps = <9000000>;
-> >       };
-> > };
-> >
-> > gpu_ddr_opp_table: gpu_ddr_opp_table {
-> >       compatible = "operating-points-v2";
-> >
-> >       gpu_ddr_1525: opp-1525 {
-> >               opp-peak-KBps = <1525000>;
-> >               opp-avg-KBps = <452000>;
-> >       };
-> >       gpu_ddr_3051: opp-3051 {
-> >               opp-peak-KBps = <3051000>;
-> >               opp-avg-KBps = <915000>;
-> >       };
-> >       gpu_ddr_7500: opp-7500 {
-> >               opp-peak-KBps = <7500000>;
-> >               opp-avg-KBps = <3000000>;
-> >       };
-> > };
-> >
-> > gpu_opp_table: gpu_opp_table {
-> >       compatible = "operating-points-v2";
-> >       opp-shared;
-> >
-> >       opp-200000000 {
-> >               opp-hz = /bits/ 64 <200000000>;
-> >       };
-> >       opp-400000000 {
-> >               opp-hz = /bits/ 64 <400000000>;
-> >       };
-> > };
-> >
-> > gpu@7864000 {
-> >       ...
-> >       operating-points-v2 = <&gpu_opp_table>, <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>;
-> >       ...
-> > };
->
-> One feedback I missed giving earlier. Will it be possible to get some
-> user code merged along with this ? I want to make sure anything we add
-> ends up getting used.
 
-Sibi might be working on doing that for the SDM845 CPUfreq driver.
-Georgi could also change his GPU driver use case to use this BW OPP
-table and required-opps.
+--ABTtc+pdwF7KHXCz
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-The problem is that people don't want to start using this until we
-decide on the DT representation. So it's like a chicken and egg
-situation.
+On Mon, Jul 29, 2019 at 10:57:43PM +0300, Daniel Baluta wrote:
+> On Mon, Jul 29, 2019 at 10:42 PM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
+> > On Sun, Jul 28, 2019 at 10:24:23PM +0300, Daniel Baluta wrote:
 
--Saravana
+> > > @@ -704,7 +711,14 @@ static bool fsl_sai_readable_reg(struct device *dev, unsigned int reg)
+> > >       case FSL_SAI_TCR3:
+> > >       case FSL_SAI_TCR4:
+> > >       case FSL_SAI_TCR5:
+> > > -     case FSL_SAI_TFR:
+> > > +     case FSL_SAI_TFR0:
+
+> > A tricky thing here is that those SAI instances on older SoC don't
+> > support multi data lines physically, while seemly having registers
+> > pre-defined. So your change doesn't sound doing anything wrong to
+> > them at all, I am still wondering if it is necessary to apply them
+> > to newer compatible only though, as for older compatibles of SAI,
+> > these registers would be useless and confusing if being exposed.
+
+> > What do you think?
+
+> Yes, I thought about this too. But, I tried to keep the code as short
+> as possible and technically it is not wrong. When 1 data line is supported
+> for example application will only care about TDR0, TFR0, etc.
+
+So long as it's safe to read the registers (you don't get a bus error or
+anything) I'd say it's more trouble than it's worth to have separate
+regmap configuations just for this.  The main reasons for restricting
+readability are where there's physical problems with doing the reads or
+to keep the size of the debugfs files under control for usability and
+performance reasons.
+
+--ABTtc+pdwF7KHXCz
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl0/VPAACgkQJNaLcl1U
+h9DrPwf9F9mjf8fAHvxxejGLd/jN+TU84DVsVv13Qp3jhAgobbWx/oF2xmX3A+b6
+uyfWch7Ud2SYvm2wXm/31JAXXi3aTlTq7niolXa7Hal3cLO4JAGCyFl6ex5knCHa
+D6ddUZyPG8Rag+kjm/ef2DQpTGHxKcP9nV6OTsn3v6QfOtZZiyl0nzaZnuEpUoxW
+Qz2WR2OxuRoA0Q/KaPiQCCP72GHZ5Vr2qDdteQXunE49dMnI6M0+e/WSbbJu+1tO
+toN2vyGNnUtNZK9IKgLbes65ihBd0026Otqg+cQEehLspgy8pwSap7TyZ123sVhM
+Z+xhfS+8ong2rDpferXo+La8/+Tx0Q==
+=PIWO
+-----END PGP SIGNATURE-----
+
+--ABTtc+pdwF7KHXCz--
