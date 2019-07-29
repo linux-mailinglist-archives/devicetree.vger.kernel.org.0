@@ -2,87 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9EA7C78B56
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 14:07:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E262678BA9
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 14:21:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728345AbfG2MHL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 08:07:11 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:37694 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728297AbfG2MHK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 08:07:10 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id B999B60E73; Mon, 29 Jul 2019 12:07:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1564402029;
-        bh=yESQEjxs/UF7jQlnePfCZrAc502Wc240TBy0w7/zWvM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Zo6gMqj8GgfRq7bbt0D+/wP0VNMXwt96yUCn8XVI95GPKBu8z72ecCP/f8UrT+cec
-         l+0MnTEotVc95VMKONY2yIAvYbl8RriqMnl1JzwadljnVuPOZOZfmZBEXeXdtUPZT6
-         AoNM1VBduFBGFchlksCCZ0mfYjAcCGJxXr34negs=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id C0742601B4;
-        Mon, 29 Jul 2019 12:07:05 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1564402028;
-        bh=yESQEjxs/UF7jQlnePfCZrAc502Wc240TBy0w7/zWvM=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=XmTFD9kzbNNuOrY5vlf1SNHzGzUNb7kPogIxibjUnbdqt46SUw8pb68Dkqh3jqf+Y
-         YnHT3u5P60yyFCES/7Hv9TRfAuYBnzUV+tBJWz7nsMc3idVdv50iDYDPQ0lr7arW3Q
-         69PIsc6q6v7YuCPvZGhfY2etV3/jKbo+08Mgd4us=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org C0742601B4
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     bjorn.andersson@linaro.org, robh+dt@kernel.org, vkoul@kernel.org,
-        aneela@codeaurora.org
-Cc:     mark.rutland@arm.com, agross@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, jassisinghbrar@gmail.com,
-        clew@codeaurora.org, Sibi Sankar <sibis@codeaurora.org>
-Subject: [PATCH 6/6] soc: qcom: aoss: Add AOSS QMP support
-Date:   Mon, 29 Jul 2019 17:36:33 +0530
-Message-Id: <20190729120633.20451-7-sibis@codeaurora.org>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190729120633.20451-1-sibis@codeaurora.org>
-References: <20190729120633.20451-1-sibis@codeaurora.org>
+        id S1725818AbfG2MVN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 08:21:13 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:39353 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725956AbfG2MVM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 08:21:12 -0400
+Received: by mail-lj1-f194.google.com with SMTP id v18so58336375ljh.6;
+        Mon, 29 Jul 2019 05:21:11 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Lus5TxJaffuFpsnjVsSfL9Xup/2Q5tADoKnscqx0e0o=;
+        b=InwwDQ224lgQiDVL9i6pVtS0Vvh/lrCRZAxHHs4uW1jMEQPzbbUSxpf4sKK/Q3pwIl
+         ZdTz2bXA7p1Cdp5KBxKh3ZZxvyU+r3a6IPnDAaLC1vMZ2LgYDpx3ybkwByC86vuTMmTz
+         3rAuPRhyobMGW1t8u/jALQxJRjDYuL1EVqIdME9w0sIrUSuAKhm5KzRM/scP+HLr9lMy
+         En33fmBmbL8yfRBJ15NY4JFAwox6OLvV/nhvbKL0YYnVyOvfOtcuFtW8cft3f5iLfRF7
+         HI5LsUGxSdhYCDDCOdSi/p6WntIlRfnF+CsTLP05zNREVNWGEBzHJxKIZlHCS38Ke5f/
+         1LQg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Lus5TxJaffuFpsnjVsSfL9Xup/2Q5tADoKnscqx0e0o=;
+        b=St3YIIhTddGRxK2ntSzVI3rRabNipzaIVRRq35hT0ik16PV6DybuQ6J88aDpDGDpsC
+         F+9rwK7JilCck8FF8A/DyWAW6WTCASM9tWnGHkmUBpuTK5OYQrbMRE15dlP8EBolUao4
+         ypKqhsEZy0iMB6vjUIF2+ysdrSKrukbmwZqllDy3k3rP1VwZODLtcstux6HAOo5srPYw
+         3QhLyw//yBK4flyMtVe4jaaeI85wt5k0NPfd2zCMaZMDZqJbwJZjyOwT29LhnOY0nM8r
+         BPMoKa+05ziVaLzSIqjfFPmZaQjl/0TMWpafPA7CsbKU54Ic6PIcCaJU/EGYQadxFbXG
+         XO2g==
+X-Gm-Message-State: APjAAAWL+NTtwSx20QI0m7kEIOKwg4vLxFc4fPVDenRWP3IMQw2Oxdcb
+        MHOCqbSF/0llxqMyWIpHzw7B8Gs2umJckRXLUpM=
+X-Google-Smtp-Source: APXvYqxkW5SmThMalAQq31UlmmO81GX4lGXENqxdVeAnVIsK+llwHK4DqHkMcrejGumyqG/qS1DuqMlt/5yp0CWS+HM=
+X-Received: by 2002:a2e:a311:: with SMTP id l17mr55967735lje.214.1564402870592;
+ Mon, 29 Jul 2019 05:21:10 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190729083915.4855-1-Anson.Huang@nxp.com> <20190729083915.4855-3-Anson.Huang@nxp.com>
+In-Reply-To: <20190729083915.4855-3-Anson.Huang@nxp.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Mon, 29 Jul 2019 09:21:15 -0300
+Message-ID: <CAOMZO5Ao8aNGfj3KHd+rsX=kj528BvzeSHFvQR6pEWXN3BD98g@mail.gmail.com>
+Subject: Re: [PATCH V2 3/4] dt-bindings: thermal: qoriq: Add optional clocks property
+To:     Yongcai Huang <Anson.Huang@nxp.com>
+Cc:     "rui.zhang" <rui.zhang@intel.com>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pm@vger.kernel.org,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        NXP Linux Team <Linux-imx@nxp.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add AOSS QMP support for SM8150 and SC7180 SoCs.
+Hi Anson,
 
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
----
- drivers/soc/qcom/qcom_aoss.c | 2 ++
- 1 file changed, 2 insertions(+)
+On Mon, Jul 29, 2019 at 6:04 AM <Anson.Huang@nxp.com> wrote:
+>
+> From: Anson Huang <Anson.Huang@nxp.com>
+>
+> Some platforms have clock control for TMU, add optional
+> clocks property to the binding doc.
 
-diff --git a/drivers/soc/qcom/qcom_aoss.c b/drivers/soc/qcom/qcom_aoss.c
-index 5f885196f4d0f..e2f8c7c9a5a0a 100644
---- a/drivers/soc/qcom/qcom_aoss.c
-+++ b/drivers/soc/qcom/qcom_aoss.c
-@@ -462,6 +462,8 @@ static int qmp_remove(struct platform_device *pdev)
- 
- static const struct of_device_id qmp_dt_match[] = {
- 	{ .compatible = "qcom,sdm845-aoss-qmp", },
-+	{ .compatible = "qcom,sm8150-aoss-qmp", },
-+	{ .compatible = "qcom,sc7180-aoss-qmp", },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, qmp_dt_match);
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
-
+Please add a note that this is needed for i.MX8M.
