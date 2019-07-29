@@ -2,56 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2B9A07895F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 12:13:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EB1A78987
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 12:19:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726470AbfG2KNA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 06:13:00 -0400
-Received: from foss.arm.com ([217.140.110.172]:41390 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726358AbfG2KNA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 06:13:00 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 6DDDA344;
-        Mon, 29 Jul 2019 03:12:59 -0700 (PDT)
-Received: from e107155-lin (e107155-lin.cambridge.arm.com [10.1.196.42])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BBF873F694;
-        Mon, 29 Jul 2019 03:12:57 -0700 (PDT)
-Date:   Mon, 29 Jul 2019 11:12:50 +0100
-From:   Sudeep Holla <sudeep.holla@arm.com>
-To:     Ronen Krupnik <ronenk@amazon.com>
-Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        barakw@amazon.com, dwmw@amazon.co.uk, benh@amazon.com,
-        jonnyc@amazon.com, talel@amazon.com, hhhawa@amazon.com,
-        hanochu@amazon.com, Sudeep Holla <sudeep.holla@arm.com>
-Subject: Re: [PATCH 2/2] arm64: dts: amazon: add Amazon Annapurna Labs Alpine
- v3 support
-Message-ID: <20190729101250.GA831@e107155-lin>
-References: <20190728195135.12661-1-ronenk@amazon.com>
- <20190728195135.12661-3-ronenk@amazon.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190728195135.12661-3-ronenk@amazon.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+        id S1728122AbfG2KTI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 06:19:08 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:44859 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726358AbfG2KTI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 06:19:08 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1hs2k8-0005Yb-DO; Mon, 29 Jul 2019 12:19:00 +0200
+Message-ID: <1564395538.7633.7.camel@pengutronix.de>
+Subject: Re: [PATCH 2/6] pwm: sun4i: Add a quirk for reset line
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Uwe =?ISO-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>, Chen-Yu Tsai <wens@csie.org>
+Cc:     Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Maxime Ripard <mripard@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Date:   Mon, 29 Jul 2019 12:18:58 +0200
+In-Reply-To: <20190729071218.bukw7vxilqy523k3@pengutronix.de>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+         <20190726184045.14669-3-jernej.skrabec@siol.net>
+         <20190729063630.rn325whatfnc3m7n@pengutronix.de>
+         <CAGb2v65KOpivHQNkg+R2=D=ejCJYnPdVcyHJZW-GJCR8j0Yk0g@mail.gmail.com>
+         <20190729071218.bukw7vxilqy523k3@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 28, 2019 at 10:51:35PM +0300, Ronen Krupnik wrote:
-> This patch adds the initial support for the Amazon Annapurna Labs Alpine v3
-> Soc and Evaluation Platform (EVP).
+Hi,
 
-[...]
+On Mon, 2019-07-29 at 09:12 +0200, Uwe Kleine-König wrote:
+> Hello,
+> 
+> On Mon, Jul 29, 2019 at 02:43:23PM +0800, Chen-Yu Tsai wrote:
+> > On Mon, Jul 29, 2019 at 2:36 PM Uwe Kleine-König
+> > <u.kleine-koenig@pengutronix.de> wrote:
+> > > On Fri, Jul 26, 2019 at 08:40:41PM +0200, Jernej Skrabec wrote:
+> > > > @@ -371,6 +374,14 @@ static int sun4i_pwm_probe(struct platform_device *pdev)
+> > > >       if (IS_ERR(pwm->clk))
+> > > >               return PTR_ERR(pwm->clk);
+> > > > 
+> > > > +     if (pwm->data->has_reset) {
+> > > > +             pwm->rst = devm_reset_control_get(&pdev->dev, NULL);
+> > > > +             if (IS_ERR(pwm->rst))
+> > > > +                     return PTR_ERR(pwm->rst);
+> > > > +
+> > > > +             reset_control_deassert(pwm->rst);
+> > > > +     }
+> > > > +
+> > > 
+> > > I wonder why there is a need to track if a given chip needs a reset
+> > > line. I'd just use devm_reset_control_get_optional() and drop the
+> > > .has_reset member in struct sun4i_pwm_data.
+> > 
+> > Because it's not optional for this platform, i.e. it won't work if
+> > the reset control (or clk, in the next patch) is somehow missing from
+> > the device tree.
+> 
+> If the device tree is wrong it is considered ok that the driver doesn't
+> behave correctly. So this is not a problem you need (or should) care
+> about.
 
-> +
-> +		pmu {
-> +			compatible = "arm,armv8-pmuv3";
+I agree with this. Catching missing DT properties and other device tree
+validation is not the job of device drivers. The _optional request
+variants were introduced to simplify drivers that require the reset line
+on some platforms and not on others.
 
-Please use "arm,cortex-a72-pmu" as we know it's Cortex-A72 cores
+I would ask to explicitly state whether the driver needs full control
+over the moment of (de)assertion of the reset signal, or whether the
+only requirement is that the reset signal stays deasserted while the PWM
+driver is active, by using devm_reset_control_get_optional_exclusive or
+devm_reset_control_get_optional_shared to request the reset control.
 
---
-Regards,
-Sudeep
+regards
+Philipp
