@@ -2,125 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 97A6B79719
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 21:58:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0AFC77983C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 22:06:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404126AbfG2T55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 15:57:57 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:52269 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2403935AbfG2T55 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 15:57:57 -0400
-Received: by mail-wm1-f68.google.com with SMTP id s3so54931521wms.2;
-        Mon, 29 Jul 2019 12:57:55 -0700 (PDT)
+        id S2388990AbfG2Tlh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 15:41:37 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:45988 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389354AbfG2Tla (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 15:41:30 -0400
+Received: by mail-pg1-f194.google.com with SMTP id o13so28743647pgp.12;
+        Mon, 29 Jul 2019 12:41:30 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=EfwOpTwqZt49gcWcX/gOxX/yJSmjfwNU2FDs49FnjdU=;
-        b=TD+gjh4HFlm0ryoYWHp2SaDQah1BRcGLs588Xg5onWMF/bFCKo3gCcdRjrR7eJMGGm
-         VmcPlqWbkKDwrNUh8zlIIYwZuaqfpnpqWXjC8N6f75TNoXUh/j8p0eVt74oBk9ZkZzex
-         V1n1HFIE5C4nzA0H7fSPUkflCg8AXut9D8Lsz7PQtKKWqAGP/SYjsEEYFVKlB4P3b48l
-         JzQBi3aOTso7ySB63JP0g6QRApO4sA8wRcRzVJ+dusjlz0zUXgelfZtRDojl6kV4tQq5
-         RW4HpdbdEqTyFkh6/NLcZF5YWo+AKMq41dRNm/3LgVvXde/R9xBeyIFdwVd7yeAVr1kn
-         cTAg==
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=/Dz0GgmO6qmE4MAFGR84AXHaHxqY/lTl7uea6qX+5fg=;
+        b=TflF0o6MX/qgWOrImqmQhbskmpRfUcujvsFhX2SQtANavL0oW5ZxLsZ8OihRYbMJLl
+         BNBPgCCLOpCPk5nNeYoGxtruxxdC4QCxCr42U0csHNkcMNLiTre3ZmXyuAeH7gbFPjc2
+         Dr8Mi5U2xT5ZW7ToeWuG6rbiKKuTYeGN+GTUhIjK0TO4c35oWVl/dtIIuZiWxxRAmOpw
+         LjyRvgswDWQl7v4Eyr8nsOl6Lpf+NGOmgHLLAz9iv+q4ICLFu4nOsj6rIWiFi5GjsEjE
+         GRE6MtkCpocWDtzFvils9en7a2003O3ljjYpsgsrUa7DWrqRmkMch0ONFm8IbTgt9I7Z
+         OaUg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=EfwOpTwqZt49gcWcX/gOxX/yJSmjfwNU2FDs49FnjdU=;
-        b=QvMhsH99VWImXT0zK/nGlcg71Fvhmj2yrdCnaxFmadFUIkXIvnG3vxf9OHFJK+5Zst
-         mji6ys3wAkcjpiEo36+1eDEMKEsiuxN92BDgHOAFBDYNPmUFctdZTUt16hixpSI9HtLg
-         N7xk+dTcdA0SQcvdgPmpdB051YH27DPrUPVliN/+yhoha+aj8Mh4IxWPjfHMGOUKRYD6
-         poNUGGB19SkN0FBzYMdRuuheJJGveobB1/IkCO2ejDc/2I6lD6q2NMJ6pflmbA2uX8mi
-         2J0Cs3SNm9Aij8nDhYvUiEPHdS2W4ahiuB1rOI9OWfipUAVH3/33oNZ8JaTOwXYiGS4F
-         iAdw==
-X-Gm-Message-State: APjAAAU7dHr7frLd170bUg/SmtA1JGCLAG52fLwCDydbodrT233vdeT/
-        /UY5KuIciI9G5+jJ0Z69liH7xtRnjvBhcnXA02M=
-X-Google-Smtp-Source: APXvYqyUnyRnpAsu1OzTd7PhLaMC/PpuGRUfvRCL/EifxjOUfhsRaKfdERpgUk7nBbCW+1wTl53GQRoL34cSuARJCfQ=
-X-Received: by 2002:a1c:96c7:: with SMTP id y190mr93249558wmd.87.1564430274987;
- Mon, 29 Jul 2019 12:57:54 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=/Dz0GgmO6qmE4MAFGR84AXHaHxqY/lTl7uea6qX+5fg=;
+        b=gUMbFr9uafrwB9Inh7NxeLOBbTDsUX0iechzf1hnGN9iyTJidqKxb+g/pP58CprQTm
+         MqUt5TwGJ2oK4Rfz07SXVSkL87mbO/nPmT96mrAd/+saxi28UVmpYnft1VZl1ycWK1UT
+         VGGP/kia1jvUx8fcc+WY7k988xhgRPLDaGcTy7tOUl9zlyJSHN8/bxRn2s7/bmbxJE7L
+         Lt+NoTMFndER6mozuJcyE7v3C3yKLDIV2XLkRMZE+IGwKbRwfFTPAXcN9cjUxj8wr0sB
+         4cK8g6JzO5x7uMwQ9FKCAMUrCc4WgxvESG0ft8V+do6W+CWcOUZWhOIvddLYNwD0xhFi
+         kyYA==
+X-Gm-Message-State: APjAAAWHlyGa7pnKBZ7hyvIx/z7SmRsXv5VXGEqHhDOpbg3erOLIIW/I
+        wCrdCmLZ4MhoIFYfi1XaHRM=
+X-Google-Smtp-Source: APXvYqwYFWImrD12nOO6O4tljP+JRCjkjw66pzAW6I8GeoaAGPbNiPFbQl+QlKHEMKqzZDwQjGv7JQ==
+X-Received: by 2002:a62:26c1:: with SMTP id m184mr36658332pfm.200.1564429289372;
+        Mon, 29 Jul 2019 12:41:29 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id o24sm18978199pgn.93.2019.07.29.12.41.28
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 29 Jul 2019 12:41:28 -0700 (PDT)
+Date:   Mon, 29 Jul 2019 12:42:15 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     broonie@kernel.org, l.stach@pengutronix.de, mihai.serban@gmail.com,
+        alsa-devel@alsa-project.org, viorel.suman@nxp.com,
+        timur@kernel.org, shengjiu.wang@nxp.com, angus@akkea.ca,
+        tiwai@suse.com, linux-imx@nxp.com, kernel@pengutronix.de,
+        festevam@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org
+Subject: Re: [PATCH v2 1/7] ASoC: fsl_sai: Add registers definition for
+ multiple datalines
+Message-ID: <20190729194214.GA20594@Asurada-Nvidia.nvidia.com>
+References: <20190728192429.1514-1-daniel.baluta@nxp.com>
+ <20190728192429.1514-2-daniel.baluta@nxp.com>
 MIME-Version: 1.0
-References: <20190728192429.1514-1-daniel.baluta@nxp.com> <20190728192429.1514-2-daniel.baluta@nxp.com>
- <20190729194214.GA20594@Asurada-Nvidia.nvidia.com>
-In-Reply-To: <20190729194214.GA20594@Asurada-Nvidia.nvidia.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Mon, 29 Jul 2019 22:57:43 +0300
-Message-ID: <CAEnQRZDmnAmgUkRGv3V5S7b5EnYTd2BO5NFuME2CfGb1=nAHzQ@mail.gmail.com>
-Subject: Re: [alsa-devel] [PATCH v2 1/7] ASoC: fsl_sai: Add registers
- definition for multiple datalines
-To:     Nicolin Chen <nicoleotsuka@gmail.com>
-Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Timur Tabi <timur@kernel.org>, Rob Herring <robh@kernel.org>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Takashi Iwai <tiwai@suse.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Mark Brown <broonie@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Mihai Serban <mihai.serban@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190728192429.1514-2-daniel.baluta@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 10:42 PM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
->
-> On Sun, Jul 28, 2019 at 10:24:23PM +0300, Daniel Baluta wrote:
-> > SAI IP supports up to 8 data lines. The configuration of
-> > supported number of data lines is decided at SoC integration
-> > time.
-> >
-> > This patch adds definitions for all related data TX/RX registers:
-> >       * TDR0..7, Transmit data register
-> >       * TFR0..7, Transmit FIFO register
-> >       * RDR0..7, Receive data register
-> >       * RFR0..7, Receive FIFO register
-> >
-> > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> > ---
-> >  sound/soc/fsl/fsl_sai.c | 76 +++++++++++++++++++++++++++++++++++------
-> >  sound/soc/fsl/fsl_sai.h | 36 ++++++++++++++++---
-> >  2 files changed, 98 insertions(+), 14 deletions(-)
-> >
-> > diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
-> > index 6d3c6c8d50ce..17b0aff4ee8b 100644
-> > --- a/sound/soc/fsl/fsl_sai.c
-> > +++ b/sound/soc/fsl/fsl_sai.c
->
-> > @@ -704,7 +711,14 @@ static bool fsl_sai_readable_reg(struct device *dev, unsigned int reg)
-> >       case FSL_SAI_TCR3:
-> >       case FSL_SAI_TCR4:
-> >       case FSL_SAI_TCR5:
-> > -     case FSL_SAI_TFR:
-> > +     case FSL_SAI_TFR0:
-> > +     case FSL_SAI_TFR1:
-> > +     case FSL_SAI_TFR2:
-> > +     case FSL_SAI_TFR3:
-> > +     case FSL_SAI_TFR4:
-> > +     case FSL_SAI_TFR5:
-> > +     case FSL_SAI_TFR6:
-> > +     case FSL_SAI_TFR7:
-> >       case FSL_SAI_TMR:
-> >       case FSL_SAI_RCSR:
-> >       case FSL_SAI_RCR1:
->
-> A tricky thing here is that those SAI instances on older SoC don't
-> support multi data lines physically, while seemly having registers
-> pre-defined. So your change doesn't sound doing anything wrong to
-> them at all, I am still wondering if it is necessary to apply them
-> to newer compatible only though, as for older compatibles of SAI,
-> these registers would be useless and confusing if being exposed.
->
-> What do you think?
+On Sun, Jul 28, 2019 at 10:24:23PM +0300, Daniel Baluta wrote:
+> SAI IP supports up to 8 data lines. The configuration of
+> supported number of data lines is decided at SoC integration
+> time.
+> 
+> This patch adds definitions for all related data TX/RX registers:
+> 	* TDR0..7, Transmit data register
+> 	* TFR0..7, Transmit FIFO register
+> 	* RDR0..7, Receive data register
+> 	* RFR0..7, Receive FIFO register
+> 
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> ---
+>  sound/soc/fsl/fsl_sai.c | 76 +++++++++++++++++++++++++++++++++++------
+>  sound/soc/fsl/fsl_sai.h | 36 ++++++++++++++++---
+>  2 files changed, 98 insertions(+), 14 deletions(-)
+> 
+> diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
+> index 6d3c6c8d50ce..17b0aff4ee8b 100644
+> --- a/sound/soc/fsl/fsl_sai.c
+> +++ b/sound/soc/fsl/fsl_sai.c
 
-Yes, I thought about this too. But, I tried to keep the code as short
-as possible and technically it is not wrong. When 1 data line is supported
-for example application will only care about TDR0, TFR0, etc.
+> @@ -704,7 +711,14 @@ static bool fsl_sai_readable_reg(struct device *dev, unsigned int reg)
+>  	case FSL_SAI_TCR3:
+>  	case FSL_SAI_TCR4:
+>  	case FSL_SAI_TCR5:
+> -	case FSL_SAI_TFR:
+> +	case FSL_SAI_TFR0:
+> +	case FSL_SAI_TFR1:
+> +	case FSL_SAI_TFR2:
+> +	case FSL_SAI_TFR3:
+> +	case FSL_SAI_TFR4:
+> +	case FSL_SAI_TFR5:
+> +	case FSL_SAI_TFR6:
+> +	case FSL_SAI_TFR7:
+>  	case FSL_SAI_TMR:
+>  	case FSL_SAI_RCSR:
+>  	case FSL_SAI_RCR1:
+
+A tricky thing here is that those SAI instances on older SoC don't
+support multi data lines physically, while seemly having registers
+pre-defined. So your change doesn't sound doing anything wrong to
+them at all, I am still wondering if it is necessary to apply them
+to newer compatible only though, as for older compatibles of SAI,
+these registers would be useless and confusing if being exposed.
+
+What do you think?
