@@ -2,118 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0961D791FF
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 19:23:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46EF57920C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 19:25:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727266AbfG2RXS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 13:23:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38610 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725934AbfG2RXR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 13:23:17 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 56A5A206DD;
-        Mon, 29 Jul 2019 17:23:16 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564420996;
-        bh=8LBXeqCHLxzkhJ6fYk5Mwh6ZnoaN3oqy+XOaykDGmqY=;
-        h=In-Reply-To:References:From:To:Subject:Cc:Date:From;
-        b=aAWCrQDkMvbS08hacUds+Wf+sZde7i/RjMzE9sV/eQqHTqn5a3FmpvX9WT3xLxFGK
-         oPZgYjtXx6TIZIT4i5EOInmnuRQZj/IsdkDO4wOLz3zWR9gSygToWFfqBVOE/l1/cJ
-         J0ycq151dPs5hFhPEg0DYdb8ihwl1LdMl6zQpcFw=
-Content-Type: text/plain; charset="utf-8"
+        id S1728063AbfG2RZx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 13:25:53 -0400
+Received: from outils.crapouillou.net ([89.234.176.41]:41776 "EHLO
+        crapouillou.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725934AbfG2RZx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 13:25:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=crapouillou.net;
+        s=mail; t=1564421150; h=from:from:sender:reply-to:subject:subject:date:date:
+         message-id:message-id:to:to:cc:cc:mime-version:mime-version:
+         content-type:content-type:
+         content-transfer-encoding:content-transfer-encoding:
+         in-reply-to:in-reply-to:references:references;
+        bh=8+qV28YYJniA0AukbbbJEysxFPjT+avEllLJr1CUVTc=;
+        b=sw7qv0bBtbgyJbzjIoXXSS5FQUZvEZVn+PBWp+obxwOs3LGxECaxlAlmHs21P/b5RUAAT2
+        hq6FrRaKanu/AvUQ+9uDVSKCtxex0VPrTUwZ6r9t9aKZFL10PAYPf2AkIALQERSqS8sSyJ
+        P+HgUycY6IzIHqJMAUh1dl/zHZM8GZA=
+Date:   Mon, 29 Jul 2019 13:25:33 -0400
+From:   Paul Cercueil <paul@crapouillou.net>
+Subject: Re: [PATCH 4/4 v4] irqchip: Ingenic: Add support for new Ingenic
+ Socs.
+To:     Zhou Yanjie <zhouyanjie@zoho.com>
+Cc:     linux-mips@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh+dt@kernel.org,
+        paul.burton@mips.com, tglx@linutronix.de, mark.rutland@arm.com,
+        jason@lakedaemon.net, marc.zyngier@arm.com
+Message-Id: <1564421133.6633.1@crapouillou.net>
+In-Reply-To: <1564335273-22931-5-git-send-email-zhouyanjie@zoho.com>
+References: <1548517123-60058-1-git-send-email-zhouyanjie@zoho.com>
+        <1564335273-22931-1-git-send-email-zhouyanjie@zoho.com>
+        <1564335273-22931-5-git-send-email-zhouyanjie@zoho.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1; format=flowed
 Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190726231558.175130-2-saravanak@google.com>
-References: <20190726231558.175130-1-saravanak@google.com> <20190726231558.175130-2-saravanak@google.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-To:     "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Viresh Kumar <vireshk@kernel.org>
-Subject: Re: [PATCH v4 1/3] dt-bindings: opp: Introduce opp-peak-KBps and opp-avg-KBps bindings
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
-        daidavid1@codeaurora.org, adharmap@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>, sibis@codeaurora.org,
-        bjorn.andersson@linaro.org, evgreen@chromium.org,
-        kernel-team@android.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-User-Agent: alot/0.8.1
-Date:   Mon, 29 Jul 2019 10:23:15 -0700
-Message-Id: <20190729172316.56A5A206DD@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Saravana Kannan (2019-07-26 16:15:55)
-> diff --git a/Documentation/devicetree/bindings/opp/opp.txt b/Documentatio=
-n/devicetree/bindings/opp/opp.txt
-> index 76b6c79604a5..b1eb49d6eab0 100644
-> --- a/Documentation/devicetree/bindings/opp/opp.txt
-> +++ b/Documentation/devicetree/bindings/opp/opp.txt
-> @@ -83,9 +83,14 @@ properties.
-> =20
->  Required properties:
->  - opp-hz: Frequency in Hz, expressed as a 64-bit big-endian integer. Thi=
-s is a
-> -  required property for all device nodes but devices like power domains.=
- The
-> -  power domain nodes must have another (implementation dependent) proper=
-ty which
-> -  uniquely identifies the OPP nodes.
-> +  required property for all device nodes but for devices like power doma=
-ins or
 
-s/but/except/
 
-> +  bandwidth opp tables. The power domain nodes must have another (implem=
-entation
-> +  dependent) property which uniquely identifies the OPP nodes. The inter=
-connect
-> +  opps are required to have the opp-peak-KBps property.
-> +
-> +- opp-peak-KBps: Peak bandwidth in kilobytes per second, expressed as a =
-32-bit
-> +  big-endian integer. This is a required property for all devices that d=
-on't
-> +  have opp-hz. For example, bandwidth OPP tables for interconnect paths.
-> =20
->  Optional properties:
->  - opp-microvolt: voltage in micro Volts.
-> @@ -132,6 +137,10 @@ Optional properties:
->  - opp-level: A value representing the performance level of the device,
->    expressed as a 32-bit integer.
-> =20
-> +- opp-avg-KBps: Average bandwidth in kilobytes per second, expressed as a
+Le dim. 28 juil. 2019 =E0 13:34, Zhou Yanjie <zhouyanjie@zoho.com> a=20
+=E9crit :
+> Add support for probing the irq-ingenic driver on the JZ4760/JZ4760B
+> and the X1000/X1000E and the X1500 Socs from Ingenic.
+>=20
+> Signed-off-by: Zhou Yanjie <zhouyanjie@zoho.com>
+> ---
+>  drivers/irqchip/irq-ingenic.c | 5 +++++
+>  1 file changed, 5 insertions(+)
+>=20
+> diff --git a/drivers/irqchip/irq-ingenic.c=20
+> b/drivers/irqchip/irq-ingenic.c
+> index 8430f5a..b72430c 100644
+> --- a/drivers/irqchip/irq-ingenic.c
+> +++ b/drivers/irqchip/irq-ingenic.c
+> @@ -173,6 +173,11 @@ static int __init intc_2chip_of_init(struct=20
+> device_node *node,
+>  {
+>  	return ingenic_intc_of_init(node, 2);
+>  }
+> +IRQCHIP_DECLARE(jz4760_intc, "ingenic,jz4760-intc",=20
+> intc_2chip_of_init);
+> +IRQCHIP_DECLARE(jz4760b_intc, "ingenic,jz4760b-intc",=20
+> intc_2chip_of_init);
+>  IRQCHIP_DECLARE(jz4770_intc, "ingenic,jz4770-intc",=20
+> intc_2chip_of_init);
+>  IRQCHIP_DECLARE(jz4775_intc, "ingenic,jz4775-intc",=20
+> intc_2chip_of_init);
+>  IRQCHIP_DECLARE(jz4780_intc, "ingenic,jz4780-intc",=20
+> intc_2chip_of_init);
+> +IRQCHIP_DECLARE(x1000_intc, "ingenic,x1000-intc",=20
+> intc_2chip_of_init);
+> +IRQCHIP_DECLARE(x1000e_intc, "ingenic,x1000e-intc",=20
+> intc_2chip_of_init);
+> +IRQCHIP_DECLARE(x1500_intc, "ingenic,x1500-intc",=20
+> intc_2chip_of_init);
 
-Shouldn't that be a lower case k? kBps?
+All these compatible strings point to the exact same behaviour. It was
+already a mistake to have the three "ingenic,jz47[70,75,80]-intc" here;
+there should have been only one, e.g. "ingenic,jz4770-intc" and the=20
+other
+two SoCs using it as a fallback compatible.
 
-> +  32-bit big-endian integer. This property is only meaningful in OPP tab=
-les
-> +  where opp-peak-KBps is present.
-> +
->  - clock-latency-ns: Specifies the maximum possible transition latency (in
->    nanoseconds) for switching to this OPP from any other OPP.
-> =20
-> diff --git a/Documentation/devicetree/bindings/property-units.txt b/Docum=
-entation/devicetree/bindings/property-units.txt
-> index e9b8360b3288..ef4c4a199efa 100644
-> --- a/Documentation/devicetree/bindings/property-units.txt
-> +++ b/Documentation/devicetree/bindings/property-units.txt
-> @@ -41,3 +41,7 @@ Temperature
->  Pressure
->  ----------------------------------------
->  -kpascal       : kilopascal
-> +
-> +Throughput
-> +----------------------------------------
-> +-KBps          : kilobytes per second
+I think you don't need to add these, and in your devicetree just use
+"ingenic,jz4780-intc" as a fallback compatible.
 
-Same comment.
+Cheers,
+-Paul
+
+=
 
