@@ -2,99 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9336D7938A
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 21:04:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D998E796EE
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 21:56:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729300AbfG2TEM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 15:04:12 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:50935 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728414AbfG2TEM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 15:04:12 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hsAwI-00078Z-O8; Mon, 29 Jul 2019 21:04:06 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hsAwG-0002rt-PT; Mon, 29 Jul 2019 21:04:04 +0200
-Date:   Mon, 29 Jul 2019 21:04:04 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Maxime Ripard <mripard@kernel.org>
-Cc:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
-        mark.rutland@arm.com, linux-pwm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-sunxi@googlegroups.com,
-        linux-kernel@vger.kernel.org, wens@csie.org, robh+dt@kernel.org,
-        thierry.reding@gmail.com, kernel@pengutronix.de,
-        linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 3/6] pwm: sun4i: Add a quirk for bus clock
-Message-ID: <20190729190404.rnxw2aihmciafy6c@pengutronix.de>
-References: <20190726184045.14669-1-jernej.skrabec@siol.net>
- <20190726184045.14669-4-jernej.skrabec@siol.net>
- <20190729063825.wxfky6nswcru26g7@pengutronix.de>
- <4022372.WfP88Fa4Lu@jernej-laptop>
- <20190729161435.5bnj3ikocsyep4dd@pengutronix.de>
- <20190729164516.yxfgj2zd3d5ii4c4@flea.home>
+        id S2404264AbfG2Tzz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 15:55:55 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:41906 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2404250AbfG2Tzu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 15:55:50 -0400
+Received: by mail-lj1-f196.google.com with SMTP id d24so59768659ljg.8
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 12:55:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=5AIV3bhDTMo2KA4dIrmXwLSUtBSIQ7oOV6EAOsD1k0A=;
+        b=rwAinQNsrHsXyutJABCo3H9CAJc9UBVAAtCGiQvTGPFVqIK879udYEVtNolfL0F8qI
+         D3UAnSrBHg6mVbCcmJQZWFIuDEf3Qbw5h0k7HwmG4Q/+S8xyNODugp/kHHg91vNnmkG7
+         ZE5i+WI7TBpu9+0cZrg8rENYgOCj4KYppcxSfBqjhKku1HcOurq7QvW8fhTVgSd9/w6p
+         hjLxYkJnXteTIM5pqQ/X+PlJ5+fs6sXxBA3VL4aKdFZe9r/kQLAVb7CLGnNpKjcd23Mi
+         9ryExjkHAGOSAPH4RfURTNmND2CsU4oa7S/9gNBqD0Xv3DwG/dUR7PUVX3M8ZbPwQNt+
+         mnCw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=5AIV3bhDTMo2KA4dIrmXwLSUtBSIQ7oOV6EAOsD1k0A=;
+        b=uPB1OpHi0uEK1WyS2zoUhg6NOBMYqy1X9xvLc6iwKCWSkAu3E4v46IhZdu0FPRGMFc
+         +ElASM+EiCvKbgp7GIOIPt/Ol4yrNUX+0Ygxn8QW4UJtKs+3WX4pc+Zn0KPk1hn229LQ
+         us7jB4b+F4WEsKZzPyzty+k4QFRKw/y7/q3CseqDuUHVn6Oo8jrYEZckSeMKP8+zSn/m
+         055byhGQ9OlDQMrgHhIwqXyaeBw36EqJD7xkMjndixLccpf+obTE/iKFCawVsinpuQuK
+         +GFwQbxo9b7Zhtq9h4VY68newxcwt4LGlgQu0HprZhfZetCyHTkJtEM3OIk2ACt/+RFh
+         mj4A==
+X-Gm-Message-State: APjAAAWLiWZWx66IvH/VWSPrQ9J6d/yra/OVl70CmfLn2zehyibM6OaC
+        GcIDqNxkiFjWRKMQOAKxIH0=
+X-Google-Smtp-Source: APXvYqyI4jdiPFxEKXAoJCx+bBq8QVKIIwFJ54C0wjZO0MWQirKCMKXIY7bOlSXh5TMGWEHJITlOeg==
+X-Received: by 2002:a2e:9048:: with SMTP id n8mr12238028ljg.37.1564430148831;
+        Mon, 29 Jul 2019 12:55:48 -0700 (PDT)
+Received: from localhost (customer-145-14-112-32.stosn.net. [145.14.112.32])
+        by smtp.gmail.com with ESMTPSA id v17sm14577614ljg.36.2019.07.29.12.55.48
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 29 Jul 2019 12:55:48 -0700 (PDT)
+Date:   Mon, 29 Jul 2019 21:55:47 +0200
+From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Simon Horman <horms@verge.net.au>
+Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Ulrich Hecht <uli+renesas@fpond.eu>
+Subject: Re: [PATCH v2] dt-bindings: rcar-{csi2,vin}: Rename bindings
+ documentation files
+Message-ID: <20190729195547.GG3186@bigcity.dyn.berto.se>
+References: <20190612211241.1455-1-niklas.soderlund+renesas@ragnatech.se>
+ <20190712071703.GE9317@wyvern>
+ <20190729074355.urlf77ihukgnk6ov@verge.net.au>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190729164516.yxfgj2zd3d5ii4c4@flea.home>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <20190729074355.urlf77ihukgnk6ov@verge.net.au>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello Maxime,
+Hi,
 
-On Mon, Jul 29, 2019 at 06:45:16PM +0200, Maxime Ripard wrote:
-> On Mon, Jul 29, 2019 at 06:14:35PM +0200, Uwe Kleine-König wrote:
-> > Then maybe something like the following?:
-> >
-> > 	busclk = devm_clk_get_optional(..., "bus");
-> > 	modclk = devm_clk_get_optional(..., "mod");
-> >
-> > 	/*
-> > 	 * old dtbs might have a single clock but no clock names. Fall
-> > 	 * back to this for compatibility reasons.
-> > 	 */
-> > 	if (!modclk) {
-> > 		modclk = devm_clk_get(..., NULL);
-> > 	}
+On 2019-07-29 09:43:55 +0200, Simon Horman wrote:
+> On Fri, Jul 12, 2019 at 04:17:03PM +0900, Niklas Söderlund wrote:
+> > Hi,
+> > 
+> > A gentle ping on this patch. I assume if it could get a ack from Rob it 
+> > could be taken in thru the media-tree?
 > 
-> Again, there's nothing optional about these clocks. You need a
-> particular set of clocks for a given generation, and a separate set of
-> them on another generation of SoCs.
+> Given the lack of interest I think it could also be taken through
+> Geert's tree.
 
-It depends on the way how "optional" is understood. The semantic of
-"optional" as it is used and implemented by devm_clk_get_optional (and
-gpiod_get_optional and devm_reset_control_get_optional) is different
-than yours when saying "on H6 the clock is not optional". If it was
-about the "it doesn't matter if it's taken care of or not" semantic you
-seem to mean the function would be useless and no driver would need to
-actually use it. In the sense of the functions listed above "optional"
-means: Some devices need it, others don't. Using this semantic the "bus"
-clock is optional.
+I would be happy if that could happen thru Geert's tree.
 
-> It really isn't about DT validation. We're really making sure that the
-> device can be operational. It's as much of a validation step than
-> making sure we have mapped registers (reg), or an interrupt if we had
-> any.
-
-Do you agree with Jernej in the other end of this thread? If so I don't
-think that repeating the same arguments here is sensible. Please read
-what I wrote there.
-
-Best regards
-Uwe
+> 
+> > 
+> > On 2019-06-12 23:12:41 +0200, Niklas Söderlund wrote:
+> > > Renesas media binding documentation files uses a naming schema of
+> > > 'renesas,<module>.txt'. Rename VIN and CSI-2 files to match this
+> > > pattern.
+> > > 
+> > > Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> > > Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > > Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
+> > > ---
+> > >  .../media/{renesas,rcar-csi2.txt => renesas,csi2.txt}         | 0
+> > >  .../bindings/media/{rcar_vin.txt => renesas,vin.txt}          | 0
+> > >  MAINTAINERS                                                   | 4 ++--
+> > >  3 files changed, 2 insertions(+), 2 deletions(-)
+> > >  rename Documentation/devicetree/bindings/media/{renesas,rcar-csi2.txt => renesas,csi2.txt} (100%)
+> > >  rename Documentation/devicetree/bindings/media/{rcar_vin.txt => renesas,vin.txt} (100%)
+> > > 
+> > > diff --git a/Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt b/Documentation/devicetree/bindings/media/renesas,csi2.txt
+> > > similarity index 100%
+> > > rename from Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt
+> > > rename to Documentation/devicetree/bindings/media/renesas,csi2.txt
+> > > diff --git a/Documentation/devicetree/bindings/media/rcar_vin.txt b/Documentation/devicetree/bindings/media/renesas,vin.txt
+> > > similarity index 100%
+> > > rename from Documentation/devicetree/bindings/media/rcar_vin.txt
+> > > rename to Documentation/devicetree/bindings/media/renesas,vin.txt
+> > > diff --git a/MAINTAINERS b/MAINTAINERS
+> > > index 6a3bac28ebb47830..a0d21ff13c8e8989 100644
+> > > --- a/MAINTAINERS
+> > > +++ b/MAINTAINERS
+> > > @@ -9807,8 +9807,8 @@ L:	linux-media@vger.kernel.org
+> > >  L:	linux-renesas-soc@vger.kernel.org
+> > >  T:	git git://linuxtv.org/media_tree.git
+> > >  S:	Supported
+> > > -F:	Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt
+> > > -F:	Documentation/devicetree/bindings/media/rcar_vin.txt
+> > > +F:	Documentation/devicetree/bindings/media/renesas,csi2.txt
+> > > +F:	Documentation/devicetree/bindings/media/renesas,vin.txt
+> > >  F:	drivers/media/platform/rcar-vin/
+> > >  
+> > >  MEDIA DRIVERS FOR RENESAS - VSP1
+> > > -- 
+> > > 2.21.0
+> > > 
+> > 
+> > -- 
+> > Regards,
+> > Niklas Söderlund
+> > 
 
 -- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Regards,
+Niklas Söderlund
