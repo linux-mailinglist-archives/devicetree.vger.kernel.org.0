@@ -2,90 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49324792A4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 19:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 50C37792CD
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 20:08:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728525AbfG2RxT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 13:53:19 -0400
-Received: from mail-out.m-online.net ([212.18.0.10]:45056 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728428AbfG2RxQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 13:53:16 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 45y6jj6CMNz1rYHJ;
-        Mon, 29 Jul 2019 19:53:13 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 45y6jj36Fpz1qqkS;
-        Mon, 29 Jul 2019 19:53:13 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id HMEoEI9xwb1B; Mon, 29 Jul 2019 19:53:12 +0200 (CEST)
-X-Auth-Info: bbCaZbkX8T1qT/Uf5hYV23wSY8ekSAiAZqwM1YDcnEs=
-Received: from kurokawa.lan (ip-86-49-35-8.net.upcbroadband.cz [86.49.35.8])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Mon, 29 Jul 2019 19:53:12 +0200 (CEST)
-From:   Marek Vasut <marex@denx.de>
-To:     netdev@vger.kernel.org
-Cc:     Marek Vasut <marex@denx.de>, Andrew Lunn <andrew@lunn.ch>,
-        "David S . Miller" <davem@davemloft.net>,
-        Florian Fainelli <f.fainelli@gmail.com>,
+        id S1729124AbfG2SIm convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Jul 2019 14:08:42 -0400
+Received: from lithops.sigma-star.at ([195.201.40.130]:42270 "EHLO
+        lithops.sigma-star.at" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727482AbfG2SIm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 14:08:42 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by lithops.sigma-star.at (Postfix) with ESMTP id E832A60632C0;
+        Mon, 29 Jul 2019 20:08:38 +0200 (CEST)
+Received: from lithops.sigma-star.at ([127.0.0.1])
+        by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id ehX5VuQgnl7G; Mon, 29 Jul 2019 20:08:38 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by lithops.sigma-star.at (Postfix) with ESMTP id 70E276083139;
+        Mon, 29 Jul 2019 20:08:38 +0200 (CEST)
+Received: from lithops.sigma-star.at ([127.0.0.1])
+        by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id XjNoOe8nauWF; Mon, 29 Jul 2019 20:08:38 +0200 (CEST)
+Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
+        by lithops.sigma-star.at (Postfix) with ESMTP id D590B608311C;
+        Mon, 29 Jul 2019 20:08:37 +0200 (CEST)
+Date:   Mon, 29 Jul 2019 20:08:37 +0200 (CEST)
+From:   Richard Weinberger <richard@nod.at>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Richard Weinberger <richard.weinberger@gmail.com>,
+        Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Tristram Ha <Tristram.Ha@microchip.com>,
-        Vivien Didelot <vivien.didelot@gmail.com>,
-        Woojung Huh <woojung.huh@microchip.com>,
-        devicetree@vger.kernel.org
-Subject: [PATCH V4 1/3] dt-bindings: net: dsa: ksz: document Microchip KSZ87xx family switches
-Date:   Mon, 29 Jul 2019 19:49:45 +0200
-Message-Id: <20190729174947.10103-2-marex@denx.de>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190729174947.10103-1-marex@denx.de>
-References: <20190729174947.10103-1-marex@denx.de>
+        Mark Rutland <mark.rutland@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
+        alsa-devel <alsa-devel@alsa-project.org>,
+        linux-pm@vger.kernel.org, linux-mips@vger.kernel.org,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>, od@zcrc.me,
+        linux-mtd <linux-mtd@lists.infradead.org>,
+        dmaengine@vger.kernel.org, Artur Rojek <contact@artur-rojek.eu>
+Message-ID: <339409106.53616.1564423717793.JavaMail.zimbra@nod.at>
+In-Reply-To: <1564419921.1759.1@crapouillou.net>
+References: <20190725220215.460-1-paul@crapouillou.net> <CAFLxGvyi0+0E3M12A7cRoHfEKd8-7Yr8EMG9J=2XcjCxPWY5pA@mail.gmail.com> <1564419921.1759.1@crapouillou.net>
+Subject: Re: [PATCH 00/11] JZ4740 SoC cleanup
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 8BIT
+X-Originating-IP: [195.201.40.130]
+X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF60 (Linux)/8.8.12_GA_3809)
+Thread-Topic: JZ4740 SoC cleanup
+Thread-Index: pyW9XJwx/g8VXIVrZC/ODWU++joHAw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document Microchip KSZ87xx family switches. These include
-KSZ8765 - 5 port switch
-KSZ8794 - 4 port switch
-KSZ8795 - 5 port switch
+----- Ursprüngliche Mail -----
+>> Was this series tested with the Ben Nanonote device?
+>> I have one of these and from time to time I upgrade the kernel on it.
+> 
+> Yes! Artur (Cc'd) tested it.
+> 
+> You can test it yourself, after merging this patchset with:
+> https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/slave-dma.git
+> branch next,
+> git://git.freedesktop.org/git/drm-misc branch drm-misc-next.
+> 
+> These will be in 5.4-rc1.
 
-Signed-off-by: Marek Vasut <marex@denx.de>
-Cc: Andrew Lunn <andrew@lunn.ch>
-Cc: David S. Miller <davem@davemloft.net>
-Cc: Florian Fainelli <f.fainelli@gmail.com>
-Cc: Rob Herring <robh+dt@kernel.org>
-Cc: Tristram Ha <Tristram.Ha@microchip.com>
-Cc: Vivien Didelot <vivien.didelot@gmail.com>
-Cc: Woojung Huh <woojung.huh@microchip.com>
-Cc: devicetree@vger.kernel.org
----
-V2: No change
-V3: No change
-V4: No change
----
- Documentation/devicetree/bindings/net/dsa/ksz.txt | 3 +++
- 1 file changed, 3 insertions(+)
+Awesome! Thanks a lot for cleaning this up.
 
-diff --git a/Documentation/devicetree/bindings/net/dsa/ksz.txt b/Documentation/devicetree/bindings/net/dsa/ksz.txt
-index 4ac21cef370e..5e8429b6f9ca 100644
---- a/Documentation/devicetree/bindings/net/dsa/ksz.txt
-+++ b/Documentation/devicetree/bindings/net/dsa/ksz.txt
-@@ -5,6 +5,9 @@ Required properties:
- 
- - compatible: For external switch chips, compatible string must be exactly one
-   of the following:
-+  - "microchip,ksz8765"
-+  - "microchip,ksz8794"
-+  - "microchip,ksz8795"
-   - "microchip,ksz9477"
-   - "microchip,ksz9897"
-   - "microchip,ksz9896"
--- 
-2.20.1
-
+Thanks,
+//richard
