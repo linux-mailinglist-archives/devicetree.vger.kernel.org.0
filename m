@@ -2,119 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83D3178BFF
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 14:48:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6600F78C40
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 15:05:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726717AbfG2Msu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 08:48:50 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:53574 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726432AbfG2Msu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 08:48:50 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 291E8FB03;
-        Mon, 29 Jul 2019 14:48:47 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id kaCWHnVd1ww1; Mon, 29 Jul 2019 14:48:46 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 9752146CDF; Mon, 29 Jul 2019 14:48:45 +0200 (CEST)
-Date:   Mon, 29 Jul 2019 14:48:45 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     shawnguo@kernel.org, devicetree@vger.kernel.org, baruch@tkos.co.il,
-        abel.vesa@nxp.com, Anson.Huang@nxp.com, ccaione@baylibre.com,
-        andrew.smirnov@gmail.com, s.hauer@pengutronix.de, angus@akkea.ca,
-        linux-kernel@vger.kernel.org, linux-imx@nxp.com,
-        festevam@gmail.com, shengjiu.wang@nxp.com,
-        linux-arm-kernel@lists.infradead.org, l.stach@pengutronix.de
-Subject: Re: [PATCH v4] arm64: dts: imx8mq: Init rates and parents configs
- for clocks
-Message-ID: <20190729124845.GA12650@bogon.m.sigxcpu.org>
-References: <20190728152040.15323-1-daniel.baluta@nxp.com>
+        id S1727984AbfG2NFY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 09:05:24 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:50495 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727979AbfG2NFY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 09:05:24 -0400
+Received: by mail-wm1-f68.google.com with SMTP id v15so53809206wml.0
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 06:05:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:openpgp:autocrypt:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=j0+gH+XJcAx4/WK5B8ajaIVZr5svz0xnQ0NGMIOg6Qo=;
+        b=RcPimZ4sI4L/Wn5tThBMNzOIzeZBVjf8NG17hCoBkhFE5/UmfiFzRYjGQwf+wDTKvb
+         SzUJVxl6FH/ohe9RWMiwHHJYnRJCYnImHQ0MH0npus/vhH9Oxs/uAms6Scjx4mGtJRcm
+         hWV1mL5ByGMWW++CB2bbRH+vCJuwPVz8JtsjIghpXJaAMYE4EmzGJjlBa8pX0wap0q0B
+         Mbx2e+KwKZ3dFhF8T0vFcW5a+QtuTlFxZ86nzaaqzaiWFGL+Cf2gg/5su1nlmKpC/vpw
+         1puPcrUS1H6O0xZKbOBlnKtf0td0xo9YfNF1kURFQg/81j+Rxz1Xsu036JCWCc7+Kunb
+         N7BQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :organization:message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=j0+gH+XJcAx4/WK5B8ajaIVZr5svz0xnQ0NGMIOg6Qo=;
+        b=G3DTN0R1JL5sD7TkmRcmc5orW/nsojSdRh0KrGAWTLDdkffF+LFyMjE3/FmZZ9k8Ps
+         zdipuC9fOboOSAOtDVLaGjy+o0mkBaAhU9XrngHtsDmF4WuViL+kjFJQeui7mkjwnTeX
+         +eaa8emFA95s5tRaq9ewxPenOjLfsazD7jrAV2NwH0KacfsMn2HaXkurpbkA0MPnzTOD
+         7rFnBal1cQx0S1KLdy2guPf7ZPJa8makPwsizDavMyJZ9LJ3zK2r0DCgTpGtAJD0OXWu
+         1chQE4gvVP8dDwG8M6ZDa/IiVW2pzMyHn++CyB4Wku/uPHmgXB4mZhW6RB43nMB4/c73
+         03Kw==
+X-Gm-Message-State: APjAAAVo5ApHuvOqn9XoGnc0/xxV1FO0bx2FoFPba6Y7vxduZ7Ex4dMb
+        9GzfoS+mVKpMn1WgtELa1I+JaNtVvyA=
+X-Google-Smtp-Source: APXvYqyZ9wIaOg6v1AlkQUYxmkjoplizWqY8dZvTi1LbYLZ6E/hW+bE5wfIeWy9FYRPa/aFf6WLHOQ==
+X-Received: by 2002:a1c:c14b:: with SMTP id r72mr84021665wmf.166.1564405521127;
+        Mon, 29 Jul 2019 06:05:21 -0700 (PDT)
+Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id p12sm46641432wrt.13.2019.07.29.06.05.20
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Jul 2019 06:05:20 -0700 (PDT)
+Subject: Re: [PATCH 2/3] arm64: dts: meson-gx: add video decoder entry
+To:     Maxime Jourdan <mjourdan@baylibre.com>,
+        Kevin Hilman <khilman@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+References: <20190726124639.7713-1-mjourdan@baylibre.com>
+ <20190726124639.7713-3-mjourdan@baylibre.com>
+From:   Neil Armstrong <narmstrong@baylibre.com>
+Openpgp: preference=signencrypt
+Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
+ 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
+ ZaTUOEkgIor5losDrePdPgE=
+Organization: Baylibre
+Message-ID: <0a384af2-9c81-f798-82c0-eae07ed5981c@baylibre.com>
+Date:   Mon, 29 Jul 2019 15:05:20 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190728152040.15323-1-daniel.baluta@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190726124639.7713-3-mjourdan@baylibre.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Sun, Jul 28, 2019 at 06:20:40PM +0300, Daniel Baluta wrote:
-> From: Abel Vesa <abel.vesa@nxp.com>
+On 26/07/2019 14:46, Maxime Jourdan wrote:
+> Add the base video decoder node compatible with the meson vdec driver,
+> for GX* chips.
 > 
-> Add the initial configuration for clocks that need default parent and rate
-> setting. This is based on the vendor tree clock provider parents and rates
-> configuration except this is doing the setup in dts rather then using clock
-> consumer API in a clock provider driver.
-> 
-> Note that by adding the initial rate setting for audio_pll1/audio_pll
-> setting we need to remove it from imx8mq-librem5-devkit.dts
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> Tested-by: Angus Ainslie (Purism) <angus@akkea.ca>
+> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
 > ---
-> Changes since v3:
-> 	- fix extra new lines
+>  arch/arm64/boot/dts/amlogic/meson-gx.dtsi | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
 > 
->  .../dts/freescale/imx8mq-librem5-devkit.dts   |  5 -----
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 19 +++++++++++++++++++
->  2 files changed, 19 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> index 683a11035643..c702ccc82867 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> @@ -169,11 +169,6 @@
->  	};
->  };
->  
-> -&clk {
-> -	assigned-clocks = <&clk IMX8MQ_AUDIO_PLL1>, <&clk IMX8MQ_AUDIO_PLL2>;
-> -	assigned-clock-rates = <786432000>, <722534400>;
-> -};
-> -
->  &dphy {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 02fbd0625318..a55d72ba2e05 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -494,6 +494,25 @@
->  				clock-names = "ckil", "osc_25m", "osc_27m",
->  				              "clk_ext1", "clk_ext2",
->  				              "clk_ext3", "clk_ext4";
-> +				assigned-clocks = <&clk IMX8MQ_VIDEO_PLL1>,
-> +					<&clk IMX8MQ_AUDIO_PLL1>,
-> +					<&clk IMX8MQ_AUDIO_PLL2>,
-> +					<&clk IMX8MQ_CLK_AHB>,
-> +					<&clk IMX8MQ_CLK_NAND_USDHC_BUS>,
-> +					<&clk IMX8MQ_CLK_AUDIO_AHB>,
-> +					<&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
-> +					<&clk IMX8MQ_CLK_NOC>;
-> +				assigned-clock-parents = <0>,
-> +						<0>,
-> +						<0>,
-> +						<&clk IMX8MQ_SYS1_PLL_133M>,
-> +						<&clk IMX8MQ_SYS1_PLL_266M>,
-> +						<&clk IMX8MQ_SYS2_PLL_500M>,
-> +						<&clk IMX8MQ_CLK_27M>,
-> +						<&clk IMX8MQ_SYS1_PLL_800M>;
-> +				assigned-clock-rates = <593999999>,
-> +						<786432000>,
-> +						<722534400>;
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> index 74d03fc706be..86e26ed551e0 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-gx.dtsi
+> @@ -437,6 +437,20 @@
 >  			};
+>  		};
 >  
->  			src: reset-controller@30390000 {
+> +		vdec: video-codec@c8820000 {
+> +			compatible = "amlogic,gx-vdec";
+> +			reg = <0x0 0xc8820000 0x0 0x10000>,
+> +			      <0x0 0xc110a580 0x0 0xe4>;
+> +			reg-names = "dos", "esparser";
+> +
+> +			interrupts = <GIC_SPI 44 IRQ_TYPE_EDGE_RISING>,
+> +				     <GIC_SPI 32 IRQ_TYPE_EDGE_RISING>;
+> +			interrupt-names = "vdec", "esparser";
+> +
+> +			amlogic,ao-sysctrl = <&sysctrl_AO>;
+> +			amlogic,canvas = <&canvas>;
+> +		};
+> +
+>  		periphs: periphs@c8834000 {
+>  			compatible = "simple-bus";
+>  			reg = <0x0 0xc8834000 0x0 0x2000>;
+> 
 
-Tested-by: Guido Günther <agx@sigxcpu.org> 
-
-Cheers,
- -- Guido
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
