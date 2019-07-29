@@ -2,161 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EFC8F7922F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 19:33:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0160C7925C
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 19:43:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728993AbfG2RdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 13:33:24 -0400
-Received: from mail-eopbgr810130.outbound.protection.outlook.com ([40.107.81.130]:30795
-        "EHLO NAM01-BY2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726709AbfG2RdY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 13:33:24 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YHswST6a360En6gjh1ZsbN/1jq7s73zqk/NGoWd2PH1lSR9cXxHuzPCgOX5+W+kbdTGmNdTa3WICH7syrdhtjrKe3mkuMIkG1yMgBL7J2i4Li+bop4Mbz+w0YxiBuW8kJkZRGBYyGS/lzt2cNMOKGmxDTJkVPwQ0xcCgWqcP4otMh/Ho/EeujGumO30bpoLD31ForcaY5zTPdCR9fclJ23sg//2HEDTuhhWDJlGZugLkKVE+c/xL3mL65o9oDaqeAvI9nyRY0CLcszEmcihxTBkn3BFUSelUZRx+48596VAYri9cNq4oNMcIU2nG/uzTzMx6mlWuHYOmQSqlXfjhXg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cFu0qygaFKWH4Ao14C/g0B+eJfnQFCMH4W8ZiqEBU0Q=;
- b=Vm7oC90diOSqxI9YpQi6PIrERYvQKYuyYpSyP9Br1iZafx9DKc5p7bC9OEOL4Zw4R841Sx0gb8l6ude6nY271dlxO6xxGO8qcJVLzNL6ukVEPqACcglmN7H102crR+F30u/wKZEKEOBVklnPA16dyLgKd728sjZt4Mh/ICPs1b6ouFDQ6/PJiE39xJ8xTXeUzXHRjC5Dtpq7rHLM3aZRPg2hzxzJwPwDmLADsclKlzkpj5bK+wvHON6Oz10DHtQMwUR3ZQzUvbfw+AQw18U33bR9VrtLCPR3Ps02L5VLH2RlLjeRzKwVu7DhU0zyrSkDgjt1+oBCn5qiW+kh2srcxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=wavecomp.com;dmarc=pass action=none
- header.from=mips.com;dkim=pass header.d=mips.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
- s=selector1;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cFu0qygaFKWH4Ao14C/g0B+eJfnQFCMH4W8ZiqEBU0Q=;
- b=C3J51/koLeztasxwNgB3BFWJW90NB8C8fYPERjUPvLdLjYtd0xC/SMZFLcay3k0leNpoBIOv1RADgDzYDm0H93pkFyRLLJ2Pv1tS/GkCa0y4/YhCyZb8I5un5FzucJV/PnteYTosXE4irE7rx3yOXVDWk9Moum5/MU6h3UxG5Yk=
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
- MWHPR2201MB1437.namprd22.prod.outlook.com (10.174.169.164) with Microsoft
- SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2115.14; Mon, 29 Jul 2019 17:33:09 +0000
-Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::105a:1595:b6ef:cbdf]) by MWHPR2201MB1277.namprd22.prod.outlook.com
- ([fe80::105a:1595:b6ef:cbdf%4]) with mapi id 15.20.2115.005; Mon, 29 Jul 2019
- 17:33:09 +0000
-From:   Paul Burton <paul.burton@mips.com>
-To:     Chuanhong Guo <gch981213@gmail.com>
-CC:     "open list:COMMON CLK FRAMEWORK" <linux-clk@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        "open list:MIPS" <linux-mips@vger.kernel.org>,
-        "open list:STAGING SUBSYSTEM" <devel@driverdev.osuosl.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        James Hogan <jhogan@kernel.org>,
-        John Crispin <john@phrozen.org>,
+        id S2387904AbfG2RnL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 13:43:11 -0400
+Received: from mout.gmx.net ([212.227.15.19]:50601 "EHLO mout.gmx.net"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387822AbfG2RnK (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 13:43:10 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1564422129;
+        bh=RdzV7ibrX+DwP2/BCdjL01crPjcknaV01tD0aoWIdDg=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=R9ZrFy29vedWnJJeYzRWI5kBNGitmtGhHhCP3B9ig27ts59fWQFKCzV97vz/8OzDY
+         n6mCgzrWb1jtHN57Y6ItnOZCHxkP8tDgVFPdEL5iLjcvrd5ZsiqKmSnZEHKTLgK4Ir
+         DeeCkmABc5HnZPTN1+C1vbQYuY0J+H1KK2m2mVGU=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from localhost.localdomain ([185.76.97.79]) by mail.gmx.com
+ (mrgmx001 [212.227.17.190]) with ESMTPSA (Nemesis) id
+ 0LzskF-1iV7102Ez5-014xXw; Mon, 29 Jul 2019 19:42:09 +0200
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allison Randal <allison@lohutok.net>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Eddie Huang <eddie.huang@mediatek.com>,
         Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Weijie Gao <hackpascal@gmail.com>, NeilBrown <neil@brown.name>
-Subject: Re: [PATCH v2 4/6] dt: bindings: add mt7621-pll dt binding
- documentation
-Thread-Topic: [PATCH v2 4/6] dt: bindings: add mt7621-pll dt binding
- documentation
-Thread-Index: AQHVRjOw3AW/i5aXnkGo9okZQ3kHgA==
-Date:   Mon, 29 Jul 2019 17:33:09 +0000
-Message-ID: <20190729173307.ex2mf5hikzxl534v@pburton-laptop>
-References: <20190724022310.28010-1-gch981213@gmail.com>
- <20190724022310.28010-5-gch981213@gmail.com>
-In-Reply-To: <20190724022310.28010-5-gch981213@gmail.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: BYAPR05CA0035.namprd05.prod.outlook.com
- (2603:10b6:a03:c0::48) To MWHPR2201MB1277.namprd22.prod.outlook.com
- (2603:10b6:301:18::12)
-user-agent: NeoMutt/20180716
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=pburton@wavecomp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [12.94.197.246]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b7b67f9f-7868-4a47-9969-08d7144ad2a2
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:MWHPR2201MB1437;
-x-ms-traffictypediagnostic: MWHPR2201MB1437:
-x-microsoft-antispam-prvs: <MWHPR2201MB143757B72ADE3B76B7D0DFB4C1DD0@MWHPR2201MB1437.namprd22.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1284;
-x-forefront-prvs: 01136D2D90
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(7916004)(39840400004)(366004)(396003)(136003)(346002)(376002)(189003)(199004)(33716001)(6436002)(52116002)(76176011)(7416002)(25786009)(229853002)(6916009)(26005)(53936002)(3846002)(71190400001)(71200400001)(446003)(476003)(6486002)(58126008)(68736007)(8676002)(486006)(256004)(11346002)(186003)(6116002)(316002)(44832011)(1411001)(6246003)(4326008)(478600001)(14454004)(81156014)(66556008)(64756008)(66066001)(54906003)(81166006)(5660300002)(386003)(42882007)(1076003)(6512007)(2906002)(9686003)(6506007)(305945005)(7736002)(99286004)(66476007)(8936002)(66446008)(66946007)(102836004);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1437;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: wavecomp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: qQDvbC9kCq/C6uU7fZ7/hjODgg4uf5t6DyDcQT7D5pZhd0MWXc/LJNYVnrXVdWRQ1gHrD91ILe3QQy+pjhLEQmHTe/q1rvwgK1/eW+rzrbVI2QO4K4qUZ6DfnClAcBIffd35Jwx5DiIegx9ks3lDYaonBAQzgDpUvuzFaxIcSgqRzwz5GNlXv6SE8wSw++b9nr6/ijZU/GNrCuXJGP2ps28Zg1Q2lYZSyGnQzrtLnmtLdDszs6Nexmaf1MAu54Oquhke3hQDgBjjyonf03fFjND+f1dJYfQGQSkE+L9br6pYx3K+3T3WxBrkUPRdnnTJT7T0zyfgzN527CGaYfSVpZoQBlDikSqZEOwKa/PBekPe0nU6k+0Adjzm5Bh1HsAmzKpwSJjWndAZjvEI59PQJmokcSZodcujZBZv998VsPs=
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <C26CC762CCD7CF42A8FC0CCA4047FDE4@namprd22.prod.outlook.com>
-Content-Transfer-Encoding: quoted-printable
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Richard Fontana <rfontana@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "Tianping . Fang" <tianping.fang@mediatek.com>
+Cc:     Frank Wunderlich <frank-w@public-files.de>
+Subject: [PATCH v3 00/10] implement poweroff for mt6323 / bpi-r2
+Date:   Mon, 29 Jul 2019 19:41:44 +0200
+Message-Id: <20190729174154.4335-1-frank-w@public-files.de>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-X-OriginatorOrg: mips.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b7b67f9f-7868-4a47-9969-08d7144ad2a2
-X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jul 2019 17:33:09.2423
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: pburton@wavecomp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1437
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:eaB03qW1RdZHhSSwGKsKQ5ipDCg+qmUpRIGapr9mOzrFy6CA0gx
+ pz2or5Jz0m/M9Qv2WF+ghf9EH2MsOqsPCwN08N5B7E1g7UGFfTI3HJ+h15PC4DVZUlZl3ms
+ Ho9F5fTbpA8NIggLdlvetC6qOgK+0GU9Baeq4OYqZUrc0peTECs3o5j/2V8HKESuUQIOeLd
+ mIQqBZ2JLaJTffUIw8qQw==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:/HfsKFt0IkQ=:O6NiHfNSSWLslNZ2emBoSG
+ 3VE4lb75JDVpkh0pU4mnlj4DCCz8wrM46AxzVryqq/4jrwBGdE8zf5nHHd8FCHwVeiwF2dQOe
+ c4hw7A3ZPyKQSTp+VjcSoY7ViYIocfgEQe1Rmtv1QKyKHYVB8RypT97Hl4xh9rsCNQKov31ZR
+ Kh09x91Fe6+V+QVYs1ldQ6ue/UPuf5x7Z5ttCRO4b/C/HupnIX8TELpRf4SJbs/fHjDUowMvS
+ s0WsYVHXi3Mf0kbI6w322RGXHO5ouSwsFPfuHMnYJcN6e9hMqg359/xdavduRXNfbjr9+66ag
+ b73SyLlBC+VvqVLr7LdZ1ulevSzFTtViC0lqqqQoKxC/YpxF+y2oAegEGos3xSR0NcOJ14tGO
+ Ix4oH90ojljyY5lMBZRPEnDIA1ciHvjd8aF1kN+07WPNpF8RfIabSMfgFx0kxDnPEM79DzWYW
+ 9CmniUHxAVkrLE73XiwRLpmiVxhICUdHtJtykDGiIFRYX1bsNbGRB3+lRVdcTcg1jjJ61Bkzc
+ XanCObGqjjwGQBV0lxtpsPoRdhI87GFqURmW+BQsYwKdOSBDqz1UdvzJYJNg5SnrZZcG0+bzW
+ v78/pNEbdvPI+PCoOSlFr48xxDQnIPo6FGGZhEX2kFRjDRTnKfl1fIS4nj7ytLwrkkLGZmR9g
+ joq8YSOAPXfUBhlR843i8iLLlgpptHakCm1DKZfV3g2nOb68J0iYHCfZYrinZUhhf3GkgJbBQ
+ NNfqYzbluzq7X/DH9sBz1gVSviWE+idaU7vg8uwUO1OCDB4ztzqK9ZtnI9mjbloc2zZ0hn8ux
+ pyZOmpSHSHtgN4X6EyF0uIwRBRQySv1FoA7QHuIF8WKf9d0sGJDK2xjc9D5mAXdy0e/DS6sG0
+ h5SI0fPzvoHtN/Ug6kttZOyAYptN2u5XGvb2fWfoNGaaTnkoSdychfXritF3eC5CsJJqsH2Ss
+ rKpjNiKlLZtK8NX+Cxk2dx41HbodyTigWZESf8vxyhdT2aYguOQYmYGWm+QXmEZv44qehYR9p
+ Y7riK9MFJTWkINuhFSe9O3LuLnzWJ0CWLgxNCjNKKBlq0EvaFiKjh3aa53x2vHO31WrK0AAcp
+ +5qSgXM+s/WGDPtW51uZ1Hg/NqmNalg2b8A
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Chuanhong,
+mainline-driver does not support mt6323
 
-On Wed, Jul 24, 2019 at 10:23:08AM +0800, Chuanhong Guo wrote:
-> This commit adds device tree binding documentation for MT7621
-> PLL controller.
->=20
-> Signed-off-by: Chuanhong Guo <gch981213@gmail.com>
-> ---
->=20
-> Change since v1:
-> drop useless syscon in compatible string
->=20
->  .../bindings/clock/mediatek,mt7621-pll.txt     | 18 ++++++++++++++++++
->  1 file changed, 18 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/clock/mediatek,mt76=
-21-pll.txt
+this series makes some cleanup to mt6397-rtc-driver, adds mt6323 and
+implement power-controller on it.
 
-This binding needs review from DT maintainers before I apply it, but as
-a general note it's typical to add the binding *before* its use in the
-series. That is, this patch should come before patch 3.
+tested on bananapi-r2
 
-Personally I'd squash it with patch 1 so the binding & the header file
-needed to use the binding are added in one patch, then a later patch
-actually makes use of them.
+Original Patch from Josef Friedl
 
-Thanks,
-    Paul
+changes since v2:
+	- Splitted some parts and rebased on 5.3-rc2:
 
-> diff --git a/Documentation/devicetree/bindings/clock/mediatek,mt7621-pll.=
-txt b/Documentation/devicetree/bindings/clock/mediatek,mt7621-pll.txt
-> new file mode 100644
-> index 000000000000..7dcfbd5283e3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/clock/mediatek,mt7621-pll.txt
-> @@ -0,0 +1,18 @@
-> +Binding for Mediatek MT7621 PLL controller
-> +
-> +The PLL controller provides the 2 main clocks of the SoC: CPU and BUS.
-> +
-> +Required Properties:
-> +- compatible: has to be "mediatek,mt7621-pll"
-> +- #clock-cells: has to be one
-> +
-> +Optional properties:
-> +- clock-output-names: should be "cpu", "bus"
-> +
-> +Example:
-> +	pll {
-> +		compatible =3D "mediatek,mt7621-pll";
-> +
-> +		#clock-cells =3D <1>;
-> +		clock-output-names =3D "cpu", "bus";
-> +	};
-> --=20
-> 2.21.0
->=20
+	v2.1 dt-bindings: add powercontroller =E2=80=93 try to make better subjec=
+t
+	v2.2 separate rtc-mt6397.txt (suggested by Alexandre Belloni)
+		add missing commit-message (suggested by Matthias Brugger)
+	v2.3 fix alloc after IRQ (suggested by Alexandre Belloni)
+		new compatible (splitting suggested by Alexandre Belloni)
+		needed due to different rtc-base/size see #7
+	v2.4 simplifications (Define-res-macros)
+		add mt6323 rtc+pwrc
+	v2.5 add poweroff-driver (no change)
+	v2.6 MAINTAINERS (no change)
+	v2.7 DTS-Changes (no change)
+
+changes since v1:
+	- splitted into functional parts
+	- more infos about changes
+
+Josef Friedl (10):
+  dt-bindings: add powercontroller
+  dt-bindings: add missing mt6397 rtc
+  rtc: mt6397: move some common definitions into rtc.h
+  rtc: mt6397: improvements of rtc driver
+  rtc: mt6397: add compatible for mt6323
+  mfd: mt6323: some improvements of mt6397-core
+  mfd: mt6323: add mt6323 rtc+pwrc
+  power: reset: add driver for mt6323 poweroff
+  MAINTAINERS: add Mediatek shutdown drivers
+  arm: dts: mt6323: add keys, power-controller, rtc and codec
+
+ .../devicetree/bindings/mfd/mt6397.txt        |  10 +-
+ .../bindings/power/reset/mt6323-poweroff.txt  |  20 ++++
+ .../devicetree/bindings/rtc/rtc-mt6397.txt    |  29 +++++
+ MAINTAINERS                                   |   7 ++
+ arch/arm/boot/dts/mt6323.dtsi                 |  27 +++++
+ drivers/mfd/mt6397-core.c                     |  40 +++++--
+ drivers/power/reset/Kconfig                   |  10 ++
+ drivers/power/reset/Makefile                  |   1 +
+ drivers/power/reset/mt6323-poweroff.c         |  97 ++++++++++++++++
+ drivers/rtc/rtc-mt6397.c                      | 107 ++++--------------
+ include/linux/mfd/mt6397/core.h               |   2 +
+ include/linux/mfd/mt6397/rtc.h                |  71 ++++++++++++
+ 12 files changed, 323 insertions(+), 98 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/reset/mt6323-p=
+oweroff.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
+ create mode 100644 drivers/power/reset/mt6323-poweroff.c
+ create mode 100644 include/linux/mfd/mt6397/rtc.h
+
+=2D-
+2.17.1
+
