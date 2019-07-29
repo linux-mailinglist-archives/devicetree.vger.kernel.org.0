@@ -2,193 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 909E8790D7
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 18:29:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1255B790EA
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 18:33:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728809AbfG2Q31 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 12:29:27 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:44973 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727814AbfG2Q31 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 12:29:27 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hs8WW-0000VG-G7; Mon, 29 Jul 2019 18:29:20 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hs8WW-00069u-3Y; Mon, 29 Jul 2019 18:29:20 +0200
-Date:   Mon, 29 Jul 2019 18:29:20 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>
-Cc:     thierry.reding@gmail.com, mripard@kernel.org, wens@csie.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-sunxi@googlegroups.com
-Subject: Re: [PATCH 5/6] pwm: sun4i: Add support to output source clock
- directly
-Message-ID: <20190729162920.orx3rhkrfmp7stzh@pengutronix.de>
-References: <20190726184045.14669-1-jernej.skrabec@siol.net>
- <20190726184045.14669-6-jernej.skrabec@siol.net>
- <20190729070605.vlu7kgzn362ph2q3@pengutronix.de>
- <2499807.IN78SsLMYo@jernej-laptop>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <2499807.IN78SsLMYo@jernej-laptop>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1729079AbfG2QdY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 12:33:24 -0400
+Received: from mail-vs1-f68.google.com ([209.85.217.68]:44978 "EHLO
+        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729077AbfG2QdX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 12:33:23 -0400
+Received: by mail-vs1-f68.google.com with SMTP id v129so41232927vsb.11
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 09:33:23 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=hkKjlu5QjGs/T3e0RTvio/pt/qKYz2W25QWtnEmwNpA=;
+        b=B5KEvVPs/R08nW/X8iJscPrmioD+SoELM7xRWLLE0Zm0kwBVrdY5pYjdN1Xuf2NBT0
+         rS+xv97P7PgJRnFBFXBXRtPn0E6W8lS1Bco9qxudNc9iL/dKJ3HsHgSqpj2UYPRVsgN5
+         ZGNl7/PVqT9L/ByfL+YvaOjXN5cBf1edMWfNbwx88NweWNrqOGBliZDi5RaOsuG9+12l
+         SBAJLKE7nb5zTU6lJZRC6vzU0W/76o9x+TMm5WhF9A/8v5aDZpHxkhV0Q7RwkGSqUcKN
+         3pib9KPjkAh42bgicvh7s95J8JLdISFwiVd6WK0YEk1m6YRIl+/h4TfD6cWh7joVYsGX
+         zDpg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=hkKjlu5QjGs/T3e0RTvio/pt/qKYz2W25QWtnEmwNpA=;
+        b=mjL7eX2kpWn6zkXhTFYj9dbI71vmODj9+t8xHejHjTfNU1m+wMQPAyunc6gnWZBt5V
+         vG88OORh1rrSdb78MFg6HajqteiHpZtigzBuFbOrPy7Fo9693mHH8EJJ+SkDaCoVnPu0
+         SxBtZdGYbt0yO4vE12O4n08guJiIInkLhsb8c7YZoUQ6fuUHYdc+P/qGM/PCw8fgxJZA
+         h5NKQLAI+pgrY/x2aI3EJokLq0RTtnsIuTAL6wsghlcXw6fwWS9HgCZPdphh/BcLevYT
+         b0BmEkV2dyEIKik4suKzqsdqtA4tDTPLR3AtIfLY04NHrfBQ0ycwHoazH1IzflMYfI+f
+         Pl9w==
+X-Gm-Message-State: APjAAAXNLU0EAT/s3QZkAwuGQ7ampNOKJ+7Oy5oIsClwXDvoF9FCA8Ov
+        5wYQ9/vj4cyGVatSotEgpiDJDw==
+X-Google-Smtp-Source: APXvYqxb+t1CMrD4OgI0r5vaUyMz9p0pH+fzMZGSO+XV5OIRRL5VmlcXYTgTA0qJr0wh7Hy/R/B+PA==
+X-Received: by 2002:a67:8e48:: with SMTP id q69mr24743215vsd.72.1564418002818;
+        Mon, 29 Jul 2019 09:33:22 -0700 (PDT)
+Received: from Thara-Work-Ubuntu.fios-router.home (pool-71-255-245-97.washdc.fios.verizon.net. [71.255.245.97])
+        by smtp.googlemail.com with ESMTPSA id o9sm39762738vkd.27.2019.07.29.09.33.21
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 29 Jul 2019 09:33:22 -0700 (PDT)
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH 0/2] Add support for AOSS resources that are used to warm up the SoC
+Date:   Mon, 29 Jul 2019 12:33:19 -0400
+Message-Id: <1564418001-24940-1-git-send-email-thara.gopinath@linaro.org>
+X-Mailer: git-send-email 2.1.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+The Always On Sub System (AOSS) hosts certain resources
+that are used to warm up the soc if the temperature falls
+below certain threshold. These resources are
+added can be considered as thermal warming devices
+(opposite of thermal cooling devices).
 
-On Mon, Jul 29, 2019 at 06:16:55PM +0200, Jernej Škrabec wrote:
-> Dne ponedeljek, 29. julij 2019 ob 09:06:05 CEST je Uwe Kleine-König 
-> napisal(a):
-> > On Fri, Jul 26, 2019 at 08:40:44PM +0200, Jernej Skrabec wrote:
-> > > PWM core has an option to bypass whole logic and output unchanged source
-> > > clock as PWM output. This is achieved by enabling bypass bit.
-> > > 
-> > > Note that when bypass is enabled, no other setting has any meaning, not
-> > > even enable bit.
-> > > 
-> > > This mode of operation is needed to achieve high enough frequency to
-> > > serve as clock source for AC200 chip, which is integrated into same
-> > > package as H6 SoC.
-> > > 
-> > > Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
-> > > ---
-> > > 
-> > >  drivers/pwm/pwm-sun4i.c | 31 ++++++++++++++++++++++++++++++-
-> > >  1 file changed, 30 insertions(+), 1 deletion(-)
-> > > 
-> > > diff --git a/drivers/pwm/pwm-sun4i.c b/drivers/pwm/pwm-sun4i.c
-> > > index 9e0eca79ff88..848cff26f385 100644
-> > > --- a/drivers/pwm/pwm-sun4i.c
-> > > +++ b/drivers/pwm/pwm-sun4i.c
-> > > @@ -120,6 +120,19 @@ static void sun4i_pwm_get_state(struct pwm_chip
-> > > *chip,
-> > > 
-> > >  	val = sun4i_pwm_readl(sun4i_pwm, PWM_CTRL_REG);
-> > > 
-> > > +	/*
-> > > +	 * PWM chapter in H6 manual has a diagram which explains that if bypass
-> > > +	 * bit is set, no other setting has any meaning. Even more, experiment
-> > > +	 * proved that also enable bit is ignored in this case.
-> > > +	 */
-> > > +	if (val & BIT_CH(PWM_BYPASS, pwm->hwpwm)) {
-> > > +		state->period = DIV_ROUND_CLOSEST_ULL(NSEC_PER_SEC, clk_rate);
-> > > +		state->duty_cycle = state->period / 2;
-> > > +		state->polarity = PWM_POLARITY_NORMAL;
-> > > +		state->enabled = true;
-> > > +		return;
-> > > +	}
-> > > +
-> > > 
-> > >  	if ((PWM_REG_PRESCAL(val, pwm->hwpwm) == PWM_PRESCAL_MASK) &&
-> > >  	
-> > >  	    sun4i_pwm->data->has_prescaler_bypass)
-> > >  		
-> > >  		prescaler = 1;
-> > > 
-> > > @@ -211,7 +224,8 @@ static int sun4i_pwm_apply(struct pwm_chip *chip,
-> > > struct pwm_device *pwm,> 
-> > >  {
-> > >  
-> > >  	struct sun4i_pwm_chip *sun4i_pwm = to_sun4i_pwm_chip(chip);
-> > >  	struct pwm_state cstate;
-> > > 
-> > > -	u32 ctrl;
-> > > +	u32 ctrl, clk_rate;
-> > > +	bool bypass;
-> > > 
-> > >  	int ret;
-> > >  	unsigned int delay_us;
-> > >  	unsigned long now;
-> > > 
-> > > @@ -226,6 +240,16 @@ static int sun4i_pwm_apply(struct pwm_chip *chip,
-> > > struct pwm_device *pwm,> 
-> > >  		}
-> > >  	
-> > >  	}
-> > > 
-> > > +	/*
-> > > +	 * Although it would make much more sense to check for bypass in
-> > > +	 * sun4i_pwm_calculate(), value of bypass bit also depends on "enabled".
-> > > +	 * Period is allowed to be rounded up or down.
-> > > +	 */
-> > 
-> > Every driver seems to implement rounding the way its driver considers it
-> > sensible. @Thierry: This is another patch where it would be good to have
-> > a global directive about how rounding is supposed to work to provide the
-> > users an reliable and uniform way to work with PWMs.
-> > 
-> > > +	clk_rate = clk_get_rate(sun4i_pwm->clk);
-> > > +	bypass = (state->period == NSEC_PER_SEC / clk_rate ||
-> > > +		 state->period == DIV_ROUND_UP(NSEC_PER_SEC, clk_rate)) &&
-> > > +		 state->enabled;
-> > 
-> > Not sure if the compiler is clever enough to notice the obvious
-> > optimisation with this code construct, but you can write this test in a
-> > more clever way which has zero instead of up to two divisions. Something
-> > like:
-> > 
-> > bypass = ((state->period * clk_rate >= NSEC_PER_SEC &&
-> > 	   state->period * clk_rate < NSEC_PER_SEC + clk_rate) &&
-> > 	  state->enabled);
-> > 
-> > In the commit log you write the motivation for using bypass is that it
-> > allows to implement higher frequency then with the "normal" operation.
-> > As you don't skip calculating the normal parameters requesting such a
-> > high-frequency setting either errors out or doesn't catch the impossible
-> > request. In both cases there is something to fix.
-> 
-> It's the latter, otherwise it wouldn't work for my case. I'll fix the check and 
-> skip additional logic.
+These resources are controlled via AOSS QMP protocol
+In kernel, these devices can be treated the same way as any other
+thermal cooling device and hence are registered with the thermal
+cooling framework.
 
-Great.
+To use these resources as warming devices require further tweaks in
+the thermal framework which are out of scope of this patch series.
 
-> > > +
-> > > 
-> > >  	spin_lock(&sun4i_pwm->ctrl_lock);
-> > >  	ctrl = sun4i_pwm_readl(sun4i_pwm, PWM_CTRL_REG);
-> > > 
-> > > @@ -273,6 +297,11 @@ static int sun4i_pwm_apply(struct pwm_chip *chip,
-> > > struct pwm_device *pwm,> 
-> > >  		ctrl &= ~BIT_CH(PWM_CLK_GATING, pwm->hwpwm);
-> > >  	
-> > >  	}
-> > > 
-> > > +	if (bypass)
-> > > +		ctrl |= BIT_CH(PWM_BYPASS, pwm->hwpwm);
-> > > +	else
-> > > +		ctrl &= ~BIT_CH(PWM_BYPASS, pwm->hwpwm);
-> > > +
-> > 
-> > Does switching on (or off) the bypass bit complete the currently running
-> > period?
-> 
-> I don't really know. If I understand correctly, it just bypasses PWM logic 
-> completely, so I would say it doesn't complete the currently running period.
+Thara Gopinath (2):
+  soc: qcom: Extend AOSS QMP driver to support resources that are used
+    to wake up the SoC.
+  arm64: dts: qcom: Extend AOSS QMP node
 
-This is a bug. It's part of the promise of the PWM API that started
-periods are completed. Please at least document this limitation at the
-top of the driver. drivers/pwm/pwm-sifive.c has an example you might
-want to use as a template.
-
-Best regards
-Uwe
+ arch/arm64/boot/dts/qcom/sdm845.dtsi |   8 +++
+ drivers/soc/qcom/qcom_aoss.c         | 129 +++++++++++++++++++++++++++++++++++
+ 2 files changed, 137 insertions(+)
 
 -- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+2.1.4
+
