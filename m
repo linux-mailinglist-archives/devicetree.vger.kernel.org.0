@@ -2,147 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9A91278879
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 11:33:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C33E97887F
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 11:35:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727915AbfG2JdB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 05:33:01 -0400
-Received: from mail.z3ntu.xyz ([128.199.32.197]:43288 "EHLO mail.z3ntu.xyz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727500AbfG2JdB (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 05:33:01 -0400
-Received: by mail.z3ntu.xyz (Postfix, from userid 182)
-        id 12B98C71AA; Mon, 29 Jul 2019 09:32:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1564392778; bh=HN+MbnexiLAyOK7zOuZGtlCRFx/AHgiy8HDEo75eHGs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=CTDMp8e5BBkNLBABgUNlMn7Tfx5A14+WTPdGO2NZNCgpDr0Dwz4yUWIcBhTm5uqJz
-         Ha7+huWIML1t2ir8MiuGMm0q4L2Grg17KtzmvIBR7tTj4MftwXgcs/8mIncfcOdwzS
-         S9/ZaF26D6rIdkrdLQWZGiwSlXiASvqEcGxv8554=
-X-Spam-Checker-Version: SpamAssassin 3.4.2 (2018-09-13) on arch-vps
-X-Spam-Level: 
-X-Spam-Status: No, score=-1.2 required=5.0 tests=ALL_TRUSTED,DKIM_SIGNED,
-        DKIM_VALID,DKIM_VALID_AU,DKIM_VALID_EF,URIBL_BLOCKED
-        autolearn=unavailable autolearn_force=no version=3.4.2
-Received: from g550jk.localnet (80-110-121-20.cgn.dynamic.surfer.at [80.110.121.20])
-        by mail.z3ntu.xyz (Postfix) with ESMTPSA id 31A56C718B;
-        Mon, 29 Jul 2019 09:32:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=z3ntu.xyz; s=z3ntu;
-        t=1564392774; bh=HN+MbnexiLAyOK7zOuZGtlCRFx/AHgiy8HDEo75eHGs=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References;
-        b=SGt0ltx66MUUflBY5dI2vSOMoR+ux/nl3JmLfiLedlCIFimmgOq0/PrS5bybyu2wa
-         Ss+SqKbdnfwUIn7Bpjyt8MdJrgW4qLjm5FTc/1NhNxSb8pzYFk83c8R30DTd9JnHyQ
-         OoaXjRsN3WL6t86es7kXdvJdVEiVXHFoybvvk9eQ=
-From:   Luca Weiss <luca@z3ntu.xyz>
-To:     linux-kernel@vger.kernel.org
-Cc:     Brian Masney <masneyb@onstation.org>,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Andy Gross <andy.gross@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
+        id S1727964AbfG2JfF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 05:35:05 -0400
+Received: from twhmllg3.macronix.com ([211.75.127.131]:25098 "EHLO
+        TWHMLLG3.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726496AbfG2JfF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 05:35:05 -0400
+Received: from twhfmlp1.macronix.com (twhfm1p1.macronix.com [172.17.20.91])
+        by TWHMLLG3.macronix.com with ESMTP id x6T9YN3b083443;
+        Mon, 29 Jul 2019 17:34:23 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
+        by Forcepoint Email with ESMTP id 806C1D4D4A3E8D87A0E0;
+        Mon, 29 Jul 2019 17:34:23 +0800 (CST)
+In-Reply-To: <CAMuHMdWVuQa1LLXPqrdSw6wdRzwQapAkk6Est=XrjESPF9zQwg@mail.gmail.com>
+References: <1564108975-27423-1-git-send-email-masonccyang@mxic.com.tw> <1564108975-27423-3-git-send-email-masonccyang@mxic.com.tw> <CAMuHMdWVuQa1LLXPqrdSw6wdRzwQapAkk6Est=XrjESPF9zQwg@mail.gmail.com>
+To:     "Geert Uytterhoeven" <geert@linux-m68k.org>
+Cc:     "Mark Brown" <broonie@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 00/15] thermal: qcom: tsens: Add interrupt support
-Date:   Mon, 29 Jul 2019 11:32:52 +0200
-Message-ID: <2123341.TWUfUUIiFt@g550jk>
-In-Reply-To: <20190729090735.GA897@onstation.org>
-References: <cover.1564091601.git.amit.kucheria@linaro.org> <CAHLCerNay31+RNQvQZyxMMVyb1mLLfN5BoZbz-M+bMqbmbYwtA@mail.gmail.com> <20190729090735.GA897@onstation.org>
+        "Geert Uytterhoeven" <geert+renesas@glider.be>,
+        "Simon Horman" <horms@verge.net.au>, juliensu@mxic.com.tw,
+        "Lee Jones" <lee.jones@linaro.org>,
+        "Linux Kernel Mailing List" <linux-kernel@vger.kernel.org>,
+        "Linux-Renesas" <linux-renesas-soc@vger.kernel.org>,
+        "linux-spi" <linux-spi@vger.kernel.org>,
+        "Marek Vasut" <marek.vasut@gmail.com>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Miquel Raynal" <miquel.raynal@bootlin.com>,
+        "Rob Herring" <robh+dt@kernel.org>,
+        "Sergei Shtylyov" <sergei.shtylyov@cogentembedded.com>
+Subject: Re: [PATCH v15 2/2] dt-bindings: spi: Document Renesas R-Car Gen3 RPC-IF
+ controller bindings
 MIME-Version: 1.0
-Content-Type: multipart/signed; boundary="nextPart2004695.fh42H4uLbJ"; micalg="pgp-sha256"; protocol="application/pgp-signature"
+X-KeepSent: FF9D8385:D8395BBD-48258446:0033FD62;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
+Message-ID: <OFFF9D8385.D8395BBD-ON48258446.0033FD62-48258446.00349608@mxic.com.tw>
+From:   masonccyang@mxic.com.tw
+Date:   Mon, 29 Jul 2019 17:34:22 +0800
+X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
+ 2019/07/29 PM 05:34:23,
+        Serialize complete at 2019/07/29 PM 05:34:23
+Content-Type: text/plain; charset="US-ASCII"
+X-MAIL: TWHMLLG3.macronix.com x6T9YN3b083443
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---nextPart2004695.fh42H4uLbJ
-Content-Transfer-Encoding: 7Bit
-Content-Type: text/plain; charset="us-ascii"
 
-On Montag, 29. Juli 2019 11:07:35 CEST Brian Masney wrote:
-> On Sat, Jul 27, 2019 at 12:58:54PM +0530, Amit Kucheria wrote:
-> > On Fri, Jul 26, 2019 at 4:59 PM Brian Masney <masneyb@onstation.org> wrote:
-> > > On Fri, Jul 26, 2019 at 04:40:16PM +0530, Amit Kucheria wrote:
-> > > > How well does cpufreq work on 8974? I haven't looked at it yet but
-> > > > we'll need it for thermal throttling.
-> > > 
-> > > I'm not sure how to tell if the frequency is dynamically changed during
-> > > runtime on arm. x86-64 shows this information in /proc/cpuinfo. Here's
-> > 
-> > > the /proc/cpuinfo on the Nexus 5:
-> > Nah. /proc/cpuinfo won't show what we need.
-> > 
-> > Try the following:
-> > 
-> > $ grep "" /sys/devices/system/cpu/cpufreq/policy?/*
-> > 
-> > More specifically, the following files have the information you need.
-> > Run watch -n1 on them.
-> > 
-> > $ grep "" /sys/devices/system/cpu/cpufreq/policy?/scaling_*_freq
+Hi Geert,
+
+ 
+> On Fri, Jul 26, 2019 at 4:19 AM Mason Yang <masonccyang@mxic.com.tw> 
+wrote:
+> > Dcument the bindings used by the Renesas R-Car Gen3 RPC-IF controller.
 > 
-> There's no cpufreq directory on msm8974:
+> Document
+
+Oops, sorry !
+
 > 
->     # ls -1 /sys/devices/system/cpu/
->     cpu0
->     cpu1
->     cpu2
->     cpu3
->     cpuidle
->     hotplug
->     isolated
->     kernel_max
->     modalias
->     offline
->     online
->     possible
->     power
->     present
->     smt
->     uevent
+> >
+> > Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
 > 
-> I'm using qcom_defconfig.
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/spi/spi-renesas-rpc.txt
+> > @@ -0,0 +1,46 @@
 > 
-> Brian
-
-Hi Brian,
-cpufreq isn't supported on msm8974 yet.
-I have these patches [0] in my tree but I'm not sure they work correctly, but I haven't tested much with them. Feel free to try them on hammerhead.
-
-Luca
-
-[0] https://github.com/z3ntu/linux/compare/b0917f53ada0e929896a094b451219cd8091366e...6459ca6aff498c9d12acd35709b4903effc4c3f8
-
---nextPart2004695.fh42H4uLbJ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part.
-Content-Transfer-Encoding: 7Bit
-
------BEGIN PGP SIGNATURE-----
-
-iQIzBAABCAAdFiEE66ocILd+OiPORlvAOY2pEqPLBhkFAl0+vUQACgkQOY2pEqPL
-BhlwxQ/9FYvDo8UHyQXIQVJJGe70bpy3b2Ea/66omuwaw0BLmetJe2PvQq9IsiVD
-TV60M8z4yQdRLp2P3YKQWYg7z3dNRM2mVxX11KfrXdI9rM7xqF+VFwZ21qUY+fht
-canQPM1Ln11OJQaZ0fhrH1j9c6fbJ0DoQ3C4AG8CKxzRGIu8FPmWc6XObbxOhEYG
-pc3Dy6i0NvldNtgKrxiZ5e1YAjyqdpiKcsw5ZM4xdohcmNj7dLLC6BMebpxzzXRW
-NijyZsH9TJkjqLTGT7N7J7jQcEFhpgt0L+HrZOpcKncNpCAxVQDVWezI1AseFIuQ
-ZsYjG+QKay+JCfZ3AmwPPVpgm9I+yB3ywzYytb22nrsIX1WzKd2qv1Q7HhNYrJfv
-Nar7n7ecAi3cd7wxANrKTRn7FB3hcyIOmwXcoaeTxDRqtPqv6bbXiUGV5uaN2sd3
-IHK1XnipnttdfaOnlGW/9JFngiMN6mmlENPiTLL+TMlaCBphOhe302bpK6FWcHI+
-AQOXs/cDuYRfH16h/ArfrlnFl6L7Va6MQhKQxOFkhf/NorbJBYcA52E+bQelOChd
-Ud6cIOLCIZa64ohYrRZVB/Il8PyC8vl4o+buainb6YUC5yBKxVHzP3Gd2lHboh5T
-Gls7AeMsZNULixostOPRdA/KpwO72ePeqU2MtLi577P3qIu3uj4=
-=Ia3N
------END PGP SIGNATURE-----
-
---nextPart2004695.fh42H4uLbJ--
+> [...]
+> 
+> > +- flash: should be represented by a subnode of the RPC-IF node,
+> > +        which "compatible" property contains "jedec,spi-nor", it 
+presents
+> > +        SPI is used.
+> 
+> Sorry, I failed to parse the last subsentence.
 
 
+Fix it to:
+- flash: should be represented by a subnode of the RPC-IF node,
+         its "compatible" property contains "jedec,spi-nor" presents
+         SPI is used.
+
+OK?
+
+> 
+> > +
+> > +Example:
+> > +
+> > +       rpc: spi@ee200000 {
+> > +               compatible = "renesas,r8a77995-rpc", 
+"renesas,rcar-gen3-rpc";
+> > +               reg = <0 0xee200000 0 0x200>, <0 0x08000000 0 
+0x4000000>,
+> > +                     <0 0xee208000 0 0x100>;
+> > +               reg-names = "regs", "dirmap", "wbuf";
+> > +               clocks = <&cpg CPG_MOD 917>;
+> > +               clock-names = "rpc";
+> > +               power-domains = <&sysc R8A77995_PD_ALWAYS_ON>;
+> > +               resets = <&cpg 917>;
+> > +               #address-cells = <1>;
+> > +               #size-cells = <0>;
+> > +
+> > +               flash@0 {
+> > +                       compatible = "jedec,spi-nor";
+> > +                       reg = <0>;
+> > +                       spi-max-frequency = <40000000>;
+> > +                       spi-tx-bus-width = <1>;
+> > +                       spi-rx-bus-width = <1>;
+> 
+> Shouldn't those <1> be <4>, as this is QSPI?
+
+okay, fix them to <4>
+
+
+thanks for your time & review.
+
+best regards,
+Mason
+
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information 
+and/or personal data, which is protected by applicable laws. Please be 
+reminded that duplication, disclosure, distribution, or use of this e-mail 
+(and/or its attachments) or any part thereof is prohibited. If you receive 
+this e-mail in error, please notify us immediately and delete this mail as 
+well as its attachment(s) from your system. In addition, please be 
+informed that collection, processing, and/or use of personal data is 
+prohibited unless expressly permitted by personal data protection laws. 
+Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
+
+
+============================================================================
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
 
