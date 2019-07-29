@@ -2,161 +2,217 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92FAD78C48
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 15:06:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D06A078CE5
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 15:33:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726150AbfG2NGH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 09:06:07 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:38254 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726167AbfG2NGH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 09:06:07 -0400
-Received: by mail-wm1-f68.google.com with SMTP id s15so32056352wmj.3
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 06:06:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=gzcG6JHmmKno6fQH+NVToQxb9v+6Sq8H4NfaqdBg8eA=;
-        b=rL8CVU7/Ogp6LWePphSEsy/trY+O3XxbqQOTvm/wilBXKWeGWPXWMv2nRLiiSyKpbf
-         4JkN8/+7tj2Cik+qAvmMfsFeXkYxJFA6zXjJCgdQQrNVRTTKhDzN6DJmZugilKfZOuFP
-         ggFiH+fnV2CPgYlB4RjhYxseAwKbIsO9Nizt7YxlxbBQ87wIrH8W4txQC8fTBwSt0F4t
-         BiKGbGl5FqMAsklL57uwQIwe7IOrbKPXKejM6DRhuO4elzWG0OmdYJZAsiYJJzp/qr/l
-         Pumq4IGntWFMYZJfyVGkLFPLnE607hXYO1D97/GYzlJb7CpoV+coGiqt/WjXirNfzD5S
-         dT6g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=gzcG6JHmmKno6fQH+NVToQxb9v+6Sq8H4NfaqdBg8eA=;
-        b=Bw+n/F7hCPhCgkozpmLp3p7ojftwOKaIz0zhiwdKLM6d7H04gxTRw/wN7/GBIIZuSn
-         n+CKiifryEZQft51W6Q3gbUJFrHdZQEsIJTzkrxGW2ElkhVlvF07BAK7K3X/lhS+XURD
-         1YepnmShnuZkJMxT3kGmisygvpvxw4b5yEuncss2DaxH2xAuJwDB4tsy971qN+SGNFKR
-         WrmAHP+T8PkyHCCD7pXD2hk3KNMjX7vmjo0yKAHL1L2vr2DVKzcsYfNw9RwSjJNTkSPE
-         4yMVGaCEst3b87IQ9LRrMMpGq4LjNtWe1ayZSRGOdYQi32zSlILCEMPBkv6tJqbr1zRE
-         7Faw==
-X-Gm-Message-State: APjAAAUn2g97J0eyaGCSFfjKZ2pt1x9M63aR1YA/ZYMeqTamKM11lBum
-        WvXFXIKe1e1A/3L0WDv01a+AdRgIb9Q=
-X-Google-Smtp-Source: APXvYqwgg2x3EPaIulTcKD81Hh3F7Xmt0WFn1wKoZ+NSIxWgDXgtKdPbAZbhdkabvZvMTeOgPTkBJA==
-X-Received: by 2002:a1c:63d7:: with SMTP id x206mr101098772wmb.19.1564405563741;
-        Mon, 29 Jul 2019 06:06:03 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id p6sm68102914wrq.97.2019.07.29.06.06.03
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 29 Jul 2019 06:06:03 -0700 (PDT)
-Subject: Re: [PATCH 1/3] dt-bindings: media: amlogic,vdec: add default
- compatible
-To:     Maxime Jourdan <mjourdan@baylibre.com>,
-        Kevin Hilman <khilman@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-References: <20190726124639.7713-1-mjourdan@baylibre.com>
- <20190726124639.7713-2-mjourdan@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <b82bd2b5-9192-5ce8-eb97-8bde44c2d363@baylibre.com>
-Date:   Mon, 29 Jul 2019 15:06:02 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1726960AbfG2NdN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 09:33:13 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:44746 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727531AbfG2NdN (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 09:33:13 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=U3tRa9QfgN1HYp59kKYY38Ral1fkU/m2XaKVscV3imU=; b=HDBTO8bOTZVjt8lna6mpSqKPsk
+        wHSqFCzFxaLqaO0X2AJ/xnLlmNWIs/QcMOcPun/pP3vEl6E92+wES/7zMVV2CwjYirvKD+Fx5CTvG
+        OURuoajnEZxy2u2QyFW5Kv3HH3RrMDBGyklzW7e8/4iSmvXZ2bJhT3+wv+vnyconzdKg=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hs5li-0001HY-QM; Mon, 29 Jul 2019 15:32:50 +0200
+Date:   Mon, 29 Jul 2019 15:32:50 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     netdev@vger.kernel.org, davem@davemloft.net, robh+dt@kernel.org,
+        mark.rutland@arm.com, joel@jms.id.au, f.fainelli@gmail.com,
+        hkallweit1@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
+Subject: Re: [PATCH 2/4] net: phy: Add mdio-aspeed
+Message-ID: <20190729133250.GB4110@lunn.ch>
+References: <20190729043926.32679-1-andrew@aj.id.au>
+ <20190729043926.32679-3-andrew@aj.id.au>
 MIME-Version: 1.0
-In-Reply-To: <20190726124639.7713-2-mjourdan@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190729043926.32679-3-andrew@aj.id.au>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 26/07/2019 14:46, Maxime Jourdan wrote:
-> The first version of the bindings is missing a generic compatible that
-> is used by the base node (GX), and then extended by the SoC device trees
-> (GXBB, GXL, GXM)
+On Mon, Jul 29, 2019 at 02:09:24PM +0930, Andrew Jeffery wrote:
+> The AST2600 design separates the MDIO controllers from the MAC, which is
+> where they were placed in the AST2400 and AST2500. Further, the register
+> interface is reworked again, so now we have three possible different
+> interface implementations, however this driver only supports the
+> interface provided by the AST2600. The AST2400 and AST2500 will continue
+> to be supported by the MDIO support embedded in the FTGMAC100 driver.
 > 
-> Also change the example to use "video-codec" instead of "video-decoder",
-> as the former is the one used in almost all cases when it comes to video
-> decode/encode accelerators.
-> 
-> Signed-off-by: Maxime Jourdan <mjourdan@baylibre.com>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 > ---
->  Documentation/devicetree/bindings/media/amlogic,vdec.txt | 5 +++--
->  1 file changed, 3 insertions(+), 2 deletions(-)
+>  drivers/net/phy/Kconfig       |  13 +++
+>  drivers/net/phy/Makefile      |   1 +
+>  drivers/net/phy/mdio-aspeed.c | 159 ++++++++++++++++++++++++++++++++++
+>  3 files changed, 173 insertions(+)
+>  create mode 100644 drivers/net/phy/mdio-aspeed.c
 > 
-> diff --git a/Documentation/devicetree/bindings/media/amlogic,vdec.txt b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
-> index aabdd01bcf32..9b6aace86ca7 100644
-> --- a/Documentation/devicetree/bindings/media/amlogic,vdec.txt
-> +++ b/Documentation/devicetree/bindings/media/amlogic,vdec.txt
-> @@ -26,6 +26,7 @@ Required properties:
->  	- GXBB (S905) : "amlogic,gxbb-vdec"
->  	- GXL (S905X, S905D) : "amlogic,gxl-vdec"
->  	- GXM (S912) : "amlogic,gxm-vdec"
-> +	followed by the common "amlogic,gx-vdec"
->  - reg: base address and size of he following memory-mapped regions :
->  	- dos
->  	- esparser
-> @@ -47,8 +48,8 @@ Required properties:
+> diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
+> index 20f14c5fbb7e..206d8650ee7f 100644
+> --- a/drivers/net/phy/Kconfig
+> +++ b/drivers/net/phy/Kconfig
+> @@ -21,6 +21,19 @@ config MDIO_BUS
 >  
->  Example:
+>  if MDIO_BUS
 >  
-> -vdec: video-decoder@c8820000 {
-> -	compatible = "amlogic,gxbb-vdec";
-> +vdec: video-codec@c8820000 {
-> +	compatible = "amlogic,gxbb-vdec", "amlogic,gx-vdec";
->  	reg = <0x0 0xc8820000 0x0 0x10000>,
->  	      <0x0 0xc110a580 0x0 0xe4>;
->  	reg-names = "dos", "esparser";
-> 
+> +config MDIO_ASPEED
+> +	tristate "ASPEED MDIO bus controller"
+> +	depends on ARCH_ASPEED || COMPILE_TEST
+> +	depends on OF_MDIO && HAS_IOMEM
+> +	help
+> +	  This module provides a driver for the independent MDIO bus
+> +	  controllers found in the ASPEED AST2600 SoC. This is a driver for the
+> +	  third revision of the ASPEED MDIO register interface - the first two
+> +	  revisions are the "old" and "new" interfaces found in the AST2400 and
+> +	  AST2500, embedded in the MAC. For legacy reasons, FTGMAC100 driver
+> +	  continues to drive the embedded MDIO controller for the AST2400 and
+> +	  AST2500 SoCs, so say N if AST2600 support is not required.
+> +
+>  config MDIO_BCM_IPROC
+>  	tristate "Broadcom iProc MDIO bus controller"
+>  	depends on ARCH_BCM_IPROC || COMPILE_TEST
+> diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
+> index 839acb292c38..ba07c27e4208 100644
+> --- a/drivers/net/phy/Makefile
+> +++ b/drivers/net/phy/Makefile
+> @@ -22,6 +22,7 @@ libphy-$(CONFIG_LED_TRIGGER_PHY)	+= phy_led_triggers.o
+>  obj-$(CONFIG_PHYLINK)		+= phylink.o
+>  obj-$(CONFIG_PHYLIB)		+= libphy.o
+>  
+> +obj-$(CONFIG_MDIO_ASPEED)	+= mdio-aspeed.o
+>  obj-$(CONFIG_MDIO_BCM_IPROC)	+= mdio-bcm-iproc.o
+>  obj-$(CONFIG_MDIO_BCM_UNIMAC)	+= mdio-bcm-unimac.o
+>  obj-$(CONFIG_MDIO_BITBANG)	+= mdio-bitbang.o
+> diff --git a/drivers/net/phy/mdio-aspeed.c b/drivers/net/phy/mdio-aspeed.c
+> new file mode 100644
+> index 000000000000..71496a9ff54a
+> --- /dev/null
+> +++ b/drivers/net/phy/mdio-aspeed.c
+> @@ -0,0 +1,159 @@
+> +// SPDX-License-Identifier: GPL-2.0-or-later
+> +/* Copyright (C) 2019 IBM Corp. */
+> +
+> +#include <linux/bitfield.h>
+> +#include <linux/delay.h>
+> +#include <linux/mdio.h>
+> +#include <linux/module.h>
+> +#include <linux/of.h>
+> +#include <linux/of_mdio.h>
+> +#include <linux/phy.h>
+> +#include <linux/platform_device.h>
+> +
+> +#define DRV_NAME "mdio-aspeed"
+> +
+> +#define ASPEED_MDIO_CTRL		0x0
+> +#define   ASPEED_MDIO_CTRL_FIRE		BIT(31)
+> +#define   ASPEED_MDIO_CTRL_ST		BIT(28)
+> +#define     ASPEED_MDIO_CTRL_ST_C45	0
+> +#define     ASPEED_MDIO_CTRL_ST_C22	1
+> +#define   ASPEED_MDIO_CTRL_OP		GENMASK(27, 26)
+> +#define     MDIO_C22_OP_WRITE		0b01
+> +#define     MDIO_C22_OP_READ		0b10
+> +#define   ASPEED_MDIO_CTRL_PHYAD	GENMASK(25, 21)
+> +#define   ASPEED_MDIO_CTRL_REGAD	GENMASK(20, 16)
+> +#define   ASPEED_MDIO_CTRL_MIIWDATA	GENMASK(15, 0)
+> +
+> +#define ASPEED_MDIO_DATA		0x4
+> +#define   ASPEED_MDIO_DATA_MDC_THRES	GENMASK(31, 24)
+> +#define   ASPEED_MDIO_DATA_MDIO_EDGE	BIT(23)
+> +#define   ASPEED_MDIO_DATA_MDIO_LATCH	GENMASK(22, 20)
+> +#define   ASPEED_MDIO_DATA_IDLE		BIT(16)
+> +#define   ASPEED_MDIO_DATA_MIIRDATA	GENMASK(15, 0)
+> +
+> +#define ASPEED_MDIO_RETRIES		10
+> +
+> +struct aspeed_mdio {
+> +	void __iomem *base;
+> +};
+> +
+> +static int aspeed_mdio_read(struct mii_bus *bus, int addr, int regnum)
+> +{
+> +	struct aspeed_mdio *ctx = bus->priv;
+> +	u32 ctrl;
+> +	int i;
+> +
+> +	dev_dbg(&bus->dev, "%s: addr: %d, regnum: %d\n", __func__, addr,
+> +		regnum);
+> +
+> +	/* Just clause 22 for the moment */
+> +	ctrl = ASPEED_MDIO_CTRL_FIRE
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+Hi Andrew
+
+In the binding, you say C45 is supported. Here you don't. It would be
+nice to be consistent.
+
+
+> +		| FIELD_PREP(ASPEED_MDIO_CTRL_ST, ASPEED_MDIO_CTRL_ST_C22)
+> +		| FIELD_PREP(ASPEED_MDIO_CTRL_OP, MDIO_C22_OP_READ)
+> +		| FIELD_PREP(ASPEED_MDIO_CTRL_PHYAD, addr)
+> +		| FIELD_PREP(ASPEED_MDIO_CTRL_REGAD, regnum);
+> +
+> +	iowrite32(ctrl, ctx->base + ASPEED_MDIO_CTRL);
+> +
+> +	for (i = 0; i < ASPEED_MDIO_RETRIES; i++) {
+> +		u32 data;
+> +
+> +		data = ioread32(ctx->base + ASPEED_MDIO_DATA);
+> +		if (data & ASPEED_MDIO_DATA_IDLE)
+> +			return FIELD_GET(ASPEED_MDIO_DATA_MIIRDATA, data);
+> +
+> +		udelay(100);
+> +	}
+
+One of the readx_poll_timeout functions could be used.
+
+> +
+> +	dev_err(&bus->dev, "MDIO read failed\n");
+> +	return -EIO;
+> +}
+> +
+> +static int aspeed_mdio_write(struct mii_bus *bus, int addr, int regnum, u16 val)
+> +{
+> +	struct aspeed_mdio *ctx = bus->priv;
+> +	u32 ctrl;
+> +	int i;
+> +
+> +	dev_dbg(&bus->dev, "%s: addr: %d, regnum: %d, val: 0x%x\n",
+> +		__func__, addr, regnum, val);
+> +
+> +	/* Just clause 22 for the moment */
+> +	ctrl = ASPEED_MDIO_CTRL_FIRE
+> +		| FIELD_PREP(ASPEED_MDIO_CTRL_ST, ASPEED_MDIO_CTRL_ST_C22)
+> +		| FIELD_PREP(ASPEED_MDIO_CTRL_OP, MDIO_C22_OP_WRITE)
+> +		| FIELD_PREP(ASPEED_MDIO_CTRL_PHYAD, addr)
+> +		| FIELD_PREP(ASPEED_MDIO_CTRL_REGAD, regnum)
+> +		| FIELD_PREP(ASPEED_MDIO_CTRL_MIIWDATA, val);
+> +
+> +	iowrite32(ctrl, ctx->base + ASPEED_MDIO_CTRL);
+> +
+> +	for (i = 0; i < ASPEED_MDIO_RETRIES; i++) {
+> +		ctrl = ioread32(ctx->base + ASPEED_MDIO_CTRL);
+> +		if (!(ctrl & ASPEED_MDIO_CTRL_FIRE))
+> +			return 0;
+> +
+> +		udelay(100);
+> +	}
+
+readx_poll_timeout() here as well.
+
+Otherwise this looks good.
+
+	  Andrew
