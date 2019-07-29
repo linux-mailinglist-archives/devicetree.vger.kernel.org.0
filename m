@@ -2,171 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2226178705
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 10:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C553178709
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 10:12:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726656AbfG2IK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 04:10:58 -0400
-Received: from mail-io1-f66.google.com ([209.85.166.66]:43269 "EHLO
-        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725988AbfG2IK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 04:10:58 -0400
-Received: by mail-io1-f66.google.com with SMTP id k20so118015297ios.10
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 01:10:57 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=semihalf-com.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=wjKq502Q6gpU5SYg3+dww58wMDXhtnro3JqbcrzLP2w=;
-        b=1Jstc9leeeKshq3NbZz/yusLxyfkfomaJn0FAfZR6jxixg6Z6FMAZ1ta8edPsrcWIZ
-         zi2W69hsHCA/+Yn+DaHVKmOdWG3PVN2sFS0VY5OcBB+ipaMGJ84QJxi48oafAfb/tKQW
-         qPxeA6DbcKPOV9s+FqRrthGcV6cXQWZ4VZJORyoUHframmgQMBIWTjbT4EthCs2nYm68
-         caefLzCagBVLnZxGawHve/bJo6HvSSKoXck9RAbwq9qBRhIlDZ2Pqp3d4G8xtT3jmUn+
-         hooWC4C5fit0CVYdw8lu1EVJZdV93iZMXT/TEojZb+Z9MUMK3aTJpNVfKbzJ9PLyJTpy
-         tIGw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=wjKq502Q6gpU5SYg3+dww58wMDXhtnro3JqbcrzLP2w=;
-        b=NdVQqgHflpzDBLx/D6szruMBt5VYWdJxpFSgyeXjXdpih8c82EIQKm6CLL+zBzJQ+C
-         VyYOLLNuE6qvmkvBATpKVX59fzPkliJPh0O9TETi4kt4uJQhBuIw6odmigYZIMuk63+O
-         az93vMiNkxsFmGnPbVPRrpMENlMT2QAqEWUgoPhldz+Qy09bC+9nRpFqnT0201UUs/6o
-         Xb8fJTbB+dmHIrNLhXmx5uME2cXq9BXYwgAQmDyAxjh7soZrVBHg0V0JyY8OzaeNrTTt
-         InJ+0HJn8+cYywTEohF9+/JkpNMyafHp7siFho4YHO0tKJtYyamAlmcLTl8Htl6JzSRa
-         H/gg==
-X-Gm-Message-State: APjAAAV9bdpmQCBUbgm4eoTKeVnYi8RFz/7E1qivEVF5I9n6brJCnw8B
-        OqezLzY3XEuM4VKtUD3VOsu9SqPv7o9ztHhYtEU=
-X-Google-Smtp-Source: APXvYqwRfziyu/V/N3q5aBGPX30RA3KOMMtCOAIa53mGZVv1aRujwKB8GJ35GVqciWl6j0Q38JittJNRxsZXkx0XVQ0=
-X-Received: by 2002:a5d:860e:: with SMTP id f14mr34569962iol.242.1564387857145;
- Mon, 29 Jul 2019 01:10:57 -0700 (PDT)
+        id S1726870AbfG2IM0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 04:12:26 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:48310 "EHLO honk.sigxcpu.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725988AbfG2IM0 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 04:12:26 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 5FE39FB03;
+        Mon, 29 Jul 2019 10:12:23 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 3avP_g3MYwj1; Mon, 29 Jul 2019 10:12:22 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 9C4E846BAF; Mon, 29 Jul 2019 10:12:21 +0200 (CEST)
+Date:   Mon, 29 Jul 2019 10:12:21 +0200
+From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
+To:     Anson.Huang@nxp.com
+Cc:     rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com, mturquette@baylibre.com,
+        sboyd@kernel.org, l.stach@pengutronix.de, abel.vesa@nxp.com,
+        andrew.smirnov@gmail.com, angus@akkea.ca, ccaione@baylibre.com,
+        leonard.crestez@nxp.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        Linux-imx@nxp.com
+Subject: Re: [PATCH 4/6] thermal: qoriq: Add clock operations
+Message-ID: <20190729081221.GA2523@bogon.m.sigxcpu.org>
+References: <20190705045612.27665-1-Anson.Huang@nxp.com>
+ <20190705045612.27665-4-Anson.Huang@nxp.com>
 MIME-Version: 1.0
-References: <20190627095104.22529-1-miquel.raynal@bootlin.com> <20190627095104.22529-2-miquel.raynal@bootlin.com>
-In-Reply-To: <20190627095104.22529-2-miquel.raynal@bootlin.com>
-From:   Grzegorz Jaszczyk <jaz@semihalf.com>
-Date:   Mon, 29 Jul 2019 10:10:46 +0200
-Message-ID: <CAH76GKO9Z3Z7YcNSHgCkvHjrKpRs22=U8GcsL2AfN8RCTXsKuw@mail.gmail.com>
-Subject: Re: [PATCH v2 01/19] phy: mvebu-cp110-comphy: Add clocks support
-To:     Miquel Raynal <miquel.raynal@bootlin.com>
-Cc:     Gregory Clement <gregory.clement@bootlin.com>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Sebastian Hesselbarth <sebastian.hesselbarth@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        devicetree@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Russell King <linux@armlinux.org.uk>,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190705045612.27665-4-Anson.Huang@nxp.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Miquel
+Hi Anson,
+On Fri, Jul 05, 2019 at 12:56:10PM +0800, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
+> 
+> Some platforms like i.MX8MQ has clock control for this module,
+> need to add clock operations to make sure the driver is working
+> properly.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> ---
+>  drivers/thermal/qoriq_thermal.c | 24 ++++++++++++++++++++++++
+>  1 file changed, 24 insertions(+)
+> 
+> diff --git a/drivers/thermal/qoriq_thermal.c b/drivers/thermal/qoriq_thermal.c
+> index 2b2f79b..0813c1b 100644
+> --- a/drivers/thermal/qoriq_thermal.c
+> +++ b/drivers/thermal/qoriq_thermal.c
+> @@ -2,6 +2,7 @@
+>  //
+>  // Copyright 2016 Freescale Semiconductor, Inc.
+>  
+> +#include <linux/clk.h>
+>  #include <linux/module.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/err.h>
+> @@ -72,6 +73,7 @@ struct qoriq_sensor {
+>  
+>  struct qoriq_tmu_data {
+>  	struct qoriq_tmu_regs __iomem *regs;
+> +	struct clk *clk;
+>  	bool little_endian;
+>  	struct qoriq_sensor	*sensor[SITES_MAX];
+>  };
+> @@ -208,6 +210,19 @@ static int qoriq_tmu_probe(struct platform_device *pdev)
+>  		return PTR_ERR(data->regs);
+>  	}
+>  
+> +	data->clk = devm_clk_get(&pdev->dev, NULL);
+> +	if (IS_ERR(data->clk)) {
+> +		if (PTR_ERR(data->clk) == -EPROBE_DEFER)
+> +			return -EPROBE_DEFER;
+> +		data->clk = NULL;
+> +	}
 
-czw., 27 cze 2019 o 11:51 Miquel Raynal <miquel.raynal@bootlin.com> napisa=
-=C5=82(a):
-> +static int mvebu_comphy_init_clks(struct mvebu_comphy_priv *priv)
-> +{
-> +       int ret;
+Wouldn't devm_clk_get_optional make more sense?
+
 > +
-> +       priv->mg_domain_clk =3D devm_clk_get(priv->dev, "mg_clk");
-> +       if (IS_ERR(priv->mg_domain_clk))
-> +               return PTR_ERR(priv->mg_domain_clk);
+> +	ret = clk_prepare_enable(data->clk);
+> +	if (ret) {
+> +		dev_err(&pdev->dev, "Failed to enable clock\n");
+> +		return ret;
+> +	}
 > +
-> +       ret =3D clk_prepare_enable(priv->mg_domain_clk);
-> +       if (ret < 0)
-> +               return ret;
+>  	qoriq_tmu_init_device(data);	/* TMU initialization */
+>  
+>  	ret = qoriq_tmu_calibration(pdev);	/* TMU calibration */
+> @@ -235,6 +250,8 @@ static int qoriq_tmu_remove(struct platform_device *pdev)
+>  	/* Disable monitoring */
+>  	tmu_write(data, TMR_DISABLE, &data->regs->tmr);
+>  
+> +	clk_disable_unprepare(data->clk);
 > +
-> +       priv->mg_core_clk =3D devm_clk_get(priv->dev, "mg_core_clk");
-> +       if (IS_ERR(priv->mg_core_clk)) {
-> +               ret =3D PTR_ERR(priv->mg_core_clk);
-> +               goto dis_mg_domain_clk;
-> +       }
+>  	platform_set_drvdata(pdev, NULL);
+>  
+>  	return 0;
+> @@ -250,14 +267,21 @@ static int __maybe_unused qoriq_tmu_suspend(struct device *dev)
+>  	tmr &= ~TMR_ME;
+>  	tmu_write(data, tmr, &data->regs->tmr);
+>  
+> +	clk_disable_unprepare(data->clk);
 > +
-> +       ret =3D clk_prepare_enable(priv->mg_core_clk);
-> +       if (ret < 0)
-> +               goto dis_mg_domain_clk;
-> +
-> +       priv->axi_clk =3D devm_clk_get(priv->dev, "axi_clk");
-> +       if (IS_ERR(priv->axi_clk)) {
-> +               ret =3D PTR_ERR(priv->axi_clk);
-> +               goto dis_mg_core_clk;
-> +       }
-> +
-> +       ret =3D clk_prepare_enable(priv->axi_clk);
-> +       if (ret < 0)
-> +               goto dis_mg_core_clk;
-> +
-> +       return 0;
-> +
-> +dis_mg_core_clk:
-> +       clk_disable_unprepare(priv->mg_core_clk);
-> +
-> +dis_mg_domain_clk:
-> +       clk_disable_unprepare(priv->mg_domain_clk);
-> +
-> +       priv->mg_domain_clk =3D NULL;
-> +       priv->mg_core_clk =3D NULL;
-> +       priv->axi_clk =3D NULL;
-> +
-> +       return ret;
-> +};
-> +
-> +static void mvebu_comphy_disable_unprepare_clks(struct mvebu_comphy_priv=
- *priv)
-> +{
-> +       if (priv->axi_clk)
-> +               clk_disable_unprepare(priv->axi_clk);
-> +
-> +       if (priv->mg_core_clk)
-> +               clk_disable_unprepare(priv->mg_core_clk);
-> +
-> +       if (priv->mg_domain_clk)
-> +               clk_disable_unprepare(priv->mg_domain_clk);
-> +}
-> +
->  static int mvebu_comphy_probe(struct platform_device *pdev)
+>  	return 0;
+>  }
+>  
+>  static int __maybe_unused qoriq_tmu_resume(struct device *dev)
 >  {
->         struct mvebu_comphy_priv *priv;
->         struct phy_provider *provider;
->         struct device_node *child;
->         struct resource *res;
-> +       int ret;
->
->         priv =3D devm_kzalloc(&pdev->dev, sizeof(*priv), GFP_KERNEL);
->         if (!priv)
-> @@ -607,10 +671,17 @@ static int mvebu_comphy_probe(struct platform_devic=
-e *pdev)
->         if (IS_ERR(priv->base))
->                 return PTR_ERR(priv->base);
->
-> +       /*
-> +        * Ignore error if clocks have not been initialized properly for =
-DT
-> +        * compatibility reasons.
-> +        */
-> +       ret =3D mvebu_comphy_init_clks(priv);
-> +       if (ret)
-> +               dev_warn(&pdev->dev, "cannot initialize clocks\n");
+>  	u32 tmr;
+> +	int ret;
+>  	struct qoriq_tmu_data *data = dev_get_drvdata(dev);
+>  
+> +	ret = clk_prepare_enable(data->clk);
+> +	if (ret)
+> +		return ret;
 > +
+>  	/* Enable monitoring */
+>  	tmr = tmu_read(data, &data->regs->tmr);
+>  	tmr |= TMR_ME;
 
-Please request probe retry when clocks are not ready, e.g.:
--       if (ret)
-+       if (ret) {
-+               if (ret =3D=3D -EPROBE_DEFER)
-+                       return ret;
-                 dev_warn(&pdev->dev, "cannot initialize clocks\n");
-+       }
+Apart from that it looks like what Fabio sent and what i tested so
 
-After that you can put:
-Tested-by: Grzegorz Jaszczyk <jaz@semihalf.com>
+Reviewed-by: Guido Günther <agx@sigxcpu.org>
 
-regards,
-Grzegorz
+Cheers,
+ -- Guido
+
+> -- 
+> 2.7.4
+> 
+> 
+> _______________________________________________
+> linux-arm-kernel mailing list
+> linux-arm-kernel@lists.infradead.org
+> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
