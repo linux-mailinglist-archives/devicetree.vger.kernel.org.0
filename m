@@ -2,129 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4403478765
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 10:31:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B28337876A
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 10:32:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727548AbfG2Ibe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 04:31:34 -0400
-Received: from honk.sigxcpu.org ([24.134.29.49]:48702 "EHLO honk.sigxcpu.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726810AbfG2Ibe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 04:31:34 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by honk.sigxcpu.org (Postfix) with ESMTP id 9B614FB03;
-        Mon, 29 Jul 2019 10:31:32 +0200 (CEST)
-X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
-Received: from honk.sigxcpu.org ([127.0.0.1])
-        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id 3gdsxkg-VJ_P; Mon, 29 Jul 2019 10:31:31 +0200 (CEST)
-Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
-        id 1B86846BAF; Mon, 29 Jul 2019 10:31:31 +0200 (CEST)
-Date:   Mon, 29 Jul 2019 10:31:31 +0200
-From:   Guido =?iso-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>
-To:     Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     shawnguo@kernel.org, s.hauer@pengutronix.de, festevam@gmail.com,
-        linux-imx@nxp.com, l.stach@pengutronix.de, ccaione@baylibre.com,
-        abel.vesa@nxp.com, baruch@tkos.co.il, andrew.smirnov@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org, shengjiu.wang@nxp.com,
-        angus@akkea.ca, Anson.Huang@nxp.com
-Subject: Re: [PATCH v3] arm64: dts: imx8mq: Init rates and parents configs
- for clocks
-Message-ID: <20190729083130.GA3904@bogon.m.sigxcpu.org>
-References: <20190728141218.12702-1-daniel.baluta@nxp.com>
+        id S1727243AbfG2IcI convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Jul 2019 04:32:08 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:35984 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726810AbfG2IcH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 04:32:07 -0400
+Received: by mail-wm1-f67.google.com with SMTP id g67so48511780wme.1;
+        Mon, 29 Jul 2019 01:32:05 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=0AEuwjUbA2WWjmfEUB61BWLIevtOs5YQ5R/vw1LG+ec=;
+        b=Wxv0e4Ctj34QIiolH1MA5Aj8YtjacEMpUchd/8W/2BTLO8WRWGBo+w/Vx2UDifzE/Q
+         V3BA0ndQkVSrkogq3irEtv8cHAaWi/xRdYrh/VjHrvBJXYoJu3a6m+hJkUxPGdgz1jD3
+         c3S/Al0K4HVld1wISxMgD6MKLBTRa19nWS1gEx94sqAlJ2TqWUyTABPxvJANbSBsp2Jt
+         UGNiWSuWU5z2Gl2+OiYogMGj4Ww8udYZLEFOUVpjQmYPPdxYTPee/29N/vWn0Jy91S/7
+         WBMUNlGqGdkqGJf8HZ8vPvQHBqYDLJQl7eF8HncBfKKbnzGTf3FRHEfXGGEAEZiGCzui
+         pHaQ==
+X-Gm-Message-State: APjAAAU7QF7NySDbRSbczoyMaOIoYSFOA7q2cXCqLM/jcEiwRNs+I+pf
+        vg/2aHM1g1o7Kc44csHEedv098BoS72MYjr172JJ0g==
+X-Google-Smtp-Source: APXvYqyYSyPIpspu1jeNNlQcyFUH0rozyhJBU8SsP7iQuajgts+eEhWZ7kOGvJ8pFQoiBP2nLuZI5T3rOpvFKPh75v8=
+X-Received: by 2002:a1c:1f4e:: with SMTP id f75mr95842692wmf.137.1564389124619;
+ Mon, 29 Jul 2019 01:32:04 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190728141218.12702-1-daniel.baluta@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190729074757.9581-1-horms+renesas@verge.net.au>
+In-Reply-To: <20190729074757.9581-1-horms+renesas@verge.net.au>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Mon, 29 Jul 2019 10:31:52 +0200
+Message-ID: <CAMuHMdUkogXnd6_H_q=STyVS0zxpKYif_iJH0pw753onCeU3gw@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: rcar-imr: Rename bindings documentation file
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-On Sun, Jul 28, 2019 at 05:12:18PM +0300, Daniel Baluta wrote:
-> From: Abel Vesa <abel.vesa@nxp.com>
-> 
-> Add the initial configuration for clocks that need default parent and rate
-> setting. This is based on the vendor tree clock provider parents and rates
-> configuration except this is doing the setup in dts rather then using clock
-> consumer API in a clock provider driver.
-> 
-> Note that by adding the initial rate setting for audio_pll1/audio_pll
-> setting we need to remove it from imx8mq-librem5-devkit.dts
-> imx8mq-librem5-devkit.dts
-> 
-> Signed-off-by: Abel Vesa <abel.vesa@nxp.com>
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> ---
-> Changes since v2:
-> 	- set rate for audio_pll1/audio_pll2  in the dtsi file and
-> 	remove the setting from imx8mq-librem5-devkit.dts
-> 
->  .../dts/freescale/imx8mq-librem5-devkit.dts   |  5 -----
->  arch/arm64/boot/dts/freescale/imx8mq.dtsi     | 21 +++++++++++++++++++
->  2 files changed, 21 insertions(+), 5 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> index 683a11035643..c702ccc82867 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq-librem5-devkit.dts
-> @@ -169,11 +169,6 @@
->  	};
->  };
->  
-> -&clk {
-> -	assigned-clocks = <&clk IMX8MQ_AUDIO_PLL1>, <&clk IMX8MQ_AUDIO_PLL2>;
-> -	assigned-clock-rates = <786432000>, <722534400>;
-> -};
-> -
->  &dphy {
->  	status = "okay";
->  };
-> diff --git a/arch/arm64/boot/dts/freescale/imx8mq.dtsi b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> index 02fbd0625318..c67625a881a4 100644
-> --- a/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> +++ b/arch/arm64/boot/dts/freescale/imx8mq.dtsi
-> @@ -494,6 +494,27 @@
->  				clock-names = "ckil", "osc_25m", "osc_27m",
->  				              "clk_ext1", "clk_ext2",
->  				              "clk_ext3", "clk_ext4";
-> +				assigned-clocks = <&clk IMX8MQ_VIDEO_PLL1>,
-> +					<&clk IMX8MQ_AUDIO_PLL1>,
-> +					<&clk IMX8MQ_AUDIO_PLL2>,
-> +					<&clk IMX8MQ_CLK_AHB>,
-> +					<&clk IMX8MQ_CLK_NAND_USDHC_BUS>,
-> +					<&clk IMX8MQ_CLK_AUDIO_AHB>,
-> +					<&clk IMX8MQ_VIDEO_PLL1_REF_SEL>,
-> +					<&clk IMX8MQ_CLK_NOC>;
-> +				assigned-clock-parents = <0>,
-> +						<0>,
-> +						<0>,
-> +						<&clk IMX8MQ_SYS1_PLL_133M>,
-> +						<&clk IMX8MQ_SYS1_PLL_266M>,
-> +						<&clk IMX8MQ_SYS2_PLL_500M>,
-> +						<&clk IMX8MQ_CLK_27M>,
-> +						<&clk IMX8MQ_SYS1_PLL_800M>;
-> +				assigned-clock-rates = <593999999>,
-> +						<786432000>,
-> +						<722534400>;
-> +
-> +
->  			};
->  
->  			src: reset-controller@30390000 {
+On Mon, Jul 29, 2019 at 9:48 AM Simon Horman <horms+renesas@verge.net.au> wrote:
+> Renesas media binding documentation files uses a naming schema of
 
-togethe with http://code.bulix.org/pd88jp-812381?raw tested on
-linux-20190725 (plus mipi dsi):
+use
 
-Tested-by: Guido Günther <agx@sigxcpu.org>
+> 'renesas,<module>.txt'. Rename IMR file to match this pattern.
 
-Cheers,
- -- Guido
+the IMR file?
 
-> -- 
-> 2.17.1
-> 
+>
+> Cc: Niklas SÃ¶derlund <niklas.soderlund+renesas@ragnatech.se>
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
