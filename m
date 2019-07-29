@@ -2,111 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CD3467990E
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 22:13:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C062879942
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 22:14:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730410AbfG2UMq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 16:12:46 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:38943 "EHLO
-        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730363AbfG2UMp (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 16:12:45 -0400
-Received: by mail-ot1-f65.google.com with SMTP id r21so57856333otq.6
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 13:12:45 -0700 (PDT)
+        id S1728280AbfG2UOW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 16:14:22 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:41282 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730525AbfG2UOW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 16:14:22 -0400
+Received: by mail-pg1-f194.google.com with SMTP id x15so18452937pgg.8;
+        Mon, 29 Jul 2019 13:14:21 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=rLtTrMx9bNgV2e5WT+U4GbHrtwL6tZTxsShVYrHD6s8=;
-        b=tGszBRzPbi6dD+NRM2bN3t9p9ftDIDFlandOwt8DpUAVkYZ4vU9DgEhnuPtU35uxQ/
-         KJflcPgXXlm6X0pPEHjnN6jl2/WiXLYOc8kTsFgZjm52JZb//9cc8NSlJ0h/z9Gntkww
-         IHh1MZfFJO8t/jlHNiHPzn2KUh++WFzQaiWc7R7+sEi8mVNA/wgN1EoPKSVvlaWeX9U4
-         Cqmw8jl8KuzAg9Pto9YHhmzF1ClROkAaxGZTDhB2AgrMQ6fC9wMp2k2yFzK7yUsFbviP
-         jHFwQ0oNY3I0nJ4xOe0eVdhRJm6bn2zkQQhWvisj0JWCFFjM/ME1xtG/G/UGYMcwvYHp
-         hFtw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=a80YhmstvkFSvpLxuuKLo03NoSn39TaxaZX6joqs8MA=;
+        b=oAW3tFK8X61jpoyXLcaKMiOnJ9TYUngRguXPgieCBQvf7vbjz8n4B8AGc7Yhk1Spov
+         jfeQDaW7HSUgWSQJmGbemqCvojoYvAv060EXEN4coAflTTTFW0sx6k1g9dG+HbyQ+kqe
+         qUQU0/i18Ci/UKnzWdJlUXx8+Ut03VJliGO3Ol7bvYUETBeW1y1xDi04lBy/SZvgDpl6
+         zl+NaAyW5bW5WdKekXOjlSfdQ9oDmyL0jqEAmq32QjWeml/Tl0I1Yc31Je+9sTMrqGj4
+         rjTSOmm/45LqyYqzmWonKjfTI0DCeWT4+80sPZ5FHFaQmYxVJ+gyW3Xw3n7TxC2z+RHd
+         TgfA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=rLtTrMx9bNgV2e5WT+U4GbHrtwL6tZTxsShVYrHD6s8=;
-        b=mX1hljzXnTBiZDSOKIeDG7eew4JNZq4X+mbG+VkcUMy5qTfZj/SO7zY+9XLXRFTKul
-         vIqEP0SZbw3u7Rt6uWAhBIFovPVF5J3m+TD23sMs2hfyIIQnqmGgHcZ89Yh8UvWlOR5N
-         a6ykVUzx7YrN4gQorimrnkgu0/fn2z5xEpikBX6Y9oqoZxmVoEHhjmsuV+ZrUjwpfez4
-         ruU0tZP3LPyCxT5pUwm424fi4Gva5Ta68UJbOyxj7mjLfRlPB1O4B8evWbddwAhFb3cs
-         ecd89eYZ+58XskTlRuQZ8Z2QJmd7SmqZF6G9JZjOdRByNaGp1gfGoB4AKdYT64o+CVgd
-         AtDg==
-X-Gm-Message-State: APjAAAUCQHbq9CWBPQRyYK6kGia1EGxUJzEaM2EjEkxHCWgay9PZpSLD
-        imU58Cv8TmMTSu7RruG7erstiJWVvUYcWz5moVF7WA==
-X-Google-Smtp-Source: APXvYqyalfL7uKo9yflW1Pyt9NtQK1vzEzGUhuLM63HRXQD3JmtpxZUwdeQTJ4TkIvAAhjMpgK7mWf7IUvOUuGB9nzw=
-X-Received: by 2002:a9d:6256:: with SMTP id i22mr4789080otk.139.1564431164859;
- Mon, 29 Jul 2019 13:12:44 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=a80YhmstvkFSvpLxuuKLo03NoSn39TaxaZX6joqs8MA=;
+        b=KI8aa0jgjSkK3Z5dBBMRdyHeYGw3E8+qhepVFpQud6JNPH9PGSdRWT9/DzbhZXvR1K
+         CsGnIEjjEXllFPvk4HusQLsx9aQgl8qx0vaXYUwvVp3Nk5P7Nq+jybRTBFpuBOxXpsOW
+         ai+2A7bBJ53wH097BNaRPAT8WJJEwPii54nWe9ky8WEodndIh+TZOaIbYUb4GyHC5agt
+         x60UBCUf/cxA3r9NVfDgTG+YVq4ddZ5OZ2xO4klIuWOGAG1a8m/drYcK5T252HvlzeSf
+         h6C0wo19A+Nx+YXV2XDgozOk+wYbM1lhmfiSG6/C785G3C5AgF8Bm+ov5kru4+sy0zFH
+         Wi0w==
+X-Gm-Message-State: APjAAAUsIxOxKSWUu52mJp9TYqmHs9yT0msxZWODMLJJwxd46wR6NQ4W
+        dZpd16329kwbsAT2ReyJHhA=
+X-Google-Smtp-Source: APXvYqzHimbts6Pzs9sE75ZW5J3eKE7GTyz7Rq8GUSY5Q6dToWV+ZKL5WQAvZY7dibUphM2oY0krmA==
+X-Received: by 2002:a17:90a:9a83:: with SMTP id e3mr111562668pjp.105.1564431261030;
+        Mon, 29 Jul 2019 13:14:21 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id i74sm122243034pje.16.2019.07.29.13.14.20
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 29 Jul 2019 13:14:20 -0700 (PDT)
+Date:   Mon, 29 Jul 2019 13:15:09 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     broonie@kernel.org, l.stach@pengutronix.de, mihai.serban@gmail.com,
+        alsa-devel@alsa-project.org, viorel.suman@nxp.com,
+        timur@kernel.org, shengjiu.wang@nxp.com, angus@akkea.ca,
+        tiwai@suse.com, linux-imx@nxp.com, kernel@pengutronix.de,
+        festevam@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org
+Subject: Re: [PATCH v2 4/7] ASoC: dt-bindings: Document dl-mask property
+Message-ID: <20190729201508.GB20594@Asurada-Nvidia.nvidia.com>
+References: <20190728192429.1514-1-daniel.baluta@nxp.com>
+ <20190728192429.1514-5-daniel.baluta@nxp.com>
 MIME-Version: 1.0
-References: <20190703011020.151615-1-saravanak@google.com> <20190717103220.f7cys267hq23fbsb@vireshk-i7>
- <CAGETcx-tbjVzRKW8D-564zgNOhrA_z-NC1q5U70bhoUDBhp6VA@mail.gmail.com>
- <20190718053746.64drmonk72vwnt4s@vireshk-i7> <CAGETcx_-=b3An9YdxLUnZap=0iaeczvWTEnw65FMLU8BwA3HfQ@mail.gmail.com>
- <20190729092454.6lfqzmhkvrhpimsp@vireshk-i7>
-In-Reply-To: <20190729092454.6lfqzmhkvrhpimsp@vireshk-i7>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Mon, 29 Jul 2019 13:12:08 -0700
-Message-ID: <CAGETcx_7fK20VZ6Zn07Z+Ran1_O7gSPohck_tg-aEr5oONQ5iA@mail.gmail.com>
-Subject: Re: [PATCH v3 0/6] Introduce Bandwidth OPPs for interconnect paths
-To:     Viresh Kumar <viresh.kumar@linaro.org>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
-        David Dai <daidavid1@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190728192429.1514-5-daniel.baluta@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 2:24 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
->
-> On 18-07-19, 21:12, Saravana Kannan wrote:
-> > On Wed, Jul 17, 2019 at 10:37 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > > I would like
-> > > to put this data in the GPU OPP table only. What about putting a
-> > > range in the GPU OPP table for the Bandwidth if it can change so much
-> > > for the same frequency.
-> >
-> > I don't think the range is going to work.
->
-> Any specific reason for that ?
+On Sun, Jul 28, 2019 at 10:24:26PM +0300, Daniel Baluta wrote:
+> SAI supports up to 8 data lines. This property let the user
+> configure how many data lines should be used per transfer
+> direction (Tx/Rx).
 
-The next sentence was literally explaining this :) Fine to debate
-that, but ignoring that and asking this question is kinda funny.
+This sounds a bit less persuasive to me as we are adding a
+DT property that's used to describe a hardware connections
+and it would be probably better to mention that the mapping
+between the mask and the data lines could be more flexible
+than consecutive active data lines as you said previously.
 
-> > If a GPU is doing purely
-> > computational work, it's not unreasonable for it to vote for the
-> > lowest bandwidth for any GPU frequency.
->
-> I think that is fine, but if the GPU is able to find how much
-> bandwidth it needs why can't it just pass that value without needing
-> to have another OPP table for the path ?
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> ---
+>  Documentation/devicetree/bindings/sound/fsl-sai.txt | 7 +++++++
+>  1 file changed, 7 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl-sai.txt b/Documentation/devicetree/bindings/sound/fsl-sai.txt
+> index 2e726b983845..2b38036a4883 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl-sai.txt
+> +++ b/Documentation/devicetree/bindings/sound/fsl-sai.txt
+> @@ -49,6 +49,13 @@ Optional properties:
+>  
+>    - big-endian		: Boolean property, required if all the SAI
+>  			  registers are big-endian rather than little-endian.
+> +  - fsl,dl-mask		: list of two integers (bitmask, first for RX, second
 
-You were asking this question in the context of "can the GPU OPP just
-list all the range of bandwidth it might use per GPU frequency". My point
-is that the range would be useless because it would the entire
-available bandwidth range (because purely compute work might not need
-any bandwidth).
+I am leaving this naming to DT maintainer.
 
-Whereas, what the GPU's algorithm actually needs might be the list of
-"useful" bandwidth levels to use.
+> +			  for TX) representing enabled datalines. Bit 0
+> +			  represents first data line, bit 1 represents second
+> +			  data line and so on. Data line is enabled if
+> +			  corresponding bit is set to 1. By default, if property
+> +			  not present, only dataline 0 is enabled for both
+> +			  directions.
 
-Also, as we add more ICC request properties, this range idea will not scale.
-
--Saravana
+To make this patch more convincing, could we add an example
+as well in the Example section of this binding file? Like:
+	/* RX data lines 0/1 and TX data lines 0/2 are connected */
+	fsl,dl-mask = <0x3 0x5>;
