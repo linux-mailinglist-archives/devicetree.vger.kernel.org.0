@@ -2,89 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C2FDE790F4
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 18:33:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CC3507911D
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 18:37:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728669AbfG2Qd2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 12:33:28 -0400
-Received: from mail-vk1-f196.google.com ([209.85.221.196]:45518 "EHLO
-        mail-vk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729095AbfG2Qd0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 12:33:26 -0400
-Received: by mail-vk1-f196.google.com with SMTP id e83so12096087vke.12
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 09:33:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=a/t4nyA1Q5Ire67bzt1cmZdzjlm5dY9UznxFZlUXgxs=;
-        b=cJ+QBiHtj4joLDdWo3ko8KyT7anFWu3nS4m2R2ggcQLExoCvgemhSOm4R3MGuuAS+R
-         UUhc3FfMLQFaMQgUK+4pz2vGHUcoT733fpPJWC4x4SfKh57m73DCBNz2hmcx9rBziXUg
-         edFE+J9YCSGbq4oUZUl4T7C5YbRj+6BQ+d2hMJVE07S1s642wHolqPQPivrxotpNlkus
-         9nDE/wQb2YGhOMUK6aHNATji2FQZfwxOlPW6lRM+E0eAE0vN9vED3F6wfKgQCXumybj+
-         ekk40r5L0I1F6AfGNmDiOJAI3mU/o4QQJQrdGoQkswdjtUNiQzqdTvk3PkHCozetl/C9
-         ka/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=a/t4nyA1Q5Ire67bzt1cmZdzjlm5dY9UznxFZlUXgxs=;
-        b=cviY/x70gWiIkCjO4Lv9gQXmnv7jjAbqlslXi2YHQgm4tPUcY9VJZ0bWPMPj4qX+uM
-         ediRPHMk/GUjT4ba24OnG6m15DrUSWxF4kFWK0NW5KGaRlJndpxmR102znOoX0Cs+ida
-         1aeYKlNQU6F9h/AuM+3hpZ116QXmZSzSrJ2mguu3bXNST77Jm/AhoxOl7/YLUz09skna
-         6ZM+s7sWt9t1/v7qK3sXqJFB57B7Upph39o0ewkbFmZOybF7Ljsmdc+vH6eOOKjEhW5l
-         MothtdNt8Cgxv6jdSC1YNr+CQteiIEDmwcjWUEg+luh+ARROYbVya4P6jidP2DCBCCHk
-         XlgA==
-X-Gm-Message-State: APjAAAUhNpiTUwag5cGk/SDehM+Vp0sacxRJpktXwDz1S6D/Lh1b+r7A
-        XQuUL7Ta+DL4WIMfIFJFWKwdqQ==
-X-Google-Smtp-Source: APXvYqxruim+XfgMG1TgZXYZ4llcXHm+qO2F5Xfw42zvdX1iAL6Pruu/xnt08WS99QNb5hXXF7Tcpg==
-X-Received: by 2002:a1f:b552:: with SMTP id e79mr26613652vkf.90.1564418005133;
-        Mon, 29 Jul 2019 09:33:25 -0700 (PDT)
-Received: from Thara-Work-Ubuntu.fios-router.home (pool-71-255-245-97.washdc.fios.verizon.net. [71.255.245.97])
-        by smtp.googlemail.com with ESMTPSA id o9sm39762738vkd.27.2019.07.29.09.33.23
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 29 Jul 2019 09:33:24 -0700 (PDT)
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] arm64: dts: qcom: Extend AOSS QMP node
-Date:   Mon, 29 Jul 2019 12:33:21 -0400
-Message-Id: <1564418001-24940-3-git-send-email-thara.gopinath@linaro.org>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1564418001-24940-1-git-send-email-thara.gopinath@linaro.org>
-References: <1564418001-24940-1-git-send-email-thara.gopinath@linaro.org>
+        id S1728269AbfG2QhW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 12:37:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44518 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726197AbfG2QhW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 12:37:22 -0400
+Received: from localhost (lpr83-1-88-168-111-231.fbx.proxad.net [88.168.111.231])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 10133206A2;
+        Mon, 29 Jul 2019 16:37:19 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564418240;
+        bh=VKA8DIso9CdNJ8gOxAJ7MGKl1tbtr3ng9ZYI2lKQkaE=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=XHE1r3AAw6dpQSdpj+Gj50Cqp4CxCDPjTo4pyFJ+rAHvdh1j0Y8l/ineFW/+H+KFS
+         3LEI6GdMNIHewUWnsaBja7LdXvUsNb8+DYqLcIJX/UYEt9To4C70JnCvtvxDQtESSJ
+         KuQXm8q1R0zhoWkDoreCM2927q1TC08Om9PlUp1Y=
+Date:   Mon, 29 Jul 2019 18:37:15 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 2/6] pwm: sun4i: Add a quirk for reset line
+Message-ID: <20190729163715.vtv7lkrywewomxga@flea.home>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+ <20190726184045.14669-3-jernej.skrabec@siol.net>
+ <20190729063630.rn325whatfnc3m7n@pengutronix.de>
+ <CAGb2v65KOpivHQNkg+R2=D=ejCJYnPdVcyHJZW-GJCR8j0Yk0g@mail.gmail.com>
+ <20190729071218.bukw7vxilqy523k3@pengutronix.de>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="c27mc7zieuu4am73"
+Content-Disposition: inline
+In-Reply-To: <20190729071218.bukw7vxilqy523k3@pengutronix.de>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AOSS hosts resources that can be used to warm up the SoC.
-Add nodes for these resources.
 
-Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+--c27mc7zieuu4am73
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 4babff5..d0c0d4f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2411,6 +2411,14 @@
- 
- 			#clock-cells = <0>;
- 			#power-domain-cells = <1>;
-+
-+			cx_cdev: cx {
-+				#cooling-cells = <2>;
-+			};
-+
-+			ebi_cdev: ebi {
-+				#cooling-cells = <2>;
-+			};
- 		};
- 
- 		spmi_bus: spmi@c440000 {
--- 
-2.1.4
+On Mon, Jul 29, 2019 at 09:12:18AM +0200, Uwe Kleine-K=F6nig wrote:
+> Hello,
+>
+> On Mon, Jul 29, 2019 at 02:43:23PM +0800, Chen-Yu Tsai wrote:
+> > On Mon, Jul 29, 2019 at 2:36 PM Uwe Kleine-K=F6nig
+> > <u.kleine-koenig@pengutronix.de> wrote:
+> > > On Fri, Jul 26, 2019 at 08:40:41PM +0200, Jernej Skrabec wrote:
+> > > > @@ -371,6 +374,14 @@ static int sun4i_pwm_probe(struct platform_dev=
+ice *pdev)
+> > > >       if (IS_ERR(pwm->clk))
+> > > >               return PTR_ERR(pwm->clk);
+> > > >
+> > > > +     if (pwm->data->has_reset) {
+> > > > +             pwm->rst =3D devm_reset_control_get(&pdev->dev, NULL);
+> > > > +             if (IS_ERR(pwm->rst))
+> > > > +                     return PTR_ERR(pwm->rst);
+> > > > +
+> > > > +             reset_control_deassert(pwm->rst);
+> > > > +     }
+> > > > +
+> > >
+> > > I wonder why there is a need to track if a given chip needs a reset
+> > > line. I'd just use devm_reset_control_get_optional() and drop the
+> > > .has_reset member in struct sun4i_pwm_data.
+> >
+> > Because it's not optional for this platform, i.e. it won't work if
+> > the reset control (or clk, in the next patch) is somehow missing from
+> > the device tree.
+>
+> If the device tree is wrong it is considered ok that the driver doesn't
+> behave correctly. So this is not a problem you need (or should) care
+> about.
 
+To some extent that's true, but if we can make the life easier for
+everyone by reporting an error and bailing out instead of silently
+ignoring that, continuing to probe and just ending up with a
+completely broken system for no apparent reason, then why not just do
+that?
+
+I mean, all it takes is three lines of code.
+
+It's no different than just calling clk_get, and testing the return
+code to see if it's there or not. I wouldn't call that check when you
+depend on a clock "validating the DT". It's just making sure that all
+the resources needed for you to operate properly are there, which is a
+pretty common thing to do.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--c27mc7zieuu4am73
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXT8guwAKCRDj7w1vZxhR
+xUcMAP48/d4gHWLB2ieD8luRNO7UdNKhBxkKVaYQSUwwNhdNhgEA6GotfwgqiOLI
+FehMWvNcDSv607KLMFEsu5CWk9sxRwQ=
+=W5NU
+-----END PGP SIGNATURE-----
+
+--c27mc7zieuu4am73--
