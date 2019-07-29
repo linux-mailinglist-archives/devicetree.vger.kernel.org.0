@@ -2,85 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 50C37792CD
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 20:08:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D1BE3792F3
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 20:21:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729124AbfG2SIm convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 29 Jul 2019 14:08:42 -0400
-Received: from lithops.sigma-star.at ([195.201.40.130]:42270 "EHLO
-        lithops.sigma-star.at" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727482AbfG2SIm (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 14:08:42 -0400
-Received: from localhost (localhost [127.0.0.1])
-        by lithops.sigma-star.at (Postfix) with ESMTP id E832A60632C0;
-        Mon, 29 Jul 2019 20:08:38 +0200 (CEST)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-        by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10032)
-        with ESMTP id ehX5VuQgnl7G; Mon, 29 Jul 2019 20:08:38 +0200 (CEST)
-Received: from localhost (localhost [127.0.0.1])
-        by lithops.sigma-star.at (Postfix) with ESMTP id 70E276083139;
-        Mon, 29 Jul 2019 20:08:38 +0200 (CEST)
-Received: from lithops.sigma-star.at ([127.0.0.1])
-        by localhost (lithops.sigma-star.at [127.0.0.1]) (amavisd-new, port 10026)
-        with ESMTP id XjNoOe8nauWF; Mon, 29 Jul 2019 20:08:38 +0200 (CEST)
-Received: from lithops.sigma-star.at (lithops.sigma-star.at [195.201.40.130])
-        by lithops.sigma-star.at (Postfix) with ESMTP id D590B608311C;
-        Mon, 29 Jul 2019 20:08:37 +0200 (CEST)
-Date:   Mon, 29 Jul 2019 20:08:37 +0200 (CEST)
-From:   Richard Weinberger <richard@nod.at>
-To:     Paul Cercueil <paul@crapouillou.net>
-Cc:     Richard Weinberger <richard.weinberger@gmail.com>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        Paul Burton <paul.burton@mips.com>,
-        James Hogan <jhogan@kernel.org>,
+        id S1728472AbfG2SVA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 14:21:00 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:48631 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727136AbfG2SU7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 14:20:59 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hsAGS-0003Im-Gu; Mon, 29 Jul 2019 20:20:52 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hsAGM-0001Qa-Ko; Mon, 29 Jul 2019 20:20:46 +0200
+Date:   Mon, 29 Jul 2019 20:20:46 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Chen-Yu Tsai <wens@csie.org>,
+        Jernej Skrabec <jernej.skrabec@siol.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Jean Delvare <jdelvare@suse.com>,
-        Guenter Roeck <linux@roeck-us.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Miquel Raynal <miquel.raynal@bootlin.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Mark Brown <broonie@kernel.org>, linux-hwmon@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-fbdev@vger.kernel.org,
-        alsa-devel <alsa-devel@alsa-project.org>,
-        linux-pm@vger.kernel.org, linux-mips@vger.kernel.org,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>, od@zcrc.me,
-        linux-mtd <linux-mtd@lists.infradead.org>,
-        dmaengine@vger.kernel.org, Artur Rojek <contact@artur-rojek.eu>
-Message-ID: <339409106.53616.1564423717793.JavaMail.zimbra@nod.at>
-In-Reply-To: <1564419921.1759.1@crapouillou.net>
-References: <20190725220215.460-1-paul@crapouillou.net> <CAFLxGvyi0+0E3M12A7cRoHfEKd8-7Yr8EMG9J=2XcjCxPWY5pA@mail.gmail.com> <1564419921.1759.1@crapouillou.net>
-Subject: Re: [PATCH 00/11] JZ4740 SoC cleanup
+        Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Subject: Re: [PATCH 2/6] pwm: sun4i: Add a quirk for reset line
+Message-ID: <20190729182046.6bwrterbxoceulrx@pengutronix.de>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+ <20190726184045.14669-3-jernej.skrabec@siol.net>
+ <20190729063630.rn325whatfnc3m7n@pengutronix.de>
+ <CAGb2v65KOpivHQNkg+R2=D=ejCJYnPdVcyHJZW-GJCR8j0Yk0g@mail.gmail.com>
+ <20190729071218.bukw7vxilqy523k3@pengutronix.de>
+ <20190729163715.vtv7lkrywewomxga@flea.home>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Transfer-Encoding: 8BIT
-X-Originating-IP: [195.201.40.130]
-X-Mailer: Zimbra 8.8.12_GA_3807 (ZimbraWebClient - FF60 (Linux)/8.8.12_GA_3809)
-Thread-Topic: JZ4740 SoC cleanup
-Thread-Index: pyW9XJwx/g8VXIVrZC/ODWU++joHAw==
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190729163715.vtv7lkrywewomxga@flea.home>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
------ UrsprÃ¼ngliche Mail -----
->> Was this series tested with the Ben Nanonote device?
->> I have one of these and from time to time I upgrade the kernel on it.
+On Mon, Jul 29, 2019 at 06:37:15PM +0200, Maxime Ripard wrote:
+> On Mon, Jul 29, 2019 at 09:12:18AM +0200, Uwe Kleine-König wrote:
+> > Hello,
+> >
+> > On Mon, Jul 29, 2019 at 02:43:23PM +0800, Chen-Yu Tsai wrote:
+> > > On Mon, Jul 29, 2019 at 2:36 PM Uwe Kleine-König
+> > > <u.kleine-koenig@pengutronix.de> wrote:
+> > > > On Fri, Jul 26, 2019 at 08:40:41PM +0200, Jernej Skrabec wrote:
+> > > > > @@ -371,6 +374,14 @@ static int sun4i_pwm_probe(struct platform_device *pdev)
+> > > > >       if (IS_ERR(pwm->clk))
+> > > > >               return PTR_ERR(pwm->clk);
+> > > > >
+> > > > > +     if (pwm->data->has_reset) {
+> > > > > +             pwm->rst = devm_reset_control_get(&pdev->dev, NULL);
+> > > > > +             if (IS_ERR(pwm->rst))
+> > > > > +                     return PTR_ERR(pwm->rst);
+> > > > > +
+> > > > > +             reset_control_deassert(pwm->rst);
+> > > > > +     }
+> > > > > +
+> > > >
+> > > > I wonder why there is a need to track if a given chip needs a reset
+> > > > line. I'd just use devm_reset_control_get_optional() and drop the
+> > > > .has_reset member in struct sun4i_pwm_data.
+> > >
+> > > Because it's not optional for this platform, i.e. it won't work if
+> > > the reset control (or clk, in the next patch) is somehow missing from
+> > > the device tree.
+> >
+> > If the device tree is wrong it is considered ok that the driver doesn't
+> > behave correctly. So this is not a problem you need (or should) care
+> > about.
 > 
-> Yes! Artur (Cc'd) tested it.
+> To some extent that's true, but if we can make the life easier for
+> everyone by reporting an error and bailing out instead of silently
+> ignoring that, continuing to probe and just ending up with a
+> completely broken system for no apparent reason, then why not just do
+> that?
 > 
-> You can test it yourself, after merging this patchset with:
-> https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/slave-dma.git
-> branch next,
-> git://git.freedesktop.org/git/drm-misc branch drm-misc-next.
-> 
-> These will be in 5.4-rc1.
+> I mean, all it takes is three lines of code.
 
-Awesome! Thanks a lot for cleaning this up.
+<pedantic>Actually it's more because you need to track for each variant
+if it needs the clock (or reset stuff) or not.</pedantic>
 
-Thanks,
-//richard
+It's a weighing between "simpler driver" and "catch unlikely errors".
+(If the SoC's .dtsi includes the needed stuff, an error here is really
+unlikely, isn't it?)
+
+So to some degree it's subjective which one is better. I tend to prefer
+"simpler driver". Also when catching this type of error you have to do
+it right twice (in the .dtsi and the driver) while with my approach
+there is only a single place that defines what is right, which is a good
+design according to what I learned during my studies.
+
+> It's no different than just calling clk_get, and testing the return
+> code to see if it's there or not. I wouldn't call that check when you
+> depend on a clock "validating the DT". It's just making sure that all
+> the resources needed for you to operate properly are there, which is a
+> pretty common thing to do.
+
+This is different. As a driver author you are allowed (or even supposed)
+to assume that the device tree (or ACPI or platform data ...) is right
+and completely defines the stuff for the driven hardware to work
+correctly. You must not assume that clk_get() succeeds unconditionally.
+
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
