@@ -2,96 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6CB79785B3
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 09:01:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6B3FD785D0
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 09:06:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726305AbfG2HBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 03:01:49 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:63730 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727128AbfG2HBW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 03:01:22 -0400
-X-UUID: ff653d2dcbaf4cd681514c2941f3ab41-20190729
-X-UUID: ff653d2dcbaf4cd681514c2941f3ab41-20190729
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <bibby.hsieh@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
-        with ESMTP id 611002067; Mon, 29 Jul 2019 15:01:16 +0800
-Received: from mtkcas09.mediatek.inc (172.21.101.178) by
- mtkmbs01n2.mediatek.inc (172.21.101.79) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 29 Jul 2019 15:01:10 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by mtkcas09.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 29 Jul 2019 15:01:10 +0800
-From:   Bibby Hsieh <bibby.hsieh@mediatek.com>
-To:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>, CK HU <ck.hu@mediatek.com>
-CC:     Daniel Kurtz <djkurtz@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Nicolas Boichat <drinkcat@chromium.org>,
-        YT Shen <yt.shen@mediatek.com>,
-        Daoyuan Huang <daoyuan.huang@mediatek.com>,
-        Jiaguang Zhang <jiaguang.zhang@mediatek.com>,
-        Dennis-YC Hsieh <dennis-yc.hsieh@mediatek.com>,
-        Houlong Wei <houlong.wei@mediatek.com>,
-        <ginny.chen@mediatek.com>, Bibby Hsieh <bibby.hsieh@mediatek.com>
-Subject: [PATCH v11 12/12] arm64: dts: add gce node for mt8183
-Date:   Mon, 29 Jul 2019 15:01:06 +0800
-Message-ID: <20190729070106.9332-13-bibby.hsieh@mediatek.com>
-X-Mailer: git-send-email 2.18.0
-In-Reply-To: <20190729070106.9332-1-bibby.hsieh@mediatek.com>
-References: <20190729070106.9332-1-bibby.hsieh@mediatek.com>
+        id S1726535AbfG2HGO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 03:06:14 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:52347 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725957AbfG2HGO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 03:06:14 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hrzjT-0001ht-6J; Mon, 29 Jul 2019 09:06:07 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hrzjR-0004RR-Ql; Mon, 29 Jul 2019 09:06:05 +0200
+Date:   Mon, 29 Jul 2019 09:06:05 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Jernej Skrabec <jernej.skrabec@siol.net>
+Cc:     thierry.reding@gmail.com, mripard@kernel.org, wens@csie.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-sunxi@googlegroups.com
+Subject: Re: [PATCH 5/6] pwm: sun4i: Add support to output source clock
+ directly
+Message-ID: <20190729070605.vlu7kgzn362ph2q3@pengutronix.de>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+ <20190726184045.14669-6-jernej.skrabec@siol.net>
 MIME-Version: 1.0
-Content-Type: text/plain
-X-TM-SNTS-SMTP: 452939164E0A036E79BC4354F5DBF2B0307C990B92DAE3B1B63BCA2416DACB8F2000:8
-X-MTK:  N
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190726184045.14669-6-jernej.skrabec@siol.net>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-add gce device node for mt8183
+On Fri, Jul 26, 2019 at 08:40:44PM +0200, Jernej Skrabec wrote:
+> PWM core has an option to bypass whole logic and output unchanged source
+> clock as PWM output. This is achieved by enabling bypass bit.
+> 
+> Note that when bypass is enabled, no other setting has any meaning, not
+> even enable bit.
+> 
+> This mode of operation is needed to achieve high enough frequency to
+> serve as clock source for AC200 chip, which is integrated into same
+> package as H6 SoC.
+> 
+> Signed-off-by: Jernej Skrabec <jernej.skrabec@siol.net>
+> ---
+>  drivers/pwm/pwm-sun4i.c | 31 ++++++++++++++++++++++++++++++-
+>  1 file changed, 30 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/pwm/pwm-sun4i.c b/drivers/pwm/pwm-sun4i.c
+> index 9e0eca79ff88..848cff26f385 100644
+> --- a/drivers/pwm/pwm-sun4i.c
+> +++ b/drivers/pwm/pwm-sun4i.c
+> @@ -120,6 +120,19 @@ static void sun4i_pwm_get_state(struct pwm_chip *chip,
+>  
+>  	val = sun4i_pwm_readl(sun4i_pwm, PWM_CTRL_REG);
+>  
+> +	/*
+> +	 * PWM chapter in H6 manual has a diagram which explains that if bypass
+> +	 * bit is set, no other setting has any meaning. Even more, experiment
+> +	 * proved that also enable bit is ignored in this case.
+> +	 */
+> +	if (val & BIT_CH(PWM_BYPASS, pwm->hwpwm)) {
+> +		state->period = DIV_ROUND_CLOSEST_ULL(NSEC_PER_SEC, clk_rate);
+> +		state->duty_cycle = state->period / 2;
+> +		state->polarity = PWM_POLARITY_NORMAL;
+> +		state->enabled = true;
+> +		return;
+> +	}
+> +
+>  	if ((PWM_REG_PRESCAL(val, pwm->hwpwm) == PWM_PRESCAL_MASK) &&
+>  	    sun4i_pwm->data->has_prescaler_bypass)
+>  		prescaler = 1;
+> @@ -211,7 +224,8 @@ static int sun4i_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>  {
+>  	struct sun4i_pwm_chip *sun4i_pwm = to_sun4i_pwm_chip(chip);
+>  	struct pwm_state cstate;
+> -	u32 ctrl;
+> +	u32 ctrl, clk_rate;
+> +	bool bypass;
+>  	int ret;
+>  	unsigned int delay_us;
+>  	unsigned long now;
+> @@ -226,6 +240,16 @@ static int sun4i_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>  		}
+>  	}
+>  
+> +	/*
+> +	 * Although it would make much more sense to check for bypass in
+> +	 * sun4i_pwm_calculate(), value of bypass bit also depends on "enabled".
+> +	 * Period is allowed to be rounded up or down.
+> +	 */
 
-Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
----
- arch/arm64/boot/dts/mediatek/mt8183.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+Every driver seems to implement rounding the way its driver considers it
+sensible. @Thierry: This is another patch where it would be good to have
+a global directive about how rounding is supposed to work to provide the
+users an reliable and uniform way to work with PWMs.
 
-diff --git a/arch/arm64/boot/dts/mediatek/mt8183.dtsi b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-index 08274bfcebd8..98d17d0bdebf 100644
---- a/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-+++ b/arch/arm64/boot/dts/mediatek/mt8183.dtsi
-@@ -8,6 +8,7 @@
- #include <dt-bindings/clock/mt8183-clk.h>
- #include <dt-bindings/interrupt-controller/arm-gic.h>
- #include <dt-bindings/interrupt-controller/irq.h>
-+#include <dt-bindings/gce/mt8183-gce.h>
- 
- / {
- 	compatible = "mediatek,mt8183";
-@@ -212,6 +213,15 @@
- 			clock-names = "spi", "wrap";
- 		};
- 
-+		gce: gce@10238000 {
-+			compatible = "mediatek,mt8183-gce";
-+			reg = <0 0x10238000 0 0x4000>;
-+			interrupts = <GIC_SPI 162 IRQ_TYPE_LEVEL_LOW>;
-+			#mbox-cells = <3>;
-+			clocks = <&infracfg CLK_INFRA_GCE>;
-+			clock-names = "gce";
-+		};
-+
- 		uart0: serial@11002000 {
- 			compatible = "mediatek,mt8183-uart",
- 				     "mediatek,mt6577-uart";
+> +	clk_rate = clk_get_rate(sun4i_pwm->clk);
+> +	bypass = (state->period == NSEC_PER_SEC / clk_rate ||
+> +		 state->period == DIV_ROUND_UP(NSEC_PER_SEC, clk_rate)) &&
+> +		 state->enabled;
+
+Not sure if the compiler is clever enough to notice the obvious
+optimisation with this code construct, but you can write this test in a
+more clever way which has zero instead of up to two divisions. Something
+like:
+
+bypass = ((state->period * clk_rate >= NSEC_PER_SEC &&
+	   state->period * clk_rate < NSEC_PER_SEC + clk_rate) &&
+	  state->enabled);
+
+In the commit log you write the motivation for using bypass is that it
+allows to implement higher frequency then with the "normal" operation.
+As you don't skip calculating the normal parameters requesting such a
+high-frequency setting either errors out or doesn't catch the impossible
+request. In both cases there is something to fix.
+
+> +
+>  	spin_lock(&sun4i_pwm->ctrl_lock);
+>  	ctrl = sun4i_pwm_readl(sun4i_pwm, PWM_CTRL_REG);
+>  
+> @@ -273,6 +297,11 @@ static int sun4i_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>  		ctrl &= ~BIT_CH(PWM_CLK_GATING, pwm->hwpwm);
+>  	}
+>  
+> +	if (bypass)
+> +		ctrl |= BIT_CH(PWM_BYPASS, pwm->hwpwm);
+> +	else
+> +		ctrl &= ~BIT_CH(PWM_BYPASS, pwm->hwpwm);
+> +
+
+Does switching on (or off) the bypass bit complete the currently running
+period?
+
+>  	sun4i_pwm_writel(sun4i_pwm, ctrl, PWM_CTRL_REG);
+>  
+>  	spin_unlock(&sun4i_pwm->ctrl_lock);
+
+Best regards
+Uwe
+
 -- 
-2.18.0
-
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
