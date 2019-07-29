@@ -2,105 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E3FF7884F
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 11:24:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 729DD7886B
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 11:30:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727686AbfG2JY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 05:24:58 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:38297 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727049AbfG2JY5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 05:24:57 -0400
-Received: by mail-pf1-f193.google.com with SMTP id y15so27718952pfn.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 02:24:57 -0700 (PDT)
+        id S1727899AbfG2JaB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 05:30:01 -0400
+Received: from mail-qk1-f196.google.com ([209.85.222.196]:38191 "EHLO
+        mail-qk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727937AbfG2J35 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 05:29:57 -0400
+Received: by mail-qk1-f196.google.com with SMTP id a27so43638120qkk.5
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 02:29:57 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=0NHaPbEIE3GnLl8EEhfWosdb00OPf2b+fWo8SdgJJxo=;
-        b=Xy2kFbWELNQCgQRQoASfnRppp4kufLgsSg0GLfeZ2QYeQqHU5mpLuekUESnWJ6W4au
-         cLKGPGdF7k7MGl2BbkbWfnGBvmSrjg18z9HjryerP+YE8FPFW8Vp938laWSMBwMBElOx
-         kyyCtoKg5txpKw0B0jCj1acEcdB5a91vD2r5wicbDw1sqElfH0LBlsirDz0zJ19dQnY2
-         OjpK4ItIOlxl/PUMzlt4Q37vSX42BMPQWJ4lNjSvE+9kofdH8gKLTwTyMplTmwQaHb56
-         Ch5ZcOhm5zTPnd+CrFwGsggzriGxMtbhx+erQvGfVQnkJhitKfOaaCp8TulgvSWufC7+
-         6h6g==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ni9Dwron1DAB/VosEOyb9bTzIzvLrdks0+fVcvOhKzw=;
+        b=gQMwxy1NEfJ4R4DdsragGEeQ1ePMx/vtNIQSPpA1XOQXbdPx507ukDsYGumSvXvKRW
+         CqYqNtmlpcLTzUVwVuy3FksrIh2MYpbrC3CMM3zWlPFhfBtGuI34/HrYWfBihkhCAxtb
+         744VcN0eb6rpIquLvouIHiSDU3rEmaB/o6wT1UJXTa4iDxydMmBmLMPZHmnpryD/9tAd
+         v82HBKIdVMepnufQ6aX9eJxw/+jNDFGRmDRQyrRb7b+x9ospaczHxwFnAIDAaQurc3ii
+         wpqE8opLmS1b6y2UsY4RVIoX0v4Oz7q0FUcSBdPzq7Qcfgr0/l7uZEfejMuSekXcOTJE
+         uh2A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=0NHaPbEIE3GnLl8EEhfWosdb00OPf2b+fWo8SdgJJxo=;
-        b=LFmNgX4GJp9739nKKWIs/2Ckx0cwCM0SxauYDc0+hec+wOYHVL5zu3DGYRXdK5g2Hb
-         +L8BYdilDdpXw0kg+O8DBsq+7BM8IyZqoGq6O+Lb+03gs3ksUCDOVwx4iMqjOYonstvr
-         1g3hAMg/wH/l+Mh95VL9GcRCYyf8oY+sWYOb092HEzs+GSUxum5ceJ9SAVT/zEYDWI4W
-         gIg/iltmpwRKHFVpOW/qLW+iQ7IENPmtjUmdS6bF1HlEU+rthFubjU4UkJnYVo3A9RXT
-         kOMFMKC6Y+lqxwIf9uH/6QjzzcAcis0CzNfwnfKDaIMNlBGsI5+r1PXEw4OdWMpNgot3
-         pjMg==
-X-Gm-Message-State: APjAAAX+ITDUeRJQwzb6DCIW0D4OLSPmhuvCCe7oo0vqX5z/Z/qaFNtX
-        i6xHNb2HpBsmuOtxet0uSuMvYg==
-X-Google-Smtp-Source: APXvYqyXnV7F+k6oUvgbf58oAVK1IH6CZXv9DBBx+BcsjmdeUAZr2vtTHZFtwqBx4mKuZrWjbNouhQ==
-X-Received: by 2002:a65:6406:: with SMTP id a6mr66039326pgv.393.1564392297055;
-        Mon, 29 Jul 2019 02:24:57 -0700 (PDT)
-Received: from localhost ([122.172.28.117])
-        by smtp.gmail.com with ESMTPSA id r12sm39768662pgb.73.2019.07.29.02.24.55
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 29 Jul 2019 02:24:56 -0700 (PDT)
-Date:   Mon, 29 Jul 2019 14:54:54 +0530
-From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
-        daidavid1@codeaurora.org, Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux PM <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v3 0/6] Introduce Bandwidth OPPs for interconnect paths
-Message-ID: <20190729092454.6lfqzmhkvrhpimsp@vireshk-i7>
-References: <20190703011020.151615-1-saravanak@google.com>
- <20190717103220.f7cys267hq23fbsb@vireshk-i7>
- <CAGETcx-tbjVzRKW8D-564zgNOhrA_z-NC1q5U70bhoUDBhp6VA@mail.gmail.com>
- <20190718053746.64drmonk72vwnt4s@vireshk-i7>
- <CAGETcx_-=b3An9YdxLUnZap=0iaeczvWTEnw65FMLU8BwA3HfQ@mail.gmail.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ni9Dwron1DAB/VosEOyb9bTzIzvLrdks0+fVcvOhKzw=;
+        b=daSjShdU+w8tdLt+LV/dJKsUdlmwtZlZT3dVwtzvE+oOfL43ihlYjJ4po/AAIlOfVr
+         Ezze6Y4tf4+pjUWDcCYZwjL2FV3YuvFfncyna+CIGorLLuTtOWQeFIqTdrWGMv9KW7u+
+         x3jDjwHvDZxfWGX5W3tgRJ14Asmjp6DMsssbQfERHAb7nTfUAELBlbBYaiv/nNHE1Mgr
+         MlVblXVpuzAu9Wo9qtaUBGQVzKaOF9xaKaSbTE3iFTE5jRzpWOd6M9L/5yp4qm4bDRDE
+         hxPaq+O0MNbJ4KDIFCG3DaMLpTeQmqjr89skLJkt3NHPCBMAkVGdbMhaFbzU8Qy/iVLC
+         rbzA==
+X-Gm-Message-State: APjAAAWRdwO0LflcosiiJDcmyW2GY5Zecm/EipBlZ1egnygoTAi5wvjA
+        5sZCH8Xh7BWhNpSP9nlh1truU0Fmz0AEqjN5CTJnZg==
+X-Google-Smtp-Source: APXvYqzz2PDrlp9N2pc7W/QuOgqLqcGPA9kPz77ASGS4q7fTLpEkpvutYsOf5F4N2ND7QgCLSin3rOzyMs4xSnwLZ0M=
+X-Received: by 2002:a37:4e8f:: with SMTP id c137mr70800649qkb.127.1564392596646;
+ Mon, 29 Jul 2019 02:29:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAGETcx_-=b3An9YdxLUnZap=0iaeczvWTEnw65FMLU8BwA3HfQ@mail.gmail.com>
-User-Agent: NeoMutt/20180716-391-311a52
+References: <cover.1564091601.git.amit.kucheria@linaro.org>
+ <ec8205566eb9c015ad51fbb88f0da7ca60b414fd.1564091601.git.amit.kucheria@linaro.org>
+ <2812534.bLfc0ztHNv@g550jk>
+In-Reply-To: <2812534.bLfc0ztHNv@g550jk>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Mon, 29 Jul 2019 14:59:45 +0530
+Message-ID: <CAP245DX1u6JNPaqU_=Dq9HFG=EriGJGD2r4yOa88BmdmSH69GQ@mail.gmail.com>
+Subject: Re: [PATCH 12/15] arm64: dts: msm8974: thermal: Add interrupt support
+To:     Luca Weiss <luca@z3ntu.xyz>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Eduardo Valentin <edubezval@gmail.com>,
+        Andy Gross <andy.gross@linaro.org>,
+        Andy Gross <agross@kernel.org>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Zhang Rui <rui.zhang@intel.com>,
+        Brian Masney <masneyb@onstation.org>,
+        DTML <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 18-07-19, 21:12, Saravana Kannan wrote:
-> On Wed, Jul 17, 2019 at 10:37 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
-> > I would like
-> > to put this data in the GPU OPP table only. What about putting a
-> > range in the GPU OPP table for the Bandwidth if it can change so much
-> > for the same frequency.
-> 
-> I don't think the range is going to work.
+On Mon, Jul 29, 2019 at 2:33 PM Luca Weiss <luca@z3ntu.xyz> wrote:
+>
+> On Freitag, 26. Juli 2019 00:18:47 CEST Amit Kucheria wrote:
+> > Register upper-lower interrupt for the tsens controller.
+> >
+> > Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+> > ---
+> > Cc: masneyb@onstation.org
+> >
+> >  arch/arm/boot/dts/qcom-msm8974.dtsi | 36 +++++++++++++++--------------
+> >  1 file changed, 19 insertions(+), 17 deletions(-)
+> >
+>
+> Hi, the title of this patch should be "arm" and not "arm64".
 
-Any specific reason for that ?
-
-> If a GPU is doing purely
-> computational work, it's not unreasonable for it to vote for the
-> lowest bandwidth for any GPU frequency.
-
-I think that is fine, but if the GPU is able to find how much
-bandwidth it needs why can't it just pass that value without needing
-to have another OPP table for the path ?
-
-The interconnect can then take all the requests and have its own OPP
-table to get help on deciding what stable bandwidth to use.
-
--- 
-viresh
+Good catch! Copy-paste error, will fix.
