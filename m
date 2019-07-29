@@ -2,100 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FBCE78F76
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 17:37:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2328278F89
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 17:39:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725945AbfG2PhE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 11:37:04 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:46390 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728123AbfG2PhD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 11:37:03 -0400
-Received: by mail-pg1-f194.google.com with SMTP id k189so9407436pgk.13
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 08:37:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=4Is/zMn554z9J2hxXreLy6XnJ9I6/lu0GO7rlFj5dIE=;
-        b=CMiwYhMpeKX7zrj+EhHrELRJlZUUODDg6GvKOLaBfZXN5KAyPrQlwIcseruoh2UEDK
-         xbogLEb7lmZfGuO0CEijgBkAzICvFM5Gb6IskDvwdRNha93OUJ2i4YykRzSAqXiTLtTT
-         q6npjS0ceX9rYd3VW6cT/STqIfH8XMDBkMO202zXPTC41za3yHZDRmoD7hwn9pRjUh2j
-         gWEK5ZZBxzNPc8Qo+dTxGgBa8tDhFfYNSyXFglSRO336K5Real7ddhf02f856DbZraSW
-         jGEMygrhtb4JKsJOh1Rr1rgZU5jal0fDc+iRzG4Vh8cQ/oEtRdQ1eMIQJS16VC23+hcG
-         L+/Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4Is/zMn554z9J2hxXreLy6XnJ9I6/lu0GO7rlFj5dIE=;
-        b=AKFq9IWhErMcOrUHLGAhYBGG86l61fEiY3cMWybtItY5Vrt38UojGDDhNbC5HzPr4i
-         q4LB36S24e1tbDSEhz0tXfh/y2/xN/gTa/uTLhZ56P1wZBQbcQuL/Doz70GoNYqBhY3p
-         bk4yC0/t4ff2ZDy74put4cyJ7kdY0C4HORuFOZVJHDoHsdFShAiqve9DSCnDfl6z/Itc
-         9m+EhFggLJe7MdwQ/qmmYLWdye6yHUrPlhBFVi559UI02c3iyklsOg8sgOMHfE1AxtbI
-         DEE51uehXl98araTasJYQflU/GjwWVr/xNjdeN3kHhLa0fTV1REG9JWJHgrsvRLkCI4O
-         qHmw==
-X-Gm-Message-State: APjAAAU7CNaCCKaDi8QQFz3FEF5ecVTkUSUC7uQLHcbEp6hpFy9uR9Mo
-        4zHo6rL/IUxBgxuTB4hPZ4Hn2w==
-X-Google-Smtp-Source: APXvYqyZ2izgeK8bZ2+UGCtJI2YDwDB+LtG/0K711MB8HWKCgCebhIN2V/5yP2YiYDSfGUrDUp+3zA==
-X-Received: by 2002:a63:9245:: with SMTP id s5mr106816006pgn.123.1564414622544;
-        Mon, 29 Jul 2019 08:37:02 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id z24sm109475644pfr.51.2019.07.29.08.37.00
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 29 Jul 2019 08:37:01 -0700 (PDT)
-Date:   Mon, 29 Jul 2019 08:38:26 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     robh+dt@kernel.org, vkoul@kernel.org, aneela@codeaurora.org,
-        mark.rutland@arm.com, agross@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, jassisinghbrar@gmail.com,
-        clew@codeaurora.org
-Subject: Re: [PATCH 0/6] Add support for Qualcomm SM8150 and SC7180 SoCs
-Message-ID: <20190729153826.GT7234@tuxbook-pro>
-References: <20190729120633.20451-1-sibis@codeaurora.org>
+        id S2387530AbfG2Pjg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 11:39:36 -0400
+Received: from mail-eopbgr20063.outbound.protection.outlook.com ([40.107.2.63]:58894
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2387496AbfG2Pjg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 29 Jul 2019 11:39:36 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=GaNdccnlO4Vhm73ip3X1mpCWN5iJAKPJCP1aWNMkYl8fb9giwhrCB08uguVESxzXC04HtBFqLLkeA+OkoUeOWFaY1fmCiyOPuRDXAjQllub+GbB/szEoUy504qmuj8KVA7OT8UBb1UyX6fwld9gB3dvH+SbwxS5N2sev65dJDzkpSQ44XJWSMSHOLoCmbIVbxEFLPd1rahjS5J9/VRRevTwNfcC64g+7rS09HIzee78LI5Q/mZ3Ak87Lucimb+8XUx9IZU+Z+5sY/PSuyegfhQpZIxX562jcFrdkwl0JpCJZtfkOjS9LXY/cHE0+dXm36FtShE1tqCVArE/UwuDDxw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M0VGKXhn0DuBIy37MHBwPHlh7x1/6FWHVs/R1HlowrY=;
+ b=MAB8/6PsPy7OLxu2hrMzXPKuI589dKT9lnI7yBMzJfWp/XyFsH7+RolLisOVxER38X5L5gxuYxhk3droZvT4urB1U4rpU56I2LfycuvTla9OWk62bDHPWgD65qkoutmLgVbbSYZiqyNVOCbJV720ihk41dBil20FJ2RKZv+zIciTYZ40mveOnrJThq8MrChzxDTSN21Q8fCRhVaVY+qhv0qKYzmF3xcOW6CjPXZZdfhwlq025kykaV5ojDXQg+IKu4+iT3yHItpwY+vKOPUIo423GJBd9WB2wy/7qdN/L217+Rx+/hpvUOrvpY3stHkIISHHQVhFbgx2HkfjuBOdUQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
+ header.d=nxp.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=M0VGKXhn0DuBIy37MHBwPHlh7x1/6FWHVs/R1HlowrY=;
+ b=qtPhQ+bN7IsQR4z4q7LMRSv/xzJEh994YdjYZQT3b+oyWLkqvPWKFrs4sadFG1qE09Bne1uHCHTPMCHylz3d+touN8oEdpHn0v8zKWMrVx7NcH8JM5rl3bpVxzJHhcyKzGHLOWZvXVeVVuAVLKeQBgA1Ii2hdSPluIEEnToaurc=
+Received: from VI1PR04MB4880.eurprd04.prod.outlook.com (20.177.49.153) by
+ VI1PR04MB5197.eurprd04.prod.outlook.com (20.177.51.158) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2115.10; Mon, 29 Jul 2019 15:39:32 +0000
+Received: from VI1PR04MB4880.eurprd04.prod.outlook.com
+ ([fe80::e401:6546:3729:47c0]) by VI1PR04MB4880.eurprd04.prod.outlook.com
+ ([fe80::e401:6546:3729:47c0%6]) with mapi id 15.20.2115.005; Mon, 29 Jul 2019
+ 15:39:32 +0000
+From:   Claudiu Manoil <claudiu.manoil@nxp.com>
+To:     Andrew Lunn <andrew@lunn.ch>
+CC:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>, Leo Li <leoyang.li@nxp.com>,
+        Alexandru Marginean <alexandru.marginean@nxp.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: RE: [PATCH net-next v3 2/4] enetc: Add mdio bus driver for the PCIe
+ MDIO endpoint
+Thread-Topic: [PATCH net-next v3 2/4] enetc: Add mdio bus driver for the PCIe
+ MDIO endpoint
+Thread-Index: AQHVRfTzIlSQL21yzUKJl+LDCQ5gdabhupAA////0TA=
+Date:   Mon, 29 Jul 2019 15:39:31 +0000
+Message-ID: <VI1PR04MB48806AF2F6CEDE105B78086696DD0@VI1PR04MB4880.eurprd04.prod.outlook.com>
+References: <1564394627-3810-1-git-send-email-claudiu.manoil@nxp.com>
+ <1564394627-3810-3-git-send-email-claudiu.manoil@nxp.com>
+ <20190729153524.GG4110@lunn.ch>
+In-Reply-To: <20190729153524.GG4110@lunn.ch>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=claudiu.manoil@nxp.com; 
+x-originating-ip: [212.146.100.6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 2c90a2cd-1c52-4d3b-864a-08d7143af364
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB5197;
+x-ms-traffictypediagnostic: VI1PR04MB5197:
+x-microsoft-antispam-prvs: <VI1PR04MB5197B8012BA2CFCFC392D2EF96DD0@VI1PR04MB5197.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5516;
+x-forefront-prvs: 01136D2D90
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(979002)(4636009)(396003)(346002)(376002)(366004)(39860400002)(136003)(13464003)(189003)(199004)(33656002)(71190400001)(86362001)(52536014)(6916009)(99286004)(8676002)(305945005)(71200400001)(5660300002)(25786009)(256004)(76176011)(7736002)(76116006)(66946007)(6246003)(66556008)(64756008)(66476007)(66446008)(74316002)(4326008)(68736007)(102836004)(6506007)(66066001)(6436002)(26005)(55016002)(14454004)(229853002)(7696005)(446003)(316002)(54906003)(486006)(11346002)(186003)(44832011)(476003)(478600001)(8936002)(53936002)(9686003)(81166006)(81156014)(2906002)(3846002)(6116002)(4744005)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5197;H:VI1PR04MB4880.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: A43O05XHdcMAWQlB14ieyvWtnEva87NU3cFbAMxKn51xArS9s4uDXfl6bxqThgH2KVJmejPwD9pLttZX/zHs5nfM8MM1KwIPKy4nsjMKzHf+5yHQbmyIT9MNbJCCxWCkzvBupfApUmqxrc7J/xSDPJa6tpVNLxZ734JjU8RaohJ9ti2RvdJ7pAg0yjNvYcygIHPNZIxINdGPCm3gCxADTNNceNWYOKnevSffIN4e7CFvzoPWwQScEVJkLp1BHZwhkUHgd2YEyU2wqNpVjb2O4SI/HZOABQyiCag7woefH9+zHqz/jZE+5/o+PqUczEU+4a18/I4t/0Q6x/uDdvV23iYQceEpLQpH/QqbA2Tww8U4p60YEPdS6fofm9N5X/VHRWqE9mi1kiX6ZN+8E7+gTh+Jurc/cAenlTworOfyiaE=
+Content-Type: text/plain; charset="utf-8"
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190729120633.20451-1-sibis@codeaurora.org>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 2c90a2cd-1c52-4d3b-864a-08d7143af364
+X-MS-Exchange-CrossTenant-originalarrivaltime: 29 Jul 2019 15:39:31.8995
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: claudiu.manoil@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5197
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 29 Jul 05:06 PDT 2019, Sibi Sankar wrote:
-
-> This patch series adds SCM, APSS shared mailbox and QMP AOSS PD/clock
-> support on SM8150 and SC7180 SoCs.
-> 
-
-Thanks Sibi, this looks good.
-
-Could you please update the last 5 patches to ensure/maintain sort order
-of the lists they affect.
-
-Regards,
-Bjorn
-
-> Sibi Sankar (6):
->   soc: qcom: smem: Update max processor count
->   dt-bindings: firmware: scm: Add SM8150 and SC7180 support
->   dt-bindings: mailbox: Add APSS shared for SM8150 and SC7180 SoCs
->   mailbox: qcom: Add support for Qualcomm SM8150 and SC7180 SoCs
->   dt-bindings: soc: qcom: aoss: Add SM8150 and SC7180 support
->   soc: qcom: aoss: Add AOSS QMP support
-> 
->  Documentation/devicetree/bindings/firmware/qcom,scm.txt      | 2 ++
->  .../devicetree/bindings/mailbox/qcom,apcs-kpss-global.txt    | 2 ++
->  Documentation/devicetree/bindings/soc/qcom/qcom,aoss-qmp.txt | 5 ++++-
->  drivers/mailbox/qcom-apcs-ipc-mailbox.c                      | 2 ++
->  drivers/soc/qcom/qcom_aoss.c                                 | 2 ++
->  drivers/soc/qcom/smem.c                                      | 2 +-
->  6 files changed, 13 insertions(+), 2 deletions(-)
-> 
-> -- 
-> The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-> a Linux Foundation Collaborative Project
-> 
+Pi0tLS0tT3JpZ2luYWwgTWVzc2FnZS0tLS0tDQo+RnJvbTogQW5kcmV3IEx1bm4gPGFuZHJld0Bs
+dW5uLmNoPg0KPlNlbnQ6IE1vbmRheSwgSnVseSAyOSwgMjAxOSA2OjM1IFBNDQo+VG86IENsYXVk
+aXUgTWFub2lsIDxjbGF1ZGl1Lm1hbm9pbEBueHAuY29tPg0KPkNjOiBEYXZpZCBTIC4gTWlsbGVy
+IDxkYXZlbUBkYXZlbWxvZnQubmV0PjsgUm9iIEhlcnJpbmcNCj48cm9iaCtkdEBrZXJuZWwub3Jn
+PjsgTGVvIExpIDxsZW95YW5nLmxpQG54cC5jb20+OyBBbGV4YW5kcnUgTWFyZ2luZWFuDQo+PGFs
+ZXhhbmRydS5tYXJnaW5lYW5AbnhwLmNvbT47IG5ldGRldkB2Z2VyLmtlcm5lbC5vcmc7DQo+ZGV2
+aWNldHJlZUB2Z2VyLmtlcm5lbC5vcmc7IGxpbnV4LWFybS1rZXJuZWxAbGlzdHMuaW5mcmFkZWFk
+Lm9yZzsgbGludXgtDQo+a2VybmVsQHZnZXIua2VybmVsLm9yZw0KPlN1YmplY3Q6IFJlOiBbUEFU
+Q0ggbmV0LW5leHQgdjMgMi80XSBlbmV0YzogQWRkIG1kaW8gYnVzIGRyaXZlciBmb3IgdGhlIFBD
+SWUNCj5NRElPIGVuZHBvaW50DQo+DQo+PiArCWh3LT5wb3J0ID0gcGNpX2lvbWFwKHBkZXYsIDAs
+IDApOw0KPj4gKwlpZiAoIWJ1cy0+cHJpdikgew0KPg0KPmh3LT5wb3J0ID8/DQo+DQoNClllYWgs
+IGJldHRlciBpZ25vcmUgdGhpcyBmb3Igbm93IPCfmIoNCkl0J3MgZm9yIHRoZSBlbmV0YyBhY2Nl
+c3NvcnMsIGVuZXRjX3BvcnRfLi4oKS4NCg==
