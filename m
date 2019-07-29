@@ -2,101 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DDE7779710
-	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 21:57:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 97A6B79719
+	for <lists+devicetree@lfdr.de>; Mon, 29 Jul 2019 21:58:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403963AbfG2T5m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 15:57:42 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:43940 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2390898AbfG2T5m (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 15:57:42 -0400
-Received: by mail-lf1-f67.google.com with SMTP id c19so42932890lfm.10
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 12:57:40 -0700 (PDT)
+        id S2404126AbfG2T55 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 15:57:57 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:52269 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2403935AbfG2T55 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 15:57:57 -0400
+Received: by mail-wm1-f68.google.com with SMTP id s3so54931521wms.2;
+        Mon, 29 Jul 2019 12:57:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=qNbOegTnTfayiKcGg2WPsEFWEJS+NAOGdKiUhPuxefk=;
-        b=TpKbImQL3QsLrm9f2kKfxBdgxpNzzpcXN7l3h4eFrWM0p7B84ZP+e0MsrP3S9MLJ0l
-         5cHS4PayFSuRfyQ2trsIBNdAStMrUNV8KdgTo1aZA7rzQGVLyk6G63GEnZW+bBs2lehq
-         MravcXryFPHowqRXbsEfxaD7n0PISko1Mkes1vx0Yu0PFEugvij2k1gUD47mdrqoG1XJ
-         aSZvaPlplUfXj17Jahwb8eO+7JGyroV0fDXuf7vSgC8U4KloseOfJKmt8RuyN48S3nme
-         6PBBlDcpN48zWrHONKmSVZ/hO426JRrfaUbFwfRPZtcLZGD9kyTUtktCS1GxpebLaK2j
-         ZfRg==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=EfwOpTwqZt49gcWcX/gOxX/yJSmjfwNU2FDs49FnjdU=;
+        b=TD+gjh4HFlm0ryoYWHp2SaDQah1BRcGLs588Xg5onWMF/bFCKo3gCcdRjrR7eJMGGm
+         VmcPlqWbkKDwrNUh8zlIIYwZuaqfpnpqWXjC8N6f75TNoXUh/j8p0eVt74oBk9ZkZzex
+         V1n1HFIE5C4nzA0H7fSPUkflCg8AXut9D8Lsz7PQtKKWqAGP/SYjsEEYFVKlB4P3b48l
+         JzQBi3aOTso7ySB63JP0g6QRApO4sA8wRcRzVJ+dusjlz0zUXgelfZtRDojl6kV4tQq5
+         RW4HpdbdEqTyFkh6/NLcZF5YWo+AKMq41dRNm/3LgVvXde/R9xBeyIFdwVd7yeAVr1kn
+         cTAg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=qNbOegTnTfayiKcGg2WPsEFWEJS+NAOGdKiUhPuxefk=;
-        b=buS1ie/iVXFqOQaqE39ewaAXQT7QtHz4wk6TYieR4RnN0+hEJG6ZjEhwUSU3iKatQO
-         FyFa5ccbwWmT8tVix7iIRygbInzHQRCrsVDTDQ+XYrzVx0ZyNBgrOoM9Y+UM7Bzcn43D
-         Q07RX1qPkGToXCMloid2JV1TR5p3bFkoDjmERDY+RAA0ZW3r8RDfNiLWmqx9XNWjfn8K
-         yo800pag6mTyKJaV36lZVw+kadoK3+7cGmvnyHG6EKVtZE+rUNDLuTQdZM8LmkoH2wfF
-         D+OrKaRRUoj5U/MaQMOergbnTqOcCKcAYz4po5Ep3ELZSwxl7yc5au14K6z+jz7e8jMX
-         IXJg==
-X-Gm-Message-State: APjAAAV+HmxFRMQ6CJroVvG5S+U2SnrTrldKEEolZcV7P655TDDw2kmx
-        SMsFU51i5eoV4LGOgScAEBE=
-X-Google-Smtp-Source: APXvYqxlJa7CFJs8wuZDag31XZADiKvucyJRJ+S5YoBd5J08pw4zNER8GB4MkH9sMcFyTnF2Vmnmlw==
-X-Received: by 2002:a19:4f42:: with SMTP id a2mr12714911lfk.23.1564430259982;
-        Mon, 29 Jul 2019 12:57:39 -0700 (PDT)
-Received: from localhost (customer-145-14-112-32.stosn.net. [145.14.112.32])
-        by smtp.gmail.com with ESMTPSA id v17sm14578546ljg.36.2019.07.29.12.57.39
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 29 Jul 2019 12:57:39 -0700 (PDT)
-Date:   Mon, 29 Jul 2019 21:57:38 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: rcar-imr: Rename bindings documentation file
-Message-ID: <20190729195738.GH3186@bigcity.dyn.berto.se>
-References: <20190729074757.9581-1-horms+renesas@verge.net.au>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=EfwOpTwqZt49gcWcX/gOxX/yJSmjfwNU2FDs49FnjdU=;
+        b=QvMhsH99VWImXT0zK/nGlcg71Fvhmj2yrdCnaxFmadFUIkXIvnG3vxf9OHFJK+5Zst
+         mji6ys3wAkcjpiEo36+1eDEMKEsiuxN92BDgHOAFBDYNPmUFctdZTUt16hixpSI9HtLg
+         N7xk+dTcdA0SQcvdgPmpdB051YH27DPrUPVliN/+yhoha+aj8Mh4IxWPjfHMGOUKRYD6
+         poNUGGB19SkN0FBzYMdRuuheJJGveobB1/IkCO2ejDc/2I6lD6q2NMJ6pflmbA2uX8mi
+         2J0Cs3SNm9Aij8nDhYvUiEPHdS2W4ahiuB1rOI9OWfipUAVH3/33oNZ8JaTOwXYiGS4F
+         iAdw==
+X-Gm-Message-State: APjAAAU7dHr7frLd170bUg/SmtA1JGCLAG52fLwCDydbodrT233vdeT/
+        /UY5KuIciI9G5+jJ0Z69liH7xtRnjvBhcnXA02M=
+X-Google-Smtp-Source: APXvYqyUnyRnpAsu1OzTd7PhLaMC/PpuGRUfvRCL/EifxjOUfhsRaKfdERpgUk7nBbCW+1wTl53GQRoL34cSuARJCfQ=
+X-Received: by 2002:a1c:96c7:: with SMTP id y190mr93249558wmd.87.1564430274987;
+ Mon, 29 Jul 2019 12:57:54 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190729074757.9581-1-horms+renesas@verge.net.au>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <20190728192429.1514-1-daniel.baluta@nxp.com> <20190728192429.1514-2-daniel.baluta@nxp.com>
+ <20190729194214.GA20594@Asurada-Nvidia.nvidia.com>
+In-Reply-To: <20190729194214.GA20594@Asurada-Nvidia.nvidia.com>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Mon, 29 Jul 2019 22:57:43 +0300
+Message-ID: <CAEnQRZDmnAmgUkRGv3V5S7b5EnYTd2BO5NFuME2CfGb1=nAHzQ@mail.gmail.com>
+Subject: Re: [alsa-devel] [PATCH v2 1/7] ASoC: fsl_sai: Add registers
+ definition for multiple datalines
+To:     Nicolin Chen <nicoleotsuka@gmail.com>
+Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Timur Tabi <timur@kernel.org>, Rob Herring <robh@kernel.org>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Takashi Iwai <tiwai@suse.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Mark Brown <broonie@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Viorel Suman <viorel.suman@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Mihai Serban <mihai.serban@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon,
+On Mon, Jul 29, 2019 at 10:42 PM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
+>
+> On Sun, Jul 28, 2019 at 10:24:23PM +0300, Daniel Baluta wrote:
+> > SAI IP supports up to 8 data lines. The configuration of
+> > supported number of data lines is decided at SoC integration
+> > time.
+> >
+> > This patch adds definitions for all related data TX/RX registers:
+> >       * TDR0..7, Transmit data register
+> >       * TFR0..7, Transmit FIFO register
+> >       * RDR0..7, Receive data register
+> >       * RFR0..7, Receive FIFO register
+> >
+> > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> > ---
+> >  sound/soc/fsl/fsl_sai.c | 76 +++++++++++++++++++++++++++++++++++------
+> >  sound/soc/fsl/fsl_sai.h | 36 ++++++++++++++++---
+> >  2 files changed, 98 insertions(+), 14 deletions(-)
+> >
+> > diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
+> > index 6d3c6c8d50ce..17b0aff4ee8b 100644
+> > --- a/sound/soc/fsl/fsl_sai.c
+> > +++ b/sound/soc/fsl/fsl_sai.c
+>
+> > @@ -704,7 +711,14 @@ static bool fsl_sai_readable_reg(struct device *dev, unsigned int reg)
+> >       case FSL_SAI_TCR3:
+> >       case FSL_SAI_TCR4:
+> >       case FSL_SAI_TCR5:
+> > -     case FSL_SAI_TFR:
+> > +     case FSL_SAI_TFR0:
+> > +     case FSL_SAI_TFR1:
+> > +     case FSL_SAI_TFR2:
+> > +     case FSL_SAI_TFR3:
+> > +     case FSL_SAI_TFR4:
+> > +     case FSL_SAI_TFR5:
+> > +     case FSL_SAI_TFR6:
+> > +     case FSL_SAI_TFR7:
+> >       case FSL_SAI_TMR:
+> >       case FSL_SAI_RCSR:
+> >       case FSL_SAI_RCR1:
+>
+> A tricky thing here is that those SAI instances on older SoC don't
+> support multi data lines physically, while seemly having registers
+> pre-defined. So your change doesn't sound doing anything wrong to
+> them at all, I am still wondering if it is necessary to apply them
+> to newer compatible only though, as for older compatibles of SAI,
+> these registers would be useless and confusing if being exposed.
+>
+> What do you think?
 
-Thanks for your work.
-
-On 2019-07-29 09:47:57 +0200, Simon Horman wrote:
-> Renesas media binding documentation files uses a naming schema of
-> 'renesas,<module>.txt'. Rename IMR file to match this pattern.
-> 
-> Cc: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
-
-> ---
->  Documentation/devicetree/bindings/media/{rcar_imr.txt => renesas,imr.txt} | 0
->  1 file changed, 0 insertions(+), 0 deletions(-)
->  rename Documentation/devicetree/bindings/media/{rcar_imr.txt => renesas,imr.txt} (100%)
-> 
-> diff --git a/Documentation/devicetree/bindings/media/rcar_imr.txt b/Documentation/devicetree/bindings/media/renesas,imr.txt
-> similarity index 100%
-> rename from Documentation/devicetree/bindings/media/rcar_imr.txt
-> rename to Documentation/devicetree/bindings/media/renesas,imr.txt
-> -- 
-> 2.11.0
-> 
-
--- 
-Regards,
-Niklas Söderlund
+Yes, I thought about this too. But, I tried to keep the code as short
+as possible and technically it is not wrong. When 1 data line is supported
+for example application will only care about TDR0, TFR0, etc.
