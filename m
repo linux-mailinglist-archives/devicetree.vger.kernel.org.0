@@ -2,164 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 04B1C7B62F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 01:21:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D6387B671
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 01:59:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726645AbfG3XVh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 19:21:37 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:40834 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726907AbfG3XVg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 19:21:36 -0400
-Received: by mail-ot1-f66.google.com with SMTP id l15so10925581oth.7
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2019 16:21:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=t68EXPEyPb2/r7j8LTsJ+u3l3tFbqRdeyuThoSQX0Z8=;
-        b=uM+oBlrX9psFtPZuEZkbi0e4Vpn7VCy/YMTrHPulqmY/1qWEEVwhjuNGmHxf0E+HQb
-         rrVW1W3yK4x96wQG6KFPEOMXHduMyfhAQI8JN0qpPDLRkrcCCIgVXsBuzLc5TUcz+K3T
-         Xytm0P1ezA9fyvj74lY/B/scgzyuVwmiZgx6NTTkVY5m3nd5O9As83CCE5rfnmLc8C4D
-         4fjPHIMupHeP0Dj5o3dD+/fXTIW3YSjXyaZYfi9rhJNLh6j1deJZ7RO0iWXIII1Mx7nE
-         VhZwiJeSFCWbeKH88s58QktIT6+OC4rNZm5C8a9ZaLSu3WqAoKh7sybL/QwFkQM6e7tx
-         UzTQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=t68EXPEyPb2/r7j8LTsJ+u3l3tFbqRdeyuThoSQX0Z8=;
-        b=XIDJp0IeocdpQku/Rzp14899Z0Y6XoGoJX2JMP4vj1JwQZ0+BiFSfmy/9Nha+BwzmQ
-         +HVDqk0p59BeBHbblfeDS12wqrwlydHQ6XpxeW9v2Jcv3M56y4JVsGa4gJVFPvvWR2Mo
-         ytSqKNGg3LImY2owSJAPB9xcCZoxQySubk6nGqgkL6uGiO272JXOj+GaKKBye7DE8kuJ
-         ynanaeWhbzjyPjiF5ryz4v/Xni5dtgSUNjCBV5EbqCIjhF7RA5p25EntXfP0ivbdHa1/
-         20Z/LyQ3ruZ9y/zt2lahGFhR+ot1+OMrBu5s0tR5nRX7ByVYB9pxkvOxxV1ADnRG/h67
-         DVKw==
-X-Gm-Message-State: APjAAAWm+FJBmmMNbroP4nT4mVWkCFeb6R+221DGTugXb7FJcKqmc6EG
-        7jqUAXfbDdO/K7heDw3sv1gmXvX9OcKDyuVJBWaUOA==
-X-Google-Smtp-Source: APXvYqxF/lQBcl9VxeFdGQwyL2cwO0iPXqbd56cQNfFXEZQ5pknZKItQoFD9aLi9hff7bgWRRh9wTQkrYevQ0y5/0pA=
-X-Received: by 2002:a9d:6201:: with SMTP id g1mr89652643otj.195.1564528895800;
- Tue, 30 Jul 2019 16:21:35 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190703011020.151615-1-saravanak@google.com> <20190703011020.151615-3-saravanak@google.com>
- <CAHLCerP81Eotae5s4-Qye77SSF6-BbqFhckvkTEQWBD9biwzbw@mail.gmail.com>
-In-Reply-To: <CAHLCerP81Eotae5s4-Qye77SSF6-BbqFhckvkTEQWBD9biwzbw@mail.gmail.com>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 30 Jul 2019 16:20:59 -0700
-Message-ID: <CAGETcx-2vKLkr1Mcs-ujLdgOmztK655X2ybOnFqhupXe2xu+xg@mail.gmail.com>
-Subject: Re: [PATCH v3 2/6] OPP: Add support for bandwidth OPP tables
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
-        David Dai <daidavid1@codeaurora.org>,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Evan Green <evgreen@chromium.org>,
-        Android Kernel Team <kernel-team@android.com>,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726539AbfG3X7G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 19:59:06 -0400
+Received: from out1-smtp.messagingengine.com ([66.111.4.25]:44919 "EHLO
+        out1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725975AbfG3X7G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Jul 2019 19:59:06 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 649912222B;
+        Tue, 30 Jul 2019 19:59:02 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Tue, 30 Jul 2019 19:59:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=LbhKQoZqdxV+FyL2mwG35/QPyn9PEC7
+        JgRbmiOeNOKs=; b=H/N9ZWWAUoC7TI+7xDGE7x5/qU/3kpM3kb6ukIpLrQHhohe
+        ZoCfxAEiFHDCRjlH90i+M328gC7z51eoLkUBSxn9H+a93dOAQCha99Cc2HZZqQw7
+        4i5OJ3OuQ7L1Zf51aIvS16QWLRucjRcOKfWfQocczxpaIuernv6HlLBtEyPzCc83
+        uKpB9e04kiTtnBIEtYbzpLuFDcXMPOUrf9CSpMJZKOFDMuT4Ty0s6Ek0Ax2NZdgI
+        CO6GBzzTyd48YbQGOs63RaETWQ+qBrSYpdwtACcCN/3+AsmHIEwwooOeFoI9mi/u
+        SSYVO86Et4skrL9py6S48FminHiFVh/bL57pLPg==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=LbhKQo
+        ZqdxV+FyL2mwG35/QPyn9PEC7JgRbmiOeNOKs=; b=RtkoNgbZl4NxnK2LXMZkiB
+        6pLZKctXFK7NPqiaPEmiQ2AmS1tnhzZtV729zAW0JcP3ShQ7H6epxCE5yrzEqE8y
+        jS7ipNLQgrpyY9iFURWL8ATKvp+yiMgelBn84QaLOlXkypnLVHUpL0VHTqI+9hl7
+        /3N7iG+GnHvRXvvjWnQUJQBXW6yM+kEbrORhBnHV9GfTbVe2HlErAKq9z15X6ihq
+        SSYQlX5w80nMhfnvr+v/yYvysRRIFvXxoci+gsHry92/sSG/Ouwc/EPg95M8TpGJ
+        RdwX91Iwg1vcPQ0an78HsihBzT1/SpADpI+1ovfIi0SuZ5up6GCGuRkW10QTTTiw
+        ==
+X-ME-Sender: <xms:xNlAXe17BXmoxBo25Ez3iPBdJTxezcLyjRfcvI5ZCkxbVpiDWgld1Q>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrleeggddvlecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrghrrg
+    hmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghr
+    ufhiiigvpedt
+X-ME-Proxy: <xmx:xNlAXXOVszbMbFu48LtMPfYbKIOD6I8TLlalhsUxC84AkMgjsmr_vQ>
+    <xmx:xNlAXdal8ewJPHdGPcyg4vtK36wpQxiUY9sj4hxpHGhuCb6I3h9oUA>
+    <xmx:xNlAXZ11wkN97U0OsYSrsvzFs1fndP2bfvyTbPgaA1qiAR5HkYSJew>
+    <xmx:xtlAXSrdFGXaWAroQYZagEcubiQWf4Qvjh_NPUFjlbF8k7awnhntMA>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id AF4B6E00A2; Tue, 30 Jul 2019 19:59:00 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-799-g925e343-fmstable-20190729v1
+Mime-Version: 1.0
+Message-Id: <f22b671a-2968-41cb-b158-372663fa6843@www.fastmail.com>
+In-Reply-To: <1564500268-2627-2-git-send-email-hongweiz@ami.com>
+References: <1564500268-2627-1-git-send-email-hongweiz@ami.com>
+ <1564500268-2627-2-git-send-email-hongweiz@ami.com>
+Date:   Wed, 31 Jul 2019 09:28:49 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Hongwei Zhang" <hongweiz@ami.com>,
+        "Linus Walleij" <linus.walleij@linaro.org>,
+        "Joel Stanley" <joel@jms.id.au>, devicetree@vger.kernel.org
+Cc:     "Rob Herring" <robh+dt@kernel.org>,
+        "Bartosz Golaszewski" <bgolaszewski@baylibre.com>,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-gpio@vger.kernel.org
+Subject: Re: [v6 1/2] dt-bindings: gpio: aspeed: Add SGPIO support
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 30, 2019 at 3:57 AM Amit Kucheria <amit.kucheria@linaro.org> wrote:
->
-> On Wed, Jul 3, 2019 at 6:40 AM Saravana Kannan <saravanak@google.com> wrote:
-> >
-> > Not all devices quantify their performance points in terms of frequency.
-> > Devices like interconnects quantify their performance points in terms of
-> > bandwidth. We need a way to represent these bandwidth levels in OPP. So,
-> > add support for parsing bandwidth OPPs from DT.
-> >
-> > Signed-off-by: Saravana Kannan <saravanak@google.com>
-> > ---
-> >  drivers/opp/of.c  | 34 ++++++++++++++++++++++++++++++++--
-> >  drivers/opp/opp.h |  4 +++-
-> >  2 files changed, 35 insertions(+), 3 deletions(-)
-> >
-> > diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-> > index c10c782d15aa..54fa70ed2adc 100644
-> > --- a/drivers/opp/of.c
-> > +++ b/drivers/opp/of.c
-> > @@ -552,6 +552,35 @@ void dev_pm_opp_of_remove_table(struct device *dev)
-> >  }
-> >  EXPORT_SYMBOL_GPL(dev_pm_opp_of_remove_table);
-> >
-> > +static int _read_opp_key(struct dev_pm_opp *new_opp, struct device_node *np)
-> > +{
-> > +       int ret;
-> > +       u64 rate;
-> > +       u32 bw;
-> > +
-> > +       ret = of_property_read_u64(np, "opp-hz", &rate);
-> > +       if (!ret) {
-> > +               /*
-> > +                * Rate is defined as an unsigned long in clk API, and so
-> > +                * casting explicitly to its type. Must be fixed once rate is 64
-> > +                * bit guaranteed in clk API.
-> > +                */
-> > +               new_opp->rate = (unsigned long)rate;
-> > +               return 0;
-> > +       }
-> > +
-> > +       ret = of_property_read_u32(np, "opp-peak-KBps", &bw);
-> > +       if (ret)
-> > +               return ret;
-> > +       new_opp->rate = (unsigned long) &bw;
-> > +
-> > +       ret = of_property_read_u32(np, "opp-avg-KBps", &bw);
-> > +       if (!ret)
-> > +               new_opp->avg_bw = (unsigned long) &bw;
-> > +
-> > +       return 0;
-> > +}
-> > +
-> >  /**
-> >   * _opp_add_static_v2() - Allocate static OPPs (As per 'v2' DT bindings)
-> >   * @opp_table: OPP table
-> > @@ -589,11 +618,12 @@ static struct dev_pm_opp *_opp_add_static_v2(struct opp_table *opp_table,
-> >         if (!new_opp)
-> >                 return ERR_PTR(-ENOMEM);
-> >
-> > -       ret = of_property_read_u64(np, "opp-hz", &rate);
-> > +       ret = _read_opp_key(new_opp, np);
-> >         if (ret < 0) {
-> >                 /* "opp-hz" is optional for devices like power domains. */
-> >                 if (!opp_table->is_genpd) {
-> > -                       dev_err(dev, "%s: opp-hz not found\n", __func__);
-> > +                       dev_err(dev, "%s: opp-hz or opp-peak-bw not found\n",
-> > +                               __func__);
-> >                         goto free_opp;
-> >                 }
-> >
-> > diff --git a/drivers/opp/opp.h b/drivers/opp/opp.h
-> > index 569b3525aa67..ead2cdafe957 100644
-> > --- a/drivers/opp/opp.h
-> > +++ b/drivers/opp/opp.h
-> > @@ -59,7 +59,8 @@ extern struct list_head opp_tables;
-> >   * @turbo:     true if turbo (boost) OPP
-> >   * @suspend:   true if suspend OPP
-> >   * @pstate: Device's power domain's performance state.
-> > - * @rate:      Frequency in hertz
-> > + * @rate:      Frequency in hertz OR Peak bandwidth in kilobytes per second
->
-> rate is most often used for clk rates. Let us not overload this just
-> to save one struct member. IMO, you should introduce a peak_bw member
-> and then have an error check if the DT provides both rate and peak_bw
-> during parsing.
 
-This is not about saving space. It avoids having to rewrite a lot of
-helper functions. If you want, I can rename this to "key" but I'm not
-going to create a different field.
 
--Saravana
+On Wed, 31 Jul 2019, at 00:55, Hongwei Zhang wrote:
+> Add bindings to support SGPIO on AST2400 or AST2500.
+> 
+> Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
+> ---
+>  .../devicetree/bindings/gpio/sgpio-aspeed.txt      | 55 ++++++++++++++++++++++
+>  1 file changed, 55 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt 
+> b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> new file mode 100644
+> index 0000000..f9ed438
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+> @@ -0,0 +1,55 @@
+> +Aspeed SGPIO controller Device Tree Bindings
+> +-------------------------------------------
+> +
+> +This SGPIO controller is for ASPEED AST2500 SoC, it supports up to 80 
+> full 
+> +featured Serial GPIOs. Each of the Serial GPIO pins can be programmed 
+> to 
+> +support the following options:
+> +- Support interrupt option for each input port and various interrupt 
+> +  sensitivity option (level-high, level-low, edge-high, edge-low)
+> +- Support reset tolerance option for each output port
+> +- Directly connected to APB bus and its shift clock is from APB bus 
+> clock
+> +  divided by a programmable value.
+> +- Co-work with external signal-chained TTL components (74LV165/74LV595)
+> +
+> +
+> +Required properties:
+> +
+> +- compatible		: Either "aspeed,ast2400-sgpio" or "aspeed,ast2500-sgpio"
+> +
+> +- #gpio-cells 		: Should be two
+> +			  - First cell is the GPIO line number
+> +			  - Second cell is used to specify optional
+> +			    parameters (unused)
+> +
+> +- reg			: Address and length of the register set for the device
+> +- gpio-controller	: Marks the device node as a GPIO controller
+> +- interrupts		: Interrupt specifier (see interrupt bindings for
+> +			  details)
+> +
+> +- interrupt-controller	: Mark the GPIO controller as an 
+> interrupt-controller
+> +
+> +- ngpios		: number of GPIO pins to serialise. 
+> +			  (should be multiple of 8, up to 80 pins)
+> +
+> +- clocks                : A phandle to the APB clock for SGPM clock 
+> division
+> +
+> +- bus-frequency		: SGPM CLK frequency
+> +
+> +
+> +The sgpio and interrupt properties are further described in their 
+> respective bindings documentation:
+> +
+> +- Documentation/devicetree/bindings/sgpio/gpio.txt
+
+This isn't a file? This one is (s/sgpio/gpio/):
+
+ Documentation/devicetree/bindings/gpio/gpio.txt
+
+I assume this was the result of a stray search/replace?
+
+With that fixed you can add: Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
+
+Andrew
+
+> +- Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
+> +
+> +  Example:
+> +	sgpio: sgpio@1e780200 {
+> +		#gpio-cells = <2>;
+> +		compatible = "aspeed,ast2500-sgpio";
+> +		gpio-controller;
+> +		interrupts = <40>;
+> +		reg = <0x1e780200 0x0100>;
+> +		clocks = <&syscon ASPEED_CLK_APB>;
+> +		interrupt-controller;
+> +		ngpios = <8>;
+> +		bus-frequency = <12000000>;
+> +	};
+> -- 
+> 2.7.4
+> 
+>
