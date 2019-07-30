@@ -2,54 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6683F7AD1C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 18:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D84187AD2E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 18:05:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726986AbfG3QAC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 12:00:02 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:45798 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728346AbfG3QAC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:00:02 -0400
-Received: by mail-lj1-f196.google.com with SMTP id m23so62524927lje.12;
-        Tue, 30 Jul 2019 09:00:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=FbWP76mrhorJU5Gh42fiL/ClcaJsatH+/BvxqeOmpoo=;
-        b=hhKXb4VbvWawrVLus06feXu5xMqfwssq2twQz4cKGdYaiRbVbenv6hWl6Pqdok8GOP
-         cozW8PrNTLsuxjp8+E11PWJ75cPVTy22NNq3xlAyW+HBLdDXda/c/4ygemrH++iQZZBx
-         6IPUT5qjjOBLh+D9TFtoiVQ1Vm+R6wc1IMx+bdaob/IKG/qucWZ+Alm2xxFcX5KOah65
-         EELKjTF0A/rU/VLuPggyU5lRrKsXXxB8xTqIgTGll37n7jvvLuMS8yMP6xqs27gYUpaQ
-         VEEHDHdwfLPlwCBhw09jTokIpnrWz8ME8SUpSFeTbFw8/FA0BfQBPzPyI5uBiNHjKwOb
-         bEdg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=FbWP76mrhorJU5Gh42fiL/ClcaJsatH+/BvxqeOmpoo=;
-        b=IpAyN5qhgj2/gUw7G4jHawaaeiWA+WBAMxmnUr/9KIYAP1ZlVfBxBUM5jpQwp8LlfY
-         EA7lRCcDDThDfxmR9sNbUW5oQHGRDOqkve40DAp6ayvMQ/qPPaMJaMdGoom1PZn417Gj
-         onC+npYIrclq2DgJDTQlBZpmGygeivxWqbnTGwZCx7yh2OPt7yQGFFza0AuZDH3a3EUr
-         fEGwWX16bYp/8dyjAA3K7pIGlYLGT87MBZDZyppfCTjUHfLnmlvGYhFP4vZBsECjlOt1
-         ZOS9egcNr+SXisS12RkAqK4LYErttVP9vxpKLBF5FNmW+1vDReAcfQURpl/W/wUnfGoL
-         m1KQ==
-X-Gm-Message-State: APjAAAW9nWnhiNpKJ3mKF7KTZKMxp6u13gFbRJ+T0OfpEHNIfkcnqMW5
-        94B8ohXYrESeDQBzDxlwqAd0d45UIkqJZxZCC0I=
-X-Google-Smtp-Source: APXvYqwoKwtYKco8BUfXu3fhhNLfUigpTR6OWIi4WPXK91dIOZ1Vmb9tPgwn8TOXDGj96mjfoE6Mhw4lIdCqQyDzD5s=
-X-Received: by 2002:a2e:5dc6:: with SMTP id v67mr61634312lje.240.1564502399982;
- Tue, 30 Jul 2019 08:59:59 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190730150552.24927-1-lukma@denx.de> <CAOMZO5AxPHHobQQhq30fjLVeSroLdvdT0+GqCWi8it1ejhDONA@mail.gmail.com>
- <20190730175336.382d833c@jawa>
-In-Reply-To: <20190730175336.382d833c@jawa>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 30 Jul 2019 13:01:19 -0300
-Message-ID: <CAOMZO5AoSCDCMRKpkWQ=0PwiFG-O9doGaA31FRhDCGmNr7Xefg@mail.gmail.com>
-Subject: Re: [PATCH] ARM: DTS: vybrid: Update qspi node description for VF610
- BK4 board
-To:     Lukasz Majewski <lukma@denx.de>
+        id S1725934AbfG3QFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 12:05:01 -0400
+Received: from mail-out.m-online.net ([212.18.0.10]:43852 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725908AbfG3QFB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:05:01 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 45yhGL5v2qz1rfcq;
+        Tue, 30 Jul 2019 18:04:58 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 45yhGL51J8z1qqkM;
+        Tue, 30 Jul 2019 18:04:58 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id sEBAZfL2s-uz; Tue, 30 Jul 2019 18:04:56 +0200 (CEST)
+X-Auth-Info: NMGXziR/PhuMc/va7X2TT6X0tYpuv4qbHHDlc7BiilA=
+Received: from jawa (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Tue, 30 Jul 2019 18:04:56 +0200 (CEST)
+Date:   Tue, 30 Jul 2019 18:04:51 +0200
+From:   Lukasz Majewski <lukma@denx.de>
+To:     Fabio Estevam <festevam@gmail.com>
 Cc:     Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
         Stefan Agner <stefan@agner.ch>,
@@ -60,20 +40,78 @@ Cc:     Shawn Guo <shawnguo@kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Subject: Re: [PATCH] ARM: DTS: vybrid: Update qspi node description for
+ VF610 BK4 board
+Message-ID: <20190730180451.38cad018@jawa>
+In-Reply-To: <CAOMZO5AoSCDCMRKpkWQ=0PwiFG-O9doGaA31FRhDCGmNr7Xefg@mail.gmail.com>
+References: <20190730150552.24927-1-lukma@denx.de>
+        <CAOMZO5AxPHHobQQhq30fjLVeSroLdvdT0+GqCWi8it1ejhDONA@mail.gmail.com>
+        <20190730175336.382d833c@jawa>
+        <CAOMZO5AoSCDCMRKpkWQ=0PwiFG-O9doGaA31FRhDCGmNr7Xefg@mail.gmail.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/FFYaC=52dh2nz5Y2tmjEFGz"; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lukasz,
+--Sig_/FFYaC=52dh2nz5Y2tmjEFGz
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 30, 2019 at 12:53 PM Lukasz Majewski <lukma@denx.de> wrote:
+Hi Fabio,
 
-> Shall I refer to the original commit (which added this DTS)? Or the
-> original issue posted to linux-mtd [1] ?
+> Hi Lukasz,
+>=20
+> On Tue, Jul 30, 2019 at 12:53 PM Lukasz Majewski <lukma@denx.de>
+> wrote:
+>=20
+> > Shall I refer to the original commit (which added this DTS)? Or the
+> > original issue posted to linux-mtd [1] ? =20
+>=20
+> You can add a Fixes tag like this:
+>=20
+> Fixes: a67d2c52a82f ("ARM: dts: Add support for Liebherr's BK4 device
+> (vf610 based)")
 
-You can add a Fixes tag like this:
+Yes, the above is correct (as indicated [1]), but I was not sure if I
+should also refer to the original post to linux-mtd ML.
 
-Fixes: a67d2c52a82f ("ARM: dts: Add support for Liebherr's BK4 device
-(vf610 based)")
+Now it is clear - thanks :-)
+
+Note:
+
+[1] -
+https://www.kernel.org/doc/html/v4.12/process/submitting-patches.html#revie=
+wer-s-statement-of-oversight
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/FFYaC=52dh2nz5Y2tmjEFGz
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAl1AaqMACgkQAR8vZIA0
+zr1ITwf+P4+TW29l+wXSF2r4SKuAIoARSdCU3NSfGUpLW7gBQbK3x4RXlNnYW2y5
+pLsjYgE4yPWa6xv+Eo0oZz23EgmQdXCEmflVB85+CxRJpOPTfL0f1oRNmYXm0Nfq
+uQBko26IzNP+LMzSHDqJnaViHdWqP8URYGpMKHxL4lEUbZRfMzpieYt1IgHbCcB0
+/H0cx/EFFO3P+txZw7OQwaZSvYhSrwqO9hc645rXXIqqzO+nJ/RtWw5FAgVZHK6g
+tGTZ8rMYvWfhh/RuZwZzM7QktcV5NPxlVBagXFLujay/OSs/ENNO7MyWSTjL4g9B
+F0ZoHf+Mp8liTvpd9aet/8v1UMB3BQ==
+=LT7H
+-----END PGP SIGNATURE-----
+
+--Sig_/FFYaC=52dh2nz5Y2tmjEFGz--
