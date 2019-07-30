@@ -2,94 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6ABCA7ABED
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:06:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7330D7AC01
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:10:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725913AbfG3PGM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 11:06:12 -0400
-Received: from mail-out.m-online.net ([212.18.0.9]:43644 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726602AbfG3PGM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 11:06:12 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 45yfyT33DCz1rKXF;
-        Tue, 30 Jul 2019 17:06:09 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 45yfyT1mT5z1qqkK;
-        Tue, 30 Jul 2019 17:06:09 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id TtrviBwiBTSX; Tue, 30 Jul 2019 17:06:08 +0200 (CEST)
-X-Auth-Info: aTGk0kR+4QgAU9zcVWxZMYtuGzMpdVmeVoztrzZPGhc=
-Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Tue, 30 Jul 2019 17:06:07 +0200 (CEST)
-From:   Lukasz Majewski <lukma@denx.de>
-To:     Shawn Guo <shawnguo@kernel.org>
-Cc:     Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>,
+        id S1732081AbfG3PKd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 11:10:33 -0400
+Received: from mxout014.mail.hostpoint.ch ([217.26.49.174]:40785 "EHLO
+        mxout014.mail.hostpoint.ch" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726602AbfG3PKd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Jul 2019 11:10:33 -0400
+Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
+        by mxout014.mail.hostpoint.ch with esmtp (Exim 4.92 (FreeBSD))
+        (envelope-from <dev@pschenker.ch>)
+        id 1hsTP1-0005M1-Rp; Tue, 30 Jul 2019 16:46:59 +0200
+Received: from [46.140.72.82] (helo=philippe-pc.toradex.int)
+        by asmtp013.mail.hostpoint.ch with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.91 (FreeBSD))
+        (envelope-from <dev@pschenker.ch>)
+        id 1hsTP1-000Mva-Me; Tue, 30 Jul 2019 16:46:59 +0200
+X-Authenticated-Sender-Id: dev@pschenker.ch
+From:   Philippe Schenker <dev@pschenker.ch>
+To:     marcel.ziswiler@toradex.com, max.krummenacher@toradex.com,
+        stefan@agner.ch, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Lukasz Majewski <lukma@denx.de>
-Subject: [PATCH] ARM: DTS: vybrid: Update qspi node description for VF610 BK4 board
-Date:   Tue, 30 Jul 2019 17:05:52 +0200
-Message-Id: <20190730150552.24927-1-lukma@denx.de>
-X-Mailer: git-send-email 2.11.0
+        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Stefan Agner <stefan.agner@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH 07/22] ARM: dts: imx7-colibri: fix 1.8V/UHS support
+Date:   Tue, 30 Jul 2019 16:46:34 +0200
+Message-Id: <20190730144649.19022-8-dev@pschenker.ch>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190730144649.19022-1-dev@pschenker.ch>
+References: <20190730144649.19022-1-dev@pschenker.ch>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Before this change the device tree description of qspi node for
-second memory on BK4 board was wrong (applicable to old, in-house
-tunned fsl-quadspi.c driver).
+From: Stefan Agner <stefan.agner@toradex.com>
 
-As a result this memory was not recognized correctly when used
-with the new spi-fsl-qspi.c driver.
+Add pinmuxing and do not specify voltage restrictions in the
+module level device tree.
 
-From the dt-bindings:
-
-"Required SPI slave node properties:
-  - reg: There are two buses (A and B) with two chip selects each.
-This encodes to which bus and CS the flash is connected:
-<0>: Bus A, CS 0
-<1>: Bus A, CS 1
-<2>: Bus B, CS 0
-<3>: Bus B, CS 1"
-
-According to above with new driver the second SPI-NOR memory shall
-have reg=<2> as it is connected to Bus B, CS 0.
-
-Signed-off-by: Lukasz Majewski <lukma@denx.de>
+Signed-off-by: Stefan Agner <stefan.agner@toradex.com>
+Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 ---
- arch/arm/boot/dts/vf610-bk4.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
 
-diff --git a/arch/arm/boot/dts/vf610-bk4.dts b/arch/arm/boot/dts/vf610-bk4.dts
-index 3fa0cbe456db..0f3870d3b099 100644
---- a/arch/arm/boot/dts/vf610-bk4.dts
-+++ b/arch/arm/boot/dts/vf610-bk4.dts
-@@ -246,13 +246,13 @@
- 		reg = <0>;
+ arch/arm/boot/dts/imx7-colibri.dtsi | 23 ++++++++++++++++++++++-
+ 1 file changed, 22 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/imx7-colibri.dtsi b/arch/arm/boot/dts/imx7-colibri.dtsi
+index 16d1a1ed1aff..67f5e0c87fdc 100644
+--- a/arch/arm/boot/dts/imx7-colibri.dtsi
++++ b/arch/arm/boot/dts/imx7-colibri.dtsi
+@@ -326,7 +326,6 @@
+ &usdhc1 {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_usdhc1 &pinctrl_cd_usdhc1>;
+-	no-1-8-v;
+ 	cd-gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
+ 	disable-wp;
+ 	vqmmc-supply = <&reg_LDO2>;
+@@ -671,6 +670,28 @@
+ 		>;
  	};
  
--	n25q128a13_2: flash@1 {
-+	n25q128a13_2: flash@2 {
- 		compatible = "n25q128a13", "jedec,spi-nor";
- 		#address-cells = <1>;
- 		#size-cells = <1>;
- 		spi-max-frequency = <66000000>;
- 		spi-rx-bus-width = <2>;
--		reg = <1>;
-+		reg = <2>;
- 	};
- };
- 
++	pinctrl_usdhc1_100mhz: usdhc1grp_100mhz {
++		fsl,pins = <
++			MX7D_PAD_SD1_CMD__SD1_CMD	0x5a
++			MX7D_PAD_SD1_CLK__SD1_CLK	0x1a
++			MX7D_PAD_SD1_DATA0__SD1_DATA0	0x5a
++			MX7D_PAD_SD1_DATA1__SD1_DATA1	0x5a
++			MX7D_PAD_SD1_DATA2__SD1_DATA2	0x5a
++			MX7D_PAD_SD1_DATA3__SD1_DATA3	0x5a
++		>;
++	};
++
++	pinctrl_usdhc1_200mhz: usdhc1grp_200mhz {
++		fsl,pins = <
++			MX7D_PAD_SD1_CMD__SD1_CMD	0x5b
++			MX7D_PAD_SD1_CLK__SD1_CLK	0x1b
++			MX7D_PAD_SD1_DATA0__SD1_DATA0	0x5b
++			MX7D_PAD_SD1_DATA1__SD1_DATA1	0x5b
++			MX7D_PAD_SD1_DATA2__SD1_DATA2	0x5b
++			MX7D_PAD_SD1_DATA3__SD1_DATA3	0x5b
++		>;
++	};
++
+ 	pinctrl_usdhc3: usdhc3grp {
+ 		fsl,pins = <
+ 			MX7D_PAD_SD3_CMD__SD3_CMD		0x59
 -- 
-2.11.0
+2.22.0
 
