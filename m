@@ -2,169 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 791E87A64F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 12:57:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 45E987A66C
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 13:03:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729047AbfG3K51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 06:57:27 -0400
-Received: from mail-vs1-f65.google.com ([209.85.217.65]:45740 "EHLO
-        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728584AbfG3K51 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 06:57:27 -0400
-Received: by mail-vs1-f65.google.com with SMTP id h28so43137866vsl.12
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2019 03:57:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PU2Fv6R/P/i3mcSRuoPPGRfAr6wNs2iQGjXmUbGxWxs=;
-        b=lkRzDG3pOo++tgaJ/bk6mpSVrJ4U+eY8OcNTWGQUVYUYttxgttg75uet9SsFVlFj5X
-         56vVKNNShTVrkciES8RZLgERCq6Eu0inKgLrUXv+UHknTTkko1Me/AOYQaVhrvr9ul74
-         k1ZTN/KKq9M1A97FcfnuCHs66ezrP2LfZjt5Jh4mNTvBZ+Qa5vBvXihKX09g1pwef9ah
-         1RwV0XnWUyYYde3qxBhhETbVOtbuTv60HpbxbZL2DhePWYOkqd7U1ATi3lvbR2YHhSiJ
-         BqxzRofIdR8rdaLCo1QBqSHc2QbtkbxrWoMWZkIvC311uMEgvbJ1WhFqqUpQRgGI02/r
-         jRKg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PU2Fv6R/P/i3mcSRuoPPGRfAr6wNs2iQGjXmUbGxWxs=;
-        b=A0b+yk4jMmjga7qQ3F1dTw6z81zIFEB8FdnyxoZWZTume8n3FZzUBsKcE/JGfUuR+H
-         bYTD25KvrX4akpMWmufkxmNVZoh+Czvi0kDxjajuUYwYlb3WwcPj7aSlEl0fhZAEfglD
-         Lbylp9EHCeZP59+Q+kFti1qs/gqZeM70EU9eo2Lo5FrnlDLYnIY8iCmdQVaTTs3N+GlE
-         R41/vNb0hjQsSZL0UtWJd6eAqbbUIlAwqEadVzWkeHXdN5NyMm0Xg0VAVI5GidrWDYsP
-         Pf0CZUd4FDWTappnqfQzMkCXggOjhl94RDzmqXcrjwywYOnNubf1QhLsJ+697v3JZOQC
-         WQOA==
-X-Gm-Message-State: APjAAAVDzJO1ny92jZGXlQlRXtXnwjIs2b0NdiT0qHNw1fQiyN6P2Q/5
-        AoYOxrXpB6TKtouphTVO/bauGhgt9+W6y5ek2i8=
-X-Google-Smtp-Source: APXvYqxdHlZ4vF5yKTPQPNGjlJ/ek0vmLnEB8hjWQ9oAZTWBvgX+iEXTp/PoBM1Tn6vGEE1EyjhPaEe2qNC/+UygfcM=
-X-Received: by 2002:a67:fb87:: with SMTP id n7mr42648957vsr.9.1564484245706;
- Tue, 30 Jul 2019 03:57:25 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190703011020.151615-1-saravanak@google.com> <20190703011020.151615-3-saravanak@google.com>
-In-Reply-To: <20190703011020.151615-3-saravanak@google.com>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Tue, 30 Jul 2019 16:27:14 +0530
-Message-ID: <CAHLCerP81Eotae5s4-Qye77SSF6-BbqFhckvkTEQWBD9biwzbw@mail.gmail.com>
-Subject: Re: [PATCH v3 2/6] OPP: Add support for bandwidth OPP tables
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        id S1729962AbfG3LDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 07:03:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46556 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725974AbfG3LDu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Jul 2019 07:03:50 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0C5A4206E0;
+        Tue, 30 Jul 2019 11:03:49 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564484629;
+        bh=m7dX//3pP3+FR/k30u2LZ08eMNQLWPNMDC/X3b/BoIk=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=KMur5BSVhiHRRxRO7wuNTmwbmOspluKLLcMqQiSBI6R7I/hFrZiXflMDNkswhbTtv
+         EtfxkIXJJq6sth6CVf9ItRiCuP0D4xoZNWRDgBMa+C9ci6Q/RzCOpg0pkrmiDgRQ+R
+         3Gg+K/+v70+FPzWyiJ5B9GhEpGfyM7rsXoIoSgX0=
+Date:   Tue, 30 Jul 2019 13:03:15 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
+        linux-kernel@vger.kernel.org, rafael@kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Heiko Stuebner <heiko@sntech.de>,
+        Liam Girdwood <lgirdwood@gmail.com>, linux-i2c@vger.kernel.org,
+        linux-rockchip@lists.infradead.org, linux-spi@vger.kernel.org,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        Vincent Guittot <vincent.guittot@linaro.org>,
-        seansw@qti.qualcomm.com, daidavid1@codeaurora.org,
-        Rajendra Nayak <rnayak@codeaurora.org>,
-        Sibi Sankar <sibis@codeaurora.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        evgreen@chromium.org, kernel-team@android.com,
-        Linux PM list <linux-pm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Wolfram Sang <wsa@the-dreams.de>, Alan Tull <atull@kernel.org>,
+        Moritz Fischer <mdf@kernel.org>, linux-fpga@vger.kernel.org,
+        Peter Rosin <peda@axentia.se>, Mark Brown <broonie@kernel.org>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        "David S. Miller" <davem@davemloft.net>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Thor Thayer <thor.thayer@linux.intel.com>,
+        Jiri Slaby <jslaby@suse.com>
+Subject: Re: [PATCH v3 2/7] drivers: Introduce device lookup variants by
+ of_node
+Message-ID: <20190730110315.GA31631@kroah.com>
+References: <20190723221838.12024-1-suzuki.poulose@arm.com>
+ <20190723221838.12024-3-suzuki.poulose@arm.com>
+ <20190725135402.GL23883@dell>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190725135402.GL23883@dell>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 3, 2019 at 6:40 AM Saravana Kannan <saravanak@google.com> wrote:
->
-> Not all devices quantify their performance points in terms of frequency.
-> Devices like interconnects quantify their performance points in terms of
-> bandwidth. We need a way to represent these bandwidth levels in OPP. So,
-> add support for parsing bandwidth OPPs from DT.
->
-> Signed-off-by: Saravana Kannan <saravanak@google.com>
-> ---
->  drivers/opp/of.c  | 34 ++++++++++++++++++++++++++++++++--
->  drivers/opp/opp.h |  4 +++-
->  2 files changed, 35 insertions(+), 3 deletions(-)
->
-> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
-> index c10c782d15aa..54fa70ed2adc 100644
-> --- a/drivers/opp/of.c
-> +++ b/drivers/opp/of.c
-> @@ -552,6 +552,35 @@ void dev_pm_opp_of_remove_table(struct device *dev)
->  }
->  EXPORT_SYMBOL_GPL(dev_pm_opp_of_remove_table);
->
-> +static int _read_opp_key(struct dev_pm_opp *new_opp, struct device_node *np)
-> +{
-> +       int ret;
-> +       u64 rate;
-> +       u32 bw;
-> +
-> +       ret = of_property_read_u64(np, "opp-hz", &rate);
-> +       if (!ret) {
-> +               /*
-> +                * Rate is defined as an unsigned long in clk API, and so
-> +                * casting explicitly to its type. Must be fixed once rate is 64
-> +                * bit guaranteed in clk API.
-> +                */
-> +               new_opp->rate = (unsigned long)rate;
-> +               return 0;
-> +       }
-> +
-> +       ret = of_property_read_u32(np, "opp-peak-KBps", &bw);
-> +       if (ret)
-> +               return ret;
-> +       new_opp->rate = (unsigned long) &bw;
-> +
-> +       ret = of_property_read_u32(np, "opp-avg-KBps", &bw);
-> +       if (!ret)
-> +               new_opp->avg_bw = (unsigned long) &bw;
-> +
-> +       return 0;
-> +}
-> +
->  /**
->   * _opp_add_static_v2() - Allocate static OPPs (As per 'v2' DT bindings)
->   * @opp_table: OPP table
-> @@ -589,11 +618,12 @@ static struct dev_pm_opp *_opp_add_static_v2(struct opp_table *opp_table,
->         if (!new_opp)
->                 return ERR_PTR(-ENOMEM);
->
-> -       ret = of_property_read_u64(np, "opp-hz", &rate);
-> +       ret = _read_opp_key(new_opp, np);
->         if (ret < 0) {
->                 /* "opp-hz" is optional for devices like power domains. */
->                 if (!opp_table->is_genpd) {
-> -                       dev_err(dev, "%s: opp-hz not found\n", __func__);
-> +                       dev_err(dev, "%s: opp-hz or opp-peak-bw not found\n",
-> +                               __func__);
->                         goto free_opp;
->                 }
->
-> diff --git a/drivers/opp/opp.h b/drivers/opp/opp.h
-> index 569b3525aa67..ead2cdafe957 100644
-> --- a/drivers/opp/opp.h
-> +++ b/drivers/opp/opp.h
-> @@ -59,7 +59,8 @@ extern struct list_head opp_tables;
->   * @turbo:     true if turbo (boost) OPP
->   * @suspend:   true if suspend OPP
->   * @pstate: Device's power domain's performance state.
-> - * @rate:      Frequency in hertz
-> + * @rate:      Frequency in hertz OR Peak bandwidth in kilobytes per second
+On Thu, Jul 25, 2019 at 02:54:02PM +0100, Lee Jones wrote:
+> On Tue, 23 Jul 2019, Suzuki K Poulose wrote:
+> 
+> > Introduce wrappers for {bus/driver/class}_find_device() to
+> > locate devices by its of_node.
+> > 
+> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+> > Cc: Maxime Ripard <maxime.ripard@bootlin.com>
+> > Cc: dri-devel@lists.freedesktop.org
+> > Cc: David Airlie <airlied@linux.ie>
+> > Cc: Daniel Vetter <daniel@ffwll.ch>
+> > Cc: devicetree@vger.kernel.org
+> > Cc: Florian Fainelli <f.fainelli@gmail.com>
+> > Cc: Frank Rowand <frowand.list@gmail.com>
+> > Cc: Heiko Stuebner <heiko@sntech.de>
+> > Cc: Liam Girdwood <lgirdwood@gmail.com>
+> > Cc: linux-i2c@vger.kernel.org
+> > Cc: linux-rockchip@lists.infradead.org
+> > Cc: linux-spi@vger.kernel.org
+> > Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
+> > Cc: Rob Herring <robh+dt@kernel.org>
+> > Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> > Cc: Takashi Iwai <tiwai@suse.com>
+> > Cc: Wolfram Sang <wsa@the-dreams.de>
+> > Cc: Alan Tull <atull@kernel.org>
+> > Cc: Moritz Fischer <mdf@kernel.org>
+> > Cc: linux-fpga@vger.kernel.org
+> > Cc: Peter Rosin <peda@axentia.se>
+> > Cc: Mark Brown <broonie@kernel.org>
+> > Cc: Florian Fainelli <f.fainelli@gmail.com>
+> > Cc: Heiner Kallweit <hkallweit1@gmail.com>
+> > Cc: "David S. Miller" <davem@davemloft.net>
+> > Cc: Andrew Lunn <andrew@lunn.ch>
+> > Cc: Liam Girdwood <lgirdwood@gmail.com>
+> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> > Cc: "Rafael J. Wysocki" <rafael@kernel.org>
+> > Cc: Lee Jones <lee.jones@linaro.org>
+> > Cc: Thor Thayer <thor.thayer@linux.intel.com>
+> > Cc: Jiri Slaby <jslaby@suse.com>
+> > Cc: Mark Brown <broonie@kernel.org>
+> > Cc: Andrew Lunn <andrew@lunn.ch>
+> > Cc: Peter Rosin <peda@axentia.se>
+> > Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
+> > ---
+> >  - Dropped the reviewed-by tags from Thor, Mark, Andrew and Peter as the
+> >    patches are mereged, though there are no functional changes.
+> > ---
+> >  drivers/amba/tegra-ahb.c              | 11 +-------
+> >  drivers/fpga/fpga-bridge.c            |  8 +-----
+> >  drivers/fpga/fpga-mgr.c               |  8 +-----
+> >  drivers/gpu/drm/drm_mipi_dsi.c        |  7 +----
+> >  drivers/i2c/i2c-core-of.c             |  7 +----
+> >  drivers/mfd/altera-sysmgr.c           | 14 ++--------
+> 
+> For my own reference:
+>   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+> 
+> What's the merge plan for this patch?
+> 
+> Is anyone prepared to create an immutable branch for us to pull from?
+> I'm happy to do it if no one else steps up.
 
-rate is most often used for clk rates. Let us not overload this just
-to save one struct member. IMO, you should introduce a peak_bw member
-and then have an error check if the DT provides both rate and peak_bw
-during parsing.
+I'll take it, and create a branch for everyone to pull from.
 
-> + * @avg_bw:    Average bandwidth in kilobytes per second
->   * @level:     Performance level
->   * @supplies:  Power supplies voltage/current values
->   * @clock_latency_ns: Latency (in nanoseconds) of switching to this OPP's
-> @@ -81,6 +82,7 @@ struct dev_pm_opp {
->         bool suspend;
->         unsigned int pstate;
->         unsigned long rate;
-> +       unsigned long avg_bw;
->         unsigned int level;
->
->         struct dev_pm_opp_supply *supplies;
-> --
-> 2.22.0.410.gd8fdbe21b5-goog
->
+thanks,
+
+greg k-h
