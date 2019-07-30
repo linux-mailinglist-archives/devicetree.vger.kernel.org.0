@@ -2,276 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 783D57B027
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 19:35:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E22E7B05E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 19:42:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728865AbfG3Re4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 13:34:56 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:44218 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729563AbfG3Rez (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 13:34:55 -0400
-Received: by mail-pf1-f195.google.com with SMTP id t16so30172731pfe.11
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2019 10:34:54 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5megRbU3l40KMCesYWnoGfFWIn7m9iiO6mGbJIOCkho=;
-        b=VkkSSfqFM9CO4nrHtkwZU8XhuEBM0J6eJbQKnpywrBESlQrk7SxUIMELQvRyZHL93u
-         ziUp6pxgZGTOocZYEirCDnpj/aWaXbT592zvbSKCHl5Kr6/cy6PPzakF69wwAM15SpBw
-         9rstpTPcDpazP6yxYauBeXrJEIIum5W95itc8=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=5megRbU3l40KMCesYWnoGfFWIn7m9iiO6mGbJIOCkho=;
-        b=poHIWDhMPedwmzFEtEyzDDG8AyUjgzLKIJarsQYWEGqBzUUEttR2r7bEcHvr5PJRJw
-         kE0M7LfQ9oRKQqRdu2JVgJWj30xz2cWwHkqTbsHhrayH6gCxpBetEu+QvAR5JfF3N1G8
-         Ywjo5xmFwqI9v+LDQPbut9q1klrOVvKnSjaHWdJbYBmaX0DoW1hAEw3G8vRgBQnberkp
-         PDMWcGjYpXcSrZ72lcAkwLeE1g6QNczPwv++KPMj7J7pvZ5ehRPwLV1+MWqm3ydPqNIR
-         RqOYkVLfJe4JORSwWa30h9tfTWM+ROm5Q3LxiyPwKh9VTEXYY+er+LzD2s+9CEziRTBK
-         l3gg==
-X-Gm-Message-State: APjAAAXMmK5S7gzniqjYuZQp//n8t4aHiglXkuzpbL92ycd5zwk4PaKF
-        B1xDeL4OhWAP36RIgNckHj/UyQ==
-X-Google-Smtp-Source: APXvYqwf27pAeUgjcdww9mcMyC6WNDoM2glcUqg7yPzbT7xmg3vIaMPWMEXUJhYKM4VWob5EWn45Aw==
-X-Received: by 2002:aa7:914e:: with SMTP id 14mr42840669pfi.136.1564508094175;
-        Tue, 30 Jul 2019 10:34:54 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id u1sm61791071pgi.28.2019.07.30.10.34.53
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Jul 2019 10:34:53 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH] ARM: dts: rockchip: A few fixes for veyron-{fievel,tiger}
-Date:   Tue, 30 Jul 2019 10:34:44 -0700
-Message-Id: <20190730173444.56741-1-mka@chromium.org>
-X-Mailer: git-send-email 2.22.0.709.g102302147b-goog
+        id S1727721AbfG3RmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 13:42:20 -0400
+Received: from smtp11.infineon.com ([217.10.52.105]:23468 "EHLO
+        smtp11.infineon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726432AbfG3RmU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 13:42:20 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
+  t=1564508538; x=1596044538;
+  h=subject:to:cc:references:from:message-id:date:
+   mime-version:in-reply-to:content-transfer-encoding;
+  bh=u1ug0QK6quNbVSyr//SBMADRepDbDkeow8KcvedLTNc=;
+  b=nGEOxUCQ/mIL0T4jdLldlZosLUzLWSh4rbN7ua5DTsBiUt93HLC7VJVj
+   shitTJdTw/ZZ/XJBPYIc9L2OZE/7Rdao55MCblS4PnOEQ7cf8Gf+L9067
+   YTpeu3TonpDyYVBGe00AeY8bzpjMU54ulISdDH1RRs6szpZS2szkEg6vg
+   M=;
+IronPort-SDR: nZp23Lb7MCjAsl1O2rUX/PhNWcB87/45mLn7TLJ5llPxFehzPykkxQFKQPCmpcZwAatBVyvCdT
+ nR38+h2EXlGtRkAiYn4A6SKtR/vW/+NvwnS1uhzzjDFit/O1idY+UYPmaXhkXas+Sj3sAm2vYx
+ 1hCtYOyDjFNTQ4EQnr+6xiuEwGHOyQwXkPh1ux7aH7HXIfvYnR61U3RMSXy1J8bdMjDlgn+FLU
+ gQmH6guxNNOz2lYjlgZWUS5PNYGzy4RxVawlMVumVT2q3IeGj67yC+HJsD45C1GjgoQdvkStkz
+ pXA=
+X-SBRS: None
+X-IronPort-AV: E=McAfee;i="6000,8403,9334"; a="129245840"
+X-IronPort-AV: E=Sophos;i="5.64,327,1559512800"; 
+   d="scan'208";a="129245840"
+Received: from unknown (HELO mucxv001.muc.infineon.com) ([172.23.11.16])
+  by smtp11.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jul 2019 19:42:17 +0200
+Received: from MUCSE708.infineon.com (MUCSE708.infineon.com [172.23.7.82])
+        by mucxv001.muc.infineon.com (Postfix) with ESMTPS;
+        Tue, 30 Jul 2019 19:42:16 +0200 (CEST)
+Received: from [10.154.32.18] (172.23.8.247) by MUCSE708.infineon.com
+ (172.23.7.82) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.1591.10; Tue, 30
+ Jul 2019 19:42:16 +0200
+Subject: Re: [PATCH v2 0/2] char: tpm: add new driver for tpm i2c ptp
+To:     Benoit HOUYERE <benoit.houyere@st.com>,
+        "Eyal.Cohen@nuvoton.com" <Eyal.Cohen@nuvoton.com>,
+        "jarkko.sakkinen@linux.intel.com" <jarkko.sakkinen@linux.intel.com>,
+        "tmaimon77@gmail.com" <tmaimon77@gmail.com>
+CC:     "oshrialkoby85@gmail.com" <oshrialkoby85@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "peterhuewe@gmx.de" <peterhuewe@gmx.de>,
+        "jgg@ziepe.ca" <jgg@ziepe.ca>, "arnd@arndb.de" <arnd@arndb.de>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "oshri.alkoby@nuvoton.com" <oshri.alkoby@nuvoton.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-integrity@vger.kernel.org" <linux-integrity@vger.kernel.org>,
+        "gcwilson@us.ibm.com" <gcwilson@us.ibm.com>,
+        "kgoldman@us.ibm.com" <kgoldman@us.ibm.com>,
+        "nayna@linux.vnet.ibm.com" <nayna@linux.vnet.ibm.com>,
+        "Dan.Morav@nuvoton.com" <Dan.Morav@nuvoton.com>,
+        "oren.tanami@nuvoton.com" <oren.tanami@nuvoton.com>,
+        "Christophe Ricard (christophe.ricard@gmail.com)" 
+        <christophe.ricard@gmail.com>, Elena WILLIS <elena.willis@st.com>,
+        Olivier COLLART <olivier.collart@st.com>
+References: <20190628151327.206818-1-oshrialkoby85@gmail.com>
+ <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
+ <79e8bfd2-2ed1-cf48-499c-5122229beb2e@infineon.com>
+ <CAM9mBwJC2QD5-gV1eJUDzC2Fnnugr-oCZCoaH2sT_7ktFDkS-Q@mail.gmail.com>
+ <45603af2fc8374a90ef9e81a67083395cc9c7190.camel@linux.intel.com>
+ <6e7ff1b958d84f6e8e585fd3273ef295@NTILML02.nuvoton.com>
+ <CAP6Zq1hPo9dG71YFyr7z9rjmi-DvoUZJOme4+2uqsfO+7nH+HQ@mail.gmail.com>
+ <20190715094541.zjqxainggjuvjxd2@linux.intel.com>
+ <9c8e216dbc4f43dbaa1701dc166b05e0@NTILML02.nuvoton.com>
+ <548d3727-4a8f-38d4-2193-8a09cbae1e64@infineon.com>
+ <2e86f1b6a3c04c9889d0f12f4eb079d4@SFHDAG3NODE3.st.com>
+From:   Alexander Steffen <Alexander.Steffen@infineon.com>
+Message-ID: <ef3e9f2f-9c8e-7cc1-dc4c-dc1833592238@infineon.com>
+Date:   Tue, 30 Jul 2019 19:42:04 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <2e86f1b6a3c04c9889d0f12f4eb079d4@SFHDAG3NODE3.st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [172.23.8.247]
+X-ClientProxiedBy: MUCSE705.infineon.com (172.23.7.79) To
+ MUCSE708.infineon.com (172.23.7.82)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix/improve a few things for veyron fievel/tiger:
+Hi Benoit,
 
-- move 'vccsys' regulator from tiger to fievel, both boards
-  have it (and tiger includes the fievel .dtsi)
-- move 'ext_gmac' node below regulators
-- fix GPIO ids of vcc5_host1 and vcc5_host2 regulators
-- remove reset configuration from 'gmac' node, this is already done
-  in rk3288.dtsi
-- fixed style issues of some multi-line comments
-- switch 'vcc18_lcdt', 'vdd10_lcd' and 'vcc33_ccd' regulators off
-  during suspend
-- no pull-up on the Bluetooth wake-up pin, there is an external
-  pull-up. The signal is active low, add the 'bt_host_wake_l'
-  pinctrl config
-- move BC 1.2 pins up in the pinctrl config to keep 'wake only' pins
-  separate
-- add BC 1.2 pins to sleep config
+good to see you're still around.
 
-Fixes: 0067692b662e ("ARM: dts: rockchip: add veyron-fievel board")
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
- arch/arm/boot/dts/rk3288-veyron-fievel.dts | 55 +++++++++++++---------
- arch/arm/boot/dts/rk3288-veyron-tiger.dts  |  7 ---
- arch/arm/boot/dts/rk3288-veyron.dtsi       |  4 ++
- 3 files changed, 38 insertions(+), 28 deletions(-)
+On 30.07.2019 10:39, Benoit HOUYERE wrote:
+> Hi Alexander, Jarkko and Eyal,
+> 
+> A first I2C TCG patch (tpm_tis_i2c.c) has been proposed in the same time as tpm_tis_spi.c by Christophe 3 years ago.
+> 
+> https://patchwork.kernel.org/patch/8628681/
 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-fievel.dts b/arch/arm/boot/dts/rk3288-veyron-fievel.dts
-index a9716fc3f50a..fd0ba7532cbb 100644
---- a/arch/arm/boot/dts/rk3288-veyron-fievel.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-fievel.dts
-@@ -20,11 +20,11 @@
- 
- 	/delete-node/ bt-activity;
- 
--	ext_gmac: external-gmac-clock {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <125000000>;
--		clock-output-names = "ext_gmac";
-+	vccsys: vccsys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vccsys";
-+		regulator-boot-on;
-+		regulator-always-on;
- 	};
- 
- 	/*
-@@ -41,7 +41,7 @@
- 	vcc5_host1: vcc5-host1-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
--		gpio = <&gpio5 RK_PC1 GPIO_ACTIVE_HIGH>;
-+		gpio = <&gpio5 RK_PC2 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hub_usb1_pwr_en>;
- 		regulator-name = "vcc5_host1";
-@@ -52,7 +52,7 @@
- 	vcc5_host2: vcc5-host2-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
--		gpio = <&gpio5 RK_PC2 GPIO_ACTIVE_HIGH>;
-+		gpio = <&gpio5 RK_PB6 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hub_usb2_pwr_en>;
- 		regulator-name = "vcc5_host2";
-@@ -70,6 +70,13 @@
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
-+
-+	ext_gmac: external-gmac-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <125000000>;
-+		clock-output-names = "ext_gmac";
-+	};
- };
- 
- &gmac {
-@@ -83,13 +90,13 @@
- 	phy-supply = <&vcc33_lan>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii_pins>, <&phy_rst>, <&phy_pmeb>, <&phy_int>;
--	resets = <&cru SRST_MAC>;
--	reset-names = "stmmaceth";
- 	rx_delay = <0x10>;
- 	tx_delay = <0x30>;
- 
--	/* Reset for the RTL8211 PHY which requires a 10-ms reset pulse (low)
--	 * with a 30ms settling time. */
-+	/*
-+	 * Reset for the RTL8211 PHY which requires a 10-ms reset pulse (low)
-+	 * with a 30ms settling time.
-+	 */
- 	snps,reset-gpio = <&gpio4 RK_PB0 0>;
- 	snps,reset-active-low;
- 	snps,reset-delays-us = <0 10000 30000>;
-@@ -120,7 +127,8 @@
- 	regulators {
- 		/delete-node/ LDO_REG1;
- 
--		/* According to the schematic, vcc18_lcdt is for
-+		/*
-+		 * According to the schematic, vcc18_lcdt is for
- 		 * HDMI_AVDD_1V8
- 		 */
- 		vcc18_lcdt: LDO_REG2 {
-@@ -130,12 +138,13 @@
- 			regulator-max-microvolt = <1800000>;
- 			regulator-name = "vdd18_lcdt";
- 			regulator-state-mem {
--				regulator-on-in-suspend;
-+				regulator-off-in-suspend;
- 				regulator-suspend-microvolt = <1800000>;
- 			};
- 		};
- 
--		/* This is not a pwren anymore, but the real power supply,
-+		/*
-+		 * This is not a pwren anymore, but the real power supply,
- 		 * vdd10_lcd for HDMI_AVDD_1V0
- 		 */
- 		vdd10_lcd: LDO_REG7 {
-@@ -145,7 +154,7 @@
- 			regulator-max-microvolt = <1000000>;
- 			regulator-name = "vdd10_lcd";
- 			regulator-state-mem {
--				regulator-on-in-suspend;
-+				regulator-off-in-suspend;
- 				regulator-suspend-microvolt = <1000000>;
- 			};
- 
-@@ -159,7 +168,7 @@
- 			regulator-max-microvolt = <3300000>;
- 			regulator-name = "vcc33_ccd";
- 			regulator-state-mem {
--				regulator-on-in-suspend;
-+				regulator-off-in-suspend;
- 				regulator-suspend-microvolt = <3300000>;
- 			};
- 		};
-@@ -181,7 +190,7 @@
- 		interrupts = <RK_PD7 IRQ_TYPE_LEVEL_LOW>;
- 		marvell,wakeup-pin = /bits/ 16 <13>;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&bt_host_wake>;
-+		pinctrl-0 = <&bt_host_wake_l>;
- 	};
- };
- 
-@@ -207,13 +216,13 @@
- 		&ddrio_pwroff
- 		&global_pwroff
- 
--		/* Wake only */
--		&bt_dev_wake_awake
--		&pwr_led1_on
--
- 		/* For usb bc1.2 */
- 		&usb_otg_ilim_sel
- 		&usb_usb_ilim_sel
-+
-+		/* Wake only */
-+		&bt_dev_wake_awake
-+		&pwr_led1_on
- 	>;
- 
- 	pinctrl-1 = <
-@@ -222,6 +231,10 @@
- 		&ddrio_pwroff
- 		&global_pwroff
- 
-+		/* For usb bc1.2 */
-+		&usb_otg_ilim_sel
-+		&usb_usb_ilim_sel
-+
- 		/* Sleep only */
- 		&bt_dev_wake_sleep
- 		&pwr_led1_blink
-diff --git a/arch/arm/boot/dts/rk3288-veyron-tiger.dts b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-index fae26d530841..27557203ae33 100644
---- a/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-@@ -19,13 +19,6 @@
- 		     "google,veyron", "rockchip,rk3288";
- 
- 	/delete-node/ vcc18-lcd;
--
--	vccsys: vccsys {
--		compatible = "regulator-fixed";
--		regulator-name = "vccsys";
--		regulator-boot-on;
--		regulator-always-on;
--	};
- };
- 
- &backlight {
-diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
-index 8fc8eac699bf..7525e3dd1fc1 100644
---- a/arch/arm/boot/dts/rk3288-veyron.dtsi
-+++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
-@@ -586,6 +586,10 @@
- 			rockchip,pins = <4 RK_PD7 RK_FUNC_GPIO &pcfg_pull_down>;
- 		};
- 
-+		bt_host_wake_l: bt-host-wake-l {
-+			rockchip,pins = <4 RK_PD7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
- 		/*
- 		 * We run sdio0 at max speed; bump up drive strength.
- 		 * We also have external pulls, so disable the internal ones.
--- 
-2.22.0.709.g102302147b-goog
+Thanks for mentioning this. I forgot it exists, since it was still on 
+the old mailing list.
 
+> At the time, we have had two concerns :
+> 	1) I2C TPM component number, in the market, compliant with new I2C TCG specification to validate new I2C driver.
+> 	2) Lots changing  was already provided by tpm_tis_spi.c on 4.8.
+> 
+> That's why Tpm_tis_i2c.c has been postponed.
+> 
+> Tpm_tis_spi Linux driver is now robust, if we have several different I2C TPM solutions today to validate a tpm_tis_i2c driver, I 'm ready to contribute to it for validation (STmicro TPM) or propose a solution compatible on 5.1 linux driver if needed under timeframe proposed (second half of august).
+
+Could you run your tests against the simple implementation that I posted 
+a while ago (https://patchwork.kernel.org/cover/11049365/) and provide 
+your feedback? Since it is already based on the current tpm_tis_core, it 
+is probably easier to integrate necessary changes there.
+
+By the way, has it gotten any easier in the meantime to get hold of your 
+TPMs to use them for kernel tests?
+
+Alexander
