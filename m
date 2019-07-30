@@ -2,75 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A24A7B270
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 20:46:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 059F87B336
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 21:25:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388448AbfG3SqA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 14:46:00 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:42946 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387744AbfG3Sp7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 14:45:59 -0400
-Received: from floko.floko.floko (unknown [IPv6:2804:431:c7f1:ce2f:ec1:e6e6:2e9f:e76e])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: koike)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id A508728B911;
-        Tue, 30 Jul 2019 19:45:53 +0100 (BST)
-From:   Helen Koike <helen.koike@collabora.com>
-To:     linux-rockchip@lists.infradead.org
-Cc:     devicetree@vger.kernel.org, eddie.cai.linux@gmail.com,
-        mchehab@kernel.org, heiko@sntech.de, jacob2.chen@rock-chips.com,
-        jeffy.chen@rock-chips.com, zyc@rock-chips.com,
-        linux-kernel@vger.kernel.org, tfiga@chromium.org,
-        hans.verkuil@cisco.com, laurent.pinchart@ideasonboard.com,
-        sakari.ailus@linux.intel.com, kernel@collabora.com,
-        ezequiel@collabora.com, linux-media@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, zhengsq@rock-chips.com,
-        Helen Koike <helen.koike@collabora.com>
-Subject: [PATCH v8 14/14] MAINTAINERS: add entry for Rockchip ISP1 driver
-Date:   Tue, 30 Jul 2019 15:42:56 -0300
-Message-Id: <20190730184256.30338-15-helen.koike@collabora.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190730184256.30338-1-helen.koike@collabora.com>
-References: <20190730184256.30338-1-helen.koike@collabora.com>
+        id S1727823AbfG3TZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 15:25:49 -0400
+Received: from atlmailgw1.ami.com ([63.147.10.40]:47963 "EHLO
+        atlmailgw1.ami.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725840AbfG3TZs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 15:25:48 -0400
+X-AuditID: ac1060b2-3fdff70000003a7d-40-5d4099bccabf
+Received: from atlms1.us.megatrends.com (atlms1.us.megatrends.com [172.16.96.144])
+        (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by atlmailgw1.ami.com (Symantec Messaging Gateway) with SMTP id C0.6E.14973.CB9904D5; Tue, 30 Jul 2019 15:25:49 -0400 (EDT)
+Received: from hongweiz-Ubuntu-AMI.us.megatrends.com (172.16.98.93) by
+ atlms1.us.megatrends.com (172.16.96.144) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Tue, 30 Jul 2019 15:25:47 -0400
+From:   Hongwei Zhang <hongweiz@ami.com>
+To:     Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Hongwei Zhang <hongweiz@ami.com>, Joel Stanley <joel@jms.id.au>,
+        <devicetree@vger.kernel.org>, <linux-aspeed@lists.ozlabs.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [v5 1/2] dt-bindings: gpio: aspeed: Add SGPIO support
+Date:   Tue, 30 Jul 2019 15:25:37 -0400
+Message-ID: <1564514737-4638-1-git-send-email-hongweiz@ami.com>
+X-Mailer: git-send-email 2.7.4
+In-Reply-To: <1563564291-9692-2-git-send-email-hongweiz@ami.com>
+References: <1563564291-9692-2-git-send-email-hongweiz@ami.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.98.93]
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFnrKLMWRmVeSWpSXmKPExsWyRiBhgu7emQ6xBoe2s1vsusxh8WXuKRaL
+        +UfOsVr8Pv+X2WLKn+VMFpseX2O1aF59jtli8/w/jBaXd81hs1h6/SKTReveI+wO3B5X23ex
+        e6yZt4bR4/2NVnaPix+PMXtsWtXJ5nHn2h42j81L6j3Oz1jI6PF5k1wAZxSXTUpqTmZZapG+
+        XQJXxpPbDxkLnvJUvJr5nKWBcT1XFyMnh4SAicSdr61sXYxcHEICu5gktq+ewg7hHGaUePRr
+        KiNIFZuAmsTezXOYQGwRgTyJw+vfsoIUMQucYpKYsa+TFSQhLGAnsX72MWYQm0VAVWLT8s1g
+        zbwC9hKHt6xgg1gnJ3HzXCdYDaeAg8Tzy11A2ziAttlLrG4ShygXlDg58wkLiM0sICFx8MUL
+        sHIhAVmJW4ceM0GMUZB43veYZQKjwCwkLbOQtCxgZFrFKJRYkpObmJmTXm6ol5ibqZecn7uJ
+        ERIVm3Ywtlw0P8TIxMF4iFGCg1lJhHexuH2sEG9KYmVValF+fFFpTmrxIUZpDhYlcd6Va77F
+        CAmkJ5akZqemFqQWwWSZODilGhgT9ku+CJGXXdVbJtz580GtjNLRVUcruy2vNFusMj41ufj/
+        nPL3O8T+NCVcSPvQxKtyXfvK2UiFS9un6vrtNDY+kRjevcamj1137rHgS2siZrJU17j53G57
+        rrnp22K2N8bCXgESNyOlHT/f4wrgXbn1XlfCs9dt26xeps7peFXEtuVV6c81lppKLMUZiYZa
+        zEXFiQBMtJWHeAIAAA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add MAINTAINERS entry for the rockchip isp1 driver.
+Hello Linus and Andrew,
 
-Signed-off-by: Helen Koike <helen.koike@collabora.com>
----
+Thanks for your detailed comments, I just submitted v6 of our update:
+_http://patchwork.ozlabs.org/cover/1139035/
+_http://patchwork.ozlabs.org/patch/1139038/
+_http://patchwork.ozlabs.org/patch/1139040/
 
-Changes in v8: None
-Changes in v7: None
+please ignore my previous patches sent on 07/28, they does not have proper serial
+title and one of the patch is missing.
 
- MAINTAINERS | 8 ++++++++
- 1 file changed, 8 insertions(+)
+--Hongwei
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6426db5198f0..7f38abcb4114 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -13743,6 +13743,14 @@ F:	drivers/hid/hid-roccat*
- F:	include/linux/hid-roccat*
- F:	Documentation/ABI/*/sysfs-driver-hid-roccat*
- 
-+ROCKCHIP ISP V1 DRIVER
-+M:	Helen Koike <helen.koike@collabora.com>
-+L:	linux-media@vger.kernel.org
-+S:	Maintained
-+F:	drivers/media/platform/rockchip/isp1/
-+F:	Documentation/devicetree/bindings/media/rockchip-isp1.txt
-+F:	Documentation/devicetree/bindings/media/rockchip-mipi-dphy.txt
-+
- ROCKCHIP RASTER 2D GRAPHIC ACCELERATION UNIT DRIVER
- M:	Jacob chen <jacob2.chen@rock-chips.com>
- L:	linux-media@vger.kernel.org
--- 
-2.22.0
-
+> From:	Linus Walleij <linus.walleij@linaro.org>
+> Sent:	Monday, July 29, 2019 5:57 PM
+> To:	Andrew Jeffery
+> Cc:	Hongwei Zhang; open list:GPIO SUBSYSTEM; Joel Stanley; open list:OPEN FIRMWARE AND 
+> FLATTENED DEVICE TREE BINDINGS; linux-aspeed; Bartosz Golaszewski; Rob Herring; Mark Rutland; 
+> linux-kernel@vger.kernel.org; Linux ARM
+> Subject:	Re: [v5 1/2] dt-bindings: gpio: aspeed: Add SGPIO support
+> 
+> On Mon, Jul 29, 2019 at 2:19 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+> 
+> > The behaviour is to periodically emit the state of all enabled GPIOs 
+> > (i.e. the ngpios value), one per bus clock cycle. There's no explicit 
+> > addressing scheme, the protocol encodes the value for a given GPIO by 
+> > its position in the data stream relative to a pulse on the "load data"
+> > (LD) line, whose envelope covers the clock cycle for the last GPIO in 
+> > the sequence. Similar to SPI the bus has both out and in lines, which 
+> > cater to output/input GPIOs.
+> >
+> > A rough timing diagram for a 16-GPIO configuration looks like what 
+> > I've pasted here:
+> >
+> > https://gist.github.com/amboar/c9543af1957854474b8c05ab357f0675
+> 
+> OK that is complex. I agree we need to keep this driver together.
+> 
+> Yours,
+> Linus Walleij
