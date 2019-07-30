@@ -2,66 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D29B7AD5A
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 18:15:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9599E7AD85
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 18:28:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730927AbfG3QPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 12:15:53 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:56402 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729025AbfG3QPx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:15:53 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
-        Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-        From:Date:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=BfBzWlo3UNykmQF2mkx9T4Qu+R/YsHpAkw02FK/ARAw=; b=g7MEv5CvZSMTvgVln//QY5S9V
-        qGGr4i/FPIFNEOzfWJ/XnXL1awvbG7bUy0fiebgzLYNSaZfyCXMdVFIsmKQU43/KZEsObQwL8YVjt
-        Pe/LSSe2sJQkuPT7fkZRdF38y4NUnS33yriWDQ9pTVDfDb64LF6xLUSw0SP8ZxcH7PhWIrQTU1v3B
-        wkPvIpgnPXqcLtKk74dcXD92zD9SbWbDi5EqsOEw4GxCAky6ff8+6ojGZ7WmZpKmQxCdRHiqZtgkT
-        RBCoBCaKL/07qy7SgRtdPVNgUkWwvSjqUJlkETXvO5Wc0N0SQCcc4AgavheK4LmZMK6gvqb4PiACg
-        2lcUsstBw==;
-Received: from [177.157.101.143] (helo=coco.lan)
-        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-        id 1hsUmx-0003iU-Ae; Tue, 30 Jul 2019 16:15:47 +0000
-Date:   Tue, 30 Jul 2019 13:15:41 -0300
-From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-To:     <gtk_ruiwang@mediatek.com>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Subject: Re: media: mtk-vcodec: Handle H264 error bitstreams
-Message-ID: <20190730131541.40ce5ead@coco.lan>
-In-Reply-To: <20190726085433.15612-1-gtk_ruiwang@mediatek.com>
-References: <20190726085433.15612-1-gtk_ruiwang@mediatek.com>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1727776AbfG3Q2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 12:28:17 -0400
+Received: from imap1.codethink.co.uk ([176.9.8.82]:52538 "EHLO
+        imap1.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725889AbfG3Q2R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:28:17 -0400
+Received: from [167.98.27.226] (helo=[10.35.6.253])
+        by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
+        id 1hsUyy-0002cI-8m; Tue, 30 Jul 2019 17:28:12 +0100
+Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on diagnostic
+ routine
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        Takashi Iwai <tiwai@suse.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Cheng-Yi Chiang <cychiang@chromium.org>
+References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
+ <20190730120937.16271-4-thomas.preston@codethink.co.uk>
+ <20190730141935.GF4264@sirena.org.uk>
+ <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
+ <20190730155027.GJ4264@sirena.org.uk>
+From:   Thomas Preston <thomas.preston@codethink.co.uk>
+Message-ID: <9b47a360-3b62-b968-b8d5-8639dc4b468d@codethink.co.uk>
+Date:   Tue, 30 Jul 2019 17:28:11 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+In-Reply-To: <20190730155027.GJ4264@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Fri, 26 Jul 2019 16:54:33 +0800
-<gtk_ruiwang@mediatek.com> escreveu:
+On 30/07/2019 16:50, Mark Brown wrote:
+> On Tue, Jul 30, 2019 at 04:25:56PM +0100, Thomas Preston wrote:
+>> On 30/07/2019 15:19, Mark Brown wrote:
+> 
+>>> It is unclear what this mutex usefully protects, it only gets taken when
+>>> writing to the debugfs file to trigger this diagnostic mode but doesn't
+>>> do anything to control interactions with any other code path in the
+>>> driver.
+> 
+>> If another process reads the debugfs node "diagnostic" while the turn-on 
+>> diagnostic mode is running, this mutex prevents the second process
+>> restarting the diagnostics.
+> 
+>> This is redundant if debugfs reads are atomic, but I don't think they are.
+> 
+> Like I say it's not just debugfs though, there's the standard driver
+> interface too.
+> 
 
-> From: gtk_ruiwang <gtk_ruiwang@mediatek.com>
+Ah right, I understand. So if we run the turn-on diagnostics routine, there's
+nothing stopping anyone from interacting with the device in other ways.
 
-...
+I guess there's no way to share that mutex with ALSA? In that case, it doesn't
+matter if this mutex is there or not - this feature is incompatible. How
+compatible do debugfs interfaces have to be? I was under the impression anything
+goes. I would argue that the debugfs is better off for having the mutex so
+that no one re-reads "diagnostic" within the 5s poll timeout.
 
-> Signed-off-by: gtk_ruiwang <gtk_ruiwang@mediatek.com>
+Alternatively, this diagnostic feature could be handled with an external-handler
+kcontrol SOC_SINGLE_EXT? I'm not sure if this is an atomic interface either.
 
-Please use your real name on your SOB and at the From: line.
-
-Thanks,
-Mauro
+What would be acceptable?
