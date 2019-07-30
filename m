@@ -2,105 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E4437ACD1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:52:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 64E357ACE5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:53:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730933AbfG3Pvz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 11:51:55 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:58752 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725974AbfG3Pvz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 11:51:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=Satq2eEMXIbB0aB+E4vC0WoAtw8SMBMHI0WXpWtRuYs=; b=J1ZC52QIsMjMi5k2i2Fvr0+nV
-        AuizVSMIB5ohxsLuqMXvxPDnGN3s7Ru76VojFpPcd5fQqygq3HMaOXKDD0VEBrs7Btv2YSwqH73rL
-        2gC9VPKgK6bIMpJY5oFm8wW8bzuPYLpVtZ+MBg74aqkS+Q2G++Vy42i1p1GAoxDhc9XAc=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hsUOT-0007rr-3R; Tue, 30 Jul 2019 15:50:29 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id E52FC2742CB5; Tue, 30 Jul 2019 16:50:27 +0100 (BST)
-Date:   Tue, 30 Jul 2019 16:50:27 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Thomas Preston <thomas.preston@codethink.co.uk>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Kirill Marinushkin <kmarinushkin@birdec.tech>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Takashi Iwai <tiwai@suse.com>,
-        Annaliese McDermond <nh6z@nh6z.net>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S1729095AbfG3Pxr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 11:53:47 -0400
+Received: from mail-out.m-online.net ([212.18.0.10]:56511 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727816AbfG3Pxr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 11:53:47 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 45yh1N0nPyz1rTYf;
+        Tue, 30 Jul 2019 17:53:44 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 45yh1M6Zhqz1qqkK;
+        Tue, 30 Jul 2019 17:53:43 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id 2NMNNE217Hy2; Tue, 30 Jul 2019 17:53:42 +0200 (CEST)
+X-Auth-Info: TJA1EiAuhI/vHNhcnsilPqlOm1nG0ETqlS47Wvo9Jc0=
+Received: from jawa (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Tue, 30 Jul 2019 17:53:42 +0200 (CEST)
+Date:   Tue, 30 Jul 2019 17:53:36 +0200
+From:   Lukasz Majewski <lukma@denx.de>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>,
         Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on
- diagnostic routine
-Message-ID: <20190730155027.GJ4264@sirena.org.uk>
-References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
- <20190730120937.16271-4-thomas.preston@codethink.co.uk>
- <20190730141935.GF4264@sirena.org.uk>
- <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
+        Mark Rutland <mark.rutland@arm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: DTS: vybrid: Update qspi node description for
+ VF610 BK4 board
+Message-ID: <20190730175336.382d833c@jawa>
+In-Reply-To: <CAOMZO5AxPHHobQQhq30fjLVeSroLdvdT0+GqCWi8it1ejhDONA@mail.gmail.com>
+References: <20190730150552.24927-1-lukma@denx.de>
+        <CAOMZO5AxPHHobQQhq30fjLVeSroLdvdT0+GqCWi8it1ejhDONA@mail.gmail.com>
+Organization: denx.de
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="DesjdUuHQDwS2t4N"
-Content-Disposition: inline
-In-Reply-To: <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
-X-Cookie: Times approximate.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: multipart/signed; micalg=pgp-sha256;
+ boundary="Sig_/Hls2KDiiZhS_2XwqOwjo/0W"; protocol="application/pgp-signature"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
---DesjdUuHQDwS2t4N
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+--Sig_/Hls2KDiiZhS_2XwqOwjo/0W
+Content-Type: text/plain; charset=US-ASCII
 Content-Transfer-Encoding: quoted-printable
 
-On Tue, Jul 30, 2019 at 04:25:56PM +0100, Thomas Preston wrote:
-> On 30/07/2019 15:19, Mark Brown wrote:
+Hi Fabio,
 
-> > It is unclear what this mutex usefully protects, it only gets taken when
-> > writing to the debugfs file to trigger this diagnostic mode but doesn't
-> > do anything to control interactions with any other code path in the
-> > driver.
+> Hi Lukasz,
+>=20
+> Subject line could be improved:
+>=20
+> ARM: dts: vf610-bk4: Fix qspi node description
+>=20
+> On Tue, Jul 30, 2019 at 12:06 PM Lukasz Majewski <lukma@denx.de>
+> wrote:
+> >
+> > Before this change the device tree description of qspi node for
+> > second memory on BK4 board was wrong (applicable to old, in-house
+> > tunned fsl-quadspi.c driver).
+> >
+> > As a result this memory was not recognized correctly when used
+> > with the new spi-fsl-qspi.c driver.
+> >
+> > From the dt-bindings:
+> >
+> > "Required SPI slave node properties:
+> >   - reg: There are two buses (A and B) with two chip selects each.
+> > This encodes to which bus and CS the flash is connected:
+> > <0>: Bus A, CS 0
+> > <1>: Bus A, CS 1
+> > <2>: Bus B, CS 0
+> > <3>: Bus B, CS 1"
+> >
+> > According to above with new driver the second SPI-NOR memory shall
+> > have reg=3D<2> as it is connected to Bus B, CS 0. =20
+>=20
+> I am glad you got it working!
+>=20
+> This looks very familiar with the suggestion I sent yesterday:
+> http://lists.infradead.org/pipermail/linux-mtd/2019-July/090655.html
+>=20
 
-> If another process reads the debugfs node "diagnostic" while the turn-on=
-=20
-> diagnostic mode is running, this mutex prevents the second process
-> restarting the diagnostics.
+Yes, indeed. Deepest apologizes for not adding credits. I will fix it
+in v2.
 
-> This is redundant if debugfs reads are atomic, but I don't think they are.
+> It is a good practice to give some credit to someone who has helped in
+> finding the solution of your problem.
+>=20
+> Adding a Suggested-by: Fabio Estevam <festevam@gmail.com> would be
+> nice here.
+>=20
+> This also needs a Fixes tag.
 
-Like I say it's not just debugfs though, there's the standard driver
-interface too.
+Shall I refer to the original commit (which added this DTS)? Or the
+original issue posted to linux-mtd [1] ?
 
---DesjdUuHQDwS2t4N
-Content-Type: application/pgp-signature; name="signature.asc"
+Note:
+
+[1] - https://www.spinics.net/lists/linux-mtd/msg08114.html
+
+Best regards,
+
+Lukasz Majewski
+
+--
+
+DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
+HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
+Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
+
+--Sig_/Hls2KDiiZhS_2XwqOwjo/0W
+Content-Type: application/pgp-signature
+Content-Description: OpenPGP digital signature
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1AZ0MACgkQJNaLcl1U
-h9A+KQgAgi4HkmsbIandzuTrFA6N2E9Zrc7WMisuFB9GE/OnLiU559yFfrABha81
-2AJ4vwv4WOwP6Cl48kFT7W90WgsJljB6F0d/SaiwvhNmwf2ifUVANo+tkNv8L2kn
-W/7p0/OQ1tuFhU9OI98e1YbqSI/TEcgQx3CEp0diUdcmv1C55X6cn1tjj5Mn0+hz
-Mf2IV9Q1KMJQBeHqm6PvdWjzxbnQ7iUEPQ6SoP6PwTjEvpWN/+Cv7q/wo1FCs1hb
-1nYLoWrVYhOaQyzAxxJ/S2bRl5TybnmgSJOpj1ZNMRcHdED93sk3GMNSqqAOD68L
-nQQV16tM/EvyPsbQE+AMJFrAKfZLdg==
-=H0id
+iQEzBAEBCAAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAl1AaAAACgkQAR8vZIA0
+zr36MQgA4Oorheiqhn9obaiAQFJhr++QNaJEtm0Bs+T2h6ZblLVgYbPqys8+6biN
+oLxpS3COrCwo3B8xFK4MxWze3qqyDYKPuse2NqFEW02qIIPPjPKfMNiEY8YIy+p7
+5Yas3dvZar13iUmiyVuoTRk2kC7zFHRzv39YM0RHfYbIx+V+IcQTDnAbwkBj4iT/
+oSDBq54OR5R7q+CvR1xncl7HzfXP1QwYw8MhEEWsOhhMWQ6sEJp56oz1gnNW5KF/
+2Tah7fpuzhsUw+ysmqB3V7lXwvc3BQYIzQhtHWFFYLWjunrqN6kyUH+VXfv5cswV
+M5vvDYesZAOADYr1KfN/DCX7JwdLmg==
+=WzwS
 -----END PGP SIGNATURE-----
 
---DesjdUuHQDwS2t4N--
+--Sig_/Hls2KDiiZhS_2XwqOwjo/0W--
