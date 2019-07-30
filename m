@@ -2,122 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8E22E7B05E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 19:42:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7CE7F7B06E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 19:43:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727721AbfG3RmU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 13:42:20 -0400
-Received: from smtp11.infineon.com ([217.10.52.105]:23468 "EHLO
-        smtp11.infineon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726432AbfG3RmU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 13:42:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=infineon.com; i=@infineon.com; q=dns/txt; s=IFXMAIL;
-  t=1564508538; x=1596044538;
-  h=subject:to:cc:references:from:message-id:date:
-   mime-version:in-reply-to:content-transfer-encoding;
-  bh=u1ug0QK6quNbVSyr//SBMADRepDbDkeow8KcvedLTNc=;
-  b=nGEOxUCQ/mIL0T4jdLldlZosLUzLWSh4rbN7ua5DTsBiUt93HLC7VJVj
-   shitTJdTw/ZZ/XJBPYIc9L2OZE/7Rdao55MCblS4PnOEQ7cf8Gf+L9067
-   YTpeu3TonpDyYVBGe00AeY8bzpjMU54ulISdDH1RRs6szpZS2szkEg6vg
-   M=;
-IronPort-SDR: nZp23Lb7MCjAsl1O2rUX/PhNWcB87/45mLn7TLJ5llPxFehzPykkxQFKQPCmpcZwAatBVyvCdT
- nR38+h2EXlGtRkAiYn4A6SKtR/vW/+NvwnS1uhzzjDFit/O1idY+UYPmaXhkXas+Sj3sAm2vYx
- 1hCtYOyDjFNTQ4EQnr+6xiuEwGHOyQwXkPh1ux7aH7HXIfvYnR61U3RMSXy1J8bdMjDlgn+FLU
- gQmH6guxNNOz2lYjlgZWUS5PNYGzy4RxVawlMVumVT2q3IeGj67yC+HJsD45C1GjgoQdvkStkz
- pXA=
-X-SBRS: None
-X-IronPort-AV: E=McAfee;i="6000,8403,9334"; a="129245840"
-X-IronPort-AV: E=Sophos;i="5.64,327,1559512800"; 
-   d="scan'208";a="129245840"
-Received: from unknown (HELO mucxv001.muc.infineon.com) ([172.23.11.16])
-  by smtp11.infineon.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 30 Jul 2019 19:42:17 +0200
-Received: from MUCSE708.infineon.com (MUCSE708.infineon.com [172.23.7.82])
-        by mucxv001.muc.infineon.com (Postfix) with ESMTPS;
-        Tue, 30 Jul 2019 19:42:16 +0200 (CEST)
-Received: from [10.154.32.18] (172.23.8.247) by MUCSE708.infineon.com
- (172.23.7.82) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384_P256) id 15.1.1591.10; Tue, 30
- Jul 2019 19:42:16 +0200
-Subject: Re: [PATCH v2 0/2] char: tpm: add new driver for tpm i2c ptp
-To:     Benoit HOUYERE <benoit.houyere@st.com>,
-        "Eyal.Cohen@nuvoton.com" <Eyal.Cohen@nuvoton.com>,
-        "jarkko.sakkinen@linux.intel.com" <jarkko.sakkinen@linux.intel.com>,
-        "tmaimon77@gmail.com" <tmaimon77@gmail.com>
-CC:     "oshrialkoby85@gmail.com" <oshrialkoby85@gmail.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "peterhuewe@gmx.de" <peterhuewe@gmx.de>,
-        "jgg@ziepe.ca" <jgg@ziepe.ca>, "arnd@arndb.de" <arnd@arndb.de>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "oshri.alkoby@nuvoton.com" <oshri.alkoby@nuvoton.com>,
+        id S1727625AbfG3Rnq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 13:43:46 -0400
+Received: from mail-eopbgr680132.outbound.protection.outlook.com ([40.107.68.132]:37763
+        "EHLO NAM04-BN3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726432AbfG3Rnp (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Jul 2019 13:43:45 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=NHKJ6MBBxAKF2whOmS5Bk+w3OAIwjjgysjlr6J1nJOVUseyb4tG85iGdf/0/Xq1fderjhEdjjcRgEgfKWY48KVrA593Y2nr3Ib0OQkkgwEloRIl3ukjGFRGgFxFNlAdfRLrLgES94xso8iDtqmJMCpeabckHya7EblYqjWwcGefS1oH/01ODc2Hh97AJDsMTeHGKOJ0A2zREuIVjc5t5AO4n/qxV9loso+thEoDcqoYQnL8KVmP8ihT+F49H4gQiqGnW7ipQtR/v9r9Gqbg4TczjBwEi+VopmlvhvO0JmkNol3ik4t7d4zToNGgAkVGArLjEaaoz8DqcqohU9vvnVw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LeuDWkU/r6uI1NbxsCKBz6y/i7szA6zYECYktHMV9VE=;
+ b=LGSDOMsaddMIttFo5j3EHF8MTIyydjwGuFL7Cv3fCBXZEd4pxlYK+MgVtVJZGnn4radjSC7ZjSiW3uQTDXkPi92TebjCuBBz/Ohs+Lpw5+WZSXBulLhUpWvDm7WE75zXXlwUFL3Xfr/kZZmFJBZQuWa5XOQXDnSn4fV7pn2/ZOoliy/9C5VqCI5TVMVn8+ObIJEWP1X2ITijYN64152DTAhAG2JYDheIhVUOp4ln98vYnAci9+jWXZ02TT9XLl07u/TDY95atyRJv/w6Kuujsbxi/+K3Ua1qu8tCcDpyKggYZEx+pdK71kzeT7J6Srg26uM5ZqIbocDrS0oaHlqjzg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=wavecomp.com;dmarc=pass action=none
+ header.from=mips.com;dkim=pass header.d=mips.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=wavecomp.com;
+ s=selector1;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LeuDWkU/r6uI1NbxsCKBz6y/i7szA6zYECYktHMV9VE=;
+ b=i7SNH2BmvkwNKet+lwUtURmZlSwqXCIdAZHVCKHrdDhRPt+/xdKsdYyPW7r1VTcH1DPJCc0V2O6BlkUaULPeyE1OnsieiS8jzeKE6eFBC2r2HbQVMDrAb7S0HyuZJTuD5t1gVQze/a92AUjC+qyt7XpERloQWlvSnusZCNgSgjI=
+Received: from MWHPR2201MB1277.namprd22.prod.outlook.com (10.172.60.12) by
+ MWHPR2201MB1088.namprd22.prod.outlook.com (10.174.169.150) with Microsoft
+ SMTP Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2115.15; Tue, 30 Jul 2019 17:43:39 +0000
+Received: from MWHPR2201MB1277.namprd22.prod.outlook.com
+ ([fe80::105a:1595:b6ef:cbdf]) by MWHPR2201MB1277.namprd22.prod.outlook.com
+ ([fe80::105a:1595:b6ef:cbdf%4]) with mapi id 15.20.2115.005; Tue, 30 Jul 2019
+ 17:43:39 +0000
+From:   Paul Burton <paul.burton@mips.com>
+To:     Paul Cercueil <paul@crapouillou.net>
+CC:     Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <pburton@wavecomp.com>,
+        James Hogan <jhogan@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Lee Jones <lee.jones@linaro.org>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, "od@zcrc.me" <od@zcrc.me>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-integrity@vger.kernel.org" <linux-integrity@vger.kernel.org>,
-        "gcwilson@us.ibm.com" <gcwilson@us.ibm.com>,
-        "kgoldman@us.ibm.com" <kgoldman@us.ibm.com>,
-        "nayna@linux.vnet.ibm.com" <nayna@linux.vnet.ibm.com>,
-        "Dan.Morav@nuvoton.com" <Dan.Morav@nuvoton.com>,
-        "oren.tanami@nuvoton.com" <oren.tanami@nuvoton.com>,
-        "Christophe Ricard (christophe.ricard@gmail.com)" 
-        <christophe.ricard@gmail.com>, Elena WILLIS <elena.willis@st.com>,
-        Olivier COLLART <olivier.collart@st.com>
-References: <20190628151327.206818-1-oshrialkoby85@gmail.com>
- <8e6ca8796f229c5dc94355437351d7af323f0c56.camel@linux.intel.com>
- <79e8bfd2-2ed1-cf48-499c-5122229beb2e@infineon.com>
- <CAM9mBwJC2QD5-gV1eJUDzC2Fnnugr-oCZCoaH2sT_7ktFDkS-Q@mail.gmail.com>
- <45603af2fc8374a90ef9e81a67083395cc9c7190.camel@linux.intel.com>
- <6e7ff1b958d84f6e8e585fd3273ef295@NTILML02.nuvoton.com>
- <CAP6Zq1hPo9dG71YFyr7z9rjmi-DvoUZJOme4+2uqsfO+7nH+HQ@mail.gmail.com>
- <20190715094541.zjqxainggjuvjxd2@linux.intel.com>
- <9c8e216dbc4f43dbaa1701dc166b05e0@NTILML02.nuvoton.com>
- <548d3727-4a8f-38d4-2193-8a09cbae1e64@infineon.com>
- <2e86f1b6a3c04c9889d0f12f4eb079d4@SFHDAG3NODE3.st.com>
-From:   Alexander Steffen <Alexander.Steffen@infineon.com>
-Message-ID: <ef3e9f2f-9c8e-7cc1-dc4c-dc1833592238@infineon.com>
-Date:   Tue, 30 Jul 2019 19:42:04 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        "dmaengine@vger.kernel.org" <dmaengine@vger.kernel.org>,
+        "linux-hwmon@vger.kernel.org" <linux-hwmon@vger.kernel.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "linux-fbdev@vger.kernel.org" <linux-fbdev@vger.kernel.org>,
+        "alsa-devel@alsa-project.org" <alsa-devel@alsa-project.org>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Artur Rojek <contact@artur-rojek.eu>,
+        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>
+Subject: Re: [PATCH 01/11] MIPS: DTS: jz4740: Add missing nodes
+Thread-Topic: [PATCH 01/11] MIPS: DTS: jz4740: Add missing nodes
+Thread-Index: AQHVRv5SC/UNRQ0j0kSBIM7bj9GbPQ==
+Date:   Tue, 30 Jul 2019 17:43:39 +0000
+Message-ID: <MWHPR2201MB127769D32FAA4944F9A791CDC1DC0@MWHPR2201MB1277.namprd22.prod.outlook.com>
+References: <20190725220215.460-2-paul@crapouillou.net>
+In-Reply-To: <20190725220215.460-2-paul@crapouillou.net>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: BYAPR06CA0037.namprd06.prod.outlook.com
+ (2603:10b6:a03:14b::14) To MWHPR2201MB1277.namprd22.prod.outlook.com
+ (2603:10b6:301:18::12)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=pburton@wavecomp.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-originating-ip: [12.94.197.246]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 5ced0446-cc98-4527-5f3b-08d71515748d
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:MWHPR2201MB1088;
+x-ms-traffictypediagnostic: MWHPR2201MB1088:
+x-microsoft-antispam-prvs: <MWHPR2201MB1088E78D70BEA742AA3314F8C1DC0@MWHPR2201MB1088.namprd22.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-forefront-prvs: 0114FF88F6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(366004)(136003)(39850400004)(346002)(376002)(396003)(189003)(199004)(7736002)(6436002)(52536014)(386003)(486006)(74316002)(6116002)(446003)(9686003)(11346002)(305945005)(5660300002)(55016002)(99286004)(66446008)(66946007)(53936002)(64756008)(66556008)(66476007)(4326008)(6246003)(25786009)(3846002)(71200400001)(66066001)(71190400001)(7416002)(8676002)(6916009)(76176011)(81156014)(52116002)(54906003)(186003)(44832011)(229853002)(476003)(4744005)(8936002)(81166006)(68736007)(102836004)(7696005)(2906002)(6506007)(256004)(33656002)(316002)(478600001)(42882007)(26005)(14454004);DIR:OUT;SFP:1102;SCL:1;SRVR:MWHPR2201MB1088;H:MWHPR2201MB1277.namprd22.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: wavecomp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: M1ii7ytiPwEAhGxpkKFJMpHe2XzBeS7zQo8zdz0nU6lzNoPhTDPxi99uwN3zo6hj9Pf9bP6HmkFKqesN5qbGRkV62/cGIFXHZ4SMNRoknnIqBQpe/pVjzrWctk6h9ekEnNE52Ds9pOpaWUdLKtBEIxJcfHC/oednXE1SCLWfWbz9JEx20vINHkZxV6hZv4VEO1MtUWO3ZaVMpBydPQ5xY/118hYTVWBZNpZKiLitJ/Vqnoo/9aTIeLwkbT6Zf/h6qhINuXuVCBCLW9F2S5sZ8F+ZjwH4x49PPJ2FCQCRrwTg1v6WcWVx6jo4FwMVqksuvb2vWFBTKFvlVqiCkPpi8P8i/psIIiSVSUhaA8/yojZJhULM7BCQTS2saQsvSi3tPPo6GY9lGiVe4NPTjpQYrKaYJceIgyb4ahQghUs3/Z4=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-In-Reply-To: <2e86f1b6a3c04c9889d0f12f4eb079d4@SFHDAG3NODE3.st.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-X-Originating-IP: [172.23.8.247]
-X-ClientProxiedBy: MUCSE705.infineon.com (172.23.7.79) To
- MUCSE708.infineon.com (172.23.7.82)
+X-OriginatorOrg: mips.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 5ced0446-cc98-4527-5f3b-08d71515748d
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2019 17:43:39.3095
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 463607d3-1db3-40a0-8a29-970c56230104
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: pburton@wavecomp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: MWHPR2201MB1088
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Benoit,
+Hello,
 
-good to see you're still around.
+Paul Cercueil wrote:
+> Add nodes for the MMC, AIC, ADC, CODEC, MUSB, LCD, memory,
+> and BCH controllers.
+>=20
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> Tested-by: Artur Rojek <contact@artur-rojek.eu>
 
-On 30.07.2019 10:39, Benoit HOUYERE wrote:
-> Hi Alexander, Jarkko and Eyal,
-> 
-> A first I2C TCG patch (tpm_tis_i2c.c) has been proposed in the same time as tpm_tis_spi.c by Christophe 3 years ago.
-> 
-> https://patchwork.kernel.org/patch/8628681/
+Applied to mips-next.
 
-Thanks for mentioning this. I forgot it exists, since it was still on 
-the old mailing list.
+Thanks,
+    Paul
 
-> At the time, we have had two concerns :
-> 	1) I2C TPM component number, in the market, compliant with new I2C TCG specification to validate new I2C driver.
-> 	2) Lots changing  was already provided by tpm_tis_spi.c on 4.8.
-> 
-> That's why Tpm_tis_i2c.c has been postponed.
-> 
-> Tpm_tis_spi Linux driver is now robust, if we have several different I2C TPM solutions today to validate a tpm_tis_i2c driver, I 'm ready to contribute to it for validation (STmicro TPM) or propose a solution compatible on 5.1 linux driver if needed under timeframe proposed (second half of august).
-
-Could you run your tests against the simple implementation that I posted 
-a while ago (https://patchwork.kernel.org/cover/11049365/) and provide 
-your feedback? Since it is already based on the current tpm_tis_core, it 
-is probably easier to integrate necessary changes there.
-
-By the way, has it gotten any easier in the meantime to get hold of your 
-TPMs to use them for kernel tests?
-
-Alexander
+[ This message was auto-generated; if you believe anything is incorrect
+  then please email paul.burton@mips.com to report it. ]
