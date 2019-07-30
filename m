@@ -2,86 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9599E7AD85
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 18:28:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69F3A7AD8F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 18:32:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727776AbfG3Q2R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 12:28:17 -0400
-Received: from imap1.codethink.co.uk ([176.9.8.82]:52538 "EHLO
-        imap1.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725889AbfG3Q2R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:28:17 -0400
-Received: from [167.98.27.226] (helo=[10.35.6.253])
-        by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
-        id 1hsUyy-0002cI-8m; Tue, 30 Jul 2019 17:28:12 +0100
-Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on diagnostic
- routine
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Kirill Marinushkin <kmarinushkin@birdec.tech>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Annaliese McDermond <nh6z@nh6z.net>,
-        Takashi Iwai <tiwai@suse.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-kernel@vger.kernel.org,
-        Cheng-Yi Chiang <cychiang@chromium.org>
-References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
- <20190730120937.16271-4-thomas.preston@codethink.co.uk>
- <20190730141935.GF4264@sirena.org.uk>
- <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
- <20190730155027.GJ4264@sirena.org.uk>
-From:   Thomas Preston <thomas.preston@codethink.co.uk>
-Message-ID: <9b47a360-3b62-b968-b8d5-8639dc4b468d@codethink.co.uk>
-Date:   Tue, 30 Jul 2019 17:28:11 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1725889AbfG3QcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 12:32:12 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:36566 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726703AbfG3QcM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:32:12 -0400
+Received: by mail-lj1-f195.google.com with SMTP id i21so62718083ljj.3;
+        Tue, 30 Jul 2019 09:32:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=xx3vIoXX8Mxn7Xfw2L25UDOZ1rfyh83SbXwIfDYTy98=;
+        b=Jr/qg1bcxy7MjeWhxfQDSfgI4H19sw3Jz78Pye41vfpqN+qGQyZ5gO32yCnGAwrCwV
+         IDJb7U1TOxEAb6pIpWroZIuT7EH8L5n+TenAghKXZ3DFNlsOZ4lD+Vcm71PyTVQcdU8n
+         nz9o7mFEcxcOwswCwYoJO2VtzDaYHKf3Z4RAnWrAIp48DYXqZFKMqhiwEj8Hhwr1N8me
+         ruOzUTSHHKXkzoToPBzodjKX6V1oOfQetH5lvFZqATFZ8IK321BWFLek4FQyCWqLIG35
+         az6aUKKZjPWBpZbPuW9142x9uyef+DFsNPlRQBOkSv+vxQHYAL+YcoELTlO6LXvDWRVC
+         /eiw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=xx3vIoXX8Mxn7Xfw2L25UDOZ1rfyh83SbXwIfDYTy98=;
+        b=sfDP/UWGIqQ1+qQRFvSDR84heCpDKuNC8hM9aPTe4NpActF3XrWZpU5BCptPmPWcJj
+         RvRHqIH49tkTYJwLGe+Mrz6UO0TYj+Dwmx0pPXFfeft/e3OsHh2D8kqtU0ZWeh8lbYMU
+         E1bycnEFzSb63asynmC9RD/fLNODnyulSTJNMFynFUNBDlQ3WnJRNfghEW4nkrZDWfOh
+         WXO76jU/52vY/8kcFXsLuS9shtbReGpYtWU2MeEDkqOT3/A9wf1+sHe/lN1fQu2JadXu
+         3ArqLyTllU2iC8a/RFlqxbBxKQKRB40ncaglBJGlLJkaHkPSNRPPaZrCanbC1KMj7Mqj
+         uQCA==
+X-Gm-Message-State: APjAAAVDCGQiVccb87ZKBITQsPS4MPyCsni6rHPZaetN8Z2joJWXDpmv
+        t2qNexgE6QZS8z9rMxibHHnTT04SS++yS6qER4Y=
+X-Google-Smtp-Source: APXvYqycFcTFoT9V2kVAqMs+UnnH6bzjYSJTSertHTYTAJI+RtGajdJMivgIKh9SwCSMNIC3PdQzfGaeyRqcszz+JWM=
+X-Received: by 2002:a2e:2c07:: with SMTP id s7mr24607447ljs.44.1564504329883;
+ Tue, 30 Jul 2019 09:32:09 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190730155027.GJ4264@sirena.org.uk>
-Content-Type: text/plain; charset=windows-1252
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190729172007.3275-1-krzk@kernel.org> <20190729172007.3275-2-krzk@kernel.org>
+In-Reply-To: <20190729172007.3275-2-krzk@kernel.org>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 30 Jul 2019 13:33:30 -0300
+Message-ID: <CAOMZO5BzA7JfNhJtZjUCewGicWFy1Qemx3jV1=+27MjUnsq4kQ@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] ARM: dts: imx6ul-kontron-n6310: Add Kontron
+ i.MX6UL N6310 SoM and boards
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Schrempf Frieder <frieder.schrempf@kontron.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30/07/2019 16:50, Mark Brown wrote:
-> On Tue, Jul 30, 2019 at 04:25:56PM +0100, Thomas Preston wrote:
->> On 30/07/2019 15:19, Mark Brown wrote:
-> 
->>> It is unclear what this mutex usefully protects, it only gets taken when
->>> writing to the debugfs file to trigger this diagnostic mode but doesn't
->>> do anything to control interactions with any other code path in the
->>> driver.
-> 
->> If another process reads the debugfs node "diagnostic" while the turn-on 
->> diagnostic mode is running, this mutex prevents the second process
->> restarting the diagnostics.
-> 
->> This is redundant if debugfs reads are atomic, but I don't think they are.
-> 
-> Like I say it's not just debugfs though, there's the standard driver
-> interface too.
-> 
+Hi Krzysztof,
 
-Ah right, I understand. So if we run the turn-on diagnostics routine, there's
-nothing stopping anyone from interacting with the device in other ways.
+On Mon, Jul 29, 2019 at 2:20 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
 
-I guess there's no way to share that mutex with ALSA? In that case, it doesn't
-matter if this mutex is there or not - this feature is incompatible. How
-compatible do debugfs interfaces have to be? I was under the impression anything
-goes. I would argue that the debugfs is better off for having the mutex so
-that no one re-reads "diagnostic" within the 5s poll timeout.
+> --- a/Documentation/devicetree/bindings/eeprom/at25.txt
+> +++ b/Documentation/devicetree/bindings/eeprom/at25.txt
+> @@ -3,6 +3,7 @@ EEPROMs (SPI) compatible with Atmel at25.
+>  Required properties:
+>  - compatible : Should be "<vendor>,<type>", and generic value "atmel,at25".
+>    Example "<vendor>,<type>" values:
+> +    "anvo,anv32e61w"
 
-Alternatively, this diagnostic feature could be handled with an external-handler
-kcontrol SOC_SINGLE_EXT? I'm not sure if this is an atomic interface either.
+This usually comes as a separate patch, but anyway:
 
-What would be acceptable?
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
