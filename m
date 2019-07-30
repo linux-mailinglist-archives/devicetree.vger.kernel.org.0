@@ -2,116 +2,66 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D84187AD2E
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 18:05:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8D29B7AD5A
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 18:15:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725934AbfG3QFB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 12:05:01 -0400
-Received: from mail-out.m-online.net ([212.18.0.10]:43852 "EHLO
-        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725908AbfG3QFB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:05:01 -0400
-Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
-        by mail-out.m-online.net (Postfix) with ESMTP id 45yhGL5v2qz1rfcq;
-        Tue, 30 Jul 2019 18:04:58 +0200 (CEST)
-Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
-        by mail.m-online.net (Postfix) with ESMTP id 45yhGL51J8z1qqkM;
-        Tue, 30 Jul 2019 18:04:58 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at mnet-online.de
-Received: from mail.mnet-online.de ([192.168.8.182])
-        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
-        with ESMTP id sEBAZfL2s-uz; Tue, 30 Jul 2019 18:04:56 +0200 (CEST)
-X-Auth-Info: NMGXziR/PhuMc/va7X2TT6X0tYpuv4qbHHDlc7BiilA=
-Received: from jawa (85-222-111-42.dynamic.chello.pl [85.222.111.42])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.mnet-online.de (Postfix) with ESMTPSA;
-        Tue, 30 Jul 2019 18:04:56 +0200 (CEST)
-Date:   Tue, 30 Jul 2019 18:04:51 +0200
-From:   Lukasz Majewski <lukma@denx.de>
-To:     Fabio Estevam <festevam@gmail.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        id S1730927AbfG3QPx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 12:15:53 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:56402 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729025AbfG3QPx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:15:53 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
+        Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
+        From:Date:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=BfBzWlo3UNykmQF2mkx9T4Qu+R/YsHpAkw02FK/ARAw=; b=g7MEv5CvZSMTvgVln//QY5S9V
+        qGGr4i/FPIFNEOzfWJ/XnXL1awvbG7bUy0fiebgzLYNSaZfyCXMdVFIsmKQU43/KZEsObQwL8YVjt
+        Pe/LSSe2sJQkuPT7fkZRdF38y4NUnS33yriWDQ9pTVDfDb64LF6xLUSw0SP8ZxcH7PhWIrQTU1v3B
+        wkPvIpgnPXqcLtKk74dcXD92zD9SbWbDi5EqsOEw4GxCAky6ff8+6ojGZ7WmZpKmQxCdRHiqZtgkT
+        RBCoBCaKL/07qy7SgRtdPVNgUkWwvSjqUJlkETXvO5Wc0N0SQCcc4AgavheK4LmZMK6gvqb4PiACg
+        2lcUsstBw==;
+Received: from [177.157.101.143] (helo=coco.lan)
+        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
+        id 1hsUmx-0003iU-Ae; Tue, 30 Jul 2019 16:15:47 +0000
+Date:   Tue, 30 Jul 2019 13:15:41 -0300
+From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+To:     <gtk_ruiwang@mediatek.com>
+Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>,
+        Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
         <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH] ARM: DTS: vybrid: Update qspi node description for
- VF610 BK4 board
-Message-ID: <20190730180451.38cad018@jawa>
-In-Reply-To: <CAOMZO5AoSCDCMRKpkWQ=0PwiFG-O9doGaA31FRhDCGmNr7Xefg@mail.gmail.com>
-References: <20190730150552.24927-1-lukma@denx.de>
-        <CAOMZO5AxPHHobQQhq30fjLVeSroLdvdT0+GqCWi8it1ejhDONA@mail.gmail.com>
-        <20190730175336.382d833c@jawa>
-        <CAOMZO5AoSCDCMRKpkWQ=0PwiFG-O9doGaA31FRhDCGmNr7Xefg@mail.gmail.com>
-Organization: denx.de
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.31; x86_64-pc-linux-gnu)
+        <linux-mediatek@lists.infradead.org>
+Subject: Re: media: mtk-vcodec: Handle H264 error bitstreams
+Message-ID: <20190730131541.40ce5ead@coco.lan>
+In-Reply-To: <20190726085433.15612-1-gtk_ruiwang@mediatek.com>
+References: <20190726085433.15612-1-gtk_ruiwang@mediatek.com>
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
- boundary="Sig_/FFYaC=52dh2nz5Y2tmjEFGz"; protocol="application/pgp-signature"
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
---Sig_/FFYaC=52dh2nz5Y2tmjEFGz
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: quoted-printable
+Em Fri, 26 Jul 2019 16:54:33 +0800
+<gtk_ruiwang@mediatek.com> escreveu:
 
-Hi Fabio,
+> From: gtk_ruiwang <gtk_ruiwang@mediatek.com>
 
-> Hi Lukasz,
->=20
-> On Tue, Jul 30, 2019 at 12:53 PM Lukasz Majewski <lukma@denx.de>
-> wrote:
->=20
-> > Shall I refer to the original commit (which added this DTS)? Or the
-> > original issue posted to linux-mtd [1] ? =20
->=20
-> You can add a Fixes tag like this:
->=20
-> Fixes: a67d2c52a82f ("ARM: dts: Add support for Liebherr's BK4 device
-> (vf610 based)")
+...
 
-Yes, the above is correct (as indicated [1]), but I was not sure if I
-should also refer to the original post to linux-mtd ML.
+> Signed-off-by: gtk_ruiwang <gtk_ruiwang@mediatek.com>
 
-Now it is clear - thanks :-)
+Please use your real name on your SOB and at the From: line.
 
-Note:
-
-[1] -
-https://www.kernel.org/doc/html/v4.12/process/submitting-patches.html#revie=
-wer-s-statement-of-oversight
-
-Best regards,
-
-Lukasz Majewski
-
---
-
-DENX Software Engineering GmbH,      Managing Director: Wolfgang Denk
-HRB 165235 Munich, Office: Kirchenstr.5, D-82194 Groebenzell, Germany
-Phone: (+49)-8142-66989-59 Fax: (+49)-8142-66989-80 Email: lukma@denx.de
-
---Sig_/FFYaC=52dh2nz5Y2tmjEFGz
-Content-Type: application/pgp-signature
-Content-Description: OpenPGP digital signature
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAEBCAAdFiEEgAyFJ+N6uu6+XupJAR8vZIA0zr0FAl1AaqMACgkQAR8vZIA0
-zr1ITwf+P4+TW29l+wXSF2r4SKuAIoARSdCU3NSfGUpLW7gBQbK3x4RXlNnYW2y5
-pLsjYgE4yPWa6xv+Eo0oZz23EgmQdXCEmflVB85+CxRJpOPTfL0f1oRNmYXm0Nfq
-uQBko26IzNP+LMzSHDqJnaViHdWqP8URYGpMKHxL4lEUbZRfMzpieYt1IgHbCcB0
-/H0cx/EFFO3P+txZw7OQwaZSvYhSrwqO9hc645rXXIqqzO+nJ/RtWw5FAgVZHK6g
-tGTZ8rMYvWfhh/RuZwZzM7QktcV5NPxlVBagXFLujay/OSs/ENNO7MyWSTjL4g9B
-F0ZoHf+Mp8liTvpd9aet/8v1UMB3BQ==
-=LT7H
------END PGP SIGNATURE-----
-
---Sig_/FFYaC=52dh2nz5Y2tmjEFGz--
+Thanks,
+Mauro
