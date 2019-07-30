@@ -2,366 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C3657A681
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 13:06:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DEA847A75F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 13:58:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730203AbfG3LGW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 07:06:22 -0400
-Received: from mail-eopbgr60082.outbound.protection.outlook.com ([40.107.6.82]:42973
-        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725974AbfG3LGW (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Jul 2019 07:06:22 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=lHAj6FK2zuwz4r5lJ5Oio7ZRvijhYti3D0Ofai8iA2zUXxuHTwdJnmyaWeK8sxJtM/DDRygNrFp1Yutn35GgE9+ZrKXQ6hNbTEJH/96LzWtzDEbskZRC6j4dcKqvIFdgMhY82/OqSUVkmLaciYdzz+TUHzxdMdYdDtu+K7vEMXYTO8u02DcYFWwOyJxbVBvZGMJychyEVs9zX/83eCXTDjIyLvtWl70PUbzmP1tyFH0CwtkRUg0ydNODpsom4Z24Mu2yoXug6aoKnpPU1gbSJ4zNFN9whaGEkNLgzSerJLDaXqSflEAqQ9v3U7mrVU2k1py3gW/XY7IT5vADU0oLoQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m3aLFkFCwB5rVDd78R/T0BjxC2c537Xe5FWKOnA5YQY=;
- b=HUe2bmJ4wfwO0cGWdzjetOJh9sHtDNXVCdQJ2NLrPuLcjgvAgG1y4ZFGYJEXZ+zQyVWMUfZraYMZu9DEX3PhdwP3FQsIg/oNj+R/CmDoonwy/unLc/pMTBdHqBU/2Cbi3yPUU2oXU6Vaym2bKt7RZTnHYYYFOwnfwiDYB3pf5RtaLbF/TiFXA4ZMvB/VJb4ioIArT0PqfdWpxcZ+tEWhecDX77/6ZAqYZGDmJFyGBBEVTXfl0PBtdbCiKBAVof3AgkV8HQS9HNImKsUe4wIL/Mikc2Uf7ynIpbMS0J3aXBkF5OwG/WIpEr30906nF2pdl+I/wN6nRzlRRnbWeLV38g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=kococonnector.com;dmarc=pass action=none
- header.from=kococonnector.com;dkim=pass header.d=kococonnector.com;arc=none
+        id S1726910AbfG3L6N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 07:58:13 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:34515 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726784AbfG3L6M (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 07:58:12 -0400
+Received: by mail-ed1-f65.google.com with SMTP id s49so27485183edb.1;
+        Tue, 30 Jul 2019 04:58:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=KoCoConnector.onmicrosoft.com; s=selector2-KoCoConnector-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=m3aLFkFCwB5rVDd78R/T0BjxC2c537Xe5FWKOnA5YQY=;
- b=YFg1E4rZ0aQgE3Sgtr/bqIWV+Lmyhak10wruTnO2ldLozVd9c3BWEXNVig3SX+4VU1Wbq+LkAnjru+9tJaN7Sl7Ii7b3mGk66ycRGMuHMzRHmiVcp4rYHg4M5mx67QgfECx4arVGbxfUYu6ux0dVcbqY5bw1dd/tyxspM9+LxEA=
-Received: from DB6PR0902MB2072.eurprd09.prod.outlook.com (10.170.212.23) by
- DB6PR0902MB1989.eurprd09.prod.outlook.com (10.170.212.21) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.12; Tue, 30 Jul 2019 11:06:16 +0000
-Received: from DB6PR0902MB2072.eurprd09.prod.outlook.com
- ([fe80::c169:d07:269b:2980]) by DB6PR0902MB2072.eurprd09.prod.outlook.com
- ([fe80::c169:d07:269b:2980%7]) with mapi id 15.20.2136.010; Tue, 30 Jul 2019
- 11:06:16 +0000
-From:   Oliver Graute <oliver.graute@kococonnector.com>
-To:     "shawnguo@kernel.org" <shawnguo@kernel.org>
-CC:     "aisheng.dong@nxp.com" <aisheng.dong@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Oliver Graute <oliver.graute@kococonnector.com>,
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=iOiEct7sDLGxqmV+UPTVkXRXkJ+NL1mETFmJCsflESw=;
+        b=tLGZNtXbCFp3mqH0P/RtojF91k9GUpzlWZ54YWSNdlWOq1VyCWPMoEpVEUeryUM1+m
+         FaV/pAK9CSKmwlrkDchBo3saRAqAKH0Ba+7qgHAt3ys84gd42y73/y5PcfU1nUDT1QCj
+         P0LYqWrQgR/dmDHD/Adh6ja17B6F1vQRx3kHnDexxIuL+lLT2hA9eDJLtP+Hokj0bsVP
+         MxqqRdXQQb5AfokymMXITVV+7EMSkrNpMaCxNeC6ag4NXH2waInvfQcent67x8QXunI3
+         pTfB5Wd0t2UcnF+SlIQcjR1Bu6ecN7GI1NOSMgFHbIqUIiHSsqCfiiLlisNnM+X+k6Mh
+         hTJg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=iOiEct7sDLGxqmV+UPTVkXRXkJ+NL1mETFmJCsflESw=;
+        b=UND4FknOmGUN4YwfgFGdUOqG6S9wEZ7rUlQevzZvPDsdGeObaPF+voy1NE9bDbtlS1
+         346LuYT2mX0nOPAIYFQUgQKRF4wtWxuth+QAUT/aRlIYwiF05IK4qBQyvwy4NFvgD2hf
+         zlqY3WpE1WmvcXGFy2EeJqUhwAssepo09uxt/Xb38+fklIR1kVwBOHvWo3dhvHic3HLj
+         30C2ACRKokTl/5Ztg0JOJfiXf9w5o3LKS4m0R8d2Y0LdN85w3KTPan6cd6GPftJ4Ux2z
+         5kkPGZZQvSXIWSpwjFPlyJHnzEto7KLYkMwMImYwS7rezfpe9b7qHAdJkDTGyucN31LR
+         mf0g==
+X-Gm-Message-State: APjAAAUcb/gs+60uR12bH3H0rh2TGst+73s3vNv5MT8fLna91OliHvdc
+        d4qFqpWvnuCC6+wqTUK5F8I=
+X-Google-Smtp-Source: APXvYqwXt0oyv7/kAzbvdzd0Rvpbd8VKBaS3xGM6Fns+8067a0r4bv+zvz2ApFbhQgJhUVfGYa8VnA==
+X-Received: by 2002:a17:906:2510:: with SMTP id i16mr21183595ejb.130.1564487890250;
+        Tue, 30 Jul 2019 04:58:10 -0700 (PDT)
+Received: from localhost ([193.47.161.132])
+        by smtp.gmail.com with ESMTPSA id z9sm16788528edd.53.2019.07.30.04.58.08
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 30 Jul 2019 04:58:09 -0700 (PDT)
+Date:   Tue, 30 Jul 2019 13:55:58 +0200
+From:   Oliver Graute <oliver.graute@gmail.com>
+To:     Dong Aisheng <dongas86@gmail.com>
+Cc:     Dong Aisheng <aisheng.dong@nxp.com>,
+        devicetree <devicetree@vger.kernel.org>, sboyd@kernel.org,
+        Michael Turquette <mturquette@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Li Yang <leoyang.li@nxp.com>,
-        Lucas Stach <l.stach@pengutronix.de>,
-        Jacky Bai <ping.bai@nxp.com>,
-        Pankaj Bansal <pankaj.bansal@nxp.com>,
-        Bhaskar Upadhaya <bhaskar.upadhaya@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
-        Vabhav Sharma <vabhav.sharma@nxp.com>,
-        Ulf Hansson <ulf.hansson@linaro.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: [PATCHv3 1/1] arm64: dts: add basic DTS for imx8qm-rom7720-a1 board
-Thread-Topic: [PATCHv3 1/1] arm64: dts: add basic DTS for imx8qm-rom7720-a1
- board
-Thread-Index: AQHVRsbOMBT562mEM06cxWTryDydXA==
-Date:   Tue, 30 Jul 2019 11:06:16 +0000
-Message-ID: <20190730110140.17247-2-oliver.graute@kococonnector.com>
-References: <20190730110140.17247-1-oliver.graute@kococonnector.com>
-In-Reply-To: <20190730110140.17247-1-oliver.graute@kococonnector.com>
-Accept-Language: de-DE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: AM0PR06CA0007.eurprd06.prod.outlook.com
- (2603:10a6:208:ab::20) To DB6PR0902MB2072.eurprd09.prod.outlook.com
- (2603:10a6:6:8::23)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=oliver.graute@kococonnector.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [193.47.161.132]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 47c2380f-c94b-484e-9d99-08d714ddf141
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:DB6PR0902MB1989;
-x-ms-traffictypediagnostic: DB6PR0902MB1989:
-x-microsoft-antispam-prvs: <DB6PR0902MB19891EDD6C16D4539C59D498EBDC0@DB6PR0902MB1989.eurprd09.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1227;
-x-forefront-prvs: 0114FF88F6
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(39840400004)(366004)(396003)(346002)(199004)(189003)(66556008)(4326008)(81166006)(8676002)(316002)(1730700003)(81156014)(14454004)(14444005)(36756003)(52116002)(53936002)(2501003)(256004)(54906003)(86362001)(68736007)(6916009)(508600001)(305945005)(7736002)(476003)(25786009)(50226002)(2906002)(64756008)(7416002)(6486002)(6506007)(71190400001)(6436002)(44832011)(76176011)(102836004)(8936002)(5640700003)(66066001)(6512007)(486006)(71200400001)(66946007)(11346002)(186003)(446003)(26005)(3846002)(99286004)(66446008)(2616005)(1076003)(5660300002)(6116002)(386003)(66476007)(2351001)(32563001)(473944003)(414714003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB6PR0902MB1989;H:DB6PR0902MB2072.eurprd09.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: kococonnector.com does not
- designate permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: K45Qfm3RpZIv42X2Ak8P3zXs5ZTpms6NNDCElggv3dqaZ9OhqyLzuPkjrCtAUHKpxVYlafhtDTtyvJsgxz31JZrS2DxB87E/Kq7vInbkftwWPtrf/FHJ/EDp8bXlR/MhhQJF6IsCzoeuKpe5WaKwpTCm9C6cSXoftloEnElldd4HN99d8Qza4n5RO1iKNRDLtK3VonpSmWm9B4GknBe5bS2j2VceP+dgHV60Pij2xq7em+X9+nflQnBsUKpLA04mz6EcjSZp1ReQdfltw48gcE/LDOsEJfvygopJZQ1DLBaxNThjReBeMVWt1ELEl1mp9ksmxb439shC4denuNJxbX+v0FWdGHWYDhPwHd+LCCv/SuyQgONrPq9/VRISjIkFcQrwJyHbs8AiWyvUg1+xE2K4WeCY1/70k5zh2f0/WjA=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        dl-linux-imx <linux-imx@nxp.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        Fabio Estevam <fabio.estevam@nxp.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        linux-clk <linux-clk@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [PATCH v3 00/11] clk: imx8: add new clock binding for better pm
+ support
+Message-ID: <20190730115558.GA29350@optiplex>
+References: <1563289265-10977-1-git-send-email-aisheng.dong@nxp.com>
+ <CAA+hA=TkrwzWbJQu7Cc6njdQSP--u=Zf+=FcPg-wCZ=rRXoRuQ@mail.gmail.com>
 MIME-Version: 1.0
-X-OriginatorOrg: kococonnector.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 47c2380f-c94b-484e-9d99-08d714ddf141
-X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2019 11:06:16.5860
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 59845429-0644-4099-bd7e-17fba65a2f2b
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: oliver.graute@kococonnector.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0902MB1989
+Content-Type: multipart/signed; protocol="application/x-pkcs7-signature";
+        micalg=sha-256; boundary="pWyiEgJYm5f9v55/"
+Content-Disposition: inline
+In-Reply-To: <CAA+hA=TkrwzWbJQu7Cc6njdQSP--u=Zf+=FcPg-wCZ=rRXoRuQ@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add basic dts support for a Advantech iMX8QM Qseven Board
 
-Signed-off-by: Oliver Graute <oliver.graute@kococonnector.com>
----
- arch/arm64/boot/dts/freescale/Makefile        |   1 +
- .../boot/dts/freescale/imx8qm-rom7720-a1.dts  | 228 ++++++++++++++++++
- 2 files changed, 229 insertions(+)
- create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-rom7720-a1.dts
+--pWyiEgJYm5f9v55/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-diff --git a/arch/arm64/boot/dts/freescale/Makefile b/arch/arm64/boot/dts/f=
-reescale/Makefile
-index c5e39cd4fdaf..68dd30ade6df 100644
---- a/arch/arm64/boot/dts/freescale/Makefile
-+++ b/arch/arm64/boot/dts/freescale/Makefile
-@@ -26,4 +26,5 @@ dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-librem5-devkit.dtb
- dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-zii-ultra-rmb3.dtb
- dtb-$(CONFIG_ARCH_MXC) +=3D imx8mq-zii-ultra-zest.dtb
- dtb-$(CONFIG_ARCH_MXC) +=3D imx8qm-mek.dtb
-+dtb-$(CONFIG_ARCH_MXC) +=3D imx8qm-rom7720-a1.dtb
- dtb-$(CONFIG_ARCH_MXC) +=3D imx8qxp-mek.dtb
-diff --git a/arch/arm64/boot/dts/freescale/imx8qm-rom7720-a1.dts b/arch/arm=
-64/boot/dts/freescale/imx8qm-rom7720-a1.dts
-new file mode 100644
-index 000000000000..f79c2c7a7cda
---- /dev/null
-+++ b/arch/arm64/boot/dts/freescale/imx8qm-rom7720-a1.dts
-@@ -0,0 +1,228 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/dts-v1/;
-+
-+#include "imx8qm.dtsi"
-+
-+/ {
-+	model =3D "Advantech iMX8QM Qseven series";
-+	compatible =3D "fsl,imx8qm";
-+
-+	board {
-+		compatible =3D "proc-board";
-+		board-type =3D "ROM-7720_A1";
-+		board-cpu  =3D "iMX8QM";
-+	};
-+
-+	chosen {
-+		bootargs =3D "console=3DttyLP0,115200 earlycon=3Dlpuart32,0x5a060000,115=
-200";
-+		stdout-path =3D &lpuart0;
-+	};
-+
-+	cpus {
-+		/delete-node/ cpu-map;
-+		/delete-node/ cpu@100;
-+		/delete-node/ cpu@101;
-+	};
-+
-+	memory@80000000 {
-+		device_type =3D "memory";
-+		reg =3D <0x00000000 0x80000000 0 0x40000000>;
-+	};
-+
-+	reg_usdhc2_vmmc: usdhc2_vmmc {
-+		compatible =3D "regulator-fixed";
-+		regulator-name =3D "sw-3p3-sd1";
-+		regulator-min-microvolt =3D <3300000>;
-+		regulator-max-microvolt =3D <3300000>;
-+		gpio =3D <&lsio_gpio4 7 GPIO_ACTIVE_HIGH>;
-+		off-on-delay =3D <3000>;
-+		enable-active-high;
-+	};
-+};
-+
-+&lpuart0 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl_lpuart0>;
-+	status =3D "okay";
-+};
-+
-+&fec1 {
-+	pinctrl-names =3D "default";
-+	pinctrl-0 =3D <&pinctrl_fec1>;
-+	phy-mode =3D "rgmii-txid";
-+	phy-handle =3D <&ethphy0>;
-+	fsl,magic-packet;
-+	fsl,rgmii_rxc_dly;
-+	status =3D "okay";
-+
-+	mdio {
-+		#address-cells =3D <1>;
-+		#size-cells =3D <0>;
-+
-+		ethphy0: ethernet-phy@0 {
-+			compatible =3D "ethernet-phy-ieee802.3-c22";
-+			reg =3D <4>;
-+			at803x,eee-disabled;
-+			at803x,vddio-1p8v;
-+		};
-+	};
-+};
-+
-+&lsio_gpio4 {
-+        status =3D "okay";
-+};
-+&lsio_gpio5 {
-+        status =3D "okay";
-+};
-+
-+&usdhc1 {
-+	pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 =3D <&pinctrl_usdhc1>;
-+	pinctrl-1 =3D <&pinctrl_usdhc1_100mhz>;
-+	pinctrl-2 =3D <&pinctrl_usdhc1_200mhz>;
-+	bus-width =3D <8>;
-+	non-removable;
-+	status =3D "okay";
-+};
-+
-+&usdhc2 {
-+	pinctrl-names =3D "default", "state_100mhz", "state_200mhz";
-+	pinctrl-0 =3D <&pinctrl_usdhc2>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-1 =3D <&pinctrl_usdhc2_100mhz>, <&pinctrl_usdhc2_gpio>;
-+	pinctrl-2 =3D <&pinctrl_usdhc2_200mhz>, <&pinctrl_usdhc2_gpio>;
-+	bus-width =3D <4>;
-+	cd-gpios =3D <&lsio_gpio5 22 GPIO_ACTIVE_LOW>;
-+	wp-gpios =3D <&lsio_gpio5 21 GPIO_ACTIVE_HIGH>;
-+	vmmc-supply =3D <&reg_usdhc2_vmmc>;
-+	status =3D "okay";
-+};
-+
-+&iomuxc {
-+	pinctrl_hog_1: hoggrp-1 {
-+		fsl,pins =3D <
-+			IMX8QM_USB_SS3_TC0_LSIO_GPIO4_IO03	  0x06000048
-+		>;
-+	};
-+
-+	pinctrl_fec1: fec1grp {
-+		fsl,pins =3D <
-+			IMX8QM_COMP_CTL_GPIO_1V8_3V3_ENET_ENETB_PAD	0x000014a0
-+			IMX8QM_ENET0_MDC_CONN_ENET0_MDC			0x06000020
-+			IMX8QM_ENET0_MDIO_CONN_ENET0_MDIO		0x06000020
-+			IMX8QM_ENET0_RGMII_TX_CTL_CONN_ENET0_RGMII_TX_CTL	0x00000060
-+			IMX8QM_ENET0_RGMII_TXC_CONN_ENET0_RGMII_TXC	0x00000060
-+			IMX8QM_ENET0_RGMII_TXD0_CONN_ENET0_RGMII_TXD0	0x00000060
-+			IMX8QM_ENET0_RGMII_TXD1_CONN_ENET0_RGMII_TXD1	0x00000060
-+			IMX8QM_ENET0_RGMII_TXD2_CONN_ENET0_RGMII_TXD2	0x00000060
-+			IMX8QM_ENET0_RGMII_TXD3_CONN_ENET0_RGMII_TXD3	0x00000060
-+			IMX8QM_ENET0_RGMII_RXC_CONN_ENET0_RGMII_RXC	0x00000060
-+			IMX8QM_ENET0_RGMII_RX_CTL_CONN_ENET0_RGMII_RX_CTL	0x00000060
-+			IMX8QM_ENET0_RGMII_RXD0_CONN_ENET0_RGMII_RXD0	0x00000060
-+			IMX8QM_ENET0_RGMII_RXD1_CONN_ENET0_RGMII_RXD1	0x00000060
-+			IMX8QM_ENET0_RGMII_RXD2_CONN_ENET0_RGMII_RXD2	0x00000060
-+			IMX8QM_ENET0_RGMII_RXD3_CONN_ENET0_RGMII_RXD3	0x00000060
-+		>;
-+	};
-+
-+	pinctrl_lpuart0: lpuart0grp {
-+		fsl,pins =3D <
-+			IMX8QM_UART0_RX_DMA_UART0_RX		0x06000020
-+			IMX8QM_UART0_TX_DMA_UART0_TX		0x06000020
-+		>;
-+	};
-+
-+	pinctrl_usdhc1: usdhc1grp {
-+		fsl,pins =3D <
-+			IMX8QM_EMMC0_CLK_CONN_EMMC0_CLK		0x06000041
-+			IMX8QM_EMMC0_CMD_CONN_EMMC0_CMD		0x00000021
-+			IMX8QM_EMMC0_DATA0_CONN_EMMC0_DATA0	0x00000021
-+			IMX8QM_EMMC0_DATA1_CONN_EMMC0_DATA1	0x00000021
-+			IMX8QM_EMMC0_DATA2_CONN_EMMC0_DATA2	0x00000021
-+			IMX8QM_EMMC0_DATA3_CONN_EMMC0_DATA3	0x00000021
-+			IMX8QM_EMMC0_DATA4_CONN_EMMC0_DATA4	0x00000021
-+			IMX8QM_EMMC0_DATA5_CONN_EMMC0_DATA5	0x00000021
-+			IMX8QM_EMMC0_DATA6_CONN_EMMC0_DATA6	0x00000021
-+			IMX8QM_EMMC0_DATA7_CONN_EMMC0_DATA7	0x00000021
-+			IMX8QM_EMMC0_STROBE_CONN_EMMC0_STROBE	0x00000041
-+			IMX8QM_EMMC0_RESET_B_CONN_EMMC0_RESET_B	0x00000021
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_100mhz: usdhc1grp100mhz {
-+		fsl,pins =3D <
-+			IMX8QM_EMMC0_CLK_CONN_EMMC0_CLK		0x06000040
-+			IMX8QM_EMMC0_CMD_CONN_EMMC0_CMD		0x00000020
-+			IMX8QM_EMMC0_DATA0_CONN_EMMC0_DATA0	0x00000020
-+			IMX8QM_EMMC0_DATA1_CONN_EMMC0_DATA1	0x00000020
-+			IMX8QM_EMMC0_DATA2_CONN_EMMC0_DATA2	0x00000020
-+			IMX8QM_EMMC0_DATA3_CONN_EMMC0_DATA3	0x00000020
-+			IMX8QM_EMMC0_DATA4_CONN_EMMC0_DATA4	0x00000020
-+			IMX8QM_EMMC0_DATA5_CONN_EMMC0_DATA5	0x00000020
-+			IMX8QM_EMMC0_DATA6_CONN_EMMC0_DATA6	0x00000020
-+			IMX8QM_EMMC0_DATA7_CONN_EMMC0_DATA7	0x00000020
-+			IMX8QM_EMMC0_STROBE_CONN_EMMC0_STROBE	0x00000040
-+			IMX8QM_EMMC0_RESET_B_CONN_EMMC0_RESET_B	0x00000020
-+		>;
-+	};
-+
-+	pinctrl_usdhc1_200mhz: usdhc1grp200mhz {
-+		fsl,pins =3D <
-+			IMX8QM_EMMC0_CLK_CONN_EMMC0_CLK		0x06000040
-+				IMX8QM_EMMC0_CMD_CONN_EMMC0_CMD		0x00000020
-+			IMX8QM_EMMC0_DATA0_CONN_EMMC0_DATA0	0x00000020
-+			IMX8QM_EMMC0_DATA1_CONN_EMMC0_DATA1	0x00000020
-+			IMX8QM_EMMC0_DATA2_CONN_EMMC0_DATA2	0x00000020
-+			IMX8QM_EMMC0_DATA3_CONN_EMMC0_DATA3	0x00000020
-+			IMX8QM_EMMC0_DATA4_CONN_EMMC0_DATA4	0x00000020
-+			IMX8QM_EMMC0_DATA5_CONN_EMMC0_DATA5	0x00000020
-+			IMX8QM_EMMC0_DATA6_CONN_EMMC0_DATA6	0x00000020
-+			IMX8QM_EMMC0_DATA7_CONN_EMMC0_DATA7	0x00000020
-+			IMX8QM_EMMC0_STROBE_CONN_EMMC0_STROBE	0x00000040
-+			IMX8QM_EMMC0_RESET_B_CONN_EMMC0_RESET_B	0x00000020
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_gpio: usdhc2grpgpio {
-+		fsl,pins =3D <
-+			IMX8QM_USDHC1_DATA6_LSIO_GPIO5_IO21	0x00000021
-+			IMX8QM_USDHC1_DATA7_LSIO_GPIO5_IO22	0x00000021
-+			IMX8QM_USDHC1_RESET_B_LSIO_GPIO4_IO07	0x00000021
-+		>;
-+	};
-+
-+	pinctrl_usdhc2: usdhc2grp {
-+		fsl,pins =3D <
-+			IMX8QM_USDHC1_CLK_CONN_USDHC1_CLK	0x06000041
-+			IMX8QM_USDHC1_CMD_CONN_USDHC1_CMD	0x00000021
-+			IMX8QM_USDHC1_DATA0_CONN_USDHC1_DATA0	0x00000021
-+			IMX8QM_USDHC1_DATA1_CONN_USDHC1_DATA1	0x00000021
-+			IMX8QM_USDHC1_DATA2_CONN_USDHC1_DATA2	0x00000021
-+			IMX8QM_USDHC1_DATA3_CONN_USDHC1_DATA3	0x00000021
-+			IMX8QM_USDHC1_VSELECT_CONN_USDHC1_VSELECT	0x00000021
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_100mhz: usdhc2grp100mhz {
-+		fsl,pins =3D <
-+			IMX8QM_USDHC1_CLK_CONN_USDHC1_CLK	0x06000040
-+			IMX8QM_USDHC1_CMD_CONN_USDHC1_CMD	0x00000020
-+			IMX8QM_USDHC1_DATA0_CONN_USDHC1_DATA0	0x00000020
-+			IMX8QM_USDHC1_DATA1_CONN_USDHC1_DATA1	0x00000020
-+			IMX8QM_USDHC1_DATA2_CONN_USDHC1_DATA2	0x00000020
-+			IMX8QM_USDHC1_DATA3_CONN_USDHC1_DATA3	0x00000020
-+			IMX8QM_USDHC1_VSELECT_CONN_USDHC1_VSELECT	0x00000020
-+		>;
-+	};
-+
-+	pinctrl_usdhc2_200mhz: usdhc2grp200mhz {
-+		fsl,pins =3D <
-+			IMX8QM_USDHC1_CLK_CONN_USDHC1_CLK	0x06000040
-+			IMX8QM_USDHC1_CMD_CONN_USDHC1_CMD	0x00000020
-+			IMX8QM_USDHC1_DATA0_CONN_USDHC1_DATA0	0x00000020
-+			IMX8QM_USDHC1_DATA1_CONN_USDHC1_DATA1	0x00000020
-+			IMX8QM_USDHC1_DATA2_CONN_USDHC1_DATA2	0x00000020
-+			IMX8QM_USDHC1_DATA3_CONN_USDHC1_DATA3	0x00000020
-+			IMX8QM_USDHC1_VSELECT_CONN_USDHC1_VSELECT	0x00000020
-+		>;
-+	};
-+};
---=20
-2.17.1
+On 25/07/19, Dong Aisheng wrote:
+> Hi Rob & Stephen & Shawn,
+>=20
+> Could you help review this patchset?
+> We're pretty stuck here for a long time and a lot continued work are bloc=
+ked.
+> We really need your kind help.
 
+I'am also interested in this work and could offer some testing as soon
+my imx8qm based board is booting.
+
+Best regards,
+
+Oliver
+
+--pWyiEgJYm5f9v55/
+Content-Type: application/x-pkcs7-signature
+Content-Disposition: attachment; filename="smime.p7s"
+Content-Transfer-Encoding: base64
+
+MIINNwYJKoZIhvcNAQcCoIINKDCCDSQCAQExDzANBglghkgBZQMEAgEFADALBgkqhkiG9w0B
+BwGgggp8MIIE6DCCA9CgAwIBAgIOSBtqCRO9gCTKXSLwFPMwDQYJKoZIhvcNAQELBQAwTDEg
+MB4GA1UECxMXR2xvYmFsU2lnbiBSb290IENBIC0gUjMxEzARBgNVBAoTCkdsb2JhbFNpZ24x
+EzARBgNVBAMTCkdsb2JhbFNpZ24wHhcNMTYwNjE1MDAwMDAwWhcNMjQwNjE1MDAwMDAwWjBd
+MQswCQYDVQQGEwJCRTEZMBcGA1UEChMQR2xvYmFsU2lnbiBudi1zYTEzMDEGA1UEAxMqR2xv
+YmFsU2lnbiBQZXJzb25hbFNpZ24gMiBDQSAtIFNIQTI1NiAtIEczMIIBIjANBgkqhkiG9w0B
+AQEFAAOCAQ8AMIIBCgKCAQEAtpZok2X9LAHsYqMNVL+Ly6RDkaKar7GD8rVtb9nw6tzPFnvX
+GeOEA4X5xh9wjx9sScVpGR5wkTg1fgJIXTlrGESmaqXIdPRd9YQ+Yx9xRIIIPu3Jp/bpbiZB
+KYDJSbr/2Xago7sb9nnfSyjTSnucUcIPZVChn6hKneVGBI2DT9yyyD3PmCEJmEzA8Y96qT83
+JmVH2GaPSSbCw0C+Zj1s/zqtKUbwE5zh8uuZp4vC019QbaIOb8cGlzgvTqGORwK0gwDYpOO6
+QQdg5d03WvIHwTunnJdoLrfvqUg2vOlpqJmqR+nH9lHS+bEstsVJtZieU1Pa+3LzfA/4cT7X
+A/pnwwIDAQABo4IBtTCCAbEwDgYDVR0PAQH/BAQDAgEGMGoGA1UdJQRjMGEGCCsGAQUFBwMC
+BggrBgEFBQcDBAYIKwYBBQUHAwkGCisGAQQBgjcUAgIGCisGAQQBgjcKAwQGCSsGAQQBgjcV
+BgYKKwYBBAGCNwoDDAYIKwYBBQUHAwcGCCsGAQUFBwMRMBIGA1UdEwEB/wQIMAYBAf8CAQAw
+HQYDVR0OBBYEFGlygmIxZ5VEhXeRgMQENkmdewthMB8GA1UdIwQYMBaAFI/wS3+oLkUkrk1Q
++mOai97i3Ru8MD4GCCsGAQUFBwEBBDIwMDAuBggrBgEFBQcwAYYiaHR0cDovL29jc3AyLmds
+b2JhbHNpZ24uY29tL3Jvb3RyMzA2BgNVHR8ELzAtMCugKaAnhiVodHRwOi8vY3JsLmdsb2Jh
+bHNpZ24uY29tL3Jvb3QtcjMuY3JsMGcGA1UdIARgMF4wCwYJKwYBBAGgMgEoMAwGCisGAQQB
+oDIBKAowQQYJKwYBBAGgMgFfMDQwMgYIKwYBBQUHAgEWJmh0dHBzOi8vd3d3Lmdsb2JhbHNp
+Z24uY29tL3JlcG9zaXRvcnkvMA0GCSqGSIb3DQEBCwUAA4IBAQConc0yzHxn4gtQ16VccKNm
+4iXv6rS2UzBuhxI3XDPiwihW45O9RZXzWNgVcUzz5IKJFL7+pcxHvesGVII+5r++9eqI9XnE
+KCILjHr2DgvjKq5Jmg6bwifybLYbVUoBthnhaFB0WLwSRRhPrt5eGxMw51UmNICi/hSKBKsH
+hGFSEaJQALZy4HL0EWduE6ILYAjX6BSXRDtHFeUPddb46f5Hf5rzITGLsn9BIpoOVrgS878O
+4JnfUWQi29yBfn75HajifFvPC+uqn+rcVnvrpLgsLOYG/64kWX/FRH8+mhVe+mcSX3xsUpcx
+K9q9vLTVtroU/yJUmEC4OcH5dQsbHBqjMIIFjDCCBHSgAwIBAgIMO12UXtvYfwfC8M6yMA0G
+CSqGSIb3DQEBCwUAMF0xCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNh
+MTMwMQYDVQQDEypHbG9iYWxTaWduIFBlcnNvbmFsU2lnbiAyIENBIC0gU0hBMjU2IC0gRzMw
+HhcNMTkwNDAxMTExNjI5WhcNMjIwNDAxMTExNjI5WjCBlTELMAkGA1UEBhMCREUxDzANBgNV
+BAgTBkJlcmxpbjEPMA0GA1UEBxMGQmVybGluMRwwGgYDVQQKExNLb0NvIENvbm5lY3RvciBH
+bWJIMRYwFAYDVQQDEw1PbGl2ZXIgR3JhdXRlMS4wLAYJKoZIhvcNAQkBFh9vbGl2ZXIuZ3Jh
+dXRlQGtvY29jb25uZWN0b3IuY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA
+6tEB11ySFgf4wcRECw6gPEo6N4BJEkUlxp4L6byZO5YtXgJ2jdMudJsTWuu8w0Gk+7QklmOJ
+1qU4Ma066KQ+YgCxLuO1gX7FEl2zciiumyfEvC2rTIXX6c6bvxvMPvJhDm1eRMf4aj10/bgN
+Hxk9iuNdSVlqYLu0h5QMLW8HmA5PfN+QpfAn+CUhcJT0wec7vRh3FEiO38ySru6Od+AqfuJK
+dj45wOvTEBj42QvHqVYcnzcmXW2KkM+8cZBYabs1bLhO3WldwaOh8EZNRZvSvioKyCNKGgUU
+vFcDy3l/aGpEqr4zc0sGhVMpTPZpd67/wcTZgW4waDcDvT/kdFJN5QIDAQABo4ICETCCAg0w
+DgYDVR0PAQH/BAQDAgWgMIGeBggrBgEFBQcBAQSBkTCBjjBNBggrBgEFBQcwAoZBaHR0cDov
+L3NlY3VyZS5nbG9iYWxzaWduLmNvbS9jYWNlcnQvZ3NwZXJzb25hbHNpZ24yc2hhMmczb2Nz
+cC5jcnQwPQYIKwYBBQUHMAGGMWh0dHA6Ly9vY3NwMi5nbG9iYWxzaWduLmNvbS9nc3BlcnNv
+bmFsc2lnbjJzaGEyZzMwTQYDVR0gBEYwRDBCBgorBgEEAaAyASgKMDQwMgYIKwYBBQUHAgEW
+Jmh0dHBzOi8vd3d3Lmdsb2JhbHNpZ24uY29tL3JlcG9zaXRvcnkvMAkGA1UdEwQCMAAwRAYD
+VR0fBD0wOzA5oDegNYYzaHR0cDovL2NybC5nbG9iYWxzaWduLmNvbS9nc3BlcnNvbmFsc2ln
+bjJzaGEyZzMuY3JsMFsGA1UdEQRUMFKBH29saXZlci5ncmF1dGVAa29jb2Nvbm5lY3Rvci5j
+b22gLwYKKwYBBAGCNxQCA6AhDB9vbGl2ZXIuZ3JhdXRlQGtvY29jb25uZWN0b3IuY29tMB0G
+A1UdJQQWMBQGCCsGAQUFBwMCBggrBgEFBQcDBDAdBgNVHQ4EFgQU3xRHUdawOpr7j3ksQbT5
+tYF66RMwHwYDVR0jBBgwFoAUaXKCYjFnlUSFd5GAxAQ2SZ17C2EwDQYJKoZIhvcNAQELBQAD
+ggEBAB/DTqBqTFDUriAbT39gkhoa+uFPWO8NID6UrJ9FqXUpgPzIpkGKf/gv1PKCGVblKY4F
+ewgiU3e/ZIAQFIAmwIUPwilkjtBDwHDyBbT68AYLjoS85+8V4ELri7q9fW+w5ldBaCnJ6yiv
+B2VMe7Nuu2PO4eI921NG2czrvBggVtYInrQNTAGj+f+JU4nua+YsYq8HkC4FiH4tmHEULFvD
+CDQOBeeKqJdn7RsAysG7AwOWwVh8S8FmRGu69RwQbl/PyojiV1w6TUPHm45hj11H1qihrL4X
+I9GTHjYv6/Cc6cU1fGVdAmbGK6UrH04yJuJja4YwT3WxU53BWrM6dvdFMksxggJ/MIICewIB
+ATBtMF0xCzAJBgNVBAYTAkJFMRkwFwYDVQQKExBHbG9iYWxTaWduIG52LXNhMTMwMQYDVQQD
+EypHbG9iYWxTaWduIFBlcnNvbmFsU2lnbiAyIENBIC0gU0hBMjU2IC0gRzMCDDtdlF7b2H8H
+wvDOsjANBglghkgBZQMEAgEFAKCB5DAYBgkqhkiG9w0BCQMxCwYJKoZIhvcNAQcBMBwGCSqG
+SIb3DQEJBTEPFw0xOTA3MzAxMTU1NThaMC8GCSqGSIb3DQEJBDEiBCAfIM+BNvtnPOzavc3M
+Yk3ZCU/IxiHV/BBXaft8DSCM0zB5BgkqhkiG9w0BCQ8xbDBqMAsGCWCGSAFlAwQBKjALBglg
+hkgBZQMEARYwCwYJYIZIAWUDBAECMAoGCCqGSIb3DQMHMA4GCCqGSIb3DQMCAgIAgDANBggq
+hkiG9w0DAgIBQDAHBgUrDgMCBzANBggqhkiG9w0DAgIBKDANBgkqhkiG9w0BAQEFAASCAQCQ
+lRf8YUFcJf0j6/ymZzvKImv22QJooX6foroUlBvQk4irYexFici9L9K9pMt2279kZIzSfQbQ
++7dxVNmjTEacRAE5kvN+MSFf+HZDzBZROCqLAUJSo3hyCY6MADMngzPT46zympyTUS0xhHXO
+8ulQlDeenYTxNPHg2l/VSqJr1w6PELOnZyGhTgF3njRcqMLDVDyblMPyeR75USWIXEK2k4us
+em46E3XS/2mcVJ9oSkonq1OhyKEP0QqGBfHsw8pLU6GYIEkvcZfOuyGLp0cuL3fr9oGrG8iR
+6b/pteEXQDL6Y5m/Lysl/AlxWoQ3DuluFaiZff7ZhD2RU8DyA8wx
+
+--pWyiEgJYm5f9v55/--
