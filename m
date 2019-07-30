@@ -2,91 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 960287A3A1
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 11:05:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 54DC47A3C7
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 11:16:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728233AbfG3JFP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 05:05:15 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:35574 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728128AbfG3JFO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 05:05:14 -0400
-Received: by mail-wm1-f67.google.com with SMTP id l2so55869496wmg.0
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2019 02:05:13 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=qGr1BDi0c/2TdLi67wBjX5+c8yyhM7Ix8wxZtUpjo5g=;
-        b=fEKj3pYgSNCVMZDZdtCMHO/oPs4i0a3ucUE9X2f6nEaNA0gJ6xnCUEYQqZ00SDkZAe
-         qas/HbrLLEkz1D1pAtQ0eQ3wbYrSzEYtopSM0GOB8MIEy2HNTIgm8bZpUa0uQdrS+ry5
-         Ne6PdJltp47jtCpLzC/hSV0txKprnYrdf7hcB9QJEoZuNd6bhX94afsdewA44zIui5Jq
-         jYZ/6zgBV0UAJuGwJLXrq0OKWBPwWtsgz6mPLYohbxRL64rFDevg+IhYhSu0HYGtRu8D
-         HUWYZlLszd41A+FTo3tYjcTk8Dnk0YVRQmW3qKsL6FJ6MAm1kwoq4DhoOxe89TiJszof
-         qu3Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=qGr1BDi0c/2TdLi67wBjX5+c8yyhM7Ix8wxZtUpjo5g=;
-        b=ajNlpUK5A/4K1oEc5/o6LU4xFqqzsM3nDIyKU+RszqXESgb5+Tvdts+F5ajQ8Hkjgc
-         R6NKMPtrTeUYXyq/QGhZvDVN4bpwqHQuRDU1R9tuNfA8g8KzACBngqrsORlXX/RBj1o3
-         2+5Ff8gftQ93f5Mnm9njrxadDPFzeMvmoyCmFy/7zieX5fbtAFdiwdZGhP627x26MP83
-         0b/ekpLJy4MMFRRxXSscbGg2mL3bPJY9zNSnJte+mjAFE6Uq8YNqbdlR+vt+emSS9yKy
-         kIQGare/st+J/hfj8whDL2TIU1Rzvec48aWKriIrhchfOIuJX2rRYRsXDyJDISNi9LG9
-         UtVA==
-X-Gm-Message-State: APjAAAVA4UIqNkIyVISvgiNJO/qa2VndirxvVmLBB7J+1qScJegvdxDo
-        mnSXTvyDBWNvWRynxZWozKKfMg==
-X-Google-Smtp-Source: APXvYqwFlbUFxsYoSDxGSyZmNiW7VbV+zb0tbv/uEpdFegDVeNvxUOUn6FwGoEV4Xa9IoHuoN+8obg==
-X-Received: by 2002:a1c:c188:: with SMTP id r130mr98830929wmf.73.1564477512141;
-        Tue, 30 Jul 2019 02:05:12 -0700 (PDT)
-Received: from localhost ([2a01:e34:eeb6:4690:ecfa:1144:aa53:4a82])
-        by smtp.gmail.com with ESMTPSA id f12sm69804468wrg.5.2019.07.30.02.05.11
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 30 Jul 2019 02:05:11 -0700 (PDT)
-From:   Jerome Brunet <jbrunet@baylibre.com>
-To:     Carlo Caione <ccaione@baylibre.com>,
-        srinivas.kandagatla@linaro.org, khilman@baylibre.com,
-        narmstrong@baylibre.com, robh+dt@kernel.org, tglx@linutronix.de,
-        linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Carlo Caione <ccaione@baylibre.com>
-Subject: Re: [PATCH 2/5] firmware: meson_sm: Mark chip struct as static const
-In-Reply-To: <20190729183941.18164-3-ccaione@baylibre.com>
-References: <20190729183941.18164-1-ccaione@baylibre.com> <20190729183941.18164-3-ccaione@baylibre.com>
-Date:   Tue, 30 Jul 2019 11:05:10 +0200
-Message-ID: <1jv9vj28qh.fsf@starbuckisacylon.baylibre.com>
-MIME-Version: 1.0
-Content-Type: text/plain
+        id S1729205AbfG3JQJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 05:16:09 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:36270 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726557AbfG3JQJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Jul 2019 05:16:09 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4A55320061B;
+        Tue, 30 Jul 2019 11:16:07 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C242B20062A;
+        Tue, 30 Jul 2019 11:16:03 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id EEC0C402F3;
+        Tue, 30 Jul 2019 17:15:58 +0800 (SGT)
+From:   Biwen Li <biwen.li@nxp.com>
+To:     robh+dt@kernel.org, mark.rutland@arm.com, leoyang.li@nxp.com
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Biwen Li <biwen.li@nxp.com>
+Subject: [PATCH 1/3] arm64: dts: ls1028a: Add ftm_alarm0 DT node
+Date:   Tue, 30 Jul 2019 17:06:32 +0800
+Message-Id: <20190730090634.25070-1-biwen.li@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon 29 Jul 2019 at 19:39, Carlo Caione <ccaione@baylibre.com> wrote:
+The patch adds ftm_alarm0 DT node for LS1028ARDB board
+FlexTimer1 module is used to wakeup the system
 
-> No need to be a global struct.
->
-> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
+Signed-off-by: Biwen Li <biwen.li@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 17 +++++++++++++++++
+ 1 file changed, 17 insertions(+)
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+index 7975519b4f56..3c66d1e1d196 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+@@ -17,6 +17,10 @@
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 
++	aliases {
++		rtc1 = &ftm_alarm0;
++	};
++
+ 	cpus {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+@@ -543,6 +547,19 @@
+ 				little-endian;
+ 			};
+ 		};
++
++		rcpm: rcpm@1e34040 {
++			compatible = "fsl,ls1028a-rcpm", "fsl,qoriq-rcpm-2.1+";
++			reg = <0x0 0x1e34040 0x0 0x1c>;
++			#fsl,rcpm-wakeup-cells = <7>;
++		};
++
++		ftm_alarm0: timer@2800000 {
++			compatible = "fsl,ls1028a-ftm-alarm";
++			reg = <0x0 0x2800000 0x0 0x10000>;
++			fsl,rcpm-wakeup = <&rcpm 0x0 0x0 0x0 0x0 0x4000 0x0 0x0>;
++			interrupts = <GIC_SPI 44 IRQ_TYPE_LEVEL_HIGH>;
++		};
+ 	};
+ 
+ 	malidp0: display@f080000 {
+-- 
+2.17.1
 
-> ---
->  drivers/firmware/meson/meson_sm.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
->
-> diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
-> index 8d908a8e0d20..772ca6726e7b 100644
-> --- a/drivers/firmware/meson/meson_sm.c
-> +++ b/drivers/firmware/meson/meson_sm.c
-> @@ -35,7 +35,7 @@ struct meson_sm_chip {
->  	struct meson_sm_cmd cmd[];
->  };
->  
-> -struct meson_sm_chip gxbb_chip = {
-> +static const struct meson_sm_chip gxbb_chip = {
->  	.shmem_size		= SZ_4K,
->  	.cmd_shmem_in_base	= 0x82000020,
->  	.cmd_shmem_out_base	= 0x82000021,
-> -- 
-> 2.20.1
