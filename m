@@ -2,51 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B5A67A052
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 07:28:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1F7237A0C2
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 07:54:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729294AbfG3F24 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 01:28:56 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:52350 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729293AbfG3F2z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 01:28:55 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 5500160790; Tue, 30 Jul 2019 05:28:54 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1564464534;
-        bh=CMiqiJA9dGTxLVRLhOlk6KwjAuYDs4kAVLEkfwXcBcs=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=XlCrNyfRKRNzHUhsNBgrlSRlDOHrJ23JJGKv5Bf736k7nucx6bR6XjEr4mMqAk98c
-         I+6/O5ukztJko/KIRH/0hYGVgj660QKoxUxuRB0oUC4b6FZ7zYwpGm2ymBJJsPf7BY
-         BEbTt5wiCKov6tkot/QTE3pVf4uq1U5RYG94nJaA=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.79.43.230] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 87DB36030E;
-        Tue, 30 Jul 2019 05:28:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1564464533;
-        bh=CMiqiJA9dGTxLVRLhOlk6KwjAuYDs4kAVLEkfwXcBcs=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=LIbC5lTR5O8GUzQJJ+kHSYmI4N91Mya32Qp2DWWxq3DphY20JeK5QtoLQOrTT8qno
-         HciHmgISMYPbGqFsu20xwpcqyNVGr7+Yfz9xpY3QEIKNocyulB45XLrv00Xd3Ozf0i
-         YtcjjlApkvOWsdRvAqkTgQnni93j4csE0gy/n0fo=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 87DB36030E
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
+        id S1728764AbfG3Fxt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 01:53:49 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:43594 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726133AbfG3Fxt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 01:53:49 -0400
+Received: by mail-ot1-f66.google.com with SMTP id j11so7763443otp.10
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 22:53:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=z9yhVZrCo2Ym96O9jSbeb4ViFfqeymdVjMGrDKz2FPM=;
+        b=N17K/Md9kf9zsF+8d2jNQ4qeEMqeDzuH2Fn+lKJIzHgbcXXOjdXqxhe19pt/7H+kfK
+         XIK9MUmRSzEkvOdZxeQ6792Oxc44al7rEb96Qa4TRYkiZNU+2QBvoxA5HSBjy2Qbr6W8
+         karZdmF31kOYyjULxZJDgpCSFY/y12xphn+Ku0jhWDm02Ic0UcY97gI3Q798ydEBPQYd
+         +ddBmLBRhnl5/3zOGgNhGxyitb7DltzQm7fjlDExtim+zNKXNt1MRCHizz3F+SBjicNQ
+         nOI9ItTaH6hxoO9MeQTvvhUsb+gY3mSY/yxaPeWHKRA3MkxO3883J0ao/X5SwFU2hK48
+         Cu/g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=z9yhVZrCo2Ym96O9jSbeb4ViFfqeymdVjMGrDKz2FPM=;
+        b=Ap4tFbviztDqsCcbGUBZwvZapHy4iOgrhPb9TydjYkADu+VrlzYEfwG01wi6OI3U5y
+         Yet2fExgP+N0U00q2ZOFouncD0DU4YyvRTHjPmt5m4ctRV2vtuxS+KS3i6shP3ZsbBtg
+         zzPIU0Gfl9fjNZVxlhn42577CdlV+850/3cBWZKE/8VFejusIVcVJvsXZuypxKxFvzwq
+         HAIyiHTkPb4CY2HEFyMuTuP1x8Lvg/I6zZXCLeUQlGAsCD3WTYI55IY++p5A2p4+UlhX
+         BSMqqdrKSLwylq1B94mJXVQv9Y1l2ah71PBvguE+ZCdKu77KZGmrUGNbR3Lvv3mlAfwu
+         iHsA==
+X-Gm-Message-State: APjAAAWvUcpyiHjvxjk1dFHAt6k7eYA6HVFXn2Xrmf/v04UpVRwJl74v
+        ydLMUEl3y7tMttWwZRIEpDLbeDG0n4S7gR55sEB50w==
+X-Google-Smtp-Source: APXvYqw7aEwNPWqA3eNN9XZ6LCef/h3vqbjo/cS8W1eUnYiAmCC4A8v/J5cB8Qphwz409QxSDP0CwBJE6rzqfg/0x8I=
+X-Received: by 2002:a9d:6201:: with SMTP id g1mr86267586otj.195.1564466028394;
+ Mon, 29 Jul 2019 22:53:48 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190726231558.175130-1-saravanak@google.com> <20190729093545.kvnqxjkyx4nogddk@vireshk-i7>
+ <CAGETcx8OBFGgP1-hj717Sk-_N95-kacVsz0yb288n3pej12n1Q@mail.gmail.com>
+ <20190730024640.xk27jgdfl2j6ucx7@vireshk-i7> <361effba-4433-24d9-243c-201af39214cc@codeaurora.org>
+In-Reply-To: <361effba-4433-24d9-243c-201af39214cc@codeaurora.org>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Mon, 29 Jul 2019 22:53:12 -0700
+Message-ID: <CAGETcx_BpJswxA4AGARogZ1xRJPqm=_zTOZq1xJ2vgx+DUYsqQ@mail.gmail.com>
 Subject: Re: [PATCH v4 0/3] Introduce Bandwidth OPPs for interconnects
-To:     Viresh Kumar <viresh.kumar@linaro.org>,
-        Saravana Kannan <saravanak@google.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Sibi Sankar <sibis@codeaurora.org>
+Cc:     Viresh Kumar <viresh.kumar@linaro.org>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
         Stephen Boyd <sboyd@kernel.org>,
@@ -61,59 +67,56 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         Linux PM <linux-pm@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-References: <20190726231558.175130-1-saravanak@google.com>
- <20190729093545.kvnqxjkyx4nogddk@vireshk-i7>
- <CAGETcx8OBFGgP1-hj717Sk-_N95-kacVsz0yb288n3pej12n1Q@mail.gmail.com>
- <20190730024640.xk27jgdfl2j6ucx7@vireshk-i7>
-From:   Sibi Sankar <sibis@codeaurora.org>
-Message-ID: <361effba-4433-24d9-243c-201af39214cc@codeaurora.org>
-Date:   Tue, 30 Jul 2019 10:58:43 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
-MIME-Version: 1.0
-In-Reply-To: <20190730024640.xk27jgdfl2j6ucx7@vireshk-i7>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hey Viresh,
+On Mon, Jul 29, 2019 at 10:28 PM Sibi Sankar <sibis@codeaurora.org> wrote:
+>
+> Hey Viresh,
+>
+> On 7/30/19 8:16 AM, Viresh Kumar wrote:
+> > On 29-07-19, 13:16, Saravana Kannan wrote:
+> >> Sibi might be working on doing that for the SDM845 CPUfreq driver.
+> >> Georgi could also change his GPU driver use case to use this BW OPP
+> >> table and required-opps.
+> >>
+> >> The problem is that people don't want to start using this until we
+> >> decide on the DT representation. So it's like a chicken and egg
+> >> situation.
+> >
+> > Yeah, I agree to that.
+> >
+> > @Georgi and @Sibi: This is your chance to speak up about the proposal
+> > from Saravana and if you find anything wrong with them. And specially
+> > that it is mostly about interconnects here, I would like to have an
+> > explicit Ack from Georgi on this.
+> >
+> > And if you guys are all okay about this then please at least commit
+> > that you will convert your stuff based on this in coming days.
+>
+> I've been using both Saravana's and Georgi's series for a while
+> now to scale DDR and L3 on SDM845. There is currently no consensus
+> as to where the votes are to be actuated from, hence couldn't post
+> anything out.
+>
+> DCVS based on Saravana's series + passive governor:
+> https://github.com/QuinAsura/linux/tree/lnext-072619-SK-series
 
-On 7/30/19 8:16 AM, Viresh Kumar wrote:
-> On 29-07-19, 13:16, Saravana Kannan wrote:
->> Sibi might be working on doing that for the SDM845 CPUfreq driver.
->> Georgi could also change his GPU driver use case to use this BW OPP
->> table and required-opps.
->>
->> The problem is that people don't want to start using this until we
->> decide on the DT representation. So it's like a chicken and egg
->> situation.
-> 
-> Yeah, I agree to that.
-> 
-> @Georgi and @Sibi: This is your chance to speak up about the proposal
-> from Saravana and if you find anything wrong with them. And specially
-> that it is mostly about interconnects here, I would like to have an
-> explicit Ack from Georgi on this.
-> 
-> And if you guys are all okay about this then please at least commit
-> that you will convert your stuff based on this in coming days.
+Thanks Sibi! You might want to convert your patches so that until the
+passive governor is ready, you just look up the required opps and vote
+for BW directly from the cpufreq driver. Once devfreq governor is
+ready, you can switch to it.
 
-I've been using both Saravana's and Georgi's series for a while
-now to scale DDR and L3 on SDM845. There is currently no consensus
-as to where the votes are to be actuated from, hence couldn't post
-anything out.
+-Saravana
 
-DCVS based on Saravana's series + passive governor:
-https://github.com/QuinAsura/linux/tree/lnext-072619-SK-series
-
-DCVS based on Georgi's series: (I had already posted this out)
-https://github.com/QuinAsura/linux/tree/lnext-072619-GJ-series
-
--- 
-Qualcomm Innovation Center, Inc.
-Qualcomm Innovation Center, Inc, is a member of Code Aurora Forum,
-a Linux Foundation Collaborative Project
+>
+> DCVS based on Georgi's series: (I had already posted this out)
+> https://github.com/QuinAsura/linux/tree/lnext-072619-GJ-series
+>
+> --
+> Qualcomm Innovation Center, Inc.
+> Qualcomm Innovation Center, Inc, is a member of Code Aurora Forum,
+> a Linux Foundation Collaborative Project
