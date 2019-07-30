@@ -2,115 +2,229 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DDC197A2C8
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 10:06:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A4F9B7A2D3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 10:09:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729810AbfG3IGA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 04:06:00 -0400
-Received: from mail-pg1-f196.google.com ([209.85.215.196]:43256 "EHLO
-        mail-pg1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726870AbfG3IF7 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 04:05:59 -0400
-Received: by mail-pg1-f196.google.com with SMTP id r22so2037066pgk.10;
-        Tue, 30 Jul 2019 01:05:59 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=nK3/4x5NFOFF3oypb62NSdxsSYTDvzZWRrwefUu2HNE=;
-        b=Y78bswDRD2RbS5DclyAkgDNCNYGF5tNENHw0Q0RvMmx6BgvibdVTxxPbv+Pa1+HCR6
-         MbgDZA1yo2d/1YkGujCC2mulqo8MsG/dppVmsf2t3ZRaTA4li3AFbGRQAjwVFkE0kCzy
-         LhjuvC4AT3BwiJLehh3d1bV1q9C1OZUngYZmYUSDbDQFNRxUWwrw+9T+tMdrg0Tbahv4
-         2mpqH1IFpNa1B9agVc/ZnoCDSo28VebGBbk6hcNBk97amjnMObA0BZUliBqk8U4s0r7u
-         lzqJlipEIk/brQbgMBxnGJ75UGgvzGJFbb/QpaAATc/lgcMO9R2D7Wf2PkZrskEjRuuC
-         IXaw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=nK3/4x5NFOFF3oypb62NSdxsSYTDvzZWRrwefUu2HNE=;
-        b=aEDxC7ToSqV8LbGpoY46yUz3vbZbb67e9LXAfQzWK6asHWDw9c2VTFiGs795RrALzW
-         5EFXEwV8qKYGOB16g1AXahJIq0egwV38HfQvYrNeAw1VTMeuN/zq0RPtWynlP+eGY3aG
-         lVGPEpBfuhtc3tGMUOyaawzLgBpe2hfogTyQPOcyNk70my9R3tWN4WMmDmNskYTTXyuX
-         Ag0qASRVo8BTMwnKVZARusTWGfw/QazXZEwMSeogwTcgDxEpu1NT096BzItyXOrngRqe
-         NlO80vTeg7DEF8nlzF1CtxnAgEqo8jZVwpIKRXOCACbvfwVnfdDke58bXmeHr5ya55c+
-         iKBA==
-X-Gm-Message-State: APjAAAVNlCjox54m1MCVPo6LthGhpTqNAAfBV03G7maAU66IIT1CjJ1G
-        LTs2x/WmznJFOTVgVVUvnmqeJT7H3dE=
-X-Google-Smtp-Source: APXvYqwcWuXpzYPhzMAYQKDGxMxFYEY4mRBESlsr603Ceh+GLoj/fQuDNyNUfqD6447Ze+SKRIdySg==
-X-Received: by 2002:a17:90a:3225:: with SMTP id k34mr114195494pjb.31.1564473959118;
-        Tue, 30 Jul 2019 01:05:59 -0700 (PDT)
-Received: from Asurada (c-98-248-47-108.hsd1.ca.comcast.net. [98.248.47.108])
-        by smtp.gmail.com with ESMTPSA id p7sm69133287pfp.131.2019.07.30.01.05.58
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Jul 2019 01:05:59 -0700 (PDT)
-Date:   Tue, 30 Jul 2019 01:05:52 -0700
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     broonie@kernel.org, l.stach@pengutronix.de, mihai.serban@gmail.com,
-        alsa-devel@alsa-project.org, viorel.suman@nxp.com,
-        timur@kernel.org, shengjiu.wang@nxp.com, angus@akkea.ca,
-        tiwai@suse.com, linux-imx@nxp.com, kernel@pengutronix.de,
-        festevam@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org
-Subject: Re: [PATCH v2 6/7] ASoC: fsl_sai: Add support for imx7ulp/imx8mq
-Message-ID: <20190730080552.GC5892@Asurada>
-References: <20190728192429.1514-1-daniel.baluta@nxp.com>
- <20190728192429.1514-7-daniel.baluta@nxp.com>
+        id S1729244AbfG3IJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 04:09:07 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:41551 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729107AbfG3IJH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 04:09:07 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hsNBu-0006rg-0n; Tue, 30 Jul 2019 10:09:02 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hsNBs-0002oA-5x; Tue, 30 Jul 2019 10:09:00 +0200
+Date:   Tue, 30 Jul 2019 10:09:00 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     linux-sunxi@googlegroups.com, Chen-Yu Tsai <wens@csie.org>,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Maxime Ripard <mripard@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        kernel@pengutronix.de,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [linux-sunxi] Re: [PATCH 4/6] pwm: sun4i: Add support for H6 PWM
+Message-ID: <20190730080900.hhxrqun7vk4nsj2h@pengutronix.de>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+ <173825848.1FZsmuHfpq@jernej-laptop>
+ <20190729185108.tpilwoooxvi2z72e@pengutronix.de>
+ <2452836.v7ux4bnEjb@jernej-laptop>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190728192429.1514-7-daniel.baluta@nxp.com>
-User-Agent: Mutt/1.5.22 (2013-10-16)
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <2452836.v7ux4bnEjb@jernej-laptop>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 28, 2019 at 10:24:28PM +0300, Daniel Baluta wrote:
-> SAI module on imx7ulp/imx8m features 2 new registers (VERID and PARAM)
-> at the beginning of register address space.
-> 
-> On imx7ulp FIFOs can held up to 16 x 32 bit samples.
-> On imx8mq FIFOs can held up to 128 x 32 bit samples.
-> 
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+Hello Rob and Frank,
 
-Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
+Maxime and Jernej on one side and me on the other cannot agree about a
+detail in the change to the bindings here. I'm trying to objectively
+summarize the situation for you to help deciding what is the right thing
+to do here.
 
-> ---
->  sound/soc/fsl/fsl_sai.c | 14 ++++++++++++++
->  1 file changed, 14 insertions(+)
+TLDR: The sun4i pwm driver is extended to support a new variant of that
+device on the H6 SoC. Compared to the earlier supported variants
+allwinner,sun50i-h6-pwm on H6 needs to handle a reset controller and an
+additional clock. 
+
+The two positions are:
+
+ - We need a new compatible because only then the driver and/or the dt
+   schema checker can check that each "allwinner,sun50i-h6-pwm" device
+   has a reset property and a "bus" clock; and the earlier variants
+   don't.
+
+ - The driver can be simpler and the device specific knowledge is only
+   in a single place (the dt) if the device tree is considered valid and
+   a reset property and "bus" clock is used iff it's provided in the
+   device tree without additional comparison for the compatible.
+
+Now our arguments seem to go in circles and Jernej was interested in
+your position. That's something I agree with ;-) Can you please share
+your view?
+
+Find below some context about the arguments.
+
+Best regards
+Uwe
+
+On Tue, Jul 30, 2019 at 12:04:47AM +0200, Jernej Škrabec wrote:
+> Dne ponedeljek, 29. julij 2019 ob 20:51:08 CEST je Uwe Kleine-König 
+> napisal(a):
+> > On Mon, Jul 29, 2019 at 08:46:25PM +0200, Jernej Škrabec wrote:
+> > > Dne ponedeljek, 29. julij 2019 ob 20:40:41 CEST je Uwe Kleine-König
+> > > napisal(a):
+> > > > On Mon, Jul 29, 2019 at 06:40:15PM +0200, Jernej Škrabec wrote:
+> > > > > Dne ponedeljek, 29. julij 2019 ob 18:24:28 CEST je Uwe Kleine-König
+> > > > > napisal(a):
+> > > > > > On Tue, Jul 30, 2019 at 12:09:40AM +0800, Chen-Yu Tsai wrote:
+> > > > > > > On Tue, Jul 30, 2019 at 12:07 AM Uwe Kleine-König
+> > > > > > > <u.kleine-koenig@pengutronix.de> wrote:
+> > > > > > > > On Mon, Jul 29, 2019 at 05:55:52PM +0200, Jernej Škrabec wrote:
+> > > > > > > > > Dne ponedeljek, 29. julij 2019 ob 08:40:30 CEST je Uwe Kleine-König
+> > > > > > > > > napisal(a):
+> > > > > > > > > > On Fri, Jul 26, 2019 at 08:40:43PM +0200, Jernej Skrabec wrote:
+> > > > > > > > > > > --- a/drivers/pwm/pwm-sun4i.c
+> > > > > > > > > > > +++ b/drivers/pwm/pwm-sun4i.c
+> > > > > > > > > > > @@ -331,6 +331,13 @@ static const struct sun4i_pwm_data
+> > > > > > > > > > > sun4i_pwm_single_bypass = {>
+> > > > > > > > > > > 
+> > > > > > > > > > >   .npwm = 1,
+> > > > > > > > > > >  
+> > > > > > > > > > >  };
+> > > > > > > > > > > 
+> > > > > > > > > > > +static const struct sun4i_pwm_data
+> > > > > > > > > > > sun50i_pwm_dual_bypass_clk_rst
+> > > > > > > > > > > = {
+> > > > > > > > > > > + .has_bus_clock = true,
+> > > > > > > > > > > + .has_prescaler_bypass = true,
+> > > > > > > > > > > + .has_reset = true,
+> > > > > > > > > > > + .npwm = 2,
+> > > > > > > > > > > +};
+> > > > > > > > > > > +
+> > > > > > > > > > > 
+> > > > > > > > > > >  static const struct of_device_id sun4i_pwm_dt_ids[] = {
+> > > > > > > > > > >  
+> > > > > > > > > > >   {
+> > > > > > > > > > >   
+> > > > > > > > > > >           .compatible = "allwinner,sun4i-a10-pwm",
+> > > > > > > > > > > 
+> > > > > > > > > > > @@ -347,6 +354,9 @@ static const struct of_device_id
+> > > > > > > > > > > sun4i_pwm_dt_ids[] =
+> > > > > > > > > > > {
+> > > > > > > > > > > 
+> > > > > > > > > > >   }, {
+> > > > > > > > > > >   
+> > > > > > > > > > >           .compatible = "allwinner,sun8i-h3-pwm",
+> > > > > > > > > > >           .data = &sun4i_pwm_single_bypass,
+> > > > > > > > > > > 
+> > > > > > > > > > > + }, {
+> > > > > > > > > > > +         .compatible = "allwinner,sun50i-h6-pwm",
+> > > > > > > > > > > +         .data = &sun50i_pwm_dual_bypass_clk_rst,
+> > > > > > > > > > 
+> > > > > > > > > > If you follow my suggestion for the two previous patches,
+
+(i.e. use devm_clk_get_optional instead of using devm_clk_get iff the
+compatible is allwinner,sun50i-h6-pwm; analogous for the reset
+controller.)
+
+> > > > > > > > > > you can just use:
+> > > > > > > > > >
+> > > > > > > > > >     compatible = "allwinner,sun50i-h6-pwm", "allwinner,sun5i-a10s-pwm";
+> > > > > > > > > > 
+> > > > > > > > > > and drop this patch.
+> > > > > > > > > 
+> > > > > > > > > Maxime found out that it's not compatible with A10s due to difference
+> > > > > > > > > in bypass bit, but yes, I know what you mean.
+> > > > > > > > > 
+> > > > > > > > > Since H6 requires reset line and bus clock to be specified, it's not
+> > > > > > > > > compatible from DT binding side. New yaml based binding must somehow
+> > > > > > > > > know that in order to be able to validate DT node, so it needs
+> > > > > > > > > standalone compatible. However, depending on conclusions of other
+> > > > > > > > > discussions, this new compatible can be associated with already
+> > > > > > > > > available quirks structure or have it's own.
+> > > > > > > > 
+> > > > > > > > I cannot follow. You should be able to specify in the binding that the
+> > > > > > > > reset line and bus clock is optional. Then allwinner,sun50i-h6-pwm
+> > > > > > > > without a reset line and bus clock also verifies, but this doesn't
+> > > > > > > > really hurt (and who knows, maybe the next allwinner chip needs exactly this).
+> > > > > > > 
+> > > > > > > It is not optional. It will not work if either the clocks or reset controls
+> > > > > > > are missing. How would these be optional anyway? Either it's connected and
+> > > > > > > thus required, or it's not and therefore should be omitted from the description.
+> > > > > > 
+> > > > > > [Just arguing about the clock here, the argumentation is analogous for
+> > > > > > the reset control.]
+> > > > > > 
+> > > > > > From the driver's perspective it's optional: There are devices with and
+> > > > > > without a bus clock. This doesn't mean that you can just ignore this
+> > > > > > clock if it's specified. It's optional in the sense "If dt doesn't
+> > > > > > specify it, then assume this is a device that doesn't have it and so you
+> > > > > > don't need to handle it." but not in the sense "it doesn't matter if
+> > > > > > you handle it or not.".
+> > > > > > 
+> > > > > > Other than that I'm on your side. So for example I think it's not
+> > > > > > optimal that gpiod_get_optional returns NULL if GPIOLIB=n or that
+> > > > > > devm_reset_control_get_optional returns NULL if RESET_CONTROLLER=n
+> > > > > > because this hides exactly the kind of problem you point out here.
+> > > > > 
+> > > > > I think there's misunderstanding. I only argued that we can't use
+> > > > > 
+> > > > > compatible = "allwinner,sun50i-h6-pwm", "allwinner,sun5i-a10s-pwm";
+> > > > > 
+> > > > > as you suggested and only
+> > > > > 
+> > > > > compatible = "allwinner,sun50i-h6-pwm";
+> > > > > 
+> > > > > will work. Not because of driver itself (it can still use _optional()
+> > > > > variants), but because of DT binding, which should be able to validate H6
+> > > > > PWM node - reset and bus clock references are required in this case.
+> > > > 
+> > > > I think I understood. In my eyes there is no need to let validation of
+> > > > the DT bindings catch a missing "optional" property that is needed on
+> > > > H6.
+> > > > 
+> > > > You have to draw the line somewhere which information the driver has
+> > > > hard-coded and what is only provided by the device tree and just assumed
+> > > > to be correct by the driver. You argue the driver should know that
+> > > 
+> > > No, in this thread I argue that DT validation tool, executed by
+> > > 
+> > > make ARCH=arm64 dtbs_check
+> > > 
+> > > should catch that. This is not a driver, but DT binding described in YAML.
+> > 
+> > The argumentation is the same. dtbs_check doesn't notice if the base
+> > address of your "allwinner,sun50i-h6-pwm" device is wrong. So why should
+> > it catch a missing reset controller phandle?
 > 
-> diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
-> index 54e5e9abae01..0fb6750fefd5 100644
-> --- a/sound/soc/fsl/fsl_sai.c
-> +++ b/sound/soc/fsl/fsl_sai.c
-> @@ -1030,10 +1030,24 @@ static const struct fsl_sai_soc_data fsl_sai_imx6sx_data = {
->  	.reg_offset = 0,
->  };
->  
-> +static const struct fsl_sai_soc_data fsl_sai_imx7ulp_data = {
-> +	.use_imx_pcm = true,
-> +	.fifo_depth = 16,
-> +	.reg_offset = 8,
-> +};
-> +
-> +static const struct fsl_sai_soc_data fsl_sai_imx8mq_data = {
-> +	.use_imx_pcm = true,
-> +	.fifo_depth = 128,
-> +	.reg_offset = 8,
-> +};
-> +
->  static const struct of_device_id fsl_sai_ids[] = {
->  	{ .compatible = "fsl,vf610-sai", .data = &fsl_sai_vf610_data },
->  	{ .compatible = "fsl,imx6sx-sai", .data = &fsl_sai_imx6sx_data },
->  	{ .compatible = "fsl,imx6ul-sai", .data = &fsl_sai_imx6sx_data },
-> +	{ .compatible = "fsl,imx7ulp-sai", .data = &fsl_sai_imx7ulp_data },
-> +	{ .compatible = "fsl,imx8mq-sai", .data = &fsl_sai_imx8mq_data },
->  	{ /* sentinel */ }
->  };
->  MODULE_DEVICE_TABLE(of, fsl_sai_ids);
-> -- 
-> 2.17.1
+> Of course checking actual values of node properties doesn't make sense in 
+> dtbs_check, otherwise we would have million DT bindings. If you have 10 copies 
+> of the same IP core, of course you would use same compatible, but actual 
+> register ranges, interrupts, etc. would be different in DT nodes.
 > 
+> At this point I would make same argument as were made before, but there is no 
+> point going in circles. I'm interested what have DT maintainers to say.
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
