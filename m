@@ -2,134 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45E987A66C
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 13:03:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C32807A67E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 13:06:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729962AbfG3LDu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 07:03:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46556 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725974AbfG3LDu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Jul 2019 07:03:50 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 0C5A4206E0;
-        Tue, 30 Jul 2019 11:03:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564484629;
-        bh=m7dX//3pP3+FR/k30u2LZ08eMNQLWPNMDC/X3b/BoIk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=KMur5BSVhiHRRxRO7wuNTmwbmOspluKLLcMqQiSBI6R7I/hFrZiXflMDNkswhbTtv
-         EtfxkIXJJq6sth6CVf9ItRiCuP0D4xoZNWRDgBMa+C9ci6Q/RzCOpg0pkrmiDgRQ+R
-         3Gg+K/+v70+FPzWyiJ5B9GhEpGfyM7rsXoIoSgX0=
-Date:   Tue, 30 Jul 2019 13:03:15 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Lee Jones <lee.jones@linaro.org>
-Cc:     Suzuki K Poulose <suzuki.poulose@arm.com>,
-        linux-kernel@vger.kernel.org, rafael@kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        dri-devel@lists.freedesktop.org, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, devicetree@vger.kernel.org,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Heiko Stuebner <heiko@sntech.de>,
-        Liam Girdwood <lgirdwood@gmail.com>, linux-i2c@vger.kernel.org,
-        linux-rockchip@lists.infradead.org, linux-spi@vger.kernel.org,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        id S1729192AbfG3LGJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 07:06:09 -0400
+Received: from mail-eopbgr60074.outbound.protection.outlook.com ([40.107.6.74]:14286
+        "EHLO EUR04-DB3-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725974AbfG3LGJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Jul 2019 07:06:09 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=YtEgqqNOK9grN+ixPrUZDvvGNHGJ5ob3le9VG7yBsZxQoJwAztczskn1Bw4r2YfeuWLlm/rYxiCd3i3tXuKeOOllo9P/3s4/uRZU/lWbCvZw3f4CGgOZo8xKL672oNBzW4MX0L5h2pfDcrPps7S3p+CUiCojbWShAfkvB64+Jki9fSyGXgM7o/KDkYJ6/hAcK8lkrYoYzH2WZps1RFzJudqoLbZNnaYGyhn0agC0GYUUOM942FzxQBpzLu8si2V/PtKvYSIdvn2+eS3ZlzwXWChl9cdqnEWeb9gM1nTHLzmTxI9kEbOc2a3N7BavxpB71XXqhdvZ/+zMPCKWWfJdUw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TOVChCNPf03rt5vvBmjc4kH7HsT1pfWCIiaf7gC9Mew=;
+ b=X/WRJ79485+/QEKOgZd0ybEQveCtYgKof9qxkp5oOWS6YEq3jGQvRDPvNzrVJ/o8+Jzfosuj2HNBaMFAXHoSt9f8KCs8sCvSF3IL0Mi/SepNaA8RwZlS0kTKSdUMg8rQlURSAt0xm8Sb90DNTRTv7rl6FWtSVB3FQG2opOFo/uT8eR8RBwYKziaRGv/lJAddQ516PQM44qPv6Wb9HJwsIQUZ/KcZKl5eD1neI4duCNi0AKZC4LsKOnzGp6bDpq+9AzF5YFsZ0O7nln1RqtmQYML/ljXHi2oZJNadEUfM65SEYzwhsVC10DBUCOgl3Udx5sfNigB4OXYfWPGiEexKIQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=kococonnector.com;dmarc=pass action=none
+ header.from=kococonnector.com;dkim=pass header.d=kococonnector.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=KoCoConnector.onmicrosoft.com; s=selector2-KoCoConnector-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=TOVChCNPf03rt5vvBmjc4kH7HsT1pfWCIiaf7gC9Mew=;
+ b=P6Ts9oO00Gkb2ooiVlXSCZWNZnXcmlYQYPFgD/0ZsDBjtuQpx1VapFSAsJ4NcnfkZbufqxoEmUxml+NOzKJI/M9idmbAX3hpDK2Crruv9wUrg6x48TnHcT0RDA60bVtGk2AX4gZbY+90CrWlNLtMHaurKj3a3wb5Ys+KnjEn4Ss=
+Received: from DB6PR0902MB2072.eurprd09.prod.outlook.com (10.170.212.23) by
+ DB6PR0902MB1989.eurprd09.prod.outlook.com (10.170.212.21) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2136.12; Tue, 30 Jul 2019 11:06:05 +0000
+Received: from DB6PR0902MB2072.eurprd09.prod.outlook.com
+ ([fe80::c169:d07:269b:2980]) by DB6PR0902MB2072.eurprd09.prod.outlook.com
+ ([fe80::c169:d07:269b:2980%7]) with mapi id 15.20.2136.010; Tue, 30 Jul 2019
+ 11:06:04 +0000
+From:   Oliver Graute <oliver.graute@kococonnector.com>
+To:     "shawnguo@kernel.org" <shawnguo@kernel.org>
+CC:     "aisheng.dong@nxp.com" <aisheng.dong@nxp.com>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Oliver Graute <oliver.graute@kococonnector.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Wolfram Sang <wsa@the-dreams.de>, Alan Tull <atull@kernel.org>,
-        Moritz Fischer <mdf@kernel.org>, linux-fpga@vger.kernel.org,
-        Peter Rosin <peda@axentia.se>, Mark Brown <broonie@kernel.org>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        "David S. Miller" <davem@davemloft.net>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Thor Thayer <thor.thayer@linux.intel.com>,
-        Jiri Slaby <jslaby@suse.com>
-Subject: Re: [PATCH v3 2/7] drivers: Introduce device lookup variants by
- of_node
-Message-ID: <20190730110315.GA31631@kroah.com>
-References: <20190723221838.12024-1-suzuki.poulose@arm.com>
- <20190723221838.12024-3-suzuki.poulose@arm.com>
- <20190725135402.GL23883@dell>
+        Mark Rutland <mark.rutland@arm.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: [PATCHv3 0/1] arm64: dts: add basic DTS for imx8qm-rom7720 board
+Thread-Topic: [PATCHv3 0/1] arm64: dts: add basic DTS for imx8qm-rom7720 board
+Thread-Index: AQHVRsbHlxi2ybX2Tka2yF2dw+gOyg==
+Date:   Tue, 30 Jul 2019 11:06:04 +0000
+Message-ID: <20190730110140.17247-1-oliver.graute@kococonnector.com>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: AM7PR02CA0010.eurprd02.prod.outlook.com
+ (2603:10a6:20b:100::20) To DB6PR0902MB2072.eurprd09.prod.outlook.com
+ (2603:10a6:6:8::23)
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=oliver.graute@kococonnector.com; 
+x-ms-exchange-messagesentrepresentingtype: 1
+x-mailer: git-send-email 2.17.1
+x-originating-ip: [193.47.161.132]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: e145148e-287c-4ee8-fe06-08d714ddea1c
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(7021145)(8989299)(4534185)(7022145)(4603075)(4627221)(201702281549075)(8990200)(7048125)(7024125)(7027125)(7023125)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:DB6PR0902MB1989;
+x-ms-traffictypediagnostic: DB6PR0902MB1989:
+x-ms-exchange-purlcount: 2
+x-microsoft-antispam-prvs: <DB6PR0902MB19891EB91C047CAD935E90D7EBDC0@DB6PR0902MB1989.eurprd09.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 0114FF88F6
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(136003)(376002)(39840400004)(366004)(396003)(346002)(199004)(189003)(66556008)(966005)(4326008)(81166006)(8676002)(316002)(1730700003)(81156014)(14454004)(36756003)(52116002)(53936002)(2501003)(256004)(54906003)(86362001)(68736007)(4744005)(6916009)(508600001)(305945005)(7736002)(476003)(25786009)(50226002)(2906002)(64756008)(7416002)(6486002)(6506007)(71190400001)(6436002)(44832011)(102836004)(8936002)(5640700003)(66066001)(6512007)(6306002)(486006)(71200400001)(66946007)(186003)(26005)(3846002)(99286004)(66446008)(2616005)(1076003)(5660300002)(6116002)(386003)(66476007)(2351001)(32563001);DIR:OUT;SFP:1101;SCL:1;SRVR:DB6PR0902MB1989;H:DB6PR0902MB2072.eurprd09.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: kococonnector.com does not
+ designate permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: XiXxV9Zg9U4H26uZJ6J+RrYRIMk1FkdSBDJLNFbNzezTC9fo2XPa2KGTCM9iwkjkyiJuqTzMtKhzrKG/fODaWqUWNsFGEufav6ntyMoGstD9yEFFj7Ld1+VbkfxLfRg2EoGzvzgNwXgj0cRhBY/+oRO0hu98EoU5YPPcTzDLVPONPXZrwkE1SYtBkM4p2ROLCnZjPZqavAZe+Y/RhYxSAycbQnabWOeZELNvVY/tlxTwly73tsgo6e/NCwRvgjMLW98bF+526/lY6qw980d+8FOVGTTz7ulfNdCRVG42tGYoOcEqLz7QJt2j9GrXbanRO3HDrT+U8jd3ZvJrpPVo0QwfduoeZt9WSAIng255+Ld4HP8UOqo38BCzwz0fr4rnR5iZk74V7gP7211OcZTeTF15RQZt9kdZztjpEwgqObk=
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190725135402.GL23883@dell>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+X-OriginatorOrg: kococonnector.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: e145148e-287c-4ee8-fe06-08d714ddea1c
+X-MS-Exchange-CrossTenant-originalarrivaltime: 30 Jul 2019 11:06:04.7459
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 59845429-0644-4099-bd7e-17fba65a2f2b
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: oliver.graute@kococonnector.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB6PR0902MB1989
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 25, 2019 at 02:54:02PM +0100, Lee Jones wrote:
-> On Tue, 23 Jul 2019, Suzuki K Poulose wrote:
-> 
-> > Introduce wrappers for {bus/driver/class}_find_device() to
-> > locate devices by its of_node.
-> > 
-> > Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
-> > Cc: Maxime Ripard <maxime.ripard@bootlin.com>
-> > Cc: dri-devel@lists.freedesktop.org
-> > Cc: David Airlie <airlied@linux.ie>
-> > Cc: Daniel Vetter <daniel@ffwll.ch>
-> > Cc: devicetree@vger.kernel.org
-> > Cc: Florian Fainelli <f.fainelli@gmail.com>
-> > Cc: Frank Rowand <frowand.list@gmail.com>
-> > Cc: Heiko Stuebner <heiko@sntech.de>
-> > Cc: Liam Girdwood <lgirdwood@gmail.com>
-> > Cc: linux-i2c@vger.kernel.org
-> > Cc: linux-rockchip@lists.infradead.org
-> > Cc: linux-spi@vger.kernel.org
-> > Cc: Mathieu Poirier <mathieu.poirier@linaro.org>
-> > Cc: Rob Herring <robh+dt@kernel.org>
-> > Cc: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> > Cc: Takashi Iwai <tiwai@suse.com>
-> > Cc: Wolfram Sang <wsa@the-dreams.de>
-> > Cc: Alan Tull <atull@kernel.org>
-> > Cc: Moritz Fischer <mdf@kernel.org>
-> > Cc: linux-fpga@vger.kernel.org
-> > Cc: Peter Rosin <peda@axentia.se>
-> > Cc: Mark Brown <broonie@kernel.org>
-> > Cc: Florian Fainelli <f.fainelli@gmail.com>
-> > Cc: Heiner Kallweit <hkallweit1@gmail.com>
-> > Cc: "David S. Miller" <davem@davemloft.net>
-> > Cc: Andrew Lunn <andrew@lunn.ch>
-> > Cc: Liam Girdwood <lgirdwood@gmail.com>
-> > Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
-> > Cc: "Rafael J. Wysocki" <rafael@kernel.org>
-> > Cc: Lee Jones <lee.jones@linaro.org>
-> > Cc: Thor Thayer <thor.thayer@linux.intel.com>
-> > Cc: Jiri Slaby <jslaby@suse.com>
-> > Cc: Mark Brown <broonie@kernel.org>
-> > Cc: Andrew Lunn <andrew@lunn.ch>
-> > Cc: Peter Rosin <peda@axentia.se>
-> > Signed-off-by: Suzuki K Poulose <suzuki.poulose@arm.com>
-> > ---
-> >  - Dropped the reviewed-by tags from Thor, Mark, Andrew and Peter as the
-> >    patches are mereged, though there are no functional changes.
-> > ---
-> >  drivers/amba/tegra-ahb.c              | 11 +-------
-> >  drivers/fpga/fpga-bridge.c            |  8 +-----
-> >  drivers/fpga/fpga-mgr.c               |  8 +-----
-> >  drivers/gpu/drm/drm_mipi_dsi.c        |  7 +----
-> >  drivers/i2c/i2c-core-of.c             |  7 +----
-> >  drivers/mfd/altera-sysmgr.c           | 14 ++--------
-> 
-> For my own reference:
->   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
-> 
-> What's the merge plan for this patch?
-> 
-> Is anyone prepared to create an immutable branch for us to pull from?
-> I'm happy to do it if no one else steps up.
+This patch is ontop of Aisheng Dongs clock driver and imx8 changes for the
+imx8qm
 
-I'll take it, and create a branch for everyone to pull from.
+https://patchwork.kernel.org/patch/11046313/
+https://patchwork.kernel.org/patch/11046343/
 
-thanks,
+This patch is based on next-20190716
 
-greg k-h
+I need some hints and review why the imx8qm-rom-7720 just stops at "Startin=
+g
+kernel ..." with these changes. The device tree is similar to imx8qm-mek.dt=
+s.
+
+Oliver Graute (1):
+  arm64: dts: add basic DTS for imx8qm-rom7720-a1 board
+
+ arch/arm64/boot/dts/freescale/Makefile        |   1 +
+ .../boot/dts/freescale/imx8qm-rom7720-a1.dts  | 228 ++++++++++++++++++
+ 2 files changed, 229 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/freescale/imx8qm-rom7720-a1.dts
+
+--=20
+2.17.1
+
