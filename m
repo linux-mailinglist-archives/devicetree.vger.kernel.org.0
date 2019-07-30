@@ -2,377 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0B6337AEBF
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 19:00:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3DEC7AEE3
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 19:06:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729965AbfG3Q7D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 12:59:03 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:55853 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729862AbfG3Q6X (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:58:23 -0400
-Received: by mail-wm1-f68.google.com with SMTP id a15so57843418wmj.5;
-        Tue, 30 Jul 2019 09:58:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cnCxwqTHr5LnZc3sSxZvj1DXF8TWuXVnhz4pj3u71sE=;
-        b=Bo05xnrhFxFAelyzK/YsleC1UhWcA5XMDmAIlEtnCLJlPtuWLRlCEY8irKLEx/j1gB
-         5mAC3XdP6UowyrPza0SAhQc0ShICxNUXyZEjS6XUeruZ+TBH27tsX1BdbSPslAXBp09b
-         l6T8aH8pIvF8kYaD225ycMOQewq6BDYytzgOEzMxEvXXxpHus9tr/AqJ2V88gzHEYRvS
-         35YTCBU3l5b5t6RgiwpV2HcxTZNlEypBPhc1B8fyOF58AJikynD0BkUZhNw8s+x3v6dk
-         40SpFFWo9Sm0VRwgWyJSaOkZILan38Kz1mO85fS/aeStbLz4WNdEGi/hXKTOOsXf9iXS
-         SXmA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cnCxwqTHr5LnZc3sSxZvj1DXF8TWuXVnhz4pj3u71sE=;
-        b=pkUZME7syYxpTgPmh/O28MdsmMRSRQ4hppiwNFvN+fkzjYwUm8821h4wdXYCyWBPmc
-         PMgKQ/UAJSr/J4tiYWkYCUbX4EYRDBZJIhyIKh2vq+6ZMYn5o6+H+19FlmVywzlI34LT
-         5TYIw4m6THNmRiA1QSLKC26MLiNv5SH5K19xzp8tW37eIzn5d2daxg/9H5fcVBs7N4JR
-         vZhdiGgy5fV9iC1b4G5SFo1JrBO2qsZJQDPaOv/VnS8NKrkaHN9IE8nPLOe3V+/T/ZMi
-         xRpzYEon8Ts1fI8mpO1fSooJBgPjufGqHfMBdO8W/r+5TSshRwGTgvskGNF2N4ciKf4+
-         u/rg==
-X-Gm-Message-State: APjAAAXCcySPfKEBAMPgm25b1xI639GiwCcOwnNmZEvT8N9tcPaJ575e
-        z8myiYqe12sx7W8YCzaY4rA=
-X-Google-Smtp-Source: APXvYqzCgf3J5GOpqDDo0HouP10Wwe87tELPx/l1eFX/U0EonDGQHwsbjjeQC53caCENJKTM2cmdYg==
-X-Received: by 2002:a1c:7c11:: with SMTP id x17mr39450605wmc.22.1564505900690;
-        Tue, 30 Jul 2019 09:58:20 -0700 (PDT)
-Received: from localhost.localdomain (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
-        by smtp.gmail.com with ESMTPSA id r5sm70845040wmh.35.2019.07.30.09.58.19
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 30 Jul 2019 09:58:20 -0700 (PDT)
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Joseph Lo <josephl@nvidia.com>,
+        id S1727559AbfG3RGI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 13:06:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46580 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727233AbfG3RGI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Jul 2019 13:06:08 -0400
+Received: from localhost (lpr83-1-88-168-111-231.fbx.proxad.net [88.168.111.231])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 68A5A206E0;
+        Tue, 30 Jul 2019 17:06:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564506367;
+        bh=4s/EZAcoJfguA/Bo8YNhAMgb7OUN+R18I6hJrEQh8s0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=JQmt+mrcd2TJQZ+w8XTtlXwYzUssuVo6Oc3BVg6o2sZ1vWN4zAoG6szsJ0WV1GNv6
+         Y9iP2cFXoArzuIIJ/605I0/bYLv3Z0N91zBpNN80zL7jsEydZXjQQCQCCqR7h9VykF
+         2heZkCq7ytm56EHJ56aojmi0QsEXEJQuDSf9H0u0=
+Date:   Tue, 30 Jul 2019 19:06:01 +0200
+From:   Maxime Ripard <mripard@kernel.org>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <u.kleine-koenig@pengutronix.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-sunxi@googlegroups.com, Chen-Yu Tsai <wens@csie.org>,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
         Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v9 09/15] dt-bindings: memory: tegra30: Convert to Tegra124 YAML
-Date:   Tue, 30 Jul 2019 19:56:12 +0300
-Message-Id: <20190730165618.10122-10-digetx@gmail.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190730165618.10122-1-digetx@gmail.com>
-References: <20190730165618.10122-1-digetx@gmail.com>
+        kernel@pengutronix.de,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [linux-sunxi] Re: [PATCH 4/6] pwm: sun4i: Add support for H6 PWM
+Message-ID: <20190730170601.a7ei43wku6jsjanu@flea>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+ <173825848.1FZsmuHfpq@jernej-laptop>
+ <20190729185108.tpilwoooxvi2z72e@pengutronix.de>
+ <2452836.v7ux4bnEjb@jernej-laptop>
+ <20190730080900.hhxrqun7vk4nsj2h@pengutronix.de>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190730080900.hhxrqun7vk4nsj2h@pengutronix.de>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The Tegra30 binding will actually differ from the Tegra124 a tad, in
-particular the EMEM configuration description. Hence rename the binding
-to Tegra124 during of the conversion to YAML.
+On Tue, Jul 30, 2019 at 10:09:00AM +0200, Uwe Kleine-König wrote:
+> Hello Rob and Frank,
+>
+> Maxime and Jernej on one side and me on the other cannot agree about a
+> detail in the change to the bindings here. I'm trying to objectively
+> summarize the situation for you to help deciding what is the right thing
+> to do here.
+>
+> TLDR: The sun4i pwm driver is extended to support a new variant of that
+> device on the H6 SoC. Compared to the earlier supported variants
+> allwinner,sun50i-h6-pwm on H6 needs to handle a reset controller and an
+> additional clock.
+>
+> The two positions are:
+>
+>  - We need a new compatible because only then the driver and/or the dt
+>    schema checker can check that each "allwinner,sun50i-h6-pwm" device
+>    has a reset property and a "bus" clock; and the earlier variants
+>    don't.
 
-Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
----
- .../nvidia,tegra124-mc.yaml                   | 158 ++++++++++++++++++
- .../memory-controllers/nvidia,tegra30-mc.txt  | 123 --------------
- 2 files changed, 158 insertions(+), 123 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
- delete mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-mc.txt
+There is two topics here, really. The binding itself really must have
+those properties as required.
 
-diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
-new file mode 100644
-index 000000000000..2e2a116f1911
---- /dev/null
-+++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra124-mc.yaml
-@@ -0,0 +1,158 @@
-+# SPDX-License-Identifier: (GPL-2.0)
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra124-mc.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NVIDIA Tegra124 SoC Memory Controller
-+
-+maintainers:
-+  - Jon Hunter <jonathanh@nvidia.com>
-+  - Thierry Reding <thierry.reding@gmail.com>
-+
-+description: |
-+  Tegra124 SoC features a hybrid 2x32-bit / 1x64-bit memory controller.
-+  These are interleaved to provide high performance with the load shared across
-+  two memory channels. The Tegra124 Memory Controller handles memory requests
-+  from internal clients and arbitrates among them to allocate memory bandwidth
-+  for DDR3L and LPDDR3 SDRAMs.
-+
-+properties:
-+  compatible:
-+    const: nvidia,tegra124-mc
-+
-+  reg:
-+    maxItems: 1
-+    description:
-+      Physical base address.
-+
-+  clocks:
-+    maxItems: 1
-+    description:
-+      Memory Controller clock.
-+
-+  clock-names:
-+    items:
-+      - const: mc
-+
-+  interrupts:
-+    maxItems: 1
-+    description:
-+      Memory Controller interrupt.
-+
-+  "#reset-cells":
-+    const: 1
-+
-+  "#iommu-cells":
-+    const: 1
-+
-+patternProperties:
-+  "^emc-timings-[0-9]+$":
-+    type: object
-+    properties:
-+      nvidia,ram-code:
-+        $ref: /schemas/types.yaml#/definitions/uint32
-+        description:
-+          Value of RAM_CODE this timing set is used for.
-+
-+    patternProperties:
-+      "^timing-[0-9]+$":
-+        type: object
-+        properties:
-+          clock-frequency:
-+            description:
-+              Memory clock rate in Hz.
-+            minimum: 1000000
-+            maximum: 1066000000
-+
-+          nvidia,emem-configuration:
-+            $ref: /schemas/types.yaml#/definitions/uint32-array
-+            description: |
-+              Values to be written to the EMEM register block. See section
-+              "15.6.1 MC Registers" in the TRM.
-+            items:
-+              - description: MC_EMEM_ARB_CFG
-+              - description: MC_EMEM_ARB_OUTSTANDING_REQ
-+              - description: MC_EMEM_ARB_TIMING_RCD
-+              - description: MC_EMEM_ARB_TIMING_RP
-+              - description: MC_EMEM_ARB_TIMING_RC
-+              - description: MC_EMEM_ARB_TIMING_RAS
-+              - description: MC_EMEM_ARB_TIMING_FAW
-+              - description: MC_EMEM_ARB_TIMING_RRD
-+              - description: MC_EMEM_ARB_TIMING_RAP2PRE
-+              - description: MC_EMEM_ARB_TIMING_WAP2PRE
-+              - description: MC_EMEM_ARB_TIMING_R2R
-+              - description: MC_EMEM_ARB_TIMING_W2W
-+              - description: MC_EMEM_ARB_TIMING_R2W
-+              - description: MC_EMEM_ARB_TIMING_W2R
-+              - description: MC_EMEM_ARB_DA_TURNS
-+              - description: MC_EMEM_ARB_DA_COVERS
-+              - description: MC_EMEM_ARB_MISC0
-+              - description: MC_EMEM_ARB_MISC1
-+              - description: MC_EMEM_ARB_RING1_THROTTLE
-+
-+        required:
-+          - clock-frequency
-+          - nvidia,emem-configuration
-+
-+        additionalProperties: false
-+
-+    required:
-+      - nvidia,ram-code
-+
-+    additionalProperties: false
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - clocks
-+  - clock-names
-+  - "#reset-cells"
-+  - "#iommu-cells"
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    memory-controller@70019000 {
-+        compatible = "nvidia,tegra124-mc";
-+        reg = <0x0 0x70019000 0x0 0x1000>;
-+        clocks = <&tegra_car 32>;
-+        clock-names = "mc";
-+
-+        interrupts = <0 77 4>;
-+
-+        #iommu-cells = <1>;
-+        #reset-cells = <1>;
-+
-+        emc-timings-3 {
-+            nvidia,ram-code = <3>;
-+
-+            timing-12750000 {
-+                clock-frequency = <12750000>;
-+
-+                nvidia,emem-configuration = <
-+                    0x40040001 /* MC_EMEM_ARB_CFG */
-+                    0x8000000a /* MC_EMEM_ARB_OUTSTANDING_REQ */
-+                    0x00000001 /* MC_EMEM_ARB_TIMING_RCD */
-+                    0x00000001 /* MC_EMEM_ARB_TIMING_RP */
-+                    0x00000002 /* MC_EMEM_ARB_TIMING_RC */
-+                    0x00000000 /* MC_EMEM_ARB_TIMING_RAS */
-+                    0x00000002 /* MC_EMEM_ARB_TIMING_FAW */
-+                    0x00000001 /* MC_EMEM_ARB_TIMING_RRD */
-+                    0x00000002 /* MC_EMEM_ARB_TIMING_RAP2PRE */
-+                    0x00000008 /* MC_EMEM_ARB_TIMING_WAP2PRE */
-+                    0x00000003 /* MC_EMEM_ARB_TIMING_R2R */
-+                    0x00000002 /* MC_EMEM_ARB_TIMING_W2W */
-+                    0x00000003 /* MC_EMEM_ARB_TIMING_R2W */
-+                    0x00000006 /* MC_EMEM_ARB_TIMING_W2R */
-+                    0x06030203 /* MC_EMEM_ARB_DA_TURNS */
-+                    0x000a0402 /* MC_EMEM_ARB_DA_COVERS */
-+                    0x77e30303 /* MC_EMEM_ARB_MISC0 */
-+                    0x70000f03 /* MC_EMEM_ARB_MISC1 */
-+                    0x001f0000 /* MC_EMEM_ARB_RING1_THROTTLE */
-+                >;
-+            };
-+        };
-+    };
-diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-mc.txt b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-mc.txt
-deleted file mode 100644
-index a878b5908a4d..000000000000
---- a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-mc.txt
-+++ /dev/null
-@@ -1,123 +0,0 @@
--NVIDIA Tegra Memory Controller device tree bindings
--===================================================
--
--memory-controller node
------------------------
--
--Required properties:
--- compatible: Should be "nvidia,tegra<chip>-mc"
--- reg: Physical base address and length of the controller's registers.
--- clocks: Must contain an entry for each entry in clock-names.
--  See ../clocks/clock-bindings.txt for details.
--- clock-names: Must include the following entries:
--  - mc: the module's clock input
--- interrupts: The interrupt outputs from the controller.
--- #reset-cells : Should be 1. This cell represents memory client module ID.
--  The assignments may be found in header file <dt-bindings/memory/tegra30-mc.h>
--  or in the TRM documentation.
--
--Required properties for Tegra30, Tegra114, Tegra124, Tegra132 and Tegra210:
--- #iommu-cells: Should be 1. The single cell of the IOMMU specifier defines
--  the SWGROUP of the master.
--
--This device implements an IOMMU that complies with the generic IOMMU binding.
--See ../iommu/iommu.txt for details.
--
--emc-timings subnode
---------------------
--
--The node should contain a "emc-timings" subnode for each supported RAM type (see field RAM_CODE in
--register PMC_STRAPPING_OPT_A).
--
--Required properties for "emc-timings" nodes :
--- nvidia,ram-code : Should contain the value of RAM_CODE this timing set is used for.
--
--timing subnode
----------------
--
--Each "emc-timings" node should contain a subnode for every supported EMC clock rate.
--
--Required properties for timing nodes :
--- clock-frequency : Should contain the memory clock rate in Hz.
--- nvidia,emem-configuration : Values to be written to the EMEM register block. For the Tegra124 SoC
--(see section "15.6.1 MC Registers" in the TRM), these are the registers whose values need to be
--specified, according to the board documentation:
--
--	MC_EMEM_ARB_CFG
--	MC_EMEM_ARB_OUTSTANDING_REQ
--	MC_EMEM_ARB_TIMING_RCD
--	MC_EMEM_ARB_TIMING_RP
--	MC_EMEM_ARB_TIMING_RC
--	MC_EMEM_ARB_TIMING_RAS
--	MC_EMEM_ARB_TIMING_FAW
--	MC_EMEM_ARB_TIMING_RRD
--	MC_EMEM_ARB_TIMING_RAP2PRE
--	MC_EMEM_ARB_TIMING_WAP2PRE
--	MC_EMEM_ARB_TIMING_R2R
--	MC_EMEM_ARB_TIMING_W2W
--	MC_EMEM_ARB_TIMING_R2W
--	MC_EMEM_ARB_TIMING_W2R
--	MC_EMEM_ARB_DA_TURNS
--	MC_EMEM_ARB_DA_COVERS
--	MC_EMEM_ARB_MISC0
--	MC_EMEM_ARB_MISC1
--	MC_EMEM_ARB_RING1_THROTTLE
--
--Example SoC include file:
--
--/ {
--	mc: memory-controller@70019000 {
--		compatible = "nvidia,tegra124-mc";
--		reg = <0x0 0x70019000 0x0 0x1000>;
--		clocks = <&tegra_car TEGRA124_CLK_MC>;
--		clock-names = "mc";
--
--		interrupts = <GIC_SPI 77 IRQ_TYPE_LEVEL_HIGH>;
--
--		#iommu-cells = <1>;
--		#reset-cells = <1>;
--	};
--
--	sdhci@700b0000 {
--		compatible = "nvidia,tegra124-sdhci";
--		...
--		iommus = <&mc TEGRA_SWGROUP_SDMMC1A>;
--		resets = <&mc TEGRA124_MC_RESET_SDMMC1>;
--	};
--};
--
--Example board file:
--
--/ {
--	memory-controller@70019000 {
--		emc-timings-3 {
--			nvidia,ram-code = <3>;
--
--			timing-12750000 {
--				clock-frequency = <12750000>;
--
--				nvidia,emem-configuration = <
--					0x40040001 /* MC_EMEM_ARB_CFG */
--					0x8000000a /* MC_EMEM_ARB_OUTSTANDING_REQ */
--					0x00000001 /* MC_EMEM_ARB_TIMING_RCD */
--					0x00000001 /* MC_EMEM_ARB_TIMING_RP */
--					0x00000002 /* MC_EMEM_ARB_TIMING_RC */
--					0x00000000 /* MC_EMEM_ARB_TIMING_RAS */
--					0x00000002 /* MC_EMEM_ARB_TIMING_FAW */
--					0x00000001 /* MC_EMEM_ARB_TIMING_RRD */
--					0x00000002 /* MC_EMEM_ARB_TIMING_RAP2PRE */
--					0x00000008 /* MC_EMEM_ARB_TIMING_WAP2PRE */
--					0x00000003 /* MC_EMEM_ARB_TIMING_R2R */
--					0x00000002 /* MC_EMEM_ARB_TIMING_W2W */
--					0x00000003 /* MC_EMEM_ARB_TIMING_R2W */
--					0x00000006 /* MC_EMEM_ARB_TIMING_W2R */
--					0x06030203 /* MC_EMEM_ARB_DA_TURNS */
--					0x000a0402 /* MC_EMEM_ARB_DA_COVERS */
--					0x77e30303 /* MC_EMEM_ARB_MISC0 */
--					0x70000f03 /* MC_EMEM_ARB_MISC1 */
--					0x001f0000 /* MC_EMEM_ARB_RING1_THROTTLE */
--				>;
--			};
--		};
--	};
--};
--- 
-2.22.0
+You had an analogy before that we shouldn't really do that, since it
+would be verification and that it would be similar to checking whether
+the register range was right. This analogy isn't correct, a better one
+would be checking that the register range exists in the first place.
 
+Indeed, if you don't have a register range, you have no register to
+write to, and that's a showstopper for any driver. I'm pretty sure we
+all agree on that. But on those SoCs, like Chen-Yu said, having no
+resets or clocks properties result in an equally bad result: either
+any write to that device is completely ignored (missing reset), or the
+system completely (and silently) locks up (missing bus clock).
+
+We *have* to catch that somehow and not let anything like that happen.
+
+That being said, we can't really validate that the clock pointed is
+the right one, just like we can't really check that the register range
+is the proper one. Or rather, we could, but it's completely
+impractical and we do agree on that as well.
+
+Having the bus clock and reset line being required however is only a
+few lines in the binding though, and is very practical.
+
+>  - The driver can be simpler and the device specific knowledge is only
+>    in a single place (the dt) if the device tree is considered valid and
+>    a reset property and "bus" clock is used iff it's provided in the
+>    device tree without additional comparison for the compatible.
+
+And now we have the discussion on how it's implemented in a
+driver. Since it's pretty cheap to implement (only a couple of lines:
+two for the if block, one for the additional field in the structure,
+one for each SoC using that) and have huge benefits (not silently
+locking up the system at boot), then I'd say we should go for it.
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
