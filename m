@@ -2,83 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 69F3A7AD8F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 18:32:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D008E7ADE1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 18:36:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725889AbfG3QcM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 12:32:12 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:36566 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726703AbfG3QcM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:32:12 -0400
-Received: by mail-lj1-f195.google.com with SMTP id i21so62718083ljj.3;
-        Tue, 30 Jul 2019 09:32:10 -0700 (PDT)
+        id S1727025AbfG3QfY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 12:35:24 -0400
+Received: from mail-vk1-f196.google.com ([209.85.221.196]:37545 "EHLO
+        mail-vk1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726225AbfG3QfW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 12:35:22 -0400
+Received: by mail-vk1-f196.google.com with SMTP id 9so12916974vkw.4
+        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2019 09:35:20 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=verdurent-com.20150623.gappssmtp.com; s=20150623;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=xx3vIoXX8Mxn7Xfw2L25UDOZ1rfyh83SbXwIfDYTy98=;
-        b=Jr/qg1bcxy7MjeWhxfQDSfgI4H19sw3Jz78Pye41vfpqN+qGQyZ5gO32yCnGAwrCwV
-         IDJb7U1TOxEAb6pIpWroZIuT7EH8L5n+TenAghKXZ3DFNlsOZ4lD+Vcm71PyTVQcdU8n
-         nz9o7mFEcxcOwswCwYoJO2VtzDaYHKf3Z4RAnWrAIp48DYXqZFKMqhiwEj8Hhwr1N8me
-         ruOzUTSHHKXkzoToPBzodjKX6V1oOfQetH5lvFZqATFZ8IK321BWFLek4FQyCWqLIG35
-         az6aUKKZjPWBpZbPuW9142x9uyef+DFsNPlRQBOkSv+vxQHYAL+YcoELTlO6LXvDWRVC
-         /eiw==
+        bh=bd218zoMUJsn4aIQS2BNDS+uQZePQhIcqq2z5vcOhic=;
+        b=DbmAT97hG2aiN+XhQQTZB5GAaDDkGfUifEkCoJoVfvRfLFdTChp80EEGUEuP4IyxWq
+         Q/ySXZL+bKgz4ffKvibIoxHldoiPWbnpTa/r6tE4KxSgvZtu0gLHPDyEGBtSgWP0QcFT
+         hkGBj+Ls+hedLeqNzH1rnyadXMkhfGe4vLnzajogJ4YOOkASv0fErAMon/Z22+4LAQPK
+         i0YSUcsMX7a8F11PHu+wK4lc8t9+BSwbiE29SE9KVOB0t31NEQBRym30FJ2N3OPfqY2j
+         MN8E4ILhiu16fE9WVkVCnNEt+w6NmsDhYYO78AGunBVuRQ2lRf2aVLUImSTylou57g8E
+         UF1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=xx3vIoXX8Mxn7Xfw2L25UDOZ1rfyh83SbXwIfDYTy98=;
-        b=sfDP/UWGIqQ1+qQRFvSDR84heCpDKuNC8hM9aPTe4NpActF3XrWZpU5BCptPmPWcJj
-         RvRHqIH49tkTYJwLGe+Mrz6UO0TYj+Dwmx0pPXFfeft/e3OsHh2D8kqtU0ZWeh8lbYMU
-         E1bycnEFzSb63asynmC9RD/fLNODnyulSTJNMFynFUNBDlQ3WnJRNfghEW4nkrZDWfOh
-         WXO76jU/52vY/8kcFXsLuS9shtbReGpYtWU2MeEDkqOT3/A9wf1+sHe/lN1fQu2JadXu
-         3ArqLyTllU2iC8a/RFlqxbBxKQKRB40ncaglBJGlLJkaHkPSNRPPaZrCanbC1KMj7Mqj
-         uQCA==
-X-Gm-Message-State: APjAAAVDCGQiVccb87ZKBITQsPS4MPyCsni6rHPZaetN8Z2joJWXDpmv
-        t2qNexgE6QZS8z9rMxibHHnTT04SS++yS6qER4Y=
-X-Google-Smtp-Source: APXvYqycFcTFoT9V2kVAqMs+UnnH6bzjYSJTSertHTYTAJI+RtGajdJMivgIKh9SwCSMNIC3PdQzfGaeyRqcszz+JWM=
-X-Received: by 2002:a2e:2c07:: with SMTP id s7mr24607447ljs.44.1564504329883;
- Tue, 30 Jul 2019 09:32:09 -0700 (PDT)
+        bh=bd218zoMUJsn4aIQS2BNDS+uQZePQhIcqq2z5vcOhic=;
+        b=o0AUTCq6EJEMPXuLgEopE0Z+RX9+qwHSV6Yient2t5zKeHJJQdtmtiM5uIDRzKCh3I
+         k57FATb71Qx5k+UWOdP34wzFwkkUbyR4fpNnm0IA7RpYqJmVJGK+jx5jnDvXS9M20WoC
+         +gR6V2FvwG4Yd2jV7oW6NOajz8n74SJehZhsLHP2y9DC9Rq5Cg2zTvghYfROyGbkj8fa
+         yRtp/8nESlhx0131FsLcYqcY8HweWGauRPmXwGZ25hrziusEPM4/OV5swUs/B8iqYrRX
+         x4JEpYmIqlpOwvbcXD+KIlNskXnrQsmGxwWgbEWDL+hdEG7zgwouBy6sNgncWtmbsXUw
+         vr1w==
+X-Gm-Message-State: APjAAAWZj3SMvEsxdZJU0ZotSBTYSZ6H5bsYQIY672u3exCUNFX4zwJx
+        CZ1OqZoJEyjdB6wLIthonQdFHyubNQ+YYs7F4i8=
+X-Google-Smtp-Source: APXvYqys0WpkMk5B9ROnp16nbLIVY7ZU3prgqc+nvtWnwOpbR9j0jCxIbSSadoW3uD0BTg4p7Q/DEd1I5uOt47w3sfA=
+X-Received: by 2002:a1f:1d58:: with SMTP id d85mr44781885vkd.13.1564504520182;
+ Tue, 30 Jul 2019 09:35:20 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190729172007.3275-1-krzk@kernel.org> <20190729172007.3275-2-krzk@kernel.org>
-In-Reply-To: <20190729172007.3275-2-krzk@kernel.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 30 Jul 2019 13:33:30 -0300
-Message-ID: <CAOMZO5BzA7JfNhJtZjUCewGicWFy1Qemx3jV1=+27MjUnsq4kQ@mail.gmail.com>
-Subject: Re: [PATCH v3 2/2] ARM: dts: imx6ul-kontron-n6310: Add Kontron
- i.MX6UL N6310 SoM and boards
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+References: <20190725135150.9972-1-vkoul@kernel.org> <20190725135150.9972-2-vkoul@kernel.org>
+In-Reply-To: <20190725135150.9972-2-vkoul@kernel.org>
+From:   Amit Kucheria <amit.kucheria@verdurent.com>
+Date:   Tue, 30 Jul 2019 22:05:09 +0530
+Message-ID: <CAHLCerNsAX4raauTjogOpwqAjEWfd+jpaZYsFnC10tcmvnD5cg@mail.gmail.com>
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: pms405: add unit name adc nodes
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Schrempf Frieder <frieder.schrempf@kontron.de>
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Krzysztof,
+On Thu, Jul 25, 2019 at 7:23 PM Vinod Koul <vkoul@kernel.org> wrote:
+>
+> The adc nodes have reg property but were missing the unit name, so add
+> that to fix these warnings:
+>
+> arch/arm64/boot/dts/qcom/pms405.dtsi:91.12-94.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/ref_gnd: node has a reg or ranges property, but no unit name
+> arch/arm64/boot/dts/qcom/pms405.dtsi:96.14-99.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/vref_1p25: node has a reg or ranges property, but no unit name
+> arch/arm64/boot/dts/qcom/pms405.dtsi:101.19-104.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/vph_pwr: node has a reg or ranges property, but no unit name
+> arch/arm64/boot/dts/qcom/pms405.dtsi:106.13-109.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/die_temp: node has a reg or ranges property, but no unit name
+> arch/arm64/boot/dts/qcom/pms405.dtsi:111.27-116.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/thermistor1: node has a reg or ranges property, but no unit name
+> arch/arm64/boot/dts/qcom/pms405.dtsi:118.27-123.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/thermistor3: node has a reg or ranges property, but no unit name
+> arch/arm64/boot/dts/qcom/pms405.dtsi:125.22-130.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/xo_temp: node has a reg or ranges property, but no unit name
+>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  arch/arm64/boot/dts/qcom/pms405.dtsi | 14 +++++++-------
+>  1 file changed, 7 insertions(+), 7 deletions(-)
+>
+> diff --git a/arch/arm64/boot/dts/qcom/pms405.dtsi b/arch/arm64/boot/dts/qcom/pms405.dtsi
+> index 14240fedd916..3c10cf04d26e 100644
+> --- a/arch/arm64/boot/dts/qcom/pms405.dtsi
+> +++ b/arch/arm64/boot/dts/qcom/pms405.dtsi
+> @@ -88,41 +88,41 @@
+>                         #size-cells = <0>;
+>                         #io-channel-cells = <1>;
+>
+> -                       ref_gnd {
+> +                       ref_gnd@0 {
+>                                 reg = <ADC5_REF_GND>;
+>                                 qcom,pre-scaling = <1 1>;
+>                         };
+>
+> -                       vref_1p25 {
+> +                       vref_1p25@1 {
+>                                 reg = <ADC5_1P25VREF>;
+>                                 qcom,pre-scaling = <1 1>;
+>                         };
+>
+> -                       pon_1: vph_pwr {
+> +                       pon_1: vph_pwr@131 {
+>                                 reg = <ADC5_VPH_PWR>;
+>                                 qcom,pre-scaling = <1 3>;
+>                         };
+>
+> -                       die_temp {
+> +                       die_temp@6 {
+>                                 reg = <ADC5_DIE_TEMP>;
+>                                 qcom,pre-scaling = <1 1>;
+>                         };
+>
+> -                       pa_therm1: thermistor1 {
+> +                       pa_therm1: thermistor1@115 {
 
-On Mon, Jul 29, 2019 at 2:20 PM Krzysztof Kozlowski <krzk@kernel.org> wrote:
+s/115/77 ?
 
-> --- a/Documentation/devicetree/bindings/eeprom/at25.txt
-> +++ b/Documentation/devicetree/bindings/eeprom/at25.txt
-> @@ -3,6 +3,7 @@ EEPROMs (SPI) compatible with Atmel at25.
->  Required properties:
->  - compatible : Should be "<vendor>,<type>", and generic value "atmel,at25".
->    Example "<vendor>,<type>" values:
-> +    "anvo,anv32e61w"
+>                                 reg = <ADC5_AMUX_THM1_100K_PU>;
+>                                 qcom,ratiometric;
+>                                 qcom,hw-settle-time = <200>;
+>                                 qcom,pre-scaling = <1 1>;
+>                         };
+>
+> -                       pa_therm3: thermistor3 {
+> +                       pa_therm3: thermistor3@117 {
 
-This usually comes as a separate patch, but anyway:
+s/117/79 ?
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
+>                                 reg = <ADC5_AMUX_THM3_100K_PU>;
+>                                 qcom,ratiometric;
+>                                 qcom,hw-settle-time = <200>;
+>                                 qcom,pre-scaling = <1 1>;
+>                         };
+>
+> -                       xo_therm: xo_temp {
+> +                       xo_therm: xo_temp@114 {
+
+s/114/76 ?
+
+>                                 reg = <ADC5_XO_THERM_100K_PU>;
+>                                 qcom,ratiometric;
+>                                 qcom,hw-settle-time = <200>;
+> --
+> 2.20.1
+>
