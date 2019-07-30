@@ -2,105 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 08E707AC23
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:19:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 16A467AC3F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:25:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730093AbfG3PTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 11:19:55 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:42483 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729727AbfG3PTy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 11:19:54 -0400
-Received: by mail-lj1-f195.google.com with SMTP id t28so62464652lje.9;
-        Tue, 30 Jul 2019 08:19:53 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=41cV7dKBXD1+Ahztwm+17BUt7uOsIXebGJ7liP6Dr1Q=;
-        b=fr7J4bJ48BQhcslss9rejTyZdj4FPrdCEqvatF01xmxmUsIyyYwBzjPDgZx6PtGE+g
-         HwYtVBxrTJN5kM1cPkjQIT/6JjCXz4MpWL3Fo3H4uI5sXCKufNCQdoYuL1Ij8H2DfV/7
-         NFQzrhBp7GwGUVncuJfMWzEt3dHIrjPOv21vcDhz89QEdO6TOONuGfWGfqyyNOGnBTFK
-         uHUWnAlu4k1m5qhmQjRZj0HaUa5nr7tx1EcZFpW2/SruphDDDzA3jzJxsQc6T5svr8J3
-         IeLX8hApx/ujA+n0wMFc6deIowlh/HZie+RtHmgrV2y0zQwAYsvbu1TjC6BBiCAGXwmg
-         JOnA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=41cV7dKBXD1+Ahztwm+17BUt7uOsIXebGJ7liP6Dr1Q=;
-        b=lIeIoRERk1OyNUGCjyPXaAyGRJKiTiPJQ3ylmw2GURqOPkMku3XAy47ua44n45b49t
-         iiEPMvZfdkCJNn9rk/EivKVnGm6ZZkXW+7l8zdlHRIH7P2i2n79B/sb+8YyW62QvKMa6
-         87CojP9LEwEwtFoE6C82IzWUbKsb8i6LrgFqDsqguopotzfoy8qCgvCGk1IxF1Brk7sQ
-         JWZD8RkeHki4KKYkRm44SzsNjwhN4KgGX21pDr/cy8juUyVVfhnNcikn7QwzF4u79uty
-         N71+cmaot+eVBEyeboEAQhfdGyR0IzNTwBEOLrlGAZVi5J9tyLyGNqtaqcKETXbVjAJw
-         39Wg==
-X-Gm-Message-State: APjAAAUxUXP6SeUB2ZpKXAwqRbhnOIH6KHSqVYtufAIRxYes3hAWw052
-        v6E1yHsA69+q6dPRKbNjWeOBr8q5p0EH4AsIOoM=
-X-Google-Smtp-Source: APXvYqwbkHjJY94CJHMfxOymen4JekQBc6rBpZA6GX9FmhyRgQ8kFvXZ03CUkI7urj04jzey1TKg8zskVaDviN58ToQ=
-X-Received: by 2002:a2e:2c07:: with SMTP id s7mr24431008ljs.44.1564499992535;
- Tue, 30 Jul 2019 08:19:52 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190730150552.24927-1-lukma@denx.de>
-In-Reply-To: <20190730150552.24927-1-lukma@denx.de>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 30 Jul 2019 12:19:57 -0300
-Message-ID: <CAOMZO5AxPHHobQQhq30fjLVeSroLdvdT0+GqCWi8it1ejhDONA@mail.gmail.com>
-Subject: Re: [PATCH] ARM: DTS: vybrid: Update qspi node description for VF610
- BK4 board
-To:     Lukasz Majewski <lukma@denx.de>
-Cc:     Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Stefan Agner <stefan@agner.ch>,
+        id S1730013AbfG3PZG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 11:25:06 -0400
+Received: from atlmailgw2.ami.com ([63.147.10.42]:60948 "EHLO
+        atlmailgw2.ami.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729202AbfG3PZG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 11:25:06 -0400
+X-AuditID: ac10606f-d27ff70000003324-fb-5d406151cc24
+Received: from atlms1.us.megatrends.com (atlms1.us.megatrends.com [172.16.96.144])
+        (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by atlmailgw2.ami.com (Symantec Messaging Gateway) with SMTP id 24.AC.13092.151604D5; Tue, 30 Jul 2019 11:25:05 -0400 (EDT)
+Received: from hongweiz-Ubuntu-AMI.us.megatrends.com (172.16.98.93) by
+ atlms1.us.megatrends.com (172.16.96.144) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Tue, 30 Jul 2019 11:25:04 -0400
+From:   Hongwei Zhang <hongweiz@ami.com>
+To:     Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Hongwei Zhang <hongweiz@ami.com>, Joel Stanley <joel@jms.id.au>,
+        <devicetree@vger.kernel.org>, <linux-aspeed@lists.ozlabs.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [v6 0/2] gpio: aspeed: Add SGPIO driver
+Date:   Tue, 30 Jul 2019 11:24:26 -0400
+Message-ID: <1564500268-2627-1-git-send-email-hongweiz@ami.com>
+X-Mailer: git-send-email 2.7.4
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Originating-IP: [172.16.98.93]
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrDLMWRmVeSWpSXmKPExsWyRiBhgm5gokOswdedEha7LnNYfJl7isVi
+        /pFzrBa/z/9ltpjyZzmTxabH11gtmlefY7bYPP8Po8XlXXPYLJZev8hk0br3CLsDt8fV9l3s
+        HmvmrWH0eH+jld3j4sdjzB6bVnWyedy5tofNY/OSeo/zMxYyenzeJBfAGcVlk5Kak1mWWqRv
+        l8CV8ez7aZaCk2wVN6+5NDAuZO1i5OSQEDCReN9/nR3EFhLYxSTRssyni5ELyD7MKNGx+CwL
+        SIJNQE1i7+Y5TCC2iECexOH1b1lBipgFTjFJzNjXCTZJWMBA4vOa72wgNouAqkTzw8tgNq+A
+        vcSp6TOZIbbJSdw818kMEReUODnzCdgCZgEJiYMvXjBDXCErcevQYyaIegWJ532PWSYw8s1C
+        0jILScsCRqZVjEKJJTm5iZk56eVGeom5mXrJ+bmbGCEhnr+D8eNH80OMTByMhxglOJiVRHgX
+        i9vHCvGmJFZWpRblxxeV5qQWH2KU5mBREuddteZbjJBAemJJanZqakFqEUyWiYNTqoGRU6+k
+        SrhkctiU/MjKL0dzmDYIv9uZKR8lfV7QefHnJ0Y7fwtZzuT4V+c26f4z3qXvjcUv3xdcyNwu
+        4VzCmh+b/5lDve3elgMbJ8h5SC2z3HZr7ZILvOynL5zSOMKa9r3VZ2cP87RdGw/mbzgadO6m
+        SRJLdeedhQv2/1V6enna9E/SHzxqn7BJK7EUZyQaajEXFScCAI781llfAgAA
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Lukasz,
+Hello,
 
-Subject line could be improved:
+This short series introduce dt-binding document and a driver for the 
+Aspeed AST2500 SGPIO controller. Please review.
 
-ARM: dts: vf610-bk4: Fix qspi node description
+[v6]:	Changes between v5 and v6:
+	- fix a bug in aspeed_sgpio_dir_out()
+	- v5 feedback updates, some comments cleanup
 
-On Tue, Jul 30, 2019 at 12:06 PM Lukasz Majewski <lukma@denx.de> wrote:
->
-> Before this change the device tree description of qspi node for
-> second memory on BK4 board was wrong (applicable to old, in-house
-> tunned fsl-quadspi.c driver).
->
-> As a result this memory was not recognized correctly when used
-> with the new spi-fsl-qspi.c driver.
->
-> From the dt-bindings:
->
-> "Required SPI slave node properties:
->   - reg: There are two buses (A and B) with two chip selects each.
-> This encodes to which bus and CS the flash is connected:
-> <0>: Bus A, CS 0
-> <1>: Bus A, CS 1
-> <2>: Bus B, CS 0
-> <3>: Bus B, CS 1"
->
-> According to above with new driver the second SPI-NOR memory shall
-> have reg=<2> as it is connected to Bus B, CS 0.
+The related SGPM pinmux dt-binding document, dts, and pinctrl driver
+updates have been accepted and merged:
+_http://patchwork.ozlabs.org/patch/1110210/
 
-I am glad you got it working!
 
-This looks very familiar with the suggestion I sent yesterday:
-http://lists.infradead.org/pipermail/linux-mtd/2019-July/090655.html
+Hongwei Zhang (2):
+  dt-bindings: gpio: aspeed: Add SGPIO support
+  gpio: aspeed: Add SGPIO driver
 
-It is a good practice to give some credit to someone who has helped in
-finding the solution of your problem.
+ .../devicetree/bindings/gpio/sgpio-aspeed.txt      |  55 +++
+ drivers/gpio/sgpio-aspeed.c                        | 521 +++++++++++++++++++++
+ 2 files changed, 576 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+ create mode 100644 drivers/gpio/sgpio-aspeed.c
 
-Adding a Suggested-by: Fabio Estevam <festevam@gmail.com> would be nice here.
+-- 
+2.7.4
 
-This also needs a Fixes tag.
