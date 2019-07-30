@@ -2,114 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 676377AC04
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:11:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 08E707AC23
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:19:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732190AbfG3PLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 11:11:38 -0400
-Received: from mxout014.mail.hostpoint.ch ([217.26.49.174]:40999 "EHLO
-        mxout014.mail.hostpoint.ch" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726602AbfG3PLi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Jul 2019 11:11:38 -0400
-Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
-        by mxout014.mail.hostpoint.ch with esmtp (Exim 4.92 (FreeBSD))
-        (envelope-from <dev@pschenker.ch>)
-        id 1hsTP2-0005MD-Fw; Tue, 30 Jul 2019 16:47:00 +0200
-Received: from [46.140.72.82] (helo=philippe-pc.toradex.int)
-        by asmtp013.mail.hostpoint.ch with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.91 (FreeBSD))
-        (envelope-from <dev@pschenker.ch>)
-        id 1hsTP2-000Mva-92; Tue, 30 Jul 2019 16:47:00 +0200
-X-Authenticated-Sender-Id: dev@pschenker.ch
-From:   Philippe Schenker <dev@pschenker.ch>
-To:     marcel.ziswiler@toradex.com, max.krummenacher@toradex.com,
-        stefan@agner.ch, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 08/22] ARM: dts: imx7-colibri: Add touch controllers
-Date:   Tue, 30 Jul 2019 16:46:35 +0200
-Message-Id: <20190730144649.19022-9-dev@pschenker.ch>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190730144649.19022-1-dev@pschenker.ch>
-References: <20190730144649.19022-1-dev@pschenker.ch>
+        id S1730093AbfG3PTz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 11:19:55 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:42483 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729727AbfG3PTy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 11:19:54 -0400
+Received: by mail-lj1-f195.google.com with SMTP id t28so62464652lje.9;
+        Tue, 30 Jul 2019 08:19:53 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=41cV7dKBXD1+Ahztwm+17BUt7uOsIXebGJ7liP6Dr1Q=;
+        b=fr7J4bJ48BQhcslss9rejTyZdj4FPrdCEqvatF01xmxmUsIyyYwBzjPDgZx6PtGE+g
+         HwYtVBxrTJN5kM1cPkjQIT/6JjCXz4MpWL3Fo3H4uI5sXCKufNCQdoYuL1Ij8H2DfV/7
+         NFQzrhBp7GwGUVncuJfMWzEt3dHIrjPOv21vcDhz89QEdO6TOONuGfWGfqyyNOGnBTFK
+         uHUWnAlu4k1m5qhmQjRZj0HaUa5nr7tx1EcZFpW2/SruphDDDzA3jzJxsQc6T5svr8J3
+         IeLX8hApx/ujA+n0wMFc6deIowlh/HZie+RtHmgrV2y0zQwAYsvbu1TjC6BBiCAGXwmg
+         JOnA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=41cV7dKBXD1+Ahztwm+17BUt7uOsIXebGJ7liP6Dr1Q=;
+        b=lIeIoRERk1OyNUGCjyPXaAyGRJKiTiPJQ3ylmw2GURqOPkMku3XAy47ua44n45b49t
+         iiEPMvZfdkCJNn9rk/EivKVnGm6ZZkXW+7l8zdlHRIH7P2i2n79B/sb+8YyW62QvKMa6
+         87CojP9LEwEwtFoE6C82IzWUbKsb8i6LrgFqDsqguopotzfoy8qCgvCGk1IxF1Brk7sQ
+         JWZD8RkeHki4KKYkRm44SzsNjwhN4KgGX21pDr/cy8juUyVVfhnNcikn7QwzF4u79uty
+         N71+cmaot+eVBEyeboEAQhfdGyR0IzNTwBEOLrlGAZVi5J9tyLyGNqtaqcKETXbVjAJw
+         39Wg==
+X-Gm-Message-State: APjAAAUxUXP6SeUB2ZpKXAwqRbhnOIH6KHSqVYtufAIRxYes3hAWw052
+        v6E1yHsA69+q6dPRKbNjWeOBr8q5p0EH4AsIOoM=
+X-Google-Smtp-Source: APXvYqwbkHjJY94CJHMfxOymen4JekQBc6rBpZA6GX9FmhyRgQ8kFvXZ03CUkI7urj04jzey1TKg8zskVaDviN58ToQ=
+X-Received: by 2002:a2e:2c07:: with SMTP id s7mr24431008ljs.44.1564499992535;
+ Tue, 30 Jul 2019 08:19:52 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190730150552.24927-1-lukma@denx.de>
+In-Reply-To: <20190730150552.24927-1-lukma@denx.de>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Tue, 30 Jul 2019 12:19:57 -0300
+Message-ID: <CAOMZO5AxPHHobQQhq30fjLVeSroLdvdT0+GqCWi8it1ejhDONA@mail.gmail.com>
+Subject: Re: [PATCH] ARM: DTS: vybrid: Update qspi node description for VF610
+ BK4 board
+To:     Lukasz Majewski <lukma@denx.de>
+Cc:     Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Stefan Agner <stefan@agner.ch>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Philippe Schenker <philippe.schenker@toradex.com>
+Hi Lukasz,
 
-Add atmel mxt multitouch controller and TouchRevolution multitouch
-controller which are connected over an I2C bus.
+Subject line could be improved:
 
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
----
+ARM: dts: vf610-bk4: Fix qspi node description
 
- arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi | 37 +++++++++++++++++++++
- 1 file changed, 37 insertions(+)
+On Tue, Jul 30, 2019 at 12:06 PM Lukasz Majewski <lukma@denx.de> wrote:
+>
+> Before this change the device tree description of qspi node for
+> second memory on BK4 board was wrong (applicable to old, in-house
+> tunned fsl-quadspi.c driver).
+>
+> As a result this memory was not recognized correctly when used
+> with the new spi-fsl-qspi.c driver.
+>
+> From the dt-bindings:
+>
+> "Required SPI slave node properties:
+>   - reg: There are two buses (A and B) with two chip selects each.
+> This encodes to which bus and CS the flash is connected:
+> <0>: Bus A, CS 0
+> <1>: Bus A, CS 1
+> <2>: Bus B, CS 0
+> <3>: Bus B, CS 1"
+>
+> According to above with new driver the second SPI-NOR memory shall
+> have reg=<2> as it is connected to Bus B, CS 0.
 
-diff --git a/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi b/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
-index d4dbc4fc1adf..f6cbbe876532 100644
---- a/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
-+++ b/arch/arm/boot/dts/imx7-colibri-eval-v3.dtsi
-@@ -145,6 +145,34 @@
- &i2c4 {
- 	status = "okay";
- 
-+	/*
-+	 * the PCAPs use SODIMM 28/30, also used for PWM<B>, PWM<C>, aka pwm2,
-+	 * pwm3. so if you enable one of the PCAP controllers disable the pwms
-+	 */
-+	atmel_mxt_ts: atmel_mxt_ts@4a {
-+		compatible = "atmel,maxtouch";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpiotouch>;
-+		reg = <0x4a>;
-+		interrupt-parent = <&gpio1>;
-+		interrupts = <9 IRQ_TYPE_EDGE_FALLING>; /* SODIMM 28 */
-+		reset-gpios = <&gpio1 10 GPIO_ACTIVE_HIGH>; /* SODIMM 30 */
-+		status = "disabled";
-+	};
-+
-+	touch: touchrevf0710a@10 {
-+		compatible = "touchrevolution,fusion-f0710a";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpiotouch>;
-+		reg = <0x10>;
-+			/* SODIMM 28, Pen down interrupt */
-+		gpios = <&gpio1 9 GPIO_ACTIVE_HIGH
-+			/* SODIMM 30, Reset interrupt */
-+			 &gpio1 10 GPIO_ACTIVE_LOW
-+			>;
-+		status = "disabled";
-+	};
-+
- 	/* M41T0M6 real time clock on carrier board */
- 	rtc: m41t0m6@68 {
- 		compatible = "st,m41t0";
-@@ -200,3 +228,12 @@
- 	vmmc-supply = <&reg_3v3>;
- 	status = "okay";
- };
-+
-+&iomuxc {
-+	pinctrl_gpiotouch: touchgpios {
-+		fsl,pins = <
-+			MX7D_PAD_GPIO1_IO09__GPIO1_IO9		0x74
-+			MX7D_PAD_GPIO1_IO10__GPIO1_IO10		0x14
-+		>;
-+	};
-+};
--- 
-2.22.0
+I am glad you got it working!
 
+This looks very familiar with the suggestion I sent yesterday:
+http://lists.infradead.org/pipermail/linux-mtd/2019-July/090655.html
+
+It is a good practice to give some credit to someone who has helped in
+finding the solution of your problem.
+
+Adding a Suggested-by: Fabio Estevam <festevam@gmail.com> would be nice here.
+
+This also needs a Fixes tag.
