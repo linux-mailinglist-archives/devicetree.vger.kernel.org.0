@@ -2,91 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EBF297AC38
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:24:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 018577AC4F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:26:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732283AbfG3PYt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 11:24:49 -0400
-Received: from mail-qt1-f195.google.com ([209.85.160.195]:46615 "EHLO
-        mail-qt1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732275AbfG3PYs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 11:24:48 -0400
-Received: by mail-qt1-f195.google.com with SMTP id h21so63383096qtn.13
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2019 08:24:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=a/t4nyA1Q5Ire67bzt1cmZdzjlm5dY9UznxFZlUXgxs=;
-        b=Oy/OpaLgFDIl3Ho9McyAVLGL+eOwG/Nb5xH4IwHyDPX2I0P3C74EQUIty8j0aZM2qo
-         QhVKHBa3BNey7q6HFjovwuHmrYTAHL6wXvX1vFs6T2tbiep4xqaaFCX0wIrrgVlpQ09R
-         ZIwX7eFrvkds0vdWy9VV87a3STHK+RwqtBxubT19kppdZCk7e4sgfV2ekW4LZja6Dcj6
-         AtRAHG2BRPQahofXl9ztc7tIFqXkVxY0xS9NRQ6vO3VL834ArmywoTV5u7f/8uUwm1xL
-         p9MevdZpy/3K0TWQg+1prqlCdNlR6iHgiKOhu9DbXGhp5a6TNlbFEYx+96Mn4PzMtbr3
-         RUjA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=a/t4nyA1Q5Ire67bzt1cmZdzjlm5dY9UznxFZlUXgxs=;
-        b=coVdt4udVxz6Mlj0qheCM5Ofr3Afejz19tm4mpu5enS7F49r9rAgOMNZtCr2IlPE2v
-         MxtYDzwnsz4uSUNvBhAufToCUdu+fCL19RWiBWCU6X4faffqRxCVL/oxF5k6eckvlPyr
-         ow3qdFIDX7BL0bXgc+4nYK0n+vHgaT/OKS9stEG9ozRc6L6GkRmwj1hhUxsn4yxHXWyR
-         WMlDRW61AIXSO9Q+KtHy1RUJJ+bAx9Vfcrw+CE7H2vEzi4vEXc6XOqknBPWUBD98Vbs7
-         Hj1BUOU9PcHs7h3G7CqcIBNqZHjSfi/tsLkHycPDmwXpM+fimwV6v70W33q2yKebc0it
-         IVtg==
-X-Gm-Message-State: APjAAAVO1haIj8zVK8TTtSFDz+2NjBcKOgGjBsaWtEtNaAzHFeYAFzn+
-        qm1U6M1udpMUGYbnfgGrF/roUA==
-X-Google-Smtp-Source: APXvYqx94Ov7Y1nbCbkAGqV/v3t1tnEO2PycbrrXn68BGCtCdHxwCjJWcu+t1wo1xR/RxzXC20qszg==
-X-Received: by 2002:ac8:72d7:: with SMTP id o23mr74071688qtp.98.1564500287809;
-        Tue, 30 Jul 2019 08:24:47 -0700 (PDT)
-Received: from Thara-Work-Ubuntu.fios-router.home (pool-71-255-245-97.washdc.fios.verizon.net. [71.255.245.97])
-        by smtp.googlemail.com with ESMTPSA id r14sm27251082qkm.100.2019.07.30.08.24.46
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Tue, 30 Jul 2019 08:24:47 -0700 (PDT)
-From:   Thara Gopinath <thara.gopinath@linaro.org>
-To:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, mark.rutland@arm.com,
-        bjorn.andersson@linaro.org, amit.kucheria@linaro.org,
-        vinod.koul@linaro.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [Patch v2 2/2] arm64: dts: qcom: Extend AOSS QMP node
-Date:   Tue, 30 Jul 2019 11:24:43 -0400
-Message-Id: <1564500283-16038-3-git-send-email-thara.gopinath@linaro.org>
-X-Mailer: git-send-email 2.1.4
-In-Reply-To: <1564500283-16038-1-git-send-email-thara.gopinath@linaro.org>
-References: <1564500283-16038-1-git-send-email-thara.gopinath@linaro.org>
+        id S1731629AbfG3P0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 11:26:03 -0400
+Received: from imap1.codethink.co.uk ([176.9.8.82]:50754 "EHLO
+        imap1.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730358AbfG3P0D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 11:26:03 -0400
+Received: from [167.98.27.226] (helo=[10.35.6.253])
+        by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
+        id 1hsU0k-0000og-32; Tue, 30 Jul 2019 16:25:58 +0100
+Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on diagnostic
+ routine
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Takashi Iwai <tiwai@suse.com>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
+ <20190730120937.16271-4-thomas.preston@codethink.co.uk>
+ <20190730141935.GF4264@sirena.org.uk>
+From:   Thomas Preston <thomas.preston@codethink.co.uk>
+Message-ID: <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
+Date:   Tue, 30 Jul 2019 16:25:56 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190730141935.GF4264@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-AOSS hosts resources that can be used to warm up the SoC.
-Add nodes for these resources.
+On 30/07/2019 15:19, Mark Brown wrote:
+> On Tue, Jul 30, 2019 at 01:09:37PM +0100, Thomas Preston wrote:
+> 
+>> +	struct dentry *debugfs;
+>> +	struct mutex diagnostic_mutex;
+>> +};
+> 
+> It is unclear what this mutex usefully protects, it only gets taken when
+> writing to the debugfs file to trigger this diagnostic mode but doesn't
+> do anything to control interactions with any other code path in the
+> driver.
+> 
 
-Signed-off-by: Thara Gopinath <thara.gopinath@linaro.org>
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+If another process reads the debugfs node "diagnostic" while the turn-on 
+diagnostic mode is running, this mutex prevents the second process
+restarting the diagnostics.
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 4babff5..d0c0d4f 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -2411,6 +2411,14 @@
- 
- 			#clock-cells = <0>;
- 			#power-domain-cells = <1>;
-+
-+			cx_cdev: cx {
-+				#cooling-cells = <2>;
-+			};
-+
-+			ebi_cdev: ebi {
-+				#cooling-cells = <2>;
-+			};
- 		};
- 
- 		spmi_bus: spmi@c440000 {
--- 
-2.1.4
+This is redundant if debugfs reads are atomic, but I don't think they are.
 
+
+>> +static int run_turn_on_diagnostic(struct tda7802_priv *tda7802, u8 *status)
+>> +{
+>> +	struct device *dev = &tda7802->i2c->dev;
+>> +	int err_status, err;
+>> +	unsigned int val;
+>> +	u8 state[NUM_IB];
+> 
+>> +	/* We must wait 20ms for device to settle, otherwise diagnostics will
+>> +	 * not start and regmap poll will timeout.
+>> +	 */
+>> +	msleep(DIAGNOSTIC_SETTLE_MS);
+> 
+> The comment and define might go out of sync...
+> 
+
+Thanks, I will remove the 20ms but keep the comment here.
+
+>> +	err = regmap_bulk_read(tda7802->regmap, TDA7802_DB1, status, 4);
+>> +	if (err < 0) {
+>> +		dev_err(dev, "Could not read channel status, %d\n", err);
+>> +		goto diagnostic_restore;
+>> +	}
+> 
+> ...but here we use a magic number for the array size :(
+> 
+
+Thanks, will update.
+
+>> +static int tda7802_diagnostic_show(struct seq_file *f, void *p)
+>> +{
+>> +	char *buf = kmalloc(PAGE_SIZE, GFP_KERNEL);
+> 
+> We neither use nor free buf?
+> 
+>> +static int tda7802_probe(struct snd_soc_component *component)
+>> +{
+>> +	struct tda7802_priv *tda7802 = snd_soc_component_get_drvdata(component);
+>> +	struct device *dev = &tda7802->i2c->dev;
+>> +	int err;
+> 
+> Why is this done at the component level?
+> 
+
+Argh my bad, a previous iteration required the buf and component. I missed
+this, sorry for the noise.
+
+Thanks for feedback, I'll go back and tend to all of this.
