@@ -2,114 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 450EB7AB1D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 16:34:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 708AF7AB8E
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 16:57:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730490AbfG3OeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 10:34:12 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:41072 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728743AbfG3OeM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 10:34:12 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=bnSwB9Iwevew2RMS+oCUNWcQXcWmO0icV8safm3Y+7k=; b=ABK7ohS20te6PnMvyuuZd28/i
-        TAkwBE7yPSt13/jqJ6SNPDPP3lgrEmoMtDV9UHHsHPJhOh1xvle6oaupTJMQ05802ahdVKb2UB8+K
-        YY0hfF+0oCFnz5IWGYJ+cIgCRN6hWP67y7J2CEy2IxvLOelH9ssjwuEUH8Vt7YJAZz2Q4=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hsTC9-0007ku-23; Tue, 30 Jul 2019 14:33:41 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 093CD2742CB5; Tue, 30 Jul 2019 15:33:39 +0100 (BST)
-Date:   Tue, 30 Jul 2019 15:33:39 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Thomas Preston <thomas.preston@codethink.co.uk>
-Cc:     Marco Felsch <m.felsch@pengutronix.de>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Rob Duncan <rduncan@tesla.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Kirill Marinushkin <kmarinushkin@birdec.tech>,
-        linux-kernel@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Annaliese McDermond <nh6z@nh6z.net>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Vinod Koul <vkoul@kernel.org>,
+        id S1729721AbfG3O5d (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 10:57:33 -0400
+Received: from mxout017.mail.hostpoint.ch ([217.26.49.177]:30343 "EHLO
+        mxout017.mail.hostpoint.ch" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727129AbfG3O5d (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Tue, 30 Jul 2019 10:57:33 -0400
+Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
+        by mxout017.mail.hostpoint.ch with esmtp (Exim 4.92 (FreeBSD))
+        (envelope-from <dev@pschenker.ch>)
+        id 1hsTOx-000CPG-Vt; Tue, 30 Jul 2019 16:46:55 +0200
+Received: from [46.140.72.82] (helo=philippe-pc.toradex.int)
+        by asmtp013.mail.hostpoint.ch with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
+        (Exim 4.91 (FreeBSD))
+        (envelope-from <dev@pschenker.ch>)
+        id 1hsTOx-000Mva-QK; Tue, 30 Jul 2019 16:46:55 +0200
+X-Authenticated-Sender-Id: dev@pschenker.ch
+From:   Philippe Schenker <dev@pschenker.ch>
+To:     marcel.ziswiler@toradex.com, max.krummenacher@toradex.com,
+        stefan@agner.ch, devicetree@vger.kernel.org,
         Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Nate Case <ncase@tesla.com>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Patrick Glaser <pglaser@tesla.com>,
-        Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [alsa-devel] [PATCH v2 1/3] dt-bindings: ASoC: Add TDA7802
- amplifier
-Message-ID: <20190730143339.GH4264@sirena.org.uk>
-References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
- <20190730120937.16271-2-thomas.preston@codethink.co.uk>
- <20190730122748.GF54126@ediswmail.ad.cirrus.com>
- <20190730131209.rdv2kdlrpfeouh66@pengutronix.de>
- <16a99e45-fd5a-2878-acf9-63518f9ca527@codethink.co.uk>
+        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Subject: [PATCH 01/22] ARM: dts: imx7-colibri: make sure module supplies are always on
+Date:   Tue, 30 Jul 2019 16:46:28 +0200
+Message-Id: <20190730144649.19022-2-dev@pschenker.ch>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190730144649.19022-1-dev@pschenker.ch>
+References: <20190730144649.19022-1-dev@pschenker.ch>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="+QwZB9vYiNIzNXIj"
-Content-Disposition: inline
-In-Reply-To: <16a99e45-fd5a-2878-acf9-63518f9ca527@codethink.co.uk>
-X-Cookie: Times approximate.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
 
---+QwZB9vYiNIzNXIj
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Prevent regulators from being switched off.
 
-On Tue, Jul 30, 2019 at 03:12:21PM +0100, Thomas Preston wrote:
-> On 30/07/2019 14:12, Marco Felsch wrote:
+Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+---
 
-> >>> +- compatible : "st,tda7802"
-> >>> +- reg : the I2C address of the device
-> >>> +- enable-supply : a regulator spec for the PLLen pin
+ arch/arm/boot/dts/imx7-colibri.dtsi | 2 ++
+ 1 file changed, 2 insertions(+)
 
-> > Shouldn't that be a pin called 'pllen-gpios'? IMHO I would not use a
-> > regulator for that.
+diff --git a/arch/arm/boot/dts/imx7-colibri.dtsi b/arch/arm/boot/dts/imx7-colibri.dtsi
+index 895fbde4d433..f1c1971f2160 100644
+--- a/arch/arm/boot/dts/imx7-colibri.dtsi
++++ b/arch/arm/boot/dts/imx7-colibri.dtsi
+@@ -54,6 +54,7 @@
+ 		regulator-name = "+V3.3";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
+ 	};
+ 
+ 	reg_module_3v3_avdd: regulator-module-3v3-avdd {
+@@ -61,6 +62,7 @@
+ 		regulator-name = "+V3.3_AVDD_AUDIO";
+ 		regulator-min-microvolt = <3300000>;
+ 		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
+ 	};
+ 
+ 	sound {
+-- 
+2.22.0
 
-> Hi Marco,
-> We have multiple amplifiers hooked up in a chain, and all the PLLens
-> are connected to one GPIO. So we need to use a regulator so that
-> i2c-TDA7802:00 doesn't turn off the PLLen which i2c-TDA7802:01 still
-> requires.
-
-> This is why we use a regulator. Is there GPIO support for this?
-
-If it's a GPIO not a regulator then it should be a GPIO not a regulator
-in the device tree.  The device tree describes the hardware.  There was
-some work on helping share GPIOs in the GPIO framework to accomodate
-GPIOs for regulator enables, you should be able to do something similar
-to what the regulator framework does.
-
---+QwZB9vYiNIzNXIj
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1AVUMACgkQJNaLcl1U
-h9Cu4Qf+OOSeubUr69q1X65qxycxElWJauRAa8zN5ZCS6Corf1z/+hgxkei5GI7D
-p242D+7O5/QHuGlsws3pHfiD3BUJbV+/D05v8DDX1GOEf54+8wv+dnX/1AZKtYzS
-IU/5aki3+oYGj76dQKpAhuTJFnJGGmkMg+O5SWXocr3KZO5P740PKZG0+wVX+yQp
-OdZbJOEfztfQ8AfQQ4vtSjun2grcmxeEyxPo7LiL+iNs2ifAOZW6TWNIl7Y/Xftg
-UNGdYVAtOL9s9G364+UmdAbLbQtKDtLLnotRd98S8NGElOoOGoLss6/pwrW2BHd4
-CgdgNotIdcr1q2Me8acJM2d8pxjKWA==
-=aDlD
------END PGP SIGNATURE-----
-
---+QwZB9vYiNIzNXIj--
