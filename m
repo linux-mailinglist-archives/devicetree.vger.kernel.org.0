@@ -2,126 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 239C47AC43
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:25:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A9427AC3D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 17:25:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732315AbfG3PZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 11:25:17 -0400
-Received: from atlmailgw1.ami.com ([63.147.10.40]:61512 "EHLO
-        atlmailgw1.ami.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729202AbfG3PZR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 11:25:17 -0400
-X-AuditID: ac1060b2-3fdff70000003a7d-80-5d40615d96f9
-Received: from atlms1.us.megatrends.com (atlms1.us.megatrends.com [172.16.96.144])
-        (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by atlmailgw1.ami.com (Symantec Messaging Gateway) with SMTP id C0.CD.14973.D51604D5; Tue, 30 Jul 2019 11:25:17 -0400 (EDT)
-Received: from hongweiz-Ubuntu-AMI.us.megatrends.com (172.16.98.93) by
- atlms1.us.megatrends.com (172.16.96.144) with Microsoft SMTP Server (TLS) id
- 14.3.408.0; Tue, 30 Jul 2019 11:25:15 -0400
-From:   Hongwei Zhang <hongweiz@ami.com>
-To:     Andrew Jeffery <andrew@aj.id.au>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, <devicetree@vger.kernel.org>
-CC:     Hongwei Zhang <hongweiz@ami.com>, Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>
-Subject: [v6 1/2] dt-bindings: gpio: aspeed: Add SGPIO support
-Date:   Tue, 30 Jul 2019 11:24:27 -0400
-Message-ID: <1564500268-2627-2-git-send-email-hongweiz@ami.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1564500268-2627-1-git-send-email-hongweiz@ami.com>
-References: <1564500268-2627-1-git-send-email-hongweiz@ami.com>
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [172.16.98.93]
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrNLMWRmVeSWpSXmKPExsWyRiBhgm5sokOswYTPhha7LnNYfJl7isVi
-        /pFzrBa/z/9ltpjyZzmTxabH11gtmlefY7bYPP8Po8XlXXPYLFr3HmF34PK42r6L3eP9jVZ2
-        j4sfjzF7bFrVyeZx59oeNo/NS+o9zs9YyOjxeZNcAEcUl01Kak5mWWqRvl0CV8av6edZCmaK
-        VKy6eJq1gXG3QBcjJ4eEgInEjXnn2LsYuTiEBHYxSZy9+ZsNwjnMKHH6wSd2kCo2ATWJvZvn
-        MIEkRAT6GSXu9DaAJZgFWpgkPi8rArGFBewkHp2bzApiswioSqxdtBTM5hWwl/jc+5cFYp2c
-        xM1zncxdjBwcnAIOEjve+oGEhYBKDm9fxQJRLihxcuYTFojxEhIHX7xghqiRlbh16DETxBgF
-        ied9j1kmMArMQtIyC0nLAkamVYxCiSU5uYmZOenlhnqJuZl6yfm5mxghEbBpB2PLRfNDjEwc
-        jIcYJTiYlUR4F4vbxwrxpiRWVqUW5ccXleakFh9ilOZgURLnXbnmW4yQQHpiSWp2ampBahFM
-        lomDU6qBcWPkW9aw8EjvXWVy1qfWyHKfeFXl/XXirtVqK7Vk7z38YvDdPiMsaE4/i5UohzKb
-        SfPL9bZre1f/P5OtudXiiLilt21dwlV166R2Nv+jkXaq1UuKVy26/aQvKjTnt4ZX8bW4qJo5
-        TlIVMzd/FbLhO7Ju6mk3E29vkS9Trt9dHfxuQpVH4rFcJZbijERDLeai4kQAYytEwG4CAAA=
+        id S1732272AbfG3PY6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 11:24:58 -0400
+Received: from mail-qk1-f194.google.com ([209.85.222.194]:44438 "EHLO
+        mail-qk1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729202AbfG3PYq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 11:24:46 -0400
+Received: by mail-qk1-f194.google.com with SMTP id d79so46859254qke.11
+        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2019 08:24:45 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id;
+        bh=WRQrRymvzeuce3KKDbksGCaiWLluhsSldgXmnzTmp8s=;
+        b=y4t+HM1gzG3E/sK8yoWFX8FDHUW4HdMLmLbt/cIJqBMgLDJ71onmHxZPXuKyUkHaxg
+         iriURYdjLTQwVa5uDNBPkJ2ZPyjb3ZWnQIqtpvcQgO4wRj0B/bmhvAWBObA32nhn1xFY
+         j5DnUpbNffMqYSsmKeyXaTdP0OBjCRh/xqwWe44VkcUy8YQExEbcxLYLW3MktSFoewjc
+         c+Pul3W9Hw/RRpOIMKf6Q+A05UVHAf2tc3EuxAyHrRI5WaToby0adDO665ppycGWkpcu
+         KCSdoRgWUd0qCiLlc5Dbcpgddpli/glSpFxlzM+SsjNviSfmJkqlpTEfpi4hgLBk+U6U
+         EeyQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=WRQrRymvzeuce3KKDbksGCaiWLluhsSldgXmnzTmp8s=;
+        b=OUywYckZE09yHlAjc9FykDNjg9HkX6lQUMaJo5p2CIx6rRdwjZ0X3Bz12ad299g2xk
+         90FbNho/zIrpVDALNkVtMcGREGhKRYaaST/ZhBiIDvTekPyA4t127ga3EOu4FBWmTuRQ
+         taK+K5LJRTPKl20EU04AKMO9cMLmqo5P6MSkRd4c+wA22tt2Ly+E1I6XH5koERYyQcZt
+         i4YqXEQG9k5onsUGaDodWunpKN2iO/IwKbm+W7dUbDq1wL7xJPDPKwjN5N05syhpdteY
+         HOQP3dG+hhVC7TJXPA+FQxVLBwUPjqUhRzv+IdH8cl4jjAAKjsCWmd3GuE9E/cm5+M3i
+         IwWQ==
+X-Gm-Message-State: APjAAAULrlL+KOwqyKLHRsU08rdkmbfGF+ehs+3DLHGv5BzXR0HYwDNh
+        /wc3VnJaonLj29WU/AogepW1/Q==
+X-Google-Smtp-Source: APXvYqyg4l1a/B04E8+LgeFlAnxW+Kg5rRx3jm0+QKFBC6Q4BagEPljVLBschqWhEsjHslipIZbtNg==
+X-Received: by 2002:a37:97c5:: with SMTP id z188mr81637690qkd.5.1564500285402;
+        Tue, 30 Jul 2019 08:24:45 -0700 (PDT)
+Received: from Thara-Work-Ubuntu.fios-router.home (pool-71-255-245-97.washdc.fios.verizon.net. [71.255.245.97])
+        by smtp.googlemail.com with ESMTPSA id r14sm27251082qkm.100.2019.07.30.08.24.44
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Tue, 30 Jul 2019 08:24:44 -0700 (PDT)
+From:   Thara Gopinath <thara.gopinath@linaro.org>
+To:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        bjorn.andersson@linaro.org, amit.kucheria@linaro.org,
+        vinod.koul@linaro.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [Patch v2 0/2] Add support for AOSS resources that are used to warm up the SoC
+Date:   Tue, 30 Jul 2019 11:24:41 -0400
+Message-Id: <1564500283-16038-1-git-send-email-thara.gopinath@linaro.org>
+X-Mailer: git-send-email 2.1.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings to support SGPIO on AST2400 or AST2500.
+The Always On Sub System (AOSS) hosts certain resources
+that are used to warm up the soc if the temperature falls
+below certain threshold. These resources are
+added can be considered as thermal warming devices
+(opposite of thermal cooling devices).
 
-Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
----
- .../devicetree/bindings/gpio/sgpio-aspeed.txt      | 55 ++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+These resources are controlled via AOSS QMP protocol
+In kernel, these devices can be treated the same way as any other
+thermal cooling device and hence are registered with the thermal
+cooling framework.
 
-diff --git a/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
-new file mode 100644
-index 0000000..f9ed438
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
-@@ -0,0 +1,55 @@
-+Aspeed SGPIO controller Device Tree Bindings
-+-------------------------------------------
-+
-+This SGPIO controller is for ASPEED AST2500 SoC, it supports up to 80 full 
-+featured Serial GPIOs. Each of the Serial GPIO pins can be programmed to 
-+support the following options:
-+- Support interrupt option for each input port and various interrupt 
-+  sensitivity option (level-high, level-low, edge-high, edge-low)
-+- Support reset tolerance option for each output port
-+- Directly connected to APB bus and its shift clock is from APB bus clock
-+  divided by a programmable value.
-+- Co-work with external signal-chained TTL components (74LV165/74LV595)
-+
-+
-+Required properties:
-+
-+- compatible		: Either "aspeed,ast2400-sgpio" or "aspeed,ast2500-sgpio"
-+
-+- #gpio-cells 		: Should be two
-+			  - First cell is the GPIO line number
-+			  - Second cell is used to specify optional
-+			    parameters (unused)
-+
-+- reg			: Address and length of the register set for the device
-+- gpio-controller	: Marks the device node as a GPIO controller
-+- interrupts		: Interrupt specifier (see interrupt bindings for
-+			  details)
-+
-+- interrupt-controller	: Mark the GPIO controller as an interrupt-controller
-+
-+- ngpios		: number of GPIO pins to serialise. 
-+			  (should be multiple of 8, up to 80 pins)
-+
-+- clocks                : A phandle to the APB clock for SGPM clock division
-+
-+- bus-frequency		: SGPM CLK frequency
-+
-+
-+The sgpio and interrupt properties are further described in their respective bindings documentation:
-+
-+- Documentation/devicetree/bindings/sgpio/gpio.txt
-+- Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
-+
-+  Example:
-+	sgpio: sgpio@1e780200 {
-+		#gpio-cells = <2>;
-+		compatible = "aspeed,ast2500-sgpio";
-+		gpio-controller;
-+		interrupts = <40>;
-+		reg = <0x1e780200 0x0100>;
-+		clocks = <&syscon ASPEED_CLK_APB>;
-+		interrupt-controller;
-+		ngpios = <8>;
-+		bus-frequency = <12000000>;
-+	};
+To use these resources as warming devices require further tweaks in
+the thermal framework which are out of scope of this patch series.
+
+Thara Gopinath (2):
+  soc: qcom: Extend AOSS QMP driver to support resources that are used
+    to wake up the SoC.
+  arm64: dts: qcom: Extend AOSS QMP node
+
+ arch/arm64/boot/dts/qcom/sdm845.dtsi |   8 +++
+ drivers/soc/qcom/qcom_aoss.c         | 131 +++++++++++++++++++++++++++++++++++
+ 2 files changed, 139 insertions(+)
+
 -- 
-2.7.4
+2.1.4
 
