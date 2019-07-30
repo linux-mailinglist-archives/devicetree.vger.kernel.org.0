@@ -2,67 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1A5B779EB5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 04:31:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E7F9A79EE5
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 04:46:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731295AbfG3CbF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 22:31:05 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:36120 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731282AbfG3CbF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 29 Jul 2019 22:31:05 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5512E200538;
-        Tue, 30 Jul 2019 04:31:03 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 6CC73200527;
-        Tue, 30 Jul 2019 04:30:58 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 26C5D402E0;
-        Tue, 30 Jul 2019 10:30:52 +0800 (SGT)
-From:   Anson.Huang@nxp.com
-To:     rui.zhang@intel.com, edubezval@gmail.com,
-        daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH V3 5/5] dt-bindings: thermal: qoriq: Add optional clocks property
-Date:   Tue, 30 Jul 2019 10:21:26 +0800
-Message-Id: <20190730022126.17883-5-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20190730022126.17883-1-Anson.Huang@nxp.com>
-References: <20190730022126.17883-1-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1731469AbfG3Cqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 22:46:44 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:38555 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731466AbfG3Cqo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 22:46:44 -0400
+Received: by mail-pl1-f195.google.com with SMTP id az7so28246411plb.5
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 19:46:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=TIMkP6Sbv3HhH7Pg62xgc50SN2hQat3s6fyOGmFVet4=;
+        b=L8GR5DfMRyep5ArrsWvl2jbLj0dmva+GRlpTMBEy28z/3U4kCIKeBfzq/cFSiBzTUq
+         WhFNVymIRwcWDQ1d+MP+L6pG65a1cGoWsZQPFjvo6ct+L43Bji6mvXlBS1bQneYXg7cx
+         fy+1Mt8/3wqfOeX7J2TAKnyQ35VlrhKD8JpFAba6lteniuBVkgF4ubCMEGl0DZ/8hxjE
+         AcnOxEssWV3etZKwaV/WP3qCQ2uzrfUxPFssPd4SdLqohFGIpSgD7oSRd5+RzJ7P/oUp
+         9eGmRtDwiQDJsUdu9E6hAg0U25uQ22eAq+YqsUekO+88XtqsfJH7eqal1w1uOJS6LDPz
+         A67A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=TIMkP6Sbv3HhH7Pg62xgc50SN2hQat3s6fyOGmFVet4=;
+        b=gl3vu4iXVIkyXqLdUSjH79WtfYkxn28cbXwKgntHUnMAYEKuB5WZ0IEs2P00iRk5aR
+         CXxzaR+NPM1VfxEOs4VkS4OdrtiANt+v090mO9wrxg+Q4SKF+xV6wkJKWaEwhLHIGRBO
+         8Xrf9MkpnCi7smLcI1+WcbcUMoCgGOcVEMFGoqTB+pD2Mq9yURWk6o/tSisOskKmzSHh
+         4xP0ncLdzOMfVyKD1aKvMIIArXQCVPGgQKXOVDwc2J6oY8TdY0p6TjEoaukqknI77J+t
+         W4bO620fbz7a8WzkpMblD9bARIWlzEdVwe+qnsaPA7Zk5ylffqARV+GaN6s1VZ9MzGc/
+         rAgA==
+X-Gm-Message-State: APjAAAUiI3xPWKuc6jvyxHRmPCEtwJsqTINowWzYC29lmL7xrBQhdKeL
+        pNIA4DHvwTyLIwGDCu+PNlggVA==
+X-Google-Smtp-Source: APXvYqzeA9LVcJv5kbvk0OnqoT6oBgmnCofJDcZtwfBTMsDgwL3UumIql4DmQbc9jwe2WS2gmfH5ow==
+X-Received: by 2002:a17:902:aa41:: with SMTP id c1mr112285898plr.201.1564454803345;
+        Mon, 29 Jul 2019 19:46:43 -0700 (PDT)
+Received: from localhost ([122.172.28.117])
+        by smtp.gmail.com with ESMTPSA id x14sm79932677pfq.158.2019.07.29.19.46.42
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 29 Jul 2019 19:46:42 -0700 (PDT)
+Date:   Tue, 30 Jul 2019 08:16:40 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Saravana Kannan <saravanak@google.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        Sibi Sankar <sibis@codeaurora.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
+        David Dai <daidavid1@codeaurora.org>, adharmap@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v4 0/3] Introduce Bandwidth OPPs for interconnects
+Message-ID: <20190730024640.xk27jgdfl2j6ucx7@vireshk-i7>
+References: <20190726231558.175130-1-saravanak@google.com>
+ <20190729093545.kvnqxjkyx4nogddk@vireshk-i7>
+ <CAGETcx8OBFGgP1-hj717Sk-_N95-kacVsz0yb288n3pej12n1Q@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAGETcx8OBFGgP1-hj717Sk-_N95-kacVsz0yb288n3pej12n1Q@mail.gmail.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Anson Huang <Anson.Huang@nxp.com>
+On 29-07-19, 13:16, Saravana Kannan wrote:
+> Sibi might be working on doing that for the SDM845 CPUfreq driver.
+> Georgi could also change his GPU driver use case to use this BW OPP
+> table and required-opps.
+> 
+> The problem is that people don't want to start using this until we
+> decide on the DT representation. So it's like a chicken and egg
+> situation.
 
-Some platforms like i.MX8M series SoCs have clock control for TMU,
-add optional clocks property to the binding doc.
+Yeah, I agree to that.
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-Reviewed-by: Rob Herring <robh@kernel.org>
----
-No changes, noted the i.MX8M series SoCs need this clock in commit log.
----
- Documentation/devicetree/bindings/thermal/qoriq-thermal.txt | 1 +
- 1 file changed, 1 insertion(+)
+@Georgi and @Sibi: This is your chance to speak up about the proposal
+from Saravana and if you find anything wrong with them. And specially
+that it is mostly about interconnects here, I would like to have an
+explicit Ack from Georgi on this.
 
-diff --git a/Documentation/devicetree/bindings/thermal/qoriq-thermal.txt b/Documentation/devicetree/bindings/thermal/qoriq-thermal.txt
-index 04cbb90..28f2cba 100644
---- a/Documentation/devicetree/bindings/thermal/qoriq-thermal.txt
-+++ b/Documentation/devicetree/bindings/thermal/qoriq-thermal.txt
-@@ -23,6 +23,7 @@ Required properties:
- Optional property:
- - little-endian : If present, the TMU registers are little endian. If absent,
- 	the default is big endian.
-+- clocks : the clock for clocking the TMU silicon.
- 
- Example:
- 
+And if you guys are all okay about this then please at least commit
+that you will convert your stuff based on this in coming days.
+
 -- 
-2.7.4
-
+viresh
