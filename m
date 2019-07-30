@@ -2,115 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0E8A77AB7F
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 16:56:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CD497ABB6
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 16:59:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729482AbfG3O4R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 10:56:17 -0400
-Received: from mxout012.mail.hostpoint.ch ([217.26.49.172]:64475 "EHLO
-        mxout012.mail.hostpoint.ch" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727129AbfG3O4R (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Jul 2019 10:56:17 -0400
-Received: from [10.0.2.46] (helo=asmtp013.mail.hostpoint.ch)
-        by mxout012.mail.hostpoint.ch with esmtp (Exim 4.92 (FreeBSD))
-        (envelope-from <dev@pschenker.ch>)
-        id 1hsTXy-0000wf-FR; Tue, 30 Jul 2019 16:56:14 +0200
-Received: from [46.140.72.82] (helo=philippe-pc.toradex.int)
-        by asmtp013.mail.hostpoint.ch with esmtpsa (TLSv1.2:ECDHE-RSA-AES256-GCM-SHA384:256)
-        (Exim 4.91 (FreeBSD))
-        (envelope-from <dev@pschenker.ch>)
-        id 1hsTPA-000Mva-Sd; Tue, 30 Jul 2019 16:47:08 +0200
-X-Authenticated-Sender-Id: dev@pschenker.ch
-From:   Philippe Schenker <dev@pschenker.ch>
-To:     marcel.ziswiler@toradex.com, max.krummenacher@toradex.com,
-        stefan@agner.ch, devicetree@vger.kernel.org,
+        id S1731499AbfG3O7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 10:59:20 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:55072 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728526AbfG3O7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 10:59:19 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=q2mZoui6udBRuKFOD8sPcNVwLKdo8WonOPR0Qr0qLl4=; b=sUh6HbsLaMglxXUyFaT4PAHWh
+        vaWqy21YTyot3IWcSwMCKn4FZtxyh7WK34XkfZYzHfhF+xUbR38l615/+14u5hWOAzzOFDaC6FJgP
+        ffnYJkCqITJOnP9Xm1a++tPWjMkes1yrONBiFp3GY3OHwl3T21WNi7+xsNfLz0gdwI90A=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hsTaP-0007nU-8e; Tue, 30 Jul 2019 14:58:45 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 540752742CB5; Tue, 30 Jul 2019 15:58:44 +0100 (BST)
+Date:   Tue, 30 Jul 2019 15:58:44 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Thomas Preston <thomas.preston@codethink.co.uk>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH 22/22] ARM: dts: imx6ull-colibri: Add touchscreens used with Eval Board
-Date:   Tue, 30 Jul 2019 16:46:49 +0200
-Message-Id: <20190730144649.19022-23-dev@pschenker.ch>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190730144649.19022-1-dev@pschenker.ch>
-References: <20190730144649.19022-1-dev@pschenker.ch>
+        Mark Rutland <mark.rutland@arm.com>,
+        Jaroslav Kysela <perex@perex.cz>,
+        Takashi Iwai <tiwai@suse.com>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Patrick Glaser <pglaser@tesla.com>,
+        Rob Duncan <rduncan@tesla.com>, Nate Case <ncase@tesla.com>
+Subject: Re: [PATCH v2 2/3] ASoC: Add codec driver for ST TDA7802
+Message-ID: <20190730145844.GI4264@sirena.org.uk>
+References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
+ <20190730120937.16271-3-thomas.preston@codethink.co.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="poJSiGMzRSvrLGLs"
+Content-Disposition: inline
+In-Reply-To: <20190730120937.16271-3-thomas.preston@codethink.co.uk>
+X-Cookie: Times approximate.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Philippe Schenker <philippe.schenker@toradex.com>
 
-This adds the common touchscreens that are used with Toradex's
-Eval Boards.
+--poJSiGMzRSvrLGLs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+On Tue, Jul 30, 2019 at 01:09:36PM +0100, Thomas Preston wrote:
 
----
+> index 000000000000..0f82a88bc1a4
+> --- /dev/null
+> +++ b/sound/soc/codecs/tda7802.c
+> @@ -0,0 +1,509 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * tda7802.c  --  codec driver for ST TDA7802
 
- .../arm/boot/dts/imx6ull-colibri-eval-v3.dtsi | 37 +++++++++++++++++++
- 1 file changed, 37 insertions(+)
+Please make the entire comment a C++ one so this looks intentional.
 
-diff --git a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-index d3c4809f140e..cd72d3decf6a 100644
---- a/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-+++ b/arch/arm/boot/dts/imx6ull-colibri-eval-v3.dtsi
-@@ -112,6 +112,34 @@
- &i2c1 {
- 	status = "okay";
- 
-+	/*
-+	 * the PCAPs use SODIMM 28/30, also used for PWM<B>, PWM<C>, aka pwm5,
-+	 * pwm6. so if you enable one of the PCAP controllers disable the pwms
-+	 */
-+	atmel_mxt_ts: atmel_mxt_ts@4a {
-+		compatible = "atmel,maxtouch";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpiotouch>;
-+		reg = <0x4a>;
-+		interrupt-parent = <&gpio4>;
-+		interrupts = <16 IRQ_TYPE_EDGE_FALLING>; /* SODIMM 28 */
-+		reset-gpios = <&gpio2 5 GPIO_ACTIVE_HIGH>; /* SODIMM 30 */
-+		status = "disabled";
-+	};
-+
-+	touch: touchrevf0710a@10 {
-+		compatible = "touchrevolution,fusion-f0710a";
-+		pinctrl-names = "default";
-+		pinctrl-0 = <&pinctrl_gpiotouch>;
-+		reg = <0x10>;
-+			/* SODIMM 28, Pen down interrupt */
-+		gpios = <&gpio4 16 GPIO_ACTIVE_HIGH
-+			/* SODIMM 30, Reset interrupt */
-+			 &gpio2 5 GPIO_ACTIVE_LOW
-+			>;
-+		status = "disabled";
-+	};
-+
- 	/* M41T0M6 real time clock on carrier board */
- 	m41t0m6: rtc@68 {
- 		compatible = "st,m41t0";
-@@ -188,3 +216,12 @@
- 	sd-uhs-sdr104;
- 	status = "okay";
- };
-+
-+&iomuxc {
-+	pinctrl_gpiotouch: touchgpios {
-+		fsl,pins = <
-+			MX6UL_PAD_NAND_DQS__GPIO4_IO16		0x74
-+			MX6UL_PAD_ENET1_TX_EN__GPIO2_IO05	0x14
-+		>;
-+	};
-+};
--- 
-2.22.0
+> +static int tda7802_digital_mute(struct snd_soc_dai *dai, int mute)
+> +{
+> +	const u8 mute_disabled = mute ? 0 : IB2_DIGITAL_MUTE_DISABLED;
 
+Please write normal conditional statements to make the code easier to
+read.
+
+> +	case SND_SOC_BIAS_STANDBY:
+> +		err = regulator_enable(tda7802->enable_reg);
+> +		if (err < 0) {
+> +			dev_err(component->dev, "Could not enable.\n");
+> +			return err;
+> +		}
+> +		dev_dbg(component->dev, "Regulator enabled\n");
+> +		msleep(ENABLE_DELAY_MS);
+
+Is this delay needed by the device or is it for the regulator to ramp?
+If it's for the regulator to ramp then the regulator should be doing it.
+
+> +	case SND_SOC_BIAS_OFF:
+> +		regcache_mark_dirty(component->regmap);
+
+If the regulator is going off you should really be marking the device as
+cache only.
+
+> +		err = regulator_disable(tda7802->enable_reg);
+> +		if (err < 0)
+> +			dev_err(component->dev, "Could not disable.\n");
+
+Any non-zero value from regulator_disable() is an error, there's similar
+error checking issues in other places.
+
+> +static const struct snd_kcontrol_new tda7802_snd_controls[] = {
+> +	SOC_SINGLE("Channel 4 Tristate", TDA7802_IB0, 7, 1, 0),
+> +	SOC_SINGLE("Channel 3 Tristate", TDA7802_IB0, 6, 1, 0),
+> +	SOC_SINGLE("Channel 2 Tristate", TDA7802_IB0, 5, 1, 0),
+> +	SOC_SINGLE("Channel 1 Tristate", TDA7802_IB0, 4, 1, 0),
+
+These look like simple on/off switches so should have Switch at the end
+of the control name.  It's also not clear to me why this is exported to
+userspace - why would this change at runtime and won't any changes need
+to be coordinated with whatever else is connected to the signal?
+
+> +	SOC_ENUM("Mute time", mute_time),
+> +	SOC_SINGLE("Unmute channels 1 & 3", TDA7802_IB2, 4, 1, 0),
+> +	SOC_SINGLE("Unmute channels 2 & 4", TDA7802_IB2, 3, 1, 0),
+
+These are also Switch controls.  There are *lots* of problems with
+control names, see control-names.rst.
+
+> +static const struct snd_soc_component_driver tda7802_component_driver = {
+> +	.set_bias_level = tda7802_set_bias_level,
+> +	.idle_bias_on = 1,
+
+Any reason to keep the device powered up?  It looks like the power on
+process is just powering things up and writing the register cache out
+and there's not that many registers so the delay is trivial.
+
+> +	tda7802->enable_reg = devm_regulator_get(dev, "enable");
+> +	if (IS_ERR(tda7802->enable_reg)) {
+> +		dev_err(dev, "Failed to get enable regulator\n");
+
+It's better to print error codes if you have them and are printing a
+diagnostic so people have more to go on when debugging problems.
+
+--poJSiGMzRSvrLGLs
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1AWyMACgkQJNaLcl1U
+h9CSRAf+JnRHblFvE8wz05/KmaqsoJ72DsJH6tOksd0/ifd52UjtRhoB3jIhVaR2
+lJtx2+K9jHM8Q/tEBDNGXlzFt7MoUcvfgHfvAZ0Mfbkfvoox60KTJnh2C1B+Yr7i
+TIVNSQJSN+NtdtSYs2BaFkk/Zrj7Q9kDj7BHHOBeK7fDkq8PTRdLHU1YjB+HlrTT
+nRXLv1mXRa1cI+caoQRIXcQEOmW+VLlMasEFiSNS/0I3UtHgn2UHezS3Z+MHUJ4F
+TOmV2MyA/S4wW70Cus6iZs7BO0aCYLQFJmFgtd0t+C3nMKvSILwBWidIzK9WYuc6
+CeQAgukY5VCt+NmFvl4l2irCODm7Bg==
+=Gl9u
+-----END PGP SIGNATURE-----
+
+--poJSiGMzRSvrLGLs--
