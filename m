@@ -2,132 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2E13E7B48D
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 22:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D3237B540
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 23:48:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726671AbfG3Ux0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 16:53:26 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:44578 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726641AbfG3Ux0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 16:53:26 -0400
-Received: by mail-lf1-f67.google.com with SMTP id r15so28761325lfm.11;
-        Tue, 30 Jul 2019 13:53:24 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jclYugzhKXhlJk5pUhgZFfSAA+o8PyYYOEPmXaFzQW0=;
-        b=qaxgPyuHjV8eQsxdgIXD6wSNKdaV7/pZgBLwWou4xmbqtxd22n3RB6hJz1KSiu5xjE
-         8UHPBLHvHKLP7q8bZyn+tmK4I/4UbgvCxL5fxdwaI7Unom7vdlBrqnG4HVHFJse72zYZ
-         3/GVsiQCC0s/AjkKO61Yfl4e3sykcWMgze90gIJCDiNDG+q8cWZpXRc6PZMtJzidX0ND
-         b4JPeaOPnBxjx9NWxcsIqLEgdEPqeXYhmEM5lnkp+jAs3fq5TNul0KPlGCVgaIm6DLKc
-         wA3IM5hNgTn9JQwHv+jGH2Eq7VyN78RUn8myQ3d13Am56YVRvLGcXRMPzzR3eGU+5mjc
-         SWBw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jclYugzhKXhlJk5pUhgZFfSAA+o8PyYYOEPmXaFzQW0=;
-        b=GqsDpju4pECa9TBaGvu+6P4EtbIUBoSgo1ojvusXkSVK2YlavHmjN1Jd4zuYC0QANO
-         tW/MRt+FL0Uwymyz3xTYV+KAu9rrk6Ii3veKvqvpvjDTaq1CbKRiyRqgSsCF4dQMDuNJ
-         6qnUUbL35uJwBSSA2t3/FCfoRal7GOBj8Phz7SlTgWGEkcbZ4OxI0HdBa4rm1BLbHjwW
-         1ErZiY/0pZ8nAHj0IJG/O2UBKrjAtybvAsLM39B8gTS4uGG1s+cIwF5Rk0DiI9jxf/NV
-         6a/HZ7dLqPF8v2Ahf4UChvSCKJDiyFSjfD3rbOhPs5t5jgOxp3ieuGC5eLU4zYLOniKu
-         q3rA==
-X-Gm-Message-State: APjAAAXBtwOqcGFo1Gd4KFNNHvEFB5q/hWJR6pR+wI+saL8oE80svnFe
-        isq+r7nLwO+bD3tglikxIO6JADwFDxTbXNaZPTA=
-X-Google-Smtp-Source: APXvYqxLZbcQkNGLt2aGD4ZsshnY4scI1t46ayvot4F2God2/3h/JlTnUrnkZHuI2ef6+Z6FMDVVioV953qAvR1vzWQ=
-X-Received: by 2002:a05:6512:29a:: with SMTP id j26mr24102009lfp.44.1564520003726;
- Tue, 30 Jul 2019 13:53:23 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190730144649.19022-1-dev@pschenker.ch> <20190730144649.19022-15-dev@pschenker.ch>
-In-Reply-To: <20190730144649.19022-15-dev@pschenker.ch>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Tue, 30 Jul 2019 17:53:28 -0300
-Message-ID: <CAOMZO5BtXFR7kDuiHedsDA0AaNZqsO_L2x9d3u9ZuULkovChoQ@mail.gmail.com>
-Subject: Re: [PATCH 14/22] ARM: dts: apalis-imx6: Add some example I2C devices
-To:     Philippe Schenker <dev@pschenker.ch>
-Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
+        id S2387818AbfG3Vsy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 17:48:54 -0400
+Received: from mail-out.m-online.net ([212.18.0.9]:42451 "EHLO
+        mail-out.m-online.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387819AbfG3Vsy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 17:48:54 -0400
+Received: from frontend01.mail.m-online.net (unknown [192.168.8.182])
+        by mail-out.m-online.net (Postfix) with ESMTP id 45yqv75F8Cz1rBnG;
+        Tue, 30 Jul 2019 23:48:51 +0200 (CEST)
+Received: from localhost (dynscan1.mnet-online.de [192.168.6.70])
+        by mail.m-online.net (Postfix) with ESMTP id 45yqv740QBz1qqkQ;
+        Tue, 30 Jul 2019 23:48:51 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at mnet-online.de
+Received: from mail.mnet-online.de ([192.168.8.182])
+        by localhost (dynscan1.mail.m-online.net [192.168.6.70]) (amavisd-new, port 10024)
+        with ESMTP id H5W5SgB4fodb; Tue, 30 Jul 2019 23:48:50 +0200 (CEST)
+X-Auth-Info: llMVCs5jRc9iyn3ETV/87/IBYSMF0oXRV1DQb9JCjHk=
+Received: from localhost.localdomain (85-222-111-42.dynamic.chello.pl [85.222.111.42])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.mnet-online.de (Postfix) with ESMTPSA;
+        Tue, 30 Jul 2019 23:48:50 +0200 (CEST)
+From:   Lukasz Majewski <lukma@denx.de>
+To:     Shawn Guo <shawnguo@kernel.org>, Fabio Estevam <festevam@gmail.com>
+Cc:     Sascha Hauer <s.hauer@pengutronix.de>,
         Stefan Agner <stefan@agner.ch>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Philippe Schenker <philippe.schenker@toradex.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Lukasz Majewski <lukma@denx.de>
+Subject: [PATCH v2] ARM: dts: vf610-bk4: Fix qspi node description
+Date:   Tue, 30 Jul 2019 23:48:33 +0200
+Message-Id: <20190730214833.30659-1-lukma@denx.de>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 30, 2019 at 11:57 AM Philippe Schenker <dev@pschenker.ch> wrote:
+Before this change the device tree description of qspi node for
+second memory on BK4 board was wrong (applicable to old, removed
+fsl-quadspi.c driver).
 
->  &backlight {
-> @@ -204,6 +228,77 @@
->   */
->  &i2c3 {
->         status = "okay";
-> +
-> +       adv7280: adv7280@21 {
-> +               compatible = "adv7280";
-> +               reg = <0x21>;
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&pinctrl_ipu1_csi0 &pinctrl_cam_mclk>;
-> +               clocks = <&clks 200>;
+As a result this memory was not recognized correctly when used
+with the new spi-fsl-qspi.c driver.
 
-Please replace this 200 with a proper clock label.
+From the dt-bindings:
 
-> +               clock-names = "csi_mclk";
-> +               DOVDD-supply = <&reg_3p3v>;
-> +               AVDD-supply = <&reg_3p3v>;
-> +               DVDD-supply = <&reg_3p3v>;
-> +               PVDD-supply = <&reg_3p3v>;
-> +               csi_id = <0>;
+"Required SPI slave node properties:
+  - reg: There are two buses (A and B) with two chip selects each.
+This encodes to which bus and CS the flash is connected:
+<0>: Bus A, CS 0
+<1>: Bus A, CS 1
+<2>: Bus B, CS 0
+<3>: Bus B, CS 1"
 
-This is not a valid property upstream.
+According to above with new driver the second SPI-NOR memory shall
+have reg=<2> as it is connected to Bus B, CS 0.
 
-It seems you just ported it from a downstream vendor kernel. Please
-make sure you test with the dt-bindings from mainline.
+Signed-off-by: Lukasz Majewski <lukma@denx.de>
+Suggested-by: Fabio Estevam <festevam@gmail.com>
+Fixes: a67d2c52a82f ("ARM: dts: Add support for Liebherr's BK4 device
+(vf610 based)")
 
-> +               mclk = <24000000>;
-> +               mclk_source = <1>;
-> +               status = "okay";
-> +       };
-> +
-> +       /* Video ADC on Analog Camera Module */
-> +       adv7180: adv7180@21 {
-> +               compatible = "adv,adv7180";
-> +               reg = <0x21>;
-> +               pinctrl-names = "default";
-> +               pinctrl-0 = <&pinctrl_ipu1_csi0 &pinctrl_cam_mclk>;
-> +               clocks = <&clks 200>;
+---
+Changes for v2:
+- Add proper Suggested-by tag as Fabio was the one who pointed out the
+  the issue with wrong reg number assignment for the second SPI-NOR memory
+- Add Fixes: tag, so the patch could be added to LTS kernels
+- Fix the subject line to more appropriate
+---
+ arch/arm/boot/dts/vf610-bk4.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
 
-clock label, please.
+diff --git a/arch/arm/boot/dts/vf610-bk4.dts b/arch/arm/boot/dts/vf610-bk4.dts
+index 3fa0cbe456db..0f3870d3b099 100644
+--- a/arch/arm/boot/dts/vf610-bk4.dts
++++ b/arch/arm/boot/dts/vf610-bk4.dts
+@@ -246,13 +246,13 @@
+ 		reg = <0>;
+ 	};
+ 
+-	n25q128a13_2: flash@1 {
++	n25q128a13_2: flash@2 {
+ 		compatible = "n25q128a13", "jedec,spi-nor";
+ 		#address-cells = <1>;
+ 		#size-cells = <1>;
+ 		spi-max-frequency = <66000000>;
+ 		spi-rx-bus-width = <2>;
+-		reg = <1>;
++		reg = <2>;
+ 	};
+ };
+ 
+-- 
+2.11.0
 
-> +               clock-names = "csi_mclk";
-> +               DOVDD-supply = <&reg_3p3v>; /* 3.3v */
-> +               AVDD-supply = <&reg_3p3v>;  /* 1.8v */
-> +               DVDD-supply = <&reg_3p3v>;  /* 1.8v */
-> +               PVDD-supply = <&reg_3p3v>;  /* 1.8v */
-> +               csi_id = <0>;
-
-Same here
-
-> +               mclk = <24000000>;
-> +               mclk_source = <1>;
-> +               cvbs = <1>;
-> +               status = "disabled";
-> +       };
-> +
-> +       max9526: max9526@20 {
-> +               compatible = "maxim,max9526";
-
-This is not documented in mainline.
