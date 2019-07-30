@@ -2,101 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E7F9A79EE5
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 04:46:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 682E279F5B
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 05:03:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731469AbfG3Cqo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 29 Jul 2019 22:46:44 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:38555 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731466AbfG3Cqo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 22:46:44 -0400
-Received: by mail-pl1-f195.google.com with SMTP id az7so28246411plb.5
-        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 19:46:43 -0700 (PDT)
+        id S1732861AbfG3DCs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 29 Jul 2019 23:02:48 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:35180 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732722AbfG3DCB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 29 Jul 2019 23:02:01 -0400
+Received: by mail-pg1-f194.google.com with SMTP id s1so22944353pgr.2
+        for <devicetree@vger.kernel.org>; Mon, 29 Jul 2019 20:02:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=TIMkP6Sbv3HhH7Pg62xgc50SN2hQat3s6fyOGmFVet4=;
-        b=L8GR5DfMRyep5ArrsWvl2jbLj0dmva+GRlpTMBEy28z/3U4kCIKeBfzq/cFSiBzTUq
-         WhFNVymIRwcWDQ1d+MP+L6pG65a1cGoWsZQPFjvo6ct+L43Bji6mvXlBS1bQneYXg7cx
-         fy+1Mt8/3wqfOeX7J2TAKnyQ35VlrhKD8JpFAba6lteniuBVkgF4ubCMEGl0DZ/8hxjE
-         AcnOxEssWV3etZKwaV/WP3qCQ2uzrfUxPFssPd4SdLqohFGIpSgD7oSRd5+RzJ7P/oUp
-         9eGmRtDwiQDJsUdu9E6hAg0U25uQ22eAq+YqsUekO+88XtqsfJH7eqal1w1uOJS6LDPz
-         A67A==
+        bh=+E8omEH906TCMOUVaEXWKpNgn+JOLXcUorYQ/vWPPf0=;
+        b=Jc/YC9lel3yNzxidJjL/B8/vFfeBsxFRicp39Oey3HLLBmzOKFl/TkdXqJsgaO1ojq
+         U2JDseu5QkwHIr9DHg0Zy0zyY6F38DCkSBbHVg66ejwCQhUvk8ZNDHIfTgLKiL4wcxnX
+         kp3K5zAmDoNjx9JdClWVxBf6JClsj1i/bpDJvJd/D2JYl0wPfjFznJl6Dx/c/a+kWsZy
+         0JCiBkHDo1hgK5btmADMHNmvEiuAHyWZnndkFa5ojybqyyPu7YS0X5qky1c/fzbAFGkL
+         k34hKPYhDnIFWjNHjar8YM+WjTadzFWy1D8/2FLDNSc7iZtKUFacgaiGgqk2bpFYZNGh
+         XuVA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=TIMkP6Sbv3HhH7Pg62xgc50SN2hQat3s6fyOGmFVet4=;
-        b=gl3vu4iXVIkyXqLdUSjH79WtfYkxn28cbXwKgntHUnMAYEKuB5WZ0IEs2P00iRk5aR
-         CXxzaR+NPM1VfxEOs4VkS4OdrtiANt+v090mO9wrxg+Q4SKF+xV6wkJKWaEwhLHIGRBO
-         8Xrf9MkpnCi7smLcI1+WcbcUMoCgGOcVEMFGoqTB+pD2Mq9yURWk6o/tSisOskKmzSHh
-         4xP0ncLdzOMfVyKD1aKvMIIArXQCVPGgQKXOVDwc2J6oY8TdY0p6TjEoaukqknI77J+t
-         W4bO620fbz7a8WzkpMblD9bARIWlzEdVwe+qnsaPA7Zk5ylffqARV+GaN6s1VZ9MzGc/
-         rAgA==
-X-Gm-Message-State: APjAAAUiI3xPWKuc6jvyxHRmPCEtwJsqTINowWzYC29lmL7xrBQhdKeL
-        pNIA4DHvwTyLIwGDCu+PNlggVA==
-X-Google-Smtp-Source: APXvYqzeA9LVcJv5kbvk0OnqoT6oBgmnCofJDcZtwfBTMsDgwL3UumIql4DmQbc9jwe2WS2gmfH5ow==
-X-Received: by 2002:a17:902:aa41:: with SMTP id c1mr112285898plr.201.1564454803345;
-        Mon, 29 Jul 2019 19:46:43 -0700 (PDT)
+        bh=+E8omEH906TCMOUVaEXWKpNgn+JOLXcUorYQ/vWPPf0=;
+        b=dOGSJfz/i55QdRCdbokJ05NuknKsErHM/ZI7OsqO8a3gTZilri45IeZhXHu9evdxHY
+         W1Vxz1i5BhuMKAVOW+6SzCnHws27T2P26PcP4K21TtA7HXzvQo8sJW8Vi693hmRVheKQ
+         MQL5jGNi4BcjUsMBBd6RnrMyVA+m2Wcf2LIPxdoS/OFY0aOlH3ZDi56uSZgugPM38sYq
+         TNY1htt7kHmZWUwSJH5Th8lsU90pzFwkJhxoeOK4esOekD5TwrvthKofdxAqsqmFDg9v
+         4sdxS2WUm65SjEqXXJIy7T7LhB8SfCI2RrgdEzV4rHZEBipKuFcJrzMcStHpE1mBNLjs
+         0qNw==
+X-Gm-Message-State: APjAAAWDl1B9B41oj0IdIZO5Cvhq6pLC80erDe8PG7/k3QIXOCF9WF0l
+        vUK0dzXybOdiAqV4d1EOMv8K0Q==
+X-Google-Smtp-Source: APXvYqzE6E6bwEiPVPhC8MPvNKfvs+L5X43/lx99CsVqkOn2lJdGMjp42IO+nI7wkwvsesO+oQP+bA==
+X-Received: by 2002:a63:101b:: with SMTP id f27mr103042864pgl.291.1564455720224;
+        Mon, 29 Jul 2019 20:02:00 -0700 (PDT)
 Received: from localhost ([122.172.28.117])
-        by smtp.gmail.com with ESMTPSA id x14sm79932677pfq.158.2019.07.29.19.46.42
+        by smtp.gmail.com with ESMTPSA id i126sm75052149pfb.32.2019.07.29.20.01.59
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 29 Jul 2019 19:46:42 -0700 (PDT)
-Date:   Tue, 30 Jul 2019 08:16:40 +0530
+        Mon, 29 Jul 2019 20:01:59 -0700 (PDT)
+Date:   Tue, 30 Jul 2019 08:31:57 +0530
 From:   Viresh Kumar <viresh.kumar@linaro.org>
-To:     Saravana Kannan <saravanak@google.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>,
-        Sibi Sankar <sibis@codeaurora.org>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
         Stephen Boyd <sboyd@kernel.org>,
         "Rafael J. Wysocki" <rjw@rjwysocki.net>,
         Vincent Guittot <vincent.guittot@linaro.org>,
         "Sweeney, Sean" <seansw@qti.qualcomm.com>,
-        David Dai <daidavid1@codeaurora.org>, adharmap@codeaurora.org,
+        David Dai <daidavid1@codeaurora.org>,
         Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
         Bjorn Andersson <bjorn.andersson@linaro.org>,
         Evan Green <evgreen@chromium.org>,
         Android Kernel Team <kernel-team@android.com>,
         Linux PM <linux-pm@vger.kernel.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v4 0/3] Introduce Bandwidth OPPs for interconnects
-Message-ID: <20190730024640.xk27jgdfl2j6ucx7@vireshk-i7>
-References: <20190726231558.175130-1-saravanak@google.com>
- <20190729093545.kvnqxjkyx4nogddk@vireshk-i7>
- <CAGETcx8OBFGgP1-hj717Sk-_N95-kacVsz0yb288n3pej12n1Q@mail.gmail.com>
+Subject: Re: [PATCH v3 0/6] Introduce Bandwidth OPPs for interconnect paths
+Message-ID: <20190730030157.aml7z6vfsiqgyief@vireshk-i7>
+References: <20190703011020.151615-1-saravanak@google.com>
+ <20190717103220.f7cys267hq23fbsb@vireshk-i7>
+ <CAGETcx-tbjVzRKW8D-564zgNOhrA_z-NC1q5U70bhoUDBhp6VA@mail.gmail.com>
+ <20190718053746.64drmonk72vwnt4s@vireshk-i7>
+ <CAGETcx_-=b3An9YdxLUnZap=0iaeczvWTEnw65FMLU8BwA3HfQ@mail.gmail.com>
+ <20190729092454.6lfqzmhkvrhpimsp@vireshk-i7>
+ <CAGETcx_7fK20VZ6Zn07Z+Ran1_O7gSPohck_tg-aEr5oONQ5iA@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <CAGETcx8OBFGgP1-hj717Sk-_N95-kacVsz0yb288n3pej12n1Q@mail.gmail.com>
+In-Reply-To: <CAGETcx_7fK20VZ6Zn07Z+Ran1_O7gSPohck_tg-aEr5oONQ5iA@mail.gmail.com>
 User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 29-07-19, 13:16, Saravana Kannan wrote:
-> Sibi might be working on doing that for the SDM845 CPUfreq driver.
-> Georgi could also change his GPU driver use case to use this BW OPP
-> table and required-opps.
+On 29-07-19, 13:12, Saravana Kannan wrote:
+> On Mon, Jul 29, 2019 at 2:24 AM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> >
+> > On 18-07-19, 21:12, Saravana Kannan wrote:
+> > > On Wed, Jul 17, 2019 at 10:37 PM Viresh Kumar <viresh.kumar@linaro.org> wrote:
+> > > > I would like
+> > > > to put this data in the GPU OPP table only. What about putting a
+> > > > range in the GPU OPP table for the Bandwidth if it can change so much
+> > > > for the same frequency.
+> > >
+> > > I don't think the range is going to work.
+> >
+> > Any specific reason for that ?
 > 
-> The problem is that people don't want to start using this until we
-> decide on the DT representation. So it's like a chicken and egg
-> situation.
+> The next sentence was literally explaining this :) Fine to debate
+> that, but ignoring that and asking this question is kinda funny.
 
-Yeah, I agree to that.
+Okay, but ...
+ 
+> > > If a GPU is doing purely
+> > > computational work, it's not unreasonable for it to vote for the
+> > > lowest bandwidth for any GPU frequency.
 
-@Georgi and @Sibi: This is your chance to speak up about the proposal
-from Saravana and if you find anything wrong with them. And specially
-that it is mostly about interconnects here, I would like to have an
-explicit Ack from Georgi on this.
+... it wasn't clear to me even after reading this sentence again now
+:)
 
-And if you guys are all okay about this then please at least commit
-that you will convert your stuff based on this in coming days.
+I understand that you may have to vote for the lowest bandwidth but
+that doesn't explain why a range can't work (sorry if it was just me
+who doesn't understood it :)).
+
+> > I think that is fine, but if the GPU is able to find how much
+> > bandwidth it needs why can't it just pass that value without needing
+> > to have another OPP table for the path ?
+> 
+> You were asking this question in the context of "can the GPU OPP just
+> list all the range of bandwidth it might use per GPU frequency". My point
+> is that the range would be useless because it would the entire
+> available bandwidth range (because purely compute work might not need
+> any bandwidth).
+
+If it is useless to have entire range here, then why bother providing
+one ? Why can't the GPU request what it needs in exact terms, based on
+its calculations ? And then based on these requests, let the
+interconnect find what's the best/stable values it really wants to
+program the path for (and for that the interconnect can use its own
+OPP table, which would be fine).
+
+> Whereas, what the GPU's algorithm actually needs might be the list of
+> "useful" bandwidth levels to use.
+
+Hmm, I am not sure GPU's algorithm needs this table AFAIU based on all
+the conversations we had until now. It is very capable of finding how
+much bandwidth it needs, you just want the GPU driver to finally align
+that with a stable bandwidth for the platform later on. And what I am
+asking is that it is not required for the end driver to look for
+stable values, it just requests what it wants and let the interconnect
+core/driver decide the stable values.
+
+Very much like the clock framework, most of the user drivers just ask
+for a clk value to be programmed and it is the clock driver which
+keeps a table of the stable values and then aligns the requested value
+to one of those.
+
+> Also, as we add more ICC request properties, this range idea will not scale.
+
+I am not sure about what kind of properties there can be and where
+should they land. My feedback is completely based on what you have
+presented in this patchset.
 
 -- 
 viresh
