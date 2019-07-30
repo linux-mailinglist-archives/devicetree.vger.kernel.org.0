@@ -2,87 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDE607A5AB
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 12:10:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 791E87A64F
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 12:57:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729713AbfG3KKL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 06:10:11 -0400
-Received: from icp-osb-irony-out1.external.iinet.net.au ([203.59.1.210]:44702
-        "EHLO icp-osb-irony-out1.external.iinet.net.au" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1729648AbfG3KKK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Tue, 30 Jul 2019 06:10:10 -0400
-X-IronPort-Anti-Spam-Filtered: true
-X-IronPort-Anti-Spam-Result: =?us-ascii?q?A2AIBgDsFkBd/1/rO8tmghmDVSESFxO?=
- =?us-ascii?q?NGogdAYJDAYkskRsJAQEBAQEBAQEBGxwBAYQ6BAICgmQ3Bg4BAwEBAQQBAQE?=
- =?us-ascii?q?BBQFthGVFhUsGJy8zPxJXBxKDIoF3E61XM4QGAYRygUiBNIcJhG6BQD+DdWy?=
- =?us-ascii?q?EAwobhX8ElTqVQwmBJXeUGBmYEYtkgVmZaCKBWE0fGYMngnmNVkQ1MIt0glI?=
- =?us-ascii?q?BAQ?=
-X-IPAS-Result: =?us-ascii?q?A2AIBgDsFkBd/1/rO8tmghmDVSESFxONGogdAYJDAYksk?=
- =?us-ascii?q?RsJAQEBAQEBAQEBGxwBAYQ6BAICgmQ3Bg4BAwEBAQQBAQEBBQFthGVFhUsGJ?=
- =?us-ascii?q?y8zPxJXBxKDIoF3E61XM4QGAYRygUiBNIcJhG6BQD+DdWyEAwobhX8ElTqVQ?=
- =?us-ascii?q?wmBJXeUGBmYEYtkgVmZaCKBWE0fGYMngnmNVkQ1MIt0glIBAQ?=
-X-IronPort-AV: E=Sophos;i="5.64,326,1559491200"; 
-   d="scan'208";a="229598851"
-Received: from 203-59-235-95.perm.iinet.net.au (HELO rtcentos7.electromag.com.au) ([203.59.235.95])
-  by icp-osb-irony-out1.iinet.net.au with ESMTP; 30 Jul 2019 18:10:07 +0800
-From:   Richard Tresidder <rtresidd@electromag.com.au>
-To:     sre@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        rtresidd@electromag.com.au, kstewart@linuxfoundation.org,
-        gregkh@linuxfoundation.org, tglx@linutronix.de,
-        rfontana@redhat.com, allison@lohutok.net, linux-pm@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [RESEND v2 2/2] power/supply/sbs-battery: Add ability to force load a battery via the devicetree
-Date:   Tue, 30 Jul 2019 18:10:04 +0800
-Message-Id: <1564481404-39505-3-git-send-email-rtresidd@electromag.com.au>
-X-Mailer: git-send-email 1.8.3.1
-In-Reply-To: <1564481404-39505-1-git-send-email-rtresidd@electromag.com.au>
-References: <1564481404-39505-1-git-send-email-rtresidd@electromag.com.au>
+        id S1729047AbfG3K51 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 06:57:27 -0400
+Received: from mail-vs1-f65.google.com ([209.85.217.65]:45740 "EHLO
+        mail-vs1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728584AbfG3K51 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 06:57:27 -0400
+Received: by mail-vs1-f65.google.com with SMTP id h28so43137866vsl.12
+        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2019 03:57:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=PU2Fv6R/P/i3mcSRuoPPGRfAr6wNs2iQGjXmUbGxWxs=;
+        b=lkRzDG3pOo++tgaJ/bk6mpSVrJ4U+eY8OcNTWGQUVYUYttxgttg75uet9SsFVlFj5X
+         56vVKNNShTVrkciES8RZLgERCq6Eu0inKgLrUXv+UHknTTkko1Me/AOYQaVhrvr9ul74
+         k1ZTN/KKq9M1A97FcfnuCHs66ezrP2LfZjt5Jh4mNTvBZ+Qa5vBvXihKX09g1pwef9ah
+         1RwV0XnWUyYYde3qxBhhETbVOtbuTv60HpbxbZL2DhePWYOkqd7U1ATi3lvbR2YHhSiJ
+         BqxzRofIdR8rdaLCo1QBqSHc2QbtkbxrWoMWZkIvC311uMEgvbJ1WhFqqUpQRgGI02/r
+         jRKg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=PU2Fv6R/P/i3mcSRuoPPGRfAr6wNs2iQGjXmUbGxWxs=;
+        b=A0b+yk4jMmjga7qQ3F1dTw6z81zIFEB8FdnyxoZWZTume8n3FZzUBsKcE/JGfUuR+H
+         bYTD25KvrX4akpMWmufkxmNVZoh+Czvi0kDxjajuUYwYlb3WwcPj7aSlEl0fhZAEfglD
+         Lbylp9EHCeZP59+Q+kFti1qs/gqZeM70EU9eo2Lo5FrnlDLYnIY8iCmdQVaTTs3N+GlE
+         R41/vNb0hjQsSZL0UtWJd6eAqbbUIlAwqEadVzWkeHXdN5NyMm0Xg0VAVI5GidrWDYsP
+         Pf0CZUd4FDWTappnqfQzMkCXggOjhl94RDzmqXcrjwywYOnNubf1QhLsJ+697v3JZOQC
+         WQOA==
+X-Gm-Message-State: APjAAAVDzJO1ny92jZGXlQlRXtXnwjIs2b0NdiT0qHNw1fQiyN6P2Q/5
+        AoYOxrXpB6TKtouphTVO/bauGhgt9+W6y5ek2i8=
+X-Google-Smtp-Source: APXvYqxdHlZ4vF5yKTPQPNGjlJ/ek0vmLnEB8hjWQ9oAZTWBvgX+iEXTp/PoBM1Tn6vGEE1EyjhPaEe2qNC/+UygfcM=
+X-Received: by 2002:a67:fb87:: with SMTP id n7mr42648957vsr.9.1564484245706;
+ Tue, 30 Jul 2019 03:57:25 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190703011020.151615-1-saravanak@google.com> <20190703011020.151615-3-saravanak@google.com>
+In-Reply-To: <20190703011020.151615-3-saravanak@google.com>
+From:   Amit Kucheria <amit.kucheria@linaro.org>
+Date:   Tue, 30 Jul 2019 16:27:14 +0530
+Message-ID: <CAHLCerP81Eotae5s4-Qye77SSF6-BbqFhckvkTEQWBD9biwzbw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/6] OPP: Add support for bandwidth OPP tables
+To:     Saravana Kannan <saravanak@google.com>
+Cc:     Georgi Djakov <georgi.djakov@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        seansw@qti.qualcomm.com, daidavid1@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        evgreen@chromium.org, kernel-team@android.com,
+        Linux PM list <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the ability to force load a hot pluggable battery during boot where
-there is no gpio detect method available and the module is statically
-built. Normal polling will then occur on that battery when it is inserted.
+On Wed, Jul 3, 2019 at 6:40 AM Saravana Kannan <saravanak@google.com> wrote:
+>
+> Not all devices quantify their performance points in terms of frequency.
+> Devices like interconnects quantify their performance points in terms of
+> bandwidth. We need a way to represent these bandwidth levels in OPP. So,
+> add support for parsing bandwidth OPPs from DT.
+>
+> Signed-off-by: Saravana Kannan <saravanak@google.com>
+> ---
+>  drivers/opp/of.c  | 34 ++++++++++++++++++++++++++++++++--
+>  drivers/opp/opp.h |  4 +++-
+>  2 files changed, 35 insertions(+), 3 deletions(-)
+>
+> diff --git a/drivers/opp/of.c b/drivers/opp/of.c
+> index c10c782d15aa..54fa70ed2adc 100644
+> --- a/drivers/opp/of.c
+> +++ b/drivers/opp/of.c
+> @@ -552,6 +552,35 @@ void dev_pm_opp_of_remove_table(struct device *dev)
+>  }
+>  EXPORT_SYMBOL_GPL(dev_pm_opp_of_remove_table);
+>
+> +static int _read_opp_key(struct dev_pm_opp *new_opp, struct device_node *np)
+> +{
+> +       int ret;
+> +       u64 rate;
+> +       u32 bw;
+> +
+> +       ret = of_property_read_u64(np, "opp-hz", &rate);
+> +       if (!ret) {
+> +               /*
+> +                * Rate is defined as an unsigned long in clk API, and so
+> +                * casting explicitly to its type. Must be fixed once rate is 64
+> +                * bit guaranteed in clk API.
+> +                */
+> +               new_opp->rate = (unsigned long)rate;
+> +               return 0;
+> +       }
+> +
+> +       ret = of_property_read_u32(np, "opp-peak-KBps", &bw);
+> +       if (ret)
+> +               return ret;
+> +       new_opp->rate = (unsigned long) &bw;
+> +
+> +       ret = of_property_read_u32(np, "opp-avg-KBps", &bw);
+> +       if (!ret)
+> +               new_opp->avg_bw = (unsigned long) &bw;
+> +
+> +       return 0;
+> +}
+> +
+>  /**
+>   * _opp_add_static_v2() - Allocate static OPPs (As per 'v2' DT bindings)
+>   * @opp_table: OPP table
+> @@ -589,11 +618,12 @@ static struct dev_pm_opp *_opp_add_static_v2(struct opp_table *opp_table,
+>         if (!new_opp)
+>                 return ERR_PTR(-ENOMEM);
+>
+> -       ret = of_property_read_u64(np, "opp-hz", &rate);
+> +       ret = _read_opp_key(new_opp, np);
+>         if (ret < 0) {
+>                 /* "opp-hz" is optional for devices like power domains. */
+>                 if (!opp_table->is_genpd) {
+> -                       dev_err(dev, "%s: opp-hz not found\n", __func__);
+> +                       dev_err(dev, "%s: opp-hz or opp-peak-bw not found\n",
+> +                               __func__);
+>                         goto free_opp;
+>                 }
+>
+> diff --git a/drivers/opp/opp.h b/drivers/opp/opp.h
+> index 569b3525aa67..ead2cdafe957 100644
+> --- a/drivers/opp/opp.h
+> +++ b/drivers/opp/opp.h
+> @@ -59,7 +59,8 @@ extern struct list_head opp_tables;
+>   * @turbo:     true if turbo (boost) OPP
+>   * @suspend:   true if suspend OPP
+>   * @pstate: Device's power domain's performance state.
+> - * @rate:      Frequency in hertz
+> + * @rate:      Frequency in hertz OR Peak bandwidth in kilobytes per second
 
-Signed-off-by: Richard Tresidder <rtresidd@electromag.com.au>
----
- drivers/power/supply/sbs-battery.c | 6 +++++-
- 1 file changed, 5 insertions(+), 1 deletion(-)
+rate is most often used for clk rates. Let us not overload this just
+to save one struct member. IMO, you should introduce a peak_bw member
+and then have an error check if the DT provides both rate and peak_bw
+during parsing.
 
-diff --git a/drivers/power/supply/sbs-battery.c b/drivers/power/supply/sbs-battery.c
-index 048d205..b55721d 100644
---- a/drivers/power/supply/sbs-battery.c
-+++ b/drivers/power/supply/sbs-battery.c
-@@ -816,6 +816,7 @@ static int sbs_probe(struct i2c_client *client,
- 	struct power_supply_config psy_cfg = {};
- 	int rc;
- 	int irq;
-+	bool dt_force_load;
- 
- 	sbs_desc = devm_kmemdup(&client->dev, &sbs_default_desc,
- 			sizeof(*sbs_desc), GFP_KERNEL);
-@@ -852,6 +853,9 @@ static int sbs_probe(struct i2c_client *client,
- 	if (rc)
- 		chip->poll_retry_count = 0;
- 
-+	dt_force_load = of_property_read_bool(client->dev.of_node,
-+						"sbs,force-load");
-+
- 	if (pdata) {
- 		chip->poll_retry_count = pdata->poll_retry_count;
- 		chip->i2c_retry_count  = pdata->i2c_retry_count;
-@@ -890,7 +894,7 @@ static int sbs_probe(struct i2c_client *client,
- 	 * Before we register, we might need to make sure we can actually talk
- 	 * to the battery.
- 	 */
--	if (!(force_load || chip->gpio_detect)) {
-+	if (!(force_load || chip->gpio_detect || dt_force_load)) {
- 		rc = sbs_read_word_data(client, sbs_data[REG_STATUS].addr);
- 
- 		if (rc < 0) {
--- 
-1.8.3.1
-
+> + * @avg_bw:    Average bandwidth in kilobytes per second
+>   * @level:     Performance level
+>   * @supplies:  Power supplies voltage/current values
+>   * @clock_latency_ns: Latency (in nanoseconds) of switching to this OPP's
+> @@ -81,6 +82,7 @@ struct dev_pm_opp {
+>         bool suspend;
+>         unsigned int pstate;
+>         unsigned long rate;
+> +       unsigned long avg_bw;
+>         unsigned int level;
+>
+>         struct dev_pm_opp_supply *supplies;
+> --
+> 2.22.0.410.gd8fdbe21b5-goog
+>
