@@ -2,163 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CD497ABB6
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 16:59:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87CAC7ABB9
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 16:59:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731499AbfG3O7U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 10:59:20 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:55072 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728526AbfG3O7T (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 10:59:19 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=q2mZoui6udBRuKFOD8sPcNVwLKdo8WonOPR0Qr0qLl4=; b=sUh6HbsLaMglxXUyFaT4PAHWh
-        vaWqy21YTyot3IWcSwMCKn4FZtxyh7WK34XkfZYzHfhF+xUbR38l615/+14u5hWOAzzOFDaC6FJgP
-        ffnYJkCqITJOnP9Xm1a++tPWjMkes1yrONBiFp3GY3OHwl3T21WNi7+xsNfLz0gdwI90A=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hsTaP-0007nU-8e; Tue, 30 Jul 2019 14:58:45 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 540752742CB5; Tue, 30 Jul 2019 15:58:44 +0100 (BST)
-Date:   Tue, 30 Jul 2019 15:58:44 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Thomas Preston <thomas.preston@codethink.co.uk>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Kirill Marinushkin <kmarinushkin@birdec.tech>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Vinod Koul <vkoul@kernel.org>,
-        Annaliese McDermond <nh6z@nh6z.net>,
-        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Patrick Glaser <pglaser@tesla.com>,
-        Rob Duncan <rduncan@tesla.com>, Nate Case <ncase@tesla.com>
-Subject: Re: [PATCH v2 2/3] ASoC: Add codec driver for ST TDA7802
-Message-ID: <20190730145844.GI4264@sirena.org.uk>
-References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
- <20190730120937.16271-3-thomas.preston@codethink.co.uk>
+        id S1727476AbfG3O7i (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 10:59:38 -0400
+Received: from mail-io1-f65.google.com ([209.85.166.65]:43296 "EHLO
+        mail-io1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728526AbfG3O7i (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 10:59:38 -0400
+Received: by mail-io1-f65.google.com with SMTP id k20so128723688ios.10;
+        Tue, 30 Jul 2019 07:59:37 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=VDQ6N11AAuFuFo85qHNKBrrA+iF4giDQhs8MrBVj2/U=;
+        b=FlFDNv7qEiT7xGol/w+JrSk0waaMTEhkacpiTtJc49vXGdfS97geXbVa7KpkoXGqkY
+         u6p/VtA/c9Qmb1PMqWvlV90dl4N7lMfWhqSu8gc0KRLXxHsbjGXD1KZJ11nO9gl+Bk94
+         E9jifgrwF6ccqvXjb4voO4pcjGAVZksLWEIl7pGwgPOCM0OQdEK3IMbktwJnAgqFKgqr
+         pDi/sBcfzUtWL6o5BEIQavQOzW9JwdTsp/xQuvc9xQ+Ryb+FR4UbhsVxqsl2Be02yFAC
+         vyxM//IBspkLrhTDGGwKGwUDhNnspRAkSzCRLkpZBF6G30+JieGWcaVrJqSfZ5KQZQAF
+         8a1Q==
+X-Gm-Message-State: APjAAAVQk6qsdtlkGfZn8GsJRygZmi8R/jyr/+N/51xhZVPVd5exWyo7
+        3ymHpiSnN7AVa7NuHj2Zp3BBA3Q=
+X-Google-Smtp-Source: APXvYqwUx/7XadPHxDL9liK26JdO82wEyXXiqc3dEooJKqfNuUCVXmxmdyfBvths0mwPiJWTd9dJdg==
+X-Received: by 2002:a5d:8253:: with SMTP id n19mr5661994ioo.80.1564498776564;
+        Tue, 30 Jul 2019 07:59:36 -0700 (PDT)
+Received: from xps15.herring.priv ([64.188.179.254])
+        by smtp.googlemail.com with ESMTPSA id p10sm81147279iob.54.2019.07.30.07.59.35
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 30 Jul 2019 07:59:36 -0700 (PDT)
+From:   Rob Herring <robh@kernel.org>
+To:     devicetree@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org,
+        =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+Subject: [PATCH] dt-bindings: Fix generated example files getting added to schemas
+Date:   Tue, 30 Jul 2019 08:59:35 -0600
+Message-Id: <20190730145935.26248-1-robh@kernel.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="poJSiGMzRSvrLGLs"
-Content-Disposition: inline
-In-Reply-To: <20190730120937.16271-3-thomas.preston@codethink.co.uk>
-X-Cookie: Times approximate.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Commit 837158b847a4 ("dt-bindings: Check the examples against the
+schemas") started generating YAML encoded DT files to validate the
+examples against the schema. When running 'make dt_binding_check' in
+tree after the 1st time, the generated example .dt.yaml files are
+mistakenly added to the list of schema files. Exclude *.example.dt.yaml
+files from the search for schema files.
 
---poJSiGMzRSvrLGLs
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Fixes: 837158b847a4 ("dt-bindings: Check the examples against the schemas")
+Reported-by: Guido Günther <agx@sigxcpu.org>
+Signed-off-by: Rob Herring <robh@kernel.org>
+---
+ Documentation/devicetree/bindings/Makefile | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
-On Tue, Jul 30, 2019 at 01:09:36PM +0100, Thomas Preston wrote:
+diff --git a/Documentation/devicetree/bindings/Makefile b/Documentation/devicetree/bindings/Makefile
+index 6b0dfd5c17ba..5138a2f6232a 100644
+--- a/Documentation/devicetree/bindings/Makefile
++++ b/Documentation/devicetree/bindings/Makefile
+@@ -19,7 +19,9 @@ quiet_cmd_mk_schema = SCHEMA  $@
+ 
+ DT_DOCS = $(shell \
+ 	cd $(srctree)/$(src) && \
+-	find * \( -name '*.yaml' ! -name $(DT_TMP_SCHEMA) \) \
++	find * \( -name '*.yaml' ! \
++		-name $(DT_TMP_SCHEMA) ! \
++		-name '*.example.dt.yaml' \) \
+ 	)
+ 
+ DT_SCHEMA_FILES ?= $(addprefix $(src)/,$(DT_DOCS))
+-- 
+2.20.1
 
-> index 000000000000..0f82a88bc1a4
-> --- /dev/null
-> +++ b/sound/soc/codecs/tda7802.c
-> @@ -0,0 +1,509 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * tda7802.c  --  codec driver for ST TDA7802
-
-Please make the entire comment a C++ one so this looks intentional.
-
-> +static int tda7802_digital_mute(struct snd_soc_dai *dai, int mute)
-> +{
-> +	const u8 mute_disabled = mute ? 0 : IB2_DIGITAL_MUTE_DISABLED;
-
-Please write normal conditional statements to make the code easier to
-read.
-
-> +	case SND_SOC_BIAS_STANDBY:
-> +		err = regulator_enable(tda7802->enable_reg);
-> +		if (err < 0) {
-> +			dev_err(component->dev, "Could not enable.\n");
-> +			return err;
-> +		}
-> +		dev_dbg(component->dev, "Regulator enabled\n");
-> +		msleep(ENABLE_DELAY_MS);
-
-Is this delay needed by the device or is it for the regulator to ramp?
-If it's for the regulator to ramp then the regulator should be doing it.
-
-> +	case SND_SOC_BIAS_OFF:
-> +		regcache_mark_dirty(component->regmap);
-
-If the regulator is going off you should really be marking the device as
-cache only.
-
-> +		err = regulator_disable(tda7802->enable_reg);
-> +		if (err < 0)
-> +			dev_err(component->dev, "Could not disable.\n");
-
-Any non-zero value from regulator_disable() is an error, there's similar
-error checking issues in other places.
-
-> +static const struct snd_kcontrol_new tda7802_snd_controls[] = {
-> +	SOC_SINGLE("Channel 4 Tristate", TDA7802_IB0, 7, 1, 0),
-> +	SOC_SINGLE("Channel 3 Tristate", TDA7802_IB0, 6, 1, 0),
-> +	SOC_SINGLE("Channel 2 Tristate", TDA7802_IB0, 5, 1, 0),
-> +	SOC_SINGLE("Channel 1 Tristate", TDA7802_IB0, 4, 1, 0),
-
-These look like simple on/off switches so should have Switch at the end
-of the control name.  It's also not clear to me why this is exported to
-userspace - why would this change at runtime and won't any changes need
-to be coordinated with whatever else is connected to the signal?
-
-> +	SOC_ENUM("Mute time", mute_time),
-> +	SOC_SINGLE("Unmute channels 1 & 3", TDA7802_IB2, 4, 1, 0),
-> +	SOC_SINGLE("Unmute channels 2 & 4", TDA7802_IB2, 3, 1, 0),
-
-These are also Switch controls.  There are *lots* of problems with
-control names, see control-names.rst.
-
-> +static const struct snd_soc_component_driver tda7802_component_driver = {
-> +	.set_bias_level = tda7802_set_bias_level,
-> +	.idle_bias_on = 1,
-
-Any reason to keep the device powered up?  It looks like the power on
-process is just powering things up and writing the register cache out
-and there's not that many registers so the delay is trivial.
-
-> +	tda7802->enable_reg = devm_regulator_get(dev, "enable");
-> +	if (IS_ERR(tda7802->enable_reg)) {
-> +		dev_err(dev, "Failed to get enable regulator\n");
-
-It's better to print error codes if you have them and are printing a
-diagnostic so people have more to go on when debugging problems.
-
---poJSiGMzRSvrLGLs
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1AWyMACgkQJNaLcl1U
-h9CSRAf+JnRHblFvE8wz05/KmaqsoJ72DsJH6tOksd0/ifd52UjtRhoB3jIhVaR2
-lJtx2+K9jHM8Q/tEBDNGXlzFt7MoUcvfgHfvAZ0Mfbkfvoox60KTJnh2C1B+Yr7i
-TIVNSQJSN+NtdtSYs2BaFkk/Zrj7Q9kDj7BHHOBeK7fDkq8PTRdLHU1YjB+HlrTT
-nRXLv1mXRa1cI+caoQRIXcQEOmW+VLlMasEFiSNS/0I3UtHgn2UHezS3Z+MHUJ4F
-TOmV2MyA/S4wW70Cus6iZs7BO0aCYLQFJmFgtd0t+C3nMKvSILwBWidIzK9WYuc6
-CeQAgukY5VCt+NmFvl4l2irCODm7Bg==
-=Gl9u
------END PGP SIGNATURE-----
-
---poJSiGMzRSvrLGLs--
