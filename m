@@ -2,61 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A5B7D7AACC
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 16:20:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 450EB7AB1D
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 16:34:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726876AbfG3OUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 10:20:34 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:46390 "EHLO
+        id S1730490AbfG3OeM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 10:34:12 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:41072 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726225AbfG3OUd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 10:20:33 -0400
+        with ESMTP id S1728743AbfG3OeM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 10:34:12 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
         MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
         List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=8TKN5XccligETEieRmOY0uvOdDLyhkX/2OICv01x9vo=; b=t+j4Mj8FJicNpWJRqkQkRP2OJ
-        Ugo7DZR2UEIA6W2yWIXmoySwvR+koae/Ch3yKZ00Ho0jmZqpVZbqv2BYyhhjO2mWBWi6QJxhNe/nl
-        LNhhqycGI5O1NQ08xJG1O8whrq8WpRed0mg/AAmoNQ0fXHPYHqDBnYWjvzm524d7mNoTU=;
+         bh=bnSwB9Iwevew2RMS+oCUNWcQXcWmO0icV8safm3Y+7k=; b=ABK7ohS20te6PnMvyuuZd28/i
+        TAkwBE7yPSt13/jqJ6SNPDPP3lgrEmoMtDV9UHHsHPJhOh1xvle6oaupTJMQ05802ahdVKb2UB8+K
+        YY0hfF+0oCFnz5IWGYJ+cIgCRN6hWP67y7J2CEy2IxvLOelH9ssjwuEUH8Vt7YJAZz2Q4=;
 Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.org.uk>)
-        id 1hsSz5-0007jD-Jf; Tue, 30 Jul 2019 14:20:11 +0000
+        id 1hsTC9-0007ku-23; Tue, 30 Jul 2019 14:33:41 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id A007D2742CB5; Tue, 30 Jul 2019 15:20:10 +0100 (BST)
-Date:   Tue, 30 Jul 2019 15:20:10 +0100
+        id 093CD2742CB5; Tue, 30 Jul 2019 15:33:39 +0100 (BST)
+Date:   Tue, 30 Jul 2019 15:33:39 +0100
 From:   Mark Brown <broonie@kernel.org>
 To:     Thomas Preston <thomas.preston@codethink.co.uk>
-Cc:     Charles Keepax <ckeepax@opensource.cirrus.com>,
+Cc:     Marco Felsch <m.felsch@pengutronix.de>,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
         Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Marco Felsch <m.felsch@pengutronix.de>,
+        Rob Duncan <rduncan@tesla.com>,
         Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
         Kirill Marinushkin <kmarinushkin@birdec.tech>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
         linux-kernel@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
-        Rob Herring <robh+dt@kernel.org>,
         Liam Girdwood <lgirdwood@gmail.com>,
+        Annaliese McDermond <nh6z@nh6z.net>,
         Paul Cercueil <paul@crapouillou.net>,
         Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Annaliese McDermond <nh6z@nh6z.net>,
+        Nate Case <ncase@tesla.com>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Patrick Glaser <pglaser@tesla.com>,
         Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on
- diagnostic routine
-Message-ID: <20190730142010.GG4264@sirena.org.uk>
+Subject: Re: [alsa-devel] [PATCH v2 1/3] dt-bindings: ASoC: Add TDA7802
+ amplifier
+Message-ID: <20190730143339.GH4264@sirena.org.uk>
 References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
- <20190730120937.16271-4-thomas.preston@codethink.co.uk>
- <20190730124158.GH54126@ediswmail.ad.cirrus.com>
- <e7a879d3-36c2-2df8-97c0-3c4bbd2e7ea2@codethink.co.uk>
+ <20190730120937.16271-2-thomas.preston@codethink.co.uk>
+ <20190730122748.GF54126@ediswmail.ad.cirrus.com>
+ <20190730131209.rdv2kdlrpfeouh66@pengutronix.de>
+ <16a99e45-fd5a-2878-acf9-63518f9ca527@codethink.co.uk>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="8S1fMsFYqgBC+BN/"
+        protocol="application/pgp-signature"; boundary="+QwZB9vYiNIzNXIj"
 Content-Disposition: inline
-In-Reply-To: <e7a879d3-36c2-2df8-97c0-3c4bbd2e7ea2@codethink.co.uk>
+In-Reply-To: <16a99e45-fd5a-2878-acf9-63518f9ca527@codethink.co.uk>
 X-Cookie: Times approximate.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
@@ -65,38 +69,47 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---8S1fMsFYqgBC+BN/
+--+QwZB9vYiNIzNXIj
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
 
-On Tue, Jul 30, 2019 at 03:04:19PM +0100, Thomas Preston wrote:
-> On 30/07/2019 13:41, Charles Keepax wrote:
+On Tue, Jul 30, 2019 at 03:12:21PM +0100, Thomas Preston wrote:
+> On 30/07/2019 14:12, Marco Felsch wrote:
 
-> > This could probably be removed using regmap_multi_reg_write.
+> >>> +- compatible : "st,tda7802"
+> >>> +- reg : the I2C address of the device
+> >>> +- enable-supply : a regulator spec for the PLLen pin
 
-> The problem is that I want to retain the state of the other bits in those
-> registers. Maybe I should make a copy of the backed up state, set the bits
-> I want to off-device, then either:
+> > Shouldn't that be a pin called 'pllen-gpios'? IMHO I would not use a
+> > regulator for that.
 
-> 1. Write the changes with regmap_multi_reg_write
-> 2. Write all six regs again (if my device doesn't support the multi_reg)
+> Hi Marco,
+> We have multiple amplifiers hooked up in a chain, and all the PLLens
+> are connected to one GPIO. So we need to use a regulator so that
+> i2c-TDA7802:00 doesn't turn off the PLLen which i2c-TDA7802:01 still
+> requires.
 
-Or make this a regmap function, there's nothing device specific about
-it.
+> This is why we use a regulator. Is there GPIO support for this?
 
---8S1fMsFYqgBC+BN/
+If it's a GPIO not a regulator then it should be a GPIO not a regulator
+in the device tree.  The device tree describes the hardware.  There was
+some work on helping share GPIOs in the GPIO framework to accomodate
+GPIOs for regulator enables, you should be able to do something similar
+to what the regulator framework does.
+
+--+QwZB9vYiNIzNXIj
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1AUhkACgkQJNaLcl1U
-h9BETgf7BOzHBpbnhWhg2mabB09TWYhaMWdG7DZWPeU+jTPkgFJuIroIGpBf3h/c
-WIE9G2Zy55KDP7yf1wM1Ad7N18JCMzX+enceVyJ4ZlHhpA3wLhTleyaIdn6JGSHB
-++DqO5maWG0iL698Um5bPFI6lvOF9Ewd1KanKCW0hEH93m5C9D5jY4sqItVgEPb1
-9vwdUdMo/MqfcwpS3rzXUC98OXCrnC8o0pPDFZT4U5i7X9gNqSSbKIhnBqmCOY+d
-P6aoGUTv9ZwcZSj1cU1Ty5NKiKAu7asJyWzBvZFc6T9NcAbX3ascLBMWgP5BxYPG
-LuOQqsFxOiOi3H8N4WlvJk3bvvY1mQ==
-=0sPL
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1AVUMACgkQJNaLcl1U
+h9Cu4Qf+OOSeubUr69q1X65qxycxElWJauRAa8zN5ZCS6Corf1z/+hgxkei5GI7D
+p242D+7O5/QHuGlsws3pHfiD3BUJbV+/D05v8DDX1GOEf54+8wv+dnX/1AZKtYzS
+IU/5aki3+oYGj76dQKpAhuTJFnJGGmkMg+O5SWXocr3KZO5P740PKZG0+wVX+yQp
+OdZbJOEfztfQ8AfQQ4vtSjun2grcmxeEyxPo7LiL+iNs2ifAOZW6TWNIl7Y/Xftg
+UNGdYVAtOL9s9G364+UmdAbLbQtKDtLLnotRd98S8NGElOoOGoLss6/pwrW2BHd4
+CgdgNotIdcr1q2Me8acJM2d8pxjKWA==
+=aDlD
 -----END PGP SIGNATURE-----
 
---8S1fMsFYqgBC+BN/--
+--+QwZB9vYiNIzNXIj--
