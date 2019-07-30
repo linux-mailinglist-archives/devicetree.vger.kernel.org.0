@@ -2,96 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 74F4E7A79B
-	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 14:05:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 132447A7C1
+	for <lists+devicetree@lfdr.de>; Tue, 30 Jul 2019 14:10:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728186AbfG3MFF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 30 Jul 2019 08:05:05 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:44282 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727206AbfG3MFF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 08:05:05 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=4xHN5JoqHKamARZpeNV4nfdGOcqIZaC5iBwfGs29oFM=; b=CUbKJOSwv4V3JsWTmEv/hECy/
-        jMqU1C6z8dcefdwH5lbwt7prDmE+zhSzcosPTSnuLqxI4wfiepZlCmFq7y6DZEe0AzuBKAXdfNpSp
-        rNrBwa5r1HyOfspwdp/epPoOwnVTPqXusLgTpf4xfjngkv+MsBb/DC3sZWPXByFoab90U=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hsQsC-0007Ly-Ey; Tue, 30 Jul 2019 12:04:56 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 920E72742CB5; Tue, 30 Jul 2019 13:04:55 +0100 (BST)
-Date:   Tue, 30 Jul 2019 13:04:55 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Daniel Baluta <daniel.baluta@gmail.com>
-Cc:     Nicolin Chen <nicoleotsuka@gmail.com>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Timur Tabi <timur@kernel.org>, Rob Herring <robh@kernel.org>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        id S1729889AbfG3MKI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 30 Jul 2019 08:10:08 -0400
+Received: from imap1.codethink.co.uk ([176.9.8.82]:44311 "EHLO
+        imap1.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727816AbfG3MKI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 30 Jul 2019 08:10:08 -0400
+Received: from [167.98.27.226] (helo=ct-lt-1124.office.codethink.co.uk)
+        by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
+        id 1hsQwp-0003E4-GQ; Tue, 30 Jul 2019 13:09:43 +0100
+From:   Thomas Preston <thomas.preston@codethink.co.uk>
+To:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jaroslav Kysela <perex@perex.cz>,
         Takashi Iwai <tiwai@suse.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Viorel Suman <viorel.suman@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        Mihai Serban <mihai.serban@gmail.com>,
-        Lucas Stach <l.stach@pengutronix.de>
-Subject: Re: [alsa-devel] [PATCH v2 7/7] ASoC: dt-bindings: Introduce
- compatible strings for 7ULP and 8MQ
-Message-ID: <20190730120455.GA4264@sirena.org.uk>
-References: <20190728192429.1514-1-daniel.baluta@nxp.com>
- <20190728192429.1514-8-daniel.baluta@nxp.com>
- <20190730080135.GB5892@Asurada>
- <CAEnQRZAUOzmP2yPb4utyDTnYUDNyqesXJPb5-Ms0tfPy8TMBig@mail.gmail.com>
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Vinod Koul <vkoul@kernel.org>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        Thomas Preston <thomas.preston@codethink.co.uk>,
+        alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] ASoC: Codecs: Add TDA7802 codec
+Date:   Tue, 30 Jul 2019 13:09:34 +0100
+Message-Id: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="dDRMvlgZJXvWKvBx"
-Content-Disposition: inline
-In-Reply-To: <CAEnQRZAUOzmP2yPb4utyDTnYUDNyqesXJPb5-Ms0tfPy8TMBig@mail.gmail.com>
-X-Cookie: Times approximate.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Hi,
+This patch series adds a driver for the ST TDA7802 amplifier.
 
---dDRMvlgZJXvWKvBx
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Thank you Mark Brown, Charles Keepax, Cezary Rojewski and Kirill
+Marinushkin for your time and useful feedback (on IRC too). Sorry for
+taking so long in getting back to you, there were quite a lot of
+changes!
 
-On Tue, Jul 30, 2019 at 03:02:30PM +0300, Daniel Baluta wrote:
+Please let me know if there's anything else which needs changing.
 
-> I removed the 'or' on purpose because I don't want to move it
-> around each time we add a new compatible.
+Many thanks,
+Thomas
 
-> Anyhow, I can put it back if this is the convention.
+Thomas Preston (3):
+  dt-bindings: ASoC: Add TDA7802 amplifier
+  ASoC: Add codec driver for ST TDA7802
+  ASoC: TDA7802: Add turn-on diagnostic routine
 
-You could convert to the YAML binding format and sidestep the problem a
-different way!
+ .../devicetree/bindings/sound/tda7802.txt     |  26 +
+ sound/soc/codecs/Kconfig                      |   6 +
+ sound/soc/codecs/Makefile                     |   2 +
+ sound/soc/codecs/tda7802.c                    | 693 ++++++++++++++++++
+ 4 files changed, 727 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/tda7802.txt
+ create mode 100644 sound/soc/codecs/tda7802.c
 
---dDRMvlgZJXvWKvBx
-Content-Type: application/pgp-signature; name="signature.asc"
+-- 
+2.21.0
 
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1AMmQACgkQJNaLcl1U
-h9AMEAf+L6HeZMKwL3JgS35lz8KJn8puYlz6JlAgu8b5kJD5U15z/ScSQXE8uJOt
-CMauZ7x1gmPQXGEdGQHFSFa365yso1EB4MgsReZDTurM0YYdi9I2038gqzLrtKB0
-r+avuU0EzhaljA0ZugeMbEN6v5YiZGf2yrlzOFUyyUb83zTCFQsHscmnH+cw5QCH
-HhjVqWPaGLUKuPmJRWO8ol9QMKghvRP5y5N2e+Yohj+mb3xNHdHvXN1Qa/G9koeA
-uJU3R7ifuKcvxbGmu/HoWpcvfpWVMPyF/ej2BC2i1uKdiwSsvxFrN3OP8EfUlL5p
-syfgAj372TEvfhTQ/2190PTyHrr++A==
-=VqB7
------END PGP SIGNATURE-----
-
---dDRMvlgZJXvWKvBx--
