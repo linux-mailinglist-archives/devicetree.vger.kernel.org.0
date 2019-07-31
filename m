@@ -2,116 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1DE037C1B8
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:40:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0B1C7C1CD
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:42:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387586AbfGaMkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 08:40:19 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:43951 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727859AbfGaMkI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:40:08 -0400
-Received: by mail-wr1-f67.google.com with SMTP id p13so69484909wru.10
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 05:40:07 -0700 (PDT)
+        id S1726804AbfGaMmg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 08:42:36 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:46762 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725942AbfGaMmg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:42:36 -0400
+Received: by mail-lj1-f194.google.com with SMTP id v24so65566333ljg.13;
+        Wed, 31 Jul 2019 05:42:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=U87qbGqOizt6mcWi4ZafXpAVErJ10/2GJDrgCn/BFng=;
-        b=zEzqFVja0Fqsg11qypzSTOGn9YUbHxrTCRpomYU2xnSk4RqosdMU3RsLKQ5IHrk01v
-         gZa8uGmAP550xts1ob0QR4t+ujj6f6l4TPGUMJBTI1aXnFAHRLDITtONU9DDzGDNd6fH
-         b9UA6re8oJh0ZuRd7oJljeKVy1nwM2wt9MzpO1rIUn6rSJcD8SKFHAT+zvtKXc8CrPSL
-         Cw4OLEzT9m02WDlPC3JU4Wc9Y+o69mwLzcaIL3DBzErWh8oaqJOcNs1bZjxyGSYXOBNW
-         Zs3wlfRxgPz3+Wv+dW7ILng2azVJyENzMtL3tbafMQGYvkRSgsAFFrpNh6hbT/q8W/gN
-         0enQ==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=2lttJaWeNAFLT7UvhBTaO2ZYIgG1MGHq7T2if8RJxqY=;
+        b=B3eumO8eqQG3I1elp/UlpeHy3gdGRkakbE1GjKMxFWk3bvUUe9uPEbB9sZG+06J5a8
+         rr01H8MKZ+WxGo7wlS7BK5nnhrzM/OTq9no8U/MnyCQrtE1bxF1i01z+klhdWrcD8Tbf
+         BukMPo/nMLjtpBVOvQ1i5YV3nblWi/6o0JtOM3/SaPn/YvbRO+u+6whPWy1C+W5zTXPx
+         YeDAEJRyKL0edCjh9T47qC6y4pTqgm/3vbdJqYYob91cEj0a2bkeplUxr67drYQJziV1
+         1Dawb6/rrIpSsgj3XEvLaHV5T+Mra73DzWvmgwpQ9hLeXTsCehiERcld93GGzM3KH2YJ
+         D8pg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=U87qbGqOizt6mcWi4ZafXpAVErJ10/2GJDrgCn/BFng=;
-        b=qQCd8pCp/5XICshHivBnA8p1XYHG4oDyG/dOIfkJKEijgfZoqSW6lB8VZ6rpSYIrgq
-         29HHzUh8c/T73gcN1ugSS8A+fKBUrhfDazrLCUGN2K2XYzJoYRvGgsh/jgcDykjsSd28
-         NsLOKAJ8Z74uFO536Hyx5hdTR2NujDOc/lY/OIL+F3/ag5iyNQpTBJM85KMIRMUeYh2g
-         WFZwJ7R+eYRbDszpZqsobR15ZZEdhyq0ajEmRFvnILuo6DT9ayAPzd1hoNk91FZ6Vi7t
-         2ZTSWGXyQY1hXOBgYOH61ick2VkuXWqlxEriAlv9n7RIo22sWFVYauKc/diXB1NbcSHI
-         X9zA==
-X-Gm-Message-State: APjAAAXH68aXZH5Xl6Tspw5e3Sv6wBz8YHylwZqzQFbCLsRho741PwsA
-        kTUo3eyR51lDGccPbieOesDsjw==
-X-Google-Smtp-Source: APXvYqwRvaDIRDg5/7CHt0j5vI443O9wSUNUp31+MGhBKdXuOhMOSbWoNqXVYU+B1ah5lM6/dpyi7Q==
-X-Received: by 2002:a5d:428a:: with SMTP id k10mr15513765wrq.329.1564576806822;
-        Wed, 31 Jul 2019 05:40:06 -0700 (PDT)
-Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id x185sm62504271wmg.46.2019.07.31.05.40.06
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 31 Jul 2019 05:40:06 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     khilman@baylibre.com, devicetree@vger.kernel.org
-Cc:     Christian Hewitt <christianshewitt@gmail.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Neil Armstrong <narmstrong@baylibre.com>
-Subject: [PATCH 4/6] dt-bindings: arm: amlogic: add support for the Khadas VIM3
-Date:   Wed, 31 Jul 2019 14:39:58 +0200
-Message-Id: <20190731124000.22072-5-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190731124000.22072-1-narmstrong@baylibre.com>
-References: <20190731124000.22072-1-narmstrong@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=2lttJaWeNAFLT7UvhBTaO2ZYIgG1MGHq7T2if8RJxqY=;
+        b=P2NopaozEfPFrSnA9sKXr6dHm6MUHkhsg2un2/zXuLJ5pGwjBHqw2L6h+5Uvdh97IV
+         9lg035/gsB3FLskwEUGldMTjn+iH/Kae69BK8eg0Jiql3NcsAsC6nAkzMtqwxzAEWcuT
+         RjJCbS7VdOtccWKb6uhPr4ksU26YPmfd/t4pop8XfVFjDyYLvLwbjMqs1oKhhcTxYFiI
+         cSNKSWWwotM4ab3hvsR7D8qGB/xfNR2aC6DG63iims8N33OxhF4OVloFwNU5q9H4XRYm
+         mWms9ZN2rXkYT2JlRozyP/3M0zZ2oxa/BhDq7J0C0oYtQpjsHXyHsehMqiJVscIwm+DJ
+         BtCg==
+X-Gm-Message-State: APjAAAXF9xCyYj9Y3Ykiw8l+RySrSu87GEryglAj0UGzGnyZPbCuAhlB
+        qVVewBdDsVMzNSG+WQkVsW84iqCLzSryfpMOIrc=
+X-Google-Smtp-Source: APXvYqxx/q5CVs4/7M/DyQInpyLarIwQ6MN8cFZtux5bea54lDsZXckkTKqlUSKYccysfyya6bM+I3oV+spUzssUEi4=
+X-Received: by 2002:a2e:8650:: with SMTP id i16mr64945835ljj.178.1564576954236;
+ Wed, 31 Jul 2019 05:42:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190731123750.25670-1-philippe.schenker@toradex.com> <20190731123750.25670-9-philippe.schenker@toradex.com>
+In-Reply-To: <20190731123750.25670-9-philippe.schenker@toradex.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 31 Jul 2019 09:42:40 -0300
+Message-ID: <CAOMZO5B3BcpjbnsXuE5abX8YsuLDrkkHU=RBt6w_SpwuRkTvXA@mail.gmail.com>
+Subject: Re: [PATCH v2 08/20] ARM: dts: imx7-colibri: Add touch controllers
+To:     Philippe Schenker <philippe.schenker@toradex.com>
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        "stefan@agner.ch" <stefan@agner.ch>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Christian Hewitt <christianshewitt@gmail.com>
+On Wed, Jul 31, 2019 at 9:38 AM Philippe Schenker
+<philippe.schenker@toradex.com> wrote:
+>
+> Add atmel mxt multitouch controller and TouchRevolution multitouch
 
-The Khadas VIM3 uses the Amlogic S922X or A311S SoC, both based on the
-Amlogic G12B SoC family, on a board with the same form factor as the
-VIM/VIM2 models. It ships in two variants; basic and
-pro which differ in RAM and eMMC size:
-
-- 2GB (basic) or 4GB (pro) LPDDR4 RAM
-- 16GB (basic) or 32GB (pro) eMMC 5.1 storage
-- 16MB SPI flash
-- 10/100/1000 Base-T Ethernet
-- AP6398S Wireless (802.11 a/b/g/n/ac, BT5.0)
-- HDMI 2.1 video
-- 1x USB 2.0 + 1x USB 3.0 ports
-- 1x USB-C (power) with USB 2.0 OTG
-- 3x LED's (1x red, 1x blue, 1x white)
-- 3x buttons (power, function, reset)
-- IR receiver
-- M2 socket with PCIe, USB, ADC & I2C
-- 40pin GPIO Header
-- 1x micro SD card slot
-
-Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- Documentation/devicetree/bindings/arm/amlogic.yaml | 3 +++
- 1 file changed, 3 insertions(+)
-
-diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index efa032d12402..04a2b0ef34c6 100644
---- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-+++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -137,6 +137,8 @@ properties:
- 
-       - description: Boards with the Amlogic Meson G12B A311D SoC
-         items:
-+          - enum:
-+              - khadas,vim3
-           - const: amlogic,a311d
-           - const: amlogic,g12b
- 
-@@ -144,6 +146,7 @@ properties:
-         items:
-           - enum:
-               - hardkernel,odroid-n2
-+              - khadas,vim3
-           - const: amlogic,s922x
-           - const: amlogic,g12b
- 
--- 
-2.22.0
-
+You missed to updated the commit log ;-)
