@@ -2,405 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1FC6D7BB7C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:24:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71BD57BBB9
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:32:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726481AbfGaIYV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 04:24:21 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:43994 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726851AbfGaIYV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 04:24:21 -0400
-Received: by mail-wr1-f65.google.com with SMTP id p13so68609440wru.10
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 01:24:19 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=tia4GGlfCZfjipvPpsnZEjlZ47XCVJ76nFFzIXV74zE=;
-        b=MaLkFY/KCOqCGPh6RMHvtZGkwY4X3TM8dvZKbapwUyqHqyecPIFp91Z6gsGAMK+mam
-         icKXgf6+P1JGC73sRzpxFr+AIix1ZETpg3X45B2B+Sm3w74NNpddsfi1iBs1Wykthj8z
-         CK19AO4QEtbhD685eBzJ49oBqXU13sw3GSHUMhnzh/bIZBM8jH1Km1ozbxoE0QdKaaMW
-         kFzF63ODThIY06NpPEKXeIULQoFQ0+KKPahNaok35+kBELL0z3dCMlVJpRGvEHwLKFhq
-         nzULBIXUO/YLlkWJY+zttMGFmrop73E1c++l1EhwiQNnTPP5U14VtTFRbd1SqejUEvRL
-         2nAg==
+        id S1725970AbfGaIc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 04:32:57 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:38971 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725866AbfGaIc5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 04:32:57 -0400
+Received: by mail-wm1-f67.google.com with SMTP id u25so48634888wmc.4;
+        Wed, 31 Jul 2019 01:32:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=tia4GGlfCZfjipvPpsnZEjlZ47XCVJ76nFFzIXV74zE=;
-        b=k4vR9hl87sgQu1ZaIROpoCIuCFszoGAV8cpRQPu3nsCjVt1709XMXmNCxxcN9TesfX
-         TIGCbA6qiw8WwGiATPLB4qyfm77Z0hpthee38pury6H828aac/q5cUyK0QOzoTPgpRng
-         jz9HfilGRcVJomHfdXwcL/EBHfxxso1tcdUjty42vct7gyp9gZWoNxyKEEfY6TiZa0bL
-         YL/ZtzktSCBNNTfF2ttZJbfEumfnml8ReVleksGB0ssADQ8/I21+NMqB7Pbz+atznvi2
-         Wg0raL9YVkv2AN0pbVtYbTPpKclRi3PQCWpMwWo/99w86u5QDfKaLTuAjiCB+6FWYJ4D
-         wdLA==
-X-Gm-Message-State: APjAAAWdjnYqFm8cyNofOWDUBNtgb65QBinBB1AhnkCmefthgY48UrJq
-        OA7/XtbRD0XqZTkFdvr7YFNVQC/9y6s=
-X-Google-Smtp-Source: APXvYqxPaEuXZXFfN64V8ZeieLOeUIQh8nRS8lcyqKMi5exZ3hD1tXdJzcDUIAAPHR8YZRoHVAmn6A==
-X-Received: by 2002:adf:ce07:: with SMTP id p7mr53083050wrn.129.1564561458621;
-        Wed, 31 Jul 2019 01:24:18 -0700 (PDT)
-Received: from localhost.localdomain ([185.49.42.196])
-        by smtp.gmail.com with ESMTPSA id o3sm54597664wrs.59.2019.07.31.01.24.17
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 31 Jul 2019 01:24:18 -0700 (PDT)
-From:   Carlo Caione <ccaione@baylibre.com>
-To:     srinivas.kandagatla@linaro.org, khilman@baylibre.com,
-        narmstrong@baylibre.com, robh+dt@kernel.org, tglx@linutronix.de,
-        jbrunet@baylibre.com, linux-arm-kernel@lists.infradead.org,
-        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-Cc:     Carlo Caione <ccaione@baylibre.com>
-Subject: [PATCH v2 4/4] firmware: meson_sm: Rework driver as a proper platform driver
-Date:   Wed, 31 Jul 2019 09:23:39 +0100
-Message-Id: <20190731082339.20163-5-ccaione@baylibre.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190731082339.20163-1-ccaione@baylibre.com>
-References: <20190731082339.20163-1-ccaione@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Vv7QJlhqsQ8aHiLfsYKcKvtxePDzn2Rbc7z1MBOOQ9Y=;
+        b=axSdODjw3jXgx4S9R8vd6L6ENp4zPspBhge4toszOo07c2BEDbGgYx+A+/yS+581Ab
+         PwGjp0Cptxh7qa+bMuJKiry4d1iajGrmWNaUdd4zxKPWrWJgV4EIvq0gfnDsGt/el3v9
+         R6b/orCu50jz41TgCJV/AAGJTMdQ8qjUoT4fKbcyXV7h83w2RDhlfYsWMJX+cZbP2gdi
+         mvaNB8hg2aZi8NHURzoeZEFIc0RiA0w1lXvy36Z5jG4Gk6D0PkLhG48u70e3rkCd4Wje
+         NGZAQAqiAV8ntnXKhFj0yZhflEnMXkVAdmEir9SrD2JnA9OxJh9JFTq81XIdTC92jof0
+         MB6g==
+X-Gm-Message-State: APjAAAWMkchdNPyfckyYQt/87riETBdQttvBP90XfuQXMs2DSWX5Kknb
+        EYyljy+SxXO8Ny6Zw4KK5BvpFUeQrWc1JRVsitw=
+X-Google-Smtp-Source: APXvYqya/XfPxO65m02NWkmZ45+9x/Fzz1kXR3vOrCtLpHfH6e9/DbeCK8UArUmFGOkuZI9NP57/KPuy1ff+LkPKIHM=
+X-Received: by 2002:a05:600c:254b:: with SMTP id e11mr102178270wma.171.1564561975116;
+ Wed, 31 Jul 2019 01:32:55 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190731073744.13963-1-geert+renesas@glider.be>
+ <20190731074801.5706-1-geert+renesas@glider.be> <20190731081209.GA5080@pendragon.ideasonboard.com>
+In-Reply-To: <20190731081209.GA5080@pendragon.ideasonboard.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Wed, 31 Jul 2019 10:32:42 +0200
+Message-ID: <CAMuHMdV9MEYP97_6RFhmbGGB8uY-Pi8S9q+m+XMmHzKHcibJwQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r8a77995: draak: Fix backlight
+ regulator name
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Johan Hovold <johan@kernel.org>,
+        Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The secure monitor driver is currently a frankenstein driver which is
-registered as a platform driver but its functionality goes through a
-global struct accessed by the consumer drivers using exported helper
-functions.
+Hi Laurent,
 
-Try to tidy up the driver moving the firmware struct into the driver
-data and make the consumer drivers referencing the secure-monitor using
-a new property in the DT.
+On Wed, Jul 31, 2019 at 10:12 AM Laurent Pinchart
+<laurent.pinchart@ideasonboard.com> wrote:
+> On Wed, Jul 31, 2019 at 09:48:01AM +0200, Geert Uytterhoeven wrote:
+> > Currently there are two nodes named "regulator1" in the Draak DTS: a
+> > 3.3V regulator for the eMMC and the LVDS decoder, and a 12V regulator
+> > for the backlight.  This causes the former to be overwritten by the
+> > latter.
+> >
+> > Fix this by renaming all regulators with numerical suffixes to use named
+> > suffixes, which are less likely to conflict.
+>
+> Aren't DT node names supposed to describe the device type, not a
+> particular instance of the device ? This is something that has bothered
+> me too, but I believe the naming scheme should be decided globally, not
+> per board. Is there precedent for using this scheme that has been
+> explicitly approved by the DT maintainers ?
 
-Currently only the nvmem driver is using this API so we can fix it in
-the same commit.
+The example in Documentation/devicetree/bindings/regulator/regulator.yaml
+uses "regulator@0", which of course works only if #address-cells = 1, which
+is usually not the case for discrete regulators.
+BTW, the example lacks a "reg" property...
 
-Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
-Signed-off-by: Carlo Caione <ccaione@baylibre.com>
----
- drivers/firmware/meson/meson_sm.c       | 94 +++++++++++++++++--------
- drivers/nvmem/meson-efuse.c             | 24 ++++++-
- include/linux/firmware/meson/meson_sm.h | 15 ++--
- 3 files changed, 94 insertions(+), 39 deletions(-)
+So some other suffix has to be added to distinguish individual "regulator"
+nodes.
 
-diff --git a/drivers/firmware/meson/meson_sm.c b/drivers/firmware/meson/meson_sm.c
-index 772ca6726e7b..2e36a2aa274c 100644
---- a/drivers/firmware/meson/meson_sm.c
-+++ b/drivers/firmware/meson/meson_sm.c
-@@ -54,8 +54,6 @@ struct meson_sm_firmware {
- 	void __iomem *sm_shmem_out_base;
- };
- 
--static struct meson_sm_firmware fw;
--
- static u32 meson_sm_get_cmd(const struct meson_sm_chip *chip,
- 			    unsigned int cmd_index)
- {
-@@ -90,6 +88,7 @@ static void __iomem *meson_sm_map_shmem(u32 cmd_shmem, unsigned int size)
- /**
-  * meson_sm_call - generic SMC32 call to the secure-monitor
-  *
-+ * @fw:		Pointer to secure-monitor firmware
-  * @cmd_index:	Index of the SMC32 function ID
-  * @ret:	Returned value
-  * @arg0:	SMC32 Argument 0
-@@ -100,15 +99,15 @@ static void __iomem *meson_sm_map_shmem(u32 cmd_shmem, unsigned int size)
-  *
-  * Return:	0 on success, a negative value on error
-  */
--int meson_sm_call(unsigned int cmd_index, u32 *ret, u32 arg0,
--		  u32 arg1, u32 arg2, u32 arg3, u32 arg4)
-+int meson_sm_call(struct meson_sm_firmware *fw, unsigned int cmd_index,
-+		  u32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
- {
- 	u32 cmd, lret;
- 
--	if (!fw.chip)
-+	if (!fw->chip)
- 		return -ENOENT;
- 
--	cmd = meson_sm_get_cmd(fw.chip, cmd_index);
-+	cmd = meson_sm_get_cmd(fw->chip, cmd_index);
- 	if (!cmd)
- 		return -EINVAL;
- 
-@@ -124,6 +123,7 @@ EXPORT_SYMBOL(meson_sm_call);
- /**
-  * meson_sm_call_read - retrieve data from secure-monitor
-  *
-+ * @fw:		Pointer to secure-monitor firmware
-  * @buffer:	Buffer to store the retrieved data
-  * @bsize:	Size of the buffer
-  * @cmd_index:	Index of the SMC32 function ID
-@@ -137,22 +137,23 @@ EXPORT_SYMBOL(meson_sm_call);
-  *		When 0 is returned there is no guarantee about the amount of
-  *		data read and bsize bytes are copied in buffer.
-  */
--int meson_sm_call_read(void *buffer, unsigned int bsize, unsigned int cmd_index,
--		       u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
-+int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
-+		       unsigned int bsize, unsigned int cmd_index, u32 arg0,
-+		       u32 arg1, u32 arg2, u32 arg3, u32 arg4)
- {
- 	u32 size;
- 	int ret;
- 
--	if (!fw.chip)
-+	if (!fw->chip)
- 		return -ENOENT;
- 
--	if (!fw.chip->cmd_shmem_out_base)
-+	if (!fw->chip->cmd_shmem_out_base)
- 		return -EINVAL;
- 
--	if (bsize > fw.chip->shmem_size)
-+	if (bsize > fw->chip->shmem_size)
- 		return -EINVAL;
- 
--	if (meson_sm_call(cmd_index, &size, arg0, arg1, arg2, arg3, arg4) < 0)
-+	if (meson_sm_call(fw, cmd_index, &size, arg0, arg1, arg2, arg3, arg4) < 0)
- 		return -EINVAL;
- 
- 	if (size > bsize)
-@@ -164,7 +165,7 @@ int meson_sm_call_read(void *buffer, unsigned int bsize, unsigned int cmd_index,
- 		size = bsize;
- 
- 	if (buffer)
--		memcpy(buffer, fw.sm_shmem_out_base, size);
-+		memcpy(buffer, fw->sm_shmem_out_base, size);
- 
- 	return ret;
- }
-@@ -173,6 +174,7 @@ EXPORT_SYMBOL(meson_sm_call_read);
- /**
-  * meson_sm_call_write - send data to secure-monitor
-  *
-+ * @fw:		Pointer to secure-monitor firmware
-  * @buffer:	Buffer containing data to send
-  * @size:	Size of the data to send
-  * @cmd_index:	Index of the SMC32 function ID
-@@ -184,23 +186,24 @@ EXPORT_SYMBOL(meson_sm_call_read);
-  *
-  * Return:	size of sent data on success, a negative value on error
-  */
--int meson_sm_call_write(void *buffer, unsigned int size, unsigned int cmd_index,
--			u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4)
-+int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
-+			unsigned int size, unsigned int cmd_index, u32 arg0,
-+			u32 arg1, u32 arg2, u32 arg3, u32 arg4)
- {
- 	u32 written;
- 
--	if (!fw.chip)
-+	if (!fw->chip)
- 		return -ENOENT;
- 
--	if (size > fw.chip->shmem_size)
-+	if (size > fw->chip->shmem_size)
- 		return -EINVAL;
- 
--	if (!fw.chip->cmd_shmem_in_base)
-+	if (!fw->chip->cmd_shmem_in_base)
- 		return -EINVAL;
- 
--	memcpy(fw.sm_shmem_in_base, buffer, size);
-+	memcpy(fw->sm_shmem_in_base, buffer, size);
- 
--	if (meson_sm_call(cmd_index, &written, arg0, arg1, arg2, arg3, arg4) < 0)
-+	if (meson_sm_call(fw, cmd_index, &written, arg0, arg1, arg2, arg3, arg4) < 0)
- 		return -EINVAL;
- 
- 	if (!written)
-@@ -210,6 +213,24 @@ int meson_sm_call_write(void *buffer, unsigned int size, unsigned int cmd_index,
- }
- EXPORT_SYMBOL(meson_sm_call_write);
- 
-+/**
-+ * meson_sm_get - get pointer to meson_sm_firmware structure.
-+ *
-+ * @sm_node:		Pointer to the secure-monitor Device Tree node.
-+ *
-+ * Return:		NULL is the secure-monitor device is not ready.
-+ */
-+struct meson_sm_firmware *meson_sm_get(struct device_node *sm_node)
-+{
-+	struct platform_device *pdev = of_find_device_by_node(sm_node);
-+
-+	if (!pdev)
-+		return NULL;
-+
-+	return platform_get_drvdata(pdev);
-+}
-+EXPORT_SYMBOL_GPL(meson_sm_get);
-+
- #define SM_CHIP_ID_LENGTH	119
- #define SM_CHIP_ID_OFFSET	4
- #define SM_CHIP_ID_SIZE		12
-@@ -217,14 +238,18 @@ EXPORT_SYMBOL(meson_sm_call_write);
- static ssize_t serial_show(struct device *dev, struct device_attribute *attr,
- 			 char *buf)
- {
-+	struct platform_device *pdev = to_platform_device(dev);
-+	struct meson_sm_firmware *fw;
- 	uint8_t *id_buf;
- 	int ret;
- 
-+	fw = platform_get_drvdata(pdev);
-+
- 	id_buf = kmalloc(SM_CHIP_ID_LENGTH, GFP_KERNEL);
- 	if (!id_buf)
- 		return -ENOMEM;
- 
--	ret = meson_sm_call_read(id_buf, SM_CHIP_ID_LENGTH, SM_GET_CHIP_ID,
-+	ret = meson_sm_call_read(fw, id_buf, SM_CHIP_ID_LENGTH, SM_GET_CHIP_ID,
- 				 0, 0, 0, 0, 0);
- 	if (ret < 0) {
- 		kfree(id_buf);
-@@ -268,25 +293,34 @@ static const struct of_device_id meson_sm_ids[] = {
- 
- static int __init meson_sm_probe(struct platform_device *pdev)
- {
-+	struct device *dev = &pdev->dev;
- 	const struct meson_sm_chip *chip;
-+	struct meson_sm_firmware *fw;
-+
-+	fw = devm_kzalloc(dev, sizeof(*fw), GFP_KERNEL);
-+	if (!fw)
-+		return -ENOMEM;
- 
--	chip = of_match_device(meson_sm_ids, &pdev->dev)->data;
-+	chip = of_match_device(meson_sm_ids, dev)->data;
- 
- 	if (chip->cmd_shmem_in_base) {
--		fw.sm_shmem_in_base = meson_sm_map_shmem(chip->cmd_shmem_in_base,
--							 chip->shmem_size);
--		if (WARN_ON(!fw.sm_shmem_in_base))
-+		fw->sm_shmem_in_base = meson_sm_map_shmem(chip->cmd_shmem_in_base,
-+							  chip->shmem_size);
-+		if (WARN_ON(!fw->sm_shmem_in_base))
- 			goto out;
- 	}
- 
- 	if (chip->cmd_shmem_out_base) {
--		fw.sm_shmem_out_base = meson_sm_map_shmem(chip->cmd_shmem_out_base,
--							  chip->shmem_size);
--		if (WARN_ON(!fw.sm_shmem_out_base))
-+		fw->sm_shmem_out_base = meson_sm_map_shmem(chip->cmd_shmem_out_base,
-+							   chip->shmem_size);
-+		if (WARN_ON(!fw->sm_shmem_out_base))
- 			goto out_in_base;
- 	}
- 
--	fw.chip = chip;
-+	fw->chip = chip;
-+
-+	platform_set_drvdata(pdev, fw);
-+
- 	pr_info("secure-monitor enabled\n");
- 
- 	if (sysfs_create_group(&pdev->dev.kobj, &meson_sm_sysfs_attr_group))
-@@ -295,7 +329,7 @@ static int __init meson_sm_probe(struct platform_device *pdev)
- 	return 0;
- 
- out_in_base:
--	iounmap(fw.sm_shmem_in_base);
-+	iounmap(fw->sm_shmem_in_base);
- out:
- 	return -EINVAL;
- }
-diff --git a/drivers/nvmem/meson-efuse.c b/drivers/nvmem/meson-efuse.c
-index 39bd76306033..d6b533497ce1 100644
---- a/drivers/nvmem/meson-efuse.c
-+++ b/drivers/nvmem/meson-efuse.c
-@@ -17,14 +17,18 @@
- static int meson_efuse_read(void *context, unsigned int offset,
- 			    void *val, size_t bytes)
- {
--	return meson_sm_call_read((u8 *)val, bytes, SM_EFUSE_READ, offset,
-+	struct meson_sm_firmware *fw = context;
-+
-+	return meson_sm_call_read(fw, (u8 *)val, bytes, SM_EFUSE_READ, offset,
- 				  bytes, 0, 0, 0);
- }
- 
- static int meson_efuse_write(void *context, unsigned int offset,
- 			     void *val, size_t bytes)
- {
--	return meson_sm_call_write((u8 *)val, bytes, SM_EFUSE_WRITE, offset,
-+	struct meson_sm_firmware *fw = context;
-+
-+	return meson_sm_call_write(fw, (u8 *)val, bytes, SM_EFUSE_WRITE, offset,
- 				   bytes, 0, 0, 0);
- }
- 
-@@ -37,12 +41,25 @@ MODULE_DEVICE_TABLE(of, meson_efuse_match);
- static int meson_efuse_probe(struct platform_device *pdev)
- {
- 	struct device *dev = &pdev->dev;
-+	struct meson_sm_firmware *fw;
-+	struct device_node *sm_np;
- 	struct nvmem_device *nvmem;
- 	struct nvmem_config *econfig;
- 	struct clk *clk;
- 	unsigned int size;
- 	int ret;
- 
-+	sm_np = of_parse_phandle(pdev->dev.of_node, "secure-monitor", 0);
-+	if (!sm_np) {
-+		dev_err(&pdev->dev, "no secure-monitor node\n");
-+		return -ENODEV;
-+	}
-+
-+	fw = meson_sm_get(sm_np);
-+	of_node_put(sm_np);
-+	if (!fw)
-+		return -EPROBE_DEFER;
-+
- 	clk = devm_clk_get(dev, NULL);
- 	if (IS_ERR(clk)) {
- 		ret = PTR_ERR(clk);
-@@ -65,7 +82,7 @@ static int meson_efuse_probe(struct platform_device *pdev)
- 		return ret;
- 	}
- 
--	if (meson_sm_call(SM_EFUSE_USER_MAX, &size, 0, 0, 0, 0, 0) < 0) {
-+	if (meson_sm_call(fw, SM_EFUSE_USER_MAX, &size, 0, 0, 0, 0, 0) < 0) {
- 		dev_err(dev, "failed to get max user");
- 		return -EINVAL;
- 	}
-@@ -81,6 +98,7 @@ static int meson_efuse_probe(struct platform_device *pdev)
- 	econfig->reg_read = meson_efuse_read;
- 	econfig->reg_write = meson_efuse_write;
- 	econfig->size = size;
-+	econfig->priv = fw;
- 
- 	nvmem = devm_nvmem_register(&pdev->dev, econfig);
- 
-diff --git a/include/linux/firmware/meson/meson_sm.h b/include/linux/firmware/meson/meson_sm.h
-index 7613bf7c9442..6669e2a1d5fd 100644
---- a/include/linux/firmware/meson/meson_sm.h
-+++ b/include/linux/firmware/meson/meson_sm.h
-@@ -16,11 +16,14 @@ enum {
- 
- struct meson_sm_firmware;
- 
--int meson_sm_call(unsigned int cmd_index, u32 *ret, u32 arg0, u32 arg1,
--		  u32 arg2, u32 arg3, u32 arg4);
--int meson_sm_call_write(void *buffer, unsigned int b_size, unsigned int cmd_index,
--			u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
--int meson_sm_call_read(void *buffer, unsigned int bsize, unsigned int cmd_index,
--		       u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
-+int meson_sm_call(struct meson_sm_firmware *fw, unsigned int cmd_index,
-+		  u32 *ret, u32 arg0, u32 arg1, u32 arg2, u32 arg3, u32 arg4);
-+int meson_sm_call_write(struct meson_sm_firmware *fw, void *buffer,
-+			unsigned int b_size, unsigned int cmd_index, u32 arg0,
-+			u32 arg1, u32 arg2, u32 arg3, u32 arg4);
-+int meson_sm_call_read(struct meson_sm_firmware *fw, void *buffer,
-+		       unsigned int bsize, unsigned int cmd_index, u32 arg0,
-+		       u32 arg1, u32 arg2, u32 arg3, u32 arg4);
-+struct meson_sm_firmware *meson_sm_get(struct device_node *firmware_node);
- 
- #endif /* _MESON_SM_FW_H_ */
--- 
-2.20.1
+The example in Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
+uses "regulator-1v8" since commit b735f41dcb06ae06 ("dt-bindings: regulator:
+update fixed-regulator example"), which received a Reviewed-by from Rob
+after it was committed.
+https://lore.kernel.org/lkml/CAL_Jsq+rRYazOqtjNms0cTK0HpkxCkmZ4JXoLM7ZaPivATEO8A@mail.gmail.com/
 
+Looks good enough to me ;-)
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
