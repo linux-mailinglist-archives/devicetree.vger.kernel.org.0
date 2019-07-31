@@ -2,95 +2,284 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 864F57C5BB
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:10:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BAB2C7C63B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:22:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388602AbfGaPJV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 11:09:21 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:36956 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388609AbfGaPJU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 11:09:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=oE86iyCkFuLdAx6C70a2YwJmuXxGxpk5g7N4UAbsvzE=; b=wHDqWLMByHptQ4N7z6SasEO5X
-        4copLTwIubUmlYDSJkhfbbEj0sJiRUhf5euHlBGvJm5djjtQV/BBd9X4SFZJgTnbUgeP96ZFhKxgn
-        rZ+XLwf992Kb6ujYAe5tL3y1XbkzkTGqFvlzHgSioPn1KYI5ECqmEGj0v+wOUi9o+H5bs=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1hsqE3-0002Uq-24; Wed, 31 Jul 2019 15:09:11 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id EB8542742C99; Wed, 31 Jul 2019 16:09:09 +0100 (BST)
-Date:   Wed, 31 Jul 2019 16:09:09 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Rob Herring <robh@kernel.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Johan Hovold <johan@kernel.org>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a77995: draak: Fix backlight
- regulator name
-Message-ID: <20190731150909.GD4369@sirena.org.uk>
-References: <20190731073744.13963-1-geert+renesas@glider.be>
- <20190731074801.5706-1-geert+renesas@glider.be>
- <20190731081209.GA5080@pendragon.ideasonboard.com>
- <CAMuHMdV9MEYP97_6RFhmbGGB8uY-Pi8S9q+m+XMmHzKHcibJwQ@mail.gmail.com>
- <CAL_JsqJWJ+o6t2Wb162h7Xz98L=WPSi4une-EC0HfoRiWLmKWA@mail.gmail.com>
+        id S1726713AbfGaPV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 11:21:57 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:44041 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727628AbfGaPV4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 11:21:56 -0400
+Received: by mail-pf1-f194.google.com with SMTP id t16so32023383pfe.11
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 08:21:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/00DqJSmBllVQxJe/depqKNd9/W5u/S88YZoNcLhU8M=;
+        b=WJ7zHTrdmhj416JDGeXrd8HTmi41kMjbS6DFWoDqLYHlVWTQfkDBNzyj7KU8JTjQl/
+         M6QGg9ifEKF97fIw9HhYnboco8o2HZHOofCsY1A813z2+jP8FQ2/qXbu78YPVsltyjgX
+         cIJghmNk8PFOGm6A6BPXaD8Eo9+Q16Uj3tKVk=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=/00DqJSmBllVQxJe/depqKNd9/W5u/S88YZoNcLhU8M=;
+        b=anurCZszoX1nZeXId5XNwW+4nLyVXluXE0hqWlCC7B00MpIZO47hNrG9MCY4P42397
+         Nvo9jZgdasuqXAY1pkO2QNXSX4apM5wrMikvMQjWbcqLC/P9pvdgjZK4JUZlELWrmv/z
+         yJwSdi51+jUjVZsEJ93MwEvIGaV2pAjrWkrIWxRf7vQHV9/K6HngjcJ5J3wFbDH87OY1
+         3xJlHaqIDbjosnJmEQRP9wRJm9C8x7Jj9sdEhQhva7DBCooQJuqSE/yt5k4crpqJCGQY
+         FFs2zMc6AUb4OvkRTRlm8+ILzpbSIluPqp2pwiPWEHwFoArpz644pwJEnTX7UjPYOLsV
+         jHBQ==
+X-Gm-Message-State: APjAAAV7MfPUXbK0Idd1nMZ/7n74ea6vAtRkV5eQNbxubzv070on7gjM
+        gDt6PN8xRuBBlPSwrnbZrRIn3A==
+X-Google-Smtp-Source: APXvYqzk6zsAoyN2sl9N/KCKNNYvnw9gSCdTRSwoQ2wfMAx3bc+x36Vy5CHdrFByOsbL5KKPLAT1dA==
+X-Received: by 2002:a17:90a:bc42:: with SMTP id t2mr3446645pjv.121.1564586143604;
+        Wed, 31 Jul 2019 08:15:43 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id o95sm2170650pjb.4.2019.07.31.08.15.42
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 31 Jul 2019 08:15:42 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v2] ARM: dts: rockchip: A few fixes for veyron-{fievel,tiger}
+Date:   Wed, 31 Jul 2019 08:15:27 -0700
+Message-Id: <20190731151527.122002-1-mka@chromium.org>
+X-Mailer: git-send-email 2.22.0.709.g102302147b-goog
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eqp4TxRxnD4KrmFZ"
-Content-Disposition: inline
-In-Reply-To: <CAL_JsqJWJ+o6t2Wb162h7Xz98L=WPSi4une-EC0HfoRiWLmKWA@mail.gmail.com>
-X-Cookie: FEELINGS are cascading over me!!!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Fix/improve a few things for veyron fievel/tiger:
 
---eqp4TxRxnD4KrmFZ
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+- move 'vccsys' regulator from tiger to fievel, both boards
+  have it (and tiger includes the fievel .dtsi)
+- move 'ext_gmac' node below regulators
+- fix GPIO ids of vcc5_host1 and vcc5_host2 regulators
+- remove reset configuration from 'gmac' node, this is already done
+  in rk3288.dtsi
+- fixed style issues of some multi-line comments
+- switch 'vcc18_lcdt', 'vdd10_lcd' and 'vcc33_ccd' regulators off
+  during suspend
+- no pull-up on the Bluetooth wake-up pin, there is an external
+  pull-up. The signal is active low, add the 'bt_host_wake_l'
+  pinctrl config
+- move BC 1.2 pins up in the pinctrl config to keep 'wake only' pins
+  separate
+- add BC 1.2 pins to sleep config
 
-On Wed, Jul 31, 2019 at 08:47:38AM -0600, Rob Herring wrote:
+Fixes: 0067692b662e ("ARM: dts: rockchip: add veyron-fievel board")
+Reviewed-by: Douglas Anderson <dianders@chromium.org>
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
+Changes in v2:
+- remove 'regulator-suspend-microvolt' property from regulators
+  that are off during suspend
+- added Doug's 'Reviewed-by' tag
+---
+ arch/arm/boot/dts/rk3288-veyron-fievel.dts | 58 +++++++++++++---------
+ arch/arm/boot/dts/rk3288-veyron-tiger.dts  |  7 ---
+ arch/arm/boot/dts/rk3288-veyron.dtsi       |  4 ++
+ 3 files changed, 38 insertions(+), 31 deletions(-)
 
-> As long as we have a consistent base name that we can match schema
-> with, then I'm happy. But for regulators, we have a lot of node names
-> like 'buck1', 'LDO2', etc.
+diff --git a/arch/arm/boot/dts/rk3288-veyron-fievel.dts b/arch/arm/boot/dts/rk3288-veyron-fievel.dts
+index 696566f72d30..65d029ccc907 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-fievel.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-fievel.dts
+@@ -20,11 +20,11 @@
+ 
+ 	/delete-node/ bt-activity;
+ 
+-	ext_gmac: external-gmac-clock {
+-		compatible = "fixed-clock";
+-		#clock-cells = <0>;
+-		clock-frequency = <125000000>;
+-		clock-output-names = "ext_gmac";
++	vccsys: vccsys {
++		compatible = "regulator-fixed";
++		regulator-name = "vccsys";
++		regulator-boot-on;
++		regulator-always-on;
+ 	};
+ 
+ 	/*
+@@ -41,7 +41,7 @@
+ 	vcc5_host1: vcc5-host1-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+-		gpio = <&gpio5 RK_PC1 GPIO_ACTIVE_HIGH>;
++		gpio = <&gpio5 RK_PC2 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hub_usb1_pwr_en>;
+ 		regulator-name = "vcc5_host1";
+@@ -52,7 +52,7 @@
+ 	vcc5_host2: vcc5-host2-regulator {
+ 		compatible = "regulator-fixed";
+ 		enable-active-high;
+-		gpio = <&gpio5 RK_PC2 GPIO_ACTIVE_HIGH>;
++		gpio = <&gpio5 RK_PB6 GPIO_ACTIVE_HIGH>;
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&hub_usb2_pwr_en>;
+ 		regulator-name = "vcc5_host2";
+@@ -70,6 +70,13 @@
+ 		regulator-always-on;
+ 		regulator-boot-on;
+ 	};
++
++	ext_gmac: external-gmac-clock {
++		compatible = "fixed-clock";
++		#clock-cells = <0>;
++		clock-frequency = <125000000>;
++		clock-output-names = "ext_gmac";
++	};
+ };
+ 
+ &gmac {
+@@ -83,13 +90,13 @@
+ 	phy-supply = <&vcc33_lan>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&rgmii_pins>, <&phy_rst>, <&phy_pmeb>, <&phy_int>;
+-	resets = <&cru SRST_MAC>;
+-	reset-names = "stmmaceth";
+ 	rx_delay = <0x10>;
+ 	tx_delay = <0x30>;
+ 
+-	/* Reset for the RTL8211 PHY which requires a 10-ms reset pulse (low)
+-	 * with a 30ms settling time. */
++	/*
++	 * Reset for the RTL8211 PHY which requires a 10-ms reset pulse (low)
++	 * with a 30ms settling time.
++	 */
+ 	snps,reset-gpio = <&gpio4 RK_PB0 0>;
+ 	snps,reset-active-low;
+ 	snps,reset-delays-us = <0 10000 30000>;
+@@ -120,7 +127,8 @@
+ 	regulators {
+ 		/delete-node/ LDO_REG1;
+ 
+-		/* According to the schematic, vcc18_lcdt is for
++		/*
++		 * According to the schematic, vcc18_lcdt is for
+ 		 * HDMI_AVDD_1V8
+ 		 */
+ 		vcc18_lcdt: LDO_REG2 {
+@@ -130,12 +138,12 @@
+ 			regulator-max-microvolt = <1800000>;
+ 			regulator-name = "vdd18_lcdt";
+ 			regulator-state-mem {
+-				regulator-on-in-suspend;
+-				regulator-suspend-microvolt = <1800000>;
++				regulator-off-in-suspend;
+ 			};
+ 		};
+ 
+-		/* This is not a pwren anymore, but the real power supply,
++		/*
++		 * This is not a pwren anymore, but the real power supply,
+ 		 * vdd10_lcd for HDMI_AVDD_1V0
+ 		 */
+ 		vdd10_lcd: LDO_REG7 {
+@@ -145,8 +153,7 @@
+ 			regulator-max-microvolt = <1000000>;
+ 			regulator-name = "vdd10_lcd";
+ 			regulator-state-mem {
+-				regulator-on-in-suspend;
+-				regulator-suspend-microvolt = <1000000>;
++				regulator-off-in-suspend;
+ 			};
+ 		};
+ 
+@@ -158,8 +165,7 @@
+ 			regulator-max-microvolt = <3300000>;
+ 			regulator-name = "vcc33_ccd";
+ 			regulator-state-mem {
+-				regulator-on-in-suspend;
+-				regulator-suspend-microvolt = <3300000>;
++				regulator-off-in-suspend;
+ 			};
+ 		};
+ 
+@@ -180,7 +186,7 @@
+ 		interrupts = <RK_PD7 IRQ_TYPE_LEVEL_LOW>;
+ 		marvell,wakeup-pin = /bits/ 16 <13>;
+ 		pinctrl-names = "default";
+-		pinctrl-0 = <&bt_host_wake>;
++		pinctrl-0 = <&bt_host_wake_l>;
+ 	};
+ };
+ 
+@@ -206,13 +212,13 @@
+ 		&ddrio_pwroff
+ 		&global_pwroff
+ 
+-		/* Wake only */
+-		&bt_dev_wake_awake
+-		&pwr_led1_on
+-
+ 		/* For usb bc1.2 */
+ 		&usb_otg_ilim_sel
+ 		&usb_usb_ilim_sel
++
++		/* Wake only */
++		&bt_dev_wake_awake
++		&pwr_led1_on
+ 	>;
+ 
+ 	pinctrl-1 = <
+@@ -221,6 +227,10 @@
+ 		&ddrio_pwroff
+ 		&global_pwroff
+ 
++		/* For usb bc1.2 */
++		&usb_otg_ilim_sel
++		&usb_usb_ilim_sel
++
+ 		/* Sleep only */
+ 		&bt_dev_wake_sleep
+ 		&pwr_led1_blink
+diff --git a/arch/arm/boot/dts/rk3288-veyron-tiger.dts b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
+index fae26d530841..27557203ae33 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-tiger.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
+@@ -19,13 +19,6 @@
+ 		     "google,veyron", "rockchip,rk3288";
+ 
+ 	/delete-node/ vcc18-lcd;
+-
+-	vccsys: vccsys {
+-		compatible = "regulator-fixed";
+-		regulator-name = "vccsys";
+-		regulator-boot-on;
+-		regulator-always-on;
+-	};
+ };
+ 
+ &backlight {
+diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
+index 8fc8eac699bf..7525e3dd1fc1 100644
+--- a/arch/arm/boot/dts/rk3288-veyron.dtsi
++++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
+@@ -586,6 +586,10 @@
+ 			rockchip,pins = <4 RK_PD7 RK_FUNC_GPIO &pcfg_pull_down>;
+ 		};
+ 
++		bt_host_wake_l: bt-host-wake-l {
++			rockchip,pins = <4 RK_PD7 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
+ 		/*
+ 		 * We run sdio0 at max speed; bump up drive strength.
+ 		 * We also have external pulls, so disable the internal ones.
+-- 
+2.22.0.709.g102302147b-goog
 
-Those are all types of regulator (LDOs and DCDCs are the main types of
-voltage regulator, and buck is another term for DCDC).
-
-I'm still not clear what meaningful effect any of this node name stuff
-has :(
-
---eqp4TxRxnD4KrmFZ
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1BrxUACgkQJNaLcl1U
-h9AL3Af/aUeFtao+e3RZByp0wSj7o2Wf/AP0GdZxNpNL9iEZiwzVlcZd9MsJbVHk
-1DP61c59GBTfKy8SkLx9HlcIo7MO2V8WDFeX7Sl3ojtW72ubXNBYtPf5KW6Yfdll
-s+16xROordrMpe1Z8P0m7DHBQeAuuipy9nYlXbFpyoBdjNykpxFbmfhTPrAIlql0
-I4Q8mXVpT927dY3WbAE0ZiyXJFddNZX+v7hB313W3fJ4a5fsjvLSTblVfEMt2NfN
-szEd8oXIFXN1WzyN52COod3M7gUTFQL4eH3l+aEDsppj+gcpFcfkAmtoRACVXKo0
-5GJeJci6PurEp+MbiVZw3KNvl/24/A==
-=upRn
------END PGP SIGNATURE-----
-
---eqp4TxRxnD4KrmFZ--
