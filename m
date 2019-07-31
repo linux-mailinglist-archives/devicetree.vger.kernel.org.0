@@ -2,115 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7600F7C460
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 16:08:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 980157C471
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 16:11:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728197AbfGaOHv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 10:07:51 -0400
-Received: from viti.kaiser.cx ([85.214.81.225]:55986 "EHLO viti.kaiser.cx"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727614AbfGaOHv (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 10:07:51 -0400
-Received: from pd956d63d.dip0.t-ipconnect.de ([217.86.214.61] helo=martin-debian-1.paytec.ch)
-        by viti.kaiser.cx with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
-        (Exim 4.89)
-        (envelope-from <martin@kaiser.cx>)
-        id 1hspGc-0004ht-UU; Wed, 31 Jul 2019 16:07:47 +0200
-From:   Martin Kaiser <martin@kaiser.cx>
-To:     Jonathan Cameron <jic23@kernel.org>,
-        Hartmut Knaack <knaack.h@gmx.de>,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Martin Kaiser <martin@kaiser.cx>
-Subject: [PATCH v4 2/2] dt-bindings: iio: potentiometer: add max5432.yaml binding
-Date:   Wed, 31 Jul 2019 16:07:06 +0200
-Message-Id: <20190731140706.2765-2-martin@kaiser.cx>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20190731140706.2765-1-martin@kaiser.cx>
-References: <20190721175915.27192-1-martin@kaiser.cx>
- <20190731140706.2765-1-martin@kaiser.cx>
+        id S1728483AbfGaOLF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 10:11:05 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:53900 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729121AbfGaOLF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 10:11:05 -0400
+Received: by mail-wm1-f67.google.com with SMTP id x15so61008674wmj.3
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 07:11:03 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=DaSfQVSBloP6ituQwd3gN2sNQYfvnC2s71RqutisBq0=;
+        b=Pn45YGzOCoqVPj5ruMllJckodlhVBmgzWrH3x/e0USvGBmmg4/Ju4GVTO3/dRSpBTY
+         576PmDDVUKYSxfaA1m94qhQ8UbmUNa4NfL1mXsG4Cq5I/yz4KkQozkzA+tTJ5oyrS9a5
+         wahvQMETUJkBFk2+TS9+O3vcsd4sB1rUI5rgIBWJvS6kGoYyzNBRtoOh/brUuKjLVgqb
+         lJkOws6k7U0nPUeGV0XD+Cc9eDsiWdIXbue+NdiSajyLETAOv5J2/b38B0MNu0VMg1ss
+         pRO70fcoPMvX0eHH4aQKvcl9z9u4yPd3QOFBhz23Zxc8o6UX+WAxo7JKNb4ZvLBDrnWr
+         m9Nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=DaSfQVSBloP6ituQwd3gN2sNQYfvnC2s71RqutisBq0=;
+        b=B488AzToOgM93KyC19Ppo6DMzbxL975D+IMdDk4kqcNdVqiTyOoXpTmPW4tEN1qlo6
+         aNxMY3Z4ilaTBWYyKiflEsUis6vxLvi5xsPjv86QS5Xawv/WBa5mqPU19UMeepkHEnCB
+         iG/26+5AjAbpu1jQoUnIETyHQSBfdzaMliqarF/jc51xxrPpD6VEMXrz53lDXx+ouOfI
+         eL1FgC05259BWAWvqdEpyDcTP2h8gGaRcG5o78GmXcgTRxQCoV3Vtgy44MAzI+eWtHX9
+         qqB39E15epHm5o4QjiRrglS5WElHqeB9MuqxOO4e7QDfSl1TuMeHSqbjsTsthTOM0+01
+         Je1A==
+X-Gm-Message-State: APjAAAWU5CKIt0nvUwDz5HU9i5k/FxnQp9HEWu35689Mjz0EiDhA1l3v
+        d4kBP1Xv/0TZuNbQ2wfluw32NA==
+X-Google-Smtp-Source: APXvYqw/pUX7GShISMzCbUQtESxSOCGVNvngtydQFUT3NN7ACbQtiRIRf1AbgIrVwpXKDn1FZaNSkQ==
+X-Received: by 2002:a05:600c:34d:: with SMTP id u13mr85321496wmd.48.1564582262533;
+        Wed, 31 Jul 2019 07:11:02 -0700 (PDT)
+Received: from [192.168.1.6] (19.red-176-86-136.dynamicip.rima-tde.net. [176.86.136.19])
+        by smtp.gmail.com with ESMTPSA id a81sm71773684wmh.3.2019.07.31.07.11.00
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 31 Jul 2019 07:11:01 -0700 (PDT)
+Subject: Re: [PATCH v3 02/14] mbox: qcom: add APCS child device for QCS404
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     sboyd@kernel.org, david.brown@linaro.org, jassisinghbrar@gmail.com,
+        mark.rutland@arm.com, mturquette@baylibre.com, robh+dt@kernel.org,
+        will.deacon@arm.com, arnd@arndb.de, horms+renesas@verge.net.au,
+        heiko@sntech.de, sibis@codeaurora.org,
+        enric.balletbo@collabora.com, jagan@amarulasolutions.com,
+        olof@lixom.net, vkoul@kernel.org, niklas.cassel@linaro.org,
+        georgi.djakov@linaro.org, amit.kucheria@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, khasim.mohammed@linaro.org
+References: <20190625164733.11091-1-jorge.ramirez-ortiz@linaro.org>
+ <20190625164733.11091-3-jorge.ramirez-ortiz@linaro.org>
+ <20190711144424.GD7234@tuxbook-pro>
+From:   Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
+Message-ID: <5111bc6e-4155-e99e-71b2-1aac3610b71e@linaro.org>
+Date:   Wed, 31 Jul 2019 16:10:59 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
+MIME-Version: 1.0
+In-Reply-To: <20190711144424.GD7234@tuxbook-pro>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a binding for the Maxim Integrated MAX5432-MAX5435 family of digital
-potentiometers.
+On 7/11/19 16:44, Bjorn Andersson wrote:
+> On Tue 25 Jun 09:47 PDT 2019, Jorge Ramirez-Ortiz wrote:
+> 
+>> There is clock controller functionality in the APCS hardware block of
+>> qcs404 devices similar to msm8916.
+>>
+>> Co-developed-by: Niklas Cassel <niklas.cassel@linaro.org>
+>> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+>> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+>> ---
+>>  drivers/mailbox/qcom-apcs-ipc-mailbox.c | 18 ++++++++++--------
+>>  1 file changed, 10 insertions(+), 8 deletions(-)
+>>
+>> diff --git a/drivers/mailbox/qcom-apcs-ipc-mailbox.c b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+>> index 705e17a5479c..a05dc3aabac7 100644
+>> --- a/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+>> +++ b/drivers/mailbox/qcom-apcs-ipc-mailbox.c
+>> @@ -89,16 +89,18 @@ static int qcom_apcs_ipc_probe(struct platform_device *pdev)
+>>  		return ret;
+>>  	}
+>>  
+>> -	if (of_device_is_compatible(np, "qcom,msm8916-apcs-kpss-global")) {
+>> -		apcs->clk = platform_device_register_data(&pdev->dev,
+>> -							  "qcom-apcs-msm8916-clk",
+>> -							  -1, NULL, 0);
+>> -		if (IS_ERR(apcs->clk))
+>> -			dev_err(&pdev->dev, "failed to register APCS clk\n");
+>> -	}
+>> -
+>>  	platform_set_drvdata(pdev, apcs);
+>>  
+>> +	if (!of_device_is_compatible(np, "qcom,msm8916-apcs-kpss-global") &&
+>> +	    !of_device_is_compatible(np, "qcom,qcs404-apcs-apps-global"))
+> 
+> If the remainder of the function was a long snippet I think this would
+> motivate the somewhat unusual early return. But I think it would be
+> cleaner to just add to the existing conditional.
 
-Signed-off-by: Martin Kaiser <martin@kaiser.cx>
----
-changes in v4
- - fix the dt bindings
-   - replace ic20 with i2c
-   - document the reg property
-   - add additionalProperties and required
+sure can do that. I dont agree (I wouldnt have bothered otherwise :))
+but will do
 
-changes in v3
- - split dt bindings and driver code into separate patches
- - use yaml format for dt bindings
- - fix formatting of parameter lists
-
-changes in v2
- - use MAX5432_ prefix for all defines
- - fix indentation
- - convert void * to unsigned long, not to u32
-   (warning from kbuild test robot)
-
- .../bindings/iio/potentiometer/max5432.yaml        | 44 ++++++++++++++++++++++
- 1 file changed, 44 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/iio/potentiometer/max5432.yaml
-
-diff --git a/Documentation/devicetree/bindings/iio/potentiometer/max5432.yaml b/Documentation/devicetree/bindings/iio/potentiometer/max5432.yaml
-new file mode 100644
-index 000000000000..5082f919df2a
---- /dev/null
-+++ b/Documentation/devicetree/bindings/iio/potentiometer/max5432.yaml
-@@ -0,0 +1,44 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/iio/potentiometer/max5432.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: Maxim Integrated MAX5432-MAX5435 Digital Potentiometers
-+
-+maintainers:
-+  - Martin Kaiser <martin@kaiser.cx>
-+
-+description: |
-+  Maxim Integrated MAX5432-MAX5435 Digital Potentiometers connected via I2C
-+
-+  Datasheet:
-+    https://datasheets.maximintegrated.com/en/ds/MAX5432-MAX5435.pdf
-+
-+properties:
-+  compatible:
-+    enum:
-+      - maxim,max5432
-+      - maxim,max5433
-+      - maxim,max5434
-+      - maxim,max5435
-+
-+  reg:
-+    maxItems: 1
-+
-+required:
-+  - compatible
-+  - reg
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    i2c {
-+      #address-cells = <1>;
-+      #size-cells = <0>;
-+      max5434@28 {
-+        compatible = "maxim,max5434";
-+        reg = <0x28>;
-+      };
-+    };
--- 
-2.11.0
+> 
+> Regards,
+> Bjorn
+> 
+>> +		return 0;
+>> +
+>> +	apcs->clk = platform_device_register_data(&pdev->dev,
+>> +						  "qcom-apcs-msm8916-clk",
+>> +						  -1, NULL, 0);
+>> +	if (IS_ERR(apcs->clk))
+>> +		dev_err(&pdev->dev, "failed to register APCS clk\n");
+>> +
+>>  	return 0;
+>>  }
+>>  
+>> -- 
+>> 2.21.0
+>>
+> 
 
