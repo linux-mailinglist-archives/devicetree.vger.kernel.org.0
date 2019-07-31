@@ -2,284 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BAB2C7C63B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:22:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2078B7C67C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:26:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726713AbfGaPV5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 11:21:57 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:44041 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727628AbfGaPV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 11:21:56 -0400
-Received: by mail-pf1-f194.google.com with SMTP id t16so32023383pfe.11
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 08:21:56 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/00DqJSmBllVQxJe/depqKNd9/W5u/S88YZoNcLhU8M=;
-        b=WJ7zHTrdmhj416JDGeXrd8HTmi41kMjbS6DFWoDqLYHlVWTQfkDBNzyj7KU8JTjQl/
-         M6QGg9ifEKF97fIw9HhYnboco8o2HZHOofCsY1A813z2+jP8FQ2/qXbu78YPVsltyjgX
-         cIJghmNk8PFOGm6A6BPXaD8Eo9+Q16Uj3tKVk=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=/00DqJSmBllVQxJe/depqKNd9/W5u/S88YZoNcLhU8M=;
-        b=anurCZszoX1nZeXId5XNwW+4nLyVXluXE0hqWlCC7B00MpIZO47hNrG9MCY4P42397
-         Nvo9jZgdasuqXAY1pkO2QNXSX4apM5wrMikvMQjWbcqLC/P9pvdgjZK4JUZlELWrmv/z
-         yJwSdi51+jUjVZsEJ93MwEvIGaV2pAjrWkrIWxRf7vQHV9/K6HngjcJ5J3wFbDH87OY1
-         3xJlHaqIDbjosnJmEQRP9wRJm9C8x7Jj9sdEhQhva7DBCooQJuqSE/yt5k4crpqJCGQY
-         FFs2zMc6AUb4OvkRTRlm8+ILzpbSIluPqp2pwiPWEHwFoArpz644pwJEnTX7UjPYOLsV
-         jHBQ==
-X-Gm-Message-State: APjAAAV7MfPUXbK0Idd1nMZ/7n74ea6vAtRkV5eQNbxubzv070on7gjM
-        gDt6PN8xRuBBlPSwrnbZrRIn3A==
-X-Google-Smtp-Source: APXvYqzk6zsAoyN2sl9N/KCKNNYvnw9gSCdTRSwoQ2wfMAx3bc+x36Vy5CHdrFByOsbL5KKPLAT1dA==
-X-Received: by 2002:a17:90a:bc42:: with SMTP id t2mr3446645pjv.121.1564586143604;
-        Wed, 31 Jul 2019 08:15:43 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id o95sm2170650pjb.4.2019.07.31.08.15.42
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 31 Jul 2019 08:15:42 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v2] ARM: dts: rockchip: A few fixes for veyron-{fievel,tiger}
-Date:   Wed, 31 Jul 2019 08:15:27 -0700
-Message-Id: <20190731151527.122002-1-mka@chromium.org>
-X-Mailer: git-send-email 2.22.0.709.g102302147b-goog
+        id S1726853AbfGaP0X (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 11:26:23 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:41576 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726339AbfGaP0X (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Jul 2019 11:26:23 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x6VFGFBw001928;
+        Wed, 31 Jul 2019 17:26:10 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
+ : date : message-id : mime-version : content-type; s=STMicroelectronics;
+ bh=hqY6QAzzaGShhRhu9sPzoFPBiimrui7oz2W66kOYNWQ=;
+ b=jxZlB5bc3GxXWhEvCWZ/i5UcigqrTllppWki5MxLWKZLUsOoapFRNqRU+WzSf6ofL+KY
+ dQeWqjBEOgtrMdR1Y+Zfp1IeChNWAsB1/kCp0jJ8wnoJh07UjBfEcdxEdsR/zTTof4ki
+ aoQtcskK07fC+V4YEcLtmAK2BZZ743ZGrfdHS+XQqnmF2yUQG1zNTaoOXnfc3nsc/NPu
+ mXVpU3Su4EqYQWYOLWEMb9cb4D4snwTIDZFLQYbUhR7W2BPr1A+cp7+5ELBq6CG7gY8U
+ F2/Jwp2KTZUHCYETI5VdDxy36QjD9URmJVVCdGsNFdI+LIYNuZMG1L3thyFnkiyYjNoz rQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2u2jp4g33g-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Wed, 31 Jul 2019 17:26:10 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 0573731;
+        Wed, 31 Jul 2019 15:26:09 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E212FF9AA8;
+        Wed, 31 Jul 2019 17:26:09 +0200 (CEST)
+Received: from localhost (10.75.127.51) by SFHDAG3NODE2.st.com (10.75.127.8)
+ with Microsoft SMTP Server (TLS) id 15.0.1347.2; Wed, 31 Jul 2019 17:26:09
+ +0200
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>, <arnd@arndb.de>,
+        <robh+dt@kernel.org>, <mark.rutland@arm.com>
+CC:     <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-kernel@vger.kernel.org>
+Subject: [PATCH] ARM: dts: stm32: remove useless pinctrl entries in stm32mp157-pinctrl
+Date:   Wed, 31 Jul 2019 17:26:09 +0200
+Message-ID: <20190731152609.32197-1-alexandre.torgue@st.com>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-Originating-IP: [10.75.127.51]
+X-ClientProxiedBy: SFHDAG8NODE3.st.com (10.75.127.24) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-07-31_07:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fix/improve a few things for veyron fievel/tiger:
+This patch removes "ngpios" and "gpio-ranges" information from
+stm32mp157-pinctrl.dtsi file as it is now filled in stm32mp157 pinctrl
+package files.
 
-- move 'vccsys' regulator from tiger to fievel, both boards
-  have it (and tiger includes the fievel .dtsi)
-- move 'ext_gmac' node below regulators
-- fix GPIO ids of vcc5_host1 and vcc5_host2 regulators
-- remove reset configuration from 'gmac' node, this is already done
-  in rk3288.dtsi
-- fixed style issues of some multi-line comments
-- switch 'vcc18_lcdt', 'vdd10_lcd' and 'vcc33_ccd' regulators off
-  during suspend
-- no pull-up on the Bluetooth wake-up pin, there is an external
-  pull-up. The signal is active low, add the 'bt_host_wake_l'
-  pinctrl config
-- move BC 1.2 pins up in the pinctrl config to keep 'wake only' pins
-  separate
-- add BC 1.2 pins to sleep config
+Signed-off-by: Alexandre Torgue <alexandre.torgue@st.com>
 
-Fixes: 0067692b662e ("ARM: dts: rockchip: add veyron-fievel board")
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
-Changes in v2:
-- remove 'regulator-suspend-microvolt' property from regulators
-  that are off during suspend
-- added Doug's 'Reviewed-by' tag
----
- arch/arm/boot/dts/rk3288-veyron-fievel.dts | 58 +++++++++++++---------
- arch/arm/boot/dts/rk3288-veyron-tiger.dts  |  7 ---
- arch/arm/boot/dts/rk3288-veyron.dtsi       |  4 ++
- 3 files changed, 38 insertions(+), 31 deletions(-)
-
-diff --git a/arch/arm/boot/dts/rk3288-veyron-fievel.dts b/arch/arm/boot/dts/rk3288-veyron-fievel.dts
-index 696566f72d30..65d029ccc907 100644
---- a/arch/arm/boot/dts/rk3288-veyron-fievel.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-fievel.dts
-@@ -20,11 +20,11 @@
- 
- 	/delete-node/ bt-activity;
- 
--	ext_gmac: external-gmac-clock {
--		compatible = "fixed-clock";
--		#clock-cells = <0>;
--		clock-frequency = <125000000>;
--		clock-output-names = "ext_gmac";
-+	vccsys: vccsys {
-+		compatible = "regulator-fixed";
-+		regulator-name = "vccsys";
-+		regulator-boot-on;
-+		regulator-always-on;
- 	};
- 
- 	/*
-@@ -41,7 +41,7 @@
- 	vcc5_host1: vcc5-host1-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
--		gpio = <&gpio5 RK_PC1 GPIO_ACTIVE_HIGH>;
-+		gpio = <&gpio5 RK_PC2 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hub_usb1_pwr_en>;
- 		regulator-name = "vcc5_host1";
-@@ -52,7 +52,7 @@
- 	vcc5_host2: vcc5-host2-regulator {
- 		compatible = "regulator-fixed";
- 		enable-active-high;
--		gpio = <&gpio5 RK_PC2 GPIO_ACTIVE_HIGH>;
-+		gpio = <&gpio5 RK_PB6 GPIO_ACTIVE_HIGH>;
- 		pinctrl-names = "default";
- 		pinctrl-0 = <&hub_usb2_pwr_en>;
- 		regulator-name = "vcc5_host2";
-@@ -70,6 +70,13 @@
- 		regulator-always-on;
- 		regulator-boot-on;
- 	};
-+
-+	ext_gmac: external-gmac-clock {
-+		compatible = "fixed-clock";
-+		#clock-cells = <0>;
-+		clock-frequency = <125000000>;
-+		clock-output-names = "ext_gmac";
-+	};
- };
- 
- &gmac {
-@@ -83,13 +90,13 @@
- 	phy-supply = <&vcc33_lan>;
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&rgmii_pins>, <&phy_rst>, <&phy_pmeb>, <&phy_int>;
--	resets = <&cru SRST_MAC>;
--	reset-names = "stmmaceth";
- 	rx_delay = <0x10>;
- 	tx_delay = <0x30>;
- 
--	/* Reset for the RTL8211 PHY which requires a 10-ms reset pulse (low)
--	 * with a 30ms settling time. */
-+	/*
-+	 * Reset for the RTL8211 PHY which requires a 10-ms reset pulse (low)
-+	 * with a 30ms settling time.
-+	 */
- 	snps,reset-gpio = <&gpio4 RK_PB0 0>;
- 	snps,reset-active-low;
- 	snps,reset-delays-us = <0 10000 30000>;
-@@ -120,7 +127,8 @@
- 	regulators {
- 		/delete-node/ LDO_REG1;
- 
--		/* According to the schematic, vcc18_lcdt is for
-+		/*
-+		 * According to the schematic, vcc18_lcdt is for
- 		 * HDMI_AVDD_1V8
- 		 */
- 		vcc18_lcdt: LDO_REG2 {
-@@ -130,12 +138,12 @@
- 			regulator-max-microvolt = <1800000>;
- 			regulator-name = "vdd18_lcdt";
- 			regulator-state-mem {
--				regulator-on-in-suspend;
--				regulator-suspend-microvolt = <1800000>;
-+				regulator-off-in-suspend;
+diff --git a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+index df6470133574..3f6008aa28a4 100644
+--- a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+@@ -24,8 +24,6 @@
+ 				reg = <0x0 0x400>;
+ 				clocks = <&rcc GPIOA>;
+ 				st,bank-name = "GPIOA";
+-				ngpios = <16>;
+-				gpio-ranges = <&pinctrl 0 0 16>;
+ 				status = "disabled";
  			};
- 		};
  
--		/* This is not a pwren anymore, but the real power supply,
-+		/*
-+		 * This is not a pwren anymore, but the real power supply,
- 		 * vdd10_lcd for HDMI_AVDD_1V0
- 		 */
- 		vdd10_lcd: LDO_REG7 {
-@@ -145,8 +153,7 @@
- 			regulator-max-microvolt = <1000000>;
- 			regulator-name = "vdd10_lcd";
- 			regulator-state-mem {
--				regulator-on-in-suspend;
--				regulator-suspend-microvolt = <1000000>;
-+				regulator-off-in-suspend;
+@@ -37,8 +35,6 @@
+ 				reg = <0x1000 0x400>;
+ 				clocks = <&rcc GPIOB>;
+ 				st,bank-name = "GPIOB";
+-				ngpios = <16>;
+-				gpio-ranges = <&pinctrl 0 16 16>;
+ 				status = "disabled";
  			};
- 		};
  
-@@ -158,8 +165,7 @@
- 			regulator-max-microvolt = <3300000>;
- 			regulator-name = "vcc33_ccd";
- 			regulator-state-mem {
--				regulator-on-in-suspend;
--				regulator-suspend-microvolt = <3300000>;
-+				regulator-off-in-suspend;
+@@ -50,8 +46,6 @@
+ 				reg = <0x2000 0x400>;
+ 				clocks = <&rcc GPIOC>;
+ 				st,bank-name = "GPIOC";
+-				ngpios = <16>;
+-				gpio-ranges = <&pinctrl 0 32 16>;
+ 				status = "disabled";
  			};
- 		};
  
-@@ -180,7 +186,7 @@
- 		interrupts = <RK_PD7 IRQ_TYPE_LEVEL_LOW>;
- 		marvell,wakeup-pin = /bits/ 16 <13>;
- 		pinctrl-names = "default";
--		pinctrl-0 = <&bt_host_wake>;
-+		pinctrl-0 = <&bt_host_wake_l>;
- 	};
- };
+@@ -63,8 +57,6 @@
+ 				reg = <0x3000 0x400>;
+ 				clocks = <&rcc GPIOD>;
+ 				st,bank-name = "GPIOD";
+-				ngpios = <16>;
+-				gpio-ranges = <&pinctrl 0 48 16>;
+ 				status = "disabled";
+ 			};
  
-@@ -206,13 +212,13 @@
- 		&ddrio_pwroff
- 		&global_pwroff
+@@ -76,8 +68,6 @@
+ 				reg = <0x4000 0x400>;
+ 				clocks = <&rcc GPIOE>;
+ 				st,bank-name = "GPIOE";
+-				ngpios = <16>;
+-				gpio-ranges = <&pinctrl 0 64 16>;
+ 				status = "disabled";
+ 			};
  
--		/* Wake only */
--		&bt_dev_wake_awake
--		&pwr_led1_on
--
- 		/* For usb bc1.2 */
- 		&usb_otg_ilim_sel
- 		&usb_usb_ilim_sel
-+
-+		/* Wake only */
-+		&bt_dev_wake_awake
-+		&pwr_led1_on
- 	>;
+@@ -89,8 +79,6 @@
+ 				reg = <0x5000 0x400>;
+ 				clocks = <&rcc GPIOF>;
+ 				st,bank-name = "GPIOF";
+-				ngpios = <16>;
+-				gpio-ranges = <&pinctrl 0 80 16>;
+ 				status = "disabled";
+ 			};
  
- 	pinctrl-1 = <
-@@ -221,6 +227,10 @@
- 		&ddrio_pwroff
- 		&global_pwroff
+@@ -102,8 +90,6 @@
+ 				reg = <0x6000 0x400>;
+ 				clocks = <&rcc GPIOG>;
+ 				st,bank-name = "GPIOG";
+-				ngpios = <16>;
+-				gpio-ranges = <&pinctrl 0 96 16>;
+ 				status = "disabled";
+ 			};
  
-+		/* For usb bc1.2 */
-+		&usb_otg_ilim_sel
-+		&usb_usb_ilim_sel
-+
- 		/* Sleep only */
- 		&bt_dev_wake_sleep
- 		&pwr_led1_blink
-diff --git a/arch/arm/boot/dts/rk3288-veyron-tiger.dts b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-index fae26d530841..27557203ae33 100644
---- a/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-tiger.dts
-@@ -19,13 +19,6 @@
- 		     "google,veyron", "rockchip,rk3288";
+@@ -115,8 +101,6 @@
+ 				reg = <0x7000 0x400>;
+ 				clocks = <&rcc GPIOH>;
+ 				st,bank-name = "GPIOH";
+-				ngpios = <16>;
+-				gpio-ranges = <&pinctrl 0 112 16>;
+ 				status = "disabled";
+ 			};
  
- 	/delete-node/ vcc18-lcd;
--
--	vccsys: vccsys {
--		compatible = "regulator-fixed";
--		regulator-name = "vccsys";
--		regulator-boot-on;
--		regulator-always-on;
--	};
- };
+@@ -128,8 +112,6 @@
+ 				reg = <0x8000 0x400>;
+ 				clocks = <&rcc GPIOI>;
+ 				st,bank-name = "GPIOI";
+-				ngpios = <16>;
+-				gpio-ranges = <&pinctrl 0 128 16>;
+ 				status = "disabled";
+ 			};
  
- &backlight {
-diff --git a/arch/arm/boot/dts/rk3288-veyron.dtsi b/arch/arm/boot/dts/rk3288-veyron.dtsi
-index 8fc8eac699bf..7525e3dd1fc1 100644
---- a/arch/arm/boot/dts/rk3288-veyron.dtsi
-+++ b/arch/arm/boot/dts/rk3288-veyron.dtsi
-@@ -586,6 +586,10 @@
- 			rockchip,pins = <4 RK_PD7 RK_FUNC_GPIO &pcfg_pull_down>;
- 		};
+@@ -141,8 +123,6 @@
+ 				reg = <0x9000 0x400>;
+ 				clocks = <&rcc GPIOJ>;
+ 				st,bank-name = "GPIOJ";
+-				ngpios = <16>;
+-				gpio-ranges = <&pinctrl 0 144 16>;
+ 				status = "disabled";
+ 			};
  
-+		bt_host_wake_l: bt-host-wake-l {
-+			rockchip,pins = <4 RK_PD7 RK_FUNC_GPIO &pcfg_pull_none>;
-+		};
-+
- 		/*
- 		 * We run sdio0 at max speed; bump up drive strength.
- 		 * We also have external pulls, so disable the internal ones.
+@@ -154,8 +134,6 @@
+ 				reg = <0xa000 0x400>;
+ 				clocks = <&rcc GPIOK>;
+ 				st,bank-name = "GPIOK";
+-				ngpios = <8>;
+-				gpio-ranges = <&pinctrl 0 160 8>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -849,8 +827,6 @@
+ 				clocks = <&rcc GPIOZ>;
+ 				st,bank-name = "GPIOZ";
+ 				st,bank-ioport = <11>;
+-				ngpios = <8>;
+-				gpio-ranges = <&pinctrl_z 0 400 8>;
+ 				status = "disabled";
+ 			};
+ 
 -- 
-2.22.0.709.g102302147b-goog
+2.17.1
 
