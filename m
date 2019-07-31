@@ -2,152 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 278C77C23F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:52:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C2867C25B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:56:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729190AbfGaMwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 08:52:15 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:54943 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387723AbfGaMwP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:52:15 -0400
-Received: by mail-wm1-f66.google.com with SMTP id p74so60659119wme.4
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 05:52:13 -0700 (PDT)
+        id S1727209AbfGaM4B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 08:56:01 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:37724 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727124AbfGaM4B (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:56:01 -0400
+Received: by mail-lj1-f195.google.com with SMTP id z28so11254673ljn.4;
+        Wed, 31 Jul 2019 05:55:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=nHgD5MradYY8xVGHEvd/R2jyn+uvXGXVexfyZzlb6Eg=;
-        b=NDQ1w/tMCOAR6qUEvWcAPGFf2syCsFKvMvMkOvNkNsuR8d1JWPhMuUE6VolCt6ngPc
-         0x+nNNBtrFhu8hdrzOvzONn6BXK3TwkHxoLnLXO51bwZL6awbkZT4aY4Vf2vzbQhLoox
-         DTC9+WaObJiuK84ogxTOdK3AHFmlYsnqfVwKVLBwGZ4jYkxHqADsatO7zGrA98OhEHFa
-         DOUbbQSax8BLtrbGMUTANL8ftDT0SOVwXkDTjsciC9syTWEe5ImmtTsjtGMR7RNO28Pc
-         01yq2zVyCmutfIgAa8tLQnvbAxus3GqPV20+JP9GeEdhrSviRS2ASUuW+4Qm5IdAXQmJ
-         J/wA==
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ibb9l9pCzIPRO+qO4A9wjd4O5BSt2O3HIIkOx8g91QE=;
+        b=dmWnxkSGqzJLdXtRSEMnp2346Q5fNymYmV9Q0cYScy4XLd+85hWOnQNs75lW0PNdwi
+         s+cUZbR31z+McMivRqz/ET13p8j7d13H8ixyBqYdGa01zT7PikehyrI8kfDVPwYS9GZ/
+         zFYiAbkT8SEDQlepklQsZJlRWxVOuLPB7aeZRY6sJxRIzVWQ7zcOtuyLdPKG3zUh5RlI
+         0oHbwEACO5U76xqu+E+N3nQGmLmWb6O01Gt+vggt6F6esPtXtzRZImt6fDQjjfjF62J1
+         6jJc7IZ/vQE8pseqlqw2VdpZc531GTaaqylI1C2FXgwhnUbssJN4Uo7PRIKmetfxruYE
+         /qsA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=nHgD5MradYY8xVGHEvd/R2jyn+uvXGXVexfyZzlb6Eg=;
-        b=lNVrcYZAk7QUmmtr9eBggaECQtV/tqmC7HtiecY589ewFk1uWMZB8+P527PLvw1nCJ
-         fC7OqM/0o3Qjz6yHGnlYBhw83PHl2FIg+DhRpYO6urnp9MvYUT7Bmyq5gkQXOIZCBdFv
-         4td0RxQvAI56dxc4RunHFiceIKvFwzDyvssItO+KA2bTVnWBptDV/ttZpVQdfgOxHV5X
-         aI8HLswbEGgezjW+6CrC2zKA586YtMtOVs7hZF7RpaNdG3OJxKCAg/BmuVTApUAxVQnw
-         vfd5YCbSplGEFip4T0MuFZMhmfKuOmHF+HQ1XjhEeyUnfG/1vt6u+HQl8jAg3I4aWJb0
-         grDQ==
-X-Gm-Message-State: APjAAAXvDa3MgFIpQC4Xmuss+cDBlGlDWlfo5rGDw0dYK2z+SW9zqaiS
-        IjYYzRIssqH1xRQEhvcgIc7plg==
-X-Google-Smtp-Source: APXvYqzexZqsx7QZvp2tVYogwNmmqGukY9o2hhSYZ9udv3ZU8B9ndsRSKGLPT58dVWfPKzHKy9t8Gw==
-X-Received: by 2002:a7b:cae9:: with SMTP id t9mr110553661wml.126.1564577532473;
-        Wed, 31 Jul 2019 05:52:12 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id g11sm68858050wru.24.2019.07.31.05.52.11
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 31 Jul 2019 05:52:11 -0700 (PDT)
-Subject: Re: [PATCH 6/6] MAINTAINERS: add entry for Amlogic Thermal driver
-To:     Guillaume La Roque <glaroque@baylibre.com>,
-        daniel.lezcano@linaro.org, khilman@baylibre.com
-Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
-References: <20190731121409.17285-1-glaroque@baylibre.com>
- <20190731121409.17285-7-glaroque@baylibre.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <3c522eb3-5cf7-6a79-3282-864d8b783a51@baylibre.com>
-Date:   Wed, 31 Jul 2019 14:52:11 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ibb9l9pCzIPRO+qO4A9wjd4O5BSt2O3HIIkOx8g91QE=;
+        b=ZaPzxSs2b5LTnk8cPbJS1quD7HJ0gk9a2mm+dNi5r6p8p8GC2pBPrHeSaoNFVAr55W
+         u/0kCy3W4B6n6PXQ/aHllwOIl49PLXZgS0E/bUy4o33ByDewXWOVy5Ufz7Ql1zS1vrFT
+         nEu7k9hbD9IdLgQmPs+62TDW32rIS6VNnirLxbklG2Fpti2ckc1YwKtrhWw147h7ZXjL
+         e8AGZiLIItyK6azyNfSQcNk8MPOwNwZsfmxW9xOcJ20Joagzk9NANkHb2WEFk2HOCtVb
+         RPtrUPq0cGA7unVtDhtnVcc0xKmm+6ROO+Fjr8vivB+BRvm2VzO2gypts88OCXAiZFNV
+         0R3Q==
+X-Gm-Message-State: APjAAAWLHPDli1mBZqXdqYelsgb6V1acuv4ptux80tQilxrFm1fdPIfv
+        YzErF+UASpNgb+5aGhHvT8a0I2mZ0WxlwhfGPAWNqB+y
+X-Google-Smtp-Source: APXvYqwHLa09vrCGuEjsqB9Bo/QP8nZztRJ5LvWsIK2qv5mAo9aSVSVVIUILsK+mjb1tTQ98idf29i7lGxgDBiL/LM8=
+X-Received: by 2002:a2e:4e12:: with SMTP id c18mr14146346ljb.211.1564577759040;
+ Wed, 31 Jul 2019 05:55:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190731121409.17285-7-glaroque@baylibre.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190731123750.25670-1-philippe.schenker@toradex.com> <20190731123750.25670-8-philippe.schenker@toradex.com>
+In-Reply-To: <20190731123750.25670-8-philippe.schenker@toradex.com>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 31 Jul 2019 09:56:05 -0300
+Message-ID: <CAOMZO5B5HnqpLrDjyGtqSQpVXmcoZuGLvCzKVUhwLb-_ZO_Xog@mail.gmail.com>
+Subject: Re: [PATCH v2 07/20] ARM: dts: imx7-colibri: fix 1.8V/UHS support
+To:     Philippe Schenker <philippe.schenker@toradex.com>
+Cc:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        "stefan@agner.ch" <stefan@agner.ch>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>,
+        Stefan Agner <stefan.agner@toradex.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Sascha Hauer <s.hauer@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2019 14:14, Guillaume La Roque wrote:
-> Add myself as maintainer for Amlogic Thermal driver.
-> 
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-> ---
->  MAINTAINERS | 9 +++++++++
->  1 file changed, 9 insertions(+)
-> 
-> diff --git a/MAINTAINERS b/MAINTAINERS
-> index fb2b12f75c37..299f27d11058 100644
-> --- a/MAINTAINERS
-> +++ b/MAINTAINERS
-> @@ -15910,6 +15910,15 @@ F:	Documentation/driver-api/thermal/cpu-cooling-api.rst
->  F:	drivers/thermal/cpu_cooling.c
->  F:	include/linux/cpu_cooling.h
->  
-> +THERMAL DRIVER FOR AMLOGIC SOCS
-> +M:	Guillaume La Roque <glaroque@baylibre.com>
-> +L:	linux-pm@vger.kernel.org
-> +L:	linux-amlogic@lists.infradead.org
-> +W:	http://linux-meson.com/
-> +S:	Supported
-> +F:	drivers/thermal/amlogic_thermal.c
-> +F:	Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
-> +
->  THINKPAD ACPI EXTRAS DRIVER
->  M:	Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>
->  L:	ibm-acpi-devel@lists.sourceforge.net
-> 
+On Wed, Jul 31, 2019 at 9:38 AM Philippe Schenker
+<philippe.schenker@toradex.com> wrote:
+>
+> From: Stefan Agner <stefan.agner@toradex.com>
+>
+> Add pinmuxing and do not specify voltage restrictions in the
+> module level device tree.
 
-Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
+It would be nice to explain the reason for doing this.
+
+> Signed-off-by: Stefan Agner <stefan.agner@toradex.com>
+> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
+> ---
+>
+> Changes in v2: None
+>
+>  arch/arm/boot/dts/imx7-colibri.dtsi | 23 ++++++++++++++++++++++-
+>  1 file changed, 22 insertions(+), 1 deletion(-)
+>
+> diff --git a/arch/arm/boot/dts/imx7-colibri.dtsi b/arch/arm/boot/dts/imx7-colibri.dtsi
+> index 16d1a1ed1aff..67f5e0c87fdc 100644
+> --- a/arch/arm/boot/dts/imx7-colibri.dtsi
+> +++ b/arch/arm/boot/dts/imx7-colibri.dtsi
+> @@ -326,7 +326,6 @@
+>  &usdhc1 {
+>         pinctrl-names = "default";
+>         pinctrl-0 = <&pinctrl_usdhc1 &pinctrl_cd_usdhc1>;
+> -       no-1-8-v;
+>         cd-gpios = <&gpio1 0 GPIO_ACTIVE_LOW>;
+>         disable-wp;
+>         vqmmc-supply = <&reg_LDO2>;
+> @@ -671,6 +670,28 @@
+>                 >;
+>         };
+>
+> +       pinctrl_usdhc1_100mhz: usdhc1grp_100mhz {
+> +               fsl,pins = <
+> +                       MX7D_PAD_SD1_CMD__SD1_CMD       0x5a
+> +                       MX7D_PAD_SD1_CLK__SD1_CLK       0x1a
+> +                       MX7D_PAD_SD1_DATA0__SD1_DATA0   0x5a
+> +                       MX7D_PAD_SD1_DATA1__SD1_DATA1   0x5a
+> +                       MX7D_PAD_SD1_DATA2__SD1_DATA2   0x5a
+> +                       MX7D_PAD_SD1_DATA3__SD1_DATA3   0x5a
+> +               >;
+> +       };
+> +
+> +       pinctrl_usdhc1_200mhz: usdhc1grp_200mhz {
+> +               fsl,pins = <
+> +                       MX7D_PAD_SD1_CMD__SD1_CMD       0x5b
+> +                       MX7D_PAD_SD1_CLK__SD1_CLK       0x1b
+> +                       MX7D_PAD_SD1_DATA0__SD1_DATA0   0x5b
+> +                       MX7D_PAD_SD1_DATA1__SD1_DATA1   0x5b
+> +                       MX7D_PAD_SD1_DATA2__SD1_DATA2   0x5b
+> +                       MX7D_PAD_SD1_DATA3__SD1_DATA3   0x5b
+> +               >;
+> +       };
+
+You add the entries for 100MHz and 200MHz, but I don't see them being
+referenced anywhere.
