@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 58F367C118
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:21:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 38E3C7C119
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:21:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726701AbfGaMV4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 08:21:56 -0400
-Received: from relay9-d.mail.gandi.net ([217.70.183.199]:59635 "EHLO
+        id S1726281AbfGaMV6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 08:21:58 -0400
+Received: from relay9-d.mail.gandi.net ([217.70.183.199]:51873 "EHLO
         relay9-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726281AbfGaMV4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:21:56 -0400
+        with ESMTP id S1726696AbfGaMV6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:21:58 -0400
 X-Originating-IP: 86.250.200.211
 Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id 7E31EFF813;
-        Wed, 31 Jul 2019 12:21:53 +0000 (UTC)
+        by relay9-d.mail.gandi.net (Postfix) with ESMTPSA id D9208FF815;
+        Wed, 31 Jul 2019 12:21:54 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Gregory Clement <gregory.clement@bootlin.com>,
         Jason Cooper <jason@lakedaemon.net>,
@@ -31,10 +31,11 @@ Cc:     <devicetree@vger.kernel.org>,
         Russell King <linux@armlinux.org.uk>,
         <linux-arm-kernel@lists.infradead.org>,
         Grzegorz Jaszczyk <jaz@semihalf.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH v3 18/19] arm64: dts: marvell: Add 7k/8k PHYs in PCIe nodes
-Date:   Wed, 31 Jul 2019 14:21:25 +0200
-Message-Id: <20190731122126.3049-19-miquel.raynal@bootlin.com>
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Subject: [PATCH v3 19/19] arm64: dts: marvell: Convert 7k/8k usb-phy properties to phy-supply
+Date:   Wed, 31 Jul 2019 14:21:26 +0200
+Message-Id: <20190731122126.3049-20-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190731122126.3049-1-miquel.raynal@bootlin.com>
 References: <20190731122126.3049-1-miquel.raynal@bootlin.com>
@@ -45,105 +46,173 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Fill-in the missing PCIe phys/phy-names DT properties of Armada 7k/8k
-based boards.
+Update Aramda 7k/8k DTs to use the phy-supply property of the (recent)
+generic PHY framework instead of the (legacy) usb-phy preperty. Both
+enable the supply when the PHY is enabled.
 
-The MacchiatoBin is a bit particular as the Armada8k-PCI IP supports
-x4 link widths and in this case the PHY for each lane must be
-referenced.
+The COMPHY nodes only provide SERDES lanes configuration. The power
+supply that is represented by the phy-supply property is just a
+regulator wired to the USB connector, hence the creation of connector
+nodes as child of the COMPHY nodes and the supply attached to it.
 
+Cc: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- arch/arm64/boot/dts/marvell/armada-7040-db.dts         |  2 ++
- .../boot/dts/marvell/armada-8040-clearfog-gt-8k.dts    |  2 ++
- arch/arm64/boot/dts/marvell/armada-8040-db.dts         | 10 ++++++++++
- arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi     |  4 ++++
- 4 files changed, 18 insertions(+)
+ .../arm64/boot/dts/marvell/armada-7040-db.dts | 26 ++++++++++---------
+ .../marvell/armada-8040-clearfog-gt-8k.dts    | 13 +++++-----
+ .../arm64/boot/dts/marvell/armada-8040-db.dts | 13 +++++-----
+ .../boot/dts/marvell/armada-8040-mcbin.dtsi   | 13 +++++-----
+ 4 files changed, 35 insertions(+), 30 deletions(-)
 
 diff --git a/arch/arm64/boot/dts/marvell/armada-7040-db.dts b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-index 81bea91468f7..d1160edf57e0 100644
+index d1160edf57e0..a7eb4e7697a2 100644
 --- a/arch/arm64/boot/dts/marvell/armada-7040-db.dts
 +++ b/arch/arm64/boot/dts/marvell/armada-7040-db.dts
-@@ -124,6 +124,8 @@
- 
- &cp0_pcie2 {
- 	status = "okay";
-+	phys = <&cp0_comphy5 2>;
-+	phy-names = "cp0-pcie2-x1-phy";
+@@ -73,16 +73,6 @@
+ 		gpio = <&expander0 1 GPIO_ACTIVE_HIGH>;
+ 		vin-supply = <&cp0_exp_usb3_1_current_regulator>;
+ 	};
+-
+-	cp0_usb3_0_phy: cp0-usb3-0-phy {
+-		compatible = "usb-nop-xceiv";
+-		vcc-supply = <&cp0_reg_usb3_0_vbus>;
+-	};
+-
+-	cp0_usb3_1_phy: cp0-usb3-1-phy {
+-		compatible = "usb-nop-xceiv";
+-		vcc-supply = <&cp0_reg_usb3_1_vbus>;
+-	};
  };
  
- &cp0_i2c0 {
+ &i2c0 {
+@@ -228,15 +218,27 @@
+ 	};
+ };
+ 
++&cp0_comphy1 {
++	cp0_usbh0_con: connector {
++		compatible = "usb-a-connector";
++		phy-supply = <&cp0_reg_usb3_0_vbus>;
++	};
++};
++
+ &cp0_usb3_0 {
+-	usb-phy = <&cp0_usb3_0_phy>;
+ 	phys = <&cp0_comphy1 0>;
+ 	phy-names = "cp0-usb3h0-comphy";
+ 	status = "okay";
+ };
+ 
++&cp0_comphy4 {
++	cp0_usbh1_con: connector {
++		compatible = "usb-a-connector";
++		phy-supply = <&cp0_reg_usb3_1_vbus>;
++	};
++};
++
+ &cp0_usb3_1 {
+-	usb-phy = <&cp0_usb3_1_phy>;
+ 	phys = <&cp0_comphy4 1>;
+ 	phy-names = "cp0-usb3h1-comphy";
+ 	status = "okay";
 diff --git a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-index 281209aa7f2c..bcb0421c7ac0 100644
+index bcb0421c7ac0..bd881497b872 100644
 --- a/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
 +++ b/arch/arm64/boot/dts/marvell/armada-8040-clearfog-gt-8k.dts
-@@ -243,6 +243,8 @@
- 	pinctrl-names = "default";
- 	pinctrl-0 = <&cp0_pci0_reset_pins &cp0_wlan_disable_pins>;
- 	reset-gpios = <&cp0_gpio2 0 GPIO_ACTIVE_LOW>;
-+	phys = <&cp0_comphy0 0>;
-+	phy-names = "cp0-pcie0-x1-phy";
- 	status = "okay";
+@@ -51,11 +51,6 @@
+ 		status = "okay";
+ 	};
+ 
+-	usb3h0_phy: usb3_phy0 {
+-		compatible = "usb-nop-xceiv";
+-		vcc-supply = <&v_5v0_usb3_hst_vbus>;
+-	};
+-
+ 	sfp_cp0_eth0: sfp-cp0-eth0 {
+ 		compatible = "sff,sfp";
+ 		i2c-bus = <&cp0_i2c1>;
+@@ -474,8 +469,14 @@
+ 	};
  };
  
++&cp1_comphy2 {
++	cp1_usbh0_con: connector {
++		compatible = "usb-a-connector";
++		phy-supply = <&v_5v0_usb3_hst_vbus>;
++	};
++};
++
+ &cp1_usb3_0 {
+-	usb-phy = <&usb3h0_phy>;
+ 	phys = <&cp1_comphy2 0>;
+ 	phy-names = "cp1-usb3h0-comphy";
+ 	status = "okay";
 diff --git a/arch/arm64/boot/dts/marvell/armada-8040-db.dts b/arch/arm64/boot/dts/marvell/armada-8040-db.dts
-index 1086d53fd1b9..9746969e8da9 100644
+index 9746969e8da9..09fb5256f1db 100644
 --- a/arch/arm64/boot/dts/marvell/armada-8040-db.dts
 +++ b/arch/arm64/boot/dts/marvell/armada-8040-db.dts
-@@ -108,11 +108,15 @@
+@@ -54,11 +54,6 @@
+ 		vcc-supply = <&cp0_reg_usb3_0_vbus>;
+ 	};
  
- /* CON6 on CP0 expansion */
- &cp0_pcie0 {
-+	phys = <&cp0_comphy0 0>;
-+	phy-names = "cp0-pcie0-x1-phy";
+-	cp0_usb3_1_phy: cp0-usb3-1-phy {
+-		compatible = "usb-nop-xceiv";
+-		vcc-supply = <&cp0_reg_usb3_1_vbus>;
+-	};
+-
+ 	cp1_reg_usb3_0_vbus: cp1-usb3-0-vbus {
+ 		compatible = "regulator-fixed";
+ 		regulator-name = "cp1-usb3h0-vbus";
+@@ -164,9 +159,15 @@
  	status = "okay";
  };
  
- /* CON5 on CP0 expansion */
- &cp0_pcie2 {
-+	phys = <&cp0_comphy5 2>;
-+	phy-names = "cp0-pcie2-x1-phy";
++&cp0_comphy4 {
++	cp0_usbh1_con: connector {
++		compatible = "usb-a-connector";
++		phy-supply = <&cp0_reg_usb3_1_vbus>;
++	};
++};
++
+ /* CON10 on CP0 expansion */
+ &cp0_usb3_1 {
+-	usb-phy = <&cp0_usb3_1_phy>;
+ 	phys = <&cp0_comphy4 1>;
+ 	phy-names = "cp0-usb3h1-comphy";
  	status = "okay";
- };
- 
-@@ -198,16 +202,22 @@
- 
- /* CON6 on CP1 expansion */
- &cp1_pcie0 {
-+	phys = <&cp1_comphy0 0>;
-+	phy-names = "cp1-pcie0-x1-phy";
- 	status = "okay";
- };
- 
- /* CON7 on CP1 expansion */
- &cp1_pcie1 {
-+	phys = <&cp1_comphy4 1>;
-+	phy-names = "cp1-pcie1-x1-phy";
- 	status = "okay";
- };
- 
- /* CON5 on CP1 expansion */
- &cp1_pcie2 {
-+	phys = <&cp1_comphy5 2>;
-+	phy-names = "cp1-pcie2-x1-phy";
- 	status = "okay";
- };
- 
 diff --git a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-index 6b9941d92e20..a2c099a12e55 100644
+index a2c099a12e55..d250f4b2bfed 100644
 --- a/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
 +++ b/arch/arm64/boot/dts/marvell/armada-8040-mcbin.dtsi
-@@ -186,6 +186,10 @@
- 	reset-gpios = <&cp0_gpio2 20 GPIO_ACTIVE_LOW>;
- 	ranges = <0x81000000 0x0 0xf9010000 0x0 0xf9010000 0x0 0x10000
- 		  0x82000000 0x0 0xc0000000 0x0 0xc0000000 0x0 0x20000000>;
-+	phys = <&cp0_comphy0 0>, <&cp0_comphy1 0>,
-+	       <&cp0_comphy2 0>, <&cp0_comphy3 0>;
-+	phy-names = "cp0-pcie0-x4-lane0-phy", "cp0-pcie0-x4-lane1-phy",
-+		    "cp0-pcie0-x4-lane2-phy", "cp0-pcie0-x4-lane3-phy";
- 	status = "okay";
+@@ -61,11 +61,6 @@
+ 		status = "okay";
+ 	};
+ 
+-	usb3h0_phy: usb3_phy0 {
+-		compatible = "usb-nop-xceiv";
+-		vcc-supply = <&v_5v0_usb3_hst_vbus>;
+-	};
+-
+ 	sfp_eth0: sfp-eth0 {
+ 		/* CON15,16 - CPM lane 4 */
+ 		compatible = "sff,sfp";
+@@ -360,9 +355,15 @@
+ 	};
  };
  
++&cp1_comphy2 {
++	cp1_usbh0_con: connector {
++		compatible = "usb-a-connector";
++		phy-supply = <&v_5v0_usb3_hst_vbus>;
++	};
++};
++
+ &cp1_usb3_0 {
+ 	/* CPS Lane 2 - CON7 */
+-	usb-phy = <&usb3h0_phy>;
+ 	phys = <&cp1_comphy2 0>;
+ 	phy-names = "cp1-usb3h0-comphy";
+ 	status = "okay";
 -- 
 2.20.1
 
