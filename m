@@ -2,90 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CFA47CAB6
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 19:40:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 355D87CB4B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 19:59:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726622AbfGaRks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 13:40:48 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:44552 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725209AbfGaRks (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 13:40:48 -0400
-Received: by mail-lj1-f194.google.com with SMTP id k18so66430600ljc.11;
-        Wed, 31 Jul 2019 10:40:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=q4EnWjuoFwvcg+PQNQKDl7SJ3NRTDjvZysMShIcjoKI=;
-        b=EEGiqtvzdTGgq8ThRpTRzSRRTP6VrSrlPO4IYYXSqpYLJ1pWHT/smy+zbIF9spBxdG
-         OPhZlUiy86fYmMqsbJ+fR75XB09QgUuke4Bs8aa9PYGkrTqbahFJVfjl93nk0Q3ff36o
-         4CNAKmIBe5E32PDAW7yKpvLxNuV1lPeTQUHA7iJHMdqmLX+3nLVkm0utsFCM5H/+5JXa
-         cBmKEid218rblPtIjLKPhBu5EWKqEkzkwF5vunTY0SixI56msLOoXv2XPukyyoSH7Ve0
-         1euc7zpXBnh6gBCuZ/uLrqxkrgPUuqlZAXL7Q36Q29fJ3is4HY3M9XrjfIGJL1jp8j8S
-         2l7g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=q4EnWjuoFwvcg+PQNQKDl7SJ3NRTDjvZysMShIcjoKI=;
-        b=lHI7WHibR0009/4BWqf3s/zWvZdTBUAcanS6bTBr471xcc4fsxCfk+6ooKZg4/oWv+
-         EgJmABvk7vsY+dOsIUYydSFnq2ALeb5uk2wM+wFvUH7/ALYUH8fvtcWkDoXgRyel1Mja
-         jtdxiR8/29/n12VIpGFWrdbXiwW8Vynq31chPnKKJ9/RN8EeqEYCovLN1/QeyB0aep8S
-         9e9OF04d9m7bvaqtDOKV1GeFgeA/vRIbUNfnfynlqsB7qIAi8hdYaVNntBvNZ3pz0IBb
-         eCN31MXUth4FPrZvEOQB0vAqulbHOkC6mWI2WpMKGxux6DDYx2G2z6P5JY4kZi52EIBt
-         Fl4w==
-X-Gm-Message-State: APjAAAWdlzrVSvUfh1KHaqGkuSL2l8mRasuBuby/Gbu94TOGmdmZuMk5
-        OiRh40Lx5bA2DKJ8A9D5RsTKfTgN6RrcnQYhWsQ=
-X-Google-Smtp-Source: APXvYqyt0Od36zT0596GjCdSHptbQnUWvWqMyOnVl/5FQep+ssyLLf+KxKKOId+xoiOrQ+OT9NTjMGldgO9EObJPhWk=
-X-Received: by 2002:a2e:4e12:: with SMTP id c18mr14933002ljb.211.1564594845880;
- Wed, 31 Jul 2019 10:40:45 -0700 (PDT)
+        id S1728114AbfGaR73 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 13:59:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:40730 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726079AbfGaR73 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Jul 2019 13:59:29 -0400
+Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3C2E52067D;
+        Wed, 31 Jul 2019 17:59:28 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564595968;
+        bh=NEcDRzJevd+KIyIuh3CpjR4gF6t3vEc53p0FcWTtLWI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=V+3Cky9w/gnN4kXEMxDWMD5MnHLewZ1pxiIZf6mlIMfgMmoZxtIdr1/REo0Vwtwhq
+         nvge4kVCvstMykA5EnaWeOTd3osufFD169n3Wqi/7ghc6YNIo5Su492hpn4AIxh4YE
+         eEN//AmMDGNkJW4kZ7qDqyKHbSuItzAfyyA+/hY4=
+Received: by mail-qk1-f174.google.com with SMTP id v22so49907124qkj.8;
+        Wed, 31 Jul 2019 10:59:28 -0700 (PDT)
+X-Gm-Message-State: APjAAAU+1F3tSQgcC/1rnZLlnMqzI2mJQJ6Us4Ry9BBTE++api3A/vBs
+        B0xUwHlb37889MGoIxf1AKDU71zMVq3vQAH7IQ==
+X-Google-Smtp-Source: APXvYqxkCHy8Mu4YbKN2nkHxuSAOaPMHVupqx/C61IqD07sDT2Vj84zboBJUD7SDLxAR33ZQy+yLAkoAgVxagzL0504=
+X-Received: by 2002:a05:620a:1447:: with SMTP id i7mr83131890qkl.254.1564595967401;
+ Wed, 31 Jul 2019 10:59:27 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1563983037.git.agx@sigxcpu.org> <20190731143532.GA1935@bogon.m.sigxcpu.org>
- <CAOMZO5Djoi7EuXapkg+dQ6HR2oZZHrw+vnjc837Gxee-Nh00Hw@mail.gmail.com> <13373313.BzCyiC4ED7@jernej-laptop>
-In-Reply-To: <13373313.BzCyiC4ED7@jernej-laptop>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 31 Jul 2019 14:40:57 -0300
-Message-ID: <CAOMZO5Ak7QFzEM8Qt5XAZBa1CB602fygK+FBDK2iTvxWA4y+oA@mail.gmail.com>
-Subject: Re: [PATCH 3/3] drm/bridge: Add NWL MIPI DSI host controller support
-To:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@siol.net>
-Cc:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Lee Jones <lee.jones@linaro.org>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
+References: <20190731153529.30159-1-glaroque@baylibre.com> <20190731153529.30159-2-glaroque@baylibre.com>
+In-Reply-To: <20190731153529.30159-2-glaroque@baylibre.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 31 Jul 2019 11:59:14 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLyhiLkpje8a4Qh5K21s9xU6k1kkR0OtyGPss8=efR5Sg@mail.gmail.com>
+Message-ID: <CAL_JsqLyhiLkpje8a4Qh5K21s9xU6k1kkR0OtyGPss8=efR5Sg@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: thermal: Add DT bindings
+ documentation for Amlogic Thermal
+To:     Guillaume La Roque <glaroque@baylibre.com>
+Cc:     Daniel Lezcano <daniel.lezcano@linaro.org>,
+        Kevin Hilman <khilman@baylibre.com>,
+        "open list:THERMAL" <linux-pm@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Chris Healy <cphealy@gmail.com>
+        <linux-arm-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 31, 2019 at 1:40 PM Jernej =C5=A0krabec <jernej.skrabec@siol.ne=
-t> wrote:
-
-> > Yes, I understood the idea, but this would print:
-> >
-> > ensabling or dissabling :-)
+On Wed, Jul 31, 2019 at 9:36 AM Guillaume La Roque
+<glaroque@baylibre.com> wrote:
 >
-> No, it wouldn't. That extra "s" is part of "%s", e.g. part of format spec=
-ifier.
+> Adding the devicetree binding documentation for the Amlogic temperature
+> sensor found in the Amlogic Meson G12 SoCs.
+> the G12A  and G12B SoCs are supported.
+>
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+> ---
+>  .../bindings/thermal/amlogic,thermal.yaml     | 58 +++++++++++++++++++
+>  1 file changed, 58 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+> new file mode 100644
+> index 000000000000..f10537ab4c8b
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+> @@ -0,0 +1,58 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/thermal/amlogic,thermal.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Amlogic Thermal Driver
 
-Ops, you are right. Sorry about that!
+This is not a driver.
+
+> +
+> +maintainers:
+> +  - Guillaume La Roque <glaroque@baylibre.com>
+> +
+> +description: Amlogic Thermal driver
+> +
+> +properties:
+> +  compatible:
+> +    oneOf:
+
+oneOf is not necessary as there is only one of.
+
+> +      - items:
+> +          - enum:
+> +              - amlogic,g12-cpu-thermal
+> +              - amlogic,g12-ddr-thermal
+> +          - const:
+> +              - amlogic,g12-thermal
+
+Please run 'make dt_binding_check'. You'll find this is not valid json-schema.
+
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  interrupts:
+> +    maxItems: 1
+> +
+> +  clocks:
+> +    maxItems: 1
+> +
+> +  amlogic,ao-secure:
+> +    description: phandle to the ao-secure syscon
+> +    allOf:
+> +     - $ref: /schemas/types.yaml#/definitions/uint32
+> +
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - interrupts
+> +  - clocks
+> +  - amlogic,ao-secure
+> +
+> +examples:
+> +  - |
+> +        cpu_temp: temperature-sensor@ff634800 {
+> +                compatible = "amlogic,g12-cpu-thermal",
+> +                             "amlogic,g12-thermal";
+> +                reg = <0x0 0xff634800 0x0 0x50>;
+
+Examples are built now and this will have an error. The default
+address and size cells are 1 for examples, so you either have to
+override them or adjust this.
+
+> +                interrupts = <0x0 0x24 0x0>;
+> +                clocks = <&clk 164>;
+> +                status = "okay";
+
+Don't show status in examples.
+
+> +                #thermal-sensor-cells = <0>;
+> +                amlogic,ao-secure = <&sec_AO>;
+> +        };
+> +...
+> \ No newline at end of file
+> --
+> 2.17.1
+>
