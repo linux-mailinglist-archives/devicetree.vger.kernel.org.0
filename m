@@ -2,76 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BCBEE7B8CA
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 06:35:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9A81C7B8E9
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 06:55:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726738AbfGaEfx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 00:35:53 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:12442 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726343AbfGaEfx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 00:35:53 -0400
-X-UUID: 136ac8d376f643ac939b62a525ac570e-20190731
-X-UUID: 136ac8d376f643ac939b62a525ac570e-20190731
-Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <gtk_ruiwang@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 12488114; Wed, 31 Jul 2019 12:35:45 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31N2.mediatek.inc
- (172.27.4.87) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 31 Jul
- 2019 12:35:43 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Wed, 31 Jul 2019 12:35:43 +0800
-Message-ID: <1564547743.5425.1.camel@mhfsdcap03>
-Subject: Re: media: mtk-vcodec: Handle H264 error bitstreams
-From:   gtk_ruiwang <gtk_ruiwang@mediatek.com>
-To:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-CC:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Tomasz Figa <tfiga@chromium.org>,
-        Tiffany Lin <tiffany.lin@mediatek.com>,
-        Longfei Wang <longfei.wang@mediatek.com>,
-        Yunfei Dong <yunfei.dong@mediatek.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>
-Date:   Wed, 31 Jul 2019 12:35:43 +0800
-In-Reply-To: <20190730131541.40ce5ead@coco.lan>
-References: <20190726085433.15612-1-gtk_ruiwang@mediatek.com>
-         <20190730131541.40ce5ead@coco.lan>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1728815AbfGaEwF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 00:52:05 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:41724 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728774AbfGaEwE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 00:52:04 -0400
+Received: by mail-ot1-f66.google.com with SMTP id o101so68805034ota.8
+        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2019 21:52:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=xIj00IIxzXm35iWcbJEEMjex/0c7NldacFp3fkJRa7A=;
+        b=lnQz8Id5tT7vpViGceKAZWJgiylaDdwMd6Ah4vJWFKirI3VN60C6xnujVSxldwpb9F
+         44eZBlATamxo+MJWsMO4oEU7HThWc44+Gj2GoGn6SwJVSd7/l3j7QzZJdXCaCvaGGkre
+         GDV4049M8sCt381STog0f3sKV/mtgVRzkyZB4ME3XVJG+op+9jvUBe5GNdmY/CJooFBo
+         rqdFI8CgyNrFpnmoDrgICBxUPHbRGSJmuMuZHu0NAH+ddU+kKw3GwM+ToqedTGG9q3da
+         +s0mq6vQd2sPmDFu/+TCOjGFJsslIvDbmIVLFLNloKd7BqNyNZ4wfUXfEFOXPjzB31Fb
+         W8Nw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=xIj00IIxzXm35iWcbJEEMjex/0c7NldacFp3fkJRa7A=;
+        b=gTpGmeap2edV3YyetDZykMhyAhFF3SmzRi0x5MoqlSgRjq9VVdhcYkA6pnriO2jcGt
+         yPbwFW7NAd2qLvAbStlyPRR298RTzDCTIEthi1hl756KUlY87grXVyyJRw+zydg0dwlT
+         7ddB7qyMEpIlDIVCb/ZCNrWxmrGqdSdpcF/HyXO70uVC8AGKoj/nsZjrp7UwsVB+LoOe
+         pO60y1NodcXSi/i1JFkVcUOdzcawWo5HrMVKcmY9+P27/QoQiU+jN4AkUMn8xwcQdFxh
+         hPrF8pD0rhGgZjlTPz1Ehl56eDeARzZTIA7frfCYJJTQ3GdbcdV8AZfhzxaCvXYe3ehf
+         ou/w==
+X-Gm-Message-State: APjAAAVqfnX7qAB+c3jA8d0edBz4RdNNknGh+xggXWNMsLqyn0B9SpTS
+        y2SJ90gvKdQycRx7ZQ3qkEXWyw==
+X-Google-Smtp-Source: APXvYqzKMTKiwt+rmGNMruM+QyuU6sXYvuZ4/b2mUCdPKj/rrkKLhMbecmRKy4JuUPBQ65iIM+zx1g==
+X-Received: by 2002:a05:6830:1146:: with SMTP id x6mr89587321otq.86.1564548723780;
+        Tue, 30 Jul 2019 21:52:03 -0700 (PDT)
+Received: from localhost ([2600:100e:b005:6ca0:a8bb:e820:e6d3:8809])
+        by smtp.gmail.com with ESMTPSA id 20sm14543522oth.43.2019.07.30.21.52.02
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 30 Jul 2019 21:52:03 -0700 (PDT)
+Date:   Tue, 30 Jul 2019 21:52:01 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Atish Patra <atish.patra@wdc.com>
+cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
+        Alexios Zavras <alexios.zavras@intel.com>,
+        Allison Randal <allison@lohutok.net>,
+        Anup Patel <anup.patel@wdc.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        devicetree@vger.kernel.org, Enrico Weigelt <info@metux.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Johan Hovold <johan@kernel.org>,
+        linux-riscv@lists.infradead.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Palmer Dabbelt <palmer@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v2 5/5] dt-bindings: Update the isa string description
+In-Reply-To: <20190731012418.24565-6-atish.patra@wdc.com>
+Message-ID: <alpine.DEB.2.21.9999.1907302124010.15340@viisi.sifive.com>
+References: <20190731012418.24565-1-atish.patra@wdc.com> <20190731012418.24565-6-atish.patra@wdc.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 496C836286EC7F030A9ECD7B32BC667A768E1541A52722DF86AF4CB1367ABF1D2000:8
-X-MTK:  N
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Mauro,
+On Tue, 30 Jul 2019, Atish Patra wrote:
 
-patch v2 uploaded.
+> The yaml documentation description of isa strings section doesn't
+> specify anything about the case sensitiveness of the isa strings.
+> The RISC-V specification clearly specifies it to be case insensitive.
+> However, Linux kernel supports only lower case isa strings.
 
-Thanks,
-Best Regards
+The DT binding documentation specifies an interface.  As such the binding 
+isn't determined by any particular piece of software.  So justifying the 
+binding update by referring to what the Linux kernel currently supports 
+isn't that relevant.  If you still really believe that software should be 
+required to handle mixed-case DT ISA strings, the right answer would be to 
+change the software, as your original patches proposed.  The way you've 
+written this patch description, it sounds like you still don't agree with 
+the conclusion that a strictly lowercase string is a good approach.
 
-On Tue, 2019-07-30 at 13:15 -0300, Mauro Carvalho Chehab wrote:
-> Em Fri, 26 Jul 2019 16:54:33 +0800
-> <gtk_ruiwang@mediatek.com> escreveu:
-> 
-> > From: gtk_ruiwang <gtk_ruiwang@mediatek.com>
-> 
-> ...
-> 
-> > Signed-off-by: gtk_ruiwang <gtk_ruiwang@mediatek.com>
-> 
-> Please use your real name on your SOB and at the From: line.
-> 
-> Thanks,
-> Mauro
+If I've misunderstood your intent here, and you do think that specifying 
+an all lowercase string is sufficient, then instead of the patch 
+description above, how about something like:
 
+"Since the RISC-V specification states that ISA description strings are 
+case-insensitive, there's no functional difference between mixed-case, 
+upper-case, and lower-case ISA strings.  Thus, to simplify parsing, 
+specify that the letters present of riscv,isa must be all lowercase."
 
+That way it's clear that, per the RISC-V specification, there's no 
+functional difference associated with case.
+
+However, if what you're saying is that you still don't like this outcome, 
+let me know and I'll write the patch myself.  That way you don't have to 
+have your name associated with a change that you don't believe in.
+
+> Update the yaml documentation accordingly to avoid any confusion.
+> 
+> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> ---
+>  Documentation/devicetree/bindings/riscv/cpus.yaml | 6 +++++-
+>  1 file changed, 5 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> index c899111aa5e3..e22a2b7ebafa 100644
+> --- a/Documentation/devicetree/bindings/riscv/cpus.yaml
+> +++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
+> @@ -46,10 +46,14 @@ properties:
+>            - rv64imafdc
+>      description:
+>        Identifies the specific RISC-V instruction set architecture
+> -      supported by the hart.  These are documented in the RISC-V
+> +      supported by the hart. These are documented in the RISC-V
+>        User-Level ISA document, available from
+>        https://riscv.org/specifications/
+>  
+> +      Linux kernel only supports lower case isa strings. Thus,
+
+In the past, the DT maintainers have pushed back against explicitly 
+mentioning the Linux kernel in binding documentation, since the DT 
+bindings define an interface that's independent of the underlying software 
+implementation.  How about just stating something like "Letters in the 
+riscv,isa string must be all lowercase" ?
+
+> +      isa strings must be specified in lower case in device tree
+> +      as well.
+> +
+
+- Paul
