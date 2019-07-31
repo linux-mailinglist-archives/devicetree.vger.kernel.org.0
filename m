@@ -2,362 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4FBCF7C68D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:29:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 202937C691
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:30:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727549AbfGaP3R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 11:29:17 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:56714 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726665AbfGaP3Q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 11:29:16 -0400
-Received: from fllv0034.itg.ti.com ([10.64.40.246])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x6VFSsMd122851;
-        Wed, 31 Jul 2019 10:28:54 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1564586934;
-        bh=wM4WLBybjiGAeVXDZMD/wXoKWRVlS1GPBkndflafC7U=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=TnSg7r9ZhQz29LFvz9ZmhyoAOtdtmAJWuJbtGM/C/TBd/lzKxaaHajEPOVSWDVVY7
-         dnSr9RoDB+9ldgPJdj6N9FjJdoI2yuD+0HAZIPid113XSyvllK2/+xhbV8CljjG+ac
-         fotLHSDQEsEv/td/Byd+Zs4L7Ps9gOm8MI5m/kEY=
-Received: from DFLE108.ent.ti.com (dfle108.ent.ti.com [10.64.6.29])
-        by fllv0034.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x6VFSs3o118844
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 31 Jul 2019 10:28:54 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE108.ent.ti.com
- (10.64.6.29) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 31
- Jul 2019 10:28:54 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 31 Jul 2019 10:28:54 -0500
-Received: from [10.250.88.190] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x6VFSqO8127389;
-        Wed, 31 Jul 2019 10:28:52 -0500
-Subject: Re: [RFC PATCH 2/2] soc: ti: Add Support for the TI Page-based
- Address Translator (PAT)
-To:     Tero Kristo <t-kristo@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Santosh Shilimkar <ssantosh@kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Joerg Roedel <joro@8bytes.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>, William Mills <wmills@ti.com>,
-        Tomi Valkeinen <tomi.valkeinen@ti.com>,
-        Sumit Semwal <sumit.semwal@linaro.org>,
-        John Stultz <john.stultz@linaro.org>
-CC:     <devicetree@vger.kernel.org>, <dri-devel@lists.freedesktop.org>,
-        <iommu@lists.linux-foundation.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-media@vger.kernel.org>, <linaro-mm-sig@lists.linaro.org>,
-        <linux-kernel@vger.kernel.org>
-References: <20190607193523.25700-1-afd@ti.com>
- <20190607193523.25700-3-afd@ti.com>
- <28dea95d-8ae6-431c-ca88-149972d26502@ti.com>
-From:   "Andrew F. Davis" <afd@ti.com>
-Message-ID: <1ecfd453-ecbd-cbea-605d-759ba329dd19@ti.com>
-Date:   Wed, 31 Jul 2019 11:28:52 -0400
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <28dea95d-8ae6-431c-ca88-149972d26502@ti.com>
-Content-Type: text/plain; charset="utf-8"
+        id S1726701AbfGaPaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 11:30:15 -0400
+Received: from mail-eopbgr20045.outbound.protection.outlook.com ([40.107.2.45]:38791
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725914AbfGaPaP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Jul 2019 11:30:15 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=SagZVr2cb3aeal6+lUMrlaWf5M+QnYxu7pau7hSunmUOUgkmdSq7hLgyIbZuzF/7kIkvJtSk2nuPuvcRWMnhN1VoHz8LD3n014E36DnkC1P2qaW9Oe23dr1j0+SBzesRL/8Gw2Yv1PWiyIJGOi93KrjlYTtkN4wwwrQ3ORPt2XFrzQ1ftx2pGa6+wMcMdGhGM93EvMf8TmFaBrX09B1FnEOtja7jazFHVGEeqWBr8aUY3A7blmfkVEATLuvODC8wCPpOGsybTTEadbFuMjwAQuRCCi06UsNR+PWzfK2cU/h2voo2LnXP/YZKMyDw2bOGgQcbaUlhPljNuhTrx+mrvQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Qq2SOy7q1kCuAj3H4ExAN82mh3spfvhdmNAgJMhtIYA=;
+ b=nUrDkUpPZLZQ/cSse5lKptIYzGHT7PAUIyYdBaPXYlYYKndBk6tO6DGmxlLBTpUqy1tgqfG5Cedvpf14VRnvR2+HJ3GjtFMsquXarNMYkaUm2mze9EOJZDPEi4KndAfcnAdWCyohaRtXWp5Lo4f6OSDegJzbnO9zl9UwfXQpzgDTxSLpNYU9FUpM799luAL84mC10Zn+3FHgtVHPtWFy5g9kxaX1ODFqd+OiknnGzPokB2UCO9lo1+yIJgiNfFAD4fBLTfPlE7hpRFPrBT7rwJVppZZYqbYCWbny3dpZe4infzSSNJKW79cxyyETmdqOnEzAKdW0Bpqd7dHJ3mhwMw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
+ header.d=nxp.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Qq2SOy7q1kCuAj3H4ExAN82mh3spfvhdmNAgJMhtIYA=;
+ b=aFgn8sD0FQELUeBKVdaOuLth38rMrokGKHMznGaiZW/3pEKTa2rTWZP48YtyXmrFFHukMwaxrdQiCqKaJFLQukJNeL7knw/BjTMxFpYx7i3ix7AC2c6ahglyGjsQQlXzDza8FxhoFK2IuPcivy+nEPptKbcc9PNg+fIe9Ny5Chg=
+Received: from VI1PR04MB4880.eurprd04.prod.outlook.com (20.177.49.153) by
+ VI1PR04MB5853.eurprd04.prod.outlook.com (20.178.204.207) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2115.10; Wed, 31 Jul 2019 15:30:11 +0000
+Received: from VI1PR04MB4880.eurprd04.prod.outlook.com
+ ([fe80::e401:6546:3729:47c0]) by VI1PR04MB4880.eurprd04.prod.outlook.com
+ ([fe80::e401:6546:3729:47c0%6]) with mapi id 15.20.2115.005; Wed, 31 Jul 2019
+ 15:30:11 +0000
+From:   Claudiu Manoil <claudiu.manoil@nxp.com>
+To:     David Miller <davem@davemloft.net>
+CC:     "andrew@lunn.ch" <andrew@lunn.ch>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        Alexandru Marginean <alexandru.marginean@nxp.com>,
+        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+Subject: RE: [PATCH net-next v4 0/4] enetc: Add mdio bus driver for the PCIe
+ MDIO endpoint
+Thread-Topic: [PATCH net-next v4 0/4] enetc: Add mdio bus driver for the PCIe
+ MDIO endpoint
+Thread-Index: AQHVRruXkrgGFGQQ+EaBpGk24PJNNKbjXq0AgAACjQCAAXagAA==
+Date:   Wed, 31 Jul 2019 15:30:10 +0000
+Message-ID: <VI1PR04MB48808FF2BC4DBA4A6C32DB2D96DF0@VI1PR04MB4880.eurprd04.prod.outlook.com>
+References: <1564479919-18835-1-git-send-email-claudiu.manoil@nxp.com>
+        <20190730.094436.855806617449032791.davem@davemloft.net>
+ <20190730.095344.401137621326119500.davem@davemloft.net>
+In-Reply-To: <20190730.095344.401137621326119500.davem@davemloft.net>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=claudiu.manoil@nxp.com; 
+x-originating-ip: [212.146.100.6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4a7ba191-28ef-4976-c87f-08d715cbfa05
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB5853;
+x-ms-traffictypediagnostic: VI1PR04MB5853:
+x-microsoft-antispam-prvs: <VI1PR04MB58534B177C9ECB230707E43D96DF0@VI1PR04MB5853.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6430;
+x-forefront-prvs: 011579F31F
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(39860400002)(346002)(136003)(396003)(366004)(199004)(189003)(13464003)(99286004)(81166006)(81156014)(7736002)(8936002)(8676002)(7696005)(55016002)(71190400001)(76176011)(52536014)(76116006)(9686003)(71200400001)(25786009)(66946007)(66556008)(5660300002)(4326008)(86362001)(54906003)(64756008)(316002)(53936002)(33656002)(66476007)(68736007)(66446008)(6246003)(74316002)(256004)(66066001)(6506007)(478600001)(102836004)(6116002)(6916009)(3846002)(26005)(186003)(2906002)(229853002)(476003)(11346002)(486006)(305945005)(446003)(44832011)(6436002)(14454004);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5853;H:VI1PR04MB4880.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: Bi89f8jvDFh3PdfcsFOFNYhc8Hgdp8Eqp08OAygCiTsnuuuJrVIxG3eEzaYIYXbWj1FtApth48tyyrGtQRXy6isxf9i1LCg9HHJiaZDUZ4qsPEYBLsEQWx916HD+VSznj/DI+wKJv1K7iBLPvEvoKXPXKwQns61686UNUrPZlqQPEFdFSECvQeiKTJ25XptgqC/ifDiT5A3CbQWojOYo8TekuYmdf3tSIzYYx8K4R6rICjCVL6SGVaLLxKhoSWlwAFPG4nWwsPdrWtCImON3eaRDidspaSf4tTO0aLb0ePpDjJU72bYM0WfBZPFeCdhrvUIB+CgUUMDBIVFd5pXQe5gqM6EvRPIwgDw82SCkWVUT3BbIUs7586QgW/YTPA7KeD4fm4idwTgXdmkUjXeniX615DA4fzSASoIfwDHtx5g=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4a7ba191-28ef-4976-c87f-08d715cbfa05
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2019 15:30:11.2472
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: claudiu.manoil@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5853
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 6/18/19 5:07 AM, Tero Kristo wrote:
-> On 07/06/2019 22:35, Andrew F. Davis wrote:
->> This patch adds a driver for the Page-based Address Translator (PAT)
->> present on various TI SoCs. A PAT device performs address translation
->> using tables stored in an internal SRAM. Each PAT supports a set number
->> of pages, each occupying a programmable 4KB, 16KB, 64KB, or 1MB of
->> addresses in a window for which an incoming transaction will be
->> translated.
+>-----Original Message-----
+>From: David Miller <davem@davemloft.net>
+>Sent: Tuesday, July 30, 2019 7:54 PM
+>To: Claudiu Manoil <claudiu.manoil@nxp.com>
+>Cc: andrew@lunn.ch; robh+dt@kernel.org; Leo Li <leoyang.li@nxp.com>;
+>Alexandru Marginean <alexandru.marginean@nxp.com>;
+>netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
+>kernel@lists.infradead.org; linux-kernel@vger.kernel.org
+>Subject: Re: [PATCH net-next v4 0/4] enetc: Add mdio bus driver for the PC=
+Ie
+>MDIO endpoint
+>
+>From: David Miller <davem@davemloft.net>
+>Date: Tue, 30 Jul 2019 09:44:36 -0700 (PDT)
+>
+>> From: Claudiu Manoil <claudiu.manoil@nxp.com>
+>> Date: Tue, 30 Jul 2019 12:45:15 +0300
 >>
->> Signed-off-by: Andrew F. Davis <afd@ti.com>
->> ---
->>   drivers/soc/ti/Kconfig      |   9 +
->>   drivers/soc/ti/Makefile     |   1 +
->>   drivers/soc/ti/ti-pat.c     | 569 ++++++++++++++++++++++++++++++++++++
->>   include/uapi/linux/ti-pat.h |  44 +++
->>   4 files changed, 623 insertions(+)
->>   create mode 100644 drivers/soc/ti/ti-pat.c
->>   create mode 100644 include/uapi/linux/ti-pat.h
+>>> First patch fixes a sparse issue and cleans up accessors to avoid
+>>> casting to __iomem.
+>>> Second patch just registers the PCIe endpoint device containing
+>>> the MDIO registers as a standalone MDIO bus driver, to allow
+>>> an alternative way to control the MDIO bus.  The same code used
+>>> by the ENETC ports (eth controllers) to manage MDIO via local
+>>> registers applies and is reused.
+>>>
+>>> Bindings are provided for the new MDIO node, similarly to ENETC
+>>> port nodes bindings.
+>>>
+>>> Last patch enables the ENETC port 1 and its RGMII PHY on the
+>>> LS1028A QDS board, where the MDIO muxing configuration relies
+>>> on the MDIO support provided in the first patch.
+>>  ...
 >>
->> diff --git a/drivers/soc/ti/Kconfig b/drivers/soc/ti/Kconfig
->> index f0be35d3dcba..b838ae74d01f 100644
->> --- a/drivers/soc/ti/Kconfig
->> +++ b/drivers/soc/ti/Kconfig
->> @@ -86,4 +86,13 @@ config TI_SCI_INTA_MSI_DOMAIN
->>       help
->>         Driver to enable Interrupt Aggregator specific MSI Domain.
->>   +config TI_PAT
->> +    tristate "TI PAT DMA-BUF exporter"
->> +    select REGMAP
-> 
-> What is the reasoning for using regmap for internal register access? Why
-> not just use direct readl/writel for everything? To me it seems this is
-> only used during probe time also...
-> 
+>> Series applied, thank you.
+>
+>Actually this doesn't compile, I had to revert:
+>
 
-There are two register spaces, the configuration space, and the actual
-translation table data. I use regmap for all the configuration space.
-Direct readl/writel would also work, but I prefer regmap as it lets me
-work with field names vs using masks and shifts, even if it adds a
-little extra code in tables at the top.
-
->> +    help
->> +      Driver for TI Page-based Address Translator (PAT). This driver
->> +      provides the an API allowing the remapping of a non-contiguous
->> +      DMA-BUF into a contiguous one that is sutable for devices needing
->> +      coniguous memory.
-> 
-> Minor typo: contiguous.
-> 
-
-ACK
-
->> +
->>   endif # SOC_TI
->> diff --git a/drivers/soc/ti/Makefile b/drivers/soc/ti/Makefile
->> index b3868d392d4f..1369642b40c3 100644
->> --- a/drivers/soc/ti/Makefile
->> +++ b/drivers/soc/ti/Makefile
->> @@ -9,3 +9,4 @@ obj-$(CONFIG_AMX3_PM)            += pm33xx.o
->>   obj-$(CONFIG_WKUP_M3_IPC)        += wkup_m3_ipc.o
->>   obj-$(CONFIG_TI_SCI_PM_DOMAINS)        += ti_sci_pm_domains.o
->>   obj-$(CONFIG_TI_SCI_INTA_MSI_DOMAIN)    += ti_sci_inta_msi.o
->> +obj-$(CONFIG_TI_PAT)            += ti-pat.o
->> diff --git a/drivers/soc/ti/ti-pat.c b/drivers/soc/ti/ti-pat.c
->> new file mode 100644
->> index 000000000000..7359ea0f7ccf
->> --- /dev/null
->> +++ b/drivers/soc/ti/ti-pat.c
->> @@ -0,0 +1,569 @@
->> +// SPDX-License-Identifier: GPL-2.0
->> +/*
->> + * TI PAT mapped DMA-BUF memory re-exporter
->> + *
->> + * Copyright (C) 2018-2019 Texas Instruments Incorporated -
->> http://www.ti.com/
->> + *    Andrew F. Davis <afd@ti.com>
->> + */
->> +
->> +#include <linux/fs.h>
->> +#include <linux/module.h>
->> +#include <linux/platform_device.h>
->> +#include <linux/mod_devicetable.h>
->> +#include <linux/uaccess.h>
->> +#include <linux/miscdevice.h>
->> +#include <linux/regmap.h>
->> +#include <linux/dma-buf.h>
->> +#include <linux/genalloc.h>
->> +#include <linux/vmalloc.h>
->> +#include <linux/slab.h>
->> +
->> +#include <linux/ti-pat.h>
->> +
->> +#define TI_PAT_DRIVER_NAME    "ti-pat"
-> 
-> Why do you have a define for this seeing it is only used in single
-> location?
-> 
-
-Just habit when starting a driver, but you are right it is not needed here.
-
->> +
->> +/* TI PAT MMRS registers */
->> +#define TI_PAT_MMRS_PID        0x0 /* Revision Register */
->> +#define TI_PAT_MMRS_CONFIG    0x4 /* Config Register */
->> +#define TI_PAT_MMRS_CONTROL    0x10 /* Control Register */
->> +
->> +/* TI PAT CONTROL register field values */
->> +#define TI_PAT_CONTROL_ARB_MODE_UF    0x0 /* Updates first */
->> +#define TI_PAT_CONTROL_ARB_MODE_RR    0x2 /* Round-robin */
->> +
->> +#define TI_PAT_CONTROL_PAGE_SIZE_4KB    0x0
->> +#define TI_PAT_CONTROL_PAGE_SIZE_16KB    0x1
->> +#define TI_PAT_CONTROL_PAGE_SIZE_64KB    0x2
->> +#define TI_PAT_CONTROL_PAGE_SIZE_1MB    0x3
->> +
->> +static unsigned int ti_pat_page_sizes[] = {
->> +    [TI_PAT_CONTROL_PAGE_SIZE_4KB]  = 4 * 1024,
->> +    [TI_PAT_CONTROL_PAGE_SIZE_16KB] = 16 * 1024,
->> +    [TI_PAT_CONTROL_PAGE_SIZE_64KB] = 64 * 1024,
->> +    [TI_PAT_CONTROL_PAGE_SIZE_1MB]  = 1024 * 1024,
->> +};
->> +
->> +enum ti_pat_mmrs_fields {
->> +    /* Revision */
->> +    F_PID_MAJOR,
->> +    F_PID_MINOR,
->> +
->> +    /* Controls */
->> +    F_CONTROL_ARB_MODE,
->> +    F_CONTROL_PAGE_SIZE,
->> +    F_CONTROL_REPLACE_OID_EN,
->> +    F_CONTROL_EN,
->> +
->> +    /* sentinel */
->> +    F_MAX_FIELDS
->> +};
->> +
->> +static const struct reg_field ti_pat_mmrs_reg_fields[] = {
->> +    /* Revision */
->> +    [F_PID_MAJOR]            = REG_FIELD(TI_PAT_MMRS_PID, 8, 10),
->> +    [F_PID_MINOR]            = REG_FIELD(TI_PAT_MMRS_PID, 0, 5),
->> +    /* Controls */
->> +    [F_CONTROL_ARB_MODE]        = REG_FIELD(TI_PAT_MMRS_CONTROL, 6, 7),
->> +    [F_CONTROL_PAGE_SIZE]        = REG_FIELD(TI_PAT_MMRS_CONTROL, 4, 5),
->> +    [F_CONTROL_REPLACE_OID_EN]    = REG_FIELD(TI_PAT_MMRS_CONTROL, 1,
->> 1),
->> +    [F_CONTROL_EN]            = REG_FIELD(TI_PAT_MMRS_CONTROL, 0, 0),
->> +};
->> +
->> +/**
->> + * struct ti_pat_data - PAT device instance data
->> + * @dev: PAT device structure
->> + * @mdev: misc device
->> + * @mmrs_map: Register map of MMRS region
->> + * @table_base: Base address of TABLE region
-> 
-> Please add kerneldoc comments for all fields.
-> 
-
-Will add.
-
->> + */
->> +struct ti_pat_data {
->> +    struct device *dev;
->> +    struct miscdevice mdev;
->> +    struct regmap *mmrs_map;
->> +    struct regmap_field *mmrs_fields[F_MAX_FIELDS];
->> +    void __iomem *table_base;
->> +    unsigned int page_count;
->> +    unsigned int page_size;
->> +    phys_addr_t window_base;
->> +    struct gen_pool *pool;
->> +};
->> +
-> 
-> Kerneldoc comments for below structs would be also useful, especially
-> for ti_pat_buffer.
-> 
-
-Will add.
-
->> +struct ti_pat_dma_buf_attachment {
->> +    struct device *dev;
->> +    struct sg_table *table;
->> +    struct ti_pat_buffer *buffer;
->> +    struct list_head list;
->> +};
->> +
->> +struct ti_pat_buffer {
->> +    struct ti_pat_data *pat;
->> +    struct dma_buf *i_dma_buf;
->> +    size_t size;
->> +    unsigned long offset;
->> +    struct dma_buf *e_dma_buf;
->> +
->> +    struct dma_buf_attachment *attachment;
->> +    struct sg_table *sgt;
->> +
->> +    struct list_head attachments;
->> +    int map_count;
->> +
->> +    struct mutex lock;
->> +};
->> +
->> +static const struct regmap_config ti_pat_regmap_config = {
->> +    .reg_bits = 32,
->> +    .val_bits = 32,
->> +    .reg_stride = 4,
->> +};
->> +
->> +static int ti_pat_dma_buf_attach(struct dma_buf *dmabuf,
->> +                 struct dma_buf_attachment *attachment)
->> +{
->> +    struct ti_pat_dma_buf_attachment *a;
->> +    struct ti_pat_buffer *buffer = dmabuf->priv;
->> +
->> +    a = kzalloc(sizeof(*a), GFP_KERNEL);
->> +    if (!a)
->> +        return -ENOMEM;
->> +
->> +    a->dev = attachment->dev;
->> +    a->buffer = buffer;
->> +    INIT_LIST_HEAD(&a->list);
->> +
->> +    a->table = kzalloc(sizeof(*a->table), GFP_KERNEL);
->> +    if (!a->table) {
->> +        kfree(a);
->> +        return -ENOMEM;
->> +    }
->> +
->> +    if (sg_alloc_table(a->table, 1, GFP_KERNEL)) {
->> +        kfree(a->table);
->> +        kfree(a);
->> +        return -ENOMEM;
->> +    }
->> +
->> +    sg_set_page(a->table->sgl, pfn_to_page(PFN_DOWN(buffer->offset)),
->> buffer->size, 0);
->> +
->> +    attachment->priv = a;
->> +
->> +    mutex_lock(&buffer->lock);
->> +    /* First time attachment we attach to parent */
->> +    if (list_empty(&buffer->attachments)) {
->> +        buffer->attachment = dma_buf_attach(buffer->i_dma_buf,
->> buffer->pat->dev);
->> +        if (IS_ERR(buffer->attachment)) {
->> +            dev_err(buffer->pat->dev, "Unable to attach to parent
->> DMA-BUF\n");
->> +            mutex_unlock(&buffer->lock);
->> +            kfree(a->table);
->> +            kfree(a);
->> +            return PTR_ERR(buffer->attachment);
->> +        }
->> +    }
->> +    list_add(&a->list, &buffer->attachments);
->> +    mutex_unlock(&buffer->lock);
->> +
->> +    return 0;
->> +}
->> +
->> +static void ti_pat_dma_buf_detatch(struct dma_buf *dmabuf,
->> +                   struct dma_buf_attachment *attachment)
-> 
-> Func name should be ti_pat_dma_buf_detach instead?
-> 
-
-Good catch, will fix.
-
-> Other than that, I can't see anything obvious with my limited experience
-> with dma_buf. Is there a simple way to test this driver btw?
-> 
-
-Simple way? No not really.. What I've been doing is allocating a
-non-contiguous buffer (from system DMA-BUF heaps), writing some test
-pattern to it, using this driver to convert the buffer, then sending the
-new handle to our DSS (display subsystem which cannot handle
-non-contiguous buffers). If all is working the test pattern is displayed
-correctly.
-
-Thanks,
-Andrew
-
-> -Tero
-> 
-> -- 
-> Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki.
-> Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
+Sorry, I overlooked the module part.  Turns out I have to define a separate
+module for this driver (mdio), refactor common code between the mdio module
+and the enetc-pf module, clean up the Makefile...  and do more checks.
