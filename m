@@ -2,127 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 55C8F7BB1C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:05:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2F0D77BB3E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:12:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725942AbfGaIFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 04:05:09 -0400
-Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:57626 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1725866AbfGaIFJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 04:05:09 -0400
-Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
-        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x6V80Yw8014879;
-        Wed, 31 Jul 2019 03:03:33 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
- : subject : message-id : references : mime-version : content-type :
- in-reply-to; s=PODMain02222019;
- bh=iQoo/3Gx2EEiQL/F/oE5WOjxkza6YDCbYqBVhCONHIo=;
- b=CeLUn4vbGznXh0XIvlePWeW6sr0yWHp+5oKz98Y1JvpBACVGENhJyWux5WQiDU5O9d2e
- TqspA7VHmxeN7gilJ2OQXKLHDGbHXtZMkAcn2p71NfPLSWNDC0zK/OZk/0pTo8CnkwU0
- 2FHlgnhTeUBUEyyG6YZFcDFuegBh2rtthbczBtuXmP904LriQzKngwSNEn+2ffnfhpJZ
- 5ltD68RzypoB2qAaIMNsSy71GmNzFt4TiXTRYIgP25VZgvWjvOBcGeTBk4q4XQc9Ac2L
- TNbUEZonQVIWfenh21kAH+owpGF4WrtCP0fqxduHAKMssuE2UtLAniqcSnUWZJgDwI1p Zg== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex02.ad.cirrus.com ([87.246.76.36])
-        by mx0b-001ae601.pphosted.com with ESMTP id 2u0k1qww6p-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Wed, 31 Jul 2019 03:03:33 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
- (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 31 Jul
- 2019 09:03:31 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Wed, 31 Jul 2019 09:03:31 +0100
-Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 942FE45;
-        Wed, 31 Jul 2019 09:03:31 +0100 (BST)
-Date:   Wed, 31 Jul 2019 09:03:31 +0100
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     Thomas Preston <thomas.preston@codethink.co.uk>
-CC:     Mark Brown <broonie@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Kirill Marinushkin <kmarinushkin@birdec.tech>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Annaliese McDermond <nh6z@nh6z.net>,
-        Takashi Iwai <tiwai@suse.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        <linux-kernel@vger.kernel.org>,
-        Cheng-Yi Chiang <cychiang@chromium.org>
-Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on
- diagnostic routine
-Message-ID: <20190731080331.GJ54126@ediswmail.ad.cirrus.com>
-References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
- <20190730120937.16271-4-thomas.preston@codethink.co.uk>
- <20190730141935.GF4264@sirena.org.uk>
- <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
- <20190730155027.GJ4264@sirena.org.uk>
- <9b47a360-3b62-b968-b8d5-8639dc4b468d@codethink.co.uk>
+        id S1726313AbfGaIMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 04:12:25 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:46144 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726158AbfGaIMZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 04:12:25 -0400
+Received: from pendragon.ideasonboard.com (unknown [38.98.37.141])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1C5C6CC;
+        Wed, 31 Jul 2019 10:12:21 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1564560743;
+        bh=H/uPA4ZlVMkzj5l4yx9FTdj0RSpGn/s0K3dOVUpsTQw=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=oDiA8FD1lCpQyskVId/r2Pj6m2K5SeSp0X+okXzhcdxBVayhZDrG/layeH0ikHMSu
+         cEpceHxnE8Qs2AS8bvG3jVlzE5FvUTO0DY67VnDKee8S38DtSES3RfpZ2tLsZelHxP
+         VYuxxtSCtDN3UPLwYdSTURr2gnVkPn1RC4pKx4Pw=
+Date:   Wed, 31 Jul 2019 11:12:09 +0300
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>
+Cc:     Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        linux-renesas-soc@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: renesas: r8a77995: draak: Fix backlight
+ regulator name
+Message-ID: <20190731081209.GA5080@pendragon.ideasonboard.com>
+References: <20190731073744.13963-1-geert+renesas@glider.be>
+ <20190731074801.5706-1-geert+renesas@glider.be>
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <9b47a360-3b62-b968-b8d5-8639dc4b468d@codethink.co.uk>
-User-Agent: Mutt/1.5.21 (2010-09-15)
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 suspectscore=0
- mlxlogscore=999 lowpriorityscore=0 priorityscore=1501 impostorscore=0
- clxscore=1015 phishscore=0 adultscore=0 mlxscore=0 spamscore=0 bulkscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1906280000
- definitions=main-1907310085
+In-Reply-To: <20190731074801.5706-1-geert+renesas@glider.be>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 30, 2019 at 05:28:11PM +0100, Thomas Preston wrote:
-> On 30/07/2019 16:50, Mark Brown wrote:
-> > On Tue, Jul 30, 2019 at 04:25:56PM +0100, Thomas Preston wrote:
-> >> On 30/07/2019 15:19, Mark Brown wrote:
-> > 
-> >>> It is unclear what this mutex usefully protects, it only gets taken when
-> >>> writing to the debugfs file to trigger this diagnostic mode but doesn't
-> >>> do anything to control interactions with any other code path in the
-> >>> driver.
-> > 
-> >> If another process reads the debugfs node "diagnostic" while the turn-on 
-> >> diagnostic mode is running, this mutex prevents the second process
-> >> restarting the diagnostics.
-> > 
-> >> This is redundant if debugfs reads are atomic, but I don't think they are.
-> > 
-> > Like I say it's not just debugfs though, there's the standard driver
-> > interface too.
-> > 
-> 
-> Ah right, I understand. So if we run the turn-on diagnostics routine, there's
-> nothing stopping anyone from interacting with the device in other ways.
-> 
-> I guess there's no way to share that mutex with ALSA? In that case, it doesn't
-> matter if this mutex is there or not - this feature is incompatible. How
-> compatible do debugfs interfaces have to be? I was under the impression anything
-> goes. I would argue that the debugfs is better off for having the mutex so
-> that no one re-reads "diagnostic" within the 5s poll timeout.
-> 
-> Alternatively, this diagnostic feature could be handled with an external-handler
-> kcontrol SOC_SINGLE_EXT? I'm not sure if this is an atomic interface either.
-> 
-> What would be acceptable?
+Hi Geert,
 
-You could take the DAPM mutex in your debugfs handler that would
-prevent any changes to the cards power state whilst your debug
-stuff is running.
+(CC'ing the device tree mailing list)
 
-Thanks,
-Charles
+Thank you for the patch.
+
+On Wed, Jul 31, 2019 at 09:48:01AM +0200, Geert Uytterhoeven wrote:
+> Currently there are two nodes named "regulator1" in the Draak DTS: a
+> 3.3V regulator for the eMMC and the LVDS decoder, and a 12V regulator
+> for the backlight.  This causes the former to be overwritten by the
+> latter.
+> 
+> Fix this by renaming all regulators with numerical suffixes to use named
+> suffixes, which are less likely to conflict.
+
+Aren't DT node names supposed to describe the device type, not a
+particular instance of the device ? This is something that has bothered
+me too, but I believe the naming scheme should be decided globally, not
+per board. Is there precedent for using this scheme that has been
+explicitly approved by the DT maintainers ?
+
+> Fixes: 4fbd4158fe8967e9 ("arm64: dts: renesas: r8a77995: draak: Add backlight")
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+> I guess this is a fix for v5.3?
+> 
+> This fix takes a slightly different approach than commit
+> 12105cec654cf906 ("arm64: dts: renesas: r8a77990: ebisu: Fix backlight
+> regulator numbering"), which just fixed the conflicting numerical
+> suffix.
+> ---
+>  arch/arm64/boot/dts/renesas/r8a77995-draak.dts | 6 +++---
+>  1 file changed, 3 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/renesas/r8a77995-draak.dts b/arch/arm64/boot/dts/renesas/r8a77995-draak.dts
+> index 0711170b26b1fe1c..3aa2564dfdc25fff 100644
+> --- a/arch/arm64/boot/dts/renesas/r8a77995-draak.dts
+> +++ b/arch/arm64/boot/dts/renesas/r8a77995-draak.dts
+> @@ -97,7 +97,7 @@
+>  		reg = <0x0 0x48000000 0x0 0x18000000>;
+>  	};
+>  
+> -	reg_1p8v: regulator0 {
+> +	reg_1p8v: regulator-1p8v {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "fixed-1.8V";
+>  		regulator-min-microvolt = <1800000>;
+> @@ -106,7 +106,7 @@
+>  		regulator-always-on;
+>  	};
+>  
+> -	reg_3p3v: regulator1 {
+> +	reg_3p3v: regulator-3p3v {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "fixed-3.3V";
+>  		regulator-min-microvolt = <3300000>;
+> @@ -115,7 +115,7 @@
+>  		regulator-always-on;
+>  	};
+>  
+> -	reg_12p0v: regulator1 {
+> +	reg_12p0v: regulator-12p0v {
+>  		compatible = "regulator-fixed";
+>  		regulator-name = "D12.0V";
+>  		regulator-min-microvolt = <12000000>;
+
+-- 
+Regards,
+
+Laurent Pinchart
