@@ -2,75 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 00A8A7CB5C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 20:01:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 89EA67CBC0
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 20:19:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726377AbfGaSBM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 14:01:12 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41542 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726079AbfGaSBM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 14:01:12 -0400
-Received: from mail-qk1-f181.google.com (mail-qk1-f181.google.com [209.85.222.181])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 7E74A216C8;
-        Wed, 31 Jul 2019 18:01:11 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564596071;
-        bh=8nOFSWZySTyugJad0IhgHzCcqRmA1DQddnc5vZfLDYQ=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=IcLzpeJ++zT1SdS0YqxWYIhVWN/Np6xGXLCvPVp+qZEAwyVzAEfzWwNTCjCc+aaHe
-         CXhmhBwiGSl0GrHglJzl85gRAaUrEdgMNFBm7VLNmotfl+5dExm7sddpL8W/1kAhQd
-         oiWV2PBRcO9zD40ndRE3FX+3BDlpK1Dl0VDboG+w=
-Received: by mail-qk1-f181.google.com with SMTP id m14so24221948qka.10;
-        Wed, 31 Jul 2019 11:01:11 -0700 (PDT)
-X-Gm-Message-State: APjAAAV10odF4Ae1dsQVAu8Wztu/8A19yTuxEsENIQv6Wux0wdNGN9a3
-        LEdUuLUnpwfm1M8XCGGpQamnVpxJbALf6XUjDQ==
-X-Google-Smtp-Source: APXvYqyh0H1hWwgJHkwCQ5+lJzOC3u4rhsBJaDX6WnQnTqxZqhR3SatK4t4orcp+Ov221H8C92iSLGnRywlqsL+eXQQ=
-X-Received: by 2002:a37:a44a:: with SMTP id n71mr17139303qke.393.1564596070704;
- Wed, 31 Jul 2019 11:01:10 -0700 (PDT)
+        id S1729369AbfGaST0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 14:19:26 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:38866 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726118AbfGaST0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 14:19:26 -0400
+Received: by mail-wm1-f68.google.com with SMTP id s15so39334620wmj.3;
+        Wed, 31 Jul 2019 11:19:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=gIhR1rFWYPyrLTsaj4himG3yGapZVhC0thy8Gdfepg8=;
+        b=DORqV2TwG88my+ccXBU+Hnzftcjv03/kwCkah17l13sB3nibFPHKVNwkXvPdUtpHrM
+         joJtludO2I1oYBDEVkkS0Wf4jjJumoXjKNJPHCu4NDfICwaXddTtixhqmu7IOrYsT7LA
+         SsBzqG6DVJ/NjIg6DkUdMlLkfKoimFFgchsrz1pRObfxDUkV1FtgsasqBCWQzIcVP8L0
+         CXtZqsXGhWYUUSsSn1puICNRV4QNNbXFpJ657gm/UiTD0yK3+5FMKOtgo08jpyiG6XCd
+         cGXz0o5D59dm2lDGUqTsNCXZOkCm31Ez56wvRszsDECqx1M00t9AT7tpCre6BH43I7JB
+         cUlw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=gIhR1rFWYPyrLTsaj4himG3yGapZVhC0thy8Gdfepg8=;
+        b=ZMM0tmGTOqgUiodJ+cQcVfwFP2IkdHJVEuGIupWs1EmubutfRq3nJPWZlgBqWtitW8
+         uG75P5RWhZKU8w2y+101uq0L6Dzbok24Z5bT02P7jgHP2+PDc05oXTFI8naQp6lmbXIi
+         O1u13IC4M+vfN909acBqbPiTbfNLrMm04aEOZgsRf52BUd8756n+FEgNtgb7qXZjkVIp
+         ghtW0dM6uaTDt7hBnVge+qlBCOoiV15940RBJbWQ8G9FqtTcS1GVAfvB7aXsNzBSkXrA
+         3EhPl4Xl5F61dBaR3odtDxSws60MEb7OW8W2eT+AA/P171TnaeDdfOCI3n0Q4nUQ5Hkj
+         SIpA==
+X-Gm-Message-State: APjAAAUFoMpnzGJn/4SNfRqI5ynEQ6R+V98LyJ09RLQanByIzoEl09nS
+        laD69QdM0RI08x99Gzq5pE8=
+X-Google-Smtp-Source: APXvYqwrgMUC5y/0PalEibAJGNjglLfiIcusQrOyF+huLD7r0zhD6uZeGnFiXHUBTgo73QD+T/HG7g==
+X-Received: by 2002:a1c:f914:: with SMTP id x20mr34597086wmh.142.1564597164070;
+        Wed, 31 Jul 2019 11:19:24 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:4f8:222:2f1b::2])
+        by smtp.gmail.com with ESMTPSA id n2sm46680908wmi.38.2019.07.31.11.19.23
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 31 Jul 2019 11:19:23 -0700 (PDT)
+From:   Nathan Chancellor <natechancellor@gmail.com>
+To:     saravanak@google.com
+Cc:     collinsd@codeaurora.org, corbet@lwn.net,
+        devicetree@vger.kernel.org, frowand.list@gmail.com,
+        gregkh@linuxfoundation.org, kernel-team@android.com,
+        linux-doc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mark.rutland@arm.com, rafael@kernel.org, robh+dt@kernel.org,
+        Nathan Chancellor <natechancellor@gmail.com>,
+        kbuild test robot <lkp@intel.com>
+Subject: [PATCH] of/platform: Add missing const qualifier in of_link_property
+Date:   Wed, 31 Jul 2019 11:17:34 -0700
+Message-Id: <20190731181733.60422-1-natechancellor@gmail.com>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190729221101.228240-4-saravanak@google.com>
+References: <20190729221101.228240-4-saravanak@google.com>
 MIME-Version: 1.0
-References: <20190731053959.16293-1-andrew@aj.id.au> <20190731053959.16293-2-andrew@aj.id.au>
-In-Reply-To: <20190731053959.16293-2-andrew@aj.id.au>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Wed, 31 Jul 2019 12:00:59 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLu2M7qnO08kHbgheNCN1+Lis0shrjfnphMbkSJKRs7=A@mail.gmail.com>
-Message-ID: <CAL_JsqLu2M7qnO08kHbgheNCN1+Lis0shrjfnphMbkSJKRs7=A@mail.gmail.com>
-Subject: Re: [PATCH net-next v2 1/4] dt-bindings: net: Add aspeed,ast2600-mdio binding
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     netdev <netdev@vger.kernel.org>,
-        David Miller <davem@davemloft.net>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>, Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>,
-        devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-aspeed@lists.ozlabs.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-Patchwork-Bot: notify
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 30, 2019 at 11:39 PM Andrew Jeffery <andrew@aj.id.au> wrote:
->
-> The AST2600 splits out the MDIO bus controller from the MAC into its own
-> IP block and rearranges the register layout. Add a new binding to
-> describe the new hardware.
->
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
->
-> ---
-> v2:
-> * aspeed: Utilise mdio.yaml
-> * aspeed: Drop status from example
-> ---
->  .../bindings/net/aspeed,ast2600-mdio.yaml     | 45 +++++++++++++++++++
->  1 file changed, 45 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/net/aspeed,ast2600-mdio.yaml
+Clang errors:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+drivers/of/platform.c:632:28: error: initializing 'struct
+supplier_bindings *' with an expression of type 'const struct
+supplier_bindings [4]' discards qualifiers
+[-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+        struct supplier_bindings *s = bindings;
+                                  ^   ~~~~~~~~
+1 error generated.
+
+Fixes: 05f812549f53 ("of/platform: Add functional dependency link from DT bindings")
+Reported-by: kbuild test robot <lkp@intel.com>
+Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
+---
+
+Given this is still in the driver-core-testing branch, I am fine with
+this being squashed in if desired.
+
+ drivers/of/platform.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index e2da90e53edb..21838226d68a 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -629,7 +629,7 @@ static bool of_link_property(struct device *dev, struct device_node *con_np,
+ 			     const char *prop)
+ {
+ 	struct device_node *phandle;
+-	struct supplier_bindings *s = bindings;
++	const struct supplier_bindings *s = bindings;
+ 	unsigned int i = 0;
+ 	bool done = true, matched = false;
+ 
+-- 
+2.22.0
+
