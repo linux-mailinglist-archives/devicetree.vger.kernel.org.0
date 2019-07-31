@@ -2,148 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EBBFB7BAF9
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 09:56:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 55C8F7BB1C
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:05:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725914AbfGaH4r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 03:56:47 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:50754 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725913AbfGaH4r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 03:56:47 -0400
-Received: by mail-wm1-f66.google.com with SMTP id v15so59726332wml.0;
-        Wed, 31 Jul 2019 00:56:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=QU5L0vbXmLbZe0E3jBTU5NfJkkh9UqRqr6Mps/3EPOo=;
-        b=iLzaU2LSDdI9jsv5/15m1mae9PZgBldsvsCrQ3CuB0T+NizxweSFnnOH/ey6IOLf6t
-         7FqdVwr5zWx+ZfxctAwjxPkm6DdCObDAxjj3v4qUfxPOXHD4XcQ0i21kcWBlg3HUZfDp
-         iaC7geB2CLCz2gO+JT3IQbLiNHeLANttoQclMvMhoi2ri9hQZNqYjKRGKeMTPavSJm0R
-         YIuJziKDBxVcKxSJ+GCasjax1H8UzLpL4kzAGarMbzQJJQoibsYdjKT5MrX9no42+vqt
-         G+3reXSYDkNDMoBsO2EqOL2MihCx8/2rv2OCZNhpkekVEfPZdkV8p1H9eC3tA90Lct70
-         0I+g==
-X-Gm-Message-State: APjAAAXf7g3FSESHtSwcWAsrFdm1H7jDsNhG6YdfRSqUILgXphirh9ns
-        9RHxDCj6x6LGtsoYc+VUWc2QofEHd/W50tYi3rs=
-X-Google-Smtp-Source: APXvYqxI3SDVuWcUSNpHB6iYKBKkhycQn1kNJ3nJf+4smL6dxeHCwc7CUToIujG+dw8npCkbHpL8diEb42e4A0p/Wmg=
-X-Received: by 2002:a1c:1f4e:: with SMTP id f75mr106666180wmf.137.1564559804817;
- Wed, 31 Jul 2019 00:56:44 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190109140045.17449-1-marek.vasut@gmail.com> <CAMuHMdX3bP_WCYNRRMmVRPwV52e72NOZMtW8cf29Fo+E9_CvcQ@mail.gmail.com>
- <20190109165822.tmj7qbho46f7clvg@verge.net.au> <1690279.yngTTxF0vm@avalon> <0d08d3c1-94ec-dcbe-ad3d-b079ab2ad17e@gmail.com>
-In-Reply-To: <0d08d3c1-94ec-dcbe-ad3d-b079ab2ad17e@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 31 Jul 2019 09:56:33 +0200
-Message-ID: <CAMuHMdWajtaDGFFkd-GiyR_V8fnpRcn=Uuf8UQuJdcYSigivQQ@mail.gmail.com>
-Subject: DTC check_duplicate_node_names (was: Re: [PATCH] arm64: dts: renesas:
- r8a77990: ebisu: Fix backlight regulator numbering)
-To:     Marek Vasut <marek.vasut@gmail.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Simon Horman <horms@verge.net.au>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Wolfram Sang <wsa+renesas@sang-engineering.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        id S1725942AbfGaIFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 04:05:09 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:57626 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725866AbfGaIFJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Jul 2019 04:05:09 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x6V80Yw8014879;
+        Wed, 31 Jul 2019 03:03:33 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=iQoo/3Gx2EEiQL/F/oE5WOjxkza6YDCbYqBVhCONHIo=;
+ b=CeLUn4vbGznXh0XIvlePWeW6sr0yWHp+5oKz98Y1JvpBACVGENhJyWux5WQiDU5O9d2e
+ TqspA7VHmxeN7gilJ2OQXKLHDGbHXtZMkAcn2p71NfPLSWNDC0zK/OZk/0pTo8CnkwU0
+ 2FHlgnhTeUBUEyyG6YZFcDFuegBh2rtthbczBtuXmP904LriQzKngwSNEn+2ffnfhpJZ
+ 5ltD68RzypoB2qAaIMNsSy71GmNzFt4TiXTRYIgP25VZgvWjvOBcGeTBk4q4XQc9Ac2L
+ TNbUEZonQVIWfenh21kAH+owpGF4WrtCP0fqxduHAKMssuE2UtLAniqcSnUWZJgDwI1p Zg== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex02.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 2u0k1qww6p-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Wed, 31 Jul 2019 03:03:33 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX02.ad.cirrus.com
+ (198.61.84.81) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Wed, 31 Jul
+ 2019 09:03:31 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Wed, 31 Jul 2019 09:03:31 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 942FE45;
+        Wed, 31 Jul 2019 09:03:31 +0100 (BST)
+Date:   Wed, 31 Jul 2019 09:03:31 +0100
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Thomas Preston <thomas.preston@codethink.co.uk>
+CC:     Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, <alsa-devel@alsa-project.org>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        Takashi Iwai <tiwai@suse.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        <linux-kernel@vger.kernel.org>,
+        Cheng-Yi Chiang <cychiang@chromium.org>
+Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on
+ diagnostic routine
+Message-ID: <20190731080331.GJ54126@ediswmail.ad.cirrus.com>
+References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
+ <20190730120937.16271-4-thomas.preston@codethink.co.uk>
+ <20190730141935.GF4264@sirena.org.uk>
+ <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
+ <20190730155027.GJ4264@sirena.org.uk>
+ <9b47a360-3b62-b968-b8d5-8639dc4b468d@codethink.co.uk>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="us-ascii"
+Content-Disposition: inline
+In-Reply-To: <9b47a360-3b62-b968-b8d5-8639dc4b468d@codethink.co.uk>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 malwarescore=0 suspectscore=0
+ mlxlogscore=999 lowpriorityscore=0 priorityscore=1501 impostorscore=0
+ clxscore=1015 phishscore=0 adultscore=0 mlxscore=0 spamscore=0 bulkscore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1906280000
+ definitions=main-1907310085
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marek,
+On Tue, Jul 30, 2019 at 05:28:11PM +0100, Thomas Preston wrote:
+> On 30/07/2019 16:50, Mark Brown wrote:
+> > On Tue, Jul 30, 2019 at 04:25:56PM +0100, Thomas Preston wrote:
+> >> On 30/07/2019 15:19, Mark Brown wrote:
+> > 
+> >>> It is unclear what this mutex usefully protects, it only gets taken when
+> >>> writing to the debugfs file to trigger this diagnostic mode but doesn't
+> >>> do anything to control interactions with any other code path in the
+> >>> driver.
+> > 
+> >> If another process reads the debugfs node "diagnostic" while the turn-on 
+> >> diagnostic mode is running, this mutex prevents the second process
+> >> restarting the diagnostics.
+> > 
+> >> This is redundant if debugfs reads are atomic, but I don't think they are.
+> > 
+> > Like I say it's not just debugfs though, there's the standard driver
+> > interface too.
+> > 
+> 
+> Ah right, I understand. So if we run the turn-on diagnostics routine, there's
+> nothing stopping anyone from interacting with the device in other ways.
+> 
+> I guess there's no way to share that mutex with ALSA? In that case, it doesn't
+> matter if this mutex is there or not - this feature is incompatible. How
+> compatible do debugfs interfaces have to be? I was under the impression anything
+> goes. I would argue that the debugfs is better off for having the mutex so
+> that no one re-reads "diagnostic" within the 5s poll timeout.
+> 
+> Alternatively, this diagnostic feature could be handled with an external-handler
+> kcontrol SOC_SINGLE_EXT? I'm not sure if this is an atomic interface either.
+> 
+> What would be acceptable?
 
-Bringing this to the attention of the DTC people...
+You could take the DAPM mutex in your debugfs handler that would
+prevent any changes to the cards power state whilst your debug
+stuff is running.
 
-On Thu, Jan 10, 2019 at 3:38 PM Marek Vasut <marek.vasut@gmail.com> wrote:
-> On 1/10/19 1:59 PM, Laurent Pinchart wrote:
-> > On Wednesday, 9 January 2019 18:58:23 EET Simon Horman wrote:
-> >> On Wed, Jan 09, 2019 at 04:26:25PM +0100, Geert Uytterhoeven wrote:
-> >>> On Wed, Jan 9, 2019 at 3:01 PM <marek.vasut@gmail.com> wrote:
-> >>>> From: Marek Vasut <marek.vasut+renesas@gmail.com>
-> >>>>
-> >>>> There are two regulator1 nodes in the Ebisu DTS right now, one 3.3V for
-> >>>> the eMMC and one 12V for the backlight. This causes one to be
-> >>>> overwritten
-> >>>> by the other, ultimatelly resulting in inoperable eMMC, which depends on
-> >>>> the former. Fix this by renumbering the backlight regulator to
-> >>>> regulator2.
-> >>>>
-> >>>> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
-> >>>> Cc: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
-> >>>> Cc: Simon Horman <horms+renesas@verge.net.au>
-> >>>> Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>
-> >>>> Cc: linux-renesas-soc@vger.kernel.org
-> >>>> Reported-by: Simon Horman <horms+renesas@verge.net.au>
-> >>>> Fixes: 9d16c4a10e07 ("arm64: dts: renesas: r8a77990: ebisu: Add
-> >>>> backlight")
-> >>>
-> >>> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >>>
-> >>>> --- a/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
-> >>>> +++ b/arch/arm64/boot/dts/renesas/r8a77990-ebisu.dts
-> >>>> @@ -191,7 +191,7 @@
-> >>>>
-> >>>>                 clock-frequency = <24576000>;
-> >>>>
-> >>>>         };
-> >>>>
-> >>>> -       reg_12p0v: regulator1 {
-> >>>> +       reg_12p0v: regulator2 {
-> >>>>
-> >>>>                 compatible = "regulator-fixed";
-> >>>>                 regulator-name = "D12.0V";
-> >>>>                 regulator-min-microvolt = <12000000>;
-> >>>
-> >>> Perhaps the node name should get a more descriptive suffix
-> >>> (e.g. "regulator-12p0v"), like is already done for some of the other
-> >>> regulators?
-> >>
-> >> I think I would prefer that addressed in a follow-up patch.
-> >
-> > Agreed, but it would still be a very good idea. I think we need to standardize
-> > names for regulators, otherwise this is bound to happen again in the future.
-
-And so it did (patch sent for the same bug in r8a77995-draak.dts).
-
-> Isn't the YAML DT schema validator supposed to catch those problems ?
-> I'd even expect DTC to be able to catch such duplicate nodes and warn
-> about them.
-
-DTC indeed has check_duplicate_node_names.
-However, it only works for the base DTS, not for any later modifications in
-the board DTS.
-
-I.e. the original dup-nodename.dts in the DTC testsuite triggers an error,
-but the modified version below doesn't.
-
---- a/tests/dup-nodename.dts
-+++ b/tests/dup-nodename.dts
-@@ -1,8 +1,11 @@
- /dts-v1/;
-
-+/ {
-+};
-+
- / {
-        node {
-        };
-        node {
-        };
- };
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Thanks,
+Charles
