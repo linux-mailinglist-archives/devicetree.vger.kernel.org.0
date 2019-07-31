@@ -2,175 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5EC7E7B878
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 06:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0E50E7B8AB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 06:29:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727314AbfGaEXV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 00:23:21 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:41434 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726421AbfGaEXV (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 00:23:21 -0400
-Received: by mail-ot1-f68.google.com with SMTP id o101so68752438ota.8
-        for <devicetree@vger.kernel.org>; Tue, 30 Jul 2019 21:23:20 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=tm6ntfcYmNHUpIkveTc5p4r6569ul1qIUEH4oxRjwA4=;
-        b=glzUp8gAgo6Q9+gjT5xKBMG30uah/MGW3tgERppjauRxj/tmhas8EEff6tCjk6x9Oo
-         y4yyZpqHDXgaIfsG4COlY9nVCd1boATU3DBufsqEy40c28G9vJaAsDkpn0KK+No1GvNH
-         qTG5qAKnhCkwiGa6BBEERHNzSbb8ZEClpQLptBPI8pxEXmmih6Jd7qqCXTXelHmSSfV2
-         PngzgOomffODrlcUHKczYix6KxGwDAzWrQ7M739Hp0U6FwXuxSj2Nn1VdFfspfag6XCs
-         AcALx/y+P3AngYVbf2fVaNiAQbx4faQhsUnrcqe6vRdyXlKg9OCXPZM1AWyOudTLoarK
-         KXPQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=tm6ntfcYmNHUpIkveTc5p4r6569ul1qIUEH4oxRjwA4=;
-        b=M1jwvLMYfxd6PmCZcnNHeNdJkq6QbrST7zZnw06LKknjrMniNZry92ea+cMc5E1Bop
-         WsGp7v4/3e1Wd7nAcNyzYmb88GePAzFZdO3ewUkKjqjBozjxRVlYPTZ/fRAXm5WLmpFs
-         3FQZ6QLuLU48wRkig5U6qxrUDIi+S/Tk4TU2M1fBF18WgWJmgMFhbvTLVKZY0YFSL4jL
-         Yl42ofO5fQhbIWtQWHTqt8qxfkvcdEVq4tVCdbDQEtGVosywWo5YAgjpj3mYRkskAmDS
-         LNH9ZTjiJ1tnn8HfxLobmrvtzgSWecfis6La0S0BP87pwLiD0xUyAp+uClxoPlG52Qb3
-         Oqjg==
-X-Gm-Message-State: APjAAAXYwRlLKHwYyt8DXG5gd5r94nOwWvh1ZmxjbcDgCqcB7I+h1CIe
-        eNXQwKwPnq/7D/C/gRE5n92e0w==
-X-Google-Smtp-Source: APXvYqyrmqRX0TMTUvKRI9kn2OfHhiN/A4ouvjYOKSZwB7DvlVq/p3PsehROt3mdsdg2QXOYNxFx/w==
-X-Received: by 2002:a05:6830:2119:: with SMTP id i25mr9479782otc.282.1564547000208;
-        Tue, 30 Jul 2019 21:23:20 -0700 (PDT)
-Received: from localhost ([2600:100e:b005:6ca0:a8bb:e820:e6d3:8809])
-        by smtp.gmail.com with ESMTPSA id v203sm25607331oie.5.2019.07.30.21.23.19
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 30 Jul 2019 21:23:19 -0700 (PDT)
-Date:   Tue, 30 Jul 2019 21:23:18 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Atish Patra <atish.patra@wdc.com>, Anup Patel <anup.patel@wdc.com>
-cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Alexios Zavras <alexios.zavras@intel.com>,
-        Allison Randal <allison@lohutok.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        devicetree@vger.kernel.org, Enrico Weigelt <info@metux.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johan Hovold <johan@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v2 2/5] RISC-V: Add riscv_isa reprensenting ISA features
- common across CPUs
-In-Reply-To: <20190731012418.24565-3-atish.patra@wdc.com>
-Message-ID: <alpine.DEB.2.21.9999.1907302117420.15340@viisi.sifive.com>
-References: <20190731012418.24565-1-atish.patra@wdc.com> <20190731012418.24565-3-atish.patra@wdc.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        id S1727212AbfGaE3z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 00:29:55 -0400
+Received: from mailgw02.mediatek.com ([210.61.82.184]:29038 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726601AbfGaE3y (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 00:29:54 -0400
+X-UUID: 38377396d15048a38b8c9f2a230bc541-20190731
+X-UUID: 38377396d15048a38b8c9f2a230bc541-20190731
+Received: from mtkcas07.mediatek.inc [(172.21.101.84)] by mailgw02.mediatek.com
+        (envelope-from <gtk_ruiwang@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
+        with ESMTP id 534942347; Wed, 31 Jul 2019 12:29:48 +0800
+Received: from mtkcas07.mediatek.inc (172.21.101.84) by
+ mtkmbs08n1.mediatek.inc (172.21.101.55) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Wed, 31 Jul 2019 12:29:42 +0800
+Received: from localhost.localdomain (10.17.3.153) by mtkcas07.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Wed, 31 Jul 2019 12:29:41 +0800
+From:   <gtk_ruiwang@mediatek.com>
+To:     Hans Verkuil <hverkuil@xs4all.nl>,
+        Tomasz Figa <tfiga@chromium.org>,
+        Tiffany Lin <tiffany.lin@mediatek.com>
+CC:     Longfei Wang <longfei.wang@mediatek.com>,
+        Yunfei Dong <yunfei.dong@mediatek.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        <linux-media@vger.kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        Rui Wang <gtk_ruiwang@mediatek.com>
+Subject: [v2] media: mtk-vcodec: Handle H264 error bitstreams
+Date:   Wed, 31 Jul 2019 12:29:39 +0800
+Message-ID: <20190731042939.5339-1-gtk_ruiwang@mediatek.com>
+X-Mailer: git-send-email 2.18.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 30 Jul 2019, Atish Patra wrote:
+From: Rui Wang <gtk_ruiwang@mediatek.com>
 
-> From: Anup Patel <anup.patel@wdc.com>
-> 
-> This patch adds riscv_isa integer to represent ISA features common
-> across all CPUs. The riscv_isa is not same as elf_hwcap because
-> elf_hwcap will only have ISA features relevant for user-space apps
-> whereas riscv_isa will have ISA features relevant to both kernel
-> and user-space apps.
-> 
-> One of the use case is KVM hypervisor where riscv_isa will be used
-> to do following operations:
-> 
-> 1. Check whether hypervisor extension is available
-> 2. Find ISA features that need to be virtualized (e.g. floating
->    point support, vector extension, etc.)
-> 
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> ---
->  arch/riscv/include/asm/hwcap.h | 25 +++++++++++++++++++++
->  arch/riscv/kernel/cpufeature.c | 41 +++++++++++++++++++++++++++++++---
->  2 files changed, 63 insertions(+), 3 deletions(-)
-> 
-> diff --git a/arch/riscv/include/asm/hwcap.h b/arch/riscv/include/asm/hwcap.h
-> index 7ecb7c6a57b1..e069f60ad5d2 100644
-> --- a/arch/riscv/include/asm/hwcap.h
-> +++ b/arch/riscv/include/asm/hwcap.h
-> @@ -22,5 +22,30 @@ enum {
->  };
->  
->  extern unsigned long elf_hwcap;
-> +
-> +#define RISCV_ISA_EXT_A		(1UL << ('A' - 'A'))
+Error h264 bitstreams which picture info are out range of
+decoder hardware specification, and no nal start code at the
+beginning of the buffer, stop decoding and exit.
 
-Are these uppercase variants still needed if we define the ISA string to 
-be all lowercase, per our recent discussion?
+Signed-off-by: Rui Wang <gtk_ruiwang@mediatek.com>
+---
+Change note:
+Updata commint message with Mauro's comment: use real name on SOB and From.
+---
+ .../platform/mtk-vcodec/vdec/vdec_h264_if.c      | 16 ++++++++++++++--
+ 1 file changed, 14 insertions(+), 2 deletions(-)
 
-> +#define RISCV_ISA_EXT_a		RISCV_ISA_EXT_A
-> +#define RISCV_ISA_EXT_C		(1UL << ('C' - 'A'))
-> +#define RISCV_ISA_EXT_c		RISCV_ISA_EXT_C
-> +#define RISCV_ISA_EXT_D		(1UL << ('D' - 'A'))
-> +#define RISCV_ISA_EXT_d		RISCV_ISA_EXT_D
-> +#define RISCV_ISA_EXT_F		(1UL << ('F' - 'A'))
-> +#define RISCV_ISA_EXT_f		RISCV_ISA_EXT_F
-> +#define RISCV_ISA_EXT_H		(1UL << ('H' - 'A'))
-> +#define RISCV_ISA_EXT_h		RISCV_ISA_EXT_H
-> +#define RISCV_ISA_EXT_I		(1UL << ('I' - 'A'))
-> +#define RISCV_ISA_EXT_i		RISCV_ISA_EXT_I
-> +#define RISCV_ISA_EXT_M		(1UL << ('M' - 'A'))
-> +#define RISCV_ISA_EXT_m		RISCV_ISA_EXT_M
-> +#define RISCV_ISA_EXT_S		(1UL << ('S' - 'A'))
-> +#define RISCV_ISA_EXT_s		RISCV_ISA_EXT_S
-> +#define RISCV_ISA_EXT_U		(1UL << ('U' - 'A'))
-> +#define RISCV_ISA_EXT_u		RISCV_ISA_EXT_U
-> +
-> +extern unsigned long riscv_isa;
-> +
-> +#define riscv_isa_extension_available(ext_char)	\
-> +		(riscv_isa & RISCV_ISA_EXT_##ext_char)
-> +
->  #endif
->  #endif
-> diff --git a/arch/riscv/kernel/cpufeature.c b/arch/riscv/kernel/cpufeature.c
-> index b1ade9a49347..177529d48d87 100644
-> --- a/arch/riscv/kernel/cpufeature.c
-> +++ b/arch/riscv/kernel/cpufeature.c
+diff --git a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_if.c b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_if.c
+index c5f8f1fca44c..49aa85a9bb5a 100644
+--- a/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_if.c
++++ b/drivers/media/platform/mtk-vcodec/vdec/vdec_h264_if.c
+@@ -29,6 +29,9 @@
+ #define H264_MAX_FB_NUM				17
+ #define HDR_PARSING_BUF_SZ			1024
+ 
++#define DEC_ERR_RET(ret)			((ret) >> 16)
++#define H264_ERR_NOT_VALID			3
++
+ /**
+  * struct h264_fb - h264 decode frame buffer information
+  * @vdec_fb_va  : virtual address of struct vdec_fb
+@@ -357,8 +360,11 @@ static int vdec_h264_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 	buf = (unsigned char *)bs->va;
+ 	buf_sz = bs->size;
+ 	nal_start_idx = find_start_code(buf, buf_sz);
+-	if (nal_start_idx < 0)
++	if (nal_start_idx < 0) {
++		mtk_vcodec_err(inst, "invalid nal start code");
++		err = -EIO;
+ 		goto err_free_fb_out;
++	}
+ 
+ 	nal_start = buf[nal_start_idx];
+ 	nal_type = NAL_TYPE(buf[nal_start_idx]);
+@@ -382,8 +388,14 @@ static int vdec_h264_decode(void *h_vdec, struct mtk_vcodec_mem *bs,
+ 	data[0] = buf_sz;
+ 	data[1] = nal_start;
+ 	err = vpu_dec_start(vpu, data, 2);
+-	if (err)
++	if (err) {
++		if (err > 0 && (DEC_ERR_RET(err) == H264_ERR_NOT_VALID)) {
++			mtk_vcodec_err(inst, "- error bitstream - err = %d -",
++				       err);
++			err = -EIO;
++		}
+ 		goto err_free_fb_out;
++	}
+ 
+ 	*res_chg = inst->vsi->dec.resolution_changed;
+ 	if (*res_chg) {
+-- 
+2.18.0
 
-[ ... ]
-
-> @@ -43,8 +49,22 @@ void riscv_fill_hwcap(void)
->  			continue;
->  		}
->  
-> -		for (i = 0; i < strlen(isa); ++i)
-> +		i = 0;
-> +		isa_len = strlen(isa);
-> +#if defined(CONFIG_32BIT)
-> +		if (strncasecmp(isa, "rv32", 4) != 0)
-
-strcmp()?
-
-> +			i += 4;
-> +#elif defined(CONFIG_64BIT)
-> +		if (strncasecmp(isa, "rv64", 4) != 0)
-
-And again here?
-
-> +			i += 4;
-> +#endif
-> +		for (; i < isa_len; ++i) {
->  			this_hwcap |= isa2hwcap[(unsigned char)(isa[i])];
-> +			if ('a' <= isa[i] && isa[i] <= 'z')
-> +				this_isa |= (1UL << (isa[i] - 'a'));
-> +			if ('A' <= isa[i] && isa[i] <= 'Z')
-> +				this_isa |= (1UL << (isa[i] - 'A'));
-
-Are these uppercase variants still needed?
-
-
-- Paul
