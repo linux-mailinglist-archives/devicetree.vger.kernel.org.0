@@ -2,85 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8ABF17CA11
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 19:13:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2CFA47CAB6
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 19:40:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727348AbfGaRNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 13:13:53 -0400
-Received: from 8.mo179.mail-out.ovh.net ([46.105.75.26]:49905 "EHLO
-        8.mo179.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725914AbfGaRNx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 13:13:53 -0400
-X-Greylist: delayed 1798 seconds by postgrey-1.27 at vger.kernel.org; Wed, 31 Jul 2019 13:13:52 EDT
-Received: from player697.ha.ovh.net (unknown [10.109.159.224])
-        by mo179.mail-out.ovh.net (Postfix) with ESMTP id 54A61139E44
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 18:34:15 +0200 (CEST)
-Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
-        (Authenticated sender: sebastien.szymanski@armadeus.com)
-        by player697.ha.ovh.net (Postfix) with ESMTPSA id 580F38831A9A;
-        Wed, 31 Jul 2019 16:33:56 +0000 (UTC)
-From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-To:     Rui Miguel Silva <rmfrfs@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1726622AbfGaRks (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 13:40:48 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:44552 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725209AbfGaRks (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 13:40:48 -0400
+Received: by mail-lj1-f194.google.com with SMTP id k18so66430600ljc.11;
+        Wed, 31 Jul 2019 10:40:46 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=q4EnWjuoFwvcg+PQNQKDl7SJ3NRTDjvZysMShIcjoKI=;
+        b=EEGiqtvzdTGgq8ThRpTRzSRRTP6VrSrlPO4IYYXSqpYLJ1pWHT/smy+zbIF9spBxdG
+         OPhZlUiy86fYmMqsbJ+fR75XB09QgUuke4Bs8aa9PYGkrTqbahFJVfjl93nk0Q3ff36o
+         4CNAKmIBe5E32PDAW7yKpvLxNuV1lPeTQUHA7iJHMdqmLX+3nLVkm0utsFCM5H/+5JXa
+         cBmKEid218rblPtIjLKPhBu5EWKqEkzkwF5vunTY0SixI56msLOoXv2XPukyyoSH7Ve0
+         1euc7zpXBnh6gBCuZ/uLrqxkrgPUuqlZAXL7Q36Q29fJ3is4HY3M9XrjfIGJL1jp8j8S
+         2l7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=q4EnWjuoFwvcg+PQNQKDl7SJ3NRTDjvZysMShIcjoKI=;
+        b=lHI7WHibR0009/4BWqf3s/zWvZdTBUAcanS6bTBr471xcc4fsxCfk+6ooKZg4/oWv+
+         EgJmABvk7vsY+dOsIUYydSFnq2ALeb5uk2wM+wFvUH7/ALYUH8fvtcWkDoXgRyel1Mja
+         jtdxiR8/29/n12VIpGFWrdbXiwW8Vynq31chPnKKJ9/RN8EeqEYCovLN1/QeyB0aep8S
+         9e9OF04d9m7bvaqtDOKV1GeFgeA/vRIbUNfnfynlqsB7qIAi8hdYaVNntBvNZ3pz0IBb
+         eCN31MXUth4FPrZvEOQB0vAqulbHOkC6mWI2WpMKGxux6DDYx2G2z6P5JY4kZi52EIBt
+         Fl4w==
+X-Gm-Message-State: APjAAAWdlzrVSvUfh1KHaqGkuSL2l8mRasuBuby/Gbu94TOGmdmZuMk5
+        OiRh40Lx5bA2DKJ8A9D5RsTKfTgN6RrcnQYhWsQ=
+X-Google-Smtp-Source: APXvYqyt0Od36zT0596GjCdSHptbQnUWvWqMyOnVl/5FQep+ssyLLf+KxKKOId+xoiOrQ+OT9NTjMGldgO9EObJPhWk=
+X-Received: by 2002:a2e:4e12:: with SMTP id c18mr14933002ljb.211.1564594845880;
+ Wed, 31 Jul 2019 10:40:45 -0700 (PDT)
+MIME-Version: 1.0
+References: <cover.1563983037.git.agx@sigxcpu.org> <20190731143532.GA1935@bogon.m.sigxcpu.org>
+ <CAOMZO5Djoi7EuXapkg+dQ6HR2oZZHrw+vnjc837Gxee-Nh00Hw@mail.gmail.com> <13373313.BzCyiC4ED7@jernej-laptop>
+In-Reply-To: <13373313.BzCyiC4ED7@jernej-laptop>
+From:   Fabio Estevam <festevam@gmail.com>
+Date:   Wed, 31 Jul 2019 14:40:57 -0300
+Message-ID: <CAOMZO5Ak7QFzEM8Qt5XAZBa1CB602fygK+FBDK2iTvxWA4y+oA@mail.gmail.com>
+Subject: Re: [PATCH 3/3] drm/bridge: Add NWL MIPI DSI host controller support
+To:     =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@siol.net>
+Cc:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devel@driverdev.osuosl.org,
-        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>, Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 3/3] media: dt-bindings: imx7-csi: add i.MX6UL/L support
-Date:   Wed, 31 Jul 2019 18:33:58 +0200
-Message-Id: <20190731163358.32622-1-sebastien.szymanski@armadeus.com>
-X-Mailer: git-send-email 2.21.0
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 14053201162921464871
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrleehgddutdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Lee Jones <lee.jones@linaro.org>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Chris Healy <cphealy@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Document "fsl,imx6ul-csi" entry.
+On Wed, Jul 31, 2019 at 1:40 PM Jernej =C5=A0krabec <jernej.skrabec@siol.ne=
+t> wrote:
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
----
+> > Yes, I understood the idea, but this would print:
+> >
+> > ensabling or dissabling :-)
+>
+> No, it wouldn't. That extra "s" is part of "%s", e.g. part of format spec=
+ifier.
 
-Changes for v3:
- - none
-
-Changes for v2:
- - New patch to document new "fsl,imx6ul-csi" entry.
-
- Documentation/devicetree/bindings/media/imx7-csi.txt | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/Documentation/devicetree/bindings/media/imx7-csi.txt b/Documentation/devicetree/bindings/media/imx7-csi.txt
-index 443aef07356e..d80ceefa0c00 100644
---- a/Documentation/devicetree/bindings/media/imx7-csi.txt
-+++ b/Documentation/devicetree/bindings/media/imx7-csi.txt
-@@ -9,7 +9,7 @@ to connect directly to external CMOS image sensors.
- 
- Required properties:
- 
--- compatible    : "fsl,imx7-csi";
-+- compatible    : "fsl,imx7-csi" or "fsl,imx6ul-csi";
- - reg           : base address and length of the register set for the device;
- - interrupts    : should contain CSI interrupt;
- - clocks        : list of clock specifiers, see
--- 
-2.21.0
-
+Ops, you are right. Sorry about that!
