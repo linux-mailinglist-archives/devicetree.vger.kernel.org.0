@@ -2,112 +2,162 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA1E37C4E6
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 16:28:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D20B7C4F3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 16:31:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726849AbfGaO2T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 10:28:19 -0400
-Received: from mail-eopbgr1410102.outbound.protection.outlook.com ([40.107.141.102]:6069
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726840AbfGaO2T (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 10:28:19 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=ejuKJeijr8hoTcAwcGcjB353vImjwo4zf74V/YQt4uCZcfDxFtYprxVOEC/4/d4rBquUnkoZHb6Kv3aLOgJfbSaDeMfp1YB8HDjudj/GIJpw87XVdQXFFbU9Iir2dUR8x8wty7cFGHrtIvU+w6eAA7G+0i998m65j67uVsVvw4McYReN12VrfLn8ox85ULgqCV/X6ZxV9OmW78m4vQpMkxzLat0jUhKX/Ze4lBUoEhElqjt4S28ydgoDKVwjRhgXUA4O59AoXCeCpItWk5T9PCJZlh+LUAeCqwMwEUcPpacU7TiufvUBCajGQR32UjE0OksgXCHG6GndBSQxCT0eVQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tY2vEXaqoG/RQ34xfRV/bx9csl5tB9R8LcluNJSksEI=;
- b=cNZ6C2vk1Zp7EFMEUzDmMgVesmPBhYewpp4zo4l10t4pFQm4tnH4aa6DgMLHWJhCmrWneYwmdnRFXSPwqLwwoivYIdgF5SZCEJdrPtCF73IU6sbp3DE4272EvNZBOvW4OeULtFShixFkDkxLyUWyNKRg706Ye4NQB0w5zKUy2uhL2KvtjsnZCCKTUCEgY9FyrORiNax8VmMCJ8eJuihajclr49uXsAp2C1W3AU6YLdQbfJfwfoIKj0H624zU6x37O3+Cl1pt9HuErYE3Ckjb/7rx8IEnIu+ztnI1VRQes+E4t9cZDCnDl8SRNBeTKqVa7uA5/loSNMXoccUya+z8vQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=renesas.com;dmarc=pass action=none
- header.from=renesas.com;dkim=pass header.d=renesas.com;arc=none
+        id S1729302AbfGaOa6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 10:30:58 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:34476 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726079AbfGaOa6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 10:30:58 -0400
+Received: by mail-wm1-f68.google.com with SMTP id w9so1436898wmd.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 07:30:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=tY2vEXaqoG/RQ34xfRV/bx9csl5tB9R8LcluNJSksEI=;
- b=a2JUZ03Pel8NK8N3yCNif6ef7AFkMSNJOhqb1Du0Siwzf7cXIudLmlx8I/Fpl4CcLhkQp8h2TF2Lgbxt6wP6qlENygfe4o9NXjrwc/bmZ10oJcKjBxYNyNcISKKhXhhEz8XET0/8b5BV2k5qx9SRo1+Bf62oV4Bv3E0yIhFxHOU=
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com (52.133.163.12) by
- TY1PR01MB1563.jpnprd01.prod.outlook.com (52.133.160.144) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.16; Wed, 31 Jul 2019 14:28:16 +0000
-Received: from TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::3cb2:b1fe:7123:85d]) by TY1PR01MB1562.jpnprd01.prod.outlook.com
- ([fe80::3cb2:b1fe:7123:85d%7]) with mapi id 15.20.2136.010; Wed, 31 Jul 2019
- 14:28:16 +0000
-From:   Chris Brandt <Chris.Brandt@renesas.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
-Subject: RE: [PATCH/RFC] ARM: dts: rza2mevb: Fix numbering of Ethernet aliases
-Thread-Topic: [PATCH/RFC] ARM: dts: rza2mevb: Fix numbering of Ethernet
- aliases
-Thread-Index: AQHVR6Vqe9NZ0BXolECcyIIHEKiMa6bkxldQ
-Date:   Wed, 31 Jul 2019 14:28:16 +0000
-Message-ID: <TY1PR01MB156262DA5C9260BEE51472268ADF0@TY1PR01MB1562.jpnprd01.prod.outlook.com>
-References: <20190731133936.18228-1-geert+renesas@glider.be>
-In-Reply-To: <20190731133936.18228-1-geert+renesas@glider.be>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNcY2JyYW5kdDAxXGFwcGRhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVlZS02Yjg0YmEyOWUzNWJcbXNnc1xtc2ctNmRhMzA2NTMtYjM5Zi0xMWU5LThkYTMtNWNjNWQ0NjFlNzI0XGFtZS10ZXN0XDZkYTMwNjU0LWIzOWYtMTFlOS04ZGEzLTVjYzVkNDYxZTcyNGJvZHkudHh0IiBzej0iNzI0IiB0PSIxMzIwOTA1Njg5NDQyNDQ5MjYiIGg9InRadzZvQVpWUUI3YTREeEJRVUlJdzRGRTNtdz0iIGlkPSIiIGJsPSIwIiBibz0iMSIvPjwvbWV0YT4=
-x-dg-rorf: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Chris.Brandt@renesas.com; 
-x-originating-ip: [75.60.247.61]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 88f4ab70-a44b-4409-2db4-08d715c353ce
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1563;
-x-ms-traffictypediagnostic: TY1PR01MB1563:
-x-microsoft-antispam-prvs: <TY1PR01MB156367003402CB6C8A6F79868ADF0@TY1PR01MB1563.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 011579F31F
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(39860400002)(366004)(346002)(376002)(396003)(136003)(189003)(199004)(66946007)(66476007)(66446008)(64756008)(66556008)(7696005)(110136005)(54906003)(76116006)(478600001)(305945005)(2906002)(256004)(71190400001)(71200400001)(7736002)(99286004)(4744005)(316002)(14454004)(53936002)(68736007)(5660300002)(9686003)(66066001)(8936002)(476003)(6246003)(81156014)(81166006)(486006)(8676002)(52536014)(11346002)(86362001)(446003)(55016002)(3846002)(102836004)(6116002)(6506007)(25786009)(76176011)(33656002)(4326008)(6436002)(186003)(26005)(229853002)(74316002);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1563;H:TY1PR01MB1562.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: JCFOZmmoEHEKuyZ8q4/+Ll3BsQE77EG+gMxEYCzhvx5FfsudtGw/ufefAcQIzaZsKl/J5eOzF5qWOF6y3r9ihwICrwDWlmtFaTitDqeDD1IyZe/BqCb/pkaQh8/dBMBlWFtoIi1yNnSLC93cTn9K5bjBjfcqV3811x8dcheh5j43De+BV1bYCETuc+E2xD2JAUrahZe/QGdOz8o+QV4/cXPcGwVHPHTu4hBFtZfXykZ//0w08eDpx49z/Do70i+HpnXdfJNpqqxNbvR9WFNbVr/Jgth91BCQIO9XpbVPiHdP6awudwdiHWNSEof5QiLnWdazy0doZuIvrNnH0R0dKo3nd/7m5QWqvGL9Vp+Iqd7wT2apjvWRoNKPDvIBUxKkKxQ680Luy0VoBkh8bePlDwyrLMFu6j18aivyBzal6yY=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=MDnPbJodK/a6eTFi3yfzZVR2rm3ZSgLhYLWa+WneOcQ=;
+        b=LObSE0fFJUw55SB99a92enfrZZUq30eu9bG2F/nsfWNxuzV9x2HmIAvxj0KJ9w0KTU
+         qrIclXt78r1QBfee5k0HYdjVZ0gbj9fNSGTnKWLZ6ndr3dOMOX7Y3VDxa3DQq8RHuZm5
+         /48OTXttWhRqrIZkeXdW6N77lLaaOtC6y8buit2VDJx/IGQ2OpeOYR2S+G8mfirEjQ7g
+         NG0SSL/kykYLqhLsE7AUDUa3AqwG9sCxx+/LNHCTnGNh63e8AYQFw+tzeNt3Qzt+XsbL
+         JU1G4bO3AWErvXFZ4ADhul3FeEJLOAWayBNWrKY7rYuU1Uxboou2Yj/gCmQ/Ty+MX81g
+         igkA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=MDnPbJodK/a6eTFi3yfzZVR2rm3ZSgLhYLWa+WneOcQ=;
+        b=cATDjNH5sdx5iTvryoUtwydtv2hdExJBNFAAbbrjRMp8uzX/gcIjO+LGtTKKGgM4HP
+         4zh/3yJo8OdAiff/G1cXpBEcppJCqkfCe8sar6ylTWP4xfIF+5MKgYLm2GiMmRGu1xzI
+         Zj1m4jkFO/JML8lzljJQWqJWJERyPJ1GJM7B/kv1Cn6d6tdgQjtWULHruxao3R8XYYg2
+         XxOxhxvwpUsuE+TZYtXTonUqkdXACOHtC0JSA5rfnR4Pb+6QcpdsFvF5/K1fidSqIsXc
+         Emg7jYPzy5aNuOPdrqkZFshSnPL+5TyDRo6lKK0iEc9JiUVHv8Cgb2oNIXVGlkEzc3QQ
+         qHUA==
+X-Gm-Message-State: APjAAAXHSRshUjLETTgTb2IzI/g81A+SdWJkxv4o2EIErmW5NokJxTHu
+        VQ4dpzLl5cWhSd6NF4Fz+seSEQ==
+X-Google-Smtp-Source: APXvYqx/TyzoXLdTkhlTg/t7F+eHNs+DVxViJq91/dI341xTx6DKJZgNxhl4ivgKkc2HMYfOY6jBEw==
+X-Received: by 2002:a1c:e90d:: with SMTP id q13mr110692820wmc.89.1564583455255;
+        Wed, 31 Jul 2019 07:30:55 -0700 (PDT)
+Received: from [192.168.1.6] (19.red-176-86-136.dynamicip.rima-tde.net. [176.86.136.19])
+        by smtp.gmail.com with ESMTPSA id z6sm61429920wrw.2.2019.07.31.07.30.52
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 31 Jul 2019 07:30:54 -0700 (PDT)
+Subject: Re: [PATCH v3 08/14] clk: qcom: hfpll: CLK_IGNORE_UNUSED
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     sboyd@kernel.org, david.brown@linaro.org, jassisinghbrar@gmail.com,
+        mark.rutland@arm.com, mturquette@baylibre.com, robh+dt@kernel.org,
+        will.deacon@arm.com, arnd@arndb.de, horms+renesas@verge.net.au,
+        heiko@sntech.de, sibis@codeaurora.org,
+        enric.balletbo@collabora.com, jagan@amarulasolutions.com,
+        olof@lixom.net, vkoul@kernel.org, niklas.cassel@linaro.org,
+        georgi.djakov@linaro.org, amit.kucheria@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, khasim.mohammed@linaro.org
+References: <20190625164733.11091-1-jorge.ramirez-ortiz@linaro.org>
+ <20190625164733.11091-9-jorge.ramirez-ortiz@linaro.org>
+ <20190711151631.GI7234@tuxbook-pro>
+From:   Jorge Ramirez <jorge.ramirez-ortiz@linaro.org>
+Message-ID: <cd91801a-1be3-86fd-6e15-da7e82fddb53@linaro.org>
+Date:   Wed, 31 Jul 2019 16:30:52 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.2.1
 MIME-Version: 1.0
-X-OriginatorOrg: renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 88f4ab70-a44b-4409-2db4-08d715c353ce
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2019 14:28:16.3772
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Chris.Brandt@renesas.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1563
+In-Reply-To: <20190711151631.GI7234@tuxbook-pro>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
+On 7/11/19 17:16, Bjorn Andersson wrote:
+> On Tue 25 Jun 09:47 PDT 2019, Jorge Ramirez-Ortiz wrote:
+> 
+>> When COMMON_CLK_DISABLED_UNUSED is set, in an effort to save power and
+>> to keep the software model of the clock in line with reality, the
+>> framework transverses the clock tree and disables those clocks that
+>> were enabled by the firmware but have not been enabled by any device
+>> driver.
+>>
+>> If CPUFREQ is enabled, early during the system boot, it might attempt
+>> to change the CPU frequency ("set_rate"). If the HFPLL is selected as
+>> a provider, it will then change the rate for this clock.
+>>
+>> As boot continues, clk_disable_unused_subtree will run. Since it wont
+>> find a valid counter (enable_count) for a clock that is actually
+>> enabled it will attempt to disable it which will cause the CPU to
+>> stop.
+> 
+> But if CPUfreq has acquired the CPU clock and the hfpll is the currently
+> selected input, why does the clock framework not know about this clock
+> being used?
 
-On Wed, Jul 31, 2019, Geert Uytterhoeven wrote:
-> The two Ethernet ports on the RZA2MEVB development board are labeled
-> "Ether1" and "Ether2".  Reflect this numbering in the ethernet aliases.
+right, see the comment right below - maybe I should have been more
+explicit at the time. sorry about it.
 
-However, the channels are labeled as ETHERC0 and ETHERC1 in the hardware
-manual.
+> 
+>> Notice that in this driver, calls to check whether the clock is
+>> enabled are routed via the is_enabled callback which queries the
+>> hardware.
 
-So I guess my question is, in general, is the board specific Device Tree
-supposed to describe what is on the SoC? Or on the board silk screen?
+calls to check whether the clock is enabled dont use the usage counter
+but a hardware read. IIRC the clock framework will check some counter to
+know if the clock is being used.
 
-Maybe this is like "COM1" is labeled on PC motherboard and we expect it=20
-to show up as /dev/ttyS0 regardless of what physical serial port it is=20
-connected to.
+>>
+>> The following commit, rather than marking the clock critical and
+>> forcing the clock to be always enabled, addresses the above scenario
+>> making sure the clock is not disabled but it continues to rely on the
+>> firmware to enable the clock.
+>>
+>> Co-developed-by: Niklas Cassel <niklas.cassel@linaro.org>
+>> Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
+>> Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+> 
+> 
+> I can see that we have a real issue in the case where CPUfreq is not
+> enabled and hence there are no clients, according to Linux. And that I
+> don't know another way to guard against.
 
-Thanks,
-Chris
+the issue is there when CPUfreq is enabled that is for sure (if we just
+remove this commit the system will not boot due to the situation I tried
+to describe above).
+
+> 
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> 
+> Regards,
+> Bjorn
+> 
+>> ---
+>>  drivers/clk/qcom/hfpll.c | 7 +++++++
+>>  1 file changed, 7 insertions(+)
+>>
+>> diff --git a/drivers/clk/qcom/hfpll.c b/drivers/clk/qcom/hfpll.c
+>> index 0ffed0d41c50..d5fd27938e7b 100644
+>> --- a/drivers/clk/qcom/hfpll.c
+>> +++ b/drivers/clk/qcom/hfpll.c
+>> @@ -58,6 +58,13 @@ static int qcom_hfpll_probe(struct platform_device *pdev)
+>>  		.parent_names = (const char *[]){ "xo" },
+>>  		.num_parents = 1,
+>>  		.ops = &clk_ops_hfpll,
+>> +		/*
+>> +		 * rather than marking the clock critical and forcing the clock
+>> +		 * to be always enabled, we make sure that the clock is not
+>> +		 * disabled: the firmware remains responsible of enabling this
+>> +		 * clock (for more info check the commit log)
+>> +		 */
+>> +		.flags = CLK_IGNORE_UNUSED,
+>>  	};
+>>  
+>>  	h = devm_kzalloc(dev, sizeof(*h), GFP_KERNEL);
+>> -- 
+>> 2.21.0
+>>
+> 
 
