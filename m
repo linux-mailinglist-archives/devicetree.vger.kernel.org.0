@@ -2,147 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4C2647CE7A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:30:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 63FB27CEAB
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:34:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730769AbfGaUaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 16:30:17 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:34740 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729929AbfGaUaP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:30:15 -0400
-Received: by mail-pg1-f194.google.com with SMTP id n9so26409253pgc.1
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 13:30:15 -0700 (PDT)
+        id S1727549AbfGaUeS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 16:34:18 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:34236 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727008AbfGaUeR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:34:17 -0400
+Received: by mail-ot1-f66.google.com with SMTP id n5so71687612otk.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 13:34:17 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=iBFNsIG7+sA5uP79GYpMUJteIYJvl8bRHir2wXbiAZo=;
-        b=l+QfNMcOnasx23NVguShFSHhmIX+5XjAOY4sDZYw4Gqf460wG4DVJg4dDYkZbcyn0o
-         dqZC3So/kh7ufZuum5Yh16nK3sN8AWZ5jAzBT7BEZbHJED51q5/TY5Jbn7VA99tCep6F
-         D6MOXzvYwMbkniTV9V0E2hvKhvDJAdPG9lIaiI0D6yNRVrMFgog9+ew4xrALMM+FrEJK
-         NcVHvx2ZNMhOKxQtxFkhojWfkpYMpCQxW6fbnggvpiA36K6OdsuPKmTZI0wiQJ3aAzHr
-         hW/P4aCvkR6aZBHl/KJrEAs14WnDhkJruRyy6U/oFxAm5OTq4+N7MyDu5yFRKBh/inv4
-         4XsQ==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=lhyyuWidO2twh71QoQ3IyDneg0h8HkC4FDMzjkF1Knc=;
+        b=oTcevW9uWVkAu1HV6ScFP/3BL3h8q7oqrox2GAXadT4n5q0fxkeVFbK61hBM1/FX72
+         amIN8l7y8mL4tsZTcwiOivgqwH2T8WKYhShkXthvqnDicbFspi0XhjDECDABx9LCrMuG
+         JZNA3dGkqlFWZMZt5XCzikl64GgO3fBtlV9EjDQFaMgVcW9Nk0in+KkuER5S8EVeGz4d
+         HQ6iUlv+QZ0oNb4ux5lopRditexf/QmMVvP2nC4i469dNzzRP4pbUlYzu7yHsA8dpv7b
+         XQ16lnHfRO/36EiCH/gjJDx9n986zIAHcLvzTIw7rL9X6ndZyk/KdYABIhkC90KHoqjR
+         cuJA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=iBFNsIG7+sA5uP79GYpMUJteIYJvl8bRHir2wXbiAZo=;
-        b=AX36jIExhh6gbuCoMJrbHzhgEsQoblah0HKdMTVPDprFEgHH+WbzdMWhVqF5px4faW
-         RujZxmDAjjWCLh97x3r8TqdYwHfe7tWZfQzQek98up2BdC2ZCNzAbDFqN2U/8Y/KCqaD
-         27n6lX+9E3HJ3T2SWLqpRmt1bMxaI25NgSFncV9xrU+TcjofjiEXEmO64/ZISZS9LPPt
-         EfWGpD82HVzjGp80iyCqhVatAGU4zrZOO9eMHHJCFvj1u3pvYWARQsd+0kA02lakd8PL
-         zUSHUbRU70XwGMHAe5hz5vOFx1LbLJnYfeK1yFiRgQnv/hdxdyJGIUOi0c3PBIEv4G6l
-         AEKg==
-X-Gm-Message-State: APjAAAXfIhHbj/Ghx7ZAtxgBQ9u9Ai95ZkEexSWMETg9FB2ujsJFsIhz
-        i/1dUR91zyjFv8TAsvvX984=
-X-Google-Smtp-Source: APXvYqyJUAQ0n7FkXPmH3UNtvWGzACMfJ9md+gH22q3JDEBzcrdzfFE6f4FxA7+o4knjJCEkZaAC5Q==
-X-Received: by 2002:a17:90a:fa07:: with SMTP id cm7mr4546691pjb.138.1564605015229;
-        Wed, 31 Jul 2019 13:30:15 -0700 (PDT)
-Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
-        by smtp.gmail.com with ESMTPSA id q63sm90005325pfb.81.2019.07.31.13.30.14
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 31 Jul 2019 13:30:14 -0700 (PDT)
-Subject: Re: [PATCH] scripts/dtc: dtx_diff - add color output support
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org
-References: <20190731123741.13947-1-geert+renesas@glider.be>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <342e5e38-f980-c849-c061-8dad42bc0850@gmail.com>
-Date:   Wed, 31 Jul 2019 13:30:13 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=lhyyuWidO2twh71QoQ3IyDneg0h8HkC4FDMzjkF1Knc=;
+        b=cvEuVVteB0tvPZsHOyfbxykHFfTd5zZ7171lQzfW0IKxzPb++WYMcm22d7AH1GI5Yn
+         OWvjQbNNgqgb7R+heWqn93GQu3t1KBett+vezm5OKtJsgNFPP3L2JqJ4ZC23S6IsNWAn
+         phliaHx0/KvrSrib2vYkF9a+CE/AdOI4eCg+VxBhElMeV1s/HISFWPnYlAtjQW9LReGC
+         JPloZNYEV0YFuS/fV02cOhDJzTnDE0Y6D1XpufJJtOEGVZeHuehPAZuon6gCDlYPF2Ss
+         xVskbeyblRBM0Ba+h+CLazR341xxIhkt6sDqafV/AirkH/YTDuii/Fm0stdLDvYyNamy
+         RUNw==
+X-Gm-Message-State: APjAAAXgtiaBYTNLG3IOkF9kpdLC2HZk8HJvRfmgEK5+XAM/vKG8mHFH
+        zsTttC9hjlfGCzi+lkG9g5X7+dvZvN7kzSaOwcM/ZuKBXIg=
+X-Google-Smtp-Source: APXvYqwXtu9HEqzwg6BxGW5PDsoBHhz2CdJ/FLp995gTLUpgkjXsVaauGGNSjFMwkoUiNFLz7F+W3M46Tx08cZEpBvY=
+X-Received: by 2002:a05:6830:160c:: with SMTP id g12mr37738641otr.231.1564605256524;
+ Wed, 31 Jul 2019 13:34:16 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190731123741.13947-1-geert+renesas@glider.be>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190729221101.228240-4-saravanak@google.com> <20190731181733.60422-1-natechancellor@gmail.com>
+In-Reply-To: <20190731181733.60422-1-natechancellor@gmail.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 31 Jul 2019 13:33:40 -0700
+Message-ID: <CAGETcx9LXP9b_W_1XQFmjODPJVrbnU+vH1RKer2i=jU7Q7EADg@mail.gmail.com>
+Subject: Re: [PATCH] of/platform: Add missing const qualifier in of_link_property
+To:     Nathan Chancellor <natechancellor@gmail.com>
+Cc:     David Collins <collinsd@codeaurora.org>,
+        Jonathan Corbet <corbet@lwn.net>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        kbuild test robot <lkp@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
-
-On 7/31/19 5:37 AM, Geert Uytterhoeven wrote:
-> Add new -c/--color options, to enhance the diff output with color, and
-> improve the user's experience.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+On Wed, Jul 31, 2019 at 11:19 AM Nathan Chancellor
+<natechancellor@gmail.com> wrote:
+>
+> Clang errors:
+>
+> drivers/of/platform.c:632:28: error: initializing 'struct
+> supplier_bindings *' with an expression of type 'const struct
+> supplier_bindings [4]' discards qualifiers
+> [-Werror,-Wincompatible-pointer-types-discards-qualifiers]
+>         struct supplier_bindings *s = bindings;
+>                                   ^   ~~~~~~~~
+> 1 error generated.
+>
+> Fixes: 05f812549f53 ("of/platform: Add functional dependency link from DT bindings")
+> Reported-by: kbuild test robot <lkp@intel.com>
+> Signed-off-by: Nathan Chancellor <natechancellor@gmail.com>
 > ---
->  scripts/dtc/dtx_diff | 10 +++++++++-
->  1 file changed, 9 insertions(+), 1 deletion(-)
-> 
-> diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
-> index e9ad7834a22d9459..4e2c8617f69a333e 100755
-> --- a/scripts/dtc/dtx_diff
-> +++ b/scripts/dtc/dtx_diff
-> @@ -20,6 +20,8 @@ Usage:
->  
->  
->        --annotate    synonym for -T
-> +      --color       synonym for -c
-> +       -c           enable colored output
->         -f           print full dts in diff (--unified=99999)
->         -h           synonym for --help
->         -help        synonym for --help
-> @@ -178,6 +180,7 @@ compile_to_dts() {
->  annotate=""
->  cmd_diff=0
->  diff_flags="-u"
-> +diff_color=""
->  dtx_file_1=""
->  dtx_file_2=""
->  dtc_sort="-s"
-> @@ -189,6 +192,11 @@ while [ $# -gt 0 ] ; do
->  
->  	case $1 in
->  
-> +	-c | --color )
-> +		diff_color="--color=always"
-> +		shift
-> +		;;
-> +
->  	-f )
->  		diff_flags="--unified=999999"
->  		shift
-> @@ -344,7 +352,7 @@ DTC="\
->  
->  if (( ${cmd_diff} )) ; then
->  
-> -	diff ${diff_flags} --label "${dtx_file_1}" --label "${dtx_file_2}" \
-> +	diff ${diff_flags} ${diff_color} --label "${dtx_file_1}" --label "${dtx_file_2}" \
->  		<(compile_to_dts "${dtx_file_1}" "${dtx_path_1_dtc_include}") \
->  		<(compile_to_dts "${dtx_file_2}" "${dtx_path_2_dtc_include}")
->  
-> 
+>
+> Given this is still in the driver-core-testing branch, I am fine with
+> this being squashed in if desired.
+>
+>  drivers/of/platform.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index e2da90e53edb..21838226d68a 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -629,7 +629,7 @@ static bool of_link_property(struct device *dev, struct device_node *con_np,
+>                              const char *prop)
+>  {
+>         struct device_node *phandle;
+> -       struct supplier_bindings *s = bindings;
+> +       const struct supplier_bindings *s = bindings;
+>         unsigned int i = 0;
+>         bool done = true, matched = false;
 
-I like the idea, but...
+Odd. I never got that email. Thanks for fixing this. I'll squash it
+into my patch series since I have a bunch of other kbuild errors about
+documentation.
 
-I have various linux distro releases across my many systems, but only one is
-new enough to have the diff command that supports --color.
-
-Can you enhance this patch to test whether --color is supported?  Maybe
-something like (untested):
-
-	-c | --color )
-		if `diff --color <(echo a) <(echo a) 2>/dev/null` ; then
-			diff_color="--color=always"
-		fi
-		shift
-		;;
-
-Then add some text to the usage for -c and --color saying that they will
-be silently ignored if diff does not support --color.
-
-I first wrote up a suggested version that printed an error message and
-exited, but I think silently ignoring is more robust, even though it
-may be more confusing to someone who is wondering why --color does not
-work.
-
-Thanks,
-
-Frank
+-Saravana
