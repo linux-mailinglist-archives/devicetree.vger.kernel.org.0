@@ -2,57 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F07AD7C1BA
+	by mail.lfdr.de (Postfix) with ESMTP id 1DE037C1B8
 	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:40:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727073AbfGaMk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 08:40:27 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:38034 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726806AbfGaMkH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:40:07 -0400
-Received: by mail-wm1-f68.google.com with SMTP id s15so38325610wmj.3
+        id S2387586AbfGaMkT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 08:40:19 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:43951 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727859AbfGaMkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:40:08 -0400
+Received: by mail-wr1-f67.google.com with SMTP id p13so69484909wru.10
         for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 05:40:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Xe8le1rAv9c22BBejf6Z3Lo2hw7eI8a1UNBXoRk+Yi0=;
-        b=PGy/fco8tRozJWdUNRKJw//67DCItYzo0GDNZdudkaCV2yG+Rw8+yQWdoVaNY8+QU1
-         0PIu8KXUHfLeBH5NfYmCwWTM6C31+kCNYxGVCPPM9onPEivGwRibufEoEiWuzU6VzP3A
-         HSuLJewrwWp80zR9pq8ZgR9bKGWUioXhe6VXJAKpQs8NdTGblynjD0TfTuInDyo+sGW3
-         7AK5n+ERxPpoDG4qX+34eyJhW8D9VtTNK2RLoPFSPC8jgyEFujPJWFKIY4WQDN4qKdnK
-         5q1gRL3RAcWJSYHpTM1uIaJMpbtnCsTMBed8DY7bH0v1LA4R8AQzIEeuEiJooDFHP/NA
-         QRdw==
+        bh=U87qbGqOizt6mcWi4ZafXpAVErJ10/2GJDrgCn/BFng=;
+        b=zEzqFVja0Fqsg11qypzSTOGn9YUbHxrTCRpomYU2xnSk4RqosdMU3RsLKQ5IHrk01v
+         gZa8uGmAP550xts1ob0QR4t+ujj6f6l4TPGUMJBTI1aXnFAHRLDITtONU9DDzGDNd6fH
+         b9UA6re8oJh0ZuRd7oJljeKVy1nwM2wt9MzpO1rIUn6rSJcD8SKFHAT+zvtKXc8CrPSL
+         Cw4OLEzT9m02WDlPC3JU4Wc9Y+o69mwLzcaIL3DBzErWh8oaqJOcNs1bZjxyGSYXOBNW
+         Zs3wlfRxgPz3+Wv+dW7ILng2azVJyENzMtL3tbafMQGYvkRSgsAFFrpNh6hbT/q8W/gN
+         0enQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Xe8le1rAv9c22BBejf6Z3Lo2hw7eI8a1UNBXoRk+Yi0=;
-        b=tukNoa/EGWnigaG9b+Xul80vDvOBhJn7MBfnwAGXf8qck3e/DPeUMPMVH12rQe3Pam
-         kD8HOz3qGfaBROgOBBaUcNZAXeaKvvsVIAiM6kqTFftJG0EJXCfIbr9hWnX1KFC6JnxB
-         9Y33uPL6KzKnuoLPidpyyT8KNby9HHUQe2CpdWZMUksKkxOLwYTvMA51o97DoMdwv7Hm
-         mZOmCk382QDGlR0+mZ4w9SC5M9rL9+k75k2vUeRnO4UrUMjAJEBjlAsONYdn8V1tu2P3
-         Mt7qaot/Rwac0aqOuOylkeLhDnj7DE2HSzRb03EMWMFqXBAegfSkFHnRQoMEskvDUFf5
-         YroQ==
-X-Gm-Message-State: APjAAAXiPLZZJIp75I3D14YsodR1FNUwOVnf3HLivQLzscZ8l0nTdezW
-        6cHku+6Ds5eFreMi4016P/MrdhgceJc=
-X-Google-Smtp-Source: APXvYqywTaw2xEUJ8dm/vPRRqzOvCCaKYRb7o4Drdbuga9kRSBPZbcQ8wxouvF1zlJTXZWYegGf9ww==
-X-Received: by 2002:a1c:6a0e:: with SMTP id f14mr117570578wmc.154.1564576806140;
+        bh=U87qbGqOizt6mcWi4ZafXpAVErJ10/2GJDrgCn/BFng=;
+        b=qQCd8pCp/5XICshHivBnA8p1XYHG4oDyG/dOIfkJKEijgfZoqSW6lB8VZ6rpSYIrgq
+         29HHzUh8c/T73gcN1ugSS8A+fKBUrhfDazrLCUGN2K2XYzJoYRvGgsh/jgcDykjsSd28
+         NsLOKAJ8Z74uFO536Hyx5hdTR2NujDOc/lY/OIL+F3/ag5iyNQpTBJM85KMIRMUeYh2g
+         WFZwJ7R+eYRbDszpZqsobR15ZZEdhyq0ajEmRFvnILuo6DT9ayAPzd1hoNk91FZ6Vi7t
+         2ZTSWGXyQY1hXOBgYOH61ick2VkuXWqlxEriAlv9n7RIo22sWFVYauKc/diXB1NbcSHI
+         X9zA==
+X-Gm-Message-State: APjAAAXH68aXZH5Xl6Tspw5e3Sv6wBz8YHylwZqzQFbCLsRho741PwsA
+        kTUo3eyR51lDGccPbieOesDsjw==
+X-Google-Smtp-Source: APXvYqwRvaDIRDg5/7CHt0j5vI443O9wSUNUp31+MGhBKdXuOhMOSbWoNqXVYU+B1ah5lM6/dpyi7Q==
+X-Received: by 2002:a5d:428a:: with SMTP id k10mr15513765wrq.329.1564576806822;
         Wed, 31 Jul 2019 05:40:06 -0700 (PDT)
 Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id x185sm62504271wmg.46.2019.07.31.05.40.05
+        by smtp.gmail.com with ESMTPSA id x185sm62504271wmg.46.2019.07.31.05.40.06
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 31 Jul 2019 05:40:05 -0700 (PDT)
+        Wed, 31 Jul 2019 05:40:06 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     khilman@baylibre.com, devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+Cc:     Christian Hewitt <christianshewitt@gmail.com>,
         linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        christianshewitt@gmail.com
-Subject: [PATCH 3/6] dt-bindings: arm: amlogic: add bindings for the Amlogic G12B based A311D SoC
-Date:   Wed, 31 Jul 2019 14:39:57 +0200
-Message-Id: <20190731124000.22072-4-narmstrong@baylibre.com>
+        Neil Armstrong <narmstrong@baylibre.com>
+Subject: [PATCH 4/6] dt-bindings: arm: amlogic: add support for the Khadas VIM3
+Date:   Wed, 31 Jul 2019 14:39:58 +0200
+Message-Id: <20190731124000.22072-5-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190731124000.22072-1-narmstrong@baylibre.com>
 References: <20190731124000.22072-1-narmstrong@baylibre.com>
@@ -63,30 +63,55 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a specific compatible for the Amlogic G12B bases A311D SoC used
-in the Khadas VIM3.
+From: Christian Hewitt <christianshewitt@gmail.com>
 
+The Khadas VIM3 uses the Amlogic S922X or A311S SoC, both based on the
+Amlogic G12B SoC family, on a board with the same form factor as the
+VIM/VIM2 models. It ships in two variants; basic and
+pro which differ in RAM and eMMC size:
+
+- 2GB (basic) or 4GB (pro) LPDDR4 RAM
+- 16GB (basic) or 32GB (pro) eMMC 5.1 storage
+- 16MB SPI flash
+- 10/100/1000 Base-T Ethernet
+- AP6398S Wireless (802.11 a/b/g/n/ac, BT5.0)
+- HDMI 2.1 video
+- 1x USB 2.0 + 1x USB 3.0 ports
+- 1x USB-C (power) with USB 2.0 OTG
+- 3x LED's (1x red, 1x blue, 1x white)
+- 3x buttons (power, function, reset)
+- IR receiver
+- M2 socket with PCIe, USB, ADC & I2C
+- 40pin GPIO Header
+- 1x micro SD card slot
+
+Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- Documentation/devicetree/bindings/arm/amlogic.yaml | 5 +++++
- 1 file changed, 5 insertions(+)
+ Documentation/devicetree/bindings/arm/amlogic.yaml | 3 +++
+ 1 file changed, 3 insertions(+)
 
 diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-index 3c3bc806cd23..efa032d12402 100644
+index efa032d12402..04a2b0ef34c6 100644
 --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
 +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-@@ -135,6 +135,11 @@ properties:
-               - amlogic,u200
-           - const: amlogic,g12a
+@@ -137,6 +137,8 @@ properties:
  
-+      - description: Boards with the Amlogic Meson G12B A311D SoC
-+        items:
-+          - const: amlogic,a311d
-+          - const: amlogic,g12b
-+
-       - description: Boards with the Amlogic Meson G12B S922X SoC
+       - description: Boards with the Amlogic Meson G12B A311D SoC
+         items:
++          - enum:
++              - khadas,vim3
+           - const: amlogic,a311d
+           - const: amlogic,g12b
+ 
+@@ -144,6 +146,7 @@ properties:
          items:
            - enum:
+               - hardkernel,odroid-n2
++              - khadas,vim3
+           - const: amlogic,s922x
+           - const: amlogic,g12b
+ 
 -- 
 2.22.0
 
