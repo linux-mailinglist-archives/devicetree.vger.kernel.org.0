@@ -2,102 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 71BD57BBB9
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:32:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1B5097BC5B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:57:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725970AbfGaIc5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 04:32:57 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:38971 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725866AbfGaIc5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 04:32:57 -0400
-Received: by mail-wm1-f67.google.com with SMTP id u25so48634888wmc.4;
-        Wed, 31 Jul 2019 01:32:55 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=Vv7QJlhqsQ8aHiLfsYKcKvtxePDzn2Rbc7z1MBOOQ9Y=;
-        b=axSdODjw3jXgx4S9R8vd6L6ENp4zPspBhge4toszOo07c2BEDbGgYx+A+/yS+581Ab
-         PwGjp0Cptxh7qa+bMuJKiry4d1iajGrmWNaUdd4zxKPWrWJgV4EIvq0gfnDsGt/el3v9
-         R6b/orCu50jz41TgCJV/AAGJTMdQ8qjUoT4fKbcyXV7h83w2RDhlfYsWMJX+cZbP2gdi
-         mvaNB8hg2aZi8NHURzoeZEFIc0RiA0w1lXvy36Z5jG4Gk6D0PkLhG48u70e3rkCd4Wje
-         NGZAQAqiAV8ntnXKhFj0yZhflEnMXkVAdmEir9SrD2JnA9OxJh9JFTq81XIdTC92jof0
-         MB6g==
-X-Gm-Message-State: APjAAAWMkchdNPyfckyYQt/87riETBdQttvBP90XfuQXMs2DSWX5Kknb
-        EYyljy+SxXO8Ny6Zw4KK5BvpFUeQrWc1JRVsitw=
-X-Google-Smtp-Source: APXvYqya/XfPxO65m02NWkmZ45+9x/Fzz1kXR3vOrCtLpHfH6e9/DbeCK8UArUmFGOkuZI9NP57/KPuy1ff+LkPKIHM=
-X-Received: by 2002:a05:600c:254b:: with SMTP id e11mr102178270wma.171.1564561975116;
- Wed, 31 Jul 2019 01:32:55 -0700 (PDT)
+        id S1726270AbfGaI5b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 04:57:31 -0400
+Received: from imap1.codethink.co.uk ([176.9.8.82]:38038 "EHLO
+        imap1.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725857AbfGaI5b (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 04:57:31 -0400
+Received: from [167.98.27.226] (helo=[10.35.6.253])
+        by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
+        id 1hskQ5-0003o4-QJ; Wed, 31 Jul 2019 09:57:13 +0100
+Subject: Re: [alsa-devel] [PATCH v2 2/3] ASoC: Add codec driver for ST TDA7802
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        linux-kernel@vger.kernel.org, Takashi Iwai <tiwai@suse.com>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Vinod Koul <vkoul@kernel.org>, Mark Brown <broonie@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Patrick Glaser <pglaser@tesla.com>,
+        Rob Duncan <rduncan@tesla.com>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        Nate Case <ncase@tesla.com>,
+        Cheng-Yi Chiang <cychiang@chromium.org>
+References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
+ <20190730120937.16271-3-thomas.preston@codethink.co.uk>
+ <20190730145844.GI4264@sirena.org.uk>
+ <fe11c806-2285-558c-e35c-d8f61de00784@codethink.co.uk>
+ <20190731060644.yrewu2kvrlootyyl@pengutronix.de>
+From:   Thomas Preston <thomas.preston@codethink.co.uk>
+Message-ID: <820e2ea9-14a2-795c-9b78-e8f2a30afdb1@codethink.co.uk>
+Date:   Wed, 31 Jul 2019 09:57:12 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190731073744.13963-1-geert+renesas@glider.be>
- <20190731074801.5706-1-geert+renesas@glider.be> <20190731081209.GA5080@pendragon.ideasonboard.com>
-In-Reply-To: <20190731081209.GA5080@pendragon.ideasonboard.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Wed, 31 Jul 2019 10:32:42 +0200
-Message-ID: <CAMuHMdV9MEYP97_6RFhmbGGB8uY-Pi8S9q+m+XMmHzKHcibJwQ@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a77995: draak: Fix backlight
- regulator name
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Johan Hovold <johan@kernel.org>,
-        Mark Brown <broonie@kernel.org>, Rob Herring <robh@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190731060644.yrewu2kvrlootyyl@pengutronix.de>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
+On 31/07/2019 07:06, Marco Felsch wrote:
+> Hi Thomas,
+> 
+> again sorry for jumping in..
+> 
 
-On Wed, Jul 31, 2019 at 10:12 AM Laurent Pinchart
-<laurent.pinchart@ideasonboard.com> wrote:
-> On Wed, Jul 31, 2019 at 09:48:01AM +0200, Geert Uytterhoeven wrote:
-> > Currently there are two nodes named "regulator1" in the Draak DTS: a
-> > 3.3V regulator for the eMMC and the LVDS decoder, and a 12V regulator
-> > for the backlight.  This causes the former to be overwritten by the
-> > latter.
-> >
-> > Fix this by renaming all regulators with numerical suffixes to use named
-> > suffixes, which are less likely to conflict.
->
-> Aren't DT node names supposed to describe the device type, not a
-> particular instance of the device ? This is something that has bothered
-> me too, but I believe the naming scheme should be decided globally, not
-> per board. Is there precedent for using this scheme that has been
-> explicitly approved by the DT maintainers ?
+Np!
 
-The example in Documentation/devicetree/bindings/regulator/regulator.yaml
-uses "regulator@0", which of course works only if #address-cells = 1, which
-is usually not the case for discrete regulators.
-BTW, the example lacks a "reg" property...
+> On 19-07-30 18:26, Thomas Preston wrote:
+>> On 30/07/2019 15:58, Mark Brown wrote:
+>>> On Tue, Jul 30, 2019 at 01:09:36PM +0100, Thomas Preston wrote:
+>>>> +	case SND_SOC_BIAS_STANDBY:
+>>>> +		err = regulator_enable(tda7802->enable_reg);
+>>>> +		if (err < 0) {
+>>>> +			dev_err(component->dev, "Could not enable.\n");
+>>>> +			return err;
+>>>> +		}
+>>>> +		dev_dbg(component->dev, "Regulator enabled\n");
+>>>> +		msleep(ENABLE_DELAY_MS);
+>>>
+>>> Is this delay needed by the device or is it for the regulator to ramp?
+>>> If it's for the regulator to ramp then the regulator should be doing it.
+>>>
+>>
+>> According to the datasheet the device itself takes 10ms to rise from 0V
+>> after PLLen is enabled. There are additional rise times but they are
+>> negligible with default capacitor configuration (which we have).
+>>
+>> Good to know about the regulator rising configuration though. Thanks.
+> 
+> Isn't it the regulator we mentioned to not use that because it is a
+> GPIO?
+> 
 
-So some other suffix has to be added to distinguish individual "regulator"
-nodes.
-
-The example in Documentation/devicetree/bindings/regulator/fixed-regulator.yaml
-uses "regulator-1v8" since commit b735f41dcb06ae06 ("dt-bindings: regulator:
-update fixed-regulator example"), which received a Reviewed-by from Rob
-after it was committed.
-https://lore.kernel.org/lkml/CAL_Jsq+rRYazOqtjNms0cTK0HpkxCkmZ4JXoLM7ZaPivATEO8A@mail.gmail.com/
-
-Looks good enough to me ;-)
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+Yeah it is - I intend to switch PLLen to gpio API.
