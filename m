@@ -2,96 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49AE07CCA8
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 21:21:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 804FC7CD85
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:01:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729442AbfGaTVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 15:21:01 -0400
-Received: from mail-pg1-f193.google.com ([209.85.215.193]:35451 "EHLO
-        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729013AbfGaTVB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 15:21:01 -0400
-Received: by mail-pg1-f193.google.com with SMTP id s1so26237147pgr.2
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 12:21:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=X62yo9M2x8AQnMbVtc4ggTigIh/r5p8ibryWAFvQyto=;
-        b=JJ6GFkbQvta211g9zdGJcCxQp+kBr8PntIaiqyI245LZvlsdc5Dnqw9KaPjdGd0VXN
-         WSTRVeNuNKdEyl9/ZDzFMO11fysXezZhzO6llwaZ8l6VC2FjbfOzb37RaNBuuM7Y0iro
-         htgvSJMUXgsZSOF+QOFPHyPQZ1Q6k9ZUmSzmdboFRZkXdxHCwJrLiDQwwSjHMOOqYUNY
-         AM9rA4UJ032JOq9UYt9CPPNX1JfzZuOrgtxLFNXzmVZ+rghGYuYAFm0NmhHu5eL/Azjv
-         ENKg55jJvZ/nf8k08eQ80kKtNTN2jgbxKDgQ/dhjLHY1llJm3nHUT8+JS16ddOCSZvJV
-         enVA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=X62yo9M2x8AQnMbVtc4ggTigIh/r5p8ibryWAFvQyto=;
-        b=Ry6zZDLHLdAHDqW8qKSOJwbo4ar0qf4zmQ6jvQWCFg022yYzP12RCp4G3Nh41VKikw
-         E/AA9zfW+oUHO7s3JGZCreExsLIe8HMWeiS8gjzH0PmbCv7RoG2krVrlge8UY0NeYRf+
-         geSP3lUvl54KYw++tWoXoxUgrpaffDxB11Ea7Ek3tcZpAvErlqEInBQeHaBa4ULI3oeX
-         v6AN75xFrvTaa3o0rTD8fSqV7TubOvfBCok1jLtaKvqkI91Qrb0V/usBoCs4wVfuwket
-         jGUULE6vaBfQoB+S+1auRHIEC+PXHbSV46WOdeLj/kjvzdouasKvqxkbGiE8VFK0+B3H
-         9JbQ==
-X-Gm-Message-State: APjAAAWv30XYthitM3niiY6X7OxVR+A2aj73kO61xmL7/jOnmKf76UZ0
-        M89AQPwTnxD/Pc2V/Wqhy9c=
-X-Google-Smtp-Source: APXvYqyMaIkNUPKYx+62ofI6KXmpuBGhDnGP8Uyh7gpRvdfL3Hh9iuEDFyCjXiu9ZAdmDrM7BtygSA==
-X-Received: by 2002:a17:90a:d997:: with SMTP id d23mr4261721pjv.84.1564600860631;
-        Wed, 31 Jul 2019 12:21:00 -0700 (PDT)
-Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
-        by smtp.gmail.com with ESMTPSA id w14sm77399169pfn.47.2019.07.31.12.20.59
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 31 Jul 2019 12:21:00 -0700 (PDT)
-Subject: Re: [PATCH] scripts/dtc: dtx_diff - make help text formatting
- consistent
-To:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>
-Cc:     devicetree@vger.kernel.org
-References: <20190731123548.13787-1-geert+renesas@glider.be>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <d1e4277e-505c-9cd5-b26c-4c307504f7c4@gmail.com>
-Date:   Wed, 31 Jul 2019 12:20:59 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1730339AbfGaUBy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 16:01:54 -0400
+Received: from atlmailgw2.ami.com ([63.147.10.42]:54966 "EHLO
+        atlmailgw2.ami.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727411AbfGaUBx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:01:53 -0400
+X-AuditID: ac10606f-d11ff70000003324-8e-5d41f3b03e75
+Received: from atlms1.us.megatrends.com (atlms1.us.megatrends.com [172.16.96.144])
+        (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
+        (Client did not present a certificate)
+        by atlmailgw2.ami.com (Symantec Messaging Gateway) with SMTP id A3.A0.13092.0B3F14D5; Wed, 31 Jul 2019 16:01:52 -0400 (EDT)
+Received: from hongweiz-Ubuntu-AMI.us.megatrends.com (172.16.98.93) by
+ atlms1.us.megatrends.com (172.16.96.144) with Microsoft SMTP Server (TLS) id
+ 14.3.408.0; Wed, 31 Jul 2019 16:01:51 -0400
+From:   Hongwei Zhang <hongweiz@ami.com>
+To:     Andrew Jeffery <andrew@aj.id.au>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        <linux-gpio@vger.kernel.org>
+CC:     Hongwei Zhang <hongweiz@ami.com>, Joel Stanley <joel@jms.id.au>,
+        <devicetree@vger.kernel.org>, <linux-aspeed@lists.ozlabs.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-kernel@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>
+Subject: [v7 0/2] gpio: aspeed: Add SGPIO driver
+Date:   Wed, 31 Jul 2019 16:01:35 -0400
+Message-ID: <1564603297-1391-1-git-send-email-hongweiz@ami.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-In-Reply-To: <20190731123548.13787-1-geert+renesas@glider.be>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
+X-Originating-IP: [172.16.98.93]
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrHLMWRmVeSWpSXmKPExsWyRiBhgu6Gz46xBiuaDCx2Xeaw+DL3FIvF
+        /CPnWC1+n//LbDHlz3Imi02Pr7FaNK8+x2yxef4fRovLu+awWSy9fpHJonXvEXYHbo+r7bvY
+        PdbMW8Po8f5GK7vHxY/HmD02repk87hzbQ+bx+Yl9R7nZyxk9Pi8SS6AM4rLJiU1J7MstUjf
+        LoEro/vcBPaCp+wV/9+fZWxgbGXrYuTkkBAwkbi3A8Tm4hAS2MUkMevfBWYI5zCjxISf35hA
+        qtgE1CT2bp4DZosI5EkcXv+WFaSIWeAUk8SMfZ2sIAlhAQOJee1zmUFsFgFViXN774A18ArY
+        S2z7t54JYp2cxM1zncwQcUGJkzOfsIDYzAISEgdfvACLCwnIStw69BiqXkHied9jlgmMfLOQ
+        tMxC0rKAkWkVo1BiSU5uYmZOermRXmJupl5yfu4mRkiY5+9g/PjR/BAjEwfjIUYJDmYlEd7F
+        4vaxQrwpiZVVqUX58UWlOanFhxilOViUxHlXrfkWIySQnliSmp2aWpBaBJNl4uCUamBMaLqf
+        pOM6K2tCuYtvEJNQYAuvlt7pF3e95T/kJbtu27Pxy7fUhyXM3Hy3s2q9Fx11KzBwkpD+umnN
+        eReHLWoJjx69ei3C1pt0pae8k/2X0v5cfnOJnh8n2W55Fs1eeG+X1cNuMbY910UL//x1lvL4
+        3yv4Z5V+wC6+vywlPtPl+t1LVFN/dymxFGckGmoxFxUnAgB+9vPoYQIAAA==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 7/31/19 5:35 AM, Geert Uytterhoeven wrote:
-> None of the help texts use capitalization, except the one for the -T
-> option.  Drop the capitalization for consistency.
-> Split the single long line that doesn't fit in 80 characters.
-> 
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
->  scripts/dtc/dtx_diff | 3 ++-
->  1 file changed, 2 insertions(+), 1 deletion(-)
-> 
-> diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
-> index 00fd4738a5877948..e9ad7834a22d9459 100755
-> --- a/scripts/dtc/dtx_diff
-> +++ b/scripts/dtc/dtx_diff
-> @@ -27,7 +27,8 @@ Usage:
->         -s SRCTREE   linux kernel source tree is at path SRCTREE
->                          (default is current directory)
->         -S           linux kernel source tree is at root of current git repo
-> -       -T           Annotate output .dts with input source file and line (-T -T for more details)
-> +       -T           annotate output .dts with input source file and line
-> +                        (-T -T for more details)
->         -u           unsorted, do not sort DTx
->  
->  
-> 
+Hello,
 
-Thanks Geert!
+This short series introduce dt-binding document and a driver for the 
+Aspeed AST2500 SGPIO controller. Please review.
 
-Reviewed-by: Frank Rowand <frowand.list@gmail.com>
+[v7]:   Changes between v6 and v7:
+        - fix missing variable 'reg' assign issue in aspeed_sgpio_set()
+        - v6 feedback updates
+
+[v6]:   Changes between v5 and v6:
+        - fix a bug in aspeed_sgpio_dir_out()
+        - v5 feedback updates, some comments cleanup
+
+The related SGPM pinmux dt-binding document, dts, and pinctrl driver
+updates have been accepted and merged:
+_http://patchwork.ozlabs.org/patch/1110210/
+
+Hongwei Zhang (2):
+  dt-bindings: gpio: aspeed: Add SGPIO support
+  gpio: aspeed: Add SGPIO driver
+
+ .../devicetree/bindings/gpio/sgpio-aspeed.txt      |  55 +++
+ drivers/gpio/sgpio-aspeed.c                        | 530 +++++++++++++++++++++
+ 2 files changed, 585 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+ create mode 100644 drivers/gpio/sgpio-aspeed.c
+
+-- 
+2.7.4
+
