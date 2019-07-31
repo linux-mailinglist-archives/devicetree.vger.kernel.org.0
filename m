@@ -2,134 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6285C7BB5B
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:16:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C6607BB78
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:24:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726937AbfGaIQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 04:16:33 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37474 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726185AbfGaIQc (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 04:16:32 -0400
-Received: from localhost (unknown [171.76.116.36])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9913620657;
-        Wed, 31 Jul 2019 08:16:30 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564560992;
-        bh=Tu581Sxi2KfCSLBCf35p6bgm0YTSGY4pQYhZtN6cy4o=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=taMMxMjqq8Db2B5xb5nNPzq9GGlIHzzbUpoNlC5yvqn/nuxdVHoDEnmchzdz9EcfE
-         3pb7VBBjD5e5PozbSOzeuREsRGUAGN8bROKTURhprYvUgoR/OQnlcMfn0nhfnpA+u6
-         rCIUXHAephkahOrlBHdiDFi86se0flcnNUCAhOgc=
-Date:   Wed, 31 Jul 2019 13:45:18 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Amit Kucheria <amit.kucheria@verdurent.com>
-Cc:     Andy Gross <agross@kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH 1/3] arm64: dts: qcom: pms405: add unit name adc nodes
-Message-ID: <20190731081518.GS12733@vkoul-mobl.Dlink>
-References: <20190725135150.9972-1-vkoul@kernel.org>
- <20190725135150.9972-2-vkoul@kernel.org>
- <CAHLCerNsAX4raauTjogOpwqAjEWfd+jpaZYsFnC10tcmvnD5cg@mail.gmail.com>
+        id S1726556AbfGaIYR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 04:24:17 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:43990 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726428AbfGaIYR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 04:24:17 -0400
+Received: by mail-wr1-f66.google.com with SMTP id p13so68609262wru.10
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 01:24:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=923Ja2WcpXT79P86aL3lNG+qbwOggNaCyX5ijNpRJ5o=;
+        b=QFW/c3WauL5r/F0ZtnfrXqzpOqeu5eaCNKRUXuqJoeMRA8C58lPUBaC3Dk3vyAk7u2
+         2mp5c6hjhvIyYLyIsmXtkNOAhXBwylr0QuMoYthx29CxnyrNuRZw6yqnUcVaa8u7kPOI
+         3waHbd0gqvRrvXjBCOdUAlZ4yVWgv3YN8O0xFCvzHzpYSQO0tCjk36m+ZKCR7HzEFkX9
+         3Z4WI8E0b2ssz6KAYgP4vvnO4q0PBwZh+W9fp5QuT+J6PmCD6FNgvyyvLxmsH7hRyCxO
+         5zXrzDqbX78wnpbrEqu+XhSDEy4Aeji6tRxf4fc7lMg4xwT9LGrMKxQ2gmiXEm50r/1T
+         EmrA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=923Ja2WcpXT79P86aL3lNG+qbwOggNaCyX5ijNpRJ5o=;
+        b=OTLk3XGj7Fjt75OwWZ504Rn0oav38marikVoKTkVzLGQog7fKDdoH+FhBNmX2ig9QF
+         OQG8kk8mDk7YkJfMF9V1hvg5mEtXxeeN38Od24RylzBtaYbWDgV2UPf56VegLRpbaOmV
+         aHr8wrj6fzzSKtkn+0EOPl81LNSt5XQhTTRKgGQKRM4Zs0IGqD3HbynAzS3oRsCCo8Ez
+         nT2L0VJmdo3OERD9pP3+5PWCjxjGqQ1f8bf1YuAwygwvH3IKR0y/ZSfpG3dom5NHgAXA
+         q6sEjHW/MjLzLAURSkI/MFNMKuCy/ZO5bqaKTT9LAorSpVXE5MaESB0caJPK/yv7D5+h
+         VBcA==
+X-Gm-Message-State: APjAAAWFpJKnIvoTupeMzBIbt0fw4dWUVCbc4tdmusJF7xtPbrEDuxMJ
+        dkPXUynat8kTquZaFO9GwsXfzQ==
+X-Google-Smtp-Source: APXvYqyW+Kdgzx7xM0neb1lynMTW4xGwPPQq/J11QHkYCb0v1hPS9K5b4vVL8TRzTgh4ggvSdNM09A==
+X-Received: by 2002:adf:de90:: with SMTP id w16mr35937106wrl.217.1564561455192;
+        Wed, 31 Jul 2019 01:24:15 -0700 (PDT)
+Received: from localhost.localdomain ([185.49.42.196])
+        by smtp.gmail.com with ESMTPSA id o3sm54597664wrs.59.2019.07.31.01.24.13
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 31 Jul 2019 01:24:14 -0700 (PDT)
+From:   Carlo Caione <ccaione@baylibre.com>
+To:     srinivas.kandagatla@linaro.org, khilman@baylibre.com,
+        narmstrong@baylibre.com, robh+dt@kernel.org, tglx@linutronix.de,
+        jbrunet@baylibre.com, linux-arm-kernel@lists.infradead.org,
+        linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
+Cc:     Carlo Caione <ccaione@baylibre.com>
+Subject: [PATCH v2 0/4] Rework secure-monitor driver
+Date:   Wed, 31 Jul 2019 09:23:35 +0100
+Message-Id: <20190731082339.20163-1-ccaione@baylibre.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHLCerNsAX4raauTjogOpwqAjEWfd+jpaZYsFnC10tcmvnD5cg@mail.gmail.com>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+The secure-monitor driver is currently in really bad shape, not my 
+proudest piece of code (thanks Jerome for pointing that out ;). I tried 
+to rework it a bit to make it a bit more tolerable.
 
-Thanks for the review Amit!
+I needed to change a bit the APIs and consequently adapt the only user 
+we have, that is the nvmem/efuses driver. To not break bisectability I 
+added one single commit to change both the drivers.
 
-On 30-07-19, 22:05, Amit Kucheria wrote:
-> On Thu, Jul 25, 2019 at 7:23 PM Vinod Koul <vkoul@kernel.org> wrote:
-> >
-> > The adc nodes have reg property but were missing the unit name, so add
-> > that to fix these warnings:
-> >
-> > arch/arm64/boot/dts/qcom/pms405.dtsi:91.12-94.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/ref_gnd: node has a reg or ranges property, but no unit name
-> > arch/arm64/boot/dts/qcom/pms405.dtsi:96.14-99.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/vref_1p25: node has a reg or ranges property, but no unit name
-> > arch/arm64/boot/dts/qcom/pms405.dtsi:101.19-104.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/vph_pwr: node has a reg or ranges property, but no unit name
-> > arch/arm64/boot/dts/qcom/pms405.dtsi:106.13-109.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/die_temp: node has a reg or ranges property, but no unit name
-> > arch/arm64/boot/dts/qcom/pms405.dtsi:111.27-116.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/thermistor1: node has a reg or ranges property, but no unit name
-> > arch/arm64/boot/dts/qcom/pms405.dtsi:118.27-123.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/thermistor3: node has a reg or ranges property, but no unit name
-> > arch/arm64/boot/dts/qcom/pms405.dtsi:125.22-130.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/xo_temp: node has a reg or ranges property, but no unit name
-> >
-> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
-> > ---
-> >  arch/arm64/boot/dts/qcom/pms405.dtsi | 14 +++++++-------
-> >  1 file changed, 7 insertions(+), 7 deletions(-)
-> >
-> > diff --git a/arch/arm64/boot/dts/qcom/pms405.dtsi b/arch/arm64/boot/dts/qcom/pms405.dtsi
-> > index 14240fedd916..3c10cf04d26e 100644
-> > --- a/arch/arm64/boot/dts/qcom/pms405.dtsi
-> > +++ b/arch/arm64/boot/dts/qcom/pms405.dtsi
-> > @@ -88,41 +88,41 @@
-> >                         #size-cells = <0>;
-> >                         #io-channel-cells = <1>;
-> >
-> > -                       ref_gnd {
-> > +                       ref_gnd@0 {
-> >                                 reg = <ADC5_REF_GND>;
-> >                                 qcom,pre-scaling = <1 1>;
-> >                         };
-> >
-> > -                       vref_1p25 {
-> > +                       vref_1p25@1 {
-> >                                 reg = <ADC5_1P25VREF>;
-> >                                 qcom,pre-scaling = <1 1>;
-> >                         };
-> >
-> > -                       pon_1: vph_pwr {
-> > +                       pon_1: vph_pwr@131 {
-> >                                 reg = <ADC5_VPH_PWR>;
-> >                                 qcom,pre-scaling = <1 3>;
-> >                         };
-> >
-> > -                       die_temp {
-> > +                       die_temp@6 {
-> >                                 reg = <ADC5_DIE_TEMP>;
-> >                                 qcom,pre-scaling = <1 1>;
-> >                         };
-> >
-> > -                       pa_therm1: thermistor1 {
-> > +                       pa_therm1: thermistor1@115 {
-> 
-> s/115/77 ?
-> 
-> >                                 reg = <ADC5_AMUX_THM1_100K_PU>;
-> >                                 qcom,ratiometric;
-> >                                 qcom,hw-settle-time = <200>;
-> >                                 qcom,pre-scaling = <1 1>;
-> >                         };
-> >
-> > -                       pa_therm3: thermistor3 {
-> > +                       pa_therm3: thermistor3@117 {
-> 
-> s/117/79 ?
-> 
-> >                                 reg = <ADC5_AMUX_THM3_100K_PU>;
-> >                                 qcom,ratiometric;
-> >                                 qcom,hw-settle-time = <200>;
-> >                                 qcom,pre-scaling = <1 1>;
-> >                         };
-> >
-> > -                       xo_therm: xo_temp {
-> > +                       xo_therm: xo_temp@114 {
-> 
-> s/114/76 ?
+The remaining commits are cosmetic and DTS/docs fixes.
 
-Thanks, will fix these and recheck others.
+Changelog:
+- Changed patches order to not break bisect
+- Removed non-functional changes (PATCH 1/5) of the nvmem driver
+- Fix gxbb/gxl DTS
+
+Carlo Caione (4):
+  firmware: meson_sm: Mark chip struct as static const
+  nvmem: meson-efuse: bindings: Add secure-monitor phandle
+  arm64: dts: meson: Link nvmem and secure-monitor nodes
+  firmware: meson_sm: Rework driver as a proper platform driver
+
+ .../bindings/nvmem/amlogic-efuse.txt          |  6 ++
+ arch/arm64/boot/dts/amlogic/meson-axg.dtsi    |  1 +
+ arch/arm64/boot/dts/amlogic/meson-g12a.dtsi   |  1 +
+ arch/arm64/boot/dts/amlogic/meson-gx.dtsi     |  1 +
+ drivers/firmware/meson/meson_sm.c             | 96 +++++++++++++------
+ drivers/nvmem/meson-efuse.c                   | 24 ++++-
+ include/linux/firmware/meson/meson_sm.h       | 15 +--
+ 7 files changed, 104 insertions(+), 40 deletions(-)
 
 -- 
-~Vinod
+2.20.1
+
