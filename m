@@ -2,166 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6E1F17CE76
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:30:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C2647CE7A
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:30:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730094AbfGaUaH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 16:30:07 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:43908 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730799AbfGaU37 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:29:59 -0400
-Received: by mail-wr1-f67.google.com with SMTP id p13so71050248wru.10
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 13:29:57 -0700 (PDT)
+        id S1730769AbfGaUaR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 16:30:17 -0400
+Received: from mail-pg1-f194.google.com ([209.85.215.194]:34740 "EHLO
+        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729929AbfGaUaP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:30:15 -0400
+Received: by mail-pg1-f194.google.com with SMTP id n9so26409253pgc.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 13:30:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=vLHpcezXZ0AucQ4kaXez+YbIiKuQyU24LjFhyj/OAXk=;
-        b=eQCRVeZXchD4s8hmdDQVCG2ogRRuvj7EZRHIJo8ykw1oW4wZjt5+SSYbjFeaaDGZrn
-         0xucuH8wa2pRXz8qrOuZd277mjyUL3L5ZPsNLTCKCbtjGyssAb8BsI6U8vYAbloKvvQq
-         BzPMZsouAsHmIoBCrcs8qJ+ORAVV59dnHr7FHlAmO+BlwJ9bU47J59hcapNE/S59FV/D
-         PM7skxmpOrJWnu8rn5hPnCsbol0kRPf0yNonBqqOUvKl8Z92HutL3oW4KrUxJDyoMWhE
-         7PJwcZRXOfMvIyFy8KqnbU2v9/W1kKg0FqfYYX3XUt+aWsEeSnSRKoWHDibpSE9niNy0
-         PnbQ==
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=iBFNsIG7+sA5uP79GYpMUJteIYJvl8bRHir2wXbiAZo=;
+        b=l+QfNMcOnasx23NVguShFSHhmIX+5XjAOY4sDZYw4Gqf460wG4DVJg4dDYkZbcyn0o
+         dqZC3So/kh7ufZuum5Yh16nK3sN8AWZ5jAzBT7BEZbHJED51q5/TY5Jbn7VA99tCep6F
+         D6MOXzvYwMbkniTV9V0E2hvKhvDJAdPG9lIaiI0D6yNRVrMFgog9+ew4xrALMM+FrEJK
+         NcVHvx2ZNMhOKxQtxFkhojWfkpYMpCQxW6fbnggvpiA36K6OdsuPKmTZI0wiQJ3aAzHr
+         hW/P4aCvkR6aZBHl/KJrEAs14WnDhkJruRyy6U/oFxAm5OTq4+N7MyDu5yFRKBh/inv4
+         4XsQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=vLHpcezXZ0AucQ4kaXez+YbIiKuQyU24LjFhyj/OAXk=;
-        b=DY+KYYIIIKAXLkelBdL8iSFplTlkz6iKl2LGcVP+cfxSt+iml+PMGIw92LVbdjnxdZ
-         vv6r2QAuhhobNPu0LH54V1sMmG4667ppb1EIoQRDQYqfoUNvLLZ3g3CxL1wxMHqXNwSO
-         lOhOUoGj2fcBXw2WtsTY6cJgP8y8XmLJx+y6Y6BkBp9SaOqIuWOmU8M407fJ8shnCTw0
-         zZlBMQnkTqFNqVH4r1nDNaAOBqWy9CpY1l2wgp4aSCYxu0Wj5jMcc5yt80DibsFSBl/w
-         HsJcAPuw48GR/WEuPu4OuwYMek4oMwy8VbyPuHEWUmBmqpw9kRUbe4AwS4SvDN1OLA6X
-         ytLQ==
-X-Gm-Message-State: APjAAAXKygCK/a8aS3nu2oOWyhMunMFs6odNLZR2cIoZHm5Kl/kzN3eu
-        wZoyJaiIVCwqsAkyGIyCV1km4g==
-X-Google-Smtp-Source: APXvYqxVk5jRAEbzCMTnd8pf764yjjCzhBWZjHtBQ5AptGqXRtwGwFJmiylZu++Ijy4DW1dMhmdbjw==
-X-Received: by 2002:a05:6000:187:: with SMTP id p7mr12658657wrx.189.1564604996721;
-        Wed, 31 Jul 2019 13:29:56 -0700 (PDT)
-Received: from localhost.localdomain (19.red-176-86-136.dynamicip.rima-tde.net. [176.86.136.19])
-        by smtp.gmail.com with ESMTPSA id i18sm91905591wrp.91.2019.07.31.13.29.54
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 31 Jul 2019 13:29:56 -0700 (PDT)
-From:   Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-To:     jorge.ramirez-ortiz@linaro.org, bjorn.andersson@linaro.org,
-        sboyd@kernel.org, david.brown@linaro.org, jassisinghbrar@gmail.com,
-        mark.rutland@arm.com, mturquette@baylibre.com, robh+dt@kernel.org,
-        will.deacon@arm.com, arnd@arndb.de, horms+renesas@verge.net.au,
-        heiko@sntech.de, sibis@codeaurora.org,
-        enric.balletbo@collabora.com, jagan@amarulasolutions.com,
-        olof@lixom.net
-Cc:     vkoul@kernel.org, niklas.cassel@linaro.org,
-        georgi.djakov@linaro.org, amit.kucheria@linaro.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
-        linux-arm-msm@vger.kernel.org, khasim.mohammed@linaro.org
-Subject: [PATCH v4 12/13] arm64: dts: qcom: qcs404: Add DVFS support
-Date:   Wed, 31 Jul 2019 22:29:28 +0200
-Message-Id: <20190731202929.16443-13-jorge.ramirez-ortiz@linaro.org>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190731202929.16443-1-jorge.ramirez-ortiz@linaro.org>
-References: <20190731202929.16443-1-jorge.ramirez-ortiz@linaro.org>
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=iBFNsIG7+sA5uP79GYpMUJteIYJvl8bRHir2wXbiAZo=;
+        b=AX36jIExhh6gbuCoMJrbHzhgEsQoblah0HKdMTVPDprFEgHH+WbzdMWhVqF5px4faW
+         RujZxmDAjjWCLh97x3r8TqdYwHfe7tWZfQzQek98up2BdC2ZCNzAbDFqN2U/8Y/KCqaD
+         27n6lX+9E3HJ3T2SWLqpRmt1bMxaI25NgSFncV9xrU+TcjofjiEXEmO64/ZISZS9LPPt
+         EfWGpD82HVzjGp80iyCqhVatAGU4zrZOO9eMHHJCFvj1u3pvYWARQsd+0kA02lakd8PL
+         zUSHUbRU70XwGMHAe5hz5vOFx1LbLJnYfeK1yFiRgQnv/hdxdyJGIUOi0c3PBIEv4G6l
+         AEKg==
+X-Gm-Message-State: APjAAAXfIhHbj/Ghx7ZAtxgBQ9u9Ai95ZkEexSWMETg9FB2ujsJFsIhz
+        i/1dUR91zyjFv8TAsvvX984=
+X-Google-Smtp-Source: APXvYqyJUAQ0n7FkXPmH3UNtvWGzACMfJ9md+gH22q3JDEBzcrdzfFE6f4FxA7+o4knjJCEkZaAC5Q==
+X-Received: by 2002:a17:90a:fa07:: with SMTP id cm7mr4546691pjb.138.1564605015229;
+        Wed, 31 Jul 2019 13:30:15 -0700 (PDT)
+Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
+        by smtp.gmail.com with ESMTPSA id q63sm90005325pfb.81.2019.07.31.13.30.14
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 31 Jul 2019 13:30:14 -0700 (PDT)
+Subject: Re: [PATCH] scripts/dtc: dtx_diff - add color output support
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org
+References: <20190731123741.13947-1-geert+renesas@glider.be>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <342e5e38-f980-c849-c061-8dad42bc0850@gmail.com>
+Date:   Wed, 31 Jul 2019 13:30:13 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190731123741.13947-1-geert+renesas@glider.be>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Support dynamic voltage and frequency scaling on qcs404.
+Hi Geert,
 
-CPUFreq will soon be superseeded by Core Power Reduction (CPR, a form
-of Adaptive Voltage Scaling found on some Qualcomm SoCs like the
-qcs404). 
+On 7/31/19 5:37 AM, Geert Uytterhoeven wrote:
+> Add new -c/--color options, to enhance the diff output with color, and
+> improve the user's experience.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  scripts/dtc/dtx_diff | 10 +++++++++-
+>  1 file changed, 9 insertions(+), 1 deletion(-)
+> 
+> diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
+> index e9ad7834a22d9459..4e2c8617f69a333e 100755
+> --- a/scripts/dtc/dtx_diff
+> +++ b/scripts/dtc/dtx_diff
+> @@ -20,6 +20,8 @@ Usage:
+>  
+>  
+>        --annotate    synonym for -T
+> +      --color       synonym for -c
+> +       -c           enable colored output
+>         -f           print full dts in diff (--unified=99999)
+>         -h           synonym for --help
+>         -help        synonym for --help
+> @@ -178,6 +180,7 @@ compile_to_dts() {
+>  annotate=""
+>  cmd_diff=0
+>  diff_flags="-u"
+> +diff_color=""
+>  dtx_file_1=""
+>  dtx_file_2=""
+>  dtc_sort="-s"
+> @@ -189,6 +192,11 @@ while [ $# -gt 0 ] ; do
+>  
+>  	case $1 in
+>  
+> +	-c | --color )
+> +		diff_color="--color=always"
+> +		shift
+> +		;;
+> +
+>  	-f )
+>  		diff_flags="--unified=999999"
+>  		shift
+> @@ -344,7 +352,7 @@ DTC="\
+>  
+>  if (( ${cmd_diff} )) ; then
+>  
+> -	diff ${diff_flags} --label "${dtx_file_1}" --label "${dtx_file_2}" \
+> +	diff ${diff_flags} ${diff_color} --label "${dtx_file_1}" --label "${dtx_file_2}" \
+>  		<(compile_to_dts "${dtx_file_1}" "${dtx_path_1_dtc_include}") \
+>  		<(compile_to_dts "${dtx_file_2}" "${dtx_path_2_dtc_include}")
+>  
+> 
 
-Due to the CPR upstreaming already being in progress - and some
-commits already merged -  the following commit will need to be
-reverted to enable CPUFreq support 
+I like the idea, but...
 
-   Author: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-   Date:   Thu Jul 25 12:41:36 2019 +0200
-       cpufreq: Add qcs404 to cpufreq-dt-platdev blacklist
+I have various linux distro releases across my many systems, but only one is
+new enough to have the diff command that supports --color.
 
-Co-developed-by: Niklas Cassel <niklas.cassel@linaro.org>
-Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
-Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
----
- arch/arm64/boot/dts/qcom/qcs404.dtsi | 31 ++++++++++++++++++++++++++++
- 1 file changed, 31 insertions(+)
+Can you enhance this patch to test whether --color is supported?  Maybe
+something like (untested):
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-index 5b7d6258e9bf..8cce4a224de2 100644
---- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
-@@ -36,6 +36,10 @@
- 			cpu-idle-states = <&CPU_SLEEP_0>;
- 			next-level-cache = <&L2_0>;
- 			#cooling-cells = <2>;
-+			clocks = <&apcs_glb>;
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&pms405_s3>;
-+
- 		};
- 
- 		CPU1: cpu@101 {
-@@ -46,6 +50,9 @@
- 			cpu-idle-states = <&CPU_SLEEP_0>;
- 			next-level-cache = <&L2_0>;
- 			#cooling-cells = <2>;
-+			clocks = <&apcs_glb>;
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&pms405_s3>;
- 		};
- 
- 		CPU2: cpu@102 {
-@@ -56,6 +63,9 @@
- 			cpu-idle-states = <&CPU_SLEEP_0>;
- 			next-level-cache = <&L2_0>;
- 			#cooling-cells = <2>;
-+			clocks = <&apcs_glb>;
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&pms405_s3>;
- 		};
- 
- 		CPU3: cpu@103 {
-@@ -66,6 +76,9 @@
- 			cpu-idle-states = <&CPU_SLEEP_0>;
- 			next-level-cache = <&L2_0>;
- 			#cooling-cells = <2>;
-+			clocks = <&apcs_glb>;
-+			operating-points-v2 = <&cpu_opp_table>;
-+			cpu-supply = <&pms405_s3>;
- 		};
- 
- 		L2_0: l2-cache {
-@@ -88,6 +101,24 @@
- 		};
- 	};
- 
-+	cpu_opp_table: cpu-opp-table {
-+		compatible = "operating-points-v2";
-+		opp-shared;
-+
-+		opp-1094400000 {
-+			opp-hz = /bits/ 64 <1094400000>;
-+			opp-microvolt = <1224000 1224000 1224000>;
-+		};
-+		opp-1248000000 {
-+			opp-hz = /bits/ 64 <1248000000>;
-+			opp-microvolt = <1288000 1288000 1288000>;
-+		};
-+		opp-1401600000 {
-+			opp-hz = /bits/ 64 <1401600000>;
-+			opp-microvolt = <1384000 1384000 1384000>;
-+		};
-+	};
-+
- 	firmware {
- 		scm: scm {
- 			compatible = "qcom,scm-qcs404", "qcom,scm";
--- 
-2.22.0
+	-c | --color )
+		if `diff --color <(echo a) <(echo a) 2>/dev/null` ; then
+			diff_color="--color=always"
+		fi
+		shift
+		;;
 
+Then add some text to the usage for -c and --color saying that they will
+be silently ignored if diff does not support --color.
+
+I first wrote up a suggested version that printed an error message and
+exited, but I think silently ignoring is more robust, even though it
+may be more confusing to someone who is wondering why --color does not
+work.
+
+Thanks,
+
+Frank
