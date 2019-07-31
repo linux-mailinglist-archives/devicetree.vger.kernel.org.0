@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5AF047C6C6
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:35:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF3177C6C3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:35:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729230AbfGaPfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 11:35:37 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:51498 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729186AbfGaPfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 11:35:37 -0400
-Received: by mail-wm1-f66.google.com with SMTP id 207so61319046wma.1
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 08:35:36 -0700 (PDT)
+        id S1725209AbfGaPfk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 11:35:40 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:39235 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729208AbfGaPfj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 11:35:39 -0400
+Received: by mail-wr1-f68.google.com with SMTP id x4so17031509wrt.6
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 08:35:37 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=+6gJ8AQ+8bL1C5uonG6TfemRUot9hgKsCIvxaaOHaM0=;
-        b=bpMaWmEB0gYIdBRiCkZ0Njf50rEB/8dTwJKP8YnC2iKk5DZgQ4+wDGjKSBizhNT5mX
-         5GxGglVZYHkf88xrTqV8T/3QUt1mywoY6JqqDc/OKAJqSwtvZ1StvCgO9WI0vG9Kxs3A
-         pECJgUpFI+b/qMezVjG8piiGEminumNEOX7DAd0cIWFhtI8azf2cZ10uBUfyDiaKnfun
-         8EoKqZhkC+SrY1GkwKqvhnujO/2XsiMSfQxhLC1QEP+jDtVmKO5MkjQob+3GpcofwES2
-         Pgl19CK+52aBci57jDSOaFoYw6kvlG0doYNoCs3+h9/SYq5UF2DFkd3KsXEXrYMrIPDk
-         x4ag==
+        bh=C6EJL/51AHNPmVJCC71cSQAo/Uql1LEExYduU9tlj54=;
+        b=USefCljrpz1yRsoIXF2w4xg9VXh4QbDSRfoyiXoY6jTBa7FxJT/7Due8LQ+/bxUmFp
+         WAnAouc1YOFfmGGlkNGldaFXIxCzuzfN2zJb8T2LWO6y0KSY9g+ThTrcEkjgJRrQypui
+         TsALxmEM6dEQtySXllvS/VgeRnzL0tr4TE/tKkqBl2gomPbnpVwkSJM34y8hi4C+tq00
+         nUML5hcGDz/hAz/bYVpHD4tw1+z/2tRy2XSrR0p9nOkH2XwzrkSf15x7n1UTHj+JEKVf
+         DBXXcERhZyinR8yH4dhsmdtXxIqaSW5Xl367BjgxRe//gosv9vVQECKBtdVspL1td+tS
+         BVcg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=+6gJ8AQ+8bL1C5uonG6TfemRUot9hgKsCIvxaaOHaM0=;
-        b=gGWHuPsJl4xmCVqIx10e53dp1kdi8+2ZBksNu2yV/W/PcX/qIs6OSn1ZUnXMNMztzT
-         F3UCc7r5ME/x9VUGmCgYCzZvIMPtWnX9y0f61313ZCc0Lu2e0SZLvS0OQFhfkaZU7CzH
-         4qMZSpuYcTVlskkuGxceJ/E+OW3sTTebKP5/qsTvKLA/FCdaKv+LXAAw1rbJ5RTul9l4
-         bSe14dULnJRruzuSM4+dzDJbZ4hkqaYvehna0/O+QuVYNdGmiRgk6h2pSEfxGW0D7T+A
-         l5VG65Y+o+Ro3gUEv17Ae40OCvdvlSHEpw2enxYtQeOdNb863+1yPEbU32jeMgYQYE8s
-         9LvA==
-X-Gm-Message-State: APjAAAWYdtS2nztoJ5uW7Rm11KJ+oR/86s/gM3iGK9eGxF/4aNy8HWK/
-        2o5wZ8dO1QZg6xVizp15Lct5BA==
-X-Google-Smtp-Source: APXvYqyYRH+0jfs9jqLCSAGYzhF4F4uTSWpyjE70mkciabVgvyHCM1+INRysUBYEzO59vgmjq2qfAQ==
-X-Received: by 2002:a7b:c081:: with SMTP id r1mr62192131wmh.76.1564587335879;
-        Wed, 31 Jul 2019 08:35:35 -0700 (PDT)
+        bh=C6EJL/51AHNPmVJCC71cSQAo/Uql1LEExYduU9tlj54=;
+        b=tDRQBa9/Z5njWAn5WP10VETL7b1Z/rMMvBwdG0hMpi5+yvPn7ayQY3Y5DsxLWrcL36
+         qB8sIy3w14JpyHl9NWZTIbQ27jGMDFWdoYMVxmWvzcOBrGdUwNTPeB3hiyzDDwfQVbc4
+         JV5VSNr6jNEpZU8Zbnqz8KDDD0dXLheru5OBc4h3tbpoQH2eyLhzUV9e7ZYt84eH3wY8
+         vkQjRgSlnZwOLMX03WDHW2m1dmFmNpe7RIHtca5UBofZjm+GKgQkMTeBsTcX9+281hJT
+         5icp5SfYHEtwAMqXO4VsyIvaYmNj3YLiakUgrvKeXBppsdOnqWzAzVqvcpKSJlm8n6CM
+         IbSQ==
+X-Gm-Message-State: APjAAAWs80MtIiUIml6El53dfVJyAeleJib0e9kCdKA8RkpHpTYCEbSH
+        jYZhdMamkDs2F/CEBp2qI2W5nw==
+X-Google-Smtp-Source: APXvYqxYIBXbtzSuPK9eyz7FC0ILxtSo7AVLrSGfVDmK39RujTf/qMGWu4sryl3IMIl6xvWfe1kg/w==
+X-Received: by 2002:a5d:4a4e:: with SMTP id v14mr44406641wrs.200.1564587336894;
+        Wed, 31 Jul 2019 08:35:36 -0700 (PDT)
 Received: from glaroque-ThinkPad-T480.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id i13sm62834396wrr.73.2019.07.31.08.35.34
+        by smtp.gmail.com with ESMTPSA id i13sm62834396wrr.73.2019.07.31.08.35.35
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 31 Jul 2019 08:35:35 -0700 (PDT)
+        Wed, 31 Jul 2019 08:35:36 -0700 (PDT)
 From:   Guillaume La Roque <glaroque@baylibre.com>
 To:     daniel.lezcano@linaro.org, khilman@baylibre.com
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH v2 4/6] arm64: dts: meson: sei510: Add minimal thermal zone
-Date:   Wed, 31 Jul 2019 17:35:27 +0200
-Message-Id: <20190731153529.30159-5-glaroque@baylibre.com>
+Subject: [PATCH v2 5/6] arm64: dts: amlogic: odroid-n2: add minimal thermal zone
+Date:   Wed, 31 Jul 2019 17:35:28 +0200
+Message-Id: <20190731153529.30159-6-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190731153529.30159-1-glaroque@baylibre.com>
 References: <20190731153529.30159-1-glaroque@baylibre.com>
@@ -63,13 +63,13 @@ Add minimal thermal zone for DDR and CPU sensor
 
 Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 ---
- .../boot/dts/amlogic/meson-g12a-sei510.dts    | 56 +++++++++++++++++++
- 1 file changed, 56 insertions(+)
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dts | 60 +++++++++++++++++++
+ 1 file changed, 60 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-index 979449968a5f..2c16a2cba0a3 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+index 75ff8a7e373d..a7d73c0c8447 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
 @@ -10,6 +10,7 @@
  #include <dt-bindings/input/input.h>
  #include <dt-bindings/gpio/meson-g12a-gpio.h>
@@ -77,8 +77,8 @@ index 979449968a5f..2c16a2cba0a3 100644
 +#include <dt-bindings/thermal/thermal.h>
  
  / {
- 	compatible = "seirobotics,sei510", "amlogic,g12a";
-@@ -33,6 +34,53 @@
+ 	compatible = "hardkernel,odroid-n2", "amlogic,g12b";
+@@ -20,6 +21,55 @@
  		ethernet0 = &ethmac;
  	};
  
@@ -101,8 +101,10 @@ index 979449968a5f..2c16a2cba0a3 100644
 +					trip = <&cpu_critical>;
 +					cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
 +							 <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
-+							 <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++							 <&cpu100 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu101 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu102 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++							 <&cpu103 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
 +				};
 +			};
 +		};
@@ -129,43 +131,59 @@ index 979449968a5f..2c16a2cba0a3 100644
 +		};
 +	};
 +
- 	mono_dac: audio-codec-0 {
- 		compatible = "maxim,max98357a";
- 		#sound-dai-cells = <0>;
-@@ -321,6 +369,7 @@
- 	operating-points-v2 = <&cpu_opp_table>;
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
+@@ -288,6 +338,7 @@
+ 	operating-points-v2 = <&cpu_opp_table_0>;
  	clocks = <&clkc CLKID_CPU_CLK>;
  	clock-latency = <50000>;
 +	#cooling-cells = <2>;
  };
  
  &cpu1 {
-@@ -328,6 +377,7 @@
- 	operating-points-v2 = <&cpu_opp_table>;
+@@ -295,6 +346,7 @@
+ 	operating-points-v2 = <&cpu_opp_table_0>;
  	clocks = <&clkc CLKID_CPU_CLK>;
  	clock-latency = <50000>;
 +	#cooling-cells = <2>;
  };
  
- &cpu2 {
-@@ -335,6 +385,7 @@
- 	operating-points-v2 = <&cpu_opp_table>;
- 	clocks = <&clkc CLKID_CPU_CLK>;
+ &cpu100 {
+@@ -302,6 +354,7 @@
+ 	operating-points-v2 = <&cpub_opp_table_1>;
+ 	clocks = <&clkc CLKID_CPUB_CLK>;
  	clock-latency = <50000>;
 +	#cooling-cells = <2>;
  };
  
- &cpu3 {
-@@ -342,6 +393,7 @@
- 	operating-points-v2 = <&cpu_opp_table>;
- 	clocks = <&clkc CLKID_CPU_CLK>;
+ &cpu101 {
+@@ -309,6 +362,7 @@
+ 	operating-points-v2 = <&cpub_opp_table_1>;
+ 	clocks = <&clkc CLKID_CPUB_CLK>;
  	clock-latency = <50000>;
 +	#cooling-cells = <2>;
  };
  
- &cvbs_vdac_port {
-@@ -368,6 +420,10 @@
- 	status = "okay";
+ &cpu102 {
+@@ -316,6 +370,7 @@
+ 	operating-points-v2 = <&cpub_opp_table_1>;
+ 	clocks = <&clkc CLKID_CPUB_CLK>;
+ 	clock-latency = <50000>;
++	#cooling-cells = <2>;
+ };
+ 
+ &cpu103 {
+@@ -323,6 +378,7 @@
+ 	operating-points-v2 = <&cpub_opp_table_1>;
+ 	clocks = <&clkc CLKID_CPUB_CLK>;
+ 	clock-latency = <50000>;
++	#cooling-cells = <2>;
+ };
+ 
+ &ext_mdio {
+@@ -377,6 +433,10 @@
+ 	};
  };
  
 +&mali {
