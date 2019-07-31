@@ -2,86 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 62DB37C0B8
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:07:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DDB917C0E9
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:14:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726894AbfGaMHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 08:07:13 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:35026 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726514AbfGaMHN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:07:13 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 87FCF60256; Wed, 31 Jul 2019 12:07:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1564574832;
-        bh=rVH9V3it4LEiKudkuZmS2VzM+fb6oDu0Rom01crhfjs=;
-        h=From:To:Cc:Subject:Date:From;
-        b=aHryC/htmsQ1cZvVBJU8qHnrHRif6DN/gPTC1mgzBh81Wwfq1p2qIrky35siO1h3G
-         s6OjR9ZTn5qY1Y67OpQbJ2OejeazLS5mUVp7p8lJHQTpoBDYhBWwQaqDJEgVxLdJaY
-         OG9juiLhStUgu6nHze9ve/5FyoOd8QNwkrJDInCU=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from govinds-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: govinds@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3C7276047C;
-        Wed, 31 Jul 2019 12:07:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1564574832;
-        bh=rVH9V3it4LEiKudkuZmS2VzM+fb6oDu0Rom01crhfjs=;
-        h=From:To:Cc:Subject:Date:From;
-        b=aHryC/htmsQ1cZvVBJU8qHnrHRif6DN/gPTC1mgzBh81Wwfq1p2qIrky35siO1h3G
-         s6OjR9ZTn5qY1Y67OpQbJ2OejeazLS5mUVp7p8lJHQTpoBDYhBWwQaqDJEgVxLdJaY
-         OG9juiLhStUgu6nHze9ve/5FyoOd8QNwkrJDInCU=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3C7276047C
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=govinds@codeaurora.org
-From:   Govind Singh <govinds@codeaurora.org>
-To:     bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, ath10k@lists.infradead.org
-Cc:     linux-wireless@vger.kernel.org,
-        Govind Singh <govinds@codeaurora.org>
-Subject: [PATCH v2] arm64: dts: qcom: qcs404: Add wifi rails in QCS404 dt node for proxy votes
-Date:   Wed, 31 Jul 2019 17:37:04 +0530
-Message-Id: <20190731120704.7039-1-govinds@codeaurora.org>
-X-Mailer: git-send-email 2.21.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1728683AbfGaMOQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 08:14:16 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:37882 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727264AbfGaMOP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:14:15 -0400
+Received: by mail-wr1-f68.google.com with SMTP id n9so44349996wrr.4
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 05:14:14 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=LjD7zv10OSEEYASmHj/VO2M7lzphFAaxTy5j9pYxJDo=;
+        b=wq+OcFSyqHwlGFEmAGphrBhbP+jw2ZeUDJvnr2ryt0UBu4Kc8BRJiGhW6nT4CpumyV
+         SKOb8IQMeNonlQPsKhQERiB/vwfGBTE0wB75t/eaDiGV22IphLZrF1IBc1ENghpzhQel
+         ZYhMZKVg3ke0P91tgzfMITOJuO4O8bOJTwI3GPQteEg68oqQb8yfK6SSaGQ0qaQazN8x
+         8t8ESnrCXgYEnHfjqb7iJQmssQOB0Al/KAIWguYzWba4gqqGSoYAoZAqEzF9AsSUX7Up
+         WaZ6pwGSnfOltvm6IF58V/oAvcv+TGqUo0y3gUuOSsOl361ChIoMnUMxB5ahxtY1gEQj
+         ooJQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=LjD7zv10OSEEYASmHj/VO2M7lzphFAaxTy5j9pYxJDo=;
+        b=ZohF+oA8zpY6VyJRInbZA8Ps6bsWpYjtg4DGHZ1yFIWwXNXLgbxUJcMrQEnl0EnFpi
+         Zkqnrm9MuHO8+2EzWVXUwHuyoC2k6Akkb0EfgTpa8IOaBbMUm68qUgB1STK+gtUIk9jg
+         ZobKcSKJjOHG+HX/HJA+VHsbsF+R97CjUNpFxZyA7+UIfE+VH2XxcEPRAQCOsl5CGBq1
+         DCYtItt4rbULbdmQTmYsC1kfMlGuSQP6BcDXFfNiR2dXA/KdWpyx1PCjjgcjXyE5CY6d
+         fAL4qSN8Rga7iK+dJjjdC86DHjlJ8EZ3GsvayTL4092wvA1Vbwr2PCY9Llo7A0Tqzvo4
+         tWSg==
+X-Gm-Message-State: APjAAAVVFuAXuXWpyP+FRNSdlqrgw+BN1dsJKFhZ8rRGLzqR8nZ0tXxM
+        w/2t5kWCNI/DXfSqvB7sftOUwQ==
+X-Google-Smtp-Source: APXvYqxJbSn0OApVvnN6CpKmYBH7g0bhbbP4QJ0hUCNLf17qIH6FUg3NTYWzUkcC4F/NvISPNemGcw==
+X-Received: by 2002:adf:db46:: with SMTP id f6mr5645832wrj.212.1564575253424;
+        Wed, 31 Jul 2019 05:14:13 -0700 (PDT)
+Received: from glaroque-ThinkPad-T480.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id a64sm3613713wmf.1.2019.07.31.05.14.10
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 31 Jul 2019 05:14:10 -0700 (PDT)
+From:   Guillaume La Roque <glaroque@baylibre.com>
+To:     daniel.lezcano@linaro.org, khilman@baylibre.com
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH 0/6]  Add support of New Amlogic temperature sensor for G12 SoCs
+Date:   Wed, 31 Jul 2019 14:14:03 +0200
+Message-Id: <20190731121409.17285-1-glaroque@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add wifi regulators in qcs404 dt node for proxy vote. Proxy votes are
-required for handling driver recovery scenarios to prevent
-un-clocked register access during driver recovery.
+This patchs series add support of New Amlogic temperature sensor and minimal
+thermal zone for SEI510 and ODROID-N2 boards.
 
-Signed-off-by: Govind Singh <govinds@codeaurora.org>
----
- arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 3 +++
- 1 file changed, 3 insertions(+)
+First implementation was doing on IIO[1] but after comments i move on thermal framework.
+Formulas and calibration values come from amlogic.
 
-diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-index 11c0a7137823..2289b01ee9f0 100644
---- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-+++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
-@@ -270,6 +270,9 @@
- 
- &wifi {
- 	status = "okay";
-+	vdd-0.8-cx-mx-supply = <&vreg_l2_1p275>;
-+	vdd-1.8-xo-supply = <&vreg_l5_1p8>;
-+	vdd-1.3-rfa-supply = <&vreg_l1_1p3>;
- };
- 
- /* PINCTRL - additions to nodes defined in qcs404.dtsi */
+Dependencies :
+- patch 3: depends on Neil's patchs :
+              - missing dwc2 phy-names[1] 
+              - rework on G12 DT[2]
+
+[1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
+[2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
+[3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-2-narmstrong@baylibre.com/
+
+Guillaume La Roque (6):
+  dt-bindings: thermal: Add DT bindings documentation for Amlogic
+    Thermal
+  thermal: amlogic: Add thermal driver to support G12 SoCs
+  arm64: dts: amlogic: g12: add temperature sensor
+  arm64: dts: meson: sei510: Add minimal thermal zone
+  arm64: dts: amlogic: odroid-n2: add minimal thermal zone
+  MAINTAINERS: add entry for Amlogic Thermal driver
+
+ .../bindings/thermal/amlogic,thermal.yaml     |  58 +++
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |  22 ++
+ .../boot/dts/amlogic/meson-g12a-sei510.dts    |  13 +
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dts |  13 +
+ drivers/thermal/Kconfig                       |  12 +-
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/amlogic_thermal.c             | 335 ++++++++++++++++++
+ 8 files changed, 462 insertions(+), 1 deletion(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+ create mode 100644 drivers/thermal/amlogic_thermal.c
+
 -- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+2.17.1
 
