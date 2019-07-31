@@ -2,124 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2FC8C7B9D3
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 08:43:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 253667B9F5
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 08:52:41 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387425AbfGaGna (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 02:43:30 -0400
-Received: from mail-eopbgr130132.outbound.protection.outlook.com ([40.107.13.132]:4772
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2387431AbfGaGn3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 02:43:29 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C7nuKTtIB9TT8DDRbooj8Qye9Xg3WPEXidT/8m3DbsI4N1uNe07RVyP1S7Rt3yyWPOTYOT0I8Ji8jSVE5Vs0WAHPePRqBJPXr+l98eFczNDybDa9W4evm2fodcDzexrh8eskDZkvWqFcQL1PTCuUuzMYZD/Ty1dhmNlW/Ce2NTiD82NqRxkIij7utzpgopkVHgsEs//V1eU5Ue/nSohjyqnRteIxpAzverLhvvlWx2k+AVehrXHD8F0I8sDvkoAF7eAtKoo75RJTizZaF6/ltsTkbMDGeOTkhhfABLFfZnxxDY1Tg4AvvJiPC0OdiqxlWCJKfz9rtYNkuRadPg+yXQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aVpbjrT1LnDXpbDC2yTmY8tdStzlFWkzGvznfv0kQY0=;
- b=E8f30Bz0TkgJwyI9W6ES3eFyWEDH6c4x5Sat27pLA3JVQHBO/pEmxYLJfepFjewT9FEdUwftJFB+ceyyc2p621bG9cW6A4HRbvFD4uuEWYHWQuZHIbkjZrDSOp9wBafWmWLiM6kCENRve6ck4YAOa+86RFT58ErHFfhRPEot1XzYOH/TjNDAovy7/X6ZDlsWd17TD05GL3vVtFuWAgAzrpwCrOHN/+dLYT8p9F5riFubC2dBZ14Zt3jEtGyRxLV1zFuv+EFNzbIm8U3CVV7Yboq8QMkz2nhGBL2zj9GxshoGi4iFATWv3Yj7jY1+FfsJK0BFX/aH5LUENDHIcudL/g==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=toradex.com;dmarc=pass action=none
- header.from=toradex.com;dkim=pass header.d=toradex.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=aVpbjrT1LnDXpbDC2yTmY8tdStzlFWkzGvznfv0kQY0=;
- b=CDAvYoMpe+OMp8abgLmB9LYg05sD2P1N2F2T/GRD1TCK6EfLQZ8aLPCOFnWiPs7ooGhooadAZNL2PwRcybGpH7U0d8tSMUQD8ntRcw/Kql51AA5FM/2OCHuhdno3smybV3Mdzw8wAV/00cjnmJFqsRY4VMt3S7bq1mIumvXjVfw=
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
- VI1PR0502MB2927.eurprd05.prod.outlook.com (10.175.20.7) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2115.15; Wed, 31 Jul 2019 06:43:24 +0000
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::8405:5b51:b25d:39a2]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::8405:5b51:b25d:39a2%6]) with mapi id 15.20.2115.005; Wed, 31 Jul 2019
- 06:43:24 +0000
-From:   Philippe Schenker <philippe.schenker@toradex.com>
-To:     "festevam@gmail.com" <festevam@gmail.com>
-CC:     "stefan@agner.ch" <stefan@agner.ch>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>
-Subject: Re: [PATCH 12/22] ARM: dts: imx6: Add touchscreens used on Toradex
- eval boards
-Thread-Topic: [PATCH 12/22] ARM: dts: imx6: Add touchscreens used on Toradex
- eval boards
-Thread-Index: AQHVRucqGTC4xSC72EKF/Chxy8fH4abjoekAgACmx4A=
-Date:   Wed, 31 Jul 2019 06:43:24 +0000
-Message-ID: <60760aa2d4710252e13877c409d0c4d2267824a6.camel@toradex.com>
-References: <20190730144649.19022-1-dev@pschenker.ch>
-         <20190730144649.19022-13-dev@pschenker.ch>
-         <CAOMZO5DRi6yawn3RF-Mouiejz0nc7htdsCjOBC_EXZZKUZ3nvA@mail.gmail.com>
-In-Reply-To: <CAOMZO5DRi6yawn3RF-Mouiejz0nc7htdsCjOBC_EXZZKUZ3nvA@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=philippe.schenker@toradex.com; 
-x-originating-ip: [46.140.72.82]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b46b4810-f29b-4fa9-660c-08d7158262c3
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB2927;
-x-ms-traffictypediagnostic: VI1PR0502MB2927:
-x-microsoft-antispam-prvs: <VI1PR0502MB2927D1BF5EE61F325364D376F4DF0@VI1PR0502MB2927.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6108;
-x-forefront-prvs: 011579F31F
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(366004)(396003)(39840400004)(376002)(136003)(346002)(189003)(199004)(2351001)(7736002)(71200400001)(71190400001)(478600001)(256004)(486006)(14444005)(54906003)(2616005)(476003)(44832011)(36756003)(76116006)(118296001)(14454004)(316002)(86362001)(91956017)(66476007)(66946007)(66556008)(66446008)(64756008)(1411001)(6246003)(5660300002)(76176011)(99286004)(186003)(53546011)(6916009)(26005)(2906002)(81166006)(3846002)(4326008)(25786009)(1361003)(6116002)(229853002)(6486002)(2501003)(66066001)(8936002)(6436002)(7416002)(6506007)(68736007)(6512007)(305945005)(102836004)(1730700003)(81156014)(11346002)(446003)(5640700003)(53936002)(8676002);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB2927;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: toradex.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: QLnuOZ4j1Tklh3LUvLPYr1xwGIMKglErzKFRRp5ehZdTAQueIsh20j51CVeOc+Iy3ict/Pjbss59Vi3iYu7ep1jcolkv8e+RYA0BNik2ainyzZulm44bYiJCYZwdArFWpmRd33etG/4pk2dnvtVRGWfE5XFFVg6wiUT7kDRc7NLheL6JBHELFeFbRBZMIn7wD5w7JmjCgnMwnk6gDq4IpokDIiEk+1C9nqrWG89LgYtco6jfG1OMXOvAsT6s8bvBi8sRoiGmFSkO7bautPPjd9uBwHeVXkCzl4hGeCr/l+Z5QHn08YyUM7M+YfGlZIhtw9Vbwu5knnwlQ1DmsTbqLV1qHGQMPuXN+mZQDjYWA92Ql9dn/hJ/bGCvv6jmvGzjM7+1Ll5A/y1Jl0kTRVDFIS9mVA4voUk1txeTLapVGAU=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1C5CED9DF11A2343A65EE4D73A529649@eurprd05.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1727826AbfGaGwk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 02:52:40 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:58667 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726561AbfGaGwk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 02:52:40 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hsiTP-0005UT-U7; Wed, 31 Jul 2019 08:52:31 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hsiTO-0005LC-5S; Wed, 31 Jul 2019 08:52:30 +0200
+Date:   Wed, 31 Jul 2019 08:52:30 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Maxime Ripard <mripard@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        linux-sunxi@googlegroups.com, Chen-Yu Tsai <wens@csie.org>,
+        Jernej =?utf-8?Q?=C5=A0krabec?= <jernej.skrabec@siol.net>,
+        Mark Rutland <mark.rutland@arm.com>, linux-pwm@vger.kernel.org,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        kernel@pengutronix.de,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>
+Subject: Re: [linux-sunxi] Re: [PATCH 4/6] pwm: sun4i: Add support for H6 PWM
+Message-ID: <20190731065230.mqbtn5sfoxrkevw5@pengutronix.de>
+References: <20190726184045.14669-1-jernej.skrabec@siol.net>
+ <173825848.1FZsmuHfpq@jernej-laptop>
+ <20190729185108.tpilwoooxvi2z72e@pengutronix.de>
+ <2452836.v7ux4bnEjb@jernej-laptop>
+ <20190730080900.hhxrqun7vk4nsj2h@pengutronix.de>
+ <20190730170601.a7ei43wku6jsjanu@flea>
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b46b4810-f29b-4fa9-660c-08d7158262c3
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2019 06:43:24.1799
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: philippe.schenker@toradex.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB2927
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190730170601.a7ei43wku6jsjanu@flea>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDE5LTA3LTMwIGF0IDE3OjQ2IC0wMzAwLCBGYWJpbyBFc3RldmFtIHdyb3RlOg0K
-PiBPbiBUdWUsIEp1bCAzMCwgMjAxOSBhdCAxMTo1NyBBTSBQaGlsaXBwZSBTY2hlbmtlciA8ZGV2
-QHBzY2hlbmtlci5jaD4gd3JvdGU6DQo+IA0KPiA+ICsgICAgICAgLyogQXRtZWwgbWF4dG91Y2gg
-Y29udHJvbGxlciAqLw0KPiA+ICsgICAgICAgYXRtZWxfbXh0X3RzOiBhdG1lbF9teHRfdHNANGEg
-ew0KPiANCj4gR2VuZXJpYyBub2RlIG5hbWVzLCBwbGVhc2U6DQo+IA0KPiB0b3VjaHNjcmVlbkA0
-YQ0KPiANCj4gPiArICAgICAgICAgICAgICAgY29tcGF0aWJsZSA9ICJhdG1lbCxtYXh0b3VjaCI7
-DQo+ID4gKyAgICAgICAgICAgICAgIHBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+ID4gKyAg
-ICAgICAgICAgICAgIHBpbmN0cmwtMCA9IDwmcGluY3RybF9wY2FwXzE+Ow0KPiA+ICsgICAgICAg
-ICAgICAgICByZWcgPSA8MHg0YT47DQo+ID4gKyAgICAgICAgICAgICAgIGludGVycnVwdC1wYXJl
-bnQgPSA8JmdwaW8xPjsNCj4gPiArICAgICAgICAgICAgICAgaW50ZXJydXB0cyA9IDw5IElSUV9U
-WVBFX0VER0VfRkFMTElORz47IC8qIFNPRElNTSAyOCAqLw0KPiA+ICsgICAgICAgICAgICAgICBy
-ZXNldC1ncGlvcyA9IDwmZ3BpbzIgMTAgR1BJT19BQ1RJVkVfSElHSD47IC8qIFNPRElNTSAzMCAq
-Lw0KPiA+ICsgICAgICAgICAgICAgICBzdGF0dXMgPSAiZGlzYWJsZWQiOw0KPiA+ICsgICAgICAg
-fTsNCj4gPiArDQo+ID4gKyAgICAgICAvKg0KPiA+ICsgICAgICAgICogdGhlIFBDQVBzIHVzZSBT
-T0RJTU0gMjgvMzAsIGFsc28gdXNlZCBmb3IgUFdNPEI+LCBQV008Qz4sIGFrYQ0KPiA+IHB3bTEs
-DQo+ID4gKyAgICAgICAgKiBwd200LiBTbyBpZiB5b3UgZW5hYmxlIG9uZSBvZiB0aGUgUENBUCBj
-b250cm9sbGVycyBkaXNhYmxlIHRoZQ0KPiA+IHB3bXMuDQo+ID4gKyAgICAgICAgKi8NCj4gPiAr
-ICAgICAgIHBjYXA6IHBjYXBAMTAgew0KPiANCj4gdG91Y2hzY3JlZW5AMTANCj4gDQo+ID4gKyAg
-ICAgICAgICAgICAgIC8qIFRvdWNoUmV2b2x1dGlvbiBGdXNpb24gNyBhbmQgMTAgbXVsdGktdG91
-Y2ggY29udHJvbGxlciAqLw0KPiA+ICsgICAgICAgICAgICAgICBjb21wYXRpYmxlID0gInRvdWNo
-cmV2b2x1dGlvbixmdXNpb24tZjA3MTBhIjsNCj4gDQo+IEkgZG8gbm90IGZpbmQgdGhpcyBiaW5k
-aW5nIGRvY3VtZW50ZWQuDQoNClRoYW5rcyBmb3IgeW91ciBmZWVkYmFjayBGYWJpbywgYW5kIHNv
-cnJ5IHN1Y2ggb2J2aW91cyBzdHVmZiB3ZW50IHRocm91Z2guIEkNCndpbGwgZ28gdGhyb3VnaCBt
-eSB3aG9sZSBwYXRjaHNldCBhZ2FpbiBtb3JlIGNhcmVmdWxseSBsb29rdXAgYWxsIHRoZSBiaW5k
-aW5ncy4NCg0KUGhpbGlwcGUNCg==
+On Tue, Jul 30, 2019 at 07:06:01PM +0200, Maxime Ripard wrote:
+> On Tue, Jul 30, 2019 at 10:09:00AM +0200, Uwe Kleine-König wrote:
+> > Hello Rob and Frank,
+> >
+> > Maxime and Jernej on one side and me on the other cannot agree about a
+> > detail in the change to the bindings here. I'm trying to objectively
+> > summarize the situation for you to help deciding what is the right thing
+> > to do here.
+> >
+> > TLDR: The sun4i pwm driver is extended to support a new variant of that
+> > device on the H6 SoC. Compared to the earlier supported variants
+> > allwinner,sun50i-h6-pwm on H6 needs to handle a reset controller and an
+> > additional clock.
+> >
+> > The two positions are:
+> >
+> >  - We need a new compatible because only then the driver and/or the dt
+> >    schema checker can check that each "allwinner,sun50i-h6-pwm" device
+> >    has a reset property and a "bus" clock; and the earlier variants
+> >    don't.
+> 
+> There is two topics here, really. The binding itself really must have
+> those properties as required.
+> 
+> You had an analogy before that we shouldn't really do that, since it
+> would be verification and that it would be similar to checking whether
+> the register range was right. This analogy isn't correct, a better one
+> would be checking that the register range exists in the first place.
+
+The relevant difference is that *all* devices supported by the driver
+have to have a register range. Compared to that only a subset of the
+devices have to have a bus clock.
+
+> Indeed, if you don't have a register range, you have no register to
+> write to, and that's a showstopper for any driver. I'm pretty sure we
+> all agree on that. But on those SoCs, like Chen-Yu said, having no
+> resets or clocks properties result in an equally bad result: either
+> any write to that device is completely ignored (missing reset), or the
+> system completely (and silently) locks up (missing bus clock).
+> 
+> We *have* to catch that somehow and not let anything like that happen.
+
+IIUC both the clock and the reset stuff is SoC specific, so it's the
+same for all machines with the H6, right? So assuming this is correctly
+contained in the h6.dtsi, in which cases can this go wrong? I only see
+the cases that the dts author includes the wrong dtsi or overrides
+stuff. In the first case a non-working PWM is probably one of the
+smaller problems and the second is something we're not really able to
+catch.
+
+But even if each machine's dts author has to get this right, I don't
+think the dts schema is the right place to assert this.
+
+> That being said, we can't really validate that the clock pointed is
+> the right one, just like we can't really check that the register range
+> is the proper one. Or rather, we could, but it's completely
+> impractical and we do agree on that as well.
+> 
+> Having the bus clock and reset line being required however is only a
+> few lines in the binding though, and is very practical.
+> 
+> >  - The driver can be simpler and the device specific knowledge is only
+> >    in a single place (the dt) if the device tree is considered valid and
+> >    a reset property and "bus" clock is used iff it's provided in the
+> >    device tree without additional comparison for the compatible.
+> 
+> And now we have the discussion on how it's implemented in a
+> driver. Since it's pretty cheap to implement (only a couple of lines:
+> two for the if block, one for the additional field in the structure,
+> one for each SoC using that) and have huge benefits (not silently
+> locking up the system at boot), then I'd say we should go for it.
+
+Right, it's only a few lines. Still it (IMHO needlessly) complicates the
+driver. From the driver's POV the device tree defines the
+characteristics of the device and if the dts defines an h6-pwm without a
+bus clock then maybe this is the PWM on the next generation SoC that
+doesn't need it. And maybe you're happy in a few year's time when you
+don't have to touch the driver again for this next generation SoC
+because the driver is not only simpler but also flexible enough to
+handle the new PWM without adaptions.
+
+All in all I don't care much about the dt schema stuff, I want to keep
+the driver simple. So if we agree that the schema ensures that the h6
+pwms have a reset and a bus clock and we just use reset_get_optional and
+clk_get_optional that's a compromise I can agree to.
+
+Best regards
+Uwe
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
