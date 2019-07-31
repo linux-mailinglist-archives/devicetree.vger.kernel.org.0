@@ -2,91 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 807567C8C3
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 18:33:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 565BB7C8EC
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 18:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728174AbfGaQdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 12:33:19 -0400
-Received: from 2.mo173.mail-out.ovh.net ([178.33.251.49]:51343 "EHLO
-        2.mo173.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728994AbfGaQdT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 12:33:19 -0400
-Received: from player756.ha.ovh.net (unknown [10.108.35.12])
-        by mo173.mail-out.ovh.net (Postfix) with ESMTP id 8F580114654
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 18:33:17 +0200 (CEST)
-Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
-        (Authenticated sender: sebastien.szymanski@armadeus.com)
-        by player756.ha.ovh.net (Postfix) with ESMTPSA id B74A77ADA712;
-        Wed, 31 Jul 2019 16:32:56 +0000 (UTC)
-From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-To:     Rui Miguel Silva <rmfrfs@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        id S1730197AbfGaQkM convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Wed, 31 Jul 2019 12:40:12 -0400
+Received: from mailoutvs30.siol.net ([185.57.226.221]:34957 "EHLO
+        mail.siol.net" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1729842AbfGaQkM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 12:40:12 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by mail.siol.net (Zimbra) with ESMTP id 7B0A05209AE;
+        Wed, 31 Jul 2019 18:40:08 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at psrvmta12.zcs-production.pri
+Received: from mail.siol.net ([127.0.0.1])
+        by localhost (psrvmta12.zcs-production.pri [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id fXh7Bj71aPKg; Wed, 31 Jul 2019 18:40:08 +0200 (CEST)
+Received: from mail.siol.net (localhost [127.0.0.1])
+        by mail.siol.net (Zimbra) with ESMTPS id 84F755233C1;
+        Wed, 31 Jul 2019 18:40:07 +0200 (CEST)
+Received: from jernej-laptop.localnet (cpe-194-152-11-237.cable.triera.net [194.152.11.237])
+        (Authenticated sender: jernej.skrabec@siol.net)
+        by mail.siol.net (Zimbra) with ESMTPA id 488405209AE;
+        Wed, 31 Jul 2019 18:40:04 +0200 (CEST)
+From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@siol.net>
+To:     Fabio Estevam <festevam@gmail.com>
+Cc:     Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Shawn Guo <shawnguo@kernel.org>,
         Sascha Hauer <s.hauer@pengutronix.de>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devel@driverdev.osuosl.org,
-        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Subject: [PATCH v3 1/3] ARM: dts: imx6ul: Add csi node
-Date:   Wed, 31 Jul 2019 18:32:57 +0200
-Message-Id: <20190731163257.32448-1-sebastien.szymanski@armadeus.com>
-X-Mailer: git-send-email 2.21.0
+        Andrzej Hajda <a.hajda@samsung.com>,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
+        Jonas Karlman <jonas@kwiboo.se>,
+        Lee Jones <lee.jones@linaro.org>,
+        DRI mailing list <dri-devel@lists.freedesktop.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        Robert Chiras <robert.chiras@nxp.com>,
+        Chris Healy <cphealy@gmail.com>
+Subject: Re: [PATCH 3/3] drm/bridge: Add NWL MIPI DSI host controller support
+Date:   Wed, 31 Jul 2019 18:40:03 +0200
+Message-ID: <13373313.BzCyiC4ED7@jernej-laptop>
+In-Reply-To: <CAOMZO5Djoi7EuXapkg+dQ6HR2oZZHrw+vnjc837Gxee-Nh00Hw@mail.gmail.com>
+References: <cover.1563983037.git.agx@sigxcpu.org> <20190731143532.GA1935@bogon.m.sigxcpu.org> <CAOMZO5Djoi7EuXapkg+dQ6HR2oZZHrw+vnjc837Gxee-Nh00Hw@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 14036875616662541351
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrleehgddutdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset="iso-8859-1"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add csi node for i.MX6UL SoC.
+Hi!
 
-Reviewed-by: Fabio Estevam <festevam@gmail.com>
-Signed-off-by: SÃ©bastien Szymanski <sebastien.szymanski@armadeus.com>
----
+Dne sreda, 31. julij 2019 ob 16:43:47 CEST je Fabio Estevam napisal(a):
+> Hi Guido,
+> 
+> On Wed, Jul 31, 2019 at 11:35 AM Guido Günther <agx@sigxcpu.org> wrote:
+> > The idea is to have
+> > 
+> >     "%sabling platform clocks", enable ? "en" : "dis");
+> > 
+> > depending whether clocks are enabled/disabled.
+> 
+> Yes, I understood the idea, but this would print:
+> 
+> ensabling or dissabling :-)
 
-Changes for v3:
- - none
+No, it wouldn't. That extra "s" is part of "%s", e.g. part of format specifier.
 
-Changes for v2:
- - only "mclk" clock is required now.
+Best regards,
+Jernej
 
- arch/arm/boot/dts/imx6ul.dtsi | 9 +++++++++
- 1 file changed, 9 insertions(+)
+> 
+> > > Same here. Please return 'int' instead.
+> > 
+> > This is from drm_bridge_funcs so the prototype is fixed. I'm not sure
+> > how what's the best way to bubble up fatal errors through the drm layer?
+> 
+> Ok, so let's not change this one.
+> 
+> > I went for DRM_DEV_ERROR() since that what i used in the rest of the
+> > driver and these ones were omission. Hope that's o.k.
+> 
+> No strong preferences here. I just think dev_err() easier to type and
+> shorter.
+> 
+> Thanks for this work!
 
-diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
-index 81d4b4925127..56cfcf0e5084 100644
---- a/arch/arm/boot/dts/imx6ul.dtsi
-+++ b/arch/arm/boot/dts/imx6ul.dtsi
-@@ -957,6 +957,15 @@
- 				};
- 			};
- 
-+			csi: csi@21c4000 {
-+				compatible = "fsl,imx6ul-csi", "fsl,imx7-csi";
-+				reg = <0x021c4000 0x4000>;
-+				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
-+				clocks = <&clks IMX6UL_CLK_CSI>;
-+				clock-names = "mclk";
-+				status = "disabled";
-+			};
-+
- 			lcdif: lcdif@21c8000 {
- 				compatible = "fsl,imx6ul-lcdif", "fsl,imx28-lcdif";
- 				reg = <0x021c8000 0x4000>;
--- 
-2.21.0
+
+
 
