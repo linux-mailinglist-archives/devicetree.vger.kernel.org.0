@@ -2,19 +2,19 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BF7707C012
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 13:35:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49E107C027
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 13:37:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726301AbfGaLfS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 07:35:18 -0400
-Received: from esa6.microchip.iphmx.com ([216.71.154.253]:56947 "EHLO
-        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726096AbfGaLfS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 07:35:18 -0400
-Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
+        id S1726396AbfGaLhq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 07:37:46 -0400
+Received: from esa5.microchip.iphmx.com ([216.71.150.166]:14423 "EHLO
+        esa5.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726231AbfGaLhq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 07:37:46 -0400
+Received-SPF: Pass (esa5.microchip.iphmx.com: domain of
   Ludovic.Desroches@microchip.com designates 198.175.253.82 as
   permitted sender) identity=mailfrom;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
   envelope-from="Ludovic.Desroches@microchip.com";
   x-sender="Ludovic.Desroches@microchip.com";
   x-conformance=spf_only; x-record-type="v=spf1";
@@ -22,31 +22,31 @@ Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
   a:smtpout.microchip.com a:mx1.microchip.iphmx.com
   a:mx2.microchip.iphmx.com include:servers.mcsv.net
   include:mktomail.com include:spf.protection.outlook.com ~all"
-Received-SPF: None (esa6.microchip.iphmx.com: no sender
+Received-SPF: None (esa5.microchip.iphmx.com: no sender
   authenticity information available from domain of
   postmaster@email.microchip.com) identity=helo;
-  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  client-ip=198.175.253.82; receiver=esa5.microchip.iphmx.com;
   envelope-from="Ludovic.Desroches@microchip.com";
   x-sender="postmaster@email.microchip.com";
   x-conformance=spf_only
-Authentication-Results: esa6.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Ludovic.Desroches@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
-IronPort-SDR: k6n88ij1T4etjFa5iS32sNQkvPz19HijLq7o0Yt0tGZE8SKRHrszyC/CqfMPE53ixgTs4pB2Gi
- 96/2oZhadl7u2vGrA1zPQqPz+EzKWRBsMbJKlUFgVYndLSoZ3Uo1ZcWGP0DXq4C4UbQ4ZAiyrF
- 8K6iTSWEa2edCw1OlT5fm0gJ5vFg7wbVgZP1oJ/tcGlrFkxviAZkTWGGag7sRey0nZKpCnIXbp
- ezu3ooGg9pyoSrwDnIFOZngNRXJUpbJzL9TKPNcAPUdn+uEsgd61ywif9XKgiMJBhmQyMIRVCO
- ADA=
+Authentication-Results: esa5.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Ludovic.Desroches@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: zoPACFx3I9BVwGjoYFmHbP75YGzpuEUyUkewY+WzdjF6CbpPpQqMm7RqElpT/2awxfbYQHu5em
+ qgybxa7AlYaSbpVs5KdAFEb36B/GXVKofNFpSZv2AGn0OLIrA2LQPZ+s803edsQrvS4iuZtTeM
+ lJBVGxJN1/Jdei759rSAAyZgL4qM79y8Rec0aaVOr1T9oSPsx5iHmORE55L/bphuP/5JWjEyuz
+ tfnz1L9AqY3IH4Mw1M/V1TSR33Dok2ZPcXKlNhrLp6RyltdcyV4bGf9u3DsS2DpdiR9Ct14599
+ teY=
 X-IronPort-AV: E=Sophos;i="5.64,330,1559545200"; 
-   d="scan'208";a="40415701"
+   d="scan'208";a="41844862"
 Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
-  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Jul 2019 04:35:15 -0700
-Received: from chn-vm-ex01.mchp-main.com (10.10.85.143) by
+  by esa5.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Jul 2019 04:37:46 -0700
+Received: from chn-vm-ex03.mchp-main.com (10.10.85.151) by
  chn-vm-ex03.mchp-main.com (10.10.85.151) with Microsoft SMTP Server
  (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Wed, 31 Jul 2019 04:35:15 -0700
-Received: from localhost (10.10.85.251) by chn-vm-ex01.mchp-main.com
- (10.10.85.143) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
- Transport; Wed, 31 Jul 2019 04:35:14 -0700
-Date:   Wed, 31 Jul 2019 13:34:19 +0200
+ 15.1.1713.5; Wed, 31 Jul 2019 04:37:44 -0700
+Received: from localhost (10.10.85.251) by chn-vm-ex03.mchp-main.com
+ (10.10.85.151) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Wed, 31 Jul 2019 04:37:44 -0700
+Date:   Wed, 31 Jul 2019 13:36:49 +0200
 From:   Ludovic Desroches <ludovic.desroches@microchip.com>
 To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>
 CC:     Rob Herring <robh+dt@kernel.org>,
@@ -55,8 +55,8 @@ CC:     Rob Herring <robh+dt@kernel.org>,
         Alexandre Belloni <alexandre.belloni@bootlin.com>,
         <linux-arm-kernel@lists.infradead.org>,
         <devicetree@vger.kernel.org>, <info@acmesystems.it>
-Subject: Re: [PATCH 1/2] dts: add vendor prefix "acme" for "Acme Systems srl"
-Message-ID: <20190731113419.bz4qygnmnlf57yeo@M43218.corp.atmel.com>
+Subject: Re: [PATCH 2/2] ARM: dts: at91: add support for Arietta G25
+Message-ID: <20190731113648.kyktpnk3exly57fw@M43218.corp.atmel.com>
 Mail-Followup-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
@@ -65,42 +65,123 @@ Mail-Followup-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
         info@acmesystems.it
 References: <20190728210403.2730-1-uwe@kleine-koenig.org>
- <20190728210403.2730-2-uwe@kleine-koenig.org>
+ <20190728210403.2730-3-uwe@kleine-koenig.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset="iso-8859-1"
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190728210403.2730-2-uwe@kleine-koenig.org>
+In-Reply-To: <20190728210403.2730-3-uwe@kleine-koenig.org>
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Jul 28, 2019 at 11:04:02PM +0200, Uwe Kleine-König wrote:
+On Sun, Jul 28, 2019 at 11:04:03PM +0200, Uwe Kleine-König wrote:
+> 
+> The Arietta G25 is a SBC powered by a AT91SAMG25 running at 400 MHz.
+> See https://www.acmesystems.it/arietta for more details.
 > 
 > Signed-off-by: Uwe Kleine-König <uwe@kleine-koenig.org>
-
-As I can confirm it's not an April fool!
-Reviwed-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+Acked-by: Ludovic Desroches <ludovic.desroches@microchip.com>
 
 > ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+>  arch/arm/boot/dts/at91sam9g25-arietta.dts | 86 +++++++++++++++++++++++
+>  1 file changed, 86 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/at91sam9g25-arietta.dts
 > 
-> diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> index 6992bbbbffab..85965e3446bf 100644
-> --- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> +++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-> @@ -27,6 +27,8 @@ patternProperties:
->      description: Abilis Systems
->    "^abracon,.*":
->      description: Abracon Corporation
-> +  "^acme,.*":
-> +    description: Acme Systems srl
->    "^actions,.*":
->      description: Actions Semiconductor Co., Ltd.
->    "^active-semi,.*":
+> diff --git a/arch/arm/boot/dts/at91sam9g25-arietta.dts b/arch/arm/boot/dts/at91sam9g25-arietta.dts
+> new file mode 100644
+> index 000000000000..6c20e02f0ea9
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/at91sam9g25-arietta.dts
+> @@ -0,0 +1,86 @@
+> +// SPDX-License-Identifier: GPL-2.0
+> +/*
+> + * Arietta - System On Module
+> + * https://www.acmesystems.it/arietta
+> + */
+> +
+> +/dts-v1/;
+> +#include "at91sam9g25.dtsi"
+> +
+> +/ {
+> +	model = "Acme Systems Arietta G25";
+> +	compatible = "acme,ariettag25", "atmel,at91sam9x5", "atmel,at91sam9";
+> +
+> +	chosen {
+> +		stdout-path = "serial0:115200n8";
+> +	};
+> +
+> +	memory {
+> +		reg = <0x20000000 0x8000000>;
+> +	};
+> +
+> +	clocks {
+> +		slow_xtal {
+> +			clock-frequency = <32768>;
+> +		};
+> +
+> +		main_xtal {
+> +			clock-frequency = <12000000>;
+> +		};
+> +	};
+> +
+> +	ahb {
+> +		apb {
+> +			rtc@fffffeb0 {
+> +				status = "okay";
+> +			};
+> +		};
+> +	};
+> +
+> +	leds {
+> +		compatible = "gpio-leds";
+> +
+> +		arietta_led {
+> +			label = "arietta_led";
+> +			gpios = <&pioB 8 GPIO_ACTIVE_HIGH>;
+> +			linux,default-trigger = "heartbeat";
+> +		};
+> +	};
+> +};
+> +
+> +&dbgu {
+> +	status = "okay";
+> +};
+> +
+> +&mmc0 {
+> +	pinctrl-0 = <
+> +		&pinctrl_mmc0_slot0_clk_cmd_dat0
+> +		&pinctrl_mmc0_slot0_dat1_3>;
+> +	status = "okay";
+> +
+> +	slot@0 {
+> +		reg = <0>;
+> +		bus-width = <4>;
+> +	};
+> +};
+> +
+> +&usart0 {
+> +	status ="okay";
+> +};
+> +
+> +&usart1 {
+> +	status ="okay";
+> +};
+> +
+> +&usb0 {
+> +	status = "okay";
+> +	num-ports = <3>;
+> +};
+> +
+> +&usb1 {
+> +	status = "okay";
+> +};
+> +
+> +&usb2 {
+> +	status = "okay";
+> +};
 > -- 
 > 2.20.1
 > 
