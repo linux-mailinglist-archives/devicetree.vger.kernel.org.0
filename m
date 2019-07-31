@@ -2,79 +2,196 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 209C07D01C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 23:31:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9D1F7D03F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 23:48:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728898AbfGaVbJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 17:31:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40408 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728189AbfGaVbJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 17:31:09 -0400
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2059E216C8;
-        Wed, 31 Jul 2019 21:31:09 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564608669;
-        bh=cWQaX/QgFVuWY+GkVO2WjFXP1NCP9IeR5uhhrij5EaM=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ejYjzEutP1qGMPFqYK6rNLQOZN2JoRdiVGnktpJ+tdI4vxIQRnoUxEDqOGOnRyXcT
-         xP7znxIE7KH10UNxiGaNmPFf/pbp06hHPFV571EcNFMG64ANg5wbNVpvjy2DlIeoCb
-         3d//l30HY/yQNum/loA7zArALdgVwWY8anJDOXl8=
-Received: by mail-qk1-f169.google.com with SMTP id t8so50332920qkt.1;
-        Wed, 31 Jul 2019 14:31:09 -0700 (PDT)
-X-Gm-Message-State: APjAAAX+By+4dYBOOgQXsFFGKriAc9xjDTKRfHbTKIWBxilMBN2lmRlw
-        6mQyNx+odvgJxgneXPG1WsezfqAXqlKOIR3iyA==
-X-Google-Smtp-Source: APXvYqzXGFvFRjcyi+POy712cqrfBIK0QQIs4U1s24uKkJRF4+QWAmzAfmgJpJ0nXaKdR+QUhyuXTqonEDfhOBT3SEQ=
-X-Received: by 2002:a05:620a:1447:: with SMTP id i7mr83596705qkl.254.1564608668299;
- Wed, 31 Jul 2019 14:31:08 -0700 (PDT)
+        id S1730460AbfGaVsk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 17:48:40 -0400
+Received: from antares.kleine-koenig.org ([94.130.110.236]:49664 "EHLO
+        antares.kleine-koenig.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727865AbfGaVsk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 17:48:40 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by antares.kleine-koenig.org (Postfix) with ESMTP id 5E4737479E3;
+        Wed, 31 Jul 2019 23:48:36 +0200 (CEST)
+Received: from antares.kleine-koenig.org ([127.0.0.1])
+        by localhost (antares.kleine-koenig.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id KMeyj_ukORSP; Wed, 31 Jul 2019 23:48:35 +0200 (CEST)
+Received: from [IPv6:2a02:8071:b5c2:53f8:3192:99d7:1d59:986] (unknown [IPv6:2a02:8071:b5c2:53f8:3192:99d7:1d59:986])
+        by antares.kleine-koenig.org (Postfix) with ESMTPSA;
+        Wed, 31 Jul 2019 23:48:35 +0200 (CEST)
+Subject: Re: [PATCH 1/2] dts: add vendor prefix "acme" for "Acme Systems srl"
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        info@acmesystems.it
+References: <20190728210403.2730-1-uwe@kleine-koenig.org>
+ <20190728210403.2730-2-uwe@kleine-koenig.org>
+ <20190731113419.bz4qygnmnlf57yeo@M43218.corp.atmel.com>
+From:   =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=uwe@kleine-koenig.org; prefer-encrypt=mutual; keydata=
+ mQINBEwXmCYBEACoJSJcKIlkQcTYia0ymmMOBk2veFoy/a0LlqGUEjQ4WECBL19F2BYX1dSp
+ 5/ZdfKuV605usI6oq4x6k/LKmqZDl6YnqW/YmN/iZVCRunBRfvpTlL4lcNUu5Va/4GBRzBRr
+ rrIhCIVL5zMV6hKywhHKTdOHVSZRftf+eRSBwENKXahmfOMDmekyf585etDPdzkFrLHNVFOC
+ sFOU0gCK0uVPyY0LH13eo4qEEMi88RCOfwYCFQqKXDdo41DWoDPB5OGCMaphIx9wC/nvtdcv
+ MowsGde5iGgmHWK6sdC/O/xaV7fnz1sJzoJB1eT91LkGbdGxsLAT6nqlaNJiJtiBoRhscguV
+ xVbn/I9mnUu7bLmTFBEAlaQGU/J7uQ4w94FXfosNGROt/otqltetMZlPbNvNhKnXv8U6eRyA
+ P3ZMKTJa4hGr3UdYdt4+MIiHcsANWp8T7oLYVxRbHPXPG49IURnhXUoGbscZmpptWcl29ebo
+ qCxL9n3KIyUT3ZB1xHbW3Sk/Dqzf52tQOxZubzrpUJ8zaGIwYVUjfcPFwf3R3zrQvJq7mI4S
+ ddNIE8w3WJOPXDOYx7GjOa+IubhSpCrr74NbN8q9oS3hnsqWw16i3HSUuPuYeZo1t6D5p/mX
+ EVyZ2QrS1kGgGi7bmlQMSFkb6g1T8aWSYuX3PBYq2VntnWAXPwARAQABtClVd2UgS2xlaW5l
+ LUvDtm5pZyA8dXdlQGtsZWluZS1rb2VuaWcub3JnPokCVwQTAQoAQQIbAwULCQgHAwUVCgkI
+ CwUWAgMBAAIeAQIXgAIZARYhBA0lEfMiv6scFYAma+Lc3ZEyZpvWBQJdD2/6BQkaXdlUAAoJ
+ EOLc3ZEyZpvWXJIQAItguVGhM5bXhr+T5Dq8tUPUzfEE2agVUhtwNUG1HEqF9Ex5PRRauCN5
+ YW318C3MRWgQepr8q2xgQ+Ih1Irl8GCVLh0vIIZRd8DbDSKBiPC0orKkHU4WgX48xl0WVnLS
+ hUOt2bk1Vv5twB1a19f6W5ww1x0roxrNtAbDpPB/z0siynnqdQSeiJe+TbPwGT5eginTRiC6
+ hf+QGOz2jl0HQBmzabI+IWUuyZqb1kG78U1Si33N8GXCGrHzAKOtGI/7vzqlLGulMcWIRxkP
+ U0Yg9FeH033ko16d8g2R2VPaP3ntm0KYaJngrbiTKGj7OXxUSASC7lBY7zf1UzJQYSU9TRrz
+ 3XZ/4GEDkfQL0M9rPjWBj3HbwtQzURhL4QjC77Zi1OKT8TXrDGOoO8q6Th1y8ipaKOhAakUb
+ ywZMCZi1RqOf53RnAquRApHfpu1I+W/iDtI51wZsuolqRlYd/nAbvzKt7SFG6V+ZeV9df6/x
+ V3kS2NkNawy/dDqwJWA3gTHX1SEu2y04/qOyH/CR6sLEozQnqxVS343TJxyfJYW7TCwrDz0i
+ jEFcy+xyyqvPn0Yc5zp2CnLKiB5JyV3mnz8qJVP0QfWUKKI6740m/1U9nDQYttGlklxgayLJ
+ KoEG/FYxEe1m93U8anvxb4IULSHTgfCHpSJjLeVJVXUffH2g3CYAuQINBEwXmCYBEACy0K1x
+ eE1wybOmpgwyw4c/W4KY25CjfXucBt00neNb24pVKNGUWScnsUsqDfA+7iOJ+CAahRhDGmba
+ O0hZ/NZbEKbhXYCVsc2OOVrmT2+FgnYiWLntMGKGOLqGO8QprLpaXSy5tJP2/UWQix+tgKHa
+ DENz7nJVff5WF0zdlKeMOIJYmraWLelsrEFlw/OUfKWjm30pnivNUacVIC/dIXiwz9mykYdk
+ spEQhU2aSBr99oE87UUyf4BIgvB4Vy316i0o+WdEWCY361Yu02AWvHlUhjj/kDyiY8WxYGKQ
+ JWAw6K+CVDtefLMVQ+l+A4V/3YgC+aHCw8ab2ZhXXSobcHv0K9plOrGR/3J6fIybf5RYgiZ6
+ 6qh7WErPhVuXx3+btYehuPnf2eNHIBb6wrLJo/yWP3lWaUFag7cshMvw5CkoN948+dJWQed8
+ HM0fDb2hNMtBn52Sb3Q8ZZTrNYJXfyFq5W1+W2W5Z9aJT+4A5Fyecpzmc7dy97yA7Q4FB8z5
+ WOu+g03vGtrA29dvFdxM9pJJzKz4FOS/I8rkjfmXxBxUdDAbg8NHN56Cw1aBJktup3W1Pa0u
+ 2FgbgpFUZVDZ+RqtjwlFLyMmDaO7K1zhxEu9kg02SBImtrVSJZKQMOWwZJPUNBEcidU8yQeT
+ +J+7AnI/Y1X7RzcwTRP6JRc4vw4Z4QARAQABiQI9BCgBCgAnBQJUsvI/IB0Dc3VwZXJzZWVk
+ ZWQgYnkgc3Via2V5IDU3QzkxQkM3AAoJEOLc3ZEyZpvWD8sQAJ3kMYdHHqIXYvL6ogIv3HzC
+ E3nba4tPv+z/zj8s31G0VlEXdqc54nCQbvsWO1jYkDV+eqGhT3zr8V/55GyDkMEqw8Q6D00w
+ q4BLVj4W64ciUUb+uQT19JCoL6uvewdBP7W86UMH2OhnSX4J1Asm1xjOTIszsUlYD0+ztt9O
+ gXyUxQ26mOnpTSuc7LSdLqK94QB34IS8keVNxZGdPnh9LxpZFFdZTK1jbvCA0gESsAsQ90sJ
+ zbnF0E0m3HFYFiY+E66ntz0Nbo68IKw9jY0zvR56Qi5s/uBFfcZeBAWesG8xKMy4zZanLMwy
+ euZWor+X3pbH5FtpobGr0oyiH4XBGlMNWnXAo69rdig+ah4SOl9WFKn33PJTTlWXyaE+FxOg
+ whT7bJpPns8i2u8jmbxlC5jpP8+8cSfDkdBhBxsecpsMLF5bIAqhoxfRxETL+xtuPdOEgH6K
+ j/Ia3geiBfUPrLka93TE3EECn89WcD6XvcyRW95otrjK+Svnro4Xzi0zd0mP1Wwq4dA4Zfb4
+ j3YDAOjhGzDeSUqbhVttgsHc99fPvuMrjQUk3x9Lc0/ZbbCZfCa5Xk8lopi/oT6mJoj9Hj05
+ 78Aktvt+0Ayqo7DmXUNZZq1Jpt3CCUCzj1E8ICHdHh3NG6HGbhbTQ96WfpBwXOOPZiWLWZzT
+ 4FzrwLLox8wTiQIfBBgBAgAJBQJMF5gmAhsMAAoJEOLc3ZEyZpvW0oAP/inNe6AHKjSobhqB
+ kvUmue4p/XtuIvt2yxmcKBgPSASNsL3TD2OFGJaJVtfnGem2YnKkVQseP90S1FqABG5LarDQ
+ eOdYSLdFYsGGLJ9PwXlvze3reEDoPLVu4c+W2dRPKWXa3aaX6Szjech3MD2bdAoTHb3vo+zR
+ LykVSqUuNI450ddsR6/ffTuHBJRM4SicC9fQZN6po/yZT937FH0igZKcNrqgJWfUp6+EQUov
+ RhZoloGLuancqg1ALGem0VRfmlhAQaNBGunyihHOFHXfEbchJseP6x9GY1rxHH85p49crTNx
+ MOWaDFL33iN8kDkcAuuyz87uWU0fiM3LpezU8x9Oby+M3dYYpDkcKzkNA2y5OCHsCMU9w7f8
+ kF2tFCjEpd+YV9rNaab8Kp9WRCAnEWJrtPkGuKU1HvWFc0qdsQZndZwiup3a9L2EAIbkPPwX
+ QN2PlYsFF1qYs88WxuB9/bs8UtxYTnYKUBNlpm9q1olWn9J8GReUpAnULaZQKbhaxbYq5s2N
+ 5vYKsOh0zWegOiTuOTdL2N8XsGlCFXhxG45+8JvpLyNiphyxvqoz/z9FKu3pxZKWeiumGvdJ
+ 17GTDy7w0q0oPdh7WzKwqKQIBeP+YNLcrZoIUdhxBArYPRRhlRMTCAC+Yt4ZVf9TAC3NLNWM
+ Dod7CGaNlDcIRwM0Rk0EuQENBFSy4J0BCAChpWdVkN0BTfe/zV6WhbbAasnFPvnOwT6j8y5B
+ leuz+6XACLG63ogBu/4bfQdZgdHIC1ebI9XazMSovCfBTSn7qlu2R/yYrJ2UxwvDkiS2LuLA
+ GEWfTwyimFr8/4QeTfy/Y0dWLCSqNlGg9r+GFxS8Ybnrur4Vrfw+4QoQs51MoKGTkR4BMdeJ
+ SlL04cByBAEA6Hra88kr13ApWOSHcRkKRvj7ZCmBH2+GnnbdNm3AlrEtLvepHSODvngfePMX
+ NHjtp4iw0Vkbv+s9XEhtC6bryD8AJahoaV94w2cQz48fSjPD8JfZjgrN+J7PyUDPTugmQC0m
+ oPi7HtHxloHtbX5BABEBAAGJA0QEGAEKAA8FAlSy4J0CGwIFCQlmAYABKQkQ4tzdkTJmm9bA
+ XSAEGQEKAAYFAlSy4J0ACgkQwfwUeK3K7AlrIgf+JLyPvo17xE6Jn6OOOTh9+t/QAJq3VV0/
+ xIyctFqK6v/gnFG/7f5zQKex5ThCesfZ3+zBk98wyVVmG5ToIYn67Egkv/rGDxnOdT5ABWcW
+ QcjSCanfD6qFELDwsiLVKmoBLGCu+WcQkL5+LeUwU4oxor7aQlgrIIogJRBA4YdFlSV+JMYn
+ Czww4GpFA11RktykHCW3QuX+iOrJuvFtG1AKHiFzv4asivhFCWfrxiujkLpX/3e4iFN5lyD1
+ 2C7JsFDI5GM6uDOFaQKiYyqGZ6mnHQuqX7EioYuEJVR7jmkezLqlI26Hb/5quZADFhbnyGe2
+ 0FLQR3oSPVy24wRFq8U+sdqUD/9dN10/SNSFyAnJp6CJo55G4zeAallIwfvh+5i1yVd/8Kh6
+ Rvuq/KO2uUB+bxNXgsmdmQt3nWBcJAs3r78kf8UFsnvLxTP673EEcakVAx1S1nieTrh8bzAz
+ XkBYDKEPRXKzXjgidVPWLBQVbGZ66lCfpW2t/T8fxlZG4dq5zTU2j8cvA2RS4K8j/xiedA4P
+ 6lnpV1DjTqnDfATAmJXX4oWleO2cvvao9BhqstktBjz79PMQqRD+L56q6t0X08y8WIDLdtRk
+ mmVWGq2I6gR7y3CjTFmuO3sFcqVh+TwWEaqrrJ/MN/yyrNgJsFWozxdqAf55z8IJg5boi1ZY
+ cdeKPFRKj5t5B1DwbobQIgZSAoUiQzy9g6MrKYpv/2tDMONK5mdPS43JZ0+Z7keID6r8Hj86
+ Byrrn/UaxEAg0Hn2NmG6sRs2fIJ3ehpThw1+ed9YwoasoPk5fLAgxsDXgRgJY07+J4QdwAtj
+ Dh8N26hPPYyx+9O2qAzUVtfoiWsib7AXCbKd+34pn67DDYWGCJgtjsTrNh2da5loEd+8TuD0
+ y1xvczPXkaJmQ8mIo2ENO5btEpLXSZGZJHLRFI5tGj4ZWThjyVZb777VH5EFfUJQiZfJ/Aav
+ 64qcY4NspxGZpdYuZOWmWU780nKx6kpqPx+10HZgqWcJZRlgfMk+pnwhhhd2r7kBDQRUsuKV
+ AQgAwDnqedPDXwF03G61x3u5yJfPITSe4LRjxroxk7XZ3k2SO37DPaJA7J0BZG/Kyoc82Ymi
+ wcYAGqHm7HeqqAhLzVfl++XK8/fCpwfHdnnQqlRxLrG+y3gDkEWYyZd/+YSbmGFxh1rou8Em
+ e4tsHhqmINRA0wDuHr4Yx3rduYpW2VYjnCvdPJL3osLPjjs+NZN9oVn6Q4fhLoP2h60cAQ4r
+ Q+3/a/gAC3It3SF4UKCl3TWydTdEzNh43rxIMIyjrD+Wm/F0NA9TLwS4sOhZTBUCJT2fKNBh
+ KCWhO720RZF6HSmwQqfJza+Z4zN7NGtnDTX9su0ufQkwr34dsy76CDEqNQARAQABiQIlBBgB
+ CgAPBQJUsuKVAhsMBQkJZgGAAAoJEOLc3ZEyZpvWuOQQAJSvLehOMf21aC2RPVhWmCFibOnR
+ qRM4iGypKEERWxagNwjqx8YrL+dsu7o/aWwjG1CvfaHDFQ78CBj/xBGw8XheODpvS3Z/ERGv
+ NivQ8HK0MWIIQZ85U5gj1h0Ls0LBeRkTOPRe6jUmjyzeWnMa/5wXaXsxZKE2n49ai5m+gL9/
+ 3sBXsBCsWxhVqn+lq7c5GEhxGJHvCDX5TcXdOC63Mcek4hKRbSYGkj1QYJV/WF9cLwvU3XI8
+ nrGDGX8IWaJr6GxTWCeYs5uWU70cg2TRKHM4SCveZyeizz4YRXYjvZTIent6TUKmxdMLBAC2
+ gI3H+75QRrflG5po1F+Uhbmd5BHLcAgvMUc58YaXYCwI6fY1/Q9zIpM1CHUPe4lZN5XUIA4S
+ VBYi6Yvx82qA97KZfHsyvLwR56NMl/1b5dbQwl6eoM/JH4GgXDEh0NmPdE/MnQM7svxsB7xp
+ 8kNRLpvtXNxp6SZUcf7u6vIwvlcrYMeDIaxf4dZSAuFwurOQtVP0gERKFSh1oMI+I0wXeMbO
+ pN3/t3AK3zD7ZykqMstza/jYFEK1gNj7UhnvazBhMaMhCEt8rNqr5/dbgvAD/biSZO6wZrn7
+ hCaye/ulWpSqZSdx+G9GkTn05lsuHu9zfTwY6B0A6nlrqQSR/yWPvSq1Ud6IOZY1alq7ZSag
+ kC8vBDJg
+Message-ID: <442b7107-f4b1-2a91-af21-ea7f72bc09b1@kleine-koenig.org>
+Date:   Wed, 31 Jul 2019 23:48:31 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-References: <cover.1564603513.git.mchehab+samsung@kernel.org>
- <a239cd93ad86579ce7e02bc3032abd33b476e193.1564603513.git.mchehab+samsung@kernel.org>
- <20190731204500.GA6131@bogus> <20190731144816.71238678@lwn.net>
-In-Reply-To: <20190731144816.71238678@lwn.net>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 31 Jul 2019 15:30:55 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKei6Vs_A9vUh+rnoBa0fX5AWo7MDJYU=trbKfTxLSZqw@mail.gmail.com>
-Message-ID: <CAL_JsqKei6Vs_A9vUh+rnoBa0fX5AWo7MDJYU=trbKfTxLSZqw@mail.gmail.com>
-Subject: Re: [PATCH 2/6] docs: writing-schema.md: convert from markdown to ReST
-To:     Jonathan Corbet <corbet@lwn.net>
-Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190731113419.bz4qygnmnlf57yeo@M43218.corp.atmel.com>
+Content-Type: multipart/signed; micalg=pgp-sha512;
+ protocol="application/pgp-signature";
+ boundary="cH4BqUBpag4tE2aMU0hpD3Sc3r1rGJZGd"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 31, 2019 at 2:48 PM Jonathan Corbet <corbet@lwn.net> wrote:
->
-> On Wed, 31 Jul 2019 14:45:00 -0600
-> Rob Herring <robh@kernel.org> wrote:
->
-> > On Wed, Jul 31, 2019 at 05:08:49PM -0300, Mauro Carvalho Chehab wrote:
-> > > The documentation standard is ReST and not markdown.
-> > >
-> > > Signed-off-by: Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-> > > Acked-by: Rob Herring <robh@kernel.org>
-> > > ---
-> > >  Documentation/devicetree/writing-schema.md  | 130 -----------------
-> > >  Documentation/devicetree/writing-schema.rst | 153 ++++++++++++++++++++
-> > >  2 files changed, 153 insertions(+), 130 deletions(-)
-> > >  delete mode 100644 Documentation/devicetree/writing-schema.md
-> > >  create mode 100644 Documentation/devicetree/writing-schema.rst
-> >
-> > Applied, thanks.
->
-> I've applied that to docs-next as well - your ack suggested to me that you
-> weren't intending to take it...
+This is an OpenPGP/MIME signed message (RFC 4880 and 3156)
+--cH4BqUBpag4tE2aMU0hpD3Sc3r1rGJZGd
+Content-Type: multipart/mixed; boundary="Gs5T56No68F6bl0Jg67000vKJ2AyYCfsp";
+ protected-headers="v1"
+From: =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <uwe@kleine-koenig.org>
+To: Rob Herring <robh+dt@kernel.org>, Mark Rutland <mark.rutland@arm.com>,
+ Nicolas Ferre <nicolas.ferre@microchip.com>,
+ Alexandre Belloni <alexandre.belloni@bootlin.com>,
+ linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+ info@acmesystems.it
+Message-ID: <442b7107-f4b1-2a91-af21-ea7f72bc09b1@kleine-koenig.org>
+Subject: Re: [PATCH 1/2] dts: add vendor prefix "acme" for "Acme Systems srl"
+References: <20190728210403.2730-1-uwe@kleine-koenig.org>
+ <20190728210403.2730-2-uwe@kleine-koenig.org>
+ <20190731113419.bz4qygnmnlf57yeo@M43218.corp.atmel.com>
+In-Reply-To: <20190731113419.bz4qygnmnlf57yeo@M43218.corp.atmel.com>
 
-Well, I acked it first when it was in one big patch, then suggested it
-be split out in case we have changes to it (wishful thinking).
+--Gs5T56No68F6bl0Jg67000vKJ2AyYCfsp
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: quoted-printable
 
-Rob
+On 7/31/19 1:34 PM, Ludovic Desroches wrote:
+> On Sun, Jul 28, 2019 at 11:04:02PM +0200, Uwe Kleine-K=C3=B6nig wrote:
+>>
+>> Signed-off-by: Uwe Kleine-K=C3=B6nig <uwe@kleine-koenig.org>
+>=20
+> As I can confirm it's not an April fool!
+> Reviwed-by: Ludovic Desroches <ludovic.desroches@microchip.com>
+
+s/Reviwed/Reviewed/
+
+Not sure who will pick this up and which automatisms are used. This
+might need manual fixup or attention to be picked up at all.
+
+Best regards
+Uwe
+
+
+--Gs5T56No68F6bl0Jg67000vKJ2AyYCfsp--
+
+--cH4BqUBpag4tE2aMU0hpD3Sc3r1rGJZGd
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: OpenPGP digital signature
+Content-Disposition: attachment; filename="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCgAdFiEEfnIqFpAYrP8+dKQLwfwUeK3K7AkFAl1CDK8ACgkQwfwUeK3K
+7AmqEAf/Ryv0/abniCQoVuSFJGOMBJake5bcaY6GLUx703CxC9WPaB0Z4p5RoknD
++sczfkTq+BtCYzjkGVjgqaW4t3cgn3HHfMDHqUoullY4OC5XE6pd/f/J1WAPYlg7
+8yrDnA9nOrmbMGazcqy+Fd8/AH7FfbEMB7w+lpmvLKbDkZ1Gk929YsDwrPAdKMTF
+hTGahf5vgBZoL6IwDAbpPSA9k824+NOv8hohdF1hJQLmJYbVWeA1KO+REjRKfjKW
+YP347AKi5Ej30nwxxtEaTidR1uyU5gUiSWw9nvYqrfvXKMevAR4uOpSdYzUT9DvR
+FFzdsz7oDh0kmpo2zdw34iveFoyKXg==
+=Gldg
+-----END PGP SIGNATURE-----
+
+--cH4BqUBpag4tE2aMU0hpD3Sc3r1rGJZGd--
