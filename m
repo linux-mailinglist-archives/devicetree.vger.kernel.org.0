@@ -2,85 +2,65 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16B427C8F2
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 18:40:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 813797C905
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 18:43:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729637AbfGaQkg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 12:40:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:37156 "EHLO mail.kernel.org"
+        id S1730340AbfGaQni (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 12:43:38 -0400
+Received: from honk.sigxcpu.org ([24.134.29.49]:55508 "EHLO honk.sigxcpu.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729558AbfGaQkg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 12:40:36 -0400
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 160D2217D6;
-        Wed, 31 Jul 2019 16:40:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564591235;
-        bh=YL6XanHOolYBcQrCgtDrnoZxKEgTNa0ScsgoNJYUcl4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=vV17cvDdDvETO00aVhD1+RRzbWqVUfJpSZAbyKvzxiGWhpRx6idzA7KjVE3HSKgFJ
-         yNR29JWdMJ0Ho79he6O206pMZhRdSF/wCyj36+CW/3no7oEm4X6dzIGADd3HD8yu77
-         /6ZGkrZZQIbH49k0YWO7M0svFrDW+4oWHSYZ6T+g=
-Received: by mail-qt1-f177.google.com with SMTP id z4so67296595qtc.3;
-        Wed, 31 Jul 2019 09:40:35 -0700 (PDT)
-X-Gm-Message-State: APjAAAVZykK84NHDBYYI+gnVf1l7EsSup8iOZoJjDScwlI8jMpSx+32O
-        VhMuN+Lw0hVlhHvID714oH8LpGf0hovK8oZI2w==
-X-Google-Smtp-Source: APXvYqxdcWD9trsaYQYOwFKEONE5H4wG9+/v4JG0/5E8QaOHAUVaeK8kQHktNxjbYmOrrMt7zJ5qZzoDHRl4gwI64GY=
-X-Received: by 2002:a0c:8a43:: with SMTP id 3mr90832483qvu.138.1564591234233;
- Wed, 31 Jul 2019 09:40:34 -0700 (PDT)
+        id S1728984AbfGaQni (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Jul 2019 12:43:38 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by honk.sigxcpu.org (Postfix) with ESMTP id 4CD8BFB04;
+        Wed, 31 Jul 2019 18:43:36 +0200 (CEST)
+X-Virus-Scanned: Debian amavisd-new at honk.sigxcpu.org
+Received: from honk.sigxcpu.org ([127.0.0.1])
+        by localhost (honk.sigxcpu.org [127.0.0.1]) (amavisd-new, port 10024)
+        with ESMTP id 9TGo641ILXY0; Wed, 31 Jul 2019 18:43:33 +0200 (CEST)
+Received: by bogon.sigxcpu.org (Postfix, from userid 1000)
+        id 5EB7746D8A; Wed, 31 Jul 2019 18:43:31 +0200 (CEST)
+From:   =?UTF-8?q?Guido=20G=C3=BCnther?= <agx@sigxcpu.org>
+To:     Philipp Zabel <p.zabel@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: [PATCH 0/2] imx: Fix typo in iMQ8MQ reset names
+Date:   Wed, 31 Jul 2019 18:43:29 +0200
+Message-Id: <cover.1564591352.git.agx@sigxcpu.org>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <20190731073744.13963-1-geert+renesas@glider.be>
- <20190731074801.5706-1-geert+renesas@glider.be> <20190731081209.GA5080@pendragon.ideasonboard.com>
- <CAMuHMdV9MEYP97_6RFhmbGGB8uY-Pi8S9q+m+XMmHzKHcibJwQ@mail.gmail.com>
- <CAL_JsqJWJ+o6t2Wb162h7Xz98L=WPSi4une-EC0HfoRiWLmKWA@mail.gmail.com> <20190731150909.GD4369@sirena.org.uk>
-In-Reply-To: <20190731150909.GD4369@sirena.org.uk>
-From:   Rob Herring <robh@kernel.org>
-Date:   Wed, 31 Jul 2019 10:40:22 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+qfGrrfG68WKSsHF2MoLBNi5m9w9x68dT+ZAG9fcWEjg@mail.gmail.com>
-Message-ID: <CAL_Jsq+qfGrrfG68WKSsHF2MoLBNi5m9w9x68dT+ZAG9fcWEjg@mail.gmail.com>
-Subject: Re: [PATCH] arm64: dts: renesas: r8a77995: draak: Fix backlight
- regulator name
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Geert Uytterhoeven <geert@linux-m68k.org>,
-        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, Johan Hovold <johan@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 31, 2019 at 9:09 AM Mark Brown <broonie@kernel.org> wrote:
->
-> On Wed, Jul 31, 2019 at 08:47:38AM -0600, Rob Herring wrote:
->
-> > As long as we have a consistent base name that we can match schema
-> > with, then I'm happy. But for regulators, we have a lot of node names
-> > like 'buck1', 'LDO2', etc.
->
-> Those are all types of regulator (LDOs and DCDCs are the main types of
-> voltage regulator, and buck is another term for DCDC).
+Some of the mipi dsi resets were called
 
-Yes, I know.
+  IMX8MQ_RESET_MIPI_DIS_
 
-> I'm still not clear what meaningful effect any of this node name stuff
-> has :(
+instead of
 
-It is primarily just what I said. Standard names or patterns allow for
-applying schemas. Otherwise, we only have schema checks when we have a
-device specific schema. Of course, we do have those too, but generic
-ones are useful when we don't. If there are errors in the DT causing
-the device specific schema to not match (say a typo in the compatible
-string), we still have some checking.
+  IMX8MQ_RESET_MIPI_DSI_
 
-Rob
+Since they're DSI related this looks like a typo.
+
+Guido Günther (2):
+  dt-bindings: reset: Fix typo in imx8mq resets
+  reset: imx7: Fix IMX8MQ_RESET_MIPI_DSI_ defines
+
+ drivers/reset/reset-imx7.c               | 12 ++++++------
+ include/dt-bindings/reset/imx8mq-reset.h |  6 +++---
+ 2 files changed, 9 insertions(+), 9 deletions(-)
+
+-- 
+2.20.1
+
