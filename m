@@ -2,58 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3F6127C22F
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:51:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 278C77C23F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:52:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729143AbfGaMvn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 08:51:43 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:45621 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729131AbfGaMvn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:51:43 -0400
-Received: by mail-wr1-f66.google.com with SMTP id f9so69530677wre.12
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 05:51:41 -0700 (PDT)
+        id S1729190AbfGaMwP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 08:52:15 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:54943 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387723AbfGaMwP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:52:15 -0400
+Received: by mail-wm1-f66.google.com with SMTP id p74so60659119wme.4
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 05:52:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:openpgp:autocrypt:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=mbZkyFp1Z1ll70YaQICnCwHAwlgq/wjaBzmJoGt2t2M=;
-        b=Isjb9t+lALjpGl7Pxjt1EV1JETjjiPJ92/QGYBD8TFyNndBOWN5aj2sVyM0LS0LQjC
-         Q+FSm6bhU5yBUhBb9rYu7EwoogKjuN9zarGk46rYSv2ezEqayAiKhMcOLZdZ681CbPzZ
-         dKTYE8DbH2qvcSjA0CRTYW9wMEyTol46u0YAhE+SeHgQODECYXTmQWjbECAOHxlIvJmu
-         ItMMBvY9SRpf59UViPHrNESfvjgdl06XlT1R9NUxzSw9uTNMh7thIc1HJ3JqvJs1ldKt
-         Wz1iq0e6ItfSCfjrk7v8tK/eBykQd9Ub0KVPob/8lKHgr+Gxbsg5eGcYOP6n2XyUwZD2
-         t1nA==
+        bh=nHgD5MradYY8xVGHEvd/R2jyn+uvXGXVexfyZzlb6Eg=;
+        b=NDQ1w/tMCOAR6qUEvWcAPGFf2syCsFKvMvMkOvNkNsuR8d1JWPhMuUE6VolCt6ngPc
+         0x+nNNBtrFhu8hdrzOvzONn6BXK3TwkHxoLnLXO51bwZL6awbkZT4aY4Vf2vzbQhLoox
+         DTC9+WaObJiuK84ogxTOdK3AHFmlYsnqfVwKVLBwGZ4jYkxHqADsatO7zGrA98OhEHFa
+         DOUbbQSax8BLtrbGMUTANL8ftDT0SOVwXkDTjsciC9syTWEe5ImmtTsjtGMR7RNO28Pc
+         01yq2zVyCmutfIgAa8tLQnvbAxus3GqPV20+JP9GeEdhrSviRS2ASUuW+4Qm5IdAXQmJ
+         J/wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=mbZkyFp1Z1ll70YaQICnCwHAwlgq/wjaBzmJoGt2t2M=;
-        b=gYCQcrypZbTL0p3jFbzyCqJTD+yUcp4TxzyVA8ICCy1PQh0nHNgovnFORNNiNVrlfK
-         hZBcIt8lh6PHhj/jJVnZLutJ7nmpMO/MIe0aFH8zvt6qcK+p6BLEMWn6Gm/FUEVsfnA6
-         Nb9idU0/cUfUdBj2NYrNzXBUEUSNpuqVqDajttLtgwBGHxW52gsxM6ntIuPT9SNiF5iN
-         ZUbrHfnbAt2ZerNW3Xr+Q/7xzeUZA7OEnZNnpZJBu0IkyteTvnAY/lPX26oCtFgQBbWF
-         X6+Gk8Vte09PczW/zXmtKCOm7hav2PYnBQEFlGgitCG127FxBrkjfOPDaYYL4dFiyLBy
-         2wSA==
-X-Gm-Message-State: APjAAAWVdSPeTWE/XPTIyxYNp8/2JEQHtsfpO7xy0E0uG3z1C1R4ImRX
-        68uguY5Qj4TSSYAIUdlVvh+fJQ==
-X-Google-Smtp-Source: APXvYqyLRZokBRocMHRX7A2pYosYT4CdjE+fF6+eb7bIPJ8ORiUWKgf8s7bpv9JLgPZfpxvuakQmmw==
-X-Received: by 2002:a5d:69c4:: with SMTP id s4mr104745648wrw.163.1564577500247;
-        Wed, 31 Jul 2019 05:51:40 -0700 (PDT)
+        bh=nHgD5MradYY8xVGHEvd/R2jyn+uvXGXVexfyZzlb6Eg=;
+        b=lNVrcYZAk7QUmmtr9eBggaECQtV/tqmC7HtiecY589ewFk1uWMZB8+P527PLvw1nCJ
+         fC7OqM/0o3Qjz6yHGnlYBhw83PHl2FIg+DhRpYO6urnp9MvYUT7Bmyq5gkQXOIZCBdFv
+         4td0RxQvAI56dxc4RunHFiceIKvFwzDyvssItO+KA2bTVnWBptDV/ttZpVQdfgOxHV5X
+         aI8HLswbEGgezjW+6CrC2zKA586YtMtOVs7hZF7RpaNdG3OJxKCAg/BmuVTApUAxVQnw
+         vfd5YCbSplGEFip4T0MuFZMhmfKuOmHF+HQ1XjhEeyUnfG/1vt6u+HQl8jAg3I4aWJb0
+         grDQ==
+X-Gm-Message-State: APjAAAXvDa3MgFIpQC4Xmuss+cDBlGlDWlfo5rGDw0dYK2z+SW9zqaiS
+        IjYYzRIssqH1xRQEhvcgIc7plg==
+X-Google-Smtp-Source: APXvYqzexZqsx7QZvp2tVYogwNmmqGukY9o2hhSYZ9udv3ZU8B9ndsRSKGLPT58dVWfPKzHKy9t8Gw==
+X-Received: by 2002:a7b:cae9:: with SMTP id t9mr110553661wml.126.1564577532473;
+        Wed, 31 Jul 2019 05:52:12 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a8sm54730608wma.31.2019.07.31.05.51.39
+        by smtp.gmail.com with ESMTPSA id g11sm68858050wru.24.2019.07.31.05.52.11
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 31 Jul 2019 05:51:39 -0700 (PDT)
-Subject: Re: [PATCH 4/6] arm64: dts: meson: sei510: Add minimal thermal zone
+        Wed, 31 Jul 2019 05:52:11 -0700 (PDT)
+Subject: Re: [PATCH 6/6] MAINTAINERS: add entry for Amlogic Thermal driver
 To:     Guillaume La Roque <glaroque@baylibre.com>,
         daniel.lezcano@linaro.org, khilman@baylibre.com
 Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
         linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-pm@vger.kernel.org
 References: <20190731121409.17285-1-glaroque@baylibre.com>
- <20190731121409.17285-5-glaroque@baylibre.com>
+ <20190731121409.17285-7-glaroque@baylibre.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -106,12 +106,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <c451fd49-bf3d-b7d7-46ba-43ac7bed3b90@baylibre.com>
-Date:   Wed, 31 Jul 2019 14:51:39 +0200
+Message-ID: <3c522eb3-5cf7-6a79-3282-864d8b783a51@baylibre.com>
+Date:   Wed, 31 Jul 2019 14:52:11 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190731121409.17285-5-glaroque@baylibre.com>
+In-Reply-To: <20190731121409.17285-7-glaroque@baylibre.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -121,48 +121,33 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 31/07/2019 14:14, Guillaume La Roque wrote:
-> Add minimal thermal zone for DDR and CPU sensor
+> Add myself as maintainer for Amlogic Thermal driver.
 > 
 > Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 > ---
->  arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 13 +++++++++++++
->  1 file changed, 13 insertions(+)
+>  MAINTAINERS | 9 +++++++++
+>  1 file changed, 9 insertions(+)
 > 
-> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> index c7a87368850b..79ae514e238d 100644
-> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-> @@ -33,6 +33,19 @@
->  		ethernet0 = &ethmac;
->  	};
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index fb2b12f75c37..299f27d11058 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -15910,6 +15910,15 @@ F:	Documentation/driver-api/thermal/cpu-cooling-api.rst
+>  F:	drivers/thermal/cpu_cooling.c
+>  F:	include/linux/cpu_cooling.h
 >  
-> +	thermal-zones {
-> +		soc_thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-ptripsassive = <100>;
-> +			thermal-sensors = <&cpu_temp 0>;
-
-
-Seems the trips & cooling-maps are required as described in thermal.txt
-
-For the soc_thermal zone it's esy to add a cooling map with the CPU
-and cooling devices, but for the ddr_thermal, no idea if we can use the
-CPUs within 2 cooling maps.
-
-> +		};
-
-I would add a blank line between the zones, same for other files.
-
-
-> +		ddr_thermal {
-> +			polling-delay = <1000>;
-> +			polling-delay-passive = <100>;
-> +			thermal-sensors = <&ddr_temp 1>;
-> +		};
-> +	};
+> +THERMAL DRIVER FOR AMLOGIC SOCS
+> +M:	Guillaume La Roque <glaroque@baylibre.com>
+> +L:	linux-pm@vger.kernel.org
+> +L:	linux-amlogic@lists.infradead.org
+> +W:	http://linux-meson.com/
+> +S:	Supported
+> +F:	drivers/thermal/amlogic_thermal.c
+> +F:	Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
 > +
->  	mono_dac: audio-codec-0 {
->  		compatible = "maxim,max98357a";
->  		#sound-dai-cells = <0>;
+>  THINKPAD ACPI EXTRAS DRIVER
+>  M:	Henrique de Moraes Holschuh <ibm-acpi@hmh.eng.br>
+>  L:	ibm-acpi-devel@lists.sourceforge.net
 > 
 
+Reviewed-by: Neil Armstrong <narmstrong@baylibre.com>
