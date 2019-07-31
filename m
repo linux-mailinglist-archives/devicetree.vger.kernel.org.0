@@ -2,183 +2,198 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2C5AE7C298
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 15:01:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8B7907C329
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 15:19:43 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728032AbfGaNBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 09:01:49 -0400
-Received: from mailout2.w1.samsung.com ([210.118.77.12]:38758 "EHLO
-        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726300AbfGaNBt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 09:01:49 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190731130148euoutp02fbb9e6499bdcfa7fd2566642632afe62~2f3-2Vod51557415574euoutp02P
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 13:01:48 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190731130148euoutp02fbb9e6499bdcfa7fd2566642632afe62~2f3-2Vod51557415574euoutp02P
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1564578108;
-        bh=uIZjK2mDYGGIQoh1L8WzyXdHyo8GssTHvhq/RxYs6Uk=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=uBXqMhXsZ5RMPNSzD+hvziPd3ueErlFr57XLeoL3zG8MSppyQ8zSXwgVodf+TBTRG
-         Qfrk7r6gX7cCPBpcCE+edtRgvETM0XSKCH2sU7uluSybyR+JjXU9Ws+n8BQTbKkJU6
-         4Ql2dATHWlcMHhGMnSsaXnQhIWcViBEPDT1iVhrM=
-Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190731130147eucas1p2622981052b71f0c9b305a38c448eab62~2f3-WA7jT2160421604eucas1p2P;
-        Wed, 31 Jul 2019 13:01:47 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges1new.samsung.com (EUCPMTA) with SMTP id 9C.F1.04298.B31914D5; Wed, 31
-        Jul 2019 14:01:47 +0100 (BST)
-Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190731130146eucas1p13647e6bd5004b9b858f82a95d9bf2928~2f3_kUhyz3209332093eucas1p1Y;
-        Wed, 31 Jul 2019 13:01:46 +0000 (GMT)
-Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
-        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
-        20190731130146eusmtrp193ab339d7f7c267bd73035f03355d67a~2f3_WEMb62537425374eusmtrp1f;
-        Wed, 31 Jul 2019 13:01:46 +0000 (GMT)
-X-AuditID: cbfec7f2-f13ff700000010ca-2a-5d41913bfd1e
-Received: from eusmtip2.samsung.com ( [203.254.199.222]) by
-        eusmgms2.samsung.com (EUCPMTA) with SMTP id 01.D3.04140.A31914D5; Wed, 31
-        Jul 2019 14:01:46 +0100 (BST)
-Received: from AMDC3555 (unknown [106.120.51.67]) by eusmtip2.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20190731130145eusmtip2d16e9993c297dd63cdd5a647debb0c70~2f39r4f1i2937029370eusmtip2_;
-        Wed, 31 Jul 2019 13:01:45 +0000 (GMT)
-Message-ID: <a1fc0e2b5ef2d131f4e896c9c0aa7621bf4b79e2.camel@partner.samsung.com>
-Subject: Re: [RFC PATCH 09/11] devfreq: exynos-bus: Add interconnect
- functionality to exynos-bus
-From:   Artur =?UTF-8?Q?=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>
-To:     Krzysztof Kozlowski <krzk@kernel.org>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        cw00.choi@samsung.com, myungjoo.ham@samsung.com,
-        inki.dae@samsung.com, sw0312.kim@samsung.com,
-        georgi.djakov@linaro.org, m.szyprowski@samsung.com,
-        =?UTF-8?Q?Bart=C5=82omiej_?= =?UTF-8?Q?=C5=BBo=C5=82nierkiewicz?= 
-        <b.zolnierkie@samsung.com>
-Date:   Wed, 31 Jul 2019 15:01:44 +0200
-In-Reply-To: <20190724183639.GA14346@kozik-lap>
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
+        id S1726859AbfGaNTm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 09:19:42 -0400
+Received: from esa6.microchip.iphmx.com ([216.71.154.253]:65463 "EHLO
+        esa6.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726339AbfGaNTm (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 09:19:42 -0400
+Received-SPF: Pass (esa6.microchip.iphmx.com: domain of
+  Ludovic.Desroches@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  envelope-from="Ludovic.Desroches@microchip.com";
+  x-sender="Ludovic.Desroches@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa6.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa6.microchip.iphmx.com;
+  envelope-from="Ludovic.Desroches@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa6.microchip.iphmx.com; dkim=none (message not signed) header.i=none; spf=Pass smtp.mailfrom=Ludovic.Desroches@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: BOwPyBdp7t0RiZBw5FHJUNlbvR5H0PUELcwVzXHqUd1zyd5AjwBMf02qY/FT0PsbtSxWxz71vZ
+ NVKeyaKZt9KdNnL21D4Jm73se5MWZNcYCpZiB64xbI0NYlGwTTE+wu2PafaGqZ/jn/yfsG6cn4
+ JFVRutBeldNuaeEG3HgDFBfuy5taa6VyeQPbCF+B0DeL2UYwX+yrIbTMf++FF5Svchic1H4Qll
+ 2K6bZtleRt67yDQ7GjmnnCWvmduLmzMfw8dgljMQt50Iee13y6m3FkFenlXZxvQ1NXHJsTmJNG
+ C0w=
+X-IronPort-AV: E=Sophos;i="5.64,330,1559545200"; 
+   d="scan'208";a="40428608"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa6.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 31 Jul 2019 06:19:41 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.85.144) by
+ chn-vm-ex01.mchp-main.com (10.10.85.143) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Wed, 31 Jul 2019 06:19:39 -0700
+Received: from localhost (10.10.85.251) by chn-vm-ex02.mchp-main.com
+ (10.10.85.144) with Microsoft SMTP Server id 15.1.1713.5 via Frontend
+ Transport; Wed, 31 Jul 2019 06:19:39 -0700
+Date:   Wed, 31 Jul 2019 15:18:44 +0200
+From:   Ludovic Desroches <ludovic.desroches@microchip.com>
+To:     Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <info@acmesystems.it>
+Subject: Re: [PATCH 2/2] ARM: dts: at91: add support for Arietta G25
+Message-ID: <20190731131844.avi5zlwkgu7f2her@M43218.corp.atmel.com>
+Mail-Followup-To: Uwe =?utf-8?Q?Kleine-K=C3=B6nig?= <uwe@kleine-koenig.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        info@acmesystems.it
+References: <20190728210403.2730-1-uwe@kleine-koenig.org>
+ <20190728210403.2730-3-uwe@kleine-koenig.org>
+ <20190731113648.kyktpnk3exly57fw@M43218.corp.atmel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="iso-8859-1"
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01SaUgUYRju2zl23Br7XK19u3UjpEi3oB8DZiVELvWjC/qRme7moLVe7KSd
-        lKWEeWXZklnhklqiqDlmma2Vx7ap1KaZBZorHmmFFHmEhFrTGPXveZ/jPeBlCHUjtZg5HHuU
-        N8caorW0inzwfNLpF3A5KHTd1TFPrjK3guLejQ1RXH7TK4rrGP9Kc9fqRJq74somOafznpIT
-        +zsp7k3tTZobzWxCXK7ziYIra/qg5LrOFdNcbs4neou7Xiy5SOu7O2203pXuUOirCs/qs+6X
-        IP2ouHwXvV+1MYKPPpzIm3WbwlVR6cN2Kr7b63il6zaVhGw4DbkxgDfA1IsBRRpSMWpcjGCs
-        OB3JxRiCh809s8oogi/Dk+TfiL06lZSFuwhKxWZaLj4iqPpYhCQXi3dBakY5IWFPbARrXxsl
-        YRoHw/RQxx/shVfDu6kflBQm8DMC6ussyjTEMCReBR1PgiWPG9aBWGRD8uS1MNKSRUoWFnvA
-        VI2nRBN4BSRX3yCkNoB7lOAasdCyfyu8LbhLydgTPjvuK2W8FFpzMmavEWDwkYuSw0kIxDtN
-        hCwEQKNDWpr5PWE1VNTqZDoIRrLshEQDdof3Ix7yDu5w5cG1WZqF1AtqGa4B688QOQhwvrRz
-        trceUvqGlNnIJ+/fLXn/3ZL3b6oVESVIwycIMZG8sD6WP+YvGGKEhNhI/0NxMSL6/Vqt047v
-        NWi83diAMIO089gXF4NC1ZQhUTgR04CAIbRebIFmc6iajTCcOMmb48LMCdG80ICWMKRWw56a
-        0xuixpGGo7yJ5+N5819VwbgtTkLXtx14XlZ63Oa9aMm37hl2AW35Frax91LAy/p229Jc35K+
-        icQ9voUZD99PO4N4FLhjrylT05U8MT99ABUcHN7/+Gnh9rie8IVzy8+0rXwd1jY4zEWk7M58
-        1r8z0I5MG1oa9+XDU2PNsWX3dKV+lhar9y2j7vRMRGVOlUlxJF/0+awlhSjD+jWEWTD8AnSD
-        goRWAwAA
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNIsWRmVeSWpSXmKPExsVy+t/xe7pWEx1jDdaukrDYOGM9q8X1L89Z
-        LeYfOcdqceXrezaL6Xs3sVlMuj+BxeL8+Q3sFpseX2O1uLxrDpvF594jjBYzzu9jslh75C67
-        xe3GFWwWMya/ZHPg89i0qpPN4861PWwe97uPM3lsXlLv0bdlFaPH501yAWxRejZF+aUlqQoZ
-        +cUltkrRhhZGeoaWFnpGJpZ6hsbmsVZGpkr6djYpqTmZZalF+nYJehndL46yFtwRqdh4fxFr
-        A+MegS5GTg4JAROJo1s7WLoYuTiEBJYySnx88ZINIiEh8XH9DVYIW1jiz7UuNoiiJ4wSV+5/
-        AkvwCgRIdPSsYwaxhQWSJBY8uggWZxNwl/j3/AqYLSKgKXH973dWkGZmgUPMEusOdAM5HBws
-        AqoSV/a5g9RwCuhLbFq6hxFiwTdGid+dJxlBEsxAza3bf7NDXKEj8fZUHwtIL6+AoMTfHcIQ
-        JfISzVtnM09gFJyFpGMWQtUsJFULGJlXMYqklhbnpucWG+kVJ+YWl+al6yXn525iBEbktmM/
-        t+xg7HoXfIhRgINRiYf3RKdjrBBrYllxZe4hRgkOZiUR3sXi9rFCvCmJlVWpRfnxRaU5qcWH
-        GE2B3pnILCWanA9MFnkl8YamhuYWlobmxubGZhZK4rwdAgdjhATSE0tSs1NTC1KLYPqYODil
-        GhgZ+s6e2hzFfYP7duW0NRvsttXPfGYa/H2fRWzHkyDeCVtNzlRLyguoJjpscFupqJb38zpf
-        ZMnyDR8XihuvLt5xab/EX9VNvab63bs5mLbfSvNKdvGbzVc3XULbl1Xy3u59fl+Zns7hnMHb
-        GHSk4OWXw/UFKcsPBtkH18ilpursPRnq/Psjv78SS3FGoqEWc1FxIgB2NBHi3gIAAA==
-X-CMS-MailID: 20190731130146eucas1p13647e6bd5004b9b858f82a95d9bf2928
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b
-References: <20190723122016.30279-1-a.swigon@partner.samsung.com>
-        <CGME20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b@eucas1p2.samsung.com>
-        <20190723122016.30279-10-a.swigon@partner.samsung.com>
-        <20190724183639.GA14346@kozik-lap>
+In-Reply-To: <20190731113648.kyktpnk3exly57fw@M43218.corp.atmel.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 2019-07-24 at 20:36 +0200, Krzysztof Kozlowski wrote:
-> On Tue, Jul 23, 2019 at 02:20:14PM +0200, Artur Świgoń wrote:
-> > This patch adds interconnect functionality to the exynos-bus devfreq
-> > driver.
+On Wed, Jul 31, 2019 at 01:36:49PM +0200, Ludovic Desroches wrote:
+> On Sun, Jul 28, 2019 at 11:04:03PM +0200, Uwe Kleine-K�nig wrote:
 > > 
-> > The SoC topology is a graph (or, more specifically, a tree) and most of its
-> > edges are taken from the devfreq parent-child hierarchy (cf.
-> > Documentation/devicetree/bindings/devfreq/exynos-bus.txt). The previous
-> > patch adds missing edges to the DT (under the name 'parent'). Due to
-> 
-> Do not refer to DT patches. They will come through different tree so
-> "previous" will not be correct anymore. You mentioned dependencies in
-> cover letter so it is sufficient.
+> > The Arietta G25 is a SBC powered by a AT91SAMG25 running at 400 MHz.
+> > See https://www.acmesystems.it/arietta for more details.
+> > 
+> > Signed-off-by: Uwe Kleine-K�nig <uwe@kleine-koenig.org>
+> Acked-by: Ludovic Desroches <ludovic.desroches@microchip.com>
 
-OK.
- 
-> >  /*
-> > @@ -61,6 +69,13 @@ exynos_bus_ops_edev(enable_edev);
-> >  exynos_bus_ops_edev(disable_edev);
-> >  exynos_bus_ops_edev(set_event);
-> >  
-> > +static int exynos_bus_next_id(void)
-> > +{
-> > +	static int exynos_bus_node_id;
+I should have double checked before, I had in mind that we support this
+board in our bootloader but it's also the case in the kernel:
+
+arch/arm/boot/dts/at91-ariettag25.dts
+
+Regards
+
+Ludovic
+
+> 
+> > ---
+> >  arch/arm/boot/dts/at91sam9g25-arietta.dts | 86 +++++++++++++++++++++++
+> >  1 file changed, 86 insertions(+)
+> >  create mode 100644 arch/arm/boot/dts/at91sam9g25-arietta.dts
+> > 
+> > diff --git a/arch/arm/boot/dts/at91sam9g25-arietta.dts b/arch/arm/boot/dts/at91sam9g25-arietta.dts
+> > new file mode 100644
+> > index 000000000000..6c20e02f0ea9
+> > --- /dev/null
+> > +++ b/arch/arm/boot/dts/at91sam9g25-arietta.dts
+> > @@ -0,0 +1,86 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Arietta - System On Module
+> > + * https://www.acmesystems.it/arietta
+> > + */
 > > +
-> > +	return exynos_bus_node_id++;
-> 
-> This does not look robust. Use IDR for IDs. 
-
-OK.
-
-> > +static int exynos_bus_icc_connect(struct exynos_bus *bus)
-> > +{
-> > +	struct device_node *np = bus->dev->of_node;
-> > +	struct devfreq *parent_devfreq;
-> > +	struct icc_node *parent_node = NULL;
-> > +	struct of_phandle_args args;
-> > +	int ret = 0;
+> > +/dts-v1/;
+> > +#include "at91sam9g25.dtsi"
 > > +
-> > +	parent_devfreq = devfreq_get_devfreq_by_phandle(bus->dev, 0);
-> > +	if (!IS_ERR(parent_devfreq)) {
-> > +		struct exynos_bus *parent_bus;
-> 
-> What if someone unbinds this parent devfreq? I guess everything in
-> devfreq starts exploding... however it's not the problem of this patch.
-> 
-> Do you also need suspend/resume order (device links)? I guess the other
-> side, e.g.  mixer, should resume before the bus?
-
-Actually, I think that the bus (devfreq) should resume before mixer. However,
-suspend/resume order is another issue that applies to this driver regardless of
-using the interconnect framework, although device links could probably also be
-implemented in the interconnect framework itself.
-
-> > +		parent_bus = dev_get_drvdata(parent_devfreq->dev.parent);
-> > +		parent_node = parent_bus->node;
-> > +	} else {
-> > +		/* Look for parent in DT */
-> > +		int num = of_count_phandle_with_args(np, "parent",
-> > +						     "#interconnect-cells");
-> > +		if (num != 1)
-> 
-> You will return here 0 but isn't it an error?
-
-It is definitely not an error when 'parent' does not exist in DT (for buses that
-are parents themselves). I can extend the comment in the code to explicitly
-state that.
-
-Best regards,
--- 
-Artur Świgoń
-Samsung R&D Institute Poland
-Samsung Electronics
-
-
+> > +/ {
+> > +	model = "Acme Systems Arietta G25";
+> > +	compatible = "acme,ariettag25", "atmel,at91sam9x5", "atmel,at91sam9";
+> > +
+> > +	chosen {
+> > +		stdout-path = "serial0:115200n8";
+> > +	};
+> > +
+> > +	memory {
+> > +		reg = <0x20000000 0x8000000>;
+> > +	};
+> > +
+> > +	clocks {
+> > +		slow_xtal {
+> > +			clock-frequency = <32768>;
+> > +		};
+> > +
+> > +		main_xtal {
+> > +			clock-frequency = <12000000>;
+> > +		};
+> > +	};
+> > +
+> > +	ahb {
+> > +		apb {
+> > +			rtc@fffffeb0 {
+> > +				status = "okay";
+> > +			};
+> > +		};
+> > +	};
+> > +
+> > +	leds {
+> > +		compatible = "gpio-leds";
+> > +
+> > +		arietta_led {
+> > +			label = "arietta_led";
+> > +			gpios = <&pioB 8 GPIO_ACTIVE_HIGH>;
+> > +			linux,default-trigger = "heartbeat";
+> > +		};
+> > +	};
+> > +};
+> > +
+> > +&dbgu {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&mmc0 {
+> > +	pinctrl-0 = <
+> > +		&pinctrl_mmc0_slot0_clk_cmd_dat0
+> > +		&pinctrl_mmc0_slot0_dat1_3>;
+> > +	status = "okay";
+> > +
+> > +	slot@0 {
+> > +		reg = <0>;
+> > +		bus-width = <4>;
+> > +	};
+> > +};
+> > +
+> > +&usart0 {
+> > +	status ="okay";
+> > +};
+> > +
+> > +&usart1 {
+> > +	status ="okay";
+> > +};
+> > +
+> > +&usb0 {
+> > +	status = "okay";
+> > +	num-ports = <3>;
+> > +};
+> > +
+> > +&usb1 {
+> > +	status = "okay";
+> > +};
+> > +
+> > +&usb2 {
+> > +	status = "okay";
+> > +};
+> > -- 
+> > 2.20.1
+> > 
