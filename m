@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 869F57BE35
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 12:20:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 006C17BE36
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 12:20:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728096AbfGaKUV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 06:20:21 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:35690 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728086AbfGaKUU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 06:20:20 -0400
-Received: by mail-pf1-f194.google.com with SMTP id u14so31632973pfn.2
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 03:20:20 -0700 (PDT)
+        id S1728245AbfGaKUZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 06:20:25 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:34869 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728213AbfGaKUY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 06:20:24 -0400
+Received: by mail-pl1-f196.google.com with SMTP id w24so30283438plp.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 03:20:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=1hFW261EdAqqhHx0R9omLG8cea6wI1AtJQwshss1NJ0=;
-        b=ZnHxKlYHCG2JqkdO1qYbMKw0Igq/zrkMr/66ZX3a3OBAcS2HoMJwTxyLFb/zdDXjtZ
-         EpHOIh+NosfgOyztVan1SBci8of22qogiV29Dtq0p3o6g4J8xml+ttpPkJ8gmN6Y5h2m
-         l9iFy3hgGtMzALboGVSKvQju1e+BKKjiOCNyM=
+        bh=RQGFkwgFaLnGGoQ1NvDOCDLZIEZUzuJI5zevIe71AxU=;
+        b=DTXJINGXVoTql1fXQHHPFsg3EipbEhbHQzDr6FeRofUSP/OzviQIKQg+49YLikdEqQ
+         YjNM5/uykn2qAyF0kVd/+4V/lByaAjL4OlR1muQrRUKLmQ3xs48e9VAQruzJToarL/XU
+         3YIZuGVXB1XvgHJh22L/KCNzYkMI96K7Qz0es=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=1hFW261EdAqqhHx0R9omLG8cea6wI1AtJQwshss1NJ0=;
-        b=Iuc6AUqt+/14yyWQjN1z6bnu+YJhe+q/08MXwf4n+QI+7yvhwzZbfTGtgmLT+uJrdl
-         lFkpP1KlREFj4Xxgrzr25l5yI7sXozxSuWiWcubvfxVDdVfsDgWMWH1X21Hu2xnZ5u40
-         /0IsAjs07Heo9G03SPwi6SrqxNSFG0aRj9fwW69IQ8T7R8ySuKkQ+x1kRWC1KL9H+TFV
-         9lFKXVSpqsl6GpvhSqM7C9dwkhhznf2oLec8Sl4yTWYlpbu3uZxqww2Xa31wgfCM2RAS
-         fJuye0wrMXG9jRuKD04SO5A0A6eTNjDcsIflBzWj6tOgdMqh9HSNu39H32Kz4IGDeDJT
-         Fmag==
-X-Gm-Message-State: APjAAAWZiMzoUG5eNLJoypro5UftWLmO5w3+PKiMdfeO159eyffFteb0
-        j1eCRoYU/A6iosct9qCLZEXjYQ==
-X-Google-Smtp-Source: APXvYqy7893HyxGzB7cZaK8oOykAUo7aQy7ubsb08yXfflUP8pw31YdKnzcz2kzBkHHUe5ASPdTHAQ==
-X-Received: by 2002:a17:90a:ad93:: with SMTP id s19mr2216195pjq.36.1564568419949;
-        Wed, 31 Jul 2019 03:20:19 -0700 (PDT)
+        bh=RQGFkwgFaLnGGoQ1NvDOCDLZIEZUzuJI5zevIe71AxU=;
+        b=tKMzW8BJsY+RnaJdo7JCqMo3Nxfnz8/ovrggbao2mXLZO2T1soNhjevbiXBEaY0GsT
+         j9BWT+pYsjH2V21o0pySfpPYfNdp6QqNcfN7LmdDgPMhclxWvQYUA+ytVrPsTwDCbtYJ
+         KnanSHJ1AU2qJpyRqk+AMe2PIgMn4R3R4rU1nbAeEx82MKx5uQEFjxcjsy8bmYgFtSqe
+         6fdHoyqzxc36wkFP2oJnn5AmEaH7mMSca9pNaLYEOQsyPxH2VJ+HstXWPGcukpHhvNZf
+         A0P1uKodMEDSZlnndOa3YdX/4a6DjpXXMso+c2sez0hRIRW7wrfy83P/FEkFdqXwMC3/
+         TTng==
+X-Gm-Message-State: APjAAAWKWwqFSaKjHcSaBcMZDSR0MByozdJCbXt1ThVfVlD61n7hHPx2
+        VNuPNZaHVFWeTivmfqhasPgj+A==
+X-Google-Smtp-Source: APXvYqyQgTrw9DUSsZLKLghRHWUN5/nvwSS94vv8+O0RVIrayMcxuja5bB0RZ59O26Nh4mBQFbfI0w==
+X-Received: by 2002:a17:902:2926:: with SMTP id g35mr119247923plb.269.1564568423495;
+        Wed, 31 Jul 2019 03:20:23 -0700 (PDT)
 Received: from mannams-OptiPlex-7010.dhcp.broadcom.net ([192.19.234.250])
-        by smtp.gmail.com with ESMTPSA id 3sm71161776pfg.186.2019.07.31.03.20.16
+        by smtp.gmail.com with ESMTPSA id 3sm71161776pfg.186.2019.07.31.03.20.20
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 31 Jul 2019 03:20:19 -0700 (PDT)
+        Wed, 31 Jul 2019 03:20:22 -0700 (PDT)
 From:   Srinath Mannam <srinath.mannam@broadcom.com>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Mathias Nyman <mathias.nyman@intel.com>,
@@ -50,9 +50,9 @@ Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
         Srinath Mannam <srinath.mannam@broadcom.com>
-Subject: [PATCH v2 2/5] dt-bindings: phy: Modify Stingray USB PHY #phy-cells
-Date:   Wed, 31 Jul 2019 15:49:52 +0530
-Message-Id: <1564568395-9980-3-git-send-email-srinath.mannam@broadcom.com>
+Subject: [PATCH v2 3/5] phy: sr-usb: Set phy ports
+Date:   Wed, 31 Jul 2019 15:49:53 +0530
+Message-Id: <1564568395-9980-4-git-send-email-srinath.mannam@broadcom.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1564568395-9980-1-git-send-email-srinath.mannam@broadcom.com>
 References: <1564568395-9980-1-git-send-email-srinath.mannam@broadcom.com>
@@ -61,53 +61,36 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Increase #phy-cells from 1 to 2 to have bitmask of PHY enabled ports.
+set phy ports value in xlate handler which is taken from second argument
+of PHY phandle.
 
 Signed-off-by: Srinath Mannam <srinath.mannam@broadcom.com>
 ---
- .../devicetree/bindings/phy/brcm,stingray-usb-phy.txt      | 14 ++++++++------
- 1 file changed, 8 insertions(+), 6 deletions(-)
+ drivers/phy/broadcom/phy-bcm-sr-usb.c | 9 ++++++++-
+ 1 file changed, 8 insertions(+), 1 deletion(-)
 
-diff --git a/Documentation/devicetree/bindings/phy/brcm,stingray-usb-phy.txt b/Documentation/devicetree/bindings/phy/brcm,stingray-usb-phy.txt
-index 4ba2989..aeb0568 100644
---- a/Documentation/devicetree/bindings/phy/brcm,stingray-usb-phy.txt
-+++ b/Documentation/devicetree/bindings/phy/brcm,stingray-usb-phy.txt
-@@ -6,9 +6,11 @@ Required properties:
- 	- "brcm,sr-usb-hs-phy" is a single HS PHY.
-  - reg: offset and length of the PHY blocks registers
-  - #phy-cells:
--   - Must be 1 for brcm,sr-usb-combo-phy as it expects one argument to indicate
--     the PHY number of two PHYs. 0 for HS PHY and 1 for SS PHY.
--   - Must be 0 for brcm,sr-usb-hs-phy.
-+   - Must be 2 for brcm,sr-usb-combo-phy.
-+     - Cell 1 - PHY Number, 0 for HS PHY and 1 for SS PHY.
-+     - Cell 2 - Bitmask of enabled ports connected to USB Host controller.
-+   - Must be 1 for brcm,sr-usb-hs-phy to indicate Bit mask of ports connected
-+     to USB Host controller.
+diff --git a/drivers/phy/broadcom/phy-bcm-sr-usb.c b/drivers/phy/broadcom/phy-bcm-sr-usb.c
+index fe6c589..5274e45 100644
+--- a/drivers/phy/broadcom/phy-bcm-sr-usb.c
++++ b/drivers/phy/broadcom/phy-bcm-sr-usb.c
+@@ -278,9 +278,16 @@ static struct phy *bcm_usb_phy_xlate(struct device *dev,
+ 		if (WARN_ON(phy_idx > 1))
+ 			return ERR_PTR(-ENODEV);
  
- Refer to phy/phy-bindings.txt for the generic PHY binding properties
++		if (args->args[1])
++			phy_set_phy_ports(phy_cfg[phy_idx].phy, args->args[1]);
++
+ 		return phy_cfg[phy_idx].phy;
+-	} else
++	} else {
++		if (args->args[0])
++			phy_set_phy_ports(phy_cfg->phy, args->args[0]);
++
+ 		return phy_cfg->phy;
++	}
+ }
  
-@@ -16,17 +18,17 @@ Example:
- 	usbphy0: usb-phy@0 {
- 		compatible = "brcm,sr-usb-combo-phy";
- 		reg = <0x00000000 0x100>;
--		#phy-cells = <1>;
-+		#phy-cells = <2>;
- 	};
- 
- 	usbphy1: usb-phy@10000 {
- 		compatible = "brcm,sr-usb-combo-phy";
- 		reg = <0x00010000 0x100>,
--		#phy-cells = <1>;
-+		#phy-cells = <2>;
- 	};
- 
- 	usbphy2: usb-phy@20000 {
- 		compatible = "brcm,sr-usb-hs-phy";
- 		reg = <0x00020000 0x100>,
--		#phy-cells = <0>;
-+		#phy-cells = <1>;
- 	};
+ static int bcm_usb_phy_create(struct device *dev, struct device_node *node,
 -- 
 2.7.4
 
