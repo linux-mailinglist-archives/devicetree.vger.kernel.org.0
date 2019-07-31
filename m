@@ -2,202 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 827EF7B978
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 08:08:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 340887B9A4
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 08:28:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725290AbfGaGIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 02:08:36 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:37561 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725209AbfGaGIg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 02:08:36 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hshlD-0001W1-99; Wed, 31 Jul 2019 08:06:51 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hshl6-0004Dx-RL; Wed, 31 Jul 2019 08:06:44 +0200
-Date:   Wed, 31 Jul 2019 08:06:44 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Thomas Preston <thomas.preston@codethink.co.uk>
-Cc:     Mark Brown <broonie@kernel.org>,
+        id S1727482AbfGaG2Q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 02:28:16 -0400
+Received: from esa1.hgst.iphmx.com ([68.232.141.245]:14898 "EHLO
+        esa1.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726717AbfGaG2Q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 02:28:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1564554494; x=1596090494;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=Eu6SnQnxj9vWiziHrtIWdaqOBvgayutKUnRGLtQ6FHQ=;
+  b=OPRBbMDGr4Vnf9oE7In85XP9N9Fgf+yDcqGTggfEGPRUQ4a4Tp1258y3
+   +Ggy07jsLJOjyb39JrPpD1NJcBpJv3tF4fYCSKoGs/C3Ceyd7+wxgIErv
+   37sVbTmGcNbWTKfoHj8wRTg4gX2y1CqISsZQxb1MdIR2+3KyN8NAL7aoH
+   bm+fcKKtxx1PqU7cwsj4x2kL4rhLt5BtE61eXQPTnmNcjaLCDWFQSJK2j
+   dCemYcdzLI/tF6F/dvqNsXc2D3CyWuwyuS383wZZD2bnhbfOgUm0nOYdV
+   HzB4UCCqmZsSucPk7qnvrx5NUMS/YmffVC4l+9sPJIlD6aLjWDRln4VAF
+   A==;
+IronPort-SDR: RtsYOSL9rCAPx+oJ6tHmYl5dnBH3272YBehxwkj6snDZQTgH8VfA87WwZZOSPoL+cjjR1QR2WA
+ DLeyMMUN4g46mK778nGqGyD1RZTXaJrPZdn96fUEPMwCsCvHWb45fWuljzSp5yHrxFUSK40nDY
+ tU7kkC167ZHy6shFru3QJj8EwMWNnYDekN/hvUBIwUzSnhg7PriN08dXtaLuG6iWEEgCvymJsb
+ 0o7Zb7iJrI/sFGTsXtHoqSZLFSA5OTBBTEAMBl7yUKQBdeEeue2x+5aIqEJ9N1+tKa/PsriaOT
+ xBA=
+X-IronPort-AV: E=Sophos;i="5.64,329,1559491200"; 
+   d="scan'208";a="221027131"
+Received: from mail-co1nam04lp2056.outbound.protection.outlook.com (HELO NAM04-CO1-obe.outbound.protection.outlook.com) ([104.47.45.56])
+  by ob1.hgst.iphmx.com with ESMTP; 31 Jul 2019 14:27:54 +0800
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=j4XQgwAScBEXEVHsS/cNfUVrABnMoS4VfaQO8EVKjz/ARpSyocfr4Lrfw1l8etdR3G3xp2l90GXfSMJqJn7qyZFgaQXtyhI1z4OlRigjZ9KacscTUGqFKx55p2N6+QJXXOGt6bM1sJNuoI9dPTbdWEmTQ83k7cK00yX9znTakbEIMsAWPbiFi98+lcsbcjkhbm5us4+5D9yLdPZbpDM+f5KdF0saygRh2HMFSf17JELbMWAGfhALgMH1jqZh0vMb3Erzo6sPgfnU1gw3jEwR0fA9+RcOtdZDos+cESGYYxlQEdFhL1s+upY3OAYeIk0BIdfkwMaVFaiYzd5Vdg+92A==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Eu6SnQnxj9vWiziHrtIWdaqOBvgayutKUnRGLtQ6FHQ=;
+ b=Js9VOmbiDMV1qwXVXMLP60ZM6kDYJb3or+EfvL+a0EuMiASVBDXLhnJctNvICDn52TMEdu3JEEA8mWYcK/HYx4tG4oIgCTr7OkqSM3lyDi3ANZSX4fwpd/J6Y3Ytf9CS9BUe4trETq8HIR7hKB3c+mgihQS/SOkzWIdXexvInQOEeDZWYq3iL/r1Bv17Jd2SBubsfuJLeTbeaz8KSlbZJ0YMKI0M6JCZGlBNfzifdM2/TTMNOK5aPdd4GXwjEcGWndAIDYbP2n24l35P3tL5FGoceHFRvspfY78vUO2BfDBLiCMvZ42uh58sgJYKlLwLLSHJLYY0b0+Zkibkwb4h5A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=wdc.com;dmarc=pass action=none header.from=wdc.com;dkim=pass
+ header.d=wdc.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Eu6SnQnxj9vWiziHrtIWdaqOBvgayutKUnRGLtQ6FHQ=;
+ b=bHZeNsFsUcv80y5WMdtf9ndjeFcxf2i262ZmoU5Rjn0h5aj4QUmgI8zP6ORBTmfQ1/iJlD+dXMElsy0PLxVF3NFa0FVwbxRhUb01guE0npJDMDywQZvtpmwHeDCgF8Cxl92Tu3Xu60QU8nkG3i09KO65AovybEbIDq0wrhyWXP4=
+Received: from BYAPR04MB3782.namprd04.prod.outlook.com (52.135.214.142) by
+ BYAPR04MB4776.namprd04.prod.outlook.com (52.135.240.83) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2115.15; Wed, 31 Jul 2019 06:27:53 +0000
+Received: from BYAPR04MB3782.namprd04.prod.outlook.com
+ ([fe80::ac9a:967e:70a5:e926]) by BYAPR04MB3782.namprd04.prod.outlook.com
+ ([fe80::ac9a:967e:70a5:e926%7]) with mapi id 15.20.2115.005; Wed, 31 Jul 2019
+ 06:27:53 +0000
+From:   Atish Patra <Atish.Patra@wdc.com>
+To:     Paul Walmsley <paul.walmsley@sifive.com>,
+        Anup Patel <Anup.Patel@wdc.com>
+CC:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Alexios Zavras <alexios.zavras@intel.com>,
+        Allison Randal <allison@lohutok.net>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        Enrico Weigelt <info@metux.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Johan Hovold <johan@kernel.org>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Kirill Marinushkin <kmarinushkin@birdec.tech>,
-        Cheng-Yi Chiang <cychiang@chromium.org>,
-        Takashi Iwai <tiwai@suse.com>,
-        Annaliese McDermond <nh6z@nh6z.net>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Vinod Koul <vkoul@kernel.org>,
+        Palmer Dabbelt <palmer@sifive.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Nate Case <ncase@tesla.com>, Rob Duncan <rduncan@tesla.com>,
-        Patrick Glaser <pglaser@tesla.com>,
-        linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
-Subject: Re: [alsa-devel] [PATCH v2 2/3] ASoC: Add codec driver for ST TDA7802
-Message-ID: <20190731060644.yrewu2kvrlootyyl@pengutronix.de>
-References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
- <20190730120937.16271-3-thomas.preston@codethink.co.uk>
- <20190730145844.GI4264@sirena.org.uk>
- <fe11c806-2285-558c-e35c-d8f61de00784@codethink.co.uk>
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v2 2/5] RISC-V: Add riscv_isa reprensenting ISA features
+ common across CPUs
+Thread-Topic: [PATCH v2 2/5] RISC-V: Add riscv_isa reprensenting ISA features
+ common across CPUs
+Thread-Index: AQHVRz64X7DzcyoVsEmI5maeaXLIm6bkIN4A//+tdQA=
+Date:   Wed, 31 Jul 2019 06:27:53 +0000
+Message-ID: <99D22117-E146-44BE-93B5-5D25367931C7@wdc.com>
+References: <20190731012418.24565-1-atish.patra@wdc.com>
+ <20190731012418.24565-3-atish.patra@wdc.com>
+ <alpine.DEB.2.21.9999.1907302117420.15340@viisi.sifive.com>
+In-Reply-To: <alpine.DEB.2.21.9999.1907302117420.15340@viisi.sifive.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=Atish.Patra@wdc.com; 
+x-originating-ip: [2601:646:8280:fdf0:e4f3:9b1f:f663:964b]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d4b94bfd-e780-443f-c067-08d7158037d1
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:BYAPR04MB4776;
+x-ms-traffictypediagnostic: BYAPR04MB4776:
+x-microsoft-antispam-prvs: <BYAPR04MB4776EE19F630E6F1C9F72FA3FADF0@BYAPR04MB4776.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
+x-ms-oob-tlc-oobclassifiers: OLM:3826;
+x-forefront-prvs: 011579F31F
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(346002)(39860400002)(376002)(396003)(136003)(366004)(199004)(189003)(6506007)(46003)(8936002)(33656002)(110136005)(14454004)(2906002)(316002)(66574012)(229853002)(99286004)(478600001)(5660300002)(54906003)(71200400001)(81156014)(71190400001)(7736002)(81166006)(8676002)(186003)(53936002)(66946007)(256004)(6486002)(2616005)(6512007)(6116002)(6636002)(7416002)(305945005)(11346002)(36756003)(68736007)(486006)(64756008)(66446008)(66556008)(76116006)(476003)(25786009)(76176011)(446003)(4326008)(66476007)(6246003)(86362001)(6436002)(102836004);DIR:OUT;SFP:1102;SCL:1;SRVR:BYAPR04MB4776;H:BYAPR04MB3782.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: /m0yplLvAOZTnEs1Ova9zHAa7wXjRSiEKgDMY/yvBFj23qZiKm3ns5RMC9MiUxAuwt8ZQKLsTv+xiOjOeMFrhbeVDZFwICyK8GoS/epHZkhJpuuAAgNj4XuFoc5kv6NtCCi0V+WFxUmWp6LWvFvyWEx3dnyhJzOj3YJuPc2tNGbPJqzXZ/UFuMEq/xY+KBfdxzUC1edBTDqRAAKSL6TanlkZus6aiOUS3t312CIrWPQ++P3TAXQVm4UaeKw5qjYsipoKPBxKJ0dzfM0U9jLRkuKeYVf+Gr+ZywiJtlXwEe/KMd/1Ofg0jgBb0/klJA8ysIVT6KkDVa/+6KVlu5BUcgkV5ZyVcEYJ+S/eHdvYNDMVC+sFzO1+ajPgrcJkznxU7N9wogbe9eXbzCBxkLZdlqNZ3uxbOjDNKr7qUw1hm70=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <D62938AF8F17DE40A7ECED87E25FFF3B@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <fe11c806-2285-558c-e35c-d8f61de00784@codethink.co.uk>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 08:04:35 up 74 days, 12:22, 46 users,  load average: 0.05, 0.07,
- 0.03
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+X-OriginatorOrg: wdc.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: d4b94bfd-e780-443f-c067-08d7158037d1
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2019 06:27:53.1455
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: Atish.Patra@wdc.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4776
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Thomas,
-
-again sorry for jumping in..
-
-On 19-07-30 18:26, Thomas Preston wrote:
-> On 30/07/2019 15:58, Mark Brown wrote:
-> > On Tue, Jul 30, 2019 at 01:09:36PM +0100, Thomas Preston wrote:
-> > 
-> >> index 000000000000..0f82a88bc1a4
-> >> --- /dev/null
-> >> +++ b/sound/soc/codecs/tda7802.c
-> >> @@ -0,0 +1,509 @@
-> >> +// SPDX-License-Identifier: GPL-2.0
-> >> +/*
-> >> + * tda7802.c  --  codec driver for ST TDA7802
-> > 
-> > Please make the entire comment a C++ one so this looks intentional.
-> > 
-> 
-> Ok thanks.
-> 
-> >> +static int tda7802_digital_mute(struct snd_soc_dai *dai, int mute)
-> >> +{
-> >> +	const u8 mute_disabled = mute ? 0 : IB2_DIGITAL_MUTE_DISABLED;
-> > 
-> > Please write normal conditional statements to make the code easier to
-> > read.
-> > 
-> 
-> On it.
-> 
-> >> +	case SND_SOC_BIAS_STANDBY:
-> >> +		err = regulator_enable(tda7802->enable_reg);
-> >> +		if (err < 0) {
-> >> +			dev_err(component->dev, "Could not enable.\n");
-> >> +			return err;
-> >> +		}
-> >> +		dev_dbg(component->dev, "Regulator enabled\n");
-> >> +		msleep(ENABLE_DELAY_MS);
-> > 
-> > Is this delay needed by the device or is it for the regulator to ramp?
-> > If it's for the regulator to ramp then the regulator should be doing it.
-> > 
-> 
-> According to the datasheet the device itself takes 10ms to rise from 0V
-> after PLLen is enabled. There are additional rise times but they are
-> negligible with default capacitor configuration (which we have).
-> 
-> Good to know about the regulator rising configuration though. Thanks.
-
-Isn't it the regulator we mentioned to not use that because it is a
-GPIO?
-
-Regards,
-  Marco
-
-> >> +	case SND_SOC_BIAS_OFF:
-> >> +		regcache_mark_dirty(component->regmap);
-> > 
-> > If the regulator is going off you should really be marking the device as
-> > cache only.
-> > 
-> 
-> Got it, thanks.
-> 
-> >> +		err = regulator_disable(tda7802->enable_reg);
-> >> +		if (err < 0)
-> >> +			dev_err(component->dev, "Could not disable.\n");
-> > 
-> > Any non-zero value from regulator_disable() is an error, there's similar
-> > error checking issues in other places.
-> > 
-> 
-> I return the error at the end of the function, but I'll bring it back here
-> for consistency.
-> 
-> >> +static const struct snd_kcontrol_new tda7802_snd_controls[] = {
-> >> +	SOC_SINGLE("Channel 4 Tristate", TDA7802_IB0, 7, 1, 0),
-> >> +	SOC_SINGLE("Channel 3 Tristate", TDA7802_IB0, 6, 1, 0),
-> >> +	SOC_SINGLE("Channel 2 Tristate", TDA7802_IB0, 5, 1, 0),
-> >> +	SOC_SINGLE("Channel 1 Tristate", TDA7802_IB0, 4, 1, 0),
-> > 
-> > These look like simple on/off switches so should have Switch at the end
-> > of the control name.  It's also not clear to me why this is exported to
-> > userspace - why would this change at runtime and won't any changes need
-> > to be coordinated with whatever else is connected to the signal?
-> > 
-> >> +	SOC_ENUM("Mute time", mute_time),
-> >> +	SOC_SINGLE("Unmute channels 1 & 3", TDA7802_IB2, 4, 1, 0),
-> >> +	SOC_SINGLE("Unmute channels 2 & 4", TDA7802_IB2, 3, 1, 0),
-> > 
-> > These are also Switch controls.  There are *lots* of problems with
-> > control names, see control-names.rst.
-> > 
-> 
-> Ok thanks, I didn't know about the "Switch" suffix, I will read
-> control-names.rst.
-> 
-> I will move Tristate to DT properties. I was also unsure about the
-> Impedance Efficiency Optimiser but the datasheet doesn't go into much
-> detail about this so I left it exposed.
-> 
-> They both seemed like user configurable options in the context of a
-> test rig, but I agree - who knows what this output might be connected
-> to in other systems. I will lock them down in DT. Thanks.
-> 
-> >> +static const struct snd_soc_component_driver tda7802_component_driver = {
-> >> +	.set_bias_level = tda7802_set_bias_level,
-> >> +	.idle_bias_on = 1,
-> > 
-> > Any reason to keep the device powered up?  It looks like the power on
-> > process is just powering things up and writing the register cache out
-> > and there's not that many registers so the delay is trivial.
-> > 
-> 
-> Ah no, I think that's a mistake. I want the PLLen to switch off in
-> idle/suspend and the device should restore on wake.
-> 
-> >> +	tda7802->enable_reg = devm_regulator_get(dev, "enable");
-> >> +	if (IS_ERR(tda7802->enable_reg)) {
-> >> +		dev_err(dev, "Failed to get enable regulator\n");
-> > 
-> > It's better to print error codes if you have them and are printing a
-> > diagnostic so people have more to go on when debugging problems.
-> 
-> Yep on it.
-> 
-> Many thanks, I appreciate the feedback.
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+DQoNCu+7v09uIDcvMzAvMTksIDk6MjMgUE0sICJQYXVsIFdhbG1zbGV5IiA8cGF1bC53YWxtc2xl
+eUBzaWZpdmUuY29tPiB3cm90ZToNCg0KICAgIE9uIFR1ZSwgMzAgSnVsIDIwMTksIEF0aXNoIFBh
+dHJhIHdyb3RlOg0KICAgIA0KICAgID4gRnJvbTogQW51cCBQYXRlbCA8YW51cC5wYXRlbEB3ZGMu
+Y29tPg0KICAgID4gDQogICAgPiBUaGlzIHBhdGNoIGFkZHMgcmlzY3ZfaXNhIGludGVnZXIgdG8g
+cmVwcmVzZW50IElTQSBmZWF0dXJlcyBjb21tb24NCiAgICA+IGFjcm9zcyBhbGwgQ1BVcy4gVGhl
+IHJpc2N2X2lzYSBpcyBub3Qgc2FtZSBhcyBlbGZfaHdjYXAgYmVjYXVzZQ0KICAgID4gZWxmX2h3
+Y2FwIHdpbGwgb25seSBoYXZlIElTQSBmZWF0dXJlcyByZWxldmFudCBmb3IgdXNlci1zcGFjZSBh
+cHBzDQogICAgPiB3aGVyZWFzIHJpc2N2X2lzYSB3aWxsIGhhdmUgSVNBIGZlYXR1cmVzIHJlbGV2
+YW50IHRvIGJvdGgga2VybmVsDQogICAgPiBhbmQgdXNlci1zcGFjZSBhcHBzLg0KICAgID4gDQog
+ICAgPiBPbmUgb2YgdGhlIHVzZSBjYXNlIGlzIEtWTSBoeXBlcnZpc29yIHdoZXJlIHJpc2N2X2lz
+YSB3aWxsIGJlIHVzZWQNCiAgICA+IHRvIGRvIGZvbGxvd2luZyBvcGVyYXRpb25zOg0KICAgID4g
+DQogICAgPiAxLiBDaGVjayB3aGV0aGVyIGh5cGVydmlzb3IgZXh0ZW5zaW9uIGlzIGF2YWlsYWJs
+ZQ0KICAgID4gMi4gRmluZCBJU0EgZmVhdHVyZXMgdGhhdCBuZWVkIHRvIGJlIHZpcnR1YWxpemVk
+IChlLmcuIGZsb2F0aW5nDQogICAgPiAgICBwb2ludCBzdXBwb3J0LCB2ZWN0b3IgZXh0ZW5zaW9u
+LCBldGMuKQ0KICAgID4gDQogICAgPiBTaWduZWQtb2ZmLWJ5OiBBbnVwIFBhdGVsIDxhbnVwLnBh
+dGVsQHdkYy5jb20+DQogICAgPiBTaWduZWQtb2ZmLWJ5OiBBdGlzaCBQYXRyYSA8YXRpc2gucGF0
+cmFAd2RjLmNvbT4NCiAgICA+IC0tLQ0KICAgID4gIGFyY2gvcmlzY3YvaW5jbHVkZS9hc20vaHdj
+YXAuaCB8IDI1ICsrKysrKysrKysrKysrKysrKysrKw0KICAgID4gIGFyY2gvcmlzY3Yva2VybmVs
+L2NwdWZlYXR1cmUuYyB8IDQxICsrKysrKysrKysrKysrKysrKysrKysrKysrKysrKystLS0NCiAg
+ICA+ICAyIGZpbGVzIGNoYW5nZWQsIDYzIGluc2VydGlvbnMoKyksIDMgZGVsZXRpb25zKC0pDQog
+ICAgPiANCiAgICA+IGRpZmYgLS1naXQgYS9hcmNoL3Jpc2N2L2luY2x1ZGUvYXNtL2h3Y2FwLmgg
+Yi9hcmNoL3Jpc2N2L2luY2x1ZGUvYXNtL2h3Y2FwLmgNCiAgICA+IGluZGV4IDdlY2I3YzZhNTdi
+MS4uZTA2OWY2MGFkNWQyIDEwMDY0NA0KICAgID4gLS0tIGEvYXJjaC9yaXNjdi9pbmNsdWRlL2Fz
+bS9od2NhcC5oDQogICAgPiArKysgYi9hcmNoL3Jpc2N2L2luY2x1ZGUvYXNtL2h3Y2FwLmgNCiAg
+ICA+IEBAIC0yMiw1ICsyMiwzMCBAQCBlbnVtIHsNCiAgICA+ICB9Ow0KICAgID4gIA0KICAgID4g
+IGV4dGVybiB1bnNpZ25lZCBsb25nIGVsZl9od2NhcDsNCiAgICA+ICsNCiAgICA+ICsjZGVmaW5l
+IFJJU0NWX0lTQV9FWFRfQQkJKDFVTCA8PCAoJ0EnIC0gJ0EnKSkNCiAgICANCiAgICBBcmUgdGhl
+c2UgdXBwZXJjYXNlIHZhcmlhbnRzIHN0aWxsIG5lZWRlZCBpZiB3ZSBkZWZpbmUgdGhlIElTQSBz
+dHJpbmcgdG8gDQogICAgYmUgYWxsIGxvd2VyY2FzZSwgcGVyIG91ciByZWNlbnQgZGlzY3Vzc2lv
+bj8NCiAgICANCkFyZ2guIFNvcnJ5LiBXZSBoYXZlIGJlZW4gY2FycnlpbmcgdGhpcyBwYXRjaCBz
+byBsb25nIHRoYXQgSSBjb21wbGV0ZWx5IGZvcmdvdCBhYm91dCB0aGUNCmNhc2Ugc2Vuc2l0aXZl
+IHVzYWdlIGhlcmUuDQoNCiAgICA+ICsjZGVmaW5lIFJJU0NWX0lTQV9FWFRfYQkJUklTQ1ZfSVNB
+X0VYVF9BDQogICAgPiArI2RlZmluZSBSSVNDVl9JU0FfRVhUX0MJCSgxVUwgPDwgKCdDJyAtICdB
+JykpDQogICAgPiArI2RlZmluZSBSSVNDVl9JU0FfRVhUX2MJCVJJU0NWX0lTQV9FWFRfQw0KICAg
+ID4gKyNkZWZpbmUgUklTQ1ZfSVNBX0VYVF9ECQkoMVVMIDw8ICgnRCcgLSAnQScpKQ0KICAgID4g
+KyNkZWZpbmUgUklTQ1ZfSVNBX0VYVF9kCQlSSVNDVl9JU0FfRVhUX0QNCiAgICA+ICsjZGVmaW5l
+IFJJU0NWX0lTQV9FWFRfRgkJKDFVTCA8PCAoJ0YnIC0gJ0EnKSkNCiAgICA+ICsjZGVmaW5lIFJJ
+U0NWX0lTQV9FWFRfZgkJUklTQ1ZfSVNBX0VYVF9GDQogICAgPiArI2RlZmluZSBSSVNDVl9JU0Ff
+RVhUX0gJCSgxVUwgPDwgKCdIJyAtICdBJykpDQogICAgPiArI2RlZmluZSBSSVNDVl9JU0FfRVhU
+X2gJCVJJU0NWX0lTQV9FWFRfSA0KICAgID4gKyNkZWZpbmUgUklTQ1ZfSVNBX0VYVF9JCQkoMVVM
+IDw8ICgnSScgLSAnQScpKQ0KICAgID4gKyNkZWZpbmUgUklTQ1ZfSVNBX0VYVF9pCQlSSVNDVl9J
+U0FfRVhUX0kNCiAgICA+ICsjZGVmaW5lIFJJU0NWX0lTQV9FWFRfTQkJKDFVTCA8PCAoJ00nIC0g
+J0EnKSkNCiAgICA+ICsjZGVmaW5lIFJJU0NWX0lTQV9FWFRfbQkJUklTQ1ZfSVNBX0VYVF9NDQog
+ICAgPiArI2RlZmluZSBSSVNDVl9JU0FfRVhUX1MJCSgxVUwgPDwgKCdTJyAtICdBJykpDQogICAg
+PiArI2RlZmluZSBSSVNDVl9JU0FfRVhUX3MJCVJJU0NWX0lTQV9FWFRfUw0KICAgID4gKyNkZWZp
+bmUgUklTQ1ZfSVNBX0VYVF9VCQkoMVVMIDw8ICgnVScgLSAnQScpKQ0KICAgID4gKyNkZWZpbmUg
+UklTQ1ZfSVNBX0VYVF91CQlSSVNDVl9JU0FfRVhUX1UNCiAgICA+ICsNCiAgICA+ICtleHRlcm4g
+dW5zaWduZWQgbG9uZyByaXNjdl9pc2E7DQogICAgPiArDQogICAgPiArI2RlZmluZSByaXNjdl9p
+c2FfZXh0ZW5zaW9uX2F2YWlsYWJsZShleHRfY2hhcikJXA0KICAgID4gKwkJKHJpc2N2X2lzYSAm
+IFJJU0NWX0lTQV9FWFRfIyNleHRfY2hhcikNCiAgICA+ICsNCiAgICA+ICAjZW5kaWYNCiAgICA+
+ICAjZW5kaWYNCiAgICA+IGRpZmYgLS1naXQgYS9hcmNoL3Jpc2N2L2tlcm5lbC9jcHVmZWF0dXJl
+LmMgYi9hcmNoL3Jpc2N2L2tlcm5lbC9jcHVmZWF0dXJlLmMNCiAgICA+IGluZGV4IGIxYWRlOWE0
+OTM0Ny4uMTc3NTI5ZDQ4ZDg3IDEwMDY0NA0KICAgID4gLS0tIGEvYXJjaC9yaXNjdi9rZXJuZWwv
+Y3B1ZmVhdHVyZS5jDQogICAgPiArKysgYi9hcmNoL3Jpc2N2L2tlcm5lbC9jcHVmZWF0dXJlLmMN
+CiAgICANCiAgICBbIC4uLiBdDQogICAgDQogICAgPiBAQCAtNDMsOCArNDksMjIgQEAgdm9pZCBy
+aXNjdl9maWxsX2h3Y2FwKHZvaWQpDQogICAgPiAgCQkJY29udGludWU7DQogICAgPiAgCQl9DQog
+ICAgPiAgDQogICAgPiAtCQlmb3IgKGkgPSAwOyBpIDwgc3RybGVuKGlzYSk7ICsraSkNCiAgICA+
+ICsJCWkgPSAwOw0KICAgID4gKwkJaXNhX2xlbiA9IHN0cmxlbihpc2EpOw0KICAgID4gKyNpZiBk
+ZWZpbmVkKENPTkZJR18zMkJJVCkNCiAgICA+ICsJCWlmIChzdHJuY2FzZWNtcChpc2EsICJydjMy
+IiwgNCkgIT0gMCkNCiAgICANCiAgICBzdHJjbXAoKT8NCiAgICANCiAgICA+ICsJCQlpICs9IDQ7
+DQogICAgPiArI2VsaWYgZGVmaW5lZChDT05GSUdfNjRCSVQpDQogICAgPiArCQlpZiAoc3RybmNh
+c2VjbXAoaXNhLCAicnY2NCIsIDQpICE9IDApDQogICAgDQogICAgQW5kIGFnYWluIGhlcmU/DQog
+ICAgDQogICAgPiArCQkJaSArPSA0Ow0KICAgID4gKyNlbmRpZg0KICAgID4gKwkJZm9yICg7IGkg
+PCBpc2FfbGVuOyArK2kpIHsNCiAgICA+ICAJCQl0aGlzX2h3Y2FwIHw9IGlzYTJod2NhcFsodW5z
+aWduZWQgY2hhcikoaXNhW2ldKV07DQogICAgPiArCQkJaWYgKCdhJyA8PSBpc2FbaV0gJiYgaXNh
+W2ldIDw9ICd6JykNCiAgICA+ICsJCQkJdGhpc19pc2EgfD0gKDFVTCA8PCAoaXNhW2ldIC0gJ2En
+KSk7DQogICAgPiArCQkJaWYgKCdBJyA8PSBpc2FbaV0gJiYgaXNhW2ldIDw9ICdaJykNCiAgICA+
+ICsJCQkJdGhpc19pc2EgfD0gKDFVTCA8PCAoaXNhW2ldIC0gJ0EnKSk7DQogICAgDQogICAgQXJl
+IHRoZXNlIHVwcGVyY2FzZSB2YXJpYW50cyBzdGlsbCBuZWVkZWQ/DQogICAgDQpOb3BlLiBTYW1l
+IGFzIGFib3ZlIGNvbW1lbnQuIEFwb2xvZ2llcyBmb3IgZm9yZ2V0dGluZyBhYm91dCB0aGVzZSB1
+c2FnZXMuDQpJIHdpbGwgc2VuZCBhIHYzIHJlbW92aW5nIHRoZW0uDQogDQpSZWdhcmRzLA0KQXRp
+c2ggICANCiAgICAtIFBhdWwNCiAgICANCg0K
