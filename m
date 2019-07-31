@@ -2,116 +2,134 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2F0D77BB3E
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:12:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6285C7BB5B
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 10:16:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726313AbfGaIMZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 04:12:25 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:46144 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726158AbfGaIMZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 04:12:25 -0400
-Received: from pendragon.ideasonboard.com (unknown [38.98.37.141])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 1C5C6CC;
-        Wed, 31 Jul 2019 10:12:21 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1564560743;
-        bh=H/uPA4ZlVMkzj5l4yx9FTdj0RSpGn/s0K3dOVUpsTQw=;
+        id S1726937AbfGaIQd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 04:16:33 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37474 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726185AbfGaIQc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Jul 2019 04:16:32 -0400
+Received: from localhost (unknown [171.76.116.36])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 9913620657;
+        Wed, 31 Jul 2019 08:16:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564560992;
+        bh=Tu581Sxi2KfCSLBCf35p6bgm0YTSGY4pQYhZtN6cy4o=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=oDiA8FD1lCpQyskVId/r2Pj6m2K5SeSp0X+okXzhcdxBVayhZDrG/layeH0ikHMSu
-         cEpceHxnE8Qs2AS8bvG3jVlzE5FvUTO0DY67VnDKee8S38DtSES3RfpZ2tLsZelHxP
-         VYuxxtSCtDN3UPLwYdSTURr2gnVkPn1RC4pKx4Pw=
-Date:   Wed, 31 Jul 2019 11:12:09 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Geert Uytterhoeven <geert+renesas@glider.be>
-Cc:     Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        linux-renesas-soc@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: renesas: r8a77995: draak: Fix backlight
- regulator name
-Message-ID: <20190731081209.GA5080@pendragon.ideasonboard.com>
-References: <20190731073744.13963-1-geert+renesas@glider.be>
- <20190731074801.5706-1-geert+renesas@glider.be>
+        b=taMMxMjqq8Db2B5xb5nNPzq9GGlIHzzbUpoNlC5yvqn/nuxdVHoDEnmchzdz9EcfE
+         3pb7VBBjD5e5PozbSOzeuREsRGUAGN8bROKTURhprYvUgoR/OQnlcMfn0nhfnpA+u6
+         rCIUXHAephkahOrlBHdiDFi86se0flcnNUCAhOgc=
+Date:   Wed, 31 Jul 2019 13:45:18 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Amit Kucheria <amit.kucheria@verdurent.com>
+Cc:     Andy Gross <agross@kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH 1/3] arm64: dts: qcom: pms405: add unit name adc nodes
+Message-ID: <20190731081518.GS12733@vkoul-mobl.Dlink>
+References: <20190725135150.9972-1-vkoul@kernel.org>
+ <20190725135150.9972-2-vkoul@kernel.org>
+ <CAHLCerNsAX4raauTjogOpwqAjEWfd+jpaZYsFnC10tcmvnD5cg@mail.gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190731074801.5706-1-geert+renesas@glider.be>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <CAHLCerNsAX4raauTjogOpwqAjEWfd+jpaZYsFnC10tcmvnD5cg@mail.gmail.com>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Geert,
 
-(CC'ing the device tree mailing list)
+Thanks for the review Amit!
 
-Thank you for the patch.
-
-On Wed, Jul 31, 2019 at 09:48:01AM +0200, Geert Uytterhoeven wrote:
-> Currently there are two nodes named "regulator1" in the Draak DTS: a
-> 3.3V regulator for the eMMC and the LVDS decoder, and a 12V regulator
-> for the backlight.  This causes the former to be overwritten by the
-> latter.
+On 30-07-19, 22:05, Amit Kucheria wrote:
+> On Thu, Jul 25, 2019 at 7:23 PM Vinod Koul <vkoul@kernel.org> wrote:
+> >
+> > The adc nodes have reg property but were missing the unit name, so add
+> > that to fix these warnings:
+> >
+> > arch/arm64/boot/dts/qcom/pms405.dtsi:91.12-94.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/ref_gnd: node has a reg or ranges property, but no unit name
+> > arch/arm64/boot/dts/qcom/pms405.dtsi:96.14-99.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/vref_1p25: node has a reg or ranges property, but no unit name
+> > arch/arm64/boot/dts/qcom/pms405.dtsi:101.19-104.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/vph_pwr: node has a reg or ranges property, but no unit name
+> > arch/arm64/boot/dts/qcom/pms405.dtsi:106.13-109.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/die_temp: node has a reg or ranges property, but no unit name
+> > arch/arm64/boot/dts/qcom/pms405.dtsi:111.27-116.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/thermistor1: node has a reg or ranges property, but no unit name
+> > arch/arm64/boot/dts/qcom/pms405.dtsi:118.27-123.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/thermistor3: node has a reg or ranges property, but no unit name
+> > arch/arm64/boot/dts/qcom/pms405.dtsi:125.22-130.6: Warning (unit_address_vs_reg): /soc@0/spmi@200f000/pms405@0/adc@3100/xo_temp: node has a reg or ranges property, but no unit name
+> >
+> > Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> > ---
+> >  arch/arm64/boot/dts/qcom/pms405.dtsi | 14 +++++++-------
+> >  1 file changed, 7 insertions(+), 7 deletions(-)
+> >
+> > diff --git a/arch/arm64/boot/dts/qcom/pms405.dtsi b/arch/arm64/boot/dts/qcom/pms405.dtsi
+> > index 14240fedd916..3c10cf04d26e 100644
+> > --- a/arch/arm64/boot/dts/qcom/pms405.dtsi
+> > +++ b/arch/arm64/boot/dts/qcom/pms405.dtsi
+> > @@ -88,41 +88,41 @@
+> >                         #size-cells = <0>;
+> >                         #io-channel-cells = <1>;
+> >
+> > -                       ref_gnd {
+> > +                       ref_gnd@0 {
+> >                                 reg = <ADC5_REF_GND>;
+> >                                 qcom,pre-scaling = <1 1>;
+> >                         };
+> >
+> > -                       vref_1p25 {
+> > +                       vref_1p25@1 {
+> >                                 reg = <ADC5_1P25VREF>;
+> >                                 qcom,pre-scaling = <1 1>;
+> >                         };
+> >
+> > -                       pon_1: vph_pwr {
+> > +                       pon_1: vph_pwr@131 {
+> >                                 reg = <ADC5_VPH_PWR>;
+> >                                 qcom,pre-scaling = <1 3>;
+> >                         };
+> >
+> > -                       die_temp {
+> > +                       die_temp@6 {
+> >                                 reg = <ADC5_DIE_TEMP>;
+> >                                 qcom,pre-scaling = <1 1>;
+> >                         };
+> >
+> > -                       pa_therm1: thermistor1 {
+> > +                       pa_therm1: thermistor1@115 {
 > 
-> Fix this by renaming all regulators with numerical suffixes to use named
-> suffixes, which are less likely to conflict.
-
-Aren't DT node names supposed to describe the device type, not a
-particular instance of the device ? This is something that has bothered
-me too, but I believe the naming scheme should be decided globally, not
-per board. Is there precedent for using this scheme that has been
-explicitly approved by the DT maintainers ?
-
-> Fixes: 4fbd4158fe8967e9 ("arm64: dts: renesas: r8a77995: draak: Add backlight")
-> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> ---
-> I guess this is a fix for v5.3?
+> s/115/77 ?
 > 
-> This fix takes a slightly different approach than commit
-> 12105cec654cf906 ("arm64: dts: renesas: r8a77990: ebisu: Fix backlight
-> regulator numbering"), which just fixed the conflicting numerical
-> suffix.
-> ---
->  arch/arm64/boot/dts/renesas/r8a77995-draak.dts | 6 +++---
->  1 file changed, 3 insertions(+), 3 deletions(-)
+> >                                 reg = <ADC5_AMUX_THM1_100K_PU>;
+> >                                 qcom,ratiometric;
+> >                                 qcom,hw-settle-time = <200>;
+> >                                 qcom,pre-scaling = <1 1>;
+> >                         };
+> >
+> > -                       pa_therm3: thermistor3 {
+> > +                       pa_therm3: thermistor3@117 {
 > 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a77995-draak.dts b/arch/arm64/boot/dts/renesas/r8a77995-draak.dts
-> index 0711170b26b1fe1c..3aa2564dfdc25fff 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a77995-draak.dts
-> +++ b/arch/arm64/boot/dts/renesas/r8a77995-draak.dts
-> @@ -97,7 +97,7 @@
->  		reg = <0x0 0x48000000 0x0 0x18000000>;
->  	};
->  
-> -	reg_1p8v: regulator0 {
-> +	reg_1p8v: regulator-1p8v {
->  		compatible = "regulator-fixed";
->  		regulator-name = "fixed-1.8V";
->  		regulator-min-microvolt = <1800000>;
-> @@ -106,7 +106,7 @@
->  		regulator-always-on;
->  	};
->  
-> -	reg_3p3v: regulator1 {
-> +	reg_3p3v: regulator-3p3v {
->  		compatible = "regulator-fixed";
->  		regulator-name = "fixed-3.3V";
->  		regulator-min-microvolt = <3300000>;
-> @@ -115,7 +115,7 @@
->  		regulator-always-on;
->  	};
->  
-> -	reg_12p0v: regulator1 {
-> +	reg_12p0v: regulator-12p0v {
->  		compatible = "regulator-fixed";
->  		regulator-name = "D12.0V";
->  		regulator-min-microvolt = <12000000>;
+> s/117/79 ?
+> 
+> >                                 reg = <ADC5_AMUX_THM3_100K_PU>;
+> >                                 qcom,ratiometric;
+> >                                 qcom,hw-settle-time = <200>;
+> >                                 qcom,pre-scaling = <1 1>;
+> >                         };
+> >
+> > -                       xo_therm: xo_temp {
+> > +                       xo_therm: xo_temp@114 {
+> 
+> s/114/76 ?
+
+Thanks, will fix these and recheck others.
 
 -- 
-Regards,
-
-Laurent Pinchart
+~Vinod
