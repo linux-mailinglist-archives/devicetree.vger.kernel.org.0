@@ -2,66 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C45D7C9EC
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 19:07:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8ABF17CA11
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 19:13:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728955AbfGaRHr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 13:07:47 -0400
-Received: from foss.arm.com ([217.140.110.172]:52032 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728304AbfGaRHr (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 13:07:47 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id E2AF6337;
-        Wed, 31 Jul 2019 10:07:46 -0700 (PDT)
-Received: from arrakis.emea.arm.com (arrakis.cambridge.arm.com [10.1.196.78])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 72C133F71F;
-        Wed, 31 Jul 2019 10:07:44 -0700 (PDT)
-Date:   Wed, 31 Jul 2019 18:07:42 +0100
-From:   Catalin Marinas <catalin.marinas@arm.com>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     hch@lst.de, wahrenst@gmx.net, marc.zyngier@arm.com,
-        Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-mm@kvack.org,
-        Will Deacon <will@kernel.org>, phill@raspberryi.org,
-        f.fainelli@gmail.com, linux-kernel@vger.kernel.org,
-        robh+dt@kernel.org, eric@anholt.net, mbrugger@suse.com,
-        akpm@linux-foundation.org, frowand.list@gmail.com,
-        m.szyprowski@samsung.com, linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH 5/8] arm64: use ZONE_DMA on DMA addressing limited devices
-Message-ID: <20190731170742.GC17773@arrakis.emea.arm.com>
-References: <20190731154752.16557-1-nsaenzjulienne@suse.de>
- <20190731154752.16557-6-nsaenzjulienne@suse.de>
+        id S1727348AbfGaRNx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 13:13:53 -0400
+Received: from 8.mo179.mail-out.ovh.net ([46.105.75.26]:49905 "EHLO
+        8.mo179.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725914AbfGaRNx (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 13:13:53 -0400
+X-Greylist: delayed 1798 seconds by postgrey-1.27 at vger.kernel.org; Wed, 31 Jul 2019 13:13:52 EDT
+Received: from player697.ha.ovh.net (unknown [10.109.159.224])
+        by mo179.mail-out.ovh.net (Postfix) with ESMTP id 54A61139E44
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 18:34:15 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player697.ha.ovh.net (Postfix) with ESMTPSA id 580F38831A9A;
+        Wed, 31 Jul 2019 16:33:56 +0000 (UTC)
+From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+To:     Rui Miguel Silva <rmfrfs@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devel@driverdev.osuosl.org,
+        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>, Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 3/3] media: dt-bindings: imx7-csi: add i.MX6UL/L support
+Date:   Wed, 31 Jul 2019 18:33:58 +0200
+Message-Id: <20190731163358.32622-1-sebastien.szymanski@armadeus.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190731154752.16557-6-nsaenzjulienne@suse.de>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 14053201162921464871
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrleehgddutdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 31, 2019 at 05:47:48PM +0200, Nicolas Saenz Julienne wrote:
-> diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> index 1c4ffabbe1cb..f5279ef85756 100644
-> --- a/arch/arm64/mm/init.c
-> +++ b/arch/arm64/mm/init.c
-> @@ -50,6 +50,13 @@
->  s64 memstart_addr __ro_after_init = -1;
->  EXPORT_SYMBOL(memstart_addr);
->  
-> +/*
-> + * We might create both a ZONE_DMA and ZONE_DMA32. ZONE_DMA is needed if there
-> + * are periferals unable to address the first naturally aligned 4GB of ram.
-> + * ZONE_DMA32 will be expanded to cover the rest of that memory. If such
-> + * limitations doesn't exist only ZONE_DMA32 is created.
-> + */
+Document "fsl,imx6ul-csi" entry.
 
-Shouldn't we instead only create ZONE_DMA to cover the whole 32-bit
-range and leave ZONE_DMA32 empty? Can__GFP_DMA allocations fall back
-onto ZONE_DMA32?
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
+---
 
+Changes for v3:
+ - none
+
+Changes for v2:
+ - New patch to document new "fsl,imx6ul-csi" entry.
+
+ Documentation/devicetree/bindings/media/imx7-csi.txt | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Documentation/devicetree/bindings/media/imx7-csi.txt b/Documentation/devicetree/bindings/media/imx7-csi.txt
+index 443aef07356e..d80ceefa0c00 100644
+--- a/Documentation/devicetree/bindings/media/imx7-csi.txt
++++ b/Documentation/devicetree/bindings/media/imx7-csi.txt
+@@ -9,7 +9,7 @@ to connect directly to external CMOS image sensors.
+ 
+ Required properties:
+ 
+-- compatible    : "fsl,imx7-csi";
++- compatible    : "fsl,imx7-csi" or "fsl,imx6ul-csi";
+ - reg           : base address and length of the register set for the device;
+ - interrupts    : should contain CSI interrupt;
+ - clocks        : list of clock specifiers, see
 -- 
-Catalin
+2.21.0
+
