@@ -2,63 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F99F7C045
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 13:42:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 62DB37C0B8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726301AbfGaLmN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 07:42:13 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44518 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725935AbfGaLmN (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 07:42:13 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1726894AbfGaMHN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 08:07:13 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:35026 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726514AbfGaMHN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:07:13 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 87FCF60256; Wed, 31 Jul 2019 12:07:12 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1564574832;
+        bh=rVH9V3it4LEiKudkuZmS2VzM+fb6oDu0Rom01crhfjs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=aHryC/htmsQ1cZvVBJU8qHnrHRif6DN/gPTC1mgzBh81Wwfq1p2qIrky35siO1h3G
+         s6OjR9ZTn5qY1Y67OpQbJ2OejeazLS5mUVp7p8lJHQTpoBDYhBWwQaqDJEgVxLdJaY
+         OG9juiLhStUgu6nHze9ve/5FyoOd8QNwkrJDInCU=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from govinds-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1443D2089E;
-        Wed, 31 Jul 2019 11:42:12 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564573332;
-        bh=HB7/0BwaEc6sX68xTXz1CtQQ7wV3B9leYzhMeTEKT8w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=lhsywEioejSN00UEopG6RZRGpzzCtCGjepv2uh53EF9BpHvvQIyBGdy3fHP1UU0yy
-         H9otRSi1/0tKJpm+pfrYIX8g3foOmml8DJbaSMyjch0n2y3c+WL2S5TSZtkK+iV/nd
-         2t84fxrvm6bBirJ3Tnb6mD7gD9GaVNkcHNIld+I0=
-Date:   Wed, 31 Jul 2019 13:42:10 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     sudheer v <open.sudheer@gmail.com>
-Cc:     Jiri Slaby <jslaby@suse.com>, Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>,
-        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        ShivahShankar Shakarnarayan rao 
-        <shivahshankar.shankarnarayanrao@aspeedtech.com>,
-        Sudheer V <sudheer.veliseti@aspeedtech.com>,
-        sudheer veliseti <sudheer.open@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
-Subject: Re: [patch v4 1/5] AST2500 DMA UART driver
-Message-ID: <20190731114210.GA18474@kroah.com>
-References: <1564147640-30753-1-git-send-email-open.sudheer@gmail.com>
- <1564147640-30753-2-git-send-email-open.sudheer@gmail.com>
- <20190730154759.GA26425@kroah.com>
- <CAE-5=DQ8p9WAhjrmZ8ye8GjoHrcxkHkjJPRNRFtvgeF5SdqwVQ@mail.gmail.com>
+        (Authenticated sender: govinds@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 3C7276047C;
+        Wed, 31 Jul 2019 12:07:09 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1564574832;
+        bh=rVH9V3it4LEiKudkuZmS2VzM+fb6oDu0Rom01crhfjs=;
+        h=From:To:Cc:Subject:Date:From;
+        b=aHryC/htmsQ1cZvVBJU8qHnrHRif6DN/gPTC1mgzBh81Wwfq1p2qIrky35siO1h3G
+         s6OjR9ZTn5qY1Y67OpQbJ2OejeazLS5mUVp7p8lJHQTpoBDYhBWwQaqDJEgVxLdJaY
+         OG9juiLhStUgu6nHze9ve/5FyoOd8QNwkrJDInCU=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 3C7276047C
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=govinds@codeaurora.org
+From:   Govind Singh <govinds@codeaurora.org>
+To:     bjorn.andersson@linaro.org, linux-arm-msm@vger.kernel.org,
+        devicetree@vger.kernel.org, ath10k@lists.infradead.org
+Cc:     linux-wireless@vger.kernel.org,
+        Govind Singh <govinds@codeaurora.org>
+Subject: [PATCH v2] arm64: dts: qcom: qcs404: Add wifi rails in QCS404 dt node for proxy votes
+Date:   Wed, 31 Jul 2019 17:37:04 +0530
+Message-Id: <20190731120704.7039-1-govinds@codeaurora.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAE-5=DQ8p9WAhjrmZ8ye8GjoHrcxkHkjJPRNRFtvgeF5SdqwVQ@mail.gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 31, 2019 at 05:06:08PM +0530, sudheer v wrote:
-> Hi  Greg,
->  After modifying [ patch v4 1/5 ] , should i submit whole patchset as  v5 ?
+Add wifi regulators in qcs404 dt node for proxy vote. Proxy votes are
+required for handling driver recovery scenarios to prevent
+un-clocked register access during driver recovery.
 
-Yes please.
+Signed-off-by: Govind Singh <govinds@codeaurora.org>
+---
+ arch/arm64/boot/dts/qcom/qcs404-evb.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-thanks,
+diff --git a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+index 11c0a7137823..2289b01ee9f0 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404-evb.dtsi
+@@ -270,6 +270,9 @@
+ 
+ &wifi {
+ 	status = "okay";
++	vdd-0.8-cx-mx-supply = <&vreg_l2_1p275>;
++	vdd-1.8-xo-supply = <&vreg_l5_1p8>;
++	vdd-1.3-rfa-supply = <&vreg_l1_1p3>;
+ };
+ 
+ /* PINCTRL - additions to nodes defined in qcs404.dtsi */
+-- 
+The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
+a Linux Foundation Collaborative Project
 
-greg k-h
