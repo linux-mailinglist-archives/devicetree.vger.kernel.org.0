@@ -2,130 +2,248 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 453857BA56
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 09:14:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5A5B7BAB8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 09:32:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726320AbfGaHOO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 03:14:14 -0400
-Received: from uho.ysoft.cz ([81.19.3.130]:56498 "EHLO uho.ysoft.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725913AbfGaHOO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 03:14:14 -0400
-Received: from [10.1.8.111] (unknown [10.1.8.111])
-        by uho.ysoft.cz (Postfix) with ESMTP id 28A1CA5931;
-        Wed, 31 Jul 2019 09:14:12 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ysoft.com;
-        s=20160406-ysoft-com; t=1564557252;
-        bh=rtatZtXbN7GFHkDU8P+IOkQRQ4um7ZK8IiXYbfc5WeE=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=m3aMCZfI4z3bF4vToIjgXPVOvKiFQOzjM/YKOXl53xcSKSDin8DIZTkNldPCPXPJG
-         EE0qy8Y/J9v/FNtMvIadvnVMWqfbCXMpEjB+3wf4zgTkyny49Qqo7+7cCOKL/rQoQJ
-         lv/c7r3PmgxkOYZcfaq1K3vbsZsxu6gQDBj4Pllg=
-Subject: Re: [PATCH 11/22] ARM: dts: imx6: Add sleep state to can interfaces
-To:     Philippe Schenker <dev@pschenker.ch>, marcel.ziswiler@toradex.com,
-        max.krummenacher@toradex.com, stefan@agner.ch,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     Philippe Schenker <philippe.schenker@toradex.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>
-References: <20190730144649.19022-1-dev@pschenker.ch>
- <20190730144649.19022-12-dev@pschenker.ch>
-From:   =?UTF-8?B?TWljaGFsIFZva8OhxI0=?= <michal.vokac@ysoft.com>
-Message-ID: <86f1e50b-97d6-5bdb-7cc2-e7dc162d147a@ysoft.com>
-Date:   Wed, 31 Jul 2019 09:14:12 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.4.0
+        id S1726532AbfGaHcA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 03:32:00 -0400
+Received: from mail-io1-f67.google.com ([209.85.166.67]:38146 "EHLO
+        mail-io1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725942AbfGaHcA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 03:32:00 -0400
+Received: by mail-io1-f67.google.com with SMTP id j6so14359690ioa.5;
+        Wed, 31 Jul 2019 00:31:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=gmRH5cyyTa+pu28tKgSAoxuUUc49EzcBtnBvXftrvkE=;
+        b=i/4XiCRB6NhtZp65i/Y4J0IPpXeIgduMTL8gVPuT4q4TC0gTl8C5mi7BHUwNPjeWU4
+         5z/5IpRwtpOUd3+jm+hFPf34yqv2e/ay5p2dVabMnqjHLVTQtZaePGMrKZolBs5hUWea
+         tRPHJnKvzb2PcI0rj7YqQH56TJXSCGF/CritwRgCpBuxVm1pLeSWz8jFc58lXzkLXdN9
+         p9rQvxLDcYGk9WiZs+y4fx7M8JG/sUquTbx6a9+oD3zVrtcMdPlTXj3GSokdSG7SSQL+
+         2wGAExf1ggxcgvzIUDFNO6jt/TLeHcyhWOjM1OANJA7Gp53z9jBkTZLO0gRZaH2Jd4GB
+         MYXg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=gmRH5cyyTa+pu28tKgSAoxuUUc49EzcBtnBvXftrvkE=;
+        b=j1w6GVr0ouj6mDJcDQE4zTLD0JJylMZs/LhS6jPWziLoYs9tLf9jEG0NAr/EQjIC+Q
+         ZLQnveO5AhnLcVH+327QLnt9McxV1sj/tqtUJ/V8nipSE/2PFvsg3Jl9OxnJmM8uV6wd
+         uEawAzmriBA9zYPFrzP1C0JvS1cvfpWY5qPHLNaAWAgHG3NPCO/M9nywY7rj59LDRPP3
+         LnTVtCVIADn7FXpPUyoKqM4pLXfptuIQJRbODUbv06sSfbKIztVLAlEyiGNvnuqVSWl/
+         w4256Fbp5O/Vdg5s9KK6jH5Ud37jAPEuToP8UvBnLe5GSzbT0OD6YIwU9b5sSdc3O0IN
+         v7Dg==
+X-Gm-Message-State: APjAAAWcITwNRtXZ9uulPtee/I+s6SYzlKTI5is7UkVb73EfkCsidAS1
+        R16xf/dNmohoFPnM520/gLJEum/lYNk/4Z3vo38X0w==
+X-Google-Smtp-Source: APXvYqy/wNaiH1PbhpPL1I3msyKbCMcewdGWIiHkhish88uB3f3bzURV8ZGANL4VTJqvc6cfNk7fXUiRFtIW+M+Vcgw=
+X-Received: by 2002:a02:a703:: with SMTP id k3mr55128556jam.12.1564558319165;
+ Wed, 31 Jul 2019 00:31:59 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190730144649.19022-12-dev@pschenker.ch>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190717192616.1731-1-tushar.khandelwal@arm.com>
+ <20190717192616.1731-2-tushar.khandelwal@arm.com> <CABb+yY04vW-i35N6P57KSKgmMAYkrA2CDyUvA-bLCZMxiZaocw@mail.gmail.com>
+ <CABb+yY1SeHTgZQNAHJW+dZG=khah5c5igtKy+MrjADnZF29Aow@mail.gmail.com> <VI1PR0601MB21113C48E719B2C79EC2FE508FC20@VI1PR0601MB2111.eurprd06.prod.outlook.com>
+In-Reply-To: <VI1PR0601MB21113C48E719B2C79EC2FE508FC20@VI1PR0601MB2111.eurprd06.prod.outlook.com>
+From:   Jassi Brar <jassisinghbrar@gmail.com>
+Date:   Wed, 31 Jul 2019 02:31:48 -0500
+Message-ID: <CABb+yY3yMWbUiQnJgfQhwnW1OM3aoFL3ZFc018E-fxGichi-4Q@mail.gmail.com>
+Subject: Re: [PATCH 1/4] mailbox: arm_mhuv2: add device tree binding documentation
+To:     Morten Borup Petersen <morten_bp@live.dk>
+Cc:     Tushar Khandelwal <tushar.khandelwal@arm.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "tushar.2nov@gmail.com" <tushar.2nov@gmail.com>,
+        "nd@arm.com" <nd@arm.com>,
+        Morten Borup Petersen <morten.petersen@arm.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Devicetree List <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 30. 07. 19 16:46, Philippe Schenker wrote:
-> From: Philippe Schenker <philippe.schenker@toradex.com>
-> 
-> This patch prepares the devicetree for the new Ixora V1.2 where we are
-> able to turn off the supply of the can transceiver. This implies to use
-> a sleep state on transmission pins in order to prevent backfeeding.
-> 
-> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-> ---
+On Sun, Jul 28, 2019 at 4:28 PM Morten Borup Petersen <morten_bp@live.dk> wrote:
+>
+>
+>
+> On 7/25/19 7:49 AM, Jassi Brar wrote:
+> > On Sun, Jul 21, 2019 at 4:58 PM Jassi Brar <jassisinghbrar@gmail.com> wrote:
+> >>
+> >> On Wed, Jul 17, 2019 at 2:26 PM Tushar Khandelwal
+> >> <tushar.khandelwal@arm.com> wrote:
+> >>
+> >>> diff --git a/Documentation/devicetree/bindings/mailbox/arm,mhuv2.txt b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.txt
+> >>> new file mode 100644
+> >>> index 000000000000..3a05593414bc
+> >>> --- /dev/null
+> >>> +++ b/Documentation/devicetree/bindings/mailbox/arm,mhuv2.txt
+> >>> @@ -0,0 +1,108 @@
+> >>> +Arm MHUv2 Mailbox Driver
+> >>> +========================
+> >>> +
+> >>> +The Arm Message-Handling-Unit (MHU) Version 2 is a mailbox controller that has
+> >>> +between 1 and 124 channel windows to provide unidirectional communication with
+> >>> +remote processor(s).
+> >>> +
+> >>> +Given the unidirectional nature of the device, an MHUv2 mailbox may only be
+> >>> +written to or read from. If a pair of MHU devices is implemented between two
+> >>> +processing elements to provide bidirectional communication, these must be
+> >>> +specified as two separate mailboxes.
+> >>> +
+> >>> +A device tree node for an Arm MHUv2 device must specify either a receiver frame
+> >>> +or a sender frame, indicating which end of the unidirectional MHU device which
+> >>> +the device node entry describes.
+> >>> +
+> >>> +An MHU device must be specified with a transport protocol. The transport
+> >>> +protocol of an MHU device determines the method of data transmission as well as
+> >>> +the number of provided mailboxes.
+> >>> +Following are the possible transport protocol types:
+> >>> +- Single-word: An MHU device implements as many mailboxes as it
+> >>> +               provides channel windows. Data is transmitted through
+> >>> +               the MHU registers.
+> >>> +- Multi-word:  An MHU device implements a single mailbox. All channel windows
+> >>> +               will be used during transmission. Data is transmitted through
+> >>> +               the MHU registers.
+> >>> +- Doorbell:    An MHU device implements as many mailboxes as there are flag
+> >>> +               bits available in its channel windows. Optionally, data may
+> >>> +               be transmitted through a shared memory region, wherein the MHU
+> >>> +               is used strictly as an interrupt generation mechanism.
+> >>> +
+> >>> +Mailbox Device Node:
+> >>> +====================
+> >>> +
+> >>> +Required properties:
+> >>> +--------------------
+> >>> +- compatible:  Shall be "arm,mhuv2" & "arm,primecell"
+> >>> +- reg:         Contains the mailbox register address range (base
+> >>> +               address and length)
+> >>> +- #mbox-cells  Shall be 1 - the index of the channel needed.
+> >>> +- mhu-frame    Frame type of the device.
+> >>> +               Shall be either "sender" or "receiver"
+> >>> +- mhu-protocol Transport protocol of the device. Shall be one of the
+> >>> +               following: "single-word", "multi-word", "doorbell"
+> >>> +
+> >>> +Required properties (receiver frame):
+> >>> +-------------------------------------
+> >>> +- interrupts:  Contains the interrupt information corresponding to the
+> >>> +               combined interrupt of the receiver frame
+> >>> +
+> >>> +Example:
+> >>> +--------
+> >>> +
+> >>> +       mbox_mw_tx: mhu@10000000 {
+> >>> +               compatible = "arm,mhuv2","arm,primecell";
+> >>> +               reg = <0x10000000 0x1000>;
+> >>> +               clocks = <&refclk100mhz>;
+> >>> +               clock-names = "apb_pclk";
+> >>> +               #mbox-cells = <1>;
+> >>> +               mhu-protocol = "multi-word";
+> >>> +               mhu-frame = "sender";
+> >>> +       };
+> >>> +
+> >>> +       mbox_sw_tx: mhu@10000000 {
+> >>> +               compatible = "arm,mhuv2","arm,primecell";
+> >>> +               reg = <0x11000000 0x1000>;
+> >>> +               clocks = <&refclk100mhz>;
+> >>> +               clock-names = "apb_pclk";
+> >>> +               #mbox-cells = <1>;
+> >>> +               mhu-protocol = "single-word";
+> >>> +               mhu-frame = "sender";
+> >>> +       };
+> >>> +
+> >>> +       mbox_db_rx: mhu@10000000 {
+> >>> +               compatible = "arm,mhuv2","arm,primecell";
+> >>> +               reg = <0x12000000 0x1000>;
+> >>> +               clocks = <&refclk100mhz>;
+> >>> +               clock-names = "apb_pclk";
+> >>> +               #mbox-cells = <1>;
+> >>> +               interrupts = <0 45 4>;
+> >>> +               interrupt-names = "mhu_rx";
+> >>> +               mhu-protocol = "doorbell";
+> >>> +               mhu-frame = "receiver";
+> >>> +       };
+> >>> +
+> >>> +       mhu_client: scb@2e000000 {
+> >>> +       compatible = "fujitsu,mb86s70-scb-1.0";
+> >>> +       reg = <0 0x2e000000 0x4000>;
+> >>> +       mboxes =
+> >>> +               // For multi-word frames, client may only instantiate a single
+> >>> +               // mailbox for a mailbox controller
+> >>> +               <&mbox_mw_tx 0>,
+> >>> +
+> >>> +               // For single-word frames, client may instantiate as many
+> >>> +               // mailboxes as there are channel windows in the MHU
+> >>> +                <&mbox_sw_tx 0>,
+> >>> +                <&mbox_sw_tx 1>,
+> >>> +                <&mbox_sw_tx 2>,
+> >>> +                <&mbox_sw_tx 3>,
+> >>> +
+> >>> +               // For doorbell frames, client may instantiate as many mailboxes
+> >>> +               // as there are bits available in the combined number of channel
+> >>> +               // windows ((channel windows * 32) mailboxes)
+> >>> +                <mbox_db_rx 0>,
+> >>> +                <mbox_db_rx 1>,
+> >>> +                ...
+> >>> +                <mbox_db_rx 17>;
+> >>> +       };
+> >>
+> >> If the mhuv2 instance implements, say, 3 channel windows between
+> >> sender (linux) and receiver (firmware), and Linux runs two protocols
+> >> each requiring 1 and 2-word sized messages respectively. The hardware
+> >> supports that by assigning windows [0] and [1,2] to each protocol.
+> >> However, I don't think the driver can support that. Or does it?
+> >>
+> > Thinking about it, IMO, the mbox-cell should carry a 128 (4x32) bit
+> > mask specifying the set of windows (corresponding to the bits set in
+> > the mask) associated with the channel.
+> > And the controller driver should see any channel as associated with
+> > variable number of windows 'N', where N is [0,124]
+> >
+> > mhu_client1: proto1@2e000000 {
+> >        .....
+> >        mboxes = <&mbox 0x0 0x0 0x0 0x1>
+> > }
+> >
+> > mhu_client2: proto2@2f000000 {
+> >        .....
+> >        mboxes = <&mbox 0x0 0x0 0x0 0x6>
+> > }
+> >
+> > Cheers!
+> >
+>
+> As mentioned in the response to your initial comment, the driver does
+> not currently support mixing protocols.
+>
+Thanks for acknowledging that limitation. But lets also address it.
 
-What about "ARM: dts: imx6qdl-apalis: " for the subject?
-To be clear that this is not related to the imx6 SoC itself.
+> If mixing protocols is to be supported in the future, then this seems
+> like a suitable way of specifying which channels are associated with
+> which mailboxes (especially for mixing single- and multi-word modes).
+>
+We can not change DT bindings again when we feel like updating the driver.
+The bindings should precisely and completely define the h/w, not what
+mode we currently implement.
+It is not for pure idealism, it actually makes the code simpler and futureproof.
 
-> 
->   arch/arm/boot/dts/imx6qdl-apalis.dtsi | 27 +++++++++++++++++++++------
->   1 file changed, 21 insertions(+), 6 deletions(-)
-> 
-> diff --git a/arch/arm/boot/dts/imx6qdl-apalis.dtsi b/arch/arm/boot/dts/imx6qdl-apalis.dtsi
-> index 7c4ad541c3f5..59ed2e4a1fd1 100644
-> --- a/arch/arm/boot/dts/imx6qdl-apalis.dtsi
-> +++ b/arch/arm/boot/dts/imx6qdl-apalis.dtsi
-> @@ -148,14 +148,16 @@
->   };
->   
->   &can1 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_flexcan1>;
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_flexcan1_default>;
-> +	pinctrl-1 = <&pinctrl_flexcan1_sleep>;
->   	status = "disabled";
->   };
->   
->   &can2 {
-> -	pinctrl-names = "default";
-> -	pinctrl-0 = <&pinctrl_flexcan2>;
-> +	pinctrl-names = "default", "sleep";
-> +	pinctrl-0 = <&pinctrl_flexcan2_default>;
-> +	pinctrl-1 = <&pinctrl_flexcan2_sleep>;
->   	status = "disabled";
->   };
->   
-> @@ -599,19 +601,32 @@
->   		>;
->   	};
->   
-> -	pinctrl_flexcan1: flexcan1grp {
-> +	pinctrl_flexcan1_default: flexcan1defgrp {
->   		fsl,pins = <
->   			MX6QDL_PAD_GPIO_7__FLEXCAN1_TX 0x1b0b0
->   			MX6QDL_PAD_GPIO_8__FLEXCAN1_RX 0x1b0b0
->   		>;
->   	};
->   
-> -	pinctrl_flexcan2: flexcan2grp {
-> +	pinctrl_flexcan1_sleep: flexcan1slpgrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_GPIO_7__GPIO1_IO07 0x0
-> +			MX6QDL_PAD_GPIO_8__GPIO1_IO08 0x0
-> +		>;
-> +	};
-> +
-> +	pinctrl_flexcan2_default: flexcan2defgrp {
->   		fsl,pins = <
->   			MX6QDL_PAD_KEY_COL4__FLEXCAN2_TX 0x1b0b0
->   			MX6QDL_PAD_KEY_ROW4__FLEXCAN2_RX 0x1b0b0
->   		>;
->   	};
-> +	pinctrl_flexcan2_sleep: flexcan2slpgrp {
-> +		fsl,pins = <
-> +			MX6QDL_PAD_KEY_COL4__GPIO4_IO14 0x0
-> +			MX6QDL_PAD_KEY_ROW4__GPIO4_IO15 0x0
-> +		>;
-> +	};
->   
->   	pinctrl_gpio_bl_on: gpioblon {
->   		fsl,pins = <
-> 
+> However, there still is an issue in that both single-word and doorbell
+> requires only 1 channel window - and as such, the transport protocol
+> cannot be deduced from merely the number of masked channel windows.
+>
+I don't see why the driver should worry -- the channel carries 32-bit
+message or some random value just to trigger an interrupt is purely
+upto the client driver.
 
+> Furthermore, for doorbell, a mbox may be registered for _each_ available
+> bit within a channel window (further complicating things if we were to
+> include mixing protocols in this initial driver version), making
+> assigning channel windows to mailboxes semantically different from when
+> assigning to single- or multi-word.
+>
+Not sure about that, that would be implementing virtual channels. Each
+window carries one signal, and that is the minimum bandwidth assigned
+to a channel.
+
+Thanks
