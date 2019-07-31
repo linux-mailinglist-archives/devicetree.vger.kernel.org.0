@@ -2,96 +2,202 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D75C27B929
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 07:40:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 827EF7B978
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 08:08:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727036AbfGaFkN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 01:40:13 -0400
-Received: from new2-smtp.messagingengine.com ([66.111.4.224]:36211 "EHLO
-        new2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726989AbfGaFkL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 01:40:11 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id 5F2C82D4C;
-        Wed, 31 Jul 2019 01:40:10 -0400 (EDT)
-Received: from mailfrontend1 ([10.202.2.162])
-  by compute4.internal (MEProxy); Wed, 31 Jul 2019 01:40:10 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=gbLCW5fm9NgGd
-        7NHSQsOKrpG0gqK4d9GLmhDrnziGJs=; b=VlfQ+jaBx6M1eNbpsmY9c7XoFMwP1
-        5iExP5LSTZ/+R2f7B488M+OtC1opnjEMBx/poItkTpP6FtPY1ClROIyFvRHHdUef
-        LVgvqY/k7LJnW52DsTtX38pnAzOLMh6HYqvwNHkiZ5XvAnaHijeK2hG1lHSsZtch
-        4GVnAFeR7nNHZyrH917dPmWTl+vJGCy8woOYj3MIUrkZm3AjeBrzQbg4/Dn9PVTJ
-        QJz9K80Miastnfs5pMgE8/tauF/wOwVEV5m0TZqr2Ip7X/vMdvivhaP+Mig8hqBv
-        5caGt2iYNBGAKw8FYb9D3B2atK1n8/bgCvQW7U5d2rxNmyLoOo4ETb4eQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=gbLCW5fm9NgGd7NHSQsOKrpG0gqK4d9GLmhDrnziGJs=; b=yxYgPtcM
-        rqeEijTvAgpyROeVysMp5lUdI8iwsmWj60tFvhL8AZBfuMu/A7GaT5tLBg5UU+ep
-        TTquIN4tv68bCy7LneQRjTDjb89Iue4IBr5S4fZ3LaaWNlAnNFsoq1GpsyAzu6iK
-        eGhaG+HLYn9xZUHJZc/FFpXjwaHc38Boi23fe3mQS4bQaIgNpmziNJkxxeHAYoKD
-        EHyBZ1L/j7Z512JukWokYQJM0E3JhhTmyMHS3rIxurrwT1EGa8V4N1h6spQiaiCp
-        UUAKojLEo+iWuiuaMJr3recWLzs09o9saECTBrXoRgJQSmzJvsdApmE54upwfwMH
-        OGMmMJaDJq2+Hg==
-X-ME-Sender: <xms:uilBXbe6YnMmqo2bvXPRVM49tzeY7xaees9Lr-bB_pIzhCmTB-AlVQ>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrleeggdelkecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecunecujfgurhephffvufffkffojghfggfgsedtkeertd
-    ertddtnecuhfhrohhmpeetnhgurhgvficulfgvfhhfvghrhicuoegrnhgurhgvfiesrghj
-    rdhiugdrrghuqeenucfkphepvddtvddrkedurddukedrfedtnecurfgrrhgrmhepmhgrih
-    hlfhhrohhmpegrnhgurhgvfiesrghjrdhiugdrrghunecuvehluhhsthgvrhfuihiivgep
-    ud
-X-ME-Proxy: <xmx:uilBXeD5KwrEpmb7kKRGYNIdxbEkJ9ifuNAFDqEj2OtBAT3fFsEV-g>
-    <xmx:uilBXYspYjrGPLI-NWjiffNVdRe-fgTdCULKIuGyB5WbxShrrzC5AQ>
-    <xmx:uilBXbH74Q90FmAehzDptAdn_seNLkNzDdDfcaglWRRUbf3CfY2z_g>
-    <xmx:uilBXXDO62O3BrkRI80kvynlh83Pzok8exg_49HvtyTQjcfBHIqtFg>
-Received: from mistburn.au.ibm.com (bh02i525f01.au.ibm.com [202.81.18.30])
-        by mail.messagingengine.com (Postfix) with ESMTPA id E1CC780059;
-        Wed, 31 Jul 2019 01:40:05 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     netdev@vger.kernel.org
-Cc:     Andrew Jeffery <andrew@aj.id.au>, davem@davemloft.net,
-        robh+dt@kernel.org, mark.rutland@arm.com, joel@jms.id.au,
-        andrew@lunn.ch, f.fainelli@gmail.com, hkallweit1@gmail.com,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v2 4/4] net: ftgmac100: Select ASPEED MDIO driver for the AST2600
-Date:   Wed, 31 Jul 2019 15:09:59 +0930
-Message-Id: <20190731053959.16293-5-andrew@aj.id.au>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190731053959.16293-1-andrew@aj.id.au>
-References: <20190731053959.16293-1-andrew@aj.id.au>
+        id S1725290AbfGaGIg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 02:08:36 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:37561 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725209AbfGaGIg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 02:08:36 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hshlD-0001W1-99; Wed, 31 Jul 2019 08:06:51 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hshl6-0004Dx-RL; Wed, 31 Jul 2019 08:06:44 +0200
+Date:   Wed, 31 Jul 2019 08:06:44 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Thomas Preston <thomas.preston@codethink.co.uk>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        Cheng-Yi Chiang <cychiang@chromium.org>,
+        Takashi Iwai <tiwai@suse.com>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Vinod Koul <vkoul@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Nate Case <ncase@tesla.com>, Rob Duncan <rduncan@tesla.com>,
+        Patrick Glaser <pglaser@tesla.com>,
+        linux-kernel@vger.kernel.org, Jerome Brunet <jbrunet@baylibre.com>
+Subject: Re: [alsa-devel] [PATCH v2 2/3] ASoC: Add codec driver for ST TDA7802
+Message-ID: <20190731060644.yrewu2kvrlootyyl@pengutronix.de>
+References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
+ <20190730120937.16271-3-thomas.preston@codethink.co.uk>
+ <20190730145844.GI4264@sirena.org.uk>
+ <fe11c806-2285-558c-e35c-d8f61de00784@codethink.co.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <fe11c806-2285-558c-e35c-d8f61de00784@codethink.co.uk>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 08:04:35 up 74 days, 12:22, 46 users,  load average: 0.05, 0.07,
+ 0.03
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Ensures we can talk to a PHY via MDIO on the AST2600, as the MDIO
-controller is now separate from the MAC.
+Hi Thomas,
 
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
----
- drivers/net/ethernet/faraday/Kconfig | 1 +
- 1 file changed, 1 insertion(+)
+again sorry for jumping in..
 
-diff --git a/drivers/net/ethernet/faraday/Kconfig b/drivers/net/ethernet/faraday/Kconfig
-index a9b105803fb7..73e4f2648e49 100644
---- a/drivers/net/ethernet/faraday/Kconfig
-+++ b/drivers/net/ethernet/faraday/Kconfig
-@@ -32,6 +32,7 @@ config FTGMAC100
- 	depends on ARM || NDS32 || COMPILE_TEST
- 	depends on !64BIT || BROKEN
- 	select PHYLIB
-+	select MDIO_ASPEED if MACH_ASPEED_G6
- 	---help---
- 	  This driver supports the FTGMAC100 Gigabit Ethernet controller
- 	  from Faraday. It is used on Faraday A369, Andes AG102 and some
+On 19-07-30 18:26, Thomas Preston wrote:
+> On 30/07/2019 15:58, Mark Brown wrote:
+> > On Tue, Jul 30, 2019 at 01:09:36PM +0100, Thomas Preston wrote:
+> > 
+> >> index 000000000000..0f82a88bc1a4
+> >> --- /dev/null
+> >> +++ b/sound/soc/codecs/tda7802.c
+> >> @@ -0,0 +1,509 @@
+> >> +// SPDX-License-Identifier: GPL-2.0
+> >> +/*
+> >> + * tda7802.c  --  codec driver for ST TDA7802
+> > 
+> > Please make the entire comment a C++ one so this looks intentional.
+> > 
+> 
+> Ok thanks.
+> 
+> >> +static int tda7802_digital_mute(struct snd_soc_dai *dai, int mute)
+> >> +{
+> >> +	const u8 mute_disabled = mute ? 0 : IB2_DIGITAL_MUTE_DISABLED;
+> > 
+> > Please write normal conditional statements to make the code easier to
+> > read.
+> > 
+> 
+> On it.
+> 
+> >> +	case SND_SOC_BIAS_STANDBY:
+> >> +		err = regulator_enable(tda7802->enable_reg);
+> >> +		if (err < 0) {
+> >> +			dev_err(component->dev, "Could not enable.\n");
+> >> +			return err;
+> >> +		}
+> >> +		dev_dbg(component->dev, "Regulator enabled\n");
+> >> +		msleep(ENABLE_DELAY_MS);
+> > 
+> > Is this delay needed by the device or is it for the regulator to ramp?
+> > If it's for the regulator to ramp then the regulator should be doing it.
+> > 
+> 
+> According to the datasheet the device itself takes 10ms to rise from 0V
+> after PLLen is enabled. There are additional rise times but they are
+> negligible with default capacitor configuration (which we have).
+> 
+> Good to know about the regulator rising configuration though. Thanks.
+
+Isn't it the regulator we mentioned to not use that because it is a
+GPIO?
+
+Regards,
+  Marco
+
+> >> +	case SND_SOC_BIAS_OFF:
+> >> +		regcache_mark_dirty(component->regmap);
+> > 
+> > If the regulator is going off you should really be marking the device as
+> > cache only.
+> > 
+> 
+> Got it, thanks.
+> 
+> >> +		err = regulator_disable(tda7802->enable_reg);
+> >> +		if (err < 0)
+> >> +			dev_err(component->dev, "Could not disable.\n");
+> > 
+> > Any non-zero value from regulator_disable() is an error, there's similar
+> > error checking issues in other places.
+> > 
+> 
+> I return the error at the end of the function, but I'll bring it back here
+> for consistency.
+> 
+> >> +static const struct snd_kcontrol_new tda7802_snd_controls[] = {
+> >> +	SOC_SINGLE("Channel 4 Tristate", TDA7802_IB0, 7, 1, 0),
+> >> +	SOC_SINGLE("Channel 3 Tristate", TDA7802_IB0, 6, 1, 0),
+> >> +	SOC_SINGLE("Channel 2 Tristate", TDA7802_IB0, 5, 1, 0),
+> >> +	SOC_SINGLE("Channel 1 Tristate", TDA7802_IB0, 4, 1, 0),
+> > 
+> > These look like simple on/off switches so should have Switch at the end
+> > of the control name.  It's also not clear to me why this is exported to
+> > userspace - why would this change at runtime and won't any changes need
+> > to be coordinated with whatever else is connected to the signal?
+> > 
+> >> +	SOC_ENUM("Mute time", mute_time),
+> >> +	SOC_SINGLE("Unmute channels 1 & 3", TDA7802_IB2, 4, 1, 0),
+> >> +	SOC_SINGLE("Unmute channels 2 & 4", TDA7802_IB2, 3, 1, 0),
+> > 
+> > These are also Switch controls.  There are *lots* of problems with
+> > control names, see control-names.rst.
+> > 
+> 
+> Ok thanks, I didn't know about the "Switch" suffix, I will read
+> control-names.rst.
+> 
+> I will move Tristate to DT properties. I was also unsure about the
+> Impedance Efficiency Optimiser but the datasheet doesn't go into much
+> detail about this so I left it exposed.
+> 
+> They both seemed like user configurable options in the context of a
+> test rig, but I agree - who knows what this output might be connected
+> to in other systems. I will lock them down in DT. Thanks.
+> 
+> >> +static const struct snd_soc_component_driver tda7802_component_driver = {
+> >> +	.set_bias_level = tda7802_set_bias_level,
+> >> +	.idle_bias_on = 1,
+> > 
+> > Any reason to keep the device powered up?  It looks like the power on
+> > process is just powering things up and writing the register cache out
+> > and there's not that many registers so the delay is trivial.
+> > 
+> 
+> Ah no, I think that's a mistake. I want the PLLen to switch off in
+> idle/suspend and the device should restore on wake.
+> 
+> >> +	tda7802->enable_reg = devm_regulator_get(dev, "enable");
+> >> +	if (IS_ERR(tda7802->enable_reg)) {
+> >> +		dev_err(dev, "Failed to get enable regulator\n");
+> > 
+> > It's better to print error codes if you have them and are printing a
+> > diagnostic so people have more to go on when debugging problems.
+> 
+> Yep on it.
+> 
+> Many thanks, I appreciate the feedback.
+> 
+
 -- 
-2.20.1
-
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
