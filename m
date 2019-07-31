@@ -2,169 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3BB4C7CC6D
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 21:03:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 49AE07CCA8
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 21:21:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726556AbfGaTDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 15:03:33 -0400
-Received: from 19.mo4.mail-out.ovh.net ([87.98.179.66]:43182 "EHLO
-        19.mo4.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726755AbfGaTDd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 15:03:33 -0400
-X-Greylist: delayed 6599 seconds by postgrey-1.27 at vger.kernel.org; Wed, 31 Jul 2019 15:03:32 EDT
-Received: from player776.ha.ovh.net (unknown [10.109.160.143])
-        by mo4.mail-out.ovh.net (Postfix) with ESMTP id 3AE301FC2E7
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 18:33:47 +0200 (CEST)
-Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
-        (Authenticated sender: sebastien.szymanski@armadeus.com)
-        by player776.ha.ovh.net (Postfix) with ESMTPSA id A3C58878DD52;
-        Wed, 31 Jul 2019 16:33:28 +0000 (UTC)
-From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-To:     Rui Miguel Silva <rmfrfs@gmail.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Steve Longerbeam <slongerbeam@gmail.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
-Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devel@driverdev.osuosl.org,
-        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
-        <sebastien.szymanski@armadeus.com>
-Subject: [PATCH v3 2/3] media: imx7-media-csi: add i.MX6UL support
-Date:   Wed, 31 Jul 2019 18:33:30 +0200
-Message-Id: <20190731163330.32532-1-sebastien.szymanski@armadeus.com>
-X-Mailer: git-send-email 2.21.0
+        id S1729442AbfGaTVB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 15:21:01 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:35451 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729013AbfGaTVB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 15:21:01 -0400
+Received: by mail-pg1-f193.google.com with SMTP id s1so26237147pgr.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 12:21:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=X62yo9M2x8AQnMbVtc4ggTigIh/r5p8ibryWAFvQyto=;
+        b=JJ6GFkbQvta211g9zdGJcCxQp+kBr8PntIaiqyI245LZvlsdc5Dnqw9KaPjdGd0VXN
+         WSTRVeNuNKdEyl9/ZDzFMO11fysXezZhzO6llwaZ8l6VC2FjbfOzb37RaNBuuM7Y0iro
+         htgvSJMUXgsZSOF+QOFPHyPQZ1Q6k9ZUmSzmdboFRZkXdxHCwJrLiDQwwSjHMOOqYUNY
+         AM9rA4UJ032JOq9UYt9CPPNX1JfzZuOrgtxLFNXzmVZ+rghGYuYAFm0NmhHu5eL/Azjv
+         ENKg55jJvZ/nf8k08eQ80kKtNTN2jgbxKDgQ/dhjLHY1llJm3nHUT8+JS16ddOCSZvJV
+         enVA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=X62yo9M2x8AQnMbVtc4ggTigIh/r5p8ibryWAFvQyto=;
+        b=Ry6zZDLHLdAHDqW8qKSOJwbo4ar0qf4zmQ6jvQWCFg022yYzP12RCp4G3Nh41VKikw
+         E/AA9zfW+oUHO7s3JGZCreExsLIe8HMWeiS8gjzH0PmbCv7RoG2krVrlge8UY0NeYRf+
+         geSP3lUvl54KYw++tWoXoxUgrpaffDxB11Ea7Ek3tcZpAvErlqEInBQeHaBa4ULI3oeX
+         v6AN75xFrvTaa3o0rTD8fSqV7TubOvfBCok1jLtaKvqkI91Qrb0V/usBoCs4wVfuwket
+         jGUULE6vaBfQoB+S+1auRHIEC+PXHbSV46WOdeLj/kjvzdouasKvqxkbGiE8VFK0+B3H
+         9JbQ==
+X-Gm-Message-State: APjAAAWv30XYthitM3niiY6X7OxVR+A2aj73kO61xmL7/jOnmKf76UZ0
+        M89AQPwTnxD/Pc2V/Wqhy9c=
+X-Google-Smtp-Source: APXvYqyMaIkNUPKYx+62ofI6KXmpuBGhDnGP8Uyh7gpRvdfL3Hh9iuEDFyCjXiu9ZAdmDrM7BtygSA==
+X-Received: by 2002:a17:90a:d997:: with SMTP id d23mr4261721pjv.84.1564600860631;
+        Wed, 31 Jul 2019 12:21:00 -0700 (PDT)
+Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
+        by smtp.gmail.com with ESMTPSA id w14sm77399169pfn.47.2019.07.31.12.20.59
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 31 Jul 2019 12:21:00 -0700 (PDT)
+Subject: Re: [PATCH] scripts/dtc: dtx_diff - make help text formatting
+ consistent
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org
+References: <20190731123548.13787-1-geert+renesas@glider.be>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <d1e4277e-505c-9cd5-b26c-4c307504f7c4@gmail.com>
+Date:   Wed, 31 Jul 2019 12:20:59 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
-X-Ovh-Tracer-Id: 14045319867170182183
-X-VR-SPAMSTATE: OK
-X-VR-SPAMSCORE: -100
-X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrleehgddutdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
+In-Reply-To: <20190731123548.13787-1-geert+renesas@glider.be>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-i.MX7 and i.MX6UL/L have the same CSI controller. So add i.MX6UL/L support
-to imx7-media-csi driver.
+On 7/31/19 5:35 AM, Geert Uytterhoeven wrote:
+> None of the help texts use capitalization, except the one for the -T
+> option.  Drop the capitalization for consistency.
+> Split the single long line that doesn't fit in 80 characters.
+> 
+> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> ---
+>  scripts/dtc/dtx_diff | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
+> index 00fd4738a5877948..e9ad7834a22d9459 100755
+> --- a/scripts/dtc/dtx_diff
+> +++ b/scripts/dtc/dtx_diff
+> @@ -27,7 +27,8 @@ Usage:
+>         -s SRCTREE   linux kernel source tree is at path SRCTREE
+>                          (default is current directory)
+>         -S           linux kernel source tree is at root of current git repo
+> -       -T           Annotate output .dts with input source file and line (-T -T for more details)
+> +       -T           annotate output .dts with input source file and line
+> +                        (-T -T for more details)
+>         -u           unsorted, do not sort DTx
+>  
+>  
+> 
 
-Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
----
+Thanks Geert!
 
-Changes for v3:
-- rebase on Linux v5.3-rc2
-- remove csi_soc_id var as it's not needed anymore thanks to commit
-  e0c76a7d3428 ("media: imx7-media-csi: get csi upstream endpoint")
-
-Changes for v2:
- - rebase on top of linuxtv/master
- - mention i.MX6UL/L in header and Kconfig help text
- - rename csi_type to csi_soc_id
-
- drivers/staging/media/imx/Kconfig          |  4 +--
- drivers/staging/media/imx/imx7-media-csi.c | 30 +++++++++++++++-------
- 2 files changed, 23 insertions(+), 11 deletions(-)
-
-diff --git a/drivers/staging/media/imx/Kconfig b/drivers/staging/media/imx/Kconfig
-index 4c726345dc25..f51476243016 100644
---- a/drivers/staging/media/imx/Kconfig
-+++ b/drivers/staging/media/imx/Kconfig
-@@ -22,11 +22,11 @@ config VIDEO_IMX_CSI
- 	  A video4linux camera sensor interface driver for i.MX5/6.
- 
- config VIDEO_IMX7_CSI
--	tristate "i.MX7 Camera Sensor Interface driver"
-+	tristate "i.MX6UL/L / i.MX7 Camera Sensor Interface driver"
- 	depends on VIDEO_IMX_MEDIA && VIDEO_DEV && I2C
- 	default y
- 	help
- 	  Enable support for video4linux camera sensor interface driver for
--	  i.MX7.
-+	  i.MX6UL/L or i.MX7.
- endmenu
- endif
-diff --git a/drivers/staging/media/imx/imx7-media-csi.c b/drivers/staging/media/imx/imx7-media-csi.c
-index 500b4c08d967..4ca79ff4c9b3 100644
---- a/drivers/staging/media/imx/imx7-media-csi.c
-+++ b/drivers/staging/media/imx/imx7-media-csi.c
-@@ -1,6 +1,6 @@
- // SPDX-License-Identifier: GPL-2.0
- /*
-- * V4L2 Capture CSI Subdev for Freescale i.MX7 SOC
-+ * V4L2 Capture CSI Subdev for Freescale i.MX6UL/L / i.MX7 SOC
-  *
-  * Copyright (c) 2019 Linaro Ltd
-  *
-@@ -765,6 +765,7 @@ static int imx7_csi_configure(struct imx7_csi *csi)
- 	struct v4l2_pix_format *out_pix = &vdev->fmt.fmt.pix;
- 	__u32 in_code = csi->format_mbus[IMX7_CSI_PAD_SINK].code;
- 	u32 cr1, cr18;
-+	int width = out_pix->width;
- 
- 	if (out_pix->field == V4L2_FIELD_INTERLACED) {
- 		imx7_csi_deinterlace_enable(csi, true);
-@@ -774,15 +775,27 @@ static int imx7_csi_configure(struct imx7_csi *csi)
- 		imx7_csi_buf_stride_set(csi, 0);
- 	}
- 
--	imx7_csi_set_imagpara(csi, out_pix->width, out_pix->height);
-+	cr18 = imx7_csi_reg_read(csi, CSI_CSICR18);
-+
-+	if (!csi->is_csi2) {
-+		if (out_pix->pixelformat == V4L2_PIX_FMT_UYVY ||
-+		    out_pix->pixelformat == V4L2_PIX_FMT_YUYV)
-+			width *= 2;
-+
-+		imx7_csi_set_imagpara(csi, width, out_pix->height);
-+
-+		cr18 |= (BIT_BASEADDR_SWITCH_EN | BIT_BASEADDR_SWITCH_SEL |
-+			BIT_BASEADDR_CHG_ERR_EN);
-+		imx7_csi_reg_write(csi, cr18, CSI_CSICR18);
- 
--	if (!csi->is_csi2)
- 		return 0;
-+	}
-+
-+	imx7_csi_set_imagpara(csi, width, out_pix->height);
- 
- 	cr1 = imx7_csi_reg_read(csi, CSI_CSICR1);
- 	cr1 &= ~BIT_GCLK_MODE;
- 
--	cr18 = imx7_csi_reg_read(csi, CSI_CSICR18);
- 	cr18 &= BIT_MIPI_DATA_FORMAT_MASK;
- 	cr18 |= BIT_DATA_FROM_MIPI;
- 
-@@ -817,11 +830,9 @@ static void imx7_csi_enable(struct imx7_csi *csi)
- {
- 	imx7_csi_sw_reset(csi);
- 
--	if (csi->is_csi2) {
--		imx7_csi_dmareq_rff_enable(csi);
--		imx7_csi_hw_enable_irq(csi);
--		imx7_csi_hw_enable(csi);
--	}
-+	imx7_csi_dmareq_rff_enable(csi);
-+	imx7_csi_hw_enable_irq(csi);
-+	imx7_csi_hw_enable(csi);
- }
- 
- static void imx7_csi_disable(struct imx7_csi *csi)
-@@ -1302,6 +1313,7 @@ static int imx7_csi_remove(struct platform_device *pdev)
- 
- static const struct of_device_id imx7_csi_of_match[] = {
- 	{ .compatible = "fsl,imx7-csi" },
-+	{ .compatible = "fsl,imx6ul-csi" },
- 	{ },
- };
- MODULE_DEVICE_TABLE(of, imx7_csi_of_match);
--- 
-2.21.0
-
+Reviewed-by: Frank Rowand <frowand.list@gmail.com>
