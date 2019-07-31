@@ -2,39 +2,39 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C62A57C1A9
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:40:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C114C7C177
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:38:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387934AbfGaMjj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 08:39:39 -0400
-Received: from mail-eopbgr00121.outbound.protection.outlook.com ([40.107.0.121]:56484
-        "EHLO EUR02-AM5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2387663AbfGaMiI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        id S2387667AbfGaMiI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 31 Jul 2019 08:38:08 -0400
+Received: from mail-eopbgr50111.outbound.protection.outlook.com ([40.107.5.111]:36399
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2387662AbfGaMiH (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Jul 2019 08:38:07 -0400
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=OmsgyayGIKutLZZOTdBeGaBixzL6YTI7rMowgzbyQ+5QeK/yEDPGqvI1ZYaTLxefAyp6YjwABrQ3FLBKsnKQ9kQ00CCCVLjdXGpgJo/hX102t1q3MPIk+7B35t8/M421y3wcaZ9amdZKHK/72IvbAss7k5Sslopx/EYIqqwaW61i3HwyfTGHSK38nOQN3yw1qQbzxBQxtKjhZL0HPN6+vgyp0NOku3TTfVGNf99VmgHPsdT0uBdCCqb0dm8DRzm6sdCBbUnuRPt1yC+SdpNkvhsiB0gJdlKoiP2+Ye3aQMjnBg/dhgwRM1XeYP1w5u3KGTKS40Qi+cjE/O3flD4hmg==
+ b=XfmOnnvl6oONxi3TZXiyOarPFLpTKAPlzAXLgn3jWwQMT2MomVpmpovrR7cXdMa9KAAUkt9tTHsVs/XPOvRKLbIC9PmjuHsPYkGKi6TO4TFh8SMcGjO2N6PiXnut4NE0E5cLizrc273k620LcSxSbtXsmKznNN1HTP0dbXb1gja320Yn3P25DVocALjVvX7BdrQLOBf6FJdviHPjnCDiKaXa9fzAI3MhOBNRezYOz0SItCpltykiK9DzelqraJNyS+wpo4cQfUnJdK3gab0pZ6p5CLM8mKaQwfyCNVVInfHM+pvGXv8BdIRN6IO4PugFmB9qmjWmYERIO+9TitHe7w==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PB0vKYFbbdUeb19EeNeDiYIfwhKA7fkP3O+tYQyTnlU=;
- b=OMxhSAG2tBndNN7S6pOzVqnDEOiBvo5mHEvWvG2a11pyI295ExU7MWGhkexw+9XxJYWKsf1UHTLNYeTqX2QvyE+0KfbEuGs7HMFMEs7QpjlucU3k5zLqmFq8uzh9uH+iWUydxCjb3kSDW0yyaMyxhNU3PCOuf99MGgNKXKzDNFNw2t8LdD2Hna7Zhp1IZntuz5Fy1denVPSHm7R+U4wLJLr5ouKycpXtiz1x5JBXURhBq67J4/Cs2pGnWgipGHoA1GH0c3VZcIpaP5NkvBJ+XWR3XaA/yuzKN/tDEufJ1tg7mKBvQIgOLSJ0bg8hdWiSBEh11atF4O0/9AnehO53Eg==
+ bh=KvTSlKwlyM3A4JjJZOWeFx3QtVyJcCpEY4tgRXDZoNo=;
+ b=BM+rmO6wjVyhQxpyxRz805DBQKhHIxmr8YDdASfp+x+f8RdflX7WAjEVZJkSWjWlivLqCfdkXEuMf2XZZPjL5B5V9udTvEDHmND3DGbsK0qGEd8HqzkIImGWU3ThNBoc5SGLZOfBF2NcJvH0GqItrbEX+pOjL+TKFxh7tvmfaNll9fjHgrttqWuTQ/FmKcIAQwLlTilmHtYQF86xp2cMh+llv3qSqnn0XIyMPnxRY84JNfOjvZMwTf0fmkBgltMwNuES1V+kevoAui4nJDO2DdAlu+v4Ml8jtNuiOuFeTH2F0E/NUHcv3EeLN6oqChpurHwCvuKZVdEH6btWfjw+2g==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
  smtp.mailfrom=toradex.com;dmarc=pass action=none
  header.from=toradex.com;dkim=pass header.d=toradex.com;arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
  s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=PB0vKYFbbdUeb19EeNeDiYIfwhKA7fkP3O+tYQyTnlU=;
- b=IoyDJh6CB5ZGegdnbNxRXjHuCbxQg8RtxwnmXLHFGgVBYiMDtSkL635Lv1Yq76+XbPgWZwb6baZgOUx+pc95MQ7Sv73c6CtO2fP0P+wHh6IeraWuiLgH8UI0JAfeQ9qHe/eteTehAtH6v9mqSj4hnEcyd14rwK4dhxx2HaGEIeY=
+ bh=KvTSlKwlyM3A4JjJZOWeFx3QtVyJcCpEY4tgRXDZoNo=;
+ b=ikmpWOvpZzpxrZXQD6Lu7+ezK0OEQsfXEoZVSOBUV6p/JWe4+rMtKbBYID+CVOROsyk14V5XDvbG7otyX1fuK+XbohwmMc3kAxfm8FLjJQp8j6Zd12aDuEftrMNJiZsqlG8dBwziINnhFBJnONftRgVVz2Se0kT3niOBZhVo+ms=
 Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
- VI1PR0502MB3615.eurprd05.prod.outlook.com (52.134.7.26) with Microsoft SMTP
+ VI1PR0502MB2944.eurprd05.prod.outlook.com (10.175.25.138) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2115.15; Wed, 31 Jul 2019 12:38:01 +0000
+ 15.20.2136.14; Wed, 31 Jul 2019 12:38:03 +0000
 Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
  ([fe80::8405:5b51:b25d:39a2]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
  ([fe80::8405:5b51:b25d:39a2%6]) with mapi id 15.20.2115.005; Wed, 31 Jul 2019
- 12:38:01 +0000
+ 12:38:03 +0000
 From:   Philippe Schenker <philippe.schenker@toradex.com>
 To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Max Krummenacher <max.krummenacher@toradex.com>,
@@ -45,20 +45,19 @@ To:     Marcel Ziswiler <marcel.ziswiler@toradex.com>,
         Mark Rutland <mark.rutland@arm.com>,
         =?iso-8859-2?Q?Michal_Vok=E1=E8?= <michal.vokac@ysoft.com>,
         Fabio Estevam <festevam@gmail.com>
-CC:     Philippe Schenker <philippe.schenker@toradex.com>,
+CC:     Stefan Agner <stefan.agner@toradex.com>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
         Pengutronix Kernel Team <kernel@pengutronix.de>,
         NXP Linux Team <linux-imx@nxp.com>,
         Sascha Hauer <s.hauer@pengutronix.de>
-Subject: [PATCH v2 01/20] ARM: dts: imx7-colibri: make sure module supplies
- are always on
-Thread-Topic: [PATCH v2 01/20] ARM: dts: imx7-colibri: make sure module
- supplies are always on
-Thread-Index: AQHVR5zKtbFqHRg9tECU9zfITiqrSw==
-Date:   Wed, 31 Jul 2019 12:38:01 +0000
-Message-ID: <20190731123750.25670-2-philippe.schenker@toradex.com>
+Subject: [PATCH v2 02/20] ARM: dts: imx7-colibri: disable HS400
+Thread-Topic: [PATCH v2 02/20] ARM: dts: imx7-colibri: disable HS400
+Thread-Index: AQHVR5zLnUdQa6E7rUWjJNiDWooPFA==
+Date:   Wed, 31 Jul 2019 12:38:03 +0000
+Message-ID: <20190731123750.25670-3-philippe.schenker@toradex.com>
 References: <20190731123750.25670-1-philippe.schenker@toradex.com>
 In-Reply-To: <20190731123750.25670-1-philippe.schenker@toradex.com>
 Accept-Language: en-GB, en-US
@@ -74,68 +73,69 @@ x-ms-exchange-messagesentrepresentingtype: 1
 x-mailer: git-send-email 2.22.0
 x-originating-ip: [46.140.72.82]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 0ade3b61-8280-4817-1531-08d715b3ecde
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3615;
-x-ms-traffictypediagnostic: VI1PR0502MB3615:
-x-microsoft-antispam-prvs: <VI1PR0502MB361586B912B38A5F875AD83CF4DF0@VI1PR0502MB3615.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:1169;
+x-ms-office365-filtering-correlation-id: 394ca94e-46c1-431a-7b5c-08d715b3edf3
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB2944;
+x-ms-traffictypediagnostic: VI1PR0502MB2944:
+x-microsoft-antispam-prvs: <VI1PR0502MB2944803C3BE746E7F3EB0CCBF4DF0@VI1PR0502MB2944.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:5236;
 x-forefront-prvs: 011579F31F
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(979002)(4636009)(39850400004)(376002)(136003)(396003)(366004)(346002)(199004)(189003)(66946007)(52116002)(66446008)(64756008)(66556008)(66476007)(76176011)(4744005)(99286004)(53936002)(6512007)(6436002)(5660300002)(4326008)(7416002)(66066001)(6486002)(25786009)(478600001)(14454004)(7736002)(305945005)(71190400001)(71200400001)(3846002)(6116002)(36756003)(2501003)(68736007)(2906002)(2201001)(44832011)(486006)(476003)(86362001)(446003)(2616005)(11346002)(256004)(186003)(81166006)(81156014)(26005)(102836004)(50226002)(8936002)(8676002)(6506007)(386003)(316002)(54906003)(110136005)(1076003)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3615;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(376002)(136003)(346002)(39850400004)(396003)(366004)(189003)(199004)(66066001)(305945005)(26005)(2906002)(81166006)(81156014)(7736002)(52116002)(1076003)(36756003)(476003)(64756008)(66446008)(186003)(66556008)(66946007)(66476007)(256004)(2501003)(14444005)(71200400001)(8676002)(86362001)(68736007)(5660300002)(71190400001)(8936002)(4744005)(76176011)(478600001)(54906003)(110136005)(14454004)(6486002)(2201001)(6436002)(3846002)(99286004)(6116002)(446003)(11346002)(6512007)(2616005)(7416002)(386003)(486006)(102836004)(44832011)(6506007)(316002)(25786009)(53936002)(50226002)(4326008);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB2944;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
 received-spf: None (protection.outlook.com: toradex.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: GW5L58SC0Pk+UEbS/G14HjKLB2T1hfYgO3jVmz89Si7x5Qo2c3TmiHbkcSJybnpTchlGbi0LKSMqIlmPa5eGuxEtAVCfMCmJaTfPGoCRLZk6hHE1O0PtV9dewDWMfCrMD4AZyT2PPETBFlnKw1JIlj+KranOftAkifASU0nM2VY+nVPUrv8VJpNgua4o9sZ0He5895+NVLjCuvarGoFvuVaCCaf9lwIISrhAuVrl/k7dAGWuNcg3C4bbSGVVzU50Hho721LNMtKsopoYaUb0I2Iutbv1qpX/opBx2H8qm3YrZfGRzMPOy9mf596z1np5TYCmzBkD2J/FPdzsvydFhRlewsL3BoKTNXxy2Rfm37DZVoATdKgNsQE0AT8fVngq0C102GG9MWxP6qxo/Mdj2Ye2vp1Tu1Arwo7ZK97iqsc=
+x-microsoft-antispam-message-info: UdWY6FxhYQwHh0Ol4NTTCPFrlOdfokbrNMZWAVxuH8g57YNGpYlH4XYAPWwSrU/MneF5uf9l9KzlHh7QDafBAQLzpV+4Y3U8XOQ6kkDT0Sa12SiiKu/V8BznJ3AGOoS414n5VZ8i5EQltv7r+Wcninnk9vHq7kUgn7I1ZO/qkNM8MqxdcpVHnZD9RWYC/jILkFHAYLx1La0NOt/nFN4JxEn6dOxXMjjjYi7jgttZIwCIdUmFMkoq2wtPuMxxQf+OLrEIoucs0XllpgzM18aSbWwm2kjR24Ftpec0KrT0mVlPp11ZJqzMs2jJKPKRUd5kERBbJQMNP0ZlMskYuQI/4jUD2AtZNpmU6v3r8QFeaYNHZhq7aFx4Lpscda8EdmqU1Sb5wlLIWvYSA5PtSlH3+vvONRmflzDmg+2OprlnpNk=
 Content-Type: text/plain; charset="iso-8859-2"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
 X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 0ade3b61-8280-4817-1531-08d715b3ecde
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2019 12:38:01.5480
+X-MS-Exchange-CrossTenant-Network-Message-Id: 394ca94e-46c1-431a-7b5c-08d715b3edf3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2019 12:38:03.3689
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
 X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
 X-MS-Exchange-CrossTenant-userprincipalname: philippe.schenker@toradex.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3615
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB2944
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+From: Stefan Agner <stefan.agner@toradex.com>
 
-Prevent regulators from being switched off.
+Force HS200 by masking bit 63 of the SDHCI capability register.
+The i.MX ESDHC driver uses SDHCI_QUIRK2_CAPS_BIT63_FOR_HS400. With
+that the stack checks bit 63 to descide whether HS400 is available.
+Using sdhci-caps-mask allows to mask bit 63. The stack then selects
+HS200 as operating mode.
 
-Signed-off-by: Marcel Ziswiler <marcel.ziswiler@toradex.com>
+This prevents rare communication errors with minimal effect on
+performance:
+	sdhci-esdhc-imx 30b60000.usdhc: warning! HS400 strobe DLL
+		status REF not lock!
+
+Signed-off-by: Stefan Agner <stefan.agner@toradex.com>
 Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
 ---
 
 Changes in v2: None
 
- arch/arm/boot/dts/imx7-colibri.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+ arch/arm/boot/dts/imx7-colibri.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
 
 diff --git a/arch/arm/boot/dts/imx7-colibri.dtsi b/arch/arm/boot/dts/imx7-c=
 olibri.dtsi
-index 895fbde4d433..f1c1971f2160 100644
+index f1c1971f2160..f7c9ce5bed47 100644
 --- a/arch/arm/boot/dts/imx7-colibri.dtsi
 +++ b/arch/arm/boot/dts/imx7-colibri.dtsi
-@@ -54,6 +54,7 @@
- 		regulator-name =3D "+V3.3";
- 		regulator-min-microvolt =3D <3300000>;
- 		regulator-max-microvolt =3D <3300000>;
-+		regulator-always-on;
- 	};
+@@ -325,6 +325,7 @@
+ 	vmmc-supply =3D <&reg_module_3v3>;
+ 	vqmmc-supply =3D <&reg_DCDC3>;
+ 	non-removable;
++	sdhci-caps-mask =3D <0x80000000 0x0>;
+ };
 =20
- 	reg_module_3v3_avdd: regulator-module-3v3-avdd {
-@@ -61,6 +62,7 @@
- 		regulator-name =3D "+V3.3_AVDD_AUDIO";
- 		regulator-min-microvolt =3D <3300000>;
- 		regulator-max-microvolt =3D <3300000>;
-+		regulator-always-on;
- 	};
-=20
- 	sound {
+ &iomuxc {
 --=20
 2.22.0
 
