@@ -2,290 +2,251 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 453DB7C427
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 15:56:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BD847C45E
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 16:08:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727854AbfGaN4j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 09:56:39 -0400
-Received: from mail-eopbgr730077.outbound.protection.outlook.com ([40.107.73.77]:31520
-        "EHLO NAM05-DM3-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1727440AbfGaN4j (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 09:56:39 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=BxiVYsrT++gwZuqIZU4nmeB9bcVCQPh4cKN558aXUCEv9fz3LGGBSb7AzLuCti2cvU6wBdKL0bEaI8umD021yXTLKeUbe2LWYGKfFWlF0fpuQKTQSSx4Zsazt9Z6ugTlk8NQFW0mQn0Y6CTx1KS/A5AYH7A/WnyTPG0Zotn3ag52A7Gr+WN48XQf9pPpddCzx4mg+eSNJwATXgmCuDJ6I0mhj8aJH4kd9HU7+PPr8EemLaurOa5ASsnjzE4kMzRMfqaHQiDClnsOJkbdzYKQ65WLIJ3kGSeXeh9dsy0xa5wbHSb7SelNHYa3Lqm3DhF/YmFbZjJnGjvIzIhTE9BJGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VD67OJCYb1CiXl4K7jO6AkmPodV4gkuRWNcgIiNZCio=;
- b=mqZpHyKouPFMVkRx4QyXP29fCqcNSHvYxWc07X1WQfLDBI/bx7Ozbyy0SY8N0F3U2RAdMfhLl6pIuM3iQADmZ0bnt7jyk8uN9MUqXVM04i/J5wVnzhd+PL3GPuAD32zjpKksjrNw0IvUP5wv6tBibfxNdCNvf9ZqEnO/2hPX94XhaYpaY5DMOKt/nTTmQvEbceOOTNHqCX7ZtOkeDNM21/HioAbrdssotFX5n68nn4y9BEJb01FOXdJJTI6RPQu9sHw4VuArbG5zh2F+jp5epiEVVupNsEXCu6tOCKofV2XwKha/1F0d0lSiJHqOk8+Gvlpa7Mx1llZNycDpeg9uKw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=xilinx.com;dmarc=pass action=none
- header.from=xilinx.com;dkim=pass header.d=xilinx.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=xilinx.onmicrosoft.com; s=selector2-xilinx-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=VD67OJCYb1CiXl4K7jO6AkmPodV4gkuRWNcgIiNZCio=;
- b=jJLdKtzIqvP3WgEDuIBGkFYwxztOaMB2WuRA47/Dh9+dYMR0drSkGFTiqS3NDGSu0aF9MzJzqMdOgoynKZm/gGAI3H+sa13MuGEQ496fYrgOxVu+0qjBIFBoNvcQCaS9b7Bb1JhZJjqdKlgGyJOA1SlnYQGppAUR2P6EZwlNNPA=
-Received: from CH2PR02MB6359.namprd02.prod.outlook.com (52.132.231.93) by
- CH2PR02MB6037.namprd02.prod.outlook.com (10.255.156.11) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2115.15; Wed, 31 Jul 2019 13:56:33 +0000
-Received: from CH2PR02MB6359.namprd02.prod.outlook.com
- ([fe80::5c58:16c0:d226:4c96]) by CH2PR02MB6359.namprd02.prod.outlook.com
- ([fe80::5c58:16c0:d226:4c96%2]) with mapi id 15.20.2136.010; Wed, 31 Jul 2019
- 13:56:33 +0000
-From:   Dragan Cvetic <draganc@xilinx.com>
-To:     Greg KH <gregkh@linuxfoundation.org>
-CC:     "arnd@arndb.de" <arnd@arndb.de>, Michal Simek <michals@xilinx.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Derek Kiernan <dkiernan@xilinx.com>
-Subject: RE: [PATCH V7 00/11] misc: xilinx sd-fec drive
-Thread-Topic: [PATCH V7 00/11] misc: xilinx sd-fec drive
-Thread-Index: AQHVIHtLLdGbOE767U2XbDHU36aibaamNrSAgAA5XPCAAM7egIAAuPAAgD0DyYCAAAih8A==
-Date:   Wed, 31 Jul 2019 13:56:33 +0000
-Message-ID: <CH2PR02MB6359408E8F94AFB745DC273ACBDF0@CH2PR02MB6359.namprd02.prod.outlook.com>
-References: <1560274185-264438-1-git-send-email-dragan.cvetic@xilinx.com>
- <20190621141553.GA16650@kroah.com>
- <CH2PR02MB635999D7374378CEA096FE72CBE70@CH2PR02MB6359.namprd02.prod.outlook.com>
- <20190622060135.GB26200@kroah.com>
- <CH2PR02MB6359A32E03E920AE5EEB7324CBE60@CH2PR02MB6359.namprd02.prod.outlook.com>
- <20190731124853.GA4905@kroah.com>
-In-Reply-To: <20190731124853.GA4905@kroah.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-Auto-Response-Suppress: DR, RN, NRN, OOF, AutoReply
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=draganc@xilinx.com; 
-x-originating-ip: [149.199.80.133]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4a9fc310-f55b-4dce-fd0f-08d715bee5a7
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:CH2PR02MB6037;
-x-ms-traffictypediagnostic: CH2PR02MB6037:
-x-ms-exchange-purlcount: 2
-x-microsoft-antispam-prvs: <CH2PR02MB603793FF989CABE88DC1C2BDCBDF0@CH2PR02MB6037.namprd02.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:8882;
-x-forefront-prvs: 011579F31F
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(366004)(199004)(189003)(13464003)(8936002)(446003)(229853002)(86362001)(55016002)(52536014)(6506007)(25786009)(14454004)(53936002)(11346002)(256004)(186003)(26005)(53546011)(6436002)(486006)(4326008)(476003)(2906002)(14444005)(5660300002)(66066001)(81166006)(8676002)(81156014)(7736002)(7696005)(66946007)(66476007)(9686003)(54906003)(71200400001)(966005)(3846002)(107886003)(99286004)(498600001)(305945005)(6916009)(64756008)(6246003)(71190400001)(68736007)(74316002)(6306002)(76116006)(66556008)(66446008)(6116002)(76176011)(33656002)(102836004);DIR:OUT;SFP:1101;SCL:1;SRVR:CH2PR02MB6037;H:CH2PR02MB6359.namprd02.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: xilinx.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: N1M1yXFvG/seXH0zU/E4TXnZsx9RYKun19gPHTn5YwiI/B375847EgxZ3OlH/wxwW95GQoQWvWu652CzLhtJYX9jTPZ0q2wQyHW+dYUISsi/maNttH8w1fcElh0yTFCICNw39Av0Hk2iUZ22Etgcc0xXgV4ivFQ73cggrBapMnZcyX+zN9JQFuA+/AugEKI96O5TsSglMFlIwRaPB3kKYHCnjB+QKimdicQBYibK1vYYkSKusqMFw/tu00q3G14wyq+l47ZSvzg8tP7LhquTwQNvsMmCrQELy1BnTRJnCS5Xuldd+mN67K7FUh2h2I1ni95w6DB0yACQrkP2ry32OLkZDhg638j0qsqwb0ZvAXHFvBwVp0KbPE+MCyn0PH6LiVqcsZ1d7fZPsabkZmahmPcL75Gwf+JjPypUA+ioSVk=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: xilinx.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a9fc310-f55b-4dce-fd0f-08d715bee5a7
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2019 13:56:33.5127
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 657af505-d5df-48d0-8300-c31994686c5c
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: draganc@xilinx.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: CH2PR02MB6037
+        id S2387488AbfGaOHs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 10:07:48 -0400
+Received: from viti.kaiser.cx ([85.214.81.225]:55920 "EHLO viti.kaiser.cx"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727614AbfGaOHs (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Jul 2019 10:07:48 -0400
+Received: from pd956d63d.dip0.t-ipconnect.de ([217.86.214.61] helo=martin-debian-1.paytec.ch)
+        by viti.kaiser.cx with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.89)
+        (envelope-from <martin@kaiser.cx>)
+        id 1hspGY-0004ht-PX; Wed, 31 Jul 2019 16:07:42 +0200
+From:   Martin Kaiser <martin@kaiser.cx>
+To:     Jonathan Cameron <jic23@kernel.org>,
+        Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Martin Kaiser <martin@kaiser.cx>
+Subject: [PATCH v4 1/2] iio: potentiometer: add a driver for Maxim 5432-5435
+Date:   Wed, 31 Jul 2019 16:07:05 +0200
+Message-Id: <20190731140706.2765-1-martin@kaiser.cx>
+X-Mailer: git-send-email 2.11.0
+In-Reply-To: <20190721175915.27192-1-martin@kaiser.cx>
+References: <20190721175915.27192-1-martin@kaiser.cx>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add a driver for the Maxim Integrated MAX5432-MAX5435 family of digital
+potentiometers.
 
+These potentiometers are connected via I2C and have 32 wiper
+positions.
 
-> -----Original Message-----
-> From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> Sent: Wednesday 31 July 2019 13:49
-> To: Dragan Cvetic <draganc@xilinx.com>
-> Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kernel@li=
-sts.infradead.org; robh+dt@kernel.org;
-> mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.kerne=
-l.org; Derek Kiernan <dkiernan@xilinx.com>
-> Subject: Re: [PATCH V7 00/11] misc: xilinx sd-fec drive
->=20
-> On Sat, Jun 22, 2019 at 05:54:04PM +0000, Dragan Cvetic wrote:
-> >
-> >
-> > > -----Original Message-----
-> > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> > > Sent: Saturday 22 June 2019 07:02
-> > > To: Dragan Cvetic <draganc@xilinx.com>
-> > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-kerne=
-l@lists.infradead.org; robh+dt@kernel.org;
-> > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vger.k=
-ernel.org; Derek Kiernan <dkiernan@xilinx.com>
-> > > Subject: Re: [PATCH V7 00/11] misc: xilinx sd-fec drive
-> > >
-> > > On Fri, Jun 21, 2019 at 05:49:45PM +0000, Dragan Cvetic wrote:
-> > > >
-> > > >
-> > > > > -----Original Message-----
-> > > > > From: Greg KH [mailto:gregkh@linuxfoundation.org]
-> > > > > Sent: Friday 21 June 2019 15:16
-> > > > > To: Dragan Cvetic <draganc@xilinx.com>
-> > > > > Cc: arnd@arndb.de; Michal Simek <michals@xilinx.com>; linux-arm-k=
-ernel@lists.infradead.org; robh+dt@kernel.org;
-> > > > > mark.rutland@arm.com; devicetree@vger.kernel.org; linux-kernel@vg=
-er.kernel.org; Derek Kiernan <dkiernan@xilinx.com>
-> > > > > Subject: Re: [PATCH V7 00/11] misc: xilinx sd-fec drive
-> > > > >
-> > > > > On Tue, Jun 11, 2019 at 06:29:34PM +0100, Dragan Cvetic wrote:
-> > > > > > This patchset is adding the full Soft Decision Forward Error
-> > > > > > Correction (SD-FEC) driver implementation, driver DT binding an=
-d
-> > > > > > driver documentation.
-> > > > > >
-> > > > > > Forward Error Correction (FEC) codes such as Low Density Parity
-> > > > > > Check (LDPC) and turbo codes provide a means to control errors =
-in
-> > > > > > data transmissions over unreliable or noisy communication
-> > > > > > channels. The SD-FEC Integrated Block is an optimized block for
-> > > > > > soft-decision decoding of these codes. Fixed turbo codes are
-> > > > > > supported directly, whereas custom and standardized LDPC codes
-> > > > > > are supported through the ability to specify the parity check
-> > > > > > matrix through an AXI4-Lite bus or using the optional programma=
-ble
-> > > > > > (PL)-based support logic. For the further information see
-> > > > > > https://www.xilinx.com/support/documentation/ip_documentation/
-> > > > > > sd_fec/v1_1/pg256-sdfec-integrated-block.pdf
-> > > > > >
-> > > > > > This driver is a platform device driver which supports SDFEC16
-> > > > > > (16nm) IP. SD-FEC driver supports LDPC decoding and encoding an=
-d
-> > > > > > Turbo code decoding. LDPC codes can be specified on
-> > > > > > a codeword-by-codeword basis, also a custom LDPC code can be us=
-ed.
-> > > > > >
-> > > > > > The SD-FEC driver exposes a char device interface and supports
-> > > > > > file operations: open(), close(), poll() and ioctl(). The drive=
-r
-> > > > > > allows only one usage of the device, open() limits the number o=
-f
-> > > > > > driver instances. The driver also utilize Common Clock Framewor=
-k
-> > > > > > (CCF).
-> > > > > >
-> > > > > > The control and monitoring is supported over ioctl system call.
-> > > > > > The features supported by ioctl():
-> > > > > > - enable or disable data pipes to/from device
-> > > > > > - configure the FEC algorithm parameters
-> > > > > > - set the order of data
-> > > > > > - provide a control of a SDFEC bypass option
-> > > > > > - activates/deactivates SD-FEC
-> > > > > > - collect and provide statistical data
-> > > > > > - enable/disable interrupt mode
-> > > > >
-> > > > > Is there any userspace tool that talks to this device using these=
- custom
-> > > > > ioctls yet?
-> > > > >
-> > > > Tools no, but could be the customer who is using the driver.
-> > >
-> > > I don't understand this.  Who has written code to talk to these
-> > > special ioctls from userspace?  Is there a pointer to that code
-> > > anywhere?
-> > >
-> >
-> > The code which use this driver are written by the driver maintainers
-> > they are examples APP and test code which are not public.
->=20
-> So, no open code is talking to this one specific driver?  And you have
-> run this past your lawyers?  Please go talk to them about this and see
-> what they say (hint, creating a custom ioctl that only you use is a
-> "fun" legal area...)
+Supported functionality
+- set the volatile wiper position
+- read the potentiometer scale
 
+Datasheet:
+https://datasheets.maximintegrated.com/en/ds/MAX5432-MAX5435.pdf
 
-Greg,
-this driver and all example code APP will be public and open source=20
-fully. In that sense this code is same as any other driver.=20
+Signed-off-by: Martin Kaiser <martin@kaiser.cx>
+---
+changes in v4
+ - fix the dt bindings
+   - replace ic20 with i2c
+   - document the reg property
+   - add additionalProperties and required
 
+changes in v3
+ - split dt bindings and driver code into separate patches
+ - use yaml format for dt bindings
+ - fix formatting of parameter lists
 
->=20
-> > > > > Doing a one-off ioctl api is always a risky thing, you are pretty=
- much
-> > > > > just creating brand new system calls for one piece of hardware.
-> > > > >
-> > > >
-> > > > Why is that wrong and what is the risk?
-> > >
-> > > You now have custom syscalls for one specfic piece of hardware that y=
-ou
-> > > now have to maintain working properly for the next 40+ years.  You ha=
-ve
-> > > to make sure those calls are correct and that this is the correct api=
- to
-> > > talk to this hardware.
-> >
-> > This is very specific HW, it's high speed Forward Error Correction HW.
->=20
-> I have no idea what that actually means.
->=20
-> What is "Forward Error Correction"?  What does it do?  Is this a network
-> device?  Video device?  Random black box that sends radio waves?
->=20
-> Is there no other in-kernel driver that does much the same type of
-> thing?  What "class" of driver would this be?
+changes in v2
+ - use MAX5432_ prefix for all defines
+ - fix indentation
+ - convert void * to unsigned long, not to u32
+   (warning from kbuild test robot)
 
-This is the RF data communication device, type "misc" driver.
+ drivers/iio/potentiometer/Kconfig   |  11 +++
+ drivers/iio/potentiometer/Makefile  |   1 +
+ drivers/iio/potentiometer/max5432.c | 135 ++++++++++++++++++++++++++++++++++++
+ 3 files changed, 147 insertions(+)
+ create mode 100644 drivers/iio/potentiometer/max5432.c
 
->=20
-> > > > What would you propose?
-> > > > Definitely, I have to read about this.
-> > >
-> > > What is this hardware and what is it used for?  Who will be talking t=
-o
-> >
-> > The Soft-Decision Forward Error Correction (SD-FEC) integrated block
-> > supports Low Density Parity Check (LDPC) decoding and encoding and
-> > Turbo code decoding.
->=20
-> I still don't understand what this means.
->=20
-> > SD-FEC use case is in high data rate applications such as 4G, 5G and
-> > DOCSIS3.1 Cable Access.  A high performance SD-FEC (i.e. >1Gbps), is a
-> > block used to enable these systems to function under non-ideal
-> > environments.
->=20
-> Nor do I understand what this is either.  Do you have a pointer to this
-> hardware somewhere online that might describe it better?  Given that I
-> have no clue, odds are others do not know what it is either.
+diff --git a/drivers/iio/potentiometer/Kconfig b/drivers/iio/potentiometer/Kconfig
+index ebc7c72a5e36..4cac0173db8b 100644
+--- a/drivers/iio/potentiometer/Kconfig
++++ b/drivers/iio/potentiometer/Kconfig
+@@ -26,6 +26,17 @@ config DS1803
+ 	  To compile this driver as a module, choose M here: the
+ 	  module will be called ds1803.
+ 
++config MAX5432
++	tristate "Maxim MAX5432-MAX5435 Digital Potentiometer driver"
++	depends on I2C
++	help
++	  Say yes here to build support for the Maxim
++	  MAX5432, MAX5433, MAX5434 and MAX5435 digital
++	  potentiometer chips.
++
++	  To compile this driver as a module, choose M here: the
++	  module will be called max5432.
++
+ config MAX5481
+ 	tristate "Maxim MAX5481-MAX5484 Digital Potentiometer driver"
+ 	depends on SPI
+diff --git a/drivers/iio/potentiometer/Makefile b/drivers/iio/potentiometer/Makefile
+index 8ff55138cf12..091adf3cdd0b 100644
+--- a/drivers/iio/potentiometer/Makefile
++++ b/drivers/iio/potentiometer/Makefile
+@@ -6,6 +6,7 @@
+ # When adding new entries keep the list in alphabetical order
+ obj-$(CONFIG_AD5272) += ad5272.o
+ obj-$(CONFIG_DS1803) += ds1803.o
++obj-$(CONFIG_MAX5432) += max5432.o
+ obj-$(CONFIG_MAX5481) += max5481.o
+ obj-$(CONFIG_MAX5487) += max5487.o
+ obj-$(CONFIG_MCP4018) += mcp4018.o
+diff --git a/drivers/iio/potentiometer/max5432.c b/drivers/iio/potentiometer/max5432.c
+new file mode 100644
+index 000000000000..641b1821fdf6
+--- /dev/null
++++ b/drivers/iio/potentiometer/max5432.c
+@@ -0,0 +1,135 @@
++// SPDX-License-Identifier: GPL-2.0-or-later
++/*
++ * Maxim Integrated MAX5432-MAX5435 digital potentiometer driver
++ * Copyright (C) 2019 Martin Kaiser <martin@kaiser.cx>
++ *
++ * Datasheet:
++ * https://datasheets.maximintegrated.com/en/ds/MAX5432-MAX5435.pdf
++ */
++
++#include <linux/i2c.h>
++#include <linux/iio/iio.h>
++#include <linux/limits.h>
++#include <linux/module.h>
++#include <linux/of.h>
++#include <linux/of_device.h>
++
++/* All chip variants have 32 wiper positions. */
++#define MAX5432_MAX_POS 31
++
++#define MAX5432_OHM_50K   (50  * 1000)
++#define MAX5432_OHM_100K  (100 * 1000)
++
++/* Update the volatile (currently active) setting. */
++#define MAX5432_CMD_VREG  0x11
++
++struct max5432_data {
++	struct i2c_client *client;
++	unsigned long ohm;
++};
++
++static const struct iio_chan_spec max5432_channels[] = {
++	{
++		.type = IIO_RESISTANCE,
++		.indexed = 1,
++		.output = 1,
++		.channel = 0,
++		.address = MAX5432_CMD_VREG,
++		.info_mask_separate = BIT(IIO_CHAN_INFO_RAW),
++		.info_mask_shared_by_type = BIT(IIO_CHAN_INFO_SCALE),
++	}
++};
++
++static int max5432_read_raw(struct iio_dev *indio_dev,
++			struct iio_chan_spec const *chan,
++			int *val, int *val2, long mask)
++{
++	struct max5432_data *data = iio_priv(indio_dev);
++
++	if (mask != IIO_CHAN_INFO_SCALE)
++		return -EINVAL;
++
++	if (unlikely(data->ohm > INT_MAX))
++		return -ERANGE;
++
++	*val = data->ohm;
++	*val2 = MAX5432_MAX_POS;
++
++	return IIO_VAL_FRACTIONAL;
++}
++
++static int max5432_write_raw(struct iio_dev *indio_dev,
++			struct iio_chan_spec const *chan,
++			int val, int val2, long mask)
++{
++	struct max5432_data *data = iio_priv(indio_dev);
++	u8 data_byte;
++
++	if (mask != IIO_CHAN_INFO_RAW)
++		return -EINVAL;
++
++	if (val < 0 || val > MAX5432_MAX_POS)
++		return -EINVAL;
++
++	if (val2 != 0)
++		return -EINVAL;
++
++	/* Wiper position is in bits D7-D3. (D2-D0 are don't care bits.) */
++	data_byte = val << 3;
++	return i2c_smbus_write_byte_data(data->client, chan->address,
++			data_byte);
++}
++
++static const struct iio_info max5432_info = {
++	.read_raw = max5432_read_raw,
++	.write_raw = max5432_write_raw,
++};
++
++static int max5432_probe(struct i2c_client *client,
++		const struct i2c_device_id *id)
++{
++	struct device *dev = &client->dev;
++	struct iio_dev *indio_dev;
++	struct max5432_data *data;
++
++	indio_dev = devm_iio_device_alloc(dev, sizeof(struct max5432_data));
++	if (!indio_dev)
++		return -ENOMEM;
++
++	i2c_set_clientdata(client, indio_dev);
++
++	data = iio_priv(indio_dev);
++	data->client = client;
++	data->ohm = (unsigned long)of_device_get_match_data(dev);
++
++	indio_dev->dev.parent = dev;
++	indio_dev->info = &max5432_info;
++	indio_dev->channels = max5432_channels;
++	indio_dev->num_channels = ARRAY_SIZE(max5432_channels);
++	indio_dev->name = client->name;
++
++	return devm_iio_device_register(dev, indio_dev);
++}
++
++static const struct of_device_id max5432_dt_ids[] = {
++	{ .compatible = "maxim,max5432", .data = (void *)MAX5432_OHM_50K  },
++	{ .compatible = "maxim,max5433", .data = (void *)MAX5432_OHM_100K },
++	{ .compatible = "maxim,max5434", .data = (void *)MAX5432_OHM_50K  },
++	{ .compatible = "maxim,max5435", .data = (void *)MAX5432_OHM_100K },
++	{ /* sentinel */ }
++};
++MODULE_DEVICE_TABLE(of, max5432_dt_ids);
++
++static struct i2c_driver max5432_driver = {
++	.driver = {
++		.name = "max5432",
++		.of_match_table = of_match_ptr(max5432_dt_ids),
++	},
++	.probe = max5432_probe,
++};
++
++module_i2c_driver(max5432_driver);
++
++MODULE_AUTHOR("Martin Kaiser <martin@kaiser.cx>");
++MODULE_DESCRIPTION("max5432-max5435 digital potentiometers");
++MODULE_LICENSE("GPL v2");
+-- 
+2.11.0
 
-https://www.xilinx.com/support/documentation/ip_documentation/sd_fec/v1_1/p=
-g256-sdfec-integrated-block.pdf
-
->=20
-> > > it from userspace?  What userspace workload uses it?  What tools need=
- to
-> >
-> > There will be APP which configures the HW for the use cases listed abov=
-e.
->=20
-> What exactly are these use cases?
->=20
-> Where is the application?  Who runs it?  Is it already in a distro
-> somewhere?  Who is going to distribute it?  Who is going to support it?
-> Is it only for sale?  What is the license of it?
-
-According to marketing people here there are about 72 individual programs=20
-spanning probably ~40 different customers. These are possible users
-and APP will be created and run by them.
-Driver will be supported by us, APP by customers with our technical support=
-.
-Is it for sale? Xilinx gives away all drivers and examples for free, it's u=
-p to the
-Customer what they do with it and they meet open source licence legal requi=
-rements.
-
-Greg,
-I'll be out of the office from Friday for a couple of weeks, and I'll try m=
-y best to respond on your replies after that.
-
->=20
-> thanks,
->=20
-> greg k-h
