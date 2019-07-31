@@ -2,135 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 202937C691
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:30:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0C0CA7C6BF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:35:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726701AbfGaPaP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 11:30:15 -0400
-Received: from mail-eopbgr20045.outbound.protection.outlook.com ([40.107.2.45]:38791
-        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725914AbfGaPaP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 11:30:15 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=SagZVr2cb3aeal6+lUMrlaWf5M+QnYxu7pau7hSunmUOUgkmdSq7hLgyIbZuzF/7kIkvJtSk2nuPuvcRWMnhN1VoHz8LD3n014E36DnkC1P2qaW9Oe23dr1j0+SBzesRL/8Gw2Yv1PWiyIJGOi93KrjlYTtkN4wwwrQ3ORPt2XFrzQ1ftx2pGa6+wMcMdGhGM93EvMf8TmFaBrX09B1FnEOtja7jazFHVGEeqWBr8aUY3A7blmfkVEATLuvODC8wCPpOGsybTTEadbFuMjwAQuRCCi06UsNR+PWzfK2cU/h2voo2LnXP/YZKMyDw2bOGgQcbaUlhPljNuhTrx+mrvQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qq2SOy7q1kCuAj3H4ExAN82mh3spfvhdmNAgJMhtIYA=;
- b=nUrDkUpPZLZQ/cSse5lKptIYzGHT7PAUIyYdBaPXYlYYKndBk6tO6DGmxlLBTpUqy1tgqfG5Cedvpf14VRnvR2+HJ3GjtFMsquXarNMYkaUm2mze9EOJZDPEi4KndAfcnAdWCyohaRtXWp5Lo4f6OSDegJzbnO9zl9UwfXQpzgDTxSLpNYU9FUpM799luAL84mC10Zn+3FHgtVHPtWFy5g9kxaX1ODFqd+OiknnGzPokB2UCO9lo1+yIJgiNfFAD4fBLTfPlE7hpRFPrBT7rwJVppZZYqbYCWbny3dpZe4infzSSNJKW79cxyyETmdqOnEzAKdW0Bpqd7dHJ3mhwMw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
- header.d=nxp.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Qq2SOy7q1kCuAj3H4ExAN82mh3spfvhdmNAgJMhtIYA=;
- b=aFgn8sD0FQELUeBKVdaOuLth38rMrokGKHMznGaiZW/3pEKTa2rTWZP48YtyXmrFFHukMwaxrdQiCqKaJFLQukJNeL7knw/BjTMxFpYx7i3ix7AC2c6ahglyGjsQQlXzDza8FxhoFK2IuPcivy+nEPptKbcc9PNg+fIe9Ny5Chg=
-Received: from VI1PR04MB4880.eurprd04.prod.outlook.com (20.177.49.153) by
- VI1PR04MB5853.eurprd04.prod.outlook.com (20.178.204.207) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2115.10; Wed, 31 Jul 2019 15:30:11 +0000
-Received: from VI1PR04MB4880.eurprd04.prod.outlook.com
- ([fe80::e401:6546:3729:47c0]) by VI1PR04MB4880.eurprd04.prod.outlook.com
- ([fe80::e401:6546:3729:47c0%6]) with mapi id 15.20.2115.005; Wed, 31 Jul 2019
- 15:30:11 +0000
-From:   Claudiu Manoil <claudiu.manoil@nxp.com>
-To:     David Miller <davem@davemloft.net>
-CC:     "andrew@lunn.ch" <andrew@lunn.ch>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        Alexandru Marginean <alexandru.marginean@nxp.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: RE: [PATCH net-next v4 0/4] enetc: Add mdio bus driver for the PCIe
- MDIO endpoint
-Thread-Topic: [PATCH net-next v4 0/4] enetc: Add mdio bus driver for the PCIe
- MDIO endpoint
-Thread-Index: AQHVRruXkrgGFGQQ+EaBpGk24PJNNKbjXq0AgAACjQCAAXagAA==
-Date:   Wed, 31 Jul 2019 15:30:10 +0000
-Message-ID: <VI1PR04MB48808FF2BC4DBA4A6C32DB2D96DF0@VI1PR04MB4880.eurprd04.prod.outlook.com>
-References: <1564479919-18835-1-git-send-email-claudiu.manoil@nxp.com>
-        <20190730.094436.855806617449032791.davem@davemloft.net>
- <20190730.095344.401137621326119500.davem@davemloft.net>
-In-Reply-To: <20190730.095344.401137621326119500.davem@davemloft.net>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=claudiu.manoil@nxp.com; 
-x-originating-ip: [212.146.100.6]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 4a7ba191-28ef-4976-c87f-08d715cbfa05
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB5853;
-x-ms-traffictypediagnostic: VI1PR04MB5853:
-x-microsoft-antispam-prvs: <VI1PR04MB58534B177C9ECB230707E43D96DF0@VI1PR04MB5853.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6430;
-x-forefront-prvs: 011579F31F
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(39860400002)(346002)(136003)(396003)(366004)(199004)(189003)(13464003)(99286004)(81166006)(81156014)(7736002)(8936002)(8676002)(7696005)(55016002)(71190400001)(76176011)(52536014)(76116006)(9686003)(71200400001)(25786009)(66946007)(66556008)(5660300002)(4326008)(86362001)(54906003)(64756008)(316002)(53936002)(33656002)(66476007)(68736007)(66446008)(6246003)(74316002)(256004)(66066001)(6506007)(478600001)(102836004)(6116002)(6916009)(3846002)(26005)(186003)(2906002)(229853002)(476003)(11346002)(486006)(305945005)(446003)(44832011)(6436002)(14454004);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5853;H:VI1PR04MB4880.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: Bi89f8jvDFh3PdfcsFOFNYhc8Hgdp8Eqp08OAygCiTsnuuuJrVIxG3eEzaYIYXbWj1FtApth48tyyrGtQRXy6isxf9i1LCg9HHJiaZDUZ4qsPEYBLsEQWx916HD+VSznj/DI+wKJv1K7iBLPvEvoKXPXKwQns61686UNUrPZlqQPEFdFSECvQeiKTJ25XptgqC/ifDiT5A3CbQWojOYo8TekuYmdf3tSIzYYx8K4R6rICjCVL6SGVaLLxKhoSWlwAFPG4nWwsPdrWtCImON3eaRDidspaSf4tTO0aLb0ePpDjJU72bYM0WfBZPFeCdhrvUIB+CgUUMDBIVFd5pXQe5gqM6EvRPIwgDw82SCkWVUT3BbIUs7586QgW/YTPA7KeD4fm4idwTgXdmkUjXeniX615DA4fzSASoIfwDHtx5g=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
-MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 4a7ba191-28ef-4976-c87f-08d715cbfa05
-X-MS-Exchange-CrossTenant-originalarrivaltime: 31 Jul 2019 15:30:11.2472
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: claudiu.manoil@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5853
+        id S1729162AbfGaPff (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 11:35:35 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:40283 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727089AbfGaPfe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 11:35:34 -0400
+Received: by mail-wm1-f65.google.com with SMTP id v19so60269168wmj.5
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 08:35:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=7WLjxnI8g1thWsUDdq2Hfl/ujp9OHSJIwkbSbhOm62c=;
+        b=0BPP66usc+st7NTNLiYHcT9I5K1u3a3FEnCC+97RYYsl5JXVb4fBlUXZzVS5LwBf7n
+         JTbKUH4p+DVBgg45Nl6ztxJKXrgO+YkenDp/0q8Eh3Ydn+k4m+f/ktpR+xKmoRLE+g6+
+         4X6jN7AGogvDcQWFlsSg8svTa1InuOjfbGbKMGHVxQbsqoGXyDdABcwqcJIHeSKTXv69
+         /gefxIJ4R8j1z5lsN+g3Z+OwfZVRSfu+Vqw4JiTWNhmI7MuIho7o3To837fdMnqrN7jP
+         Sd5lBLUmT8egE95rs1uVvzchYHQ3G/g+300vxT6y+sc00+5YRAV/HDgkPf/iOGFu/oY9
+         aMxQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=7WLjxnI8g1thWsUDdq2Hfl/ujp9OHSJIwkbSbhOm62c=;
+        b=iDEVJsfHZ9EtsGtkqLLOW+55zLKCKTH136WS+u6I0sLH0qLEV0ff/HgQ/OPRHO2vzs
+         1g4lXWLGF1zZkSIHh6n2KAsRS1+vTCRp2KtS7a6wQoTjzHgU04qvB77/89OuVdUKRhDR
+         QXEDkUJ4H5WWi1B1JnpOWlEKK5nr6u92FTurw0aPnf22RUcBSHTzomu6M0/jr04Pd8gJ
+         W+WATdyfcCPXhnTZ/S8oZAFhgYz8MS0RlcXn45jDJwYxpv1NuxQT6mxjUEKXtkWxBS6D
+         xFk5Fy+lOjlCBJMrOV/ls/xBR0M4fEnWt2yh+scV9gJteNsAgoDUfPaLKZ8o/pdFOtWo
+         O8mQ==
+X-Gm-Message-State: APjAAAXQHHwbM5Q6aLLAYknyykNXpJOIyOkhDPr6mQZz39raqZnQfGlt
+        eThqZbSUHQA9rZIE3puqaUps8w==
+X-Google-Smtp-Source: APXvYqwwJjY3FtKTWbfPIEqttUCqL8C62yZwUYcZbMGgyaXoMKyDjYkpr7m8Tzh4baLNN8dmQs3MwA==
+X-Received: by 2002:a05:600c:c6:: with SMTP id u6mr114781417wmm.153.1564587331749;
+        Wed, 31 Jul 2019 08:35:31 -0700 (PDT)
+Received: from glaroque-ThinkPad-T480.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id i13sm62834396wrr.73.2019.07.31.08.35.29
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Wed, 31 Jul 2019 08:35:30 -0700 (PDT)
+From:   Guillaume La Roque <glaroque@baylibre.com>
+To:     daniel.lezcano@linaro.org, khilman@baylibre.com
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH v2 0/6] Add support of New Amlogic temperature sensor for G12 SoCs
+Date:   Wed, 31 Jul 2019 17:35:23 +0200
+Message-Id: <20190731153529.30159-1-glaroque@baylibre.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
->-----Original Message-----
->From: David Miller <davem@davemloft.net>
->Sent: Tuesday, July 30, 2019 7:54 PM
->To: Claudiu Manoil <claudiu.manoil@nxp.com>
->Cc: andrew@lunn.ch; robh+dt@kernel.org; Leo Li <leoyang.li@nxp.com>;
->Alexandru Marginean <alexandru.marginean@nxp.com>;
->netdev@vger.kernel.org; devicetree@vger.kernel.org; linux-arm-
->kernel@lists.infradead.org; linux-kernel@vger.kernel.org
->Subject: Re: [PATCH net-next v4 0/4] enetc: Add mdio bus driver for the PC=
-Ie
->MDIO endpoint
->
->From: David Miller <davem@davemloft.net>
->Date: Tue, 30 Jul 2019 09:44:36 -0700 (PDT)
->
->> From: Claudiu Manoil <claudiu.manoil@nxp.com>
->> Date: Tue, 30 Jul 2019 12:45:15 +0300
->>
->>> First patch fixes a sparse issue and cleans up accessors to avoid
->>> casting to __iomem.
->>> Second patch just registers the PCIe endpoint device containing
->>> the MDIO registers as a standalone MDIO bus driver, to allow
->>> an alternative way to control the MDIO bus.  The same code used
->>> by the ENETC ports (eth controllers) to manage MDIO via local
->>> registers applies and is reused.
->>>
->>> Bindings are provided for the new MDIO node, similarly to ENETC
->>> port nodes bindings.
->>>
->>> Last patch enables the ENETC port 1 and its RGMII PHY on the
->>> LS1028A QDS board, where the MDIO muxing configuration relies
->>> on the MDIO support provided in the first patch.
->>  ...
->>
->> Series applied, thank you.
->
->Actually this doesn't compile, I had to revert:
->
+This patchs series add support of New Amlogic temperature sensor and minimal
+thermal zone for SEI510 and ODROID-N2 boards.
 
-Sorry, I overlooked the module part.  Turns out I have to define a separate
-module for this driver (mdio), refactor common code between the mdio module
-and the enetc-pf module, clean up the Makefile...  and do more checks.
+First implementation was doing on IIO[1] but after comments i move on thermal framework.
+Formulas and calibration values come from amlogic.
+
+Changes since v1:
+  - fix enum vs const in documentation for compatible
+  - fix error with thermal-sensor-cells value set to 1 instead of 0
+  - add some dependencies needed to add cooling-maps
+
+Dependencies :
+- patch 3,4 & 5: depends on Neil's patch and series :
+              - missing dwc2 phy-names[1]
+              - patchsets to add DVFS on G12a[3] which have deps on [4] and [5]
+
+[1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
+[2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
+[3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@baylibre.com/
+[4] https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@baylibre.com/
+[5] https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@baylibre.com/
+
+Guillaume La Roque (6):
+  dt-bindings: thermal: Add DT bindings documentation for Amlogic
+    Thermal
+  thermal: amlogic: Add thermal driver to support G12 SoCs
+  arm64: dts: amlogic: g12: add temperature sensor
+  arm64: dts: meson: sei510: Add minimal thermal zone
+  arm64: dts: amlogic: odroid-n2: add minimal thermal zone
+  MAINTAINERS: add entry for Amlogic Thermal driver
+
+ .../bindings/thermal/amlogic,thermal.yaml     |  58 +++
+ MAINTAINERS                                   |   9 +
+ .../boot/dts/amlogic/meson-g12-common.dtsi    |  22 ++
+ .../boot/dts/amlogic/meson-g12a-sei510.dts    |  56 +++
+ .../boot/dts/amlogic/meson-g12b-odroid-n2.dts |  60 ++++
+ drivers/thermal/Kconfig                       |  11 +
+ drivers/thermal/Makefile                      |   1 +
+ drivers/thermal/amlogic_thermal.c             | 332 ++++++++++++++++++
+ 8 files changed, 549 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/thermal/amlogic,thermal.yaml
+ create mode 100644 drivers/thermal/amlogic_thermal.c
+
+-- 
+2.17.1
+
