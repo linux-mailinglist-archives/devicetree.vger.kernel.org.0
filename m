@@ -2,128 +2,179 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7F3987CD8A
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:02:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3EFA47CDE9
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:09:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730419AbfGaUB6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 16:01:58 -0400
-Received: from atlmailgw1.ami.com ([63.147.10.40]:55959 "EHLO
-        atlmailgw1.ami.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730417AbfGaUB6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:01:58 -0400
-X-AuditID: ac1060b2-3fdff70000003a7d-99-5d41f3b6d51d
-Received: from atlms1.us.megatrends.com (atlms1.us.megatrends.com [172.16.96.144])
-        (using TLS with cipher ECDHE-RSA-AES256-SHA384 (256/256 bits))
-        (Client did not present a certificate)
-        by atlmailgw1.ami.com (Symantec Messaging Gateway) with SMTP id EA.F1.14973.6B3F14D5; Wed, 31 Jul 2019 16:01:59 -0400 (EDT)
-Received: from hongweiz-Ubuntu-AMI.us.megatrends.com (172.16.98.93) by
- atlms1.us.megatrends.com (172.16.96.144) with Microsoft SMTP Server (TLS) id
- 14.3.408.0; Wed, 31 Jul 2019 16:01:57 -0400
-From:   Hongwei Zhang <hongweiz@ami.com>
-To:     Andrew Jeffery <andrew@aj.id.au>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Joel Stanley <joel@jms.id.au>, <devicetree@vger.kernel.org>
-CC:     Hongwei Zhang <hongweiz@ami.com>, Rob Herring <robh+dt@kernel.org>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-gpio@vger.kernel.org>
-Subject: [v7 1/2] dt-bindings: gpio: aspeed: Add SGPIO support
-Date:   Wed, 31 Jul 2019 16:01:36 -0400
-Message-ID: <1564603297-1391-2-git-send-email-hongweiz@ami.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1564603297-1391-1-git-send-email-hongweiz@ami.com>
-References: <1564603297-1391-1-git-send-email-hongweiz@ami.com>
+        id S1729662AbfGaUJC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 16:09:02 -0400
+Received: from bombadil.infradead.org ([198.137.202.133]:43634 "EHLO
+        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729114AbfGaUJC (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:09:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=infradead.org; s=bombadil.20170209; h=Sender:Content-Transfer-Encoding:
+        MIME-Version:Message-Id:Date:Subject:Cc:To:From:Reply-To:Content-Type:
+        Content-ID:Content-Description:Resent-Date:Resent-From:Resent-Sender:
+        Resent-To:Resent-Cc:Resent-Message-ID:In-Reply-To:References:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=rn3NfiDEXL+oS6VUOY4mnQO1Et+scTwEHQCpCkBADwE=; b=PIUUBnByQyRMkMGC65MPAbH3v
+        bMlAvUmVeuHt9/joMWoQz0I2rMP2LxUacVIVYNPvlFnKF1xaPRAEMuLb/E5C2nzCdb3Rm77OtWPKp
+        iCfxZE0OZPA+rLw4ckvP7fYxFk9CdgslaN/TEmJNQKtm0T4+Z/8q7p42cP3GUi//2c7yNXqXJFYNT
+        Zqn84uOVfZtk5DnzRYsS8OcjdOCjQ7NSyRKDsTgE9Yv5MUJuU+I3flClQ3gwLdBhCQvwec6sUkDbz
+        9LoOXiw2jlR5pTDbwBFdOMiAu4XecH5BAKWEjUVe5Tzz832jRG+dgxixJ5m9vBWnnVp15U9Fq9s+1
+        XKgn45ysw==;
+Received: from [191.33.152.89] (helo=bombadil.infradead.org)
+        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
+        id 1hsuu9-0007qH-8b; Wed, 31 Jul 2019 20:08:57 +0000
+Received: from mchehab by bombadil.infradead.org with local (Exim 4.92)
+        (envelope-from <mchehab@bombadil.infradead.org>)
+        id 1hsuu6-00079d-61; Wed, 31 Jul 2019 17:08:54 -0300
+From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
+To:     Linux Doc Mailing List <linux-doc@vger.kernel.org>,
+        Jonathan Corbet <corbet@lwn.net>
+Cc:     Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Mauro Carvalho Chehab <mchehab@infradead.org>,
+        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        samba-technical@lists.samba.org, Mark Brown <broonie@kernel.org>,
+        devicetree@vger.kernel.org, Liam Girdwood <lgirdwood@gmail.com>,
+        linux-iio@vger.kernel.org, Lars-Peter Clausen <lars@metafoo.de>,
+        Evgeniy Dushistov <dushistov@mail.ru>,
+        Jonathan Cameron <jic23@kernel.org>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        Steve French <sfrench@samba.org>,
+        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
+        Chen-Yu Tsai <wens@csie.org>,
+        Suzuki K Poulose <suzuki.poulose@arm.com>,
+        linux-cifs@vger.kernel.org, Dave Kleikamp <shaggy@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Evgeniy Polyakov <zbr@ioremap.net>,
+        Mathieu Poirier <mathieu.poirier@linaro.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        jfs-discussion@lists.sourceforge.net,
+        linux-arm-kernel@lists.infradead.org,
+        Hartmut Knaack <knaack.h@gmx.de>, linux-spi@vger.kernel.org
+Subject: [PATCH 0/6] ReST conversion patches not applied yet
+Date:   Wed, 31 Jul 2019 17:08:47 -0300
+Message-Id: <cover.1564603513.git.mchehab+samsung@kernel.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [172.16.98.93]
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrNLMWRmVeSWpSXmKPExsWyRiBhgu72z46xBs9n8ljsusxh8WXuKRaL
-        +UfOsVr8Pv+X2WLKn+VMFpseX2O1aF59jtli8/w/jBaXd81hs2jde4Tdgcvjavsudo/3N1rZ
-        PS5+PMbssWlVJ5vHnWt72Dw2L6n3OD9jIaPH501yARxRXDYpqTmZZalF+nYJXBlLtnxgLTgp
-        UrHqQzNzA+MTgS5GTg4JAROJ/Tv2sHYxcnEICexiktjV/ogRwjnMKPG79Rs7SBWbgJrE3s1z
-        mEASIgL9jBJ3ehvAEswCLUwSn5cVgdjCAnYSF7/+ZAWxWQRUJR5MX8wCYvMK2Escvb2KHWKd
-        nMTNc53MIDangIPEr1/rgIZyAG2zl5j6vRqiXFDi5MwnLBDjJSQOvngBVi4kICtx69BjJogx
-        ChLP+x6zTGAUmIWkZRaSlgWMTKsYhRJLcnITM3PSyw31EnMz9ZLzczcxQiJg0w7GlovmhxiZ
-        OBgPMUpwMCuJ8C4Wt48V4k1JrKxKLcqPLyrNSS0+xCjNwaIkzrtyzbcYIYH0xJLU7NTUgtQi
-        mCwTB6dUAyPv5zvTpTS7ljf7XbBx2m/PL1Xt/oBjG8M2LYbXX85WK7FGeFutPxlpuuBaY/rH
-        olvuev03TkhM9N1jeMXvn8/BgKs6JhHH76mczfjtr3ToqP/a7LBV18q4Xq3ZsvLO4ZNhVwr6
-        fHPsni77oNbrf2br9+QpuZdOZFYn8Hw3ZWhRXnXO0uuvywElluKMREMt5qLiRAA4kPZzbgIA
-        AA==
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add bindings to support SGPIO on AST2400 or AST2500.
+Hi Jon,
 
-Signed-off-by: Hongwei Zhang <hongweiz@ami.com>
-Reviewed-by:   Andrew Jeffery <andrew@aj.id.au>
----
- .../devicetree/bindings/gpio/sgpio-aspeed.txt      | 55 ++++++++++++++++++++++
- 1 file changed, 55 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
+As promised, this is the rebased version of the patches that were not applied
+from the /26 patch series because you had merge conflicts.
 
-diff --git a/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
-new file mode 100644
-index 0000000..8545bbc
---- /dev/null
-+++ b/Documentation/devicetree/bindings/gpio/sgpio-aspeed.txt
-@@ -0,0 +1,55 @@
-+Aspeed SGPIO controller Device Tree Bindings
-+-------------------------------------------
-+
-+This SGPIO controller is for ASPEED AST2500 SoC, it supports up to 80 full 
-+featured Serial GPIOs. Each of the Serial GPIO pins can be programmed to 
-+support the following options:
-+- Support interrupt option for each input port and various interrupt 
-+  sensitivity option (level-high, level-low, edge-high, edge-low)
-+- Support reset tolerance option for each output port
-+- Directly connected to APB bus and its shift clock is from APB bus clock
-+  divided by a programmable value.
-+- Co-work with external signal-chained TTL components (74LV165/74LV595)
-+
-+
-+Required properties:
-+
-+- compatible		: Either "aspeed,ast2400-sgpio" or "aspeed,ast2500-sgpio"
-+
-+- #gpio-cells 		: Should be two
-+			  - First cell is the GPIO line number
-+			  - Second cell is used to specify optional
-+			    parameters (unused)
-+
-+- reg			: Address and length of the register set for the device
-+- gpio-controller	: Marks the device node as a GPIO controller
-+- interrupts		: Interrupt specifier (see interrupt bindings for
-+			  details)
-+
-+- interrupt-controller	: Mark the GPIO controller as an interrupt-controller
-+
-+- ngpios		: number of GPIO pins to serialise. 
-+			  (should be multiple of 8, up to 80 pins)
-+
-+- clocks                : A phandle to the APB clock for SGPM clock division
-+
-+- bus-frequency		: SGPM CLK frequency
-+
-+
-+The sgpio and interrupt properties are further described in their respective bindings documentation:
-+
-+- Documentation/devicetree/bindings/gpio/gpio.txt
-+- Documentation/devicetree/bindings/interrupt-controller/interrupts.txt
-+
-+  Example:
-+	sgpio: sgpio@1e780200 {
-+		#gpio-cells = <2>;
-+		compatible = "aspeed,ast2500-sgpio";
-+		gpio-controller;
-+		interrupts = <40>;
-+		reg = <0x1e780200 0x0100>;
-+		clocks = <&syscon ASPEED_CLK_APB>;
-+		interrupt-controller;
-+		ngpios = <8>;
-+		bus-frequency = <12000000>;
-+	};
+They're all based on your docs-next branch, so should apply fine.
+
+The first one fixes all but one error with a broken reference.
+
+The only broken reference right now is due to a DT patch with was not
+accepted (no idea why), but whose driver is upstream.
+
+
+Mauro Carvalho Chehab (6):
+  docs: fix a couple of new broken references
+  docs: writing-schema.md: convert from markdown to ReST
+  spi: docs: convert to ReST and add it to the kABI bookset
+  docs: fs: cifs: convert to ReST and add to admin-guide book
+  docs: fs: convert porting to ReST
+  docs: w1: convert to ReST and add to the kAPI group of docs
+
+ Documentation/ABI/stable/sysfs-bus-w1         |   2 +-
+ .../ABI/stable/sysfs-driver-w1_ds28e04        |   4 +-
+ .../ABI/stable/sysfs-driver-w1_ds28ea00       |   2 +-
+ .../AUTHORS => admin-guide/cifs/authors.rst}  |  64 +-
+ .../CHANGES => admin-guide/cifs/changes.rst}  |   4 +
+ Documentation/admin-guide/cifs/index.rst      |  21 +
+ .../cifs/introduction.rst}                    |   8 +
+ .../cifs/TODO => admin-guide/cifs/todo.rst}   |  87 +--
+ .../README => admin-guide/cifs/usage.rst}     | 560 +++++++++++-------
+ .../cifs/winucase_convert.pl                  |   0
+ Documentation/admin-guide/index.rst           |   1 +
+ .../bindings/sound/sun8i-a33-codec.txt        |   2 +-
+ Documentation/devicetree/writing-schema.md    | 130 ----
+ Documentation/devicetree/writing-schema.rst   | 153 +++++
+ Documentation/filesystems/porting.rst         |   2 +-
+ Documentation/index.rst                       |   2 +
+ .../spi/{butterfly => butterfly.rst}          |  44 +-
+ Documentation/spi/index.rst                   |  22 +
+ Documentation/spi/{pxa2xx => pxa2xx.rst}      |  95 +--
+ .../spi/{spi-lm70llp => spi-lm70llp.rst}      |  17 +-
+ .../spi/{spi-sc18is602 => spi-sc18is602.rst}  |   3 +
+ .../spi/{spi-summary => spi-summary.rst}      | 105 ++--
+ Documentation/spi/{spidev => spidev.rst}      |  30 +-
+ Documentation/w1/index.rst                    |  21 +
+ .../w1/masters/{ds2482 => ds2482.rst}         |  16 +-
+ .../w1/masters/{ds2490 => ds2490.rst}         |   6 +-
+ Documentation/w1/masters/index.rst            |  14 +
+ Documentation/w1/masters/mxc-w1               |  12 -
+ Documentation/w1/masters/mxc-w1.rst           |  17 +
+ .../w1/masters/{omap-hdq => omap-hdq.rst}     |  12 +-
+ .../w1/masters/{w1-gpio => w1-gpio.rst}       |  21 +-
+ Documentation/w1/slaves/index.rst             |  16 +
+ .../w1/slaves/{w1_ds2406 => w1_ds2406.rst}    |   4 +-
+ .../w1/slaves/{w1_ds2413 => w1_ds2413.rst}    |   9 +
+ Documentation/w1/slaves/w1_ds2423             |  47 --
+ Documentation/w1/slaves/w1_ds2423.rst         |  54 ++
+ .../w1/slaves/{w1_ds2438 => w1_ds2438.rst}    |  10 +-
+ .../w1/slaves/{w1_ds28e04 => w1_ds28e04.rst}  |   5 +
+ .../w1/slaves/{w1_ds28e17 => w1_ds28e17.rst}  |  16 +-
+ .../w1/slaves/{w1_therm => w1_therm.rst}      |  11 +-
+ .../w1/{w1.generic => w1-generic.rst}         |  88 +--
+ .../w1/{w1.netlink => w1-netlink.rst}         |  89 +--
+ MAINTAINERS                                   |   6 +-
+ drivers/hwtracing/coresight/Kconfig           |   2 +-
+ drivers/iio/dummy/iio_simple_dummy.c          |   2 +-
+ drivers/spi/Kconfig                           |   2 +-
+ drivers/spi/spi-butterfly.c                   |   2 +-
+ drivers/spi/spi-lm70llp.c                     |   2 +-
+ fs/jfs/Kconfig                                |   2 +-
+ fs/ufs/Kconfig                                |   2 +-
+ include/linux/platform_data/sc18is602.h       |   2 +-
+ 51 files changed, 1126 insertions(+), 722 deletions(-)
+ rename Documentation/{filesystems/cifs/AUTHORS => admin-guide/cifs/authors.rst} (60%)
+ rename Documentation/{filesystems/cifs/CHANGES => admin-guide/cifs/changes.rst} (91%)
+ create mode 100644 Documentation/admin-guide/cifs/index.rst
+ rename Documentation/{filesystems/cifs/cifs.txt => admin-guide/cifs/introduction.rst} (98%)
+ rename Documentation/{filesystems/cifs/TODO => admin-guide/cifs/todo.rst} (58%)
+ rename Documentation/{filesystems/cifs/README => admin-guide/cifs/usage.rst} (72%)
+ rename Documentation/{filesystems => admin-guide}/cifs/winucase_convert.pl (100%)
+ delete mode 100644 Documentation/devicetree/writing-schema.md
+ create mode 100644 Documentation/devicetree/writing-schema.rst
+ rename Documentation/spi/{butterfly => butterfly.rst} (71%)
+ create mode 100644 Documentation/spi/index.rst
+ rename Documentation/spi/{pxa2xx => pxa2xx.rst} (83%)
+ rename Documentation/spi/{spi-lm70llp => spi-lm70llp.rst} (88%)
+ rename Documentation/spi/{spi-sc18is602 => spi-sc18is602.rst} (97%)
+ rename Documentation/spi/{spi-summary => spi-summary.rst} (93%)
+ rename Documentation/spi/{spidev => spidev.rst} (90%)
+ create mode 100644 Documentation/w1/index.rst
+ rename Documentation/w1/masters/{ds2482 => ds2482.rst} (71%)
+ rename Documentation/w1/masters/{ds2490 => ds2490.rst} (98%)
+ create mode 100644 Documentation/w1/masters/index.rst
+ delete mode 100644 Documentation/w1/masters/mxc-w1
+ create mode 100644 Documentation/w1/masters/mxc-w1.rst
+ rename Documentation/w1/masters/{omap-hdq => omap-hdq.rst} (90%)
+ rename Documentation/w1/masters/{w1-gpio => w1-gpio.rst} (75%)
+ create mode 100644 Documentation/w1/slaves/index.rst
+ rename Documentation/w1/slaves/{w1_ds2406 => w1_ds2406.rst} (96%)
+ rename Documentation/w1/slaves/{w1_ds2413 => w1_ds2413.rst} (81%)
+ delete mode 100644 Documentation/w1/slaves/w1_ds2423
+ create mode 100644 Documentation/w1/slaves/w1_ds2423.rst
+ rename Documentation/w1/slaves/{w1_ds2438 => w1_ds2438.rst} (93%)
+ rename Documentation/w1/slaves/{w1_ds28e04 => w1_ds28e04.rst} (93%)
+ rename Documentation/w1/slaves/{w1_ds28e17 => w1_ds28e17.rst} (88%)
+ rename Documentation/w1/slaves/{w1_therm => w1_therm.rst} (95%)
+ rename Documentation/w1/{w1.generic => w1-generic.rst} (59%)
+ rename Documentation/w1/{w1.netlink => w1-netlink.rst} (77%)
+
 -- 
-2.7.4
+2.21.0
+
 
