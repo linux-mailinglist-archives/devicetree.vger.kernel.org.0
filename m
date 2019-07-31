@@ -2,107 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A5D767C537
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 16:43:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BFD527C552
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 16:47:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727779AbfGaOno (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 10:43:44 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:39621 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728507AbfGaOnn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 10:43:43 -0400
-Received: by mail-lf1-f67.google.com with SMTP id v85so47601447lfa.6;
-        Wed, 31 Jul 2019 07:43:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=KPXFjjONkZjk+QhsiqsCSSD7dqbWf2ywnlPRvZ8gixI=;
-        b=l/8ghr+t920KkX4P/sZvL73iKiZu4M4l+Y51L8wmWkr0PAY9KZcE75OFeo5KKVLGhM
-         cZZXhyHqJLXznkgDawUG3lP+GVGxN0mBQDaVA8CLv08Dw6Rgc6b2ReIjA6Pbep6ycNYX
-         AU0XwyiKfKWjZuIbNoc+e/KquQMk/19e0u7IRn6o6qUZCJxCBWT9k+bMHfCZBm5OLbEt
-         uDqJG907R4mC5ky5U1wP66iRG5FhMz0mkw0jHJ2XeXu1a8ftkwqcTM2iXEPkAFv+N1Wl
-         HMmnHQQkDOkGlp0w3u0SIS9u7QIRP3Ac35Ii32NeGDU8boPn0ufVDVbH9I9KWvH7YziD
-         HH4g==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=KPXFjjONkZjk+QhsiqsCSSD7dqbWf2ywnlPRvZ8gixI=;
-        b=oBFMP5MEVwbykk1rKb3bk7kATW+YdpC9I4dL2noiwuwQZAH/HxfOkQNMMkhPhl8IiB
-         KRZM7mCRBeG5QQYwlqPok4qvQSerLaDfu5P/aWDplo4+TaEVHYsklUdklA5vQfoFrQTp
-         xMIAKAFEYNsK1b7QDuDEHXD/5stT+3TuGvVUgNfeKMX7lyk8WElOQFDOwUFiR6BVWPS6
-         MxYdfFruVxSDHmUVvW4trVBRRxXkXaPUx+nLfbDzZaoLFPIroT4HkIgBDJGv5LmN3cBX
-         FPV/Tyo1YBQGEGOeb16UviC6keDgXnPEkySzfy9XO6lA3J2IbLChbu+I+9Z2A1tLN2bw
-         rhjQ==
-X-Gm-Message-State: APjAAAW+FIPtaj1mMAzEERQzInlqf3f2b/KoNeDoJyk81wryEhaanSnS
-        82cLCAhZ0x4fVQLtVIB50guNVM74BjLvPF7H9+U=
-X-Google-Smtp-Source: APXvYqygpHQFKPnj6BO1hqHn6Ij7xVfMs5QdPNXO/94e/Hw1RB9FX/CJz9+niC5JDPx4i0aT0dMN3KSX76AWC9rswW8=
-X-Received: by 2002:a19:cbd3:: with SMTP id b202mr59221363lfg.185.1564584221471;
- Wed, 31 Jul 2019 07:43:41 -0700 (PDT)
+        id S2387875AbfGaOrx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 10:47:53 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51042 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387593AbfGaOrw (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 31 Jul 2019 10:47:52 -0400
+Received: from mail-qt1-f175.google.com (mail-qt1-f175.google.com [209.85.160.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C65D4216C8;
+        Wed, 31 Jul 2019 14:47:51 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564584471;
+        bh=lInMQej1Cu+xXIvUNOMNi98n56lFRIExbteZ0drhpXo=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=oQeVLps0n60X4Z4fkk7FLEMT5LyfoBsonpOZSoh9YVnzNNeZNv7VK+vT3JMdLsc3M
+         rMreU/1DyCCFuYYpm+UdWuyHUp61Pn4tg+R9MusvrXxMwp8Z7PEiXIWZefqb7rd4EG
+         RJm6ujYVa/j8qWSusoPSsMPZx9+AljSKLTbBKJu4=
+Received: by mail-qt1-f175.google.com with SMTP id h18so66840559qtm.9;
+        Wed, 31 Jul 2019 07:47:51 -0700 (PDT)
+X-Gm-Message-State: APjAAAWRFvAX2LqRpuPkEIvVjwSDUkzmYMnxwDPoc8br1EU6urai1pwC
+        LBwvJOW/Yt3mSYa4lqPWHfA2Lva8kurz+v723g==
+X-Google-Smtp-Source: APXvYqxWABAICUQylsJRPx2TocCeORlo5dBLckf02x4fHX4CWRijbYSy8OsZGfpRaqUtJ9b1j4UFuIxWR/TXoH2NlBw=
+X-Received: by 2002:aed:3fb0:: with SMTP id s45mr87604517qth.136.1564584470923;
+ Wed, 31 Jul 2019 07:47:50 -0700 (PDT)
 MIME-Version: 1.0
-References: <cover.1563983037.git.agx@sigxcpu.org> <3158f4f8c97c21f98c394e5631d74bc60d796522.1563983037.git.agx@sigxcpu.org>
- <CAOMZO5BRbV_1du1b9eJqcBvvXSE2Mon3yxSPJxPpZgBqYNjBSg@mail.gmail.com> <20190731143532.GA1935@bogon.m.sigxcpu.org>
-In-Reply-To: <20190731143532.GA1935@bogon.m.sigxcpu.org>
-From:   Fabio Estevam <festevam@gmail.com>
-Date:   Wed, 31 Jul 2019 11:43:47 -0300
-Message-ID: <CAOMZO5Djoi7EuXapkg+dQ6HR2oZZHrw+vnjc837Gxee-Nh00Hw@mail.gmail.com>
-Subject: Re: [PATCH 3/3] drm/bridge: Add NWL MIPI DSI host controller support
-To:     =?UTF-8?Q?Guido_G=C3=BCnther?= <agx@sigxcpu.org>
-Cc:     David Airlie <airlied@linux.ie>, Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        Andrzej Hajda <a.hajda@samsung.com>,
-        Neil Armstrong <narmstrong@baylibre.com>,
-        Laurent Pinchart <Laurent.pinchart@ideasonboard.com>,
-        Jonas Karlman <jonas@kwiboo.se>,
-        Jernej Skrabec <jernej.skrabec@siol.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        DRI mailing list <dri-devel@lists.freedesktop.org>,
+References: <20190731073744.13963-1-geert+renesas@glider.be>
+ <20190731074801.5706-1-geert+renesas@glider.be> <20190731081209.GA5080@pendragon.ideasonboard.com>
+ <CAMuHMdV9MEYP97_6RFhmbGGB8uY-Pi8S9q+m+XMmHzKHcibJwQ@mail.gmail.com>
+In-Reply-To: <CAMuHMdV9MEYP97_6RFhmbGGB8uY-Pi8S9q+m+XMmHzKHcibJwQ@mail.gmail.com>
+From:   Rob Herring <robh@kernel.org>
+Date:   Wed, 31 Jul 2019 08:47:38 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJWJ+o6t2Wb162h7Xz98L=WPSi4une-EC0HfoRiWLmKWA@mail.gmail.com>
+Message-ID: <CAL_JsqJWJ+o6t2Wb162h7Xz98L=WPSi4une-EC0HfoRiWLmKWA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: renesas: r8a77995: draak: Fix backlight
+ regulator name
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        Robert Chiras <robert.chiras@nxp.com>,
-        Chris Healy <cphealy@gmail.com>
+        <devicetree@vger.kernel.org>, Johan Hovold <johan@kernel.org>,
+        Mark Brown <broonie@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Guido,
-
-On Wed, Jul 31, 2019 at 11:35 AM Guido G=C3=BCnther <agx@sigxcpu.org> wrote=
-:
-
-> The idea is to have
+On Wed, Jul 31, 2019 at 2:32 AM Geert Uytterhoeven <geert@linux-m68k.org> wrote:
 >
->     "%sabling platform clocks", enable ? "en" : "dis");
+> Hi Laurent,
 >
-> depending whether clocks are enabled/disabled.
-
-Yes, I understood the idea, but this would print:
-
-ensabling or dissabling :-)
-
-> > Same here. Please return 'int' instead.
+> On Wed, Jul 31, 2019 at 10:12 AM Laurent Pinchart
+> <laurent.pinchart@ideasonboard.com> wrote:
+> > On Wed, Jul 31, 2019 at 09:48:01AM +0200, Geert Uytterhoeven wrote:
+> > > Currently there are two nodes named "regulator1" in the Draak DTS: a
+> > > 3.3V regulator for the eMMC and the LVDS decoder, and a 12V regulator
+> > > for the backlight.  This causes the former to be overwritten by the
+> > > latter.
+> > >
+> > > Fix this by renaming all regulators with numerical suffixes to use named
+> > > suffixes, which are less likely to conflict.
+> >
+> > Aren't DT node names supposed to describe the device type, not a
+> > particular instance of the device ? This is something that has bothered
+> > me too, but I believe the naming scheme should be decided globally, not
+> > per board. Is there precedent for using this scheme that has been
+> > explicitly approved by the DT maintainers ?
 >
-> This is from drm_bridge_funcs so the prototype is fixed. I'm not sure
-> how what's the best way to bubble up fatal errors through the drm layer?
+> The example in Documentation/devicetree/bindings/regulator/regulator.yaml
+> uses "regulator@0", which of course works only if #address-cells = 1, which
+> is usually not the case for discrete regulators.
+> BTW, the example lacks a "reg" property...
 
-Ok, so let's not change this one.
+Yeah, that predates our being strict about unit-addresses.
 
-> I went for DRM_DEV_ERROR() since that what i used in the rest of the
-> driver and these ones were omission. Hope that's o.k.
+> So some other suffix has to be added to distinguish individual "regulator"
+> nodes.
 
-No strong preferences here. I just think dev_err() easier to type and short=
-er.
+<nodename>-<identifier> is basically the format we've been following
+for cases without an address.
 
-Thanks for this work!
+As long as we have a consistent base name that we can match schema
+with, then I'm happy. But for regulators, we have a lot of node names
+like 'buck1', 'LDO2', etc.
+
+Rob
