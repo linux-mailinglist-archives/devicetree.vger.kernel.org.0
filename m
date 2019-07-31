@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56EB27BE39
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 12:20:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96E627BE3F
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 12:20:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728306AbfGaKU2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 06:20:28 -0400
-Received: from mail-pf1-f193.google.com ([209.85.210.193]:39713 "EHLO
-        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728120AbfGaKU1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 06:20:27 -0400
-Received: by mail-pf1-f193.google.com with SMTP id f17so27619331pfn.6
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 03:20:27 -0700 (PDT)
+        id S1729119AbfGaKUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 06:20:36 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:34679 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729047AbfGaKUb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 06:20:31 -0400
+Received: by mail-pf1-f194.google.com with SMTP id b13so31613977pfo.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 03:20:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=rmBxdiW7S2WiXQ4zlUGo+/gbkMEWIhLilBouSwb9Zms=;
-        b=HJX07IgzuA3T2hq6Y26IP9Rn+7DO6LW+EcnXufRcqpZX4JAJUmAvVnptuZWkMbvsry
-         ESPOby87HWI3S8sEhCDQLCFGNSrCq5QBUcehvat5GmpdHGUyTmtjYoR9RGB85BdPbW9I
-         EpeJ7fKEpL8jHSFdoXFCCiagfU4ap+R6B8c/w=
+        bh=E9F7klLqHGChgF95JMcp3H7zN1BzkYvGh0j6xqTUqHM=;
+        b=T1zB4X57uTNqa5Ubpujf1rJUI7sfMTm7RmbPQVj5X/PEV4kep2/Nj431b0J5XwC8ZT
+         P+mxcVQ2J3gOFKbJVnOROSf2Vt4d8dfD/KUBz4MtAVMJvgueZCBFbekKQeFokf4NQgZb
+         y1BxEzeQOoo03e1VBrEq8bmII7GMvZvky++mM=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=rmBxdiW7S2WiXQ4zlUGo+/gbkMEWIhLilBouSwb9Zms=;
-        b=YsJ1EK+Drd//iVraGMxO/wRUtbsxViFXVLhjDdAqrorSrdH+/wD4jLNyLrXb0bzkx4
-         D/gG2nMvimyEcHlsb7e8hav7Z3h+me8Gn1+TyYgBK9nwuzmIkiiAFrEMBI4SgV/QtXke
-         ajzaX3druXtBGrWuxaFl4womWg90YTvXYLwTP7pZ/KIgUe4XTMm9zHBKiwkmzB3xbYye
-         A87U9H22zSIsLdvqQNHeG0zb8jiDH0PF3AoZaCm87UxYz7PsF4QQOigxQc47DRWmWKqE
-         7oXdDHbw0BDXm3LLB8TRbFzy2kZsIX3G64rWzaKPbDmBDDEIXqvWBcdVJFyMRAH7SVB7
-         KH0g==
-X-Gm-Message-State: APjAAAUhFrRGBA5T4q27Q1Z6X6Megua3rjW3+xmGdWgMvtZ9YWU6MvPI
-        fAFL/V2sHQmtbxgdGZOlOmr6BA==
-X-Google-Smtp-Source: APXvYqxIook3htLQsXXlA83hjcsGEZbtTQ038Kp8tgnmjDpYGMt7dCACN9TE2RD9YTyaG4BJePLbDA==
-X-Received: by 2002:a17:90a:8984:: with SMTP id v4mr2166486pjn.133.1564568427244;
-        Wed, 31 Jul 2019 03:20:27 -0700 (PDT)
+        bh=E9F7klLqHGChgF95JMcp3H7zN1BzkYvGh0j6xqTUqHM=;
+        b=UIjVY0CYP9aSviBq5f6E10v+ORPgugSSEjacTQnTi+PjlNeYOOaPZKWT4lLUXNq+6J
+         rk/qqcRso1H5VLB5BxERKiUSD5ufCC7bNUF+d0aVeMKT93oX50HYBDe6UrfyMIkIl2tj
+         lFXc1awaQjMsc0APmgJbY1GviqXeoiA+gfwh32jLY83/RanEoNbd4lWh6+J371Y9VvJo
+         SFvSfDjsf8W30MBbV9HrzQ+gRQJdPLD5dkKgCyEavheC7/2vfeSIDFgV7JEu2edqhnzy
+         l6vtMVUATA4YZ07A7eMyjuhzosxEpcnNHkkgaLLmzGkaAMR0wWOS8+wOyK7aks1xNXwb
+         jOVQ==
+X-Gm-Message-State: APjAAAXOlegNSzLanZeTaFHWdjKD++jgNap7m3Fcl9Nc6DgmQqpiqw8d
+        LVgBHq7B+SXinpbSDgn05kOpZA==
+X-Google-Smtp-Source: APXvYqzdHob40j2F4HxHp+9d2FSzc85eOQLU3BRWsjr/ah0+jW8EVizz3WKd04dK8g9CHJ2VAQMdJQ==
+X-Received: by 2002:aa7:9191:: with SMTP id x17mr46703187pfa.23.1564568430964;
+        Wed, 31 Jul 2019 03:20:30 -0700 (PDT)
 Received: from mannams-OptiPlex-7010.dhcp.broadcom.net ([192.19.234.250])
-        by smtp.gmail.com with ESMTPSA id 3sm71161776pfg.186.2019.07.31.03.20.23
+        by smtp.gmail.com with ESMTPSA id 3sm71161776pfg.186.2019.07.31.03.20.27
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 31 Jul 2019 03:20:26 -0700 (PDT)
+        Wed, 31 Jul 2019 03:20:30 -0700 (PDT)
 From:   Srinath Mannam <srinath.mannam@broadcom.com>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Mathias Nyman <mathias.nyman@intel.com>,
@@ -50,9 +50,9 @@ Cc:     linux-usb@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
         bcm-kernel-feedback-list@broadcom.com,
         Srinath Mannam <srinath.mannam@broadcom.com>
-Subject: [PATCH v2 4/5] dt-bindings: usb-xhci: Add platform specific compatible for Stingray xHCI
-Date:   Wed, 31 Jul 2019 15:49:54 +0530
-Message-Id: <1564568395-9980-5-git-send-email-srinath.mannam@broadcom.com>
+Subject: [PATCH v2 5/5] drivers: xhci: Add quirk to reset xHCI port PHY
+Date:   Wed, 31 Jul 2019 15:49:55 +0530
+Message-Id: <1564568395-9980-6-git-send-email-srinath.mannam@broadcom.com>
 X-Mailer: git-send-email 2.7.4
 In-Reply-To: <1564568395-9980-1-git-send-email-srinath.mannam@broadcom.com>
 References: <1564568395-9980-1-git-send-email-srinath.mannam@broadcom.com>
@@ -61,26 +61,176 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add Platform specific compatible, because xHCI of this SoC has an issue
-with HS port which has to reset on disconnect event.
+Stingray USB HS PHY has an issue, that USB High Speed device detects
+at Full Speed if the same port was connected to Full speed device.
+This problem can be resolved by resetting that port's PHY on disconnect.
+Add a quirk to reset xHCI port PHY on port disconnect event.
+XHCI_RESET_PHY_ON_DISCONNECT quirk is introduced with xhci_plat_brcm_sr
+platform data. New quirks parameter added in xhci_plat_priv structure to
+assign platform specific quirks.
 
 Signed-off-by: Srinath Mannam <srinath.mannam@broadcom.com>
 ---
- Documentation/devicetree/bindings/usb/usb-xhci.txt | 1 +
- 1 file changed, 1 insertion(+)
+ drivers/usb/core/hcd.c       |  6 ++++++
+ drivers/usb/core/phy.c       | 19 +++++++++++++++++++
+ drivers/usb/core/phy.h       |  1 +
+ drivers/usb/host/xhci-plat.c | 10 ++++++++++
+ drivers/usb/host/xhci-plat.h |  1 +
+ drivers/usb/host/xhci-ring.c |  9 ++++++---
+ drivers/usb/host/xhci.h      |  1 +
+ include/linux/usb/hcd.h      |  1 +
+ 8 files changed, 45 insertions(+), 3 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/usb/usb-xhci.txt b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-index 97400e8..ee1f051 100644
---- a/Documentation/devicetree/bindings/usb/usb-xhci.txt
-+++ b/Documentation/devicetree/bindings/usb/usb-xhci.txt
-@@ -22,6 +22,7 @@ Required properties:
-       device
-     - "renesas,rcar-gen3-xhci" for a generic R-Car Gen3 or RZ/G2 compatible
-       device
-+    - "brcm,sr-xhci" for Stingray SoC
-     - "xhci-platform" (deprecated)
+diff --git a/drivers/usb/core/hcd.c b/drivers/usb/core/hcd.c
+index 94d2255..a23441b 100644
+--- a/drivers/usb/core/hcd.c
++++ b/drivers/usb/core/hcd.c
+@@ -2675,6 +2675,12 @@ int usb_hcd_find_raw_port_number(struct usb_hcd *hcd, int port1)
+ 	return hcd->driver->find_raw_port_number(hcd, port1);
+ }
  
-     When compatible with the generic version, nodes must list the
++int usb_hcd_phy_port_reset(struct usb_hcd *hcd, int port)
++{
++	return usb_phy_roothub_port_reset(hcd->phy_roothub, port);
++}
++EXPORT_SYMBOL_GPL(usb_hcd_phy_port_reset);
++
+ static int usb_hcd_request_irqs(struct usb_hcd *hcd,
+ 		unsigned int irqnum, unsigned long irqflags)
+ {
+diff --git a/drivers/usb/core/phy.c b/drivers/usb/core/phy.c
+index 7580493..4d1ac31 100644
+--- a/drivers/usb/core/phy.c
++++ b/drivers/usb/core/phy.c
+@@ -190,6 +190,25 @@ void usb_phy_roothub_power_off(struct usb_phy_roothub *phy_roothub)
+ }
+ EXPORT_SYMBOL_GPL(usb_phy_roothub_power_off);
+ 
++int usb_phy_roothub_port_reset(struct usb_phy_roothub *phy_roothub, int port)
++{
++	struct usb_phy_roothub *roothub_entry;
++	struct list_head *head;
++
++	if (!phy_roothub)
++		return -EINVAL;
++
++	head = &phy_roothub->list;
++
++	list_for_each_entry(roothub_entry, head, list) {
++		if (phy_get_phy_ports(roothub_entry->phy) & BIT(port))
++			return phy_reset(roothub_entry->phy);
++	}
++
++	return -ENODEV;
++}
++EXPORT_SYMBOL_GPL(usb_phy_roothub_port_reset);
++
+ int usb_phy_roothub_suspend(struct device *controller_dev,
+ 			    struct usb_phy_roothub *phy_roothub)
+ {
+diff --git a/drivers/usb/core/phy.h b/drivers/usb/core/phy.h
+index dad564e..3f682e8 100644
+--- a/drivers/usb/core/phy.h
++++ b/drivers/usb/core/phy.h
+@@ -20,6 +20,7 @@ int usb_phy_roothub_set_mode(struct usb_phy_roothub *phy_roothub,
+ 			     enum phy_mode mode);
+ int usb_phy_roothub_power_on(struct usb_phy_roothub *phy_roothub);
+ void usb_phy_roothub_power_off(struct usb_phy_roothub *phy_roothub);
++int usb_phy_roothub_port_reset(struct usb_phy_roothub *phy_roothub, int port);
+ 
+ int usb_phy_roothub_suspend(struct device *controller_dev,
+ 			    struct usb_phy_roothub *phy_roothub);
+diff --git a/drivers/usb/host/xhci-plat.c b/drivers/usb/host/xhci-plat.c
+index 998241f..af23e92 100644
+--- a/drivers/usb/host/xhci-plat.c
++++ b/drivers/usb/host/xhci-plat.c
+@@ -47,6 +47,9 @@ static void xhci_priv_plat_start(struct usb_hcd *hcd)
+ static int xhci_priv_init_quirk(struct usb_hcd *hcd)
+ {
+ 	struct xhci_plat_priv *priv = hcd_to_xhci_priv(hcd);
++	struct xhci_hcd	*xhci = hcd_to_xhci(hcd);
++
++	xhci->quirks |= priv->quirks;
+ 
+ 	if (!priv->init_quirk)
+ 		return 0;
+@@ -116,6 +119,10 @@ static const struct xhci_plat_priv xhci_plat_renesas_rcar_gen3 = {
+ 	.resume_quirk = xhci_rcar_resume_quirk,
+ };
+ 
++static const struct xhci_plat_priv xhci_plat_brcm_sr = {
++	.quirks = XHCI_RESET_PHY_ON_DISCONNECT,
++};
++
+ static const struct of_device_id usb_xhci_of_match[] = {
+ 	{
+ 		.compatible = "generic-xhci",
+@@ -151,6 +158,9 @@ static const struct of_device_id usb_xhci_of_match[] = {
+ 	}, {
+ 		.compatible = "renesas,rcar-gen3-xhci",
+ 		.data = &xhci_plat_renesas_rcar_gen3,
++	}, {
++		.compatible = "brcm,sr-xhci",
++		.data = &xhci_plat_brcm_sr,
+ 	},
+ 	{},
+ };
+diff --git a/drivers/usb/host/xhci-plat.h b/drivers/usb/host/xhci-plat.h
+index ae29f22..0cd61c6 100644
+--- a/drivers/usb/host/xhci-plat.h
++++ b/drivers/usb/host/xhci-plat.h
+@@ -15,6 +15,7 @@ struct xhci_plat_priv {
+ 	void (*plat_start)(struct usb_hcd *);
+ 	int (*init_quirk)(struct usb_hcd *);
+ 	int (*resume_quirk)(struct usb_hcd *);
++	unsigned long long	quirks;
+ };
+ 
+ #define hcd_to_xhci_priv(h) ((struct xhci_plat_priv *)hcd_to_xhci(h)->priv)
+diff --git a/drivers/usb/host/xhci-ring.c b/drivers/usb/host/xhci-ring.c
+index feffceb..77e94e8 100644
+--- a/drivers/usb/host/xhci-ring.c
++++ b/drivers/usb/host/xhci-ring.c
+@@ -1696,9 +1696,12 @@ static void handle_port_status(struct xhci_hcd *xhci,
+ 
+ 	if (hcd->speed < HCD_USB3) {
+ 		xhci_test_and_clear_bit(xhci, port, PORT_PLC);
+-		if ((xhci->quirks & XHCI_RESET_PLL_ON_DISCONNECT) &&
+-		    (portsc & PORT_CSC) && !(portsc & PORT_CONNECT))
+-			xhci_cavium_reset_phy_quirk(xhci);
++		if ((portsc & PORT_CSC) && !(portsc & PORT_CONNECT)) {
++			if (xhci->quirks & XHCI_RESET_PLL_ON_DISCONNECT)
++				xhci_cavium_reset_phy_quirk(xhci);
++			else if (xhci->quirks & XHCI_RESET_PHY_ON_DISCONNECT)
++				usb_hcd_phy_port_reset(hcd, port_id - 1);
++		}
+ 	}
+ 
+ cleanup:
+diff --git a/drivers/usb/host/xhci.h b/drivers/usb/host/xhci.h
+index 7f8b950..f3b336b 100644
+--- a/drivers/usb/host/xhci.h
++++ b/drivers/usb/host/xhci.h
+@@ -1856,6 +1856,7 @@ struct xhci_hcd {
+ #define XHCI_DEFAULT_PM_RUNTIME_ALLOW	BIT_ULL(33)
+ #define XHCI_RESET_PLL_ON_DISCONNECT	BIT_ULL(34)
+ #define XHCI_SNPS_BROKEN_SUSPEND    BIT_ULL(35)
++#define XHCI_RESET_PHY_ON_DISCONNECT	BIT_ULL(36)
+ 
+ 	unsigned int		num_active_eps;
+ 	unsigned int		limit_active_eps;
+diff --git a/include/linux/usb/hcd.h b/include/linux/usb/hcd.h
+index bb57b5a..2590666 100644
+--- a/include/linux/usb/hcd.h
++++ b/include/linux/usb/hcd.h
+@@ -461,6 +461,7 @@ extern int usb_add_hcd(struct usb_hcd *hcd,
+ 		unsigned int irqnum, unsigned long irqflags);
+ extern void usb_remove_hcd(struct usb_hcd *hcd);
+ extern int usb_hcd_find_raw_port_number(struct usb_hcd *hcd, int port1);
++extern int usb_hcd_phy_port_reset(struct usb_hcd *hcd, int port);
+ 
+ struct platform_device;
+ extern void usb_hcd_platform_shutdown(struct platform_device *dev);
 -- 
 2.7.4
 
