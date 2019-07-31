@@ -2,55 +2,55 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C7F227C0DE
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:14:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 42AFE7C0DF
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 14:14:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387466AbfGaMOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S2387461AbfGaMOc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Wed, 31 Jul 2019 08:14:32 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:35311 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729095AbfGaMOT (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:14:19 -0400
-Received: by mail-wm1-f65.google.com with SMTP id l2so59581304wmg.0
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 05:14:17 -0700 (PDT)
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:38977 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729109AbfGaMOU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 08:14:20 -0400
+Received: by mail-wr1-f66.google.com with SMTP id x4so16266666wrt.6
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 05:14:18 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=4dhyanCajCoQ1NdrxY9RmPZmRRskdkUd8pA1FbO4zdo=;
-        b=fYS3TgnwrniuqSiM6EH8XBX5NO0WHBVCvOQ0paEeMa5/j1L16S3eMBI475LTjoV8ui
-         XZMH/qiesdnDqiwtIhyM1C2/aKEjieF90KHqB6+woi/R04pCoUA/DS7g8FxIvxCnVtge
-         CGwXU2VF0b6n9CWoTmUCdsFiMDjRLlu5sziIWWZIkiHdyN0Y/Wsf0v2npxS2fT0fS+lM
-         erUXS9kjSafOR4vz6DeIvqCDioiICAfx5E4DG2s8qQ9IObARQnUnjfv1c+5qN9fxljuk
-         dnOaSG3+0/aKtms73knvFjaJth/VFSJ1fRgV96ir5bKG0YYN6P1Pt94Qm3nVEVGmD6W2
-         8e7Q==
+        bh=BOF17YQQWl12xZ1QhY8MZFUcVRdvZruqxl9AoPVourc=;
+        b=KOwU/VDLfH4d9hcV47fA2w/uqwOYT2FS68Y+GEZgeAIxQeMzox1GTF+0nrmfbwgok6
+         lFKgs6HQrZ5vHJV79TS3uRpfM7LBBpF/8oOwgSPwJoZn4uSGVeyYfnWNtxTN0cCnSKnA
+         fwLcqzDLNkSmAbYJFRKWbisb1VHFrT9BBYe1njiRWWCpIVjSFXkGFjmG8l7ix6YGmBuO
+         jmb5mztHtAF8AeFgsBIRAXSHH7dLXHH2WTPiyN1yejHwdxPZrwqe+2OU49FlyeZkQ6rT
+         E+OVoUnb/VSTVGanCM84e147CCmhwhG/RaHrkLmA2+q2AMN+jbaHINtHsTQGrCX8cYtO
+         lB1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=4dhyanCajCoQ1NdrxY9RmPZmRRskdkUd8pA1FbO4zdo=;
-        b=l5vAeRF4/GJkOPImGdxXzG2P0AAIImpqgU5TNW1GlIN91MtHxwW/TbLHOaVflndOOb
-         cYv4eSzVAzjIM6Ovwui94Nx5qzdRp/3P12X2juRUP+uI2p7hZWiE8+9UnmnZYCVfxToD
-         NCU0jyRBqiUM8I5W2KQk5KwDjD2fpYMnVPd0PxaAytefNZOUMcx94DnprDRJxebRRWjW
-         BZmD56gDBjnLoCr6ac2l3y33deDF0MVnRihMhMWWdhqX8Ux+mvDNvfUbxYUECajQ+XD3
-         ZFvo68rLHlNkRnq3ijLW+IktYFemP+s7bE3/879RK+Bnk/Ea71kXM7qXB8HKoPW/sdJw
-         pvcw==
-X-Gm-Message-State: APjAAAWNYKzY0NQGhpreNwAjBMI0dTKWQLEvOIQ33wxXqkGKwG1dOTt/
-        XzLuN1zMEPaKnPWOeBCuqwb79vQoxfw=
-X-Google-Smtp-Source: APXvYqxRDiGgBTKX4OvpK3DPoOUb/3Cu6lXEUEkKcn4C86RVnIxo9nRbAkWga96jF5qAdQmTIoHbSA==
-X-Received: by 2002:a7b:c251:: with SMTP id b17mr37174245wmj.143.1564575257149;
-        Wed, 31 Jul 2019 05:14:17 -0700 (PDT)
+        bh=BOF17YQQWl12xZ1QhY8MZFUcVRdvZruqxl9AoPVourc=;
+        b=FGRbBrQspYRnfmVicqPuciuCjCtdTSYqDts1q7yDtr6+GBb/FuYQqoS6lKS0g9mVpr
+         /kRQWnjjmzKaOE3De0MENN/KSp+Z9wXZBTnsdlsJqvQ93B4F62hex0adORGvT6AZ4ReD
+         eS7X8AYwryhUmsemhFW9/bdbUYBGna0iGZY4gOjKuc24to4j3WFOBEer0rKHm7z5i9v/
+         EpiP7tJuhtZWit7o7IM4Oe3wY4pqxHeVVc5jbhxq+PHsodI+HOvJT80N4+TtqgeUuwnD
+         DkzAesqI6ZiSO/qs22hEL13hsb7Y1f3OQ3SZD7p30o8BhPgjm1OPwp4EhYlOP+2I06n5
+         G3ng==
+X-Gm-Message-State: APjAAAVIoTTKc9GjD2SH8bPC6uDYqyqM8kdw62n8YsFEheNRvsmaudkY
+        XXa2+lgxulqtySY4RPwlph535uikNZc=
+X-Google-Smtp-Source: APXvYqw5Af6krHH2u8yfiDYnUo0PUK03ieMfQQIWsJDDVp5cTQO8+Z6dt5o79L+VaM5ofBQMkgnbuQ==
+X-Received: by 2002:adf:c803:: with SMTP id d3mr61363995wrh.130.1564575258197;
+        Wed, 31 Jul 2019 05:14:18 -0700 (PDT)
 Received: from glaroque-ThinkPad-T480.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id a64sm3613713wmf.1.2019.07.31.05.14.16
+        by smtp.gmail.com with ESMTPSA id a64sm3613713wmf.1.2019.07.31.05.14.17
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Wed, 31 Jul 2019 05:14:16 -0700 (PDT)
+        Wed, 31 Jul 2019 05:14:17 -0700 (PDT)
 From:   Guillaume La Roque <glaroque@baylibre.com>
 To:     daniel.lezcano@linaro.org, khilman@baylibre.com
 Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
         linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org
-Subject: [PATCH 4/6] arm64: dts: meson: sei510: Add minimal thermal zone
-Date:   Wed, 31 Jul 2019 14:14:07 +0200
-Message-Id: <20190731121409.17285-5-glaroque@baylibre.com>
+Subject: [PATCH 5/6] arm64: dts: amlogic: odroid-n2: add minimal thermal zone
+Date:   Wed, 31 Jul 2019 14:14:08 +0200
+Message-Id: <20190731121409.17285-6-glaroque@baylibre.com>
 X-Mailer: git-send-email 2.17.1
 In-Reply-To: <20190731121409.17285-1-glaroque@baylibre.com>
 References: <20190731121409.17285-1-glaroque@baylibre.com>
@@ -63,14 +63,14 @@ Add minimal thermal zone for DDR and CPU sensor
 
 Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
 ---
- arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts | 13 +++++++++++++
+ .../arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts | 13 +++++++++++++
  1 file changed, 13 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-index c7a87368850b..79ae514e238d 100644
---- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-+++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
-@@ -33,6 +33,19 @@
+diff --git a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+index 81780ffcc7f0..4bd8d6d0c972 100644
+--- a/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
++++ b/arch/arm64/boot/dts/amlogic/meson-g12b-odroid-n2.dts
+@@ -20,6 +20,19 @@
  		ethernet0 = &ethmac;
  	};
  
@@ -87,9 +87,9 @@ index c7a87368850b..79ae514e238d 100644
 +		};
 +	};
 +
- 	mono_dac: audio-codec-0 {
- 		compatible = "maxim,max98357a";
- 		#sound-dai-cells = <0>;
+ 	chosen {
+ 		stdout-path = "serial0:115200n8";
+ 	};
 -- 
 2.17.1
 
