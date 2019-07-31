@@ -2,68 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D3EF57BF26
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 13:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 125087BF8D
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 13:31:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727873AbfGaLTu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 07:19:50 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:39207 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727686AbfGaLTu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 07:19:50 -0400
-Received: by mail-wr1-f66.google.com with SMTP id x4so16083694wrt.6;
-        Wed, 31 Jul 2019 04:19:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=249Tk7pJLhkH6dKEkJPPjfgArbiJqypC5jRcZzcgcv4=;
-        b=siwyzn1hd+ANkqVt2/KMyUOMusnyUtFRj/sVQ2MzgddSDf/s9FP10LSZD5No+bxt7j
-         6A6lI9eyUHF0FNxkrBbCYKsmMTTK0ZTURSLpS+dHyU9/3mFaXX0qCIqNAN2MOZS586lB
-         Fc9Y6u57f1a7x1T8ODnRlsogjWsw/dP/mRDxRvuShoVICg6sMShCHc/3dHicvMGEYXvR
-         g7wC6LGtuoI5mmYhCbRRG7ghIZdP0GLxpFF0WpAiOe7fJV8G/cVXGNtcO9f880pLcTnN
-         f9Aguiu8TTNgYdSkioKoRh09PzIzWtO1rNd6A4Burj0PWTEsyU4cNMdQH8ggkijIO6G0
-         ceAg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references;
-        bh=249Tk7pJLhkH6dKEkJPPjfgArbiJqypC5jRcZzcgcv4=;
-        b=JEHGg2A1zp7p572OSGAFHRs9gA17ySUCNLQodM4XMVCgFxcQ5eJEcYirdFT6wENOVc
-         pIvzIWla6neM8FRvHfWJkGH2jsJSH/8lxZt477TUPTKGzxF64sRBaZaW+P59pt2K4kjL
-         U3zK99FsPerGQ8Eg7pIYox997QRexnQK2xJ0d4PzILo/8Urnsg4KJRthtm4yDhfglB9l
-         ry/qL7INwBQwsvyO0Vgb85DLMVJRM2bGeACm7zZcbUFAJ+cWWnddmxiBA4MsVUsKg/wR
-         2rsJhrPPyaDMkF26LHoCLkLaSw/Me9QQbajLbFyNSVfC5rYCswD50bmy+0iSDQyKQKx6
-         pIpA==
-X-Gm-Message-State: APjAAAVKNA2AtHxuRh5zojtK1jkJ+O5Xvx5Q7YsIGkNFzH+VkrEofmk8
-        dfbo0uh7KI54IOr11MlUME0=
-X-Google-Smtp-Source: APXvYqwZcDJk/YfJ8qxOLYiLjYl2vIfbhOAIwxf+wLhU1k2gxzwk63JhT2KvzW2jwNVGuFOt1vU4dQ==
-X-Received: by 2002:adf:fe4f:: with SMTP id m15mr59063488wrs.36.1564571987783;
-        Wed, 31 Jul 2019 04:19:47 -0700 (PDT)
-Received: from localhost.localdomain ([212.146.100.6])
-        by smtp.gmail.com with ESMTPSA id b8sm88035205wmh.46.2019.07.31.04.19.45
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 31 Jul 2019 04:19:47 -0700 (PDT)
-From:   Andra Danciu <andradanciu1997@gmail.com>
-To:     broonie@kernel.org
-Cc:     lgirdwood@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        perex@perex.cz, tiwai@suse.com, ckeepax@opensource.cirrus.com,
-        rf@opensource.wolfsonmicro.com, srinivas.kandagatla@linaro.org,
-        piotrs@opensource.cirrus.com, paul@crapouillou.net,
-        kmarinushkin@birdec.tech, anders.roxell@linaro.org,
-        jbrunet@baylibre.com, m.felsch@pengutronix.de, vkoul@kernel.org,
-        nh6z@nh6z.net, alsa-devel@alsa-project.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        daniel.baluta@nxp.com
-Subject: [PATCH 2/2] ASoC: codecs: Add uda1334 codec driver
-Date:   Wed, 31 Jul 2019 14:19:30 +0300
-Message-Id: <20190731111930.20230-3-andradanciu1997@gmail.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20190731111930.20230-1-andradanciu1997@gmail.com>
-References: <20190731111930.20230-1-andradanciu1997@gmail.com>
+        id S2387669AbfGaLaM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 07:30:12 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:35194 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387645AbfGaLaM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 07:30:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
+        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
+        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
+        List-Archive; bh=O2ja2OAzjmAC/V30ouL2p8aRfGo68j1FN0+acZgqLhM=; b=vnOIez9494UL
+        UvHu0YwbH56mb7AbjpaXo19mK1cXUBcg09WZ2lhXZffvcyhvVIYDjrv2uQ/Uo2Yu4DIw5BVkEgQag
+        mn5CKXQpWh3pxUq6JRP15LuNp2pw2AbqAhIt2nXv448dMzfgFOAckCdbe+xdpcL+PhubCm47DmQT1
+        9Eu3g=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hsmna-0001kr-F3; Wed, 31 Jul 2019 11:29:38 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id F03582742C99; Wed, 31 Jul 2019 12:29:37 +0100 (BST)
+From:   Mark Brown <broonie@kernel.org>
+To:     Andra Danciu <andradanciu1997@gmail.com>
+Cc:     alsa-devel@alsa-project.org, anders.roxell@linaro.org,
+        broonie@kernel.org, ckeepax@opensource.cirrus.com,
+        Daniel Baluta <daniel.baluta@nxp.com>, daniel.baluta@nxp.com,
+        devicetree@vger.kernel.org, jbrunet@baylibre.com,
+        kmarinushkin@birdec.tech, lgirdwood@gmail.com,
+        linux-kernel@vger.kernel.org, Mark Brown <broonie@kernel.org>,
+        mark.rutland@arm.com, m.felsch@pengutronix.de, nh6z@nh6z.net,
+        paul@crapouillou.net, perex@perex.cz, piotrs@opensource.cirrus.com,
+        rf@opensource.wolfsonmicro.com, robh+dt@kernel.org,
+        srinivas.kandagatla@linaro.org, tiwai@suse.com, vkoul@kernel.org
+Subject: Applied "ASoC: codecs: Add uda1334 codec driver" to the asoc tree
+In-Reply-To: <20190731111930.20230-3-andradanciu1997@gmail.com>
+X-Patchwork-Hint: ignore
+Message-Id: <20190731112937.F03582742C99@ypsilon.sirena.org.uk>
+Date:   Wed, 31 Jul 2019 12:29:37 +0100 (BST)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
+
+The patch
+
+   ASoC: codecs: Add uda1334 codec driver
+
+has been applied to the asoc tree at
+
+   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
+
+All being well this means that it will be integrated into the linux-next
+tree (usually sometime in the next 24 hours) and sent to Linus during
+the next merge window (or sooner if it is a bug fix), however if
+problems are discovered then the patch may be dropped or reverted.  
+
+You may get further e-mails resulting from automated or manual testing
+and review of the tree, please engage with people reporting problems and
+send followup patches addressing any issues that are reported if needed.
+
+If any updates are required or you are submitting further changes they
+should be sent as incremental updates against current git, existing
+patches will not be replaced.
+
+Please add any relevant lists and maintainers to the CCs when replying
+to this mail.
+
+Thanks,
+Mark
+
+From caa918ef14065b812737f3ee4ac349dcfff196e6 Mon Sep 17 00:00:00 2001
+From: Andra Danciu <andradanciu1997@gmail.com>
+Date: Wed, 31 Jul 2019 14:19:30 +0300
+Subject: [PATCH] ASoC: codecs: Add uda1334 codec driver
 
 The UDA1334BTS supports the I2S-bus data format with word lengths of up
 to 24 bits serial data format and has basic features such as de-emphasis
@@ -74,10 +91,12 @@ https://www.nxp.com/docs/en/data-sheet/UDA1334BTS.pdf
 
 Cc: Daniel Baluta <daniel.baluta@nxp.com>
 Signed-off-by: Andra Danciu <andradanciu1997@gmail.com>
+Link: https://lore.kernel.org/r/20190731111930.20230-3-andradanciu1997@gmail.com
+Signed-off-by: Mark Brown <broonie@kernel.org>
 ---
  sound/soc/codecs/Kconfig   |   9 ++
  sound/soc/codecs/Makefile  |   2 +
- sound/soc/codecs/uda1334.c | 295 +++++++++++++++++++++++++++++++++++++++++++++
+ sound/soc/codecs/uda1334.c | 295 +++++++++++++++++++++++++++++++++++++
  3 files changed, 306 insertions(+)
  create mode 100644 sound/soc/codecs/uda1334.c
 
@@ -430,5 +449,5 @@ index 000000000000..21ab8c5487ba
 +MODULE_ALIAS("platform:uda1334-codec");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.11.0
+2.20.1
 
