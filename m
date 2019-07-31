@@ -2,104 +2,160 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0079B7CE42
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:26:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 518577CE54
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:29:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730425AbfGaU00 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 16:26:26 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:58118 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728232AbfGaU00 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:26:26 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=Content-Transfer-Encoding:
-        Content-Type:MIME-Version:References:In-Reply-To:Message-ID:Subject:Cc:To:
-        From:Date:Sender:Reply-To:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=+a5BC2SMQTZyNnosj2+NVoaE/cuHtdCJLsTbfMI7CM8=; b=cd0EZcQkx68qz1mV7MZC2uM8w
-        P5cYOfzRqT4jAj1XeIa5cZwCKRpuEARrsXGCDxCq8sgpCmoEJ8VyMoB1ZGWIv3KkGkC8AIFMmG3zu
-        rlsmWUq3FLoiDUPohjPULvC4w5BLIzEmbwgXzpFT+L80k80QNHwktIQFstvBvlBiAagdTYKLP7kd6
-        mgvL4iD+sHmcbJxX4pbsqTYJFd9WsDq0iZww0LtIbpC3Rwlt6XCZ+VcKY2odTaplLXORSAqBC7jw+
-        ktYQ73C/T59Q53D5UHvn8GEbIRSj5leo+helE+/aJGkkXgpqWFvenf2ZTIwIz7KLtjIJb7x/x8Xk3
-        8x9hawtXg==;
-Received: from [191.33.152.89] (helo=coco.lan)
-        by bombadil.infradead.org with esmtpsa (Exim 4.92 #3 (Red Hat Linux))
-        id 1hsvB0-0001Q8-KC; Wed, 31 Jul 2019 20:26:22 +0000
-Date:   Wed, 31 Jul 2019 17:26:13 -0300
-From:   Mauro Carvalho Chehab <mchehab+samsung@kernel.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Jonathan Corbet <corbet@lwn.net>,
-        Linux Doc Mailing List <linux-doc@vger.kernel.org>,
-        Mauro Carvalho Chehab <mchehab@infradead.org>,
-        linux-kernel@vger.kernel.org, alsa-devel@alsa-project.org,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        samba-technical@lists.samba.org, devicetree@vger.kernel.org,
-        Liam Girdwood <lgirdwood@gmail.com>, linux-iio@vger.kernel.org,
-        Lars-Peter Clausen <lars@metafoo.de>,
-        Evgeniy Dushistov <dushistov@mail.ru>,
-        Jonathan Cameron <jic23@kernel.org>,
-        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
-        Steve French <sfrench@samba.org>,
-        Alexander Shishkin <alexander.shishkin@linux.intel.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Suzuki K Poulose <suzuki.poulose@arm.com>,
-        linux-cifs@vger.kernel.org, Dave Kleikamp <shaggy@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Evgeniy Polyakov <zbr@ioremap.net>,
-        Mathieu Poirier <mathieu.poirier@linaro.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        jfs-discussion@lists.sourceforge.net,
-        linux-arm-kernel@lists.infradead.org,
-        Hartmut Knaack <knaack.h@gmx.de>, linux-spi@vger.kernel.org
-Subject: Re: [PATCH 0/6] ReST conversion patches not applied yet
-Message-ID: <20190731172613.32d65ad8@coco.lan>
-In-Reply-To: <20190731202007.GI4369@sirena.org.uk>
-References: <cover.1564603513.git.mchehab+samsung@kernel.org>
-        <20190731141734.1fa9ce64@lwn.net>
-        <20190731202007.GI4369@sirena.org.uk>
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1730095AbfGaU3h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 16:29:37 -0400
+Received: from mail-wm1-f47.google.com ([209.85.128.47]:36587 "EHLO
+        mail-wm1-f47.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728822AbfGaU3h (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:29:37 -0400
+Received: by mail-wm1-f47.google.com with SMTP id g67so56890791wme.1
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 13:29:35 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=J6ze2YAQiFMQcX08HvMMVBLcUCeG0njel810asmfh74=;
+        b=A66eZ8wtZbNn3nsqtM7suQXkzBLl5zZ2enyjLbB1erWuNMARvWzGxmTkO0XuWMebS1
+         1rrgocfWUtim/FHLitbJqyMTvJ0vH53EyYZGOq5A9uOfBGnIdK+ns5iFkpdrIvzFE/QC
+         vxJa3zNO0ZGn3o+A4bMXPwxWZm0R+N6tX36UuDsxL8p3SP4d/HtT6X9glTrNCzjVG8ON
+         zvo5NCiPTKZckQcenmPz/xqmj0F14Oj4f9++YheC9PPG3vjIjfIgPCwNIYvSXbU4+ICV
+         iqtt2KtDC2yUoZpoaQ88sMaI5wbBYlCVgSG808PZBRXr8ba0mXzMpJg2PYtvjUbU1TbT
+         eyfA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=J6ze2YAQiFMQcX08HvMMVBLcUCeG0njel810asmfh74=;
+        b=hyBgi50VXbF6H9z57dO+1apkFsKbext7JvdR9kyp4PrEtLljnzyHN7pwJCZ7CHuWLx
+         WOZ1wCCtUmtFB4bF1FPzmIJ76dgAqRop8ejr5SMJYhz56Y/7dK+0l8ijJ06XwjQxvZNd
+         wndbm/4FWk81VXwnbS1XodXgkgb8iTmG0RaNnf2VXK8QX4s8iifpRyDLdg/brXKpUVi5
+         V6Ve+pgLme1IyPmeB3idR+9VUzxYehfr4i1igBEuAEyHXtpoj6E112Kl2aM3/SfzG7tp
+         Zt1qKspTlRsDKh13e3eMRdFrMZmn0qzLNLIQ/lcKqBF+QhfMbkUN1/MOztzmpHA6KcbJ
+         SHMA==
+X-Gm-Message-State: APjAAAWGEB4dQxy6kiOUJaYnzeD3md/p7pEqsBBbDcKuJqaV3nQ8iqw0
+        8+v1IuZoeJZeUpfebU9qf+Apjg==
+X-Google-Smtp-Source: APXvYqwlUrEDjH//rXtg1eVUY1CgRd0ZuDM1zafwJtzOhlHIQBzrAFHo/nx6y2h1NSrLpNDjGpkieQ==
+X-Received: by 2002:a05:600c:204c:: with SMTP id p12mr111863989wmg.121.1564604974820;
+        Wed, 31 Jul 2019 13:29:34 -0700 (PDT)
+Received: from localhost.localdomain (19.red-176-86-136.dynamicip.rima-tde.net. [176.86.136.19])
+        by smtp.gmail.com with ESMTPSA id i18sm91905591wrp.91.2019.07.31.13.29.32
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Wed, 31 Jul 2019 13:29:34 -0700 (PDT)
+From:   Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+To:     jorge.ramirez-ortiz@linaro.org, bjorn.andersson@linaro.org,
+        sboyd@kernel.org, david.brown@linaro.org, jassisinghbrar@gmail.com,
+        mark.rutland@arm.com, mturquette@baylibre.com, robh+dt@kernel.org,
+        will.deacon@arm.com, arnd@arndb.de, horms+renesas@verge.net.au,
+        heiko@sntech.de, sibis@codeaurora.org,
+        enric.balletbo@collabora.com, jagan@amarulasolutions.com,
+        olof@lixom.net
+Cc:     vkoul@kernel.org, niklas.cassel@linaro.org,
+        georgi.djakov@linaro.org, amit.kucheria@linaro.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
+        linux-arm-msm@vger.kernel.org, khasim.mohammed@linaro.org
+Subject: [PATCH v4 00/13] Support CPU frequency scaling on QCS404
+Date:   Wed, 31 Jul 2019 22:29:16 +0200
+Message-Id: <20190731202929.16443-1-jorge.ramirez-ortiz@linaro.org>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Em Wed, 31 Jul 2019 21:20:07 +0100
-Mark Brown <broonie@kernel.org> escreveu:
+The following patchset enables CPU frequency scaling support on the
+QCS404 (with dynamic voltage scaling).
 
-> On Wed, Jul 31, 2019 at 02:17:34PM -0600, Jonathan Corbet wrote:
-> > Mauro Carvalho Chehab <mchehab+samsung@kernel.org> wrote:  
-> 
-> > > As promised, this is the rebased version of the patches that were not applied
-> > > from the /26 patch series because you had merge conflicts.
-> > > 
-> > > They're all based on your docs-next branch, so should apply fine.
-> > > 
-> > > The first one fixes all but one error with a broken reference.
-> > > 
-> > > The only broken reference right now is due to a DT patch with was not
-> > > accepted (no idea why), but whose driver is upstream.  
-> 
-> > All but 5/6 applied, thanks.  
-> 
-> Oh, I still hadn't reviewed this version of the SPI stuff :(
+It is important to notice that this functionality will be superseded
+by Core Power Reduction (CPR), a more accurate form of AVS found on
+certain Qualcomm SoCs.
 
-It is basically the one sent on that /26 patch series, just rebased
-on the top of docs-next.
+Some of the changes required to support CPR do conflict with the
+configuration required for CPUFreq.
 
-> There were outstanding questions about where it was going to get moved
-> to but if I read the diff correctly it looks like it didn't actually get
-> moved in the end?
+In particular, the following commit for CPR - already merged - will
+need to be reverted in order to enable CPUFreq.
 
-Yeah, it doesn't have the move. My understanding from our discussions
-is that we didn't reach a conclusion.
+   Author: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
+   Date:   Thu Jul 25 12:41:36 2019 +0200
+       cpufreq: Add qcs404 to cpufreq-dt-platdev blacklist
+    
+Patch 8 "clk: qcom: hfpll: CLK_IGNORE_UNUSED" is a bit controversial;
+in this platform, this PLL provides the clock signal to a CPU
+core. But in others it might not.
 
-In any case, I can send a separate patch with the move part once
-we reach an agreement about what's the best way to proceed (or you
-can do it directly, if you prefer so).
+We opted for the minimal ammount of changes without affecting the
+default functionality: simply bypassing the COMMON_CLK_DISABLE_UNUSED
+framework and letting the firwmare chose whether to enable or disable
+the clock at boot. However maybe a DT property and marking the clock
+as critical would be more appropriate for this PLL. we'd appreciate the
+maintainer's input on this topic.
 
-Thanks,
-Mauro
+v2:
+   - dts: ms8916: apcs mux/divider: new bindings
+     (the driver can still support the old bindings)
+
+   - qcs404.dtsi
+     fix apcs-hfpll definition
+     fix cpu_opp_table definition
+
+   - GPLL0_AO_OUT operating frequency
+     define new alpha_pll_fixed_ops to limit the operating frequency
+
+v3:
+  - qcom-apcs-ipc-mailbox
+    replace goto to ease readability
+
+  - apcs-msm8916.c
+    rework patch to use of_clk_parent_fill
+
+  - hfpll.c
+    add relevant comments to the code
+
+  - qcs404.dtsi
+    add voltage scaling support
+
+v4:
+ - squash OPP definition and DVFS enablement in dts
+   (patches 10 and 13 in previous version)
+   
+ - qcom-apcs-ipc-mailbox
+   replace return condition for readability
+   
+ - answer one question on CLK_IGNORE_UNUSED in mailing list
+
+Jorge Ramirez-Ortiz, Niklas Cassel (13):
+  clk: qcom: gcc: limit GPLL0_AO_OUT operating frequency
+  mbox: qcom: add APCS child device for QCS404
+  mbox: qcom: replace integer with valid macro
+  dt-bindings: mailbox: qcom: Add clock-name optional property
+  clk: qcom: apcs-msm8916: get parent clock names from DT
+  clk: qcom: hfpll: get parent clock names from DT
+  clk: qcom: hfpll: register as clock provider
+  clk: qcom: hfpll: CLK_IGNORE_UNUSED
+  arm64: dts: qcom: msm8916: Add the clocks for the APCS mux/divider
+  arm64: dts: qcom: qcs404: Add HFPLL node
+  arm64: dts: qcom: qcs404: Add the clocks for APCS mux/divider
+  arm64: dts: qcom: qcs404: Add DVFS support
+  arm64: defconfig: Enable HFPLL
+
+ .../mailbox/qcom,apcs-kpss-global.txt         | 24 +++++++++--
+ arch/arm64/boot/dts/qcom/msm8916.dtsi         |  3 +-
+ arch/arm64/boot/dts/qcom/qcs404.dtsi          | 43 +++++++++++++++++++
+ arch/arm64/configs/defconfig                  |  1 +
+ drivers/clk/qcom/apcs-msm8916.c               | 23 ++++++++--
+ drivers/clk/qcom/clk-alpha-pll.c              |  8 ++++
+ drivers/clk/qcom/clk-alpha-pll.h              |  1 +
+ drivers/clk/qcom/gcc-qcs404.c                 |  2 +-
+ drivers/clk/qcom/hfpll.c                      | 25 ++++++++++-
+ drivers/mailbox/qcom-apcs-ipc-mailbox.c       | 11 +++--
+ 10 files changed, 128 insertions(+), 13 deletions(-)
+
+-- 
+2.22.0
+
