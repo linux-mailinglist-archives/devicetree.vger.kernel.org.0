@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 949857CE7C
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:30:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 825E97CE74
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 22:30:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730757AbfGaUaT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 16:30:19 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:52242 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730751AbfGaU3w (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:29:52 -0400
-Received: by mail-wm1-f65.google.com with SMTP id s3so62144218wms.2
-        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 13:29:51 -0700 (PDT)
+        id S1730739AbfGaU35 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 16:29:57 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:44946 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730780AbfGaU34 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 16:29:56 -0400
+Received: by mail-wr1-f66.google.com with SMTP id p17so71057785wrf.11
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 13:29:55 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=1eN7cVd81RI8zQ0Y9k2UD2x6CFiI8Tg5XhL9VySum/g=;
-        b=YV/R5BSMFAh570iRGRBD+cQsWsJMFzQ9gG4bGL/RfB32IWA8XWQeNI5O0Thy2ZYp3D
-         0R9pHt+GGiTfp0GJbd7ldKYk/cGLe4sDDFbAxLUywQ8JpeGf04r2+4aXtZvWA41ZNgOz
-         Ga687vg1J/lEgYqb2BK7TqMePNgA5tMCBoqMtIiqAwNmUj2veS08uPt9qYWEw79ufpms
-         AMsxqa5tQzIjPGAQZVtrImgh9ifM/d/sWBl+iDfNP3djoNjHT+3jg9gOeiztVzXdAMMR
-         oLeGbEuGiUBJv17NIERP3qXzZA1aIXI6F5E9+wMnlf8vPQuU5shUVedUGy5fClF3LwLm
-         V/+w==
+        bh=8QWLof1O3nhMlU7i5ZCEmG2qQ6v7dulP8/K2lF3I37g=;
+        b=HTbhzaNqyovbAnQuDvhDg8INCa+ZqREMmYKvP/IP7VZmoIHoXZy9+yTfOKfonIc8K1
+         lvYdcgIs6Y4hxtwJ3+zfFeWuoEgmdV8OJva7TSClx+z9y+u7rAMAX1P+PA62gJTihcbn
+         DDWniV2DuXQBfhuZHEDcys3J4Kw4MFc0nWUoESe3dK8/S6gqVZo115EJUyjCYcow+/Iq
+         Yp1v7weDG0Mfyec3xJW8ZHlOhDf1eE3vX98vvHoouFPb0R47RAY26b7S1sPUFDmM5NZ0
+         Ywi+FjkWEv9MTPfQyPAjCqeFX0ZA+ZTDNTKHNRK6EW4tilAx70huWyjwV2CO36weuwCw
+         tLfg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=1eN7cVd81RI8zQ0Y9k2UD2x6CFiI8Tg5XhL9VySum/g=;
-        b=Fu4f0WkMxMH4cig4pXbbu5Y79UI0nxnieq1LMXaXsqnfzvGRF28d16WoCsHLxvUd9L
-         scyV1IHvoGfu3WileL3Svm4h5Xkfv5s5BYDpwHTBkCKAFQOV6Eeht3zsRHTUAYqVPQjm
-         dDWMoUUbeM3mJr4MSTMm+D67xbw3rZWYI+GSQ2NjextkPn1oj2ggVK7GQXmkwtGQGE4m
-         1EIrk2nlWRrzhMDrbu4GlC0K2qhqJZ3AFCFqJ6jKwyzi8GuqqX0SbUwL98mkpVOsbq9L
-         cVLDaxVLn0by+P6IFelCrukaeZDc7YrrRf+8x00Zo/OjC0wRGBWzILquYtVjOw0IxKEo
-         wcuw==
-X-Gm-Message-State: APjAAAUFQSostRXL/cGW5j7wv4T+w7MC8cdxiX3AWPwmesxoUBhrn7Qr
-        KsxDCY/xxLvkbIHCg4nfJEiNhg==
-X-Google-Smtp-Source: APXvYqzNwzPOT8ikRcH8Z10UCUrFJdD9U7xIkEr2QVEDWI8Dja3e2Osr7FtBYRKIc8wpPjGJiXNCVg==
-X-Received: by 2002:a7b:c748:: with SMTP id w8mr37876401wmk.36.1564604991184;
-        Wed, 31 Jul 2019 13:29:51 -0700 (PDT)
+        bh=8QWLof1O3nhMlU7i5ZCEmG2qQ6v7dulP8/K2lF3I37g=;
+        b=sRM7IO26VIBvputjL1ufTjfSacm0rQBauVmqAaIBt0pIG0OfD3FfEV/0KvEn6zhVfF
+         IeK/u4LWlJEBxvQjRkiOKrAayponCcpoCs52g0r1MUa0RzCrfsjaz6Y7c3brXHjSQKeY
+         RVUwPkD2lmpl2c61wGOH3BpENJG4OMXLcSXIwdhO7AoXBvM96ZVXg6M8RCYs98tIacCM
+         MxW6d04oBqBHQmdyGED2CNMrxmpinw3mcmUX8PfcijJDDwHl7aqcSkZEqV4Zf0WcjP7X
+         SpkjtA2hnymwlyOxaO7DFQ6AKVkxhSGrDFFdTIt7KvFsfttlBqwqPhfvt/VWbFdAG81E
+         1j9A==
+X-Gm-Message-State: APjAAAVkyjYwrFN+KqIIoLeHQrZbtqbVj++4vCfpWKeXtC+++NDicm5c
+        0FngwWK6b0UgW9SOJj36fM9XIg==
+X-Google-Smtp-Source: APXvYqx3tHzOXqkGAVmST3DAPob5FWvERg2GNMlAJyDGVUw68lh98g0y9MMruSZQqYSjX2eMZe3jmQ==
+X-Received: by 2002:adf:e442:: with SMTP id t2mr1361399wrm.286.1564604994823;
+        Wed, 31 Jul 2019 13:29:54 -0700 (PDT)
 Received: from localhost.localdomain (19.red-176-86-136.dynamicip.rima-tde.net. [176.86.136.19])
-        by smtp.gmail.com with ESMTPSA id i18sm91905591wrp.91.2019.07.31.13.29.49
+        by smtp.gmail.com with ESMTPSA id i18sm91905591wrp.91.2019.07.31.13.29.52
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 31 Jul 2019 13:29:50 -0700 (PDT)
+        Wed, 31 Jul 2019 13:29:54 -0700 (PDT)
 From:   Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
 To:     jorge.ramirez-ortiz@linaro.org, bjorn.andersson@linaro.org,
         sboyd@kernel.org, david.brown@linaro.org, jassisinghbrar@gmail.com,
@@ -57,9 +57,9 @@ Cc:     vkoul@kernel.org, niklas.cassel@linaro.org,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
         linux-arm-kernel@lists.infradead.org, linux-clk@vger.kernel.org,
         linux-arm-msm@vger.kernel.org, khasim.mohammed@linaro.org
-Subject: [PATCH v4 09/13] arm64: dts: qcom: msm8916: Add the clocks for the APCS mux/divider
-Date:   Wed, 31 Jul 2019 22:29:25 +0200
-Message-Id: <20190731202929.16443-10-jorge.ramirez-ortiz@linaro.org>
+Subject: [PATCH v4 11/13] arm64: dts: qcom: qcs404: Add the clocks for APCS mux/divider
+Date:   Wed, 31 Jul 2019 22:29:27 +0200
+Message-Id: <20190731202929.16443-12-jorge.ramirez-ortiz@linaro.org>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190731202929.16443-1-jorge.ramirez-ortiz@linaro.org>
 References: <20190731202929.16443-1-jorge.ramirez-ortiz@linaro.org>
@@ -73,30 +73,28 @@ X-Mailing-List: devicetree@vger.kernel.org
 Specify the clocks that feed the APCS mux/divider instead of using
 default hardcoded values in the source code.
 
-The driver still supports the previous bindings; however with this
-update it we allow the msm8916 to access the parent clock names
-required by the driver operation using the device tree node.
-
+Co-developed-by: Niklas Cassel <niklas.cassel@linaro.org>
+Signed-off-by: Niklas Cassel <niklas.cassel@linaro.org>
 Signed-off-by: Jorge Ramirez-Ortiz <jorge.ramirez-ortiz@linaro.org>
 Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 ---
- arch/arm64/boot/dts/qcom/msm8916.dtsi | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ arch/arm64/boot/dts/qcom/qcs404.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
 
-diff --git a/arch/arm64/boot/dts/qcom/msm8916.dtsi b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-index 5ea9fb8f2f87..96dc7a12aa94 100644
---- a/arch/arm64/boot/dts/qcom/msm8916.dtsi
-+++ b/arch/arm64/boot/dts/qcom/msm8916.dtsi
-@@ -429,7 +429,8 @@
- 			compatible = "qcom,msm8916-apcs-kpss-global", "syscon";
- 			reg = <0xb011000 0x1000>;
+diff --git a/arch/arm64/boot/dts/qcom/qcs404.dtsi b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+index 3714099306b7..5b7d6258e9bf 100644
+--- a/arch/arm64/boot/dts/qcom/qcs404.dtsi
++++ b/arch/arm64/boot/dts/qcom/qcs404.dtsi
+@@ -857,6 +857,9 @@
+ 			compatible = "qcom,qcs404-apcs-apps-global", "syscon";
+ 			reg = <0x0b011000 0x1000>;
  			#mbox-cells = <1>;
--			clocks = <&a53pll>;
-+			clocks = <&gcc GPLL0_VOTE>, <&a53pll>;
++			clocks = <&gcc GCC_GPLL0_AO_OUT_MAIN>, <&apcs_hfpll>;
 +			clock-names = "aux", "pll";
- 			#clock-cells = <0>;
++			#clock-cells = <0>;
  		};
  
+ 		apcs_hfpll: clock-controller@b016000 {
 -- 
 2.22.0
 
