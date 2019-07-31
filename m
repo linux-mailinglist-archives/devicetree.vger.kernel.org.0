@@ -2,93 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 105137C757
-	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 17:48:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 807567C8C3
+	for <lists+devicetree@lfdr.de>; Wed, 31 Jul 2019 18:33:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726115AbfGaPsS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 11:48:18 -0400
-Received: from mx2.suse.de ([195.135.220.15]:50350 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1730264AbfGaPsM (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 11:48:12 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id 1CBAEB05E;
-        Wed, 31 Jul 2019 15:48:11 +0000 (UTC)
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     catalin.marinas@arm.com, hch@lst.de, wahrenst@gmx.net,
-        marc.zyngier@arm.com, Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-mm@kvack.org,
-        linux-kernel@vger.kernel.org
-Cc:     phill@raspberryi.org, f.fainelli@gmail.com, will@kernel.org,
-        robh+dt@kernel.org, eric@anholt.net, mbrugger@suse.com,
-        nsaenzjulienne@suse.de, akpm@linux-foundation.org,
-        frowand.list@gmail.com, m.szyprowski@samsung.com,
-        linux-rpi-kernel@lists.infradead.org
-Subject: [PATCH 8/8] mm: comment arm64's usage of 'enum zone_type'
-Date:   Wed, 31 Jul 2019 17:47:51 +0200
-Message-Id: <20190731154752.16557-9-nsaenzjulienne@suse.de>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190731154752.16557-1-nsaenzjulienne@suse.de>
-References: <20190731154752.16557-1-nsaenzjulienne@suse.de>
+        id S1728174AbfGaQdT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 12:33:19 -0400
+Received: from 2.mo173.mail-out.ovh.net ([178.33.251.49]:51343 "EHLO
+        2.mo173.mail-out.ovh.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728994AbfGaQdT (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 12:33:19 -0400
+Received: from player756.ha.ovh.net (unknown [10.108.35.12])
+        by mo173.mail-out.ovh.net (Postfix) with ESMTP id 8F580114654
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 18:33:17 +0200 (CEST)
+Received: from armadeus.com (lfbn-1-7591-179.w90-126.abo.wanadoo.fr [90.126.248.179])
+        (Authenticated sender: sebastien.szymanski@armadeus.com)
+        by player756.ha.ovh.net (Postfix) with ESMTPSA id B74A77ADA712;
+        Wed, 31 Jul 2019 16:32:56 +0000 (UTC)
+From:   =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+To:     Rui Miguel Silva <rmfrfs@gmail.com>,
+        Mauro Carvalho Chehab <mchehab@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Steve Longerbeam <slongerbeam@gmail.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Cc:     Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devel@driverdev.osuosl.org,
+        =?UTF-8?q?S=C3=A9bastien=20Szymanski?= 
+        <sebastien.szymanski@armadeus.com>
+Subject: [PATCH v3 1/3] ARM: dts: imx6ul: Add csi node
+Date:   Wed, 31 Jul 2019 18:32:57 +0200
+Message-Id: <20190731163257.32448-1-sebastien.szymanski@armadeus.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
+X-Ovh-Tracer-Id: 14036875616662541351
+X-VR-SPAMSTATE: OK
+X-VR-SPAMSCORE: -100
+X-VR-SPAMCAUSE: gggruggvucftvghtrhhoucdtuddrgeduvddrleehgddutdduucetufdoteggodetrfdotffvucfrrhhofhhilhgvmecuqfggjfdpvefjgfevmfevgfenuceurghilhhouhhtmecuhedttdenucesvcftvggtihhpihgvnhhtshculddquddttddm
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-arm64 uses both ZONE_DMA and ZONE_DMA32 for the same reasons x86_64
-does: peripherals with different DMA addressing limitations. This
-updates both ZONE_DMAs comments to inform about the usage.
+Add csi node for i.MX6UL SoC.
 
-Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-
+Reviewed-by: Fabio Estevam <festevam@gmail.com>
+Signed-off-by: Sébastien Szymanski <sebastien.szymanski@armadeus.com>
 ---
 
- include/linux/mmzone.h | 21 +++++++++++----------
- 1 file changed, 11 insertions(+), 10 deletions(-)
+Changes for v3:
+ - none
 
-diff --git a/include/linux/mmzone.h b/include/linux/mmzone.h
-index d77d717c620c..8fa6bcf72e7c 100644
---- a/include/linux/mmzone.h
-+++ b/include/linux/mmzone.h
-@@ -365,23 +365,24 @@ enum zone_type {
- 	 *
- 	 * Some examples
- 	 *
--	 * Architecture		Limit
--	 * ---------------------------
--	 * parisc, ia64, sparc	<4G
--	 * s390, powerpc	<2G
--	 * arm			Various
--	 * alpha		Unlimited or 0-16MB.
-+	 * Architecture			Limit
-+	 * ----------------------------------
-+	 * parisc, ia64, sparc, arm64	<4G
-+	 * s390, powerpc		<2G
-+	 * arm				Various
-+	 * alpha			Unlimited or 0-16MB.
- 	 *
- 	 * i386, x86_64 and multiple other arches
--	 * 			<16M.
-+	 *				<16M.
- 	 */
- 	ZONE_DMA,
- #endif
- #ifdef CONFIG_ZONE_DMA32
- 	/*
--	 * x86_64 needs two ZONE_DMAs because it supports devices that are
--	 * only able to do DMA to the lower 16M but also 32 bit devices that
--	 * can only do DMA areas below 4G.
-+	 * x86_64 and arm64 need two ZONE_DMAs because they support devices
-+	 * that are only able to DMA a fraction of the 32 bit addressable
-+	 * memory area, but also devices that are limited to that whole 32 bit
-+	 * area.
- 	 */
- 	ZONE_DMA32,
- #endif
+Changes for v2:
+ - only "mclk" clock is required now.
+
+ arch/arm/boot/dts/imx6ul.dtsi | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/arch/arm/boot/dts/imx6ul.dtsi b/arch/arm/boot/dts/imx6ul.dtsi
+index 81d4b4925127..56cfcf0e5084 100644
+--- a/arch/arm/boot/dts/imx6ul.dtsi
++++ b/arch/arm/boot/dts/imx6ul.dtsi
+@@ -957,6 +957,15 @@
+ 				};
+ 			};
+ 
++			csi: csi@21c4000 {
++				compatible = "fsl,imx6ul-csi", "fsl,imx7-csi";
++				reg = <0x021c4000 0x4000>;
++				interrupts = <GIC_SPI 7 IRQ_TYPE_LEVEL_HIGH>;
++				clocks = <&clks IMX6UL_CLK_CSI>;
++				clock-names = "mclk";
++				status = "disabled";
++			};
++
+ 			lcdif: lcdif@21c8000 {
+ 				compatible = "fsl,imx6ul-lcdif", "fsl,imx28-lcdif";
+ 				reg = <0x021c8000 0x4000>;
 -- 
-2.22.0
+2.21.0
 
