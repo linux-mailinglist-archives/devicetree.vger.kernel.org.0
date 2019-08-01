@@ -2,119 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9C4AE7D699
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 09:47:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 354DD7D6D0
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 10:00:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729661AbfHAHrL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 03:47:11 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:23516 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1728582AbfHAHrK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 03:47:10 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x717kCJb019571;
-        Thu, 1 Aug 2019 09:46:41 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
- date : message-id : mime-version : content-type; s=STMicroelectronics;
- bh=zzC3uAed5A7dYU4IrlXdMoYN39GbIOLsffQotC5fMd8=;
- b=M8BdWzYZnMQYkSfcoFZtJrebjGiRAYOh2MHKEsmXkyVFsjVuq9lBSG2yzBklvajlkV2a
- ZFLLZqIHDVjrXApEi2gMZMWtB9/zBV7qjghyg+hvp38JGV++V62oy2pDUEmduJY+Uqo0
- 4bkxk/JofI2kv2tnnvdHF2QCEZSADSuJuQlIkkldN4YzhY5rrh1Uctkek3gxVNOn4xko
- BHTMEdIwXU7fGJ0i64ogZEc4eogpmFqF3530IyGYbEVIdXKgIrZdRpLeqa4Isx3NjF9P
- iR0pClbF0o6DcZLtg0w8qK5yzcIsvNYN7J1RMKDjlT+fcbu4tmi30D2QE1FWPgLE7ArT Fw== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2u0c2yn1m2-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Thu, 01 Aug 2019 09:46:41 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id CCE1238;
-        Thu,  1 Aug 2019 07:46:38 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas24.st.com [10.75.90.94])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 939C5CEA35;
-        Thu,  1 Aug 2019 09:46:38 +0200 (CEST)
-Received: from SAFEX1HUBCAS21.st.com (10.75.90.45) by Safex1hubcas24.st.com
- (10.75.90.94) with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 1 Aug 2019
- 09:46:38 +0200
-Received: from localhost (10.201.23.16) by Webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Thu, 1 Aug 2019 09:46:38
- +0200
-From:   Olivier Moysan <olivier.moysan@st.com>
-To:     <linux-stm32@st-md-mailman.stormreply.com>,
-        <alexandre.torgue@st.com>, <robh@kernel.org>,
-        <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <olivier.moysan@st.com>
-Subject: [PATCH] ARM: dts: stm32: add DFSDM pins to stm32mp157c
-Date:   Thu, 1 Aug 2019 09:46:07 +0200
-Message-ID: <1564645567-13156-1-git-send-email-olivier.moysan@st.com>
-X-Mailer: git-send-email 2.7.4
-MIME-Version: 1.0
-Content-Type: text/plain
-X-Originating-IP: [10.201.23.16]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-01_04:,,
- signatures=0
+        id S1729902AbfHAH7s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 03:59:48 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:34895 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729465AbfHAH7s (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 03:59:48 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190801075946euoutp02bbbc70455ca2abd18e77057d8803c338~2vZk2VONN0055100551euoutp02g
+        for <devicetree@vger.kernel.org>; Thu,  1 Aug 2019 07:59:46 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190801075946euoutp02bbbc70455ca2abd18e77057d8803c338~2vZk2VONN0055100551euoutp02g
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1564646386;
+        bh=uCq2MLxSrtJv6mtG5c2BOzfNDZhr5+amxgb65dHy6RI=;
+        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
+        b=ds1V6aYMuCCKMDH/NjpiXFm8lRbBr1Bu1QfnNfxwT3VHpuf0dQFP0ufzFAYxj/BC+
+         YB0yBchnYdgT3sCT8yZLu5OD0eZYRcAlKm2VH33MiPpyuRVqFtkc9ipMedlitc7UXD
+         hhYvqQHSHAvgB6MB63YFPifkdMIRXm44W8NDW+Cc=
+Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190801075945eucas1p148c54c5c41f014ec4238e03d73209f3d~2vZkNXfay1104411044eucas1p1V;
+        Thu,  1 Aug 2019 07:59:45 +0000 (GMT)
+Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
+        eusmges2new.samsung.com (EUCPMTA) with SMTP id 88.6E.04377.1FB924D5; Thu,  1
+        Aug 2019 08:59:45 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190801075944eucas1p10f92b2f34172c4c8f85656983d335f64~2vZjRx4fk2237322373eucas1p15;
+        Thu,  1 Aug 2019 07:59:44 +0000 (GMT)
+Received: from eusmgms2.samsung.com (unknown [182.198.249.180]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190801075944eusmtrp24b52198052c3e8764b8e81666c050d5b~2vZjDhtfg0694206942eusmtrp2o;
+        Thu,  1 Aug 2019 07:59:44 +0000 (GMT)
+X-AuditID: cbfec7f4-12dff70000001119-b6-5d429bf12fd3
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms2.samsung.com (EUCPMTA) with SMTP id 48.83.04140.0FB924D5; Thu,  1
+        Aug 2019 08:59:44 +0100 (BST)
+Received: from AMDC3555 (unknown [106.120.51.67]) by eusmtip1.samsung.com
+        (KnoxPortal) with ESMTPA id
+        20190801075943eusmtip1f5f38bb917a2d719f295ac3ea68eae5d~2vZidr86Z1476114761eusmtip1I;
+        Thu,  1 Aug 2019 07:59:43 +0000 (GMT)
+Message-ID: <62557522be4924a01d3822d4734c30f2965c608b.camel@partner.samsung.com>
+Subject: Re: [RFC PATCH 09/11] devfreq: exynos-bus: Add interconnect
+ functionality to exynos-bus
+From:   Artur =?UTF-8?Q?=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>
+To:     Georgi Djakov <georgi.djakov@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc:     krzk@kernel.org, cw00.choi@samsung.com, myungjoo.ham@samsung.com,
+        inki.dae@samsung.com, sw0312.kim@samsung.com,
+        m.szyprowski@samsung.com,
+        =?UTF-8?Q?Bart=C5=82omiej_?= =?UTF-8?Q?=C5=BBo=C5=82nierkiewicz?= 
+        <b.zolnierkie@samsung.com>
+Date:   Thu, 01 Aug 2019 09:59:42 +0200
+In-Reply-To: <6e8b2081-2fb3-9ab8-37d1-8b5fe5fd8e11@linaro.org>
+X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrMKsWRmVeSWpSXmKPExsWy7djP87ofZzvFGhz+KGqxccZ6VovrX56z
+        Wsw/co7V4srX92wW0/duYrOYdH8Ci8X58xvYLTY9vsZqcXnXHDaLz71HGC1mnN/HZLH2yF12
+        i9uNK9gsZkx+yebA57FpVSebx51re9g87ncfZ/LYvKTeo2/LKkaPz5vkAtiiuGxSUnMyy1KL
+        9O0SuDJ+H3rJWLBBpuLKcs8Gxh7xLkZODgkBE4mX23cwdTFycQgJrGCU2LvnNwuE84VRYsq3
+        VewQzmdGifam92xdjBxgLXdb+CHiyxklTv6fDlX0jFHiyp5TzCBzeQUCJC5dfcgKYgsLJEks
+        eHQRzGYTcJf49/wKK0iDiMAnRomzS2YzgjjMAh8ZJRp+tYN1swioSizt280EYnMK2En8vrWU
+        DeJaHYm3p/pYQM7gFRCU+LtDGCTMLCAv0bx1NjPIHAmBe+wSK6d0QNW7SPRtXMEOYQtLvDq+
+        BcqWkfi/cz4ThF0s8XTnfVaI5gZGiU3LjjBDJKwlDh8HOZsDaIOmxPpd+hBhR4m3fUeZIUHB
+        J3HjrSDEDXwSk7ZNhwrzSnS0CUGYWhILfkdDNEpINK2+BjXbQ6Ll0XP2CYyKsxB+mYXkl1kI
+        WxcwMq9iFE8tLc5NTy02ykst1ytOzC0uzUvXS87P3cQITFqn/x3/soNx15+kQ4wCHIxKPLwK
+        PY6xQqyJZcWVuYcYJTiYlUR4F4vbxwrxpiRWVqUW5ccXleakFh9ilOZgURLnrWZ4EC0kkJ5Y
+        kpqdmlqQWgSTZeLglGpgnLni6xnpLQGJwfNuRr/glW86JHIzhrupyPahbfujSf1e9SdyHi/q
+        eln+MmHF7w+ykyX/tOTYGFquef277K+5/9Q6/+DLhg7t7sq6X3r+JSos7TXcfKRfbq+zj9nD
+        m2V7Zn1MiHzuLdvymOvQidfta6fpCNRq8TblWbDf+eN4m6Pt0G9+3iwtJZbijERDLeai4kQA
+        C54i6lYDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJIsWRmVeSWpSXmKPExsVy+t/xu7ofZjvFGvT1iVpsnLGe1eL6l+es
+        FvOPnGO1uPL1PZvF9L2b2Cwm3Z/AYnH+/AZ2i02Pr7FaXN41h83ic+8RRosZ5/cxWaw9cpfd
+        4nbjCjaLGZNfsjnweWxa1cnmcefaHjaP+93HmTw2L6n36NuyitHj8ya5ALYoPZui/NKSVIWM
+        /OISW6VoQwsjPUNLCz0jE0s9Q2PzWCsjUyV9O5uU1JzMstQifbsEvYzfh14yFmyQqbiy3LOB
+        sUe8i5GDQ0LAROJuC38XIxeHkMBSRonvB9cydzFyAsUlJD6uv8EKYQtL/LnWxQZiCwk8YZTY
+        c50HxOYVCJC4dPUhWI2wQJLEgkcXwWw2AXeJf8+vsIIMFRH4zChxeNEnFpAEM4hzY1kOiM0i
+        oCqxtG83E4jNKWAn8fvWUjaIK1qZJK5N2ssK0aAp0br9NzvEFToSb0/1sYBczSsgKPF3hzBE
+        ibxE89bZzBMYBWch6ZiFUDULSdUCRuZVjCKppcW56bnFRnrFibnFpXnpesn5uZsYgdG47djP
+        LTsYu94FH2IU4GBU4uE90ekYK8SaWFZcmXuIUYKDWUmEd7G4fawQb0piZVVqUX58UWlOavEh
+        RlOgfyYyS4km5wMTRV5JvKGpobmFpaG5sbmxmYWSOG+HwMEYIYH0xJLU7NTUgtQimD4mDk6p
+        Bsb1q25rmmglLj/orXzOP+9HfIvQPAbDC5Vb7t53ZZXVUI1ecvfDntMdte1PzX9+8IlLKvud
+        sfBB5pYVUd8eq69unzHLuUn4/b1jbGcE//8O2yWb7rn54uRbdWaZvhNE3h60UPN/vsYs7ubD
+        2Defz29q8Fx288Sp2W/Yty4zWXwxbp+V6RqdA18TlViKMxINtZiLihMBIkRDMdwCAAA=
+X-CMS-MailID: 20190801075944eucas1p10f92b2f34172c4c8f85656983d335f64
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b
+References: <20190723122016.30279-1-a.swigon@partner.samsung.com>
+        <CGME20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b@eucas1p2.samsung.com>
+        <20190723122016.30279-10-a.swigon@partner.samsung.com>
+        <6e8b2081-2fb3-9ab8-37d1-8b5fe5fd8e11@linaro.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add DFSDM pins to stm32mp157c.
+Hi Georgi,
 
-Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
----
- arch/arm/boot/dts/stm32mp157-pinctrl.dtsi | 39 +++++++++++++++++++++++++++++++
- 1 file changed, 39 insertions(+)
+On Fri, 2019-07-26 at 11:05 +0300, Georgi Djakov wrote:
+> Hi Artur,
+> 
+> On 7/23/19 15:20, Artur Świgoń wrote:
+> > This patch adds interconnect functionality to the exynos-bus devfreq
+> > driver.
+> > 
+> > The SoC topology is a graph (or, more specifically, a tree) and most of its
+> > edges are taken from the devfreq parent-child hierarchy (cf.
+> > Documentation/devicetree/bindings/devfreq/exynos-bus.txt). The previous
+> > patch adds missing edges to the DT (under the name 'parent'). Due to
+> > unspecified relative probing order, -EPROBE_DEFER may be propagated to
+> > guarantee that a child is probed before its parent.
+> > 
+> > Each bus is now an interconnect provider and an interconnect node as well
+> > (cf. Documentation/interconnect/interconnect.rst), i.e. every bus registers
+> > itself as a node. Node IDs are not hardcoded but rather assigned at
+> > runtime, in probing order (subject to the above-mentioned exception
+> > regarding relative order). This approach allows for using this driver with
+> > various Exynos SoCs.
+> 
+> I am not familiar with the Exynos bus topology, but it seems to me that it's not
+> represented correctly. An interconnect provider with just a single node (port)
+> is odd. I would expect that each provider consists of multiple master and slave
+> nodes. This data would be used by a framework to understand what are the links
+> and how the traffic flows between the IP blocks and through which buses.
 
-diff --git a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
-index 9eaec9bf8cb8..f96a928cbc49 100644
---- a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
-+++ b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
-@@ -230,6 +230,45 @@
- 				};
- 			};
- 
-+			dfsdm_clkout_pins_a: dfsdm-clkout-pins-0 {
-+				pins {
-+					pinmux = <STM32_PINMUX('B', 13, AF3)>; /* DFSDM_CKOUT */
-+					bias-disable;
-+					drive-push-pull;
-+					slew-rate = <0>;
-+				};
-+			};
-+
-+			dfsdm_clkout_sleep_pins_a: dfsdm-clkout-sleep-pins-0 {
-+				pins {
-+					pinmux = <STM32_PINMUX('B', 13, ANALOG)>; /* DFSDM_CKOUT */
-+				};
-+			};
-+
-+			dfsdm_data1_pins_a: dfsdm-data1-pins-0 {
-+				pins {
-+					pinmux = <STM32_PINMUX('C', 3, AF3)>; /* DFSDM_DATA1 */
-+				};
-+			};
-+
-+			dfsdm_data1_sleep_pins_a: dfsdm-data1-sleep-pins-0 {
-+				pins {
-+					pinmux = <STM32_PINMUX('C', 3, ANALOG)>; /* DFSDM_DATA1 */
-+				};
-+			};
-+
-+			dfsdm_data3_pins_a: dfsdm-data3-pins-0 {
-+				pins {
-+					pinmux = <STM32_PINMUX('F', 13, AF6)>; /* DFSDM_DATA3 */
-+				};
-+			};
-+
-+			dfsdm_data3_sleep_pins_a: dfsdm-data3-sleep-pins-0 {
-+				pins {
-+					pinmux = <STM32_PINMUX('F', 13, ANALOG)>; /* DFSDM_DATA3 */
-+				};
-+			};
-+
- 			ethernet0_rgmii_pins_a: rgmii-0 {
- 				pins1 {
- 					pinmux = <STM32_PINMUX('G', 5, AF11)>, /* ETH_RGMII_CLK125 */
+To summarize the exynos-bus topology[1] used by the devfreq driver: There are
+many data buses for data transfer in Samsung Exynos SoC. Every bus has its own
+clock. Buses often share power lines, in which case one of the buses on the
+power line is referred to as 'parent' (or as 'devfreq' in the DT). In the
+particular case of Exynos4412[1][2], the topology can be expressed as follows:
+
+bus_dmc
+-- bus_acp
+-- bus_c2c
+
+bus_leftbus
+-- bus_rightbus
+-- bus_display
+-- bus_fsys
+-- bus_peri
+-- bus_mfc
+
+Where bus_dmc and bus_leftbus probably could be referred to as masters, and the
+following indented nodes as slaves. Patch 08/11 of this RFC additionally adds
+the following to the DT:
+
+bus_dmc
+-- bus_leftbus
+
+Which makes the topology a valid tree.
+
+The exynos-bus concept in devfreq[3] is designed in such a way that every bus is
+probed separately as a platform device, and is a largely independent entity.
+This RFC proposes an extension to the existing devfreq driver that basically
+provides a simple QoS to ensure minimum clock frequency for selected buses
+(possibly overriding devfreq governor calculations) using the interconnect
+framework.
+
+The hierarchy is modelled in such a way that every bus is an interconnect node.
+On the other hand, what is considered an interconnect provider here is quite
+arbitrary, but for the reasons mentioned in the above paragraph, this RFC
+assumes that every bus is a provider of itself as a node. Using an alternative
+singleton provider approach was deemed more complicated since the 'dev' field in
+'struct icc_provider' has to be set to something meaningful and we are tied to
+the 'samsung,exynos-bus' compatible string in the driver (and multiple instances
+of exynos-bus probed in indeterminate relative order).
+
+I'm looking forward to hearing any additional thoughts you may have on this
+topic.
+
+Best regards,
 -- 
-2.7.4
+Artur Świgoń
+Samsung R&D Institute Poland
+Samsung Electronics
+
+[1] Documentation/devicetree/bindings/devfreq/exynos-bus.txt
+[2]
+arch/arm/boot/dts/exynos4412-odroid-common.dtsi
+[3] drivers/devfreq/exynos-bus.c
+(subject of this patch)
+
 
