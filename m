@@ -2,107 +2,128 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 649347DC3C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 15:10:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A3BE37DCEA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 15:56:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731642AbfHANKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 09:10:49 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:54638 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731637AbfHANKs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 09:10:48 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=4qLtngAUhWvMnevBCxBv/fEsOgw3HSy6g6y7VvFe9/M=; b=Q5jVLcLmFtbi
-        NOQtN8ynuRsOoNuVlWGVOvJjbk65tLp4obfBX9m/IH5XZF2L7A3Iz/LtnuPc4VWQa4Iixv96gPK/a
-        bD+HJaJ92pFR9zI3BcQ8c4gkrd3SKCeqwMhPRtU2B86t1j3/rUww1rOSKpaOOu60wJIdwd+J2qc3M
-        jENmY=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1htAqu-0004iq-Mg; Thu, 01 Aug 2019 13:10:40 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 31DD02742D42; Thu,  1 Aug 2019 14:10:40 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Jerome Brunet <jbrunet@baylibre.com>
-Cc:     alsa-devel@alsa-project.org, devicetree@vger.kernel.org,
-        Kevin Hilman <khilman@baylibre.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Mark Brown <broonie@kernel.org>
-Subject: Applied "ASoC: codec2codec: fill some of the runtime stream parameters" to the asoc tree
-In-Reply-To: <20190725165949.29699-7-jbrunet@baylibre.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190801131040.31DD02742D42@ypsilon.sirena.org.uk>
-Date:   Thu,  1 Aug 2019 14:10:40 +0100 (BST)
+        id S1730536AbfHAN4u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 09:56:50 -0400
+Received: from mail-wm1-f45.google.com ([209.85.128.45]:35304 "EHLO
+        mail-wm1-f45.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727537AbfHAN4u (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 09:56:50 -0400
+Received: by mail-wm1-f45.google.com with SMTP id l2so63261626wmg.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 06:56:49 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lIm81eDhukyw6fbCl/+3h+QPFrHXYcRhnM9vCZm0FBU=;
+        b=13O0vL5DX2cs4dd++hzfRHv1CPifo+nEBZIfEK/xPAm8LBOTVk9bmKI2ZMbRTH1Qny
+         gGc5Etb+oieTHOJzEcqzxWDGO6QQqX8ZqANnbyLDBv2TvisCVoaDgG+Sk1kHTmon4u7p
+         23GDtno64u2hTvVK4IASbns2pDTl99MQ9lBi+m6sVEXUkUpyjOdGM2BNfLvVc5T/fqbP
+         9RYMi1RBDw8zjzxwomGDcNw8yXfmP3fnwqKgmxCfWTSa6c7Ru6292ZJe91J3mLvVO1do
+         1LdLqXyr4MpjfSurQz0trb5nuP2J9ZMxqd5XwmuOpZpWwQRuERRQeyL/kh7Wen7RuCof
+         AwZA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=lIm81eDhukyw6fbCl/+3h+QPFrHXYcRhnM9vCZm0FBU=;
+        b=DQrcheL5gB+jKXvAKIYmmR/Xe+s0IJKlGtN/oP2GjZseiLPF+gvMLB1878AfTHSiwm
+         Z11EEBldodymxtsyW3kwN2i1wZLIOv2BifYiisjd/6qkAT3Fj2ccTNbWJxBZp+8HkTbm
+         xOTnqIm+yWQFB9QnjbgyxOsr4NUjCuPReQINLBE5uUD/X3IYLMmW68/Rd6YPW7hwsHTa
+         rjZTr763jh4qUmpsJ6A3nx1KaI68iNCcUHvlhIW4kYMMqap1HDmQ24jxroq6lb5OJwxe
+         s9uiI40vQlr44KqioGvXMtZ/BGThIsMFskQenZml35C/afITuXMEUsK6HiRy31jlYnAp
+         r28Q==
+X-Gm-Message-State: APjAAAWj/Eww3Yg6DiUsp8t2vHniAnieFCHgc7ir0/akpZf+Hl/vguP8
+        +PYHjnzhTmxAn5Wj5M6E0UFBkA==
+X-Google-Smtp-Source: APXvYqz463HiGivdjA4sUX+UrCKICPNW2Wd+t3590qMCqsuXMkM9GjxeAukrBa4PObzWj+jGQXbYjg==
+X-Received: by 2002:a1c:ef0c:: with SMTP id n12mr111159574wmh.132.1564667808166;
+        Thu, 01 Aug 2019 06:56:48 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id u6sm69659952wml.9.2019.08.01.06.56.47
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 01 Aug 2019 06:56:47 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     robh+dt@kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        jassisinghbrar@gmail.com, kishon@ti.com, p.zabel@pengutronix.de
+Subject: [RFC 0/9] dt-bindings: first tentative of conversion to yaml format
+Date:   Thu,  1 Aug 2019 15:56:35 +0200
+Message-Id: <20190801135644.12843-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+This is a first tentative to convert some of the simplest Amlogic
+dt-bindings to the yaml format.
 
-   ASoC: codec2codec: fill some of the runtime stream parameters
+All have been tested using :
+$ make ARCH=arm64 dtbs_check
 
-has been applied to the asoc tree at
+Issues with the amlogic arm64 DTs has already been identified thanks
+to the validation scripts. The DT fixes will be pushed once these yaml
+bindings are acked.
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
+Neil Armstrong (9):
+  dt-bindings: mailbox: meson-mhu: convert to yaml
+  dt-bindings: rng: amlogic,meson-rng: convert to yaml
+  dt-bindings: spi: meson: convert to yaml
+  dt-bindings: reset: amlogic,meson-reset: convert to yaml
+  dt-bindings: arm: amlogic: amlogic,meson-gx-ao-secure: convert to yaml
+  dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml
+  dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml
+  dt-bindings: serial: meson-uart: convert to yaml
+  dt-bindings: watchdog: meson-gxbb-wdt: convert to yaml
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+ .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 -------
+ .../amlogic/amlogic,meson-gx-ao-secure.yaml   | 42 +++++++++++
+ .../devicetree/bindings/mailbox/meson-mhu.txt | 34 ---------
+ .../bindings/mailbox/meson-mhu.yaml           | 53 +++++++++++++
+ .../bindings/phy/meson-g12a-usb2-phy.txt      | 22 ------
+ .../bindings/phy/meson-g12a-usb2-phy.yaml     | 67 +++++++++++++++++
+ .../bindings/phy/meson-g12a-usb3-pcie-phy.txt | 22 ------
+ .../phy/meson-g12a-usb3-pcie-phy.yaml         | 61 +++++++++++++++
+ .../bindings/reset/amlogic,meson-reset.txt    | 19 -----
+ .../bindings/reset/amlogic,meson-reset.yaml   | 40 ++++++++++
+ .../bindings/rng/amlogic,meson-rng.txt        | 21 ------
+ .../bindings/rng/amlogic,meson-rng.yaml       | 37 +++++++++
+ .../bindings/serial/amlogic,meson-uart.txt    | 38 ----------
+ .../bindings/serial/amlogic,meson-uart.yaml   | 75 +++++++++++++++++++
+ .../bindings/spi/amlogic,meson-gx-spicc.yaml  | 74 ++++++++++++++++++
+ .../bindings/spi/amlogic,meson6-spifc.yaml    | 57 ++++++++++++++
+ .../devicetree/bindings/spi/spi-meson.txt     | 55 --------------
+ .../bindings/watchdog/meson-gxbb-wdt.txt      | 16 ----
+ .../bindings/watchdog/meson-gxbb-wdt.yaml     | 37 +++++++++
+ 19 files changed, 543 insertions(+), 255 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.txt
+ create mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+ create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+ delete mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
+ create mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+ delete mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-meson.txt
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.yaml
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
-
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
-
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
-
-Thanks,
-Mark
-
-From 9de98628c895d15427138073986eab1e3ce39cb4 Mon Sep 17 00:00:00 2001
-From: Jerome Brunet <jbrunet@baylibre.com>
-Date: Thu, 25 Jul 2019 18:59:49 +0200
-Subject: [PATCH] ASoC: codec2codec: fill some of the runtime stream parameters
-
-Set the information provided struct snd_soc_pcm_stream in the
-struct snd_pcm_runtime of the codec to codec link.
-
-Signed-off-by: Jerome Brunet <jbrunet@baylibre.com>
-Link: https://lore.kernel.org/r/20190725165949.29699-7-jbrunet@baylibre.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- sound/soc/soc-dapm.c | 5 +++++
- 1 file changed, 5 insertions(+)
-
-diff --git a/sound/soc/soc-dapm.c b/sound/soc/soc-dapm.c
-index 1c953a1b46ce..e16838e1bda2 100644
---- a/sound/soc/soc-dapm.c
-+++ b/sound/soc/soc-dapm.c
-@@ -3874,6 +3874,11 @@ snd_soc_dai_link_event_pre_pmu(struct snd_soc_dapm_widget *w,
- 		dapm_update_dai_unlocked(substream, params, sink);
- 	}
- 
-+	runtime->format = params_format(params);
-+	runtime->subformat = params_subformat(params);
-+	runtime->channels = params_channels(params);
-+	runtime->rate = params_rate(params);
-+
- out:
- 	if (ret < 0)
- 		kfree(runtime);
 -- 
-2.20.1
+2.22.0
 
