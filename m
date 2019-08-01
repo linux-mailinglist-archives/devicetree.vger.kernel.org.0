@@ -2,98 +2,151 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB15C7D84E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 11:14:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EC337D854
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 11:17:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729953AbfHAJO1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 05:14:27 -0400
-Received: from kirsty.vergenet.net ([202.4.237.240]:59676 "EHLO
-        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726799AbfHAJO1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 05:14:27 -0400
-Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
-        by kirsty.vergenet.net (Postfix) with ESMTPA id CD9EB25AD84;
-        Thu,  1 Aug 2019 19:14:24 +1000 (AEST)
-Received: by reginn.horms.nl (Postfix, from userid 7100)
-        id CB94594035F; Thu,  1 Aug 2019 11:14:22 +0200 (CEST)
-Date:   Thu, 1 Aug 2019 11:14:22 +0200
-From:   Simon Horman <horms@verge.net.au>
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Geert Uytterhoeven <geert@linux-m68k.org>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        USB list <linux-usb@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Niklas =?utf-8?Q?S=C3=B6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-Subject: Re: [PATCH v2 2/2] dt-bindings: usb: renesas_gen3: Rename bindings
- documentation file
-Message-ID: <20190801091421.4gf3xggg3eko6wql@verge.net.au>
-References: <20190703083514.32385-1-horms+renesas@verge.net.au>
- <20190703083514.32385-3-horms+renesas@verge.net.au>
- <CAMuHMdVgx9N0yeeei5qcg1yz2WEdDf0gQ6GcwUOAz7u09S_D4A@mail.gmail.com>
- <20190711080302.qeotxueyvlr7pvhe@verge.net.au>
- <20190725090946.GA3311@kroah.com>
- <TYAPR01MB4544F226C06730C5611EB025D8C00@TYAPR01MB4544.jpnprd01.prod.outlook.com>
- <20190729081440.ftgchumfoszlht4q@verge.net.au>
- <TYAPR01MB4544A8358DE51BFB1193287CD8DD0@TYAPR01MB4544.jpnprd01.prod.outlook.com>
+        id S1729924AbfHAJRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 05:17:37 -0400
+Received: from twhmllg4.macronix.com ([211.75.127.132]:55587 "EHLO
+        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729792AbfHAJRh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 05:17:37 -0400
+Received: from twhfmnt1.mxic.com.tw (twhfm1p2.macronix.com [172.17.20.92])
+        by TWHMLLG4.macronix.com with ESMTP id x719HTPb014187;
+        Thu, 1 Aug 2019 17:17:29 +0800 (GMT-8)
+        (envelope-from masonccyang@mxic.com.tw)
+Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
+        by Forcepoint Email with ESMTP id E762F2D1C15A92C1395E;
+        Thu,  1 Aug 2019 17:17:29 +0800 (CST)
+In-Reply-To: <20190801075725.4f23e0f5@collabora.com>
+References: <1564631710-30276-1-git-send-email-masonccyang@mxic.com.tw> <1564631710-30276-3-git-send-email-masonccyang@mxic.com.tw> <20190801075725.4f23e0f5@collabora.com>
+To:     "Boris Brezillon" <boris.brezillon@collabora.com>
+Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
+        christophe.kerello@st.com, computersforpeace@gmail.com,
+        devicetree@vger.kernel.org, dwmw2@infradead.org,
+        juliensu@mxic.com.tw, lee.jones@linaro.org, liang.yang@amlogic.com,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        marek.vasut@gmail.com, mark.rutland@arm.com,
+        miquel.raynal@bootlin.com, paul@crapouillou.net,
+        paul.burton@mips.com, richard@nod.at, robh+dt@kernel.org,
+        stefan@agner.ch, vigneshr@ti.com
+Subject: Re: [PATCH v6 2/2] dt-bindings: mtd: Document Macronix raw NAND controller
+ bindings
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <TYAPR01MB4544A8358DE51BFB1193287CD8DD0@TYAPR01MB4544.jpnprd01.prod.outlook.com>
-Organisation: Horms Solutions BV
-User-Agent: NeoMutt/20170113 (1.7.2)
+X-KeepSent: 42C4D3EC:9549E8DC-48258449:003273A5;
+ type=4; name=$KeepSent
+X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
+Message-ID: <OF42C4D3EC.9549E8DC-ON48258449.003273A5-48258449.00330A06@mxic.com.tw>
+From:   masonccyang@mxic.com.tw
+Date:   Thu, 1 Aug 2019 17:17:29 +0800
+X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
+ 2019/08/01 PM 05:17:29,
+        Serialize complete at 2019/08/01 PM 05:17:29
+Content-Type: text/plain; charset="US-ASCII"
+X-MAIL: TWHMLLG4.macronix.com x719HTPb014187
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 08:25:24AM +0000, Yoshihiro Shimoda wrote:
-> Hi Simon-san,
-> 
-> > From: Simon Horman, Sent: Monday, July 29, 2019 5:15 PM
-> <snip>
-> > > > > > Unfortunately the previous version has already made it into usb-next
-> > > > > > 23c46801d14cb647 dt-bindings: usb: renesas_gen3: Rename bindings
-> > > > > > documentation file
-> > > > >
-> > > > > Ok, I guess we should go with that version.
-> > > >
-> > > > So can you resend this series based on 5.3-rc1 so I know what to apply?
-> > >
-> > > Since your usb-testing branch already has it which is merged from Felipe's usb-next branch,
-> > > I don't think Simon has to resend this series.
-> > >
-> > > https://www.spinics.net/lists/linux-usb/msg182103.html
-> > 
-> > Thanks and sorry for the confusion.
-> > 
-> > In v5.2-rc1 we had:
-> > 
-> >   devicetree/bindings/usb/renesas_usb3.txt
-> >   devicetree/bindings/usb/renesas_usbhs.txt
-> > 
-> > 
-> > In v5.3-rc1 we have:
-> > 
-> >   devicetree/bindings/usb/renesas,usb3.txt
-> >   devicetree/bindings/usb/renesas,usbhs.txt
-> > 
-> > Which reflects v1 of this patchset. And I think this is an improvement.
-> > 
-> > Shimoda-san, can you let me know if you would like me to rebase v2
-> > on v5.3-rc1? That would would give us:
-> > 
-> >   devicetree/bindings/usb/renesas,usb3-peri.txt
-> >   devicetree/bindings/usb/renesas,usbhs.txt		[unchanged]
-> 
-> Thank you for the detail. I would like you to rebase v2 like that, if possible.
 
-Thanks, I have posted this as:
+Hi Boris,
 
-[PATCH] dt-bindings: usb: renesas_gen3: Rename bindings documentation file to reflect IP block
+> On Thu,  1 Aug 2019 11:55:10 +0800
+> Mason Yang <masonccyang@mxic.com.tw> wrote:
+> 
+> > Document the bindings used by the Macronix raw NAND controller.
+> > 
+> > Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+> > ---
+> >  Documentation/devicetree/bindings/mtd/mxic-nand.txt | 19 
++++++++++++++++++++
+> >  1 file changed, 19 insertions(+)
+> >  create mode 100644 
+Documentation/devicetree/bindings/mtd/mxic-nand.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/mtd/mxic-nand.txt b/
+> Documentation/devicetree/bindings/mtd/mxic-nand.txt
+> > new file mode 100644
+> > index 0000000..de37d60
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/mtd/mxic-nand.txt
+> > @@ -0,0 +1,19 @@
+> > +Macronix Raw NAND Controller Device Tree Bindings
+> > +-------------------------------------------------
+> > +
+> > +Required properties:
+> > +- compatible: should be "mxicy,multi-itfc-v009-nand-morph"
+> > +- reg: should contain 1 entry for the registers
+> > +- interrupts: interrupt line connected to this raw NAND controller
+> > +- clock-names: should contain "ps", "send" and "send_dly"
+> > +- clocks: should contain 3 phandles for the "ps", "send" and
+> > +    "send_dly" clocks
+> > +
+> > +Example:
+> > +
+> > +   nand: nand-controller@43c30000 {
+> > +      compatible = "mxicy,multi-itfc-v009-nand-morph";
+> > +      reg = <0x43c30000 0x10000>;
+> > +      clocks = <&clkwizard 0>, <&clkwizard 1>, <&clkc 15>;
+> > +      clock-names = "send", "send_dly", "ps";
+> 
+> You should have subnodes describing the NAND connected to the
+> controller (see [1]).
+> 
+> [1]
+https://elixir.bootlin.com/linux/v5.3-rc2/source/Documentation/devicetree/
+> bindings/mtd/nand-controller.yaml#L131
+> 
+> > +   };
+> 
+
+Do you mean to add patternProperties ?
+
+                 nand: nand-controller@43c30000 {
+                                 compatible = 
+"mxicy,multi-itfc-v009-nand-morph";
+                                 reg = <0x43c30000 0x10000>;
+                                 clocks = <&clkwizard 0>, <&clkwizard 1>, 
+<&clkc 15>;
+                                 clock-names = "send", "send_dly", "ps";
+
++                               nand@0 {
++
++                               };
+                 };
+
+something like that.
+
+thanks & best regards,
+Mason
+
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information 
+and/or personal data, which is protected by applicable laws. Please be 
+reminded that duplication, disclosure, distribution, or use of this e-mail 
+(and/or its attachments) or any part thereof is prohibited. If you receive 
+this e-mail in error, please notify us immediately and delete this mail as 
+well as its attachment(s) from your system. In addition, please be 
+informed that collection, processing, and/or use of personal data is 
+prohibited unless expressly permitted by personal data protection laws. 
+Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
+
+
+============================================================================
+
+CONFIDENTIALITY NOTE:
+
+This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
+
+Macronix International Co., Ltd.
+
+=====================================================================
+
