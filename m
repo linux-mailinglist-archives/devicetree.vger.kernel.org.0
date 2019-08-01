@@ -2,139 +2,223 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 316BF7E323
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 21:12:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 106FA7E34C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 21:28:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388541AbfHATMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 15:12:35 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:40897 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388535AbfHATMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 15:12:35 -0400
-Received: by mail-pl1-f194.google.com with SMTP id a93so32568984pla.7
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 12:12:35 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=u3M46kJjAPF4b1mqVIN/QqF1xk0nbqKlZydzEhZoL6s=;
-        b=Iu1CH4ToXYW90mTOdeHkqHqps0H4/Jt6nXnjawYRwpFRpCQ3R+FOjlvAHtsf0q+cca
-         g/GwPjYINrkuM0M27UfcxGN0Hpzq1z+zbIQRr9A8cLNBE6045TW8YO5B1jv+3zrSM+AI
-         RwmR2ijMX/YKSlorl4qZN6W9VRTC6OW7Mk6NYDrjpVniQ6cLad/+XzqpNwinuFtcNb6o
-         GTdsYR1aNvUhF9KHd0BLzgdnZis8Y+VjfG/T5HxcorMnvqNAW8q864HiIsdjCkh4XWvu
-         mGmSsJd4vy/0+OKrbqrS2lRjhwOvHCzqJiDH6nI0GAHQ2FHm8Lic/V7jrb83izS6/2/D
-         KuMw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=u3M46kJjAPF4b1mqVIN/QqF1xk0nbqKlZydzEhZoL6s=;
-        b=s/YcZA3XAS5eOU9GbzGmQWbA+aZTVI78nHs87AAx2CoQ1VDcUHicmrSZtv3UCE4iQY
-         arrQ28HOY9SGzMzv+XhyxsJiwuR+qX6i0k9z7+y5H9XV8akfh5FO4G6saFwK/V38ab1o
-         8RvUex+FrfabFUxR7Dpmo4mX5ejJ8MJUUktCxHxpRnYZzO2EXKtzVH5/3cab44RSOk6D
-         v+0TmR86Z4sEbVRlCV9+7oeNh3dtTMZEdhvZsQ3ef+NDhkSZZa5Oryr/6Q461Qh3Hi6/
-         vd4IvpDlxxeO8R+bCsMrn+BNp3vppG04K+z6R+3B9JXEKLxytuoBxBGAMyQs9U2XGVKO
-         0fsA==
-X-Gm-Message-State: APjAAAUiSPCmKf79w75bRV0bupBtX7De9nMwJE4/xdXeiyDqqjVIPUj1
-        0cy+9pRsKqXaN337K9wSMvnnCQ==
-X-Google-Smtp-Source: APXvYqyXQfNjDuCkBrlF9sH4WaQpLYB6kh01jQJmr+SAa0EdEbp3B9CGOkSzrUP/hpK0bXspTKw35A==
-X-Received: by 2002:a17:902:d90a:: with SMTP id c10mr124505738plz.208.1564686753720;
-        Thu, 01 Aug 2019 12:12:33 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id q4sm5434151pjq.27.2019.08.01.12.12.32
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 01 Aug 2019 12:12:33 -0700 (PDT)
-Date:   Thu, 1 Aug 2019 12:14:03 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Fabien Dessenne <fabien.dessenne@st.com>
-Cc:     Ohad Ben-Cohen <ohad@wizery.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        linux-stm32@st-md-mailman.stormreply.com,
-        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
-        Benjamin Gaignard <benjamin.gaignard@st.com>
-Subject: Re: [PATCH 0/6] hwspinlock: allow sharing of hwspinlocks
-Message-ID: <20190801191403.GA7234@tuxbook-pro>
-References: <1552492237-28810-1-git-send-email-fabien.dessenne@st.com>
+        id S2388641AbfHAT2S (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 15:28:18 -0400
+Received: from mail.kernel.org ([198.145.29.99]:32990 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726118AbfHAT2R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Aug 2019 15:28:17 -0400
+Received: from mail-qt1-f172.google.com (mail-qt1-f172.google.com [209.85.160.172])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0AEBC21726;
+        Thu,  1 Aug 2019 19:28:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564687696;
+        bh=CnTyOHs6SVPD1w0DZxSy57arQjcDX8yCyKR8zuV7UPc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=AJmxA9FmWeOsBWZUFy3ErUg4ADjGh33PiiugWsllosOwjDUYT/lSsgzVnjoRTmfUa
+         zup0Pu4ArZeOrchdy0VzO485ZZYNrkwJqGolYbyinExTgVdumvFGopJvjHSiE7PuaO
+         JdSLBxc4+608xwjeDmmqudyImj5QdJcbGkaUuHtc=
+Received: by mail-qt1-f172.google.com with SMTP id 44so40431052qtg.11;
+        Thu, 01 Aug 2019 12:28:15 -0700 (PDT)
+X-Gm-Message-State: APjAAAU9avBGSdfEX1PHmo32NS4VZVDi36hJwFN6cTNJTvZVeZ4V/pj+
+        0LBOdgEjoGIG1rpqvNJEEG4vgkH89YmZhNsUJg==
+X-Google-Smtp-Source: APXvYqzlhYnhmMohXfDZ9ASXmbVGD8xUiPZIJ8UtRmzEU5RQAOSZAo/eqAX2FWifALpuTHRkWrebH4tRnMBwnNlzdTE=
+X-Received: by 2002:ac8:368a:: with SMTP id a10mr92120637qtc.143.1564687695120;
+ Thu, 01 Aug 2019 12:28:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1552492237-28810-1-git-send-email-fabien.dessenne@st.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
+References: <1564147640-30753-1-git-send-email-open.sudheer@gmail.com> <1564147640-30753-4-git-send-email-open.sudheer@gmail.com>
+In-Reply-To: <1564147640-30753-4-git-send-email-open.sudheer@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 1 Aug 2019 13:28:03 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+jP6iDdthmXdKVroq5NLWNKgBoZ8Y99TwccFFAerfKBA@mail.gmail.com>
+Message-ID: <CAL_Jsq+jP6iDdthmXdKVroq5NLWNKgBoZ8Y99TwccFFAerfKBA@mail.gmail.com>
+Subject: Re: [patch v4 3/5] DT nodes for AST2500 DMA UART driver
+To:     "sudheer.v" <open.sudheer@gmail.com>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jiri Slaby <jslaby@suse.com>, Joel Stanley <joel@jms.id.au>,
+        Andrew Jeffery <andrew@aj.id.au>,
+        Benjamin Herrenschmidt <benh@kernel.crashing.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        ShivahShankar Shakarnarayan rao 
+        <shivahshankar.shankarnarayanrao@aspeedtech.com>,
+        Sudheer V <sudheer.veliseti@aspeedtech.com>,
+        sudheer veliseti <sudheer.open@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        devicetree@vger.kernel.org, linux-aspeed@lists.ozlabs.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed 13 Mar 08:50 PDT 2019, Fabien Dessenne wrote:
+On Fri, Jul 26, 2019 at 7:25 AM sudheer.v <open.sudheer@gmail.com> wrote:
+>
+> From: sudheer veliseti <sudheer.open@gmail.com>
+>
+> DT node for DMA controller(ast_uart_sdma) doesn't bind to any DMA controller driver.
+> This is because Software for DMA controller is not based on DMA framework,but is dedicated
+> and serves only UARTs in AST2500. ast_uart_sdma node is searched by compatible string in the
+> driver software.basic use of this node is to provide register base address of DMA controller and DMA irq number(<50>).
+> IRQ of DMA controller is of crucial importance, which does RX and TX of UART data.
+>
+> uart nodes dma_uart1,2...etc binds to the platform driver.
+> irq numbers <9>,<32>,<33>,<34> in dma_uart nodes install ISRs which are of not much interest in uart data TX/RX .
+>
+>
+> Signed-off-by: sudheer veliseti <sudheer.open@gmail.com>
+> ---
+>
+> changes from v3->v4:
+> -
+> changes from v2->v3:
+> - change logs added
+>
+>  arch/arm/boot/dts/aspeed-ast2500-evb.dts | 21 +++++++
+>  arch/arm/boot/dts/aspeed-g5.dtsi         | 71 ++++++++++++++++++++++--
+>  2 files changed, 88 insertions(+), 4 deletions(-)
+>
+> diff --git a/arch/arm/boot/dts/aspeed-ast2500-evb.dts b/arch/arm/boot/dts/aspeed-ast2500-evb.dts
+> index 5dbb33c10c4f..4da09fbe94df 100644
+> --- a/arch/arm/boot/dts/aspeed-ast2500-evb.dts
+> +++ b/arch/arm/boot/dts/aspeed-ast2500-evb.dts
+> @@ -64,6 +64,27 @@
+>         status = "okay";
+>  };
+>
+> +&ast_uart_sdma {
+> +       status = "okay";
+> +};
+> +
+> +&dma_uart1 {
+> +       status = "okay";
+> +};
+> +
+> +&dma_uart2 {
+> +       status = "okay";
+> +};
+> +
+> +&dma_uart3 {
+> +       status = "okay";
+> +};
+> +
+> +&dma_uart4 {
+> +       status = "okay";
+> +};
+> +
+> +
+>  &mac0 {
+>         status = "okay";
+>
+> diff --git a/arch/arm/boot/dts/aspeed-g5.dtsi b/arch/arm/boot/dts/aspeed-g5.dtsi
+> index 674746513031..fb7b3ed463de 100644
+> --- a/arch/arm/boot/dts/aspeed-g5.dtsi
+> +++ b/arch/arm/boot/dts/aspeed-g5.dtsi
+> @@ -23,10 +23,10 @@
+>                 i2c11 = &i2c11;
+>                 i2c12 = &i2c12;
+>                 i2c13 = &i2c13;
+> -               serial0 = &uart1;
+> -               serial1 = &uart2;
+> -               serial2 = &uart3;
+> -               serial3 = &uart4;
+> +               serial0 = &dma_uart1;
+> +               serial1 = &dma_uart2;
+> +               serial2 = &dma_uart3;
+> +               serial3 = &dma_uart4;
+>                 serial4 = &uart5;
+>                 serial5 = &vuart;
+>                 peci0 = &peci0;
+> @@ -497,6 +497,69 @@
+>                                 status = "disabled";
+>                         };
+>
+> +                       ast_uart_sdma: uart_sdma@1e79e000 {
+> +                               compatible = "aspeed,ast-uart-sdma";
+> +                               reg = <0x1e79e000 0x400>;
+> +                               interrupts = <50>;
+> +                               status = "disabled";
+> +                       };
+> +
+> +                       dma_uart1: dma_uart1@1e783000{
+> +                               compatible = "aspeed,ast-sdma-uart";
+> +                               reg = <0x1e783000 0x1000>;
 
-> The current implementation does not allow two different devices to use
-> a common hwspinlock. This patch set proposes to have, as an option, some
-> hwspinlocks shared between several users.
-> 
-> Below is an example that explain the need for this:
-> 	exti: interrupt-controller@5000d000 {
-> 		compatible = "st,stm32mp1-exti", "syscon";
-> 		interrupt-controller;
-> 		#interrupt-cells = <2>;
-> 		reg = <0x5000d000 0x400>;
-> 		hwlocks = <&hsem 1>;
-> 	};
-> The two drivers (stm32mp1-exti and syscon) refer to the same hwlock.
-> With the current hwspinlock implementation, only the first driver succeeds
-> in requesting (hwspin_lock_request_specific) the hwlock. The second request
-> fails.
-> 
-> 
-> The proposed approach does not modify the API, but extends the DT 'hwlocks'
-> property with a second optional parameter (the first one identifies an
-> hwlock) that specifies whether an hwlock is requested for exclusive usage
-> (current behavior) or can be shared between several users.
-> Examples:
-> 	hwlocks = <&hsem 8>;	Ref to hwlock #8 for exclusive usage
-> 	hwlocks = <&hsem 8 0>;	Ref to hwlock #8 for exclusive (0) usage
-> 	hwlocks = <&hsem 8 1>;	Ref to hwlock #8 for shared (1) usage
-> 
-> As a constraint, the #hwlock-cells value must be 1 or 2.
-> In the current implementation, this can have theorically any value but:
-> - all of the exisiting drivers use the same value : 1.
-> - the framework supports only one value : 1 (see implementation of
->   of_hwspin_lock_simple_xlate())
-> Hence, it shall not be a problem to restrict this value to 1 or 2 since
-> it won't break any driver.
-> 
+Now you have 2 nodes at the same address. That's not valid. Please
+build your dtbs with 'W=1' which will warn against this. Adding DMA
+support should not be a whole new node. Nodes correspond to h/w
+blocks, not drivers.
 
-Hi Fabien,
+The old node has a reset, you don't need that? Seems strange too that
+only 1 uart has a reset.
 
-Your series looks good, but it makes me wonder why the hardware locks
-should be an exclusive resource.
+> +                               reg-shift = <2>;
+> +                               interrupts = <9>;
+> +                               clocks = <&syscon ASPEED_CLK_GATE_UART1CLK>;
+> +                               dma-channel = <0>;
 
-How about just making all (specific) locks shared?
+This is the channel in ast_uart_sdma? Just because you decided not to
+do a DMA engine driver, doesn't mean you can't use the DMA binding.
+Considering you need to map clients to the provider, use the DMA
+binding.
 
-Regards,
-Bjorn
-
-> Fabien Dessenne (6):
->   dt-bindings: hwlock: add support of shared locks
->   hwspinlock: allow sharing of hwspinlocks
->   dt-bindings: hwlock: update STM32 #hwlock-cells value
->   ARM: dts: stm32: Add hwspinlock node for stm32mp157 SoC
->   ARM: dts: stm32: Add hwlock for irqchip on stm32mp157
->   ARM: dts: stm32: hwlocks for GPIO for stm32mp157
-> 
->  .../devicetree/bindings/hwlock/hwlock.txt          | 27 +++++--
->  .../bindings/hwlock/st,stm32-hwspinlock.txt        |  6 +-
->  Documentation/hwspinlock.txt                       | 10 ++-
->  arch/arm/boot/dts/stm32mp157-pinctrl.dtsi          |  2 +
->  arch/arm/boot/dts/stm32mp157c.dtsi                 | 10 +++
->  drivers/hwspinlock/hwspinlock_core.c               | 82 +++++++++++++++++-----
->  drivers/hwspinlock/hwspinlock_internal.h           |  2 +
->  7 files changed, 108 insertions(+), 31 deletions(-)
-> 
-> -- 
-> 2.7.4
-> 
+> +                               no-loopback-test;
+> +                               pinctrl-names = "default";
+> +                               pinctrl-0 = <&pinctrl_txd1_default
+> +                                                        &pinctrl_rxd1_default>;
+> +                               status = "disabled";
+> +                       };
+> +
+> +                       dma_uart2: dma_uart2@1e78d000{
+> +                               compatible = "aspeed,ast-sdma-uart";
+> +                               reg = <0x1e78d000 0x1000>;
+> +                               reg-shift = <2>;
+> +                               interrupts = <32>;
+> +                               clocks = <&syscon ASPEED_CLK_GATE_UART2CLK>;
+> +                               dma-channel = <1>;
+> +                               no-loopback-test;
+> +                               pinctrl-names = "default";
+> +                               pinctrl-0 = <&pinctrl_txd2_default
+> +                                                        &pinctrl_rxd2_default>;
+> +                               status = "disabled";
+> +                       };
+> +
+> +                       dma_uart3: dma_uart3@1e78e000{
+> +                               compatible = "aspeed,ast-sdma-uart";
+> +                               reg = <0x1e78e000 0x1000>;
+> +                               reg-shift = <2>;
+> +                               interrupts = <33>;
+> +                               clocks = <&syscon ASPEED_CLK_GATE_UART3CLK>;
+> +                               dma-channel = <2>;
+> +                               no-loopback-test;
+> +                               pinctrl-names = "default";
+> +                               pinctrl-0 = <&pinctrl_txd3_default
+> +                                                        &pinctrl_rxd3_default>;
+> +                               status = "disabled";
+> +                       };
+> +
+> +                       dma_uart4: dma_uart4@1e78f000{
+> +                               compatible = "aspeed,ast-sdma-uart";
+> +                               reg = <0x1e78f000 0x1000>;
+> +                               reg-shift = <2>;
+> +                               interrupts = <34>;
+> +                               clocks = <&syscon ASPEED_CLK_GATE_UART4CLK>;
+> +                               dma-channel = <3>;
+> +                               no-loopback-test;
+> +                               pinctrl-names = "default";
+> +                               pinctrl-0 = <&pinctrl_txd4_default
+> +                                                        &pinctrl_rxd4_default>;
+> +                               status = "disabled";
+> +                       };
+> +
+>                         i2c: bus@1e78a000 {
+>                                 compatible = "simple-bus";
+>                                 #address-cells = <1>;
+> --
+> 2.17.1
+>
