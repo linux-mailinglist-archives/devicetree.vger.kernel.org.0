@@ -2,68 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5EEB7DEA8
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 17:20:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 246087DEB2
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 17:23:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730835AbfHAPUS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 11:20:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40194 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730087AbfHAPUS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Aug 2019 11:20:18 -0400
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2ADEC2171F;
-        Thu,  1 Aug 2019 15:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564672817;
-        bh=A5WVsf7G2kFJI6lI2lC6kb+wdtK4qcYkyJefqOmwKnE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=iPvinyI9HCcagqoyjJOmSXdt/1odOuDy24qOv1sHtO2tFYo60EpDtdKR/vJkNTLxQ
-         p1YslmBdSI7GE9rHshrM3LJXBthjFmaRgRZ9sLnG6U5C+jCVIzUBAcJCSQjEKodcOE
-         71A/4oGB0Wb1P3jtkbdnyfpUrr3DzyZXYWLie7KI=
-Received: by mail-qk1-f171.google.com with SMTP id t8so52311763qkt.1;
-        Thu, 01 Aug 2019 08:20:17 -0700 (PDT)
-X-Gm-Message-State: APjAAAUhQtWm2yMF57edw3SiqTqvh8y85xNfkgv0moKbWm6+3XY9gZRk
-        OU7rCs9BMzjKS837zryKDyNaw/oCewbsLzILHA==
-X-Google-Smtp-Source: APXvYqyOTDfIkp0PiGP+4XgmfZUgR81KtILQm6TcrNNBpWndNc5glbXR+cfHFaU1qak5P984zIWlLDST+tVjYpRqtxI=
-X-Received: by 2002:a37:a44a:: with SMTP id n71mr21061481qke.393.1564672816295;
- Thu, 01 Aug 2019 08:20:16 -0700 (PDT)
+        id S1731601AbfHAPXG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 11:23:06 -0400
+Received: from mail-io1-f66.google.com ([209.85.166.66]:43204 "EHLO
+        mail-io1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731490AbfHAPXG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 11:23:06 -0400
+Received: by mail-io1-f66.google.com with SMTP id k20so145162687ios.10
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 08:23:05 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=Xrfoslv7AaDIIfdPVT2VtUHeNymqmupFg0gKwWPnwYg=;
+        b=k6ddA0kZy2PnnO+eInoSw6Q792k+VRdA46a43rlYFVfP2msLWDKEwr5eJKg9FRV9rM
+         hjTjLdpJQKyHkrMCzmac9cBy81b35w/aN0F2aZfBRBbY9v9SGZeqyJ/ij4aQQOcic02u
+         RO6js+4+EsBhIJszCHk3GtJ0ekpzGQnBNpEgKYY1yISXzTs/z1UPurfa+zut66oHN7/c
+         FKLFZqIYrJsDBjknazc9Nq6WlJUnw72u9da5QCcMizNADQUey0xS7wQyuwKi0YjP92VU
+         d5uMIF7l+5PoSBA6TrlneGdjDyN9b3i5GeYxCJUX/YEv6GG6kRBiJyRAqafK/53dnnGL
+         SHtw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=Xrfoslv7AaDIIfdPVT2VtUHeNymqmupFg0gKwWPnwYg=;
+        b=FaXVkbggkZtu+Dx1HHGDEnH6d7YHAAJ2Cj2n1FUtgMZiXUHx31Fg215VyYu0cw3oaM
+         dzWcSNQN/Z/qO53qX5Gi3EOG8J42TqEIwjrhbUAnC0G1aZD4/6ccH69UbZLv2dMti3JE
+         otU3Pppyu3f4HSiDcXm5IibjsbRutZjvTicp/w1+1868aObmX+5/vq5v0lMQyUPN7OpF
+         fSbT4DwYOItlA624cOBmRJaFmQIUvi8dIZoFUq69MDQPH2KCim6oldJgj232YSdozfgk
+         iDECSMdUedpJd8rliFt8xzjzNSVl7b8CV3EA3+Wo4/WjHGY6FSqdkFIK/CXmI4jLEV0H
+         b49Q==
+X-Gm-Message-State: APjAAAXTpFZgzyhf7JiJhr6jCkORlEeFTvY/G1gSjnNL0VkOzqgc0itu
+        x8L5zu05oPyaEU3v6edJogYJ1xpZFmsmqgP+Pis=
+X-Google-Smtp-Source: APXvYqzy49TSPdqiKtgVuS2Fu5PMDVjkUz2RTttBXfqC4h1kI4oDa3RJ/ySn8/GEHvAa/khCPciWjGYQYPJT/rmSXRY=
+X-Received: by 2002:a5d:87da:: with SMTP id q26mr110715205ios.193.1564672985236;
+ Thu, 01 Aug 2019 08:23:05 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190801135644.12843-1-narmstrong@baylibre.com>
-In-Reply-To: <20190801135644.12843-1-narmstrong@baylibre.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 1 Aug 2019 09:20:03 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqL7FEAJ9S5j9JSwfj+t8434KsEOcxKEMWNFnG00b07JMA@mail.gmail.com>
-Message-ID: <CAL_JsqL7FEAJ9S5j9JSwfj+t8434KsEOcxKEMWNFnG00b07JMA@mail.gmail.com>
-Subject: Re: [RFC 0/9] dt-bindings: first tentative of conversion to yaml format
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org,
-        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
-        <linux-crypto@vger.kernel.org>,
-        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
-        linux-spi <linux-spi@vger.kernel.org>,
-        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        Jassi Brar <jassisinghbrar@gmail.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>
+References: <1560942714-13330-1-git-send-email-Ashish.Kumar@nxp.com>
+ <1560942714-13330-2-git-send-email-Ashish.Kumar@nxp.com> <20190709200837.GA7806@bogus>
+In-Reply-To: <20190709200837.GA7806@bogus>
+From:   Han Xu <xhnjupt@gmail.com>
+Date:   Thu, 1 Aug 2019 10:22:54 -0500
+Message-ID: <CA+EcR23hhD2=abMtNGDoW1LtXSE4qfjTy1uzU7sgrbi7W=KSbw@mail.gmail.com>
+Subject: Re: [Patch v3 1/2] dt-bindings: spi: spi-fsl-qspi: Add ls2080a
+ compatibility string to bindings
+To:     Rob Herring <robh@kernel.org>
+Cc:     Ashish Kumar <Ashish.Kumar@nxp.com>, devicetree@vger.kernel.org,
+        bbrezillon@kernel.org, Kuldeep Singh <kuldeep.singh@nxp.com>,
+        broonie@kernel.org, linux-mtd@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 1, 2019 at 7:56 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+On Tue, Jul 9, 2019 at 3:09 PM Rob Herring <robh@kernel.org> wrote:
 >
-> This is a first tentative to convert some of the simplest Amlogic
-> dt-bindings to the yaml format.
+> On Wed, 19 Jun 2019 16:41:53 +0530, Ashish Kumar wrote:
+> > There are 2 version of QSPI-IP, according to which controller registers sets
+> > can be big endian or little endian.There are some other minor changes like
+> > RX fifo depth etc.
+> >
+> > The big endian version uses driver compatible "fsl,ls1021a-qspi" and
+> > little endian version uses driver compatible "fsl,ls2080a-qspi"
+> >
+> > Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+> > Signed-off-by: Ashish Kumar <ashish.kumar@nxp.com>
+> > ---
+> > v3:
+> > Rebase to top
+> > v2:
+> > Convert to patch series and rebasing done on top of tree
+> >
+> >  Documentation/devicetree/bindings/spi/spi-fsl-qspi.txt | 3 +--
+> >  1 file changed, 1 insertion(+), 2 deletions(-)
+> >
+>
+> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Great to see this.
+Acked-by: Han Xu <han.xu@nxp.com>
 
-I've gone thru all of the patches. Some of the same minor comments I
-made also apply to the patches I didn't comment on.
-
-Rob
+>
+> ______________________________________________________
+> Linux MTD discussion mailing list
+> http://lists.infradead.org/mailman/listinfo/linux-mtd/
