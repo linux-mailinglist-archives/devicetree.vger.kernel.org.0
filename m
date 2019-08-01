@@ -2,91 +2,125 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8470F7DEBB
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 17:24:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0B157DF4A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 17:44:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731657AbfHAPYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 11:24:14 -0400
-Received: from mail-io1-f68.google.com ([209.85.166.68]:33542 "EHLO
-        mail-io1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730087AbfHAPYO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 11:24:14 -0400
-Received: by mail-io1-f68.google.com with SMTP id z3so4053664iog.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 08:24:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=MBiW41NqW4TAnHAH02ISFrYBi40GZVKimkx9qKPuwA4=;
-        b=I4/fSki/ZDrS6t7bxww5FkiNPP2v+Wto9BSBGL3O8+1uX0mJYcLuDX9I5jr6F7Vo2F
-         RVdBOEz9IE8EgNq14z9ZkR5Ab/zYBF6nELYdYTXnVW/1zOmAKi+XJDMjr9fEkjdVq94C
-         Q4T5EOR/uFZmmt2HU6d+B1lOkrDlksNvJMoH1DSmCX8gQy7rebL3Wl43K0EdtxIL48Aq
-         DyyonSFKF0HO8VIRLQ1RD4cM4Mz6RDrYsGPJ9osBOspZLkFykPhjikc/mO8jATnLcCug
-         KdO2mkv9Tgv/mSw58s9mgTpSvGCfA3J8s8fMadt8Exwq5BnB25/J7+ANWwc1yzKC1n9T
-         /phw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=MBiW41NqW4TAnHAH02ISFrYBi40GZVKimkx9qKPuwA4=;
-        b=sFiz1HWsaMplyoL8M8ChfH/R3RtZNYS+1QbaH+t1LKD2xrjCH7+5bpkEdbro4dP4UG
-         Z2dezCiNDBjWIVM4IuDQcXXm3wYHRTASqnuw99r3HsX9EsgXm+GsleKwa2Rskf+vhJnC
-         UiN7FaSc08gQjP3hcDPvCxfW/gGgjtpkxFM7j5gN5i1IVpkOLSeeSbvBplH11LRuRO3m
-         fkeIK6A4AI9Z1HX+oIgK+a3Yg5FzIwrp+p3DhfpM+nMy2l0F+V/gTLd1mO00iVtUm2Cu
-         uPDHBxGSft2L4StvfFIkiHnn5buzk5FLMZSTUMrQzBnVYNIUyOKcJJ7j8Sx8GlBh5pVo
-         eLLA==
-X-Gm-Message-State: APjAAAWFL97H6BQVfYkKtWyab68K02tKs8gcLzL1I6Vb8RKfbBd/jxPc
-        y3UKi/KpUohEA4HLo0sPZFcYaDeqP2vUFR3Desc=
-X-Google-Smtp-Source: APXvYqwzE2acoA4+wz4386LeXXCfJdLnqPuKvYgJFDux4lZmG/U1xFLAmvWFRo2QrkPNbI1+x3/JUs5uKgzYilBc8zU=
-X-Received: by 2002:a6b:f406:: with SMTP id i6mr48192506iog.110.1564673053693;
- Thu, 01 Aug 2019 08:24:13 -0700 (PDT)
+        id S1728856AbfHAPov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 11:44:51 -0400
+Received: from mx2.suse.de ([195.135.220.15]:42190 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728414AbfHAPov (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Aug 2019 11:44:51 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id 222CDAC9A;
+        Thu,  1 Aug 2019 15:44:50 +0000 (UTC)
+Message-ID: <d8b4a7cb9c06824ca88a0602a5bf38b6324b43c0.camel@suse.de>
+Subject: Re: [PATCH 5/8] arm64: use ZONE_DMA on DMA addressing limited
+ devices
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Catalin Marinas <catalin.marinas@arm.com>
+Cc:     phill@raspberryi.org, devicetree@vger.kernel.org,
+        linux-rpi-kernel@lists.infradead.org, f.fainelli@gmail.com,
+        frowand.list@gmail.com, eric@anholt.net, marc.zyngier@arm.com,
+        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
+        linux-mm@kvack.org, iommu@lists.linux-foundation.org,
+        robh+dt@kernel.org, wahrenst@gmx.net, mbrugger@suse.com,
+        akpm@linux-foundation.org, Robin Murphy <robin.murphy@arm.com>,
+        hch@lst.de, linux-arm-kernel@lists.infradead.org,
+        m.szyprowski@samsung.com
+Date:   Thu, 01 Aug 2019 17:44:09 +0200
+In-Reply-To: <20190731170742.GC17773@arrakis.emea.arm.com>
+References: <20190731154752.16557-1-nsaenzjulienne@suse.de>
+         <20190731154752.16557-6-nsaenzjulienne@suse.de>
+         <20190731170742.GC17773@arrakis.emea.arm.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-Jl/nDcfVAied7u8Yssfo"
+User-Agent: Evolution 3.32.4 
 MIME-Version: 1.0
-References: <1560942714-13330-1-git-send-email-Ashish.Kumar@nxp.com>
- <1560942714-13330-3-git-send-email-Ashish.Kumar@nxp.com> <20190709200857.GA8477@bogus>
-In-Reply-To: <20190709200857.GA8477@bogus>
-From:   Han Xu <xhnjupt@gmail.com>
-Date:   Thu, 1 Aug 2019 10:24:02 -0500
-Message-ID: <CA+EcR20ui8Liot+PtzdU6CJb5WzLDHS0Xc7VR7qGAOpD5=ArNQ@mail.gmail.com>
-Subject: Re: [Patch v3 2/2] dt-bindings: spi: spi-fsl-qspi: Add bindings of
- ls1088a and ls1012a
-To:     Rob Herring <robh@kernel.org>
-Cc:     Ashish Kumar <Ashish.Kumar@nxp.com>, devicetree@vger.kernel.org,
-        bbrezillon@kernel.org, Kuldeep Singh <kuldeep.singh@nxp.com>,
-        broonie@kernel.org, linux-mtd@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 9, 2019 at 3:09 PM Rob Herring <robh@kernel.org> wrote:
->
-> On Wed, 19 Jun 2019 16:41:54 +0530, Ashish Kumar wrote:
-> > Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
-> > Signed-off-by: Ashish Kumar <ashish.kumar@nxp.com>
-> > ---
-> > v3:
-> > Rebase to top
-> > v2:
-> > Convert to patch series and rebasing done on top of tree
-> >
-> >  Documentation/devicetree/bindings/spi/spi-fsl-qspi.txt | 2 ++
-> >  1 file changed, 2 insertions(+)
-> >
->
-> Reviewed-by: Rob Herring <robh@kernel.org>
 
-Acked-by: Han Xu <han.xu@nxp.com>
+--=-Jl/nDcfVAied7u8Yssfo
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
->
-> ______________________________________________________
-> Linux MTD discussion mailing list
-> http://lists.infradead.org/mailman/listinfo/linux-mtd/
+On Wed, 2019-07-31 at 18:07 +0100, Catalin Marinas wrote:
+> On Wed, Jul 31, 2019 at 05:47:48PM +0200, Nicolas Saenz Julienne wrote:
+> > diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
+> > index 1c4ffabbe1cb..f5279ef85756 100644
+> > --- a/arch/arm64/mm/init.c
+> > +++ b/arch/arm64/mm/init.c
+> > @@ -50,6 +50,13 @@
+> >  s64 memstart_addr __ro_after_init =3D -1;
+> >  EXPORT_SYMBOL(memstart_addr);
+> > =20
+> > +/*
+> > + * We might create both a ZONE_DMA and ZONE_DMA32. ZONE_DMA is needed =
+if
+> > there
+> > + * are periferals unable to address the first naturally aligned 4GB of=
+ ram.
+> > + * ZONE_DMA32 will be expanded to cover the rest of that memory. If su=
+ch
+> > + * limitations doesn't exist only ZONE_DMA32 is created.
+> > + */
+>=20
+> Shouldn't we instead only create ZONE_DMA to cover the whole 32-bit
+> range and leave ZONE_DMA32 empty? Can__GFP_DMA allocations fall back
+> onto ZONE_DMA32?
+
+Hi Catalin, thanks for the review.
+
+You're right, the GFP_DMA page allocation will fail with a nasty dmesg erro=
+r if
+ZONE_DMA is configured but empty. Unsurprisingly the opposite situation is =
+fine
+(GFP_DMA32 with an empty ZONE_DMA32).
+
+I switched to the scheme you're suggesting for the next version of the seri=
+es.
+The comment will be something the likes of this:
+
+/*
+ * We create both a ZONE_DMA and ZONE_DMA32. ZONE_DMA's size is decided bas=
+ed
+ * on whether the SoC's peripherals are able to address the first naturally
+ * aligned 4 GB of ram.
+ *
+ * If limited, ZONE_DMA covers that area and ZONE_DMA32 the rest of that 32=
+ bit
+ * addressable memory.
+ *
+ * If not ZONE_DMA is expanded to cover the whole 32 bit addressable memory=
+ and
+ * ZONE_DMA32 is left empty.
+ */
+
+ Regards,
+ Nicolas
 
 
 
--- 
-Sincerely,
+--=-Jl/nDcfVAied7u8Yssfo
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
 
-Han XU
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl1DCMkACgkQlfZmHno8
+x/724wgAlBvY4KUvCY6AbQ4IkNYytX+x49CEh/vxpdWWXLjrWRTBCg2SwWhZ4y9G
+OjuuZe9BBgQBgnZBR0lC8MlCFN7w4Ce5aByypx2pzGLefZKqc4pesvda/gC8Jmo8
+csbQ988GLPt6V35DcX3N81FjYrdsZGCcJ1XrtpUVlx6YfIPLx4ZRc/6OfV3yXXBc
+XiD/luxNVqjDtvy7RnR2so9hSWet0hM4Wv5TDwI+xt1RviR4Tpdd+jNqtjxH+LcV
+2uruy3yUhTGeNaiyZsPt/Bj1Mlg+Wab940ahUDn3a1KBkd4BkFZIoqfjQxBgLaal
+iZB+n9PmIhCkaHygfxOy1H+xVYO/AA==
+=Opde
+-----END PGP SIGNATURE-----
+
+--=-Jl/nDcfVAied7u8Yssfo--
+
