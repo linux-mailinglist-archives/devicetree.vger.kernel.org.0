@@ -2,56 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 37FB37D41B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 05:56:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 19BA47D4FA
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 07:41:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728263AbfHAD4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 23:56:37 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:52912 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728150AbfHAD4h (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 31 Jul 2019 23:56:37 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=0ftkQ50H0Q5kMGTL7ceL+8GzaH8L2e4CWla38W5PLJA=; b=PJXpslUg39PLYXATYaYeK4JXtA
-        Zy1b+XuAb3Xwp5VzH+yRbUkUAUcSs8C7XfeH7ZslSFpBHm4kIAOWdPV6bmtXCH8Livb9luhhRoeft
-        XGexq4Q9WkSBepUYcdHurtp8ax6awp4n2pEf+o/1aYDNWRMmrN473LGb4m5L1jBZ19P0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1ht2CZ-0001Qd-T6; Thu, 01 Aug 2019 05:56:27 +0200
-Date:   Thu, 1 Aug 2019 05:56:27 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Andrew Jeffery <andrew@aj.id.au>
-Cc:     netdev@vger.kernel.org, davem@davemloft.net, robh+dt@kernel.org,
-        mark.rutland@arm.com, joel@jms.id.au, f.fainelli@gmail.com,
-        hkallweit1@gmail.com, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH net-next v2 4/4] net: ftgmac100: Select ASPEED MDIO
- driver for the AST2600
-Message-ID: <20190801035627.GI2713@lunn.ch>
-References: <20190731053959.16293-1-andrew@aj.id.au>
- <20190731053959.16293-5-andrew@aj.id.au>
+        id S1728582AbfHAFk7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 01:40:59 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:35833 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728476AbfHAFk6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 01:40:58 -0400
+Received: by mail-pf1-f193.google.com with SMTP id u14so33354995pfn.2
+        for <devicetree@vger.kernel.org>; Wed, 31 Jul 2019 22:40:58 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=y/o8YTbNsjxw2k6UgbsxYXXjTg0fvc1tjD9GHYk14MU=;
+        b=TzLFx9yjS2cOaxig8Qru/VS6YDnRG6KdulTld7+Nu2jkuGuJIvdKq4dubYNb2h/bIT
+         7CpZj8guUFYuqdB/x/nRLtbMOxHEU6ZiEk8yW4y+Mt5xL0FIkt6jiBjmS0g0qTdNlnSu
+         lofI0X8paFqgVW1G1+a67lLfDVpkg+dGbKxbWEFC9WwM9r0hZS/0PooASt5Wezo7nuO+
+         puyyuTBh2jKZM7SK3smdmRzK6AZWm5odBoIv0OAkV/ATL2lhoqvMS0U5If1MEGm9XfEc
+         8CNmE4IbbnlG01j76SCXuyUs+aKf9LaRFX82Bp6zgHnVKnmgo/MN68OeHZuTMIqOOO2N
+         MSHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=y/o8YTbNsjxw2k6UgbsxYXXjTg0fvc1tjD9GHYk14MU=;
+        b=WKW/5NFfVJTx76wlyM3i+d4dYtL+v+l1CMJzOgonkGjAk/C9egkCbK6otQ4XSiYPAN
+         uEbS2fxEoeeBjTxLMO21PCwNJhXooOnFBWXNtueNNtbCusb/BYAviKnfMR5RA+UEdLEQ
+         1FN4dq+t8F6JQz0ak9WE0PQ2QPDBY+ifIyYt+guH2MWj9IgLVaAQPSiqm+Peq3YBCSeJ
+         7XIEeZE64bbmtR4PGLtrT5azxTAw0DaHevTdl4b/WHl9kR90zAc5wv+Z68Fax65zNHfs
+         FJoLhbtHE9AYq48eS9Fl6VowBE8k8Hv3naylPCZ8t0vBIXqXHi7LXjA5LFVx5DF9T8pL
+         6Tsw==
+X-Gm-Message-State: APjAAAXDVoggtiDwRhBCLBjIBJidH70yueA8EXodWyheAyjVfxXToSLJ
+        SBNcCYGG36IXzuVv/0N5GthRPA==
+X-Google-Smtp-Source: APXvYqzmiX/7OLzhXxCrID/iE/IWvU1lPO7qvH9ysJv1dJuRrPCk+zMaNF2FdZswGzAuBvGwID2I3w==
+X-Received: by 2002:a63:124a:: with SMTP id 10mr116595500pgs.254.1564638057851;
+        Wed, 31 Jul 2019 22:40:57 -0700 (PDT)
+Received: from localhost ([122.172.28.117])
+        by smtp.gmail.com with ESMTPSA id d15sm10245980pjc.8.2019.07.31.22.40.56
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 31 Jul 2019 22:40:57 -0700 (PDT)
+Date:   Thu, 1 Aug 2019 11:10:55 +0530
+From:   Viresh Kumar <viresh.kumar@linaro.org>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
+        jason@lakedaemon.net, marc.zyngier@arm.com,
+        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com,
+        pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
+        digetx@gmail.com, devicetree@vger.kernel.org, rjw@rjwysocki.net,
+        linux-pm@vger.kernel.org
+Subject: Re: [PATCH v7 11/20] cpufreq: tegra124: Add suspend and resume
+ support
+Message-ID: <20190801054055.trmabmcaj3cpe4pc@vireshk-i7>
+References: <1564607463-28802-1-git-send-email-skomatineni@nvidia.com>
+ <1564607463-28802-12-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190731053959.16293-5-andrew@aj.id.au>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+In-Reply-To: <1564607463-28802-12-git-send-email-skomatineni@nvidia.com>
+User-Agent: NeoMutt/20180716-391-311a52
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 31, 2019 at 03:09:59PM +0930, Andrew Jeffery wrote:
-> Ensures we can talk to a PHY via MDIO on the AST2600, as the MDIO
-> controller is now separate from the MAC.
+On 31-07-19, 14:10, Sowjanya Komatineni wrote:
+> This patch adds suspend and resume pm ops for cpufreq driver.
 > 
-> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> PLLP is the safe clock source for CPU during system suspend and
+> resume as PLLP rate is below the CPU Fmax at Vmin.
+> 
+> CPUFreq driver suspend switches the CPU clock source to PLLP and
+> disables the DFLL clock.
+> 
+> During system resume, warmboot code powers up the CPU with PLLP
+> clock source. So CPUFreq driver resume enabled DFLL clock and
+> switches CPU back to DFLL clock source.
+> 
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/cpufreq/tegra124-cpufreq.c | 60 ++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 60 insertions(+)
 
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
+Is there any hard dependency of this patch on the rest of the patches?
+Can I apply it alone to cpufreq tree ?
 
-    Andrew
+-- 
+viresh
