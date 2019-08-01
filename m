@@ -2,111 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8FE797D275
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 02:58:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EC3EF7D35E
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 04:31:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728783AbfHAA6n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 31 Jul 2019 20:58:43 -0400
-Received: from esa6.hgst.iphmx.com ([216.71.154.45]:61766 "EHLO
-        esa6.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728364AbfHAA6k (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 20:58:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1564621121; x=1596157121;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=OremRQyuncth6RJmwcRirDjBWRulyVTwgRdrAhtDf+0=;
-  b=YVL8hvkicD80siH6Zjit5BY9kMgrKXBjxLePjERDB6eCEXpinCqpkDsf
-   agSgpbcRQN5wQ1lVUPEKR6IKYWU26yd3L/yZo78pYIQINCwP8j91UPC+R
-   IVrjAiiY/bhD20wc5zvqitOV2i7KutnJSszziJCv8K8SPUpLKPEwOPpUj
-   ah0A87esnjqnwf1zDFAgJ2KLPqNKRbNp+CYzUqjj/O1I/OVdpRwWkuTjO
-   xG/PGttlhGL5sL4m9sUR33nPvCqqxWrl2WigPOB3HmjpRDePpP/35TpRY
-   yN/SGtTusgwqEAM/DWfKFy+QAVp58caisu1eSoarcnwZ8vg3yvp9ues8h
-   g==;
-IronPort-SDR: 6wnYWqtZSU38gVjkgQxoDu6H5DygwCXBnFkdP+tQkEjVywPgosIzP3plPyB5ig9kTJa/m7aAX8
- QcvXEImx0OYwph4YfJ46AP5fxpJw1i/iBAAIbfN39GnPPEWZXiRzm03keZwShcUC929AvJnf1x
- yObh5AlipXLcpfjB7tv2AIwghTskBiZubz1JPg/I5WAg0KeBoWcFqX3A7gsWek2pIhC/1NonBL
- pvWPsEDPi95fDeTYTVaz8JcOGUOipx2S/Ph5wE78OmLiZ6jUGpM4Uq5DJGkCSvRiskF8O4NQsq
- sGE=
-X-IronPort-AV: E=Sophos;i="5.64,332,1559491200"; 
-   d="scan'208";a="116247220"
-Received: from h199-255-45-15.hgst.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 01 Aug 2019 08:58:40 +0800
-IronPort-SDR: P0jG0d87Vf+xI3jYLnOjh6+DOSBZHbtCPlXdAMLfz5GxhfyS7kASJGkdE3mI/z1VENwCFXI9Ln
- kFTjAfE0OJ6NfMlP8bsa2vH8Ae1u9fam9Qsr5GHT2VHRyEkoK+Ii/0cFe/7M9WxdLdvYxHMSSv
- Z/iJ5JuTfuRgd5KpyfgdCyDo1WEC1Ueb+jjYdwQaEIXiXwRwV6t93MOrTphgLXMNrc2Ytir6Mr
- yD6kx9V+YwrulVBjk1x8NCIX3WGk7ozoRChzEo/LI9rtfh5qhv18VQBtrEvEhW+J8B1pBV55dJ
- v7DAHDg4jTzxCEdlXGO7ruFo
-Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 31 Jul 2019 17:56:40 -0700
-IronPort-SDR: buJklJ1NZhn+ariLbhCXotWJ0iZLK9+V0P+ilob/EJ3b7KF0rougKipOcdZ48jxK65bn8oEu2P
- Zjg8UtNyIcrRjfTB/NiXIejCMibCPCfF43qg+YcUA3ZHDXSquSyQhjE5kqsStoZGkDt1wIvG34
- 4LJOzaxTWTVbMCRx1NFstKqIE1JzMDnPqy9AZsrZuoaSVwsAFWBaza8hM5aL/FoZjm3uca2zDs
- CsZXi0pKH1FhccbBXWHCTzWRHvnWGzaNxQZDORnH54HFQlJYdactsLGl17bgjITsftlly8lqIP
- F3Y=
-Received: from jedi-01.sdcorp.global.sandisk.com (HELO jedi-01.int.fusionio.com) ([10.11.143.218])
-  by uls-op-cesaip01.wdc.com with ESMTP; 31 Jul 2019 17:58:39 -0700
-From:   Atish Patra <atish.patra@wdc.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Allison Randal <allison@lohutok.net>,
-        Anup Patel <anup.patel@wdc.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        devicetree@vger.kernel.org, Enrico Weigelt <info@metux.net>,
-        Gary Guo <gary@garyguo.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johan Hovold <johan@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Yangtao Li <tiny.windzz@gmail.com>
-Subject: [PATCH v3 5/5] dt-bindings: Update the riscv,isa string description
-Date:   Wed, 31 Jul 2019 17:58:43 -0700
-Message-Id: <20190801005843.10343-6-atish.patra@wdc.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190801005843.10343-1-atish.patra@wdc.com>
-References: <20190801005843.10343-1-atish.patra@wdc.com>
+        id S1726594AbfHACbh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 31 Jul 2019 22:31:37 -0400
+Received: from conssluserg-06.nifty.com ([210.131.2.91]:34521 "EHLO
+        conssluserg-06.nifty.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726224AbfHACbg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 31 Jul 2019 22:31:36 -0400
+Received: from mail-ua1-f43.google.com (mail-ua1-f43.google.com [209.85.222.43]) (authenticated)
+        by conssluserg-06.nifty.com with ESMTP id x712VLkp031078;
+        Thu, 1 Aug 2019 11:31:22 +0900
+DKIM-Filter: OpenDKIM Filter v2.10.3 conssluserg-06.nifty.com x712VLkp031078
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nifty.com;
+        s=dec2015msa; t=1564626682;
+        bh=v7tebXzVuIjpWij2FCnUZC9VfqyHCstSxtXYGo/JQaw=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mobgdh1A6L2xfO1H1LK+ttHQHvmieoWnB8xVVqAPVDnlPAoZOpuY41Jel/Z0kW2gA
+         ZyhrSvTPOUVXvRe4x6ZRyz6fmJlF0xUw7wiSEtgG1LIysPezoH1XecZaD6XbHRPYQt
+         HsIRY2/XDLW2XA+qwexWJD+03XctuWm8okpJrwx2k/xZ5foAmVeDnPhZdLmdjmknn/
+         169Fld+e8p2+VQdV7KHzhetEFZbsZSLJm2X6/hPAi18OXQ8eSI6PmXTXFREf0QmjWh
+         2AQBdP8jz7jWmI87kwaEUoe7AXZis0+RFc9+O87OwgIpf7QmVf9qOj2MbgFbZqhhu/
+         /Mb2LlfAkskBQ==
+X-Nifty-SrcIP: [209.85.222.43]
+Received: by mail-ua1-f43.google.com with SMTP id a97so27793115uaa.9;
+        Wed, 31 Jul 2019 19:31:21 -0700 (PDT)
+X-Gm-Message-State: APjAAAXJqG5FEKYkEMSqnlmojUn5O/TZXnifu88NmlMv7GHAn/GGufmF
+        vq8gFgUw+jHfRzs/86J+QEr6eW0fcpMAZkHAbvM=
+X-Google-Smtp-Source: APXvYqye+xSiOZooqZfZiBZrjUaqPJGNZgygtAZnjxFm+XMhDELoSbERP2u2elHRRY+h2JYNWrxNWScvA7PtWnS+grw=
+X-Received: by 2002:ab0:234e:: with SMTP id h14mr8749337uao.25.1564626680940;
+ Wed, 31 Jul 2019 19:31:20 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190617162123.24920-1-yamada.masahiro@socionext.com>
+In-Reply-To: <20190617162123.24920-1-yamada.masahiro@socionext.com>
+From:   Masahiro Yamada <yamada.masahiro@socionext.com>
+Date:   Thu, 1 Aug 2019 11:30:45 +0900
+X-Gmail-Original-Message-ID: <CAK7LNATtqhxPcDneW0QOkw-5NyPNP06Qv0bYTe7A_gCiHMiU7A@mail.gmail.com>
+Message-ID: <CAK7LNATtqhxPcDneW0QOkw-5NyPNP06Qv0bYTe7A_gCiHMiU7A@mail.gmail.com>
+Subject: Re: [PATCH] libfdt: reduce the number of headers included from libfdt_env.h
+To:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        DTML <devicetree@vger.kernel.org>
+Cc:     Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Rob Herring <robh@kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the RISC-V specification states that ISA description strings are
-case-insensitive, there's no functional difference between mixed-case,
-upper-case, and lower-case ISA strings. Thus, to simplify parsing,
-specify that the letters present in "riscv,isa" must be all lowercase.
+On Tue, Jun 18, 2019 at 1:21 AM Masahiro Yamada
+<yamada.masahiro@socionext.com> wrote:
+>
+> Currently, libfdt_env.h includes <linux/kernel.h> just for INT_MAX.
+>
+> <linux/kernel.h> pulls in a lots of broat.
+>
+> Thanks to commit 54d50897d544 ("linux/kernel.h: split *_MAX and *_MIN
+> macros into <linux/limits.h>"), <linux/kernel.h> can be replaced with
+> <linux/limits.h>.
+>
+> This saves including dozens of headers.
+>
+> Signed-off-by: Masahiro Yamada <yamada.masahiro@socionext.com>
+> ---
 
-Suggested-by: Paul Walmsley <paul.walmsley@sifive.com>
-Signed-off-by: Atish Patra <atish.patra@wdc.com>
----
- Documentation/devicetree/bindings/riscv/cpus.yaml | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ping?
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index c899111aa5e3..4f0acb00185a 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -46,10 +46,12 @@ properties:
-           - rv64imafdc
-     description:
-       Identifies the specific RISC-V instruction set architecture
--      supported by the hart.  These are documented in the RISC-V
-+      supported by the hart. These are documented in the RISC-V
-       User-Level ISA document, available from
-       https://riscv.org/specifications/
- 
-+      Letters in the riscv,isa string must be all lowercase.
-+
-   timebase-frequency:
-     type: integer
-     minimum: 1
+
+>  include/linux/libfdt_env.h | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/include/linux/libfdt_env.h b/include/linux/libfdt_env.h
+> index edb0f0c30904..2231eb855e8f 100644
+> --- a/include/linux/libfdt_env.h
+> +++ b/include/linux/libfdt_env.h
+> @@ -2,7 +2,7 @@
+>  #ifndef LIBFDT_ENV_H
+>  #define LIBFDT_ENV_H
+>
+> -#include <linux/kernel.h>      /* For INT_MAX */
+> +#include <linux/limits.h>      /* For INT_MAX */
+>  #include <linux/string.h>
+>
+>  #include <asm/byteorder.h>
+> --
+> 2.17.1
+>
+
+
 -- 
-2.21.0
-
+Best Regards
+Masahiro Yamada
