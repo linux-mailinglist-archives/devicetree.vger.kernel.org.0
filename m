@@ -2,121 +2,79 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6787E7DB16
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 14:14:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9EF607DB89
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 14:31:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726739AbfHAMOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 08:14:05 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:36294 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725790AbfHAMOF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 08:14:05 -0400
-Received: by mail-wr1-f67.google.com with SMTP id n4so73416683wrs.3
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 05:14:03 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=zp/LDAkuFwJ/YFLRptApnClu3/c9qJzrJy+2Sl0cGG8=;
-        b=EnC+6gOEVD7Iq2iql/6gaZ89NxDLCMmTVLXgLqFfKqsgOK9MW41ulLRrrZoE1ZxGzw
-         MOGDGd3D2Dmq/dY354KWqLPh9UacbMko5jsOto4+7KOH3yauKCEJ45gIrTh5oi72bMUk
-         UM3WkFnlP40zt8GArSg+Uvp0yXmeXrITc3LHY17Slv8kPzGPe4b1qvq0UqQZ3aoDR9/c
-         B2ibQyxctAhsVNt4csBjcV63qqSV7PRz3KP16yjyLJrjuLkwmez1J4tvT/VXHPqV2cPZ
-         fCmc5o6qjaeN7BZHKgu+ERZYZYoL99x/xrsNEjcQDQHazaCrovszVT9R9bMOE+gszBWe
-         x08Q==
-X-Gm-Message-State: APjAAAUe5aLolOYq1kGXn8S6ApDzgsczaWPVH6jzFNvim+dc/OxeSun7
-        RpUUewxqa1V/zIqj3Pue21SZ/eaM0m/6ZIhvvhiS8KQM
-X-Google-Smtp-Source: APXvYqz9v3s6j2s/GS68Im2ABjVzFIufo01H+pRebBommK4dRvq1xbpXaxHEcXQufFRqLVcwO9VkUslg9nh26NMUptM=
-X-Received: by 2002:adf:cd81:: with SMTP id q1mr139202150wrj.16.1564661643027;
- Thu, 01 Aug 2019 05:14:03 -0700 (PDT)
+        id S1728902AbfHAMbd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 08:31:33 -0400
+Received: from sauhun.de ([88.99.104.3]:52418 "EHLO pokefinder.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728800AbfHAMbd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Aug 2019 08:31:33 -0400
+Received: from localhost (p54B333D2.dip0.t-ipconnect.de [84.179.51.210])
+        by pokefinder.org (Postfix) with ESMTPSA id 029702C2817;
+        Thu,  1 Aug 2019 14:31:30 +0200 (CEST)
+Date:   Thu, 1 Aug 2019 14:31:30 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, linux-i2c@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org,
+        bcm-kernel-feedback-list@broadcom.com,
+        Ray Jui <ray.jui@broadcom.com>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Subject: Re: [PATCH v1 1/1] i2c: iproc: Fix i2c master read more than 63 bytes
+Message-ID: <20190801123130.GE1659@ninjato>
+References: <1563956907-21255-1-git-send-email-rayagonda.kokatanur@broadcom.com>
 MIME-Version: 1.0
-References: <20190731123741.13947-1-geert+renesas@glider.be> <342e5e38-f980-c849-c061-8dad42bc0850@gmail.com>
-In-Reply-To: <342e5e38-f980-c849-c061-8dad42bc0850@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Thu, 1 Aug 2019 14:13:50 +0200
-Message-ID: <CAMuHMdWPvD_pSyJGp=kC0XmAChCK8R2X+exmpHT5eywJ5kQetA@mail.gmail.com>
-Subject: Re: [PATCH] scripts/dtc: dtx_diff - add color output support
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="2hMgfIw2X+zgXrFs"
+Content-Disposition: inline
+In-Reply-To: <1563956907-21255-1-git-send-email-rayagonda.kokatanur@broadcom.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
 
-On Wed, Jul 31, 2019 at 10:30 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> On 7/31/19 5:37 AM, Geert Uytterhoeven wrote:
-> > Add new -c/--color options, to enhance the diff output with color, and
-> > improve the user's experience.
-> >
-> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> > ---
-> >  scripts/dtc/dtx_diff | 10 +++++++++-
-> >  1 file changed, 9 insertions(+), 1 deletion(-)
-> >
-> > diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
-> > index e9ad7834a22d9459..4e2c8617f69a333e 100755
-> > --- a/scripts/dtc/dtx_diff
-> > +++ b/scripts/dtc/dtx_diff
-> > @@ -20,6 +20,8 @@ Usage:
-> >
-> >
-> >        --annotate    synonym for -T
-> > +      --color       synonym for -c
-> > +       -c           enable colored output
-> >         -f           print full dts in diff (--unified=99999)
-> >         -h           synonym for --help
-> >         -help        synonym for --help
+--2hMgfIw2X+zgXrFs
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-> I like the idea, but...
->
-> I have various linux distro releases across my many systems, but only one is
-> new enough to have the diff command that supports --color.
+On Wed, Jul 24, 2019 at 01:58:27PM +0530, Rayagonda Kokatanur wrote:
+> Use SMBUS_MASTER_DATA_READ.MASTER_RD_STATUS bit to check for RX
+> FIFO empty condition because SMBUS_MASTER_FIFO_CONTROL.MASTER_RX_PKT_COUNT
+> is not updated for read >=3D 64 bytes. This fixes the issue when trying to
+> read from the I2C slave more than 63 bytes.
+>=20
+> Fixes: c24b8d574b7c ("i2c: iproc: Extend I2C read up to 255 bytes")
+>=20
+> Signed-off-by: Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
 
-Seems to have been added in diffutils release 3.4 (2016-08-08).
-I almost can't believe it was that recent, but then I remembered using a
-wrapper before (colordiff; other wrappers may exist).
+Applied to for-current, thanks!
 
-> Can you enhance this patch to test whether --color is supported?  Maybe
-> something like (untested):
->
->         -c | --color )
->                 if `diff --color <(echo a) <(echo a) 2>/dev/null` ; then
->                         diff_color="--color=always"
->                 fi
->                 shift
->                 ;;
->
-> Then add some text to the usage for -c and --color saying that they will
-> be silently ignored if diff does not support --color.
->
-> I first wrote up a suggested version that printed an error message and
-> exited, but I think silently ignoring is more robust, even though it
-> may be more confusing to someone who is wondering why --color does not
-> work.
 
-Given this is an optional feature, to be enabled explicitly by the user,
-I'm not so fond of going through hoops to auto-detect the availability.
+--2hMgfIw2X+zgXrFs
+Content-Type: application/pgp-signature; name="signature.asc"
 
-So what about just documenting this in the help text instead?
+-----BEGIN PGP SIGNATURE-----
 
--      -c           enable colored output
-+      -c           enable colored output (requires diff with --color support)
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1C26IACgkQFA3kzBSg
+Kba85w//WB/fT1rfNyJzzedg2jVwLmdiaCcBYk4Y+Sz9sKRE3/SAdPulfp/wRUcb
+Q0YUiC2cRjunfZK0voZ5EUSFU+pBvM8dIRuTIWon/qdi1+6tDDAFIuXcswulFf1d
+09hBq1/aSOad318mNt2k4qJmUNyLvDaeYFHDCLwic1K48FWFqTWzgLpFn0idKxYq
+wIqINQz9dl6Qg0t81emc4xX0MB202LoaDriix4ERwHFjLsQuseqr4IeDrbXtGvLN
+7msFGGu7cgru2AUNXKPYWpZP3NItfZexR7AVhYKvuvDECy/jk/f+3DSyxj7qvrnS
+1Am4aRNQI6BQRzpfVCZwOEdOTpsx9SCQTEKpWkj6P5sde01ghq/oQzp8ENb9qoj7
+cuqGUJ3jf02dSLLFXusgfqywUEmLktGX+1gUvicURBykEYEecUV2xgCjnB3e7cTf
+v3/IJxTqDRpeCIbMkD0W4MN3WVoFISnn/Vl50oH7GiwoxVJ4TnFdNOZ8TmWfV1TG
+EoQf9yQR3vcmz13HUwyF8W27wJwWJ8u0iWLyqxeCgDaKtHRrL5HG8bEPu3rdLafE
+6n5ksnQpABRPshtd18hRQyGVqWaqNDUjKLJgGJVhqK3kbnvgGg0Z8qrcQHOA7tl+
+HMquJaDbDdS3AMUD3N0JHWqTr236PF05THzOH1X4hXIfsRtnPF0=
+=L7tj
+-----END PGP SIGNATURE-----
 
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
---
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+--2hMgfIw2X+zgXrFs--
