@@ -2,245 +2,139 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0F5207E30B
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 21:08:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 316BF7E323
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 21:12:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388439AbfHATIK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 15:08:10 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:33624 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388436AbfHATIJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 15:08:09 -0400
-Received: by mail-pf1-f194.google.com with SMTP id g2so34611792pfq.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 12:08:09 -0700 (PDT)
+        id S2388541AbfHATMf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 15:12:35 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:40897 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388535AbfHATMf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 15:12:35 -0400
+Received: by mail-pl1-f194.google.com with SMTP id a93so32568984pla.7
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 12:12:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=l7zHWj9uTE898xNsFgNreOOl7M4AlQGC8nY/kzspFO0=;
-        b=cdolFD+t3qlExdtL2mwioJzGR1pyV/iW375YSsUWcZFBve/MIlrkO8QohNIWAkKHm/
-         cnZS1TY5ULaH/vUFVWpAk4srdOuOK5CRqOfy9dcmlPvUZzBPscYSQRjOj0fVy7Ll55bg
-         J17+3SUy6JAShcfeUdc4upc4r1/4Kzx/QURKc=
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=u3M46kJjAPF4b1mqVIN/QqF1xk0nbqKlZydzEhZoL6s=;
+        b=Iu1CH4ToXYW90mTOdeHkqHqps0H4/Jt6nXnjawYRwpFRpCQ3R+FOjlvAHtsf0q+cca
+         g/GwPjYINrkuM0M27UfcxGN0Hpzq1z+zbIQRr9A8cLNBE6045TW8YO5B1jv+3zrSM+AI
+         RwmR2ijMX/YKSlorl4qZN6W9VRTC6OW7Mk6NYDrjpVniQ6cLad/+XzqpNwinuFtcNb6o
+         GTdsYR1aNvUhF9KHd0BLzgdnZis8Y+VjfG/T5HxcorMnvqNAW8q864HiIsdjCkh4XWvu
+         mGmSsJd4vy/0+OKrbqrS2lRjhwOvHCzqJiDH6nI0GAHQ2FHm8Lic/V7jrb83izS6/2/D
+         KuMw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=l7zHWj9uTE898xNsFgNreOOl7M4AlQGC8nY/kzspFO0=;
-        b=F8vFCXr3OBw/b6KAW3jfWpC7/3owtgAdUDolJ85vAj4na+yPfskGb0YNSf6kp+hX1h
-         sMJw85D0anWwNSt3+QUkvtExjI8V6TDYI1lT9R2cxxFy3d11fA/0qMN19sQi2fpj2jrd
-         JFOi6vCvooErEj6tvkK1/v3hYMQ9uGTJkDzuoTf0Xcz5iQpCQB6/H8dsxS8SdzQtWjkE
-         99X71RRb4F6MqsvzM3rVARMiwqDUqt1dgJuQ/0DBZ4YaHZGUUqJd5FYL9y6gd4VUCQzX
-         6TREh0a0lBdmkThCtdQRKB6ebvvC9RUIZB8rOc5KiNg6upHAhjee9oXdmgJ0KEsLvGiS
-         apHQ==
-X-Gm-Message-State: APjAAAWqCW2+KL2i945HxqZCLzdc1pBFv/A0GOQJtD39lNOhabI7KsAC
-        eioAv1K+OqrQcV1WXWziSu6ziw==
-X-Google-Smtp-Source: APXvYqyLppyi7G54tMIgHrVIgaDlvaNg0NBQ+64G+XU7m58ZMFxnyLnXrYT2feFR83kV6qwS8st6QQ==
-X-Received: by 2002:a63:c013:: with SMTP id h19mr90640936pgg.108.1564686489164;
-        Thu, 01 Aug 2019 12:08:09 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id q63sm95084100pfb.81.2019.08.01.12.08.08
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 01 Aug 2019 12:08:08 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     "David S . Miller" <davem@davemloft.net>,
-        Rob Herring <robh+dt@kernel.org>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=u3M46kJjAPF4b1mqVIN/QqF1xk0nbqKlZydzEhZoL6s=;
+        b=s/YcZA3XAS5eOU9GbzGmQWbA+aZTVI78nHs87AAx2CoQ1VDcUHicmrSZtv3UCE4iQY
+         arrQ28HOY9SGzMzv+XhyxsJiwuR+qX6i0k9z7+y5H9XV8akfh5FO4G6saFwK/V38ab1o
+         8RvUex+FrfabFUxR7Dpmo4mX5ejJ8MJUUktCxHxpRnYZzO2EXKtzVH5/3cab44RSOk6D
+         v+0TmR86Z4sEbVRlCV9+7oeNh3dtTMZEdhvZsQ3ef+NDhkSZZa5Oryr/6Q461Qh3Hi6/
+         vd4IvpDlxxeO8R+bCsMrn+BNp3vppG04K+z6R+3B9JXEKLxytuoBxBGAMyQs9U2XGVKO
+         0fsA==
+X-Gm-Message-State: APjAAAUiSPCmKf79w75bRV0bupBtX7De9nMwJE4/xdXeiyDqqjVIPUj1
+        0cy+9pRsKqXaN337K9wSMvnnCQ==
+X-Google-Smtp-Source: APXvYqyXQfNjDuCkBrlF9sH4WaQpLYB6kh01jQJmr+SAa0EdEbp3B9CGOkSzrUP/hpK0bXspTKw35A==
+X-Received: by 2002:a17:902:d90a:: with SMTP id c10mr124505738plz.208.1564686753720;
+        Thu, 01 Aug 2019 12:12:33 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id q4sm5434151pjq.27.2019.08.01.12.12.32
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 01 Aug 2019 12:12:33 -0700 (PDT)
+Date:   Thu, 1 Aug 2019 12:14:03 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Fabien Dessenne <fabien.dessenne@st.com>
+Cc:     Ohad Ben-Cohen <ohad@wizery.com>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Andrew Lunn <andrew@lunn.ch>,
-        Florian Fainelli <f.fainelli@gmail.com>,
-        Heiner Kallweit <hkallweit1@gmail.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Jonathan Corbet <corbet@lwn.net>,
+        linux-remoteproc@vger.kernel.org, devicetree@vger.kernel.org,
         linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v4 4/4] net: phy: realtek: configure RTL8211E LEDs
-Date:   Thu,  1 Aug 2019 12:07:59 -0700
-Message-Id: <20190801190759.28201-5-mka@chromium.org>
-X-Mailer: git-send-email 2.22.0.770.g0f2c4a37fd-goog
-In-Reply-To: <20190801190759.28201-1-mka@chromium.org>
-References: <20190801190759.28201-1-mka@chromium.org>
+        linux-stm32@st-md-mailman.stormreply.com,
+        linux-arm-kernel@lists.infradead.org, linux-doc@vger.kernel.org,
+        Benjamin Gaignard <benjamin.gaignard@st.com>
+Subject: Re: [PATCH 0/6] hwspinlock: allow sharing of hwspinlocks
+Message-ID: <20190801191403.GA7234@tuxbook-pro>
+References: <1552492237-28810-1-git-send-email-fabien.dessenne@st.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1552492237-28810-1-git-send-email-fabien.dessenne@st.com>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Configure the RTL8211E LEDs behavior when the device tree property
-'realtek,led-modes' is specified.
+On Wed 13 Mar 08:50 PDT 2019, Fabien Dessenne wrote:
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
-Changes in v4:
-- use the generic PHY LED binding
-- keep default/current configuration if none is specified
-- added rtl8211e_disable_eee_led_mode()
-  - was previously in separate patch, however since we always want to
-    disable EEE LED mode when a LED configuration is specified it makes
-    sense to just add the function here.
-- don't call phy_restore_page() in rtl8211e_config_leds() if
-  selection of the extended page failed.
-- use phydev_warn() instead of phydev_err() if LED configuration
-  fails since we don't bail out
-- use hex number to specify page for consistency
-- add hex number to comment about ext page 44 to facilitate searching
----
- drivers/net/phy/realtek.c | 121 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 120 insertions(+), 1 deletion(-)
+> The current implementation does not allow two different devices to use
+> a common hwspinlock. This patch set proposes to have, as an option, some
+> hwspinlocks shared between several users.
+> 
+> Below is an example that explain the need for this:
+> 	exti: interrupt-controller@5000d000 {
+> 		compatible = "st,stm32mp1-exti", "syscon";
+> 		interrupt-controller;
+> 		#interrupt-cells = <2>;
+> 		reg = <0x5000d000 0x400>;
+> 		hwlocks = <&hsem 1>;
+> 	};
+> The two drivers (stm32mp1-exti and syscon) refer to the same hwlock.
+> With the current hwspinlock implementation, only the first driver succeeds
+> in requesting (hwspin_lock_request_specific) the hwlock. The second request
+> fails.
+> 
+> 
+> The proposed approach does not modify the API, but extends the DT 'hwlocks'
+> property with a second optional parameter (the first one identifies an
+> hwlock) that specifies whether an hwlock is requested for exclusive usage
+> (current behavior) or can be shared between several users.
+> Examples:
+> 	hwlocks = <&hsem 8>;	Ref to hwlock #8 for exclusive usage
+> 	hwlocks = <&hsem 8 0>;	Ref to hwlock #8 for exclusive (0) usage
+> 	hwlocks = <&hsem 8 1>;	Ref to hwlock #8 for shared (1) usage
+> 
+> As a constraint, the #hwlock-cells value must be 1 or 2.
+> In the current implementation, this can have theorically any value but:
+> - all of the exisiting drivers use the same value : 1.
+> - the framework supports only one value : 1 (see implementation of
+>   of_hwspin_lock_simple_xlate())
+> Hence, it shall not be a problem to restrict this value to 1 or 2 since
+> it won't break any driver.
+> 
 
-diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
-index e09d3b0da2c7..46e3d77d41b6 100644
---- a/drivers/net/phy/realtek.c
-+++ b/drivers/net/phy/realtek.c
-@@ -9,8 +9,11 @@
-  * Copyright (c) 2004 Freescale Semiconductor, Inc.
-  */
- #include <linux/bitops.h>
--#include <linux/phy.h>
-+#include <linux/bits.h>
- #include <linux/module.h>
-+#include <linux/phy.h>
-+
-+#define RTL821x_NUM_LEDS			3
- 
- #define RTL821x_PHYSR				0x11
- #define RTL821x_PHYSR_DUPLEX			BIT(13)
-@@ -26,6 +29,19 @@
- #define RTL821x_EXT_PAGE_SELECT			0x1e
- #define RTL821x_PAGE_SELECT			0x1f
- 
-+/* RTL8211E page 5 */
-+#define RTL8211E_EEE_LED_MODE1			0x05
-+#define RTL8211E_EEE_LED_MODE2			0x06
-+
-+/* RTL8211E extension page 44 (0x2c) */
-+#define RTL8211E_LACR				0x1a
-+#define RLT8211E_LACR_LEDACTCTRL_SHIFT		4
-+#define RLT8211E_LACR_LEDACTCTRL_MASK		GENMASK(6, 4)
-+#define RTL8211E_LCR				0x1c
-+#define RTL8211E_LCR_LEDCTRL_MASK		(GENMASK(2, 0) | \
-+						 GENMASK(6, 4) | \
-+						 GENMASK(10, 8))
-+
- #define RTL8211F_INSR				0x1d
- 
- #define RTL8211F_TX_DELAY			BIT(8)
-@@ -83,6 +99,105 @@ static int rtl8211e_modify_ext_paged(struct phy_device *phydev, int page,
- 	return phy_restore_page(phydev, oldpage, ret);
- }
- 
-+static void rtl8211e_disable_eee_led_mode(struct phy_device *phydev)
-+{
-+	int oldpage;
-+	int err = 0;
-+
-+	oldpage = phy_select_page(phydev, 5);
-+	if (oldpage < 0)
-+		goto out;
-+
-+	/* write magic values to disable EEE LED mode */
-+	err = __phy_write(phydev, RTL8211E_EEE_LED_MODE1, 0x8b82);
-+	if (err)
-+		goto out;
-+
-+	err = __phy_write(phydev, RTL8211E_EEE_LED_MODE2, 0x052b);
-+
-+out:
-+	phy_restore_page(phydev, oldpage, err);
-+}
-+
-+static int rtl8211e_config_leds(struct phy_device *phydev)
-+{
-+	int i, oldpage, ret;
-+	u16 lacr_bits = 0, lcr_bits = 0;
-+	u16 lacr_mask = RLT8211E_LACR_LEDACTCTRL_MASK;
-+	u16 lcr_mask = RTL8211E_LCR_LEDCTRL_MASK;
-+	bool eed_led_mode_disabled = false;
-+
-+	for (i = 0; i < RTL821x_NUM_LEDS; i++) {
-+		struct phy_led_config cfg;
-+
-+		ret = of_get_phy_led_cfg(phydev, i, &cfg);
-+		if (ret) {
-+			lacr_mask &= ~BIT(4 + i);
-+			lcr_mask &= ~GENMASK((i * 4) + 2, i * 4);
-+			continue;
-+		}
-+
-+		if (!eed_led_mode_disabled) {
-+			rtl8211e_disable_eee_led_mode(phydev);
-+			eed_led_mode_disabled = true;
-+		}
-+
-+		switch (cfg.trigger) {
-+		case PHY_LED_LINK_10M:
-+			lcr_bits |= 1 << (i * 4);
-+			break;
-+
-+		case PHY_LED_LINK_100M:
-+			lcr_bits |= 2 << (i * 4);
-+			break;
-+
-+		case PHY_LED_LINK_1G:
-+			lcr_bits |= 4 << (i * 4);
-+			break;
-+
-+		case PHY_LED_ACTIVITY:
-+			lacr_bits |= BIT(RLT8211E_LACR_LEDACTCTRL_SHIFT + i);
-+			break;
-+
-+		default:
-+			phydev_warn(phydev,
-+				    "unknown trigger for LED%d: %d\n",
-+				    i, cfg.trigger);
-+		}
-+	}
-+
-+	oldpage = rtl8211e_select_ext_page(phydev, 0x2c);
-+	if (oldpage < 0) {
-+		phydev_err(phydev, "failed to select extended page: %d\n", oldpage);
-+		return oldpage;
-+	}
-+
-+	if (lacr_mask == 0)
-+		goto skip_lacr;
-+
-+	ret = __phy_modify(phydev, RTL8211E_LACR,
-+			   lacr_mask, lacr_bits);
-+	if (ret) {
-+		phydev_err(phydev, "failed to write LACR reg: %d\n",
-+			   ret);
-+		goto err;
-+	}
-+
-+skip_lacr:
-+	if (lcr_mask == 0)
-+		goto skip_lcr;
-+
-+	ret = __phy_modify(phydev, RTL8211E_LCR,
-+			   lcr_mask, lcr_bits);
-+	if (ret)
-+		phydev_err(phydev, "failed to write LCR reg: %d\n",
-+			   ret);
-+
-+skip_lcr:
-+err:
-+	return phy_restore_page(phydev, oldpage, ret);
-+}
-+
- static int rtl8201_ack_interrupt(struct phy_device *phydev)
- {
- 	int err;
-@@ -217,6 +332,10 @@ static int rtl8211e_config_init(struct phy_device *phydev)
- 	int ret;
- 	u16 val;
- 
-+	ret = rtl8211e_config_leds(phydev);
-+	if (ret)
-+		phydev_warn(phydev, "LED configuration failed: %d\n", ret);
-+
- 	/* enable TX/RX delay for rgmii-* modes, and disable them for rgmii. */
- 	switch (phydev->interface) {
- 	case PHY_INTERFACE_MODE_RGMII:
--- 
-2.22.0.770.g0f2c4a37fd-goog
+Hi Fabien,
 
+Your series looks good, but it makes me wonder why the hardware locks
+should be an exclusive resource.
+
+How about just making all (specific) locks shared?
+
+Regards,
+Bjorn
+
+> Fabien Dessenne (6):
+>   dt-bindings: hwlock: add support of shared locks
+>   hwspinlock: allow sharing of hwspinlocks
+>   dt-bindings: hwlock: update STM32 #hwlock-cells value
+>   ARM: dts: stm32: Add hwspinlock node for stm32mp157 SoC
+>   ARM: dts: stm32: Add hwlock for irqchip on stm32mp157
+>   ARM: dts: stm32: hwlocks for GPIO for stm32mp157
+> 
+>  .../devicetree/bindings/hwlock/hwlock.txt          | 27 +++++--
+>  .../bindings/hwlock/st,stm32-hwspinlock.txt        |  6 +-
+>  Documentation/hwspinlock.txt                       | 10 ++-
+>  arch/arm/boot/dts/stm32mp157-pinctrl.dtsi          |  2 +
+>  arch/arm/boot/dts/stm32mp157c.dtsi                 | 10 +++
+>  drivers/hwspinlock/hwspinlock_core.c               | 82 +++++++++++++++++-----
+>  drivers/hwspinlock/hwspinlock_internal.h           |  2 +
+>  7 files changed, 108 insertions(+), 31 deletions(-)
+> 
+> -- 
+> 2.7.4
+> 
