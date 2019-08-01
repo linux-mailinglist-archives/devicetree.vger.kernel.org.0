@@ -2,151 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6EC337D854
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 11:17:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F41217D858
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 11:18:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729924AbfHAJRh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 05:17:37 -0400
-Received: from twhmllg4.macronix.com ([211.75.127.132]:55587 "EHLO
-        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729792AbfHAJRh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 05:17:37 -0400
-Received: from twhfmnt1.mxic.com.tw (twhfm1p2.macronix.com [172.17.20.92])
-        by TWHMLLG4.macronix.com with ESMTP id x719HTPb014187;
-        Thu, 1 Aug 2019 17:17:29 +0800 (GMT-8)
-        (envelope-from masonccyang@mxic.com.tw)
-Received: from MXML06C.mxic.com.tw (mxml06c.mxic.com.tw [172.17.14.55])
-        by Forcepoint Email with ESMTP id E762F2D1C15A92C1395E;
-        Thu,  1 Aug 2019 17:17:29 +0800 (CST)
-In-Reply-To: <20190801075725.4f23e0f5@collabora.com>
-References: <1564631710-30276-1-git-send-email-masonccyang@mxic.com.tw> <1564631710-30276-3-git-send-email-masonccyang@mxic.com.tw> <20190801075725.4f23e0f5@collabora.com>
-To:     "Boris Brezillon" <boris.brezillon@collabora.com>
-Cc:     anders.roxell@linaro.org, bbrezillon@kernel.org,
-        christophe.kerello@st.com, computersforpeace@gmail.com,
-        devicetree@vger.kernel.org, dwmw2@infradead.org,
-        juliensu@mxic.com.tw, lee.jones@linaro.org, liang.yang@amlogic.com,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        marek.vasut@gmail.com, mark.rutland@arm.com,
-        miquel.raynal@bootlin.com, paul@crapouillou.net,
-        paul.burton@mips.com, richard@nod.at, robh+dt@kernel.org,
-        stefan@agner.ch, vigneshr@ti.com
-Subject: Re: [PATCH v6 2/2] dt-bindings: mtd: Document Macronix raw NAND controller
- bindings
+        id S1731092AbfHAJSv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 05:18:51 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:46188 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729792AbfHAJSv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 05:18:51 -0400
+Received: by mail-wr1-f65.google.com with SMTP id z1so72730869wru.13;
+        Thu, 01 Aug 2019 02:18:49 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=r10Qd6YYdYObm/kh4AJAjNm3GS30LOuKxx3VhCdZ9K8=;
+        b=PlBrNg+7H7JGrwH+gSEo5EZVMbHvcOj2OFxlwG/tRmQqR457c3Z6/YVnjfCTMsiZoX
+         4MpgpRMiAN9/G4T5q0JhW8qD2/ygqIFbxXiAAXy0KVLy6/iVTbTh+jn4TqMNvAhTzYwx
+         ewPdTxWBbJPtL8awzCqoobjn5nKcnYMXuiHjOiu8xmcNjv8Su7BflMz0ldepVqsJknHe
+         4cY/5dWcGR9K1Et5bw2+dWfRqE8OPZgtf2KcRvyxV3Feu0u2KM2cS1yToK918O7ZBu3A
+         OXAndSN5xxyFgURwWwBjzPVuyyd8Mb919a3PthDVjJowaiB/hADZOFsvhOIzgNjwl3fu
+         U17g==
+X-Gm-Message-State: APjAAAXJkq/mQPxBmipnsexkjjH0zgxnSWgs3yKZfOwPOBFrMJI1fa6m
+        CGqltr6v9jM1S8QkBoGlfwGL0QVq4zb9G3ab/Zs=
+X-Google-Smtp-Source: APXvYqyF0VUJ/JXcdoyEBWs3YLUcWDWSgeotOTO8iBg5kxyw1WcPITJd42lrocRejGbuI6khCDdX3HUeDCivKTRzupI=
+X-Received: by 2002:adf:cd81:: with SMTP id q1mr138066606wrj.16.1564651128767;
+ Thu, 01 Aug 2019 02:18:48 -0700 (PDT)
 MIME-Version: 1.0
-X-KeepSent: 42C4D3EC:9549E8DC-48258449:003273A5;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
-Message-ID: <OF42C4D3EC.9549E8DC-ON48258449.003273A5-48258449.00330A06@mxic.com.tw>
-From:   masonccyang@mxic.com.tw
-Date:   Thu, 1 Aug 2019 17:17:29 +0800
-X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
- 2019/08/01 PM 05:17:29,
-        Serialize complete at 2019/08/01 PM 05:17:29
-Content-Type: text/plain; charset="US-ASCII"
-X-MAIL: TWHMLLG4.macronix.com x719HTPb014187
+References: <20190801091337.27786-1-horms+renesas@verge.net.au>
+In-Reply-To: <20190801091337.27786-1-horms+renesas@verge.net.au>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 1 Aug 2019 11:18:36 +0200
+Message-ID: <CAMuHMdXNbqmS4T50+1PXp1-o1NLwbYCKqV=6e1Vj_vuicUxMOQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: usb: renesas_gen3: Rename bindings
+ documentation file to reflect IP block
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        USB list <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Aug 1, 2019 at 11:13 AM Simon Horman <horms+renesas@verge.net.au> wrote:
+> For consistency with the naming of (most) other documentation files for DT
+> bindings for Renesas IP blocks rename the Renesas USB3.0 peripheral
+> documentation file from renesas,gen3.txt to renesas,usb3-peri.txt
 
-Hi Boris,
+from renesas,usb3.txt
 
-> On Thu,  1 Aug 2019 11:55:10 +0800
-> Mason Yang <masonccyang@mxic.com.tw> wrote:
-> 
-> > Document the bindings used by the Macronix raw NAND controller.
-> > 
-> > Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> > ---
-> >  Documentation/devicetree/bindings/mtd/mxic-nand.txt | 19 
-+++++++++++++++++++
-> >  1 file changed, 19 insertions(+)
-> >  create mode 100644 
-Documentation/devicetree/bindings/mtd/mxic-nand.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/mtd/mxic-nand.txt b/
-> Documentation/devicetree/bindings/mtd/mxic-nand.txt
-> > new file mode 100644
-> > index 0000000..de37d60
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/mtd/mxic-nand.txt
-> > @@ -0,0 +1,19 @@
-> > +Macronix Raw NAND Controller Device Tree Bindings
-> > +-------------------------------------------------
-> > +
-> > +Required properties:
-> > +- compatible: should be "mxicy,multi-itfc-v009-nand-morph"
-> > +- reg: should contain 1 entry for the registers
-> > +- interrupts: interrupt line connected to this raw NAND controller
-> > +- clock-names: should contain "ps", "send" and "send_dly"
-> > +- clocks: should contain 3 phandles for the "ps", "send" and
-> > +    "send_dly" clocks
-> > +
-> > +Example:
-> > +
-> > +   nand: nand-controller@43c30000 {
-> > +      compatible = "mxicy,multi-itfc-v009-nand-morph";
-> > +      reg = <0x43c30000 0x10000>;
-> > +      clocks = <&clkwizard 0>, <&clkwizard 1>, <&clkc 15>;
-> > +      clock-names = "send", "send_dly", "ps";
-> 
-> You should have subnodes describing the NAND connected to the
-> controller (see [1]).
-> 
-> [1]
-https://elixir.bootlin.com/linux/v5.3-rc2/source/Documentation/devicetree/
-> bindings/mtd/nand-controller.yaml#L131
-> 
-> > +   };
-> 
+> This refines a recent rename from renesas,gen3.txt to renesas-gen3.txt.
 
-Do you mean to add patternProperties ?
+Actually it was renamed from renesas_usb3.txt to renesas,usb3.txt.
 
-                 nand: nand-controller@43c30000 {
-                                 compatible = 
-"mxicy,multi-itfc-v009-nand-morph";
-                                 reg = <0x43c30000 0x10000>;
-                                 clocks = <&clkwizard 0>, <&clkwizard 1>, 
-<&clkc 15>;
-                                 clock-names = "send", "send_dly", "ps";
+> The motivation is to to more accurately reflect the IP block documented in
 
-+                               nand@0 {
-+
-+                               };
-                 };
+double to
 
-something like that.
+> this file.
+>
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
 
-thanks & best regards,
-Mason
+With the above fixed:
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
+Gr{oetje,eeting}s,
 
-CONFIDENTIALITY NOTE:
+                        Geert
 
-This e-mail and any attachments may contain confidential information 
-and/or personal data, which is protected by applicable laws. Please be 
-reminded that duplication, disclosure, distribution, or use of this e-mail 
-(and/or its attachments) or any part thereof is prohibited. If you receive 
-this e-mail in error, please notify us immediately and delete this mail as 
-well as its attachment(s) from your system. In addition, please be 
-informed that collection, processing, and/or use of personal data is 
-prohibited unless expressly permitted by personal data protection laws. 
-Thank you for your attention and cooperation.
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
-Macronix International Co., Ltd.
-
-=====================================================================
-
-
-
-============================================================================
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
-
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
