@@ -2,702 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D4E07D577
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 08:22:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9D0C7D60D
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 09:09:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729898AbfHAGWk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 02:22:40 -0400
-Received: from bhuna.collabora.co.uk ([46.235.227.227]:33832 "EHLO
-        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729953AbfHAGWk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 02:22:40 -0400
-Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: bbrezillon)
-        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 208C128AF56;
-        Thu,  1 Aug 2019 07:22:37 +0100 (BST)
-Date:   Thu, 1 Aug 2019 08:22:33 +0200
-From:   Boris Brezillon <boris.brezillon@collabora.com>
-To:     Mason Yang <masonccyang@mxic.com.tw>
-Cc:     miquel.raynal@bootlin.com, marek.vasut@gmail.com,
-        bbrezillon@kernel.org, dwmw2@infradead.org,
-        computersforpeace@gmail.com, vigneshr@ti.com, richard@nod.at,
-        robh+dt@kernel.org, stefan@agner.ch, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        juliensu@mxic.com.tw, paul.burton@mips.com, liang.yang@amlogic.com,
-        lee.jones@linaro.org, anders.roxell@linaro.org,
-        christophe.kerello@st.com, paul@crapouillou.net,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 1/2] mtd: rawnand: Add Macronix raw NAND controller
- driver
-Message-ID: <20190801082233.759f6ae9@collabora.com>
-In-Reply-To: <1564631710-30276-2-git-send-email-masonccyang@mxic.com.tw>
-References: <1564631710-30276-1-git-send-email-masonccyang@mxic.com.tw>
-        <1564631710-30276-2-git-send-email-masonccyang@mxic.com.tw>
-Organization: Collabora
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+        id S1728783AbfHAHJH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 03:09:07 -0400
+Received: from mail-eopbgr130082.outbound.protection.outlook.com ([40.107.13.82]:16711
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1725790AbfHAHJG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Aug 2019 03:09:06 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=R9McT2ws17CB//DDavlvW5c+7/5p/sPuj1UorVqecm42++jydDSbe8xuKyH2OvlI2gmmSDKK2Ut2MyeE5Obsa4gJM+t37Wbda3INiHiGF0kc01mEbqJ476iADadYMDLOMhp4FwiAz/BAutaHJUP16Ob8ZUpDoXcbEg/Uxug3Zsk+z0TY2R+Bb4+2FE5UgHd5JnN54OcbAnCyuAqEGRpiWQYWrT3EQsfPQC+ggP79RQs683QFxGT+vIIhW2ElIoB0m+kTJs98WFSs5qqSQQ2b1ULuM//bHiZOiuEBtqVbyj/LH5E6PKj51qDMcHewr/0a+hvYe/MNOwTaTqZmBCYjow==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Rx8/dj4WNFRMGgFf9mc5C77AqmGyV/iRFTKcVp5VOCA=;
+ b=YA3mYkneVRNFAfAq0Fc9jVvz+ur6CcZRWItuUqqXHZBOGA2cpKCCC4ZvZqsF3azExmaEHhbaNnJDWtDC7a99iQLKKvgx2Edr+rThZ9xAP5EE7KN+T4dNniDKnLn1i7KgnfTPmoyBFLy1vRdv5W/GgTc1wPu7Hl6WxGSlIxVuOFglUwNl1ZsLdLa/6AKQIKrZ5tLZWcpMSzJbLuf4E62Dqa3q1xBWy7Y7D9extjX6tc5sDzepiBCN2c8Cix4g2YhecSIj7PCsyczNZebXpbPe9PbQT9YW5CH/31rVY5r+6eAtehlAllU+JCw2NlMMmDoNZDEJd2wmvMb78BmlzwVQzA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
+ header.d=nxp.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Rx8/dj4WNFRMGgFf9mc5C77AqmGyV/iRFTKcVp5VOCA=;
+ b=oKcNCcEclCrUUybVMLTpD99YJP3NI5osKSgmyAuQPaXCgwZJ+i+ys3RxyqoqdT6ubj1LimcbvS+NCi6KPNGKlv5pdoFJ9dr3J1uaSg9SNGw1YOY8HfQJiUclW5a6azD4yT7vndE1uS0s3Hbtb6+25GggcKGDAmpsmOUE7R4PHDs=
+Received: from VI1PR04MB4015.eurprd04.prod.outlook.com (10.171.182.24) by
+ VI1PR04MB5663.eurprd04.prod.outlook.com (20.178.126.24) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2115.15; Thu, 1 Aug 2019 07:09:01 +0000
+Received: from VI1PR04MB4015.eurprd04.prod.outlook.com
+ ([fe80::9c4f:262d:db31:e339]) by VI1PR04MB4015.eurprd04.prod.outlook.com
+ ([fe80::9c4f:262d:db31:e339%4]) with mapi id 15.20.2136.010; Thu, 1 Aug 2019
+ 07:09:01 +0000
+From:   Ashish Kumar <ashish.kumar@nxp.com>
+To:     Rob Herring <robh@kernel.org>, Han Xu <han.xu@nxp.com>,
+        "broonie@kernel.org" <broonie@kernel.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>,
+        Leo Li <leoyang.li@nxp.com>
+Subject: RE: [EXT] Re: [Patch v3 2/2] dt-bindings: spi: spi-fsl-qspi: Add
+ bindings of ls1088a and ls1012a
+Thread-Topic: [EXT] Re: [Patch v3 2/2] dt-bindings: spi: spi-fsl-qspi: Add
+ bindings of ls1088a and ls1012a
+Thread-Index: AQHVJo/WR5aDyJa0DkeJCggmqW/DRqbC1yeAgB61yWCABBUxwIAAf8yA
+Date:   Thu, 1 Aug 2019 07:09:01 +0000
+Message-ID: <VI1PR04MB40151616D6ECF55BA0A8C23F95DE0@VI1PR04MB4015.eurprd04.prod.outlook.com>
+References: <1560942714-13330-1-git-send-email-Ashish.Kumar@nxp.com>
+ <1560942714-13330-3-git-send-email-Ashish.Kumar@nxp.com>
+ <20190709200857.GA8477@bogus>
+ <VI1PR04MB4015206CD4AAA1E54C5978DA95DD0@VI1PR04MB4015.eurprd04.prod.outlook.com>
+ <VE1PR04MB66879C5045A813E7311534D68FDF0@VE1PR04MB6687.eurprd04.prod.outlook.com>
+In-Reply-To: <VE1PR04MB66879C5045A813E7311534D68FDF0@VE1PR04MB6687.eurprd04.prod.outlook.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=ashish.kumar@nxp.com; 
+x-originating-ip: [92.120.0.6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 7fb285c3-8049-45b0-1677-08d7164f2166
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:VI1PR04MB5663;
+x-ms-traffictypediagnostic: VI1PR04MB5663:
+x-microsoft-antispam-prvs: <VI1PR04MB5663CE3FAA2C3622608B967F95DE0@VI1PR04MB5663.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:2657;
+x-forefront-prvs: 01165471DB
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(979002)(4636009)(376002)(346002)(396003)(39860400002)(136003)(366004)(13464003)(189003)(199004)(305945005)(66946007)(53936002)(55016002)(66446008)(64756008)(66556008)(66476007)(4326008)(6436002)(8936002)(26005)(7736002)(316002)(7696005)(52536014)(6116002)(76116006)(81156014)(186003)(3846002)(5660300002)(9686003)(53546011)(256004)(86362001)(74316002)(8676002)(66066001)(81166006)(14454004)(6506007)(102836004)(476003)(44832011)(6246003)(76176011)(229853002)(68736007)(99286004)(110136005)(2501003)(25786009)(54906003)(2906002)(446003)(11346002)(33656002)(478600001)(71200400001)(71190400001)(486006)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5663;H:VI1PR04MB4015.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: k81qdUYQa9dZC6LSSAnl0/XTTegVCtwCG6PIJtXN3P8fEehvUHdgtoBdNXeUaB5maes9bcWoZ4vN7kDOJ7TKGkzEk0wV1gatiqEVM+Oh16+Eo69rblN+LlxKmJcOWWs+3ob7K/G4/1Ss+Ixw8crLmfedCMxZ3GfMeiPId2zyZK20Qbee6mF5V5fk565UDfp6KK9u+mwbE8TT4rkUsqH59CKiQWcWxzlaJptaQW/QbSlISEq6cDZQCKR7CYrt/4XO5GxFlfp3KU/kmA1WcKfxzU+faLQOtkFNVPNpAUAMAzhkUK1jEEz/W5JhcAUNQj+ZrnJ2B2DSyLdo2PYCyuqaHouqz7LK2pecJwIZTBAiCuzt0EOPgD/JzYNHPEs2DIhe9zYr5dcdZ9DVqRv3SnNi0ppLfY7uPQkA1PxrWXnRH+s=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 7fb285c3-8049-45b0-1677-08d7164f2166
+X-MS-Exchange-CrossTenant-originalarrivaltime: 01 Aug 2019 07:09:01.3521
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: ashish.kumar@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5663
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu,  1 Aug 2019 11:55:09 +0800
-Mason Yang <masonccyang@mxic.com.tw> wrote:
 
-> Add a driver for Macronix raw NAND controller.
-> 
-> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> ---
->  drivers/mtd/nand/raw/Kconfig     |   6 +
->  drivers/mtd/nand/raw/Makefile    |   1 +
->  drivers/mtd/nand/raw/mxic_nand.c | 554 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 561 insertions(+)
->  create mode 100644 drivers/mtd/nand/raw/mxic_nand.c
-> 
-> diff --git a/drivers/mtd/nand/raw/Kconfig b/drivers/mtd/nand/raw/Kconfig
-> index 5a711d8..9cff36a 100644
-> --- a/drivers/mtd/nand/raw/Kconfig
-> +++ b/drivers/mtd/nand/raw/Kconfig
-> @@ -407,6 +407,12 @@ config MTD_NAND_MTK
->  	  Enables support for NAND controller on MTK SoCs.
->  	  This controller is found on mt27xx, mt81xx, mt65xx SoCs.
->  
-> +config MTD_NAND_MXIC
-> +	tristate "Macronix raw NAND controller"
-> +	depends on HAS_IOMEM || COMPILE_TEST
-> +	help
-> +	  This selects the Macronix raw NAND controller driver.
-> +
->  config MTD_NAND_TEGRA
->  	tristate "NVIDIA Tegra NAND controller"
->  	depends on ARCH_TEGRA || COMPILE_TEST
-> diff --git a/drivers/mtd/nand/raw/Makefile b/drivers/mtd/nand/raw/Makefile
-> index efaf5cd..9b43fbf 100644
-> --- a/drivers/mtd/nand/raw/Makefile
-> +++ b/drivers/mtd/nand/raw/Makefile
-> @@ -54,6 +54,7 @@ obj-$(CONFIG_MTD_NAND_HISI504)	        += hisi504_nand.o
->  obj-$(CONFIG_MTD_NAND_BRCMNAND)		+= brcmnand/
->  obj-$(CONFIG_MTD_NAND_QCOM)		+= qcom_nandc.o
->  obj-$(CONFIG_MTD_NAND_MTK)		+= mtk_ecc.o mtk_nand.o
-> +obj-$(CONFIG_MTD_NAND_MXIC)		+= mxic_nand.o
->  obj-$(CONFIG_MTD_NAND_TEGRA)		+= tegra_nand.o
->  obj-$(CONFIG_MTD_NAND_STM32_FMC2)	+= stm32_fmc2_nand.o
->  obj-$(CONFIG_MTD_NAND_MESON)		+= meson_nand.o
-> diff --git a/drivers/mtd/nand/raw/mxic_nand.c b/drivers/mtd/nand/raw/mxic_nand.c
-> new file mode 100644
-> index 0000000..56e816d
-> --- /dev/null
-> +++ b/drivers/mtd/nand/raw/mxic_nand.c
-> @@ -0,0 +1,554 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +/*
-> + * Copyright (C) 2019 Macronix International Co., Ltd.
-> + *
-> + * Author:
-> + *	Mason Yang <masonccyang@mxic.com.tw>
-> + */
-> +
-> +#include <linux/clk.h>
-> +#include <linux/io.h>
-> +#include <linux/iopoll.h>
-> +#include <linux/module.h>
-> +#include <linux/mtd/mtd.h>
-> +#include <linux/mtd/rawnand.h>
-> +#include <linux/mtd/nand_ecc.h>
-> +#include <linux/platform_device.h>
-> +
-> +#include "internals.h"
-> +
-> +#define HC_CFG			0x0
-> +#define HC_CFG_IF_CFG(x)	((x) << 27)
-> +#define HC_CFG_DUAL_SLAVE	BIT(31)
-> +#define HC_CFG_INDIVIDUAL	BIT(30)
-> +#define HC_CFG_NIO(x)		(((x) / 4) << 27)
-> +#define HC_CFG_TYPE(s, t)	((t) << (23 + ((s) * 2)))
-> +#define HC_CFG_TYPE_SPI_NOR	0
-> +#define HC_CFG_TYPE_SPI_NAND	1
-> +#define HC_CFG_TYPE_SPI_RAM	2
-> +#define HC_CFG_TYPE_RAW_NAND	3
-> +#define HC_CFG_SLV_ACT(x)	((x) << 21)
-> +#define HC_CFG_CLK_PH_EN	BIT(20)
-> +#define HC_CFG_CLK_POL_INV	BIT(19)
-> +#define HC_CFG_BIG_ENDIAN	BIT(18)
-> +#define HC_CFG_DATA_PASS	BIT(17)
-> +#define HC_CFG_IDLE_SIO_LVL(x)	((x) << 16)
-> +#define HC_CFG_MAN_START_EN	BIT(3)
-> +#define HC_CFG_MAN_START	BIT(2)
-> +#define HC_CFG_MAN_CS_EN	BIT(1)
-> +#define HC_CFG_MAN_CS_ASSERT	BIT(0)
-> +
-> +#define INT_STS			0x4
-> +#define INT_STS_EN		0x8
-> +#define INT_SIG_EN		0xc
-> +#define INT_STS_ALL		GENMASK(31, 0)
-> +#define INT_RDY_PIN		BIT(26)
-> +#define INT_RDY_SR		BIT(25)
-> +#define INT_LNR_SUSP		BIT(24)
-> +#define INT_ECC_ERR		BIT(17)
-> +#define INT_CRC_ERR		BIT(16)
-> +#define INT_LWR_DIS		BIT(12)
-> +#define INT_LRD_DIS		BIT(11)
-> +#define INT_SDMA_INT		BIT(10)
-> +#define INT_DMA_FINISH		BIT(9)
-> +#define INT_RX_NOT_FULL		BIT(3)
-> +#define INT_RX_NOT_EMPTY	BIT(2)
-> +#define INT_TX_NOT_FULL		BIT(1)
-> +#define INT_TX_EMPTY		BIT(0)
-> +
-> +#define HC_EN			0x10
-> +#define HC_EN_BIT		BIT(0)
-> +
-> +#define TXD(x)			(0x14 + ((x) * 4))
-> +#define RXD			0x24
-> +
-> +#define SS_CTRL(s)		(0x30 + ((s) * 4))
-> +#define LRD_CFG			0x44
-> +#define LWR_CFG			0x80
-> +#define RWW_CFG			0x70
-> +#define OP_READ			BIT(23)
-> +#define OP_DUMMY_CYC(x)		((x) << 17)
-> +#define OP_ADDR_BYTES(x)	((x) << 14)
-> +#define OP_CMD_BYTES(x)		(((x) - 1) << 13)
-> +#define OP_OCTA_CRC_EN		BIT(12)
-> +#define OP_DQS_EN		BIT(11)
-> +#define OP_ENHC_EN		BIT(10)
-> +#define OP_PREAMBLE_EN		BIT(9)
-> +#define OP_DATA_DDR		BIT(8)
-> +#define OP_DATA_BUSW(x)		((x) << 6)
-> +#define OP_ADDR_DDR		BIT(5)
-> +#define OP_ADDR_BUSW(x)		((x) << 3)
-> +#define OP_CMD_DDR		BIT(2)
-> +#define OP_CMD_BUSW(x)		(x)
-> +#define OP_BUSW_1		0
-> +#define OP_BUSW_2		1
-> +#define OP_BUSW_4		2
-> +#define OP_BUSW_8		3
-> +
-> +#define OCTA_CRC		0x38
-> +#define OCTA_CRC_IN_EN(s)	BIT(3 + ((s) * 16))
-> +#define OCTA_CRC_CHUNK(s, x)	((fls((x) / 32)) << (1 + ((s) * 16)))
-> +#define OCTA_CRC_OUT_EN(s)	BIT(0 + ((s) * 16))
-> +
-> +#define ONFI_DIN_CNT(s)		(0x3c + (s))
-> +
-> +#define LRD_CTRL		0x48
-> +#define RWW_CTRL		0x74
-> +#define LWR_CTRL		0x84
-> +#define LMODE_EN		BIT(31)
-> +#define LMODE_SLV_ACT(x)	((x) << 21)
-> +#define LMODE_CMD1(x)		((x) << 8)
-> +#define LMODE_CMD0(x)		(x)
-> +
-> +#define LRD_ADDR		0x4c
-> +#define LWR_ADDR		0x88
-> +#define LRD_RANGE		0x50
-> +#define LWR_RANGE		0x8c
-> +
-> +#define AXI_SLV_ADDR		0x54
-> +
-> +#define DMAC_RD_CFG		0x58
-> +#define DMAC_WR_CFG		0x94
-> +#define DMAC_CFG_PERIPH_EN	BIT(31)
-> +#define DMAC_CFG_ALLFLUSH_EN	BIT(30)
-> +#define DMAC_CFG_LASTFLUSH_EN	BIT(29)
-> +#define DMAC_CFG_QE(x)		(((x) + 1) << 16)
-> +#define DMAC_CFG_BURST_LEN(x)	(((x) + 1) << 12)
-> +#define DMAC_CFG_BURST_SZ(x)	((x) << 8)
-> +#define DMAC_CFG_DIR_READ	BIT(1)
-> +#define DMAC_CFG_START		BIT(0)
-> +
-> +#define DMAC_RD_CNT		0x5c
-> +#define DMAC_WR_CNT		0x98
-> +
-> +#define SDMA_ADDR		0x60
-> +
-> +#define DMAM_CFG		0x64
-> +#define DMAM_CFG_START		BIT(31)
-> +#define DMAM_CFG_CONT		BIT(30)
-> +#define DMAM_CFG_SDMA_GAP(x)	(fls((x) / 8192) << 2)
-> +#define DMAM_CFG_DIR_READ	BIT(1)
-> +#define DMAM_CFG_EN		BIT(0)
-> +
-> +#define DMAM_CNT		0x68
-> +
-> +#define LNR_TIMER_TH		0x6c
-> +
-> +#define RDM_CFG0		0x78
-> +#define RDM_CFG0_POLY(x)	(x)
-> +
-> +#define RDM_CFG1		0x7c
-> +#define RDM_CFG1_RDM_EN		BIT(31)
-> +#define RDM_CFG1_SEED(x)	(x)
-> +
-> +#define LWR_SUSP_CTRL		0x90
-> +#define LWR_SUSP_CTRL_EN	BIT(31)
-> +
-> +#define DMAS_CTRL		0x9c
-> +#define DMAS_CTRL_EN		BIT(31)
-> +#define DMAS_CTRL_DIR_READ	BIT(30)
-> +
-> +#define DATA_STROB		0xa0
-> +#define DATA_STROB_EDO_EN	BIT(2)
-> +#define DATA_STROB_INV_POL	BIT(1)
-> +#define DATA_STROB_DELAY_2CYC	BIT(0)
-> +
-> +#define IDLY_CODE(x)		(0xa4 + ((x) * 4))
-> +#define IDLY_CODE_VAL(x, v)	((v) << (((x) % 4) * 8))
-> +
-> +#define GPIO			0xc4
-> +#define GPIO_PT(x)		BIT(3 + ((x) * 16))
-> +#define GPIO_RESET(x)		BIT(2 + ((x) * 16))
-> +#define GPIO_HOLDB(x)		BIT(1 + ((x) * 16))
-> +#define GPIO_WPB(x)		BIT((x) * 16)
-> +
-> +#define HC_VER			0xd0
-> +
-> +#define HW_TEST(x)		(0xe0 + ((x) * 4))
-> +
-> +#define MXIC_NFC_MAX_CLK_HZ	50000000
-> +
-> +struct mxic_nand_ctlr {
-> +	struct clk *ps_clk;
-> +	struct clk *send_clk;
-> +	struct clk *send_dly_clk;
-> +	void __iomem *regs;
-> +	struct nand_controller controller;
-> +	struct device *dev;
-> +	void *priv;
 
-Looks like this priv field point to a nand_chip object. Please replace
-it by:
+> -----Original Message-----
+> From: Leo Li
+> Sent: Thursday, August 1, 2019 4:59 AM
+> To: Ashish Kumar <ashish.kumar@nxp.com>; Rob Herring
+> <robh@kernel.org>; Han Xu <han.xu@nxp.com>
+> Cc: devicetree@vger.kernel.org; bbrezillon@kernel.org; broonie@kernel.org=
+;
+> linux-arm-kernel@lists.infradead.org; linux-mtd@lists.infradead.org; Kuld=
+eep
+> Singh <kuldeep.singh@nxp.com>
+> Subject: RE: [EXT] Re: [Patch v3 2/2] dt-bindings: spi: spi-fsl-qspi: Add
+> bindings of ls1088a and ls1012a
+>=20
+>=20
+>=20
+> > -----Original Message-----
+> > From: Ashish Kumar
+> > Sent: Monday, July 29, 2019 4:09 AM
+> > To: Rob Herring <robh@kernel.org>; Leo Li <leoyang.li@nxp.com>
+> > Cc: devicetree@vger.kernel.org; bbrezillon@kernel.org;
+> > broonie@kernel.org; linux-arm-kernel@lists.infradead.org;
+> > linux-mtd@lists.infradead.org; Kuldeep Singh <kuldeep.singh@nxp.com>
+> > Subject: RE: [EXT] Re: [Patch v3 2/2] dt-bindings: spi: spi-fsl-qspi:
+> > Add bindings of ls1088a and ls1012a
+> >
+> >
+> >
+> > > -----Original Message-----
+> > > From: Rob Herring <robh@kernel.org>
+> > > Sent: Wednesday, July 10, 2019 1:39 AM
+> > > To: Ashish Kumar <ashish.kumar@nxp.com>
+> > > Cc: devicetree@vger.kernel.org; bbrezillon@kernel.org;
+> > > broonie@kernel.org; linux-arm-kernel@lists.infradead.org;
+> > > linux-mtd@lists.infradead.org; Ashish Kumar <ashish.kumar@nxp.com>;
+> > > Kuldeep Singh <kuldeep.singh@nxp.com>; Ashish Kumar
+> > > <ashish.kumar@nxp.com>
+> > > Subject: [EXT] Re: [Patch v3 2/2] dt-bindings: spi: spi-fsl-qspi:
+> > > Add bindings of ls1088a and ls1012a
+> > >
+> > > Caution: EXT Email
+> > >
+> > > On Wed, 19 Jun 2019 16:41:54 +0530, Ashish Kumar wrote:
+> > > > Signed-off-by: Kuldeep Singh <kuldeep.singh@nxp.com>
+> > > > Signed-off-by: Ashish Kumar <ashish.kumar@nxp.com>
+> > > > ---
+> > > > v3:
+> > > > Rebase to top
+> > > > v2:
+> > > > Convert to patch series and rebasing done on top of tree
+> > > >
+> > > >  Documentation/devicetree/bindings/spi/spi-fsl-qspi.txt | 2 ++
+> > > >  1 file changed, 2 insertions(+)
+> > > >
+> > >
+> > > Reviewed-by: Rob Herring <robh@kernel.org>
+> >
+> > Hi Leo,
+> >
+> > I think Rob, is waiting for you ack.
+>=20
+> Binding patches usually go through subsystem tree.  So I think this actua=
+lly
+> need ack from qspi maintainer Han Xu and be picked up by SPI maintainer.
+Ok.
+Hello Han Xu,=20
 
-	struct nand_chip *chip;
+Could you please ack this few of my dts patches are dependent on this, wait=
+ing to be pushed from Shawn's tree.
 
-> +};
-> +
-> +struct mxic_nand_chip {
-> +	struct nand_chip chip;
-> +};
+Regards=20
+Ashish=20
 
-No need to define your own nand_chip struct if all it contains is the
-base definition.
 
-> +
-> +static int mxic_nfc_clk_enable(struct mxic_nand_ctlr *nfc)
-> +{
-> +	int ret;
-> +
-> +	ret = clk_prepare_enable(nfc->ps_clk);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = clk_prepare_enable(nfc->send_clk);
-> +	if (ret)
-> +		goto err_ps_clk;
-> +
-> +	ret = clk_prepare_enable(nfc->send_dly_clk);
-> +	if (ret)
-> +		goto err_send_dly_clk;
-> +
-> +	return ret;
-> +
-> +err_send_dly_clk:
-> +	clk_disable_unprepare(nfc->send_clk);
-> +err_ps_clk:
-> +	clk_disable_unprepare(nfc->ps_clk);
-> +
-> +	return ret;
-> +}
-> +
-> +static void mxic_nfc_clk_disable(struct mxic_nand_ctlr *nfc)
-> +{
-> +	clk_disable_unprepare(nfc->send_clk);
-> +	clk_disable_unprepare(nfc->send_dly_clk);
-> +	clk_disable_unprepare(nfc->ps_clk);
-> +}
-> +
-> +static void mxic_nfc_set_input_delay(struct mxic_nand_ctlr *nfc, u8 idly_code)
-> +{
-> +	writel(IDLY_CODE_VAL(0, idly_code) |
-> +	       IDLY_CODE_VAL(1, idly_code) |
-> +	       IDLY_CODE_VAL(2, idly_code) |
-> +	       IDLY_CODE_VAL(3, idly_code),
-> +	       nfc->regs + IDLY_CODE(0));
-> +	writel(IDLY_CODE_VAL(4, idly_code) |
-> +	       IDLY_CODE_VAL(5, idly_code) |
-> +	       IDLY_CODE_VAL(6, idly_code) |
-> +	       IDLY_CODE_VAL(7, idly_code),
-> +	       nfc->regs + IDLY_CODE(1));
-> +}
-> +
-> +static int mxic_nfc_clk_setup(struct mxic_nand_ctlr *nfc, unsigned long freq)
-> +{
-> +	int ret;
-> +
-> +	ret = clk_set_rate(nfc->send_clk, freq);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = clk_set_rate(nfc->send_dly_clk, freq);
-> +	if (ret)
-> +		return ret;
-> +
-> +	/*
-> +	 * A constant delay range from 0x0 ~ 0x1F for input delay,
-> +	 * the unit is 78 ps, the max input delay is 2.418 ns.
-> +	 */
-> +	mxic_nfc_set_input_delay(nfc, 0xf);
-
-Just curious. Shouldn't we use that to support EDO modes? This being
-said, a delay of 2.5ns will not be enough for EDO...
-
-> +
-> +	/*
-> +	 * Phase degree = 360 * freq * output-delay
-> +	 * where output-delay is a constant value 1 ns in FPGA.
-> +	 *
-> +	 * Get Phase degree = 360 * freq * 1 ns
-> +	 *                  = 360 * freq * 1 sec / 1000000000
-> +	 *                  = 9 * freq / 25000000
-> +	 */
-> +	ret = clk_set_phase(nfc->send_dly_clk, 9 * freq / 25000000);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static int mxic_nfc_set_freq(struct mxic_nand_ctlr *nfc, unsigned long freq)
-> +{
-> +	int ret;
-> +
-> +	if (freq > MXIC_NFC_MAX_CLK_HZ)
-> +		freq = MXIC_NFC_MAX_CLK_HZ;
-> +
-> +	mxic_nfc_clk_disable(nfc);
-> +	ret = mxic_nfc_clk_setup(nfc, freq);
-> +	if (ret)
-> +		return ret;
-> +
-> +	ret = mxic_nfc_clk_enable(nfc);
-> +	if (ret)
-> +		return ret;
-> +
-> +	return 0;
-> +}
-> +
-> +static void mxic_nfc_hw_init(struct mxic_nand_ctlr *nfc)
-> +{
-> +	writel(DATA_STROB_EDO_EN, nfc->regs + DATA_STROB);
-
-Oh, no, here is the EDO flag. BTW, you should not have it set by
-default, it's something you configure in your ->setup_data_interface()
-implementation.
-
-> +	writel(HC_CFG_NIO(8) | HC_CFG_TYPE(1, HC_CFG_TYPE_RAW_NAND) |
-> +	       HC_CFG_SLV_ACT(0) | HC_CFG_MAN_CS_EN |
-> +	       HC_CFG_IDLE_SIO_LVL(1), nfc->regs + HC_CFG);
-> +	writel(INT_STS_ALL, nfc->regs + INT_STS_EN);
-> +	writel(0x0, nfc->regs + ONFI_DIN_CNT(0));
-> +	writel(0, nfc->regs + LRD_CFG);
-> +	writel(0, nfc->regs + LRD_CTRL);
-> +	writel(0x0, nfc->regs + HC_EN);
-> +
-> +	/* Default 10 MHz to setup tRC_min/tWC_min:100 ns */
-> +	mxic_nfc_set_freq(nfc, 10000000);
-
-Again, not something you should configure here, but I guess having a
-default setting does not hurt.
-
-> +}
-> +
-> +static void mxic_nfc_cs_enable(struct mxic_nand_ctlr *nfc)
-> +{
-> +	writel(readl(nfc->regs + HC_CFG) | HC_CFG_MAN_CS_EN,
-> +	       nfc->regs + HC_CFG);
-> +	writel(HC_CFG_MAN_CS_ASSERT | readl(nfc->regs + HC_CFG),
-> +	       nfc->regs + HC_CFG);
-> +}
-> +
-> +static void mxic_nfc_cs_disable(struct mxic_nand_ctlr *nfc)
-> +{
-> +	writel(~HC_CFG_MAN_CS_ASSERT & readl(nfc->regs + HC_CFG),
-> +	       nfc->regs + HC_CFG);
-> +}
-> +
-> +static int  mxic_nfc_wait_ready(struct nand_chip *chip)
-> +{
-> +	struct mxic_nand_ctlr *nfc = nand_get_controller_data(chip);
-> +	u32 sts;
-> +
-> +	return readl_poll_timeout(nfc->regs + INT_STS, sts,
-> +				  sts & INT_RDY_PIN, 0, USEC_PER_SEC);
-
-You're not using interrupts at all? For things like R/B wait it's
-usually a good thing to rely on interrupts instead of status-polling.
-
-> +}
-> +
-> +static int mxic_nfc_data_xfer(struct mxic_nand_ctlr *nfc, const void *txbuf,
-> +			      void *rxbuf, unsigned int len)
-> +{
-> +	unsigned int pos = 0;
-> +
-> +	while (pos < len) {
-> +		unsigned int nbytes = len - pos;
-> +		u32 data = 0xffffffff;
-> +		u32 sts;
-> +		int ret;
-> +
-> +		if (nbytes > 4)
-> +			nbytes = 4;
-> +
-> +		if (txbuf)
-> +			memcpy(&data, txbuf + pos, nbytes);
-> +
-> +		ret = readl_poll_timeout(nfc->regs + INT_STS, sts,
-> +					 sts & INT_TX_EMPTY, 0, USEC_PER_SEC);
-> +		if (ret)
-> +			return ret;
-> +
-> +		writel(data, nfc->regs + TXD(nbytes % 4));
-> +
-> +		ret = readl_poll_timeout(nfc->regs + INT_STS, sts,
-> +					 sts & INT_TX_EMPTY, 0,
-> +					 USEC_PER_SEC);
-> +		if (ret)
-> +			return ret;
-> +
-> +		ret = readl_poll_timeout(nfc->regs + INT_STS, sts,
-> +					 sts & INT_RX_NOT_EMPTY, 0,
-> +					 USEC_PER_SEC);
-> +		if (ret)
-> +			return ret;
-> +
-> +		data = readl(nfc->regs + RXD);
-> +		if (rxbuf) {
-> +			data >>= (8 * (4 - nbytes));
-> +			memcpy(rxbuf + pos, &data, nbytes);
-> +		}
-> +		if (readl(nfc->regs + INT_STS) & INT_RX_NOT_EMPTY)
-> +			dev_warn(nfc->dev, "RX FIFO not empty\n")
-> +
-> +		pos += nbytes;
-> +	}
-> +
-> +	return 0;
-> +}
-> +
-> +static int mxic_nfc_exec_op(struct nand_chip *chip,
-> +			    const struct nand_operation *op, bool check_only)
-> +{
-> +	struct mxic_nand_ctlr *nfc = nand_get_controller_data(chip);
-> +	const struct nand_op_instr *instr = NULL;
-> +	int ret = 0;
-> +	unsigned int op_id;
-> +
-> +	mxic_nfc_cs_enable(nfc);
-> +	for (op_id = 0; op_id < op->ninstrs; op_id++) {
-> +		instr = &op->instrs[op_id];
-> +
-> +		switch (instr->type) {
-> +		case NAND_OP_CMD_INSTR:
-> +			writel(0, nfc->regs + HC_EN);
-> +			writel(HC_EN_BIT, nfc->regs + HC_EN);
-> +			writel(OP_CMD_BUSW(OP_BUSW_8) |  OP_DUMMY_CYC(0x3F) |
-> +			       OP_CMD_BYTES(0), nfc->regs + SS_CTRL(0));
-> +
-> +			ret = mxic_nfc_data_xfer(nfc,
-> +						 &instr->ctx.cmd.opcode,
-> +						 NULL, 1);
-> +			break;
-> +
-> +		case NAND_OP_ADDR_INSTR:
-> +			writel(OP_ADDR_BUSW(OP_BUSW_8) | OP_DUMMY_CYC(0x3F) |
-> +			       OP_ADDR_BYTES(instr->ctx.addr.naddrs),
-> +			       nfc->regs + SS_CTRL(0));
-> +			ret = mxic_nfc_data_xfer(nfc,
-> +						 instr->ctx.addr.addrs, NULL,
-> +						 instr->ctx.addr.naddrs);
-> +			break;
-> +
-> +		case NAND_OP_DATA_IN_INSTR:
-> +			writel(0x0, nfc->regs + ONFI_DIN_CNT(0));
-> +			writel(OP_DATA_BUSW(OP_BUSW_8) | OP_DUMMY_CYC(0x3F) |
-> +			       OP_READ, nfc->regs + SS_CTRL(0));
-> +			ret = mxic_nfc_data_xfer(nfc, NULL,
-> +						 instr->ctx.data.buf.in,
-> +						 instr->ctx.data.len);
-> +			break;
-> +
-> +		case NAND_OP_DATA_OUT_INSTR:
-> +			writel(instr->ctx.data.len,
-> +			       nfc->regs + ONFI_DIN_CNT(0));
-> +			writel(OP_DATA_BUSW(OP_BUSW_8) | OP_DUMMY_CYC(0x3F),
-> +			       nfc->regs + SS_CTRL(0));
-> +			ret = mxic_nfc_data_xfer(nfc,
-> +						 instr->ctx.data.buf.out, NULL,
-> +						 instr->ctx.data.len);
-> +			break;
-> +
-> +		case NAND_OP_WAITRDY_INSTR:
-> +			ret = mxic_nfc_wait_ready(chip);
-> +			break;
-> +		}
-> +	}
-> +	mxic_nfc_cs_disable(nfc);
-> +
-> +	return ret;
-> +}
-> +
-> +static int mxic_nfc_setup_data_interface(struct nand_chip *chip, int chipnr,
-> +					 const struct nand_data_interface *conf)
-> +{
-> +	struct mxic_nand_ctlr *nfc = nand_get_controller_data(chip);
-> +	const struct nand_sdr_timings *sdr;
-> +	unsigned long freq;
-> +
-> +	sdr = nand_get_sdr_timings(conf);
-> +	if (IS_ERR(sdr))
-> +		return PTR_ERR(sdr);
-> +
-> +	if (chipnr < 0)
-
-Please use the NAND_DATA_IFACE_CHECK_ONLY macro for this check:
-
-	if (chipnr == NAND_DATA_IFACE_CHECK_ONLY)
-		return 0;
-
-> +		return 0;
-> +
-> +	if (sdr->tRC_min)
-> +		freq = 1000000000 / (sdr->tRC_min / 1000);
-
-Please use NSEC_PER_SEC instead of 1000000000. And I think you can get
-rid of the check on sdr->tRC_min (it should never be 0).
-
-> +
-> +	return mxic_nfc_set_freq(nfc, freq);
-
-You should set the EDO when ->tRC_min < 30000 IIRC, clear it otherwise.
-
-> +}
-> +
-> +static const struct nand_controller_ops mxic_nand_controller_ops = {
-> +	.exec_op = mxic_nfc_exec_op,
-> +	.setup_data_interface = mxic_nfc_setup_data_interface,
-> +};
-> +
-> +static int mxic_nfc_probe(struct platform_device *pdev)
-> +{
-> +	struct mtd_info *mtd;
-> +	struct mxic_nand_ctlr *nfc;
-> +	struct mxic_nand_chip *mxic_nand;
-> +	struct nand_chip *nand_chip;
-> +	struct resource *res;
-> +	int err;
-> +
-> +	nfc = devm_kzalloc(&pdev->dev, sizeof(struct mxic_nand_ctlr),
-> +			   GFP_KERNEL);
-> +	if (!nfc)
-> +		return -ENOMEM;
-> +
-> +	mxic_nand = devm_kzalloc(&pdev->dev, sizeof(struct mxic_nand_chip),
-> +				 GFP_KERNEL);
-> +	if (!mxic_nand)
-> +		return -ENOMEM;
-> +
-> +	nfc->ps_clk = devm_clk_get(&pdev->dev, "ps");
-> +	if (IS_ERR(nfc->ps_clk))
-> +		return PTR_ERR(nfc->ps_clk);
-> +
-> +	nfc->send_clk = devm_clk_get(&pdev->dev, "send");
-> +	if (IS_ERR(nfc->send_clk))
-> +		return PTR_ERR(nfc->send_clk);
-> +
-> +	nfc->send_dly_clk = devm_clk_get(&pdev->dev, "send_dly");
-> +	if (IS_ERR(nfc->send_dly_clk))
-> +		return PTR_ERR(nfc->send_dly_clk);
-> +
-> +	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-> +	nfc->regs = devm_ioremap_resource(&pdev->dev, res);
-> +	if (IS_ERR(nfc->regs))
-> +		return PTR_ERR(nfc->regs);
-> +
-> +	nand_chip = &mxic_nand->chip;
-> +	mtd = nand_to_mtd(nand_chip);
-> +	mtd->dev.parent = &pdev->dev;
-> +	nand_chip->ecc.priv = NULL;
-
-No need to do this NULL assignment, the object is allocated with
-devm_kzalloc().
-
-> +	nand_set_flash_node(nand_chip, pdev->dev.of_node);
-
-The flash node should be a child of pdev->dev.of_node,
-pdev->dev.of_node is representing your controller not the NAND chip.
-
-> +	nand_chip->priv = nfc;
-> +	nfc->dev = &pdev->dev;
-> +	nfc->priv = nand_chip;
-> +
-> +	nfc->controller.ops = &mxic_nand_controller_ops;
-> +	nand_controller_init(&nfc->controller);
-> +	nand_chip->controller = &nfc->controller;
-> +
-> +	mxic_nfc_hw_init(nfc);
-> +
-> +	err = nand_scan(nand_chip, 1);
-> +	if (err)
-> +		goto fail;
-> +
-> +	err = mtd_device_register(mtd, NULL, 0);
-> +	if (err)
-> +		goto fail;
-> +
-> +	platform_set_drvdata(pdev, nfc);
-> +	return 0;
-> +
-> +fail:
-> +	mxic_nfc_clk_disable(nfc);
-
-Looks like you never call mxic_nfc_clk_enable(), which means you'll end
-up with unbalanced prepare/enable counts. Also not sure how that can
-work unless the bootloader takes care of enabling the clks for you.
-
-> +	return err;
-> +}
-> +
-> +static int mxic_nfc_remove(struct platform_device *pdev)
-> +{
-> +	struct mxic_nand_ctlr *nfc = platform_get_drvdata(pdev);
-> +
-> +	nand_release(nfc->priv);
-> +	mxic_nfc_clk_disable(nfc);
-> +	return 0;
-> +}
-> +
-> +static const struct of_device_id mxic_nfc_of_ids[] = {
-> +	{ .compatible = "mxicy,multi-itfc-v009-nand-morph", },
-> +	{},
-> +};
-> +MODULE_DEVICE_TABLE(of, mxic_nfc_of_ids);
-> +
-> +static struct platform_driver mxic_nfc_driver = {
-> +	.probe = mxic_nfc_probe,
-> +	.remove = mxic_nfc_remove,
-> +	.driver = {
-> +		.name = "mxic-nfc",
-> +		.of_match_table = mxic_nfc_of_ids,
-> +	},
-> +};
-> +module_platform_driver(mxic_nfc_driver);
-> +
-> +MODULE_AUTHOR("Mason Yang <masonccyang@mxic.com.tw>");
-> +MODULE_DESCRIPTION("Macronix raw NAND controller driver");
-> +MODULE_LICENSE("GPL v2");
-
+>=20
+> Regards,
+> Leo
