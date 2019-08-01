@@ -2,132 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 51E657E05D
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 18:41:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 598347E0C5
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 19:10:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733085AbfHAQlK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 12:41:10 -0400
-Received: from mx2.suse.de ([195.135.220.15]:59518 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1732035AbfHAQlK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Aug 2019 12:41:10 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id E44E3AFA1;
-        Thu,  1 Aug 2019 16:41:07 +0000 (UTC)
-Message-ID: <4027201b6128b3f2b0ab941dc473ab143da64be2.camel@suse.de>
-Subject: Re: [PATCH 5/8] arm64: use ZONE_DMA on DMA addressing limited
- devices
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Robin Murphy <robin.murphy@arm.com>,
-        Catalin Marinas <catalin.marinas@arm.com>
-Cc:     phill@raspberryi.org, devicetree@vger.kernel.org,
-        f.fainelli@gmail.com, linux-mm@kvack.org, marc.zyngier@arm.com,
-        Will Deacon <will@kernel.org>, linux-kernel@vger.kernel.org,
-        eric@anholt.net, iommu@lists.linux-foundation.org,
-        robh+dt@kernel.org, linux-rpi-kernel@lists.infradead.org,
-        mbrugger@suse.com, akpm@linux-foundation.org,
-        m.szyprowski@samsung.com, frowand.list@gmail.com, hch@lst.de,
-        linux-arm-kernel@lists.infradead.org, wahrenst@gmx.net
-Date:   Thu, 01 Aug 2019 18:40:50 +0200
-In-Reply-To: <e35dd4a5-281b-d281-59c9-3fc7108eb8be@arm.com>
-References: <20190731154752.16557-1-nsaenzjulienne@suse.de>
-         <20190731154752.16557-6-nsaenzjulienne@suse.de>
-         <20190731170742.GC17773@arrakis.emea.arm.com>
-         <d8b4a7cb9c06824ca88a0602a5bf38b6324b43c0.camel@suse.de>
-         <e35dd4a5-281b-d281-59c9-3fc7108eb8be@arm.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-qAJVJtco/gH4l0Ax6g8O"
-User-Agent: Evolution 3.32.4 
+        id S1733237AbfHARKr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 13:10:47 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:40591 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732281AbfHARKr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 13:10:47 -0400
+Received: by mail-wm1-f67.google.com with SMTP id v19so63904736wmj.5;
+        Thu, 01 Aug 2019 10:10:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=FghonA4IabkJaTgLr8fM3E6htRJ5CzRRLsDA7y0O0VY=;
+        b=IXREDAqVq4+TQykJaNC3vMKRY1s8sfyb4cqoqV1qIJHds766TvFSenvnluadnn3JGN
+         49vKKJKm4LipWYwD5He7qF0AHhwSe10Hu6DLske6AsXxiaporx3njUEjBmcYekgdTvnq
+         5rnH632NNorGfygsGzzUazJX3QP618R5+SyZTlK0ExbbWUDfmVF3Jk4RMtOx1pdVAtBR
+         FAgM8kIL74JD/bfgmJe8IA2dfAay3nmkLdGTZX6V3YX+tmUEMojSASxMsyyif6AqBJCm
+         gpQEsHfz/KJkXN18bals8U3lmH6qEhVmI0Eftbhtdy0yHkLKIm05QttGenqwbLX2x+CC
+         n5+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=FghonA4IabkJaTgLr8fM3E6htRJ5CzRRLsDA7y0O0VY=;
+        b=VpWkZr5nMewFWFhg3z7jh7UVwyfYThXdTu6I4Y0xhWtGfkP0kKgpcKb57HUDXulSOk
+         0tZ9ckDMCsLvqHt8ef0QzbnOzBMU8ZVr7+el5zRa88uUvh8H6lSPwc2XXKmL3e4H/B4v
+         iWaw8h7n6mM14k/6/2PuJV//u+iJf32iH2PZL0q+G2HVCzED61RUhMvy6jVkLQpEeDey
+         Rh4uIhhmJybU4Zm31dyWVI0wbYpwNuevv5Zw+tYRRJv2LaBSnvmg/eOOWraggysuiW2y
+         uT+mNWMVIhoS5l4HFR6Zxp2IhVHVQ0BeIhDL1s8qcoCxkAt+p81dpaEfOd+G/GmlSoNP
+         MOaQ==
+X-Gm-Message-State: APjAAAUzntiNPvwmjqM2zAbcW2YQ8vgKYYOniYMuLAodcvRYuNlmT851
+        C6Rn//DDIypXrEXR4RSD8GPWZeqe
+X-Google-Smtp-Source: APXvYqxByZB/gh88C6wRDNij3X4Fh7cbfowCUmSN5SWstCnDpG/3spte6L9Wyr3/77AaFAU2sLB6xg==
+X-Received: by 2002:a7b:c455:: with SMTP id l21mr119115981wmi.114.1564679444023;
+        Thu, 01 Aug 2019 10:10:44 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
+        by smtp.googlemail.com with ESMTPSA id u2sm5377105wmc.3.2019.08.01.10.10.41
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 01 Aug 2019 10:10:43 -0700 (PDT)
+Subject: Re: [PATCH v7 10/20] clk: tegra: clk-dfll: Add suspend and resume
+ support
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "jason@lakedaemon.net" <jason@lakedaemon.net>,
+        "marc.zyngier@arm.com" <marc.zyngier@arm.com>,
+        "linus.walleij@linaro.org" <linus.walleij@linaro.org>,
+        "stefan@agner.ch" <stefan@agner.ch>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>
+Cc:     Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        "sboyd@kernel.org" <sboyd@kernel.org>,
+        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
+        "linux-gpio@vger.kernel.org" <linux-gpio@vger.kernel.org>,
+        Jui Chang Kuo <jckuo@nvidia.com>,
+        Joseph Lo <josephl@nvidia.com>, Timo Alho <talho@nvidia.com>,
+        "linux-tegra@vger.kernel.org" <linux-tegra@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Mikko Perttunen <mperttunen@nvidia.com>,
+        Sandipan Patra <spatra@nvidia.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "rjw@rjwysocki.net" <rjw@rjwysocki.net>,
+        "viresh.kumar@linaro.org" <viresh.kumar@linaro.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>
+References: <1564607463-28802-1-git-send-email-skomatineni@nvidia.com>
+ <1564607463-28802-11-git-send-email-skomatineni@nvidia.com>
+ <4400ffef-685f-b9e6-3b07-4790f851282c@gmail.com>
+ <501a9d0e-ce78-9b35-642d-dff7f9223926@gmail.com>
+ <BYAPR12MB3398C388471BC5811614C8FEC2DE0@BYAPR12MB3398.namprd12.prod.outlook.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <31990250-e237-ddb9-ce71-29b7c2302fc3@gmail.com>
+Date:   Thu, 1 Aug 2019 20:10:38 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
+In-Reply-To: <BYAPR12MB3398C388471BC5811614C8FEC2DE0@BYAPR12MB3398.namprd12.prod.outlook.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+01.08.2019 19:10, Sowjanya Komatineni пишет:
+> I didn’t updated any patches. This is still same v7 just resent with
+> CPUFreq maintainers in CC as I missed to add them earlier.
 
---=-qAJVJtco/gH4l0Ax6g8O
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
-
-On Thu, 2019-08-01 at 17:07 +0100, Robin Murphy wrote:
-> On 2019-08-01 4:44 pm, Nicolas Saenz Julienne wrote:
-> > On Wed, 2019-07-31 at 18:07 +0100, Catalin Marinas wrote:
-> > > On Wed, Jul 31, 2019 at 05:47:48PM +0200, Nicolas Saenz Julienne wrot=
-e:
-> > > > diff --git a/arch/arm64/mm/init.c b/arch/arm64/mm/init.c
-> > > > index 1c4ffabbe1cb..f5279ef85756 100644
-> > > > --- a/arch/arm64/mm/init.c
-> > > > +++ b/arch/arm64/mm/init.c
-> > > > @@ -50,6 +50,13 @@
-> > > >   s64 memstart_addr __ro_after_init =3D -1;
-> > > >   EXPORT_SYMBOL(memstart_addr);
-> > > >  =20
-> > > > +/*
-> > > > + * We might create both a ZONE_DMA and ZONE_DMA32. ZONE_DMA is nee=
-ded
-> > > > if
-> > > > there
-> > > > + * are periferals unable to address the first naturally aligned 4G=
-B of
-> > > > ram.
-> > > > + * ZONE_DMA32 will be expanded to cover the rest of that memory. I=
-f
-> > > > such
-> > > > + * limitations doesn't exist only ZONE_DMA32 is created.
-> > > > + */
-> > >=20
-> > > Shouldn't we instead only create ZONE_DMA to cover the whole 32-bit
-> > > range and leave ZONE_DMA32 empty? Can__GFP_DMA allocations fall back
-> > > onto ZONE_DMA32?
-> >=20
-> > Hi Catalin, thanks for the review.
-> >=20
-> > You're right, the GFP_DMA page allocation will fail with a nasty dmesg =
-error
-> > if
-> > ZONE_DMA is configured but empty. Unsurprisingly the opposite situation=
- is
-> > fine
-> > (GFP_DMA32 with an empty ZONE_DMA32).
->=20
-> Was that tested on something other than RPi4 with more than 4GB of RAM?=
-=20
-> (i.e. with a non-empty ZONE_NORMAL either way)
-
-No, all I did is play around with RPi4's memory size (1 GB vs 4 GB).
-
-I'll see If I can get access to a dts based board with more than 4 GB, If n=
-ot
-I'll try to fake it. It's not ideal but I can set the limit on 3 GB and hav=
-e
-the 3 areas created (with and witouth an empty ZONE_DMA32).
-
-On top of that, now that you ask, I realise I neglected all the ACPI based
-servers. I have access to some so I'll make sure I test everything on them =
-too
-for the next series.
-
-Regards,
-Nicolas
-
-
---=-qAJVJtco/gH4l0Ax6g8O
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl1DFhIACgkQlfZmHno8
-x/5YnAf/aih3gNCdpPnk9CDn+WHuChefMegomFiKPy7KLWGYmB9OrtzlXlYit3VU
-z2zffpz7+B+tFBZWLyxyQfJ8sT8uogFFJR+HNsvucEC2z4cDMksEkCgYQRHcv5iq
-4CDSPUrd5zuESxZjq3ne7sLGx0G41aVs7o+iKAaUls/WAhq7MbYiq8B/r9HPnS1/
-qAxsHlnX0PASFIN3BCnr+1VSy+xbwpFNSNVfqLYtWRQZvI8ww3Epx/AbWcTKy3YC
-3YbXITPMlA4Mf+0ROrmU4sf0dj/mdQkC6SYqPjTMqVYyzON4rJ/MvOChQDmEGPs6
-WiNr9ZnC1GXA4QfwFXcRrfK85+Y0vw==
-=e240
------END PGP SIGNATURE-----
-
---=-qAJVJtco/gH4l0Ax6g8O--
-
+There are now two different threads for the same patches, which is not
+very good. When I said that CPUFreq maintainers should be CC'ed, I
+didn't mean to resend it all, sorry for not being clear about it. You
+should've wait for more comments to the original patches and then make a
+v8. I suggest to do the same in the current situation as well, please
+address all the current comments and wait for 1-2 days, then make a v8.
