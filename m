@@ -2,331 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5F32A7E36E
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 21:42:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3581C7E39B
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 21:56:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388684AbfHATmn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 15:42:43 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:5066 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388639AbfHATmn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 15:42:43 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d4340af0002>; Thu, 01 Aug 2019 12:42:39 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Thu, 01 Aug 2019 12:42:39 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Thu, 01 Aug 2019 12:42:39 -0700
-Received: from [10.110.103.107] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Thu, 1 Aug
- 2019 19:42:38 +0000
-Subject: Re: [PATCH v7 07/20] clk: tegra: clk-periph: Add save and restore
- support
-To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
-        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
-        <linus.walleij@linaro.org>, <stefan@agner.ch>,
-        <mark.rutland@arm.com>
-CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
-        <josephl@nvidia.com>, <talho@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
+        id S2388847AbfHATzL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 15:55:11 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:36431 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388797AbfHATzL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 15:55:11 -0400
+Received: by mail-pl1-f194.google.com with SMTP id k8so32683221plt.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 12:55:10 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=i5NjihWciO/n5SBSOOWYAPxN3NjO0ZgaPQlRVPRFC88=;
+        b=WHjWHSGtmIDrEX6lO/xm6f8HE2sONqFNRZIIYxIroNEzQO0uyOFZ+bHbIrTvSebkKe
+         qhz28Dd2NTBtceMymt0Me8SV0jXTdrbMN6Yi1HuE1cMyJAa4CSscuZ1EeeLynT8bc4Ez
+         Fl3NKggUZo4EH1lIBhJdYZ9TEFEOya9tshmEcDgv2ZDj2XdBNcnYUfbxktjmDG0+G1oD
+         aF2RJAPeXA1jrvwDf8TkUU4yadD9xzkM+Nbefqzf7co6dp55xZo491an753OkyYI6/kP
+         QWfFoA1/hYPFBQVelFlimOR0m2GNSuYcLvLNUJVAsI0VX0xVtmJ7mrf7jwoCwVfYLH/a
+         4AIA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=i5NjihWciO/n5SBSOOWYAPxN3NjO0ZgaPQlRVPRFC88=;
+        b=QwfN9BvxbjLgMdnDC2XwPp9A+AnWenQcf5HMjnFfPyP8IzHGPhHuw7zFz5uXuBzPhS
+         IGlLh8dh0b3z75kddG3qpSFqm9XUROJbcb+lXKl5O0mrGLvsRCLrsm4ggsQHkLJZB/l2
+         Q1iJdH1Q2cv6vq1SmQZwUMNqIh4/ux8l0QR8+cnRePdM5H8KO/ZP1SDfhsn0XEe26DOh
+         2C46SHkq5RB+fEG4KlPfK0LXSJQOoF8JRgCpS+Wt40SD/5SmopA32J+Kg2DSxtfsC/tN
+         j7PAvdsEPtDfpTfbDztS6XEFeTn1c5AM+FoM7sQNaii/r2TMAO+9KxGKFxnOYcpNb1ue
+         Sq5Q==
+X-Gm-Message-State: APjAAAWp7675hY/GPV1mJyauiKraJE/yKw0j9Yos6Hwg1mMb2XCLW1ZX
+        4ISjRqsCmsEN0AEmEQVdHcnCgGy0
+X-Google-Smtp-Source: APXvYqz0/p4tdP7QlZvw356t1bVsmmg/yLl1rqbXtlB/KCgbCqeTp2GV/GGeeR+uGHlqlYtd7OmOgA==
+X-Received: by 2002:a17:902:290b:: with SMTP id g11mr125507552plb.26.1564689310309;
+        Thu, 01 Aug 2019 12:55:10 -0700 (PDT)
+Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
+        by smtp.gmail.com with ESMTPSA id f14sm73031065pfn.53.2019.08.01.12.55.09
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 01 Aug 2019 12:55:09 -0700 (PDT)
+Subject: Re: [PATCH] scripts/dtc: dtx_diff - add color output support
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>
-References: <1564532424-10449-1-git-send-email-skomatineni@nvidia.com>
- <1564532424-10449-8-git-send-email-skomatineni@nvidia.com>
- <f90cf34d-c294-b23d-38e3-6de9a8fca7d6@gmail.com>
- <e796e26e-830c-b1be-e368-c7ff177a61dd@gmail.com>
- <67cf6c13-688d-0305-61e2-c63c8e8b4729@nvidia.com>
- <550de191-f982-4544-6fbc-bf16dfeae2c6@nvidia.com>
- <c85ba067-af68-0b4a-d347-501ed7ed0ef9@gmail.com>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <a81b85a2-5634-cfa2-77c5-94c23c4847bd@nvidia.com>
-Date:   Thu, 1 Aug 2019 12:42:39 -0700
+References: <20190731123741.13947-1-geert+renesas@glider.be>
+ <342e5e38-f980-c849-c061-8dad42bc0850@gmail.com>
+ <CAMuHMdWPvD_pSyJGp=kC0XmAChCK8R2X+exmpHT5eywJ5kQetA@mail.gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <88417bc8-3cd8-bb54-e487-8fa6b0b1f346@gmail.com>
+Date:   Thu, 1 Aug 2019 12:55:08 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <c85ba067-af68-0b4a-d347-501ed7ed0ef9@gmail.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL105.nvidia.com (172.20.187.12) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <CAMuHMdWPvD_pSyJGp=kC0XmAChCK8R2X+exmpHT5eywJ5kQetA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1564688560; bh=WsW+bzX/44Jw2sR8PNZFGaeUh2VU4EnfQ78wBJe74/0=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=nC3KpSqPooRpEv+Yz1AVHsY0InuqltZcTdpak/dFKte/0jn4YOrfLI8xZtrip231G
-         JZ6hmDAqgjHqM2hd9CAuXVh9XHedO8M2Wjq8WrnWwT2yQ2REjFt+AjVtA1Syh3gYFJ
-         ZXsxci6/UkrksycVS06KuRU4Ke4ozC4La0pCSMPK8C9YbV8KXHg8sq4+ZJ/PFwcUnk
-         qr0Cka9H4GCAgfbU7WoufKiKqm/3YHvC1miE89UyA+9qgPBFDt6Ok5u3QqBSrrGlcZ
-         pIaPsxsX2AvwFaHsxbak1Wt50Lsqtl0RRHhe5qtYMb5PtDkwj+BGeOgi/OKjxNDUrT
-         7JMPzDZy2C2DA==
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-On 8/1/19 12:00 PM, Dmitry Osipenko wrote:
-> 01.08.2019 20:58, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->> On 7/31/19 4:09 PM, Sowjanya Komatineni wrote:
->>> On 7/31/19 3:44 AM, Dmitry Osipenko wrote:
->>>> 31.07.2019 12:50, Dmitry Osipenko =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>>>> 31.07.2019 3:20, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>>>>> This patch implements save and restore context for peripheral fixed
->>>>>> clock ops, peripheral gate clock ops, sdmmc mux clock ops, and
->>>>>> peripheral clock ops.
->>>>>>
->>>>>> During system suspend, core power goes off and looses the settings
->>>>>> of the Tegra CAR controller registers.
->>>>>>
->>>>>> So during suspend entry clock and reset state of peripherals is save=
-d
->>>>>> and on resume they are restored to have clocks back to same rate and
->>>>>> state as before suspend.
->>>>>>
->>>>>> Acked-by: Thierry Reding <treding@nvidia.com>
->>>>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>>>>> ---
->>>>>>  =C2=A0 drivers/clk/tegra/clk-periph-fixed.c | 33
->>>>>> ++++++++++++++++++++++++++++++++
->>>>>>  =C2=A0 drivers/clk/tegra/clk-periph-gate.c=C2=A0 | 34
->>>>>> +++++++++++++++++++++++++++++++++
->>>>>>  =C2=A0 drivers/clk/tegra/clk-periph.c=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 | 37
->>>>>> ++++++++++++++++++++++++++++++++++++
->>>>>>  =C2=A0 drivers/clk/tegra/clk-sdmmc-mux.c=C2=A0=C2=A0=C2=A0 | 28
->>>>>> +++++++++++++++++++++++++++
->>>>>>  =C2=A0 drivers/clk/tegra/clk.h=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 |=C2=A0 6 ++++++
->>>>>>  =C2=A0 5 files changed, 138 insertions(+)
->>>>>>
->>>>>> diff --git a/drivers/clk/tegra/clk-periph-fixed.c
->>>>>> b/drivers/clk/tegra/clk-periph-fixed.c
->>>>>> index c088e7a280df..21b24530fa00 100644
->>>>>> --- a/drivers/clk/tegra/clk-periph-fixed.c
->>>>>> +++ b/drivers/clk/tegra/clk-periph-fixed.c
->>>>>> @@ -60,11 +60,44 @@ tegra_clk_periph_fixed_recalc_rate(struct
->>>>>> clk_hw *hw,
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 return (unsigned long)rate;
->>>>>>  =C2=A0 }
->>>>>>  =C2=A0 +static int tegra_clk_periph_fixed_save_context(struct clk_h=
-w *hw)
->>>>>> +{
->>>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_clk_periph_fixed *fixed =3D
->>>>>> to_tegra_clk_periph_fixed(hw);
->>>>>> +=C2=A0=C2=A0=C2=A0 u32 mask =3D 1 << (fixed->num % 32);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 fixed->enb_ctx =3D readl_relaxed(fixed->base +
->>>>>> fixed->regs->enb_reg) &
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 mask;
->>>>>> +=C2=A0=C2=A0=C2=A0 fixed->rst_ctx =3D readl_relaxed(fixed->base +
->>>>>> fixed->regs->rst_reg) &
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=
-=C2=A0 mask;
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 return 0;
->>>>>> +}
->>>>>> +
->>>>>> +static void tegra_clk_periph_fixed_restore_context(struct clk_hw *h=
-w)
->>>>>> +{
->>>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_clk_periph_fixed *fixed =3D
->>>>>> to_tegra_clk_periph_fixed(hw);
->>>>>> +=C2=A0=C2=A0=C2=A0 u32 mask =3D 1 << (fixed->num % 32);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 if (fixed->enb_ctx)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 writel_relaxed(mask, fix=
-ed->base + fixed->regs->enb_set_reg);
->>>>>> +=C2=A0=C2=A0=C2=A0 else
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 writel_relaxed(mask, fix=
-ed->base + fixed->regs->enb_clr_reg);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 udelay(2);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 if (!fixed->rst_ctx) {
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 udelay(5); /* reset prop=
-ogation delay */
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 writel_relaxed(mask, fix=
-ed->base + fixed->regs->rst_reg);
->>>>>> +=C2=A0=C2=A0=C2=A0 }
->>>>>> +}
->>>>>> +
->>>>>>  =C2=A0 static const struct clk_ops tegra_clk_periph_fixed_ops =3D {
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .is_enabled =3D tegra_clk_periph_fix=
-ed_is_enabled,
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .enable =3D tegra_clk_periph_fixed_e=
-nable,
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .disable =3D tegra_clk_periph_fixed_=
-disable,
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .recalc_rate =3D tegra_clk_periph_fi=
-xed_recalc_rate,
->>>>>> +=C2=A0=C2=A0=C2=A0 .save_context =3D tegra_clk_periph_fixed_save_co=
-ntext,
->>>>>> +=C2=A0=C2=A0=C2=A0 .restore_context =3D tegra_clk_periph_fixed_rest=
-ore_context,
->>>>>>  =C2=A0 };
->>>>>>  =C2=A0 =C2=A0 struct clk *tegra_clk_register_periph_fixed(const cha=
-r *name,
->>>>>> diff --git a/drivers/clk/tegra/clk-periph-gate.c
->>>>>> b/drivers/clk/tegra/clk-periph-gate.c
->>>>>> index 4b31beefc9fc..6ba5b08e0787 100644
->>>>>> --- a/drivers/clk/tegra/clk-periph-gate.c
->>>>>> +++ b/drivers/clk/tegra/clk-periph-gate.c
->>>>>> @@ -25,6 +25,8 @@ static DEFINE_SPINLOCK(periph_ref_lock);
->>>>>>  =C2=A0 =C2=A0 #define read_rst(gate) \
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 readl_relaxed(gate->clk_base + (gate=
-->regs->rst_reg))
->>>>>> +#define write_rst_set(val, gate) \
->>>>>> +=C2=A0=C2=A0=C2=A0 writel_relaxed(val, gate->clk_base + (gate->regs=
-->rst_set_reg))
->>>>>>  =C2=A0 #define write_rst_clr(val, gate) \
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 writel_relaxed(val, gate->clk_base +=
- (gate->regs->rst_clr_reg))
->>>>>>  =C2=A0 @@ -110,10 +112,42 @@ static void clk_periph_disable(struct
->>>>>> clk_hw *hw)
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 spin_unlock_irqrestore(&periph_ref_l=
-ock, flags);
->>>>>>  =C2=A0 }
->>>>>>  =C2=A0 +static int clk_periph_gate_save_context(struct clk_hw *hw)
->>>>>> +{
->>>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_clk_periph_gate *gate =3D to_clk_pe=
-riph_gate(hw);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 gate->clk_state_ctx =3D read_enb(gate) & periph_=
-clk_to_bit(gate);
->>>>>> +=C2=A0=C2=A0=C2=A0 gate->rst_state_ctx =3D read_rst(gate) & periph_=
-clk_to_bit(gate);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 return 0;
->>>>>> +}
->>>>>> +
->>>>>> +static void clk_periph_gate_restore_context(struct clk_hw *hw)
->>>>>> +{
->>>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_clk_periph_gate *gate =3D to_clk_pe=
-riph_gate(hw);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 if (gate->clk_state_ctx)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 write_enb_set(periph_clk=
-_to_bit(gate), gate);
->>>>>> +=C2=A0=C2=A0=C2=A0 else
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 write_enb_clr(periph_clk=
-_to_bit(gate), gate);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 udelay(5);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 if (!(gate->flags & TEGRA_PERIPH_NO_RESET) &&
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 !(gate->flags & TEGRA_PE=
-RIPH_MANUAL_RESET)) {
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 if (gate->rst_state_ctx)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-write_rst_set(periph_clk_to_bit(gate), gate);
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 else
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 =
-write_rst_clr(periph_clk_to_bit(gate), gate);
->>>>>> +=C2=A0=C2=A0=C2=A0 }
->>>>>> +}
->>>>>> +
->>>>>>  =C2=A0 const struct clk_ops tegra_clk_periph_gate_ops =3D {
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .is_enabled =3D clk_periph_is_enable=
-d,
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .enable =3D clk_periph_enable,
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 .disable =3D clk_periph_disable,
->>>>>> +=C2=A0=C2=A0=C2=A0 .save_context =3D clk_periph_gate_save_context,
->>>>>> +=C2=A0=C2=A0=C2=A0 .restore_context =3D clk_periph_gate_restore_con=
-text,
->>>>>>  =C2=A0 };
->>>>>>  =C2=A0 =C2=A0 struct clk *tegra_clk_register_periph_gate(const char=
- *name,
->>>>>> diff --git a/drivers/clk/tegra/clk-periph.c
->>>>>> b/drivers/clk/tegra/clk-periph.c
->>>>>> index 58437da25156..06fb62955768 100644
->>>>>> --- a/drivers/clk/tegra/clk-periph.c
->>>>>> +++ b/drivers/clk/tegra/clk-periph.c
->>>>>> @@ -99,6 +99,37 @@ static void clk_periph_disable(struct clk_hw *hw)
->>>>>>  =C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gate_ops->disable(gate_hw);
->>>>>>  =C2=A0 }
->>>>>>  =C2=A0 +static int clk_periph_save_context(struct clk_hw *hw)
->>>>>> +{
->>>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_clk_periph *periph =3D to_clk_perip=
-h(hw);
->>>>>> +=C2=A0=C2=A0=C2=A0 const struct clk_ops *gate_ops =3D periph->gate_=
-ops;
->>>>>> +=C2=A0=C2=A0=C2=A0 struct clk_hw *gate_hw =3D &periph->gate.hw;
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 if (!(periph->gate.flags & TEGRA_PERIPH_NO_GATE)=
-)
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 gate_ops->save_context(g=
-ate_hw);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 periph->parent_ctx =3D clk_periph_get_parent(hw)=
-;
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 return 0;
->>>>>> +}
->>>>>> +
->>>>>> +static void clk_periph_restore_context(struct clk_hw *hw)
->>>>>> +{
->>>>>> +=C2=A0=C2=A0=C2=A0 struct tegra_clk_periph *periph =3D to_clk_perip=
-h(hw);
->>>>>> +=C2=A0=C2=A0=C2=A0 const struct clk_ops *gate_ops =3D periph->gate_=
-ops;
->>>>>> +=C2=A0=C2=A0=C2=A0 struct clk_hw *gate_hw =3D &periph->gate.hw;
->>>>>> +=C2=A0=C2=A0=C2=A0 const struct clk_ops *div_ops =3D periph->div_op=
-s;
->>>>>> +=C2=A0=C2=A0=C2=A0 struct clk_hw *div_hw =3D &periph->divider.hw;
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 clk_periph_set_parent(hw, periph->parent_ctx);
->>>>>> +
->>>>>> +=C2=A0=C2=A0=C2=A0 if (!(periph->gate.flags & TEGRA_PERIPH_NO_DIV))
->>>>>> +=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0=C2=A0 div_ops->restore_context=
-(div_hw);
->>>>> Could you please point to where the divider's save_context() happens?
->>>>> Because I can't see it.
->>>> Ah, I now see that there is no need to save the dividers context becau=
-se
->>>> clk itself has enough info that is needed for the context's restoring
->>>> (like I pointed in the review to v6).
->>>>
->>>> Looks like you could also implement a new clk_hw_get_parent_index()
->>>> generic helper to get the index instead of storing it manually.
->>> clk_periph_get_parent basically invokes existing clk_mux_ops
->>> get_parent() which is then saved in tegra_clk_periph.
+On 8/1/19 5:13 AM, Geert Uytterhoeven wrote:
+> Hi Frank,
+> 
+> On Wed, Jul 31, 2019 at 10:30 PM Frank Rowand <frowand.list@gmail.com> wrote:
+>> On 7/31/19 5:37 AM, Geert Uytterhoeven wrote:
+>>> Add new -c/--color options, to enhance the diff output with color, and
+>>> improve the user's experience.
 >>>
->>> All existing drivers are using directly get_parent() from clk_mux
->>> which actually gets index from the register read.
+>>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+>>> ---
+>>>  scripts/dtc/dtx_diff | 10 +++++++++-
+>>>  1 file changed, 9 insertions(+), 1 deletion(-)
 >>>
->>> To have this more generic w.r.t save/restore context point of view,
->>> probably instead of implementing new get_parent_index helper, I think
->>> its better to implement save_context and restore_context to
->>> clk_mux_ops along with creating parent_index field into clk_mux to
->>> cache index during set_parent.
+>>> diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
+>>> index e9ad7834a22d9459..4e2c8617f69a333e 100755
+>>> --- a/scripts/dtc/dtx_diff
+>>> +++ b/scripts/dtc/dtx_diff
+>>> @@ -20,6 +20,8 @@ Usage:
 >>>
->>> So we just need to invoke mux_ops save_context and restore_context.
 >>>
->> I hope its ok to add save/restore context to clk_mux_ops to be more
->> generic w.r.t save/restore context rather than get_parent_index API.
->> Please confirm if you agree.
-> Sounds like a good idea. I see that there is a 'restoring' helper for
-> the generic clk_gate, seems something similar could be done for the
-> clk_mux. And looks like anyway you'll need to associate the parent clock
-> with the hw index in order to restore the muxing.
+>>>        --annotate    synonym for -T
+>>> +      --color       synonym for -c
+>>> +       -c           enable colored output
+>>>         -f           print full dts in diff (--unified=99999)
+>>>         -h           synonym for --help
+>>>         -help        synonym for --help
+> 
+>> I like the idea, but...
+>>
+>> I have various linux distro releases across my many systems, but only one is
+>> new enough to have the diff command that supports --color.
+> 
+> Seems to have been added in diffutils release 3.4 (2016-08-08).
+> I almost can't believe it was that recent, but then I remembered using a
+> wrapper before (colordiff; other wrappers may exist).
+> 
+>> Can you enhance this patch to test whether --color is supported?  Maybe
+>> something like (untested):
+>>
+>>         -c | --color )
+>>                 if `diff --color <(echo a) <(echo a) 2>/dev/null` ; then
+>>                         diff_color="--color=always"
+>>                 fi
+>>                 shift
+>>                 ;;
+>>
+>> Then add some text to the usage for -c and --color saying that they will
+>> be silently ignored if diff does not support --color.
+>>
+>> I first wrote up a suggested version that printed an error message and
+>> exited, but I think silently ignoring is more robust, even though it
+>> may be more confusing to someone who is wondering why --color does not
+>> work.
+> 
+> Given this is an optional feature, to be enabled explicitly by the user,
+> I'm not so fond of going through hoops to auto-detect the availability.
+> 
+> So what about just documenting this in the help text instead?
+> 
+> -      -c           enable colored output
+> +      -c           enable colored output (requires diff with --color support)
 
-by 'restoring' helper for generic clk_gate, are you referring to=20
-clk_gate_restore_context API?
+-----  thought 1  -----
 
-clk_gate_restore_context is API that's any clk drivers can use for=20
-clk_gate operation restore for custom gate clk_ops.
+My first thought was:
 
-But clk-periph is directly using generic clk_mux ops from clk_mux so I=20
-think we should add .restore_context to clk_mux_ops and then during=20
-clk-periph restore need to invoke mux_ops->restore_context.
+If the hoops were complex and ugly, I might agree with you.  But since it is
+a simple one line "if" (two lines including "fi") I prefer the check.
 
+The help text update looks good to me, along with the check.
+
+
+-----  thought 2  -----
+
+Then I reconsidered, and thought "well, Geert has a good idea".  So I
+decided to see how useful the diff error message would be.  The message is:
+
+   $ scripts/dtc/dtx_diff -c a.dts b.dts
+   diff: unrecognized option '--color=always'
+   diff: Try 'diff --help' for more information.
+   $ 
+   Possible hints to resolve the above error:
+     (hints might not fix the problem)
+
+     No hints available.
+
+It is interesting that the shell prompt arrives before the full set of
+messages from the script, but that is not my issue.  My issue is that
+when the diff fails, the script tries to find suggestions to solve
+the problem.  (The suggestions exist to catch some likely problems
+with the shell variable "ARCH".)
+
+Unfortunately in the case of the "--color" problem, the useful warning
+from diff becomes less visible because of the early prompt and the
+not so helpful messages about hints.
+
+If the hints related messages were not present, then I was ready to
+accept that the diff warning was sufficient.  But since the hints
+messages are present, and hiding them would be more complex than
+the original check that I suggested for whether diff supports
+the --color option, I am back to my first thought: I prefer the
+check whether diff supports "--color" is done when dtx_diff detects
+the "--color" option.
+
+-Frank
+
+> 
+> Thanks!
+> 
+> Gr{oetje,eeting}s,
+> 
+>                         Geert
+> 
+> --
+> Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+> 
+> In personal conversations with technical people, I call myself a hacker. But
+> when I'm talking to journalists I just say "programmer" or something like that.
+>                                 -- Linus Torvalds
+> 
 
