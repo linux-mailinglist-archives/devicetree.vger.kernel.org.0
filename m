@@ -2,182 +2,224 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87F147E22C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 20:31:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 862E77E23C
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 20:35:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731193AbfHASbY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 14:31:24 -0400
-Received: from vern.gendns.com ([98.142.107.122]:56710 "EHLO vern.gendns.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729220AbfHASbY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Aug 2019 14:31:24 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=j2rqkj6fKOcFw4YgdxMmf3Df9LvJozpqX6r8uPeieAM=; b=DtyVtg4O1cvn+mYLIOHIGYh2kP
-        22DuG8+ELPFmBrwUpCItig1Ww5U8ebZmVLvS/RYeBGAqLReTnd3JveQ1J8xDrc07pgo5ft5+RHn68
-        X4NAe+pE17fR/x3jv2HErgsbshYRWGC0OHsHuNy1APDhRHeJpNzR4pLTI+m1ZpQ3N8NXb2nevMrH8
-        NJjvgxtZoBo2gttY4kvccuLU77dIyj6XGa50tQPQYkSJcUlY6qLGJPL7EgOKVePBox+nXTBbGUimX
-        wXh+5024tHKajZglmrWEkMEu8Tj4I89DL/PHlxjbwEwBZm8eHw5HScfGw65s3PGu8Y3MLm8J46zNq
-        /0jcCX8Q==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:44394 helo=[192.168.0.134])
-        by vern.gendns.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <david@lechnology.com>)
-        id 1htFrB-0023Vv-Qn; Thu, 01 Aug 2019 14:31:17 -0400
-Subject: Re: [PATCH v2 4/6] irqchip/irq-pruss-intc: Add helper functions to
- configure internal mapping
-To:     Suman Anna <s-anna@ti.com>, Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
-        "Andrew F. Davis" <afd@ti.com>, Roger Quadros <rogerq@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190731224149.11153-1-s-anna@ti.com>
- <20190731224149.11153-5-s-anna@ti.com>
- <1a63eb50-7c5c-eb3d-3cbe-bd1cc59ce3fe@kernel.org>
- <89abc27f-5d02-a8ce-df0e-b185c2a647cd@ti.com>
-From:   David Lechner <david@lechnology.com>
-Message-ID: <1ac233f6-f3a3-6cec-9ad2-49e985fdfaca@lechnology.com>
-Date:   Thu, 1 Aug 2019 13:31:16 -0500
+        id S1728534AbfHASfc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 14:35:32 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:46034 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726716AbfHASfc (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 14:35:32 -0400
+Received: by mail-lj1-f196.google.com with SMTP id m23so70303798lje.12;
+        Thu, 01 Aug 2019 11:35:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=kjRiJ9NneUsRSBR2+BUXWJ16yOBtzQQw7Ff/gk35AkQ=;
+        b=OEl4LoXIGMNfX/oVXHLUSK4V8WwDnOGFIA1EZ3zvsRpZOTKelSRATjCeEDHHS40vuv
+         kooUTnSiDk+WfsI4Nh2LFui6ich+ngM9W15/s9w4QsyEoAtY9aXCwB+UIWFUmWNqJ0bq
+         90h8WwOHjUAAEsmcPeyTzuV4FwCeInRHC2+ejGV93PR0vX3CgSgR06CNCt/PDfhhHVzN
+         9LAgdKZYBTKg0RUZ11Hw/RcgFTpw4KTyaonvRxEIoTbpD+yjETis6+QADGIEmPOuqzeH
+         zxQlK48MbRCpAl1mkWBL9WcSruAotxkPiNxOx7oPgmMqvk30ML4RCq0iNDiuI7Bm1/aS
+         pNww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=kjRiJ9NneUsRSBR2+BUXWJ16yOBtzQQw7Ff/gk35AkQ=;
+        b=WIr5EyCrVqzZQX2rttuTTR8rEuecjJw9Wl1PbDAcqf1zek5EtwkvdFJE0OEUhwpRq+
+         Iw+kQ09YPO1jYm1xhZuEgnsLFW2XqNwAzTjKEmX0z8JuzWEGlFGK5B05pS9FHTvD+wUQ
+         mPgrBete+TwbMFClb8Y1+gSoOuD+ZVs8TmY5bFfna/B4+7VCYcIfsvEVN7zZyyy6asak
+         iUJ7xfL1kfBZlhWSXl/Xu/oWyUXBxEBr/OjRMb4/MKOpxPIZicaFJYPlDCUizr6OdxoW
+         19GLJKByPjoxMZtS8wIZf3HavAscqKeB48koMMungw+OaHpMQ3XrzFO/zKQ5MCYKjX0u
+         d8aA==
+X-Gm-Message-State: APjAAAXCfv6jcxzeVKxnurebgbX7ruHl37q9oUfFmVKA0vabFzxItn/X
+        ZO7fYP+4a7NZudrlDLUMWvXlmaq4
+X-Google-Smtp-Source: APXvYqxvdaGk4aTz3QPLiAh1nJkebpUkjumTvGwmmHWzlNUPfMhjue1gTCS+g1owbwthaVrAB3H5FA==
+X-Received: by 2002:a2e:8591:: with SMTP id b17mr42020234lji.71.1564684528945;
+        Thu, 01 Aug 2019 11:35:28 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
+        by smtp.googlemail.com with ESMTPSA id u15sm14778186lje.89.2019.08.01.11.35.27
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 01 Aug 2019 11:35:28 -0700 (PDT)
+Subject: Re: [PATCH v9 11/15] dt-bindings: memory: Add binding for NVIDIA
+ Tegra30 External Memory Controller
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Michael Turquette <mturquette@baylibre.com>,
+        Joseph Lo <josephl@nvidia.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Peter De Schrijver <pdeschrijver@nvidia.com>,
+        Prashant Gaikwad <pgaikwad@nvidia.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-clk <linux-clk@vger.kernel.org>,
+        linux-tegra@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+References: <20190730165618.10122-1-digetx@gmail.com>
+ <20190730165618.10122-12-digetx@gmail.com>
+ <CAL_JsqJgENCznrnYX8ARia2sNKJ7XxYRzzavk5qoePPYzYAQvA@mail.gmail.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <f323db8e-c551-8a56-20df-16d3c633ed4b@gmail.com>
+Date:   Thu, 1 Aug 2019 21:35:26 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <89abc27f-5d02-a8ce-df0e-b185c2a647cd@ti.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <CAL_JsqJgENCznrnYX8ARia2sNKJ7XxYRzzavk5qoePPYzYAQvA@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/1/19 12:10 PM, Suman Anna wrote:
-> Hi Marc,
-> 
-> On 8/1/19 3:45 AM, Marc Zyngier wrote:
->> On 31/07/2019 23:41, Suman Anna wrote:
->>> The PRUSS INTC receives a number of system input interrupt source events
->>> and supports individual control configuration and hardware prioritization.
->>> These input events can be mapped to some output interrupt lines through 2
->>> levels of many-to-one mapping i.e. events to channel mapping and channels
->>> to output interrupts.
->>>
->>> This mapping information is provided through the PRU firmware that is
->>> loaded onto a PRU core/s or through the device tree node of the PRU
->>> application. The mapping is configured by the PRU remoteproc driver, and
->>> is setup before the PRU core is started and cleaned up after the PRU core
->>> is stopped. This event mapping configuration logic programs the Channel
->>> Map Registers (CMRx) and Host-Interrupt Map Registers (HMRx) only when a
->>> new program is being loaded/started and the same events and interrupt
->>> channels are reset to zero when stopping a PRU.
->>>
->>> Add two helper functions: pruss_intc_configure() & pruss_intc_unconfigure()
->>> that the PRU remoteproc driver can use to configure the PRUSS INTC.
+01.08.2019 21:11, Rob Herring пишет:
+> On Tue, Jul 30, 2019 at 10:58 AM Dmitry Osipenko <digetx@gmail.com> wrote:
 >>
->> So let me see if I correctly understand this: this adds yet another
->> firmware description parser, with a private interface to another
->> (undisclosed?) driver, bypassing the standard irqchip configuration
->> mechanism. It sounds great, doesn't it?
+>> Add device-tree binding for NVIDIA Tegra30 External Memory Controller.
+>> The binding is based on the Tegra124 EMC binding since hardware is
+>> similar, although there are couple significant differences.
 >>
->> What I cannot really infer from this message (-ETOOMUCHJARGON) is what
->> interrupts this affects:
+>> Note that the memory timing description is given in a platform-specific
+>> form because there is no detailed information on how to convert a
+>> typical-common DDR timing into the register values. The timing format is
+>> borrowed from downstream kernel, hence there is no hurdle in regards to
+>> upstreaming of memory timings for the boards.
 >>
->> - Interrupts from random devices to the PRUSS?
->> - Interrupts from the PRUSS to the host?
->> - Something else?
-> 
-> The interrupt sources (called system events) can be from internal PRUSS
-> peripherals, SoC-level peripherals or just software triggering (limited
-> to some events).
-> 
-> So, the PRUSS INTC behaves as a funnel and is both an interrupt router
-> and multiplexer. The INTC itself is part of the PRUSS, and all PRU
-> application related interrupts/events that need to trigger an interrupt
-> to either the PRU cores or other host processors (like DSP, ARM) have to
-> go through this INTC, and routed out to a limited number of output
-> interrupts that are then connected to different processors.
-> 
-> The split of interrupt handling between a PRU and its peer host
-> processor will be a application design choice (We can implement soft IPs
-> like UARTs, ADCs, I2Cs etc using PRUs). Some of the input events
-> themselves are multiplexed and controlled by a single MMR (outside of
-> INTC) that feeds different sets of events into the INTC. The MMR
-> configuration is outside of scope of this driver and will depend on the
-> application/client driver being run.
-> 
+>> Acked-by: Peter De Schrijver <pdeschrijver@nvidia.com>
+>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> ---
+>>  .../nvidia,tegra30-emc.yaml                   | 341 ++++++++++++++++++
+>>  1 file changed, 341 insertions(+)
+>>  create mode 100644 Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-emc.yaml
 >>
->> When does this happen? Under control of what? It isn't even clear why
->> this is part of this irqchip driver.
+>> diff --git a/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-emc.yaml b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-emc.yaml
+>> new file mode 100644
+>> index 000000000000..6865cfb16e59
+>> --- /dev/null
+>> +++ b/Documentation/devicetree/bindings/memory-controllers/nvidia,tegra30-emc.yaml
+>> @@ -0,0 +1,341 @@
+>> +# SPDX-License-Identifier: (GPL-2.0)
+>> +%YAML 1.2
+>> +---
+>> +$id: http://devicetree.org/schemas/memory-controllers/nvidia,tegra30-emc.yaml#
+>> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+>> +
+>> +title: NVIDIA Tegra30 SoC External Memory Controller
+>> +
+>> +maintainers:
+>> +  - Dmitry Osipenko <digetx@gmail.com>
+>> +  - Jon Hunter <jonathanh@nvidia.com>
+>> +  - Thierry Reding <thierry.reding@gmail.com>
+>> +
+>> +description: |
+>> +  The EMC interfaces with the off-chip SDRAM to service the request stream
+>> +  sent from Memory Controller. The EMC also has various performance-affecting
+>> +  settings beyond the obvious SDRAM configuration parameters and initialization
+>> +  settings. Tegra30 EMC supports multiple JEDEC standard protocols: LPDDR2,
+>> +  LPDDR3, and DDR3.
+>> +
+>> +properties:
+>> +  compatible:
+>> +    const: nvidia,tegra30-emc
+>> +
+>> +  reg:
+>> +    maxItems: 1
+>> +    description:
+>> +      Physical base address.
 > 
-> The mapping configuration is per PRU application and firmware, and is
-> done in line with acquiring and release a PRU which is treated as an
-> exclusive resource. We establish the mapping for all events through this
-> driver including the events that are to be routed to PRUs. This is done
-> to save the tiny/limited Instruction RAM space that PRUs have.
+> Same comment here.
 > 
-> We have designed this as an irqchip driver (instead of some custom SoC
-> driver exporting custom functions) to use standard Linux semantics/irq
-> API and better integrate with Linux DT, but we need some semantics for
-> establishing the routing at runtime depending on the PRU client driver
-> we are running. The exported functions will be called only by the PRU
-> remoteproc driver during a pru_rproc_get()/pru_rproc_put(), and are
-> transparent to PRU client drivers.
+>> +
+>> +  clocks:
+>> +    maxItems: 1
+>> +    description:
+>> +      EMC clock.
+>> +
+>> +  interrupts:
+>> +    maxItems: 1
+>> +    description:
+>> +      EMC General interrupt.
+>> +
+>> +  nvidia,memory-controller:
+>> +    $ref: /schemas/types.yaml#/definitions/phandle
+>> +    description:
+>> +      Phandle of the Memory Controller node.
+>> +
+>> +patternProperties:
+>> +  "^emc-timings-[0-9]+$":
+>> +    type: object
+>> +    properties:
+>> +      nvidia,ram-code:
+>> +        $ref: /schemas/types.yaml#/definitions/uint32
+>> +        description:
+>> +          Value of RAM_CODE this timing set is used for.
+>> +
+>> +    patternProperties:
+>> +      "^timing-[0-9]+$":
+>> +        type: object
+>> +        properties:
+>> +          clock-frequency:
+>> +            description:
+>> +              Memory clock rate in Hz.
+>> +            minimum: 1000000
+>> +            maximum: 900000000
+>> +
+>> +          nvidia,emc-auto-cal-interval:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            description:
+>> +              Pad calibration interval.
 > 
-> Please also see the discussion from v1 [1] on why we can't use an
-> extended number of interrupt-cells infrastructure for achieving this.
-> 
-> [1] https://patchwork.kernel.org/patch/11034563/
-> 
-> 
->> Depending what this does, there may be ways to fit it into the standard
->> interrupt configuration framework. After all, we already have standard
->> interfaces to route interrupts to virtual CPUs, effectively passing full
->> control of an interrupt to another entity. If you squint hard enough,
->> your PRUSS can fit that description.
-> 
-> Yeah, I am open to suggestions if there is a better way of doing this.
+> Any value 0 - 4G is valid?
 
-Hi Suman,
+No, this is in microseconds and the maximum is 2 seconds.
 
-Can you explain more about the use case where one PRU system event is
-mapped to multiple host events?
-
-I have an idea that we can use multiple struct irq_domains to make this
-work in the existing IRQ framework, but it would be helpful to know more
-about the bigger picture first.
-
+>> +
+>> +          nvidia,emc-mode-1:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            description:
+>> +              Mode Register 1.
+>> +
+>> +          nvidia,emc-mode-2:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            description:
+>> +              Mode Register 2.
+>> +
+>> +          nvidia,emc-mode-reset:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            description:
+>> +              Mode Register 0.
+>> +
+>> +          nvidia,emc-zcal-cnt-long:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            description:
+>> +              Number of EMC clocks to wait before issuing any commands after
+>> +              sending ZCAL_MRW_CMD.
 > 
-> regards
-> Suman
-> 
->>
->> If that doesn't work, then we need to make the IRQ framework grok that
->> kind of requirement (hence my request for clarification). But I'm
->> strongly opposed to inventing a SoC-private way of configuring
->> interrupts behind the kernel's back.
->>
->> Thanks,
->>
->> 	M.
->>
-> 
+> Valid range?
 
+I'll add all the ranges in the next revision.
+
+>> +
+>> +          nvidia,emc-cfg-dyn-self-ref:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            description:
+>> +              Dynamic self-refresh enabled.
+> 
+> Sounds like a boolean?
+> 
+>> +
+>> +          nvidia,emc-cfg-periodic-qrst:
+>> +            $ref: /schemas/types.yaml#/definitions/uint32
+>> +            description:
+>> +              FBIO "read" FIFO periodic resetting enabled.
+> 
+> boolean?
+
+Yes, and it looked to me that it should be okay since that's what T124
+binding uses and it makes the properties parsing in the driver's code a
+bit neater :) I'll change them to booleans in the next revision to make
+it clear.
