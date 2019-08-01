@@ -2,100 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 160647DA0F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 13:11:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BFA87DAAE
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 13:53:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729444AbfHALLi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 07:11:38 -0400
-Received: from mail-lj1-f195.google.com ([209.85.208.195]:41340 "EHLO
-        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726014AbfHALLi (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 07:11:38 -0400
-Received: by mail-lj1-f195.google.com with SMTP id d24so68939362ljg.8;
-        Thu, 01 Aug 2019 04:11:36 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:from:to:cc:references:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=K8e4hrDcsp4be0Ory1S+uKZbjey4PHhTQwgmYUnn3bQ=;
-        b=CJuAtUUyxHmGNcvqWCtDUZe66p46usUOJRNj1NMEyZzaJy1o5StfVJazYYI13FVMtW
-         MSt4uHOFmXbl7mp1p2I5BjFTdKoKAst0nCrWqXuUXCyk1olBcKyUIZTaBUTeNK6HIr+g
-         htwigO9x8s4cB5o79esjbE/MCuRp8svV2xX919qCjEa4hnde6M9ODfs1rdA2A8oLooqk
-         netQ/Olv9nCI+N/3oBpVBk+yCn+6YLiSyTfsEZIYbHj5I+W+xz9v9cDz00GXqpcZHOA0
-         U876fVhjeWW/PIixTRqfVjifAL7a4njO/d0n8IxeUsJNI1p11g8E/dO4UHUEpcDdyOuu
-         vMUg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:from:to:cc:references:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=K8e4hrDcsp4be0Ory1S+uKZbjey4PHhTQwgmYUnn3bQ=;
-        b=CmBsf8ov2NnTyN+8GwEpShUK/jwyZRICQjJBZ1kiXUwKiZZZHOW35UnnLdNr4HNhv/
-         KKceSgzVBUNlqeGvdRfLe8Gj8sX2IyKQUEeFhiVfEn2SACDg+8/Zudyj4VYCE0uX/BPV
-         HoNgjXJVpJS/xfNhl3KdRJ9EYMAn1j560eh8g83R1eycU+vEVQrb21K4oyxXzHLvhHx0
-         61eq9unhVvK2I2+TL3AVU7IkflpLEUq6mCbH2QPAsLDCvlNcOux/5kNGjVQ3tSpVfjGA
-         8DYwjsjaacUbMd5VcuN9HSLR3AiZlgTjlAC3MZROwWgP6BLRx42EBDvXmFFp3CqLG3nm
-         eRNg==
-X-Gm-Message-State: APjAAAVIkndf/ItsAzkkf2QMd40bDMGp7kd9t1BYqGPa3dqUnQVk9ggE
-        7ESWTW6zTpNQlJRhCKAMQynZ/4UO
-X-Google-Smtp-Source: APXvYqzkr+8EzGVav0VJvfDyIm0X2edu9GsTb/z7LUFnd/R5ZKRDADrd3k6/jDvjQlLNnNd9lQ8y1g==
-X-Received: by 2002:a2e:8802:: with SMTP id x2mr47065479ljh.200.1564657895466;
-        Thu, 01 Aug 2019 04:11:35 -0700 (PDT)
-Received: from [192.168.2.145] (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
-        by smtp.googlemail.com with ESMTPSA id d21sm12194718lfc.73.2019.08.01.04.11.34
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 01 Aug 2019 04:11:34 -0700 (PDT)
-Subject: Re: [PATCH v9 01/15] clk: tegra20/30: Add custom EMC clock
- implementation
-From:   Dmitry Osipenko <digetx@gmail.com>
-To:     Michael Turquette <mturquette@baylibre.com>,
-        Joseph Lo <josephl@nvidia.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-clk@vger.kernel.org, linux-tegra@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-References: <20190730165618.10122-1-digetx@gmail.com>
- <20190730165618.10122-2-digetx@gmail.com>
-Message-ID: <ac9a29b2-d65e-9b20-ff47-c9e5eacae31b@gmail.com>
-Date:   Thu, 1 Aug 2019 14:10:38 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <20190730165618.10122-2-digetx@gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+        id S1730971AbfHALw5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 07:52:57 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:53324 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730514AbfHALw5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Aug 2019 07:52:57 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 867A51A0105;
+        Thu,  1 Aug 2019 13:52:54 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 7A0F51A0074;
+        Thu,  1 Aug 2019 13:52:54 +0200 (CEST)
+Received: from fsr-ub1664-016.ea.freescale.net (fsr-ub1664-016.ea.freescale.net [10.171.71.216])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 14B04205E3;
+        Thu,  1 Aug 2019 13:52:54 +0200 (CEST)
+From:   Claudiu Manoil <claudiu.manoil@nxp.com>
+To:     "David S . Miller" <davem@davemloft.net>
+Cc:     andrew@lunn.ch, Rob Herring <robh+dt@kernel.org>,
+        Li Yang <leoyang.li@nxp.com>, alexandru.marginean@nxp.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH net-next v5 0/5] enetc: Add mdio bus driver for the PCIe MDIO endpoint
+Date:   Thu,  1 Aug 2019 14:52:48 +0300
+Message-Id: <1564660373-4607-1-git-send-email-claudiu.manoil@nxp.com>
+X-Mailer: git-send-email 2.7.4
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-30.07.2019 19:56, Dmitry Osipenko пишет:
-> A proper External Memory Controller clock rounding and parent selection
-> functionality is required by the EMC drivers, it is not available using
-> the generic clock implementation because only the Memory Controller driver
-> is aware of what clock rates are actually available for a particular
-> device. EMC drivers will have to register a Tegra-specific CLK-API
-> callback which will perform rounding of a requested rate. EMC clock users
-> won't be able to request EMC clock by getting -EPROBE_DEFER until EMC
-> driver is probed and the callback is set up.
-> 
-> The functionality is somewhat similar to the clk-emc.c which serves
-> Tegra124+ SoCs. The later HW generations support more parent clock sources
-> and the HW configuration / integration with the EMC drivers differs a tad
-> from the older gens, hence it's not really worth to try to squash
-> everything into a single source file.
-> 
-> Acked-by: Peter De Schrijver <pdeschrijver@nvidia.com>
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
+First patch fixes a sparse issue and cleans up accessors to avoid
+casting to __iomem.  The second one cleans up the Makefile, to make
+it easier to add new entries.
 
-Hello Stephen and Michael,
+Third patch just registers the PCIe endpoint device containing
+the MDIO registers as a standalone MDIO bus driver, to provide
+an alternative way to control the MDIO bus.  The same code used
+by the ENETC ports (eth controllers) to manage MDIO via local
+registers applies and is reused.
 
-The clk-driver changes are quite solid now, could you please take a look
-at the relevant patches once again and give an ACK if everything is good
-to you?
+Bindings are provided for the new MDIO node, similarly to ENETC
+port nodes bindings.
+
+Last patch enables the ENETC port 1 and its RGMII PHY on the
+LS1028A QDS board, where the MDIO muxing configuration relies
+on the MDIO support provided in the first patch.
+
+Changes since v0:
+v1 - fixed mdio bus allocation
+v2 - cleaned up accessors to avoid casting
+v3 - fixed spelling (mostly commit message)
+v4 - fixed err path check blunder
+v5 - fixed loadble module build, provided separate kbuild module
+     for the driver
+
+
+Claudiu Manoil (5):
+  enetc: Clean up local mdio bus allocation
+  enetc: Clean up makefile
+  enetc: Add mdio bus driver for the PCIe MDIO endpoint
+  dt-bindings: net: fsl: enetc: Add bindings for the central MDIO PCIe
+    endpoint
+  arm64: dts: fsl: ls1028a: Enable eth port1 on the ls1028a QDS board
+
+ .../devicetree/bindings/net/fsl-enetc.txt     |  42 +++++++-
+ .../boot/dts/freescale/fsl-ls1028a-qds.dts    |  40 +++++++
+ .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |   6 ++
+ drivers/net/ethernet/freescale/enetc/Kconfig  |   9 ++
+ drivers/net/ethernet/freescale/enetc/Makefile |  19 ++--
+ .../net/ethernet/freescale/enetc/enetc_mdio.c |  97 ++++++++---------
+ .../net/ethernet/freescale/enetc/enetc_mdio.h |  12 +++
+ .../ethernet/freescale/enetc/enetc_pci_mdio.c | 101 ++++++++++++++++++
+ .../net/ethernet/freescale/enetc/enetc_pf.c   |   5 +-
+ 9 files changed, 264 insertions(+), 67 deletions(-)
+ create mode 100644 drivers/net/ethernet/freescale/enetc/enetc_mdio.h
+ create mode 100644 drivers/net/ethernet/freescale/enetc/enetc_pci_mdio.c
+
+-- 
+2.17.1
+
