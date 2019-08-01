@@ -2,74 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5F7C7DD6C
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 16:08:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E13937DD74
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 16:08:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731586AbfHAOIY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 10:08:24 -0400
-Received: from verein.lst.de ([213.95.11.211]:43788 "EHLO verein.lst.de"
+        id S1731814AbfHAOIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 10:08:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:39036 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731468AbfHAOIY (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Aug 2019 10:08:24 -0400
-Received: by verein.lst.de (Postfix, from userid 2407)
-        id 7FDE168AFE; Thu,  1 Aug 2019 16:08:20 +0200 (CEST)
-Date:   Thu, 1 Aug 2019 16:08:20 +0200
-From:   Christoph Hellwig <hch@lst.de>
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     catalin.marinas@arm.com, hch@lst.de, wahrenst@gmx.net,
-        marc.zyngier@arm.com, Robin Murphy <robin.murphy@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        iommu@lists.linux-foundation.org, linux-mm@kvack.org,
-        linux-kernel@vger.kernel.org, phill@raspberryi.org,
-        f.fainelli@gmail.com, will@kernel.org, robh+dt@kernel.org,
-        eric@anholt.net, mbrugger@suse.com, akpm@linux-foundation.org,
-        frowand.list@gmail.com, m.szyprowski@samsung.com,
-        linux-rpi-kernel@lists.infradead.org
-Subject: Re: [PATCH 8/8] mm: comment arm64's usage of 'enum zone_type'
-Message-ID: <20190801140820.GC23435@lst.de>
-References: <20190731154752.16557-1-nsaenzjulienne@suse.de> <20190731154752.16557-9-nsaenzjulienne@suse.de>
+        id S1731756AbfHAOIa (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Aug 2019 10:08:30 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id AB90F216C8;
+        Thu,  1 Aug 2019 14:08:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564668510;
+        bh=1JyIuK4+07z6r13siyUfFBNIhbSOLStvyEv7aTDiL0A=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=StxsIr6kJab04Mv9+dIISaCW/YlcJEl4jG36/0vq1ghI0VDL1estEscC9HdwV7Ryo
+         lk253CwRrVHhvp6pmUpMEXKeRisNnD72x1zxZCVk8dMlisZ/99kbMUJ2x51u9S8p4e
+         lhSfUxcSOKqPQQmWavnemeulitgk4N1O8AktIVtA=
+Date:   Thu, 1 Aug 2019 16:08:25 +0200
+From:   Greg KH <gregkh@linuxfoundation.org>
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     robh+dt@kernel.org, linux-amlogic@lists.infradead.org,
+        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        devicetree@vger.kernel.org
+Subject: Re: [RFC 8/9] dt-bindings: serial: meson-uart: convert to yaml
+Message-ID: <20190801140825.GC31375@kroah.com>
+References: <20190801135644.12843-1-narmstrong@baylibre.com>
+ <20190801135644.12843-9-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190731154752.16557-9-nsaenzjulienne@suse.de>
-User-Agent: Mutt/1.5.17 (2007-11-01)
+In-Reply-To: <20190801135644.12843-9-narmstrong@baylibre.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 31, 2019 at 05:47:51PM +0200, Nicolas Saenz Julienne wrote:
-> +	 * Architecture			Limit
-> +	 * ----------------------------------
-> +	 * parisc, ia64, sparc, arm64	<4G
-> +	 * s390, powerpc		<2G
-> +	 * arm				Various
-> +	 * alpha			Unlimited or 0-16MB.
->  	 *
->  	 * i386, x86_64 and multiple other arches
-> -	 * 			<16M.
-> +	 *				<16M.
+On Thu, Aug 01, 2019 at 03:56:43PM +0200, Neil Armstrong wrote:
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
 
-powerpc is also Various now, arm64 isn't really < 4G, ia64 only uses
-ZONE_DMA32 these days, and parisc doesn't seem to use neither ZONE_DMA
-nor ZONE_DMA32.
+I can't take patches without any changelog text, sorry.
 
-Based on that I'm not sure the list really makes much sense.
-
->  	 */
->  	ZONE_DMA,
->  #endif
->  #ifdef CONFIG_ZONE_DMA32
->  	/*
-> -	 * x86_64 needs two ZONE_DMAs because it supports devices that are
-> -	 * only able to do DMA to the lower 16M but also 32 bit devices that
-> -	 * can only do DMA areas below 4G.
-> +	 * x86_64 and arm64 need two ZONE_DMAs because they support devices
-> +	 * that are only able to DMA a fraction of the 32 bit addressable
-> +	 * memory area, but also devices that are limited to that whole 32 bit
-> +	 * area.
->  	 */
->  	ZONE_DMA32,
-
-Maybe just say various architectures instead of mentioning specific
-ones?  Something like "Some 64-bit platforms need.."
+greg k-h
