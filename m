@@ -2,108 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 277D97D501
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 07:45:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A077D510
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 07:57:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726936AbfHAFpY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 01:45:24 -0400
-Received: from out4-smtp.messagingengine.com ([66.111.4.28]:35431 "EHLO
-        out4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726157AbfHAFpY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 01:45:24 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailout.nyi.internal (Postfix) with ESMTP id A69C0207E1;
-        Thu,  1 Aug 2019 01:45:23 -0400 (EDT)
-Received: from imap2 ([10.202.2.52])
-  by compute4.internal (MEProxy); Thu, 01 Aug 2019 01:45:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
-        mime-version:message-id:in-reply-to:references:date:from:to:cc
-        :subject:content-type; s=fm3; bh=ikk9XWI/PaloHpfzYfJtJOTFwmWnC+0
-        JCdYs26D7ubs=; b=c3dr1lWkMo5FSBT8lrLsCneT0ER9KaOWAen1lPJ/wlWkYD+
-        F3Kmfml5a07j1yCb4s8Viy1CUWnpejg8CDu0KA5iTw0nSF3qC7NQqTV657E5hVap
-        pSQR1Pf8Wgou7XoLYuZ4qudaorYvMy2xrptaEvXmVTht1kW1w+Mlojv60ywB12bb
-        fG3Ty3Chl/dMWLtjwoB60usxxKlck9JuHYL/HAknm5ol2jNCRQ5QTYFofGMDSADH
-        Ac94iEGVdzLwoG2YqlB6AaaGfl2OrzOspnvLtYBwBnn6hLF/M4ka+HvB4iDZ747J
-        zM/CB4CEMMtecKqqIkfgoBojRQWHoJpIvIbgVzA==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-type:date:from:in-reply-to
-        :message-id:mime-version:references:subject:to:x-me-proxy
-        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=ikk9XW
-        I/PaloHpfzYfJtJOTFwmWnC+0JCdYs26D7ubs=; b=JsKzzgmpM0pAwDfOFWmIwy
-        e/gkpP11y8xh4J5E+5Un3MJJvj6+kBcaPZP6NDENM20ed/dJYPGZFeLMRjC9jV9X
-        Dqrzgn1S25oXgX+lx3hf9cO9axVEH4ivwRWfGifTyqdwomgpZaCAnnG4eYzh6scC
-        WIpjXLemDL50BI5V42NeIsfdrFSHHHPKA0FMw9/q9JMWSnVRRIJDTq/vTUWsrFkc
-        YV0dqm+NLi3r7DQRmDFYyBAl9XobaJM7ZdBMhEBMGsy7REetXwiVStDKkEooTKHq
-        ChEcckQ+d2OGXGZEJoz//Q4vQqVL5ncl0+2LNP122XoQgPiLUHWgzSIMRn873jkw
-        ==
-X-ME-Sender: <xms:cnxCXZVcGZ-455p_bs-LgSCuUcxEUsQjAFwH5XFLyD8cPPPD-UFwCw>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrleeigdeliecutefuodetggdotefrodftvf
-    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
-    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
-    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
-    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrghrrg
-    hmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghr
-    ufhiiigvpedt
-X-ME-Proxy: <xmx:cnxCXVQZ-SI3cyKIbEqkpWS00qvrgEQGxGZ91gMOKDy0EMzP2EVh8Q>
-    <xmx:cnxCXQGaiX7f4V_3p0_o7VOwBTVPNBIzU41xNJjUBySxz-berHYqVQ>
-    <xmx:cnxCXdS_CSb-UN8ZrY2Xcmzsmy8hJzu_ASfyRT9L9fSYSMOPNs8M3A>
-    <xmx:c3xCXYeXDra6wsCCxx5QzKiSgLq2LCV_21ukNLHu4uHAyrtgDo0zLA>
-Received: by mailuser.nyi.internal (Postfix, from userid 501)
-        id 67318E00A1; Thu,  1 Aug 2019 01:45:22 -0400 (EDT)
-X-Mailer: MessagingEngine.com Webmail Interface
-User-Agent: Cyrus-JMAP/3.1.6-799-g925e343-fmstable-20190729v1
-Mime-Version: 1.0
-Message-Id: <3691f6cb-2451-43f7-9f00-d5693071ba59@www.fastmail.com>
-In-Reply-To: <9d0f2b20-e6f6-419c-a866-c4a0dd92aa63@www.fastmail.com>
-References: <20190724081313.12934-1-andrew@aj.id.au>
- <CACRpkdapypySGPrLgSMSNy1fzkca2BfMUGzf3koFWQZ-M5VOvg@mail.gmail.com>
- <9d0f2b20-e6f6-419c-a866-c4a0dd92aa63@www.fastmail.com>
-Date:   Thu, 01 Aug 2019 15:15:42 +0930
-From:   "Andrew Jeffery" <andrew@aj.id.au>
-To:     "Linus Walleij" <linus.walleij@linaro.org>
-Cc:     linux-aspeed <linux-aspeed@lists.ozlabs.org>,
-        "Lee Jones" <lee.jones@linaro.org>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        "Joel Stanley" <joel@jms.id.au>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Linux ARM" <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Subject: Re: [PATCH 0/3] ARM: dts: aspeed: Deprecate g[45]-style compatibles
-Content-Type: text/plain
+        id S1727837AbfHAF5a (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 01:57:30 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:33596 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727540AbfHAF5a (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 01:57:30 -0400
+Received: from localhost (unknown [IPv6:2a01:e0a:2c:6930:5cf4:84a1:2763:fe0d])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: bbrezillon)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id 1155028BFD8;
+        Thu,  1 Aug 2019 06:57:28 +0100 (BST)
+Date:   Thu, 1 Aug 2019 07:57:25 +0200
+From:   Boris Brezillon <boris.brezillon@collabora.com>
+To:     Mason Yang <masonccyang@mxic.com.tw>
+Cc:     miquel.raynal@bootlin.com, marek.vasut@gmail.com,
+        bbrezillon@kernel.org, dwmw2@infradead.org,
+        computersforpeace@gmail.com, vigneshr@ti.com, richard@nod.at,
+        robh+dt@kernel.org, stefan@agner.ch, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
+        juliensu@mxic.com.tw, paul.burton@mips.com, liang.yang@amlogic.com,
+        lee.jones@linaro.org, anders.roxell@linaro.org,
+        christophe.kerello@st.com, paul@crapouillou.net,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v6 2/2] dt-bindings: mtd: Document Macronix raw NAND
+ controller bindings
+Message-ID: <20190801075725.4f23e0f5@collabora.com>
+In-Reply-To: <1564631710-30276-3-git-send-email-masonccyang@mxic.com.tw>
+References: <1564631710-30276-1-git-send-email-masonccyang@mxic.com.tw>
+        <1564631710-30276-3-git-send-email-masonccyang@mxic.com.tw>
+Organization: Collabora
+X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-redhat-linux-gnu)
+MIME-Version: 1.0
+Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu,  1 Aug 2019 11:55:10 +0800
+Mason Yang <masonccyang@mxic.com.tw> wrote:
 
-
-On Tue, 30 Jul 2019, at 10:27, Andrew Jeffery wrote:
+> Document the bindings used by the Macronix raw NAND controller.
 > 
+> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+> ---
+>  Documentation/devicetree/bindings/mtd/mxic-nand.txt | 19 +++++++++++++++++++
+>  1 file changed, 19 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mtd/mxic-nand.txt
 > 
-> On Tue, 30 Jul 2019, at 07:23, Linus Walleij wrote:
-> > On Wed, Jul 24, 2019 at 10:13 AM Andrew Jeffery <andrew@aj.id.au> wrote:
-> > 
-> > > It's probably best if we push the three patches all through one tree rather
-> > > than fragmenting. Is everyone happy if Joel applies them to the aspeed tree?
-> > 
-> > If you are sure it will not collide with parallell work in the
-> > pinctrl tree, yes.
-> > Acked-by: Linus Walleij <linus.walleij@linaro.org>
-> > 
-> > (If it does collide I'd prefer to take the pinctrl patches and fix the
-> > conflicts in my tree.)
-> 
-> Fair enough, I don't know the answer so I'll poke around. I don't 
-> really mind
-> where the series goes in, I just want to avoid landing only part of it 
-> if I split it up.
+> diff --git a/Documentation/devicetree/bindings/mtd/mxic-nand.txt b/Documentation/devicetree/bindings/mtd/mxic-nand.txt
+> new file mode 100644
+> index 0000000..de37d60
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mtd/mxic-nand.txt
+> @@ -0,0 +1,19 @@
+> +Macronix Raw NAND Controller Device Tree Bindings
+> +-------------------------------------------------
+> +
+> +Required properties:
+> +- compatible: should be "mxicy,multi-itfc-v009-nand-morph"
+> +- reg: should contain 1 entry for the registers
+> +- interrupts: interrupt line connected to this raw NAND controller
+> +- clock-names: should contain "ps", "send" and "send_dly"
+> +- clocks: should contain 3 phandles for the "ps", "send" and
+> +	 "send_dly" clocks
+> +
+> +Example:
+> +
+> +	nand: nand-controller@43c30000 {
+> +		compatible = "mxicy,multi-itfc-v009-nand-morph";
+> +		reg = <0x43c30000 0x10000>;
+> +		clocks = <&clkwizard 0>, <&clkwizard 1>, <&clkc 15>;
+> +		clock-names = "send", "send_dly", "ps";
 
-Okay, it currently conflicts with my cleanup-devicetree-warnings series.
+You should have subnodes describing the NAND connected to the
+controller (see [1]).
 
-Joel, do you mind if Linus takes this series through the pinctrl tree, given
-the fix to the devicetrees is patch 1/3?
+[1]https://elixir.bootlin.com/linux/v5.3-rc2/source/Documentation/devicetree/bindings/mtd/nand-controller.yaml#L131
 
-Andrew
+> +	};
+
