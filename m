@@ -2,89 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2788F7D61F
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 09:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 466FD7D646
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 09:28:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729454AbfHAHNR convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 1 Aug 2019 03:13:17 -0400
-Received: from relay11.mail.gandi.net ([217.70.178.231]:38977 "EHLO
-        relay11.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729116AbfHAHNR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 03:13:17 -0400
-Received: from xps13 (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay11.mail.gandi.net (Postfix) with ESMTPSA id B3C0A100005;
-        Thu,  1 Aug 2019 07:13:12 +0000 (UTC)
-Date:   Thu, 1 Aug 2019 09:13:10 +0200
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Mason Yang <masonccyang@mxic.com.tw>
-Cc:     marek.vasut@gmail.com, bbrezillon@kernel.org, dwmw2@infradead.org,
-        computersforpeace@gmail.com, vigneshr@ti.com, richard@nod.at,
-        robh+dt@kernel.org, stefan@agner.ch, mark.rutland@arm.com,
-        linux-kernel@vger.kernel.org, linux-mtd@lists.infradead.org,
-        juliensu@mxic.com.tw, paul.burton@mips.com, liang.yang@amlogic.com,
-        lee.jones@linaro.org, anders.roxell@linaro.org,
-        christophe.kerello@st.com, paul@crapouillou.net,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v6 2/2] dt-bindings: mtd: Document Macronix raw NAND
- controller bindings
-Message-ID: <20190801091310.035bc824@xps13>
-In-Reply-To: <1564631710-30276-3-git-send-email-masonccyang@mxic.com.tw>
-References: <1564631710-30276-1-git-send-email-masonccyang@mxic.com.tw>
-        <1564631710-30276-3-git-send-email-masonccyang@mxic.com.tw>
-Organization: Bootlin
-X-Mailer: Claws Mail 3.17.3 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8BIT
+        id S1730819AbfHAH2H (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 03:28:07 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:40271 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1730802AbfHAH2G (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 03:28:06 -0400
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id x717R6Nr004914;
+        Thu, 1 Aug 2019 10:27:06 +0300
+Received: by taln60.nuvoton.co.il (Postfix, from userid 8441)
+        id 3EDC262A2E; Thu,  1 Aug 2019 10:27:06 +0300 (IDT)
+From:   Avi Fishman <avifishman70@gmail.com>
+To:     venture@google.com, yuenn@google.com, benjaminfair@google.com,
+        davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        gregkh@linuxfoundation.org
+Cc:     avifishman70@gmail.com, tmaimon77@gmail.com, tali.perry1@gmail.com,
+        openbmc@lists.ozlabs.org, netdev@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        tglx@linutronix.de
+Subject: [PATCH v1 0/2] add NPCM7xx EMC 10/100 Ethernet driver
+Date:   Thu,  1 Aug 2019 10:26:09 +0300
+Message-Id: <20190801072611.27935-1-avifishman70@gmail.com>
+X-Mailer: git-send-email 2.18.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mason,
+EMC Ethernet Media Access Controller supports 10/100 Mbps and RMII.
+This driver has been working on Nuvoton BMC NPCM7xx.
 
-Mason Yang <masonccyang@mxic.com.tw> wrote on Thu,  1 Aug 2019 11:55:10
-+0800:
+Avi Fishman (2):
+  dt-binding: net: document NPCM7xx EMC 10/100 DT bindings
+  net: npcm: add NPCM7xx EMC 10/100 Ethernet driver
 
-> Document the bindings used by the Macronix raw NAND controller.
-> 
-> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> ---
->  Documentation/devicetree/bindings/mtd/mxic-nand.txt | 19 +++++++++++++++++++
->  1 file changed, 19 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/mtd/mxic-nand.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/mtd/mxic-nand.txt b/Documentation/devicetree/bindings/mtd/mxic-nand.txt
-> new file mode 100644
-> index 0000000..de37d60
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/mtd/mxic-nand.txt
-> @@ -0,0 +1,19 @@
-> +Macronix Raw NAND Controller Device Tree Bindings
-> +-------------------------------------------------
-> +
-> +Required properties:
-> +- compatible: should be "mxicy,multi-itfc-v009-nand-morph"
-> +- reg: should contain 1 entry for the registers
-> +- interrupts: interrupt line connected to this raw NAND controller
-> +- clock-names: should contain "ps", "send" and "send_dly"
-> +- clocks: should contain 3 phandles for the "ps", "send" and
-> +	 "send_dly" clocks
-> +
-> +Example:
-> +
-> +	nand: nand-controller@43c30000 {
-> +		compatible = "mxicy,multi-itfc-v009-nand-morph";
+ .../bindings/net/nuvoton,npcm7xx-emc.txt      |   38 +
+ drivers/net/ethernet/nuvoton/Kconfig          |   21 +-
+ drivers/net/ethernet/nuvoton/Makefile         |    2 +
+ drivers/net/ethernet/nuvoton/npcm7xx_emc.c    | 2073 +++++++++++++++++
+ 4 files changed, 2131 insertions(+), 3 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/nuvoton,npcm7xx-emc.txt
+ create mode 100644 drivers/net/ethernet/nuvoton/npcm7xx_emc.c
 
-"mxicy" looks strange to me, I know it has been used in the past and
-cannot be removed, but I don't think it is wise to continue using it
-while your use "mxic" in all your other contributions. I would update
-the prefix to mxic here and fill-in the relevant doc.
+-- 
+2.18.0
 
-Also, what is nand-morph? I thought we were okay for
-the "-nand-controller" suffix.
-
-
-Thanks,
-Miquèl
