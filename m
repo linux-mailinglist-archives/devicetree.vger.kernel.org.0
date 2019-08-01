@@ -2,141 +2,121 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 30D397DAAB
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 13:53:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6787E7DB16
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 14:14:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730826AbfHALxW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 07:53:22 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:53396 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731098AbfHALw7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Aug 2019 07:52:59 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id EBFCD1A0085;
-        Thu,  1 Aug 2019 13:52:56 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E00571A0074;
-        Thu,  1 Aug 2019 13:52:56 +0200 (CEST)
-Received: from fsr-ub1664-016.ea.freescale.net (fsr-ub1664-016.ea.freescale.net [10.171.71.216])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 7B32C205E3;
-        Thu,  1 Aug 2019 13:52:56 +0200 (CEST)
-From:   Claudiu Manoil <claudiu.manoil@nxp.com>
-To:     "David S . Miller" <davem@davemloft.net>
-Cc:     andrew@lunn.ch, Rob Herring <robh+dt@kernel.org>,
-        Li Yang <leoyang.li@nxp.com>, alexandru.marginean@nxp.com,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH net-next v5 5/5] arm64: dts: fsl: ls1028a: Enable eth port1 on the ls1028a QDS board
-Date:   Thu,  1 Aug 2019 14:52:53 +0300
-Message-Id: <1564660373-4607-6-git-send-email-claudiu.manoil@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1564660373-4607-1-git-send-email-claudiu.manoil@nxp.com>
-References: <1564660373-4607-1-git-send-email-claudiu.manoil@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1726739AbfHAMOF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 08:14:05 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:36294 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725790AbfHAMOF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 08:14:05 -0400
+Received: by mail-wr1-f67.google.com with SMTP id n4so73416683wrs.3
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 05:14:03 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=zp/LDAkuFwJ/YFLRptApnClu3/c9qJzrJy+2Sl0cGG8=;
+        b=EnC+6gOEVD7Iq2iql/6gaZ89NxDLCMmTVLXgLqFfKqsgOK9MW41ulLRrrZoE1ZxGzw
+         MOGDGd3D2Dmq/dY354KWqLPh9UacbMko5jsOto4+7KOH3yauKCEJ45gIrTh5oi72bMUk
+         UM3WkFnlP40zt8GArSg+Uvp0yXmeXrITc3LHY17Slv8kPzGPe4b1qvq0UqQZ3aoDR9/c
+         B2ibQyxctAhsVNt4csBjcV63qqSV7PRz3KP16yjyLJrjuLkwmez1J4tvT/VXHPqV2cPZ
+         fCmc5o6qjaeN7BZHKgu+ERZYZYoL99x/xrsNEjcQDQHazaCrovszVT9R9bMOE+gszBWe
+         x08Q==
+X-Gm-Message-State: APjAAAUe5aLolOYq1kGXn8S6ApDzgsczaWPVH6jzFNvim+dc/OxeSun7
+        RpUUewxqa1V/zIqj3Pue21SZ/eaM0m/6ZIhvvhiS8KQM
+X-Google-Smtp-Source: APXvYqz9v3s6j2s/GS68Im2ABjVzFIufo01H+pRebBommK4dRvq1xbpXaxHEcXQufFRqLVcwO9VkUslg9nh26NMUptM=
+X-Received: by 2002:adf:cd81:: with SMTP id q1mr139202150wrj.16.1564661643027;
+ Thu, 01 Aug 2019 05:14:03 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190731123741.13947-1-geert+renesas@glider.be> <342e5e38-f980-c849-c061-8dad42bc0850@gmail.com>
+In-Reply-To: <342e5e38-f980-c849-c061-8dad42bc0850@gmail.com>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 1 Aug 2019 14:13:50 +0200
+Message-ID: <CAMuHMdWPvD_pSyJGp=kC0XmAChCK8R2X+exmpHT5eywJ5kQetA@mail.gmail.com>
+Subject: Re: [PATCH] scripts/dtc: dtx_diff - add color output support
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-LS1028a has one Ethernet management interface. On the QDS board, the
-MDIO signals are multiplexed to either on-board AR8035 PHY device or
-to 4 PCIe slots allowing for SGMII cards.
-To enable the Ethernet ENETC Port 1, which can only be connected to a
-RGMII PHY, the multiplexer needs to be configured to route the MDIO to
-the AR8035 PHY.  The MDIO/MDC routing is controlled by bits 7:4 of FPGA
-board config register 0x54, and value 0 selects the on-board RGMII PHY.
-The FPGA board config registers are accessible on the i2c bus, at address
-0x66.
+Hi Frank,
 
-The PF3 MDIO PCIe integrated endpoint device allows for centralized access
-to the MDIO bus.  Add the corresponding devicetree node and set it to be
-the MDIO bus parent.
+On Wed, Jul 31, 2019 at 10:30 PM Frank Rowand <frowand.list@gmail.com> wrote:
+> On 7/31/19 5:37 AM, Geert Uytterhoeven wrote:
+> > Add new -c/--color options, to enhance the diff output with color, and
+> > improve the user's experience.
+> >
+> > Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> > ---
+> >  scripts/dtc/dtx_diff | 10 +++++++++-
+> >  1 file changed, 9 insertions(+), 1 deletion(-)
+> >
+> > diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
+> > index e9ad7834a22d9459..4e2c8617f69a333e 100755
+> > --- a/scripts/dtc/dtx_diff
+> > +++ b/scripts/dtc/dtx_diff
+> > @@ -20,6 +20,8 @@ Usage:
+> >
+> >
+> >        --annotate    synonym for -T
+> > +      --color       synonym for -c
+> > +       -c           enable colored output
+> >         -f           print full dts in diff (--unified=99999)
+> >         -h           synonym for --help
+> >         -help        synonym for --help
 
-Signed-off-by: Alex Marginean <alexandru.marginean@nxp.com>
-Signed-off-by: Claudiu Manoil <claudiu.manoil@nxp.com>
-Reviewed-by: Andrew Lunn <andrew@lunn.ch>
----
-v1-v5 - none
+> I like the idea, but...
+>
+> I have various linux distro releases across my many systems, but only one is
+> new enough to have the diff command that supports --color.
 
- .../boot/dts/freescale/fsl-ls1028a-qds.dts    | 40 +++++++++++++++++++
- .../arm64/boot/dts/freescale/fsl-ls1028a.dtsi |  6 +++
- 2 files changed, 46 insertions(+)
+Seems to have been added in diffutils release 3.4 (2016-08-08).
+I almost can't believe it was that recent, but then I remembered using a
+wrapper before (colordiff; other wrappers may exist).
 
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-index de6ef39f3118..663c4b728c07 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
-@@ -85,6 +85,26 @@
- 			system-clock-frequency = <25000000>;
- 		};
- 	};
-+
-+	mdio-mux {
-+		compatible = "mdio-mux-multiplexer";
-+		mux-controls = <&mux 0>;
-+		mdio-parent-bus = <&enetc_mdio_pf3>;
-+		#address-cells=<1>;
-+		#size-cells = <0>;
-+
-+		/* on-board RGMII PHY */
-+		mdio@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+
-+			qds_phy1: ethernet-phy@5 {
-+				/* Atheros 8035 */
-+				reg = <5>;
-+			};
-+		};
-+	};
- };
- 
- &duart0 {
-@@ -164,6 +184,26 @@
- 			};
- 		};
- 	};
-+
-+	fpga@66 {
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		compatible = "fsl,ls1028aqds-fpga", "fsl,fpga-qixis-i2c",
-+			     "simple-mfd";
-+		reg = <0x66>;
-+
-+		mux: mux-controller {
-+			compatible = "reg-mux";
-+			#mux-control-cells = <1>;
-+			mux-reg-masks = <0x54 0xf0>; /* 0: reg 0x54, bits 7:4 */
-+		};
-+	};
-+
-+};
-+
-+&enetc_port1 {
-+	phy-handle = <&qds_phy1>;
-+	phy-connection-type = "rgmii-id";
- };
- 
- &sai1 {
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-index 7975519b4f56..de71153fda00 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
-@@ -536,6 +536,12 @@
- 				compatible = "fsl,enetc";
- 				reg = <0x000100 0 0 0 0>;
- 			};
-+			enetc_mdio_pf3: mdio@0,3 {
-+				compatible = "fsl,enetc-mdio";
-+				reg = <0x000300 0 0 0 0>;
-+				#address-cells = <1>;
-+				#size-cells = <0>;
-+			};
- 			ethernet@0,4 {
- 				compatible = "fsl,enetc-ptp";
- 				reg = <0x000400 0 0 0 0>;
--- 
-2.17.1
+> Can you enhance this patch to test whether --color is supported?  Maybe
+> something like (untested):
+>
+>         -c | --color )
+>                 if `diff --color <(echo a) <(echo a) 2>/dev/null` ; then
+>                         diff_color="--color=always"
+>                 fi
+>                 shift
+>                 ;;
+>
+> Then add some text to the usage for -c and --color saying that they will
+> be silently ignored if diff does not support --color.
+>
+> I first wrote up a suggested version that printed an error message and
+> exited, but I think silently ignoring is more robust, even though it
+> may be more confusing to someone who is wondering why --color does not
+> work.
 
+Given this is an optional feature, to be enabled explicitly by the user,
+I'm not so fond of going through hoops to auto-detect the availability.
+
+So what about just documenting this in the help text instead?
+
+-      -c           enable colored output
++      -c           enable colored output (requires diff with --color support)
+
+Thanks!
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
+--
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
