@@ -2,67 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A204E7D824
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 11:01:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6F91E7D84A
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 11:13:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730611AbfHAJBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 05:01:37 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:54693 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725804AbfHAJBg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 05:01:36 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1ht6xj-0004OH-52; Thu, 01 Aug 2019 11:01:27 +0200
-Message-ID: <1564650086.7439.9.camel@pengutronix.de>
-Subject: Re: [PATCH v2 1/1] dt-bindings: reset: Fix typo in imx8mq resets
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
+        id S1730905AbfHAJNr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 05:13:47 -0400
+Received: from kirsty.vergenet.net ([202.4.237.240]:59628 "EHLO
+        kirsty.vergenet.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726799AbfHAJNr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 05:13:47 -0400
+Received: from reginn.horms.nl (watermunt.horms.nl [80.127.179.77])
+        by kirsty.vergenet.net (Postfix) with ESMTPA id F135425AD84;
+        Thu,  1 Aug 2019 19:13:44 +1000 (AEST)
+Received: by reginn.horms.nl (Postfix, from userid 7100)
+        id C878E94035F; Thu,  1 Aug 2019 11:13:42 +0200 (CEST)
+From:   Simon Horman <horms+renesas@verge.net.au>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Date:   Thu, 01 Aug 2019 11:01:26 +0200
-In-Reply-To: <660b4fb6ab9acec05aa5fde323d878e04e3d1f64.1564647612.git.agx@sigxcpu.org>
-References: <cover.1564647612.git.agx@sigxcpu.org>
-         <660b4fb6ab9acec05aa5fde323d878e04e3d1f64.1564647612.git.agx@sigxcpu.org>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        Mark Rutland <mark.rutland@arm.com>, linux-usb@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org,
+        Simon Horman <horms+renesas@verge.net.au>
+Subject: [PATCH] dt-bindings: usb: renesas_gen3: Rename bindings documentation file to reflect IP block
+Date:   Thu,  1 Aug 2019 11:13:37 +0200
+Message-Id: <20190801091337.27786-1-horms+renesas@verge.net.au>
+X-Mailer: git-send-email 2.11.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 2019-08-01 at 10:20 +0200, Guido Günther wrote:
-> Some of the mipi dsi resets were called
-> 
->   IMX8MQ_RESET_MIPI_DIS__
-> 
-> instead of
-> 
->   IMX8MQ_RESET_MIPI_DSI__
-> 
-> Since they're DSI related this looks like a typo. This fixes the
-> only in tree user as well to not break bisecting.
-> 
-> Signed-off-by: Guido Günther <agx@sigxcpu.org>
+For consistency with the naming of (most) other documentation files for DT
+bindings for Renesas IP blocks rename the Renesas USB3.0 peripheral
+documentation file from renesas,gen3.txt to renesas,usb3-peri.txt
 
-Thank you, this was a typo in the Rev.0 reference manual.
-It has been fixed in Rev. 1.
+This refines a recent rename from renesas,gen3.txt to renesas-gen3.txt.
+The motivation is to to more accurately reflect the IP block documented in
+this file.
 
-Applied to reset/next with Lucas' R-b.
+Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+---
+* Based on v5.3-rc1
+---
+ .../devicetree/bindings/usb/{renesas,usb3.txt => renesas,usb3-peri.txt}   | 0
+ 1 file changed, 0 insertions(+), 0 deletions(-)
+ rename Documentation/devicetree/bindings/usb/{renesas,usb3.txt => renesas,usb3-peri.txt} (100%)
 
-regards
-Philipp
+diff --git a/Documentation/devicetree/bindings/usb/renesas,usb3.txt b/Documentation/devicetree/bindings/usb/renesas,usb3-peri.txt
+similarity index 100%
+rename from Documentation/devicetree/bindings/usb/renesas,usb3.txt
+rename to Documentation/devicetree/bindings/usb/renesas,usb3-peri.txt
+-- 
+2.11.0
+
