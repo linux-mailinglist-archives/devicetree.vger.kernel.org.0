@@ -2,100 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8B6B97D7FA
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 10:45:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A204E7D824
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 11:01:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729691AbfHAIps (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 04:45:48 -0400
-Received: from foss.arm.com ([217.140.110.172]:60866 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726368AbfHAIps (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Aug 2019 04:45:48 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 8F1B3337;
-        Thu,  1 Aug 2019 01:45:47 -0700 (PDT)
-Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 9012E3F694;
-        Thu,  1 Aug 2019 01:45:45 -0700 (PDT)
-Subject: Re: [PATCH v2 4/6] irqchip/irq-pruss-intc: Add helper functions to
- configure internal mapping
-To:     Suman Anna <s-anna@ti.com>, Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        David Lechner <david@lechnology.com>,
-        Tony Lindgren <tony@atomide.com>,
-        "Andrew F. Davis" <afd@ti.com>, Roger Quadros <rogerq@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190731224149.11153-1-s-anna@ti.com>
- <20190731224149.11153-5-s-anna@ti.com>
-From:   Marc Zyngier <maz@kernel.org>
-Organization: Approximate
-Message-ID: <1a63eb50-7c5c-eb3d-3cbe-bd1cc59ce3fe@kernel.org>
-Date:   Thu, 1 Aug 2019 09:45:44 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190731224149.11153-5-s-anna@ti.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1730611AbfHAJBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 05:01:37 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:54693 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725804AbfHAJBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 05:01:36 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1ht6xj-0004OH-52; Thu, 01 Aug 2019 11:01:27 +0200
+Message-ID: <1564650086.7439.9.camel@pengutronix.de>
+Subject: Re: [PATCH v2 1/1] dt-bindings: reset: Fix typo in imx8mq resets
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Guido =?ISO-8859-1?Q?G=FCnther?= <agx@sigxcpu.org>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Date:   Thu, 01 Aug 2019 11:01:26 +0200
+In-Reply-To: <660b4fb6ab9acec05aa5fde323d878e04e3d1f64.1564647612.git.agx@sigxcpu.org>
+References: <cover.1564647612.git.agx@sigxcpu.org>
+         <660b4fb6ab9acec05aa5fde323d878e04e3d1f64.1564647612.git.agx@sigxcpu.org>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 31/07/2019 23:41, Suman Anna wrote:
-> The PRUSS INTC receives a number of system input interrupt source events
-> and supports individual control configuration and hardware prioritization.
-> These input events can be mapped to some output interrupt lines through 2
-> levels of many-to-one mapping i.e. events to channel mapping and channels
-> to output interrupts.
+On Thu, 2019-08-01 at 10:20 +0200, Guido Günther wrote:
+> Some of the mipi dsi resets were called
 > 
-> This mapping information is provided through the PRU firmware that is
-> loaded onto a PRU core/s or through the device tree node of the PRU
-> application. The mapping is configured by the PRU remoteproc driver, and
-> is setup before the PRU core is started and cleaned up after the PRU core
-> is stopped. This event mapping configuration logic programs the Channel
-> Map Registers (CMRx) and Host-Interrupt Map Registers (HMRx) only when a
-> new program is being loaded/started and the same events and interrupt
-> channels are reset to zero when stopping a PRU.
+>   IMX8MQ_RESET_MIPI_DIS__
 > 
-> Add two helper functions: pruss_intc_configure() & pruss_intc_unconfigure()
-> that the PRU remoteproc driver can use to configure the PRUSS INTC.
+> instead of
+> 
+>   IMX8MQ_RESET_MIPI_DSI__
+> 
+> Since they're DSI related this looks like a typo. This fixes the
+> only in tree user as well to not break bisecting.
+> 
+> Signed-off-by: Guido Günther <agx@sigxcpu.org>
 
-So let me see if I correctly understand this: this adds yet another
-firmware description parser, with a private interface to another
-(undisclosed?) driver, bypassing the standard irqchip configuration
-mechanism. It sounds great, doesn't it?
+Thank you, this was a typo in the Rev.0 reference manual.
+It has been fixed in Rev. 1.
 
-What I cannot really infer from this message (-ETOOMUCHJARGON) is what
-interrupts this affects:
+Applied to reset/next with Lucas' R-b.
 
-- Interrupts from random devices to the PRUSS?
-- Interrupts from the PRUSS to the host?
-- Something else?
-
-When does this happen? Under control of what? It isn't even clear why
-this is part of this irqchip driver.
-
-Depending what this does, there may be ways to fit it into the standard
-interrupt configuration framework. After all, we already have standard
-interfaces to route interrupts to virtual CPUs, effectively passing full
-control of an interrupt to another entity. If you squint hard enough,
-your PRUSS can fit that description.
-
-If that doesn't work, then we need to make the IRQ framework grok that
-kind of requirement (hence my request for clarification). But I'm
-strongly opposed to inventing a SoC-private way of configuring
-interrupts behind the kernel's back.
-
-Thanks,
-
-	M.
--- 
-Jazz is not dead, it just smells funny...
+regards
+Philipp
