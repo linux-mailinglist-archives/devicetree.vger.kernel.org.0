@@ -2,134 +2,298 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 468127E4EF
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 23:43:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 931CD7E522
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 00:04:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732030AbfHAVn4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 17:43:56 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:33372 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731478AbfHAVn4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 17:43:56 -0400
-Received: by mail-pl1-f193.google.com with SMTP id c14so32693103plo.0
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 14:43:55 -0700 (PDT)
+        id S1727565AbfHAWEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 18:04:01 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:40154 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730011AbfHAWEA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 18:04:00 -0400
+Received: by mail-pl1-f195.google.com with SMTP id a93so32733649pla.7
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 15:04:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=tRJWWqPxe4v7OGh5SzFgwfV47CyOeIABo0H7U+M+pdg=;
-        b=S/P5gz+a9jUw7SwOiz84JEbZSB3baAlVLSphUNs8eZlN3ZPowtpH0MpNodRchncDaL
-         h/pwktm3ZoMM5ur9uIqRsyskaBqjhXhPvxaJG//b32Uphj0PG1ynA9CUTm1TW0sAsjm6
-         HvrHFAepLSyokzes/1ht5wjMSnlrEgSRbO09yXW02SG1IbAd8mAQKhoiLKJYr6VkLWg+
-         7rO55CqVAf6utB/oO5cCFpNjfcdHsW2PZ6e5nZCbdexwb5KuZDKGxSTHr3F16NHksaHQ
-         xyoTxMhvtaSYfpReQiXJpspTpAAqnNeKDN71dNMH70NnoXLk5zU84jZ89voAQsdAyikW
-         53ug==
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=O7hLnC+GOiCgk4z8TAevBK2YUS9V2gISweOdp52qemw=;
+        b=PS86srXDaP4fTTf+RUB3qrKPYKv5VVImbD5sr2kp3apOfNZ0eWIzFc0Mv0njZFxFih
+         kIDPoa29TcWLjeGb1zylTG9tEJhsGTACwRaj6SaDNKYuk/UKYaAaiJJjHkiQvrgHK+lH
+         RHGzZEyajD813os98uy8cLCgzhZFoWeYOIKZE=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=tRJWWqPxe4v7OGh5SzFgwfV47CyOeIABo0H7U+M+pdg=;
-        b=p8qJbVSvRqdGVREAcaC8lYFz2gNa4mcOQ8j8tl7aX4iZFmodrBALEuUY5/TQ0heqlm
-         3Az4yiwJTytvppM7cyY1mvSootZAUzacV1ck0bNTUAC2tElMwy5l0iBFvN+67hMZXDyG
-         fY/UIAmk0V9fG/XmxLUUDcEPvqV0FJGo/IkTJhRhc5D/3RgaeX+M3oAtP/sIDrmPWsLd
-         bp08IEysFvY6/le1qAosps22CYeW75IT8qB1aUyBfxyZeF6SPi3SAOT9oV0B+UmSLiGQ
-         om2vpRR+m2Vse/FBvuVSO4lmUM/dz67XjZ4qDgLMTzep7qC90CsZv+vPJi2NzkSPMCw5
-         hnyw==
-X-Gm-Message-State: APjAAAXKR8acztgLhX97syEMPnWqdGn7KCxvIp1Z4t0TJqU09BxUAjT/
-        /giDG5vkzE7E7jtITwRjMmmSFvt6wew/y6LQWuSaoA==
-X-Google-Smtp-Source: APXvYqyQJ3oYuIkR4HxnjqcvX8HB7OCTCVhJ4Fku+hNPqOUYjGToK6i2G0j1xWhCd4v39RwFH1V7C/0k5dVHTOnW45I=
-X-Received: by 2002:a17:902:347:: with SMTP id 65mr32846391pld.232.1564695834770;
- Thu, 01 Aug 2019 14:43:54 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=O7hLnC+GOiCgk4z8TAevBK2YUS9V2gISweOdp52qemw=;
+        b=bSfi0ByvwWcGb4Nf3bAw1HZdMsjinBOIpZVB1ujx8rn7STUZTcuW1gqza7j53m5ib/
+         y5QZVHZKv+w84KGhhQ12lXMBk2y7DWE+akgWx2wdey3mog4EWLJpeejKN+EhRZTJeJHG
+         2eam0HzPdwzTKibj7hc5s472WXb7CHvrjpsriUrlql4TCpDU98ocyWKWHAFZZxL5tj1o
+         apZyDQsboKVFw4oEXFGQryglhMmU+oCeR7bVPnsDxFGDKMA1IaCcSWQM0Qy4iyEsaVis
+         GTci2dwpU6dy1cMrXQ6yzdVp2iXLzkOyuhMejN8Z+3x3SzBdlUIiQhTEQJl8gwVEI2lU
+         4BNA==
+X-Gm-Message-State: APjAAAXCtlJms9qPt+KS/0r4b8HW6YRzGGcjA1EJ7gD8r+SxhfVlhiVA
+        5V/jpvfZJ7iLWqNg5Nt6TmSoVVOmjl0=
+X-Google-Smtp-Source: APXvYqxQ7cTZ2SN8igestlUX5ILuYgeNHRyShGDtkVrlsOwVJu4l7U3wDMFfsEDwuJT3bLOSz/Aj3Q==
+X-Received: by 2002:a17:902:7288:: with SMTP id d8mr44455167pll.133.1564697039800;
+        Thu, 01 Aug 2019 15:03:59 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id g2sm89824740pfb.95.2019.08.01.15.03.58
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 01 Aug 2019 15:03:59 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH] ARM: dts: rockchip: Add pin names for rk3288-veyron fievel
+Date:   Thu,  1 Aug 2019 15:03:54 -0700
+Message-Id: <20190801220354.142933-1-mka@chromium.org>
+X-Mailer: git-send-email 2.22.0.770.g0f2c4a37fd-goog
 MIME-Version: 1.0
-References: <20190716175021.9CA412173C@mail.kernel.org> <20190719000834.GA3228@google.com>
- <20190722200347.261D3218C9@mail.kernel.org> <CAFd5g45hdCxEavSxirr0un_uLzo5Z-J4gHRA06qjzcQrTzmjVg@mail.gmail.com>
- <20190722235411.06C1320840@mail.kernel.org> <20190724073125.xyzfywctrcvg6fmh@pathway.suse.cz>
- <CAFd5g47v3Mr4GEGOjqyYy9Jwwm+ow7ypbu9j88rxEN06QCzdxQ@mail.gmail.com>
- <20190726083148.d4gf57w2nt5k7t6n@pathway.suse.cz> <CAFd5g46iAhDZ5C_chi7oYLVOkwcoj6+0nw+kPWuXhqWwWKd9jA@mail.gmail.com>
- <CAFd5g473iFfvBnJs2pcwuJYgY+DpgD6RLzyDFL1otUuScgKUag@mail.gmail.com> <20190801211447.6D3D7206A2@mail.kernel.org>
-In-Reply-To: <20190801211447.6D3D7206A2@mail.kernel.org>
-From:   Brendan Higgins <brendanhiggins@google.com>
-Date:   Thu, 1 Aug 2019 14:43:42 -0700
-Message-ID: <CAFd5g47tk8x5iet=xfPVO6MphD3SsLtYQLrCi5O2h0bvdXwHtA@mail.gmail.com>
-Subject: Re: [PATCH v9 04/18] kunit: test: add kunit_stream a std::stream like logger
-To:     Stephen Boyd <sboyd@kernel.org>
-Cc:     Petr Mladek <pmladek@suse.com>, Jeff Dike <jdike@addtoit.com>,
-        Kevin Hilman <khilman@baylibre.com>,
-        Logan Gunthorpe <logang@deltatee.com>,
-        Michael Ellerman <mpe@ellerman.id.au>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Amir Goldstein <amir73il@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Steven Rostedt <rostedt@goodmis.org>,
-        Kees Cook <keescook@google.com>,
-        David Rientjes <rientjes@google.com>,
-        kunit-dev@googlegroups.com,
-        Kieran Bingham <kieran.bingham@ideasonboard.com>,
-        Peter Zijlstra <peterz@infradead.org>,
-        Randy Dunlap <rdunlap@infradead.org>,
-        Joel Stanley <joel@jms.id.au>,
-        Luis Chamberlain <mcgrof@kernel.org>,
-        Rob Herring <robh@kernel.org>, shuah <shuah@kernel.org>,
-        wfg@linux.intel.com, Greg KH <gregkh@linuxfoundation.org>,
-        Julia Lawall <julia.lawall@lip6.fr>,
-        linux-nvdimm <linux-nvdimm@lists.01.org>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-um@lists.infradead.org,
-        Sasha Levin <Alexander.Levin@microsoft.com>,
-        "Theodore Ts'o" <tytso@mit.edu>,
-        Richard Weinberger <richard@nod.at>,
-        Dan Carpenter <dan.carpenter@oracle.com>,
-        Knut Omang <knut.omang@oracle.com>,
-        Josh Poimboeuf <jpoimboe@redhat.com>,
-        Masahiro Yamada <yamada.masahiro@socionext.com>,
-        Timothy Bird <Tim.Bird@sony.com>,
-        John Ogness <john.ogness@linutronix.de>,
-        devicetree <devicetree@vger.kernel.org>,
-        "open list:DOCUMENTATION" <linux-doc@vger.kernel.org>,
-        linux-fsdevel@vger.kernel.org,
-        linux-kbuild <linux-kbuild@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        "open list:KERNEL SELFTEST FRAMEWORK" 
-        <linux-kselftest@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 1, 2019 at 2:14 PM Stephen Boyd <sboyd@kernel.org> wrote:
->
-> Quoting Brendan Higgins (2019-08-01 11:59:57)
-> > On Thu, Aug 1, 2019 at 11:55 AM Brendan Higgins
-> > <brendanhiggins@google.com> wrote:
-> > >
-> > > On Fri, Jul 26, 2019 at 1:31 AM Petr Mladek <pmladek@suse.com> wrote:
-> > >
-> > > > To be honest I do not fully understand KUnit design. I am not
-> > > > completely sure how the tested code is isolated from the running
-> > > > system. Namely, I do not know if the tested code shares
-> > > > the same locks with the system running the test.
-> > >
-> > > No worries, I don't expect printk to be the hang up in those cases. It
-> > > sounds like KUnit has a long way to evolve before printk is going to
-> > > be a limitation.
-> >
-> > So Stephen, what do you think?
-> >
-> > Do you want me to go forward with the new kunit_assert API wrapping
-> > the string_stream as I have it now? Would you prefer to punt this to a
-> > later patch? Or would you prefer something else?
-> >
->
-> I like the struct based approach. If anything, it can be adjusted to
-> make the code throw some records into a spinlock later on and delay the
-> formatting of the assertion if need be.
+This is like commit 0ca87bd5baa6 ("ARM: dts: rockchip: Add pin names
+for rk3288-veyron-jerry") and other similar commits, but for the
+veyron fievel board (and tiger, which includes the fievel .dtsi).
 
-That's a fair point.
+Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+---
+ arch/arm/boot/dts/rk3288-veyron-fievel.dts | 214 +++++++++++++++++++++
+ 1 file changed, 214 insertions(+)
 
-> Can you resend with that
-> approach? I don't think I'll have any more comments after that.
+diff --git a/arch/arm/boot/dts/rk3288-veyron-fievel.dts b/arch/arm/boot/dts/rk3288-veyron-fievel.dts
+index 696566f72d30..5c14a8fa6574 100644
+--- a/arch/arm/boot/dts/rk3288-veyron-fievel.dts
++++ b/arch/arm/boot/dts/rk3288-veyron-fievel.dts
+@@ -198,6 +198,220 @@
+ 	pinctrl-0 = <&drv_5v>;
+ };
+ 
++&gpio0 {
++	gpio-line-names = "PMIC_SLEEP_AP",
++			  "DDRIO_PWROFF",
++			  "DDRIO_RETEN",
++			  "TS3A227E_INT_L",
++			  "PMIC_INT_L",
++			  "PWR_KEY_L",
++			  "HUB_USB1_nFALUT",
++			  "PHY_PMEB",
++
++			  "PHY_INT",
++			  "REC_MODE_L",
++			  "OTP_OUT",
++			  "",
++			  "USB_OTG_POWER_EN",
++			  "AP_WARM_RESET_H",
++			  "USB_OTG_nFALUT",
++			  "I2C0_SDA_PMIC",
++
++			  "I2C0_SCL_PMIC",
++			  "DEVMODE_L",
++			  "USB_INT";
++};
++
++&gpio2 {
++	gpio-line-names = "CONFIG0",
++			  "CONFIG1",
++			  "CONFIG2",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "CONFIG3",
++
++			  "",
++			  "EMMC_RST_L",
++			  "",
++			  "",
++			  "BL_PWR_EN",
++			  "",
++			  "TOUCH_INT",
++			  "TOUCH_RST",
++
++			  "I2C3_SCL_TP",
++			  "I2C3_SDA_TP";
++};
++
++&gpio3 {
++	gpio-line-names = "FLASH0_D0",
++			  "FLASH0_D1",
++			  "FLASH0_D2",
++			  "FLASH0_D3",
++			  "FLASH0_D4",
++			  "FLASH0_D5",
++			  "FLASH0_D6",
++			  "FLASH0_D7",
++
++			  "VCC5V_GOOD_H",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "FLASH0_CS2/EMMC_CMD",
++			  "",
++			  "FLASH0_DQS/EMMC_CLKO",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "PHY_TXD2",
++			  "PHY_TXD3",
++			  "MAC_RXD2",
++			  "MAC_RXD3",
++			  "PHY_TXD0",
++			  "PHY_TXD1",
++			  "MAC_RXD0",
++			  "MAC_RXD1";
++};
++
++&gpio4 {
++	gpio-line-names = "MAC_MDC",
++			  "MAC_RXDV",
++			  "MAC_RXER",
++			  "MAC_CLK",
++			  "PHY_TXEN",
++			  "MAC_MDIO",
++			  "MAC_RXCLK",
++			  "",
++
++			  "PHY_RST",
++			  "PHY_TXCLK",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "UART0_RXD",
++			  "UART0_TXD",
++			  "UART0_CTS_L",
++			  "UART0_RTS_L",
++			  "SDIO0_D0",
++			  "SDIO0_D1",
++			  "SDIO0_D2",
++			  "SDIO0_D3",
++
++			  "SDIO0_CMD",
++			  "SDIO0_CLK",
++			  "BT_DEV_WAKE",
++			  "",
++			  "WIFI_ENABLE_H",
++			  "BT_ENABLE_L",
++			  "WIFI_HOST_WAKE",
++			  "BT_HOST_WAKE";
++};
++
++&gpio5 {
++	gpio-line-names = "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "",
++			  "",
++			  "",
++			  "",
++			  "USB_OTG_CTL1",
++			  "HUB_USB2_CTL1",
++			  "HUB_USB2_PWR_EN",
++			  "HUB_USB_ILIM_SEL",
++
++			  "USB_OTG_STATUS_L",
++			  "HUB_USB1_CTL1",
++			  "HUB_USB1_PWR_EN",
++			  "VCC50_HDMI_EN";
++};
++
++&gpio6 {
++	gpio-line-names = "I2S0_SCLK",
++			  "I2S0_LRCK_RX",
++			  "I2S0_LRCK_TX",
++			  "I2S0_SDI",
++			  "I2S0_SDO0",
++			  "HP_DET_H",
++			  "",
++			  "INT_CODEC",
++
++			  "I2S0_CLK",
++			  "I2C2_SDA",
++			  "I2C2_SCL",
++			  "MICDET",
++			  "",
++			  "",
++			  "",
++			  "",
++
++			  "HUB_USB2_nFALUT",
++			  "USB_OTG_ILIM_SEL";
++};
++
++&gpio7 {
++	gpio-line-names = "LCD_BL_PWM",
++			  "PWM_LOG",
++			  "BL_EN",
++			  "PWR_LED1",
++			  "TPM_INT_H",
++			  "SPK_ON",
++			  "FW_WP_AP",
++			  "",
++
++			  "CPU_NMI",
++			  "DVSOK",
++			  "",
++			  "EDP_HPD",
++			  "DVS1",
++			  "",
++			  "LCD_EN",
++			  "DVS2",
++
++			  "HDMI_CEC",
++			  "I2C4_SDA",
++			  "I2C4_SCL",
++			  "I2C5_SDA_HDMI",
++			  "I2C5_SCL_HDMI",
++			  "5V_DRV",
++			  "UART2_RXD",
++			  "UART2_TXD";
++};
++
++&gpio8 {
++	gpio-line-names = "RAM_ID0",
++			  "RAM_ID1",
++			  "RAM_ID2",
++			  "RAM_ID3",
++			  "I2C1_SDA_TPM",
++			  "I2C1_SCL_TPM",
++			  "SPI2_CLK",
++			  "SPI2_CS0",
++
++			  "SPI2_RXD",
++			  "SPI2_TXD";
++};
++
+ &pinctrl {
+ 	pinctrl-names = "default", "sleep";
+ 	pinctrl-0 = <
+-- 
+2.22.0.770.g0f2c4a37fd-goog
 
-Cool, will do.
-
-Thanks!
