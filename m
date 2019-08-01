@@ -2,51 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E13937DD74
-	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 16:08:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6729A7DDF7
+	for <lists+devicetree@lfdr.de>; Thu,  1 Aug 2019 16:35:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731814AbfHAOIb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 10:08:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:39036 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731756AbfHAOIa (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 1 Aug 2019 10:08:30 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AB90F216C8;
-        Thu,  1 Aug 2019 14:08:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564668510;
-        bh=1JyIuK4+07z6r13siyUfFBNIhbSOLStvyEv7aTDiL0A=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=StxsIr6kJab04Mv9+dIISaCW/YlcJEl4jG36/0vq1ghI0VDL1estEscC9HdwV7Ryo
-         lk253CwRrVHhvp6pmUpMEXKeRisNnD72x1zxZCVk8dMlisZ/99kbMUJ2x51u9S8p4e
-         lhSfUxcSOKqPQQmWavnemeulitgk4N1O8AktIVtA=
-Date:   Thu, 1 Aug 2019 16:08:25 +0200
-From:   Greg KH <gregkh@linuxfoundation.org>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     robh+dt@kernel.org, linux-amlogic@lists.infradead.org,
-        linux-serial@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        devicetree@vger.kernel.org
-Subject: Re: [RFC 8/9] dt-bindings: serial: meson-uart: convert to yaml
-Message-ID: <20190801140825.GC31375@kroah.com>
-References: <20190801135644.12843-1-narmstrong@baylibre.com>
- <20190801135644.12843-9-narmstrong@baylibre.com>
+        id S1732079AbfHAOfI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 10:35:08 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:33781 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731284AbfHAOfH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 10:35:07 -0400
+Received: by mail-pf1-f193.google.com with SMTP id g2so34194407pfq.0
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 07:35:07 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=DBbtWFIFaoHfS1Xw8mVY2gGo1qmmgDJlGuvygEHXUSo=;
+        b=ukzC1YlMrKl2Zkd5ltLu7k38qHxpiayU5PA7l4B3HV4Ggt7CMpLcPXepfvfa4mCAx6
+         hsDWKt/DJD1zmpEooC/6Jfx9xzftaBHk92AXK9e4HivbgwDr73UwFaluSm6Gy1uAtI7H
+         FUjGfO93eEafY6Kw9UYJN+aib0XGSsR1s2jJn53hob72yPf3Sx7GqVrObZlPQrJITD17
+         ezgCxQoiSyqF/lwBINmAVySErBakC4cjvvZ4x4lBIHS02tRcPdUPLMhaWRXkbptlX99U
+         CJPnu53ZP5q+XqIhpb742rx3MqeaNAFfi0Jh1f1X7Hoc8kmv513sBhnSQ8lVXA4u0q4r
+         w8FQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=DBbtWFIFaoHfS1Xw8mVY2gGo1qmmgDJlGuvygEHXUSo=;
+        b=hvfnR29fgwI+iTLJ7lutOBKmI0GnQU2aLx/lwBXJChDeuIeQXCdKEZCWSiy1J0fCH6
+         F22Nu0HZxoaBciNv7B6lQvCAHeVR3dzkLCKeafAAC/rto9/F1PIoT5RVdw7IqYhxxHsp
+         uwsKc+YNmxnVRCwxbKpCp+nE/LQc9tOCY1TukksE98uXZCKmlg5qIPVnaKJ7EX21+2vQ
+         nysbHQG7pbfcHqpNJ9q2CrPuGpL8hCO1fouTuzsoid2GSDJGo/EssBcdR6HaSGSNDpJN
+         3nKKt5TBoXp9jU0pT4+dj5ml5fifuUuCzYIHlOTxMwoMzvET3NpUTIT2pFKmrfO4mo8N
+         Z7eA==
+X-Gm-Message-State: APjAAAVKahz4Rkfu4wf6/LupPx3aeoMb0ty8FMIUUluEUSVmyfjTirdw
+        488t2gkxXtIydJSEb49BuqWabg==
+X-Google-Smtp-Source: APXvYqwXjf/7RCgtzVuCUVWsIvbZmbJwE7lAnb0Yae4AD1ql1RRC/pTcWA7lSmMxEe40EKRwaGIa+A==
+X-Received: by 2002:a62:1b0c:: with SMTP id b12mr53059309pfb.17.1564670107026;
+        Thu, 01 Aug 2019 07:35:07 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id o14sm5101778pjp.29.2019.08.01.07.35.05
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 01 Aug 2019 07:35:06 -0700 (PDT)
+Date:   Thu, 1 Aug 2019 07:36:37 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Rajendra Nayak <rnayak@codeaurora.org>
+Cc:     linus.walleij@linaro.org, linux-arm-msm@vger.kernel.org,
+        agross@kernel.org, robh+dt@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jitendra Sharma <shajit@codeaurora.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>
+Subject: Re: [PATCH 2/2] pinctrl: qcom: Add SC7180 pinctrl driver
+Message-ID: <20190801143637.GY7234@tuxbook-pro>
+References: <20190801100717.23333-1-rnayak@codeaurora.org>
+ <20190801100717.23333-2-rnayak@codeaurora.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190801135644.12843-9-narmstrong@baylibre.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <20190801100717.23333-2-rnayak@codeaurora.org>
+User-Agent: Mutt/1.11.4 (2019-03-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 01, 2019 at 03:56:43PM +0200, Neil Armstrong wrote:
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
+On Thu 01 Aug 03:07 PDT 2019, Rajendra Nayak wrote:
 
-I can't take patches without any changelog text, sorry.
+[..]
+> +static const struct msm_pingroup sc7180_groups[] = {
+> +	[0] = PINGROUP(0, SOUTH, qup01, cri_trng, _, phase_flag, _, _, _, _, _),
+> +	[1] = PINGROUP(1, SOUTH, qup01, cri_trng, _, phase_flag, _, _, _, _, _),
+> +	[2] = PINGROUP(2, SOUTH, qup01, cri_trng, _, phase_flag, _, _, _, _, _),
+> +	[3] = PINGROUP(3, SOUTH, qup01, sp_cmu, dbg_out, qdss_cti, _, _, _, _, _),
+> +	[4] = PINGROUP(4, NORTH, sdc1_tb, _, qdss_cti, _, _, _, _, _, _), [5] = PINGROUP(5, NORTH, sdc2_tb, _, _, _, _, _, _, _, _),
+> +	[6] = PINGROUP(6, NORTH, qup11, qup11, _, _, _, _, _, _, _), [7] = PINGROUP(7, NORTH, qup11, qup11, ddr_bist, _, _, _, _, _, _),
 
-greg k-h
+5 and 7 deserve to be on their own line :)
+
+Apart from that:
+
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+Regards,
+Bjorn
