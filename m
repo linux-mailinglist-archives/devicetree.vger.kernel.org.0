@@ -2,298 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 931CD7E522
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 00:04:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96BD67E619
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 00:59:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727565AbfHAWEB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 18:04:01 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:40154 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730011AbfHAWEA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 18:04:00 -0400
-Received: by mail-pl1-f195.google.com with SMTP id a93so32733649pla.7
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 15:04:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=O7hLnC+GOiCgk4z8TAevBK2YUS9V2gISweOdp52qemw=;
-        b=PS86srXDaP4fTTf+RUB3qrKPYKv5VVImbD5sr2kp3apOfNZ0eWIzFc0Mv0njZFxFih
-         kIDPoa29TcWLjeGb1zylTG9tEJhsGTACwRaj6SaDNKYuk/UKYaAaiJJjHkiQvrgHK+lH
-         RHGzZEyajD813os98uy8cLCgzhZFoWeYOIKZE=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=O7hLnC+GOiCgk4z8TAevBK2YUS9V2gISweOdp52qemw=;
-        b=bSfi0ByvwWcGb4Nf3bAw1HZdMsjinBOIpZVB1ujx8rn7STUZTcuW1gqza7j53m5ib/
-         y5QZVHZKv+w84KGhhQ12lXMBk2y7DWE+akgWx2wdey3mog4EWLJpeejKN+EhRZTJeJHG
-         2eam0HzPdwzTKibj7hc5s472WXb7CHvrjpsriUrlql4TCpDU98ocyWKWHAFZZxL5tj1o
-         apZyDQsboKVFw4oEXFGQryglhMmU+oCeR7bVPnsDxFGDKMA1IaCcSWQM0Qy4iyEsaVis
-         GTci2dwpU6dy1cMrXQ6yzdVp2iXLzkOyuhMejN8Z+3x3SzBdlUIiQhTEQJl8gwVEI2lU
-         4BNA==
-X-Gm-Message-State: APjAAAXCtlJms9qPt+KS/0r4b8HW6YRzGGcjA1EJ7gD8r+SxhfVlhiVA
-        5V/jpvfZJ7iLWqNg5Nt6TmSoVVOmjl0=
-X-Google-Smtp-Source: APXvYqxQ7cTZ2SN8igestlUX5ILuYgeNHRyShGDtkVrlsOwVJu4l7U3wDMFfsEDwuJT3bLOSz/Aj3Q==
-X-Received: by 2002:a17:902:7288:: with SMTP id d8mr44455167pll.133.1564697039800;
-        Thu, 01 Aug 2019 15:03:59 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id g2sm89824740pfb.95.2019.08.01.15.03.58
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 01 Aug 2019 15:03:59 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Heiko Stuebner <heiko@sntech.de>
-Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH] ARM: dts: rockchip: Add pin names for rk3288-veyron fievel
-Date:   Thu,  1 Aug 2019 15:03:54 -0700
-Message-Id: <20190801220354.142933-1-mka@chromium.org>
-X-Mailer: git-send-email 2.22.0.770.g0f2c4a37fd-goog
+        id S1732085AbfHAW7R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 18:59:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51106 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730003AbfHAW7R (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 1 Aug 2019 18:59:17 -0400
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 97FB32080C;
+        Thu,  1 Aug 2019 22:59:16 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564700356;
+        bh=kASyP8PGtZ0rL4jNIcUKrCyx7pYnuPev55DZJBaSklM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ROPgtKq1KfpdkUQ/WwkuPZRlwKqXTl1UN7SM2HkqlXAf4hBAf34AxZLKGFbw4ZZ2J
+         Uc27k6aqlqJJcItuknCk0YjdoQ5+l3aRVFpB/S+S3eE1o1tMYWccEuM7PbSu/SAS3d
+         ld0XgBlBhhkxkSUs+J+EeCsS0vdcL9RptovKV4Ts=
+Received: by mail-qt1-f182.google.com with SMTP id l9so72000765qtu.6;
+        Thu, 01 Aug 2019 15:59:16 -0700 (PDT)
+X-Gm-Message-State: APjAAAXTpWd0mBBPtic+ylHNhFlyAqJAnz0BnOFmwqvjFPvilyK2bLGt
+        1oWNsGF2DFHzb6TAIPoSXj2J/9VodaytCmH5JQ==
+X-Google-Smtp-Source: APXvYqx7WFIk+rochGPuukRrKofUEOPYVHhKW5sYMVeD23Voa28zVM0mZV9ERrGM3Tnt9e7Ssjzs/qZQDedTHVoiqog=
+X-Received: by 2002:a0c:b627:: with SMTP id f39mr96371146qve.72.1564700355781;
+ Thu, 01 Aug 2019 15:59:15 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190730062316.32037-1-andrew@aj.id.au> <20190730062316.32037-2-andrew@aj.id.au>
+In-Reply-To: <20190730062316.32037-2-andrew@aj.id.au>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Thu, 1 Aug 2019 16:59:04 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+oZRREV=VjYUxT3WphOa5tBaF1pvS_JKSphBY=3XB5MA@mail.gmail.com>
+Message-ID: <CAL_Jsq+oZRREV=VjYUxT3WphOa5tBaF1pvS_JKSphBY=3XB5MA@mail.gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: Document Aspeed SD controller
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Ryan Chen <ryanchen.aspeed@gmail.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is like commit 0ca87bd5baa6 ("ARM: dts: rockchip: Add pin names
-for rk3288-veyron-jerry") and other similar commits, but for the
-veyron fievel board (and tiger, which includes the fievel .dtsi).
+On Tue, Jul 30, 2019 at 12:23 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+>
+> The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the
+> SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
+> data bus if only a single slot is enabled.
+>
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+>
+> ---
+> v3:
+> * Fix compatible enums
+> * Add AST2600 compatibles
+> * Describe #address-cells / #size-cells
+> ---
+>  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 100 ++++++++++++++++++
+>  1 file changed, 100 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> new file mode 100644
+> index 000000000000..dd2a00c59641
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> @@ -0,0 +1,100 @@
+> +# SPDX-License-Identifier: GPL-2.0-or-later
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: ASPEED SD/SDIO/eMMC Controller
+> +
+> +maintainers:
+> +  - Andrew Jeffery <andrew@aj.id.au>
+> +  - Ryan Chen <ryanchen.aspeed@gmail.com>
+> +
+> +description: |+
+> +  The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the SDIO
+> +  Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit data bus if
+> +  only a single slot is enabled.
+> +
+> +  The two slots are supported by a common configuration area. As the SDHCIs for
+> +  the slots are dependent on the common configuration area, they are described
+> +  as child nodes.
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - aspeed,ast2400-sd-controller
+> +      - aspeed,ast2500-sd-controller
+> +      - aspeed,ast2600-sd-controller
+> +  reg:
+> +    maxItems: 1
+> +    description: Common configuration registers
+> +  "#address-cells":
+> +    const: 1
+> +  "#size-cells":
+> +    const: 1
+> +  ranges: true
+> +  clocks:
+> +    maxItems: 1
+> +    description: The SD/SDIO controller clock gate
+> +
+> +patternProperties:
+> +  "^sdhci@[0-9a-f]+$":
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
----
- arch/arm/boot/dts/rk3288-veyron-fievel.dts | 214 +++++++++++++++++++++
- 1 file changed, 214 insertions(+)
+This should probably have:
 
-diff --git a/arch/arm/boot/dts/rk3288-veyron-fievel.dts b/arch/arm/boot/dts/rk3288-veyron-fievel.dts
-index 696566f72d30..5c14a8fa6574 100644
---- a/arch/arm/boot/dts/rk3288-veyron-fievel.dts
-+++ b/arch/arm/boot/dts/rk3288-veyron-fievel.dts
-@@ -198,6 +198,220 @@
- 	pinctrl-0 = <&drv_5v>;
- };
- 
-+&gpio0 {
-+	gpio-line-names = "PMIC_SLEEP_AP",
-+			  "DDRIO_PWROFF",
-+			  "DDRIO_RETEN",
-+			  "TS3A227E_INT_L",
-+			  "PMIC_INT_L",
-+			  "PWR_KEY_L",
-+			  "HUB_USB1_nFALUT",
-+			  "PHY_PMEB",
-+
-+			  "PHY_INT",
-+			  "REC_MODE_L",
-+			  "OTP_OUT",
-+			  "",
-+			  "USB_OTG_POWER_EN",
-+			  "AP_WARM_RESET_H",
-+			  "USB_OTG_nFALUT",
-+			  "I2C0_SDA_PMIC",
-+
-+			  "I2C0_SCL_PMIC",
-+			  "DEVMODE_L",
-+			  "USB_INT";
-+};
-+
-+&gpio2 {
-+	gpio-line-names = "CONFIG0",
-+			  "CONFIG1",
-+			  "CONFIG2",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "CONFIG3",
-+
-+			  "",
-+			  "EMMC_RST_L",
-+			  "",
-+			  "",
-+			  "BL_PWR_EN",
-+			  "",
-+			  "TOUCH_INT",
-+			  "TOUCH_RST",
-+
-+			  "I2C3_SCL_TP",
-+			  "I2C3_SDA_TP";
-+};
-+
-+&gpio3 {
-+	gpio-line-names = "FLASH0_D0",
-+			  "FLASH0_D1",
-+			  "FLASH0_D2",
-+			  "FLASH0_D3",
-+			  "FLASH0_D4",
-+			  "FLASH0_D5",
-+			  "FLASH0_D6",
-+			  "FLASH0_D7",
-+
-+			  "VCC5V_GOOD_H",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+
-+			  "FLASH0_CS2/EMMC_CMD",
-+			  "",
-+			  "FLASH0_DQS/EMMC_CLKO",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+
-+			  "PHY_TXD2",
-+			  "PHY_TXD3",
-+			  "MAC_RXD2",
-+			  "MAC_RXD3",
-+			  "PHY_TXD0",
-+			  "PHY_TXD1",
-+			  "MAC_RXD0",
-+			  "MAC_RXD1";
-+};
-+
-+&gpio4 {
-+	gpio-line-names = "MAC_MDC",
-+			  "MAC_RXDV",
-+			  "MAC_RXER",
-+			  "MAC_CLK",
-+			  "PHY_TXEN",
-+			  "MAC_MDIO",
-+			  "MAC_RXCLK",
-+			  "",
-+
-+			  "PHY_RST",
-+			  "PHY_TXCLK",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+
-+			  "UART0_RXD",
-+			  "UART0_TXD",
-+			  "UART0_CTS_L",
-+			  "UART0_RTS_L",
-+			  "SDIO0_D0",
-+			  "SDIO0_D1",
-+			  "SDIO0_D2",
-+			  "SDIO0_D3",
-+
-+			  "SDIO0_CMD",
-+			  "SDIO0_CLK",
-+			  "BT_DEV_WAKE",
-+			  "",
-+			  "WIFI_ENABLE_H",
-+			  "BT_ENABLE_L",
-+			  "WIFI_HOST_WAKE",
-+			  "BT_HOST_WAKE";
-+};
-+
-+&gpio5 {
-+	gpio-line-names = "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+			  "USB_OTG_CTL1",
-+			  "HUB_USB2_CTL1",
-+			  "HUB_USB2_PWR_EN",
-+			  "HUB_USB_ILIM_SEL",
-+
-+			  "USB_OTG_STATUS_L",
-+			  "HUB_USB1_CTL1",
-+			  "HUB_USB1_PWR_EN",
-+			  "VCC50_HDMI_EN";
-+};
-+
-+&gpio6 {
-+	gpio-line-names = "I2S0_SCLK",
-+			  "I2S0_LRCK_RX",
-+			  "I2S0_LRCK_TX",
-+			  "I2S0_SDI",
-+			  "I2S0_SDO0",
-+			  "HP_DET_H",
-+			  "",
-+			  "INT_CODEC",
-+
-+			  "I2S0_CLK",
-+			  "I2C2_SDA",
-+			  "I2C2_SCL",
-+			  "MICDET",
-+			  "",
-+			  "",
-+			  "",
-+			  "",
-+
-+			  "HUB_USB2_nFALUT",
-+			  "USB_OTG_ILIM_SEL";
-+};
-+
-+&gpio7 {
-+	gpio-line-names = "LCD_BL_PWM",
-+			  "PWM_LOG",
-+			  "BL_EN",
-+			  "PWR_LED1",
-+			  "TPM_INT_H",
-+			  "SPK_ON",
-+			  "FW_WP_AP",
-+			  "",
-+
-+			  "CPU_NMI",
-+			  "DVSOK",
-+			  "",
-+			  "EDP_HPD",
-+			  "DVS1",
-+			  "",
-+			  "LCD_EN",
-+			  "DVS2",
-+
-+			  "HDMI_CEC",
-+			  "I2C4_SDA",
-+			  "I2C4_SCL",
-+			  "I2C5_SDA_HDMI",
-+			  "I2C5_SCL_HDMI",
-+			  "5V_DRV",
-+			  "UART2_RXD",
-+			  "UART2_TXD";
-+};
-+
-+&gpio8 {
-+	gpio-line-names = "RAM_ID0",
-+			  "RAM_ID1",
-+			  "RAM_ID2",
-+			  "RAM_ID3",
-+			  "I2C1_SDA_TPM",
-+			  "I2C1_SCL_TPM",
-+			  "SPI2_CLK",
-+			  "SPI2_CS0",
-+
-+			  "SPI2_RXD",
-+			  "SPI2_TXD";
-+};
-+
- &pinctrl {
- 	pinctrl-names = "default", "sleep";
- 	pinctrl-0 = <
--- 
-2.22.0.770.g0f2c4a37fd-goog
+allOf:
+  - $ref: mmc-controller.yaml
 
+Another new thing in 5.3. :)
+
+> +    type: object
+> +    properties:
+> +      compatible:
+> +        enum:
+> +          - aspeed,ast2400-sdhci
+> +          - aspeed,ast2500-sdhci
+> +          - aspeed,ast2600-sdhci
+> +      reg:
+> +        maxItems: 1
+> +        description: The SDHCI registers
+> +      clocks:
+> +        maxItems: 1
+> +        description: The SD bus clock
+> +      interrupts:
+> +        maxItems: 1
+> +        description: The SD interrupt shared between both slots
+> +    required:
+> +      - compatible
+> +      - reg
+> +      - clocks
+> +      - interrupts
+> +
+> +additionalProperties: false
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#address-cells"
+> +  - "#size-cells"
+> +  - ranges
+> +  - clocks
+> +
+> +examples:
+> +  - |
+> +    #include <dt-bindings/clock/aspeed-clock.h>
+> +    sdc@1e740000 {
+> +            compatible = "aspeed,ast2500-sd-controller";
+> +            reg = <0x1e740000 0x100>;
+> +            #address-cells = <1>;
+> +            #size-cells = <1>;
+> +            ranges = <0 0x1e740000 0x10000>;
+> +            clocks = <&syscon ASPEED_CLK_GATE_SDCLK>;
+> +
+> +            sdhci0: sdhci@100 {
+> +                    compatible = "aspeed,ast2500-sdhci";
+> +                    reg = <0x100 0x100>;
+> +                    interrupts = <26>;
+> +                    sdhci,auto-cmd12;
+
+Not documented. Maybe should be common, but there's only a few users.
+
+> +                    clocks = <&syscon ASPEED_CLK_SDIO>;
+> +            };
+> +
+> +            sdhci1: sdhci@200 {
+> +                    compatible = "aspeed,ast2500-sdhci";
+> +                    reg = <0x200 0x100>;
+> +                    interrupts = <26>;
+> +                    sdhci,auto-cmd12;
+> +                    clocks = <&syscon ASPEED_CLK_SDIO>;
+> +            };
+> +    };
+> --
+> 2.20.1
+>
