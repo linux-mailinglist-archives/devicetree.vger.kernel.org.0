@@ -2,113 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C5C5E7FBB4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 16:05:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D2A1A7FBC4
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 16:09:14 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731231AbfHBOFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 10:05:16 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:7870 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728714AbfHBOFP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 10:05:15 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d4443240000>; Fri, 02 Aug 2019 07:05:24 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 02 Aug 2019 07:05:15 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 02 Aug 2019 07:05:15 -0700
-Received: from tbergstrom-lnx.Nvidia.com (172.20.13.39) by
- HQMAIL107.nvidia.com (172.20.187.13) with Microsoft SMTP Server (TLS) id
- 15.0.1473.3; Fri, 2 Aug 2019 14:05:14 +0000
-Received: by tbergstrom-lnx.Nvidia.com (Postfix, from userid 1000)
-        id 537EA40DF8; Fri,  2 Aug 2019 17:05:12 +0300 (EEST)
-Date:   Fri, 2 Aug 2019 17:05:12 +0300
-From:   Peter De Schrijver <pdeschrijver@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        "Mark Brown" <broonie@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] soc/tegra: regulators: Add regulators coupler for
- Tegra30
-Message-ID: <20190802140512.GD3883@pdeschrijver-desktop.Nvidia.com>
-References: <20190725151832.9802-1-digetx@gmail.com>
- <20190725151832.9802-4-digetx@gmail.com>
+        id S2436611AbfHBOJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 10:09:13 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:38968 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1732817AbfHBOJN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 10:09:13 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x72E6uLF014555;
+        Fri, 2 Aug 2019 16:09:00 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : mime-version : content-type :
+ content-transfer-encoding; s=STMicroelectronics;
+ bh=V4Oy0E5gbwyi1cbiRiVoGW45+5zWyza++ydGz4D477E=;
+ b=Z8BqG/0ydEYKorRq6uN7BstyvNz9rvTzsNTLIiUk0O/KLzdXaVrhf3fKJhOL+XEeruk1
+ dGUUYZ4gXS3ohGtP7MiUizl4oLWZ+3EVWP2e5syGLv5FHVEzscdE5QRYsQOizAfJ3arT
+ If/qqA0CWJFToyr79Oo1fW+TyDtXUPqoCjCri19Zu2UKJOzafaDMbPx4oM+cc3YbTcgq
+ FdYxSHDdY1A1zlMjTW4MURJTjducO/Wg9zL1r6gc++okNND+3dMKEHtGkOU+dfm4N5OJ
+ vrzrvZf/IH6fEAqSaggQGi8n5GCeCFmQ5c9+eKAk8Q7L+qYSDlwvbGiC2Hggumm9od11 vQ== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2u0c2yvs6w-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Fri, 02 Aug 2019 16:09:00 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 537F634;
+        Fri,  2 Aug 2019 14:09:00 +0000 (GMT)
+Received: from Webmail-eu.st.com (Safex1hubcas22.st.com [10.75.90.92])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3CEE72C4581;
+        Fri,  2 Aug 2019 16:09:00 +0200 (CEST)
+Received: from SAFEX1HUBCAS23.st.com (10.75.90.47) by Safex1hubcas22.st.com
+ (10.75.90.92) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 2 Aug 2019
+ 16:09:00 +0200
+Received: from localhost (10.201.23.97) by webmail-ga.st.com (10.75.90.48)
+ with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 2 Aug 2019 16:08:59
+ +0200
+From:   =?UTF-8?q?Yannick=20Fertr=C3=A9?= <yannick.fertre@st.com>
+To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
+        Alexandre Torgue <alexandre.torgue@st.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        Benjamin Gaignard <benjamin.gaignard@st.com>,
+        Yannick Fertre <yannick.fertre@st.com>,
+        Philippe Cornu <philippe.cornu@st.com>,
+        Fabrice Gasnier <fabrice.gasnier@st.com>
+Subject: [PATCH] ARM: dts: stm32: move ltdc pinctrl on stm32mp157a dk1 board
+Date:   Fri, 2 Aug 2019 16:08:51 +0200
+Message-ID: <1564754931-13861-1-git-send-email-yannick.fertre@st.com>
+X-Mailer: git-send-email 2.7.4
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-Disposition: inline
-In-Reply-To: <20190725151832.9802-4-digetx@gmail.com>
-X-NVConfidentiality: public
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [172.20.13.39]
-X-ClientProxiedBy: HQMAIL107.nvidia.com (172.20.187.13) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1564754724; bh=4T40FxzWga3LbNPFV+QKshbSr6vY3IQ06h0Men8HJ24=;
-        h=X-PGP-Universal:Date:From:To:CC:Subject:Message-ID:References:
-         MIME-Version:Content-Type:Content-Disposition:In-Reply-To:
-         X-NVConfidentiality:User-Agent:X-Originating-IP:X-ClientProxiedBy;
-        b=Dkl004srNhOkuivE2fGUwLql8dZNBYo49DqQdSe6IH0rxWhuzuke+kF25uM/GXm0w
-         JcD+8ygRTNScG2Sdctgvg1KuAbwS/RpKmDp+khLiDU0/dv1FuvMAhWlXqqdazZjI/F
-         SZvtskJ8QXsnqSySjCRekP+iswUqfcFROzP+v6gtuD2NMWgzfCmM0QmaUIJPQLqt/U
-         cP+zScMJzcxCgG5epYh0lZdYoB20161MpAkRyTwzuly0B7UprQw49AE9T2imMIKLyZ
-         AmNbFVblTo6xvb+CvZbOsbOVIIBVHQqSqw3LBib5mh5cSGNbDBcfA7zfmc1u0+Pmyd
-         yfeenziXqPhRQ==
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+X-Originating-IP: [10.201.23.97]
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-02_06:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Jul 25, 2019 at 06:18:32PM +0300, Dmitry Osipenko wrote:
-> Add regulators coupler for Tegra30 SoCs that performs voltage balancing
-> of a coupled regulators and thus provides voltage scaling functionality.
-> 
-> There are 2 coupled regulators on all Tegra30 SoCs: CORE and CPU. The
-> coupled regulator voltages shall be in a range of 300mV from each other
-> and CORE voltage shall be higher than the CPU by N mV, where N depends
-> on the CPU voltage.
-> 
-> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> ---
->  drivers/soc/tegra/Kconfig              |   4 +
->  drivers/soc/tegra/Makefile             |   1 +
->  drivers/soc/tegra/regulators-tegra30.c | 316 +++++++++++++++++++++++++
->  3 files changed, 321 insertions(+)
->  create mode 100644 drivers/soc/tegra/regulators-tegra30.c
-> 
-...
+The ltdc pinctrl must be in the display controller node and
+not in the peripheral node (hdmi bridge).
 
-> +
-> +static int tegra30_core_cpu_limit(int cpu_uV)
-> +{
-> +	if (cpu_uV < 800000)
-> +		return 950000;
-> +
-> +	if (cpu_uV < 900000)
-> +		return 1000000;
-> +
-> +	if (cpu_uV < 1000000)
-> +		return 1100000;
-> +
-> +	if (cpu_uV < 1100000)
-> +		return 1200000;
-> +
-> +	if (cpu_uV < 1250000) {
-> +		switch (tegra_sku_info.cpu_speedo_id) {
-> +		case 0 ... 1:
-Aren't we supposed to add /* fall through */ here now?
-> +		case 4:
-> +		case 7 ... 8:
-> +			return 1200000;
-> +
-> +		default:
-> +			return 1300000;
-> +		}
-> +	}
-> +
+Signed-off-by: Yannick Fertré <yannick.fertre@st.com>
+---
+ arch/arm/boot/dts/stm32mp157a-dk1.dts | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
 
-Other than that, this looks ok to me.
+diff --git a/arch/arm/boot/dts/stm32mp157a-dk1.dts b/arch/arm/boot/dts/stm32mp157a-dk1.dts
+index f3f0e37..1285cfc 100644
+--- a/arch/arm/boot/dts/stm32mp157a-dk1.dts
++++ b/arch/arm/boot/dts/stm32mp157a-dk1.dts
+@@ -99,9 +99,6 @@
+ 		reset-gpios = <&gpioa 10 GPIO_ACTIVE_LOW>;
+ 		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
+ 		interrupt-parent = <&gpiog>;
+-		pinctrl-names = "default", "sleep";
+-		pinctrl-0 = <&ltdc_pins_a>;
+-		pinctrl-1 = <&ltdc_pins_sleep_a>;
+ 		status = "okay";
+ 
+ 		ports {
+@@ -276,6 +273,9 @@
+ };
+ 
+ &ltdc {
++	pinctrl-names = "default", "sleep";
++	pinctrl-0 = <&ltdc_pins_a>;
++	pinctrl-1 = <&ltdc_pins_sleep_a>;
+ 	status = "okay";
+ 
+ 	port {
+-- 
+2.7.4
 
-Peter.
