@@ -2,116 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D7B967F5C9
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 13:11:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1C1A47F626
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 13:43:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730001AbfHBLLG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 07:11:06 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:42376 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729150AbfHBLLG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 07:11:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=n3s4BVD5JdIzf1EzOc/HSXfpVMJH3F25dukM4N0R0rw=; b=o3itlc9UEZib7jTg8rBsfV2Ln
-        5vlVoO5Nfaqv9ikfYOXKGOZS4hte58Euz9jU/4ttbMW7UVQx9ADRV322SE5owfVZKmgXUWGMI9+4J
-        xAqNVRRzYNSf+nYVu/ELr1R/VQKE6+sOe7TAzp2vAVHXTu8GmC6Ex6EtD9yo8/ppO4arE=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1htVSH-0007QE-Uw; Fri, 02 Aug 2019 11:10:38 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id E01F62742DA7; Fri,  2 Aug 2019 12:10:36 +0100 (BST)
-Date:   Fri, 2 Aug 2019 12:10:36 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Thomas Preston <thomas.preston@codethink.co.uk>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Kirill Marinushkin <kmarinushkin@birdec.tech>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Annaliese McDermond <nh6z@nh6z.net>,
-        Takashi Iwai <tiwai@suse.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-kernel@vger.kernel.org,
-        Cheng-Yi Chiang <cychiang@chromium.org>
-Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on
- diagnostic routine
-Message-ID: <20190802111036.GB5387@sirena.org.uk>
-References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
- <20190730120937.16271-4-thomas.preston@codethink.co.uk>
- <20190730141935.GF4264@sirena.org.uk>
- <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
- <20190730155027.GJ4264@sirena.org.uk>
- <9b47a360-3b62-b968-b8d5-8639dc4b468d@codethink.co.uk>
- <20190801234241.GG5488@sirena.org.uk>
- <472cc4ee-2e80-8b08-d842-79c65df572f3@codethink.co.uk>
+        id S2391161AbfHBLm4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 07:42:56 -0400
+Received: from bhuna.collabora.co.uk ([46.235.227.227]:49984 "EHLO
+        bhuna.collabora.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732584AbfHBLm4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 07:42:56 -0400
+Received: from hades.home (unknown [IPv6:2a00:23c5:58d:db00:68bb:47d:d5ca:9abd])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: martyn)
+        by bhuna.collabora.co.uk (Postfix) with ESMTPSA id B297228A7E7;
+        Fri,  2 Aug 2019 12:42:54 +0100 (BST)
+From:   Martyn Welch <martyn.welch@collabora.com>
+To:     Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Cameron <jic23@kernel.org>
+Cc:     Hartmut Knaack <knaack.h@gmx.de>,
+        Lars-Peter Clausen <lars@metafoo.de>,
+        Peter Meerwald-Stadler <pmeerw@pmeerw.net>,
+        linux-iio@vger.kernel.org, linux-kernel@vger.kernel.org,
+        kernel@lists.collabora.co.uk, devicetree@vger.kernel.org,
+        Martyn Welch <martyn.welch@collabora.com>,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v4 1/2] dt-bindings: Add binding document for NOA1305
+Date:   Fri,  2 Aug 2019 12:42:27 +0100
+Message-Id: <20190802114228.1278-1-martyn.welch@collabora.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="eJnRUKwClWJh1Khz"
-Content-Disposition: inline
-In-Reply-To: <472cc4ee-2e80-8b08-d842-79c65df572f3@codethink.co.uk>
-X-Cookie: She blinded me with science!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Document the ON Semiconductor NOA1305 ambient light sensor devicetree
+bindings.
 
---eJnRUKwClWJh1Khz
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+Signed-off-by: Martyn Welch <martyn.welch@collabora.com>
+Reviewed-by: Rob Herring <robh@kernel.org>
+---
 
-On Fri, Aug 02, 2019 at 09:32:17AM +0100, Thomas Preston wrote:
-> On 02/08/2019 00:42, Mark Brown wrote:
+Changes:
+v2: Same as v1.
+v3: Same as v2.
+v4: Same as v3.
 
-> > Yes, that's definitely doable - we've got some other drivers with
-> > similar things like calibration triggers exposed that way.
+ .../bindings/iio/light/noa1305.yaml           | 44 +++++++++++++++++++
+ 1 file changed, 44 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/iio/light/noa1305.yaml
 
-> One problem with using a kcontrol as a trigger for the turn-on diagnostic
-> is that the diagnostic routine has a "return value".
+diff --git a/Documentation/devicetree/bindings/iio/light/noa1305.yaml b/Documentation/devicetree/bindings/iio/light/noa1305.yaml
+new file mode 100644
+index 000000000000..17e7f140b69b
+--- /dev/null
++++ b/Documentation/devicetree/bindings/iio/light/noa1305.yaml
+@@ -0,0 +1,44 @@
++# SPDX-License-Identifier: GPL-2.0
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/iio/light/noa1305.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: ON Semiconductor NOA1305 Ambient Light Sensor
++
++maintainers:
++  - Martyn Welch <martyn.welch@collabora.com>
++
++description: |
++  Ambient sensing with an i2c interface.
++
++  https://www.onsemi.com/pub/Collateral/NOA1305-D.PDF
++
++properties:
++  compatible:
++    enum:
++      - onnn,noa1305
++
++  reg:
++    maxItems: 1
++
++  vin-supply:
++    description: Regulator that provides power to the sensor
++
++required:
++  - compatible
++  - reg
++
++examples:
++  - |
++    i2c {
++
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        light@39 {
++                compatible = "onnn,noa1305";
++                reg = <0x39>;
++        };
++    };
++...
+-- 
+2.20.1
 
-You can use a read only control for the readback, or just have it be
-triggered by overwriting the readback value.  You can cache the result.
-
-> Hm, maybe a better idea is to have the turn on diagnostic only run on
-> device probe (as its name suggests!), and print something to dmesg:
-
-> 	modprobe tda7802 turn_on_diagnostic=1
-
-> 	tda7802-codec i2c-TDA7802:00: Turn on diagnostic 04 04 04 04
-
-> Kirill Marinushkin mentioned this in the first review [0], it just didn't
-> really sink in until now!
-
-You could do that too, yeah.  Depends on what this is diagnosing and if
-that'd be useful.
-
---eJnRUKwClWJh1Khz
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1EGiwACgkQJNaLcl1U
-h9Bs6Qf9FgalB0i5dzB7naDLU8yYdeZfY+teIQZhSWv5GUBav5I3hs3vkMQRCu3b
-B85CYaqrGqhe/TTBEPeZq6hlAzt91By0DWQ8oYiz9t3Vf9rqAxCe5M9OzKrN/GfS
-veomBXXDd4B79HHPW9mGDHsNoflXkdJbyWsx9P6ZvCRs8mc6JtrRssDje474uNqs
-fC3oWklOove1G7CStDQ/8QfK8XblO2FZlBzL0H0YbSuUy74Xz8Ioimd2WX1Yvm3L
-DPdOR4I6s0MvP1lhgIpTYSXki4plZ3EdwSatWi4VmVmBMVGK1rDmiXhWzBkWheJf
-915A2FSIMuUS5Z+2sIRaANFl7lHKVw==
-=GrVc
------END PGP SIGNATURE-----
-
---eJnRUKwClWJh1Khz--
