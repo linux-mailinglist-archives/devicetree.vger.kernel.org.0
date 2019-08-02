@@ -2,141 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 389E07FD86
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 17:30:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7FE227FD97
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 17:32:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732983AbfHBPaE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 11:30:04 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35106 "EHLO mail.kernel.org"
+        id S1733275AbfHBPcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 11:32:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35790 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732277AbfHBPaE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Aug 2019 11:30:04 -0400
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        id S1727198AbfHBPcu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Aug 2019 11:32:50 -0400
+Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1E14021783;
-        Fri,  2 Aug 2019 15:30:03 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 240E32087C
+        for <devicetree@vger.kernel.org>; Fri,  2 Aug 2019 15:32:49 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564759803;
-        bh=exi+9OQEtZ7oI8S+4n8aYHHOqvpX9ctCa2KPyOEi70c=;
+        s=default; t=1564759969;
+        bh=SqXczMVqgeEkDVlqy5kglJj8uL1oAGnsDkEhoHPszCE=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=AwJ+Y8vA75d/vMycBEhTJYNB+zLZA65/L8ndELebOL1ft/DqAQHcTHqtXoNjI+hyR
-         wnANR3KMbhOl9eMeXeGdtg+otBpea3bxFK1TSVs6k6IAs/alHczr0U0oMWEdOm9fCU
-         TrwwVTqLcoHrMnL8pt5ifUmEnAxO22zPH+lKfUOg=
-Received: by mail-qt1-f182.google.com with SMTP id d23so74320206qto.2;
-        Fri, 02 Aug 2019 08:30:03 -0700 (PDT)
-X-Gm-Message-State: APjAAAWhEbJgIPOKpRnLV/XmmQ/qExZorShaNg1bOYaRfzZjF3jUsc14
-        Vh3Zl45VOIxA9XOuapYzUVmORcXmQSZTEY7L8w==
-X-Google-Smtp-Source: APXvYqzityF7o7KUO1Njby8yuDCjj0HJCmvW0poZGiH53DOdLh77y5Ia90Sp+PIkYjkjHRHG/c/ZknfJJgTyRKPgjJw=
-X-Received: by 2002:a0c:b627:: with SMTP id f39mr99725316qve.72.1564759802191;
- Fri, 02 Aug 2019 08:30:02 -0700 (PDT)
+        b=pCLuRj/WOOZYb+u1fjmIKd4E3EYbifvnH3q+ZYi57kOWlgyO9gJcsA+sJGmHT0mDJ
+         PS4fijeM6cSxG3PhbrzKW6q5rpDKvQ0yQvHbtiNH59IGy6G1FOb6p31VneUJV8ZEdt
+         FtyTVtOOMm8GCHvLv/SbgTE9YsIcPQldYjIyqQoQ=
+Received: by mail-qt1-f171.google.com with SMTP id y26so74302003qto.4
+        for <devicetree@vger.kernel.org>; Fri, 02 Aug 2019 08:32:49 -0700 (PDT)
+X-Gm-Message-State: APjAAAWjGbzTT0mOO/v/2uHmZqEtEyjgXzPZ0h8yJb1w3A2lO3rKmPzR
+        IAmq0Otomg7PBXQR/uoNncnqj2Nqb27yr0DmOQ==
+X-Google-Smtp-Source: APXvYqz5KFxckUeN3jLg6ZkyxzzkOZ6/De6227CJyUXimVAlaImzJTd4BNXCiN4DhIhzmmkx6p/UvVuwUn0NBDGuyKA=
+X-Received: by 2002:a0c:acef:: with SMTP id n44mr100010313qvc.39.1564759968361;
+ Fri, 02 Aug 2019 08:32:48 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190801184346.7015-1-dinguyen@kernel.org> <CAL_Jsq+PRKGwdozr3VECpk2ugrOuWd4CYnRSR7ChyPOKgheYkw@mail.gmail.com>
- <92009928-3df1-1573-7d67-40e79d77c77e@kernel.org>
-In-Reply-To: <92009928-3df1-1573-7d67-40e79d77c77e@kernel.org>
+References: <20190801135644.12843-1-narmstrong@baylibre.com>
+ <20190801135644.12843-6-narmstrong@baylibre.com> <90dbcb33-74a2-68de-eb1a-ce84040298b8@baylibre.com>
+In-Reply-To: <90dbcb33-74a2-68de-eb1a-ce84040298b8@baylibre.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 2 Aug 2019 09:29:50 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+XfAO5BFnmhekUv1gKSOeVn03k7KtWWp2DgomxFL+UMQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+XfAO5BFnmhekUv1gKSOeVn03k7KtWWp2DgomxFL+UMQ@mail.gmail.com>
-Subject: Re: [PATCH] drivers/amba: add reset control to primecell probe
-To:     Dinh Nguyen <dinguyen@kernel.org>
-Cc:     devicetree@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Kees Cook <keescook@chromium.org>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>,
-        Dinh Nguyen <dinh.nguyen@intel.com>
+Date:   Fri, 2 Aug 2019 09:32:36 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+gtauOzrRRtTqbowUSOMi5Rs_GQVt7e7gYHa7TtjOhOA@mail.gmail.com>
+Message-ID: <CAL_Jsq+gtauOzrRRtTqbowUSOMi5Rs_GQVt7e7gYHa7TtjOhOA@mail.gmail.com>
+Subject: Re: [RFC 5/9] dt-bindings: arm: amlogic: amlogic,meson-gx-ao-secure:
+ convert to yaml
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 2, 2019 at 8:42 AM Dinh Nguyen <dinguyen@kernel.org> wrote:
+On Fri, Aug 2, 2019 at 8:37 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
+> Hi Rob,
 >
+> Thanks for reviews.
 >
-> On 8/2/19 9:37 AM, Rob Herring wrote:
-> > On Thu, Aug 1, 2019 at 12:44 PM Dinh Nguyen <dinguyen@kernel.org> wrote:
-> >>
-> >> From: Dinh Nguyen <dinh.nguyen@intel.com>
-> >>
-> >> The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
-> >> default. Until recently, the DMA controller was brought out of reset by the
-> >> bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals that
-> >> are not used are held in reset and are left to Linux to bring them out of
-> >> reset.
+> On 01/08/2019 15:56, Neil Armstrong wrote:
+> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> > ---
+> >  .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 -------------
+> >  .../amlogic/amlogic,meson-gx-ao-secure.yaml   | 42 +++++++++++++++++++
+> >  2 files changed, 42 insertions(+), 28 deletions(-)
+> >  delete mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+> >  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
 > >
-> > You can fix this in the kernel, but any versions before this change
-> > will remain broken. IMO, the u-boot change should be reverted because
-> > it is breaking an ABI (though not a good one).
-> >
+> > diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+> > deleted file mode 100644
+> > index c67d9f48fb91..000000000000
+> > --- a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+> > +++ /dev/null
+> > @@ -1,28 +0,0 @@
+> > -Amlogic Meson Firmware registers Interface
+> > -------------------------------------------
+> > -
+> > -The Meson SoCs have a register bank with status and data shared with the
+> > -secure firmware.
+> > -
+> > -Required properties:
+> > - - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-ao-secure", "syscon"
 >
-> Right, there exists in U-Boot to support legacy platforms before this
-> recent change. This would be for future versions.
+> I have a hard time find how to define "syscon" here, if I put syscon in the compatible
+> it gets matched on other bindings and I get lot of warnings.
 >
-> >> Add a mechanism for getting the reset property and de-assert the primecell
-> >> module from reset if found. This is a not a hard fail if the reset property
-> >> is not present in the device tree node, so the driver will continue to probe.
-> >
-> > I think this belongs in the AMBA bus code, not the DT code, as that is
-> > where we already have clock control code for similar reasons.
-> >
->
-> Ok.
->
-> >>
-> >> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
-> >> ---
-> >>  drivers/of/platform.c | 14 ++++++++++++++
-> >>  1 file changed, 14 insertions(+)
-> >>
-> >> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> >> index 7801e25e6895..d8945705313d 100644
-> >> --- a/drivers/of/platform.c
-> >> +++ b/drivers/of/platform.c
-> >> @@ -21,6 +21,7 @@
-> >>  #include <linux/of_irq.h>
-> >>  #include <linux/of_platform.h>
-> >>  #include <linux/platform_device.h>
-> >> +#include <linux/reset.h>
-> >>
-> >>  const struct of_device_id of_default_bus_match_table[] = {
-> >>         { .compatible = "simple-bus", },
-> >> @@ -229,6 +230,7 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
-> >>         struct amba_device *dev;
-> >>         const void *prop;
-> >>         int i, ret;
-> >> +       struct reset_control *rstc;
-> >>
-> >>         pr_debug("Creating amba device %pOF\n", node);
-> >>
-> >> @@ -270,6 +272,18 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
-> >>                 goto err_free;
-> >>         }
-> >>
-> >> +       /*
-> >> +        * reset control of the primecell block is optional
-> >> +        * and will not fail if the reset property is not found.
-> >> +        */
-> >> +       rstc = of_reset_control_get_exclusive(node, "dma");
-> >
-> > 'dma' doesn't sound very generic.
-> >
->
-> how about 'primecell' ?
+> How should I model it ?
 
-It should be based on what is in the TRMs. Unlike pclk, there doesn't
-appear to be a standard name or number of resets:
-
-pl011: PRESETn and nUARTRST
-pl330: ARESETn
-
-Can't you just retrieve all of them and deassert them all and ignore the name?
-
-Also, you might need to use the shared variant as the core code has to
-work for either dedicated or shared resets.
+You have to add a custom 'select' key that doesn't include 'syscon'.
+There should be a few examples in the tree.
 
 Rob
