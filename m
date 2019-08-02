@@ -2,136 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C1377FF90
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 19:28:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AF56F7FFB6
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 19:35:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405027AbfHBR23 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 13:28:29 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:55224 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404771AbfHBR23 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 13:28:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=19SYug1X49A7OlFCjT3NjS7tzEer+iU5emT8mMkyYto=; b=wiA5cjO8vCzDaLIC1P0dzbRa7
-        Rk7kC51x8BNo8WA7vM0Xch+d3tG7JZSqG5p+v8h8C0Dw0J7/qn+B9D6hMGdWU7QX8ClO3GtsJHoak
-        2NmuwXqYqSJma1EVrnxieTPDr+R/A+gPKCGjM+iS10Ud40Hkf0/aLil4k7Fmlw7ySGY0U=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.org.uk>)
-        id 1htbLR-0008U3-VA; Fri, 02 Aug 2019 17:27:58 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 7EE982742DA7; Fri,  2 Aug 2019 18:27:56 +0100 (BST)
-Date:   Fri, 2 Aug 2019 18:27:56 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Thomas Preston <thomas.preston@codethink.co.uk>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
-        alsa-devel@alsa-project.org,
-        Charles Keepax <ckeepax@opensource.cirrus.com>,
-        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
-        Kirill Marinushkin <kmarinushkin@birdec.tech>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Annaliese McDermond <nh6z@nh6z.net>,
-        Takashi Iwai <tiwai@suse.com>,
-        Paul Cercueil <paul@crapouillou.net>,
-        Vinod Koul <vkoul@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        Jerome Brunet <jbrunet@baylibre.com>,
-        linux-kernel@vger.kernel.org,
-        Cheng-Yi Chiang <cychiang@chromium.org>
-Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on
- diagnostic routine
-Message-ID: <20190802172756.GC5387@sirena.org.uk>
-References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
- <20190730120937.16271-4-thomas.preston@codethink.co.uk>
- <20190730141935.GF4264@sirena.org.uk>
- <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
- <20190730155027.GJ4264@sirena.org.uk>
- <9b47a360-3b62-b968-b8d5-8639dc4b468d@codethink.co.uk>
- <20190801234241.GG5488@sirena.org.uk>
- <472cc4ee-2e80-8b08-d842-79c65df572f3@codethink.co.uk>
- <20190802111036.GB5387@sirena.org.uk>
- <ab0a2d14-90c0-6c28-2c80-351fccd85e68@codethink.co.uk>
+        id S2405327AbfHBRfb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 13:35:31 -0400
+Received: from mail-lf1-f65.google.com ([209.85.167.65]:37246 "EHLO
+        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405108AbfHBRfa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 13:35:30 -0400
+Received: by mail-lf1-f65.google.com with SMTP id c9so53435169lfh.4;
+        Fri, 02 Aug 2019 10:35:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=m01E/00kIIUrZ+us6qTkntaWmvfO8MGjTN9DZjqTTM4=;
+        b=LAdAuboHztw2JZLafdgtT4UzeS6mncq1WKhvo7JyiSvSF0vyS3isLkwFQqzG0jKKpk
+         ZghWSAlT/5CZGGwhFgXqGtPeZ/LfjQlgTx3E5AghaB5qUdQ2WllUyvxX/dowJBtNzVUF
+         LFPJAZox16R/ZWpDSEC7NHXsBN6PZ/GKBTdLJho0tEIWT25IPgejuqKDLabN5Oduz5W9
+         J+NyLp1voKwSQg7PL832WiDwrty7Ea7e/JIL8zXVZi8+0azrxZ/SaJl3NnRYEOqC0Q2T
+         kitin+A76BSUfE/SmIkMmNN7vsk/R+p/oEvwqRn0PS1Bmn7/FfSWmtkm6jj996+GQ/vO
+         Znpw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=m01E/00kIIUrZ+us6qTkntaWmvfO8MGjTN9DZjqTTM4=;
+        b=MdsEwqFyq51tlP5dAb9bd6aO14lQA7WrbHVNkEdb9KpM3Kqvk8Ji1wmnE0sX/0Wc5V
+         ubWvNluJinZ2R/wtgfps+nH0t/pCU0OZwjVQjcnSiuIDKR+FEDgwyOXymcNy1A+bIckQ
+         +iXhkue4Eg5JsqOyViuLyeh5sjKlDtL141tWwQbQKCuJszwtPS5+idZm88jgvsEbA1XK
+         Lbd7J1HJrDzzIzm0VPM6HmcVpjCwR+ZswuVCBh0PV4A/21LoGFz022ElmxyuwiSc+IqH
+         h4HbknOCSyMzhMUHYd0kFmKNKypiEHX/Aw23Qtzdk5yIJ95YhYfiJSkMyqy2XzyI7RC2
+         +OGA==
+X-Gm-Message-State: APjAAAVV3jzPiImSAD0Em0NK8btqk/mNmHp2+sPUuvlDbPo31w5NNdb4
+        0AZFczMrLA5E2OAUmZpIvtvSPwN2
+X-Google-Smtp-Source: APXvYqzEH57oEFNxugmY7hPZFcpHs6jb6KCEOBcB2f3QbbxjctMfhdkQqcRF4ctLUWfk5cCLSA/tLg==
+X-Received: by 2002:ac2:50c4:: with SMTP id h4mr62216920lfm.104.1564767327937;
+        Fri, 02 Aug 2019 10:35:27 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
+        by smtp.googlemail.com with ESMTPSA id k12sm12901127lfc.8.2019.08.02.10.35.26
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 02 Aug 2019 10:35:26 -0700 (PDT)
+Subject: Re: [PATCH V6 01/21] irqchip: tegra: Do not disable COP IRQ during
+ suspend
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>
+Cc:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
+        jason@lakedaemon.net, marc.zyngier@arm.com,
+        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com,
+        pgaikwad@nvidia.com, sboyd@kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, jckuo@nvidia.com, josephl@nvidia.com,
+        talho@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mperttunen@nvidia.com,
+        spatra@nvidia.com, robh+dt@kernel.org, devicetree@vger.kernel.org
+References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com>
+ <1563738060-30213-2-git-send-email-skomatineni@nvidia.com>
+ <f6582e43-168e-1b7e-9db8-3d263bc3ba0d@gmail.com>
+ <20190725095502.GM12715@pdeschrijver-desktop.Nvidia.com>
+ <dd01be5d-bab9-1329-c7ac-c3c893d49dd1@gmail.com>
+ <20190725103348.GN12715@pdeschrijver-desktop.Nvidia.com>
+ <20190725103813.GO12715@pdeschrijver-desktop.Nvidia.com>
+ <de1723df-8580-32fb-eb9d-e4c02f2b4306@gmail.com>
+ <20190802130537.GB3883@pdeschrijver-desktop.Nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <ba3924fe-d632-7bcb-5353-bc7668957661@gmail.com>
+Date:   Fri, 2 Aug 2019 20:35:25 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="2JFBq9zoW8cOFH7v"
-Content-Disposition: inline
-In-Reply-To: <ab0a2d14-90c0-6c28-2c80-351fccd85e68@codethink.co.uk>
-X-Cookie: She blinded me with science!
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190802130537.GB3883@pdeschrijver-desktop.Nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+02.08.2019 16:05, Peter De Schrijver пишет:
+> On Thu, Jul 25, 2019 at 01:59:09PM +0300, Dmitry Osipenko wrote:
+>> 25.07.2019 13:38, Peter De Schrijver пишет:
+>>> On Thu, Jul 25, 2019 at 01:33:48PM +0300, Peter De Schrijver wrote:
+>>>> On Thu, Jul 25, 2019 at 01:05:13PM +0300, Dmitry Osipenko wrote:
+>>>>> 25.07.2019 12:55, Peter De Schrijver пишет:
+>>>>>> On Mon, Jul 22, 2019 at 12:54:51PM +0300, Dmitry Osipenko wrote:
+>>>>>>>
+>>>>>>> All Tegra SoCs support SC7, hence the 'supports_sc7' and the comment
+>>>>>>> doesn't sound correct to me. Something like 'firmware_sc7' should suit
+>>>>>>> better here.
+>>>>>>>
+>>>>>>>> +			writel_relaxed(~0ul, ictlr + ICTLR_COP_IER_CLR);
+>>>>>>>
+>>>>>>> Secondly, I'm also not sure why COP interrupts need to be disabled for
+>>>>>>> pre-T210 at all, since COP is unused. This looks to me like it was
+>>>>>>> cut-n-pasted from downstream kernel without a good reason and could be
+>>>>>>> simply removed.
+>>>>>>
+>>>>>> I don't think we can rely on the fact that COP is unused. People can
+>>>>>> write their own code to run on COP.
+>>>>>
+>>>>> 1. Not upstream - doesn't matter.
+>>>>>
+>>>>
+>>>> The code is not part of the kernel, so obviously it's not upstream?
+>>>>
+>>>>> 2. That's not very good if something unknown is running on COP and then
+>>>>> kernel suddenly intervenes, don't you think so?
+>>>>
+>>>> Unless the code was written with this in mind.
+>>>>
+>>
+>> In that case, please see 1. ;)
+>>
+> 
+> In general the kernel should not touch the COP interrupts I think.
+> 
+>>>
+>>> Looking at this again, I don't think we need to enable the IRQ at all.
+>>
+>> Could you please clarify? The code only saves/restores COP's interrupts
+>> context across suspend-resume.
+> 
+> The sc7 entry firmware doesn't use interrupts.
 
---2JFBq9zoW8cOFH7v
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-
-On Fri, Aug 02, 2019 at 03:51:09PM +0100, Thomas Preston wrote:
-> On 02/08/2019 12:10, Mark Brown wrote:
-
-> > You can use a read only control for the readback, or just have it be
-> > triggered by overwriting the readback value.  You can cache the result.
-
-> Keeping the trigger and result together like that would be better I think,
-> although the routine isn't supposed to run mid way through playback. If
-> we're mid playback the debugfs routine has to turn off AMP_ON, take the
-> device back to a known state, run diagnostics, then restore. Which causes
-> a gap in the audible sound.
-
-Whatever method is used to do the triggering can always return -EBUSY
-when you someone tries to do so during playback.
-
-> >> Kirill Marinushkin mentioned this in the first review [0], it just did=
-n't
-> >> really sink in until now!
-
-> > You could do that too, yeah.  Depends on what this is diagnosing and if
-> > that'd be useful.
-
-> The diagnostic status bits describe situations such as:
-> - open load (no speaker connected)
-> - short to GND
-> - short to VCC
-> - etc
-
-> The intention is to test if all the speakers are connected. So, one might=
-=20
-> have a self test which runs the diagnostic and verifies it outputs:
-
-=2E..
-
-> I think the module parameter method is more appropriate for a
-> "Turn-on diagnostic", even though I don't really like grepping dmesg
-> for the result. I'll go ahead and implement that unless anyone has a
-> particular preference for the kcontrol-trigger.
-
-Right.  It's not ideal for use in production systems for example but
-perhaps fine for support techs or whoever.  Up to you anyway.
-
---2JFBq9zoW8cOFH7v
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1EcpsACgkQJNaLcl1U
-h9APwgf/Q4KWsYkJw+Dyy8wm8pDjOkyVsUY1B9NZLLVp7mVndWT2ywIcipH0hV+Q
-DeDX02ZUjkRup/AwNN/Ptwcy4GHnREbe7g6sJPgAtPFtXcuzUCJdUJsLDt4oXl5f
-Nk2TjjELzuKqFz1E1zkIl8h1CowLDljJRTgCOp7mOhmT+x6kCjvURDzhkcXYPiib
-wj2Rcu4thxX+oVvl7YkOpd0Wv+ZNGyM+8gEpjI22sy2MVjpMLT9SmzMp4OdfgT0h
-dRVXoXKFIDT5zDpQEteTsuJdIS+NlBGM6yfKQ1fRu/+2gSh78+c/4dfT79d/h2ui
-1ZJ5R45/kE4lb4xqQ2+hfM6IeKQQZQ==
-=kN6B
------END PGP SIGNATURE-----
-
---2JFBq9zoW8cOFH7v--
+Okay, it shouldn't hurt to clean up the LIC's code a tad by removing the
+COP's bits, will make a patch.
