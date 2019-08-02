@@ -2,57 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AD2DE7ECB9
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 08:36:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D33407ECC1
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 08:37:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388696AbfHBGgL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 02:36:11 -0400
-Received: from mail.kernel.org ([198.145.29.99]:57010 "EHLO mail.kernel.org"
+        id S2388754AbfHBGhX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 02:37:23 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57472 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731905AbfHBGgL (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Aug 2019 02:36:11 -0400
-Received: from localhost (unknown [122.167.106.83])
+        id S1729432AbfHBGhW (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Aug 2019 02:37:22 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id BFBCD2073D;
-        Fri,  2 Aug 2019 06:36:09 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id DBAF62086A;
+        Fri,  2 Aug 2019 06:37:21 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564727770;
-        bh=gZD3osXgOdunMT0f6xDvKJLephy3dVfenVvnxvNuuK0=;
+        s=default; t=1564727842;
+        bh=Ki0aBx8bP81rl2gsZHWpYHCJ6q/4/jLawDTrLD+87Ms=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=Oilc6Xl93nglPGICT5s/g0CO61+Di4OQBeczd4v2IwGRmHzubtplUe2KaC8yBlCPx
-         qKu6PLdswVXnHfKCXAMEu9fZm6K5W536CGJsVn8YYsgmNS65c7Sbcctf900a97k0hg
-         EgTBA12xq0nhYgZRe/jmAlGjjQQXa6oVcAnziJc0=
-Date:   Fri, 2 Aug 2019 12:04:57 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     linus.walleij@linaro.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, linux-gpio@vger.kernel.org,
+        b=CEz+wD/rj74Jwd5P3RUL5a9de80r6ve7dGLGnzvDxc7Cgsqr2dkFENy84Hn19eVGH
+         G6T6fLAL7b7JmBcbqZhWhlqo70RabC1h/X3xdwvokNVDeSvGUGl3TLDdIM/sQgAKLI
+         d/CPwFUXqDEwygJ/RViwZBCK06pqW27nFispkXOc=
+Date:   Fri, 2 Aug 2019 08:37:20 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Frank Rowand <frowand.list@gmail.com>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        "Rafael J. Wysocki" <rafael@kernel.org>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jitendra Sharma <shajit@codeaurora.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>
-Subject: Re: [PATCH v2 2/2] pinctrl: qcom: Add SC7180 pinctrl driver
-Message-ID: <20190802063457.GC12733@vkoul-mobl.Dlink>
-References: <20190802041507.12365-1-rnayak@codeaurora.org>
- <20190802041507.12365-2-rnayak@codeaurora.org>
+        David Collins <collinsd@codeaurora.org>,
+        kernel-team@android.com
+Subject: Re: [PATCH v9 0/7] Solve postboot supplier cleanup and optimize
+ probe ordering
+Message-ID: <20190802063720.GA12789@kroah.com>
+References: <20190731221721.187713-1-saravanak@google.com>
+ <20190801061209.GA3570@kroah.com>
+ <5a1e785d-075e-19a0-7d3d-949e1b65d726@gmail.com>
+ <20190801193248.GA24916@kroah.com>
+ <6366cb2a-65ea-cb44-f765-f246f3fb3bf9@gmail.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190802041507.12365-2-rnayak@codeaurora.org>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+In-Reply-To: <6366cb2a-65ea-cb44-f765-f246f3fb3bf9@gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 02-08-19, 09:45, Rajendra Nayak wrote:
-> From: Jitendra Sharma <shajit@codeaurora.org>
+On Thu, Aug 01, 2019 at 12:59:25PM -0700, Frank Rowand wrote:
+> On 8/1/19 12:32 PM, Greg Kroah-Hartman wrote:
+> > On Thu, Aug 01, 2019 at 12:28:13PM -0700, Frank Rowand wrote:
+> >> Hi Greg,
+> >>
+> >> On 7/31/19 11:12 PM, Greg Kroah-Hartman wrote:
+> >>> On Wed, Jul 31, 2019 at 03:17:13PM -0700, Saravana Kannan wrote:
+> >>>> Add device-links to track functional dependencies between devices
+> >>>> after they are created (but before they are probed) by looking at
+> >>>> their common DT bindings like clocks, interconnects, etc.
+> >>>>
+> >>>> Having functional dependencies automatically added before the devices
+> >>>> are probed, provides the following benefits:
+> >>>>
+> >>>> - Optimizes device probe order and avoids the useless work of
+> >>>>   attempting probes of devices that will not probe successfully
+> >>>>   (because their suppliers aren't present or haven't probed yet).
+> >>>>
+> >>>>   For example, in a commonly available mobile SoC, registering just
+> >>>>   one consumer device's driver at an initcall level earlier than the
+> >>>>   supplier device's driver causes 11 failed probe attempts before the
+> >>>>   consumer device probes successfully. This was with a kernel with all
+> >>>>   the drivers statically compiled in. This problem gets a lot worse if
+> >>>>   all the drivers are loaded as modules without direct symbol
+> >>>>   dependencies.
+> >>>>
+> >>>> - Supplier devices like clock providers, interconnect providers, etc
+> >>>>   need to keep the resources they provide active and at a particular
+> >>>>   state(s) during boot up even if their current set of consumers don't
+> >>>>   request the resource to be active. This is because the rest of the
+> >>>>   consumers might not have probed yet and turning off the resource
+> >>>>   before all the consumers have probed could lead to a hang or
+> >>>>   undesired user experience.
+> >>>>
+> >>>>   Some frameworks (Eg: regulator) handle this today by turning off
+> >>>>   "unused" resources at late_initcall_sync and hoping all the devices
+> >>>>   have probed by then. This is not a valid assumption for systems with
+> >>>>   loadable modules. Other frameworks (Eg: clock) just don't handle
+> >>>>   this due to the lack of a clear signal for when they can turn off
+> >>>>   resources. This leads to downstream hacks to handle cases like this
+> >>>>   that can easily be solved in the upstream kernel.
+> >>>>
+> >>>>   By linking devices before they are probed, we give suppliers a clear
+> >>>>   count of the number of dependent consumers. Once all of the
+> >>>>   consumers are active, the suppliers can turn off the unused
+> >>>>   resources without making assumptions about the number of consumers.
+> >>>>
+> >>>> By default we just add device-links to track "driver presence" (probe
+> >>>> succeeded) of the supplier device. If any other functionality provided
+> >>>> by device-links are needed, it is left to the consumer/supplier
+> >>>> devices to change the link when they probe.
+> >>>
+> >>> All now queued up in my driver-core-testing branch, and if 0-day is
+> >>> happy with this, will move it to my "real" driver-core-next branch in a
+> >>> day or so to get included in linux-next.
+> >>
+> >> I have been slow in getting my review out.
+> >>
+> >> This patch series is not yet ready for sending to Linus, so if putting
+> >> this in linux-next implies that it will be in your next pull request
+> >> to Linus, please do not put it in linux-next.
+> > 
+> > It means that it will be in my pull request for 5.4-rc1, many many
+> > waeeks away from now.
 > 
-> Add initial pinctrl driver to support pin configuration with
-> pinctrl framework for SC7180
+> If you are willing to revert the series before the pull request _if_ I
+> have significant review issues in the next couple of days, then I am happy
+> to see the patches get exposure in linux-next.
 
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
+If you have significant review issues, yes, I will be glad to revert them.
 
--- 
-~Vinod
+thanks,
+
+greg k-h
