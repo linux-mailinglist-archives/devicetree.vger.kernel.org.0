@@ -2,127 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB8E17ED68
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 09:25:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D21657ED7C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 09:34:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389606AbfHBHZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 03:25:35 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:39499 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388008AbfHBHZf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 03:25:35 -0400
-Received: by mail-pf1-f195.google.com with SMTP id f17so31574347pfn.6;
-        Fri, 02 Aug 2019 00:25:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=waO3Kw8FCsucFcZzTAvjkiHidk4K6PfJ+TshbSYUeOg=;
-        b=NKx9LvdQydMZbNGxoLLC31zHPVPOE3fFKDcu7RldPyOJRCHr0W/06zpCpaxBf/L1cj
-         CIkZPu3CGbYzuVp1pgI9a4UXhgkvtOf0/RvzeH2lF4heUPE41FI8XJTQ++kzz0DPhIoy
-         s7PRTzEzdSoVdfBKDwaBnKD6cUDs42Ttnn6Wx4CIWqlzMCK52QuoEneW/8nv0u0vLJ3p
-         V+WkXTMK5UYyYrqbH/vdZuCH8qkeJeVxERK0nhGrzcGXk213DkacNvqvxmLQPVIpFL1j
-         ZkLcflMNg5LJtDNAtSaf9qaYv/G+wX/AH00ZD6kXFg+nmrdHkCb0xg9csyRoEbjb7YX8
-         pD2A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=waO3Kw8FCsucFcZzTAvjkiHidk4K6PfJ+TshbSYUeOg=;
-        b=sc8n2dStURTnnBOezjQHqoMNuI0cqqmCtfD7o69yNJvp3f3lXtRWSMzl06Gv+rBo0d
-         1YPHN1J1DTu/5mQN3Voq8KsThkFRM1j3rf1KhDHHs4p+6bGIgeZm32r8AEBxOOKe43rn
-         6Wr825DjqibGHWDgZeHYxzJdybHfo4rjdVoTnA315dbAQfdCj/q9BuSx8Kie9Kn9mgXt
-         h41/YgOzPHudnbyx8tglkRjuzmzI7K9yqAd9W8H8vhgfTLTVt0zQ74F/1+9gl2xiVite
-         gYekTKmLW/a+0hygbJ0kK9HB4QQLY+iFtVIc9QZYH0h31Xjk4m0spigmdaZGHyk9YefN
-         L7gQ==
-X-Gm-Message-State: APjAAAXhgnk4svtEruhrb3dxkXLH8g3AdCF17AyXVJgV5SyDTDzd9YqC
-        tcYkmSOMIbZOts4W496u3TYJSwp/
-X-Google-Smtp-Source: APXvYqyBwlBxpa4TRYIb+gJCDEzgHRKrDQVfR7xfNOMezhcdVeQjXM6y7O8X8ihfbpgJxkbgW1OThA==
-X-Received: by 2002:a63:f94c:: with SMTP id q12mr1212430pgk.10.1564730734014;
-        Fri, 02 Aug 2019 00:25:34 -0700 (PDT)
-Received: from icarus ([2001:268:c146:e9f9:e343:65f1:6148:c56c])
-        by smtp.gmail.com with ESMTPSA id p27sm110308059pfq.136.2019.08.02.00.25.29
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Fri, 02 Aug 2019 00:25:32 -0700 (PDT)
-Date:   Fri, 2 Aug 2019 16:25:13 +0900
-From:   William Breathitt Gray <vilhelm.gray@gmail.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     David Lechner <david@lechnology.com>, linux-iio@vger.kernel.org,
-        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        id S2389673AbfHBHed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 03:34:33 -0400
+Received: from relmlor2.renesas.com ([210.160.252.172]:28820 "EHLO
+        relmlie6.idc.renesas.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1727656AbfHBHed (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 03:34:33 -0400
+X-IronPort-AV: E=Sophos;i="5.64,337,1559487600"; 
+   d="scan'208";a="22931900"
+Received: from unknown (HELO relmlir5.idc.renesas.com) ([10.200.68.151])
+  by relmlie6.idc.renesas.com with ESMTP; 02 Aug 2019 16:34:30 +0900
+Received: from fabrizio-dev.ree.adwin.renesas.com (unknown [10.226.36.196])
+        by relmlir5.idc.renesas.com (Postfix) with ESMTP id D292D4007528;
+        Fri,  2 Aug 2019 16:34:25 +0900 (JST)
+From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+To:     Geert Uytterhoeven <geert+renesas@glider.be>,
+        Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Jonathan Cameron <jic23@jic23.retrosnub.co.uk>,
-        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
-Subject: Re: [PATCH 1/4] dt-bindings: counter: new bindings for TI eQEP
-Message-ID: <20190802072513.GA30522@icarus>
-References: <20190722154538.5314-1-david@lechnology.com>
- <20190722154538.5314-2-david@lechnology.com>
- <20190727204836.1514265d@archlinux>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <20190727204836.1514265d@archlinux>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+        Thierry Reding <thierry.reding@gmail.com>
+Cc:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>,
+        Sam Ravnborg <sam@ravnborg.org>,
+        Simon Horman <horms@verge.net.au>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        dri-devel@lists.freedesktop.org, linux-renesas-soc@vger.kernel.org,
+        devicetree@vger.kernel.org,
+        Chris Paterson <Chris.Paterson2@renesas.com>,
+        Biju Das <biju.das@bp.renesas.com>,
+        linux-kernel@vger.kernel.org, ebiharaml@si-linux.co.jp
+Subject: [PATCH/RFC 00/12] Add dual-LVDS panel support to EK874
+Date:   Fri,  2 Aug 2019 08:33:57 +0100
+Message-Id: <1564731249-22671-1-git-send-email-fabrizio.castro@bp.renesas.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Jul 27, 2019 at 08:48:36PM +0100, Jonathan Cameron wrote:
-> On Mon, 22 Jul 2019 10:45:35 -0500
-> David Lechner <david@lechnology.com> wrote:
-> 
-> > This documents device tree binding for the Texas Instruments Enhanced
-> > Quadrature Encoder Pulse (eQEP) Module found in various TI SoCs.
-> > 
-> > Signed-off-by: David Lechner <david@lechnology.com>
-> 
-> Up to William given it is a counter binding, (unless Rob overrules)
-> but new bindings are generally preferred as yaml.
-> 
-> Content looks fine to me.
-> 
-> Thanks,
-> 
-> Jonathan
+Dear All,
 
-Rob,
+this series adds support for dual-LVDS panel IDK-2121WR
+from Advantech:
+https://buy.advantech.eu/Displays/Embedded-LCD-Kits-High-Brightness/model-IDK-2121WR-K2FHA2E.htm
+Dual link support is very recent for R-Car Gen3, and I couldn't
+find much on dual link panels in the kernel either, therefore
+comments are very welcome to get this right.
 
-Would you prefer these bindings as yaml, or shall I accept them as they
-are now?
+The panel doesn't come with the EK874 kit, but it's advertised as
+supported, therefore this series adds a new dts file to support
+the configuration of the EK874 + IDK-2121WR.
 
-William Breathitt Gray
+Finally, this series depends on a fix that's still pending:
+https://patchwork.kernel.org/patch/11054755/
 
-> 
-> > ---
-> >  .../devicetree/bindings/counter/ti-eqep.txt    | 18 ++++++++++++++++++
-> >  1 file changed, 18 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/counter/ti-eqep.txt
-> > 
-> > diff --git a/Documentation/devicetree/bindings/counter/ti-eqep.txt b/Documentation/devicetree/bindings/counter/ti-eqep.txt
-> > new file mode 100644
-> > index 000000000000..fbcebc2c2cc2
-> > --- /dev/null
-> > +++ b/Documentation/devicetree/bindings/counter/ti-eqep.txt
-> > @@ -0,0 +1,18 @@
-> > +Texas Instruments Enhanced Quadrature Encoder Pulse (eQEP) Module
-> > +
-> > +Required properties:
-> > +- compatible:		Must be "ti,am3352-eqep".
-> > +- reg:			Physical base address and size of the registers map.
-> > +- clocks:		Handle to the PWM's functional clock.
-> > +- clock-names:		Must be "fck".
-> > +- interrupts:		Handle to the eQEP event interrupt
-> > +
-> > +Example:
-> > +
-> > +	eqep0: eqep@180 {
-> > +		compatible = "ti,am3352-eqep";
-> > +		reg = <0x180 0x80>;
-> > +		clocks = <&l4ls_gclk>;
-> > +		clock-names = "fck";
-> > +		interrupts = <79>;
-> > +	};
-> 
+Thanks,
+Fab
+
+Fabrizio Castro (12):
+  dt-bindings: display: renesas: lvds: RZ/G2E needs renesas,companion
+    too
+  dt-bindings: display: renesas: lvds: Document renesas,swap-data
+  dt-bindings: panel: lvds: Add dual-link LVDS display support
+  dt-bindings: display: Add bindings for Advantech IDK-2121WR
+  drm: rcar-du: lvds: Add data swap support
+  drm: rcar-du: lvds: Do not look at ports for identifying bridges
+  drm: rcar-du: lvds: Add support for dual link panels
+  drm: rcar-du: lvds: Fix bridge_to_rcar_lvds
+  drm: rcar-du: lvds: Fix companion's mode
+  arm64: dts: renesas: r8a774c0: Point LVDS0 to its companion LVDS1
+  arm64: dts: renesas: cat874: Add definition for 12V regulator
+  arm64: dts: renesas: Add EK874 board with idk-2121wr display support
+
+ .../bindings/display/bridge/renesas,lvds.txt       |  11 +-
+ .../display/panel/advantech,idk-2121wr.txt         |  62 ++++++++++++
+ .../bindings/display/panel/panel-lvds.txt          |  91 ++++++++++++-----
+ arch/arm64/boot/dts/renesas/Makefile               |   3 +-
+ arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts    |   9 ++
+ .../boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts | 112 +++++++++++++++++++++
+ arch/arm64/boot/dts/renesas/r8a774c0.dtsi          |   2 +
+ drivers/gpu/drm/rcar-du/rcar_lvds.c                |  65 ++++++------
+ 8 files changed, 291 insertions(+), 64 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.txt
+ create mode 100644 arch/arm64/boot/dts/renesas/r8a774c0-ek874-idk-2121wr.dts
+
+-- 
+2.7.4
+
