@@ -2,138 +2,135 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A2388014E
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 21:48:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C05F180188
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 22:03:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406845AbfHBTr4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 15:47:56 -0400
-Received: from mail-eopbgr40082.outbound.protection.outlook.com ([40.107.4.82]:31662
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2406752AbfHBTrs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Aug 2019 15:47:48 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=cfjry86hYoeqyu0dcaehoYO0oM8aKAM8hmL1GIx8yWPZlNVfnwAKdkW80cdg/7pUYKPI6o3I9Gt2tonYJevh+3R0y9fmwxgmzELF36WgYCWlbgDI5Ha50yvdHVnhF0i0XyeD4sGqLe6j5GVFSFl7EeYAY2Odi5Xi4Z8iOrWcnCid97LLwMkIP/z8GsE3PVfxkgObVtgkbJPKGjmlPvheJNKpfGAUkckuXoV7Bd9T17yh7WPZl6bqwstlQDc+ek2q8q5uUQjSK6+Ss35O/aQOCX1a0U4OqGGKzmrzq/+XXTFI7EKxX6zve4m+kvhHoOkA3sAY37jdTFWFWAYPVmLYMw==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=egAmLLcYxNc+vNg4VL0BrjM1fDO0l7UPG3LF2prGCGY=;
- b=YAl5z4uUcOK6IZStWx1Xh/IbZbO7WFoy9a5tkYivJvbK+pJLoLUkgL8pFLosKfpjSbUJfVMSdw2mhJB4htrfxHVyFvdhVt7+us3UQWBm3suikjrlB0d6qOWrcU8pZLIs3T590+tACwUpb3ZMKseonGT6CSWuIjq8+HcY2iJN6pcYviUPbuGuOM7RY8dSWepu29GWCt9Bc5oflAE2Jjeby/hdyNb5I3Z0hjPr5JqM0KC+f/RP+R0iyNtgvJrg64KccAD0qIm8ksHzA07Wcor0p+qEgnOho2RIkRonnhUbvP35kKNYglMMfYDGn23vrXqcCUqjPr8G7Af855ys/U/9rw==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
- header.d=nxp.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=egAmLLcYxNc+vNg4VL0BrjM1fDO0l7UPG3LF2prGCGY=;
- b=Ebwwa5TdLeuExBXi3kWz9jeXPxdQiG7MGFE9bPKLoF9TQsBSzOnlqvJx+/BDT1AHsuCG/oPKxAoyiEUWw6CWkkDuqO0RdUzuJbDG79NgJBxU7Xo8jeKsq9zqKld3TuQ0PFKxTnHC0a3sZaQYrPZVHJOmfrpt3XsbP1UwKjG3kic=
-Received: from VI1PR0402MB2863.eurprd04.prod.outlook.com (10.175.20.18) by
- VI1PR0402MB2829.eurprd04.prod.outlook.com (10.175.26.17) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2115.10; Fri, 2 Aug 2019 19:47:25 +0000
-Received: from VI1PR0402MB2863.eurprd04.prod.outlook.com
- ([fe80::7de6:ea4b:9b5d:d023]) by VI1PR0402MB2863.eurprd04.prod.outlook.com
- ([fe80::7de6:ea4b:9b5d:d023%7]) with mapi id 15.20.2136.010; Fri, 2 Aug 2019
- 19:47:25 +0000
-From:   Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-To:     "corbet@lwn.net" <corbet@lwn.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>
-CC:     "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>
-Subject: [PATCH 6/6] arm64: defconfig: Enable configs for S32V234
-Thread-Topic: [PATCH 6/6] arm64: defconfig: Enable configs for S32V234
-Thread-Index: AQHVSWsb/yQRxZpYOkehuDu46fPO7Q==
-Date:   Fri, 2 Aug 2019 19:47:25 +0000
-Message-ID: <20190802194702.30249-7-stefan-gabriel.mirea@nxp.com>
-References: <20190802194702.30249-1-stefan-gabriel.mirea@nxp.com>
-In-Reply-To: <20190802194702.30249-1-stefan-gabriel.mirea@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-mailer: git-send-email 2.22.0
-x-clientproxiedby: AM6PR04CA0051.eurprd04.prod.outlook.com
- (2603:10a6:20b:f0::28) To VI1PR0402MB2863.eurprd04.prod.outlook.com
- (2603:10a6:800:af::18)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=stefan-gabriel.mirea@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-originating-ip: [212.146.100.6]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 3a505ba7-8748-4128-a196-08d717823df9
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR0402MB2829;
-x-ms-traffictypediagnostic: VI1PR0402MB2829:
-x-microsoft-antispam-prvs: <VI1PR0402MB2829224DABD18116520CC6BEDFD90@VI1PR0402MB2829.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3044;
-x-forefront-prvs: 011787B9DD
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(396003)(136003)(376002)(39860400002)(366004)(189003)(199004)(68736007)(446003)(8676002)(6486002)(54906003)(110136005)(3846002)(305945005)(4744005)(7416002)(1076003)(6116002)(66066001)(2906002)(2201001)(316002)(256004)(36756003)(6636002)(486006)(102836004)(14454004)(71200400001)(53936002)(26005)(66476007)(11346002)(81166006)(71190400001)(186003)(76176011)(66946007)(2616005)(64756008)(8936002)(66446008)(66556008)(99286004)(4326008)(386003)(6506007)(5660300002)(2501003)(52116002)(81156014)(50226002)(25786009)(476003)(478600001)(86362001)(7736002)(6512007)(6436002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB2829;H:VI1PR0402MB2863.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: FL8pWv/qH15hbCfrjKWf6Td2G1D3hUPtBMW8HFoF6ATlaskQYg4OmmC3HLY7XoQ9nwTUov5k0IkKPCETbIuO3Q9/75fTrPJCEkWgPgtlMv494+dFLJ3wtQtmLRvhlsdP20aCS1bBjaJzTb//9M8moeotJ+8gCklKemcAgMHEBwqcqsCkDJBYOthustR9duCDqOWzftv33QmcTP3Nwvs5NVFlcqCX5ibZfX5y2njYlFtWWwboVjfOBgRm+aw6+Tgem8LvoxXwOZcDHr5k2AcIvCALG3IOiB6e7UC1/eM4ThT6/ZkPTGv1nT4wI6UJt/31yuy5AySECD+OOq3z+mZ8iEXl7bS3U5i/BLOxJDn8JPeCoqrM66kEk+D77aA9ChkSLl/6lzwWUkTMyLfur6rniaDv8yCxj6Xq9g5iUur7l6c=
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: quoted-printable
+        id S2406874AbfHBUC5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 16:02:57 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:33949 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406875AbfHBUCw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 16:02:52 -0400
+Received: by mail-lj1-f196.google.com with SMTP id p17so73963194ljg.1
+        for <devicetree@vger.kernel.org>; Fri, 02 Aug 2019 13:02:51 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=cogentembedded-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:organization:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=hpuTzhx1FVHJuZgr5jSuA0pIA55oDK7JUhCEyDcVxSE=;
+        b=wBmt0ywLgJWYJj9xynw/KNxS4SjEr9t/KIEOPU24ufBNh19LovY3N7lJPm24nnqQ20
+         pIKJTS1vLifN8c/woH0Oci4IWjOAFLYr6r8eUw5pCEq8B2d/myDS1Bb7AA2ubg4f/pz8
+         I7z8m93YOo+xslV5nrBNuYZok8tVIdfNZ/RoU8whUspDiy6ovAEvzCTcGOue5S/0FdsR
+         adfDiYkW8sCdw/qcymjvfpWxnxVQxJDB09Ht3CFphaHGDujMqpjiLwBL3d900USKyhQb
+         gZVLgsa/d1BNdPl5fOJcmSV2+RnKYKaZpF/sozNkgPtVsLYfwF1VMTC6zjigDx83L5Ec
+         wkyg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:organization
+         :message-id:date:user-agent:mime-version:in-reply-to
+         :content-language:content-transfer-encoding;
+        bh=hpuTzhx1FVHJuZgr5jSuA0pIA55oDK7JUhCEyDcVxSE=;
+        b=orq+LvgEAosVIgrbuxgepAHfI7WC2FWvjOyG9sXQ+wNNq8LwqTkoO+UO5aPiUBIvuA
+         aYEDJnagtOv5MwTJ8Vin9jgGc5h5DqebRlbi8mrVwhMK2iPnfm+2XUTLiTB3PKeTD9mG
+         w1uMgsMKABYCtOiKNkHrJjgUkadOmLHlOfsO/neiWWnw88CrJFV58NSxZTMD/HJqmJIY
+         LfR+E+0nlfMQY8AukuPCVE2p/VLUnwhi+lzJw9E8APr3gWFJSURRf73xrMIhF+nKcHkh
+         fC+C5DIEQUn/2zwgq+O9iSkvhdFk/utPEbCjxWSpLTxtFkBiC500w/eJXj6OS1klnu4V
+         NtpA==
+X-Gm-Message-State: APjAAAX7NVnCsysv1KTCWVIrSlZPOk2y2krnguNUTpVxVYJeOARz0AZJ
+        fYaXHMK/faIhK/yUg+TPKH3o+Q==
+X-Google-Smtp-Source: APXvYqymmJrFLTIXAe+TUNpfoqDVseuubO+65puK/r0ZaVIIPwwihmwSZMwKoArtmav+J1QnBRcwHw==
+X-Received: by 2002:a2e:7a19:: with SMTP id v25mr1650866ljc.39.1564776170382;
+        Fri, 02 Aug 2019 13:02:50 -0700 (PDT)
+Received: from wasted.cogentembedded.com ([2a00:1fa0:29d:bda0:a422:fe4d:8f49:44c4])
+        by smtp.gmail.com with ESMTPSA id j23sm13046148lfb.93.2019.08.02.13.02.48
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 02 Aug 2019 13:02:49 -0700 (PDT)
+Subject: Re: [PATCH v16 1/2] spi: Add Renesas R-Car Gen3 RPC-IF SPI controller
+ driver
+To:     Mason Yang <masonccyang@mxic.com.tw>, broonie@kernel.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-kernel@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-renesas-soc@vger.kernel.org,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        devicetree@vger.kernel.org
+Cc:     juliensu@mxic.com.tw, Simon Horman <horms@verge.net.au>,
+        lee.jones@linaro.org, marek.vasut@gmail.com,
+        miquel.raynal@bootlin.com
+References: <1564539258-16313-1-git-send-email-masonccyang@mxic.com.tw>
+ <1564539258-16313-2-git-send-email-masonccyang@mxic.com.tw>
+From:   Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+Organization: Cogent Embedded
+Message-ID: <3d01957a-7318-274f-f3d5-6cd00850511b@cogentembedded.com>
+Date:   Fri, 2 Aug 2019 23:02:48 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:52.0) Gecko/20100101
+ Thunderbird/52.2.1
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 3a505ba7-8748-4128-a196-08d717823df9
-X-MS-Exchange-CrossTenant-originalarrivaltime: 02 Aug 2019 19:47:25.1490
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: stefan-gabriel.mirea@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB2829
+In-Reply-To: <1564539258-16313-2-git-send-email-masonccyang@mxic.com.tw>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-MW
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Mihaela Martinas <Mihaela.Martinas@freescale.com>
+Hello!
 
-Enable support for the S32V234 SoC, including the previously added UART
-driver.
+On 07/31/2019 05:14 AM, Mason Yang wrote:
 
-Signed-off-by: Mihaela Martinas <Mihaela.Martinas@freescale.com>
-Signed-off-by: Adrian.Nitu <adrian.nitu@freescale.com>
-Signed-off-by: Stoica Cosmin-Stefan <cosmin.stoica@nxp.com>
-Signed-off-by: Stefan-Gabriel Mirea <stefan-gabriel.mirea@nxp.com>
----
- arch/arm64/configs/defconfig | 3 +++
- 1 file changed, 3 insertions(+)
+> Add a driver for Renesas R-Car Gen3 RPC-IF SPI controller.
+> 
+> Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
+> Signed-off-by: Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
+[...]
+> diff --git a/drivers/spi/spi-renesas-rpc.c b/drivers/spi/spi-renesas-rpc.c
+> new file mode 100644
+> index 0000000..648d14e
+> --- /dev/null
+> +++ b/drivers/spi/spi-renesas-rpc.c
+> @@ -0,0 +1,754 @@
+[...]
+> +static void rpc_spi_hw_init(struct rpc_spi *rpc)
+> +{
+> +	//
+> +	// NOTE: The 0x260 are undocumented bits, but they must be set.
+> +	//	 RPC_PHYCNT_STRTIM is strobe timing adjustment bit,
+> +	//	 0x0 : the delay is biggest,
+> +	//	 0x1 : the delay is 2nd biggest,
+> +	//	 On H3 ES1.x, the value should be 0, while on others,
+> +	//	 the value should be 6.
+> +	//
+> +	regmap_write(rpc->regmap, RPC_PHYCNT, RPC_PHYCNT_CAL |
+> +				  RPC_PHYCNT_STRTIM(6) | 0x260);
+> +
+> +	//
+> +	// NOTE: The 0x1511144 are undocumented bits, but they must be set
+> +	//       for RPC_PHYOFFSET1.
+> +	//	 The 0x31 are undocumented bits, but they must be set
+> +	//	 for RPC_PHYOFFSET2.
+> +	//
+> +	regmap_write(rpc->regmap, RPC_PHYOFFSET1, RPC_PHYOFFSET1_DDRTMG(3) |
+> +		     0x1511144);
+> +	regmap_write(rpc->regmap, RPC_PHYOFFSET2, 0x31 |
+> +		     RPC_PHYOFFSET2_OCTTMG(4));
+> +	regmap_write(rpc->regmap, RPC_SSLDR, RPC_SSLDR_SPNDL(7) |
+> +		     RPC_SSLDR_SLNDL(7) | RPC_SSLDR_SCKDL(7));
+> +	regmap_write(rpc->regmap, RPC_CMNCR, RPC_CMNCR_MD | RPC_CMNCR_SFDE |
+> +		     RPC_CMNCR_MOIIO_HIZ | RPC_CMNCR_IOFV_HIZ |
+> +		     RPC_CMNCR_BSZ(0));
+> +}
+[...]
+> +static int rpc_spi_io_xfer(struct rpc_spi *rpc,
+> +			   const void *tx_buf, void *rx_buf)
+> +{
+[...]
+> +err_out:
+> +	return reset_control_reset(rpc->rstc);
 
-diff --git a/arch/arm64/configs/defconfig b/arch/arm64/configs/defconfig
-index 0e58ef02880c..bb5aa95a8455 100644
---- a/arch/arm64/configs/defconfig
-+++ b/arch/arm64/configs/defconfig
-@@ -48,6 +48,7 @@ CONFIG_ARCH_MXC=3Dy
- CONFIG_ARCH_QCOM=3Dy
- CONFIG_ARCH_RENESAS=3Dy
- CONFIG_ARCH_ROCKCHIP=3Dy
-+CONFIG_ARCH_S32=3Dy
- CONFIG_ARCH_SEATTLE=3Dy
- CONFIG_ARCH_STRATIX10=3Dy
- CONFIG_ARCH_SYNQUACER=3Dy
-@@ -347,6 +348,8 @@ CONFIG_SERIAL_XILINX_PS_UART=3Dy
- CONFIG_SERIAL_XILINX_PS_UART_CONSOLE=3Dy
- CONFIG_SERIAL_FSL_LPUART=3Dy
- CONFIG_SERIAL_FSL_LPUART_CONSOLE=3Dy
-+CONFIG_SERIAL_FSL_LINFLEXUART=3Dy
-+CONFIG_SERIAL_FSL_LINFLEXUART_CONSOLE=3Dy
- CONFIG_SERIAL_MVEBU_UART=3Dy
- CONFIG_SERIAL_DEV_BUS=3Dy
- CONFIG_VIRTIO_CONSOLE=3Dy
---=20
-2.22.0
+   Don't toy need to call rpc_spi_hw_init(( here? The reset would spoil
+the PHY/etc register setup otherwise...
 
+[...]
+
+MBR, Sergei
