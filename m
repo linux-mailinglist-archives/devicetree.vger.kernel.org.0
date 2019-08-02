@@ -2,204 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 20A927EF92
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 10:45:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EEFDC7EF9E
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 10:50:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404435AbfHBIpG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 04:45:06 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:35572 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730872AbfHBIpG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 04:45:06 -0400
-Received: by mail-wr1-f67.google.com with SMTP id y4so76317815wrm.2
-        for <devicetree@vger.kernel.org>; Fri, 02 Aug 2019 01:45:04 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=P+jk1970pY9Tz07THJAnnBEbeyWyv4x0zFvBHvZfrvo=;
-        b=lRLSDKSEMlzZX0D37Kh13kdoYXGRjst4ctnS5FK3wKlvhoGmPTvbLxOIrpYgsjkCxA
-         m9wnAkD/WoWdzUTYURdS4uguadURdSP2R/SDEL4B/MtxXKcy3QIRGpyLFTvHUa70l8Q6
-         QXNdkwFG4QEZVMra4yCuugr/si2og5sm0wY7o4hT3EndGJdoLWKqdC6WKI7zew8ISC/z
-         hUhIH5cqSaPAomIvKyILoFlxCjcD2c+d1ndy80ht2z4CP80cNDrPOASVTPHK7WxaNXsD
-         Bu9mYpKkSfWb2GodPL8XE2uGPwcr3I0cEyxmr8R6idyX1ey6O1+dPQ9UWDf/9fiy7GQO
-         TduQ==
-X-Gm-Message-State: APjAAAUSMJ3odLqbjLdWMTl0GLkZSEOaxP8hBS2m89+StbCv878Pq9j4
-        7VrIveMj0DGSGvw2BVmXTvfopBBEYNP8UaEI9m4=
-X-Google-Smtp-Source: APXvYqxhPxJuRUFgOf1qq0GomvMbMHz3Ikb3LBP5oXnMUbU+rZDRpHvBrNeUiS/OpACZZqdY+8UqrXwet03T9EWOYK0=
-X-Received: by 2002:adf:f08f:: with SMTP id n15mr59650796wro.213.1564735503476;
- Fri, 02 Aug 2019 01:45:03 -0700 (PDT)
+        id S2404471AbfHBIuE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 04:50:04 -0400
+Received: from mx07-00178001.pphosted.com ([62.209.51.94]:23702 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1731704AbfHBIuE (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 04:50:04 -0400
+Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
+        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x728kgEI025069;
+        Fri, 2 Aug 2019 10:49:49 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
+ date : message-id : references : in-reply-to : content-type : content-id :
+ content-transfer-encoding : mime-version; s=STMicroelectronics;
+ bh=7oP2TLk/bh7ktiksulnUxikTpCmAWCoZAQWzbFRiYiI=;
+ b=HWeHHE6szTeWTy7KRD9hXztk/dcwcjroscp14WCDjeynCAKs1YtJuV93C8R24aMH6X2/
+ EfLpdAaLcPk2hJ0XTBKZcahfqNhMntQYofovPgkbscSe3UCn1GB3iwaLJ9KPcGRoW2i9
+ Eap4KVSTpobAcweeLSqLNRvZJp2G2j+MfMMrmV4xRL8z1MqL8S9gGAJoIyyqxnwc4xUP
+ DsYHilkOT1wVfxEa7FmRJcskW3oKcIDTSA4OVeYkAQa4nmQ89m8apJ24fTVdBruvY+24
+ pEF03c1VjSlplo+hTVBIO3CvFq1v4DJtzNwKppgJgkIWFQ6ppdM3JpNKn5KN9WXwIikC Tg== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx07-00178001.pphosted.com with ESMTP id 2u0c2yu8yk-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Fri, 02 Aug 2019 10:49:49 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 2823E41;
+        Fri,  2 Aug 2019 08:49:48 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id E7AEB20754E;
+        Fri,  2 Aug 2019 10:49:48 +0200 (CEST)
+Received: from SFHDAG6NODE2.st.com (10.75.127.17) by SFHDAG3NODE1.st.com
+ (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 2 Aug
+ 2019 10:49:48 +0200
+Received: from SFHDAG6NODE2.st.com ([fe80::a56f:c186:bab7:13d6]) by
+ SFHDAG6NODE2.st.com ([fe80::a56f:c186:bab7:13d6%20]) with mapi id
+ 15.00.1347.000; Fri, 2 Aug 2019 10:49:48 +0200
+From:   Olivier MOYSAN <olivier.moysan@st.com>
+To:     Alexandre TORGUE <alexandre.torgue@st.com>,
+        "linux-stm32@st-md-mailman.stormreply.com" 
+        <linux-stm32@st-md-mailman.stormreply.com>,
+        "robh@kernel.org" <robh@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH] ARM: dts: stm32: add DFSDM pins to stm32mp157c
+Thread-Topic: [PATCH] ARM: dts: stm32: add DFSDM pins to stm32mp157c
+Thread-Index: AQHVSQmlOW7lqPM0IEWEE+OpQQXuJKbnat+A
+Date:   Fri, 2 Aug 2019 08:49:48 +0000
+Message-ID: <0e9689a6-0636-b1f2-22f7-009180709891@st.com>
+References: <1564645567-13156-1-git-send-email-olivier.moysan@st.com>
+ <a95e5d74-c8e3-42f9-cabf-f42623aee255@st.com>
+In-Reply-To: <a95e5d74-c8e3-42f9-cabf-f42623aee255@st.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+x-ms-exchange-messagesentrepresentingtype: 1
+x-ms-exchange-transport-fromentityheader: Hosted
+x-originating-ip: [10.75.127.46]
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <9043CAB016B58A46BA78A79224654C44@st.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-References: <20190731123741.13947-1-geert+renesas@glider.be>
- <342e5e38-f980-c849-c061-8dad42bc0850@gmail.com> <CAMuHMdWPvD_pSyJGp=kC0XmAChCK8R2X+exmpHT5eywJ5kQetA@mail.gmail.com>
- <88417bc8-3cd8-bb54-e487-8fa6b0b1f346@gmail.com>
-In-Reply-To: <88417bc8-3cd8-bb54-e487-8fa6b0b1f346@gmail.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Fri, 2 Aug 2019 10:44:50 +0200
-Message-ID: <CAMuHMdW5XmG-320uhAsqxC-oCq7POtZKOOE1V485nB5K1vzh8g@mail.gmail.com>
-Subject: Re: [PATCH] scripts/dtc: dtx_diff - add color output support
-To:     Frank Rowand <frowand.list@gmail.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-02_04:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Frank,
-
-On Thu, Aug 1, 2019 at 9:55 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> On 8/1/19 5:13 AM, Geert Uytterhoeven wrote:
-> > On Wed, Jul 31, 2019 at 10:30 PM Frank Rowand <frowand.list@gmail.com> wrote:
-> >> On 7/31/19 5:37 AM, Geert Uytterhoeven wrote:
-> >>> Add new -c/--color options, to enhance the diff output with color, and
-> >>> improve the user's experience.
-> >>>
-> >>> Signed-off-by: Geert Uytterhoeven <geert+renesas@glider.be>
-> >>> ---
-> >>>  scripts/dtc/dtx_diff | 10 +++++++++-
-> >>>  1 file changed, 9 insertions(+), 1 deletion(-)
-> >>>
-> >>> diff --git a/scripts/dtc/dtx_diff b/scripts/dtc/dtx_diff
-> >>> index e9ad7834a22d9459..4e2c8617f69a333e 100755
-> >>> --- a/scripts/dtc/dtx_diff
-> >>> +++ b/scripts/dtc/dtx_diff
-> >>> @@ -20,6 +20,8 @@ Usage:
-> >>>
-> >>>
-> >>>        --annotate    synonym for -T
-> >>> +      --color       synonym for -c
-> >>> +       -c           enable colored output
-> >>>         -f           print full dts in diff (--unified=99999)
-> >>>         -h           synonym for --help
-> >>>         -help        synonym for --help
-> >
-> >> I like the idea, but...
-> >>
-> >> I have various linux distro releases across my many systems, but only one is
-> >> new enough to have the diff command that supports --color.
-> >
-> > Seems to have been added in diffutils release 3.4 (2016-08-08).
-> > I almost can't believe it was that recent, but then I remembered using a
-> > wrapper before (colordiff; other wrappers may exist).
-> >
-> >> Can you enhance this patch to test whether --color is supported?  Maybe
-> >> something like (untested):
-> >>
-> >>         -c | --color )
-> >>                 if `diff --color <(echo a) <(echo a) 2>/dev/null` ; then
-> >>                         diff_color="--color=always"
-> >>                 fi
-> >>                 shift
-> >>                 ;;
-> >>
-> >> Then add some text to the usage for -c and --color saying that they will
-> >> be silently ignored if diff does not support --color.
-> >>
-> >> I first wrote up a suggested version that printed an error message and
-> >> exited, but I think silently ignoring is more robust, even though it
-> >> may be more confusing to someone who is wondering why --color does not
-> >> work.
-> >
-> > Given this is an optional feature, to be enabled explicitly by the user,
-> > I'm not so fond of going through hoops to auto-detect the availability.
-> >
-> > So what about just documenting this in the help text instead?
-> >
-> > -      -c           enable colored output
-> > +      -c           enable colored output (requires diff with --color support)
->
-> -----  thought 1  -----
->
-> My first thought was:
->
-> If the hoops were complex and ugly, I might agree with you.  But since it is
-> a simple one line "if" (two lines including "fi") I prefer the check.
->
-> The help text update looks good to me, along with the check.
-
-OK.
-
-> -----  thought 2  -----
->
-> Then I reconsidered, and thought "well, Geert has a good idea".  So I
-> decided to see how useful the diff error message would be.  The message is:
->
->    $ scripts/dtc/dtx_diff -c a.dts b.dts
->    diff: unrecognized option '--color=always'
->    diff: Try 'diff --help' for more information.
->    $
->    Possible hints to resolve the above error:
->      (hints might not fix the problem)
->
->      No hints available.
->
-> It is interesting that the shell prompt arrives before the full set of
-> messages from the script, but that is not my issue.  My issue is that
-
-That is due to the output coming from the two "<(compile_to_dts ...)"
-sub-processes, not from the diff sub-process.
-
-> when the diff fails, the script tries to find suggestions to solve
-> the problem.  (The suggestions exist to catch some likely problems
-> with the shell variable "ARCH".)
-
-Interesting. I didn't know about the hints (never saw them), and had to
-try hard to trigger them (I usually do DTB comparisons only).
-But I succeeded ;-)
-With a small tweak as my diff does support --color:
-
-    $ scripts/dtc/dtx_diff -c
-arch/arm64/boot/dts/renesas/r8a7799*{ebisu,draak}.dts
-    diff: unrecognized option '--olor=always'
-    diff: Try 'diff --help' for more information.
-    $
-    Possible hints to resolve the above error:
-      (hints might not fix the problem)
-
-      shell variable $ARCH not set
-
-      architecture arm64 is in file path,
-      but does not match shell variable $ARCH
-      >>$ARCH<< is: >><<
-
-
-    Possible hints to resolve the above error:
-      (hints might not fix the problem)
-
-      shell variable $ARCH not set
-
-      architecture arm64 is in file path,
-      but does not match shell variable $ARCH
-      >>$ARCH<< is: >><<
-
-> Unfortunately in the case of the "--color" problem, the useful warning
-> from diff becomes less visible because of the early prompt and the
-> not so helpful messages about hints.
-
-Yeah, they are not so helpful.
-In fact $ARCH is indeed not set, but that's not an issue at all.
-
-> If the hints related messages were not present, then I was ready to
-> accept that the diff warning was sufficient.  But since the hints
-> messages are present, and hiding them would be more complex than
-> the original check that I suggested for whether diff supports
-> the --color option, I am back to my first thought: I prefer the
-> check whether diff supports "--color" is done when dtx_diff detects
-> the "--color" option.
-
-OK, you managed to convince me. Will fix.
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+SGkgQUxleCwNCg0KT24gOC8yLzE5IDEwOjA5IEFNLCBBbGV4YW5kcmUgVG9yZ3VlIHdyb3RlOg0K
+PiBIaSBPbGl2aWVyDQo+IA0KPiBPbiA4LzEvMTkgOTo0NiBBTSwgT2xpdmllciBNb3lzYW4gd3Jv
+dGU6DQo+PiBBZGQgREZTRE0gcGlucyB0byBzdG0zMm1wMTU3Yy4NCj4+DQo+PiBTaWduZWQtb2Zm
+LWJ5OiBPbGl2aWVyIE1veXNhbiA8b2xpdmllci5tb3lzYW5Ac3QuY29tPg0KPj4gLS0tDQo+PiAg
+ICBhcmNoL2FybS9ib290L2R0cy9zdG0zMm1wMTU3LXBpbmN0cmwuZHRzaSB8IDM5ICsrKysrKysr
+KysrKysrKysrKysrKysrKysrKysrKysNCj4+ICAgIDEgZmlsZSBjaGFuZ2VkLCAzOSBpbnNlcnRp
+b25zKCspDQo+Pg0KPj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL3N0bTMybXAxNTct
+cGluY3RybC5kdHNpIGIvYXJjaC9hcm0vYm9vdC9kdHMvc3RtMzJtcDE1Ny1waW5jdHJsLmR0c2kN
+Cj4+IGluZGV4IDllYWVjOWJmOGNiOC4uZjk2YTkyOGNiYzQ5IDEwMDY0NA0KPj4gLS0tIGEvYXJj
+aC9hcm0vYm9vdC9kdHMvc3RtMzJtcDE1Ny1waW5jdHJsLmR0c2kNCj4+ICsrKyBiL2FyY2gvYXJt
+L2Jvb3QvZHRzL3N0bTMybXAxNTctcGluY3RybC5kdHNpDQo+PiBAQCAtMjMwLDYgKzIzMCw0NSBA
+QA0KPj4gICAgCQkJCX07DQo+PiAgICAJCQl9Ow0KPj4gICAgDQo+IA0KPiBJIHVzZSB0byBvbmx5
+IHRha2UgcGluY29uZmlnIHdoaWNoIGFyZSB1c2VkIGluIGJvYXJkLiBTbyBwbGVhc2UgcmVzZW5k
+DQo+IHdpdGggdGhlICJib2FyZCBwYXRjaCIuDQo+IA0KDQpUaGUgREZTRE0gaXMgb25lIG9mIHRo
+ZSBpbnRlcmZhY2UgdXNlZCBpbiB0aGUgU1RNMzJNUDE1IHNvdW5kY2FyZC4NClRoaXMgc291bmRj
+YXJkIGFsc28gdXNlcyB0aGUgV29sZnNvbiB3bTg5OTQgYXVkaW8gY29kZWMuDQpUaGUgd204OTk0
+IGNvZGVjIGRyaXZlciByZXF1aXJlcyBhZGFwdGF0aW9ucywgYW5kIHRoZSB1cHN0cmVhbSBvZg0K
+dGhlc2UgY2hhbmdlcyBpcyBub3QgcGxhbm5lZCB0b2RheS4NClNvLCB0aGUgcmVsYXRlZCBib2Fy
+ZCBwYXRjaGVzIGNhbm5vdCBiZSBzZW50Lg0KDQpCUnMNCk9saXZpZXINCg0KPiByZWdhcmRzDQo+
+IEFsZXgNCj4gDQo+IA0KPj4gKwkJCWRmc2RtX2Nsa291dF9waW5zX2E6IGRmc2RtLWNsa291dC1w
+aW5zLTAgew0KPj4gKwkJCQlwaW5zIHsNCj4+ICsJCQkJCXBpbm11eCA9IDxTVE0zMl9QSU5NVVgo
+J0InLCAxMywgQUYzKT47IC8qIERGU0RNX0NLT1VUICovDQo+PiArCQkJCQliaWFzLWRpc2FibGU7
+DQo+PiArCQkJCQlkcml2ZS1wdXNoLXB1bGw7DQo+PiArCQkJCQlzbGV3LXJhdGUgPSA8MD47DQo+
+PiArCQkJCX07DQo+PiArCQkJfTsNCj4+ICsNCj4+ICsJCQlkZnNkbV9jbGtvdXRfc2xlZXBfcGlu
+c19hOiBkZnNkbS1jbGtvdXQtc2xlZXAtcGlucy0wIHsNCj4+ICsJCQkJcGlucyB7DQo+PiArCQkJ
+CQlwaW5tdXggPSA8U1RNMzJfUElOTVVYKCdCJywgMTMsIEFOQUxPRyk+OyAvKiBERlNETV9DS09V
+VCAqLw0KPj4gKwkJCQl9Ow0KPj4gKwkJCX07DQo+PiArDQo+PiArCQkJZGZzZG1fZGF0YTFfcGlu
+c19hOiBkZnNkbS1kYXRhMS1waW5zLTAgew0KPj4gKwkJCQlwaW5zIHsNCj4+ICsJCQkJCXBpbm11
+eCA9IDxTVE0zMl9QSU5NVVgoJ0MnLCAzLCBBRjMpPjsgLyogREZTRE1fREFUQTEgKi8NCj4+ICsJ
+CQkJfTsNCj4+ICsJCQl9Ow0KPj4gKw0KPj4gKwkJCWRmc2RtX2RhdGExX3NsZWVwX3BpbnNfYTog
+ZGZzZG0tZGF0YTEtc2xlZXAtcGlucy0wIHsNCj4+ICsJCQkJcGlucyB7DQo+PiArCQkJCQlwaW5t
+dXggPSA8U1RNMzJfUElOTVVYKCdDJywgMywgQU5BTE9HKT47IC8qIERGU0RNX0RBVEExICovDQo+
+PiArCQkJCX07DQo+PiArCQkJfTsNCj4+ICsNCj4+ICsJCQlkZnNkbV9kYXRhM19waW5zX2E6IGRm
+c2RtLWRhdGEzLXBpbnMtMCB7DQo+PiArCQkJCXBpbnMgew0KPj4gKwkJCQkJcGlubXV4ID0gPFNU
+TTMyX1BJTk1VWCgnRicsIDEzLCBBRjYpPjsgLyogREZTRE1fREFUQTMgKi8NCj4+ICsJCQkJfTsN
+Cj4+ICsJCQl9Ow0KPj4gKw0KPj4gKwkJCWRmc2RtX2RhdGEzX3NsZWVwX3BpbnNfYTogZGZzZG0t
+ZGF0YTMtc2xlZXAtcGlucy0wIHsNCj4+ICsJCQkJcGlucyB7DQo+PiArCQkJCQlwaW5tdXggPSA8
+U1RNMzJfUElOTVVYKCdGJywgMTMsIEFOQUxPRyk+OyAvKiBERlNETV9EQVRBMyAqLw0KPj4gKwkJ
+CQl9Ow0KPj4gKwkJCX07DQo+PiArDQo+PiAgICAJCQlldGhlcm5ldDBfcmdtaWlfcGluc19hOiBy
+Z21paS0wIHsNCj4+ICAgIAkJCQlwaW5zMSB7DQo+PiAgICAJCQkJCXBpbm11eCA9IDxTVE0zMl9Q
+SU5NVVgoJ0cnLCA1LCBBRjExKT4sIC8qIEVUSF9SR01JSV9DTEsxMjUgKi8NCj4+
