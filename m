@@ -2,148 +2,129 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8A9987FC83
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 16:48:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 057537FCB2
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 16:51:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732460AbfHBOsC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 10:48:02 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:1740 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1731919AbfHBOsC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 10:48:02 -0400
-Received: from pps.filterd (m0046037.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x72EaJNq005392;
-        Fri, 2 Aug 2019 16:47:50 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
- date : message-id : mime-version : content-type :
- content-transfer-encoding; s=STMicroelectronics;
- bh=N8rgZWIZfOw81q7QuM18Tttp0ZdrCfm1/QUNIZC/5bM=;
- b=KqUvXDckPZyMTnjcTF4guAysii2fBpfThquE/WOr+K6iec9ZCasTAjCaVoHBc694o/nA
- IocwSQWQ9NiMwq5QF2oY40wO4jJZ7mbzbLYAWz/44U3O1kyYXaYCRfMWN/+Gnmyhqq3h
- koYoCPpSZSAcBPN1XfGoiyVTdRSW3RczZnlNDgfimraWV9IbHNMpWHyQ32ETRf7TjLOz
- Nv011AIcA7qb3HtK6DQ5Dni+YbVRPbP93ZxJsI+XBR/bhohdv0MpgMB5hQVAIKNWFGDT
- Icw0ZbXBFx2Vh4HxzOnXGWvBS9k1cMl8n4lpWWsZLtx0nZq2v20lut9fEJfjyGBPoTE+ 6A== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2u3vd07vqr-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 02 Aug 2019 16:47:50 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id EA83231;
-        Fri,  2 Aug 2019 14:47:49 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas22.st.com [10.75.90.92])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id D68092C54E2;
-        Fri,  2 Aug 2019 16:47:49 +0200 (CEST)
-Received: from SAFEX1HUBCAS23.st.com (10.75.90.47) by Safex1hubcas22.st.com
- (10.75.90.92) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 2 Aug 2019
- 16:47:49 +0200
-Received: from localhost (10.201.23.97) by webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 2 Aug 2019 16:47:49
- +0200
-From:   =?UTF-8?q?Yannick=20Fertr=C3=A9?= <yannick.fertre@st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
+        id S2395068AbfHBOvS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 10:51:18 -0400
+Received: from imap1.codethink.co.uk ([176.9.8.82]:53233 "EHLO
+        imap1.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2395080AbfHBOvR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 10:51:17 -0400
+Received: from [167.98.27.226] (helo=[10.35.6.253])
+        by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
+        id 1htYti-0008AU-Oe; Fri, 02 Aug 2019 15:51:10 +0100
+Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on diagnostic
+ routine
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        Takashi Iwai <tiwai@suse.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>,
-        Yannick Fertre <yannick.fertre@st.com>,
-        Philippe Cornu <philippe.cornu@st.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-Subject: [PATCH] drm/stm: ltdc: add pinctrl for DPI encoder mode
-Date:   Fri, 2 Aug 2019 16:47:42 +0200
-Message-ID: <1564757262-6166-1-git-send-email-yannick.fertre@st.com>
-X-Mailer: git-send-email 2.7.4
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Cheng-Yi Chiang <cychiang@chromium.org>
+References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
+ <20190730120937.16271-4-thomas.preston@codethink.co.uk>
+ <20190730141935.GF4264@sirena.org.uk>
+ <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
+ <20190730155027.GJ4264@sirena.org.uk>
+ <9b47a360-3b62-b968-b8d5-8639dc4b468d@codethink.co.uk>
+ <20190801234241.GG5488@sirena.org.uk>
+ <472cc4ee-2e80-8b08-d842-79c65df572f3@codethink.co.uk>
+ <20190802111036.GB5387@sirena.org.uk>
+From:   Thomas Preston <thomas.preston@codethink.co.uk>
+Message-ID: <ab0a2d14-90c0-6c28-2c80-351fccd85e68@codethink.co.uk>
+Date:   Fri, 2 Aug 2019 15:51:09 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.201.23.97]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-02_06:,,
- signatures=0
+In-Reply-To: <20190802111036.GB5387@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The implementation of functions encoder_enable and encoder_disable
-make possible to control the pinctrl according to the encoder type.
-The pinctrl must be activated only if the encoder type is DPI.
-This helps to move the DPI-related pinctrl configuration from
-all the panel or bridge to the LTDC dt node.
+On 02/08/2019 12:10, Mark Brown wrote:
+> On Fri, Aug 02, 2019 at 09:32:17AM +0100, Thomas Preston wrote:
+>> On 02/08/2019 00:42, Mark Brown wrote:
+> 
+>>> Yes, that's definitely doable - we've got some other drivers with
+>>> similar things like calibration triggers exposed that way.
+> 
+>> One problem with using a kcontrol as a trigger for the turn-on diagnostic
+>> is that the diagnostic routine has a "return value".
+> 
+> You can use a read only control for the readback, or just have it be
+> triggered by overwriting the readback value.  You can cache the result.
+> 
 
-Signed-off-by: Yannick Fertré <yannick.fertre@st.com>
----
- drivers/gpu/drm/stm/ltdc.c | 35 +++++++++++++++++++++++++++++++++++
- 1 file changed, 35 insertions(+)
+Keeping the trigger and result together like that would be better I think,
+although the routine isn't supposed to run mid way through playback. If
+we're mid playback the debugfs routine has to turn off AMP_ON, take the
+device back to a known state, run diagnostics, then restore. Which causes
+a gap in the audible sound.
 
-diff --git a/drivers/gpu/drm/stm/ltdc.c b/drivers/gpu/drm/stm/ltdc.c
-index 3ab4fbf..1c4fde0 100644
---- a/drivers/gpu/drm/stm/ltdc.c
-+++ b/drivers/gpu/drm/stm/ltdc.c
-@@ -15,6 +15,7 @@
- #include <linux/module.h>
- #include <linux/of_address.h>
- #include <linux/of_graph.h>
-+#include <linux/pinctrl/consumer.h>
- #include <linux/platform_device.h>
- #include <linux/pm_runtime.h>
- #include <linux/reset.h>
-@@ -1040,6 +1041,36 @@ static const struct drm_encoder_funcs ltdc_encoder_funcs = {
- 	.destroy = drm_encoder_cleanup,
- };
- 
-+static void ltdc_encoder_disable(struct drm_encoder *encoder)
-+{
-+	struct drm_device *ddev = encoder->dev;
-+
-+	DRM_DEBUG_DRIVER("\n");
-+
-+	/* Set to sleep state the pinctrl whatever type of encoder */
-+	pinctrl_pm_select_sleep_state(ddev->dev);
-+}
-+
-+static void ltdc_encoder_enable(struct drm_encoder *encoder)
-+{
-+	struct drm_device *ddev = encoder->dev;
-+
-+	DRM_DEBUG_DRIVER("\n");
-+
-+	/*
-+	 * Set to default state the pinctrl only with DPI type.
-+	 * Others types like DSI, don't need pinctrl due to
-+	 * internal bridge (the signals do not come out of the chipset).
-+	 */
-+	if (encoder->encoder_type == DRM_MODE_ENCODER_DPI)
-+		pinctrl_pm_select_default_state(ddev->dev);
-+}
-+
-+static const struct drm_encoder_helper_funcs ltdc_encoder_helper_funcs = {
-+	.disable = ltdc_encoder_disable,
-+	.enable = ltdc_encoder_enable,
-+};
-+
- static int ltdc_encoder_init(struct drm_device *ddev, struct drm_bridge *bridge)
- {
- 	struct drm_encoder *encoder;
-@@ -1055,6 +1086,8 @@ static int ltdc_encoder_init(struct drm_device *ddev, struct drm_bridge *bridge)
- 	drm_encoder_init(ddev, encoder, &ltdc_encoder_funcs,
- 			 DRM_MODE_ENCODER_DPI, NULL);
- 
-+	drm_encoder_helper_add(encoder, &ltdc_encoder_helper_funcs);
-+
- 	ret = drm_bridge_attach(encoder, bridge, NULL);
- 	if (ret) {
- 		drm_encoder_cleanup(encoder);
-@@ -1280,6 +1313,8 @@ int ltdc_load(struct drm_device *ddev)
- 
- 	clk_disable_unprepare(ldev->pixel_clk);
- 
-+	pinctrl_pm_select_sleep_state(ddev->dev);
-+
- 	pm_runtime_enable(ddev->dev);
- 
- 	return 0;
--- 
-2.7.4
+>> Hm, maybe a better idea is to have the turn on diagnostic only run on
+>> device probe (as its name suggests!), and print something to dmesg:
+> 
+>> 	modprobe tda7802 turn_on_diagnostic=1
+> 
+>> 	tda7802-codec i2c-TDA7802:00: Turn on diagnostic 04 04 04 04
+> 
+>> Kirill Marinushkin mentioned this in the first review [0], it just didn't
+>> really sink in until now!
+> 
+> You could do that too, yeah.  Depends on what this is diagnosing and if
+> that'd be useful.
+> 
 
+The diagnostic status bits describe situations such as:
+- open load (no speaker connected)
+- short to GND
+- short to VCC
+- etc
+
+The intention is to test if all the speakers are connected. So, one might 
+have a self test which runs the diagnostic and verifies it outputs:
+
+	00 00 00 00
+
+For example, on my test rig there is only one speaker connected. So it
+reads:
+
+	04 04 00 04
+
+Where the second bit is "open load". So this would fail the test.
+
+So in the kcontrol case the test would be something like:
+
+	amixer sset "AMP1 turn on diagnostic" on
+	amixer sget "AMP1 diagnostic"
+
+And the module parameter case:
+
+	rmmod tda7802
+	modprobe tda7802 turn_on_diagnostic=1
+	dmesg | grep "Turn on diagnostic 04 04 04 04"
+	rmmod tda7802
+	modprobe tda7802
+
+I think the module parameter method is more appropriate for a
+"Turn-on diagnostic", even though I don't really like grepping dmesg
+for the result. I'll go ahead and implement that unless anyone has a
+particular preference for the kcontrol-trigger.
+
+Thanks
