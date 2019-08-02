@@ -2,153 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2CD407EE41
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 10:03:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 869D47EE6D
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 10:10:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730987AbfHBIDg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 04:03:36 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:42220 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728268AbfHBIDg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 04:03:36 -0400
-Received: from pendragon.ideasonboard.com (81-175-216-236.bb.dnainternet.fi [81.175.216.236])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 0013A33E;
-        Fri,  2 Aug 2019 10:03:33 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1564733014;
-        bh=iESMaiwMfzcHwok5GLi0XmKd4pH/pITjQS3plSb9Z34=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=GlIO4h09Z40O9LbRY2FO6XIGflDy1hY2hNm+JpqlfFcT4o1UBbVay+On30qcePB3R
-         XpK6hxFtraFU69VIrNjbWvA7k7S5K3ybAB23zpFl3Uy0bn/8xyo4nBeE98MbJOP/L0
-         BExEJZlMr4sLNiLx+OBcBgfFnhF/L3lxiy98JP1A=
-Date:   Fri, 2 Aug 2019 11:03:32 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Sam Ravnborg <sam@ravnborg.org>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH/RFC 04/12] dt-bindings: display: Add bindings for
- Advantech IDK-2121WR
-Message-ID: <20190802080332.GE5008@pendragon.ideasonboard.com>
-References: <1564731249-22671-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1564731249-22671-5-git-send-email-fabrizio.castro@bp.renesas.com>
+        id S2390731AbfHBIJ7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 04:09:59 -0400
+Received: from mx08-00178001.pphosted.com ([91.207.212.93]:58222 "EHLO
+        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1730124AbfHBIJ7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 04:09:59 -0400
+Received: from pps.filterd (m0046661.ppops.net [127.0.0.1])
+        by mx08-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7288Bvv009958;
+        Fri, 2 Aug 2019 10:09:48 +0200
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=subject : to : references
+ : from : message-id : date : mime-version : in-reply-to : content-type :
+ content-transfer-encoding; s=STMicroelectronics;
+ bh=gaaRv63ENU5q6qe9vvfpQktX48Za4fd5PyQsVa2fLQg=;
+ b=zm2XtCa+Wcf132W4eBFa5nnuhBxeZPXJGsuW9Hsc0wHERRENLrzDqM4vXQwnRPTmazFc
+ DazbXClMUkHKwDWRgMag6Gr5Od5LGuMhWYn2lfjfgEJCMSpHZWpv2QsoFCxVunj3m2mk
+ Vs/uVQ6zTniQTUTkQiJ5xcPC2lVQaLteHEA2jV21LnWqvci5CgcWIMKYFiDP86xpgaEv
+ DBF8T5Ft2BGJ8gVf7WEAi/RIG2srVnnNgQ/NVbl29JhXLh/CgCiffBpn8OqOuieaV/Qg
+ BJn8J3NTePBQlv/OF8D6tifdr8tdjeBRAghQ6D1KN+jBBEv/IvpzgaH9VSISSzd2nTt3 3w== 
+Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
+        by mx08-00178001.pphosted.com with ESMTP id 2u2jp4t6fk-1
+        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
+        Fri, 02 Aug 2019 10:09:48 +0200
+Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
+        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id AE45638;
+        Fri,  2 Aug 2019 08:09:47 +0000 (GMT)
+Received: from Webmail-eu.st.com (sfhdag3node2.st.com [10.75.127.8])
+        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 98947207455;
+        Fri,  2 Aug 2019 10:09:47 +0200 (CEST)
+Received: from lmecxl0912.lme.st.com (10.75.127.47) by SFHDAG3NODE2.st.com
+ (10.75.127.8) with Microsoft SMTP Server (TLS) id 15.0.1347.2; Fri, 2 Aug
+ 2019 10:09:47 +0200
+Subject: Re: [PATCH] ARM: dts: stm32: add DFSDM pins to stm32mp157c
+To:     Olivier Moysan <olivier.moysan@st.com>,
+        <linux-stm32@st-md-mailman.stormreply.com>, <robh@kernel.org>,
+        <mark.rutland@arm.com>, <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-kernel@vger.kernel.org>
+References: <1564645567-13156-1-git-send-email-olivier.moysan@st.com>
+From:   Alexandre Torgue <alexandre.torgue@st.com>
+Message-ID: <a95e5d74-c8e3-42f9-cabf-f42623aee255@st.com>
+Date:   Fri, 2 Aug 2019 10:09:46 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1564731249-22671-5-git-send-email-fabrizio.castro@bp.renesas.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <1564645567-13156-1-git-send-email-olivier.moysan@st.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-Originating-IP: [10.75.127.47]
+X-ClientProxiedBy: SFHDAG5NODE3.st.com (10.75.127.15) To SFHDAG3NODE2.st.com
+ (10.75.127.8)
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-02_04:,,
+ signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+Hi Olivier
 
-Thank you for the patch.
-
-On Fri, Aug 02, 2019 at 08:34:01AM +0100, Fabrizio Castro wrote:
-> This panel is handled through the generic lvds-panel bindings,
-> so only needs its additional compatible specified.
+On 8/1/19 9:46 AM, Olivier Moysan wrote:
+> Add DFSDM pins to stm32mp157c.
 > 
-> Some panel specific documentation can be found here:
-
-s/panel specific/panel-specific/
-
-> https://buy.advantech.eu/Displays/Embedded-LCD-Kits-High-Brightness/model-IDK-2121WR-K2FHA2E.htm
-> 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
+> Signed-off-by: Olivier Moysan <olivier.moysan@st.com>
 > ---
->  .../display/panel/advantech,idk-2121wr.txt         | 62 ++++++++++++++++++++++
->  1 file changed, 62 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.txt
+>   arch/arm/boot/dts/stm32mp157-pinctrl.dtsi | 39 +++++++++++++++++++++++++++++++
+>   1 file changed, 39 insertions(+)
 > 
-> diff --git a/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.txt b/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.txt
-> new file mode 100644
-> index 0000000..70b15b6
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/panel/advantech,idk-2121wr.txt
-> @@ -0,0 +1,62 @@
-> +Advantech Co., Ltd. IDK-2121WR 21.5" LVDS panel
-> +===============================================
-> +
-> +Required properties:
-> +- compatible: should be "advantech,idk-2121wr" followed by "panel-lvds"
-> +
-> +This binding is compatible with the lvds-panel binding, which is specified
-> +in panel-lvds.txt in this directory.
+> diff --git a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+> index 9eaec9bf8cb8..f96a928cbc49 100644
+> --- a/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+> +++ b/arch/arm/boot/dts/stm32mp157-pinctrl.dtsi
+> @@ -230,6 +230,45 @@
+>   				};
+>   			};
+>   
 
-How about adding "The panel operates in dual-link mode and thus requires
-two port nodes." ?
+I use to only take pinconfig which are used in board. So please resend 
+with the "board patch".
 
-> +
-> +Example
-> +-------
-> +
-> +	panel {
-> +		compatible = "advantech,idk-2121wr", "panel-lvds";
-> +
-> +		width-mm = <476>;
-> +		height-mm = <268>;
-> +
-> +		data-mapping = "vesa-24";
-> +
-> +		panel-timing {
-> +			clock-frequency = <148500000>;
-> +			hactive = <1920>;
-> +			vactive = <1080>;
-> +			hsync-len = <44>;
-> +			hfront-porch = <88>;
-> +			hback-porch = <148>;
-> +			vfront-porch = <4>;
-> +			vback-porch = <36>;
-> +			vsync-len = <5>;
-> +		};
-> +
-> +		ports {
-> +			#address-cells = <1>;
-> +			#size-cells = <0>;
-> +
-> +			port@0 {
-> +				reg = <0>;
-> +				lvds0_panel_in: endpoint {
-> +					remote-endpoint = <&lvds0_out>;
+regards
+Alex
+
+
+> +			dfsdm_clkout_pins_a: dfsdm-clkout-pins-0 {
+> +				pins {
+> +					pinmux = <STM32_PINMUX('B', 13, AF3)>; /* DFSDM_CKOUT */
+> +					bias-disable;
+> +					drive-push-pull;
+> +					slew-rate = <0>;
 > +				};
 > +			};
 > +
-> +			port@1 {
-> +				reg = <1>;
-> +				lvds1_panel_in: endpoint {
-> +					remote-endpoint = <&lvds1_out>;
+> +			dfsdm_clkout_sleep_pins_a: dfsdm-clkout-sleep-pins-0 {
+> +				pins {
+> +					pinmux = <STM32_PINMUX('B', 13, ANALOG)>; /* DFSDM_CKOUT */
 > +				};
 > +			};
-> +		};
-> +	};
 > +
-> +	backlight: backlight {
-> +		compatible = "pwm-backlight";
-> +		pwms = <&pwm5 0 50000>;
+> +			dfsdm_data1_pins_a: dfsdm-data1-pins-0 {
+> +				pins {
+> +					pinmux = <STM32_PINMUX('C', 3, AF3)>; /* DFSDM_DATA1 */
+> +				};
+> +			};
 > +
-> +		brightness-levels = <0 4 8 16 32 64 128 255>;
-> +		default-brightness-level = <6>;
+> +			dfsdm_data1_sleep_pins_a: dfsdm-data1-sleep-pins-0 {
+> +				pins {
+> +					pinmux = <STM32_PINMUX('C', 3, ANALOG)>; /* DFSDM_DATA1 */
+> +				};
+> +			};
 > +
-> +		power-supply = <&reg_12p0v>;
-> +		enable-gpios = <&gpio6 12 GPIO_ACTIVE_HIGH>;
-> +	};
-
-I think you can drop the backlight here, it's a bit out of scope.
-
--- 
-Regards,
-
-Laurent Pinchart
+> +			dfsdm_data3_pins_a: dfsdm-data3-pins-0 {
+> +				pins {
+> +					pinmux = <STM32_PINMUX('F', 13, AF6)>; /* DFSDM_DATA3 */
+> +				};
+> +			};
+> +
+> +			dfsdm_data3_sleep_pins_a: dfsdm-data3-sleep-pins-0 {
+> +				pins {
+> +					pinmux = <STM32_PINMUX('F', 13, ANALOG)>; /* DFSDM_DATA3 */
+> +				};
+> +			};
+> +
+>   			ethernet0_rgmii_pins_a: rgmii-0 {
+>   				pins1 {
+>   					pinmux = <STM32_PINMUX('G', 5, AF11)>, /* ETH_RGMII_CLK125 */
+> 
