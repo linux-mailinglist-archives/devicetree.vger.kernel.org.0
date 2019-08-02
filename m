@@ -2,86 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1F837FAD8
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 15:36:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4106B7FB1A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 15:37:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405890AbfHBNe6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 09:34:58 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44550 "EHLO mail.kernel.org"
+        id S2388206AbfHBNhH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 09:37:07 -0400
+Received: from sauhun.de ([88.99.104.3]:37712 "EHLO pokefinder.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405938AbfHBNe4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Aug 2019 09:34:56 -0400
-Received: from mail-qk1-f173.google.com (mail-qk1-f173.google.com [209.85.222.173])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 985B721842;
-        Fri,  2 Aug 2019 13:34:55 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564752895;
-        bh=AOM4fOrWcXJ0jseQxBiq/7aKw9Ers/tE8HeByVSd9QE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=NPdPO8QNKIFHyLclnfIENqqo8qqzd5J2DZ9sZ7Xl1c9FNVHe6c95crzwNrqo7EOty
-         dHW/39rLodUwarCNs5QSW5E2JjLbuXcx1MMEE2ukSTUdQMBunSX0DqBS2bF7Y/zEAX
-         IpxS3njbolU9vgEwncAH1+MMasCMnSLGN9Qxvn24=
-Received: by mail-qk1-f173.google.com with SMTP id d15so54752163qkl.4;
-        Fri, 02 Aug 2019 06:34:55 -0700 (PDT)
-X-Gm-Message-State: APjAAAVXvGAJt0YQrTA6Qc4+mBJ339fibdQ+klG8GeQ1N5ji8RU48u9f
-        jZiJj/0nwgtUtYpwmgtwCYRVt4bhptDiyH/89Q==
-X-Google-Smtp-Source: APXvYqygjBn1/EWko56cFZKxIUhfaf9MMi7BKzf/8JqnTcJxDMsyOkDdJi2i2SRjWDVkquDwVn6DCbZfSUuL3VM0CT0=
-X-Received: by 2002:a05:620a:1447:: with SMTP id i7mr91698408qkl.254.1564752894791;
- Fri, 02 Aug 2019 06:34:54 -0700 (PDT)
+        id S2405101AbfHBNg7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Aug 2019 09:36:59 -0400
+Received: from localhost (p54B3308A.dip0.t-ipconnect.de [84.179.48.138])
+        by pokefinder.org (Postfix) with ESMTPSA id 9D4F92C08C3;
+        Fri,  2 Aug 2019 15:36:56 +0200 (CEST)
+Date:   Fri, 2 Aug 2019 15:36:56 +0200
+From:   Wolfram Sang <wsa@the-dreams.de>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Simon Horman <horms+renesas@verge.net.au>,
+        Wolfram Sang <wsa+renesas@sang-engineering.com>,
+        Chris Brandt <chris.brandt@renesas.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Magnus Damm <magnus.damm@gmail.com>,
+        Linux I2C <linux-i2c@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH 2/4] dt-bindings: i2c: rcar: Rename bindings
+ documentation file
+Message-ID: <20190802133656.GA23542@kunai>
+References: <20190724121559.19079-1-horms+renesas@verge.net.au>
+ <20190724121559.19079-3-horms+renesas@verge.net.au>
+ <CAMuHMdUYTo1_zz4sCv5=PRL90EyFSU_b5WgUJoc4Oii08F_tww@mail.gmail.com>
 MIME-Version: 1.0
-References: <20190722154538.5314-1-david@lechnology.com> <20190722154538.5314-2-david@lechnology.com>
- <20190727204836.1514265d@archlinux> <20190802072513.GA30522@icarus>
-In-Reply-To: <20190802072513.GA30522@icarus>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 2 Aug 2019 07:34:42 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLA+m5vKZQ1WwWusnVHwX+nnuApiwKXUnmP6ti-PvMZ-g@mail.gmail.com>
-Message-ID: <CAL_JsqLA+m5vKZQ1WwWusnVHwX+nnuApiwKXUnmP6ti-PvMZ-g@mail.gmail.com>
-Subject: Re: [PATCH 1/4] dt-bindings: counter: new bindings for TI eQEP
-To:     William Breathitt Gray <vilhelm.gray@gmail.com>
-Cc:     David Lechner <david@lechnology.com>,
-        "open list:IIO SUBSYSTEM AND DRIVERS" <linux-iio@vger.kernel.org>,
-        linux-omap <linux-omap@vger.kernel.org>,
-        devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Jonathan Cameron <jic23@jic23.retrosnub.co.uk>,
-        =?UTF-8?Q?Beno=C3=AEt_Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="pWyiEgJYm5f9v55/"
+Content-Disposition: inline
+In-Reply-To: <CAMuHMdUYTo1_zz4sCv5=PRL90EyFSU_b5WgUJoc4Oii08F_tww@mail.gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 2, 2019 at 1:25 AM William Breathitt Gray
-<vilhelm.gray@gmail.com> wrote:
->
-> On Sat, Jul 27, 2019 at 08:48:36PM +0100, Jonathan Cameron wrote:
-> > On Mon, 22 Jul 2019 10:45:35 -0500
-> > David Lechner <david@lechnology.com> wrote:
-> >
-> > > This documents device tree binding for the Texas Instruments Enhanced
-> > > Quadrature Encoder Pulse (eQEP) Module found in various TI SoCs.
-> > >
-> > > Signed-off-by: David Lechner <david@lechnology.com>
-> >
-> > Up to William given it is a counter binding, (unless Rob overrules)
-> > but new bindings are generally preferred as yaml.
-> >
-> > Content looks fine to me.
-> >
-> > Thanks,
-> >
-> > Jonathan
->
-> Rob,
->
-> Would you prefer these bindings as yaml, or shall I accept them as they
-> are now?
 
-Still up to you at this point, but I certainly prefer them to be DT schema.
+--pWyiEgJYm5f9v55/
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-Rob
+Hi Geert,
+
+> With the above fixed:
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+
+Now I understand why I applied this patch despite your request for a
+change. Patchwork picked up the tag, and so I it looked to me in the
+patchwork summary that this patch series was completely reviewed.
+
+Would it be OK for you to not give the formal tag in advance but rather
+describe it like "you may add my rev-by tag like in patch 1"? Or just
+wait for v2 and tag?
+
+Workflows aside, thanks for your continued reviews of patches!
+
+Best regards,
+
+   Wolfram
+
+--pWyiEgJYm5f9v55/
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEOZGx6rniZ1Gk92RdFA3kzBSgKbYFAl1EPHMACgkQFA3kzBSg
+KbZ7RhAAlCroZhSd5jTgDALjGRyID5fY13IsztvuZnprWKyFazvBExSaXA1UCyPX
+VKMrdS0wStW2XkD1ub1vSt9AwEiIoOi/xjNj2/KplcZlNybArQxvl0KlcYQSt/lT
+49zfXC+Mq3JtHQ620a2gkydYhdtW3V3kVf+jrmDN6E40/5GmQ8mXww172IbzR8xz
+m6V3JKn/LUX3RYceLNJOU92SIiO9zi+xWrGDZ+py/7GR0S7r2Vay8CZ6ODyaPU8v
+n9JdZDWqUCeFwsaiv5rAjTAVVaon5kCkowxYihzbq1CiWYVKVsWEZejX03XjuDiu
+vwiNyQou86Wrn4hWAZKdWvGBf2TcKmK4DoE2XVGLlOJw7U7s0D9xepzZYDFQn7kM
+GVkQDZl7WU2IXaah4NfsXljMMaTXU00+eH+A2kfjz0vXHv7JIy285jR0VH6aZxzB
+UPl8hJCOxVYi1TuuwRXl5zd3KIwoWJDOmGUYKBFVUSuvxIoRE8ERK7DdC2aeOAK7
+9Lc7ggneN4RynDfU1vo8JQk/gF2zBuCOQtlZ98Vh+sQXbhjlLp5SRVvcSW8YCgjZ
+/LHn8/8fDFaVzZ2Kx4dMvpoTb2kHI+cVCu9INgBmRd+7M2/D4nD5p76NWGsiG5vb
+7Xyc1/zgsg3iXjFNuFNr4moVyv77I51WWvdHCHX/muYLUMl/vqc=
+=bVeD
+-----END PGP SIGNATURE-----
+
+--pWyiEgJYm5f9v55/--
