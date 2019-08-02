@@ -2,66 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7D317EA54
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 04:30:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DF9567EA7C
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 04:55:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726997AbfHBCaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 22:30:39 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:33094 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726756AbfHBCaj (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 22:30:39 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 176CF60CED; Fri,  2 Aug 2019 02:30:37 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1564713038;
-        bh=OZ0F8RORaUhH2iVexwHKq9tgLEmJGbcN3e+e3jjLA1I=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=kiufhAOmCEiVcEp97nEuTYC2w1MGipbICKkEQIdgiLFyR1No3s7yUTkeDqvcr8/oO
-         aBYmxBtCq1UST+hKFViRiw9+jVavDYCRlPNaL/Bqv+6VVoO2Ml6qGAq7jhNZiSOTSh
-         T1gjWhQ7mhiw9k+AOGKZH9vzUVfRtNjDH9fgx2Sc=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.79.43.141] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id A305461FE0;
-        Fri,  2 Aug 2019 02:30:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1564713036;
-        bh=OZ0F8RORaUhH2iVexwHKq9tgLEmJGbcN3e+e3jjLA1I=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=Mdlrqe1U7jv3NXPMi3YJzB7dSTLfVwftvLyVTVU2F+eszwTmqpI8MOP4Mv4N/0rQh
-         5DIb/5GmekgB+l3I3kLsd9/enQbi/l1ndeRhPkd1uiiWz/0Cskl9MzoFnNx1ffyLfN
-         +nEZOA7rz1rtsy3yRUiObJMALYn50Qax/FRdS67Y=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A305461FE0
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH 2/2] pinctrl: qcom: Add SC7180 pinctrl driver
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     linus.walleij@linaro.org, linux-arm-msm@vger.kernel.org,
-        agross@kernel.org, robh+dt@kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jitendra Sharma <shajit@codeaurora.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>
-References: <20190801100717.23333-1-rnayak@codeaurora.org>
- <20190801100717.23333-2-rnayak@codeaurora.org>
- <20190801143637.GY7234@tuxbook-pro>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <2f530ba7-684b-156b-5fe3-3577d574a03d@codeaurora.org>
-Date:   Fri, 2 Aug 2019 08:00:31 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190801143637.GY7234@tuxbook-pro>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1728336AbfHBCzZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 22:55:25 -0400
+Received: from out2-smtp.messagingengine.com ([66.111.4.26]:38477 "EHLO
+        out2-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1727848AbfHBCzY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 22:55:24 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailout.nyi.internal (Postfix) with ESMTP id 4FEA021FB6;
+        Thu,  1 Aug 2019 22:55:21 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Thu, 01 Aug 2019 22:55:21 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to
+        :subject:content-type; s=fm3; bh=l5LjbiKcknm05fGmRdJT/jtA1vdx+I7
+        zKZnQjtWUt1I=; b=goYxbeEWRGcdU+zqyYVdpOxlXl6x7gs4YowEEszRohKJ8Lg
+        Oi6qXNiul8z4uvaY6xxWk3H8KYSTldLCM6nkks5zTo0+d0EubyFiXXjdU/TeclKe
+        RqvFpiRkwxzkh9fvBXxFK/KcTPoTefjaYO6io97LXSOhHWJoPZgMgo1VlITgJb8Z
+        9O93X1vbZfYBfXotroAxm7iqzz+w5Qtj8wVVf87Rq+r9/nB4ExvGQzrHXf9nWJuk
+        ejKUCSJhFz42eNAOHMtMk4++lsat1pS6BMywYzOC0Zx0BW8uD5ZJdv8MXFVU5Qqv
+        /nPnUd3DKOq5m5wAio/CvxAoetW3QBKdfiTTG3g==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=l5Ljbi
+        Kcknm05fGmRdJT/jtA1vdx+I7zKZnQjtWUt1I=; b=nUnYSHPRUiB4kabHqt0sia
+        ua5nekb97I/gDIa3MpkBB7Rs3tegWB6zlkTunCcXWLRxpkcCJmIS5mqp1Fyuq2dz
+        Tg3hYDIWbjnlit3CUaeGifSyl9HPkEtX/hFQYE0hFlVOFgr1ZxvTtDRDNUdgjwXf
+        gkk2SylaPI3BAE7Klkym0bo7sjr4oOXiQyYkcng4foEVsFfuSz+CNF323QbDYQKy
+        W9kkmHm+fEhNJ1iNTAvrFFOs+bgk/+dap+/ffJLyQJgMThHxUJCMtF3wkEBSOdry
+        druNpA72QC2x74SUrvgsP75qy4qUuymrG6q4K+z17uLwEGp+v3KB74VuC0FtFDsg
+        ==
+X-ME-Sender: <xms:F6ZDXZl2Lg9AZ_0N0_bSCiIvPNKYvUhOZrwoz7Z7SLcBDiZRsZhGSQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrleekgdeihecutefuodetggdotefrodftvf
+    curfhrohhfihhlvgemucfhrghsthforghilhdpqfgfvfdpuffrtefokffrpgfnqfghnecu
+    uegrihhlohhuthemuceftddtnecusecvtfgvtghiphhivghnthhsucdlqddutddtmdenuc
+    fjughrpefofgggkfgjfhffhffvufgtsehttdertderredtnecuhfhrohhmpedftehnughr
+    vgifucflvghffhgvrhihfdcuoegrnhgurhgvfiesrghjrdhiugdrrghuqeenucfrrghrrg
+    hmpehmrghilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghr
+    ufhiiigvpedt
+X-ME-Proxy: <xmx:F6ZDXWRHUertP7XXnSE7MwHzCnVwYJqjLiphIM6DWdC2ICHGyqHAbw>
+    <xmx:F6ZDXbB1pXdegQrbxJgmHBrdembKwekJxnMhtt6vbOQULjI1taUAxw>
+    <xmx:F6ZDXWowztH4Cc8iSWYxDn9sTwWDIoaTXWev7XZtqdZSJABvwAsPSw>
+    <xmx:GaZDXZijaswA4fpfKoBE1EXyUk3eNodMaxsEOAAWi7ajBuftaBxR8g>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 8975AE00A2; Thu,  1 Aug 2019 22:55:19 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-799-g925e343-fmstable-20190729v1
+Mime-Version: 1.0
+Message-Id: <b9755ff0-20a9-44f0-9778-59183ded72be@www.fastmail.com>
+In-Reply-To: <20190802010155.489238-1-taoren@fb.com>
+References: <20190802010155.489238-1-taoren@fb.com>
+Date:   Fri, 02 Aug 2019 12:25:39 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Tao Ren" <taoren@fb.com>, "Rob Herring" <robh+dt@kernel.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Joel Stanley" <joel@jms.id.au>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        openbmc@lists.ozlabs.org
+Subject: Re: [PATCH] ARM: dts: aspeed: Add Facebook Wedge100 BMC
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
@@ -69,34 +73,189 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 
 
-On 8/1/2019 8:06 PM, Bjorn Andersson wrote:
-> On Thu 01 Aug 03:07 PDT 2019, Rajendra Nayak wrote:
+On Fri, 2 Aug 2019, at 10:32, Tao Ren wrote:
+> Add initial version of device tree for Facebook Wedge100 AST2400 BMC
+> platform.
 > 
-> [..]
->> +static const struct msm_pingroup sc7180_groups[] = {
->> +	[0] = PINGROUP(0, SOUTH, qup01, cri_trng, _, phase_flag, _, _, _, _, _),
->> +	[1] = PINGROUP(1, SOUTH, qup01, cri_trng, _, phase_flag, _, _, _, _, _),
->> +	[2] = PINGROUP(2, SOUTH, qup01, cri_trng, _, phase_flag, _, _, _, _, _),
->> +	[3] = PINGROUP(3, SOUTH, qup01, sp_cmu, dbg_out, qdss_cti, _, _, _, _, _),
->> +	[4] = PINGROUP(4, NORTH, sdc1_tb, _, qdss_cti, _, _, _, _, _, _), [5] = PINGROUP(5, NORTH, sdc2_tb, _, _, _, _, _, _, _, _),
->> +	[6] = PINGROUP(6, NORTH, qup11, qup11, _, _, _, _, _, _, _), [7] = PINGROUP(7, NORTH, qup11, qup11, ddr_bist, _, _, _, _, _, _),
-> 
-> 5 and 7 deserve to be on their own line :)
+> Signed-off-by: Tao Ren <taoren@fb.com>
 
-Oops, looks like some formatting mess, I'll fix and resend.
+Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
 
+> ---
+>  arch/arm/boot/dts/Makefile                    |   1 +
+>  .../boot/dts/aspeed-bmc-facebook-wedge100.dts | 149 ++++++++++++++++++
+>  2 files changed, 150 insertions(+)
+>  create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts
 > 
-> Apart from that:
+> diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+> index 39a05a10a2a2..d71504ed82d3 100644
+> --- a/arch/arm/boot/dts/Makefile
+> +++ b/arch/arm/boot/dts/Makefile
+> @@ -1273,6 +1273,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
+>  	aspeed-bmc-facebook-cmm.dtb \
+>  	aspeed-bmc-facebook-minipack.dtb \
+>  	aspeed-bmc-facebook-tiogapass.dtb \
+> +	aspeed-bmc-facebook-wedge100.dtb \
+>  	aspeed-bmc-facebook-yamp.dtb \
+>  	aspeed-bmc-intel-s2600wf.dtb \
+>  	aspeed-bmc-inspur-fp5280g2.dtb \
+> diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts 
+> b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts
+> new file mode 100644
+> index 000000000000..ccd700467ea7
+> --- /dev/null
+> +++ b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts
+> @@ -0,0 +1,149 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +// Copyright (c) 2018 Facebook Inc.
+> +/dts-v1/;
+> +
+> +#include "aspeed-g4.dtsi"
+> +
+> +/ {
+> +	model = "Facebook Wedge 100 BMC";
+> +	compatible = "facebook,wedge100-bmc", "aspeed,ast2400";
+> +
+> +	aliases {
+> +		/*
+> +		 * Override the default uart aliases to avoid breaking
+> +		 * the legacy applications.
+> +		 */
+> +		serial0 = &uart5;
+> +		serial1 = &uart1;
+> +		serial2 = &uart3;
+> +		serial3 = &uart4;
+> +	};
+> +
+> +	chosen {
+> +		stdout-path = &uart3;
+> +		bootargs = "debug console=ttyS2,9600n8 root=/dev/ram rw";
+> +	};
+> +
+> +	memory@40000000 {
+> +		reg = <0x40000000 0x20000000>;
+> +	};
+> +};
+> +
+> +&wdt1 {
+> +	status = "okay";
+> +	aspeed,reset-type = "system";
+> +};
+> +
+> +&wdt2 {
+> +	status = "okay";
+> +	aspeed,reset-type = "system";
+> +};
+> +
+> +&fmc {
+> +	status = "okay";
+> +	flash@0 {
+> +		status = "okay";
+> +		m25p,fast-read;
+> +		label = "fmc0";
+> +#include "facebook-bmc-flash-layout.dtsi"
+> +	};
+> +};
+> +
+> +&uart1 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd1_default
+> +		     &pinctrl_rxd1_default>;
+> +};
+> +
+> +&uart3 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd3_default
+> +		     &pinctrl_rxd3_default>;
+> +};
+> +
+> +&uart4 {
+> +	status = "okay";
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_txd4_default
+> +		     &pinctrl_rxd4_default>;
+> +};
+> +
+> +&uart5 {
+> +	status = "okay";
+> +};
+> +
+> +&mac1 {
+> +	status = "okay";
+> +	no-hw-checksum;
+> +	pinctrl-names = "default";
+> +	pinctrl-0 = <&pinctrl_rgmii2_default &pinctrl_mdio2_default>;
+> +};
+> +
+> +&i2c0 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c1 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c2 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c3 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c4 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c5 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c6 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c7 {
+> +	status = "okay";
+> +
+> +	i2c-switch@70 {
+> +		compatible = "nxp,pca9548";
+> +		#address-cells = <1>;
+> +		#size-cells = <0>;
+> +		reg = <0x70>;
+> +	};
+> +};
+> +
+> +&i2c8 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c9 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c10 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c11 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c12 {
+> +	status = "okay";
+> +};
+> +
+> +&i2c13 {
+> +	status = "okay";
+> +};
+> +
+> +&vhub {
+> +	status = "okay";
+> +};
+> -- 
+> 2.17.1
 > 
-> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
-thanks for the review.
-
-> 
-> Regards,
-> Bjorn
-> 
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+>
