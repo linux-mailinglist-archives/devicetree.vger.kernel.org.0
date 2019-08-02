@@ -2,130 +2,169 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A9A1F7FC64
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 16:39:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4FEC7FC71
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 16:42:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404242AbfHBOj2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 10:39:28 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:46334 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404220AbfHBOj2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 10:39:28 -0400
-Received: by mail-lf1-f66.google.com with SMTP id z15so48835671lfh.13;
-        Fri, 02 Aug 2019 07:39:26 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=SpNFo9StfmwwHxpdy9OKgPMJoL/SjVvfZYNNHX88rJw=;
-        b=QPOtpmT3sc6xjB4gDOxj9miQ/x3G/LgS39VjsELPa71DYtG+tFNXMqX9s+7fcEJfJf
-         VYwbaO4yrMQcjFwCKESj1OYt5VvTMkXM2/mnNxLQCEvgpfCgpbXOO8uoKOsS4UVHwgi4
-         t+updFHtg680hN9BOyEmdettYP06MNUthz/QpYGLsMaA6AflYiYWH3yRfv32vyZOII+F
-         fZcatd1GIWmbwA6xBE2wOgQOCZ+M5LB6dK8I3Iw0JP9anUqcIFZg4XzQwWcVPwPbbnNi
-         5iXtaRvfxenOAkVk0YFUzheKbsfmvwMU3R4quQWT502/JnXb4660jdzHYICxDrpuA/ZF
-         mK0Q==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=SpNFo9StfmwwHxpdy9OKgPMJoL/SjVvfZYNNHX88rJw=;
-        b=KlJQ5gebA0P2c44UtF4Yjbp5FqBq7TBLealTMIZPEQJLxUR8YI84MBMkjI611C+Rl9
-         V/qTRc7RoeymLjwZ3lFuA0/G+k5TzwMAaGU56xGgCILjuRXDO6JUqbJ2mZzT+kg2qcg7
-         kx3qceuPv4MabNKWt1Xrtu4jPB3xOCYDhGy98ktZCKYxjNRnR/RuyX17QsMCjG19YIKA
-         UwR6BQPjRG1NftkyPc2eA58iQnnNHMp5JkdOjUSC5YiNYAaBmASWH4LAiUsA0W1hK0OG
-         SJI5RmKJO/vfniC8/ZTqqEv7jsR3Dw4HZik5TRLiQcOkvZKelU8xOjgF3PW0rOC3rdIr
-         LEGA==
-X-Gm-Message-State: APjAAAUnbhCUQYi8y04VcZpusX16EPyuGPLv6DrIxHUI4z622QcChBiS
-        XtHqAjHgPPFV3dNSQhmpMXzJwJeL
-X-Google-Smtp-Source: APXvYqwok89bRyI+iWSvz2czFFM3YXHk+pef6YyvCjiXtiyXhcYcEfD3Zep26M3u5pT6DWSi9v4NIA==
-X-Received: by 2002:a19:ca1e:: with SMTP id a30mr63329282lfg.163.1564756765327;
-        Fri, 02 Aug 2019 07:39:25 -0700 (PDT)
-Received: from [192.168.2.145] (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
-        by smtp.googlemail.com with ESMTPSA id a15sm12868970lfl.44.2019.08.02.07.39.24
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 02 Aug 2019 07:39:24 -0700 (PDT)
-Subject: Re: [PATCH v2 3/3] soc/tegra: regulators: Add regulators coupler for
- Tegra30
-To:     Peter De Schrijver <pdeschrijver@nvidia.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190725151832.9802-1-digetx@gmail.com>
- <20190725151832.9802-4-digetx@gmail.com>
- <20190802140512.GD3883@pdeschrijver-desktop.Nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <c537fbea-5884-03db-305f-6ab3d553f7ab@gmail.com>
-Date:   Fri, 2 Aug 2019 17:39:23 +0300
+        id S2390882AbfHBOm1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 10:42:27 -0400
+Received: from mail.kernel.org ([198.145.29.99]:46924 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731951AbfHBOm1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Aug 2019 10:42:27 -0400
+Received: from [192.168.1.17] (cpe-70-114-128-244.austin.res.rr.com [70.114.128.244])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3612220B7C;
+        Fri,  2 Aug 2019 14:42:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564756946;
+        bh=35vK+ar+Nb48ekiE/YuVGT1lyA6NEm0vIuOltepn4ZY=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=boN60vKXT6tMVuyo72YVzC0IbQ+a5sXzCgdNSxA1ySbbmVs5AUtjR+c8iU0LPOnpx
+         LPGiv37505ALxXQTltfl/2nOCNxXZK2ZbSklU5cFBpHD0hAuRdXedlQoejQfZDY7qu
+         k6rNwRSZwBPldvBBkk+Dmk0TSbFUxWyiSUXql6iA=
+Subject: Re: [PATCH] drivers/amba: add reset control to primecell probe
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Dinh Nguyen <dinh.nguyen@intel.com>
+References: <20190801184346.7015-1-dinguyen@kernel.org>
+ <CAL_Jsq+PRKGwdozr3VECpk2ugrOuWd4CYnRSR7ChyPOKgheYkw@mail.gmail.com>
+From:   Dinh Nguyen <dinguyen@kernel.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=dinguyen@kernel.org; prefer-encrypt=mutual; keydata=
+ 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
+Message-ID: <92009928-3df1-1573-7d67-40e79d77c77e@kernel.org>
+Date:   Fri, 2 Aug 2019 09:42:24 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190802140512.GD3883@pdeschrijver-desktop.Nvidia.com>
+In-Reply-To: <CAL_Jsq+PRKGwdozr3VECpk2ugrOuWd4CYnRSR7ChyPOKgheYkw@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-02.08.2019 17:05, Peter De Schrijver пишет:
-> On Thu, Jul 25, 2019 at 06:18:32PM +0300, Dmitry Osipenko wrote:
->> Add regulators coupler for Tegra30 SoCs that performs voltage balancing
->> of a coupled regulators and thus provides voltage scaling functionality.
+
+
+On 8/2/19 9:37 AM, Rob Herring wrote:
+> On Thu, Aug 1, 2019 at 12:44 PM Dinh Nguyen <dinguyen@kernel.org> wrote:
 >>
->> There are 2 coupled regulators on all Tegra30 SoCs: CORE and CPU. The
->> coupled regulator voltages shall be in a range of 300mV from each other
->> and CORE voltage shall be higher than the CPU by N mV, where N depends
->> on the CPU voltage.
+>> From: Dinh Nguyen <dinh.nguyen@intel.com>
 >>
->> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>> The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
+>> default. Until recently, the DMA controller was brought out of reset by the
+>> bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals that
+>> are not used are held in reset and are left to Linux to bring them out of
+>> reset.
+> 
+> You can fix this in the kernel, but any versions before this change
+> will remain broken. IMO, the u-boot change should be reverted because
+> it is breaking an ABI (though not a good one).
+> 
+
+Right, there exists in U-Boot to support legacy platforms before this
+recent change. This would be for future versions.
+
+>> Add a mechanism for getting the reset property and de-assert the primecell
+>> module from reset if found. This is a not a hard fail if the reset property
+>> is not present in the device tree node, so the driver will continue to probe.
+> 
+> I think this belongs in the AMBA bus code, not the DT code, as that is
+> where we already have clock control code for similar reasons.
+> 
+
+Ok.
+
+>>
+>> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
 >> ---
->>  drivers/soc/tegra/Kconfig              |   4 +
->>  drivers/soc/tegra/Makefile             |   1 +
->>  drivers/soc/tegra/regulators-tegra30.c | 316 +++++++++++++++++++++++++
->>  3 files changed, 321 insertions(+)
->>  create mode 100644 drivers/soc/tegra/regulators-tegra30.c
+>>  drivers/of/platform.c | 14 ++++++++++++++
+>>  1 file changed, 14 insertions(+)
 >>
-> ...
+>> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+>> index 7801e25e6895..d8945705313d 100644
+>> --- a/drivers/of/platform.c
+>> +++ b/drivers/of/platform.c
+>> @@ -21,6 +21,7 @@
+>>  #include <linux/of_irq.h>
+>>  #include <linux/of_platform.h>
+>>  #include <linux/platform_device.h>
+>> +#include <linux/reset.h>
+>>
+>>  const struct of_device_id of_default_bus_match_table[] = {
+>>         { .compatible = "simple-bus", },
+>> @@ -229,6 +230,7 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
+>>         struct amba_device *dev;
+>>         const void *prop;
+>>         int i, ret;
+>> +       struct reset_control *rstc;
+>>
+>>         pr_debug("Creating amba device %pOF\n", node);
+>>
+>> @@ -270,6 +272,18 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
+>>                 goto err_free;
+>>         }
+>>
+>> +       /*
+>> +        * reset control of the primecell block is optional
+>> +        * and will not fail if the reset property is not found.
+>> +        */
+>> +       rstc = of_reset_control_get_exclusive(node, "dma");
 > 
->> +
->> +static int tegra30_core_cpu_limit(int cpu_uV)
->> +{
->> +	if (cpu_uV < 800000)
->> +		return 950000;
->> +
->> +	if (cpu_uV < 900000)
->> +		return 1000000;
->> +
->> +	if (cpu_uV < 1000000)
->> +		return 1100000;
->> +
->> +	if (cpu_uV < 1100000)
->> +		return 1200000;
->> +
->> +	if (cpu_uV < 1250000) {
->> +		switch (tegra_sku_info.cpu_speedo_id) {
->> +		case 0 ... 1:
-> Aren't we supposed to add /* fall through */ here now?
+> 'dma' doesn't sound very generic.
+>
 
-There is no compiler warning if there is nothing in-between of the
-case-switches, so annotation isn't really necessary here. Of course it
-is possible to add an explicit annotation just to make clear the
-fall-through intention.
+how about 'primecell' ?
 
->> +		case 4:
->> +		case 7 ... 8:
->> +			return 1200000;
->> +
->> +		default:
->> +			return 1300000;
->> +		}
->> +	}
->> +
-> 
-> Other than that, this looks ok to me.
+Thanks for the review!
 
-Awesome, thank you very much! Explicit ACK will be appreciated as well.
+Dinh
