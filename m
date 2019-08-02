@@ -2,34 +2,34 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B50F27EAED
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 06:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 086A37EAFB
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 06:10:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726052AbfHBEHA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 00:07:00 -0400
-Received: from mx0b-00082601.pphosted.com ([67.231.153.30]:48438 "EHLO
-        mx0a-00082601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1725787AbfHBEHA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 00:07:00 -0400
-Received: from pps.filterd (m0001255.ppops.net [127.0.0.1])
-        by mx0b-00082601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7241g3L001374
-        for <devicetree@vger.kernel.org>; Thu, 1 Aug 2019 21:06:56 -0700
+        id S1728704AbfHBEKT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 00:10:19 -0400
+Received: from mx0b-00082601.pphosted.com ([67.231.153.30]:39630 "EHLO
+        mx0b-00082601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725787AbfHBEKS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 00:10:18 -0400
+Received: from pps.filterd (m0109332.ppops.net [127.0.0.1])
+        by mx0a-00082601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7248U6I011702
+        for <devicetree@vger.kernel.org>; Thu, 1 Aug 2019 21:10:17 -0700
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
  : date : message-id : mime-version : content-type; s=facebook;
- bh=/JGpj5xaIqABlRNKSRJRUdgMyRc4OpMWr0QtO1VevWQ=;
- b=onz3slllYo8MESWYShIb/EGwAuE4C4aWnH+fyHBGBapjltSy7YoxSa8z5rf6gRRJE3JW
- SkKrUxBXtMO/JQ50ispRMGhUgS/sjQ42mYx05jsGGcFtmX3sFKhBK0WvduuJCJMnTP9z
- EPLNGLe0EsPG9E0S+ZJ1zI/rzrl2xMRn0Ic= 
-Received: from mail.thefacebook.com (mailout.thefacebook.com [199.201.64.23])
-        by mx0b-00082601.pphosted.com with ESMTP id 2u427wtfhb-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-SHA384 bits=256 verify=NOT)
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 21:06:56 -0700
-Received: from mx-out.facebook.com (2620:10d:c081:10::13) by
- mail.thefacebook.com (2620:10d:c081:35::128) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA) id 15.1.1713.5;
- Thu, 1 Aug 2019 21:06:54 -0700
+ bh=wIcMIbSUJT+WWYO9o85hKLHwLnsZmDz5BSo/S2INi2g=;
+ b=WWNz1fMCOMggzsMZBGrQ+x3yDFVkhzVj5FIfsIvUPLHJqT4sTf8IVtdkDx5pAa61n7b1
+ WMtFul6yTGUD9doTeXgynZ1DiK4qtjfoFvB2XCEfHrvVecRf8PIALM6G4peS99Qd5D0n
+ Zv/YRIG8X+AOItkf49wgU420baw1KlJ2y38= 
+Received: from maileast.thefacebook.com ([163.114.130.16])
+        by mx0a-00082601.pphosted.com with ESMTP id 2u4dfr029k-4
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
+        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 21:10:17 -0700
+Received: from mx-out.facebook.com (2620:10d:c0a8:1b::d) by
+ mail.thefacebook.com (2620:10d:c0a8:82::f) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Thu, 1 Aug 2019 21:10:14 -0700
 Received: by devvm24792.prn1.facebook.com (Postfix, from userid 150176)
-        id E273C1888669A; Thu,  1 Aug 2019 21:06:52 -0700 (PDT)
+        id E52CE18886A20; Thu,  1 Aug 2019 21:10:13 -0700 (PDT)
 Smtp-Origin-Hostprefix: devvm
 From:   Tao Ren <taoren@fb.com>
 Smtp-Origin-Hostname: devvm24792.prn1.facebook.com
@@ -42,9 +42,9 @@ To:     Rob Herring <robh+dt@kernel.org>,
         <openbmc@lists.ozlabs.org>
 CC:     Tao Ren <taoren@fb.com>
 Smtp-Origin-Cluster: prn1c35
-Subject: [PATCH v2] ARM: dts: aspeed: Add Facebook Wedge40 BMC
-Date:   Thu, 1 Aug 2019 21:06:50 -0700
-Message-ID: <20190802040650.1224903-1-taoren@fb.com>
+Subject: [PATCH v2] ARM: dts: aspeed: Add Facebook Wedge100 BMC
+Date:   Thu, 1 Aug 2019 21:10:10 -0700
+Message-ID: <20190802041010.1234178-1-taoren@fb.com>
 X-Mailer: git-send-email 2.17.1
 X-FB-Internal: Safe
 MIME-Version: 1.0
@@ -55,14 +55,14 @@ X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 pri
  malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
  clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
  mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1906280000 definitions=main-1908020041
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1908020042
 X-FB-Internal: deliver
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial version of device tree for Facebook Wedge40 AST2400 BMC
+Add initial version of device tree for Facebook Wedge100 AST2400 BMC
 platform.
 
 Signed-off-by: Tao Ren <taoren@fb.com>
@@ -72,28 +72,28 @@ Reviewed-by: Andrew Jeffery <andrew@aj.id.au>
  - remove "debug" from bootargs.
 
  arch/arm/boot/dts/Makefile                    |   1 +
- .../boot/dts/aspeed-bmc-facebook-wedge40.dts  | 141 ++++++++++++++++++
- 2 files changed, 142 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-wedge40.dts
+ .../boot/dts/aspeed-bmc-facebook-wedge100.dts | 149 ++++++++++++++++++
+ 2 files changed, 150 insertions(+)
+ create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts
 
 diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 39a05a10a2a2..dfc1011eb3f2 100644
+index 39a05a10a2a2..d71504ed82d3 100644
 --- a/arch/arm/boot/dts/Makefile
 +++ b/arch/arm/boot/dts/Makefile
 @@ -1273,6 +1273,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
  	aspeed-bmc-facebook-cmm.dtb \
  	aspeed-bmc-facebook-minipack.dtb \
  	aspeed-bmc-facebook-tiogapass.dtb \
-+	aspeed-bmc-facebook-wedge40.dtb \
++	aspeed-bmc-facebook-wedge100.dtb \
  	aspeed-bmc-facebook-yamp.dtb \
  	aspeed-bmc-intel-s2600wf.dtb \
  	aspeed-bmc-inspur-fp5280g2.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-wedge40.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge40.dts
+diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts
 new file mode 100644
-index 000000000000..aaa77a597d1a
+index 000000000000..b1e10f0c85c9
 --- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge40.dts
-@@ -0,0 +1,141 @@
++++ b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts
+@@ -0,0 +1,149 @@
 +// SPDX-License-Identifier: GPL-2.0+
 +// Copyright (c) 2018 Facebook Inc.
 +/dts-v1/;
@@ -101,8 +101,8 @@ index 000000000000..aaa77a597d1a
 +#include "aspeed-g4.dtsi"
 +
 +/ {
-+	model = "Facebook Wedge 40 BMC";
-+	compatible = "facebook,wedge40-bmc", "aspeed,ast2400";
++	model = "Facebook Wedge 100 BMC";
++	compatible = "facebook,wedge100-bmc", "aspeed,ast2400";
 +
 +	aliases {
 +		/*
@@ -131,7 +131,8 @@ index 000000000000..aaa77a597d1a
 +};
 +
 +&wdt2 {
-+	status = "disabled";
++	status = "okay";
++	aspeed,reset-type = "system";
 +};
 +
 +&fmc {
@@ -206,6 +207,13 @@ index 000000000000..aaa77a597d1a
 +
 +&i2c7 {
 +	status = "okay";
++
++	i2c-switch@70 {
++		compatible = "nxp,pca9548";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x70>;
++	};
 +};
 +
 +&i2c8 {
