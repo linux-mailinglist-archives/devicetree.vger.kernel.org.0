@@ -2,102 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D2A1A7FBC4
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 16:09:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1EDA7FC55
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 16:37:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436611AbfHBOJN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 10:09:13 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:38968 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1732817AbfHBOJN (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 10:09:13 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x72E6uLF014555;
-        Fri, 2 Aug 2019 16:09:00 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : subject :
- date : message-id : mime-version : content-type :
- content-transfer-encoding; s=STMicroelectronics;
- bh=V4Oy0E5gbwyi1cbiRiVoGW45+5zWyza++ydGz4D477E=;
- b=Z8BqG/0ydEYKorRq6uN7BstyvNz9rvTzsNTLIiUk0O/KLzdXaVrhf3fKJhOL+XEeruk1
- dGUUYZ4gXS3ohGtP7MiUizl4oLWZ+3EVWP2e5syGLv5FHVEzscdE5QRYsQOizAfJ3arT
- If/qqA0CWJFToyr79Oo1fW+TyDtXUPqoCjCri19Zu2UKJOzafaDMbPx4oM+cc3YbTcgq
- FdYxSHDdY1A1zlMjTW4MURJTjducO/Wg9zL1r6gc++okNND+3dMKEHtGkOU+dfm4N5OJ
- vrzrvZf/IH6fEAqSaggQGi8n5GCeCFmQ5c9+eKAk8Q7L+qYSDlwvbGiC2Hggumm9od11 vQ== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2u0c2yvs6w-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Fri, 02 Aug 2019 16:09:00 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 537F634;
-        Fri,  2 Aug 2019 14:09:00 +0000 (GMT)
-Received: from Webmail-eu.st.com (Safex1hubcas22.st.com [10.75.90.92])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id 3CEE72C4581;
-        Fri,  2 Aug 2019 16:09:00 +0200 (CEST)
-Received: from SAFEX1HUBCAS23.st.com (10.75.90.47) by Safex1hubcas22.st.com
- (10.75.90.92) with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 2 Aug 2019
- 16:09:00 +0200
-Received: from localhost (10.201.23.97) by webmail-ga.st.com (10.75.90.48)
- with Microsoft SMTP Server (TLS) id 14.3.439.0; Fri, 2 Aug 2019 16:08:59
- +0200
-From:   =?UTF-8?q?Yannick=20Fertr=C3=A9?= <yannick.fertre@st.com>
-To:     Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre Torgue <alexandre.torgue@st.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Benjamin Gaignard <benjamin.gaignard@st.com>,
-        Yannick Fertre <yannick.fertre@st.com>,
-        Philippe Cornu <philippe.cornu@st.com>,
-        Fabrice Gasnier <fabrice.gasnier@st.com>
-Subject: [PATCH] ARM: dts: stm32: move ltdc pinctrl on stm32mp157a dk1 board
-Date:   Fri, 2 Aug 2019 16:08:51 +0200
-Message-ID: <1564754931-13861-1-git-send-email-yannick.fertre@st.com>
-X-Mailer: git-send-email 2.7.4
+        id S2392781AbfHBOhQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 10:37:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45462 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2392460AbfHBOhP (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Aug 2019 10:37:15 -0400
+Received: from mail-qk1-f179.google.com (mail-qk1-f179.google.com [209.85.222.179])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C764D21726;
+        Fri,  2 Aug 2019 14:37:14 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564756634;
+        bh=vd9Dv8dBGevOpOI7ckz0Ps8LNrJ4SV3q4dIJDCwbkTI=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=pIh3/U350ApivszFbRNnFktXokXBKr+wTTQmTmkTcXIX77COsAo0TgRe92rHIbR0y
+         AeUVQCIkxbsvc60rImMt90f9Qfk0s+a1NDKQxNR8zuysR3wVis/STJnYCS/0bQnTmz
+         YqAKifhFLFjtFzCsZ+eZ0aQV0tGm9ea1esGFu1Xg=
+Received: by mail-qk1-f179.google.com with SMTP id 201so54907997qkm.9;
+        Fri, 02 Aug 2019 07:37:14 -0700 (PDT)
+X-Gm-Message-State: APjAAAVq7uE1i/XhWmubbBf9vjI07iLLMsLKPO7EtwoVPl6U/O4hvR9a
+        ZpvFcuPTb1Z0Mjz1alEINyJhQ4IhcUIyvhST7Q==
+X-Google-Smtp-Source: APXvYqy2cwj//e24fge1qT8CDOe9Xb/QmIUI69Wrhfjrl0tNCfhoSm7l0dvzzTg52YBKBW6aTsIA+0MW56bbtCA5ys8=
+X-Received: by 2002:a37:a44a:: with SMTP id n71mr25665655qke.393.1564756633987;
+ Fri, 02 Aug 2019 07:37:13 -0700 (PDT)
 MIME-Version: 1.0
+References: <20190801184346.7015-1-dinguyen@kernel.org>
+In-Reply-To: <20190801184346.7015-1-dinguyen@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Fri, 2 Aug 2019 08:37:02 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+PRKGwdozr3VECpk2ugrOuWd4CYnRSR7ChyPOKgheYkw@mail.gmail.com>
+Message-ID: <CAL_Jsq+PRKGwdozr3VECpk2ugrOuWd4CYnRSR7ChyPOKgheYkw@mail.gmail.com>
+Subject: Re: [PATCH] drivers/amba: add reset control to primecell probe
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>,
+        Dinh Nguyen <dinh.nguyen@intel.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8bit
-X-Originating-IP: [10.201.23.97]
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-02_06:,,
- signatures=0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The ltdc pinctrl must be in the display controller node and
-not in the peripheral node (hdmi bridge).
+On Thu, Aug 1, 2019 at 12:44 PM Dinh Nguyen <dinguyen@kernel.org> wrote:
+>
+> From: Dinh Nguyen <dinh.nguyen@intel.com>
+>
+> The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
+> default. Until recently, the DMA controller was brought out of reset by the
+> bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals that
+> are not used are held in reset and are left to Linux to bring them out of
+> reset.
 
-Signed-off-by: Yannick Fertré <yannick.fertre@st.com>
----
- arch/arm/boot/dts/stm32mp157a-dk1.dts | 6 +++---
- 1 file changed, 3 insertions(+), 3 deletions(-)
+You can fix this in the kernel, but any versions before this change
+will remain broken. IMO, the u-boot change should be reverted because
+it is breaking an ABI (though not a good one).
 
-diff --git a/arch/arm/boot/dts/stm32mp157a-dk1.dts b/arch/arm/boot/dts/stm32mp157a-dk1.dts
-index f3f0e37..1285cfc 100644
---- a/arch/arm/boot/dts/stm32mp157a-dk1.dts
-+++ b/arch/arm/boot/dts/stm32mp157a-dk1.dts
-@@ -99,9 +99,6 @@
- 		reset-gpios = <&gpioa 10 GPIO_ACTIVE_LOW>;
- 		interrupts = <1 IRQ_TYPE_EDGE_FALLING>;
- 		interrupt-parent = <&gpiog>;
--		pinctrl-names = "default", "sleep";
--		pinctrl-0 = <&ltdc_pins_a>;
--		pinctrl-1 = <&ltdc_pins_sleep_a>;
- 		status = "okay";
- 
- 		ports {
-@@ -276,6 +273,9 @@
- };
- 
- &ltdc {
-+	pinctrl-names = "default", "sleep";
-+	pinctrl-0 = <&ltdc_pins_a>;
-+	pinctrl-1 = <&ltdc_pins_sleep_a>;
- 	status = "okay";
- 
- 	port {
--- 
-2.7.4
+> Add a mechanism for getting the reset property and de-assert the primecell
+> module from reset if found. This is a not a hard fail if the reset property
+> is not present in the device tree node, so the driver will continue to probe.
 
+I think this belongs in the AMBA bus code, not the DT code, as that is
+where we already have clock control code for similar reasons.
+
+>
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> ---
+>  drivers/of/platform.c | 14 ++++++++++++++
+>  1 file changed, 14 insertions(+)
+>
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 7801e25e6895..d8945705313d 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -21,6 +21,7 @@
+>  #include <linux/of_irq.h>
+>  #include <linux/of_platform.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/reset.h>
+>
+>  const struct of_device_id of_default_bus_match_table[] = {
+>         { .compatible = "simple-bus", },
+> @@ -229,6 +230,7 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
+>         struct amba_device *dev;
+>         const void *prop;
+>         int i, ret;
+> +       struct reset_control *rstc;
+>
+>         pr_debug("Creating amba device %pOF\n", node);
+>
+> @@ -270,6 +272,18 @@ static struct amba_device *of_amba_device_create(struct device_node *node,
+>                 goto err_free;
+>         }
+>
+> +       /*
+> +        * reset control of the primecell block is optional
+> +        * and will not fail if the reset property is not found.
+> +        */
+> +       rstc = of_reset_control_get_exclusive(node, "dma");
+
+'dma' doesn't sound very generic.
+
+> +       if (!IS_ERR(rstc)) {
+> +               reset_control_deassert(rstc);
+> +               reset_control_put(rstc);
+> +       } else {
+> +               pr_debug("amba: reset control not found\n");
+> +       }
+> +
+>         ret = amba_device_add(dev, &iomem_resource);
+>         if (ret) {
+>                 pr_err("amba_device_add() failed (%d) for %pOF\n",
+> --
+> 2.20.0
+>
