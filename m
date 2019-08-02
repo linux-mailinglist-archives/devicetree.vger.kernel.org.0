@@ -2,111 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 40C8D7ECED
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 08:53:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB8E17ED68
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 09:25:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389155AbfHBGx0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 02:53:26 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:50492 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389148AbfHBGx0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 02:53:26 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id E39A96043F; Fri,  2 Aug 2019 06:53:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1564728804;
-        bh=FnKA06X8S6Ar0MBJG65ZgJ8cP/xxJCbs0ty010kJAKY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=Z8NG6myPRhpG9MDO0fmAIhzqorMKp2CFCvv9hO8pXiU9OYfCrb8W6x0pWnV5c6jRC
-         7ot9snFXFT1cZ2WHNW5hMbCVPuRTneUHNJi1OZs3bk1V+DKvsHyScLdL6pYAmZNFHi
-         4N/J012B7KUt/4Fe0N4gqnAHqc8zF/me43rV7/vQ=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.79.43.141] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 7F282601F6;
-        Fri,  2 Aug 2019 06:53:21 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1564728804;
-        bh=FnKA06X8S6Ar0MBJG65ZgJ8cP/xxJCbs0ty010kJAKY=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=Z8NG6myPRhpG9MDO0fmAIhzqorMKp2CFCvv9hO8pXiU9OYfCrb8W6x0pWnV5c6jRC
-         7ot9snFXFT1cZ2WHNW5hMbCVPuRTneUHNJi1OZs3bk1V+DKvsHyScLdL6pYAmZNFHi
-         4N/J012B7KUt/4Fe0N4gqnAHqc8zF/me43rV7/vQ=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 7F282601F6
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH v2 1/2] dt-bindings: pinctrl: qcom: Add SC7180 pinctrl
- binding
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     linus.walleij@linaro.org, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, agross@kernel.org,
-        robh+dt@kernel.org, linux-gpio@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Jitendra Sharma <shajit@codeaurora.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>
-References: <20190802041507.12365-1-rnayak@codeaurora.org>
- <20190802063317.GB12733@vkoul-mobl.Dlink>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <b468e53a-d010-d95f-de9a-62ef60083074@codeaurora.org>
-Date:   Fri, 2 Aug 2019 12:23:19 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S2389606AbfHBHZf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 03:25:35 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:39499 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388008AbfHBHZf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 03:25:35 -0400
+Received: by mail-pf1-f195.google.com with SMTP id f17so31574347pfn.6;
+        Fri, 02 Aug 2019 00:25:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=waO3Kw8FCsucFcZzTAvjkiHidk4K6PfJ+TshbSYUeOg=;
+        b=NKx9LvdQydMZbNGxoLLC31zHPVPOE3fFKDcu7RldPyOJRCHr0W/06zpCpaxBf/L1cj
+         CIkZPu3CGbYzuVp1pgI9a4UXhgkvtOf0/RvzeH2lF4heUPE41FI8XJTQ++kzz0DPhIoy
+         s7PRTzEzdSoVdfBKDwaBnKD6cUDs42Ttnn6Wx4CIWqlzMCK52QuoEneW/8nv0u0vLJ3p
+         V+WkXTMK5UYyYrqbH/vdZuCH8qkeJeVxERK0nhGrzcGXk213DkacNvqvxmLQPVIpFL1j
+         ZkLcflMNg5LJtDNAtSaf9qaYv/G+wX/AH00ZD6kXFg+nmrdHkCb0xg9csyRoEbjb7YX8
+         pD2A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=waO3Kw8FCsucFcZzTAvjkiHidk4K6PfJ+TshbSYUeOg=;
+        b=sc8n2dStURTnnBOezjQHqoMNuI0cqqmCtfD7o69yNJvp3f3lXtRWSMzl06Gv+rBo0d
+         1YPHN1J1DTu/5mQN3Voq8KsThkFRM1j3rf1KhDHHs4p+6bGIgeZm32r8AEBxOOKe43rn
+         6Wr825DjqibGHWDgZeHYxzJdybHfo4rjdVoTnA315dbAQfdCj/q9BuSx8Kie9Kn9mgXt
+         h41/YgOzPHudnbyx8tglkRjuzmzI7K9yqAd9W8H8vhgfTLTVt0zQ74F/1+9gl2xiVite
+         gYekTKmLW/a+0hygbJ0kK9HB4QQLY+iFtVIc9QZYH0h31Xjk4m0spigmdaZGHyk9YefN
+         L7gQ==
+X-Gm-Message-State: APjAAAXhgnk4svtEruhrb3dxkXLH8g3AdCF17AyXVJgV5SyDTDzd9YqC
+        tcYkmSOMIbZOts4W496u3TYJSwp/
+X-Google-Smtp-Source: APXvYqyBwlBxpa4TRYIb+gJCDEzgHRKrDQVfR7xfNOMezhcdVeQjXM6y7O8X8ihfbpgJxkbgW1OThA==
+X-Received: by 2002:a63:f94c:: with SMTP id q12mr1212430pgk.10.1564730734014;
+        Fri, 02 Aug 2019 00:25:34 -0700 (PDT)
+Received: from icarus ([2001:268:c146:e9f9:e343:65f1:6148:c56c])
+        by smtp.gmail.com with ESMTPSA id p27sm110308059pfq.136.2019.08.02.00.25.29
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 02 Aug 2019 00:25:32 -0700 (PDT)
+Date:   Fri, 2 Aug 2019 16:25:13 +0900
+From:   William Breathitt Gray <vilhelm.gray@gmail.com>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     David Lechner <david@lechnology.com>, linux-iio@vger.kernel.org,
+        linux-omap@vger.kernel.org, devicetree@vger.kernel.org,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Cameron <jic23@jic23.retrosnub.co.uk>,
+        =?utf-8?Q?Beno=C3=AEt?= Cousson <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org
+Subject: Re: [PATCH 1/4] dt-bindings: counter: new bindings for TI eQEP
+Message-ID: <20190802072513.GA30522@icarus>
+References: <20190722154538.5314-1-david@lechnology.com>
+ <20190722154538.5314-2-david@lechnology.com>
+ <20190727204836.1514265d@archlinux>
 MIME-Version: 1.0
-In-Reply-To: <20190802063317.GB12733@vkoul-mobl.Dlink>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <20190727204836.1514265d@archlinux>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Sat, Jul 27, 2019 at 08:48:36PM +0100, Jonathan Cameron wrote:
+> On Mon, 22 Jul 2019 10:45:35 -0500
+> David Lechner <david@lechnology.com> wrote:
+> 
+> > This documents device tree binding for the Texas Instruments Enhanced
+> > Quadrature Encoder Pulse (eQEP) Module found in various TI SoCs.
+> > 
+> > Signed-off-by: David Lechner <david@lechnology.com>
+> 
+> Up to William given it is a counter binding, (unless Rob overrules)
+> but new bindings are generally preferred as yaml.
+> 
+> Content looks fine to me.
+> 
+> Thanks,
+> 
+> Jonathan
 
+Rob,
 
-On 8/2/2019 12:03 PM, Vinod Koul wrote:
-> On 02-08-19, 09:45, Rajendra Nayak wrote:
->> From: Jitendra Sharma <shajit@codeaurora.org>
->>
->> Add the binding for the TLMM pinctrl block found in the SC7180 platform
->>
->> Signed-off-by: Jitendra Sharma <shajit@codeaurora.org>
->> Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
->> [rnayak: Fix some copy-paste issues, sort and fix functions]
->> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
->> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
->> ---
-> 
-> changes since v1: ..?
-> 
->> +- reg-names:
->> +	Usage: required
->> +	Value type: <prop-encoded-array>
->> +	Defintiion: names for the cells of reg, must contain "north", "south"
-> 
-> s/Defintiion/Definition
-> 
->> +Example:
->> +
->> +	tlmm: pinctrl@3000000 {
-> 
-> this should be: pinctrl@3500000
-> 
-> with these two nitpicks fixed:
+Would you prefer these bindings as yaml, or shall I accept them as they
+are now?
 
-Thanks Vinod for the review. I will fix these and respin, after I wait
-a while to see if there is any more feedback :)
+William Breathitt Gray
 
 > 
-> Reviewed-by: Vinod Koul <vkoul@kernel.org>
+> > ---
+> >  .../devicetree/bindings/counter/ti-eqep.txt    | 18 ++++++++++++++++++
+> >  1 file changed, 18 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/counter/ti-eqep.txt
+> > 
+> > diff --git a/Documentation/devicetree/bindings/counter/ti-eqep.txt b/Documentation/devicetree/bindings/counter/ti-eqep.txt
+> > new file mode 100644
+> > index 000000000000..fbcebc2c2cc2
+> > --- /dev/null
+> > +++ b/Documentation/devicetree/bindings/counter/ti-eqep.txt
+> > @@ -0,0 +1,18 @@
+> > +Texas Instruments Enhanced Quadrature Encoder Pulse (eQEP) Module
+> > +
+> > +Required properties:
+> > +- compatible:		Must be "ti,am3352-eqep".
+> > +- reg:			Physical base address and size of the registers map.
+> > +- clocks:		Handle to the PWM's functional clock.
+> > +- clock-names:		Must be "fck".
+> > +- interrupts:		Handle to the eQEP event interrupt
+> > +
+> > +Example:
+> > +
+> > +	eqep0: eqep@180 {
+> > +		compatible = "ti,am3352-eqep";
+> > +		reg = <0x180 0x80>;
+> > +		clocks = <&l4ls_gclk>;
+> > +		clock-names = "fck";
+> > +		interrupts = <79>;
+> > +	};
 > 
-
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
