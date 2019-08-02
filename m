@@ -2,243 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DB4327E753
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 03:02:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 095377E78A
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 03:35:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388697AbfHBBCA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 21:02:00 -0400
-Received: from mx0b-00082601.pphosted.com ([67.231.153.30]:48978 "EHLO
-        mx0b-00082601.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2388597AbfHBBCA (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 21:02:00 -0400
-Received: from pps.filterd (m0109331.ppops.net [127.0.0.1])
-        by mx0a-00082601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x720vlZm006061
-        for <devicetree@vger.kernel.org>; Thu, 1 Aug 2019 18:01:58 -0700
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
- : date : message-id : mime-version : content-type; s=facebook;
- bh=crcJ24krV4mzoxzFzL1Jhr1fyBYOcOeb0y824pBazZo=;
- b=WCROvHiUkARVKV4AXmi+h6MXSyTHhaiGD6p/CWlRblBuC8PNAUBhXK7Bb432QdkoyZ+o
- vJItxrteTSJgN64yjnbvGCZS9KFib7M7AIsqmNfp+8h+X9+NuxJ8fwSOVqYvH7fANVs7
- 8vHYLLg1T/CEATN9nCLmTRXYdrUWv/FLAj4= 
-Received: from maileast.thefacebook.com ([163.114.130.16])
-        by mx0a-00082601.pphosted.com with ESMTP id 2u435b9txc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT)
-        for <devicetree@vger.kernel.org>; Thu, 01 Aug 2019 18:01:58 -0700
-Received: from mx-out.facebook.com (2620:10d:c0a8:1b::d) by
- mail.thefacebook.com (2620:10d:c0a8:82::c) with Microsoft SMTP Server
- (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
- 15.1.1713.5; Thu, 1 Aug 2019 18:01:57 -0700
-Received: by devvm24792.prn1.facebook.com (Postfix, from userid 150176)
-        id 0C260187F7250; Thu,  1 Aug 2019 18:01:57 -0700 (PDT)
-Smtp-Origin-Hostprefix: devvm
-From:   Tao Ren <taoren@fb.com>
-Smtp-Origin-Hostname: devvm24792.prn1.facebook.com
+        id S1731184AbfHBBfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 21:35:51 -0400
+Received: from mailgw01.mediatek.com ([210.61.82.183]:16015 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1731011AbfHBBfu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 21:35:50 -0400
+X-UUID: 8caf567bc513476db8dcba29a9fa4f3c-20190802
+X-UUID: 8caf567bc513476db8dcba29a9fa4f3c-20190802
+Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
+        (envelope-from <neal.liu@mediatek.com>)
+        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
+        with ESMTP id 266494707; Fri, 02 Aug 2019 09:35:43 +0800
+Received: from mtkcas08.mediatek.inc (172.21.101.126) by
+ mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
+ 15.0.1395.4; Fri, 2 Aug 2019 09:35:44 +0800
+Received: from [172.21.77.33] (172.21.77.33) by mtkcas08.mediatek.inc
+ (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
+ Transport; Fri, 2 Aug 2019 09:35:44 +0800
+Message-ID: <1564709744.8481.2.camel@mtkswgap22>
+Subject: Re: [PATCH v4 0/3] MediaTek Security random number generator support
+From:   Neal Liu <neal.liu@mediatek.com>
 To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Joel Stanley <joel@jms.id.au>,
-        Andrew Jeffery <andrew@aj.id.au>, <devicetree@vger.kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>
+CC:     Matt Mackall <mpm@selenic.com>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Sean Wang <sean.wang@kernel.org>,
+        "Crystal Guo =?UTF-8?Q?=28=E9=83=AD=E6=99=B6=29?=" 
+        <Crystal.Guo@mediatek.com>,
+        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
         <linux-arm-kernel@lists.infradead.org>,
-        <linux-aspeed@lists.ozlabs.org>, <linux-kernel@vger.kernel.org>,
-        <openbmc@lists.ozlabs.org>
-CC:     Tao Ren <taoren@fb.com>
-Smtp-Origin-Cluster: prn1c35
-Subject: [PATCH] ARM: dts: aspeed: Add Facebook Wedge100 BMC
-Date:   Thu, 1 Aug 2019 18:01:55 -0700
-Message-ID: <20190802010155.489238-1-taoren@fb.com>
-X-Mailer: git-send-email 2.17.1
-X-FB-Internal: Safe
+        "linux-mediatek@lists.infradead.org" 
+        <linux-mediatek@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        wsd_upstream <wsd_upstream@mediatek.com>,
+        Neal Liu <neal.liu@mediatek.com>
+Date:   Fri, 2 Aug 2019 09:35:44 +0800
+In-Reply-To: <1563789042.14676.3.camel@mtkswgap22>
+References: <1561361052-13072-1-git-send-email-neal.liu@mediatek.com>
+         <1563789042.14676.3.camel@mtkswgap22>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.2.3-0ubuntu6 
+Content-Transfer-Encoding: 7bit
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-01_10:,,
- signatures=0
-X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 priorityscore=1501
- malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
- clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
- mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
- scancount=1 engine=8.0.1-1906280000 definitions=main-1908020006
-X-FB-Internal: deliver
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add initial version of device tree for Facebook Wedge100 AST2400 BMC
-platform.
+Dear Matthias, Rob, Mark,
+	Just gentle ping.
+	Thanks
 
-Signed-off-by: Tao Ren <taoren@fb.com>
----
- arch/arm/boot/dts/Makefile                    |   1 +
- .../boot/dts/aspeed-bmc-facebook-wedge100.dts | 149 ++++++++++++++++++
- 2 files changed, 150 insertions(+)
- create mode 100644 arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts
 
-diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
-index 39a05a10a2a2..d71504ed82d3 100644
---- a/arch/arm/boot/dts/Makefile
-+++ b/arch/arm/boot/dts/Makefile
-@@ -1273,6 +1273,7 @@ dtb-$(CONFIG_ARCH_ASPEED) += \
- 	aspeed-bmc-facebook-cmm.dtb \
- 	aspeed-bmc-facebook-minipack.dtb \
- 	aspeed-bmc-facebook-tiogapass.dtb \
-+	aspeed-bmc-facebook-wedge100.dtb \
- 	aspeed-bmc-facebook-yamp.dtb \
- 	aspeed-bmc-intel-s2600wf.dtb \
- 	aspeed-bmc-inspur-fp5280g2.dtb \
-diff --git a/arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts
-new file mode 100644
-index 000000000000..ccd700467ea7
---- /dev/null
-+++ b/arch/arm/boot/dts/aspeed-bmc-facebook-wedge100.dts
-@@ -0,0 +1,149 @@
-+// SPDX-License-Identifier: GPL-2.0+
-+// Copyright (c) 2018 Facebook Inc.
-+/dts-v1/;
-+
-+#include "aspeed-g4.dtsi"
-+
-+/ {
-+	model = "Facebook Wedge 100 BMC";
-+	compatible = "facebook,wedge100-bmc", "aspeed,ast2400";
-+
-+	aliases {
-+		/*
-+		 * Override the default uart aliases to avoid breaking
-+		 * the legacy applications.
-+		 */
-+		serial0 = &uart5;
-+		serial1 = &uart1;
-+		serial2 = &uart3;
-+		serial3 = &uart4;
-+	};
-+
-+	chosen {
-+		stdout-path = &uart3;
-+		bootargs = "debug console=ttyS2,9600n8 root=/dev/ram rw";
-+	};
-+
-+	memory@40000000 {
-+		reg = <0x40000000 0x20000000>;
-+	};
-+};
-+
-+&wdt1 {
-+	status = "okay";
-+	aspeed,reset-type = "system";
-+};
-+
-+&wdt2 {
-+	status = "okay";
-+	aspeed,reset-type = "system";
-+};
-+
-+&fmc {
-+	status = "okay";
-+	flash@0 {
-+		status = "okay";
-+		m25p,fast-read;
-+		label = "fmc0";
-+#include "facebook-bmc-flash-layout.dtsi"
-+	};
-+};
-+
-+&uart1 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd1_default
-+		     &pinctrl_rxd1_default>;
-+};
-+
-+&uart3 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd3_default
-+		     &pinctrl_rxd3_default>;
-+};
-+
-+&uart4 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_txd4_default
-+		     &pinctrl_rxd4_default>;
-+};
-+
-+&uart5 {
-+	status = "okay";
-+};
-+
-+&mac1 {
-+	status = "okay";
-+	no-hw-checksum;
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&pinctrl_rgmii2_default &pinctrl_mdio2_default>;
-+};
-+
-+&i2c0 {
-+	status = "okay";
-+};
-+
-+&i2c1 {
-+	status = "okay";
-+};
-+
-+&i2c2 {
-+	status = "okay";
-+};
-+
-+&i2c3 {
-+	status = "okay";
-+};
-+
-+&i2c4 {
-+	status = "okay";
-+};
-+
-+&i2c5 {
-+	status = "okay";
-+};
-+
-+&i2c6 {
-+	status = "okay";
-+};
-+
-+&i2c7 {
-+	status = "okay";
-+
-+	i2c-switch@70 {
-+		compatible = "nxp,pca9548";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x70>;
-+	};
-+};
-+
-+&i2c8 {
-+	status = "okay";
-+};
-+
-+&i2c9 {
-+	status = "okay";
-+};
-+
-+&i2c10 {
-+	status = "okay";
-+};
-+
-+&i2c11 {
-+	status = "okay";
-+};
-+
-+&i2c12 {
-+	status = "okay";
-+};
-+
-+&i2c13 {
-+	status = "okay";
-+};
-+
-+&vhub {
-+	status = "okay";
-+};
--- 
-2.17.1
+> On Mon, 2019-06-24 at 15:24 +0800, Neal Liu wrote:
+> > These patch series introduce a generic rng driver for Trustzone
+> > based kernel driver which would like to communicate with ATF
+> > SIP services.
+> > 
+> > Patch #1 initials SMC fid table for Mediatek SIP interfaces and
+> > adds HWRNG related SMC call.
+> > 
+> > Patch #2..3 adds mtk-sec-rng kernel driver for Trustzone based SoCs.
+> > For MediaTek SoCs on ARMv8 with TrustZone enabled, peripherals like
+> > entropy sources is not accessible from normal world (linux) and
+> > rather accessible from secure world (ATF/TEE) only. This driver aims
+> > to provide a generic interface to ATF rng service.
+> > 
+> > 
+> > changes since v1:
+> > - rename mt67xx-rng to mtk-sec-rng since all MediaTek ARMv8 SoCs
+> > can reuse this driver.
+> > - refine coding style and unnecessary check.
+> > 
+> > changes since v2:
+> > - remove unused comments.
+> > - remove redundant variable.
+> > 
+> > changes since v3:
+> > - add dt-bindings for MediaTek rng with TrustZone enabled
+> > - revise HWRNG SMC call fid
+> > 
+> > 
+> > Neal Liu (3):
+> >   soc: mediatek: add SMC fid table for SIP interface
+> >   dt-bindings: rng: add bindings for MediaTek ARMv8 SoCs
+> >   hwrng: add mtk-sec-rng driver
+> > 
+> >  .../devicetree/bindings/rng/mtk-sec-rng.txt   | 10 ++
+> >  drivers/char/hw_random/Kconfig                | 16 +++
+> >  drivers/char/hw_random/Makefile               |  1 +
+> >  drivers/char/hw_random/mtk-sec-rng.c          | 97 +++++++++++++++++++
+> >  include/linux/soc/mediatek/mtk_sip_svc.h      | 33 +++++++
+> >  5 files changed, 157 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/rng/mtk-sec-rng.txt
+> >  create mode 100644 drivers/char/hw_random/mtk-sec-rng.c
+> >  create mode 100644 include/linux/soc/mediatek/mtk_sip_svc.h
+> > 
+> 
+
 
