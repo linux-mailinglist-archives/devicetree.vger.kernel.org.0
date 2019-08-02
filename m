@@ -2,38 +2,38 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB3BE7FAD3
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 15:36:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9FB57FA4B
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 15:32:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405647AbfHBNen (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 09:34:43 -0400
-Received: from mail.kernel.org ([198.145.29.99]:32822 "EHLO mail.kernel.org"
+        id S2394094AbfHBNYD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 09:24:03 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34700 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2393726AbfHBNW1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Aug 2019 09:22:27 -0400
+        id S1728363AbfHBNYD (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Aug 2019 09:24:03 -0400
 Received: from sasha-vm.mshome.net (c-73-47-72-35.hsd1.nh.comcast.net [73.47.72.35])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B215C2186A;
-        Fri,  2 Aug 2019 13:22:25 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 6EFE621773;
+        Fri,  2 Aug 2019 13:24:01 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564752146;
-        bh=zAEYXuHjmh3FDxvzc307uZuS5g8WgkqnI9RPEqRESw0=;
+        s=default; t=1564752242;
+        bh=J/c2lN83G3C0M26qnZBF3MO8yw9JzY3KeF7k6i+XeFE=;
         h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=motD7WhL0UTBFTEQtuvOQFTvaHDXIJcELqPnqRmzpIew2b9bPizXzN3/ve2PpeCN3
-         ZpRwv3zZ6RInrIo43CD5lwTdg/6PSTpUI2/S35ZsvPrhdWovAw9xBiZUFEYTpS7XB2
-         IU1WeRYboqJd6OkrU5TdA2DmWwR7TKWHJLn1JCEM=
+        b=QNTGYDLZ3dYWHvLTdFOBfDb64hRx9ROHhK+OJRXbLLpciwGKfbr4VtQ1Mj6SVSB7Y
+         S8+/fIwIVkjdulYsNQjktdtOdxazVO0sKDHSMt5D3KZP4A5d/4enAG96YSekyE1WW5
+         KDctmLYGFtRg5Fp4CjYSJAhvSio00B27k+A/b5uE=
 From:   Sasha Levin <sashal@kernel.org>
 To:     linux-kernel@vger.kernel.org, stable@vger.kernel.org
 Cc:     Arnd Bergmann <arnd@arndb.de>, Olof Johansson <olof@lixom.net>,
         Sasha Levin <sashal@kernel.org>,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: [PATCH AUTOSEL 5.2 63/76] ARM: dts: bcm: bcm47094: add missing #cells for mdio-bus-mux
-Date:   Fri,  2 Aug 2019 09:19:37 -0400
-Message-Id: <20190802131951.11600-63-sashal@kernel.org>
+Subject: [PATCH AUTOSEL 4.19 33/42] ARM: dts: bcm: bcm47094: add missing #cells for mdio-bus-mux
+Date:   Fri,  2 Aug 2019 09:22:53 -0400
+Message-Id: <20190802132302.13537-33-sashal@kernel.org>
 X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190802131951.11600-1-sashal@kernel.org>
-References: <20190802131951.11600-1-sashal@kernel.org>
+In-Reply-To: <20190802132302.13537-1-sashal@kernel.org>
+References: <20190802132302.13537-1-sashal@kernel.org>
 MIME-Version: 1.0
 X-stable: review
 X-Patchwork-Hint: Ignore
@@ -69,10 +69,10 @@ Signed-off-by: Sasha Levin <sashal@kernel.org>
  1 file changed, 3 insertions(+)
 
 diff --git a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-index 5fd47eec4407e..1679959a3654d 100644
+index 36efe410dcd71..9e33c41f54112 100644
 --- a/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
 +++ b/arch/arm/boot/dts/bcm47094-linksys-panamera.dts
-@@ -126,6 +126,9 @@
+@@ -125,6 +125,9 @@
  	};
  
  	mdio-bus-mux {
