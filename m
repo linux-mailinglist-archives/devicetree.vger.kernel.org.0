@@ -2,90 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FE227FD97
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 17:32:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E6AA87FE2B
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 18:09:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733275AbfHBPcu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 11:32:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35790 "EHLO mail.kernel.org"
+        id S2389590AbfHBQJ2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 12:09:28 -0400
+Received: from vern.gendns.com ([98.142.107.122]:42544 "EHLO vern.gendns.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727198AbfHBPcu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 2 Aug 2019 11:32:50 -0400
-Received: from mail-qt1-f171.google.com (mail-qt1-f171.google.com [209.85.160.171])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 240E32087C
-        for <devicetree@vger.kernel.org>; Fri,  2 Aug 2019 15:32:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564759969;
-        bh=SqXczMVqgeEkDVlqy5kglJj8uL1oAGnsDkEhoHPszCE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=pCLuRj/WOOZYb+u1fjmIKd4E3EYbifvnH3q+ZYi57kOWlgyO9gJcsA+sJGmHT0mDJ
-         PS4fijeM6cSxG3PhbrzKW6q5rpDKvQ0yQvHbtiNH59IGy6G1FOb6p31VneUJV8ZEdt
-         FtyTVtOOMm8GCHvLv/SbgTE9YsIcPQldYjIyqQoQ=
-Received: by mail-qt1-f171.google.com with SMTP id y26so74302003qto.4
-        for <devicetree@vger.kernel.org>; Fri, 02 Aug 2019 08:32:49 -0700 (PDT)
-X-Gm-Message-State: APjAAAWjGbzTT0mOO/v/2uHmZqEtEyjgXzPZ0h8yJb1w3A2lO3rKmPzR
-        IAmq0Otomg7PBXQR/uoNncnqj2Nqb27yr0DmOQ==
-X-Google-Smtp-Source: APXvYqz5KFxckUeN3jLg6ZkyxzzkOZ6/De6227CJyUXimVAlaImzJTd4BNXCiN4DhIhzmmkx6p/UvVuwUn0NBDGuyKA=
-X-Received: by 2002:a0c:acef:: with SMTP id n44mr100010313qvc.39.1564759968361;
- Fri, 02 Aug 2019 08:32:48 -0700 (PDT)
+        id S2389527AbfHBQJ1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 2 Aug 2019 12:09:27 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
+        In-Reply-To:MIME-Version:Date:Message-ID:From:References:Cc:To:Subject:Sender
+        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
+        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
+        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=5lPK0SoTI4WivVBlQ9V5Or5hsa5f4C2zi5txmZLiDXk=; b=x/8NUPy9GYoK/3ZMnIU7rsBH5Q
+        FK/PnJoOW2As+ToVB3LSg2p5I2uuuCxaIJ/FdaFyEp/MM2FfqDXZQi2Y0yZrPFuDdslFV0yXEQrEo
+        Yekp0W7LVivL+2P0VBAmFUM4/mrXEJXHt0Ij0+7jlu4V2Pwtuuu0XpaIo1VqscTa4rPCQGHrcGagF
+        UEmVsh/sCBBBKPbQNrDZL3KKjG8O+22SM/SPMIdkcG3UYq/jYkNo7bWUym+8Vk1fDtQxxyTQ0XXBw
+        F9VLKz9Kj+t+kLTpQ3KcwMZ7liFDK+aBKKSXW0wNQPot+o7ZUfYwiu1JtOTioRcsgmRMM+gUNAsk/
+        ei8pnOpg==;
+Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:42682 helo=[192.168.0.134])
+        by vern.gendns.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <david@lechnology.com>)
+        id 1hta7P-004v16-AL; Fri, 02 Aug 2019 12:09:23 -0400
+Subject: Re: [PATCH 2/4] counter: new TI eQEP driver
+To:     William Breathitt Gray <vilhelm.gray@gmail.com>
+Cc:     linux-iio@vger.kernel.org, linux-omap@vger.kernel.org,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        =?UTF-8?Q?Beno=c3=aet_Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        linux-kernel@vger.kernel.org, linux-pwm@vger.kernel.org,
+        =?UTF-8?Q?Uwe_Kleine-K=c3=b6nig?= <u.kleine-koenig@pengutronix.de>
+References: <20190722154538.5314-1-david@lechnology.com>
+ <20190722154538.5314-3-david@lechnology.com> <20190802092727.GB30522@icarus>
+From:   David Lechner <david@lechnology.com>
+Message-ID: <f45ec1f4-6463-12d9-9459-35fe7b46671a@lechnology.com>
+Date:   Fri, 2 Aug 2019 11:09:13 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190801135644.12843-1-narmstrong@baylibre.com>
- <20190801135644.12843-6-narmstrong@baylibre.com> <90dbcb33-74a2-68de-eb1a-ce84040298b8@baylibre.com>
-In-Reply-To: <90dbcb33-74a2-68de-eb1a-ce84040298b8@baylibre.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 2 Aug 2019 09:32:36 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+gtauOzrRRtTqbowUSOMi5Rs_GQVt7e7gYHa7TtjOhOA@mail.gmail.com>
-Message-ID: <CAL_Jsq+gtauOzrRRtTqbowUSOMi5Rs_GQVt7e7gYHa7TtjOhOA@mail.gmail.com>
-Subject: Re: [RFC 5/9] dt-bindings: arm: amlogic: amlogic,meson-gx-ao-secure:
- convert to yaml
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190802092727.GB30522@icarus>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 2, 2019 at 8:37 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi Rob,
->
-> Thanks for reviews.
->
-> On 01/08/2019 15:56, Neil Armstrong wrote:
-> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> > ---
-> >  .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 -------------
-> >  .../amlogic/amlogic,meson-gx-ao-secure.yaml   | 42 +++++++++++++++++++
-> >  2 files changed, 42 insertions(+), 28 deletions(-)
-> >  delete mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
-> >  create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
-> >
-> > diff --git a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt b/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
-> > deleted file mode 100644
-> > index c67d9f48fb91..000000000000
-> > --- a/Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
-> > +++ /dev/null
-> > @@ -1,28 +0,0 @@
-> > -Amlogic Meson Firmware registers Interface
-> > -------------------------------------------
-> > -
-> > -The Meson SoCs have a register bank with status and data shared with the
-> > -secure firmware.
-> > -
-> > -Required properties:
-> > - - compatible: For Meson GX SoCs, must be "amlogic,meson-gx-ao-secure", "syscon"
->
-> I have a hard time find how to define "syscon" here, if I put syscon in the compatible
-> it gets matched on other bindings and I get lot of warnings.
->
-> How should I model it ?
+On 8/2/19 4:27 AM, William Breathitt Gray wrote:
+>> diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+>> index a7e57516959e..ddcbb8573894 100644
+>> --- a/drivers/pwm/Kconfig
+>> +++ b/drivers/pwm/Kconfig
+>> @@ -499,7 +499,7 @@ config  PWM_TIEHRPWM
+>>   
+>>   config  PWM_TIPWMSS
+>>   	bool
+>> -	default y if (ARCH_OMAP2PLUS) && (PWM_TIECAP || PWM_TIEHRPWM)
+>> +	default y if (ARCH_OMAP2PLUS) && (PWM_TIECAP || PWM_TIEHRPWM || TI_EQEP)
+>>   	help
+>>   	  PWM Subsystem driver support for AM33xx SOC.
+> I was surprised to see this pwm Kconfig change in this patch. Is
+> PWM_TIPWMSS required for TI_EQEP to work? If not required, then this
+> could be a separate patch; otherwise, put in a mention about why in the
+> commit message so that the purpose of this change is clearer.
+> 
 
-You have to add a custom 'select' key that doesn't include 'syscon'.
-There should be a few examples in the tree.
-
-Rob
+This enables the parent bus for power management. Since this is the second
+comment about this, I wonder if it would make sense to move this out of the
+PWM subsystem and into drivers/bus/ since it is no longer exclusive to PWM
+devices.
