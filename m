@@ -2,95 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9417A7EF4A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 10:29:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F9447EF59
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 10:32:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727885AbfHBI34 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 2 Aug 2019 04:29:56 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:45918 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726756AbfHBI34 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 04:29:56 -0400
-Received: from pendragon.ideasonboard.com (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id CC902CC;
-        Fri,  2 Aug 2019 10:29:53 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1564734594;
-        bh=bXKRQogQmmeETX3D+uxc/1dEmFHlcEZ0DErWtMIWSjk=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=a7y3RjIOouopDKUtt11qNlomuSfbfiEiyT81vX5J9HOTG13htPrnWbTPjVpVA65VT
-         ErNfkd7CS6onYFo9N99Tuzg1xp25NSUCOqQdvM4wqLO947YtDw0RngznlZujOmhRuH
-         14jDQkVMIfmkhD82XQXAe7x5nExHzDJkjHXfG/Zo=
-Date:   Fri, 2 Aug 2019 11:29:52 +0300
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        id S1726535AbfHBIcZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 2 Aug 2019 04:32:25 -0400
+Received: from imap1.codethink.co.uk ([176.9.8.82]:36593 "EHLO
+        imap1.codethink.co.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729866AbfHBIcZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 2 Aug 2019 04:32:25 -0400
+Received: from [167.98.27.226] (helo=[10.35.6.253])
+        by imap1.codethink.co.uk with esmtpsa (Exim 4.84_2 #1 (Debian))
+        id 1htSz4-0002ns-CI; Fri, 02 Aug 2019 09:32:18 +0100
+Subject: Re: [alsa-devel] [PATCH v2 3/3] ASoC: TDA7802: Add turn-on diagnostic
+ routine
+To:     Mark Brown <broonie@kernel.org>
+Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+        alsa-devel@alsa-project.org,
+        Charles Keepax <ckeepax@opensource.cirrus.com>,
+        Kuninori Morimoto <kuninori.morimoto.gx@renesas.com>,
+        Kirill Marinushkin <kmarinushkin@birdec.tech>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Annaliese McDermond <nh6z@nh6z.net>,
+        Takashi Iwai <tiwai@suse.com>,
+        Paul Cercueil <paul@crapouillou.net>,
+        Vinod Koul <vkoul@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        linux-renesas-soc@vger.kernel.org, devicetree@vger.kernel.org,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>, ebiharaml@si-linux.co.jp
-Subject: Re: [PATCH/RFC 11/12] arm64: dts: renesas: cat874: Add definition
- for 12V regulator
-Message-ID: <20190802082952.GL5008@pendragon.ideasonboard.com>
-References: <1564731249-22671-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1564731249-22671-12-git-send-email-fabrizio.castro@bp.renesas.com>
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        Jerome Brunet <jbrunet@baylibre.com>,
+        linux-kernel@vger.kernel.org,
+        Cheng-Yi Chiang <cychiang@chromium.org>
+References: <20190730120937.16271-1-thomas.preston@codethink.co.uk>
+ <20190730120937.16271-4-thomas.preston@codethink.co.uk>
+ <20190730141935.GF4264@sirena.org.uk>
+ <45156592-a90f-b4f8-4d30-9631c03f1280@codethink.co.uk>
+ <20190730155027.GJ4264@sirena.org.uk>
+ <9b47a360-3b62-b968-b8d5-8639dc4b468d@codethink.co.uk>
+ <20190801234241.GG5488@sirena.org.uk>
+From:   Thomas Preston <thomas.preston@codethink.co.uk>
+Message-ID: <472cc4ee-2e80-8b08-d842-79c65df572f3@codethink.co.uk>
+Date:   Fri, 2 Aug 2019 09:32:17 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-In-Reply-To: <1564731249-22671-12-git-send-email-fabrizio.castro@bp.renesas.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190801234241.GG5488@sirena.org.uk>
+Content-Type: text/plain; charset=windows-1252
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
-
-Thank you for the patch.
-
-On Fri, Aug 02, 2019 at 08:34:08AM +0100, Fabrizio Castro wrote:
-> Power rail "D12.0V" comes straight from the power barrel connector,
-> and it's used in both main board and sub board.
+On 02/08/2019 00:42, Mark Brown wrote:
+> On Tue, Jul 30, 2019 at 05:28:11PM +0100, Thomas Preston wrote:
+>> On 30/07/2019 16:50, Mark Brown wrote:
 > 
-> Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-
-Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-
-I don't plan to take this in my tree without patch 12/12, so if you
-think the rest of the series won't be ready in time for v5.4, feel free
-to get this patch merged through Simon or Geert already.
-
-> ---
->  arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts | 9 +++++++++
->  1 file changed, 9 insertions(+)
+>>> Like I say it's not just debugfs though, there's the standard driver
+>>> interface too.
 > 
-> diff --git a/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts b/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-> index 46a77ee..651383c 100644
-> --- a/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-> +++ b/arch/arm64/boot/dts/renesas/r8a774c0-cat874.dts
-> @@ -65,6 +65,15 @@
->  		reg = <0x0 0x48000000 0x0 0x78000000>;
->  	};
->  
-> +	reg_12p0v: regulator-12p0v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "D12.0V";
-> +		regulator-min-microvolt = <12000000>;
-> +		regulator-max-microvolt = <12000000>;
-> +		regulator-boot-on;
-> +		regulator-always-on;
-> +	};
-> +
->  	sound: sound {
->  		compatible = "simple-audio-card";
->  
+>> Ah right, I understand. So if we run the turn-on diagnostics routine, there's
+>> nothing stopping anyone from interacting with the device in other ways.
+> 
+>> I guess there's no way to share that mutex with ALSA? In that case, it doesn't
+>> matter if this mutex is there or not - this feature is incompatible. How
+>> compatible do debugfs interfaces have to be? I was under the impression anything
+>> goes. I would argue that the debugfs is better off for having the mutex so
+>> that no one re-reads "diagnostic" within the 5s poll timeout.
+> 
+> It's not really something that's supported; like Charles says the DAPM
+> mutex is exposed but if the regular controls would still be able to do
+> stuff.  It is kind of a "you broke it, you fix it" thing but on the
+> other hand it's better to make things safer if we can since it might not
+> be obvious later on why things are broken.
+> 
+>> Alternatively, this diagnostic feature could be handled with an external-handler
+>> kcontrol SOC_SINGLE_EXT? I'm not sure if this is an atomic interface either.
+>>
+>> What would be acceptable?
+> 
+> Yes, that's definitely doable - we've got some other drivers with
+> similar things like calibration triggers exposed that way.
+> 
 
--- 
-Regards,
+One problem with using a kcontrol as a trigger for the turn-on diagnostic
+is that the diagnostic routine has a "return value".
 
-Laurent Pinchart
+It goes like this:
+- Bring device to low-quiescent state
+- Initiate diagnostics
+- Poll for diagnostics-complete bit
+- Read the four channel status registers
+
+The final read clears the status registers, so this isn't something I
+can just do with regmap.
+
+One idea I had was to initiate the turn-on diagnostics using a kcontrol,
+whose handler saves the four channel status registers and an epoch in
+tda7802_priv. Then this can be read from debugfs. But it seems strange
+to have to turn on this control over here, then go over there and read
+this value.
+
+Hm, maybe a better idea is to have the turn on diagnostic only run on
+device probe (as its name suggests!), and print something to dmesg:
+
+	modprobe tda7802 turn_on_diagnostic=1
+
+	tda7802-codec i2c-TDA7802:00: Turn on diagnostic 04 04 04 04
+
+Kirill Marinushkin mentioned this in the first review [0], it just didn't
+really sink in until now!
+
+[0] https://lkml.org/lkml/2019/6/14/1344
