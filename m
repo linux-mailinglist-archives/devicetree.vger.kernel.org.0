@@ -2,110 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 095377E78A
-	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 03:35:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B7D317EA54
+	for <lists+devicetree@lfdr.de>; Fri,  2 Aug 2019 04:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731184AbfHBBfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 1 Aug 2019 21:35:51 -0400
-Received: from mailgw01.mediatek.com ([210.61.82.183]:16015 "EHLO
-        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1731011AbfHBBfu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 21:35:50 -0400
-X-UUID: 8caf567bc513476db8dcba29a9fa4f3c-20190802
-X-UUID: 8caf567bc513476db8dcba29a9fa4f3c-20190802
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw01.mediatek.com
-        (envelope-from <neal.liu@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
-        with ESMTP id 266494707; Fri, 02 Aug 2019 09:35:43 +0800
-Received: from mtkcas08.mediatek.inc (172.21.101.126) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Fri, 2 Aug 2019 09:35:44 +0800
-Received: from [172.21.77.33] (172.21.77.33) by mtkcas08.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Fri, 2 Aug 2019 09:35:44 +0800
-Message-ID: <1564709744.8481.2.camel@mtkswgap22>
-Subject: Re: [PATCH v4 0/3] MediaTek Security random number generator support
-From:   Neal Liu <neal.liu@mediatek.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Rutland <mark.rutland@arm.com>
-CC:     Matt Mackall <mpm@selenic.com>,
-        Herbert Xu <herbert@gondor.apana.org.au>,
-        Sean Wang <sean.wang@kernel.org>,
-        "Crystal Guo =?UTF-8?Q?=28=E9=83=AD=E6=99=B6=29?=" 
-        <Crystal.Guo@mediatek.com>,
-        "linux-crypto@vger.kernel.org" <linux-crypto@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        wsd_upstream <wsd_upstream@mediatek.com>,
-        Neal Liu <neal.liu@mediatek.com>
-Date:   Fri, 2 Aug 2019 09:35:44 +0800
-In-Reply-To: <1563789042.14676.3.camel@mtkswgap22>
-References: <1561361052-13072-1-git-send-email-neal.liu@mediatek.com>
-         <1563789042.14676.3.camel@mtkswgap22>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.2.3-0ubuntu6 
-Content-Transfer-Encoding: 7bit
+        id S1726997AbfHBCaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 1 Aug 2019 22:30:39 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:33094 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726756AbfHBCaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 1 Aug 2019 22:30:39 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 176CF60CED; Fri,  2 Aug 2019 02:30:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1564713038;
+        bh=OZ0F8RORaUhH2iVexwHKq9tgLEmJGbcN3e+e3jjLA1I=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=kiufhAOmCEiVcEp97nEuTYC2w1MGipbICKkEQIdgiLFyR1No3s7yUTkeDqvcr8/oO
+         aBYmxBtCq1UST+hKFViRiw9+jVavDYCRlPNaL/Bqv+6VVoO2Ml6qGAq7jhNZiSOTSh
+         T1gjWhQ7mhiw9k+AOGKZH9vzUVfRtNjDH9fgx2Sc=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from [10.79.43.141] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id A305461FE0;
+        Fri,  2 Aug 2019 02:30:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1564713036;
+        bh=OZ0F8RORaUhH2iVexwHKq9tgLEmJGbcN3e+e3jjLA1I=;
+        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
+        b=Mdlrqe1U7jv3NXPMi3YJzB7dSTLfVwftvLyVTVU2F+eszwTmqpI8MOP4Mv4N/0rQh
+         5DIb/5GmekgB+l3I3kLsd9/enQbi/l1ndeRhPkd1uiiWz/0Cskl9MzoFnNx1ffyLfN
+         +nEZOA7rz1rtsy3yRUiObJMALYn50Qax/FRdS67Y=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org A305461FE0
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
+Subject: Re: [PATCH 2/2] pinctrl: qcom: Add SC7180 pinctrl driver
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     linus.walleij@linaro.org, linux-arm-msm@vger.kernel.org,
+        agross@kernel.org, robh+dt@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jitendra Sharma <shajit@codeaurora.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>
+References: <20190801100717.23333-1-rnayak@codeaurora.org>
+ <20190801100717.23333-2-rnayak@codeaurora.org>
+ <20190801143637.GY7234@tuxbook-pro>
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+Message-ID: <2f530ba7-684b-156b-5fe3-3577d574a03d@codeaurora.org>
+Date:   Fri, 2 Aug 2019 08:00:31 +0530
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-MTK:  N
+In-Reply-To: <20190801143637.GY7234@tuxbook-pro>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dear Matthias, Rob, Mark,
-	Just gentle ping.
-	Thanks
 
 
-> On Mon, 2019-06-24 at 15:24 +0800, Neal Liu wrote:
-> > These patch series introduce a generic rng driver for Trustzone
-> > based kernel driver which would like to communicate with ATF
-> > SIP services.
-> > 
-> > Patch #1 initials SMC fid table for Mediatek SIP interfaces and
-> > adds HWRNG related SMC call.
-> > 
-> > Patch #2..3 adds mtk-sec-rng kernel driver for Trustzone based SoCs.
-> > For MediaTek SoCs on ARMv8 with TrustZone enabled, peripherals like
-> > entropy sources is not accessible from normal world (linux) and
-> > rather accessible from secure world (ATF/TEE) only. This driver aims
-> > to provide a generic interface to ATF rng service.
-> > 
-> > 
-> > changes since v1:
-> > - rename mt67xx-rng to mtk-sec-rng since all MediaTek ARMv8 SoCs
-> > can reuse this driver.
-> > - refine coding style and unnecessary check.
-> > 
-> > changes since v2:
-> > - remove unused comments.
-> > - remove redundant variable.
-> > 
-> > changes since v3:
-> > - add dt-bindings for MediaTek rng with TrustZone enabled
-> > - revise HWRNG SMC call fid
-> > 
-> > 
-> > Neal Liu (3):
-> >   soc: mediatek: add SMC fid table for SIP interface
-> >   dt-bindings: rng: add bindings for MediaTek ARMv8 SoCs
-> >   hwrng: add mtk-sec-rng driver
-> > 
-> >  .../devicetree/bindings/rng/mtk-sec-rng.txt   | 10 ++
-> >  drivers/char/hw_random/Kconfig                | 16 +++
-> >  drivers/char/hw_random/Makefile               |  1 +
-> >  drivers/char/hw_random/mtk-sec-rng.c          | 97 +++++++++++++++++++
-> >  include/linux/soc/mediatek/mtk_sip_svc.h      | 33 +++++++
-> >  5 files changed, 157 insertions(+)
-> >  create mode 100644 Documentation/devicetree/bindings/rng/mtk-sec-rng.txt
-> >  create mode 100644 drivers/char/hw_random/mtk-sec-rng.c
-> >  create mode 100644 include/linux/soc/mediatek/mtk_sip_svc.h
-> > 
+On 8/1/2019 8:06 PM, Bjorn Andersson wrote:
+> On Thu 01 Aug 03:07 PDT 2019, Rajendra Nayak wrote:
+> 
+> [..]
+>> +static const struct msm_pingroup sc7180_groups[] = {
+>> +	[0] = PINGROUP(0, SOUTH, qup01, cri_trng, _, phase_flag, _, _, _, _, _),
+>> +	[1] = PINGROUP(1, SOUTH, qup01, cri_trng, _, phase_flag, _, _, _, _, _),
+>> +	[2] = PINGROUP(2, SOUTH, qup01, cri_trng, _, phase_flag, _, _, _, _, _),
+>> +	[3] = PINGROUP(3, SOUTH, qup01, sp_cmu, dbg_out, qdss_cti, _, _, _, _, _),
+>> +	[4] = PINGROUP(4, NORTH, sdc1_tb, _, qdss_cti, _, _, _, _, _, _), [5] = PINGROUP(5, NORTH, sdc2_tb, _, _, _, _, _, _, _, _),
+>> +	[6] = PINGROUP(6, NORTH, qup11, qup11, _, _, _, _, _, _, _), [7] = PINGROUP(7, NORTH, qup11, qup11, ddr_bist, _, _, _, _, _, _),
+> 
+> 5 and 7 deserve to be on their own line :)
+
+Oops, looks like some formatting mess, I'll fix and resend.
+
+> 
+> Apart from that:
+> 
+> Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+
+thanks for the review.
+
+> 
+> Regards,
+> Bjorn
 > 
 
-
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
