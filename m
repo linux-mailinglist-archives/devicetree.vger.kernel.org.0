@@ -2,318 +2,167 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCA50806A6
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2019 16:20:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 929C5806C6
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2019 16:43:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727791AbfHCOUq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Aug 2019 10:20:46 -0400
-Received: from onstation.org ([52.200.56.107]:57384 "EHLO onstation.org"
+        id S1725974AbfHCOm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Aug 2019 10:42:59 -0400
+Received: from mail.kernel.org ([198.145.29.99]:56202 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727768AbfHCOUp (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 3 Aug 2019 10:20:45 -0400
-Received: from localhost.localdomain (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        id S1725844AbfHCOm6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 3 Aug 2019 10:42:58 -0400
+Received: from X250.getinternet.no (98.142.130.235.16clouds.com [98.142.130.235])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id 9BB4C3E9D1;
-        Sat,  3 Aug 2019 14:20:44 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1564842045;
-        bh=Iwvhut8K+CN5T3f6u68dB0enkpni2//8TEDTdDJODFk=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=G5hMH0bJhaxhkeGjJUOzzkLlEc6mDIWUiB5aHwKMZ13sqcRBsS7Jz3cBna1lbJdTb
-         FUasdac4iWHFtzQJPZsZRfWdX8Z0LY1wy/IiwTPmxMyV30WfAtMo/9PgrT6He46yJ5
-         N6qDsoVP7EukWYJyLy/AfSBEwzwzF889BV+FrdcU=
-From:   Brian Masney <masneyb@onstation.org>
-To:     agross@kernel.org, robdclark@gmail.com, sean@poorly.run,
-        robh+dt@kernel.org, bjorn.andersson@linaro.org
-Cc:     airlied@linux.ie, daniel@ffwll.ch, mark.rutland@arm.com,
-        jonathan@marek.ca, linux-arm-msm@vger.kernel.org,
-        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
-        jcrouse@codeaurora.org
-Subject: [PATCH v4 6/6] drm/msm/gpu: add ocmem init/cleanup functions
-Date:   Sat,  3 Aug 2019 10:20:26 -0400
-Message-Id: <20190803142026.9647-7-masneyb@onstation.org>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190803142026.9647-1-masneyb@onstation.org>
-References: <20190803142026.9647-1-masneyb@onstation.org>
+        by mail.kernel.org (Postfix) with ESMTPSA id 2AE982075C;
+        Sat,  3 Aug 2019 14:42:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564843377;
+        bh=j9YNsw3eBYPTu9Xxm23hbEDGCNmNP7TjbE4q1zeRTs0=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=T2DRLFW9omXx5EqvxY1cf8/Wf+KOhxKdIQZiXFvWwP8oH3KNMgl78CaU9MqEN4kwY
+         819q96SVpwcj+VEQDaVrcEI5HAKwIvzalsMggevFuk3iPgS21HY8i0JcRBZekDmpwC
+         AjJRDD+C1k3j/Xuzg5G6pSAy8wOLZT73iP9rWJJI=
+Date:   Sat, 3 Aug 2019 16:42:51 +0200
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Dong Aisheng <aisheng.dong@nxp.com>
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        sboyd@kernel.org, mturquette@baylibre.com, fabio.estevam@nxp.com,
+        linux-imx@nxp.com, kernel@pengutronix.de,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 01/11] dt-bindings: firmware: imx-scu: new binding to
+ parse clocks from device tree
+Message-ID: <20190803144246.GM8870@X250.getinternet.no>
+References: <1563289265-10977-1-git-send-email-aisheng.dong@nxp.com>
+ <1563289265-10977-2-git-send-email-aisheng.dong@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1563289265-10977-2-git-send-email-aisheng.dong@nxp.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The files a3xx_gpu.c and a4xx_gpu.c have ifdefs for the OCMEM support
-that was missing upstream. Add two new functions (adreno_gpu_ocmem_init
-and adreno_gpu_ocmem_cleanup) that removes some duplicated code.
+On Tue, Jul 16, 2019 at 11:00:55PM +0800, Dong Aisheng wrote:
+> There's a few limitations on the original one cell clock binding
+> (#clock-cells = <1>) that we have to define some SW clock IDs for device
+> tree to reference. This may cause troubles if we want to use common
+> clock IDs for multi platforms support when the clock of those platforms
+> are mostly the same.
+> e.g. Current clock IDs name are defined with SS prefix.
+> 
+> However the device may reside in different SS across CPUs, that means the
+> SS prefix may not valid anymore for a new SoC. Furthermore, the device
+> availability of those clocks may also vary a bit.
+> 
+> For such situation, we want to eliminate the using of SW Clock IDs and
+> change to use a more close to HW one instead.
+> For SCU clocks usage, only two params required: Resource id + Clock Type.
 
-Signed-off-by: Brian Masney <masneyb@onstation.org>
----
-Changes since v3:
-- None
+If this is how SCU firmware addresses the clock, I agree that it's worth
+witching to this new bindings, which describes the hardware (SCU
+firmware in this case) better, IMO.
 
-Changes since v2:
-- Check for -ENODEV error of_get_ocmem()
-- remove fail_cleanup_ocmem label in a[34]xx_gpu_init
+> Both parameters are platform independent. So we could use two cells binding
+> to pass those parameters,
+> 
+> Cc: Rob Herring <robh+dt@kernel.org>
+> Cc: Stephen Boyd <sboyd@kernel.org>
+> Cc: Shawn Guo <shawnguo@kernel.org>
+> Cc: Sascha Hauer <kernel@pengutronix.de>
+> Cc: Michael Turquette <mturquette@baylibre.com>
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
+> ---
+> ChangeLog:
+> v2->v3:
+>  * Changed to two cells binding and register all clocks in driver
+>    instead of parse from device tree.
+> v1->v2:
+>  * changed to one cell binding inspired by arm,scpi.txt
+>    Documentation/devicetree/bindings/arm/arm,scpi.txt
+>    Resource ID is encoded in 'reg' property.
+>    Clock type is encoded in generic clock-indices property.
+>    Then we don't have to search all the DT nodes to fetch
+>    those two value to construct clocks which is relatively
+>    low efficiency.
+>  * Add required power-domain property as well.
+> ---
+>  .../devicetree/bindings/arm/freescale/fsl,scu.txt       | 12 +++++++-----
+>  include/dt-bindings/firmware/imx/rsrc.h                 | 17 +++++++++++++++++
+>  2 files changed, 24 insertions(+), 5 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> index 5d7dbab..351d335 100644
+> --- a/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> +++ b/Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt
+> @@ -89,7 +89,10 @@ Required properties:
+>  			  "fsl,imx8qm-clock"
+>  			  "fsl,imx8qxp-clock"
+>  			followed by "fsl,scu-clk"
+> -- #clock-cells:		Should be 1. Contains the Clock ID value.
+> +- #clock-cells:		Should be either
+> +			2: Contains the Resource and Clock ID value.
+> +			or
+> +			1: Contains the Clock ID value. (DEPRECATED)
+>  - clocks:		List of clock specifiers, must contain an entry for
+>  			each required entry in clock-names
+>  - clock-names:		Should include entries "xtal_32KHz", "xtal_24MHz"
+> @@ -162,7 +165,7 @@ firmware {
+>  
+>  		clk: clk {
+>  			compatible = "fsl,imx8qxp-clk", "fsl,scu-clk";
+> -			#clock-cells = <1>;
+> +			#clock-cells = <2>;
+>  		};
+>  
+>  		iomuxc {
+> @@ -192,8 +195,7 @@ serial@5a060000 {
+>  	...
+>  	pinctrl-names = "default";
+>  	pinctrl-0 = <&pinctrl_lpuart0>;
+> -	clocks = <&clk IMX8QXP_UART0_CLK>,
+> -		 <&clk IMX8QXP_UART0_IPG_CLK>;
+> -	clock-names = "per", "ipg";
+> +	clocks = <&uart0_clk IMX_SC_R_UART_0 IMX_SC_PM_CLK_PER>;
+> +	clock-names = "ipg";
+>  	power-domains = <&pd IMX_SC_R_UART_0>;
+>  };
+> diff --git a/include/dt-bindings/firmware/imx/rsrc.h b/include/dt-bindings/firmware/imx/rsrc.h
+> index 4e61f64..fbeaca7 100644
+> --- a/include/dt-bindings/firmware/imx/rsrc.h
+> +++ b/include/dt-bindings/firmware/imx/rsrc.h
+> @@ -547,4 +547,21 @@
+>  #define IMX_SC_R_ATTESTATION		545
+>  #define IMX_SC_R_LAST			546
+>  
+> +/*
+> + * Defines for SC PM CLK
+> + */
+> +#define IMX_SC_PM_CLK_SLV_BUS		0	/* Slave bus clock */
+> +#define IMX_SC_PM_CLK_MST_BUS		1	/* Master bus clock */
+> +#define IMX_SC_PM_CLK_PER		2	/* Peripheral clock */
+> +#define IMX_SC_PM_CLK_PHY		3	/* Phy clock */
+> +#define IMX_SC_PM_CLK_MISC		4	/* Misc clock */
+> +#define IMX_SC_PM_CLK_MISC0		0	/* Misc 0 clock */
+> +#define IMX_SC_PM_CLK_MISC1		1	/* Misc 1 clock */
+> +#define IMX_SC_PM_CLK_MISC2		2	/* Misc 2 clock */
+> +#define IMX_SC_PM_CLK_MISC3		3	/* Misc 3 clock */
+> +#define IMX_SC_PM_CLK_MISC4		4	/* Misc 4 clock */
+> +#define IMX_SC_PM_CLK_CPU		2	/* CPU clock */
+> +#define IMX_SC_PM_CLK_PLL		4	/* PLL */
+> +#define IMX_SC_PM_CLK_BYPASS		4	/* Bypass clock */
 
-Changes since v1:
-- remove CONFIG_QCOM_OCMEM #ifdefs
-- use unsigned long for memory addresses instead of uint32_t
-- add 'depends on QCOM_OCMEM || QCOM_OCMEM=n' to Kconfig
+It seems that there are several sets of clock type which apply to
+different resources/devices?  If so, can you separate them a bit with
+some comments to make the list easier for readers?
 
- drivers/gpu/drm/msm/Kconfig             |  1 +
- drivers/gpu/drm/msm/adreno/a3xx_gpu.c   | 28 +++++------------
- drivers/gpu/drm/msm/adreno/a3xx_gpu.h   |  3 +-
- drivers/gpu/drm/msm/adreno/a4xx_gpu.c   | 25 ++++------------
- drivers/gpu/drm/msm/adreno/a4xx_gpu.h   |  3 +-
- drivers/gpu/drm/msm/adreno/adreno_gpu.c | 40 +++++++++++++++++++++++++
- drivers/gpu/drm/msm/adreno/adreno_gpu.h | 10 +++++++
- 7 files changed, 66 insertions(+), 44 deletions(-)
+Shawn
 
-diff --git a/drivers/gpu/drm/msm/Kconfig b/drivers/gpu/drm/msm/Kconfig
-index 9c37e4de5896..b3d3b2172659 100644
---- a/drivers/gpu/drm/msm/Kconfig
-+++ b/drivers/gpu/drm/msm/Kconfig
-@@ -7,6 +7,7 @@ config DRM_MSM
- 	depends on OF && COMMON_CLK
- 	depends on MMU
- 	depends on INTERCONNECT || !INTERCONNECT
-+	depends on QCOM_OCMEM || QCOM_OCMEM=n
- 	select QCOM_MDT_LOADER if ARCH_QCOM
- 	select REGULATOR
- 	select DRM_KMS_HELPER
-diff --git a/drivers/gpu/drm/msm/adreno/a3xx_gpu.c b/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-index ec82aaa21734..07ddcc529573 100644
---- a/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a3xx_gpu.c
-@@ -6,10 +6,6 @@
-  * Copyright (c) 2014 The Linux Foundation. All rights reserved.
-  */
- 
--#ifdef CONFIG_MSM_OCMEM
--#  include <mach/ocmem.h>
--#endif
--
- #include "a3xx_gpu.h"
- 
- #define A3XX_INT0_MASK \
-@@ -195,9 +191,9 @@ static int a3xx_hw_init(struct msm_gpu *gpu)
- 		gpu_write(gpu, REG_A3XX_RBBM_GPR0_CTL, 0x00000000);
- 
- 	/* Set the OCMEM base address for A330, etc */
--	if (a3xx_gpu->ocmem_hdl) {
-+	if (a3xx_gpu->ocmem.hdl) {
- 		gpu_write(gpu, REG_A3XX_RB_GMEM_BASE_ADDR,
--			(unsigned int)(a3xx_gpu->ocmem_base >> 14));
-+			(unsigned int)(a3xx_gpu->ocmem.base >> 14));
- 	}
- 
- 	/* Turn on performance counters: */
-@@ -318,10 +314,7 @@ static void a3xx_destroy(struct msm_gpu *gpu)
- 
- 	adreno_gpu_cleanup(adreno_gpu);
- 
--#ifdef CONFIG_MSM_OCMEM
--	if (a3xx_gpu->ocmem_base)
--		ocmem_free(OCMEM_GRAPHICS, a3xx_gpu->ocmem_hdl);
--#endif
-+	adreno_gpu_ocmem_cleanup(&a3xx_gpu->ocmem);
- 
- 	kfree(a3xx_gpu);
- }
-@@ -494,17 +487,10 @@ struct msm_gpu *a3xx_gpu_init(struct drm_device *dev)
- 
- 	/* if needed, allocate gmem: */
- 	if (adreno_is_a330(adreno_gpu)) {
--#ifdef CONFIG_MSM_OCMEM
--		/* TODO this is different/missing upstream: */
--		struct ocmem_buf *ocmem_hdl =
--				ocmem_allocate(OCMEM_GRAPHICS, adreno_gpu->gmem);
--
--		a3xx_gpu->ocmem_hdl = ocmem_hdl;
--		a3xx_gpu->ocmem_base = ocmem_hdl->addr;
--		adreno_gpu->gmem = ocmem_hdl->len;
--		DBG("using %dK of OCMEM at 0x%08x", adreno_gpu->gmem / 1024,
--				a3xx_gpu->ocmem_base);
--#endif
-+		ret = adreno_gpu_ocmem_init(&adreno_gpu->base.pdev->dev,
-+					    adreno_gpu, &a3xx_gpu->ocmem);
-+		if (ret)
-+			goto fail;
- 	}
- 
- 	if (!gpu->aspace) {
-diff --git a/drivers/gpu/drm/msm/adreno/a3xx_gpu.h b/drivers/gpu/drm/msm/adreno/a3xx_gpu.h
-index 5dc33e5ea53b..c555fb13e0d7 100644
---- a/drivers/gpu/drm/msm/adreno/a3xx_gpu.h
-+++ b/drivers/gpu/drm/msm/adreno/a3xx_gpu.h
-@@ -19,8 +19,7 @@ struct a3xx_gpu {
- 	struct adreno_gpu base;
- 
- 	/* if OCMEM is used for GMEM: */
--	uint32_t ocmem_base;
--	void *ocmem_hdl;
-+	struct adreno_ocmem ocmem;
- };
- #define to_a3xx_gpu(x) container_of(x, struct a3xx_gpu, base)
- 
-diff --git a/drivers/gpu/drm/msm/adreno/a4xx_gpu.c b/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-index ab2b752566d8..b01388a9e89e 100644
---- a/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/a4xx_gpu.c
-@@ -2,9 +2,6 @@
- /* Copyright (c) 2014 The Linux Foundation. All rights reserved.
-  */
- #include "a4xx_gpu.h"
--#ifdef CONFIG_MSM_OCMEM
--#  include <soc/qcom/ocmem.h>
--#endif
- 
- #define A4XX_INT0_MASK \
- 	(A4XX_INT0_RBBM_AHB_ERROR |        \
-@@ -188,7 +185,7 @@ static int a4xx_hw_init(struct msm_gpu *gpu)
- 			(1 << 30) | 0xFFFF);
- 
- 	gpu_write(gpu, REG_A4XX_RB_GMEM_BASE_ADDR,
--			(unsigned int)(a4xx_gpu->ocmem_base >> 14));
-+			(unsigned int)(a4xx_gpu->ocmem.base >> 14));
- 
- 	/* Turn on performance counters: */
- 	gpu_write(gpu, REG_A4XX_RBBM_PERFCTR_CTL, 0x01);
-@@ -318,10 +315,7 @@ static void a4xx_destroy(struct msm_gpu *gpu)
- 
- 	adreno_gpu_cleanup(adreno_gpu);
- 
--#ifdef CONFIG_MSM_OCMEM
--	if (a4xx_gpu->ocmem_base)
--		ocmem_free(OCMEM_GRAPHICS, a4xx_gpu->ocmem_hdl);
--#endif
-+	adreno_gpu_ocmem_cleanup(&a4xx_gpu->ocmem);
- 
- 	kfree(a4xx_gpu);
- }
-@@ -578,17 +572,10 @@ struct msm_gpu *a4xx_gpu_init(struct drm_device *dev)
- 
- 	/* if needed, allocate gmem: */
- 	if (adreno_is_a4xx(adreno_gpu)) {
--#ifdef CONFIG_MSM_OCMEM
--		/* TODO this is different/missing upstream: */
--		struct ocmem_buf *ocmem_hdl =
--				ocmem_allocate(OCMEM_GRAPHICS, adreno_gpu->gmem);
--
--		a4xx_gpu->ocmem_hdl = ocmem_hdl;
--		a4xx_gpu->ocmem_base = ocmem_hdl->addr;
--		adreno_gpu->gmem = ocmem_hdl->len;
--		DBG("using %dK of OCMEM at 0x%08x", adreno_gpu->gmem / 1024,
--				a4xx_gpu->ocmem_base);
--#endif
-+		ret = adreno_gpu_ocmem_init(dev->dev, adreno_gpu,
-+					    &a4xx_gpu->ocmem);
-+		if (ret)
-+			goto fail;
- 	}
- 
- 	if (!gpu->aspace) {
-diff --git a/drivers/gpu/drm/msm/adreno/a4xx_gpu.h b/drivers/gpu/drm/msm/adreno/a4xx_gpu.h
-index d506311ee240..a01448cba2ea 100644
---- a/drivers/gpu/drm/msm/adreno/a4xx_gpu.h
-+++ b/drivers/gpu/drm/msm/adreno/a4xx_gpu.h
-@@ -16,8 +16,7 @@ struct a4xx_gpu {
- 	struct adreno_gpu base;
- 
- 	/* if OCMEM is used for GMEM: */
--	uint32_t ocmem_base;
--	void *ocmem_hdl;
-+	struct adreno_ocmem ocmem;
- };
- #define to_a4xx_gpu(x) container_of(x, struct a4xx_gpu, base)
- 
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.c b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-index 9acbbc0f3232..62e3ada0f7c8 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-+++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.c
-@@ -14,6 +14,7 @@
- #include <linux/pm_opp.h>
- #include <linux/slab.h>
- #include <linux/soc/qcom/mdt_loader.h>
-+#include <soc/qcom/ocmem.h>
- #include "adreno_gpu.h"
- #include "msm_gem.h"
- #include "msm_mmu.h"
-@@ -892,6 +893,45 @@ static int adreno_get_pwrlevels(struct device *dev,
- 	return 0;
- }
- 
-+int adreno_gpu_ocmem_init(struct device *dev, struct adreno_gpu *adreno_gpu,
-+			  struct adreno_ocmem *adreno_ocmem)
-+{
-+	struct ocmem_buf *ocmem_hdl;
-+	struct ocmem *ocmem;
-+
-+	ocmem = of_get_ocmem(dev);
-+	if (IS_ERR(ocmem)) {
-+		if (PTR_ERR(ocmem) == -ENODEV) {
-+			/*
-+			 * Return success since either the ocmem property was
-+			 * not specified in device tree, or ocmem support is
-+			 * not compiled into the kernel.
-+			 */
-+			return 0;
-+		}
-+
-+		return PTR_ERR(ocmem);
-+	}
-+
-+	ocmem_hdl = ocmem_allocate(ocmem, OCMEM_GRAPHICS, adreno_gpu->gmem);
-+	if (IS_ERR(ocmem_hdl))
-+		return PTR_ERR(ocmem_hdl);
-+
-+	adreno_ocmem->ocmem = ocmem;
-+	adreno_ocmem->base = ocmem_hdl->addr;
-+	adreno_ocmem->hdl = ocmem_hdl;
-+	adreno_gpu->gmem = ocmem_hdl->len;
-+
-+	return 0;
-+}
-+
-+void adreno_gpu_ocmem_cleanup(struct adreno_ocmem *adreno_ocmem)
-+{
-+	if (adreno_ocmem && adreno_ocmem->base)
-+		ocmem_free(adreno_ocmem->ocmem, OCMEM_GRAPHICS,
-+			   adreno_ocmem->hdl);
-+}
-+
- int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
- 		struct adreno_gpu *adreno_gpu,
- 		const struct adreno_gpu_funcs *funcs, int nr_rings)
-diff --git a/drivers/gpu/drm/msm/adreno/adreno_gpu.h b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-index c7441fb8313e..d225a8a92e58 100644
---- a/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-+++ b/drivers/gpu/drm/msm/adreno/adreno_gpu.h
-@@ -126,6 +126,12 @@ struct adreno_gpu {
- };
- #define to_adreno_gpu(x) container_of(x, struct adreno_gpu, base)
- 
-+struct adreno_ocmem {
-+	struct ocmem *ocmem;
-+	unsigned long base;
-+	void *hdl;
-+};
-+
- /* platform config data (ie. from DT, or pdata) */
- struct adreno_platform_config {
- 	struct adreno_rev rev;
-@@ -236,6 +242,10 @@ void adreno_dump(struct msm_gpu *gpu);
- void adreno_wait_ring(struct msm_ringbuffer *ring, uint32_t ndwords);
- struct msm_ringbuffer *adreno_active_ring(struct msm_gpu *gpu);
- 
-+int adreno_gpu_ocmem_init(struct device *dev, struct adreno_gpu *adreno_gpu,
-+			  struct adreno_ocmem *ocmem);
-+void adreno_gpu_ocmem_cleanup(struct adreno_ocmem *ocmem);
-+
- int adreno_gpu_init(struct drm_device *drm, struct platform_device *pdev,
- 		struct adreno_gpu *gpu, const struct adreno_gpu_funcs *funcs,
- 		int nr_rings);
--- 
-2.21.0
-
+> +
+>  #endif /* __DT_BINDINGS_RSCRC_IMX_H */
+> -- 
+> 2.7.4
+> 
