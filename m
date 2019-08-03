@@ -2,147 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7A98E80660
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2019 15:51:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE2428069E
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2019 16:20:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390964AbfHCNvA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Aug 2019 09:51:00 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43676 "EHLO mail.kernel.org"
+        id S1727721AbfHCOUn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Aug 2019 10:20:43 -0400
+Received: from onstation.org ([52.200.56.107]:57252 "EHLO onstation.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390950AbfHCNvA (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 3 Aug 2019 09:51:00 -0400
-Received: from X250.getinternet.no (98.142.130.235.16clouds.com [98.142.130.235])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        id S1727716AbfHCOUm (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 3 Aug 2019 10:20:42 -0400
+Received: from localhost.localdomain (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 56FD92073D;
-        Sat,  3 Aug 2019 13:50:56 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1564840258;
-        bh=QkQ36nUIy9rDl+MkZ/oPfDiJfp0qlDTaU7/AUJaFWQI=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=ZIuXdMnAlsZPl/F0WvsG8MKXnENSCo8w4bnGylMsWrk6pA4N5jZh4Ltw8tei1PMhZ
-         fc6sUa+D8i4ewnHdoFtbLT1BmpLHAY07GgMCeiRGJGbBo1sssYuoAqmetYMVKkLumh
-         vG+M/Xd8cDjXeH0l3pD2f6WtKnRrGxf1oxoipbFw=
-Date:   Sat, 3 Aug 2019 15:50:52 +0200
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Dong Aisheng <aisheng.dong@nxp.com>
-Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        sboyd@kernel.org, mturquette@baylibre.com, fabio.estevam@nxp.com,
-        linux-imx@nxp.com, kernel@pengutronix.de,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 02/11] dt-bindings: clock: imx-lpcg: add support to
- parse clocks from device tree
-Message-ID: <20190803135048.GL8870@X250.getinternet.no>
-References: <1563289265-10977-1-git-send-email-aisheng.dong@nxp.com>
- <1563289265-10977-3-git-send-email-aisheng.dong@nxp.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1563289265-10977-3-git-send-email-aisheng.dong@nxp.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id 31A2E3E911;
+        Sat,  3 Aug 2019 14:20:41 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1564842042;
+        bh=AyN5wQsPxPTEJYAgV1yzeXYMQ15czOuk0KIihcraLSQ=;
+        h=From:To:Cc:Subject:Date:From;
+        b=LvF1jtvevdB+pD55EVf+sBrBhUXMlF5WEr0I4F42bHqLhP4ue0s99dvDFDaSrWGIO
+         V9xqAexfLVoigDYQ4s4XbeiRRwhkhALXXtXDR4zqFIh2uQ2BtIUX1H0p1RpUZXx4Qp
+         JzPtAWsC6HO31EHsc3mbTF3qtmYi5Rj4CEqrvqhU=
+From:   Brian Masney <masneyb@onstation.org>
+To:     agross@kernel.org, robdclark@gmail.com, sean@poorly.run,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org
+Cc:     airlied@linux.ie, daniel@ffwll.ch, mark.rutland@arm.com,
+        jonathan@marek.ca, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        jcrouse@codeaurora.org
+Subject: [PATCH v4 0/6] qcom: add OCMEM support
+Date:   Sat,  3 Aug 2019 10:20:20 -0400
+Message-Id: <20190803142026.9647-1-masneyb@onstation.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 16, 2019 at 11:00:56PM +0800, Dong Aisheng wrote:
-> MX8QM and MX8QXP LPCG Clocks are mostly the same except they may reside
-> in different subsystems across CPUs and also vary a bit on the availability.
-> 
-> Same as SCU clock, we want to move the clock definition into device tree
-> which can fully decouple the dependency of Clock ID definition from device
-> tree and make us be able to write a fully generic lpcg clock driver.
-> 
-> And we can also use the existence of clock nodes in device tree to address
-> the device and clock availability differences across different SoCs.
-> 
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Stephen Boyd <sboyd@kernel.org>
-> Cc: Shawn Guo <shawnguo@kernel.org>
-> Cc: Sascha Hauer <kernel@pengutronix.de>
-> Cc: Michael Turquette <mturquette@baylibre.com>
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Dong Aisheng <aisheng.dong@nxp.com>
-> ---
-> ChangeLog:
-> v2->v3:
->  * no changes
-> v1->v2:
->  * Update example
->  * Add power domain property
-> ---
->  .../devicetree/bindings/clock/imx8qxp-lpcg.txt     | 34 ++++++++++++++++++----
->  1 file changed, 28 insertions(+), 6 deletions(-)
-> 
-> diff --git a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.txt b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.txt
-> index 965cfa4..6fc2fd8 100644
-> --- a/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.txt
-> +++ b/Documentation/devicetree/bindings/clock/imx8qxp-lpcg.txt
-> @@ -11,6 +11,21 @@ enabled by these control bits, it might still not be running based
->  on the base resource.
->  
->  Required properties:
-> +- compatible:		Should be one of:
-> +			  "fsl,imx8qxp-lpcg"
-> +			  "fsl,imx8qm-lpcg" followed by "fsl,imx8qxp-lpcg".
-> +- reg:			Address and length of the register set.
-> +- #clock-cells:		Should be 1. One LPCG supports multiple clocks.
-> +- clocks:		Input parent clocks phandle array for each clock.
-> +- bit-offset:		An integer array indicating the bit offset for each clock.
+This patch series adds support for Qualcomm's On Chip MEMory (OCMEM)
+that is needed in order to support some a3xx and a4xx-based GPUs
+upstream. This is based on Rob Clark's patch series that he submitted
+in October 2015 and I am resubmitting updated patches with his
+permission. See the individual patches for the changelog.
 
-I guess that the driver should be able to figure bit offset from
-'clock-indices' property.
+This was tested with the GPU on a LG Nexus 5 (hammerhead) phone and
+this will work on other msm8974-based systems. For a summary of what
+currently works upstream on the Nexus 5, see my status page at
+https://masneyb.github.io/nexus-5-upstream/.
 
-> +- hw-autogate:		Boolean array indicating whether supports HW autogate for
-> +			each clock.
+Brian Masney (4):
+  dt-bindings: soc: qcom: add On Chip MEMory (OCMEM) bindings
+  dt-bindings: display: msm: gmu: add optional ocmem property
+  soc: qcom: add OCMEM driver
+  drm/msm/gpu: add ocmem init/cleanup functions
 
-Not sure why it needs to be a property in DT.  Or asking it different
-way, when it should be true and when false?
+Rob Clark (2):
+  firmware: qcom: scm: add OCMEM lock/unlock interface
+  firmware: qcom: scm: add support to restore secure config to
+    qcm_scm-32
 
-Shawn
+ .../devicetree/bindings/display/msm/gmu.txt   |  50 ++
+ .../devicetree/bindings/sram/qcom,ocmem.yaml  |  96 ++++
+ drivers/firmware/qcom_scm-32.c                |  52 ++-
+ drivers/firmware/qcom_scm-64.c                |  12 +
+ drivers/firmware/qcom_scm.c                   |  53 +++
+ drivers/firmware/qcom_scm.h                   |   9 +
+ drivers/gpu/drm/msm/Kconfig                   |   1 +
+ drivers/gpu/drm/msm/adreno/a3xx_gpu.c         |  28 +-
+ drivers/gpu/drm/msm/adreno/a3xx_gpu.h         |   3 +-
+ drivers/gpu/drm/msm/adreno/a4xx_gpu.c         |  25 +-
+ drivers/gpu/drm/msm/adreno/a4xx_gpu.h         |   3 +-
+ drivers/gpu/drm/msm/adreno/adreno_gpu.c       |  40 ++
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h       |  10 +
+ drivers/soc/qcom/Kconfig                      |  10 +
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/ocmem.c                      | 433 ++++++++++++++++++
+ include/linux/qcom_scm.h                      |  26 ++
+ include/soc/qcom/ocmem.h                      |  62 +++
+ 18 files changed, 869 insertions(+), 45 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
+ create mode 100644 drivers/soc/qcom/ocmem.c
+ create mode 100644 include/soc/qcom/ocmem.h
 
-> +- clock-output-names:	Shall be the corresponding names of the outputs.
-> +			NOTE this property must be specified in the same order
-> +			as the clock bit-offset and hw-autogate property.
-> +- power-domains:	Should contain the power domain used by this clock.
-> +
-> +Legacy binding (DEPRECATED):
->  - compatible:	Should be one of:
->  		  "fsl,imx8qxp-lpcg-adma",
->  		  "fsl,imx8qxp-lpcg-conn",
-> @@ -33,10 +48,17 @@ Examples:
->  
->  #include <dt-bindings/clock/imx8qxp-clock.h>
->  
-> -conn_lpcg: clock-controller@5b200000 {
-> -	compatible = "fsl,imx8qxp-lpcg-conn";
-> -	reg = <0x5b200000 0xb0000>;
-> +sdhc0_lpcg: clock-controller@5b200000 {
-> +	compatible = "fsl,imx8qxp-lpcg";
-> +	reg = <0x5b200000 0x10000>;
->  	#clock-cells = <1>;
-> +	clocks = <&sdhc0_clk IMX_SC_PM_CLK_PER>,
-> +		 <&conn_ipg_clk>, <&conn_axi_clk>;
-> +	bit-offset = <0 16 20>;
-> +	clock-output-names = "sdhc0_lpcg_per_clk",
-> +			     "sdhc0_lpcg_ipg_clk",
-> +			     "sdhc0_lpcg_ahb_clk";
-> +	power-domains = <&pd IMX_SC_R_SDHC_0>;
->  };
->  
->  usdhc1: mmc@5b010000 {
-> @@ -44,8 +66,8 @@ usdhc1: mmc@5b010000 {
->  	interrupt-parent = <&gic>;
->  	interrupts = <GIC_SPI 232 IRQ_TYPE_LEVEL_HIGH>;
->  	reg = <0x5b010000 0x10000>;
-> -	clocks = <&conn_lpcg IMX8QXP_CONN_LPCG_SDHC0_IPG_CLK>,
-> -		 <&conn_lpcg IMX8QXP_CONN_LPCG_SDHC0_PER_CLK>,
-> -		 <&conn_lpcg IMX8QXP_CONN_LPCG_SDHC0_HCLK>;
-> +	clocks = <&sdhc0_lpcg 1>,
-> +		 <&sdhc0_lpcg 0>,
-> +		 <&sdhc0_lpcg 2>;
->  	clock-names = "ipg", "per", "ahb";
->  };
-> -- 
-> 2.7.4
-> 
+-- 
+2.21.0
+
