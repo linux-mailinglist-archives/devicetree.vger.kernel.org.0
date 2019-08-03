@@ -2,106 +2,166 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 83A838045D
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2019 06:27:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D03B804CB
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2019 09:00:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726136AbfHCE13 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Aug 2019 00:27:29 -0400
-Received: from esa4.hgst.iphmx.com ([216.71.154.42]:20709 "EHLO
-        esa4.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726048AbfHCE1Z (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Aug 2019 00:27:25 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1564806446; x=1596342446;
-  h=from:to:cc:subject:date:message-id:in-reply-to:
-   references:mime-version:content-transfer-encoding;
-  bh=x5a25h+13vDU6pS3SVLBNKrcj2J81NhRyjpTNiIo8ng=;
-  b=Z1iNQ1GRBHUveyxn3fscSOvy/c9+fj5LTBXut62jdRg/Q9cvXJW6BMmd
-   qZ7RGoPXqnGf9SZow+KKZZCdWd5Flw1lGWB/HbimjTSQkK6/UwBmvhaTG
-   skTrFsBqTuIrB3YhJZygrAz0dR3RhDX7JcP/au1xhTQ59tA4t4+a9dj8h
-   JCes1YD+EBWyEQ7epc1skOp+dM5bvprNCtYXYyKHm5kaNKZNEoj4xAocb
-   3bLu0Hb9qFKxIp/QsBcYRxC0joWbtiGmtTIH8milxrY/HothOrQmwdBhd
-   Drbjc22NXrsxeMWO1tvExIl96KnkC0KQFQW57LM6Fkm+9mFdCMpflMBp+
-   A==;
-IronPort-SDR: oJ7hs1j2BzuOLxwr/WK2eK4IdV45KJ1qkCKpXsNtcrEi/3UgnGJLzT22Fj5f1GZ9oDsEXdXh01
- lXryHPvQio7M6KC3llH8UXOwlFz52gi0Mmk8bOhz4ba7zIYY56Cxs7GcLK7hSuFm1H58bkeyLT
- QdlHTlhg1Tzx7827ik3kl5mEtmMlGe+yS2jqBmtdy6ut65CU83Ckx12xVOrj/qs2o0A4qxd+gi
- GBQC/u3htM3r0OJ8xQlfMIET20boxYAeRr338fmwk0/azGA/iEk0yHvWEysz2e5mBs2gdjdkzi
- uE8=
-X-IronPort-AV: E=Sophos;i="5.64,340,1559491200"; 
-   d="scan'208";a="114857040"
-Received: from uls-op-cesaip02.wdc.com (HELO uls-op-cesaep02.wdc.com) ([199.255.45.15])
-  by ob1.hgst.iphmx.com with ESMTP; 03 Aug 2019 12:27:25 +0800
-IronPort-SDR: V7ndhCnBLZHve0QUDUv475FQJyE75JL/PnFEj3vpvMCeaM/Pdb30/WB/Ei+Nr4REOYhMTeT5iN
- DGxOwl8i7Y4c+bHNZj0H/X5akHjMzKuM+Hvgy7zbPe93bhDDw1a7m2VFy+eOZm8qSNWu+bUaHz
- Mo+uPIUeaKsm6gXoL92kTseChAgKL0WTJa2YEuXYGlIh+f+FPRkFdHVowSN71nNKG3nlFVKK1U
- lvqHF1fk9ZucPMDXkNwcMm2v402zbpi+n1FWvDSFjHVHY3salgmWZc2724C0TGbzDc+buSWOWe
- zEKS+q72WwgfJP9csUloSMiv
-Received: from uls-op-cesaip01.wdc.com ([10.248.3.36])
-  by uls-op-cesaep02.wdc.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 02 Aug 2019 21:25:20 -0700
-IronPort-SDR: 0v4e9VHYa72MRX66Fef5d0jSyMrlTHPpXWIRs86/yPfZHpcHR22X3GhlOA2OzfKa7o4apHV5GZ
- wh6i7v062Z6qNPcbSF1wz/WFVnSyWd1y/Q44BJ+ADtYivKFhIYgxm3TIsG6y+THA4P/gMiBOYu
- K+Nkh7TiXbvHW72yXTZfEJ98o1xSCZgB3eQfLAinXTS+0JcWtWvOAN3XJNO/jvaJEp6sL6In1d
- w+BHo1w2MxlqO8tJt1tfwagiT6Yq1HJLSgswIx4QTMOPB3qY7ZXiz8tzSmzG1KjjkVUImkeob8
- +3A=
-Received: from jedi-01.sdcorp.global.sandisk.com (HELO jedi-01.int.fusionio.com) ([10.11.143.218])
-  by uls-op-cesaip01.wdc.com with ESMTP; 02 Aug 2019 21:27:26 -0700
-From:   Atish Patra <atish.patra@wdc.com>
-To:     linux-kernel@vger.kernel.org
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        Alan Kao <alankao@andestech.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup.patel@wdc.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        devicetree@vger.kernel.org, Enrico Weigelt <info@metux.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johan Hovold <johan@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: [PATCH v4 4/4] dt-bindings: Update the riscv,isa string description
-Date:   Fri,  2 Aug 2019 21:27:23 -0700
-Message-Id: <20190803042723.7163-5-atish.patra@wdc.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190803042723.7163-1-atish.patra@wdc.com>
-References: <20190803042723.7163-1-atish.patra@wdc.com>
+        id S1727043AbfHCHAn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Aug 2019 03:00:43 -0400
+Received: from mail.kernel.org ([198.145.29.99]:38408 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726797AbfHCHAn (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 3 Aug 2019 03:00:43 -0400
+Received: from X250 (cm-84.211.118.175.getinternet.no [84.211.118.175])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id B039C206A2;
+        Sat,  3 Aug 2019 07:00:38 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1564815641;
+        bh=Mx/SnMcesaBhJ/+1aNzTVEStgY0PLbFq0Cn9fzUKZFI=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=vWTFmpNiA2iV7ZADM/jQQhVG5dxH6s50eBykNukiLwZrXMbI2ko+4YJkraKc9h4yW
+         gT+yK/FSFzC75LF3yqEeynkMqLQyXvE33dYZLg1buqojNtCOFSu2Dvxvg+bslfwk7h
+         Twg4iLQQdO3eXemoEAKcsbTuppqe/TK1g5ve9Ot8=
+Date:   Sat, 3 Aug 2019 09:00:34 +0200
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Yinbo Zhu <yinbo.zhu@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        xiaobo.xie@nxp.com, Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-mmc@vger.kernel.org,
+        yangbo.lu@nxp.com, jiafei.pan@nxp.com,
+        Ashish Kumar <Ashish.Kumar@nxp.com>
+Subject: Re: [PATCH v3] arm64: dts: ls1028a: Add esdhc node in dts
+Message-ID: <20190803070033.GA5627@X250>
+References: <20190515084925.30155-1-yinbo.zhu@nxp.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190515084925.30155-1-yinbo.zhu@nxp.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Since the RISC-V specification states that ISA description strings are
-case-insensitive, there's no functional difference between mixed-case,
-upper-case, and lower-case ISA strings. Thus, to simplify parsing,
-specify that the letters present in "riscv,isa" must be all lowercase.
+On Wed, May 15, 2019 at 04:49:25PM +0800, Yinbo Zhu wrote:
+> From: Ashish Kumar <Ashish.Kumar@nxp.com>
+> 
+> This patch is to add esdhc node and enable SD UHS-I,
+> eMMC HS200 for ls1028ardb/ls1028aqds board.
+> 
+> Signed-off-by: Ashish Kumar <Ashish.Kumar@nxp.com>
+> Signed-off-by: Yangbo Lu <yangbo.lu@nxp.com>
+> Signed-off-by: Yinbo Zhu <yinbo.zhu@nxp.com>
+> ---
+> Change in v3:
+> 		replace "esdhc@" with "mmc@"
+> 
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts |    8 ++++++
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts |   13 ++++++++++
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi    |   27 +++++++++++++++++++++
+>  3 files changed, 48 insertions(+), 0 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> index 14c79f4..180e5d2 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-qds.dts
+> @@ -42,6 +42,14 @@
+>  	status = "okay";
+>  };
+>  
+> +&esdhc {
+> +	status = "okay";
+> +};
+> +
+> +&esdhc1 {
+> +	status = "okay";
+> +};
+> +
+>  &i2c0 {
+>  	status = "okay";
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> index f86b054..1bfaf42 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a-rdb.dts
+> @@ -30,6 +30,19 @@
+>  	};
+>  };
+>  
+> +&esdhc {
+> +	status = "okay";
 
-Suggested-by: Paul Walmsley <paul.walmsley@sifive.com>
-Signed-off-by: Atish Patra <atish.patra@wdc.com>
----
- Documentation/devicetree/bindings/riscv/cpus.yaml | 4 ++++
- 1 file changed, 4 insertions(+)
+We usually put 'status' at end of property list.
 
-diff --git a/Documentation/devicetree/bindings/riscv/cpus.yaml b/Documentation/devicetree/bindings/riscv/cpus.yaml
-index c899111aa5e3..9d3fe6aada2b 100644
---- a/Documentation/devicetree/bindings/riscv/cpus.yaml
-+++ b/Documentation/devicetree/bindings/riscv/cpus.yaml
-@@ -50,6 +50,10 @@ properties:
-       User-Level ISA document, available from
-       https://riscv.org/specifications/
- 
-+      While the isa strings in ISA specification are case
-+      insensitive, letters in the riscv,isa string must be all
-+      lowercase to simplify parsing.
-+
-   timebase-frequency:
-     type: integer
-     minimum: 1
--- 
-2.21.0
+> +	sd-uhs-sdr104;
+> +	sd-uhs-sdr50;
+> +	sd-uhs-sdr25;
+> +	sd-uhs-sdr12;
+> +	};
 
+Please follow the indent style of closing parentheses in the file.
+
+> +
+> +&esdhc1 {
+> +	status = "okay";
+> +	mmc-hs200-1_8v;
+> +	};
+
+Ditto
+
+> +
+>  &i2c0 {
+>  	status = "okay";
+>  
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index 2896bbc..462833c 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -274,6 +274,33 @@
+>  			status = "disabled";
+>  		};
+>  
+> +		esdhc: mmc@2140000 {
+
+Please sort the nodes in unit-address.  From what I see, it should go
+before device serial@21c0500.
+
+> +			compatible = "fsl,ls1028a-esdhc", "fsl,esdhc";
+> +			reg = <0x0 0x2140000 0x0 0x10000>;
+> +			interrupts = <0 28 0x4>; /* Level high type */
+
+Use IRQ_TYPE_LEVEL_HIGH, then you can drop the comment.
+
+Shawn
+
+> +			clock-frequency = <0>; /* fixed up by bootloader */
+> +			clocks = <&clockgen 2 1>;
+> +			voltage-ranges = <1800 1800 3300 3300>;
+> +			sdhci,auto-cmd12;
+> +			little-endian;
+> +			bus-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+> +		esdhc1: mmc@2150000 {
+> +			compatible = "fsl,ls1028a-esdhc", "fsl,esdhc";
+> +			reg = <0x0 0x2150000 0x0 0x10000>;
+> +			interrupts = <0 63 0x4>; /* Level high type */
+> +			clock-frequency = <0>; /* fixed up by bootloader */
+> +			clocks = <&clockgen 2 1>;
+> +			voltage-ranges = <1800 1800 3300 3300>;
+> +			sdhci,auto-cmd12;
+> +			broken-cd;
+> +			little-endian;
+> +			bus-width = <4>;
+> +			status = "disabled";
+> +		};
+> +
+>  		sata: sata@3200000 {
+>  			compatible = "fsl,ls1028a-ahci";
+>  			reg = <0x0 0x3200000 0x0 0x10000>,
+> -- 
+> 1.7.1
+> 
