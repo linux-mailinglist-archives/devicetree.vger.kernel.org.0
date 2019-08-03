@@ -2,145 +2,106 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 173AA80769
-	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2019 19:33:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2DECD80788
+	for <lists+devicetree@lfdr.de>; Sat,  3 Aug 2019 19:52:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726717AbfHCRd5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 3 Aug 2019 13:33:57 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:40419 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725886AbfHCRd4 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Aug 2019 13:33:56 -0400
-Received: by mail-ot1-f66.google.com with SMTP id l15so24131509oth.7;
-        Sat, 03 Aug 2019 10:33:55 -0700 (PDT)
+        id S1728410AbfHCRwj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 3 Aug 2019 13:52:39 -0400
+Received: from mail-oi1-f196.google.com ([209.85.167.196]:34702 "EHLO
+        mail-oi1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728389AbfHCRwi (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 3 Aug 2019 13:52:38 -0400
+Received: by mail-oi1-f196.google.com with SMTP id l12so59250628oil.1;
+        Sat, 03 Aug 2019 10:52:38 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=googlemail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=a73iM0e1gPWjjRBi3/LsFQbixuEHj+TrPlcXhkLNbHk=;
-        b=KJgjf/Ze0bomvSK3eoP82aftItOEt2KoT40KuFK+E3nFGSuDP4ADawxFdJ7mYutbCB
-         FIPgRWYB6oNloDOv12BXfCdjKLoSmiS7Z3L7G+OoctWtODsfW3fkQqfhMHUIINz4LM9B
-         nw9xgemXYy9JUhYCMs/+WQJ6p0KkG5frwJFTxGYZ5OpiyNpL8LdVAbdM15ntZXDA0ggg
-         DhpmVnDNM4ORl++VVkFzt26gybaaL2kCQujfhV8z+1hYheqnPj2jUG797DLjffdeXArv
-         aEfECj2pAXhgjOLuZSw6FrxB3jC1TX8r6LNWCiqnL3450QT2dZRDFKuq01CkAlaqDD63
-         j3xQ==
+        bh=giFFxAwzHVZcTDv5cDCIurtf5E8rD1w0AM4tyzYzsnQ=;
+        b=AqJbCsXDWob/b1bzOngByMcRxPfvkbkLz4G34Vbw2MZRlyroyApUC5Yw87zvK1Fur+
+         ApIUWtaYUtyP4jsJhLc+gdiuuNvpHs9jHIzxCAp91ZlfGebQMuEfPKgOhEWoSqbDqinM
+         3YB973dJ2gsupR7H4uAehDFoKZ1fLBkDf88snzFgsNMMy7LP8S6V1Su/qea2eX6LY5Bt
+         Mc6LCYXIshNWNXUKtet/Mh2yuJdoqwCUDVkt+1FRiqqMLXrb6YtQA9OZYz3dM3MX/M9n
+         vQ3zQo6Y/m6jnWotG6iMVH6ooG0O9XcBCoDO1up9zhMyWlMXB4Fb3B3GP4rc4bjb0ox3
+         3rQg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=a73iM0e1gPWjjRBi3/LsFQbixuEHj+TrPlcXhkLNbHk=;
-        b=BlzJSDfc9q0jgqbsiR070lVpD82eb/UTJ/GadFhtpC+YqMqPArkI7hzRnPqnWFLrte
-         wbE6xPKNx3Fk/MFVU4S7va1Lq3RmeYissg/u0tvrzGmRtvN0auuYGTrM/YCImxFCzN2r
-         JkQ4O6xITtpoLbiejRbUe5F/47WNg+h1M64ziOW+NrWBsqK8Swz6krWI97+sMOyxO4p5
-         iOd5iJ2QCgd9rAURuXueushmWwOm8+Z4wU/hOIP98cWfJvlzh2M65WJerfujvgoKDJP2
-         vqQRw659FifP9SJo3XGTgjTKOnnwj6ZcOv8ceWO3NiWxipiZbEnhP7F19JG9AmpuqiG+
-         4gRA==
-X-Gm-Message-State: APjAAAUG9aPz3Z/nHQzqmGUnRlJYEZbBk/k2y4UAcSNAsnK+poGnWNde
-        Qgj6JzPeAn7TXip07u+83cpXYs4+uL1/VzoO7iw=
-X-Google-Smtp-Source: APXvYqzARiKQOmIFeC82NX4vTy2Cl293F6MvbG/RYu/jrYovez6E9n9htWgDtFz/z9hUSB0GpMAo/P02OBy1FSW61Lk=
-X-Received: by 2002:a9d:6d8d:: with SMTP id x13mr36621465otp.6.1564853635352;
- Sat, 03 Aug 2019 10:33:55 -0700 (PDT)
+        bh=giFFxAwzHVZcTDv5cDCIurtf5E8rD1w0AM4tyzYzsnQ=;
+        b=FpbYxujpCJTsMzFZAPUjNAMswInY0YLzPMevTlgUq3jU9T+PUY0WFTZ9BHmLr3o4aj
+         d2GpInraScqm5qqoKHlwrqTqAra6pZ5h8hc10GMhmBJJd10rflOKzaLLkzzVBdjTNFfl
+         VpWfbbYV08jZzgmUeJjiegoak3e/MWWyeJlsc8h2ORfA+tPfMYRfwXMKjeX5P86EYnGa
+         +O7HHp3HUHfNy4HFejhzw6FWOTkdcwCQndSttA3WwQfG2XTetrZrf5o7FVHFR4I8+goC
+         i7m0RCK0lHrxmTn0tlDgfetAi6hxXW40HufDLYASaVtSf7R5hF23PtJY9ZjPyMTQJ5/G
+         yUNg==
+X-Gm-Message-State: APjAAAWsX83Um/775s0DJSl2ws8qkGD4rA2kAIEOmw/kAXKaPwchJteh
+        nU60tCspBoQvuxnStpPS0qxPD35TLX8fIMqU+pxaTdBP
+X-Google-Smtp-Source: APXvYqxqdM5pIwO1f3rZx14fWOmsfcgj0wzLh+wItwhmdI2TFmrHh+uLmQVwCG+sWXsST/bisXbSaeQf/oOwXtq+xYQ=
+X-Received: by 2002:a05:6808:3d6:: with SMTP id o22mr6383634oie.140.1564854757760;
+ Sat, 03 Aug 2019 10:52:37 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190727175315.28834-1-martin.blumenstingl@googlemail.com>
- <20190727175315.28834-4-martin.blumenstingl@googlemail.com>
- <86y30imq9p.wl-marc.zyngier@arm.com> <CAFBinCCb4aTfuxaSrUp8xbUjjefi_qHOUJLjzH+acUTLY+6Geg@mail.gmail.com>
- <86o916mx2m.wl-maz@kernel.org>
-In-Reply-To: <86o916mx2m.wl-maz@kernel.org>
+References: <20190731153529.30159-1-glaroque@baylibre.com> <20190731153529.30159-4-glaroque@baylibre.com>
+In-Reply-To: <20190731153529.30159-4-glaroque@baylibre.com>
 From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Sat, 3 Aug 2019 19:33:44 +0200
-Message-ID: <CAFBinCDRBmG39Pa4XBa2Bu8K6GH7iz_YyKoJ795XKTnEz2b4VQ@mail.gmail.com>
-Subject: Re: [PATCH 3/5] MIPS: lantiq: add an irq_domain and irq_chip for EBU
-To:     Marc Zyngier <maz@kernel.org>
-Cc:     tglx@linutronix.de, jason@lakedaemon.net, ralf@linux-mips.org,
-        paul.burton@mips.com, jhogan@kernel.org, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
-        john@phrozen.org, Hauke Mehrtens <hauke@hauke-m.de>
+Date:   Sat, 3 Aug 2019 19:52:26 +0200
+Message-ID: <CAFBinCBYPiLgmTNk+7Db3EPSPePwbnAshCbomYPXWdse8i0oJw@mail.gmail.com>
+Subject: Re: [PATCH v2 3/6] arm64: dts: amlogic: g12: add temperature sensor
+To:     Guillaume La Roque <glaroque@baylibre.com>
+Cc:     daniel.lezcano@linaro.org, khilman@baylibre.com,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Marc,
+Hi Guillaume,
 
-On Sat, Aug 3, 2019 at 11:12 AM Marc Zyngier <maz@kernel.org> wrote:
+On Wed, Jul 31, 2019 at 5:36 PM Guillaume La Roque
+<glaroque@baylibre.com> wrote:
 >
-> Hi Martin,
+> Add cpu and ddr temperature sensors for G12 Socs
 >
-> On Thu, 01 Aug 2019 18:42:42 +0100,
-> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
->
-> [...]
->
-> > > > +static void ltq_ebu_irq_handler(struct irq_desc *desc)
-> > > > +{
-> > > > +     struct irq_domain *domain = irq_desc_get_handler_data(desc);
-> > > > +     struct irq_chip *irqchip = irq_desc_get_chip(desc);
-> > > > +
-> > > > +     chained_irq_enter(irqchip, desc);
-> > > > +
-> > > > +     generic_handle_irq(irq_find_mapping(domain, 0));
-> > >
-> > > Having an irqdomain for a single interrupt is a bit over the top... Is
-> > > that for the convenience of the DT infrastructure?
-> > yes, I did it to get DT support
-> > please let me know if there's a "better" way (preferably with another
-> > driver as example)
->
-> To be honest, the chained handler is what troubles me the most. You
-> normally would use such a construct if you had a multiplexer. In your
-> case, you have a 1:1 relationship between input and output. It is just
-> that this irqchip allows the trigger to be adapted, which normally
-> calls for a hierarchical implementation.
->
-> In your case, with only a single interrupt, it doesn't matter much
-> though.
-I see, thank you for the explanation
+> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+with the nit-pick below addressed:
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-can you name a driver for a hierarchical irqchip driver that you
-consider "clean" which I could use as reference?
-I am considering to still convert it to a hierarchical irqchip driver
-to keep it consistent with at least two more upcoming Lantiq irqchip
-drivers (which both seem to be similar use-cases as this one, they
-just provide more than one interrupt):
-- there's a PCI legacy interrupt controller in the PCIe controller's
-app registers. it takes 4 parent interrupts and provides
-PCI_INT{A,B,C,D}. the interrupts need to be enabled and ACK'ed in the
-PCIe app registers as well as in the parent interrupt controller
-- the EIU (External Interrupt Unit) in my own words is the GPIO
-interrupt controller. it takes up to 6 parent interrupts and provides
-one interrupt for each "EXIN GPIO". setting the IRQ type and ACK need
-to happen through the EIU registers as well as the parent interrupt
-controller
-
-my initial thought is that it's best to follow one programming model
-(which based on your suggestion would be a hierarchical irqchip) for
-all three IRQ controllers
-
-> >
-> > [...]
-> > > > +     irq_create_mapping(domain, 0);
-> > >
-> > > Why do you need to perform this eagerly? I'd expect this interrupt to
-> > > be mapped when it is actually claimed by a driver.
-> > I don't remember why I added it, it may be left-over from copying from
-> > another driver
-> > in v2 I'll try to drop it
-> >
-> > > > +
-> > > > +     irq_set_chained_handler_and_data(irq, ltq_ebu_irq_handler, domain);
-> > >
-> > > And there is no HW initialisation whatsoever? I'd expect, at the very
-> > > least, the sole interrupt to be configured as disabled/masked.
-> > I can add that. is there any "best practice" on what I should
-> > initialize (just disable it or also set a "default" mode like
-> > LEVEL_LOW)?
+> ---
+>  .../boot/dts/amlogic/meson-g12-common.dtsi    | 22 +++++++++++++++++++
+>  1 file changed, 22 insertions(+)
 >
-> Whichever default state makes sense. What you want to avoid is to boot
-> the kernel with a screaming interrupt because some firmware has left
-> it enabled.
-noted, thank you
+> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> index 06e186ca41e3..7f862a3490fb 100644
+> --- a/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> +++ b/arch/arm64/boot/dts/amlogic/meson-g12-common.dtsi
+> @@ -1353,6 +1353,28 @@
+>                                 };
+>                         };
+>
+> +                       cpu_temp: temperature-sensor@34800 {
+> +                               compatible = "amlogic,g12-cpu-thermal",
+> +                                            "amlogic,g12-thermal";
+> +                               reg = <0x0 0x34800 0x0 0x50>;
+> +                               interrupts = <GIC_SPI 35 IRQ_TYPE_EDGE_RISING>;
+> +                               clocks = <&clkc CLKID_TS>;
+> +                               status = "okay";
+I believe nodes are enabled automatically if they don't have a status property
+
+> +                               #thermal-sensor-cells = <0>;
+> +                               amlogic,ao-secure = <&sec_AO>;
+> +                       };
+> +
+> +                       ddr_temp: temperature-sensor@34c00 {
+> +                               compatible = "amlogic,g12-ddr-thermal",
+> +                                            "amlogic,g12-thermal";
+> +                               reg = <0x0 0x34c00 0x0 0x50>;
+> +                               interrupts = <GIC_SPI 36 IRQ_TYPE_EDGE_RISING>;
+> +                               clocks = <&clkc CLKID_TS>;
+> +                               status = "okay";
+same here
 
 
 Martin
