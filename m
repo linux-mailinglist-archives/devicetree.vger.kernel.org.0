@@ -2,478 +2,176 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4A9EE808BD
-	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2019 02:34:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C78F809FF
+	for <lists+devicetree@lfdr.de>; Sun,  4 Aug 2019 10:33:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728032AbfHDAef convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sat, 3 Aug 2019 20:34:35 -0400
-Received: from gloria.sntech.de ([185.11.138.130]:41396 "EHLO gloria.sntech.de"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725385AbfHDAef (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 3 Aug 2019 20:34:35 -0400
-Received: from p508fd26f.dip0.t-ipconnect.de ([80.143.210.111] helo=phil.localnet)
-        by gloria.sntech.de with esmtpsa (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.89)
-        (envelope-from <heiko@sntech.de>)
-        id 1hu4Ti-00011R-N9; Sun, 04 Aug 2019 02:34:26 +0200
-From:   Heiko Stuebner <heiko@sntech.de>
-To:     Andy Yan <andyshrk@gmail.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] arm64: dts: rockchip: Add dts for Leez RK3399 P710 SBC
-Date:   Sun, 04 Aug 2019 02:34:26 +0200
-Message-ID: <22687582.BTWJvYJJdG@phil>
-In-Reply-To: <20190803114612.4830-1-andyshrk@gmail.com>
-References: <20190803114612.4830-1-andyshrk@gmail.com>
+        id S1726037AbfHDIdh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Aug 2019 04:33:37 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:45964 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725987AbfHDIdh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Aug 2019 04:33:37 -0400
+Received: by mail-wr1-f67.google.com with SMTP id f9so2430064wre.12;
+        Sun, 04 Aug 2019 01:33:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Vt6U1YP4aGAGLr957NKZHuWaMpL8mX3IS9JECyDQdCw=;
+        b=HW6ZXPXrOsCYPW8RBQgzAbAfamlFFGF0Lwt2IVORxo7pMCTQW4EK+i6oWovdt8Rgjc
+         FVtLz+zMTi3TlyIuDya9nWryRPySOsB6K10i/lqECTYBzxaRvBNTl284JlGNJQKbPTfQ
+         Ryp/BBp2PdAdLKJwH+Js0BCCwyLdq2FiYwRHX6yK8RZxyDcBufNkz3XhGAyd/kYAmBop
+         P9ImR0IDgfX61M36mYo2YB+FBIBtv/5FDTcjgOxO8a0yfjq7ownR0liHdSsdg76uvD+3
+         K5t+tpewY39K3kNOfMmZtdiptEftOG4dGg91ps7S0ht2LoCTpbF+OfM3POvUkzVOWm1u
+         lPZw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Vt6U1YP4aGAGLr957NKZHuWaMpL8mX3IS9JECyDQdCw=;
+        b=YXKMK28i7dt2G6ITZIez/qZtBRwwepJSCUDhe08FSgX43XGcFYI032+Mx4bwDtUZHD
+         OtuIvcsL+kuDgyL2xyo7pIkxh33yM/P0T0tQxX4evt8DcNUbKR0/6QqypDmRmi6/F9r0
+         KQFobTuBxgLk1wMAjBCn2lN61NuOsqaNwBn8HhPY7IOozbntJr/lrnf844rOsWqppecB
+         iXTQZBUPKqZ0q7RzCqq1UPMnqCJmmFlMhoqOfblDUn9B230rh0F+KcgYYyTMyjbrsOmf
+         1AOIe4q6/r/wMRwiLw8JnVYDPtMJffQdkhIEOA5Xs5UF2BsCzSgfjEN7iVIyFb+Z3kcb
+         A/yQ==
+X-Gm-Message-State: APjAAAUvH1KG1UWKY9hF+dLFmnwNqgqvea4YRHLtbyP0ZYd+mZNVL3T3
+        3JX5FbcIgTwMvNsK53eHAUF2Ofre
+X-Google-Smtp-Source: APXvYqwkk0phUB+FezFpivONVroN9FkS2bT2MM9s4sMwHk+g5S8UFZ33zeDE2MmafKfgRollJfkF9g==
+X-Received: by 2002:adf:df8b:: with SMTP id z11mr98533802wrl.62.1564907615244;
+        Sun, 04 Aug 2019 01:33:35 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8f28:9900:d80f:58c5:990d:c59b? (p200300EA8F289900D80F58C5990DC59B.dip0.t-ipconnect.de. [2003:ea:8f28:9900:d80f:58c5:990d:c59b])
+        by smtp.googlemail.com with ESMTPSA id o3sm67952020wrs.59.2019.08.04.01.33.34
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sun, 04 Aug 2019 01:33:34 -0700 (PDT)
+Subject: Re: [PATCH v4 3/4] net: phy: realtek: Add helpers for accessing
+ RTL8211E extension pages
+To:     Matthias Kaehlcke <mka@chromium.org>,
+        "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>
+References: <20190801190759.28201-1-mka@chromium.org>
+ <20190801190759.28201-4-mka@chromium.org>
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+Message-ID: <71d817b9-7bcc-9f83-331d-1c3958c41f51@gmail.com>
+Date:   Sun, 4 Aug 2019 10:33:30 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190801190759.28201-4-mka@chromium.org>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Andy,
-
-Am Samstag, 3. August 2019, 13:46:12 CEST schrieb Andy Yan:
-> Leez P710 is a RK3399 based SBC, designed by Leez team
-> from lenovo [0].
+On 01.08.2019 21:07, Matthias Kaehlcke wrote:
+> The RTL8211E has extension pages, which can be accessed after
+> selecting a page through a custom method. Add a function to
+> modify bits in a register of an extension page and a helper for
+> selecting an ext page. Use rtl8211e_modify_ext_paged() in
+> rtl8211e_config_init() instead of doing things 'manually'.
 > 
-> Specification
-> - Rockchip RK3399
-> - 4/2GB LPDDR4
-> - TF sd scard slot
-> - eMMC
-> - M.2 B-Key for 4G LTE
-> - AP6256 for WiFi + BT
-> - Gigabit ethernet
-> - HDMI out
-> - 40 pin header
-> - TYPE-C Power supply
-> 
-> [0] https://leez.lenovo.com
-> 
-> Signed-off-by: Andy Yan <andyshrk@gmail.com>
+> Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
 > ---
->  .../devicetree/bindings/arm/rockchip.yaml     |   5 +
->  arch/arm64/boot/dts/rockchip/Makefile         |   1 +
->  .../boot/dts/rockchip/rk3399-leez-p710.dts    | 635 ++++++++++++++++++
->  3 files changed, 641 insertions(+)
->  create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
+> Changes in v4:
+> - don't add constant RTL8211E_EXT_PAGE, it's only used once,
+>   use a literal instead
+> - pass 'oldpage' to phy_restore_page() in rtl8211e_select_ext_page(),
+>   not 'page'
+> - return 'oldpage' in rtl8211e_select_ext_page()
+> - use __phy_modify() in rtl8211e_modify_ext_paged() instead of
+>   reimplementing __phy_modify_changed()
+> - in rtl8211e_modify_ext_paged() return directly when
+>   rtl8211e_select_ext_page() fails
+> ---
+>  drivers/net/phy/realtek.c | 48 +++++++++++++++++++++++++++------------
+>  1 file changed, 34 insertions(+), 14 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> index 34865042f4e4..da9cd947abfa 100644
-> --- a/Documentation/devicetree/bindings/arm/rockchip.yaml
-> +++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
-> @@ -329,6 +329,11 @@ properties:
->                - khadas,edge-v
->            - const: rockchip,rk3399
+> diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
+> index a669945eb829..e09d3b0da2c7 100644
+> --- a/drivers/net/phy/realtek.c
+> +++ b/drivers/net/phy/realtek.c
+> @@ -53,6 +53,36 @@ static int rtl821x_write_page(struct phy_device *phydev, int page)
+>  	return __phy_write(phydev, RTL821x_PAGE_SELECT, page);
+>  }
 >  
-> +      - description: Leez RK3399 P710
-> +        items:
-> +          - const: leez,p710
+> +static int rtl8211e_select_ext_page(struct phy_device *phydev, int page)
 
-Is "leez" really the vendor?
-Part of me would assume something like
-	lenovo,leez-p710
+The "extended page" mechanism doesn't exist on RTL8211E only. A prefix
+rtl821x like in other functions may be better therefore.
 
-So please clarify :-)
-And also please make sure the decided vendor is part of the vendor-prefixes
-binding in Documentation/devicestree/bindings/vendor-prefixes.yaml
-
-> +          - const: rockchip,rk3399
+> +{
+> +	int ret, oldpage;
 > +
->        - description: mqmaker MiQi
->          items:
->            - const: mqmaker,miqi
-> diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
-> index daa2c78e22c3..1f18a9392d15 100644
-> --- a/arch/arm64/boot/dts/rockchip/Makefile
-> +++ b/arch/arm64/boot/dts/rockchip/Makefile
-> @@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-hugsun-x99.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge-captain.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge-v.dtb
-> +dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-leez-p710.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopc-t4.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-m4.dtb
->  dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-neo4.dtb
-> diff --git a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
-> new file mode 100644
-> index 000000000000..b342f5e8692b
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
-> @@ -0,0 +1,635 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-> +/*
-> + * Copyright (c) 2019 Andy Yan <andy.yan@gmail.com>
-> + */
+> +	oldpage = phy_select_page(phydev, 7);
+> +	if (oldpage < 0)
+> +		return oldpage;
 > +
-> +/dts-v1/;
-> +#include <dt-bindings/input/linux-event-codes.h>
-> +#include <dt-bindings/pwm/pwm.h>
-> +#include "rk3399.dtsi"
-> +#include "rk3399-opp.dtsi"
+> +	ret = __phy_write(phydev, RTL821x_EXT_PAGE_SELECT, page);
+> +	if (ret)
+> +		return phy_restore_page(phydev, oldpage, ret);
 > +
-> +/ {
-> +	model = "Leez RK3399 P710";
-> +	compatible = "leez,p710", "rockchip,rk3399";
-
-same comment as above, so maybe:
-	model = "Lenovo Leez RK3399 P710";
-	compatible = "lenovo,leez-p710", "rockchip,rk3399";
-
-
-
+> +	return oldpage;
+> +}
 > +
-> +	chosen {
-> +		stdout-path = "serial2:1500000n8";
-> +	};
+> +static int rtl8211e_modify_ext_paged(struct phy_device *phydev, int page,
+> +				     u32 regnum, u16 mask, u16 set)
+> +{
+> +	int ret = 0;
+> +	int oldpage;
 > +
-> +	clkin_gmac: external-gmac-clock {
-> +		compatible = "fixed-clock";
-> +		clock-frequency = <125000000>;
-> +		clock-output-names = "clkin_gmac";
-> +		#clock-cells = <0>;
-> +	};
+> +	oldpage = rtl8211e_select_ext_page(phydev, page);
+> +	if (oldpage < 0)
+> +		return oldpage;
 > +
-> +	sdio_pwrseq: sdio-pwrseq {
-> +		compatible = "mmc-pwrseq-simple";
-> +		clocks = <&rk808 1>;
-> +		clock-names = "ext_clock";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&wifi_enable_h>;
-> +		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
-> +	};
+> +	ret = __phy_modify(phydev, regnum, mask, set);
 > +
-> +	dc5v_adp: dc-5v {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "dc5v_adapter";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +	};
+> +	return phy_restore_page(phydev, oldpage, ret);
+> +}
 > +
-> +	vcc5v0_sys: vcc-sys {
-
-vcc5v0_sys: vcc5v0-sys ?
-
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc5v0_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <5000000>;
-> +		regulator-max-microvolt = <5000000>;
-> +		vin-supply = <&dc5v_adp>;
-> +	};
-> +
-> +	vcc3v3_sys: vcc3v3-sys {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc3v3_sys";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +
-> +	vcc5v0_host: vcc5v0-host-regulator {
-> +		compatible = "regulator-fixed";
-> +		enable-active-high;
-> +		gpio = <&gpio2 RK_PA2 GPIO_ACTIVE_HIGH>;
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&vcc5v0_host_en>;
-> +		regulator-name = "vcc5v0_host";
-> +		regulator-always-on;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +
-> +	vcc_lan: vcc3v3-phy-regulator {
-> +		compatible = "regulator-fixed";
-> +		regulator-name = "vcc_lan";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <3300000>;
-> +		regulator-max-microvolt = <3300000>;
-> +
-> +		regulator-state-mem {
-> +			regulator-off-in-suspend;
-> +		};
-> +	};
-
-In general, please model an actual regulator-tree and do not copy the
-unspecific Rockchip vendor tree. These unconnected regulators are a very
-good indicator that the real power-tree got ignored (missing vin-supply here)
-
-I found schematics on https://github.com/leezsbc/resources/wiki/Leez-P710:
-链接: https://pan.baidu.com/s/1NPWbuI5csT4zftKUCnRs7g
-提取码: rvrh
-
-and there the power-tree is described in a complete way.
-
-regulator/regulator_summaray in the kernels debugfs should
-show a nice tree structure starting from the dc-adapter input.
-
-Also please use names matching the supply names from the schematics.
-
-Same for pinctrl names, please use names as used in the board schematics.
-
-
-> +	vdd_log: vdd-log {
-> +		compatible = "pwm-regulator";
-> +		pwms = <&pwm2 0 25000 1>;
-> +		regulator-name = "vdd_log";
-> +		regulator-always-on;
-> +		regulator-boot-on;
-> +		regulator-min-microvolt = <800000>;
-> +		regulator-max-microvolt = <1400000>;
-> +		vin-supply = <&vcc5v0_sys>;
-> +	};
-> +};
-> +
-> +&cpu_l0 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_l1 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_l2 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_l3 {
-> +	cpu-supply = <&vdd_cpu_l>;
-> +};
-> +
-> +&cpu_b0 {
-> +	cpu-supply = <&vdd_cpu_b>;
-> +};
-> +
-> +&cpu_b1 {
-> +	cpu-supply = <&vdd_cpu_b>;
-> +};
-> +
-> +&emmc_phy {
-> +	status = "okay";
-> +};
-> +
-> +&gmac {
-> +	assigned-clocks = <&cru SCLK_RMII_SRC>;
-> +	assigned-clock-parents = <&clkin_gmac>;
-> +	clock_in_out = "input";
-> +	phy-supply = <&vcc_lan>;
-> +	phy-mode = "rgmii";
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&rgmii_pins>;
-> +	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
-> +	snps,reset-active-low;
-> +	snps,reset-delays-us = <0 10000 50000>;
-> +	tx_delay = <0x28>;
-> +	rx_delay = <0x11>;
-> +	status = "okay";
-> +};
-> +
-> +&gpu {
-> +	mali-supply = <&vdd_gpu>;
-> +	status = "okay";
-> +};
-> +
-> +&hdmi {
-> +	ddc-i2c-bus = <&i2c3>;
-
-can this also use the internal i2c inside the dw-hdmi?
-
-
-> +	pinctrl-names = "default";
-> +	pinctrl-0 = <&hdmi_cec>;
-> +	status = "okay";
-> +};
-> +
-> +&hdmi_sound {
-> +	status = "okay";
-> +};
-> +
-> +&i2c0 {
-> +	clock-frequency = <400000>;
-> +	i2c-scl-rising-time-ns = <168>;
-> +	i2c-scl-falling-time-ns = <4>;
-> +	status = "okay";
-> +
-> +	rk808: pmic@1b {
-> +		compatible = "rockchip,rk808";
-> +		reg = <0x1b>;
-> +		interrupt-parent = <&gpio1>;
-> +		interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
-> +		#clock-cells = <1>;
-> +		clock-output-names = "xin32k", "rk808-clkout2";
-> +		pinctrl-names = "default";
-> +		pinctrl-0 = <&pmic_int_l>;
-> +		rockchip,system-power-controller;
-> +		wakeup-source;
-> +
-> +		vcc1-supply = <&vcc5v0_sys>;
-> +		vcc2-supply = <&vcc5v0_sys>;
-> +		vcc3-supply = <&vcc5v0_sys>;
-> +		vcc4-supply = <&vcc5v0_sys>;
-> +		vcc6-supply = <&vcc5v0_sys>;
-> +		vcc7-supply = <&vcc5v0_sys>;
-> +		vcc8-supply = <&vcc3v3_sys>;
-> +		vcc9-supply = <&vcc5v0_sys>;
-> +		vcc10-supply = <&vcc5v0_sys>;
-> +		vcc11-supply = <&vcc5v0_sys>;
-> +		vcc12-supply = <&vcc3v3_sys>;
-> +		vddio-supply = <&vcc_1v8>;
-> +
-> +		regulators {
-> +			vdd_center: DCDC_REG1 {
-> +				regulator-name = "vdd_center";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <750000>;
-> +				regulator-max-microvolt = <1350000>;
-> +				regulator-ramp-delay = <6001>;
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vdd_cpu_l: DCDC_REG2 {
-> +				regulator-name = "vdd_cpu_l";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <750000>;
-> +				regulator-max-microvolt = <1350000>;
-> +				regulator-ramp-delay = <6001>;
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_ddr: DCDC_REG3 {
-> +				regulator-name = "vcc_ddr";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_1v8: DCDC_REG4 {
-> +				regulator-name = "vcc_1v8";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <1800000>;
-> +				};
-> +			};
-> +
-> +			vcc1v8_dvp: LDO_REG1 {
-> +				regulator-name = "vcc1v8_dvp";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc1v8_hdmi: LDO_REG2 {
-> +				regulator-name = "vcc1v8_hdmi";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcca_1v8: LDO_REG3 {
-> +				regulator-name = "vcca_1v8";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1800000>;
-> +				regulator-max-microvolt = <1800000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <1800000>;
-> +				};
-> +			};
-> +
-> +			vccio_sd: LDO_REG4 {
-> +				regulator-name = "vccio_sd";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <3000000>;
-> +				};
-> +			};
-> +
-> +			vcca3v0_codec: LDO_REG5 {
-> +				regulator-name = "vcca3v0_codec";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_1v5: LDO_REG6 {
-> +				regulator-name = "vcc_1v5";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <1500000>;
-> +				regulator-max-microvolt = <1500000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <1500000>;
-> +				};
-> +			};
-> +
-> +			vcc0v9_hdmi: LDO_REG7 {
-> +				regulator-name = "vcc0v9_hdmi";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <900000>;
-> +				regulator-max-microvolt = <900000>;
-> +				regulator-state-mem {
-> +					regulator-off-in-suspend;
-> +				};
-> +			};
-> +
-> +			vcc_3v0: LDO_REG8 {
-> +				regulator-name = "vcc_3v0";
-> +				regulator-always-on;
-> +				regulator-boot-on;
-> +				regulator-min-microvolt = <3000000>;
-> +				regulator-max-microvolt = <3000000>;
-> +				regulator-state-mem {
-> +					regulator-on-in-suspend;
-> +					regulator-suspend-microvolt = <3000000>;
-> +				};
-> +			};
-> +
-
-unneeded blank line
-
-> +		};
-> +	};
-> +
-
-
-Heiko
-
+>  static int rtl8201_ack_interrupt(struct phy_device *phydev)
+>  {
+>  	int err;
+> @@ -184,7 +214,7 @@ static int rtl8211f_config_init(struct phy_device *phydev)
+>  
+>  static int rtl8211e_config_init(struct phy_device *phydev)
+>  {
+> -	int ret = 0, oldpage;
+> +	int ret;
+>  	u16 val;
+>  
+>  	/* enable TX/RX delay for rgmii-* modes, and disable them for rgmii. */
+> @@ -213,19 +243,9 @@ static int rtl8211e_config_init(struct phy_device *phydev)
+>  	 * 2 = RX Delay, 1 = TX Delay, 0 = SELRGV (see original PHY datasheet
+>  	 * for details).
+>  	 */
+> -	oldpage = phy_select_page(phydev, 0x7);
+> -	if (oldpage < 0)
+> -		goto err_restore_page;
+> -
+> -	ret = __phy_write(phydev, RTL821x_EXT_PAGE_SELECT, 0xa4);
+> -	if (ret)
+> -		goto err_restore_page;
+> -
+> -	ret = __phy_modify(phydev, 0x1c, RTL8211E_TX_DELAY | RTL8211E_RX_DELAY,
+> -			   val);
+> -
+> -err_restore_page:
+> -	return phy_restore_page(phydev, oldpage, ret);
+> +	return rtl8211e_modify_ext_paged(phydev, 0xa4, 0x1c,
+> +					 RTL8211E_TX_DELAY | RTL8211E_RX_DELAY,
+> +					 val);
+>  }
+>  
+>  static int rtl8211b_suspend(struct phy_device *phydev)
+> 
 
