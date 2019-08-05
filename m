@@ -2,98 +2,102 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC7A481FB4
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 17:03:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F24D81FCF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 17:10:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728916AbfHEPDO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 11:03:14 -0400
-Received: from foss.arm.com ([217.140.110.172]:50452 "EHLO foss.arm.com"
+        id S1728909AbfHEPKb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 11:10:31 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37834 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728043AbfHEPDO (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 11:03:14 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 1B9A8337;
-        Mon,  5 Aug 2019 08:03:13 -0700 (PDT)
-Received: from [10.1.197.61] (usa-sjc-imap-foss1.foss.arm.com [10.121.207.14])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 7BCC13F706;
-        Mon,  5 Aug 2019 08:03:11 -0700 (PDT)
-Subject: Re: [PATCH 3/5] MIPS: lantiq: add an irq_domain and irq_chip for EBU
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     tglx@linutronix.de, jason@lakedaemon.net, ralf@linux-mips.org,
-        paul.burton@mips.com, jhogan@kernel.org, robh+dt@kernel.org,
-        linux-mips@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
-        john@phrozen.org, Hauke Mehrtens <hauke@hauke-m.de>
-References: <20190727175315.28834-1-martin.blumenstingl@googlemail.com>
- <20190727175315.28834-4-martin.blumenstingl@googlemail.com>
- <86y30imq9p.wl-marc.zyngier@arm.com>
- <CAFBinCCb4aTfuxaSrUp8xbUjjefi_qHOUJLjzH+acUTLY+6Geg@mail.gmail.com>
- <86o916mx2m.wl-maz@kernel.org>
- <CAFBinCDRBmG39Pa4XBa2Bu8K6GH7iz_YyKoJ795XKTnEz2b4VQ@mail.gmail.com>
-From:   Marc Zyngier <maz@kernel.org>
-Organization: Approximate
-Message-ID: <f779fc72-ec40-214b-eb81-d21d6b15d5b3@kernel.org>
-Date:   Mon, 5 Aug 2019 16:03:10 +0100
-User-Agent: Mozilla/5.0 (X11; Linux aarch64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1727259AbfHEPKb (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Aug 2019 11:10:31 -0400
+Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E6AA3217F5;
+        Mon,  5 Aug 2019 15:10:29 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565017830;
+        bh=1XLJDjtLhmH3Nu2ywqFu5TahZ/2ynvQCvn57FJ4sqyg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=UMzQ642KAkc+xOAjK4i60aO6rfjBzXfP97qIIK292B7wUGrdd1LMUJTpGSHoynA3Z
+         R6v7bE1MmoQC8rz/mRSx/dwro/IUeL/jeuBc6qrNsBfZX4uJSC34xuC70OoM700X9Q
+         SGeKZVaC11tnLGIFeabDpZETP/VWtmgxY6jwXDKY=
+Received: by mail-qt1-f182.google.com with SMTP id a15so81221930qtn.7;
+        Mon, 05 Aug 2019 08:10:29 -0700 (PDT)
+X-Gm-Message-State: APjAAAV5EfnSlKXAS24lLEnUhqtXnaLuiiuN9y1A1LSBFFxMjOPPB2Kn
+        dmSwDUsdKBi0V8yUirSrfbiKqaUoSsCFzMUwHQ==
+X-Google-Smtp-Source: APXvYqyWRFCd/Bz2QCeN3gI7nR18QpjL6fpHuRuvqsSwKaIPxyzaMMfZxm5GzNaAUuOC3+0j4jzM4tBAprGGhCbeeYw=
+X-Received: by 2002:a0c:b786:: with SMTP id l6mr110476642qve.148.1565017829011;
+ Mon, 05 Aug 2019 08:10:29 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCDRBmG39Pa4XBa2Bu8K6GH7iz_YyKoJ795XKTnEz2b4VQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190803142026.9647-1-masneyb@onstation.org> <20190803142026.9647-2-masneyb@onstation.org>
+In-Reply-To: <20190803142026.9647-2-masneyb@onstation.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 5 Aug 2019 09:10:16 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK1Xerw+319yDE6=9jmrrqQ0+DAu_nj10EX_Lj=bTJ2hw@mail.gmail.com>
+Message-ID: <CAL_JsqK1Xerw+319yDE6=9jmrrqQ0+DAu_nj10EX_Lj=bTJ2hw@mail.gmail.com>
+Subject: Re: [PATCH v4 1/6] dt-bindings: soc: qcom: add On Chip MEMory (OCMEM) bindings
+To:     Brian Masney <masneyb@onstation.org>
+Cc:     Andy Gross <agross@kernel.org>, Rob Clark <robdclark@gmail.com>,
+        Sean Paul <sean@poorly.run>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Jonathan Marek <jonathan@marek.ca>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
+        freedreno <freedreno@lists.freedesktop.org>,
+        devicetree@vger.kernel.org, Jordan Crouse <jcrouse@codeaurora.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 03/08/2019 18:33, Martin Blumenstingl wrote:
-> Hi Marc,
-> 
-> On Sat, Aug 3, 2019 at 11:12 AM Marc Zyngier <maz@kernel.org> wrote:
->>
->> Hi Martin,
->>
->> On Thu, 01 Aug 2019 18:42:42 +0100,
->> Martin Blumenstingl <martin.blumenstingl@googlemail.com> wrote:
->>
->> [...]
->>
->>>>> +static void ltq_ebu_irq_handler(struct irq_desc *desc)
->>>>> +{
->>>>> +     struct irq_domain *domain = irq_desc_get_handler_data(desc);
->>>>> +     struct irq_chip *irqchip = irq_desc_get_chip(desc);
->>>>> +
->>>>> +     chained_irq_enter(irqchip, desc);
->>>>> +
->>>>> +     generic_handle_irq(irq_find_mapping(domain, 0));
->>>>
->>>> Having an irqdomain for a single interrupt is a bit over the top... Is
->>>> that for the convenience of the DT infrastructure?
->>> yes, I did it to get DT support
->>> please let me know if there's a "better" way (preferably with another
->>> driver as example)
->>
->> To be honest, the chained handler is what troubles me the most. You
->> normally would use such a construct if you had a multiplexer. In your
->> case, you have a 1:1 relationship between input and output. It is just
->> that this irqchip allows the trigger to be adapted, which normally
->> calls for a hierarchical implementation.
->>
->> In your case, with only a single interrupt, it doesn't matter much
->> though.
-> I see, thank you for the explanation
-> 
-> can you name a driver for a hierarchical irqchip driver that you
-> consider "clean" which I could use as reference?
+On Sat, Aug 3, 2019 at 8:20 AM Brian Masney <masneyb@onstation.org> wrote:
+>
+> Add device tree bindings for the On Chip Memory (OCMEM) that is present
+> on some Qualcomm Snapdragon SoCs.
+>
+> Signed-off-by: Brian Masney <masneyb@onstation.org>
+> ---
+> Changes since v3
+> - add ranges property
+> - remove unnecessary literal block |
+> - add #address-cells and #size-cells to binding
+> - rename path devicetree/bindings/sram/qcom/ to devicetree/bindings/sram/ since
+>   this is the only qcom binding in the sram namespace. That was a holdover from
+>   when I originally put this in the soc namespace.
+>
+> Changes since v2:
+> - Add *-sram node and gmu-sram to example.
+>
+> Changes since v1:
+> - Rename qcom,ocmem-msm8974 to qcom,msm8974-ocmem
+> - Renamed reg-names to ctrl and mem
+> - update hardware description
+> - moved from soc to sram namespace in the device tree bindings
+>
+>  .../devicetree/bindings/sram/qcom,ocmem.yaml  | 96 +++++++++++++++++++
+>  1 file changed, 96 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
+>
+> diff --git a/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml b/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
+> new file mode 100644
+> index 000000000000..1bb386fffa01
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
+> @@ -0,0 +1,96 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/sram/qcom/qcom,ocmem.yaml#
 
-Finding a "clean" driver is a challenge, as the world of IRQ controllers
-is where both HW and SW engineers (me included) love to "innovate" ;-).
+Need to update the path here too.
 
-I'd recommend you have a look at drivers/irqchip/irq-mtk-cirq.c, which
-is almost as simple as it gets.
+With that,
 
-Thanks,
-
-	M.
--- 
-Jazz is not dead, it just smells funny...
+Reviewed-by: Rob Herring <robh@kernel.org>
