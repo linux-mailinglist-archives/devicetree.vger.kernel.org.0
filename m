@@ -2,183 +2,144 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B1ECB8179E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:54:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 48F55817C8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 13:03:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728372AbfHEKyf convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 5 Aug 2019 06:54:35 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:44033 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727158AbfHEKye (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 06:54:34 -0400
-Received: by mail-ed1-f65.google.com with SMTP id k8so78182648edr.11;
-        Mon, 05 Aug 2019 03:54:32 -0700 (PDT)
+        id S1727328AbfHELDd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 07:03:33 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:34092 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727259AbfHELDd (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 07:03:33 -0400
+Received: by mail-lf1-f66.google.com with SMTP id b29so50354511lfq.1;
+        Mon, 05 Aug 2019 04:03:32 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=8clQkiU/I7HnZXUjryNFZFlElLbT4vOfdQOCFEa8wnM=;
+        b=Bl6hAIuBRXebtJ9xa0g037Wb2AhwLUDgn7Ap2L++6xNWb1IRiacTSZSNg0APry1BWs
+         /2b30k3gOSKvoHMP52RfV1fhzAf5+0nrQAWZmZzjN4tyISdw/OGXVCM5gXhhU51tORRE
+         LAi6Sq5IzAmjsNm3nzRJHXUNtPd701Md18HkTcwPd5zg8iR3FuRQLMzVXV7lqh7QJyJ6
+         XoJsGkW96r2rNBrXrM70ZUiZRD09Xx7xvT5M8Ygtu+/bRGRE4Q7bgNkQzyoslCqZd3Y0
+         Tq2iCXBhnA1/LnvqnffAsMJqpHhy3+aw80pY5A8V41he9vpQWA2q+FjPedR0EJKHDh9G
+         CpjA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:content-transfer-encoding;
-        bh=Sv8pVXgrrDrbIAonY+C88fg7ixy9vYBYQXBP0fHLLv8=;
-        b=VoQIT4o+NKMDU1veQCCYqRd4c6fS3KiocAi2AbYIipCi/5y7mvcdnBPoNxg+VWeFr6
-         qd7O4AEIsD+xuArCgZRiYRxurcyY7alBMPOIAEo08srFU+IEX4h65hsY23C1Rn0BFXrw
-         YEdClWxRHgBdLRfvtbkvunbJC+Ln6f30glqQ/8W7Oc8HjIsHv+TH+pRq2SY5Lt2FY0Jw
-         5yKUhjPlRcCQYqm8WZSiZ/Uu4wFt1Fid5PghsaD9KE861FEme3UQ0hLgY6j/c2KkJNmH
-         pMc4+pu5VwsgRsAFF0L8IkwPvXHFdZNpD/kxjFV1MkGs0HHWbqtLyCgWJ0/aoANpT3bL
-         xhAw==
-X-Gm-Message-State: APjAAAXaM9qUinCPzuBF+BuKF/KqHPgxvS4pXOe265qUtgGbk7JLElA7
-        krwO/QIyPSvAlacB6UNGl2nm5Oz0Uj8=
-X-Google-Smtp-Source: APXvYqw1M/sk8Rd0FDUYGuD0LRvQbA6oYhjBhAy9Z/XRedeDP4PKnoLDN7nkr5AfahYE7yipoo/yAg==
-X-Received: by 2002:a50:9168:: with SMTP id f37mr134647181eda.242.1565002471414;
-        Mon, 05 Aug 2019 03:54:31 -0700 (PDT)
-Received: from mail-wm1-f51.google.com (mail-wm1-f51.google.com. [209.85.128.51])
-        by smtp.gmail.com with ESMTPSA id nc6sm14270316ejb.62.2019.08.05.03.54.30
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 05 Aug 2019 03:54:31 -0700 (PDT)
-Received: by mail-wm1-f51.google.com with SMTP id a15so74268487wmj.5;
-        Mon, 05 Aug 2019 03:54:30 -0700 (PDT)
-X-Received: by 2002:a1c:c545:: with SMTP id v66mr18768923wmf.51.1565002470670;
- Mon, 05 Aug 2019 03:54:30 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=8clQkiU/I7HnZXUjryNFZFlElLbT4vOfdQOCFEa8wnM=;
+        b=VU93t/YdJ3Mek6hcd8TvGP3+f5ikGqAN3wHzxEZq8deaEbs4l/Vz93Lj9ePEUh5HxG
+         xa3PVKp/vGgsxCFZsC3ZtBSx+YucAMpgHyb/xhotvdQyXYM7Bv1wQ3d0fKqQcXQ+lUZK
+         2mkDwVGg1V/9ey/bNgqIt1cnK4dh1NvseBygh+uh7olDUS615NikemsGD3en4ESRpype
+         nlHkX3iyTjeyNvSY3Bz90/8H/igkUXfJlS19rnyPAnwufiCmGu8wuRNhejDV7XRGNwHs
+         T4TLadKHGXFv65LwjJ7VNgUP6ttbqpXaIdrorO7kLUMfkq+CKWaZ1Q24J9MuCVsdOzt/
+         o+HQ==
+X-Gm-Message-State: APjAAAVv3jBBp5j7vr1uDR9N8Iskp6EcZqe8zRoFlnI0XnBHodEaibuE
+        naz/Awu9kHY96LU2TtDhD2Mg6pZV
+X-Google-Smtp-Source: APXvYqxsNjF6vpxNkUXlWNulq8BHbEh9xA35Zc5sybCSXzClhyk2tP/4ZK7S+YpArTye0ZH8LJOBqQ==
+X-Received: by 2002:a19:234c:: with SMTP id j73mr27288659lfj.96.1565003011200;
+        Mon, 05 Aug 2019 04:03:31 -0700 (PDT)
+Received: from [192.168.2.145] (ppp91-78-220-99.pppoe.mtu-net.ru. [91.78.220.99])
+        by smtp.googlemail.com with ESMTPSA id v14sm17197288ljh.51.2019.08.05.04.03.29
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 05 Aug 2019 04:03:30 -0700 (PDT)
+Subject: Re: [PATCH v2 3/3] soc/tegra: regulators: Add regulators coupler for
+ Tegra30
+To:     Peter De Schrijver <pdeschrijver@nvidia.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        Mark Brown <broonie@kernel.org>, devicetree@vger.kernel.org,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20190725151832.9802-1-digetx@gmail.com>
+ <20190725151832.9802-4-digetx@gmail.com>
+ <20190802140512.GD3883@pdeschrijver-desktop.Nvidia.com>
+ <c537fbea-5884-03db-305f-6ab3d553f7ab@gmail.com>
+ <20190805083325.GE3883@pdeschrijver-desktop.Nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <1a9464b3-6e0e-00ff-64d8-b3abf7982dfb@gmail.com>
+Date:   Mon, 5 Aug 2019 14:03:29 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-References: <20190412120730.473-1-megous@megous.com> <20190412120730.473-3-megous@megous.com>
- <CAGb2v675j-aCLMgPJOzr9yx1XxsUvHRr_K7VnL=p8mSdwpu2jw@mail.gmail.com> <20190805104529.z3mex3m2tss7lzlr@core.my.home>
-In-Reply-To: <20190805104529.z3mex3m2tss7lzlr@core.my.home>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 5 Aug 2019 18:54:17 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67pcxdxjdRX_HN4133A32eA566DDtUJUKV7pqzxDtOaeg@mail.gmail.com>
-Message-ID: <CAGb2v67pcxdxjdRX_HN4133A32eA566DDtUJUKV7pqzxDtOaeg@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH 2/3] rtc: sun6i: Add support for H6 RTC
-To:     =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-rtc@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+In-Reply-To: <20190805083325.GE3883@pdeschrijver-desktop.Nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 5, 2019 at 6:45 PM Ondřej Jirman <megous@megous.com> wrote:
->
-> On Mon, Aug 05, 2019 at 06:16:14PM +0800, Chen-Yu Tsai wrote:
-> > On Fri, Apr 12, 2019 at 8:07 PM megous via linux-sunxi
-> > <linux-sunxi@googlegroups.com> wrote:
-> > >
-> > > From: Ondrej Jirman <megous@megous.com>
-> > >
-> > > RTC on H6 is mostly the same as on H5 and H3. It has slight differences
-> > > mostly in features that are not yet supported by this driver.
-> > >
-> > > Some differences are already stated in the comments in existing code.
-> > > One other difference is that H6 has extra bit in LOSC_CTRL_REG, called
-> > > EXT_LOSC_EN to enable/disable external low speed crystal oscillator.
-> > >
-> > > It also has bit EXT_LOSC_STA in LOSC_AUTO_SWT_STA_REG, to check whether
-> > > external low speed oscillator is working correctly.
-> > >
-> > > This patch adds support for enabling LOSC when necessary:
-> > >
-> > > - during reparenting
-> > > - when probing the clock
-> > >
-> > > H6 also has capacbility to automatically reparent RTC clock from
-> > > external crystal oscillator, to internal RC oscillator, if external
-> > > oscillator fails. This is enabled by default. Disable it during
-> > > probe.
-> > >
-> > > Signed-off-by: Ondrej Jirman <megous@megous.com>
-> > > ---
-> > >  drivers/rtc/rtc-sun6i.c | 40 ++++++++++++++++++++++++++++++++++++++--
-> > >  1 file changed, 38 insertions(+), 2 deletions(-)
-> > >
-> > > diff --git a/drivers/rtc/rtc-sun6i.c b/drivers/rtc/rtc-sun6i.c
-> > > index 11f56de52179..7375a530c565 100644
-> > > --- a/drivers/rtc/rtc-sun6i.c
-> > > +++ b/drivers/rtc/rtc-sun6i.c
-> > > @@ -41,9 +41,11 @@
-> > >  /* Control register */
-> > >  #define SUN6I_LOSC_CTRL                                0x0000
-> > >  #define SUN6I_LOSC_CTRL_KEY                    (0x16aa << 16)
-> > > +#define SUN6I_LOSC_CTRL_AUTO_SWT_BYPASS                BIT(15)
-> >
-> > Manual says bit 14? Or is this different from LOSC_AUTO_SWT_EN?
-> >
-> > The rest looks ok.
->
-> To give you more information. This is a new thing in H6 BSP, compared
-> to BSPs for previous SoCs (H5/H3).
->
->  20 #define REG_CLK32K_AUTO_SWT_EN                  BIT(14)
->  21 #define REG_CLK32K_AUTO_SWT_BYPASS              BIT(15)
->
-> Init sequence changed in H6 BSP to:
->
-> 646         /*
-> 647          * Step1: select RTC clock source
-> 648          */
-> 649         tmp_data = readl(chip->base + SUNXI_LOSC_CTRL);
-> 650         tmp_data &= (~REG_CLK32K_AUTO_SWT_EN);
-> 651
-> 652         /* Disable auto switch function */
-> 653         tmp_data |= REG_CLK32K_AUTO_SWT_BYPASS;
-> 654         writel(tmp_data, chip->base + SUNXI_LOSC_CTRL);
-> 655
-> 656         tmp_data = readl(chip->base + SUNXI_LOSC_CTRL);
-> 657         tmp_data |= (RTC_SOURCE_EXTERNAL | REG_LOSCCTRL_MAGIC);
-> 658         writel(tmp_data, chip->base + SUNXI_LOSC_CTRL);
-> 659
-> 660         /* We need to set GSM after change clock source */
-> 661         udelay(10);
-> 662         tmp_data = readl(chip->base + SUNXI_LOSC_CTRL);
-> 663         tmp_data |= (EXT_LOSC_GSM | REG_LOSCCTRL_MAGIC);
-> 664         writel(tmp_data, chip->base + SUNXI_LOSC_CTRL);
-> 665
+05.08.2019 11:33, Peter De Schrijver пишет:
+> On Fri, Aug 02, 2019 at 05:39:23PM +0300, Dmitry Osipenko wrote:
+>> 02.08.2019 17:05, Peter De Schrijver пишет:
+>>> On Thu, Jul 25, 2019 at 06:18:32PM +0300, Dmitry Osipenko wrote:
+>>>> Add regulators coupler for Tegra30 SoCs that performs voltage balancing
+>>>> of a coupled regulators and thus provides voltage scaling functionality.
+>>>>
+>>>> There are 2 coupled regulators on all Tegra30 SoCs: CORE and CPU. The
+>>>> coupled regulator voltages shall be in a range of 300mV from each other
+>>>> and CORE voltage shall be higher than the CPU by N mV, where N depends
+>>>> on the CPU voltage.
+>>>>
+>>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+>>>> ---
+>>>>  drivers/soc/tegra/Kconfig              |   4 +
+>>>>  drivers/soc/tegra/Makefile             |   1 +
+>>>>  drivers/soc/tegra/regulators-tegra30.c | 316 +++++++++++++++++++++++++
+>>>>  3 files changed, 321 insertions(+)
+>>>>  create mode 100644 drivers/soc/tegra/regulators-tegra30.c
+>>>>
+>>> ...
+>>>
+>>>> +
+>>>> +static int tegra30_core_cpu_limit(int cpu_uV)
+>>>> +{
+>>>> +	if (cpu_uV < 800000)
+>>>> +		return 950000;
+>>>> +
+>>>> +	if (cpu_uV < 900000)
+>>>> +		return 1000000;
+>>>> +
+>>>> +	if (cpu_uV < 1000000)
+>>>> +		return 1100000;
+>>>> +
+>>>> +	if (cpu_uV < 1100000)
+>>>> +		return 1200000;
+>>>> +
+>>>> +	if (cpu_uV < 1250000) {
+>>>> +		switch (tegra_sku_info.cpu_speedo_id) {
+>>>> +		case 0 ... 1:
+>>> Aren't we supposed to add /* fall through */ here now?
+>>
+>> There is no compiler warning if there is nothing in-between of the
+>> case-switches, so annotation isn't really necessary here. Of course it
+>> is possible to add an explicit annotation just to make clear the
+>> fall-through intention.
+>>
+> 
+> Ah. Ok. Whatever you want then :)
 
-I don't have this in my H6 BSPs. One is H6 Lichee v1.1 downloaded from Pine64.
-The link was from linux-sunxi wiki's H6 page.
+I'll add the comments if there will be a need to re-spin this series.
 
-The other is a 4.9 kernel tree, which I believe is from Allwinner's github:
+>>>> +		case 4:
+>>>> +		case 7 ... 8:
+>>>> +			return 1200000;
+>>>> +
+>>>> +		default:
+>>>> +			return 1300000;
+>>>> +		}
+>>>> +	}
+>>>> +
+>>>
+>>> Other than that, this looks ok to me.
+>>
+>> Awesome, thank you very much! Explicit ACK will be appreciated as well.
+> 
+> Acked-By: Peter De Schrijver <pdeschrijver@nvidia.com>
 
-    https://github.com/Allwinner-Homlet/H6-BSP4.9-linux
-
-> For older BSPs, the init sequence looked like this:
->
-> 482         /*
-> 483          * Step1: select RTC clock source
-> 484          */
-> 485         tmp_data = sunxi_rtc_read(SUNXI_LOSC_CTRL_REG);
-> 486         tmp_data &= (~REG_CLK32K_AUTO_SWT_EN);
-> 487         tmp_data |= (RTC_SOURCE_EXTERNAL | REG_LOSCCTRL_MAGIC);
-> 488         tmp_data |= (EXT_LOSC_GSM);
-> 489         sunxi_rtc_write(tmp_data, SUNXI_LOSC_CTRL_REG);
-> 490
->
-> EXT_LOSC_GSM has values 4 values from low to high, and I guess it configures
-> gain for the oscillator's amplifier in the feedback loop of the circuit.
->
-> So the new code, for some reason changed from single write to sequence
-> of individual writes/config steps:
->
-> 1) disable auto-switch and enable auto-switch bypass
-> 2) select RTC clock source (to LOSC)
->   (wait)
-
-Maybe it's possible to glitch if these two are combined?
-
-> 3) configure gain on the LOSC
->
-> regards,
->         o.
->
-> > ChenYu
->
-> --
-> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20190805104529.z3mex3m2tss7lzlr%40core.my.home.
+Thank you again! Could you please also clarify whether the ACK is for
+this patch only or for all of three patches?
