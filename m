@@ -2,306 +2,788 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 952FA8193A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 14:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E685881985
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 14:40:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728518AbfHEM0D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 08:26:03 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:42530 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728455AbfHEM0D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 08:26:03 -0400
-Received: by mail-wr1-f67.google.com with SMTP id x1so34317114wrr.9
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 05:26:01 -0700 (PDT)
+        id S1727553AbfHEMkt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 08:40:49 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:45982 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727259AbfHEMks (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 08:40:48 -0400
+Received: by mail-pf1-f196.google.com with SMTP id r1so39578775pfq.12;
+        Mon, 05 Aug 2019 05:40:48 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=oWDikhbWmDPIzHQPw7NBV+lELUhdD4KoLaJEZ3W7XPA=;
-        b=ilexiR7QMVdt7h2Ih9EJPZn/h5R81FbqMUiEqEIXc1qXUDgyHvxtQCkA8UhRgVyXQa
-         RpTw+62ard3K6ELZM70d4hwWP7RY87dNSNN5uGNae7vz5SWA7ZgHAyvFOHxRazBGlrzp
-         r9iSBVY71qgVVDv0Maz+oWzlJtz53uwD/TdTLGncwtKo3erkc9U/6nlno3f9fEjYVC5Q
-         Kg8VIlve+gFTKWu40wfZZ9lAovnUkJbqk4rgudbHfKrIVaftgINczVsL/XPY0Je4gfp4
-         aITl5HeZ4XJuzn3cpGv4So5ygmWw2QzmTdnqrV/VwgSF0bTfS28MB/m2pAdaf4y9ql2G
-         gLJQ==
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=3Z4uA4le8eFPl7g+keFd/S+5J6b1yjn1MDAuUiA7quQ=;
+        b=cYtSXoPh3MKfTvK1AEapd9CPQ1W6oj2b8rkM4vHosYxgKlGTPdoMpx3SEKkrCx7B6w
+         Hpm13dZ+rIDCOwhNHg1dIljwl5OCa2AK3HdbC8El3O0QMnJ+XhSncQwCmBWu5VOyA9KP
+         8QufLOtshz9O2r9oasfRu9eStYjqpOqNt7+w8Emiz6On6b37xLHPp1Ht578exfKw+Z0N
+         V1LbJZDLkxOHf8uJ6M0pWku+URTQwo+csFs88tKokV6F4uoIpbsdhEPQNuxXRRuYGHDZ
+         wvIMwYzKCFJS0tvIFb30d6F+gvK+yjHszHjYJmONx247hIbj9EVIvlBuALrImQDaRtK4
+         Xf9Q==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=oWDikhbWmDPIzHQPw7NBV+lELUhdD4KoLaJEZ3W7XPA=;
-        b=q2Hlg+LLhwv1nGN919i9bhQP3gKf3IimWJAKkMfs0WrmgGPpQ1ch03qeSGyLfu9JS5
-         6OxIUbGV+uFncMZYk3DwcsjVH2INnGTshMztRVsEIHswQb8XdPlxzBEBVOnejtRZkbQ4
-         /i7SviElTRQSUYl39Q1FOdRdVDcixy+Jx0RXMquMj3suAy6nWWFVX9KZCVSkcgFz5r6h
-         AlTEF2RR+G/qiooauksO9wvNmMHldtFZ5EF8cTGRPNetblnIpYEcgOl7qq2yklZl/mky
-         q5GWQVflcClkqAhxyY215CC1cENUiKJkqWBhtcDeRIsLxE+xgo998MNgBVXL8JU2cxj9
-         l7Vg==
-X-Gm-Message-State: APjAAAV0WpQESwh0okE9pvDZx6xR98NXQb3ROI49vHJXK38ggUjBFqqq
-        vdOgHnxfTw04RXtC1PU3RO+NZA==
-X-Google-Smtp-Source: APXvYqyCO5yEbUFaEdNB0dykZgEdWSc8TF4y2SacBXTbCEh/v4JahAdgr07NTeyYXpESoZaZ1QGo8w==
-X-Received: by 2002:adf:f088:: with SMTP id n8mr1632051wro.58.1565007960540;
-        Mon, 05 Aug 2019 05:26:00 -0700 (PDT)
-Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id i66sm151536351wmi.11.2019.08.05.05.25.59
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=3Z4uA4le8eFPl7g+keFd/S+5J6b1yjn1MDAuUiA7quQ=;
+        b=DKXfDszKVy0CCgzgcr5TBwq24yeGjtp1pPdSWvYPAs+2QNmDt4Ihkk/v60vxpVxbIv
+         5Nn3hXIuD+y2dYl3xa65lxPipXs+z/EI9NjR4AaVPP3oBKBrF5id10yTTx5BpGYrXqKq
+         R1VahSJQkhwxb1fZYE/TD5YlXp2E2OULR5Ir/9/U2ub70sYSGuBAQd6wDmIveUFlzzKj
+         Lg+vbaonGh695LeoOYfDJ218crG/SvmmTC6W7USqZg7xE48GR/XNu4VtEE4Rkd3obuSj
+         n0sDFqBwsrvuW5hqtjYL8Di2If0z0iyWAiio/WAssy+zgx8GKGnPFtVL/SqYcksZA02I
+         YkQw==
+X-Gm-Message-State: APjAAAXcUBC9+RGZSbWF7WQnJkU1I35VQ4B9ttPHwyq0LVrmNVSTCn2L
+        O1+ZkVLh+4bAK+IvBCC8+/E=
+X-Google-Smtp-Source: APXvYqwRAROfYd6lLDNgVRz/pBpOtVkbys7HfwpdIQtQWpcVhxZLNqM9FLQlC10fEY0SSLgBy/6+RQ==
+X-Received: by 2002:aa7:97bb:: with SMTP id d27mr72325484pfq.93.1565008847666;
+        Mon, 05 Aug 2019 05:40:47 -0700 (PDT)
+Received: from localhost.localdomain ([103.29.142.67])
+        by smtp.gmail.com with ESMTPSA id j16sm14717075pjz.31.2019.08.05.05.40.45
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 05 Aug 2019 05:25:59 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     robh+dt@kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] dt-bindings: net: meson-dwmac: convert to yaml
-Date:   Mon,  5 Aug 2019 14:25:58 +0200
-Message-Id: <20190805122558.5130-1-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Mon, 05 Aug 2019 05:40:47 -0700 (PDT)
+From:   Andy Yan <andyshrk@gmail.com>
+To:     heiko@sntech.de
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Andy Yan <andyshrk@gmail.com>
+Subject: [PATCH v2] arm64: dts: rockchip: Add dts for Leez RK3399 P710 SBC
+Date:   Mon,  5 Aug 2019 20:40:37 +0800
+Message-Id: <20190805124037.10597-1-andyshrk@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have the DT validation in place, let's convert the device tree
-bindings for the Synopsys DWMAC Glue for Amlogic SoCs over to a YAML schemas.
+P710 is a RK3399 based SBC, designed by Leez [0].
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Specification
+- Rockchip RK3399
+- 4/2GB LPDDR4
+- TF sd scard slot
+- eMMC
+- M.2 B-Key for 4G LTE
+- AP6256 for WiFi + BT
+- Gigabit ethernet
+- HDMI out
+- 40 pin header
+- USB 2.0 x 2
+- USB 3.0 x 1
+- USB 3.0 Type-C x 1
+- TYPE-C Power supply
+
+[0]https://leez.lenovo.com
+
+Signed-off-by: Andy Yan <andyshrk@gmail.com>
+
 ---
-Rob, 
 
-I keep getting :
-.../devicetree/bindings/net/amlogic,meson-dwmac.example.dt.yaml: ethernet@c9410000: reg: [[3376480256, 65536], [3364046144, 8]] is too long
+Changes in v2:
+- Add vendor entry for Leez
+- Rework the regulator tree
+- Fix some pinctrl names
 
-for the example DT
+ .../devicetree/bindings/arm/rockchip.yaml     |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml  |   2 +
+ arch/arm64/boot/dts/rockchip/Makefile         |   1 +
+ .../boot/dts/rockchip/rk3399-leez-p710.dts    | 645 ++++++++++++++++++
+ 4 files changed, 653 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
 
-and for the board DT :
-../amlogic/meson-gxl-s905x-libretech-cc.dt.yaml: ethernet@c9410000: reg: [[0, 3376480256, 0, 65536, 0, 3364046144, 0, 4]] is too short
-../amlogic/meson-gxl-s905x-nexbox-a95x.dt.yaml: soc: ethernet@c9410000:reg:0: [0, 3376480256, 0, 65536, 0, 3364046144, 0, 4] is too long
-
-and I don't know how to get rid of it.
-
-What should I do for reg ?
-
-Neil
-
- .../bindings/net/amlogic,meson-dwmac.yaml     | 113 ++++++++++++++++++
- .../devicetree/bindings/net/meson-dwmac.txt   |  71 -----------
- .../devicetree/bindings/net/snps,dwmac.yaml   |   5 +
- 3 files changed, 118 insertions(+), 71 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/meson-dwmac.txt
-
-diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 34865042f4e4..da9cd947abfa 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -329,6 +329,11 @@ properties:
+               - khadas,edge-v
+           - const: rockchip,rk3399
+ 
++      - description: Leez RK3399 P710
++        items:
++          - const: leez,p710
++          - const: rockchip,rk3399
++
+       - description: mqmaker MiQi
+         items:
+           - const: mqmaker,miqi
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 6992bbbbffab..4be4d9c367b9 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -503,6 +503,8 @@ patternProperties:
+     description: Lantiq Semiconductor
+   "^lattice,.*":
+     description: Lattice Semiconductor
++  "^leez,.*":
++    description: Leez
+   "^lego,.*":
+     description: LEGO Systems A/S
+   "^lemaker,.*":
+diff --git a/arch/arm64/boot/dts/rockchip/Makefile b/arch/arm64/boot/dts/rockchip/Makefile
+index daa2c78e22c3..1f18a9392d15 100644
+--- a/arch/arm64/boot/dts/rockchip/Makefile
++++ b/arch/arm64/boot/dts/rockchip/Makefile
+@@ -20,6 +20,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-hugsun-x99.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge-captain.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-khadas-edge-v.dtb
++dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-leez-p710.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopc-t4.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-m4.dtb
+ dtb-$(CONFIG_ARCH_ROCKCHIP) += rk3399-nanopi-neo4.dtb
+diff --git a/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
 new file mode 100644
-index 000000000000..ae91aa9d8616
+index 000000000000..32baa57b9481
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-@@ -0,0 +1,113 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/net/amlogic,meson-dwmac.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++++ b/arch/arm64/boot/dts/rockchip/rk3399-leez-p710.dts
+@@ -0,0 +1,645 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++/*
++ * Copyright (c) 2019 Andy Yan <andy.yan@gmail.com>
++ */
 +
-+title: Amlogic Meson DWMAC Ethernet controller
++/dts-v1/;
++#include <dt-bindings/input/linux-event-codes.h>
++#include <dt-bindings/pwm/pwm.h>
++#include "rk3399.dtsi"
++#include "rk3399-opp.dtsi"
 +
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
++/ {
++	model = "Leez RK3399 P710";
++	compatible = "leez,p710", "rockchip,rk3399";
 +
-+# We need a select here so we don't match all nodes with 'snps,dwmac'
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - amlogic,meson6-dwmac
-+          - amlogic,meson8b-dwmac
-+          - amlogic,meson8m2-dwmac
-+          - amlogic,meson-gxbb-dwmac
-+          - amlogic,meson-axg-dwmac
-+  required:
-+    - compatible
++	chosen {
++		stdout-path = "serial2:1500000n8";
++	};
 +
-+allOf:
-+  - $ref: "snps,dwmac.yaml#"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - amlogic,meson8b-dwmac
-+              - amlogic,meson8m2-dwmac
-+              - amlogic,meson-gxbb-dwmac
-+              - amlogic,meson-axg-dwmac
++	clkin_gmac: external-gmac-clock {
++		compatible = "fixed-clock";
++		clock-frequency = <125000000>;
++		clock-output-names = "clkin_gmac";
++		#clock-cells = <0>;
++	};
 +
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: GMAC main clock
-+            - description: First parent clock of the internal mux
-+            - description: Second parent clock of the internal mux
++	sdio_pwrseq: sdio-pwrseq {
++		compatible = "mmc-pwrseq-simple";
++		clocks = <&rk808 1>;
++		clock-names = "ext_clock";
++		pinctrl-names = "default";
++		pinctrl-0 = <&wifi_reg_on_h>;
++		reset-gpios = <&gpio0 RK_PB2 GPIO_ACTIVE_LOW>;
++	};
 +
-+        clock-names:
-+          minItems: 3
-+          maxItems: 3
-+          items:
-+            - const: stmmaceth
-+            - const: clkin0
-+            - const: clkin1
++	dc5v_adp: dc5v-adp {
++		compatible = "regulator-fixed";
++		regulator-name = "dc5v_adapter";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++	};
 +
-+        amlogic,tx-delay-ns:
-+          $ref: /schemas/types.yaml#definitions/uint32
-+          description:
-+            The internal RGMII TX clock delay (provided by this driver) in
-+            nanoseconds. Allowed values are 0ns, 2ns, 4ns, 6ns.
-+            When phy-mode is set to "rgmii" then the TX delay should be
-+            explicitly configured. When not configured a fallback of 2ns is
-+            used. When the phy-mode is set to either "rgmii-id" or "rgmii-txid"
-+            the TX clock delay is already provided by the PHY. In that case
-+            this property should be set to 0ns (which disables the TX clock
-+            delay in the MAC to prevent the clock from going off because both
-+            PHY and MAC are adding a delay).
-+            Any configuration is ignored when the phy-mode is set to "rmii".
++	vcc5v0_sys: vcc5v0-sys {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_sys";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&dc5v_adp>;
++	};
 +
-+properties:
-+  compatible:
-+    additionalItems: true
-+    maxItems: 3
-+    items:
-+      - enum:
-+          - amlogic,meson6-dwmac
-+          - amlogic,meson8b-dwmac
-+          - amlogic,meson8m2-dwmac
-+          - amlogic,meson-gxbb-dwmac
-+          - amlogic,meson-axg-dwmac
-+    contains:
-+      enum:
-+        - snps,dwmac-3.70a
-+        - snps,dwmac
++	vcc3v3_sys: vcc3v3-sys {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v3_sys";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vin-supply = <&vcc5v0_sys>;
++	};
 +
-+  reg:
-+    items:
-+      - description:
-+          The first register range should be the one of the DWMAC controller
-+      - description:
-+          The second range is is for the Amlogic specific configuration
-+          (for example the PRG_ETHERNET register range on Meson8b and newer)
++	vcc5v0_host0: vcc5v0_host1: vcc5v0-host {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_host";
++		regulator-boot-on;
++		regulator-always-on;
++		regulator-min-microvolt = <5500000>;
++		regulator-max-microvolt = <5500000>;
++		vin-supply = <&vcc5v0_sys>;
++	};
 +
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - phy-mode
++	vcc5v0_host3: vcc5v0-host3 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc5v0_host3";
++		enable-active-high;
++		gpio = <&gpio2 RK_PA2 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&vcc5v0_host3_en>;
++		regulator-always-on;
++		vin-supply = <&vcc5v0_sys>;
++	};
 +
-+examples:
-+  - |
-+    ethmac: ethernet@c9410000 {
-+         compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
-+         reg = <0xc9410000 0x10000>, <0xc8834540 0x8>;
-+         interrupts = <8>;
-+         interrupt-names = "macirq";
-+         clocks = <&clk_eth>, <&clkc_fclk_div2>, <&clk_mpll2>;
-+         clock-names = "stmmaceth", "clkin0", "clkin1";
-+         phy-mode = "rgmii";
-+    };
-diff --git a/Documentation/devicetree/bindings/net/meson-dwmac.txt b/Documentation/devicetree/bindings/net/meson-dwmac.txt
-deleted file mode 100644
-index 1321bb194ed9..000000000000
---- a/Documentation/devicetree/bindings/net/meson-dwmac.txt
-+++ /dev/null
-@@ -1,71 +0,0 @@
--* Amlogic Meson DWMAC Ethernet controller
--
--The device inherits all the properties of the dwmac/stmmac devices
--described in the file stmmac.txt in the current directory with the
--following changes.
--
--Required properties on all platforms:
--
--- compatible:	Depending on the platform this should be one of:
--			- "amlogic,meson6-dwmac"
--			- "amlogic,meson8b-dwmac"
--			- "amlogic,meson8m2-dwmac"
--			- "amlogic,meson-gxbb-dwmac"
--			- "amlogic,meson-axg-dwmac"
--		Additionally "snps,dwmac" and any applicable more
--		detailed version number described in net/stmmac.txt
--		should be used.
--
--- reg:	The first register range should be the one of the DWMAC
--	controller. The second range is is for the Amlogic specific
--	configuration (for example the PRG_ETHERNET register range
--	on Meson8b and newer)
--
--Required properties on Meson8b, Meson8m2, GXBB and newer:
--- clock-names:	Should contain the following:
--		- "stmmaceth" - see stmmac.txt
--		- "clkin0" - first parent clock of the internal mux
--		- "clkin1" - second parent clock of the internal mux
--
--Optional properties on Meson8b, Meson8m2, GXBB and newer:
--- amlogic,tx-delay-ns:	The internal RGMII TX clock delay (provided
--			by this driver) in nanoseconds. Allowed values
--			are: 0ns, 2ns, 4ns, 6ns.
--			When phy-mode is set to "rgmii" then the TX
--			delay should be explicitly configured. When
--			not configured a fallback of 2ns is used.
--			When the phy-mode is set to either "rgmii-id"
--			or "rgmii-txid" the TX clock delay is already
--			provided by the PHY. In that case this
--			property should be set to 0ns (which disables
--			the TX clock delay in the MAC to prevent the
--			clock from going off because both PHY and MAC
--			are adding a delay).
--			Any configuration is ignored when the phy-mode
--			is set to "rmii".
--
--Example for Meson6:
--
--	ethmac: ethernet@c9410000 {
--		compatible = "amlogic,meson6-dwmac", "snps,dwmac";
--		reg = <0xc9410000 0x10000
--		       0xc1108108 0x4>;
--		interrupts = <0 8 1>;
--		interrupt-names = "macirq";
--		clocks = <&clk81>;
--		clock-names = "stmmaceth";
--	}
--
--Example for GXBB:
--	ethmac: ethernet@c9410000 {
--		compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
--		reg = <0x0 0xc9410000 0x0 0x10000>,
--			<0x0 0xc8834540 0x0 0x8>;
--		interrupts = <0 8 1>;
--		interrupt-names = "macirq";
--		clocks = <&clkc CLKID_ETH>,
--				<&clkc CLKID_FCLK_DIV2>,
--				<&clkc CLKID_MPLL2>;
--		clock-names = "stmmaceth", "clkin0", "clkin1";
--		phy-mode = "rgmii";
--	};
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 76fea2be66ac..ff1dc662a4e3 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -50,6 +50,11 @@ properties:
-         - allwinner,sun8i-r40-emac
-         - allwinner,sun8i-v3s-emac
-         - allwinner,sun50i-a64-emac
-+        - amlogic,meson6-dwmac
-+        - amlogic,meson8b-dwmac
-+        - amlogic,meson8m2-dwmac
-+        - amlogic,meson-gxbb-dwmac
-+        - amlogic,meson-axg-dwmac
-         - snps,dwmac
-         - snps,dwmac-3.50a
-         - snps,dwmac-3.610
++	vcc3v3_lan: vcc3v3-lan {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc3v3_lan";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		vim-supply = <&vcc3v3_sys>;
++	};
++
++	vdd_log: vdd-log {
++		compatible = "pwm-regulator";
++		pwms = <&pwm2 0 25000 1>;
++		regulator-name = "vdd_log";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <800000>;
++		regulator-max-microvolt = <1400000>;
++		vin-supply = <&vcc5v0_sys>;
++	};
++};
++
++&cpu_l0 {
++	cpu-supply = <&vdd_cpu_l>;
++};
++
++&cpu_l1 {
++	cpu-supply = <&vdd_cpu_l>;
++};
++
++&cpu_l2 {
++	cpu-supply = <&vdd_cpu_l>;
++};
++
++&cpu_l3 {
++	cpu-supply = <&vdd_cpu_l>;
++};
++
++&cpu_b0 {
++	cpu-supply = <&vdd_cpu_b>;
++};
++
++&cpu_b1 {
++	cpu-supply = <&vdd_cpu_b>;
++};
++
++&emmc_phy {
++	status = "okay";
++};
++
++&gmac {
++	assigned-clocks = <&cru SCLK_RMII_SRC>;
++	assigned-clock-parents = <&clkin_gmac>;
++	clock_in_out = "input";
++	phy-supply = <&vcc3v3_lan>;
++	phy-mode = "rgmii";
++	pinctrl-names = "default";
++	pinctrl-0 = <&rgmii_pins>;
++	snps,reset-gpio = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
++	snps,reset-active-low;
++	snps,reset-delays-us = <0 10000 50000>;
++	tx_delay = <0x28>;
++	rx_delay = <0x11>;
++	status = "okay";
++};
++
++&gpu {
++	mali-supply = <&vdd_gpu>;
++	status = "okay";
++};
++
++&hdmi {
++	ddc-i2c-bus = <&i2c7>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&hdmi_cec>;
++	status = "okay";
++};
++
++&hdmi_sound {
++	status = "okay";
++};
++
++&i2c0 {
++	clock-frequency = <400000>;
++	i2c-scl-rising-time-ns = <168>;
++	i2c-scl-falling-time-ns = <4>;
++	status = "okay";
++
++	rk808: pmic@1b {
++		compatible = "rockchip,rk808";
++		reg = <0x1b>;
++		interrupt-parent = <&gpio1>;
++		interrupts = <21 IRQ_TYPE_LEVEL_LOW>;
++		#clock-cells = <1>;
++		clock-output-names = "xin32k", "rk808-clkout2";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pmic_int_l>;
++		rockchip,system-power-controller;
++		wakeup-source;
++
++		vcc1-supply = <&vcc5v0_sys>;
++		vcc2-supply = <&vcc5v0_sys>;
++		vcc3-supply = <&vcc5v0_sys>;
++		vcc4-supply = <&vcc5v0_sys>;
++		vcc6-supply = <&vcc5v0_sys>;
++		vcc7-supply = <&vcc5v0_sys>;
++		vcc8-supply = <&vcc3v3_sys>;
++		vcc9-supply = <&vcc5v0_sys>;
++		vcc10-supply = <&vcc5v0_sys>;
++		vcc11-supply = <&vcc5v0_sys>;
++		vcc12-supply = <&vcc3v3_sys>;
++		vddio-supply = <&vcc_1v8>;
++
++		regulators {
++			vdd_center: DCDC_REG1 {
++				regulator-name = "vdd_center";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <750000>;
++				regulator-max-microvolt = <1350000>;
++				regulator-ramp-delay = <6001>;
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vdd_cpu_l: DCDC_REG2 {
++				regulator-name = "vdd_cpu_l";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <750000>;
++				regulator-max-microvolt = <1350000>;
++				regulator-ramp-delay = <6001>;
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_ddr: DCDC_REG3 {
++				regulator-name = "vcc_ddr";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++				};
++			};
++
++			vcc_1v8: DCDC_REG4 {
++				regulator-name = "vcc_1v8";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			vcc1v8_dvp: LDO_REG1 {
++				regulator-name = "vcc1v8_dvp";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc1v8_hdmi: LDO_REG2 {
++				regulator-name = "vcc1v8_hdmi";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcca_1v8: LDO_REG3 {
++				regulator-name = "vcca_1v8";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1800000>;
++				regulator-max-microvolt = <1800000>;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1800000>;
++				};
++			};
++
++			vccio_sd: LDO_REG4 {
++				regulator-name = "vccio_sd";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <3000000>;
++				regulator-max-microvolt = <3000000>;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3000000>;
++				};
++			};
++
++			vcca3v0_codec: LDO_REG5 {
++				regulator-name = "vcca3v0_codec";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <3000000>;
++				regulator-max-microvolt = <3000000>;
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_1v5: LDO_REG6 {
++				regulator-name = "vcc_1v5";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <1500000>;
++				regulator-max-microvolt = <1500000>;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <1500000>;
++				};
++			};
++
++			vcc0v9_hdmi: LDO_REG7 {
++				regulator-name = "vcc0v9_hdmi";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <900000>;
++				regulator-max-microvolt = <900000>;
++				regulator-state-mem {
++					regulator-off-in-suspend;
++				};
++			};
++
++			vcc_3v0: LDO_REG8 {
++				regulator-name = "vcc_3v0";
++				regulator-always-on;
++				regulator-boot-on;
++				regulator-min-microvolt = <3000000>;
++				regulator-max-microvolt = <3000000>;
++				regulator-state-mem {
++					regulator-on-in-suspend;
++					regulator-suspend-microvolt = <3000000>;
++				};
++			};
++		};
++	};
++
++	vdd_cpu_b: regulator@40 {
++		compatible = "silergy,syr827";
++		reg = <0x40>;
++		fcs,suspend-voltage-selector = <1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&vsel1_gpio>;
++		regulator-name = "vdd_cpu_b";
++		regulator-min-microvolt = <712500>;
++		regulator-max-microvolt = <1500000>;
++		regulator-ramp-delay = <1000>;
++		regulator-always-on;
++		regulator-boot-on;
++		vin-supply = <&vcc5v0_sys>;
++
++		regulator-state-mem {
++			regulator-off-in-suspend;
++		};
++	};
++
++	vdd_gpu: regulator@41 {
++		compatible = "silergy,syr828";
++		reg = <0x41>;
++		fcs,suspend-voltage-selector = <1>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&vsel2_gpio>;
++		regulator-name = "vdd_gpu";
++		regulator-min-microvolt = <712500>;
++		regulator-max-microvolt = <1500000>;
++		regulator-ramp-delay = <1000>;
++		regulator-always-on;
++		regulator-boot-on;
++		vin-supply = <&vcc5v0_sys>;
++
++		regulator-state-mem {
++			regulator-off-in-suspend;
++		};
++	};
++};
++
++&i2c1 {
++	i2c-scl-rising-time-ns = <300>;
++	i2c-scl-falling-time-ns = <15>;
++	status = "okay";
++};
++
++&i2c3 {
++	i2c-scl-rising-time-ns = <450>;
++	i2c-scl-falling-time-ns = <15>;
++	status = "okay";
++};
++
++&i2c4 {
++	i2c-scl-rising-time-ns = <600>;
++	i2c-scl-falling-time-ns = <20>;
++	status = "okay";
++};
++
++&i2c7 {
++	status = "okay";
++};
++
++&i2s0 {
++	rockchip,playback-channels = <8>;
++	rockchip,capture-channels = <8>;
++	status = "okay";
++};
++
++&i2s1 {
++	rockchip,playback-channels = <2>;
++	rockchip,capture-channels = <2>;
++	status = "okay";
++};
++
++&i2s2 {
++	status = "okay";
++};
++
++&io_domains {
++	status = "okay";
++
++	bt656-supply = <&vcc1v8_dvp>;
++	audio-supply = <&vcc_1v8>;
++	sdmmc-supply = <&vccio_sd>;
++	gpio1830-supply = <&vcc_3v0>;
++};
++
++&pmu_io_domains {
++	status = "okay";
++	pmu1830-supply = <&vcc_3v0>;
++};
++
++&pinctrl {
++	bt {
++		bt_reg_on_h: bt-reg-on-h {
++			rockchip,pins = <0 RK_PB1 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		bt_host_wake_l: bt-host-wake-l {
++			rockchip,pins = <0 RK_PA4 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		bt_wake_l: bt-wake-l {
++			rockchip,pins = <2 RK_PD2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	pmic {
++		pmic_int_l: pmic-int-l {
++			rockchip,pins = <1 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>;
++		};
++
++		vsel1_gpio: vsel1-gpio {
++			rockchip,pins = <1 RK_PC1 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
++
++		vsel2_gpio: vsel2-gpio {
++			rockchip,pins = <1 RK_PB6 RK_FUNC_GPIO &pcfg_pull_down>;
++		};
++	};
++
++	usb2 {
++		vcc5v0_host3_en: vcc5v0-host3-en {
++			rockchip,pins = <2 RK_PA2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++
++	wifi {
++		wifi_reg_on_h: wifi-reg-on-h {
++			rockchip,pins =
++				<0 RK_PB2 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++
++		wifi_host_wake_l: wifi-host-wake-l {
++			rockchip,pins = <0 RK_PA3 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++};
++
++&pwm2 {
++	status = "okay";
++};
++
++&saradc {
++	status = "okay";
++
++	vref-supply = <&vcc_1v8>;
++};
++
++&sdio0 {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	bus-width = <4>;
++	clock-frequency = <50000000>;
++	cap-sdio-irq;
++	cap-sd-highspeed;
++	keep-power-in-suspend;
++	mmc-pwrseq = <&sdio_pwrseq>;
++	non-removable;
++	pinctrl-names = "default";
++	pinctrl-0 = <&sdio0_bus4 &sdio0_cmd &sdio0_clk>;
++	sd-uhs-sdr104;
++	status = "okay";
++
++	brcmf: wifi@1 {
++		compatible = "brcm,bcm4329-fmac";
++		reg = <1>;
++		interrupt-parent = <&gpio0>;
++		interrupts = <RK_PA3 GPIO_ACTIVE_HIGH>;
++		interrupt-names = "host-wake";
++		pinctrl-names = "default";
++		pinctrl-0 = <&wifi_host_wake_l>;
++	};
++};
++
++&sdmmc {
++	bus-width = <4>;
++	cap-mmc-highspeed;
++	cap-sd-highspeed;
++	cd-gpios = <&gpio0 RK_PA7 GPIO_ACTIVE_LOW>;
++	disable-wp;
++	max-frequency = <150000000>;
++	pinctrl-names = "default";
++	pinctrl-0 = <&sdmmc_clk &sdmmc_cd &sdmmc_cmd &sdmmc_bus4>;
++	status = "okay";
++};
++
++&sdhci {
++	bus-width = <8>;
++	mmc-hs400-1_8v;
++	mmc-hs400-enhanced-strobe;
++	non-removable;
++	status = "okay";
++};
++
++&tcphy0 {
++	status = "okay";
++};
++
++&tcphy1 {
++	status = "okay";
++};
++
++&tsadc {
++	status = "okay";
++
++	/* tshut mode 0:CRU 1:GPIO */
++	rockchip,hw-tshut-mode = <1>;
++	/* tshut polarity 0:LOW 1:HIGH */
++	rockchip,hw-tshut-polarity = <1>;
++};
++
++&u2phy0 {
++	status = "okay";
++
++	u2phy0_otg: otg-port {
++		status = "okay";
++	};
++
++	u2phy0_host: host-port {
++		phy-supply = <&vcc5v0_host0>;
++		status = "okay";
++	};
++};
++
++&u2phy1 {
++	status = "okay";
++
++	u2phy1_otg: otg-port {
++		status = "okay";
++	};
++
++	u2phy1_host: host-port {
++		phy-supply = <&vcc5v0_host1>;
++		status = "okay";
++	};
++};
++
++&uart0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&uart0_xfer &uart0_cts &uart0_rts>;
++	status = "okay";
++
++	bluetooth {
++		compatible = "brcm,bcm43438-bt";
++		clocks = <&rk808 1>;
++		clock-names = "ext_clock";
++		device-wakeup-gpios = <&gpio2 RK_PD2 GPIO_ACTIVE_HIGH>;
++		host-wakeup-gpios = <&gpio0 RK_PA4 GPIO_ACTIVE_HIGH>;
++		shutdown-gpios = <&gpio0 RK_PB1 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&bt_host_wake_l &bt_wake_l &bt_reg_on_h>;
++	};
++};
++
++&uart2 {
++	status = "okay";
++};
++
++&usb_host0_ehci {
++	status = "okay";
++};
++
++&usb_host0_ohci {
++	status = "okay";
++};
++
++&usb_host1_ehci {
++	status = "okay";
++};
++
++&usb_host1_ohci {
++	status = "okay";
++};
++
++&usbdrd3_0 {
++	status = "okay";
++};
++
++&usbdrd_dwc3_0 {
++	status = "okay";
++	dr_mode = "otg";
++};
++
++&usbdrd3_1 {
++	status = "okay";
++};
++
++&usbdrd_dwc3_1 {
++	status = "okay";
++	dr_mode = "host";
++};
++
++&vopb {
++	status = "okay";
++};
++
++&vopb_mmu {
++	status = "okay";
++};
++
++&vopl {
++	status = "okay";
++};
++
++&vopl_mmu {
++	status = "okay";
++};
 -- 
-2.22.0
+2.17.1
 
