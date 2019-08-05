@@ -2,61 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EDF1B81FDC
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 17:11:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B35781FE8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 17:15:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729284AbfHEPLo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 11:11:44 -0400
-Received: from mail.kernel.org ([198.145.29.99]:38256 "EHLO mail.kernel.org"
+        id S1728991AbfHEPPF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 11:15:05 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:34368 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727259AbfHEPLn (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 11:11:43 -0400
-Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1363021738;
-        Mon,  5 Aug 2019 15:11:43 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565017903;
-        bh=RA39kesfjwZmG107yJcmHSvsCxQDBkR/lv9jiI8plOA=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mJenClJ4US3+92hEuQdRAkUSkjBGqoSkp9mCiHbuvyaMpCOqRK81mVym7djZDHIiC
-         Z0TMQwRDvWuTVaMmOEU/n53XG+1LhiTsObBd7F2H1vW6M9i/5C+E8vbDTAAvV0KosD
-         /bwrYGIJ+DzwwC7vNDuwOx71/p3HQNWlnWZ8VGjM=
-Received: by mail-qt1-f174.google.com with SMTP id l9so81201214qtu.6;
-        Mon, 05 Aug 2019 08:11:43 -0700 (PDT)
-X-Gm-Message-State: APjAAAXb/fbCASe4R9fR2Gvfbeg2tZnDptljsrrHGrKn2KQTIYsU46Yh
-        KeSheLiHa0Y6Du3lrEzY8cyt4cQ/W+BntTAhIA==
-X-Google-Smtp-Source: APXvYqxVq5oF5EFOo9OXaEyDHPpxJaHA1vkEHqkpeisiCku1CrTzPjnWizZ73Y8FxtYhg1cFcBxnGhU1I8m1M1B28aY=
-X-Received: by 2002:a0c:acef:: with SMTP id n44mr111965592qvc.39.1565017902269;
- Mon, 05 Aug 2019 08:11:42 -0700 (PDT)
+        id S1728974AbfHEPPE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Aug 2019 11:15:04 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=BxD9bHEfVvbXrjPtXMe/EKAGi9dgh7IkLu7Dh5ppO2Y=; b=HIL5cy43Guu210bimMJY4gbw+7
+        1oWryRkaE4JOMs69ikBdoia3NxlNwoM96inLoCdJJOSE3wiwLG52E3EeZ54To/yGjrJBoDNq3jZtn
+        KCRrwOcYd397n/aGvGSmIdkgw0VJIGAQsUCvf/1PaCZR6r3T0rRoP4iB4c2sWpaI7QCI=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1huehQ-0007nS-Ip; Mon, 05 Aug 2019 17:15:00 +0200
+Date:   Mon, 5 Aug 2019 17:15:00 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        robh+dt@kernel.org, mark.rutland@arm.com, f.fainelli@gmail.com,
+        hkallweit1@gmail.com
+Subject: Re: [PATCH 11/16] net: phy: adin: PHY reset mechanisms
+Message-ID: <20190805151500.GP24275@lunn.ch>
+References: <20190805165453.3989-1-alexandru.ardelean@analog.com>
+ <20190805165453.3989-12-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
-References: <20190805023953.11231-1-zhangzj@rock-chips.com>
-In-Reply-To: <20190805023953.11231-1-zhangzj@rock-chips.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 5 Aug 2019 09:11:30 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqLXTK4RRuecX6K74qkw6mVUDzDDiKWbZN79vGejrv1XWQ@mail.gmail.com>
-Message-ID: <CAL_JsqLXTK4RRuecX6K74qkw6mVUDzDDiKWbZN79vGejrv1XWQ@mail.gmail.com>
-Subject: Re: [PATCH v1 1/1] dt-bindings: Add Vendor prefix for Beiqi
-To:     Elon Zhang <zhangzj@rock-chips.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, luowz@beiqicloud.com
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190805165453.3989-12-alexandru.ardelean@analog.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, Aug 4, 2019 at 8:40 PM Elon Zhang <zhangzj@rock-chips.com> wrote:
->
-> Add devicetree vendor prefix for Beiqi.
-> http://www.beiqicloud.com/
->
-> Signed-off-by: Elon Zhang <zhangzj@rock-chips.com>
-> ---
->  Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
->  1 file changed, 2 insertions(+)
+On Mon, Aug 05, 2019 at 07:54:48PM +0300, Alexandru Ardelean wrote:
+> The ADIN PHYs supports 4 types of reset:
+> 1. The standard PHY reset via BMCR_RESET bit in MII_BMCR reg
+> 2. Reset via GPIO
+> 3. Reset via reg GeSftRst (0xff0c) & reload previous pin configs
+> 4. Reset via reg GeSftRst (0xff0c) & request new pin configs
+> 
+> Resets 2 & 4 are almost identical, with the exception that the crystal
+> oscillator is available during reset for 2.
+> 
+> Resetting via GeSftRst or via GPIO is useful when doing a warm reboot. If
+> doing various settings via phytool or ethtool, the sub-system registers
+> don't reset just via BMCR_RESET.
+> 
+> This change implements resetting the entire PHY subsystem during probe.
+> During PHY HW init (phy_hw_init() logic) the PHY core regs will be reset
+> again via BMCR_RESET. This will also need to happen during a PM resume.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+phylib already has support for GPIO reset. So if possible, you should
+not repeat that code here.
+
+What is the difference between a GPIO reset, and a GPIO reset followed
+by a subsystem soft reset?
+
+   Andrew
