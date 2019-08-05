@@ -2,100 +2,83 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 01C028203A
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 17:30:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F1D478203B
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 17:31:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729253AbfHEPaw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 11:30:52 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:41051 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729079AbfHEPaw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 11:30:52 -0400
-Received: by mail-wr1-f65.google.com with SMTP id c2so81631331wrm.8;
-        Mon, 05 Aug 2019 08:30:52 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=IBWghaTG43GrTvi4DOQaHL6LmukK4yS9st0dWQQU/Tk=;
-        b=XOohFeedVBt01mHrK9SiiW3tjobHVmXalDHR006WVtBYQAW8OHLXCGXeGPrJbfH2DP
-         f63xR+cjGwYUQEeIWsL7TDQUu0j46xJqB93I+3hsrGNJlYnx29teiNToCpj6JbfRkqC9
-         oaRZWkk8w2/oIo21UuOs+Q+VAGeHdOxK3rJ2XuDLjeMtxfEYocH9fk+p16GIS42RQN8d
-         A4RDAExFC9eCnNFeunT9xK/Hz8o64RlsOHOdPRzqehuv6hC3X24rVZdOOlpYq6FBZYvq
-         U5gnqInm1hptxD94H0acNibRiYOJim0hf3J2EYbsowLwi6/iOiGsPe9K4yxQ9nQrJxMk
-         T/Ow==
-X-Gm-Message-State: APjAAAVKUmjKo+y4zordA8E1VqSwGs4ogcRHVR3vEaaMXm0dQwR1PUdA
-        QUHcu5nDLskzpaaVJ0htrAixsNzVUeNLAlFu/xM=
-X-Google-Smtp-Source: APXvYqzTBnEN9rLUBKerFP3pCuJj+DoctF4qKjenFOauTc1hdttvsUD6I/nordSwHl79YyqI5U+rOZ5KYJlidpUln8o=
-X-Received: by 2002:adf:f08f:: with SMTP id n15mr7901289wro.213.1565019051380;
- Mon, 05 Aug 2019 08:30:51 -0700 (PDT)
+        id S1729210AbfHEPbC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 11:31:02 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:34466 "EHLO vps0.lunn.ch"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728939AbfHEPbC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Aug 2019 11:31:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=gl1e0DAfh8g9b9ah5STjd2Zeh92eqoUeJ7vLy3eAWZo=; b=uXIsqssj3khLZ27sybWP7psCpR
+        O4ohKMstle//0j1xFo4zCF1BMCMNXODoC4qNcfv1eoQ8TrGQmS7zG+dgxot0zS4X1s98/VTJ9KJTE
+        qyANtw6BIwJWOewiw2WW8xQKk2bsgk4UJ8x4YxTO3PMeEM/X+L8Wb7zPwIXvh1CCvISc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1huews-0007xd-DM; Mon, 05 Aug 2019 17:30:58 +0200
+Date:   Mon, 5 Aug 2019 17:30:58 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        robh+dt@kernel.org, mark.rutland@arm.com, f.fainelli@gmail.com,
+        hkallweit1@gmail.com
+Subject: Re: [PATCH 15/16] net: phy: adin: add ethtool get_stats support
+Message-ID: <20190805153058.GU24275@lunn.ch>
+References: <20190805165453.3989-1-alexandru.ardelean@analog.com>
+ <20190805165453.3989-16-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
-References: <1564731249-22671-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1564731249-22671-12-git-send-email-fabrizio.castro@bp.renesas.com>
- <20190802082952.GL5008@pendragon.ideasonboard.com> <TY1PR01MB17702E7517D3EE5E48337DA8C0DA0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-In-Reply-To: <TY1PR01MB17702E7517D3EE5E48337DA8C0DA0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Mon, 5 Aug 2019 17:30:38 +0200
-Message-ID: <CAMuHMdX9JghQgTksYQfT=Mt5LkyR9aX3BXtZD449y3ZTQAczsg@mail.gmail.com>
-Subject: Re: [PATCH/RFC 11/12] arm64: dts: renesas: cat874: Add definition for
- 12V regulator
-To:     Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-Cc:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Simon Horman <horms@verge.net.au>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>,
-        "ebiharaml@si-linux.co.jp" <ebiharaml@si-linux.co.jp>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190805165453.3989-16-alexandru.ardelean@analog.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabrizio,
+On Mon, Aug 05, 2019 at 07:54:52PM +0300, Alexandru Ardelean wrote:
+> This change implements retrieving all the error counters from the PHY.
+> The PHY supports several error counters/stats. The `Mean Square Errors`
+> status values are only valie when a link is established, and shouldn't be
+> incremented. These values characterize the quality of a signal.
 
-On Mon, Aug 5, 2019 at 11:17 AM Fabrizio Castro
-<fabrizio.castro@bp.renesas.com> wrote:
-> > From: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> > Sent: 02 August 2019 09:30
-> > Subject: Re: [PATCH/RFC 11/12] arm64: dts: renesas: cat874: Add definition for 12V regulator
-> >
-> > Hi Fabrizio,
-> >
-> > Thank you for the patch.
-> >
-> > On Fri, Aug 02, 2019 at 08:34:08AM +0100, Fabrizio Castro wrote:
-> > > Power rail "D12.0V" comes straight from the power barrel connector,
-> > > and it's used in both main board and sub board.
-> > >
-> > > Signed-off-by: Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-> >
-> > Reviewed-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-> >
-> > I don't plan to take this in my tree without patch 12/12, so if you
-> > think the rest of the series won't be ready in time for v5.4, feel free
-> > to get this patch merged through Simon or Geert already.
->
-> Geert, would you be happy to take this patch?
+I think you mean accumulated, not incremented?
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-i.e. will queue in renesas-devel for v5.4.
+> 
+> The rest of the error counters are self-clearing on read.
+> Most of them are reports from the Frame Checker engine that the PHY has.
+> 
+> Not retrieving the `LPI Wake Error Count Register` here, since that is used
+> by the PHY framework to check for any EEE errors. And that register is
+> self-clearing when read (as per IEEE spec).
+> 
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> ---
+>  drivers/net/phy/adin.c | 108 +++++++++++++++++++++++++++++++++++++++++
+>  1 file changed, 108 insertions(+)
+> 
+> diff --git a/drivers/net/phy/adin.c b/drivers/net/phy/adin.c
+> index a1f3456a8504..04896547dac8 100644
+> --- a/drivers/net/phy/adin.c
+> +++ b/drivers/net/phy/adin.c
+> @@ -103,6 +103,32 @@ static struct clause22_mmd_map clause22_mmd_map[] = {
+>  	{ MDIO_MMD_PCS, MDIO_PCS_EEE_WK_ERR,	ADIN1300_LPI_WAKE_ERR_CNT_REG },
+>  };
+>  
+> +struct adin_hw_stat {
+> +	const char *string;
+> +	u16 reg1;
+> +	u16 reg2;
+> +	bool do_not_inc;
 
-Gr{oetje,eeting}s,
+do_not_accumulate? or reverse its meaning, clear_on_read?
 
-                        Geert
-
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+   Andrew
