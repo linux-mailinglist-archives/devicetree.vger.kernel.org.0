@@ -2,92 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A01C282721
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 23:46:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 80E1382730
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 23:51:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728998AbfHEVqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 17:46:30 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:33983 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728870AbfHEVqa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 17:46:30 -0400
-Received: by mail-pf1-f195.google.com with SMTP id b13so40298634pfo.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 14:46:30 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:in-reply-to:references:date:message-id
-         :mime-version;
-        bh=0N59rAm+IJdZS4+AP3R02NAzCgd4BoOv2ctu3nbjqJk=;
-        b=rwLUWgvf1qQ+YcLoAV6e/qmpmkL/X1qlmcjgtIb/Z0qj1AQllfD9q5ik/WMI+dYgbP
-         oJB1Xz+WU6zGzIXXJ+20bqmnijwUbUa97iRn2GNNFa3/bbtkF7qEU1bclXHWgxGuwOvU
-         fmyhI7N8oALj6ySt7EzgMYJiWMi5oITwedtoA1v+vD1CX10PJM841SJYNGHQyqSRiw44
-         wMlDssxMSfEVH1sV62x26S8i+9MYZxv5FbK/Z2KO+xpxE+6YdUIz1IayC1IHtb9GqI4o
-         YzL4VqDMRaqaJuKc9vJMCJUxd9BBSvc/JQ2LkqodkIADM5VOdiTLi9bH/+OtkPY5ZpgG
-         NC/A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
-         :message-id:mime-version;
-        bh=0N59rAm+IJdZS4+AP3R02NAzCgd4BoOv2ctu3nbjqJk=;
-        b=l5QeFOq5OYQT1NOa/Z+TJA6GFkXQV33cZImowbJ7w1EksDSEFadFNdR5KfwnZZAvjr
-         Rur/ceYJYD0IUBXrnThfDingjj0BwvJGvxahCKViB+pIFxN4JeOmBz5ZiSRElwSUsReU
-         9FC3t9XFFUO5hHNFMAVJSonkIC+CnpyiroSeFlMhM2Mlw2NYYjIyZBo1H1LDmLehoq5y
-         6nmwhMYeN0SHfbQ2VWiPdCg70XdqNCCtzEmrfOt+IPUA+todUNIDQtW9mJEUlYEel3dt
-         fw967jkN8irGbwZdKv3YN1n998RcBA84CoWbzUWe5JU71mOscpnnAeFm5JfwYKvlDK4u
-         5oJg==
-X-Gm-Message-State: APjAAAUlj/bVDQsF805Izum3IRSCEVJzFbtxwA2RWSKDLGCJjFMVE9IK
-        Yy3NuoCaenHIEFTjWld9KSj4RQ==
-X-Google-Smtp-Source: APXvYqy5DdisYBXyBq8Lx1/TvhiGE9temZcFVyJDWqAZ4J03brj3zIZsQ1ZSoTA1IfrzD90LOIifoA==
-X-Received: by 2002:a17:90a:fa07:: with SMTP id cm7mr20537343pjb.115.1565041589679;
-        Mon, 05 Aug 2019 14:46:29 -0700 (PDT)
-Received: from localhost ([2601:602:9200:a1a5:7483:80d6:7f67:2672])
-        by smtp.googlemail.com with ESMTPSA id s24sm85504977pfh.133.2019.08.05.14.46.28
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 05 Aug 2019 14:46:29 -0700 (PDT)
-From:   Kevin Hilman <khilman@baylibre.com>
-To:     Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        christianshewitt@gmail.com
-Subject: Re: [PATCH 2/6] dt-bindings: arm: amlogic: add bindings for G12B based S922X SoC
-In-Reply-To: <20190731124000.22072-3-narmstrong@baylibre.com>
-References: <20190731124000.22072-1-narmstrong@baylibre.com> <20190731124000.22072-3-narmstrong@baylibre.com>
-Date:   Mon, 05 Aug 2019 14:46:28 -0700
-Message-ID: <7hblx3gua3.fsf@baylibre.com>
+        id S1728851AbfHEVvu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 17:51:50 -0400
+Received: from mail.kernel.org ([198.145.29.99]:52756 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728483AbfHEVvt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Aug 2019 17:51:49 -0400
+Received: from mail-qt1-f173.google.com (mail-qt1-f173.google.com [209.85.160.173])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id D270F2173C;
+        Mon,  5 Aug 2019 21:51:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565041909;
+        bh=MgPcfIWpdlyaz/4ct/wZ0UcAXhmKA32yt1LEiLncyHQ=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=R0xHCpb0g7SHZbZSfnCgdwnbwgS4Xbgluirjaa3QaWH2G8g6B6sd7z9ojk6VdPM5u
+         sx386MjPhHOvVxN/Ck5kcqoSwqN9ySJco3QIyEVapQpi+x8U3ZqAV5MDC/oRHyG0To
+         gGGmgUyaF2zeJxhxDhuWoXYUJ1qK3tjP3Mi2LDHg=
+Received: by mail-qt1-f173.google.com with SMTP id d17so3616700qtj.8;
+        Mon, 05 Aug 2019 14:51:48 -0700 (PDT)
+X-Gm-Message-State: APjAAAVWQ9TIQq7HlTwEpLEo73hUek5j1oIbfu/g865Esm6fG1i5Sh6S
+        FzBUzHHaNBLx7z/w1DppMQ0zXIDNNbPp7WJW9g==
+X-Google-Smtp-Source: APXvYqxZCbKR4+PbJDpQLUsmi/4xl7NR/p4fqmhm9SFCdgM1DYmSwogal7/7LXK8ld8NUdCwOW78bsSs41kuNcTohmI=
+X-Received: by 2002:a0c:acef:: with SMTP id n44mr147329qvc.39.1565041907997;
+ Mon, 05 Aug 2019 14:51:47 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
+References: <20190805120320.32282-1-narmstrong@baylibre.com>
+In-Reply-To: <20190805120320.32282-1-narmstrong@baylibre.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 5 Aug 2019 15:51:36 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJzwtSXX0nrS7RBP8u-e=16SiWOBjLrvy8Amc08PfpXag@mail.gmail.com>
+Message-ID: <CAL_JsqJzwtSXX0nrS7RBP8u-e=16SiWOBjLrvy8Amc08PfpXag@mail.gmail.com>
+Subject: Re: [RFCv2 0/9] dt-bindings: first tentative of conversion to yaml format
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     linux-amlogic@lists.infradead.org,
+        "open list:HARDWARE RANDOM NUMBER GENERATOR CORE" 
+        <linux-crypto@vger.kernel.org>,
+        "open list:SERIAL DRIVERS" <linux-serial@vger.kernel.org>,
+        linux-spi <linux-spi@vger.kernel.org>,
+        LINUX-WATCHDOG <linux-watchdog@vger.kernel.org>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        Jassi Brar <jassisinghbrar@gmail.com>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Neil Armstrong <narmstrong@baylibre.com> writes:
-
-> Add a specific compatible for the Amlogic G12B family based S922X SoC
-> to differentiate with the A311D SoC from the same family.
+On Mon, Aug 5, 2019 at 6:03 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
->  1 file changed, 1 insertion(+)
+> This is a first tentative to convert some of the simplest Amlogic
+> dt-bindings to the yaml format.
 >
-> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> index 325c6fd3566d..3c3bc806cd23 100644
-> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
-> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
-> @@ -139,6 +139,7 @@ properties:
->          items:
->            - enum:
->                - hardkernel,odroid-n2
-> +          - const: amlogic,s922x
->            - const: amlogic,g12b
+> All have been tested using :
+> $ make ARCH=arm64 dtbs_check
+>
+> Issues with the amlogic arm64 DTs has already been identified thanks
+> to the validation scripts. The DT fixes will be pushed once these yaml
+> bindings are acked.
+>
+> Changes since rfc v1:
+> - Fixed bindings according to Rob's comments
+> - Added commit log
+> - renamed yaml files using amlogic prefix
+>
+> Neil Armstrong (9):
+>   dt-bindings: mailbox: meson-mhu: convert to yaml
+>   dt-bindings: rng: amlogic,meson-rng: convert to yaml
+>   dt-bindings: spi: meson: convert to yaml
+>   dt-bindings: reset: amlogic,meson-reset: convert to yaml
+>   dt-bindings: arm: amlogic: amlogic,meson-gx-ao-secure: convert to yaml
+>   dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml
+>   dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml
+>   dt-bindings: serial: meson-uart: convert to yaml
+>   dt-bindings: watchdog: meson-gxbb-wdt: convert to yaml
 
-nit: in previous binding docs, we were trying to keep these sorted
-alphabetically.  I'll reorder the new "s922x" after "g12b" when
-applying.
+For the series,
 
-Thanks,
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Kevin
+What's your merge plan? Do you want me to take the whole series?
+
+Rob
