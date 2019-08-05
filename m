@@ -2,140 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 56BAC820CA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 17:53:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0BA0C820D8
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 17:54:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727460AbfHEPxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 11:53:35 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:37935 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726559AbfHEPxf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 11:53:35 -0400
-Received: by mail-wm1-f66.google.com with SMTP id s15so52168593wmj.3
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 08:53:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gimpelevich-san-francisco-ca-us.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id;
-        bh=kyGPeqSrHcsD5WJOBf4RVsUUEKiOCYL/y48XAdAiVNU=;
-        b=NC7Q46k9tCnhWyj9w+DkUgP7I2mrIs6jzZfdMjGWVeodYsa0AzCJqwNCeT3dWQPOkH
-         yl4m4cJvhxE9edCr2C94KFAzRGrUHzQNUKAIkixAfJKvyaV42axahfI4WlF9QT+xGkck
-         O+Qr9TRovu7Amliw2uSf6MqjC3H65/s3QUQX8LctF+1JCLEeIJX3D/YjdyWpEHkmxyh8
-         +L3dq9wN2CRPuMQKeb/oQB9yXrFQLSCR8TVybIZASVKtf+lrb9eN6qIrOgpZsEUW68wY
-         6vZrAyqMGAEZYZ+TcMQceiWfPsWSRwhHUE5cUCW9nbZZtJggP+Ylv4bF0OMqiCau7W29
-         Bpxw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id;
-        bh=kyGPeqSrHcsD5WJOBf4RVsUUEKiOCYL/y48XAdAiVNU=;
-        b=VGiBDcnM8CY7PHXThSclBJNar5NYdLi6qf5FBTFNkr2HFtXRFoMJmKDLkNL3JBBoo5
-         81VNx6QBXA6qoXRioNKLfQYDt9uxJnuyuHbi9LCRZetk6OKxeV79bnhh/Dn8BHTrP9A7
-         LjMl5doFx9ejmRVJEnNTndGk5Ot1838ADhZClxcEQZGLHN5po0R/+E9AVZEOLol3bZH7
-         l4zhUb9eQnuWSOO6UKsPJ83A+IU50TkeDX9+Yx5A5QaqqKEjc1mNWFyPRVZXK+lPkbCm
-         3xbbGegMt3uVw+vopCnoGAe7BiX/kTb89IWYXApQLNtB+EJF3dLh3Vmk6Io6sMOdi5u9
-         +WQQ==
-X-Gm-Message-State: APjAAAVXVd4yncR5U7cXRRC8r+LASn78VCpp7JbhgLtNHzRuGrhFkGbW
-        MpwvlwMVIE363VkTA7p55xHGta+AbGKPsw==
-X-Google-Smtp-Source: APXvYqyNrz2AgeLTd39TKWy38T3tZo2pkFJVp2PzGxR1MmTT7mciRDv7GDxbOYDAgwN4NiGWkBzI5g==
-X-Received: by 2002:a1c:f90f:: with SMTP id x15mr18788189wmh.69.1565020413077;
-        Mon, 05 Aug 2019 08:53:33 -0700 (PDT)
-Received: from chimera.lan (157-131-153-118.fiber.dynamic.sonic.net. [157.131.153.118])
-        by smtp.gmail.com with ESMTPSA id h16sm98674399wrv.88.2019.08.05.08.53.31
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Mon, 05 Aug 2019 08:53:32 -0700 (PDT)
-From:   Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>
-To:     devicetree@vger.kernel.org
-Cc:     Paul Burton <paul.burton@mips.com>
-Subject: [PATCH v2] of/fdt: implement a "merge-cmdline" property
-Date:   Mon,  5 Aug 2019 08:53:20 -0700
-Message-Id: <1565020400-25679-1-git-send-email-daniel@gimpelevich.san-francisco.ca.us>
-X-Mailer: git-send-email 1.9.1
+        id S1728842AbfHEPyt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 11:54:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49518 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729042AbfHEPyt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Aug 2019 11:54:49 -0400
+Received: from mail-qk1-f182.google.com (mail-qk1-f182.google.com [209.85.222.182])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0A9212173C;
+        Mon,  5 Aug 2019 15:54:48 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565020488;
+        bh=GqH8P8Sc5z4BoLebSRYjQW+TVTAwhdGRVGtddclJmxY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=vNvjROcPu+7yaOA4CmFHRvfPgFiNVGV+xXMikkoDn+sXkSwDhZ4+5hYxEAbBTD7VG
+         vByLOYoOoBXdEGxacgnA2dPqb//W18X7uaqiqGW4RqdHW1qknvjED9mGzTKWw0WSVb
+         Rv2TVfmT2BZ08O1V8VqJn5W3b2XANdgAoLDEnB9s=
+Received: by mail-qk1-f182.google.com with SMTP id t187so7775081qke.8;
+        Mon, 05 Aug 2019 08:54:48 -0700 (PDT)
+X-Gm-Message-State: APjAAAXFX7sL2zEnAQuObWlVVDmA98ZBY0FcbgHQiMVA69M879zuNhBf
+        vg+kvPNvvQMPO4FIV4386Mc8uWkFJb/4IaEigA==
+X-Google-Smtp-Source: APXvYqw9FR3wqH+oZ5jAU/pdfSplNc6XBxfybOgvQPatkfulK2lt7S/NZVvHJvpqmoyDdmCwUTGKN+GG+Qi/B+5UxHI=
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr104724739qke.223.1565020487172;
+ Mon, 05 Aug 2019 08:54:47 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190805145211.23161-1-dinguyen@kernel.org>
+In-Reply-To: <20190805145211.23161-1-dinguyen@kernel.org>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 5 Aug 2019 09:54:34 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKUK+AQiy8jZ_aWuSsHMb5nSFJpiDMUAYbmK6pvc0p1_w@mail.gmail.com>
+Message-ID: <CAL_JsqKUK+AQiy8jZ_aWuSsHMb5nSFJpiDMUAYbmK6pvc0p1_w@mail.gmail.com>
+Subject: Re: [PATCHv2] drivers/amba: add reset control to primecell probe
+To:     Dinh Nguyen <dinguyen@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Kees Cook <keescook@chromium.org>,
+        Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Currently, "bootargs" supplied via the "chosen" node can be used only to
-supply a kernel command line as a whole. No mechanism exists in DT to add
-bootargs to the existing command line instead. This is needed in order to
-avoid having to update the bootloader or default bootloader config when
-upgrading to a DTB and kernel pair that requires bootargs not previously
-needed.
+On Mon, Aug 5, 2019 at 8:52 AM Dinh Nguyen <dinguyen@kernel.org> wrote:
+>
+> The primecell controller on some SoCs, i.e. SoCFPGA, is held in reset by
+> default. Until recently, the DMA controller was brought out of reset by the
+> bootloader(i.e. U-Boot). But a recent change in U-Boot, the peripherals that
+> are not used are held in reset and are left to Linux to bring them out of
+> reset.
+>
+> Add a mechanism for getting the reset property and de-assert the primecell
+> module from reset if found. This is a not a hard fail if the reset property
+> is not present in the device tree node, so the driver will continue to probe.
+>
+> Because there are different variants of the controller that may have multiple
+> reset signals, the code will find all reset(s) specified and de-assert them.
+>
+> Signed-off-by: Dinh Nguyen <dinguyen@kernel.org>
+> ---
+> v2: move reset control to bus code
+>     find all reset properties and de-assert them
+> ---
+>  drivers/amba/bus.c | 13 +++++++++++++
+>  1 file changed, 13 insertions(+)
+>
+> diff --git a/drivers/amba/bus.c b/drivers/amba/bus.c
+> index 100e798a5c82..75e18b9e4808 100644
+> --- a/drivers/amba/bus.c
+> +++ b/drivers/amba/bus.c
+> @@ -18,6 +18,7 @@
+>  #include <linux/limits.h>
+>  #include <linux/clk/clk-conf.h>
+>  #include <linux/platform_device.h>
+> +#include <linux/reset.h>
+>
+>  #include <asm/irq.h>
+>
+> @@ -401,6 +402,18 @@ static int amba_device_try_add(struct amba_device *dev, struct resource *parent)
+>         ret = amba_get_enable_pclk(dev);
+>         if (ret == 0) {
+>                 u32 pid, cid;
+> +               int count;
+> +               struct reset_control *rstc;
+> +
+> +               /*
+> +                * Find reset control(s) of the amba bus and de-assert them.
+> +                */
+> +               count = reset_control_get_count(&dev->dev);
+> +               while (count > 0) {
+> +                       rstc = of_reset_control_get_shared_by_index(dev->dev.of_node, count - 1);
+> +                       reset_control_deassert(rstc);
+> +                       count--;
+> +               }
 
-One example use case is that OpenWrt currently supports four ARM devices by
-means of locally applying the previously rejected edition of this patch. So
-far, the patch has been used in production only on ARM, but architecture is
-not a distinction in the design.
+Aren't you going to need a put somewhere?
 
-On MIPS, Commit 951d223 ("MIPS: Fix CONFIG_CMDLINE handling") currently
-prevents support of such a mechanism, so I am including a workaround, in
-anticipation of upcoming changes.
+And then there's the fun possibility of deferred probe which could
+happen on any of the resets.
 
-Signed-off-by: Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>
-Fixes: 951d223 ("MIPS: Fix CONFIG_CMDLINE handling")
-References: https://patchwork.linux-mips.org/patch/17659/
----
- arch/mips/kernel/setup.c | 12 ++++++++----
- drivers/of/fdt.c         |  9 +++++++--
- 2 files changed, 15 insertions(+), 6 deletions(-)
-
-diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
-index ab349d2..9ce58f2 100644
---- a/arch/mips/kernel/setup.c
-+++ b/arch/mips/kernel/setup.c
-@@ -725,7 +725,10 @@ static void __init arch_mem_init(char **cmdline_p)
- 	 * CONFIG_CMDLINE ourselves below & don't want to duplicate its
- 	 * content because repeating arguments can be problematic.
- 	 */
--	strlcpy(boot_command_line, " ", COMMAND_LINE_SIZE);
-+	if (USE_DTB_CMDLINE)
-+		strlcpy(boot_command_line, arcs_cmdline, COMMAND_LINE_SIZE);
-+	else
-+		strlcpy(boot_command_line, " ", COMMAND_LINE_SIZE);
- 
- 	/* call board setup routine */
- 	plat_mem_setup();
-@@ -753,9 +756,10 @@ static void __init arch_mem_init(char **cmdline_p)
- #if defined(CONFIG_CMDLINE_BOOL) && defined(CONFIG_CMDLINE_OVERRIDE)
- 	strlcpy(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
- #else
--	if ((USE_PROM_CMDLINE && arcs_cmdline[0]) ||
--	    (USE_DTB_CMDLINE && !boot_command_line[0]))
-+	if (USE_PROM_CMDLINE)
- 		strlcpy(boot_command_line, arcs_cmdline, COMMAND_LINE_SIZE);
-+	else if (!strcmp(boot_command_line, " "))
-+		boot_command_line[0] = '\0';
- 
- 	if (EXTEND_WITH_PROM && arcs_cmdline[0]) {
- 		if (boot_command_line[0])
-@@ -764,7 +768,7 @@ static void __init arch_mem_init(char **cmdline_p)
- 	}
- 
- #if defined(CONFIG_CMDLINE_BOOL)
--	if (builtin_cmdline[0]) {
-+	if (builtin_cmdline[0] && strcmp(boot_command_line, builtin_cmdline)) {
- 		if (boot_command_line[0])
- 			strlcat(boot_command_line, " ", COMMAND_LINE_SIZE);
- 		strlcat(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
-diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-index 9cdf14b..08c25eb 100644
---- a/drivers/of/fdt.c
-+++ b/drivers/of/fdt.c
-@@ -1055,8 +1055,13 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
- 
- 	/* Retrieve command line */
- 	p = of_get_flat_dt_prop(node, "bootargs", &l);
--	if (p != NULL && l > 0)
--		strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
-+	if (p != NULL && l > 0) {
-+		if (!of_get_flat_dt_prop(node, "merge-cmdline", NULL))
-+			*(char *)data = '\0';
-+		if (*(char *)data)
-+			strlcat(data, " ", COMMAND_LINE_SIZE);
-+		strlcat(data, p, min(l + strlen(data), COMMAND_LINE_SIZE));
-+	}
- 
- 	/*
- 	 * CONFIG_CMDLINE is meant to be a default in case nothing else
--- 
-1.9.1
-
+Rob
