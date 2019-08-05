@@ -2,205 +2,101 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 03101817E0
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 13:10:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 398D2817EF
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 13:13:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728015AbfHELKk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 07:10:40 -0400
-Received: from vps.xff.cz ([195.181.215.36]:59856 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727259AbfHELKk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 07:10:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1565003437; bh=I5+SP8QUAXj3fkTM2l0PMqN9PUAIUknyUZz+rlL28Og=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=cbXoWK2qv+KUUjGgbolnvJxHaGPI1CjR9DGktOxiYqA3GTfG4d88k7ZekQpyYNGB2
-         DnC3VadAN6S6HWcJO2HINgmgDxfBwOWUG9DtnDPQfgdNxoDG7g7BbJBz2S5AFNzVEN
-         mVqbtonragdAaWe9Qwvz/P1WgMZn87xdQ49lo9lI=
-Date:   Mon, 5 Aug 2019 13:10:37 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-rtc@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-Subject: Re: [linux-sunxi] [PATCH 2/3] rtc: sun6i: Add support for H6 RTC
-Message-ID: <20190805111037.76vmanzcurffpbdf@core.my.home>
-Mail-Followup-To: Chen-Yu Tsai <wens@csie.org>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-rtc@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
-References: <20190412120730.473-1-megous@megous.com>
- <20190412120730.473-3-megous@megous.com>
- <CAGb2v675j-aCLMgPJOzr9yx1XxsUvHRr_K7VnL=p8mSdwpu2jw@mail.gmail.com>
- <20190805104529.z3mex3m2tss7lzlr@core.my.home>
- <CAGb2v67pcxdxjdRX_HN4133A32eA566DDtUJUKV7pqzxDtOaeg@mail.gmail.com>
+        id S1727349AbfHELNM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 07:13:12 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:46132 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727328AbfHELNM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 07:13:12 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=utB0r1atmnVwa7CY1NTWgbkaYDxQ5etSjcoSuqlLbMk=; b=NgjEVd/0WOtO+B3zJm+gOUBRU
+        yHilyhEsbqPZrpPixoQnumwIxj6RwvF24GISfjL79c79VykIZNce79+G7UlQ6SBrEtr4lnsEy1TmD
+        RgifsQ74ii9R0OYcOpPTLmwOYjhFIU3mXnHneKwAErY2Ll+STpvxoG6W/CTLAAyzFbrIM=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1huavJ-0008IY-L9; Mon, 05 Aug 2019 11:13:05 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 132672742D06; Mon,  5 Aug 2019 12:13:05 +0100 (BST)
+Date:   Mon, 5 Aug 2019 12:13:05 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Ashish Kumar <ashish.kumar@nxp.com>
+Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "bbrezillon@kernel.org" <bbrezillon@kernel.org>,
+        Kuldeep Singh <kuldeep.singh@nxp.com>,
+        "linux-mtd@lists.infradead.org" <linux-mtd@lists.infradead.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>, Han Xu <xhnjupt@gmail.com>,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [EXT] Re: [Patch v3 2/2] dt-bindings: spi: spi-fsl-qspi: Add
+ bindings of ls1088a and ls1012a
+Message-ID: <20190805111304.GC6432@sirena.org.uk>
+References: <1560942714-13330-1-git-send-email-Ashish.Kumar@nxp.com>
+ <1560942714-13330-3-git-send-email-Ashish.Kumar@nxp.com>
+ <20190709200857.GA8477@bogus>
+ <CA+EcR20ui8Liot+PtzdU6CJb5WzLDHS0Xc7VR7qGAOpD5=ArNQ@mail.gmail.com>
+ <VI1PR04MB401579932CF0E7D4AE80E0C995DA0@VI1PR04MB4015.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="i7F3eY7HS/tUJxUd"
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAGb2v67pcxdxjdRX_HN4133A32eA566DDtUJUKV7pqzxDtOaeg@mail.gmail.com>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+In-Reply-To: <VI1PR04MB401579932CF0E7D4AE80E0C995DA0@VI1PR04MB4015.eurprd04.prod.outlook.com>
+X-Cookie: Place stamp here.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 05, 2019 at 06:54:17PM +0800, Chen-Yu Tsai wrote:
-> On Mon, Aug 5, 2019 at 6:45 PM Ondřej Jirman <megous@megous.com> wrote:
-> >
-> > On Mon, Aug 05, 2019 at 06:16:14PM +0800, Chen-Yu Tsai wrote:
-> > > On Fri, Apr 12, 2019 at 8:07 PM megous via linux-sunxi
-> > > <linux-sunxi@googlegroups.com> wrote:
-> > > >
-> > > > From: Ondrej Jirman <megous@megous.com>
-> > > >
-> > > > RTC on H6 is mostly the same as on H5 and H3. It has slight differences
-> > > > mostly in features that are not yet supported by this driver.
-> > > >
-> > > > Some differences are already stated in the comments in existing code.
-> > > > One other difference is that H6 has extra bit in LOSC_CTRL_REG, called
-> > > > EXT_LOSC_EN to enable/disable external low speed crystal oscillator.
-> > > >
-> > > > It also has bit EXT_LOSC_STA in LOSC_AUTO_SWT_STA_REG, to check whether
-> > > > external low speed oscillator is working correctly.
-> > > >
-> > > > This patch adds support for enabling LOSC when necessary:
-> > > >
-> > > > - during reparenting
-> > > > - when probing the clock
-> > > >
-> > > > H6 also has capacbility to automatically reparent RTC clock from
-> > > > external crystal oscillator, to internal RC oscillator, if external
-> > > > oscillator fails. This is enabled by default. Disable it during
-> > > > probe.
-> > > >
-> > > > Signed-off-by: Ondrej Jirman <megous@megous.com>
-> > > > ---
-> > > >  drivers/rtc/rtc-sun6i.c | 40 ++++++++++++++++++++++++++++++++++++++--
-> > > >  1 file changed, 38 insertions(+), 2 deletions(-)
-> > > >
-> > > > diff --git a/drivers/rtc/rtc-sun6i.c b/drivers/rtc/rtc-sun6i.c
-> > > > index 11f56de52179..7375a530c565 100644
-> > > > --- a/drivers/rtc/rtc-sun6i.c
-> > > > +++ b/drivers/rtc/rtc-sun6i.c
-> > > > @@ -41,9 +41,11 @@
-> > > >  /* Control register */
-> > > >  #define SUN6I_LOSC_CTRL                                0x0000
-> > > >  #define SUN6I_LOSC_CTRL_KEY                    (0x16aa << 16)
-> > > > +#define SUN6I_LOSC_CTRL_AUTO_SWT_BYPASS                BIT(15)
-> > >
-> > > Manual says bit 14? Or is this different from LOSC_AUTO_SWT_EN?
-> > >
-> > > The rest looks ok.
-> >
-> > To give you more information. This is a new thing in H6 BSP, compared
-> > to BSPs for previous SoCs (H5/H3).
-> >
-> >  20 #define REG_CLK32K_AUTO_SWT_EN                  BIT(14)
-> >  21 #define REG_CLK32K_AUTO_SWT_BYPASS              BIT(15)
-> >
-> > Init sequence changed in H6 BSP to:
-> >
-> > 646         /*
-> > 647          * Step1: select RTC clock source
-> > 648          */
-> > 649         tmp_data = readl(chip->base + SUNXI_LOSC_CTRL);
-> > 650         tmp_data &= (~REG_CLK32K_AUTO_SWT_EN);
-> > 651
-> > 652         /* Disable auto switch function */
-> > 653         tmp_data |= REG_CLK32K_AUTO_SWT_BYPASS;
-> > 654         writel(tmp_data, chip->base + SUNXI_LOSC_CTRL);
-> > 655
-> > 656         tmp_data = readl(chip->base + SUNXI_LOSC_CTRL);
-> > 657         tmp_data |= (RTC_SOURCE_EXTERNAL | REG_LOSCCTRL_MAGIC);
-> > 658         writel(tmp_data, chip->base + SUNXI_LOSC_CTRL);
-> > 659
-> > 660         /* We need to set GSM after change clock source */
-> > 661         udelay(10);
-> > 662         tmp_data = readl(chip->base + SUNXI_LOSC_CTRL);
-> > 663         tmp_data |= (EXT_LOSC_GSM | REG_LOSCCTRL_MAGIC);
-> > 664         writel(tmp_data, chip->base + SUNXI_LOSC_CTRL);
-> > 665
-> 
-> I don't have this in my H6 BSPs. One is H6 Lichee v1.1 downloaded from Pine64.
-> The link was from linux-sunxi wiki's H6 page.
-> 
-> The other is a 4.9 kernel tree, which I believe is from Allwinner's github:
-> 
->     https://github.com/Allwinner-Homlet/H6-BSP4.9-linux
 
-Interesting. :) I have the BSP I was using saved here:
+--i7F3eY7HS/tUJxUd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-https://megous.com/git/linux/tree/drivers/rtc/rtc-sunxi.c?h=h6-4.9-bsp#n649
+On Mon, Aug 05, 2019 at 09:07:47AM +0000, Ashish Kumar wrote:
 
-It's based of 4.9.119
+> Could you please send this patch[1] from your spi tree, It applies seamle=
+ssly on
+> https://git.kernel.org/pub/scm/linux/kernel/git/broonie/spi.git/
+>=20
+> [1]: http://patchwork.ozlabs.org/patch/1118637/
 
-https://megous.com/git/linux/log/?h=h6-4.9-bsp
+Please don't send content free pings and please allow a reasonable time
+for review.  People get busy, go on holiday, attend conferences and so=20
+on so unless there is some reason for urgency (like critical bug fixes)
+please allow at least a couple of weeks for review.  If there have been
+review comments then people may be waiting for those to be addressed.
 
-I don't remember where I found it. But I imported it fairly recently, and
-the code you pointed to looks like an older version that I can found in some
-beta H6 BSP, that I imported way earlier and is based on 4.9.56:
+Sending content free pings adds to the mail volume (if they are seen at
+all) which is often the problem and since they can't be reviewed
+directly if something has gone wrong you'll have to resend the patches
+anyway, so sending again is generally a better approach though there are
+some other maintainers who like them - if in doubt look at how patches
+for the subsystem are normally handled.
 
-https://megous.com/git/linux/tree/drivers/rtc/rtc-sunxi.c?h=linux-h6
-https://megous.com/git/linux/log/?h=linux-h6
+--i7F3eY7HS/tUJxUd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Hmm, archeology. :)
+-----BEGIN PGP SIGNATURE-----
 
-> > For older BSPs, the init sequence looked like this:
-> >
-> > 482         /*
-> > 483          * Step1: select RTC clock source
-> > 484          */
-> > 485         tmp_data = sunxi_rtc_read(SUNXI_LOSC_CTRL_REG);
-> > 486         tmp_data &= (~REG_CLK32K_AUTO_SWT_EN);
-> > 487         tmp_data |= (RTC_SOURCE_EXTERNAL | REG_LOSCCTRL_MAGIC);
-> > 488         tmp_data |= (EXT_LOSC_GSM);
-> > 489         sunxi_rtc_write(tmp_data, SUNXI_LOSC_CTRL_REG);
-> > 490
-> >
-> > EXT_LOSC_GSM has values 4 values from low to high, and I guess it configures
-> > gain for the oscillator's amplifier in the feedback loop of the circuit.
-> >
-> > So the new code, for some reason changed from single write to sequence
-> > of individual writes/config steps:
-> >
-> > 1) disable auto-switch and enable auto-switch bypass
-> > 2) select RTC clock source (to LOSC)
-> >   (wait)
-> 
-> Maybe it's possible to glitch if these two are combined?
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1ID0AACgkQJNaLcl1U
+h9CqaAf/ZHR3MbVzooalCiifNEU+1YHfwNNTTBUF8HJWr2BM2HQbpYWCuQcm9iyQ
+FtnKDWPx6ouSI1lYCORQJyqkrZo36kPYN33OegMbzeNJRQb3uw94zVyVlOXAFl3h
+/gl+o0+hrEQ2Ttnm/Nj9gZFiGxV6IFHE53HPFcpYBmPj6ME1i3XswYFrpxx6PoQK
+GqqbirJm/v47fzXXIhKI6c0PFAKS6mPgFp68krzFXFGgPvvePJ+T5YP0lkImtfhK
+BL2GSL9tMrf3InZ+/yOauhunSp7pqr1vF04udoLo5eh5sQqlo+/zCTqUqWN3Pqn8
+N4keQhb+N29o99Bx2UV7SBd1YOBC+w==
+=FyJ3
+-----END PGP SIGNATURE-----
 
-That's what I thought too. Or the programmer thought so, and was just
-programming defensively, and there's no real problem in the practice.
-
-But that specific delay() seems like someone trying to solve a real issue. Of
-course there's no knowing if it was on H6 or on some other SoC.
-
-regards,
-	o.
-
-> 
-> > 3) configure gain on the LOSC
-> >
-> > regards,
-> >         o.
-> >
-> > > ChenYu
-> >
-> > --
-> > You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> > To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> > To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20190805104529.z3mex3m2tss7lzlr%40core.my.home.
+--i7F3eY7HS/tUJxUd--
