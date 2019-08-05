@@ -2,182 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8BA3082122
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 18:03:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8F4C68225E
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 18:30:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727349AbfHEQD6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 12:03:58 -0400
-Received: from mx2.suse.de ([195.135.220.15]:44966 "EHLO mx1.suse.de"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726847AbfHEQD6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 12:03:58 -0400
-X-Virus-Scanned: by amavisd-new at test-mx.suse.de
-Received: from relay2.suse.de (unknown [195.135.220.254])
-        by mx1.suse.de (Postfix) with ESMTP id C834AAEFB;
-        Mon,  5 Aug 2019 16:03:56 +0000 (UTC)
-Message-ID: <2050374ac07e0330e505c4a1637256428adb10c4.camel@suse.de>
-Subject: Re: [PATCH 3/8] of/fdt: add function to get the SoC wide DMA
- addressable memory size
-From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>
-Cc:     Christoph Hellwig <hch@lst.de>, wahrenst@gmx.net,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        linux-mm@kvack.org, Frank Rowand <frowand.list@gmail.com>,
-        phill@raspberryi.org, Florian Fainelli <f.fainelli@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Eric Anholt <eric@anholt.net>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>
-Date:   Mon, 05 Aug 2019 18:03:53 +0200
-In-Reply-To: <CAL_JsqKF5nh3hcdLTG5+6RU3_TnFrNX08vD6qZ8wawoA3WSRpA@mail.gmail.com>
-References: <20190731154752.16557-1-nsaenzjulienne@suse.de>
-         <20190731154752.16557-4-nsaenzjulienne@suse.de>
-         <CAL_JsqKF5nh3hcdLTG5+6RU3_TnFrNX08vD6qZ8wawoA3WSRpA@mail.gmail.com>
-Content-Type: multipart/signed; micalg="pgp-sha256";
-        protocol="application/pgp-signature"; boundary="=-bHwRoCAB9PanvfyTc8AQ"
-User-Agent: Evolution 3.32.4 
+        id S1728830AbfHEQaI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 12:30:08 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33304 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726620AbfHEQaI (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Aug 2019 12:30:08 -0400
+Received: from mail-qt1-f174.google.com (mail-qt1-f174.google.com [209.85.160.174])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id C728521738
+        for <devicetree@vger.kernel.org>; Mon,  5 Aug 2019 16:30:06 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565022606;
+        bh=6zMiHJIx+ERj83jXha9mrqpBBab9E1RuqE3mXe0hPsM=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=2s9SkdRVpM4hPN5qZkWi6MkYfIaJWteFgfXmwmgrlIcyuqrDjsqZzwIiKVN1/peS3
+         Lt4oZBqZ1VCHxDo7VhlAOuE7FOzGqrt92NzOiR4pRTmQfKM8PSDXIrkJiWmOvXRQwq
+         yTXcqDVwnmu0srjhsSL1Upra2ji+hKaAJtpbilmw=
+Received: by mail-qt1-f174.google.com with SMTP id 44so50483795qtg.11
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 09:30:06 -0700 (PDT)
+X-Gm-Message-State: APjAAAVJZS83fiANSXaU2Wl/Y3vYCYhJ4K1OmDcH6oMbzTknxCqoEmqS
+        k3N22hfBOuS+X9Av2LZlpZywf0Qoz/Jl5G5H5g==
+X-Google-Smtp-Source: APXvYqyfTHweXxsx0yQa1q1Ij2UE3m8ALrwP9dc0+htzGtl046XS6apqeV6/SCqQpiyuYax5OtEwtOw15tFiLncNRHQ=
+X-Received: by 2002:ac8:368a:: with SMTP id a10mr107715673qtc.143.1565022605914;
+ Mon, 05 Aug 2019 09:30:05 -0700 (PDT)
 MIME-Version: 1.0
+References: <1565020400-25679-1-git-send-email-daniel@gimpelevich.san-francisco.ca.us>
+In-Reply-To: <1565020400-25679-1-git-send-email-daniel@gimpelevich.san-francisco.ca.us>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 5 Aug 2019 10:29:53 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqLobsATYbKR0Rx8kpS3i+hHqsqibYn9h5Xi1T=DVwRF1g@mail.gmail.com>
+Message-ID: <CAL_JsqLobsATYbKR0Rx8kpS3i+hHqsqibYn9h5Xi1T=DVwRF1g@mail.gmail.com>
+Subject: Re: [PATCH v2] of/fdt: implement a "merge-cmdline" property
+To:     Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>
+Cc:     devicetree@vger.kernel.org, Paul Burton <paul.burton@mips.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, Aug 5, 2019 at 9:53 AM Daniel Gimpelevich
+<daniel@gimpelevich.san-francisco.ca.us> wrote:
+>
+> Currently, "bootargs" supplied via the "chosen" node can be used only to
+> supply a kernel command line as a whole. No mechanism exists in DT to add
+> bootargs to the existing command line instead. This is needed in order to
+> avoid having to update the bootloader or default bootloader config when
+> upgrading to a DTB and kernel pair that requires bootargs not previously
+> needed.
 
---=-bHwRoCAB9PanvfyTc8AQ
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+The DTB and kernel are not a pair. Or at least they shouldn't be. If
+anything, the bootloader and DTB are a pair as those are the h/w
+specific parts. If the DTB and kernel are a pair, then anything you
+want to put into DTB can just be in the kernel. There's been some
+attempts to rework the command line handling to be common and support
+prepending and appending which could be useful here.
 
-Hi Rob,
-Thanks for the review!
+> One example use case is that OpenWrt currently supports four ARM devices by
+> means of locally applying the previously rejected edition of this patch. So
+> far, the patch has been used in production only on ARM, but architecture is
+> not a distinction in the design.
 
-On Fri, 2019-08-02 at 11:17 -0600, Rob Herring wrote:
-> On Wed, Jul 31, 2019 at 9:48 AM Nicolas Saenz Julienne
-> <nsaenzjulienne@suse.de> wrote:
-> > Some SoCs might have multiple interconnects each with their own DMA
-> > addressing limitations. This function parses the 'dma-ranges' on each o=
-f
-> > them and tries to guess the maximum SoC wide DMA addressable memory
-> > size.
-> >=20
-> > This is specially useful for arch code in order to properly setup CMA
-> > and memory zones.
->=20
-> We already have a way to setup CMA in reserved-memory, so why is this
-> needed for that?
+Other distros support dozens of boards, so why haven't they ever
+needed such a change?
 
-Correct me if I'm wrong but I got the feeling you got the point of the patc=
-h
-later on.
+> On MIPS, Commit 951d223 ("MIPS: Fix CONFIG_CMDLINE handling") currently
+> prevents support of such a mechanism, so I am including a workaround, in
+> anticipation of upcoming changes.
 
-> > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> > ---
-> >=20
-> >  drivers/of/fdt.c       | 72 ++++++++++++++++++++++++++++++++++++++++++
-> >  include/linux/of_fdt.h |  2 ++
-> >  2 files changed, 74 insertions(+)
-> >=20
-> > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > index 9cdf14b9aaab..f2444c61a136 100644
-> > --- a/drivers/of/fdt.c
-> > +++ b/drivers/of/fdt.c
-> > @@ -953,6 +953,78 @@ int __init early_init_dt_scan_chosen_stdout(void)
-> >  }
-> >  #endif
-> >=20
-> > +/**
-> > + * early_init_dt_dma_zone_size - Look at all 'dma-ranges' and provide =
-the
-> > + * maximum common dmable memory size.
-> > + *
-> > + * Some devices might have multiple interconnects each with their own =
-DMA
-> > + * addressing limitations. For example the Raspberry Pi 4 has the
-> > following:
-> > + *
-> > + * soc {
-> > + *     dma-ranges =3D <0xc0000000  0x0 0x00000000  0x3c000000>;
-> > + *     [...]
-> > + * }
-> > + *
-> > + * v3dbus {
-> > + *     dma-ranges =3D <0x00000000  0x0 0x00000000  0x3c000000>;
-> > + *     [...]
-> > + * }
-> > + *
-> > + * scb {
-> > + *     dma-ranges =3D <0x0 0x00000000  0x0 0x00000000  0xfc000000>;
-> > + *     [...]
-> > + * }
-> > + *
-> > + * Here the area addressable by all devices is [0x00000000-0x3bffffff]=
-.
-> > Hence
-> > + * the function will write in 'data' a size of 0x3c000000.
-> > + *
-> > + * Note that the implementation assumes all interconnects have the sam=
-e
-> > physical
-> > + * memory view and that the mapping always start at the beginning of R=
-AM.
->=20
-> Not really a valid assumption for general code.
+Like I said on irc, mixing this with the mess that is MIPS
+bootloader-kernel interface generally and command line handling
+specifically is not a path to upstream.
 
-Fair enough. On my defence I settled on that assumption after grepping all =
-dts
-and being unable to find a board that behaved otherwise.
+> Signed-off-by: Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>
+> Fixes: 951d223 ("MIPS: Fix CONFIG_CMDLINE handling")
+> References: https://patchwork.linux-mips.org/patch/17659/
+> ---
+>  arch/mips/kernel/setup.c | 12 ++++++++----
+>  drivers/of/fdt.c         |  9 +++++++--
+>  2 files changed, 15 insertions(+), 6 deletions(-)
+>
+> diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
+> index ab349d2..9ce58f2 100644
+> --- a/arch/mips/kernel/setup.c
+> +++ b/arch/mips/kernel/setup.c
+> @@ -725,7 +725,10 @@ static void __init arch_mem_init(char **cmdline_p)
+>          * CONFIG_CMDLINE ourselves below & don't want to duplicate its
+>          * content because repeating arguments can be problematic.
+>          */
+> -       strlcpy(boot_command_line, " ", COMMAND_LINE_SIZE);
+> +       if (USE_DTB_CMDLINE)
+> +               strlcpy(boot_command_line, arcs_cmdline, COMMAND_LINE_SIZE);
+> +       else
+> +               strlcpy(boot_command_line, " ", COMMAND_LINE_SIZE);
+>
+>         /* call board setup routine */
+>         plat_mem_setup();
+> @@ -753,9 +756,10 @@ static void __init arch_mem_init(char **cmdline_p)
+>  #if defined(CONFIG_CMDLINE_BOOL) && defined(CONFIG_CMDLINE_OVERRIDE)
+>         strlcpy(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
+>  #else
+> -       if ((USE_PROM_CMDLINE && arcs_cmdline[0]) ||
+> -           (USE_DTB_CMDLINE && !boot_command_line[0]))
+> +       if (USE_PROM_CMDLINE)
+>                 strlcpy(boot_command_line, arcs_cmdline, COMMAND_LINE_SIZE);
+> +       else if (!strcmp(boot_command_line, " "))
+> +               boot_command_line[0] = '\0';
+>
+>         if (EXTEND_WITH_PROM && arcs_cmdline[0]) {
+>                 if (boot_command_line[0])
+> @@ -764,7 +768,7 @@ static void __init arch_mem_init(char **cmdline_p)
+>         }
+>
+>  #if defined(CONFIG_CMDLINE_BOOL)
+> -       if (builtin_cmdline[0]) {
+> +       if (builtin_cmdline[0] && strcmp(boot_command_line, builtin_cmdline)) {
+>                 if (boot_command_line[0])
+>                         strlcat(boot_command_line, " ", COMMAND_LINE_SIZE);
+>                 strlcat(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
+> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> index 9cdf14b..08c25eb 100644
+> --- a/drivers/of/fdt.c
+> +++ b/drivers/of/fdt.c
+> @@ -1055,8 +1055,13 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+>
+>         /* Retrieve command line */
+>         p = of_get_flat_dt_prop(node, "bootargs", &l);
+> -       if (p != NULL && l > 0)
+> -               strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
+> +       if (p != NULL && l > 0) {
+> +               if (!of_get_flat_dt_prop(node, "merge-cmdline", NULL))
 
-[...]
+This is worse than the original proposal because 'merge' is not clear
+what it does compared to 'append' and how does 'cmdline' relate to
+'bootargs'.
 
-> It's possible to have multiple levels of nodes and dma-ranges. You need t=
-o
-> handle that case too. Doing that and handling differing address translati=
-ons
-> will be complicated.
-
-Understood.
-
-> IMO, I'd just do:
->=20
-> if (of_fdt_machine_is_compatible(blob, "brcm,bcm2711"))
->     dma_zone_size =3D XX;
->=20
-> 2 lines of code is much easier to maintain than 10s of incomplete code
-> and is clearer who needs this. Maybe if we have dozens of SoCs with
-> this problem we should start parsing dma-ranges.
-
-FYI that's what arm32 is doing at the moment and was my first instinct. But=
- it
-seems that arm64 has been able to survive so far without any machine specif=
-ic
-code and I have the feeling Catalin and Will will not be happy about this
-solution. Am I wrong?
-
-
---=-bHwRoCAB9PanvfyTc8AQ
-Content-Type: application/pgp-signature; name="signature.asc"
-Content-Description: This is a digitally signed message part
-Content-Transfer-Encoding: 7bit
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl1IU2kACgkQlfZmHno8
-x/4vnwf/XE8+V9mimMzYNeVSaTESn/AL3orSEJeMoeUZ1CPBVspMiV34YhnJFTs+
-P3QiXvdigSX/vj+I8400qhGBhIj/+34A+wdKwEYb80kh2OExM56tuKuptWLPuyPd
-u9T3FLJ+NdnV8p6zloY7xYBtI62Hr618kOX/ku1lBC5sJX1y8bRjTpvKqOPnrcC/
-lcwjF0tU+HjPtYVDvhm6Joe0DryRATvNyVHzFrzpmcnznP+/6JCSPcaeDzDgY5jK
-6/oS4fQQuzbAasQYkJDdOtEbRkE6W933vTGU3+kBwMdMybPYJW47CWedJulvKZvJ
-6UP+li0Bb59N44VHgsTjI8pB8bey3g==
-=gqcX
------END PGP SIGNATURE-----
-
---=-bHwRoCAB9PanvfyTc8AQ--
-
+> +                       *(char *)data = '\0';
+> +               if (*(char *)data)
+> +                       strlcat(data, " ", COMMAND_LINE_SIZE);
+> +               strlcat(data, p, min(l + strlen(data), COMMAND_LINE_SIZE));
+> +       }
+>
+>         /*
+>          * CONFIG_CMDLINE is meant to be a default in case nothing else
+> --
+> 1.9.1
+>
