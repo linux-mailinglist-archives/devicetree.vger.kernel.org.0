@@ -2,72 +2,61 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D97181EFA
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 16:24:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9071881EFC
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 16:25:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729086AbfHEOYg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 10:24:36 -0400
-Received: from mail.kernel.org ([198.145.29.99]:54550 "EHLO mail.kernel.org"
+        id S1729268AbfHEOZR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 10:25:17 -0400
+Received: from vps0.lunn.ch ([185.16.172.187]:34240 "EHLO vps0.lunn.ch"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728028AbfHEOYg (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 10:24:36 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5E42B2086D;
-        Mon,  5 Aug 2019 14:24:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565015075;
-        bh=nwv3kwEBStYDfwhINkS2+14vPtlRw+Xv/2F7kdDaLoA=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=Poy0LU3Ykw06FRyXUwrpq/3VP79HVS5isD2aMv87iy1xLPS4VzPa0gE4i5eS+tIIW
-         1WwEn+3/8m3YYyk6qvpxpbw8eh+uByO477u6LqdBY6VobEvW2B2JnSuoLotmFUfXMm
-         dZG0fDMdn3Ms0KjGp6uKcjzwXmGqo97Y0pWx8MoE=
-Date:   Mon, 5 Aug 2019 15:24:31 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Lorenzo Bianconi <lorenzo@kernel.org>
-Cc:     lorenzo.bianconi@redhat.com, linux-iio@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH 2/2] dt-bindings: iio: imu: st_lsm6dsx: add ism330dhcx
- device bindings
-Message-ID: <20190805152431.5a7f1a20@archlinux>
-In-Reply-To: <0a970fdcd934c940be1af82ecf1fe2a746abcd2a.1564999807.git.lorenzo@kernel.org>
-References: <cover.1564999807.git.lorenzo@kernel.org>
-        <0a970fdcd934c940be1af82ecf1fe2a746abcd2a.1564999807.git.lorenzo@kernel.org>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
+        id S1728028AbfHEOZQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Aug 2019 10:25:16 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
+        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
+        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
+        List-Post:List-Owner:List-Archive;
+        bh=pM17/mm7hk6l4gBw6yqpxD0ipo386Hkuzc90J1eBglE=; b=GcTf+FLjhwfrAUNoa6l/XXGacB
+        kzklya1rmkLVLe/R5iYyoC3JilZyu6VOOTxRFULB93Vlr4x6dzso5Chtc9hCO4k7ngeQqdSuB568t
+        p+xID9+UbrphMcQC4gZ6MEhB/8dyUEEunc16p5H0oAa9J/ZnU+LUf0vqCAWT1JVKvlTc=;
+Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
+        (envelope-from <andrew@lunn.ch>)
+        id 1hudvF-0007St-54; Mon, 05 Aug 2019 16:25:13 +0200
+Date:   Mon, 5 Aug 2019 16:25:13 +0200
+From:   Andrew Lunn <andrew@lunn.ch>
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        robh+dt@kernel.org, mark.rutland@arm.com, f.fainelli@gmail.com,
+        hkallweit1@gmail.com
+Subject: Re: [PATCH 04/16] net: phy: adin: add {write,read}_mmd hooks
+Message-ID: <20190805142513.GK24275@lunn.ch>
+References: <20190805165453.3989-1-alexandru.ardelean@analog.com>
+ <20190805165453.3989-5-alexandru.ardelean@analog.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190805165453.3989-5-alexandru.ardelean@analog.com>
+User-Agent: Mutt/1.5.23 (2014-03-12)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon,  5 Aug 2019 12:18:44 +0200
-Lorenzo Bianconi <lorenzo@kernel.org> wrote:
-
-> Signed-off-by: Lorenzo Bianconi <lorenzo@kernel.org>
-
-Applied,
-
-Thanks,
-
-Jonathan
-
-> ---
->  Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt | 1 +
->  1 file changed, 1 insertion(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-> index 92b48f242356..87407d110bb7 100644
-> --- a/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-> +++ b/Documentation/devicetree/bindings/iio/imu/st_lsm6dsx.txt
-> @@ -12,6 +12,7 @@ Required properties:
->    "st,lsm6dsox"
->    "st,lsm6dsr"
->    "st,lsm6ds3tr-c"
-> +  "st,ism330dhcx"
->  - reg: i2c address of the sensor / spi cs line
+> diff --git a/drivers/net/phy/adin.c b/drivers/net/phy/adin.c
+> index b75c723bda79..3dd9fe50f4c8 100644
+> --- a/drivers/net/phy/adin.c
+> +++ b/drivers/net/phy/adin.c
+> @@ -14,6 +14,9 @@
+>  #define PHY_ID_ADIN1200				0x0283bc20
+>  #define PHY_ID_ADIN1300				0x0283bc30
 >  
->  Optional properties:
+> +#define ADIN1300_MII_EXT_REG_PTR		0x10
+> +#define ADIN1300_MII_EXT_REG_DATA		0x11
+> +
+>  #define ADIN1300_INT_MASK_REG			0x0018
 
+Please be consistent with registers. Either use 4 digits, or 2 digits.
+
+       Andrew
