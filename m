@@ -2,150 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 954508101B
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 04:01:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 509D081033
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 04:09:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726765AbfHECBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 4 Aug 2019 22:01:37 -0400
-Received: from twhmllg4.macronix.com ([211.75.127.132]:15286 "EHLO
-        TWHMLLG4.macronix.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726561AbfHECBh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Aug 2019 22:01:37 -0400
-Received: from twhfmnt1.mxic.com.tw (twhfm1p2.macronix.com [172.17.20.92])
-        by TWHMLLG4.macronix.com with ESMTP id x7520vJM034951;
-        Mon, 5 Aug 2019 10:00:57 +0800 (GMT-8)
-        (envelope-from masonccyang@mxic.com.tw)
-Received: from MXML06C.mxic.com.tw (mxml06c.macronix.com [172.17.14.55])
-        by Forcepoint Email with ESMTP id 6A3FE52D575A56BE5CEE;
-        Mon,  5 Aug 2019 10:00:57 +0800 (CST)
-In-Reply-To: <3d01957a-7318-274f-f3d5-6cd00850511b@cogentembedded.com>
-References: <1564539258-16313-1-git-send-email-masonccyang@mxic.com.tw> <1564539258-16313-2-git-send-email-masonccyang@mxic.com.tw> <3d01957a-7318-274f-f3d5-6cd00850511b@cogentembedded.com>
-To:     "Sergei Shtylyov" <sergei.shtylyov@cogentembedded.com>
-Cc:     broonie@kernel.org, devicetree@vger.kernel.org,
-        "Geert Uytterhoeven" <geert+renesas@glider.be>,
-        "Simon Horman" <horms@verge.net.au>, juliensu@mxic.com.tw,
-        lee.jones@linaro.org, linux-kernel@vger.kernel.org,
-        linux-renesas-soc@vger.kernel.org, linux-spi@vger.kernel.org,
-        marek.vasut@gmail.com, mark.rutland@arm.com,
-        miquel.raynal@bootlin.com, robh+dt@kernel.org
-Subject: Re: [PATCH v16 1/2] spi: Add Renesas R-Car Gen3 RPC-IF SPI controller
- driver
-MIME-Version: 1.0
-X-KeepSent: EFAD46C0:5BE85077-4825844D:000AB143;
- type=4; name=$KeepSent
-X-Mailer: Lotus Notes Release 8.5.3FP4 SHF90 June 10, 2013
-Message-ID: <OFEFAD46C0.5BE85077-ON4825844D.000AB143-4825844D.000B12C8@mxic.com.tw>
-From:   masonccyang@mxic.com.tw
-Date:   Mon, 5 Aug 2019 10:00:57 +0800
-X-MIMETrack: Serialize by Router on MXML06C/TAIWAN/MXIC(Release 9.0.1FP10 HF265|July 25, 2018) at
- 2019/08/05 AM 10:00:57,
-        Serialize complete at 2019/08/05 AM 10:00:57
-Content-Type: text/plain; charset="US-ASCII"
-X-MAIL: TWHMLLG4.macronix.com x7520vJM034951
+        id S1726766AbfHECJ4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 4 Aug 2019 22:09:56 -0400
+Received: from new4-smtp.messagingengine.com ([66.111.4.230]:54179 "EHLO
+        new4-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726561AbfHECJ4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 4 Aug 2019 22:09:56 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 252C41A49;
+        Sun,  4 Aug 2019 22:09:55 -0400 (EDT)
+Received: from imap2 ([10.202.2.52])
+  by compute4.internal (MEProxy); Sun, 04 Aug 2019 22:09:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=
+        mime-version:message-id:in-reply-to:references:date:from:to:cc
+        :subject:content-type; s=fm3; bh=XBfRrOQ28Bn+dCVbtL/ZXEglGYrMofD
+        3T7NHTUbCGus=; b=mcNcSbS3jqoT+fARV0rhU/KYGsg1XoJzD6O0EzyD0fEeohG
+        Qn0ybiF/rgmUvgYm7rx9hLHJutnSr/dlBpTAo1mkdEIgE9oPY17ZOXiCanAwHx8V
+        FdHtCRu++VLAqm+TXZJC/GsddLiWKHMByiMMnXzDUNHrO6AKLGlXJV+UNWq+cQ75
+        FjTgsYe65CM+tZ+RytZpaudBtKVxNc1XSmuZwRSfTHdxuA7qhvwC+1M03HwwfukU
+        FDGYvN0w9u/VO5JtBFc7/p0P7WbmDm3Muz1XC77HM+lHVtRJ0tW1IfkGq0znccik
+        +ZowCe3p948n9SNIeURdEik60jg+syqn5x5Rh6Q==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-type:date:from:in-reply-to
+        :message-id:mime-version:references:subject:to:x-me-proxy
+        :x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=XBfRrO
+        Q28Bn+dCVbtL/ZXEglGYrMofD3T7NHTUbCGus=; b=XAhkIWjraQDNfj8Ln4XOn0
+        krfY0KMrL/WoxaX9h4DdGNeOTMkx9/nOV8LpP9AvcJmwGmPbsxevW+b+5pFhM8ND
+        +P00XNZvUiFNiGqffV2UcEUAje9ZoSkX8Ibp2pC63SWA1w4gycTGGAQPjegidwHL
+        3FH5dctwQldUwCpHc0aEdgh+auckc/yjDv083un0IODk8uq9+HvlPRknPVRmGwl6
+        34BzJl5B1nC5vQMSS7ooU8goSyhbYztyrGgfXKzTx5W5Cfhxcwfy/oRuO+XiGwh0
+        +oSc3rrGYSS2ybFnPgjCX4AgoxvoY/PvGXWW1rVvkoFO1gJFJiRjd6c3f3qY/stg
+        ==
+X-ME-Sender: <xms:8Y9HXYb7l6c3PoV6udmqdX-5qwVreBaDUpLuz8ujd_gORaw7hx1LXQ>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddruddtiedgheefucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucesvcftvggtihhpihgvnhhtshculddquddttddmne
+    cujfgurhepofgfggfkjghffffhvffutgesthdtredtreertdenucfhrhhomhepfdetnhgu
+    rhgvficulfgvfhhfvghrhidfuceorghnughrvgifsegrjhdrihgurdgruheqnecuffhomh
+    grihhnpeguvghvihgtvghtrhgvvgdrohhrghenucfrrghrrghmpehmrghilhhfrhhomhep
+    rghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghrufhiiigvpedt
+X-ME-Proxy: <xmx:8Y9HXcdxp1TCjdVnT84ZgR3Q6xoxj1Oosqj2ja9cMoSFnIpQrGwJQw>
+    <xmx:8Y9HXcCYZPX61iQHG4psCd9kqFlGT53FhzDxWp3NjlnlkNo5WnCzdQ>
+    <xmx:8Y9HXeYI9E4bCPmueGXR8dy2XGmodPJW_NoTAm6qS5pjqTdN8SnsZw>
+    <xmx:849HXdgizRiGKNWOzJOr02dYh8SsEubJJJ5mgGfYO-9us33ezf2t7A>
+Received: by mailuser.nyi.internal (Postfix, from userid 501)
+        id 9D405E00A2; Sun,  4 Aug 2019 22:09:53 -0400 (EDT)
+X-Mailer: MessagingEngine.com Webmail Interface
+User-Agent: Cyrus-JMAP/3.1.6-799-g925e343-fmstable-20190729v1
+Mime-Version: 1.0
+Message-Id: <35aaa5a4-1e0d-4f64-8985-36e2c01ccc05@www.fastmail.com>
+In-Reply-To: <CAL_Jsq+oZRREV=VjYUxT3WphOa5tBaF1pvS_JKSphBY=3XB5MA@mail.gmail.com>
+References: <20190730062316.32037-1-andrew@aj.id.au>
+ <20190730062316.32037-2-andrew@aj.id.au>
+ <CAL_Jsq+oZRREV=VjYUxT3WphOa5tBaF1pvS_JKSphBY=3XB5MA@mail.gmail.com>
+Date:   Mon, 05 Aug 2019 11:40:17 +0930
+From:   "Andrew Jeffery" <andrew@aj.id.au>
+To:     "Rob Herring" <robh+dt@kernel.org>
+Cc:     linux-mmc <linux-mmc@vger.kernel.org>,
+        "Ulf Hansson" <ulf.hansson@linaro.org>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        "Joel Stanley" <joel@jms.id.au>,
+        "Adrian Hunter" <adrian.hunter@intel.com>,
+        devicetree@vger.kernel.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        linux-aspeed@lists.ozlabs.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "Ryan Chen" <ryanchen.aspeed@gmail.com>
+Subject: Re: [PATCH v3 1/2] dt-bindings: mmc: Document Aspeed SD controller
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
-Hi Sergei, 
 
-> > Add a driver for Renesas R-Car Gen3 RPC-IF SPI controller.
-> > 
-> > Signed-off-by: Mason Yang <masonccyang@mxic.com.tw>
-> > Signed-off-by: Sergei Shtylyov <sergei.shtylyov@cogentembedded.com>
-> [...]
-> > diff --git a/drivers/spi/spi-renesas-rpc.c 
-b/drivers/spi/spi-renesas-rpc.c
+On Fri, 2 Aug 2019, at 08:29, Rob Herring wrote:
+> On Tue, Jul 30, 2019 at 12:23 AM Andrew Jeffery <andrew@aj.id.au> wrote:
+> >
+> > The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the
+> > SDIO Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit
+> > data bus if only a single slot is enabled.
+> >
+> > Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
+> >
+> > ---
+> > v3:
+> > * Fix compatible enums
+> > * Add AST2600 compatibles
+> > * Describe #address-cells / #size-cells
+> > ---
+> >  .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 100 ++++++++++++++++++
+> >  1 file changed, 100 insertions(+)
+> >  create mode 100644 Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> >
+> > diff --git a/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
 > > new file mode 100644
-> > index 0000000..648d14e
+> > index 000000000000..dd2a00c59641
 > > --- /dev/null
-> > +++ b/drivers/spi/spi-renesas-rpc.c
-> > @@ -0,0 +1,754 @@
-> [...]
-> > +static void rpc_spi_hw_init(struct rpc_spi *rpc)
-> > +{
-> > +   //
-> > +   // NOTE: The 0x260 are undocumented bits, but they must be set.
-> > +   //    RPC_PHYCNT_STRTIM is strobe timing adjustment bit,
-> > +   //    0x0 : the delay is biggest,
-> > +   //    0x1 : the delay is 2nd biggest,
-> > +   //    On H3 ES1.x, the value should be 0, while on others,
-> > +   //    the value should be 6.
-> > +   //
-> > +   regmap_write(rpc->regmap, RPC_PHYCNT, RPC_PHYCNT_CAL |
-> > +              RPC_PHYCNT_STRTIM(6) | 0x260);
+> > +++ b/Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+> > @@ -0,0 +1,100 @@
+> > +# SPDX-License-Identifier: GPL-2.0-or-later
+> > +%YAML 1.2
+> > +---
+> > +$id: http://devicetree.org/schemas/mmc/aspeed,sdhci.yaml#
+> > +$schema: http://devicetree.org/meta-schemas/core.yaml#
 > > +
-> > +   //
-> > +   // NOTE: The 0x1511144 are undocumented bits, but they must be set
-> > +   //       for RPC_PHYOFFSET1.
-> > +   //    The 0x31 are undocumented bits, but they must be set
-> > +   //    for RPC_PHYOFFSET2.
-> > +   //
-> > +   regmap_write(rpc->regmap, RPC_PHYOFFSET1, RPC_PHYOFFSET1_DDRTMG(3) 
-|
-> > +           0x1511144);
-> > +   regmap_write(rpc->regmap, RPC_PHYOFFSET2, 0x31 |
-> > +           RPC_PHYOFFSET2_OCTTMG(4));
-> > +   regmap_write(rpc->regmap, RPC_SSLDR, RPC_SSLDR_SPNDL(7) |
-> > +           RPC_SSLDR_SLNDL(7) | RPC_SSLDR_SCKDL(7));
-> > +   regmap_write(rpc->regmap, RPC_CMNCR, RPC_CMNCR_MD | RPC_CMNCR_SFDE 
-|
-> > +           RPC_CMNCR_MOIIO_HIZ | RPC_CMNCR_IOFV_HIZ |
-> > +           RPC_CMNCR_BSZ(0));
-> > +}
-> [...]
-> > +static int rpc_spi_io_xfer(struct rpc_spi *rpc,
-> > +            const void *tx_buf, void *rx_buf)
-> > +{
-> [...]
-> > +err_out:
-> > +   return reset_control_reset(rpc->rstc);
+> > +title: ASPEED SD/SDIO/eMMC Controller
+> > +
+> > +maintainers:
+> > +  - Andrew Jeffery <andrew@aj.id.au>
+> > +  - Ryan Chen <ryanchen.aspeed@gmail.com>
+> > +
+> > +description: |+
+> > +  The ASPEED SD/SDIO/eMMC controller exposes two slots implementing the SDIO
+> > +  Host Specification v2.00, with 1 or 4 bit data buses, or an 8 bit data bus if
+> > +  only a single slot is enabled.
+> > +
+> > +  The two slots are supported by a common configuration area. As the SDHCIs for
+> > +  the slots are dependent on the common configuration area, they are described
+> > +  as child nodes.
+> > +
+> > +properties:
+> > +  compatible:
+> > +    enum:
+> > +      - aspeed,ast2400-sd-controller
+> > +      - aspeed,ast2500-sd-controller
+> > +      - aspeed,ast2600-sd-controller
+> > +  reg:
+> > +    maxItems: 1
+> > +    description: Common configuration registers
+> > +  "#address-cells":
+> > +    const: 1
+> > +  "#size-cells":
+> > +    const: 1
+> > +  ranges: true
+> > +  clocks:
+> > +    maxItems: 1
+> > +    description: The SD/SDIO controller clock gate
+> > +
+> > +patternProperties:
+> > +  "^sdhci@[0-9a-f]+$":
 > 
->    Don't toy need to call rpc_spi_hw_init(( here? The reset would spoil
-> the PHY/etc register setup otherwise...
+> This should probably have:
+> 
+> allOf:
+>   - $ref: mmc-controller.yaml
+> 
+> Another new thing in 5.3. :)
 
-ummm, will fix to
--------------------------------------->
-ret = reset_control_reset(rpc->rstc);
-rpc_spi_hw_init(rpc);
-return ret;
---------------------------------------<
-thanks for your review.
+Ack.
 
 > 
-> [...]
+> > +    type: object
+> > +    properties:
+> > +      compatible:
+> > +        enum:
+> > +          - aspeed,ast2400-sdhci
+> > +          - aspeed,ast2500-sdhci
+> > +          - aspeed,ast2600-sdhci
+> > +      reg:
+> > +        maxItems: 1
+> > +        description: The SDHCI registers
+> > +      clocks:
+> > +        maxItems: 1
+> > +        description: The SD bus clock
+> > +      interrupts:
+> > +        maxItems: 1
+> > +        description: The SD interrupt shared between both slots
+> > +    required:
+> > +      - compatible
+> > +      - reg
+> > +      - clocks
+> > +      - interrupts
+> > +
+> > +additionalProperties: false
+> > +
+> > +required:
+> > +  - compatible
+> > +  - reg
+> > +  - "#address-cells"
+> > +  - "#size-cells"
+> > +  - ranges
+> > +  - clocks
+> > +
+> > +examples:
+> > +  - |
+> > +    #include <dt-bindings/clock/aspeed-clock.h>
+> > +    sdc@1e740000 {
+> > +            compatible = "aspeed,ast2500-sd-controller";
+> > +            reg = <0x1e740000 0x100>;
+> > +            #address-cells = <1>;
+> > +            #size-cells = <1>;
+> > +            ranges = <0 0x1e740000 0x10000>;
+> > +            clocks = <&syscon ASPEED_CLK_GATE_SDCLK>;
+> > +
+> > +            sdhci0: sdhci@100 {
+> > +                    compatible = "aspeed,ast2500-sdhci";
+> > +                    reg = <0x100 0x100>;
+> > +                    interrupts = <26>;
+> > +                    sdhci,auto-cmd12;
 > 
-> MBR, Sergei
+> Not documented. Maybe should be common, but there's only a few users.
 
-best regards,
-Mason
+I'll document it locally for the moment.
 
-CONFIDENTIALITY NOTE:
+Cheers,
 
-This e-mail and any attachments may contain confidential information 
-and/or personal data, which is protected by applicable laws. Please be 
-reminded that duplication, disclosure, distribution, or use of this e-mail 
-(and/or its attachments) or any part thereof is prohibited. If you receive 
-this e-mail in error, please notify us immediately and delete this mail as 
-well as its attachment(s) from your system. In addition, please be 
-informed that collection, processing, and/or use of personal data is 
-prohibited unless expressly permitted by personal data protection laws. 
-Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
-
-
-
-============================================================================
-
-CONFIDENTIALITY NOTE:
-
-This e-mail and any attachments may contain confidential information and/or personal data, which is protected by applicable laws. Please be reminded that duplication, disclosure, distribution, or use of this e-mail (and/or its attachments) or any part thereof is prohibited. If you receive this e-mail in error, please notify us immediately and delete this mail as well as its attachment(s) from your system. In addition, please be informed that collection, processing, and/or use of personal data is prohibited unless expressly permitted by personal data protection laws. Thank you for your attention and cooperation.
-
-Macronix International Co., Ltd.
-
-=====================================================================
-
+Andrew
