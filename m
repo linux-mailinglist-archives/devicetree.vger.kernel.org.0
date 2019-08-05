@@ -2,173 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7779682583
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 21:23:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C893282667
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 22:54:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728759AbfHETXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 15:23:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51060 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727802AbfHETXT (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 15:23:19 -0400
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EBBBD216B7;
-        Mon,  5 Aug 2019 19:23:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565032998;
-        bh=d6p6NWXIzAr/w+L57W8Oyrx5VdZnumUCXtu9FxtaNsc=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=R/AKCL41e439d3YyW9Frd8+LqZmY/L/BTeDfKJwCw0IYn+fId94XDv2wn7Pml91f9
-         dnKXgXpHTXeFphyc7/df75+ieHN1KnS+kSCTZqgR9c8Gkj9yb5S930ddLj/+yapLMz
-         2x3mqfxdOrcNQAQnSXJqYUrWF68Oxa6/5KI536WM=
-Received: by mail-qk1-f178.google.com with SMTP id r6so61041032qkc.0;
-        Mon, 05 Aug 2019 12:23:17 -0700 (PDT)
-X-Gm-Message-State: APjAAAVSB5PylCegkKpUn4dEGuognuvnPB/gPuH0SriL0sldMylqBLk0
-        YsgD+I/Z9n6hTEpzycwbHgGfX/VtDA1usktBFA==
-X-Google-Smtp-Source: APXvYqzJ3385dVDr7a416MCnVTqPVutjB6pJSnn10jB+T3hVVAIomIypEjVR/sntYZAAkaMyD0seP3rNxE7IslWzcJM=
-X-Received: by 2002:a37:6944:: with SMTP id e65mr95063738qkc.119.1565032997083;
- Mon, 05 Aug 2019 12:23:17 -0700 (PDT)
+        id S1730696AbfHEUyM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 16:54:12 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:37686 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727460AbfHEUyL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 16:54:11 -0400
+Received: by mail-wr1-f65.google.com with SMTP id n9so60645143wrr.4;
+        Mon, 05 Aug 2019 13:54:09 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=/S9Kt+BqSQBovM2arBE72fycxozvSt0swdfnmydIKdo=;
+        b=SX31o+rdeKsINkIpBra12M79BEKbgV/EiXclH6COaePnFGVBxEOH4xJb+bBIXIWfXY
+         YRPkzYhlJbERDwq53rSVmDRPoeofeNvjqcy0U1pGdcxcGQ7CP9KbpfUbEzRHurF/8U02
+         R9KDLZ6slFZ+30TlRfdr+rzbDyaciBNzgpVasRwjykHXFywRSc6oA2FrzJAjilXyuNDY
+         FVpMf/MHFrswpRsJ2wuUHrIjS2MLmAGLtqjAPgAxq3cHcnrWcPNwow0TO9Rx0W2vS2rH
+         KwIkPLT6ECnQ9juKvmSHTUNYpMe12WCQSpfUzmGTDEBMH5V11oRKdkB2zaQjOn4I3EwA
+         Y3Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=/S9Kt+BqSQBovM2arBE72fycxozvSt0swdfnmydIKdo=;
+        b=je+3a05wvWzI8mkLsz1y8Scw0aNY67rR/qoiEAu2IrMDU/LB8d3Qrek42z8u+UTFjq
+         6Pv51XFbTuVgdk3CplmckCJ6bteP4pd+bItFik/yA0VxapOtY+yF9xjcBDOLQ/0oplY+
+         9ycHy72V0uhal8ue9T500k+03EOV0euvwbusCLwQdu6OQld6TJ9453jNs2uf7iHhe0bu
+         OtBPplDpbEcXLNfPWZVPgo3FXTkk2cLAWw7KGx5aUeBXqR6TftG1afbEGj7exteQoKu6
+         myylAcsifJDiuw62AvONPX6rjtwZL58SVwP9q91YXMhyhgdpGVDAn1Ky8sQarsyAp2zN
+         pD7w==
+X-Gm-Message-State: APjAAAX4FTa9XpCQ4ErO28J6ZBrZ3fbeAUaqytpp3zwZ3JXzEunFFSfo
+        eYbQWLWdZDGV2QfNhWCyz98=
+X-Google-Smtp-Source: APXvYqyFOzP2If6HCt51OFwBncPleleOR8TrpWuB7KQC0EFnq5gP0wtyhxQKu9XzqxW/HVbBfOvIsw==
+X-Received: by 2002:a5d:4e8a:: with SMTP id e10mr49334wru.26.1565038449174;
+        Mon, 05 Aug 2019 13:54:09 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8f05:8600:d16c:62d1:98de:d1e5? (p200300EA8F058600D16C62D198DED1E5.dip0.t-ipconnect.de. [2003:ea:8f05:8600:d16c:62d1:98de:d1e5])
+        by smtp.googlemail.com with ESMTPSA id c11sm145384717wrq.45.2019.08.05.13.54.07
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Mon, 05 Aug 2019 13:54:08 -0700 (PDT)
+Subject: Re: [PATCH 01/16] net: phy: adin: add support for Analog Devices PHYs
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
+        f.fainelli@gmail.com, andrew@lunn.ch
+References: <20190805165453.3989-1-alexandru.ardelean@analog.com>
+ <20190805165453.3989-2-alexandru.ardelean@analog.com>
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+Message-ID: <206ec97f-3115-9a2c-91a0-e5f7aec4a39e@gmail.com>
+Date:   Mon, 5 Aug 2019 22:54:01 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <20190731154752.16557-1-nsaenzjulienne@suse.de>
- <20190731154752.16557-4-nsaenzjulienne@suse.de> <CAL_JsqKF5nh3hcdLTG5+6RU3_TnFrNX08vD6qZ8wawoA3WSRpA@mail.gmail.com>
- <2050374ac07e0330e505c4a1637256428adb10c4.camel@suse.de>
-In-Reply-To: <2050374ac07e0330e505c4a1637256428adb10c4.camel@suse.de>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 5 Aug 2019 13:23:05 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+LjsRmFg-xaLgpVx3miXN3hid3aD+mgTW__j0SbEFYjQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+LjsRmFg-xaLgpVx3miXN3hid3aD+mgTW__j0SbEFYjQ@mail.gmail.com>
-Subject: Re: [PATCH 3/8] of/fdt: add function to get the SoC wide DMA
- addressable memory size
-To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-Cc:     Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will@kernel.org>, Christoph Hellwig <hch@lst.de>,
-        wahrenst@gmx.net, Marc Zyngier <marc.zyngier@arm.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
-        Linux IOMMU <iommu@lists.linux-foundation.org>,
-        linux-mm@kvack.org, Frank Rowand <frowand.list@gmail.com>,
-        phill@raspberryi.org, Florian Fainelli <f.fainelli@gmail.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Eric Anholt <eric@anholt.net>,
-        Matthias Brugger <mbrugger@suse.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
-        <linux-rpi-kernel@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190805165453.3989-2-alexandru.ardelean@analog.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 5, 2019 at 10:03 AM Nicolas Saenz Julienne
-<nsaenzjulienne@suse.de> wrote:
->
-> Hi Rob,
-> Thanks for the review!
->
-> On Fri, 2019-08-02 at 11:17 -0600, Rob Herring wrote:
-> > On Wed, Jul 31, 2019 at 9:48 AM Nicolas Saenz Julienne
-> > <nsaenzjulienne@suse.de> wrote:
-> > > Some SoCs might have multiple interconnects each with their own DMA
-> > > addressing limitations. This function parses the 'dma-ranges' on each of
-> > > them and tries to guess the maximum SoC wide DMA addressable memory
-> > > size.
-> > >
-> > > This is specially useful for arch code in order to properly setup CMA
-> > > and memory zones.
-> >
-> > We already have a way to setup CMA in reserved-memory, so why is this
-> > needed for that?
->
-> Correct me if I'm wrong but I got the feeling you got the point of the patch
-> later on.
+On 05.08.2019 18:54, Alexandru Ardelean wrote:
+> This change adds support for Analog Devices Industrial Ethernet PHYs.
+> Particularly the PHYs this driver adds support for:
+>  * ADIN1200 - Robust, Industrial, Low Power 10/100 Ethernet PHY
+>  * ADIN1300 - Robust, Industrial, Low Latency 10/100/1000 Gigabit
+>    Ethernet PHY
+> 
+> The 2 chips are pin & register compatible with one another. The main
+> difference being that ADIN1200 doesn't operate in gigabit mode.
+> 
+> The chips can be operated by the Generic PHY driver as well via the
+> standard IEEE PHY registers (0x0000 - 0x000F) which are supported by the
+> kernel as well. This assumes that configuration of the PHY has been done
+> required.
+> 
+> Configuration can also be done via registers, which will be implemented by
+> the driver in the next changes.
+> 
+> Datasheets:
+>   https://www.analog.com/media/en/technical-documentation/data-sheets/ADIN1300.pdf
+>   https://www.analog.com/media/en/technical-documentation/data-sheets/ADIN1200.pdf
+> 
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> ---
+>  MAINTAINERS              |  7 +++++
+>  drivers/net/phy/Kconfig  |  9 ++++++
+>  drivers/net/phy/Makefile |  1 +
+>  drivers/net/phy/adin.c   | 59 ++++++++++++++++++++++++++++++++++++++++
+>  4 files changed, 76 insertions(+)
+>  create mode 100644 drivers/net/phy/adin.c
+> 
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index ee663e0e2f2e..faf5723610c8 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -938,6 +938,13 @@ S:	Supported
+>  F:	drivers/mux/adgs1408.c
+>  F:	Documentation/devicetree/bindings/mux/adi,adgs1408.txt
+>  
+> +ANALOG DEVICES INC ADIN DRIVER
+> +M:	Alexandru Ardelean <alexaundru.ardelean@analog.com>
+> +L:	netdev@vger.kernel.org
+> +W:	http://ez.analog.com/community/linux-device-drivers
+> +S:	Supported
+> +F:	drivers/net/phy/adin.c
+> +
+>  ANALOG DEVICES INC ADIS DRIVER LIBRARY
+>  M:	Alexandru Ardelean <alexandru.ardelean@analog.com>
+>  S:	Supported
+> diff --git a/drivers/net/phy/Kconfig b/drivers/net/phy/Kconfig
+> index 206d8650ee7f..5966d3413676 100644
+> --- a/drivers/net/phy/Kconfig
+> +++ b/drivers/net/phy/Kconfig
+> @@ -257,6 +257,15 @@ config SFP
+>  	depends on HWMON || HWMON=n
+>  	select MDIO_I2C
+>  
+> +config ADIN_PHY
+> +	tristate "Analog Devices Industrial Ethernet PHYs"
+> +	help
+> +	  Adds support for the Analog Devices Industrial Ethernet PHYs.
+> +	  Currently supports the:
+> +	  - ADIN1200 - Robust,Industrial, Low Power 10/100 Ethernet PHY
+> +	  - ADIN1300 - Robust,Industrial, Low Latency 10/100/1000 Gigabit
+> +	    Ethernet PHY
+> +
+>  config AMD_PHY
+>  	tristate "AMD PHYs"
+>  	---help---
+> diff --git a/drivers/net/phy/Makefile b/drivers/net/phy/Makefile
+> index ba07c27e4208..a03437e091f3 100644
+> --- a/drivers/net/phy/Makefile
+> +++ b/drivers/net/phy/Makefile
+> @@ -47,6 +47,7 @@ obj-$(CONFIG_SFP)		+= sfp.o
+>  sfp-obj-$(CONFIG_SFP)		+= sfp-bus.o
+>  obj-y				+= $(sfp-obj-y) $(sfp-obj-m)
+>  
+> +obj-$(CONFIG_ADIN_PHY)		+= adin.o
+>  obj-$(CONFIG_AMD_PHY)		+= amd.o
+>  aquantia-objs			+= aquantia_main.o
+>  ifdef CONFIG_HWMON
+> diff --git a/drivers/net/phy/adin.c b/drivers/net/phy/adin.c
+> new file mode 100644
+> index 000000000000..6a610d4563c3
+> --- /dev/null
+> +++ b/drivers/net/phy/adin.c
+> @@ -0,0 +1,59 @@
+> +// SPDX-License-Identifier: GPL-2.0+
+> +/**
+> + *  Driver for Analog Devices Industrial Ethernet PHYs
+> + *
+> + * Copyright 2019 Analog Devices Inc.
+> + */
+> +#include <linux/kernel.h>
+> +#include <linux/errno.h>
+> +#include <linux/init.h>
+> +#include <linux/module.h>
+> +#include <linux/mii.h>
+> +#include <linux/phy.h>
+> +
+> +#define PHY_ID_ADIN1200				0x0283bc20
+> +#define PHY_ID_ADIN1300				0x0283bc30
+> +
+> +static int adin_config_init(struct phy_device *phydev)
+> +{
+> +	int rc;
+> +
+> +	rc = genphy_config_init(phydev);
+> +	if (rc < 0)
+> +		return rc;
+> +
+> +	return 0;
+> +}
+> +
+> +static struct phy_driver adin_driver[] = {
+> +	{
+> +		.phy_id		= PHY_ID_ADIN1200,
 
-No, for CMA I don't. Can't we already pass a size and location for CMA
-region under /reserved-memory. The only advantage here is perhaps the
-CMA range could be anywhere in the DMA zone vs. a fixed location.
+You could use PHY_ID_MATCH_MODEL here.
 
-> > > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
-> > > ---
-> > >
-> > >  drivers/of/fdt.c       | 72 ++++++++++++++++++++++++++++++++++++++++++
-> > >  include/linux/of_fdt.h |  2 ++
-> > >  2 files changed, 74 insertions(+)
-> > >
-> > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> > > index 9cdf14b9aaab..f2444c61a136 100644
-> > > --- a/drivers/of/fdt.c
-> > > +++ b/drivers/of/fdt.c
-> > > @@ -953,6 +953,78 @@ int __init early_init_dt_scan_chosen_stdout(void)
-> > >  }
-> > >  #endif
-> > >
-> > > +/**
-> > > + * early_init_dt_dma_zone_size - Look at all 'dma-ranges' and provide the
-> > > + * maximum common dmable memory size.
-> > > + *
-> > > + * Some devices might have multiple interconnects each with their own DMA
-> > > + * addressing limitations. For example the Raspberry Pi 4 has the
-> > > following:
-> > > + *
-> > > + * soc {
-> > > + *     dma-ranges = <0xc0000000  0x0 0x00000000  0x3c000000>;
-> > > + *     [...]
-> > > + * }
-> > > + *
-> > > + * v3dbus {
-> > > + *     dma-ranges = <0x00000000  0x0 0x00000000  0x3c000000>;
-> > > + *     [...]
-> > > + * }
-> > > + *
-> > > + * scb {
-> > > + *     dma-ranges = <0x0 0x00000000  0x0 0x00000000  0xfc000000>;
-> > > + *     [...]
-> > > + * }
-> > > + *
-> > > + * Here the area addressable by all devices is [0x00000000-0x3bffffff].
-> > > Hence
-> > > + * the function will write in 'data' a size of 0x3c000000.
-> > > + *
-> > > + * Note that the implementation assumes all interconnects have the same
-> > > physical
-> > > + * memory view and that the mapping always start at the beginning of RAM.
-> >
-> > Not really a valid assumption for general code.
->
-> Fair enough. On my defence I settled on that assumption after grepping all dts
-> and being unable to find a board that behaved otherwise.
->
-> [...]
->
-> > It's possible to have multiple levels of nodes and dma-ranges. You need to
-> > handle that case too. Doing that and handling differing address translations
-> > will be complicated.
->
-> Understood.
->
-> > IMO, I'd just do:
-> >
-> > if (of_fdt_machine_is_compatible(blob, "brcm,bcm2711"))
-> >     dma_zone_size = XX;
-> >
-> > 2 lines of code is much easier to maintain than 10s of incomplete code
-> > and is clearer who needs this. Maybe if we have dozens of SoCs with
-> > this problem we should start parsing dma-ranges.
->
-> FYI that's what arm32 is doing at the moment and was my first instinct. But it
-> seems that arm64 has been able to survive so far without any machine specific
-> code and I have the feeling Catalin and Will will not be happy about this
-> solution. Am I wrong?
+> +		.name		= "ADIN1200",
+> +		.phy_id_mask	= 0xfffffff0,
+> +		.features	= PHY_BASIC_FEATURES,
 
-No doubt. I'm fine if the 2 lines live in drivers/of/.
+Setting features is deprecated, instead the get_features callback
+should be implemented if the default genphy_read_abilities needs
+to be extended / replaced. You say that the PHY's work with the
+genphy driver, so I suppose the default feature detection is ok
+in your case. Then you could simply remove setting "features".
 
-Note that I'm trying to reduce the number of early_init_dt_scan_*
-calls from arch code into the DT code so there's more commonality
-across architectures in the early DT scans. So ideally, this can all
-be handled under early_init_dt_scan() call.
+> +		.config_init	= adin_config_init,
+> +		.config_aneg	= genphy_config_aneg,
+> +		.read_status	= genphy_read_status,
+> +	},
+> +	{
+> +		.phy_id		= PHY_ID_ADIN1300,
+> +		.name		= "ADIN1300",
+> +		.phy_id_mask	= 0xfffffff0,
+> +		.features	= PHY_GBIT_FEATURES,
+> +		.config_init	= adin_config_init,
+> +		.config_aneg	= genphy_config_aneg,
+> +		.read_status	= genphy_read_status,
+> +	},
+> +};
+> +
+> +module_phy_driver(adin_driver);
+> +
+> +static struct mdio_device_id __maybe_unused adin_tbl[] = {
+> +	{ PHY_ID_ADIN1200, 0xfffffff0 },
+> +	{ PHY_ID_ADIN1300, 0xfffffff0 },
 
-Rob
+PHY_ID_MATCH_MODEL could be used here too.
+
+> +	{ }
+> +};
+> +
+> +MODULE_DEVICE_TABLE(mdio, adin_tbl);
+> +MODULE_DESCRIPTION("Analog Devices Industrial Ethernet PHY driver");
+> +MODULE_LICENSE("GPL");
+> 
+
