@@ -2,162 +2,90 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7D13B81668
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:07:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 87F0B81676
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:08:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728261AbfHEKH3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 06:07:29 -0400
-Received: from mail-eopbgr1410138.outbound.protection.outlook.com ([40.107.141.138]:16253
-        "EHLO JPN01-OS2-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1728126AbfHEKH2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 06:07:28 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=fVJLpGAYhx9mgCyvWtD+Ep67YHkxzWnYtiyustnEe4qIy3+F11/z+jPXFCrjx4U0Ca21Pvi7FzEr1pTBGuMOFCplIIEyi1ZuaRvrzBbz2n2Tsqoh2MIfIwsrz0phfQvGltK9+5mbALiV69CgQ50SwtZ4W8jSVV933j5XTFyXYGcFLd5snFxzlFckIvvvtwQuAgs44ixRPMepGnoXdKW73UeMO4RXyzdBwvZu2ShUAlH5JX06fC8SoFPdiwB9O5uOI1qCyzeu1iWlj5Gz4JTq+cAgHjOKW5EDJPdcCBvxp1lLqfHjhRG//i133ZdFu54Ul0YKw1aLrqETetluLWyGGQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gks3pFMTeZLMenuOHfsa8j66upiYTJ51pQnlQ2yMDLY=;
- b=SnMtOVWjyhLn/ajX6zBBYwAJdbKWQShzo89fyvKRhkT1V2YdkxQ06NqgBPD3YLyRCcThapYKc8V/7SuX/btRc9x6lvenMNP18JTofXxuatStXsmmRTdLBrTDSzL/V7R3czEfVUIs92S956SudJeGenDgPHYrJ8hJJXXf9QkBeV3J9D0eXOgW/qH7cloJsehly0F0CGeQh4bTSudCCiL+ehTm6lXthrgjwKr5mP7UOuLY/7bPj6hfC6AqgbYjeg7qONAA5eft0i9ATHcuSl1Dduu9i1xfwo78sQnGDr4fXz7qAc3lUE3oUPO9LmPxWpDeFu5v8vc74WZq7S1NkCi2Tg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=bp.renesas.com;dmarc=pass action=none
- header.from=bp.renesas.com;dkim=pass header.d=bp.renesas.com;arc=none
+        id S1727928AbfHEKIT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 06:08:19 -0400
+Received: from mail-lf1-f66.google.com ([209.85.167.66]:34690 "EHLO
+        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728111AbfHEKIQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 06:08:16 -0400
+Received: by mail-lf1-f66.google.com with SMTP id b29so50225375lfq.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 03:08:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=renesasgroup.onmicrosoft.com; s=selector2-renesasgroup-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Gks3pFMTeZLMenuOHfsa8j66upiYTJ51pQnlQ2yMDLY=;
- b=YDxy67Ubez1S8yfMBs79yTcpc1sB1XNvGcwdxs41wPbgpYTutmq0KnsW3jnimNaJ5VazsczffapIw+SwVF1tjsOd6JEF4TRM/3GZRzzTRwpwiApWh2NF5EfUBRwrgwW5EvAmezGOeamNAsdTZFh6mhWrEfC1BPV7ntI0LhhDNVU=
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com (52.133.163.13) by
- TY1PR01MB1673.jpnprd01.prod.outlook.com (52.133.162.143) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.16; Mon, 5 Aug 2019 10:07:24 +0000
-Received: from TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::d881:cb74:8277:5a16]) by TY1PR01MB1770.jpnprd01.prod.outlook.com
- ([fe80::d881:cb74:8277:5a16%7]) with mapi id 15.20.2136.010; Mon, 5 Aug 2019
- 10:07:24 +0000
-From:   Fabrizio Castro <fabrizio.castro@bp.renesas.com>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-CC:     Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
-        Jacopo Mondi <jacopo+renesas@jmondi.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "linux-renesas-soc@vger.kernel.org" 
-        <linux-renesas-soc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Simon Horman <horms@verge.net.au>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Chris Paterson <Chris.Paterson2@renesas.com>,
-        Biju Das <biju.das@bp.renesas.com>
-Subject: RE: [PATCH/RFC 02/12] dt-bindings: display: renesas: lvds: Document
- renesas,swap-data
-Thread-Topic: [PATCH/RFC 02/12] dt-bindings: display: renesas: lvds: Document
- renesas,swap-data
-Thread-Index: AQHVSQTAkHqVuaZ+mkSDN4F3/wGVC6bnejAAgATJjGCAAAyHgIAACJAQ
-Date:   Mon, 5 Aug 2019 10:07:24 +0000
-Message-ID: <TY1PR01MB1770C5AB21E45C24158584B7C0DA0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
-References: <1564731249-22671-1-git-send-email-fabrizio.castro@bp.renesas.com>
- <1564731249-22671-3-git-send-email-fabrizio.castro@bp.renesas.com>
- <20190802074428.GB5008@pendragon.ideasonboard.com>
- <TY1PR01MB17706A4FF4C26CD4BDA1A5DAC0DA0@TY1PR01MB1770.jpnprd01.prod.outlook.com>
- <20190805093543.GB29747@pendragon.ideasonboard.com>
-In-Reply-To: <20190805093543.GB29747@pendragon.ideasonboard.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=fabrizio.castro@bp.renesas.com; 
-x-originating-ip: [193.141.220.21]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 313d52ad-4411-4454-1357-08d7198cb6c5
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:TY1PR01MB1673;
-x-ms-traffictypediagnostic: TY1PR01MB1673:
-x-microsoft-antispam-prvs: <TY1PR01MB16734743AC1C0188F964EBB5C0DA0@TY1PR01MB1673.jpnprd01.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 01208B1E18
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(376002)(136003)(366004)(39860400002)(346002)(396003)(199004)(189003)(11346002)(3846002)(6116002)(256004)(229853002)(86362001)(7416002)(446003)(55016002)(8676002)(68736007)(478600001)(186003)(9686003)(476003)(6246003)(7696005)(99286004)(6916009)(81156014)(6436002)(66946007)(76116006)(52536014)(81166006)(66556008)(66476007)(74316002)(107886003)(33656002)(14454004)(7736002)(8936002)(66446008)(64756008)(102836004)(76176011)(316002)(71200400001)(71190400001)(53936002)(486006)(66066001)(26005)(54906003)(2906002)(305945005)(6506007)(4326008)(53546011)(25786009)(44832011)(5660300002)(142933001);DIR:OUT;SFP:1102;SCL:1;SRVR:TY1PR01MB1673;H:TY1PR01MB1770.jpnprd01.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:0;MX:1;
-received-spf: None (protection.outlook.com: bp.renesas.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 5a/EfsZR0RokdCyOue26Yw71Fa5zAv0fNnFVFHsLJHM/66MASHjfpvSMxwcFja8mZI6SMGzrW7jw3hDqiIYiKfez5ADwzffpUWQ84RYezdeZan0JCQu5inRuJ2cxyQmtQqJCzhg4qEzguKZo3MfdcS0cfblojxYSqvzaEkU+bz0SUzVaCfviKvb8XO/SfNW/kI98mxMA0jJ+rdanYZXyM5rVlr3yI2MJ/SlzRUEWBgCxk94OFHbpFQ8w3VVCmd1HwvyPu+oLJklt5zpEgmT5N71eDZe2QjWgcR5ud8TAK++VtKL24IYWFDmDp12P5e4pgY1mDgK91s/uPlyc243uQ/oughSk4tC1Q5I44xYDa9KG6Wg9KBj4T+O/1blhAB0qF+8+/+fYouGW6z69AF7F/CaCHqo4E5kYY8NMkyTgGrc=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=VmJocWvsymOdQ7NU7/6yMlP4/6K5DwEx+usK89GVi9s=;
+        b=kyJZW7fZfdLgtDs2aKngH2TyuWTJjTeVTLZyRgxZRY9MQ56FWUw3A52lCdt4c4YJ+1
+         3TgWOde1fzdSqgTWIgbjzvsDeaFtKgXf6SuYKrrM9YK82qK7s6dWcsjao4CGSwv8Ahlt
+         Crwmv8+ySmVuExNcK9irfRd7xd4YEh9epWXPM2OVxpgaQ8bRFBbu/lNMcWXb245BCABI
+         /yNpf25WGiE15uDcA+a++0LXluCfysTo88g0q7Hcvunkj67HSTRYbpqtQilt8t8aWCuR
+         NoBItyc2gaayKuIzBJdFKFHEpFkdC+iXQWdc8it3UQcFXi36FqTMsdYN8t8x8xKnWrM8
+         44vw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=VmJocWvsymOdQ7NU7/6yMlP4/6K5DwEx+usK89GVi9s=;
+        b=aE3fPjJ2eQPZ3qQzm5hdAWyVEKZrXAtbyR6SblaijxXw33BUsUb751texEvUHiA1Ih
+         YrsBcTcC4/sXglWu35+8Rk/a3iTba2FrSiM55kniYtrDn3UfF22z3/eaJKBRodGVQzI4
+         kP5KPzTtjKfq5xgeT1IIN7CWjKF5P+aRbipxrKVAZmfaOTJU+uHkp2QUEeoFp1IOMRdc
+         4yLNW8fUKtQopW286VInnYpzt4JOREoOPcXpP92L9TxxhlW44mDUo0IZrHMJgTGlkYDO
+         l8LDNHQkF9W7RpLzClU5wYbiZUdr9e9KsxdE0CWdNIpwlpGfnGkgzZKQo4At8uqZI5MD
+         0y7A==
+X-Gm-Message-State: APjAAAWH+9F3S2KSnh45PGMG7hLFbQODXTWqquXMXETqH7gBSRZJwzFo
+        lgdSUsu6DGb1ncjx2qe2czM0TpSbDXijy/qRcBhlRg==
+X-Google-Smtp-Source: APXvYqxpqm0yndDdT3beIa5MGWi8lTPoZhzSa/lWFiqq6Dn3b88/pHlyJgXWVtBOlC/fjyLdOtrrqUOtG4JGHdovYiM=
+X-Received: by 2002:ac2:5c42:: with SMTP id s2mr60787048lfp.61.1564999694066;
+ Mon, 05 Aug 2019 03:08:14 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: bp.renesas.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 313d52ad-4411-4454-1357-08d7198cb6c5
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Aug 2019 10:07:24.6790
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 53d82571-da19-47e4-9cb4-625a166a4a2a
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: fabrizio.castro@bp.renesas.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: TY1PR01MB1673
+References: <1563958245-6321-1-git-send-email-chunfeng.yun@mediatek.com> <1563958245-6321-4-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <1563958245-6321-4-git-send-email-chunfeng.yun@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 5 Aug 2019 12:08:02 +0200
+Message-ID: <CACRpkda5OUEfZRSMA-8H5jnhSan+VJ_3KB5CvOaRdZP1NeJQ+w@mail.gmail.com>
+Subject: Re: [PATCH v8 03/11] dt-bindings: usb: add binding for USB GPIO based
+ connection detection driver
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-usb <linux-usb@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkgTGF1cmVudCwNCg0KPiBGcm9tOiBsaW51eC1rZXJuZWwtb3duZXJAdmdlci5rZXJuZWwub3Jn
-IDxsaW51eC1rZXJuZWwtb3duZXJAdmdlci5rZXJuZWwub3JnPiBPbiBCZWhhbGYgT2YgTGF1cmVu
-dCBQaW5jaGFydA0KPiBTZW50OiAwNSBBdWd1c3QgMjAxOSAxMDozNg0KPiBTdWJqZWN0OiBSZTog
-W1BBVENIL1JGQyAwMi8xMl0gZHQtYmluZGluZ3M6IGRpc3BsYXk6IHJlbmVzYXM6IGx2ZHM6IERv
-Y3VtZW50IHJlbmVzYXMsc3dhcC1kYXRhDQo+IA0KPiBIaSBGYWJyaXppbywNCj4gDQo+IE9uIE1v
-biwgQXVnIDA1LCAyMDE5IGF0IDA4OjU5OjUxQU0gKzAwMDAsIEZhYnJpemlvIENhc3RybyB3cm90
-ZToNCj4gPiA+IEZyb206IExhdXJlbnQgUGluY2hhcnQgPGxhdXJlbnQucGluY2hhcnRAaWRlYXNv
-bmJvYXJkLmNvbT4NCj4gPiA+IFNlbnQ6IDAyIEF1Z3VzdCAyMDE5IDA4OjQ0DQo+ID4gPiBTdWJq
-ZWN0OiBSZTogW1BBVENIL1JGQyAwMi8xMl0gZHQtYmluZGluZ3M6IGRpc3BsYXk6IHJlbmVzYXM6
-IGx2ZHM6IERvY3VtZW50IHJlbmVzYXMsc3dhcC1kYXRhDQo+ID4gPg0KPiA+ID4gSGkgRmFicml6
-aW8sDQo+ID4gPg0KPiA+ID4gVGhhbmsgeW91IGZvciB0aGUgcGF0Y2guDQo+ID4gPg0KPiA+ID4g
-T24gRnJpLCBBdWcgMDIsIDIwMTkgYXQgMDg6MzM6NTlBTSArMDEwMCwgRmFicml6aW8gQ2FzdHJv
-IHdyb3RlOg0KPiA+ID4gPiBSLUNhciBEMywgUi1DYXIgRTMsIGFuZCBSWi9HMkUgc3VwcG9ydCBk
-dWFsLWxpbmsgbW9kZS4NCj4gPiA+ID4gSW4gc3VjaCBhIG1vZGUsIHRoZSBmaXJzdCBMVkRTIGVu
-Y29kZXIgZW1pdHMgZXZlbiBkYXRhLCBhbmQgdGhlDQo+ID4gPiA+IHNlY29uZCBMVkRTIGVuY29k
-ZXIgZW1pdHMgb2RkIGRhdGEuIFRoaXMgcGF0Y2ggZG9jdW1lbnRzIHByb3BlcnR5DQo+ID4gPiA+
-IHJlbmVzYXMsc3dhcC1kYXRhLCB1c2VkIHRvIHN3YXAgZXZlbiBhbmQgb2RkIGRhdGEgYXJvdW5k
-Lg0KPiA+ID4gPg0KPiA+ID4gPiBTaWduZWQtb2ZmLWJ5OiBGYWJyaXppbyBDYXN0cm8gPGZhYnJp
-emlvLmNhc3Ryb0BicC5yZW5lc2FzLmNvbT4NCj4gPiA+ID4gLS0tDQo+ID4gPiA+ICBEb2N1bWVu
-dGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZGlzcGxheS9icmlkZ2UvcmVuZXNhcyxsdmRzLnR4
-dCB8IDUgKysrKysNCj4gPiA+ID4gIDEgZmlsZSBjaGFuZ2VkLCA1IGluc2VydGlvbnMoKykNCj4g
-PiA+ID4NCj4gPiA+ID4gZGlmZiAtLWdpdCBhL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5k
-aW5ncy9kaXNwbGF5L2JyaWRnZS9yZW5lc2FzLGx2ZHMudHh0DQo+ID4gPiBiL0RvY3VtZW50YXRp
-b24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L2JyaWRnZS9yZW5lc2FzLGx2ZHMudHh0DQo+
-ID4gPiA+IGluZGV4IGRlY2U3OWUuLjg5ODAxNzkgMTAwNjQ0DQo+ID4gPiA+IC0tLSBhL0RvY3Vt
-ZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNwbGF5L2JyaWRnZS9yZW5lc2FzLGx2ZHMu
-dHh0DQo+ID4gPiA+ICsrKyBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9kaXNw
-bGF5L2JyaWRnZS9yZW5lc2FzLGx2ZHMudHh0DQo+ID4gPiA+IEBAIC01Miw2ICs1MiwxMSBAQCBP
-cHRpb25hbCBwcm9wZXJ0aWVzOg0KPiA+ID4gPiAgICBtYW5kYXRvcnkgZm9yIHRoZSBmaXJzdCBM
-VkRTIGVuY29kZXIgb24gUi1DYXIgRDMsIFItQ2FyIEUzLCBhbmQgUlovRzJFIFNvQ3MsDQo+ID4g
-PiA+ICAgIGFuZCBzaGFsbCBwb2ludCB0byB0aGUgc2Vjb25kIGVuY29kZXIgdG8gYmUgdXNlZCBh
-cyBhIGNvbXBhbmlvbiBpbiBkdWFsLWxpbmsNCj4gPiA+ID4gICAgbW9kZS4gSXQgc2hhbGwgbm90
-IGJlIHNldCBmb3IgYW55IG90aGVyIExWRFMgZW5jb2Rlci4NCj4gPiA+ID4gKy0gcmVuZXNhcyxz
-d2FwLWRhdGEgOiB3aGVuIGluIGR1YWwtbGluayBtb2RlLCB0aGUgZmlyc3QgTFZEUyBlbmNvZGVy
-IG5vcm1hbGx5DQo+ID4gPiA+ICsgIGVtaXRzIGV2ZW4gZGF0YSwgYW5kIHRoZSBzZWNvbmQgTFZE
-UyBlbmNvZGVyIGVtaXRzIG9kZCBkYXRhLiBXaGVuIHByb3BlcnR5DQo+ID4gPiA+ICsgIHJlbmVz
-YXMsc3dhcC1kYXRhIGlzIHNwZWNpZmllZCwgdGhlIGRhdGEgZW1pdHRlZCBieSB0aGUgdHdvIGVu
-Y29kZXJzIHdpbGwgYmUNCj4gPiA+ID4gKyAgc3dhcHBlZCBhcm91bmQuIFRoaXMgcHJvcGVydHkg
-Y2FuIG9ubHkgYmUgdXNlZCBpbiBjb25qdW5jdGlvbiB3aXRoIHByb3BlcnR5DQo+ID4gPiA+ICsg
-IHJlbmVzYXMsY29tcGFuaW9uLg0KPiA+ID4NCj4gPiA+IEZyb20gYW4gTFZEUyBlbmNvZGVyIHBv
-aW50IG9mIHZpZXcgdGhpcyBpcyBtb3JlIGEgY29uZmlndXJhdGlvbiBvcHRpb24NCj4gPiA+IHRo
-YW4gYSBkZXNjcmlwdGlvbiBvZiB0aGUgaGFyZHdhcmUuIFdvdWxkbid0IGl0IGJlIGJldHRlciBm
-b3IgdGhlIExWRFMNCj4gPiA+IHNpbmsgdG8gcmVwb3J0IHdoaWNoIG9mIHRoZSBvZGQgb3IgZXZl
-biBwaXhlbHMgaXQgZXhwZWN0cyBvbiBlYWNoIG9mIGl0cw0KPiA+ID4gZW5kcG9pbnRzID8NCj4g
-Pg0KPiA+IFllcywgdGhhdCB3b3VsZCBiZSBteSBwcmVmZXJlbmNlIHRvbywgYW5kIGl0IHdvdWxk
-IGJlIGJldHRlciwgSSBhbSBqdXN0IG5vdCBlbnRpcmVseQ0KPiA+IHdoYXQncyB0aGUgYmVzdCBw
-bGFjZSBmb3IgdGhpcyBpbmZvcm1hdGlvbiB0aG91Z2gNCj4gPg0KPiA+ID4gVGhlIExWRFMgZW5j
-b2RlciBkcml2ZXIgY291bGQgdGhlbiBxdWVyeSB0aGF0IGF0IHJ1bnRpbWUgYW5kDQo+ID4gPiBj
-b25maWd1cmUgaXRzZWxmIGFjY29yZGluZ2x5LiBJZGVhbGx5IHRoaXMgc2hvdWxkIGJlIHF1ZXJp
-ZWQgdGhyb3VnaCB0aGUNCj4gPiA+IGRybV9icmlkZ2VfdGltaW5ncyBzdHJ1Y3R1cmUgKG9yIHRo
-cm91Z2ggYSBzaW1pbGFyIG1lYW4pLCBub3QgdGhyb3VnaA0KPiA+ID4gRFQuIEFuIExWRFMgc2lu
-ayB0aGF0IGhhcyBhIGZpeGVkIG1hcHBpbmcgb2Ygb2RkL2V2ZW4gcGl4ZWxzIHRvDQo+ID4gPiBl
-bmRwb2ludHMgd291bGRuJ3QgbmVlZCB0aGUgaW5mb3JtYXRpb24gdG8gYmUgc3BlY2lmaWVkIGlu
-IERUIGF0IGFsbC4NCj4gPg0KPiA+IElzbid0IGRybV9icmlkZ2VfdGltaW5ncyBzcGVjaWZpYyBm
-b3IgYnJpZGdlcz8NCj4gDQo+IEl0cyBuYW1lIG1ha2VzIGl0IHNwZWNpZmljIHRvIGJyaWRnZXMs
-IGJ1dCB0aGUgaW5mb3JtYXRpb24gaXQgY29udGFpbnMNCj4gY291bGQgZXF1YWxseSBhcHBseSB0
-byBwYW5lbHMuIEkgd291bGQgdGh1cyB1c2UgaXQgZm9yIGJvdGgsIHBvc3NpYmx5DQo+IGFmdGVy
-IHJlbmFtaW5nIGl0Lg0KDQpXaWxsIGdpdmUgdGhpcyBhIHRyeSB0aGVuLg0KDQpUaGFua3MsDQpG
-YWINCg0KPiANCj4gLS0NCj4gUmVnYXJkcywNCj4gDQo+IExhdXJlbnQgUGluY2hhcnQNCg==
+On Wed, Jul 24, 2019 at 10:51 AM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
+
+> It's used to support dual role switch via GPIO when use Type-B
+> receptacle, typically the USB ID pin is connected to an input
+> GPIO, and also used to enable/disable device when the USB Vbus
+> pin is connected to an input GPIO.
+>
+> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
+> ---
+> v8 changes:
+
+Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+
+Yours,
+Linus Walleij
