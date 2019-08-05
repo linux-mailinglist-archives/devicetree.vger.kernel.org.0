@@ -2,113 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 924B881659
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:03:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6923581664
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:07:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728245AbfHEKDa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 06:03:30 -0400
-Received: from relay3-d.mail.gandi.net ([217.70.183.195]:44065 "EHLO
-        relay3-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728232AbfHEKD3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 06:03:29 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay3-d.mail.gandi.net (Postfix) with ESMTPSA id BBCC36000C;
-        Mon,  5 Aug 2019 10:03:26 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>
-Cc:     <devicetree@vger.kernel.org>, linux-clk@vger.kernel.org,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        Grzegorz Jaszczyk <jaz@semihalf.com>,
-        Marcin Wojtas <mw@semihalf.com>,
-        Stefan Chulski <stefanc@marvell.com>,
-        Yan Markman <ymarkman@marvell.com>,
-        Ben Peled <bpeled@marvell.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH 8/8] clk: mvebu: ap80x: add AP807 clock support
-Date:   Mon,  5 Aug 2019 12:03:10 +0200
-Message-Id: <20190805100310.29048-9-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190805100310.29048-1-miquel.raynal@bootlin.com>
-References: <20190805100310.29048-1-miquel.raynal@bootlin.com>
+        id S1728148AbfHEKHK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 06:07:10 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:41563 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726454AbfHEKHK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 06:07:10 -0400
+Received: by mail-lf1-f68.google.com with SMTP id 62so52592441lfa.8
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 03:07:08 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=nVUZMecSchHo3ov4XgyeqBe+ricOQYDOHuC+qKYyro0=;
+        b=bhdM2UlaB2K8iOROiArDFJXYmMBmI0NM6/LKx7/XPm3GqnbIb/bPPiA9Pz8k6nIBF1
+         a9wtyCtkgQ0ZgwGYPUfVAbL+577Jz5tF8GafZQB9sMfUv4Nlj4rYl3Er6wl9+QH8Nxhy
+         FtkwAUSMAAQBSGeGVlWgZpDNyLCvoPBhP0pcgK2/BjumMbrw+T0pnm5VkmBeHWZ3nO4I
+         GPuHg6bPKKt6ASXdwolYWYyjGdwR+7o06PTxLel00izXGOs6Vp7hj8S46bBF1UOQ3xx7
+         4WFYidUocdAHqGiNAXEwabc3LLabLm4K7NaBqzO0dTJ+pDE/gdAlCjuDbCMU7TKWXxNK
+         QsKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=nVUZMecSchHo3ov4XgyeqBe+ricOQYDOHuC+qKYyro0=;
+        b=oJQRqp08VHQcQhveqvKeK6UmkdEMiCDlNEh9syWyEJT/BoWqz2FXfrT3gxi7vABpPn
+         r8dfC1tJZNgJevQrjWdKdKpTn1e3lAhbao8W2futmUWDeD8Hp3S0IHf6LlAvILgBCazd
+         qnvTcm9c619O03x8hMZEihffKnJ3xJcyfSHmOf8Nz8PVEc7iCA8hZ17LLj5ReNly1EVm
+         JWvACx5vL9iBclPiddEN7e7P152MijW4GU584gB/aE/niJ1UD/z6+/I/CTEUZr65xptJ
+         B6r2+EkvEADE7sCV7ToI9bDD5obvE847vq6+9VrBACNZ5c3KoUoxop4KbXlu3cJnn4lD
+         aXRw==
+X-Gm-Message-State: APjAAAUcsT9/tmRAcUJrK10z4AkxTPb0N4QF7YB/2xghPHbfjKBg1g98
+        IIZRIKnt9WJXnMfQvDwy3dSopBcI/Crvv1wj2/SYEg==
+X-Google-Smtp-Source: APXvYqzbr3N8Sty4/n+PKBjjuxasyEkPZbJo4c/cdLdH2JC6OzKmDCkMaV5/W8Fpx4+sg/pPghnAd39wNmbfOj5KmtU=
+X-Received: by 2002:ac2:5939:: with SMTP id v25mr1356862lfi.115.1564999628161;
+ Mon, 05 Aug 2019 03:07:08 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <1563958245-6321-1-git-send-email-chunfeng.yun@mediatek.com>
+In-Reply-To: <1563958245-6321-1-git-send-email-chunfeng.yun@mediatek.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 5 Aug 2019 12:06:56 +0200
+Message-ID: <CACRpkdaBT24JPH_VsKtgp6fjWtVuqM50rXkDVYKmLHgR5hdJzA@mail.gmail.com>
+Subject: Re: [PATCH v8 00/11] add USB GPIO based connection detection driver
+To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Biju Das <biju.das@bp.renesas.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
+        Li Jun <jun.li@nxp.com>,
+        Badhri Jagan Sridharan <badhri@google.com>,
+        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
+        Hans de Goede <hdegoede@redhat.com>,
+        Andy Shevchenko <andy.shevchenko@gmail.com>,
+        Min Guo <min.guo@mediatek.com>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        linux-usb <linux-usb@vger.kernel.org>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "moderated list:ARM/Mediatek SoC support" 
+        <linux-mediatek@lists.infradead.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ben Peled <bpeled@marvell.com>
+On Wed, Jul 24, 2019 at 10:51 AM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
 
-Add driver support for AP807 clock.
+> Because the USB Connector is introduced and the requirement of
+> usb-connector.txt binding, the old way using extcon to support
+> USB Dual-Role switch is now deprecated, meanwhile there is no
+> available common driver when use Type-B connector, typically
+> using an input GPIO to detect USB ID pin.
 
-Signed-off-by: Ben Peled <bpeled@marvell.com>
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- drivers/clk/mvebu/ap806-system-controller.c | 28 +++++++++++++++++++++
- 1 file changed, 28 insertions(+)
+However while this was going on,
+drivers/extcon/extcon-fsa9480.c was merged and that detects
+not only GPIO on the USB port but multiplexed usecases such
+as UART over the USB micro PHY (and no that UART is not
+a USB UART, but an actual RX/TX over D-/D+).
 
-diff --git a/drivers/clk/mvebu/ap806-system-controller.c b/drivers/clk/mvebu/ap806-system-controller.c
-index c64e2cc4a3ba..948bd1e71aea 100644
---- a/drivers/clk/mvebu/ap806-system-controller.c
-+++ b/drivers/clk/mvebu/ap806-system-controller.c
-@@ -102,6 +102,30 @@ static int ap806_get_sar_clocks(unsigned int freq_mode,
- 	return 0;
- }
- 
-+static int ap807_get_sar_clocks(unsigned int freq_mode,
-+				unsigned int *cpuclk_freq,
-+				unsigned int *dclk_freq)
-+{
-+	switch (freq_mode) {
-+	case 0x0:
-+		*cpuclk_freq = 2000;
-+		*dclk_freq = 1200;
-+		break;
-+	case 0x6:
-+		*cpuclk_freq = 2200;
-+		*dclk_freq = 1200;
-+		break;
-+	case 0xD:
-+		*cpuclk_freq = 1600;
-+		*dclk_freq = 1200;
-+		break;
-+	default:
-+		return -EINVAL;
-+	}
-+
-+	return 0;
-+}
-+
- static int ap806_syscon_common_probe(struct platform_device *pdev,
- 				     struct device_node *syscon_node)
- {
-@@ -130,6 +154,9 @@ static int ap806_syscon_common_probe(struct platform_device *pdev,
- 	if (of_device_is_compatible(pdev->dev.of_node,
- 				    "marvell,ap806-clock")) {
- 		ret = ap806_get_sar_clocks(freq_mode, &cpuclk_freq, &dclk_freq);
-+	} else if (of_device_is_compatible(pdev->dev.of_node,
-+					   "marvell,ap807-clock")) {
-+		ret = ap807_get_sar_clocks(freq_mode, &cpuclk_freq, &dclk_freq);
- 	} else {
- 		dev_err(dev, "compatible not supported\n");
- 		return -EINVAL;
-@@ -252,6 +279,7 @@ builtin_platform_driver(ap806_syscon_legacy_driver);
- 
- static const struct of_device_id ap806_clock_of_match[] = {
- 	{ .compatible = "marvell,ap806-clock", },
-+	{ .compatible = "marvell,ap807-clock", },
- 	{ }
- };
- 
--- 
-2.20.1
+That driver also measure a whole slew of funny resistance
+values on the ID pin, that is how it does its job.
 
+But for just "hey I'm plugged in" we can surely keep this
+ID on GPIO detection in the USB subsystem.
+
+I just get a bit insecure about how we should ideally
+handle these "funny-PHY's".
+
+Yours,
+Linus Walleij
