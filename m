@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C938B818B7
+	by mail.lfdr.de (Postfix) with ESMTP id 57C26818B4
 	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 14:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728573AbfHEMD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727349AbfHEMD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 5 Aug 2019 08:03:29 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:45152 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727357AbfHEMD2 (ORCPT
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:35711 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728455AbfHEMD2 (ORCPT
         <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 08:03:28 -0400
-Received: by mail-wr1-f66.google.com with SMTP id f9so5230514wre.12
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 05:03:26 -0700 (PDT)
+Received: by mail-wr1-f67.google.com with SMTP id y4so84160931wrm.2
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 05:03:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=25vkHl8TD36SDkWAHJSebVeUcYzajPzPyvWuGyvsAhE=;
-        b=YsSmtNhPFyHUW78r8S8MLbZSVSttppTiKSHIpoTXSYeR5QcxdpBE3Ufjq7uEYjXEgI
-         dmPita3jsLeyX+7v624q99DrW+MmNpmWYsEAhy89ozWnEx7jAS7THW7DoJIvKpHLU4Nz
-         9aFASsRrlhEZoc2qAjHVR99E+wveNzGFLrFxWo3EKEAk2bNQp8yreK7u4jhnjkQAuZfa
-         XWPp8sUcX0TsIg8hykvT+yfFktlIFBGwJluuut+8sWQHkWbrYWSxUl2wwgOseujOmnAW
-         4CqAO3UiS22yAK6aVqzOSY60m2gG31BbRwJ4Pq51qzxLNJAVlt43AJ2iVFH8qg/vO1PP
-         0Wmg==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=Y9sKG2U7XCHY9N45/XGVAYDqTVfRZ5wagMI5lIUYmMc=;
+        b=epA4UV4EgezeHzNn4PeRLlLbsYa9NR4F8yaH6ofs3Mt0Dx9Uj0VwZ4HJsJbeX/DYMH
+         /uGazRtMLTcGZCP2gbV2HlksCG1/4+2EE2pVZLjMHhI9vKmTq1bIJQCIY90nZlBX4+ZQ
+         0fpuroWX8/inOD0X9y6YJ5/1f016EBHq1QIaM/zN47aA6Z6aUgA/VyyUysXHtdHIV7KO
+         WlxUcZ9CCGPSizt8MsubXYf36zS5793erBOl86Rv9WTjnr8jVcqvhlevq/1/hqedanHT
+         l2Nfgo093Zx43kH4YgGnQktNGrXhym2xGajx9nPyvn0GScBebSryn6ISxu5HsDHvRcw+
+         oLNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=25vkHl8TD36SDkWAHJSebVeUcYzajPzPyvWuGyvsAhE=;
-        b=HndHSqLM28y8cI2b6+vh/vqvwgrrc96oIqS4AlZoxmfbSnig3FB7wyZt2eX0Ib9JZ6
-         wciXmearyHeHmLIbCLWpFRUYdFY0bv9GwrjBSqnGTWcc4AggFUJQ+CbPBmUSB+xXXruh
-         InZZ6NsH6w47B4Xio3MJ+I7PuNiHJw2uMyg/Hq+MC2leR2Dq5Ez9LOlLjir/a00NEj3w
-         bM8rGhiWejQryezmVA9gv0yYIQZb8XBP6jb19CymuZ2Gqfz6xC36MfQv6YE1QviC4A5L
-         nq6S47Ud/Y/OgVcA0YQvADY5LQyrZILevmcE0o3DwJFZ44V+xArnvU4G59CdL9k38TIq
-         mPxw==
-X-Gm-Message-State: APjAAAWMN4vhZdTX/q0xBq/mMjeKSmTXyjjSCD6dxtVQsBLLeBYxRGKO
-        QObojoLiSK8JaWsRkfhtQtUhKQ==
-X-Google-Smtp-Source: APXvYqzWNv12kSRQOLPMH0DQ/Rtt60lADy18oRMLOjwk/7REfS0XxZobWQLA74rD/m007PEBCxIPPQ==
-X-Received: by 2002:a05:6000:1148:: with SMTP id d8mr4777553wrx.354.1565006605620;
-        Mon, 05 Aug 2019 05:03:25 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=Y9sKG2U7XCHY9N45/XGVAYDqTVfRZ5wagMI5lIUYmMc=;
+        b=iGm1EYC0v+wEWS+5G4Om7Rp+gaDN1ngj+2b8u3Xqvvr/9mVRqxWC4+sNfbUloKhODS
+         JxAibrQ/Ml7sAYyPd1PnPvK00PW+nH5frZpqOlokH7xGQuW58Ge4GhLpCd/AuqeyCIv4
+         8J9qFibpSk83ZIISR5aWdZjwyK4fQNUKLkWGU2BnaxU1cVZPHBBsNOYmyrqsaYwVPxDc
+         HYM8lpYk4vv9s0uzcoUUr6nNq3G2QZYYfqWVW8BAkU+7msTHEfdwJ1qoY8qHPbXoPOHw
+         SIcIiWS2YcB8lzY5HqTMI257CmsY8gCijNG0i7C6nr2Ls02N8fgoMlybZWaCCl5MciLA
+         +Tyw==
+X-Gm-Message-State: APjAAAVy8bpjuZIAElt5174R+r64B0cz2h1lq/FU1G6VGfi2XE9/7lKr
+        HnbNN/26YTvAgSM8ckMLeSZvow==
+X-Google-Smtp-Source: APXvYqw3OD05u4AblrcjmCcYW/Bk5y/c3rSjEQEnj4ecStOu5l9vedoHEuUMqP9qe4bkr2QEfRACgA==
+X-Received: by 2002:adf:dd51:: with SMTP id u17mr10783185wrm.218.1565006606374;
+        Mon, 05 Aug 2019 05:03:26 -0700 (PDT)
 Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id x6sm88683668wrt.63.2019.08.05.05.03.24
+        by smtp.gmail.com with ESMTPSA id x6sm88683668wrt.63.2019.08.05.05.03.25
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
         Mon, 05 Aug 2019 05:03:25 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     robh+dt@kernel.org
 Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org, linux-crypto@vger.kernel.org,
-        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
-        linux-watchdog@vger.kernel.org,
+        linux-amlogic@lists.infradead.org,
         linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        jassisinghbrar@gmail.com, kishon@ti.com, p.zabel@pengutronix.de
-Subject: [RFCv2 0/9] dt-bindings: first tentative of conversion to yaml format
-Date:   Mon,  5 Aug 2019 14:03:11 +0200
-Message-Id: <20190805120320.32282-1-narmstrong@baylibre.com>
+        jassisinghbrar@gmail.com
+Subject: [RFCv2 1/9] dt-bindings: mailbox: meson-mhu: convert to yaml
+Date:   Mon,  5 Aug 2019 14:03:12 +0200
+Message-Id: <20190805120320.32282-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190805120320.32282-1-narmstrong@baylibre.com>
+References: <20190805120320.32282-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -63,72 +63,116 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This is a first tentative to convert some of the simplest Amlogic
-dt-bindings to the yaml format.
+Now that we have the DT validation in place, let's convert the device tree
+bindings for the Amlogic MHU controller over to a YAML schemas.
 
-All have been tested using :
-$ make ARCH=arm64 dtbs_check
-
-Issues with the amlogic arm64 DTs has already been identified thanks
-to the validation scripts. The DT fixes will be pushed once these yaml
-bindings are acked.
-
-Changes since rfc v1:
-- Fixed bindings according to Rob's comments
-- Added commit log
-- renamed yaml files using amlogic prefix
-
-Neil Armstrong (9):
-  dt-bindings: mailbox: meson-mhu: convert to yaml
-  dt-bindings: rng: amlogic,meson-rng: convert to yaml
-  dt-bindings: spi: meson: convert to yaml
-  dt-bindings: reset: amlogic,meson-reset: convert to yaml
-  dt-bindings: arm: amlogic: amlogic,meson-gx-ao-secure: convert to yaml
-  dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml
-  dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml
-  dt-bindings: serial: meson-uart: convert to yaml
-  dt-bindings: watchdog: meson-gxbb-wdt: convert to yaml
-
- .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 -------
- .../amlogic/amlogic,meson-gx-ao-secure.yaml   | 52 +++++++++++++
- .../mailbox/amlogic,meson-gxbb-mhu.yaml       | 53 ++++++++++++++
- .../devicetree/bindings/mailbox/meson-mhu.txt | 34 ---------
- .../phy/amlogic,meson-g12a-usb2-phy.yaml      | 63 ++++++++++++++++
- .../phy/amlogic,meson-g12a-usb3-pcie-phy.yaml | 57 +++++++++++++++
- .../bindings/phy/meson-g12a-usb2-phy.txt      | 22 ------
- .../bindings/phy/meson-g12a-usb3-pcie-phy.txt | 22 ------
- .../bindings/reset/amlogic,meson-reset.txt    | 19 -----
- .../bindings/reset/amlogic,meson-reset.yaml   | 37 ++++++++++
- .../bindings/rng/amlogic,meson-rng.txt        | 21 ------
- .../bindings/rng/amlogic,meson-rng.yaml       | 37 ++++++++++
- .../bindings/serial/amlogic,meson-uart.txt    | 38 ----------
- .../bindings/serial/amlogic,meson-uart.yaml   | 73 +++++++++++++++++++
- .../bindings/spi/amlogic,meson-gx-spicc.yaml  | 67 +++++++++++++++++
- .../bindings/spi/amlogic,meson6-spifc.yaml    | 53 ++++++++++++++
- .../devicetree/bindings/spi/spi-meson.txt     | 55 --------------
- .../watchdog/amlogic,meson-gxbb-wdt.yaml      | 37 ++++++++++
- .../bindings/watchdog/meson-gxbb-wdt.txt      | 16 ----
- 19 files changed, 529 insertions(+), 255 deletions(-)
- delete mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
- create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
+ .../mailbox/amlogic,meson-gxbb-mhu.yaml       | 53 +++++++++++++++++++
+ .../devicetree/bindings/mailbox/meson-mhu.txt | 34 ------------
+ 2 files changed, 53 insertions(+), 34 deletions(-)
  create mode 100644 Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
  delete mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.txt
- create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
- create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
- delete mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt
- delete mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt
- delete mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
- create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
- delete mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
- create mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
- delete mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
- create mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
- create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
- create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
- delete mode 100644 Documentation/devicetree/bindings/spi/spi-meson.txt
- create mode 100644 Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
- delete mode 100644 Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
 
+diff --git a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+new file mode 100644
+index 000000000000..2536a0082cff
+--- /dev/null
++++ b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+@@ -0,0 +1,53 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2019 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/mailbox/amlogic,meson-gxbb-mhu.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic Meson Message-Handling-Unit Controller
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++description: |
++  The Amlogic's Meson SoCs Message-Handling-Unit (MHU) is a mailbox controller
++  that has 3 independent channels/links to communicate with remote processor(s).
++  MHU links are hardwired on a platform. A link raises interrupt for any
++  received data. However, there is no specified way of knowing if the sent
++  data has been read by the remote. This driver assumes the sender polls
++  STAT register and the remote clears it after having read the data.
++
++properties:
++  compatible:
++    enum:
++      - amlogic,meson-gxbb-mhu
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    minItems: 3
++    maxItems: 3
++    description:
++      Contains the interrupt information corresponding to each of the 3 links
++      of MHU.
++
++  "#mbox-cells":
++    const: 1
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - "#mbox-cells"
++
++examples:
++  - |
++    mailbox@c883c404 {
++          compatible = "amlogic,meson-gxbb-mhu";
++          reg = <0xc883c404 0x4c>;
++          interrupts = <208>, <209>, <210>;
++          #mbox-cells = <1>;
++    };
++
+diff --git a/Documentation/devicetree/bindings/mailbox/meson-mhu.txt b/Documentation/devicetree/bindings/mailbox/meson-mhu.txt
+deleted file mode 100644
+index a530310772b9..000000000000
+--- a/Documentation/devicetree/bindings/mailbox/meson-mhu.txt
++++ /dev/null
+@@ -1,34 +0,0 @@
+-Amlogic Meson MHU Mailbox Driver
+-================================
+-
+-The Amlogic's Meson SoCs Message-Handling-Unit (MHU) is a mailbox controller
+-that has 3 independent channels/links to communicate with remote processor(s).
+-MHU links are hardwired on a platform. A link raises interrupt for any
+-received data. However, there is no specified way of knowing if the sent
+-data has been read by the remote. This driver assumes the sender polls
+-STAT register and the remote clears it after having read the data.
+-
+-Mailbox Device Node:
+-====================
+-
+-Required properties:
+---------------------
+-- compatible:		Shall be "amlogic,meson-gxbb-mhu"
+-- reg:			Contains the mailbox register address range (base
+-			address and length)
+-- #mbox-cells		Shall be 1 - the index of the channel needed.
+-- interrupts:		Contains the interrupt information corresponding to
+-			each of the 2 links of MHU.
+-
+-Example:
+---------
+-
+-	mailbox: mailbox@c883c404 {
+-		#mbox-cells = <1>;
+-		compatible = "amlogic,meson-gxbb-mhu";
+-		reg = <0 0xc883c404 0 0x4c>;
+-		interrupts = <0 208 IRQ_TYPE_EDGE_RISING>,
+-			     <0 209 IRQ_TYPE_EDGE_RISING>,
+-			     <0 210 IRQ_TYPE_EDGE_RISING>;
+-		#mbox-cells = <1>;
+-	};
 -- 
 2.22.0
 
