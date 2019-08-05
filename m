@@ -2,93 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC4AE8168C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:11:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BA6A2816A9
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:16:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727259AbfHEKK6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 06:10:58 -0400
-Received: from mail-lf1-f68.google.com ([209.85.167.68]:37347 "EHLO
-        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726454AbfHEKKy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 06:10:54 -0400
-Received: by mail-lf1-f68.google.com with SMTP id c9so57411710lfh.4
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 03:10:52 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=38PNBCxR8E/gwN5SobPXrhNr+MV57GD7N/MEMGkZI8M=;
-        b=i+KWdtoyatpzpphFY2WaJrES1l5iH+km4ZzYvw9Pj8U6cQ9EV8MJo50y2rFheh0sQf
-         If1EUHTnLQYMu1Ufh+wue461SW1p3twp+YJYSThodXvheiQUsdX1L8q7rXNN2TVo0+3B
-         AKc9XtG1SJ9qwu3cUsAOEB0/PEAlpEV0pI3GTyAtzv0nfOLW4nFFD7clhV75F/w+aNzw
-         5Au5ijk2hYONfmLVa0NPleuXW4f9ejdIYsinAsw4Q3fUPuxVvWzGPkZjRvrNsqnWdOJV
-         NxZUss8V+kueLKH5812GcCc8+NKYiY0vtDZRGWS4hLJ3JfWGkDXuNt2TcdfZM9DVT3R7
-         j+mQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=38PNBCxR8E/gwN5SobPXrhNr+MV57GD7N/MEMGkZI8M=;
-        b=K10StGJFZLV/OBsheDGjRpQM8qCrBmb82CJ1eLS7wWtci9nq1lH/3dNukfoeIl74j2
-         QG4dZOiVqp+Q8lHg5nEWFcjR1MqvR7+nk2ZT360BTq11FxxOiauG3vFvlXO+QkcnyFDl
-         2PXn4cpbgVrqqJSB1qPT4+JFdm4N/hg16IbYDN5XjB1XuKpL0HaPh3FnYun7G14nswez
-         X+Eb5TmZDE1XWsiTGUNM1uF+j4VZZFXpxzqZkUGicC/Xk9kiO3twAgicqmWct5sx2LL+
-         ihK3QnKXFHcGDbw9bXwJT54eP2UDb8yErzQTCqHU/UDy8rO0skLHZnE4eiXqTAqt3Mte
-         2Szg==
-X-Gm-Message-State: APjAAAWFwRzOYSFhefONvFDlXGQfEbNLVtrJnpsVgrN43Zvw2yqEPjbH
-        uNUs4lRIUqC3SM6+nwQ6QknCFA5a0Fmm5oZiqWFmBw==
-X-Google-Smtp-Source: APXvYqxusHjcjpDv1JZyVr5ijdjJU9V1dMWbb6Wlipx267US9qZGpWDr37CqWIealFc9Ew2Cd3rGlJafBijXpEfIUBo=
-X-Received: by 2002:ac2:5382:: with SMTP id g2mr68758068lfh.92.1564999852084;
- Mon, 05 Aug 2019 03:10:52 -0700 (PDT)
+        id S1727349AbfHEKQR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 06:16:17 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:58401 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727259AbfHEKQR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 06:16:17 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: miquel.raynal@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id B1F542000F;
+        Mon,  5 Aug 2019 10:16:13 +0000 (UTC)
+From:   Miquel Raynal <miquel.raynal@bootlin.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     <devicetree@vger.kernel.org>,
+        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
+        Gregory Clement <gregory.clement@bootlin.com>,
+        Antoine Tenart <antoine.tenart@bootlin.com>,
+        Maxime Chevallier <maxime.chevallier@bootlin.com>,
+        Nadav Haklai <nadavh@marvell.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        linux-gpio@vger.kernel.org, <linux-arm-kernel@lists.infradead.org>,
+        Grzegorz Jaszczyk <jaz@semihalf.com>,
+        Marcin Wojtas <mw@semihalf.com>,
+        Stefan Chulski <stefanc@marvell.com>,
+        Yan Markman <ymarkman@marvell.com>,
+        Miquel Raynal <miquel.raynal@bootlin.com>
+Subject: [PATCH 0/3] CP115 pinctrl support
+Date:   Mon,  5 Aug 2019 12:16:04 +0200
+Message-Id: <20190805101607.29811-1-miquel.raynal@bootlin.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-References: <1563958245-6321-1-git-send-email-chunfeng.yun@mediatek.com> <1563958245-6321-11-git-send-email-chunfeng.yun@mediatek.com>
-In-Reply-To: <1563958245-6321-11-git-send-email-chunfeng.yun@mediatek.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 5 Aug 2019 12:10:40 +0200
-Message-ID: <CACRpkdbq1rEpTm3Lqqb11WrKumV7bjUancuu-u2Ow0PQsCoLsg@mail.gmail.com>
-Subject: Re: [PATCH v8 10/11] usb: common: add USB GPIO based connection
- detection driver
-To:     Chunfeng Yun <chunfeng.yun@mediatek.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Biju Das <biju.das@bp.renesas.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Adam Thomson <Adam.Thomson.Opensource@diasemi.com>,
-        Li Jun <jun.li@nxp.com>,
-        Badhri Jagan Sridharan <badhri@google.com>,
-        Heikki Krogerus <heikki.krogerus@linux.intel.com>,
-        Hans de Goede <hdegoede@redhat.com>,
-        Andy Shevchenko <andy.shevchenko@gmail.com>,
-        Min Guo <min.guo@mediatek.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        linux-usb <linux-usb@vger.kernel.org>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "moderated list:ARM/Mediatek SoC support" 
-        <linux-mediatek@lists.infradead.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Jul 24, 2019 at 10:51 AM Chunfeng Yun <chunfeng.yun@mediatek.com> wrote:
+Hello,
 
-> Due to the requirement of usb-connector.txt binding, the old way
-> using extcon to support USB Dual-Role switch is now deprecated
-> when use Type-B connector.
-> This patch introduces a driver of Type-B connector which typically
-> uses an input GPIO to detect USB ID pin, and try to replace the
-> function provided by extcon-usb-gpio driver
->
-> Signed-off-by: Chunfeng Yun <chunfeng.yun@mediatek.com>
-> Tested-by: Nagarjuna Kristam <nkristam@nvidia.com>
-> ---
-> v8 changes:
+This is the second batch of changes (out of three) to support the brand
+new Marvell CN9130 SoCs which are made of one AP807 and one CP115.
 
-Reviewed-by: Linus Walleij <linus.walleij@linaro.org>
+We add a new compatible (and the relevant support in the pinctrl
+driver) before the addition in batch 3/3 of CN9130 SoCs DT using it.
 
-Yours,
-Linus Walleij
+1st batch was clocks support and is independent from this one.
+
+Thanks,
+Miquèl
+
+
+Grzegorz Jaszczyk (2):
+  dt-bindings: cp110: document the new CP115 pinctrl compatible
+  pinctrl: mvebu: add additional variant for standalone CP115
+
+Konstantin Porotchkin (1):
+  pinctrl: mvebu: Add CP110 missing pin functionality
+
+ .../arm/marvell/cp110-system-controller.txt   |  4 ++--
+ drivers/pinctrl/mvebu/pinctrl-armada-cp110.c  | 20 ++++++++++++++-----
+ 2 files changed, 17 insertions(+), 7 deletions(-)
+
+-- 
+2.20.1
+
