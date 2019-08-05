@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A8B0E816BE
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:17:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 82386816CB
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:18:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727259AbfHEKRE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 06:17:04 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:45837 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727158AbfHEKRE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 06:17:04 -0400
-Received: by mail-ed1-f67.google.com with SMTP id x19so72215223eda.12;
-        Mon, 05 Aug 2019 03:17:03 -0700 (PDT)
+        id S1727230AbfHEKSU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 06:18:20 -0400
+Received: from mail-lj1-f196.google.com ([209.85.208.196]:38257 "EHLO
+        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726454AbfHEKSU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 06:18:20 -0400
+Received: by mail-lj1-f196.google.com with SMTP id r9so78823499ljg.5
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 03:18:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=+OidWRK0NxQrN09q+H0Lz4wCrhTqBVNanJIQIVy/gII=;
+        b=lg9VOKzw2db4frYUxtdqEfbgWkOvq9p9FMJSWhGilAgUkM1A/cuExt3oECmeK5QKT6
+         t5Uh1vcuMjWQDCEH2XWwYYrGgnCaHakuBuPZr7IZ74XtRBQZ4mTkhnafC8TgX/okuR+l
+         ERsy1o8RzDxio5fauDNDhsZ3/Hs5I7gbIqZtIl8P3LOKWCPB7LonUWnBG487BvJqoIEv
+         Wtphcmcr/28nxzQPeSvW1GzZogMY4wfQNOdqOLIb5SA6T1UvLt29Guy+svKOhPj0y/j/
+         kT+jMS7sypmnQsa64XAOBnEmpKpk0FcEROskM39/RUXBRHfCnWVd7Ys0NGGZZecRgpcF
+         N7hw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=x7vzN+j+SCe+XCO/mDoZK//BIz8w5B9jkGbWhEZ2u9o=;
-        b=WlaoapMmZnjp8mcLqBEenzK05FDu7RqlMhmkMzan+HRQyDCoxoogN5om9Ok4v+Wwsy
-         L+E1RI2pYijGKHQ1DKGpB9H0NAJrQIEhSZdUebeJbRZbz8MCz5KMO5ixyc0JBaPrIPW/
-         n4Cnl+oWLCzMF06cKPThi2CkbKyxucpRuJU+7hVuMjW0PeEX/E1BXbqhu022ZKgU0B0N
-         OMGRcFRJJPAQRYn8FWCnuSP+QEZ1JJXK1jYdhyyszBduRniXuj/yEDKZBLxq2Abf6BLm
-         Pd0hRa/oXiCzx0Z+X0I4FxsC2A8/FCg23rnK7jYMKZd3i16JkgbWh+oqkTCLR0DbQdZZ
-         UHPg==
-X-Gm-Message-State: APjAAAWx0rxtH/ajoC/+xDfulsjk7tv5Xfjb9XZbcvzdS9dEZm+9+brT
-        pkjtjvXIhlV1X4uUOMN9PQsGjjiPK9I=
-X-Google-Smtp-Source: APXvYqw3pXH1LL7qYbar3sLuQKW3Hp4tiqc0y4NBFWEEV/+k/XkwhZVgRLihWx6qcdx+heVbYzbrKQ==
-X-Received: by 2002:a50:a4ad:: with SMTP id w42mr129608157edb.230.1565000222594;
-        Mon, 05 Aug 2019 03:17:02 -0700 (PDT)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id l1sm19293419edr.17.2019.08.05.03.17.02
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 05 Aug 2019 03:17:02 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id p17so83802931wrf.11;
-        Mon, 05 Aug 2019 03:17:02 -0700 (PDT)
-X-Received: by 2002:adf:e941:: with SMTP id m1mr11300922wrn.279.1565000221906;
- Mon, 05 Aug 2019 03:17:01 -0700 (PDT)
+        bh=+OidWRK0NxQrN09q+H0Lz4wCrhTqBVNanJIQIVy/gII=;
+        b=UTK1FoCLD72qmS9/OYDehTxFrx2PwYAnR0KyGFkz9CcH6WUl9toNyvCumfrRCl1Dnt
+         ehpmseHKY4OwC8hgDWgQUQXUhDBfuGS3PdbCi5xcXnNqCMqrRZvvxOMfIIx9Zmsykvc+
+         +Uya+Zw5zs1Z4X0ekIrY6AJ1jYGA36BFOGE34EOqAYaLbAP1hPGC3FDQlTF6vvq/OGaz
+         84I1R9jTpNF1Es6UIlwTfD7BTSOVQ5+vZPjpiscbxBGHjDZzTvAK0MnzGA0E3iHD52ho
+         Wzq6Qb5ggyuW1963bUn+sMmL/3cCgS0rzd+NVinFt07uDPUBl5ak11I5zyLZ6raz7pSB
+         h0EQ==
+X-Gm-Message-State: APjAAAWBtvLiSCpwSwv6I4NOTqO47xXwsyNyOcpAqQrNgmP4r033Wcmv
+        Cqs4YhWVckwAzoKmT9hIyJFnMAnS5ela4zasExyfJQ==
+X-Google-Smtp-Source: APXvYqx/47plwVQoKfOxPFRbz9uFPNTC89i2gTxTm/2vOWF4WlpGegp3L3NCwltCpv/ud4yUTO+QjSZAiKhvzrIe6xY=
+X-Received: by 2002:a2e:8756:: with SMTP id q22mr79254317ljj.108.1565000298784;
+ Mon, 05 Aug 2019 03:18:18 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190412120730.473-1-megous@megous.com> <20190412120730.473-2-megous@megous.com>
-In-Reply-To: <20190412120730.473-2-megous@megous.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 5 Aug 2019 18:16:48 +0800
-X-Gmail-Original-Message-ID: <CAGb2v65d=yXPEiyTv0X3m25mzd2J5DnrWvyxz0zjLiq997BbZg@mail.gmail.com>
-Message-ID: <CAGb2v65d=yXPEiyTv0X3m25mzd2J5DnrWvyxz0zjLiq997BbZg@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH 1/3] dt-bindings: Add compatible for H6 RTC
-To:     =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-rtc@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
+References: <20190725145040.42182-1-kevin.brodsky@arm.com> <042d5c3d-96fe-5466-3869-a0a3a08b964d@arm.com>
+In-Reply-To: <042d5c3d-96fe-5466-3869-a0a3a08b964d@arm.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Mon, 5 Aug 2019 12:18:06 +0200
+Message-ID: <CACRpkdbPhxW2-vDhPDz-KpD-AxPJL+Px_ZH8cWVVbCiYpJh3PA@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: fast models: Increase clcd's max-memory-bandwidth
+To:     Robin Murphy <robin.murphy@arm.com>
+Cc:     Kevin Brodsky <kevin.brodsky@arm.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, Pawel Moll <pawel.moll@arm.com>,
+        Ruben Ayrapetyan <ruben.ayrapetyan@arm.com>,
+        Liviu Dudau <liviu.dudau@arm.com>,
+        "open list:DRM PANEL DRIVERS" <dri-devel@lists.freedesktop.org>,
+        Sudeep Holla <sudeep.holla@arm.com>,
+        Brian Starkey <brian.starkey@arm.com>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Apr 12, 2019 at 8:07 PM megous via linux-sunxi
-<linux-sunxi@googlegroups.com> wrote:
->
-> From: Ondrej Jirman <megous@megous.com>
->
-> RTC on H6 is similar to the one on H5 SoC, but incompatible in small
-> details. See the driver for description of differences. For example
-> H6 RTC needs to enable the external low speed oscillator. Add new
-> compatible for this RTC.
->
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
+On Thu, Jul 25, 2019 at 5:15 PM Robin Murphy <robin.murphy@arm.com> wrote:
 
-Acked-by: Chen-Yu Tsai <wens@csie.org>
+> Given that the property is optional anyway, would it hurt to just remove
+> it? After trying to dig up any relevant internal email history, it's
+> still far from clear how and why it got here in the first place.
+
+Isn't it just my sloppy copy-paste when fixing up the device trees
+for the DRM transition? I agree it should just be removed.
+
+Yours,
+Linus Walleij
