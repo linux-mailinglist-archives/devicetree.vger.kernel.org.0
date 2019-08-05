@@ -2,96 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB53782579
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 21:20:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7779682583
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 21:23:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728870AbfHETUg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 15:20:36 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:43896 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727460AbfHETUg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 15:20:36 -0400
-Received: by mail-wr1-f68.google.com with SMTP id p13so10931571wru.10;
-        Mon, 05 Aug 2019 12:20:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=2TegqMOUww6ucAQOrDSmZWCD2zW1ZeQiYP4aaG1iBTk=;
-        b=FkfMXok2gYOMBtgt4OD6EuQ0jE+LIt2r4qz2TX0fHBv5s7AytSW7HkI1NubsCzzdrq
-         A7y2defmKDPD7FKTEEiYsNT6qIW0eYODGnnDuVtD5GAOoadvV3+3klUU54PLKK3vvGEm
-         tdUGsmTAdQsqbF6lY+pC95nJhTBfffLyA2hN+RnDgyEu9UPV0WA6prW6MZGr65YXMIYy
-         uAE8Mbxl8yOXU7cNesKbEemjRcBwMB+XrvDtlb89fw1AaGM87p9V0ecppUJlLV80Te2S
-         rXutmSnPp3B2xY+kIBNG0I7+THQLLwyidmUFJLyCL3P4Ok2HR2lDa40SMdIQPFcUSv5A
-         8G6A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=2TegqMOUww6ucAQOrDSmZWCD2zW1ZeQiYP4aaG1iBTk=;
-        b=FhncErdbdTOnot61zo6OFh6YJy3/5GsrWefsRw/Ofl2PN/cA4BpO7p0eQAKot0Jsr3
-         mgKwghs64XaZRd3T/6u1oCZuU+IQSD1JkBCsAzNZpCSAVKzPsBcTyBhYRdpYMQ8KPl2t
-         brygTlAB1KMFO0IIs/i9ULjbYK4t9uAVUV8ImtVRcDwOndEfe+sqG/Qdy/23JNkvDRDK
-         BqoPQ2jSrvBQg6YVVz+aX27g3ae+1GT5ayWw/dt4U/rfa3oRf7lXuyyD5QoubLfOvY3o
-         Ebtwg0ZJYUduDcn2xHRYDwAS91ghbchKOW5D+4nhtSCfJyUFi6Sa18avULuXsb0Chna5
-         UHSg==
-X-Gm-Message-State: APjAAAXZlrb/+wfkOJuamUx+f3gUiXFtKydFBPCftoA5Sdmzv1/lyV+C
-        Uex9MHDIcGxI+bxYtzHfIvIpvpmTvyLfyuEJU+Q=
-X-Google-Smtp-Source: APXvYqwHXAfZFSv8+QZRn6k4uc291rKaB8dWSZ586h51aozoyd21jnfCOwffY0fPZxy79fpFQmcZFA4ZDe9XNkNDTwQ=
-X-Received: by 2002:a5d:46cf:: with SMTP id g15mr27385276wrs.93.1565032833619;
- Mon, 05 Aug 2019 12:20:33 -0700 (PDT)
+        id S1728759AbfHETXT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 15:23:19 -0400
+Received: from mail.kernel.org ([198.145.29.99]:51060 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727802AbfHETXT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Aug 2019 15:23:19 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id EBBBD216B7;
+        Mon,  5 Aug 2019 19:23:17 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565032998;
+        bh=d6p6NWXIzAr/w+L57W8Oyrx5VdZnumUCXtu9FxtaNsc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=R/AKCL41e439d3YyW9Frd8+LqZmY/L/BTeDfKJwCw0IYn+fId94XDv2wn7Pml91f9
+         dnKXgXpHTXeFphyc7/df75+ieHN1KnS+kSCTZqgR9c8Gkj9yb5S930ddLj/+yapLMz
+         2x3mqfxdOrcNQAQnSXJqYUrWF68Oxa6/5KI536WM=
+Received: by mail-qk1-f178.google.com with SMTP id r6so61041032qkc.0;
+        Mon, 05 Aug 2019 12:23:17 -0700 (PDT)
+X-Gm-Message-State: APjAAAVSB5PylCegkKpUn4dEGuognuvnPB/gPuH0SriL0sldMylqBLk0
+        YsgD+I/Z9n6hTEpzycwbHgGfX/VtDA1usktBFA==
+X-Google-Smtp-Source: APXvYqzJ3385dVDr7a416MCnVTqPVutjB6pJSnn10jB+T3hVVAIomIypEjVR/sntYZAAkaMyD0seP3rNxE7IslWzcJM=
+X-Received: by 2002:a37:6944:: with SMTP id e65mr95063738qkc.119.1565032997083;
+ Mon, 05 Aug 2019 12:23:17 -0700 (PDT)
 MIME-Version: 1.0
-References: <1564980742-19124-1-git-send-email-hongxing.zhu@nxp.com> <1564980742-19124-4-git-send-email-hongxing.zhu@nxp.com>
-In-Reply-To: <1564980742-19124-4-git-send-email-hongxing.zhu@nxp.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Mon, 5 Aug 2019 22:20:21 +0300
-Message-ID: <CAEnQRZBHBzXGCAihRVpAT4LoUzrXbUWh53zzwM_7pNCesx55+g@mail.gmail.com>
-Subject: Re: [RESEND PATCH v5 3/4] dt-bindings: mailbox: imx-mu: add imx7ulp
- MU support
-To:     Richard Zhu <hongxing.zhu@nxp.com>
-Cc:     jassisinghbrar@gmail.com, Oleksij Rempel <o.rempel@pengutronix.de>,
-        Daniel Baluta <daniel.baluta@nxp.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Devicetree List <devicetree@vger.kernel.org>
+References: <20190731154752.16557-1-nsaenzjulienne@suse.de>
+ <20190731154752.16557-4-nsaenzjulienne@suse.de> <CAL_JsqKF5nh3hcdLTG5+6RU3_TnFrNX08vD6qZ8wawoA3WSRpA@mail.gmail.com>
+ <2050374ac07e0330e505c4a1637256428adb10c4.camel@suse.de>
+In-Reply-To: <2050374ac07e0330e505c4a1637256428adb10c4.camel@suse.de>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Mon, 5 Aug 2019 13:23:05 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+LjsRmFg-xaLgpVx3miXN3hid3aD+mgTW__j0SbEFYjQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+LjsRmFg-xaLgpVx3miXN3hid3aD+mgTW__j0SbEFYjQ@mail.gmail.com>
+Subject: Re: [PATCH 3/8] of/fdt: add function to get the SoC wide DMA
+ addressable memory size
+To:     Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Christoph Hellwig <hch@lst.de>,
+        wahrenst@gmx.net, Marc Zyngier <marc.zyngier@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        linux-mm@kvack.org, Frank Rowand <frowand.list@gmail.com>,
+        phill@raspberryi.org, Florian Fainelli <f.fainelli@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Eric Anholt <eric@anholt.net>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+ Rob
+On Mon, Aug 5, 2019 at 10:03 AM Nicolas Saenz Julienne
+<nsaenzjulienne@suse.de> wrote:
+>
+> Hi Rob,
+> Thanks for the review!
+>
+> On Fri, 2019-08-02 at 11:17 -0600, Rob Herring wrote:
+> > On Wed, Jul 31, 2019 at 9:48 AM Nicolas Saenz Julienne
+> > <nsaenzjulienne@suse.de> wrote:
+> > > Some SoCs might have multiple interconnects each with their own DMA
+> > > addressing limitations. This function parses the 'dma-ranges' on each of
+> > > them and tries to guess the maximum SoC wide DMA addressable memory
+> > > size.
+> > >
+> > > This is specially useful for arch code in order to properly setup CMA
+> > > and memory zones.
+> >
+> > We already have a way to setup CMA in reserved-memory, so why is this
+> > needed for that?
+>
+> Correct me if I'm wrong but I got the feeling you got the point of the patch
+> later on.
 
-On Mon, Aug 5, 2019 at 8:18 AM Richard Zhu <hongxing.zhu@nxp.com> wrote:
->
-> There is a version 1.0 MU on imx7ulp, use "fsl,imx7ulp-mu" compatible
-> to support it.
->
-> Signed-off-by: Richard Zhu <hongxing.zhu@nxp.com>
-> Reviewed-by: Dong Aisheng <aisheng.dong@nxp.com>
+No, for CMA I don't. Can't we already pass a size and location for CMA
+region under /reserved-memory. The only advantage here is perhaps the
+CMA range could be anywhere in the DMA zone vs. a fixed location.
 
-Reviewed-by: Daniel Baluta <daniel.baluta@nxp.com>
+> > > Signed-off-by: Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+> > > ---
+> > >
+> > >  drivers/of/fdt.c       | 72 ++++++++++++++++++++++++++++++++++++++++++
+> > >  include/linux/of_fdt.h |  2 ++
+> > >  2 files changed, 74 insertions(+)
+> > >
+> > > diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+> > > index 9cdf14b9aaab..f2444c61a136 100644
+> > > --- a/drivers/of/fdt.c
+> > > +++ b/drivers/of/fdt.c
+> > > @@ -953,6 +953,78 @@ int __init early_init_dt_scan_chosen_stdout(void)
+> > >  }
+> > >  #endif
+> > >
+> > > +/**
+> > > + * early_init_dt_dma_zone_size - Look at all 'dma-ranges' and provide the
+> > > + * maximum common dmable memory size.
+> > > + *
+> > > + * Some devices might have multiple interconnects each with their own DMA
+> > > + * addressing limitations. For example the Raspberry Pi 4 has the
+> > > following:
+> > > + *
+> > > + * soc {
+> > > + *     dma-ranges = <0xc0000000  0x0 0x00000000  0x3c000000>;
+> > > + *     [...]
+> > > + * }
+> > > + *
+> > > + * v3dbus {
+> > > + *     dma-ranges = <0x00000000  0x0 0x00000000  0x3c000000>;
+> > > + *     [...]
+> > > + * }
+> > > + *
+> > > + * scb {
+> > > + *     dma-ranges = <0x0 0x00000000  0x0 0x00000000  0xfc000000>;
+> > > + *     [...]
+> > > + * }
+> > > + *
+> > > + * Here the area addressable by all devices is [0x00000000-0x3bffffff].
+> > > Hence
+> > > + * the function will write in 'data' a size of 0x3c000000.
+> > > + *
+> > > + * Note that the implementation assumes all interconnects have the same
+> > > physical
+> > > + * memory view and that the mapping always start at the beginning of RAM.
+> >
+> > Not really a valid assumption for general code.
+>
+> Fair enough. On my defence I settled on that assumption after grepping all dts
+> and being unable to find a board that behaved otherwise.
+>
+> [...]
+>
+> > It's possible to have multiple levels of nodes and dma-ranges. You need to
+> > handle that case too. Doing that and handling differing address translations
+> > will be complicated.
+>
+> Understood.
+>
+> > IMO, I'd just do:
+> >
+> > if (of_fdt_machine_is_compatible(blob, "brcm,bcm2711"))
+> >     dma_zone_size = XX;
+> >
+> > 2 lines of code is much easier to maintain than 10s of incomplete code
+> > and is clearer who needs this. Maybe if we have dozens of SoCs with
+> > this problem we should start parsing dma-ranges.
+>
+> FYI that's what arm32 is doing at the moment and was my first instinct. But it
+> seems that arm64 has been able to survive so far without any machine specific
+> code and I have the feeling Catalin and Will will not be happy about this
+> solution. Am I wrong?
 
-> ---
->  Documentation/devicetree/bindings/mailbox/fsl,mu.txt | 2 ++
->  1 file changed, 2 insertions(+)
->
-> diff --git a/Documentation/devicetree/bindings/mailbox/fsl,mu.txt b/Documentation/devicetree/bindings/mailbox/fsl,mu.txt
-> index f3cf77e..9c43357 100644
-> --- a/Documentation/devicetree/bindings/mailbox/fsl,mu.txt
-> +++ b/Documentation/devicetree/bindings/mailbox/fsl,mu.txt
-> @@ -21,6 +21,8 @@ Required properties:
->                 imx6sx, imx7s, imx8qxp, imx8qm.
->                 The "fsl,imx6sx-mu" compatible is seen as generic and should
->                 be included together with SoC specific compatible.
-> +               There is a version 1.0 MU on imx7ulp, use "fsl,imx7ulp-mu"
-> +               compatible to support it.
->  - reg :                Should contain the registers location and length
->  - interrupts : Interrupt number. The interrupt specifier format depends
->                 on the interrupt controller parent.
-> --
-> 2.7.4
->
+No doubt. I'm fine if the 2 lines live in drivers/of/.
+
+Note that I'm trying to reduce the number of early_init_dt_scan_*
+calls from arch code into the DT code so there's more commonality
+across architectures in the early DT scans. So ideally, this can all
+be handled under early_init_dt_scan() call.
+
+Rob
