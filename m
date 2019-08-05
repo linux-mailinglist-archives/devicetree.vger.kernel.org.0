@@ -2,164 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 17F1A812F5
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 09:19:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 81CFA81311
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 09:23:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726656AbfHEHTF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 03:19:05 -0400
-Received: from mail-eopbgr80104.outbound.protection.outlook.com ([40.107.8.104]:55360
-        "EHLO EUR04-VI1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726394AbfHEHTE (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 03:19:04 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=YMRyjgJy1vzyAta/K/XbUmcdj0cc/o4+uz2GCknr4fmz1UVykpltSmlSjqzWn/wSlEptdSzPnK1aT6eNX+4aKaLGwBB0gWdKcCZz6zCWDxRvCsEn6nZ9aqcB8CccZ1MElPiBnZHVsLuqF0i3zJ6ys8gppSaYnPhWDhBfcISZNMBeIE+RW1nI7UmlaNLaFwTpI7evNPiICUZ/yZ3zLgBE2B+lgKERPOhn6RBTHQT2fhdOXAPQ1PSRc2uiZ8uvQULThObhy3pO0f7d7gI8yaB/I7Ij7yvGQVTCAA0Wr2ri9hd97DTSF+CIDea+LbymwtghC+XD9NxTsXHIM+XV1hrSZQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ifzT0Rd2fgYCxbAlomcJsAOHjMab4VeLkWhU/H7j6xc=;
- b=aBFMzwscwR8jL+jAXmdZtFORTW279dhSZV/PUxZG6eFOJFmPWg/xaFpdKf2XhytuuM59ZMK5zLFQRDAoF2dXQDkAk64VPUyhzm9TITuygBlEO3AVYtdhN+Zi9Vnkto2Fc/o8qtoGKxKlOC1tkhE0nRPhy7yvCATmZa9M5Oi1kXw8B4G6stOHEv5gdVMy58C/L53hN/Ykma+GRK1Q3/lFsYyDFrQ0+7GFNq48+1ETDiMWKAKoFULhcsmXndvP7I1J7pVCFsNQce8igXi86RFgc55FP+2EwW/z7SWmHbL5Ej6iEs6E25mMhMbcdzWZjnjWJMPLKonCOZGXl7y66uSZyA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=toradex.com;dmarc=pass action=none
- header.from=toradex.com;dkim=pass header.d=toradex.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=ifzT0Rd2fgYCxbAlomcJsAOHjMab4VeLkWhU/H7j6xc=;
- b=VUwdd8B58qO2wTjlnSekBeTWz6CZDiUL4xSLPWOU8HaDD4hqe+pq9lafnC9DNgwi9ODxYSJ3iJJcnzRLC+ziiIjOoHpTVy3PRhJRX47CfZVCBgB8imOykfVwJr3kdpI1I2488b+uAQnuSnSnVg5OniT1XYBvhr/+kdAFokr3iQ8=
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
- VI1PR0502MB3053.eurprd05.prod.outlook.com (10.175.22.14) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.16; Mon, 5 Aug 2019 07:18:59 +0000
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::8405:5b51:b25d:39a2]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::8405:5b51:b25d:39a2%6]) with mapi id 15.20.2136.018; Mon, 5 Aug 2019
- 07:18:59 +0000
-From:   Philippe Schenker <philippe.schenker@toradex.com>
-To:     "stefan@agner.ch" <stefan@agner.ch>
-CC:     Max Krummenacher <max.krummenacher@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "michal.vokac@ysoft.com" <michal.vokac@ysoft.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        Stefan Agner <stefan.agner@toradex.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v2 07/20] ARM: dts: imx7-colibri: fix 1.8V/UHS support
-Thread-Topic: [PATCH v2 07/20] ARM: dts: imx7-colibri: fix 1.8V/UHS support
-Thread-Index: AQHVR5zQtB0dzN8FYEudcspMVKQYmabkr2aAgAAgjgCAAr/AgIAEnSoA
-Date:   Mon, 5 Aug 2019 07:18:59 +0000
-Message-ID: <90509acd1da1aa85699952e012fa1034255f1a06.camel@toradex.com>
-References: <20190731123750.25670-1-philippe.schenker@toradex.com>
-         <20190731123750.25670-8-philippe.schenker@toradex.com>
-         <CAOMZO5B5HnqpLrDjyGtqSQpVXmcoZuGLvCzKVUhwLb-_ZO_Xog@mail.gmail.com>
-         <723f191c5893984c8fbe711163524dc7ebf09a5b.camel@toradex.com>
-         <de6bec64012876c07267024cd4b2d2d5@agner.ch>
-In-Reply-To: <de6bec64012876c07267024cd4b2d2d5@agner.ch>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=philippe.schenker@toradex.com; 
-x-originating-ip: [46.140.72.82]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: bc248fa8-9b65-4054-774b-08d719752f85
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3053;
-x-ms-traffictypediagnostic: VI1PR0502MB3053:
-x-microsoft-antispam-prvs: <VI1PR0502MB3053ACE8542CC895AE0B936CF4DA0@VI1PR0502MB3053.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7691;
-x-forefront-prvs: 01208B1E18
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(366004)(376002)(136003)(39840400004)(346002)(199004)(189003)(3846002)(2906002)(229853002)(7416002)(6116002)(6436002)(54906003)(6486002)(8676002)(1730700003)(81156014)(86362001)(81166006)(99286004)(5640700003)(76176011)(186003)(486006)(102836004)(71200400001)(71190400001)(2501003)(2616005)(476003)(14444005)(316002)(8936002)(6506007)(53546011)(26005)(2351001)(44832011)(256004)(118296001)(478600001)(66476007)(64756008)(76116006)(91956017)(66946007)(446003)(11346002)(66066001)(6512007)(14454004)(6916009)(5660300002)(66446008)(66556008)(6246003)(36756003)(68736007)(7736002)(25786009)(53936002)(305945005)(4326008);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3053;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: toradex.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: tUGv+UQDWwYdzHzTF//jSapVHDWo9eEJ02EtG/us1cT5mvfr7f+5NfWovgZBYm17euZ3e3ev8sJRa3YPBn2UQBtornIBVvgObyB3oT0sgcvKapLxbxA1IKcTAAd/Jy5reoblnNjanAMJdFMPZgn3j0tJ8i7KhT94Cc9cULg1PmCKmJWFYbDr8SrU/itUMblstTbMq445S56oKiBJ6YCaELzAgvkUXRoe8xcdABiPZloeWUHbZDqAf4XNYiKXUw+3FWiJxvGWnJ4l4T/ZDxq2ClRAygiZO+jwvYdEVPAQPfLu419ap1Awg1vumkcshgxUiP6X8LR5rBHjOpSpAPdWOj5xQTEKLU6YpM4pXG5Qh9MeL2lJtYhSXdtJbJt7GUY3oLu3yueTxr4ecw83zUwfyvEDSInxYXjQ0e0aDirj9cE=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <1D6770331469E54389A2882CE1F4A824@eurprd05.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1726587AbfHEHXq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 03:23:46 -0400
+Received: from relay6-d.mail.gandi.net ([217.70.183.198]:37391 "EHLO
+        relay6-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726394AbfHEHXq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 03:23:46 -0400
+X-Originating-IP: 82.246.155.60
+Received: from localhost (hy283-1-82-246-155-60.fbx.proxad.net [82.246.155.60])
+        (Authenticated sender: alexandre.belloni@bootlin.com)
+        by relay6-d.mail.gandi.net (Postfix) with ESMTPSA id 2239CC0004;
+        Mon,  5 Aug 2019 07:23:40 +0000 (UTC)
+Date:   Mon, 5 Aug 2019 09:23:38 +0200
+From:   Alexandre Belloni <alexandre.belloni@bootlin.com>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Richard Fontana <rfontana@redhat.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Allison Randal <allison@lohutok.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com,
+        Ran Bi <ran.bi@mediatek.com>
+Subject: Re: [PATCH v4 10/10] rtc: Add support for the MediaTek MT6358 RTC
+Message-ID: <20190805072338.GB3600@piout.net>
+References: <1564982518-32163-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1564982518-32163-11-git-send-email-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: bc248fa8-9b65-4054-774b-08d719752f85
-X-MS-Exchange-CrossTenant-originalarrivaltime: 05 Aug 2019 07:18:59.1720
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: philippe.schenker@toradex.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3053
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1564982518-32163-11-git-send-email-hsin-hsiung.wang@mediatek.com>
+User-Agent: Mutt/1.12.0 (2019-05-25)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gRnJpLCAyMDE5LTA4LTAyIGF0IDEwOjUxICswMjAwLCBTdGVmYW4gQWduZXIgd3JvdGU6DQo+
-IE9uIDIwMTktMDctMzEgMTY6NTIsIFBoaWxpcHBlIFNjaGVua2VyIHdyb3RlOg0KPiA+IE9uIFdl
-ZCwgMjAxOS0wNy0zMSBhdCAwOTo1NiAtMDMwMCwgRmFiaW8gRXN0ZXZhbSB3cm90ZToNCj4gPiA+
-IE9uIFdlZCwgSnVsIDMxLCAyMDE5IGF0IDk6MzggQU0gUGhpbGlwcGUgU2NoZW5rZXINCj4gPiA+
-IDxwaGlsaXBwZS5zY2hlbmtlckB0b3JhZGV4LmNvbT4gd3JvdGU6DQo+ID4gPiA+IEZyb206IFN0
-ZWZhbiBBZ25lciA8c3RlZmFuLmFnbmVyQHRvcmFkZXguY29tPg0KPiA+ID4gPiANCj4gPiA+ID4g
-QWRkIHBpbm11eGluZyBhbmQgZG8gbm90IHNwZWNpZnkgdm9sdGFnZSByZXN0cmljdGlvbnMgaW4g
-dGhlDQo+ID4gPiA+IG1vZHVsZSBsZXZlbCBkZXZpY2UgdHJlZS4NCj4gPiA+IA0KPiA+ID4gSXQg
-d291bGQgYmUgbmljZSB0byBleHBsYWluIHRoZSByZWFzb24gZm9yIGRvaW5nIHRoaXMuDQo+ID4g
-DQo+ID4gVGhpcyBjb21taXQgaXMgaW4gcHJlcGFyYXRpb24gb2YgYW5vdGhlciBwYXRjaCB0aGF0
-IGRpZG4ndCBtYWRlIGludG8gdGhpcw0KPiA+IHBhdGNoc2V0IChkb3duc3RyZWFtIHN0dWZmIGlu
-IHRoZXJlKS4gQnV0IEkgd2lsbCBkbyBhbm90aGVyIHBhdGNoIG9uIHRvcA0KPiA+IHRoYXQNCj4g
-PiB3aWxsIHVzZSB0aGlzIHBhdGNoIGhlcmUuIFRoYXQgc2hvdWxkIGFueXdheSBiZSBpbiBtYWlu
-bGluZS4NCj4gDQo+IEkgZ3Vlc3Mgd2hhdCBGYWJpbyBtZWFudCBoZXJlIGlzIGV4cGxhaW4gdGhp
-cyBwYXRjaC4NCj4gDQo+IFRoZSBjb21taXQgbWVzc2FnZSByZWFsbHkgY291bGQgYmUgaW1wcm92
-ZWQsIGUuZy46DQo+IA0KPiBBZGQgcGlubXV4aW5nIGFuZCBkbyBub3Qgc3BlY2lmeSB2b2x0YWdl
-IHJlc3RyaWN0aW9ucyBmb3IgdGhlIHVzZGhjDQo+IGluc3RhbmNlDQo+IGF2YWlsYWJsZSBvbiB0
-aGUgbW9kdWxlcyBlZGdlIGNvbm5lY3Rvci4gVGhpcyBhbGxvd3MgdG8gdXNlIFNELWNhcmRzDQo+
-IHdpdGgNCj4gaGlnaGVyIHRyYW5zZmVyIG1vZGVzIGlmIHN1cHBvcnRlZCBieSB0aGUgY2Fycmll
-ciBib2FyZC4NCj4gDQo+IC0tDQo+IFN0ZWZhbg0KDQpBaCwgc29ycnkgRmFiaW8uIEkgaW5kZWVk
-IHVuZGVyc3Rvb2QgeW91IHdyb25nIGFuZCB0aGFua3MgU3RlZmFuIGZvciBjbGFyaWZ5aW5nLg0K
-SSBoYXZlIHRoZSBuZXcgbWVzc2FnZSBpbiBmb3IgdjMuDQoNClBoaWxpcHBlDQoNCj4gDQo+ID4g
-UGhpbGlwcGUNCj4gPiANCj4gPiA+ID4gU2lnbmVkLW9mZi1ieTogU3RlZmFuIEFnbmVyIDxzdGVm
-YW4uYWduZXJAdG9yYWRleC5jb20+DQo+ID4gPiA+IFNpZ25lZC1vZmYtYnk6IFBoaWxpcHBlIFNj
-aGVua2VyIDxwaGlsaXBwZS5zY2hlbmtlckB0b3JhZGV4LmNvbT4NCj4gPiA+ID4gLS0tDQo+ID4g
-PiA+IA0KPiA+ID4gPiBDaGFuZ2VzIGluIHYyOiBOb25lDQo+ID4gPiA+IA0KPiA+ID4gPiAgYXJj
-aC9hcm0vYm9vdC9kdHMvaW14Ny1jb2xpYnJpLmR0c2kgfCAyMyArKysrKysrKysrKysrKysrKysr
-KysrLQ0KPiA+ID4gPiAgMSBmaWxlIGNoYW5nZWQsIDIyIGluc2VydGlvbnMoKyksIDEgZGVsZXRp
-b24oLSkNCj4gPiA+ID4gDQo+ID4gPiA+IGRpZmYgLS1naXQgYS9hcmNoL2FybS9ib290L2R0cy9p
-bXg3LWNvbGlicmkuZHRzaQ0KPiA+ID4gPiBiL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDctDQo+ID4g
-PiA+IGNvbGlicmkuZHRzaQ0KPiA+ID4gPiBpbmRleCAxNmQxYTFlZDFhZmYuLjY3ZjVlMGM4N2Zk
-YyAxMDA2NDQNCj4gPiA+ID4gLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvaW14Ny1jb2xpYnJpLmR0
-c2kNCj4gPiA+ID4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14Ny1jb2xpYnJpLmR0c2kNCj4g
-PiA+ID4gQEAgLTMyNiw3ICszMjYsNiBAQA0KPiA+ID4gPiAgJnVzZGhjMSB7DQo+ID4gPiA+ICAg
-ICAgICAgcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IjsNCj4gPiA+ID4gICAgICAgICBwaW5jdHJs
-LTAgPSA8JnBpbmN0cmxfdXNkaGMxICZwaW5jdHJsX2NkX3VzZGhjMT47DQo+ID4gPiA+IC0gICAg
-ICAgbm8tMS04LXY7DQo+ID4gPiA+ICAgICAgICAgY2QtZ3Bpb3MgPSA8JmdwaW8xIDAgR1BJT19B
-Q1RJVkVfTE9XPjsNCj4gPiA+ID4gICAgICAgICBkaXNhYmxlLXdwOw0KPiA+ID4gPiAgICAgICAg
-IHZxbW1jLXN1cHBseSA9IDwmcmVnX0xETzI+Ow0KPiA+ID4gPiBAQCAtNjcxLDYgKzY3MCwyOCBA
-QA0KPiA+ID4gPiAgICAgICAgICAgICAgICAgPjsNCj4gPiA+ID4gICAgICAgICB9Ow0KPiA+ID4g
-PiANCj4gPiA+ID4gKyAgICAgICBwaW5jdHJsX3VzZGhjMV8xMDBtaHo6IHVzZGhjMWdycF8xMDBt
-aHogew0KPiA+ID4gPiArICAgICAgICAgICAgICAgZnNsLHBpbnMgPSA8DQo+ID4gPiA+ICsgICAg
-ICAgICAgICAgICAgICAgICAgIE1YN0RfUEFEX1NEMV9DTURfX1NEMV9DTUQgICAgICAgMHg1YQ0K
-PiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBNWDdEX1BBRF9TRDFfQ0xLX19TRDFfQ0xL
-ICAgICAgIDB4MWENCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgTVg3RF9QQURfU0Qx
-X0RBVEEwX19TRDFfREFUQTAgICAweDVhDQo+ID4gPiA+ICsgICAgICAgICAgICAgICAgICAgICAg
-IE1YN0RfUEFEX1NEMV9EQVRBMV9fU0QxX0RBVEExICAgMHg1YQ0KPiA+ID4gPiArICAgICAgICAg
-ICAgICAgICAgICAgICBNWDdEX1BBRF9TRDFfREFUQTJfX1NEMV9EQVRBMiAgIDB4NWENCj4gPiA+
-ID4gKyAgICAgICAgICAgICAgICAgICAgICAgTVg3RF9QQURfU0QxX0RBVEEzX19TRDFfREFUQTMg
-ICAweDVhDQo+ID4gPiA+ICsgICAgICAgICAgICAgICA+Ow0KPiA+ID4gPiArICAgICAgIH07DQo+
-ID4gPiA+ICsNCj4gPiA+ID4gKyAgICAgICBwaW5jdHJsX3VzZGhjMV8yMDBtaHo6IHVzZGhjMWdy
-cF8yMDBtaHogew0KPiA+ID4gPiArICAgICAgICAgICAgICAgZnNsLHBpbnMgPSA8DQo+ID4gPiA+
-ICsgICAgICAgICAgICAgICAgICAgICAgIE1YN0RfUEFEX1NEMV9DTURfX1NEMV9DTUQgICAgICAg
-MHg1Yg0KPiA+ID4gPiArICAgICAgICAgICAgICAgICAgICAgICBNWDdEX1BBRF9TRDFfQ0xLX19T
-RDFfQ0xLICAgICAgIDB4MWINCj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgTVg3RF9Q
-QURfU0QxX0RBVEEwX19TRDFfREFUQTAgICAweDViDQo+ID4gPiA+ICsgICAgICAgICAgICAgICAg
-ICAgICAgIE1YN0RfUEFEX1NEMV9EQVRBMV9fU0QxX0RBVEExICAgMHg1Yg0KPiA+ID4gPiArICAg
-ICAgICAgICAgICAgICAgICAgICBNWDdEX1BBRF9TRDFfREFUQTJfX1NEMV9EQVRBMiAgIDB4NWIN
-Cj4gPiA+ID4gKyAgICAgICAgICAgICAgICAgICAgICAgTVg3RF9QQURfU0QxX0RBVEEzX19TRDFf
-REFUQTMgICAweDViDQo+ID4gPiA+ICsgICAgICAgICAgICAgICA+Ow0KPiA+ID4gPiArICAgICAg
-IH07DQo+ID4gPiANCj4gPiA+IFlvdSBhZGQgdGhlIGVudHJpZXMgZm9yIDEwME1IeiBhbmQgMjAw
-TUh6LCBidXQgSSBkb24ndCBzZWUgdGhlbSBiZWluZw0KPiA+ID4gcmVmZXJlbmNlZCBhbnl3aGVy
-ZS4NCg==
+Hi,
+
+The subject should be:
+
+"rtc: mt6397: Add support for the MediaTek MT6358 RTC"
+
+On 05/08/2019 13:21:58+0800, Hsin-Hsiung Wang wrote:
+> From: Ran Bi <ran.bi@mediatek.com>
+> 
+> This add support for the MediaTek MT6358 RTC. Driver using
+> compatible data to store different RTC_WRTGR address offset.
+> 
+> Review-by: Yingjoe Chen <yingjoe.chen@mediatek.com>
+> Signed-off-by: Ran Bi <ran.bi@mediatek.com>
+> ---
+>  drivers/rtc/rtc-mt6397.c | 43 +++++++++++++++++++++++++++++++++++--------
+>  1 file changed, 35 insertions(+), 8 deletions(-)
+> 
+> diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
+> index 828def7..e23c215 100644
+> --- a/drivers/rtc/rtc-mt6397.c
+> +++ b/drivers/rtc/rtc-mt6397.c
+> @@ -12,6 +12,7 @@
+>  #include <linux/irqdomain.h>
+>  #include <linux/platform_device.h>
+>  #include <linux/of_address.h>
+> +#include <linux/of_device.h>
+>  #include <linux/of_irq.h>
+>  #include <linux/io.h>
+>  #include <linux/mfd/mt6397/core.h>
+> @@ -19,7 +20,8 @@
+>  #define RTC_BBPU		0x0000
+>  #define RTC_BBPU_CBUSY		BIT(6)
+>  
+> -#define RTC_WRTGR		0x003c
+> +#define RTC_WRTGR_MT6358	0x3a
+> +#define RTC_WRTGR_MT6397	0x3c
+>  
+>  #define RTC_IRQ_STA		0x0002
+>  #define RTC_IRQ_STA_AL		BIT(0)
+> @@ -63,6 +65,10 @@
+>  #define RTC_NUM_YEARS		128
+>  #define RTC_MIN_YEAR_OFFSET	(RTC_MIN_YEAR - RTC_BASE_YEAR)
+>  
+> +struct mtk_rtc_compatible {
+
+I would name that struct mtk_rtc_data
+
+> +	u32			wrtgr_addr;
+
+and this member should be wrtgr_offset or simply wrtgr.
+
+> +};
+> +
+>  struct mt6397_rtc {
+>  	struct device		*dev;
+>  	struct rtc_device	*rtc_dev;
+> @@ -70,7 +76,25 @@ struct mt6397_rtc {
+>  	struct regmap		*regmap;
+>  	int			irq;
+>  	u32			addr_base;
+> +	const struct mtk_rtc_compatible *dev_comp;
+> +};
+> +
+> +static const struct mtk_rtc_compatible mt6358_rtc_compat = {
+> +	.wrtgr_addr = RTC_WRTGR_MT6358,
+> +};
+> +
+> +static const struct mtk_rtc_compatible mt6397_rtc_compat = {
+> +	.wrtgr_addr = RTC_WRTGR_MT6397,
+> +};
+> +
+> +static const struct of_device_id mt6397_rtc_of_match[] = {
+> +	{ .compatible = "mediatek,mt6358-rtc",
+> +		.data = (void *)&mt6358_rtc_compat, },
+> +	{ .compatible = "mediatek,mt6397-rtc",
+> +		.data = (void *)&mt6397_rtc_compat, },
+> +	{}
+>  };
+> +MODULE_DEVICE_TABLE(of, mt6397_rtc_of_match);
+>  
+>  static int mtk_rtc_write_trigger(struct mt6397_rtc *rtc)
+>  {
+> @@ -78,7 +102,8 @@ static int mtk_rtc_write_trigger(struct mt6397_rtc *rtc)
+>  	int ret;
+>  	u32 data;
+>  
+> -	ret = regmap_write(rtc->regmap, rtc->addr_base + RTC_WRTGR, 1);
+> +	ret = regmap_write(rtc->regmap,
+> +			   rtc->addr_base + rtc->dev_comp->wrtgr_addr, 1);
+>  	if (ret < 0)
+>  		return ret;
+>  
+> @@ -324,6 +349,7 @@ static int mtk_rtc_probe(struct platform_device *pdev)
+>  	struct resource *res;
+>  	struct mt6397_chip *mt6397_chip = dev_get_drvdata(pdev->dev.parent);
+>  	struct mt6397_rtc *rtc;
+> +	const struct of_device_id *of_id;
+>  	int ret;
+>  
+>  	rtc = devm_kzalloc(&pdev->dev, sizeof(struct mt6397_rtc), GFP_KERNEL);
+> @@ -333,6 +359,13 @@ static int mtk_rtc_probe(struct platform_device *pdev)
+>  	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
+>  	rtc->addr_base = res->start;
+>  
+> +	of_id = of_match_device(mt6397_rtc_of_match, &pdev->dev);
+> +	if (!of_id) {
+> +		dev_err(&pdev->dev, "Failed to probe of_node\n");
+> +		return -EINVAL;
+
+This will never happen because probe would not be called if there is no
+match. You could also use of_device_get_match_data to avoid having to
+move the of_device_id table.
+
+> +	}
+> +	rtc->dev_comp = of_id->data;
+> +
+>  	rtc->irq = platform_get_irq(pdev, 0);
+>  	if (rtc->irq < 0)
+>  		return rtc->irq;
+> @@ -408,12 +441,6 @@ static int mt6397_rtc_resume(struct device *dev)
+>  static SIMPLE_DEV_PM_OPS(mt6397_pm_ops, mt6397_rtc_suspend,
+>  			mt6397_rtc_resume);
+>  
+> -static const struct of_device_id mt6397_rtc_of_match[] = {
+> -	{ .compatible = "mediatek,mt6397-rtc", },
+> -	{ }
+> -};
+> -MODULE_DEVICE_TABLE(of, mt6397_rtc_of_match);
+> -
+>  static struct platform_driver mtk_rtc_driver = {
+>  	.driver = {
+>  		.name = "mt6397-rtc",
+> -- 
+> 2.6.4
+> 
+
+-- 
+Alexandre Belloni, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
