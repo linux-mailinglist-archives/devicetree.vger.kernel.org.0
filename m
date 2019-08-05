@@ -2,85 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 164E981A27
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 15:02:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6A02881B1D
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 15:12:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726811AbfHENCW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 09:02:22 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:34037 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727259AbfHENCW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 09:02:22 -0400
-Received: by mail-wm1-f68.google.com with SMTP id w9so6638347wmd.1
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 06:02:21 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VD+kO2freT4druqcnh49hR6u8OkuGawcql9pBt221gM=;
-        b=mjk8vH9McUPXmutExi9LK5ex7zl16u6Y1A29MLJPWpdqRchOSAGR8yhmK2fOTAo0rR
-         0sDiFCY/K4jh+admqvlB/o99ab6xeNCWhc+kpHUH51vRLHk1iEDDajMTVrPVdzhGXOez
-         b+MOpvwyHe3E8z4ck7Lc0JsxTJblE1HTqoVBH2bnCZr3MsUkmySVvX+rpBLWbpbktUmu
-         hP/XHt8UiQrWbTdDNDhsijdtesI8b0m8A9EZshbEb+4cGVeTBIWdn2VjubV1sCDeTZXR
-         sMr8q3TOfj4wjtw/b/DQ2XLzpqs0aaxo9LDtJ1wfglDOLg/WFdPVPnB9ccDGeJ8Az1yz
-         MGtw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=VD+kO2freT4druqcnh49hR6u8OkuGawcql9pBt221gM=;
-        b=JHQOjnxHchwml55Cml/JBX42f+ebdLwEEZbZudW99EQb5tQc+RWUPd096p/nNm9HWL
-         4KaSfMJHMULOUcDRbXCpyx31DAzWnYQ9oLu8heVl6G83b4xOeoqxZfoRInHGo/MjObkp
-         K2AZZNqOmqmLahSpzxCTdX5/ob3WTX1Bl4VJ1kC8KW00zVhpBxCvywO1Jz1TodNE4U2g
-         lYgCt9GykAwmWuT4tALi6Hn86L1OcKm8/iLIazEqFkzR9CiBtLtE0bsWuhPWCI23emxU
-         /OelC79fire8GI0vEPxmn632B7LIpdprmkHxNnpTTWEJY2YkWWp/PkVsAPjnAUerGgWs
-         PNoQ==
-X-Gm-Message-State: APjAAAU8CqLksjX5VOH/+liXDk0kgdGD5eP1a8fyRHTULzT6UVJE8Yst
-        VOP6eQ/Krx93j4e4tDGCIGG4kA==
-X-Google-Smtp-Source: APXvYqwxgFax/fM7iqjP2wFpKMs36pqx4aCRyV/P5qvPCozjg2IOFjiFHWnYt60j8Qx7Ktjguvx6VQ==
-X-Received: by 2002:a1c:4e14:: with SMTP id g20mr18419431wmh.3.1565010140443;
-        Mon, 05 Aug 2019 06:02:20 -0700 (PDT)
-Received: from radium.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id v23sm74950359wmj.32.2019.08.05.06.02.19
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 05 Aug 2019 06:02:19 -0700 (PDT)
-From:   Fabien Parent <fparent@baylibre.com>
-To:     robh+dt@kernel.org, matthias.bgg@gmail.com
-Cc:     linux-crypto@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org,
+        id S1729246AbfHENL6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 09:11:58 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:46206 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729804AbfHENKy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 09:10:54 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=VrCAPwQwFTw1if53nWlT2zlercpavRMIEI0XwlCoYsQ=; b=Ms5BxrLVteV4zzh+7oV/uBRGh
+        TXR3nX5sfpayQu52G/5XB9tCD8Fna9FaGr4vBwbShA7ReHxN2SGNGnBOGSGnHmOK3RqFjGou6SgsA
+        d8M36V3YTUebG4vAkZ0rxqUueGAJPpA4eEHL2aLxIWLBLMwN6g163SKd+kHbGr7zBxXnU=;
+Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.org.uk>)
+        id 1hucky-0000Js-H6; Mon, 05 Aug 2019 13:10:32 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id D91112742D06; Mon,  5 Aug 2019 14:10:30 +0100 (BST)
+Date:   Mon, 5 Aug 2019 14:10:30 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
+Cc:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Richard Fontana <rfontana@redhat.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Allison Randal <allison@lohutok.net>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Fabien Parent <fparent@baylibre.com>
-Subject: [PATCH] dt-bindings: rng: mtk-rng: Add documentation for MT8516
-Date:   Mon,  5 Aug 2019 15:02:15 +0200
-Message-Id: <20190805130215.20499-1-fparent@baylibre.com>
-X-Mailer: git-send-email 2.23.0.rc1
+        linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com
+Subject: Re: [PATCH v4 07/10] regulator: mt6358: Add support for MT6358
+ regulator
+Message-ID: <20190805131030.GE6432@sirena.org.uk>
+References: <1564982518-32163-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1564982518-32163-8-git-send-email-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="xJK8B5Wah2CMJs8h"
+Content-Disposition: inline
+In-Reply-To: <1564982518-32163-8-git-send-email-hsin-hsiung.wang@mediatek.com>
+X-Cookie: Place stamp here.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This commit adds the device-tree documentation for the RNG IP on the
-MediaTek MT8516 SoC.
 
-Signed-off-by: Fabien Parent <fparent@baylibre.com>
----
- Documentation/devicetree/bindings/rng/mtk-rng.txt | 1 +
- 1 file changed, 1 insertion(+)
+--xJK8B5Wah2CMJs8h
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-diff --git a/Documentation/devicetree/bindings/rng/mtk-rng.txt b/Documentation/devicetree/bindings/rng/mtk-rng.txt
-index 2bc89f133701..dfdcb5cd2ea8 100644
---- a/Documentation/devicetree/bindings/rng/mtk-rng.txt
-+++ b/Documentation/devicetree/bindings/rng/mtk-rng.txt
-@@ -6,6 +6,7 @@ Required properties:
- 			"mediatek,mt7622-rng", 	"mediatek,mt7623-rng" : for MT7622
- 			"mediatek,mt7629-rng",  "mediatek,mt7623-rng" : for MT7629
- 			"mediatek,mt7623-rng" : for MT7623
-+			"mediatek,mt8516-rng", "mediatek,mt7623-rng" : for MT8516
- - clocks	    : list of clock specifiers, corresponding to
- 		      entries in clock-names property;
- - clock-names	    : Should contain "rng" entries;
--- 
-2.23.0.rc1
+On Mon, Aug 05, 2019 at 01:21:55PM +0800, Hsin-Hsiung Wang wrote:
 
+> +static const u32 vmch_voltages[] = {
+> +	2900000, 3000000, 3300000,
+> +};
+
+> +static const u32 vemc_voltages[] = {
+> +	2900000, 3000000, 3300000,
+> +};
+
+Several of these tables appear to be identical.
+
+> +static inline unsigned int mt6358_map_mode(unsigned int mode)
+> +{
+> +	return mode == MT6358_BUCK_MODE_AUTO ?
+> +		REGULATOR_MODE_NORMAL : REGULATOR_MODE_FAST;
+> +}
+
+There is no need for this to be an inline and please write normal
+conditional statements to improve legibility.  There's other examples in
+the driver.
+
+> +static int mt6358_get_buck_voltage_sel(struct regulator_dev *rdev)
+> +{
+> +	int ret, regval;
+> +	struct mt6358_regulator_info *info = rdev_get_drvdata(rdev);
+> +
+> +	ret = regmap_read(rdev->regmap, info->da_vsel_reg, &regval);
+> +	if (ret != 0) {
+> +		dev_info(&rdev->dev,
+> +			 "Failed to get mt6358 Buck %s vsel reg: %d\n",
+> +			 info->desc.name, ret);
+
+dev_err() for errors here and throughout the driver.
+
+> +		return ret;
+> +	}
+> +
+> +	ret = (regval >> info->da_vsel_shift) & info->da_vsel_mask;
+> +
+> +	return ret;
+> +}
+
+This looks like a standard get_voltage_sel_regmap()?
+
+> +err_mode:
+> +	if (ret != 0)
+> +		return ret;
+> +
+> +	return 0;
+
+Or just return ret unconditionally?
+
+--xJK8B5Wah2CMJs8h
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1IKsYACgkQJNaLcl1U
+h9AMIggAg397SgwCnQsqUm0bErtFXMF3frCb8lQZCc/BOEjOShATbn9igZbM6ZTU
+QxQabCCpti0hAUqGHB6ye8q+OlI13w8ShOMg6+VJxOhec2ihBGLtkbhJguoZtfVI
+v+cqPZf3DxmDs1QCqMQTHdKK47Zjf2GN7XMEubNifpcWlkAHTcrQ8NGTC+8vGcCj
+5Ss9eBuRyAO0c5Z08Nsxh70MhK6FnHzwXDzlaOPDXbQWfxouTBvNLHN2LtGeNLDO
+St8mmX2B4jwvOLjItqqhsATzbH+DwoBGSOUtRNFbwIh+/UeZfwpwQJJk5U0FsgwC
+4K6rYZLMhm8RQGlTWwS3xPlqirZbvg==
+=1DeU
+-----END PGP SIGNATURE-----
+
+--xJK8B5Wah2CMJs8h--
