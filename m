@@ -2,176 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 441A681172
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 07:23:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7D4CA8121C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 08:15:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727444AbfHEFXR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 01:23:17 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:20050 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1727222AbfHEFWv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 01:22:51 -0400
-X-UUID: bdbccfe973e34113a132421d215dd87c-20190805
-X-UUID: bdbccfe973e34113a132421d215dd87c-20190805
-Received: from mtkexhb02.mediatek.inc [(172.21.101.103)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
-        with ESMTP id 1095245785; Mon, 05 Aug 2019 13:22:43 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs01n1.mediatek.inc (172.21.101.68) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Mon, 5 Aug 2019 13:22:43 +0800
-Received: from mtksdccf07.mediatek.inc (172.21.84.99) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Mon, 5 Aug 2019 13:22:43 +0800
-From:   Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Lee Jones <lee.jones@linaro.org>, Rob Herring <robh+dt@kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mark Brown <broonie@kernel.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Richard Fontana <rfontana@redhat.com>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        Allison Randal <allison@lohutok.net>,
-        <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>,
-        <linux-mediatek@lists.infradead.org>,
-        <linux-kernel@vger.kernel.org>, <linux-rtc@vger.kernel.org>,
-        <srv_heupstream@mediatek.com>, Ran Bi <ran.bi@mediatek.com>
-Subject: [PATCH v4 10/10] rtc: Add support for the MediaTek MT6358 RTC
-Date:   Mon, 5 Aug 2019 13:21:58 +0800
-Message-ID: <1564982518-32163-11-git-send-email-hsin-hsiung.wang@mediatek.com>
-X-Mailer: git-send-email 1.9.1
-In-Reply-To: <1564982518-32163-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-References: <1564982518-32163-1-git-send-email-hsin-hsiung.wang@mediatek.com>
+        id S1727225AbfHEGPS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 02:15:18 -0400
+Received: from mail-yb1-f195.google.com ([209.85.219.195]:41678 "EHLO
+        mail-yb1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726375AbfHEGPR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 02:15:17 -0400
+Received: by mail-yb1-f195.google.com with SMTP id x188so6683204yba.8;
+        Sun, 04 Aug 2019 23:15:17 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=d2DU9kBb4leQ/jOn2DVY+dV3e2iyLt3yKa1OyuxJhhA=;
+        b=niX/7BE0qnoG0ZC0Uk3XxzdIW0aioGSBYPc+lg9U/X/SSOAB33ZNx7XlS1YGMFzHH9
+         URtQRuorc/d4vnDD+n9f2HRDuOPR8VpbOUgWUsUJRSqFkIv1nY5K/PJ6FWYGpAuPMoOH
+         frjg1PzM2144xST0SsVQ62fZBgGs052KUDdvcDfXdbSQwV/zTXpSxMc00s/Hp5lpnVA/
+         PGwBk66bbPNKmL/mYgDLgFimTRJIxufQb/xCohkuYBWaRsdpFha/jeb8GguuABQ1O3Zy
+         TXVQDmBtRvWMkOhr9k7Odl7ojZgbjC72oq0mSl+oMLlwlUKlXpI3a6fC0BzC8M8culPH
+         TYng==
+X-Gm-Message-State: APjAAAUAZ8Sw67g/gGP4uSre4N8v6Osuoxo3fHdtZ3VT+BDMg7lI4Bu0
+        MJNhHuLNMcsS6FX5L9RqJ4G7gnWTZ2zI+9T9H0Q=
+X-Google-Smtp-Source: APXvYqxIHFOCA1aPmW3BGgaIKCs7UKtDpmPvJAnMddZGIS9z2sgUDL6Nk7QxPFU7DVCcM3g9BQaZl43vOUxJJYUfDp8=
+X-Received: by 2002:a25:5f4b:: with SMTP id h11mr5510243ybm.420.1564985716710;
+ Sun, 04 Aug 2019 23:15:16 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-MTK:  N
+References: <1564566033-676-1-git-send-email-harini.katakam@xilinx.com>
+ <1564566033-676-2-git-send-email-harini.katakam@xilinx.com> <20190804145633.GB6800@lunn.ch>
+In-Reply-To: <20190804145633.GB6800@lunn.ch>
+From:   Harini Katakam <harinik@xilinx.com>
+Date:   Mon, 5 Aug 2019 11:45:05 +0530
+Message-ID: <CAFcVECL6cvCjeo+fn1NDyMDZyZXDrWyhD9djvcVXiLVLiLgGeA@mail.gmail.com>
+Subject: Re: [RFC PATCH 1/2] dt-bindings: net: macb: Add new property for PS
+ SGMII only
+To:     Andrew Lunn <andrew@lunn.ch>
+Cc:     Harini Katakam <harini.katakam@xilinx.com>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        David Miller <davem@davemloft.net>,
+        Claudiu Beznea <claudiu.beznea@microchip.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>, netdev@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Michal Simek <michal.simek@xilinx.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ran Bi <ran.bi@mediatek.com>
+Hi Andrew,
 
-This add support for the MediaTek MT6358 RTC. Driver using
-compatible data to store different RTC_WRTGR address offset.
+On Sun, Aug 4, 2019 at 8:26 PM Andrew Lunn <andrew@lunn.ch> wrote:
+>
+> On Wed, Jul 31, 2019 at 03:10:32PM +0530, Harini Katakam wrote:
+> > Add a new property to indicate when PS SGMII is used with NO
+> > external PHY on board.
+>
+> Hi Harini
+>
+> What exactly is you use case? Are you connecting to a Ethernet switch?
+> To an SFP cage with a copper module?
 
-Review-by: Yingjoe Chen <yingjoe.chen@mediatek.com>
-Signed-off-by: Ran Bi <ran.bi@mediatek.com>
----
- drivers/rtc/rtc-mt6397.c | 43 +++++++++++++++++++++++++++++++++++--------
- 1 file changed, 35 insertions(+), 8 deletions(-)
+Yes, an SFP cage is the common HW target for this patch. Essentially, there
+is no external PHY driver that the macb can "connect" to; if there was an
+external PHY on board, its link status would also indicate when the GEM(PCS)
+to external PHY link was down. But in the absence of an external PHY on
+HW, PCS link status needs to be monitored and reported to users.
 
-diff --git a/drivers/rtc/rtc-mt6397.c b/drivers/rtc/rtc-mt6397.c
-index 828def7..e23c215 100644
---- a/drivers/rtc/rtc-mt6397.c
-+++ b/drivers/rtc/rtc-mt6397.c
-@@ -12,6 +12,7 @@
- #include <linux/irqdomain.h>
- #include <linux/platform_device.h>
- #include <linux/of_address.h>
-+#include <linux/of_device.h>
- #include <linux/of_irq.h>
- #include <linux/io.h>
- #include <linux/mfd/mt6397/core.h>
-@@ -19,7 +20,8 @@
- #define RTC_BBPU		0x0000
- #define RTC_BBPU_CBUSY		BIT(6)
- 
--#define RTC_WRTGR		0x003c
-+#define RTC_WRTGR_MT6358	0x3a
-+#define RTC_WRTGR_MT6397	0x3c
- 
- #define RTC_IRQ_STA		0x0002
- #define RTC_IRQ_STA_AL		BIT(0)
-@@ -63,6 +65,10 @@
- #define RTC_NUM_YEARS		128
- #define RTC_MIN_YEAR_OFFSET	(RTC_MIN_YEAR - RTC_BASE_YEAR)
- 
-+struct mtk_rtc_compatible {
-+	u32			wrtgr_addr;
-+};
-+
- struct mt6397_rtc {
- 	struct device		*dev;
- 	struct rtc_device	*rtc_dev;
-@@ -70,7 +76,25 @@ struct mt6397_rtc {
- 	struct regmap		*regmap;
- 	int			irq;
- 	u32			addr_base;
-+	const struct mtk_rtc_compatible *dev_comp;
-+};
-+
-+static const struct mtk_rtc_compatible mt6358_rtc_compat = {
-+	.wrtgr_addr = RTC_WRTGR_MT6358,
-+};
-+
-+static const struct mtk_rtc_compatible mt6397_rtc_compat = {
-+	.wrtgr_addr = RTC_WRTGR_MT6397,
-+};
-+
-+static const struct of_device_id mt6397_rtc_of_match[] = {
-+	{ .compatible = "mediatek,mt6358-rtc",
-+		.data = (void *)&mt6358_rtc_compat, },
-+	{ .compatible = "mediatek,mt6397-rtc",
-+		.data = (void *)&mt6397_rtc_compat, },
-+	{}
- };
-+MODULE_DEVICE_TABLE(of, mt6397_rtc_of_match);
- 
- static int mtk_rtc_write_trigger(struct mt6397_rtc *rtc)
- {
-@@ -78,7 +102,8 @@ static int mtk_rtc_write_trigger(struct mt6397_rtc *rtc)
- 	int ret;
- 	u32 data;
- 
--	ret = regmap_write(rtc->regmap, rtc->addr_base + RTC_WRTGR, 1);
-+	ret = regmap_write(rtc->regmap,
-+			   rtc->addr_base + rtc->dev_comp->wrtgr_addr, 1);
- 	if (ret < 0)
- 		return ret;
- 
-@@ -324,6 +349,7 @@ static int mtk_rtc_probe(struct platform_device *pdev)
- 	struct resource *res;
- 	struct mt6397_chip *mt6397_chip = dev_get_drvdata(pdev->dev.parent);
- 	struct mt6397_rtc *rtc;
-+	const struct of_device_id *of_id;
- 	int ret;
- 
- 	rtc = devm_kzalloc(&pdev->dev, sizeof(struct mt6397_rtc), GFP_KERNEL);
-@@ -333,6 +359,13 @@ static int mtk_rtc_probe(struct platform_device *pdev)
- 	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
- 	rtc->addr_base = res->start;
- 
-+	of_id = of_match_device(mt6397_rtc_of_match, &pdev->dev);
-+	if (!of_id) {
-+		dev_err(&pdev->dev, "Failed to probe of_node\n");
-+		return -EINVAL;
-+	}
-+	rtc->dev_comp = of_id->data;
-+
- 	rtc->irq = platform_get_irq(pdev, 0);
- 	if (rtc->irq < 0)
- 		return rtc->irq;
-@@ -408,12 +441,6 @@ static int mt6397_rtc_resume(struct device *dev)
- static SIMPLE_DEV_PM_OPS(mt6397_pm_ops, mt6397_rtc_suspend,
- 			mt6397_rtc_resume);
- 
--static const struct of_device_id mt6397_rtc_of_match[] = {
--	{ .compatible = "mediatek,mt6397-rtc", },
--	{ }
--};
--MODULE_DEVICE_TABLE(of, mt6397_rtc_of_match);
--
- static struct platform_driver mtk_rtc_driver = {
- 	.driver = {
- 		.name = "mt6397-rtc",
--- 
-2.6.4
-
+Regards,
+Harini
