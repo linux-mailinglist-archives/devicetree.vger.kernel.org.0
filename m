@@ -2,206 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 844388271E
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 23:46:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A01C282721
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 23:46:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728717AbfHEVqC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 17:46:02 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51364 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728483AbfHEVqC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 17:46:02 -0400
-Received: from mail-qt1-f182.google.com (mail-qt1-f182.google.com [209.85.160.182])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 106CA214C6;
-        Mon,  5 Aug 2019 21:46:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565041561;
-        bh=subSU4ANuK0qDVBd0vAG1AnkJerzP5pOi4fyuHG8xv8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=13tUIInKnE4eHNYqfY1p4vcbK2rEnqAFvan1kVXBDW5FZeUc/8i5HWU+RjTF0itMs
-         +boDbn8fAivIGCUSTItUaBOwiciY4eztk4XvucyK4bMgGINLKBaIPaggQPc9KbX1nR
-         7PC+lVjFWRm3eoAteReg3RaM3tm6BqPXNMJG6WrY=
-Received: by mail-qt1-f182.google.com with SMTP id d23so82561756qto.2;
-        Mon, 05 Aug 2019 14:46:01 -0700 (PDT)
-X-Gm-Message-State: APjAAAVhjJ3h/OjZHpmfTcamienHkKVWWlHPv5ReNxOvtPgPZhgs/uRi
-        FtuXF8Kuc3MO9gBtSgpBl7Xj6tccWtrxl0+RAw==
-X-Google-Smtp-Source: APXvYqzBwGXmcn81biCg4KLoojhRENYm4XDLvNlQS3MkA879bNBj02ITgrBwmCGub/Tr10uEARqqTe/pjnCfytTfQ3E=
-X-Received: by 2002:aed:3f10:: with SMTP id p16mr249407qtf.110.1565041560261;
- Mon, 05 Aug 2019 14:46:00 -0700 (PDT)
+        id S1728998AbfHEVqa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 17:46:30 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:33983 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728870AbfHEVqa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 17:46:30 -0400
+Received: by mail-pf1-f195.google.com with SMTP id b13so40298634pfo.1
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 14:46:30 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=0N59rAm+IJdZS4+AP3R02NAzCgd4BoOv2ctu3nbjqJk=;
+        b=rwLUWgvf1qQ+YcLoAV6e/qmpmkL/X1qlmcjgtIb/Z0qj1AQllfD9q5ik/WMI+dYgbP
+         oJB1Xz+WU6zGzIXXJ+20bqmnijwUbUa97iRn2GNNFa3/bbtkF7qEU1bclXHWgxGuwOvU
+         fmyhI7N8oALj6ySt7EzgMYJiWMi5oITwedtoA1v+vD1CX10PJM841SJYNGHQyqSRiw44
+         wMlDssxMSfEVH1sV62x26S8i+9MYZxv5FbK/Z2KO+xpxE+6YdUIz1IayC1IHtb9GqI4o
+         YzL4VqDMRaqaJuKc9vJMCJUxd9BBSvc/JQ2LkqodkIADM5VOdiTLi9bH/+OtkPY5ZpgG
+         NC/A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=0N59rAm+IJdZS4+AP3R02NAzCgd4BoOv2ctu3nbjqJk=;
+        b=l5QeFOq5OYQT1NOa/Z+TJA6GFkXQV33cZImowbJ7w1EksDSEFadFNdR5KfwnZZAvjr
+         Rur/ceYJYD0IUBXrnThfDingjj0BwvJGvxahCKViB+pIFxN4JeOmBz5ZiSRElwSUsReU
+         9FC3t9XFFUO5hHNFMAVJSonkIC+CnpyiroSeFlMhM2Mlw2NYYjIyZBo1H1LDmLehoq5y
+         6nmwhMYeN0SHfbQ2VWiPdCg70XdqNCCtzEmrfOt+IPUA+todUNIDQtW9mJEUlYEel3dt
+         fw967jkN8irGbwZdKv3YN1n998RcBA84CoWbzUWe5JU71mOscpnnAeFm5JfwYKvlDK4u
+         5oJg==
+X-Gm-Message-State: APjAAAUlj/bVDQsF805Izum3IRSCEVJzFbtxwA2RWSKDLGCJjFMVE9IK
+        Yy3NuoCaenHIEFTjWld9KSj4RQ==
+X-Google-Smtp-Source: APXvYqy5DdisYBXyBq8Lx1/TvhiGE9temZcFVyJDWqAZ4J03brj3zIZsQ1ZSoTA1IfrzD90LOIifoA==
+X-Received: by 2002:a17:90a:fa07:: with SMTP id cm7mr20537343pjb.115.1565041589679;
+        Mon, 05 Aug 2019 14:46:29 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:7483:80d6:7f67:2672])
+        by smtp.googlemail.com with ESMTPSA id s24sm85504977pfh.133.2019.08.05.14.46.28
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 05 Aug 2019 14:46:29 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        christianshewitt@gmail.com
+Subject: Re: [PATCH 2/6] dt-bindings: arm: amlogic: add bindings for G12B based S922X SoC
+In-Reply-To: <20190731124000.22072-3-narmstrong@baylibre.com>
+References: <20190731124000.22072-1-narmstrong@baylibre.com> <20190731124000.22072-3-narmstrong@baylibre.com>
+Date:   Mon, 05 Aug 2019 14:46:28 -0700
+Message-ID: <7hblx3gua3.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20190805120320.32282-1-narmstrong@baylibre.com> <20190805120320.32282-4-narmstrong@baylibre.com>
-In-Reply-To: <20190805120320.32282-4-narmstrong@baylibre.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Mon, 5 Aug 2019 15:45:48 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+WQ6KAE+d2_Pu03s6cSbu4PUErUWrGj81cAivTBNWBxQ@mail.gmail.com>
-Message-ID: <CAL_Jsq+WQ6KAE+d2_Pu03s6cSbu4PUErUWrGj81cAivTBNWBxQ@mail.gmail.com>
-Subject: Re: [RFCv2 3/9] dt-bindings: spi: meson: convert to yaml
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     linux-amlogic@lists.infradead.org,
-        linux-spi <linux-spi@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 5, 2019 at 6:03 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Now that we have the DT validation in place, let's convert the device tree
-> bindings for the Amlogic SPI controllers over to two separate YAML schemas.
+Neil Armstrong <narmstrong@baylibre.com> writes:
+
+> Add a specific compatible for the Amlogic G12B family based S922X SoC
+> to differentiate with the A311D SoC from the same family.
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  .../bindings/spi/amlogic,meson-gx-spicc.yaml  | 67 +++++++++++++++++++
->  .../bindings/spi/amlogic,meson6-spifc.yaml    | 53 +++++++++++++++
->  .../devicetree/bindings/spi/spi-meson.txt     | 55 ---------------
->  3 files changed, 120 insertions(+), 55 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
->  create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
->  delete mode 100644 Documentation/devicetree/bindings/spi/spi-meson.txt
+>  Documentation/devicetree/bindings/arm/amlogic.yaml | 1 +
+>  1 file changed, 1 insertion(+)
 >
-> diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
-> new file mode 100644
-> index 000000000000..49b617c98ae7
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
-> @@ -0,0 +1,67 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2019 BayLibre, SAS
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/spi/amlogic,meson-gx-spicc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Amlogic Meson SPI Communication Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-> +
-> +allOf:
-> +  - $ref: "spi-controller.yaml#"
-> +
-> +description: |
-> +  The Meson SPICC is a generic SPI controller for general purpose Full-Duplex
-> +  communications with dedicated 16 words RX/TX PIO FIFOs.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,meson-gx-spicc # SPICC controller on Amlogic GX and compatible SoCs
-> +      - amlogic,meson-axg-spicc # SPICC controller on Amlogic AXG and compatible SoCs
-> +
-> +  interrupts:
-> +    maxItems: 1
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  resets:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +  clock-names:
-> +    description: input clock for the baud rate generator
-> +    items:
-> +      - const: core
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - interrupts
-> +  - clocks
-> +  - clock-names
-> +
-> +examples:
-> +  - |
-> +    spi@c1108d80 {
-> +          compatible = "amlogic,meson-gx-spicc";
-> +          reg = <0xc1108d80 0x80>;
-> +          interrupts = <112>;
-> +          clocks = <&clk81>;
-> +          clock-names = "core";
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          ethernet-switch@0 {
-> +              compatible = "micrel,ks8995m";
-> +              spi-max-frequency = <1000000>;
-> +              reg = <0>;
-> +          };
-> +    };
-> +
-> diff --git a/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml b/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
-> new file mode 100644
-> index 000000000000..67dcedc81a5e
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
-> @@ -0,0 +1,53 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2019 BayLibre, SAS
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/spi/amlogic,meson6-spifc.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Amlogic Meson SPI Flash Controller
-> +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-> +
-> +allOf:
-> +  - $ref: "spi-controller.yaml#"
-> +
-> +description: |
-> +  The Meson SPIFC is a controller optimized for communication with SPI
-> +  NOR memories, without DMA support and a 64-byte unified transmit /
-> +  receive buffer.
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,meson6-spifc # SPI Flash Controller on Meson6 and compatible SoCs
-> +      - amlogic,meson-gxbb-spifc # SPI Flash Controller on GXBB and compatible SoCs
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +examples:
-> +  - |
-> +    spi@c1108c80 {
-> +          compatible = "amlogic,meson6-spifc";
-> +          reg = <0xc1108c80 0x80>;
-> +          clocks = <&clk81>;
-> +          #address-cells = <1>;
-> +          #size-cells = <0>;
-> +
-> +          flash: m25p80@0 {
+> diff --git a/Documentation/devicetree/bindings/arm/amlogic.yaml b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> index 325c6fd3566d..3c3bc806cd23 100644
+> --- a/Documentation/devicetree/bindings/arm/amlogic.yaml
+> +++ b/Documentation/devicetree/bindings/arm/amlogic.yaml
+> @@ -139,6 +139,7 @@ properties:
+>          items:
+>            - enum:
+>                - hardkernel,odroid-n2
+> +          - const: amlogic,s922x
+>            - const: amlogic,g12b
 
-flash@0
+nit: in previous binding docs, we were trying to keep these sorted
+alphabetically.  I'll reorder the new "s922x" after "g12b" when
+applying.
 
-I need to write a schema for this or I'll never stop giving this comment...
+Thanks,
 
-Otherwise,
-
-Reviewed-by: Rob Herring <robh@kernel.org>
-
-> +              compatible = "spansion,m25p80", "jedec,spi-nor";
-> +              reg = <0>;
-> +              spi-max-frequency = <40000000>;
-> +          };
-> +    };
-> +
+Kevin
