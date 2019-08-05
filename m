@@ -2,84 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC3EB8183D
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 13:35:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C938B818B7
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 14:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728502AbfHELfv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 07:35:51 -0400
-Received: from mail-lf1-f65.google.com ([209.85.167.65]:46606 "EHLO
-        mail-lf1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727868AbfHELfv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 07:35:51 -0400
-Received: by mail-lf1-f65.google.com with SMTP id z15so53390440lfh.13
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 04:35:49 -0700 (PDT)
+        id S1728573AbfHEMD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 08:03:29 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:45152 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727357AbfHEMD2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 08:03:28 -0400
+Received: by mail-wr1-f66.google.com with SMTP id f9so5230514wre.12
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 05:03:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=PA5LKqLUZg6N/15oENr417+maCymYksiJN1leg5uDv0=;
-        b=bK1ttl7iKTWceqtx19Sa/7+DM3zapBwSA9/ODu5KX3kw1ViYsxO9FzDhuFhtu4Aj0O
-         uvOO4Lr5/qCu/BnfldETVo9wEXNSTiYLl1E6BI+PA8iNoaCFM7V4mLGiPtDueh/7QeX1
-         0KZMMyDinoMb5DuxX91zavTTt5WuGGXQRBP6AZxT9TjOHQsMbwofrPVhJU8A1JtJX22V
-         hUBJx7XXThV0mbzKr9FWPaVVLRtElVwiERrWn+ctopnWdVw+kUrj/vsas0MNCrA+3pe2
-         T+r9Qq6eoZVNJ4I3L5I0e23wL8LCzQLzqDETEUxcMTYet8+SfCKJ0RBJpbh8sXIMBiFT
-         NX+A==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=25vkHl8TD36SDkWAHJSebVeUcYzajPzPyvWuGyvsAhE=;
+        b=YsSmtNhPFyHUW78r8S8MLbZSVSttppTiKSHIpoTXSYeR5QcxdpBE3Ufjq7uEYjXEgI
+         dmPita3jsLeyX+7v624q99DrW+MmNpmWYsEAhy89ozWnEx7jAS7THW7DoJIvKpHLU4Nz
+         9aFASsRrlhEZoc2qAjHVR99E+wveNzGFLrFxWo3EKEAk2bNQp8yreK7u4jhnjkQAuZfa
+         XWPp8sUcX0TsIg8hykvT+yfFktlIFBGwJluuut+8sWQHkWbrYWSxUl2wwgOseujOmnAW
+         4CqAO3UiS22yAK6aVqzOSY60m2gG31BbRwJ4Pq51qzxLNJAVlt43AJ2iVFH8qg/vO1PP
+         0Wmg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=PA5LKqLUZg6N/15oENr417+maCymYksiJN1leg5uDv0=;
-        b=LP7vaDfg87i9UAW7VMYqtLZEWkQ+2i3D59+DtwFcISauhkewbjSEOtNksXcTsy431M
-         1p4KECj+IF6ay2S2nwGYkUKtWipcKKeXuq6iXYbUIK35nkO/1gQyfGTBbXVi4TF191bG
-         JRpxE5b6frxM0s0ZX3UMdc2/kJ+LJiWXkPI0z9WtvqFmTrtI9g4XPAdEEvC4+wnCeTwB
-         QBX3LM6FUWTBbXZSqnr9GxpGLfh0ML2Nho6QjqCXoba9p2MJ3V+jllt7Msnpt7D0nsMB
-         Pf6no2X6Oe+XICgHCR613iqF+nRMOHcalgFlBIPBAzae/INzsB5zjUCgHJll3UWtXnJm
-         XgYA==
-X-Gm-Message-State: APjAAAXm6SsCjBoL8NxPvJa0KMc5agB2pCMcwwVC5K2Q1UVbmos70bn8
-        W5Io8X4pCuPTNoQY+j8v4dSvMjmVNHQ2ma70mBx2gQ==
-X-Google-Smtp-Source: APXvYqxpziKgKxkC0CLx9svUiuECS9qp3k4Ke29MQa+w28OfxT6UG3D8k/lLoKpht7+O8PeX6bA1nQoVqBuP0bOPSsc=
-X-Received: by 2002:a19:e006:: with SMTP id x6mr69629944lfg.165.1565004948937;
- Mon, 05 Aug 2019 04:35:48 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=25vkHl8TD36SDkWAHJSebVeUcYzajPzPyvWuGyvsAhE=;
+        b=HndHSqLM28y8cI2b6+vh/vqvwgrrc96oIqS4AlZoxmfbSnig3FB7wyZt2eX0Ib9JZ6
+         wciXmearyHeHmLIbCLWpFRUYdFY0bv9GwrjBSqnGTWcc4AggFUJQ+CbPBmUSB+xXXruh
+         InZZ6NsH6w47B4Xio3MJ+I7PuNiHJw2uMyg/Hq+MC2leR2Dq5Ez9LOlLjir/a00NEj3w
+         bM8rGhiWejQryezmVA9gv0yYIQZb8XBP6jb19CymuZ2Gqfz6xC36MfQv6YE1QviC4A5L
+         nq6S47Ud/Y/OgVcA0YQvADY5LQyrZILevmcE0o3DwJFZ44V+xArnvU4G59CdL9k38TIq
+         mPxw==
+X-Gm-Message-State: APjAAAWMN4vhZdTX/q0xBq/mMjeKSmTXyjjSCD6dxtVQsBLLeBYxRGKO
+        QObojoLiSK8JaWsRkfhtQtUhKQ==
+X-Google-Smtp-Source: APXvYqzWNv12kSRQOLPMH0DQ/Rtt60lADy18oRMLOjwk/7REfS0XxZobWQLA74rD/m007PEBCxIPPQ==
+X-Received: by 2002:a05:6000:1148:: with SMTP id d8mr4777553wrx.354.1565006605620;
+        Mon, 05 Aug 2019 05:03:25 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id x6sm88683668wrt.63.2019.08.05.05.03.24
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 05 Aug 2019 05:03:25 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     robh+dt@kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        linux-amlogic@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-serial@vger.kernel.org, linux-spi@vger.kernel.org,
+        linux-watchdog@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        jassisinghbrar@gmail.com, kishon@ti.com, p.zabel@pengutronix.de
+Subject: [RFCv2 0/9] dt-bindings: first tentative of conversion to yaml format
+Date:   Mon,  5 Aug 2019 14:03:11 +0200
+Message-Id: <20190805120320.32282-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20190801100717.23333-1-rnayak@codeaurora.org> <CACRpkdYLb-WWSEL8yG3yy8Qq7bOKP9JjUGV51mY6=aEwrQAJvg@mail.gmail.com>
-In-Reply-To: <CACRpkdYLb-WWSEL8yG3yy8Qq7bOKP9JjUGV51mY6=aEwrQAJvg@mail.gmail.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 5 Aug 2019 13:35:37 +0200
-Message-ID: <CACRpkdaoOuyUmysb3OmErbLJ6zZuHGGt7RRzG9wULDkg=hLCAw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add SC7180 pinctrl binding
-To:     Rajendra Nayak <rnayak@codeaurora.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jitendra Sharma <shajit@codeaurora.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 5, 2019 at 1:34 PM Linus Walleij <linus.walleij@linaro.org> wrote:
-> On Thu, Aug 1, 2019 at 12:07 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
->
-> > From: Jitendra Sharma <shajit@codeaurora.org>
-> >
-> > Add the binding for the TLMM pinctrl block found in the SC7180 platform
-> >
-> > Signed-off-by: Jitendra Sharma <shajit@codeaurora.org>
-> > Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
-> > [rnayak: Fix some copy-paste issues, sort and fix functions]
-> > Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
->
-> Patch applied with Bjorn's ACK.
+This is a first tentative to convert some of the simplest Amlogic
+dt-bindings to the yaml format.
 
-Ooops there is v2 and even v3 coming, OK I wait for v3 and
-backed this out.
+All have been tested using :
+$ make ARCH=arm64 dtbs_check
 
-Yours,
-Linus Walleij
+Issues with the amlogic arm64 DTs has already been identified thanks
+to the validation scripts. The DT fixes will be pushed once these yaml
+bindings are acked.
+
+Changes since rfc v1:
+- Fixed bindings according to Rob's comments
+- Added commit log
+- renamed yaml files using amlogic prefix
+
+Neil Armstrong (9):
+  dt-bindings: mailbox: meson-mhu: convert to yaml
+  dt-bindings: rng: amlogic,meson-rng: convert to yaml
+  dt-bindings: spi: meson: convert to yaml
+  dt-bindings: reset: amlogic,meson-reset: convert to yaml
+  dt-bindings: arm: amlogic: amlogic,meson-gx-ao-secure: convert to yaml
+  dt-bindings: phy: meson-g12a-usb2-phy: convert to yaml
+  dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert to yaml
+  dt-bindings: serial: meson-uart: convert to yaml
+  dt-bindings: watchdog: meson-gxbb-wdt: convert to yaml
+
+ .../amlogic/amlogic,meson-gx-ao-secure.txt    | 28 -------
+ .../amlogic/amlogic,meson-gx-ao-secure.yaml   | 52 +++++++++++++
+ .../mailbox/amlogic,meson-gxbb-mhu.yaml       | 53 ++++++++++++++
+ .../devicetree/bindings/mailbox/meson-mhu.txt | 34 ---------
+ .../phy/amlogic,meson-g12a-usb2-phy.yaml      | 63 ++++++++++++++++
+ .../phy/amlogic,meson-g12a-usb3-pcie-phy.yaml | 57 +++++++++++++++
+ .../bindings/phy/meson-g12a-usb2-phy.txt      | 22 ------
+ .../bindings/phy/meson-g12a-usb3-pcie-phy.txt | 22 ------
+ .../bindings/reset/amlogic,meson-reset.txt    | 19 -----
+ .../bindings/reset/amlogic,meson-reset.yaml   | 37 ++++++++++
+ .../bindings/rng/amlogic,meson-rng.txt        | 21 ------
+ .../bindings/rng/amlogic,meson-rng.yaml       | 37 ++++++++++
+ .../bindings/serial/amlogic,meson-uart.txt    | 38 ----------
+ .../bindings/serial/amlogic,meson-uart.yaml   | 73 +++++++++++++++++++
+ .../bindings/spi/amlogic,meson-gx-spicc.yaml  | 67 +++++++++++++++++
+ .../bindings/spi/amlogic,meson6-spifc.yaml    | 53 ++++++++++++++
+ .../devicetree/bindings/spi/spi-meson.txt     | 55 --------------
+ .../watchdog/amlogic,meson-gxbb-wdt.yaml      | 37 ++++++++++
+ .../bindings/watchdog/meson-gxbb-wdt.txt      | 16 ----
+ 19 files changed, 529 insertions(+), 255 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.txt
+ create mode 100644 Documentation/devicetree/bindings/arm/amlogic/amlogic,meson-gx-ao-secure.yaml
+ create mode 100644 Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+ delete mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.txt
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb2-phy.yaml
+ create mode 100644 Documentation/devicetree/bindings/phy/amlogic,meson-g12a-usb3-pcie-phy.yaml
+ delete mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb2-phy.txt
+ delete mode 100644 Documentation/devicetree/bindings/phy/meson-g12a-usb3-pcie-phy.txt
+ delete mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+ create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+ delete mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
+ create mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+ delete mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.txt
+ create mode 100644 Documentation/devicetree/bindings/serial/amlogic,meson-uart.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson-gx-spicc.yaml
+ create mode 100644 Documentation/devicetree/bindings/spi/amlogic,meson6-spifc.yaml
+ delete mode 100644 Documentation/devicetree/bindings/spi/spi-meson.txt
+ create mode 100644 Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
+ delete mode 100644 Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
+
+-- 
+2.22.0
+
