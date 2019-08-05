@@ -2,174 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7FF2F81F3C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 16:39:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8E44481F4C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 16:40:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728665AbfHEOjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 10:39:40 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:34282 "EHLO vps0.lunn.ch"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728149AbfHEOjk (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 10:39:40 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=IeOH3oshZOnypMVGQWFImyX6LwfvJFmlGyYwHKRWVis=; b=y/H1IuHAz2xH6KAAg1Db/wvVdi
-        BAYlOx98HBwt+ZcC0Pn3prgmOGYmYL41y3nFd5ojKT4qn2r3NztcuRW1Hy/IdD4kQ8buaIDCKvjDp
-        11lD45o3yzKb1AB1mDmcVo/9Vy7deVYgmTbIO2oOgDJawDHlUyZodnE9TH8Fbz7wM934=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hue99-0007XJ-Vw; Mon, 05 Aug 2019 16:39:35 +0200
-Date:   Mon, 5 Aug 2019 16:39:35 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
-Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, davem@davemloft.net,
-        robh+dt@kernel.org, mark.rutland@arm.com, f.fainelli@gmail.com,
-        hkallweit1@gmail.com
-Subject: Re: [PATCH 05/16] net: phy: adin: configure RGMII/RMII/MII modes on
- config
-Message-ID: <20190805143935.GM24275@lunn.ch>
-References: <20190805165453.3989-1-alexandru.ardelean@analog.com>
- <20190805165453.3989-6-alexandru.ardelean@analog.com>
+        id S1729622AbfHEOkJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 10:40:09 -0400
+Received: from smtp-fw-33001.amazon.com ([207.171.190.10]:43425 "EHLO
+        smtp-fw-33001.amazon.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728149AbfHEOkI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 10:40:08 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=amazon.com; i=@amazon.com; q=dns/txt; s=amazon201209;
+  t=1565016008; x=1596552008;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version;
+  bh=GDxlgW2iIFv1GHLeEOVVxdcmyywibrFDiGbFKaCrd54=;
+  b=s5yZZB7+fsZjcCUlufVXZ8XpEbOtMZXbFApek3i6J/rWmDKzKxTLx8R2
+   Xy4uoZ7eGQaxYGzAr6TtY0FOhNUelZQffnHGWl5evk08SBIe4NmnXzxK3
+   bcMzPekEy1fQVTMorHC8r3EB5RREMxZG3KLJbrRXDA+ebVYt64wAXDE97
+   8=;
+X-IronPort-AV: E=Sophos;i="5.64,350,1559520000"; 
+   d="scan'208";a="816815379"
+Received: from sea3-co-svc-lb6-vlan3.sea.amazon.com (HELO email-inbound-relay-1a-7d76a15f.us-east-1.amazon.com) ([10.47.22.38])
+  by smtp-border-fw-out-33001.sea14.amazon.com with ESMTP; 05 Aug 2019 14:40:06 +0000
+Received: from EX13MTAUEA001.ant.amazon.com (iad55-ws-svc-p15-lb9-vlan2.iad.amazon.com [10.40.159.162])
+        by email-inbound-relay-1a-7d76a15f.us-east-1.amazon.com (Postfix) with ESMTPS id DA2E7A26E8;
+        Mon,  5 Aug 2019 14:40:01 +0000 (UTC)
+Received: from EX13D19EUB003.ant.amazon.com (10.43.166.69) by
+ EX13MTAUEA001.ant.amazon.com (10.43.61.243) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Mon, 5 Aug 2019 14:40:01 +0000
+Received: from ua9e4f3715fbc5f.ant.amazon.com (10.43.162.137) by
+ EX13D19EUB003.ant.amazon.com (10.43.166.69) with Microsoft SMTP Server (TLS)
+ id 15.0.1367.3; Mon, 5 Aug 2019 14:39:51 +0000
+From:   Hanna Hawa <hhhawa@amazon.com>
+To:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <bp@alien8.de>,
+        <mchehab@kernel.org>, <james.morse@arm.com>, <davem@davemloft.net>,
+        <gregkh@linuxfoundation.org>, <linus.walleij@linaro.org>,
+        <Jonathan.Cameron@huawei.com>, <nicolas.ferre@microchip.com>,
+        <paulmck@linux.ibm.com>
+CC:     <dwmw@amazon.co.uk>, <benh@amazon.com>, <ronenk@amazon.com>,
+        <talel@amazon.com>, <jonnyc@amazon.com>, <hanochu@amazon.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-edac@vger.kernel.org>, <hhhawa@amazon.com>
+Subject: [PATCH v5 3/4] dt-bindings: EDAC: Add Amazon's Annapurna Labs L2 EDAC
+Date:   Mon, 5 Aug 2019 15:39:10 +0100
+Message-ID: <20190805143911.12185-4-hhhawa@amazon.com>
+X-Mailer: git-send-email 2.17.1
+In-Reply-To: <20190805143911.12185-1-hhhawa@amazon.com>
+References: <20190805143911.12185-1-hhhawa@amazon.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190805165453.3989-6-alexandru.ardelean@analog.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Type: text/plain
+X-Originating-IP: [10.43.162.137]
+X-ClientProxiedBy: EX13D03UWA001.ant.amazon.com (10.43.160.141) To
+ EX13D19EUB003.ant.amazon.com (10.43.166.69)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 05, 2019 at 07:54:42PM +0300, Alexandru Ardelean wrote:
-> The ADIN1300 chip supports RGMII, RMII & MII modes. Default (if
-> unconfigured) is RGMII.
-> This change adds support for configuring these modes via the device
-> registers.
-> 
-> For RGMII with internal delays (modes RGMII_ID,RGMII_TXID, RGMII_RXID),
+Document Amazon's Annapurna Labs L2 EDAC SoC binding.
 
-It would be nice to add the missing space.
+Signed-off-by: Hanna Hawa <hhhawa@amazon.com>
+---
+ .../bindings/edac/amazon,al-l2-edac.txt       | 20 +++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/edac/amazon,al-l2-edac.txt
 
-> the default delay is 2 ns. This can be configurable and will be done in
-> a subsequent change.
-> 
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-> ---
->  drivers/net/phy/adin.c | 79 +++++++++++++++++++++++++++++++++++++++++-
->  1 file changed, 78 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/net/phy/adin.c b/drivers/net/phy/adin.c
-> index 3dd9fe50f4c8..dbdb8f60741c 100644
-> --- a/drivers/net/phy/adin.c
-> +++ b/drivers/net/phy/adin.c
-> @@ -33,14 +33,91 @@
->  	 ADIN1300_INT_HW_IRQ_EN)
->  #define ADIN1300_INT_STATUS_REG			0x0019
->  
-> +#define ADIN1300_GE_RGMII_CFG_REG		0xff23
-> +#define   ADIN1300_GE_RGMII_RXID_EN		BIT(2)
-> +#define   ADIN1300_GE_RGMII_TXID_EN		BIT(1)
-> +#define   ADIN1300_GE_RGMII_EN			BIT(0)
-> +
-> +#define ADIN1300_GE_RMII_CFG_REG		0xff24
-> +#define   ADIN1300_GE_RMII_EN			BIT(0)
-> +
-> +static int adin_config_rgmii_mode(struct phy_device *phydev,
-> +				  phy_interface_t intf)
-> +{
-> +	int reg;
-> +
-> +	reg = phy_read_mmd(phydev, MDIO_MMD_VEND1, ADIN1300_GE_RGMII_CFG_REG);
-> +	if (reg < 0)
-> +		return reg;
-> +
-> +	if (!phy_interface_mode_is_rgmii(intf)) {
-> +		reg &= ~ADIN1300_GE_RGMII_EN;
-> +		goto write;
-> +	}
-> +
-> +	reg |= ADIN1300_GE_RGMII_EN;
-> +
-> +	if (intf == PHY_INTERFACE_MODE_RGMII_ID ||
-> +	    intf == PHY_INTERFACE_MODE_RGMII_RXID) {
-> +		reg |= ADIN1300_GE_RGMII_RXID_EN;
-> +	} else {
-> +		reg &= ~ADIN1300_GE_RGMII_RXID_EN;
-> +	}
-> +
-> +	if (intf == PHY_INTERFACE_MODE_RGMII_ID ||
-> +	    intf == PHY_INTERFACE_MODE_RGMII_TXID) {
-> +		reg |= ADIN1300_GE_RGMII_TXID_EN;
-> +	} else {
-> +		reg &= ~ADIN1300_GE_RGMII_TXID_EN;
-> +	}
+diff --git a/Documentation/devicetree/bindings/edac/amazon,al-l2-edac.txt b/Documentation/devicetree/bindings/edac/amazon,al-l2-edac.txt
+new file mode 100644
+index 000000000000..7b0b7347b711
+--- /dev/null
++++ b/Documentation/devicetree/bindings/edac/amazon,al-l2-edac.txt
+@@ -0,0 +1,20 @@
++* Amazon's Annapurna Labs L2 EDAC
++
++Amazon's Annapurna Labs SoCs supports L2 single bit correction and
++two bits detection capability based on ARM implementation.
++
++Required properties:
++- compatible:
++	should be "amazon,al-l2-edac".
++- l2-cache:
++	Phandle to L2 cache handler.
++	This property is used to compare with the CPU node property
++	'next-level-cache' to create cpu-mask with all CPUs that
++	share same L2 cache.
++
++Example:
++
++	al_l2_edac {
++		compatible = "amazon,al-l2-edac";
++		l2-cache = <&cluster0_l2>;
++	};
+-- 
+2.17.1
 
-Nice. Often driver writers forget to clear the delay, they only set
-it. Not so here.
-
-However, is checkpatch happy with this? Each half of the if/else is a
-single statement, so the {} are not needed.
-
-> +
-> +write:
-> +	return phy_write_mmd(phydev, MDIO_MMD_VEND1,
-> +			     ADIN1300_GE_RGMII_CFG_REG, reg);
-> +}
-> +
-> +static int adin_config_rmii_mode(struct phy_device *phydev,
-> +				 phy_interface_t intf)
-> +{
-> +	int reg;
-> +
-> +	reg = phy_read_mmd(phydev, MDIO_MMD_VEND1, ADIN1300_GE_RMII_CFG_REG);
-> +	if (reg < 0)
-> +		return reg;
-> +
-> +	if (intf != PHY_INTERFACE_MODE_RMII) {
-> +		reg &= ~ADIN1300_GE_RMII_EN;
-> +		goto write;
-
-goto? Really?
-
-> +	}
-> +
-> +	reg |= ADIN1300_GE_RMII_EN;
-> +
-> +write:
-> +	return phy_write_mmd(phydev, MDIO_MMD_VEND1,
-> +			     ADIN1300_GE_RMII_CFG_REG, reg);
-> +}
-> +
->  static int adin_config_init(struct phy_device *phydev)
->  {
-> -	int rc;
-> +	phy_interface_t interface, rc;
-
-genphy_config_init() does not return a phy_interface_t!
-
->  
->  	rc = genphy_config_init(phydev);
->  	if (rc < 0)
->  		return rc;
->  
-> +	interface = phydev->interface;
-> +
-> +	rc = adin_config_rgmii_mode(phydev, interface);
-> +	if (rc < 0)
-> +		return rc;
-> +
-> +	rc = adin_config_rmii_mode(phydev, interface);
-> +	if (rc < 0)
-> +		return rc;
-> +
-> +	dev_info(&phydev->mdio.dev, "PHY is using mode '%s'\n",
-> +		 phy_modes(phydev->interface));
-
-phydev_dbg(), or not at all.
-
-	      Andrew
