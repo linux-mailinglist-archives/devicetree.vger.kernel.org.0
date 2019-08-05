@@ -2,346 +2,140 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6FBFD820A7
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 17:46:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 56BAC820CA
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 17:53:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726847AbfHEPqi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 11:46:38 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46612 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728111AbfHEPqi (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 5 Aug 2019 11:46:38 -0400
-Received: from archlinux (cpc149474-cmbg20-2-0-cust94.5-4.cable.virginm.net [82.4.196.95])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B50B82086D;
-        Mon,  5 Aug 2019 15:46:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565019996;
-        bh=u7lsS/8/8w7L3VnyMcz6Rwoa3DBa4x5pEdbYelQKDBE=;
-        h=Date:From:To:Cc:Subject:In-Reply-To:References:From;
-        b=CUn5iOaaG4uDCeZFaIGQUAsF6DLTi3NveQDzZkwqu6o04ewg7yHfPEAsbTiBTdBTz
-         aXaf/iOi93HT8BGqA3lmauAbytuxXWNutOcbv12hvS1tzUFyFNaZ7JSANJUdUlLyys
-         t5Olj5Nh453HmkD1kqjQQ+hTNhhyyamwEZVAFvbw=
-Date:   Mon, 5 Aug 2019 16:46:30 +0100
-From:   Jonathan Cameron <jic23@kernel.org>
-To:     Beniamin Bia <beniamin.bia@analog.com>
-Cc:     <lars@metafoo.de>, <Michael.Hennerich@analog.com>,
-        <knaack.h@gmx.de>, <pmeerw@pmeerw.net>,
-        <gregkh@linuxfoundation.org>, <linux-iio@vger.kernel.org>,
-        <devel@driverdev.osuosl.org>, <linux-kernel@vger.kernel.org>,
-        <mark.rutland@arm.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <paulmck@linux.ibm.com>,
-        <mchehab+samsung@kernel.org>, <linus.walleij@linaro.org>,
-        <nicolas.ferre@microchip.com>, <biabeniamin@outlook.com>,
-        Stefan Popa <stefan.popa@analog.com>
-Subject: Re: [PATCH 1/4] iio: adc: ad7606: Add support for AD7606B ADC
-Message-ID: <20190805164630.357039e2@archlinux>
-In-Reply-To: <20190802100304.15899-1-beniamin.bia@analog.com>
-References: <20190802100304.15899-1-beniamin.bia@analog.com>
-X-Mailer: Claws Mail 3.17.4 (GTK+ 2.24.32; x86_64-pc-linux-gnu)
-MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: quoted-printable
+        id S1727460AbfHEPxf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 11:53:35 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:37935 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726559AbfHEPxf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 11:53:35 -0400
+Received: by mail-wm1-f66.google.com with SMTP id s15so52168593wmj.3
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 08:53:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gimpelevich-san-francisco-ca-us.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id;
+        bh=kyGPeqSrHcsD5WJOBf4RVsUUEKiOCYL/y48XAdAiVNU=;
+        b=NC7Q46k9tCnhWyj9w+DkUgP7I2mrIs6jzZfdMjGWVeodYsa0AzCJqwNCeT3dWQPOkH
+         yl4m4cJvhxE9edCr2C94KFAzRGrUHzQNUKAIkixAfJKvyaV42axahfI4WlF9QT+xGkck
+         O+Qr9TRovu7Amliw2uSf6MqjC3H65/s3QUQX8LctF+1JCLEeIJX3D/YjdyWpEHkmxyh8
+         +L3dq9wN2CRPuMQKeb/oQB9yXrFQLSCR8TVybIZASVKtf+lrb9eN6qIrOgpZsEUW68wY
+         6vZrAyqMGAEZYZ+TcMQceiWfPsWSRwhHUE5cUCW9nbZZtJggP+Ylv4bF0OMqiCau7W29
+         Bpxw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=kyGPeqSrHcsD5WJOBf4RVsUUEKiOCYL/y48XAdAiVNU=;
+        b=VGiBDcnM8CY7PHXThSclBJNar5NYdLi6qf5FBTFNkr2HFtXRFoMJmKDLkNL3JBBoo5
+         81VNx6QBXA6qoXRioNKLfQYDt9uxJnuyuHbi9LCRZetk6OKxeV79bnhh/Dn8BHTrP9A7
+         LjMl5doFx9ejmRVJEnNTndGk5Ot1838ADhZClxcEQZGLHN5po0R/+E9AVZEOLol3bZH7
+         l4zhUb9eQnuWSOO6UKsPJ83A+IU50TkeDX9+Yx5A5QaqqKEjc1mNWFyPRVZXK+lPkbCm
+         3xbbGegMt3uVw+vopCnoGAe7BiX/kTb89IWYXApQLNtB+EJF3dLh3Vmk6Io6sMOdi5u9
+         +WQQ==
+X-Gm-Message-State: APjAAAVXVd4yncR5U7cXRRC8r+LASn78VCpp7JbhgLtNHzRuGrhFkGbW
+        MpwvlwMVIE363VkTA7p55xHGta+AbGKPsw==
+X-Google-Smtp-Source: APXvYqyNrz2AgeLTd39TKWy38T3tZo2pkFJVp2PzGxR1MmTT7mciRDv7GDxbOYDAgwN4NiGWkBzI5g==
+X-Received: by 2002:a1c:f90f:: with SMTP id x15mr18788189wmh.69.1565020413077;
+        Mon, 05 Aug 2019 08:53:33 -0700 (PDT)
+Received: from chimera.lan (157-131-153-118.fiber.dynamic.sonic.net. [157.131.153.118])
+        by smtp.gmail.com with ESMTPSA id h16sm98674399wrv.88.2019.08.05.08.53.31
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Mon, 05 Aug 2019 08:53:32 -0700 (PDT)
+From:   Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>
+To:     devicetree@vger.kernel.org
+Cc:     Paul Burton <paul.burton@mips.com>
+Subject: [PATCH v2] of/fdt: implement a "merge-cmdline" property
+Date:   Mon,  5 Aug 2019 08:53:20 -0700
+Message-Id: <1565020400-25679-1-git-send-email-daniel@gimpelevich.san-francisco.ca.us>
+X-Mailer: git-send-email 1.9.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, 2 Aug 2019 13:03:01 +0300
-Beniamin Bia <beniamin.bia@analog.com> wrote:
+Currently, "bootargs" supplied via the "chosen" node can be used only to
+supply a kernel command line as a whole. No mechanism exists in DT to add
+bootargs to the existing command line instead. This is needed in order to
+avoid having to update the bootloader or default bootloader config when
+upgrading to a DTB and kernel pair that requires bootargs not previously
+needed.
 
-> From: Stefan Popa <stefan.popa@analog.com>
->=20
-> The AD7606B is a 16-bit ADC that supports simultaneous sampling of 8
-> channels. It is pin compatible to AD7606, but adds extra modes by
-> writing to the register map.
->=20
-> The AD7606B can be configured to work in software mode by setting all
-> oversampling pins to high. This mode is selected by default.
-> The oversampling ratio is configured from the OS_MODE register (address
-> 0x08) with the addition of OS=3D128 and OS=3D256 that were not available =
-in
-> hardware mode.
->=20
-> The device is configured to output data on a single spi channel, but this
-> configuration must be done right after restart. That is why the delay was
-> removed for devices which doesn't require it.
->=20
-> Moreover, in software mode, the range gpio has no longer its function.
-> Instead, the scale can be configured individually for each channel from
-> the RANGE_CH registers (address 0x03 to 0x06). Besides the already
-> supported =C2=B110 V and =C2=B15 V ranges, software mode can also accommo=
-date the
-> =C2=B12.5 V range.
->=20
-> Signed-off-by: Stefan Popa <stefan.popa@analog.com>
-> Co-developed-by: Beniamin Bia <beniamin.bia@analog.com>
-> Signed-off-by: Beniamin Bia <beniamin.bia@analog.com>
+One example use case is that OpenWrt currently supports four ARM devices by
+means of locally applying the previously rejected edition of this patch. So
+far, the patch has been used in production only on ARM, but architecture is
+not a distinction in the design.
 
-This looks fine to me. I'll pick it up (if no other comments)
-when you've tidied up the issues Rob raises for the DT bindings.
+On MIPS, Commit 951d223 ("MIPS: Fix CONFIG_CMDLINE handling") currently
+prevents support of such a mechanism, so I am including a workaround, in
+anticipation of upcoming changes.
 
-Thanks,
+Signed-off-by: Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>
+Fixes: 951d223 ("MIPS: Fix CONFIG_CMDLINE handling")
+References: https://patchwork.linux-mips.org/patch/17659/
+---
+ arch/mips/kernel/setup.c | 12 ++++++++----
+ drivers/of/fdt.c         |  9 +++++++--
+ 2 files changed, 15 insertions(+), 6 deletions(-)
 
-Jonathan
-
-> ---
->  drivers/iio/adc/ad7606.c     |  13 ++++-
->  drivers/iio/adc/ad7606.h     |   4 ++
->  drivers/iio/adc/ad7606_spi.c | 107 +++++++++++++++++++++++++++++++++++
->  3 files changed, 122 insertions(+), 2 deletions(-)
->=20
-> diff --git a/drivers/iio/adc/ad7606.c b/drivers/iio/adc/ad7606.c
-> index ed2d08437e5d..f5ba94c03a8d 100644
-> --- a/drivers/iio/adc/ad7606.c
-> +++ b/drivers/iio/adc/ad7606.c
-> @@ -410,12 +410,19 @@ static const struct ad7606_chip_info ad7606_chip_in=
-fo_tbl[] =3D {
->  		.oversampling_avail =3D ad7606_oversampling_avail,
->  		.oversampling_num =3D ARRAY_SIZE(ad7606_oversampling_avail),
->  	},
-> +	[ID_AD7606B] =3D {
-> +		.channels =3D ad7606_channels,
-> +		.num_channels =3D 9,
-> +		.oversampling_avail =3D ad7606_oversampling_avail,
-> +		.oversampling_num =3D ARRAY_SIZE(ad7606_oversampling_avail),
-> +	},
->  	[ID_AD7616] =3D {
->  		.channels =3D ad7616_channels,
->  		.num_channels =3D 17,
->  		.oversampling_avail =3D ad7616_oversampling_avail,
->  		.oversampling_num =3D ARRAY_SIZE(ad7616_oversampling_avail),
->  		.os_req_reset =3D true,
-> +		.init_delay_ms =3D 15,
->  	},
->  };
-> =20
-> @@ -631,8 +638,10 @@ int ad7606_probe(struct device *dev, int irq, void _=
-_iomem *base_address,
->  		dev_warn(st->dev, "failed to RESET: no RESET GPIO specified\n");
-> =20
->  	/* AD7616 requires al least 15ms to reconfigure after a reset */
-> -	if (msleep_interruptible(15))
-> -		return -ERESTARTSYS;
-> +	if (st->chip_info->init_delay_ms) {
-> +		if (msleep_interruptible(st->chip_info->init_delay_ms))
-> +			return -ERESTARTSYS;
-> +	}
-> =20
->  	st->write_scale =3D ad7606_write_scale_hw;
->  	st->write_os =3D ad7606_write_os_hw;
-> diff --git a/drivers/iio/adc/ad7606.h b/drivers/iio/adc/ad7606.h
-> index eeaaa8b905db..9350ef1f63b5 100644
-> --- a/drivers/iio/adc/ad7606.h
-> +++ b/drivers/iio/adc/ad7606.h
-> @@ -46,6 +46,8 @@
->   *			oversampling ratios.
->   * @oversampling_num	number of elements stored in oversampling_avail arr=
-ay
->   * @os_req_reset	some devices require a reset to update oversampling
-> + * @init_delay_ms	required delay in miliseconds for initialization
-> + *			after a restart
->   */
->  struct ad7606_chip_info {
->  	const struct iio_chan_spec	*channels;
-> @@ -53,6 +55,7 @@ struct ad7606_chip_info {
->  	const unsigned int		*oversampling_avail;
->  	unsigned int			oversampling_num;
->  	bool				os_req_reset;
-> +	unsigned long			init_delay_ms;
->  };
-> =20
->  /**
-> @@ -155,6 +158,7 @@ enum ad7606_supported_device_ids {
->  	ID_AD7606_8,
->  	ID_AD7606_6,
->  	ID_AD7606_4,
-> +	ID_AD7606B,
->  	ID_AD7616,
->  };
-> =20
-> diff --git a/drivers/iio/adc/ad7606_spi.c b/drivers/iio/adc/ad7606_spi.c
-> index 98ed52b74507..070ee7e31e2c 100644
-> --- a/drivers/iio/adc/ad7606_spi.c
-> +++ b/drivers/iio/adc/ad7606_spi.c
-> @@ -31,6 +31,20 @@
->  /* The range of the channel is stored on 2 bits*/
->  #define AD7616_RANGE_CH_MSK(ch)		(0b11 << (((ch) & 0b11) * 2))
->  #define AD7616_RANGE_CH_MODE(ch, mode)	((mode) << ((((ch) & 0b11)) * 2))
-> +
-> +#define AD7606_CONFIGURATION_REGISTER	0x02
-> +#define AD7606_SINGLE_DOUT		0x0
-> +
-> +/*
-> + * Range for AD7606B channels are stored in registers starting with addr=
-ess 0x3.
-> + * Each register stores range for 2 channels(4 bits per channel).
-> + */
-> +#define AD7606_RANGE_CH_MSK(ch)		(GENMASK(3, 0) << (4 * ((ch) & 0x1)))
-> +#define AD7606_RANGE_CH_MODE(ch, mode)	\
-> +	((GENMASK(3, 0) & mode) << (4 * ((ch) & 0x1)))
-> +#define AD7606_RANGE_CH_ADDR(ch)	(0x03 + ((ch) >> 1))
-> +#define AD7606_OS_MODE			0x08
-> +
->  static const struct iio_chan_spec ad7616_sw_channels[] =3D {
->  	IIO_CHAN_SOFT_TIMESTAMP(16),
->  	AD7616_CHANNEL(0),
-> @@ -51,6 +65,22 @@ static const struct iio_chan_spec ad7616_sw_channels[]=
- =3D {
->  	AD7616_CHANNEL(15),
->  };
-> =20
-> +static const struct iio_chan_spec ad7606B_sw_channels[] =3D {
-> +	IIO_CHAN_SOFT_TIMESTAMP(8),
-> +	AD7616_CHANNEL(0),
-> +	AD7616_CHANNEL(1),
-> +	AD7616_CHANNEL(2),
-> +	AD7616_CHANNEL(3),
-> +	AD7616_CHANNEL(4),
-> +	AD7616_CHANNEL(5),
-> +	AD7616_CHANNEL(6),
-> +	AD7616_CHANNEL(7),
-> +};
-> +
-> +static const unsigned int ad7606B_oversampling_avail[9] =3D {
-> +	1, 2, 4, 8, 16, 32, 64, 128, 256
-> +};
-> +
->  static u16 ad7616_spi_rd_wr_cmd(int addr, char isWriteOp)
->  {
->  	/*
-> @@ -60,6 +90,16 @@ static u16 ad7616_spi_rd_wr_cmd(int addr, char isWrite=
-Op)
->  	return ((addr & 0x7F) << 1) | ((isWriteOp & 0x1) << 7);
->  }
-> =20
-> +static u16 ad7606B_spi_rd_wr_cmd(int addr, char isWriteOp)
-> +{
-> +	/*
-> +	 * The address of register consists of one bit which
-> +	 * specifies a read command placed bit 6, followed by
-> +	 * 6 bits of address.
-> +	 */
-> +	return (addr & 0x3F) | (((~isWriteOp) & 0x1) << 6);
-> +}
-> +
->  static int ad7606_spi_read_block(struct device *dev,
->  				 int count, void *buf)
->  {
-> @@ -169,6 +209,23 @@ static int ad7616_write_os_sw(struct iio_dev *indio_=
-dev, int val)
->  				     AD7616_OS_MASK, val << 2);
->  }
-> =20
-> +static int ad7606_write_scale_sw(struct iio_dev *indio_dev, int ch, int =
-val)
-> +{
-> +	struct ad7606_state *st =3D iio_priv(indio_dev);
-> +
-> +	return ad7606_spi_write_mask(st,
-> +				     AD7606_RANGE_CH_ADDR(ch),
-> +				     AD7606_RANGE_CH_MSK(ch),
-> +				     AD7606_RANGE_CH_MODE(ch, val));
-> +}
-> +
-> +static int ad7606_write_os_sw(struct iio_dev *indio_dev, int val)
-> +{
-> +	struct ad7606_state *st =3D iio_priv(indio_dev);
-> +
-> +	return ad7606_spi_reg_write(st, AD7606_OS_MODE, val);
-> +}
-> +
->  static int ad7616_sw_mode_config(struct iio_dev *indio_dev)
->  {
->  	struct ad7606_state *st =3D iio_priv(indio_dev);
-> @@ -189,6 +246,42 @@ static int ad7616_sw_mode_config(struct iio_dev *ind=
-io_dev)
->  			      AD7616_BURST_MODE | AD7616_SEQEN_MODE);
->  }
-> =20
-> +static int ad7606B_sw_mode_config(struct iio_dev *indio_dev)
-> +{
-> +	struct ad7606_state *st =3D iio_priv(indio_dev);
-> +	unsigned long os[3] =3D {1};
-> +
-> +	/*
-> +	 * Software mode is enabled when all three oversampling
-> +	 * pins are set to high. If oversampling gpios are defined
-> +	 * in the device tree, then they need to be set to high,
-> +	 * otherwise, they must be hardwired to VDD
-> +	 */
-> +	if (st->gpio_os) {
-> +		gpiod_set_array_value(ARRAY_SIZE(os),
-> +				      st->gpio_os->desc, st->gpio_os->info, os);
-> +	}
-> +	/* OS of 128 and 256 are available only in software mode */
-> +	st->oversampling_avail =3D ad7606B_oversampling_avail;
-> +	st->num_os_ratios =3D ARRAY_SIZE(ad7606B_oversampling_avail);
-> +
-> +	st->write_scale =3D ad7606_write_scale_sw;
-> +	st->write_os =3D &ad7606_write_os_sw;
-> +
-> +	/* Configure device spi to output on a single channel */
-> +	st->bops->reg_write(st,
-> +			    AD7606_CONFIGURATION_REGISTER,
-> +			    AD7606_SINGLE_DOUT);
-> +
-> +	/*
-> +	 * Scale can be configured individually for each channel
-> +	 * in software mode.
-> +	 */
-> +	indio_dev->channels =3D ad7606B_sw_channels;
-> +
-> +	return 0;
-> +}
-> +
->  static const struct ad7606_bus_ops ad7606_spi_bops =3D {
->  	.read_block =3D ad7606_spi_read_block,
->  };
-> @@ -202,6 +295,15 @@ static const struct ad7606_bus_ops ad7616_spi_bops =
-=3D {
->  	.sw_mode_config =3D ad7616_sw_mode_config,
->  };
-> =20
-> +static const struct ad7606_bus_ops ad7606B_spi_bops =3D {
-> +	.read_block =3D ad7606_spi_read_block,
-> +	.reg_read =3D ad7606_spi_reg_read,
-> +	.reg_write =3D ad7606_spi_reg_write,
-> +	.write_mask =3D ad7606_spi_write_mask,
-> +	.rd_wr_cmd =3D ad7606B_spi_rd_wr_cmd,
-> +	.sw_mode_config =3D ad7606B_sw_mode_config,
-> +};
-> +
->  static int ad7606_spi_probe(struct spi_device *spi)
->  {
->  	const struct spi_device_id *id =3D spi_get_device_id(spi);
-> @@ -211,6 +313,9 @@ static int ad7606_spi_probe(struct spi_device *spi)
->  	case ID_AD7616:
->  		bops =3D &ad7616_spi_bops;
->  		break;
-> +	case ID_AD7606B:
-> +		bops =3D &ad7606B_spi_bops;
-> +		break;
->  	default:
->  		bops =3D &ad7606_spi_bops;
->  		break;
-> @@ -226,6 +331,7 @@ static const struct spi_device_id ad7606_id_table[] =
-=3D {
->  	{ "ad7606-4", ID_AD7606_4 },
->  	{ "ad7606-6", ID_AD7606_6 },
->  	{ "ad7606-8", ID_AD7606_8 },
-> +	{ "ad7606b",  ID_AD7606B },
->  	{ "ad7616",   ID_AD7616 },
->  	{}
->  };
-> @@ -236,6 +342,7 @@ static const struct of_device_id ad7606_of_match[] =
-=3D {
->  	{ .compatible =3D "adi,ad7606-4" },
->  	{ .compatible =3D "adi,ad7606-6" },
->  	{ .compatible =3D "adi,ad7606-8" },
-> +	{ .compatible =3D "adi,ad7606b" },
->  	{ .compatible =3D "adi,ad7616" },
->  	{ },
->  };
+diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
+index ab349d2..9ce58f2 100644
+--- a/arch/mips/kernel/setup.c
++++ b/arch/mips/kernel/setup.c
+@@ -725,7 +725,10 @@ static void __init arch_mem_init(char **cmdline_p)
+ 	 * CONFIG_CMDLINE ourselves below & don't want to duplicate its
+ 	 * content because repeating arguments can be problematic.
+ 	 */
+-	strlcpy(boot_command_line, " ", COMMAND_LINE_SIZE);
++	if (USE_DTB_CMDLINE)
++		strlcpy(boot_command_line, arcs_cmdline, COMMAND_LINE_SIZE);
++	else
++		strlcpy(boot_command_line, " ", COMMAND_LINE_SIZE);
+ 
+ 	/* call board setup routine */
+ 	plat_mem_setup();
+@@ -753,9 +756,10 @@ static void __init arch_mem_init(char **cmdline_p)
+ #if defined(CONFIG_CMDLINE_BOOL) && defined(CONFIG_CMDLINE_OVERRIDE)
+ 	strlcpy(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
+ #else
+-	if ((USE_PROM_CMDLINE && arcs_cmdline[0]) ||
+-	    (USE_DTB_CMDLINE && !boot_command_line[0]))
++	if (USE_PROM_CMDLINE)
+ 		strlcpy(boot_command_line, arcs_cmdline, COMMAND_LINE_SIZE);
++	else if (!strcmp(boot_command_line, " "))
++		boot_command_line[0] = '\0';
+ 
+ 	if (EXTEND_WITH_PROM && arcs_cmdline[0]) {
+ 		if (boot_command_line[0])
+@@ -764,7 +768,7 @@ static void __init arch_mem_init(char **cmdline_p)
+ 	}
+ 
+ #if defined(CONFIG_CMDLINE_BOOL)
+-	if (builtin_cmdline[0]) {
++	if (builtin_cmdline[0] && strcmp(boot_command_line, builtin_cmdline)) {
+ 		if (boot_command_line[0])
+ 			strlcat(boot_command_line, " ", COMMAND_LINE_SIZE);
+ 		strlcat(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index 9cdf14b..08c25eb 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -1055,8 +1055,13 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
+ 
+ 	/* Retrieve command line */
+ 	p = of_get_flat_dt_prop(node, "bootargs", &l);
+-	if (p != NULL && l > 0)
+-		strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
++	if (p != NULL && l > 0) {
++		if (!of_get_flat_dt_prop(node, "merge-cmdline", NULL))
++			*(char *)data = '\0';
++		if (*(char *)data)
++			strlcat(data, " ", COMMAND_LINE_SIZE);
++		strlcat(data, p, min(l + strlen(data), COMMAND_LINE_SIZE));
++	}
+ 
+ 	/*
+ 	 * CONFIG_CMDLINE is meant to be a default in case nothing else
+-- 
+1.9.1
 
