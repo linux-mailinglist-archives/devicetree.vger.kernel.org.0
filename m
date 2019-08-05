@@ -2,79 +2,216 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A28E58198C
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 14:42:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CEA7C819F5
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 14:48:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726620AbfHEMml (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 08:42:41 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:43124 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726315AbfHEMml (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 08:42:41 -0400
-Received: by mail-lj1-f193.google.com with SMTP id y17so54620050ljk.10;
-        Mon, 05 Aug 2019 05:42:39 -0700 (PDT)
+        id S1726559AbfHEMss (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 08:48:48 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:37571 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726779AbfHEMsr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 08:48:47 -0400
+Received: by mail-wr1-f68.google.com with SMTP id n9so59215443wrr.4
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 05:48:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=oCcvAOHAqO79xgLqFQJG5nX7dFejuUKhdOvFqVtwuaQ=;
+        b=FChwJRHWW3dzV7lekARV8knI19kr3MzoJn8IqdhP2RrgaIya3gGRxFzMMdCQx+/4Et
+         SfeIjcJm4iL1rCJoTTV1Gm7sE9jr2PGwx3XIrr0p4kOTNDGLVeOJmNJg+OolThWDII41
+         2UjZew70luwFIku1SOAptaZ5FVp3z7R/XqZ+6Qdxt7lK6EIot0c/SYpHfPtXpU08dJLe
+         d42SuTPE9omXgun2WNbF6OAoPCq0SYKORw2F+ad8su6uj+VnerLYfGcGnt3fqrPWD4Yl
+         MBZWeoB8EK/5OcFfRKZ2m4h35w6+F+5kXUd7mKHRVgABr4BH0rgCCjFtDSldjpbsTRwt
+         mvOw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=QIJow21qulI378sxhe255cpiCMd56gmlR3Hpa4iMy3M=;
-        b=CqyCGSY3hq6AE4dkrFPoBomjq2822pffvWmLnfwYo3m+6uD30s0pyn3P+0geZYniQ1
-         bte2ylNYjPub5N/4utOunrV2iO/Oh0BQEaDrrhe8ZpjNYdpdFAaSEW/XXjyJ9JKPryvg
-         aMLU50X0LvQzFvZ6wZP8/ZKGOCk+EcB4lL3ya5FpmyB/oIYXBvEpzs8nSsF7eeymRFT3
-         2kK+SIi2WTi4UVe32LbMMulcBeB/GbXEFoKWaBVrR8dxq7KCJ1pRaqtDF3HuqEzizgd3
-         Fjw4gujSOzur5MUDM80wcVhBi5Oi9JUJghaR9vTZs3lUr+qRIcE9lBqCGPDwRY8KxOSA
-         jL6A==
-X-Gm-Message-State: APjAAAVpd2CZDesfRSv8s8rkueZmVSo6g3tm7OaeCnmRaRBqLzOqca0r
-        ow4+FMt3ojzIo1NhuNDOCM1rdY0xfys=
-X-Google-Smtp-Source: APXvYqxPHN7NT4ABbbFUVFxxIIPpGLP/KWFqrEnIzaNd7ZqIBL3Z2UHCZYALX/XjeYllFU93Yj7d7A==
-X-Received: by 2002:a2e:89d0:: with SMTP id c16mr76545659ljk.219.1565008958804;
-        Mon, 05 Aug 2019 05:42:38 -0700 (PDT)
-Received: from xi.terra (c-51f1e055.07-184-6d6c6d4.bbcust.telenor.se. [85.224.241.81])
-        by smtp.gmail.com with ESMTPSA id s7sm17282780lje.95.2019.08.05.05.42.37
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=oCcvAOHAqO79xgLqFQJG5nX7dFejuUKhdOvFqVtwuaQ=;
+        b=Doo0ZQiyJvumgBJ3Mipj4YZvvPAmr8ISyrlXcNY/5bCfIjHrpaFbcEfkFOpH+4CGyt
+         +E+sHcXUQV9dEYd+WUUyFX17mf8MTTtSxCjyL+FVOGD9v4cJuVrSJIH0ttYqHv73Wma6
+         JpFeoiKKF7X8c081P60X3QFydI08uH+zDrch7hlqTD2XFS6IC2eBpj0Ct0+I0LmovKxG
+         QhdLby4PdQYcvsm22i5j0jzyxWV2KvFZyTWtVYWkrCi7vTdz9d5jenIH7EjX8NJG5By1
+         SbxZqVANCxzW7K44EHpXjcPYzvGhdWH5eStPsXuDOtXQXWEVgZcnAYzY0VD8LHCBLLAf
+         UNFA==
+X-Gm-Message-State: APjAAAXEszBv8ro40uZuinmNwhMcyVSJqytleA3h+U52d9k4Jjzfj/BJ
+        tgZO5CW4IfW+HifM/cc+moWqsw==
+X-Google-Smtp-Source: APXvYqwBfUtY4HHqJanim3CfED7337YIudrlcue/iSf8ew+PnhRdLMvdK0/Bpmpr1FNIz44UJYNDZg==
+X-Received: by 2002:a5d:52c5:: with SMTP id r5mr15344303wrv.146.1565009324012;
+        Mon, 05 Aug 2019 05:48:44 -0700 (PDT)
+Received: from [10.1.4.98] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id r5sm91425958wmh.35.2019.08.05.05.48.43
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 05 Aug 2019 05:42:38 -0700 (PDT)
-Received: from johan by xi.terra with local (Exim 4.92)
-        (envelope-from <johan@kernel.org>)
-        id 1hucJw-0006V4-T1; Mon, 05 Aug 2019 14:42:36 +0200
-Date:   Mon, 5 Aug 2019 14:42:36 +0200
-From:   Johan Hovold <johan@kernel.org>
-To:     Lars Poeschel <poeschel@lemonage.de>
-Cc:     devicetree@vger.kernel.org, Samuel Ortiz <sameo@linux.intel.com>,
-        "open list:NFC SUBSYSTEM" <linux-wireless@vger.kernel.org>,
-        open list <linux-kernel@vger.kernel.org>,
-        Johan Hovold <johan@kernel.org>, netdev@vger.kernel.org
-Subject: Re: [PING 2] [PATCH v5 1/7] nfc: pn533: i2c: "pn532" as dt
- compatible string
-Message-ID: <20190805124236.GG3574@localhost>
-References: <20190111161812.26325-1-poeschel@lemonage.de>
- <20190228104801.GA14788@lem-wkst-02.lemonage>
- <20190403094735.GA19351@lem-wkst-02.lemonage>
+        Mon, 05 Aug 2019 05:48:43 -0700 (PDT)
+Subject: Re: [PATCH v2 4/6] arm64: dts: meson: sei510: Add minimal thermal
+ zone
+To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Cc:     daniel.lezcano@linaro.org, khilman@baylibre.com,
+        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-pm@vger.kernel.org
+References: <20190731153529.30159-1-glaroque@baylibre.com>
+ <20190731153529.30159-5-glaroque@baylibre.com>
+ <CAFBinCD-DUEjPgfUEJmHpPjw1ShZy7nemaFBKANmM5M42XBG4Q@mail.gmail.com>
+From:   guillaume La Roque <glaroque@baylibre.com>
+Message-ID: <805dc9fd-1c1f-a23a-27a7-d91908a95a13@baylibre.com>
+Date:   Mon, 5 Aug 2019 14:48:42 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190403094735.GA19351@lem-wkst-02.lemonage>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+In-Reply-To: <CAFBinCD-DUEjPgfUEJmHpPjw1ShZy7nemaFBKANmM5M42XBG4Q@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+Content-Language: en-US
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Apr 03, 2019 at 11:47:35AM +0200, Lars Poeschel wrote:
-> Second Ping.
+Hi Martin,
 
-> On Thu, Feb 28, 2019 at 11:48:01AM +0100, Lars Poeschel wrote:
-> > A gentle ping on this whole patch series.
 
-> > On Fri, Jan 11, 2019 at 05:18:04PM +0100, Lars Poeschel wrote:
-> > > It is favourable to have one unified compatible string for devices that
-> > > have multiple interfaces. So this adds simply "pn532" as the devicetree
-> > > binding compatible string and makes a note that the old ones are
-> > > deprecated.
-> > > 
-> > > Cc: Johan Hovold <johan@kernel.org>
-> > > Signed-off-by: Lars Poeschel <poeschel@lemonage.de>
+On 8/3/19 8:29 PM, Martin Blumenstingl wrote:
+> Hi Guillaume,
+>
+> On Wed, Jul 31, 2019 at 5:36 PM Guillaume La Roque
+> <glaroque@baylibre.com> wrote:
+>> Add minimal thermal zone for DDR and CPU sensor
+> so high DDR (controller?) temperatures will throttle Mali and high PLL
+> temperatures will throttle the CPU?
+> to get things started I'm fine with this, but I think it should be
+> mentioned here
 
-You may want to resend this series to netdev now. David Miller will be
-picking up NFC patches directly from there.
+i will add in commit description
 
-Johan
+>
+>> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
+>> ---
+>>  .../boot/dts/amlogic/meson-g12a-sei510.dts    | 56 +++++++++++++++++++
+>>  1 file changed, 56 insertions(+)
+>>
+>> diff --git a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+>> index 979449968a5f..2c16a2cba0a3 100644
+>> --- a/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+>> +++ b/arch/arm64/boot/dts/amlogic/meson-g12a-sei510.dts
+>> @@ -10,6 +10,7 @@
+>>  #include <dt-bindings/input/input.h>
+>>  #include <dt-bindings/gpio/meson-g12a-gpio.h>
+>>  #include <dt-bindings/sound/meson-g12a-tohdmitx.h>
+>> +#include <dt-bindings/thermal/thermal.h>
+>>
+>>  / {
+>>         compatible = "seirobotics,sei510", "amlogic,g12a";
+>> @@ -33,6 +34,53 @@
+>>                 ethernet0 = &ethmac;
+>>         };
+>>
+>> +       thermal-zones {
+>> +               cpu-thermal {
+>> +                       polling-delay = <1000>;
+>> +                       polling-delay-passive = <100>;
+>> +                       thermal-sensors = <&cpu_temp>;
+>> +
+>> +                       trips {
+>> +                               cpu_critical: cpu-critical {
+>> +                                       temperature = <110000>; /* millicelsius */
+>> +                                       hysteresis = <2000>; /* millicelsius */
+>> +                                       type = "critical";
+>> +                               };
+>> +                       };
+>> +
+>> +                       cooling-maps {
+>> +                               map {
+>> +                                       trip = <&cpu_critical>;
+>> +                                       cooling-device = <&cpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +                                                        <&cpu1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +                                                        <&cpu2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+>> +                                                        <&cpu3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> +                               };
+>> +                       };
+>> +               };
+>> +
+>> +               ddr-thermal {
+>> +                       polling-delay = <1000>;
+>> +                       polling-delay-passive = <100>;
+>> +                       thermal-sensors = <&ddr_temp>;
+>> +
+>> +                       trips {
+>> +                               ddr_critical: ddr-critical {
+>> +                                       temperature = <110000>; /* millicelsius */
+>> +                                       hysteresis = <2000>; /* millicelsius */
+>> +                                       type = "critical";
+>> +                               };
+>> +                       };
+>> +
+>> +                       cooling-maps {
+>> +                               map {
+>> +                                       trip = <&ddr_critical>;
+>> +                                       cooling-device = <&mali THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+>> +                               };
+>> +                       };
+>> +               };
+>> +       };
+>> +
+>>         mono_dac: audio-codec-0 {
+>>                 compatible = "maxim,max98357a";
+>>                 #sound-dai-cells = <0>;
+>> @@ -321,6 +369,7 @@
+>>         operating-points-v2 = <&cpu_opp_table>;
+>>         clocks = <&clkc CLKID_CPU_CLK>;
+>>         clock-latency = <50000>;
+>> +       #cooling-cells = <2>;
+>>  };
+>>
+>>  &cpu1 {
+>> @@ -328,6 +377,7 @@
+>>         operating-points-v2 = <&cpu_opp_table>;
+>>         clocks = <&clkc CLKID_CPU_CLK>;
+>>         clock-latency = <50000>;
+>> +       #cooling-cells = <2>;
+>>  };
+>>
+>>  &cpu2 {
+>> @@ -335,6 +385,7 @@
+>>         operating-points-v2 = <&cpu_opp_table>;
+>>         clocks = <&clkc CLKID_CPU_CLK>;
+>>         clock-latency = <50000>;
+>> +       #cooling-cells = <2>;
+>>  };
+>>
+>>  &cpu3 {
+>> @@ -342,6 +393,7 @@
+>>         operating-points-v2 = <&cpu_opp_table>;
+>>         clocks = <&clkc CLKID_CPU_CLK>;
+>>         clock-latency = <50000>;
+>> +       #cooling-cells = <2>;
+>>  };
+>>
+>>  &cvbs_vdac_port {
+>> @@ -368,6 +420,10 @@
+>>         status = "okay";
+>>  };
+>>
+>> +&mali {
+>> +       #cooling-cells = <2>;
+>> +};
+> is there something device-specific in this patch? I'm wondering
+> whether we can move all of this go g12a.dtsi to simplify maintenance
+> in the future
+
+this is depending of each board. actually it's same on all
+
+but if a new one have a fan this value should be different or not.
+
+
+>
+>
+> Martin
+
+
+thanks,
+
+Guillaume
+
