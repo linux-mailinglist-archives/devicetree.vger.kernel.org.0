@@ -2,57 +2,56 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 57C26818B4
+	by mail.lfdr.de (Postfix) with ESMTP id 5FAF0818B5
 	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 14:03:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727349AbfHEMD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1727357AbfHEMD3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Mon, 5 Aug 2019 08:03:29 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:35711 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728455AbfHEMD2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 08:03:28 -0400
-Received: by mail-wr1-f67.google.com with SMTP id y4so84160931wrm.2
+Received: from mail-wr1-f48.google.com ([209.85.221.48]:44311 "EHLO
+        mail-wr1-f48.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728591AbfHEMD3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 08:03:29 -0400
+Received: by mail-wr1-f48.google.com with SMTP id p17so84137165wrf.11
         for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 05:03:27 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=Y9sKG2U7XCHY9N45/XGVAYDqTVfRZ5wagMI5lIUYmMc=;
-        b=epA4UV4EgezeHzNn4PeRLlLbsYa9NR4F8yaH6ofs3Mt0Dx9Uj0VwZ4HJsJbeX/DYMH
-         /uGazRtMLTcGZCP2gbV2HlksCG1/4+2EE2pVZLjMHhI9vKmTq1bIJQCIY90nZlBX4+ZQ
-         0fpuroWX8/inOD0X9y6YJ5/1f016EBHq1QIaM/zN47aA6Z6aUgA/VyyUysXHtdHIV7KO
-         WlxUcZ9CCGPSizt8MsubXYf36zS5793erBOl86Rv9WTjnr8jVcqvhlevq/1/hqedanHT
-         l2Nfgo093Zx43kH4YgGnQktNGrXhym2xGajx9nPyvn0GScBebSryn6ISxu5HsDHvRcw+
-         oLNQ==
+        bh=Wq+NOUXuHn9W915kfej1QDLl0G8Catrb+/a+UkGjnNI=;
+        b=EhN2WpYa+7ri803ml/bEjkzN1nY8BeU/AY+MMoupJpUIq2u1p69+yVQ7br/t7mH40P
+         lp9VfG2N8pWv83c6lN9S33D5h3Mg/GgGrJTxktOOpRJc4Qs00Zm87PR/db7y2yW3eAM6
+         uqOo8k7bHGd3mbezV1Dwr1KXDr0iOfekOTUrcq5m6jm0CTIKePQkNlLJNUaHWfovrAew
+         +b6HUE0pNdRqO0/lmBNUKx++21+RPI0IeTwUD1yG1RRAViSfofe/w7WYXAKG/1Z/+xUG
+         K4otNssxD3TWTfLz/MTLFN14SC5nJN6LkuPwF16Sd6vwDrXPfpogEAxW9ueLCgKxJYzS
+         XhEg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=Y9sKG2U7XCHY9N45/XGVAYDqTVfRZ5wagMI5lIUYmMc=;
-        b=iGm1EYC0v+wEWS+5G4Om7Rp+gaDN1ngj+2b8u3Xqvvr/9mVRqxWC4+sNfbUloKhODS
-         JxAibrQ/Ml7sAYyPd1PnPvK00PW+nH5frZpqOlokH7xGQuW58Ge4GhLpCd/AuqeyCIv4
-         8J9qFibpSk83ZIISR5aWdZjwyK4fQNUKLkWGU2BnaxU1cVZPHBBsNOYmyrqsaYwVPxDc
-         HYM8lpYk4vv9s0uzcoUUr6nNq3G2QZYYfqWVW8BAkU+7msTHEfdwJ1qoY8qHPbXoPOHw
-         SIcIiWS2YcB8lzY5HqTMI257CmsY8gCijNG0i7C6nr2Ls02N8fgoMlybZWaCCl5MciLA
-         +Tyw==
-X-Gm-Message-State: APjAAAVy8bpjuZIAElt5174R+r64B0cz2h1lq/FU1G6VGfi2XE9/7lKr
-        HnbNN/26YTvAgSM8ckMLeSZvow==
-X-Google-Smtp-Source: APXvYqw3OD05u4AblrcjmCcYW/Bk5y/c3rSjEQEnj4ecStOu5l9vedoHEuUMqP9qe4bkr2QEfRACgA==
-X-Received: by 2002:adf:dd51:: with SMTP id u17mr10783185wrm.218.1565006606374;
-        Mon, 05 Aug 2019 05:03:26 -0700 (PDT)
+        bh=Wq+NOUXuHn9W915kfej1QDLl0G8Catrb+/a+UkGjnNI=;
+        b=YFrDL6WLeBeADofF0uBTTaTG0jIAWe0GIfthTMLSW35ttR6iamDVzmxGY17DpdtqSJ
+         92U79+Bw2WOQyyN9A2edOgMPOc4wWpbH0J6J/1abOeLVMaQXQkrCeVD2HEcXdPHWv5kL
+         NEAlcAA9NCV15SNvFjbCB1NVI8G6Nchi9p0UHFskuNDAx298Imu8WuTQumJmrJP6Mui4
+         bkjHtrAfvpB5QDEJKqjAV4284e8oBmLsCL8FehDiMaLtGOH6iggAQpI8a1K6IMElaMY4
+         1NOBwwczi3crXjx7za28Ef5a+Ff3DmQrOWxDoTGF0971FDqYT8b1ZZ4g+Kbfd1yEFHDB
+         rN8w==
+X-Gm-Message-State: APjAAAWfc9T0dEKmqVmu2WnYhxo4ypgevr0ol/0SVY6yyWbE4PksHv8X
+        A7LMpS1fMaPM8CuhktSBqfyLN1N+bC2HRw==
+X-Google-Smtp-Source: APXvYqyz2oDf3zNhCGl1fmtqi/15XruskE/NYuyc7ppJN3wS25RsZliVSJ0Q+N3wlY6fZsbAF7WPyA==
+X-Received: by 2002:a5d:4949:: with SMTP id r9mr24455367wrs.289.1565006607077;
+        Mon, 05 Aug 2019 05:03:27 -0700 (PDT)
 Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id x6sm88683668wrt.63.2019.08.05.05.03.25
+        by smtp.gmail.com with ESMTPSA id x6sm88683668wrt.63.2019.08.05.05.03.26
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 05 Aug 2019 05:03:25 -0700 (PDT)
+        Mon, 05 Aug 2019 05:03:26 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     robh+dt@kernel.org
 Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        jassisinghbrar@gmail.com
-Subject: [RFCv2 1/9] dt-bindings: mailbox: meson-mhu: convert to yaml
-Date:   Mon,  5 Aug 2019 14:03:12 +0200
-Message-Id: <20190805120320.32282-2-narmstrong@baylibre.com>
+        linux-amlogic@lists.infradead.org, linux-crypto@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Subject: [RFCv2 2/9] dt-bindings: rng: amlogic,meson-rng: convert to yaml
+Date:   Mon,  5 Aug 2019 14:03:13 +0200
+Message-Id: <20190805120320.32282-3-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
 In-Reply-To: <20190805120320.32282-1-narmstrong@baylibre.com>
 References: <20190805120320.32282-1-narmstrong@baylibre.com>
@@ -64,115 +63,86 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 Now that we have the DT validation in place, let's convert the device tree
-bindings for the Amlogic MHU controller over to a YAML schemas.
+bindings for the Amlogic Random Number generator over to a YAML schemas.
 
 Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 ---
- .../mailbox/amlogic,meson-gxbb-mhu.yaml       | 53 +++++++++++++++++++
- .../devicetree/bindings/mailbox/meson-mhu.txt | 34 ------------
- 2 files changed, 53 insertions(+), 34 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
- delete mode 100644 Documentation/devicetree/bindings/mailbox/meson-mhu.txt
+ .../bindings/rng/amlogic,meson-rng.txt        | 21 -----------
+ .../bindings/rng/amlogic,meson-rng.yaml       | 37 +++++++++++++++++++
+ 2 files changed, 37 insertions(+), 21 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
+ create mode 100644 Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
 
-diff --git a/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
+diff --git a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
+deleted file mode 100644
+index 4d403645ac9b..000000000000
+--- a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.txt
++++ /dev/null
+@@ -1,21 +0,0 @@
+-Amlogic Meson Random number generator
+-=====================================
+-
+-Required properties:
+-
+-- compatible : should be "amlogic,meson-rng"
+-- reg : Specifies base physical address and size of the registers.
+-
+-Optional properties:
+-
+-- clocks : phandle to the following named clocks
+-- clock-names: Name of core clock, must be "core"
+-
+-Example:
+-
+-rng {
+-	compatible = "amlogic,meson-rng";
+-	reg = <0x0 0xc8834000 0x0 0x4>;
+-	clocks = <&clkc CLKID_RNG0>;
+-	clock-names = "core";
+-};
+diff --git a/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
 new file mode 100644
-index 000000000000..2536a0082cff
+index 000000000000..a9ff3cb35c5e
 --- /dev/null
-+++ b/Documentation/devicetree/bindings/mailbox/amlogic,meson-gxbb-mhu.yaml
-@@ -0,0 +1,53 @@
++++ b/Documentation/devicetree/bindings/rng/amlogic,meson-rng.yaml
+@@ -0,0 +1,37 @@
 +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 +# Copyright 2019 BayLibre, SAS
 +%YAML 1.2
 +---
-+$id: "http://devicetree.org/schemas/mailbox/amlogic,meson-gxbb-mhu.yaml#"
++$id: "http://devicetree.org/schemas/rng/amlogic,meson-rng.yaml#"
 +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 +
-+title: Amlogic Meson Message-Handling-Unit Controller
++title: Amlogic Meson Random number generator
 +
 +maintainers:
 +  - Neil Armstrong <narmstrong@baylibre.com>
 +
-+description: |
-+  The Amlogic's Meson SoCs Message-Handling-Unit (MHU) is a mailbox controller
-+  that has 3 independent channels/links to communicate with remote processor(s).
-+  MHU links are hardwired on a platform. A link raises interrupt for any
-+  received data. However, there is no specified way of knowing if the sent
-+  data has been read by the remote. This driver assumes the sender polls
-+  STAT register and the remote clears it after having read the data.
-+
 +properties:
 +  compatible:
 +    enum:
-+      - amlogic,meson-gxbb-mhu
++      - amlogic,meson-rng
 +
 +  reg:
 +    maxItems: 1
 +
-+  interrupts:
-+    minItems: 3
-+    maxItems: 3
-+    description:
-+      Contains the interrupt information corresponding to each of the 3 links
-+      of MHU.
++  clocks:
++    maxItems: 1
 +
-+  "#mbox-cells":
-+    const: 1
++  clock-names:
++    items:
++      - const: core
 +
 +required:
 +  - compatible
 +  - reg
-+  - interrupts
-+  - "#mbox-cells"
 +
 +examples:
 +  - |
-+    mailbox@c883c404 {
-+          compatible = "amlogic,meson-gxbb-mhu";
-+          reg = <0xc883c404 0x4c>;
-+          interrupts = <208>, <209>, <210>;
-+          #mbox-cells = <1>;
++    rng@c8834000 {
++          compatible = "amlogic,meson-rng";
++          reg = <0xc8834000 0x4>;
 +    };
-+
-diff --git a/Documentation/devicetree/bindings/mailbox/meson-mhu.txt b/Documentation/devicetree/bindings/mailbox/meson-mhu.txt
-deleted file mode 100644
-index a530310772b9..000000000000
---- a/Documentation/devicetree/bindings/mailbox/meson-mhu.txt
-+++ /dev/null
-@@ -1,34 +0,0 @@
--Amlogic Meson MHU Mailbox Driver
--================================
--
--The Amlogic's Meson SoCs Message-Handling-Unit (MHU) is a mailbox controller
--that has 3 independent channels/links to communicate with remote processor(s).
--MHU links are hardwired on a platform. A link raises interrupt for any
--received data. However, there is no specified way of knowing if the sent
--data has been read by the remote. This driver assumes the sender polls
--STAT register and the remote clears it after having read the data.
--
--Mailbox Device Node:
--====================
--
--Required properties:
----------------------
--- compatible:		Shall be "amlogic,meson-gxbb-mhu"
--- reg:			Contains the mailbox register address range (base
--			address and length)
--- #mbox-cells		Shall be 1 - the index of the channel needed.
--- interrupts:		Contains the interrupt information corresponding to
--			each of the 2 links of MHU.
--
--Example:
----------
--
--	mailbox: mailbox@c883c404 {
--		#mbox-cells = <1>;
--		compatible = "amlogic,meson-gxbb-mhu";
--		reg = <0 0xc883c404 0 0x4c>;
--		interrupts = <0 208 IRQ_TYPE_EDGE_RISING>,
--			     <0 209 IRQ_TYPE_EDGE_RISING>,
--			     <0 210 IRQ_TYPE_EDGE_RISING>;
--		#mbox-cells = <1>;
--	};
 -- 
 2.22.0
 
