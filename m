@@ -2,59 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A76D981751
-	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:46:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E8B508175C
+	for <lists+devicetree@lfdr.de>; Mon,  5 Aug 2019 12:47:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727868AbfHEKqL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 06:46:11 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:35214 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727328AbfHEKqL (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 06:46:11 -0400
-Received: by mail-lj1-f194.google.com with SMTP id x25so78962851ljh.2
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 03:46:09 -0700 (PDT)
+        id S1727739AbfHEKrq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 06:47:46 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:39893 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728395AbfHEKrq (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 06:47:46 -0400
+Received: by mail-lj1-f195.google.com with SMTP id v18so78827565ljh.6
+        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 03:47:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=azjj3TFeiqdmOl8nmyercmf7iB34KF89eZoGG/R6Zs4=;
-        b=gaWYUfwJYyttQBMe2nY+8yFL/8R5jK6AQk8xvuMDqQn5mcexQfU+ZUUBmyu+uJP9FD
-         AmKll1bIV4/biJ6Qu5g1juCqirMX0AA9Y7O0FMduDj8D0GDyQdzizwqMTlzy5Bu9gjWv
-         1HnI+DOVGuN2KsQjDbjg/5PnQh5CXxe8LbU1I1jgmfyS4ER7mB+VkEGz9UWTkkKnvIDb
-         AE8kGu/a+T/WRFmIyQppd735PPaioAy1djy1ixvflToH7U7NTeqAlF3eQ9nOCL1KN0gH
-         0asNpJXWqNkEs/u5hVmU5YZuz2wSW0AKsmclxTy6HUY95ONFEY6k/YlWjvb91w9mQ4xa
-         GrwQ==
+        bh=Y8ev7idhhRdfNKj1s1Ry4AVA7oMVl5Zr3nXpss1zKaI=;
+        b=ciULGFpaKJGyGIn8DOiYc74jQEChvVXjT78X89byv515QioWQ8LKIbfQAuDjjBHX0u
+         2v96i5afuwQhBnrogqn47DxIdQ6IXLNkLuZlMVG4x6a1f5+CocddiYovSrGgDzIeaYl9
+         eh3plobRFsDauaUG3bJ8BELTRTjE8G/gGmjrGwh7GJiYkb3tJLJcGkGeVT1dsHYihhl3
+         GYFXPEWHP48uVedVSlamsufiFTMi4tv93b+CpDlI5z2Hw/Ov2d5mulyYBb78YzfeZOVC
+         J9cIbZmLoNriGN4BVqAx2ZWMRZuB77qLfRD3VaDOLL88RFAs7lNl5JDiiDfL67UkuCtD
+         u1Kw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=azjj3TFeiqdmOl8nmyercmf7iB34KF89eZoGG/R6Zs4=;
-        b=tvyJMR4y/cFp2dq+ZNqMv/kyDXjl3XIkH3mEi+9137nhR8cs/Exzy0UC8FPvLRO3/I
-         wiXaUkWdXBQ6NL7vva8qJ3MhocwcZ2egwTS/GmASBwa9cUn3dVeYNishdmcLhqj/ubDY
-         gNvEqkgau6Lrytk1QzHF9qg3A5S6OdL1zlPfokG3Mn4zkCcZsu9JGbSBeJjeC4s9+sOL
-         /V9WsAZ3RZ5QGR9+5BZ54xD5x5TMwqLcfv4yVxzT2gNqnl9zHrkiFpPdSuuzwDECTZ1N
-         FOnNYXrMSPx1WM/AbglgP+KdfScgqiRbmj5SkxSG5x/rnJfBa3KVYwej86/T/MoNQgYn
-         jUtw==
-X-Gm-Message-State: APjAAAWlMUFIHqYHo3vu7DFcuOhLB8WbKBPkpvQykuqgmCHF/7HfuFeZ
-        DMfIkRnxMtrXpAdDYAZjV/0ceKcMDdaJJvPrMUEgB5hH
-X-Google-Smtp-Source: APXvYqyclUQUuvXpJI3a3I9xyKZ6YIBTCazGIgPNcBnTvtEx+0Gv4bfEuR07MD49TkWuHW7hIeykHmoPhEdmQSSmqjQ=
-X-Received: by 2002:a2e:781a:: with SMTP id t26mr29583690ljc.28.1565001969218;
- Mon, 05 Aug 2019 03:46:09 -0700 (PDT)
+        bh=Y8ev7idhhRdfNKj1s1Ry4AVA7oMVl5Zr3nXpss1zKaI=;
+        b=lVp2Ha9MOdYc1NwPzl4jekLMQOkCYyJ3wbWtAOi4sPee4KCkfa/mDGaBw4GBBz+lOy
+         AGSnGhn66ESZGrmuI/6lcX6YHgcv9zELbUWfNqsBKANKgBvup0I4LuR3AlblzDUdZGdF
+         Yvj5C89tVP0DrK68Ji3+OSZwoSstAp8PNYvDj9sHlFkZrHkzKtTZC5IF937RDLeCTokl
+         Ip5RHJci5Aq01vGqr96nhYygF0Z6mUvIYC2XTMowi540DJGpY+K8kQqs8ZX8DSM6zePS
+         97sPz55pXAqK379DpcedjZXcjOKLAbnB8sXz28v9oh2mAIFOJNISL0wcELH8qDilIq7M
+         lw3Q==
+X-Gm-Message-State: APjAAAXDMN8Tx1YKDzYQAUTMyc/9Os46XchJjG/XLkFXJPiwYmNMsdGY
+        D7q/w5S9Spgrr3fEMfBdUWRbFYOmTzVnP6U/MxEnig==
+X-Google-Smtp-Source: APXvYqwLJr3uamyVrePIy7GYeTGTKZVVFmuCgCeDV0lQp/Tg1tMYwqSStWcsZi8QVF2EtXjzVZWC8D1lN3Mn23V8cVg=
+X-Received: by 2002:a2e:2c14:: with SMTP id s20mr16495379ljs.54.1565002064570;
+ Mon, 05 Aug 2019 03:47:44 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190724081313.12934-1-andrew@aj.id.au> <CACRpkdapypySGPrLgSMSNy1fzkca2BfMUGzf3koFWQZ-M5VOvg@mail.gmail.com>
- <9d0f2b20-e6f6-419c-a866-c4a0dd92aa63@www.fastmail.com> <3691f6cb-2451-43f7-9f00-d5693071ba59@www.fastmail.com>
- <CACPK8XcWK9Gf=pW5ds=3muoXHAWnyYfHcVSVh+anaTigtMO8yA@mail.gmail.com>
-In-Reply-To: <CACPK8XcWK9Gf=pW5ds=3muoXHAWnyYfHcVSVh+anaTigtMO8yA@mail.gmail.com>
+References: <20190724081313.12934-1-andrew@aj.id.au> <20190724081313.12934-3-andrew@aj.id.au>
+In-Reply-To: <20190724081313.12934-3-andrew@aj.id.au>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Mon, 5 Aug 2019 12:45:57 +0200
-Message-ID: <CACRpkdbb9OFnnG6rN0fL-qA7vBsGze23GgOifAHqxhod=0kRpQ@mail.gmail.com>
-Subject: Re: [PATCH 0/3] ARM: dts: aspeed: Deprecate g[45]-style compatibles
-To:     Joel Stanley <joel@jms.id.au>
-Cc:     Andrew Jeffery <andrew@aj.id.au>,
-        linux-aspeed <linux-aspeed@lists.ozlabs.org>,
+Date:   Mon, 5 Aug 2019 12:47:32 +0200
+Message-ID: <CACRpkdYoiWwm7SeXxWgpJcoiRcNV28CDC3F8FVx5my2Q0KSvvA@mail.gmail.com>
+Subject: Re: [PATCH 2/3] pinctrl: aspeed: Document existence of deprecated compatibles
+To:     Andrew Jeffery <andrew@aj.id.au>
+Cc:     linux-aspeed <linux-aspeed@lists.ozlabs.org>,
         Lee Jones <lee.jones@linaro.org>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
+        Joel Stanley <joel@jms.id.au>,
         "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
         <devicetree@vger.kernel.org>,
         Linux ARM <linux-arm-kernel@lists.infradead.org>,
@@ -66,18 +64,14 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 2, 2019 at 8:15 AM Joel Stanley <joel@jms.id.au> wrote:
+On Wed, Jul 24, 2019 at 10:13 AM Andrew Jeffery <andrew@aj.id.au> wrote:
 
-> > Joel, do you mind if Linus takes this series through the pinctrl tree, given
-> > the fix to the devicetrees is patch 1/3?
+> Otherwise they look odd in the face of not being listed in the bindings
+> documents.
 >
-> It depends if you plan more changes to that part of the device tree
-> this merge window :)
->
-> Linus, perhaps the safer option is for me to take 1/3 through my tree
-> and you can take the rest through yours?
+> Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
 
-OK let's proceed like that.
+Patch applied to the pinctrl tree.
 
 Yours,
 Linus Walleij
