@@ -2,115 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1BA8A82E15
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 10:49:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D758482E1D
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 10:52:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732318AbfHFItq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 04:49:46 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:34026 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732206AbfHFItq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 04:49:46 -0400
-Received: by mail-oi1-f194.google.com with SMTP id l12so4809950oil.1;
-        Tue, 06 Aug 2019 01:49:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=JGsM7pwNfNhypZYgQFIcaWofv38d0hmWofEdR0NtNiQ=;
-        b=VRdKBUsli2gnniTOaZA9MP0FqBhcw26ezjeOlaKnbaKbhE/y++NlMOVrJzgRwNdZ46
-         vocUO0h7oSdxt70uruqlX+q/TDxplsHaD+z2qvWzDqVOoZE3k1nbsDGDtpzSSWrG2YBQ
-         PS/AnrL1IpvxOMTy//nQwCcHlB3Bo+RI+RgqEZXT/wI1ZrBgAyIse3B/G5ByRAMMFQJE
-         2WIO2UQgPaj/xvvH/q9ebG9+k7qqcS5QXm9vVhQ6zkteA5p336kv7keNGLEy7I64Xdps
-         v59FR3kEgn02KHIkB7kbT5P95Brtj+/c1wEimE915WNaBq3eIKKvtWgsAsbGAknJabGC
-         CxkA==
-X-Gm-Message-State: APjAAAXiL1HnULo9hTWJLJUPz3LDVe8+iKnkmubw+qQvg2Q1j4qOB48M
-        ciQgbyHMIZ4rmsAqUeaRhbIZpJ413vLBLWbjq9M=
-X-Google-Smtp-Source: APXvYqwuOQUfUJbqvnFx04K816C3jKe2zq5l/JtyJF2mmCR5Qu0WkmmFcibhWo6DNxgmpO/XSWdCMjmFXggotgQEEmM=
-X-Received: by 2002:aca:338a:: with SMTP id z132mr1059577oiz.54.1565081385290;
- Tue, 06 Aug 2019 01:49:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <1562576868-8124-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1562576868-8124-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <CACRpkdZqTaA04bja16xh338JiwoSqFpH_2rV95FaF7YhawQzMg@mail.gmail.com> <TYAPR01MB4544031C6A027A3690FFFB77D8DD0@TYAPR01MB4544.jpnprd01.prod.outlook.com>
-In-Reply-To: <TYAPR01MB4544031C6A027A3690FFFB77D8DD0@TYAPR01MB4544.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 6 Aug 2019 10:49:33 +0200
-Message-ID: <CAMuHMdUqDsMA_uZ+Sen15kgue8DoQee0vd4qmUXmFX+cRT11EA@mail.gmail.com>
-Subject: Re: [PATCH RFC 2/7] pinctrl: sh-pfc: remove incomplete flag "cfg->type"
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "linux-pwm@vger.kernel.org" <linux-pwm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1732172AbfHFIwE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 04:52:04 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:36324 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728998AbfHFIwE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 04:52:04 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C1AD82002AF;
+        Tue,  6 Aug 2019 10:52:02 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 5798E200043;
+        Tue,  6 Aug 2019 10:51:58 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id A1B4F40293;
+        Tue,  6 Aug 2019 16:51:52 +0800 (SGT)
+From:   Chuanhua Han <chuanhua.han@nxp.com>
+To:     shawnguo@kernel.org, leoyang.li@nxp.com, robh+dt@kernel.org,
+        mark.rutland@arm.com
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, Chuanhua Han <chuanhua.han@nxp.com>
+Subject: [PATCH 1/4] arm64: dts: ls1088a: Fix incorrect I2C clock divider
+Date:   Tue,  6 Aug 2019 16:42:20 +0800
+Message-Id: <20190806084223.23543-1-chuanhua.han@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+Ls1088a platform, the i2c input clock is actually platform pll CLK / 8
+(this is the hardware connection), other clock divider can not get the
+correct i2c clock, resulting in the output of SCL pin clock is not
+accurate.
 
-On Mon, Jul 29, 2019 at 7:16 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> > From: Linus Walleij, Sent: Monday, July 29, 2019 8:02 AM
-> >
-> > On Mon, Jul 8, 2019 at 11:08 AM Yoshihiro Shimoda
-> > <yoshihiro.shimoda.uh@renesas.com> wrote:
-> >
-> > > The old commit c58d9c1b26e3 ("sh-pfc: Implement generic pinconf
-> > > support") broke the cfg->type flag to PINMUX_TYPE_FUNCTION because
-> > > sh_pfc_pinconf_set() didn't call sh_pfc_reconfig_pin().
-> > > Now if we fix the cfg->type condition, it gets worse because:
-> > >  - Some drivers might be deferred so that .set_mux() will be called
-> > >    multiple times.
-> > >  - In such the case, the sh-pfc driver returns -EBUSY even if
-> > >    the group is the same, and then that driver fails to probe.
-> > >
-> > > Since the pinctrl subsystem already has such conditions according
-> > > to @set_mux and @gpio_request_enable, this patch just remove
-> > > the incomplete flag from sh-pfc/pinctrl.c.
-> > >
-> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> >
-> > This looks like it should have a Fixes: tag as well.
->
-> I got it. The Fixes tag should be:
->
-> Fixes: c58d9c1b26e3 ("sh-pfc: Implement generic pinconf support")
+Signed-off-by: Chuanhua Han <chuanhua.han@nxp.com>
+---
+ arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
-
-> > Geert will decide what to do with this.
->
-> I got it.
->
-> > Can all the pinctrl patches be applied independently of the other
-> > changes so Geert can apply and send me those patches in his pull
-> > requests?
->
-> The pinctrl patches (1/7 through 3/7) can be applied on next-20190726
-> so I think Geert can apply these patches into his repo.
-
-Looks mostly OK to me (I have some comments on 3/7).
-I'll apply it to my local tree, so it will receive some testing on all
-boards I have.
-
-Thanks!
-
-Gr{oetje,eeting}s,
-
-                        Geert
-
+diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+index 20f5ebd..30b760e 100644
+--- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
++++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+@@ -324,7 +324,7 @@
+ 			#size-cells = <0>;
+ 			reg = <0x0 0x2000000 0x0 0x10000>;
+ 			interrupts = <0 34 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&clockgen 4 3>;
++			clocks = <&clockgen 4 7>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -334,7 +334,7 @@
+ 			#size-cells = <0>;
+ 			reg = <0x0 0x2010000 0x0 0x10000>;
+ 			interrupts = <0 34 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&clockgen 4 3>;
++			clocks = <&clockgen 4 7>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -344,7 +344,7 @@
+ 			#size-cells = <0>;
+ 			reg = <0x0 0x2020000 0x0 0x10000>;
+ 			interrupts = <0 35 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&clockgen 4 3>;
++			clocks = <&clockgen 4 7>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -354,7 +354,7 @@
+ 			#size-cells = <0>;
+ 			reg = <0x0 0x2030000 0x0 0x10000>;
+ 			interrupts = <0 35 IRQ_TYPE_LEVEL_HIGH>;
+-			clocks = <&clockgen 4 3>;
++			clocks = <&clockgen 4 7>;
+ 			status = "disabled";
+ 		};
+ 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.9.5
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
