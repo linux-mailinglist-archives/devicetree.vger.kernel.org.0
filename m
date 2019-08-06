@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DADB082DA9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 10:25:24 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6809C82DAE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 10:26:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731789AbfHFIZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 04:25:24 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:36613 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730068AbfHFIZY (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 04:25:24 -0400
-Received: by mail-wm1-f67.google.com with SMTP id g67so71414343wme.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 01:25:22 -0700 (PDT)
+        id S1730222AbfHFI0K (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 04:26:10 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:39253 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730068AbfHFI0K (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 04:26:10 -0400
+Received: by mail-wm1-f68.google.com with SMTP id u25so65163647wmc.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 01:26:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=from:to:cc:subject:in-reply-to:references:date:message-id
          :mime-version;
-        bh=dT2e75Ue1aWRtiwNDM0T+ofIOUOl1O1/yE9yhFmIPbw=;
-        b=rWKS3KxOQXyGozcmFeuIT/HZgK+Isl8zvhcK+tQok47HDXZ5gQjJAsQ/Ena2gzB+mY
-         RYNd2boWxJfdE2lHJc1ytXEKm2Y5Zg7J0DBBvYlTrQNIK3uWXs8ndch47RYKtHebS95b
-         eqRuxTzTXBUDDato1/ErdymIUyCSuEukLcA6OFbpWwpSs06RbbXYOErSAHvOjeU2zmgz
-         g1L7zbIVg2+ri7uxNOW6G7WoV4xXIHl0WJfTA/zsvmEl8aAj+l0wLS/5ZTClMOPPplNq
-         uO7I+J95K9VPrCZEdzpPNZ8VFvFgcK5Pksi8KHXoO3m843T/V6Dww+CzNzuWr2LdJfe/
-         ZA6g==
+        bh=KH+v5LnQRlyduGM8b58Lyxa2U4G7pLkyKvhcbXDXdW8=;
+        b=rFoP/2nyqEqnJmRE2Dyp+k9hDa8vpaJT00btn6o/ex1cZ1Zr8zuTV0WC73GVg+zQbl
+         UkjulKvZg5qChzcBvO30LasRSgchUUcu4NqNTG0H49IpTPRXTXk9i7L6tMTMKRz28CBF
+         HVjItjKReBotktlrh00D+84H4FXrpcxKIF6LwxrB0lK0E4Eo4ZC+epasRVt+3xt/K2vu
+         Hy9XF273DKm4oJ8vQ4dTzzK3rWr9uy83qxoKiLA+Er4pIxstO0Fb57Wm835z+DAeTLJR
+         MdAo5HdBySUqwg7jd0aVuJih33pTRz34nKbSrXNXVT52iR9xiSg4dG3bk4HfGAaw1W0j
+         ooBA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
          :message-id:mime-version;
-        bh=dT2e75Ue1aWRtiwNDM0T+ofIOUOl1O1/yE9yhFmIPbw=;
-        b=e1Dut78UucK4FiMUrB9yZhaH3/yp/Tbh604q1InMnm980Znui24mSdAUxo6nB9xdZz
-         N/lweFMBfPxapv782KjVhjUZqeUGtBjW7bOVBDzq7s5fT2kGtYy1CuPCzs8jtn88zX8n
-         C8NwKhWxDxjvvx//bAN1sqQd8khwv2Ie39eLNDrigbSV5PmjP++p5xnESppJjjC10cse
-         7xUdkqWaK5bxT8/y4nMfdbhobIw1WHhNFAZ/pKHCGVyc5tanw1id00Zl5OaZHMJwYUR/
-         uq9HKkAQQbUBETBqsMkmis6RksXuJWekBypv8i6dPFFG6LUMJPSZB+sO3LdHHCns7n0J
-         s0SA==
-X-Gm-Message-State: APjAAAWJgRADNvVEpdqVYR6kB0vcQaa6K+HBqyPPqwzwwtq05h2TVIrB
-        PEzDU8b/IqNjdRDjmlOPyy5UwA==
-X-Google-Smtp-Source: APXvYqyrWFu2i3U14X+W2YblMAUDlAsk7e1ee2lDtYocuarEsW/XUFLLyWaz2c4klNGKe+DAkUmmrw==
-X-Received: by 2002:a1c:3cc4:: with SMTP id j187mr3157185wma.36.1565079921916;
-        Tue, 06 Aug 2019 01:25:21 -0700 (PDT)
+        bh=KH+v5LnQRlyduGM8b58Lyxa2U4G7pLkyKvhcbXDXdW8=;
+        b=ajykr6i65L95IlqVSRUCwtO9pJH8g/LwXvggbSR1tf5vysw6ZGYfkb9Bh4y6bP8mk/
+         yt4yQKILbG7XMwuoOGBRK9TQfgZPlyOlPFD3GMUrsw9HoCKsn/Y3626MBLZzKEZRRTsS
+         0IG13NclhSZzr3T0YSWsgIgSEnlmnpqiEzKaK1mQcVD9QEZnd7ezpkFSWOCn83xEZTuU
+         GiEr/6nUMo5yT9uPaSZApMP434jbChU5mWmSlQop4bLnYL3qsiLDJ4NAjgO+PpsGtPKL
+         zXks9uKybyYWweSxyRlYxe0pemRn9mnx17F7ousxhcwgMUR88YX9/b+YP91eZ1GUuOxZ
+         7jcw==
+X-Gm-Message-State: APjAAAU03E2r3jKY7qFA1UTkPuCJD6klh3sc1ST5kt0zsSfXU+OJNwfR
+        O/Vcv+bY6L0z0k4rO5eSAsQspQW2R0g=
+X-Google-Smtp-Source: APXvYqwamduqK4AU121MQ0Ikb05yrfqc3p5DCzK9ZGD+w3GpMGskGm5cAWFg58JJIz6Ngo7HuqUS8g==
+X-Received: by 2002:a1c:3883:: with SMTP id f125mr3186864wma.18.1565079968089;
+        Tue, 06 Aug 2019 01:26:08 -0700 (PDT)
 Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id g19sm106126504wmg.10.2019.08.06.01.25.21
+        by smtp.gmail.com with ESMTPSA id r12sm104220733wrt.95.2019.08.06.01.26.07
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 06 Aug 2019 01:25:21 -0700 (PDT)
+        Tue, 06 Aug 2019 01:26:07 -0700 (PDT)
 From:   Jerome Brunet <jbrunet@baylibre.com>
 To:     Carlo Caione <ccaione@baylibre.com>,
         srinivas.kandagatla@linaro.org, khilman@baylibre.com,
@@ -51,11 +51,11 @@ To:     Carlo Caione <ccaione@baylibre.com>,
         linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
 Cc:     Carlo Caione <ccaione@baylibre.com>
-Subject: Re: [PATCH v2 2/4] nvmem: meson-efuse: bindings: Add secure-monitor phandle
-In-Reply-To: <20190731082339.20163-3-ccaione@baylibre.com>
-References: <20190731082339.20163-1-ccaione@baylibre.com> <20190731082339.20163-3-ccaione@baylibre.com>
-Date:   Tue, 06 Aug 2019 10:25:20 +0200
-Message-ID: <1j8ss6wvin.fsf@starbuckisacylon.baylibre.com>
+Subject: Re: [PATCH v2 3/4] arm64: dts: meson: Link nvmem and secure-monitor nodes
+In-Reply-To: <20190731082339.20163-4-ccaione@baylibre.com>
+References: <20190731082339.20163-1-ccaione@baylibre.com> <20190731082339.20163-4-ccaione@baylibre.com>
+Date:   Tue, 06 Aug 2019 10:26:06 +0200
+Message-ID: <1j5znawvhd.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
 Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
@@ -65,9 +65,7 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Wed 31 Jul 2019 at 09:23, Carlo Caione <ccaione@baylibre.com> wrote:
 
-> Add a new property to link the nvmem driver to the secure-monitor. The
-> nvmem driver needs to access the secure-monitor to be able to access the
-> fuses.
+> The former is going to use the latter to retrieve the efuses data.
 >
 
 Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
