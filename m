@@ -2,67 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 27B84834C7
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:12:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 07981834D4
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:13:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726783AbfHFPMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 11:12:36 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:55750 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732836AbfHFPMf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Aug 2019 11:12:35 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 1C7CE1A01F6;
-        Tue,  6 Aug 2019 17:12:34 +0200 (CEST)
-Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 0FB301A01F0;
-        Tue,  6 Aug 2019 17:12:34 +0200 (CEST)
-Received: from fsr-ub1864-103.ea.freescale.net (fsr-ub1864-103.ea.freescale.net [10.171.82.17])
-        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 26E0A205DD;
-        Tue,  6 Aug 2019 17:12:33 +0200 (CEST)
-From:   Daniel Baluta <daniel.baluta@nxp.com>
-To:     broonie@kernel.org
-Cc:     l.stach@pengutronix.de, mihai.serban@gmail.com,
-        alsa-devel@alsa-project.org, timur@kernel.org,
-        shengjiu.wang@nxp.com, angus@akkea.ca, tiwai@suse.com,
-        nicoleotsuka@gmail.com, linux-imx@nxp.com, kernel@pengutronix.de,
-        festevam@gmail.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org, robh@kernel.org,
-        Daniel Baluta <daniel.baluta@nxp.com>
-Subject: [PATCH v3 5/5] ASoC: dt-bindings: Introduce compatible strings for 7ULP and 8MQ
-Date:   Tue,  6 Aug 2019 18:12:14 +0300
-Message-Id: <20190806151214.6783-6-daniel.baluta@nxp.com>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190806151214.6783-1-daniel.baluta@nxp.com>
-References: <20190806151214.6783-1-daniel.baluta@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1727540AbfHFPNc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 11:13:32 -0400
+Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:23182 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1728836AbfHFPNb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 11:13:31 -0400
+Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
+        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x76F4FnT010382;
+        Tue, 6 Aug 2019 10:13:24 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
+ subject : date : message-id : mime-version : content-type;
+ s=PODMain02222019; bh=Zx4rRZn8qtcClv4TwAgbQUTskJhNWkx1P3e+omBoh2s=;
+ b=ksoRwsTT0DNwdn/ypLo8PtXnptqrUNWq1sCVVBBxAJpyRPDCnuDs6DPhTC7MPb0yX0KU
+ xYeq/6crQD/DSLfHOi0WOZDPxuBwzjo5oKwS/+5fIoQGkhdTEGHpsSjB5coSPJiktED1
+ Nz3vNinKV72JwVVKX7QXaShLsxzqVSFhGrBmXpya9gv+MKNNmiu2guYxKviKlVQ6uZCf
+ rWIgyEcCj9cUxJdTIT+wL0w6nq/BJbzQsH77Z4dkt7vmvXsIeLz5KBRjQafjiQKAFvxo
+ 8dpeEPMj57IQhe8iBzwyOC07ihXrwJwRlPDjWXWvTuDkk2lkn2iHLLXG+59fss5kTgCQ hg== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0a-001ae601.pphosted.com with ESMTP id 2u57p4m6wt-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 06 Aug 2019 10:13:24 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 6 Aug
+ 2019 16:13:21 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Tue, 6 Aug 2019 16:13:21 +0100
+Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 6A86A2A1;
+        Tue,  6 Aug 2019 16:13:21 +0100 (BST)
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     <lee.jones@linaro.org>
+CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: [PATCH 1/2] mfd: madera: Update DT binding document to support clock supplies
+Date:   Tue, 6 Aug 2019 16:13:20 +0100
+Message-ID: <20190806151321.31137-1-ckeepax@opensource.cirrus.com>
+X-Mailer: git-send-email 2.11.0
+MIME-Version: 1.0
+Content-Type: text/plain
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=999 priorityscore=1501
+ spamscore=0 phishscore=0 impostorscore=0 mlxscore=0 suspectscore=1
+ adultscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1906280000
+ definitions=main-1908060149
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-For i.MX7ULP and i.MX8MQ register map is changed. Add two new compatbile
-strings to differentiate this.
+Add the 3 input clock sources for the chip into the device tree binding
+document.
 
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
 ---
- Documentation/devicetree/bindings/sound/fsl-sai.txt | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+ Documentation/devicetree/bindings/mfd/madera.txt | 8 ++++++++
+ 1 file changed, 8 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl-sai.txt b/Documentation/devicetree/bindings/sound/fsl-sai.txt
-index 2e726b983845..e61c0dc1fc0b 100644
---- a/Documentation/devicetree/bindings/sound/fsl-sai.txt
-+++ b/Documentation/devicetree/bindings/sound/fsl-sai.txt
-@@ -8,7 +8,8 @@ codec/DSP interfaces.
- Required properties:
+diff --git a/Documentation/devicetree/bindings/mfd/madera.txt b/Documentation/devicetree/bindings/mfd/madera.txt
+index cad0f28005027..47e2b8bc60519 100644
+--- a/Documentation/devicetree/bindings/mfd/madera.txt
++++ b/Documentation/devicetree/bindings/mfd/madera.txt
+@@ -67,6 +67,14 @@ Optional properties:
+     As defined in bindings/gpio.txt.
+     Although optional, it is strongly recommended to use a hardware reset
  
-   - compatible		: Compatible list, contains "fsl,vf610-sai",
--			  "fsl,imx6sx-sai" or "fsl,imx6ul-sai"
-+			  "fsl,imx6sx-sai", "fsl,imx6ul-sai",
-+			  "fsl,imx7ulp-sai" or "fsl,imx8mq-sai".
- 
-   - reg			: Offset and length of the register set for the device.
- 
++  - clocks: Should reference the clocks supplied on MCLK1, MCLK2 and MCLK3
++  - clock-names: May contain up to three strings:
++      "mclk1" for the clock supplied on MCLK1, recommended to be a high
++      quality audio reference clock
++      "mclk2" for the clock supplied on MCLK2, required to be an always on
++      32k clock
++      "mclk3" for the clock supplied on MCLK3
++
+   - MICBIASx : Initial data for the MICBIAS regulators, as covered in
+     Documentation/devicetree/bindings/regulator/regulator.txt.
+     One for each MICBIAS generator (MICBIAS1, MICBIAS2, ...)
 -- 
-2.17.1
+2.11.0
 
