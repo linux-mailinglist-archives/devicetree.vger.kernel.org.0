@@ -2,142 +2,146 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AECAD836A0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 18:24:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C1B11836D7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 18:29:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387656AbfHFQYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 12:24:50 -0400
-Received: from foss.arm.com ([217.140.110.172]:36278 "EHLO foss.arm.com"
+        id S2387919AbfHFQ3C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 12:29:02 -0400
+Received: from mout.gmx.net ([212.227.17.21]:58567 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728927AbfHFQYu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Aug 2019 12:24:50 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A3A38344;
-        Tue,  6 Aug 2019 09:24:49 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 19C013F575;
-        Tue,  6 Aug 2019 09:24:47 -0700 (PDT)
-Date:   Tue, 6 Aug 2019 17:24:39 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Jianjun Wang <jianjun.wang@mediatek.com>,
-        Bjorn Helgaas <bhelgaas@google.com>
-Cc:     Ryder Lee <ryder.lee@mediatek.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
+        id S2387909AbfHFQ3C (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 12:29:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1565108877;
+        bh=xGvBBhBv8mIQUww1OPe1/FCAqKvtmv/lhpMvp7Optzo=;
+        h=X-UI-Sender-Class:From:To:Cc:Subject:Date;
+        b=BSfD2+tA0aFUeRWZUCCocQ7jVyr4dAsFDcSNF064B7Iw+MZQxKnTCLGg5sxQ4LloC
+         QjZegJ6sNrw5PcK19M7/KIcsV2i2q/Dx1tuiQ5oQKm/JmC2GFkERV5QeLMhit7Nqwm
+         /DF5TEImzOdzQt0nQiTjiaFu4BEYB4qOR68brwpc=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from localhost.localdomain ([217.61.153.94]) by mail.gmx.com
+ (mrgmx103 [212.227.17.168]) with ESMTPSA (Nemesis) id
+ 0MgsVY-1hhvJc3Ibg-00M5Kb; Tue, 06 Aug 2019 18:27:56 +0200
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allison Randal <allison@lohutok.net>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Eddie Huang <eddie.huang@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
         Matthias Brugger <matthias.bgg@gmail.com>,
-        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, youlin.pei@mediatek.com
-Subject: Re: [v2,2/2] PCI: mediatek: Add controller support for MT7629
-Message-ID: <20190806162432.GA15498@e121166-lin.cambridge.arm.com>
-References: <20190628073425.25165-1-jianjun.wang@mediatek.com>
- <20190628073425.25165-3-jianjun.wang@mediatek.com>
- <1564385918.17211.6.camel@mhfsdcap03>
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Richard Fontana <rfontana@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "Tianping . Fang" <tianping.fang@mediatek.com>
+Cc:     Frank Wunderlich <frank-w@public-files.de>
+Subject: [PATCH v4 00/10] implement poweroff for mt6323 / bpi-r2
+Date:   Tue,  6 Aug 2019 18:27:35 +0200
+Message-Id: <20190806162745.8414-1-frank-w@public-files.de>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <1564385918.17211.6.camel@mhfsdcap03>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+X-Provags-ID: V03:K1:fDGgKZ6spNEPfINJWpjM4TL6DAKb4WwwHdcrKqACYngUW5cxd34
+ UZ0Ho8Wdo+kM1XFugD0+bBIsncohO47Y/sc/RusG2Zb7ILZYqlMpyXGwEgIhoisr16zD0un
+ YDZ+MewnWXpQezMt+h+8894slE/RbtsTaGLPHyMnNHkGqHrjfuww/avOiQJ2WeZ7o/KEC1I
+ zQAEPiRtVQ33nCYGGyFEA==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:gTunm3r6LcY=:+rmQ5RPc3CYtKjH56Fxl5y
+ vdyanBHcAMIOsE31w0gi6hFSfzJhhsOufq774CqVZBjjb/ijn4jYzA12RCL+zCl5P/5ysvUpH
+ UJ4/PISlMpUSzkVPnaZ4ikA21TgNkQvltXlJUh5AZBvcOYbpWU/U/KIZfDVZV7x2GSCzVB6Ov
+ 4Z9Ds35L9fOJ4DOB8HpCllPXK9Zwn3PVS0/O5FJULdJTBYvw4zKUMFb/aAQYPzNm6O1tAASLP
+ ZK5UW6wFuwisdCGk2aczDlK6PQSsVzvj+3IQsH8xtgpZKP6GGRSgyMDS0EkIJVk3wXOzTab1a
+ e6lfBJZgs2royFjjJk7mtoeUMMnXkXu5VaGVDbo9rJHA6PmNSBxpeIuTHxX1+wN94R0gFxrY4
+ 11tq/wO1MS5Fl0HrWMhzj9T7xsP7V0m/htbEb2Ckkd6y2zAhc5zDFDJvw+jJmxJeeM/LUEKFN
+ mIxjwe21KxXFdGLHvL0+Au9kqAns25TfeIZoSOALUeFtmfspB+gkSoyoZwlIIAROWs7ko5r3L
+ fGISutTiyK63UI0Mzx2JJoSZQeFl+3IjxhD9BEEv0D68NgcmQ+OorS+OpA5hMeSdDXXK9YgWE
+ eeiz1jCZ2L1q1WxxAQX+0ml95KUWAaOuw7a7Cu/By/qTFT/5XPvJinje9KvXs+LBSsWTmbaqn
+ Li2QFfIzL1NvY4LGMM91uer4Y5Af57CdBQAwu5uQvwAnwyPsuk0xmD/C9++rMqZawP5v0HUsl
+ SMNkbhrdHRNKQKAfP4EQ3UNNB/XVMaLNSehJLXUBwXYkD7jcr+udDBDjXqewNP2qlr4NxLJf1
+ ed+GSlbU6HjIJDM41eet0w7Zx5ckQ2Y+5nAyq+yvnsXDBdICORm5jFxS03CTJ7SGkLIxR7EHg
+ lQ27xFMC4eyzw/ssfpiYW1FKmWz8aq1/Ndr0Rka2p/ricCEaFb1EU9LAbmB8CoG47DLAq8dja
+ +udTuoRvPkWg/62YQtWhTYFx8Ev8lgPQnTVWL1vYKfFsEOnd1T1px4DRZtAogiSbrfJe8XRqf
+ DM+kLIMjACgDT5aiRCXGQjwckMtqCRPHkQ3l09EqUetTmAmR4yz3a/5zTWtQsKzr+UWzff34P
+ zJXVD4E/SzPHxUcl1t5Xmwhn6ANLJNRYAIFE25H4bt/+U5SxFTXk7lInkfB+/NSM5fP9K38pk
+ /6GDw=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-[trim the CC list please to keep only required maintainers]
+mainline-driver does not support mt6323
 
-On Mon, Jul 29, 2019 at 03:38:38PM +0800, Jianjun Wang wrote:
-> On Fri, 2019-06-28 at 15:34 +0800, Jianjun Wang wrote:
-> > MT7629 is an ARM platform SoC which has the same PCIe IP with MT7622.
-> > 
-> > The HW default value of its Device ID is invalid, fix its Device ID to
-> > match the hardware implementation.
-> > 
-> > Acked-by: Ryder Lee <ryder.lee@mediatek.com>
-> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
-> > ---
-> >  drivers/pci/controller/pcie-mediatek.c | 18 ++++++++++++++++++
-> >  include/linux/pci_ids.h                |  1 +
-> >  2 files changed, 19 insertions(+)
-> > 
-> > diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
-> > index 80601e1b939e..e5e6740b635d 100644
-> > --- a/drivers/pci/controller/pcie-mediatek.c
-> > +++ b/drivers/pci/controller/pcie-mediatek.c
-> > @@ -73,6 +73,7 @@
-> >  #define PCIE_MSI_VECTOR		0x0c0
-> >  
-> >  #define PCIE_CONF_VEND_ID	0x100
-> > +#define PCIE_CONF_DEVICE_ID	0x102
-> >  #define PCIE_CONF_CLASS_ID	0x106
-> >  
-> >  #define PCIE_INT_MASK		0x420
-> > @@ -141,12 +142,16 @@ struct mtk_pcie_port;
-> >  /**
-> >   * struct mtk_pcie_soc - differentiate between host generations
-> >   * @need_fix_class_id: whether this host's class ID needed to be fixed or not
-> > + * @need_fix_device_id: whether this host's Device ID needed to be fixed or not
-> > + * @device_id: Device ID which this host need to be fixed
-> >   * @ops: pointer to configuration access functions
-> >   * @startup: pointer to controller setting functions
-> >   * @setup_irq: pointer to initialize IRQ functions
-> >   */
-> >  struct mtk_pcie_soc {
-> >  	bool need_fix_class_id;
-> > +	bool need_fix_device_id;
-> > +	unsigned int device_id;
-> >  	struct pci_ops *ops;
-> >  	int (*startup)(struct mtk_pcie_port *port);
-> >  	int (*setup_irq)(struct mtk_pcie_port *port, struct device_node *node);
-> > @@ -696,6 +701,9 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
-> >  		writew(val, port->base + PCIE_CONF_CLASS_ID);
-> >  	}
-> >  
-> > +	if (soc->need_fix_device_id)
-> > +		writew(soc->device_id, port->base + PCIE_CONF_DEVICE_ID);
-> > +
-> >  	/* 100ms timeout value should be enough for Gen1/2 training */
-> >  	err = readl_poll_timeout(port->base + PCIE_LINK_STATUS_V2, val,
-> >  				 !!(val & PCIE_PORT_LINKUP_V2), 20,
-> > @@ -1216,11 +1224,21 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt7622 = {
-> >  	.setup_irq = mtk_pcie_setup_irq,
-> >  };
-> >  
-> > +static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
-> > +	.need_fix_class_id = true,
-> > +	.need_fix_device_id = true,
-> > +	.device_id = PCI_DEVICE_ID_MEDIATEK_7629,
-> > +	.ops = &mtk_pcie_ops_v2,
-> > +	.startup = mtk_pcie_startup_port_v2,
-> > +	.setup_irq = mtk_pcie_setup_irq,
-> > +};
-> > +
-> >  static const struct of_device_id mtk_pcie_ids[] = {
-> >  	{ .compatible = "mediatek,mt2701-pcie", .data = &mtk_pcie_soc_v1 },
-> >  	{ .compatible = "mediatek,mt7623-pcie", .data = &mtk_pcie_soc_v1 },
-> >  	{ .compatible = "mediatek,mt2712-pcie", .data = &mtk_pcie_soc_mt2712 },
-> >  	{ .compatible = "mediatek,mt7622-pcie", .data = &mtk_pcie_soc_mt7622 },
-> > +	{ .compatible = "mediatek,mt7629-pcie", .data = &mtk_pcie_soc_mt7629 },
-> >  	{},
-> >  };
-> >  
-> > diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
-> > index 70e86148cb1e..aa32962759b2 100644
-> > --- a/include/linux/pci_ids.h
-> > +++ b/include/linux/pci_ids.h
-> > @@ -2131,6 +2131,7 @@
-> >  #define PCI_VENDOR_ID_MYRICOM		0x14c1
-> >  
-> >  #define PCI_VENDOR_ID_MEDIATEK		0x14c3
-> > +#define PCI_DEVICE_ID_MEDIATEK_7629	0x7629
-> >  
-> >  #define PCI_VENDOR_ID_TITAN		0x14D2
-> >  #define PCI_DEVICE_ID_TITAN_010L	0x8001
-> 
-> Hi Bjorn & Lorenzo,
-> 
-> Is this patch ok or is there anything I need to fixed?
+this series makes some cleanup to mt6397-rtc-driver, adds mt6323 and
+implement power-controller on it.
 
-The commit log need to be fixed and I will do it, the code if
-Bjorn is OK with it I can merge it.
+tested on bananapi-r2
 
-Lorenzo
+Original Patch from Josef Friedl
+
+changes since v3:
+	- moved SOB in 2/10 and 9/10
+	- moved part 5 to 6 to be near driver-change
+	- changehistory of patches below ---
+
+changes since v2:
+	- Splitted some parts and rebased on 5.3-rc2:
+
+	v2.1 dt-bindings: add powercontroller =E2=80=93 try to make better subjec=
+t
+	v2.2 separate rtc-mt6397.txt (suggested by Alexandre Belloni)
+		add missing commit-message (suggested by Matthias Brugger)
+	v2.3 fix alloc after IRQ (suggested by Alexandre Belloni)
+		new compatible (splitting suggested by Alexandre Belloni)
+		needed due to different rtc-base/size see #7
+	v2.4 simplifications (Define-res-macros)
+		add mt6323 rtc+pwrc
+	v2.5 add poweroff-driver (no change)
+	v2.6 MAINTAINERS (no change)
+	v2.7 DTS-Changes (no change)
+
+
+Josef Friedl (10):
+  dt-bindings: add powercontroller
+  dt-bindings: add missing mt6397 rtc
+  rtc: mt6397: move some common definitions into rtc.h
+  rtc: mt6397: improvements of rtc driver
+  mfd: mt6323: some improvements of mt6397-core
+  rtc: mt6397: add compatible for mt6323
+  mfd: mt6323: add mt6323 rtc+pwrc
+  power: reset: add driver for mt6323 poweroff
+  MAINTAINERS: add Mediatek shutdown drivers
+  arm: dts: mt6323: add keys, power-controller, rtc and codec
+
+ .../devicetree/bindings/mfd/mt6397.txt        |  10 +-
+ .../bindings/power/reset/mt6323-poweroff.txt  |  20 ++++
+ .../devicetree/bindings/rtc/rtc-mt6397.txt    |  29 +++++
+ MAINTAINERS                                   |   7 ++
+ arch/arm/boot/dts/mt6323.dtsi                 |  27 +++++
+ drivers/mfd/mt6397-core.c                     |  40 +++++--
+ drivers/power/reset/Kconfig                   |  10 ++
+ drivers/power/reset/Makefile                  |   1 +
+ drivers/power/reset/mt6323-poweroff.c         |  97 ++++++++++++++++
+ drivers/rtc/rtc-mt6397.c                      | 107 ++++--------------
+ include/linux/mfd/mt6397/core.h               |   2 +
+ include/linux/mfd/mt6397/rtc.h                |  71 ++++++++++++
+ 12 files changed, 323 insertions(+), 98 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/reset/mt6323-p=
+oweroff.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
+ create mode 100644 drivers/power/reset/mt6323-poweroff.c
+ create mode 100644 include/linux/mfd/mt6397/rtc.h
+
+=2D-
+2.17.1
+
