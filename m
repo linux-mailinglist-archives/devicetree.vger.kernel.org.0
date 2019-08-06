@@ -2,138 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 957EE82CC2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 09:30:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0676482CD0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 09:31:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732097AbfHFH3B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 03:29:01 -0400
-Received: from mailgw02.mediatek.com ([210.61.82.184]:51751 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1731787AbfHFH3A (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 03:29:00 -0400
-X-UUID: 133475bd8ce243548306e51b43c35492-20190806
-X-UUID: 133475bd8ce243548306e51b43c35492-20190806
-Received: from mtkcas08.mediatek.inc [(172.21.101.126)] by mailgw02.mediatek.com
-        (envelope-from <hsin-hsiung.wang@mediatek.com>)
-        (Cellopoint E-mail Firewall v4.1.10 Build 0707 with TLS)
-        with ESMTP id 1328225322; Tue, 06 Aug 2019 15:28:50 +0800
-Received: from MTKCAS06.mediatek.inc (172.21.101.30) by
- mtkmbs07n2.mediatek.inc (172.21.101.141) with Microsoft SMTP Server (TLS) id
- 15.0.1395.4; Tue, 6 Aug 2019 15:28:47 +0800
-Received: from [172.21.77.4] (172.21.77.4) by MTKCAS06.mediatek.inc
- (172.21.101.73) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Tue, 6 Aug 2019 15:28:47 +0800
-Message-ID: <1565076527.23984.5.camel@mtksdaap41>
-Subject: Re: [PATCH v4 07/10] regulator: mt6358: Add support for MT6358
- regulator
-From:   Hsin-hsiung Wang <hsin-hsiung.wang@mediatek.com>
-To:     Mark Brown <broonie@kernel.org>
-CC:     Mark Rutland <mark.rutland@arm.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        <srv_heupstream@mediatek.com>, <devicetree@vger.kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        <linux-kernel@vger.kernel.org>,
-        Richard Fontana <rfontana@redhat.com>,
-        "Rob Herring" <robh+dt@kernel.org>,
-        <linux-mediatek@lists.infradead.org>,
-        "Allison Randal" <allison@lohutok.net>,
-        <linux-rtc@vger.kernel.org>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Eddie Huang <eddie.huang@mediatek.com>,
-        Lee Jones <lee.jones@linaro.org>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        <linux-arm-kernel@lists.infradead.org>
-Date:   Tue, 6 Aug 2019 15:28:47 +0800
-In-Reply-To: <20190805131030.GE6432@sirena.org.uk>
-References: <1564982518-32163-1-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <1564982518-32163-8-git-send-email-hsin-hsiung.wang@mediatek.com>
-         <20190805131030.GE6432@sirena.org.uk>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1732100AbfHFHaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 03:30:25 -0400
+Received: from hqemgate14.nvidia.com ([216.228.121.143]:1806 "EHLO
+        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732041AbfHFHaZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 03:30:25 -0400
+Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
+        id <B5d492c910001>; Tue, 06 Aug 2019 00:30:25 -0700
+Received: from hqmail.nvidia.com ([172.20.161.6])
+  by hqpgpgate102.nvidia.com (PGP Universal service);
+  Tue, 06 Aug 2019 00:30:24 -0700
+X-PGP-Universal: processed;
+        by hqpgpgate102.nvidia.com on Tue, 06 Aug 2019 00:30:24 -0700
+Received: from tbergstrom-lnx.Nvidia.com (10.124.1.5) by HQMAIL107.nvidia.com
+ (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 6 Aug
+ 2019 07:30:23 +0000
+Received: by tbergstrom-lnx.Nvidia.com (Postfix, from userid 1000)
+        id 71AB84286D; Tue,  6 Aug 2019 10:30:21 +0300 (EEST)
+Date:   Tue, 6 Aug 2019 10:30:21 +0300
+From:   Peter De Schrijver <pdeschrijver@nvidia.com>
+To:     Dmitry Osipenko <digetx@gmail.com>
+CC:     Rob Herring <robh+dt@kernel.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Jonathan Hunter <jonathanh@nvidia.com>,
+        "Mark Brown" <broonie@kernel.org>, <devicetree@vger.kernel.org>,
+        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
+Subject: Re: [PATCH v2 3/3] soc/tegra: regulators: Add regulators coupler for
+ Tegra30
+Message-ID: <20190806073021.GF3883@pdeschrijver-desktop.Nvidia.com>
+References: <20190725151832.9802-1-digetx@gmail.com>
+ <20190725151832.9802-4-digetx@gmail.com>
+ <20190802140512.GD3883@pdeschrijver-desktop.Nvidia.com>
+ <c537fbea-5884-03db-305f-6ab3d553f7ab@gmail.com>
+ <20190805083325.GE3883@pdeschrijver-desktop.Nvidia.com>
+ <1a9464b3-6e0e-00ff-64d8-b3abf7982dfb@gmail.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-MTK:  N
+Content-Type: text/plain; charset="utf-8"
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <1a9464b3-6e0e-00ff-64d8-b3abf7982dfb@gmail.com>
+X-NVConfidentiality: public
+User-Agent: Mutt/1.9.4 (2018-02-28)
+X-Originating-IP: [10.124.1.5]
+X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
+ HQMAIL107.nvidia.com (172.20.187.13)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
+        t=1565076625; bh=orc8XJzHRB34A21SAzqHogdB2d1yl9L59WLJTI8JrPU=;
+        h=X-PGP-Universal:Date:From:To:CC:Subject:Message-ID:References:
+         MIME-Version:Content-Type:Content-Disposition:
+         Content-Transfer-Encoding:In-Reply-To:X-NVConfidentiality:
+         User-Agent:X-Originating-IP:X-ClientProxiedBy;
+        b=F0u4K6B6ojpwlnFlDZ/aCr2FUj+rU7b7EmWKlyAae0Znbik25zVThcI8xZvJGTKf/
+         C9Xbc9qVrXHTP3Bn19SCOytQyCr0jNT+7Jy/0I9VEQ3VqepaZdbUAWUuIUfGYfYfgX
+         TqRHz0ZlzNe6TqYTXUP6TH8Qazp1HqPkc6Ttcg2bMSXDtDJNCvi3K0pISeh09P3x84
+         /MBgbOydGAWXY/Q7jiloEwqHkUrI1uEy9X7qgjdKlb2Ms0zjaA1d3G0QoQVckfY2ki
+         hrGxrxXzKQ1yRGXsA9W17ybX5KYcN7NjIqwlts+Zvs3ZXzwixLeXEtvhbBR7wpXpZm
+         Wpq4X7ZIk8scw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+On Mon, Aug 05, 2019 at 02:03:29PM +0300, Dmitry Osipenko wrote:
+> 05.08.2019 11:33, Peter De Schrijver =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> > On Fri, Aug 02, 2019 at 05:39:23PM +0300, Dmitry Osipenko wrote:
+> >> 02.08.2019 17:05, Peter De Schrijver =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
+> >>> On Thu, Jul 25, 2019 at 06:18:32PM +0300, Dmitry Osipenko wrote:
+> >>>> Add regulators coupler for Tegra30 SoCs that performs voltage balanc=
+ing
+> >>>> of a coupled regulators and thus provides voltage scaling functional=
+ity.
+> >>>>
+> >>>> There are 2 coupled regulators on all Tegra30 SoCs: CORE and CPU. Th=
+e
+> >>>> coupled regulator voltages shall be in a range of 300mV from each ot=
+her
+> >>>> and CORE voltage shall be higher than the CPU by N mV, where N depen=
+ds
+> >>>> on the CPU voltage.
+> >>>>
+> >>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
+> >>>> ---
+> >>>>  drivers/soc/tegra/Kconfig              |   4 +
+> >>>>  drivers/soc/tegra/Makefile             |   1 +
+> >>>>  drivers/soc/tegra/regulators-tegra30.c | 316 ++++++++++++++++++++++=
++++
+> >>>>  3 files changed, 321 insertions(+)
+> >>>>  create mode 100644 drivers/soc/tegra/regulators-tegra30.c
+> >>>>
+> >>> ...
+> >>>
+> >>>> +
+> >>>> +static int tegra30_core_cpu_limit(int cpu_uV)
+> >>>> +{
+> >>>> +	if (cpu_uV < 800000)
+> >>>> +		return 950000;
+> >>>> +
+> >>>> +	if (cpu_uV < 900000)
+> >>>> +		return 1000000;
+> >>>> +
+> >>>> +	if (cpu_uV < 1000000)
+> >>>> +		return 1100000;
+> >>>> +
+> >>>> +	if (cpu_uV < 1100000)
+> >>>> +		return 1200000;
+> >>>> +
+> >>>> +	if (cpu_uV < 1250000) {
+> >>>> +		switch (tegra_sku_info.cpu_speedo_id) {
+> >>>> +		case 0 ... 1:
+> >>> Aren't we supposed to add /* fall through */ here now?
+> >>
+> >> There is no compiler warning if there is nothing in-between of the
+> >> case-switches, so annotation isn't really necessary here. Of course it
+> >> is possible to add an explicit annotation just to make clear the
+> >> fall-through intention.
+> >>
+> >=20
+> > Ah. Ok. Whatever you want then :)
+>=20
+> I'll add the comments if there will be a need to re-spin this series.
+>=20
+> >>>> +		case 4:
+> >>>> +		case 7 ... 8:
+> >>>> +			return 1200000;
+> >>>> +
+> >>>> +		default:
+> >>>> +			return 1300000;
+> >>>> +		}
+> >>>> +	}
+> >>>> +
+> >>>
+> >>> Other than that, this looks ok to me.
+> >>
+> >> Awesome, thank you very much! Explicit ACK will be appreciated as well=
+.
+> >=20
+> > Acked-By: Peter De Schrijver <pdeschrijver@nvidia.com>
 
-On Mon, 2019-08-05 at 14:10 +0100, Mark Brown wrote:
-> On Mon, Aug 05, 2019 at 01:21:55PM +0800, Hsin-Hsiung Wang wrote:
-> 
-> > +static const u32 vmch_voltages[] = {
-> > +	2900000, 3000000, 3300000,
-> > +};
-> 
-> > +static const u32 vemc_voltages[] = {
-> > +	2900000, 3000000, 3300000,
-> > +};
-> 
-> Several of these tables appear to be identical.
-> 
-I will use the same voltage table in the next patch.
+All of them.
 
-> > +static inline unsigned int mt6358_map_mode(unsigned int mode)
-> > +{
-> > +	return mode == MT6358_BUCK_MODE_AUTO ?
-> > +		REGULATOR_MODE_NORMAL : REGULATOR_MODE_FAST;
-> > +}
-> 
-> There is no need for this to be an inline and please write normal
-> conditional statements to improve legibility.  There's other examples in
-> the driver.
-> 
-will fix it in the next patch.
-
-> > +static int mt6358_get_buck_voltage_sel(struct regulator_dev *rdev)
-> > +{
-> > +	int ret, regval;
-> > +	struct mt6358_regulator_info *info = rdev_get_drvdata(rdev);
-> > +
-> > +	ret = regmap_read(rdev->regmap, info->da_vsel_reg, &regval);
-> > +	if (ret != 0) {
-> > +		dev_info(&rdev->dev,
-> > +			 "Failed to get mt6358 Buck %s vsel reg: %d\n",
-> > +			 info->desc.name, ret);
-> 
-> dev_err() for errors here and throughout the driver.
-> 
-will fix it in the next patch.
-
-> > +		return ret;
-> > +	}
-> > +
-> > +	ret = (regval >> info->da_vsel_shift) & info->da_vsel_mask;
-> > +
-> > +	return ret;
-> > +}
-> 
-> This looks like a standard get_voltage_sel_regmap()?
-> 
-MT6358 has buck voltage status registers to show the actual output
-voltage and the registers are different from the voltage setting
-registers.
-We want to get the actual voltage output, so we use the da_vsel status
-registers here.
-
-> > +err_mode:
-> > +	if (ret != 0)
-> > +		return ret;
-> > +
-> > +	return 0;
-> 
-> Or just return ret unconditionally?
-will modify it to return ret unconditionally in the next patch.
-
-Thanks a lot.
-> _______________________________________________
-> Linux-mediatek mailing list
-> Linux-mediatek@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-mediatek
-
-
+Peter.
