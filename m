@@ -2,184 +2,232 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 434AA8384E
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 20:00:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 523E583872
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 20:12:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731273AbfHFSAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 14:00:06 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:45198 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726713AbfHFSAG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 14:00:06 -0400
-Received: by mail-wr1-f66.google.com with SMTP id n1so2481367wrw.12;
-        Tue, 06 Aug 2019 11:00:04 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=H5oxnh6AO2iA8nJMA3gm0i0KrEK2AnvYtvfzFwUa/VE=;
-        b=IzSuLQwki0yPJVH+d2Lbq4S+g4ZX2atTnbAvcpq0wE42xwkMJXiMqPeaS+r8xL/eJR
-         yYnjYN4vJkH3QaoGEegtr4CskAhmGEEJlNnan2gZeaJ/3x8JtuBMJNuNfrSBD+PS0WVE
-         1DbHnAkhJcKPjfpoprfD9f9K469CSmuGORfCOxkyIbCXql6IgsdNXiwySWIQSfdJser5
-         VjDTtVoAhWsxRu4uYcGxs9xZolHRtAkdOq2IXCzk2//Zv+7Oy8EzDl2EUB/iwXGh5PWK
-         /7jCtQ56iS/RLwsu/+GtzMSMZ8vkSSukriVez8SsXpLnO+CZ4zq5Gr82na4GPtZGD89d
-         5oXA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=H5oxnh6AO2iA8nJMA3gm0i0KrEK2AnvYtvfzFwUa/VE=;
-        b=p+85ICzLfBQzknBS85lr/c50S5gA98FUcJyYeji6zmVSOhbyHKuQSiPcdoG4+hGt+L
-         Jvlj6VQT/fj8BCHCgpFa/1lyqx6AiNbT3R2oS2e9tIdFNWu5yRMrUqHbvVihh00oQovB
-         7yPFQDAiqqeRegiiu3eUD8pdNPSl6rN3KTQiVC5On2l8bf7UtnD6Z4p9sWzQHesiuhFd
-         Bq8JyZVbUyuVrcu1M9VGFqEgQLU665hdXqX66SBvhkJ8MRzKCusL7MNK1DahUswDXD0g
-         dzz63/GaX64fTjzbktQnQ6aZAIaCLAmI86nBYrhvI5Xojmf0vcbIdwSoc0lPo1DqPHC1
-         9DDw==
-X-Gm-Message-State: APjAAAVvhjB0LMgS4wUSYsebp96HT5DTJ9usjaAdd4yQb6DdmaeRYM8h
-        l1Ik/950SbLzLJm5Qjf3yoJOSMUy
-X-Google-Smtp-Source: APXvYqwjSklAKmvrxBm7vAtY5yV+LjCxCE5435J3gWbWBlaR4/GMOjfR3ZIimhrfsVDAPcavz8+urg==
-X-Received: by 2002:adf:dd01:: with SMTP id a1mr5755415wrm.12.1565114403275;
-        Tue, 06 Aug 2019 11:00:03 -0700 (PDT)
-Received: from [192.168.2.145] ([94.29.34.218])
-        by smtp.googlemail.com with ESMTPSA id k9sm22855190wrd.46.2019.08.06.11.00.00
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 06 Aug 2019 11:00:02 -0700 (PDT)
-Subject: Re: [PATCH v7 01/20] pinctrl: tegra: Add suspend and resume support
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, marc.zyngier@arm.com,
-        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, rjw@rjwysocki.net,
-        viresh.kumar@linaro.org, linux-pm@vger.kernel.org
-References: <1564607463-28802-1-git-send-email-skomatineni@nvidia.com>
- <1564607463-28802-2-git-send-email-skomatineni@nvidia.com>
- <6b1482f6-0578-f602-d8d1-541d86303ce2@gmail.com>
- <b45ca99a-188a-c695-3f3d-48d273808f9c@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <36351140-afd4-38c4-3722-4ee0894287fa@gmail.com>
-Date:   Tue, 6 Aug 2019 20:59:55 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1731998AbfHFSMT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 14:12:19 -0400
+Received: from mx2.suse.de ([195.135.220.15]:46200 "EHLO mx1.suse.de"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1728756AbfHFSMT (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 14:12:19 -0400
+X-Virus-Scanned: by amavisd-new at test-mx.suse.de
+Received: from relay2.suse.de (unknown [195.135.220.254])
+        by mx1.suse.de (Postfix) with ESMTP id A6E40AEF6;
+        Tue,  6 Aug 2019 18:12:17 +0000 (UTC)
+Message-ID: <12eb3aba207c552e5eb727535e7c4f08673c4c80.camel@suse.de>
+Subject: Re: [PATCH 3/8] of/fdt: add function to get the SoC wide DMA
+ addressable memory size
+From:   Nicolas Saenz Julienne <nsaenzjulienne@suse.de>
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Catalin Marinas <catalin.marinas@arm.com>,
+        Will Deacon <will@kernel.org>, Christoph Hellwig <hch@lst.de>,
+        wahrenst@gmx.net, Marc Zyngier <marc.zyngier@arm.com>,
+        Robin Murphy <robin.murphy@arm.com>,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>, devicetree@vger.kernel.org,
+        Linux IOMMU <iommu@lists.linux-foundation.org>,
+        linux-mm@kvack.org, Frank Rowand <frowand.list@gmail.com>,
+        phill@raspberryi.org, Florian Fainelli <f.fainelli@gmail.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Eric Anholt <eric@anholt.net>,
+        Matthias Brugger <mbrugger@suse.com>,
+        Andrew Morton <akpm@linux-foundation.org>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        "moderated list:BROADCOM BCM2835 ARM ARCHITECTURE" 
+        <linux-rpi-kernel@lists.infradead.org>
+Date:   Tue, 06 Aug 2019 20:12:10 +0200
+In-Reply-To: <CAL_Jsq+LjsRmFg-xaLgpVx3miXN3hid3aD+mgTW__j0SbEFYjQ@mail.gmail.com>
+References: <20190731154752.16557-1-nsaenzjulienne@suse.de>
+         <20190731154752.16557-4-nsaenzjulienne@suse.de>
+         <CAL_JsqKF5nh3hcdLTG5+6RU3_TnFrNX08vD6qZ8wawoA3WSRpA@mail.gmail.com>
+         <2050374ac07e0330e505c4a1637256428adb10c4.camel@suse.de>
+         <CAL_Jsq+LjsRmFg-xaLgpVx3miXN3hid3aD+mgTW__j0SbEFYjQ@mail.gmail.com>
+Content-Type: multipart/signed; micalg="pgp-sha256";
+        protocol="application/pgp-signature"; boundary="=-BWDWLSX5DbZPpBq0FAfV"
+User-Agent: Evolution 3.32.4 
 MIME-Version: 1.0
-In-Reply-To: <b45ca99a-188a-c695-3f3d-48d273808f9c@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-05.08.2019 21:06, Sowjanya Komatineni пишет:
-> 
-> On 8/5/19 3:50 AM, Dmitry Osipenko wrote:
->> 01.08.2019 0:10, Sowjanya Komatineni пишет:
->>> This patch adds support for Tegra pinctrl driver suspend and resume.
->>>
->>> During suspend, context of all pinctrl registers are stored and
->>> on resume they are all restored to have all the pinmux and pad
->>> configuration for normal operation.
->>>
->>> Acked-by: Thierry Reding <treding@nvidia.com>
->>> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
->>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>> ---
->>>   drivers/pinctrl/tegra/pinctrl-tegra.c | 59
->>> +++++++++++++++++++++++++++++++++++
->>>   drivers/pinctrl/tegra/pinctrl-tegra.h |  3 ++
->>>   2 files changed, 62 insertions(+)
->>>
->>> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.c
->>> b/drivers/pinctrl/tegra/pinctrl-tegra.c
->>> index 186ef98e7b2b..e3a237534281 100644
->>> --- a/drivers/pinctrl/tegra/pinctrl-tegra.c
->>> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.c
->>> @@ -631,6 +631,58 @@ static void
->>> tegra_pinctrl_clear_parked_bits(struct tegra_pmx *pmx)
->>>       }
->>>   }
->>>   +static size_t tegra_pinctrl_get_bank_size(struct device *dev,
->>> +                      unsigned int bank_id)
->>> +{
->>> +    struct platform_device *pdev = to_platform_device(dev);
->>> +    struct resource *res;
->>> +
->>> +    res = platform_get_resource(pdev, IORESOURCE_MEM, bank_id);
->>> +
->>> +    return resource_size(res) / 4;
->>> +}
->>> +
->>> +static int tegra_pinctrl_suspend(struct device *dev)
->>> +{
->>> +    struct tegra_pmx *pmx = dev_get_drvdata(dev);
->>> +    u32 *backup_regs = pmx->backup_regs;
->>> +    u32 *regs;
->>> +    size_t bank_size;
->>> +    unsigned int i, k;
->>> +
->>> +    for (i = 0; i < pmx->nbanks; i++) {
->>> +        bank_size = tegra_pinctrl_get_bank_size(dev, i);
->>> +        regs = pmx->regs[i];
->>> +        for (k = 0; k < bank_size; k++)
->>> +            *backup_regs++ = readl_relaxed(regs++);
->>> +    }
->>> +
->>> +    return pinctrl_force_sleep(pmx->pctl);
->>> +}
->>> +
->>> +static int tegra_pinctrl_resume(struct device *dev)
->>> +{
->>> +    struct tegra_pmx *pmx = dev_get_drvdata(dev);
->>> +    u32 *backup_regs = pmx->backup_regs;
->>> +    u32 *regs;
->>> +    size_t bank_size;
->>> +    unsigned int i, k;
->>> +
->>> +    for (i = 0; i < pmx->nbanks; i++) {
->>> +        bank_size = tegra_pinctrl_get_bank_size(dev, i);
->>> +        regs = pmx->regs[i];
->>> +        for (k = 0; k < bank_size; k++)
->>> +            writel_relaxed(*backup_regs++, regs++);
->>> +    }
->> I'm now curious whether any kind of barrier is needed after the
->> writings. The pmx_writel() doesn't insert a barrier after the write and
->> seems it just misuses writel, which actually should be writel_relaxed()
->> + barrier, IIUC.
-> 
-> pmx_writel uses writel and it has wmb before raw_write which complete
-> all writes initiated prior to this.
-> 
-> By misusing writel, you mean to have barrier after register write?
 
-Yes, at least to me it doesn't make much sense for this driver to stall
-before the write. It's the pinctrl user which should be taking care
-about everything to be ready before making a change to the pinctrl's
-configuration.
+--=-BWDWLSX5DbZPpBq0FAfV
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 
->> It's also not obvious whether PINCTRL HW has any kind of write-FIFO and
->> thus maybe read-back + rmb() is needed in order ensure that writes are
->> actually completed.
-> I believe adding write barrier wmb after writel_relaxed should be good
-> rather than doing readback + rmb
->>
->> The last thing which is not obvious is when the new configuration
->> actually takes into effect, does it happen immediately or maybe some
->> delay is needed?
->>
->> [snip]
-> 
-> Based on internal design there is no internal delay and it all depends
-> on APB rate that it takes to write to register.
-> 
-> Pinmux value change to reflect internally might take couple of clock
-> cycles which is much faster than SW can read.
+Hi Rob,
 
-Still not quite obvious if it's possible to have a case where some
-hardware is touched before necessary pinctrl change is fully completed
-and then to get into trouble because of it.
+On Mon, 2019-08-05 at 13:23 -0600, Rob Herring wrote:
+> On Mon, Aug 5, 2019 at 10:03 AM Nicolas Saenz Julienne
+> <nsaenzjulienne@suse.de> wrote:
+> > Hi Rob,
+> > Thanks for the review!
+> >=20
+> > On Fri, 2019-08-02 at 11:17 -0600, Rob Herring wrote:
+> > > On Wed, Jul 31, 2019 at 9:48 AM Nicolas Saenz Julienne
+> > > <nsaenzjulienne@suse.de> wrote:
+> > > > Some SoCs might have multiple interconnects each with their own DMA
+> > > > addressing limitations. This function parses the 'dma-ranges' on ea=
+ch of
+> > > > them and tries to guess the maximum SoC wide DMA addressable memory
+> > > > size.
+> > > >=20
+> > > > This is specially useful for arch code in order to properly setup C=
+MA
+> > > > and memory zones.
+> > >=20
+> > > We already have a way to setup CMA in reserved-memory, so why is this
+> > > needed for that?
+> >=20
+> > Correct me if I'm wrong but I got the feeling you got the point of the =
+patch
+> > later on.
+>=20
+> No, for CMA I don't. Can't we already pass a size and location for CMA
+> region under /reserved-memory. The only advantage here is perhaps the
+> CMA range could be anywhere in the DMA zone vs. a fixed location.
+
+Now I get it, sorry I wasn't aware of that interface.
+
+Still, I'm not convinced it matches RPi's use case as this would hard-code
+CMA's size. Most people won't care, but for the ones that do, it's nicer to
+change the value from the kernel command line than editing the dtb. I get t=
+hat
+if you need to, for example, reserve some memory for the video to work, it'=
+s
+silly not to hard-code it. Yet due to the board's nature and users base I s=
+ay
+it's important to favor flexibility. It would also break compatibility with
+earlier versions of the board and diverge from the downstream kernel behavi=
+our.
+Which is a bigger issue than it seems as most users don't always understand
+which kernel they are running and unknowingly copy configuration options fr=
+om
+forums.
+
+As I also need to know the DMA addressing limitations to properly configure
+memory zones and dma-direct. Setting up the proper CMA constraints during t=
+he
+arch's init will be trivial anyway.
+
+> > > IMO, I'd just do:
+> > >=20
+> > > if (of_fdt_machine_is_compatible(blob, "brcm,bcm2711"))
+> > >     dma_zone_size =3D XX;
+> > >=20
+> > > 2 lines of code is much easier to maintain than 10s of incomplete cod=
+e
+> > > and is clearer who needs this. Maybe if we have dozens of SoCs with
+> > > this problem we should start parsing dma-ranges.
+> >=20
+> > FYI that's what arm32 is doing at the moment and was my first instinct.=
+ But
+> > it
+> > seems that arm64 has been able to survive so far without any machine
+> > specific
+> > code and I have the feeling Catalin and Will will not be happy about th=
+is
+> > solution. Am I wrong?
+>=20
+> No doubt. I'm fine if the 2 lines live in drivers/of/.
+>=20
+> Note that I'm trying to reduce the number of early_init_dt_scan_*
+> calls from arch code into the DT code so there's more commonality
+> across architectures in the early DT scans. So ideally, this can all
+> be handled under early_init_dt_scan() call.
+
+How does this look? (I'll split it in two patches and add a comment explain=
+ing
+why dt_dma_zone_size is needed)
+
+diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
+index f2444c61a136..1395be40b722 100644
+--- a/drivers/of/fdt.c
++++ b/drivers/of/fdt.c
+@@ -30,6 +30,8 @@
+=20
+ #include "of_private.h"
+=20
++u64 dt_dma_zone_size __ro_after_init;
++
+ /*
+  * of_fdt_limit_memory - limit the number of regions in the /memory node
+  * @limit: maximum entries
+@@ -802,6 +805,11 @@ const char * __init of_flat_dt_get_machine_name(void)
+        return name;
+ }
+=20
++static const int __init of_fdt_machine_is_compatible(char *name)
++{
++       return of_compat_cmp(of_flat_dt_get_machine_name(), name, strlen(na=
+me));
++}
++
+ /**
+  * of_flat_dt_match_machine - Iterate match tables to find matching machin=
+e.
+  *
+@@ -1260,6 +1268,14 @@ void __init early_init_dt_scan_nodes(void)
+        of_scan_flat_dt(early_init_dt_scan_memory, NULL);
+ }
+=20
++void __init early_init_dt_get_dma_zone_size(void)
++{
++       dt_dma_zone_size =3D 0;
++
++       if (of_fdt_machine_is_compatible("brcm,bcm2711"))
++               dt_dma_zone_size =3D 0x3c000000;
++}
++
+ bool __init early_init_dt_scan(void *params)
+ {
+        bool status;
+@@ -1269,6 +1285,7 @@ bool __init early_init_dt_scan(void *params)
+                return false;
+=20
+        early_init_dt_scan_nodes();
++       early_init_dt_get_dma_zone_size();
+        return true;
+ }
+diff --git a/include/linux/of_fdt.h b/include/linux/of_fdt.h
+index 2ad36b7bd4fa..b5a9f685de14 100644
+--- a/include/linux/of_fdt.h
++++ b/include/linux/of_fdt.h
+@@ -27,6 +27,8 @@ extern void *of_fdt_unflatten_tree(const unsigned long *b=
+lob,
+                                   struct device_node *dad,
+                                   struct device_node **mynodes);
+=20
++extern u64 dt_dma_zone_size __ro_after_init;
++
+ /* TBD: Temporary export of fdt globals - remove when code fully merged */
+ extern int __initdata dt_root_addr_cells;
+ extern int __initdata dt_root_size_cells;
+
+=20
+Regards,
+Nicolas
+
+
+
+--=-BWDWLSX5DbZPpBq0FAfV
+Content-Type: application/pgp-signature; name="signature.asc"
+Content-Description: This is a digitally signed message part
+Content-Transfer-Encoding: 7bit
+
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCAAdFiEErOkkGDHCg2EbPcGjlfZmHno8x/4FAl1JwvoACgkQlfZmHno8
+x/5f/QgAsruOFQ8PvpoSHvG6DlzmdqSfRJK2v/9MyF59tpuvGoJUQggc4SObGIz8
+/Nk2Md0j7gXdLjr+t1elpo6xBmJxLWhZPw7HfIx1ejSHv2QK+gJopm/BJ54gV8cl
+oUh+Ed8eD1FBlYszwI3YRaKY/HXcQaZn97el4/AaCbztxkkAg1xEH/1L6XPwf2FC
+j9/TMxpFyE6aWdQ5GtOzxL1RVmzOEYgpvsr+mKxOFHX9V5+8UXNnLDRDjR36Ms78
+NVgFECrTr4rxiU2UJalTgyyPtch73aj8xMNKwHkOyiagITz9PhesPdVYy9sLWTM+
+KTFFdX5XzhKpZAHyjtBWPWEKO34aqg==
+=JTdS
+-----END PGP SIGNATURE-----
+
+--=-BWDWLSX5DbZPpBq0FAfV--
+
