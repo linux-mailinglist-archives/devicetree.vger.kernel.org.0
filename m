@@ -2,91 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A0806827AB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 00:41:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3541E828A2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 02:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728483AbfHEWlQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 5 Aug 2019 18:41:16 -0400
-Received: from mail-pg1-f195.google.com ([209.85.215.195]:37290 "EHLO
-        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728870AbfHEWlQ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 5 Aug 2019 18:41:16 -0400
-Received: by mail-pg1-f195.google.com with SMTP id d1so7641411pgp.4
-        for <devicetree@vger.kernel.org>; Mon, 05 Aug 2019 15:41:16 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=GWbcR3xvFDNmBGhYbznH6s7cLBaKp4a0/ddWesxNcF8=;
-        b=yIptHBFKiXtoJSpxG3bR7btwflHxC+u7tsW/YMVsilyZv3CTs+hJ3/PAxxja3yprwN
-         K2/s/xCu4j+TWNoXy/J6zSUNZAocXBZ1mR4kh0psZKMbQ2lX1CQgghFFQBAegs65elzk
-         VqLFyHVt/3zuzmKlOHgufofFKYe0yx0kj9YJGhq/pA1qRoo7gdfKltcISoR17nHf+j5i
-         hyAkAlGYhIiubvjjO37w2cwMfYzNcTgDzChUGsK7ckYLT8fJCsnIv7HVEYD0C/VHdWS+
-         CeTU3VVek8p8cm9q6Px8AcLxRA0Lw7yu7tMcmQFN8wcxAT4VdpzZe70ltRJHwtskyk2b
-         tLHw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=GWbcR3xvFDNmBGhYbznH6s7cLBaKp4a0/ddWesxNcF8=;
-        b=FAtTPD5MhKcG8oeMXUe4JV/47H3apqburWvBlV87G6KcW4vcZc8Q2mXlWh/dDq38ZU
-         fvdkLD9HwzXvuitY6tdcGxiC8qWSqBf2Lcx2S6HuB4Y6dL3iidh+Y7Wpd7WgU8X2UYoo
-         zHrsdDvehIoXVEojAlczQnlIOOsu62mtXYHykaxNL/MLT7ZpyFsMUWdtCbhTOad7HM2D
-         ZZvGkqWK3v2hReYZ2mbiQaoLsEO32I2G6P52pgdeh88RtjBn+W/eQA7fqWcQbvBJaBBV
-         u/t26UZxRFCKMxbvGfkSHrhloqvajtZhW1kYk1sv7t4JdCqcodmw19n9kvfOKMLR7sJe
-         d+AA==
-X-Gm-Message-State: APjAAAXDn7whbxCODsoD4605ZBvZK2xLbJT155KXM8ApNFJmaTTMQuvv
-        PKf+5eEAEV4idueQhU7wzC99ag==
-X-Google-Smtp-Source: APXvYqzLFSHj9hIrglUjQkYpFeaYOh80cYaOP+fMjZebJjv9jSvgLHClQzlfLnbBTszfX7Ribw6fZg==
-X-Received: by 2002:a65:4b8b:: with SMTP id t11mr196402pgq.130.1565044875625;
-        Mon, 05 Aug 2019 15:41:15 -0700 (PDT)
-Received: from builder (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id w22sm90250322pfi.175.2019.08.05.15.41.14
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 05 Aug 2019 15:41:14 -0700 (PDT)
-Date:   Mon, 5 Aug 2019 15:41:12 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Brian Masney <masneyb@onstation.org>
-Cc:     agross@kernel.org, robdclark@gmail.com, sean@poorly.run,
-        robh+dt@kernel.org, airlied@linux.ie, daniel@ffwll.ch,
-        mark.rutland@arm.com, jonathan@marek.ca,
-        linux-arm-msm@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org, freedreno@lists.freedesktop.org,
-        devicetree@vger.kernel.org, jcrouse@codeaurora.org
-Subject: Re: [PATCH v4 5/6] soc: qcom: add OCMEM driver
-Message-ID: <20190805224112.GA6470@builder>
-References: <20190803142026.9647-1-masneyb@onstation.org>
- <20190803142026.9647-6-masneyb@onstation.org>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190803142026.9647-6-masneyb@onstation.org>
-User-Agent: Mutt/1.10.0 (2018-05-17)
+        id S1728870AbfHFAW5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 5 Aug 2019 20:22:57 -0400
+Received: from onstation.org ([52.200.56.107]:35850 "EHLO onstation.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728483AbfHFAW5 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 5 Aug 2019 20:22:57 -0400
+Received: from localhost.localdomain (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits))
+        (No client certificate requested)
+        (Authenticated sender: masneyb)
+        by onstation.org (Postfix) with ESMTPSA id A40DD3E916;
+        Tue,  6 Aug 2019 00:22:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
+        s=default; t=1565050976;
+        bh=VrRYKG1TitvesrzHMHOF4beZiqGQImgS2ECJaCf7+tk=;
+        h=From:To:Cc:Subject:Date:From;
+        b=IHYIWMKuPl6bx1j4ulwA0yqY61goA73AvAuGBI9YP6mxiXQvW0KmgwQMRo2lCrSRD
+         GRg8nB8IGiLhsZ4x9q0tX776GRWTnZqu59dt9uLC57y5GN90q6QwRAl5pgX1neBmW1
+         XMGz8dkudWyiWHfcoNoY2HJImzTzfiikU5YAsUUE=
+From:   Brian Masney <masneyb@onstation.org>
+To:     agross@kernel.org, robdclark@gmail.com, sean@poorly.run,
+        robh+dt@kernel.org, bjorn.andersson@linaro.org
+Cc:     airlied@linux.ie, daniel@ffwll.ch, mark.rutland@arm.com,
+        jonathan@marek.ca, linux-arm-msm@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        freedreno@lists.freedesktop.org, devicetree@vger.kernel.org,
+        jcrouse@codeaurora.org
+Subject: [PATCH v5 0/7] qcom: add OCMEM support
+Date:   Mon,  5 Aug 2019 20:22:22 -0400
+Message-Id: <20190806002229.8304-1-masneyb@onstation.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat 03 Aug 07:20 PDT 2019, Brian Masney wrote:
-> diff --git a/drivers/soc/qcom/ocmem.c b/drivers/soc/qcom/ocmem.c
-> new file mode 100644
-> index 000000000000..7c28ad3108a6
-> --- /dev/null
-> +++ b/drivers/soc/qcom/ocmem.c
-> @@ -0,0 +1,433 @@
-> +// SPDX-License-Identifier: GPL-2.0-only
-[..]
-> +MODULE_LICENSE("GPL");
+This patch series adds support for Qualcomm's On Chip MEMory (OCMEM)
+that is needed in order to support some a3xx and a4xx-based GPUs
+upstream. This is based on Rob Clark's patch series that he submitted
+in October 2015 and I am resubmitting updated patches with his
+permission. See the individual patches for the changelog.
 
-Shouldn't this be "GPL v2"?
+This was tested with the GPU on a LG Nexus 5 (hammerhead) phone and
+this will work on other msm8974-based systems. For a summary of what
+currently works upstream on the Nexus 5, see my status page at
+https://masneyb.github.io/nexus-5-upstream/.
 
+Brian Masney (5):
+  dt-bindings: soc: qcom: add On Chip MEMory (OCMEM) bindings
+  dt-bindings: display: msm: gmu: add optional ocmem property
+  soc: qcom: add OCMEM driver
+  drm/msm/gpu: add ocmem init/cleanup functions
+  ARM: qcom_defconfig: add ocmem support
 
-Apart from that I think this looks good.
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Rob Clark (2):
+  firmware: qcom: scm: add OCMEM lock/unlock interface
+  firmware: qcom: scm: add support to restore secure config to
+    qcm_scm-32
 
-@Rob, would you like to take this series through your tree or would you
-lend me an Ack on the adreno patch and I'll apply it through the qcom
-tree? Feel free to add my Acked-by to the relevant patches, if needed.
+ .../devicetree/bindings/display/msm/gmu.txt   |  50 ++
+ .../devicetree/bindings/sram/qcom,ocmem.yaml  |  96 ++++
+ arch/arm/configs/qcom_defconfig               |   1 +
+ drivers/firmware/qcom_scm-32.c                |  52 ++-
+ drivers/firmware/qcom_scm-64.c                |  12 +
+ drivers/firmware/qcom_scm.c                   |  53 +++
+ drivers/firmware/qcom_scm.h                   |   9 +
+ drivers/gpu/drm/msm/Kconfig                   |   1 +
+ drivers/gpu/drm/msm/adreno/a3xx_gpu.c         |  28 +-
+ drivers/gpu/drm/msm/adreno/a3xx_gpu.h         |   3 +-
+ drivers/gpu/drm/msm/adreno/a4xx_gpu.c         |  25 +-
+ drivers/gpu/drm/msm/adreno/a4xx_gpu.h         |   3 +-
+ drivers/gpu/drm/msm/adreno/adreno_gpu.c       |  40 ++
+ drivers/gpu/drm/msm/adreno/adreno_gpu.h       |  10 +
+ drivers/soc/qcom/Kconfig                      |  10 +
+ drivers/soc/qcom/Makefile                     |   1 +
+ drivers/soc/qcom/ocmem.c                      | 433 ++++++++++++++++++
+ include/linux/qcom_scm.h                      |  26 ++
+ include/soc/qcom/ocmem.h                      |  62 +++
+ 19 files changed, 870 insertions(+), 45 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/sram/qcom,ocmem.yaml
+ create mode 100644 drivers/soc/qcom/ocmem.c
+ create mode 100644 include/soc/qcom/ocmem.h
 
-Regards,
-Bjorn
+-- 
+2.21.0
+
