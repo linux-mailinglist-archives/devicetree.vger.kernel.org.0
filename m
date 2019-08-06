@@ -2,105 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D233083601
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:58:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7E36483612
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 18:00:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387534AbfHFP5z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 11:57:55 -0400
-Received: from vps.xff.cz ([195.181.215.36]:55450 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2387527AbfHFP5y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Aug 2019 11:57:54 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1565107072; bh=hF73OcLMSBQTt85tuavHzM/b80WjbO/5pa+6hf7Ij0Q=;
-        h=From:To:Cc:Subject:Date:References:From;
-        b=L32f2mT8XPQVCjlNq+xzSMAm+p1moJpligfxrFrnmeGmNpQDjL751AvS62z1xm8iX
-         PpnbV0LiMXIP2NkYYb7qaGz8kr4Fy2DtLlFbT5Q35ejNCy3rNU+c4BL4oc8MAEEIr0
-         5Kv974GSt2ff+5OPqmAtHCq4WIwHHXRF7Uv4CR/s=
-From:   megous@megous.com
-To:     linux-sunxi@googlegroups.com,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>
-Cc:     Ondrej Jirman <megous@megous.com>, David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
+        id S1733207AbfHFQAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 12:00:18 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:37011 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730028AbfHFQAR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 12:00:17 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hv1sg-0008Cu-8f; Tue, 06 Aug 2019 18:00:10 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hv1sd-0008QY-2C; Tue, 06 Aug 2019 18:00:07 +0200
+Date:   Tue, 6 Aug 2019 18:00:07 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>
+Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v8 4/4] arm64: dts: allwinner: orange-pi-3: Enable HDMI output
-Date:   Tue,  6 Aug 2019 17:57:43 +0200
-Message-Id: <20190806155744.10263-5-megous@megous.com>
-In-Reply-To: <20190806155744.10263-1-megous@megous.com>
-References: <20190806155744.10263-1-megous@megous.com>
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
+Subject: Re: [PATCH RFC 5/7] pwm: rcar: remove a redundant condition in
+ rcar_pwm_apply()
+Message-ID: <20190806160007.mqwzixddhzejbmcb@pengutronix.de>
+References: <1562576868-8124-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1562576868-8124-6-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <CAMuHMdWw1Gh_CxgiO5gd+MY0vUvWX_ACDj+L3_Wcomkaf5Oo4Q@mail.gmail.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAMuHMdWw1Gh_CxgiO5gd+MY0vUvWX_ACDj+L3_Wcomkaf5Oo4Q@mail.gmail.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Ondrej Jirman <megous@megous.com>
+Hello,
 
-Orange Pi 3 has a DDC_CEC_EN signal connected to PH2, that enables the DDC
-I2C bus voltage shifter. Before EDID can be read, we need to pull PH2 high.
-This is realized by the ddc-en-gpios property.
+On Tue, Aug 06, 2019 at 11:05:30AM +0200, Geert Uytterhoeven wrote:
+> On Mon, Jul 8, 2019 at 11:08 AM Yoshihiro Shimoda
+> <yoshihiro.shimoda.uh@renesas.com> wrote:
+> > Since the rcar_pwm_apply() has already check whehter state->enabled
+> > is not set or not, this patch removes a redundant condition.
+> >
+> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> 
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> 
+> This is completely independent from the rest of the series, and can be applied
+> immediately, right?
 
-Signed-off-by: Ondrej Jirman <megous@megous.com>
----
- .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 26 +++++++++++++++++++
- 1 file changed, 26 insertions(+)
+The original patch didn't make it into my mailbox. I only see a few
+replies. Is it only me?
+https://patchwork.ozlabs.org/project/linux-pwm/list/ doesn't seem to
+have it either.
 
-diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-index 2c6807b74ff6..01bb1bafe284 100644
---- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-+++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-@@ -22,6 +22,18 @@
- 		stdout-path = "serial0:115200n8";
- 	};
- 
-+	connector {
-+		compatible = "hdmi-connector";
-+		ddc-en-gpios = <&pio 7 2 GPIO_ACTIVE_HIGH>; /* PH2 */
-+		type = "a";
-+
-+		port {
-+			hdmi_con_in: endpoint {
-+				remote-endpoint = <&hdmi_out_con>;
-+			};
-+		};
-+	};
-+
- 	leds {
- 		compatible = "gpio-leds";
- 
-@@ -72,6 +84,10 @@
- 	cpu-supply = <&reg_dcdca>;
- };
- 
-+&de {
-+	status = "okay";
-+};
-+
- &ehci0 {
- 	status = "okay";
- };
-@@ -91,6 +107,16 @@
- 	status = "okay";
- };
- 
-+&hdmi {
-+	status = "okay";
-+};
-+
-+&hdmi_out {
-+	hdmi_out_con: endpoint {
-+		remote-endpoint = <&hdmi_con_in>;
-+	};
-+};
-+
- &mdio {
- 	ext_rgmii_phy: ethernet-phy@1 {
- 		compatible = "ethernet-phy-ieee802.3-c22";
+Best regards
+Uwe
+
 -- 
-2.22.0
-
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
