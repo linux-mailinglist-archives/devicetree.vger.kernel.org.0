@@ -2,82 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7E36483612
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 18:00:18 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AECAD836A0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 18:24:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733207AbfHFQAS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 12:00:18 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:37011 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730028AbfHFQAR (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 12:00:17 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hv1sg-0008Cu-8f; Tue, 06 Aug 2019 18:00:10 +0200
-Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <ukl@pengutronix.de>)
-        id 1hv1sd-0008QY-2C; Tue, 06 Aug 2019 18:00:07 +0200
-Date:   Tue, 6 Aug 2019 18:00:07 +0200
-From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
-        <u.kleine-koenig@pengutronix.de>
-To:     Geert Uytterhoeven <geert@linux-m68k.org>
-Cc:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
+        id S2387656AbfHFQYu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 12:24:50 -0400
+Received: from foss.arm.com ([217.140.110.172]:36278 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728927AbfHFQYu (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 12:24:50 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id A3A38344;
+        Tue,  6 Aug 2019 09:24:49 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 19C013F575;
+        Tue,  6 Aug 2019 09:24:47 -0700 (PDT)
+Date:   Tue, 6 Aug 2019 17:24:39 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        Bjorn Helgaas <bhelgaas@google.com>
+Cc:     Ryder Lee <ryder.lee@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Subject: Re: [PATCH RFC 5/7] pwm: rcar: remove a redundant condition in
- rcar_pwm_apply()
-Message-ID: <20190806160007.mqwzixddhzejbmcb@pengutronix.de>
-References: <1562576868-8124-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1562576868-8124-6-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdWw1Gh_CxgiO5gd+MY0vUvWX_ACDj+L3_Wcomkaf5Oo4Q@mail.gmail.com>
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        linux-pci@vger.kernel.org, linux-mediatek@lists.infradead.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, youlin.pei@mediatek.com
+Subject: Re: [v2,2/2] PCI: mediatek: Add controller support for MT7629
+Message-ID: <20190806162432.GA15498@e121166-lin.cambridge.arm.com>
+References: <20190628073425.25165-1-jianjun.wang@mediatek.com>
+ <20190628073425.25165-3-jianjun.wang@mediatek.com>
+ <1564385918.17211.6.camel@mhfsdcap03>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <CAMuHMdWw1Gh_CxgiO5gd+MY0vUvWX_ACDj+L3_Wcomkaf5Oo4Q@mail.gmail.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: ukl@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1564385918.17211.6.camel@mhfsdcap03>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hello,
+[trim the CC list please to keep only required maintainers]
 
-On Tue, Aug 06, 2019 at 11:05:30AM +0200, Geert Uytterhoeven wrote:
-> On Mon, Jul 8, 2019 at 11:08 AM Yoshihiro Shimoda
-> <yoshihiro.shimoda.uh@renesas.com> wrote:
-> > Since the rcar_pwm_apply() has already check whehter state->enabled
-> > is not set or not, this patch removes a redundant condition.
-> >
-> > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+On Mon, Jul 29, 2019 at 03:38:38PM +0800, Jianjun Wang wrote:
+> On Fri, 2019-06-28 at 15:34 +0800, Jianjun Wang wrote:
+> > MT7629 is an ARM platform SoC which has the same PCIe IP with MT7622.
+> > 
+> > The HW default value of its Device ID is invalid, fix its Device ID to
+> > match the hardware implementation.
+> > 
+> > Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > ---
+> >  drivers/pci/controller/pcie-mediatek.c | 18 ++++++++++++++++++
+> >  include/linux/pci_ids.h                |  1 +
+> >  2 files changed, 19 insertions(+)
+> > 
+> > diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> > index 80601e1b939e..e5e6740b635d 100644
+> > --- a/drivers/pci/controller/pcie-mediatek.c
+> > +++ b/drivers/pci/controller/pcie-mediatek.c
+> > @@ -73,6 +73,7 @@
+> >  #define PCIE_MSI_VECTOR		0x0c0
+> >  
+> >  #define PCIE_CONF_VEND_ID	0x100
+> > +#define PCIE_CONF_DEVICE_ID	0x102
+> >  #define PCIE_CONF_CLASS_ID	0x106
+> >  
+> >  #define PCIE_INT_MASK		0x420
+> > @@ -141,12 +142,16 @@ struct mtk_pcie_port;
+> >  /**
+> >   * struct mtk_pcie_soc - differentiate between host generations
+> >   * @need_fix_class_id: whether this host's class ID needed to be fixed or not
+> > + * @need_fix_device_id: whether this host's Device ID needed to be fixed or not
+> > + * @device_id: Device ID which this host need to be fixed
+> >   * @ops: pointer to configuration access functions
+> >   * @startup: pointer to controller setting functions
+> >   * @setup_irq: pointer to initialize IRQ functions
+> >   */
+> >  struct mtk_pcie_soc {
+> >  	bool need_fix_class_id;
+> > +	bool need_fix_device_id;
+> > +	unsigned int device_id;
+> >  	struct pci_ops *ops;
+> >  	int (*startup)(struct mtk_pcie_port *port);
+> >  	int (*setup_irq)(struct mtk_pcie_port *port, struct device_node *node);
+> > @@ -696,6 +701,9 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+> >  		writew(val, port->base + PCIE_CONF_CLASS_ID);
+> >  	}
+> >  
+> > +	if (soc->need_fix_device_id)
+> > +		writew(soc->device_id, port->base + PCIE_CONF_DEVICE_ID);
+> > +
+> >  	/* 100ms timeout value should be enough for Gen1/2 training */
+> >  	err = readl_poll_timeout(port->base + PCIE_LINK_STATUS_V2, val,
+> >  				 !!(val & PCIE_PORT_LINKUP_V2), 20,
+> > @@ -1216,11 +1224,21 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt7622 = {
+> >  	.setup_irq = mtk_pcie_setup_irq,
+> >  };
+> >  
+> > +static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
+> > +	.need_fix_class_id = true,
+> > +	.need_fix_device_id = true,
+> > +	.device_id = PCI_DEVICE_ID_MEDIATEK_7629,
+> > +	.ops = &mtk_pcie_ops_v2,
+> > +	.startup = mtk_pcie_startup_port_v2,
+> > +	.setup_irq = mtk_pcie_setup_irq,
+> > +};
+> > +
+> >  static const struct of_device_id mtk_pcie_ids[] = {
+> >  	{ .compatible = "mediatek,mt2701-pcie", .data = &mtk_pcie_soc_v1 },
+> >  	{ .compatible = "mediatek,mt7623-pcie", .data = &mtk_pcie_soc_v1 },
+> >  	{ .compatible = "mediatek,mt2712-pcie", .data = &mtk_pcie_soc_mt2712 },
+> >  	{ .compatible = "mediatek,mt7622-pcie", .data = &mtk_pcie_soc_mt7622 },
+> > +	{ .compatible = "mediatek,mt7629-pcie", .data = &mtk_pcie_soc_mt7629 },
+> >  	{},
+> >  };
+> >  
+> > diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
+> > index 70e86148cb1e..aa32962759b2 100644
+> > --- a/include/linux/pci_ids.h
+> > +++ b/include/linux/pci_ids.h
+> > @@ -2131,6 +2131,7 @@
+> >  #define PCI_VENDOR_ID_MYRICOM		0x14c1
+> >  
+> >  #define PCI_VENDOR_ID_MEDIATEK		0x14c3
+> > +#define PCI_DEVICE_ID_MEDIATEK_7629	0x7629
+> >  
+> >  #define PCI_VENDOR_ID_TITAN		0x14D2
+> >  #define PCI_DEVICE_ID_TITAN_010L	0x8001
 > 
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Hi Bjorn & Lorenzo,
 > 
-> This is completely independent from the rest of the series, and can be applied
-> immediately, right?
+> Is this patch ok or is there anything I need to fixed?
 
-The original patch didn't make it into my mailbox. I only see a few
-replies. Is it only me?
-https://patchwork.ozlabs.org/project/linux-pwm/list/ doesn't seem to
-have it either.
+The commit log need to be fixed and I will do it, the code if
+Bjorn is OK with it I can merge it.
 
-Best regards
-Uwe
-
--- 
-Pengutronix e.K.                           | Uwe Kleine-König            |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Lorenzo
