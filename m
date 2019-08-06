@@ -2,102 +2,111 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D44C283D04
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 23:54:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C10B783D0F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 23:58:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726494AbfHFVyv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 17:54:51 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:39228 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726052AbfHFVyv (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 17:54:51 -0400
-Received: by mail-ot1-f68.google.com with SMTP id r21so90390971otq.6
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 14:54:50 -0700 (PDT)
+        id S1726747AbfHFV6J (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 17:58:09 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:46066 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726133AbfHFV6J (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 17:58:09 -0400
+Received: by mail-pl1-f193.google.com with SMTP id y8so38416895plr.12
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 14:58:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=e0N0ZZ7gbRhdL+UK8EX1dMgG/3bO/cb7jXRFzExUL4k=;
-        b=nC2RK+wjbSKbABdylLiYJMYOsFyEaY+iXsRPvSPywyopW3IGcH2lgAojRCNmpiStVL
-         zZYaAtNAnpiMxnK1MpKnaUChgb3VqZ5jtmBfmbv6GIQXd4RHouKZ1RwGKGSFTwENK2Gu
-         CdYxLb5F44BiYphtIhsfrdBL/XR3rPypAqjPWi4GEwj8Ql8mYTJvQFS/5l82Xbp2sQNU
-         IJfybu+HiA8Rzx1717EYb+nbJVTaOUTfNhq4nq4vsiwoLg/bcTL6duKfQwWMfvzOxFzJ
-         gC6aZfHv2hwKrTzOH0+vWrpHBmFbcJylo+X4DmM0Gl7/X40VjmJfhWM9fhWbHYSpk2XK
-         crzg==
+        d=chromium.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=sIpKrhEM5/tp8Qz70zYOUEplPaoReCoRwp7XJifEk9E=;
+        b=Nr8ioY5nkZ+hHZ2Vd0oyyKHnIg7xCeor9Xlx0BbFopNr74mYCyFu7X0ek69HSI5/LQ
+         maJ99kveqAiDiqbNJdgPtA5yLsZQI6UQrJL6G8uHOU4Ma+ZscOetJr33ovKX8TU3Rr+u
+         2kfVMzj12XkP7J1hltyE6y08214mXxwdmJjmU=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=e0N0ZZ7gbRhdL+UK8EX1dMgG/3bO/cb7jXRFzExUL4k=;
-        b=sHitjnNnRZIpu59VxDR+bh1uvgzQh5+3+iIB30rlyAQtIhjuKnYn0lypiVCSbSKEy+
-         XwUXwKLsmsRUzUqQG9tO2mj+E8F4+2ayMjoFm4z7ZL++l7wka6BOOt6KaVtAKjqxL2wg
-         FSJ4jeT/1lnWuDh+zxHmD2hWxLhe72celLGbmINz/89tbi/bIvbbrJNXVHl7sKFdcmVA
-         fS5kwyMWMpaxVuoJB+E+JuUCFYOtMX0jbJzr9PX/kQDUF6rd+Q5EiRsrrHj3SpUEuidl
-         49CSU7RPzqw8eW+b3VFyCPvvhUX/Dm59I3FBKz+tuxUttt/74S0PDD1HE/9MngcAjnu9
-         Swiw==
-X-Gm-Message-State: APjAAAW/SieRXYuv73R5iQzXOQOyG3W8qw7JDcnLgTpoQDaHrhdBkYwz
-        hlxRoiMy1SAwL7LBGNcxFRmePA==
-X-Google-Smtp-Source: APXvYqzPVNaDRTXzYBHYAB33LLYEDUma/TzBsb06XC691qDzmkvhh49XRDXuGu0MTeDKJrnOkXJJAg==
-X-Received: by 2002:a6b:1ca:: with SMTP id 193mr6162600iob.264.1565128490422;
-        Tue, 06 Aug 2019 14:54:50 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id e26sm71330428iod.10.2019.08.06.14.54.49
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 06 Aug 2019 14:54:50 -0700 (PDT)
-Date:   Tue, 6 Aug 2019 14:54:49 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Atish Patra <atish.patra@wdc.com>, Anup Patel <anup.patel@wdc.com>
-cc:     linux-kernel@vger.kernel.org, Alan Kao <alankao@andestech.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        devicetree@vger.kernel.org, Enrico Weigelt <info@metux.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johan Hovold <johan@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=sIpKrhEM5/tp8Qz70zYOUEplPaoReCoRwp7XJifEk9E=;
+        b=IdFk3ov9wqCaqygRXoUvrfkSK9uB+cf/rYdA8Sm8GHmKv+MhCFwtwG+cdQ3/vr5SXZ
+         DqxjmVL5p67sAhiyfFYfoUJ/i0z6vb7dgy4pB3KamwnT1FaxadNQwg32mh2lJoZCJxrq
+         xkin482ipJ/PE/BpxEXsG6ZL+aARnfA4cvLa07fCQojkUvJgR4eK67pCnf0PhM2g/XGV
+         7fOnMsyDcszXL0uY1niz3kcRrlDC47pR9dUW1wKStATjM78eV+NK9DW4yD8v3f7jUsiL
+         WxtW5+HtKEsDjhavU/Rc79ifNnYH/tddA8y9NuTnaJCh7P+DkF3ExBRkIwyNbABTlL0F
+         R9NA==
+X-Gm-Message-State: APjAAAV+5GooOI+fsCtxjX5mO5kYGGVWFaqik/JFnoSUA91W+KNiqLMc
+        +vUQ0IaguqBLl5JOc38kBJAzlg==
+X-Google-Smtp-Source: APXvYqxVXktSpq1nZpGeh9uN+NMaAvCm4lZBgla+rcPaGxxPGYsYZt2arEhRJcrXpXSlw2j3J8jLNg==
+X-Received: by 2002:a17:902:1aa:: with SMTP id b39mr5246938plb.333.1565128688993;
+        Tue, 06 Aug 2019 14:58:08 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id x128sm131544170pfd.17.2019.08.06.14.58.07
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 06 Aug 2019 14:58:07 -0700 (PDT)
+Date:   Tue, 6 Aug 2019 14:58:01 -0700
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     "David S . Miller" <davem@davemloft.net>,
         Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v4 2/4] RISC-V: Add riscv_isa reprensenting ISA features
- common across CPUs
-In-Reply-To: <20190803042723.7163-3-atish.patra@wdc.com>
-Message-ID: <alpine.DEB.2.21.9999.1908061452570.13971@viisi.sifive.com>
-References: <20190803042723.7163-1-atish.patra@wdc.com> <20190803042723.7163-3-atish.patra@wdc.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>
+Subject: Re: [PATCH v4 3/4] net: phy: realtek: Add helpers for accessing
+ RTL8211E extension pages
+Message-ID: <20190806215801.GN250418@google.com>
+References: <20190801190759.28201-1-mka@chromium.org>
+ <20190801190759.28201-4-mka@chromium.org>
+ <71d817b9-7bcc-9f83-331d-1c3958c41f51@gmail.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+In-Reply-To: <71d817b9-7bcc-9f83-331d-1c3958c41f51@gmail.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Anup, Atish,
-
-On Fri, 2 Aug 2019, Atish Patra wrote:
-
-> From: Anup Patel <anup.patel@wdc.com>
+On Sun, Aug 04, 2019 at 10:33:30AM +0200, Heiner Kallweit wrote:
+> On 01.08.2019 21:07, Matthias Kaehlcke wrote:
+> > The RTL8211E has extension pages, which can be accessed after
+> > selecting a page through a custom method. Add a function to
+> > modify bits in a register of an extension page and a helper for
+> > selecting an ext page. Use rtl8211e_modify_ext_paged() in
+> > rtl8211e_config_init() instead of doing things 'manually'.
+> > 
+> > Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
+> > ---
+> > Changes in v4:
+> > - don't add constant RTL8211E_EXT_PAGE, it's only used once,
+> >   use a literal instead
+> > - pass 'oldpage' to phy_restore_page() in rtl8211e_select_ext_page(),
+> >   not 'page'
+> > - return 'oldpage' in rtl8211e_select_ext_page()
+> > - use __phy_modify() in rtl8211e_modify_ext_paged() instead of
+> >   reimplementing __phy_modify_changed()
+> > - in rtl8211e_modify_ext_paged() return directly when
+> >   rtl8211e_select_ext_page() fails
+> > ---
+> >  drivers/net/phy/realtek.c | 48 +++++++++++++++++++++++++++------------
+> >  1 file changed, 34 insertions(+), 14 deletions(-)
+> > 
+> > diff --git a/drivers/net/phy/realtek.c b/drivers/net/phy/realtek.c
+> > index a669945eb829..e09d3b0da2c7 100644
+> > --- a/drivers/net/phy/realtek.c
+> > +++ b/drivers/net/phy/realtek.c
+> > @@ -53,6 +53,36 @@ static int rtl821x_write_page(struct phy_device *phydev, int page)
+> >  	return __phy_write(phydev, RTL821x_PAGE_SELECT, page);
+> >  }
+> >  
+> > +static int rtl8211e_select_ext_page(struct phy_device *phydev, int page)
 > 
-> This patch adds riscv_isa integer to represent ISA features common
-> across all CPUs. The riscv_isa is not same as elf_hwcap because
-> elf_hwcap will only have ISA features relevant for user-space apps
-> whereas riscv_isa will have ISA features relevant to both kernel
-> and user-space apps.
-> 
-> One of the use case is KVM hypervisor where riscv_isa will be used
-> to do following operations:
-> 
-> 1. Check whether hypervisor extension is available
-> 2. Find ISA features that need to be virtualized (e.g. floating
->    point support, vector extension, etc.)
-> 
-> Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+> The "extended page" mechanism doesn't exist on RTL8211E only. A prefix
+> rtl821x like in other functions may be better therefore.
 
-Do you have any opinions on how this patch might change for the Z-prefix 
-extensions?  This bitfield approach probably won't scale, and with the 
-EXPORT_SYMBOL(), it might be worth trying to put together a approach that 
-would work over the long term?
+Sounds good, I'll change it in the next revision
 
+Thanks
 
-- Paul
+Matthias
