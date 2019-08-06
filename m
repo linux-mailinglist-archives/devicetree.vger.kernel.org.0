@@ -2,60 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DCA8782D3D
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 09:58:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BE5082D48
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 10:00:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732023AbfHFH5c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 03:57:32 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:37499 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727259AbfHFH5c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 03:57:32 -0400
-Received: by mail-wm1-f68.google.com with SMTP id f17so75404032wme.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 00:57:28 -0700 (PDT)
+        id S1728886AbfHFH7V (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 03:59:21 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:37527 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728056AbfHFH7T (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 03:59:19 -0400
+Received: by mail-wr1-f66.google.com with SMTP id n9so61796417wrr.4
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 00:59:16 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:openpgp:autocrypt:organization
          :message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=cb5T434YrMu3wWKr83C7n8/vlyK6CAvAcusdkd913hM=;
-        b=cR9g5qWDv71hiI+sMw1ecV5Lcl4lv4BbEOhqpBDsW4ykTbEXubNv+ylRco6Thd8YJe
-         jF69ZOdGCUaoE+brV8Fhagwn2ZSnP+l8SfLa0I1fuiVftdbJyqDnAWtMr1+CWRmB1MBP
-         W2gaHwusQ+8OBQXJ6QCsqO95QjoW91U9QJAmOVNUoQJStZyvgbuSMdv+ZCjMlA0U7rae
-         Tl5NtA+ZkuFGlTVDKABZucrh6AAc+NK0gWafWSdSXWU5XkdgxtRMqLnA1w8G69/bySzz
-         Zc+8j8QACXTaReH3tVUgeKCO25ahNoB5FWgRDMvt6lK0QppQ5D+ehYuKQmcckLZuoY+9
-         N0JA==
+        bh=0jpzu7N7BsP1VTKn6SaBBYfX2bOHc+E6EaagQmvrJ2k=;
+        b=KAadwpkUrbOoQ989pzgCF1/nXwbP1IkkDAvvTWWre3gmn14ax4AV49Qh3mM5+jlPCz
+         h3jS4Fxe7KmKNs+iD3OXXJtVuffqMC6EIuUBaFoZWJplXceKwfNPa0wWujuN5ffHNYE4
+         gEg8+8WYN2QtioyIV6XHFaeI72dfhYIY880gohnHkHknVY88i7EHTsO+Xv96duNaL25n
+         TgX7Qm0wsO2zvogAnT2s8/JOGNLKxzjFVyi95udEtPrg1W3ZCH2hX437onnaBvysF/T+
+         Aj/nzLRKjgcc9EgCeSTvkCswUrNc64y93/9dEXZM6KFTpIgW54JOrSMqxnWuzNODtbX1
+         ET1w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
          :organization:message-id:date:user-agent:mime-version:in-reply-to
          :content-language:content-transfer-encoding;
-        bh=cb5T434YrMu3wWKr83C7n8/vlyK6CAvAcusdkd913hM=;
-        b=ffsmS3PjwmoD4dL2YYb35ijd10O7giup6H1B1FEYJpw1l3qxtbE1lEp3LojgOY8V8N
-         yEcmoz8RaMpw3txTjE7VkDg9Qr46MTxDkwgHQkjpNr4Umpcg0LVyHd1dpHcNgX7N70bJ
-         aH0gq4jBSqDI5sV6D9o7yM+Ip3TC/oycfLpHFshV+y8qZeNZQxUT54gyFwtIj0qkkHoE
-         nWTBzJxqCSan7jtonekrLUOwIxVc0jzZvuSGwaLQC9F6jb9yhLb5koZOlCYr2h4oOvud
-         EtIiJCWlCBAnn6cq4auY3has1kVjCqC/t2AvtSQvprAVdx7ddvgdtfaznTBfW3iL143f
-         9xkw==
-X-Gm-Message-State: APjAAAW2wiDKH0euD2Pz7nU/e/qPuBFTSm8DLwL6B00oFYScgdO/FcjM
-        CAbUSkkOvZarLj/5MHdVTHccew==
-X-Google-Smtp-Source: APXvYqydS2RNlklUop2U9VvYtLqiMp+Rxw2bDyE1UMdyD7TelBNR2y5vdlk6vzJ4elRe9ajPzXnGgw==
-X-Received: by 2002:a1c:6a11:: with SMTP id f17mr2900149wmc.110.1565078248039;
-        Tue, 06 Aug 2019 00:57:28 -0700 (PDT)
+        bh=0jpzu7N7BsP1VTKn6SaBBYfX2bOHc+E6EaagQmvrJ2k=;
+        b=Y0ws9Ynrx1/DSNkmn+bTKIDJMZIrVqnLN2pt35rt/6zYD2bD44FIUK2R/8fYCJrdQ3
+         DMSdfGqUkcLHESTcrENC72+B+rEnePqP6tRI3qdfNMPVjKnJQn0cMmEY4ObB7iXELycF
+         DKUdGeOPFH24J/rqHaW9FimscaoHcdXsyfEh0GxRXjzYEc7l089imkg5que6Ls38ei1c
+         o6gkzI1a5y4y9SmC1P8aj10qaJUT8FdXpP1umP7doYRee3TWEN9IxEVajOFwJ6TYcSuZ
+         JzC1/xqCYLQobf7JoOjc1qCDjVAw/wkCLgVlvTa03Le4ZCTqlZjwaq3oN782dnWfb6VL
+         O1xw==
+X-Gm-Message-State: APjAAAVrbgkKDEbIEQYcxMkyJd4xn3lCX8rV7bMSnQH1CCwn2q//Opd2
+        jOEe54egE9v3OqwtwnWCm7BOPQ==
+X-Google-Smtp-Source: APXvYqx0S78akU8v6+0QvhaK+gQ+SteoV/oBIwE21MV/EkelU53v84DKHkisQiYQus5RFh31GiMdng==
+X-Received: by 2002:a5d:4e4d:: with SMTP id r13mr3152392wrt.295.1565078355350;
+        Tue, 06 Aug 2019 00:59:15 -0700 (PDT)
 Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id 4sm200794808wro.78.2019.08.06.00.57.27
+        by smtp.gmail.com with ESMTPSA id p10sm15591437wmk.2.2019.08.06.00.59.14
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 06 Aug 2019 00:57:27 -0700 (PDT)
-Subject: Re: [PATCH 1/3] dt-bindings: display: amlogic,meson-dw-hdmi: convert
- to yaml
+        Tue, 06 Aug 2019 00:59:14 -0700 (PDT)
+Subject: Re: [PATCH 2/3] dt-bindings: display: amlogic,meson-vpu: convert to
+ yaml
 To:     Rob Herring <robh+dt@kernel.org>
 Cc:     devicetree@vger.kernel.org,
         dri-devel <dri-devel@lists.freedesktop.org>,
         linux-amlogic@lists.infradead.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 References: <20190805134319.737-1-narmstrong@baylibre.com>
- <20190805134319.737-2-narmstrong@baylibre.com>
- <CAL_JsqJPFdR6bj_XuVuEDFYhCpmhQ4pZ66egCNJH_U26tTydmA@mail.gmail.com>
+ <20190805134319.737-3-narmstrong@baylibre.com>
+ <CAL_JsqLMS2y5ZR4SH6TVwnaTDhnGwk2_C_81DTz9J=ypDdBd4w@mail.gmail.com>
 From:   Neil Armstrong <narmstrong@baylibre.com>
 Openpgp: preference=signencrypt
 Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
@@ -108,12 +108,12 @@ Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
  VsbXrP9BZ6snXyHfebPnno/te5XRqZTL9aJOytB/1iUna+1MAwBxGFPvqeEUUyT+gx1l3Acl
  ZaTUOEkgIor5losDrePdPgE=
 Organization: Baylibre
-Message-ID: <334aa018-9f90-7218-f59c-5937d483ef79@baylibre.com>
-Date:   Tue, 6 Aug 2019 09:57:27 +0200
+Message-ID: <a887183e-01d5-f4fc-7d12-eeda9c7e278f@baylibre.com>
+Date:   Tue, 6 Aug 2019 09:59:14 +0200
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <CAL_JsqJPFdR6bj_XuVuEDFYhCpmhQ4pZ66egCNJH_U26tTydmA@mail.gmail.com>
+In-Reply-To: <CAL_JsqLMS2y5ZR4SH6TVwnaTDhnGwk2_C_81DTz9J=ypDdBd4w@mail.gmail.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -122,211 +122,139 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/08/2019 00:15, Rob Herring wrote:
+On 06/08/2019 00:19, Rob Herring wrote:
 > On Mon, Aug 5, 2019 at 7:43 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >>
 >> Now that we have the DT validation in place, let's convert the device tree
->> bindings for the Amlogic Synopsys DW-HDMI specifics over to YAML schemas.
+>> bindings for the Amlogic Display Controller over to YAML schemas.
 >>
->> The original example and usage of clock-names uses a reversed "isfr"
->> and "iahb" clock-names, the rewritten YAML bindings uses the reversed
->> instead of fixing the device trees order.
+>> The original example has a leftover "dmc" memory cell, that has been
+>> removed in the yaml rewrite.
 >>
 >> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 >> ---
->>  .../display/amlogic,meson-dw-hdmi.txt         | 119 -------------
->>  .../display/amlogic,meson-dw-hdmi.yaml        | 160 ++++++++++++++++++
->>  2 files changed, 160 insertions(+), 119 deletions(-)
->>  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
->>  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+>>  .../bindings/display/amlogic,meson-vpu.txt    | 121 --------------
+>>  .../bindings/display/amlogic,meson-vpu.yaml   | 153 ++++++++++++++++++
+>>  2 files changed, 153 insertions(+), 121 deletions(-)
+>>  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+>>  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
 > 
->> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+> 
+>> diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
 >> new file mode 100644
->> index 000000000000..1212aa7a624f
+>> index 000000000000..9eba13031998
 >> --- /dev/null
->> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
->> @@ -0,0 +1,160 @@
+>> +++ b/Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+>> @@ -0,0 +1,153 @@
 >> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
 >> +# Copyright 2019 BayLibre, SAS
 >> +%YAML 1.2
 >> +---
->> +$id: "http://devicetree.org/schemas/display/amlogic,meson-dw-hdmi.yaml#"
+>> +$id: "http://devicetree.org/schemas/display/amlogic,meson-vpu.yaml#"
 >> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
 >> +
->> +title: Amlogic specific extensions to the Synopsys Designware HDMI Controller
+>> +title: Amlogic Meson Display Controller
 >> +
 >> +maintainers:
 >> +  - Neil Armstrong <narmstrong@baylibre.com>
 >> +
 >> +description: |
->> +  The Amlogic Meson Synopsys Designware Integration is composed of
->> +  - A Synopsys DesignWare HDMI Controller IP
->> +  - A TOP control block controlling the Clocks and PHY
->> +  - A custom HDMI PHY in order to convert video to TMDS signal
->> +   ___________________________________
->> +  |            HDMI TOP               |<= HPD
->> +  |___________________________________|
->> +  |                  |                |
->> +  |  Synopsys HDMI   |   HDMI PHY     |=> TMDS
->> +  |    Controller    |________________|
->> +  |___________________________________|<=> DDC
+>> +  The Amlogic Meson Display controller is composed of several components
+>> +  that are going to be documented below
 >> +
->> +  The HDMI TOP block only supports HPD sensing.
->> +  The Synopsys HDMI Controller interrupt is routed through the
->> +  TOP Block interrupt.
->> +  Communication to the TOP Block and the Synopsys HDMI Controller is done
->> +  via a pair of dedicated addr+read/write registers.
->> +  The HDMI PHY is configured by registers in the HHI register block.
+>> +  DMC|---------------VPU (Video Processing Unit)----------------|------HHI------|
+>> +     | vd1   _______     _____________    _________________     |               |
+>> +  D  |-------|      |----|            |   |                |    |   HDMI PLL    |
+>> +  D  | vd2   | VIU  |    | Video Post |   | Video Encoders |<---|-----VCLK      |
+>> +  R  |-------|      |----| Processing |   |                |    |               |
+>> +     | osd2  |      |    |            |---| Enci ----------|----|-----VDAC------|
+>> +  R  |-------| CSC  |----| Scalers    |   | Encp ----------|----|----HDMI-TX----|
+>> +  A  | osd1  |      |    | Blenders   |   | Encl ----------|----|---------------|
+>> +  M  |-------|______|----|____________|   |________________|    |               |
+>> +  ___|__________________________________________________________|_______________|
 >> +
->> +  Pixel data arrives in "4:4:4" format from the VENC block and the VPU HDMI mux
->> +  selects either the ENCI encoder for the 576i or 480i formats or the ENCP
->> +  encoder for all the other formats including interlaced HD formats.
 >> +
->> +  The VENC uses a DVI encoder on top of the ENCI or ENCP encoders to generate
->> +  DVI timings for the HDMI controller.
+>> +  VIU: Video Input Unit
+>> +  ---------------------
 >> +
->> +  Amlogic Meson GXBB, GXL and GXM SoCs families embeds the Synopsys DesignWare
->> +  HDMI TX IP version 2.01a with HDCP and I2C & S/PDIF
->> +  audio source interfaces.
+>> +  The Video Input Unit is in charge of the pixel scanout from the DDR memory.
+>> +  It fetches the frames addresses, stride and parameters from the "Canvas" memory.
+>> +  This part is also in charge of the CSC (Colorspace Conversion).
+>> +  It can handle 2 OSD Planes and 2 Video Planes.
+>> +
+>> +  VPP: Video Post Processing
+>> +  --------------------------
+>> +
+>> +  The Video Post Processing is in charge of the scaling and blending of the
+>> +  various planes into a single pixel stream.
+>> +  There is a special "pre-blending" used by the video planes with a dedicated
+>> +  scaler and a "post-blending" to merge with the OSD Planes.
+>> +  The OSD planes also have a dedicated scaler for one of the OSD.
+>> +
+>> +  VENC: Video Encoders
+>> +  --------------------
+>> +
+>> +  The VENC is composed of the multiple pixel encoders
+>> +   - ENCI : Interlace Video encoder for CVBS and Interlace HDMI
+>> +   - ENCP : Progressive Video Encoder for HDMI
+>> +   - ENCL : LCD LVDS Encoder
+>> +  The VENC Unit gets a Pixel Clocks (VCLK) from a dedicated HDMI PLL and clock
+>> +  tree and provides the scanout clock to the VPP and VIU.
+>> +  The ENCI is connected to a single VDAC for Composite Output.
+>> +  The ENCI and ENCP are connected to an on-chip HDMI Transceiver.
 >> +
 >> +  The following table lists for each supported model the port number
->> +  corresponding to each HDMI output and input.
+>> +  corresponding to each VPU output.
 >> +
->> +                  Port 0                 Port 1
+>> +                  Port 0       Port 1
 >> +  -----------------------------------------
->> +   S905 (GXBB)   VENC Input    TMDS Output
->> +   S905X (GXL)   VENC Input    TMDS Output
->> +   S905D (GXL)   VENC Input    TMDS Output
->> +   S912 (GXM)      VENC Input  TMDS Output
->> +   S905X2 (G12A)       VENC Input      TMDS Output
->> +   S905Y2 (G12A)       VENC Input      TMDS Output
->> +   S905D2 (G12A)       VENC Input      TMDS Output
-> 
-> Does this ever change?
-
-Not for this one, I could remove the table and add the description
-in port@0 and port@1.
-
-> 
+>> +   S905 (GXBB)   CVBS VDAC        HDMI-TX
+>> +   S905X (GXL)   CVBS VDAC        HDMI-TX
+>> +   S905D (GXL)   CVBS VDAC        HDMI-TX
+>> +   S912 (GXM)      CVBS VDAC      HDMI-TX
+>> +   S905X2 (G12A)       CVBS VDAC          HDMI-TX
+>> +   S905Y2 (G12A)       CVBS VDAC          HDMI-TX
+>> +   S905D2 (G12A)       CVBS VDAC          HDMI-TX
 >> +
 >> +properties:
 >> +  compatible:
 >> +    oneOf:
 >> +      - items:
 >> +          - enum:
->> +              - amlogic,meson-gxbb-dw-hdmi # GXBB (S905)
->> +              - amlogic,meson-gxl-dw-hdmi # GXL (S905X, S905D)
->> +              - amlogic,meson-gxm-dw-hdmi # GXM (S912)
->> +          - const: amlogic,meson-gx-dw-hdmi
+>> +              - amlogic,meson-gxbb-vpu # GXBB (S905)
+>> +              - amlogic,meson-gxl-vpu # GXL (S905X, S905D)
+>> +              - amlogic,meson-gxm-vpu # GXM (S912)
+>> +          - const: amlogic,meson-gx-vpu
 >> +      - enum:
->> +          - amlogic,meson-g12a-dw-hdmi # G12A (S905X2, S905Y2, S905D2)
+>> +          - amlogic,meson-g12a-vpu # G12A (S905X2, S905Y2, S905D2)
 >> +
 >> +  reg:
->> +    maxItems: 1
+>> +    maxItems: 2
+>> +
+>> +  reg-names:
+>> +   items:
+>> +     - const: vpu
+>> +     - const: hhi
 >> +
 >> +  interrupts:
 >> +    maxItems: 1
 >> +
->> +  clocks:
->> +    minItems: 3
->> +
->> +  clock-names:
->> +    items:
->> +      - const: isfr
->> +      - const: iahb
->> +      - const: venci
->> +
->> +  resets:
->> +    minItems: 3
->> +
->> +  reset-names:
->> +    items:
->> +      - const: hdmitx_apb
->> +      - const: hdmitx
->> +      - const: hdmitx_phy
->> +
->> +  hdmi-supply:
->> +    description: phandle to an external 5V regulator to power the HDMI logic
+>> +  power-domains:
+>> +    description: phandle to the associated power domain
 >> +    allOf:
 >> +      - $ref: /schemas/types.yaml#/definitions/phandle
->> +
->> +  port@0:
->> +    type: object
->> +    description:
->> +      A port node modeled using the OF graph
->> +      bindings specified in Documentation/devicetree/bindings/graph.txt.
 > 
-> Would be better to say this is the VENC (or ...? input and drop the
-> reference (as I expect graph.txt will be replaced with graph.yaml).
-
-Yes
-
-> 
->> +
->> +  port@1:
->> +    type: object
->> +    description:
->> +      A port node modeled using the OF graph
->> +      bindings specified in Documentation/devicetree/bindings/graph.txt.
->> +
->> +  "#address-cells":
->> +    const: 1
->> +
->> +  "#size-cells":
->> +    const: 0
->> +
->> +required:
->> +  - compatible
->> +  - reg
->> +  - interrupts
->> +  - clocks
->> +  - clock-names
->> +  - resets
->> +  - reset-names
->> +  - port@0
->> +  - port@1
->> +  - "#address-cells"
->> +  - "#size-cells"
-> 
-> Should be able to add an 'additionalProperties: false' here.
+> Common properties don't need a type definition. As this can be an
+> array, you just need 'maxItems: 1'.
 
 Ok
 
 > 
->> +
->> +examples:
->> +  - |
->> +    hdmi_tx: hdmi-tx@c883a000 {
->> +        compatible = "amlogic,meson-gxbb-dw-hdmi", "amlogic,meson-gx-dw-hdmi";
->> +        reg = <0xc883a000 0x1c>;
->> +        interrupts = <57>;
->> +        resets = <&reset_apb>, <&reset_hdmitx>, <&reset_hdmitx_phy>;
->> +        reset-names = "hdmitx_apb", "hdmitx", "hdmitx_phy";
->> +        clocks = <&clk_isfr>, <&clk_iahb>, <&clk_venci>;
->> +        clock-names = "isfr", "iahb", "venci";
->> +        #address-cells = <1>;
->> +        #size-cells = <0>;
->> +
->> +        /* VPU VENC Input */
->> +        hdmi_tx_venc_port: port@0 {
->> +            reg = <0>;
->> +
->> +            hdmi_tx_in: endpoint {
->> +                remote-endpoint = <&hdmi_tx_out>;
->> +            };
->> +        };
->> +
->> +        /* TMDS Output */
->> +        hdmi_tx_tmds_port: port@1 {
->> +             reg = <1>;
->> +
->> +             hdmi_tx_tmds_out: endpoint {
->> +                 remote-endpoint = <&hdmi_connector_in>;
->> +             };
->> +        };
->> +    };
->> +
->> --
->> 2.22.0
->>
+> Same comments on patch 1 apply here too.
+
+OK
+
+> 
+> Rob
+> 
 
