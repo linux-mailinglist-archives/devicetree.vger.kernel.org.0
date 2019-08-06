@@ -2,194 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E84B683118
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 14:01:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1A5C5831A2
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 14:44:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726713AbfHFMBc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 08:01:32 -0400
-Received: from mail-oi1-f194.google.com ([209.85.167.194]:33992 "EHLO
-        mail-oi1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726373AbfHFMBb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 08:01:31 -0400
-Received: by mail-oi1-f194.google.com with SMTP id l12so5515177oil.1;
-        Tue, 06 Aug 2019 05:01:30 -0700 (PDT)
+        id S1731092AbfHFMoV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 08:44:21 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:43514 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726036AbfHFMoV (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 08:44:21 -0400
+Received: by mail-wr1-f67.google.com with SMTP id p13so13192544wru.10
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 05:44:19 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KO3I9isK829bDAzoIYhMJ5BHP8qWfbUOhOqwyY1Ue8Q=;
+        b=JrZ6jaH1U8FIHz6Bc8fph0FiiWO6K+omU5EUJU4jjF30+ys1KQU3SZdTkQa3jdLrn0
+         E7L1bTIc93b/aDcBr4funyN2HbaOOQUAE267YVC5GaaLCnjz+RM+FVzJYaATJfGImyc4
+         r6Z/odJIDA5rFceLBE0XAZqZejXuLitKd5blVAf8H3urYm7jwPHgHTODfcZ95TA+PDaC
+         cMRx3zSX1Q9811UjLuu4eddHynsPD0T53VLfp1zJFwHCtjukZZVpw8UERDQBYTmkMekx
+         iEKyihqFLrtNAD0AeVEQsc4DtgbJxve5flvT1gYQRYBfikrDEVDcFYH4/Ghsmm6sJuJc
+         OtRQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=pCdcvTi4EtCG1tpy5aHZlX8nMWD9zO1iDHZPMFLJdQY=;
-        b=IYWW092zdYQFyxJCoZEHGt9WnUzgUB7tR7apA1Yjui8unJgfxxLiCq9yMxscJJ43T/
-         2pzYHrfkYP3kZziEUg54VfiJCNDwz7qGlNze7Vpat5yTWeWJogVNkDl2nUfFXOdXeEoy
-         r//mCxCReE3zalwPbxSpweMxfbSTk8CNo+rUlm0LACNPPl5bri3xkQtY/Y7qQIyT1J4n
-         Bh3uWOilGtiyCKFXRye1n+BsTEfevGLGw11LZNWZBLf++AUYN5bA4JdOA3bCcilYZiCR
-         vuK8Kr2PlmMIH1PBQnLvO/IC/AN/MLpPmK5iKCwieiz3gzKh1QqaiR21UDoPbJOC/cgO
-         NIfQ==
-X-Gm-Message-State: APjAAAWP571cptLZidY8siVOd9Gj/gRZw76KD/hJmWeRwQYbawfb057B
-        uiTvjQamZY+YFMcxZL7DbVWrET70tcdk4D4X5PU=
-X-Google-Smtp-Source: APXvYqzbVofQFNU84ewJ0VqF7ayxSoWIfRRYLegv+gXGaZsT8e/x5Fc4jZwLnXJsKAE4AqGMwebPQLeBx8/x3Xb4Fpg=
-X-Received: by 2002:a05:6808:3c5:: with SMTP id o5mr2432490oie.102.1565092890301;
- Tue, 06 Aug 2019 05:01:30 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=KO3I9isK829bDAzoIYhMJ5BHP8qWfbUOhOqwyY1Ue8Q=;
+        b=sNQEoPjIYSC33uVoU8yGPc/Zme0TuhYvl6Sd+NbcJGZUg8Zw/ubd7Z4G0MPfM2WNXb
+         8mldhUsC+C2VGhXbHGEtkCzpkV1EgZIfzc4vY/0lD2UArrf8LSMhNajoxXR69IwkqShF
+         76xRsWU8vOiQciTRIPJjnSIuRkpf4/ZrDFSAgX8sAIXi5Ae0kH7rK1Pf09dY9xpkvOaa
+         w+LghqD6FSjDB4v1n5/yhl8pQXUhlhGnOoYQzxsjp3g2HuwnHWX+s8c+GSzOtdRTRO9U
+         jz+BQgCsomrWq1qsmjySnneSETCznb/UOcz66FHWYIyQeJGxKitD9LrUssigeLp0vZWl
+         dXWg==
+X-Gm-Message-State: APjAAAVxsIT4dMRjnm7PvPYprcgQYkr9txKDXCv154UwLLwRp9VzDe7t
+        Qhyx0Yx7fDH63jyRYWTwt+8Zcg==
+X-Google-Smtp-Source: APXvYqxzWD1+g+8j3XMze7/L/Id/Sa6g7GtYPAKutoXeGaVKKMV2UxVERxWGXrSeGKhdH+ieqhGhpQ==
+X-Received: by 2002:a5d:56cb:: with SMTP id m11mr4724737wrw.255.1565095458656;
+        Tue, 06 Aug 2019 05:44:18 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id q20sm3842135wrc.79.2019.08.06.05.44.17
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 06 Aug 2019 05:44:18 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     robh+dt@kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/3] drm/meson: convert bindings to YAML schemas
+Date:   Tue,  6 Aug 2019 14:44:13 +0200
+Message-Id: <20190806124416.15561-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <1562576868-8124-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1562576868-8124-4-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <CAMuHMdUAVGbvn0D=UkqhY6RpO70MR-4GBC8i931a+fV9f6+njg@mail.gmail.com> <OSBPR01MB4536870EEEE634B06199722ED8D50@OSBPR01MB4536.jpnprd01.prod.outlook.com>
-In-Reply-To: <OSBPR01MB4536870EEEE634B06199722ED8D50@OSBPR01MB4536.jpnprd01.prod.outlook.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 6 Aug 2019 14:01:18 +0200
-Message-ID: <CAMuHMdUM6ykuSZzujoU+9A52O=Vj=M9hHaVm95MszpKKv74j4w@mail.gmail.com>
-Subject: Re: [PATCH RFC 3/7] pinctrl: sh-pfc: Rollback to mux if requires when
- the gpio is freed
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
+This patchset converts the existing text bindings to YAML schemas.
 
-On Tue, Aug 6, 2019 at 1:38 PM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> > From: Geert Uytterhoeven, Sent: Tuesday, August 6, 2019 6:03 PM
-> > On Mon, Jul 8, 2019 at 11:08 AM Yoshihiro Shimoda
-> > <yoshihiro.shimoda.uh@renesas.com> wrote:
-> > > R-Car PWM controller requires the gpio to output zero duty,
-> > > this patch allows to roll it back from gpio to mux when the gpio
-> > > is freed.
-> > >
-> > > Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-> >
-> > Thanks for your patch!
-> >
-> > > --- a/drivers/pinctrl/sh-pfc/pinctrl.c
-> > > +++ b/drivers/pinctrl/sh-pfc/pinctrl.c
-> > > @@ -26,6 +26,7 @@
-> > >  #include "../pinconf.h"
-> > >
-> > >  struct sh_pfc_pin_config {
-> > > +       unsigned int mux_mark;
-> >
-> > Due to padding, adding this field will increase memory consumption by
-> > 6 bytes per pin.
->
-> I see.
->
-> > Probably sh_pfc_pin_group.{pins,mux} should be changed from unsigned int
-> > to u16, but that's out of scope for this patch.
->
-> I got it.
+Those bindings have a lot of texts, thus is interesting to convert.
 
-For now, please don't worry about it. I can make that change later, as it will
-affect all drivers.
+All have been tested using :
+$ make ARCH=arm64 dtbs_check
 
-> > > @@ -353,6 +354,15 @@ static int sh_pfc_func_set_mux(struct pinctrl_dev *pctldev, unsigned selector,
-> > >         spin_lock_irqsave(&pfc->lock, flags);
-> > >
-> > >         for (i = 0; i < grp->nr_pins; ++i) {
-> > > +               int idx = sh_pfc_get_pin_index(pfc, grp->pins[i]);
-> > > +               struct sh_pfc_pin_config *cfg = &pmx->configs[idx];
-> > > +
-> > > +               /*
-> > > +                * This doesn't assume the order which gpios are enabled
-> > > +                * and then mux is set.
-> >
-> > I'm sorry, I don't understand what you mean?
-> > Can you please reword or elaborate?
->
-> I was also difficult to remember what I meant...
-> Anyway, this meant,
->  1) if a device has the default pinctrl-0 property, the set_mux() ops is called
->     before the device driver's probe() function is called by pinctrl_bind_pins() first,
->  2) so that any device drivers cannot call gpiod_get() before the 1).
->
-> However, this comments don't cover an imbalance pinctrl/gpio handling.
-> For example (as pseudo):
->  - SCIF driver uses SCIF2 pinctrl,
->  - but, IOMMU driver gets the SCIF2 pins before SCIF driver is probed.
->
-> So, I'd like to revise the comments as following. What do you think?
->
-> --
-> This driver cannot manage both gpio and mux when the gpio pin
-> is already enabled. So, this function failed.
-> --
->
-> > > +                */
-> > > +               WARN_ON(cfg->gpio_enabled);
-> >
-> > Can this actually happen?
->
-> This cannot happen actually.
->
-> > Should this cause a failure instead?
->
-> I think so.
+Issues with the amlogic arm64 DTs has already been identified thanks
+to the validation scripts. The DT fixes will be pushed once these yaml
+bindings are acked.
 
-OK.
+Neil Armstrong (3):
+  dt-bindings: display: amlogic,meson-dw-hdmi: convert to yaml
+  dt-bindings: display: amlogic,meson-vpu: convert to yaml
+  MAINTAINERS: Update with Amlogic DRM bindings converted as YAML
 
-> > > +       if (cfg->mux_set)
-> > > +               sh_pfc_config_mux(pfc, cfg->mux_mark, PINMUX_TYPE_FUNCTION);
-> >
-> > Have you considered the case where more than one pin of a pinmux group
-> > was used as a GPIO? In that case sh_pfc_gpio_disable_free() will be called
-> > multiple times, possibly with the same mux_mark.
->
-> I haven't considered the case. But, about the mux_mark, I checked the values and then
-> they are not the same.
-
-IC. At first I thought they were the internal enum for the whole pin group, but
-I was wrong.
-They are the mux *_MARK enu, which is unique for each pin/function combo.
-
-> For example (debug printk patch):
-> diff --git a/drivers/pinctrl/sh-pfc/pinctrl.c b/drivers/pinctrl/sh-pfc/pinctrl.c
-> index bc29066..fdac71b 100644
-> --- a/drivers/pinctrl/sh-pfc/pinctrl.c
-> +++ b/drivers/pinctrl/sh-pfc/pinctrl.c
-> @@ -349,7 +349,7 @@ static int sh_pfc_func_set_mux(struct pinctrl_dev *pctldev, unsigned selector,
->         unsigned int i;
->         int ret = 0;
->
-> -       dev_dbg(pctldev->dev, "Configuring pin group %s\n", grp->name);
-> +       dev_info(pctldev->dev, "Configuring pin group %s\n", grp->name);
->
->         spin_lock_irqsave(&pfc->lock, flags);
->
-> @@ -375,6 +375,7 @@ static int sh_pfc_func_set_mux(struct pinctrl_dev *pctldev, unsigned selector,
->
->                 cfg->mux_set = true;
->                 cfg->mux_mark = grp->mux[i];
-> +               dev_info(pctldev->dev, "%d: %x\n", i, cfg->mux_mark);
->         }
->
->  done:
-> --
-> 2.7.4
->
-> For example (log):
-> [    0.497647] sh-pfc e6060000.pin-controller: Configuring pin group scif2_data_a
-> [    0.497711] sh-pfc e6060000.pin-controller: 0: 77b
-> [    0.497715] sh-pfc e6060000.pin-controller: 1: 760
-
-Thanks for checking!
-
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../display/amlogic,meson-dw-hdmi.txt         | 119 --------------
+ .../display/amlogic,meson-dw-hdmi.yaml        | 150 ++++++++++++++++++
+ .../bindings/display/amlogic,meson-vpu.txt    | 121 --------------
+ .../bindings/display/amlogic,meson-vpu.yaml   | 138 ++++++++++++++++
+ MAINTAINERS                                   |   4 +-
+ 5 files changed, 290 insertions(+), 242 deletions(-)
+ delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+ create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+ delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+ create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.22.0
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
