@@ -2,96 +2,74 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 304D282DA6
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 10:25:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DADB082DA9
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 10:25:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728975AbfHFIZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 04:25:15 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:38319 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728918AbfHFIZP (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 04:25:15 -0400
-Received: by mail-wm1-f66.google.com with SMTP id s15so54175640wmj.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 01:25:13 -0700 (PDT)
+        id S1731789AbfHFIZY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 04:25:24 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:36613 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730068AbfHFIZY (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 04:25:24 -0400
+Received: by mail-wm1-f67.google.com with SMTP id g67so71414343wme.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 01:25:22 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=e0Gkgck1Aj/JyMBL/DHI4HjqwY2jjps7Dj7PaylKjl4=;
-        b=C+m5UExv1CLnNHUBzP0qDiHXGCt7r6FUO7gLxM8L+ovk6fspDimTFSn3ypylAA5NLn
-         /XrjtuQktAhoqPMMPm0vey/6MzjIFy31yC+e6MXl4O0E2ga5WBOgrf2y/Q2PcyDe1M0v
-         g1uGB22YG7sN7Bg2eFBFGgidjfZT5lyIWRPB3EG1ZoHUHUEH4KEF83qH6Iqvi2LvBMiU
-         XepIKra7DJZZc8qsdN4jJMtg6i+PQGzzWEEBLOtN8GpoRubPoJvIuv1WeoR/DAXEmOCG
-         bHHty2a6e3j0nrRKm0vMjf55hzZT1Uf+TBgj1+8lTZU10ptSLW+Cx4o5OBlVjqxWGsPb
-         IzRQ==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=dT2e75Ue1aWRtiwNDM0T+ofIOUOl1O1/yE9yhFmIPbw=;
+        b=rWKS3KxOQXyGozcmFeuIT/HZgK+Isl8zvhcK+tQok47HDXZ5gQjJAsQ/Ena2gzB+mY
+         RYNd2boWxJfdE2lHJc1ytXEKm2Y5Zg7J0DBBvYlTrQNIK3uWXs8ndch47RYKtHebS95b
+         eqRuxTzTXBUDDato1/ErdymIUyCSuEukLcA6OFbpWwpSs06RbbXYOErSAHvOjeU2zmgz
+         g1L7zbIVg2+ri7uxNOW6G7WoV4xXIHl0WJfTA/zsvmEl8aAj+l0wLS/5ZTClMOPPplNq
+         uO7I+J95K9VPrCZEdzpPNZ8VFvFgcK5Pksi8KHXoO3m843T/V6Dww+CzNzuWr2LdJfe/
+         ZA6g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=e0Gkgck1Aj/JyMBL/DHI4HjqwY2jjps7Dj7PaylKjl4=;
-        b=iTXLJ+UgdWPgWlzd75ttvLcZFd7N5z1YyN5bzT7QuHP3dI1hQFNyjZWOJdT56FbPhu
-         lp9cFQzfIPwKMgivOfLWjhKjoFd0N0SuugcHTyeI4V6H5Txrv/1n9F5dse3vW/aMm5ki
-         d+SbH6C14eRp6lcsQTKRodOVPCivfQnA2EvcWzGWulAsaFUM+7yA2kDxpMQ9AvtnBJsi
-         MIJRo0vj1Nuq6GAkgwHQ/znh9F08Pvw/QyhLt8gijkyqlGJWQcCINtLpatPoJ3aW365J
-         YY26RTvltp5wml0aODaYrdjGnMegkO2b8NxsfIvHIgLEwnNAcpSivm5qufYRR4Txh7QR
-         v5lw==
-X-Gm-Message-State: APjAAAXfOHZALXlW4klyrdjaSXpifqgmTopZbvCb59axZZLIh86hoKOw
-        FHxaPVVvfX7aiyngw9dDp2PFsuTZdCY=
-X-Google-Smtp-Source: APXvYqwPj+fveR4n29sCPaWg0zpl+3hL2IDWGiQDPBv6JliRWfgpQmQuSZ1OgfJKQfn7jY1pRriV6g==
-X-Received: by 2002:a1c:cb0a:: with SMTP id b10mr3242533wmg.41.1565079912619;
-        Tue, 06 Aug 2019 01:25:12 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id f192sm88903896wmg.30.2019.08.06.01.25.11
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 06 Aug 2019 01:25:11 -0700 (PDT)
-Subject: Re: [PATCH v2 0/4] Rework secure-monitor driver
-To:     Kevin Hilman <khilman@baylibre.com>,
-        Carlo Caione <ccaione@baylibre.com>
-Cc:     narmstrong@baylibre.com, robh+dt@kernel.org, tglx@linutronix.de,
-        jbrunet@baylibre.com, linux-arm-kernel@lists.infradead.org,
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=dT2e75Ue1aWRtiwNDM0T+ofIOUOl1O1/yE9yhFmIPbw=;
+        b=e1Dut78UucK4FiMUrB9yZhaH3/yp/Tbh604q1InMnm980Znui24mSdAUxo6nB9xdZz
+         N/lweFMBfPxapv782KjVhjUZqeUGtBjW7bOVBDzq7s5fT2kGtYy1CuPCzs8jtn88zX8n
+         C8NwKhWxDxjvvx//bAN1sqQd8khwv2Ie39eLNDrigbSV5PmjP++p5xnESppJjjC10cse
+         7xUdkqWaK5bxT8/y4nMfdbhobIw1WHhNFAZ/pKHCGVyc5tanw1id00Zl5OaZHMJwYUR/
+         uq9HKkAQQbUBETBqsMkmis6RksXuJWekBypv8i6dPFFG6LUMJPSZB+sO3LdHHCns7n0J
+         s0SA==
+X-Gm-Message-State: APjAAAWJgRADNvVEpdqVYR6kB0vcQaa6K+HBqyPPqwzwwtq05h2TVIrB
+        PEzDU8b/IqNjdRDjmlOPyy5UwA==
+X-Google-Smtp-Source: APXvYqyrWFu2i3U14X+W2YblMAUDlAsk7e1ee2lDtYocuarEsW/XUFLLyWaz2c4klNGKe+DAkUmmrw==
+X-Received: by 2002:a1c:3cc4:: with SMTP id j187mr3157185wma.36.1565079921916;
+        Tue, 06 Aug 2019 01:25:21 -0700 (PDT)
+Received: from localhost (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id g19sm106126504wmg.10.2019.08.06.01.25.21
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 06 Aug 2019 01:25:21 -0700 (PDT)
+From:   Jerome Brunet <jbrunet@baylibre.com>
+To:     Carlo Caione <ccaione@baylibre.com>,
+        srinivas.kandagatla@linaro.org, khilman@baylibre.com,
+        narmstrong@baylibre.com, robh+dt@kernel.org, tglx@linutronix.de,
+        linux-arm-kernel@lists.infradead.org,
         linux-amlogic@lists.infradead.org, devicetree@vger.kernel.org
-References: <20190731082339.20163-1-ccaione@baylibre.com>
- <7hftmfguug.fsf@baylibre.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <12d38512-605c-3544-a525-2c3599559391@linaro.org>
-Date:   Tue, 6 Aug 2019 09:25:11 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+Cc:     Carlo Caione <ccaione@baylibre.com>
+Subject: Re: [PATCH v2 2/4] nvmem: meson-efuse: bindings: Add secure-monitor phandle
+In-Reply-To: <20190731082339.20163-3-ccaione@baylibre.com>
+References: <20190731082339.20163-1-ccaione@baylibre.com> <20190731082339.20163-3-ccaione@baylibre.com>
+Date:   Tue, 06 Aug 2019 10:25:20 +0200
+Message-ID: <1j8ss6wvin.fsf@starbuckisacylon.baylibre.com>
 MIME-Version: 1.0
-In-Reply-To: <7hftmfguug.fsf@baylibre.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kevin,
+On Wed 31 Jul 2019 at 09:23, Carlo Caione <ccaione@baylibre.com> wrote:
 
-On 05/08/2019 22:34, Kevin Hilman wrote:
-> Srinivas,
-> 
-> Carlo Caione <ccaione@baylibre.com> writes:
-> 
->> The secure-monitor driver is currently in really bad shape, not my
->> proudest piece of code (thanks Jerome for pointing that out ;). I tried
->> to rework it a bit to make it a bit more tolerable.
->>
->> I needed to change a bit the APIs and consequently adapt the only user
->> we have, that is the nvmem/efuses driver. To not break bisectability I
->> added one single commit to change both the drivers.
-> 
-> With your ack on the nvmem bindings and nvmem part of patch 4/4, I can
-> take the series take the rest of this series through my tree for Amlogic
-> SoCs.
-Sounds good for me!
+> Add a new property to link the nvmem driver to the secure-monitor. The
+> nvmem driver needs to access the secure-monitor to be able to access the
+> fuses.
+>
 
-I have Acked the driver changes, bindings need ack from DT guys.
+Reviewed-by: Jerome Brunet <jbrunet@baylibre.com>
 
-Thanks,
-srini
-> 
-> Kevin
-> 
+> Signed-off-by: Carlo Caione <ccaione@baylibre.com>
