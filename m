@@ -2,107 +2,71 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3762C82B79
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 08:09:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F5CE82B98
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 08:25:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731628AbfHFGJZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 02:09:25 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:60536 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731540AbfHFGJZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 02:09:25 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 3A87B6074F; Tue,  6 Aug 2019 06:09:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1565071764;
-        bh=wZcoG9zcx7oPu5yPKEHbjF3L04ndvtLGIQczn3qAEqo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=QjX0MuLmufD/DJFzwmFbuvo3PpgoPujwR12W/px/t9AQdSXcZuVkYgH773b5Z/8Lt
-         kQGtCspneGFWvmzUVMQWUdC6zEDTvwlCbXmn2u6TUI5BxLqSco2Gp9rvUfV6ON4bAe
-         m5wsUi18XfApyOVOPumFKrc36lz6kNGUpx23oJcI=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from [10.79.43.141] (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: rnayak@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 22DB66074F;
-        Tue,  6 Aug 2019 06:09:20 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1565071763;
-        bh=wZcoG9zcx7oPu5yPKEHbjF3L04ndvtLGIQczn3qAEqo=;
-        h=Subject:To:Cc:References:From:Date:In-Reply-To:From;
-        b=S5CI0Rb9KUYip0Lt36qMzQ2afynyi51AS+EvikUB6Xups9KekncIaYB+Q8xhqw0Bi
-         ATdVmMokFk/4fFVoQ1UVfD4N6SfHiI82ud4SQEa+lmq4WpyX3NT9tM89ruzeCcEWl8
-         xcw4KOLkq29F/kBOPdNdzFBWwvHfg5Q53q7S0yd0=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 22DB66074F
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
-Subject: Re: [PATCH 1/2] dt-bindings: pinctrl: qcom: Add SC7180 pinctrl
- binding
-To:     Linus Walleij <linus.walleij@linaro.org>
-Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        MSM <linux-arm-msm@vger.kernel.org>,
-        Andy Gross <agross@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jitendra Sharma <shajit@codeaurora.org>,
-        Vivek Gautam <vivek.gautam@codeaurora.org>
-References: <20190801100717.23333-1-rnayak@codeaurora.org>
- <CACRpkdYLb-WWSEL8yG3yy8Qq7bOKP9JjUGV51mY6=aEwrQAJvg@mail.gmail.com>
- <CACRpkdaoOuyUmysb3OmErbLJ6zZuHGGt7RRzG9wULDkg=hLCAw@mail.gmail.com>
-From:   Rajendra Nayak <rnayak@codeaurora.org>
-Message-ID: <d227c2b1-50df-b3e0-ea44-595c5e32fc61@codeaurora.org>
-Date:   Tue, 6 Aug 2019 11:39:19 +0530
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <CACRpkdaoOuyUmysb3OmErbLJ6zZuHGGt7RRzG9wULDkg=hLCAw@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        id S1731641AbfHFGZt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 02:25:49 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:56522 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731576AbfHFGZt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 02:25:49 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 592D4200085;
+        Tue,  6 Aug 2019 08:25:47 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 0BEE3200005;
+        Tue,  6 Aug 2019 08:25:36 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id BAD0840293;
+        Tue,  6 Aug 2019 14:25:22 +0800 (SGT)
+From:   Xiaowei Bao <xiaowei.bao@nxp.com>
+To:     bhelgaas@google.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        shawnguo@kernel.org, leoyang.li@nxp.com, kishon@ti.com,
+        lorenzo.pieralisi@arm.com, arnd@arndb.de,
+        gregkh@linuxfoundation.org, minghuan.Lian@nxp.com,
+        mingkai.hu@nxp.com, zhiqiang.hou@nxp.com, roy.zang@nxp.com,
+        kstewart@linuxfoundation.org, pombredanne@nexb.com,
+        shawn.lin@rock-chips.com, linux-pci@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linuxppc-dev@lists.ozlabs.org
+Cc:     Xiaowei Bao <xiaowei.bao@nxp.com>,
+        Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+Subject: [PATCHv3 1/3] dt-bindings: pci: layerscape-pci: add compatible strings "fsl,ls1028a-pcie"
+Date:   Tue,  6 Aug 2019 14:15:51 +0800
+Message-Id: <20190806061553.19934-1-xiaowei.bao@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Add the PCIe compatible string for LS1028A
 
+Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
+---
+v2:
+ - no change.
+v3:
+ - no change.
 
-On 8/5/2019 5:05 PM, Linus Walleij wrote:
-> On Mon, Aug 5, 2019 at 1:34 PM Linus Walleij <linus.walleij@linaro.org> wrote:
->> On Thu, Aug 1, 2019 at 12:07 PM Rajendra Nayak <rnayak@codeaurora.org> wrote:
->>
->>> From: Jitendra Sharma <shajit@codeaurora.org>
->>>
->>> Add the binding for the TLMM pinctrl block found in the SC7180 platform
->>>
->>> Signed-off-by: Jitendra Sharma <shajit@codeaurora.org>
->>> Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
->>> [rnayak: Fix some copy-paste issues, sort and fix functions]
->>> Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
->>
->> Patch applied with Bjorn's ACK.
-> 
-> Ooops there is v2 and even v3 coming, OK I wait for v3 and
-> backed this out.
+ Documentation/devicetree/bindings/pci/layerscape-pci.txt | 1 +
+ 1 file changed, 1 insertion(+)
 
-Hi Linus, I just posted the v3 out with all the ACKs added.
-They should be good to pick up now.
-thanks,
-Rajendra
-
-> 
-> Yours,
-> Linus Walleij
-> 
-
+diff --git a/Documentation/devicetree/bindings/pci/layerscape-pci.txt b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
+index e20ceaa..99a386e 100644
+--- a/Documentation/devicetree/bindings/pci/layerscape-pci.txt
++++ b/Documentation/devicetree/bindings/pci/layerscape-pci.txt
+@@ -21,6 +21,7 @@ Required properties:
+         "fsl,ls1046a-pcie"
+         "fsl,ls1043a-pcie"
+         "fsl,ls1012a-pcie"
++        "fsl,ls1028a-pcie"
+   EP mode:
+ 	"fsl,ls1046a-pcie-ep", "fsl,ls-pcie-ep"
+ - reg: base addresses and lengths of the PCIe controller register blocks.
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.9.5
+
