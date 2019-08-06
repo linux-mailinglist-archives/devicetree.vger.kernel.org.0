@@ -2,78 +2,152 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ED82B83A37
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 22:24:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8821F83A5A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 22:36:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725970AbfHFUYs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 16:24:48 -0400
-Received: from h1.radempa.de ([176.9.142.194]:51955 "EHLO mail.cosmopool.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725948AbfHFUYs (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Aug 2019 16:24:48 -0400
-X-Greylist: delayed 315 seconds by postgrey-1.27 at vger.kernel.org; Tue, 06 Aug 2019 16:24:46 EDT
-Received: from localhost (localhost [127.0.0.1])
-        by mail.cosmopool.net (Postfix) with ESMTP id 99B499016E9;
-        Tue,  6 Aug 2019 22:19:29 +0200 (CEST)
-Received: from mail.cosmopool.net ([127.0.0.1])
-        by localhost (mail.b.radempa.de [127.0.0.1]) (amavisd-new, port 10024)
-        with ESMTP id OX_YX0ogUjWU; Tue,  6 Aug 2019 22:19:29 +0200 (CEST)
-Received: from stardust.g4.wien.funkfeuer.at (77.117.195.156.wireless.dyn.drei.com [77.117.195.156])
-        by mail.cosmopool.net (Postfix) with ESMTPSA id 8F56D900A78;
-        Tue,  6 Aug 2019 22:19:28 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple; d=ccbib.org; s=201902;
-        t=1565122768; bh=H7xzku4e2YLqN3SBuk3ijWPNxtTPJhCKGCVBeLEo550=;
-        h=From:To:cc:Subject:In-reply-to:References:Date:From;
-        b=sXQsEfz/hR7dMhL9l3zWhcHlBiI0vpU230ZFjRbEq9fCaJE4D1bbyhGfswaxBiLU3
-         KTVAMd3VBRaM/CCfwAGjFnjs4qCaOfGUJXhAZOJ+gw/B9Mgc0R9m1aqK3J63hvrJIi
-         mGd9od4wtzOna19U0rr0ZnqVuKP6puqE3D4ds+BM=
-Received: from lambda by stardust.g4.wien.funkfeuer.at with local (Exim 4.89)
-        (envelope-from <harald@ccbib.org>)
-        id 1hv5vZ-0000jN-M8; Tue, 06 Aug 2019 22:19:25 +0200
-From:   Harald Geyer <harald@ccbib.org>
-To:     Vasily Khoruzhick <anarsoul@gmail.com>
-cc:     Robin Murphy <robin.murphy@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        id S1726055AbfHFUgs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 16:36:48 -0400
+Received: from mx0a-00082601.pphosted.com ([67.231.145.42]:35356 "EHLO
+        mx0a-00082601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726018AbfHFUgr (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 16:36:47 -0400
+Received: from pps.filterd (m0044012.ppops.net [127.0.0.1])
+        by mx0a-00082601.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x76KCce5011103;
+        Tue, 6 Aug 2019 13:36:00 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.com; h=from : to : cc : subject
+ : date : message-id : references : in-reply-to : content-type : content-id
+ : content-transfer-encoding : mime-version; s=facebook;
+ bh=LDXuH0raVHMTDBYZ19uGzRZvCmTl1kH5bdFSFQrIonc=;
+ b=MsyF1wiSp8uLVnJALpcwBgjD0dt+YwhUbivh3ZsHkttsLuCrZqbebjBJSw2RsPQNfhqf
+ ojyqFRSac76/yXyM3tE1bHu8fxJdahTRzcfpFQjAaj5Xx7WVae1jn/W8yTpO5mN49K4v
+ 2/YJ09KaFxhkeg/edlfKJiJNCVTK3W7OKSg= 
+Received: from maileast.thefacebook.com ([163.114.130.16])
+        by mx0a-00082601.pphosted.com with ESMTP id 2u7a4y9qsn-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Tue, 06 Aug 2019 13:36:00 -0700
+Received: from ash-exopmbx201.TheFacebook.com (2620:10d:c0a8:83::8) by
+ ash-exhub204.TheFacebook.com (2620:10d:c0a8:83::4) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 6 Aug 2019 13:35:58 -0700
+Received: from ash-exhub204.TheFacebook.com (2620:10d:c0a8:83::4) by
+ ash-exopmbx201.TheFacebook.com (2620:10d:c0a8:83::8) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Tue, 6 Aug 2019 13:35:58 -0700
+Received: from NAM02-BL2-obe.outbound.protection.outlook.com (100.104.31.183)
+ by o365-in.thefacebook.com (100.104.36.100) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5
+ via Frontend Transport; Tue, 6 Aug 2019 13:35:58 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=a1CIT/pW+bJgj8neEJVhNv+Ml7I0+BRR6ZHYF+5t29TuAiufcFDnG7Wi8h8caVCvQXP07QJznKXUL7YR07gVymFWofZlFRIdo/kKPVFVujJ6woauvYgrhgLN/PicaTwxeLG5Z41ycPxK1ToX91xD96lRukxiQvsSKrM0g9NZL0iCcYxntj0NF/XH4dzvy0KZUPTmuYcuk8KLaPy2+iVXPvedvQ48AE++vjnYvo/0K+NblHcTo68/hEOw2ZZvj9UzqGdqwx+INQxVBczxaRWJS+jB9Apvu40yRb9jsnhz5eMmkgp/gLqRV4QmMGH8mwprSTluwJk/VdM4PSRge7Te7w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LDXuH0raVHMTDBYZ19uGzRZvCmTl1kH5bdFSFQrIonc=;
+ b=OtA8JbhX5hBYYuSD9I1xdeCwjZ2AMoG/7i0OnmYHHl8yxPm3wZGmT1ko0ClcHUS7vP4+w5he2gpx5N6r4kGyPMdUC06iYNSNseNoYd3gN5iaTardWwdgGi8LdXSzjjAlb79bUqyq07rTwdvCoUm+FtMxK37R570zx6n7dlV7qD6H09zLWwkRQKdo4MgqDtVbo7wBT6ENQ3c0A9wgdjtuseEGJmXCuNqTAgAtGFVvOnneXK776ezIj524jvGnbFAx0RWEnZ5/jzBfDZcIfDMntOXKAX62NSQT535XZvSdMDWrjvZwO7lrDFqYZT6jnpsO1v7YEMMxSyYs7VzwY8AT9A==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=fb.com;dmarc=pass action=none header.from=fb.com;dkim=pass
+ header.d=fb.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=fb.onmicrosoft.com;
+ s=selector2-fb-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=LDXuH0raVHMTDBYZ19uGzRZvCmTl1kH5bdFSFQrIonc=;
+ b=YfVmjK6p31PR4/v6vOFm3TzfbMJxiaeoV8Lk6xssi2QzItdOPj39rdCn8SJCX6OWNTqwNiLNsZA9uAoFqW93pxUiVy8aXjEmUCsGG87rPI7BlDvY9e+ICh3eXR8U0SvLs7gcvCIeCYzoxGzgi+6KHNwjZ7QMoRhTP71jTEel374=
+Received: from CY4PR15MB1269.namprd15.prod.outlook.com (10.172.177.11) by
+ CY4PR15MB1287.namprd15.prod.outlook.com (10.172.181.8) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2136.20; Tue, 6 Aug 2019 20:35:43 +0000
+Received: from CY4PR15MB1269.namprd15.prod.outlook.com
+ ([fe80::8c93:f913:124:8dd0]) by CY4PR15MB1269.namprd15.prod.outlook.com
+ ([fe80::8c93:f913:124:8dd0%8]) with mapi id 15.20.2136.018; Tue, 6 Aug 2019
+ 20:35:43 +0000
+From:   Vijay Khemka <vijaykhemka@fb.com>
+To:     Joel Stanley <joel@jms.id.au>
+CC:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Jared D . McNeill" <jmcneill@netbsd.org>
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
-In-reply-to: <CA+E=qVfh7mirJhRsDTeuAVgG55ia936uFSFVKR0N5Pn4GCF1UA@mail.gmail.com>
-References: <20190806140135.4739-1-anarsoul@gmail.com> <89402d22-d432-9551-e787-c8ede16dbe5f@arm.com> <CA+E=qVfh7mirJhRsDTeuAVgG55ia936uFSFVKR0N5Pn4GCF1UA@mail.gmail.com>
-Comments: In-reply-to Vasily Khoruzhick <anarsoul@gmail.com>
-   message dated "Tue, 06 Aug 2019 07:45:21 -0700."
+        Jiri Kosina <trivial@kernel.org>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Herbert Xu <herbert@gondor.apana.org.au>,
+        Patrick Venture <venture@google.com>,
+        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
+        "Anson Huang" <anson.huang@nxp.com>,
+        Jeremy Gebben <jgebben@sweptlaser.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "openbmc @ lists . ozlabs . org" <openbmc@lists.ozlabs.org>,
+        "linux-aspeed@lists.ozlabs.org" <linux-aspeed@lists.ozlabs.org>,
+        Sai Dasari <sdasari@fb.com>
+Subject: Re: [PATCH] dt-bindings: Add pxe1610 as a trivial device
+Thread-Topic: [PATCH] dt-bindings: Add pxe1610 as a trivial device
+Thread-Index: AQHVQPAx3fyCvJ4gPEWA6m7KAh2pXabYSgMAgAAAqID//7IWgIAPeSsAgAa/44A=
+Date:   Tue, 6 Aug 2019 20:35:43 +0000
+Message-ID: <E47FF678-1B81-4C00-9328-B0452D74E62D@fb.com>
+References: <20190723002052.2878847-1-vijaykhemka@fb.com>
+ <CAL_Jsq+uAjK6+xzkyOhcH96tZuqv7i6Nz5_nhUQkZ2adt2gutA@mail.gmail.com>
+ <CAL_Jsq+Kw0TFW_v54Y2QHcChqpNDYhFyCSO5Cj-be9yLSCq-Pw@mail.gmail.com>
+ <F7BAC53E-925E-4FA4-815D-ACB82DF8D240@fb.com>
+ <CACPK8XehEoakQxvQhC1cU5tvZaVbLOARtZ4xc6dD8sx9WDiPuA@mail.gmail.com>
+In-Reply-To: <CACPK8XehEoakQxvQhC1cU5tvZaVbLOARtZ4xc6dD8sx9WDiPuA@mail.gmail.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [2620:10d:c090:200::1:f3bb]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: d64a5e45-dd7c-4dda-a8fb-08d71aada76b
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:CY4PR15MB1287;
+x-ms-traffictypediagnostic: CY4PR15MB1287:
+x-microsoft-antispam-prvs: <CY4PR15MB1287E53A7F5209E18720D46CDDD50@CY4PR15MB1287.namprd15.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6108;
+x-forefront-prvs: 0121F24F22
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(376002)(346002)(39860400002)(136003)(396003)(366004)(189003)(199004)(36756003)(316002)(5660300002)(102836004)(8936002)(53546011)(76176011)(229853002)(256004)(476003)(6506007)(99286004)(86362001)(25786009)(305945005)(54906003)(2906002)(478600001)(7416002)(14454004)(6436002)(6512007)(46003)(6486002)(64756008)(6246003)(66446008)(4326008)(81156014)(81166006)(446003)(6116002)(66556008)(66476007)(66946007)(6916009)(91956017)(486006)(53936002)(33656002)(4744005)(8676002)(71200400001)(186003)(71190400001)(76116006)(2616005)(11346002)(7736002)(68736007);DIR:OUT;SFP:1102;SCL:1;SRVR:CY4PR15MB1287;H:CY4PR15MB1269.namprd15.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: fb.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: SWQioAlyBZyEFTV6cQE7gwmU+sFGgdYIklyLaz7hwaYx6grPGO7Wmofb2PHgpnoX+q+n0xYYRTajjaXkp/I0CCvvbR8RV0taR4iTin5tg3r8WzoqXb/WdnSknEm5Phg9lM4h1EW0zltcZLen/S/zvC8VL63r0TakYSgs+whe8xQsnBxuwpkPGI/sPFJo1hE8TJfDQveOPEn505yiSN52qySJzS4ZZWaBwEfgRkqDFSCS1edU/v2C4mgE9NcsRcp1zz/wuQB1bXtR4bvza1jWmUOFNhQCs5gCDLES8C2o9zGun7MWlMTg4Ez2f4JfTP3Yf3lp4dB5xsrQrxS9dt8yvXs39kXBaAWXmk6qttXVAwbvgn4DYKDn5xjBB4A9vsjnpu+NO/bdOHQewMs/EP9bZwzaEYRCn7MQsXCtnNPayds=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <7157F82B2A3E1544A74117E5DB728CBD@namprd15.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset="us-ascii"
-Content-ID: <2811.1565122765.1@stardust.g4.wien.funkfeuer.at>
-Date:   Tue, 06 Aug 2019 22:19:25 +0200
-Message-Id: <E1hv5vZ-0000jN-M8@stardust.g4.wien.funkfeuer.at>
+X-MS-Exchange-CrossTenant-Network-Message-Id: d64a5e45-dd7c-4dda-a8fb-08d71aada76b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2019 20:35:43.5470
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 8ae927fe-1255-47a7-a2af-5f3a069daaa2
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: vijaykhemka@fb.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: CY4PR15MB1287
+X-OriginatorOrg: fb.com
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-06_10:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=fb_default_notspam policy=fb_default score=0 priorityscore=1501
+ malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0 spamscore=0
+ clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=999 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1908060178
+X-FB-Internal: deliver
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Vasily Khoruzhick writes:
-> On Tue, Aug 6, 2019 at 7:35 AM Robin Murphy <robin.murphy@arm.com> wrote:
-> >
-> > On 06/08/2019 15:01, Vasily Khoruzhick wrote:
-> > > Looks like PMU in A64 is broken, it generates no interrupts at all and
-> > > as result 'perf top' shows no events.
-> >
-> > Does something like 'perf stat sleep 1' at least count cycles correctly?
-> > It could well just be that the interrupt numbers are wrong...
-> 
-> Looks like it does, at least result looks plausible:
-
-I'm using perf stat regularly (cache benchmarks) and it works fine.
-
-Unfortunately I wasn't aware that perf stat is a poor test for
-the interrupts part of the node, when I added it. So I'm not too
-surprised I got it wrong.
-
-However, it would be unfortunate if the node got removed completely,
-because perf stat would not work anymore. Maybe we can only remove
-the interrupts or just fix them even if the HW doesn't work?
-
-Harald
+Sm9lbCwNCkkgaGF2ZSBhZGRlZCBhbGwgMyBpZCBpbiB0aGUgZG9jdW1lbnRhdGlvbiBwYXRjaCBh
+bmQgSSBhbSBub3Qgc3VyZSBpZiB0aGF0IHBhdGNoIGhhcyBiZWVuIGFwcGxpZWQgb3Igbm90Lg0K
+DQpSZWdhcmRzDQotVmlqYXkNCg0K77u/T24gOC8xLzE5LCAxMTozMSBQTSwgIkpvZWwgU3Rhbmxl
+eSIgPGpvZWxAam1zLmlkLmF1PiB3cm90ZToNCg0KICAgIEFkZCBweGUxNjEwIGFzIGEgdHJpdmlh
+bCBkZXZpY2UNCiAgICANCiAgICANCiAgICANCiAgICBPbiBUdWUsIDIzIEp1bCAyMDE5IGF0IDE3
+OjE0LCBWaWpheSBLaGVta2EgPHZpamF5a2hlbWthQGZiLmNvbT4gd3JvdGU6DQogICAgPg0KICAg
+ID4gT24gNy8yMy8xOSwgNzo1MyBBTSwgIlJvYiBIZXJyaW5nIiA8cm9iaCtkdEBrZXJuZWwub3Jn
+PiB3cm90ZToNCiAgICA+DQogICAgPiAgICAgT24gVHVlLCBKdWwgMjMsIDIwMTkgYXQgODo1MCBB
+TSBSb2IgSGVycmluZyA8cm9iaCtkdEBrZXJuZWwub3JnPiB3cm90ZToNCiAgICA+ICAgICA+DQog
+ICAgPiAgICAgPiBPbiBNb24sIEp1bCAyMiwgMjAxOSBhdCA2OjQ2IFBNIFZpamF5IEtoZW1rYSA8
+dmlqYXlraGVta2FAZmIuY29tPiB3cm90ZToNCiAgICA+ICAgICA+ID4NCiAgICA+ICAgICA+ID4g
+VGhlIHB4ZTE2MTAgaXMgYSB2b2x0YWdlIHJlZ3VsYXRvciBmcm9tIEluZmluZW9uLiBJdCBhbHNv
+IHN1cHBvcnRzDQogICAgPiAgICAgPiA+IG90aGVyIFZScyBweGUxMTEwIGFuZCBweG0xMzEwIGZy
+b20gSW5maW5lb24uDQogICAgPg0KICAgID4gICAgIFdoYXQgaGFwcGVuZWQgdG8gdGhlIG90aGVy
+IGNvbXBhdGlibGVzPyBTL3cgZG9lc24ndCBuZWVkIHRvIGtub3cgdGhlDQogICAgPiAgICAgZGlm
+ZmVyZW5jZXM/DQogICAgPiBBcyBmYXIgYXMgZHJpdmVyIGlzIGNvbmNlcm5lZCwgaXQgZG9lc24n
+dCBuZWVkIHRvIGtub3cgZGlmZmVyZW5jZXMuDQogICAgDQogICAgWW91IGhhdmUgdGhlc2UgdGhy
+ZWUgSURzIGluIHRoZSBkcml2ZXI6DQogICAgDQogICAgIHB4bTEzMTANCiAgICAgcHhtMTMxMA0K
+ICAgICBweGUxNjEwDQogICAgDQogICAgU28gYWxsIHRocmVlIGNvdWxkIGJlIGxpc3RlZCBpbiB0
+aGUgZG9jdW1lbnRhdGlvbj8NCiAgICANCiAgICBSb2IsIGlzIHRoaXMgd2hhdCB5b3Ugd2FudGVk
+IFZpamF5IHRvIGRvPw0KICAgIA0KDQo=
