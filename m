@@ -2,191 +2,73 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D13A6834D2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:13:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5E17834DF
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:15:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729898AbfHFPNb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 11:13:31 -0400
-Received: from mx0a-001ae601.pphosted.com ([67.231.149.25]:43372 "EHLO
-        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1727540AbfHFPNa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 11:13:30 -0400
-Received: from pps.filterd (m0077473.ppops.net [127.0.0.1])
-        by mx0a-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x76F4FnU010382;
-        Tue, 6 Aug 2019 10:13:25 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=from : to : cc :
- subject : date : message-id : in-reply-to : references : mime-version :
- content-type; s=PODMain02222019;
- bh=2LlrLLwi2bsrqq/0nc1ZAvfNbkci6KMEIdK5pzq3748=;
- b=F7qk8+SDXMxvyT0g/meZcG/NZwHek7NZiTS3RgmY6aiFXjJWA6pKcxeij6sHzZHcaczh
- 8a6TjWfAGPHBoA8plgdNpIxIcEgFRcuResdv14K9m6aEtBON/QJQq2JWYdimQ/R8owhp
- w8TrhBqZdGaqbJ2HKcWAOvLkcIqtfXnLpqN1fe3Ezav24M2yjHmNIfpC7lRYhlrnno0+
- q1VxhI4xNMHZOvrXNVN9pnr89Y82JLs/474j39McKmBWZ1MhNQJp/VKjXxUVzs0WIEvi
- XJ7pbRj5jpqT852gPXe4bPT2yhdsiSLDcMkQQMilDdsW9PnoOtMXiFUQX9xyKFk4yv1Y Ew== 
-Authentication-Results: ppops.net;
-        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
-Received: from ediex01.ad.cirrus.com ([87.246.76.36])
-        by mx0a-001ae601.pphosted.com with ESMTP id 2u57p4m6wt-2
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
-        Tue, 06 Aug 2019 10:13:25 -0500
-Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Tue, 6 Aug
- 2019 16:13:21 +0100
-Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
- (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
- Transport; Tue, 6 Aug 2019 16:13:21 +0100
-Received: from algalon.ad.cirrus.com (algalon.ad.cirrus.com [198.90.251.122])
-        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 7A8702C5;
-        Tue,  6 Aug 2019 16:13:21 +0100 (BST)
-From:   Charles Keepax <ckeepax@opensource.cirrus.com>
-To:     <lee.jones@linaro.org>
-CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
-        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <patches@opensource.cirrus.com>
-Subject: [PATCH 2/2] mfd: madera: Add support for requesting the supply clocks
-Date:   Tue, 6 Aug 2019 16:13:21 +0100
-Message-ID: <20190806151321.31137-2-ckeepax@opensource.cirrus.com>
-X-Mailer: git-send-email 2.11.0
-In-Reply-To: <20190806151321.31137-1-ckeepax@opensource.cirrus.com>
-References: <20190806151321.31137-1-ckeepax@opensource.cirrus.com>
+        id S1726877AbfHFPP6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 11:15:58 -0400
+Received: from mail.kernel.org ([198.145.29.99]:58554 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726713AbfHFPP6 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 11:15:58 -0400
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A620D2173C;
+        Tue,  6 Aug 2019 15:15:57 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565104557;
+        bh=la0HnOemoXK5fpvWjp+yCiuvCkWWSLx12p8REZ1hLrc=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=cScU+ROGIiEoPjPJtTRdXG1cbQsMMpzEBSty6kfgERiB6umRY2L+C2ht5GwKKeCdJ
+         nf0igOibxERc7xRV173c1Dp8A004bt+yeTKLrOFqRSGcUO70GxzHw5vhMW517vqGh3
+         exHqFJOsZ4QKxPe/HxRcIXgWmdcw20oZH+8I7bEQ=
+Received: by mail-qk1-f170.google.com with SMTP id g18so63145536qkl.3;
+        Tue, 06 Aug 2019 08:15:57 -0700 (PDT)
+X-Gm-Message-State: APjAAAVppu63WgttGv36475I5TjltgHt8Lu1MVjC/pPlv0rwbE2KmE0N
+        X7DGuaZJwiNMorb5l6naVpbdLkMt7lPorqZrkQ==
+X-Google-Smtp-Source: APXvYqwLPJFWVImQ45weKYeyNJR2eA5NTRfK2u/H55qjIL0tD0cxfdGp8MnhGn/VAZvOKrsEobtM9NSgRSK3rhzUNug=
+X-Received: by 2002:a37:a010:: with SMTP id j16mr3781144qke.152.1565104556857;
+ Tue, 06 Aug 2019 08:15:56 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain
-X-Proofpoint-SPF-Result: fail
-X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
- -all
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxlogscore=883 priorityscore=1501
- spamscore=0 phishscore=0 impostorscore=0 mlxscore=0 suspectscore=1
- adultscore=0 bulkscore=0 malwarescore=0 lowpriorityscore=0 clxscore=1015
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1906280000
- definitions=main-1908060149
+References: <20190806125041.16105-1-narmstrong@baylibre.com> <20190806125041.16105-3-narmstrong@baylibre.com>
+In-Reply-To: <20190806125041.16105-3-narmstrong@baylibre.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 6 Aug 2019 09:15:45 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKnzNMittFbvmz+ELu9UVMkmPmFoVT8ydWOYtCST+MwVA@mail.gmail.com>
+Message-ID: <CAL_JsqKnzNMittFbvmz+ELu9UVMkmPmFoVT8ydWOYtCST+MwVA@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: net: meson-dwmac: convert to yaml
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
+        devicetree@vger.kernel.org, netdev <netdev@vger.kernel.org>,
+        linux-amlogic@lists.infradead.org,
+        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the ability to get the clock for each clock input pin of the chip
-and enable MCLK2 since that is expected to be a permanently enabled
-32kHz clock.
+On Tue, Aug 6, 2019 at 6:50 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for the Synopsys DWMAC Glue for Amlogic SoCs over to a YAML schemas.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+> ---
+>  .../bindings/net/amlogic,meson-dwmac.yaml     | 113 ++++++++++++++++++
+>  .../devicetree/bindings/net/meson-dwmac.txt   |  71 -----------
+>  .../devicetree/bindings/net/snps,dwmac.yaml   |   5 +
+>  3 files changed, 118 insertions(+), 71 deletions(-)
+>  create mode 100644 Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+>  delete mode 100644 Documentation/devicetree/bindings/net/meson-dwmac.txt
 
-Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
----
- drivers/mfd/madera-core.c       | 24 +++++++++++++++++++++++-
- include/linux/mfd/madera/core.h | 11 +++++++++++
- 2 files changed, 34 insertions(+), 1 deletion(-)
+I don't love the compatible schema with 'additionalItems: true' and
+contains, but I guess it is what it is. I'm hopeful schemas help limit
+how many variations we end up with.
 
-diff --git a/drivers/mfd/madera-core.c b/drivers/mfd/madera-core.c
-index 29540cbf75934..8d7ab1c7bf9f7 100644
---- a/drivers/mfd/madera-core.c
-+++ b/drivers/mfd/madera-core.c
-@@ -428,6 +428,7 @@ static void madera_set_micbias_info(struct madera *madera)
- 
- int madera_dev_init(struct madera *madera)
- {
-+	static const char * const mclk_name[] = { "mclk1", "mclk2", "mclk3" };
- 	struct device *dev = madera->dev;
- 	unsigned int hwid;
- 	int (*patch_fn)(struct madera *) = NULL;
-@@ -450,6 +451,17 @@ int madera_dev_init(struct madera *madera)
- 		       sizeof(madera->pdata));
- 	}
- 
-+	BUILD_BUG_ON(ARRAY_SIZE(madera->mclk) != ARRAY_SIZE(mclk_name));
-+	for (i = 0; i < ARRAY_SIZE(madera->mclk); i++) {
-+		madera->mclk[i] = devm_clk_get_optional(madera->dev,
-+							mclk_name[i]);
-+		if (IS_ERR(madera->mclk[i])) {
-+			dev_warn(madera->dev, "Failed to get %s: %ld\n",
-+				 mclk_name[i], PTR_ERR(madera->mclk[i]));
-+			madera->mclk[i] = NULL;
-+		}
-+	}
-+
- 	ret = madera_get_reset_gpio(madera);
- 	if (ret)
- 		return ret;
-@@ -660,13 +672,19 @@ int madera_dev_init(struct madera *madera)
- 	}
- 
- 	/* Init 32k clock sourced from MCLK2 */
-+	ret = clk_prepare_enable(madera->mclk[MADERA_MCLK2]);
-+	if (ret != 0) {
-+		dev_err(madera->dev, "Failed to enable 32k clock: %d\n", ret);
-+		goto err_reset;
-+	}
-+
- 	ret = regmap_update_bits(madera->regmap,
- 			MADERA_CLOCK_32K_1,
- 			MADERA_CLK_32K_ENA_MASK | MADERA_CLK_32K_SRC_MASK,
- 			MADERA_CLK_32K_ENA | MADERA_32KZ_MCLK2);
- 	if (ret) {
- 		dev_err(madera->dev, "Failed to init 32k clock: %d\n", ret);
--		goto err_reset;
-+		goto err_clock;
- 	}
- 
- 	pm_runtime_set_active(madera->dev);
-@@ -687,6 +705,8 @@ int madera_dev_init(struct madera *madera)
- 
- err_pm_runtime:
- 	pm_runtime_disable(madera->dev);
-+err_clock:
-+	clk_disable_unprepare(madera->mclk[MADERA_MCLK2]);
- err_reset:
- 	madera_enable_hard_reset(madera);
- 	regulator_disable(madera->dcvdd);
-@@ -713,6 +733,8 @@ int madera_dev_exit(struct madera *madera)
- 	 */
- 	pm_runtime_disable(madera->dev);
- 
-+	clk_disable_unprepare(madera->mclk[MADERA_MCLK2]);
-+
- 	regulator_disable(madera->dcvdd);
- 	regulator_put(madera->dcvdd);
- 
-diff --git a/include/linux/mfd/madera/core.h b/include/linux/mfd/madera/core.h
-index 7ffa696cce7ca..2b6c83fe221dc 100644
---- a/include/linux/mfd/madera/core.h
-+++ b/include/linux/mfd/madera/core.h
-@@ -8,6 +8,7 @@
- #ifndef MADERA_CORE_H
- #define MADERA_CORE_H
- 
-+#include <linux/clk.h>
- #include <linux/gpio/consumer.h>
- #include <linux/interrupt.h>
- #include <linux/mfd/madera/pdata.h>
-@@ -29,6 +30,13 @@ enum madera_type {
- 	CS42L92 = 9,
- };
- 
-+enum {
-+	MADERA_MCLK1,
-+	MADERA_MCLK2,
-+	MADERA_MCLK3,
-+	MADERA_NUM_MCLK
-+};
-+
- #define MADERA_MAX_CORE_SUPPLIES	2
- #define MADERA_MAX_GPIOS		40
- 
-@@ -155,6 +163,7 @@ struct snd_soc_dapm_context;
-  * @irq_dev:		the irqchip child driver device
-  * @irq_data:		pointer to irqchip data for the child irqchip driver
-  * @irq:		host irq number from SPI or I2C configuration
-+ * @mclk:		pointers to clock supplies
-  * @out_clamp:		indicates output clamp state for each analogue output
-  * @out_shorted:	indicates short circuit state for each analogue output
-  * @hp_ena:		bitflags of enable state for the headphone outputs
-@@ -184,6 +193,8 @@ struct madera {
- 	struct regmap_irq_chip_data *irq_data;
- 	int irq;
- 
-+	struct clk *mclk[MADERA_NUM_MCLK];
-+
- 	unsigned int num_micbias;
- 	unsigned int num_childbias[MADERA_MAX_MICBIAS];
- 
--- 
-2.11.0
+Reviewed-by: Rob Herring <robh@kernel.org>
 
+Rob
