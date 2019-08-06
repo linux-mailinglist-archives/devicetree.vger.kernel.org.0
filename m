@@ -2,177 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BDE4283B1B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 23:30:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70A3283BC9
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 23:39:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726069AbfHFVag (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 17:30:36 -0400
-Received: from lelv0143.ext.ti.com ([198.47.23.248]:48034 "EHLO
-        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725974AbfHFVag (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 17:30:36 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x76LUIHF012505;
-        Tue, 6 Aug 2019 16:30:18 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1565127018;
-        bh=WdeZC33FQzUWVkojwaOQI3NxAt+YMap5Tl9hn+mPGaA=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=kOAGLiHHmutdic+kFgKihOFdUxHKB7ihp+q0M1HR8vSrqzCpkJvEw4p6uF7yWq+JO
-         ff4xkY1QqHsvraG3Urzv98BF+dmBOffCU3lytoIrcPlUzD25N9ZHsjb4blGVvoS3bd
-         wunaAkYh25prIMpCyfE1RcAigwMMzRfE6zg9awew=
-Received: from DLEE114.ent.ti.com (dlee114.ent.ti.com [157.170.170.25])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x76LUIEn119700
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Aug 2019 16:30:18 -0500
-Received: from DLEE105.ent.ti.com (157.170.170.35) by DLEE114.ent.ti.com
- (157.170.170.25) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 6 Aug
- 2019 16:30:18 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 6 Aug 2019 16:30:18 -0500
-Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x76LUH4a105393;
-        Tue, 6 Aug 2019 16:30:18 -0500
-Subject: Re: [PATCH 0/6] hwspinlock: allow sharing of hwspinlocks
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Fabien DESSENNE <fabien.dessenne@st.com>,
-        Ohad Ben-Cohen <ohad@wizery.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1729567AbfHFViB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 17:38:01 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:44775 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729555AbfHFViB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 17:38:01 -0400
+Received: by mail-ot1-f65.google.com with SMTP id b7so46087295otl.11
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 14:38:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=lorWiddpxg2WMsy0/smy1K1C0pOfS2GdN2jnCeFogUs=;
+        b=Q0Zjd+TM00oZ630nvIWNZ+HRm51Wsx5YHS2eeY8dHTTrbbgj7LjxyTLFOfgusW38kG
+         wUssvWh5QtUnttZvlObrMx4ERY8wi8VJZsi/QRCWmLJ1w5S95mvpP8qXP1UYr1dH/ZmW
+         5KGIqlPD1hOdbJX4af/sLexZHpyTvOce84cZQ7GSnGYvxPmiIdZg6KNhOqdRIpLtn5io
+         rpUIoH4kb87hxR8tv8gevBuwFMYmJLwJC2E39hMHz//t+3AR412RMkSTzP3e8T/0wocs
+         a6iP2KtaSIRWpj0P/BDXMz2wcO4uxVeHP2eSBk45hWyLOcK3kjynpMKguic5NKjTjKxf
+         +ZFw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=lorWiddpxg2WMsy0/smy1K1C0pOfS2GdN2jnCeFogUs=;
+        b=EH5wAxziilHTxVZq0R0sllUfiC0QXoUCKX4h62zD5pSmUMnUbgSSXYXHOMj258YMPk
+         ZqP1HH5JT2HcaP/S+RZyXOo5UhrQRwIwHE0K9mMMu4RYtdMrCsPAG8+xFs/OfDvIN8UW
+         GPZiGYzCL1o2CmWe5EO9wpej30LOMirfm+Ui145JofKff5NzRRngcPpfU3j6zvsRTn1D
+         bUQbSi6ZAAUQhRb6IQJ+Nch4dVcraBwCcUmsGNro0OYpndOvJeBw4qB/K8wSs06MFtHA
+         T5phpKn+boRPdX9UZgbenlitggdm3lLyR049GNnux4oZP0fDh6v4u2UizzyNq1UpgfET
+         807A==
+X-Gm-Message-State: APjAAAXh6ThIMGES99v+jTz9ingxNoVqkpf0ptCDlBDkNCRX0l3lxRyV
+        KuQLCGdV57Fytt5lvTxDO8LaMA==
+X-Google-Smtp-Source: APXvYqwDSlDrT26BRCk2A5kNmd5K8poKBkr8uW3JWosK9nm0mwlDSBLckAmTzrf3lJWlTfKIVDn2LQ==
+X-Received: by 2002:a5d:8497:: with SMTP id t23mr5657932iom.298.1565127480073;
+        Tue, 06 Aug 2019 14:38:00 -0700 (PDT)
+Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
+        by smtp.gmail.com with ESMTPSA id t19sm78314934iog.41.2019.08.06.14.37.59
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 06 Aug 2019 14:37:59 -0700 (PDT)
+Date:   Tue, 6 Aug 2019 14:37:58 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Atish Patra <atish.patra@wdc.com>
+cc:     linux-kernel@vger.kernel.org, Alan Kao <alankao@andestech.com>,
+        Albert Ou <aou@eecs.berkeley.edu>,
+        Anup Patel <anup.patel@wdc.com>,
+        Daniel Lezcano <daniel.lezcano@linaro.org>,
+        devicetree@vger.kernel.org, Enrico Weigelt <info@metux.net>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Johan Hovold <johan@kernel.org>,
+        linux-riscv@lists.infradead.org,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        Benjamin GAIGNARD <benjamin.gaignard@st.com>
-References: <1552492237-28810-1-git-send-email-fabien.dessenne@st.com>
- <20190801191403.GA7234@tuxbook-pro>
- <1a057176-81ab-e302-4375-2717ceef6924@st.com>
- <20190805174659.GA23928@tuxbook-pro>
- <dcd1aeea-cffe-d5fb-af5a-e52efcc2e046@ti.com>
- <20190806182128.GD26807@tuxbook-pro>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <1aea3d28-29dc-f9de-3b86-cf777e0d5caa@ti.com>
-Date:   Tue, 6 Aug 2019 16:30:17 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        Palmer Dabbelt <palmer@sifive.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>
+Subject: Re: [PATCH v4 1/4] RISC-V: Remove per cpu clocksource
+In-Reply-To: <20190803042723.7163-2-atish.patra@wdc.com>
+Message-ID: <alpine.DEB.2.21.9999.1908061437000.13971@viisi.sifive.com>
+References: <20190803042723.7163-1-atish.patra@wdc.com> <20190803042723.7163-2-atish.patra@wdc.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-In-Reply-To: <20190806182128.GD26807@tuxbook-pro>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/6/19 1:21 PM, Bjorn Andersson wrote:
-> On Tue 06 Aug 10:38 PDT 2019, Suman Anna wrote:
-> 
->> Hi Fabien,
->>
->> On 8/5/19 12:46 PM, Bjorn Andersson wrote:
->>> On Mon 05 Aug 01:48 PDT 2019, Fabien DESSENNE wrote:
->>>
->>>>
->>>> On 01/08/2019 9:14 PM, Bjorn Andersson wrote:
->>>>> On Wed 13 Mar 08:50 PDT 2019, Fabien Dessenne wrote:
-> [..]
->>>> B/ This would introduce some inconsistency between the two 'request' API
->>>> which are hwspin_lock_request() and hwspin_lock_request_specific().
->>>> hwspin_lock_request() looks for an unused lock, so requests for an exclusive
->>>> usage. On the other side, request_specific() would request shared locks.
->>>> Worst the following sequence can transform an exclusive usage into a shared
->>>>
->>>
->>> There is already an inconsistency in between these; as with above any
->>> system that uses both request() and request_specific() will be suffering
->>> from intermittent failures due to probe ordering.
->>>
->>>> one:
->>>>    -hwspin_lock_request() -> returns Id#0 (exclusive)
->>>>    -hwspin_lock_request() -> returns Id#1 (exclusive)
->>>>    -hwspin_lock_request_specific(0) -> returns Id#0 and makes Id#0 shared
->>>> Honestly I am not sure that this is a real issue, but it's better to have it
->>>> in mind before we take ay decision
->>
->> Wouldn't it be actually simpler to just introduce a new specific API
->> variant for this, similar to the reset core for example (it uses a
->> separate exclusive API), without having to modify the bindings at all.
->> It is just a case of your driver using the right API, and the core can
->> be modified to use the additional tag semantics based on the API. It
->> should avoid any confusion with say using a different second cell value
->> for the same lock in two different nodes.
->>
-> 
-> But this implies that there is an actual need to hold these locks
-> exclusively. Given that they are (except for the raw case) all wrapped
-> by Linux locking primitives there shouldn't be a problem sharing a lock
-> (except possibly for the raw case).
+On Fri, 2 Aug 2019, Atish Patra wrote:
 
-Yes agreed, the HWLOCK_RAW and HWLOCK_IN_ATOMIC cases are unprotected. I
-am still trying to understand better the usecase to see if the same lock
-is being multiplexed for different protection contexts, or if all of
-them are protecting the same context.
-
+> There is only one clocksource in RISC-V. The boot cpu initializes
+> that clocksource. No need to keep a percpu data structure.
 > 
-> I agree that we shouldn't specify this property in DT - if anything it
-> should be a variant of the API.
-> 
->> If you are sharing a hwlock on the Linux side, surely your driver should
->> be aware that it is a shared lock. The tag can be set during the first
->> request API, and you look through both tags when giving out a handle.
->>
-> 
-> Why would the driver need to know about it?
+> Signed-off-by: Atish Patra <atish.patra@wdc.com>
 
-Just the semantics if we were to support single user vs multiple users
-on Linux-side to even get a handle. Your point is that this may be moot
-since we have protection anyway other than the raw cases. But we need to
-be able to have the same API work across all cases.
+Thanks, queued for v5.3-rc4.
 
-So far, it had mostly been that there would be one user on Linux
-competing with other equivalent peer entities on different processors.
-It is not common to have multiple users since these protection schemes
-are usually needed only at the lowest levels of a stack, so the
-exclusive handle stuff had been sufficient.
 
-> 
->> Obviously, the hwspin_lock_request() API usage semantics always had the
->> implied additional need for communicating the lock id to the other peer
->> entity, so a realistic usage is most always the specific API variant. I
->> doubt this API would be of much use for the shared driver usage. This
->> also implies that the client user does not care about specifying a lock
->> in DT.
->>
-> 
-> Afaict if the lock are shared then there shouldn't be a problem with
-> some clients using the request API and others request_specific(). As any
-> collisions would simply mean that there are more contention on the lock.
-> 
-> With the current exclusive model that is not possible and the success of
-> the request_specific will depend on probe order.
-> 
-> But perhaps it should be explicitly prohibited to use both APIs on the
-> same hwspinlock instance?
-
-Yeah, they are meant to be complimentary usage, though I doubt we will
-ever have any realistic users for the generic API if we haven't had a
-usage so far. I had posted a concept of reserved locks long back [1] to
-keep away certain locks from the generic requestor, but dropped it since
-we did not have an actual use-case needing it.
-
-regards
-Suman
-
-[1] https://lwn.net/Articles/611944/
+- Paul
