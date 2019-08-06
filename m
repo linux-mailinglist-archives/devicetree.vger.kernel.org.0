@@ -2,115 +2,277 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 92A7A82B54
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 07:59:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2ECFD82B6F
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 08:05:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726092AbfHFF7x (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 01:59:53 -0400
-Received: from mail-eopbgr150051.outbound.protection.outlook.com ([40.107.15.51]:19776
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1725798AbfHFF7x (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Aug 2019 01:59:53 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=kuE7zQQhPqSnEr14j3huGeGEh57Psq6dLcKGwzxS3taG5F/ekEC64Jw3bBP7DUV6VrmRWlW8yYYrMmFgERM0EB608gGtgMjWF6CrCd6hrDL5BQ9HCRHWYo9XUW1sybHs+Nn6vdiWPtp7NKlknnFJB/JyvFahxQ7dOyt+bbKnjt51FuUu4xLa8vo73SK+mg1lBUwa/SoyaL93hoEIUqpBhU2NX9ImNrLx61iQWu72Wd28YeACFq0o6KIJDfzUblre06FC3r2SDNmLdUM/7nVuUpc6bK+aMkbedTMBm0lZIxJIhheeO/cjOKkm9jqfYxIHUZ1fQJ2f+MCI/xf5V3Vs4Q==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0GcMyhvE+5eLLg+b/U06AzQs+m/saK1tkaSMk7DeU0s=;
- b=QuoLBPJeQ0r8HtsxXrbZbxOtYZjmaV2X5mhE0b/PjVP6R0sgnveVdUyAJF9q/tF6WQY7Ogf9zGWRCtNMuk2QiZ8EhV3NXBzP7J+Bc8qhwiBOEkxF/oz070SmAIZ7ys3g1P1BbHuWNbL4x8zihb/sCDo7sVQ6f3IBlDSK940olNNYqyIjo8VbyQjOgsfIBt1KtrNvVAGBJo+BkcK6+1h7e4AO/SfPtXtYvowtD/mgjYvuvwmlpSZIYiO5YYYqtTfaGkWtgh8k+YX9E0eSDReYNBP+rCmQ3Fw7EcRFcW7dMzor9L4EkpfxuBltTH0qbTMHVMJx7mSLSKuFp5zbzrCWSg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
- header.d=nxp.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=0GcMyhvE+5eLLg+b/U06AzQs+m/saK1tkaSMk7DeU0s=;
- b=ZvkjljPuK17d5TOczKXR62ggPYAAJCFTcfP+3rSFvBoKJo5LpTx6iyw3luqa1k5KIfMIIYTscYyPTjSYpckXNfUpCw2qJqgllpxNYh7BtCW5wh8dSs6MfR4KD65wbBLyyzCrVdC1QrnmoZf/l390Hmj5AG5XdtY1Ti8HTiTL92Y=
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com (52.134.72.18) by
- DB3PR0402MB3642.eurprd04.prod.outlook.com (52.134.65.24) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.13; Tue, 6 Aug 2019 05:59:49 +0000
-Received: from DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::7cdf:bddc:212c:f77e]) by DB3PR0402MB3916.eurprd04.prod.outlook.com
- ([fe80::7cdf:bddc:212c:f77e%4]) with mapi id 15.20.2136.018; Tue, 6 Aug 2019
- 05:59:49 +0000
-From:   Anson Huang <anson.huang@nxp.com>
-To:     "srinivas.kandagatla@linaro.org" <srinivas.kandagatla@linaro.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        "festevam@gmail.com" <festevam@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-CC:     dl-linux-imx <linux-imx@nxp.com>
-Subject: RE: [PATCH 1/2] dt-bindings: imx-ocotp: Add i.MX8MN compatible
-Thread-Topic: [PATCH 1/2] dt-bindings: imx-ocotp: Add i.MX8MN compatible
-Thread-Index: AQHVN5LXMlVDxHijuUG4VBGBLZ+VOKbtyQUQ
-Date:   Tue, 6 Aug 2019 05:59:49 +0000
-Message-ID: <DB3PR0402MB391647D2B63F69C53BB6CE81F5D50@DB3PR0402MB3916.eurprd04.prod.outlook.com>
-References: <20190711023714.16000-1-Anson.Huang@nxp.com>
-In-Reply-To: <20190711023714.16000-1-Anson.Huang@nxp.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=anson.huang@nxp.com; 
-x-originating-ip: [119.31.174.66]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: ac1c9e7e-ae0d-436b-e2e8-08d71a334aa6
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:DB3PR0402MB3642;
-x-ms-traffictypediagnostic: DB3PR0402MB3642:
-x-microsoft-antispam-prvs: <DB3PR0402MB3642272BC7732EBC3466EFE0F5D50@DB3PR0402MB3642.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:3826;
-x-forefront-prvs: 0121F24F22
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(136003)(346002)(396003)(366004)(39860400002)(199004)(189003)(64756008)(66446008)(7416002)(71190400001)(71200400001)(44832011)(486006)(7696005)(476003)(74316002)(11346002)(446003)(68736007)(86362001)(14454004)(4326008)(2201001)(478600001)(25786009)(316002)(6246003)(6436002)(76116006)(33656002)(305945005)(7736002)(26005)(3846002)(5660300002)(110136005)(55016002)(186003)(9686003)(6116002)(66946007)(66556008)(2501003)(76176011)(229853002)(2906002)(66066001)(99286004)(53936002)(102836004)(52536014)(66476007)(8676002)(81156014)(81166006)(6506007)(256004)(8936002)(14444005)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB3PR0402MB3642;H:DB3PR0402MB3916.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: bWR1id5VTU59HXcIOfEIznZ0m7vkbkf9UnJZNhpRGkmtw69B/sa1tiJ1Drjn1GAZew52Si2WMAMOCDtN2slvb0nwmR9mSBl92J1+lFcwuRZ3a665GfM3sX08jjBfDOV32J/07S6vPIREfK6tEviPikbyS64l9VBmAp2dFA/s+g/3GhM7Ef9vzZw/ZdfDo4X0ITxs4TGQN06wZ/hJhECT9JyBL0DQi6d55WYUkxzEh9ej6PsOP2nQnEuul2VOQrfEI305obVau04NyUmtthRfza3aUVRBfmcplI6NFnPJJGZx6HREqrmC2IGSkSarhSTk1nwj2AvDaR43hpCyvsz5hg0N8uCiL23yi0Ge19io//6r2pT+jkF8uXYr27jhuZ09CbqydsKCVd+c9MkSmNJoxCw3Bz+krONvYKILJaAP4HI=
-Content-Type: text/plain; charset="utf-8"
-Content-Transfer-Encoding: base64
+        id S1731657AbfHFGFw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 02:05:52 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:59178 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731557AbfHFGFw (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 02:05:52 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 419D9607DF; Tue,  6 Aug 2019 06:05:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565071550;
+        bh=valCGwJkSbYDVN5cVjSqp1Dw3PQuvPw3HALLe04QvAg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=F6Ir4kbuiOJJ2h3vASdmFZhenRD9LNj3N1RERRa33MZEQC3MpYsxqnLVIYHI9lxkZ
+         yVEPDsqhWxFVat4wjXWk3YyvC9q1wc2EIK65YU+BE38yFz0LI4FVptGwYCSnPy0W/8
+         jgUxOUzzIfPuedBpa/ZMpOHVrDC21QcR6KBAdoN8=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from blr-ubuntu-173.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: rnayak@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 81AF060452;
+        Tue,  6 Aug 2019 06:05:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565071549;
+        bh=valCGwJkSbYDVN5cVjSqp1Dw3PQuvPw3HALLe04QvAg=;
+        h=From:To:Cc:Subject:Date:From;
+        b=OGxP1Gj13VXWwrvwo4UCiqbyQAKRyxuNzhRVdE9yRkcnZoVbL3y2/NL99S+A2lvSk
+         ye7WYIojzwMMCgDalGAmzfgXiZ0PTLLsYDJ4cXkIDu93jDJDtw7gehEeej/9WCjedA
+         5HGRWCPzqmletK2Ekcj9wfO+T1qFIVnXJZui7lcE=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 81AF060452
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=rnayak@codeaurora.org
+From:   Rajendra Nayak <rnayak@codeaurora.org>
+To:     linus.walleij@linaro.org, bjorn.andersson@linaro.org
+Cc:     linux-arm-msm@vger.kernel.org, agross@kernel.org,
+        robh+dt@kernel.org, linux-gpio@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Jitendra Sharma <shajit@codeaurora.org>,
+        Vivek Gautam <vivek.gautam@codeaurora.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Vinod Koul <vkoul@kernel.org>
+Subject: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: Add SC7180 pinctrl binding
+Date:   Tue,  6 Aug 2019 11:35:35 +0530
+Message-Id: <20190806060536.18094-1-rnayak@codeaurora.org>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: ac1c9e7e-ae0d-436b-e2e8-08d71a334aa6
-X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2019 05:59:49.2900
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: anson.huang@nxp.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB3PR0402MB3642
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-R2VudGxlIFBpbmcuLi4NCg0KPiBGcm9tOiBBbnNvbiBIdWFuZyA8QW5zb24uSHVhbmdAbnhwLmNv
-bT4NCj4gDQo+IEFkZCBjb21wYXRpYmxlIGZvciBpLk1YOE1OIGFuZCBhZGQgaS5NWDhNTS9pLk1Y
-OE1OIHRvIHRoZSBkZXNjcmlwdGlvbi4NCj4gDQo+IFNpZ25lZC1vZmYtYnk6IEFuc29uIEh1YW5n
-IDxBbnNvbi5IdWFuZ0BueHAuY29tPg0KPiAtLS0NCj4gIERvY3VtZW50YXRpb24vZGV2aWNldHJl
-ZS9iaW5kaW5ncy9udm1lbS9pbXgtb2NvdHAudHh0IHwgMyArKy0NCj4gIDEgZmlsZSBjaGFuZ2Vk
-LCAyIGluc2VydGlvbnMoKyksIDEgZGVsZXRpb24oLSkNCj4gDQo+IGRpZmYgLS1naXQgYS9Eb2N1
-bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvbnZtZW0vaW14LW9jb3RwLnR4dA0KPiBiL0Rv
-Y3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9pbXgtb2NvdHAudHh0DQo+IGlu
-ZGV4IDk2ZmZkMDYuLjkwNGRhZGYgMTAwNjQ0DQo+IC0tLSBhL0RvY3VtZW50YXRpb24vZGV2aWNl
-dHJlZS9iaW5kaW5ncy9udm1lbS9pbXgtb2NvdHAudHh0DQo+ICsrKyBiL0RvY3VtZW50YXRpb24v
-ZGV2aWNldHJlZS9iaW5kaW5ncy9udm1lbS9pbXgtb2NvdHAudHh0DQo+IEBAIC0yLDcgKzIsNyBA
-QCBGcmVlc2NhbGUgaS5NWDYgT24tQ2hpcCBPVFAgQ29udHJvbGxlciAoT0NPVFApIGRldmljZQ0K
-PiB0cmVlIGJpbmRpbmdzDQo+IA0KPiAgVGhpcyBiaW5kaW5nIHJlcHJlc2VudHMgdGhlIG9uLWNo
-aXAgZUZ1c2UgT1RQIGNvbnRyb2xsZXIgZm91bmQgb24NCj4gaS5NWDZRL0QsIGkuTVg2REwvUywg
-aS5NWDZTTCwgaS5NWDZTWCwgaS5NWDZVTCwgaS5NWDZVTEwvVUxaLCBpLk1YNlNMTCwgLQ0KPiBp
-Lk1YN0QvUywgaS5NWDdVTFAgYW5kIGkuTVg4TVEgU29Dcy4NCj4gK2kuTVg3RC9TLCBpLk1YN1VM
-UCwgaS5NWDhNUSwgaS5NWDhNTSBhbmQgaS5NWDhNTiBTb0NzLg0KPiANCj4gIFJlcXVpcmVkIHBy
-b3BlcnRpZXM6DQo+ICAtIGNvbXBhdGlibGU6IHNob3VsZCBiZSBvbmUgb2YNCj4gQEAgLTE2LDYg
-KzE2LDcgQEAgUmVxdWlyZWQgcHJvcGVydGllczoNCj4gIAkiZnNsLGlteDd1bHAtb2NvdHAiIChp
-Lk1YN1VMUCksDQo+ICAJImZzbCxpbXg4bXEtb2NvdHAiIChpLk1YOE1RKSwNCj4gIAkiZnNsLGlt
-eDhtbS1vY290cCIgKGkuTVg4TU0pLA0KPiArCSJmc2wsaW14OG1uLW9jb3RwIiAoaS5NWDhNTiks
-DQo+ICAJZm9sbG93ZWQgYnkgInN5c2NvbiIuDQo+ICAtICNhZGRyZXNzLWNlbGxzIDogU2hvdWxk
-IGJlIDENCj4gIC0gI3NpemUtY2VsbHMgOiBTaG91bGQgYmUgMQ0KPiAtLQ0KPiAyLjcuNA0KDQo=
+From: Jitendra Sharma <shajit@codeaurora.org>
+
+Add the binding for the TLMM pinctrl block found in the SC7180 platform
+
+Signed-off-by: Jitendra Sharma <shajit@codeaurora.org>
+Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
+[rnayak: Fix some copy-paste issues, sort and fix functions]
+Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Reviewed-by: Vinod Koul <vkoul@kernel.org>
+---
+v3: Minor typo fixes as pointed out by Vinod on v2.
+    Added Vinods Reviewed-by:
+
+ .../bindings/pinctrl/qcom,sc7180-pinctrl.txt  | 186 ++++++++++++++++++
+ 1 file changed, 186 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.txt
+
+diff --git a/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.txt b/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.txt
+new file mode 100644
+index 000000000000..b5767ee82ee6
+--- /dev/null
++++ b/Documentation/devicetree/bindings/pinctrl/qcom,sc7180-pinctrl.txt
+@@ -0,0 +1,186 @@
++Qualcomm Technologies, Inc. SC7180 TLMM block
++
++This binding describes the Top Level Mode Multiplexer block found in the
++SC7180 platform.
++
++- compatible:
++	Usage: required
++	Value type: <string>
++	Definition: must be "qcom,sc7180-pinctrl"
++
++- reg:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: the base address and size of the north, south and west
++		    TLMM tiles
++
++- reg-names:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: names for the cells of reg, must contain "north", "south"
++		    and "west".
++
++- interrupts:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: should specify the TLMM summary IRQ.
++
++- interrupt-controller:
++	Usage: required
++	Value type: <none>
++	Definition: identifies this node as an interrupt controller
++
++- #interrupt-cells:
++	Usage: required
++	Value type: <u32>
++	Definition: must be 2. Specifying the pin number and flags, as defined
++		    in <dt-bindings/interrupt-controller/irq.h>
++
++- gpio-controller:
++	Usage: required
++	Value type: <none>
++	Definition: identifies this node as a gpio controller
++
++- #gpio-cells:
++	Usage: required
++	Value type: <u32>
++	Definition: must be 2. Specifying the pin number and flags, as defined
++		    in <dt-bindings/gpio/gpio.h>
++
++- gpio-ranges:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition:  see ../gpio/gpio.txt
++
++- gpio-reserved-ranges:
++	Usage: optional
++	Value type: <prop-encoded-array>
++	Definition: see ../gpio/gpio.txt
++
++Please refer to ../gpio/gpio.txt and ../interrupt-controller/interrupts.txt for
++a general description of GPIO and interrupt bindings.
++
++Please refer to pinctrl-bindings.txt in this directory for details of the
++common pinctrl bindings used by client devices, including the meaning of the
++phrase "pin configuration node".
++
++The pin configuration nodes act as a container for an arbitrary number of
++subnodes. Each of these subnodes represents some desired configuration for a
++pin, a group, or a list of pins or groups. This configuration can include the
++mux function to select on those pin(s)/group(s), and various pin configuration
++parameters, such as pull-up, drive strength, etc.
++
++
++PIN CONFIGURATION NODES:
++
++The name of each subnode is not important; all subnodes should be enumerated
++and processed purely based on their content.
++
++Each subnode only affects those parameters that are explicitly listed. In
++other words, a subnode that lists a mux function but no pin configuration
++parameters implies no information about any pin configuration parameters.
++Similarly, a pin subnode that describes a pullup parameter implies no
++information about e.g. the mux function.
++
++
++The following generic properties as defined in pinctrl-bindings.txt are valid
++to specify in a pin configuration subnode:
++
++- pins:
++	Usage: required
++	Value type: <string-array>
++	Definition: List of gpio pins affected by the properties specified in
++		    this subnode.
++
++		    Valid pins are:
++		      gpio0-gpio118
++		        Supports mux, bias and drive-strength
++
++		      sdc1_clk, sdc1_cmd, sdc1_data sdc2_clk, sdc2_cmd,
++		      sdc2_data sdc1_rclk
++		        Supports bias and drive-strength
++
++		      ufs_reset
++			Supports bias and drive-strength
++
++- function:
++	Usage: required
++	Value type: <string>
++	Definition: Specify the alternative function to be configured for the
++		    specified pins. Functions are only valid for gpio pins.
++		    Valid values are:
++
++		    adsp_ext, agera_pll, aoss_cti, atest_char, atest_char0,
++		    atest_char1, atest_char2, atest_char3, atest_tsens,
++		    atest_tsens2, atest_usb1, atest_usb10, atest_usb11,
++		    atest_usb12, atest_usb13, atest_usb2, atest_usb20,
++		    atest_usb21, atest_usb22, atest_usb23, audio_ref,
++		    btfm_slimbus, cam_mclk, cci_async, cci_i2c, cci_timer0,
++		    cci_timer1, cci_timer2, cci_timer3, cci_timer4,
++		    cri_trng, dbg_out, ddr_bist, ddr_pxi0, ddr_pxi1,
++		    ddr_pxi2, ddr_pxi3, dp_hot, edp_lcd, gcc_gp1, gcc_gp2,
++		    gcc_gp3, gpio, gp_pdm0, gp_pdm1, gp_pdm2, gps_tx,
++		    jitter_bist, ldo_en, ldo_update, lpass_ext, mdp_vsync,
++		    mdp_vsync0, mdp_vsync1, mdp_vsync2, mdp_vsync3, mi2s_0,
++		    mi2s_1, mi2s_2, mss_lte, m_voc, pa_indicator, phase_flag,
++		    PLL_BIST, pll_bypassnl, pll_reset, prng_rosc, qdss,
++		    qdss_cti, qlink_enable, qlink_request, qspi_clk, qspi_cs,
++		    qspi_data, qup00, qup01, qup02, qup03, qup04, qup05,
++		    qup10, qup11, qup12, qup13, qup14, qup15, sdc1_tb,
++		    sdc2_tb, sd_write, sp_cmu, tgu_ch0, tgu_ch1, tgu_ch2,
++		    tgu_ch3, tsense_pwm1, tsense_pwm2, uim1, uim2, uim_batt,
++		    usb_phy, vfr_1, _V_GPIO, _V_PPS_IN, _V_PPS_OUT,
++		    vsense_trigger, wlan1_adc0, wlan1_adc1, wlan2_adc0,
++		    wlan2_adc1,
++
++- bias-disable:
++	Usage: optional
++	Value type: <none>
++	Definition: The specified pins should be configured as no pull.
++
++- bias-pull-down:
++	Usage: optional
++	Value type: <none>
++	Definition: The specified pins should be configured as pull down.
++
++- bias-pull-up:
++	Usage: optional
++	Value type: <none>
++	Definition: The specified pins should be configured as pull up.
++
++- output-high:
++	Usage: optional
++	Value type: <none>
++	Definition: The specified pins are configured in output mode, driven
++		    high.
++		    Not valid for sdc pins.
++
++- output-low:
++	Usage: optional
++	Value type: <none>
++	Definition: The specified pins are configured in output mode, driven
++		    low.
++		    Not valid for sdc pins.
++
++- drive-strength:
++	Usage: optional
++	Value type: <u32>
++	Definition: Selects the drive strength for the specified pins, in mA.
++		    Valid values are: 2, 4, 6, 8, 10, 12, 14 and 16
++
++Example:
++
++	tlmm: pinctrl@3500000 {
++		compatible = "qcom,sc7180-pinctrl";
++		reg = <0x3500000 0x300000>,
++		      <0x3900000 0x300000>,
++		      <0x3D00000 0x300000>;
++		reg-names = "west", "north", "south";
++		interrupts = <GIC_SPI 208 IRQ_TYPE_LEVEL_HIGH>;
++		gpio-controller;
++		#gpio-cells = <2>;
++		gpio-ranges = <&tlmm 0 0 119>;
++		gpio-reserved-ranges = <0 4>, <106 4>;
++		interrupt-controller;
++		#interrupt-cells = <2>;
++	};
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
+
