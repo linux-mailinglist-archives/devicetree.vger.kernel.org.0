@@ -2,43 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A285583AF5
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 23:20:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 089C883B0A
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 23:27:07 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726118AbfHFVUe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 17:20:34 -0400
-Received: from mail.kernel.org ([198.145.29.99]:48972 "EHLO mail.kernel.org"
+        id S1726044AbfHFV1G (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 17:27:06 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49974 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725974AbfHFVUe (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Aug 2019 17:20:34 -0400
-Received: from mail-qt1-f177.google.com (mail-qt1-f177.google.com [209.85.160.177])
+        id S1725974AbfHFV1G (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 17:27:06 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id B0ED92186A;
-        Tue,  6 Aug 2019 21:20:33 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2EA932075B;
+        Tue,  6 Aug 2019 21:27:05 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565126433;
-        bh=MsxTnG5JNtSiW+FKb+v5FryeOOGTE5+yhHITDeZhdag=;
+        s=default; t=1565126825;
+        bh=Omab2aaLx1gzMfzJZgEqTd/OAd4bfJxT6vIOj463fSQ=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=F77hzA4YRU9VX2jmxmf3AGaoQQn9xmUUWOSoFg0zKt1EE6pZr4wQG+JoCzUSHWX9Y
-         a8RqfLVfuDeGHuIsxFCRZdyhGusjDp+ZV5L4DF0kXtbmwwsAu8X0vTGil0Lsj5dIfy
-         IuI09DZCV1NGmhMrdRN+4y11l+lPQodPIHhFTFtY=
-Received: by mail-qt1-f177.google.com with SMTP id x22so12753033qtp.12;
-        Tue, 06 Aug 2019 14:20:33 -0700 (PDT)
-X-Gm-Message-State: APjAAAXv6iQI2JfXzsytxwsuMFZmbeYXd2ifJ2FzYDrGUJaC4JRtfFhL
-        y9Ni36UBD40yid/mx9+q4Ez6Zv2U9E8hqaOTrg==
-X-Google-Smtp-Source: APXvYqz96I8Q42e8SKyosq7yJdIWn+9w1J3Nhuf5vrzwshLnzPBxU2De+FJQk8x2UyEHhRELUr4rKAAgemcfwGPDMnw=
-X-Received: by 2002:a0c:b786:: with SMTP id l6mr5114419qve.148.1565126432834;
- Tue, 06 Aug 2019 14:20:32 -0700 (PDT)
+        b=cc+DOxbv7t+qm1HL+uMx6x/01ArqanOo9PuQKBfxQO2pLgdn7uPxoNkA9XUuRYsAU
+         je8lX1mNVa8LqlhmF+5IukfgIN9lybKnIXRjaBFA4eGiLKF94DmZxTLgSaPXi6fUz4
+         ZGdz6JBo6r3zWBuYVS9abYNCBEMySooilSH2UVXg=
+Received: by mail-qk1-f178.google.com with SMTP id d15so64121561qkl.4;
+        Tue, 06 Aug 2019 14:27:05 -0700 (PDT)
+X-Gm-Message-State: APjAAAU7e5ehtgSYP4A3TvMIJHhtnE/tdHflGtWEz2S0auQpDnLS92b9
+        VTjcZg8vJOR+PLBNsgoUwRVm1qqgpgAUuaMJAA==
+X-Google-Smtp-Source: APXvYqz6MiK/9r6wnlSZQe3SUXiZOJhyEiFYrQoWgGX9vBTELl/dXmEjfCx6Pf8dwVZBOvzBv4MZdozaGg0tpmYHix4=
+X-Received: by 2002:a37:6944:: with SMTP id e65mr4894358qkc.119.1565126824392;
+ Tue, 06 Aug 2019 14:27:04 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190806192654.138605-1-saravanak@google.com>
-In-Reply-To: <20190806192654.138605-1-saravanak@google.com>
+References: <20190806192654.138605-1-saravanak@google.com> <20190806192654.138605-2-saravanak@google.com>
+In-Reply-To: <20190806192654.138605-2-saravanak@google.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 6 Aug 2019 15:20:21 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJ9P+HGE6OVASv8AqkozoFEkaiC6Er4LH=S3KHv202JCw@mail.gmail.com>
-Message-ID: <CAL_JsqJ9P+HGE6OVASv8AqkozoFEkaiC6Er4LH=S3KHv202JCw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] of/platform: Fix fn definitons for of_link_is_valid()
- and of_link_property()
+Date:   Tue, 6 Aug 2019 15:26:53 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+BwHSj1XUNp_eY362XnNoOqVTNHqAkvnbgece8ZQE3Qw@mail.gmail.com>
+Message-ID: <CAL_Jsq+BwHSj1XUNp_eY362XnNoOqVTNHqAkvnbgece8ZQE3Qw@mail.gmail.com>
+Subject: Re: [PATCH 2/2] of/platform: Disable generic device linking code for PowerPC
 To:     Saravana Kannan <saravanak@google.com>
 Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Frank Rowand <frowand.list@gmail.com>,
@@ -54,14 +53,48 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Tue, Aug 6, 2019 at 1:27 PM Saravana Kannan <saravanak@google.com> wrote:
 >
-> of_link_is_valid() can be static since it's not used anywhere else.
+> PowerPC platforms don't use the generic of/platform code to populate the
+> devices from DT.
+
+Yes, they do.
+
+> Therefore the generic device linking code is never used
+> in PowerPC.  Compile it out to avoid warning about unused functions.
+
+I'd prefer this get disabled on PPC using 'if (IS_ENABLED(CONFIG_PPC))
+return' rather than #ifdefs.
+
 >
-> of_link_property() return type should have been int instead of bool.
+> If a specific PowerPC platform wants to use this code in the future,
+> bringing this back for PowerPC would be trivial. We'll just need to export
+> of_link_to_suppliers() and then let the machine specific files do the
+> linking as they populate the devices from DT.
 >
-> Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
 > Signed-off-by: Saravana Kannan <saravanak@google.com>
 > ---
->  drivers/of/platform.c | 4 ++--
->  1 file changed, 2 insertions(+), 2 deletions(-)
-
-Acked-by: Rob Herring <robh@kernel.org>
+>  drivers/of/platform.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+>
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index f68de5c4aeff..a2a4e4b79d43 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -506,6 +506,7 @@ int of_platform_default_populate(struct device_node *root,
+>  }
+>  EXPORT_SYMBOL_GPL(of_platform_default_populate);
+>
+> +#ifndef CONFIG_PPC
+>  static bool of_link_is_valid(struct device_node *con, struct device_node *sup)
+>  {
+>         of_node_get(sup);
+> @@ -683,7 +684,6 @@ static int of_link_to_suppliers(struct device *dev)
+>         return __of_link_to_suppliers(dev, dev->of_node);
+>  }
+>
+> -#ifndef CONFIG_PPC
+>  static const struct of_device_id reserved_mem_matches[] = {
+>         { .compatible = "qcom,rmtfs-mem" },
+>         { .compatible = "qcom,cmd-db" },
+> --
+> 2.22.0.770.g0f2c4a37fd-goog
+>
