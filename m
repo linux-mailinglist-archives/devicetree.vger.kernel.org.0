@@ -2,87 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 707B1831C4
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 14:49:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 79BA2831DA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 14:51:54 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731093AbfHFMtI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 08:49:08 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:46845 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731053AbfHFMtI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 08:49:08 -0400
-Received: by mail-lf1-f67.google.com with SMTP id z15so56730302lfh.13
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 05:49:06 -0700 (PDT)
+        id S1731401AbfHFMuq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 08:50:46 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:51467 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726036AbfHFMup (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 08:50:45 -0400
+Received: by mail-wm1-f67.google.com with SMTP id 207so78095357wma.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 05:50:44 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=dE5JuDdEA/pQScNByPn3VC+2psga/+uhIp5+6Lpb/IU=;
-        b=CfdkpelcPzvwnG1MdqcjcMyI02MUVnNU6luZnIfMDPb2TDvDh/PMhfidkJDiDm5vjw
-         TSvW1XIVaisosJn9owSOQNrRfN01cs41uzJMTlM1VsZX0cW6SBzNzVZKo2WGsc7xHA/y
-         52dUv8uwgMs+ujW6Xv1T48Zb1XvjfjCWbXCG46cuulJ68eqIsTcpjWkGSqGqJIk/zhKt
-         FmDBpMi8Fdr7o1vGrpM/XkRced54b6WwHbfhJBaJgtO7Nxsv4XjRHbsliAGTfPn5nSRH
-         4P0r6a4S4hwn0ipXQEhPdnBvxTjgs3aWXnX3Ob+3gbZvc/hC66HkM8kC7oWs5VCWX1de
-         wM1w==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=i8yW7mVu+nN03VbqETwhpsoLUtIU4YcLbfhs55o7BvE=;
+        b=RTZRwX5lhpwBk5ffpnQxAAYx7/cLanVfmlliMxc8iNALHbRdTPbkXa73FiQngVF4k2
+         gSR0nOfzERuCwqrzYPvSe6lQofqNqPqmAIDQYitxE/mLl6BCuiy1cQSaNQfPw+V/7ShZ
+         tnjlpMi5kgAstEAkSvRTFWs3Te4PCbUIiafni+sBHmgX7jOygkvQuhor9CBfI3jXaA+N
+         qYJFwoWghWxkSlGmDwY4Ooltorgm5bfc65AOpvepNg1wS1RCvbIZRmCj0LVKqLMy03cg
+         NPYjcOmyId0MlWnqhIp2J1V6qUTGUTpSHrJDxbxu4lRlPJ82xwQBpdT2BHMDT5IF/ItJ
+         fEOg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=dE5JuDdEA/pQScNByPn3VC+2psga/+uhIp5+6Lpb/IU=;
-        b=bum2PFC1hHOOhWktG1gnt6RzctI8QkN8GP7UsHKQu2qwwPinzMc4DWCDIkBoohYHLY
-         Hcb5vXefu9rUAoBZsdWOFXftlV78t66Hc/y9TpWDchBrNrWN22pZhS4uvqfe4LX9eWmK
-         1cFtOcfVY7jHZrxmhjsr3Uug2Wt26O6i0asG+PNwFD+KFXWN2SSayJMeemkGoc1bkcYl
-         DHsHuCUOVgMO7XHY8HF2g+AQJsChIiSG3SWUq9XDfTEbIK7eJo57gDAgY484glVsqyX+
-         L6BLpCmL7q19CGB/9D5iWooV/UoiY+utGkWn/2w2kzXxzn39uhcn9LhgoYvoBZTfQ/sq
-         8tcQ==
-X-Gm-Message-State: APjAAAWuNAKXAJhShaJUX9zMXPcr084r3Jjii9Gh04HhZKt2hY0WXPgA
-        aVfSiDCQal++zdAGb9DKV1aAkGzRGdi+MpqDeof1gQ==
-X-Google-Smtp-Source: APXvYqw0Wl1Q08gOWskV45KZ1hlu4YydCL1Uqb2v8Dojvc+PSoMPhvxKIqVPTrhNLCBWwALS8FyzMEW+/49Nw/ggfeM=
-X-Received: by 2002:ac2:5dd6:: with SMTP id x22mr2349039lfq.92.1565095745984;
- Tue, 06 Aug 2019 05:49:05 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=i8yW7mVu+nN03VbqETwhpsoLUtIU4YcLbfhs55o7BvE=;
+        b=GroYTrmMXzZTfjVWE8V4C4dF0MzlUNQXjzuQmW3YFbMn4budbcNzwF5ktAH7L0Km6a
+         4XGeBJ63awjvSoTzboBsnojO50r60Zq9WLIjG++dXeb8dTtLzXfNMt7Ketgu4UngcsYk
+         GM9lXjCHtB3/XsAJ+8mzuPJHglU8+xmoQmmQhQhAqbwFpn3eeWKkpGjhgBU3y928HfRd
+         +wtq+BE0FdGk6vABvDLKgVYAwbWeAaAvXkyBRkYUWnHtXpK87PU+++unEmPogGkdlKE6
+         N5asgBIjRkeqbdMO0OKlFxiJaz4w784IlqIiPDPhjdrTC6cfctKwve2bqSShH4Lhpn4I
+         jBKQ==
+X-Gm-Message-State: APjAAAVl+IFg30MZaTNp6sBGoZqs5xa3te236bs94wvHiVyo/5f4FPZ0
+        Qvg+gwx/VZ33TmPeF3mpny6CTA==
+X-Google-Smtp-Source: APXvYqyO9qfySQufHv8FTPVAmHGN0v/i1YcTHeQd2dt7QxoS3vNu24XyzJhi5stC39e658qAYY58Sg==
+X-Received: by 2002:a1c:3b02:: with SMTP id i2mr4611089wma.23.1565095843565;
+        Tue, 06 Aug 2019 05:50:43 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id e3sm109049221wrs.37.2019.08.06.05.50.42
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 06 Aug 2019 05:50:43 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     robh+dt@kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2 0/2] dt-bindings: net: meson-dwmac: convert to yaml
+Date:   Tue,  6 Aug 2019 14:50:39 +0200
+Message-Id: <20190806125041.16105-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20190806024923.34355-1-hui.song_1@nxp.com>
-In-Reply-To: <20190806024923.34355-1-hui.song_1@nxp.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Tue, 6 Aug 2019 14:48:54 +0200
-Message-ID: <CACRpkdZ7hW+hSC41JqjqfLrwWvRY80+_8sXC89OhN7SwVtU7MA@mail.gmail.com>
-Subject: Re: [PATCH v2] gpio: mpc8xxx: Add new platforms GPIO DT node description
-To:     Hui Song <hui.song_1@nxp.com>
-Cc:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
-        Linux ARM <linux-arm-kernel@lists.infradead.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Hui,
+This patchsets converts the Amlogic Meson DWMAC glue bindings over to
+YAML schemas using the already converted dwmac bindings.
 
-On Tue, Aug 6, 2019 at 4:59 AM Hui Song <hui.song_1@nxp.com> wrote:
+The first patch is needed because the Amlogic glue needs a supplementary
+reg cell to access the DWMAC glue registers.
 
-> From: Song Hui <hui.song_1@nxp.com>
->
-> Update the NXP GPIO node dt-binding file for QorIQ and
-> Layerscape platforms, and add one more example with
-> ls1028a GPIO node.
->
-> Signed-off-by: Song Hui <hui.song_1@nxp.com>
-(...)
-> +Example of gpio-controller node for a ls1028a SoC:
-> +
-> +gpio1: gpio@2300000 {
-> +       compatible = "fsl,ls1028a-gpio","fsl,qoriq-gpio";
+Neil Armstrong (2):
+  dt-bindings: net: snps,dwmac: update reg minItems maxItems
+  dt-bindings: net: meson-dwmac: convert to yaml
 
-What you need to do is to add "fsl,ls1028a-gpio" to the list
-of compatible values at the top of the file "Required properties".
-Please send a v2 with this fixed.
+ .../bindings/net/amlogic,meson-dwmac.yaml     | 113 ++++++++++++++++++
+ .../devicetree/bindings/net/meson-dwmac.txt   |  71 -----------
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   8 +-
+ 3 files changed, 120 insertions(+), 72 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/meson-dwmac.txt
 
-Yours,
-Linus Walleij
+-- 
+2.22.0
+
