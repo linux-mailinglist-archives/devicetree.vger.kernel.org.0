@@ -2,102 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7046B8397B
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 21:16:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9B11683965
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 21:11:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725974AbfHFTQu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 15:16:50 -0400
-Received: from mail.blih.net ([212.83.177.182]:25843 "EHLO mail.blih.net"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725970AbfHFTQu (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Aug 2019 15:16:50 -0400
-X-Greylist: delayed 398 seconds by postgrey-1.27 at vger.kernel.org; Tue, 06 Aug 2019 15:16:49 EDT
-Received: from mail.blih.net (mail.blih.net [212.83.177.182])
-        by mail.blih.net (OpenSMTPD) with ESMTP id 6bee197d;
-        Tue, 6 Aug 2019 21:10:08 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha1; c=relaxed; d=bidouilliste.com; h=date
-        :from:to:cc:subject:message-id:in-reply-to:references
-        :mime-version:content-type:content-transfer-encoding; s=mail;
-         bh=MXGL0TgqkRu7s24m8m7xVJfOK0k=; b=CpSE6M3sfwuUYJInlA90cDLBzzSO
-        5UgwMvxmD2OxKd4VfnkZRhOrGJXsEVgCJu3uDYMztBubY+8fleYk7wtMfEu0+jUG
-        xxWrZ/nKa5JghKnCS+EVS17Z4Nz5f7uuaZn4SnJ3Ba0O+LscKl+FrGy+XPLEPInV
-        kJoySq/F5yMHpNs=
-DomainKey-Signature: a=rsa-sha1; c=nofws; d=bidouilliste.com; h=date
-        :from:to:cc:subject:message-id:in-reply-to:references
-        :mime-version:content-type:content-transfer-encoding; q=dns; s=
-        mail; b=Kb4swjcuPYZ8Lht4YbcziZ4/+23C6CsqiNNEPRdqXazfrZGhbcLuDbP7
-        v28f1G0p98RhhF/TgXKgPwVXLG+VA2Gy+UVTAdNXvBta/nz2jm4vqVLQIxiS3gXI
-        Y2jIZlaY0RNwQaUvwsbZR6oj1rRRc2LpSoCUWzEOptjNwfDL8fc=
-Received: from skull.home.blih.net (ip-9.net-89-3-105.rev.numericable.fr [89.3.105.9])
-        by mail.blih.net (OpenSMTPD) with ESMTPSA id f2ca45ae
-        TLS version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NO;
-        Tue, 6 Aug 2019 21:10:08 +0200 (CEST)
-Date:   Tue, 6 Aug 2019 21:10:07 +0200
-From:   Emmanuel Vadot <manu@bidouilliste.com>
-To:     Vasily Khoruzhick <anarsoul@gmail.com>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        "Jared D . McNeill" <jmcneill@NetBSD.org>,
-        Harald Geyer <harald@ccbib.org>
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
-Message-Id: <20190806211007.cd9c10bd0d174f56e4998980@bidouilliste.com>
-In-Reply-To: <20190806140135.4739-1-anarsoul@gmail.com>
-References: <20190806140135.4739-1-anarsoul@gmail.com>
-X-Mailer: Sylpheed 3.7.0 (GTK+ 2.24.32; amd64-portbld-freebsd13.0)
-Mime-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
-Content-Transfer-Encoding: 7bit
+        id S1725939AbfHFTL1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 15:11:27 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:34074 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725798AbfHFTL1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 15:11:27 -0400
+Received: by mail-ot1-f68.google.com with SMTP id n5so95323076otk.1;
+        Tue, 06 Aug 2019 12:11:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=csIIqB/IrDwLxPl2lYtUj9WD1Dt8I4kBPcjCQJ1GYDk=;
+        b=FWZMw5rM9Sew425w6LoMV3JWYdZyFv45J6PeYPnLCESmUr1QSJ/KR+lmQdvj/ptwJE
+         sGELprR/Q+lDFpDt5J8rRhPinv219RUzLN0fZ3YwLVZDSaLeVZjDam/znyeMBKqhDAq0
+         IukAZZtnHks9qtfY0F9F9K+IqHL/j2xFQJdjg5z+oIOT2DHrXwPxeco1KLXMmnP8s4NV
+         MXMUKdhOZ/addouKfHxBqR3/sbEWBUEflVVYRukqnLtVU5Ecjwp12d2QMoWAK5D6wsXi
+         XNBnILgzzY1Rcln3VdrWhNhmpIikpvYE604u7ni6rgELv1JSA+fiWLHQL3dk4yYXsce0
+         hjww==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=csIIqB/IrDwLxPl2lYtUj9WD1Dt8I4kBPcjCQJ1GYDk=;
+        b=le9sKqbjIKQNrScYDD7zTdyJSwm2figJllcMs1f8KzMSBVcMJkn44OgVouj3Bq+A13
+         vB6EA3wf5mY5Jt8yRgQ5bUXcyYW8oqAdsp2wXq3TgRZn1WoKbBxn7CaPGCNsRlsqbp5l
+         tuLTxMxGH+uQu+UflJoP6qKdlJseilzqo33gZ/KmdMgsAhrKe4qPbbu5LmqF+FreS84L
+         TVv+txwTUAHDKi1Pd8YH/0ddpl8S0c4meTorUBB8ryMQ9td4V5VaKG1kZ1geL1VrOPI+
+         ZXYnhsiVgUtQGwaKPmCkevTQ0Fbs9OSQcVf5EdWEDQHiQVqGAmh1SEIGbHL18eWcy+uE
+         AQtg==
+X-Gm-Message-State: APjAAAX89ppdwRhLfT5zIYoLRWJnrZbJeZqglMlHrL9+LE1OVFN2/c6M
+        oy7xkEBtGvvuBARUqE3A+9Ev3PRzvYbWYxz3NdbA8xrP
+X-Google-Smtp-Source: APXvYqwoRzmwN8s0WXpLys3Q35DBxnwW1evWctYoRF/gKNCVFoMTOKHWiSrEdkwTXUkFaAgXbhANT451Z5mIAbm1IxY=
+X-Received: by 2002:a9d:226c:: with SMTP id o99mr4093932ota.42.1565118686396;
+ Tue, 06 Aug 2019 12:11:26 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190806125041.16105-1-narmstrong@baylibre.com> <20190806125041.16105-3-narmstrong@baylibre.com>
+In-Reply-To: <20190806125041.16105-3-narmstrong@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Tue, 6 Aug 2019 21:11:15 +0200
+Message-ID: <CAFBinCCw8sZnmWcHMtEGBrEGqok=3N0qBEaPBZ7_ixLFFtGnGw@mail.gmail.com>
+Subject: Re: [PATCH v2 2/2] dt-bindings: net: meson-dwmac: convert to yaml
+To:     Neil Armstrong <narmstrong@baylibre.com>
+Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue,  6 Aug 2019 07:01:35 -0700
-Vasily Khoruzhick <anarsoul@gmail.com> wrote:
+On Tue, Aug 6, 2019 at 2:50 PM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for the Synopsys DWMAC Glue for Amlogic SoCs over to a YAML schemas.
+>
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+thank you for taking care of this conversion!
+Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
 
-> Looks like PMU in A64 is broken, it generates no interrupts at all and
-> as result 'perf top' shows no events.
-> 
-> Tested on Pine64-LTS.
-> 
-> Fixes: 34a97fcc71c2 ("arm64: dts: allwinner: a64: Add PMU node")
-> Cc: Harald Geyer <harald@ccbib.org>
-> Cc: Jared D. McNeill <jmcneill@NetBSD.org>
-> Signed-off-by: Vasily Khoruzhick <anarsoul@gmail.com>
-> ---
->  arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi | 9 ---------
->  1 file changed, 9 deletions(-)
-> 
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> index 9cc9bdde81ac..cd92f546c483 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-a64.dtsi
-> @@ -142,15 +142,6 @@
->  		clock-output-names = "ext-osc32k";
->  	};
->  
-> -	pmu {
-> -		compatible = "arm,cortex-a53-pmu";
-> -		interrupts = <GIC_SPI 152 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 153 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 154 IRQ_TYPE_LEVEL_HIGH>,
-> -			     <GIC_SPI 155 IRQ_TYPE_LEVEL_HIGH>;
-> -		interrupt-affinity = <&cpu0>, <&cpu1>, <&cpu2>, <&cpu3>;
-> -	};
-> -
->  	psci {
->  		compatible = "arm,psci-0.2";
->  		method = "smc";
-> -- 
-> 2.22.0
+[...]
+> +        amlogic,tx-delay-ns:
+> +          $ref: /schemas/types.yaml#definitions/uint32
+> +          description:
+> +            The internal RGMII TX clock delay (provided by this driver) in
+> +            nanoseconds. Allowed values are 0ns, 2ns, 4ns, 6ns.
+once I have more time I will try to see whether we can define an enum
+with these values, then invalid values will yield a warning/error when
+building the .dtb (which seems to be a good idea)
+this comment shouldn't prevent this patch from being applied as the
+initial conversion will already make life a lot easier
 
- It doesn't work for me too on FreeBSD, and yes the interrupts are
-wrong but this is not the problem. Maybe there is a reset line but it's
-not documented in the documentation.
 
- Reviewed-by: Emmanuel Vadot <manu@FreeBSD.org>
-
--- 
-Emmanuel Vadot <manu@bidouilliste.com> <manu@freebsd.org>
+Martin
