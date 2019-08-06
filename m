@@ -2,93 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E3FCE83593
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:47:08 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30F48835FA
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:57:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731407AbfHFPrI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 11:47:08 -0400
-Received: from vps0.lunn.ch ([185.16.172.187]:37596 "EHLO vps0.lunn.ch"
+        id S2387496AbfHFP5w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 11:57:52 -0400
+Received: from vps.xff.cz ([195.181.215.36]:55358 "EHLO vps.xff.cz"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729161AbfHFPrH (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Aug 2019 11:47:07 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed; d=lunn.ch;
-        s=20171124; h=In-Reply-To:Content-Type:MIME-Version:References:Message-ID:
-        Subject:Cc:To:From:Date:Sender:Reply-To:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:List-Id:List-Help:List-Unsubscribe:List-Subscribe:
-        List-Post:List-Owner:List-Archive;
-        bh=tDkHFpyJMWg4Q2gavETNLZvz+JZOHVdkyGeG2qTN/Wc=; b=hEaWAU47mmu5QooLLHmVN7tdiw
-        CrrTPK3IXB8rPkzZLVoRUuqJqD1OOsbdcObJUTgVPE4vDlXE5CJrd3AGL4MqvzF9w8NS/n8PYXpv4
-        rVWRo5Fo7/4uuQdds/R02lU7PjiW8ljaC8eojAI7I3kuUG+RlCQ0/2nEobaSizTCA6b0=;
-Received: from andrew by vps0.lunn.ch with local (Exim 4.89)
-        (envelope-from <andrew@lunn.ch>)
-        id 1hv1fu-0005YJ-3h; Tue, 06 Aug 2019 17:46:58 +0200
-Date:   Tue, 6 Aug 2019 17:46:58 +0200
-From:   Andrew Lunn <andrew@lunn.ch>
-To:     "Ardelean, Alexandru" <alexandru.Ardelean@analog.com>
-Cc:     "davem@davemloft.net" <davem@davemloft.net>,
-        "hkallweit1@gmail.com" <hkallweit1@gmail.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "f.fainelli@gmail.com" <f.fainelli@gmail.com>,
-        "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>
-Subject: Re: [PATCH 15/16] net: phy: adin: add ethtool get_stats support
-Message-ID: <20190806154658.GC20422@lunn.ch>
-References: <20190805165453.3989-1-alexandru.ardelean@analog.com>
- <20190805165453.3989-16-alexandru.ardelean@analog.com>
- <20190805152832.GT24275@lunn.ch>
- <ce952e3f8d927cdbccb268d708b4e47179d69b06.camel@analog.com>
+        id S1726877AbfHFP5w (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 11:57:52 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
+        t=1565107070; bh=egi9N2aUooM4xwUVTszK4AAXbAsxiwPdWdYEVVzOEOI=;
+        h=From:To:Cc:Subject:Date:From;
+        b=aCCt7a2pvoFwXWCN66MQQOgGkcm/J7oKUz5yXo2HfSTQtY6eUud+ekspop8i5j/mt
+         5pCqA4DzSnEgJIHXS0dzUKPFBN55dlGQenq80kIT2WXkuYa5Hhq2igDZdoMW1En1+m
+         vnibEOmQNr8qOPqSGUXmtR7csd9kBdxtP0gCfii8=
+From:   megous@megous.com
+To:     linux-sunxi@googlegroups.com,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        =?UTF-8?q?Jernej=20=C5=A0krabec?= <jernej.skrabec@gmail.com>
+Cc:     Ondrej Jirman <megous@megous.com>, David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
+        Mark Rutland <mark.rutland@arm.com>,
+        dri-devel@lists.freedesktop.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v8 0/4] Add support for Orange Pi 3
+Date:   Tue,  6 Aug 2019 17:57:39 +0200
+Message-Id: <20190806155744.10263-1-megous@megous.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ce952e3f8d927cdbccb268d708b4e47179d69b06.camel@analog.com>
-User-Agent: Mutt/1.5.23 (2014-03-12)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 06, 2019 at 07:11:57AM +0000, Ardelean, Alexandru wrote:
-> On Mon, 2019-08-05 at 17:28 +0200, Andrew Lunn wrote:
-> > [External]
-> > 
-> > > +struct adin_hw_stat {
-> > > +	const char *string;
-> > > +static void adin_get_strings(struct phy_device *phydev, u8 *data)
-> > > +{
-> > > +	int i;
-> > > +
-> > > +	for (i = 0; i < ARRAY_SIZE(adin_hw_stats); i++) {
-> > > +		memcpy(data + i * ETH_GSTRING_LEN,
-> > > +		       adin_hw_stats[i].string, ETH_GSTRING_LEN);
-> > 
-> > You define string as a char *. So it will be only as long as it should
-> > be. However memcpy always copies ETH_GSTRING_LEN bytes, doing off the
-> > end of the string and into whatever follows.
-> > 
-> 
-> hmm, will use strlcpy()
-> i blindedly copied memcpy() from some other driver
+From: Ondrej Jirman <megous@megous.com>
 
-Hopefully that driver used const char string[ETH_GSTRING_LEN]. Then a
-memcpy is safe. If not, please let me know what driver you copied.
+This series implements support for Xunlong Orange Pi 3 board. There
+are only a few patches remaining.
 
-> i'm afraid i don't understand about the snapshot feature you are mentioning;
-> i.e. i don't remember seeing it in other chips;
+- ethernet support - just a DT change (patch 1)
+- HDMI support (patches 2-4)
 
-It is frequency done at the MAC layer for statistics. You tell the
-hardware to snapshot all the statistics. It atomically makes a copy of
-all the statistics into a set of registers. These values are then
-static, and consistent between counters. You can read them out knowing
-they are not going to change.
+For some people, ethernet doesn't work after reboot because u-boot doesn't
+support AXP805 PMIC, and will not turn off the etherent PHY regulators.
+So the regulator controlled by gpio will be shut down, but the other one
+controlled by the AXP PMIC will not.
 
-> regarding the danger that stat->reg1 rolls over, i guess that is
-> possible, but it's a bit hard to guard against;
+This is a problem only when running with a builtin driver. This needs
+to be fixed in u-boot.
 
-The normal solution is the read the MSB, the LSB and then the MSB
-again. If the MSB value has changed between the two reads, you know a
-roll over has happened, and you need to do it all again.
 
-     Andrew
+Please take a look.
+
+thank you and regards,
+  Ondrej Jirman
+
+Changes in v8:
+- added reviewed-by tags
+- dropped already applied patches
+- added more info about the phy initialization issue after reset
+
+Changes in v7:
+- dropped stored reference to connector_pdev as suggested by Jernej
+- added forgotten dt-bindings reviewed-by tag
+
+Changes in v6:
+- added dt-bindings reviewed-by tag
+- fix wording in stmmac commit (as suggested by Sergei)
+
+Changes in v5:
+- dropped already applied patches (pinctrl patches, mmc1 pinconf patch)
+- rename GMAC-3V3 -> GMAC-3V to match the schematic (Jagan)
+- changed hdmi-connector's ddc-supply property to ddc-en-gpios
+  (Rob Herring)
+
+Changes in v4:
+- fix checkpatch warnings/style issues
+- use enum in struct sunxi_desc_function for io_bias_cfg_variant
+- collected acked-by's
+- fix compile error in drivers/pinctrl/sunxi/pinctrl-sun9i-a80-r.c:156
+  caused by missing conversion from has_io_bias_cfg struct member
+  (I've kept the acked-by, because it's a trivial change, but feel free
+  to object.) (reported by Martin A. on github)
+  I did not have A80 pinctrl enabled for some reason, so I did not catch
+  this sooner.
+- dropped brcm firmware patch (was already applied)
+- dropped the wifi dts patch (will re-send after H6 RTC gets merged,
+  along with bluetooth support, in a separate series)
+
+Changes in v3:
+- dropped already applied patches
+- changed pinctrl I/O bias selection constants to enum and renamed
+- added /omit-if-no-ref/ to mmc1_pins
+- made mmc1_pins default pinconf for mmc1 in H6 dtsi
+- move ddc-supply to HDMI connector node, updated patch descriptions,
+  changed dt-bindings docs
+
+Changes in v2:
+- added dt-bindings documentation for the board's compatible string
+  (suggested by Clement)
+- addressed checkpatch warnings and code formatting issues (on Maxime's
+  suggestions)
+- stmmac: dropped useless parenthesis, reworded description of the patch
+  (suggested by Sergei)
+- drop useles dev_info() about the selected io bias voltage
+- docummented io voltage bias selection variant macros
+- wifi: marked WiFi DTS patch and realted mmc1_pins as "DO NOT MERGE",
+  because wifi depends on H6 RTC support that's not merged yet (suggested
+  by Clement)
+- added missing signed-of-bys
+- changed &usb2otg dr_mode to otg, and added a note about VBUS
+- improved wording of HDMI driver's DDC power supply patch
+
+Ondrej Jirman (4):
+  arm64: dts: allwinner: orange-pi-3: Enable ethernet
+  dt-bindings: display: hdmi-connector: Support DDC bus enable
+  drm: sun4i: Add support for enabling DDC I2C bus to sun8i_dw_hdmi glue
+  arm64: dts: allwinner: orange-pi-3: Enable HDMI output
+
+ .../display/connector/hdmi-connector.txt      |  1 +
+ .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 70 +++++++++++++++++++
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c         | 54 ++++++++++++--
+ drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h         |  2 +
+ 4 files changed, 123 insertions(+), 4 deletions(-)
+
+-- 
+2.22.0
+
