@@ -2,258 +2,184 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49859837FB
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 19:38:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 434AA8384E
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 20:00:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387497AbfHFRir (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 13:38:47 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:60086 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731830AbfHFRir (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 13:38:47 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x76HcKok007671;
-        Tue, 6 Aug 2019 12:38:20 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1565113100;
-        bh=rJsG4X64+05xGE5m7rzAm+zLsHKU8QbIpns9wHygRi8=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=JTGcrXJxmNXfgFaTAASCC8SBU0IJYQKQ9sqs1KXIxaYUufOHQoFVSZnbd2BvK5njh
-         fZDQwADBbTvkxFkt4XnG0TMlvWO9YT7XMiXlARvBBWS9RhxLIADyRSPZ4qRVjNxKi0
-         gL+fxOYLnghoOyTN4v2RUhKvKlg4GCqEtToiwFrg=
-Received: from DFLE115.ent.ti.com (dfle115.ent.ti.com [10.64.6.36])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x76HcKZA075961
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Tue, 6 Aug 2019 12:38:20 -0500
-Received: from DFLE110.ent.ti.com (10.64.6.31) by DFLE115.ent.ti.com
- (10.64.6.36) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Tue, 6 Aug
- 2019 12:38:19 -0500
-Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE110.ent.ti.com
- (10.64.6.31) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Tue, 6 Aug 2019 12:38:19 -0500
-Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x76HcJ61094917;
-        Tue, 6 Aug 2019 12:38:19 -0500
-Subject: Re: [PATCH 0/6] hwspinlock: allow sharing of hwspinlocks
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Fabien DESSENNE <fabien.dessenne@st.com>
-CC:     Ohad Ben-Cohen <ohad@wizery.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        Benjamin GAIGNARD <benjamin.gaignard@st.com>
-References: <1552492237-28810-1-git-send-email-fabien.dessenne@st.com>
- <20190801191403.GA7234@tuxbook-pro>
- <1a057176-81ab-e302-4375-2717ceef6924@st.com>
- <20190805174659.GA23928@tuxbook-pro>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <dcd1aeea-cffe-d5fb-af5a-e52efcc2e046@ti.com>
-Date:   Tue, 6 Aug 2019 12:38:19 -0500
+        id S1731273AbfHFSAG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 14:00:06 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:45198 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726713AbfHFSAG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 14:00:06 -0400
+Received: by mail-wr1-f66.google.com with SMTP id n1so2481367wrw.12;
+        Tue, 06 Aug 2019 11:00:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=H5oxnh6AO2iA8nJMA3gm0i0KrEK2AnvYtvfzFwUa/VE=;
+        b=IzSuLQwki0yPJVH+d2Lbq4S+g4ZX2atTnbAvcpq0wE42xwkMJXiMqPeaS+r8xL/eJR
+         yYnjYN4vJkH3QaoGEegtr4CskAhmGEEJlNnan2gZeaJ/3x8JtuBMJNuNfrSBD+PS0WVE
+         1DbHnAkhJcKPjfpoprfD9f9K469CSmuGORfCOxkyIbCXql6IgsdNXiwySWIQSfdJser5
+         VjDTtVoAhWsxRu4uYcGxs9xZolHRtAkdOq2IXCzk2//Zv+7Oy8EzDl2EUB/iwXGh5PWK
+         /7jCtQ56iS/RLwsu/+GtzMSMZ8vkSSukriVez8SsXpLnO+CZ4zq5Gr82na4GPtZGD89d
+         5oXA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=H5oxnh6AO2iA8nJMA3gm0i0KrEK2AnvYtvfzFwUa/VE=;
+        b=p+85ICzLfBQzknBS85lr/c50S5gA98FUcJyYeji6zmVSOhbyHKuQSiPcdoG4+hGt+L
+         Jvlj6VQT/fj8BCHCgpFa/1lyqx6AiNbT3R2oS2e9tIdFNWu5yRMrUqHbvVihh00oQovB
+         7yPFQDAiqqeRegiiu3eUD8pdNPSl6rN3KTQiVC5On2l8bf7UtnD6Z4p9sWzQHesiuhFd
+         Bq8JyZVbUyuVrcu1M9VGFqEgQLU665hdXqX66SBvhkJ8MRzKCusL7MNK1DahUswDXD0g
+         dzz63/GaX64fTjzbktQnQ6aZAIaCLAmI86nBYrhvI5Xojmf0vcbIdwSoc0lPo1DqPHC1
+         9DDw==
+X-Gm-Message-State: APjAAAVvhjB0LMgS4wUSYsebp96HT5DTJ9usjaAdd4yQb6DdmaeRYM8h
+        l1Ik/950SbLzLJm5Qjf3yoJOSMUy
+X-Google-Smtp-Source: APXvYqwjSklAKmvrxBm7vAtY5yV+LjCxCE5435J3gWbWBlaR4/GMOjfR3ZIimhrfsVDAPcavz8+urg==
+X-Received: by 2002:adf:dd01:: with SMTP id a1mr5755415wrm.12.1565114403275;
+        Tue, 06 Aug 2019 11:00:03 -0700 (PDT)
+Received: from [192.168.2.145] ([94.29.34.218])
+        by smtp.googlemail.com with ESMTPSA id k9sm22855190wrd.46.2019.08.06.11.00.00
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 06 Aug 2019 11:00:02 -0700 (PDT)
+Subject: Re: [PATCH v7 01/20] pinctrl: tegra: Add suspend and resume support
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
+        jason@lakedaemon.net, marc.zyngier@arm.com,
+        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
+Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, rjw@rjwysocki.net,
+        viresh.kumar@linaro.org, linux-pm@vger.kernel.org
+References: <1564607463-28802-1-git-send-email-skomatineni@nvidia.com>
+ <1564607463-28802-2-git-send-email-skomatineni@nvidia.com>
+ <6b1482f6-0578-f602-d8d1-541d86303ce2@gmail.com>
+ <b45ca99a-188a-c695-3f3d-48d273808f9c@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <36351140-afd4-38c4-3722-4ee0894287fa@gmail.com>
+Date:   Tue, 6 Aug 2019 20:59:55 +0300
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-In-Reply-To: <20190805174659.GA23928@tuxbook-pro>
-Content-Type: text/plain; charset="utf-8"
+In-Reply-To: <b45ca99a-188a-c695-3f3d-48d273808f9c@nvidia.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabien,
-
-On 8/5/19 12:46 PM, Bjorn Andersson wrote:
-> On Mon 05 Aug 01:48 PDT 2019, Fabien DESSENNE wrote:
+05.08.2019 21:06, Sowjanya Komatineni пишет:
 > 
->>
->> On 01/08/2019 9:14 PM, Bjorn Andersson wrote:
->>> On Wed 13 Mar 08:50 PDT 2019, Fabien Dessenne wrote:
+> On 8/5/19 3:50 AM, Dmitry Osipenko wrote:
+>> 01.08.2019 0:10, Sowjanya Komatineni пишет:
+>>> This patch adds support for Tegra pinctrl driver suspend and resume.
 >>>
->>>> The current implementation does not allow two different devices to use
->>>> a common hwspinlock. This patch set proposes to have, as an option, some
->>>> hwspinlocks shared between several users.
->>>>
->>>> Below is an example that explain the need for this:
->>>> 	exti: interrupt-controller@5000d000 {
->>>> 		compatible = "st,stm32mp1-exti", "syscon";
->>>> 		interrupt-controller;
->>>> 		#interrupt-cells = <2>;
->>>> 		reg = <0x5000d000 0x400>;
->>>> 		hwlocks = <&hsem 1>;
->>>> 	};
->>>> The two drivers (stm32mp1-exti and syscon) refer to the same hwlock.
->>>> With the current hwspinlock implementation, only the first driver succeeds
->>>> in requesting (hwspin_lock_request_specific) the hwlock. The second request
->>>> fails.
-
-Help me understand the problem that you are trying to solve here. Is
-this a case of you having two clients on Linux-side needing to use the
-same lock but still requiring the arbitration with software running on
-some other remote processor? Are they talking to the same entity on the
-remote-side or different peers.
-
-I see the series is all about getting a handle so that they can use the
-API, and is the expected usage that the same entity will lock and unlock
-before the other driver can lock it.
-
->>>>
->>>>
->>>> The proposed approach does not modify the API, but extends the DT 'hwlocks'
->>>> property with a second optional parameter (the first one identifies an
->>>> hwlock) that specifies whether an hwlock is requested for exclusive usage
->>>> (current behavior) or can be shared between several users.
->>>> Examples:
->>>> 	hwlocks = <&hsem 8>;	Ref to hwlock #8 for exclusive usage
->>>> 	hwlocks = <&hsem 8 0>;	Ref to hwlock #8 for exclusive (0) usage
->>>> 	hwlocks = <&hsem 8 1>;	Ref to hwlock #8 for shared (1) usage
->>>>
->>>> As a constraint, the #hwlock-cells value must be 1 or 2.
->>>> In the current implementation, this can have theorically any value but:
->>>> - all of the exisiting drivers use the same value : 1.
->>>> - the framework supports only one value : 1 (see implementation of
->>>>    of_hwspin_lock_simple_xlate())
->>>> Hence, it shall not be a problem to restrict this value to 1 or 2 since
->>>> it won't break any driver.
->>>>
->>> Hi Fabien,
+>>> During suspend, context of all pinctrl registers are stored and
+>>> on resume they are all restored to have all the pinmux and pad
+>>> configuration for normal operation.
 >>>
->>> Your series looks good, but it makes me wonder why the hardware locks
->>> should be an exclusive resource.
+>>> Acked-by: Thierry Reding <treding@nvidia.com>
+>>> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+>>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+>>> ---
+>>>   drivers/pinctrl/tegra/pinctrl-tegra.c | 59
+>>> +++++++++++++++++++++++++++++++++++
+>>>   drivers/pinctrl/tegra/pinctrl-tegra.h |  3 ++
+>>>   2 files changed, 62 insertions(+)
 >>>
->>> How about just making all (specific) locks shared?
->>
->> Hi Bjorn,
->>
->> Making all locks shared is a possible implementation (my first 
->> implementation
->> was going this way) but there are some drawbacks we must be aware of:
->>
->> A/ This theoretically break the legacy behavior (the legacy works with
->> exclusive (UNUSED radix tag) usage). As a consequence, an existing driver
->> that is currently failing to request a lock (already claimed by another
->> user) would now work fine. Not sure that there are such drivers, so this
->> point is probably not a real issue.
->>
+>>> diff --git a/drivers/pinctrl/tegra/pinctrl-tegra.c
+>>> b/drivers/pinctrl/tegra/pinctrl-tegra.c
+>>> index 186ef98e7b2b..e3a237534281 100644
+>>> --- a/drivers/pinctrl/tegra/pinctrl-tegra.c
+>>> +++ b/drivers/pinctrl/tegra/pinctrl-tegra.c
+>>> @@ -631,6 +631,58 @@ static void
+>>> tegra_pinctrl_clear_parked_bits(struct tegra_pmx *pmx)
+>>>       }
+>>>   }
+>>>   +static size_t tegra_pinctrl_get_bank_size(struct device *dev,
+>>> +                      unsigned int bank_id)
+>>> +{
+>>> +    struct platform_device *pdev = to_platform_device(dev);
+>>> +    struct resource *res;
+>>> +
+>>> +    res = platform_get_resource(pdev, IORESOURCE_MEM, bank_id);
+>>> +
+>>> +    return resource_size(res) / 4;
+>>> +}
+>>> +
+>>> +static int tegra_pinctrl_suspend(struct device *dev)
+>>> +{
+>>> +    struct tegra_pmx *pmx = dev_get_drvdata(dev);
+>>> +    u32 *backup_regs = pmx->backup_regs;
+>>> +    u32 *regs;
+>>> +    size_t bank_size;
+>>> +    unsigned int i, k;
+>>> +
+>>> +    for (i = 0; i < pmx->nbanks; i++) {
+>>> +        bank_size = tegra_pinctrl_get_bank_size(dev, i);
+>>> +        regs = pmx->regs[i];
+>>> +        for (k = 0; k < bank_size; k++)
+>>> +            *backup_regs++ = readl_relaxed(regs++);
+>>> +    }
+>>> +
+>>> +    return pinctrl_force_sleep(pmx->pctl);
+>>> +}
+>>> +
+>>> +static int tegra_pinctrl_resume(struct device *dev)
+>>> +{
+>>> +    struct tegra_pmx *pmx = dev_get_drvdata(dev);
+>>> +    u32 *backup_regs = pmx->backup_regs;
+>>> +    u32 *regs;
+>>> +    size_t bank_size;
+>>> +    unsigned int i, k;
+>>> +
+>>> +    for (i = 0; i < pmx->nbanks; i++) {
+>>> +        bank_size = tegra_pinctrl_get_bank_size(dev, i);
+>>> +        regs = pmx->regs[i];
+>>> +        for (k = 0; k < bank_size; k++)
+>>> +            writel_relaxed(*backup_regs++, regs++);
+>>> +    }
+>> I'm now curious whether any kind of barrier is needed after the
+>> writings. The pmx_writel() doesn't insert a barrier after the write and
+>> seems it just misuses writel, which actually should be writel_relaxed()
+>> + barrier, IIUC.
 > 
-> Right, it's possible that a previously misconfigured system now
-> successfully probes more than one device that uses a particular
-> spinlock. But such system would be suffering from issues related to e.g.
-> probe ordering.
+> pmx_writel uses writel and it has wmb before raw_write which complete
+> all writes initiated prior to this.
 > 
-> So I think we should ignore this issue.
-> 
->> B/ This would introduce some inconsistency between the two 'request' API
->> which are hwspin_lock_request() and hwspin_lock_request_specific().
->> hwspin_lock_request() looks for an unused lock, so requests for an exclusive
->> usage. On the other side, request_specific() would request shared locks.
->> Worst the following sequence can transform an exclusive usage into a shared
->>
-> 
-> There is already an inconsistency in between these; as with above any
-> system that uses both request() and request_specific() will be suffering
-> from intermittent failures due to probe ordering.
-> 
->> one:
->>    -hwspin_lock_request() -> returns Id#0 (exclusive)
->>    -hwspin_lock_request() -> returns Id#1 (exclusive)
->>    -hwspin_lock_request_specific(0) -> returns Id#0 and makes Id#0 shared
->> Honestly I am not sure that this is a real issue, but it's better to have it
->> in mind before we take ay decision
+> By misusing writel, you mean to have barrier after register write?
 
-Wouldn't it be actually simpler to just introduce a new specific API
-variant for this, similar to the reset core for example (it uses a
-separate exclusive API), without having to modify the bindings at all.
-It is just a case of your driver using the right API, and the core can
-be modified to use the additional tag semantics based on the API. It
-should avoid any confusion with say using a different second cell value
-for the same lock in two different nodes.
+Yes, at least to me it doesn't make much sense for this driver to stall
+before the write. It's the pinctrl user which should be taking care
+about everything to be ready before making a change to the pinctrl's
+configuration.
 
-If you are sharing a hwlock on the Linux side, surely your driver should
-be aware that it is a shared lock. The tag can be set during the first
-request API, and you look through both tags when giving out a handle.
+>> It's also not obvious whether PINCTRL HW has any kind of write-FIFO and
+>> thus maybe read-back + rmb() is needed in order ensure that writes are
+>> actually completed.
+> I believe adding write barrier wmb after writel_relaxed should be good
+> rather than doing readback + rmb
+>>
+>> The last thing which is not obvious is when the new configuration
+>> actually takes into effect, does it happen immediately or maybe some
+>> delay is needed?
+>>
+>> [snip]
+> 
+> Based on internal design there is no internal delay and it all depends
+> on APB rate that it takes to write to register.
+> 
+> Pinmux value change to reflect internally might take couple of clock
+> cycles which is much faster than SW can read.
 
-Obviously, the hwspin_lock_request() API usage semantics always had the
-implied additional need for communicating the lock id to the other peer
-entity, so a realistic usage is most always the specific API variant. I
-doubt this API would be of much use for the shared driver usage. This
-also implies that the client user does not care about specifying a lock
-in DT.
-
-regards
-Suman
-
-> 
-> The case where I can see a
-> problem with this would be if the two clients somehow would nest their
-> locking regions.
-> 
-> But generally I think this could consider this an improvement, because
-> the request_specific() would now be able to acquire its hwlock, with
-> some additional contention due to the multiple use.
-> 
->> I could not find any driver using the hwspin_lock_request() API, we
->> may decide to remove (or to make deprecated) this API, having
->> everything 'shared without any conditions'.
->>
-> 
-> It would be nice to have an upstream user of this API.
-> 
->>
->> I can see three options:
->> 1- Keep my initial proposition
->> 2- Have hwspin_lock_request_specific() using shared locks and
->>     hwspin_lock_request() using unused (so 'initially' exclusive) locks.
->> 3- Have hwspin_lock_request_specific() using shared locks and
->>     remove/make deprecated hwspin_lock_request().
->>
->> Just let me know what is your preference.
->>
-> 
-> I think we should start with #2 and would like input from e.g. Suman
-> regarding #3.
-> 
-> Regards,
-> Bjorn
-> 
->> BR
->>
->> Fabien
->>
->>>
->>> Regards,
->>> Bjorn
->>>
->>>> Fabien Dessenne (6):
->>>>    dt-bindings: hwlock: add support of shared locks
->>>>    hwspinlock: allow sharing of hwspinlocks
->>>>    dt-bindings: hwlock: update STM32 #hwlock-cells value
->>>>    ARM: dts: stm32: Add hwspinlock node for stm32mp157 SoC
->>>>    ARM: dts: stm32: Add hwlock for irqchip on stm32mp157
->>>>    ARM: dts: stm32: hwlocks for GPIO for stm32mp157
->>>>
->>>>   .../devicetree/bindings/hwlock/hwlock.txt          | 27 +++++--
->>>>   .../bindings/hwlock/st,stm32-hwspinlock.txt        |  6 +-
->>>>   Documentation/hwspinlock.txt                       | 10 ++-
->>>>   arch/arm/boot/dts/stm32mp157-pinctrl.dtsi          |  2 +
->>>>   arch/arm/boot/dts/stm32mp157c.dtsi                 | 10 +++
->>>>   drivers/hwspinlock/hwspinlock_core.c               | 82 +++++++++++++++++-----
->>>>   drivers/hwspinlock/hwspinlock_internal.h           |  2 +
->>>>   7 files changed, 108 insertions(+), 31 deletions(-)
->>>>
->>>> -- 
->>>> 2.7.4
->>>>
-
+Still not quite obvious if it's possible to have a case where some
+hardware is touched before necessary pinctrl change is fully completed
+and then to get into trouble because of it.
