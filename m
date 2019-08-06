@@ -2,76 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 88BF3834B8
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:08:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3F429834C5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:12:34 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731450AbfHFPIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 11:08:41 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55912 "EHLO mail.kernel.org"
+        id S1732274AbfHFPMd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 11:12:33 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:55616 "EHLO inva020.nxp.com"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728189AbfHFPIl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Aug 2019 11:08:41 -0400
-Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 5977A216F4;
-        Tue,  6 Aug 2019 15:08:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565104120;
-        bh=VpWEkU6IuB9MKJEVKTtxrOVk3OpmDNPUntTQRVdPPjI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=gBKJg6TxdC+vQExGKn64eE75JBTmBoihbkbw9SdnbrmNUVEnIOjtwjUK1H01EXo6M
-         Br04JxfAeakIv0j+fapypAxNhtF6XfDzUUS55gf2LFd0Y+SDq5sfAEzmps22/yacwg
-         Wbyy7JOUZwflGgSMqI8oU5Y8AQAKP81GbnpD13z8=
-Received: by mail-qk1-f178.google.com with SMTP id r21so63205510qke.2;
-        Tue, 06 Aug 2019 08:08:40 -0700 (PDT)
-X-Gm-Message-State: APjAAAVuXoJtWCEDH6TCsLFeXMZkbbKWLM1Znie8T6xASqnfX02n3Gfh
-        r/rWd6B0RO9HfDffmZ8eg/aYZmu8ZbAFRerXMA==
-X-Google-Smtp-Source: APXvYqyQV4wEEmZhSA+j8ENwA9FbtFTNYI7k0yHe988e2uBxbQ2pr9cpCaAhs+c/HhAj3FcSjiAMbKO0gd3bXaJy+Qk=
-X-Received: by 2002:a05:620a:1447:: with SMTP id i7mr3707706qkl.254.1565104119510;
- Tue, 06 Aug 2019 08:08:39 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190806124416.15561-1-narmstrong@baylibre.com> <20190806124416.15561-3-narmstrong@baylibre.com>
-In-Reply-To: <20190806124416.15561-3-narmstrong@baylibre.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 6 Aug 2019 09:08:27 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKS7KeUBhEn1kxT0HZddOZ6oDaZDStUppSdL2vXfAuccg@mail.gmail.com>
-Message-ID: <CAL_JsqKS7KeUBhEn1kxT0HZddOZ6oDaZDStUppSdL2vXfAuccg@mail.gmail.com>
-Subject: Re: [PATCH v2 2/3] dt-bindings: display: amlogic,meson-vpu: convert
- to yaml
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     devicetree@vger.kernel.org,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        linux-amlogic@lists.infradead.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1726713AbfHFPMd (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 11:12:33 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 06D7F1A02BD;
+        Tue,  6 Aug 2019 17:12:29 +0200 (CEST)
+Received: from inva024.eu-rdc02.nxp.com (inva024.eu-rdc02.nxp.com [134.27.226.22])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id ED6491A062C;
+        Tue,  6 Aug 2019 17:12:28 +0200 (CEST)
+Received: from fsr-ub1864-103.ea.freescale.net (fsr-ub1864-103.ea.freescale.net [10.171.82.17])
+        by inva024.eu-rdc02.nxp.com (Postfix) with ESMTP id 18B5C205DD;
+        Tue,  6 Aug 2019 17:12:28 +0200 (CEST)
+From:   Daniel Baluta <daniel.baluta@nxp.com>
+To:     broonie@kernel.org
+Cc:     l.stach@pengutronix.de, mihai.serban@gmail.com,
+        alsa-devel@alsa-project.org, timur@kernel.org,
+        shengjiu.wang@nxp.com, angus@akkea.ca, tiwai@suse.com,
+        nicoleotsuka@gmail.com, linux-imx@nxp.com, kernel@pengutronix.de,
+        festevam@gmail.com, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        Daniel Baluta <daniel.baluta@nxp.com>
+Subject: [PATCH v3 0/5] Add support for new SAI IP version
+Date:   Tue,  6 Aug 2019 18:12:09 +0300
+Message-Id: <20190806151214.6783-1-daniel.baluta@nxp.com>
+X-Mailer: git-send-email 2.17.1
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 6, 2019 at 6:44 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Now that we have the DT validation in place, let's convert the device tree
-> bindings for the Amlogic Display Controller over to YAML schemas.
->
-> The original example has a leftover "dmc" memory cell, that has been
-> removed in the yaml rewrite.
->
-> The port connection table has been dropped in favor of a description
-> of each port.
->
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> ---
->  .../bindings/display/amlogic,meson-vpu.txt    | 121 ---------------
->  .../bindings/display/amlogic,meson-vpu.yaml   | 138 ++++++++++++++++++
->  2 files changed, 138 insertions(+), 121 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
->  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
+So far SAI IPs integrated with imx6 only supported one data line.
+Starting with imx7 and imx8 SAI integration support up to 8 data
+lines. First patch introduce register definition to support this.
 
-> +  power-domains:
-> +    description: phandle to the associated power domain
-> +    allOf:
-> +      - $ref: /schemas/types.yaml#/definitions/phandle
+New SAI IP version introduces two new registers (Version and Parmeter
+registers) which are placed at the beginning of register address space.
+For this reason we need to fix the register's address. Support for
+this is introduced in patch 3.
 
-You missed this one.
+Changes since v2:
+	- removed patches regarding data line mask because I need to
+	find a better way to describe to model data lines. Perhaps,we
+	only need to specify how many datalines a specific SAI instance
+	supports and then let SAI driver to activate datalines based on
+	the number of channels. Will open the discussion on this on a
+	separate thread.
+	- fixed devicetree documentation as per Nicolin comments and
+	will send a separate patch to convert it to yaml.
+
+Changes since v1:
+        - removed patches from Lucas as they were already accepted
+        - addressed comments from Lucas and Nicolin regarding
+        device tree property naming
+        - removed comment saying that "datalines" must be always
+        consecutively enabled (this is not true, checked with IP owner)
+        - added new patch to document newly introduced compatbile
+          strings
+        - removed patch introducing combined mode as I will still need
+        some time to figure out how to properly allow users to set it.
+
+Daniel Baluta (5):
+  ASoC: fsl_sai: Add registers definition for multiple datalines
+  ASoC: fsl_sai: Update Tx/Rx channel enable mask
+  ASoC: fsl_sai: Add support for SAI new version
+  ASoC: fsl_sai: Add support for imx7ulp/imx8mq
+  ASoC: dt-bindings: Introduce compatible strings for 7ULP and 8MQ
+
+ .../devicetree/bindings/sound/fsl-sai.txt     |   3 +-
+ sound/soc/fsl/fsl_sai.c                       | 320 ++++++++++++------
+ sound/soc/fsl/fsl_sai.h                       |  78 +++--
+ 3 files changed, 273 insertions(+), 128 deletions(-)
+
+-- 
+2.17.1
+
