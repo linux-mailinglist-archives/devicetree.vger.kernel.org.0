@@ -2,84 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 87DFE82EA2
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 11:23:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DC42382ED0
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 11:39:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732206AbfHFJXx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 05:23:53 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:36237 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730068AbfHFJXx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 05:23:53 -0400
-Received: by mail-ot1-f66.google.com with SMTP id r6so90786686oti.3;
-        Tue, 06 Aug 2019 02:23:52 -0700 (PDT)
+        id S1728056AbfHFJjO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 05:39:14 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:50328 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726713AbfHFJjO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 05:39:14 -0400
+Received: by mail-wm1-f66.google.com with SMTP id v15so77511502wml.0
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 02:39:12 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=C7TmI/PbYUbfMNCcuBdm2/gfYnotvm+U5V2PWxd2Dx8=;
+        b=GKBYpjIrHe0nk6+JIacLaHqrij52L3cXGTJSBl/Bkk0eYXGfLMIrmZAw0jqIB4u6Aq
+         7WMiEClzapc9W1qZ0v1o/mIZgAMWqj78lZkGZgnUUaD5utUAFjJrLgY7ZrDmjprE7BeU
+         FDKae67PTf/ajIgGcdmkDZ5MGzhuXgVihACZtB1etkP1GdetzORDw1pJZ0zimge44V52
+         m+p8pVPlwZYgGig5JuDiC2qPbTCWgl0B1jnjtURZYqdjY5v5ZMzFrbr6R65pm0PvuISH
+         VDsvC9Ougbx9Fe3nqBc194QDWe4VSedvFKzuhTxUwWCibBDS2KNAQAnAhInv/Ew5gseP
+         n1wA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=UeKI+wyGIyCm+Z7vX+Uc5wPRZnjQXw15qspoovmCKP4=;
-        b=ZsCUE6QXdyLnc7DYO13z3zwTTdLLc49mvH6lqP3d98zuS/qfp7PYMvOrGLdGD386FK
-         tbAb5ZGvU/UEMaBbBhSYDAU23z/84MIoUXFflyDRl8tVouZoP08coElxFvNGW9Kgrt0M
-         zkQjpIBDqLtsod6dNfxuz9OzjAwX8gQhJXRkcQj9zVBUOoVW1Y5p17YxmNOSg+6tL6Pi
-         v93GJ62V4RoSmrtVtPr1lDwFr/XOMMU9f7Pl+1b08pS105woAQxfBlv7HnunZN6Kg2c4
-         Xpdf49XzxJv1ycO0yepfZdrDonD6IXGBeuzc4nxOuoL2MGeaqQcjCbSMbFADCMM60fxw
-         3jfg==
-X-Gm-Message-State: APjAAAXj0zBbGgd3dttqvqyfvVKbuyaVXufKr5yUUDVMAowzDvgwl1YC
-        88o033Z3D+2vSJOdRkJKxRjnlWsImaJHUFEDbKM=
-X-Google-Smtp-Source: APXvYqzoue7LKiVS/fp2yo6a8EkRmr9Vdba6hiJplbafhOoXjkmNz+1Zf6SN7RotjA7UU2od04sn0L2mqC8LAWcPnsY=
-X-Received: by 2002:a9d:529:: with SMTP id 38mr2294075otw.145.1565083432454;
- Tue, 06 Aug 2019 02:23:52 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=C7TmI/PbYUbfMNCcuBdm2/gfYnotvm+U5V2PWxd2Dx8=;
+        b=jiK9MTnCz/5DMDg7VjX4YgVEZ/FXM4igmlD4DS9uidKdu7mAyZBnBqMOtC3phGPnJd
+         pJIikKaEpoemBd57zVPNOXSC+OQky/swAX8sQieYSULFplSRQfBwPF6td5IQ3l3SaDU+
+         r37XWxzvQWRGk0TCFvCDPLPHVEGC7/jKi3/cob8vxnoITO6d/UT4gaOTzKyL7A0bR4TR
+         cLL5YkJgU/pwHRMAOJjhKAjTz0BzahlYpR7ZR9H9gys6WVqdLthpV9TWyaUHpr8Hemlf
+         6pEfylil7VQggHaFvE77ycD0cSk3bI8GzQD/oz5KY/IeupK2W2L8ZPbv6OW5bJpRsx6K
+         QuIg==
+X-Gm-Message-State: APjAAAUMTkvvLW58O4MUIalDm/6z6IzAAGt+fEJZDg876ebl3tWaKEci
+        jInK16YbmZJU3QuftDSKrR+qHqBlCAg=
+X-Google-Smtp-Source: APXvYqxal+ZBDO7JHFcqsftztLQjLnTQ0KMWc6lBrcodchC0+vVixyeZ6eNcuccOmEmhBF8PQNmrfA==
+X-Received: by 2002:a05:600c:2549:: with SMTP id e9mr3740633wma.46.1565084351694;
+        Tue, 06 Aug 2019 02:39:11 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id h16sm101823496wrv.88.2019.08.06.02.39.10
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 06 Aug 2019 02:39:10 -0700 (PDT)
+Subject: Re: [PATCH 1/2] dt-bindings: imx-ocotp: Add i.MX8MN compatible
+To:     Anson.Huang@nxp.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
+        festevam@gmail.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Cc:     Linux-imx@nxp.com
+References: <20190711023714.16000-1-Anson.Huang@nxp.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <e38b758f-13b9-e2fe-188b-373861716ef8@linaro.org>
+Date:   Tue, 6 Aug 2019 10:39:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-References: <1562576868-8124-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
- <1562576868-8124-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-In-Reply-To: <1562576868-8124-3-git-send-email-yoshihiro.shimoda.uh@renesas.com>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Tue, 6 Aug 2019 11:23:41 +0200
-Message-ID: <CAMuHMdVcAw_ApKMmrV7DaoJBGUZ1GzW3kmxnsTn72FtCGWhXPA@mail.gmail.com>
-Subject: Re: [PATCH RFC 2/7] pinctrl: sh-pfc: remove incomplete flag "cfg->type"
-To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
-Cc:     Linus Walleij <linus.walleij@linaro.org>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        Linux PWM List <linux-pwm@vger.kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <20190711023714.16000-1-Anson.Huang@nxp.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Shimoda-san,
 
-On Mon, Jul 8, 2019 at 11:08 AM Yoshihiro Shimoda
-<yoshihiro.shimoda.uh@renesas.com> wrote:
-> The old commit c58d9c1b26e3 ("sh-pfc: Implement generic pinconf
-> support") broke the cfg->type flag to PINMUX_TYPE_FUNCTION because
-> sh_pfc_pinconf_set() didn't call sh_pfc_reconfig_pin().
-> Now if we fix the cfg->type condition, it gets worse because:
->  - Some drivers might be deferred so that .set_mux() will be called
->    multiple times.
->  - In such the case, the sh-pfc driver returns -EBUSY even if
->    the group is the same, and then that driver fails to probe.
->
-> Since the pinctrl subsystem already has such conditions according
-> to @set_mux and @gpio_request_enable, this patch just remove
-> the incomplete flag from sh-pfc/pinctrl.c.
 
-Do we need to set sh_pfc_pinmux_ops.strict = true?
+On 11/07/2019 03:37, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
+> 
+> Add compatible for i.MX8MN and add i.MX8MM/i.MX8MN to the description.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
 
-Gr{oetje,eeting}s,
+Applied both the patches.
 
-                        Geert
+Thanks,
+srini
 
--- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
-
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
+> ---
+>   Documentation/devicetree/bindings/nvmem/imx-ocotp.txt | 3 ++-
+>   1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/nvmem/imx-ocotp.txt b/Documentation/devicetree/bindings/nvmem/imx-ocotp.txt
+> index 96ffd06..904dadf 100644
+> --- a/Documentation/devicetree/bindings/nvmem/imx-ocotp.txt
+> +++ b/Documentation/devicetree/bindings/nvmem/imx-ocotp.txt
+> @@ -2,7 +2,7 @@ Freescale i.MX6 On-Chip OTP Controller (OCOTP) device tree bindings
+>   
+>   This binding represents the on-chip eFuse OTP controller found on
+>   i.MX6Q/D, i.MX6DL/S, i.MX6SL, i.MX6SX, i.MX6UL, i.MX6ULL/ULZ, i.MX6SLL,
+> -i.MX7D/S, i.MX7ULP and i.MX8MQ SoCs.
+> +i.MX7D/S, i.MX7ULP, i.MX8MQ, i.MX8MM and i.MX8MN SoCs.
+>   
+>   Required properties:
+>   - compatible: should be one of
+> @@ -16,6 +16,7 @@ Required properties:
+>   	"fsl,imx7ulp-ocotp" (i.MX7ULP),
+>   	"fsl,imx8mq-ocotp" (i.MX8MQ),
+>   	"fsl,imx8mm-ocotp" (i.MX8MM),
+> +	"fsl,imx8mn-ocotp" (i.MX8MN),
+>   	followed by "syscon".
+>   - #address-cells : Should be 1
+>   - #size-cells : Should be 1
+> 
