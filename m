@@ -2,309 +2,246 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2786183472
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 16:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0498D834A9
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:04:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733162AbfHFOzh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 10:55:37 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:45283 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733148AbfHFOzh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 10:55:37 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 66F4BE000B;
-        Tue,  6 Aug 2019 14:55:34 +0000 (UTC)
-From:   Miquel Raynal <miquel.raynal@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     <devicetree@vger.kernel.org>,
-        Thomas Petazzoni <thomas.petazzoni@bootlin.com>,
-        Gregory Clement <gregory.clement@bootlin.com>,
-        Antoine Tenart <antoine.tenart@bootlin.com>,
-        Maxime Chevallier <maxime.chevallier@bootlin.com>,
-        Nadav Haklai <nadavh@marvell.com>,
-        <linux-arm-kernel@lists.infradead.org>,
-        Grzegorz Jaszczyk <jaz@semihalf.com>,
-        Marcin Wojtas <mw@semihalf.com>,
-        Stefan Chulski <stefanc@marvell.com>,
-        Yan Markman <ymarkman@marvell.com>,
-        Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH 20/20] arm64: dts: marvell: Add support for Marvell CN9132-DB
-Date:   Tue,  6 Aug 2019 16:55:00 +0200
-Message-Id: <20190806145500.24109-21-miquel.raynal@bootlin.com>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190806145500.24109-1-miquel.raynal@bootlin.com>
-References: <20190806145500.24109-1-miquel.raynal@bootlin.com>
+        id S1731825AbfHFPEl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 11:04:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:54504 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1730289AbfHFPEk (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 11:04:40 -0400
+Received: from mail-qt1-f176.google.com (mail-qt1-f176.google.com [209.85.160.176])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 1E0C6214C6;
+        Tue,  6 Aug 2019 15:04:39 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565103879;
+        bh=aHlPSqURteCXq5aYR8ys59YNHgq+nw0ciN5A0T1mxbY=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=gEiwiE8OR3R557dGDdB0bDDJhV6LeLrNE87FFCWOyleTcLiW/rNmH+hpkOWL4Z814
+         oQ5oFA2Yn/U7mIc2G9BKvWwJe+SuVTSrU8XL0el+l1YMGfulESJEaRA/PTZi6/TkRa
+         +URb5nt8LV7QjLUVi54BokEySoyUeGkIJZXH77Ys=
+Received: by mail-qt1-f176.google.com with SMTP id a15so84807757qtn.7;
+        Tue, 06 Aug 2019 08:04:39 -0700 (PDT)
+X-Gm-Message-State: APjAAAVKGeCzEIdD2zzA/9eb1C7yVxUCjJ3WfuRSUSa2SkF+CdqGZ7pb
+        N4xOgVueQTYCCRj+WJwRTX+O6ClOeE+cnUoI7Q==
+X-Google-Smtp-Source: APXvYqyT3ZFfpt3T2iSOcqP/jyt5Mm7aCcTnVaJPNDb/vLDX7EstGdT3164Dp4sqdhOarC49a1FWiaJKwZLli39Lmlg=
+X-Received: by 2002:aed:3fb0:: with SMTP id s45mr3487316qth.136.1565103878256;
+ Tue, 06 Aug 2019 08:04:38 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190805165453.3989-1-alexandru.ardelean@analog.com> <20190805165453.3989-17-alexandru.ardelean@analog.com>
+In-Reply-To: <20190805165453.3989-17-alexandru.ardelean@analog.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Tue, 6 Aug 2019 09:04:26 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqK6EqpcRj0JVkAQXRryPU1Jq+gA68EHCkFw16j_z95yvw@mail.gmail.com>
+Message-ID: <CAL_JsqK6EqpcRj0JVkAQXRryPU1Jq+gA68EHCkFw16j_z95yvw@mail.gmail.com>
+Subject: Re: [PATCH 16/16] dt-bindings: net: add bindings for ADIN PHY driver
+To:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     netdev <netdev@vger.kernel.org>, devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        David Miller <davem@davemloft.net>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>,
+        Andrew Lunn <andrew@lunn.ch>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Grzegorz Jaszczyk <jaz@semihalf.com>
+On Mon, Aug 5, 2019 at 7:55 AM Alexandru Ardelean
+<alexandru.ardelean@analog.com> wrote:
+>
+> This change adds bindings for the Analog Devices ADIN PHY driver, detailing
+> all the properties implemented by the driver.
+>
+> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
+> ---
+>  .../devicetree/bindings/net/adi,adin.yaml     | 93 +++++++++++++++++++
+>  MAINTAINERS                                   |  2 +
+>  include/dt-bindings/net/adin.h                | 26 ++++++
+>  3 files changed, 121 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/net/adi,adin.yaml
+>  create mode 100644 include/dt-bindings/net/adin.h
+>
+> diff --git a/Documentation/devicetree/bindings/net/adi,adin.yaml b/Documentation/devicetree/bindings/net/adi,adin.yaml
+> new file mode 100644
+> index 000000000000..fcf884bb86f7
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/net/adi,adin.yaml
+> @@ -0,0 +1,93 @@
+> +# SPDX-License-Identifier: GPL-2.0+
+> +%YAML 1.2
+> +---
+> +$id: http://devicetree.org/schemas/net/adi,adin.yaml#
+> +$schema: http://devicetree.org/meta-schemas/core.yaml#
+> +
+> +title: Analog Devices ADIN1200/ADIN1300 PHY
+> +
+> +maintainers:
+> +  - Alexandru Ardelean <alexandru.ardelean@analog.com>
+> +
+> +description: |
+> +  Bindings for Analog Devices Industrial Ethernet PHYs
+> +
 
-Extend the support of the CN9131 with yet another additional CP115.
+Needs an:
 
-The last number indicates how many external CP115 are used.
+allOf:
+  - $ref: ethernet-phy.yaml#
 
-New available interfaces:
-* CP2 CRYPTO-0 (disabled)
-* CP2 ETH-0 (SFI, problem with the SFP cage, disabled)
-* CP2 GPIO-1
-* CP2 GPIO-2
-* CP2 I2C-0
-* CP2 PCIe-0 x2
-* CP2 PCIe-2 x1 (disabled)
-* CP2 SDHCI-0
-* CP2 USB3-1 (High-speed)
+> +properties:
+> +  compatible:
+> +    description: |
+> +      Compatible list, may contain "ethernet-phy-ieee802.3-c45" in which case
+> +      Clause 45 will be used to access device management registers. If
+> +      unspecified, Clause 22 will be used. Use this only when MDIO supports
+> +      Clause 45 access, but there is no other way to determine this.
+> +    enum:
+> +      - ethernet-phy-ieee802.3-c45
 
-Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
-Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
----
- arch/arm64/boot/dts/marvell/Makefile      |   1 +
- arch/arm64/boot/dts/marvell/cn9132-db.dts | 221 ++++++++++++++++++++++
- 2 files changed, 222 insertions(+)
- create mode 100644 arch/arm64/boot/dts/marvell/cn9132-db.dts
+Then you can drop 'compatible' from here as it is covered by the above schema.
 
-diff --git a/arch/arm64/boot/dts/marvell/Makefile b/arch/arm64/boot/dts/marvell/Makefile
-index 92767d5be069..2af91b78d645 100644
---- a/arch/arm64/boot/dts/marvell/Makefile
-+++ b/arch/arm64/boot/dts/marvell/Makefile
-@@ -11,3 +11,4 @@ dtb-$(CONFIG_ARCH_MVEBU) += armada-8040-mcbin-singleshot.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += armada-8080-db.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += cn9130-db.dtb
- dtb-$(CONFIG_ARCH_MVEBU) += cn9131-db.dtb
-+dtb-$(CONFIG_ARCH_MVEBU) += cn9132-db.dtb
-diff --git a/arch/arm64/boot/dts/marvell/cn9132-db.dts b/arch/arm64/boot/dts/marvell/cn9132-db.dts
-new file mode 100644
-index 000000000000..4ef0df3097ca
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/cn9132-db.dts
-@@ -0,0 +1,221 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2019 Marvell International Ltd.
-+ *
-+ * Device tree for the CN9132-DB board.
-+ */
-+
-+#include "cn9131-db.dts"
-+
-+/ {
-+	model = "Marvell Armada CN9132-DB";
-+	compatible = "marvell,cn9132", "marvell,cn9131", "marvell,cn9130",
-+		     "marvell,armada-ap807-quad", "marvell,armada-ap807";
-+
-+	aliases {
-+		gpio5 = &cp2_gpio1;
-+		gpio6 = &cp2_gpio2;
-+		ethernet5 = &cp2_eth0;
-+	};
-+
-+	cp2_reg_usb3_vbus0: cp2_usb3_vbus@0 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cp2-xhci0-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		gpio = <&cp2_gpio1 2 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	cp2_usb3_0_phy0: cp2_usb3_phy0 {
-+		compatible = "usb-nop-xceiv";
-+		vcc-supply = <&cp2_reg_usb3_vbus0>;
-+	};
-+
-+	cp2_reg_usb3_vbus1: cp2_usb3_vbus@1 {
-+		compatible = "regulator-fixed";
-+		regulator-name = "cp2-xhci1-vbus";
-+		regulator-min-microvolt = <5000000>;
-+		regulator-max-microvolt = <5000000>;
-+		enable-active-high;
-+		gpio = <&cp2_gpio1 3 GPIO_ACTIVE_HIGH>;
-+	};
-+
-+	cp2_usb3_0_phy1: cp2_usb3_phy1 {
-+		compatible = "usb-nop-xceiv";
-+		vcc-supply = <&cp2_reg_usb3_vbus1>;
-+	};
-+
-+	cp2_reg_sd_vccq: cp2_sd_vccq@0 {
-+		compatible = "regulator-gpio";
-+		regulator-name = "cp2_sd_vcc";
-+		regulator-min-microvolt = <1800000>;
-+		regulator-max-microvolt = <3300000>;
-+		gpios = <&cp2_gpio2 17 GPIO_ACTIVE_HIGH>;
-+		states = <1800000 0x1 3300000 0x0>;
-+	};
-+
-+	cp2_sfp_eth0: sfp-eth0 {
-+		compatible = "sff,sfp";
-+		i2c-bus = <&cp2_sfpp0_i2c>;
-+		los-gpio = <&cp2_module_expander1 11 GPIO_ACTIVE_HIGH>;
-+		mod-def0-gpio = <&cp2_module_expander1 10 GPIO_ACTIVE_LOW>;
-+		tx-disable-gpio = <&cp2_module_expander1 9 GPIO_ACTIVE_HIGH>;
-+		tx-fault-gpio = <&cp2_module_expander1 8 GPIO_ACTIVE_HIGH>;
-+		/*
-+		 * SFP cages are unconnected on early PCBs because of an the I2C
-+		 * lanes not being connected. Prevent the port for being
-+		 * unusable by disabling the SFP node.
-+		 */
-+		status = "disabled";
-+	};
-+};
-+
-+/*
-+ * Instantiate the second slave CP115
-+ */
-+
-+#define CP11X_NAME		cp2
-+#define CP11X_BASE		f6000000
-+#define CP11X_PCIEx_MEM_BASE(iface) (0xe5000000 + (iface * 0x1000000))
-+#define CP11X_PCIEx_MEM_SIZE(iface) 0xf00000
-+#define CP11X_PCIE0_BASE	f6600000
-+#define CP11X_PCIE1_BASE	f6620000
-+#define CP11X_PCIE2_BASE	f6640000
-+
-+#include "armada-cp115.dtsi"
-+
-+#undef CP11X_NAME
-+#undef CP11X_BASE
-+#undef CP11X_PCIEx_MEM_BASE
-+#undef CP11X_PCIEx_MEM_SIZE
-+#undef CP11X_PCIE0_BASE
-+#undef CP11X_PCIE1_BASE
-+#undef CP11X_PCIE2_BASE
-+
-+&cp2_crypto {
-+	status = "disabled";
-+};
-+
-+&cp2_ethernet {
-+	status = "okay";
-+};
-+
-+/* SLM-1521-V2, CON9 */
-+&cp2_eth0 {
-+	status = "disabled";
-+	phy-mode = "10gbase-kr";
-+	/* Generic PHY, providing serdes lanes */
-+	phys = <&cp2_comphy4 0>;
-+	managed = "in-band-status";
-+	sfp = <&cp2_sfp_eth0>;
-+};
-+
-+&cp2_gpio1 {
-+	status = "okay";
-+};
-+
-+&cp2_gpio2 {
-+	status = "okay";
-+};
-+
-+&cp2_i2c0 {
-+	clock-frequency = <100000>;
-+
-+	/* SLM-1521-V2 - U3 */
-+	i2c-mux@72 {
-+		compatible = "nxp,pca9544";
-+		#address-cells = <1>;
-+		#size-cells = <0>;
-+		reg = <0x72>;
-+		cp2_sfpp0_i2c: i2c@0 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <0>;
-+		};
-+
-+		i2c@1 {
-+			#address-cells = <1>;
-+			#size-cells = <0>;
-+			reg = <1>;
-+			/* U12 */
-+			cp2_module_expander1: pca9555@21 {
-+				compatible = "nxp,pca9555";
-+				pinctrl-names = "default";
-+				gpio-controller;
-+				#gpio-cells = <2>;
-+				reg = <0x21>;
-+			};
-+		};
-+	};
-+};
-+
-+/* SLM-1521-V2, CON6 */
-+&cp2_pcie0 {
-+	status = "okay";
-+	num-lanes = <2>;
-+	num-viewport = <8>;
-+	/* Generic PHY, providing serdes lanes */
-+	phys = <&cp2_comphy0 0
-+		&cp2_comphy1 0>;
-+};
-+
-+/* SLM-1521-V2, CON8 */
-+&cp2_pcie2 {
-+	status = "okay";
-+	num-lanes = <1>;
-+	num-viewport = <8>;
-+	/* Generic PHY, providing serdes lanes */
-+	phys = <&cp2_comphy5 2>;
-+};
-+
-+&cp2_sata0 {
-+	status = "okay";
-+
-+	/* SLM-1521-V2, CON4 */
-+	sata-port@0 {
-+		/* Generic PHY, providing serdes lanes */
-+		phys = <&cp2_comphy2 0>;
-+	};
-+};
-+
-+/* CON 2 on SLM-1683 - microSD */
-+&cp2_sdhci0 {
-+	status = "okay";
-+	pinctrl-names = "default";
-+	pinctrl-0 = <&cp2_sdhci_pins>;
-+	bus-width = <4>;
-+	cd-gpios = <&cp2_gpio2 23 GPIO_ACTIVE_LOW>;
-+	vqmmc-supply = <&cp2_reg_sd_vccq>;
-+};
-+
-+&cp2_syscon0 {
-+	cp2_pinctrl: pinctrl {
-+		compatible = "marvell,cp115-standalone-pinctrl";
-+
-+		cp2_i2c0_pins: cp2-i2c-pins-0 {
-+			marvell,pins = "mpp37", "mpp38";
-+			marvell,function = "i2c0";
-+		};
-+		cp2_sdhci_pins: cp2-sdhi-pins-0 {
-+			marvell,pins = "mpp56", "mpp57", "mpp58",
-+				       "mpp59", "mpp60", "mpp61";
-+			marvell,function = "sdio";
-+		};
-+	};
-+};
-+
-+&cp2_usb3_0 {
-+	status = "okay";
-+	usb-phy = <&cp2_usb3_0_phy0>;
-+	phy-names = "usb";
-+};
-+
-+/* SLM-1521-V2, CON11 */
-+&cp2_usb3_1 {
-+	status = "okay";
-+	usb-phy = <&cp2_usb3_0_phy1>;
-+	phy-names = "usb";
-+	/* Generic PHY, providing serdes lanes */
-+	phys = <&cp2_comphy3 1>;
-+};
--- 
-2.20.1
+> +
+> +  adi,phy-mode-internal:
+> +    $ref: /schemas/types.yaml#/definitions/string
 
+This has to be under an 'allOf' or it doesn't actually work. Same below.
+
+> +    description: |
+
+No special formatting here, you can drop '|'.
+
+> +      The internal mode of the PHY. This assumes that there is a PHY converter
+> +      in-between the MAC & PHY.
+> +    enum: [ "rgmii", "rgmii-id", "rgmii-txid", "rgmii-rxid", "rmii", "mii" ]
+
+Don't need quotes here.
+
+> +
+> +  adi,rx-internal-delay:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      RGMII RX Clock Delay used only when PHY operates in RGMII mode (phy-mode
+> +      is "rgmii-id", "rgmii-rxid", "rgmii-txid") see `dt-bindings/net/adin.h`
+> +      default value is 0 (which represents 2 ns)
+
+Use 'default: 0' to specify defaults.
+
+> +    enum: [ 0, 1, 2, 6, 7 ]
+> +
+> +  adi,tx-internal-delay:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      RGMII TX Clock Delay used only when PHY operates in RGMII mode (phy-mode
+> +      is "rgmii-id", "rgmii-rxid", "rgmii-txid") see `dt-bindings/net/adin.h`
+> +      default value is 0 (which represents 2 ns)
+> +    enum: [ 0, 1, 2, 6, 7 ]
+> +
+> +  adi,fifo-depth:
+> +    $ref: /schemas/types.yaml#/definitions/uint32
+> +    description: |
+> +      When operating in RMII mode, this option configures the FIFO depth.
+> +      See `dt-bindings/net/adin.h`.
+> +    enum: [ 0, 1, 2, 3, 4, 5 ]
+> +
+> +  adi,eee-enabled:
+
+Isn't there a standard property for EEE control?
+
+> +    description: |
+> +      Advertise EEE capabilities on power-up/init (default disabled)
+> +    type: boolean
+> +
+> +  adi,disable-energy-detect:
+> +    description: |
+> +      Disables Energy Detect Powerdown Mode (default disabled, i.e energy detect
+> +      is enabled if this property is unspecified)
+> +    type: boolean
+> +
+> +  reset-gpios:
+> +    description: |
+> +      GPIO to reset the PHY
+> +      see Documentation/devicetree/bindings/gpio/gpio.txt.
+
+Active high or low?
+
+> +
+> +examples:
+> +  - |
+> +    ethernet-phy@0 {
+> +        compatible = "ethernet-phy-ieee802.3-c45";
+> +        reg = <0>;
+> +    };
+
+Not really anything specific to this binding. Drop it.
+
+
+> +  - |
+> +    #include <dt-bindings/net/adin.h>
+> +    ethernet-phy@1 {
+> +        reg = <1>;
+> +        adi,phy-mode-internal = "rgmii-id";
+> +
+> +        adi,rx-internal-delay = <ADIN1300_RGMII_1_80_NS>;
+> +        adi,tx-internal-delay = <ADIN1300_RGMII_2_20_NS>;
+> +    };
+> +  - |
+> +    #include <dt-bindings/net/adin.h>
+> +    ethernet-phy@2 {
+> +        reg = <2>;
+> +        phy-mode = "rmii";
+> +
+> +        adi,fifo-depth = <ADIN1300_RMII_16_BITS>;
+> +    };
+> diff --git a/MAINTAINERS b/MAINTAINERS
+> index faf5723610c8..6ffbb266dee4 100644
+> --- a/MAINTAINERS
+> +++ b/MAINTAINERS
+> @@ -944,6 +944,8 @@ L:  netdev@vger.kernel.org
+>  W:     http://ez.analog.com/community/linux-device-drivers
+>  S:     Supported
+>  F:     drivers/net/phy/adin.c
+> +F:     include/dt-bindings/net/adin.h
+> +F:     Documentation/devicetree/bindings/net/adi,adin.yaml
+>
+>  ANALOG DEVICES INC ADIS DRIVER LIBRARY
+>  M:     Alexandru Ardelean <alexandru.ardelean@analog.com>
+> diff --git a/include/dt-bindings/net/adin.h b/include/dt-bindings/net/adin.h
+> new file mode 100644
+> index 000000000000..4c3afa550c59
+> --- /dev/null
+> +++ b/include/dt-bindings/net/adin.h
+> @@ -0,0 +1,26 @@
+> +/* SPDX-License-Identifier: GPL-2.0+ */
+> +/**
+> + * Device Tree constants for Analog Devices Industrial Ethernet PHYs
+> + *
+> + * Copyright 2019 Analog Devices Inc.
+> + */
+> +
+> +#ifndef _DT_BINDINGS_ADIN_H
+> +#define _DT_BINDINGS_ADIN_H
+> +
+> +/* RGMII internal delay settings for rx and tx for ADIN1300 */
+> +#define ADIN1300_RGMII_1_60_NS         0x1
+> +#define ADIN1300_RGMII_1_80_NS         0x2
+> +#define        ADIN1300_RGMII_2_00_NS          0x0
+> +#define        ADIN1300_RGMII_2_20_NS          0x6
+> +#define        ADIN1300_RGMII_2_40_NS          0x7
+> +
+> +/* RMII fifo depth values */
+> +#define ADIN1300_RMII_4_BITS           0x0
+> +#define ADIN1300_RMII_8_BITS           0x1
+> +#define ADIN1300_RMII_12_BITS          0x2
+> +#define ADIN1300_RMII_16_BITS          0x3
+> +#define ADIN1300_RMII_20_BITS          0x4
+> +#define ADIN1300_RMII_24_BITS          0x5
+> +
+> +#endif
+> --
+> 2.20.1
+>
