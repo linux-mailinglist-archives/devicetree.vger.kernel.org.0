@@ -2,99 +2,170 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9F6E839A9
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 21:27:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EFFFF839D5
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 21:50:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726485AbfHFT1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 15:27:03 -0400
-Received: from mail-qk1-f202.google.com ([209.85.222.202]:34043 "EHLO
-        mail-qk1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725906AbfHFT1C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 15:27:02 -0400
-Received: by mail-qk1-f202.google.com with SMTP id g4so3402847qkk.1
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 12:27:02 -0700 (PDT)
+        id S1726238AbfHFTug (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 15:50:36 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:36768 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725798AbfHFTug (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 15:50:36 -0400
+Received: by mail-wr1-f65.google.com with SMTP id n4so89132255wrs.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 12:50:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
-        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=iPCtVhelamfyNmHFH2EKFLaaUs7nprfge3H+YNAP5fc=;
-        b=q4Fm42nZXSCJMyda/16R+zUSCptYRFIOQduf9C9prXzhSCNR19aofjCM0QXcsykY2X
-         2HKqnLbG79HIix8cv2sfU5b80A0OSlzXo9CLrzoaJG7FH+fTDbVU7Ymd48rZdXxILzVP
-         CacYAFOjUqwDsHfatUmMbSxcMnEz+qmVWXRFIoLilts8110jHqBaLSiNs+9XqIlF7/Xl
-         BKaDDXqmY938i3Ia2NwlPAL1LANJePJ4o+5SctEALb+1RUP+/YeHFY0OHLy0qbd5JJdU
-         oiADb5RW5SW7sIq0VnRaoLuQWxtSNXBWMmlejP1ksJZIig9EoJ2tZKcqnaFVTpWWVFDV
-         9xAw==
+        bh=kGaKvQFsZgZRc0gqerogxzfGiThuXifNLB2OEC0cIoY=;
+        b=KcpdUETMBYuJyx4JKxpCZkDiJd9PgHCJ+KVUsKbiK69I/uNOk1diB7NGlPKuUTgu03
+         5bvA0tDzp9uxmVSvU3Lv5Kpo7zoW4UH6UPRVZc6txr//tC1JsGtF6JpWd1zZHIskDlEb
+         TiRFuGrOZGzTrirywRRsM6BJdkmLwC1GzPQDKM/xujPh5hjKsBo+NZHsVRyUVRK6xBU2
+         vJqGL0IWeQCMCKJQRh7DG0Ngjau29xL3YjVRvzBQoh73f4JOplrpPqhkR0G094ZbQUaY
+         Grq5Qh03BfsG/86N1AeD7/6qVYclfLMGsRTp4j/jG1NhjPNzUa1Pc3kMLtmlv43w7HEU
+         F9gw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
-         :references:subject:from:to:cc;
-        bh=iPCtVhelamfyNmHFH2EKFLaaUs7nprfge3H+YNAP5fc=;
-        b=srdzm82VonmETPhg2IBwE4GGfEyTtWE6Jy2cc9jYiedX/z7WvsSik+voD8tNx+De2t
-         2VKuUdIbW6Dkuux4NuCnahmU9cPdQVfL9w9dDpMShNnMR1RoSl6XawzmVwvXpoStjr9w
-         EdMM8YCdz2NZKXBYAYCP6ov7INTmgUpmQ6KXYyJlrkCz+5HNhGzx3js+6Zt+TJH979t3
-         ej1ZLfKMRxm73XJ6ZOU5R8OEza1HfisysjID7QTWNoV4VKMspqao8GnhuTMPKEo2AMXi
-         sjmmjD6n6fsyiBRMjj2ojRxVUCjJIHl6/ABsHiBAhsUO/+zgAHldD6EBk94Goe01AiFr
-         pNwg==
-X-Gm-Message-State: APjAAAWJjj4QzAZwxJ9PZcp7qTjwBQVKTbcSvHif33e7aj1NZ5DrcnL5
-        XZAXg49AyGxDUxeSwFyexH02F+b5N1a8kNw=
-X-Google-Smtp-Source: APXvYqwvpDkuXUO1XDLIDxYen3s/Nv6gDoebrjDR5FqT9Q5FwKWsU6sSd2XJVBvKkXw1iiOO87nDjTgsTylqOQc=
-X-Received: by 2002:ac8:24e3:: with SMTP id t32mr4733485qtt.104.1565119621558;
- Tue, 06 Aug 2019 12:27:01 -0700 (PDT)
-Date:   Tue,  6 Aug 2019 12:26:54 -0700
-In-Reply-To: <20190806192654.138605-1-saravanak@google.com>
-Message-Id: <20190806192654.138605-2-saravanak@google.com>
-Mime-Version: 1.0
-References: <20190806192654.138605-1-saravanak@google.com>
-X-Mailer: git-send-email 2.22.0.770.g0f2c4a37fd-goog
-Subject: [PATCH 2/2] of/platform: Disable generic device linking code for PowerPC
-From:   Saravana Kannan <saravanak@google.com>
-To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=kGaKvQFsZgZRc0gqerogxzfGiThuXifNLB2OEC0cIoY=;
+        b=d75IaJowRBparVkRi9P+c1/cw1D8Dfn+zGogSqaat5hJeUr2utK8Chk72DjhACeiUe
+         7egA3gm3Q5YhJytB9yHqtkX9vIK9HBrbmCmQ804IoJ2Zu7HaNYKcr0n3xR25ZF+6tz0c
+         NhlopOFH49pT2MocVNaOmjym5BKdD+oDRxuqGKNpDB88ZVtqUK6iXigaoGNse65OGWhb
+         fJB7apbNhafXSKB8Y5At/9Iz4W/QMmFrCAcZ00FlzW372KEsMvLuSToRkPKUuITeweW2
+         Aj7eC/N0MQtaYUttA97fy/bXOKHHWUdiaeFyGkxrVCKwJ8XbuV9+euLAoCXtlBXWIOG4
+         oEgQ==
+X-Gm-Message-State: APjAAAUdGtIltydHeJWxkCEGknhxG/JX6VruhVrsjfHcBq0wMp48efoF
+        2wZBvHth2ocoDb+hh6i6TPJZsPg59jO/CDIhKbGFSxYgPS95
+X-Google-Smtp-Source: APXvYqyDnhoa/uCrTWnPgUp2jKiHChoqXQq+xQxY9yMjyk5SXnWI/bXZHLptGN4xGZpSOxpD0VQaSeeW0iGW7hI8NOM=
+X-Received: by 2002:a5d:6650:: with SMTP id f16mr6385465wrw.89.1565121033666;
+ Tue, 06 Aug 2019 12:50:33 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190628073425.25165-1-jianjun.wang@mediatek.com>
+ <20190628073425.25165-3-jianjun.wang@mediatek.com> <1564385918.17211.6.camel@mhfsdcap03>
+ <20190806162432.GA15498@e121166-lin.cambridge.arm.com>
+In-Reply-To: <20190806162432.GA15498@e121166-lin.cambridge.arm.com>
+From:   Bjorn Helgaas <bhelgaas@google.com>
+Date:   Tue, 6 Aug 2019 14:50:20 -0500
+Message-ID: <CAErSpo5AVXekj8hWxDbf+zTwv9WmQessdBppNrVtOWOkuTREtA@mail.gmail.com>
+Subject: Re: [v2,2/2] PCI: mediatek: Add controller support for MT7629
+To:     Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+Cc:     Jianjun Wang <jianjun.wang@mediatek.com>,
+        Ryder Lee <ryder.lee@mediatek.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>
-Cc:     Saravana Kannan <saravanak@google.com>,
-        Stephen Rothwell <sfr@canb.auug.org.au>,
-        kernel-team@android.com, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
+        Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Linux PCI <linux-pci@vger.kernel.org>,
+        linux-mediatek@lists.infradead.org, devicetree@vger.kernel.org,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        linux-arm <linux-arm-kernel@lists.infradead.org>,
+        youlin.pei@mediatek.com
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-PowerPC platforms don't use the generic of/platform code to populate the
-devices from DT.  Therefore the generic device linking code is never used
-in PowerPC.  Compile it out to avoid warning about unused functions.
+On Tue, Aug 6, 2019 at 11:24 AM Lorenzo Pieralisi
+<lorenzo.pieralisi@arm.com> wrote:
+>
+> [trim the CC list please to keep only required maintainers]
+>
+> On Mon, Jul 29, 2019 at 03:38:38PM +0800, Jianjun Wang wrote:
+> > On Fri, 2019-06-28 at 15:34 +0800, Jianjun Wang wrote:
+> > > MT7629 is an ARM platform SoC which has the same PCIe IP with MT7622.
+> > >
+> > > The HW default value of its Device ID is invalid, fix its Device ID to
+> > > match the hardware implementation.
+> > >
+> > > Acked-by: Ryder Lee <ryder.lee@mediatek.com>
+> > > Signed-off-by: Jianjun Wang <jianjun.wang@mediatek.com>
+> > > ---
+> > >  drivers/pci/controller/pcie-mediatek.c | 18 ++++++++++++++++++
+> > >  include/linux/pci_ids.h                |  1 +
+> > >  2 files changed, 19 insertions(+)
+> > >
+> > > diff --git a/drivers/pci/controller/pcie-mediatek.c b/drivers/pci/controller/pcie-mediatek.c
+> > > index 80601e1b939e..e5e6740b635d 100644
+> > > --- a/drivers/pci/controller/pcie-mediatek.c
+> > > +++ b/drivers/pci/controller/pcie-mediatek.c
+> > > @@ -73,6 +73,7 @@
+> > >  #define PCIE_MSI_VECTOR            0x0c0
+> > >
+> > >  #define PCIE_CONF_VEND_ID  0x100
+> > > +#define PCIE_CONF_DEVICE_ID        0x102
+> > >  #define PCIE_CONF_CLASS_ID 0x106
+> > >
+> > >  #define PCIE_INT_MASK              0x420
+> > > @@ -141,12 +142,16 @@ struct mtk_pcie_port;
+> > >  /**
+> > >   * struct mtk_pcie_soc - differentiate between host generations
+> > >   * @need_fix_class_id: whether this host's class ID needed to be fixed or not
+> > > + * @need_fix_device_id: whether this host's Device ID needed to be fixed or not
+> > > + * @device_id: Device ID which this host need to be fixed
+> > >   * @ops: pointer to configuration access functions
+> > >   * @startup: pointer to controller setting functions
+> > >   * @setup_irq: pointer to initialize IRQ functions
+> > >   */
+> > >  struct mtk_pcie_soc {
+> > >     bool need_fix_class_id;
+> > > +   bool need_fix_device_id;
+> > > +   unsigned int device_id;
+> > >     struct pci_ops *ops;
+> > >     int (*startup)(struct mtk_pcie_port *port);
+> > >     int (*setup_irq)(struct mtk_pcie_port *port, struct device_node *node);
+> > > @@ -696,6 +701,9 @@ static int mtk_pcie_startup_port_v2(struct mtk_pcie_port *port)
+> > >             writew(val, port->base + PCIE_CONF_CLASS_ID);
+> > >     }
+> > >
+> > > +   if (soc->need_fix_device_id)
+> > > +           writew(soc->device_id, port->base + PCIE_CONF_DEVICE_ID);
+> > > +
+> > >     /* 100ms timeout value should be enough for Gen1/2 training */
+> > >     err = readl_poll_timeout(port->base + PCIE_LINK_STATUS_V2, val,
+> > >                              !!(val & PCIE_PORT_LINKUP_V2), 20,
+> > > @@ -1216,11 +1224,21 @@ static const struct mtk_pcie_soc mtk_pcie_soc_mt7622 = {
+> > >     .setup_irq = mtk_pcie_setup_irq,
+> > >  };
+> > >
+> > > +static const struct mtk_pcie_soc mtk_pcie_soc_mt7629 = {
+> > > +   .need_fix_class_id = true,
+> > > +   .need_fix_device_id = true,
+> > > +   .device_id = PCI_DEVICE_ID_MEDIATEK_7629,
+> > > +   .ops = &mtk_pcie_ops_v2,
+> > > +   .startup = mtk_pcie_startup_port_v2,
+> > > +   .setup_irq = mtk_pcie_setup_irq,
+> > > +};
+> > > +
+> > >  static const struct of_device_id mtk_pcie_ids[] = {
+> > >     { .compatible = "mediatek,mt2701-pcie", .data = &mtk_pcie_soc_v1 },
+> > >     { .compatible = "mediatek,mt7623-pcie", .data = &mtk_pcie_soc_v1 },
+> > >     { .compatible = "mediatek,mt2712-pcie", .data = &mtk_pcie_soc_mt2712 },
+> > >     { .compatible = "mediatek,mt7622-pcie", .data = &mtk_pcie_soc_mt7622 },
+> > > +   { .compatible = "mediatek,mt7629-pcie", .data = &mtk_pcie_soc_mt7629 },
+> > >     {},
+> > >  };
+> > >
+> > > diff --git a/include/linux/pci_ids.h b/include/linux/pci_ids.h
+> > > index 70e86148cb1e..aa32962759b2 100644
+> > > --- a/include/linux/pci_ids.h
+> > > +++ b/include/linux/pci_ids.h
+> > > @@ -2131,6 +2131,7 @@
+> > >  #define PCI_VENDOR_ID_MYRICOM              0x14c1
+> > >
+> > >  #define PCI_VENDOR_ID_MEDIATEK             0x14c3
+> > > +#define PCI_DEVICE_ID_MEDIATEK_7629        0x7629
+> > >
+> > >  #define PCI_VENDOR_ID_TITAN                0x14D2
+> > >  #define PCI_DEVICE_ID_TITAN_010L   0x8001
+> >
+> > Hi Bjorn & Lorenzo,
+> >
+> > Is this patch ok or is there anything I need to fixed?
+>
+> The commit log need to be fixed and I will do it, the code if
+> Bjorn is OK with it I can merge it.
 
-If a specific PowerPC platform wants to use this code in the future,
-bringing this back for PowerPC would be trivial. We'll just need to export
-of_link_to_suppliers() and then let the machine specific files do the
-linking as they populate the devices from DT.
-
-Signed-off-by: Saravana Kannan <saravanak@google.com>
----
- drivers/of/platform.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index f68de5c4aeff..a2a4e4b79d43 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -506,6 +506,7 @@ int of_platform_default_populate(struct device_node *root,
- }
- EXPORT_SYMBOL_GPL(of_platform_default_populate);
- 
-+#ifndef CONFIG_PPC
- static bool of_link_is_valid(struct device_node *con, struct device_node *sup)
- {
- 	of_node_get(sup);
-@@ -683,7 +684,6 @@ static int of_link_to_suppliers(struct device *dev)
- 	return __of_link_to_suppliers(dev, dev->of_node);
- }
- 
--#ifndef CONFIG_PPC
- static const struct of_device_id reserved_mem_matches[] = {
- 	{ .compatible = "qcom,rmtfs-mem" },
- 	{ .compatible = "qcom,cmd-db" },
--- 
-2.22.0.770.g0f2c4a37fd-goog
-
+Sure, I'm fine with this.  I don't think there's a need to add
+PCI_DEVICE_ID_MEDIATEK_7629, since it's only used in one place, but
+I'm fine with the code.
