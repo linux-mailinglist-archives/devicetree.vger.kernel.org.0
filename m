@@ -2,43 +2,43 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E2FAA834B1
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:06:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 88BF3834B8
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 17:08:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727540AbfHFPGu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 11:06:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55270 "EHLO mail.kernel.org"
+        id S1731450AbfHFPIl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 11:08:41 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55912 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726713AbfHFPGt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Tue, 6 Aug 2019 11:06:49 -0400
-Received: from mail-qk1-f171.google.com (mail-qk1-f171.google.com [209.85.222.171])
+        id S1728189AbfHFPIl (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 11:08:41 -0400
+Received: from mail-qk1-f178.google.com (mail-qk1-f178.google.com [209.85.222.178])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AB5AF2173B;
-        Tue,  6 Aug 2019 15:06:48 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5977A216F4;
+        Tue,  6 Aug 2019 15:08:40 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565104008;
-        bh=dCfRxSTdrclRoNkv/xjg9SIPiioXv6oSzqoCo0lY4ek=;
+        s=default; t=1565104120;
+        bh=VpWEkU6IuB9MKJEVKTtxrOVk3OpmDNPUntTQRVdPPjI=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=01L8WhCkW8n+jhUFCT8+O5Ij4fFbVH+cRrQSdmvUox2Sbs7D26uOfBSdHxqj3eGcZ
-         mHqq6j+uc8anmZpBgxvOFxS6tuFzwI65nYnglCRU+iSHXzju2d4fxZf+npKD7LnXWt
-         FH0GT4LrVfCqJWrTzy+i/nlAlIwTtlu4MI00TbWU=
-Received: by mail-qk1-f171.google.com with SMTP id d15so63099331qkl.4;
-        Tue, 06 Aug 2019 08:06:48 -0700 (PDT)
-X-Gm-Message-State: APjAAAUe+L42m3S2tylPSQwJP5JGuOQMdEGQIQ6A91bWwGNAGOKd0IWJ
-        Ozk+0liYOdhjkV3UMjPR2ciTkR2I/EHwqbFNIA==
-X-Google-Smtp-Source: APXvYqwskMcAR/Gsy/TuAZnM+fL3o5yfNberLPPVu7PiOwhuQEN3u4auDF91Qxvn22wdqNF9i/GNEobuyrXTHoTDJJE=
-X-Received: by 2002:a37:a48e:: with SMTP id n136mr3748098qke.223.1565104007836;
- Tue, 06 Aug 2019 08:06:47 -0700 (PDT)
+        b=gBKJg6TxdC+vQExGKn64eE75JBTmBoihbkbw9SdnbrmNUVEnIOjtwjUK1H01EXo6M
+         Br04JxfAeakIv0j+fapypAxNhtF6XfDzUUS55gf2LFd0Y+SDq5sfAEzmps22/yacwg
+         Wbyy7JOUZwflGgSMqI8oU5Y8AQAKP81GbnpD13z8=
+Received: by mail-qk1-f178.google.com with SMTP id r21so63205510qke.2;
+        Tue, 06 Aug 2019 08:08:40 -0700 (PDT)
+X-Gm-Message-State: APjAAAVuXoJtWCEDH6TCsLFeXMZkbbKWLM1Znie8T6xASqnfX02n3Gfh
+        r/rWd6B0RO9HfDffmZ8eg/aYZmu8ZbAFRerXMA==
+X-Google-Smtp-Source: APXvYqyQV4wEEmZhSA+j8ENwA9FbtFTNYI7k0yHe988e2uBxbQ2pr9cpCaAhs+c/HhAj3FcSjiAMbKO0gd3bXaJy+Qk=
+X-Received: by 2002:a05:620a:1447:: with SMTP id i7mr3707706qkl.254.1565104119510;
+ Tue, 06 Aug 2019 08:08:39 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190806124416.15561-1-narmstrong@baylibre.com> <20190806124416.15561-2-narmstrong@baylibre.com>
-In-Reply-To: <20190806124416.15561-2-narmstrong@baylibre.com>
+References: <20190806124416.15561-1-narmstrong@baylibre.com> <20190806124416.15561-3-narmstrong@baylibre.com>
+In-Reply-To: <20190806124416.15561-3-narmstrong@baylibre.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Tue, 6 Aug 2019 09:06:36 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqKZoS-nsH56BdcUYe-4sw1=ESZJH_3S2Y0mMwT701wuyw@mail.gmail.com>
-Message-ID: <CAL_JsqKZoS-nsH56BdcUYe-4sw1=ESZJH_3S2Y0mMwT701wuyw@mail.gmail.com>
-Subject: Re: [PATCH v2 1/3] dt-bindings: display: amlogic,meson-dw-hdmi:
- convert to yaml
+Date:   Tue, 6 Aug 2019 09:08:27 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqKS7KeUBhEn1kxT0HZddOZ6oDaZDStUppSdL2vXfAuccg@mail.gmail.com>
+Message-ID: <CAL_JsqKS7KeUBhEn1kxT0HZddOZ6oDaZDStUppSdL2vXfAuccg@mail.gmail.com>
+Subject: Re: [PATCH v2 2/3] dt-bindings: display: amlogic,meson-vpu: convert
+ to yaml
 To:     Neil Armstrong <narmstrong@baylibre.com>
 Cc:     devicetree@vger.kernel.org,
         dri-devel <dri-devel@lists.freedesktop.org>,
@@ -53,24 +53,25 @@ X-Mailing-List: devicetree@vger.kernel.org
 On Tue, Aug 6, 2019 at 6:44 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
 >
 > Now that we have the DT validation in place, let's convert the device tree
-> bindings for the Amlogic Synopsys DW-HDMI specifics over to YAML schemas.
+> bindings for the Amlogic Display Controller over to YAML schemas.
 >
-> The original example and usage of clock-names uses a reversed "isfr"
-> and "iahb" clock-names, the rewritten YAML bindings uses the reversed
-> instead of fixing the device trees order.
->
-> The #sound-dai-cells optional property has been added to match this node
-> as a sound dai.
+> The original example has a leftover "dmc" memory cell, that has been
+> removed in the yaml rewrite.
 >
 > The port connection table has been dropped in favor of a description
 > of each port.
 >
 > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 > ---
->  .../display/amlogic,meson-dw-hdmi.txt         | 119 --------------
->  .../display/amlogic,meson-dw-hdmi.yaml        | 150 ++++++++++++++++++
->  2 files changed, 150 insertions(+), 119 deletions(-)
->  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
->  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+>  .../bindings/display/amlogic,meson-vpu.txt    | 121 ---------------
+>  .../bindings/display/amlogic,meson-vpu.yaml   | 138 ++++++++++++++++++
+>  2 files changed, 138 insertions(+), 121 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
+>  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+> +  power-domains:
+> +    description: phandle to the associated power domain
+> +    allOf:
+> +      - $ref: /schemas/types.yaml#/definitions/phandle
+
+You missed this one.
