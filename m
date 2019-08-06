@@ -2,56 +2,132 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 49C4E832B8
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 15:33:28 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 95638832FE
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 15:41:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726036AbfHFNd0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 09:33:26 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:49065 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726092AbfHFNdZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 09:33:25 -0400
-Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
-        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
-        (envelope-from <p.zabel@pengutronix.de>)
-        id 1huzaa-0007Nz-7T; Tue, 06 Aug 2019 15:33:20 +0200
-Message-ID: <1565098399.2359.0.camel@pengutronix.de>
-Subject: Re: [RESEND V2 1/2] dt-bindings: Document the DesignWare IP reset
- bindings
-From:   Philipp Zabel <p.zabel@pengutronix.de>
-To:     Luis Oliveira <Luis.Oliveira@synopsys.com>, robh+dt@kernel.org,
-        mark.rutland@arm.com, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Cc:     Joao.Pinto@synopsys.com,
-        Gustavo Pimentel <Gustavo.Pimentel@synopsys.com>
-Date:   Tue, 06 Aug 2019 15:33:19 +0200
-In-Reply-To: <1563895048-30038-2-git-send-email-luis.oliveira@synopsys.com>
-References: <1563895048-30038-1-git-send-email-luis.oliveira@synopsys.com>
-         <1563895048-30038-2-git-send-email-luis.oliveira@synopsys.com>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.22.6-1+deb9u2 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 7bit
-X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
-X-SA-Exim-Mail-From: p.zabel@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+        id S1731858AbfHFNlg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 09:41:36 -0400
+Received: from mail-eopbgr140053.outbound.protection.outlook.com ([40.107.14.53]:10211
+        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1726092AbfHFNlg (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Tue, 6 Aug 2019 09:41:36 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=oeFRc8pbb6wrxESlytG2MIthVZNF9tb/KB/CjwFQI9bm1ObsmesQpJSVGcAlHP+SXHSbZjebgvqtdEae8xTVhgtxDZIJ4WdWwzW0F4OSK6V4wOPlou7ZjbVVNeh05ExIPdPmdbI/xxr3Fkh0AkVYKX2YkmI76H5srI3R0OBzySN09B5csEVROZhKKqqctr/PduBQ3XoC70meMapVHlgTH2HRYB77JkdWVyPEyGdR9UZrd3CBNJ1lXY9qqB1yLnxmNfiRbF0Dn18V8lbnTL8c+jUKiPPN9wzFWOBvGaJM2TlU3NLlydnmTglm3Ux5ZQgNl67Tolh5QcyxHGOlMqNhYA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Hf90RamkDUOldTROmtPkbhDEjn+D2DFBKQ7JHdsKDoc=;
+ b=NEz4ZsfQmwt5j3DEwPLe9KX9xi7cXm6VZ0hJrps+OGgEzs3GKFtJtzhII0JZrw+uAmj1wciaHxBGG0RlC/7vNwsVogveusrjHVvZNrom7BBF5dxSk6GOakMSCl7L6/N/kQyu1p7NME+sScBGlpNTaJyYqy+1+k9c1Z6sNXae8lcdlVJfOH/2glW6pPNs2g+2qf4qmeNI2nqjq7PpjvhFqt/kugPQ2EEkHoAJmlsvhWwt2uSZuGf7SyJFjaawAyfa9U1P6fq4nU5axHTPsVqWiZ2F4pAGL3SUBqGhj50cv0d7sd4Y0lDsgEp9fXd5rfmYErnNX4FROUhLSBj5vglNFQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
+ header.d=nxp.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Hf90RamkDUOldTROmtPkbhDEjn+D2DFBKQ7JHdsKDoc=;
+ b=cD5Y7RpddeY8FYRdXmSooheWcRE5SIBIuPAnnoWpYQDykAIGle9Rt/AfZrgtLIFZ3l3m2A3MyKsee7FnRvCHxvrwD10XKBGsPp6oyGw8Y2O+Geoz71X0YRZsvj3xXuSVebAZm11IUcocstm/arYkSc+vT0+EZiJ9du5s9rZrfEc=
+Received: from VI1PR04MB5055.eurprd04.prod.outlook.com (20.177.50.140) by
+ VI1PR04MB5630.eurprd04.prod.outlook.com (20.178.125.159) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2136.14; Tue, 6 Aug 2019 13:41:32 +0000
+Received: from VI1PR04MB5055.eurprd04.prod.outlook.com
+ ([fe80::41:43ca:bf4c:7b99]) by VI1PR04MB5055.eurprd04.prod.outlook.com
+ ([fe80::41:43ca:bf4c:7b99%3]) with mapi id 15.20.2136.018; Tue, 6 Aug 2019
+ 13:41:32 +0000
+From:   Leonard Crestez <leonard.crestez@nxp.com>
+To:     =?iso-8859-2?Q?Artur_=A6wigo=F1?= <a.swigon@partner.samsung.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>
+CC:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
+        "krzk@kernel.org" <krzk@kernel.org>,
+        "cw00.choi@samsung.com" <cw00.choi@samsung.com>,
+        "myungjoo.ham@samsung.com" <myungjoo.ham@samsung.com>,
+        "inki.dae@samsung.com" <inki.dae@samsung.com>,
+        "sw0312.kim@samsung.com" <sw0312.kim@samsung.com>,
+        "georgi.djakov@linaro.org" <georgi.djakov@linaro.org>,
+        "m.szyprowski@samsung.com" <m.szyprowski@samsung.com>
+Subject: Re: [RFC PATCH 09/11] devfreq: exynos-bus: Add interconnect
+ functionality to exynos-bus
+Thread-Topic: [RFC PATCH 09/11] devfreq: exynos-bus: Add interconnect
+ functionality to exynos-bus
+Thread-Index: AQHVQVEYOnL6Nj5GnEmKqTrzyDUrnA==
+Date:   Tue, 6 Aug 2019 13:41:31 +0000
+Message-ID: <VI1PR04MB5055BED59960B4F4147479AEEED50@VI1PR04MB5055.eurprd04.prod.outlook.com>
+References: <20190723122016.30279-1-a.swigon@partner.samsung.com>
+ <CGME20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b@eucas1p2.samsung.com>
+ <20190723122016.30279-10-a.swigon@partner.samsung.com>
+Accept-Language: en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=leonard.crestez@nxp.com; 
+x-originating-ip: [89.37.124.34]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 490e8f33-3627-4316-34e6-08d71a73cab3
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR04MB5630;
+x-ms-traffictypediagnostic: VI1PR04MB5630:
+x-microsoft-antispam-prvs: <VI1PR04MB563066A91E2B0B54C1995EBCEED50@VI1PR04MB5630.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:8882;
+x-forefront-prvs: 0121F24F22
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(979002)(4636009)(366004)(346002)(136003)(376002)(396003)(39860400002)(189003)(199004)(53546011)(9686003)(55016002)(6246003)(99286004)(76176011)(7736002)(229853002)(446003)(478600001)(102836004)(7416002)(5660300002)(256004)(14444005)(53936002)(2906002)(54906003)(4326008)(86362001)(71190400001)(476003)(6506007)(68736007)(8936002)(26005)(66556008)(66476007)(66446008)(74316002)(52536014)(81156014)(81166006)(91956017)(6436002)(8676002)(66946007)(486006)(44832011)(64756008)(110136005)(25786009)(71200400001)(14454004)(305945005)(66574012)(316002)(186003)(66066001)(76116006)(33656002)(3846002)(6116002)(7696005)(969003)(989001)(999001)(1009001)(1019001);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR04MB5630;H:VI1PR04MB5055.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: h9q5IIVjAVOY3hzHPZmt9AdcmIRHfFQCRzPOdR4w65PBZI7g0rOAon5Jkdk7+NtEF1AE/tfgE7S+HynoZg2/bB2u42u2OYYUne4Htqhr9QVmkLixOt7XO/fVqb9ZYDSDnXh4j+m0gCd7pJPtosUnp4ABb4ImspLc6HeJ2MWRoPHJhCveIkBNPsF/Ukei1ZyFlqOzGHDaRp2uGKbyHY84JAoNr+KZbBOPkkuehV9gS3JIXgQu+xtc/QITEC3PZd61llFdRYIVOZwERhEMucH2Zle2Owk02Y52rR1r+oj4SLXv+rpvplMlSYrAPE76mcgexDUdyT1nSOQaIQd/hGTQJv6hnNI91kVx6ukdvXDW9Px2FLdgKRjKTTgztWoXR/LlcpvkJcVCJJqN4P/8Fj5nIXGFzt7Zb0f4e+plVfRt+KU=
+Content-Type: text/plain; charset="iso-8859-2"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 490e8f33-3627-4316-34e6-08d71a73cab3
+X-MS-Exchange-CrossTenant-originalarrivaltime: 06 Aug 2019 13:41:31.9578
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: leonard.crestez@nxp.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR04MB5630
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Luis,
-
-On Tue, 2019-07-23 at 17:17 +0200, Luis Oliveira wrote:
-> This adds documentation of device tree bindings for the
-> DesignWare IP reset controller.
-> 
-> Signed-off-by: Gustavo Pimentel <gustavo.pimentel@synopsys.com>
-> Signed-off-by: Luis Oliveira <luis.oliveira@synopsys.com>
-> Reviewed-by: Rob Herring <robh@kernel.org>
-
-Thank you, both applied to reset/next.
-
-regards
-Philipp
+On 23.07.2019 15:21, Artur =A6wigo=F1 wrote:=0A=
+=0A=
+> +static int exynos_bus_icc_aggregate(struct icc_node *node, u32 avg_bw,=
+=0A=
+> +				    u32 peak_bw, u32 *agg_avg, u32 *agg_peak)=0A=
+> +{=0A=
+> +	*agg_peak =3D *agg_avg =3D peak_bw;=0A=
+> +=0A=
+> +	return 0;=0A=
+> +}=0A=
+=0A=
+The only current provider aggregates "avg" with "sum" and "peak" with =0A=
+"max", any particular reason to do something different? This function =0A=
+doesn't even really do aggregation, if there is a second request for "0" =
+=0A=
+then the first request is lost.=0A=
+=0A=
+I didn't find any docs but my interpretation of avg/peak is that "avg" =0A=
+is for constant traffic like a display or VPU pushing pixels and "peak" =0A=
+is for variable traffic like networking. I assume devices which make =0A=
+"peak" requests are aggregated with max because they're not expected to =0A=
+all max-out together.=0A=
+=0A=
+In PATCH 11 you're making a bandwidth request based on resolution, that =0A=
+traffic is constant and guaranteed to happend while the display is on so =
+=0A=
+it would make sense to request it as an "avg" and aggregate it with "sum".=
+=0A=
+=0A=
+--=0A=
+Regards,=0A=
+Leonard=0A=
