@@ -2,69 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E1D6C83997
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 21:25:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6C876839A6
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 21:27:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725906AbfHFTZP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 15:25:15 -0400
-Received: from mail-oi1-f195.google.com ([209.85.167.195]:41277 "EHLO
-        mail-oi1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725798AbfHFTZO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 15:25:14 -0400
-Received: by mail-oi1-f195.google.com with SMTP id g7so68271096oia.8;
-        Tue, 06 Aug 2019 12:25:14 -0700 (PDT)
+        id S1725973AbfHFT07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 15:26:59 -0400
+Received: from mail-vs1-f74.google.com ([209.85.217.74]:36794 "EHLO
+        mail-vs1-f74.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725798AbfHFT07 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 15:26:59 -0400
+Received: by mail-vs1-f74.google.com with SMTP id j77so22372954vsd.3
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 12:26:59 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=r400Du+BdhcnVb2kJzBt3FbA/D2Jmeeyq4b8DmzoTuE=;
-        b=mD/z0LTmYu+WiqSkvRq3LLNujYAd8HlJFwozWt4552r1/zczO8LbiytL3e/MDZPv93
-         tKx2hPMqdZNJy4AZEtSf1xYNmFi9cTQ0pg/e1V2e9LTpcKZL2x+lIaiQsQXoXYAfsjNF
-         MswbQTt1PmNXl/ZdWsUgdcCG54PR1yGVHLAo1DzYg231IGuaZYdXpqMocD6Lorye/0Ii
-         wxqgPZY4+DO5OKhBhuujKEGKCh+I94hhv+5PYRhqxR8LTf/p+JDW57C97tpbCY5SuUg4
-         sre2BahrbnzfpUPj+zKkiKXpU4R62NHuLps/qXZyzUkDpsHPwYeMjcPsJ2DniB/2h5Fy
-         xAfA==
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=D3pdZ1hpsDBBSSu9uYSfSRCE32NuFY9z8QfNXGGTrto=;
+        b=LHk9KRvN4gVYqdpbzH/h6AXDTltFI1mcEX8tIfDeaaz7Pp/s1h6kD5/luThnNVkRXo
+         RFprVeqH+KMHp8FIm6SlOg6lN817W54y8MNPmJ2PPAZSmanotW9ORWMMT7bLPtY/Ogw1
+         l0/wUU+j2GL2oPXGJQAK/smUR/uZAZ8uvIXwSeGYNr+5rbJaOwhWQfTDWRAIrdOnXsRC
+         oDnLW2t6xqw9H4TGRe9jA7NjyIzr621ALRjr8ny9y6N5BzR8aiT7q7zykTyhfszTICrY
+         3bbTdssMsUOKUCJiIAMDjpzv7t5+paMDYudQmEGzotuahcrwMAyB3nMw7QmMjnIOz+hB
+         aTLA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=r400Du+BdhcnVb2kJzBt3FbA/D2Jmeeyq4b8DmzoTuE=;
-        b=NTbqq3mLo6N51Ro57rstWyPJ5Uxl4LQhvH3S8w89Z4UiD2VhVldRjwD0/wjZo4KYDk
-         8p0yE6j6VbLYTmEviF4SG7dN9SYESNtCwANWpNpHQlRXTfKrJY3Uw3+ajgNDrgQnVw9c
-         oTlZW4c9Or4+R+MKk2t9jnyf3GIPccbJWslD3PB/FBAM4jrbcYaYz80dA2pj603XzjjA
-         b60yw2JMTCcvB0od+iB/ePD77VZJBFR+cSVnCmMQqp3I/appcv3u8wUe21GlyahCJNLo
-         ufZEMAmFHdDoFkDA9Pp1zpDOjfy37wo4WbaV101eU5emn4FkCnKVmK0nL+PyOnljiuy+
-         QUFQ==
-X-Gm-Message-State: APjAAAWxwVv+e+pVINP5mjTvjr8fp5sDu2idyNLH/LJYEa2dmtMw3AMs
-        xB11rG0DEXmdpuTumc4M+ywldj9moouLJVpBl03SFxzF
-X-Google-Smtp-Source: APXvYqycqxwAz4ajkkyCaUP9+StDKHGffRIZJGY2i531ZcuklTJ3ImWMc0UgBRuQREKN2HBys+2LheHpq2cOHQCsqK0=
-X-Received: by 2002:aca:5c55:: with SMTP id q82mr2887362oib.15.1565119513938;
- Tue, 06 Aug 2019 12:25:13 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190806130506.8753-1-glaroque@baylibre.com> <20190806130506.8753-6-glaroque@baylibre.com>
-In-Reply-To: <20190806130506.8753-6-glaroque@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Tue, 6 Aug 2019 21:25:03 +0200
-Message-ID: <CAFBinCCtuL_3TcYJS625ZdJQE_9Lt0n_nNVtxKoY-Nyoz2wSDQ@mail.gmail.com>
-Subject: Re: [PATCH v3 5/6] arm64: dts: amlogic: odroid-n2: add minimal
- thermal zone
-To:     Guillaume La Roque <glaroque@baylibre.com>
-Cc:     daniel.lezcano@linaro.org, khilman@baylibre.com,
-        devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
-        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-pm@vger.kernel.org
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=D3pdZ1hpsDBBSSu9uYSfSRCE32NuFY9z8QfNXGGTrto=;
+        b=gc2TsWM23cKOOiJyhvayGPW6EImgoU9prweH8Npqa6ColSK88ZFr7Yy+hoXpj9V5sg
+         fEXGHAzq5KTf4Sz+Jk48NDwrsUokt1VGYrCDoH9m72k5XqZ9/+Ih9MlKVVtjQEsqAkDn
+         QzsEFEq/RUR/htjCNGb8CBWB6Ldd4bbYaoolpmrqHS22n8+cfzbqhyKxbF4HTOgulH2J
+         DjfvOcDFFkmR6g36cmwV/PEsVIhEanOocDWSZlxKlObbxtSF343USzsuyiCyhxhOL/ux
+         6N7plLZfw0eQl0m6E9TtAiNXbkY9VY/xBiVljXKT4nqPhQXABb7fuTwciTJRZlAx9uO1
+         KxwQ==
+X-Gm-Message-State: APjAAAW7GCXRkUBOJoK55fQKJZh+nf844rLz+YUHTZceo3WKw9CUyL1K
+        z/4SL1qJ74+agC3YLWQNVl1PTVkem5NDLLI=
+X-Google-Smtp-Source: APXvYqxGDu8U5booa1l1NNHse+Ok3XBT02Jwb4vocS7V3EHzsgihODf2xQqyNWYaIEk7cAN9qJAShbo0brkax0k=
+X-Received: by 2002:ab0:6503:: with SMTP id w3mr3177460uam.99.1565119618579;
+ Tue, 06 Aug 2019 12:26:58 -0700 (PDT)
+Date:   Tue,  6 Aug 2019 12:26:53 -0700
+Message-Id: <20190806192654.138605-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.22.0.770.g0f2c4a37fd-goog
+Subject: [PATCH 1/2] of/platform: Fix fn definitons for of_link_is_valid() and of_link_property()
+From:   Saravana Kannan <saravanak@google.com>
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Stephen Rothwell <sfr@canb.auug.org.au>,
+        kernel-team@android.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 6, 2019 at 3:06 PM Guillaume La Roque <glaroque@baylibre.com> wrote:
->
-> Add minimal thermal zone for two temperature sensor
-> One is located close to the DDR and the other one is
-> located close to the PLLs (between the CPU and GPU)
->
-> Signed-off-by: Guillaume La Roque <glaroque@baylibre.com>
-I'm not familiar with the thermal subsystem but this looks sane so:
-Acked-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+of_link_is_valid() can be static since it's not used anywhere else.
+
+of_link_property() return type should have been int instead of bool.
+
+Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Signed-off-by: Saravana Kannan <saravanak@google.com>
+---
+ drivers/of/platform.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+index 21838226d68a..f68de5c4aeff 100644
+--- a/drivers/of/platform.c
++++ b/drivers/of/platform.c
+@@ -506,7 +506,7 @@ int of_platform_default_populate(struct device_node *root,
+ }
+ EXPORT_SYMBOL_GPL(of_platform_default_populate);
+ 
+-bool of_link_is_valid(struct device_node *con, struct device_node *sup)
++static bool of_link_is_valid(struct device_node *con, struct device_node *sup)
+ {
+ 	of_node_get(sup);
+ 	/*
+@@ -625,7 +625,7 @@ static const struct supplier_bindings bindings[] = {
+ 	{ },
+ };
+ 
+-static bool of_link_property(struct device *dev, struct device_node *con_np,
++static int of_link_property(struct device *dev, struct device_node *con_np,
+ 			     const char *prop)
+ {
+ 	struct device_node *phandle;
+-- 
+2.22.0.770.g0f2c4a37fd-goog
+
