@@ -2,147 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0676482CD0
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 09:31:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4F32D82CF7
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 09:41:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732100AbfHFHaZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 03:30:25 -0400
-Received: from hqemgate14.nvidia.com ([216.228.121.143]:1806 "EHLO
-        hqemgate14.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732041AbfHFHaZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 03:30:25 -0400
-Received: from hqpgpgate102.nvidia.com (Not Verified[216.228.121.13]) by hqemgate14.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d492c910001>; Tue, 06 Aug 2019 00:30:25 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate102.nvidia.com (PGP Universal service);
-  Tue, 06 Aug 2019 00:30:24 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate102.nvidia.com on Tue, 06 Aug 2019 00:30:24 -0700
-Received: from tbergstrom-lnx.Nvidia.com (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Tue, 6 Aug
- 2019 07:30:23 +0000
-Received: by tbergstrom-lnx.Nvidia.com (Postfix, from userid 1000)
-        id 71AB84286D; Tue,  6 Aug 2019 10:30:21 +0300 (EEST)
-Date:   Tue, 6 Aug 2019 10:30:21 +0300
-From:   Peter De Schrijver <pdeschrijver@nvidia.com>
-To:     Dmitry Osipenko <digetx@gmail.com>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        Jonathan Hunter <jonathanh@nvidia.com>,
-        "Mark Brown" <broonie@kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 3/3] soc/tegra: regulators: Add regulators coupler for
- Tegra30
-Message-ID: <20190806073021.GF3883@pdeschrijver-desktop.Nvidia.com>
-References: <20190725151832.9802-1-digetx@gmail.com>
- <20190725151832.9802-4-digetx@gmail.com>
- <20190802140512.GD3883@pdeschrijver-desktop.Nvidia.com>
- <c537fbea-5884-03db-305f-6ab3d553f7ab@gmail.com>
- <20190805083325.GE3883@pdeschrijver-desktop.Nvidia.com>
- <1a9464b3-6e0e-00ff-64d8-b3abf7982dfb@gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset="utf-8"
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <1a9464b3-6e0e-00ff-64d8-b3abf7982dfb@gmail.com>
-X-NVConfidentiality: public
-User-Agent: Mutt/1.9.4 (2018-02-28)
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1565076625; bh=orc8XJzHRB34A21SAzqHogdB2d1yl9L59WLJTI8JrPU=;
-        h=X-PGP-Universal:Date:From:To:CC:Subject:Message-ID:References:
-         MIME-Version:Content-Type:Content-Disposition:
-         Content-Transfer-Encoding:In-Reply-To:X-NVConfidentiality:
-         User-Agent:X-Originating-IP:X-ClientProxiedBy;
-        b=F0u4K6B6ojpwlnFlDZ/aCr2FUj+rU7b7EmWKlyAae0Znbik25zVThcI8xZvJGTKf/
-         C9Xbc9qVrXHTP3Bn19SCOytQyCr0jNT+7Jy/0I9VEQ3VqepaZdbUAWUuIUfGYfYfgX
-         TqRHz0ZlzNe6TqYTXUP6TH8Qazp1HqPkc6Ttcg2bMSXDtDJNCvi3K0pISeh09P3x84
-         /MBgbOydGAWXY/Q7jiloEwqHkUrI1uEy9X7qgjdKlb2Ms0zjaA1d3G0QoQVckfY2ki
-         hrGxrxXzKQ1yRGXsA9W17ybX5KYcN7NjIqwlts+Zvs3ZXzwixLeXEtvhbBR7wpXpZm
-         Wpq4X7ZIk8scw==
+        id S1728798AbfHFHlJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 03:41:09 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:41603 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728056AbfHFHlI (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 03:41:08 -0400
+Received: from lupine.hi.pengutronix.de ([2001:67c:670:100:3ad5:47ff:feaf:1a17] helo=lupine)
+        by metis.ext.pengutronix.de with esmtp (Exim 4.92)
+        (envelope-from <p.zabel@pengutronix.de>)
+        id 1huu5g-0003fC-7P; Tue, 06 Aug 2019 09:41:04 +0200
+Message-ID: <1565077264.4951.4.camel@pengutronix.de>
+Subject: Re: [RFCv2 4/9] dt-bindings: reset: amlogic,meson-reset: convert to
+ yaml
+From:   Philipp Zabel <p.zabel@pengutronix.de>
+To:     Neil Armstrong <narmstrong@baylibre.com>, robh+dt@kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
+Date:   Tue, 06 Aug 2019 09:41:04 +0200
+In-Reply-To: <20190805120320.32282-5-narmstrong@baylibre.com>
+References: <20190805120320.32282-1-narmstrong@baylibre.com>
+         <20190805120320.32282-5-narmstrong@baylibre.com>
+Content-Type: text/plain; charset="UTF-8"
+X-Mailer: Evolution 3.22.6-1+deb9u2 
+Mime-Version: 1.0
+Content-Transfer-Encoding: 7bit
+X-SA-Exim-Connect-IP: 2001:67c:670:100:3ad5:47ff:feaf:1a17
+X-SA-Exim-Mail-From: p.zabel@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 05, 2019 at 02:03:29PM +0300, Dmitry Osipenko wrote:
-> 05.08.2019 11:33, Peter De Schrijver =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> > On Fri, Aug 02, 2019 at 05:39:23PM +0300, Dmitry Osipenko wrote:
-> >> 02.08.2019 17:05, Peter De Schrijver =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
-> >>> On Thu, Jul 25, 2019 at 06:18:32PM +0300, Dmitry Osipenko wrote:
-> >>>> Add regulators coupler for Tegra30 SoCs that performs voltage balanc=
-ing
-> >>>> of a coupled regulators and thus provides voltage scaling functional=
-ity.
-> >>>>
-> >>>> There are 2 coupled regulators on all Tegra30 SoCs: CORE and CPU. Th=
-e
-> >>>> coupled regulator voltages shall be in a range of 300mV from each ot=
-her
-> >>>> and CORE voltage shall be higher than the CPU by N mV, where N depen=
-ds
-> >>>> on the CPU voltage.
-> >>>>
-> >>>> Signed-off-by: Dmitry Osipenko <digetx@gmail.com>
-> >>>> ---
-> >>>>  drivers/soc/tegra/Kconfig              |   4 +
-> >>>>  drivers/soc/tegra/Makefile             |   1 +
-> >>>>  drivers/soc/tegra/regulators-tegra30.c | 316 ++++++++++++++++++++++=
-+++
-> >>>>  3 files changed, 321 insertions(+)
-> >>>>  create mode 100644 drivers/soc/tegra/regulators-tegra30.c
-> >>>>
-> >>> ...
-> >>>
-> >>>> +
-> >>>> +static int tegra30_core_cpu_limit(int cpu_uV)
-> >>>> +{
-> >>>> +	if (cpu_uV < 800000)
-> >>>> +		return 950000;
-> >>>> +
-> >>>> +	if (cpu_uV < 900000)
-> >>>> +		return 1000000;
-> >>>> +
-> >>>> +	if (cpu_uV < 1000000)
-> >>>> +		return 1100000;
-> >>>> +
-> >>>> +	if (cpu_uV < 1100000)
-> >>>> +		return 1200000;
-> >>>> +
-> >>>> +	if (cpu_uV < 1250000) {
-> >>>> +		switch (tegra_sku_info.cpu_speedo_id) {
-> >>>> +		case 0 ... 1:
-> >>> Aren't we supposed to add /* fall through */ here now?
-> >>
-> >> There is no compiler warning if there is nothing in-between of the
-> >> case-switches, so annotation isn't really necessary here. Of course it
-> >> is possible to add an explicit annotation just to make clear the
-> >> fall-through intention.
-> >>
-> >=20
-> > Ah. Ok. Whatever you want then :)
->=20
-> I'll add the comments if there will be a need to re-spin this series.
->=20
-> >>>> +		case 4:
-> >>>> +		case 7 ... 8:
-> >>>> +			return 1200000;
-> >>>> +
-> >>>> +		default:
-> >>>> +			return 1300000;
-> >>>> +		}
-> >>>> +	}
-> >>>> +
-> >>>
-> >>> Other than that, this looks ok to me.
-> >>
-> >> Awesome, thank you very much! Explicit ACK will be appreciated as well=
-.
-> >=20
-> > Acked-By: Peter De Schrijver <pdeschrijver@nvidia.com>
+On Mon, 2019-08-05 at 14:03 +0200, Neil Armstrong wrote:
+> Now that we have the DT validation in place, let's convert the device tree
+> bindings for the Amlogic Reset controller over to a YAML schemas.
+> 
+> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
 
-All of them.
+Let me know if you want me to pick up this patch, otherwise
 
-Peter.
+Acked-by: Philipp Zabel <p.zabel@pengutronix.de>
+
+to merge with the rest of the series.
+
+regards
+Philipp
+
+> ---
+>  .../bindings/reset/amlogic,meson-reset.txt    | 19 ----------
+>  .../bindings/reset/amlogic,meson-reset.yaml   | 37 +++++++++++++++++++
+>  2 files changed, 37 insertions(+), 19 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+>  create mode 100644 Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> 
+> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+> deleted file mode 100644
+> index 28ef6c295c76..000000000000
+> --- a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.txt
+> +++ /dev/null
+> @@ -1,19 +0,0 @@
+> -Amlogic Meson SoC Reset Controller
+> -=======================================
+> -
+> -Please also refer to reset.txt in this directory for common reset
+> -controller binding usage.
+> -
+> -Required properties:
+> -- compatible: Should be "amlogic,meson8b-reset", "amlogic,meson-gxbb-reset" or
+> -	"amlogic,meson-axg-reset".
+> -- reg: should contain the register address base
+> -- #reset-cells: 1, see below
+> -
+> -example:
+> -
+> -reset: reset-controller {
+> -	compatible = "amlogic,meson-gxbb-reset";
+> -	reg = <0x0 0x04404 0x0 0x20>;
+> -	#reset-cells = <1>;
+> -};
+> diff --git a/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> new file mode 100644
+> index 000000000000..00917d868d58
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/reset/amlogic,meson-reset.yaml
+> @@ -0,0 +1,37 @@
+> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
+> +# Copyright 2019 BayLibre, SAS
+> +%YAML 1.2
+> +---
+> +$id: "http://devicetree.org/schemas/reset/amlogic,meson-reset.yaml#"
+> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
+> +
+> +title: Amlogic Meson SoC Reset Controller
+> +
+> +maintainers:
+> +  - Neil Armstrong <narmstrong@baylibre.com>
+> +
+> +properties:
+> +  compatible:
+> +    enum:
+> +      - amlogic,meson8b-reset # Reset Controller on Meson8b and compatible SoCs
+> +      - amlogic,meson-gxbb-reset # Reset Controller on GXBB and compatible SoCs
+> +      - amlogic,meson-axg-reset # Reset Controller on AXG and compatible SoCs
+> +
+> +  reg:
+> +    maxItems: 1
+> +
+> +  "#reset-cells":
+> +    const: 1
+> +
+> +required:
+> +  - compatible
+> +  - reg
+> +  - "#reset-cells"
+> +
+> +examples:
+> +  - |
+> +    reset-controller@c884404 {
+> +          compatible = "amlogic,meson-gxbb-reset";
+> +          reg = <0xc884404 0x20>;
+> +          #reset-cells = <1>;
+> +    };
