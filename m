@@ -2,47 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C876839A6
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 21:27:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D9F6E839A9
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 21:27:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725973AbfHFT07 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 15:26:59 -0400
-Received: from mail-vs1-f74.google.com ([209.85.217.74]:36794 "EHLO
-        mail-vs1-f74.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725798AbfHFT07 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 15:26:59 -0400
-Received: by mail-vs1-f74.google.com with SMTP id j77so22372954vsd.3
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 12:26:59 -0700 (PDT)
+        id S1726485AbfHFT1D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 15:27:03 -0400
+Received: from mail-qk1-f202.google.com ([209.85.222.202]:34043 "EHLO
+        mail-qk1-f202.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725906AbfHFT1C (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 15:27:02 -0400
+Received: by mail-qk1-f202.google.com with SMTP id g4so3402847qkk.1
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 12:27:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=google.com; s=20161025;
-        h=date:message-id:mime-version:subject:from:to:cc;
-        bh=D3pdZ1hpsDBBSSu9uYSfSRCE32NuFY9z8QfNXGGTrto=;
-        b=LHk9KRvN4gVYqdpbzH/h6AXDTltFI1mcEX8tIfDeaaz7Pp/s1h6kD5/luThnNVkRXo
-         RFprVeqH+KMHp8FIm6SlOg6lN817W54y8MNPmJ2PPAZSmanotW9ORWMMT7bLPtY/Ogw1
-         l0/wUU+j2GL2oPXGJQAK/smUR/uZAZ8uvIXwSeGYNr+5rbJaOwhWQfTDWRAIrdOnXsRC
-         oDnLW2t6xqw9H4TGRe9jA7NjyIzr621ALRjr8ny9y6N5BzR8aiT7q7zykTyhfszTICrY
-         3bbTdssMsUOKUCJiIAMDjpzv7t5+paMDYudQmEGzotuahcrwMAyB3nMw7QmMjnIOz+hB
-         aTLA==
+        h=date:in-reply-to:message-id:mime-version:references:subject:from:to
+         :cc;
+        bh=iPCtVhelamfyNmHFH2EKFLaaUs7nprfge3H+YNAP5fc=;
+        b=q4Fm42nZXSCJMyda/16R+zUSCptYRFIOQduf9C9prXzhSCNR19aofjCM0QXcsykY2X
+         2HKqnLbG79HIix8cv2sfU5b80A0OSlzXo9CLrzoaJG7FH+fTDbVU7Ymd48rZdXxILzVP
+         CacYAFOjUqwDsHfatUmMbSxcMnEz+qmVWXRFIoLilts8110jHqBaLSiNs+9XqIlF7/Xl
+         BKaDDXqmY938i3Ia2NwlPAL1LANJePJ4o+5SctEALb+1RUP+/YeHFY0OHLy0qbd5JJdU
+         oiADb5RW5SW7sIq0VnRaoLuQWxtSNXBWMmlejP1ksJZIig9EoJ2tZKcqnaFVTpWWVFDV
+         9xAw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
-        bh=D3pdZ1hpsDBBSSu9uYSfSRCE32NuFY9z8QfNXGGTrto=;
-        b=gc2TsWM23cKOOiJyhvayGPW6EImgoU9prweH8Npqa6ColSK88ZFr7Yy+hoXpj9V5sg
-         fEXGHAzq5KTf4Sz+Jk48NDwrsUokt1VGYrCDoH9m72k5XqZ9/+Ih9MlKVVtjQEsqAkDn
-         QzsEFEq/RUR/htjCNGb8CBWB6Ldd4bbYaoolpmrqHS22n8+cfzbqhyKxbF4HTOgulH2J
-         DjfvOcDFFkmR6g36cmwV/PEsVIhEanOocDWSZlxKlObbxtSF343USzsuyiCyhxhOL/ux
-         6N7plLZfw0eQl0m6E9TtAiNXbkY9VY/xBiVljXKT4nqPhQXABb7fuTwciTJRZlAx9uO1
-         KxwQ==
-X-Gm-Message-State: APjAAAW7GCXRkUBOJoK55fQKJZh+nf844rLz+YUHTZceo3WKw9CUyL1K
-        z/4SL1qJ74+agC3YLWQNVl1PTVkem5NDLLI=
-X-Google-Smtp-Source: APXvYqxGDu8U5booa1l1NNHse+Ok3XBT02Jwb4vocS7V3EHzsgihODf2xQqyNWYaIEk7cAN9qJAShbo0brkax0k=
-X-Received: by 2002:ab0:6503:: with SMTP id w3mr3177460uam.99.1565119618579;
- Tue, 06 Aug 2019 12:26:58 -0700 (PDT)
-Date:   Tue,  6 Aug 2019 12:26:53 -0700
-Message-Id: <20190806192654.138605-1-saravanak@google.com>
+        h=x-gm-message-state:date:in-reply-to:message-id:mime-version
+         :references:subject:from:to:cc;
+        bh=iPCtVhelamfyNmHFH2EKFLaaUs7nprfge3H+YNAP5fc=;
+        b=srdzm82VonmETPhg2IBwE4GGfEyTtWE6Jy2cc9jYiedX/z7WvsSik+voD8tNx+De2t
+         2VKuUdIbW6Dkuux4NuCnahmU9cPdQVfL9w9dDpMShNnMR1RoSl6XawzmVwvXpoStjr9w
+         EdMM8YCdz2NZKXBYAYCP6ov7INTmgUpmQ6KXYyJlrkCz+5HNhGzx3js+6Zt+TJH979t3
+         ej1ZLfKMRxm73XJ6ZOU5R8OEza1HfisysjID7QTWNoV4VKMspqao8GnhuTMPKEo2AMXi
+         sjmmjD6n6fsyiBRMjj2ojRxVUCjJIHl6/ABsHiBAhsUO/+zgAHldD6EBk94Goe01AiFr
+         pNwg==
+X-Gm-Message-State: APjAAAWJjj4QzAZwxJ9PZcp7qTjwBQVKTbcSvHif33e7aj1NZ5DrcnL5
+        XZAXg49AyGxDUxeSwFyexH02F+b5N1a8kNw=
+X-Google-Smtp-Source: APXvYqwvpDkuXUO1XDLIDxYen3s/Nv6gDoebrjDR5FqT9Q5FwKWsU6sSd2XJVBvKkXw1iiOO87nDjTgsTylqOQc=
+X-Received: by 2002:ac8:24e3:: with SMTP id t32mr4733485qtt.104.1565119621558;
+ Tue, 06 Aug 2019 12:27:01 -0700 (PDT)
+Date:   Tue,  6 Aug 2019 12:26:54 -0700
+In-Reply-To: <20190806192654.138605-1-saravanak@google.com>
+Message-Id: <20190806192654.138605-2-saravanak@google.com>
 Mime-Version: 1.0
+References: <20190806192654.138605-1-saravanak@google.com>
 X-Mailer: git-send-email 2.22.0.770.g0f2c4a37fd-goog
-Subject: [PATCH 1/2] of/platform: Fix fn definitons for of_link_is_valid() and of_link_property()
+Subject: [PATCH 2/2] of/platform: Disable generic device linking code for PowerPC
 From:   Saravana Kannan <saravanak@google.com>
 To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Rob Herring <robh+dt@kernel.org>,
@@ -57,38 +61,40 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-of_link_is_valid() can be static since it's not used anywhere else.
+PowerPC platforms don't use the generic of/platform code to populate the
+devices from DT.  Therefore the generic device linking code is never used
+in PowerPC.  Compile it out to avoid warning about unused functions.
 
-of_link_property() return type should have been int instead of bool.
+If a specific PowerPC platform wants to use this code in the future,
+bringing this back for PowerPC would be trivial. We'll just need to export
+of_link_to_suppliers() and then let the machine specific files do the
+linking as they populate the devices from DT.
 
-Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
 Signed-off-by: Saravana Kannan <saravanak@google.com>
 ---
- drivers/of/platform.c | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+ drivers/of/platform.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 21838226d68a..f68de5c4aeff 100644
+index f68de5c4aeff..a2a4e4b79d43 100644
 --- a/drivers/of/platform.c
 +++ b/drivers/of/platform.c
-@@ -506,7 +506,7 @@ int of_platform_default_populate(struct device_node *root,
+@@ -506,6 +506,7 @@ int of_platform_default_populate(struct device_node *root,
  }
  EXPORT_SYMBOL_GPL(of_platform_default_populate);
  
--bool of_link_is_valid(struct device_node *con, struct device_node *sup)
-+static bool of_link_is_valid(struct device_node *con, struct device_node *sup)
++#ifndef CONFIG_PPC
+ static bool of_link_is_valid(struct device_node *con, struct device_node *sup)
  {
  	of_node_get(sup);
- 	/*
-@@ -625,7 +625,7 @@ static const struct supplier_bindings bindings[] = {
- 	{ },
- };
+@@ -683,7 +684,6 @@ static int of_link_to_suppliers(struct device *dev)
+ 	return __of_link_to_suppliers(dev, dev->of_node);
+ }
  
--static bool of_link_property(struct device *dev, struct device_node *con_np,
-+static int of_link_property(struct device *dev, struct device_node *con_np,
- 			     const char *prop)
- {
- 	struct device_node *phandle;
+-#ifndef CONFIG_PPC
+ static const struct of_device_id reserved_mem_matches[] = {
+ 	{ .compatible = "qcom,rmtfs-mem" },
+ 	{ .compatible = "qcom,cmd-db" },
 -- 
 2.22.0.770.g0f2c4a37fd-goog
 
