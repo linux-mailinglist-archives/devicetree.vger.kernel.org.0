@@ -2,20 +2,20 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E4B483469
-	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 16:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9096F8346C
+	for <lists+devicetree@lfdr.de>; Tue,  6 Aug 2019 16:55:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732976AbfHFOza (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 10:55:30 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:56477 "EHLO
+        id S1733134AbfHFOzb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 10:55:31 -0400
+Received: from relay4-d.mail.gandi.net ([217.70.183.196]:50377 "EHLO
         relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733146AbfHFOz3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 10:55:29 -0400
+        with ESMTP id S1733142AbfHFOzb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 10:55:31 -0400
 X-Originating-IP: 86.250.200.211
 Received: from localhost.localdomain (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
         (Authenticated sender: miquel.raynal@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 683F0E0011;
-        Tue,  6 Aug 2019 14:55:27 +0000 (UTC)
+        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id E5BE1E000B;
+        Tue,  6 Aug 2019 14:55:28 +0000 (UTC)
 From:   Miquel Raynal <miquel.raynal@bootlin.com>
 To:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
@@ -31,9 +31,9 @@ Cc:     <devicetree@vger.kernel.org>,
         Stefan Chulski <stefanc@marvell.com>,
         Yan Markman <ymarkman@marvell.com>,
         Miquel Raynal <miquel.raynal@bootlin.com>
-Subject: [PATCH 15/20] arm64: dts: marvell: Add support for CP115
-Date:   Tue,  6 Aug 2019 16:54:55 +0200
-Message-Id: <20190806145500.24109-16-miquel.raynal@bootlin.com>
+Subject: [PATCH 16/20] dt-bindings: marvell: Declare the CN913x SoC compatibles
+Date:   Tue,  6 Aug 2019 16:54:56 +0200
+Message-Id: <20190806145500.24109-17-miquel.raynal@bootlin.com>
 X-Mailer: git-send-email 2.20.1
 In-Reply-To: <20190806145500.24109-1-miquel.raynal@bootlin.com>
 References: <20190806145500.24109-1-miquel.raynal@bootlin.com>
@@ -44,33 +44,57 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Create a DTSI file based on the CP11x one. Differences will be
-described in the near future.
+From: Grzegorz Jaszczyk <jaz@semihalf.com>
 
+Describe the compatible properties for the new Marvell SoCs:
+* CN9130: 1x AP807-quad + 1x CP115 (1x embedded)
+* CN9131: 1x AP807-quad + 2x CP115 (1x embedded + 1x modular)
+* CN9132: 1x AP807-quad + 3x CP115 (1x embedded + 2x modular)
+
+CP115 are similar to CP110 in terms of features.
+
+There are three development boards based on these SoCs:
+* CN9130-DB: comes as a single mother board (with the CP115 bundled)
+* CN9131-DB: same as CN9130-DB with one additional modular CP115
+* CN9132-DB: same as CN9130-DB with two additional modular CP115
+
+Signed-off-by: Grzegorz Jaszczyk <jaz@semihalf.com>
 Signed-off-by: Miquel Raynal <miquel.raynal@bootlin.com>
 ---
- arch/arm64/boot/dts/marvell/armada-cp115.dtsi | 12 ++++++++++++
- 1 file changed, 12 insertions(+)
- create mode 100644 arch/arm64/boot/dts/marvell/armada-cp115.dtsi
+ .../bindings/arm/marvell/armada-7k-8k.txt           | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
 
-diff --git a/arch/arm64/boot/dts/marvell/armada-cp115.dtsi b/arch/arm64/boot/dts/marvell/armada-cp115.dtsi
-new file mode 100644
-index 000000000000..1d0a9653e681
---- /dev/null
-+++ b/arch/arm64/boot/dts/marvell/armada-cp115.dtsi
-@@ -0,0 +1,12 @@
-+// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
-+/*
-+ * Copyright (C) 2019 Marvell Technology Group Ltd.
-+ *
-+ * Device Tree file for Marvell Armada CP115.
-+ */
+diff --git a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.txt b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.txt
+index df98a9c82a8c..8eb34ca4c4f0 100644
+--- a/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.txt
++++ b/Documentation/devicetree/bindings/arm/marvell/armada-7k-8k.txt
+@@ -1,7 +1,7 @@
+ Marvell Armada 7K/8K Platforms Device Tree Bindings
+ ---------------------------------------------------
+ 
+-Boards using a SoC of the Marvell Armada 7K or 8K families must carry
++Boards using a SoC of the Marvell Armada 7K/8K or CN913x families must carry
+ the following root node property:
+ 
+  - compatible, with one of the following values:
+@@ -18,6 +18,17 @@ the following root node property:
+    - "marvell,armada8040", "marvell,armada-ap806-quad", "marvell,armada-ap806"
+       when the SoC being used is the Armada 8040
+ 
++   - "marvell,cn9130", "marvell,armada-ap807-quad", "marvell,armada-ap807"
++      when the SoC being used is the Armada CN9130 with no external CP.
 +
-+#define CP11X_TYPE cp115
++   - "marvell,cn9131", "marvell,cn9130",
++     "marvell,armada-ap807-quad", "marvell,armada-ap807"
++      when the SoC being used is the Armada CN9130 with one external CP.
 +
-+#include "armada-cp11x.dtsi"
++   - "marvell,cn9132", "marvell,cn9131", "marvell,cn9130",
++     "marvell,armada-ap807-quad", "marvell,armada-ap807"
++      when the SoC being used is the Armada CN9130 with two external CPs.
 +
-+#undef CP11X_TYPE
+ Example:
+ 
+ compatible = "marvell,armada7040-db", "marvell,armada7040",
 -- 
 2.20.1
 
