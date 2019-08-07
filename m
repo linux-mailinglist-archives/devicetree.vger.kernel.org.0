@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id DA46F84BE2
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 14:44:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BE45584BED
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 14:44:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729992AbfHGMnm (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 08:43:42 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:37276 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729821AbfHGMnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 08:43:41 -0400
-Received: by mail-lf1-f67.google.com with SMTP id c9so63871154lfh.4
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 05:43:40 -0700 (PDT)
+        id S2387597AbfHGMon (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 08:44:43 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:33926 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729712AbfHGMom (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 08:44:42 -0400
+Received: by mail-lj1-f194.google.com with SMTP id p17so85366805ljg.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 05:44:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
          :cc;
-        bh=3yF1OuQ8WOJDwWnUlO01EbGsBbNmAnc6oHp1K7rziEs=;
-        b=Qkscwp0fMEP5YUts5kZ8mBnyK/OpngNCEOAidd5gDqm0omiSQCT3uXzqoJPoysQldz
-         4lgN3op4lyvYbnF7bj7XfuUgFO6pwFysEYZMaCCnrUJlzlPGxFwNFeauDS0cgSVcL7BY
-         pm4cXe7UqsCsczPq0q/Heh79nqUVbQTn9fVdGaphofDgpniehIo0S+O6IJLzZQyNyX+o
-         wIRGwN1AH7uLn2xcWDXs1OYlPr9AqlCmgjBvgMTBdNy3GC4ZQRXWorQnlqPRh63kFRTB
-         5zu+oi072EGWXe3id3Q7WIXYE8q7u98sy0ME0/BOW1lQMgBpriiH7N559fFPEU+BNVg5
-         WtzA==
+        bh=9qAcXQ74wnq9lBV8xI9DKWSAH0H5RLjm/S1lKOmaMBg=;
+        b=SyTkcf8dDd/qJ1huE2tGq5vti9WUJZR3c6pp88zP25SXfE+qr2KqpJJ9EnCu/6TW0i
+         pi/EIkp0XiLke82zXZTC9ZdinmSM5ek00WFxEbo5FcJDxK4L82VQk2N+LlNRyXQnq2g4
+         Sf69bBUT7mBcpzqievikQZqqrefRNeLI/r3CF3jMQ1dO2+cFCJrGhkaJIbrwe6egMhHv
+         jYN2htDTwwTy1gjLmP5I8KWpk1BoxLQyIBVZCC7Fn+JaAOzLSh2vy/7Tr0ovkid1ZQAJ
+         UZGx886EoY98kJdFo+JuBpTVWRCnmp5zRNE3mNzGeRp719fnJ8K8BU0xtAIKh3XexF47
+         YZzA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=3yF1OuQ8WOJDwWnUlO01EbGsBbNmAnc6oHp1K7rziEs=;
-        b=NguNhEpFxxK6mFdsHJacN8Rwtr5c+raa7Sg9Y6Q9PjWAWX9Hd2GCqNR2x1M/pdEbeX
-         ipa//CbMElfQJBX/KkYnkCheFmyIKB9nznwJ6wBHuqCdj4r79lWEyNdE2hJAUcvHEONY
-         C2gnObCc7Ijl8HZi+RgoD6n9OsWT7MNFkm9Le4ZvWVuUd91Z5IjO48ztn/XL8jR/22Dm
-         zqA6+gvGKCL6m/uz76C04RWYFed6vRyr2l2e1v/BkgcbG1NfbZGjDQwZRyYF6Eat1D9L
-         zriPbCeEUS8Reb+UiQBAS2P8yz6OgJNstmzP203DX7jABQJ6IYUtL9OFJ0BKeudS71ND
-         YDig==
-X-Gm-Message-State: APjAAAWD7VztLONvhUJtPR9B868/UXNPu6vlkwYufllUoaaYNuWON2Yr
-        gF2E81Yu8bR5ehBrIbL/Oh+j85727+P32OPRMa+KRA==
-X-Google-Smtp-Source: APXvYqyHcn+uEIkjeMH25oklHeb5+qGtHeaOrVJcVtMtUqMfkChzi4CWRJOO4SFcOgHxdBcv6Lm+gTNdGKL7HocbYwI=
-X-Received: by 2002:ac2:5939:: with SMTP id v25mr5930898lfi.115.1565181819882;
- Wed, 07 Aug 2019 05:43:39 -0700 (PDT)
+        bh=9qAcXQ74wnq9lBV8xI9DKWSAH0H5RLjm/S1lKOmaMBg=;
+        b=lJCbsArBAY50UDZliUxlrQL47H6Sq+Lr/kEyp3KpHanMgQOZmlwmZYfjcnGSm55x4h
+         MBT13PCLGVym0QF8mn3EJQRkVIRRC2l6cD3PniPvnJaIS1wJsxAJ4qjnWOXg6QF+8qdk
+         oV190XsZd5FqNXSJyAzU4vV0JauftloD8nDqA2kCl5WnCHx+jotBj/KGN+qnmvd3/KMR
+         l5yE4VEWl/EFUzdo6kfnZuBbJjI4VQB3h2CSZ60sKGCzT60CQlHYDhdif+0iBWT8zRG6
+         TANV2F6lxD8TC9aFbpHERk54Sd+7txkrerLrgK7gXuvq3QHz6wxbZuoUmouVB6sC8PGh
+         7R6w==
+X-Gm-Message-State: APjAAAU/DtJmdsAJz6zc0S6uYnpju6Hzqlrhg3v8M5aY0XnRqj1DaodJ
+        qWtkYZX/3JJvbApDFyDYj498ly6c9kAvVY0AtmtvMQ==
+X-Google-Smtp-Source: APXvYqw0QLiekY2Wd3n7wub8yhIsoTVDzI2YudUSicPG1Sk8vAgOz3VhLcQ5SkSAoa5cDuQiW4DnULWNGV5eM841Z+Y=
+X-Received: by 2002:a2e:2c14:: with SMTP id s20mr4756592ljs.54.1565181880879;
+ Wed, 07 Aug 2019 05:44:40 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190806060536.18094-1-rnayak@codeaurora.org>
-In-Reply-To: <20190806060536.18094-1-rnayak@codeaurora.org>
+References: <20190806060536.18094-1-rnayak@codeaurora.org> <20190806060536.18094-2-rnayak@codeaurora.org>
+In-Reply-To: <20190806060536.18094-2-rnayak@codeaurora.org>
 From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 7 Aug 2019 14:43:28 +0200
-Message-ID: <CACRpkdYdVFR3CnC+bO0ZYP9FyXsuGQZAiBxMchSrhpQGtJnd9A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/2] dt-bindings: pinctrl: qcom: Add SC7180 pinctrl binding
+Date:   Wed, 7 Aug 2019 14:44:29 +0200
+Message-ID: <CACRpkdbUqZ+Jz1c2eS1s4Hen5mzDfrkN_Hn=U_0u3nOo43bCAw@mail.gmail.com>
+Subject: Re: [PATCH v3 2/2] pinctrl: qcom: Add SC7180 pinctrl driver
 To:     Rajendra Nayak <rnayak@codeaurora.org>
 Cc:     Bjorn Andersson <bjorn.andersson@linaro.org>,
         MSM <linux-arm-msm@vger.kernel.org>,
@@ -69,16 +69,18 @@ On Tue, Aug 6, 2019 at 8:05 AM Rajendra Nayak <rnayak@codeaurora.org> wrote:
 
 > From: Jitendra Sharma <shajit@codeaurora.org>
 >
-> Add the binding for the TLMM pinctrl block found in the SC7180 platform
+> Add initial pinctrl driver to support pin configuration with
+> pinctrl framework for SC7180
 >
 > Signed-off-by: Jitendra Sharma <shajit@codeaurora.org>
 > Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
-> [rnayak: Fix some copy-paste issues, sort and fix functions]
+> [rnayak: modify to use upstream tile support
+>          sort and squash some functions]
 > Signed-off-by: Rajendra Nayak <rnayak@codeaurora.org>
 > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 > Reviewed-by: Vinod Koul <vkoul@kernel.org>
 
-Patch applied.
+Patch applied!
 
 Yours,
 Linus Walleij
