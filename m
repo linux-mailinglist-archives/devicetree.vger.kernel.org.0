@@ -2,162 +2,124 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D1E3846B2
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 10:04:27 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id DD83D846F4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 10:17:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728819AbfHGIEH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 04:04:07 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:56239 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728803AbfHGIEG (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 04:04:06 -0400
-Received: by mail-wm1-f65.google.com with SMTP id f72so532659wmf.5
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 01:04:04 -0700 (PDT)
+        id S1728592AbfHGIRv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 04:17:51 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:42153 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728235AbfHGIRu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 04:17:50 -0400
+Received: by mail-lj1-f195.google.com with SMTP id t28so84624757lje.9
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 01:17:49 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=Qliw5okmgaZkpF1H6Bmgz26hwWMXU+Uc9D+Heh7qmuA=;
-        b=T1hpvWiNhZrmxvrrynn4oET0BQ4hY6FtSztskF4dtBGR+F0VJ2KVtzMROJUfw//8pg
-         A+vdkg9LCRAF40GPP0QqQKDJROFb6wC6fx0gMLj1BGuKOzdkWSJs3cH19Zxtk2o5A0OP
-         XeUNBSSssGHzz1buUu57C9Pi2TmtyAMeT8yYmPFUFpJUMxwdkHbeHE0u7bCKj1ODgt6Y
-         +ceT7BrIr5fMTQURksNovJ1t2XjjcVtAQ7SknfBZDZilDMvetbWwz7TfMixKBoct6nxg
-         3fhiOcMmEdetPAV3LbQNNrGQoX7MGEBDNeo0FkLkI7Xuzyn+O6jcsEZ/qvExStj/QXdQ
-         dRiw==
+        h=mime-version:from:date:message-id:subject:to:cc;
+        bh=uZ71/IjfnhtwBPFF6THZcvtecPOI1brQIp9ai2NeI1k=;
+        b=lw+MGCG53qlHD6l00B/7Hr2jQ5KNOzTe/Gk4nJidoMcAM/PCuqYZNE5tCopKN5tIB9
+         ybdrmwbQq5dr9qON9O8J8tGMHldp8JlCb68Ac2C0JgrkXcGwvDALxCGgpGaA82m0RYXA
+         zDX6S/ynK0N53ICsuuEg/6wrYFCVbJ2HCDDXtR42Frjtd5oq48/dnaIr00RzlNlkR7gP
+         Dui88b7Dhs5Iyz7jNvscReYjqxYvEeRM5v4NIkWqclUCYLi2XkMxH0PRxVxOG9bZJv2L
+         5QY+LkAUXXOj7VzSwILoN2j9w6heWQ+OyEsdpqqgtZUaF4YL1FkoK0LlSOT4PJM4xtNO
+         sGGg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=Qliw5okmgaZkpF1H6Bmgz26hwWMXU+Uc9D+Heh7qmuA=;
-        b=FdxKoq9dk4Fl7Ap5Avi6N9tyQE7W/vRWnedF68G43RjHxYnVzp6DLRfwvDXZaQv47J
-         QHU543wIpeDEwAwzSQJ7y0OaZtuCfvfx63vQiz+A+uwz0Z+HLtxjsGResMiXKcSti+qO
-         hmmQMeiwmwiKpRmoi35hZavRWYaRucV+EJ19nxvTyQd3hTESRJ1/UUuvpYogrGFi1PcZ
-         hCr2/jGrF2BzktvYNuzE/ZXzsTp97Ctv1N4fStPrpr60/GdXhEGcP2Rvl4S6eGrYjlig
-         FjnzjtSDKjzJhgo2t+7m/7YppVRyNPvjZHD+PWfVPwmitYybCJwpiCeI3qVSGIV+WwF8
-         YP8Q==
-X-Gm-Message-State: APjAAAWPF+hWKAJQ2pNeBtWtzctyfuVks9p5i6cOJ+lAv7MvDwxLNsWL
-        8KKQh44tzs0GvUCm1+Drit2vlA==
-X-Google-Smtp-Source: APXvYqxCfopUxQ+YWXH5KIz2Jv/Hcss3U8VTIXgWMC7jNGbFJfXKJIadz4M2I0EhhwAZ3DodEj4UHA==
-X-Received: by 2002:a1c:acc8:: with SMTP id v191mr9405435wme.177.1565165043527;
-        Wed, 07 Aug 2019 01:04:03 -0700 (PDT)
-Received: from ?IPv6:2a01:e34:ed2f:f020:a920:eb8d:e571:a6d0? ([2a01:e34:ed2f:f020:a920:eb8d:e571:a6d0])
-        by smtp.googlemail.com with ESMTPSA id d65sm1418868wmc.2.2019.08.07.01.04.01
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 07 Aug 2019 01:04:02 -0700 (PDT)
-Subject: Re: [PATCH v4 1/4] RISC-V: Remove per cpu clocksource
-To:     Paul Walmsley <paul.walmsley@sifive.com>,
-        Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel@vger.kernel.org, Alan Kao <alankao@andestech.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Anup Patel <anup.patel@wdc.com>, devicetree@vger.kernel.org,
-        Enrico Weigelt <info@metux.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johan Hovold <johan@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-References: <20190803042723.7163-1-atish.patra@wdc.com>
- <20190803042723.7163-2-atish.patra@wdc.com>
- <alpine.DEB.2.21.9999.1908061437000.13971@viisi.sifive.com>
-From:   Daniel Lezcano <daniel.lezcano@linaro.org>
-Openpgp: preference=signencrypt
-Autocrypt: addr=daniel.lezcano@linaro.org; prefer-encrypt=mutual; keydata=
- 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
-Message-ID: <5687851a-2cdb-95a2-708f-30f6c14ba817@linaro.org>
-Date:   Wed, 7 Aug 2019 10:04:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:from:date:message-id:subject:to:cc;
+        bh=uZ71/IjfnhtwBPFF6THZcvtecPOI1brQIp9ai2NeI1k=;
+        b=cBYoiZ9VMKxE/f88GXBpComUN/dr0vl2nLjkzJkYK8x3IoC87e+JdAuBqDhkFUpFdQ
+         o9NlWv2UIBWVYVMgisHXLQf4v6fW6qrzg1x3RKM/WdMWtxCC5joUKXHLogfpQrcthnqj
+         d24IX48LeQF247F4dn5e9j7/0qK4THn7iV9jrtZjEOHkNDx0AybW7cfKIKV61dNBHUXB
+         c4fIPE6wx6oww5skhagvn7S8oju4VD61FhJOsqgtA3Ab3Lq71fW81P5she02jPwjSvDk
+         rxf//T93Hc29k2ggMf91nuJYLVW8FBAHevGoTsvZE3SR8irzy2U+GaVsstG2CyghCVj7
+         kCfw==
+X-Gm-Message-State: APjAAAWFzU9PWAFNN1V2Q61ntAHM1R6uInqqCzsd4Zl188sADXEi8+rz
+        us5xaksmp2aPPN9VL7uX6QRME23uxkDNTZriVXOO6w==
+X-Google-Smtp-Source: APXvYqwBt9zZPEZS9Zv/S7dA7gva1bRM0PXxxk+aEKCKsKDg9IuOsBbotspesjzG8OPcsmVa9uK3w9BCohv4bn1xoHc=
+X-Received: by 2002:a2e:87d0:: with SMTP id v16mr4116786ljj.24.1565165868639;
+ Wed, 07 Aug 2019 01:17:48 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <alpine.DEB.2.21.9999.1908061437000.13971@viisi.sifive.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+From:   Naresh Kamboju <naresh.kamboju@linaro.org>
+Date:   Wed, 7 Aug 2019 13:47:37 +0530
+Message-ID: <CA+G9fYus+cW4775Y2_Xqpc+G6YP_KfjGeCMzoSQq6o2yVY8Q3w@mail.gmail.com>
+Subject: next-20190806: arm64: adv7511 3-0039: failed to find dsi host
+To:     Linux-Next Mailing List <linux-next@vger.kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>,
+        Hans Verkuil <hverkuil-cisco@xs4all.nl>,
+        Hans Verkuil <hans.verkuil@cisco.com>, mchehab@kernel.org,
+        robh+dt@kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        linux-media@vger.kernel.org,
+        open list <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, agross@kernel.org,
+        david.brown@linaro.org, lkft-triage@lists.linaro.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 06/08/2019 23:37, Paul Walmsley wrote:
-> On Fri, 2 Aug 2019, Atish Patra wrote:
-> 
->> There is only one clocksource in RISC-V. The boot cpu initializes
->> that clocksource. No need to keep a percpu data structure.
->>
->> Signed-off-by: Atish Patra <atish.patra@wdc.com>
-> 
-> Thanks, queued for v5.3-rc4.
+arm64 devices dragonboard 410c (QC410E) and hi6220-hikey running Linux
+next-20190806 loading modules causing floods of kernel messages.
 
-Please, in the future wait for my:
+We have enabled few extra kernel configs for testing.
+CONFIG_DRM_I2C_ADV7511=m
+CONFIG_DRM_I2C_ADV7511_CEC=y
+...
 
-Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+Please find below boot log and config file link.
 
+[    0.000000] Linux version 5.3.0-rc3-next-20190806 (oe-user@oe-host)
+(gcc version 7.3.0 (GCC)) #1 SMP PREEMPT Tue Aug 6 05:49:36 UTC 2019
+[    0.000000] Machine model: Qualcomm Technologies, Inc. APQ 8016 SBC
+....
+[   10.051193] adv7511 3-0039: 3-0039 supply dvdd not found, using
+dummy regulator
+[   10.051633] adv7511 3-0039: 3-0039 supply pvdd not found, using
+dummy regulator
+[   10.076257] adreno 1c00000.gpu: Adding to iommu group 0
+[   10.090929] adv7511 3-0039: 3-0039 supply a2vdd not found, using
+dummy regulator
+[   10.101703] msm_mdp 1a01000.mdp: Adding to iommu group 1
+[   10.102563] msm_mdp 1a01000.mdp: No interconnect support may cause
+display underflows!
+[   10.139492] adv7511 3-0039: failed to find dsi host
+...
+[   33.065744] adv7511 3-0039: failed to find dsi host
+[   33.076721] msm 1a00000.mdss: 1a00000.mdss supply vdd not found,
+using dummy regulator
+[   33.078344] msm_mdp 1a01000.mdp: [drm:mdp5_bind [msm]] MDP5 version v1.6
+[   33.083862] msm 1a00000.mdss: bound 1a01000.mdp (ops mdp5_ops [msm])
+[   33.090892] msm_dsi 1a98000.dsi: 1a98000.dsi supply gdsc not found,
+using dummy regulator
+[   33.097756] msm_dsi 1a98000.dsi: 1a98000.dsi supply gdsc not found,
+using dummy regulator
+[   33.106606] msm_dsi_manager_register: failed to register mipi dsi
+host for DSI 0
+[   33.114579] msm 1a00000.mdss: failed to bind 1a98000.dsi (ops
+dsi_ops [msm]): -517
+[   33.121263] msm 1a00000.mdss: master bind failed: -517
+[   33.135547] adv7511 3-0039: 3-0039 supply dvdd not found, using
+dummy regulator
+[   33.139360] adv7511 3-0039: 3-0039 supply pvdd not found, using
+dummy regulator
+[   33.143646] adv7511 3-0039: 3-0039 supply a2vdd not found, using
+dummy regulator
 
--- 
- <http://www.linaro.org/> Linaro.org │ Open source software for ARM SoCs
+Full test log
+https://lkft.validation.linaro.org/scheduler/job/860208#L956
 
-Follow Linaro:  <http://www.facebook.com/pages/Linaro> Facebook |
-<http://twitter.com/#!/linaroorg> Twitter |
-<http://www.linaro.org/linaro-blog/> Blog
+metadata:
+  git branch: master
+  git repo: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+  git commit: 958eb4327c1761c609bde8e9f7c04e9d1c6fbb96
+  git describe: next-20190806
+  make_kernelversion: 5.3.0-rc3
+  kernel-config:
+http://snapshots.linaro.org/openembedded/lkft/lkft/sumo/dragonboard-410c/lkft/linux-next/579/config
+  kernel-defconfig:
+http://snapshots.linaro.org/openembedded/lkft/lkft/sumo/dragonboard-410c/lkft/linux-next/579/defconfig
+  build-location:
+http://snapshots.linaro.org/openembedded/lkft/lkft/sumo/dragonboard-410c/lkft/linux-next/579
 
+Best regards
+Naresh Kamboju
