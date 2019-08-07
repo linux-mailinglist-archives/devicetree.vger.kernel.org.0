@@ -2,111 +2,137 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EB25C84FE8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 17:29:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4C9B485000
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 17:36:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388648AbfHGP3u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 11:29:50 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:34265 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387815AbfHGP3t (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 11:29:49 -0400
-Received: by mail-wm1-f66.google.com with SMTP id e8so1614807wme.1;
-        Wed, 07 Aug 2019 08:29:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=VG/v2EcjQtU+cEfTNI3UprkTRn21iUqihlnLWb3k5us=;
-        b=XnJXIanO6DT+z/NNIAJBl2xdwwXc1b4c28EKcSXn8OpDji0A83SN/+NDdoqHQVCuwa
-         48kvieuPJwwLoIYqdfm3qNiBVfVLY2VXlnkCzZrvMh20GTh9o8LoI/n8Bo32IglogZy6
-         w8Bn7wDDaOvt8mlIKKa9Otk6kIj6aE/bziEpUioS+gsrcJJA2W1361dahPaaXM9C0+LP
-         +rofKoHfx/q9k6ztoeNdSQeLv+3t9vjjthUN9O+kWt7tOR99fIsarJHV0w/33utSVMrs
-         tc7eZoz8HTz6Yictyamd6QKjw639q3obifcvSOgwJGGmDQdE+oOTqEDE0Y3OX7xTv2Dm
-         w5hg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=VG/v2EcjQtU+cEfTNI3UprkTRn21iUqihlnLWb3k5us=;
-        b=Dv/rqdlc37BkBD/CHNkyphdAJH7kdGiTHQMlYNBu53t/g8LxisobA/FuyYKmwvAVhE
-         lmUdGMIyqC/bLc8dZLIhnNNtbUV/+TcSK44IxJEyRUR7PAEWlqK6X9xMFCmbIc5EomH1
-         3eMn4HxcCg0f5vtOtlx0xRE+Z9rgfG1VZubNflDdtzFT8FkNm1W3TFd3noOgILB2UxW9
-         5GvKqRoscfnw+KoeySBY21LbSp3Fe+SS6o6hj8vDi72kVGQ53QzoNj0q+Gz5mmPKZF2w
-         Nh+cxghkNnYOO86XCsUFS+DsASvrsEw2Z+OGmFivvT1sMd8xkv1WValw6gxZ01boWs6u
-         8ozA==
-X-Gm-Message-State: APjAAAXBlVCtauUSDiuND/IPW5adKAIjDqY2E3XQoPkETeWVfejZuVlS
-        WGBO1hwWg6OT3XxAv1CW7DSxRzCd/ENRa0zzBx0zDECI
-X-Google-Smtp-Source: APXvYqw2rwj2dbTOShRFHhRt4TkyI57KEtaj4B82n3AdjyeJjOGYe3gvF3lE/vwP9WXD9jGhm5Rr8vb2SW0mV/cQFcQ=
-X-Received: by 2002:a7b:c247:: with SMTP id b7mr535018wmj.13.1565191787233;
- Wed, 07 Aug 2019 08:29:47 -0700 (PDT)
+        id S2388602AbfHGPgR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 11:36:17 -0400
+Received: from mga09.intel.com ([134.134.136.24]:57733 "EHLO mga09.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387827AbfHGPgR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Aug 2019 11:36:17 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from orsmga005.jf.intel.com ([10.7.209.41])
+  by orsmga102.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Aug 2019 08:36:16 -0700
+X-IronPort-AV: E=Sophos;i="5.64,357,1559545200"; 
+   d="scan'208";a="349794837"
+Received: from paasikivi.fi.intel.com ([10.237.72.42])
+  by orsmga005-auth.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Aug 2019 08:36:11 -0700
+Received: by paasikivi.fi.intel.com (Postfix, from userid 1000)
+        id 8A00920355; Wed,  7 Aug 2019 18:36:46 +0300 (EEST)
+Date:   Wed, 7 Aug 2019 18:36:46 +0300
+From:   Sakari Ailus <sakari.ailus@linux.intel.com>
+To:     Helen Koike <helen.koike@collabora.com>
+Cc:     linux-rockchip@lists.infradead.org, devicetree@vger.kernel.org,
+        eddie.cai.linux@gmail.com, mchehab@kernel.org, heiko@sntech.de,
+        jacob2.chen@rock-chips.com, jeffy.chen@rock-chips.com,
+        zyc@rock-chips.com, linux-kernel@vger.kernel.org,
+        tfiga@chromium.org, hans.verkuil@cisco.com,
+        laurent.pinchart@ideasonboard.com, kernel@collabora.com,
+        ezequiel@collabora.com, linux-media@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, zhengsq@rock-chips.com,
+        Jacob Chen <cc@rock-chips.com>,
+        Allon Huang <allon.huang@rock-chips.com>
+Subject: Re: [PATCH v8 09/14] media: rkisp1: add rockchip isp1 core driver
+Message-ID: <20190807153646.GO21370@paasikivi.fi.intel.com>
+References: <20190730184256.30338-1-helen.koike@collabora.com>
+ <20190730184256.30338-10-helen.koike@collabora.com>
 MIME-Version: 1.0
-References: <20190723084104.12639-1-daniel.baluta@nxp.com> <20190723084104.12639-4-daniel.baluta@nxp.com>
- <d85909d6-c7cb-c64b-dfa9-6cee6c0da2cb@linux.intel.com>
-In-Reply-To: <d85909d6-c7cb-c64b-dfa9-6cee6c0da2cb@linux.intel.com>
-From:   Daniel Baluta <daniel.baluta@gmail.com>
-Date:   Wed, 7 Aug 2019 18:29:36 +0300
-Message-ID: <CAEnQRZARFQjutkvW3_xkQAQznNm8c5jSjtAG715VtrZnDxztoA@mail.gmail.com>
-Subject: Re: [Sound-open-firmware] [PATCH v2 3/5] ASoC: SOF: Add DT DSP device support
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
-        Marco Felsch <m.felsch@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Aisheng Dong <aisheng.dong@nxp.com>,
-        Peng Fan <peng.fan@nxp.com>, Anson Huang <anson.huang@nxp.com>,
-        Devicetree List <devicetree@vger.kernel.org>,
-        "S.j. Wang" <shengjiu.wang@nxp.com>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Paul Olaru <paul.olaru@nxp.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Leonard Crestez <leonard.crestez@nxp.com>,
-        Fabio Estevam <festevam@gmail.com>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        sound-open-firmware@alsa-project.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190730184256.30338-10-helen.koike@collabora.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 23, 2019 at 6:19 PM Pierre-Louis Bossart
-<pierre-louis.bossart@linux.intel.com> wrote:
->
->
-> > diff --git a/sound/soc/sof/Kconfig b/sound/soc/sof/Kconfig
-> > index 61b97fc55bb2..2aa3a1cdf60c 100644
-> > --- a/sound/soc/sof/Kconfig
-> > +++ b/sound/soc/sof/Kconfig
-> > @@ -36,6 +36,15 @@ config SND_SOC_SOF_ACPI
-> >         Say Y if you need this option
-> >         If unsure select "N".
-> >
-> > +config SND_SOC_SOF_DT
-> > +     tristate "SOF DT enumeration support"
-> > +     select SND_SOC_SOF
-> > +     select SND_SOC_SOF_OPTIONS
-> > +     help
-> > +       This adds support for Device Tree enumeration. This option is
-> > +       required to enable i.MX8 devices.
-> > +       Say Y if you need this option. If unsure select "N".
-> > +
->
-> [snip]
->
-> > diff --git a/sound/soc/sof/imx/Kconfig b/sound/soc/sof/imx/Kconfig
-> > index fff64a9970f0..fa35994a79c4 100644
-> > --- a/sound/soc/sof/imx/Kconfig
-> > +++ b/sound/soc/sof/imx/Kconfig
-> > @@ -12,6 +12,7 @@ if SND_SOC_SOF_IMX_TOPLEVEL
-> >
-> >   config SND_SOC_SOF_IMX8
-> >       tristate "SOF support for i.MX8"
-> > +     select SND_SOC_SOF_DT
->
-> This looks upside down. You should select SOF_DT first then include the
-> NXP stuff.
+Hi Helen,
 
-One more thing: So this should be 'depends on SND_SOC_SOF_DT' right?
+On Tue, Jul 30, 2019 at 03:42:51PM -0300, Helen Koike wrote:
+
+...
+
+> +static int rkisp1_fwnode_parse(struct device *dev,
+> +			       struct v4l2_fwnode_endpoint *vep,
+> +			       struct v4l2_async_subdev *asd)
+> +{
+> +	struct sensor_async_subdev *s_asd =
+> +			container_of(asd, struct sensor_async_subdev, asd);
+> +
+> +	if (vep->bus_type != V4L2_MBUS_CSI2_DPHY) {
+> +		dev_err(dev, "Only CSI2 bus type is currently supported\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	if (vep->base.port != 0) {
+> +		dev_err(dev, "The ISP has only port 0\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	s_asd->mbus.type = vep->bus_type;
+> +	s_asd->mbus.flags = vep->bus.mipi_csi2.flags;
+> +	s_asd->lanes = vep->bus.mipi_csi2.num_data_lanes;
+> +
+> +	switch (vep->bus.mipi_csi2.num_data_lanes) {
+> +	case 1:
+> +		s_asd->mbus.flags |= V4L2_MBUS_CSI2_1_LANE;
+> +		break;
+> +	case 2:
+> +		s_asd->mbus.flags |= V4L2_MBUS_CSI2_2_LANE;
+> +		break;
+> +	case 3:
+> +		s_asd->mbus.flags |= V4L2_MBUS_CSI2_3_LANE;
+> +		break;
+> +	case 4:
+> +		s_asd->mbus.flags |= V4L2_MBUS_CSI2_4_LANE;
+> +		break;
+
+Could you use struct v4l2_fwnode_endpoint directly? The mbus config is a
+legacy struct from bygone times and I'd like to avoid using it in new
+drivers.
+
+> +	default:
+> +		return -EINVAL;
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static const struct v4l2_async_notifier_operations subdev_notifier_ops = {
+> +	.bound = subdev_notifier_bound,
+> +	.unbind = subdev_notifier_unbind,
+> +	.complete = subdev_notifier_complete,
+> +};
+> +
+> +static int isp_subdev_notifier(struct rkisp1_device *isp_dev)
+> +{
+> +	struct v4l2_async_notifier *ntf = &isp_dev->notifier;
+> +	struct device *dev = isp_dev->dev;
+> +	int ret;
+> +
+> +	v4l2_async_notifier_init(ntf);
+> +
+> +	ret = v4l2_async_notifier_parse_fwnode_endpoints_by_port(
+> +		dev, ntf, sizeof(struct sensor_async_subdev), 0,
+> +		rkisp1_fwnode_parse);
+
+I know these functions aren't old but there's a better alternative. See
+e.g. isp_parse_of_endpoints in drivers/media/platform/omap3isp/isp.c or
+cio2_parse_firmware in drivers/media/pci/intel/ipu3/ipu3-cio2.c.
+
+> +	if (ret < 0)
+> +		return ret;
+> +
+> +	if (list_empty(&ntf->asd_list))
+> +		return -ENODEV;	/* no endpoint */
+> +
+> +	ntf->ops = &subdev_notifier_ops;
+> +
+> +	return v4l2_async_notifier_register(&isp_dev->v4l2_dev, ntf);
+> +}
+
+-- 
+Sakari Ailus
+sakari.ailus@linux.intel.com
