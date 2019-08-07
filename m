@@ -2,123 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A2969847DB
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 10:46:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CBB684805
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 10:47:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387533AbfHGIqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 04:46:37 -0400
-Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:53141 "EHLO
-        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S2387452AbfHGIqh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 04:46:37 -0400
-Received: from [IPv6:2001:983:e9a7:1:9c05:4bbc:890e:7747] ([IPv6:2001:983:e9a7:1:9c05:4bbc:890e:7747])
-        by smtp-cloud9.xs4all.net with ESMTPA
-        id vHabhjtKZAffAvHach7Mxn; Wed, 07 Aug 2019 10:46:34 +0200
-Subject: Re: next-20190806: arm64: adv7511 3-0039: failed to find dsi host
-To:     Naresh Kamboju <naresh.kamboju@linaro.org>,
-        Linux-Next Mailing List <linux-next@vger.kernel.org>
-Cc:     Linus Walleij <linus.walleij@linaro.org>, mchehab@kernel.org,
-        robh+dt@kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        linux-media@vger.kernel.org,
-        open list <linux-kernel@vger.kernel.org>,
-        devicetree@vger.kernel.org, agross@kernel.org,
-        david.brown@linaro.org, lkft-triage@lists.linaro.org,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
-References: <CA+G9fYus+cW4775Y2_Xqpc+G6YP_KfjGeCMzoSQq6o2yVY8Q3w@mail.gmail.com>
-From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
-Message-ID: <a9f7c007-8639-0202-c35d-219d371a1842@xs4all.nl>
-Date:   Wed, 7 Aug 2019 10:46:33 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S2387848AbfHGIrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 04:47:16 -0400
+Received: from Mailgw01.mediatek.com ([1.203.163.78]:54677 "EHLO
+        mailgw01.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1728726AbfHGIrP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 04:47:15 -0400
+X-UUID: 641bf1ff151045afb9b53c008c4837f9-20190807
+X-UUID: 641bf1ff151045afb9b53c008c4837f9-20190807
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw01.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1689623142; Wed, 07 Aug 2019 16:46:54 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33DR.mediatek.inc
+ (172.27.6.106) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 7 Aug
+ 2019 16:46:48 +0800
+Received: from mszsdclx1018.gcn.mediatek.inc (172.27.4.253) by
+ MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1395.4 via Frontend Transport; Wed, 7 Aug 2019 16:46:46 +0800
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
+        "Mark Rutland" <mark.rutland@arm.com>,
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+        "Matthias Brugger" <matthias.bgg@gmail.com>
+CC:     Jitao Shi <jitao.shi@mediatek.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        "Rahul Sharma" <rahul.sharma@samsung.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        "Vincent Palatin" <vpalatin@chromium.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        "Philipp Zabel" <p.zabel@pengutronix.de>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        "Sascha Hauer" <kernel@pengutronix.de>,
+        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
+        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
+        <ck.hu@mediatek.com>, <stonea168@163.com>
+Subject: [PATCH v6 0/3] Support mipitx for mt8183
+Date:   Wed, 7 Aug 2019 16:46:42 +0800
+Message-ID: <20190807084645.63738-1-jitao.shi@mediatek.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-In-Reply-To: <CA+G9fYus+cW4775Y2_Xqpc+G6YP_KfjGeCMzoSQq6o2yVY8Q3w@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-CMAE-Envelope: MS4wfApS0b/lMPm7rop7sg4zrGCd+8i5M4UPTpKak97B2soWM1lDxIqMEISdnpCsJMglPti5bkjxmU2Axw9lKEqQw4HCmMOx113b51Z7Ji58DjsbuiIF5JAp
- 2hpTdBYYwQ90Rrq3A8U2qoCTM6Z/JttrqM5JxCTBNphIfY/AuA7m0KHVCvE1pI1IThCds62OiVpyDbYYyzKvnIs52V68cd1UB0l9j4cC+XqxAeAYZmG1mK7w
- xaad+EklKa6qrQnuLMDsiMmDGrhJg+DDCeSMfzRXxZw4ebYXnUtwlo3aYNb5CQR41tCTT/ESrJt/IPPxWzyET4o3F4/YppkFLZgfoIfB5Y3ZQ7IpElrhZz4r
- hV57N0/Yuuoq0T9x7kA9dTXm+F3NWk3J5WKmiB365qLjkOgSI63bfUxmkWT7m+jgjqVzq/TGfjOwkqqmmPirOtmj69K2yV/grgKxrXhMroiuaJ6glk2kq2e+
- BLuAfNaMYLMy6RNaPAwL6o6xAQg0mXGKT+wSjoXbDC1yeypR0ZeSIBVS1myDswQDidoHIohjuLYJN8a7QRZ7dz1F7/rPyRKUZquqdWxLOIlTNnedR96BVikJ
- /APKCq63uC5PmQQtGFwLXihb7WzA7QXNLVXwxAoWFoWdS2ygZkf0LLnZA8ngSsCuDBI/oZMdrqaX8YUMpDr0WRRCF+7SlvbH+O6oUDgqh3ZABG2uX1I1Dq2n
- 2xbI43RkHTE=
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-TM-AS-Product-Ver: SMEX-12.5.0.1684-8.5.1010-24828.001
+X-TM-AS-Result: No-6.934100-8.000000-10
+X-TMASE-MatchedRID: angWuI+ZklDHO8eAxCOj9iAI8aJmq0jwEypq3q87aEEL9Tj77wy87Pib
+        PPdYWnRM+F2zlPAdpe6A45NLifUOpj3qUaC7D/bC/1dEgwtQ6NBcaNB/u5yQq8z/SxKo9mJ4NHw
+        BAGIh28uVta6x57a42xw8w8GZWTrwoqClLVAxl2VDiyuN5FvFNj+k5IvvZ1N/mvnco5r4a3OjxY
+        yRBa/qJcFwgTvxipFajoczmuoPCq1guV9FslmIPhw7K8UtBQeEp3IVzZN0+VdcN1xZFcfLHXIs9
+        fkcQeBP
+X-TM-AS-User-Approved-Sender: No
+X-TM-AS-User-Blocked-Sender: No
+X-TMASE-Result: 10--6.934100-8.000000
+X-TMASE-Version: SMEX-12.5.0.1684-8.5.1010-24828.001
+X-TM-SNTS-SMTP: 64327E99D620C0FC25FBF80F2165C701713A62B3F7AA8C8E730E2B111128E7202000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding dri-devel since this appears to be drm specific and not media
-related.
+Change since v5:
+ - remove mipi_tx->ref_clk
+ - remove mt8183 pll prepare unprepare
 
-Regards,
+Change since v4:
+ - fine tune the mipi_tx->ref_clk and mipi_tx->pll sequence
+   1. Prepare mipi_tx->ref_clk
+   2. Prepare mipi_tx->pll
+   3. Enable mipi_tx->ref_clk
+   4. Enable mipi_tx->pll
 
-	Hans
+Changes since v3:
+ - turn off PLL before setting PLL parameters.
 
-On 8/7/19 10:17 AM, Naresh Kamboju wrote:
-> arm64 devices dragonboard 410c (QC410E) and hi6220-hikey running Linux
-> next-20190806 loading modules causing floods of kernel messages.
-> 
-> We have enabled few extra kernel configs for testing.
-> CONFIG_DRM_I2C_ADV7511=m
-> CONFIG_DRM_I2C_ADV7511_CEC=y
-> ...
-> 
-> Please find below boot log and config file link.
-> 
-> [    0.000000] Linux version 5.3.0-rc3-next-20190806 (oe-user@oe-host)
-> (gcc version 7.3.0 (GCC)) #1 SMP PREEMPT Tue Aug 6 05:49:36 UTC 2019
-> [    0.000000] Machine model: Qualcomm Technologies, Inc. APQ 8016 SBC
-> ....
-> [   10.051193] adv7511 3-0039: 3-0039 supply dvdd not found, using
-> dummy regulator
-> [   10.051633] adv7511 3-0039: 3-0039 supply pvdd not found, using
-> dummy regulator
-> [   10.076257] adreno 1c00000.gpu: Adding to iommu group 0
-> [   10.090929] adv7511 3-0039: 3-0039 supply a2vdd not found, using
-> dummy regulator
-> [   10.101703] msm_mdp 1a01000.mdp: Adding to iommu group 1
-> [   10.102563] msm_mdp 1a01000.mdp: No interconnect support may cause
-> display underflows!
-> [   10.139492] adv7511 3-0039: failed to find dsi host
-> ...
-> [   33.065744] adv7511 3-0039: failed to find dsi host
-> [   33.076721] msm 1a00000.mdss: 1a00000.mdss supply vdd not found,
-> using dummy regulator
-> [   33.078344] msm_mdp 1a01000.mdp: [drm:mdp5_bind [msm]] MDP5 version v1.6
-> [   33.083862] msm 1a00000.mdss: bound 1a01000.mdp (ops mdp5_ops [msm])
-> [   33.090892] msm_dsi 1a98000.dsi: 1a98000.dsi supply gdsc not found,
-> using dummy regulator
-> [   33.097756] msm_dsi 1a98000.dsi: 1a98000.dsi supply gdsc not found,
-> using dummy regulator
-> [   33.106606] msm_dsi_manager_register: failed to register mipi dsi
-> host for DSI 0
-> [   33.114579] msm 1a00000.mdss: failed to bind 1a98000.dsi (ops
-> dsi_ops [msm]): -517
-> [   33.121263] msm 1a00000.mdss: master bind failed: -517
-> [   33.135547] adv7511 3-0039: 3-0039 supply dvdd not found, using
-> dummy regulator
-> [   33.139360] adv7511 3-0039: 3-0039 supply pvdd not found, using
-> dummy regulator
-> [   33.143646] adv7511 3-0039: 3-0039 supply a2vdd not found, using
-> dummy regulator
-> 
-> Full test log
-> https://lkft.validation.linaro.org/scheduler/job/860208#L956
-> 
-> metadata:
->   git branch: master
->   git repo: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
->   git commit: 958eb4327c1761c609bde8e9f7c04e9d1c6fbb96
->   git describe: next-20190806
->   make_kernelversion: 5.3.0-rc3
->   kernel-config:
-> http://snapshots.linaro.org/openembedded/lkft/lkft/sumo/dragonboard-410c/lkft/linux-next/579/config
->   kernel-defconfig:
-> http://snapshots.linaro.org/openembedded/lkft/lkft/sumo/dragonboard-410c/lkft/linux-next/579/defconfig
->   build-location:
-> http://snapshots.linaro.org/openembedded/lkft/lkft/sumo/dragonboard-410c/lkft/linux-next/579
-> 
-> Best regards
-> Naresh Kamboju
-> 
+Changes since v2:
+ - update Acked-by: Rob Herring <robh@kernel.org>
+ - update mt8183 max bit rate support
+
+Changes since v1:
+ - update dt-bindings document for mt8183 mipitx.
+ - remove mtk_mipitx_clk_get_ops and assign clk_ops in probe.
+ - fix the lincence
+ - remove txdiv1 from mtk_mipi_tx_pll_prepare
+
+Jitao Shi (3):
+  dt-bindings: display: mediatek: update dsi supported chips
+  drm/mediatek: separate mipi_tx to different file
+  drm/mediatek: add mipi_tx driver for mt8183
+
+ .../display/mediatek/mediatek,dsi.txt         |   4 +-
+ drivers/gpu/drm/mediatek/Makefile             |   2 +
+ drivers/gpu/drm/mediatek/mtk_mipi_tx.c        | 338 ++----------------
+ drivers/gpu/drm/mediatek/mtk_mipi_tx.h        |  49 +++
+ drivers/gpu/drm/mediatek/mtk_mt8173_mipi_tx.c | 289 +++++++++++++++
+ drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c | 150 ++++++++
+ 6 files changed, 515 insertions(+), 317 deletions(-)
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_mipi_tx.h
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_mt8173_mipi_tx.c
+ create mode 100644 drivers/gpu/drm/mediatek/mtk_mt8183_mipi_tx.c
+
+-- 
+2.21.0
 
