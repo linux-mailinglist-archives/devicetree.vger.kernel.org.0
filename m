@@ -2,142 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FB2983E83
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 02:46:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69E0983E91
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 03:11:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727540AbfHGAqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 20:46:23 -0400
-Received: from mail-qt1-f193.google.com ([209.85.160.193]:43878 "EHLO
-        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727498AbfHGAqX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 20:46:23 -0400
-Received: by mail-qt1-f193.google.com with SMTP id w17so6002249qto.10
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 17:46:22 -0700 (PDT)
+        id S1727550AbfHGBL3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 21:11:29 -0400
+Received: from mail-pl1-f194.google.com ([209.85.214.194]:37753 "EHLO
+        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727538AbfHGBL3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 21:11:29 -0400
+Received: by mail-pl1-f194.google.com with SMTP id b3so38602753plr.4;
+        Tue, 06 Aug 2019 18:11:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=lca.pw; s=google;
-        h=from:content-transfer-encoding:mime-version:subject:message-id:date
-         :cc:to;
-        bh=+nZvNNbEUa3hT+1r/NMmepJfUlIswUH5GSUBiFbLimc=;
-        b=ljHODMp9DZCsdja6NR6A7nf3q2kLMF/lCltRfg1f0HZyEoXSkcmg73nt7DK7RxaOlJ
-         +CAHCuqZ8D0BABrcP1lImp4Q5ANPhJkTRvY0WmrwTa66DQA+bAeBqAPzntQJZLsUMrnk
-         YvfK/fezKA3aU8oQshm1/gaBqiZpPGP/v53GY9Oufq80wrlLfoX2SnQQSApqhIoRh2yT
-         zlKiaHB6ulXLqkGaUOs9N244Yj0NYr5ZrNX1xt5przHXG34BBzwQjxtHuHCUMJUbGemy
-         7kffk+msubnkM9Ooeo10Rqip+wASxJuyaiZdR43KVXoqBK6mKGHRuakCyB0jBFQubvrC
-         enyA==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Dp8mvh65KHuF+NgUue69yu5lshqxJ1qu1kFOwYukDzQ=;
+        b=W0Q2zH5Eprm6HfAF1fdlZeg3FTPVQ9TRhGBsVbp+mOBva0lMNGOLCHaBDt6AKQ3p37
+         0jD4YFEALVWroS5uWoipALMLbTG54RhU+pCS83a0cGwPdKV8rTtyvVCzTX0kVTQRnawX
+         +kg4Uie4N5pipPiCFLuw5Clt90kaPo5kLbZfixFvoK04bOcBzJtlbXd1lhnhVlXAbgBI
+         mo2EUXbnLragIb/ILMFUJSCU9ap2Pbb/M5AdWAElCHh2vy+Sm6L6AvAT9w8V6OZhn3ab
+         rVusdBK/uJ6qUcSxcaWMyXTaAEqq256lDIpDBCbCedJlwUx0Ka911OCJnyO+uL5t/Yxz
+         an8A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:content-transfer-encoding:mime-version
-         :subject:message-id:date:cc:to;
-        bh=+nZvNNbEUa3hT+1r/NMmepJfUlIswUH5GSUBiFbLimc=;
-        b=gnnfTdm4nnZ9m1n20+0XOHLQyV4gmEZnHL7HHZHNOO1H8yRApP9GWYKHZnHDwouFJo
-         g9J2fDduQmqX38dTUbZBoW+jzmDj2l268pfELGj0zNwduKRAHPzcGcqKVXVsQwV47ALa
-         yZbZLKFodORAIRCeSMWWoXQ/UokvPrrLsQNPHx4InG+OtjYNHDMQVSLk7WMrEgZctNwD
-         n6cKFQ+uWaH9dSrxDiNME/HDlVSeRTp61WBbYLbEo3GsYoZ8ATFRWuH084PgG1tAE3uU
-         ZZ3BN2+M7EppxZUEEQH/ToHfcKLTrRyCi7N4+2/0IUoIu6nAtQrT0iRDBB5ZBuim7uve
-         L43A==
-X-Gm-Message-State: APjAAAVCAY8pYJGK6mTQddT3GqZCCRgK88wLHUhSS280i4L/2pPWJqy0
-        BsDz+LgiyPttOv9WX0a3BHKaEA==
-X-Google-Smtp-Source: APXvYqzfn3s4HDkpVhIAkiGkxMbioyoRgDU/o7hx7RXiLskgv/KOyg/Yc93FNgn8l7xpAog6HFdPsw==
-X-Received: by 2002:a0c:ae24:: with SMTP id y33mr5812928qvc.106.1565138781643;
-        Tue, 06 Aug 2019 17:46:21 -0700 (PDT)
-Received: from [192.168.1.153] (pool-71-184-117-43.bstnma.fios.verizon.net. [71.184.117.43])
-        by smtp.gmail.com with ESMTPSA id l19sm49124940qtb.6.2019.08.06.17.46.20
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Tue, 06 Aug 2019 17:46:21 -0700 (PDT)
-From:   Qian Cai <cai@lca.pw>
-Content-Type: text/plain;
-        charset=utf-8
-Content-Transfer-Encoding: quoted-printable
-Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
-Subject: "of/platform: Pause/resume sync state during init and
- of_platform_populate()" with a warning on arm64
-Message-Id: <B4B0AD7F-FA0F-4DA0-9A8B-EAE1CEE11759@lca.pw>
-Date:   Tue, 6 Aug 2019 20:46:20 -0400
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
-To:     Saravana Kannan <saravanak@google.com>
-X-Mailer: Apple Mail (2.3445.104.11)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Dp8mvh65KHuF+NgUue69yu5lshqxJ1qu1kFOwYukDzQ=;
+        b=TMuYbzwRFMiOGywGH19qHMUG71NQXCs8n9KDapIjiPwkpW4dNOVaqRTBx7TksCGFkL
+         ql79j839m7oKBfxP8mwoS/ZQMTmQph/MF4EeUyHGI/Ro7PohHWNWIWBYLzWxBbha1uAd
+         3iA/GvgCsFS4Ow10psfZFmtGedscs57jn1gWLZOCFrFEoIlutB1e8jGxUz5p8/Aq9eQi
+         EiHUMADI4cshXKoHUOiGMNJtaWCXWmr3EUiLPkmBA3nwqNbW4DERXBZXx6EUyLSNWFZu
+         T3Zy3XmDJX5267G8kDrSLs2Qc72nibDv8DStnVApO3kv9JQN+oqzLiZu6DxFDOTX7bsF
+         Dk7Q==
+X-Gm-Message-State: APjAAAWBep9etgj9y3zq43ohgg3InTby8vo1fInx+cnLVHCEyZbSgvkl
+        NEaZaWT08xwcCSV5rfmUP4I=
+X-Google-Smtp-Source: APXvYqyRZhIFjUquoFklw1N6uzzmYgLKw2zn7k7U5o1DoBKZiOMqffr7P9u+UWpRR1/gHtBZTFkxPA==
+X-Received: by 2002:a17:902:8d97:: with SMTP id v23mr5649791plo.157.1565140288366;
+        Tue, 06 Aug 2019 18:11:28 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id w2sm78210147pgc.32.2019.08.06.18.11.27
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 06 Aug 2019 18:11:28 -0700 (PDT)
+Date:   Tue, 6 Aug 2019 18:12:23 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Daniel Baluta <daniel.baluta@gmail.com>
+Cc:     Mark Brown <broonie@kernel.org>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        Linux-ALSA <alsa-devel@alsa-project.org>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Timur Tabi <timur@kernel.org>, Rob Herring <robh@kernel.org>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>,
+        "Angus Ainslie (Purism)" <angus@akkea.ca>,
+        Takashi Iwai <tiwai@suse.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Viorel Suman <viorel.suman@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        Mihai Serban <mihai.serban@gmail.com>,
+        Lucas Stach <l.stach@pengutronix.de>
+Subject: Re: [alsa-devel] [PATCH v2 1/7] ASoC: fsl_sai: Add registers
+ definition for multiple datalines
+Message-ID: <20190807011222.GB8938@Asurada-Nvidia.nvidia.com>
+References: <20190728192429.1514-1-daniel.baluta@nxp.com>
+ <20190728192429.1514-2-daniel.baluta@nxp.com>
+ <20190729194214.GA20594@Asurada-Nvidia.nvidia.com>
+ <CAEnQRZDmnAmgUkRGv3V5S7b5EnYTd2BO5NFuME2CfGb1=nAHzQ@mail.gmail.com>
+ <20190729202001.GC4787@sirena.org.uk>
+ <20190730075934.GA5892@Asurada>
+ <CAEnQRZBpQPoi5OH--c=ubKYc6B3rspmVnb846UTFW7P5SE62ww@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAEnQRZBpQPoi5OH--c=ubKYc6B3rspmVnb846UTFW7P5SE62ww@mail.gmail.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-It looks like the linux-next commit =E2=80=9Cof/platform: Pause/resume =
-sync state during init and of_platform_populate()=E2=80=9D [1]
-Introduced a warning while booting arm64.
+On Tue, Aug 06, 2019 at 02:15:03PM +0300, Daniel Baluta wrote:
+> On Tue, Jul 30, 2019 at 10:59 AM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
+> >
+> > On Mon, Jul 29, 2019 at 09:20:01PM +0100, Mark Brown wrote:
+> > > On Mon, Jul 29, 2019 at 10:57:43PM +0300, Daniel Baluta wrote:
+> > > > On Mon, Jul 29, 2019 at 10:42 PM Nicolin Chen <nicoleotsuka@gmail.com> wrote:
+> > > > > On Sun, Jul 28, 2019 at 10:24:23PM +0300, Daniel Baluta wrote:
+> > >
+> > > > > > @@ -704,7 +711,14 @@ static bool fsl_sai_readable_reg(struct device *dev, unsigned int reg)
+> > > > > >       case FSL_SAI_TCR3:
+> > > > > >       case FSL_SAI_TCR4:
+> > > > > >       case FSL_SAI_TCR5:
+> > > > > > -     case FSL_SAI_TFR:
+> > > > > > +     case FSL_SAI_TFR0:
+> > >
+> > > > > A tricky thing here is that those SAI instances on older SoC don't
+> > > > > support multi data lines physically, while seemly having registers
+> > > > > pre-defined. So your change doesn't sound doing anything wrong to
+> > > > > them at all, I am still wondering if it is necessary to apply them
+> > > > > to newer compatible only though, as for older compatibles of SAI,
+> > > > > these registers would be useless and confusing if being exposed.
+> > >
+> > > > > What do you think?
+> > >
+> > > > Yes, I thought about this too. But, I tried to keep the code as short
+> > > > as possible and technically it is not wrong. When 1 data line is supported
+> > > > for example application will only care about TDR0, TFR0, etc.
+> > >
+> > > So long as it's safe to read the registers (you don't get a bus error or
+> > > anything) I'd say it's more trouble than it's worth to have separate
+> > > regmap configuations just for this.  The main reasons for restricting
+> > > readability are where there's physical problems with doing the reads or
+> > > to keep the size of the debugfs files under control for usability and
+> > > performance reasons.
+> >
+> > Thanks for the input, Mark.
+> >
+> > Daniel, did you get a chance to test it on older SoCs? At least
+> > nothing breaks like bus errors?
+> 
+> Tested on imx6sx-sdb, everything looks good. No bus errors.
 
-[1] =
-https://lore.kernel.org/lkml/20190731221721.187713-6-saravanak@google.com/=
-
-
-[   93.449300][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: ias 44-bit, oas =
-44-bit (features 0x0000170d)
-[   93.464873][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: allocated 524288 =
-entries for cmdq
-[   93.485481][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: allocated 524288 =
-entries for evtq
-[   93.496320][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: option mask 0x2
-[   93.502917][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: ias 44-bit, oas =
-44-bit (features 0x0000170d)
-[   93.621818][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: allocated 524288 =
-entries for cmdq
-[   93.643000][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: allocated 524288 =
-entries for evtq
-[   94.519445][    T1] libphy: Fixed MDIO Bus: probed
-[   94.524649][    T1] EFI Variables Facility v0.08 2004-May-17
-[   94.601166][    T1] NET: Registered protocol family 17
-[   94.766008][    T1] zswap: loaded using pool lzo/zbud
-[   94.774745][    T1] kmemleak: Kernel memory leak detector initialized =
-(mempool size: 16384)
-[   94.774756][ T1699] kmemleak: Automatic memory scanning thread =
-started
-[   94.812338][ T1368] pcieport 0000:0f:00.0: Adding to iommu group 0
-[   94.984466][    T1] ------------[ cut here ]------------
-[   94.989827][    T1] Unmatched sync_state pause/resume!
-[   94.989894][    T1] WARNING: CPU: 25 PID: 1 at =
-drivers/base/core.c:691 =
-device_links_supplier_sync_state_resume+0x100/0x128
-[   95.006062][    T1] Modules linked in:
-[   95.009815][    T1] CPU: 25 PID: 1 Comm: swapper/0 Not tainted =
-5.3.0-rc3-next-20190806+ #11
-[   95.018161][    T1] Hardware name: HPE Apollo 70             =
-/C01_APACHE_MB         , BIOS L50_5.13_1.11 06/18/2019
-[   95.028593][    T1] pstate: 60400009 (nZCv daif +PAN -UAO)
-[   95.034077][    T1] pc : =
-device_links_supplier_sync_state_resume+0x100/0x128
-[   95.041124][    T1] lr : =
-device_links_supplier_sync_state_resume+0x100/0x128
-[   95.048167][    T1] sp : 34ff800806e6fbc0
-[   95.052172][    T1] x29: 34ff800806e6fc00 x28: 0000000000000000=20
-[   95.058177][    T1] x27: 0000000000000000 x26: 0000000000000000=20
-[   95.064181][    T1] x25: 0000000000000038 x24: 0000000000000000=20
-[   95.070185][    T1] x23: 0000000000000000 x22: 0000000000000019=20
-[   95.076189][    T1] x21: 0000000000000000 x20: f9ff808b804e6c50=20
-[   95.082193][    T1] x19: ffff100014a6e600 x18: 0000000000000040=20
-[   95.088197][    T1] x17: 0000000000000000 x16: 86ff80099d581b50=20
-[   95.094201][    T1] x15: 0000000000000000 x14: ffff100010086d1c=20
-[   95.100205][    T1] x13: ffff1000109d8688 x12: ffffffffffffffff=20
-[   95.106209][    T1] x11: 00000000000000f9 x10: ffff0808b804e6c6=20
-[   95.112213][    T1] x9 : 4b71ad522c851d00 x8 : 4b71ad522c851d00=20
-[   95.118217][    T1] x7 : 6170206574617473 x6 : ffff100014076972=20
-[   95.124221][    T1] x5 : 34ff800806e6f8f0 x4 : 000000000000000f=20
-[   95.130225][    T1] x3 : ffff1000101bfa5c x2 : 0000000000000001=20
-[   95.136229][    T1] x1 : 0000000000000001 x0 : 0000000000000022=20
-[   95.142233][    T1] Call trace:
-[   95.145374][    T1]  =
-device_links_supplier_sync_state_resume+0x100/0x128
-[   95.152074][    T1]  of_platform_sync_state_init+0x10/0x1c
-[   95.157557][    T1]  do_one_initcall+0x2f8/0x600
-[   95.162172][    T1]  do_initcall_level+0x37c/0x3fc
-[   95.166959][    T1]  do_basic_setup+0x34/0x4c
-[   95.171313][    T1]  kernel_init_freeable+0x188/0x24c
-[   95.176363][    T1]  kernel_init+0x18/0x334
-[   95.180543][    T1]  ret_from_fork+0x10/0x18
-[   95.184809][    T1] ---[ end trace a9ea68c902540fe5 ]---
-[   95.269085][    T1] Freeing unused kernel memory: 28672K
-[  101.069860][    T1] Checked W+X mappings: passed, no W+X pages found
-[  101.076265][    T1] Run /init as init process
-[  101.186359][    T1] systemd[1]: System time before build time, =
-advancing clock.=
+Okay. Let's just stick to it then. Thanks for the reply.
