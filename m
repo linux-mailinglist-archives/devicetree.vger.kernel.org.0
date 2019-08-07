@@ -2,92 +2,199 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CDD5B844F8
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 08:55:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0D3A58451B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 09:03:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728747AbfHGGzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 02:55:49 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:44502 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728745AbfHGGzt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 02:55:49 -0400
-Received: by mail-wr1-f68.google.com with SMTP id p17so90158547wrf.11
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 23:55:47 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=jCoErHiPNvk13SPfCcqBT6IJoVO0gBMNBIOMvhTHKu4=;
-        b=qpivKekgVXwq+eNUFaaCyUsDmoXANXQ23A0g0oz148wDbeLPXCDJoHF/oqUYv4UXMe
-         0Qyl1XUojpebWB5JVei1yVMMKylhDlmpCUqGKaTNLroELwyxawmAOY3QfQg/YB2/R7yx
-         HY9b93Nx5E4Vnig6g5s/bpQZ15IyFDRJi6l0rJjrH8mp/RikSPmlOqIL3byNr5ma94Nt
-         SnxR+ehNzzlt2riihmWQBn7DQrKxBEDDzkxP9z/JPv1m2nLkMamUtSTD5VTmDkfQ8iJH
-         EkB6Mm1YFtAazfks1fuZT3aLcs2r0CLZHyZmVJFHuq+tGggHTvvkFany5maEqYXv+GGK
-         4VKw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=jCoErHiPNvk13SPfCcqBT6IJoVO0gBMNBIOMvhTHKu4=;
-        b=Xgr2wfekyPe7MCwm4A4zRdOPHXcKsm4mSfYuX9OrYSuIe6ZqQUXkL6yKw1+zW354wT
-         UcEuCzOqWN8n0XKOxakgzeq9c+QZGy8x2YQjaP4cCPqDO3cqqB4jpJgQNDh4Rmz8SO9o
-         4oEm842MhhdmSePAJf2d/GhzpKCYb7xCR+XwZuCHXcPf0m7NXjS2EEszYAcdEs6mndHy
-         TfNtDrc3/4t/OBqHoi/Jd4igcDw3i3NBGEM+ySlf5fihuuEYB3t+jQJaI/doIMi1zbh6
-         VuLDMW0AlCXOIQnQ2xChXNbIijye9a/v8zQRUKJHHCCQpPMGN2u/wh3ZIOAFNmb4VmKy
-         88bQ==
-X-Gm-Message-State: APjAAAVkXONm8v9FEX/jju5AzTZSLKJHMt8nxa7Bf16SNuq4emwq5ogo
-        kSQBGbkFabwQE31oCvey+bzhKL8lDfRp+dLhHgmPbg==
-X-Google-Smtp-Source: APXvYqz5vYJETic8geIvrMG3/Y/wuhAA21T5TNvWpMpv6MeyTEPLTyBjCy9rs3cydr4EEcB3g10arnXVM9KB3ROF83M=
-X-Received: by 2002:adf:b1cb:: with SMTP id r11mr8284877wra.328.1565160946973;
- Tue, 06 Aug 2019 23:55:46 -0700 (PDT)
+        id S1727151AbfHGHDh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 03:03:37 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:60665 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727139AbfHGHDg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 03:03:36 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hvFyq-00015L-Tl; Wed, 07 Aug 2019 09:03:28 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hvFyo-0007J0-Pu; Wed, 07 Aug 2019 09:03:26 +0200
+Date:   Wed, 7 Aug 2019 09:03:26 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     linus.walleij@linaro.org, geert+renesas@glider.be,
+        thierry.reding@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH RFC 6/7] pwm: rcar: Add gpio support to output duty zero
+Message-ID: <20190807070326.cgkbt4kpzhqvo5a3@pengutronix.de>
+References: <1562576868-8124-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1562576868-8124-7-git-send-email-yoshihiro.shimoda.uh@renesas.com>
 MIME-Version: 1.0
-References: <20190803042723.7163-1-atish.patra@wdc.com> <20190803042723.7163-3-atish.patra@wdc.com>
- <20190807065119.GA7825@infradead.org>
-In-Reply-To: <20190807065119.GA7825@infradead.org>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 7 Aug 2019 12:25:35 +0530
-Message-ID: <CAAhSdy2eP+z28XJmP9O6YPftQ=Rg6AwdSrVwu83igrfvYSRKhw@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] RISC-V: Add riscv_isa reprensenting ISA features
- common across CPUs
-To:     Christoph Hellwig <hch@infradead.org>
-Cc:     Atish Patra <atish.patra@wdc.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Alan Kao <alankao@andestech.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Anup Patel <anup.patel@wdc.com>,
-        Johan Hovold <johan@kernel.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
-        Enrico Weigelt <info@metux.net>,
-        Thomas Gleixner <tglx@linutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1562576868-8124-7-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 7, 2019 at 12:21 PM Christoph Hellwig <hch@infradead.org> wrote:
->
-> On Fri, Aug 02, 2019 at 09:27:21PM -0700, Atish Patra wrote:
-> > From: Anup Patel <anup.patel@wdc.com>
-> >
-> > This patch adds riscv_isa integer to represent ISA features common
-> > across all CPUs. The riscv_isa is not same as elf_hwcap because
-> > elf_hwcap will only have ISA features relevant for user-space apps
-> > whereas riscv_isa will have ISA features relevant to both kernel
-> > and user-space apps.
-> >
-> > One of the use case is KVM hypervisor where riscv_isa will be used
-> > to do following operations:
->
-> Please add this to the kvm series.  Right now this is just dead code.
+Hello,
 
-Sure, I will include this patch in KVM series.
+On Mon, Jul 08, 2019 at 06:07:47PM +0900, Yoshihiro Shimoda wrote:
+> The R-Car SoCs PWM Timer cannot output duty zero. So, this patch
+> adds gpio support to output it.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> ---
+>  drivers/pwm/pwm-rcar.c | 36 ++++++++++++++++++++++++++++++++++--
+>  1 file changed, 34 insertions(+), 2 deletions(-)
 
-Regards,
-Anup
+I'd like to see a paragraph at the top of the driver describing the
+limitations of this driver similar to what pwm-sifive.c does.
+
+Something like:
+
+diff --git a/drivers/pwm/pwm-rcar.c b/drivers/pwm/pwm-rcar.c
+index 5b2b8ecc354c..b67ac84db834 100644
+--- a/drivers/pwm/pwm-rcar.c
++++ b/drivers/pwm/pwm-rcar.c
+@@ -3,6 +3,9 @@
+  * R-Car PWM Timer driver
+  *
+  * Copyright (C) 2015 Renesas Electronics Corporation
++ *
++ * Limitations:
++ * - The hardware cannot generate a 0% duty cycle.
+  */
+ 
+ #include <linux/clk.h>
+
+While at it: If there is a publicly available reference manual adding a line:
+
+	Reference Manual: https://...
+
+would be great, too.
+
+> diff --git a/drivers/pwm/pwm-rcar.c b/drivers/pwm/pwm-rcar.c
+> index c8cd43f..1c19a8b 100644
+> --- a/drivers/pwm/pwm-rcar.c
+> +++ b/drivers/pwm/pwm-rcar.c
+> @@ -7,6 +7,7 @@
+>  
+>  #include <linux/clk.h>
+>  #include <linux/err.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/io.h>
+>  #include <linux/log2.h>
+>  #include <linux/math64.h>
+> @@ -38,6 +39,7 @@ struct rcar_pwm_chip {
+>  	struct pwm_chip chip;
+>  	void __iomem *base;
+>  	struct clk *clk;
+> +	struct gpio_desc *gpio;
+>  };
+>  
+>  static inline struct rcar_pwm_chip *to_rcar_pwm_chip(struct pwm_chip *chip)
+> @@ -119,8 +121,11 @@ static int rcar_pwm_set_counter(struct rcar_pwm_chip *rp, int div, int duty_ns,
+>  	ph = tmp & RCAR_PWMCNT_PH0_MASK;
+>  
+>  	/* Avoid prohibited setting */
+> -	if (cyc == 0 || ph == 0)
+> +	if (cyc == 0)
+>  		return -EINVAL;
+> +	/* Try to use GPIO to output duty zero */
+> +	if (ph == 0)
+> +		return -EAGAIN;
+
+If there is no gpio requesting cyc=0 should still yield an error.
+
+>  	rcar_pwm_write(rp, cyc | ph, RCAR_PWMCNT);
+>  
+> @@ -157,6 +162,28 @@ static void rcar_pwm_disable(struct rcar_pwm_chip *rp)
+>  	rcar_pwm_update(rp, RCAR_PWMCR_EN0, 0, RCAR_PWMCR);
+>  }
+>  
+> +static int rcar_pwm_gpiod_get(struct rcar_pwm_chip *rp)
+> +{
+> +	if (rp->gpio)
+> +		return 0;
+> +
+> +	rp->gpio = gpiod_get(rp->chip.dev, "renesas,duty-zero", GPIOD_OUT_LOW);
+> +	if (!IS_ERR(rp->gpio))
+> +		return 0;
+> +
+> +	rp->gpio = NULL;
+> +	return -EINVAL;
+
+Please use gpiod_get_optional() instead of open coding it.
+
+Does getting the gpio automatically switch the pinmuxing?
+
+If yes, this is IMHO a really surprising mis-feature of the gpio
+subsystem. I'd prefer to "get" the gpio at probe time and only switch
+the pinmuxing in .apply(). This makes .apply() quicker, ensures that all
+resources necessary for pwm operation are available, handles
+-EPROBE_DEFER (and maybe other errors) correctly.
+
+Note you're introducing a bug here because switching to gpio doesn't
+ensure that the currently running period is completed.
+
+> +static void rcar_pwm_gpiod_put(struct rcar_pwm_chip *rp)
+> +{
+> +	if (!rp->gpio)
+> +		return;
+> +
+> +	gpiod_put(rp->gpio);
+> +	rp->gpio = NULL;
+> +}
+> +
+>  static int rcar_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>  			  struct pwm_state *state)
+>  {
+> @@ -171,6 +198,7 @@ static int rcar_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>  
+>  	if (!state->enabled) {
+>  		rcar_pwm_disable(rp);
+> +		rcar_pwm_gpiod_put(rp);
+
+From the framework's POV disabling a PWM is quite similar to duty cycle
+0. Assuming disabling the PWM completes the currently running period[1]
+it might be better and easier to disable instead of switching to gpio.
+(Further assuming that disable really yields the inactive level which is
+should and is another limitation if not.)
+
+>  		return 0;
+>  	}
+>  
+> @@ -187,8 +215,12 @@ static int rcar_pwm_apply(struct pwm_chip *chip, struct pwm_device *pwm,
+>  	/* The SYNC should be set to 0 even if rcar_pwm_set_counter failed */
+>  	rcar_pwm_update(rp, RCAR_PWMCR_SYNC, 0, RCAR_PWMCR);
+>  
+> -	if (!ret)
+> +	if (!ret) {
+>  		ret = rcar_pwm_enable(rp);
+> +		rcar_pwm_gpiod_put(rp);
+> +	} else if (ret == -EAGAIN) {
+> +		ret = rcar_pwm_gpiod_get(rp);
+> +	}
+>  
+>  	return ret;
+>  }
+
+Best regards
+Uwe
+
+[1] if not, please add "Disabling doesn't complete the currently running
+    period" to the list of limitations.
+
+-- 
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
