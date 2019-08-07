@@ -2,221 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 263608544C
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 22:09:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E88DF8549D
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 22:46:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388488AbfHGUJt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 16:09:49 -0400
-Received: from vern.gendns.com ([98.142.107.122]:48790 "EHLO vern.gendns.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729934AbfHGUJt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Aug 2019 16:09:49 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Message-Id:Date:Subject:Cc:To:From:Sender:
-        Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
-        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
-        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
-        List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=cnOGeIS4UKyIsT7kCTSHaKO72kTJ1Z3bUf3TbMUBO6A=; b=oGyCbyvKP7eEAFPePScjoAwZhZ
-        M//yl0Sho3FPLHfYg3pn54YbABOC/BI4P8HlSHfcnNvUuF2rDEi36JYHfYsn4SUjWleZ/2oTlr4rG
-        U3OlHRmyS8amozcjA/Yui961iLKrNIptamC/+qOI/I1F15aO0dnhOe0a6K0aBlYpOirb33MJ/6XMI
-        lfMT6MMNgLj+wUSCHYrSU82cHxEFj7LmRtARSiQnXKwajuqO9ERqRE9M+DOsh9uf7mkZy5GybIciF
-        7ZerSqT1Ue29IqW/Dq6lHixUC3wqfyjn3QnC6q5ibnwU9f0+QDWidgJAUJDPlEZ1zdVCw/LA8PrZ3
-        aNkQRLcQ==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:32962 helo=freyr.lechnology.com)
-        by vern.gendns.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <david@lechnology.com>)
-        id 1hvSFm-00043m-2g; Wed, 07 Aug 2019 16:09:46 -0400
-From:   David Lechner <david@lechnology.com>
-To:     linux-omap@vger.kernel.org
-Cc:     David Lechner <david@lechnology.com>,
-        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
-        Tony Lindgren <tony@atomide.com>,
-        Rob Herring <robh+dt@kernel.org>,
+        id S1730097AbfHGUqw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 16:46:52 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:34101 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729934AbfHGUqv (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 16:46:51 -0400
+Received: by mail-ot1-f65.google.com with SMTP id n5so109851991otk.1
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 13:46:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=1drnZsNJ30h8VB1p7exPq6Ba5yiKi2dka+MQPDhn2UQ=;
+        b=jWK9JgU9V08mGULS627pv+JWIbES/c1ddmqDJQCSA18TSPZ65qxQOlPswgfzd06XFf
+         DRuWrk80lcdXWpPZRX+lIiOY93ECSJoiQCGKN/wDU+EHHTbLZ8A9wjLZy2dhklRZT0SV
+         ykhyFs4wnZb/eB8ScZ1OXkw5hUNFhxlruQsR0XTMfWapA9vp6BDhr992fOZ3AEoL2FLA
+         lTbqUyJLr0fHXCfTQ5bhr8BrSoe2tf84CsXyxhWG3n/xTeJIcF9wZwunMgBBHsjHoYc3
+         1k3vEGC/zWh0DYG+xWHddiDWHVd0EVvrz8u2z/NZYuLxsh34HPkSdCGcEmk1//SEwzBY
+         GK7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=1drnZsNJ30h8VB1p7exPq6Ba5yiKi2dka+MQPDhn2UQ=;
+        b=eLUOfyBI1Ihp+iB8AeWmppLsnwDR1lRNn32b0k4pG3DQFuNNz/bWw1sanpTqUZTUeY
+         HqCL1yF0WDH5OhIngkydzXH5Ez3xVWQA8st00FnXkaP2fRkzVO3v40LRhobc+jLquDEK
+         CLKhcMV4pIMtK524Ue1jqiGxeGwCA9z+ZJXTvbaA4EYr1pEHTycDi4CrYSST+n1K/Qkv
+         YOibdkmk7ux7BF8b7zCbt0qe00jcHCGEnMWaeZbQdLQQyDN+InV3qXriRZWdnNmBLUkU
+         T8GirqOiuQC010k9rpT/8y/3XPHJPluYipvyQpDJorrfJ1nInSD3egRtj3yNxTkt/+aa
+         vWBg==
+X-Gm-Message-State: APjAAAUJEQYjJ4ZZDpiwzfLj2/5VNANpapLocRdNuTN+ZVSVSYB9+I47
+        3D+P6VSK/dWkX7kNT9Sz4G07WG8FWZ1S0NNtbn7GaA==
+X-Google-Smtp-Source: APXvYqwL+5I/uBwlSg65FPxVLioe2KXP4DO+byd51b7MUvPmh84Vp0qaLSYhdhuW8vbescgu2ff0lZyh/Irbvl1/Cbc=
+X-Received: by 2002:a9d:6256:: with SMTP id i22mr9805438otk.139.1565210810189;
+ Wed, 07 Aug 2019 13:46:50 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190726231558.175130-1-saravanak@google.com> <20190726231558.175130-3-saravanak@google.com>
+ <fc8e4a77-5544-0dd7-f103-147f87e44a28@linaro.org>
+In-Reply-To: <fc8e4a77-5544-0dd7-f103-147f87e44a28@linaro.org>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Wed, 7 Aug 2019 13:46:14 -0700
+Message-ID: <CAGETcx8n_YfPH1Fbvb2ay5A=AqG60V6nvtfE0s1OAJMhVQjDmA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] OPP: Add support for bandwidth OPP tables
+To:     Georgi Djakov <georgi.djakov@linaro.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Robert Nelson <robertcnelson@gmail.com>
-Subject: [PATCH v2] ARM: dts: am335x-boneblue: Use of am335x-osd335x-common.dtsi
-Date:   Wed,  7 Aug 2019 15:09:34 -0500
-Message-Id: <20190807200934.25173-1-david@lechnology.com>
-X-Mailer: git-send-email 2.17.1
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        "Sweeney, Sean" <seansw@qti.qualcomm.com>,
+        David Dai <daidavid1@codeaurora.org>, adharmap@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        Sibi Sankar <sibis@codeaurora.org>,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Evan Green <evgreen@chromium.org>,
+        Android Kernel Team <kernel-team@android.com>,
+        Linux PM <linux-pm@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This makes use of the am335x-osd335x-common.dtsi file that contains the
-common device tree components for Octavo Systems AM335x System-in-
-Package that is used on the BeagleBone Blue.
+On Wed, Aug 7, 2019 at 5:53 AM Georgi Djakov <georgi.djakov@linaro.org> wrote:
+>
+> Hi Saravana,
+>
+> On 7/27/19 02:15, Saravana Kannan wrote:
+> > Not all devices quantify their performance points in terms of frequency.
+> > Devices like interconnects quantify their performance points in terms of
+> > bandwidth. We need a way to represent these bandwidth levels in OPP. So,
+> > add support for parsing bandwidth OPPs from DT.
+> >
+> > Signed-off-by: Saravana Kannan <saravanak@google.com>
+> > ---
+> >  drivers/opp/of.c  | 41 ++++++++++++++++++++++++++++++++---------
+> >  drivers/opp/opp.h |  4 +++-
+> >  2 files changed, 35 insertions(+), 10 deletions(-)
+> >
+> > diff --git a/drivers/opp/of.c b/drivers/opp/of.c
+> > index b313aca9894f..ac73512f4416 100644
+> > --- a/drivers/opp/of.c
+> > +++ b/drivers/opp/of.c
+> > @@ -523,6 +523,35 @@ void dev_pm_opp_of_remove_table(struct device *dev)
+> >  }
+> >  EXPORT_SYMBOL_GPL(dev_pm_opp_of_remove_table);
+> >
+> > +static int _read_opp_key(struct dev_pm_opp *new_opp, struct device_node *np)
+> > +{
+> > +     int ret;
+> > +     u64 rate;
+> > +     u32 bw;
+> > +
+> > +     ret = of_property_read_u64(np, "opp-hz", &rate);
+> > +     if (!ret) {
+> > +             /*
+> > +              * Rate is defined as an unsigned long in clk API, and so
+> > +              * casting explicitly to its type. Must be fixed once rate is 64
+> > +              * bit guaranteed in clk API.
+> > +              */
+> > +             new_opp->rate = (unsigned long)rate;
+> > +             return 0;
+>
+> So we can't have a single OPP table with both frequency and bandwidth?
 
-This has two minor side-effects:
-1. pinmux_i2c0_pins is renamed to pinmux-i2c0-pins
-2. the 1000MHz cpufreq operating point is enabled
+Right, because we can have only 1 "key" for the OPP table. Having more
+than one "key" for an OPP table makes a lot of things pretty messy.
+Most of the helper functions need to be rewritten to say which key is
+being referred to when searching. A lot of the error checking when
+creating OPP tables becomes convoluted -- can we allow more than one
+OPP entry with the same frequency just because the opp-peak-kBps is
+different? Etc. Seems like a lot of code change for something that I
+don't think is a very useful.
 
-Cc: Robert Nelson <robertcnelson@gmail.com>
-Signed-off-by: David Lechner <david@lechnology.com>
----
+Also, an OPP table is either going to represent performance levels of
+a clock domain (opp-hz) or the performance levels of an interconnect
+path (opp-peak-kBps) or an OPP table for genpd. Mixing them all up is
+just going to make it convoluted with not enough benefit or use case
+that can't be handled as is (separate BW and freq OPP tables).
 
-v2 changes:
-- fix typo s/1MHz/1000MHz/ in commit message
+> > +     }
+> > +
+> > +     ret = of_property_read_u32(np, "opp-peak-KBps", &bw);
+> > +     if (ret)
+> > +             return ret;
+> > +     new_opp->rate = (unsigned long) bw;
+> > +
+> > +     ret = of_property_read_u32(np, "opp-avg-KBps", &bw);
+> > +     if (!ret)
+> > +             new_opp->avg_bw = (unsigned long) bw;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> >  /**
+> >   * _opp_add_static_v2() - Allocate static OPPs (As per 'v2' DT bindings)
+> >   * @opp_table:       OPP table
+> > @@ -560,22 +589,16 @@ static struct dev_pm_opp *_opp_add_static_v2(struct opp_table *opp_table,
+> >       if (!new_opp)
+> >               return ERR_PTR(-ENOMEM);
+> >
+> > -     ret = of_property_read_u64(np, "opp-hz", &rate);
+> > +     ret = _read_opp_key(new_opp, np);
+> >       if (ret < 0) {
+> >               /* "opp-hz" is optional for devices like power domains. */
+> >               if (!opp_table->is_genpd) {
+> > -                     dev_err(dev, "%s: opp-hz not found\n", __func__);
+> > +                     dev_err(dev, "%s: opp-hz or opp-peak-bw not found\n",
+>
+> s/opp-peak-bw/opp-peak-kBps/
 
- arch/arm/boot/dts/am335x-boneblue.dts | 92 +--------------------------
- 1 file changed, 2 insertions(+), 90 deletions(-)
+Thanks. Will fix.
 
-diff --git a/arch/arm/boot/dts/am335x-boneblue.dts b/arch/arm/boot/dts/am335x-boneblue.dts
-index df3978ce061c..cde8dd4320b0 100644
---- a/arch/arm/boot/dts/am335x-boneblue.dts
-+++ b/arch/arm/boot/dts/am335x-boneblue.dts
-@@ -5,23 +5,13 @@
- /dts-v1/;
- 
- #include "am33xx.dtsi"
-+#include "am335x-osd335x-common.dtsi"
- #include <dt-bindings/interrupt-controller/irq.h>
- 
- / {
- 	model = "TI AM335x BeagleBone Blue";
- 	compatible = "ti,am335x-bone-blue", "ti,am33xx";
- 
--	cpus {
--		cpu@0 {
--			cpu0-supply = <&dcdc2_reg>;
--		};
--	};
--
--	memory@80000000 {
--		device_type = "memory";
--		reg = <0x80000000 0x20000000>; /* 512 MB */
--	};
--
- 	chosen {
- 		stdout-path = &uart0;
- 	};
-@@ -142,13 +132,6 @@
- 		>;
- 	};
- 
--	i2c0_pins: pinmux_i2c0_pins {
--		pinctrl-single,pins = <
--			AM33XX_PADCONF(AM335X_PIN_I2C0_SDA, PIN_INPUT_PULLUP, MUX_MODE0)	/* (C17) I2C0_SDA.I2C0_SDA */
--			AM33XX_PADCONF(AM335X_PIN_I2C0_SCL, PIN_INPUT_PULLUP, MUX_MODE0)	/* (C16) I2C0_SCL.I2C0_SCL */
--		>;
--	};
--
- 	i2c2_pins: pinmux_i2c2_pins {
- 		pinctrl-single,pins = <
- 			AM33XX_PADCONF(AM335X_PIN_UART1_CTSN, PIN_INPUT_PULLUP, MUX_MODE3)	/* (D18) uart1_ctsn.I2C2_SDA */
-@@ -352,16 +335,6 @@
- };
- 
- &i2c0 {
--	pinctrl-names = "default";
--	pinctrl-0 = <&i2c0_pins>;
--
--	status = "okay";
--	clock-frequency = <400000>;
--
--	tps: tps@24 {
--		reg = <0x24>;
--	};
--
- 	baseboard_eeprom: baseboard_eeprom@50 {
- 		compatible = "atmel,24c256";
- 		reg = <0x50>;
-@@ -405,66 +378,13 @@
- /include/ "tps65217.dtsi"
- 
- &tps {
--	interrupts = <7>; /* NMI */
--	interrupt-parent = <&intc>;
-+	/delete-property/ ti,pmic-shutdown-controller;
- 
- 	charger {
- 		interrupts = <0>, <1>;
- 		interrupt-names = "USB", "AC";
- 		status = "okay";
- 	};
--
--	pwrbutton {
--		interrupts = <2>;
--		status = "okay";
--	};
--
--	regulators {
--		dcdc1_reg: regulator@0 {
--			regulator-name = "vdds_dpr";
--			regulator-always-on;
--		};
--
--		dcdc2_reg: regulator@1 {
--			/* VDD_MPU voltage limits 0.95V - 1.26V with +/-4% tolerance */
--			regulator-name = "vdd_mpu";
--			regulator-min-microvolt = <925000>;
--			regulator-max-microvolt = <1351500>;
--			regulator-boot-on;
--			regulator-always-on;
--		};
--
--		dcdc3_reg: regulator@2 {
--			/* VDD_CORE voltage limits 0.95V - 1.1V with +/-4% tolerance */
--			regulator-name = "vdd_core";
--			regulator-min-microvolt = <925000>;
--			regulator-max-microvolt = <1150000>;
--			regulator-boot-on;
--			regulator-always-on;
--		};
--
--		ldo1_reg: regulator@3 {
--			regulator-name = "vio,vrtc,vdds";
--			regulator-always-on;
--		};
--
--		ldo2_reg: regulator@4 {
--			regulator-name = "vdd_3v3aux";
--			regulator-always-on;
--		};
--
--		ldo3_reg: regulator@5 {
--			regulator-name = "vdd_1v8";
--			regulator-min-microvolt = <1800000>;
--			regulator-max-microvolt = <1800000>;
--			regulator-always-on;
--		};
--
--		ldo4_reg: regulator@6 {
--			regulator-name = "vdd_3v3a";
--			regulator-always-on;
--		};
--	};
- };
- 
- &mmc1 {
-@@ -526,14 +446,6 @@
- 	};
- };
- 
--&aes {
--	status = "okay";
--};
--
--&sham {
--	status = "okay";
--};
--
- &rtc {
- 	system-power-controller;
- 	clocks = <&clk_32768_ck>, <&clk_24mhz_clkctrl AM3_CLK_24MHZ_CLKDIV32K_CLKCTRL 0>;
--- 
-2.17.1
-
+-Saravana
