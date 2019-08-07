@@ -2,33 +2,57 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 397DC844D2
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 08:51:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CDD5B844F8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 08:55:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727175AbfHGGvU (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 02:51:20 -0400
-Received: from bombadil.infradead.org ([198.137.202.133]:39734 "EHLO
-        bombadil.infradead.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727173AbfHGGvU (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 02:51:20 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=infradead.org; s=bombadil.20170209; h=In-Reply-To:Content-Type:MIME-Version
-        :References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=Qd4/AdtNUI7cbAZE/FUvXQ3ioTcAsFiO76sg1gler2A=; b=l243GXzHr/c7gKuu7GBJ0VpvX
-        uZZVn3OdCqjioHlawxkUeIjySIm7dyJmI66hYv2H3JlXpIzn5ISMGUS9PjdiV1oFhNTpGlQXWKVDX
-        DDGwTva4Cb3GYv3enbI3ECTEZ5JCio1PsomsgaSAiE4xa8hQdjlT1F4HW2tPgonGm5EaGDVyvzwzb
-        cpBxxQSb0gi3j/SG2b1RlHYJ2RBwt9vcWPM2s4XudCXtDGeMaoETLFnQRkIHXmsitcLZUzUCIi4xa
-        0OGf9/2kxWzdeeKG4N5loNPBTkSJKA2DY0kA7miJCd3lrHmHZZqJ4GxCr8DQJn/gVYTEboVjafVXR
-        th3YqXtCw==;
-Received: from hch by bombadil.infradead.org with local (Exim 4.92 #3 (Red Hat Linux))
-        id 1hvFn5-0003Gj-MH; Wed, 07 Aug 2019 06:51:19 +0000
-Date:   Tue, 6 Aug 2019 23:51:19 -0700
-From:   Christoph Hellwig <hch@infradead.org>
-To:     Atish Patra <atish.patra@wdc.com>
-Cc:     linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        id S1728747AbfHGGzt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 02:55:49 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:44502 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728745AbfHGGzt (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 02:55:49 -0400
+Received: by mail-wr1-f68.google.com with SMTP id p17so90158547wrf.11
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 23:55:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=jCoErHiPNvk13SPfCcqBT6IJoVO0gBMNBIOMvhTHKu4=;
+        b=qpivKekgVXwq+eNUFaaCyUsDmoXANXQ23A0g0oz148wDbeLPXCDJoHF/oqUYv4UXMe
+         0Qyl1XUojpebWB5JVei1yVMMKylhDlmpCUqGKaTNLroELwyxawmAOY3QfQg/YB2/R7yx
+         HY9b93Nx5E4Vnig6g5s/bpQZ15IyFDRJi6l0rJjrH8mp/RikSPmlOqIL3byNr5ma94Nt
+         SnxR+ehNzzlt2riihmWQBn7DQrKxBEDDzkxP9z/JPv1m2nLkMamUtSTD5VTmDkfQ8iJH
+         EkB6Mm1YFtAazfks1fuZT3aLcs2r0CLZHyZmVJFHuq+tGggHTvvkFany5maEqYXv+GGK
+         4VKw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=jCoErHiPNvk13SPfCcqBT6IJoVO0gBMNBIOMvhTHKu4=;
+        b=Xgr2wfekyPe7MCwm4A4zRdOPHXcKsm4mSfYuX9OrYSuIe6ZqQUXkL6yKw1+zW354wT
+         UcEuCzOqWN8n0XKOxakgzeq9c+QZGy8x2YQjaP4cCPqDO3cqqB4jpJgQNDh4Rmz8SO9o
+         4oEm842MhhdmSePAJf2d/GhzpKCYb7xCR+XwZuCHXcPf0m7NXjS2EEszYAcdEs6mndHy
+         TfNtDrc3/4t/OBqHoi/Jd4igcDw3i3NBGEM+ySlf5fihuuEYB3t+jQJaI/doIMi1zbh6
+         VuLDMW0AlCXOIQnQ2xChXNbIijye9a/v8zQRUKJHHCCQpPMGN2u/wh3ZIOAFNmb4VmKy
+         88bQ==
+X-Gm-Message-State: APjAAAVkXONm8v9FEX/jju5AzTZSLKJHMt8nxa7Bf16SNuq4emwq5ogo
+        kSQBGbkFabwQE31oCvey+bzhKL8lDfRp+dLhHgmPbg==
+X-Google-Smtp-Source: APXvYqz5vYJETic8geIvrMG3/Y/wuhAA21T5TNvWpMpv6MeyTEPLTyBjCy9rs3cydr4EEcB3g10arnXVM9KB3ROF83M=
+X-Received: by 2002:adf:b1cb:: with SMTP id r11mr8284877wra.328.1565160946973;
+ Tue, 06 Aug 2019 23:55:46 -0700 (PDT)
+MIME-Version: 1.0
+References: <20190803042723.7163-1-atish.patra@wdc.com> <20190803042723.7163-3-atish.patra@wdc.com>
+ <20190807065119.GA7825@infradead.org>
+In-Reply-To: <20190807065119.GA7825@infradead.org>
+From:   Anup Patel <anup@brainfault.org>
+Date:   Wed, 7 Aug 2019 12:25:35 +0530
+Message-ID: <CAAhSdy2eP+z28XJmP9O6YPftQ=Rg6AwdSrVwu83igrfvYSRKhw@mail.gmail.com>
+Subject: Re: [PATCH v4 2/4] RISC-V: Add riscv_isa reprensenting ISA features
+ common across CPUs
+To:     Christoph Hellwig <hch@infradead.org>
+Cc:     Atish Patra <atish.patra@wdc.com>,
+        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
         devicetree@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
         Daniel Lezcano <daniel.lezcano@linaro.org>,
         Alan Kao <alankao@andestech.com>,
@@ -38,34 +62,32 @@ Cc:     linux-kernel@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         Palmer Dabbelt <palmer@sifive.com>,
         Paul Walmsley <paul.walmsley@sifive.com>,
-        linux-riscv@lists.infradead.org, Enrico Weigelt <info@metux.net>,
+        linux-riscv <linux-riscv@lists.infradead.org>,
+        Enrico Weigelt <info@metux.net>,
         Thomas Gleixner <tglx@linutronix.de>
-Subject: Re: [PATCH v4 2/4] RISC-V: Add riscv_isa reprensenting ISA features
- common across CPUs
-Message-ID: <20190807065119.GA7825@infradead.org>
-References: <20190803042723.7163-1-atish.patra@wdc.com>
- <20190803042723.7163-3-atish.patra@wdc.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190803042723.7163-3-atish.patra@wdc.com>
-User-Agent: Mutt/1.11.4 (2019-03-13)
-X-SRS-Rewrite: SMTP reverse-path rewritten from <hch@infradead.org> by bombadil.infradead.org. See http://www.infradead.org/rpr.html
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 02, 2019 at 09:27:21PM -0700, Atish Patra wrote:
-> From: Anup Patel <anup.patel@wdc.com>
-> 
-> This patch adds riscv_isa integer to represent ISA features common
-> across all CPUs. The riscv_isa is not same as elf_hwcap because
-> elf_hwcap will only have ISA features relevant for user-space apps
-> whereas riscv_isa will have ISA features relevant to both kernel
-> and user-space apps.
-> 
-> One of the use case is KVM hypervisor where riscv_isa will be used
-> to do following operations:
+On Wed, Aug 7, 2019 at 12:21 PM Christoph Hellwig <hch@infradead.org> wrote:
+>
+> On Fri, Aug 02, 2019 at 09:27:21PM -0700, Atish Patra wrote:
+> > From: Anup Patel <anup.patel@wdc.com>
+> >
+> > This patch adds riscv_isa integer to represent ISA features common
+> > across all CPUs. The riscv_isa is not same as elf_hwcap because
+> > elf_hwcap will only have ISA features relevant for user-space apps
+> > whereas riscv_isa will have ISA features relevant to both kernel
+> > and user-space apps.
+> >
+> > One of the use case is KVM hypervisor where riscv_isa will be used
+> > to do following operations:
+>
+> Please add this to the kvm series.  Right now this is just dead code.
 
-Please add this to the kvm series.  Right now this is just dead code.
+Sure, I will include this patch in KVM series.
+
+Regards,
+Anup
