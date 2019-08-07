@@ -2,153 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3D4C38521B
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 19:31:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 356C285228
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 19:36:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388852AbfHGRbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 13:31:55 -0400
-Received: from esa3.hgst.iphmx.com ([216.71.153.141]:6213 "EHLO
-        esa3.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387981AbfHGRbz (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 13:31:55 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
-  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
-  t=1565199115; x=1596735115;
-  h=from:to:cc:subject:date:message-id:references:
-   in-reply-to:content-id:content-transfer-encoding:
-   mime-version;
-  bh=cSRbF3vx7WsTqTkzDSX0FtgF2dR9I+cdi+BWPiPCbJo=;
-  b=Lvb67UqQ1XWh0XS+NnoA9Mp3t6x8rG8q7swUUqzYYFoJU82zIo6uqgXu
-   urs8zSC8OHAY1uSSqg/KoHInJxGrZGQCIxYepX695isY/OFjJvCpm/Qxr
-   wqmcw+fOqkmZaeRYzskntO9i46nNr5RD6jmVBkrUeu0qJNHptCEjzLhbp
-   vmUtY8fnTPKOutEcIYCquIu4Jith2CLxmsAVgkI4k0hSFCZnDdhCLm3W+
-   Ipsfh/j/NjDiJCFbSb/9xz5OvdxiPNEC72UANGhIt62tXjRXlptoGLWmu
-   tUm4fuVH0MZn/hUYGyHV37dRBYwYvhPV7iMosIheIffQ5MWdh4X3ZM97K
-   g==;
-IronPort-SDR: 3RFuEkIpreQxFRLyu2TcVlN3fNdZyFsFFs6CIaGQ4cTXbFpszeuKzvROZFc6bhyacY+YwpZBcA
- JPsP9OiMMSgvjYxRFoLS9y5L2iFCiKWLACVDmWH0pEdvEBy3rNkn+UfYamBCC4eg2uX5ffA6U2
- EEAD7nXvULLVGXZvcTlT5IBNCO1LQMfatbx6mi8ZhhD4PG2l3wWVuq53Dzrxl5+FAV/CI3ALEF
- djjSFJ3CIk2NGPtY27de/S1I1mKt00ou5IZN27qBmHQ3n02wf/McDs0guJSAqTspO1hjmqq+LK
- I0I=
-X-IronPort-AV: E=Sophos;i="5.64,358,1559491200"; 
-   d="scan'208";a="119892714"
-Received: from mail-sn1nam02lp2057.outbound.protection.outlook.com (HELO NAM02-SN1-obe.outbound.protection.outlook.com) ([104.47.36.57])
-  by ob1.hgst.iphmx.com with ESMTP; 08 Aug 2019 01:31:53 +0800
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LD557bCRt1Eaum0RtNKIRYOYLCd8po6czAAyHxxeG7jjJYgTWKEUXfotEktRtdZM7YbAxMKMWYmsUuCgRj+R44b0N/w9REFdeofsP4AryXANg5STUOVx0isBAYm1ei6PcEZ374OYtcS0d+2UIZytP77GZFIP75HNZX2bWlJRhXjaHZgMLZUsi+Wz//aCiiEVdd5is6GXz8T5QmDB1AaJctAJjev6cFgNvT9GzSW4bwvbvzhPDLlrCKohnJtD1ztev9BUeCtJ/ZDzduAbgwHGHbwryvzSvGNz/svJ8IEz4XjuoGT37ZWug0OHEOmw8m5RyODZFZNFfg8YLhk2Iids/A==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cSRbF3vx7WsTqTkzDSX0FtgF2dR9I+cdi+BWPiPCbJo=;
- b=BOSJw2WmZq/ftJBbT0fQEijgrckd7TRW1dbJpkimX6SRI2q/Hx1J4Vh0N+MVys31n73t5xcMeSJfc1o3FpdJFiYikvbnfJmGIHYod33Eqi5ULkbGAWrCwG+p2acGOW0zJ+YptfJA9w4i6dr6poe3g/vx9dGlGyTmhIarKIMK0VMX6jBuk2U0keIz2x6OQK5vCWeCcW1hgir+jBzvgUqbXyxjzTrjvGeASYmQhWTsJKgJQXVLCmxJ4ZtupfqJ7P8NpOY+Z0ZEGrPmfiXN3YbROx6udaAUGXNeQkxE7DoHG3ZfTgA9Fg4GH84LGxjV+vNbsJSZnqFcExQxkiRnb66/ng==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=wdc.com;dmarc=pass action=none header.from=wdc.com;dkim=pass
- header.d=wdc.com;arc=none
+        id S2389147AbfHGRgf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 13:36:35 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:38441 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388760AbfHGRgf (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 13:36:35 -0400
+Received: by mail-ot1-f66.google.com with SMTP id d17so107638475oth.5
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 10:36:34 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
- d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=cSRbF3vx7WsTqTkzDSX0FtgF2dR9I+cdi+BWPiPCbJo=;
- b=nrADeVNer+lI68xvVjq6fow7gJEVJH7TOXNUCT4lsVXNbf+CoIlGVPQhaFZWDEIdwG1Muxt4gJCCjBvPreSC+bZd4BiMWU1aojiaa2zQYfDteCVDieJh2nlFwADRedHTZdN4Yn3xTTIpNwnMy87fJRpf4Fm3BAKaQQaMsnF9MUM=
-Received: from BYAPR04MB3782.namprd04.prod.outlook.com (52.135.214.142) by
- BYAPR04MB4055.namprd04.prod.outlook.com (52.135.215.150) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.20; Wed, 7 Aug 2019 17:31:51 +0000
-Received: from BYAPR04MB3782.namprd04.prod.outlook.com
- ([fe80::ac9a:967e:70a5:e926]) by BYAPR04MB3782.namprd04.prod.outlook.com
- ([fe80::ac9a:967e:70a5:e926%7]) with mapi id 15.20.2115.005; Wed, 7 Aug 2019
- 17:31:51 +0000
-From:   Atish Patra <Atish.Patra@wdc.com>
-To:     "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>
-CC:     "info@metux.net" <info@metux.net>,
-        "allison@lohutok.net" <allison@lohutok.net>,
-        "palmer@sifive.com" <palmer@sifive.com>,
-        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        Anup Patel <Anup.Patel@wdc.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "johan@kernel.org" <johan@kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "tiny.windzz@gmail.com" <tiny.windzz@gmail.com>,
-        "gary@garyguo.net" <gary@garyguo.net>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v3 3/5] RISC-V: Fix unsupported isa string info.
-Thread-Topic: [PATCH v3 3/5] RISC-V: Fix unsupported isa string info.
-Thread-Index: AQHVSARDLwisRSZSxEGpcN8B9TVet6buzP8AgAAdjQCAAAOYAIABDdEA
-Date:   Wed, 7 Aug 2019 17:31:51 +0000
-Message-ID: <a2795337bd86ff22ae9618d7ccae22e7482be332.camel@wdc.com>
-References: <20190801005843.10343-1-atish.patra@wdc.com>
-         <20190801005843.10343-4-atish.patra@wdc.com>
-         <alpine.DEB.2.21.9999.1908061625190.13971@viisi.sifive.com>
-         <1e23ef1face9d323fda4b756811f922caa5f7689.camel@wdc.com>
-         <alpine.DEB.2.21.9999.1908061818360.13971@viisi.sifive.com>
-In-Reply-To: <alpine.DEB.2.21.9999.1908061818360.13971@viisi.sifive.com>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=Atish.Patra@wdc.com; 
-x-originating-ip: [199.255.44.250]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 704ebc1d-6d9a-4316-0144-08d71b5d2234
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:BYAPR04MB4055;
-x-ms-traffictypediagnostic: BYAPR04MB4055:
-x-microsoft-antispam-prvs: <BYAPR04MB405580B209D3AD125E2FA110FAD40@BYAPR04MB4055.namprd04.prod.outlook.com>
-wdcipoutbound: EOP-TRUE
-x-ms-oob-tlc-oobclassifiers: OLM:9508;
-x-forefront-prvs: 01221E3973
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(376002)(346002)(136003)(39860400002)(366004)(189003)(199004)(2906002)(76116006)(316002)(66946007)(66556008)(5660300002)(54906003)(86362001)(6246003)(6116002)(11346002)(26005)(186003)(71190400001)(71200400001)(66446008)(64756008)(446003)(478600001)(4326008)(2351001)(66476007)(25786009)(476003)(2616005)(486006)(256004)(3846002)(6486002)(68736007)(102836004)(6916009)(229853002)(6506007)(36756003)(99286004)(8676002)(76176011)(6436002)(6512007)(305945005)(8936002)(66066001)(7736002)(81156014)(118296001)(7416002)(14454004)(81166006)(53936002)(2501003)(5640700003);DIR:OUT;SFP:1102;SCL:1;SRVR:BYAPR04MB4055;H:BYAPR04MB3782.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: ddgQCjxYTgZxIMRU+JkoIVhnf6e/t/PDpe0PSkB8k8vVRkBsAjqIfiApO4cT2jqX9Tw1d66rwz61AL5WAh5UNgTFDJg3KkTVdCzK0ZhvXGuf+e0m0s0B7KdIRnuA17GOqTCumTDSmmsUNKG5T/gHbu0lly92lpBo7Af+8EwD0LTtT7KOLGSyoMR4CgCY6zYX6CdC/aR80bUhZpbSoX2aKOSra5JiP8gAFNfU++cM5bQi6RLMh1q7TCrsMUEokc2eWYHy0jIw27Mmb9lSv4kgsIiMIqQsdLuEIWefKTq6Qi2aj4Ppj8RUcE6jYJdTlRSu3T4MrHMZ3Ekmw/8jTZWl6y2eT3mqGWKA0bdA7YEBlg+5tI6wetAFIMidQc/hGG/RBBHMkkDXf6Hc3kD+igQzjz6ZHcxJrMhQVlRRdYUanqE=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <AB926A394B57D04583BF73AC1DC978FA@namprd04.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=/ahAdMt9y/VNsV/qQd6y/xJHn8I5CpQDY3tZMcrNs4A=;
+        b=ObxZYrA6VNyw2WNd9bgMvlmNcd6/7eKohgKlkt3sxiubQYzfbsyzxbYugiXVl+rX6s
+         KFEry7YGiKl/RAY2GZm9y6E/eUl/XXHmlLb5jkJEPYReR4vAkzelXXuW7WC8PEdwTMSJ
+         KyDx+yOUTM3DrtzDmCVw2B1qL1vPd5kdKRbttLIi3c3Boc/FTIuytauTWGJbpuEAX+S/
+         jmmqu6q0WyUOtRdrCzZGiajrJU1Msg+wObjOEvuoPKnVVlJbKIpg/8PJeGx0RbImPetv
+         NRJEN5oeKRArWHmglyLAamgBHZVl8BAs9J3+WnHNDhilpGpK+MOA5JypatKOPtqwHQ7u
+         ll8Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=/ahAdMt9y/VNsV/qQd6y/xJHn8I5CpQDY3tZMcrNs4A=;
+        b=dkJIpqYBToqPBdcgZALSKYbJbFplgkv+ApgomjfaRRO8ZfWTR9MTwBq7Eq4i1aS8D4
+         AjbksgpjA2UPjUMrMkF/tWzniz2htrkeJEE++Dm7z7+PAVvR7XP6QFADjpnD0qIm5IF8
+         pe50B2Bl2Xxm9cv+l9gW25pxqDrcPD5NU1rWMSe+d6pPr7GMfzuFUnGL1XdMRTifug8J
+         2k4SeI1huAbFfTg9ggeRbYO5a7SJWNYtLXUP18+IqRNjCnKBb3wtcFZFQSM7qhJk2OL6
+         q1JK+KycsJWzR1NWOFtKwJUe6IpA1C9ad+6TZacv4bZ051YJ+z73KNLf5D38DGW3DJIM
+         iA1Q==
+X-Gm-Message-State: APjAAAXlZQPMeouTWK9SPOTFe+RDL7ayYZ0C63uGT6AsoRLc/XFX08++
+        +5FYo/VAx62VgxicVaeQgvEb9OCC5s8jIix08fE=
+X-Google-Smtp-Source: APXvYqzm6lbogH9emHG1HDu2xLWRfSw8r9srFqMIQuNwbv5KIxsLZzTEMC+DTxul5+vbGLi2ABtMU/29NyjFq/6ZiJs=
+X-Received: by 2002:a9d:6742:: with SMTP id w2mr9272816otm.371.1565199394377;
+ Wed, 07 Aug 2019 10:36:34 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: wdc.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 704ebc1d-6d9a-4316-0144-08d71b5d2234
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2019 17:31:51.4497
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: Atish.Patra@wdc.com
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4055
+References: <20190806140135.4739-1-anarsoul@gmail.com> <89402d22-d432-9551-e787-c8ede16dbe5f@arm.com>
+ <CA+E=qVfh7mirJhRsDTeuAVgG55ia936uFSFVKR0N5Pn4GCF1UA@mail.gmail.com>
+ <E1hv5vZ-0000jN-M8@stardust.g4.wien.funkfeuer.at> <CA+E=qVdHOtebR6xjpwTY_Whp0cHLtv82YULmxLPSEzdLN9TnVg@mail.gmail.com>
+ <36e60078-7dd5-9c07-ffa1-6092d8c70fa8@arm.com> <CA+E=qVeAR4AFN99ZVy8EZLW6p_8ucTewOdMis37wnpV3DObaGg@mail.gmail.com>
+ <20190807115614.phm7sbyae6yajkug@flea>
+In-Reply-To: <20190807115614.phm7sbyae6yajkug@flea>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Wed, 7 Aug 2019 10:36:08 -0700
+Message-ID: <CA+E=qVdh3MHMsEC9XKe5-7O8fGTHFh76WLOgVf+PZPv7c4JE9w@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "Jared D . McNeill" <jmcneill@netbsd.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gVHVlLCAyMDE5LTA4LTA2IGF0IDE4OjI2IC0wNzAwLCBQYXVsIFdhbG1zbGV5IHdyb3RlOg0K
-PiBPbiBXZWQsIDcgQXVnIDIwMTksIEF0aXNoIFBhdHJhIHdyb3RlOg0KPiANCj4gPiBPbiBUdWUs
-IDIwMTktMDgtMDYgYXQgMTY6MjcgLTA3MDAsIFBhdWwgV2FsbXNsZXkgd3JvdGU6DQo+ID4gDQo+
-ID4gPiBTZWVtcyBsaWtlIHRoZSAic3UiIHNob3VsZCBiZSBkcm9wcGVkIGZyb20gbWFuZGF0b3J5
-X2V4dC4gIFdoYXQNCj4gPiA+IGRvIHlvdSANCj4gPiA+IHRoaW5rPw0KPiA+ID4gDQo+ID4gDQo+
-ID4gWXVwLiBBcyBEVCBiaW5kaW5nIG9ubHkgbWVudGlvbiBpbWFmZGMsIG1hbmRhdG9yeSBleHRl
-bnNpb25zIHNob3VsZA0KPiA+IGNvbnRhaW4gb25seSB0aGF0IGFuZCBqdXN0IGNvbnNpZGVyICJz
-dSIgZXh0ZW5zaW9ucyBhcmUgY29uc2lkZXJlZA0KPiA+IGFzDQo+ID4gaW1wbGljaXQgYXMgd2Ug
-YXJlIHJ1bm5pbmcgTGludXguIA0KPiANCj4gRGlzY3Vzc2luZyB0aGlzIHdpdGggQW5kcmV3IGFu
-ZCBQYWxtZXIsIGl0IGxvb2tzIGxpa2UgInN1IiBpcw0KPiBjdXJyZW50bHkgDQo+IG5vbi1jb21w
-bGlhbnQuICBTZWN0aW9uIDIyLjYgb2YgdGhlIHVzZXItbGV2ZWwgc3BlY2lmaWNhdGlvbiBzdGF0
-ZXMNCj4gdGhhdCANCj4gdGhlICJzIiBjaGFyYWN0ZXIgaW5kaWNhdGVzIHRoYXQgYSBsb25nZXIg
-c3RhbmRhcmQgc3VwZXJ2aXNvcg0KPiBleHRlbnNpb24gDQo+IG5hbWUgd2lsbCBmb2xsb3cuICBT
-byBmYXIgSSBkb24ndCB0aGluayBhbnkgb2YgdGhlc2UgaGF2ZSBiZWVuDQo+IGRlZmluZWQuDQo+
-IA0KPiA+IERvIHlvdSB0aGluayBRRU1VIERUIHNob3VsZCBiZSB1cGRhdGVkIHRvIHJlZmxlY3Qg
-dGhhdCA/DQo+IA0KPiBZZXMuDQo+IA0KPiA+ID4gVGhlcmUncyBubyBLY29uZmlnIG9wdGlvbiBi
-eSB0aGlzIG5hbWUsIGFuZCB3ZSdyZSByZXF1aXJpbmcNCj4gPiA+IGNvbXByZXNzZWQgDQo+ID4g
-DQo+ID4gU29ycnkuIFRoaXMgd2FzIGEgdHlwby4gSXQgc2hvdWxkIGhhdmUgYmVlbiBDT05GSUdf
-UklTQ1ZfSVNBX0MuDQo+ID4gDQo+ID4gPiBpbnN0cnVjdGlvbiBzdXBwb3J0IGFzIHBhcnQgb2Yg
-dGhlIFJJU0MtViBMaW51eCBiYXNlbGluZS4gIENvdWxkDQo+ID4gPiB5b3UgDQo+ID4gPiBzaGFy
-ZSB0aGUgcmF0aW9uYWxlIGJlaGluZCB0aGlzPw0KPiA+IA0KPiA+IEkgdGhpbmsgSSBhZGRlZCB0
-aGlzIGNoZWNrIGF0IHRoZSBjb25maWcgZmlsZS4gTG9va2luZyBhdCB0aGUNCj4gPiBLY29uZmln
-LA0KPiA+IFJJU0NWX0lTQV9DIGlzIGFsd2F5cyBlbmFibGVkLiBTbyB3ZSBjYW4gZHJvcCB0aGlz
-Lg0KPiANCj4gT0sgZ3JlYXQuICBEbyB5b3Ugd2FudCB0byByZXNlbmQgYW4gdXBkYXRlZCBwYXRj
-aCwgb3Igd291bGQgeW91IGxpa2UNCj4gbWUgdG8gDQo+IGZpeCBpdCB1cCBoZXJlPw0KPiANCg0K
-SSBhbSBzZW5kaW5nIHRoZSBwYXRjaCByaWdodCBub3cuIFdlIGNhbiByZW1vdmUgdGhlICdTJyBt
-b2RlIGNoZWNrIGFzDQpwYWxtZXIgaGF2ZSBhbHJlYWR5IHNlbnQgdGhlIFFFTVUgcGF0Y2ggYXMg
-d2VsbCwgLg0KDQpSZWdhcmRzLA0KQXRpc2gNCj4gSSdsbCBhbHNvIHNlbmQgYSBwYXRjaCB0byBk
-cm9wIENPTkZJR19SSVNDVl9JU0FfQy4NCj4gDQo+IA0KPiAtIFBhdWwNCg0K
+On Wed, Aug 7, 2019 at 4:56 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> On Tue, Aug 06, 2019 at 07:39:26PM -0700, Vasily Khoruzhick wrote:
+> > On Tue, Aug 6, 2019 at 2:14 PM Robin Murphy <robin.murphy@arm.com> wrote:
+> > >
+> > > On 2019-08-06 9:52 pm, Vasily Khoruzhick wrote:
+> > > > On Tue, Aug 6, 2019 at 1:19 PM Harald Geyer <harald@ccbib.org> wrote:
+> > > >>
+> > > >> Vasily Khoruzhick writes:
+> > > >>> On Tue, Aug 6, 2019 at 7:35 AM Robin Murphy <robin.murphy@arm.com> wrote:
+> > > >>>>
+> > > >>>> On 06/08/2019 15:01, Vasily Khoruzhick wrote:
+> > > >>>>> Looks like PMU in A64 is broken, it generates no interrupts at all and
+> > > >>>>> as result 'perf top' shows no events.
+> > > >>>>
+> > > >>>> Does something like 'perf stat sleep 1' at least count cycles correctly?
+> > > >>>> It could well just be that the interrupt numbers are wrong...
+> > > >>>
+> > > >>> Looks like it does, at least result looks plausible:
+> > > >>
+> > > >> I'm using perf stat regularly (cache benchmarks) and it works fine.
+> > > >>
+> > > >> Unfortunately I wasn't aware that perf stat is a poor test for
+> > > >> the interrupts part of the node, when I added it. So I'm not too
+> > > >> surprised I got it wrong.
+> > > >>
+> > > >> However, it would be unfortunate if the node got removed completely,
+> > > >> because perf stat would not work anymore. Maybe we can only remove
+> > > >> the interrupts or just fix them even if the HW doesn't work?
+> > > >
+> > > > I'm not familiar with PMU driver. Is it possible to get it working
+> > > > without interrupts?
+> > >
+> > > Yup - you get a grumpy message from the driver, it will refuse sampling
+> > > events (the ones which weren't working anyway), and if you measure
+> > > anything for long enough that a counter overflows you'll get wonky
+> > > results. But for counting hardware events over relatively short periods
+> > > it'll still do the job.
+> >
+> > I tried to drop interrupts completely from the node but 'perf top' is
+> > still broken. Though now in different way: it complains "cycles: PMU
+> > Hardware doesn't support sampling/overflow-interrupts. Try 'perf
+> > stat'"
+>
+> I have no idea if that's the culprit, but what is the state of the
+> 0x09010000 register?
+
+What register is that and how do I check it?
+
+> (in particular, are the bits 16-19 and 24 set or not?
+>
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
