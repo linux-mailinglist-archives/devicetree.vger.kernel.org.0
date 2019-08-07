@@ -2,90 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1CEDF8446D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 08:22:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AE3CB8447E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 08:34:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726773AbfHGGWq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 02:22:46 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:45616 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726734AbfHGGWq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 02:22:46 -0400
-Received: by mail-pl1-f196.google.com with SMTP id y8so39122151plr.12;
-        Tue, 06 Aug 2019 23:22:45 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:subject:date:message-id;
-        bh=kPrp8nG0QEUeUMz0Ak8tH6QVQCe9QZAzvRu9tkMhvlo=;
-        b=gU1EKsK1Xyi6hcBW6jyVX8/FHdkfrg/w6z63scbu08I6eQ7OAaNRJPgW9ruJX4/Y+K
-         z2IlG3Rg9ftGpfxRuzTtAeQiZn7z1cPxoumMQSsF6F6cXwXGtDx0m2VWa0lB2BbfwNfM
-         u+iuU7VF0waiurTMx7rL876gKo4yT7AH1UDdc87OwayRN3VGyzsKdHylvAzzEGOk740i
-         +ctWa4dcQsWKWHqdhTApg7mhRAsV0llo6gh24iycRdfyuq5NKMAYTVx4EL0RK6exYjYg
-         HN71UKBcPweK27Vas50YA4tT3EVPrWkvFVuokAZck0OFCvTgYcp9/gGNZ2mQR99SXUjQ
-         XHbw==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id;
-        bh=kPrp8nG0QEUeUMz0Ak8tH6QVQCe9QZAzvRu9tkMhvlo=;
-        b=V200gw/fB0GtTWgenOQe0NLO607rf6IBAbastK0cqO4QQlAk85VuzAnsVPIeGAfy2c
-         5KxrdevuhdzTCFIEHuKup/pUw4J0iBjnmcRt2bapa8uaBp21OBjQ94b46Mlfbh6395Vx
-         nX2tfWhKTOON+LkGKXyem63fNL9RI8rBAUPah127z7baD74/+Pe+K+JmNbKggXxUQDPj
-         NvdDJFY7f/Kxb14ZQKEhzlGCnzbYG/kcWxt86ecuL5McjWMVMpQSLtBv/9vq3mIg/V+S
-         XRg0xcneDKC3xW6USMbunrXuYk1Vloju8cBO/XNXcVhjBzx1kJ3JB2yrZxdiXlXtKEum
-         8nIg==
-X-Gm-Message-State: APjAAAWqeWSMzpWTowb4AhraqCgmj3znVwR+rAPgJppw9CEQoSCpVyzG
-        nWfV0ioqbiSfbOSbJeEJU1U=
-X-Google-Smtp-Source: APXvYqxSbOLXgQl6/SQk96QnmwJwXxYdXa/z4z0jNJd2HaSUW02GPmODddxX9YrVdZTnTWGGTmJC1w==
-X-Received: by 2002:aa7:81d9:: with SMTP id c25mr7795660pfn.255.1565158965373;
-        Tue, 06 Aug 2019 23:22:45 -0700 (PDT)
-Received: from localhost.localdomain (unknown-224-80.windriver.com. [147.11.224.80])
-        by smtp.gmail.com with ESMTPSA id 85sm95310585pfv.130.2019.08.06.23.22.44
-        (version=TLS1 cipher=AES128-SHA bits=128/128);
-        Tue, 06 Aug 2019 23:22:44 -0700 (PDT)
-From:   Bin Meng <bmeng.cn@gmail.com>
-To:     Albert Ou <aou@eecs.berkeley.edu>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Paul Walmsley <paul.walmsley@sifive.com>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-riscv@lists.infradead.org
-Subject: [PATCH] riscv: dts: sifive: Add missing "clock-frequency" to cpu0/cpu1 nodes
-Date:   Tue,  6 Aug 2019 23:22:40 -0700
-Message-Id: <1565158960-12240-1-git-send-email-bmeng.cn@gmail.com>
-X-Mailer: git-send-email 1.7.1
+        id S1726734AbfHGGd7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 02:33:59 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:53931 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727175AbfHGGd7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 02:33:59 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hvFWD-0006o9-6A; Wed, 07 Aug 2019 08:33:53 +0200
+Received: from ukl by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <ukl@pengutronix.de>)
+        id 1hvFW8-0005rn-Rv; Wed, 07 Aug 2019 08:33:48 +0200
+Date:   Wed, 7 Aug 2019 08:33:48 +0200
+From:   Uwe =?iso-8859-1?Q?Kleine-K=F6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+To:     Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+Cc:     linus.walleij@linaro.org, geert+renesas@glider.be,
+        thierry.reding@gmail.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        linux-gpio@vger.kernel.org, linux-pwm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
+Subject: Re: [PATCH RFC 5/7] pwm: rcar: remove a redundant condition in
+ rcar_pwm_apply()
+Message-ID: <20190807063348.vpjh2ptpg7sgy3gm@pengutronix.de>
+References: <1562576868-8124-1-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+ <1562576868-8124-6-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=iso-8859-1
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <1562576868-8124-6-git-send-email-yoshihiro.shimoda.uh@renesas.com>
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: ukl@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the missing "clock-frequency" property to the cpu0/cpu1 nodes
-for consistency with other cpu nodes.
+Hello,
 
-Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
----
+On Mon, Jul 08, 2019 at 06:07:46PM +0900, Yoshihiro Shimoda wrote:
+> Since the rcar_pwm_apply() has already check whehter state->enabled
+> is not set or not, this patch removes a redundant condition.
+> 
+> Signed-off-by: Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 
- arch/riscv/boot/dts/sifive/fu540-c000.dtsi | 2 ++
- 1 file changed, 2 insertions(+)
+Reviewed-by: Uwe Kleine-König <u.kleine-koenig@pengutronix.de>
 
-diff --git a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-index 42b5ec2..4befc70 100644
---- a/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-+++ b/arch/riscv/boot/dts/sifive/fu540-c000.dtsi
-@@ -22,6 +22,7 @@
- 		#address-cells = <1>;
- 		#size-cells = <0>;
- 		cpu0: cpu@0 {
-+			clock-frequency = <0>;
- 			compatible = "sifive,e51", "sifive,rocket0", "riscv";
- 			device_type = "cpu";
- 			i-cache-block-size = <64>;
-@@ -37,6 +38,7 @@
- 			};
- 		};
- 		cpu1: cpu@1 {
-+			clock-frequency = <0>;
- 			compatible = "sifive,u54-mc", "sifive,rocket0", "riscv";
- 			d-cache-block-size = <64>;
- 			d-cache-sets = <64>;
+This patch (and also patch 6 of this series) doesn't seem to have made
+it to the pwm list and pwm patchwork.
+
+Best regards
+Uwe
+
 -- 
-2.7.4
-
+Pengutronix e.K.                           | Uwe Kleine-König            |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
