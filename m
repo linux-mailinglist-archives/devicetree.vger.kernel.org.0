@@ -2,499 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 47D0B83E77
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 02:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5FB2983E83
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 02:46:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727644AbfHGAiJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 20:38:09 -0400
-Received: from new1-smtp.messagingengine.com ([66.111.4.221]:56751 "EHLO
-        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1726542AbfHGAiI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 20:38:08 -0400
-Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
-        by mailnew.nyi.internal (Postfix) with ESMTP id E0B2F27D7;
-        Tue,  6 Aug 2019 20:38:06 -0400 (EDT)
-Received: from mailfrontend2 ([10.202.2.163])
-  by compute4.internal (MEProxy); Tue, 06 Aug 2019 20:38:06 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
-        :to:cc:subject:date:message-id:in-reply-to:references
-        :mime-version:content-transfer-encoding; s=fm3; bh=0AhfLkPhnd4xC
-        wAQK+J4LZ4tY5K4fs7DvSdi94mwKvI=; b=lq3qZoilyXTaJIGwUihhB5rPeRlpk
-        2SU4LTn//Gah2WBfO1mgeKgoOG54UkdAiO5LDOb35KIvGJlDl8ur8fTBLEGMca8z
-        jkxAHb5EOI03OrpG+AXuRpBnAo1Di23DJh7RWST/eW5QbpqOGdmjUkeZ/VJ4izd9
-        GaeX3kRVDWCYmVwB2xniee1A1vNrbf570MzxWGcnOJH9fZ1IjqmWyFMZOm5ygvRR
-        htA5NwleKFsVwIjdQ2YDiNSIh+bH5RJd5mgHq8CZIcu2hZ8f0EqRyhap+1yywvQ8
-        F9PjEq1pk4LRsbvgUtVIqzwy0LV7/EZCwgOAapWpB54TAiSEeLwx7zYNQ==
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
-        messagingengine.com; h=cc:content-transfer-encoding:date:from
-        :in-reply-to:message-id:mime-version:references:subject:to
-        :x-me-proxy:x-me-proxy:x-me-sender:x-me-sender:x-sasl-enc; s=
-        fm3; bh=0AhfLkPhnd4xCwAQK+J4LZ4tY5K4fs7DvSdi94mwKvI=; b=nMvXkW+a
-        tVR1nh8jQRgOAZVrBVjWtyuxWyiVepuNRVRa/gOHMLujZIn4GjlrMnRby78Bwyri
-        u7uXM37oqYekV4dqDnhSXTWFSVeRnDDbXc1S+dD6oF3Y7FHwmTYobvnPVAkIRbTl
-        PLmrijfH8ZTXTh4mSo1Oq6Q6M9uAvov5V+DmI6DGEdyzYr6oaT2QqwrA8WaPm0TK
-        Jg5J71japt4zzF9iJQXNRRv27nWOdp4M5Msw3GetiIStLtYmorZEy/7E+hdfhigI
-        FDyTbRiqVqtOg1AOyu6q37N32/qdUQ+NITqVDnIoSYVtnBVxwX7HlTMv1eqMi7sN
-        +gMmksQP+e96jQ==
-X-ME-Sender: <xms:bh1KXXl0CB347ZbHuPkBuNTx_MS-jhhDSqw6J-4jrwNQt_R5Ke7IUA>
-X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudduuddgfeejucetufdoteggodetrfdotf
-    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
-    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgjfhgggfestdekre
-    dtredttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegr
-    jhdrihgurdgruheqnecukfhppedvtddvrdekuddrudekrdeftdenucfrrghrrghmpehmrg
-    hilhhfrhhomheprghnughrvgifsegrjhdrihgurdgruhenucevlhhushhtvghrufhiiigv
-    pedt
-X-ME-Proxy: <xmx:bh1KXWb3AVFyi12UXTEaQeDAxK09XYAlF9WtaspZprD4ToVieliKGA>
-    <xmx:bh1KXU5E8_xAepe445YJt9RNtkYnQJgouhRRuL_FJLg8W3KJr6vNmg>
-    <xmx:bh1KXX9sri6BZDpo6NXHIFS0zxl_3yLSjDc5Fl-OG5ZQWamLZmmUkA>
-    <xmx:bh1KXUHPudhEGSTx__Y3DReRu204Wc1l_xBL7hBLVBqVKdmhD1_AsQ>
-Received: from mistburn.au.ibm.com (bh02i525f01.au.ibm.com [202.81.18.30])
-        by mail.messagingengine.com (Postfix) with ESMTPA id 84135380086;
-        Tue,  6 Aug 2019 20:38:02 -0400 (EDT)
-From:   Andrew Jeffery <andrew@aj.id.au>
-To:     linux-mmc@vger.kernel.org
-Cc:     Andrew Jeffery <andrew@aj.id.au>, ulf.hansson@linaro.org,
-        robh+dt@kernel.org, mark.rutland@arm.com, joel@jms.id.au,
-        adrian.hunter@intel.com, devicetree@vger.kernel.org,
+        id S1727540AbfHGAqX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 20:46:23 -0400
+Received: from mail-qt1-f193.google.com ([209.85.160.193]:43878 "EHLO
+        mail-qt1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727498AbfHGAqX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 20:46:23 -0400
+Received: by mail-qt1-f193.google.com with SMTP id w17so6002249qto.10
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 17:46:22 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=lca.pw; s=google;
+        h=from:content-transfer-encoding:mime-version:subject:message-id:date
+         :cc:to;
+        bh=+nZvNNbEUa3hT+1r/NMmepJfUlIswUH5GSUBiFbLimc=;
+        b=ljHODMp9DZCsdja6NR6A7nf3q2kLMF/lCltRfg1f0HZyEoXSkcmg73nt7DK7RxaOlJ
+         +CAHCuqZ8D0BABrcP1lImp4Q5ANPhJkTRvY0WmrwTa66DQA+bAeBqAPzntQJZLsUMrnk
+         YvfK/fezKA3aU8oQshm1/gaBqiZpPGP/v53GY9Oufq80wrlLfoX2SnQQSApqhIoRh2yT
+         zlKiaHB6ulXLqkGaUOs9N244Yj0NYr5ZrNX1xt5przHXG34BBzwQjxtHuHCUMJUbGemy
+         7kffk+msubnkM9Ooeo10Rqip+wASxJuyaiZdR43KVXoqBK6mKGHRuakCyB0jBFQubvrC
+         enyA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:content-transfer-encoding:mime-version
+         :subject:message-id:date:cc:to;
+        bh=+nZvNNbEUa3hT+1r/NMmepJfUlIswUH5GSUBiFbLimc=;
+        b=gnnfTdm4nnZ9m1n20+0XOHLQyV4gmEZnHL7HHZHNOO1H8yRApP9GWYKHZnHDwouFJo
+         g9J2fDduQmqX38dTUbZBoW+jzmDj2l268pfELGj0zNwduKRAHPzcGcqKVXVsQwV47ALa
+         yZbZLKFodORAIRCeSMWWoXQ/UokvPrrLsQNPHx4InG+OtjYNHDMQVSLk7WMrEgZctNwD
+         n6cKFQ+uWaH9dSrxDiNME/HDlVSeRTp61WBbYLbEo3GsYoZ8ATFRWuH084PgG1tAE3uU
+         ZZ3BN2+M7EppxZUEEQH/ToHfcKLTrRyCi7N4+2/0IUoIu6nAtQrT0iRDBB5ZBuim7uve
+         L43A==
+X-Gm-Message-State: APjAAAVCAY8pYJGK6mTQddT3GqZCCRgK88wLHUhSS280i4L/2pPWJqy0
+        BsDz+LgiyPttOv9WX0a3BHKaEA==
+X-Google-Smtp-Source: APXvYqzfn3s4HDkpVhIAkiGkxMbioyoRgDU/o7hx7RXiLskgv/KOyg/Yc93FNgn8l7xpAog6HFdPsw==
+X-Received: by 2002:a0c:ae24:: with SMTP id y33mr5812928qvc.106.1565138781643;
+        Tue, 06 Aug 2019 17:46:21 -0700 (PDT)
+Received: from [192.168.1.153] (pool-71-184-117-43.bstnma.fios.verizon.net. [71.184.117.43])
+        by smtp.gmail.com with ESMTPSA id l19sm49124940qtb.6.2019.08.06.17.46.20
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 06 Aug 2019 17:46:21 -0700 (PDT)
+From:   Qian Cai <cai@lca.pw>
+Content-Type: text/plain;
+        charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Mime-Version: 1.0 (Mac OS X Mail 12.4 \(3445.104.11\))
+Subject: "of/platform: Pause/resume sync state during init and
+ of_platform_populate()" with a warning on arm64
+Message-Id: <B4B0AD7F-FA0F-4DA0-9A8B-EAE1CEE11759@lca.pw>
+Date:   Tue, 6 Aug 2019 20:46:20 -0400
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         linux-arm-kernel@lists.infradead.org,
-        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        ryanchen.aspeed@gmail.com
-Subject: [PATCH v5 2/2] mmc: Add support for the ASPEED SD controller
-Date:   Wed,  7 Aug 2019 10:06:29 +0930
-Message-Id: <20190807003629.2974-3-andrew@aj.id.au>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190807003629.2974-1-andrew@aj.id.au>
-References: <20190807003629.2974-1-andrew@aj.id.au>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
+To:     Saravana Kannan <saravanak@google.com>
+X-Mailer: Apple Mail (2.3445.104.11)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add a minimal driver for ASPEED's SD controller, which exposes two
-SDHCIs.
+It looks like the linux-next commit =E2=80=9Cof/platform: Pause/resume =
+sync state during init and of_platform_populate()=E2=80=9D [1]
+Introduced a warning while booting arm64.
 
-The ASPEED design implements a common register set for the SDHCIs, and
-moves some of the standard configuration elements out to this common
-area (e.g. 8-bit mode, and card detect configuration which is not
-currently supported).
+[1] =
+https://lore.kernel.org/lkml/20190731221721.187713-6-saravanak@google.com/=
 
-The SD controller has a dedicated hardware interrupt that is shared
-between the slots. The common register set exposes information on which
-slot triggered the interrupt; early revisions of the patch introduced an
-irqchip for the register, but reality is it doesn't behave as an
-irqchip, and the result fits awkwardly into the irqchip APIs. Instead
-I've taken the simple approach of using the IRQ as a shared IRQ with
-some minor performance impact for the second slot.
 
-Ryan was the original author of the patch - I've taken his work and
-massaged it to drop the irqchip support and rework the devicetree
-integration. The driver has been smoke tested under qemu against a
-minimal SD controller model and lightly tested on an ast2500-evb.
-
-Signed-off-by: Ryan Chen <ryanchen.aspeed@gmail.com>
-Signed-off-by: Andrew Jeffery <andrew@aj.id.au>
-Acked-by: Adrian Hunter <adrian.hunter@intel.com>
-
----
-
-v5:
-* Cleanup sdhci driver on registration failure
-
-v4: No change
-
-v2:
-* Add AST2600 compatible
-* Drop SDHCI_QUIRK2_CLOCK_DIV_ZERO_BROKEN
-* Ensure slot number is valid
-* Fix build with CONFIG_MODULES
-* Fix module license string
-* Non-PCI devices won't die
-* Rename aspeed_sdc_configure_8bit_mode()
-* Rename aspeed_sdhci_pdata
-* Switch to sdhci_enable_clk()
-* Use PTR_ERR() on the right `struct platform_device *`
----
- drivers/mmc/host/Kconfig           |  12 ++
- drivers/mmc/host/Makefile          |   1 +
- drivers/mmc/host/sdhci-of-aspeed.c | 332 +++++++++++++++++++++++++++++
- 3 files changed, 345 insertions(+)
- create mode 100644 drivers/mmc/host/sdhci-of-aspeed.c
-
-diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index 14d89a108edd..0f8a230de2f3 100644
---- a/drivers/mmc/host/Kconfig
-+++ b/drivers/mmc/host/Kconfig
-@@ -154,6 +154,18 @@ config MMC_SDHCI_OF_ARASAN
- 
- 	  If unsure, say N.
- 
-+config MMC_SDHCI_OF_ASPEED
-+	tristate "SDHCI OF support for the ASPEED SDHCI controller"
-+	depends on MMC_SDHCI_PLTFM
-+	depends on OF
-+	help
-+	  This selects the ASPEED Secure Digital Host Controller Interface.
-+
-+	  If you have a controller with this interface, say Y or M here. You
-+	  also need to enable an appropriate bus interface.
-+
-+	  If unsure, say N.
-+
- config MMC_SDHCI_OF_AT91
- 	tristate "SDHCI OF support for the Atmel SDMMC controller"
- 	depends on MMC_SDHCI_PLTFM
-diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-index 73578718f119..390ee162fe71 100644
---- a/drivers/mmc/host/Makefile
-+++ b/drivers/mmc/host/Makefile
-@@ -84,6 +84,7 @@ obj-$(CONFIG_MMC_SDHCI_ESDHC_IMX)	+= sdhci-esdhc-imx.o
- obj-$(CONFIG_MMC_SDHCI_DOVE)		+= sdhci-dove.o
- obj-$(CONFIG_MMC_SDHCI_TEGRA)		+= sdhci-tegra.o
- obj-$(CONFIG_MMC_SDHCI_OF_ARASAN)	+= sdhci-of-arasan.o
-+obj-$(CONFIG_MMC_SDHCI_OF_ASPEED)	+= sdhci-of-aspeed.o
- obj-$(CONFIG_MMC_SDHCI_OF_AT91)		+= sdhci-of-at91.o
- obj-$(CONFIG_MMC_SDHCI_OF_ESDHC)	+= sdhci-of-esdhc.o
- obj-$(CONFIG_MMC_SDHCI_OF_HLWD)		+= sdhci-of-hlwd.o
-diff --git a/drivers/mmc/host/sdhci-of-aspeed.c b/drivers/mmc/host/sdhci-of-aspeed.c
-new file mode 100644
-index 000000000000..8bb095ca2fa9
---- /dev/null
-+++ b/drivers/mmc/host/sdhci-of-aspeed.c
-@@ -0,0 +1,332 @@
-+// SPDX-License-Identifier: GPL-2.0-or-later
-+/* Copyright (C) 2019 ASPEED Technology Inc. */
-+/* Copyright (C) 2019 IBM Corp. */
-+
-+#include <linux/clk.h>
-+#include <linux/delay.h>
-+#include <linux/device.h>
-+#include <linux/io.h>
-+#include <linux/mmc/host.h>
-+#include <linux/module.h>
-+#include <linux/of_address.h>
-+#include <linux/of.h>
-+#include <linux/of_platform.h>
-+#include <linux/platform_device.h>
-+#include <linux/spinlock.h>
-+
-+#include "sdhci-pltfm.h"
-+
-+#define ASPEED_SDC_INFO		0x00
-+#define   ASPEED_SDC_S1MMC8	BIT(25)
-+#define   ASPEED_SDC_S0MMC8	BIT(24)
-+
-+struct aspeed_sdc {
-+	struct clk *clk;
-+	struct resource *res;
-+
-+	spinlock_t lock;
-+	void __iomem *regs;
-+};
-+
-+struct aspeed_sdhci {
-+	struct aspeed_sdc *parent;
-+	u32 width_mask;
-+};
-+
-+static void aspeed_sdc_configure_8bit_mode(struct aspeed_sdc *sdc,
-+					   struct aspeed_sdhci *sdhci,
-+					   bool bus8)
-+{
-+	u32 info;
-+
-+	/* Set/clear 8 bit mode */
-+	spin_lock(&sdc->lock);
-+	info = readl(sdc->regs + ASPEED_SDC_INFO);
-+	if (bus8)
-+		info |= sdhci->width_mask;
-+	else
-+		info &= ~sdhci->width_mask;
-+	writel(info, sdc->regs + ASPEED_SDC_INFO);
-+	spin_unlock(&sdc->lock);
-+}
-+
-+static void aspeed_sdhci_set_clock(struct sdhci_host *host, unsigned int clock)
-+{
-+	int div;
-+	u16 clk;
-+
-+	if (clock == host->clock)
-+		return;
-+
-+	sdhci_writew(host, 0, SDHCI_CLOCK_CONTROL);
-+
-+	if (clock == 0)
-+		goto out;
-+
-+	for (div = 1; div < 256; div *= 2) {
-+		if ((host->max_clk / div) <= clock)
-+			break;
-+	}
-+	div >>= 1;
-+
-+	clk = div << SDHCI_DIVIDER_SHIFT;
-+
-+	sdhci_enable_clk(host, clk);
-+
-+out:
-+	host->clock = clock;
-+}
-+
-+static void aspeed_sdhci_set_bus_width(struct sdhci_host *host, int width)
-+{
-+	struct sdhci_pltfm_host *pltfm_priv;
-+	struct aspeed_sdhci *aspeed_sdhci;
-+	struct aspeed_sdc *aspeed_sdc;
-+	u8 ctrl;
-+
-+	pltfm_priv = sdhci_priv(host);
-+	aspeed_sdhci = sdhci_pltfm_priv(pltfm_priv);
-+	aspeed_sdc = aspeed_sdhci->parent;
-+
-+	/* Set/clear 8-bit mode */
-+	aspeed_sdc_configure_8bit_mode(aspeed_sdc, aspeed_sdhci,
-+				       width == MMC_BUS_WIDTH_8);
-+
-+	/* Set/clear 1 or 4 bit mode */
-+	ctrl = sdhci_readb(host, SDHCI_HOST_CONTROL);
-+	if (width == MMC_BUS_WIDTH_4)
-+		ctrl |= SDHCI_CTRL_4BITBUS;
-+	else
-+		ctrl &= ~SDHCI_CTRL_4BITBUS;
-+	sdhci_writeb(host, ctrl, SDHCI_HOST_CONTROL);
-+}
-+
-+static const struct sdhci_ops aspeed_sdhci_ops = {
-+	.set_clock = aspeed_sdhci_set_clock,
-+	.get_max_clock = sdhci_pltfm_clk_get_max_clock,
-+	.set_bus_width = aspeed_sdhci_set_bus_width,
-+	.get_timeout_clock = sdhci_pltfm_clk_get_max_clock,
-+	.reset = sdhci_reset,
-+	.set_uhs_signaling = sdhci_set_uhs_signaling,
-+};
-+
-+static const struct sdhci_pltfm_data aspeed_sdhci_pdata = {
-+	.ops = &aspeed_sdhci_ops,
-+	.quirks = SDHCI_QUIRK_CAP_CLOCK_BASE_BROKEN,
-+};
-+
-+static inline int aspeed_sdhci_calculate_slot(struct aspeed_sdhci *dev,
-+					      struct resource *res)
-+{
-+	resource_size_t delta;
-+
-+	if (!res || resource_type(res) != IORESOURCE_MEM)
-+		return -EINVAL;
-+
-+	if (res->start < dev->parent->res->start)
-+		return -EINVAL;
-+
-+	delta = res->start - dev->parent->res->start;
-+	if (delta & (0x100 - 1))
-+		return -EINVAL;
-+
-+	return (delta / 0x100) - 1;
-+}
-+
-+static int aspeed_sdhci_probe(struct platform_device *pdev)
-+{
-+	struct sdhci_pltfm_host *pltfm_host;
-+	struct aspeed_sdhci *dev;
-+	struct sdhci_host *host;
-+	struct resource *res;
-+	int slot;
-+	int ret;
-+
-+	host = sdhci_pltfm_init(pdev, &aspeed_sdhci_pdata, sizeof(*dev));
-+	if (IS_ERR(host))
-+		return PTR_ERR(host);
-+
-+	pltfm_host = sdhci_priv(host);
-+	dev = sdhci_pltfm_priv(pltfm_host);
-+	dev->parent = dev_get_drvdata(pdev->dev.parent);
-+
-+	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	slot = aspeed_sdhci_calculate_slot(dev, res);
-+
-+	if (slot < 0)
-+		return slot;
-+	else if (slot >= 2)
-+		return -EINVAL;
-+
-+	dev_info(&pdev->dev, "Configuring for slot %d\n", slot);
-+	dev->width_mask = !slot ? ASPEED_SDC_S0MMC8 : ASPEED_SDC_S1MMC8;
-+
-+	sdhci_get_of_property(pdev);
-+
-+	pltfm_host->clk = devm_clk_get(&pdev->dev, NULL);
-+	if (IS_ERR(pltfm_host->clk))
-+		return PTR_ERR(pltfm_host->clk);
-+
-+	ret = clk_prepare_enable(pltfm_host->clk);
-+	if (ret) {
-+		dev_err(&pdev->dev, "Unable to enable SDIO clock\n");
-+		goto err_pltfm_free;
-+	}
-+
-+	ret = mmc_of_parse(host->mmc);
-+	if (ret)
-+		goto err_sdhci_add;
-+
-+	ret = sdhci_add_host(host);
-+	if (ret)
-+		goto err_sdhci_add;
-+
-+	return 0;
-+
-+err_sdhci_add:
-+	clk_disable_unprepare(pltfm_host->clk);
-+err_pltfm_free:
-+	sdhci_pltfm_free(pdev);
-+	return ret;
-+}
-+
-+static int aspeed_sdhci_remove(struct platform_device *pdev)
-+{
-+	struct sdhci_pltfm_host *pltfm_host;
-+	struct sdhci_host *host;
-+	int dead = 0;
-+
-+	host = platform_get_drvdata(pdev);
-+	pltfm_host = sdhci_priv(host);
-+
-+	sdhci_remove_host(host, dead);
-+
-+	clk_disable_unprepare(pltfm_host->clk);
-+
-+	sdhci_pltfm_free(pdev);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id aspeed_sdhci_of_match[] = {
-+	{ .compatible = "aspeed,ast2400-sdhci", },
-+	{ .compatible = "aspeed,ast2500-sdhci", },
-+	{ .compatible = "aspeed,ast2600-sdhci", },
-+	{ }
-+};
-+
-+static struct platform_driver aspeed_sdhci_driver = {
-+	.driver		= {
-+		.name	= "sdhci-aspeed",
-+		.of_match_table = aspeed_sdhci_of_match,
-+	},
-+	.probe		= aspeed_sdhci_probe,
-+	.remove		= aspeed_sdhci_remove,
-+};
-+
-+static int aspeed_sdc_probe(struct platform_device *pdev)
-+
-+{
-+	struct device_node *parent, *child;
-+	struct aspeed_sdc *sdc;
-+	int ret;
-+
-+	sdc = devm_kzalloc(&pdev->dev, sizeof(*sdc), GFP_KERNEL);
-+	if (!sdc)
-+		return -ENOMEM;
-+
-+	spin_lock_init(&sdc->lock);
-+
-+	sdc->clk = devm_clk_get(&pdev->dev, NULL);
-+	if (IS_ERR(sdc->clk))
-+		return PTR_ERR(sdc->clk);
-+
-+	ret = clk_prepare_enable(sdc->clk);
-+	if (ret) {
-+		dev_err(&pdev->dev, "Unable to enable SDCLK\n");
-+		return ret;
-+	}
-+
-+	sdc->res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-+	sdc->regs = devm_ioremap_resource(&pdev->dev, sdc->res);
-+	if (IS_ERR(sdc->regs)) {
-+		ret = PTR_ERR(sdc->regs);
-+		goto err_clk;
-+	}
-+
-+	dev_set_drvdata(&pdev->dev, sdc);
-+
-+	parent = pdev->dev.of_node;
-+	for_each_available_child_of_node(parent, child) {
-+		struct platform_device *cpdev;
-+
-+		cpdev = of_platform_device_create(child, NULL, &pdev->dev);
-+		if (IS_ERR(cpdev)) {
-+			of_node_put(child);
-+			ret = PTR_ERR(cpdev);
-+			goto err_clk;
-+		}
-+	}
-+
-+	return 0;
-+
-+err_clk:
-+	clk_disable_unprepare(sdc->clk);
-+	return ret;
-+}
-+
-+static int aspeed_sdc_remove(struct platform_device *pdev)
-+{
-+	struct aspeed_sdc *sdc = dev_get_drvdata(&pdev->dev);
-+
-+	clk_disable_unprepare(sdc->clk);
-+
-+	return 0;
-+}
-+
-+static const struct of_device_id aspeed_sdc_of_match[] = {
-+	{ .compatible = "aspeed,ast2400-sd-controller", },
-+	{ .compatible = "aspeed,ast2500-sd-controller", },
-+	{ .compatible = "aspeed,ast2600-sd-controller", },
-+	{ }
-+};
-+
-+MODULE_DEVICE_TABLE(of, aspeed_sdc_of_match);
-+
-+static struct platform_driver aspeed_sdc_driver = {
-+	.driver		= {
-+		.name	= "sd-controller-aspeed",
-+		.pm	= &sdhci_pltfm_pmops,
-+		.of_match_table = aspeed_sdc_of_match,
-+	},
-+	.probe		= aspeed_sdc_probe,
-+	.remove		= aspeed_sdc_remove,
-+};
-+
-+static int __init aspeed_sdc_init(void)
-+{
-+	int rc;
-+
-+	rc = platform_driver_register(&aspeed_sdhci_driver);
-+	if (rc < 0)
-+		return rc;
-+
-+	rc = platform_driver_register(&aspeed_sdc_driver);
-+	if (rc < 0)
-+		platform_driver_unregister(&aspeed_sdhci_driver);
-+
-+	return rc;
-+}
-+module_init(aspeed_sdc_init);
-+
-+static void __exit aspeed_sdc_exit(void)
-+{
-+	platform_driver_unregister(&aspeed_sdc_driver);
-+	platform_driver_unregister(&aspeed_sdhci_driver);
-+}
-+module_exit(aspeed_sdc_exit);
-+
-+MODULE_DESCRIPTION("Driver for the ASPEED SD/SDIO/SDHCI Controllers");
-+MODULE_AUTHOR("Ryan Chen <ryan_chen@aspeedtech.com>");
-+MODULE_AUTHOR("Andrew Jeffery <andrew@aj.id.au>");
-+MODULE_LICENSE("GPL");
--- 
-2.20.1
-
+[   93.449300][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: ias 44-bit, oas =
+44-bit (features 0x0000170d)
+[   93.464873][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: allocated 524288 =
+entries for cmdq
+[   93.485481][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: allocated 524288 =
+entries for evtq
+[   93.496320][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: option mask 0x2
+[   93.502917][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: ias 44-bit, oas =
+44-bit (features 0x0000170d)
+[   93.621818][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: allocated 524288 =
+entries for cmdq
+[   93.643000][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: allocated 524288 =
+entries for evtq
+[   94.519445][    T1] libphy: Fixed MDIO Bus: probed
+[   94.524649][    T1] EFI Variables Facility v0.08 2004-May-17
+[   94.601166][    T1] NET: Registered protocol family 17
+[   94.766008][    T1] zswap: loaded using pool lzo/zbud
+[   94.774745][    T1] kmemleak: Kernel memory leak detector initialized =
+(mempool size: 16384)
+[   94.774756][ T1699] kmemleak: Automatic memory scanning thread =
+started
+[   94.812338][ T1368] pcieport 0000:0f:00.0: Adding to iommu group 0
+[   94.984466][    T1] ------------[ cut here ]------------
+[   94.989827][    T1] Unmatched sync_state pause/resume!
+[   94.989894][    T1] WARNING: CPU: 25 PID: 1 at =
+drivers/base/core.c:691 =
+device_links_supplier_sync_state_resume+0x100/0x128
+[   95.006062][    T1] Modules linked in:
+[   95.009815][    T1] CPU: 25 PID: 1 Comm: swapper/0 Not tainted =
+5.3.0-rc3-next-20190806+ #11
+[   95.018161][    T1] Hardware name: HPE Apollo 70             =
+/C01_APACHE_MB         , BIOS L50_5.13_1.11 06/18/2019
+[   95.028593][    T1] pstate: 60400009 (nZCv daif +PAN -UAO)
+[   95.034077][    T1] pc : =
+device_links_supplier_sync_state_resume+0x100/0x128
+[   95.041124][    T1] lr : =
+device_links_supplier_sync_state_resume+0x100/0x128
+[   95.048167][    T1] sp : 34ff800806e6fbc0
+[   95.052172][    T1] x29: 34ff800806e6fc00 x28: 0000000000000000=20
+[   95.058177][    T1] x27: 0000000000000000 x26: 0000000000000000=20
+[   95.064181][    T1] x25: 0000000000000038 x24: 0000000000000000=20
+[   95.070185][    T1] x23: 0000000000000000 x22: 0000000000000019=20
+[   95.076189][    T1] x21: 0000000000000000 x20: f9ff808b804e6c50=20
+[   95.082193][    T1] x19: ffff100014a6e600 x18: 0000000000000040=20
+[   95.088197][    T1] x17: 0000000000000000 x16: 86ff80099d581b50=20
+[   95.094201][    T1] x15: 0000000000000000 x14: ffff100010086d1c=20
+[   95.100205][    T1] x13: ffff1000109d8688 x12: ffffffffffffffff=20
+[   95.106209][    T1] x11: 00000000000000f9 x10: ffff0808b804e6c6=20
+[   95.112213][    T1] x9 : 4b71ad522c851d00 x8 : 4b71ad522c851d00=20
+[   95.118217][    T1] x7 : 6170206574617473 x6 : ffff100014076972=20
+[   95.124221][    T1] x5 : 34ff800806e6f8f0 x4 : 000000000000000f=20
+[   95.130225][    T1] x3 : ffff1000101bfa5c x2 : 0000000000000001=20
+[   95.136229][    T1] x1 : 0000000000000001 x0 : 0000000000000022=20
+[   95.142233][    T1] Call trace:
+[   95.145374][    T1]  =
+device_links_supplier_sync_state_resume+0x100/0x128
+[   95.152074][    T1]  of_platform_sync_state_init+0x10/0x1c
+[   95.157557][    T1]  do_one_initcall+0x2f8/0x600
+[   95.162172][    T1]  do_initcall_level+0x37c/0x3fc
+[   95.166959][    T1]  do_basic_setup+0x34/0x4c
+[   95.171313][    T1]  kernel_init_freeable+0x188/0x24c
+[   95.176363][    T1]  kernel_init+0x18/0x334
+[   95.180543][    T1]  ret_from_fork+0x10/0x18
+[   95.184809][    T1] ---[ end trace a9ea68c902540fe5 ]---
+[   95.269085][    T1] Freeing unused kernel memory: 28672K
+[  101.069860][    T1] Checked W+X mappings: passed, no W+X pages found
+[  101.076265][    T1] Run /init as init process
+[  101.186359][    T1] systemd[1]: System time before build time, =
+advancing clock.=
