@@ -2,218 +2,98 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7007E83DCC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 01:27:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6BFB483E70
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 02:38:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726494AbfHFX1c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 19:27:32 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:42302 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726431AbfHFX1c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 19:27:32 -0400
-Received: by mail-ot1-f67.google.com with SMTP id l15so96937291otn.9
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 16:27:31 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=V5E/vEU5l0XkioyuorxP6jKxsdFKokFL9ZSrtexRssk=;
-        b=A1NCke0a/LjS9zvr7+/34vGTAEoKD6Z7pY809prBn3C4amAQe063I+j3pzu6tKiV6N
-         zANesKaI6teNmSxD4Six9jmjo5ZWki6o2jPPLuzPBYmTsteU3evikYzBntcUrMCrwNih
-         fMT7X4BH3MRi92FoB9FhEUSN2I8ak+MseNYgMRrK5gz7m5yvMjVIiYPxMZ8CJ+SOSc24
-         WOApgJYr3w0NR6neMgEo2AKw3p1ESlkH8TbATHjL6sUvWxVwFcLMPiLAv9yN10H88Fq5
-         VyjCqs4jI9gSActsyazLApeytbPoBB9RbFPpHL4om+y3U8GG4IiFtdcY+RMibJ0KGWM6
-         C7zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=V5E/vEU5l0XkioyuorxP6jKxsdFKokFL9ZSrtexRssk=;
-        b=WWlEkBUQiXVcU4zFLIoQExeLmAic/lmSsF+yarghG3BIrhOKsjYGW+FhXLvuBH3mKK
-         rDwjXTomVKHxIj5MDXP66BHDlqkhEv2FZ7sqg1QV2CwtaH/uacg8XyOsDMcujB3qsLiX
-         79NPeOenVyddcoCGVTMItxcR5Rsm/4tu1UAVOlMfGHFE23p7V0iwS+QK3Izdq8WVigEl
-         dAlExLzITPjGAk6vKegvN2dqI1raj7vRTa6q8wIJ3ZvsB4AgAoigTp8Wk6YUe5iS8UiV
-         4gKiu+KvtPzUmSf7fuw4Zj6fyucOGzzfnvg9PnXHT9H8alk0r15q+pv/uQLLAXMgHekB
-         mKTw==
-X-Gm-Message-State: APjAAAUyDesiS1lRjz0hh6gXqm7BnhGxcddrkq+MnaDgGS3eodPbb8Wf
-        gk0Yuo8yohYC3lj2s9l2nbLqAA==
-X-Google-Smtp-Source: APXvYqySNV0ICs40X1PhGp8WppnE7/Hq6YdPV4lbOreMMENDHsln4iW6yVs87f7uUjg5jNYUoSYPwA==
-X-Received: by 2002:a6b:c081:: with SMTP id q123mr6295296iof.210.1565134051058;
-        Tue, 06 Aug 2019 16:27:31 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id z19sm97593360ioh.12.2019.08.06.16.27.30
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 06 Aug 2019 16:27:30 -0700 (PDT)
-Date:   Tue, 6 Aug 2019 16:27:30 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Atish Patra <atish.patra@wdc.com>
-cc:     linux-kernel@vger.kernel.org, Albert Ou <aou@eecs.berkeley.edu>,
-        Allison Randal <allison@lohutok.net>,
-        Anup Patel <anup.patel@wdc.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        devicetree@vger.kernel.org, Enrico Weigelt <info@metux.net>,
-        Gary Guo <gary@garyguo.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johan Hovold <johan@kernel.org>,
-        linux-riscv@lists.infradead.org,
-        Mark Rutland <mark.rutland@arm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Yangtao Li <tiny.windzz@gmail.com>
-Subject: Re: [PATCH v3 3/5] RISC-V: Fix unsupported isa string info.
-In-Reply-To: <20190801005843.10343-4-atish.patra@wdc.com>
-Message-ID: <alpine.DEB.2.21.9999.1908061625190.13971@viisi.sifive.com>
-References: <20190801005843.10343-1-atish.patra@wdc.com> <20190801005843.10343-4-atish.patra@wdc.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        id S1726686AbfHGAiA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 20:38:00 -0400
+Received: from new1-smtp.messagingengine.com ([66.111.4.221]:48467 "EHLO
+        new1-smtp.messagingengine.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1726542AbfHGAiA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 20:38:00 -0400
+Received: from compute4.internal (compute4.nyi.internal [10.202.2.44])
+        by mailnew.nyi.internal (Postfix) with ESMTP id 49ECD2556;
+        Tue,  6 Aug 2019 20:37:59 -0400 (EDT)
+Received: from mailfrontend2 ([10.202.2.163])
+  by compute4.internal (MEProxy); Tue, 06 Aug 2019 20:37:59 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=aj.id.au; h=from
+        :to:cc:subject:date:message-id:mime-version
+        :content-transfer-encoding; s=fm3; bh=tekQgJr6qSz/+W1IqdMF+U0YgF
+        ytbV3UNOGCshAhIFA=; b=gA9Vvp238GgD8WvNh25Nh2WviEvR1tSf9vt8SHsPqf
+        mvc978ohwcSe1/MCsLGoHMOYn2gAqnXB3SgsoeiCJqQKO/GblrLvWG+sM5pJslZI
+        MshuJhEUP7oYrPiB9HPUhIiD9xPnmaIAiwbvboQyLxKnDzbuhgQexTha5UG85azV
+        X4ZHqu2+r6qFY+c7B7AcouV92CqeoP59lssxb3sxscKf4Sb6nnc3vygKyRbV25W6
+        k6ITIO0w2LLI1PGALHlJa57Iwd1VIIDROLN6CnyDGV5dIBtPvd3Kjf0R1ZSoMZE/
+        akrPl0wt8nWSDLCqERfBeDMP6GoZCBPtCoyVmtn5d3cQ==
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=
+        messagingengine.com; h=cc:content-transfer-encoding:date:from
+        :message-id:mime-version:subject:to:x-me-proxy:x-me-proxy
+        :x-me-sender:x-me-sender:x-sasl-enc; s=fm3; bh=tekQgJr6qSz/+W1Iq
+        dMF+U0YgFytbV3UNOGCshAhIFA=; b=aI2yeZNL3PoeqQMek0jjjEKn9QrhPGipC
+        HleCz3UDIMsddxW6TVI6nXUOxrwf76aG1/vp4fu9chL1PS7ICkx9CugGadgFPdFt
+        pPNkkg+asTnpeHEEKkNXU4D/F+bfd6LPaIUexwThyoVsGep9DC9q7XSDXjful/Qx
+        /TJCffMba9MYviuS/g8EWHYGao2eRaIBOAFq8iZNaFrn0k3kaJ7Qk3P1bCpmBB4K
+        Vd2OnlG+/ZL3f1euoFNfyVIBLRgLZhwckN6qeb3lum599tj29KZtMo99n0GOn62L
+        VyPrkrsA0em3egkPkqjhJbwpND61ae/u4M6OTTQCWh7pFpa08ypfg==
+X-ME-Sender: <xms:ZR1KXQIykwBpiZFpp4cttIbn79GQw1b-2q7WCIXxw6Oa5rRVaEuv7A>
+X-ME-Proxy-Cause: gggruggvucftvghtrhhoucdtuddrgeduvddrudduuddgfeejucetufdoteggodetrfdotf
+    fvucfrrhhofhhilhgvmecuhfgrshhtofgrihhlpdfqfgfvpdfurfetoffkrfgpnffqhgen
+    uceurghilhhouhhtmecufedttdenucenucfjughrpefhvffufffkofgggfestdekredtre
+    dttdenucfhrhhomheptehnughrvgifucflvghffhgvrhihuceorghnughrvgifsegrjhdr
+    ihgurdgruheqnecuffhomhgrihhnpehoiihlrggsshdrohhrghenucfkphepvddtvddrke
+    durddukedrfedtnecurfgrrhgrmhepmhgrihhlfhhrohhmpegrnhgurhgvfiesrghjrdhi
+    ugdrrghunecuvehluhhsthgvrhfuihiivgeptd
+X-ME-Proxy: <xmx:ZR1KXWKOdCyo2cKMurfo1BBUwnPDZIXIxCyuKxTOcesAPbUjO1Kaxg>
+    <xmx:ZR1KXbgUpXe76vTrxh_1h5dbZMx9VqLP3bzJW-uM7dhudkxE9UB2Hg>
+    <xmx:ZR1KXQMz-a2FKn5GOJsmH_6fPUScfTeYNpoqHWal1kHpTFdtMJlKlQ>
+    <xmx:Zx1KXUxsN6qDKRIvMqZEyrfQloS3h44v7IJDO7k_MgmKxaeMMuBCuA>
+Received: from mistburn.au.ibm.com (bh02i525f01.au.ibm.com [202.81.18.30])
+        by mail.messagingengine.com (Postfix) with ESMTPA id 15E4F38008E;
+        Tue,  6 Aug 2019 20:37:53 -0400 (EDT)
+From:   Andrew Jeffery <andrew@aj.id.au>
+To:     linux-mmc@vger.kernel.org
+Cc:     Andrew Jeffery <andrew@aj.id.au>, ulf.hansson@linaro.org,
+        robh+dt@kernel.org, mark.rutland@arm.com, joel@jms.id.au,
+        adrian.hunter@intel.com, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org,
+        linux-aspeed@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        ryanchen.aspeed@gmail.com
+Subject: [PATCH v5 0/2] mmc: Add support for the ASPEED SD controller
+Date:   Wed,  7 Aug 2019 10:06:27 +0930
+Message-Id: <20190807003629.2974-1-andrew@aj.id.au>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 31 Jul 2019, Atish Patra wrote:
+Hello,
 
-> Currently, kernel prints a info warning if any of the extensions
-> from "mafdcsu" is missing in device tree. This is not entirely
-> correct as Linux can boot with "f or d" extensions if kernel is
-> configured accordingly. Moreover, it will continue to print the
-> info string for future extensions such as hypervisor as well which
-> is misleading. /proc/cpuinfo also doesn't print any other extensions
-> except "mafdcsu".
-> 
-> Make sure that info log is only printed only if kernel is configured
-> to have any mandatory extensions but device tree doesn't describe it.
-> All the extensions present in device tree and follow the order
-> described in the RISC-V specification (except 'S') are printed via
-> /proc/cpuinfo always.
-> 
-> Signed-off-by: Atish Patra <atish.patra@wdc.com>
+v5 of the ASPEED SDHCI patches fixes an error-path cleanup issue pointed out by
+Adrian.
 
-I tested this patch after dropping the CONFIG_ISA_RISCV_C test (see 
-below).  Running "cat /proc/cpuinfo" generated the following kernel 
-warnings:
-          
-[   73.412626] unsupported ISA extensions "su" in device tree for cpu [0]
-[   73.418417] unsupported ISA extensions "su" in device tree for cpu [1]
-[   73.424912] unsupported ISA extensions "su" in device tree for cpu [2]
-[   73.431425] unsupported ISA extensions "su" in device tree for cpu [3]
+v4 can be found here:
 
-Seems like the "su" should be dropped from mandatory_ext.  What do you 
-think?
+http://patchwork.ozlabs.org/cover/1141949/
 
-> ---
->  arch/riscv/kernel/cpu.c | 47 ++++++++++++++++++++++++++++++++---------
->  1 file changed, 37 insertions(+), 10 deletions(-)
-> 
-> diff --git a/arch/riscv/kernel/cpu.c b/arch/riscv/kernel/cpu.c
-> index 7da3c6a93abd..9b1d4550fbe6 100644
-> --- a/arch/riscv/kernel/cpu.c
-> +++ b/arch/riscv/kernel/cpu.c
-> @@ -7,6 +7,7 @@
->  #include <linux/seq_file.h>
->  #include <linux/of.h>
->  #include <asm/smp.h>
-> +#include <asm/hwcap.h>
->  
->  /*
->   * Returns the hart ID of the given device tree node, or -ENODEV if the node
-> @@ -46,11 +47,14 @@ int riscv_of_processor_hartid(struct device_node *node)
->  
->  #ifdef CONFIG_PROC_FS
->  
-> -static void print_isa(struct seq_file *f, const char *orig_isa)
-> +static void print_isa(struct seq_file *f, const char *orig_isa,
-> +		      unsigned long cpuid)
->  {
-> -	static const char *ext = "mafdcsu";
-> +	static const char *mandatory_ext = "mafdcsu";
->  	const char *isa = orig_isa;
->  	const char *e;
-> +	char unsupported_isa[26] = {0};
-> +	int index = 0;
->  
->  	/*
->  	 * Linux doesn't support rv32e or rv128i, and we only support booting
-> @@ -70,27 +74,50 @@ static void print_isa(struct seq_file *f, const char *orig_isa)
->  	isa += 5;
->  
->  	/*
-> -	 * Check the rest of the ISA string for valid extensions, printing those
-> -	 * we find.  RISC-V ISA strings define an order, so we only print the
-> +	 * RISC-V ISA strings define an order, so we only print all the
->  	 * extension bits when they're in order. Hide the supervisor (S)
->  	 * extension from userspace as it's not accessible from there.
-> +	 * Throw a warning only if any mandatory extensions are not available
-> +	 * and kernel is configured to have that mandatory extensions.
->  	 */
-> -	for (e = ext; *e != '\0'; ++e) {
-> -		if (isa[0] == e[0]) {
-> +	for (e = mandatory_ext; *e != '\0'; ++e) {
-> +		if (isa[0] != e[0]) {
-> +#if defined(CONFIG_ISA_RISCV_C)
+Please review!
 
-There's no Kconfig option by this name, and we're requiring compressed 
-instruction support as part of the RISC-V Linux baseline.  Could you share 
-the rationale behind this?  Looks to me like this should be dropped.
+Andrew
 
+Andrew Jeffery (2):
+  dt-bindings: mmc: Document Aspeed SD controller
+  mmc: Add support for the ASPEED SD controller
 
-> +			if (isa[0] == 'c')
-> +				continue;
-> +#endif
-> +#if defined(CONFIG_FP)
-> +			if ((isa[0] == 'f') || (isa[0] == 'd'))
-> +				continue;
-> +#endif
-> +			unsupported_isa[index] = e[0];
-> +			index++;
-> +		}
-> +		/* Only write if part of isa string */
-> +		if (isa[0] != '\0') {
->  			if (isa[0] != 's')
->  				seq_write(f, isa, 1);
-> -
->  			isa++;
->  		}
->  	}
-> +	if (isa[0] != '\0') {
-> +		/* Add remainging isa strings */
-> +		for (e = isa; *e != '\0'; ++e) {
-> +#if !defined(CONFIG_VIRTUALIZATION)
-> +			if (e[0] != 'h')
-> +#endif
-> +				seq_write(f, e, 1);
-> +		}
-> +	}
->  	seq_puts(f, "\n");
->  
->  	/*
->  	 * If we were given an unsupported ISA in the device tree then print
->  	 * a bit of info describing what went wrong.
->  	 */
-> -	if (isa[0] != '\0')
-> -		pr_info("unsupported ISA \"%s\" in device tree\n", orig_isa);
-> +	if (unsupported_isa[0])
-> +		pr_info("unsupported ISA extensions \"%s\" in device tree for cpu [%ld]\n",
-> +			unsupported_isa, cpuid);
->  }
->  
->  static void print_mmu(struct seq_file *f, const char *mmu_type)
-> @@ -134,7 +161,7 @@ static int c_show(struct seq_file *m, void *v)
->  	seq_printf(m, "processor\t: %lu\n", cpu_id);
->  	seq_printf(m, "hart\t\t: %lu\n", cpuid_to_hartid_map(cpu_id));
->  	if (!of_property_read_string(node, "riscv,isa", &isa))
-> -		print_isa(m, isa);
-> +		print_isa(m, isa, cpu_id);
->  	if (!of_property_read_string(node, "mmu-type", &mmu))
->  		print_mmu(m, mmu);
->  	if (!of_property_read_string(node, "compatible", &compat)
-> -- 
-> 2.21.0
-> 
-> 
+ .../devicetree/bindings/mmc/aspeed,sdhci.yaml | 105 ++++++
+ drivers/mmc/host/Kconfig                      |  12 +
+ drivers/mmc/host/Makefile                     |   1 +
+ drivers/mmc/host/sdhci-of-aspeed.c            | 332 ++++++++++++++++++
+ 4 files changed, 450 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/mmc/aspeed,sdhci.yaml
+ create mode 100644 drivers/mmc/host/sdhci-of-aspeed.c
 
+-- 
+2.20.1
 
-- Paul
