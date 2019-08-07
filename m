@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 360B9840C0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 03:39:44 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 10F4C8411E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 03:41:22 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729254AbfHGBjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 21:39:41 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:36268 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728587AbfHGBjl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 21:39:41 -0400
-Received: by mail-pf1-f195.google.com with SMTP id r7so42507325pfl.3;
-        Tue, 06 Aug 2019 18:39:41 -0700 (PDT)
+        id S1727746AbfHGBlO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 21:41:14 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:41729 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728924AbfHGBlM (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 21:41:12 -0400
+Received: by mail-pl1-f196.google.com with SMTP id m9so38456584pls.8;
+        Tue, 06 Aug 2019 18:41:11 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=Edh1s2+Hz0JvWJr5X8N4ASrf1QiKcSFMMDMTTyV4qrI=;
-        b=WFTUI9Rik4s7rXx4cO7m45CIyjoVkafBvHO/YsjRKbDPMoSfV8ZUbL2i1/BYT0xSn8
-         QloGiMApvuVHF8wOpxJvalYyEkEars2YRjoTUD3Dwzodi6U6OV5gE6M51IqNFtMMZycv
-         hWVffE1TBXS+N/RGa+hPiM+70KEeZVFzsQKFvY0eLaLGV9Up7sB9XTpilX2XRgER7Hja
-         JTZidlrZ61rIylwhcDewSR+6bkR1N+PCf/Lond9BAQdzKVNgHy8CEhP43R+hrqTAm9o6
-         dkVYQ11a5mwrvTbmB9FUoq21dY7Ou95siHu7afyBFs8yc+LG/BoOfkXadDR/sTkACn4x
-         iDHw==
+        bh=Hwj3uGjc5P7Ed46PamHKrYgZN25uTv+4Y9CY8N3wDxE=;
+        b=C8vEJVaL0ESKCzP7lefx1wgcIKNEPnvmGnxPgANSawJd2TYlYWBNmyzn02+3hhrIW4
+         15kK0nHEK/7u1XpXTo8pF61gnaXoiwY6P/Gn50dCUnh6FHquoIT7a6gMNluhLYfMGCMJ
+         zxlFl/1BJfY2zEZSoxUaOsr+aev7K7Aeur4d3UsvITBNuCufguDQRYOV+u27pp3JStTz
+         hYtaywIaomr71CL0OgEpmgXNwWtz3L6NzXyeJoqhd+8dn80IsTy0gE6Yiv1xJz5GY7P7
+         EdrSzazVpkm9tmgS/F8PUFKYloOaQnEXYUSLBj4ao3lLdd0OskVPHMmhS6oOFYE9oC2y
+         E5zQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Edh1s2+Hz0JvWJr5X8N4ASrf1QiKcSFMMDMTTyV4qrI=;
-        b=S/LT02ZPlWB541U1USlil+mvWMWWEEhSGAxmBRngH1Lti8pj4ZAGClHdedrQiblK2F
-         OvPPGe20zsm1CSdVRFhGzjnc6utiMGRsD0hjZtwjiONC/lZvRNuJKz7Kn1x/ldP97ALH
-         XDR99x9uNH++/bDzKgIvKwt2AH5SuRTvQKTXPMlE4MAwKPLGjzj8vYHIzcXhxOuzatjO
-         2Sj8pbDB1tftF4SW6g8H573Lf5sfmwZwBoLwxVNtb3zcFqgR28twGBnwqYG6Lgia4t4g
-         ACLcp4kj066i61Fs3MRIM1aZWOO4kkBzb3aJF40NMpOByOHbHja2e3GH0nOfUK+LC4cf
-         aI7A==
-X-Gm-Message-State: APjAAAX+EbWUkM1zQOp5qDDr9bcjBRxb4RWfZcVydDjL4UKc5PESZsKI
-        rpwrzMxyb2WtCxmQr0wFzC8=
-X-Google-Smtp-Source: APXvYqz0y6FnZKy0wvbDLBt46tymafR+AbNRcHSbRCLBxC27KsBM3Wa8A16eke7Tm8rYHNLD9NfUKA==
-X-Received: by 2002:a65:60cd:: with SMTP id r13mr5719740pgv.315.1565141980407;
-        Tue, 06 Aug 2019 18:39:40 -0700 (PDT)
+        bh=Hwj3uGjc5P7Ed46PamHKrYgZN25uTv+4Y9CY8N3wDxE=;
+        b=pdZ/1JrJAdXDpnph1ghO1A5hwpG+jwY7sF1zk+/uL3r7t6syMdnjZMjhbT20SI7CF9
+         4czCXkvgK6LQHjtNuSZ1742IrG2dQBC/Epy4vhsCTvjxzAym6Rc3116bugMG5imP+u7f
+         80EXbR2/jmBHnh5ZcxfhxJTdnAv8pDPX4E0+CkPVWTsEomYJaI9F20ZQg04EulnNAqOh
+         VuXhlNAutGhhbVHwxe0Z0x+46no9Of33iFrq5nIdmk7YH/LVOpef1g/J8HAYiPIkSg19
+         xipD/AEdygLaNOjekD2AVXtk/+1Qpxs2Y4SrKVbtrJ/zMJ/LCsGIrnhF/48GD01VDA9A
+         0Z5g==
+X-Gm-Message-State: APjAAAXUQjUfsThrnQsMmC2GxUcH1oHKjeKs4QxwMSmtA66GWu7DrcnB
+        JC2nhKuPRN1wPtdbGUaE0D0=
+X-Google-Smtp-Source: APXvYqyKWesJtrgg5eVS6TTcftVzlL7G23lqVSgTL3Z85jZoOflA0An/pnwl1gjI3N4imWHwAw2lFA==
+X-Received: by 2002:a17:902:925:: with SMTP id 34mr5869179plm.334.1565142071293;
+        Tue, 06 Aug 2019 18:41:11 -0700 (PDT)
 Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id w4sm110141105pfn.144.2019.08.06.18.39.39
+        by smtp.gmail.com with ESMTPSA id v22sm87667096pgk.69.2019.08.06.18.41.10
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 06 Aug 2019 18:39:40 -0700 (PDT)
-Date:   Tue, 6 Aug 2019 18:40:35 -0700
+        Tue, 06 Aug 2019 18:41:11 -0700 (PDT)
+Date:   Tue, 6 Aug 2019 18:42:06 -0700
 From:   Nicolin Chen <nicoleotsuka@gmail.com>
 To:     Daniel Baluta <daniel.baluta@nxp.com>
 Cc:     broonie@kernel.org, l.stach@pengutronix.de, mihai.serban@gmail.com,
@@ -52,58 +52,52 @@ Cc:     broonie@kernel.org, l.stach@pengutronix.de, mihai.serban@gmail.com,
         shengjiu.wang@nxp.com, angus@akkea.ca, tiwai@suse.com,
         linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
         linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org, Mihai Serban <mihai.serban@nxp.com>
-Subject: Re: [PATCH v3 3/5] ASoC: fsl_sai: Add support for SAI new version
-Message-ID: <20190807014035.GF8938@Asurada-Nvidia.nvidia.com>
+        robh@kernel.org
+Subject: Re: [PATCH v3 5/5] ASoC: dt-bindings: Introduce compatible strings
+ for 7ULP and 8MQ
+Message-ID: <20190807014206.GG8938@Asurada-Nvidia.nvidia.com>
 References: <20190806151214.6783-1-daniel.baluta@nxp.com>
- <20190806151214.6783-4-daniel.baluta@nxp.com>
+ <20190806151214.6783-6-daniel.baluta@nxp.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190806151214.6783-4-daniel.baluta@nxp.com>
+In-Reply-To: <20190806151214.6783-6-daniel.baluta@nxp.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 06, 2019 at 06:12:12PM +0300, Daniel Baluta wrote:
-> New IP version introduces Version ID and Parameter registers
-> and optionally added Timestamp feature.
+On Tue, Aug 06, 2019 at 06:12:14PM +0300, Daniel Baluta wrote:
+> For i.MX7ULP and i.MX8MQ register map is changed. Add two new compatbile
+> strings to differentiate this.
 > 
-> VERID and PARAM registers are placed at the top of registers
-> address space and some registers are shifted according to
-> the following table:
-> 
-> Tx/Rx data registers and Tx/Rx FIFO registers keep their
-> addresses, all other registers are shifted by 8.
-> 
-> SAI Memory map is described in chapter 13.10.4.1.1 I2S Memory map
-> of the Reference Manual [1].
-> 
-> In order to make as less changes as possible we attach an offset
-> to each register offset to each changed register definition. The
-> offset is read from each board private data.
-> 
-> [1]https://cache.nxp.com/secured/assets/documents/en/reference-manual/IMX8MDQLQRM.pdf?__gda__=1563728701_38bea7f0f726472cc675cb141b91bec7&fileExt=.pdf
-> 
-> Signed-off-by: Mihai Serban <mihai.serban@nxp.com>
-> [initial coding in the NXP internal tree]
-> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
-> [bugfixing and cleanups]
 > Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-> [adapted to linux-next]
+
+Looks good to me. As long as one of DT maintainers acks,
 
 Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
 
-One small request that we can do with a separate patch later:
+Thanks
 
->  struct fsl_sai_soc_data {
->  	bool use_imx_pcm;
->  	unsigned int fifo_depth;
-> +	unsigned int reg_offset;
->  };
-
-I think we need a list of comments for the structure defines.
-It might be okay for the old two entries but reg_offset isn't
-that explicit any more.
+> ---
+>  Documentation/devicetree/bindings/sound/fsl-sai.txt | 3 ++-
+>  1 file changed, 2 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl-sai.txt b/Documentation/devicetree/bindings/sound/fsl-sai.txt
+> index 2e726b983845..e61c0dc1fc0b 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl-sai.txt
+> +++ b/Documentation/devicetree/bindings/sound/fsl-sai.txt
+> @@ -8,7 +8,8 @@ codec/DSP interfaces.
+>  Required properties:
+>  
+>    - compatible		: Compatible list, contains "fsl,vf610-sai",
+> -			  "fsl,imx6sx-sai" or "fsl,imx6ul-sai"
+> +			  "fsl,imx6sx-sai", "fsl,imx6ul-sai",
+> +			  "fsl,imx7ulp-sai" or "fsl,imx8mq-sai".
+>  
+>    - reg			: Offset and length of the register set for the device.
+>  
+> -- 
+> 2.17.1
+> 
