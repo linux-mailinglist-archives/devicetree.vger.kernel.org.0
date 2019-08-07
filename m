@@ -2,110 +2,149 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1D64D84D68
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 15:33:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 91C4784D23
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 15:33:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388557AbfHGNds (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 09:33:48 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:35302 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388321AbfHGNa5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 09:30:57 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=Date:Message-Id:In-Reply-To:
-        Subject:Cc:To:From:Sender:Reply-To:MIME-Version:Content-Type:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:References:
-        List-Id:List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:
-        List-Archive; bh=Wu9sugkEEsUhkvknH7uSAfy3bNShHg3ioU3CI9Flyl8=; b=BC7xKV3U+6Ft
-        8BnglARL2Q/kiNkhN1uXN+DhE4MbYbxc+bGhxKitX+7dUE4E883tV8+/D4xtUb8Td0dln40xHe/d3
-        f1AAM2xXAjLdRclxgLv6tikogMx5539KAH2Ju8d1QppL/AS8jnTdvRp0fu26xdlEQaDC4ys0Ne91L
-        J2jNY=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1hvM1h-0007fl-V5; Wed, 07 Aug 2019 13:30:50 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 4088D2742B9E; Wed,  7 Aug 2019 14:30:49 +0100 (BST)
-From:   Mark Brown <broonie@kernel.org>
-To:     Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     alsa-devel@alsa-project.org, angus@akkea.ca, broonie@kernel.org,
-        devicetree@vger.kernel.org, festevam@gmail.com,
-        kernel@pengutronix.de, linux-imx@nxp.com,
-        linux-kernel@vger.kernel.org, l.stach@pengutronix.de,
-        Mark Brown <broonie@kernel.org>, mihai.serban@gmail.com,
-        nicoleotsuka@gmail.com, Nicolin Chen <nicoleotsuka@gmail.com>,
-        robh@kernel.org, shengjiu.wang@nxp.com, timur@kernel.org,
-        tiwai@suse.com
-Subject: Applied "ASoC: dt-bindings: Introduce compatible strings for 7ULP and 8MQ" to the asoc tree
-In-Reply-To: <20190806151214.6783-6-daniel.baluta@nxp.com>
-X-Patchwork-Hint: ignore
-Message-Id: <20190807133049.4088D2742B9E@ypsilon.sirena.org.uk>
-Date:   Wed,  7 Aug 2019 14:30:49 +0100 (BST)
+        id S2388480AbfHGNba (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 09:31:30 -0400
+Received: from mga05.intel.com ([192.55.52.43]:23464 "EHLO mga05.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388479AbfHGNb3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Aug 2019 09:31:29 -0400
+X-Amp-Result: UNKNOWN
+X-Amp-Original-Verdict: FILE UNKNOWN
+X-Amp-File-Uploaded: False
+Received: from orsmga008.jf.intel.com ([10.7.209.65])
+  by fmsmga105.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Aug 2019 06:31:28 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,357,1559545200"; 
+   d="scan'208";a="168634228"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
+  by orsmga008.jf.intel.com with ESMTP; 07 Aug 2019 06:31:25 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1hvM2F-0002jO-I9; Wed, 07 Aug 2019 16:31:23 +0300
+Date:   Wed, 7 Aug 2019 16:31:23 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+        jslaby@suse.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        qi-ming.wu@intel.com, cheol.yong.kim@intel.com,
+        rahul.tanwar@intel.com
+Subject: Re: [PATCH 5/5] serial: lantiq: Add support for Lightning Mountain
+ SoC
+Message-ID: <20190807133123.GZ30120@smile.fi.intel.com>
+References: <cover.1565160764.git.rahul.tanwar@linux.intel.com>
+ <a947355d6cf0ab71205e81779e1549f42f3f945a.1565160764.git.rahul.tanwar@linux.intel.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <a947355d6cf0ab71205e81779e1549f42f3f945a.1565160764.git.rahul.tanwar@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch
+On Wed, Aug 07, 2019 at 05:21:35PM +0800, Rahul Tanwar wrote:
+> This patch adds IRQ & ISR support in the driver for Lightning Mountain SoC.
 
-   ASoC: dt-bindings: Introduce compatible strings for 7ULP and 8MQ
+> +#define ASC_IRNCR_MASK		0x7
 
-has been applied to the asoc tree at
+GENMASK() ?
 
-   https://git.kernel.org/pub/scm/linux/kernel/git/broonie/sound.git for-5.4
+> +static irqreturn_t lqasc_irq(int irq, void *p)
+> +{
+> +	unsigned long flags;
+> +	u32 stat;
+> +	struct uart_port *port = p;
+> +	struct ltq_uart_port *ltq_port = to_ltq_uart_port(port);
+> +
+> +	spin_lock_irqsave(&ltq_port->lock, flags);
+> +	stat = readl(port->membase + LTQ_ASC_IRNCR);
+> +	if (!(stat & ASC_IRNCR_MASK)) {
+> +		spin_unlock_irqrestore(&ltq_port->lock, flags);
+> +		return IRQ_NONE;
+> +	}
 
-All being well this means that it will be integrated into the linux-next
-tree (usually sometime in the next 24 hours) and sent to Linus during
-the next merge window (or sooner if it is a bug fix), however if
-problems are discovered then the patch may be dropped or reverted.  
+> +	spin_unlock_irqrestore(&ltq_port->lock, flags);
 
-You may get further e-mails resulting from automated or manual testing
-and review of the tree, please engage with people reporting problems and
-send followup patches addressing any issues that are reported if needed.
+Are you sure the below does not need a serialization?
 
-If any updates are required or you are submitting further changes they
-should be sent as incremental updates against current git, existing
-patches will not be replaced.
+If it's not the case, you may unlock the lock immediately after readl().
 
-Please add any relevant lists and maintainers to the CCs when replying
-to this mail.
+> +
+> +	if (stat & ASC_IRNCR_TIR)
+> +		lqasc_tx_int(irq, p);
+> +
+> +	if (stat & ASC_IRNCR_RIR)
+> +		lqasc_rx_int(irq, p);
+> +
+> +	if (stat & ASC_IRNCR_EIR)
+> +		lqasc_err_int(irq, p);
+> +
+> +	return IRQ_HANDLED;
+> +}
 
-Thanks,
-Mark
+> +static int fetch_irq_intel(struct platform_device *pdev,
+> +			   struct ltq_uart_port *ltq_port)
+> +{
+> +	struct uart_port *port = &ltq_port->port;
+> +	int ret;
+> +
+> +	ret = of_irq_get(pdev->dev.of_node, 0);
+> +	if (ret < 0) {
+> +		dev_err(&pdev->dev,
+> +			"failed to fetch IRQ for serial port\n");
 
-From 371be51a925a619f1fb149b8d7707e353d9c9f86 Mon Sep 17 00:00:00 2001
-From: Daniel Baluta <daniel.baluta@nxp.com>
-Date: Tue, 6 Aug 2019 18:12:14 +0300
-Subject: [PATCH] ASoC: dt-bindings: Introduce compatible strings for 7ULP and
- 8MQ
+> +		return -ENODEV;
 
-For i.MX7ULP and i.MX8MQ register map is changed. Add two new compatbile
-strings to differentiate this.
+	return ret;
 
-Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
-Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
-Link: https://lore.kernel.org/r/20190806151214.6783-6-daniel.baluta@nxp.com
-Signed-off-by: Mark Brown <broonie@kernel.org>
----
- Documentation/devicetree/bindings/sound/fsl-sai.txt | 3 ++-
- 1 file changed, 2 insertions(+), 1 deletion(-)
+> +	}
+> +	ltq_port->common_irq = ret;
+> +	port->irq = ret;
+> +
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl-sai.txt b/Documentation/devicetree/bindings/sound/fsl-sai.txt
-index 2e726b983845..e61c0dc1fc0b 100644
---- a/Documentation/devicetree/bindings/sound/fsl-sai.txt
-+++ b/Documentation/devicetree/bindings/sound/fsl-sai.txt
-@@ -8,7 +8,8 @@ codec/DSP interfaces.
- Required properties:
- 
-   - compatible		: Compatible list, contains "fsl,vf610-sai",
--			  "fsl,imx6sx-sai" or "fsl,imx6ul-sai"
-+			  "fsl,imx6sx-sai", "fsl,imx6ul-sai",
-+			  "fsl,imx7ulp-sai" or "fsl,imx8mq-sai".
- 
-   - reg			: Offset and length of the register set for the device.
- 
+> +	return ret;
+
+Same as per patch 3, i.e.
+
+	return 0;
+
+> +}
+
+> +static int request_irq_intel(struct uart_port *port)
+> +{
+> +	struct ltq_uart_port *ltq_port = to_ltq_uart_port(port);
+> +	int retval;
+> +
+> +	retval = request_irq(ltq_port->common_irq, lqasc_irq, 0,
+> +			     "asc_irq", port);
+
+> +	if (retval) {
+> +		dev_err(port->dev, "failed to request asc_irq\n");
+> +		return retval;
+> +	}
+> +
+> +	return 0;
+
+	if (retval)
+		dev_err();
+
+	return retval;
+
+> +}
+
+> +
+> +
+
+One blank line is enough.
+
 -- 
-2.20.1
+With Best Regards,
+Andy Shevchenko
+
 
