@@ -2,146 +2,84 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8D12985288
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 19:59:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 331FC852B9
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 20:13:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388163AbfHGR7p (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 13:59:45 -0400
-Received: from mail-pl1-f194.google.com ([209.85.214.194]:36669 "EHLO
-        mail-pl1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387953AbfHGR7p (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 13:59:45 -0400
-Received: by mail-pl1-f194.google.com with SMTP id k8so41941271plt.3;
-        Wed, 07 Aug 2019 10:59:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=Ng6xzoejdEmB6bEu6I8V9VsO/8EgPH3m7FsrYidIs9U=;
-        b=PJUT3jDPkZBHoMReYOZ90wqru2WmbuqSeaiKUYBfJSzLLddji9y1+lo7MG3H/v3MHI
-         X64701CtrJr9jGEFNXdJWD6zxWrrM6m77kSRt9xQhxI3AdzSCTpXE/ImRE8vUrmfDaTt
-         vJmtJaMljNtGdVXtpratOJdIcUIhYbNJuziKN0R7Gp94W4Bk9Qqs96oPoR4/zgBP5/G3
-         W4moh+AeYd1yecIbW5ZYxLsgYcdxqcvvELrdP6I/e/+LE6kw4+8j3SPcaOyl/b4mzYKD
-         oNcm58YoLsd6gx+vD1Q64Pot5N5mYpeT3wTySLEGmSNvxaShEtaKCd3aTiUaNGKipee/
-         mKbA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=Ng6xzoejdEmB6bEu6I8V9VsO/8EgPH3m7FsrYidIs9U=;
-        b=bnW8pK2v4E/0s11G3A7Cqrl+GIJDn7wPc+9D4zLyNsQvlmvAGGv+CJNi1A+od/MsE7
-         py29u3vK+DusCyDXM+Em2zajVhuAqzSVjDLGi4JGuenwEtB9fiR7oY0GsYZ9GJOTqZZs
-         CiSr/3XCIJVOIQHa+8rZ15G2Mp14YHuj53mexQecmaUhpQOEg1mufcieHtzTUPOtbu29
-         UviwmetvWps+Q6quneEBRceD63hMuCKoTqSJuz0J+9KhpMNB35G6QJ+5FJAeIKiiz1Nm
-         sFpUQHOwCXAlglu7XSRErYqbChlt3HxIBijKo0g/XPFdaLr0fEVBXUatq1UAwMN15Xs2
-         3YoQ==
-X-Gm-Message-State: APjAAAUmyYCMx5Ha+Leod8iDvDv5LJOpjRTI0PXywpHc/ulh1Up/Hzw7
-        SyTc9nkYKjxocgaa/K58+G0=
-X-Google-Smtp-Source: APXvYqw+aPcdft4eNHEsQckq4s+4Z5jgKpCx7EjtIxho9e8VbTKoeh7Lgrtix37xUJEpn6vv3crhWA==
-X-Received: by 2002:a65:62d7:: with SMTP id m23mr8765206pgv.358.1565200784513;
-        Wed, 07 Aug 2019 10:59:44 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id w18sm120988761pfj.37.2019.08.07.10.59.43
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 07 Aug 2019 10:59:43 -0700 (PDT)
-Date:   Wed, 7 Aug 2019 10:59:42 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     robh+dt@kernel.org, linux-amlogic@lists.infradead.org,
-        linux-watchdog@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org
-Subject: Re: [RFCv2 9/9] dt-bindings: watchdog: meson-gxbb-wdt: convert to
- yaml
-Message-ID: <20190807175942.GA26331@roeck-us.net>
-References: <20190805120320.32282-1-narmstrong@baylibre.com>
- <20190805120320.32282-10-narmstrong@baylibre.com>
+        id S2389043AbfHGSNZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 14:13:25 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:56288 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388163AbfHGSNZ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 14:13:25 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 88E8360E57; Wed,  7 Aug 2019 18:13:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565201604;
+        bh=vxW0t5Vft4mszEDCzVQPjiEkFFY/eJG7abF/A3CopRw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=FMqIBoj+V4VR5YUHXlQkTDFQV04pT6Mp5ndwiau3rwzw7vBTCLRD8EHMfPc+1d9Ip
+         4Op0nf/IH2qayyXX4ssDzOzl5JdrQ5ZAE0gZ+C2LuLTBvTT8kH9wxokGKHs4rvlFJj
+         9dsCVp0Ssxxnm60I9PQMGtZeHmCFqqv32JqXyzw8=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from tdas-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: tdas@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 5493460907;
+        Wed,  7 Aug 2019 18:13:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565201603;
+        bh=vxW0t5Vft4mszEDCzVQPjiEkFFY/eJG7abF/A3CopRw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=Nk1ecPt5PuYa97Sk+v+5cVcLUhaPRjtgqKWXKQndgGEhl19Ih6kkVMDyExA/xtJgs
+         vuvYa/nkmjIY649AFBo7KRYN8fOAXEIABBq4eKCxW21vlMRml9joJgLFAF+JySldcs
+         da9wsHTZG33Zh/5z4nxbCeZRB+iNMk0IHy4kzvzY=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 5493460907
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=tdas@codeaurora.org
+From:   Taniya Das <tdas@codeaurora.org>
+To:     Stephen Boyd <sboyd@kernel.org>,
+        =?UTF-8?q?Michael=20Turquette=20=C2=A0?= <mturquette@baylibre.com>
+Cc:     David Brown <david.brown@linaro.org>,
+        Rajendra Nayak <rnayak@codeaurora.org>,
+        linux-arm-msm@vger.kernel.org, linux-soc@vger.kernel.org,
+        linux-clk@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org, robh@kernel.org,
+        Taniya Das <tdas@codeaurora.org>
+Subject: [PATCH v1 0/2] Add Global Clock controller (GCC) driver for SC7180
+Date:   Wed,  7 Aug 2019 23:42:59 +0530
+Message-Id: <20190807181301.15326-1-tdas@codeaurora.org>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190805120320.32282-10-narmstrong@baylibre.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 05, 2019 at 02:03:20PM +0200, Neil Armstrong wrote:
-> Now that we have the DT validation in place, let's convert the device tree
-> bindings for the Amlogic GXBB Watchdog timer over to a YAML schemas.
-> 
-> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+Add driver support for Global Clock controller for SC7180 and also update
+device tree bindings for the various clocks supported in the clock controller.
 
-Reviewed-by: Guenter Roeck <linux@roeck-us.net>
 
-> ---
->  .../watchdog/amlogic,meson-gxbb-wdt.yaml      | 37 +++++++++++++++++++
->  .../bindings/watchdog/meson-gxbb-wdt.txt      | 16 --------
->  2 files changed, 37 insertions(+), 16 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
->  delete mode 100644 Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-> new file mode 100644
-> index 000000000000..d7352f709b37
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/amlogic,meson-gxbb-wdt.yaml
-> @@ -0,0 +1,37 @@
-> +# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-> +# Copyright 2019 BayLibre, SAS
-> +%YAML 1.2
-> +---
-> +$id: "http://devicetree.org/schemas/watchdog/amlogic,meson-gxbb-wdt.yaml#"
-> +$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-> +
-> +title: Meson GXBB SoCs Watchdog timer
-> +
-> +maintainers:
-> +  - Neil Armstrong <narmstrong@baylibre.com>
-> +
-> +properties:
-> +  compatible:
-> +    enum:
-> +      - amlogic,meson-gxbb-wdt
-> +
-> +  reg:
-> +    maxItems: 1
-> +
-> +  clocks:
-> +    maxItems: 1
-> +    description:
-> +      A phandle to the clock of this PHY
-> +
-> +required:
-> +  - compatible
-> +  - reg
-> +  - clocks
-> +
-> +examples:
-> +  - |
-> +    watchdog@98d0 {
-> +          compatible = "amlogic,meson-gxbb-wdt";
-> +          reg = <0x98d0 0x10>;
-> +          clocks = <&xtal>;
-> +    };
-> diff --git a/Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt b/Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
-> deleted file mode 100644
-> index c7fe36fa739c..000000000000
-> --- a/Documentation/devicetree/bindings/watchdog/meson-gxbb-wdt.txt
-> +++ /dev/null
-> @@ -1,16 +0,0 @@
-> -Meson GXBB SoCs Watchdog timer
-> -
-> -Required properties:
-> -
-> -- compatible : should be "amlogic,meson-gxbb-wdt"
-> -- reg : Specifies base physical address and size of the registers.
-> -- clocks : Should be a phandle to the Watchdog clock source, for GXBB the xtal
-> -	   is the default clock source.
-> -
-> -Example:
-> -
-> -wdt: watchdog@98d0 {
-> -	compatible = "amlogic,meson-gxbb-wdt";
-> -	reg = <0 0x98d0 0x0 0x10>;
-> -	clocks = <&xtal>;
-> -};
+Taniya Das (2):
+  clk: qcom: Add DT bindings for SC7180 gcc clock controller
+  clk: qcom: Add Global Clock controller (GCC) driver for SC7180
+
+ .../devicetree/bindings/clock/qcom,gcc.txt    |    1 +
+ drivers/clk/qcom/Kconfig                      |    9 +
+ drivers/clk/qcom/Makefile                     |    1 +
+ drivers/clk/qcom/gcc-sc7180.c                 | 2496 +++++++++++++++++
+ include/dt-bindings/clock/qcom,gcc-sc7180.h   |  155 +
+ 5 files changed, 2662 insertions(+)
+ create mode 100644 drivers/clk/qcom/gcc-sc7180.c
+ create mode 100644 include/dt-bindings/clock/qcom,gcc-sc7180.h
+
+--
+Qualcomm INDIA, on behalf of Qualcomm Innovation Center, Inc.is a member
+of the Code Aurora Forum, hosted by the  Linux Foundation.
+
