@@ -2,245 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCE13850EA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 18:20:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A6FD285134
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 18:37:04 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388602AbfHGQT5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 12:19:57 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:38314 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387827AbfHGQT5 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 12:19:57 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x77GJf7I067099;
-        Wed, 7 Aug 2019 11:19:41 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1565194781;
-        bh=Zb8W9EuN9h+ioKpDhDbW8AsmcjUEyy8dsKXf060zWuM=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=P0uPmYZpjT3lslMFU9rmNZDlKcspm94fWdIbgfnTqy+QUW27VO9oWdvXFMJJsXAr7
-         +lnkn+w2pDVhq0hdGJhKW3rX7D/258xuMD6SsqVRYEgMBqZsxwRYGHSNjq4vXrwT6P
-         iBnicme/oQVnDrTFoii0DGlrC1TbtrZ6ROyljvk0=
-Received: from DLEE108.ent.ti.com (dlee108.ent.ti.com [157.170.170.38])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x77GJfBw056200
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Wed, 7 Aug 2019 11:19:41 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE108.ent.ti.com
- (157.170.170.38) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 7 Aug
- 2019 11:19:41 -0500
-Received: from lelv0326.itg.ti.com (10.180.67.84) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Wed, 7 Aug 2019 11:19:41 -0500
-Received: from [128.247.58.153] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0326.itg.ti.com (8.15.2/8.15.2) with ESMTP id x77GJfwg110878;
-        Wed, 7 Aug 2019 11:19:41 -0500
-Subject: Re: [PATCH 0/6] hwspinlock: allow sharing of hwspinlocks
-To:     Fabien DESSENNE <fabien.dessenne@st.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Ohad Ben-Cohen <ohad@wizery.com>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        Benjamin GAIGNARD <benjamin.gaignard@st.com>
-References: <1552492237-28810-1-git-send-email-fabien.dessenne@st.com>
- <20190801191403.GA7234@tuxbook-pro>
- <1a057176-81ab-e302-4375-2717ceef6924@st.com>
- <20190805174659.GA23928@tuxbook-pro>
- <dcd1aeea-cffe-d5fb-af5a-e52efcc2e046@ti.com>
- <20190806182128.GD26807@tuxbook-pro>
- <1aea3d28-29dc-f9de-3b86-cf777e0d5caa@ti.com>
- <02329102-5571-c6c1-b78c-693747133f0e@st.com>
-From:   Suman Anna <s-anna@ti.com>
-Message-ID: <f0893b3f-0124-007a-3ca2-831f60ad9a80@ti.com>
-Date:   Wed, 7 Aug 2019 11:19:41 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S2388480AbfHGQhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 12:37:00 -0400
+Received: from foss.arm.com ([217.140.110.172]:51764 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1729745AbfHGQg7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Aug 2019 12:36:59 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5169344;
+        Wed,  7 Aug 2019 09:36:58 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B91B63F694;
+        Wed,  7 Aug 2019 09:36:56 -0700 (PDT)
+Date:   Wed, 7 Aug 2019 17:36:54 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Jonathan Chocron <jonnyc@amazon.com>
+Cc:     bhelgaas@google.com, jingoohan1@gmail.com,
+        gustavo.pimentel@synopsys.com, robh+dt@kernel.org,
+        mark.rutland@arm.com, dwmw@amazon.co.uk, benh@kernel.crashing.org,
+        alisaidi@amazon.com, ronenk@amazon.com, barakw@amazon.com,
+        talel@amazon.com, hanochu@amazon.com, hhhawa@amazon.com,
+        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH v3 8/8] PCI: dw: Add support for
+ PCI_PROBE_ONLY/PCI_REASSIGN_ALL_BUS flags
+Message-ID: <20190807163654.GC16214@e121166-lin.cambridge.arm.com>
+References: <20190723092529.11310-1-jonnyc@amazon.com>
+ <20190723092711.11786-4-jonnyc@amazon.com>
 MIME-Version: 1.0
-In-Reply-To: <02329102-5571-c6c1-b78c-693747133f0e@st.com>
-Content-Type: text/plain; charset="utf-8"
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190723092711.11786-4-jonnyc@amazon.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Fabien,
+On Tue, Jul 23, 2019 at 12:27:11PM +0300, Jonathan Chocron wrote:
+> This basically aligns the usage of PCI_PROBE_ONLY and
+> PCI_REASSIGN_ALL_BUS in dw_pcie_host_init() with the logic in
+> pci_host_common_probe().
+> 
+> Now it will be possible to control via the devicetree whether to just
+> probe the PCI bus (in cases where FW already configured it) or to fully
+> configure it.
+> 
+> Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
+> ---
+>  .../pci/controller/dwc/pcie-designware-host.c | 23 +++++++++++++++----
+>  1 file changed, 19 insertions(+), 4 deletions(-)
+> 
+> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
+> index d2ca748e4c85..0a294d8aa21a 100644
+> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> @@ -342,6 +342,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  	if (!bridge)
+>  		return -ENOMEM;
+>  
+> +	of_pci_check_probe_only();
+> +
+>  	ret = devm_of_pci_get_host_bridge_resources(dev, 0, 0xff,
+>  					&bridge->windows, &pp->io_base);
+>  	if (ret)
+> @@ -474,6 +476,10 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  
+>  	pp->root_bus_nr = pp->busn->start;
+>  
+> +	/* Do not reassign bus nums if probe only */
+> +	if (!pci_has_flag(PCI_PROBE_ONLY))
+> +		pci_add_flags(PCI_REASSIGN_ALL_BUS);
 
-On 8/7/19 3:39 AM, Fabien DESSENNE wrote:
-> Hi
-> 
-> On 06/08/2019 11:30 PM, Suman Anna wrote:
->> On 8/6/19 1:21 PM, Bjorn Andersson wrote:
->>> On Tue 06 Aug 10:38 PDT 2019, Suman Anna wrote:
->>>
->>>> Hi Fabien,
->>>>
->>>> On 8/5/19 12:46 PM, Bjorn Andersson wrote:
->>>>> On Mon 05 Aug 01:48 PDT 2019, Fabien DESSENNE wrote:
->>>>>
->>>>>> On 01/08/2019 9:14 PM, Bjorn Andersson wrote:
->>>>>>> On Wed 13 Mar 08:50 PDT 2019, Fabien Dessenne wrote:
->>> [..]
->>>>>> B/ This would introduce some inconsistency between the two 'request' API
->>>>>> which are hwspin_lock_request() and hwspin_lock_request_specific().
->>>>>> hwspin_lock_request() looks for an unused lock, so requests for an exclusive
->>>>>> usage. On the other side, request_specific() would request shared locks.
->>>>>> Worst the following sequence can transform an exclusive usage into a shared
->>>>>>
->>>>> There is already an inconsistency in between these; as with above any
->>>>> system that uses both request() and request_specific() will be suffering
->>>>> from intermittent failures due to probe ordering.
->>>>>
->>>>>> one:
->>>>>>     -hwspin_lock_request() -> returns Id#0 (exclusive)
->>>>>>     -hwspin_lock_request() -> returns Id#1 (exclusive)
->>>>>>     -hwspin_lock_request_specific(0) -> returns Id#0 and makes Id#0 shared
->>>>>> Honestly I am not sure that this is a real issue, but it's better to have it
->>>>>> in mind before we take ay decision
->>>> Wouldn't it be actually simpler to just introduce a new specific API
->>>> variant for this, similar to the reset core for example (it uses a
->>>> separate exclusive API), without having to modify the bindings at all.
->>>> It is just a case of your driver using the right API, and the core can
->>>> be modified to use the additional tag semantics based on the API. It
->>>> should avoid any confusion with say using a different second cell value
->>>> for the same lock in two different nodes.
->>>>
->>> But this implies that there is an actual need to hold these locks
->>> exclusively. Given that they are (except for the raw case) all wrapped
->>> by Linux locking primitives there shouldn't be a problem sharing a lock
->>> (except possibly for the raw case).
->> Yes agreed, the HWLOCK_RAW and HWLOCK_IN_ATOMIC cases are unprotected. I
->> am still trying to understand better the usecase to see if the same lock
->> is being multiplexed for different protection contexts, or if all of
->> them are protecting the same context.
-> 
-> 
-> Here are two different examples that explain the need for changes.
-> In both cases the Linux clients are talking to a single entity on the
-> remote-side.
-> 
-> Example 1:
->      exti: interrupt-controller@5000d000 {
->          compatible = "st,stm32mp1-exti", "syscon";
->          interrupt-controller;
->          #interrupt-cells = <2>;
->          reg = <0x5000d000 0x400>;
->          hwlocks = <&hsem 1>;
->      };
-> The two drivers (stm32mp1-exti and syscon) refer to the same hwlock.
-> With the current hwspinlock implementation, only the first driver succeeds
-> in requesting (hwspin_lock_request_specific) the hwlock. The second request
-> fails.
-> Here, we really need to share the hwlock between the two drivers.
-> Note: hardware spinlock support for regmap was 'recently' introduced in 4.15
-> see https://lore.kernel.org/patchwork/patch/845941/
-> 
-> 
-> 
-> Example 2:
-> Here it is more a question of optimization : we want to save the number of
-> hwlocks used to protect resources, using an unique hwlock to protect all
-> pinctrl resources:
->          pinctrl: pin-controller@50002000 {
->              compatible = "st,stm32mp157-pinctrl";
->              ranges = <0 0x50002000 0xa400>;
->              hwlocks = <&hsem 0 1>;
-> 
->          pinctrl_z: pin-controller-z@54004000 {
->              compatible = "st,stm32mp157-z-pinctrl";
->              ranges = <0 0x54004000 0x400>;
->              pins-are-numbered;
->              hwlocks = <&hsem 0 1>;
+This changes the default for bus reassignment on all DWC host (that are
+!PCI_PROBE_ONLY), we should drop this line, it can trigger regressions.
 
-Thanks for the examples.
+If we still want to merge it as a separate change we must test it on all
+DWC host bridges to make sure it does not trigger any issues with
+current set-ups, that's not going to be easy though.
 
-> 
->>
->>> I agree that we shouldn't specify this property in DT - if anything it
->>> should be a variant of the API.
-> 
-> 
-> If we decide to add a 'shared' API, then, what about the generic regmap 
-> driver?
-> 
-> In the context of above example1, this would require to update the 
-> regmap driver.
-> 
-> But would this be acceptable for any driver using syscon/regmap?
-> 
-> 
-> I think it is better to keep the existing API (modifying it so it always 
-> allows
-> 
-> hwlocks sharing, so no need for bindings update) than adding another API.
+Lorenzo
 
-For your usecases, you would definitely need the syscon/regmap behavior
-to be shared right. Whether we introduce a 'shared' API or an
-'exclusive' API and change the current API behavior to shared, it is
-definitely a case-by-case usage scenario for the existing drivers and
-usage right. The main contention point is what to do with the
-unprotected usecases like Bjorn originally pointed out.
-
-regards
-Suman
-
+> +
+>  	bridge->dev.parent = dev;
+>  	bridge->sysdata = pp;
+>  	bridge->busnr = pp->root_bus_nr;
+> @@ -490,11 +496,20 @@ int dw_pcie_host_init(struct pcie_port *pp)
+>  	if (pp->ops->scan_bus)
+>  		pp->ops->scan_bus(pp);
+>  
+> -	pci_bus_size_bridges(pp->root_bus);
+> -	pci_bus_assign_resources(pp->root_bus);
+> +	/*
+> +	 * We insert PCI resources into the iomem_resource and
+> +	 * ioport_resource trees in either pci_bus_claim_resources()
+> +	 * or pci_bus_assign_resources().
+> +	 */
+> +	if (pci_has_flag(PCI_PROBE_ONLY)) {
+> +		pci_bus_claim_resources(pp->root_bus);
+> +	} else {
+> +		pci_bus_size_bridges(pp->root_bus);
+> +		pci_bus_assign_resources(pp->root_bus);
+>  
+> -	list_for_each_entry(child, &pp->root_bus->children, node)
+> -		pcie_bus_configure_settings(child);
+> +		list_for_each_entry(child, &pp->root_bus->children, node)
+> +			pcie_bus_configure_settings(child);
+> +	}
+>  
+>  	pci_bus_add_devices(pp->root_bus);
+>  	return 0;
+> -- 
+> 2.17.1
 > 
-> 
-> 
->>>
->>>> If you are sharing a hwlock on the Linux side, surely your driver should
->>>> be aware that it is a shared lock. The tag can be set during the first
->>>> request API, and you look through both tags when giving out a handle.
->>>>
->>> Why would the driver need to know about it?
->> Just the semantics if we were to support single user vs multiple users
->> on Linux-side to even get a handle. Your point is that this may be moot
->> since we have protection anyway other than the raw cases. But we need to
->> be able to have the same API work across all cases.
->>
->> So far, it had mostly been that there would be one user on Linux
->> competing with other equivalent peer entities on different processors.
->> It is not common to have multiple users since these protection schemes
->> are usually needed only at the lowest levels of a stack, so the
->> exclusive handle stuff had been sufficient.
->>
->>>> Obviously, the hwspin_lock_request() API usage semantics always had the
->>>> implied additional need for communicating the lock id to the other peer
->>>> entity, so a realistic usage is most always the specific API variant. I
->>>> doubt this API would be of much use for the shared driver usage. This
->>>> also implies that the client user does not care about specifying a lock
->>>> in DT.
->>>>
->>> Afaict if the lock are shared then there shouldn't be a problem with
->>> some clients using the request API and others request_specific(). As any
->>> collisions would simply mean that there are more contention on the lock.
->>>
->>> With the current exclusive model that is not possible and the success of
->>> the request_specific will depend on probe order.
->>>
->>> But perhaps it should be explicitly prohibited to use both APIs on the
->>> same hwspinlock instance?
->> Yeah, they are meant to be complimentary usage, though I doubt we will
->> ever have any realistic users for the generic API if we haven't had a
->> usage so far. I had posted a concept of reserved locks long back [1] to
->> keep away certain locks from the generic requestor, but dropped it since
->> we did not have an actual use-case needing it.
->>
->> regards
->> Suman
->>
->> [1] https://lwn.net/Articles/611944/
-
