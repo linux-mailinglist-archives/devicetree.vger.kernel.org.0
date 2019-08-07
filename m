@@ -2,111 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E33B985182
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 18:56:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F5B48519E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 19:04:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388901AbfHGQ4t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 12:56:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:44354 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388898AbfHGQ4t (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Aug 2019 12:56:49 -0400
-Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 128DA222FC;
-        Wed,  7 Aug 2019 16:56:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565197008;
-        bh=hvVL8ffc/jpc+bF4/4PHu60D06JAOf/K78E9+2Cf9VY=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=xkB1X1iSl56LQP0CBIj5/L1p7RUnNbaRbYHyuBNqZBjc6i2nazIdJ5qcCCP/LJY0i
-         dW9wJ0yKIT6CwqGXaPDJKk/WkPMNzesKuItpcDpzHmSWVFsc4YMpt9MMJf/ZsaFKR5
-         N1wzPceAsL2UfeGslE7K62fzZnnAwBV3SH5To17o=
-Date:   Wed, 7 Aug 2019 18:56:46 +0200
-From:   "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
-To:     Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Cc:     "corbet@lwn.net" <corbet@lwn.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>,
-        Larisa Ileana Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH 5/6] tty: serial: Add linflexuart driver for S32V234
-Message-ID: <20190807165646.GA6584@kroah.com>
-References: <20190802194702.30249-1-stefan-gabriel.mirea@nxp.com>
- <20190802194702.30249-6-stefan-gabriel.mirea@nxp.com>
- <20190805153114.GA16836@kroah.com>
- <HE1PR0402MB28579034C09EB49A76A4F8E7DFD50@HE1PR0402MB2857.eurprd04.prod.outlook.com>
- <20190806184042.GA26041@kroah.com>
- <VI1PR0402MB2863C4406C06B0BDA3581822DFD40@VI1PR0402MB2863.eurprd04.prod.outlook.com>
+        id S2388867AbfHGRE6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 13:04:58 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:37944 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388860AbfHGRE6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 13:04:58 -0400
+Received: by mail-pl1-f196.google.com with SMTP id m12so3111243plt.5
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 10:04:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=chromium.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jvijXR0N1UhWnmCMLZgGc0uUllTfrVpMODKwZ+a/Lpk=;
+        b=K0DdoHalNpqfXUXNlfVOTZluh1fZjO1htfDRq9m56tp8GguieWpk29NqYn/JHIlMqX
+         x5omTQvbjQSqMW8FvWgPKUdfN50lnF0E8gIi/YwVkfPDfUnGC3HDSRFOOmN2hMG8jYmH
+         IC0aggl0QQoDe4VmNAgyaeKoZkLunk0LyVC4E=
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=jvijXR0N1UhWnmCMLZgGc0uUllTfrVpMODKwZ+a/Lpk=;
+        b=YWBCLDB6SJkjiZJlHbsCDYdkSzeLZIGmw+TY49mZ6vgExTHuzCW3bbvnvgORCiEJkM
+         EigPLBhMGBkLUP+XOwlE4S2NE4Y+9JKLZVJR+Qzou7yPhPH+/Rz6Zxsq0UbBaYOaI/D6
+         h6RaXeFORePNLVuOSuGx6d3FQOfRyTFK/bZGujggk3qqbvOG+9gYlOyzN1RxVw6uV28S
+         w3SpUIC4NNFgWon4ABupwPqTqkU1qK7pxBSvhytaLzNPQsOJtlOp6Zg3qCcRnm8iQsSt
+         JifUZP1uAhwc/DJ64+s4uRU7Wy5joRp3Buxs4U/pxPPUqR5mCvOZbaL1+iYfbTcUoy6n
+         EcCw==
+X-Gm-Message-State: APjAAAVN3kqIqE7JM6P1Or0UFGTXgBXFf9DX9UlxgCayKGUnfd5244B2
+        k0tFurgPfS1OfBoECKbrBViqRQ==
+X-Google-Smtp-Source: APXvYqxVB0ltkjMiFBNmYoV5UmkVDZAAacu/2A70V1J3piCWKQtT26uSS+wdaVnwrrq6Cj47oV1iCA==
+X-Received: by 2002:aa7:92cb:: with SMTP id k11mr10521596pfa.126.1565197497581;
+        Wed, 07 Aug 2019 10:04:57 -0700 (PDT)
+Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
+        by smtp.gmail.com with ESMTPSA id i3sm98421238pfo.138.2019.08.07.10.04.56
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 07 Aug 2019 10:04:56 -0700 (PDT)
+From:   Matthias Kaehlcke <mka@chromium.org>
+To:     "David S . Miller" <davem@davemloft.net>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Andrew Lunn <andrew@lunn.ch>,
+        Florian Fainelli <f.fainelli@gmail.com>,
+        Heiner Kallweit <hkallweit1@gmail.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org,
+        Douglas Anderson <dianders@chromium.org>,
+        Matthias Kaehlcke <mka@chromium.org>
+Subject: [PATCH v5 0/4] net: phy: Add support for DT configuration of PHY LEDs and use it for RTL8211E
+Date:   Wed,  7 Aug 2019 10:04:45 -0700
+Message-Id: <20190807170449.205378-1-mka@chromium.org>
+X-Mailer: git-send-email 2.22.0.770.g0f2c4a37fd-goog
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <VI1PR0402MB2863C4406C06B0BDA3581822DFD40@VI1PR0402MB2863.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 07, 2019 at 04:42:17PM +0000, Stefan-gabriel Mirea wrote:
-> On 8/6/2019 9:40 PM, gregkh@linuxfoundation.org wrote:
-> > On Tue, Aug 06, 2019 at 05:11:17PM +0000, Stefan-gabriel Mirea wrote:
-> >> On 8/5/2019 6:31 PM, gregkh@linuxfoundation.org wrote:
-> >>> On Fri, Aug 02, 2019 at 07:47:23PM +0000, Stefan-gabriel Mirea wrote:
-> >>>>
-> >>>> +/* Freescale Linflex UART */
-> >>>> +#define PORT_LINFLEXUART     121
-> >>>
-> >>> Do you really need this modified?
-> >>
-> >> Hello Greg,
-> >>
-> >> This macro is meant to be assigned to port->type in the config_port
-> >> method from uart_ops, in order for verify_port to know if the received
-> >> serial_struct structure was really targeted for a LINFlex port. It
-> >> needs to be defined outside, to avoid "collisions" with other drivers.
-> > 
-> > Yes, I know what it goes to, but does anyone in userspace actually use
-> > it?
-> 
-> No, we do not use it from userspace, but kept the pattern only for
-> conformance.
-> 
-> >> Other than that, I do not see anything wrong with the addition of a
-> >> define in serial_core.h for this purpose (which is also what most of the
-> >> serial drivers do, including amba-pl011.c, mentioned in
-> >> Documentation/driver-api/serial/driver.rst as providing the reference
-> >> implementation), so please be more specific.
-> > 
-> > I am getting tired of dealing with merge issues with that list, and no
-> > one seems to be able to find where they are really needed for userspace,
-> > especially for new devices.  What happens if you do not have use it?
-> 
-> I see. If I drop its usage completely and leave 'type' from the
-> uart_port as 0, uart_port_startup() will fail when finding that
-> uport->type == PORT_UNKNOWN at [1] (there may be other effects as well,
-> e.g. due to the check in uart_configure_port[2]).
-> 
-> So I suppose that I need to define some nonzero 'PORT_KNOWN' macro in
-> the driver and use that one internally for 'type'. Is my understanding
-> correct? Will there be any problems if I define it to a positive integer
-> which is already assigned to another driver, according to serial_core.h?
+This series adds a generic binding to configure PHY LEDs through
+the device tree, and phylib support for reading the information
+from the DT. PHY drivers that support the generic binding should
+implement the new hook .config_led.
 
-Ugh, ok, that's messy, nevermind.  Keep the #define in there, I will try
-to figure out how to move all of these at once sometime in the future...
+Enable DT configuration of the RTL8211E LEDs by implementing the
+.config_led hook of the driver. Certain registers of the RTL8211E
+can only be accessed through a vendor specific extended page
+mechanism. Extended pages need to be accessed for the LED
+configuration. This series adds helpers to facilitate accessing
+extended pages.
 
-sorry for the noise.
+(subject updated, was "net: phy: realtek: Enable configuration
+of RTL8211E LEDs")
 
-greg k-h
+Matthias Kaehlcke (4):
+  dt-bindings: net: phy: Add subnode for LED configuration
+  net: phy: Add support for generic LED configuration through the DT
+  net: phy: realtek: Add helpers for accessing RTL8211x extension pages
+  net: phy: realtek: Add LED configuration support for RTL8211E
+
+ .../devicetree/bindings/net/ethernet-phy.yaml |  59 +++++++
+ drivers/net/phy/phy_device.c                  |  72 +++++++++
+ drivers/net/phy/realtek.c                     | 148 ++++++++++++++++--
+ include/linux/phy.h                           |  22 +++
+ 4 files changed, 286 insertions(+), 15 deletions(-)
+
+-- 
+2.22.0.770.g0f2c4a37fd-goog
+
