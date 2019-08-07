@@ -2,68 +2,155 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 417C285519
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 23:23:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C8C6C855D1
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 00:31:23 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730445AbfHGVWc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 17:22:32 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36386 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727751AbfHGVWb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Aug 2019 17:22:31 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EA9D821743;
-        Wed,  7 Aug 2019 21:22:29 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565212950;
-        bh=Ez8LaKwI1SJs6govk+MMRlWWhM/4pEOdFZMRWLlQ2mI=;
-        h=In-Reply-To:References:Cc:From:Subject:To:Date:From;
-        b=cY4O2u58IhUIdMTd2VykvzwyKqa36wyMzcXktOUUXt1/u6PLDCxNF0IZGbiu7aH3z
-         Xau3Ylg34uY3DDcvU4GpqaH4VbrPnaOgNPzPJH8bl4FUnjaTwcdVwm2GnFnmxZIefS
-         9MeJwaeSkFbatmYDiI2zH9BcanjGPtL+JM3TREtg=
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <641727e6-4796-f982-3b58-4c8d666de1a2@nvidia.com>
-References: <1563738060-30213-1-git-send-email-skomatineni@nvidia.com> <1563738060-30213-15-git-send-email-skomatineni@nvidia.com> <e683b417-66fb-38dc-c16b-dab616583a88@gmail.com> <88da46d2-b90d-f57e-7611-b8653b56bdf6@nvidia.com> <ceedb802-7561-488f-3a89-67bee19f2fea@gmail.com> <e2d0e8cc-b4ea-1148-4af1-fee6bb266cca@nvidia.com> <5054f178-db27-9286-d123-3e2b2a885717@gmail.com> <8c259511-d8ea-51b2-0b1d-c85b964bc44c@gmail.com> <20190802175119.1E401217F5@mail.kernel.org> <641727e6-4796-f982-3b58-4c8d666de1a2@nvidia.com>
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org
-From:   Stephen Boyd <sboyd@kernel.org>
-Subject: Re: [PATCH V6 14/21] clk: tegra210: Add suspend and resume support
-To:     Dmitry Osipenko <digetx@gmail.com>,
-        Sowjanya Komatineni <skomatineni@nvidia.com>,
-        jason@lakedaemon.net, jonathanh@nvidia.com,
-        linus.walleij@linaro.org, marc.zyngier@arm.com,
-        mark.rutland@arm.com, stefan@agner.ch, tglx@linutronix.de,
-        thierry.reding@gmail.com
-User-Agent: alot/0.8.1
-Date:   Wed, 07 Aug 2019 14:22:29 -0700
-Message-Id: <20190807212229.EA9D821743@mail.kernel.org>
+        id S2389431AbfHGWbQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 18:31:16 -0400
+Received: from mail-vs1-f73.google.com ([209.85.217.73]:46822 "EHLO
+        mail-vs1-f73.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2388957AbfHGWbQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 18:31:16 -0400
+Received: by mail-vs1-f73.google.com with SMTP id x10so23504279vsp.13
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 15:31:15 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=date:message-id:mime-version:subject:from:to:cc;
+        bh=cO1gXGOyS0gi4TQ5Wq0NWKmVpQwgP9l+EbKlT+h4gHU=;
+        b=uuZtBdB/7qm120Nq4qybmRvPR+I9q9Ixj2SEs5qLEw7hCnWKJaIX7nHfzN05S8Vy4N
+         epZt1M0q+U54DDnq2jYdBwqpJyjE0IPSPk29QdW4rpPRMHTSevRMRaNO3InbE5rrVdAt
+         t3axTnksX9aJake09fiFXBtGmaOWP277JThdHw8b4/gR8nb/0UoWf06gDjhQcqBRK2Ml
+         QuFI9Kv7ZSiPp9tnwhKBRXIo0rSrKFKp86U8aVh+u316HgpJmZ2j5OiG+DVtheQqEqeW
+         bADKCYVbMb6k+xyfjFFIMI86n4ofrnNOKXzvwf3M9loIElQpTlHmu9VjWQUyx72b8yee
+         6Hsg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:message-id:mime-version:subject:from:to:cc;
+        bh=cO1gXGOyS0gi4TQ5Wq0NWKmVpQwgP9l+EbKlT+h4gHU=;
+        b=Bj4TtuUn8udUNbe0LsMiAb1b6LxOAgNPk9BeFZvDQxUf9MdlpBAVd27J+uOw1V6i2M
+         r9NRNsFbD3w+lLgtAkeqwUz6gS1KrhTj5wPmb6yRSoKixjGEw/ednK8KcHHQZ5nJZYtX
+         ulyHWN6E/drSHE2WMOvNX29qtmiv8HKhQ8/HE7jYmke0F4Zxx6fmCNmacQbajqkLEL0o
+         ToFTM84hO3iXkWlHdtLmS6lvy/qP/WeBkxcFpZ5MFix/5mFSoxDIbRbqmPQ/JEXHjYyY
+         YEdKD586fQucKwRyzh/VTR8x7IEFFwlwdY52/zTH8bkxQR2vwsjK8sNjQMbUF5dPNPVF
+         EeSg==
+X-Gm-Message-State: APjAAAVPyVRT5ZN+Icj/nvOovAByvUVwz/B+RIgEsa8QuHohEGl+pIvi
+        acIh0r/KwthMVm78+g4KYqxFWHkXsKZ5Oec=
+X-Google-Smtp-Source: APXvYqya79a8mTDjLu2/eYtzqZNc/blOum2HVA6RIc6UOhuB5YGHpARfWsXtxe4HrnBdTDDJj7wdN9IHAnOOlF8=
+X-Received: by 2002:ac5:c4cc:: with SMTP id a12mr4618231vkl.28.1565217074937;
+ Wed, 07 Aug 2019 15:31:14 -0700 (PDT)
+Date:   Wed,  7 Aug 2019 15:31:08 -0700
+Message-Id: <20190807223111.230846-1-saravanak@google.com>
+Mime-Version: 1.0
+X-Mailer: git-send-email 2.23.0.rc1.153.gdeed80330f-goog
+Subject: [PATCH v5 0/3] Introduce Bandwidth OPPs for interconnects
+From:   Saravana Kannan <saravanak@google.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Viresh Kumar <vireshk@kernel.org>, Nishanth Menon <nm@ti.com>,
+        Stephen Boyd <sboyd@kernel.org>,
+        "Rafael J. Wysocki" <rjw@rjwysocki.net>
+Cc:     Saravana Kannan <saravanak@google.com>,
+        Georgi Djakov <georgi.djakov@linaro.org>,
+        vincent.guittot@linaro.org, seansw@qti.qualcomm.com,
+        daidavid1@codeaurora.org, adharmap@codeaurora.org,
+        Rajendra Nayak <rnayak@codeaurora.org>, sibis@codeaurora.org,
+        bjorn.andersson@linaro.org, evgreen@chromium.org,
+        kernel-team@android.com, linux-pm@vger.kernel.org,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Sowjanya Komatineni (2019-08-02 13:39:57)
->=20
-> On 8/2/19 10:51 AM, Stephen Boyd wrote:
-> > And also add a comment to this location in the code because it's
-> > non-obvious that we can't use iopoll here.
-> >
-> Actually added comment during function usage instead of during include=20
-> as iopoll.h is removed.
->=20
-> Will add additional comment in include section as well highlighting=20
-> reason for removal of iopoll.h
->=20
+Interconnects and interconnect paths quantify their performance levels in
+terms of bandwidth and not in terms of frequency. So similar to how we have
+frequency based OPP tables in DT and in the OPP framework, we need
+bandwidth OPP table support in DT and in the OPP framework.
 
-No I wasn't saying to add a comment to the include section, just add a
-comment in the place where you would have called iopoll but don't. Sorry
-that it wasn't clear.
+So with the DT bindings added in this patch series, the DT for a GPU
+that does bandwidth voting from GPU to Cache and GPU to DDR would look
+something like this:
+
+gpu_cache_opp_table: gpu_cache_opp_table {
+	compatible = "operating-points-v2";
+
+	gpu_cache_3000: opp-3000 {
+		opp-peak-KBps = <3000000>;
+		opp-avg-KBps = <1000000>;
+	};
+	gpu_cache_6000: opp-6000 {
+		opp-peak-KBps = <6000000>;
+		opp-avg-KBps = <2000000>;
+	};
+	gpu_cache_9000: opp-9000 {
+		opp-peak-KBps = <9000000>;
+		opp-avg-KBps = <9000000>;
+	};
+};
+
+gpu_ddr_opp_table: gpu_ddr_opp_table {
+	compatible = "operating-points-v2";
+
+	gpu_ddr_1525: opp-1525 {
+		opp-peak-KBps = <1525000>;
+		opp-avg-KBps = <452000>;
+	};
+	gpu_ddr_3051: opp-3051 {
+		opp-peak-KBps = <3051000>;
+		opp-avg-KBps = <915000>;
+	};
+	gpu_ddr_7500: opp-7500 {
+		opp-peak-KBps = <7500000>;
+		opp-avg-KBps = <3000000>;
+	};
+};
+
+gpu_opp_table: gpu_opp_table {
+	compatible = "operating-points-v2";
+	opp-shared;
+
+	opp-200000000 {
+		opp-hz = /bits/ 64 <200000000>;
+	};
+	opp-400000000 {
+		opp-hz = /bits/ 64 <400000000>;
+	};
+};
+
+gpu@7864000 {
+	...
+	operating-points-v2 = <&gpu_opp_table>, <&gpu_cache_opp_table>, <&gpu_ddr_opp_table>;
+	...
+};
+
+v1 -> v3:
+- Lots of patch additions that were later dropped
+v3 -> v4:
+- Fixed typo bugs pointed out by Sibi.
+- Fixed bug that incorrectly reset rate to 0 all the time
+- Added units documentation
+- Dropped interconnect-opp-table property and related changes
+v4->v5:
+- Replaced KBps with kBps
+- Minor documentation fix
+
+Cheers,
+Saravana
+
+Saravana Kannan (3):
+  dt-bindings: opp: Introduce opp-peak-kBps and opp-avg-kBps bindings
+  OPP: Add support for bandwidth OPP tables
+  OPP: Add helper function for bandwidth OPP tables
+
+ Documentation/devicetree/bindings/opp/opp.txt | 15 ++++--
+ .../devicetree/bindings/property-units.txt    |  4 ++
+ drivers/opp/core.c                            | 51 +++++++++++++++++++
+ drivers/opp/of.c                              | 41 +++++++++++----
+ drivers/opp/opp.h                             |  4 +-
+ include/linux/pm_opp.h                        | 19 +++++++
+ 6 files changed, 121 insertions(+), 13 deletions(-)
+
+-- 
+2.23.0.rc1.153.gdeed80330f-goog
 
