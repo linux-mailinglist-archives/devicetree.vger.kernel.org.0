@@ -2,81 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D70DA84B27
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 14:04:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D64C184BD4
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 14:42:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728365AbfHGMEs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 08:04:48 -0400
-Received: from relay12.mail.gandi.net ([217.70.178.232]:35253 "EHLO
-        relay12.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726773AbfHGMEs (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 08:04:48 -0400
-Received: from localhost (lpr83-1-88-168-111-231.fbx.proxad.net [88.168.111.231])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay12.mail.gandi.net (Postfix) with ESMTPSA id 7D6CD200002;
-        Wed,  7 Aug 2019 12:04:46 +0000 (UTC)
-Date:   Wed, 7 Aug 2019 14:04:45 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        Martin Blumenstingl <martin.blumenstingl@googlemail.com>,
-        devicetree@vger.kernel.org, netdev <netdev@vger.kernel.org>,
-        linux-amlogic@lists.infradead.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 1/2] dt-bindings: net: snps,dwmac: update reg minItems
- maxItems
-Message-ID: <20190807120445.yje57g6mwcmyztki@flea>
-References: <20190806125041.16105-1-narmstrong@baylibre.com>
- <20190806125041.16105-2-narmstrong@baylibre.com>
- <CAL_Jsq+6kCO8x53d1670VjgEjfs5opKY+R3OgsAo0WsXqq512Q@mail.gmail.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAL_Jsq+6kCO8x53d1670VjgEjfs5opKY+R3OgsAo0WsXqq512Q@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+        id S1729771AbfHGMmp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 08:42:45 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:33454 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729722AbfHGMmo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 08:42:44 -0400
+Received: by mail-wr1-f67.google.com with SMTP id n9so91348160wru.0;
+        Wed, 07 Aug 2019 05:42:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=f84KIsdaJQ9CPJzDHYp5jwwgYBPwNj7/ee/65YueU+Y=;
+        b=sabiP0yeVf1UJuKhrWV76NTcVIeg3G1hy4lcORSSNvAo5IcbwP4+v1xx0AljGv5QFu
+         whPlMulkqpBJPb4k0W/KkuNms8MYqgDk10yj50rwHjBBZbYrEnhbYCOChvduxiZrZfAs
+         ER4oNFJanjAiNilmJGIW8/YCKQe8dOO3LNjGYauz2/pZAnE6eLfTsoiB316JalKVcXgj
+         yD66Kc1MeWa3JoPNP1izcj8/JpI4dDDjkDyKiW7FIECG7ud2a+tNprH8aG/RtypGZIPj
+         LA4hVsROnNzcqWzbOKJXm2AoA5Q+7s/lrzJmqiJizh6JKiusIe+hmqp79lazlFC3f2zb
+         SakQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=f84KIsdaJQ9CPJzDHYp5jwwgYBPwNj7/ee/65YueU+Y=;
+        b=fHOR4XT9uTO9h0aet6SKg9VPohYpOEGdKo/OYLlkp2H9mlL685R6dRbKZhvIsWXUcF
+         /DTwYbCFgMIFCY/mMmeE6ji4f2ce9wnTE2Nvdw3HpJ+Z5UFwte9abHGXBM4HcM1kXV+P
+         ww496IwjccTAfhGu0ppvEfpSJ3fyhGhGv7yrUlUYMMt9l3C18/bvp46C+GP4k4gpFewd
+         /Kt7+6vjU3yHIvfQzP6y3ZBv3Gp3XFOPUZZ1XwIz16FIheD3Ai7pLRvXKaIerXxiI48n
+         pDnLtPloxImq42+HIx0tCswE5KkTVB544fGQxds9M+AmyVwFzWt9+YER7ywOkHdFQvQW
+         MIZg==
+X-Gm-Message-State: APjAAAUqLtBJah7mCoFJhCuzXlakUGC2kVNBtgtxxAIzJOn2MLDofg67
+        7LjWV0K0OVcziMtiEVe0xJo=
+X-Google-Smtp-Source: APXvYqz9dC7RKAOlqFDZMeGfKlNjJXmRRsx9AY9x/8J/G5S482nwbvIwwIGYOYLQ0ZUUl6azgsxVog==
+X-Received: by 2002:a5d:5507:: with SMTP id b7mr10649444wrv.35.1565181762489;
+        Wed, 07 Aug 2019 05:42:42 -0700 (PDT)
+Received: from localhost ([193.47.161.132])
+        by smtp.gmail.com with ESMTPSA id q20sm9490692wrc.79.2019.08.07.05.42.41
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 07 Aug 2019 05:42:41 -0700 (PDT)
+From:   Oliver Graute <oliver.graute@gmail.com>
+To:     aisheng.dong@nxp.com
+Cc:     oliver.graute@kococonnector.com, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        Daniel Baluta <daniel.baluta@nxp.com>,
+        Ulf Hansson <ulf.hansson@linaro.org>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org
+Subject: [PATCHv1] arm64: dts: imx8qm: add compatible string for usdhc3
+Date:   Wed,  7 Aug 2019 14:09:25 +0200
+Message-Id: <20190807120932.29850-1-oliver.graute@kococonnector.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+add compatible string for usdhc3
+---
+This Patch is on top of 10/15 of this series:
 
-On Tue, Aug 06, 2019 at 09:22:12AM -0600, Rob Herring wrote:
-> +Maxime
->
-> On Tue, Aug 6, 2019 at 6:50 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> >
-> > The Amlogic Meson DWMAC glue bindings needs a second reg cells for the
-> > glue registers, thus update the reg minItems/maxItems to allow more
-> > than a single reg cell.
-> >
-> > Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> > ---
-> >  Documentation/devicetree/bindings/net/snps,dwmac.yaml | 3 ++-
-> >  1 file changed, 2 insertions(+), 1 deletion(-)
->
-> I haven't checked, but the derivative schema could be assuming this
-> schema enforced reg is 1 item.
+https://patchwork.kernel.org/patch/11046343/
 
-Yeah, we do for
-Documentation/devicetree/bindings/net/allwinner,sun7i-a20-gmac.yaml
-(but somehow not allwinner,sun8i-a83t-emac.yaml)
+[v2,10/15] arm64: dts: imx8qm: add conn ss support
 
-Neil, can you add it to sun7i-a20-gmac?
+---
+ arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi | 4 ++++
+ 1 file changed, 4 insertions(+)
 
-> I don't think that's a major issue
-> though.
->
-> Acked-by: Rob Herring <robh@kernel.org>
+diff --git a/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi b/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
+index 00ae820d5175..8c33edf0744f 100644
+--- a/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
++++ b/arch/arm64/boot/dts/freescale/imx8qm-ss-conn.dtsi
+@@ -19,3 +19,7 @@
+ &usdhc2 {
+ 	compatible = "fsl,imx8qm-usdhc", "fsl,imx7d-usdhc";
+ };
++
++&usdhc3 {
++	compatible = "fsl,imx8qm-usdhc", "fsl,imx7d-usdhc";
++};
+-- 
+2.17.1
 
-With that fixed,
-Acked-by: Maxime Ripard <maxime.ripard@bootlin.com>
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
