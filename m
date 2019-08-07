@@ -2,85 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 76F6984CCA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 15:21:45 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4FF4284CD8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 15:23:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388186AbfHGNVC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 09:21:02 -0400
-Received: from mga06.intel.com ([134.134.136.31]:20092 "EHLO mga06.intel.com"
+        id S2388059AbfHGNXQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 09:23:16 -0400
+Received: from shell.v3.sk ([90.176.6.54]:42187 "EHLO shell.v3.sk"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2388079AbfHGNVC (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Aug 2019 09:21:02 -0400
-X-Amp-Result: UNSCANNABLE
-X-Amp-File-Uploaded: False
-Received: from fmsmga006.fm.intel.com ([10.253.24.20])
-  by orsmga104.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Aug 2019 06:21:00 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,357,1559545200"; 
-   d="scan'208";a="374406771"
-Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
-  by fmsmga006.fm.intel.com with ESMTP; 07 Aug 2019 06:20:58 -0700
-Received: from andy by smile with local (Exim 4.92.1)
-        (envelope-from <andriy.shevchenko@intel.com>)
-        id 1hvLs8-0002b6-FI; Wed, 07 Aug 2019 16:20:56 +0300
-Date:   Wed, 7 Aug 2019 16:20:56 +0300
-From:   Andy Shevchenko <andriy.shevchenko@intel.com>
-To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
-Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
-        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
-        jslaby@suse.com, robh+dt@kernel.org, mark.rutland@arm.com,
-        qi-ming.wu@intel.com, cheol.yong.kim@intel.com,
-        rahul.tanwar@intel.com
-Subject: Re: [PATCH 2/5] serial: lantiq: Use proper DT compatible string
-Message-ID: <20190807132056.GX30120@smile.fi.intel.com>
-References: <cover.1565160764.git.rahul.tanwar@linux.intel.com>
- <12c3029f406ca1fedf14154154f7082e358f0473.1565160764.git.rahul.tanwar@linux.intel.com>
+        id S2387982AbfHGNXQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Aug 2019 09:23:16 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 62AA0CE936;
+        Wed,  7 Aug 2019 15:23:04 +0200 (CEST)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id qtiGHbHI3M9J; Wed,  7 Aug 2019 15:22:55 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id 6899ECE960;
+        Wed,  7 Aug 2019 15:22:55 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id 2uLt4fx0TC8T; Wed,  7 Aug 2019 15:22:54 +0200 (CEST)
+Received: from furthur.local (ip-37-188-233-8.eurotel.cz [37.188.233.8])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id 3A902CE936;
+        Wed,  7 Aug 2019 15:22:45 +0200 (CEST)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Jiri Kosina <trivial@kernel.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        Lubomir Rintel <lkundrak@v3.sk>
+Subject: [PATCH] of: irq: fix a trivial typo in a doc comment
+Date:   Wed,  7 Aug 2019 15:22:31 +0200
+Message-Id: <20190807132231.10454-1-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <12c3029f406ca1fedf14154154f7082e358f0473.1565160764.git.rahul.tanwar@linux.intel.com>
-Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 07, 2019 at 05:21:32PM +0800, Rahul Tanwar wrote:
-> The patch adds change to use explicit string instead of a macro for
-> DT compatible string.
+Diverged from what the code does with commit 530210c7814e ("of/irq: Repla=
+ce
+of_irq with of_phandle_args").
 
-For consistency you may need to convert OF_EARLYCON_DECLARE() as well.
+Signed-off-by: Lubomir Rintel <lkundrak@v3.sk>
+---
+ drivers/of/irq.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
 
-Perhaps commit message should explain the rationale, i.e. the following patches
-will add another compatible string and thus it makes sense to have them
-explicitly mentioned.
-
-> Suggested-by: Andy Shevchenko <andriy.shevchenko@intel.com>
-> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
-> ---
->  drivers/tty/serial/lantiq.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/tty/serial/lantiq.c b/drivers/tty/serial/lantiq.c
-> index 42e27b48e9cc..1116261c973e 100644
-> --- a/drivers/tty/serial/lantiq.c
-> +++ b/drivers/tty/serial/lantiq.c
-> @@ -792,7 +792,7 @@ lqasc_probe(struct platform_device *pdev)
->  }
->  
->  static const struct of_device_id ltq_asc_match[] = {
-> -	{ .compatible = DRVNAME },
-> +	{ .compatible = "lantiq,asc" },
->  	{},
->  };
->  
-> -- 
-> 2.11.0
-> 
-
--- 
-With Best Regards,
-Andy Shevchenko
-
+diff --git a/drivers/of/irq.c b/drivers/of/irq.c
+index 7f84bb4903caa..a296eaf52a5b2 100644
+--- a/drivers/of/irq.c
++++ b/drivers/of/irq.c
+@@ -277,7 +277,7 @@ EXPORT_SYMBOL_GPL(of_irq_parse_raw);
+  * of_irq_parse_one - Resolve an interrupt for a device
+  * @device: the device whose interrupt is to be resolved
+  * @index: index of the interrupt to resolve
+- * @out_irq: structure of_irq filled by this function
++ * @out_irq: structure of_phandle_args filled by this function
+  *
+  * This function resolves an interrupt for a node by walking the interru=
+pt tree,
+  * finding which interrupt controller node it is attached to, and return=
+ing the
+--=20
+2.21.0
 
