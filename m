@@ -2,191 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1585783EBA
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 03:23:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 05D9F83EC1
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 03:26:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727620AbfHGBXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 21:23:37 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:35472 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726340AbfHGBXg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 21:23:36 -0400
-Received: by mail-ot1-f66.google.com with SMTP id j19so21137061otq.2
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 18:23:35 -0700 (PDT)
+        id S1727656AbfHGB0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 21:26:11 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:44311 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727541AbfHGB0L (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 21:26:11 -0400
+Received: by mail-ot1-f68.google.com with SMTP id b7so47625194otl.11
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 18:26:10 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=google.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=XOc3tRY+4s8d0XfiWvvs/QPATLaAozAh84PcRQxEWLM=;
-        b=GNTmRKLx1mTu+C0+yD8oGiYEgpN8Ed2VrTeqTvsha4J6+EThN6gPct+RjsZktOSHUG
-         3NGWefoJBoKXoeVgkcEu1O1LbM2wO2HG0QK6Xk9KvnOFIwQnY8FBjDCz+HyzSyl0H9Vo
-         sjkHKA5WdxWcEVaiYYa5OpDjZxbC4bdRy0yBBtGGR+c1NQuJ4ade/5UXQ6kIUbA+OTwP
-         59K5GpuNKKo+7onbGHvl8pLzddN3iBFdh3I2za6eU8Z42YwuQhG0l1cuGuY5dm2bn89d
-         UmP9+QPE1Bqx3jat6AG543f01KQVPwWGGuU1/bmhABU1rjSTdudpx3/le/8fgit0/W3j
-         g7Bg==
+        d=sifive.com; s=google;
+        h=date:from:to:cc:subject:in-reply-to:message-id:references
+         :user-agent:mime-version;
+        bh=owDgp928SO7GH+S1pO+PzwOPO8cCYUIRKUw/BGVnu6s=;
+        b=ZkxMQGgCsorzr8S1tgzNj9F6fgdzY2E/QxK15CRf06TG3YxfMwhyqegE30ZnSaqX/x
+         qO4j7mdbjy7rxvghk9Jm7gAqyhGrx5Utox/Xcur3nNXlJgHjv9rDRzWpAndzNPcf49Nh
+         T9hhUF9OrQu+G7A9jcKkXZGDlgYfJkGYep3RIiu1d+VjwhKGCaBPomRyq2wGVjWuJkJF
+         gS1FpqKj8NpRqAaBnV9L1kH05/r3B1JPUJ9ubXMSEPFaaVAa7/aC9oh6wVatJ2H76kqF
+         hunXnG9O4PCUKokkQf/sho24dSc8lTLPJa4P+BH3vb35HYddQRrQypqHYeq1uBxax7+y
+         BBbw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=XOc3tRY+4s8d0XfiWvvs/QPATLaAozAh84PcRQxEWLM=;
-        b=dAMV+wrm47HFIGa0Oz45RYRgGCVrMaiNxoFiIzsjIrEVxzdgMGdiewLnmykWBtaRVy
-         icy2VSfP/GpfEr0Vv/7n+HaiVeq9YAj6Gn9qk/1JBAu+idnB7U8EWmZhGQG3OwPF7332
-         j5QG8begC8GazC3jnI270zNW0NOc0jZez72Bw98hFWgq5kUUOzyLRJOA7o/ebQ+nVuBp
-         Aw0I8gpxmUpsX12lXhBlyETIWF+FpqhdLPLpxc2Gx2UlEdt0xUoRTUpMxqsgDl3JK84m
-         OnE2lYz5FhyhdBG20L0ozHirfzqR/Uzj/A0dvjTH2qqTUIHjLp9ie1sNDYDRpdTBFeux
-         nY/A==
-X-Gm-Message-State: APjAAAWyfhcqRJMRa4kcK5yg51j3avAq6j/neSbiTQ7zkdJPvEH84knd
-        fAuyYS7MhLXZ9KM/ndafpjrRlBktpPOqSHz7lZ2C1g==
-X-Google-Smtp-Source: APXvYqxCEkZVgFa/uggGj84VI91P8SXI1u46BMoeb4gqY/9Gn1ikNdM9oD0yuntjY1a5IparwEFqAzJi0sUX8EKXfCk=
-X-Received: by 2002:aca:d8c2:: with SMTP id p185mr3847116oig.30.1565141015214;
- Tue, 06 Aug 2019 18:23:35 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
+         :references:user-agent:mime-version;
+        bh=owDgp928SO7GH+S1pO+PzwOPO8cCYUIRKUw/BGVnu6s=;
+        b=U58gcMlX4ZWo7FAWyODV5HM/x+fMwjz2slesl+4ONOv+b7L8BACuFYMjC3isLKMMbg
+         npJoc6ax6NBinlB32leX5ESgB9tUj1juS0MdLx1cMTv5Oaga9UabdOMe1ZvJ+7MGm68Q
+         D9ACIs2CwGFEhJkw7Ghgq3xpqcAUwtZ/xnNe95tSX4ZsgxFTo9EmN7TTWiv20STSaxkb
+         KNCm17bmzpTgVx0zbQ2Tpo8LUMQGKln7KiVMpQBv/mvzMW4IYgbEQFevhtnDHYF9k2sH
+         GKIcyX6IeesI3nu0trrNeGq1wDfEZjNWSNgpd9yp4aMoFRLtZeF0NQVPgM6bg21AIBOT
+         Tygg==
+X-Gm-Message-State: APjAAAWAS3yCa+6KpoMOtzSypCKnfp8vTYJj2jYqHyQ6C/gEdEefI9BF
+        Y8dPmxVjFvVuqqpcRdzniB+qkg==
+X-Google-Smtp-Source: APXvYqwKdXrU1QqOa0yUvILl6xbOtT4vxTEkIzkVaZdnctYu+HuNnikE4y89DOgFp6zNih0Q+qcyEg==
+X-Received: by 2002:a5e:c70c:: with SMTP id f12mr6990541iop.293.1565141170206;
+        Tue, 06 Aug 2019 18:26:10 -0700 (PDT)
+Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
+        by smtp.gmail.com with ESMTPSA id j1sm78000195iop.14.2019.08.06.18.26.09
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Tue, 06 Aug 2019 18:26:09 -0700 (PDT)
+Date:   Tue, 6 Aug 2019 18:26:08 -0700 (PDT)
+From:   Paul Walmsley <paul.walmsley@sifive.com>
+X-X-Sender: paulw@viisi.sifive.com
+To:     Atish Patra <Atish.Patra@wdc.com>
+cc:     "info@metux.net" <info@metux.net>,
+        "allison@lohutok.net" <allison@lohutok.net>,
+        "palmer@sifive.com" <palmer@sifive.com>,
+        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        Anup Patel <Anup.Patel@wdc.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "johan@kernel.org" <johan@kernel.org>,
+        "tiny.windzz@gmail.com" <tiny.windzz@gmail.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "gary@garyguo.net" <gary@garyguo.net>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v3 3/5] RISC-V: Fix unsupported isa string info.
+In-Reply-To: <1e23ef1face9d323fda4b756811f922caa5f7689.camel@wdc.com>
+Message-ID: <alpine.DEB.2.21.9999.1908061818360.13971@viisi.sifive.com>
+References: <20190801005843.10343-1-atish.patra@wdc.com>  <20190801005843.10343-4-atish.patra@wdc.com>  <alpine.DEB.2.21.9999.1908061625190.13971@viisi.sifive.com> <1e23ef1face9d323fda4b756811f922caa5f7689.camel@wdc.com>
+User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
 MIME-Version: 1.0
-References: <B4B0AD7F-FA0F-4DA0-9A8B-EAE1CEE11759@lca.pw>
-In-Reply-To: <B4B0AD7F-FA0F-4DA0-9A8B-EAE1CEE11759@lca.pw>
-From:   Saravana Kannan <saravanak@google.com>
-Date:   Tue, 6 Aug 2019 18:22:59 -0700
-Message-ID: <CAGETcx_TYxgohR7C5SRRbSmfKNhS90i64KjtA38N19g_Kz3euA@mail.gmail.com>
-Subject: Re: "of/platform: Pause/resume sync state during init and
- of_platform_populate()" with a warning on arm64
-To:     Qian Cai <cai@lca.pw>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        linux-arm-kernel@lists.infradead.org,
-        Rob Herring <robh+dt@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 6, 2019 at 5:46 PM Qian Cai <cai@lca.pw> wrote:
->
-> It looks like the linux-next commit =E2=80=9Cof/platform: Pause/resume sy=
-nc state during init and of_platform_populate()=E2=80=9D [1]
-> Introduced a warning while booting arm64.
->
-> [1] https://lore.kernel.org/lkml/20190731221721.187713-6-saravanak@google=
-.com/
->
-> [   93.449300][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: ias 44-bit, oas 44=
--bit (features 0x0000170d)
-> [   93.464873][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: allocated 524288 e=
-ntries for cmdq
-> [   93.485481][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: allocated 524288 e=
-ntries for evtq
-> [   93.496320][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: option mask 0x2
-> [   93.502917][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: ias 44-bit, oas 44=
--bit (features 0x0000170d)
-> [   93.621818][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: allocated 524288 e=
-ntries for cmdq
-> [   93.643000][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: allocated 524288 e=
-ntries for evtq
-> [   94.519445][    T1] libphy: Fixed MDIO Bus: probed
-> [   94.524649][    T1] EFI Variables Facility v0.08 2004-May-17
-> [   94.601166][    T1] NET: Registered protocol family 17
-> [   94.766008][    T1] zswap: loaded using pool lzo/zbud
-> [   94.774745][    T1] kmemleak: Kernel memory leak detector initialized =
-(mempool size: 16384)
-> [   94.774756][ T1699] kmemleak: Automatic memory scanning thread started
-> [   94.812338][ T1368] pcieport 0000:0f:00.0: Adding to iommu group 0
-> [   94.984466][    T1] ------------[ cut here ]------------
-> [   94.989827][    T1] Unmatched sync_state pause/resume!
-> [   94.989894][    T1] WARNING: CPU: 25 PID: 1 at drivers/base/core.c:691=
- device_links_supplier_sync_state_resume+0x100/0x128
-> [   95.006062][    T1] Modules linked in:
-> [   95.009815][    T1] CPU: 25 PID: 1 Comm: swapper/0 Not tainted 5.3.0-r=
-c3-next-20190806+ #11
-> [   95.018161][    T1] Hardware name: HPE Apollo 70             /C01_APAC=
-HE_MB         , BIOS L50_5.13_1.11 06/18/2019
-> [   95.028593][    T1] pstate: 60400009 (nZCv daif +PAN -UAO)
-> [   95.034077][    T1] pc : device_links_supplier_sync_state_resume+0x100=
-/0x128
-> [   95.041124][    T1] lr : device_links_supplier_sync_state_resume+0x100=
-/0x128
-> [   95.048167][    T1] sp : 34ff800806e6fbc0
-> [   95.052172][    T1] x29: 34ff800806e6fc00 x28: 0000000000000000
-> [   95.058177][    T1] x27: 0000000000000000 x26: 0000000000000000
-> [   95.064181][    T1] x25: 0000000000000038 x24: 0000000000000000
-> [   95.070185][    T1] x23: 0000000000000000 x22: 0000000000000019
-> [   95.076189][    T1] x21: 0000000000000000 x20: f9ff808b804e6c50
-> [   95.082193][    T1] x19: ffff100014a6e600 x18: 0000000000000040
-> [   95.088197][    T1] x17: 0000000000000000 x16: 86ff80099d581b50
-> [   95.094201][    T1] x15: 0000000000000000 x14: ffff100010086d1c
-> [   95.100205][    T1] x13: ffff1000109d8688 x12: ffffffffffffffff
-> [   95.106209][    T1] x11: 00000000000000f9 x10: ffff0808b804e6c6
-> [   95.112213][    T1] x9 : 4b71ad522c851d00 x8 : 4b71ad522c851d00
-> [   95.118217][    T1] x7 : 6170206574617473 x6 : ffff100014076972
-> [   95.124221][    T1] x5 : 34ff800806e6f8f0 x4 : 000000000000000f
-> [   95.130225][    T1] x3 : ffff1000101bfa5c x2 : 0000000000000001
-> [   95.136229][    T1] x1 : 0000000000000001 x0 : 0000000000000022
-> [   95.142233][    T1] Call trace:
-> [   95.145374][    T1]  device_links_supplier_sync_state_resume+0x100/0x1=
-28
-> [   95.152074][    T1]  of_platform_sync_state_init+0x10/0x1c
-> [   95.157557][    T1]  do_one_initcall+0x2f8/0x600
-> [   95.162172][    T1]  do_initcall_level+0x37c/0x3fc
-> [   95.166959][    T1]  do_basic_setup+0x34/0x4c
-> [   95.171313][    T1]  kernel_init_freeable+0x188/0x24c
-> [   95.176363][    T1]  kernel_init+0x18/0x334
-> [   95.180543][    T1]  ret_from_fork+0x10/0x18
-> [   95.184809][    T1] ---[ end trace a9ea68c902540fe5 ]---
-> [   95.269085][    T1] Freeing unused kernel memory: 28672K
-> [  101.069860][    T1] Checked W+X mappings: passed, no W+X pages found
-> [  101.076265][    T1] Run /init as init process
-> [  101.186359][    T1] systemd[1]: System time before build time, advanci=
-ng clock.
+On Wed, 7 Aug 2019, Atish Patra wrote:
+
+> On Tue, 2019-08-06 at 16:27 -0700, Paul Walmsley wrote:
+> 
+> > Seems like the "su" should be dropped from mandatory_ext.  What do you 
+> > think?
+> > 
+> 
+> Yup. As DT binding only mention imafdc, mandatory extensions should
+> contain only that and just consider "su" extensions are considered as
+> implicit as we are running Linux. 
+
+Discussing this with Andrew and Palmer, it looks like "su" is currently 
+non-compliant.  Section 22.6 of the user-level specification states that 
+the "s" character indicates that a longer standard supervisor extension 
+name will follow.  So far I don't think any of these have been defined.
+
+> Do you think QEMU DT should be updated to reflect that ?
+
+Yes.
+
+> > There's no Kconfig option by this name, and we're requiring
+> > compressed 
+> 
+> Sorry. This was a typo. It should have been CONFIG_RISCV_ISA_C.
+> 
+> > instruction support as part of the RISC-V Linux baseline.  Could you 
+> > share the rationale behind this?
+> 
+> I think I added this check at the config file. Looking at the Kconfig,
+> RISCV_ISA_C is always enabled. So we can drop this.
+
+OK great.  Do you want to resend an updated patch, or would you like me to 
+fix it up here?
+
+I'll also send a patch to drop CONFIG_RISCV_ISA_C.
 
 
-I tested it again on my device (on an older kernel) and I don't see
-this warning. Is this on an ARM64 target without a populated DT?
-That's the only thing I can see that could cause this warning.
-
-This is literally the code with the matching pause/resume. I can't
-think of any other way the pause/resume could have ended up not
-matching.
-
-static int __init of_platform_default_populate_init(void)
-{
-        struct device_node *node;
-
-        if (!of_have_populated_dt())
-                return -ENODEV;
-
-        platform_bus_type.add_links =3D of_link_to_suppliers;
-        device_links_supplier_sync_state_pause(); <=3D=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D=3D PAUSE
-        /*
-         * Handle certain compatibles explicitly, since we don't want to cr=
-eate
-         * platform_devices for every node in /reserved-memory with a
-         * "compatible",
-         */
-        for_each_matching_node(node, reserved_mem_matches)
-                of_platform_device_create(node, NULL, NULL);
-
-        node =3D of_find_node_by_path("/firmware");
-        if (node) {
-                of_platform_populate(node, NULL, NULL, NULL);
-                of_node_put(node);
-        }
-
-        /* Populate everything else. */
-        of_platform_default_populate(NULL, NULL, NULL);
-
-        return 0;
-}
-arch_initcall_sync(of_platform_default_populate_init);
-
-static int __init of_platform_sync_state_init(void)
-{
-        device_links_supplier_sync_state_resume(); <=3D=3D=3D=3D=3D=3D=3D=
-=3D=3D RESUME
-        return 0;
-}
-late_initcall_sync(of_platform_sync_state_init);
-
-Thanks,
-Saravana
+- Paul
