@@ -2,116 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 05D9F83EC1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 03:26:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 360B9840C0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 03:39:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727656AbfHGB0L (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 21:26:11 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:44311 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727541AbfHGB0L (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 21:26:11 -0400
-Received: by mail-ot1-f68.google.com with SMTP id b7so47625194otl.11
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 18:26:10 -0700 (PDT)
+        id S1729254AbfHGBjl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 21:39:41 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:36268 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728587AbfHGBjl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 21:39:41 -0400
+Received: by mail-pf1-f195.google.com with SMTP id r7so42507325pfl.3;
+        Tue, 06 Aug 2019 18:39:41 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=sifive.com; s=google;
-        h=date:from:to:cc:subject:in-reply-to:message-id:references
-         :user-agent:mime-version;
-        bh=owDgp928SO7GH+S1pO+PzwOPO8cCYUIRKUw/BGVnu6s=;
-        b=ZkxMQGgCsorzr8S1tgzNj9F6fgdzY2E/QxK15CRf06TG3YxfMwhyqegE30ZnSaqX/x
-         qO4j7mdbjy7rxvghk9Jm7gAqyhGrx5Utox/Xcur3nNXlJgHjv9rDRzWpAndzNPcf49Nh
-         T9hhUF9OrQu+G7A9jcKkXZGDlgYfJkGYep3RIiu1d+VjwhKGCaBPomRyq2wGVjWuJkJF
-         gS1FpqKj8NpRqAaBnV9L1kH05/r3B1JPUJ9ubXMSEPFaaVAa7/aC9oh6wVatJ2H76kqF
-         hunXnG9O4PCUKokkQf/sho24dSc8lTLPJa4P+BH3vb35HYddQRrQypqHYeq1uBxax7+y
-         BBbw==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=Edh1s2+Hz0JvWJr5X8N4ASrf1QiKcSFMMDMTTyV4qrI=;
+        b=WFTUI9Rik4s7rXx4cO7m45CIyjoVkafBvHO/YsjRKbDPMoSfV8ZUbL2i1/BYT0xSn8
+         QloGiMApvuVHF8wOpxJvalYyEkEars2YRjoTUD3Dwzodi6U6OV5gE6M51IqNFtMMZycv
+         hWVffE1TBXS+N/RGa+hPiM+70KEeZVFzsQKFvY0eLaLGV9Up7sB9XTpilX2XRgER7Hja
+         JTZidlrZ61rIylwhcDewSR+6bkR1N+PCf/Lond9BAQdzKVNgHy8CEhP43R+hrqTAm9o6
+         dkVYQ11a5mwrvTbmB9FUoq21dY7Ou95siHu7afyBFs8yc+LG/BoOfkXadDR/sTkACn4x
+         iDHw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:in-reply-to:message-id
-         :references:user-agent:mime-version;
-        bh=owDgp928SO7GH+S1pO+PzwOPO8cCYUIRKUw/BGVnu6s=;
-        b=U58gcMlX4ZWo7FAWyODV5HM/x+fMwjz2slesl+4ONOv+b7L8BACuFYMjC3isLKMMbg
-         npJoc6ax6NBinlB32leX5ESgB9tUj1juS0MdLx1cMTv5Oaga9UabdOMe1ZvJ+7MGm68Q
-         D9ACIs2CwGFEhJkw7Ghgq3xpqcAUwtZ/xnNe95tSX4ZsgxFTo9EmN7TTWiv20STSaxkb
-         KNCm17bmzpTgVx0zbQ2Tpo8LUMQGKln7KiVMpQBv/mvzMW4IYgbEQFevhtnDHYF9k2sH
-         GKIcyX6IeesI3nu0trrNeGq1wDfEZjNWSNgpd9yp4aMoFRLtZeF0NQVPgM6bg21AIBOT
-         Tygg==
-X-Gm-Message-State: APjAAAWAS3yCa+6KpoMOtzSypCKnfp8vTYJj2jYqHyQ6C/gEdEefI9BF
-        Y8dPmxVjFvVuqqpcRdzniB+qkg==
-X-Google-Smtp-Source: APXvYqwKdXrU1QqOa0yUvILl6xbOtT4vxTEkIzkVaZdnctYu+HuNnikE4y89DOgFp6zNih0Q+qcyEg==
-X-Received: by 2002:a5e:c70c:: with SMTP id f12mr6990541iop.293.1565141170206;
-        Tue, 06 Aug 2019 18:26:10 -0700 (PDT)
-Received: from localhost (c-73-95-159-87.hsd1.co.comcast.net. [73.95.159.87])
-        by smtp.gmail.com with ESMTPSA id j1sm78000195iop.14.2019.08.06.18.26.09
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Tue, 06 Aug 2019 18:26:09 -0700 (PDT)
-Date:   Tue, 6 Aug 2019 18:26:08 -0700 (PDT)
-From:   Paul Walmsley <paul.walmsley@sifive.com>
-X-X-Sender: paulw@viisi.sifive.com
-To:     Atish Patra <Atish.Patra@wdc.com>
-cc:     "info@metux.net" <info@metux.net>,
-        "allison@lohutok.net" <allison@lohutok.net>,
-        "palmer@sifive.com" <palmer@sifive.com>,
-        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "tglx@linutronix.de" <tglx@linutronix.de>,
-        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
-        Anup Patel <Anup.Patel@wdc.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "johan@kernel.org" <johan@kernel.org>,
-        "tiny.windzz@gmail.com" <tiny.windzz@gmail.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "gary@garyguo.net" <gary@garyguo.net>,
-        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
-Subject: Re: [PATCH v3 3/5] RISC-V: Fix unsupported isa string info.
-In-Reply-To: <1e23ef1face9d323fda4b756811f922caa5f7689.camel@wdc.com>
-Message-ID: <alpine.DEB.2.21.9999.1908061818360.13971@viisi.sifive.com>
-References: <20190801005843.10343-1-atish.patra@wdc.com>  <20190801005843.10343-4-atish.patra@wdc.com>  <alpine.DEB.2.21.9999.1908061625190.13971@viisi.sifive.com> <1e23ef1face9d323fda4b756811f922caa5f7689.camel@wdc.com>
-User-Agent: Alpine 2.21.9999 (DEB 301 2018-08-15)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=Edh1s2+Hz0JvWJr5X8N4ASrf1QiKcSFMMDMTTyV4qrI=;
+        b=S/LT02ZPlWB541U1USlil+mvWMWWEEhSGAxmBRngH1Lti8pj4ZAGClHdedrQiblK2F
+         OvPPGe20zsm1CSdVRFhGzjnc6utiMGRsD0hjZtwjiONC/lZvRNuJKz7Kn1x/ldP97ALH
+         XDR99x9uNH++/bDzKgIvKwt2AH5SuRTvQKTXPMlE4MAwKPLGjzj8vYHIzcXhxOuzatjO
+         2Sj8pbDB1tftF4SW6g8H573Lf5sfmwZwBoLwxVNtb3zcFqgR28twGBnwqYG6Lgia4t4g
+         ACLcp4kj066i61Fs3MRIM1aZWOO4kkBzb3aJF40NMpOByOHbHja2e3GH0nOfUK+LC4cf
+         aI7A==
+X-Gm-Message-State: APjAAAX+EbWUkM1zQOp5qDDr9bcjBRxb4RWfZcVydDjL4UKc5PESZsKI
+        rpwrzMxyb2WtCxmQr0wFzC8=
+X-Google-Smtp-Source: APXvYqz0y6FnZKy0wvbDLBt46tymafR+AbNRcHSbRCLBxC27KsBM3Wa8A16eke7Tm8rYHNLD9NfUKA==
+X-Received: by 2002:a65:60cd:: with SMTP id r13mr5719740pgv.315.1565141980407;
+        Tue, 06 Aug 2019 18:39:40 -0700 (PDT)
+Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
+        by smtp.gmail.com with ESMTPSA id w4sm110141105pfn.144.2019.08.06.18.39.39
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Tue, 06 Aug 2019 18:39:40 -0700 (PDT)
+Date:   Tue, 6 Aug 2019 18:40:35 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Daniel Baluta <daniel.baluta@nxp.com>
+Cc:     broonie@kernel.org, l.stach@pengutronix.de, mihai.serban@gmail.com,
+        alsa-devel@alsa-project.org, timur@kernel.org,
+        shengjiu.wang@nxp.com, angus@akkea.ca, tiwai@suse.com,
+        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        robh@kernel.org, Mihai Serban <mihai.serban@nxp.com>
+Subject: Re: [PATCH v3 3/5] ASoC: fsl_sai: Add support for SAI new version
+Message-ID: <20190807014035.GF8938@Asurada-Nvidia.nvidia.com>
+References: <20190806151214.6783-1-daniel.baluta@nxp.com>
+ <20190806151214.6783-4-daniel.baluta@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=US-ASCII
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190806151214.6783-4-daniel.baluta@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 7 Aug 2019, Atish Patra wrote:
-
-> On Tue, 2019-08-06 at 16:27 -0700, Paul Walmsley wrote:
+On Tue, Aug 06, 2019 at 06:12:12PM +0300, Daniel Baluta wrote:
+> New IP version introduces Version ID and Parameter registers
+> and optionally added Timestamp feature.
 > 
-> > Seems like the "su" should be dropped from mandatory_ext.  What do you 
-> > think?
-> > 
+> VERID and PARAM registers are placed at the top of registers
+> address space and some registers are shifted according to
+> the following table:
 > 
-> Yup. As DT binding only mention imafdc, mandatory extensions should
-> contain only that and just consider "su" extensions are considered as
-> implicit as we are running Linux. 
-
-Discussing this with Andrew and Palmer, it looks like "su" is currently 
-non-compliant.  Section 22.6 of the user-level specification states that 
-the "s" character indicates that a longer standard supervisor extension 
-name will follow.  So far I don't think any of these have been defined.
-
-> Do you think QEMU DT should be updated to reflect that ?
-
-Yes.
-
-> > There's no Kconfig option by this name, and we're requiring
-> > compressed 
+> Tx/Rx data registers and Tx/Rx FIFO registers keep their
+> addresses, all other registers are shifted by 8.
 > 
-> Sorry. This was a typo. It should have been CONFIG_RISCV_ISA_C.
+> SAI Memory map is described in chapter 13.10.4.1.1 I2S Memory map
+> of the Reference Manual [1].
 > 
-> > instruction support as part of the RISC-V Linux baseline.  Could you 
-> > share the rationale behind this?
+> In order to make as less changes as possible we attach an offset
+> to each register offset to each changed register definition. The
+> offset is read from each board private data.
 > 
-> I think I added this check at the config file. Looking at the Kconfig,
-> RISCV_ISA_C is always enabled. So we can drop this.
+> [1]https://cache.nxp.com/secured/assets/documents/en/reference-manual/IMX8MDQLQRM.pdf?__gda__=1563728701_38bea7f0f726472cc675cb141b91bec7&fileExt=.pdf
+> 
+> Signed-off-by: Mihai Serban <mihai.serban@nxp.com>
+> [initial coding in the NXP internal tree]
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+> [bugfixing and cleanups]
+> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+> [adapted to linux-next]
 
-OK great.  Do you want to resend an updated patch, or would you like me to 
-fix it up here?
+Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
 
-I'll also send a patch to drop CONFIG_RISCV_ISA_C.
+One small request that we can do with a separate patch later:
 
+>  struct fsl_sai_soc_data {
+>  	bool use_imx_pcm;
+>  	unsigned int fifo_depth;
+> +	unsigned int reg_offset;
+>  };
 
-- Paul
+I think we need a list of comments for the structure defines.
+It might be okay for the old two entries but reg_offset isn't
+that explicit any more.
