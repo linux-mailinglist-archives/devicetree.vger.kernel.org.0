@@ -2,207 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1B567847C3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 10:39:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2969847DB
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 10:46:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728458AbfHGIjp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 04:39:45 -0400
-Received: from mx07-00178001.pphosted.com ([62.209.51.94]:41430 "EHLO
-        mx07-00178001.pphosted.com" rhost-flags-OK-OK-OK-OK)
-        by vger.kernel.org with ESMTP id S1727755AbfHGIjo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 04:39:44 -0400
-Received: from pps.filterd (m0046668.ppops.net [127.0.0.1])
-        by mx07-00178001.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x778b452030877;
-        Wed, 7 Aug 2019 10:39:22 +0200
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=st.com; h=from : to : cc : subject
- : date : message-id : references : in-reply-to : content-type : content-id
- : content-transfer-encoding : mime-version; s=STMicroelectronics;
- bh=GXim34s32x/EWuW4b1n1w/2bnwIncHUj5JEQz2vBN/Q=;
- b=VzbxMWs06qISsbxV0Vua6yc0LaoIRNsONt5Qi4e/ywSF2NWwFyog+D8KP9byVzEdty+A
- rrxv6Ehx8+ZF38kdc4JayENcoYH8qbl3LP6Y8GmpBrjectcYdpeYZQq5oAZy2TRRkQgl
- 1U/UZvhCD1VSOvFIiZfZJzVSLvfN8jGY4txrSjfYmym3wbmizaHiCgR5x746ZGkbqaFn
- vstuJ2j1Go86+R3PcV2JLaxSk2wykguoVueBRyO/IkZwY4GpHems28xk9AF8uxFF4wDf
- Y3MjzVPqL+q8Xqbo8OhfWJMiigB1KVh8s1IcEeSTZS0srHWzOqZvOWGaLCqdsbBbV2qB /Q== 
-Received: from beta.dmz-eu.st.com (beta.dmz-eu.st.com [164.129.1.35])
-        by mx07-00178001.pphosted.com with ESMTP id 2u4yr25ser-1
-        (version=TLSv1 cipher=ECDHE-RSA-AES256-SHA bits=256 verify=NOT);
-        Wed, 07 Aug 2019 10:39:22 +0200
-Received: from euls16034.sgp.st.com (euls16034.sgp.st.com [10.75.44.20])
-        by beta.dmz-eu.st.com (STMicroelectronics) with ESMTP id 1CA0742;
-        Wed,  7 Aug 2019 08:39:20 +0000 (GMT)
-Received: from Webmail-eu.st.com (sfhdag3node1.st.com [10.75.127.7])
-        by euls16034.sgp.st.com (STMicroelectronics) with ESMTP id C86A82D212B;
-        Wed,  7 Aug 2019 10:39:20 +0200 (CEST)
-Received: from SFHDAG5NODE3.st.com (10.75.127.15) by SFHDAG3NODE1.st.com
- (10.75.127.7) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 7 Aug
- 2019 10:39:20 +0200
-Received: from SFHDAG5NODE3.st.com ([fe80::7c09:5d6b:d2c7:5f47]) by
- SFHDAG5NODE3.st.com ([fe80::7c09:5d6b:d2c7:5f47%20]) with mapi id
- 15.00.1473.003; Wed, 7 Aug 2019 10:39:20 +0200
-From:   Fabien DESSENNE <fabien.dessenne@st.com>
-To:     Suman Anna <s-anna@ti.com>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>
-CC:     Ohad Ben-Cohen <ohad@wizery.com>, Rob Herring <robh+dt@kernel.org>,
-        "Mark Rutland" <mark.rutland@arm.com>,
-        Maxime Coquelin <mcoquelin.stm32@gmail.com>,
-        Alexandre TORGUE <alexandre.torgue@st.com>,
-        Jonathan Corbet <corbet@lwn.net>,
-        "linux-remoteproc@vger.kernel.org" <linux-remoteproc@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-stm32@st-md-mailman.stormreply.com" 
-        <linux-stm32@st-md-mailman.stormreply.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        Benjamin GAIGNARD <benjamin.gaignard@st.com>
-Subject: Re: [PATCH 0/6] hwspinlock: allow sharing of hwspinlocks
-Thread-Topic: [PATCH 0/6] hwspinlock: allow sharing of hwspinlocks
-Thread-Index: AQHU2bSOZtnkIyxqbUq77/gp1YrMkqbnZZ+AgAWakoCAAJZugIABj+mAgAAMDgCAADTBgIAAuucA
-Date:   Wed, 7 Aug 2019 08:39:20 +0000
-Message-ID: <02329102-5571-c6c1-b78c-693747133f0e@st.com>
-References: <1552492237-28810-1-git-send-email-fabien.dessenne@st.com>
- <20190801191403.GA7234@tuxbook-pro>
- <1a057176-81ab-e302-4375-2717ceef6924@st.com>
- <20190805174659.GA23928@tuxbook-pro>
- <dcd1aeea-cffe-d5fb-af5a-e52efcc2e046@ti.com>
- <20190806182128.GD26807@tuxbook-pro>
- <1aea3d28-29dc-f9de-3b86-cf777e0d5caa@ti.com>
-In-Reply-To: <1aea3d28-29dc-f9de-3b86-cf777e0d5caa@ti.com>
-Accept-Language: fr-FR, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-user-agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-x-ms-exchange-messagesentrepresentingtype: 1
-x-ms-exchange-transport-fromentityheader: Hosted
-x-originating-ip: [10.75.127.44]
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <CECCD9C7EA3C0B468E86EB4E1CE788B6@st.com>
-Content-Transfer-Encoding: base64
+        id S2387533AbfHGIqh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 04:46:37 -0400
+Received: from lb1-smtp-cloud9.xs4all.net ([194.109.24.22]:53141 "EHLO
+        lb1-smtp-cloud9.xs4all.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S2387452AbfHGIqh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 04:46:37 -0400
+Received: from [IPv6:2001:983:e9a7:1:9c05:4bbc:890e:7747] ([IPv6:2001:983:e9a7:1:9c05:4bbc:890e:7747])
+        by smtp-cloud9.xs4all.net with ESMTPA
+        id vHabhjtKZAffAvHach7Mxn; Wed, 07 Aug 2019 10:46:34 +0200
+Subject: Re: next-20190806: arm64: adv7511 3-0039: failed to find dsi host
+To:     Naresh Kamboju <naresh.kamboju@linaro.org>,
+        Linux-Next Mailing List <linux-next@vger.kernel.org>
+Cc:     Linus Walleij <linus.walleij@linaro.org>, mchehab@kernel.org,
+        robh+dt@kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        linux-media@vger.kernel.org,
+        open list <linux-kernel@vger.kernel.org>,
+        devicetree@vger.kernel.org, agross@kernel.org,
+        david.brown@linaro.org, lkft-triage@lists.linaro.org,
+        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>
+References: <CA+G9fYus+cW4775Y2_Xqpc+G6YP_KfjGeCMzoSQq6o2yVY8Q3w@mail.gmail.com>
+From:   Hans Verkuil <hverkuil-cisco@xs4all.nl>
+Message-ID: <a9f7c007-8639-0202-c35d-219d371a1842@xs4all.nl>
+Date:   Wed, 7 Aug 2019 10:46:33 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-07_02:,,
- signatures=0
+In-Reply-To: <CA+G9fYus+cW4775Y2_Xqpc+G6YP_KfjGeCMzoSQq6o2yVY8Q3w@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-CMAE-Envelope: MS4wfApS0b/lMPm7rop7sg4zrGCd+8i5M4UPTpKak97B2soWM1lDxIqMEISdnpCsJMglPti5bkjxmU2Axw9lKEqQw4HCmMOx113b51Z7Ji58DjsbuiIF5JAp
+ 2hpTdBYYwQ90Rrq3A8U2qoCTM6Z/JttrqM5JxCTBNphIfY/AuA7m0KHVCvE1pI1IThCds62OiVpyDbYYyzKvnIs52V68cd1UB0l9j4cC+XqxAeAYZmG1mK7w
+ xaad+EklKa6qrQnuLMDsiMmDGrhJg+DDCeSMfzRXxZw4ebYXnUtwlo3aYNb5CQR41tCTT/ESrJt/IPPxWzyET4o3F4/YppkFLZgfoIfB5Y3ZQ7IpElrhZz4r
+ hV57N0/Yuuoq0T9x7kA9dTXm+F3NWk3J5WKmiB365qLjkOgSI63bfUxmkWT7m+jgjqVzq/TGfjOwkqqmmPirOtmj69K2yV/grgKxrXhMroiuaJ6glk2kq2e+
+ BLuAfNaMYLMy6RNaPAwL6o6xAQg0mXGKT+wSjoXbDC1yeypR0ZeSIBVS1myDswQDidoHIohjuLYJN8a7QRZ7dz1F7/rPyRKUZquqdWxLOIlTNnedR96BVikJ
+ /APKCq63uC5PmQQtGFwLXihb7WzA7QXNLVXwxAoWFoWdS2ygZkf0LLnZA8ngSsCuDBI/oZMdrqaX8YUMpDr0WRRCF+7SlvbH+O6oUDgqh3ZABG2uX1I1Dq2n
+ 2xbI43RkHTE=
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-SGkNCg0KDQpPbiAwNi8wOC8yMDE5IDExOjMwIFBNLCBTdW1hbiBBbm5hIHdyb3RlOg0KPiBPbiA4
-LzYvMTkgMToyMSBQTSwgQmpvcm4gQW5kZXJzc29uIHdyb3RlOg0KPj4gT24gVHVlIDA2IEF1ZyAx
-MDozOCBQRFQgMjAxOSwgU3VtYW4gQW5uYSB3cm90ZToNCj4+DQo+Pj4gSGkgRmFiaWVuLA0KPj4+
-DQo+Pj4gT24gOC81LzE5IDEyOjQ2IFBNLCBCam9ybiBBbmRlcnNzb24gd3JvdGU6DQo+Pj4+IE9u
-IE1vbiAwNSBBdWcgMDE6NDggUERUIDIwMTksIEZhYmllbiBERVNTRU5ORSB3cm90ZToNCj4+Pj4N
-Cj4+Pj4+IE9uIDAxLzA4LzIwMTkgOToxNCBQTSwgQmpvcm4gQW5kZXJzc29uIHdyb3RlOg0KPj4+
-Pj4+IE9uIFdlZCAxMyBNYXIgMDg6NTAgUERUIDIwMTksIEZhYmllbiBEZXNzZW5uZSB3cm90ZToN
-Cj4+IFsuLl0NCj4+Pj4+IEIvIFRoaXMgd291bGQgaW50cm9kdWNlIHNvbWUgaW5jb25zaXN0ZW5j
-eSBiZXR3ZWVuIHRoZSB0d28gJ3JlcXVlc3QnIEFQSQ0KPj4+Pj4gd2hpY2ggYXJlIGh3c3Bpbl9s
-b2NrX3JlcXVlc3QoKSBhbmQgaHdzcGluX2xvY2tfcmVxdWVzdF9zcGVjaWZpYygpLg0KPj4+Pj4g
-aHdzcGluX2xvY2tfcmVxdWVzdCgpIGxvb2tzIGZvciBhbiB1bnVzZWQgbG9jaywgc28gcmVxdWVz
-dHMgZm9yIGFuIGV4Y2x1c2l2ZQ0KPj4+Pj4gdXNhZ2UuIE9uIHRoZSBvdGhlciBzaWRlLCByZXF1
-ZXN0X3NwZWNpZmljKCkgd291bGQgcmVxdWVzdCBzaGFyZWQgbG9ja3MuDQo+Pj4+PiBXb3JzdCB0
-aGUgZm9sbG93aW5nIHNlcXVlbmNlIGNhbiB0cmFuc2Zvcm0gYW4gZXhjbHVzaXZlIHVzYWdlIGlu
-dG8gYSBzaGFyZWQNCj4+Pj4+DQo+Pj4+IFRoZXJlIGlzIGFscmVhZHkgYW4gaW5jb25zaXN0ZW5j
-eSBpbiBiZXR3ZWVuIHRoZXNlOyBhcyB3aXRoIGFib3ZlIGFueQ0KPj4+PiBzeXN0ZW0gdGhhdCB1
-c2VzIGJvdGggcmVxdWVzdCgpIGFuZCByZXF1ZXN0X3NwZWNpZmljKCkgd2lsbCBiZSBzdWZmZXJp
-bmcNCj4+Pj4gZnJvbSBpbnRlcm1pdHRlbnQgZmFpbHVyZXMgZHVlIHRvIHByb2JlIG9yZGVyaW5n
-Lg0KPj4+Pg0KPj4+Pj4gb25lOg0KPj4+Pj4gICDCoCAtaHdzcGluX2xvY2tfcmVxdWVzdCgpIC0+
-IHJldHVybnMgSWQjMCAoZXhjbHVzaXZlKQ0KPj4+Pj4gICDCoCAtaHdzcGluX2xvY2tfcmVxdWVz
-dCgpIC0+IHJldHVybnMgSWQjMSAoZXhjbHVzaXZlKQ0KPj4+Pj4gICDCoCAtaHdzcGluX2xvY2tf
-cmVxdWVzdF9zcGVjaWZpYygwKSAtPiByZXR1cm5zIElkIzAgYW5kIG1ha2VzIElkIzAgc2hhcmVk
-DQo+Pj4+PiBIb25lc3RseSBJIGFtIG5vdCBzdXJlIHRoYXQgdGhpcyBpcyBhIHJlYWwgaXNzdWUs
-IGJ1dCBpdCdzIGJldHRlciB0byBoYXZlIGl0DQo+Pj4+PiBpbiBtaW5kIGJlZm9yZSB3ZSB0YWtl
-IGF5IGRlY2lzaW9uDQo+Pj4gV291bGRuJ3QgaXQgYmUgYWN0dWFsbHkgc2ltcGxlciB0byBqdXN0
-IGludHJvZHVjZSBhIG5ldyBzcGVjaWZpYyBBUEkNCj4+PiB2YXJpYW50IGZvciB0aGlzLCBzaW1p
-bGFyIHRvIHRoZSByZXNldCBjb3JlIGZvciBleGFtcGxlIChpdCB1c2VzIGENCj4+PiBzZXBhcmF0
-ZSBleGNsdXNpdmUgQVBJKSwgd2l0aG91dCBoYXZpbmcgdG8gbW9kaWZ5IHRoZSBiaW5kaW5ncyBh
-dCBhbGwuDQo+Pj4gSXQgaXMganVzdCBhIGNhc2Ugb2YgeW91ciBkcml2ZXIgdXNpbmcgdGhlIHJp
-Z2h0IEFQSSwgYW5kIHRoZSBjb3JlIGNhbg0KPj4+IGJlIG1vZGlmaWVkIHRvIHVzZSB0aGUgYWRk
-aXRpb25hbCB0YWcgc2VtYW50aWNzIGJhc2VkIG9uIHRoZSBBUEkuIEl0DQo+Pj4gc2hvdWxkIGF2
-b2lkIGFueSBjb25mdXNpb24gd2l0aCBzYXkgdXNpbmcgYSBkaWZmZXJlbnQgc2Vjb25kIGNlbGwg
-dmFsdWUNCj4+PiBmb3IgdGhlIHNhbWUgbG9jayBpbiB0d28gZGlmZmVyZW50IG5vZGVzLg0KPj4+
-DQo+PiBCdXQgdGhpcyBpbXBsaWVzIHRoYXQgdGhlcmUgaXMgYW4gYWN0dWFsIG5lZWQgdG8gaG9s
-ZCB0aGVzZSBsb2Nrcw0KPj4gZXhjbHVzaXZlbHkuIEdpdmVuIHRoYXQgdGhleSBhcmUgKGV4Y2Vw
-dCBmb3IgdGhlIHJhdyBjYXNlKSBhbGwgd3JhcHBlZA0KPj4gYnkgTGludXggbG9ja2luZyBwcmlt
-aXRpdmVzIHRoZXJlIHNob3VsZG4ndCBiZSBhIHByb2JsZW0gc2hhcmluZyBhIGxvY2sNCj4+IChl
-eGNlcHQgcG9zc2libHkgZm9yIHRoZSByYXcgY2FzZSkuDQo+IFllcyBhZ3JlZWQsIHRoZSBIV0xP
-Q0tfUkFXIGFuZCBIV0xPQ0tfSU5fQVRPTUlDIGNhc2VzIGFyZSB1bnByb3RlY3RlZC4gSQ0KPiBh
-bSBzdGlsbCB0cnlpbmcgdG8gdW5kZXJzdGFuZCBiZXR0ZXIgdGhlIHVzZWNhc2UgdG8gc2VlIGlm
-IHRoZSBzYW1lIGxvY2sNCj4gaXMgYmVpbmcgbXVsdGlwbGV4ZWQgZm9yIGRpZmZlcmVudCBwcm90
-ZWN0aW9uIGNvbnRleHRzLCBvciBpZiBhbGwgb2YNCj4gdGhlbSBhcmUgcHJvdGVjdGluZyB0aGUg
-c2FtZSBjb250ZXh0Lg0KDQoNCkhlcmUgYXJlIHR3byBkaWZmZXJlbnQgZXhhbXBsZXMgdGhhdCBl
-eHBsYWluIHRoZSBuZWVkIGZvciBjaGFuZ2VzLg0KSW4gYm90aCBjYXNlcyB0aGUgTGludXggY2xp
-ZW50cyBhcmUgdGFsa2luZyB0byBhIHNpbmdsZSBlbnRpdHkgb24gdGhlDQpyZW1vdGUtc2lkZS4N
-Cg0KRXhhbXBsZSAxOg0KIMKgwqDCoCBleHRpOiBpbnRlcnJ1cHQtY29udHJvbGxlckA1MDAwZDAw
-MCB7DQogwqDCoMKgIMKgwqDCoCBjb21wYXRpYmxlID0gInN0LHN0bTMybXAxLWV4dGkiLCAic3lz
-Y29uIjsNCiDCoMKgwqAgwqDCoMKgIGludGVycnVwdC1jb250cm9sbGVyOw0KIMKgwqDCoCDCoMKg
-wqAgI2ludGVycnVwdC1jZWxscyA9IDwyPjsNCiDCoMKgwqAgwqDCoMKgIHJlZyA9IDwweDUwMDBk
-MDAwIDB4NDAwPjsNCiDCoMKgwqAgwqDCoMKgIGh3bG9ja3MgPSA8JmhzZW0gMT47DQogwqDCoMKg
-IH07DQpUaGUgdHdvIGRyaXZlcnMgKHN0bTMybXAxLWV4dGkgYW5kIHN5c2NvbikgcmVmZXIgdG8g
-dGhlIHNhbWUgaHdsb2NrLg0KV2l0aCB0aGUgY3VycmVudCBod3NwaW5sb2NrIGltcGxlbWVudGF0
-aW9uLCBvbmx5IHRoZSBmaXJzdCBkcml2ZXIgc3VjY2VlZHMNCmluIHJlcXVlc3RpbmcgKGh3c3Bp
-bl9sb2NrX3JlcXVlc3Rfc3BlY2lmaWMpIHRoZSBod2xvY2suIFRoZSBzZWNvbmQgcmVxdWVzdA0K
-ZmFpbHMuDQpIZXJlLCB3ZSByZWFsbHkgbmVlZCB0byBzaGFyZSB0aGUgaHdsb2NrIGJldHdlZW4g
-dGhlIHR3byBkcml2ZXJzLg0KTm90ZTogaGFyZHdhcmUgc3BpbmxvY2sgc3VwcG9ydCBmb3IgcmVn
-bWFwIHdhcyAncmVjZW50bHknIGludHJvZHVjZWQgaW4gNC4xNQ0Kc2VlIGh0dHBzOi8vbG9yZS5r
-ZXJuZWwub3JnL3BhdGNod29yay9wYXRjaC84NDU5NDEvDQoNCg0KDQpFeGFtcGxlIDI6DQpIZXJl
-IGl0IGlzIG1vcmUgYSBxdWVzdGlvbiBvZiBvcHRpbWl6YXRpb24gOiB3ZSB3YW50IHRvIHNhdmUg
-dGhlIG51bWJlciBvZg0KaHdsb2NrcyB1c2VkIHRvIHByb3RlY3QgcmVzb3VyY2VzLCB1c2luZyBh
-biB1bmlxdWUgaHdsb2NrIHRvIHByb3RlY3QgYWxsDQpwaW5jdHJsIHJlc291cmNlczoNCiDCoMKg
-wqAgwqDCoMKgIHBpbmN0cmw6IHBpbi1jb250cm9sbGVyQDUwMDAyMDAwIHsNCiDCoMKgwqAgwqDC
-oMKgIMKgwqDCoCBjb21wYXRpYmxlID0gInN0LHN0bTMybXAxNTctcGluY3RybCI7DQogwqDCoMKg
-IMKgwqDCoCDCoMKgwqAgcmFuZ2VzID0gPDAgMHg1MDAwMjAwMCAweGE0MDA+Ow0KIMKgwqDCoCDC
-oMKgwqAgwqDCoMKgIGh3bG9ja3MgPSA8JmhzZW0gMCAxPjsNCg0KIMKgwqDCoCDCoMKgwqAgcGlu
-Y3RybF96OiBwaW4tY29udHJvbGxlci16QDU0MDA0MDAwIHsNCiDCoMKgwqAgwqDCoMKgIMKgwqDC
-oCBjb21wYXRpYmxlID0gInN0LHN0bTMybXAxNTctei1waW5jdHJsIjsNCiDCoMKgwqAgwqDCoMKg
-IMKgwqDCoCByYW5nZXMgPSA8MCAweDU0MDA0MDAwIDB4NDAwPjsNCiDCoMKgwqAgwqDCoMKgIMKg
-wqDCoCBwaW5zLWFyZS1udW1iZXJlZDsNCiDCoMKgwqAgwqDCoMKgIMKgwqDCoCBod2xvY2tzID0g
-PCZoc2VtIDAgMT47DQoNCj4NCj4+IEkgYWdyZWUgdGhhdCB3ZSBzaG91bGRuJ3Qgc3BlY2lmeSB0
-aGlzIHByb3BlcnR5IGluIERUIC0gaWYgYW55dGhpbmcgaXQNCj4+IHNob3VsZCBiZSBhIHZhcmlh
-bnQgb2YgdGhlIEFQSS4NCg0KDQpJZiB3ZSBkZWNpZGUgdG8gYWRkIGEgJ3NoYXJlZCcgQVBJLCB0
-aGVuLCB3aGF0IGFib3V0IHRoZSBnZW5lcmljIHJlZ21hcCANCmRyaXZlcj8NCg0KSW4gdGhlIGNv
-bnRleHQgb2YgYWJvdmUgZXhhbXBsZTEsIHRoaXMgd291bGQgcmVxdWlyZSB0byB1cGRhdGUgdGhl
-IA0KcmVnbWFwIGRyaXZlci4NCg0KQnV0IHdvdWxkIHRoaXMgYmUgYWNjZXB0YWJsZSBmb3IgYW55
-IGRyaXZlciB1c2luZyBzeXNjb24vcmVnbWFwPw0KDQoNCkkgdGhpbmsgaXQgaXMgYmV0dGVyIHRv
-IGtlZXAgdGhlIGV4aXN0aW5nIEFQSSAobW9kaWZ5aW5nIGl0IHNvIGl0IGFsd2F5cyANCmFsbG93
-cw0KDQpod2xvY2tzIHNoYXJpbmcsIHNvIG5vIG5lZWQgZm9yIGJpbmRpbmdzIHVwZGF0ZSkgdGhh
-biBhZGRpbmcgYW5vdGhlciBBUEkuDQoNCg0KDQo+Pg0KPj4+IElmIHlvdSBhcmUgc2hhcmluZyBh
-IGh3bG9jayBvbiB0aGUgTGludXggc2lkZSwgc3VyZWx5IHlvdXIgZHJpdmVyIHNob3VsZA0KPj4+
-IGJlIGF3YXJlIHRoYXQgaXQgaXMgYSBzaGFyZWQgbG9jay4gVGhlIHRhZyBjYW4gYmUgc2V0IGR1
-cmluZyB0aGUgZmlyc3QNCj4+PiByZXF1ZXN0IEFQSSwgYW5kIHlvdSBsb29rIHRocm91Z2ggYm90
-aCB0YWdzIHdoZW4gZ2l2aW5nIG91dCBhIGhhbmRsZS4NCj4+Pg0KPj4gV2h5IHdvdWxkIHRoZSBk
-cml2ZXIgbmVlZCB0byBrbm93IGFib3V0IGl0Pw0KPiBKdXN0IHRoZSBzZW1hbnRpY3MgaWYgd2Ug
-d2VyZSB0byBzdXBwb3J0IHNpbmdsZSB1c2VyIHZzIG11bHRpcGxlIHVzZXJzDQo+IG9uIExpbnV4
-LXNpZGUgdG8gZXZlbiBnZXQgYSBoYW5kbGUuIFlvdXIgcG9pbnQgaXMgdGhhdCB0aGlzIG1heSBi
-ZSBtb290DQo+IHNpbmNlIHdlIGhhdmUgcHJvdGVjdGlvbiBhbnl3YXkgb3RoZXIgdGhhbiB0aGUg
-cmF3IGNhc2VzLiBCdXQgd2UgbmVlZCB0bw0KPiBiZSBhYmxlIHRvIGhhdmUgdGhlIHNhbWUgQVBJ
-IHdvcmsgYWNyb3NzIGFsbCBjYXNlcy4NCj4NCj4gU28gZmFyLCBpdCBoYWQgbW9zdGx5IGJlZW4g
-dGhhdCB0aGVyZSB3b3VsZCBiZSBvbmUgdXNlciBvbiBMaW51eA0KPiBjb21wZXRpbmcgd2l0aCBv
-dGhlciBlcXVpdmFsZW50IHBlZXIgZW50aXRpZXMgb24gZGlmZmVyZW50IHByb2Nlc3NvcnMuDQo+
-IEl0IGlzIG5vdCBjb21tb24gdG8gaGF2ZSBtdWx0aXBsZSB1c2VycyBzaW5jZSB0aGVzZSBwcm90
-ZWN0aW9uIHNjaGVtZXMNCj4gYXJlIHVzdWFsbHkgbmVlZGVkIG9ubHkgYXQgdGhlIGxvd2VzdCBs
-ZXZlbHMgb2YgYSBzdGFjaywgc28gdGhlDQo+IGV4Y2x1c2l2ZSBoYW5kbGUgc3R1ZmYgaGFkIGJl
-ZW4gc3VmZmljaWVudC4NCj4NCj4+PiBPYnZpb3VzbHksIHRoZSBod3NwaW5fbG9ja19yZXF1ZXN0
-KCkgQVBJIHVzYWdlIHNlbWFudGljcyBhbHdheXMgaGFkIHRoZQ0KPj4+IGltcGxpZWQgYWRkaXRp
-b25hbCBuZWVkIGZvciBjb21tdW5pY2F0aW5nIHRoZSBsb2NrIGlkIHRvIHRoZSBvdGhlciBwZWVy
-DQo+Pj4gZW50aXR5LCBzbyBhIHJlYWxpc3RpYyB1c2FnZSBpcyBtb3N0IGFsd2F5cyB0aGUgc3Bl
-Y2lmaWMgQVBJIHZhcmlhbnQuIEkNCj4+PiBkb3VidCB0aGlzIEFQSSB3b3VsZCBiZSBvZiBtdWNo
-IHVzZSBmb3IgdGhlIHNoYXJlZCBkcml2ZXIgdXNhZ2UuIFRoaXMNCj4+PiBhbHNvIGltcGxpZXMg
-dGhhdCB0aGUgY2xpZW50IHVzZXIgZG9lcyBub3QgY2FyZSBhYm91dCBzcGVjaWZ5aW5nIGEgbG9j
-aw0KPj4+IGluIERULg0KPj4+DQo+PiBBZmFpY3QgaWYgdGhlIGxvY2sgYXJlIHNoYXJlZCB0aGVu
-IHRoZXJlIHNob3VsZG4ndCBiZSBhIHByb2JsZW0gd2l0aA0KPj4gc29tZSBjbGllbnRzIHVzaW5n
-IHRoZSByZXF1ZXN0IEFQSSBhbmQgb3RoZXJzIHJlcXVlc3Rfc3BlY2lmaWMoKS4gQXMgYW55DQo+
-PiBjb2xsaXNpb25zIHdvdWxkIHNpbXBseSBtZWFuIHRoYXQgdGhlcmUgYXJlIG1vcmUgY29udGVu
-dGlvbiBvbiB0aGUgbG9jay4NCj4+DQo+PiBXaXRoIHRoZSBjdXJyZW50IGV4Y2x1c2l2ZSBtb2Rl
-bCB0aGF0IGlzIG5vdCBwb3NzaWJsZSBhbmQgdGhlIHN1Y2Nlc3Mgb2YNCj4+IHRoZSByZXF1ZXN0
-X3NwZWNpZmljIHdpbGwgZGVwZW5kIG9uIHByb2JlIG9yZGVyLg0KPj4NCj4+IEJ1dCBwZXJoYXBz
-IGl0IHNob3VsZCBiZSBleHBsaWNpdGx5IHByb2hpYml0ZWQgdG8gdXNlIGJvdGggQVBJcyBvbiB0
-aGUNCj4+IHNhbWUgaHdzcGlubG9jayBpbnN0YW5jZT8NCj4gWWVhaCwgdGhleSBhcmUgbWVhbnQg
-dG8gYmUgY29tcGxpbWVudGFyeSB1c2FnZSwgdGhvdWdoIEkgZG91YnQgd2Ugd2lsbA0KPiBldmVy
-IGhhdmUgYW55IHJlYWxpc3RpYyB1c2VycyBmb3IgdGhlIGdlbmVyaWMgQVBJIGlmIHdlIGhhdmVu
-J3QgaGFkIGENCj4gdXNhZ2Ugc28gZmFyLiBJIGhhZCBwb3N0ZWQgYSBjb25jZXB0IG9mIHJlc2Vy
-dmVkIGxvY2tzIGxvbmcgYmFjayBbMV0gdG8NCj4ga2VlcCBhd2F5IGNlcnRhaW4gbG9ja3MgZnJv
-bSB0aGUgZ2VuZXJpYyByZXF1ZXN0b3IsIGJ1dCBkcm9wcGVkIGl0IHNpbmNlDQo+IHdlIGRpZCBu
-b3QgaGF2ZSBhbiBhY3R1YWwgdXNlLWNhc2UgbmVlZGluZyBpdC4NCj4NCj4gcmVnYXJkcw0KPiBT
-dW1hbg0KPg0KPiBbMV0gaHR0cHM6Ly9sd24ubmV0L0FydGljbGVzLzYxMTk0NC8=
+Adding dri-devel since this appears to be drm specific and not media
+related.
+
+Regards,
+
+	Hans
+
+On 8/7/19 10:17 AM, Naresh Kamboju wrote:
+> arm64 devices dragonboard 410c (QC410E) and hi6220-hikey running Linux
+> next-20190806 loading modules causing floods of kernel messages.
+> 
+> We have enabled few extra kernel configs for testing.
+> CONFIG_DRM_I2C_ADV7511=m
+> CONFIG_DRM_I2C_ADV7511_CEC=y
+> ...
+> 
+> Please find below boot log and config file link.
+> 
+> [    0.000000] Linux version 5.3.0-rc3-next-20190806 (oe-user@oe-host)
+> (gcc version 7.3.0 (GCC)) #1 SMP PREEMPT Tue Aug 6 05:49:36 UTC 2019
+> [    0.000000] Machine model: Qualcomm Technologies, Inc. APQ 8016 SBC
+> ....
+> [   10.051193] adv7511 3-0039: 3-0039 supply dvdd not found, using
+> dummy regulator
+> [   10.051633] adv7511 3-0039: 3-0039 supply pvdd not found, using
+> dummy regulator
+> [   10.076257] adreno 1c00000.gpu: Adding to iommu group 0
+> [   10.090929] adv7511 3-0039: 3-0039 supply a2vdd not found, using
+> dummy regulator
+> [   10.101703] msm_mdp 1a01000.mdp: Adding to iommu group 1
+> [   10.102563] msm_mdp 1a01000.mdp: No interconnect support may cause
+> display underflows!
+> [   10.139492] adv7511 3-0039: failed to find dsi host
+> ...
+> [   33.065744] adv7511 3-0039: failed to find dsi host
+> [   33.076721] msm 1a00000.mdss: 1a00000.mdss supply vdd not found,
+> using dummy regulator
+> [   33.078344] msm_mdp 1a01000.mdp: [drm:mdp5_bind [msm]] MDP5 version v1.6
+> [   33.083862] msm 1a00000.mdss: bound 1a01000.mdp (ops mdp5_ops [msm])
+> [   33.090892] msm_dsi 1a98000.dsi: 1a98000.dsi supply gdsc not found,
+> using dummy regulator
+> [   33.097756] msm_dsi 1a98000.dsi: 1a98000.dsi supply gdsc not found,
+> using dummy regulator
+> [   33.106606] msm_dsi_manager_register: failed to register mipi dsi
+> host for DSI 0
+> [   33.114579] msm 1a00000.mdss: failed to bind 1a98000.dsi (ops
+> dsi_ops [msm]): -517
+> [   33.121263] msm 1a00000.mdss: master bind failed: -517
+> [   33.135547] adv7511 3-0039: 3-0039 supply dvdd not found, using
+> dummy regulator
+> [   33.139360] adv7511 3-0039: 3-0039 supply pvdd not found, using
+> dummy regulator
+> [   33.143646] adv7511 3-0039: 3-0039 supply a2vdd not found, using
+> dummy regulator
+> 
+> Full test log
+> https://lkft.validation.linaro.org/scheduler/job/860208#L956
+> 
+> metadata:
+>   git branch: master
+>   git repo: https://git.kernel.org/pub/scm/linux/kernel/git/next/linux-next.git
+>   git commit: 958eb4327c1761c609bde8e9f7c04e9d1c6fbb96
+>   git describe: next-20190806
+>   make_kernelversion: 5.3.0-rc3
+>   kernel-config:
+> http://snapshots.linaro.org/openembedded/lkft/lkft/sumo/dragonboard-410c/lkft/linux-next/579/config
+>   kernel-defconfig:
+> http://snapshots.linaro.org/openembedded/lkft/lkft/sumo/dragonboard-410c/lkft/linux-next/579/defconfig
+>   build-location:
+> http://snapshots.linaro.org/openembedded/lkft/lkft/sumo/dragonboard-410c/lkft/linux-next/579
+> 
+> Best regards
+> Naresh Kamboju
+> 
+
