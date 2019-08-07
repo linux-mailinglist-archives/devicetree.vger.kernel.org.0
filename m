@@ -2,126 +2,191 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8425983EB3
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 03:17:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1585783EBA
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 03:23:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727581AbfHGBRF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 21:17:05 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:39035 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727576AbfHGBRF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 21:17:05 -0400
-Received: by mail-pf1-f196.google.com with SMTP id f17so38483777pfn.6;
-        Tue, 06 Aug 2019 18:17:04 -0700 (PDT)
+        id S1727620AbfHGBXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Tue, 6 Aug 2019 21:23:37 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:35472 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726340AbfHGBXg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 21:23:36 -0400
+Received: by mail-ot1-f66.google.com with SMTP id j19so21137061otq.2
+        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 18:23:35 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=GV9JQ2WNxKL1bjWx+vcWnlZmSRoCTmSS+egaYnjbX4o=;
-        b=OOkY2mECq07ay0Xkn5jKnjidQD7Y8rAbUg9yszwJK3KpW6U4gotRh9fOqwSowU5+w3
-         JcKu2uOfiRVZU8AUaC25yzBkfW3T0nn0j43EDVl8MOnataHeQdj5vcF8HtYZM/82gsB1
-         70bJuVf2VmFVX7KGZmLx4zx6CuDjpfDVMHaZfPzSuUBjAjXN2LlVLQ76C9PmPyIAF9JA
-         fVfBlvx6TRx0j8TxbxthDg8nBHDi9khm2aqPPHODo10L5pGFFyCAM3umhlnFchlJxyi3
-         Ycmnf72zDRGCVYXHcttAeOiovnJ2bnf+d3qRP1t29a4pnYk9br6LQ85uAFa4t986slHW
-         ZnUw==
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=XOc3tRY+4s8d0XfiWvvs/QPATLaAozAh84PcRQxEWLM=;
+        b=GNTmRKLx1mTu+C0+yD8oGiYEgpN8Ed2VrTeqTvsha4J6+EThN6gPct+RjsZktOSHUG
+         3NGWefoJBoKXoeVgkcEu1O1LbM2wO2HG0QK6Xk9KvnOFIwQnY8FBjDCz+HyzSyl0H9Vo
+         sjkHKA5WdxWcEVaiYYa5OpDjZxbC4bdRy0yBBtGGR+c1NQuJ4ade/5UXQ6kIUbA+OTwP
+         59K5GpuNKKo+7onbGHvl8pLzddN3iBFdh3I2za6eU8Z42YwuQhG0l1cuGuY5dm2bn89d
+         UmP9+QPE1Bqx3jat6AG543f01KQVPwWGGuU1/bmhABU1rjSTdudpx3/le/8fgit0/W3j
+         g7Bg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=GV9JQ2WNxKL1bjWx+vcWnlZmSRoCTmSS+egaYnjbX4o=;
-        b=B8b4dl6Lj3+XWlUlNQ2aMR5ld1/looZJm0BjLnySIQZV5XD/yM/DFpOb3ksm6CHJ/9
-         Y8n+4wlJffZ4jCky8Rr2xP5RU21sbZB95LWLvLx9QPzTIjIlI7ly7r+V1rlvCPXAfdFk
-         dA9tBi0u/Zys8JqUBr3qClvel/Fv4CjWtPMYQqY73DLABMvvU/4q0lfIleRm7HRCyt0x
-         2Y6FrhVcIMxu5j446V3Gb05pVlnULnZPJUmVJNwLrG5nAtydZGXNCjBC+wb7EaWsjpee
-         tQouNNn/EQpBV0cSY2TuyZZfkwK24DuBb1tzCOe22H3dtwqX/LfRzjjsLyWnb0XceT6C
-         ujhw==
-X-Gm-Message-State: APjAAAWr3gaiXOsA2HUEZfxLyakRdZVBvbaftyWMsVuT4Av3u78rxtqQ
-        R1s8u2nyxUD50DNnxpvACHg=
-X-Google-Smtp-Source: APXvYqzHxmD8/7fJHI1GyT8D5iX+ET4Lx7na0hWQTte/JA6UCTeTD/qIcg8V0R6hoOtkUu8aYGy1Ig==
-X-Received: by 2002:a63:5765:: with SMTP id h37mr5358736pgm.183.1565140624218;
-        Tue, 06 Aug 2019 18:17:04 -0700 (PDT)
-Received: from Asurada-Nvidia.nvidia.com (thunderhill.nvidia.com. [216.228.112.22])
-        by smtp.gmail.com with ESMTPSA id n5sm94563063pfn.38.2019.08.06.18.17.03
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Tue, 06 Aug 2019 18:17:03 -0700 (PDT)
-Date:   Tue, 6 Aug 2019 18:17:59 -0700
-From:   Nicolin Chen <nicoleotsuka@gmail.com>
-To:     Daniel Baluta <daniel.baluta@nxp.com>
-Cc:     broonie@kernel.org, l.stach@pengutronix.de, mihai.serban@gmail.com,
-        alsa-devel@alsa-project.org, timur@kernel.org,
-        shengjiu.wang@nxp.com, angus@akkea.ca, tiwai@suse.com,
-        linux-imx@nxp.com, kernel@pengutronix.de, festevam@gmail.com,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        robh@kernel.org
-Subject: Re: [PATCH v3 2/5] ASoC: fsl_sai: Update Tx/Rx channel enable mask
-Message-ID: <20190807011758.GE8938@Asurada-Nvidia.nvidia.com>
-References: <20190806151214.6783-1-daniel.baluta@nxp.com>
- <20190806151214.6783-3-daniel.baluta@nxp.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=XOc3tRY+4s8d0XfiWvvs/QPATLaAozAh84PcRQxEWLM=;
+        b=dAMV+wrm47HFIGa0Oz45RYRgGCVrMaiNxoFiIzsjIrEVxzdgMGdiewLnmykWBtaRVy
+         icy2VSfP/GpfEr0Vv/7n+HaiVeq9YAj6Gn9qk/1JBAu+idnB7U8EWmZhGQG3OwPF7332
+         j5QG8begC8GazC3jnI270zNW0NOc0jZez72Bw98hFWgq5kUUOzyLRJOA7o/ebQ+nVuBp
+         Aw0I8gpxmUpsX12lXhBlyETIWF+FpqhdLPLpxc2Gx2UlEdt0xUoRTUpMxqsgDl3JK84m
+         OnE2lYz5FhyhdBG20L0ozHirfzqR/Uzj/A0dvjTH2qqTUIHjLp9ie1sNDYDRpdTBFeux
+         nY/A==
+X-Gm-Message-State: APjAAAWyfhcqRJMRa4kcK5yg51j3avAq6j/neSbiTQ7zkdJPvEH84knd
+        fAuyYS7MhLXZ9KM/ndafpjrRlBktpPOqSHz7lZ2C1g==
+X-Google-Smtp-Source: APXvYqxCEkZVgFa/uggGj84VI91P8SXI1u46BMoeb4gqY/9Gn1ikNdM9oD0yuntjY1a5IparwEFqAzJi0sUX8EKXfCk=
+X-Received: by 2002:aca:d8c2:: with SMTP id p185mr3847116oig.30.1565141015214;
+ Tue, 06 Aug 2019 18:23:35 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190806151214.6783-3-daniel.baluta@nxp.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <B4B0AD7F-FA0F-4DA0-9A8B-EAE1CEE11759@lca.pw>
+In-Reply-To: <B4B0AD7F-FA0F-4DA0-9A8B-EAE1CEE11759@lca.pw>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Tue, 6 Aug 2019 18:22:59 -0700
+Message-ID: <CAGETcx_TYxgohR7C5SRRbSmfKNhS90i64KjtA38N19g_Kz3euA@mail.gmail.com>
+Subject: Re: "of/platform: Pause/resume sync state during init and
+ of_platform_populate()" with a warning on arm64
+To:     Qian Cai <cai@lca.pw>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        linux-arm-kernel@lists.infradead.org,
+        Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux List Kernel Mailing <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 06, 2019 at 06:12:11PM +0300, Daniel Baluta wrote:
-> Tx channel enable (TCE) / Rx channel enable (RCE) bits
-> enable corresponding data channel for Tx/Rx operation.
-> 
-> Because SAI supports up the 8 channels TCE/RCE occupy
-> up the 8 bits inside TCR3/RCR3 registers we need to extend
-> the mask to reflect this.
-> 
-> Signed-off-by: Daniel Baluta <daniel.baluta@nxp.com>
+On Tue, Aug 6, 2019 at 5:46 PM Qian Cai <cai@lca.pw> wrote:
+>
+> It looks like the linux-next commit =E2=80=9Cof/platform: Pause/resume sy=
+nc state during init and of_platform_populate()=E2=80=9D [1]
+> Introduced a warning while booting arm64.
+>
+> [1] https://lore.kernel.org/lkml/20190731221721.187713-6-saravanak@google=
+.com/
+>
+> [   93.449300][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: ias 44-bit, oas 44=
+-bit (features 0x0000170d)
+> [   93.464873][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: allocated 524288 e=
+ntries for cmdq
+> [   93.485481][    T1] arm-smmu-v3 arm-smmu-v3.4.auto: allocated 524288 e=
+ntries for evtq
+> [   93.496320][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: option mask 0x2
+> [   93.502917][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: ias 44-bit, oas 44=
+-bit (features 0x0000170d)
+> [   93.621818][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: allocated 524288 e=
+ntries for cmdq
+> [   93.643000][    T1] arm-smmu-v3 arm-smmu-v3.5.auto: allocated 524288 e=
+ntries for evtq
+> [   94.519445][    T1] libphy: Fixed MDIO Bus: probed
+> [   94.524649][    T1] EFI Variables Facility v0.08 2004-May-17
+> [   94.601166][    T1] NET: Registered protocol family 17
+> [   94.766008][    T1] zswap: loaded using pool lzo/zbud
+> [   94.774745][    T1] kmemleak: Kernel memory leak detector initialized =
+(mempool size: 16384)
+> [   94.774756][ T1699] kmemleak: Automatic memory scanning thread started
+> [   94.812338][ T1368] pcieport 0000:0f:00.0: Adding to iommu group 0
+> [   94.984466][    T1] ------------[ cut here ]------------
+> [   94.989827][    T1] Unmatched sync_state pause/resume!
+> [   94.989894][    T1] WARNING: CPU: 25 PID: 1 at drivers/base/core.c:691=
+ device_links_supplier_sync_state_resume+0x100/0x128
+> [   95.006062][    T1] Modules linked in:
+> [   95.009815][    T1] CPU: 25 PID: 1 Comm: swapper/0 Not tainted 5.3.0-r=
+c3-next-20190806+ #11
+> [   95.018161][    T1] Hardware name: HPE Apollo 70             /C01_APAC=
+HE_MB         , BIOS L50_5.13_1.11 06/18/2019
+> [   95.028593][    T1] pstate: 60400009 (nZCv daif +PAN -UAO)
+> [   95.034077][    T1] pc : device_links_supplier_sync_state_resume+0x100=
+/0x128
+> [   95.041124][    T1] lr : device_links_supplier_sync_state_resume+0x100=
+/0x128
+> [   95.048167][    T1] sp : 34ff800806e6fbc0
+> [   95.052172][    T1] x29: 34ff800806e6fc00 x28: 0000000000000000
+> [   95.058177][    T1] x27: 0000000000000000 x26: 0000000000000000
+> [   95.064181][    T1] x25: 0000000000000038 x24: 0000000000000000
+> [   95.070185][    T1] x23: 0000000000000000 x22: 0000000000000019
+> [   95.076189][    T1] x21: 0000000000000000 x20: f9ff808b804e6c50
+> [   95.082193][    T1] x19: ffff100014a6e600 x18: 0000000000000040
+> [   95.088197][    T1] x17: 0000000000000000 x16: 86ff80099d581b50
+> [   95.094201][    T1] x15: 0000000000000000 x14: ffff100010086d1c
+> [   95.100205][    T1] x13: ffff1000109d8688 x12: ffffffffffffffff
+> [   95.106209][    T1] x11: 00000000000000f9 x10: ffff0808b804e6c6
+> [   95.112213][    T1] x9 : 4b71ad522c851d00 x8 : 4b71ad522c851d00
+> [   95.118217][    T1] x7 : 6170206574617473 x6 : ffff100014076972
+> [   95.124221][    T1] x5 : 34ff800806e6f8f0 x4 : 000000000000000f
+> [   95.130225][    T1] x3 : ffff1000101bfa5c x2 : 0000000000000001
+> [   95.136229][    T1] x1 : 0000000000000001 x0 : 0000000000000022
+> [   95.142233][    T1] Call trace:
+> [   95.145374][    T1]  device_links_supplier_sync_state_resume+0x100/0x1=
+28
+> [   95.152074][    T1]  of_platform_sync_state_init+0x10/0x1c
+> [   95.157557][    T1]  do_one_initcall+0x2f8/0x600
+> [   95.162172][    T1]  do_initcall_level+0x37c/0x3fc
+> [   95.166959][    T1]  do_basic_setup+0x34/0x4c
+> [   95.171313][    T1]  kernel_init_freeable+0x188/0x24c
+> [   95.176363][    T1]  kernel_init+0x18/0x334
+> [   95.180543][    T1]  ret_from_fork+0x10/0x18
+> [   95.184809][    T1] ---[ end trace a9ea68c902540fe5 ]---
+> [   95.269085][    T1] Freeing unused kernel memory: 28672K
+> [  101.069860][    T1] Checked W+X mappings: passed, no W+X pages found
+> [  101.076265][    T1] Run /init as init process
+> [  101.186359][    T1] systemd[1]: System time before build time, advanci=
+ng clock.
 
-Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
 
-Thanks
+I tested it again on my device (on an older kernel) and I don't see
+this warning. Is this on an ARM64 target without a populated DT?
+That's the only thing I can see that could cause this warning.
 
-> ---
->  sound/soc/fsl/fsl_sai.c | 6 ++++--
->  sound/soc/fsl/fsl_sai.h | 1 +
->  2 files changed, 5 insertions(+), 2 deletions(-)
-> 
-> diff --git a/sound/soc/fsl/fsl_sai.c b/sound/soc/fsl/fsl_sai.c
-> index 17b0aff4ee8b..637b1d12a575 100644
-> --- a/sound/soc/fsl/fsl_sai.c
-> +++ b/sound/soc/fsl/fsl_sai.c
-> @@ -599,7 +599,8 @@ static int fsl_sai_startup(struct snd_pcm_substream *substream,
->  	bool tx = substream->stream == SNDRV_PCM_STREAM_PLAYBACK;
->  	int ret;
->  
-> -	regmap_update_bits(sai->regmap, FSL_SAI_xCR3(tx), FSL_SAI_CR3_TRCE,
-> +	regmap_update_bits(sai->regmap, FSL_SAI_xCR3(tx),
-> +			   FSL_SAI_CR3_TRCE_MASK,
->  			   FSL_SAI_CR3_TRCE);
->  
->  	ret = snd_pcm_hw_constraint_list(substream->runtime, 0,
-> @@ -614,7 +615,8 @@ static void fsl_sai_shutdown(struct snd_pcm_substream *substream,
->  	struct fsl_sai *sai = snd_soc_dai_get_drvdata(cpu_dai);
->  	bool tx = substream->stream == SNDRV_PCM_STREAM_PLAYBACK;
->  
-> -	regmap_update_bits(sai->regmap, FSL_SAI_xCR3(tx), FSL_SAI_CR3_TRCE, 0);
-> +	regmap_update_bits(sai->regmap, FSL_SAI_xCR3(tx),
-> +			   FSL_SAI_CR3_TRCE_MASK, 0);
->  }
->  
->  static const struct snd_soc_dai_ops fsl_sai_pcm_dai_ops = {
-> diff --git a/sound/soc/fsl/fsl_sai.h b/sound/soc/fsl/fsl_sai.h
-> index 4bb478041d67..20c5b9b1e8bc 100644
-> --- a/sound/soc/fsl/fsl_sai.h
-> +++ b/sound/soc/fsl/fsl_sai.h
-> @@ -110,6 +110,7 @@
->  
->  /* SAI Transmit and Receive Configuration 3 Register */
->  #define FSL_SAI_CR3_TRCE	BIT(16)
-> +#define FSL_SAI_CR3_TRCE_MASK	GENMASK(23, 16)
->  #define FSL_SAI_CR3_WDFL(x)	(x)
->  #define FSL_SAI_CR3_WDFL_MASK	0x1f
->  
-> -- 
-> 2.17.1
-> 
+This is literally the code with the matching pause/resume. I can't
+think of any other way the pause/resume could have ended up not
+matching.
+
+static int __init of_platform_default_populate_init(void)
+{
+        struct device_node *node;
+
+        if (!of_have_populated_dt())
+                return -ENODEV;
+
+        platform_bus_type.add_links =3D of_link_to_suppliers;
+        device_links_supplier_sync_state_pause(); <=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D PAUSE
+        /*
+         * Handle certain compatibles explicitly, since we don't want to cr=
+eate
+         * platform_devices for every node in /reserved-memory with a
+         * "compatible",
+         */
+        for_each_matching_node(node, reserved_mem_matches)
+                of_platform_device_create(node, NULL, NULL);
+
+        node =3D of_find_node_by_path("/firmware");
+        if (node) {
+                of_platform_populate(node, NULL, NULL, NULL);
+                of_node_put(node);
+        }
+
+        /* Populate everything else. */
+        of_platform_default_populate(NULL, NULL, NULL);
+
+        return 0;
+}
+arch_initcall_sync(of_platform_default_populate_init);
+
+static int __init of_platform_sync_state_init(void)
+{
+        device_links_supplier_sync_state_resume(); <=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D RESUME
+        return 0;
+}
+late_initcall_sync(of_platform_sync_state_init);
+
+Thanks,
+Saravana
