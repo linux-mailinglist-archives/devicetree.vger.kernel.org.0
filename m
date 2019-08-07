@@ -2,88 +2,70 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 57B0884570
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 09:10:57 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9FFD98462E
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 09:49:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728556AbfHGHKw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 03:10:52 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:48488 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727180AbfHGHKu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 03:10:50 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 3E1D560FE9; Wed,  7 Aug 2019 07:10:45 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1565161849;
-        bh=5v0rL25xkQ3uOvxlExAXM64CUmGUj2TZ9oXn3PRjm4s=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=B6PfnPPNAXnohzWG2mOplAuKtXv/AxK1sdYC/YJCcnMAXtOVaKcDJ/h7GIeahhsS4
-         FNlBn5rXHriqkQwaApCWHWc3KS1cXNhei9YgVYv5YEKHey1s2U3gkqej+yoX/iCl9h
-         zvf7REre97UJr4ERBOAMjtZaXG6mMeRUIPME2nyA=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from blr-ubuntu-87.qualcomm.com (blr-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.18.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: sibis@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 1134E614DB;
-        Wed,  7 Aug 2019 07:10:40 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1565161844;
-        bh=5v0rL25xkQ3uOvxlExAXM64CUmGUj2TZ9oXn3PRjm4s=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=dL/Edy2XfLLno1O1vHFawg4Igdpc9o8XmYPXCaIukwtcEkt+EJ3LIf1BpwGoLDYi1
-         Hn6buKaCfA6dvQ2zAn2RKGt0kln8zGWBxvcpa1U23q5F53BqVFNiodX8EH1LV3fAy9
-         hrfpoKzeXjGVH5AsXHb+DYqlzDcsnemRP6G32U5c=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 1134E614DB
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=sibis@codeaurora.org
-From:   Sibi Sankar <sibis@codeaurora.org>
-To:     bjorn.andersson@linaro.org, robh+dt@kernel.org, vkoul@kernel.org,
-        aneela@codeaurora.org
-Cc:     mark.rutland@arm.com, agross@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, jassisinghbrar@gmail.com,
-        clew@codeaurora.org, Sibi Sankar <sibis@codeaurora.org>
-Subject: [PATCH v2 7/7] soc: qcom: aoss: Add AOSS QMP support
-Date:   Wed,  7 Aug 2019 12:39:57 +0530
-Message-Id: <20190807070957.30655-8-sibis@codeaurora.org>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190807070957.30655-1-sibis@codeaurora.org>
-References: <20190807070957.30655-1-sibis@codeaurora.org>
+        id S2387435AbfHGHtg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 03:49:36 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:38102 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387414AbfHGHtg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 03:49:36 -0400
+Received: from lelv0266.itg.ti.com ([10.180.67.225])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x777nQ1a074494;
+        Wed, 7 Aug 2019 02:49:26 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1565164166;
+        bh=tUDZOFOrbWsC/r3cVBM7AKpl36lzyGepos+RtNTL9Xc=;
+        h=From:To:CC:Subject:Date;
+        b=dxVz+4pf69S4TcWLVQha2U0J98uOtQcfrVYMgchQ4ILh1Zyi9/PSfh8sYEXU7LPd0
+         RDIQWm6t/65vzsmqpX184nUUMsudT7A4e1NTvuEV1UyzFKE0J4lcZrx8j9SYKOq8i4
+         15bUGTA4nsNFm7/nsuqA8/1WNgJmMBMZdhQEvYlE=
+Received: from DFLE113.ent.ti.com (dfle113.ent.ti.com [10.64.6.34])
+        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x777nQlx078506
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Wed, 7 Aug 2019 02:49:26 -0500
+Received: from DFLE109.ent.ti.com (10.64.6.30) by DFLE113.ent.ti.com
+ (10.64.6.34) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Wed, 7 Aug
+ 2019 02:49:25 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DFLE109.ent.ti.com
+ (10.64.6.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Wed, 7 Aug 2019 02:49:25 -0500
+Received: from gomoku.dhcp.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x777nNHc118711;
+        Wed, 7 Aug 2019 02:49:23 -0500
+From:   Tero Kristo <t-kristo@ti.com>
+To:     <ssantosh@kernel.org>, <linux-arm-kernel@lists.infradead.org>,
+        <linux-omap@vger.kernel.org>, <robh+dt@kernel.org>
+CC:     <tony@atomide.com>, <s-anna@ti.com>, <devicetree@vger.kernel.org>
+Subject: [PATCH 0/8] soc: ti: Add OMAP PRM driver
+Date:   Wed, 7 Aug 2019 10:48:51 +0300
+Message-ID: <1565164139-21886-1-git-send-email-t-kristo@ti.com>
+X-Mailer: git-send-email 1.9.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add AOSS QMP support for SM8150 and SC7180 SoCs.
+Hi,
 
-Signed-off-by: Sibi Sankar <sibis@codeaurora.org>
----
- drivers/soc/qcom/qcom_aoss.c | 2 ++
- 1 file changed, 2 insertions(+)
+This series adds OMAP PRM driver which initially supports only reset
+handling. Later on, power domain support can be added to this to get
+rid of the current OMAP power domain handling code which resides
+under the mach-omap2 platform directory. Initially, reset data is
+added for AM3, OMAP4 and DRA7 SoCs.
 
-diff --git a/drivers/soc/qcom/qcom_aoss.c b/drivers/soc/qcom/qcom_aoss.c
-index 5f885196f4d0f..6ae813837b74b 100644
---- a/drivers/soc/qcom/qcom_aoss.c
-+++ b/drivers/soc/qcom/qcom_aoss.c
-@@ -461,7 +461,9 @@ static int qmp_remove(struct platform_device *pdev)
- }
- 
- static const struct of_device_id qmp_dt_match[] = {
-+	{ .compatible = "qcom,sc7180-aoss-qmp", },
- 	{ .compatible = "qcom,sdm845-aoss-qmp", },
-+	{ .compatible = "qcom,sm8150-aoss-qmp", },
- 	{}
- };
- MODULE_DEVICE_TABLE(of, qmp_dt_match);
--- 
-The Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum,
-a Linux Foundation Collaborative Project
+I've been testing the reset handling logic with OMAP remoteproc
+driver which has been converted to use generic reset framework. This
+part is a work in progress, so will be posting patches from that part
+later on.
 
+-Tero
+
+--
+Texas Instruments Finland Oy, Porkkalankatu 22, 00180 Helsinki. Y-tunnus/Business ID: 0615521-4. Kotipaikka/Domicile: Helsinki
