@@ -2,130 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AF6F384C88
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 15:11:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D7B3284CAB
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 15:18:08 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388132AbfHGNLn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 09:11:43 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:39109 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2387982AbfHGNLn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 09:11:43 -0400
-Received: by mail-lj1-f194.google.com with SMTP id v18so85369343ljh.6
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 06:11:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=NqX/zsugDIFGqU1o5bPg+mfxcpflibTDWwvc6+6Rsf8=;
-        b=HPW34rTvAIhdr9bJvlw2XRGRZ+4vv2vK2kKpLqe50l++3Xb1jjvEwDt61lJZuHxXw1
-         Kngs8VEqnx5a4NESoMrYXBT1gnwRvuoeYwNPC5wSwRxId8ONoHhKNyM4uVcoT2Xh23Lw
-         +0QCWafH2nIKIV09orsewO1F2Zx100X81YxAeJ4/8uFD6ZZs2RyvsHFxjloI1mQtiT2W
-         oCyoH7vXeSNmBSceJyFzetyeKiZFuUC+/I7qKo3IvT+und7w9ERjw9vbvA5iBFS1aL74
-         CgnaYx19HChPZEnn11I2xV1W3npYhAbTelac6vXLcc0xgJjlFhxuvztC7YAdp5EzLxTn
-         N8iQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=NqX/zsugDIFGqU1o5bPg+mfxcpflibTDWwvc6+6Rsf8=;
-        b=Ok6fhO/sRIB3+WiX9xznFFWhz84DhBJ+Z0LWMo+pwJxi19TArFtQMzYpj0xW/vYvaQ
-         rwAlQ+to08uLbyga4WKqEPEfVe1j3WhbFvltteubvwtsYpwGW+yRqjsugnajqyhaUgtJ
-         T8F6M4vXT0P2zGQavf5ReqVhEdZsDo+/f3PmrB9GVXq/zOcWlXjObjV35+xIUg9BiiM9
-         OzGfBqrmYRFaI0h1FmxFzBdj79wLI8yOVvgO9MG3xfIFJ5u2XhfRm566gsDw6zJy7SB5
-         Rlvun0vUlQyzAZfcoNy3SdxDASyDu7/8GGcfFka727M5LcatuH2/B+zVUJQnikixnhPv
-         D00Q==
-X-Gm-Message-State: APjAAAVGmqn240JEz03QkUye7+YOZ2QtW4+VFpvQR2QVu3bNcMHPZRJq
-        pBtsoZB3fC9nbJlcqsuMr/ZujUrHmlwbZ6aY8LZ/9w==
-X-Google-Smtp-Source: APXvYqyyDYYjNW4h7b6Yag9vpJCIRMLDKR2d8S/CnXzZgJktyNjXwofh2RTb311bPW1GJsEQlmfPNAEOOU6jKb2QhT8=
-X-Received: by 2002:a2e:781a:: with SMTP id t26mr4790826ljc.28.1565183501517;
- Wed, 07 Aug 2019 06:11:41 -0700 (PDT)
+        id S2388013AbfHGNRr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 09:17:47 -0400
+Received: from mga07.intel.com ([134.134.136.100]:9289 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2387970AbfHGNRr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Aug 2019 09:17:47 -0400
+X-Amp-Result: UNSCANNABLE
+X-Amp-File-Uploaded: False
+Received: from fmsmga004.fm.intel.com ([10.253.24.48])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Aug 2019 06:17:46 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,357,1559545200"; 
+   d="scan'208";a="198661298"
+Received: from smile.fi.intel.com (HELO smile) ([10.237.68.145])
+  by fmsmga004.fm.intel.com with ESMTP; 07 Aug 2019 06:17:44 -0700
+Received: from andy by smile with local (Exim 4.92.1)
+        (envelope-from <andriy.shevchenko@intel.com>)
+        id 1hvLp0-0002Yl-C1; Wed, 07 Aug 2019 16:17:42 +0300
+Date:   Wed, 7 Aug 2019 16:17:42 +0300
+From:   Andy Shevchenko <andriy.shevchenko@intel.com>
+To:     Rahul Tanwar <rahul.tanwar@linux.intel.com>
+Cc:     linux-serial@vger.kernel.org, devicetree@vger.kernel.org,
+        gregkh@linuxfoundation.org, linux-kernel@vger.kernel.org,
+        jslaby@suse.com, robh+dt@kernel.org, mark.rutland@arm.com,
+        qi-ming.wu@intel.com, cheol.yong.kim@intel.com,
+        rahul.tanwar@intel.com
+Subject: Re: [PATCH 4/5] dt-bindings: serial: lantiq: Update for new SoC
+Message-ID: <20190807131742.GV30120@smile.fi.intel.com>
+References: <cover.1565160764.git.rahul.tanwar@linux.intel.com>
+ <47c6565f5537575b16f65ca5ccc5ecfc61818dbc.1565160764.git.rahul.tanwar@linux.intel.com>
 MIME-Version: 1.0
-References: <1564607463-28802-1-git-send-email-skomatineni@nvidia.com>
- <1564607463-28802-2-git-send-email-skomatineni@nvidia.com>
- <CACRpkdZVR-i1c5eATL2hSPbLXcX1sR8NgXwa4j259XXUi57xug@mail.gmail.com>
- <a2fb3795-5ec1-1d03-f496-f151d1270e90@nvidia.com> <dadf0cc7-fba4-9ab5-6ac9-0c8699eb4401@nvidia.com>
-In-Reply-To: <dadf0cc7-fba4-9ab5-6ac9-0c8699eb4401@nvidia.com>
-From:   Linus Walleij <linus.walleij@linaro.org>
-Date:   Wed, 7 Aug 2019 15:11:29 +0200
-Message-ID: <CACRpkda+YGfRYXbT2Okq8rO82ZWQAJJPMqK_EyTRe4PLUsxvNw@mail.gmail.com>
-Subject: Re: [PATCH v7 01/20] pinctrl: tegra: Add suspend and resume support
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>
-Cc:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        jckuo@nvidia.com, Joseph Lo <josephl@nvidia.com>, talho@nvidia.com,
-        linux-tegra@vger.kernel.org,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mikko Perttunen <mperttunen@nvidia.com>, spatra@nvidia.com,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        viresh kumar <viresh.kumar@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <47c6565f5537575b16f65ca5ccc5ecfc61818dbc.1565160764.git.rahul.tanwar@linux.intel.com>
+Organization: Intel Finland Oy - BIC 0357606-4 - Westendinkatu 7, 02160 Espoo
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 7, 2019 at 5:40 AM Sowjanya Komatineni
-<skomatineni@nvidia.com> wrote:
-> On 8/6/19 2:51 PM, Sowjanya Komatineni wrote:
-> >
-> > On 8/5/19 2:20 AM, Linus Walleij wrote:
-> >> On Wed, Jul 31, 2019 at 11:11 PM Sowjanya Komatineni
-> >> <skomatineni@nvidia.com> wrote:
-> >>
-> >>> This patch adds support for Tegra pinctrl driver suspend and resume.
-> >>>
-> >>> During suspend, context of all pinctrl registers are stored and
-> >>> on resume they are all restored to have all the pinmux and pad
-> >>> configuration for normal operation.
-> >>>
-> >>> Acked-by: Thierry Reding <treding@nvidia.com>
-> >>> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
-> >>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> >> Patch applied to the pinctrl tree.
-> >>
-> >> This patch seems finished.
-> >>
-> >> Also if the rest don't get merged for v5.4 then at least this is so
-> >> your patch stack gets more shallow.
-> >>
-> >> I hope it's fine to merge this separately, else tell me and I'll
-> >> pull it out.
-> >>
-> >> Yours,
-> >> Linus Walleij
-> >
-> > Yes, this patch can be merged separately. But, there's latest feedback
-> > from Dmitry to add barrier after writes to make sure pinmux register
-> > writes happen.
-> >
-> > So will update this patch to add barrier in v8. So, need to wait for v8.
-> >
-> > Thanks
-> >
-> > Sowjanya
-> >
-> I see it merged. So will exclude suspend/resume patch and will add patch
-> for necessary write barrier fix in v8 version.
+On Wed, Aug 07, 2019 at 05:21:34PM +0800, Rahul Tanwar wrote:
+> There is a new Intel Atom based Lightning Mountain(LGM) network processor SoC which
+> reuses Lantiq ASC serial controller IP. This patch adds new compatible string
+> and its expected property value in order to support the driver for LGM as well.
 
-Yeah just make an incremental patch, that's fine.
-If you want to overdo it you can add a Fixes: tag to
-the original patch, but I don't care much.
+I think it makes sense to convert to YAML before adding new properties.
 
-Yours,
-Linus Walleij
+> 
+> Signed-off-by: Rahul Tanwar <rahul.tanwar@linux.intel.com>
+> ---
+>  Documentation/devicetree/bindings/serial/lantiq_asc.txt | 17 +++++++++++++++--
+>  1 file changed, 15 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/serial/lantiq_asc.txt b/Documentation/devicetree/bindings/serial/lantiq_asc.txt
+> index 40e81a5818f6..18b45dd13a61 100644
+> --- a/Documentation/devicetree/bindings/serial/lantiq_asc.txt
+> +++ b/Documentation/devicetree/bindings/serial/lantiq_asc.txt
+> @@ -1,10 +1,14 @@
+>  Lantiq SoC ASC serial controller
+>  
+>  Required properties:
+> -- compatible : Should be "lantiq,asc"
+> +- compatible : Should be "lantiq,asc" or "intel,lgm-asc"
+>  - reg : Address and length of the register set for the device
+> -- interrupts: the 3 (tx rx err) interrupt numbers. The interrupt specifier
+> +- interrupts:
+> +  For "lantiq,asc" - the 3 (tx rx err) interrupt numbers. The interrupt specifier
+>    depends on the interrupt-parent interrupt controller.
+> +	or
+> +  For "intel,lgm-asc" - the common interrupt number for all of tx rx & err interrupts
+> +  followed by level/sense specifier.
+>  
+>  Optional properties:
+>  - clocks: Should contain frequency clock and gate clock
+> @@ -29,3 +33,12 @@ asc1: serial@e100c00 {
+>  	interrupt-parent = <&icu0>;
+>  	interrupts = <112 113 114>;
+>  };
+> +
+> +asc0: serial@e0a00000 {
+> +	compatible = "intel,lgm-asc";
+> +	reg = <0xe0a00000 0x1000>;
+> +	interrupt-parent = <&ioapic1>;
+> +	interrupts = <128 1>;
+> +	clocks = <&cgu0 LGM_CLK_NOC4>, <&cgu0 LGM_GCLK_ASC0>;
+> +	clock-names = "freq", "asc";
+> +};
+> -- 
+> 2.11.0
+> 
+
+-- 
+With Best Regards,
+Andy Shevchenko
+
+
