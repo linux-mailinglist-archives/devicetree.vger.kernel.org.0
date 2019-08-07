@@ -2,111 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3A05384320
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 06:12:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EAE8B84428
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 08:03:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725789AbfHGEMn (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 00:12:43 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:51078 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725775AbfHGEMn (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 00:12:43 -0400
-Received: by mail-wm1-f66.google.com with SMTP id v15so80296067wml.0
-        for <devicetree@vger.kernel.org>; Tue, 06 Aug 2019 21:12:42 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=brainfault-org.20150623.gappssmtp.com; s=20150623;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=g4Mto+u+o/GrqhpuJO5sk5R5bWRkMiGx0GZ7PDoZHhY=;
-        b=hGk8PdnRxQzAhPWjp8Solk8ESY/KLU+gAfVMhPUcVLaljCWzEf6pRIB+ykme9AcMV8
-         uAMtTV6f+Mx5YHksBZHynRnf2uhdVUemjoj0uxOcmrrY1JIbbFbS0TII60Mk2X1s8Jl/
-         cMMx5rySLkA8gG789t5MzOsrqa0w7yTB0pEEEBDxkaLeh3zBd+1GZU9sY+yiinrg0DAe
-         hyS7LzVjCYue1rlQI0GA7Df+jRhMw0TfOfQbKfP7IGeSYpyIcPYtpCe5rpAeLJf0KAdC
-         Qkxv/hMazv3lm9Tbb+XMXF7EmbBgGFSUwcCFwyhL0rLnN8CnZlKlQXh1r8Ge2wr45zvb
-         P1zg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=g4Mto+u+o/GrqhpuJO5sk5R5bWRkMiGx0GZ7PDoZHhY=;
-        b=mHeKE3GrhbTM11obeEPHCNmgKgLW2THengmE1L60JWSGMvfJ7hE0Omp1Esk45wAEGO
-         tDdXc2i/wbDF8IxvA6NFaxhyzDK5pAr9lGHFuaMjN19pwBJfFMVG0CpvHdTj4G718WNX
-         /G/TGJTtj6L7NYmIs2k9xoGQQ/l6ubEMOUrFOcnC1L48gcwa00LBwQbr00EUPamznydL
-         nlJEMaMxNdoclygrHsik8V6uVEmpckdLS3oztb8MCYOpIO/WCAaGmLKBnA8X03UJc0H0
-         ZEZuiCO1yHnEjkqN50v3WFcYb2qcUyCzvvNJM3V+kRhBS8ae6fanLhAYDxgJhRssXZ3n
-         YiNg==
-X-Gm-Message-State: APjAAAU7TqnPuCmTOVbEIn0VsndipeFB3C1zmKFIfOnnhKEOKsrpD2Nk
-        OOkwe7bDcgVAYOuhqurHzfBjG4iRVYAOYimnzf97yA==
-X-Google-Smtp-Source: APXvYqxNQXi0Vk0popN48576tfFY9XromzfT2N02IGLgqdhJFMVPw6vXQpznv3nKE3ce9kACVusM9LL3MVE7mwSI0Mg=
-X-Received: by 2002:a1c:9d53:: with SMTP id g80mr7920551wme.103.1565151161058;
- Tue, 06 Aug 2019 21:12:41 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190803042723.7163-1-atish.patra@wdc.com> <20190803042723.7163-3-atish.patra@wdc.com>
- <alpine.DEB.2.21.9999.1908061452570.13971@viisi.sifive.com>
-In-Reply-To: <alpine.DEB.2.21.9999.1908061452570.13971@viisi.sifive.com>
-From:   Anup Patel <anup@brainfault.org>
-Date:   Wed, 7 Aug 2019 09:42:29 +0530
-Message-ID: <CAAhSdy3tJ3RbnyOtKAT4zsjPUxMQkm+UtWa4sTTZxSAsYUBs5g@mail.gmail.com>
-Subject: Re: [PATCH v4 2/4] RISC-V: Add riscv_isa reprensenting ISA features
- common across CPUs
-To:     Paul Walmsley <paul.walmsley@sifive.com>
-Cc:     Atish Patra <atish.patra@wdc.com>, Anup Patel <anup.patel@wdc.com>,
-        "linux-kernel@vger.kernel.org List" <linux-kernel@vger.kernel.org>,
-        Alan Kao <alankao@andestech.com>,
-        Albert Ou <aou@eecs.berkeley.edu>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        devicetree@vger.kernel.org, Enrico Weigelt <info@metux.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Johan Hovold <johan@kernel.org>,
-        linux-riscv <linux-riscv@lists.infradead.org>,
+        id S1726137AbfHGGDV (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 02:03:21 -0400
+Received: from mailgw02.mediatek.com ([1.203.163.81]:53955 "EHLO
+        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1726872AbfHGGDU (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 02:03:20 -0400
+X-UUID: e0a996c9a3a44907ba62ee4ddd8ead28-20190807
+X-UUID: e0a996c9a3a44907ba62ee4ddd8ead28-20190807
+Received: from mtkcas34.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
+        (envelope-from <jitao.shi@mediatek.com>)
+        (mailgw01.mediatek.com ESMTP with TLS)
+        with ESMTP id 1543499440; Wed, 07 Aug 2019 14:03:06 +0800
+Received: from MTKCAS36.mediatek.inc (172.27.4.186) by MTKMBS33N2.mediatek.inc
+ (172.27.4.76) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Wed, 7 Aug
+ 2019 14:03:02 +0800
+Received: from mszsdclx1018.gcn.mediatek.inc (172.27.4.253) by
+ MTKCAS36.mediatek.inc (172.27.4.170) with Microsoft SMTP Server id
+ 15.0.1395.4 via Frontend Transport; Wed, 7 Aug 2019 14:03:01 +0800
+From:   Jitao Shi <jitao.shi@mediatek.com>
+To:     Rob Herring <robh+dt@kernel.org>, Pawel Moll <pawel.moll@arm.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Palmer Dabbelt <palmer@sifive.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>
-Content-Type: text/plain; charset="UTF-8"
+        Ian Campbell <ijc+devicetree@hellion.org.uk>,
+        <linux-pwm@vger.kernel.org>, David Airlie <airlied@linux.ie>,
+        Matthias Brugger <matthias.bgg@gmail.com>
+CC:     Jitao Shi <jitao.shi@mediatek.com>,
+        Thierry Reding <treding@nvidia.com>,
+        Ajay Kumar <ajaykumar.rs@samsung.com>,
+        Inki Dae <inki.dae@samsung.com>,
+        Rahul Sharma <rahul.sharma@samsung.com>,
+        Sean Paul <seanpaul@chromium.org>,
+        Vincent Palatin <vpalatin@chromium.org>,
+        Andy Yan <andy.yan@rock-chips.com>,
+        Philipp Zabel <p.zabel@pengutronix.de>,
+        Russell King <rmk+kernel@arm.linux.org.uk>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <dri-devel@lists.freedesktop.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <linux-mediatek@lists.infradead.org>,
+        <srv_heupstream@mediatek.com>,
+        Sascha Hauer <kernel@pengutronix.de>,
+        <yingjoe.chen@mediatek.com>, <eddie.huang@mediatek.com>,
+        <cawa.cheng@mediatek.com>, <bibby.hsieh@mediatek.com>,
+        <ck.hu@mediatek.com>, <stonea168@163.com>
+Subject: [PATCH v5 0/4] add mt8183 dpi driver
+Date:   Wed, 7 Aug 2019 14:02:53 +0800
+Message-ID: <20190807060257.57007-1-jitao.shi@mediatek.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7BIT
+Content-Type:   text/plain; charset=US-ASCII
+X-TM-SNTS-SMTP: DCB0DFC6858284B6DFB1DC1FB7C2F36A5001F83DF042B729EFA399187E50DB232000:8
+X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 7, 2019 at 3:24 AM Paul Walmsley <paul.walmsley@sifive.com> wrote:
->
-> Hi Anup, Atish,
->
-> On Fri, 2 Aug 2019, Atish Patra wrote:
->
-> > From: Anup Patel <anup.patel@wdc.com>
-> >
-> > This patch adds riscv_isa integer to represent ISA features common
-> > across all CPUs. The riscv_isa is not same as elf_hwcap because
-> > elf_hwcap will only have ISA features relevant for user-space apps
-> > whereas riscv_isa will have ISA features relevant to both kernel
-> > and user-space apps.
-> >
-> > One of the use case is KVM hypervisor where riscv_isa will be used
-> > to do following operations:
-> >
-> > 1. Check whether hypervisor extension is available
-> > 2. Find ISA features that need to be virtualized (e.g. floating
-> >    point support, vector extension, etc.)
-> >
-> > Signed-off-by: Anup Patel <anup.patel@wdc.com>
-> > Signed-off-by: Atish Patra <atish.patra@wdc.com>
->
-> Do you have any opinions on how this patch might change for the Z-prefix
-> extensions?  This bitfield approach probably won't scale, and with the
-> EXPORT_SYMBOL(), it might be worth trying to put together a approach that
-> would work over the long term?
+Changes since v4:
+ - move pin mode control and dual edge control to deveice tree.
+ - update dt-bindings document for pin mode swap and dual edge control.
 
-Our plan is to use bitmap instead of bitfield and all Zxyz extensions will be
-assigned bit positions "27 + i" where "i" will be based on order in-which they
-are defined in RISC-V spec. In general, "i" is just a unique relative index
-(starting from 0).
+Changes since v3:
+ - add dpi pin mode control when dpi on or off.
+ - update dpi dual edge comment.
 
-To summarize, the existing bitfield approach can be naturally extended
-using bitmap.
+Changes since v2:
+ - update dt-bindings document for mt8183 dpi.
+ - separate dual edge modfication as independent patch.
 
-We will update this patch accordingly.
+Jitao Shi (4):
+  dt-bindings: display: mediatek: update dpi  supported chips
+  drm/mediatek: dpi dual edge support
+  drm/mediatek: add mt8183 dpi clock factor
+  drm/mediatek: control dpi pins dpi or gpio mode in on or off
 
-Regards,
-Anup
+ .../display/mediatek/mediatek,dpi.txt         | 11 +++
+ drivers/gpu/drm/mediatek/mtk_dpi.c            | 71 ++++++++++++++++++-
+ 2 files changed, 80 insertions(+), 2 deletions(-)
+
+-- 
+2.21.0
+
