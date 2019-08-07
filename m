@@ -2,127 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 72E81842FF
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 05:40:56 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2D2B384329
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 06:13:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727498AbfHGDku (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Tue, 6 Aug 2019 23:40:50 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:9400 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726612AbfHGDku (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Tue, 6 Aug 2019 23:40:50 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d4a48420002>; Tue, 06 Aug 2019 20:40:50 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Tue, 06 Aug 2019 20:40:49 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Tue, 06 Aug 2019 20:40:49 -0700
-Received: from [10.2.168.234] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Wed, 7 Aug
- 2019 03:40:47 +0000
-Subject: Re: [PATCH v7 01/20] pinctrl: tegra: Add suspend and resume support
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-To:     Linus Walleij <linus.walleij@linaro.org>
-CC:     "thierry.reding@gmail.com" <thierry.reding@gmail.com>,
-        Jon Hunter <jonathanh@nvidia.com>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>,
-        Stefan Agner <stefan@agner.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Peter De Schrijver <pdeschrijver@nvidia.com>,
-        Prashant Gaikwad <pgaikwad@nvidia.com>,
-        "Stephen Boyd" <sboyd@kernel.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
-        <jckuo@nvidia.com>, "Joseph Lo" <josephl@nvidia.com>,
-        <talho@nvidia.com>, <linux-tegra@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "Mikko Perttunen" <mperttunen@nvidia.com>, <spatra@nvidia.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Dmitry Osipenko <digetx@gmail.com>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        "Rafael J. Wysocki" <rjw@rjwysocki.net>,
-        viresh kumar <viresh.kumar@linaro.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-References: <1564607463-28802-1-git-send-email-skomatineni@nvidia.com>
- <1564607463-28802-2-git-send-email-skomatineni@nvidia.com>
- <CACRpkdZVR-i1c5eATL2hSPbLXcX1sR8NgXwa4j259XXUi57xug@mail.gmail.com>
- <a2fb3795-5ec1-1d03-f496-f151d1270e90@nvidia.com>
-Message-ID: <dadf0cc7-fba4-9ab5-6ac9-0c8699eb4401@nvidia.com>
-Date:   Tue, 6 Aug 2019 20:40:47 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
-MIME-Version: 1.0
-In-Reply-To: <a2fb3795-5ec1-1d03-f496-f151d1270e90@nvidia.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL104.nvidia.com (172.18.146.11) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: 7bit
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1565149250; bh=R1aWkHhQGEDFlMq3J3HvsOTVA4LJ2HzCFYLdH2+sUvw=;
-        h=X-PGP-Universal:Subject:From:To:CC:References:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=BLRI9h7q5uMUyX7sQu/YuoHnLzETuXQV9ErKqBny0vCUcL8RLClZ9466K66AwBrMj
-         dr15JGaRNq9162+jZoTTbeQo4InXE+YXNZ8kz/AfjToy101DOXpLDwkVcahW2Keaex
-         69R9dtf0Uikm/C4AF8rC0SsbTzNBWID8e45ARmd4w2xxYtSETYPRwx3OmmL8jM7TPj
-         5U/0MSvKHadcF6LvbSyFTaB659bfuFQCQZuJtfp/9hn/a8/3tXDT0pgAvTKwwWOhyh
-         70sBra263MOy2F7zVG/8EWwv4tIXIVcRLnbTUE+WZyQJ3LYaBg5dKbOqn1sY7nb/HW
-         iUjF6vBEglSWw==
+        id S1726127AbfHGENG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 00:13:06 -0400
+Received: from inva020.nxp.com ([92.121.34.13]:32890 "EHLO inva020.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725891AbfHGENG (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Aug 2019 00:13:06 -0400
+Received: from inva020.nxp.com (localhost [127.0.0.1])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 17DC41A01FB;
+        Wed,  7 Aug 2019 06:13:05 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 9412C1A02B9;
+        Wed,  7 Aug 2019 06:12:59 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 8D7F240296;
+        Wed,  7 Aug 2019 12:12:52 +0800 (SGT)
+From:   fugang.duan@nxp.com
+To:     srinivas.kandagatla@linaro.org
+Cc:     robh@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
+        shawnguo@kernel.org, fugang.duan@nxp.com, kernel@pengutronix.de,
+        gregkh@linuxfoundation.org, festevam@gmail.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: [PATCH nvmem v2 0/2] nvmem: imx: add i.MX8QM platform support
+Date:   Wed,  7 Aug 2019 12:03:18 +0800
+Message-Id: <20190807040320.1760-1-fugang.duan@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+From: Fugang Duan <fugang.duan@nxp.com>
 
-On 8/6/19 2:51 PM, Sowjanya Komatineni wrote:
->
-> On 8/5/19 2:20 AM, Linus Walleij wrote:
->> On Wed, Jul 31, 2019 at 11:11 PM Sowjanya Komatineni
->> <skomatineni@nvidia.com> wrote:
->>
->>> This patch adds support for Tegra pinctrl driver suspend and resume.
->>>
->>> During suspend, context of all pinctrl registers are stored and
->>> on resume they are all restored to have all the pinmux and pad
->>> configuration for normal operation.
->>>
->>> Acked-by: Thierry Reding <treding@nvidia.com>
->>> Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
->>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> Patch applied to the pinctrl tree.
->>
->> This patch seems finished.
->>
->> Also if the rest don't get merged for v5.4 then at least this is so
->> your patch stack gets more shallow.
->>
->> I hope it's fine to merge this separately, else tell me and I'll
->> pull it out.
->>
->> Yours,
->> Linus Walleij
->
-> Yes, this patch can be merged separately. But, there's latest feedback 
-> from Dmitry to add barrier after writes to make sure pinmux register 
-> writes happen.
->
-> So will update this patch to add barrier in v8. So, need to wait for v8.
->
-> Thanks
->
-> Sowjanya
->
-I see it merged. So will exclude suspend/resume patch and will add patch 
-for necessary write barrier fix in v8 version.
+The patch set is to add i.MX8QM platform support for i.MX8 SCU
+OCOTP driver due to i.MX8QM efuse table has some difference with
+i.MX8QXP platform.
 
-Thanks
+V2:
+- Add dt-bindings for the new compatible string support.
 
-Sowjanya
+Fugang Duan (2):
+  nvmem: imx: add i.MX8QM platform support
+  dt-bindings: fsl: scu: add new compatible string for ocotp
+
+ Documentation/devicetree/bindings/arm/freescale/fsl,scu.txt | 4 +++-
+ drivers/nvmem/imx-ocotp-scu.c                               | 7 +++++++
+ 2 files changed, 10 insertions(+), 1 deletion(-)
+
+-- 
+2.7.4
 
