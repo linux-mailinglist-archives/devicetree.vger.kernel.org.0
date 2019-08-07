@@ -2,149 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0CEE0851B0
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 19:07:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3D4C38521B
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 19:31:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388400AbfHGRG2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 13:06:28 -0400
-Received: from mail-eopbgr140088.outbound.protection.outlook.com ([40.107.14.88]:7041
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1729278AbfHGRG1 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Aug 2019 13:06:27 -0400
+        id S2388852AbfHGRbz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 13:31:55 -0400
+Received: from esa3.hgst.iphmx.com ([216.71.153.141]:6213 "EHLO
+        esa3.hgst.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2387981AbfHGRbz (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 13:31:55 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=simple/simple;
+  d=wdc.com; i=@wdc.com; q=dns/txt; s=dkim.wdc.com;
+  t=1565199115; x=1596735115;
+  h=from:to:cc:subject:date:message-id:references:
+   in-reply-to:content-id:content-transfer-encoding:
+   mime-version;
+  bh=cSRbF3vx7WsTqTkzDSX0FtgF2dR9I+cdi+BWPiPCbJo=;
+  b=Lvb67UqQ1XWh0XS+NnoA9Mp3t6x8rG8q7swUUqzYYFoJU82zIo6uqgXu
+   urs8zSC8OHAY1uSSqg/KoHInJxGrZGQCIxYepX695isY/OFjJvCpm/Qxr
+   wqmcw+fOqkmZaeRYzskntO9i46nNr5RD6jmVBkrUeu0qJNHptCEjzLhbp
+   vmUtY8fnTPKOutEcIYCquIu4Jith2CLxmsAVgkI4k0hSFCZnDdhCLm3W+
+   Ipsfh/j/NjDiJCFbSb/9xz5OvdxiPNEC72UANGhIt62tXjRXlptoGLWmu
+   tUm4fuVH0MZn/hUYGyHV37dRBYwYvhPV7iMosIheIffQ5MWdh4X3ZM97K
+   g==;
+IronPort-SDR: 3RFuEkIpreQxFRLyu2TcVlN3fNdZyFsFFs6CIaGQ4cTXbFpszeuKzvROZFc6bhyacY+YwpZBcA
+ JPsP9OiMMSgvjYxRFoLS9y5L2iFCiKWLACVDmWH0pEdvEBy3rNkn+UfYamBCC4eg2uX5ffA6U2
+ EEAD7nXvULLVGXZvcTlT5IBNCO1LQMfatbx6mi8ZhhD4PG2l3wWVuq53Dzrxl5+FAV/CI3ALEF
+ djjSFJ3CIk2NGPtY27de/S1I1mKt00ou5IZN27qBmHQ3n02wf/McDs0guJSAqTspO1hjmqq+LK
+ I0I=
+X-IronPort-AV: E=Sophos;i="5.64,358,1559491200"; 
+   d="scan'208";a="119892714"
+Received: from mail-sn1nam02lp2057.outbound.protection.outlook.com (HELO NAM02-SN1-obe.outbound.protection.outlook.com) ([104.47.36.57])
+  by ob1.hgst.iphmx.com with ESMTP; 08 Aug 2019 01:31:53 +0800
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=C+4RWqS9mWQuYvxoKFrA8TwRtuaMNbIqdlzDENJyiykRsHSlWH2Z9EpOF7qxyCDW2kdANhAiwLlpOmVnX6S5ANdIwbMeKV5RQ/G5MkZzUFrjkavVpF1pTP4Qu36ZGurpy31pvICfDg4meUezibi3Hc0nN8S1KSX4nKZI8rqK5WuHhbVjB8Iwn7GXY0dhYdaTHk2WAeanTS5453Y4ukUvMM5ub89YWMgWf9ByJ6gPXcncJXJsAU5uUuZsYNzyue0gJI1G3/xLkuxiQCa3167y1UIMmFYPxfhmw/q5qYIUDit9uLOBgXd+HdTe14bxmPYF5l9JAcUNq6XuJkyhTUzBFQ==
+ b=LD557bCRt1Eaum0RtNKIRYOYLCd8po6czAAyHxxeG7jjJYgTWKEUXfotEktRtdZM7YbAxMKMWYmsUuCgRj+R44b0N/w9REFdeofsP4AryXANg5STUOVx0isBAYm1ei6PcEZ374OYtcS0d+2UIZytP77GZFIP75HNZX2bWlJRhXjaHZgMLZUsi+Wz//aCiiEVdd5is6GXz8T5QmDB1AaJctAJjev6cFgNvT9GzSW4bwvbvzhPDLlrCKohnJtD1ztev9BUeCtJ/ZDzduAbgwHGHbwryvzSvGNz/svJ8IEz4XjuoGT37ZWug0OHEOmw8m5RyODZFZNFfg8YLhk2Iids/A==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xXgom3m4usbskkXUBX4HQzilg0P2eehK84yCaDE9nHg=;
- b=MuECgnTNj61UdBvbejGDeufRc1XU012VqVjxvP54Vkb7QtVNz3OkX+no+aYjxE7RAtmZkui+d9xpp0fKo7/MR+WPZxvRc69vPNR2qxWSkO8CFvCQSkBFGQbeTdlTblgxL72YasyL8Qq8vfsFtMnzKigTuk+hJr7WcfdrtzEXZAWjQdcGPETNLjjPPpucVBdf3Fc+XYMQURSUIlf3k46krqAbB3abkKiyTfqT5QMuQibCnchADXwo5dy+SWIqpsTCGAIokUVXha9oeIDS2MD7HEhB+XMIvfxcK40PTKYUC4Tvzw3JChsavNCLTktsFq6EkyzrAwHM8H2qtma3m8TWSQ==
+ bh=cSRbF3vx7WsTqTkzDSX0FtgF2dR9I+cdi+BWPiPCbJo=;
+ b=BOSJw2WmZq/ftJBbT0fQEijgrckd7TRW1dbJpkimX6SRI2q/Hx1J4Vh0N+MVys31n73t5xcMeSJfc1o3FpdJFiYikvbnfJmGIHYod33Eqi5ULkbGAWrCwG+p2acGOW0zJ+YptfJA9w4i6dr6poe3g/vx9dGlGyTmhIarKIMK0VMX6jBuk2U0keIz2x6OQK5vCWeCcW1hgir+jBzvgUqbXyxjzTrjvGeASYmQhWTsJKgJQXVLCmxJ4ZtupfqJ7P8NpOY+Z0ZEGrPmfiXN3YbROx6udaAUGXNeQkxE7DoHG3ZfTgA9Fg4GH84LGxjV+vNbsJSZnqFcExQxkiRnb66/ng==
 ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
- header.d=nxp.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ smtp.mailfrom=wdc.com;dmarc=pass action=none header.from=wdc.com;dkim=pass
+ header.d=wdc.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+ d=sharedspace.onmicrosoft.com; s=selector2-sharedspace-onmicrosoft-com;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=xXgom3m4usbskkXUBX4HQzilg0P2eehK84yCaDE9nHg=;
- b=ZO4Uohw+YqIxJAbreLNtk5Bf02nHXO8/ScodvSMyZXjihi1p0/ABCNZNZmNSk/EM6x+90cgArtxO4BYsX0fU/ZZPcFz/VgHIT29rc7xP/OrZVSj4VCMWdAUWT5tEjy8ckqvcLsi/5iCBe+QM7nmF3DaMDvrs+VZLMJa3VwU7/to=
-Received: from VI1PR0402MB2863.eurprd04.prod.outlook.com (10.175.20.18) by
- VI1PR0402MB3774.eurprd04.prod.outlook.com (52.134.15.156) with Microsoft SMTP
+ bh=cSRbF3vx7WsTqTkzDSX0FtgF2dR9I+cdi+BWPiPCbJo=;
+ b=nrADeVNer+lI68xvVjq6fow7gJEVJH7TOXNUCT4lsVXNbf+CoIlGVPQhaFZWDEIdwG1Muxt4gJCCjBvPreSC+bZd4BiMWU1aojiaa2zQYfDteCVDieJh2nlFwADRedHTZdN4Yn3xTTIpNwnMy87fJRpf4Fm3BAKaQQaMsnF9MUM=
+Received: from BYAPR04MB3782.namprd04.prod.outlook.com (52.135.214.142) by
+ BYAPR04MB4055.namprd04.prod.outlook.com (52.135.215.150) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.17; Wed, 7 Aug 2019 17:05:44 +0000
-Received: from VI1PR0402MB2863.eurprd04.prod.outlook.com
- ([fe80::7de6:ea4b:9b5d:d023]) by VI1PR0402MB2863.eurprd04.prod.outlook.com
- ([fe80::7de6:ea4b:9b5d:d023%7]) with mapi id 15.20.2157.015; Wed, 7 Aug 2019
- 17:05:44 +0000
-From:   Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-To:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>
-CC:     "corbet@lwn.net" <corbet@lwn.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "will@kernel.org" <will@kernel.org>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+ 15.20.2136.20; Wed, 7 Aug 2019 17:31:51 +0000
+Received: from BYAPR04MB3782.namprd04.prod.outlook.com
+ ([fe80::ac9a:967e:70a5:e926]) by BYAPR04MB3782.namprd04.prod.outlook.com
+ ([fe80::ac9a:967e:70a5:e926%7]) with mapi id 15.20.2115.005; Wed, 7 Aug 2019
+ 17:31:51 +0000
+From:   Atish Patra <Atish.Patra@wdc.com>
+To:     "paul.walmsley@sifive.com" <paul.walmsley@sifive.com>
+CC:     "info@metux.net" <info@metux.net>,
+        "allison@lohutok.net" <allison@lohutok.net>,
+        "palmer@sifive.com" <palmer@sifive.com>,
+        "aou@eecs.berkeley.edu" <aou@eecs.berkeley.edu>,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
         "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>,
-        Larisa Ileana Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH 5/6] tty: serial: Add linflexuart driver for S32V234
-Thread-Topic: [PATCH 5/6] tty: serial: Add linflexuart driver for S32V234
-Thread-Index: AQHVTUJZuWgkceiY7EG3+fZ0PXp0Og==
-Date:   Wed, 7 Aug 2019 17:05:43 +0000
-Message-ID: <VI1PR0402MB2863C28FAB5DA6356280432BDFD40@VI1PR0402MB2863.eurprd04.prod.outlook.com>
-References: <20190802194702.30249-1-stefan-gabriel.mirea@nxp.com>
- <20190802194702.30249-6-stefan-gabriel.mirea@nxp.com>
- <20190805153114.GA16836@kroah.com>
- <HE1PR0402MB28579034C09EB49A76A4F8E7DFD50@HE1PR0402MB2857.eurprd04.prod.outlook.com>
- <20190806184042.GA26041@kroah.com>
- <VI1PR0402MB2863C4406C06B0BDA3581822DFD40@VI1PR0402MB2863.eurprd04.prod.outlook.com>
- <20190807165646.GA6584@kroah.com>
+        "tglx@linutronix.de" <tglx@linutronix.de>,
+        "daniel.lezcano@linaro.org" <daniel.lezcano@linaro.org>,
+        Anup Patel <Anup.Patel@wdc.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "johan@kernel.org" <johan@kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "tiny.windzz@gmail.com" <tiny.windzz@gmail.com>,
+        "gary@garyguo.net" <gary@garyguo.net>,
+        "linux-riscv@lists.infradead.org" <linux-riscv@lists.infradead.org>
+Subject: Re: [PATCH v3 3/5] RISC-V: Fix unsupported isa string info.
+Thread-Topic: [PATCH v3 3/5] RISC-V: Fix unsupported isa string info.
+Thread-Index: AQHVSARDLwisRSZSxEGpcN8B9TVet6buzP8AgAAdjQCAAAOYAIABDdEA
+Date:   Wed, 7 Aug 2019 17:31:51 +0000
+Message-ID: <a2795337bd86ff22ae9618d7ccae22e7482be332.camel@wdc.com>
+References: <20190801005843.10343-1-atish.patra@wdc.com>
+         <20190801005843.10343-4-atish.patra@wdc.com>
+         <alpine.DEB.2.21.9999.1908061625190.13971@viisi.sifive.com>
+         <1e23ef1face9d323fda4b756811f922caa5f7689.camel@wdc.com>
+         <alpine.DEB.2.21.9999.1908061818360.13971@viisi.sifive.com>
+In-Reply-To: <alpine.DEB.2.21.9999.1908061818360.13971@viisi.sifive.com>
 Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
 authentication-results: spf=none (sender IP is )
- smtp.mailfrom=stefan-gabriel.mirea@nxp.com; 
-x-originating-ip: [212.146.100.6]
+ smtp.mailfrom=Atish.Patra@wdc.com; 
+x-originating-ip: [199.255.44.250]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: c91bf569-509d-400c-82ed-08d71b597bde
+x-ms-office365-filtering-correlation-id: 704ebc1d-6d9a-4316-0144-08d71b5d2234
 x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR0402MB3774;
-x-ms-traffictypediagnostic: VI1PR0402MB3774:
-x-microsoft-antispam-prvs: <VI1PR0402MB3774540372699E7CBE161B28DFD40@VI1PR0402MB3774.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:10000;
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:BYAPR04MB4055;
+x-ms-traffictypediagnostic: BYAPR04MB4055:
+x-microsoft-antispam-prvs: <BYAPR04MB405580B209D3AD125E2FA110FAD40@BYAPR04MB4055.namprd04.prod.outlook.com>
+wdcipoutbound: EOP-TRUE
+x-ms-oob-tlc-oobclassifiers: OLM:9508;
 x-forefront-prvs: 01221E3973
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(396003)(39860400002)(346002)(366004)(136003)(199004)(189003)(51744003)(71200400001)(66556008)(66946007)(64756008)(446003)(102836004)(53546011)(66476007)(6506007)(229853002)(186003)(66446008)(6916009)(5640700003)(53936002)(68736007)(2501003)(55016002)(4326008)(99286004)(71190400001)(3846002)(86362001)(74316002)(6116002)(66066001)(1730700003)(8676002)(8936002)(76116006)(9686003)(25786009)(91956017)(7736002)(7416002)(476003)(5660300002)(7696005)(478600001)(316002)(76176011)(26005)(6246003)(54906003)(81166006)(52536014)(2906002)(305945005)(33656002)(6436002)(14454004)(81156014)(2351001)(486006)(256004);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB3774;H:VI1PR0402MB2863.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(376002)(346002)(136003)(39860400002)(366004)(189003)(199004)(2906002)(76116006)(316002)(66946007)(66556008)(5660300002)(54906003)(86362001)(6246003)(6116002)(11346002)(26005)(186003)(71190400001)(71200400001)(66446008)(64756008)(446003)(478600001)(4326008)(2351001)(66476007)(25786009)(476003)(2616005)(486006)(256004)(3846002)(6486002)(68736007)(102836004)(6916009)(229853002)(6506007)(36756003)(99286004)(8676002)(76176011)(6436002)(6512007)(305945005)(8936002)(66066001)(7736002)(81156014)(118296001)(7416002)(14454004)(81166006)(53936002)(2501003)(5640700003);DIR:OUT;SFP:1102;SCL:1;SRVR:BYAPR04MB4055;H:BYAPR04MB3782.namprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: CZi9f2mPsDSmKGfJ1WOPqmo3/Yf5Pk4oWs0Zcr1+djpEJdn2QHUSOPHqSQTp/5Em33c7RJe2zW+564r8lxy+8LN2qkFXi1sJ1/OCDG4mFYFVSoyH/dIaFnQqF/a3tyL/kJvuQf6+1Tx6sp/YMSW5qze7W3fsP9J3MohHwwHOgzUGQqIfRZ4akY5SgM9rMU6HSHPo8z8q3Igi6VAFWYc54scfGVcR8FTrGmN4lNDhMaWn9TktMXE+OBIZgDr3ehCInQJDExn3MDoIZalRL51DH8w92c4iRFw97dH28829MGw+oKrOaghVjxx5Mc+IWf7o6/ti69dJGUx+0Di3IIR6UQrapRfDqUcE5XIrn9VHfs/rhjy5uAWzYf+5urNY7OyUMFS0McvOZrDDik54OyQNrn1kJdSOzYz5Ry5xXD4gMAg=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+x-microsoft-antispam-message-info: ddgQCjxYTgZxIMRU+JkoIVhnf6e/t/PDpe0PSkB8k8vVRkBsAjqIfiApO4cT2jqX9Tw1d66rwz61AL5WAh5UNgTFDJg3KkTVdCzK0ZhvXGuf+e0m0s0B7KdIRnuA17GOqTCumTDSmmsUNKG5T/gHbu0lly92lpBo7Af+8EwD0LTtT7KOLGSyoMR4CgCY6zYX6CdC/aR80bUhZpbSoX2aKOSra5JiP8gAFNfU++cM5bQi6RLMh1q7TCrsMUEokc2eWYHy0jIw27Mmb9lSv4kgsIiMIqQsdLuEIWefKTq6Qi2aj4Ppj8RUcE6jYJdTlRSu3T4MrHMZ3Ekmw/8jTZWl6y2eT3mqGWKA0bdA7YEBlg+5tI6wetAFIMidQc/hGG/RBBHMkkDXf6Hc3kD+igQzjz6ZHcxJrMhQVlRRdYUanqE=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <AB926A394B57D04583BF73AC1DC978FA@namprd04.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: c91bf569-509d-400c-82ed-08d71b597bde
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2019 17:05:43.8454
+X-OriginatorOrg: wdc.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 704ebc1d-6d9a-4316-0144-08d71b5d2234
+X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2019 17:31:51.4497
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: b61c8803-16f3-4c35-9b17-6f65f441df86
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: EqXslEB28TsGX4osT9gFlsJoBtjvEcCRemOuKUHSQ9QXrBzCt6xmpvC+RTXp/5G19p09hUCJWM6cYT0+fNt0HwV6xRx0B3wLp3uJc8ilLK0=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3774
+X-MS-Exchange-CrossTenant-userprincipalname: Atish.Patra@wdc.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR04MB4055
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/7/2019 7:56 PM, gregkh@linuxfoundation.org wrote:=0A=
-> On Wed, Aug 07, 2019 at 04:42:17PM +0000, Stefan-gabriel Mirea wrote:=0A=
->> On 8/6/2019 9:40 PM, gregkh@linuxfoundation.org wrote:=0A=
->>> On Tue, Aug 06, 2019 at 05:11:17PM +0000, Stefan-gabriel Mirea wrote:=
-=0A=
-=0A=
-<snip>=0A=
-=0A=
->>>> Other than that, I do not see anything wrong with the addition of a=0A=
->>>> define in serial_core.h for this purpose (which is also what most of t=
-he=0A=
->>>> serial drivers do, including amba-pl011.c, mentioned in=0A=
->>>> Documentation/driver-api/serial/driver.rst as providing the reference=
-=0A=
->>>> implementation), so please be more specific.=0A=
->>>=0A=
->>> I am getting tired of dealing with merge issues with that list, and no=
-=0A=
->>> one seems to be able to find where they are really needed for userspace=
-,=0A=
->>> especially for new devices.  What happens if you do not have use it?=0A=
->>=0A=
->> I see. If I drop its usage completely and leave 'type' from the=0A=
->> uart_port as 0, uart_port_startup() will fail when finding that=0A=
->> uport->type =3D=3D PORT_UNKNOWN at [1] (there may be other effects as we=
-ll,=0A=
->> e.g. due to the check in uart_configure_port[2]).=0A=
->>=0A=
->> So I suppose that I need to define some nonzero 'PORT_KNOWN' macro in=0A=
->> the driver and use that one internally for 'type'. Is my understanding=
-=0A=
->> correct? Will there be any problems if I define it to a positive integer=
-=0A=
->> which is already assigned to another driver, according to serial_core.h?=
-=0A=
-> =0A=
-> Ugh, ok, that's messy, nevermind.  Keep the #define in there, I will try=
-=0A=
-> to figure out how to move all of these at once sometime in the future...=
-=0A=
-> =0A=
-> sorry for the noise.=0A=
-=0A=
-No problem, thank you for your time.=0A=
-=0A=
-Regards,=0A=
-Stefan=0A=
+T24gVHVlLCAyMDE5LTA4LTA2IGF0IDE4OjI2IC0wNzAwLCBQYXVsIFdhbG1zbGV5IHdyb3RlOg0K
+PiBPbiBXZWQsIDcgQXVnIDIwMTksIEF0aXNoIFBhdHJhIHdyb3RlOg0KPiANCj4gPiBPbiBUdWUs
+IDIwMTktMDgtMDYgYXQgMTY6MjcgLTA3MDAsIFBhdWwgV2FsbXNsZXkgd3JvdGU6DQo+ID4gDQo+
+ID4gPiBTZWVtcyBsaWtlIHRoZSAic3UiIHNob3VsZCBiZSBkcm9wcGVkIGZyb20gbWFuZGF0b3J5
+X2V4dC4gIFdoYXQNCj4gPiA+IGRvIHlvdSANCj4gPiA+IHRoaW5rPw0KPiA+ID4gDQo+ID4gDQo+
+ID4gWXVwLiBBcyBEVCBiaW5kaW5nIG9ubHkgbWVudGlvbiBpbWFmZGMsIG1hbmRhdG9yeSBleHRl
+bnNpb25zIHNob3VsZA0KPiA+IGNvbnRhaW4gb25seSB0aGF0IGFuZCBqdXN0IGNvbnNpZGVyICJz
+dSIgZXh0ZW5zaW9ucyBhcmUgY29uc2lkZXJlZA0KPiA+IGFzDQo+ID4gaW1wbGljaXQgYXMgd2Ug
+YXJlIHJ1bm5pbmcgTGludXguIA0KPiANCj4gRGlzY3Vzc2luZyB0aGlzIHdpdGggQW5kcmV3IGFu
+ZCBQYWxtZXIsIGl0IGxvb2tzIGxpa2UgInN1IiBpcw0KPiBjdXJyZW50bHkgDQo+IG5vbi1jb21w
+bGlhbnQuICBTZWN0aW9uIDIyLjYgb2YgdGhlIHVzZXItbGV2ZWwgc3BlY2lmaWNhdGlvbiBzdGF0
+ZXMNCj4gdGhhdCANCj4gdGhlICJzIiBjaGFyYWN0ZXIgaW5kaWNhdGVzIHRoYXQgYSBsb25nZXIg
+c3RhbmRhcmQgc3VwZXJ2aXNvcg0KPiBleHRlbnNpb24gDQo+IG5hbWUgd2lsbCBmb2xsb3cuICBT
+byBmYXIgSSBkb24ndCB0aGluayBhbnkgb2YgdGhlc2UgaGF2ZSBiZWVuDQo+IGRlZmluZWQuDQo+
+IA0KPiA+IERvIHlvdSB0aGluayBRRU1VIERUIHNob3VsZCBiZSB1cGRhdGVkIHRvIHJlZmxlY3Qg
+dGhhdCA/DQo+IA0KPiBZZXMuDQo+IA0KPiA+ID4gVGhlcmUncyBubyBLY29uZmlnIG9wdGlvbiBi
+eSB0aGlzIG5hbWUsIGFuZCB3ZSdyZSByZXF1aXJpbmcNCj4gPiA+IGNvbXByZXNzZWQgDQo+ID4g
+DQo+ID4gU29ycnkuIFRoaXMgd2FzIGEgdHlwby4gSXQgc2hvdWxkIGhhdmUgYmVlbiBDT05GSUdf
+UklTQ1ZfSVNBX0MuDQo+ID4gDQo+ID4gPiBpbnN0cnVjdGlvbiBzdXBwb3J0IGFzIHBhcnQgb2Yg
+dGhlIFJJU0MtViBMaW51eCBiYXNlbGluZS4gIENvdWxkDQo+ID4gPiB5b3UgDQo+ID4gPiBzaGFy
+ZSB0aGUgcmF0aW9uYWxlIGJlaGluZCB0aGlzPw0KPiA+IA0KPiA+IEkgdGhpbmsgSSBhZGRlZCB0
+aGlzIGNoZWNrIGF0IHRoZSBjb25maWcgZmlsZS4gTG9va2luZyBhdCB0aGUNCj4gPiBLY29uZmln
+LA0KPiA+IFJJU0NWX0lTQV9DIGlzIGFsd2F5cyBlbmFibGVkLiBTbyB3ZSBjYW4gZHJvcCB0aGlz
+Lg0KPiANCj4gT0sgZ3JlYXQuICBEbyB5b3Ugd2FudCB0byByZXNlbmQgYW4gdXBkYXRlZCBwYXRj
+aCwgb3Igd291bGQgeW91IGxpa2UNCj4gbWUgdG8gDQo+IGZpeCBpdCB1cCBoZXJlPw0KPiANCg0K
+SSBhbSBzZW5kaW5nIHRoZSBwYXRjaCByaWdodCBub3cuIFdlIGNhbiByZW1vdmUgdGhlICdTJyBt
+b2RlIGNoZWNrIGFzDQpwYWxtZXIgaGF2ZSBhbHJlYWR5IHNlbnQgdGhlIFFFTVUgcGF0Y2ggYXMg
+d2VsbCwgLg0KDQpSZWdhcmRzLA0KQXRpc2gNCj4gSSdsbCBhbHNvIHNlbmQgYSBwYXRjaCB0byBk
+cm9wIENPTkZJR19SSVNDVl9JU0FfQy4NCj4gDQo+IA0KPiAtIFBhdWwNCg0K
