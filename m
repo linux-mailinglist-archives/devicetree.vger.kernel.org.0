@@ -2,102 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BC6F084B1D
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 13:59:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9411084BCB
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 14:40:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727096AbfHGL7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 07:59:25 -0400
-Received: from foss.arm.com ([217.140.110.172]:47198 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726873AbfHGL7Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Aug 2019 07:59:25 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id 55D0728;
-        Wed,  7 Aug 2019 04:59:24 -0700 (PDT)
-Received: from [10.1.197.57] (e110467-lin.cambridge.arm.com [10.1.197.57])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 2A92F3F575;
-        Wed,  7 Aug 2019 04:59:23 -0700 (PDT)
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
-To:     Vasily Khoruzhick <anarsoul@gmail.com>
-Cc:     Harald Geyer <harald@ccbib.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Jared D . McNeill" <jmcneill@netbsd.org>
-References: <20190806140135.4739-1-anarsoul@gmail.com>
- <89402d22-d432-9551-e787-c8ede16dbe5f@arm.com>
- <CA+E=qVfh7mirJhRsDTeuAVgG55ia936uFSFVKR0N5Pn4GCF1UA@mail.gmail.com>
- <E1hv5vZ-0000jN-M8@stardust.g4.wien.funkfeuer.at>
- <CA+E=qVdHOtebR6xjpwTY_Whp0cHLtv82YULmxLPSEzdLN9TnVg@mail.gmail.com>
- <36e60078-7dd5-9c07-ffa1-6092d8c70fa8@arm.com>
- <CA+E=qVeAR4AFN99ZVy8EZLW6p_8ucTewOdMis37wnpV3DObaGg@mail.gmail.com>
-From:   Robin Murphy <robin.murphy@arm.com>
-Message-ID: <b8f47c20-4b19-6fa4-54cf-99c4d2358da3@arm.com>
-Date:   Wed, 7 Aug 2019 12:59:21 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        id S1729408AbfHGMk1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 08:40:27 -0400
+Received: from mail-wm1-f68.google.com ([209.85.128.68]:33761 "EHLO
+        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727213AbfHGMk1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 08:40:27 -0400
+Received: by mail-wm1-f68.google.com with SMTP id p77so1564090wme.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 05:40:26 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=6whnjfOT78lwV2LbGYGGfvKi0HLjAzDoyFB9GtBsQ7I=;
+        b=mIl9kZ1qsQCp5djeo6aWLCeB6DToqu5hg4utceLnPRC2tMWIm8nXiHNBedc+dgtDj9
+         POs3TJATNwhUEuw+33vShSRzemzzCmaWDsqZl2+OoNXfZjljLT78hqvUT0xK8e1DM19X
+         1OmeF8dL9lD5fr0lE+T5do8Pou831XGCubkxKWdxk+wopYrJp9zxf0oB7nPUA+K1POUM
+         5E1sqJFSQ0eN944/f68ps4Wy79s2rwP7mp7P1Yvy/Tw/1RzC2Hqx8hH/z3E8DpNBuAIB
+         xhyDevmHiAv0knVB6g9vaz70MvKXH1E6LbesMLOzRQ5LZteK+VlW03oH71uPrmQe0vvD
+         Hyxg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=6whnjfOT78lwV2LbGYGGfvKi0HLjAzDoyFB9GtBsQ7I=;
+        b=BdITzgOtoJ4Nb/Oj/f/ZW4BXFDWdVzjS+sYoDbXxdiYxBTru/dZrvm5F8NYoLPLrlc
+         NImjY48hWwbe6sYy07yuqe2+GeUxqlKx18S2jJhXkw/E/lf7FtCPSuLbwAX7r+MEetOF
+         Iy72B8HNCaJfyCRIbr16foM93XA8ryOGqMY57Z4Cu6aVFEQ/S4UGk63hKvW/anR5ERfi
+         01V70F9zZbvYycWEhxO/zMwyItoL2jlc8t+l56Vq6dSGarjmDSS1w6Rfm92sofeppowz
+         qWKxx6RrzNkOHifBRpqxU86xUOPxFQbCDxWxXnv6nqKB6zW9bB+zp4/WXgFlvTpjT5AZ
+         pu9g==
+X-Gm-Message-State: APjAAAVgPtumh53/WxfCDSYbZlRc+MTWJEWfr52anRz7LDXu0uJLsO3c
+        tDHDCzxdkg3s9RYoobKdcyg=
+X-Google-Smtp-Source: APXvYqwZi0PyNrRQrW1epohlRGDSQOHJWW9SJMsLiaQvfZZm48DRbRYNPHAQo5fHuc31cTPxLRyV5Q==
+X-Received: by 2002:a1c:63c4:: with SMTP id x187mr10284329wmb.4.1565181625415;
+        Wed, 07 Aug 2019 05:40:25 -0700 (PDT)
+Received: from localhost ([193.47.161.132])
+        by smtp.gmail.com with ESMTPSA id r11sm140927490wre.14.2019.08.07.05.40.24
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Wed, 07 Aug 2019 05:40:24 -0700 (PDT)
+Date:   Wed, 7 Aug 2019 14:04:28 +0200
+From:   Oliver Graute <oliver.graute@gmail.com>
+To:     Dong Aisheng <aisheng.dong@nxp.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        dongas86@gmail.com, catalin.marinas@arm.com, will.deacon@arm.com,
+        robh+dt@kernel.org, linux-imx@nxp.com, kernel@pengutronix.de,
+        fabio.estevam@nxp.com, Mark Rutland <mark.rutland@arm.com>,
+        shawnguo@kernel.org
+Subject: Re: [PATCH v2 10/15] arm64: dts: imx8qm: add conn ss support
+Message-ID: <20190807120428.GA27833@optiplex>
+References: <1563290089-11085-1-git-send-email-aisheng.dong@nxp.com>
+ <1563290089-11085-11-git-send-email-aisheng.dong@nxp.com>
 MIME-Version: 1.0
-In-Reply-To: <CA+E=qVeAR4AFN99ZVy8EZLW6p_8ucTewOdMis37wnpV3DObaGg@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-GB
-Content-Transfer-Encoding: 7bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1563290089-11085-11-git-send-email-aisheng.dong@nxp.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07/08/2019 03:39, Vasily Khoruzhick wrote:
-> On Tue, Aug 6, 2019 at 2:14 PM Robin Murphy <robin.murphy@arm.com> wrote:
->>
->> On 2019-08-06 9:52 pm, Vasily Khoruzhick wrote:
->>> On Tue, Aug 6, 2019 at 1:19 PM Harald Geyer <harald@ccbib.org> wrote:
->>>>
->>>> Vasily Khoruzhick writes:
->>>>> On Tue, Aug 6, 2019 at 7:35 AM Robin Murphy <robin.murphy@arm.com> wrote:
->>>>>>
->>>>>> On 06/08/2019 15:01, Vasily Khoruzhick wrote:
->>>>>>> Looks like PMU in A64 is broken, it generates no interrupts at all and
->>>>>>> as result 'perf top' shows no events.
->>>>>>
->>>>>> Does something like 'perf stat sleep 1' at least count cycles correctly?
->>>>>> It could well just be that the interrupt numbers are wrong...
->>>>>
->>>>> Looks like it does, at least result looks plausible:
->>>>
->>>> I'm using perf stat regularly (cache benchmarks) and it works fine.
->>>>
->>>> Unfortunately I wasn't aware that perf stat is a poor test for
->>>> the interrupts part of the node, when I added it. So I'm not too
->>>> surprised I got it wrong.
->>>>
->>>> However, it would be unfortunate if the node got removed completely,
->>>> because perf stat would not work anymore. Maybe we can only remove
->>>> the interrupts or just fix them even if the HW doesn't work?
->>>
->>> I'm not familiar with PMU driver. Is it possible to get it working
->>> without interrupts?
->>
->> Yup - you get a grumpy message from the driver, it will refuse sampling
->> events (the ones which weren't working anyway), and if you measure
->> anything for long enough that a counter overflows you'll get wonky
->> results. But for counting hardware events over relatively short periods
->> it'll still do the job.
-> 
-> I tried to drop interrupts completely from the node but 'perf top' is
-> still broken. Though now in different way: it complains "cycles: PMU
-> Hardware doesn't support sampling/overflow-interrupts. Try 'perf
-> stat'"
-> 
-> Is there any way to make it working?
+On 16/07/19, Dong Aisheng wrote:
+> The CONN SS of MX8QM is mostly the same as MX8QXP except it has one more
+> USB HSIC module support. So we can fully reuse the exist CONN SS dtsi.
+> Add <soc>-ss-conn.dtsi with compatible string updated according to
+> imx8-ss-conn.dtsi.
+> +&usdhc1 {
+> +	compatible = "fsl,imx8qm-usdhc", "fsl,imx7d-usdhc";
+> +};
+> +
+> +&usdhc2 {
+> +	compatible = "fsl,imx8qm-usdhc", "fsl,imx7d-usdhc";
+> +};
 
-As the message implies, 'perf top' can't work because it uses sampling 
-events, which are based on periodic interrupts. If the IRQs aren't 
-there, then too bad, as there's no alternative.
+I need to add here for my imx8qm-rom7720-a1 board:
 
-One other possibility is that the IRQs really are wired up, but the 
-firmware is somehow leaving them configured as Secure group 0, such that 
-Linux has no visibility of them.
 
-Robin.
+&usdhc3 {
+	compatible = "fsl,imx8qm-usdhc", "fsl,imx7d-usdhc";
+};
+
+I'll prepare a patch for that on top of yours.
+
+Best Regards,
+
+Oliver
