@@ -2,119 +2,96 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A6FD285134
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 18:37:04 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9938985162
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 18:47:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388480AbfHGQhA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 12:37:00 -0400
-Received: from foss.arm.com ([217.140.110.172]:51764 "EHLO foss.arm.com"
+        id S2388669AbfHGQro (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 12:47:44 -0400
+Received: from ns.pmeerw.net ([84.19.176.117]:39184 "EHLO ns.pmeerw.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1729745AbfHGQg7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Aug 2019 12:36:59 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D5169344;
-        Wed,  7 Aug 2019 09:36:58 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id B91B63F694;
-        Wed,  7 Aug 2019 09:36:56 -0700 (PDT)
-Date:   Wed, 7 Aug 2019 17:36:54 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     Jonathan Chocron <jonnyc@amazon.com>
-Cc:     bhelgaas@google.com, jingoohan1@gmail.com,
-        gustavo.pimentel@synopsys.com, robh+dt@kernel.org,
-        mark.rutland@arm.com, dwmw@amazon.co.uk, benh@kernel.crashing.org,
-        alisaidi@amazon.com, ronenk@amazon.com, barakw@amazon.com,
-        talel@amazon.com, hanochu@amazon.com, hhhawa@amazon.com,
-        linux-pci@vger.kernel.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: Re: [PATCH v3 8/8] PCI: dw: Add support for
- PCI_PROBE_ONLY/PCI_REASSIGN_ALL_BUS flags
-Message-ID: <20190807163654.GC16214@e121166-lin.cambridge.arm.com>
-References: <20190723092529.11310-1-jonnyc@amazon.com>
- <20190723092711.11786-4-jonnyc@amazon.com>
+        id S2388448AbfHGQro (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Aug 2019 12:47:44 -0400
+X-Greylist: delayed 352 seconds by postgrey-1.27 at vger.kernel.org; Wed, 07 Aug 2019 12:47:44 EDT
+Received: by ns.pmeerw.net (Postfix, from userid 1000)
+        id 4996EE0260; Wed,  7 Aug 2019 18:41:50 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=pmeerw.net; s=mail;
+        t=1565196110; bh=UpvHWq6DKj02hd6Dz+wN9TDtvpir9uwiPlINm0z3RFM=;
+        h=Date:From:To:cc:Subject:In-Reply-To:References:From;
+        b=Lez4DDiQ7AMPa+vVPy+KnOWI1fpFvWvhuFwnRMi+0iP5Acx4gUZWZxJT5Jnn9377W
+         S8nlMrJFgjIQ5Rfrtv8twDRT4uegDgGVqLl2FUf3f887m0v7Tn2BcYAVrSJQeSHtwP
+         MxgsPPYQL2fuKB+bsMXGrzBPB9Naav3pO9ed1DTI=
+Received: from localhost (localhost [127.0.0.1])
+        by ns.pmeerw.net (Postfix) with ESMTP id 3479CE01A6;
+        Wed,  7 Aug 2019 18:41:50 +0200 (CEST)
+Date:   Wed, 7 Aug 2019 18:41:50 +0200 (CEST)
+From:   Peter Meerwald-Stadler <pmeerw@pmeerw.net>
+To:     Beniamin Bia <beniamin.bia@analog.com>
+cc:     jic23@kernel.org, lars@metafoo.de, Michael.Hennerich@analog.com,
+        linux-iio@vger.kernel.org, devicetree@vger.kernel.org,
+        biabeniamin@outlook.com
+Subject: Re: [PATCH v2 4/4] dt-bindings: iio: adc: Add AD7606B ADC
+ documentation
+In-Reply-To: <20190807133137.11185-4-beniamin.bia@analog.com>
+Message-ID: <alpine.DEB.2.21.1908071830110.32509@vps.pmeerw.net>
+References: <20190807133137.11185-1-beniamin.bia@analog.com> <20190807133137.11185-4-beniamin.bia@analog.com>
+User-Agent: Alpine 2.21 (DEB 202 2017-01-01)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190723092711.11786-4-jonnyc@amazon.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+Content-Type: text/plain; charset=US-ASCII
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Jul 23, 2019 at 12:27:11PM +0300, Jonathan Chocron wrote:
-> This basically aligns the usage of PCI_PROBE_ONLY and
-> PCI_REASSIGN_ALL_BUS in dw_pcie_host_init() with the logic in
-> pci_host_common_probe().
+On Wed, 7 Aug 2019, Beniamin Bia wrote:
+
+minor comment below
+
+> Documentation for AD7606B Analog to Digital Converter and software
+> mode was added.
 > 
-> Now it will be possible to control via the devicetree whether to just
-> probe the PCI bus (in cases where FW already configured it) or to fully
-> configure it.
-> 
-> Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
+> Signed-off-by: Beniamin Bia <beniamin.bia@analog.com>
 > ---
->  .../pci/controller/dwc/pcie-designware-host.c | 23 +++++++++++++++----
->  1 file changed, 19 insertions(+), 4 deletions(-)
+> Changes in v2:
+> -nothing changed
 > 
-> diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c b/drivers/pci/controller/dwc/pcie-designware-host.c
-> index d2ca748e4c85..0a294d8aa21a 100644
-> --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> @@ -342,6 +342,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
->  	if (!bridge)
->  		return -ENOMEM;
->  
-> +	of_pci_check_probe_only();
-> +
->  	ret = devm_of_pci_get_host_bridge_resources(dev, 0, 0xff,
->  					&bridge->windows, &pp->io_base);
->  	if (ret)
-> @@ -474,6 +476,10 @@ int dw_pcie_host_init(struct pcie_port *pp)
->  
->  	pp->root_bus_nr = pp->busn->start;
->  
-> +	/* Do not reassign bus nums if probe only */
-> +	if (!pci_has_flag(PCI_PROBE_ONLY))
-> +		pci_add_flags(PCI_REASSIGN_ALL_BUS);
-
-This changes the default for bus reassignment on all DWC host (that are
-!PCI_PROBE_ONLY), we should drop this line, it can trigger regressions.
-
-If we still want to merge it as a separate change we must test it on all
-DWC host bridges to make sure it does not trigger any issues with
-current set-ups, that's not going to be easy though.
-
-Lorenzo
-
-> +
->  	bridge->dev.parent = dev;
->  	bridge->sysdata = pp;
->  	bridge->busnr = pp->root_bus_nr;
-> @@ -490,11 +496,20 @@ int dw_pcie_host_init(struct pcie_port *pp)
->  	if (pp->ops->scan_bus)
->  		pp->ops->scan_bus(pp);
->  
-> -	pci_bus_size_bridges(pp->root_bus);
-> -	pci_bus_assign_resources(pp->root_bus);
-> +	/*
-> +	 * We insert PCI resources into the iomem_resource and
-> +	 * ioport_resource trees in either pci_bus_claim_resources()
-> +	 * or pci_bus_assign_resources().
-> +	 */
-> +	if (pci_has_flag(PCI_PROBE_ONLY)) {
-> +		pci_bus_claim_resources(pp->root_bus);
-> +	} else {
-> +		pci_bus_size_bridges(pp->root_bus);
-> +		pci_bus_assign_resources(pp->root_bus);
->  
-> -	list_for_each_entry(child, &pp->root_bus->children, node)
-> -		pcie_bus_configure_settings(child);
-> +		list_for_each_entry(child, &pp->root_bus->children, node)
-> +			pcie_bus_configure_settings(child);
-> +	}
->  
->  	pci_bus_add_devices(pp->root_bus);
->  	return 0;
-> -- 
-> 2.17.1
+>  Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 > 
+> diff --git a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> index 509dbe9c84d2..2afe31747a70 100644
+> --- a/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> +++ b/Documentation/devicetree/bindings/iio/adc/adi,ad7606.yaml
+> @@ -13,6 +13,7 @@ maintainers:
+>  description: |
+>    Analog Devices AD7606 Simultaneous Sampling ADC
+>    https://www.analog.com/media/en/technical-documentation/data-sheets/ad7606_7606-6_7606-4.pdf
+> +  https://www.analog.com/media/en/technical-documentation/data-sheets/AD7606B.pdf
+>    https://www.analog.com/media/en/technical-documentation/data-sheets/AD7616.pdf
+>  
+>  properties:
+> @@ -22,6 +23,7 @@ properties:
+>        - adi,ad7606-8
+>        - adi,ad7606-6
+>        - adi,ad7606-4
+> +      - adi,ad7606b
+>        - adi,ad7616
+>  
+>    reg:
+> @@ -87,7 +89,7 @@ properties:
+>  
+>    adi,sw-mode:
+>      description:
+> -      Software mode of operation, so far available only for ad7616.
+> +      Software mode of operation, so far available only for ad7616 and ad7606B.
+
+how about ad7606b to match the properties above?
+
+>        It is enabled when all three oversampling mode pins are connected to
+>        high level. The device is configured by the corresponding registers. If the
+>        adi,oversampling-ratio-gpios property is defined, then the driver will set the
+> 
+
+-- 
+
+Peter Meerwald-Stadler
+Mobile: +43 664 24 44 418
