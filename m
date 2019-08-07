@@ -2,136 +2,133 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 7C42984FAC
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 17:20:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C7D8384FB8
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 17:22:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2387829AbfHGPUl convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Wed, 7 Aug 2019 11:20:41 -0400
-Received: from mail-oln040092066033.outbound.protection.outlook.com ([40.92.66.33]:5441
-        "EHLO EUR01-VE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2387815AbfHGPUl (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Aug 2019 11:20:41 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=G9DOMQJzXy6jhDig06sGEAWd0KzlFRj6vvh58xW//YGQ04R21lVXw6ugdAtipp3G+EmEsbOu3jv+SthccNkmXO4FHrnon9SY923BYHz1xgrfwAgJPNOLc/sjo26pF7oCwXA/JfkgQ2WJ8hGyWMlY+aY38dUnEYQq8NPT5KmBCRBQyGLM6L4YeEcVhCRi5F5lWKpBznrcIvtzyuYAqSRd3QwVEJZ2vP01g/ffYYmYOIopVgmCzYwZPEp7znCAIRjY1V9GTOkI91ldn4oF19zunEe4wbS1tDv0eUEXROOLz0kiATx81QnJybVQwtK/iLdvVFFXN/17yAs9g7/Bn19xeQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=6Bzmz6JAJABeGDfKHSFC/qcDbDyJ4nXxfH6UQAwPt+E=;
- b=EbFHqVkGMfbVyVfFc3RU4pVbTZnvQHOUyMu6UFSBAFXUwqKr1mEfaw6l9wVn8XHPQYpUMmOet5GMW5J2l7q/4vLeE2ceZJZYmUQ45z2IfKLhW9pieeUo8vxxIVdh+vZ55fO+hYtRu5401RfNQLWg101z9QgS6OHsfU99TabUxAGYnVygY76QnLw2+AOxVmUFaAwJ+WMO3YxaKO3KeO1eiOfC3qDEvoQgO228yBEw0bXgdYv3jXAuMqbcIsLxpKNFmnZsIYIsYeYRgQ7NZxvW+tpG+gPMULyFBvyZ4kFcaYCknnB/kZR7a88yOg84yyBR8aKIObleHty7SiutgqonvQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=none; dmarc=none;
- dkim=none; arc=none
-Received: from HE1EUR01FT006.eop-EUR01.prod.protection.outlook.com
- (10.152.0.56) by HE1EUR01HT122.eop-EUR01.prod.protection.outlook.com
- (10.152.1.1) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id 15.20.2157.15; Wed, 7 Aug
- 2019 15:20:38 +0000
-Received: from HE1PR06MB4011.eurprd06.prod.outlook.com (10.152.0.52) by
- HE1EUR01FT006.mail.protection.outlook.com (10.152.1.228) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.15 via Frontend Transport; Wed, 7 Aug 2019 15:20:38 +0000
-Received: from HE1PR06MB4011.eurprd06.prod.outlook.com
- ([fe80::b952:7cd2:4c8d:e460]) by HE1PR06MB4011.eurprd06.prod.outlook.com
- ([fe80::b952:7cd2:4c8d:e460%4]) with mapi id 15.20.2157.015; Wed, 7 Aug 2019
- 15:20:37 +0000
-From:   Jonas Karlman <jonas@kwiboo.se>
-To:     Heiko Stuebner <heiko@sntech.de>
-CC:     Rob Herring <robh+dt@kernel.org>,
-        Arnaud Pouliquen <arnaud.pouliquen@st.com>,
-        "linux-rockchip@lists.infradead.org" 
-        <linux-rockchip@lists.infradead.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Jonas Karlman <jonas@kwiboo.se>
-Subject: [PATCH] arm64: dts: rockchip: add rk3328 VPU node
-Thread-Topic: [PATCH] arm64: dts: rockchip: add rk3328 VPU node
-Thread-Index: AQHVTTOqR/yPgY03KEu/f+KwFBBdhg==
-Date:   Wed, 7 Aug 2019 15:20:37 +0000
-Message-ID: <HE1PR06MB4011E3DA40C22EA9FC337F53ACD40@HE1PR06MB4011.eurprd06.prod.outlook.com>
-Accept-Language: sv-SE, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-x-clientproxiedby: AM0PR04CA0006.eurprd04.prod.outlook.com
- (2603:10a6:208:122::19) To HE1PR06MB4011.eurprd06.prod.outlook.com
- (2603:10a6:7:9c::32)
-x-incomingtopheadermarker: OriginalChecksum:C62F470D13F780024DC0EE67DCE75F45A959B9276655FD6FD04CD6A47E7B0097;UpperCasedChecksum:309B4660B71EF822C02C68E7E7595EAEF489CB81732F542802F21F3DC2FD089B;SizeAsReceived:7663;Count:48
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-tmn:  [oFpzqd3NBkQfXc1ovLMhDw56mhQyrtWI]
-x-microsoft-original-message-id: <20190807152024.12640-1-jonas@kwiboo.se>
-x-ms-publictraffictype: Email
-x-incomingheadercount: 48
-x-eopattributedmessage: 0
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(5050001)(7020095)(20181119110)(201702061078)(5061506573)(5061507331)(1603103135)(2017031320274)(2017031322404)(2017031323274)(2017031324274)(1601125500)(1603101475)(1701031045);SRVR:HE1EUR01HT122;
-x-ms-traffictypediagnostic: HE1EUR01HT122:
-x-microsoft-antispam-message-info: rD9S+CquK/XK7ji4AdVCrGd/yrwAu1o/62zjyRfBvQlXAj7XACW99/2DdU40vtDABvpK3SHnKgjBxSDzQtxhoB/LZMtJSO3vfPl4tfk0rfj5YsYLFvANLpViPiOE783PZn1aus0tkASdI2NqQAEKf1F6TXfzFJTnsQfHaSoWsQlmd/GV2QB+VqfmRCUGe050
-x-ms-exchange-transport-forked: True
-Content-Type: text/plain; charset="iso-8859-1"
-Content-Transfer-Encoding: 8BIT
+        id S2388270AbfHGPWP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 11:22:15 -0400
+Received: from mga18.intel.com ([134.134.136.126]:54844 "EHLO mga18.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2388257AbfHGPWO (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Aug 2019 11:22:14 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga005.fm.intel.com ([10.253.24.32])
+  by orsmga106.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 07 Aug 2019 08:22:14 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,357,1559545200"; 
+   d="scan'208";a="373804945"
+Received: from knguye7-mobl.amr.corp.intel.com (HELO [10.255.81.127]) ([10.255.81.127])
+  by fmsmga005.fm.intel.com with ESMTP; 07 Aug 2019 08:22:12 -0700
+Subject: Re: [Sound-open-firmware] [PATCH v2 3/5] ASoC: SOF: Add DT DSP device
+ support
+To:     Daniel Baluta <daniel.baluta@gmail.com>
+Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Anson Huang <anson.huang@nxp.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Paul Olaru <paul.olaru@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        sound-open-firmware@alsa-project.org
+References: <20190723084104.12639-1-daniel.baluta@nxp.com>
+ <20190723084104.12639-4-daniel.baluta@nxp.com>
+ <d85909d6-c7cb-c64b-dfa9-6cee6c0da2cb@linux.intel.com>
+ <CAEnQRZDr+gj_eiESLNbVUVy1rreRE1nnDgtb3g=CjaRF5Aq9Vw@mail.gmail.com>
+ <CAEnQRZDctjdzQ2RjJXhQh+s=d0y_j3Taa51hDaR4bqJ62C=7iQ@mail.gmail.com>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <85b4a2c4-761e-bdcf-f05e-2fb16c06f11e@linux.intel.com>
+Date:   Wed, 7 Aug 2019 10:22:12 -0500
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-X-OriginatorOrg: outlook.com
-X-MS-Exchange-CrossTenant-RMS-PersistedConsumerOrg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-Network-Message-Id: a6943f66-c99c-4334-7fdc-08d71b4accec
-X-MS-Exchange-CrossTenant-rms-persistedconsumerorg: 00000000-0000-0000-0000-000000000000
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2019 15:20:37.9209
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Internet
-X-MS-Exchange-CrossTenant-id: 84df9e7f-e9f6-40af-b435-aaaaaaaaaaaa
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: HE1EUR01HT122
+In-Reply-To: <CAEnQRZDctjdzQ2RjJXhQh+s=d0y_j3Taa51hDaR4bqJ62C=7iQ@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch add a VPU device node for rk3328.
 
-Signed-off-by: Jonas Karlman <jonas@kwiboo.se>
----
- arch/arm64/boot/dts/rockchip/rk3328.dtsi | 14 +++++++++++++-
- 1 file changed, 13 insertions(+), 1 deletion(-)
+>>>> +static int sof_dt_probe(struct platform_device *pdev)
+>>>> +{
+>>>> +     struct device *dev = &pdev->dev;
+>>>> +     const struct sof_dev_desc *desc;
+>>>> +     /*TODO: create a generic snd_soc_xxx_mach */
+>>>> +     struct snd_soc_acpi_mach *mach;
+>>>
+>>> I wonder if you really need to use the same structures. For Intel we get
+>>> absolutely zero info from the firmware so rely on an ACPI codec ID as a
+>>> key to find information on which firmware and topology to use, and which
+>>> machine driver to load. You could have all this information in a DT blob?
+>>
+>> Yes. I see your point. I will still need to make a generic structure for
+>> snd_soc_acpi_mach so that everyone can use sof_nocodec_setup function.
+>>
+>> Maybe something like this:
+>>
+>> struct snd_soc_mach {
+>>    union {
+>>    struct snd_soc_acpi_mach acpi_mach;
+>>    struct snd_soc_of_mach of_mach;
+>>    }
+>> };
+>>
+>> and then change the prototype of sof_nocodec_setup.
+> 
+> Hi Pierre,
+> 
+> I fixed all the comments except the one above. Replacing snd_soc_acpi_mach
+> with a generic snd_soc_mach is not trivial task.
+> 
+> I wonder if it is acceptable to get the initial patches as they are
+> now and later switch to
+> generic ACPI/OF abstraction.
+> 
+> Asking this because for the moment on the i.MX side I have only
+> implemented no codec
+> version and we don't probe any of the machine drivers we have.
+> 
+> So, there is this only one member of snd_soc_acpi_mach that imx
+> version is making use of:
+> 
+>    mach->drv_name = "sof-nocodec";
+> 
+> That's all.
+> 
+> I think the change as it is now is very clean and non-intrusive. Later
+> we will get options to
+> read firmware name and stuff from DT.
+> 
+> Anyhow, I don't think we can get rid of snd_dev_desc structure on
+> i.MX. This will be used
+> to store the information read from DT:
+> 
+> static struct sof_dev_desc sof_of_imx8qxp_desc = {
+> »       .default_fw_path = "imx/sof",
+> »       .default_tplg_path = "imx/sof-tplg",
+> »       .nocodec_fw_filename = "sof-imx8.ri",
+> »       .nocodec_tplg_filename = "sof-imx8-nocodec.tplg",
+> »       .ops = &sof_imx8_ops,
+> };
+> 
+> For the moment we will only use the default values.
 
-diff --git a/arch/arm64/boot/dts/rockchip/rk3328.dtsi b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-index e9fefd8a7e02..4a175fff2861 100644
---- a/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-+++ b/arch/arm64/boot/dts/rockchip/rk3328.dtsi
-@@ -278,6 +278,7 @@
- 			};
- 			pd_vpu@RK3328_PD_VPU {
- 				reg = <RK3328_PD_VPU>;
-+				clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
- 			};
- 		};
- 
-@@ -596,6 +597,17 @@
- 		status = "disabled";
- 	};
- 
-+	vpu: video-codec@ff350000 {
-+		compatible = "rockchip,rk3328-vpu";
-+		reg = <0x0 0xff350000 0x0 0x800>;
-+		interrupts = <GIC_SPI 9 IRQ_TYPE_LEVEL_HIGH>;
-+		interrupt-names = "vdpu";
-+		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
-+		clock-names = "aclk", "hclk";
-+		iommus = <&vpu_mmu>;
-+		power-domains = <&power RK3328_PD_VPU>;
-+	};
-+
- 	vpu_mmu: iommu@ff350800 {
- 		compatible = "rockchip,iommu";
- 		reg = <0x0 0xff350800 0x0 0x40>;
-@@ -604,7 +616,7 @@
- 		clocks = <&cru ACLK_VPU>, <&cru HCLK_VPU>;
- 		clock-names = "aclk", "iface";
- 		#iommu-cells = <0>;
--		status = "disabled";
-+		power-domains = <&power RK3328_PD_VPU>;
- 	};
- 
- 	rkvdec_mmu: iommu@ff360480 {
--- 
-2.17.1
+Yes, that's fine for now. If you don't have a real machine driver then 
+there's nothing urgent to change.
 
+Is the new version on GitHub?
+
+Thanks
+-Pierre
