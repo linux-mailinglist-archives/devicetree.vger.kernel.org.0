@@ -2,151 +2,147 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9E2EA8531F
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 20:44:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3AA6853B0
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 21:41:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389214AbfHGSov (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 14:44:51 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:46869 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2388428AbfHGSov (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 14:44:51 -0400
-Received: by mail-pl1-f195.google.com with SMTP id c2so42073327plz.13
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 11:44:51 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2IbDDVz7AIYvob9RX49OsdDKJDV+Vvct093/EWA0a4E=;
-        b=ivbrRfGOojgPeGQehWsvM+H2yaojSbdm98/KpCKzNDvnH6WagBvNAY+3WDms9j8vo4
-         pzdMB6A7o01aVBXLwSgyksmc8auXDgupC9dhQe/0nKqzYwrCGyV+q7R5GDPPcpcdAzkK
-         1jc7mFG3yu0O/xjVyxKMhY8qPY+o+5MP1KGHw=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=2IbDDVz7AIYvob9RX49OsdDKJDV+Vvct093/EWA0a4E=;
-        b=CGv7Qi4ppcUAONLx2BcFPBBhduVOtThvibzt7zr52FG/hQG0b9YBb9Hw1qtZpWkwa9
-         x/jAxyicsh4qtlwnxz9O48aEl7XngiTEucpbs6bt6yKE+XH3nFJUNlzDVjFh4/OQxbI/
-         rALyC2bgWlK44+pPeO8pJfaNSDUuoH+Td5qR0G1gY1MuHJFE5mvS7OP+DEvQRLSbODTo
-         rxFpWo3Cqaw9dGG0Q1Ak8FP0R9xmzboL8nk+LjGbpQnY86AEHwtl2j+Fh9XK3NyUBLMn
-         0RGgk8ImVhmEayt/PjsJmmc6CfydCiDtxrvyRlqf/V0I4WUM8WoF/C5MHEBMSMBBpOsc
-         BilA==
-X-Gm-Message-State: APjAAAU9IQR3GHsEe15Jj/pxByf5voX82ofcSBI+RJZO7QEPf56KHbrv
-        kgfOFlqgJHPJ6U4WAhyp9omHYp/q7Z0=
-X-Google-Smtp-Source: APXvYqyPo9mJdjvn0x0NHv6/e03SbunwEogzp2cEC7vzJFwflpHwGALnVpplo1Q0DE/O448sW9GX3w==
-X-Received: by 2002:a17:902:28e9:: with SMTP id f96mr9127478plb.114.1565203490911;
-        Wed, 07 Aug 2019 11:44:50 -0700 (PDT)
-Received: from localhost ([2620:15c:202:1:75a:3f6e:21d:9374])
-        by smtp.gmail.com with ESMTPSA id u7sm83048472pgr.94.2019.08.07.11.44.49
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Wed, 07 Aug 2019 11:44:50 -0700 (PDT)
-From:   Matthias Kaehlcke <mka@chromium.org>
-To:     Andy Gross <agross@kernel.org>,
-        David Brown <david.brown@linaro.org>,
+        id S2389467AbfHGTlD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 15:41:03 -0400
+Received: from vern.gendns.com ([98.142.107.122]:43638 "EHLO vern.gendns.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389462AbfHGTlC (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Wed, 7 Aug 2019 15:41:02 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=lechnology.com; s=default; h=Message-Id:Date:Subject:Cc:To:From:Sender:
+        Reply-To:MIME-Version:Content-Type:Content-Transfer-Encoding:Content-ID:
+        Content-Description:Resent-Date:Resent-From:Resent-Sender:Resent-To:Resent-Cc
+        :Resent-Message-ID:In-Reply-To:References:List-Id:List-Help:List-Unsubscribe:
+        List-Subscribe:List-Post:List-Owner:List-Archive;
+        bh=JokjWWho/2zfAnvvaFBEyWXOCT3O2zg4J7WISh2hl5A=; b=Eos7XohVKEfGrdxSBI9kjkfm/2
+        WmdwutJ4Yt9HAuWwSgA3QbXfiLcnfXu4i2QvMLKqYbdbY8MMtR/aBfEjRl5gQqbtMhaQFmoKOrssJ
+        W51GaEZf890b3xuk4CFAzLdDiFbHBhmqbdSiA/rVQgetWbfYxNsWDePdYRhuNPEWzLUHCJSObQGwJ
+        3llycmnl3LZ/g6oPU4ThzdGv6cYiRpR3WgEcXTC98AIejQ+y5a7HWNpGoqBkzXdGtrrluh6zasKuq
+        iIVtWiTsMwc/baJ8x33Kup63axtfkezowE+xunOo0JyhO0ViMwjbouR35vmDGakQEJpNmDHIu6Yed
+        bmLb7P9w==;
+Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:60292 helo=freyr.lechnology.com)
+        by vern.gendns.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.92)
+        (envelope-from <david@lechnology.com>)
+        id 1hvRnv-00006r-Mm; Wed, 07 Aug 2019 15:40:59 -0400
+From:   David Lechner <david@lechnology.com>
+To:     linux-iio@vger.kernel.org, linux-omap@vger.kernel.org
+Cc:     David Lechner <david@lechnology.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>
-Cc:     linux-arm-msm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Amit Kucheria <amit.kucheria@linaro.org>,
-        Douglas Anderson <dianders@chromium.org>,
-        Matthias Kaehlcke <mka@chromium.org>
-Subject: [PATCH v2] arm64: dts: sdm845: Add dynamic CPU power coefficients
-Date:   Wed,  7 Aug 2019 11:44:44 -0700
-Message-Id: <20190807184444.248984-1-mka@chromium.org>
-X-Mailer: git-send-email 2.22.0.770.g0f2c4a37fd-goog
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        Mark Rutland <mark.rutland@arm.com>,
+        =?UTF-8?q?Beno=C3=AEt=20Cousson?= <bcousson@baylibre.com>,
+        Tony Lindgren <tony@atomide.com>,
+        William Breathitt Gray <vilhelm.gray@gmail.com>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pwm@vger.kernel.org
+Subject: [PATCH v2 0/5] counter: new TI eQEP driver
+Date:   Wed,  7 Aug 2019 14:40:18 -0500
+Message-Id: <20190807194023.15318-1-david@lechnology.com>
+X-Mailer: git-send-email 2.17.1
+X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
+X-AntiAbuse: Primary Hostname - vern.gendns.com
+X-AntiAbuse: Original Domain - vger.kernel.org
+X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
+X-AntiAbuse: Sender Address Domain - lechnology.com
+X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
+X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
+X-Source: 
+X-Source-Args: 
+X-Source-Dir: 
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add dynamic power coefficients for the Silver and Gold CPU cores of
-the Qualcomm SDM845.
+This series adds device tree bindings and a new counter driver for the Texas
+Instruments Enhanced Quadrature Encoder Pulse (eQEP).
 
-Signed-off-by: Matthias Kaehlcke <mka@chromium.org>
-Reviewed-by: Douglas Anderson <dianders@chromium.org>
-Reviewed-by: Amit Kucheria <amit.kucheria@linaro.org>
----
-just noticed that this patch fell through the cracks, resending
-a rebased version.
+As mentioned in one of the commit messages, to start with, the driver only
+supports reading the current counter value and setting the min/max values.
+Other features can be added as the counter subsystem gains support for them.
 
-Changes in v2:
-- added Reviewd-by tags from Doug and Amit
-- rebased on agross/for-next
----
- arch/arm64/boot/dts/qcom/sdm845.dtsi | 8 ++++++++
- 1 file changed, 8 insertions(+)
+v2 changes:
+- New patch to move TI PWMSS driver from drivers/pwm/ to drivers/bus/
+- Device tree bindings converted to .yaml format
+- Device tree clock renamed from "fck" to "sysclkout"
+- Dropped unused index and strobe signals from counter driver
+- Added synapses and actions to counter driver
+- Fixed base in of kstrtouint()
+- Clarifications in commit messages
 
-diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-index 78ec373a2b18..12ae58d76f8b 100644
---- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
-+++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
-@@ -194,6 +194,7 @@
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <607>;
-+			dynamic-power-coefficient = <100>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_0>;
-@@ -215,6 +216,7 @@
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <607>;
-+			dynamic-power-coefficient = <100>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_100>;
-@@ -233,6 +235,7 @@
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <607>;
-+			dynamic-power-coefficient = <100>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_200>;
-@@ -251,6 +254,7 @@
- 					   &LITTLE_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
- 			capacity-dmips-mhz = <607>;
-+			dynamic-power-coefficient = <100>;
- 			qcom,freq-domain = <&cpufreq_hw 0>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_300>;
-@@ -269,6 +273,7 @@
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
-+			dynamic-power-coefficient = <396>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_400>;
-@@ -287,6 +292,7 @@
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
-+			dynamic-power-coefficient = <396>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_500>;
-@@ -305,6 +311,7 @@
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
-+			dynamic-power-coefficient = <396>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_600>;
-@@ -323,6 +330,7 @@
- 			cpu-idle-states = <&BIG_CPU_SLEEP_0
- 					   &BIG_CPU_SLEEP_1
- 					   &CLUSTER_SLEEP_0>;
-+			dynamic-power-coefficient = <396>;
- 			qcom,freq-domain = <&cpufreq_hw 1>;
- 			#cooling-cells = <2>;
- 			next-level-cache = <&L2_700>;
+This series has been tested on a BeagleBone Blue with the following script:
+
+#!/usr/bin/env python3
+
+from os import path
+from time import sleep
+
+COUNTER_PATH = '/sys/bus/counter/devices'
+COUNTERS = ['counter0', 'counter1', 'counter2']
+COUNT0 = 'count0'
+COUNT = 'count'
+FUNCTION = 'function'
+CEILING = 'ceiling'
+FLOOR = 'floor'
+ENABLE = 'enable'
+
+cnts = []
+
+for c in COUNTERS:
+    function_path = path.join(COUNTER_PATH, c, COUNT0, FUNCTION)
+    with open(function_path, 'w') as f:
+        f.write('quadrature x4')
+    floor_path = path.join(COUNTER_PATH, c, COUNT0, FLOOR)
+    with open(floor_path, 'w') as f:
+        f.write(str(0))
+    ceiling_path = path.join(COUNTER_PATH, c, COUNT0, CEILING)
+    with open(ceiling_path, 'w') as f:
+        f.write(str(0xffffffff))
+    enable_path = path.join(COUNTER_PATH, c, COUNT0, ENABLE)
+    with open(enable_path, 'w') as f:
+        f.write('1')
+
+    cnt_path = path.join(COUNTER_PATH, c, COUNT0, COUNT)
+    cnts.append(open(cnt_path, 'r'))
+
+while True:
+    for c in cnts:
+        c.seek(0)
+        val = int(c.read())
+        if val >= 0x80000000:
+            val -= 0x100000000
+        print(val, end=' ')
+    print()
+    sleep(1)
+
+David Lechner (5):
+  bus/ti-pwmss: move TI PWMSS driver from PWM to bus subsystem
+  dt-bindings: counter: new bindings for TI eQEP
+  counter: new TI eQEP driver
+  ARM: dts: am33xx: Add nodes for eQEP
+  ARM: dts: am335x-boneblue: Enable eQEP
+
+ .../devicetree/bindings/counter/ti-eqep.yaml  |  50 ++
+ MAINTAINERS                                   |   6 +
+ arch/arm/boot/dts/am335x-boneblue.dts         |  54 ++
+ arch/arm/boot/dts/am33xx-l4.dtsi              |  27 +
+ drivers/bus/Kconfig                           |   9 +
+ drivers/bus/Makefile                          |   1 +
+ drivers/{pwm/pwm-tipwmss.c => bus/ti-pwmss.c} |   0
+ drivers/counter/Kconfig                       |  12 +
+ drivers/counter/Makefile                      |   1 +
+ drivers/counter/ti-eqep.c                     | 460 ++++++++++++++++++
+ drivers/pwm/Kconfig                           |   9 -
+ drivers/pwm/Makefile                          |   1 -
+ 12 files changed, 620 insertions(+), 10 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/counter/ti-eqep.yaml
+ rename drivers/{pwm/pwm-tipwmss.c => bus/ti-pwmss.c} (100%)
+ create mode 100644 drivers/counter/ti-eqep.c
+
 -- 
-2.22.0.770.g0f2c4a37fd-goog
+2.17.1
 
