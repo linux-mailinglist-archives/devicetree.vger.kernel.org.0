@@ -2,142 +2,210 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BBB0284DC1
-	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 15:42:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34F6184E93
+	for <lists+devicetree@lfdr.de>; Wed,  7 Aug 2019 16:21:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2388324AbfHGNl0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 09:41:26 -0400
-Received: from mail-eopbgr150124.outbound.protection.outlook.com ([40.107.15.124]:34057
-        "EHLO EUR01-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S2388437AbfHGNlZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Aug 2019 09:41:25 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=M04KJ/HAppecvmHpMihXHJkC+L15rT3e8To3TJSu/iVw3SiFCf/yK56NrVdVqzlTbx/Yvb19qqnm+Y7KzRk53zLYQUUfV9IChFUzWhbjCSy/99mSIUw+JV36NUU6TJVHyP1fyIHubjIzd5xaj03oUnZjVJnFuFcwLY3BkGaDpl3FSDbsbX5DKyy90/RVSblw/Bxcou6Q5ta27kpDFwJGrOkrXZMjyuKwX8q4g843BG8wsV+9ok9DoXuOPVYmytPJalemS4AdLYizL/KWzxA1S9DhgvT0oARWr54Ger4FsUT9cvfiiN2kAtO8J3AEqLv3FIBM8mgjCRJas/C7dp/dzQ==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LSrgkygSBfizoEWlqMcBr/DkR9kQvp6fVRU5CLumxcs=;
- b=nYJEWGbbJrXEWaNjagS5U+UbZ35t2jGRQ7dJ0z6iVoFqjIwpA1T+3pbmnuuGQEKW0SavLsSXidD3pRBX0j+DthZCTbqrlQmAKo+9Q1JyTq66U06qBwpWNYbLWV/SwK7ieiJ5wuDVMfx3vR3qfoxo34mfc+FPoRzWmIJxdBpIBoxitMBKnCGZr4VbyQA9uSdbny9F6H6Y7GFgjtTdriKtkLd+xPfw0tYa78vzYPl2s6nQ1PwOEH4rpIfjaW4jm0FBvkFoEekdGNhbg/TRjoQO/ZHfPLzKcYY1+ZqOshTuKrUzNpVTtP7x4K7eRaEgdSR5MZO4IlNJfM5kc1OeZg+qxg==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=toradex.com;dmarc=pass action=none
- header.from=toradex.com;dkim=pass header.d=toradex.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
- s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=LSrgkygSBfizoEWlqMcBr/DkR9kQvp6fVRU5CLumxcs=;
- b=oPxGf7IUb5bBICXqorYQpfRaJ5Lx/dUUT1RrsvB6WdukhS22FvVdMFDAXrY8H7XHN75YnAOSqFVsSFq9ozU9LDs8QrBgw2FdCHZaNmccbQAkf3tySxF1BGqf1fPY1RJEH0LlKD01H6k4uQdvM4bS8r8vhTjJ//XFgoIFqlLinaE=
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
- VI1PR0502MB3935.eurprd05.prod.outlook.com (52.134.6.28) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.14; Wed, 7 Aug 2019 13:41:12 +0000
-Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::8405:5b51:b25d:39a2]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
- ([fe80::8405:5b51:b25d:39a2%6]) with mapi id 15.20.2157.015; Wed, 7 Aug 2019
- 13:41:12 +0000
-From:   Philippe Schenker <philippe.schenker@toradex.com>
-To:     "festevam@gmail.com" <festevam@gmail.com>
-CC:     "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
-        "stefan@agner.ch" <stefan@agner.ch>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        "kernel@pengutronix.de" <kernel@pengutronix.de>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "michal.vokac@ysoft.com" <michal.vokac@ysoft.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Stefan Agner <stefan.agner@toradex.com>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "linux-imx@nxp.com" <linux-imx@nxp.com>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>
-Subject: Re: [PATCH v3 07/21] ARM: dts: imx7-colibri: fix 1.8V/UHS support
-Thread-Topic: [PATCH v3 07/21] ARM: dts: imx7-colibri: fix 1.8V/UHS support
-Thread-Index: AQHVTPnJFwE/N2EWdUa4MifpBqKEzKbvie6AgAAnqoA=
-Date:   Wed, 7 Aug 2019 13:41:12 +0000
-Message-ID: <9f05bcbad4b56d0b7c4f90b53b99c07833f68bb2.camel@toradex.com>
-References: <20190807082556.5013-1-philippe.schenker@toradex.com>
-         <20190807082556.5013-8-philippe.schenker@toradex.com>
-         <CAOMZO5CdWmVKXmNSLdbsmnU6_ZKwbeVArtOQzuTg_gtqTUnVag@mail.gmail.com>
-In-Reply-To: <CAOMZO5CdWmVKXmNSLdbsmnU6_ZKwbeVArtOQzuTg_gtqTUnVag@mail.gmail.com>
-Accept-Language: en-GB, en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=philippe.schenker@toradex.com; 
-x-originating-ip: [46.140.72.82]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: b06d9002-3298-4f11-25fc-08d71b3ce960
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3935;
-x-ms-traffictypediagnostic: VI1PR0502MB3935:
-x-microsoft-antispam-prvs: <VI1PR0502MB3935A8B8AB92570255736DEBF4D40@VI1PR0502MB3935.eurprd05.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:2201;
-x-forefront-prvs: 01221E3973
-x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(366004)(136003)(346002)(39850400004)(396003)(376002)(189003)(199004)(68736007)(1730700003)(476003)(229853002)(7416002)(1411001)(3846002)(11346002)(5640700003)(446003)(1361003)(478600001)(2351001)(36756003)(256004)(6916009)(14444005)(66066001)(486006)(66946007)(305945005)(6512007)(561944003)(81156014)(6116002)(44832011)(118296001)(81166006)(2616005)(5660300002)(76116006)(2501003)(99286004)(26005)(8936002)(86362001)(7736002)(8676002)(316002)(4326008)(186003)(66476007)(71200400001)(6506007)(53546011)(71190400001)(66446008)(64756008)(76176011)(66556008)(6436002)(6486002)(91956017)(53936002)(2906002)(25786009)(14454004)(6246003)(102836004)(54906003);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3935;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: toradex.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: SC0lY6Aq6ZQEgVNVLvSb74wfpdAI0wrZSEDJth/k5+e9UqqK2nRx9pvyOgFqL5JKQloVoEwLEMnCnA9xNbpcSoZP9O02XDbrJVk4Bl4AfXCznR4IKyX/IQFELeF+7iEsqwR2CYKS7wz7r1XeaqSVlXu6FjnMxk0FNRzz0y0wqZh3OYb6OTvBjM4hOtfHY4yPzqdJGB+V6G2v9RMS1tticcjt/UOd+Be6QPbEFmIS2GFaaJD+XjxKr+9FX4IkNWmb+fGHZu11X5IeLUN/xjDe8i070eTHXBiok2KMPXb0/NGGEOcNIf/W9116pVoX+7JhmZ/svfp1vUliC0gPOrqlKZazjwizr6ot/I1jXD90rL2ICxJzxFQO/8J3R4usFrAtFqETrkVuVu06NZlx2KZOxGzhpX7I7dJjXD2ESVdROm4=
-Content-Type: text/plain; charset="utf-8"
-Content-ID: <84D9259A9961C34FA2F02A5D7E80D047@eurprd05.prod.outlook.com>
-Content-Transfer-Encoding: base64
+        id S1730031AbfHGOVX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 10:21:23 -0400
+Received: from mail-lj1-f195.google.com ([209.85.208.195]:33060 "EHLO
+        mail-lj1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729887AbfHGOVW (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 10:21:22 -0400
+Received: by mail-lj1-f195.google.com with SMTP id h10so14192111ljg.0
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 07:21:20 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:openpgp:autocrypt:message-id:date
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ym3TWnNJEGFgpteRuO2hxD/LdHQA3MDsH07HbJofTfQ=;
+        b=INI+HycjT3+g4qBx9Ko5IoZjmKKYITZXt33h42PGL4N4OFmj4XRfzycycphtJLGrEr
+         hvhZ40Ag3dRe6Zqw6qglZV/I0D1HMs6W3oiJtQbJunhuUcivoYQpQRF7Io1n2yFLn4er
+         VDv+j3c2O6IruavHGhCEIEfI48WfWSLFarEAh3qELg1H3kYJVBE0O37FORW3scp+WAkx
+         gg0qVrUYF56BxCuDfSZgHcS6n0K/yUvYiSnTs8NfqRTxo3d+JOevUhhq4DH7ecvcHzzq
+         W1OLejawnQSEzC2/hozP0ETdmb+t3rCSzwOpHHXkdVO5KDQ4LTcWwzTNbhROzi8PjiGN
+         VY5Q==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
+         :message-id:date:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ym3TWnNJEGFgpteRuO2hxD/LdHQA3MDsH07HbJofTfQ=;
+        b=pDxil2yxRYF1hVxhi1LGFA5Bx3I/wYUNhFs7Lk6+a8BkJxEFZksbeWp3jnzVa7LnY+
+         YklaY+d6Eei+0Qi0X7wyu1qXcwbxSAh3X8wcfcP/y0c1xBme4ksEaCDB37itnmyBlr/k
+         gGDwIdjqCEAp5KjFkvl6My5pwUlEJ0S94/2LkFuE6jrRZ5ZIhavFintrmQ/EB2+bSkzE
+         RBZ6BTwVaRHL9xYpVRPJSBwdd3/SA0FrWq6a5GdV/5Wh8YoKowcSufBChAHMEe8dpZnm
+         0EQJ2kpDwysBQc4Oxjorwccg7k8ZLYi+yZDWsEqpUQvzQmiX6jqBGHAxs8uUdVfHR/Uj
+         BzoQ==
+X-Gm-Message-State: APjAAAWJ73fw2QLZhjxCKBETIdZbvUfBwhNdexmKJRZZ6ZARqcNrCVm3
+        UosMemzbNZ1ei0qJndlO5JnX2A==
+X-Google-Smtp-Source: APXvYqxcQ5lxNvBv2pxpv7dxod4WchOzutIsq7iwKp5scxXoeS4ecQlLYFiSdRaDVQjZg8kQ68gzuA==
+X-Received: by 2002:a2e:65ca:: with SMTP id e71mr5113463ljf.61.1565187679266;
+        Wed, 07 Aug 2019 07:21:19 -0700 (PDT)
+Received: from [10.44.66.8] ([212.45.67.2])
+        by smtp.googlemail.com with ESMTPSA id q17sm3417148lfa.82.2019.08.07.07.21.17
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 07 Aug 2019 07:21:18 -0700 (PDT)
+Subject: Re: [RFC PATCH 09/11] devfreq: exynos-bus: Add interconnect
+ functionality to exynos-bus
+To:     =?UTF-8?B?QXJ0dXIgxZp3aWdvxYQ=?= <a.swigon@partner.samsung.com>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
+Cc:     krzk@kernel.org, cw00.choi@samsung.com, myungjoo.ham@samsung.com,
+        inki.dae@samsung.com, sw0312.kim@samsung.com,
+        m.szyprowski@samsung.com,
+        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
+        <b.zolnierkie@samsung.com>
+References: <20190723122016.30279-1-a.swigon@partner.samsung.com>
+ <CGME20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b@eucas1p2.samsung.com>
+ <20190723122016.30279-10-a.swigon@partner.samsung.com>
+ <6e8b2081-2fb3-9ab8-37d1-8b5fe5fd8e11@linaro.org>
+ <62557522be4924a01d3822d4734c30f2965c608b.camel@partner.samsung.com>
+From:   Georgi Djakov <georgi.djakov@linaro.org>
+Openpgp: preference=signencrypt
+Autocrypt: addr=georgi.djakov@linaro.org; prefer-encrypt=mutual; keydata=
+ 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
+ KEmKjLDvB0pePJkdTw==
+Message-ID: <4155482f-8f8f-a659-63ba-25701540b2c5@linaro.org>
+Date:   Wed, 7 Aug 2019 17:21:15 +0300
 MIME-Version: 1.0
-X-OriginatorOrg: toradex.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: b06d9002-3298-4f11-25fc-08d71b3ce960
-X-MS-Exchange-CrossTenant-originalarrivaltime: 07 Aug 2019 13:41:12.1046
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: 5LDjA0mTS4CsnJ1yb8Z/HrAEPdYySm/9DHB86PzTVW4WyFErT1wwxg2hEFR4purViwT2VpUwA/axOkfJ78BsdMncWa2rnyVpihDTt8t1Sr4=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3935
+In-Reply-To: <62557522be4924a01d3822d4734c30f2965c608b.camel@partner.samsung.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-T24gV2VkLCAyMDE5LTA4LTA3IGF0IDA4OjE5IC0wMzAwLCBGYWJpbyBFc3RldmFtIHdyb3RlOg0K
-PiBIaSBQaGlsaXBwZSwNCj4gDQo+IE9uIFdlZCwgQXVnIDcsIDIwMTkgYXQgNToyNiBBTSBQaGls
-aXBwZSBTY2hlbmtlcg0KPiA8cGhpbGlwcGUuc2NoZW5rZXJAdG9yYWRleC5jb20+IHdyb3RlOg0K
-PiA+IEZyb206IFN0ZWZhbiBBZ25lciA8c3RlZmFuLmFnbmVyQHRvcmFkZXguY29tPg0KPiA+IA0K
-PiA+IEFkZCBwaW5tdXhpbmcgYW5kIGRvIG5vdCBzcGVjaWZ5IHZvbHRhZ2UgcmVzdHJpY3Rpb25z
-IGZvciB0aGUgdXNkaGMNCj4gPiBpbnN0YW5jZSBhdmFpbGFibGUgb24gdGhlIG1vZHVsZXMgZWRn
-ZSBjb25uZWN0b3IuIFRoaXMgYWxsb3dzIHRvIHVzZQ0KPiA+IFNELWNhcmRzIHdpdGggaGlnaGVy
-IHRyYW5zZmVyIG1vZGVzIGlmIHN1cHBvcnRlZCBieSB0aGUgY2Fycmllcg0KPiA+IGJvYXJkLg0K
-PiA+IA0KPiA+IFNpZ25lZC1vZmYtYnk6IFN0ZWZhbiBBZ25lciA8c3RlZmFuLmFnbmVyQHRvcmFk
-ZXguY29tPg0KPiA+IFNpZ25lZC1vZmYtYnk6IFBoaWxpcHBlIFNjaGVua2VyIDxwaGlsaXBwZS5z
-Y2hlbmtlckB0b3JhZGV4LmNvbT4NCj4gPiANCj4gPiAtLS0NCj4gPiANCj4gPiBDaGFuZ2VzIGlu
-IHYzOg0KPiA+IC0gQWRkIG5ldyBjb21taXQgbWVzc2FnZSBmcm9tIFN0ZWZhbidzIHByb3Bvc2Fs
-IG9uIE1MDQo+IA0KPiBUaGUgY29tbWl0IG1lc3NhZ2UgaGFzIGJlZW4gaW1wcm92ZWQsIGJ1dCB0
-aGVyZSBpcyBhbHNvIGFub3RoZXIgcG9pbnQNCj4gSSBtZW50aW9uZWQgZWFybGllcjoNCj4gDQo+
-ID4gQ2hhbmdlcyBpbiB2MjogTm9uZQ0KPiA+IA0KPiA+ICBhcmNoL2FybS9ib290L2R0cy9pbXg3
-LWNvbGlicmkuZHRzaSB8IDIzICsrKysrKysrKysrKysrKysrKysrKystDQo+ID4gIDEgZmlsZSBj
-aGFuZ2VkLCAyMiBpbnNlcnRpb25zKCspLCAxIGRlbGV0aW9uKC0pDQo+ID4gDQo+ID4gZGlmZiAt
-LWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDctY29saWJyaS5kdHNpDQo+ID4gYi9hcmNoL2Fy
-bS9ib290L2R0cy9pbXg3LWNvbGlicmkuZHRzaQ0KPiA+IGluZGV4IDE2ZDFhMWVkMWFmZi4uNjdm
-NWUwYzg3ZmRjIDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDctY29saWJy
-aS5kdHNpDQo+ID4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14Ny1jb2xpYnJpLmR0c2kNCj4g
-PiBAQCAtMzI2LDcgKzMyNiw2IEBADQo+ID4gICZ1c2RoYzEgew0KPiA+ICAgICAgICAgcGluY3Ry
-bC1uYW1lcyA9ICJkZWZhdWx0IjsNCj4gPiAgICAgICAgIHBpbmN0cmwtMCA9IDwmcGluY3RybF91
-c2RoYzEgJnBpbmN0cmxfY2RfdXNkaGMxPjsNCj4gPiAtICAgICAgIG5vLTEtOC12Ow0KPiA+ICAg
-ICAgICAgY2QtZ3Bpb3MgPSA8JmdwaW8xIDAgR1BJT19BQ1RJVkVfTE9XPjsNCj4gPiAgICAgICAg
-IGRpc2FibGUtd3A7DQo+ID4gICAgICAgICB2cW1tYy1zdXBwbHkgPSA8JnJlZ19MRE8yPjsNCj4g
-PiBAQCAtNjcxLDYgKzY3MCwyOCBAQA0KPiA+ICAgICAgICAgICAgICAgICA+Ow0KPiA+ICAgICAg
-ICAgfTsNCj4gPiANCj4gPiArICAgICAgIHBpbmN0cmxfdXNkaGMxXzEwMG1oejogdXNkaGMxZ3Jw
-XzEwMG1oeiB7DQo+IA0KPiBUaGlzIG5ldyBlbnRyeSBoYXMgYmVlbiBhZGRlZCBhbmQgaXQgaXMg
-bm90IHJlZmVyZW5jZWQuDQoNClNvcnJ5LCBJIHByb2JhYmx5IGNvdWxkIGhhdmUgbWVudGlvbmVk
-IHRoYXQgaW4gdGhpcyBjb21taXQuIEkgd2FudCwgaWYNCnBvc3NpYmxlLCB0byBsZXQgdGhpcyBj
-b21tbWl0IGFzIGlzLiBUaGF0J3Mgd2h5IEkgYWRkZWQgYW5vdGhlciBvbiB0b3ANCm9mIHRoaXMg
-cGF0Y2hzZXQuIFBsZWFzZSBzZWUgcGF0Y2ggMjEvMjEgdGhhdCBtYWtlcyB1c2Ugb2YgdGhpcyBj
-aGFuZ2UuDQo+IA0KPiA+ICsgICAgICAgICAgICAgICBmc2wscGlucyA9IDwNCj4gPiArICAgICAg
-ICAgICAgICAgICAgICAgICBNWDdEX1BBRF9TRDFfQ01EX19TRDFfQ01EICAgICAgIDB4NWENCj4g
-PiArICAgICAgICAgICAgICAgICAgICAgICBNWDdEX1BBRF9TRDFfQ0xLX19TRDFfQ0xLICAgICAg
-IDB4MWENCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBNWDdEX1BBRF9TRDFfREFUQTBfX1NE
-MV9EQVRBMCAgIDB4NWENCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBNWDdEX1BBRF9TRDFf
-REFUQTFfX1NEMV9EQVRBMSAgIDB4NWENCj4gPiArICAgICAgICAgICAgICAgICAgICAgICBNWDdE
-X1BBRF9TRDFfREFUQTJfX1NEMV9EQVRBMiAgIDB4NWENCj4gPiArICAgICAgICAgICAgICAgICAg
-ICAgICBNWDdEX1BBRF9TRDFfREFUQTNfX1NEMV9EQVRBMyAgIDB4NWENCj4gPiArICAgICAgICAg
-ICAgICAgPjsNCj4gPiArICAgICAgIH07DQo+ID4gKw0KPiA+ICsgICAgICAgcGluY3RybF91c2Ro
-YzFfMjAwbWh6OiB1c2RoYzFncnBfMjAwbWh6IHsNCj4gDQo+IFNhbWUgaGVyZS4NCg==
+Hi Artur,
+
+On 8/1/19 10:59, Artur Świgoń wrote:
+> Hi Georgi,
+> 
+> On Fri, 2019-07-26 at 11:05 +0300, Georgi Djakov wrote:
+>> Hi Artur,
+>>
+>> On 7/23/19 15:20, Artur Świgoń wrote:
+>>> This patch adds interconnect functionality to the exynos-bus devfreq
+>>> driver.
+>>>
+>>> The SoC topology is a graph (or, more specifically, a tree) and most of its
+>>> edges are taken from the devfreq parent-child hierarchy (cf.
+>>> Documentation/devicetree/bindings/devfreq/exynos-bus.txt). The previous
+>>> patch adds missing edges to the DT (under the name 'parent'). Due to
+>>> unspecified relative probing order, -EPROBE_DEFER may be propagated to
+>>> guarantee that a child is probed before its parent.
+>>>
+>>> Each bus is now an interconnect provider and an interconnect node as well
+>>> (cf. Documentation/interconnect/interconnect.rst), i.e. every bus registers
+>>> itself as a node. Node IDs are not hardcoded but rather assigned at
+>>> runtime, in probing order (subject to the above-mentioned exception
+>>> regarding relative order). This approach allows for using this driver with
+>>> various Exynos SoCs.
+>>
+>> I am not familiar with the Exynos bus topology, but it seems to me that it's not
+>> represented correctly. An interconnect provider with just a single node (port)
+>> is odd. I would expect that each provider consists of multiple master and slave
+>> nodes. This data would be used by a framework to understand what are the links
+>> and how the traffic flows between the IP blocks and through which buses.
+> 
+> To summarize the exynos-bus topology[1] used by the devfreq driver: There are
+> many data buses for data transfer in Samsung Exynos SoC. Every bus has its own
+> clock. Buses often share power lines, in which case one of the buses on the
+> power line is referred to as 'parent' (or as 'devfreq' in the DT). In the
+> particular case of Exynos4412[1][2], the topology can be expressed as follows:
+> 
+> bus_dmc
+> -- bus_acp
+> -- bus_c2c
+> 
+> bus_leftbus
+> -- bus_rightbus
+> -- bus_display
+> -- bus_fsys
+> -- bus_peri
+> -- bus_mfc
+> 
+> Where bus_dmc and bus_leftbus probably could be referred to as masters, and the
+> following indented nodes as slaves. Patch 08/11 of this RFC additionally adds
+> the following to the DT:
+> 
+> bus_dmc
+> -- bus_leftbus
+> 
+> Which makes the topology a valid tree.
+> 
+> The exynos-bus concept in devfreq[3] is designed in such a way that every bus is
+> probed separately as a platform device, and is a largely independent entity.
+>
+> This RFC proposes an extension to the existing devfreq driver that basically
+> provides a simple QoS to ensure minimum clock frequency for selected buses
+> (possibly overriding devfreq governor calculations) using the interconnect
+> framework.
+> 
+> The hierarchy is modelled in such a way that every bus is an interconnect node.
+> On the other hand, what is considered an interconnect provider here is quite
+> arbitrary, but for the reasons mentioned in the above paragraph, this RFC
+> assumes that every bus is a provider of itself as a node. Using an alternative
+
+IIUC, in case we want to transfer data between the display and the memory
+controller, the path would look like this:
+
+display --> bus_display --> bus_leftbus --> bus_dmc --> memory
+
+But the bus_display for example would have not one, but two nodes (ports),
+right?  One representing the link to the display controller and another one
+representing the link to bus_leftbus? So i think that all the buses should
+have at least two nodes, to represent each end of the wire.
+
+> singleton provider approach was deemed more complicated since the 'dev' field in
+> 'struct icc_provider' has to be set to something meaningful and we are tied to
+> the 'samsung,exynos-bus' compatible string in the driver (and multiple instances
+> of exynos-bus probed in indeterminate relative order).
+> 
+
+Sure, the rest makes sense to me.
+
+Thanks,
+Georgi
