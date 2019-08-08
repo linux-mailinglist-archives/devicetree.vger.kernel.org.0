@@ -2,92 +2,153 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4FBC86AA8
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 21:39:01 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E5B5486ABA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 21:47:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390163AbfHHTiv (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 15:38:51 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:37811 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389995AbfHHTiu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 15:38:50 -0400
-Received: by mail-wr1-f68.google.com with SMTP id b3so3658966wro.4;
-        Thu, 08 Aug 2019 12:38:48 -0700 (PDT)
+        id S1728025AbfHHTrs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 15:47:48 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:36778 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732544AbfHHTrs (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 15:47:48 -0400
+Received: by mail-ot1-f67.google.com with SMTP id r6so123406733oti.3;
+        Thu, 08 Aug 2019 12:47:47 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=o3cG9hx9o51gA6UlU4adUkWejV/q6+2bmEEqRa7TBxk=;
-        b=eloLS1ZeIMWf2cnGJDNHNI4TN+f2S80Xe33nudsHH7n2Qalyz8TGaM1ieHpUocKrgS
-         QAo8j8RWlS0N+8hTEUkZwP0EB3lYH8vP/0Xz/aFSKy7xZwM7YOvjtx7pczpL6Ah3AJEM
-         aOPXS/Hn7c0hoOKjBIDuO4pPmpCRT49P0IGUAPWBKmC2/tD/fQ6JJTFbeUEZjel9nHeP
-         b8k8mf7ltpySzrGqNeE0ddCQdNMdT43A2LsvL11Gm0eC5eQCgx2EdiuxWQn0458gX1SK
-         THACp593UPpfciKOAbMZjtT/xU3Gl/bSVX+A6eYBcNLszL9l1vzx21dkVHPp2Kv6r+/7
-         7dwg==
+        d=googlemail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=fVsgaqUQ+TY2x5x7j3h0EJIjp1dyKYtAS/dTFHwFE4Q=;
+        b=OpC2gncSoouwEVr7BnFdYNGd+LTHxiJVVLiZJqUASJhCoGnH7dth65A7q3cNhqzbaR
+         pFGqq1Rvb1KcpsNFycH3tgSzHrHKMhleLnfVvqcyAQEKvIXtUPBMw2RLnJ7wsYwEaJ5E
+         yFi56IdDPTVsWQpc/jaUbb2QY+sA0j32RCCUgsvHocyOyswM51qD1lPxs8a15pOav2Vg
+         Uuk6GL3du0HTsrRV9oaaDjUPtyNNRKIYLoSLXls/+1ZSRgtGHWJLqnap/u5EQfPfsA8z
+         ml9FIlnAiDzEokQGAeydeUOI8nz4l8lKhbmdO4H4lzO5iDYpQzzc8wh3lHuKDySsu+fO
+         ZFYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=o3cG9hx9o51gA6UlU4adUkWejV/q6+2bmEEqRa7TBxk=;
-        b=Ha0BIUCEbuo8mXij+a19PXXRtBtTLPDMvu7Bj7ISWUQ9nBI78evFS7Vzl51DgodKgU
-         o9tBs8jtgm31nyYD0hnuhTTKkVH5A7hjhABr0HtCZkLxyxMuBnmKFKmBAb43Vkfm9zn2
-         DGUZNVF0HjTjelbiS/zyiGydU1cRP5WVdeZMvUaq81HLbiodplmOBzvk9XndoQlhRv46
-         dF8ikKCN608L5LnNe+49C0IXxsjdOdXsBPokWDjiOfQK304NYaqApZ9evsHoDAA12OLZ
-         uWvN6Djo4M7dgHQHgSpufQrjTNXlHSxoHSgjzLb4W17IdLSOiB3T8ZcnVJhICSXPdffr
-         nHwQ==
-X-Gm-Message-State: APjAAAWpAB8VFSGcY3BYhLnQ6sJgtJTznwtBUltwyFCnfEE3Qqane95T
-        iNljvGSzpmJeSCKhI8xXLXI=
-X-Google-Smtp-Source: APXvYqxLGseFYed9tG+G/Sd0lVHZr4K0Ycf/CoGlRN2aEXurKCYiJl6evIeXgxVzg+zLHrVfySav9g==
-X-Received: by 2002:adf:fe4f:: with SMTP id m15mr19059986wrs.36.1565293128101;
-        Thu, 08 Aug 2019 12:38:48 -0700 (PDT)
-Received: from ?IPv6:2003:ea:8f2f:3200:ec8a:8637:bf5f:7faf? (p200300EA8F2F3200EC8A8637BF5F7FAF.dip0.t-ipconnect.de. [2003:ea:8f2f:3200:ec8a:8637:bf5f:7faf])
-        by smtp.googlemail.com with ESMTPSA id x6sm4578826wmf.6.2019.08.08.12.38.47
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 08 Aug 2019 12:38:47 -0700 (PDT)
-Subject: Re: [PATCH v2 13/15] net: phy: adin: configure downshift on
- config_init
-To:     Alexandru Ardelean <alexandru.ardelean@analog.com>,
-        netdev@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Cc:     davem@davemloft.net, robh+dt@kernel.org, mark.rutland@arm.com,
-        f.fainelli@gmail.com, andrew@lunn.ch
-References: <20190808123026.17382-1-alexandru.ardelean@analog.com>
- <20190808123026.17382-14-alexandru.ardelean@analog.com>
-From:   Heiner Kallweit <hkallweit1@gmail.com>
-Message-ID: <420c8e15-3361-a722-4ad1-3c448b1d3bc1@gmail.com>
-Date:   Thu, 8 Aug 2019 21:38:40 +0200
-User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=fVsgaqUQ+TY2x5x7j3h0EJIjp1dyKYtAS/dTFHwFE4Q=;
+        b=d7j9nMEaspP6HcY1TrL1CbJeq1ZMx4Imd3Z2XmCeCy5ckctxHLNtdlukmNKOeS7GkL
+         +ugpp5A9kaqGjUlEGy7a6qXsFM0QhF8BzdGhA0s0iGqw4B6OKM0RmFK+uOj5wCdDkEGT
+         A1DvVbhoto0xUyrYsmwXmoNDqmm5JKocNcaWQT1sC/XdcPYyWD1DVT7yfFRiuaziGp09
+         Ri0hk16xCB75Hkw3vwenznCepCE5HQTOTCQzCv6UNVWPjnUfA5Ow08jI26Z4XNUaBzLC
+         47kDvdbByB84s5uZ4oUoIjD8zDKrzDpheR9227XuSQL7qNhrunUv5chNH0ijBQ3bA/CQ
+         F1NQ==
+X-Gm-Message-State: APjAAAWJi5B2gNaeiPOveQ6vtez2K3Id7lkGdKA5tVSdBtNhD5XazWQU
+        HFQKeCAK3upb0ZqTURSFyTLRqVFwrQn8xlEEWvU=
+X-Google-Smtp-Source: APXvYqwB+udbmGy6ZFtRl3z5o6an+2PDm6oq7fHTtN2/gSnu1r5f4Cu204e9wczn6Do0L2d8lFmaDEqcIHEGVEjwifU=
+X-Received: by 2002:aca:d415:: with SMTP id l21mr3860865oig.96.1565293666522;
+ Thu, 08 Aug 2019 12:47:46 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <20190808123026.17382-14-alexandru.ardelean@analog.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190731153529.30159-1-glaroque@baylibre.com> <20190731153529.30159-3-glaroque@baylibre.com>
+ <CAFBinCDGSJABnS1L1ULueyeXZaV38qrxEA0a12gB-uyRC_TvPQ@mail.gmail.com>
+ <14e14cd9-46bd-0d43-654c-6db64397f5c7@baylibre.com> <CAFBinCB3ZBPVEJKV2Rfh_w-zWrhoToYdoYE6Wox+JeB-YH+Khw@mail.gmail.com>
+ <7hblx0fjkw.fsf@baylibre.com>
+In-Reply-To: <7hblx0fjkw.fsf@baylibre.com>
+From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
+Date:   Thu, 8 Aug 2019 21:47:35 +0200
+Message-ID: <CAFBinCBzDM7dpAKwf29UENvHgCEscyUCHdjQwb6Wkz4i2ShJbQ@mail.gmail.com>
+Subject: Re: [PATCH v2 2/6] thermal: amlogic: Add thermal driver to support
+ G12 SoCs
+To:     Kevin Hilman <khilman@baylibre.com>
+Cc:     guillaume La Roque <glaroque@baylibre.com>,
+        daniel.lezcano@linaro.org, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-pm@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08.08.2019 14:30, Alexandru Ardelean wrote:
-> Down-speed auto-negotiation may not always be enabled, in which case the
-> PHY won't down-shift to 100 or 10 during auto-negotiation.
-> 
-> This change enables downshift and configures the number of retries to
-> default 8 (maximum supported value).
-> 
-> The change has been adapted from the Marvell PHY driver.
-> 
-Instead of a fixed downshift setting (like in the Marvell driver) you
-may consider to implement the ethtool phy-tunable ETHTOOL_PHY_DOWNSHIFT.
-See the Aquantia PHY driver for an example.
-Then the user can configure whether he wants downshift and if yes after
-how many retries.
+Hi Kevin,
 
-> Signed-off-by: Alexandru Ardelean <alexandru.ardelean@analog.com>
-> ---
->  drivers/net/phy/adin.c | 39 +++++++++++++++++++++++++++++++++++++++
->  1 file changed, 39 insertions(+)
-[...]
+On Thu, Aug 8, 2019 at 4:59 AM Kevin Hilman <khilman@baylibre.com> wrote:
+>
+> Martin Blumenstingl <martin.blumenstingl@googlemail.com> writes:
+>
+> > Hi Guillaume,
+> >
+> > On Mon, Aug 5, 2019 at 2:48 PM guillaume La Roque <glaroque@baylibre.com> wrote:
+> >>
+> >> Hi Martin,
+> >>
+> >> again thanks for your review.
+> > you're welcome - thank you for working on the driver :-)
+> >
+> > [...]
+> >> > The IP block has more functionality, which may be added to this driver
+> >> > in the future:
+> >> > - reading up to 16 stored temperature samples
+> >>
+> >> it's not working, you can verify it if you check the regmap define in the driver. in fact temp is only write in one register, it's confirmed by amlogic.
+> > I missed that - so please skip this part
+> >
+> > [...]
+> >> >> +config AMLOGIC_THERMAL
+> >> > we typically use "MESON" in the Kconfig symbols:
+> >> > $ grep -c AMLOGIC .config
+> >> > 1
+> >> > $ grep -c MESON .config
+> >> > 33
+> >> >
+> >> > I also wonder if we should add G12 or G12A so we don't conflict with
+> >> > upcoming thermal sensors with a different design (assuming that this
+> >> > will be a thing).
+> >> > for example we already have three different USB2 PHY drivers
+> >> >
+> >> > [...]
+> >>
+> >> i check with Neil and for new family it's better to use Amlogic instead of meson.
+> > can you please share the considerations behind this decision?
+> > if new drivers should use AMLOGIC_* Kconfig symbols instead of MESON_*
+> > then we all should know about it
+> >
+> >> i don't add G12 because we already know it's same sensors for SM1 SoC family [0].
+> > my idea behind this was to avoid conflicts in the future
+> > in case of the thermal driver we may be fine with using a generic name
+> > assuming that Amlogic will not switch to a new IP block in the next
+> > years
+> > I'm not saying you have to change the name - I'm bringing this up so
+> > you can decide for yourself based on examples from the past
+> >
+> > here are a few examples:
+> > - when Kevin upstreamed the MMC driver for GX he decided to use
+> > MMC_MESON_GX for the Kconfig symbol name. it turns out that this is
+> > smart because there are at least two other MMC controller IPs on the
+> > 32-bit SoCs. due to him including GX in the name the drivers are easy
+> > to differentiate (MMC_MESON_MX_SDIO and MMC_MESON_MX_SDHC being the
+> > other ones, while the latter is not upstream yet)
+> > - when Carlo upstreamed the eFuse driver he decided to use MESON_EFUSE
+> > for the Kconfig symbol name. I found out much later that the 32-bit
+> > SoCs use a different IP (or at least direct register access instead of
+> > going through Secure Monitor). the driver for the 32-bit SoCs now uses
+> > MESON_MX_EFUSE. if you don't know which driver applies where then it's
+> > easy to mix up MESON_EFUSE and MESON_MX_EFUSE
+> > - when Jerome upstreamed the ALSA driver for AXG (which is also used
+> > on G12A and G12B) he decided to use the SND_MESON_AXG_* prefix for the
+> > Kconfig symbol names. in my opinion this was a good choice because GXM
+> > and everything earlier (including the 32-bit SoCs) use a different
+> > audio IP block. we won't have a Kconfig symbol name clash when a
+> > driver for the "older" SoCs is upstreamed
+> > - (there are more examples, Meson8b USB PHY driver, Meson8b DWMAC
+> > glue, ... - just like there's many examples where the IP block is
+> > mostly compatible with older generations: SAR ADC, RNG, SPI, ...)
+>
+> While these are all good examples, you can see it can go both ways, so
+> there's really no way know up front what is the "right" way.  We only
+> know after the fact.  Unfortunately, we simply have no visibility into
+> future chips and where IP blocks may be shared or not (there are other
+> examples where vendors add a new version of an IP *and* keep the old
+> version. ;)
+>
+> Even having worked inside a (different) SoC vendor and having some
+> knowledge about what IPs are shared, it's difficult to get this right.
+right. The fact that it'll be the IP block in SM1 will be backwards
+compatible (or even the same) means that it has a longer life-span
+than some of the USB PHY IP.
+so I'm fine either way
 
-Heiner
+
+Martin
