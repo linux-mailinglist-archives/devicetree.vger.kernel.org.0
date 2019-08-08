@@ -2,107 +2,183 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B561C85FAE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 12:32:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F111F8607A
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 12:58:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389946AbfHHKcc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 06:32:32 -0400
-Received: from userp2120.oracle.com ([156.151.31.85]:55272 "EHLO
-        userp2120.oracle.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389810AbfHHKcb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 06:32:31 -0400
-Received: from pps.filterd (userp2120.oracle.com [127.0.0.1])
-        by userp2120.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x78ASZmx040049;
-        Thu, 8 Aug 2019 10:32:20 GMT
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2019-08-05;
- bh=eMELLNBfA8V5hTIjtVqrrncIqhLVp4Emd0YDFn2j2O4=;
- b=XDoeAbi5oaRit+HQfeAh4uZXHmb/uKIrVWvjMqjvXdENzjumHkcftrK2gbCv0js0APmS
- lnCgw0sg5f9mRA36uQuPGYUsvnWzX08gKaN4xOc31ndY+3OU1hPO98ZQBwkoigJyi0pH
- A8HFO/qacLU582kG7DlQhktaxf9Yg6k4FFzzATAqoZt90/Q8p3sToO7KbZLckwAQo7oH
- zidQkEdudu2Vk7q07gm2zeuKJaSBOajEr22lMFnfRKN37/uDI9FNt42XzoKf2/mGMNX6
- aeSHKVfzuStUuFxROcfZMqm7foWBWaCV4TvxjXy/WZO25O3mvVL5svDcHOQi1eUpjGb2 iQ== 
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=oracle.com; h=date : from : to : cc
- : subject : message-id : mime-version : content-type; s=corp-2018-07-02;
- bh=eMELLNBfA8V5hTIjtVqrrncIqhLVp4Emd0YDFn2j2O4=;
- b=CYVtt9PR3c6MhFa6I3O29OTT1vOGSn3z4qOZjvwMhi0KfrNG+fU1a9lpVxbhUXnQNew2
- iDw+X2Cj6jVujMpvPRWg8qdqYJii5FFvkV2hjeWGpEIkme4p9K6RXLxDDhUVAk9AXvgQ
- +ysW8RVOPUlMFy146gx2/fmegx7V/1GOelJm2bb0eTHCp0uAiN9P9PLzgSCz2FFCWYBL
- /P0VmZcml5WfVIfNvHuBahTTuoWbqzt3jQvn60AkNZjGrelUatdxQlbAUYkcMkfreTNy
- PgE1jZGOPyk+F3SGi5agA+88KzVH0F9RkFPJEF1E0nc/FhAAgy2nokW4fP9m/hOt4CMt CA== 
-Received: from userp3030.oracle.com (userp3030.oracle.com [156.151.31.80])
-        by userp2120.oracle.com with ESMTP id 2u8hgp07uc-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 08 Aug 2019 10:32:20 +0000
-Received: from pps.filterd (userp3030.oracle.com [127.0.0.1])
-        by userp3030.oracle.com (8.16.0.27/8.16.0.27) with SMTP id x78AS6RZ006664;
-        Thu, 8 Aug 2019 10:32:20 GMT
-Received: from aserv0121.oracle.com (aserv0121.oracle.com [141.146.126.235])
-        by userp3030.oracle.com with ESMTP id 2u7668x9cx-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=OK);
-        Thu, 08 Aug 2019 10:32:20 +0000
-Received: from abhmp0020.oracle.com (abhmp0020.oracle.com [141.146.116.26])
-        by aserv0121.oracle.com (8.14.4/8.13.8) with ESMTP id x78AWEPT005668;
-        Thu, 8 Aug 2019 10:32:15 GMT
-Received: from mwanda (/41.57.98.10)
-        by default (Oracle Beehive Gateway v4.0)
-        with ESMTP ; Thu, 08 Aug 2019 03:32:14 -0700
-Date:   Thu, 8 Aug 2019 13:32:07 +0300
-From:   Dan Carpenter <dan.carpenter@oracle.com>
-To:     Rob Herring <robh+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     Frank Rowand <frowand.list@gmail.com>,
-        Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, devicetree@vger.kernel.org,
-        kernel-janitors@vger.kernel.org
-Subject: [PATCH] of/platform: Clean up a return type in of_link_property()
-Message-ID: <20190808103207.GA30506@mwanda>
+        id S1731311AbfHHK60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 06:58:26 -0400
+Received: from foss.arm.com ([217.140.110.172]:60070 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1731122AbfHHK60 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Aug 2019 06:58:26 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D98E228;
+        Thu,  8 Aug 2019 03:58:25 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BBD723F694;
+        Thu,  8 Aug 2019 03:58:23 -0700 (PDT)
+Date:   Thu, 8 Aug 2019 11:58:21 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     "Chocron, Jonathan" <jonnyc@amazon.com>
+Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
+        "Woodhouse, David" <dwmw@amazon.co.uk>,
+        "Hanoch, Uri" <hanochu@amazon.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
+        "Wasserstrom, Barak" <barakw@amazon.com>,
+        "Saidi, Ali" <alisaidi@amazon.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "Hawa, Hanna" <hhhawa@amazon.com>,
+        "Shenhar, Talel" <talel@amazon.com>,
+        "Krupnik, Ronen" <ronenk@amazon.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "benh@kernel.crashing.org" <benh@kernel.crashing.org>
+Subject: Re: [PATCH v3 8/8] PCI: dw: Add support for
+ PCI_PROBE_ONLY/PCI_REASSIGN_ALL_BUS flags
+Message-ID: <20190808105821.GB30230@e121166-lin.cambridge.arm.com>
+References: <20190723092529.11310-1-jonnyc@amazon.com>
+ <20190723092711.11786-4-jonnyc@amazon.com>
+ <20190807163654.GC16214@e121166-lin.cambridge.arm.com>
+ <67c58ded2177beca030450c25d742d35890eb48a.camel@amazon.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-X-Mailer: git-send-email haha only kidding
-User-Agent: Mutt/1.10.1 (2018-07-13)
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9342 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 suspectscore=0 malwarescore=0
- phishscore=0 bulkscore=0 spamscore=0 mlxscore=0 mlxlogscore=999
- adultscore=0 classifier=spam adjust=0 reason=mlx scancount=1
- engine=8.0.1-1906280000 definitions=main-1908080114
-X-Proofpoint-Virus-Version: vendor=nai engine=6000 definitions=9342 signatures=668685
-X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 priorityscore=1501 malwarescore=0
- suspectscore=0 phishscore=0 bulkscore=0 spamscore=0 clxscore=1011
- lowpriorityscore=0 mlxscore=0 impostorscore=0 mlxlogscore=999 adultscore=0
- classifier=spam adjust=0 reason=mlx scancount=1 engine=8.0.1-1906280000
- definitions=main-1908080115
+In-Reply-To: <67c58ded2177beca030450c25d742d35890eb48a.camel@amazon.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This function is supposed to return zero on success and negative
-error codes on failure but currently it returns true on failure.  The
-caller only checks for zero and non-zero so this mixup doesn't cause any
-runtime issues.
+Side note, run:
 
-Fixes: 690ff7881b26 ("of/platform: Add functional dependency link from DT bindings")
-Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
----
- drivers/of/platform.c | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+git log --oneline on drivers/pci/controller/dwc existing files and
+make sure commit subjects are in line with those.
 
-diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-index 21838226d68a..86fb8ab8c012 100644
---- a/drivers/of/platform.c
-+++ b/drivers/of/platform.c
-@@ -625,7 +625,7 @@ static const struct supplier_bindings bindings[] = {
- 	{ },
- };
- 
--static bool of_link_property(struct device *dev, struct device_node *con_np,
-+static int of_link_property(struct device *dev, struct device_node *con_np,
- 			     const char *prop)
- {
- 	struct device_node *phandle;
--- 
-2.20.1
+Eg PCI: dw: should be PCI: dwc:
 
+On Thu, Aug 08, 2019 at 09:30:05AM +0000, Chocron, Jonathan wrote:
+> On Wed, 2019-08-07 at 17:36 +0100, Lorenzo Pieralisi wrote:
+> > On Tue, Jul 23, 2019 at 12:27:11PM +0300, Jonathan Chocron wrote:
+> > > This basically aligns the usage of PCI_PROBE_ONLY and
+> > > PCI_REASSIGN_ALL_BUS in dw_pcie_host_init() with the logic in
+> > > pci_host_common_probe().
+> > > 
+> > > Now it will be possible to control via the devicetree whether to
+> > > just
+> > > probe the PCI bus (in cases where FW already configured it) or to
+> > > fully
+> > > configure it.
+> > > 
+> > > Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
+> > > ---
+> > >  .../pci/controller/dwc/pcie-designware-host.c | 23
+> > > +++++++++++++++----
+> > >  1 file changed, 19 insertions(+), 4 deletions(-)
+> > > 
+> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > index d2ca748e4c85..0a294d8aa21a 100644
+> > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
+> > > @@ -342,6 +342,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
+> > >  	if (!bridge)
+> > >  		return -ENOMEM;
+> > >  
+> > > +	of_pci_check_probe_only();
+> > > +
+> > >  	ret = devm_of_pci_get_host_bridge_resources(dev, 0, 0xff,
+> > >  					&bridge->windows, &pp-
+> > > >io_base);
+> > >  	if (ret)
+> > > @@ -474,6 +476,10 @@ int dw_pcie_host_init(struct pcie_port *pp)
+> > >  
+> > >  	pp->root_bus_nr = pp->busn->start;
+> > >  
+> > > +	/* Do not reassign bus nums if probe only */
+> > > +	if (!pci_has_flag(PCI_PROBE_ONLY))
+> > > +		pci_add_flags(PCI_REASSIGN_ALL_BUS);
+> > 
+> > This changes the default for bus reassignment on all DWC host (that
+> > are
+> > !PCI_PROBE_ONLY), we should drop this line, it can trigger
+> > regressions.
+> > 
+> Will be dropped as part of v4. There might also be a behavioral
+> difference below where I added the if (pci_has_flag(PCI_PROBE_ONLY)).
+> Is that still ok?
+
+That's true but I doubt any DWC host has a DT firmware with
+"linux,pci-probe-only" in it.
+
+It is trial and error I am afraid, please make sure all DWC
+maintainers are copied in.
+
+> As I pointed out in the cover letter, since PCI_PROBE_ONLY is a system
+> wide flag, does it make sense to call of_pci_check_probe_only() here,
+> in the context of a specific driver (including the existing invocation
+> in pci_host_common_probe()), as opposed to a platform/arch context?
+
+It is an ongoing discussion to define how we should handle
+PCI_PROBE_ONLY. Adding this code into DWC I do not think it
+would hurt but if we can postpone it for the next (v5.5) merge
+window after we debate this at LPC within the PCI microconference
+it would be great.
+
+Please sync with Benjamin as a first step, I trust he would ask
+you to do the right thing.
+
+> > If we still want to merge it as a separate change we must test it on
+> > all
+> > DWC host bridges to make sure it does not trigger any issues with
+> > current set-ups, that's not going to be easy though.
+> > 
+> Just out of curiosity, how are such exhaustive tests achieved when a
+> patch requires them?
+
+CC DWC host bridge maintainers and ask them to test it. I do not have
+the HW (and FW) required, I am sorry, that's the only option I can give
+you. -next coverage would help too but to a minor extent.
+
+Thanks,
+Lorenzo
+
+> 
+> > Lorenzo
+> > 
+> > > +
+> > >  	bridge->dev.parent = dev;
+> > >  	bridge->sysdata = pp;
+> > >  	bridge->busnr = pp->root_bus_nr;
+> > > @@ -490,11 +496,20 @@ int dw_pcie_host_init(struct pcie_port *pp)
+> > >  	if (pp->ops->scan_bus)
+> > >  		pp->ops->scan_bus(pp);
+> > >  
+> > > -	pci_bus_size_bridges(pp->root_bus);
+> > > -	pci_bus_assign_resources(pp->root_bus);
+> > > +	/*
+> > > +	 * We insert PCI resources into the iomem_resource and
+> > > +	 * ioport_resource trees in either pci_bus_claim_resources()
+> > > +	 * or pci_bus_assign_resources().
+> > > +	 */
+> > > +	if (pci_has_flag(PCI_PROBE_ONLY)) {
+> > > +		pci_bus_claim_resources(pp->root_bus);
+> > > +	} else {
+> > > +		pci_bus_size_bridges(pp->root_bus);
+> > > +		pci_bus_assign_resources(pp->root_bus);
+> > >  
+> > > -	list_for_each_entry(child, &pp->root_bus->children, node)
+> > > -		pcie_bus_configure_settings(child);
+> > > +		list_for_each_entry(child, &pp->root_bus->children,
+> > > node)
+> > > +			pcie_bus_configure_settings(child);
+> > > +	}
+> > >  
+> > >  	pci_bus_add_devices(pp->root_bus);
+> > >  	return 0;
+> > > -- 
+> > > 2.17.1
+> > > 
