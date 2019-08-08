@@ -2,99 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C16FA86AD2
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 21:52:34 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D90FD86AFA
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 21:59:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2403873AbfHHTwY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 15:52:24 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:45696 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729925AbfHHTwX (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 15:52:23 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=1MWRQhv1JoqmBcDEPz0hEreVKta/Mv4QnU98H8se/ZU=; b=iVKOlFDOmWwddtjobr+BdDZW6
-        yi04iCpOXEqFxbDYYsmEipmZPg8rHBBwAsU0nL4Ok75LgzN3S4EO5wGYbcXzSaNfZ7GXKJ0Og9v/T
-        KwP0bMbCmrihAzqWFAF6GThe9BJcUiyTFktozEqRbs7MgWGONzwyvxaMPMIChKFKJNPts=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1hvoSO-0003rT-To; Thu, 08 Aug 2019 19:52:16 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 249062742B42; Thu,  8 Aug 2019 20:52:16 +0100 (BST)
-Date:   Thu, 8 Aug 2019 20:52:16 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        vkoul@kernel.org, bgoswami@codeaurora.org, plai@codeaurora.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 1/4] dt-bindings: soundwire: add slave bindings
-Message-ID: <20190808195216.GM3795@sirena.co.uk>
-References: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
- <20190808144504.24823-2-srinivas.kandagatla@linaro.org>
- <d346b2af-f285-4c53-b706-46a129ab7951@linux.intel.com>
- <cdd2bded-551c-65f5-ca29-d2bb825bdaba@linaro.org>
+        id S2389883AbfHHT7f (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 15:59:35 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:38181 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2389974AbfHHT7e (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 15:59:34 -0400
+Received: by mail-ot1-f66.google.com with SMTP id d17so123697285oth.5
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 12:59:34 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=ugDhB19yfFS0aM3Uabiflvuhd1IgEiF2mzCsiuDbJNc=;
+        b=qDzXi76ZNAKXK4lQFoavAMCBscVIGMorp2jaWoL3kVtSz3TqTa4G+ihliJout9i3Df
+         LpAx+ydbi+J9NYiWZji56W0wmEF+7viYu5qWsa6E7fVxB0S0YheBaZnFn8bv06f1iuDz
+         H5pxb45/5zJWMJP/M7v1/YfYS2IX26bx0YAEoadRGc8T1nV5/sysAMbRX14w+pEzdPPD
+         Orf4Q/QBQTMVWqb/n8s5fInfWvEUrfqJxVTlZJ10r0wrXd04JpZpDL7f8hLTa4grYgUF
+         z6r0JhMLySJApedvUxZ4/ymu3vvmu3GBLa8v50BO2e/mLxM+IciUURn9zy5mBMxUmnfG
+         u+hA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=ugDhB19yfFS0aM3Uabiflvuhd1IgEiF2mzCsiuDbJNc=;
+        b=Rf02QFVphNi/a5IhJ93Sfj8i8AmTeHceCQ7/lBHRQWy/bL/iPL+4E2p0Ao1UrXiRMh
+         JnVM1Z86BGpqjv67EYAXy+kHk6kj2KbHFd8NnnFgYjnYxw4o3AebQfdP/ty++4WC8au6
+         Dv1PAQfbkPis1BdpK+w9O4J0w2I+sQEayvOvYke3RsW8QEmfo8NZb/AURmqDtf/9ym15
+         T7G4OI/x+5bt6RSZlHHYvelzflPHxOgxH96xkkRY7uBYOYec3xhpnZkWUe5m3fGef2BX
+         jzSp4iARNPCrLPIQHAzrNtvEXUeXgH4ooMgHBOxqiXo7FocKv6iYlFz0DRNpTBguFpbX
+         dkDg==
+X-Gm-Message-State: APjAAAUJJGifq8JxO0qefxdpi3HY3AsYLi5ObaCwemWoeCc425QcKS9q
+        7vAYHdyXzK3MHtbklPv1JUsUowLnqEaEJ2gAub4=
+X-Google-Smtp-Source: APXvYqwJHl6GIua1FD+Buo37J7Ag2PpIObNU/B45znxXGNkeq+Zp3GVWvs/NOOJmohm48EnaVw8NqaiLJvd0oEuVFWk=
+X-Received: by 2002:a9d:4109:: with SMTP id o9mr13486131ote.353.1565294374038;
+ Thu, 08 Aug 2019 12:59:34 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="kunpHVz1op/+13PW"
-Content-Disposition: inline
-In-Reply-To: <cdd2bded-551c-65f5-ca29-d2bb825bdaba@linaro.org>
-X-Cookie: I think we're in trouble.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190806140135.4739-1-anarsoul@gmail.com> <89402d22-d432-9551-e787-c8ede16dbe5f@arm.com>
+ <CA+E=qVfh7mirJhRsDTeuAVgG55ia936uFSFVKR0N5Pn4GCF1UA@mail.gmail.com>
+ <E1hv5vZ-0000jN-M8@stardust.g4.wien.funkfeuer.at> <CA+E=qVdHOtebR6xjpwTY_Whp0cHLtv82YULmxLPSEzdLN9TnVg@mail.gmail.com>
+ <36e60078-7dd5-9c07-ffa1-6092d8c70fa8@arm.com> <CA+E=qVeAR4AFN99ZVy8EZLW6p_8ucTewOdMis37wnpV3DObaGg@mail.gmail.com>
+ <20190807115614.phm7sbyae6yajkug@flea> <CA+E=qVdh3MHMsEC9XKe5-7O8fGTHFh76WLOgVf+PZPv7c4JE9w@mail.gmail.com>
+ <20190808162628.pthvy3tgf3naj76s@flea>
+In-Reply-To: <20190808162628.pthvy3tgf3naj76s@flea>
+From:   Vasily Khoruzhick <anarsoul@gmail.com>
+Date:   Thu, 8 Aug 2019 12:59:07 -0700
+Message-ID: <CA+E=qVeiWoRGn05HpMzx_5yidit4GM18tBrziW5MBo00f_-PKQ@mail.gmail.com>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
+To:     Maxime Ripard <maxime.ripard@bootlin.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        "Jared D . McNeill" <jmcneill@netbsd.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, Aug 8, 2019 at 9:26 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+>
+> On Wed, Aug 07, 2019 at 10:36:08AM -0700, Vasily Khoruzhick wrote:
+> > On Wed, Aug 7, 2019 at 4:56 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > >
+> > > On Tue, Aug 06, 2019 at 07:39:26PM -0700, Vasily Khoruzhick wrote:
+> > > > On Tue, Aug 6, 2019 at 2:14 PM Robin Murphy <robin.murphy@arm.com> wrote:
+> > > > >
+> > > > > On 2019-08-06 9:52 pm, Vasily Khoruzhick wrote:
+> > > > > > On Tue, Aug 6, 2019 at 1:19 PM Harald Geyer <harald@ccbib.org> wrote:
+> > > > > >>
+> > > > > >> Vasily Khoruzhick writes:
+> > > > > >>> On Tue, Aug 6, 2019 at 7:35 AM Robin Murphy <robin.murphy@arm.com> wrote:
+> > > > > >>>>
+> > > > > >>>> On 06/08/2019 15:01, Vasily Khoruzhick wrote:
+> > > > > >>>>> Looks like PMU in A64 is broken, it generates no interrupts at all and
+> > > > > >>>>> as result 'perf top' shows no events.
+> > > > > >>>>
+> > > > > >>>> Does something like 'perf stat sleep 1' at least count cycles correctly?
+> > > > > >>>> It could well just be that the interrupt numbers are wrong...
+> > > > > >>>
+> > > > > >>> Looks like it does, at least result looks plausible:
+> > > > > >>
+> > > > > >> I'm using perf stat regularly (cache benchmarks) and it works fine.
+> > > > > >>
+> > > > > >> Unfortunately I wasn't aware that perf stat is a poor test for
+> > > > > >> the interrupts part of the node, when I added it. So I'm not too
+> > > > > >> surprised I got it wrong.
+> > > > > >>
+> > > > > >> However, it would be unfortunate if the node got removed completely,
+> > > > > >> because perf stat would not work anymore. Maybe we can only remove
+> > > > > >> the interrupts or just fix them even if the HW doesn't work?
+> > > > > >
+> > > > > > I'm not familiar with PMU driver. Is it possible to get it working
+> > > > > > without interrupts?
+> > > > >
+> > > > > Yup - you get a grumpy message from the driver, it will refuse sampling
+> > > > > events (the ones which weren't working anyway), and if you measure
+> > > > > anything for long enough that a counter overflows you'll get wonky
+> > > > > results. But for counting hardware events over relatively short periods
+> > > > > it'll still do the job.
+> > > >
+> > > > I tried to drop interrupts completely from the node but 'perf top' is
+> > > > still broken. Though now in different way: it complains "cycles: PMU
+> > > > Hardware doesn't support sampling/overflow-interrupts. Try 'perf
+> > > > stat'"
+> > >
+> > > I have no idea if that's the culprit, but what is the state of the
+> > > 0x09010000 register?
+> >
+> > What register is that and how do I check it?
+>
+> It's in the CPUX Configuration block, and the bits are labelled as CPU
+> Debug Reset.
+>
+> And if you have busybox, you can use devmem.
 
---kunpHVz1op/+13PW
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+CPUX configuration block is at 0x01700000 according to A64 user
+manual, and particular register you're interested in is at 0x01700080,
+its value is 0x1110110F.
 
-On Thu, Aug 08, 2019 at 05:48:56PM +0100, Srinivas Kandagatla wrote:
-> On 08/08/2019 16:58, Pierre-Louis Bossart wrote:
+Bits 16-19 are not defined in user manual and are not set.
 
-> > > +- sdw-instance-id: Should be ('Instance ID') from SoundWire
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 Enumeration Address. Instance ID is for =
-the cases
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 where multiple Devices of the same type =
-or Class
-> > > +=A0=A0=A0=A0=A0=A0=A0=A0=A0 are attached to the bus.
-
-> > so it is actually required if you have a single Slave device? Or is it
-> > only required when you have more than 1 device of the same type?
-
-> This is mandatory for any slave device!
-
-If it's mandatory the wording is a bit unclear.  How about something
-like:
-
-	Should be ('Instance ID') from the SoundWire Enumeration
-	Address.  This must always be provided, if multiple devices
-	with the same type or class or attached to the bus each
-	instance must have a distinct value.
-
---kunpHVz1op/+13PW
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1MfW8ACgkQJNaLcl1U
-h9BC6Qf+MpoIdX8BiE+fy8vg1a5ZsWCGWK/V6LMgyk7vx2P8oWJylUyIG9xTvecn
-zrFjIwW5t44x8P5ycsmXZCqG8JCU0/qPSQ9Aw4qC1jesy3Ue4Lwtmu0qH5gvFsSg
-CKW/bidKNFSCg3t39fddxeawm+GiutGVwnCgnVtkH9tmcONusdDfnDdOLQiQUQa1
-CsmQIbGs/BEuF6LF11Ho58rf7UHvuu4oF9mrKszQWdZKTkhNPfjgqy4n8/scVObd
-TAbUUo0uixBk2YmmcxrwtF1V9QGPyifPM8LsHlXlxO3ZSH+/fARzkRoBYQlbwRju
-aGWXSh12SOwhelEkD1Q19DG25zsCsQ==
-=Nsvw
------END PGP SIGNATURE-----
-
---kunpHVz1op/+13PW--
+> Maxime
+>
+> --
+> Maxime Ripard, Bootlin
+> Embedded Linux and Kernel engineering
+> https://bootlin.com
