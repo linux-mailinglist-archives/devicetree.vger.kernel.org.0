@@ -2,81 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 836A9866AC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 18:09:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 46D3E866AF
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 18:10:02 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1733258AbfHHQJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 12:09:55 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:37761 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732662AbfHHQJy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 12:09:54 -0400
-Received: by mail-pf1-f194.google.com with SMTP id 19so44345238pfa.4;
-        Thu, 08 Aug 2019 09:09:54 -0700 (PDT)
+        id S2404117AbfHHQKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 12:10:01 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:39599 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732662AbfHHQKB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 12:10:01 -0400
+Received: by mail-pl1-f193.google.com with SMTP id b7so43789923pls.6;
+        Thu, 08 Aug 2019 09:10:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=Ixs9LC/3zHycCEwdS0uClw8qkvA1XtxWo0xApcxIKeE=;
-        b=Ipcnomnw1fA9e3yDD0nP25KinbS/zFHRZf01ATCXFDWnS0nbCeRDLETiFooCm4vNmh
-         aJxTbUB1hLPIRPLNrHeprr7VohW9/Jg72WhviDZzHLbJnE913YhzPb4prCloIfwctBbB
-         Mo6x+DVM2tOm4848ewle86bSdSiEMlbUp/BSdGTDI7tFoMWzPLtzY1IoAYc1O8AaHobb
-         OILXtQMP8njZKdjPYpeeTtY1+/ijHSxwl0+eNFiDfG/IFANktY2Fuo6vXxJ72wZDrwWx
-         BTT2I+Bwv4xN8T7eHsD32BHb4Vc9AQ6N02QLM5oFJbD+7sBrXNIKJE+fmesJE4Ao2DE9
-         5g7A==
+        bh=akVDmQLmyHVu/cQZFdUEQUlBMCsxiv2Zb1QwNgfTWp0=;
+        b=pvcFYY1Od9wReDUvHuU8dmSpig5/HjS1DYUd9dxkg8D21MWHGHWIqw+16Ce4JkZbxx
+         gBS9D1Tk8YZRyJbRl6J5wuteVd96GPqFNBoWzNtCDrBwEYTeYjRWcHu6gTRjKQj4gOc9
+         cOUycclyocPZLYfOw6j7GvYD4yJ0IrD4JtJfQ8GMhOw9BBDcNYVjmW8GvSuyJgQ8RZv+
+         /HJzN3Fe8VfDHQygWOGIe7NaxoExcqqDXs3aCn89Brou1gceCZmXrii+flx01ahASWzG
+         w81fdGupsOx3VVT6KbxY1s1ZMNmBe9WjxoVKpDT4ZABQOk0rVvdmgKvIyCgAVWtiIfc+
+         pb+w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=Ixs9LC/3zHycCEwdS0uClw8qkvA1XtxWo0xApcxIKeE=;
-        b=pWGn2JRDLnZ1n7eH9m/bHohqND0tkDTn2lw1pJl2g9suIR1V8IUqETaAMlfxlr66fi
-         9Qo9O8o8mtS9GIcHRjAhXKctWxfCihQaOBhrsOSo+HX3cV0T+m6RM9hy1ZmEIL9jeKbu
-         aErN9sqTlKLR7KS+Qf0Bg3GbvizyIKbZTFySYgHssTMToUZkvPNa1Ezk7QO+ccbFm1q9
-         cKwDbOr0471AXo65BMiw2aO5iHiT1/5kLl/rMUQiiTq8pT4lfgQWoSFKVDPi+u+h3rNv
-         40ZgoyRARN85ePX+7FTOS+PUoDSfp9l94Kjz3uJ1I06vOcl06VYCd2m9bC18AVt3WhMJ
-         xk5w==
-X-Gm-Message-State: APjAAAWG5kd4JvgCbQ11hbDE4cmfHHJCXHxu5pPq9ZbV8X6GEIreog2o
-        drR6bL1e0fONRu/m1VEtgIx0XAG8
-X-Google-Smtp-Source: APXvYqxtbRe/Wkfso0tvKa9FTBW3LS6O8vGQQoPLIygjOX9kmcIqyZRvL2v90isUMuTmaQKRPxdARQ==
-X-Received: by 2002:a17:90a:8d0c:: with SMTP id c12mr4679212pjo.140.1565280594061;
-        Thu, 08 Aug 2019 09:09:54 -0700 (PDT)
+        bh=akVDmQLmyHVu/cQZFdUEQUlBMCsxiv2Zb1QwNgfTWp0=;
+        b=ngKDj6DrQVJlCY6hdejY4i3I6xW3VRLBd2pN1mf/Ayg3EUJvTl9IzoMvnHNKZZLg2H
+         uSjHqYg1Sr3WFuG5RWkkgnYKsvo7owUGw66eBFKVAQJAM6zMYAgc5T6CtGH8EXMpMxF8
+         1T3dCLhqitFzI/Wx/070Zu8b7GsTgmZEWvYk1GNF7CQ9f2UatxngxowT7/+Wz7KVXkGq
+         +5uK30j2S+ypxYsIxBU1VbMLHVQZVdP9cUDTcqsR8i0YL2CGgSBdov2rheP2IJoDSGfR
+         r0Z4nIpJp1EN89+huTuAu8zLWnJ1a+NgwKErLgo6LYACSFjZiCy5I3TRo5litaR97MOv
+         f9vA==
+X-Gm-Message-State: APjAAAXipt4VF5MJyu3ymnD19+Hvh932L2Oy1pDRixOA8UA9VhH6HJgh
+        +W9JukHR5iO3npBh52l1bM4=
+X-Google-Smtp-Source: APXvYqzto2FY24twGWc6FKcHSuYLjATrFTxhX5jDOiNLzoC7sG+UZke5aXwynrLm9PvF9kqjrWjWWg==
+X-Received: by 2002:a17:902:5985:: with SMTP id p5mr14295703pli.177.1565280600398;
+        Thu, 08 Aug 2019 09:10:00 -0700 (PDT)
 Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
-        by smtp.gmail.com with ESMTPSA id v12sm82918564pgr.86.2019.08.08.09.09.53
+        by smtp.gmail.com with ESMTPSA id g2sm115493792pfb.95.2019.08.08.09.09.59
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 08 Aug 2019 09:09:53 -0700 (PDT)
-Subject: Re: [PATCH] of/platform: fix compilation warning of
- of_link_property()
-To:     Anders Roxell <anders.roxell@linaro.org>, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-References: <20190808141818.22724-1-anders.roxell@linaro.org>
+        Thu, 08 Aug 2019 09:09:59 -0700 (PDT)
+Subject: Re: [PATCH] of/platform: Clean up a return type in of_link_property()
+To:     Dan Carpenter <dan.carpenter@oracle.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Saravana Kannan <saravanak@google.com>
+Cc:     Anton Vorontsov <anton@enomsg.org>,
+        Colin Cross <ccross@android.com>,
+        Tony Luck <tony.luck@intel.com>, devicetree@vger.kernel.org,
+        kernel-janitors@vger.kernel.org
+References: <20190808103207.GA30506@mwanda>
 From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <a4c12db8-bac3-0093-1f3f-0bd325acb03a@gmail.com>
-Date:   Thu, 8 Aug 2019 09:09:52 -0700
+Message-ID: <b5afe4e9-db49-f50c-eb03-5d300a72e88b@gmail.com>
+Date:   Thu, 8 Aug 2019 09:09:58 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190808141818.22724-1-anders.roxell@linaro.org>
+In-Reply-To: <20190808103207.GA30506@mwanda>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/8/19 7:18 AM, Anders Roxell wrote:
-> GCC warns that a negative integer can be returned but the
-> of_link_property() function should return a boolean.
-> 
-> ../drivers/of/platform.c: In function ‘of_link_property’:
-> ../drivers/of/platform.c:650:18: warning: ?: using integer constants in boolean context [-Wint-in-bool-context]
->   return done ? 0 : -ENODEV;
-> 
-> Rework so function of_link_property() return an integer instead of a boolean.
+On 8/8/19 3:32 AM, Dan Carpenter wrote:
+> This function is supposed to return zero on success and negative
+> error codes on failure but currently it returns true on failure.  The
+> caller only checks for zero and non-zero so this mixup doesn't cause any
+> runtime issues.
 > 
 > Fixes: 690ff7881b26 ("of/platform: Add functional dependency link from DT bindings")
-> Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
+> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
 > ---
 >  drivers/of/platform.c | 2 +-
 >  1 file changed, 1 insertion(+), 1 deletion(-)
@@ -96,7 +96,8 @@ On 8/8/19 7:18 AM, Anders Roxell wrote:
 >  	struct device_node *phandle;
 > 
 
-Hi Anders,
+Hi Dan,
+
 
 Thanks for catching this.
 
