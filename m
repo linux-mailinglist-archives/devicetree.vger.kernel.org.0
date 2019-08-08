@@ -2,144 +2,118 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 489A6868C9
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 20:31:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 864E9868E2
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 20:39:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732344AbfHHSbR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 14:31:17 -0400
-Received: from vern.gendns.com ([98.142.107.122]:43280 "EHLO vern.gendns.com"
+        id S1729925AbfHHSjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 14:39:40 -0400
+Received: from mout.gmx.net ([212.227.15.18]:49593 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730768AbfHHSbR (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Aug 2019 14:31:17 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=lechnology.com; s=default; h=Content-Transfer-Encoding:Content-Type:
-        In-Reply-To:MIME-Version:Date:Message-ID:References:Cc:To:From:Subject:Sender
-        :Reply-To:Content-ID:Content-Description:Resent-Date:Resent-From:
-        Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:List-Help:
-        List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-        bh=k+1f28Co3TjdHmZl1rlhm+kOz4AR49O/Mpi9garM/o8=; b=T253WssJdV+B1/qYDP8IDrHEMd
-        Mc6yBdZbZIQqgPGnOIeJ5G8d2lXC+B4pkxwIKQBHZ/6lB8RIVb/++nLJIKkLcmLIiKfBKnAiiN/fd
-        pY/VaBNVxtXkW7dCp0DqLrSXFnPkDCmJNp25WI5fyRsJuRtqUmdRltBJI8eONdf6OKoEl3SN1HrgP
-        dly1x9y4ewxybRxSAacJOJCZgDpEVW1HjLiyuVJwX4wjEikHSOx6FPkuzzS87a8agpEMSkYn1BQym
-        a6lXtn/oKyVemLh8uZhlEcfHeNuznzzmi1imzw0qNPkzBySo/iRG2EOtBH0O6I87k8k4yzso9YDg5
-        3ZqsCAdg==;
-Received: from 108-198-5-147.lightspeed.okcbok.sbcglobal.net ([108.198.5.147]:34972 helo=[192.168.0.134])
-        by vern.gendns.com with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
-        (Exim 4.92)
-        (envelope-from <david@lechnology.com>)
-        id 1hvnBs-0001Fi-VV; Thu, 08 Aug 2019 14:31:09 -0400
-Subject: Re: [PATCH v2 4/6] irqchip/irq-pruss-intc: Add helper functions to
- configure internal mapping
-From:   David Lechner <david@lechnology.com>
-To:     Suman Anna <s-anna@ti.com>, Marc Zyngier <maz@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Jason Cooper <jason@lakedaemon.net>
-Cc:     Rob Herring <robh+dt@kernel.org>, Tony Lindgren <tony@atomide.com>,
-        "Andrew F. Davis" <afd@ti.com>, Roger Quadros <rogerq@ti.com>,
-        Lokesh Vutla <lokeshvutla@ti.com>,
-        Grygorii Strashko <grygorii.strashko@ti.com>,
-        Sekhar Nori <nsekhar@ti.com>,
-        Murali Karicheri <m-karicheri2@ti.com>,
-        devicetree@vger.kernel.org, linux-omap@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190731224149.11153-1-s-anna@ti.com>
- <20190731224149.11153-5-s-anna@ti.com>
- <1a63eb50-7c5c-eb3d-3cbe-bd1cc59ce3fe@kernel.org>
- <89abc27f-5d02-a8ce-df0e-b185c2a647cd@ti.com>
- <1ac233f6-f3a3-6cec-9ad2-49e985fdfaca@lechnology.com>
- <6c17875e-496d-1277-278f-239d3a9d8ca2@ti.com>
- <124b03b8-f8e7-682b-8767-13a739329da2@lechnology.com>
-Message-ID: <5a81f82a-2cba-7ec5-ced2-714516319d6a@lechnology.com>
-Date:   Thu, 8 Aug 2019 13:31:06 -0500
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        id S1725535AbfHHSjj (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Aug 2019 14:39:39 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1565289574;
+        bh=dGpkAMtNoDqZDa62BxxMC+N7AToenRiNkGltehKgUbo=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=TV/968eAT82gq65z+zwF7s8khtXqjIa89WdeH9QNm45glqhDomOVjkNxApY1d4JsT
+         Rzw5L570mRa//mMcJWkipW75qELkXI5UBxlEfOK+uoiYH+++Pkx5yIUnYt6UtC1Yni
+         IKTq9gcAkkoi7UJimVQ75NEpOf87i37zTofpbaTU=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([109.90.233.87]) by mail.gmx.com (mrgmx003
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 0MUoiS-1hnzo13sFQ-00YCm1; Thu, 08
+ Aug 2019 20:39:34 +0200
+Date:   Thu, 8 Aug 2019 20:39:24 +0200
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: rn5t618: Document optional property
+ system-power-controller
+Message-ID: <20190808183924.GB1966@latitude>
+References: <20190129135917.29521-1-j.neuschaefer@gmx.net>
+ <20190201092411.GG783@dell>
 MIME-Version: 1.0
-In-Reply-To: <124b03b8-f8e7-682b-8767-13a739329da2@lechnology.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-AntiAbuse: This header was added to track abuse, please include it with any abuse report
-X-AntiAbuse: Primary Hostname - vern.gendns.com
-X-AntiAbuse: Original Domain - vger.kernel.org
-X-AntiAbuse: Originator/Caller UID/GID - [47 12] / [47 12]
-X-AntiAbuse: Sender Address Domain - lechnology.com
-X-Get-Message-Sender-Via: vern.gendns.com: authenticated_id: davidmain+lechnology.com/only user confirmed/virtual account not confirmed
-X-Authenticated-Sender: vern.gendns.com: davidmain@lechnology.com
-X-Source: 
-X-Source-Args: 
-X-Source-Dir: 
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="ftEhullJWpWg/VHq"
+Content-Disposition: inline
+In-Reply-To: <20190201092411.GG783@dell>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Provags-ID: V03:K1:UjmVhOwYxfTuMNi/1a/JFrncIqEzSeLdJ3cSQi8tXhDD4v/X9z+
+ K2kM6jPdFh6Yo+tF3oIjy4adnxjako9At3/c5h4LALZli1pE2kLEPbqrZ4WqXIbCXjDSmG2
+ MPeHZrHpLVU3Rv4vEsfcJnATFpq0bLKjJfer35e6moDxjGS+DyWc587eWeSnOvil9VAT2c/
+ Baas2YlAaaw+6LYzX5vTg==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:EiXht/wTFac=:XkMMK69RgaTsYZqvxxjhK/
+ Al9pzKUVL3/xdQGP5cUODLK7702G2MSfdsj9iEU8LfKV46xu2uacrvAWs86OBFJK4zmmXz+dy
+ je7g8Oosst/sSS87mqPxasUNzE/AQ8WofTOQHObVUGP17bkwYPK1vwcohc/GGqYH/S1xBN3wJ
+ AGXRAKkx0j5uowuq2/uHMPh5tEsF9zxWEW9iHD3CcTIQ9wyHvU4q+LA6QbyKq47JkaDWpNbtM
+ nho7DOMuyTBLvn3cQUCBze3eb0h4kf7kCfibRlLo1ItadGJGXHLxvtm3CR2nAd+2ZWrb5kvaH
+ g1RuMh1qabvbOlLElolK2us6RMdk0CgqRQYCNG4OWLmS+GlLZ8imUWnudqIHDhclYfNSGhSpW
+ RwmDoWSd2SWsutw2wraIGbaGokQrRNQEV0Fpc06WwVvewXv9+yyc7V8VlwvFL2vXCx0CU+wkz
+ UjvEF7DbeA800tJ/FgNfyjSI37TP9BUglDs7XO5VqVfuDhmugemMyBKEdkyKVr7OghxnLZVcV
+ EFOuRQmk2EeN2arp0hHLXHmkVvYLNP3BC0Pm2bSnjqNhvLajJJc3YlA38yT8dp4o4F8ljwRbT
+ cFUfme6fVl12WxwSln7YjAbMDiqgtZ7x5MkZZe1ceoStclO5qFtOuwDiayfvhBmndpKY2JHMU
+ WFICUu9/9c6dRc4FmALZQD7bCt2l5RVwZ9l1uWNiHhMEhg1DJ0Bn8lrEFrlM+uo1LtqPf2pSa
+ +B5oPiEu5ZkaSCeXRf2cU1zgooTEK/y+IlpcYC1OpolaprXToMt4jU1SSY1Z34Ai1Erqshkff
+ PGN+JTJZYKH2byPmAAZUon2rvCneaMG2mG2CmqSNrO47MbvhnfmzZShF4LBAhQXorKr4AkAPr
+ 53onThJU3E/TSPBzvXHpstfd8HwzCsMpSRI4Av92LMn4ITku8T/x+VCUxI5LZZffZ4QtBcqHD
+ P2cpip2ZusBfb6Hg70Z809yWJ/uXMsoP0wJZGigA0QrdAK750IsUZSqvHCE3MD92wDnWMDCUD
+ 58RJEDLQbw23sDmca6X1OMMZh8iyG/hkw8iGUJoy87yuxD1pZOaAnGTi82CuHDPFeqpgSonbs
+ K5tM3ZorHz+dMkYXcy5ku3WCyzAAF4oYWZyYxaixv3/fD7mAp8BW1eGOw==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/8/19 12:09 PM, David Lechner wrote:
-> 
-> Then we can provide a vendor resource hook in the remoteproc driver to handle
-> these resources:
-> 
-> static int ti_pru_rproc_handle_rsc(struct rproc *rproc, u32 rsc_type, void *rsc,
->                     int offset, int avail)
-> {
->      struct ti_pru_data *pru = rproc->priv;
->      struct irq_fwspec fwspec;
->      unsigned int virq;
-> 
->      switch (rsc_type) {
->      case TI_PRU_VENDOR_RESOURCE_IRQ:
->      {
->          struct ti_pru_vendor_resource_irq *rsc_irq = rsc;
-> 
->          fwspec.fwnode = pru->intc_fwnode;
->          fwspec.param[0] = le32_to_cpu(rsc_irq->event);
->          fwspec.param[1] = le32_to_cpu(rsc_irq->channel);
->          fwspec.param[2] = le32_to_cpu(rsc_irq->host);
->          fwspec.param[3] = le32_to_cpu(rsc_irq->domain);
->          fwspec.param_count = 4;
->      }
->          break;
->      case TI_PRU_VENDOR_RESOURCE_IRQ2:
->      {
->          struct ti_pru_vendor_resource_irq2 *rsc_irq2 = rsc;
-> 
->          fwspec.fwnode = pru->intc_fwnode;
->          fwspec.param[0] = le32_to_cpu(rsc_irq2->event);
->          fwspec.param[1] = le32_to_cpu(rsc_irq2->evt_sel);
->          fwspec.param[2] = le32_to_cpu(rsc_irq2->channel);
->          fwspec.param[3] = le32_to_cpu(rsc_irq2->host);
->          fwspec.param[4] = le32_to_cpu(rsc_irq2->domain);
->          fwspec.param_count = 5;
->          break;
->      }
->      default:
->          return RSC_IGNORED;
->      }
-> 
->      virq = irq_create_fwspec_mapping(&fwspec);
->      if (!virq)
->          return -EINVAL;
-> 
->      /* TODO: save virq (and other metadata) for later use */
-> 
->      return RSC_HANDLED;
-> }
-> 
-> static const struct rproc_ops ti_pru_rproc_ops = {
->      .start = ti_pru_rproc_start,
->      .stop = ti_pru_rproc_stop,
->      .kick = ti_pru_rproc_kick,
->      .da_to_va = ti_pru_rproc_da_to_va,
->      .handle_rsc = ti_pru_rproc_handle_rsc,
-> };
-> 
 
-After re-reading some of the previous discussions, it sounds like
-we wouldn't want to always map every IRQ in the firmware resource
-table.
+--ftEhullJWpWg/VHq
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-In that case, we could implement the rproc_ops parse_fw callback
-instead. All firmware nodes could be collected (from both the
-firmware resource table and device tree) and the remoteproc driver
-could decide which ones need to be mapped and which ones don't.
-Then it could call irq_create_fwspec_mapping() only the nodes
-that need to be mapped based on the current application.
+On Fri, Feb 01, 2019 at 09:24:11AM +0000, Lee Jones wrote:
+> On Tue, 29 Jan 2019, Jonathan Neusch=C3=A4fer wrote:
+>=20
+> > The RN5T618 family of PMICs can be used as system management
+> > controllers, in which case they handle poweroff and restart. Document
+> > this capability by referring to the corresponding generic DT binding.
+> >=20
+> > Signed-off-by: Jonathan Neusch=C3=A4fer <j.neuschaefer@gmx.net>
+> > ---
+> >  Documentation/devicetree/bindings/mfd/rn5t618.txt | 5 +++++
+> >  1 file changed, 5 insertions(+)
+>=20
+> Applied, thanks.
+
+Hi,
+
+apparently this patch got lost somehow (I can't find it in mainline or
+-next). Should I resend it?
+
+
+Thanks
+Jonathan Neusch=C3=A4fer
+
+--ftEhullJWpWg/VHq
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl1MbFMACgkQCDBEmo7z
+X9teow/7BstSO97Sl8F6BD6eFHTwI0a/YAhcZlXYyQ11Rvt/a9JFhEE+b9oDaFuc
+MaLE3wXSEcx1Ssh8xPhrUzpPsQ8MWV83f1roR6jU0lwUYkjdWm4Far8BSUi5ilmz
+BVPeBOlWgRwoyMEjMojIfYLuvhFm2iBvTNbRyU99h7tMF99n4kor07zu/zaQY+fX
+8hH1/o4TY19vMgMIK/OQjNAYJHQBoJbX/RrICvBq/QB74nxv/XmgICv2eoI1Tkup
+Jf/A6IuTdlhUjGxn1UYwKFfsilMYrLMHYb2l7Zsb6sVYlly3vZjrgBwHsmQWQaYQ
+9aKqaK2x3rb1GMfYKhMIHh+4vN2qjJJZeNHn34ut3CHGVhkI08o2lPk5d3DdeHFC
+ctl6EoCtb9cGpDBUQKdwZc838tB9Tt5Qdn3ixNknpc17M2rhi/XqxJgjwRmOOC2M
+dl2rEh2Ryk4f0mkII5Eo9MoPXimv1fB+rTY5LUFFa91n1rBRYSD6Ko+TvHIpNQDG
+Beyx3ol41HSnSqYrfscl2plPZimIQq53bHfKaRQq094Ph/YqIRPtte1jZo/qRnns
+6LOF3YBGt7M07VKtSjUKm4zM6mFj2oxD7YE1T/9jq05bxwFSFp5oi+3wmRJ+oENx
+f2Ul03iVlXXLBR+W1igbzv09+KAiMeFc8zmkxZ+tKvTLOXNAm5Q=
+=nKs6
+-----END PGP SIGNATURE-----
+
+--ftEhullJWpWg/VHq--
