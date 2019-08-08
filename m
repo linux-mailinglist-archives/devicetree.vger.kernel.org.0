@@ -2,143 +2,182 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3FCE7866D8
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 18:20:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2FB0E866DC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 18:20:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732487AbfHHQUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 12:20:08 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:37612 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730291AbfHHQUH (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 12:20:07 -0400
-Received: by mail-pf1-f195.google.com with SMTP id 19so44359863pfa.4
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 09:20:07 -0700 (PDT)
+        id S1728825AbfHHQUO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 12:20:14 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:40039 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732375AbfHHQUO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 12:20:14 -0400
+Received: by mail-wm1-f65.google.com with SMTP id v19so2996365wmj.5
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 09:20:12 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=message-id:mime-version:content-transfer-encoding:in-reply-to
-         :references:subject:from:cc:to:user-agent:date;
-        bh=rpT1/n0MtDKR55gc7Xe/1ERiGiwTe4vZMPU9Bfy10FI=;
-        b=Y7o7tDsMydMyUuzGRnboQKe/5DZGF0GAAcTEKQ3TnqBW9YBJW+NKiPXSdtZCCYObN8
-         AtJrE90vxGnVWdwPAxzaJhl9IPp4pUP4BUo49u+TH7K9mJ7N7xJ5Ne1r/mTSLgfDqOqe
-         KMeAzvYaE5+sipQTmnJqT9BRA14XUcjFtqt14=
+        d=linaro.org; s=google;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=1NYy6jhNv5L/j22hMt/7zGYwXYT4XYZjeIveAA57XzM=;
+        b=QmimsXUFgnp+EwH0ImQpoB5uS3ZkI7FvT4yL2KLH9G9axMEZLL7ehS21TM+wpNWR1D
+         QdLyOe5botiNS8o/1uOh1WQe5a3XFWbKPbnOncXMjiT8fsIpzsEAOJftnlnoADdKpIzR
+         PqYe5WQTrizr3EVyaRffq4tmjHPk2qjxECNHW6lYdT5ANfyK6rYSv6hhUu4fUGP6tzbI
+         SkYx2AOWEEl1ggDl/d6bVSq4aTWA75o75IIuXYGksay4QTGsKBLXgPavWW515eFBAFqQ
+         6mGDs4jziP6mttXaj+FIUFDjXzh6aS2S+jzPzKtbpkQ3loe9GMeEXmlYhpo+95ipGm5S
+         Zbgw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:message-id:mime-version
-         :content-transfer-encoding:in-reply-to:references:subject:from:cc:to
-         :user-agent:date;
-        bh=rpT1/n0MtDKR55gc7Xe/1ERiGiwTe4vZMPU9Bfy10FI=;
-        b=JJRMVOq/xFxEGXz1Fdkn+hxzc1Yi/OprF4EDDdcW+ACq0i+jmkESmTcjvoSvg79N7c
-         XZWr94XhoECtJ+G3td0nxGorisSLghEl1XLElggaqovvE7mmf/YxPA77iSpsJAYmUenV
-         wrGMClNLLshHXlOBAsOKd0CfgSLaL9EizWSBgKQ8sZcFy6vfkG8u56kXIyU4x3SxJ0el
-         VK+AYuSU2A7sMQ14IJoJP2rfsOcD72xLFOkcHnUwExOasIHa7auhmELbGNBl3ya2nekL
-         r3H+CmovQ4EFHKtCjkFmOxB6KXLqsJU4ILfv2Qh+nTEmipg0SO9fqe74RGNgHXcUfrTV
-         DXFQ==
-X-Gm-Message-State: APjAAAVlpdW7hibm1bXMZgh0Ub2L//Z0uhumCoIHvtPljtNgZ+ngQvEk
-        g8s3IP2pas0KJ+ka/y9oNRlY/A==
-X-Google-Smtp-Source: APXvYqwrRIJFaN3/EOnl4mURCxYQeFmoB2bV4p9L6PhJ6mv+tvNN2NH1QgEbMDZXoHTTiaqtDYC/uQ==
-X-Received: by 2002:a17:90a:c58e:: with SMTP id l14mr4875532pjt.104.1565281206991;
-        Thu, 08 Aug 2019 09:20:06 -0700 (PDT)
-Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
-        by smtp.gmail.com with ESMTPSA id j6sm3065998pjd.19.2019.08.08.09.20.06
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 08 Aug 2019 09:20:06 -0700 (PDT)
-Message-ID: <5d4c4bb6.1c69fb81.db640.7518@mx.google.com>
-Content-Type: text/plain; charset="utf-8"
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=1NYy6jhNv5L/j22hMt/7zGYwXYT4XYZjeIveAA57XzM=;
+        b=jMBrbPiXwFVEriyjA2SPF79WFpotGePOkxQVbRD9dWTNtvh8jkQLgQM6XWJmiWQtV5
+         WG2OQdp6nqklGj2MiksGYkSZ8uKbSUb3J5IJXzasf9DzKUTE5tXEO2P5NTCohY7wR9vq
+         29h89oUda6Uuh8tDaGs+T3DnSRK8XvgcUbNTwuJ/Vu4bymFfDzev5stNyb1Ezhf8ABfY
+         +eaYVs6fSBYRUnSmJy5Mw5lqgtmWGoQ7BGRLKCZZZ7pkjvUFYeMuDSptxbOUxo2u70Oj
+         Vb3hjPd1YGQAWNv2MypIqgga7iB9XUBJOnbGmpmNPb8Ch6peofHrivr0zJKDNmT8CIzR
+         iKPA==
+X-Gm-Message-State: APjAAAUXLpeW/dZObRpiMGL7Ps7PyQ13LuVxMKILe5eLDmLgJa2JAvIy
+        amDNWRxMBzY772UE0hc8c2oH+A==
+X-Google-Smtp-Source: APXvYqzlqUyMtb48QP37+XtZ8ncJsns5sI6OoNYtFyW+My/DiEv3ApO+4HgmoJKKF8gwnz1Y/7bNuQ==
+X-Received: by 2002:a1c:f415:: with SMTP id z21mr5496582wma.34.1565281212220;
+        Thu, 08 Aug 2019 09:20:12 -0700 (PDT)
+Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.googlemail.com with ESMTPSA id t140sm6315315wmt.0.2019.08.08.09.20.10
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Aug 2019 09:20:11 -0700 (PDT)
+Subject: Re: [alsa-devel] [PATCH v2 4/4] ASoC: codecs: add wsa881x amplifier
+ support
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        vkoul@kernel.org, broonie@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, linux-kernel@vger.kernel.org,
+        plai@codeaurora.org, lgirdwood@gmail.com, robh+dt@kernel.org
+References: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
+ <20190808144504.24823-5-srinivas.kandagatla@linaro.org>
+ <3ad15652-9d6c-11e4-7cc3-0f076c6841bb@linux.intel.com>
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Message-ID: <32516aae-8a43-6a74-c564-92dea8ff6e53@linaro.org>
+Date:   Thu, 8 Aug 2019 17:20:10 +0100
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.6.1
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190808061228.16573-2-mkshah@codeaurora.org>
-References: <20190808061228.16573-1-mkshah@codeaurora.org> <20190808061228.16573-2-mkshah@codeaurora.org>
-Subject: Re: [PATCH 1/2] dt-bindings: Introduce soc sleep stats bindings for Qualcomm SoCs
-From:   Stephen Boyd <swboyd@chromium.org>
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        bjorn.andersson@linaro.org, evgreen@chromium.org,
-        dianders@chromium.org, rnayak@codeaurora.org, ilina@codeaurora.org,
-        lsrao@codeaurora.org, mkshah@codeaurora.org,
-        devicetree@vger.kernel.org,
-        Mahesh Sivasubramanian <msivasub@codeaurora.org>
-To:     Maulik Shah <mkshah@codeaurora.org>, andy.gross@linaro.org,
-        david.brown@linaro.org, linux-arm-msm@vger.kernel.org
-User-Agent: alot/0.8.1
-Date:   Thu, 08 Aug 2019 09:20:04 -0700
+In-Reply-To: <3ad15652-9d6c-11e4-7cc3-0f076c6841bb@linux.intel.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Maulik Shah (2019-08-07 23:12:27)
-> Add device binding documentation for Qualcomm Technology Inc's (QTI)
-> SoC sleep stats driver. The driver is used for displaying SoC sleep
-> statistic maintained by Always On Processor or Resource Power Manager.
->=20
-> Cc: devicetree@vger.kernel.org
-> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
-> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
-> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+Thanks for taking time to review,
 
-Your SoB chain is odd. The author is Mahesh? Otherwise, use the
-Co-Developed-by tag.
+On 08/08/2019 16:18, Pierre-Louis Bossart wrote:
+> 
+>> +/* 4 ports */
+>> +static struct sdw_dpn_prop wsa_sink_dpn_prop[WSA881X_MAX_SWR_PORTS] = {
+>> +    {
+>> +        /* DAC */
+>> +        .num = 1,
+>> +        .type = SDW_DPN_SIMPLE,
+> 
+> IIRC we added the REDUCED type in SoundWire 1.1 to cover the PDM case 
+> with channel packing (or was it grouping) used by Qualcomm. I am not 
+> sure the SIMPLE type works?
+grouping I guess.
 
-> ---
->  .../bindings/soc/qcom/soc-sleep-stats.txt     | 36 +++++++++++++++++++
->  1 file changed, 36 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-=
-stats.txt
->=20
-> diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.t=
-xt b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt
-> new file mode 100644
-> index 000000000000..ee40687ded34
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt
-> @@ -0,0 +1,36 @@
-> +* SoC Sleep Stats
-> +
-> +Always On Processor/Resource Power Manager maintains statistics of the S=
-oC
-> +sleep modes involving lowering or powering down of the backbone rails - =
-Cx
+This is a simplified data port as there is no DPn_OffsetCtrl2 register 
+implemented.
 
-What is a 'backbone' rail?
+Having said below channel count looks incorrect, i should fix that.
 
-> +and Mx and the oscillator clock, XO.
+> 
+>> +        .min_ch = 1,
+>> +        .max_ch = 8,
+>> +        .simple_ch_prep_sm = true,
+>> +    }, {
+>> +        /* COMP */
+>> +        .num = 2,
+>> +        .type = SDW_DPN_SIMPLE,
+>> +        .min_ch = 1,
+>> +        .max_ch = 8,
+>> +        .simple_ch_prep_sm = true,
+>> +    }, {
+>> +        /* BOOST */
+>> +        .num = 3,
+>> +        .type = SDW_DPN_SIMPLE,
+>> +        .min_ch = 1,
+>> +        .max_ch = 8,
+>> +        .simple_ch_prep_sm = true,
+>> +    }, {
+>> +        /* VISENSE */
+>> +        .num = 4,
+>> +        .type = SDW_DPN_SIMPLE,
+>> +        .min_ch = 1,
+>> +        .max_ch = 8,
+>> +        .simple_ch_prep_sm = true,
+>> +    }
+>> +};
+> 
+>> +static int wsa881x_update_status(struct sdw_slave *slave,
+>> +                 enum sdw_slave_status status)
+>> +{
+>> +    struct wsa881x_priv *wsa881x = dev_get_drvdata(&slave->dev);
+>> +
+>> +    if (status == SDW_SLAVE_ATTACHED) {
+> 
+> there is an ambiguity here, the Slave can be attached but as device0 
+> (not enumerated). We should check dev_num > 0
+> 
+Thanks for point that! will add a check!
 
-Drop the comma? XO is the oscillator clock.
+>> +        if (!wsa881x->regmap) {
+>> +            wsa881x->regmap = devm_regmap_init_sdw(slave,
+>> +                               &wsa881x_regmap_config);
+>> +            if (IS_ERR(wsa881x->regmap)) {
+>> +                dev_err(&slave->dev, "regmap_init failed\n");
+>> +                return PTR_ERR(wsa881x->regmap);
+>> +            }
+>> +        }
+>> +
+>> +        return snd_soc_register_component(&slave->dev,
+>> +                          &wsa881x_component_drv,
+>> +                          NULL, 0);
+>> +    } else if (status == SDW_SLAVE_UNATTACHED) {
+>> +        snd_soc_unregister_component(&slave->dev);
+> 
+> the update_status() is supposed to be called based on bus events, it'd 
+> be very odd to register/unregister the component itself dynamically. In 
+> our existing Realtek-based solutions the register_component() is called 
+> in the probe function (and unregister_component() in remove). We do the 
+> inits when the Slave becomes attached but the component is already 
+> registered.
+> 
+looks less intrusive!  I will give that a try!
 
-> +
-> +Statistics includes SoC sleep mode type, number of times low power mode =
-were
-> +entered, time of last entry, time of last exit and accumulated sleep dur=
-ation.
-> +SoC Sleep Stats driver provides sysfs interface to display this informat=
-ion.
+>> +    }
+>> +
+>> +    return 0;
+>> +}
+>> +
+>> +
+>> +static int wsa881x_remove(struct sdw_slave *sdw)
+>> +{
+>> +    return 0;
+>> +}
+>> +
+>> +static const struct sdw_device_id wsa881x_slave_id[] = {
+>> +    SDW_SLAVE_ENTRY(0x0217, 0x2010, 0),
+>> +    {},
+>> +};
+>> +MODULE_DEVICE_TABLE(sdw, wsa881x_slave_id);
+>> +
+>> +static struct sdw_driver wsa881x_codec_driver = {
+>> +    .probe    = wsa881x_probe,
+>> +    .remove = wsa881x_remove,
+> 
+> is this needed since you do nothing in that function?
 
-Can this document be YAML? Then it can be validated.
+yes, it can be removed! will do that in next version.
 
-> +
-> +PROPERTIES
-> +
-> +- compatible:
-> +       Usage: required
-> +       Value type: <string>
-> +       Definition: Should be "qcom,rpmh-sleep-stats" or "qcom,rpm-sleep-=
-stats".
-> +
-> +- reg:
-> +       Usage: required
-> +       Value type: <prop-encoded-array>
-> +       Definition: The base address on the Always On Processor or Resour=
-ce Power
-> +                   Manager from where the stats are read.
-> +
-> +EXAMPLE 1:
-> +
-> +       rpmh_sleep_stats: soc-sleep-stats@c3f0000 {
-> +               compatible =3D "qcom,rpmh-sleep-stats";
-> +               reg =3D <0 0xc3f0000 0 0x400>;
-
-Is this memory region in DDR? Or some specific IMEM location? I wonder
-if it would be better to just have a pointer from the RPM node to this
-memory region and then populate some stats if so.
-
-> +       };
-> +
+--srini
