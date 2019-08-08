@@ -2,198 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 1F36D857BC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 03:43:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B18B857E9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 04:03:01 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389684AbfHHBnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 21:43:41 -0400
-Received: from mailout4.samsung.com ([203.254.224.34]:24044 "EHLO
-        mailout4.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389663AbfHHBnl (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 21:43:41 -0400
-Received: from epcas1p2.samsung.com (unknown [182.195.41.46])
-        by mailout4.samsung.com (KnoxPortal) with ESMTP id 20190808014338epoutp041c9a5879c0e696a544a65930c4aca612~4zyKoCpOt3172131721epoutp04I
-        for <devicetree@vger.kernel.org>; Thu,  8 Aug 2019 01:43:38 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout4.samsung.com 20190808014338epoutp041c9a5879c0e696a544a65930c4aca612~4zyKoCpOt3172131721epoutp04I
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1565228618;
-        bh=g/w4k8k8kjGX3U5NCIJA3IW3tGMmcpA8VH1KgK5s/dM=;
-        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
-        b=HRtD5KtmR8+DT8Gpg6cJtsL84OqbKqKt2+JOOqZP5U2RSO/BBeR4l4wDWNDkMzwLz
-         sa9iUGmTye/l7HuKTLDUvhruRWavmiCK4YKRG2wEgoHd8ThDWO0JzXhClPTDvI1x7a
-         +F5UqRBDId/Ay93+XyHho2jRzPPx5kY7vgLePgr8=
-Received: from epsnrtp6.localdomain (unknown [182.195.42.167]) by
-        epcas1p3.samsung.com (KnoxPortal) with ESMTP id
-        20190808014337epcas1p3fef83b5cd5c8d07f9b88e1a7776f89a2~4zyKDcmkm1702217022epcas1p39;
-        Thu,  8 Aug 2019 01:43:37 +0000 (GMT)
-Received: from epsmges1p4.samsung.com (unknown [182.195.40.156]) by
-        epsnrtp6.localdomain (Postfix) with ESMTP id 463rkH3g2KzMqYkZ; Thu,  8 Aug
-        2019 01:43:35 +0000 (GMT)
-Received: from epcas1p1.samsung.com ( [182.195.41.45]) by
-        epsmges1p4.samsung.com (Symantec Messaging Gateway) with SMTP id
-        99.55.04160.74E7B4D5; Thu,  8 Aug 2019 10:43:35 +0900 (KST)
-Received: from epsmtrp2.samsung.com (unknown [182.195.40.14]) by
-        epcas1p4.samsung.com (KnoxPortal) with ESMTPA id
-        20190808014335epcas1p4808da0fca0ee5e83f3e93fdb5fae0a80~4zyHuKMuV0142801428epcas1p4K;
-        Thu,  8 Aug 2019 01:43:35 +0000 (GMT)
-Received: from epsmgms1p2new.samsung.com (unknown [182.195.42.42]) by
-        epsmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190808014335epsmtrp23ceb36b32893e61da4790576e1185a9e~4zyHsPdDT0126601266epsmtrp2T;
-        Thu,  8 Aug 2019 01:43:35 +0000 (GMT)
-X-AuditID: b6c32a38-b4bff70000001040-67-5d4b7e475deb
-Received: from epsmtip1.samsung.com ( [182.195.34.30]) by
-        epsmgms1p2new.samsung.com (Symantec Messaging Gateway) with SMTP id
-        80.B1.03638.64E7B4D5; Thu,  8 Aug 2019 10:43:35 +0900 (KST)
-Received: from [10.113.221.102] (unknown [10.113.221.102]) by
-        epsmtip1.samsung.com (KnoxPortal) with ESMTPA id
-        20190808014334epsmtip179ac81fd45d6031fde926485f4927413~4zyHc4yRQ1624616246epsmtip1X;
-        Thu,  8 Aug 2019 01:43:34 +0000 (GMT)
-Subject: Re: [PATCH v5 0/4] add coupled regulators for Exynos5422/5800
-To:     k.konieczny@partner.samsung.com
-Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
-        Marek Szyprowski <m.szyprowski@samsung.com>,
-        Krzysztof Kozlowski <krzk@kernel.org>,
-        Kukjin Kim <kgene@kernel.org>,
-        Kyungmin Park <kyungmin.park@samsung.com>,
+        id S1730459AbfHHCDA (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 22:03:00 -0400
+Received: from mail-pf1-f193.google.com ([209.85.210.193]:40499 "EHLO
+        mail-pf1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730433AbfHHCDA (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 22:03:00 -0400
+Received: by mail-pf1-f193.google.com with SMTP id p184so43137467pfp.7;
+        Wed, 07 Aug 2019 19:02:59 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=ILW9Vdo4/bKAEhoIm3wnpsycskjcLO+PgaF3VKWmkK4=;
+        b=YW4dVUVgnjRAchN+hoV8X6LaGtaLjtGTsMvwEZL32lpWw2soWZAfgca/X5fNg0Z+M8
+         HJShnYVIaFONhIcRFuXuhR7NGkVa1ki+mtaliy5+hT/ICjGvGYX1igVzUO0/J5mK8QN5
+         YoKMjyD+eVuSEvlxQQH8i16f74BzP0Sna/x0Xslwk6c/WnHmTWwY9ubP/vl8L2KApbtv
+         P9UKA9bgfk72saimSpzrwtNhpMN72Xl/PEemCXp3Kh9dsydJsglUS2EoKjOcfMR8JMN9
+         cKh2aEn+lfL0LwkLByuTXl0kNLrh+KnlH+5khrUATLleRdyIQyrAugW4VUQf8si9VCEd
+         f6Aw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=ILW9Vdo4/bKAEhoIm3wnpsycskjcLO+PgaF3VKWmkK4=;
+        b=TcqNTfbKV6RTaV51NYvVYp0SlHQYzkKIjCyn/sxgf1Uzq25cKkXJvWUE3jhtvvSVBY
+         dFogEKT51oC/UudGSN8eA4qWkMiW/i4dKmaMU3IxizZ6Tv9qdavSgETzAyY5k3Tnz1Jb
+         OpesXei2Jum56sfo5wKWgnLGFzIbYbOA2U4Q20zh2LQI0SqHFoLjUKwOkQWy5dQ7go1V
+         WDh2TgeCXU7vvjd//yft/CjW6KLV/o4LgUIJ7sA9rVZe0u+uiPhuvekWYExyTSVP3DtZ
+         5Bk/cL9C26eZdkbwRr2uf6r2wEohDoKGojr2cRv+HsteXDHe3jL4FbI17PQ17A4EOR1u
+         Tp1g==
+X-Gm-Message-State: APjAAAWGFh/744g7H0rSnLOq3UfKd6KtMWd5sAdWQE5twoyc6+F6OcCQ
+        BT6u/TpsBu60r3CFLVdf1zpEglgG
+X-Google-Smtp-Source: APXvYqxZ1INY0BSnuJhCIOyxto36qcHcOlLD1gQXF27L7KCnqbj3YUSf8Cf6p2N0/QWqoMr6e1meYw==
+X-Received: by 2002:a62:e417:: with SMTP id r23mr12205293pfh.160.1565229779467;
+        Wed, 07 Aug 2019 19:02:59 -0700 (PDT)
+Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
+        by smtp.gmail.com with ESMTPSA id b3sm109292079pfp.65.2019.08.07.19.02.58
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Wed, 07 Aug 2019 19:02:58 -0700 (PDT)
+Subject: Re: [PATCH v7 0/7] Solve postboot supplier cleanup and optimize probe
+ ordering
+To:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        MyungJoo Ham <myungjoo.ham@samsung.com>,
-        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
-From:   Chanwoo Choi <cw00.choi@samsung.com>
-Organization: Samsung Electronics
-Message-ID: <6888b704-1971-4832-d7b9-092368c797d0@samsung.com>
-Date:   Thu, 8 Aug 2019 10:47:14 +0900
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        David Collins <collinsd@codeaurora.org>,
+        kernel-team@android.com
+References: <20190724001100.133423-1-saravanak@google.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <84338c58-a4e7-a701-4871-f90370d0af49@gmail.com>
+Date:   Wed, 7 Aug 2019 19:02:57 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
-        Thunderbird/60.8.0
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190807133838.14678-1-k.konieczny@partner.samsung.com>
+In-Reply-To: <20190724001100.133423-1-saravanak@google.com>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFrrPJsWRmVeSWpSXmKPExsWy7bCmrq57nXeswetTshYbZ6xntZh/5Byr
-        Rd++/4wW/Y9fM1ucP7+B3eJs0xt2i02Pr7FaXN41h83ic+8RRosZ5/cxWaw9cpfdYun1i0wW
-        txtXsFm8+XGWyaJ17xF2i3/XNrJYbH5wjM1B0GPNvDWMHptWdbJ5bF5S73Hw3R4mj74tqxg9
-        jt/YzuTxeZNcAHtUtk1GamJKapFCal5yfkpmXrqtkndwvHO8qZmBoa6hpYW5kkJeYm6qrZKL
-        T4CuW2YO0AdKCmWJOaVAoYDE4mIlfTubovzSklSFjPziElul1IKUnALLAr3ixNzi0rx0veT8
-        XCtDAwMjU6DChOyM5pbLzAW/JCvmLF/B3sD4V6SLkYNDQsBEYuZxmS5GLg4hgR2MEr8PXWDt
-        YuQEcj4xSixpdINIfGOUmL/8HjNIAqRh1uk2ZojEXkaJT78+MUE47xklOuYcZQSpEhZwk7jS
-        MBGsQ0RAWWLyvelgHcwCl1kkpj2aBLaDTUBLYv+LG2wgNr+AosTVH4/BmnkF7CQen21gAbmP
-        RUBFonlrAEhYVCBC4tODw6wQJYISJ2c+YQGxOQVcJb7unQDWyiwgLnHryXwmCFseqHU22F4J
-        gWPsEg+n7mKFeMFF4sqCO+wQtrDEq+NboGwpic/v9rJB2NUSK08eYYNo7mCU2LL/AlSzscT+
-        pZOZQI5jFtCUWL9LHyKsKLHz91yoI/gk3n3tYYWEL69ER5sQRImyxOUHd5kgbEmJxe2dbBMY
-        lWYheWcWkhdmIXlhFsKyBYwsqxjFUguKc9NTiw0LTJAjexMjOHFrWexg3HPO5xCjAAejEg8v
-        wwWvWCHWxLLiytxDjBIczEoivPfKPGOFeFMSK6tSi/Lji0pzUosPMZoCA3sis5Rocj4wq+SV
-        xBuaGhkbG1uYGJqZGhoqifMu/GERKySQnliSmp2aWpBaBNPHxMEp1cAYGL2phpnjS/a2Kcs+
-        7jq2ePMM/+1LWGTu1u4J7T/5r5v9lb8g74HXx19ejimVn7Htkc+82+3vRXy/MD24/K+eP/Rv
-        x8MYdXer5eWREhvcfwsu7POZIDVR9I+JsdDlhY7nt1px7txfvsVt0XR+hjXCt7YXrPJ3zKs2
-        TVUWrVi0/MK1vjKzE7rsSizFGYmGWsxFxYkAzT7GePIDAAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrNIsWRmVeSWpSXmKPExsWy7bCSnK57nXeswcU9jBYbZ6xntZh/5Byr
-        Rd++/4wW/Y9fM1ucP7+B3eJs0xt2i02Pr7FaXN41h83ic+8RRosZ5/cxWaw9cpfdYun1i0wW
-        txtXsFm8+XGWyaJ17xF2i3/XNrJYbH5wjM1B0GPNvDWMHptWdbJ5bF5S73Hw3R4mj74tqxg9
-        jt/YzuTxeZNcAHsUl01Kak5mWWqRvl0CV0Zzy2Xmgl+SFXOWr2BvYPwr0sXIySEhYCIx63Qb
-        cxcjF4eQwG5Gif1bG9ghEpIS0y4eBUpwANnCEocPF0PUvGWUaNnaxAxSIyzgJnGlYSKYLSKg
-        LDH53nSwQcwCV1kkzm+cwwbRMYNRouPlPVaQKjYBLYn9L26wgdj8AooSV388ZgSxeQXsJB6f
-        bWAB2cYioCLRvDUAJCwqECFxeMcsqBJBiZMzn7CA2JwCrhJf904AizMLqEv8mXeJGcIWl7j1
-        ZD4ThC0PNGY28wRG4VlI2mchaZmFpGUWkpYFjCyrGCVTC4pz03OLDQuM8lLL9YoTc4tL89L1
-        kvNzNzGCo1hLawfjiRPxhxgFOBiVeHgZLnjFCrEmlhVX5h5ilOBgVhLhvVfmGSvEm5JYWZVa
-        lB9fVJqTWnyIUZqDRUmcVz7/WKSQQHpiSWp2ampBahFMlomDU6qBccmfjf7TlTpf91jcuHXh
-        EotQeEMRwz+NM34cywTuT+Ndybip/T3L+9Q6CeeESQUlP6Zv+BBwWvHYrV91N1IWHk5/zD9J
-        49/Zf6tVGj49cYuO+3/7w10Pfra1eQpxDyt8vTSdj4ZZdJm1fLkRJ8Gpm3VqX3n0hX0nv6zq
-        +sI3bZuPvPO6PTH5fUosxRmJhlrMRcWJANBxI2/eAgAA
-X-CMS-MailID: 20190808014335epcas1p4808da0fca0ee5e83f3e93fdb5fae0a80
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-Sendblock-Type: SVC_REQ_APPROVE
-CMS-TYPE: 101P
-DLP-Filter: Pass
-X-CFilter-Loop: Reflected
-X-CMS-RootMailID: 20190807133855eucas1p1cab425b791262e8dee1b17cbe8b1b3da
-References: <CGME20190807133855eucas1p1cab425b791262e8dee1b17cbe8b1b3da@eucas1p1.samsung.com>
-        <20190807133838.14678-1-k.konieczny@partner.samsung.com>
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Kamil,
+Hi Saravana,
 
-When I applied them to testing branch, those don't have the author name
-only just have the email address as following:
-You have to edit the your git author information with your name.
-
-author	k.konieczny@partner.samsung.com <k.konieczny@partner.samsung.com>	2019-08-07 15:38:36 +0200
-committer	Chanwoo Choi <cw00.choi@samsung.com>	2019-08-08 10:35:16 +0900
-commit	4304f4ecec93cebd255463d56b0a4f112ee9dc50 (patch)
-tree	2859e566d6f68219f71a61e7c412717c1adba4f5
-parent	57d85421038b458dd87ec268404ff608f90c36ae (diff)
-download	linux-4304f4ecec93cebd255463d56b0a4f112ee9dc50.tar.gz
-
-Regards,
-Chanwoo Choi
-
-On 19. 8. 7. 오후 10:38, k.konieczny@partner.samsung.com wrote:
-> Hi,
-> 
-> The main purpose of this patch series is to add coupled regulators for
-> Exynos5422/5800 to keep constrain on voltage difference between vdd_arm
-> and vdd_int to be at most 300mV. In exynos-bus instead of using
-> regulator_set_voltage_tol() with default voltage tolerance it should be
-> used regulator_set_voltage_triplet() with volatege range, and this is
-> already present in opp/core.c code, so it can be reused. While at this,
-> move setting regulators into opp/core.
-> 
-> This patchset was tested on Odroid XU3.
-> 
-> The DTS coupled regulators patch depends on previous patches.
-> 
-> Changes:
-> v5:
-> - squashed last patch "remove exynos_bus_passive_target()" into second
-> - added Acked-by to patch "correct clock enable sequence"
-> v4:
-> - removed "opp: core: add regulators enable and disable" from patchset
->   as it was applied by Viresh Kumar and changed cover letter
-> - fix patch "devfreq: exynos-bus: correct clock enable sequence" to
->   correct order of enable/disable
-> - removed unrelated changes in "devfreq: exynos-bus: convert to use
->   dev_pm_opp_set_rate()"
-> - added new patch "devfreq: exynos-bus: remove exynos_bus_passive_target()"
->   as suggested by Chanwoo Choi
-> v3:
-> - added new exynos-bus patch to correct clock and regulator enabling
->   and disabling sequence as suggested by Chanwoo Choi
-> - corrected error path in enable and improved commit message in opp/core
-> - improve comment in devfreq/exynos-bus.c before devfreq_recommended_opp()
-> - change cover letter as there is new patch
-> - added note before Signed-off-by in 4th patch
-> v2:
-> - improve regulators enable/disable code in opp/core as suggested by
->   Viresh Kumar
-> - add new patch for remove unused dt-bindings as suggested by Krzysztof
->   Kozlowski
-> 
-> Kamil Konieczny (3):
->   devfreq: exynos-bus: correct clock enable sequence
->   devfreq: exynos-bus: convert to use dev_pm_opp_set_rate()
->   dt-bindings: devfreq: exynos-bus: remove unused property
-> 
-> Marek Szyprowski (1):
->   ARM: dts: exynos: add initial data for coupled regulators for
->     Exynos5422/5800
-> 
->  .../bindings/devfreq/exynos-bus.txt           |   2 -
->  arch/arm/boot/dts/exynos5420.dtsi             |  34 ++--
->  arch/arm/boot/dts/exynos5422-odroid-core.dtsi |   4 +
->  arch/arm/boot/dts/exynos5800-peach-pi.dts     |   4 +
->  arch/arm/boot/dts/exynos5800.dtsi             |  32 ++--
->  drivers/devfreq/exynos-bus.c                  | 153 +++++-------------
->  6 files changed, 78 insertions(+), 151 deletions(-)
+On 7/23/19 5:10 PM, Saravana Kannan wrote:
+> Add device-links to track functional dependencies between devices
+> after they are created (but before they are probed) by looking at
+> their common DT bindings like clocks, interconnects, etc.
 > 
 
+< snip >
 
--- 
-Best Regards,
-Chanwoo Choi
-Samsung Electronics
+I know that this series has moved on to versions 8 and 9.  And some
+additional patches submitted.
+
+Version 8 was a rebase to handle device_link changes.  The version 8
+patch 0/7 description of the changes did not note any functional
+changes, so I am assuming that my comments on version 7 are still
+applicable.
+
+The version 9 changes do not impact my comments.
+
+I am sending review comments on patches 1, 2, and 3.  I will continue
+review of patches later in the series when the fall out from these
+review comments result in a new series.
+
+-Frank
