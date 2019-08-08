@@ -2,237 +2,900 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11A1D8631A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 15:28:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2EB80863B2
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 15:53:19 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732662AbfHHN2P (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 09:28:15 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:42302 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733024AbfHHN2O (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 09:28:14 -0400
-Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190808132813euoutp0139324bdea6fa9b70a6bc1923982bc05b~49ZWSbb1A2276022760euoutp01O
-        for <devicetree@vger.kernel.org>; Thu,  8 Aug 2019 13:28:13 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190808132813euoutp0139324bdea6fa9b70a6bc1923982bc05b~49ZWSbb1A2276022760euoutp01O
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1565270893;
-        bh=U/A5rR+8l7g7jNeJ/egSxGUzeCSUas+qKZNNq+UCjaw=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=VTbSLaIgAIp+kcbfAoRpr4fnn6DnRdGWZ7tqA/ZipuEBLDEdIbh6U5rdfZyZD9ynx
-         mfJNhvdphgF0MPGQ36skQsW6dxYcaTggGGtIZecKFsF+o6UpIA0bu9bexc0IlAB5dQ
-         ZGdecqIO7mQtX4COqu8MYT4klm1kC31tResrmigc=
-Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
-        20190808132812eucas1p1b1d6e7152506902d4da48cad06abc3ce~49ZV0utpK0308103081eucas1p1G;
-        Thu,  8 Aug 2019 13:28:12 +0000 (GMT)
-Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
-        eusmges3new.samsung.com (EUCPMTA) with SMTP id 17.F1.04374.C632C4D5; Thu,  8
-        Aug 2019 14:28:12 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTPA id
-        20190808132811eucas1p21e22e644189dfdc6f821960ad485c3be~49ZVAcg2T1167911679eucas1p2L;
-        Thu,  8 Aug 2019 13:28:11 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190808132811eusmtrp2a586366cc8b38427ae13b8180f560272~49ZUx5axJ1364413644eusmtrp2A;
-        Thu,  8 Aug 2019 13:28:11 +0000 (GMT)
-X-AuditID: cbfec7f5-4f7ff70000001116-87-5d4c236c60c0
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id 91.C1.04166.B632C4D5; Thu,  8
-        Aug 2019 14:28:11 +0100 (BST)
-Received: from AMDC3555 (unknown [106.120.51.67]) by eusmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20190808132810eusmtip1a0eeb0ddd69beb3e0c8498231f71d69a~49ZUKGQ0Z1201812018eusmtip1R;
-        Thu,  8 Aug 2019 13:28:10 +0000 (GMT)
-Message-ID: <b4d52e266a904aca3ecf8e5a4a6dced91dddf539.camel@partner.samsung.com>
-Subject: Re: [RFC PATCH 09/11] devfreq: exynos-bus: Add interconnect
- functionality to exynos-bus
-From:   Artur =?UTF-8?Q?=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>
-To:     Georgi Djakov <georgi.djakov@linaro.org>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-samsung-soc@vger.kernel.org, linux-kernel@vger.kernel.org,
-        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org
-Cc:     krzk@kernel.org, cw00.choi@samsung.com, myungjoo.ham@samsung.com,
-        inki.dae@samsung.com, sw0312.kim@samsung.com,
-        m.szyprowski@samsung.com,
-        =?UTF-8?Q?Bart=C5=82omiej_?= =?UTF-8?Q?=C5=BBo=C5=82nierkiewicz?= 
-        <b.zolnierkie@samsung.com>
-Date:   Thu, 08 Aug 2019 15:28:09 +0200
-In-Reply-To: <4155482f-8f8f-a659-63ba-25701540b2c5@linaro.org>
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA01Se0hTcRT253bvruLs5xQ8mGku/UNJTQu8ZIyioBUSQkKQWc68qOSLXbU0
-        qJmvNJqPLG0mDhJTw0fTxFkKTm2YL0wzaT5CUSuYpVOiLMt5J/bf951zvvN9Bw7FE/UQLlRc
-        YgojT5TFi0lbftubn8O+8QdCIg615LnTL8qbCPrD2hJBV/UOE/T4+jeSLuvUkHTJbBGfHhlp
-        FtCa+QmCHut4QtKm+72ILh/psqYbeqcFtCGzlqTLH3whj9tLNfX5pHRq4jUpnb2nt5a2VN+W
-        KlvrkdSkcQslL9oei2bi49IYub8k0jbW2F2Pkqe8bjxVvhcoUPW+AmRDAT4CraNzvAJkS4lw
-        LYJ247KFrCGoMeRYiAmBqrKftyOZHCwjucYzBEUKLcGRRQQba43IPCXEofBYV0OasSOOAvXc
-        KGHGJD4Nm0vj2wInvIpgqLoCmQkPryBQ/Mrb8qAoPvaCRUOGWWCDJWDonic564NgfKvkm0eE
-        2AH+tDuayzzsDlkvKyzpPgpgoC+Kw6cgO7OZz2FH+KpvFXDYFf5qq6w5zMKCdnY7D2AFAk1N
-        r2VRMPTozaGpLQNvaOrw58onwKjs204J2B4mjQ5cBHsoaSuzlIVwN1fEQR9Qb4RzQoA7zycs
-        u6WQPbckKEIeqt1TVP+dotp1VSNePXJmUtmEGIY9nMhc92NlCWxqYozf1aQEDdp6rYFN/Xo7
-        6vodpUOYQmI7ocIjJEJEyNLY9AQdAoondhLOpJ2JEAmjZekZjDzpijw1nmF1aC/FFzsLb1p9
-        ChfhGFkKc41hkhn5TteasnFRIJxfcC5wcYEskVRKwrwzgx08I0XJpYWREaUd502FJqLDM8QX
-        2z2SZAUNLAQWF/folZ2BrmfbrEyKiZmSBf/VoDDDyVXc3xkayPxImRvbfKXNuTSz5/KKx0Ni
-        zU2SXS5qOvr5+3LSel2jwwViuuHdrYBctaozw2l9/2BfcB09JOazsbIAH56clf0DdkTVaFYD
-        AAA=
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrJIsWRmVeSWpSXmKPExsVy+t/xu7rZyj6xBo1TlC02zljPanH9y3NW
-        i/lHzrFaXPn6ns1i+t5NbBaT7k9gsTh/fgO7xabH11gtLu+aw2bxufcIo8WM8/uYLNYeuctu
-        cbtxBZvFjMkv2Rz4PDat6mTzuHNtD5vH/e7jTB6bl9R79G1ZxejxeZNcAFuUnk1RfmlJqkJG
-        fnGJrVK0oYWRnqGlhZ6RiaWeobF5rJWRqZK+nU1Kak5mWWqRvl2CXsbbg6sYC+6oVizuu8re
-        wLhEtouRk0NCwETixpnpbCC2kMBSRokfFyIh4hISH9ffYIWwhSX+XOuCqnnCKHHhuQOIzSsQ
-        IDHz0DKwuLBAksSCRxfB6tkE3CX+Pb8CZHNxiAh8ZpQ4vOgTC0iCGcS5sSyni5GDg0VAVeLZ
-        7SqQMKeAncTtg4/ZQOqFBJqYJZbvXsgEUa8p0br9NzvEEToSb0/1sYD08goISvzdIQxRIi/R
-        vHU28wRGwVlIOmYhVM1CUrWAkXkVo0hqaXFuem6xoV5xYm5xaV66XnJ+7iZGYDRuO/Zz8w7G
-        SxuDDzEKcDAq8fA2KPrECrEmlhVX5h5ilOBgVhLhvVfmGSvEm5JYWZValB9fVJqTWnyI0RTo
-        nYnMUqLJ+cBEkVcSb2hqaG5haWhubG5sZqEkztshcDBGSCA9sSQ1OzW1ILUIpo+Jg1OqgdF7
-        UdyD2rMfd/2ay7vb2KBRYavgk+nXbefw/Aqxf3o2qKja+tPMrOItpzjtp7NPu8CnEfdEVdbz
-        yNlHrgIN9zgiji3//WPvasGrrv0me250Bh3y3hfpZtFjFdBks//oHNPpfazXmtXFt+XWzVGV
-        f/BO5793bmfV4oY+3WD/c0UT9zMr6u2UkVNiKc5INNRiLipOBABwbEbE3AIAAA==
-X-CMS-MailID: 20190808132811eucas1p21e22e644189dfdc6f821960ad485c3be
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b
-References: <20190723122016.30279-1-a.swigon@partner.samsung.com>
-        <CGME20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b@eucas1p2.samsung.com>
-        <20190723122016.30279-10-a.swigon@partner.samsung.com>
-        <6e8b2081-2fb3-9ab8-37d1-8b5fe5fd8e11@linaro.org>
-        <62557522be4924a01d3822d4734c30f2965c608b.camel@partner.samsung.com>
-        <4155482f-8f8f-a659-63ba-25701540b2c5@linaro.org>
+        id S1733099AbfHHNxS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 09:53:18 -0400
+Received: from retiisi.org.uk ([95.216.213.190]:56800 "EHLO
+        hillosipuli.retiisi.org.uk" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1732882AbfHHNxS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 09:53:18 -0400
+Received: from valkosipuli.localdomain (valkosipuli.retiisi.org.uk [IPv6:2a01:4f9:c010:4572::80:2])
+        (using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+         key-exchange ECDHE (P-256) server-signature RSA-PSS (4096 bits) server-digest SHA256)
+        (No client certificate requested)
+        by hillosipuli.retiisi.org.uk (Postfix) with ESMTPS id 86EE5634C87;
+        Thu,  8 Aug 2019 16:53:09 +0300 (EEST)
+Received: from sailus by valkosipuli.localdomain with local (Exim 4.92)
+        (envelope-from <sakari.ailus@retiisi.org.uk>)
+        id 1hviqs-0000JZ-DW; Thu, 08 Aug 2019 16:53:10 +0300
+Date:   Thu, 8 Aug 2019 16:53:10 +0300
+From:   Sakari Ailus <sakari.ailus@iki.fi>
+To:     dongchun.zhu@mediatek.com
+Cc:     mchehab@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        sakari.ailus@linux.intel.com, drinkcat@chromium.org,
+        tfiga@chromium.org, matthias.bgg@gmail.com, bingbu.cao@intel.com,
+        srv_heupstream@mediatek.com, linux-mediatek@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, sj.huang@mediatek.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        louis.kuo@mediatek.com, shengnan.wang@mediatek.com
+Subject: Re: [V1, 2/2] media: i2c: Add more sensor mode for ov8856 camera
+ sensor
+Message-ID: <20190808135310.GC917@valkosipuli.retiisi.org.uk>
+References: <20190808092215.5608-1-dongchun.zhu@mediatek.com>
+ <20190808092215.5608-3-dongchun.zhu@mediatek.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190808092215.5608-3-dongchun.zhu@mediatek.com>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Hi Dongchun,
 
-On Wed, 2019-08-07 at 17:21 +0300, Georgi Djakov wrote:
-> Hi Artur,
-> 
-> On 8/1/19 10:59, Artur Świgoń wrote:
-> > Hi Georgi,
-> > 
-> > On Fri, 2019-07-26 at 11:05 +0300, Georgi Djakov wrote:
-> > > Hi Artur,
-> > > 
-> > > On 7/23/19 15:20, Artur Świgoń wrote:
-> > > > This patch adds interconnect functionality to the exynos-bus devfreq
-> > > > driver.
-> > > > 
-> > > > The SoC topology is a graph (or, more specifically, a tree) and most of
-> > > > its
-> > > > edges are taken from the devfreq parent-child hierarchy (cf.
-> > > > Documentation/devicetree/bindings/devfreq/exynos-bus.txt). The previous
-> > > > patch adds missing edges to the DT (under the name 'parent'). Due to
-> > > > unspecified relative probing order, -EPROBE_DEFER may be propagated to
-> > > > guarantee that a child is probed before its parent.
-> > > > 
-> > > > Each bus is now an interconnect provider and an interconnect node as
-> > > > well
-> > > > (cf. Documentation/interconnect/interconnect.rst), i.e. every bus
-> > > > registers
-> > > > itself as a node. Node IDs are not hardcoded but rather assigned at
-> > > > runtime, in probing order (subject to the above-mentioned exception
-> > > > regarding relative order). This approach allows for using this driver
-> > > > with
-> > > > various Exynos SoCs.
-> > > 
-> > > I am not familiar with the Exynos bus topology, but it seems to me that
-> > > it's not
-> > > represented correctly. An interconnect provider with just a single node
-> > > (port)
-> > > is odd. I would expect that each provider consists of multiple master and
-> > > slave
-> > > nodes. This data would be used by a framework to understand what are the
-> > > links
-> > > and how the traffic flows between the IP blocks and through which buses.
-> > 
-> > To summarize the exynos-bus topology[1] used by the devfreq driver: There
-> > are
-> > many data buses for data transfer in Samsung Exynos SoC. Every bus has its
-> > own
-> > clock. Buses often share power lines, in which case one of the buses on the
-> > power line is referred to as 'parent' (or as 'devfreq' in the DT). In the
-> > particular case of Exynos4412[1][2], the topology can be expressed as
-> > follows:
-> > 
-> > bus_dmc
-> > -- bus_acp
-> > -- bus_c2c
-> > 
-> > bus_leftbus
-> > -- bus_rightbus
-> > -- bus_display
-> > -- bus_fsys
-> > -- bus_peri
-> > -- bus_mfc
-> > 
-> > Where bus_dmc and bus_leftbus probably could be referred to as masters, and
-> > the
-> > following indented nodes as slaves. Patch 08/11 of this RFC additionally
-> > adds
-> > the following to the DT:
-> > 
-> > bus_dmc
-> > -- bus_leftbus
-> > 
-> > Which makes the topology a valid tree.
-> > 
-> > The exynos-bus concept in devfreq[3] is designed in such a way that every
-> > bus is
-> > probed separately as a platform device, and is a largely independent entity.
-> > 
-> > This RFC proposes an extension to the existing devfreq driver that basically
-> > provides a simple QoS to ensure minimum clock frequency for selected buses
-> > (possibly overriding devfreq governor calculations) using the interconnect
-> > framework.
-> > 
-> > The hierarchy is modelled in such a way that every bus is an interconnect
-> > node.
-> > On the other hand, what is considered an interconnect provider here is quite
-> > arbitrary, but for the reasons mentioned in the above paragraph, this RFC
-> > assumes that every bus is a provider of itself as a node. Using an
-> > alternative
-> 
-> IIUC, in case we want to transfer data between the display and the memory
-> controller, the path would look like this:
-> 
-> display --> bus_display --> bus_leftbus --> bus_dmc --> memory
-> 
-> But the bus_display for example would have not one, but two nodes (ports),
-> right?  One representing the link to the display controller and another one
-> representing the link to bus_leftbus? So i think that all the buses should
-> have at least two nodes, to represent each end of the wire.
+Thanks for the patch.
 
-I do not think we really need that for our simple tree hierarchy. Of course, I
-can split every tree node into two nodes/ports (e.g., 'in' for children and
-'out' for parent), but neither 'display' nor 'memory' from your diagram above
-are registered with the interconnect framework (only buses are). The devfreq
-devices used in the driver are virtual anyway.
-
-> > singleton provider approach was deemed more complicated since the 'dev'
-> > field in
-> > 'struct icc_provider' has to be set to something meaningful and we are tied
-> > to
-> > the 'samsung,exynos-bus' compatible string in the driver (and multiple
-> > instances
-> > of exynos-bus probed in indeterminate relative order).
-> > 
+On Thu, Aug 08, 2019 at 05:22:15PM +0800, dongchun.zhu@mediatek.com wrote:
+> From: Dongchun Zhu <dongchun.zhu@mediatek.com>
 > 
-> Sure, the rest makes sense to me.
+> This patch mainly adds two more sensor modes for OV8856 image sensor.
+> The OV8856 driver currently supports output format: 10-bit Raw,
+> the resolution of 1632*1224 and 3264*2448, and the bayer order of BGGR.
+> The hardware version also differs in some OTP regiser,
+> as well as PLL register setting.
 > 
-> Thanks,
-> Georgi
+> Signed-off-by: Dongchun Zhu <dongchun.zhu@mediatek.com>
+> ---
+>  drivers/media/i2c/ov8856.c | 624 ++++++++++++++++++++++++++++++++++++++++++++-
+>  1 file changed, 621 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/media/i2c/ov8856.c b/drivers/media/i2c/ov8856.c
+> index cd347d6..e0610b6 100644
+> --- a/drivers/media/i2c/ov8856.c
+> +++ b/drivers/media/i2c/ov8856.c
+> @@ -1,12 +1,15 @@
+>  // SPDX-License-Identifier: GPL-2.0
+>  // Copyright (c) 2019 Intel Corporation.
+>  
+> +#include <linux/clk.h>
+>  #include <asm/unaligned.h>
+>  #include <linux/acpi.h>
+>  #include <linux/delay.h>
+> +#include <linux/gpio/consumer.h>
+>  #include <linux/i2c.h>
+>  #include <linux/module.h>
+>  #include <linux/pm_runtime.h>
+> +#include <linux/regulator/consumer.h>
+>  #include <media/v4l2-ctrls.h>
+>  #include <media/v4l2-device.h>
+>  #include <media/v4l2-fwnode.h>
+> @@ -19,6 +22,7 @@
+>  #define OV8856_LINK_FREQ_180MHZ		180000000ULL
+>  #define OV8856_SCLK			144000000ULL
+>  #define OV8856_MCLK			19200000
+> +#define OV8856_XVCLK_FREQ		24000000
 
-Regards,
+The driver currenctly uses, perhaps misleadingly, OV8856_MCLK for this
+purpose. You could rename the existing MCLK as XVCLK.
+
+This also means the driver needs to differentiate configurations for 24 and
+19,2 MHz which it currently does not do. I think it may make sense to make
+this a separate patch from the rest.
+
+>  #define OV8856_DATA_LANES		4
+>  #define OV8856_RGB_DEPTH		10
+>  
+> @@ -29,6 +33,18 @@
+>  #define OV8856_MODE_STANDBY		0x00
+>  #define OV8856_MODE_STREAMING		0x01
+>  
+> +/* define 1B module */
+> +#define OV8856_1B_MODULE		0x02
+> +
+> +/* otp sram register */
+> +#define OV8856_OTP_REG			0x700f
+> +#define OV8856_OTP_REG_ONE		0x3d84
+> +#define OV8856_OTP_REG_TWO		0x3d81
+> +
+> +/* clock register */
+> +#define OV8856_CLK_REG			0x3614
+> +#define OV8856_CLK_REG_1B_VAL		0x20
+> +
+>  /* vertical-timings from sensor */
+>  #define OV8856_REG_VTS			0x380e
+>  #define OV8856_VTS_MAX			0x7fff
+> @@ -64,6 +80,14 @@
+>  
+>  #define to_ov8856(_sd)			container_of(_sd, struct ov8856, sd)
+>  
+> +static const char * const ov8856_supply_names[] = {
+> +	"dovdd",	/* Digital I/O power */
+> +	"avdd",		/* Analog power */
+> +	"dvdd",		/* Digital core power */
+> +};
+> +
+> +#define OV8856_NUM_SUPPLIES ARRAY_SIZE(ov8856_supply_names)
+> +
+>  enum {
+>  	OV8856_LINK_FREQ_720MBPS,
+>  	OV8856_LINK_FREQ_360MBPS,
+> @@ -316,6 +340,208 @@ static const struct ov8856_reg mode_3280x2464_regs[] = {
+>  	{0x5e00, 0x00}
+>  };
+>  
+> +static const struct ov8856_reg mode_3264x2448_regs[] = {
+> +	{0x0103, 0x01},
+> +	{0x0302, 0x3c},
+> +	{0x0303, 0x01},
+> +	{0x031e, 0x0c},
+> +	{0x3000, 0x00},
+> +	{0x300e, 0x00},
+> +	{0x3010, 0x00},
+> +	{0x3015, 0x84},
+> +	{0x3018, 0x72},
+> +	{0x3021, 0x23},
+> +	{0x3033, 0x24},
+> +	{0x3500, 0x00},
+> +	{0x3501, 0x9a},
+> +	{0x3502, 0x20},
+> +	{0x3503, 0x08},
+> +	{0x3505, 0x83},
+> +	{0x3508, 0x01},
+> +	{0x3509, 0x80},
+> +	{0x350c, 0x00},
+> +	{0x350d, 0x80},
+> +	{0x350e, 0x04},
+> +	{0x350f, 0x00},
+> +	{0x3510, 0x00},
+> +	{0x3511, 0x02},
+> +	{0x3512, 0x00},
+> +	{0x3600, 0x72},
+> +	{0x3601, 0x40},
+> +	{0x3602, 0x30},
+> +	{0x3610, 0xc5},
+> +	{0x3611, 0x58},
+> +	{0x3612, 0x5c},
+> +	{0x3613, 0xca},
+> +	{0x3614, 0x60},
+> +	{0x3628, 0xff},
+> +	{0x3629, 0xff},
+> +	{0x362a, 0xff},
+> +	{0x3633, 0x10},
+> +	{0x3634, 0x10},
+> +	{0x3635, 0x10},
+> +	{0x3636, 0x10},
+> +	{0x3663, 0x08},
+> +	{0x3669, 0x34},
+> +	{0x366d, 0x00},
+> +	{0x366e, 0x10},
+> +	{0x3706, 0x86},
+> +	{0x370b, 0x7e},
+> +	{0x3714, 0x23},
+> +	{0x3730, 0x12},
+> +	{0x3733, 0x10},
+> +	{0x3764, 0x00},
+> +	{0x3765, 0x00},
+> +	{0x3769, 0x62},
+> +	{0x376a, 0x2a},
+> +	{0x376b, 0x30},
+> +	{0x3780, 0x00},
+> +	{0x3781, 0x24},
+> +	{0x3782, 0x00},
+> +	{0x3783, 0x23},
+> +	{0x3798, 0x2f},
+> +	{0x37a1, 0x60},
+> +	{0x37a8, 0x6a},
+> +	{0x37ab, 0x3f},
+> +	{0x37c2, 0x04},
+> +	{0x37c3, 0xf1},
+> +	{0x37c9, 0x80},
+> +	{0x37cb, 0x16},
+> +	{0x37cc, 0x16},
+> +	{0x37cd, 0x16},
+> +	{0x37ce, 0x16},
+> +	{0x3800, 0x00},
+> +	{0x3801, 0x00},
+> +	{0x3802, 0x00},
+> +	{0x3803, 0x0c},
+> +	{0x3804, 0x0c},
+> +	{0x3805, 0xdf},
+> +	{0x3806, 0x09},
+> +	{0x3807, 0xa3},
+> +	{0x3808, 0x0c},
+> +	{0x3809, 0xc0},
+> +	{0x380a, 0x09},
+> +	{0x380b, 0x90},
+> +	{0x380c, 0x07},
+> +	{0x380d, 0x8c},
+> +	{0x380e, 0x09},
+> +	{0x380f, 0xb2},
+> +	{0x3810, 0x00},
+> +	{0x3811, 0x04},
+> +	{0x3812, 0x00},
+> +	{0x3813, 0x02},
+> +	{0x3814, 0x01},
+> +	{0x3815, 0x01},
+> +	{0x3816, 0x00},
+> +	{0x3817, 0x00},
+> +	{0x3818, 0x00},
+> +	{0x3819, 0x00},
+> +	{0x3820, 0x80},
+> +	{0x3821, 0x46},
+> +	{0x382a, 0x01},
+> +	{0x382b, 0x01},
+> +	{0x3830, 0x06},
+> +	{0x3836, 0x02},
+> +	{0x3862, 0x04},
+> +	{0x3863, 0x08},
+> +	{0x3cc0, 0x33},
+> +	{0x3d85, 0x17},
+> +	{0x3d8c, 0x73},
+> +	{0x3d8d, 0xde},
+> +	{0x4001, 0xe0},
+> +	{0x4003, 0x40},
+> +	{0x4008, 0x00},
+> +	{0x4009, 0x0b},
+> +	{0x400a, 0x00},
+> +	{0x400b, 0x84},
+> +	{0x400f, 0x80},
+> +	{0x4010, 0xf0},
+> +	{0x4011, 0xff},
+> +	{0x4012, 0x02},
+> +	{0x4013, 0x01},
+> +	{0x4014, 0x01},
+> +	{0x4015, 0x01},
+> +	{0x4042, 0x00},
+> +	{0x4043, 0x80},
+> +	{0x4044, 0x00},
+> +	{0x4045, 0x80},
+> +	{0x4046, 0x00},
+> +	{0x4047, 0x80},
+> +	{0x4048, 0x00},
+> +	{0x4049, 0x80},
+> +	{0x4041, 0x03},
+> +	{0x404c, 0x20},
+> +	{0x404d, 0x00},
+> +	{0x404e, 0x20},
+> +	{0x4203, 0x80},
+> +	{0x4307, 0x30},
+> +	{0x4317, 0x00},
+> +	{0x4502, 0x50},
+> +	{0x4503, 0x08},
+> +	{0x4601, 0x80},
+> +	{0x4800, 0x44},
+> +	{0x4816, 0x53},
+> +	{0x481b, 0x50},
+> +	{0x481f, 0x27},
+> +	{0x4823, 0x3c},
+> +	{0x482b, 0x00},
+> +	{0x4831, 0x66},
+> +	{0x4837, 0x16},
+> +	{0x483c, 0x0f},
+> +	{0x484b, 0x05},
+> +	{0x5000, 0x77},
+> +	{0x5001, 0x0a},
+> +	{0x5003, 0xc8},
+> +	{0x5004, 0x04},
+> +	{0x5006, 0x00},
+> +	{0x5007, 0x00},
+> +	{0x502e, 0x03},
+> +	{0x5030, 0x41},
+> +	{0x5780, 0x14},
+> +	{0x5781, 0x0f},
+> +	{0x5782, 0x44},
+> +	{0x5783, 0x02},
+> +	{0x5784, 0x01},
+> +	{0x5785, 0x01},
+> +	{0x5786, 0x00},
+> +	{0x5787, 0x04},
+> +	{0x5788, 0x02},
+> +	{0x5789, 0x0f},
+> +	{0x578a, 0xfd},
+> +	{0x578b, 0xf5},
+> +	{0x578c, 0xf5},
+> +	{0x578d, 0x03},
+> +	{0x578e, 0x08},
+> +	{0x578f, 0x0c},
+> +	{0x5790, 0x08},
+> +	{0x5791, 0x04},
+> +	{0x5792, 0x00},
+> +	{0x5793, 0x52},
+> +	{0x5794, 0xa3},
+> +	{0x5795, 0x02},
+> +	{0x5796, 0x20},
+> +	{0x5797, 0x20},
+> +	{0x5798, 0xd5},
+> +	{0x5799, 0xd5},
+> +	{0x579a, 0x00},
+> +	{0x579b, 0x50},
+> +	{0x579c, 0x00},
+> +	{0x579d, 0x2c},
+> +	{0x579e, 0x0c},
+> +	{0x579f, 0x40},
+> +	{0x57a0, 0x09},
+> +	{0x57a1, 0x40},
+> +	{0x59f8, 0x3d},
+> +	{0x5a08, 0x02},
+> +	{0x5b00, 0x02},
+> +	{0x5b01, 0x10},
+> +	{0x5b02, 0x03},
+> +	{0x5b03, 0xcf},
+> +	{0x5b05, 0x6c},
+> +	{0x5e00, 0x00},
+> +	{0x5e10, 0xfc}
+> +};
+> +
+>  static const struct ov8856_reg mode_1640x1232_regs[] = {
+>  	{0x3000, 0x20},
+>  	{0x3003, 0x08},
+> @@ -506,6 +732,208 @@ static const struct ov8856_reg mode_1640x1232_regs[] = {
+>  	{0x5e00, 0x00}
+>  };
+>  
+> +static const struct ov8856_reg mode_1632x1224_regs[] = {
+> +	{0x0103, 0x01},
+> +	{0x0302, 0x3c},
+> +	{0x0303, 0x01},
+> +	{0x031e, 0x0c},
+> +	{0x3000, 0x00},
+> +	{0x300e, 0x00},
+> +	{0x3010, 0x00},
+> +	{0x3015, 0x84},
+> +	{0x3018, 0x72},
+> +	{0x3021, 0x23},
+> +	{0x3033, 0x24},
+> +	{0x3500, 0x00},
+> +	{0x3501, 0x4c},
+> +	{0x3502, 0xe0},
+> +	{0x3503, 0x08},
+> +	{0x3505, 0x83},
+> +	{0x3508, 0x01},
+> +	{0x3509, 0x80},
+> +	{0x350c, 0x00},
+> +	{0x350d, 0x80},
+> +	{0x350e, 0x04},
+> +	{0x350f, 0x00},
+> +	{0x3510, 0x00},
+> +	{0x3511, 0x02},
+> +	{0x3512, 0x00},
+> +	{0x3600, 0x72},
+> +	{0x3601, 0x40},
+> +	{0x3602, 0x30},
+> +	{0x3610, 0xc5},
+> +	{0x3611, 0x58},
+> +	{0x3612, 0x5c},
+> +	{0x3613, 0xca},
+> +	{0x3614, 0x60},
+> +	{0x3628, 0xff},
+> +	{0x3629, 0xff},
+> +	{0x362a, 0xff},
+> +	{0x3633, 0x10},
+> +	{0x3634, 0x10},
+> +	{0x3635, 0x10},
+> +	{0x3636, 0x10},
+> +	{0x3663, 0x08},
+> +	{0x3669, 0x34},
+> +	{0x366d, 0x00},
+> +	{0x366e, 0x08},
+> +	{0x3706, 0x86},
+> +	{0x370b, 0x7e},
+> +	{0x3714, 0x27},
+> +	{0x3730, 0x12},
+> +	{0x3733, 0x10},
+> +	{0x3764, 0x00},
+> +	{0x3765, 0x00},
+> +	{0x3769, 0x62},
+> +	{0x376a, 0x2a},
+> +	{0x376b, 0x30},
+> +	{0x3780, 0x00},
+> +	{0x3781, 0x24},
+> +	{0x3782, 0x00},
+> +	{0x3783, 0x23},
+> +	{0x3798, 0x2f},
+> +	{0x37a1, 0x60},
+> +	{0x37a8, 0x6a},
+> +	{0x37ab, 0x3f},
+> +	{0x37c2, 0x14},
+> +	{0x37c3, 0xf1},
+> +	{0x37c9, 0x80},
+> +	{0x37cb, 0x16},
+> +	{0x37cc, 0x16},
+> +	{0x37cd, 0x16},
+> +	{0x37ce, 0x16},
+> +	{0x3800, 0x00},
+> +	{0x3801, 0x00},
+> +	{0x3802, 0x00},
+> +	{0x3803, 0x0c},
+> +	{0x3804, 0x0c},
+> +	{0x3805, 0xdf},
+> +	{0x3806, 0x09},
+> +	{0x3807, 0xa3},
+> +	{0x3808, 0x06},
+> +	{0x3809, 0x60},
+> +	{0x380a, 0x04},
+> +	{0x380b, 0xc8},
+> +	{0x380c, 0x07},
+> +	{0x380d, 0x8c},
+> +	{0x380e, 0x09},
+> +	{0x380f, 0xb2},
+> +	{0x3810, 0x00},
+> +	{0x3811, 0x02},
+> +	{0x3812, 0x00},
+> +	{0x3813, 0x02},
+> +	{0x3814, 0x03},
+> +	{0x3815, 0x01},
+> +	{0x3816, 0x00},
+> +	{0x3817, 0x00},
+> +	{0x3818, 0x00},
+> +	{0x3819, 0x00},
+> +	{0x3820, 0x80},
+> +	{0x3821, 0x47},
+> +	{0x382a, 0x03},
+> +	{0x382b, 0x01},
+> +	{0x3830, 0x06},
+> +	{0x3836, 0x02},
+> +	{0x3862, 0x04},
+> +	{0x3863, 0x08},
+> +	{0x3cc0, 0x33},
+> +	{0x3d85, 0x17},
+> +	{0x3d8c, 0x73},
+> +	{0x3d8d, 0xde},
+> +	{0x4001, 0xe0},
+> +	{0x4003, 0x40},
+> +	{0x4008, 0x00},
+> +	{0x4009, 0x05},
+> +	{0x400a, 0x00},
+> +	{0x400b, 0x84},
+> +	{0x400f, 0x80},
+> +	{0x4010, 0xf0},
+> +	{0x4011, 0xff},
+> +	{0x4012, 0x02},
+> +	{0x4013, 0x01},
+> +	{0x4014, 0x01},
+> +	{0x4015, 0x01},
+> +	{0x4042, 0x00},
+> +	{0x4043, 0x80},
+> +	{0x4044, 0x00},
+> +	{0x4045, 0x80},
+> +	{0x4046, 0x00},
+> +	{0x4047, 0x80},
+> +	{0x4048, 0x00},
+> +	{0x4049, 0x80},
+> +	{0x4041, 0x03},
+> +	{0x404c, 0x20},
+> +	{0x404d, 0x00},
+> +	{0x404e, 0x20},
+> +	{0x4203, 0x80},
+> +	{0x4307, 0x30},
+> +	{0x4317, 0x00},
+> +	{0x4502, 0x50},
+> +	{0x4503, 0x08},
+> +	{0x4601, 0x80},
+> +	{0x4800, 0x44},
+> +	{0x4816, 0x53},
+> +	{0x481b, 0x50},
+> +	{0x481f, 0x27},
+> +	{0x4823, 0x3c},
+> +	{0x482b, 0x00},
+> +	{0x4831, 0x66},
+> +	{0x4837, 0x16},
+> +	{0x483c, 0x0f},
+> +	{0x484b, 0x05},
+> +	{0x5000, 0x77},
+> +	{0x5001, 0x0a},
+> +	{0x5003, 0xc8},
+> +	{0x5004, 0x04},
+> +	{0x5006, 0x00},
+> +	{0x5007, 0x00},
+> +	{0x502e, 0x03},
+> +	{0x5030, 0x41},
+> +	{0x5795, 0x00},
+> +	{0x5796, 0x10},
+> +	{0x5797, 0x10},
+> +	{0x5798, 0x73},
+> +	{0x5799, 0x73},
+> +	{0x579a, 0x00},
+> +	{0x579b, 0x28},
+> +	{0x579c, 0x00},
+> +	{0x579d, 0x16},
+> +	{0x579e, 0x06},
+> +	{0x579f, 0x20},
+> +	{0x57a0, 0x04},
+> +	{0x57a1, 0xa0},
+> +	{0x5780, 0x14},
+> +	{0x5781, 0x0f},
+> +	{0x5782, 0x44},
+> +	{0x5783, 0x02},
+> +	{0x5784, 0x01},
+> +	{0x5785, 0x01},
+> +	{0x5786, 0x00},
+> +	{0x5787, 0x04},
+> +	{0x5788, 0x02},
+> +	{0x5789, 0x0f},
+> +	{0x578a, 0xfd},
+> +	{0x578b, 0xf5},
+> +	{0x578c, 0xf5},
+> +	{0x578d, 0x03},
+> +	{0x578e, 0x08},
+> +	{0x578f, 0x0c},
+> +	{0x5790, 0x08},
+> +	{0x5791, 0x04},
+> +	{0x5792, 0x00},
+> +	{0x5793, 0x52},
+> +	{0x5794, 0xa3},
+> +	{0x59f8, 0x3d},
+> +	{0x5a08, 0x02},
+> +	{0x5b00, 0x02},
+> +	{0x5b01, 0x10},
+> +	{0x5b02, 0x03},
+> +	{0x5b03, 0xcf},
+> +	{0x5b05, 0x6c},
+> +	{0x5e00, 0x00},
+> +	{0x5e10, 0xfc}
+> +};
+> +
+>  static const char * const ov8856_test_pattern_menu[] = {
+>  	"Disabled",
+>  	"Standard Color Bar",
+> @@ -548,6 +976,18 @@ static const struct ov8856_mode supported_modes[] = {
+>  		.link_freq_index = OV8856_LINK_FREQ_720MBPS,
+>  	},
+>  	{
+> +		.width    = 3264,
+> +		.height   = 2448,
+> +		.hts      = 1932,
+> +		.vts_def  = 2482,
+> +		.vts_min  = 2482,
+> +		.reg_list = {
+> +			.num_of_regs = ARRAY_SIZE(mode_3264x2448_regs),
+> +			.regs = mode_3264x2448_regs,
+> +		},
+> +		.link_freq_index = OV8856_LINK_FREQ_720MBPS,
+> +	},
+> +	{
+>  		.width = 1640,
+>  		.height = 1232,
+>  		.hts = 3820,
+> @@ -558,6 +998,18 @@ static const struct ov8856_mode supported_modes[] = {
+>  			.regs = mode_1640x1232_regs,
+>  		},
+>  		.link_freq_index = OV8856_LINK_FREQ_360MBPS,
+> +	},
+> +	{
+> +		.width    = 1632,
+> +		.height   = 1224,
+> +		.hts      = 1932,
+> +		.vts_def  = 2482,
+> +		.vts_min  = 2482,
+> +		.reg_list = {
+> +			.num_of_regs = ARRAY_SIZE(mode_1632x1224_regs),
+> +			.regs = mode_1632x1224_regs,
+> +		},
+> +		.link_freq_index = OV8856_LINK_FREQ_360MBPS,
+>  	}
+>  };
+>  
+> @@ -566,6 +1018,10 @@ struct ov8856 {
+>  	struct media_pad pad;
+>  	struct v4l2_ctrl_handler ctrl_handler;
+>  
+> +	struct clk		*xvclk;
+> +	struct gpio_desc	*reset_gpio;
+> +	struct regulator_bulk_data supplies[OV8856_NUM_SUPPLIES];
+> +
+>  	/* V4L2 Controls */
+>  	struct v4l2_ctrl *link_freq;
+>  	struct v4l2_ctrl *pixel_rate;
+> @@ -576,6 +1032,9 @@ struct ov8856 {
+>  	/* Current mode */
+>  	const struct ov8856_mode *cur_mode;
+>  
+> +	/* module hardware version */
+> +	bool is_1B_module;
+
+What other hardware versions are there, and what are the differences?
+
+> +
+>  	/* To serialize asynchronus callbacks */
+>  	struct mutex mutex;
+>  
+> @@ -696,6 +1155,24 @@ static int ov8856_test_pattern(struct ov8856 *ov8856, u32 pattern)
+>  				OV8856_REG_VALUE_08BIT, pattern);
+>  }
+>  
+> +static int ov8856_update_otp_reg(struct ov8856 *ov8856)
+> +{
+> +	int ret;
+> +
+> +	ret = ov8856_write_reg(ov8856, OV8856_REG_MODE_SELECT,
+> +			       OV8856_REG_VALUE_08BIT, OV8856_MODE_STREAMING);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ret = ov8856_write_reg(ov8856, OV8856_OTP_REG_ONE,
+> +			       OV8856_REG_VALUE_08BIT, OV8856_MODE_STANDBY);
+> +	if (ret)
+> +		return ret;
+> +
+> +	return ov8856_write_reg(ov8856, OV8856_OTP_REG_TWO,
+> +				OV8856_REG_VALUE_08BIT, OV8856_MODE_STREAMING);
+> +}
+
+What does this do?
+
+> +
+>  static int ov8856_set_ctrl(struct v4l2_ctrl *ctrl)
+>  {
+>  	struct ov8856 *ov8856 = container_of(ctrl->handler,
+> @@ -825,7 +1302,13 @@ static void ov8856_update_pad_format(const struct ov8856_mode *mode,
+>  {
+>  	fmt->width = mode->width;
+>  	fmt->height = mode->height;
+> -	fmt->code = MEDIA_BUS_FMT_SGRBG10_1X10;
+> +
+> +	/* Bayer Order is determined by image resolution */
+
+Ouch. 
+
+This rather looks like a side effect of vertical cropping. How about
+either cropping one line above or below, to keep the same Bayer order?
+
+The driver is based on register lists that heavily restricts the
+possibilities of configuring the sensor. The alternative, should more
+free-form configuration be enabled, would be to expose the cropping
+capability to the user --- as well as binning.
+
+> +	if (fmt->width == 3264 || fmt->width == 1632)
+> +		fmt->code = MEDIA_BUS_FMT_SBGGR10_1X10;
+> +	else
+> +		fmt->code = MEDIA_BUS_FMT_SGRBG10_1X10;
+> +
+>  	fmt->field = V4L2_FIELD_NONE;
+>  }
+>  
+> @@ -850,6 +1333,17 @@ static int ov8856_start_streaming(struct ov8856 *ov8856)
+>  		return ret;
+>  	}
+>  
+> +	/* update R3614 for 1B module */
+> +	if (ov8856->is_1B_module) {
+> +		ret = ov8856_write_reg(ov8856, OV8856_CLK_REG,
+> +				       OV8856_REG_VALUE_08BIT,
+> +				       OV8856_CLK_REG_1B_VAL);
+> +		if (ret) {
+> +			dev_err(&client->dev, "failed to set R3614");
+> +			return ret;
+> +		}
+> +	}
+> +
+>  	ret = __v4l2_ctrl_handler_setup(ov8856->sd.ctrl_handler);
+>  	if (ret)
+>  		return ret;
+> @@ -882,6 +1376,8 @@ static int ov8856_set_stream(struct v4l2_subdev *sd, int enable)
+>  	if (ov8856->streaming == enable)
+>  		return 0;
+>  
+> +	dev_dbg(&client->dev, "hardware version: (%d)\n", ov8856->is_1B_module);
+> +
+>  	mutex_lock(&ov8856->mutex);
+>  	if (enable) {
+>  		ret = pm_runtime_get_sync(&client->dev);
+> @@ -908,6 +1404,54 @@ static int ov8856_set_stream(struct v4l2_subdev *sd, int enable)
+>  	return ret;
+>  }
+>  
+> +/* Calculate the delay in us by clock rate and clock cycles */
+> +static inline u32 ov8856_cal_delay(u32 cycles)
+> +{
+> +	return DIV_ROUND_UP(cycles, OV8856_XVCLK_FREQ / 1000 / 1000);
+
+The frequency is rounded down. As it is used to calculate a delay needed,
+rounding up should be done for the frequency, too.
+
+> +}
+> +
+> +static int __ov8856_power_on(struct ov8856 *ov8856)
+> +{
+> +	int ret;
+> +	u32 delay_us;
+> +	struct i2c_client *client = v4l2_get_subdevdata(&ov8856->sd);
+> +
+> +	ret = clk_prepare_enable(ov8856->xvclk);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to enable xvclk\n");
+> +		return ret;
+> +	}
+> +
+> +	gpiod_set_value_cansleep(ov8856->reset_gpio, 1);
+> +
+> +	ret = regulator_bulk_enable(OV8856_NUM_SUPPLIES, ov8856->supplies);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to enable regulators\n");
+> +		goto disable_clk;
+> +	}
+> +
+> +	gpiod_set_value_cansleep(ov8856->reset_gpio, 0);
+> +
+> +	/* 8192 cycles prior to first SCCB transaction */
+> +	delay_us = ov8856_cal_delay(8192);
+> +	usleep_range(delay_us  * 2, delay_us * 4);
+
+Why multiply by 2?
+
+Note that the driver still needs to work even if the resources aren't
+visible to the software. That's the case e.g. on ACPI based systems.
+
+> +
+> +	return 0;
+> +
+> +disable_clk:
+> +	clk_disable_unprepare(ov8856->xvclk);
+> +
+> +	return ret;
+> +}
+> +
+> +static void __ov8856_power_off(struct ov8856 *ov8856)
+> +{
+> +	clk_disable_unprepare(ov8856->xvclk);
+> +	gpiod_set_value_cansleep(ov8856->reset_gpio, 1);
+> +
+> +	regulator_bulk_disable(OV8856_NUM_SUPPLIES, ov8856->supplies);
+> +}
+> +
+>  static int __maybe_unused ov8856_suspend(struct device *dev)
+>  {
+>  	struct i2c_client *client = to_i2c_client(dev);
+> @@ -915,8 +1459,8 @@ static int __maybe_unused ov8856_suspend(struct device *dev)
+>  	struct ov8856 *ov8856 = to_ov8856(sd);
+>  
+>  	mutex_lock(&ov8856->mutex);
+> -	if (ov8856->streaming)
+> -		ov8856_stop_streaming(ov8856);
+
+This seems like an unrelated change.
+
+> +
+> +	__ov8856_power_off(ov8856);
+>  
+>  	mutex_unlock(&ov8856->mutex);
+>  
+> @@ -1089,6 +1633,20 @@ static int ov8856_identify_module(struct ov8856 *ov8856)
+>  		return -ENXIO;
+>  	}
+>  
+> +	/* set R3614 to distinguish harward versions */
+> +	ret = ov8856_update_otp_reg(ov8856);
+> +	if (ret) {
+> +		dev_err(&client->dev, "failed to set otp register");
+> +		return ret;
+> +	}
+> +
+> +	ret = ov8856_read_reg(ov8856, OV8856_OTP_REG,
+> +			      OV8856_REG_VALUE_08BIT, &val);
+> +	if (ret)
+> +		return ret;
+> +
+> +	ov8856->is_1B_module = (val == OV8856_1B_MODULE) ? 1 : 0;
+> +
+>  	return 0;
+>  }
+>  
+> @@ -1164,11 +1722,27 @@ static int ov8856_remove(struct i2c_client *client)
+>  	media_entity_cleanup(&sd->entity);
+>  	v4l2_ctrl_handler_free(sd->ctrl_handler);
+>  	pm_runtime_disable(&client->dev);
+> +	if (!pm_runtime_status_suspended(&client->dev))
+> +		__ov8856_power_off(ov8856);
+> +	pm_runtime_set_suspended(&client->dev);
+>  	mutex_destroy(&ov8856->mutex);
+>  
+>  	return 0;
+>  }
+>  
+> +static int ov8856_configure_regulators(struct ov8856 *ov8856)
+> +{
+> +	struct i2c_client *client = v4l2_get_subdevdata(&ov8856->sd);
+> +	int i;
+
+unsigned int
+
+> +
+> +	for (i = 0; i < OV8856_NUM_SUPPLIES; i++)
+> +		ov8856->supplies[i].supply = ov8856_supply_names[i];
+> +
+> +	return devm_regulator_bulk_get(&client->dev,
+> +				       OV8856_NUM_SUPPLIES,
+> +				       ov8856->supplies);
+
+Remember to put the regulators, too.
+
+> +}
+> +
+>  static int ov8856_probe(struct i2c_client *client)
+>  {
+>  	struct ov8856 *ov8856;
+> @@ -1186,6 +1760,40 @@ static int ov8856_probe(struct i2c_client *client)
+>  		return -ENOMEM;
+>  
+>  	v4l2_i2c_subdev_init(&ov8856->sd, client, &ov8856_subdev_ops);
+> +
+> +	ov8856->xvclk = devm_clk_get(&client->dev, "xvclk");
+> +	if (IS_ERR(ov8856->xvclk)) {
+> +		dev_err(&client->dev, "Failed to get xvclk\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = clk_set_rate(ov8856->xvclk, OV8856_XVCLK_FREQ);
+> +	if (ret < 0) {
+> +		dev_err(&client->dev, "Failed to set xvclk rate (24MHz)\n");
+> +		return ret;
+> +	}
+> +	if (clk_get_rate(ov8856->xvclk) != OV8856_XVCLK_FREQ)
+> +		dev_warn(&client->dev,
+> +			 "xvclk mismatched, modes are based on 24MHz\n");
+> +
+> +	ov8856->reset_gpio = devm_gpiod_get(&client->dev,
+> +					    "reset",
+
+Fits on the previous line.
+
+> +					    GPIOD_OUT_LOW);
+> +	if (IS_ERR(ov8856->reset_gpio)) {
+> +		dev_err(&client->dev, "Failed to get reset-gpios\n");
+> +		return -EINVAL;
+> +	}
+> +
+> +	ret = ov8856_configure_regulators(ov8856);
+> +	if (ret) {
+> +		dev_err(&client->dev, "Failed to get power regulators\n");
+> +		return ret;
+> +	}
+> +
+> +	ret = __ov8856_power_on(ov8856);
+> +	if (ret)
+> +		goto probe_error_v4l2_ctrl_handler_free;
+> +
+>  	ret = ov8856_identify_module(ov8856);
+>  	if (ret) {
+>  		dev_err(&client->dev, "failed to find sensor: %d", ret);
+> @@ -1251,11 +1859,21 @@ static const struct acpi_device_id ov8856_acpi_ids[] = {
+>  MODULE_DEVICE_TABLE(acpi, ov8856_acpi_ids);
+>  #endif
+>  
+> +#if IS_ENABLED(CONFIG_OF)
+> +static const struct of_device_id ov8856_of_match[] = {
+> +	{ .compatible = "ovti,ov8856" },
+> +	{},
+> +};
+> +
+> +MODULE_DEVICE_TABLE(of, ov8856_of_match);
+> +#endif
+> +
+>  static struct i2c_driver ov8856_i2c_driver = {
+>  	.driver = {
+>  		.name = "ov8856",
+>  		.pm = &ov8856_pm_ops,
+>  		.acpi_match_table = ACPI_PTR(ov8856_acpi_ids),
+> +		.of_match_table = of_match_ptr(ov8856_of_match),
+>  	},
+>  	.probe_new = ov8856_probe,
+>  	.remove = ov8856_remove,
+
 -- 
-Artur Świgoń
-Samsung R&D Institute Poland
-Samsung Electronics
+Regards,
 
-
+Sakari Ailus
