@@ -2,59 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 25A2685984
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 06:53:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0484C85990
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 07:02:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726106AbfHHExb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 00:53:31 -0400
-Received: from mail.kernel.org ([198.145.29.99]:46586 "EHLO mail.kernel.org"
+        id S1726187AbfHHFB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 01:01:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:48284 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725868AbfHHExb (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Aug 2019 00:53:31 -0400
-Received: from localhost (unknown [122.178.245.201])
+        id S1725933AbfHHFB3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Aug 2019 01:01:29 -0400
+Received: from kernel.org (unknown [104.132.0.74])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1FBC52186A;
-        Thu,  8 Aug 2019 04:53:29 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id E3DA52186A;
+        Thu,  8 Aug 2019 05:01:28 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565240010;
-        bh=PRvc48A7Aow9SPbrhyzZ7nJ749QLyc6oKL133j+p+9Y=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=RjXk7STASRJwJLZNAbEQDTEKmpzWHham9jmjmBQIs6GUirI0VTro0hFI6XdVtQKOy
-         Fj/uYfMVJoKiDPyYpSFoht4lOVp6AfHDNiEX4xDTbciLCzSO5SnKCzocePi4y+RK2M
-         b3dSQJMFqM7OQ6NlaKwkuXm6pDWYqfXMBWcPKWa4=
-Date:   Thu, 8 Aug 2019 10:22:17 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Sibi Sankar <sibis@codeaurora.org>
-Cc:     bjorn.andersson@linaro.org, robh+dt@kernel.org,
-        aneela@codeaurora.org, mark.rutland@arm.com, agross@kernel.org,
-        linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        devicetree@vger.kernel.org, jassisinghbrar@gmail.com,
-        clew@codeaurora.org
-Subject: Re: [PATCH v2 0/7] Add support for Qualcomm SM8150 and SC7180 SoCs
-Message-ID: <20190808045217.GJ12733@vkoul-mobl.Dlink>
-References: <20190807070957.30655-1-sibis@codeaurora.org>
+        s=default; t=1565240489;
+        bh=AHNJVKPnI8TPzXlCehwNhKSlQ8JsSzT7dmoWdcLEXYI=;
+        h=In-Reply-To:References:From:Cc:To:Subject:Date:From;
+        b=unMwFYPEpX5n/FTzHQhYC3ZDi50tVE5xXE1YnBj+0CofrN5KgWqXJBPd96qDefB3m
+         II6qNG81HqA8oTHXOOM14vCWS7nzLnaUrHVIwLFJ9DlHlOk5OK2o1h+n7v3DvUyBem
+         /PARBCuOWRdDahKgrA08VasYJevhmfmGM+zQQ/Yk=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190807070957.30655-1-sibis@codeaurora.org>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190705151440.20844-2-manivannan.sadhasivam@linaro.org>
+References: <20190705151440.20844-1-manivannan.sadhasivam@linaro.org> <20190705151440.20844-2-manivannan.sadhasivam@linaro.org>
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     linux-clk@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        haitao.suo@bitmain.com, darren.tsao@bitmain.com,
+        fisher.cheng@bitmain.com, alec.lin@bitmain.com,
+        Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+To:     Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>,
+        mturquette@baylibre.com, robh+dt@kernel.org
+Subject: Re: [PATCH 1/5] dt-bindings: clock: Add Bitmain BM1880 SoC clock controller binding
+User-Agent: alot/0.8.1
+Date:   Wed, 07 Aug 2019 22:01:28 -0700
+Message-Id: <20190808050128.E3DA52186A@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 07-08-19, 12:39, Sibi Sankar wrote:
-> This patch series adds SCM, APSS shared mailbox and QMP AOSS PD/clock
-> support on SM8150 and SC7180 SoCs.
-> 
-> v2:
->  * re-arrange the compatible lists in sort order
+Quoting Manivannan Sadhasivam (2019-07-05 08:14:36)
+> Add devicetree binding for Bitmain BM1880 SoC clock controller.
+>=20
+> Signed-off-by: Manivannan Sadhasivam <manivannan.sadhasivam@linaro.org>
+> ---
+>  .../bindings/clock/bitmain,bm1880-clk.txt     | 47 +++++++++++
 
-i checked these lgtm and tested on SM8150
+Can you convert this to YAML? It's all the rage right now.
 
-Tested-by: Vinod Koul <vkoul@kernel.org>
-Reviewed-by: Vinod Koul <vkoul@kernel.org>
+>  include/dt-bindings/clock/bm1880-clock.h      | 82 +++++++++++++++++++
+>  2 files changed, 129 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/clock/bitmain,bm188=
+0-clk.txt
+>  create mode 100644 include/dt-bindings/clock/bm1880-clock.h
+>=20
+> diff --git a/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.t=
+xt b/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.txt
+> new file mode 100644
+> index 000000000000..9c967095d430
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/clock/bitmain,bm1880-clk.txt
+> @@ -0,0 +1,47 @@
+> +* Bitmain BM1880 Clock Controller
+> +
+> +The Bitmain BM1880 clock controler generates and supplies clock to
+> +various peripherals within the SoC.
+> +
+> +Required Properties:
+> +
+> +- compatible: Should be "bitmain,bm1880-clk"
+> +- reg :        Register address and size of PLL and SYS control domains
+> +- reg-names : Register domain names: "pll" and "sys"
+> +- clocks : Phandle of the input reference clock.
+> +- #clock-cells: Should be 1.
+> +
+> +Each clock is assigned an identifier, and client nodes can use this iden=
+tifier
+> +to specify the clock which they consume.
+> +
+> +All available clocks are defined as preprocessor macros in corresponding
+> +dt-bindings/clock/bm1880-clock.h header and can be used in device tree s=
+ources.
+> +
+> +External clocks:
+> +
+> +The osc clock used as the input for the plls is generated outside the So=
+C.
+> +It is expected that it is defined using standard clock bindings as "osc".
+> +
+> +Example:=20
+> +
+> +        clk: clock-controller@800 {
+> +                compatible =3D "bitmain,bm1880-clk";
+> +                reg =3D <0xe8 0x0c>,<0x800 0xb0>;
 
--- 
-~Vinod
+It looks weird still. What hardware module is this actually part of?
+Some larger power manager block?
+
+> +                reg-names =3D "pll", "sys";
+> +                clocks =3D <&osc>;
+> +                #clock-cells =3D <1>;
+> +        };
+> +
