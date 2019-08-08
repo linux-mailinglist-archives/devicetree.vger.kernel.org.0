@@ -2,88 +2,119 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2D03085D40
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 10:48:43 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C369285D13
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 10:42:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731686AbfHHIse (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 04:48:34 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:60904 "EHLO inva021.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731682AbfHHIsd (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Aug 2019 04:48:33 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id D5FBC20018D;
-        Thu,  8 Aug 2019 10:48:32 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id C605B200154;
-        Thu,  8 Aug 2019 10:48:29 +0200 (CEST)
-Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 0DFBB402E6;
-        Thu,  8 Aug 2019 16:48:25 +0800 (SGT)
-From:   Biwen Li <biwen.li@nxp.com>
-To:     robh+dt@kernel.org, mark.rutland@arm.com, leoyang.li@nxp.com
-Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        Biwen Li <biwen.li@nxp.com>
-Subject: [v3,3/3] arm: dts: ls1021a: add ftm_alarm0 DT node
-Date:   Thu,  8 Aug 2019 16:38:39 +0800
-Message-Id: <20190808083839.28594-3-biwen.li@nxp.com>
-X-Mailer: git-send-email 2.9.5
-In-Reply-To: <20190808083839.28594-1-biwen.li@nxp.com>
-References: <20190808083839.28594-1-biwen.li@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1730879AbfHHIm7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 04:42:59 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:50668 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728289AbfHHIm7 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 04:42:59 -0400
+Received: by mail-wm1-f66.google.com with SMTP id v15so1545778wml.0;
+        Thu, 08 Aug 2019 01:42:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o0gY6GIOGxAdAcOqxh/7txJTZ7y4Fp96qJrFWzmJvJs=;
+        b=RUwiyaImbBGQoy18xa2BhqGI8xsDFamrbahqE96VfeFA6VE0a+pYf+hMqnuX0AZhmo
+         Z+mJc+SlQn5ApVviiHsgsXmnDePZl0YFD0+TWX2vDF/RUl2FiIq6m2KsXrM1v1C48xmJ
+         7nN6hfG9Sbn4S4s2FztFp25RDmu+C91Jv9V6VjynVMBYlaIypgm3v9xzgqJD/XOftZpj
+         Zg9jkrI1j2cnfDSgNsF/lHXvEW7hgX0WfokMqFvil8cKK9kyV4VWlV0o4m4J4Zj8OfVi
+         nhdoe7sl2TURQXr2WEzaXbScdo97ImFTTpXg5AfS0d60/mGaaYnDFL10jlkslAIjTZFK
+         lg7g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=o0gY6GIOGxAdAcOqxh/7txJTZ7y4Fp96qJrFWzmJvJs=;
+        b=QGsHu+NSfXTBdUonyHAi+iP53h4sJAWo0KzHiqwn7+5LuSoTga181bu6tnSkPrC4eE
+         HsLsvMoWHXND5zz1FnfNcjYNeNjup/D2kZvQCA9aWtKbeij1w+rDanmALnbH7RHx0J/v
+         TsZoPyTumtzjvUDdQCqOG+gZyA4u4TcKw6m2EvVpfWIVXqG5FY6xo8D7CUwGTqbsU6fj
+         ZAEzFJAjkTTVmuEb/Dr2iMeXzCmCpwkKQsXzZB8HdXrEOaSWDo57kMHPQ8lXbziLkIr7
+         iuyo0+tmfr2wHWoiyRdsP6U536j3wuLtkVcJ3mTITzsU86oFddQmx13x/zhAtHS6mteI
+         ZZaw==
+X-Gm-Message-State: APjAAAVlqEEUKzXxpLHNAsscMq9GONnRcGewvpim/SeWHZ7J9iIradRS
+        sZvM8WuCWJMY5CB4vi5idmWN6Kko
+X-Google-Smtp-Source: APXvYqwlO+R71FW8BynOKwYku3Wp9gYOHeIIBZF6I/QjRTsEvLX/UseL7h//+kMmc+MbDlaAx5ji/g==
+X-Received: by 2002:a7b:c383:: with SMTP id s3mr2992226wmj.44.1565253776712;
+        Thu, 08 Aug 2019 01:42:56 -0700 (PDT)
+Received: from Red.localdomain ([2a01:cb1d:147:7200:2e56:dcff:fed2:c6d6])
+        by smtp.googlemail.com with ESMTPSA id c1sm2059259wmc.40.2019.08.08.01.42.55
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Aug 2019 01:42:56 -0700 (PDT)
+From:   Corentin Labbe <clabbe.montjoie@gmail.com>
+To:     mark.rutland@arm.com, mripard@kernel.org, robh+dt@kernel.org,
+        wens@csie.org
+Cc:     devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        Corentin Labbe <clabbe.montjoie@gmail.com>
+Subject: [PATCH] ARM64: dts: allwinner: Add devicetree for pine H64 modelA evaluation board
+Date:   Thu,  8 Aug 2019 10:42:53 +0200
+Message-Id: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
+X-Mailer: git-send-email 2.21.0
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The patch add ftm_alarm0 DT node
-	- add rcpm node
-	- add ftm_alarm0 node
-	- aliases ftm_alarm0 as rtc1
+This patch adds the evaluation variant of the model A of the PineH64.
+The model A has the same size of the pine64 and has a PCIE slot.
 
-Signed-off-by: Biwen Li <biwen.li@nxp.com>
+The only devicetree difference with current pineH64, is the PHY
+regulator.
+
+Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
 ---
-Change in v3:
-	- None
+ arch/arm64/boot/dts/allwinner/Makefile        |  1 +
+ .../sun50i-h6-pine-h64-modelA-eval.dts        | 26 +++++++++++++++++++
+ 2 files changed, 27 insertions(+)
+ create mode 100644 arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
 
-Change in v2:
-	- delete reg-name property
-	- correct fsl,rcpm-wakeup property
-
- arch/arm/boot/dts/ls1021a.dtsi | 14 ++++++++++++++
- 1 file changed, 14 insertions(+)
-
-diff --git a/arch/arm/boot/dts/ls1021a.dtsi b/arch/arm/boot/dts/ls1021a.dtsi
-index 464df4290ffc..30bd6bc1f49a 100644
---- a/arch/arm/boot/dts/ls1021a.dtsi
-+++ b/arch/arm/boot/dts/ls1021a.dtsi
-@@ -66,6 +66,7 @@
- 		serial4 = &lpuart4;
- 		serial5 = &lpuart5;
- 		sysclk = &sysclk;
-+		rtc1 = &ftm_alarm0;
- 	};
- 
- 	cpus {
-@@ -985,5 +986,18 @@
- 			big-endian;
- 		};
- 
-+		rcpm: rcpm@1ee2140 {
-+			compatible = "fsl,ls1021a-rcpm", "fsl,qoriq-rcpm-2.1+";
-+			reg = <0x0 0x1ee2140 0x0 0x8>;
-+			#fsl,rcpm-wakeup-cells = <2>;
-+		};
+diff --git a/arch/arm64/boot/dts/allwinner/Makefile b/arch/arm64/boot/dts/allwinner/Makefile
+index f6db0611cb85..9a02166cbf72 100644
+--- a/arch/arm64/boot/dts/allwinner/Makefile
++++ b/arch/arm64/boot/dts/allwinner/Makefile
+@@ -25,3 +25,4 @@ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-3.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-lite2.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-orangepi-one-plus.dtb
+ dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64.dtb
++dtb-$(CONFIG_ARCH_SUNXI) += sun50i-h6-pine-h64-modelA-eval.dtb
+diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+new file mode 100644
+index 000000000000..d8ff02747efe
+--- /dev/null
++++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
+@@ -0,0 +1,26 @@
++// SPDX-License-Identifier: (GPL-2.0+ or MIT)
++/*
++ * Copyright (C) 2019 Corentin Labbe <clabbe.montjoie@gmail.com>
++ */
 +
-+		ftm_alarm0: timer0@29d0000 {
-+			compatible = "fsl,ls1021a-ftm-alarm";
-+			reg = <0x0 0x29d0000 0x0 0x10000>;
-+			fsl,rcpm-wakeup = <&rcpm 0x0 0x20000000>;
-+			interrupts = <GIC_SPI 118 IRQ_TYPE_LEVEL_HIGH>;
-+			big-endian;
-+		};
- 	};
- };
++#include "sun50i-h6-pine-h64.dts"
++
++/ {
++	model = "Pine H64 model A evaluation board";
++	compatible = "pine64,pine-h64-modelA-eval", "allwinner,sun50i-h6";
++
++	reg_gmac_3v3: gmac-3v3 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc-gmac-3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		startup-delay-us = <100000>;
++		gpio = <&pio 2 16 GPIO_ACTIVE_HIGH>;
++		enable-active-high;
++	};
++
++};
++
++&emac {
++	phy-supply = <&reg_gmac_3v3>;
++};
 -- 
-2.17.1
+2.21.0
 
