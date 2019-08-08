@@ -2,131 +2,97 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1A1786834
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 19:39:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1CB2C86874
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 20:09:12 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732886AbfHHRjr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 13:39:47 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:38220 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728025AbfHHRjq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 13:39:46 -0400
-Received: by mail-pf1-f196.google.com with SMTP id y15so44511342pfn.5
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 10:39:46 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=chromium.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=h/yL8Ymy2LB/STS6J+Lq4m9W0ydt77fAXWIWGhH684M=;
-        b=C0Tdu9oWw6g8jn0YCy/CUc0vBYErlEDkoKO0ggvyp3/u2SeUmwfPORoGPM4LeaiRRJ
-         JnXa11Nr0XT7YDWpmLDBkLw+su/NAcq9L9MuzaABlUQVuFCoRTu/ea1ABq2d51thSbXa
-         h3L4/ldUPBQ5CNJ3G5pzpA31cvXgxRP1Gqae0=
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=h/yL8Ymy2LB/STS6J+Lq4m9W0ydt77fAXWIWGhH684M=;
-        b=m0ap3OMGTt2mzfmdQzngcsCYgeFaKhr1CGDP2DBRYnIvagZsijWTHBIOOYIVpSY0lA
-         tLdcG66PvfknhfIo36MpRaQMcJzxHH8QZ+0UetFfD4RYVn8pOACTBgjER7utHOi0td+6
-         S5HBc0q44eVRjXWyZMpTOVfeWuxsRFM2E+JOc/KpzpUjq09qIGVlqB1j56lcMgbDHUxr
-         iwpclkaxMasPUCNH1wGmjz0PshfN9e3Yey1mSKPng0IRmSa6ic6LJlFu453KJwQBIqc3
-         YuMBN0h4mV63vOpLr22Lg+s8D6MQ+/2XGdlq3WDmpXdZW/EXYbE8/IYT4ykD99QrrlZw
-         P4Lg==
-X-Gm-Message-State: APjAAAV+ZcjoNbQW9uU6nGMvU7hKcfA5mZSiFKyO2nb8DU3ZCs4fk7+g
-        OFafhdFwUd2WLqVLae28gK3SKw==
-X-Google-Smtp-Source: APXvYqzhArDX4+b5Tep8MKl/+REDpR8R7lMugu/xbPdlvta78+f9dxTGpX+ohwloxZ3TNOhPSM5uEg==
-X-Received: by 2002:aa7:8a0a:: with SMTP id m10mr466871pfa.100.1565285986200;
-        Thu, 08 Aug 2019 10:39:46 -0700 (PDT)
-Received: from hsinyi-z840.tpe.corp.google.com ([2401:fa00:1:10:b852:bd51:9305:4261])
-        by smtp.gmail.com with ESMTPSA id y12sm105824412pfn.187.2019.08.08.10.39.42
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 08 Aug 2019 10:39:45 -0700 (PDT)
-From:   Hsin-Yi Wang <hsinyi@chromium.org>
-To:     linux-arm-kernel@lists.infradead.org
-Cc:     Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org,
-        Frank Rowand <frowand.list@gmail.com>,
-        Catalin Marinas <catalin.marinas@arm.com>,
-        Will Deacon <will.deacon@arm.com>,
-        Andrew Morton <akpm@linux-foundation.org>,
-        Mike Rapoport <rppt@linux.ibm.com>,
-        Ard Biesheuvel <ard.biesheuvel@linaro.org>,
-        Miles Chen <miles.chen@mediatek.com>,
-        Hsin-Yi Wang <hsinyi@chromium.org>,
-        James Morse <james.morse@arm.com>,
-        Andrew Murray <andrew.murray@arm.com>,
+        id S1728825AbfHHSJL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 14:09:11 -0400
+Received: from skedge04.snt-world.com ([91.208.41.69]:53206 "EHLO
+        skedge04.snt-world.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727096AbfHHSJL (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 14:09:11 -0400
+Received: from sntmail11s.snt-is.com (unknown [10.203.32.181])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by skedge04.snt-world.com (Postfix) with ESMTPS id C03B467A8D8;
+        Thu,  8 Aug 2019 20:09:05 +0200 (CEST)
+Received: from sntmail12r.snt-is.com (10.203.32.182) by sntmail11s.snt-is.com
+ (10.203.32.181) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1713.5; Thu, 8 Aug 2019
+ 20:09:05 +0200
+Received: from sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305]) by
+ sntmail12r.snt-is.com ([fe80::e551:8750:7bba:3305%3]) with mapi id
+ 15.01.1713.004; Thu, 8 Aug 2019 20:09:05 +0200
+From:   Schrempf Frieder <frieder.schrempf@kontron.de>
+To:     Krzysztof Kozlowski <krzk@kernel.org>,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Jun Yao <yaojun8558363@gmail.com>, Yu Zhao <yuzhao@google.com>,
-        Robin Murphy <robin.murphy@arm.com>,
-        Laura Abbott <labbott@redhat.com>,
-        Stephen Boyd <swboyd@chromium.org>,
-        Kees Cook <keescook@chromium.org>
-Subject: [PATCH RESEND v7 3/3] arm64: kexec_file: add rng-seed support
-Date:   Fri,  9 Aug 2019 01:38:07 +0800
-Message-Id: <20190808173803.1146-4-hsinyi@chromium.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190808173803.1146-1-hsinyi@chromium.org>
-References: <20190808173803.1146-1-hsinyi@chromium.org>
+        Shawn Guo <shawnguo@kernel.org>,
+        "Sascha Hauer" <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>
+CC:     "notify@kernel.org" <notify@kernel.org>
+Subject: Re: [PATCH v4 2/3] dt-bindings: eeprom: at25: Add Anvo ANV32E61W
+Thread-Topic: [PATCH v4 2/3] dt-bindings: eeprom: at25: Add Anvo ANV32E61W
+Thread-Index: AQHVTg5uKuaOwni6qUqr2zRHpkgjtKbxaxUA
+Date:   Thu, 8 Aug 2019 18:09:05 +0000
+Message-ID: <de032954-2b6e-5aa9-0d91-c37417c8e162@kontron.de>
+References: <20190808172616.11728-1-krzk@kernel.org>
+ <20190808172616.11728-2-krzk@kernel.org>
+In-Reply-To: <20190808172616.11728-2-krzk@kernel.org>
+Accept-Language: de-DE, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-originating-ip: [172.25.9.193]
+x-c2processedorg: 51b406b7-48a2-4d03-b652-521f56ac89f3
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <3C7E3CA83525024C90313252A9756400@snt-world.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+X-SnT-MailScanner-Information: Please contact the ISP for more information
+X-SnT-MailScanner-ID: C03B467A8D8.A186B
+X-SnT-MailScanner: Not scanned: please contact your Internet E-Mail Service Provider for details
+X-SnT-MailScanner-SpamCheck: 
+X-SnT-MailScanner-From: frieder.schrempf@kontron.de
+X-SnT-MailScanner-To: devicetree@vger.kernel.org, festevam@gmail.com,
+        kernel@pengutronix.de, krzk@kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-imx@nxp.com,
+        linux-kernel@vger.kernel.org, mark.rutland@arm.com,
+        notify@kernel.org, robh+dt@kernel.org, s.hauer@pengutronix.de,
+        shawnguo@kernel.org
+X-Spam-Status: No
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Adding "rng-seed" to dtb. It's fine to add this property if original
-fdt doesn't contain it. Since original seed will be wiped after
-read, so use a default size 128 bytes here.
-
-Signed-off-by: Hsin-Yi Wang <hsinyi@chromium.org>
-Reviewed-by: Stephen Boyd <swboyd@chromium.org>
----
- arch/arm64/kernel/machine_kexec_file.c | 18 +++++++++++++++++-
- 1 file changed, 17 insertions(+), 1 deletion(-)
-
-diff --git a/arch/arm64/kernel/machine_kexec_file.c b/arch/arm64/kernel/machine_kexec_file.c
-index ba78ee7ca990..7b08bf9499b6 100644
---- a/arch/arm64/kernel/machine_kexec_file.c
-+++ b/arch/arm64/kernel/machine_kexec_file.c
-@@ -27,6 +27,8 @@
- #define FDT_PROP_INITRD_END	"linux,initrd-end"
- #define FDT_PROP_BOOTARGS	"bootargs"
- #define FDT_PROP_KASLR_SEED	"kaslr-seed"
-+#define FDT_PROP_RNG_SEED	"rng-seed"
-+#define RNG_SEED_SIZE		128
- 
- const struct kexec_file_ops * const kexec_file_loaders[] = {
- 	&kexec_image_ops,
-@@ -102,6 +104,19 @@ static int setup_dtb(struct kimage *image,
- 				FDT_PROP_KASLR_SEED);
- 	}
- 
-+	/* add rng-seed */
-+	if (rng_is_initialized()) {
-+		u8 rng_seed[RNG_SEED_SIZE];
-+		get_random_bytes(rng_seed, RNG_SEED_SIZE);
-+		ret = fdt_setprop(dtb, off, FDT_PROP_RNG_SEED, rng_seed,
-+				RNG_SEED_SIZE);
-+		if (ret)
-+			goto out;
-+	} else {
-+		pr_notice("RNG is not initialised: omitting \"%s\" property\n",
-+				FDT_PROP_RNG_SEED);
-+	}
-+
- out:
- 	if (ret)
- 		return (ret == -FDT_ERR_NOSPACE) ? -ENOMEM : -EINVAL;
-@@ -110,7 +125,8 @@ static int setup_dtb(struct kimage *image,
- }
- 
- /*
-- * More space needed so that we can add initrd, bootargs and kaslr-seed.
-+ * More space needed so that we can add initrd, bootargs, kaslr-seed, and
-+ * rng-seed.
-  */
- #define DTB_EXTRA_SPACE 0x1000
- 
--- 
-2.20.1
-
+T24gMDguMDguMTkgMTk6MjYsIEtyenlzenRvZiBLb3psb3dza2kgd3JvdGU6DQo+IERvY3VtZW50
+IHRoZSBjb21wYXRpYmxlIGZvciBBTlYzMkU2MVcgRUVQUk9NIGNoaXAuDQoNClRoaXMgY2hpcCBp
+cyBhY3R1YWxseSBub3QgYW4gRUVQUk9NLCBidXQgYSBTUEkgbnZTUkFNLiBJdCBjYW4gYmUgDQpp
+bnRlcmZhY2VkIGJ5IHRoZSBhdDI1IGRyaXZlciBzaW1pbGFyIHRvIGFuIEVFUFJPTS4gVGhpcyBp
+cyBub3QgdGhlIA0KaWRlYWwgc29sdXRpb24sIGJ1dCBpdCB3b3JrcyB1bnRpbCB0aGVyZSdzIGEg
+cHJvcGVyIGRyaXZlciBmb3Igc3VjaCANCmNoaXBzLiBNYXliZSB5b3UgY2FuIGFkZCBzb21lIG9m
+IHRoZXNlIGRldGFpbHMgdG8gdGhlIGNvbW1pdCBtZXNzYWdlIA0KaGVyZS4gQWxzbyB0aGVyZSBp
+cyBtb3JlIGluZm9ybWF0aW9uIG9uIHRoaXMgdG9waWMgaGVyZTogDQpodHRwczovL3BhdGNod29y
+ay5vemxhYnMub3JnL3BhdGNoLzEwNDM5NTAvLg0KDQo+IA0KPiBTaWduZWQtb2ZmLWJ5OiBLcnp5
+c3p0b2YgS296bG93c2tpIDxrcnprQGtlcm5lbC5vcmc+DQo+IFJldmlld2VkLWJ5OiBGYWJpbyBF
+c3RldmFtIDxmZXN0ZXZhbUBnbWFpbC5jb20+DQo+IA0KPiAtLS0NCj4gDQo+IE5ldyBwYXRjaA0K
+PiAtLS0NCj4gICBEb2N1bWVudGF0aW9uL2RldmljZXRyZWUvYmluZGluZ3MvZWVwcm9tL2F0MjUu
+dHh0IHwgMSArDQo+ICAgMSBmaWxlIGNoYW5nZWQsIDEgaW5zZXJ0aW9uKCspDQo+IA0KPiBkaWZm
+IC0tZ2l0IGEvRG9jdW1lbnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2VlcHJvbS9hdDI1LnR4
+dCBiL0RvY3VtZW50YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9lZXByb20vYXQyNS50eHQNCj4g
+aW5kZXggYjNiZGU5N2RjMTk5Li40MjU3N2RkMTEzZGQgMTAwNjQ0DQo+IC0tLSBhL0RvY3VtZW50
+YXRpb24vZGV2aWNldHJlZS9iaW5kaW5ncy9lZXByb20vYXQyNS50eHQNCj4gKysrIGIvRG9jdW1l
+bnRhdGlvbi9kZXZpY2V0cmVlL2JpbmRpbmdzL2VlcHJvbS9hdDI1LnR4dA0KPiBAQCAtMyw2ICsz
+LDcgQEAgRUVQUk9NcyAoU1BJKSBjb21wYXRpYmxlIHdpdGggQXRtZWwgYXQyNS4NCj4gICBSZXF1
+aXJlZCBwcm9wZXJ0aWVzOg0KPiAgIC0gY29tcGF0aWJsZSA6IFNob3VsZCBiZSAiPHZlbmRvcj4s
+PHR5cGU+IiwgYW5kIGdlbmVyaWMgdmFsdWUgImF0bWVsLGF0MjUiLg0KPiAgICAgRXhhbXBsZSAi
+PHZlbmRvcj4sPHR5cGU+IiB2YWx1ZXM6DQo+ICsgICAgImFudm8sYW52MzJlNjF3Ig0KPiAgICAg
+ICAibWljcm9jaGlwLDI1bGMwNDAiDQo+ICAgICAgICJzdCxtOTVtMDIiDQo+ICAgICAgICJzdCxt
+OTUyNTYiDQo+IA==
