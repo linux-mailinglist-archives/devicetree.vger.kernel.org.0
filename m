@@ -2,107 +2,93 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 45D2F856AE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 01:59:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4CB198576F
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 03:10:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730145AbfHGX7Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 19:59:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51464 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1730045AbfHGX7Y (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Wed, 7 Aug 2019 19:59:24 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 9D714217D9;
-        Wed,  7 Aug 2019 23:59:23 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565222363;
-        bh=xlQGs4Ss1PEAXXFBoCe2f1wiOxkqtY6afXuf8TMA9Xw=;
-        h=In-Reply-To:References:From:Cc:To:Subject:Date:From;
-        b=Rc4GwQf5rpwauL1csS5qRpDY92wjK/Dpk0A1DPPcgh/V0YCa3P+3ZIsWZ5ZhjOmf+
-         JAq4VaPmsevg5gVvmNGKIQwcxSWHA5UuY8suZLnlz2HFwreM07sWviu+W3xPx2TzJY
-         P4xr+s0CUvYCi/0zj+BnoWFtJ7JU1oJGqMrDMHAw=
-Content-Type: text/plain; charset="utf-8"
+        id S1730543AbfHHBKN (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 21:10:13 -0400
+Received: from bin-mail-out-05.binero.net ([195.74.38.228]:16049 "EHLO
+        bin-mail-out-05.binero.net" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1730467AbfHHBKN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 21:10:13 -0400
+X-Greylist: delayed 363 seconds by postgrey-1.27 at vger.kernel.org; Wed, 07 Aug 2019 21:10:12 EDT
+X-Halon-ID: 5252cf1b-b978-11e9-bdc3-005056917a89
+Authorized-sender: niklas@soderlund.pp.se
+Received: from bismarck.berto.se (unknown [145.14.112.32])
+        by bin-vsp-out-01.atm.binero.net (Halon) with ESMTPA
+        id 5252cf1b-b978-11e9-bdc3-005056917a89;
+        Thu, 08 Aug 2019 03:04:00 +0200 (CEST)
+From:   =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+To:     Geert Uytterhoeven <geert@linux-m68k.org>,
+        Rob Herring <robh+dt@kernel.org>, devicetree@vger.kernel.org,
+        linux-media@vger.kernel.org
+Cc:     linux-renesas-soc@vger.kernel.org,
+        =?UTF-8?q?Niklas=20S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Ulrich Hecht <uli+renesas@fpond.eu>,
+        Simon Horman <horms+renesas@verge.net.au>
+Subject: [PATCH v3] dt-bindings: rcar-{csi2,vin}: Rename bindings documentation files
+Date:   Thu,  8 Aug 2019 03:03:30 +0200
+Message-Id: <20190808010330.19515-1-niklas.soderlund+renesas@ragnatech.se>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <CAL_JsqKZHG-y_cKitU0=EksgyVU-YLOi1gAcFXx4ve21CMki1g@mail.gmail.com>
-References: <20190725020551.27034-1-Anson.Huang@nxp.com> <20190725210619.5EB94218D4@mail.kernel.org> <CAL_JsqKZHG-y_cKitU0=EksgyVU-YLOi1gAcFXx4ve21CMki1g@mail.gmail.com>
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     Anson Huang <Anson.Huang@nxp.com>, devicetree@vger.kernel.org,
-        Fabio Estevam <festevam@gmail.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Shawn Guo <shawnguo@kernel.org>,
-        NXP Linux Team <Linux-imx@nxp.com>
-To:     Rob Herring <robh+dt@kernel.org>
-Subject: Re: [PATCH] dt-bindings: clock: imx8mn: Fix tab indentation for yaml file
-User-Agent: alot/0.8.1
-Date:   Wed, 07 Aug 2019 16:59:22 -0700
-Message-Id: <20190807235923.9D714217D9@mail.kernel.org>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Rob Herring (2019-07-25 14:37:24)
-> On Thu, Jul 25, 2019 at 3:06 PM Stephen Boyd <sboyd@kernel.org> wrote:
-> >
-> > Quoting Anson.Huang@nxp.com (2019-07-24 19:05:51)
-> > > From: Anson Huang <Anson.Huang@nxp.com>
-> > >
-> > > YAML file can NOT contain tab as indentation, fix it.
-> > >
-> >
-> > Would be nice if checkpatch could check for this.
->=20
-> Would be nice if folks just ran 'make dt_binding_check'. :) It
-> wouldn't be hard to add a tab check to checkpatch, but that's just one
-> potential problem.
->=20
+Renesas media binding documentation files uses a naming schema of
+'renesas,<module>.txt'. Rename VIN and CSI-2 files to match this
+pattern.
 
-Cool, thanks for the pointer. Seems I forgot :)
+Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
+Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
+---
+ .../media/{renesas,rcar-csi2.txt => renesas,csi2.txt}         | 0
+ .../bindings/media/{rcar_vin.txt => renesas,vin.txt}          | 0
+ MAINTAINERS                                                   | 4 ++--
+ 3 files changed, 2 insertions(+), 2 deletions(-)
+ rename Documentation/devicetree/bindings/media/{renesas,rcar-csi2.txt => renesas,csi2.txt} (100%)
+ rename Documentation/devicetree/bindings/media/{rcar_vin.txt => renesas,vin.txt} (100%)
 
-Here's a patch to improve the documentation and make help to answer
-questions I had about how to work this into my workflow.
+---
 
-diff --git a/Documentation/devicetree/writing-schema.md b/Documentation/dev=
-icetree/writing-schema.md
-index dc032db36262..17ad67887fde 100644
---- a/Documentation/devicetree/writing-schema.md
-+++ b/Documentation/devicetree/writing-schema.md
-@@ -120,6 +120,7 @@ This will first run the `dt_binding_check` which genera=
-tes the processed schema.
- It is also possible to run checks with a single schema file by setting the
- 'DT_SCHEMA_FILES' variable to a specific schema file.
-=20
-+`make dt_binding_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings=
-/trivial-devices.yaml`
- `make dtbs_check DT_SCHEMA_FILES=3DDocumentation/devicetree/bindings/trivi=
-al-devices.yaml`
-=20
-=20
-diff --git a/Makefile b/Makefile
-index 9be5834073f8..96bb28aa1c46 100644
---- a/Makefile
-+++ b/Makefile
-@@ -1503,8 +1503,10 @@ help:
- 	@echo  ''
- 	@$(if $(dtstree), \
- 		echo 'Devicetree:'; \
--		echo '* dtbs            - Build device tree blobs for enabled boards'; \
--		echo '  dtbs_install    - Install dtbs to $(INSTALL_DTBS_PATH)'; \
-+		echo '* dtbs             - Build device tree blobs for enabled boards'; \
-+		echo '  dtbs_install     - Install dtbs to $(INSTALL_DTBS_PATH)'; \
-+		echo '  dt_binding_check - Validate device tree binding documents'; \
-+		echo '  dtbs_check       - Validate device tree source files'; \
- 		echo '')
-=20
- 	@echo 'Userspace tools targets:'
+Hi Geert,
+
+Would you be willing to take this patch in your renesas tree? There 
+seems to be a lack of interest in it :-(
+
+// Niklas
+
+diff --git a/Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt b/Documentation/devicetree/bindings/media/renesas,csi2.txt
+similarity index 100%
+rename from Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt
+rename to Documentation/devicetree/bindings/media/renesas,csi2.txt
+diff --git a/Documentation/devicetree/bindings/media/rcar_vin.txt b/Documentation/devicetree/bindings/media/renesas,vin.txt
+similarity index 100%
+rename from Documentation/devicetree/bindings/media/rcar_vin.txt
+rename to Documentation/devicetree/bindings/media/renesas,vin.txt
+diff --git a/MAINTAINERS b/MAINTAINERS
+index 3012e33e59465f4c..60bd9b419ee1f635 100644
+--- a/MAINTAINERS
++++ b/MAINTAINERS
+@@ -9801,8 +9801,8 @@ L:	linux-media@vger.kernel.org
+ L:	linux-renesas-soc@vger.kernel.org
+ T:	git git://linuxtv.org/media_tree.git
+ S:	Supported
+-F:	Documentation/devicetree/bindings/media/renesas,rcar-csi2.txt
+-F:	Documentation/devicetree/bindings/media/rcar_vin.txt
++F:	Documentation/devicetree/bindings/media/renesas,csi2.txt
++F:	Documentation/devicetree/bindings/media/renesas,vin.txt
+ F:	drivers/media/platform/rcar-vin/
+ 
+ MEDIA DRIVERS FOR RENESAS - VSP1
+-- 
+2.22.0
 
