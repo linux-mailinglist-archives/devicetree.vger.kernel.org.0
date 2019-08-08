@@ -2,89 +2,94 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A3A5885D80
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 10:55:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3543285D90
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 10:57:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731533AbfHHIz3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 04:55:29 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:34775 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731508AbfHHIz3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 04:55:29 -0400
-Received: by mail-wr1-f65.google.com with SMTP id 31so94120936wrm.1
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 01:55:27 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=cGMV7QhC8DNNZSd4DygDFTwAShSfi/80pVWOD2ZlzJ4=;
-        b=PeVELfYvvyjsx6clfPeEV6Kyb4FSgsdGONpfUp+mhUWbRbE6lOwzvPOuOzghkx6UY7
-         sV7OyXvLbqZR62Qbpmmw4l35xC2kfWcUBQ9+I1cBzj0J6TbruWWxPqzkzawHAzd3dNDq
-         LSGhY2wEMrRjIPBV4X3wMMXLBpcdLvif5+dTdz4KVRvyQ7ytn1UF/bgn3kkRGHH7e4T5
-         YsHJvm4sGZLQmwtl3c6ZDriwhEv982T5LMZGUnye2w1eT2zjbfINQ/MNb8q8VQ9+jPuP
-         epUB01MA29ckMpujdwib4vSG15vWT/tXHrpAh9yXYq7MethOMhpCYaazti6CrRejYT1v
-         F2UA==
+        id S1731555AbfHHI53 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Thu, 8 Aug 2019 04:57:29 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:41920 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728289AbfHHI53 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 04:57:29 -0400
+Received: by mail-ot1-f67.google.com with SMTP id o101so115632053ota.8;
+        Thu, 08 Aug 2019 01:57:28 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=cGMV7QhC8DNNZSd4DygDFTwAShSfi/80pVWOD2ZlzJ4=;
-        b=RKQNGYoxlmzT3KFuBrk2l1ZAshZk7M4XN3RcHIHSXoLZM2yuvJVzxBRLsKONeZApeY
-         aJjk59gZkcfk5AshtRIJgB7l6b7TA9F5bMjkknea51noLlfjS8DHfsu7HtM7auZfvECo
-         65X6jLK71gJnQMbAO//amX3H5GXMvxkAwTvbt+9Gk4nl0WRGJGVwWib29ezWrVxkJYwV
-         xGfbFoQH8z9JzRhk45fYpGfXb/U+H0DNMrDYSUZJuLmC7nYy3cgqO7AjAyyS+WDVb5bM
-         4B8nmSYo43mVV9SUil5A6wc8uH6hVuq2/0tJ7OEkSBsqQ/lrX3Ire5eI4f+G1kt7WmE2
-         qkfA==
-X-Gm-Message-State: APjAAAVKGoFlVqnEg8BDiw5hOxKvqvmiRnyjhsAkeSZVgTQ8myW5tZqA
-        01SNvWMPB9YVX0Q5EPJdZ63l0A==
-X-Google-Smtp-Source: APXvYqx4HZQxEVZ8L3lNTFhLUVF9yFAHzskRwJoSI/HZlrCcCvMyPu5yrg2yl0ii5Hl6FetDC3yEvQ==
-X-Received: by 2002:adf:a348:: with SMTP id d8mr3321352wrb.235.1565254526837;
-        Thu, 08 Aug 2019 01:55:26 -0700 (PDT)
-Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id i66sm3380649wmi.11.2019.08.08.01.55.26
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 08 Aug 2019 01:55:26 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     robh+dt@kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 3/3] MAINTAINERS: Update with Amlogic DRM bindings converted as YAML
-Date:   Thu,  8 Aug 2019 10:55:22 +0200
-Message-Id: <20190808085522.21950-4-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190808085522.21950-1-narmstrong@baylibre.com>
-References: <20190808085522.21950-1-narmstrong@baylibre.com>
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=/9E+Mm+6Qrots1Pu2f9K0wv/WiNE+9qq/chojj6dqDg=;
+        b=sotWwtak5ZAKk02+5UYmY+5NbrrDOZXs4Ttb0qvSIrUUIeu7NpyWPDAVkcna23+Krx
+         dHdi/R5ayjD7Auu+7pYTicxylPuxJb5fpt5kWmoMppEdtPFPDoTxagGrzXq8jiM/pHWR
+         /wwqqjKa1NMLIc3xz6i4JRsk5RaC/eIe6VMGlia/De3WrFECi+DtVkD4EFqBBe+O42Ng
+         SNFZdZXOl73Jc84DaaIs7726K0dA5ljOU0YQHa/Ke4yFwZ9wBJgQkGlo5nwxK96Et1cy
+         z0EFWVylvYRdkg+eJg07HAIJaS/DKJyAuU0PQYiLxElwXlU7hc0k3F8J4piBrbYqa1g7
+         D19Q==
+X-Gm-Message-State: APjAAAVi4B2+yysiI6WQ3oocSpC4ykoOIUr6xS1u3IeuRzCFROLTPmmD
+        HcQe5Ctt3BNJXURPqXUCWMWRWnDV5vI04yKeUAk=
+X-Google-Smtp-Source: APXvYqwzbfnQc5tpmmTdIukaBJtBLB9Nn2sWukYcYiZ2+MQGTdqxtFxqy5L1S4Z4iknP7z/4/B3aF5iLfSK7VukHi4c=
+X-Received: by 2002:a9d:7a90:: with SMTP id l16mr12446512otn.297.1565254648306;
+ Thu, 08 Aug 2019 01:57:28 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190808010330.19515-1-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20190808010330.19515-1-niklas.soderlund+renesas@ragnatech.se>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Thu, 8 Aug 2019 10:57:17 +0200
+Message-ID: <CAMuHMdUC9tWWReH0HLMVAofR8A3phydqavejtZVK792j9g28Sg@mail.gmail.com>
+Subject: Re: [PATCH v3] dt-bindings: rcar-{csi2,vin}: Rename bindings
+ documentation files
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        Ulrich Hecht <uli+renesas@fpond.eu>,
+        Simon Horman <horms+renesas@verge.net.au>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The amlogic,meson-dw-hdmi.txt and amlogic,meson-vpu.txt has been
-converted to YAML schemas, update MAINTAINERS to match them again.
+Hi Niklas,
 
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- MAINTAINERS | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+On Thu, Aug 8, 2019 at 3:04 AM Niklas Söderlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> Renesas media binding documentation files uses a naming schema of
+> 'renesas,<module>.txt'. Rename VIN and CSI-2 files to match this
+> pattern.
+>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+> Reviewed-by: Ulrich Hecht <uli+renesas@fpond.eu>
+> Reviewed-by: Simon Horman <horms+renesas@verge.net.au>
+> ---
+>  .../media/{renesas,rcar-csi2.txt => renesas,csi2.txt}         | 0
+>  .../bindings/media/{rcar_vin.txt => renesas,vin.txt}          | 0
+>  MAINTAINERS                                                   | 4 ++--
+>  3 files changed, 2 insertions(+), 2 deletions(-)
+>  rename Documentation/devicetree/bindings/media/{renesas,rcar-csi2.txt => renesas,csi2.txt} (100%)
+>  rename Documentation/devicetree/bindings/media/{rcar_vin.txt => renesas,vin.txt} (100%)
+>
+> ---
+>
+> Hi Geert,
+>
+> Would you be willing to take this patch in your renesas tree? There
+> seems to be a lack of interest in it :-(
 
-diff --git a/MAINTAINERS b/MAINTAINERS
-index 6426db5198f0..c55c18531cd1 100644
---- a/MAINTAINERS
-+++ b/MAINTAINERS
-@@ -5318,8 +5318,8 @@ L:	linux-amlogic@lists.infradead.org
- W:	http://linux-meson.com/
- S:	Supported
- F:	drivers/gpu/drm/meson/
--F:	Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
--F:	Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
-+F:	Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
-+F:	Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
- F:	Documentation/gpu/meson.rst
- T:	git git://anongit.freedesktop.org/drm/drm-misc
- 
+Thanks, queued in renesas-devel/renesas-dt-bindings-for-v5.4.
+
+Gr{oetje,eeting}s,
+
+                        Geert
+
 -- 
-2.22.0
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
 
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
