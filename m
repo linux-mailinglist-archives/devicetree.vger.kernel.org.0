@@ -2,183 +2,174 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F111F8607A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 12:58:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A0D64860E4
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 13:35:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731311AbfHHK60 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 06:58:26 -0400
-Received: from foss.arm.com ([217.140.110.172]:60070 "EHLO foss.arm.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1731122AbfHHK60 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Aug 2019 06:58:26 -0400
-Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
-        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id D98E228;
-        Thu,  8 Aug 2019 03:58:25 -0700 (PDT)
-Received: from e121166-lin.cambridge.arm.com (e121166-lin.cambridge.arm.com [10.1.196.255])
-        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id BBD723F694;
-        Thu,  8 Aug 2019 03:58:23 -0700 (PDT)
-Date:   Thu, 8 Aug 2019 11:58:21 +0100
-From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
-To:     "Chocron, Jonathan" <jonnyc@amazon.com>
-Cc:     "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "Woodhouse, David" <dwmw@amazon.co.uk>,
-        "Hanoch, Uri" <hanochu@amazon.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "Wasserstrom, Barak" <barakw@amazon.com>,
-        "Saidi, Ali" <alisaidi@amazon.com>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "Hawa, Hanna" <hhhawa@amazon.com>,
-        "Shenhar, Talel" <talel@amazon.com>,
-        "Krupnik, Ronen" <ronenk@amazon.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
-        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "benh@kernel.crashing.org" <benh@kernel.crashing.org>
-Subject: Re: [PATCH v3 8/8] PCI: dw: Add support for
- PCI_PROBE_ONLY/PCI_REASSIGN_ALL_BUS flags
-Message-ID: <20190808105821.GB30230@e121166-lin.cambridge.arm.com>
-References: <20190723092529.11310-1-jonnyc@amazon.com>
- <20190723092711.11786-4-jonnyc@amazon.com>
- <20190807163654.GC16214@e121166-lin.cambridge.arm.com>
- <67c58ded2177beca030450c25d742d35890eb48a.camel@amazon.com>
+        id S1732216AbfHHLfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 07:35:37 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:57542 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731955AbfHHLfh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 07:35:37 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id A99A460452; Thu,  8 Aug 2019 11:35:35 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565264135;
+        bh=sH6nUxZ8Y5dNhEx5LOsnBwv7hqu3JssLmT67GtkYFO8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=mqb7vvjzx+MKfzAMS8jEz1fTkI4H9bPpTOCk+imcRQkezG9Yp2E+E45/nhpmGZQei
+         pBirMUA6XrO/Ht5xpyR9XJ/KaYs42L/b1ivVHV1CgYRhHdhPeAC+V5PPpEvsbpjWwX
+         srYIPa2q0ySeKGkshNuudBF2AsrzdJ65bO0R/VZQ=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: vivek.gautam@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4245860452;
+        Thu,  8 Aug 2019 11:35:34 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565264134;
+        bh=sH6nUxZ8Y5dNhEx5LOsnBwv7hqu3JssLmT67GtkYFO8=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=ZbrI0B4S6yZ9W8DkXTkRKrtxZxIGwqY+/MXPYB0o2rmzwggw0xkXrqFe8/EQqk3qx
+         CEiE0e7ulfOwRuC4cCZk5zRsj+IjxTMkazmUE1W++Hhtf2TrNtbW8Zj1X5IqmRAqkF
+         eR+XXmlBx8cVE9RFQgP2+XxaVevY5NI/aexva7a0=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4245860452
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=vivek.gautam@codeaurora.org
+Received: by mail-ed1-f52.google.com with SMTP id h8so2240926edv.7;
+        Thu, 08 Aug 2019 04:35:34 -0700 (PDT)
+X-Gm-Message-State: APjAAAW0rTAydE88HFcRZLbHuomed2Ggdt2b3nNhv4mbikfrfxNigiiU
+        klWl1Gu5kYD/Tn6GArSHL6Y+w3a70MHu75A0ENk=
+X-Google-Smtp-Source: APXvYqzXmB+VRV0h6DczJ86/gi4VfVSVgaDq6lvQZ78xCiCfDaAmWfeWWRuyx/bhq49Zbz7Hw0FKWVka+rpz4IhZsdg=
+X-Received: by 2002:a17:906:7013:: with SMTP id n19mr12879575ejj.65.1565264132964;
+ Thu, 08 Aug 2019 04:35:32 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <67c58ded2177beca030450c25d742d35890eb48a.camel@amazon.com>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20190612071554.13573-1-vivek.gautam@codeaurora.org>
+ <20190612071554.13573-2-vivek.gautam@codeaurora.org> <20190618175536.GI4270@fuggles.cambridge.arm.com>
+ <CAFp+6iEwN6jeEGNxKVU5_i5NxdEbuF2ZggegEJZ1Rq6F=H34jg@mail.gmail.com> <20190805222755.GB2634@builder>
+In-Reply-To: <20190805222755.GB2634@builder>
+From:   Vivek Gautam <vivek.gautam@codeaurora.org>
+Date:   Thu, 8 Aug 2019 17:05:21 +0530
+X-Gmail-Original-Message-ID: <CAFp+6iHhh9749dAV4YDeE_0w1nCiftecTBedW4Rf0aiaOJsN2A@mail.gmail.com>
+Message-ID: <CAFp+6iHhh9749dAV4YDeE_0w1nCiftecTBedW4Rf0aiaOJsN2A@mail.gmail.com>
+Subject: Re: [PATCH v3 1/4] firmware: qcom_scm-64: Add atomic version of qcom_scm_call
+To:     Bjorn Andersson <bjorn.andersson@linaro.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
+        "robh+dt" <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Side note, run:
+On Tue, Aug 6, 2019 at 3:58 AM Bjorn Andersson
+<bjorn.andersson@linaro.org> wrote:
+>
+> On Wed 19 Jun 04:34 PDT 2019, Vivek Gautam wrote:
+>
+> > On Tue, Jun 18, 2019 at 11:25 PM Will Deacon <will.deacon@arm.com> wrote:
+> > >
+> > > On Wed, Jun 12, 2019 at 12:45:51PM +0530, Vivek Gautam wrote:
+> > > > There are scnenarios where drivers are required to make a
+> > > > scm call in atomic context, such as in one of the qcom's
+> > > > arm-smmu-500 errata [1].
+> > > >
+> > > > [1] ("https://source.codeaurora.org/quic/la/kernel/msm-4.9/commit/
+> > > >       drivers/iommu/arm-smmu.c?h=CogSystems-msm-49/
+> > > >       msm-4.9&id=da765c6c75266b38191b38ef086274943f353ea7")
+> > > >
+> > > > Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
+> > > > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> > > > ---
+> > > >  drivers/firmware/qcom_scm-64.c | 136 ++++++++++++++++++++++++++++-------------
+> > > >  1 file changed, 92 insertions(+), 44 deletions(-)
+> > > >
+> > > > diff --git a/drivers/firmware/qcom_scm-64.c b/drivers/firmware/qcom_scm-64.c
+> > > > index 91d5ad7cf58b..b6dca32c5ac4 100644
+> > > > --- a/drivers/firmware/qcom_scm-64.c
+> > > > +++ b/drivers/firmware/qcom_scm-64.c
+> >
+> > [snip]
+> >
+> > > > +
+> > > > +static void qcom_scm_call_do(const struct qcom_scm_desc *desc,
+> > > > +                          struct arm_smccc_res *res, u32 fn_id,
+> > > > +                          u64 x5, bool atomic)
+> > > > +{
+> > >
+> > > Maybe pass in the call type (ARM_SMCCC_FAST_CALL vs ARM_SMCCC_STD_CALL)
+> > > instead of "bool atomic"? Would certainly make the callsites easier to
+> > > understand.
+> >
+> > Sure, will do that.
+> >
+> > >
+> > > > +     int retry_count = 0;
+> > > > +
+> > > > +     if (!atomic) {
+> > > > +             do {
+> > > > +                     mutex_lock(&qcom_scm_lock);
+> > > > +
+> > > > +                     __qcom_scm_call_do(desc, res, fn_id, x5,
+> > > > +                                        ARM_SMCCC_STD_CALL);
+> > > > +
+> > > > +                     mutex_unlock(&qcom_scm_lock);
+> > > > +
+> > > > +                     if (res->a0 == QCOM_SCM_V2_EBUSY) {
+> > > > +                             if (retry_count++ > QCOM_SCM_EBUSY_MAX_RETRY)
+> > > > +                                     break;
+> > > > +                             msleep(QCOM_SCM_EBUSY_WAIT_MS);
+> > > > +                     }
+> > > > +             }  while (res->a0 == QCOM_SCM_V2_EBUSY);
+> > > > +     } else {
+> > > > +             __qcom_scm_call_do(desc, res, fn_id, x5, ARM_SMCCC_FAST_CALL);
+> > > > +     }
+> > >
+> > > Is it safe to make concurrent FAST calls?
+> >
+> > I better add a spinlock here.
+> >
+>
+> Hi Vivek,
+>
+> Would you be able to respin this patch, so that we could unblock the
+> introduction of the display nodes in the various device?
 
-git log --oneline on drivers/pci/controller/dwc existing files and
-make sure commit subjects are in line with those.
+Will pointed [1] to the restructuring of arm-smmu to support
+implementation specific details.
+That hasn't been posted yet, and I haven't yet been able to work on that either.
+I will be happy to respin this series with the comments addressed if
+Will is okay to pull changes to unblock sdm845 devices. :)
 
-Eg PCI: dw: should be PCI: dwc:
+[1] https://lore.kernel.org/patchwork/patch/1087457/
 
-On Thu, Aug 08, 2019 at 09:30:05AM +0000, Chocron, Jonathan wrote:
-> On Wed, 2019-08-07 at 17:36 +0100, Lorenzo Pieralisi wrote:
-> > On Tue, Jul 23, 2019 at 12:27:11PM +0300, Jonathan Chocron wrote:
-> > > This basically aligns the usage of PCI_PROBE_ONLY and
-> > > PCI_REASSIGN_ALL_BUS in dw_pcie_host_init() with the logic in
-> > > pci_host_common_probe().
-> > > 
-> > > Now it will be possible to control via the devicetree whether to
-> > > just
-> > > probe the PCI bus (in cases where FW already configured it) or to
-> > > fully
-> > > configure it.
-> > > 
-> > > Signed-off-by: Jonathan Chocron <jonnyc@amazon.com>
-> > > ---
-> > >  .../pci/controller/dwc/pcie-designware-host.c | 23
-> > > +++++++++++++++----
-> > >  1 file changed, 19 insertions(+), 4 deletions(-)
-> > > 
-> > > diff --git a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > index d2ca748e4c85..0a294d8aa21a 100644
-> > > --- a/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > +++ b/drivers/pci/controller/dwc/pcie-designware-host.c
-> > > @@ -342,6 +342,8 @@ int dw_pcie_host_init(struct pcie_port *pp)
-> > >  	if (!bridge)
-> > >  		return -ENOMEM;
-> > >  
-> > > +	of_pci_check_probe_only();
-> > > +
-> > >  	ret = devm_of_pci_get_host_bridge_resources(dev, 0, 0xff,
-> > >  					&bridge->windows, &pp-
-> > > >io_base);
-> > >  	if (ret)
-> > > @@ -474,6 +476,10 @@ int dw_pcie_host_init(struct pcie_port *pp)
-> > >  
-> > >  	pp->root_bus_nr = pp->busn->start;
-> > >  
-> > > +	/* Do not reassign bus nums if probe only */
-> > > +	if (!pci_has_flag(PCI_PROBE_ONLY))
-> > > +		pci_add_flags(PCI_REASSIGN_ALL_BUS);
-> > 
-> > This changes the default for bus reassignment on all DWC host (that
-> > are
-> > !PCI_PROBE_ONLY), we should drop this line, it can trigger
-> > regressions.
-> > 
-> Will be dropped as part of v4. There might also be a behavioral
-> difference below where I added the if (pci_has_flag(PCI_PROBE_ONLY)).
-> Is that still ok?
+Thanks & Regards
+Vivek
 
-That's true but I doubt any DWC host has a DT firmware with
-"linux,pci-probe-only" in it.
+>
+> Regards,
+> Bjorn
+> _______________________________________________
+> iommu mailing list
+> iommu@lists.linux-foundation.org
+> https://lists.linuxfoundation.org/mailman/listinfo/iommu
 
-It is trial and error I am afraid, please make sure all DWC
-maintainers are copied in.
 
-> As I pointed out in the cover letter, since PCI_PROBE_ONLY is a system
-> wide flag, does it make sense to call of_pci_check_probe_only() here,
-> in the context of a specific driver (including the existing invocation
-> in pci_host_common_probe()), as opposed to a platform/arch context?
 
-It is an ongoing discussion to define how we should handle
-PCI_PROBE_ONLY. Adding this code into DWC I do not think it
-would hurt but if we can postpone it for the next (v5.5) merge
-window after we debate this at LPC within the PCI microconference
-it would be great.
-
-Please sync with Benjamin as a first step, I trust he would ask
-you to do the right thing.
-
-> > If we still want to merge it as a separate change we must test it on
-> > all
-> > DWC host bridges to make sure it does not trigger any issues with
-> > current set-ups, that's not going to be easy though.
-> > 
-> Just out of curiosity, how are such exhaustive tests achieved when a
-> patch requires them?
-
-CC DWC host bridge maintainers and ask them to test it. I do not have
-the HW (and FW) required, I am sorry, that's the only option I can give
-you. -next coverage would help too but to a minor extent.
-
-Thanks,
-Lorenzo
-
-> 
-> > Lorenzo
-> > 
-> > > +
-> > >  	bridge->dev.parent = dev;
-> > >  	bridge->sysdata = pp;
-> > >  	bridge->busnr = pp->root_bus_nr;
-> > > @@ -490,11 +496,20 @@ int dw_pcie_host_init(struct pcie_port *pp)
-> > >  	if (pp->ops->scan_bus)
-> > >  		pp->ops->scan_bus(pp);
-> > >  
-> > > -	pci_bus_size_bridges(pp->root_bus);
-> > > -	pci_bus_assign_resources(pp->root_bus);
-> > > +	/*
-> > > +	 * We insert PCI resources into the iomem_resource and
-> > > +	 * ioport_resource trees in either pci_bus_claim_resources()
-> > > +	 * or pci_bus_assign_resources().
-> > > +	 */
-> > > +	if (pci_has_flag(PCI_PROBE_ONLY)) {
-> > > +		pci_bus_claim_resources(pp->root_bus);
-> > > +	} else {
-> > > +		pci_bus_size_bridges(pp->root_bus);
-> > > +		pci_bus_assign_resources(pp->root_bus);
-> > >  
-> > > -	list_for_each_entry(child, &pp->root_bus->children, node)
-> > > -		pcie_bus_configure_settings(child);
-> > > +		list_for_each_entry(child, &pp->root_bus->children,
-> > > node)
-> > > +			pcie_bus_configure_settings(child);
-> > > +	}
-> > >  
-> > >  	pci_bus_add_devices(pp->root_bus);
-> > >  	return 0;
-> > > -- 
-> > > 2.17.1
-> > > 
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
+of Code Aurora Forum, hosted by The Linux Foundation
