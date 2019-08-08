@@ -2,45 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 3121186D70
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 00:53:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D6EA486D79
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 00:56:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732885AbfHHWxJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 18:53:09 -0400
-Received: from mail.kernel.org ([198.145.29.99]:43058 "EHLO mail.kernel.org"
+        id S2390463AbfHHW4h (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 18:56:37 -0400
+Received: from mail.kernel.org ([198.145.29.99]:43542 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732375AbfHHWxJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Aug 2019 18:53:09 -0400
-Received: from mail-qk1-f174.google.com (mail-qk1-f174.google.com [209.85.222.174])
+        id S2390022AbfHHW4h (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Aug 2019 18:56:37 -0400
+Received: from mail-qk1-f170.google.com (mail-qk1-f170.google.com [209.85.222.170])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id F37762173E;
-        Thu,  8 Aug 2019 22:53:07 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3D458217F4;
+        Thu,  8 Aug 2019 22:56:37 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565304788;
-        bh=UDl7FH9qccKh/jy2kxm+7vEFoGqeFPVijVmq33g23+c=;
+        s=default; t=1565304997;
+        bh=1kgfg2u0VvSSAyVnDXUX0dXjWHTqsPHMjNRngfqfQUE=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Bi/78M6qbFJlefcTvFTsTLezgq2DnCTUQYOR6vyIORZBWg4CQ0BCw3oe4UdF3d/ow
-         SomPXm6HdaGZwrFV01uftjCqpntfXpu5VmE+ISAGGudtXv163rgX/lAbZ+Ckwlb1B8
-         scfMvmr3VG9osL7Xd195FCJF1Bu6jLcLX+xBWUjY=
-Received: by mail-qk1-f174.google.com with SMTP id d79so70163807qke.11;
-        Thu, 08 Aug 2019 15:53:07 -0700 (PDT)
-X-Gm-Message-State: APjAAAXty+jrSwkPmnmpkpNYnZAOv3lso4ljnuJPaYuxHvLaq56oRzCa
-        7OmUQ+gWx6wmHPgLN/+2ShDnvjJy0FSrSS3mrQ==
-X-Google-Smtp-Source: APXvYqyU/kTW6gdeVEMYafTbUnx/nIzUaj84Avqg8qc37wlRfsJNN1u8HEG+RqvAQ2Z+Dk87rGVIawEEewvI80/Z1T8=
-X-Received: by 2002:a37:d8f:: with SMTP id 137mr8830673qkn.254.1565304787197;
- Thu, 08 Aug 2019 15:53:07 -0700 (PDT)
+        b=2tE2GpPB+BXu1EQhYHhOzd7Oa1T+eF4En1xo6N5XdddI0vuIDhoaro1Pf7S1ZKBr7
+         H03wDRobZTaSwytpEXymUOtsl6dmW9yyttdis0OZwThij26sBLCSnn99F7AjczHPPS
+         /O5LUCjyysvXArLpo7a/9XlCHdk4H7kPL1YKqHTI=
+Received: by mail-qk1-f170.google.com with SMTP id u190so6591790qkh.5;
+        Thu, 08 Aug 2019 15:56:37 -0700 (PDT)
+X-Gm-Message-State: APjAAAXuh2Yk5nypXTIXfoQY3/YpvTzMFWFTbb4iUH3Guzyth+6oIH9o
+        qTpeLytFK4xCL+SFdAAdGOqN049JQWW8mt17fA==
+X-Google-Smtp-Source: APXvYqyj2kUWAWCGeBwzaRUWZX1PPK9z+mXWtT1nM3BJRodHPwfRd4dExJVae9unAVJvhED59NF02Tnbg9U9rGFDZow=
+X-Received: by 2002:a37:a48e:: with SMTP id n136mr16025678qke.223.1565304996424;
+ Thu, 08 Aug 2019 15:56:36 -0700 (PDT)
 MIME-Version: 1.0
-References: <alpine.DEB.2.21.9999.1908081545190.15649@viisi.sifive.com>
-In-Reply-To: <alpine.DEB.2.21.9999.1908081545190.15649@viisi.sifive.com>
+References: <alpine.DEB.2.21.9999.1908081520100.6414@viisi.sifive.com>
+In-Reply-To: <alpine.DEB.2.21.9999.1908081520100.6414@viisi.sifive.com>
 From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 8 Aug 2019 16:52:56 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqK5ms_65sux=Xi=beyu-vD9Qh-ziTpvpLz-qrtwOaLoEw@mail.gmail.com>
-Message-ID: <CAL_JsqK5ms_65sux=Xi=beyu-vD9Qh-ziTpvpLz-qrtwOaLoEw@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: riscv: fix the schema compatible string for
- the HiFive Unleashed board
+Date:   Thu, 8 Aug 2019 16:56:25 -0600
+X-Gmail-Original-Message-ID: <CAL_Jsq+db+_u47yutb+H7dcMqP27PF9jjwinsB2qgi609t9zWQ@mail.gmail.com>
+Message-ID: <CAL_Jsq+db+_u47yutb+H7dcMqP27PF9jjwinsB2qgi609t9zWQ@mail.gmail.com>
+Subject: Re: [PATCH] dt-bindings: riscv: remove obsolete cpus.txt
 To:     Paul Walmsley <paul.walmsley@sifive.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>, devicetree@vger.kernel.org,
+Cc:     devicetree@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
         linux-riscv@lists.infradead.org,
         "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
@@ -49,22 +48,22 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, Aug 8, 2019 at 4:46 PM Paul Walmsley <paul.walmsley@sifive.com> wrote:
+On Thu, Aug 8, 2019 at 4:22 PM Paul Walmsley <paul.walmsley@sifive.com> wrote:
 >
 >
-> The YAML binding document for SiFive boards has an incorrect
-> compatible string for the HiFive Unleashed board.  Change it to match
-> the name of the board on the SiFive web site:
+> Remove the now-obsolete riscv/cpus.txt DT binding document, since we
+> are using YAML binding documentation instead.
 >
->    https://www.sifive.com/boards/hifive-unleashed
+> While doing so, transfer the explanatory text about 'harts' (with some
+> edits) into the YAML file, at Rob's request.
 >
-> which also matches the contents of the board DT data file:
->
->    https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree/arch/riscv/boot/dts/sifive/hifive-unleashed-a00.dts#n13
->
+> Link: https://lore.kernel.org/linux-riscv/CAL_JsqJs6MtvmuyAknsUxQymbmoV=G+=JfS1PQj9kNHV7fjC9g@mail.gmail.com/
 > Signed-off-by: Paul Walmsley <paul.walmsley@sifive.com>
+> Cc: Rob Herring <robh@kernel.org>
 > ---
->  Documentation/devicetree/bindings/riscv/sifive.yaml | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
+>  .../devicetree/bindings/riscv/cpus.txt        | 162 ------------------
+>  .../devicetree/bindings/riscv/cpus.yaml       |  12 ++
+>  2 files changed, 12 insertions(+), 162 deletions(-)
+>  delete mode 100644 Documentation/devicetree/bindings/riscv/cpus.txt
 
-Acked-by: Rob Herring <robh@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
