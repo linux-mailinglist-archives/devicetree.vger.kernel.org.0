@@ -2,92 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6279985A01
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 07:49:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2BF2E85A56
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 08:13:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730857AbfHHFtM convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Thu, 8 Aug 2019 01:49:12 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:47090 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728090AbfHHFtM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 01:49:12 -0400
-Received: by mail-ed1-f67.google.com with SMTP id z51so1691724edz.13;
-        Wed, 07 Aug 2019 22:49:10 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=hJnMSCAXvPmR1BZ+8zibfYrH0y/pT73eVvDwjd3Lsw8=;
-        b=k5o7R1WqxUKFT2Gpl32b2tEoxh18GEKtcRxfBXs+QQzaclP8d868GeOHKZdNmUIj8Y
-         hlzVDNUXj7ZUkntTioJPK1ikYAW8YJKkGZmmcGgrrowKAFRw2W/vOFwInHRdI03I9tdn
-         wqR2hUDALp8ykyI1cwIEE9iTzvndfcJesqwkZ+E4E99/y/d4orLyh3DBZMjiwO/y/Rv7
-         xuEqPxx/L+tMX0V5n3OC+VcYkuFCJofqtdVwhUAsQQ9GqJnXoXd7EGrvSgkxnLcSgZxU
-         k6xmwxOqZXgmK1zDAHli571qVrLkNGsdLVr6Ayo5svDhTbLPu7h1CuX7jY8AE9tnpi5u
-         C5og==
-X-Gm-Message-State: APjAAAXh0JnT5IDlhqbupmw+zqH5YraES+14Bo68Bahh8oCHDKkE88Ll
-        cCx9eGyFliFl5TjhPcs3t2VdNzAO/00=
-X-Google-Smtp-Source: APXvYqxg9vJ4l1QRSKAQTdjsRPjbtcm9XCJ1t7YXpJhG1HoGUipLszFyE3bzb67r8G/bMglEGxNbsw==
-X-Received: by 2002:a17:906:4ed8:: with SMTP id i24mr11500568ejv.118.1565243349525;
-        Wed, 07 Aug 2019 22:49:09 -0700 (PDT)
-Received: from mail-wm1-f54.google.com (mail-wm1-f54.google.com. [209.85.128.54])
-        by smtp.gmail.com with ESMTPSA id b30sm21935944ede.88.2019.08.07.22.49.08
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Wed, 07 Aug 2019 22:49:09 -0700 (PDT)
-Received: by mail-wm1-f54.google.com with SMTP id 10so1079305wmp.3;
-        Wed, 07 Aug 2019 22:49:08 -0700 (PDT)
-X-Received: by 2002:a05:600c:292:: with SMTP id 18mr1427274wmk.51.1565243348647;
- Wed, 07 Aug 2019 22:49:08 -0700 (PDT)
+        id S1731077AbfHHGN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 02:13:26 -0400
+Received: from smtp.codeaurora.org ([198.145.29.96]:46162 "EHLO
+        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730694AbfHHGN0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 02:13:26 -0400
+Received: by smtp.codeaurora.org (Postfix, from userid 1000)
+        id 0F8166050D; Thu,  8 Aug 2019 06:13:24 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565244804;
+        bh=JhHYfYaCvSYgvfGbhWmRAsUEmiyOd+CAHB6FO6d7I58=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=A6RgqiNagleLp6PaLgGsFEJzHmpHqH5kEQd2XAxSN7ZIObnW/ra43abfdUaZSw29f
+         ZSlNKpXhQ9jsU1GmQBCeH366APPix6LPQEGtE5jFQSKG6ShMOdjuMCsQyJqlIdcst/
+         SkIybOgbVzxu3HEArQh1JpZkJTI08X850cv6pnN0=
+X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
+        pdx-caf-mail.web.codeaurora.org
+X-Spam-Level: 
+X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
+        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
+        version=3.4.0
+Received: from mkshah-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
+        (No client certificate requested)
+        (Authenticated sender: mkshah@smtp.codeaurora.org)
+        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0B33E6083E;
+        Thu,  8 Aug 2019 06:13:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
+        s=default; t=1565244803;
+        bh=JhHYfYaCvSYgvfGbhWmRAsUEmiyOd+CAHB6FO6d7I58=;
+        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
+        b=Lzeav3yWFeFeQoPmkybBHxlKlXu5wvQoAu7nSEkUomDz30C2PzsamTaDPnntp1btb
+         ZDXaxZsV8JdeGtBMCXIrA/No9rrWG5Q9/HNaNq/bdeo6JTvJlw/oPRRZODDsSoTkhS
+         hgRQ35vTTQtwaA1Ay189c/0qsueo9yxaAVN77rks=
+DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0B33E6083E
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
+Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=mkshah@codeaurora.org
+From:   Maulik Shah <mkshah@codeaurora.org>
+To:     andy.gross@linaro.org, david.brown@linaro.org,
+        linux-arm-msm@vger.kernel.org
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        bjorn.andersson@linaro.org, evgreen@chromium.org,
+        dianders@chromium.org, swboyd@chromium.org, rnayak@codeaurora.org,
+        ilina@codeaurora.org, lsrao@codeaurora.org, mkshah@codeaurora.org,
+        devicetree@vger.kernel.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>
+Subject: [PATCH 1/2] dt-bindings: Introduce soc sleep stats bindings for Qualcomm SoCs
+Date:   Thu,  8 Aug 2019 11:42:27 +0530
+Message-Id: <20190808061228.16573-2-mkshah@codeaurora.org>
+X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190808061228.16573-1-mkshah@codeaurora.org>
+References: <20190808061228.16573-1-mkshah@codeaurora.org>
 MIME-Version: 1.0
-References: <20190412120730.473-1-megous@megous.com> <CAGb2v66cbpsoHJoiFJkBwhZ5SbO+uO+Kf6gtnA3kPFQZq0329Q@mail.gmail.com>
- <20190806183045.edhm3qzpegscf2z7@core.my.home> <20190807105502.GK3600@piout.net>
-In-Reply-To: <20190807105502.GK3600@piout.net>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Thu, 8 Aug 2019 13:48:55 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64y+iUknG=h6NC_16JsiBXATim4PpX6g3OVg3G0vDjBwA@mail.gmail.com>
-Message-ID: <CAGb2v64y+iUknG=h6NC_16JsiBXATim4PpX6g3OVg3G0vDjBwA@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH 0/3] Add basic support for RTC on Allwinner
- H6 SoC
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree <devicetree@vger.kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-rtc@vger.kernel.org
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 7, 2019 at 6:55 PM Alexandre Belloni
-<alexandre.belloni@bootlin.com> wrote:
->
-> Hi,
->
-> On 06/08/2019 20:30:45+0200, Ondřej Jirman wrote:
-> > Maybe whether XO or DCXO is used also matters if you want to do some fine
-> > tunning of DCXO (control register has pletny of options), but that's probably
-> > better done in u-boot. And there's still no need to read HOSC source from DT.
-> > The driver can just check compatible, and if it is H6 and OSC_CLK_SRC_SEL is 1,
-> > it can do it's DCXO tunning, or whatever. But neither OS nor bootloader will
-> > be using this info to gate/disable the osciallator.
-> >
->
-> It is actually useful to be able to tweak the crystal tuning at
-> runtime to be able to reduce clock drift and compare with a reliable
-> source (e.g. NTP).
-> I'm curious, what kind of options does this RTC have?
+Add device binding documentation for Qualcomm Technology Inc's (QTI)
+SoC sleep stats driver. The driver is used for displaying SoC sleep
+statistic maintained by Always On Processor or Resource Power Manager.
 
-It has options to set the current, trim cap value, band gap voltage, and also
-change the mode to just accept an external clock signal, instead of driving
-a crystal. The settings for the former parameters are not explained though.
+Cc: devicetree@vger.kernel.org
+Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+---
+ .../bindings/soc/qcom/soc-sleep-stats.txt     | 36 +++++++++++++++++++
+ 1 file changed, 36 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt
 
-See page 364 of
-http://linux-sunxi.org/File:Allwinner_H6_V200_User_Manual_V1.1.pdf
+diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt
+new file mode 100644
+index 000000000000..ee40687ded34
+--- /dev/null
++++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt
+@@ -0,0 +1,36 @@
++* SoC Sleep Stats
++
++Always On Processor/Resource Power Manager maintains statistics of the SoC
++sleep modes involving lowering or powering down of the backbone rails - Cx
++and Mx and the oscillator clock, XO.
++
++Statistics includes SoC sleep mode type, number of times low power mode were
++entered, time of last entry, time of last exit and accumulated sleep duration.
++SoC Sleep Stats driver provides sysfs interface to display this information.
++
++PROPERTIES
++
++- compatible:
++	Usage: required
++	Value type: <string>
++	Definition: Should be "qcom,rpmh-sleep-stats" or "qcom,rpm-sleep-stats".
++
++- reg:
++	Usage: required
++	Value type: <prop-encoded-array>
++	Definition: The base address on the Always On Processor or Resource Power
++		    Manager from where the stats are read.
++
++EXAMPLE 1:
++
++	rpmh_sleep_stats: soc-sleep-stats@c3f0000 {
++		compatible = "qcom,rpmh-sleep-stats";
++		reg = <0 0xc3f0000 0 0x400>;
++	};
++
++EXAMPLE 2:
++
++	rpm_sleep_stats: soc-sleep-stats@4690000 {
++		compatible = "qcom,rpm-sleep-stats";
++		reg = <0 0x04690000 0 0x400>;
++	};
+-- 
+QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by The Linux Foundation.
 
-ChenYu
