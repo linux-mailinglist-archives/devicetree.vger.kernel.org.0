@@ -2,86 +2,110 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C754486484
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 16:39:40 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C4B1C8649D
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 16:45:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732518AbfHHOjk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 10:39:40 -0400
-Received: from fllv0016.ext.ti.com ([198.47.19.142]:54958 "EHLO
-        fllv0016.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729780AbfHHOjk (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 10:39:40 -0400
-Received: from fllv0035.itg.ti.com ([10.64.41.0])
-        by fllv0016.ext.ti.com (8.15.2/8.15.2) with ESMTP id x78EdbEm035939;
-        Thu, 8 Aug 2019 09:39:37 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1565275177;
-        bh=YuYluhaK+mmUH/yx+smZcyisKTmVCaGEjmQltEl9210=;
-        h=From:To:CC:Subject:Date:In-Reply-To:References;
-        b=VI5eszpmTWhZ+TP1DEcuvIk9CPUXUo31jysHELI2+GwrqLaP7zfWSjnay9aa0+Xxb
-         4EU66AyDPIP5heeBiwuaYmyaLvV/g/QbnJ0fxq4m729SWFt9tFVDCEcWOylIorO5DR
-         rtBTyE/z3dbNgdKOVldpfefJ3To/dY3Ayma0CvQ4=
-Received: from DLEE105.ent.ti.com (dlee105.ent.ti.com [157.170.170.35])
-        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x78EdaNO094451
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Thu, 8 Aug 2019 09:39:37 -0500
-Received: from DLEE111.ent.ti.com (157.170.170.22) by DLEE105.ent.ti.com
- (157.170.170.35) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 8 Aug
- 2019 09:39:36 -0500
-Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE111.ent.ti.com
- (157.170.170.22) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Thu, 8 Aug 2019 09:39:36 -0500
-Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
-        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x78EdaYt126050;
-        Thu, 8 Aug 2019 09:39:36 -0500
-Received: from localhost (irmo.dhcp.ti.com [128.247.58.153])
-        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x78EdaZ25411;
-        Thu, 8 Aug 2019 09:39:36 -0500 (CDT)
-From:   Suman Anna <s-anna@ti.com>
-To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
-CC:     <devicetree@vger.kernel.org>,
-        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>,
-        Robert Tivy <rtivy@ti.com>
-Subject: [PATCH 2/2] arm64: dts: ti: k3-j721e-main: Fix gic-its node unit-address
-Date:   Thu, 8 Aug 2019 09:39:29 -0500
-Message-ID: <20190808143929.11148-3-s-anna@ti.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190808143929.11148-1-s-anna@ti.com>
-References: <20190808143929.11148-1-s-anna@ti.com>
+        id S1732866AbfHHOp0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 10:45:26 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:46856 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732518AbfHHOp0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 10:45:26 -0400
+Received: by mail-wr1-f68.google.com with SMTP id z1so95212875wru.13
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 07:45:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nLpi2SDrc2znQNHPwAZliuGZd7W6XSprQ25LlaiC9Uk=;
+        b=xS/2nlZprXdtEBLiGBUpjV5rlh11ZEu2Nuwixb9ksnlj+Rw441FmPXat9qBfqLoE/h
+         3jdXGYqvLxETaqpHmQnFFGWwdC5q4a8vnu4SYuswuGPfqQL/cftMQPO5VzF4+xS0Er45
+         aAeKkZvLT+LCd4L6N2MjfnRQdr0Axt/YapOfLE5vmgKeTtDGKIy/kxeIFXR/wnU5bK+P
+         I2h7bQnYRnLbBVVpseEBf4//8cwaTrPnaa23hYNYNZeU3RmhO6KPp9jOGCDBcF9T6OAr
+         +QBUn6g5Q3x/gmSVbtJ0OmOpD6NDd55MDcUd8c9V9cDEomKCXAWG3T30jwKKdheI7o9u
+         l3Sg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=nLpi2SDrc2znQNHPwAZliuGZd7W6XSprQ25LlaiC9Uk=;
+        b=d3ZAV0wYVX/FAtyF9XSpd6Il+3xEW7CNp2bWZn/hlLWxvUq9Stces35iX7g9Xa7XRh
+         T7WgUmlwGhCEgGWKQFEWqpJYRxjmhcc3vp5eya8Fm9zInpaJuc5UThrIdMegVsX3YtQ0
+         rm05pJ7sDZa6K8cQh7AZLqXsiU1FrHfz4ZpR4JylvwRuZggIt8SP4x3KlGqsbUVAFPiU
+         fdmHKpVoWioYAMyhlV5J2PoDWxTeZ3Fwxv1uWd6/97900EqaJoZp9q0F2svwJhMRl+V4
+         bqaZAuPy5TFhPVq1l4Fg8StznmuZvtPPF29TQLs0CgPqTQ8UxsTbWf873TIL3VfH5YTP
+         kycg==
+X-Gm-Message-State: APjAAAWoGiYv8+vyBH9xFXIx6XxFCKSYaxG8YR+pT1yU3eVx1lTQNNdM
+        UACu6LHzBaDX/Pbk4WQFpSstTg==
+X-Google-Smtp-Source: APXvYqxGi/2lzaPlzG3WSRB3FQSrUSGckOdWNhEK1yAlz6qCO91d2lpbJo0TQvJ26p/tCNbAwWf2sw==
+X-Received: by 2002:adf:de8e:: with SMTP id w14mr17439418wrl.79.1565275524077;
+        Thu, 08 Aug 2019 07:45:24 -0700 (PDT)
+Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
+        by smtp.gmail.com with ESMTPSA id g15sm2009060wrp.29.2019.08.08.07.45.22
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 08 Aug 2019 07:45:23 -0700 (PDT)
+From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+To:     vkoul@kernel.org, broonie@kernel.org
+Cc:     bgoswami@codeaurora.org, plai@codeaurora.org,
+        pierre-louis.bossart@linux.intel.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, lgirdwood@gmail.com,
+        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Subject: [PATCH v2 0/4] ASoC: codecs: Add WSA881x Smart Speaker amplifier support
+Date:   Thu,  8 Aug 2019 15:45:00 +0100
+Message-Id: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
-Content-Type: text/plain
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The gic-its node unit-address has an additional zero compared
-to the actual reg value. Fix it.
+This patchset adds support to WSA8810/WSA8815 Class-D Smart Speaker
+Amplifier which is SoundWire interfaced.
+This also adds support to some missing bits in SoundWire bus layer like
+Device Tree support and module_sdw_driver macro.
 
-Fixes: 2d87061e70de ("arm64: dts: ti: Add Support for J721E SoC")
-Reported-by: Robert Tivy <rtivy@ti.com>
-Signed-off-by: Suman Anna <s-anna@ti.com>
----
- arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+This patchset along with DB845c machine driver and WCD934x codec driver
+has been tested on SDM845 SoC based DragonBoard DB845c with two
+WSA8810 speakers.
 
-diff --git a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-index a01308142f77..ea5c0fd42baf 100644
---- a/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-+++ b/arch/arm64/boot/dts/ti/k3-j721e-main.dtsi
-@@ -31,7 +31,7 @@
- 		/* vcpumntirq: virtual CPU interface maintenance interrupt */
- 		interrupts = <GIC_PPI 9 IRQ_TYPE_LEVEL_HIGH>;
- 
--		gic_its: gic-its@18200000 {
-+		gic_its: gic-its@1820000 {
- 			compatible = "arm,gic-v3-its";
- 			reg = <0x00 0x01820000 0x00 0x10000>;
- 			socionext,synquacer-pre-its = <0x1000000 0x400000>;
+Most of the code in this driver is rework of Qualcomm downstream drivers
+used in Andriod. Credits to Banajit Goswami and Patrick Lai's Team.
+
+TODO:
+	Add thermal sensor support in WSA881x.
+
+This patchset also depends on the soundwire Kconfig patch
+https://lkml.org/lkml/2019/7/18/834 from Pierre
+
+Thanks,
+srini
+
+Changes since v1 RFC:
+- bindings document renamed to slave.txt
+- fix error code from dt slave parsing
+
+Srinivas Kandagatla (4):
+  dt-bindings: soundwire: add slave bindings
+  soundwire: core: add device tree support for slave devices
+  dt-bindings: ASoC: Add WSA881x bindings
+  ASoC: codecs: add wsa881x amplifier support
+
+ .../bindings/sound/qcom,wsa881x.txt           |   27 +
+ .../devicetree/bindings/soundwire/slave.txt   |   46 +
+ drivers/soundwire/bus.c                       |    2 +
+ drivers/soundwire/bus.h                       |    1 +
+ drivers/soundwire/slave.c                     |   47 +
+ sound/soc/codecs/Kconfig                      |   10 +
+ sound/soc/codecs/Makefile                     |    2 +
+ sound/soc/codecs/wsa881x.c                    | 1160 +++++++++++++++++
+ 8 files changed, 1295 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa881x.txt
+ create mode 100644 Documentation/devicetree/bindings/soundwire/slave.txt
+ create mode 100644 sound/soc/codecs/wsa881x.c
+
 -- 
-2.22.0
+2.21.0
 
