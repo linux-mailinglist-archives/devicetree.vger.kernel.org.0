@@ -2,90 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F3A8B85F37
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 12:04:41 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7175385F85
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 12:26:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2389777AbfHHKEg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 06:04:36 -0400
-Received: from mail-qt1-f196.google.com ([209.85.160.196]:46801 "EHLO
-        mail-qt1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2389773AbfHHKEg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 06:04:36 -0400
-Received: by mail-qt1-f196.google.com with SMTP id h21so91447767qtn.13;
-        Thu, 08 Aug 2019 03:04:35 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=RjvrmHnLkNY8judMLmiwx+J5kIvDISrhio/7dX5zE9M=;
-        b=A4L/lVEnAhzimNvZOk2dlay//kRmDE29VrHcAuetZ/+P4JB3Sld8H0YWMeCC1c3mQE
-         wstifSkxoflQ2ddSoIE+VNQ+yTVy9glgoyoKBxzR4dpYfrXoefpDcWMF4HLPEV9jWTbp
-         K/aasTxqk54UTrMWMLdLmxYVnjY1ccSJoj5VgLepnNfA/zFcgC71Hm/eYtj/OW69Wklk
-         m1fISftkc6C8sQD/5EYLMmNzB2TEHQKn2mMMsL2lyru+dNW0pRKJOcBxqmW20PWaae0/
-         GRB0xs0T6TDjR/3W+8s3e4B4sTRhQXX8HsRQ952ImdBoNy1lbzQ8vrriBqfc9opIoqAy
-         7X0A==
-X-Gm-Message-State: APjAAAUsGdPI8Qq8syVEwBV4KItFjxH2sLeAHH0lDWzjKDEUuP3KCn/g
-        Q5SAozm65eI/XTwDwDp5+v1TUv/8Yox7o0uE9hM=
-X-Google-Smtp-Source: APXvYqzYiIGgaQsnnsl/ev4HI3EBWf/N9eNNIZAf4tphrn0oTVGBurf6vSIQ6z6xYL8ITJbX0KbZAIZ3U8xYBBzOq94=
-X-Received: by 2002:ac8:6684:: with SMTP id d4mr7259661qtp.204.1565258674868;
- Thu, 08 Aug 2019 03:04:34 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190724171615.20774-1-paul@crapouillou.net> <20190724171615.20774-5-paul@crapouillou.net>
- <20190729165536.dd67ws6nr2msx4pk@pburton-laptop>
-In-Reply-To: <20190729165536.dd67ws6nr2msx4pk@pburton-laptop>
-From:   Arnd Bergmann <arnd@arndb.de>
-Date:   Thu, 8 Aug 2019 12:04:18 +0200
-Message-ID: <CAK8P3a0nOc2tpxYAoE0EGzXT1+FXFqzdK1mYE+ZR9CTqAaH_fQ@mail.gmail.com>
-Subject: Re: [EXTERNAL][PATCH v15 04/13] mfd/syscon: Add device_node_to_regmap()
-To:     Paul Burton <paul.burton@mips.com>
-Cc:     Paul Cercueil <paul@crapouillou.net>,
-        Lee Jones <lee.jones@linaro.org>,
-        Ralf Baechle <ralf@linux-mips.org>,
-        James Hogan <jhogan@kernel.org>,
-        Jonathan Corbet <corbet@lwn.net>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Stephen Boyd <sboyd@kernel.org>,
-        Jason Cooper <jason@lakedaemon.net>,
-        Marc Zyngier <marc.zyngier@arm.com>,
+        id S2389954AbfHHK0N (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 06:26:13 -0400
+Received: from inva021.nxp.com ([92.121.34.21]:41132 "EHLO inva021.nxp.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2389751AbfHHK0N (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Aug 2019 06:26:13 -0400
+Received: from inva021.nxp.com (localhost [127.0.0.1])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 4D8F8200921;
+        Thu,  8 Aug 2019 12:26:11 +0200 (CEST)
+Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
+        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 359BA2000E0;
+        Thu,  8 Aug 2019 12:26:06 +0200 (CEST)
+Received: from titan.ap.freescale.net (TITAN.ap.freescale.net [10.192.208.233])
+        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id B0CAF402D8;
+        Thu,  8 Aug 2019 18:25:59 +0800 (SGT)
+From:   Hui Song <hui.song_1@nxp.com>
+To:     Shawn Guo <shawnguo@kernel.org>, Li Yang <leoyang.li@nxp.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-mips@vger.kernel.org" <linux-mips@vger.kernel.org>,
-        "linux-clk@vger.kernel.org" <linux-clk@vger.kernel.org>,
-        "od@zcrc.me" <od@zcrc.me>, Mathieu Malaterre <malat@debian.org>
-Content-Type: text/plain; charset="UTF-8"
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org,
+        Song Hui <hui.song_1@nxp.com>
+Subject: [PATCH v1 1/3] gpio: mpc8xxx: add ls1088a platform gpio node DT binding description
+Date:   Thu,  8 Aug 2019 18:16:26 +0800
+Message-Id: <20190808101628.36782-1-hui.song_1@nxp.com>
+X-Mailer: git-send-email 2.9.5
+X-Virus-Scanned: ClamAV using ClamSMTP
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 6:55 PM Paul Burton <paul.burton@mips.com> wrote:
->
-> Lee, Arnd,
->
-> On Wed, Jul 24, 2019 at 01:16:06PM -0400, Paul Cercueil wrote:
-> > device_node_to_regmap() is exactly like syscon_node_to_regmap(), but it
-> > does not check that the node is compatible with "syscon", and won't
-> > attach the first clock it finds to the regmap.
-> >
-> > The rationale behind this, is that one device node with a standard
-> > compatible string "foo,bar" can be covered by multiple drivers sharing a
-> > regmap, or by a single driver doing all the job without a regmap, but
-> > these are implementation details which shouldn't reflect on the
-> > devicetree.
->
-> Does this looks like a good path forwards to you? Its use in this case
-> is described by Documentation/devicetree/bindings/timer/ingenic,tcu.txt
-> in patch 3 of the series.
->
-> If you're OK with it an ack would be appreciated so I can take the
-> series through mips-next, otherwise I guess we'd need to go back to the
-> v14 approach.
+From: Song Hui <hui.song_1@nxp.com>
 
-Yes, I guess this is ok, sorry for missing the submission earlier.
+ls1088a and ls1028a platform share common gpio node.
 
-Acked-by: Arnd Bergmann <arnd@arndb.de>
+Signed-off-by: Song Hui <hui.song_1@nxp.com>
+---
+ Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt b/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
+index baf95d9..cd28e93 100644
+--- a/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
++++ b/Documentation/devicetree/bindings/gpio/gpio-mpc8xxx.txt
+@@ -4,7 +4,7 @@ Required properties:
+ - compatible : Should be "fsl,<soc>-gpio"
+   The following <soc>s are known to be supported:
+ 	mpc5121, mpc5125, mpc8349, mpc8572, mpc8610, pq3, qoriq,
+-	ls1021a, ls1043a, ls2080a, ls1028a.
++	ls1021a, ls1043a, ls2080a, ls1028a, ls1088a.
+ - reg : Address and length of the register set for the device
+ - interrupts : Should be the port interrupt shared by all 32 pins.
+ - #gpio-cells : Should be two.  The first cell is the pin number and
+@@ -39,10 +39,10 @@ gpio0: gpio@2300000 {
+ };
+ 
+ 
+-Example of gpio-controller node for a ls1028a SoC:
++Example of gpio-controller node for a ls1028a/ls1088a SoC:
+ 
+ gpio1: gpio@2300000 {
+-	compatible = "fsl,ls1028a-gpio","fsl,qoriq-gpio";
++	compatible = "fsl,ls1028a-gpio", "fsl,ls1088a-gpio", "fsl,qoriq-gpio";
+ 	reg = <0x0 0x2300000 0x0 0x10000>;
+ 	interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+ 	gpio-controller;
+-- 
+2.9.5
+
