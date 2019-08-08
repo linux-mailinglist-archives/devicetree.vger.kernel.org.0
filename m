@@ -2,174 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A0D64860E4
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 13:35:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5765586105
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 13:41:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732216AbfHHLfh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 07:35:37 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:57542 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731955AbfHHLfh (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 07:35:37 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id A99A460452; Thu,  8 Aug 2019 11:35:35 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1565264135;
-        bh=sH6nUxZ8Y5dNhEx5LOsnBwv7hqu3JssLmT67GtkYFO8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=mqb7vvjzx+MKfzAMS8jEz1fTkI4H9bPpTOCk+imcRQkezG9Yp2E+E45/nhpmGZQei
-         pBirMUA6XrO/Ht5xpyR9XJ/KaYs42L/b1ivVHV1CgYRhHdhPeAC+V5PPpEvsbpjWwX
-         srYIPa2q0ySeKGkshNuudBF2AsrzdJ65bO0R/VZQ=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from mail-ed1-f52.google.com (mail-ed1-f52.google.com [209.85.208.52])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: vivek.gautam@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 4245860452;
-        Thu,  8 Aug 2019 11:35:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1565264134;
-        bh=sH6nUxZ8Y5dNhEx5LOsnBwv7hqu3JssLmT67GtkYFO8=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=ZbrI0B4S6yZ9W8DkXTkRKrtxZxIGwqY+/MXPYB0o2rmzwggw0xkXrqFe8/EQqk3qx
-         CEiE0e7ulfOwRuC4cCZk5zRsj+IjxTMkazmUE1W++Hhtf2TrNtbW8Zj1X5IqmRAqkF
-         eR+XXmlBx8cVE9RFQgP2+XxaVevY5NI/aexva7a0=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 4245860452
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=vivek.gautam@codeaurora.org
-Received: by mail-ed1-f52.google.com with SMTP id h8so2240926edv.7;
-        Thu, 08 Aug 2019 04:35:34 -0700 (PDT)
-X-Gm-Message-State: APjAAAW0rTAydE88HFcRZLbHuomed2Ggdt2b3nNhv4mbikfrfxNigiiU
-        klWl1Gu5kYD/Tn6GArSHL6Y+w3a70MHu75A0ENk=
-X-Google-Smtp-Source: APXvYqzXmB+VRV0h6DczJ86/gi4VfVSVgaDq6lvQZ78xCiCfDaAmWfeWWRuyx/bhq49Zbz7Hw0FKWVka+rpz4IhZsdg=
-X-Received: by 2002:a17:906:7013:: with SMTP id n19mr12879575ejj.65.1565264132964;
- Thu, 08 Aug 2019 04:35:32 -0700 (PDT)
+        id S1727824AbfHHLlY (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 07:41:24 -0400
+Received: from mail-wm1-f65.google.com ([209.85.128.65]:50890 "EHLO
+        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727649AbfHHLlF (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 07:41:05 -0400
+Received: by mail-wm1-f65.google.com with SMTP id v15so2103189wml.0
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 04:41:04 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2HHZUJ/kC4+XNcT4LL4C7KX5s6fjk5K09PuaOqbqrKc=;
+        b=IdHbq1cn4+E0gUTJJAdRnqEkQVbQS6psbbd6zXVjbYzw6El1hUgNzrEWKlOExOSFsz
+         xolAPGae7o81CsFfmA7IuwFMWYMkSfJAl7tzq+/of24KGeRIAlwy7ZRfiU2uR1n2lBJh
+         ICMBXmOuO2sP+GdnOjpYAnwPZYMy/7XxnAPP+jDYYtCbWY0Fbig4IlnHPmr/UDbptHn6
+         oSrB9h3vODvqjGO9/eQE30V8tDw+OiANa0r2r5oFTBSf3ucCl6J/3hNUKK2vcJraP/F4
+         BZlsdZ5XwxOZS7osYx19txK2zfIqyX6X2+SjN1x9OmsFPzHY+twjKT/3trmv0czErqZE
+         i5Qw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=2HHZUJ/kC4+XNcT4LL4C7KX5s6fjk5K09PuaOqbqrKc=;
+        b=ScvAOPvW14V+PF6bHbEDbXgkX2nXHzHIeizQ0ffvFytEZGQHEbGfRs0MfvsfOI4hL0
+         6zoJD5qD/rE2vbQ1QfxABC3P3WjaHrCcZ25KqFCjheBJZbIVn4HzbcnnWQ8FoT98Y1e0
+         aykYZ7+/WY8TXVSBmCZhC2LxWYl0f9/rMTP/VwlrGy5IXTlG2lBJJBU/zevwB35RUACv
+         xPJH5QRrsZSpcdNgio4hq+QmKesek9Lfg8W2zC9dS5lIrKWIkHra3WkteTTRdYT/enmR
+         uS8kKvft+0EVRnyKIiZflcDwwbNP+nkSZAPCx5RfI948SlZoS+ySOQchD1ZUmkCKC0Y0
+         fSBQ==
+X-Gm-Message-State: APjAAAX25t5yPdTTp2TFHuI2VAjy1ki/JM8hdoSeDQXZHAA7pCw5ZzXT
+        Ck6jilISPZ/6Q7c4qoI2fxNLyA==
+X-Google-Smtp-Source: APXvYqwibGOM8K1pRgtj+TiYesCzz87uQYft5rr6EmKdE8o3sgzgIcNqyt60WACqvwb14/m4Cp50AQ==
+X-Received: by 2002:a7b:cd8e:: with SMTP id y14mr3973057wmj.155.1565264463130;
+        Thu, 08 Aug 2019 04:41:03 -0700 (PDT)
+Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
+        by smtp.gmail.com with ESMTPSA id f12sm104555882wrg.5.2019.08.08.04.41.02
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 08 Aug 2019 04:41:02 -0700 (PDT)
+From:   Neil Armstrong <narmstrong@baylibre.com>
+To:     robh+dt@kernel.org
+Cc:     Neil Armstrong <narmstrong@baylibre.com>,
+        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
+        netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v3 0/2] dt-bindings: net: meson-dwmac: convert to yaml
+Date:   Thu,  8 Aug 2019 13:40:59 +0200
+Message-Id: <20190808114101.29982-1-narmstrong@baylibre.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20190612071554.13573-1-vivek.gautam@codeaurora.org>
- <20190612071554.13573-2-vivek.gautam@codeaurora.org> <20190618175536.GI4270@fuggles.cambridge.arm.com>
- <CAFp+6iEwN6jeEGNxKVU5_i5NxdEbuF2ZggegEJZ1Rq6F=H34jg@mail.gmail.com> <20190805222755.GB2634@builder>
-In-Reply-To: <20190805222755.GB2634@builder>
-From:   Vivek Gautam <vivek.gautam@codeaurora.org>
-Date:   Thu, 8 Aug 2019 17:05:21 +0530
-X-Gmail-Original-Message-ID: <CAFp+6iHhh9749dAV4YDeE_0w1nCiftecTBedW4Rf0aiaOJsN2A@mail.gmail.com>
-Message-ID: <CAFp+6iHhh9749dAV4YDeE_0w1nCiftecTBedW4Rf0aiaOJsN2A@mail.gmail.com>
-Subject: Re: [PATCH v3 1/4] firmware: qcom_scm-64: Add atomic version of qcom_scm_call
-To:     Bjorn Andersson <bjorn.andersson@linaro.org>
-Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Will Deacon <will.deacon@arm.com>,
-        open list <linux-kernel@vger.kernel.org>,
-        David Brown <david.brown@linaro.org>,
-        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
-        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
-        "robh+dt" <robh+dt@kernel.org>, Andy Gross <agross@kernel.org>,
-        Robin Murphy <robin.murphy@arm.com>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 6, 2019 at 3:58 AM Bjorn Andersson
-<bjorn.andersson@linaro.org> wrote:
->
-> On Wed 19 Jun 04:34 PDT 2019, Vivek Gautam wrote:
->
-> > On Tue, Jun 18, 2019 at 11:25 PM Will Deacon <will.deacon@arm.com> wrote:
-> > >
-> > > On Wed, Jun 12, 2019 at 12:45:51PM +0530, Vivek Gautam wrote:
-> > > > There are scnenarios where drivers are required to make a
-> > > > scm call in atomic context, such as in one of the qcom's
-> > > > arm-smmu-500 errata [1].
-> > > >
-> > > > [1] ("https://source.codeaurora.org/quic/la/kernel/msm-4.9/commit/
-> > > >       drivers/iommu/arm-smmu.c?h=CogSystems-msm-49/
-> > > >       msm-4.9&id=da765c6c75266b38191b38ef086274943f353ea7")
-> > > >
-> > > > Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
-> > > > Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-> > > > ---
-> > > >  drivers/firmware/qcom_scm-64.c | 136 ++++++++++++++++++++++++++++-------------
-> > > >  1 file changed, 92 insertions(+), 44 deletions(-)
-> > > >
-> > > > diff --git a/drivers/firmware/qcom_scm-64.c b/drivers/firmware/qcom_scm-64.c
-> > > > index 91d5ad7cf58b..b6dca32c5ac4 100644
-> > > > --- a/drivers/firmware/qcom_scm-64.c
-> > > > +++ b/drivers/firmware/qcom_scm-64.c
-> >
-> > [snip]
-> >
-> > > > +
-> > > > +static void qcom_scm_call_do(const struct qcom_scm_desc *desc,
-> > > > +                          struct arm_smccc_res *res, u32 fn_id,
-> > > > +                          u64 x5, bool atomic)
-> > > > +{
-> > >
-> > > Maybe pass in the call type (ARM_SMCCC_FAST_CALL vs ARM_SMCCC_STD_CALL)
-> > > instead of "bool atomic"? Would certainly make the callsites easier to
-> > > understand.
-> >
-> > Sure, will do that.
-> >
-> > >
-> > > > +     int retry_count = 0;
-> > > > +
-> > > > +     if (!atomic) {
-> > > > +             do {
-> > > > +                     mutex_lock(&qcom_scm_lock);
-> > > > +
-> > > > +                     __qcom_scm_call_do(desc, res, fn_id, x5,
-> > > > +                                        ARM_SMCCC_STD_CALL);
-> > > > +
-> > > > +                     mutex_unlock(&qcom_scm_lock);
-> > > > +
-> > > > +                     if (res->a0 == QCOM_SCM_V2_EBUSY) {
-> > > > +                             if (retry_count++ > QCOM_SCM_EBUSY_MAX_RETRY)
-> > > > +                                     break;
-> > > > +                             msleep(QCOM_SCM_EBUSY_WAIT_MS);
-> > > > +                     }
-> > > > +             }  while (res->a0 == QCOM_SCM_V2_EBUSY);
-> > > > +     } else {
-> > > > +             __qcom_scm_call_do(desc, res, fn_id, x5, ARM_SMCCC_FAST_CALL);
-> > > > +     }
-> > >
-> > > Is it safe to make concurrent FAST calls?
-> >
-> > I better add a spinlock here.
-> >
->
-> Hi Vivek,
->
-> Would you be able to respin this patch, so that we could unblock the
-> introduction of the display nodes in the various device?
+This patchsets converts the Amlogic Meson DWMAC glue bindings over to
+YAML schemas using the already converted dwmac bindings.
 
-Will pointed [1] to the restructuring of arm-smmu to support
-implementation specific details.
-That hasn't been posted yet, and I haven't yet been able to work on that either.
-I will be happy to respin this series with the comments addressed if
-Will is okay to pull changes to unblock sdm845 devices. :)
+The first patch is needed because the Amlogic glue needs a supplementary
+reg cell to access the DWMAC glue registers.
 
-[1] https://lore.kernel.org/patchwork/patch/1087457/
+Changes since v2:
+- Added review tags
+- Updated allwinner,sun7i-a20-gmac.yaml reg maxItems
 
-Thanks & Regards
-Vivek
+Neil Armstrong (2):
+  dt-bindings: net: snps,dwmac: update reg minItems maxItems
+  dt-bindings: net: meson-dwmac: convert to yaml
 
->
-> Regards,
-> Bjorn
-> _______________________________________________
-> iommu mailing list
-> iommu@lists.linux-foundation.org
-> https://lists.linuxfoundation.org/mailman/listinfo/iommu
-
-
+ .../net/allwinner,sun7i-a20-gmac.yaml         |   3 +
+ .../bindings/net/amlogic,meson-dwmac.yaml     | 113 ++++++++++++++++++
+ .../devicetree/bindings/net/meson-dwmac.txt   |  71 -----------
+ .../devicetree/bindings/net/snps,dwmac.yaml   |   8 +-
+ 4 files changed, 123 insertions(+), 72 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
+ delete mode 100644 Documentation/devicetree/bindings/net/meson-dwmac.txt
 
 -- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member
-of Code Aurora Forum, hosted by The Linux Foundation
+2.22.0
+
