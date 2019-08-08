@@ -2,432 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7BA185D9E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 11:00:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 71C3A85DA9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 11:01:42 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731577AbfHHJAD (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 05:00:03 -0400
-Received: from mail-pg1-f194.google.com ([209.85.215.194]:42154 "EHLO
-        mail-pg1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725805AbfHHJAD (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 05:00:03 -0400
-Received: by mail-pg1-f194.google.com with SMTP id t132so43709719pgb.9
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 02:00:02 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :in-reply-to:references;
-        bh=6dKhUXVTfnG7RXmOsA61bvBMaPJOZFEtKXDu0fw21FY=;
-        b=tRe8RBUzPa6IhH0+hSbf+GiaQP8EWcA12uBnSdGylW0vp8+K+fS+rG9sagRWMxWLuQ
-         du7tBQKujF7yQ6BYxx9HbxvRbbweqp2/mvVUQlolCPSVZxviTmyXbpi5FFaiu/U/nkyq
-         15ncGQFdzBnExnnogh8f2nC0NhGN7sX4SJSQbqwYqc9R97J0K5LkINMXr9OFDbTETtv0
-         r6zvuTQAasb+zyYcUf5SMTq3r7+6WiJAEla4RAgsVJC40ZHA7kUqjnmr6sd2/hUSwzbZ
-         0yjWhthsYA0rlHtvSBwmemaiSGoEDyCSO9lZhkqpUHbBm0cSp6/M4NickXIElyNnSsHY
-         kLGg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:in-reply-to:references;
-        bh=6dKhUXVTfnG7RXmOsA61bvBMaPJOZFEtKXDu0fw21FY=;
-        b=tJGn+3RhmL+Q1vxsNxfRXqN03QhzVYw+mTINOzYxyc3SyNnTxibNh8EB44r5nRwXej
-         dPRX3TZNOjWapKa5Fdpzrb7qghDbY+Hc1cdIiEYzKK/bt77AZTc7ydXEiYl5slo3HFLR
-         Sums7d65hNHKqth47qrhFfur0u82Y+skUjOgrU6E78wm8j2CHxaEbE9fFG2JOsYAAeFQ
-         2nES5PadF6ED9jm5Ly/YpgFs1otS+vz0QNQcFSaGVfALYsBfEH5w3qfNDUUMz5/3ikzB
-         SceSKmCjjCuC1FN6rPTPtluXqwA8OjQJ8NuNQyq9VKx7p6eEYxnaeUBx97wPRyIM53Qb
-         x0IA==
-X-Gm-Message-State: APjAAAWOOCeJeGsuda4rO0+MdGriTiSO9ruk5dvbQBbGrB9Iu7VBWcHM
-        9vr1Se0E12tWcqQ9rThcApt9Iw==
-X-Google-Smtp-Source: APXvYqxOXUuSS0vu4mv/BCYVbC/szFA2sxTGC0MCJAGnxsus2pV+bp8RSk1psp6826oFAISYpub9eg==
-X-Received: by 2002:aa7:8f24:: with SMTP id y4mr14159826pfr.36.1565254801990;
-        Thu, 08 Aug 2019 02:00:01 -0700 (PDT)
-Received: from baolinwangubtpc.spreadtrum.com ([117.18.48.82])
-        by smtp.gmail.com with ESMTPSA id b24sm21716254pgw.66.2019.08.08.01.59.58
-        (version=TLS1 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Thu, 08 Aug 2019 02:00:01 -0700 (PDT)
-From:   Baolin Wang <baolin.wang@linaro.org>
-To:     thierry.reding@gmail.com, robh+dt@kernel.org
-Cc:     mark.rutland@arm.com, orsonzhai@gmail.com, zhang.lyra@gmail.com,
-        baolin.wang@linaro.org, vincent.guittot@linaro.org,
-        linux-pwm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org
-Subject: [PATCH 2/2] pwm: sprd: Add Spreadtrum PWM support
-Date:   Thu,  8 Aug 2019 16:59:39 +0800
-Message-Id: <40127356a1acd1f2ff1be1d8a120b305a4e17af4.1565168564.git.baolin.wang@linaro.org>
-X-Mailer: git-send-email 1.7.9.5
-In-Reply-To: <6a38a3655bc8100764d85cb04dea5c2546a311e1.1565168564.git.baolin.wang@linaro.org>
-References: <6a38a3655bc8100764d85cb04dea5c2546a311e1.1565168564.git.baolin.wang@linaro.org>
-In-Reply-To: <6a38a3655bc8100764d85cb04dea5c2546a311e1.1565168564.git.baolin.wang@linaro.org>
-References: <6a38a3655bc8100764d85cb04dea5c2546a311e1.1565168564.git.baolin.wang@linaro.org>
+        id S1730777AbfHHJBh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 05:01:37 -0400
+Received: from mailout2.w1.samsung.com ([210.118.77.12]:38487 "EHLO
+        mailout2.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731226AbfHHJBg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 05:01:36 -0400
+Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
+        by mailout2.w1.samsung.com (KnoxPortal) with ESMTP id 20190808090133euoutp0207e26fcb47be1fd0ffcea87425c847f6~45whLIyaq2109021090euoutp02Q
+        for <devicetree@vger.kernel.org>; Thu,  8 Aug 2019 09:01:33 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout2.w1.samsung.com 20190808090133euoutp0207e26fcb47be1fd0ffcea87425c847f6~45whLIyaq2109021090euoutp02Q
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1565254893;
+        bh=vAPC1KqG78EX5MpxZmqoLOpy+g6UHWhf1FKimkaWP4A=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=pO8Xm438v/7EEIdA82aSLOjUZqy0rWF8TNWSQFD2AuUDYX/6JwjPg1gXh8ENARgP2
+         e3xr90ohBy3jU2A9JUj941NSAm82iGXDqWJYpcEXD2r9QK3gQDkIj++Hsv0mVA9LMF
+         qGUuH5aFDn5ibGl0asc4wW2tKyfLh9vo9m2ngd+Y=
+Received: from eusmges3new.samsung.com (unknown [203.254.199.245]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTP id
+        20190808090132eucas1p13b40a53172facc537e31245aebf3bae7~45wgZWn290878908789eucas1p1O;
+        Thu,  8 Aug 2019 09:01:32 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges3new.samsung.com (EUCPMTA) with SMTP id 6C.9E.04374.CE4EB4D5; Thu,  8
+        Aug 2019 10:01:32 +0100 (BST)
+Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190808090131eucas1p1df8f45ce2b1a6022be13edd66dc5a93d~45wfqrqUY0864008640eucas1p1M;
+        Thu,  8 Aug 2019 09:01:31 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
+        20190808090131eusmtrp2e352ba3f317c555186224aacbaa12396~45wfp_rbZ0831808318eusmtrp2K;
+        Thu,  8 Aug 2019 09:01:31 +0000 (GMT)
+X-AuditID: cbfec7f5-92d689c000001116-c1-5d4be4ec97fd
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id 1C.70.04166.BE4EB4D5; Thu,  8
+        Aug 2019 10:01:31 +0100 (BST)
+Received: from [106.120.51.18] (unknown [106.120.51.18]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190808090130eusmtip14e1361b874b470445d8ee44ed8931457~45wesHjyG0244502445eusmtip1v;
+        Thu,  8 Aug 2019 09:01:30 +0000 (GMT)
+Subject: Re: [PATCH v5 0/4] add coupled regulators for Exynos5422/5800
+To:     Chanwoo Choi <cw00.choi@samsung.com>
+Cc:     Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>,
+        Krzysztof Kozlowski <krzk@kernel.org>,
+        Kukjin Kim <kgene@kernel.org>,
+        Kyungmin Park <kyungmin.park@samsung.com>,
+        Mark Rutland <mark.rutland@arm.com>,
+        MyungJoo Ham <myungjoo.ham@samsung.com>,
+        Nishanth Menon <nm@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        Stephen Boyd <sboyd@kernel.org>,
+        Viresh Kumar <vireshk@kernel.org>, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-pm@vger.kernel.org, linux-samsung-soc@vger.kernel.org
+From:   Kamil Konieczny <k.konieczny@partner.samsung.com>
+Message-ID: <b0b8bd85-c016-ef13-7d5e-11d476e35ab0@partner.samsung.com>
+Date:   Thu, 8 Aug 2019 11:01:29 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <6888b704-1971-4832-d7b9-092368c797d0@samsung.com>
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Sa0hTYRju2zln57ianU3DlxUKI6KbVij4UXaDioVF/uhHJKNWHrTSKTs6
+        M6nWRS0jzUllVk5Luyy7eS0tqbmceWVoKppmXlBSiVKj0jS3Y+S/53nf93mf9/n4GEL+mVIw
+        R7TRnE6rCVeKJWRJ1a8G7+G+QPXaweH5+HnGUwq3jg1Q2GRtoHBq7xCBGxuf0bj+7DCNC3pb
+        KNxUdkuMRy9bEc5orBDhx9ZOGue12kW448wDMR7+WS/CCa+tNJ5qeU7iwu4q8RaZKj8rH6kK
+        zBfFqsLc06qUIjNS2dpKRarRAs8g8X5JQAgXfkTP6dZsOigJG6x9REal0ceL+nNoA5qgkpEL
+        A6wf1LVloWQkYeTsAwSWrFJaIGMIupIGSIGMIqgrryb/SYZMlyihcR+B3ZIxS0YQ1FT+ETum
+        3Ngd0GxIIxzYnV0ON/40O00ItomEaz1Gp7uY9Yee0jqRA0tnBNn302kHJtml8M54y2m3iN0H
+        37srKWFGBu9v9DnrLuxmSL435jQjWA9o7zOJBOwF54pvEg4zYBMY6G83zjgzM2QbGH8EChHc
+        4IutiBbwEph+KWiBjYX+nBRa0J5H0J30bTbzBqi02SnHHoJdAU/L1gjlrfCqKpcS1rtC24hM
+        OMEVjCXXCaEshQuJcmHaG7Km62bffTEkTz+hriBl5pxgmXPCZM4Jk/nfNxuRZuTBxfARoRzv
+        q+VifXhNBB+jDfU5HBlRgGY+Xu2UbfwFqpg8ZEEsg5QLpNU1gWo5pdHzcREWBAyhdJd26Xeq
+        5dIQTdwJThd5QBcTzvEWtJghlR7S+HndwXI2VBPNHeO4KE73rytiXBQGpDcxCyfXt+8J+vEw
+        6aoi3fx93HQoOz735NhUflwqWdhwr78s2MuQm/bpQwtz+851nZ6+OS3zHW8rXWmwn+ePBlgm
+        v+6yyjwfJQaoXSuKFem/sY7RB/jbJ/J2e3QqEr1X390bGSxZRk24JGjLN6q3r7K9MY8zfW/9
+        PlZ3KPSnhpQkH6ZZt5LQ8Zq/61CsR3QDAAA=
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFvrKIsWRmVeSWpSXmKPExsVy+t/xu7qvn3jHGnw7rm6xccZ6VovrX56z
+        Wsw/co7Vov/xa2aL8+c3sFucbXrDbrHp8TVWi8u75rBZfO49wmgx4/w+Jou1R+6yWyy9fpHJ
+        4nbjCjaLNz/OMlm07j3CbvHv2kYWi80PjrE5CHqsmbeG0WPTqk42j81L6j36tqxi9Dh+YzuT
+        x+dNcgFsUXo2RfmlJakKGfnFJbZK0YYWRnqGlhZ6RiaWeobG5rFWRqZK+nY2Kak5mWWpRfp2
+        CXoZL06vZimYyF6x5elC9gbG36xdjJwcEgImEq/ndwPZXBxCAksZJb7ceckIkZCWaDy9mgnC
+        Fpb4c62LDaLoNaPE/cWbWEASwgJuElcaJjKD2CICGhIz/15hBCliFrjKInF+4xyojrOMEpNv
+        nwKrYhMwl3i0/QzYWF6g7gXLJ7OD2CwCKhJHJ80BmyoqECFxeMcsRogaQYmTM5+AxTkF7CW6
+        ln1hA7GZBdQl/sy7xAxhi0vcejKfCcKWl2jeOpt5AqPQLCTts5C0zELSMgtJywJGllWMIqml
+        xbnpucWGesWJucWleel6yfm5mxiBUb7t2M/NOxgvbQw+xCjAwajEw1twwjtWiDWxrLgy9xCj
+        BAezkgjvvTLPWCHelMTKqtSi/Pii0pzU4kOMpkDPTWSWEk3OByagvJJ4Q1NDcwtLQ3Njc2Mz
+        CyVx3g6BgzFCAumJJanZqakFqUUwfUwcnFINjPpFpkesp+WunWG9nO/Ujaws1kN787Ntu47H
+        lbFuucg/VXHN2WNuF195tS4tSnnq6LF628b3ojPd9aMUqnbELGJ5YGLHrL/WT6ym5Ozq4K/d
+        zwy0Y/9tidn4JmplcLeWQd3Fecu9N55oPpFTxHzrZOfNH5EO+3qF7k8smbzkTernE29vrMwo
+        lldiKc5INNRiLipOBAAKRIgXCAMAAA==
+X-CMS-MailID: 20190808090131eucas1p1df8f45ce2b1a6022be13edd66dc5a93d
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190807133855eucas1p1cab425b791262e8dee1b17cbe8b1b3da
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190807133855eucas1p1cab425b791262e8dee1b17cbe8b1b3da
+References: <CGME20190807133855eucas1p1cab425b791262e8dee1b17cbe8b1b3da@eucas1p1.samsung.com>
+        <20190807133838.14678-1-k.konieczny@partner.samsung.com>
+        <6888b704-1971-4832-d7b9-092368c797d0@samsung.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Neo Hou <neo.hou@unisoc.com>
+Hi Chanwoo,
 
-This patch adds the Spreadtrum PWM support, which provides maximum 4
-channels.
+On 08.08.2019 03:47, Chanwoo Choi wrote:
+> Hi Kamil,
+> 
+> When I applied them to testing branch, those don't have the author name
+> only just have the email address as following:
+> You have to edit the your git author information with your name.
 
-Signed-off-by: Neo Hou <neo.hou@unisoc.com>
-Co-developed-by: Baolin Wang <baolin.wang@linaro.org>
-Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
----
- drivers/pwm/Kconfig    |   10 ++
- drivers/pwm/Makefile   |    1 +
- drivers/pwm/pwm-sprd.c |  311 ++++++++++++++++++++++++++++++++++++++++++++++++
- 3 files changed, 322 insertions(+)
- create mode 100644 drivers/pwm/pwm-sprd.c
+Sorry, I will resend with proper From: info.
 
-diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index a7e5751..4963b4d 100644
---- a/drivers/pwm/Kconfig
-+++ b/drivers/pwm/Kconfig
-@@ -423,6 +423,16 @@ config PWM_SPEAR
- 	  To compile this driver as a module, choose M here: the module
- 	  will be called pwm-spear.
- 
-+config PWM_SPRD
-+	tristate "Spreadtrum PWM support"
-+	depends on ARCH_SPRD || COMPILE_TEST
-+	help
-+	  Generic PWM framework driver for the PWM controller on
-+	  Spreadtrum SoCs.
-+
-+	  To compile this driver as a module, choose M here: the module
-+	  will be called pwm-sprd.
-+
- config PWM_STI
- 	tristate "STiH4xx PWM support"
- 	depends on ARCH_STI
-diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 76b555b..26326ad 100644
---- a/drivers/pwm/Makefile
-+++ b/drivers/pwm/Makefile
-@@ -41,6 +41,7 @@ obj-$(CONFIG_PWM_ROCKCHIP)	+= pwm-rockchip.o
- obj-$(CONFIG_PWM_SAMSUNG)	+= pwm-samsung.o
- obj-$(CONFIG_PWM_SIFIVE)	+= pwm-sifive.o
- obj-$(CONFIG_PWM_SPEAR)		+= pwm-spear.o
-+obj-$(CONFIG_PWM_SPRD)		+= pwm-sprd.o
- obj-$(CONFIG_PWM_STI)		+= pwm-sti.o
- obj-$(CONFIG_PWM_STM32)		+= pwm-stm32.o
- obj-$(CONFIG_PWM_STM32_LP)	+= pwm-stm32-lp.o
-diff --git a/drivers/pwm/pwm-sprd.c b/drivers/pwm/pwm-sprd.c
-new file mode 100644
-index 0000000..f6fc793
---- /dev/null
-+++ b/drivers/pwm/pwm-sprd.c
-@@ -0,0 +1,311 @@
-+// SPDX-License-Identifier: GPL-2.0
-+/*
-+ * Copyright (C) 2019 Spreadtrum Communications Inc.
-+ */
-+
-+#include <linux/clk.h>
-+#include <linux/err.h>
-+#include <linux/io.h>
-+#include <linux/math64.h>
-+#include <linux/module.h>
-+#include <linux/platform_device.h>
-+#include <linux/pwm.h>
-+
-+#define SPRD_PWM_PRESCALE	0x0
-+#define SPRD_PWM_MOD		0x4
-+#define SPRD_PWM_DUTY		0x8
-+#define SPRD_PWM_DIV		0xc
-+#define SPRD_PWM_PAT_LOW	0x10
-+#define SPRD_PWM_PAT_HIGH	0x14
-+#define SPRD_PWM_ENABLE		0x18
-+
-+#define SPRD_PWM_MOD_MAX	GENMASK(7, 0)
-+#define SPRD_PWM_REG_MSK	GENMASK(15, 0)
-+#define SPRD_PWM_ENABLE_BIT	BIT(0)
-+
-+#define SPRD_PWM_NUM		4
-+#define SPRD_PWM_REGS_SHIFT	5
-+#define SPRD_PWM_NUM_CLKS	2
-+#define SPRD_PWM_DEFAULT_CLK	26000000UL
-+
-+struct sprd_pwm_chn {
-+	struct clk_bulk_data clks[SPRD_PWM_NUM_CLKS];
-+	unsigned long clk_rate;
-+	bool clk_enabled;
-+};
-+
-+struct sprd_pwm_chip {
-+	void __iomem *base;
-+	struct device *dev;
-+	struct pwm_chip chip;
-+	int num_pwms;
-+	struct sprd_pwm_chn chn[SPRD_PWM_NUM];
-+};
-+
-+/* list of clocks required by PWM channels */
-+static const char * const sprd_pwm_clks[] = {
-+	"enable0", "pwm0",
-+	"enable1", "pwm1",
-+	"enable2", "pwm2",
-+	"enable3", "pwm3",
-+};
-+
-+static u32 sprd_pwm_read(struct sprd_pwm_chip *chip, u32 num, u32 reg)
-+{
-+	u32 offset = reg + (num << SPRD_PWM_REGS_SHIFT);
-+
-+	return readl_relaxed(chip->base + offset);
-+}
-+
-+static void sprd_pwm_write(struct sprd_pwm_chip *chip, u32 num,
-+			   u32 reg, u32 val)
-+{
-+	u32 offset = reg + (num << SPRD_PWM_REGS_SHIFT);
-+
-+	writel_relaxed(val, chip->base + offset);
-+}
-+
-+static int sprd_pwm_config(struct pwm_chip *chip, struct pwm_device *pwm,
-+			   int duty_ns, int period_ns)
-+{
-+	struct sprd_pwm_chip *spc =
-+		container_of(chip, struct sprd_pwm_chip, chip);
-+	struct sprd_pwm_chn *chn = &spc->chn[pwm->hwpwm];
-+	u64 div, tmp;
-+	u32 prescale, duty;
-+	int ret;
-+
-+	/*
-+	 * NOTE: the clocks to PWM channel has to be enabled first before
-+	 * writing to the registers.
-+	 */
-+	if (!chn->clk_enabled) {
-+		ret = clk_bulk_prepare_enable(SPRD_PWM_NUM_CLKS, chn->clks);
-+		if (ret) {
-+			dev_err(spc->dev, "failed to enable pwm%u clock\n",
-+				pwm->hwpwm);
-+			return ret;
-+		}
-+
-+		chn->clk_enabled = true;
-+	}
-+
-+	duty = duty_ns * SPRD_PWM_MOD_MAX / period_ns;
-+
-+	/*
-+	 * According to the datasheet, the period_ns calculation formula
-+	 * should be:
-+	 * period_ns = 10^9 * (prescale + 1) * mod / clk_rate
-+	 *
-+	 * Then we can get the prescale formula:
-+	 * prescale = (period_ns * clk_rate) / (10^9 * mod) -1
-+	 */
-+	tmp = chn->clk_rate * period_ns;
-+	div = 1000000000ULL * SPRD_PWM_MOD_MAX;
-+	prescale = div64_u64(tmp, div) - 1;
-+
-+	sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_MOD, SPRD_PWM_MOD_MAX);
-+	sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_DUTY, duty);
-+	sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_PAT_LOW, SPRD_PWM_REG_MSK);
-+	sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_PAT_HIGH, SPRD_PWM_REG_MSK);
-+	sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_PRESCALE, prescale);
-+
-+	return 0;
-+}
-+
-+static int sprd_pwm_enable(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	struct sprd_pwm_chip *spc =
-+		container_of(chip, struct sprd_pwm_chip, chip);
-+	struct sprd_pwm_chn *chn = &spc->chn[pwm->hwpwm];
-+	int ret;
-+
-+	if (!chn->clk_enabled) {
-+		ret = clk_bulk_prepare_enable(SPRD_PWM_NUM_CLKS, chn->clks);
-+		if (ret) {
-+			dev_err(spc->dev, "failed to enable pwm%u clocks\n",
-+				pwm->hwpwm);
-+			return ret;
-+		}
-+
-+		chn->clk_enabled = true;
-+	}
-+
-+	sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_ENABLE, 1);
-+
-+	return 0;
-+}
-+
-+static void sprd_pwm_disable(struct pwm_chip *chip, struct pwm_device *pwm)
-+{
-+	struct sprd_pwm_chip *spc =
-+		container_of(chip, struct sprd_pwm_chip, chip);
-+	struct sprd_pwm_chn *chn = &spc->chn[pwm->hwpwm];
-+
-+	sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_ENABLE, 0);
-+
-+	if (chn->clk_enabled) {
-+		clk_bulk_disable_unprepare(SPRD_PWM_NUM_CLKS, chn->clks);
-+		chn->clk_enabled = false;
-+	}
-+}
-+
-+static void sprd_pwm_get_state(struct pwm_chip *chip, struct pwm_device *pwm,
-+			       struct pwm_state *state)
-+{
-+	struct sprd_pwm_chip *spc =
-+		container_of(chip, struct sprd_pwm_chip, chip);
-+	struct sprd_pwm_chn *chn = &spc->chn[pwm->hwpwm];
-+	u32 enabled, duty, prescale;
-+	u64 tmp;
-+	int ret;
-+
-+	ret = clk_bulk_prepare_enable(SPRD_PWM_NUM_CLKS, chn->clks);
-+	if (ret) {
-+		dev_err(spc->dev, "failed to enable pwm%u clocks\n",
-+			pwm->hwpwm);
-+		return;
-+	}
-+
-+	chn->clk_enabled = true;
-+
-+	duty = sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_DUTY) & SPRD_PWM_REG_MSK;
-+	prescale = sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_PRESCALE) & SPRD_PWM_REG_MSK;
-+	enabled = sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_ENABLE) & SPRD_PWM_ENABLE_BIT;
-+
-+	/*
-+	 * According to the datasheet, the period_ns and duty_ns calculation
-+	 * formula should be:
-+	 * period_ns = 10^9 * (prescale + 1) * mod / clk_rate
-+	 * duty_ns = 10^9 * (prescale + 1) * duty / clk_rate
-+	 */
-+	tmp = (prescale + 1) * 1000000000ULL * SPRD_PWM_MOD_MAX;
-+	state->period = div64_u64(tmp, chn->clk_rate);
-+
-+	tmp = (prescale + 1) * 1000000000ULL * duty;
-+	state->duty_cycle = div64_u64(tmp, chn->clk_rate);
-+
-+	state->enabled = !!enabled;
-+
-+	/* Disable PWM clocks if the PWM channel is not in enable state. */
-+	if (!enabled) {
-+		clk_bulk_disable_unprepare(SPRD_PWM_NUM_CLKS, chn->clks);
-+		chn->clk_enabled = false;
-+	}
-+}
-+
-+static const struct pwm_ops sprd_pwm_ops = {
-+	.config = sprd_pwm_config,
-+	.enable = sprd_pwm_enable,
-+	.disable = sprd_pwm_disable,
-+	.get_state = sprd_pwm_get_state,
-+	.owner = THIS_MODULE,
-+};
-+
-+static int sprd_pwm_clk_init(struct sprd_pwm_chip *spc)
-+{
-+	struct clk *clk_parent, *clk_pwm;
-+	int ret, i, clk_index = 0;
-+
-+	clk_parent = devm_clk_get(spc->dev, "source");
-+	if (IS_ERR(clk_parent)) {
-+		dev_err(spc->dev, "failed to get source clock\n");
-+		return PTR_ERR(clk_parent);
-+	}
-+
-+	for (i = 0; i < SPRD_PWM_NUM; i++) {
-+		struct sprd_pwm_chn *chn = &spc->chn[i];
-+		int j;
-+
-+		for (j = 0; j < SPRD_PWM_NUM_CLKS; ++j)
-+			chn->clks[j].id = sprd_pwm_clks[clk_index++];
-+
-+		ret = devm_clk_bulk_get(spc->dev, SPRD_PWM_NUM_CLKS, chn->clks);
-+		if (ret) {
-+			if (ret == -ENOENT)
-+				break;
-+
-+			dev_err(spc->dev, "failed to get channel clocks\n");
-+			return ret;
-+		}
-+
-+		clk_pwm = chn->clks[1].clk;
-+		if (!clk_set_parent(clk_pwm, clk_parent))
-+			chn->clk_rate = clk_get_rate(clk_pwm);
-+		else
-+			chn->clk_rate = SPRD_PWM_DEFAULT_CLK;
-+	}
-+
-+	if (!i) {
-+		dev_err(spc->dev, "no availbale PWM channels\n");
-+		return -EINVAL;
-+	}
-+
-+	spc->num_pwms = i;
-+
-+	return 0;
-+}
-+
-+static int sprd_pwm_probe(struct platform_device *pdev)
-+{
-+	struct sprd_pwm_chip *spc;
-+	int ret;
-+
-+	spc = devm_kzalloc(&pdev->dev, sizeof(*spc), GFP_KERNEL);
-+	if (!spc)
-+		return -ENOMEM;
-+
-+	spc->base = devm_platform_ioremap_resource(pdev, 0);
-+	if (IS_ERR(spc->base))
-+		return PTR_ERR(spc->base);
-+
-+	spc->dev = &pdev->dev;
-+	ret = sprd_pwm_clk_init(spc);
-+	if (ret)
-+		return ret;
-+
-+	spc->chip.dev = &pdev->dev;
-+	spc->chip.ops = &sprd_pwm_ops;
-+	spc->chip.base = -1;
-+	spc->chip.npwm = spc->num_pwms;
-+
-+	ret = pwmchip_add(&spc->chip);
-+	if (ret) {
-+		dev_err(&pdev->dev, "failed to add PWM chip\n");
-+		return ret;
-+	}
-+
-+	platform_set_drvdata(pdev, spc);
-+	return 0;
-+}
-+
-+static int sprd_pwm_remove(struct platform_device *pdev)
-+{
-+	struct sprd_pwm_chip *spc = platform_get_drvdata(pdev);
-+	int i;
-+
-+	for (i = 0; i < spc->num_pwms; i++)
-+		pwm_disable(&spc->chip.pwms[i]);
-+
-+	return pwmchip_remove(&spc->chip);
-+}
-+
-+static const struct of_device_id sprd_pwm_of_match[] = {
-+	{ .compatible = "sprd,ums512-pwm", },
-+	{ },
-+};
-+MODULE_DEVICE_TABLE(of, sprd_pwm_of_match);
-+
-+static struct platform_driver sprd_pwm_driver = {
-+	.driver = {
-+		.name = "sprd-pwm",
-+		.of_match_table = sprd_pwm_of_match,
-+	},
-+	.probe = sprd_pwm_probe,
-+	.remove = sprd_pwm_remove,
-+};
-+
-+module_platform_driver(sprd_pwm_driver);
-+
-+MODULE_DESCRIPTION("Spreadtrum PWM Driver");
-+MODULE_LICENSE("GPL v2");
+> author	k.konieczny@partner.samsung.com <k.konieczny@partner.samsung.com>	2019-08-07 15:38:36 +0200
+> committer	Chanwoo Choi <cw00.choi@samsung.com>	2019-08-08 10:35:16 +0900
+> commit	4304f4ecec93cebd255463d56b0a4f112ee9dc50 (patch)
+> tree	2859e566d6f68219f71a61e7c412717c1adba4f5
+> parent	57d85421038b458dd87ec268404ff608f90c36ae (diff)
+> download	linux-4304f4ecec93cebd255463d56b0a4f112ee9dc50.tar.gz
+> 
+> Regards,
+> Chanwoo Choi
+> 
+> On 19. 8. 7. 오후 10:38, k.konieczny@partner.samsung.com wrote:
+>> [...]
+
 -- 
-1.7.9.5
+Best regards,
+Kamil Konieczny
+Samsung R&D Institute Poland
 
