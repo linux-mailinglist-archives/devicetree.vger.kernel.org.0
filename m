@@ -2,121 +2,86 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9580286291
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 15:04:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AC223862CE
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 15:15:53 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732682AbfHHNEt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 09:04:49 -0400
-Received: from mail-vs1-f68.google.com ([209.85.217.68]:44068 "EHLO
-        mail-vs1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728327AbfHHNEt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 09:04:49 -0400
-Received: by mail-vs1-f68.google.com with SMTP id v129so62972869vsb.11
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 06:04:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=yVPeB+St4GsfV4+rvU+wUWYIPVqFTU7qMjefLsTGDCk=;
-        b=B0zU9BKtNhlSEKo6kKYAsY4u7PN+VPvRfvn+58jakXBjrysCX6tUOR7URHJIAMEm4q
-         RH3G9v787hEUo9uudsxNZ/U5ymkg8YKbZ9X/sFY0l7Chji4cFFfnvMFaNqBl6IEoKvIu
-         ADqhq3f1tsOe6K0RMz6rDuj0VIcE4rjQAalVJeVcjaADUo9YPkBV74qrFtI1gRRuc6RK
-         uExR/PtW0Id9fobcvztepC7ZqnrMal9PRifw+s8uNyVZi4nF4O7ninIYFkmg1JKoOAUL
-         zuc0HscZLEHCXMIkIxEZcOarnQu7QnnEri6lOX/k6qxN94tmfvREhBnWrnF/pA35X1Xk
-         LtfA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=yVPeB+St4GsfV4+rvU+wUWYIPVqFTU7qMjefLsTGDCk=;
-        b=Qb109lRKMUDKj0hegiRPNpBBRXqvPgeQfbEXrLYzh2Wwb885RXC6vs6AG7NNOGh8vb
-         Cp9uWvCVX/H+vwKR5jL9P39e8lUylaGMHbTQZogCub0jnEKmR4P8s9CQPZPPXfar+A9a
-         2mm/t8sKNh+1t1WB8KMZ4Xy8VVJtd1cVk/LEhSovtjDYpgLrH9pjP7ZWzsU8I0VrHNW/
-         XfQFCXDxCFeALh0rIPJhtBbjY8hZ0YmXMqvgnMgv03iorlcQK8WaTloU3p86Guzcndjc
-         YCfSbFJ4w02ho65pEYIDjzDhIyIPrYDQDH+2YT8gsxNnenizLCDiIVSLoWxi3xBA2NxA
-         8jeQ==
-X-Gm-Message-State: APjAAAVd8X+T03DO0GtYpGuvDVmg4E3MrJJSSEyBXtpq7dTB2rZ+AUKZ
-        YhYpelZXhC+RmDydOlxiB0HL7snCjkCpghFCfUKq/g==
-X-Google-Smtp-Source: APXvYqwz4sEsZKLGse5oWlgt5eN1TzALbdcsnHo96qnOT8qI6DXH4l2SvV6vxlWxJGY6nX4j8iQr0jJNPuU3PgiNq7U=
-X-Received: by 2002:a67:fb87:: with SMTP id n7mr9548609vsr.9.1565269488210;
- Thu, 08 Aug 2019 06:04:48 -0700 (PDT)
-MIME-Version: 1.0
-References: <cover.1564091601.git.amit.kucheria@linaro.org>
-In-Reply-To: <cover.1564091601.git.amit.kucheria@linaro.org>
-From:   Amit Kucheria <amit.kucheria@linaro.org>
-Date:   Thu, 8 Aug 2019 18:34:37 +0530
-Message-ID: <CAHLCerP4v_Lz5OGswx7+Z5uHVq_D8G5brq-_M6fOc0K6DK2OKg@mail.gmail.com>
-Subject: Re: [PATCH 00/15] thermal: qcom: tsens: Add interrupt support
-To:     LKML <linux-kernel@vger.kernel.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Andy Gross <agross@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, sivaa@codeaurora.org
-Cc:     Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        Brian Masney <masneyb@onstation.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        id S1733018AbfHHNPg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 09:15:36 -0400
+Received: from 212.199.177.27.static.012.net.il ([212.199.177.27]:40654 "EHLO
+        herzl.nuvoton.co.il" rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org
+        with ESMTP id S1732990AbfHHNPg (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 09:15:36 -0400
+Received: from taln60.nuvoton.co.il (ntil-fw [212.199.177.25])
+        by herzl.nuvoton.co.il (8.13.8/8.13.8) with ESMTP id x78DEorj024395;
+        Thu, 8 Aug 2019 16:14:50 +0300
+Received: by taln60.nuvoton.co.il (Postfix, from userid 10070)
+        id E4AFE628F1; Thu,  8 Aug 2019 16:14:49 +0300 (IDT)
+From:   Tomer Maimon <tmaimon77@gmail.com>
+To:     broonie@kernel.org, robh+dt@kernel.org, mark.rutland@arm.com,
+        vigneshr@ti.com, bbrezillon@kernel.org, avifishman70@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com
+Cc:     linux-spi@vger.kernel.org, devicetree@vger.kernel.org,
+        openbmc@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        Tomer Maimon <tmaimon77@gmail.com>
+Subject: [PATCH v2 0/2] spi: add NPCM FIU controller driver 
+Date:   Thu,  8 Aug 2019 16:14:46 +0300
+Message-Id: <20190808131448.349161-1-tmaimon77@gmail.com>
+X-Mailer: git-send-email 2.18.0
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 26, 2019 at 3:48 AM Amit Kucheria <amit.kucheria@linaro.org> wrote:
->
-> Add interrupt support to TSENS. The first 6 patches are general fixes and
-> cleanups to the driver before interrupt support is introduced.
->
-> This series has been developed against qcs404 and sdm845 and then tested on
-> msm8916. Testing on msm8998 and msm8974 would be appreciated since I don't
-> have hardware handy. Further, I plan to test on msm8996 and also submit to
-> kernelci.
+This patch set adds Flash Interface Unit(FIU) SPI 
+master support for the Nuvoton NPCM Baseboard 
+Management Controller (BMC).
 
-Gentle nudge for reviews. This has now been successfully tested on
-8974 (along with 8916, qcs404, sdm845). Testing on msm8998 would be
-much appreciated.
+The FIU supports single, dual or quad communication interface.
 
-> I'm sending this out for more review to get help with testing.
->
-> Amit Kucheria (15):
->   drivers: thermal: tsens: Get rid of id field in tsens_sensor
->   drivers: thermal: tsens: Simplify code flow in tsens_probe
->   drivers: thermal: tsens: Add __func__ identifier to debug statements
->   drivers: thermal: tsens: Add debugfs support
->   arm: dts: msm8974: thermal: Add thermal zones for each sensor
->   arm64: dts: msm8916: thermal: Fixup HW ids for cpu sensors
->   dt: thermal: tsens: Document interrupt support in tsens driver
->   arm64: dts: sdm845: thermal: Add interrupt support
->   arm64: dts: msm8996: thermal: Add interrupt support
->   arm64: dts: msm8998: thermal: Add interrupt support
->   arm64: dts: qcs404: thermal: Add interrupt support
->   arm64: dts: msm8974: thermal: Add interrupt support
->   arm64: dts: msm8916: thermal: Add interrupt support
->   drivers: thermal: tsens: Create function to return sign-extended
->     temperature
->   drivers: thermal: tsens: Add interrupt support
->
->  .../bindings/thermal/qcom-tsens.txt           |   5 +
->  arch/arm/boot/dts/qcom-msm8974.dtsi           | 108 +++-
->  arch/arm64/boot/dts/qcom/msm8916.dtsi         |  26 +-
->  arch/arm64/boot/dts/qcom/msm8996.dtsi         |  60 +-
->  arch/arm64/boot/dts/qcom/msm8998.dtsi         |  82 +--
->  arch/arm64/boot/dts/qcom/qcs404.dtsi          |  42 +-
->  arch/arm64/boot/dts/qcom/sdm845.dtsi          |  88 +--
->  drivers/thermal/qcom/tsens-8960.c             |   4 +-
->  drivers/thermal/qcom/tsens-common.c           | 610 +++++++++++++++++-
->  drivers/thermal/qcom/tsens-v0_1.c             |  11 +
->  drivers/thermal/qcom/tsens-v1.c               |  29 +
->  drivers/thermal/qcom/tsens-v2.c               |  18 +
->  drivers/thermal/qcom/tsens.c                  |  52 +-
->  drivers/thermal/qcom/tsens.h                  | 285 +++++++-
->  14 files changed, 1214 insertions(+), 206 deletions(-)
->
-> --
-> 2.17.1
->
+the FIU controller can operate in following modes:
+- User Mode Access(UMA): provides flash access by using an
+  indirect address/data mechanism.
+- direct rd/wr mode: maps the flash memory into the core
+  address space.
+- SPI-X mode: used for an expansion bus to an ASIC or CPLD.
+
+The NPCM750/730/715/710 supports up to three FIU devices:
+- FIU0 supports two chip select.
+- FIU3 supports four chip select.
+- FIUX supports two chip select.
+
+The NPCM FIU driver tested on NPCM750 evaluation board. 
+
+The FIU controller driver using direct map API SPI-MEM
+interface and tested with the latest m25p80 driver patch
+https://www.spinics.net/lists/linux-mtd/msg07358.html
+
+According a conversion about direct SPI-MEM API
+https://www.spinics.net/lists/linux-mtd/msg08225.html
+
+The m25p80 driver will merge to the spi-nor driver we
+need to make sure the m25p80 direct SPI-MEM will merge
+as well.
+
+The FIU controller driver tested with the latest spi-nor driver patch
+https://www.spinics.net/lists/linux-mtd/msg08472.html
+
+Changes since version 1:
+ - Support spi-mem no data transferred option (SPI_MEM_NO_DATA)
+
+Tomer Maimon (2):
+  dt-binding: spi: add NPCM FIU controller
+  spi: npcm-fiu: add NPCM FIU controller driver
+
+ .../bindings/spi/nuvoton,npcm-fiu.txt         |  47 ++
+ drivers/spi/Kconfig                           |  10 +
+ drivers/spi/Makefile                          |   1 +
+ drivers/spi/spi-npcm-fiu.c                    | 761 ++++++++++++++++++
+ 4 files changed, 819 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/spi/nuvoton,npcm-fiu.txt
+ create mode 100644 drivers/spi/spi-npcm-fiu.c
+
+-- 
+2.18.0
+
