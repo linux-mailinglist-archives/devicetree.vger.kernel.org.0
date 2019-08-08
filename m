@@ -2,294 +2,131 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6C180860FF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 13:41:13 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0B05486154
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 14:07:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730076AbfHHLlL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 07:41:11 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:41775 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730170AbfHHLlI (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 07:41:08 -0400
-Received: by mail-wr1-f68.google.com with SMTP id c2so91363383wrm.8
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 04:41:06 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=jLs8gsGUflhNohKub9X/BIMLOOG/CQbdDT1tFffxDuY=;
-        b=XCviUWeKRkSRCCa/WbhBCxqWZYG9Q3KVElYw3KenWmqioc7CntEFYmHI2bdmc0TaL1
-         nQe/1CTNPFAGHZ64k6oVwMi2kRM61wXmk0KVq8tABLdqJhl4YdLKfNO5qrDUroP1BVRb
-         F1gv+ZEur9587XidenVkSewdj+rp2ST3wrnDDnkCtOZsr4BykHsKvlwP1H8QHRUEjbNz
-         nE9ygKAqvvdKl8WU0Or87Rd44f3JINl/L/hj+MEfyVDRa9ndFf6KeyOe2Os7/OyZ/wTO
-         3lE/d32lurn0MX/EnsCvFWGmjKnCINzXzWTcT9aibbqphQxVAW4caVMqvtuqG24Urb88
-         vnBQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=jLs8gsGUflhNohKub9X/BIMLOOG/CQbdDT1tFffxDuY=;
-        b=Mx2qBb3QfFCWJtcy01fGLulZw3Q2U8y2fkH4jvqB8ec0/0rSFv2N+I7V6F751pgIKt
-         IcPk7S7X6PIXho5rG2RDBDWQrwFrBggybD/sQqGOnioPQQawJJS0tYiGUhnhLEB96/GR
-         BoK5th4o0gcJ5M5GlVcdW6RJuEk+RGXIXMFm+5ztMy6xVOAzcSASiqQ+k456cER81UCu
-         3tPGhInTp7sr5Xq1qjQdEwluwVpT5tDxouiXR6fxrnOB/fHV0fy5pmkdMI6oi3XRMEGs
-         ZVzZgfTI7xBE35xWAqJ2PLxuSYUPMBAQpAvt03HDaJK9z2/hPpVNd78d6uOsEhNlY95b
-         6EBg==
-X-Gm-Message-State: APjAAAWRnaS4//bO1ne/iAuBhN7DaqFNGf2dOJqFvJE7VHcSLdX2nG41
-        bBCfsfz5lTcrbUAcXCzf2agGEg==
-X-Google-Smtp-Source: APXvYqztunF++39tb302s/pBXxCPqakJ156cHmWCzudYlWy22NFjqLvf/QEYaxeIqI7H63+hEyvdIA==
-X-Received: by 2002:a5d:5012:: with SMTP id e18mr16900192wrt.166.1565264465684;
-        Thu, 08 Aug 2019 04:41:05 -0700 (PDT)
-Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id f12sm104555882wrg.5.2019.08.08.04.41.04
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 08 Aug 2019 04:41:04 -0700 (PDT)
-From:   Neil Armstrong <narmstrong@baylibre.com>
-To:     robh+dt@kernel.org
-Cc:     Neil Armstrong <narmstrong@baylibre.com>,
-        martin.blumenstingl@googlemail.com, devicetree@vger.kernel.org,
-        netdev@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        id S1731899AbfHHMHH (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 08:07:07 -0400
+Received: from mailout1.w1.samsung.com ([210.118.77.11]:40424 "EHLO
+        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731278AbfHHMHG (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 08:07:06 -0400
+Received: from eucas1p1.samsung.com (unknown [182.198.249.206])
+        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190808120705euoutp012310db9141e578555925bccd935d59e7~48Sgju_rK2691526915euoutp01c
+        for <devicetree@vger.kernel.org>; Thu,  8 Aug 2019 12:07:05 +0000 (GMT)
+DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190808120705euoutp012310db9141e578555925bccd935d59e7~48Sgju_rK2691526915euoutp01c
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
+        s=mail20170921; t=1565266025;
+        bh=wTw/zSeiLhrpgMAmruYSw68EDrMJ/8vKBiwL047PITk=;
+        h=Subject:To:Cc:From:Date:In-Reply-To:References:From;
+        b=ZD9Qby7HYzK2lC/Vjog5BsNSIQok+U2a79R4NfUYZ5OVWLZfcwlUnx0f647kw6yUO
+         Knw+x+gXeRGmB+G9KZ8qdxXpn2yQCHWxWWnK5uDRw08HrL19Fzb/m/8vMc03shMpl7
+         Y61oYV36bxW4+HvjPLjyHP+iDmbVJ8zRmUpIuCUs=
+Received: from eusmges1new.samsung.com (unknown [203.254.199.242]) by
+        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
+        20190808120704eucas1p27aa37a816849c9af2f5fddc64eccffdc~48Sf44cAI2249122491eucas1p2O;
+        Thu,  8 Aug 2019 12:07:04 +0000 (GMT)
+Received: from eucas1p1.samsung.com ( [182.198.249.206]) by
+        eusmges1new.samsung.com (EUCPMTA) with SMTP id 2E.16.04469.8601C4D5; Thu,  8
+        Aug 2019 13:07:04 +0100 (BST)
+Received: from eusmtrp1.samsung.com (unknown [182.198.249.138]) by
+        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
+        20190808120703eucas1p1a79a8e2eab56201d5bdf16bf674302db~48SfLFaJE1416214162eucas1p1k;
+        Thu,  8 Aug 2019 12:07:03 +0000 (GMT)
+Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
+        eusmtrp1.samsung.com (KnoxPortal) with ESMTP id
+        20190808120703eusmtrp1b9096581da07a64626585cf295b0c250~48Se8jPPA2071120711eusmtrp1T;
+        Thu,  8 Aug 2019 12:07:03 +0000 (GMT)
+X-AuditID: cbfec7f2-54fff70000001175-0e-5d4c10681521
+Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
+        eusmgms1.samsung.com (EUCPMTA) with SMTP id A0.37.04166.7601C4D5; Thu,  8
+        Aug 2019 13:07:03 +0100 (BST)
+Received: from [106.120.51.75] (unknown [106.120.51.75]) by
+        eusmtip1.samsung.com (KnoxPortal) with ESMTPA id
+        20190808120702eusmtip140fc4db0fc50f1d5d9b94f81dfd5dc16~48SeYg4pt0142001420eusmtip13;
+        Thu,  8 Aug 2019 12:07:02 +0000 (GMT)
+Subject: Re: [PATCH v2 1/9] soc: samsung: Add exynos chipid driver support
+To:     Krzysztof Kozlowski <krzk@kernel.org>
+Cc:     robh+dt@kernel.org, vireshk@kernel.org, devicetree@vger.kernel.org,
+        kgene@kernel.org, pankaj.dubey@samsung.com,
+        "linux-samsung-soc@vger.kernel.org" 
+        <linux-samsung-soc@vger.kernel.org>,
         linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Rob Herring <robh@kernel.org>
-Subject: [PATCH v3 2/2] dt-bindings: net: meson-dwmac: convert to yaml
-Date:   Thu,  8 Aug 2019 13:41:01 +0200
-Message-Id: <20190808114101.29982-3-narmstrong@baylibre.com>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190808114101.29982-1-narmstrong@baylibre.com>
-References: <20190808114101.29982-1-narmstrong@baylibre.com>
+        linux-pm@vger.kernel.org,
+        =?UTF-8?Q?Bart=c5=82omiej_=c5=bbo=c5=82nierkiewicz?= 
+        <b.zolnierkie@samsung.com>,
+        Marek Szyprowski <m.szyprowski@samsung.com>
+From:   Sylwester Nawrocki <s.nawrocki@samsung.com>
+Message-ID: <b3a31424-84ec-63d7-16ca-26333ad12123@samsung.com>
+Date:   Thu, 8 Aug 2019 14:07:01 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+        Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <CAJKOXPfLBif-=09B9jZ3qN1kWdTAcrBQZGvZ+A-MUifXK4si9Q@mail.gmail.com>
+Content-Language: en-GB
+Content-Transfer-Encoding: 7bit
+X-Brightmail-Tracker: H4sIAAAAAAAAA01Se0hTcRT2t3vv7nVs+nNaHuyFQ+wB+YCKC4a9ySzQiKAUqVte1NymbGpZ
+        gVpoapqilY+MNJVsEepKDcWQOZ0mKdoyQXyhZQ8NUsPMV5tXyf++c77vfOd8cBhC3kC5MBHq
+        GF6j5pQKsYSsbZ3r3B2OT4V4VbVI2er8Sop9Yuyk2KzRHwTb1VVFs/rRXor9UF8kZqczjYjN
+        73orYl8aB2j2ac0MzSY3Gmn21XCr+KDUT69LE/u9Kkvwu/dah/ym9VsDySDJ/lBeGRHHazx9
+        L0rCsxpzyegs6lr6XLEoEZWR6ciWAbwH3s0lEelIwshxBYLucTNtJeR4BsHQC3uBmEaQ9t6A
+        1iZyar6JBOIZgorqMVooJhE01d21MAzjiP2hPFljHXDCO+HT4ixlxQQuJWDq8V4rFmNvyGy5
+        h6xyGfaFFiNjbZPYDXQl6SvyDfgcTA03r2AZdoD2grGVq23xaTAWlJOCpTPcmnm+ar8N6iaL
+        VtIA7qVhxNhPWP0BH4WRJGfhfkf4bnpNC3gzdORmkIL+NoKMhn5aKLIt6U3Fq4l9oNnUTVmN
+        CEuYynpPoX0I+trGKMHfDvomHYQb7CCnNm91rQxSU+SC2g3mdXkiAbvA3bFlMhspCtclK1yX
+        pnBdmsL/e4sRqUPOfKxWFcZrvdX8VQ8tp9LGqsM8Lkep9MjyUh1Lpqk36HfPJQPCDFJIZdFt
+        J0PkFBenjVcZEDCEwkk2GHciRC4L5eKv85qoC5pYJa81oE0MqXCW3bAZDpbjMC6Gj+T5aF6z
+        xooYW5dE9ODAuFl/7Ka9wTPz/N+ofWX2W45zgXUTf5ruyMx5E5CAvCIYLmDRN7gqxWZqhzRI
+        fNjO4+yR0T5mY4pKmbFQWtD+sGvB33VWaTY1Lie5Gjzc08Rmu5yf24dCl5PuLw18vPLrc1NJ
+        qddgUOrwsa9nHmkCRuZyp0skkV98jqrn3XsUpDac895FaLTcP8VQrehOAwAA
+X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPIsWRmVeSWpSXmKPExsVy+t/xu7rpAj6xBrObJCw2zljPajH/yDlW
+        i/7Hr5ktzp/fwG6x6fE1VovLu+awWXzuPcJoMeP8PiaLtUfuslss2vqF3aJ17xF2i80PjrE5
+        8HhsWtXJ5rF5Sb1H35ZVjB6fN8kFsETp2RTll5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvH
+        WhmZKunb2aSk5mSWpRbp2yXoZfTvncxS0M9a0fVzAVMD4xKWLkZODgkBE4lJW18ydTFycQgJ
+        LGWUeLLuEHMXIwdQQkpifosSRI2wxJ9rXWwQNa8ZJZ5fuMgEUiMs4CWxtLUIpEZEQFPi+t/v
+        rCA1zAKLmSUurJ/PDtHQwSTRPBVkAycHm4ChRO/RPkaQZl4BO4mjRzhAwiwCKhKrFnaxgtii
+        AhESh3fMYgSxeQUEJU7OfAJ2KKdAoMSRmUvBbGYBdYk/8y4xQ9jiEk1fVrJC2PIS29/OYZ7A
+        KDQLSfssJC2zkLTMQtKygJFlFaNIamlxbnpusaFecWJucWleul5yfu4mRmBkbjv2c/MOxksb
+        gw8xCnAwKvHwFpzwjhViTSwrrsw9xCjBwawkwnuvzDNWiDclsbIqtSg/vqg0J7X4EKMp0HMT
+        maVEk/OBSSOvJN7Q1NDcwtLQ3Njc2MxCSZy3Q+BgjJBAemJJanZqakFqEUwfEwenVANjRuS0
+        ihWtOkdz1HSZ3aZJKC7f/+a8/0PTgD1p61+pncrKDpdMVA97o6wX+enVqw0/krwz2Sf9Ubr2
+        6PHxko49UQtu1rxMSvgWsU7X2f9MVzK/1oSM7eJL2iaZehVKRC+e+7j9YKz6zSSzXpvPJwvv
+        LPw8Zw3DkvU3FbjeTtGQ2HI2peTcwuaVSizFGYmGWsxFxYkA9u7/3OICAAA=
+X-CMS-MailID: 20190808120703eucas1p1a79a8e2eab56201d5bdf16bf674302db
+X-Msg-Generator: CA
+Content-Type: text/plain; charset="utf-8"
+X-RootMTR: 20190718143127eucas1p13b1e2c98d270140a87f09562ef46c9a3
+X-EPHeader: CA
+CMS-TYPE: 201P
+X-CMS-RootMailID: 20190718143127eucas1p13b1e2c98d270140a87f09562ef46c9a3
+References: <CGME20190718143127eucas1p13b1e2c98d270140a87f09562ef46c9a3@eucas1p1.samsung.com>
+        <20190718143044.25066-1-s.nawrocki@samsung.com>
+        <20190718143044.25066-2-s.nawrocki@samsung.com>
+        <CAJKOXPfLBif-=09B9jZ3qN1kWdTAcrBQZGvZ+A-MUifXK4si9Q@mail.gmail.com>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Now that we have the DT validation in place, let's convert the device tree
-bindings for the Synopsys DWMAC Glue for Amlogic SoCs over to a YAML schemas.
+On 7/23/19 14:57, Krzysztof Kozlowski wrote:
+>> diff --git a/drivers/soc/samsung/exynos-chipid.c b/drivers/soc/samsung/exynos-chipid.c
 
-Reviewed-by: Rob Herring <robh@kernel.org>
-Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
----
- .../bindings/net/amlogic,meson-dwmac.yaml     | 113 ++++++++++++++++++
- .../devicetree/bindings/net/meson-dwmac.txt   |  71 -----------
- .../devicetree/bindings/net/snps,dwmac.yaml   |   5 +
- 3 files changed, 118 insertions(+), 71 deletions(-)
- create mode 100644 Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
- delete mode 100644 Documentation/devicetree/bindings/net/meson-dwmac.txt
+>> --- /dev/null
+>> +++ b/drivers/soc/samsung/exynos-chipid.c
+>> @@ -0,0 +1,111 @@
+>> +// SPDX-License-Identifier: GPL-2.0
 
-diff --git a/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-new file mode 100644
-index 000000000000..ae91aa9d8616
---- /dev/null
-+++ b/Documentation/devicetree/bindings/net/amlogic,meson-dwmac.yaml
-@@ -0,0 +1,113 @@
-+# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
-+# Copyright 2019 BayLibre, SAS
-+%YAML 1.2
-+---
-+$id: "http://devicetree.org/schemas/net/amlogic,meson-dwmac.yaml#"
-+$schema: "http://devicetree.org/meta-schemas/core.yaml#"
-+
-+title: Amlogic Meson DWMAC Ethernet controller
-+
-+maintainers:
-+  - Neil Armstrong <narmstrong@baylibre.com>
-+  - Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-+
-+# We need a select here so we don't match all nodes with 'snps,dwmac'
-+select:
-+  properties:
-+    compatible:
-+      contains:
-+        enum:
-+          - amlogic,meson6-dwmac
-+          - amlogic,meson8b-dwmac
-+          - amlogic,meson8m2-dwmac
-+          - amlogic,meson-gxbb-dwmac
-+          - amlogic,meson-axg-dwmac
-+  required:
-+    - compatible
-+
-+allOf:
-+  - $ref: "snps,dwmac.yaml#"
-+  - if:
-+      properties:
-+        compatible:
-+          contains:
-+            enum:
-+              - amlogic,meson8b-dwmac
-+              - amlogic,meson8m2-dwmac
-+              - amlogic,meson-gxbb-dwmac
-+              - amlogic,meson-axg-dwmac
-+
-+    then:
-+      properties:
-+        clocks:
-+          items:
-+            - description: GMAC main clock
-+            - description: First parent clock of the internal mux
-+            - description: Second parent clock of the internal mux
-+
-+        clock-names:
-+          minItems: 3
-+          maxItems: 3
-+          items:
-+            - const: stmmaceth
-+            - const: clkin0
-+            - const: clkin1
-+
-+        amlogic,tx-delay-ns:
-+          $ref: /schemas/types.yaml#definitions/uint32
-+          description:
-+            The internal RGMII TX clock delay (provided by this driver) in
-+            nanoseconds. Allowed values are 0ns, 2ns, 4ns, 6ns.
-+            When phy-mode is set to "rgmii" then the TX delay should be
-+            explicitly configured. When not configured a fallback of 2ns is
-+            used. When the phy-mode is set to either "rgmii-id" or "rgmii-txid"
-+            the TX clock delay is already provided by the PHY. In that case
-+            this property should be set to 0ns (which disables the TX clock
-+            delay in the MAC to prevent the clock from going off because both
-+            PHY and MAC are adding a delay).
-+            Any configuration is ignored when the phy-mode is set to "rmii".
-+
-+properties:
-+  compatible:
-+    additionalItems: true
-+    maxItems: 3
-+    items:
-+      - enum:
-+          - amlogic,meson6-dwmac
-+          - amlogic,meson8b-dwmac
-+          - amlogic,meson8m2-dwmac
-+          - amlogic,meson-gxbb-dwmac
-+          - amlogic,meson-axg-dwmac
-+    contains:
-+      enum:
-+        - snps,dwmac-3.70a
-+        - snps,dwmac
-+
-+  reg:
-+    items:
-+      - description:
-+          The first register range should be the one of the DWMAC controller
-+      - description:
-+          The second range is is for the Amlogic specific configuration
-+          (for example the PRG_ETHERNET register range on Meson8b and newer)
-+
-+required:
-+  - compatible
-+  - reg
-+  - interrupts
-+  - interrupt-names
-+  - clocks
-+  - clock-names
-+  - phy-mode
-+
-+examples:
-+  - |
-+    ethmac: ethernet@c9410000 {
-+         compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
-+         reg = <0xc9410000 0x10000>, <0xc8834540 0x8>;
-+         interrupts = <8>;
-+         interrupt-names = "macirq";
-+         clocks = <&clk_eth>, <&clkc_fclk_div2>, <&clk_mpll2>;
-+         clock-names = "stmmaceth", "clkin0", "clkin1";
-+         phy-mode = "rgmii";
-+    };
-diff --git a/Documentation/devicetree/bindings/net/meson-dwmac.txt b/Documentation/devicetree/bindings/net/meson-dwmac.txt
-deleted file mode 100644
-index 1321bb194ed9..000000000000
---- a/Documentation/devicetree/bindings/net/meson-dwmac.txt
-+++ /dev/null
-@@ -1,71 +0,0 @@
--* Amlogic Meson DWMAC Ethernet controller
--
--The device inherits all the properties of the dwmac/stmmac devices
--described in the file stmmac.txt in the current directory with the
--following changes.
--
--Required properties on all platforms:
--
--- compatible:	Depending on the platform this should be one of:
--			- "amlogic,meson6-dwmac"
--			- "amlogic,meson8b-dwmac"
--			- "amlogic,meson8m2-dwmac"
--			- "amlogic,meson-gxbb-dwmac"
--			- "amlogic,meson-axg-dwmac"
--		Additionally "snps,dwmac" and any applicable more
--		detailed version number described in net/stmmac.txt
--		should be used.
--
--- reg:	The first register range should be the one of the DWMAC
--	controller. The second range is is for the Amlogic specific
--	configuration (for example the PRG_ETHERNET register range
--	on Meson8b and newer)
--
--Required properties on Meson8b, Meson8m2, GXBB and newer:
--- clock-names:	Should contain the following:
--		- "stmmaceth" - see stmmac.txt
--		- "clkin0" - first parent clock of the internal mux
--		- "clkin1" - second parent clock of the internal mux
--
--Optional properties on Meson8b, Meson8m2, GXBB and newer:
--- amlogic,tx-delay-ns:	The internal RGMII TX clock delay (provided
--			by this driver) in nanoseconds. Allowed values
--			are: 0ns, 2ns, 4ns, 6ns.
--			When phy-mode is set to "rgmii" then the TX
--			delay should be explicitly configured. When
--			not configured a fallback of 2ns is used.
--			When the phy-mode is set to either "rgmii-id"
--			or "rgmii-txid" the TX clock delay is already
--			provided by the PHY. In that case this
--			property should be set to 0ns (which disables
--			the TX clock delay in the MAC to prevent the
--			clock from going off because both PHY and MAC
--			are adding a delay).
--			Any configuration is ignored when the phy-mode
--			is set to "rmii".
--
--Example for Meson6:
--
--	ethmac: ethernet@c9410000 {
--		compatible = "amlogic,meson6-dwmac", "snps,dwmac";
--		reg = <0xc9410000 0x10000
--		       0xc1108108 0x4>;
--		interrupts = <0 8 1>;
--		interrupt-names = "macirq";
--		clocks = <&clk81>;
--		clock-names = "stmmaceth";
--	}
--
--Example for GXBB:
--	ethmac: ethernet@c9410000 {
--		compatible = "amlogic,meson-gxbb-dwmac", "snps,dwmac";
--		reg = <0x0 0xc9410000 0x0 0x10000>,
--			<0x0 0xc8834540 0x0 0x8>;
--		interrupts = <0 8 1>;
--		interrupt-names = "macirq";
--		clocks = <&clkc CLKID_ETH>,
--				<&clkc CLKID_FCLK_DIV2>,
--				<&clkc CLKID_MPLL2>;
--		clock-names = "stmmaceth", "clkin0", "clkin1";
--		phy-mode = "rgmii";
--	};
-diff --git a/Documentation/devicetree/bindings/net/snps,dwmac.yaml b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-index 4377f511a51d..c78be15704b9 100644
---- a/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-+++ b/Documentation/devicetree/bindings/net/snps,dwmac.yaml
-@@ -50,6 +50,11 @@ properties:
-         - allwinner,sun8i-r40-emac
-         - allwinner,sun8i-v3s-emac
-         - allwinner,sun50i-a64-emac
-+        - amlogic,meson6-dwmac
-+        - amlogic,meson8b-dwmac
-+        - amlogic,meson8m2-dwmac
-+        - amlogic,meson-gxbb-dwmac
-+        - amlogic,meson-axg-dwmac
-         - snps,dwmac
-         - snps,dwmac-3.50a
-         - snps,dwmac-3.610
+>> +#include <linux/io.h>
+>> +#include <linux/of.h>
+>> +#include <linux/of_address.h>
+>> +#include <linux/of_platform.h>
+>> +#include <linux/platform_device.h>
+>
+> Any changes here from my previous comments?
+
+Oops, I tried hard to not miss any of the comments but probably not hard enough.
+The two above platform header files will be removed in v3.
+
 -- 
-2.22.0
-
+Regards,
+Sylwester
