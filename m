@@ -2,93 +2,77 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 77EA986441
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 16:24:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5F36186483
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 16:39:39 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732609AbfHHOYZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 10:24:25 -0400
-Received: from mail.kernel.org ([198.145.29.99]:51192 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732375AbfHHOYZ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Aug 2019 10:24:25 -0400
-Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 415CB21881;
-        Thu,  8 Aug 2019 14:24:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565274264;
-        bh=GbxGK/XeU8Jq3BsD5vAhpYB5spmsW6zGX1dwrpsE5t4=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=aoIa7iW+xO03864JPGOTaZ0uKpmXzd9TyBhnV4ccOITEc6lK3zCzzIcNr094IVknO
-         SQuc+rxdvYL1EOfaPJXKSJQIOp+iewyyYbOTwhFMc30yuSsfvlmlM4ZcjM9ygpk39e
-         HVHroC/rC1LdgrNSETv7fVg+s4eQqHJ65iKv9yak=
-Received: by mail-qt1-f180.google.com with SMTP id t12so3728727qtp.9;
-        Thu, 08 Aug 2019 07:24:24 -0700 (PDT)
-X-Gm-Message-State: APjAAAWmgtAQoM+T4yzXrfrrg8a3o/pZDJwCLfDXZDmFqrWMgROy1eLb
-        9ekjxyl64TjgJthiRUPYTYTClvwJcZkV6uN3rA==
-X-Google-Smtp-Source: APXvYqye2r+EAqTd1bwyViP0nnseaD8L/QzN64cUXepyshuKkd3QHF+cGD87GSZVBbS9vKtfQnvvObZlYmsjxVhLY5U=
-X-Received: by 2002:ac8:23b3:: with SMTP id q48mr3395933qtq.110.1565274263456;
- Thu, 08 Aug 2019 07:24:23 -0700 (PDT)
+        id S1730768AbfHHOji (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 10:39:38 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:45264 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1729780AbfHHOji (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 10:39:38 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x78EdZTH126885;
+        Thu, 8 Aug 2019 09:39:35 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1565275175;
+        bh=T6w8unx+lg1PIrwqHgfMMNaQTTJhly/4FV0p9XTDn1M=;
+        h=From:To:CC:Subject:Date;
+        b=HD/P17Bsgc4w8umTE35foSJ1gBg2Kcno/InPpAkDl/xaK8mTTKLT36X3YW8IC9MDL
+         gTmeYTiIxwQ1j4hNpr+Uck9kEqHrlf1gVzG3FUtjZGvxOAdV9BbbJXM5+Ib0uneMxL
+         no/M7es5uTXs9/Ca2OuVJs4eU+LBalGlBhigpuCk=
+Received: from DFLE100.ent.ti.com (dfle100.ent.ti.com [10.64.6.21])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x78EdZPg094437
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Thu, 8 Aug 2019 09:39:35 -0500
+Received: from DFLE107.ent.ti.com (10.64.6.28) by DFLE100.ent.ti.com
+ (10.64.6.21) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Thu, 8 Aug
+ 2019 09:39:34 -0500
+Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE107.ent.ti.com
+ (10.64.6.28) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Thu, 8 Aug 2019 09:39:34 -0500
+Received: from legion.dal.design.ti.com (legion.dal.design.ti.com [128.247.22.53])
+        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x78EdYRQ078386;
+        Thu, 8 Aug 2019 09:39:34 -0500
+Received: from localhost (irmo.dhcp.ti.com [128.247.58.153])
+        by legion.dal.design.ti.com (8.11.7p1+Sun/8.11.7) with ESMTP id x78EdYZ25397;
+        Thu, 8 Aug 2019 09:39:34 -0500 (CDT)
+From:   Suman Anna <s-anna@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>
+CC:     <devicetree@vger.kernel.org>,
+        <linux-arm-kernel@lists.infradead.org>, Suman Anna <s-anna@ti.com>
+Subject: [PATCH 0/2] K3 dts minor typo fixes
+Date:   Thu, 8 Aug 2019 09:39:27 -0500
+Message-ID: <20190808143929.11148-1-s-anna@ti.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20190805124037.10597-1-andyshrk@gmail.com> <CAL_JsqJ6_J1pR-MYK5kmUN5Q+tX32UNFqLW81tmBf=pYxtAmjg@mail.gmail.com>
- <CANbgqATvVSo_D-n_mW2hK2KEK_8cs3374ddB6C8GcZZwjMSoRQ@mail.gmail.com>
-In-Reply-To: <CANbgqATvVSo_D-n_mW2hK2KEK_8cs3374ddB6C8GcZZwjMSoRQ@mail.gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Thu, 8 Aug 2019 08:24:12 -0600
-X-Gmail-Original-Message-ID: <CAL_Jsq+1KVVube322GZXetVWdthrtWG=QiOTSnUg5aLbXjBuWg@mail.gmail.com>
-Message-ID: <CAL_Jsq+1KVVube322GZXetVWdthrtWG=QiOTSnUg5aLbXjBuWg@mail.gmail.com>
-Subject: Re: [PATCH v2] arm64: dts: rockchip: Add dts for Leez RK3399 P710 SBC
-To:     Andy Yan <andyshrk@gmail.com>
-Cc:     "heiko@sntech.de" <heiko@sntech.de>, devicetree@vger.kernel.org,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "open list:ARM/Rockchip SoC..." <linux-rockchip@lists.infradead.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 7, 2019 at 12:14 AM Andy Yan <andyshrk@gmail.com> wrote:
->
-> Hi Rob:
->
-> Rob Herring <robh+dt@kernel.org> =E4=BA=8E2019=E5=B9=B48=E6=9C=886=E6=97=
-=A5=E5=91=A8=E4=BA=8C =E4=B8=8B=E5=8D=8810:48=E5=86=99=E9=81=93=EF=BC=9A
->>
->> On Mon, Aug 5, 2019 at 6:40 AM Andy Yan <andyshrk@gmail.com> wrote:
->> >
->> > P710 is a RK3399 based SBC, designed by Leez [0].
->> >
->> > Specification
->> > - Rockchip RK3399
->> > - 4/2GB LPDDR4
->> > - TF sd scard slot
->> > - eMMC
->> > - M.2 B-Key for 4G LTE
->> > - AP6256 for WiFi + BT
->> > - Gigabit ethernet
->> > - HDMI out
->> > - 40 pin header
->> > - USB 2.0 x 2
->> > - USB 3.0 x 1
->> > - USB 3.0 Type-C x 1
->> > - TYPE-C Power supply
->> >
->> > [0]https://leez.lenovo.com
->>
->> I'm not really convinced Leez is a vendor. Looks like branding to me.
->> We have enough with company names changing, we don't need changing
->> brands too. Use 'lenovo'.
->>
->
-> I had checked with Leez people before V1, they said Leez will run as an i=
-ndependent company, so they don't want to
-> give a lenovo label for this board.
+Hi Tero, Nishanth,
 
-Okay.
+The following 2 patches are minor typo fixes in git-its nodes
+on both AM65x and J721E SoCs. Patches done on top of the latest
+master.
 
-Reviewed-by: Rob Herring <robh@kernel.org>
+regards
+Suman
+
+Suman Anna (2):
+  arm64: dts: ti: k3-am65-main: Fix gic-its node unit-address
+  arm64: dts: ti: k3-j721e-main: Fix gic-its node unit-address
+
+ arch/arm64/boot/dts/ti/k3-am65-main.dtsi  | 2 +-
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+-- 
+2.22.0
+
