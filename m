@@ -2,161 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5B25C862EA
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 15:19:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1570386318
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 15:27:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732643AbfHHNT3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 09:19:29 -0400
-Received: from mailout1.w1.samsung.com ([210.118.77.11]:38836 "EHLO
-        mailout1.w1.samsung.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1733018AbfHHNT2 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 09:19:28 -0400
-Received: from eucas1p2.samsung.com (unknown [182.198.249.207])
-        by mailout1.w1.samsung.com (KnoxPortal) with ESMTP id 20190808131927euoutp0162b71d5e37b1f877fab410b23dceefa3~49Rs12vHs1565715657euoutp01Z
-        for <devicetree@vger.kernel.org>; Thu,  8 Aug 2019 13:19:27 +0000 (GMT)
-DKIM-Filter: OpenDKIM Filter v2.11.0 mailout1.w1.samsung.com 20190808131927euoutp0162b71d5e37b1f877fab410b23dceefa3~49Rs12vHs1565715657euoutp01Z
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=samsung.com;
-        s=mail20170921; t=1565270367;
-        bh=ookusFW9IgM6u0l6dG3jFEGxecF9mJq8IKEqSZsXe3U=;
-        h=Subject:From:To:Cc:Date:In-Reply-To:References:From;
-        b=H3u6q2EgP214ncKYGJdX+T/HXd0sIC82mr+MytSy9JvkNarnKoHTK5j/9b5crL4L+
-         MBBfrz6zd/+eyiEor7wQZY2pKhS3rnwWytohGo8DUGPFId6RuzMWr3ZSne+uTMtcib
-         ykFa/zxcxZsMntMWswhZRY7cdWHjTvPbUyVt/c0Q=
-Received: from eusmges2new.samsung.com (unknown [203.254.199.244]) by
-        eucas1p2.samsung.com (KnoxPortal) with ESMTP id
-        20190808131926eucas1p27760b9e4918c7ec639731837f737eb78~49RsDnfW82304523045eucas1p2W;
-        Thu,  8 Aug 2019 13:19:26 +0000 (GMT)
-Received: from eucas1p2.samsung.com ( [182.198.249.207]) by
-        eusmges2new.samsung.com (EUCPMTA) with SMTP id EA.32.04309.E512C4D5; Thu,  8
-        Aug 2019 14:19:26 +0100 (BST)
-Received: from eusmtrp2.samsung.com (unknown [182.198.249.139]) by
-        eucas1p1.samsung.com (KnoxPortal) with ESMTPA id
-        20190808131925eucas1p18cbdebea41d0501bf9f9edb3bb0baf97~49Rq4M_Vg2619826198eucas1p1V;
-        Thu,  8 Aug 2019 13:19:25 +0000 (GMT)
-Received: from eusmgms1.samsung.com (unknown [182.198.249.179]) by
-        eusmtrp2.samsung.com (KnoxPortal) with ESMTP id
-        20190808131925eusmtrp2e2247ca1de6d1cc68f838d639791aa13~49RqqA2ig0955809558eusmtrp2b;
-        Thu,  8 Aug 2019 13:19:25 +0000 (GMT)
-X-AuditID: cbfec7f4-afbff700000010d5-8f-5d4c215ea915
-Received: from eusmtip1.samsung.com ( [203.254.199.221]) by
-        eusmgms1.samsung.com (EUCPMTA) with SMTP id E6.50.04166.D512C4D5; Thu,  8
-        Aug 2019 14:19:25 +0100 (BST)
-Received: from AMDC3555 (unknown [106.120.51.67]) by eusmtip1.samsung.com
-        (KnoxPortal) with ESMTPA id
-        20190808131924eusmtip1fdcb55f900a56f9267b3b1725f38cee1~49RqA_1gx0713907139eusmtip1h;
-        Thu,  8 Aug 2019 13:19:24 +0000 (GMT)
-Message-ID: <7f4eeef81c2688c2cb18b7aae71d457197c6d018.camel@partner.samsung.com>
-Subject: Re: [RFC PATCH 09/11] devfreq: exynos-bus: Add interconnect
- functionality to exynos-bus
-From:   Artur =?UTF-8?Q?=C5=9Awigo=C5=84?= <a.swigon@partner.samsung.com>
-To:     Leonard Crestez <leonard.crestez@nxp.com>,
-        Georgi Djakov <georgi.djakov@linaro.org>
-Cc:     "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-samsung-soc@vger.kernel.org" 
-        <linux-samsung-soc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-pm@vger.kernel.org" <linux-pm@vger.kernel.org>,
-        "dri-devel@lists.freedesktop.org" <dri-devel@lists.freedesktop.org>,
-        "krzk@kernel.org" <krzk@kernel.org>,
-        "cw00.choi@samsung.com" <cw00.choi@samsung.com>,
-        "myungjoo.ham@samsung.com" <myungjoo.ham@samsung.com>,
-        "inki.dae@samsung.com" <inki.dae@samsung.com>,
-        "sw0312.kim@samsung.com" <sw0312.kim@samsung.com>,
-        "m.szyprowski@samsung.com" <m.szyprowski@samsung.com>
-Date:   Thu, 08 Aug 2019 15:19:23 +0200
-In-Reply-To: <VI1PR04MB5055BED59960B4F4147479AEEED50@VI1PR04MB5055.eurprd04.prod.outlook.com>
-X-Mailer: Evolution 3.28.5-0ubuntu0.18.04.1 
-Mime-Version: 1.0
-Content-Transfer-Encoding: 8bit
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrBKsWRmVeSWpSXmKPExsWy7djP87pxij6xBt9+yFtc//Kc1WL+kXOs
-        Fle+vmezmL53E5vFpPsTWCzOn9/AbrHi7kdWi02Pr7FaXN41h83ic+8RRosZ5/cxWaw9cpfd
-        4nbjCjaLGZNfsjnweWxa1cnmcefaHjaP+93HmTw2L6n32PhuB5NH35ZVjB6fN8kFsEdx2aSk
-        5mSWpRbp2yVwZRy4k1DQwFMx588KxgbGDZxdjJwcEgImEhumb2LqYuTiEBJYwSjxfdl7Ngjn
-        C6PE1d67LBDOZ0aJHW0LmGFaDl58DlW1nFHi/rFnUM4zRonXi3+AVfEKBEic+TybFcQWFkiS
-        WPDoIpjNJuAu8e/5FTBbRCBSYs/uy2ArmAXOskqcm7gOrJlFQFXi7/WpYEWcArESr1pOQa3W
-        kXh7qg+ogQNogaDE3x3CIGFmAXmJ5q2zmUHmSAjcY5foXzeHDaLeReLUksuMELawxKvjW9gh
-        bBmJ/zvnM0HYxRJPd95nhWhuYJTYtOwI1DJricPHQa7mANqgKbF+lz5E2FHibd9RZpCwhACf
-        xI23ghA38ElM2jYdKswr0dEmBGFqSSz4HQ3RKCHRtPoa1GwPiZZHz9knMCrOQvhlFpJfZiFs
-        XcDIvIpRPLW0ODc9tdgoL7Vcrzgxt7g0L10vOT93EyMwfZ3+d/zLDsZdf5IOMQpwMCrx8Bac
-        8I4VYk0sK67MPcQowcGsJMJ7r8wzVog3JbGyKrUoP76oNCe1+BCjNAeLkjhvNcODaCGB9MSS
-        1OzU1ILUIpgsEwenVAPjlsUv5W8YHehlufcrWd/s2JrQZP8cK0E54ekzbjG6SctMNN6b1eCc
-        d3cL+0leJp5XDRZybv0+e7jZZhiu3rej9+Rh2bg51rs8DioKOt033+FVbZtz1fB3pur2XUtS
-        bN3WyT4PvfL6WuB6SfbrciGH72heaZQIjvr6wWf3dhXRMtvjajtsinWVWIozEg21mIuKEwHm
-        2kMrWwMAAA==
-X-Brightmail-Tracker: H4sIAAAAAAAAA+NgFjrPIsWRmVeSWpSXmKPExsVy+t/xu7qxij6xBgduClpc//Kc1WL+kXOs
-        Fle+vmezmL53E5vFpPsTWCzOn9/AbrHi7kdWi02Pr7FaXN41h83ic+8RRosZ5/cxWaw9cpfd
-        4nbjCjaLGZNfsjnweWxa1cnmcefaHjaP+93HmTw2L6n32PhuB5NH35ZVjB6fN8kFsEfp2RTl
-        l5akKmTkF5fYKkUbWhjpGVpa6BmZWOoZGpvHWhmZKunb2aSk5mSWpRbp2yXoZRy4k1DQwFMx
-        588KxgbGDZxdjJwcEgImEgcvPmcDsYUEljJKfGhyh4hLSHxcf4MVwhaW+HOtC6iGC6jmCaPE
-        mdXHGEESvAIBEmc+zwYrEhZIkljw6CKYzSbgLvHv+RUwW0QgSuL5jT4mkGZmgXOsEpe3bgdL
-        sAioSvy9PhXM5hSIlXjVcooZYsMSJomDmxexgCSYBTQlWrf/Zoc4Q0fi7ak+oDgH0GZBib87
-        hCFK5CWat85mnsAoOAtJxyyEqllIqhYwMq9iFEktLc5Nzy021CtOzC0uzUvXS87P3cQIjMxt
-        x35u3sF4aWPwIUYBDkYlHt6CE96xQqyJZcWVuYcYJTiYlUR475V5xgrxpiRWVqUW5ccXleak
-        Fh9iNAX6ZyKzlGhyPjBp5JXEG5oamltYGpobmxubWSiJ83YIHIwREkhPLEnNTk0tSC2C6WPi
-        4JRqYJQzXVucOq3T69q1HQ7ObwtuPE67Wn2nc2tl4qTHty4q/O9iPTQ1xO3pXYeOKwG6QnwB
-        GY5szhKrX/ut/ycxuf2e+w1PdV4mzaj9R3v+Xz9sdO97nIuI2YlWgav2lz1eCZrOS7tW2h93
-        +r1P7nvbqZV6e0IyrE7fW/CpXGBWpcdeP03e2yurCpRYijMSDbWYi4oTAeiNT3XiAgAA
-X-CMS-MailID: 20190808131925eucas1p18cbdebea41d0501bf9f9edb3bb0baf97
-X-Msg-Generator: CA
-Content-Type: text/plain; charset="utf-8"
-X-RootMTR: 20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b
-X-EPHeader: CA
-CMS-TYPE: 201P
-X-CMS-RootMailID: 20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b
-References: <20190723122016.30279-1-a.swigon@partner.samsung.com>
-        <CGME20190723122028eucas1p2eb75f35b810e71d6c590370aaff0997b@eucas1p2.samsung.com>
-        <20190723122016.30279-10-a.swigon@partner.samsung.com>
-        <VI1PR04MB5055BED59960B4F4147479AEEED50@VI1PR04MB5055.eurprd04.prod.outlook.com>
+        id S1732662AbfHHN1t (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 09:27:49 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:49282 "EHLO
+        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728327AbfHHN1t (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 09:27:49 -0400
+DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
+        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
+        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
+        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
+        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
+        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
+         bh=egMV3q9uEBW5xiJ68iYvqE6+ywPdvkHsBfVwqjoD4mc=; b=rQyhzfUBYPLZwvKm+PR5EX4zO
+        zq0eKrBDfmA2kQ1AA00oDjwN1lSG+ZeH8DGBC1KIZsgvcoERHOuS9Yog1x7aEoPEok2MYmrykWaNw
+        MOxo54qFXdL0FVZya2kLH4FS5OK/c2ewtxggnhYU+/8LASoTKYNq1fjICbyIdeVR1UQ4g=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
+        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <broonie@sirena.co.uk>)
+        id 1hviSD-000309-0I; Thu, 08 Aug 2019 13:27:41 +0000
+Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
+        id 1B7F82742B42; Thu,  8 Aug 2019 14:27:40 +0100 (BST)
+Date:   Thu, 8 Aug 2019 14:27:40 +0100
+From:   Mark Brown <broonie@kernel.org>
+To:     Tomer Maimon <tmaimon77@gmail.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, vigneshr@ti.com,
+        bbrezillon@kernel.org, avifishman70@gmail.com,
+        tali.perry1@gmail.com, venture@google.com, yuenn@google.com,
+        benjaminfair@google.com, linux-spi@vger.kernel.org,
+        devicetree@vger.kernel.org, openbmc@lists.ozlabs.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/2] spi: npcm-fiu: add NPCM FIU controller driver
+Message-ID: <20190808132740.GG3795@sirena.co.uk>
+References: <20190808131448.349161-1-tmaimon77@gmail.com>
+ <20190808131448.349161-3-tmaimon77@gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="S5HS5MvDw4DmbRmb"
+Content-Disposition: inline
+In-Reply-To: <20190808131448.349161-3-tmaimon77@gmail.com>
+X-Cookie: I think we're in trouble.
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
 
-Thank you for your comments.
+--S5HS5MvDw4DmbRmb
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Tue, 2019-08-06 at 13:41 +0000, Leonard Crestez wrote:
-> On 23.07.2019 15:21, Artur Świgoń wrote:
-> 
-> > +static int exynos_bus_icc_aggregate(struct icc_node *node, u32 avg_bw,
-> > +				    u32 peak_bw, u32 *agg_avg, u32 *agg_peak)
-> > +{
-> > +	*agg_peak = *agg_avg = peak_bw;
-> > +
-> > +	return 0;
-> > +}
-> 
-> The only current provider aggregates "avg" with "sum" and "peak" with 
-> "max", any particular reason to do something different? This function 
-> doesn't even really do aggregation, if there is a second request for "0" 
-> then the first request is lost.
+On Thu, Aug 08, 2019 at 04:14:48PM +0300, Tomer Maimon wrote:
 
-Yes, you're right. I adopted an oversimplified solution for the purpose of this
-RFC (please bear in mind that currently only one icc_path is used, so there is
-no aggregation anyway).
+> +	ctrl->mode_bits =3D SPI_RX_DUAL | SPI_RX_QUAD
+> +		| SPI_TX_DUAL | SPI_TX_QUAD;
+> +	ctrl->setup =3D npcm_fiu_setup;
 
-> I didn't find any docs but my interpretation of avg/peak is that "avg" 
-> is for constant traffic like a display or VPU pushing pixels and "peak" 
-> is for variable traffic like networking. I assume devices which make 
-> "peak" requests are aggregated with max because they're not expected to 
-> all max-out together.
+I'm not seeing where we implement dual or quad modes in the driver?
+There's some=20
 
-That's correct (according to my understanding).
+> +	dev_info(dev, "NPCM %s probe succeed\n", fiu->info->name);
 
-> In PATCH 11 you're making a bandwidth request based on resolution, that 
-> traffic is constant and guaranteed to happend while the display is on so 
-> it would make sense to request it as an "avg" and aggregate it with "sum".
-> 
-> --
-> Regards,
-> Leonard
-> 
--- 
-Artur Świgoń
-Samsung R&D Institute Poland
-Samsung Electronics
+Just remove this, it makes the log more verbose but doesn't really add
+any information.
 
+--S5HS5MvDw4DmbRmb
+Content-Type: application/pgp-signature; name="signature.asc"
 
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1MI0sACgkQJNaLcl1U
+h9Cu2wf9FI8ekzKOtKPknDdXJFSkW34/Y7Fa6IFFOzRNy/zJa/KK4039pd967txp
+uqy4z1++x9xd9hct1F2qFzJRRAAfKHxCQVjwfxfXKf5kwHLS/tP9Q3LQtI4Curae
+jmY4wrFeNsDTGDtA9BFQFdDbDUp1nNETnWzNPBijNo9cuzTlCsTEEhBpOM5HhhJS
+E5i/L3B/If5JDs18ULa4B7vsL4oqMxgHw6ztC2EwkxcNl0/8ymCTzHI8D1kpl/+c
+nJ/cX59A4kqGn42v5Zw/dt1zrqAL5lPTywW2RL/WbS7IiDjREsFoHrF4vtnKHJAJ
+VEB121JZAJjasaLrxwfT/dO0JDeQFw==
+=tVs8
+-----END PGP SIGNATURE-----
+
+--S5HS5MvDw4DmbRmb--
