@@ -2,132 +2,104 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2EF7F8665A
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 17:58:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 836A9866AC
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 18:09:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390116AbfHHP6v (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 11:58:51 -0400
-Received: from mga04.intel.com ([192.55.52.120]:42340 "EHLO mga04.intel.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390115AbfHHP6v (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Aug 2019 11:58:51 -0400
-X-Amp-Result: SKIPPED(no attachment in message)
-X-Amp-File-Uploaded: False
-Received: from orsmga008.jf.intel.com ([10.7.209.65])
-  by fmsmga104.fm.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Aug 2019 08:58:50 -0700
-X-ExtLoop1: 1
-X-IronPort-AV: E=Sophos;i="5.64,362,1559545200"; 
-   d="scan'208";a="169029082"
-Received: from mcasscle-mobl1.amr.corp.intel.com (HELO [10.251.13.192]) ([10.251.13.192])
-  by orsmga008.jf.intel.com with ESMTP; 08 Aug 2019 08:58:49 -0700
-Subject: Re: [PATCH v2 1/4] dt-bindings: soundwire: add slave bindings
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
-        vkoul@kernel.org, broonie@kernel.org
-Cc:     bgoswami@codeaurora.org, plai@codeaurora.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-References: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
- <20190808144504.24823-2-srinivas.kandagatla@linaro.org>
-From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
-Message-ID: <d346b2af-f285-4c53-b706-46a129ab7951@linux.intel.com>
-Date:   Thu, 8 Aug 2019 10:58:49 -0500
+        id S1733258AbfHHQJz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 12:09:55 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:37761 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732662AbfHHQJy (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 12:09:54 -0400
+Received: by mail-pf1-f194.google.com with SMTP id 19so44345238pfa.4;
+        Thu, 08 Aug 2019 09:09:54 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=Ixs9LC/3zHycCEwdS0uClw8qkvA1XtxWo0xApcxIKeE=;
+        b=Ipcnomnw1fA9e3yDD0nP25KinbS/zFHRZf01ATCXFDWnS0nbCeRDLETiFooCm4vNmh
+         aJxTbUB1hLPIRPLNrHeprr7VohW9/Jg72WhviDZzHLbJnE913YhzPb4prCloIfwctBbB
+         Mo6x+DVM2tOm4848ewle86bSdSiEMlbUp/BSdGTDI7tFoMWzPLtzY1IoAYc1O8AaHobb
+         OILXtQMP8njZKdjPYpeeTtY1+/ijHSxwl0+eNFiDfG/IFANktY2Fuo6vXxJ72wZDrwWx
+         BTT2I+Bwv4xN8T7eHsD32BHb4Vc9AQ6N02QLM5oFJbD+7sBrXNIKJE+fmesJE4Ao2DE9
+         5g7A==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=Ixs9LC/3zHycCEwdS0uClw8qkvA1XtxWo0xApcxIKeE=;
+        b=pWGn2JRDLnZ1n7eH9m/bHohqND0tkDTn2lw1pJl2g9suIR1V8IUqETaAMlfxlr66fi
+         9Qo9O8o8mtS9GIcHRjAhXKctWxfCihQaOBhrsOSo+HX3cV0T+m6RM9hy1ZmEIL9jeKbu
+         aErN9sqTlKLR7KS+Qf0Bg3GbvizyIKbZTFySYgHssTMToUZkvPNa1Ezk7QO+ccbFm1q9
+         cKwDbOr0471AXo65BMiw2aO5iHiT1/5kLl/rMUQiiTq8pT4lfgQWoSFKVDPi+u+h3rNv
+         40ZgoyRARN85ePX+7FTOS+PUoDSfp9l94Kjz3uJ1I06vOcl06VYCd2m9bC18AVt3WhMJ
+         xk5w==
+X-Gm-Message-State: APjAAAWG5kd4JvgCbQ11hbDE4cmfHHJCXHxu5pPq9ZbV8X6GEIreog2o
+        drR6bL1e0fONRu/m1VEtgIx0XAG8
+X-Google-Smtp-Source: APXvYqxtbRe/Wkfso0tvKa9FTBW3LS6O8vGQQoPLIygjOX9kmcIqyZRvL2v90isUMuTmaQKRPxdARQ==
+X-Received: by 2002:a17:90a:8d0c:: with SMTP id c12mr4679212pjo.140.1565280594061;
+        Thu, 08 Aug 2019 09:09:54 -0700 (PDT)
+Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
+        by smtp.gmail.com with ESMTPSA id v12sm82918564pgr.86.2019.08.08.09.09.53
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Aug 2019 09:09:53 -0700 (PDT)
+Subject: Re: [PATCH] of/platform: fix compilation warning of
+ of_link_property()
+To:     Anders Roxell <anders.roxell@linaro.org>, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20190808141818.22724-1-anders.roxell@linaro.org>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <a4c12db8-bac3-0093-1f3f-0bd325acb03a@gmail.com>
+Date:   Thu, 8 Aug 2019 09:09:52 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <20190808144504.24823-2-srinivas.kandagatla@linaro.org>
-Content-Type: text/plain; charset=utf-8; format=flowed
+In-Reply-To: <20190808141818.22724-1-anders.roxell@linaro.org>
+Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-> +++ b/Documentation/devicetree/bindings/soundwire/slave.txt
-> @@ -0,0 +1,46 @@
-> +SoundWire slave device bindings.
-> +
-> +SoundWire is a 2-pin multi-drop interface with data and clock line.
-> +It facilitates development of low cost, efficient, high performance systems.
-> +
-> +SoundWire slave devices:
-> +Every SoundWire controller node can contain zero or more child nodes
-> +representing slave devices on the bus. Every SoundWire slave device is
-> +uniquely determined by the enumeration address containing 5 fields:
-> +SoundWire Version, Instance ID, Manufacturer ID, Part ID and Class ID
-> +for a device. Addition to below required properties, child nodes can
-> +have device specific bindings.
-
-In case the controller supports multiple links, what's the encoding then?
-in the MIPI DisCo spec there is a linkId field in the _ADR encoding that 
-helps identify which link the Slave device is connected to
-
-> +
-> +Required property for SoundWire child node if it is present:
-> +- compatible:	 "sdwVER,MFD,PID,CID". The textual representation of
-> +		  SoundWire Enumeration address comprising SoundWire
-> +		  Version, Manufacturer ID, Part ID and Class ID,
-> +		  shall be in lower-case hexadecimal with leading
-> +		  zeroes suppressed.
-> +		  Version number '0x10' represents SoundWire 1.0
-> +		  Version number '0x11' represents SoundWire 1.1
-> +		  ex: "sdw10,0217,2010,0"
-> +
-> +- sdw-instance-id: Should be ('Instance ID') from SoundWire
-> +		  Enumeration Address. Instance ID is for the cases
-> +		  where multiple Devices of the same type or Class
-> +		  are attached to the bus.
-
-so it is actually required if you have a single Slave device? Or is it 
-only required when you have more than 1 device of the same type?
-
-FWIW in the MIPI DisCo spec we kept the instanceID as part of the _ADR, 
-so it's implicitly mandatory (and ignored by the bus if there is only 
-one device of the same time)
-
-> +
-> +SoundWire example for Qualcomm's SoundWire controller:
-> +
-> +soundwire@c2d0000 {
-> +	compatible = "qcom,soundwire-v1.5.0"
-> +	reg = <0x0c2d0000 0x2000>;
-> +
-> +	spkr_left:wsa8810-left{
-> +		compatible = "sdw10,0217,2010,0";
-> +		sdw-instance-id = <1>;
-> +		...
-> +	};
-> +
-> +	spkr_right:wsa8810-right{
-> +		compatible = "sdw10,0217,2010,0";
-> +		sdw-instance-id = <2>;
-
-Isn't the MIPI encoding reported in the Dev_ID0..5 registers 0-based?
-
-> +		...
-> +	};
-> +};
+On 8/8/19 7:18 AM, Anders Roxell wrote:
+> GCC warns that a negative integer can be returned but the
+> of_link_property() function should return a boolean.
+> 
+> ../drivers/of/platform.c: In function ‘of_link_property’:
+> ../drivers/of/platform.c:650:18: warning: ?: using integer constants in boolean context [-Wint-in-bool-context]
+>   return done ? 0 : -ENODEV;
+> 
+> Rework so function of_link_property() return an integer instead of a boolean.
+> 
+> Fixes: 690ff7881b26 ("of/platform: Add functional dependency link from DT bindings")
+> Signed-off-by: Anders Roxell <anders.roxell@linaro.org>
+> ---
+>  drivers/of/platform.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
+> index 21838226d68a..86fb8ab8c012 100644
+> --- a/drivers/of/platform.c
+> +++ b/drivers/of/platform.c
+> @@ -625,7 +625,7 @@ static const struct supplier_bindings bindings[] = {
+>  	{ },
+>  };
+>  
+> -static bool of_link_property(struct device *dev, struct device_node *con_np,
+> +static int of_link_property(struct device *dev, struct device_node *con_np,
+>  			     const char *prop)
+>  {
+>  	struct device_node *phandle;
 > 
 
-And now that I think of it, wouldn't it be simpler for everyone if we 
-aligned on that MIPI DisCo public spec? e.g. you'd have one property 
-with a 64-bit number that follows the MIPI spec. No special encoding 
-necessary for device tree cases, your DT blob would use this:
+Hi Anders,
 
-soundwire@c2d0000 {
-	compatible = "qcom,soundwire-v1.5.0"
-	reg = <0x0c2d0000 0x2000>;
+Thanks for catching this.
 
-	spkr_left:wsa8810-left{
-		compatible = "sdw0000100217201000"
-	}
+Another patch was submitted to fix this just before your patch.
 
-	spkr_right:wsa8810-right{
-		compatible = "sdw0000100217201100"
-	}
-}
-
-We could use parentheses if it makes people happier, but the information 
-from the MIPI DisCo spec can be used as is, and provide a means for spec 
-changes via reserved bits.
+-Frank
