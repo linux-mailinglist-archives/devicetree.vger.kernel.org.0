@@ -2,55 +2,157 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C3BA486BDE
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 22:49:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8DD2786BF9
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 22:55:44 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390359AbfHHUtf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 16:49:35 -0400
-Received: from onstation.org ([52.200.56.107]:48184 "EHLO onstation.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1732327AbfHHUtf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Aug 2019 16:49:35 -0400
-Received: from localhost (c-98-239-145-235.hsd1.wv.comcast.net [98.239.145.235])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        (Authenticated sender: masneyb)
-        by onstation.org (Postfix) with ESMTPSA id E95C83E951;
-        Thu,  8 Aug 2019 20:49:34 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=onstation.org;
-        s=default; t=1565297375;
-        bh=mu8Hoth5cBuZwZBgG90FZ5cBUwqlbhYtcYXdI1EvJgw=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=UVobRNgLCZxMG6GJCRZ8mil9Cap/JvY58PprGQQIldZc9C5lv9EflcLkiNI5cGY0m
-         8tRuCNuAwiommt+Zto6+r9eeMxLdPaQZdLtye9U4JlUBy5XsSd0xmO+FRjTbB1a0VP
-         ZmFlqIwRen1Vk8XShKLKmd5kVWRCre7Vvmx4dHnc=
-Date:   Thu, 8 Aug 2019 16:49:34 -0400
-From:   Brian Masney <masneyb@onstation.org>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     linux-kernel@vger.kernel.org, linux-arm-msm@vger.kernel.org,
-        bjorn.andersson@linaro.org, edubezval@gmail.com,
-        andy.gross@linaro.org, Andy Gross <agross@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>, devicetree@vger.kernel.org
-Subject: Re: [PATCH 12/15] arm64: dts: msm8974: thermal: Add interrupt support
-Message-ID: <20190808204934.GB29281@onstation.org>
-References: <cover.1564091601.git.amit.kucheria@linaro.org>
- <ec8205566eb9c015ad51fbb88f0da7ca60b414fd.1564091601.git.amit.kucheria@linaro.org>
+        id S2390365AbfHHUzo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 16:55:44 -0400
+Received: from mail-ot1-f68.google.com ([209.85.210.68]:35298 "EHLO
+        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732601AbfHHUzn (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 16:55:43 -0400
+Received: by mail-ot1-f68.google.com with SMTP id j19so47558652otq.2
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 13:55:42 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=google.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=TXpp+XKezdn11YJZlmvGzWByn0IYUl0lRqPbcEZTEWQ=;
+        b=kKk/J2F5M7qPBG/wD7N+G59ApgKMv6wsTyxzoDzIFw4HfK59tL5PIFXAo6xqZ+JyQE
+         iZQpLctO2WSbLi/TV4dU2+zwoWpMcJDDqPDyt4jwBbAJko+EsOV/CWI9S19zm5jWKyDt
+         nUojNSUpXX5qVlSbeoQo6rFojS0wouaevXsC3KZyttDl0/jbaW/MDDYLzI3EKhlpLiSN
+         8qA2Q6k1YGzNh1bRPuV8aiGFCWEzXK658KELjl9icUVINATxteajAgfboi4gp7hT8rst
+         AU5I9Zb+DvO79n1fHJf+NE5cydEVrWsAjzB6fMPBq3ZDRxSd2ovXyODQ1mOw34S607i4
+         3vRQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=TXpp+XKezdn11YJZlmvGzWByn0IYUl0lRqPbcEZTEWQ=;
+        b=tXw1J8Msy4p+eP65ye5PafQkiZzrSNZlbMz43Q51X6N9DtKa3CvUZP1wT8/xwk1Fdj
+         Jbld6Weluzxi30Q+6CJHbO9mg/MkshWoewW807c4LtRBriSJanIr7x7VzNiV4M1fi8FD
+         EyNcfbikTfOIR0ni3CA5sthhl7BQrDzIqPpOyHVyPqIM/fLjfFB9IY+gxnXXu25iyI33
+         owR/fSSycf8sawrY85t3JXWLx4MpmqBxKCwjtu3F3IgrDb0bPO5mxaZHoOU0woyEiCFL
+         ttsKeJvM1FWt/ExW9qgwq7dWCe1G1S9+gfQCZEBh4bKizmdjmSnGUozbPvLbTxlu4GAc
+         dmTA==
+X-Gm-Message-State: APjAAAU+BJFPDa2B8K0FujjjujVOEIOaMAj8Z3fsP21PrMIVqRU5g5/G
+        97HPX/nU4OO6We0at66VzAOIVTD+0CxbVRnagdCM+A==
+X-Google-Smtp-Source: APXvYqzPBR4jAZ8pk4CbMmZ1tOi/jtQ8LAipnHjaTO7d4wfL7DNvuSltfke+hAzQlE+FfBeBZNMYtGZjpm/HnwUAX/4=
+X-Received: by 2002:a05:6830:160c:: with SMTP id g12mr15614921otr.231.1565297741535;
+ Thu, 08 Aug 2019 13:55:41 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <ec8205566eb9c015ad51fbb88f0da7ca60b414fd.1564091601.git.amit.kucheria@linaro.org>
+References: <5d4bce76.Bu8zZv8tcbDqokLR%lkp@intel.com>
+In-Reply-To: <5d4bce76.Bu8zZv8tcbDqokLR%lkp@intel.com>
+From:   Saravana Kannan <saravanak@google.com>
+Date:   Thu, 8 Aug 2019 13:55:05 -0700
+Message-ID: <CAGETcx__STm5jSWRCFc3eZYVm4sW7P=HNjuGBa+Tj_YCc3o8Bg@mail.gmail.com>
+Subject: Re: 21871a99b3 ("of/platform: Pause/resume sync state during init
+ .."): WARNING: CPU: 0 PID: 1 at drivers/base/core.c:691 device_links_supplier_sync_state_resume
+To:     kernel test robot <lkp@intel.com>
+Cc:     LKP <lkp@01.org>, LKML <linux-kernel@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Frank Rowand <frowand.list@gmail.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        philip.li@intel.com
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 26, 2019 at 03:48:47AM +0530, Amit Kucheria wrote:
-> Register upper-lower interrupt for the tsens controller.
-> 
-> Signed-off-by: Amit Kucheria <amit.kucheria@linaro.org>
+On Thu, Aug 8, 2019 at 12:25 AM kernel test robot <lkp@intel.com> wrote:
+>
+> Greetings,
+>
+> 0day kernel testing robot got the below dmesg and the first bad commit is
+>
+> https://kernel.googlesource.com/pub/scm/linux/kernel/git/gregkh/driver-core.git driver-core-testing
+>
+> commit 21871a99b34c65c56a24193c277a4981529c306f
+> Author:     Saravana Kannan <saravanak@google.com>
+> AuthorDate: Wed Jul 31 15:17:18 2019 -0700
+> Commit:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> CommitDate: Thu Aug 1 16:04:14 2019 +0200
+>
+>     of/platform: Pause/resume sync state during init and of_platform_populate()
+>
+>     When all the top level devices are populated from DT during kernel
+>     init, the supplier devices could be added and probed before the
+>     consumer devices are added and linked to the suppliers. To avoid the
+>     sync_state() callback from being called prematurely, pause the
+>     sync_state() callbacks before populating the devices and resume them
+>     at late_initcall_sync().
+>
+>     Similarly, when children devices are populated after kernel init using
+>     of_platform_populate(), there could be supplier-consumer dependencies
+>     between the children devices that are populated. To avoid the same
+>     problem with sync_state() being called prematurely, pause and resume
+>     sync_state() callbacks across of_platform_populate().
+>
+>     Signed-off-by: Saravana Kannan <saravanak@google.com>
+>     Link: https://lore.kernel.org/r/20190731221721.187713-6-saravanak@google.com
+>     Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+>
+> 8f8184d6bf  driver core: Add sync_state driver/bus callback
+> 21871a99b3  of/platform: Pause/resume sync state during init and of_platform_populate()
+> 5adf578101  of/platform: Fix device_links_supplier_sync_state_resume() warning
+> 3880be629e  Add linux-next specific files for 20190807
+> +-------------------------------------------------------------------------+------------+------------+------------+---------------+
+> |                                                                         | 8f8184d6bf | 21871a99b3 | 5adf578101 | next-20190807 |
+> +-------------------------------------------------------------------------+------------+------------+------------+---------------+
+> | boot_successes                                                          | 27         | 0          | 0          | 0             |
+> | boot_failures                                                           | 2          | 11         | 11         | 11            |
+> | WARNING:at_mm/usercopy.c:#usercopy_warn                                 | 1          |            |            |               |
+> | RIP:usercopy_warn                                                       | 1          |            |            |               |
+> | invoked_oom-killer:gfp_mask=0x                                          | 1          |            |            |               |
+> | Mem-Info                                                                | 1          |            |            |               |
+> | WARNING:at_drivers/base/core.c:#device_links_supplier_sync_state_resume | 0          | 11         | 11         | 11            |
+> | RIP:device_links_supplier_sync_state_resume                             | 0          | 11         | 11         | 11            |
+> +-------------------------------------------------------------------------+------------+------------+------------+---------------+
+>
+> If you fix the issue, kindly add following tag
+> Reported-by: kernel test robot <lkp@intel.com>
+>
+> [   26.905004] i2c i2c-1: Added multiplexed i2c bus 3
+> [   26.917068] ### dt-test ### FAIL of_unittest_overlay_high_level():2380 overlay_base_root not initialized
+> [   26.920311] ### dt-test ### end of unittest - 219 passed, 1 failed
+> [   26.922504] ------------[ cut here ]------------
+> [   26.924102] Unmatched sync_state pause/resume!
+> [   26.924192] WARNING: CPU: 0 PID: 1 at drivers/base/core.c:691 device_links_supplier_sync_state_resume+0x140/0x160
+> [   26.929493] Modules linked in:
+> [   26.930681] CPU: 0 PID: 1 Comm: swapper Tainted: G                T 5.3.0-rc1-00025-g21871a99b34c6 #1
+> [   26.933665] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS 1.10.2-1 04/01/2014
+> [   26.936451] RIP: 0010:device_links_supplier_sync_state_resume+0x140/0x160
+> [   26.938611] Code: 84 c0 49 8d 84 24 c8 00 00 00 0f 85 48 ff ff ff 49 8d 94 24 d0 00 00 00 48 89 55 d0 eb 86 48 c7 c7 c0 30 be 83 e8 10 c0 e5 fe <0f> 0b 48 c7 c7 80 33 c4 84 e8 12 19 d0 00 48 83 c4 10 5b 41 5c 41
+> [   26.944420] RSP: 0018:ffff88801a397da8 EFLAGS: 00010286
+> [   26.946213] RAX: 0000000000000022 RBX: b05332a62e1f2e76 RCX: 0000000000000000
+> [   26.948487] RDX: 0000000000000022 RSI: ffffffff81276c83 RDI: 0000000000000246
+> [   26.950858] RBP: ffff88801a397de0 R08: fffffbfff0aa192d R09: fffffbfff0aa192d
+> [   26.953192] R10: ffff88801a397df0 R11: 0000000000000001 R12: 0000000000000000
+> [   26.955411] R13: 00000000ffffffff R14: 1ffff11003472fc3 R15: ffff88801a397eb8
+> [   26.957678] FS:  0000000000000000(0000) GS:ffffffff846b3000(0000) knlGS:0000000000000000
+> [   26.960398] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+> [   26.962374] CR2: 00007fb42acb9480 CR3: 000000000462a006 CR4: 00000000001606f0
+> [   26.964683] Call Trace:
+> [   26.965713]  of_platform_sync_state_init+0x17/0x3a
+> [   26.967381]  ? of_core_init+0x16a/0x16a
+> [   26.968769]  do_one_initcall+0x103/0x295
+> [   26.970179]  ? trace_event_raw_event_initcall_finish+0x150/0x150
+> [   26.972130]  ? down_write+0xbe/0x100
+> [   26.973467]  ? __down_killable+0x260/0x260
+> [   26.974933]  ? __kasan_check_write+0x1f/0x30
+> [   26.976433]  kernel_init_freeable+0x232/0x349
+> [   26.978003]  ? rest_init+0xd0/0xd0
+> [   26.979274]  kernel_init+0xe/0x120
+> [   26.980580]  ? rest_init+0xd0/0xd0
+> [   26.981870]  ret_from_fork+0x24/0x30
+> [   26.983168] ---[ end trace fa753e8363323d3d ]---
+> [   26.991111] Freeing unused decrypted memory: 2040K
 
-Tested-by: Brian Masney <masneyb@onstation.org>
+This looks like the same issue fixed by:
+https://lore.kernel.org/lkml/20190807020559.74458-1-saravanak@google.com/
 
+If anyone thinks otherwise, please let me know.
+
+-Saravana
