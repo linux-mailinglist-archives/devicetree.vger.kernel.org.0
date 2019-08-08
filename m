@@ -2,51 +2,52 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0DB1B8587E
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 05:26:03 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4602A85881
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 05:26:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728025AbfHHD0C (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 23:26:02 -0400
-Received: from mail-ed1-f67.google.com ([209.85.208.67]:33358 "EHLO
-        mail-ed1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728019AbfHHD0C (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 23:26:02 -0400
-Received: by mail-ed1-f67.google.com with SMTP id i11so25207341edq.0;
-        Wed, 07 Aug 2019 20:26:00 -0700 (PDT)
+        id S1728396AbfHHD0R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 23:26:17 -0400
+Received: from mail-ed1-f65.google.com ([209.85.208.65]:33384 "EHLO
+        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728019AbfHHD0R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 23:26:17 -0400
+Received: by mail-ed1-f65.google.com with SMTP id i11so25208106edq.0;
+        Wed, 07 Aug 2019 20:26:15 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to;
-        bh=QJF5KkLbVrVBnjHUA0f0vsLZgWb5LYS9Tbu0X4IhjlQ=;
-        b=OibWP8MoiklKgizvfLdsNAsynHNxnNIWaCKS+Eb/en4J160JrnpldIBMUlaMsZYO8P
-         SdRUazIU5/JBlJBdmbhFNijftvqYd5gg03jMadEMoSTQKJ5yoQ6QyU+p4q3fCp5LiPzD
-         WFUfEZPalAnA+/ybm9h62TutL3b0XOmH0xFFAuasT4ITU0kkELnREkIGC3uT8/RUcO9a
-         EuNr06T1ks2dNDR4fb07fOtG4Jw/uspOREBQASow8RtQO5+7cXVw49WqwIjZtrJ4kI6i
-         z+NO1hgZjRBS1t3VDkx2bNmni6g51sYBPZzKybIkuoBEHnHn0mdnPnJxhcJqTH9Ko8Do
-         IyvA==
+        bh=dFm+ntDkDYjpFiyYx8bMq6XtAhzvccojbCi+hTQfSAU=;
+        b=uXn5OuCIIHbX2C7G1bWWk4/YqWY9dH1yHAg+qSjrzNaGXt84cvn1eLurDBohQyqgKx
+         rRPX0sgRZACz7ksvHIZ0gdthaFudRWV7mClCkruVYWRgvisv+uwvmxNBPTO3CTHwaN4A
+         E1+BX7yaEQ/32Heu4OkiJSDTuWMN55CENjAyn54YBjDzSjBP7GqGeWmMDWokBGGZ1h7t
+         scBV+RnBTVYXIrVfMNd+SryRkRsjJ8PckHWiXQwA7/Ia+HEvDFvgcvvnSBFk0mIpbslk
+         KVfVCRPioBZmQdMK4sg3uwOLOIM/Yryq7T536RAlIEg8nBtK02+LjLjFWOnm2BJWMPC1
+         RBmQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to;
-        bh=QJF5KkLbVrVBnjHUA0f0vsLZgWb5LYS9Tbu0X4IhjlQ=;
-        b=fq+p22i/qf2aw+bzdJku4OnzxaD1TaKzKwt6hhRmd1UiSPHmbzHqvFTKlzZmND4pMQ
-         kC24zYt7Y4BZQ3gSp4KisldY+hgdLkdPlV+sbSDHTvaEQ4Ojmp1W7z09MnX6TIrg3Poc
-         AQLm9gA1KAgDWUtM4Ex1gwLtG+rvi3k32AI/UaHXgujCe7XEnMo4s+c5NoJ06J77Q2IA
-         htXOF7CU18GIdSog3LnGEegGB72XZA3hRAqtx49lCfSvAmPrmQSLLU5HwozTLX5Z/yL0
-         rP355gASwkZJ6KZoftoAAAvkJPQ3oYmD55lvas14qIOAydzo5f8J8ioh+WfBhkKKtKKV
-         9kWw==
-X-Gm-Message-State: APjAAAX5TgO0q5x2tWPRlnmsJ1HmqFsc4UQMNQ7rAkFF+JHHWyTrRqO1
-        KRV7lv97d4xaJC+PtFlzQbXoEprlS8PR2JDPpGr10A==
-X-Google-Smtp-Source: APXvYqySxn6Aum2fW7hESCBNI/WQ907Tgt2T6h/7T2FnGeErkOVqSep722YIjq80TEItLMeAZ29Csd9tKbbb2livg74=
-X-Received: by 2002:a17:906:81cb:: with SMTP id e11mr11215527ejx.37.1565234760011;
- Wed, 07 Aug 2019 20:26:00 -0700 (PDT)
+        bh=dFm+ntDkDYjpFiyYx8bMq6XtAhzvccojbCi+hTQfSAU=;
+        b=d5RFXHL61h0z8PkO+fDQ+CZw2fA3JwZgAuD+jS85+8Dyov2+iCMmhudIB1eS7yYfdM
+         SvKfvHK2sF/EqVabP1dR5KnZ8azIFUqkniJ3MseuIvFgIm8Yop3XH/bspd7OL1VTpmtp
+         Il+bHDwNhId4LTtFnnlwXZCMHrAYbXe15y/vwwOplya4wZL0xPDcBzIDbqAg9Y22Rl05
+         x/RproFlyMNWZ8Z4OjqsT4wq8Sq447jzW25kpPbIjGY/bUY5T7tRq/3Wj0jVLVbE9FoO
+         GyBGBSI+BJvy+BgmcYkHbAKdCQSNYhSIREOEgJPWZWiyKu1cm+ua4xtd4GOUZGzwyBWL
+         UnQA==
+X-Gm-Message-State: APjAAAV/pLSi0FlNkTx0fbMojJO60QcRmWGKTOnncdfY7jZ4Z1+v73Ph
+        IS0va2fNfn8vdfmFrnveJGcJbHBJF1FEim/Obw8=
+X-Google-Smtp-Source: APXvYqwpSQ+XSI5DFDUtaGHNy0t0Mr97a8+cHVbmNIqfu6PXkhplyNXNb9dpwBBpIepkNcjpxfzv7yHjQTqfgfITjpE=
+X-Received: by 2002:aa7:d6d3:: with SMTP id x19mr13246758edr.119.1565234775342;
+ Wed, 07 Aug 2019 20:26:15 -0700 (PDT)
 MIME-Version: 1.0
-References: <1564306219-17439-1-git-send-email-bmeng.cn@gmail.com> <CAEUhbmX2LXST-5eDD_UQJP6-XqKPEByVdnQ_KqFM-fR_dH6pyQ@mail.gmail.com>
-In-Reply-To: <CAEUhbmX2LXST-5eDD_UQJP6-XqKPEByVdnQ_KqFM-fR_dH6pyQ@mail.gmail.com>
+References: <1564306219-17439-1-git-send-email-bmeng.cn@gmail.com>
+ <1564306219-17439-2-git-send-email-bmeng.cn@gmail.com> <CAEUhbmVjELVPKwW6R+W+V2hQbZ_Zj_5j2ogjnTsuCwnK1pT-og@mail.gmail.com>
+In-Reply-To: <CAEUhbmVjELVPKwW6R+W+V2hQbZ_Zj_5j2ogjnTsuCwnK1pT-og@mail.gmail.com>
 From:   Bin Meng <bmeng.cn@gmail.com>
-Date:   Thu, 8 Aug 2019 11:25:49 +0800
-Message-ID: <CAEUhbmV1ehuvmbaCePWeuiTZv+CSnjg6HSbDk22oj5hg36QRGw@mail.gmail.com>
-Subject: Re: [PATCH 1/2] dt-bindings: interrupt-controller: msi: Correct
- msi-controller@c's reg
+Date:   Thu, 8 Aug 2019 11:26:03 +0800
+Message-ID: <CAEUhbmXHzK0Ho27nn+zMAxZfMQxcuN2Pe8fb6_uOEi7RVbJ=_Q@mail.gmail.com>
+Subject: Re: [PATCH 2/2] dt-bindings: pci: pci-msi: Correct the unit-address
+ of the pci node name
 To:     Mark Rutland <mark.rutland@arm.com>,
         Rob Herring <robh+dt@kernel.org>,
         devicetree <devicetree@vger.kernel.org>,
@@ -61,27 +62,28 @@ On Thu, Aug 1, 2019 at 5:53 PM Bin Meng <bmeng.cn@gmail.com> wrote:
 >
 > On Sun, Jul 28, 2019 at 5:30 PM Bin Meng <bmeng.cn@gmail.com> wrote:
 > >
-> > The base address of msi-controller@c should be set to c.
+> > The unit-address must match the first address specified in the
+> > reg property of the node.
 > >
 > > Signed-off-by: Bin Meng <bmeng.cn@gmail.com>
 > > ---
 > >
-> >  Documentation/devicetree/bindings/interrupt-controller/msi.txt | 2 +-
+> >  Documentation/devicetree/bindings/pci/pci-msi.txt | 2 +-
 > >  1 file changed, 1 insertion(+), 1 deletion(-)
 > >
-> > diff --git a/Documentation/devicetree/bindings/interrupt-controller/msi.txt b/Documentation/devicetree/bindings/interrupt-controller/msi.txt
-> > index c60c034..c20b51d 100644
-> > --- a/Documentation/devicetree/bindings/interrupt-controller/msi.txt
-> > +++ b/Documentation/devicetree/bindings/interrupt-controller/msi.txt
-> > @@ -98,7 +98,7 @@ Example
+> > diff --git a/Documentation/devicetree/bindings/pci/pci-msi.txt b/Documentation/devicetree/bindings/pci/pci-msi.txt
+> > index 9b3cc81..b73d839 100644
+> > --- a/Documentation/devicetree/bindings/pci/pci-msi.txt
+> > +++ b/Documentation/devicetree/bindings/pci/pci-msi.txt
+> > @@ -201,7 +201,7 @@ Example (5)
+> >                 #msi-cells = <1>;
 > >         };
 > >
-> >         msi_c: msi-controller@c {
-> > -               reg = <0xb 0xf00>;
-> > +               reg = <0xc 0xf00>;
-> >                 compatible = "vendor-b,another-controller";
-> >                 msi-controller;
-> >                 /* Each device has some unique ID */
+> > -       pci: pci@c {
+> > +       pci: pci@f {
+> >                 reg = <0xf 0x1>;
+> >                 compatible = "vendor,pcie-root-complex";
+> >                 device_type = "pci";
 > > --
 >
 > Ping?
