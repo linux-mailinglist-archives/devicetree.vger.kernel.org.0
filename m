@@ -2,85 +2,82 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 17C72867CC
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 19:17:19 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EB8D867F1
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 19:26:26 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404241AbfHHRRS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 13:17:18 -0400
-Received: from mail.kernel.org ([198.145.29.99]:40670 "EHLO mail.kernel.org"
+        id S2404225AbfHHR0Z (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 13:26:25 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42654 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1728289AbfHHRRS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Aug 2019 13:17:18 -0400
-Received: from willie-the-truck (236.31.169.217.in-addr.arpa [217.169.31.236])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        id S1728020AbfHHR0Z (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Aug 2019 13:26:25 -0400
+Received: from localhost.localdomain (unknown [194.230.155.124])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 940F3214C6;
-        Thu,  8 Aug 2019 17:17:14 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3C3B1217F4;
+        Thu,  8 Aug 2019 17:26:22 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565284637;
-        bh=hZaslb6oSDDnxkZ6amCxKs7QtS3Fes09yJQnXnO2j1g=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=eCytaCeDvAWmRXjTutwtqDwn6Oo25mZkv2apl4j80k8ZUOL/PKY1VQ9McvyqvZexQ
-         UTSjoarHJVSAh4SRm2UTBks+1VL4iUTh0jyASl4+T4l9M6bd3qaAtwHsxwGUUs4rOh
-         TAmHh/oR9Yb1q/vut4r4Ujt6mF37tQkp34aLOw40=
-Date:   Thu, 8 Aug 2019 18:17:11 +0100
-From:   Will Deacon <will@kernel.org>
-To:     Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-Cc:     "corbet@lwn.net" <corbet@lwn.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>,
-        Larisa Ileana Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH 5/6] tty: serial: Add linflexuart driver for S32V234
-Message-ID: <20190808171711.nk7ljqkugtketu4q@willie-the-truck>
-References: <20190802194702.30249-1-stefan-gabriel.mirea@nxp.com>
- <20190802194702.30249-6-stefan-gabriel.mirea@nxp.com>
- <20190808080832.nleult5bknmzr3ze@willie-the-truck>
- <VI1PR0402MB28635661A4A294EC6F01095EDFD70@VI1PR0402MB2863.eurprd04.prod.outlook.com>
-MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <VI1PR0402MB28635661A4A294EC6F01095EDFD70@VI1PR0402MB2863.eurprd04.prod.outlook.com>
-User-Agent: NeoMutt/20170113 (1.7.2)
+        s=default; t=1565285184;
+        bh=R38QSOqLbhF6pYAmCUOKDTd+6QC0rCEyjflUlXWIJRM=;
+        h=From:To:Cc:Subject:Date:From;
+        b=sDUqFeeMPSVz1NcXYbaytu83sBeuni/Enfh+nvqE43gqLkZgiwDK7+W09b7ObkAS9
+         blyC6DSqrPf3EeqXaoGgPLrnEFj/ec++n7ccEPHRY4XBNTqNiTEanWKXyysUoPWH8g
+         wu2I8EVE1TWW5WA02EdS0IqTk5VccpKqrBUiJgPs=
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+To:     Schrempf Frieder <frieder.schrempf@kontron.de>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Cc:     notify@kernel.org, Krzysztof Kozlowski <krzk@kernel.org>
+Subject: [PATCH v4 1/3] dt-bindings: vendor-prefixes: Add Anvo-Systems
+Date:   Thu,  8 Aug 2019 19:26:14 +0200
+Message-Id: <20190808172616.11728-1-krzk@kernel.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+Add vendor prefix for Anvo-Systems Dresden GmbH.
 
-On Thu, Aug 08, 2019 at 12:47:00PM +0000, Stefan-gabriel Mirea wrote:
-> On 8/8/2019 11:08 AM, Will Deacon wrote:
-> > On Fri, Aug 02, 2019 at 07:47:23PM +0000, Stefan-gabriel Mirea wrote:
-> >> +             linflex,<addr>
-> >> +                     Use early console provided by Freescale LinFlex UART
-> >> +                     serial driver for NXP S32V234 SoCs. A valid base
-> >> +                     address must be provided, and the serial port must
-> >> +                     already be setup and configured.
-> > 
-> > Why isn't earlycon= sufficient for this?
-> 
-> "earlycon=" is not actually supported. I will fix this in the next
-> version by adding a /chosen/stdout-path to the dts. The compatible
-> string provided to OF_EARLYCON_DECLARE will also be changed from
-> "fsl,s32v234-linflexuart" to "fsl,s32-linflexuart" to match the one in
-> the device tree nodes. I missed this after importing a rename from our
-> codebase.
-> 
-> Should I remove this addition from kernel-parameters.txt after that?
+Signed-off-by: Krzysztof Kozlowski <krzk@kernel.org>
+Reviewed-by: Rob Herring <robh@kernel.org>
 
-Yes, if you can use earlycon instead, then you can drop your custom option
-entirely and therefore there's no need to document it either.
+---
 
-Will
+Changes since v3:
+1. Add Rob's tag,
+2. Remove Admatec (not needed anymore).
+
+Changes since v2:
+1. Use admatecde vendor prefix.
+2. Add Anvo-Systems Dresden GmbH.
+
+Changes since v1:
+New patch
+---
+ Documentation/devicetree/bindings/vendor-prefixes.yaml | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 6992bbbbffab..519889f5aec8 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -81,6 +81,8 @@ patternProperties:
+     description: Analogix Semiconductor, Inc.
+   "^andestech,.*":
+     description: Andes Technology Corporation
++  "^anvo,.*":
++    description: Anvo-Systems Dresden GmbH
+   "^apm,.*":
+     description: Applied Micro Circuits Corporation (APM)
+   "^aptina,.*":
+-- 
+2.17.1
+
