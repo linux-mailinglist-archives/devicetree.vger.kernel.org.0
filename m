@@ -2,44 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E4B178589C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 05:42:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A5F7B858A1
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 05:42:16 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730695AbfHHDmF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Wed, 7 Aug 2019 23:42:05 -0400
-Received: from mail-pl1-f196.google.com ([209.85.214.196]:44846 "EHLO
-        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728167AbfHHDmE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 23:42:04 -0400
-Received: by mail-pl1-f196.google.com with SMTP id t14so42887819plr.11
-        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 20:42:04 -0700 (PDT)
+        id S1730302AbfHHDmP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Wed, 7 Aug 2019 23:42:15 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:46780 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730739AbfHHDmP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Wed, 7 Aug 2019 23:42:15 -0400
+Received: by mail-pf1-f195.google.com with SMTP id c3so20136151pfa.13
+        for <devicetree@vger.kernel.org>; Wed, 07 Aug 2019 20:42:14 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=broadcom.com; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references;
-        bh=5jMXrFkjRDxZEak/KeRUnh4UCld5MbB91tFVhNYMLPw=;
-        b=PWgHHS0qNOhHpCy5KKESZ4GVaCpzQ+fl/ugAs1shJwv7WXYzrXDC7SuAoKMP9VU/tx
-         o04A/xw4LcenrEqFf2azeE7WFh2Ewno/7aBRVYv+JJAN8JPRO3h+Kk1LzvAi4JmTiG7X
-         z3sn+cKYOGXQUyRqRjEdXPuAqqtsUuaLJeW+o=
+        bh=sYG6cpuEWkiuiZSTjJ/tkE2X/s2syaTjG0yfloKLSE0=;
+        b=Zqb+cgi2hDsfXgHlecgHReUK5105u+oAXv7BB+DCZY/hMGx1sxb1+EqfxhA1eSd4nU
+         T8ave2YfqpukyF0QuRTjjIMXAFtg8LiYpJFs4gEXLcC3R7aRfBBZ9lVDN5XTHA7eWeAS
+         SRt87N9Rucv13ptk0JnoNbOxRZx/Oixb5iacg=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references;
-        bh=5jMXrFkjRDxZEak/KeRUnh4UCld5MbB91tFVhNYMLPw=;
-        b=hx3hmIio8M28mWfGw0vkdSqiMl7AYi5wtGzxMqdXzvboB3f09X1J+eszeebKOg9VtP
-         Y6rdWguz8EwqyBlGxu7igiD0kq8ssSsHI8igcEpmH9/LhX6/RQV/wlZxk+PKgAgalXRK
-         B8h3L5kO2KfsYlBTMFclKGKQFUTRCBD9Um3McTd0Dkx8sQ9cgCuL7wdWg+gmBYfeUsMP
-         m3F4+X3O7xKCQm0aMwyLTohNNNaKZa3hP73hkIopJLj5M32Rc0IPFbzUXrwXGzbkJ7AQ
-         rhCxJ5kuKwltzoAM918F9koxK5+CIIdbrUr0Y53cbdHanR2bYK8Hkn4sLIYVGXOWKtBZ
-         JLlw==
-X-Gm-Message-State: APjAAAVtBL7ZLdo4hGKF5RwQMdaVGpFzwUXjyVx+cbCtNBDYYttgwnpJ
-        pRjZ/Ca08UTsDiNaXmpFMRNrzA==
-X-Google-Smtp-Source: APXvYqzJDoCufDWHxxbnj+8ZDUw1mT0489ya33GQJzf7bEfLt/OiDvuJEym/afEPtn37iqiNDeuFOg==
-X-Received: by 2002:a17:902:b415:: with SMTP id x21mr11335513plr.287.1565235723861;
-        Wed, 07 Aug 2019 20:42:03 -0700 (PDT)
+        bh=sYG6cpuEWkiuiZSTjJ/tkE2X/s2syaTjG0yfloKLSE0=;
+        b=aIXjVksP8M2H0eNPrBkKf1AnohK8M3Vt+kL1hbptVj6zg33et1+iCUfielU4wlccy9
+         L+a6JOKlIPJY54CFPkW3OPjWs2cparMC+ULnJskweeDxh+YKvgKnG43FG1ipvA0zutDX
+         Ez1KHj1EbBE6VP1+w8nhXiD6ilFDvdiMXEttVQjEyy9GepnXbBPLyQ94PVz7tcguy/by
+         TcaZtyHVG6FIG2zQ5j/LMYkHFSuhf7sIQzVmEIzq8anyej9LXVoQzzOH/YxUQzrZs7sE
+         kL7Mgjg8TPLpa8hSH/wpYTqLkhM/SOQW0Gz2kIKbds/IfHRo1zBhj5Dt2OpO2LbslV0h
+         vKcA==
+X-Gm-Message-State: APjAAAXiOlHw5ZPAB2CopnrLsEURtD3b0blUXJMBp20dplDPPfRy5Gvf
+        3qCGK2DVkW5EVrJdqXx0mQfnoQ==
+X-Google-Smtp-Source: APXvYqw0VyrLw6SijXdgxWzGrWGwlkTeqgHtcpsU3gz31hb34TRSE0lX0YnaKNOSEsTbHd6OT+XIfw==
+X-Received: by 2002:a63:2b0c:: with SMTP id r12mr10684315pgr.206.1565235734462;
+        Wed, 07 Aug 2019 20:42:14 -0700 (PDT)
 Received: from rayagonda.dhcp.broadcom.net ([192.19.234.250])
-        by smtp.gmail.com with ESMTPSA id y14sm46425482pge.7.2019.08.07.20.42.00
+        by smtp.gmail.com with ESMTPSA id y14sm46425482pge.7.2019.08.07.20.42.10
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
-        Wed, 07 Aug 2019 20:42:03 -0700 (PDT)
+        Wed, 07 Aug 2019 20:42:13 -0700 (PDT)
 From:   Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
 To:     Wolfram Sang <wsa@the-dreams.de>, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>
@@ -50,9 +50,9 @@ Cc:     linux-i2c@vger.kernel.org, devicetree@vger.kernel.org,
         Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>,
         Florian Fainelli <f.fainelli@gmail.com>,
         Lori Hikichi <lori.hikichi@broadcom.com>
-Subject: [PATCH v1 1/2] i2c: iproc: Stop advertising support of SMBUS quick cmd
-Date:   Thu,  8 Aug 2019 09:07:52 +0530
-Message-Id: <1565235473-28461-2-git-send-email-rayagonda.kokatanur@broadcom.com>
+Subject: [PATCH v1 2/2] i2c: iproc: Add full name of devicetree node to adapter name
+Date:   Thu,  8 Aug 2019 09:07:53 +0530
+Message-Id: <1565235473-28461-3-git-send-email-rayagonda.kokatanur@broadcom.com>
 X-Mailer: git-send-email 1.9.1
 In-Reply-To: <1565235473-28461-1-git-send-email-rayagonda.kokatanur@broadcom.com>
 References: <1565235473-28461-1-git-send-email-rayagonda.kokatanur@broadcom.com>
@@ -63,36 +63,43 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 From: Lori Hikichi <lori.hikichi@broadcom.com>
 
-The driver does not support the SMBUS Quick command so remove the
-flag that indicates that level of support.
-By default the i2c_detect tool uses the quick command to try and
-detect devices at some bus addresses.  If the quick command is used
-then we will not detect the device, even though it is present.
+Add the full name of the devicetree node to the adapter name.
+Without this change, all adapters have the same name making it difficult
+to distinguish between multiple instances.
+The most obvious way to see this is to use the utility i2c_detect.
+e.g. "i2c-detect -l"
 
-Fixes: e6e5dd3566e0 (i2c: iproc: Add Broadcom iProc I2C Driver)
+Before
+i2c-1 i2c Broadcom iProc I2C adapter I2C adapter
+i2c-0 i2c Broadcom iProc I2C adapter I2C adapter
+
+After
+i2c-1 i2c Broadcom iProc (i2c@e0000) I2C adapter
+i2c-0 i2c Broadcom iProc (i2c@b0000) I2C adapter
+
+Now it is easy to figure out which adapter maps to a which DT node.
 
 Signed-off-by: Lori Hikichi <lori.hikichi@broadcom.com>
 Signed-off-by: Rayagonda Kokatanur <rayagonda.kokatanur@broadcom.com>
 ---
- drivers/i2c/busses/i2c-bcm-iproc.c | 5 ++++-
- 1 file changed, 4 insertions(+), 1 deletion(-)
+ drivers/i2c/busses/i2c-bcm-iproc.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/i2c/busses/i2c-bcm-iproc.c b/drivers/i2c/busses/i2c-bcm-iproc.c
-index d7fd76b..19ef2b0 100644
+index 19ef2b0..183b220 100644
 --- a/drivers/i2c/busses/i2c-bcm-iproc.c
 +++ b/drivers/i2c/busses/i2c-bcm-iproc.c
-@@ -790,7 +790,10 @@ static int bcm_iproc_i2c_xfer(struct i2c_adapter *adapter,
+@@ -922,7 +922,9 @@ static int bcm_iproc_i2c_probe(struct platform_device *pdev)
  
- static uint32_t bcm_iproc_i2c_functionality(struct i2c_adapter *adap)
- {
--	u32 val = I2C_FUNC_I2C | I2C_FUNC_SMBUS_EMUL;
-+	u32 val;
-+
-+	/* We do not support the SMBUS Quick command */
-+	val = I2C_FUNC_I2C | (I2C_FUNC_SMBUS_EMUL & ~I2C_FUNC_SMBUS_QUICK);
- 
- 	if (adap->algo->reg_slave)
- 		val |= I2C_FUNC_SLAVE;
+ 	adap = &iproc_i2c->adapter;
+ 	i2c_set_adapdata(adap, iproc_i2c);
+-	strlcpy(adap->name, "Broadcom iProc I2C adapter", sizeof(adap->name));
++	snprintf(adap->name, sizeof(adap->name),
++		"Broadcom iProc (%s)",
++		of_node_full_name(iproc_i2c->device->of_node));
+ 	adap->algo = &bcm_iproc_algo;
+ 	adap->quirks = &bcm_iproc_i2c_quirks;
+ 	adap->dev.parent = &pdev->dev;
 -- 
 1.9.1
 
