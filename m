@@ -2,96 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 9F88486930
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 20:55:39 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 27F9686AA5
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 21:38:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404191AbfHHSze (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 14:55:34 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:35066 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2404161AbfHHSzd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 14:55:33 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=QjkoBON2R0G9dPWiD46toYdQm9FG0fge33xVSCag5ms=; b=vqt03qIKNSYXmWRwtn6SMC0vn
-        2KxAD407l3Awcyh2IzdII6GyPqRZFsRiCPW6czfrc9RB9mRifazXgV+8/2TNZ76/UaOA0+A2UJDmJ
-        IyNQtmNyWKwRuBMlsGkSPrg8Pj0jKAk8CeSe2LXRN+1EW53APKC59dZ9Blp6kqbrQuQNw=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1hvnZL-0003lN-Gm; Thu, 08 Aug 2019 18:55:23 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 5CB972742B42; Thu,  8 Aug 2019 19:55:22 +0100 (BST)
-Date:   Thu, 8 Aug 2019 19:55:22 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Vignesh Raghavendra <vigneshr@ti.com>, bbrezillon@kernel.org,
-        Avi Fishman <avifishman70@gmail.com>,
-        Tali Perry <tali.perry1@gmail.com>,
-        Patrick Venture <venture@google.com>,
-        Nancy Yuen <yuenn@google.com>,
-        Benjamin Fair <benjaminfair@google.com>,
-        linux-spi@vger.kernel.org, devicetree <devicetree@vger.kernel.org>,
-        OpenBMC Maillist <openbmc@lists.ozlabs.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>
-Subject: Re: [PATCH v2 2/2] spi: npcm-fiu: add NPCM FIU controller driver
-Message-ID: <20190808185522.GJ3795@sirena.co.uk>
-References: <20190808131448.349161-1-tmaimon77@gmail.com>
- <20190808131448.349161-3-tmaimon77@gmail.com>
- <20190808132740.GG3795@sirena.co.uk>
- <CAP6Zq1j7jHejdx9h-nxCJcVjtGx_3rHmay7R8nn11DLaE8Q4gA@mail.gmail.com>
+        id S2390202AbfHHTit (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 15:38:49 -0400
+Received: from mail-wr1-f67.google.com ([209.85.221.67]:32798 "EHLO
+        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732327AbfHHTit (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 15:38:49 -0400
+Received: by mail-wr1-f67.google.com with SMTP id n9so96164230wru.0;
+        Thu, 08 Aug 2019 12:38:47 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=YoS8PRw3cjholKW72Wo5FIMucVCjxsoQPkOGGlFKOFU=;
+        b=DVYZ29bTj1ljfEsoUcWARgkYX2a4poFVfmPZkcpwyFgCBscv1sJzBoN2rImkmEQ36a
+         UKXvtxWK0SY7Dr5/gYGDxjmZhKBtbrMMBd26c+29N8+W07gm6IJQB//53uo8v+YbxuZV
+         GgSJM1+PNsPdyLGrHpVm+UBMMrbrzWJO+KOyBkCOeQobGIIz9cIr5wJX0FyJuzklHEVi
+         JSNos6MPi4gmJeY7OtqtHmRc+gs8eTpvd6HagOkCGLjbxOv4XltWt1JqSoDQZo296gd8
+         9Uh7q083ScfjbIcltUi1fT2d+CnuUJpE8vaQJEm6xOkgKcf5vM29uN0HwVlym/8ImXJ9
+         +rmQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=YoS8PRw3cjholKW72Wo5FIMucVCjxsoQPkOGGlFKOFU=;
+        b=I0a2lLdircUKym37q2P+vGSF7ubDsabqL7ipqypL9Oa1VysM47cUtfF/Gu/tVnOtd1
+         YA6g3/mS14Jjgpj/EBpl21leGkFdpRJbOV9lBQqzgK6LDeyLKJlS98HrtkQPt9AyHsZO
+         q1Oh7lscFdRpMO+qnCWNXD51MWpI7z0PRdkJayD5cPQRizLP1WngAsA27VRSB5/ISLWC
+         PRnA/HTyR+XcpjEy/CIQpmjKQ66MnM9uCE3CpG9WYhppCnSWTzPhoE2FCUAF3VKGkgDX
+         D8FL0cLAP0iGCaiPFezBAuddB3xOKwpNN9r62xgztFMpwDMnKzXFWevKzSEhnomB3vvs
+         Ymkw==
+X-Gm-Message-State: APjAAAWcS3Sng+L/ZWp95LRf17+QFrMnRDteWMIYWhicha7NSF4t9KeK
+        ugxOFSqySVk7ntZrTvgayAs=
+X-Google-Smtp-Source: APXvYqxk2r1+U9UcqqJldtJvlXj7yg5APuFEK4cNWKSEBrXzlvkV+3YyhG2ik8OQub5VRW/w/DhsqQ==
+X-Received: by 2002:adf:f04d:: with SMTP id t13mr18922037wro.133.1565293126711;
+        Thu, 08 Aug 2019 12:38:46 -0700 (PDT)
+Received: from ?IPv6:2003:ea:8f2f:3200:ec8a:8637:bf5f:7faf? (p200300EA8F2F3200EC8A8637BF5F7FAF.dip0.t-ipconnect.de. [2003:ea:8f2f:3200:ec8a:8637:bf5f:7faf])
+        by smtp.googlemail.com with ESMTPSA id g15sm2924126wrp.29.2019.08.08.12.38.45
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Thu, 08 Aug 2019 12:38:46 -0700 (PDT)
+Subject: Re: [PATCH v2 02/15] net: phy: adin: hook genphy_read_abilities() to
+ get_features
+To:     Andrew Lunn <andrew@lunn.ch>,
+        Alexandru Ardelean <alexandru.ardelean@analog.com>
+Cc:     netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, davem@davemloft.net,
+        robh+dt@kernel.org, mark.rutland@arm.com, f.fainelli@gmail.com
+References: <20190808123026.17382-1-alexandru.ardelean@analog.com>
+ <20190808123026.17382-3-alexandru.ardelean@analog.com>
+ <20190808152403.GB27917@lunn.ch>
+From:   Heiner Kallweit <hkallweit1@gmail.com>
+Message-ID: <eeda87c9-bdba-8ef7-6043-85a16bd2cfc2@gmail.com>
+Date:   Thu, 8 Aug 2019 21:32:57 +0200
+User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="5me2qT3T17SWzdxI"
-Content-Disposition: inline
-In-Reply-To: <CAP6Zq1j7jHejdx9h-nxCJcVjtGx_3rHmay7R8nn11DLaE8Q4gA@mail.gmail.com>
-X-Cookie: I think we're in trouble.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190808152403.GB27917@lunn.ch>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On 08.08.2019 17:24, Andrew Lunn wrote:
+> On Thu, Aug 08, 2019 at 03:30:13PM +0300, Alexandru Ardelean wrote:
+>> The ADIN PHYs can operate with Clause 45, however they are not typical for
+>> how phylib considers Clause 45 PHYs.
+>>
+>> If the `features` field & the `get_features` hook are unspecified, and the
+>> device wants to operate via Clause 45, it would also try to read features
+>> via the `genphy_c45_pma_read_abilities()`, which will try to read PMA regs
+>> that are unsupported.
+>>
+>> Hooking the `genphy_read_abilities()` function to the `get_features` hook
+>> will ensure that this does not happen and the PHY features are read
+>> correctly regardless of Clause 22 or Clause 45 operation.
+> 
+> I think we need to stop and think about a PHY which supports both C22
+> and C45.
+> 
+> How does bus enumeration work? Is it discovered twice?  I've always
+> considered phydev->is_c45 means everything is c45, not that some
+> registers can be accessed via c45. But the driver is mixing c22 and
+> c45. Does the driver actually require c45? Are some features which are
+> only accessibly via C45? What does C45 actually bring us for this
+> device?
+> 
+genphy_c45_pma_read_abilities() is only called if phydev->is_c45 is set.
+And this flag means that the PHY complies with Clause 45 incl. all the
+standard devices like PMA. In the case here only some vendor-specific
+registers can be accessed via Clause 45 and therefore is_c45 shouldn't
+bet set. As a consequence this patch isn't needed.
 
---5me2qT3T17SWzdxI
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+>      Andrew
+> 
+Heiner
 
-On Thu, Aug 08, 2019 at 06:37:06PM +0300, Tomer Maimon wrote:
-
-> for example in our driver we modify the access type (singe, dual or quad)
-> according the op->addr.buswidth
-> for example in the npcm_fiu_set_drd function.
-
->         regmap_update_bits(fiu->regmap, NPCM_FIU_DRD_CFG,
->                            NPCM_FIU_DRD_CFG_ACCTYPE,
->                            ilog2(op->addr.buswidth) <<
->                            NPCM_FIU_DRD_ACCTYPE_SHIFT);
-
-> we also modify it in the UMA R/W functions.
-
-Ah, it's only for the flash functions - that's fine.
-
---5me2qT3T17SWzdxI
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1McBkACgkQJNaLcl1U
-h9CSyQf9HMQyWI7F+/mz/TefzbACHnpE0c8lwToPC8gs3NlHo8g0orLblfG3DsLm
-UEB893DEnNq2PyAZ3RalNBeet13paLEA0qBru8OSMUWpeNwDNxNPJnw0LKgWMfJd
-hR7ajSCzI8nNleQRxNko7depUDzpemRXDWxmIyeoBPOYzHxX3AWFoyuaz9aUo2Rl
-Unh0Hf1osxqIy1e/McvePEnPv0TT99Ymj8k6/8GnvioyP4EpahOXI8dSR2jI0EhD
-E00zLhgmAoNpkwrV/jtjy/U4bWl2oEXrySbQ9Ljy8b0iFVArSIEFILHO06iXOkXP
-gKzJeeqWsQ6fz//+fGxegx1F6fcTpg==
-=AZer
------END PGP SIGNATURE-----
-
---5me2qT3T17SWzdxI--
