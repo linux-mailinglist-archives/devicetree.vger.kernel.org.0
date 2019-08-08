@@ -2,57 +2,60 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4F6E985D83
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 10:55:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D522485D82
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 10:55:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731065AbfHHIzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        id S1725805AbfHHIzl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
         Thu, 8 Aug 2019 04:55:41 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:42707 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1731030AbfHHIz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 04:55:27 -0400
-Received: by mail-wr1-f67.google.com with SMTP id x1so44186069wrr.9
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 01:55:25 -0700 (PDT)
+Received: from mail-wm1-f50.google.com ([209.85.128.50]:53746 "EHLO
+        mail-wm1-f50.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1731065AbfHHIz2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 04:55:28 -0400
+Received: by mail-wm1-f50.google.com with SMTP id 10so1566727wmp.3
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 01:55:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=U7mRPaAFiVltDPu4JSR3Yp6zM4Cf+22qPlOKI/zfYrU=;
-        b=gkdlcrlz3L1NcoJFdDDV7X9nMVELcEblkgxcYsF7dUHOi/CeiGmlqx+C+uEn5bFvrr
-         iwaBW4qCWbND0XKzks4YF81jkntz3/zVTohZhnNkR4jB/rEdApnvA52KVGCuRp3fR9cf
-         L+dZcCwOl7xRI8fbor/W9sQCmMbxqnILRlFifyvyeALYukSSWw/we+sx/gCo+qJIyd68
-         7IbOKuPNaENrBcYBsvlmBoBMpedoKtj1Y7bQoNcH3f8Pq+sPxe+gsiaVR8+Cks7WPwc6
-         b+p/9pcNvEqy95KahteRW7wyIEdDQZhlMC6RGIAClUAa88O28ygd+HCZJ3drLaBwXnfc
-         l62Q==
+        h=from:to:cc:subject:date:message-id:in-reply-to:references
+         :mime-version:content-transfer-encoding;
+        bh=NVSIoQDQUI59AbtDU6wtNrL9Ak0Km4aJoVNG1T5jUh0=;
+        b=Q7rWpRAlxZmePJwFcK/A1Seoos3aHW86F4zqwi6X2K5uJbQUCQoHQjijXhmCxV5Bj+
+         O7j1saG4tbzqr5meHTXY97mykA2rU7WEghzcfYrZFztqJV7VkT6AK7EdwG1LjoMKvBs2
+         dGjTy4wflmtqhrOAcuv8osb4qT5oovQZdUBlr1suzJSY0e2AjTGGxjR9DCNeRoZkCxNX
+         8iQUS0aZH3LrFzY7PpzQsw6kl54Fuk0v51GQ1sRPTFtpSFxiXSk1xqmmi+5uEzK6i3br
+         Mx9kdgg1ptLfRkCwL2OJS3rScaDhR4b6hj+KXOYgvpxHhsVthboLLTTXEQoNbzkUnLW3
+         8QLw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=U7mRPaAFiVltDPu4JSR3Yp6zM4Cf+22qPlOKI/zfYrU=;
-        b=cOg3BpMpMZaoEPxhHWAVbpNzw+DrDuhW22tQnqRpxpZYwKaKBR1hpaPpoNiLCM1YSy
-         X2sNSJd9h/pC5brbIFjWg8Hq/FAqLUffqOG02scCzN/qy0kdVZC6qsf1S6o2u1Aqy4iM
-         zpoeP2xqmC6XBaE+dPsOD1aYify5qR29khcwh6hzucHi/SQ2YkW3rvRSdYyEu7BYqc+B
-         1gYPCsedQ6gt6hgjumyW3cjZeKEDsmLM9fSu9ZsXFleZx41OqGXX8w3YzWHozRhGLxy9
-         sdc9n+smksKqZ7L8qsbcwFdJcVGQN0j12XbNAtLjxv3Fc0XWJIWxxTcw1s87qynKQ3MC
-         yI/A==
-X-Gm-Message-State: APjAAAXMXIKURfVJUW0jMty0VEtOOOiUH7wpa+jIs2YwVTPJTJ936w80
-        rqTtbk95llXiynnsAgsRFUc014u1u9Do5g==
-X-Google-Smtp-Source: APXvYqzd7NmT/FM1gVCi923HMojL2+NSOYVprF5ZiqEcVi0GIfQIkAt5xkVVtJuUqtq+PdXpXwjLhw==
-X-Received: by 2002:adf:8bd1:: with SMTP id w17mr16642922wra.50.1565254524653;
-        Thu, 08 Aug 2019 01:55:24 -0700 (PDT)
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
+         :references:mime-version:content-transfer-encoding;
+        bh=NVSIoQDQUI59AbtDU6wtNrL9Ak0Km4aJoVNG1T5jUh0=;
+        b=R0HX8O2B1nZVtPBZ9nKKbvgbbb4Ok4Og+tx5mWlb3IpsW4zCvv72Cs8gpOg/XTER6u
+         l2cfBBWIvyJHQG7C8nPpHRS//2KMOgVqEFXAD+l55mniFwby3TP5GzUpyXAlrGgOcejQ
+         dVK+TtFfzmynpThPW/3i5QqIRukXqepIfcCO7CRdu9IPXc4bMulpYJ/x46xk9EC0haHP
+         RlCiZgoThuvHeLPC93XDtRoSgHjc5DzVUtutrwwS/Z8ldxZ4PFmMe4sG6HCviJjR2Drt
+         thPxH8jD5OageF9yBZvN8vPXjBEev+FgxtmfOLmdrckhIykfpuIO8xkS8YqIz8aRMhYO
+         vfLg==
+X-Gm-Message-State: APjAAAUq6QIQeOMdkScSLZQiG0L3HGLzjbjVZ0Z7sLo/2apIRE6JIfme
+        4zpiMDETzAGXYUxO9BqSVAZlaQ==
+X-Google-Smtp-Source: APXvYqyu96zGmIOApLPbpBTQ4/4iKEhq0gFuIrKTMrwi5bDmwbLqVtd0bhV3sBSTgavLKkMt5rsUdA==
+X-Received: by 2002:a7b:cf21:: with SMTP id m1mr3247605wmg.150.1565254525438;
+        Thu, 08 Aug 2019 01:55:25 -0700 (PDT)
 Received: from bender.baylibre.local (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id i66sm3380649wmi.11.2019.08.08.01.55.23
+        by smtp.gmail.com with ESMTPSA id i66sm3380649wmi.11.2019.08.08.01.55.24
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 08 Aug 2019 01:55:23 -0700 (PDT)
+        Thu, 08 Aug 2019 01:55:24 -0700 (PDT)
 From:   Neil Armstrong <narmstrong@baylibre.com>
 To:     robh+dt@kernel.org
 Cc:     Neil Armstrong <narmstrong@baylibre.com>,
         devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: [PATCH v3 0/3] drm/meson: convert bindings to YAML schemas
-Date:   Thu,  8 Aug 2019 10:55:19 +0200
-Message-Id: <20190808085522.21950-1-narmstrong@baylibre.com>
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Rob Herring <robh@kernel.org>
+Subject: [PATCH v3 1/3] dt-bindings: display: amlogic,meson-dw-hdmi: convert to yaml
+Date:   Thu,  8 Aug 2019 10:55:20 +0200
+Message-Id: <20190808085522.21950-2-narmstrong@baylibre.com>
 X-Mailer: git-send-email 2.22.0
+In-Reply-To: <20190808085522.21950-1-narmstrong@baylibre.com>
+References: <20190808085522.21950-1-narmstrong@baylibre.com>
 MIME-Version: 1.0
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
@@ -60,37 +63,309 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patchset converts the existing text bindings to YAML schemas.
+Now that we have the DT validation in place, let's convert the device tree
+bindings for the Amlogic Synopsys DW-HDMI specifics over to YAML schemas.
 
-Those bindings have a lot of texts, thus is interesting to convert.
+The original example and usage of clock-names uses a reversed "isfr"
+and "iahb" clock-names, the rewritten YAML bindings uses the reversed
+instead of fixing the device trees order.
 
-All have been tested using :
-$ make ARCH=arm64 dtbs_check
+The #sound-dai-cells optional property has been added to match this node
+as a sound dai.
 
-Issues with the amlogic arm64 DTs has already been identified thanks
-to the validation scripts. The DT fixes will be pushed once these yaml
-bindings are acked.
+The port connection table has been dropped in favor of a description
+of each port.
 
-Changes since v2:
-- Added review tag on amlogic,meson-dw-hdmi.yaml
-- Removed power-domains type from amlogic,meson-vpu.yaml
-
-Neil Armstrong (3):
-  dt-bindings: display: amlogic,meson-dw-hdmi: convert to yaml
-  dt-bindings: display: amlogic,meson-vpu: convert to yaml
-  MAINTAINERS: Update with Amlogic DRM bindings converted as YAML
-
+Reviewed-by: Rob Herring <robh@kernel.org>
+Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+---
  .../display/amlogic,meson-dw-hdmi.txt         | 119 --------------
  .../display/amlogic,meson-dw-hdmi.yaml        | 150 ++++++++++++++++++
- .../bindings/display/amlogic,meson-vpu.txt    | 121 --------------
- .../bindings/display/amlogic,meson-vpu.yaml   | 137 ++++++++++++++++
- MAINTAINERS                                   |   4 +-
- 5 files changed, 289 insertions(+), 242 deletions(-)
+ 2 files changed, 150 insertions(+), 119 deletions(-)
  delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
  create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
- delete mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.txt
- create mode 100644 Documentation/devicetree/bindings/display/amlogic,meson-vpu.yaml
 
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
+deleted file mode 100644
+index 3a50a7862cf3..000000000000
+--- a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.txt
++++ /dev/null
+@@ -1,119 +0,0 @@
+-Amlogic specific extensions to the Synopsys Designware HDMI Controller
+-======================================================================
+-
+-The Amlogic Meson Synopsys Designware Integration is composed of :
+-- A Synopsys DesignWare HDMI Controller IP
+-- A TOP control block controlling the Clocks and PHY
+-- A custom HDMI PHY in order to convert video to TMDS signal
+- ___________________________________
+-|            HDMI TOP               |<= HPD
+-|___________________________________|
+-|                  |                |
+-|  Synopsys HDMI   |   HDMI PHY     |=> TMDS
+-|    Controller    |________________|
+-|___________________________________|<=> DDC
+-
+-The HDMI TOP block only supports HPD sensing.
+-The Synopsys HDMI Controller interrupt is routed through the
+-TOP Block interrupt.
+-Communication to the TOP Block and the Synopsys HDMI Controller is done
+-via a pair of dedicated addr+read/write registers.
+-The HDMI PHY is configured by registers in the HHI register block.
+-
+-Pixel data arrives in 4:4:4 format from the VENC block and the VPU HDMI mux
+-selects either the ENCI encoder for the 576i or 480i formats or the ENCP
+-encoder for all the other formats including interlaced HD formats.
+-
+-The VENC uses a DVI encoder on top of the ENCI or ENCP encoders to generate
+-DVI timings for the HDMI controller.
+-
+-Amlogic Meson GXBB, GXL and GXM SoCs families embeds the Synopsys DesignWare
+-HDMI TX IP version 2.01a with HDCP and I2C & S/PDIF
+-audio source interfaces.
+-
+-Required properties:
+-- compatible: value should be different for each SoC family as :
+-	- GXBB (S905) : "amlogic,meson-gxbb-dw-hdmi"
+-	- GXL (S905X, S905D) : "amlogic,meson-gxl-dw-hdmi"
+-	- GXM (S912) : "amlogic,meson-gxm-dw-hdmi"
+-	followed by the common "amlogic,meson-gx-dw-hdmi"
+-	- G12A (S905X2, S905Y2, S905D2) : "amlogic,meson-g12a-dw-hdmi"
+-- reg: Physical base address and length of the controller's registers.
+-- interrupts: The HDMI interrupt number
+-- clocks, clock-names : must have the phandles to the HDMI iahb and isfr clocks,
+-  and the Amlogic Meson venci clocks as described in
+-  Documentation/devicetree/bindings/clock/clock-bindings.txt,
+-  the clocks are soc specific, the clock-names should be "iahb", "isfr", "venci"
+-- resets, resets-names: must have the phandles to the HDMI apb, glue and phy
+-  resets as described in :
+-  Documentation/devicetree/bindings/reset/reset.txt,
+-  the reset-names should be "hdmitx_apb", "hdmitx", "hdmitx_phy"
+-
+-Optional properties:
+-- hdmi-supply: Optional phandle to an external 5V regulator to power the HDMI
+-  logic, as described in the file ../regulator/regulator.txt
+-
+-Required nodes:
+-
+-The connections to the HDMI ports are modeled using the OF graph
+-bindings specified in Documentation/devicetree/bindings/graph.txt.
+-
+-The following table lists for each supported model the port number
+-corresponding to each HDMI output and input.
+-
+-		Port 0		Port 1
+------------------------------------------
+- S905 (GXBB)	VENC Input	TMDS Output
+- S905X (GXL)	VENC Input	TMDS Output
+- S905D (GXL)	VENC Input	TMDS Output
+- S912 (GXM)	VENC Input	TMDS Output
+- S905X2 (G12A)	VENC Input	TMDS Output
+- S905Y2 (G12A)	VENC Input	TMDS Output
+- S905D2 (G12A)	VENC Input	TMDS Output
+-
+-Example:
+-
+-hdmi-connector {
+-	compatible = "hdmi-connector";
+-	type = "a";
+-
+-	port {
+-		hdmi_connector_in: endpoint {
+-			remote-endpoint = <&hdmi_tx_tmds_out>;
+-		};
+-	};
+-};
+-
+-hdmi_tx: hdmi-tx@c883a000 {
+-	compatible = "amlogic,meson-gxbb-dw-hdmi", "amlogic,meson-gx-dw-hdmi";
+-	reg = <0x0 0xc883a000 0x0 0x1c>;
+-	interrupts = <GIC_SPI 57 IRQ_TYPE_EDGE_RISING>;
+-	resets = <&reset RESET_HDMITX_CAPB3>,
+-		 <&reset RESET_HDMI_SYSTEM_RESET>,
+-		 <&reset RESET_HDMI_TX>;
+-	reset-names = "hdmitx_apb", "hdmitx", "hdmitx_phy";
+-	clocks = <&clkc CLKID_HDMI_PCLK>,
+-		 <&clkc CLKID_CLK81>,
+-		 <&clkc CLKID_GCLK_VENCI_INT0>;
+-	clock-names = "isfr", "iahb", "venci";
+-	#address-cells = <1>;
+-	#size-cells = <0>;
+-
+-	/* VPU VENC Input */
+-	hdmi_tx_venc_port: port@0 {
+-		reg = <0>;
+-
+-		hdmi_tx_in: endpoint {
+-			remote-endpoint = <&hdmi_tx_out>;
+-		};
+-	};
+-
+-	/* TMDS Output */
+-	hdmi_tx_tmds_port: port@1 {
+-		reg = <1>;
+-
+-		hdmi_tx_tmds_out: endpoint {
+-			remote-endpoint = <&hdmi_connector_in>;
+-		};
+-	};
+-};
+diff --git a/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+new file mode 100644
+index 000000000000..fb747682006d
+--- /dev/null
++++ b/Documentation/devicetree/bindings/display/amlogic,meson-dw-hdmi.yaml
+@@ -0,0 +1,150 @@
++# SPDX-License-Identifier: (GPL-2.0 OR BSD-2-Clause)
++# Copyright 2019 BayLibre, SAS
++%YAML 1.2
++---
++$id: "http://devicetree.org/schemas/display/amlogic,meson-dw-hdmi.yaml#"
++$schema: "http://devicetree.org/meta-schemas/core.yaml#"
++
++title: Amlogic specific extensions to the Synopsys Designware HDMI Controller
++
++maintainers:
++  - Neil Armstrong <narmstrong@baylibre.com>
++
++description: |
++  The Amlogic Meson Synopsys Designware Integration is composed of
++  - A Synopsys DesignWare HDMI Controller IP
++  - A TOP control block controlling the Clocks and PHY
++  - A custom HDMI PHY in order to convert video to TMDS signal
++   ___________________________________
++  |            HDMI TOP               |<= HPD
++  |___________________________________|
++  |                  |                |
++  |  Synopsys HDMI   |   HDMI PHY     |=> TMDS
++  |    Controller    |________________|
++  |___________________________________|<=> DDC
++
++  The HDMI TOP block only supports HPD sensing.
++  The Synopsys HDMI Controller interrupt is routed through the
++  TOP Block interrupt.
++  Communication to the TOP Block and the Synopsys HDMI Controller is done
++  via a pair of dedicated addr+read/write registers.
++  The HDMI PHY is configured by registers in the HHI register block.
++
++  Pixel data arrives in "4:4:4" format from the VENC block and the VPU HDMI mux
++  selects either the ENCI encoder for the 576i or 480i formats or the ENCP
++  encoder for all the other formats including interlaced HD formats.
++
++  The VENC uses a DVI encoder on top of the ENCI or ENCP encoders to generate
++  DVI timings for the HDMI controller.
++
++  Amlogic Meson GXBB, GXL and GXM SoCs families embeds the Synopsys DesignWare
++  HDMI TX IP version 2.01a with HDCP and I2C & S/PDIF
++  audio source interfaces.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - enum:
++              - amlogic,meson-gxbb-dw-hdmi # GXBB (S905)
++              - amlogic,meson-gxl-dw-hdmi # GXL (S905X, S905D)
++              - amlogic,meson-gxm-dw-hdmi # GXM (S912)
++          - const: amlogic,meson-gx-dw-hdmi
++      - enum:
++          - amlogic,meson-g12a-dw-hdmi # G12A (S905X2, S905Y2, S905D2)
++
++  reg:
++    maxItems: 1
++
++  interrupts:
++    maxItems: 1
++
++  clocks:
++    minItems: 3
++
++  clock-names:
++    items:
++      - const: isfr
++      - const: iahb
++      - const: venci
++
++  resets:
++    minItems: 3
++
++  reset-names:
++    items:
++      - const: hdmitx_apb
++      - const: hdmitx
++      - const: hdmitx_phy
++
++  hdmi-supply:
++    description: phandle to an external 5V regulator to power the HDMI logic
++    allOf:
++      - $ref: /schemas/types.yaml#/definitions/phandle
++
++  port@0:
++    type: object
++    description:
++      A port node pointing to the VENC Input port node.
++
++  port@1:
++    type: object
++    description:
++      A port node pointing to the TMDS Output port node.
++
++  "#address-cells":
++    const: 1
++
++  "#size-cells":
++    const: 0
++
++  "#sound-dai-cells":
++    const: 0
++
++required:
++  - compatible
++  - reg
++  - interrupts
++  - clocks
++  - clock-names
++  - resets
++  - reset-names
++  - port@0
++  - port@1
++  - "#address-cells"
++  - "#size-cells"
++
++additionalProperties: false
++
++examples:
++  - |
++    hdmi_tx: hdmi-tx@c883a000 {
++        compatible = "amlogic,meson-gxbb-dw-hdmi", "amlogic,meson-gx-dw-hdmi";
++        reg = <0xc883a000 0x1c>;
++        interrupts = <57>;
++        resets = <&reset_apb>, <&reset_hdmitx>, <&reset_hdmitx_phy>;
++        reset-names = "hdmitx_apb", "hdmitx", "hdmitx_phy";
++        clocks = <&clk_isfr>, <&clk_iahb>, <&clk_venci>;
++        clock-names = "isfr", "iahb", "venci";
++        #address-cells = <1>;
++        #size-cells = <0>;
++
++        /* VPU VENC Input */
++        hdmi_tx_venc_port: port@0 {
++            reg = <0>;
++
++            hdmi_tx_in: endpoint {
++                remote-endpoint = <&hdmi_tx_out>;
++            };
++        };
++
++        /* TMDS Output */
++        hdmi_tx_tmds_port: port@1 {
++             reg = <1>;
++
++             hdmi_tx_tmds_out: endpoint {
++                 remote-endpoint = <&hdmi_connector_in>;
++             };
++        };
++    };
++
 -- 
 2.22.0
 
