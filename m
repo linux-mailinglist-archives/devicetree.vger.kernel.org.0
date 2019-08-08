@@ -2,105 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 46D3E866AF
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 18:10:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3FCE7866D8
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 18:20:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2404117AbfHHQKB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 12:10:01 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:39599 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1732662AbfHHQKB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 12:10:01 -0400
-Received: by mail-pl1-f193.google.com with SMTP id b7so43789923pls.6;
-        Thu, 08 Aug 2019 09:10:00 -0700 (PDT)
+        id S1732487AbfHHQUI (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 12:20:08 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:37612 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1730291AbfHHQUH (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 12:20:07 -0400
+Received: by mail-pf1-f195.google.com with SMTP id 19so44359863pfa.4
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 09:20:07 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=akVDmQLmyHVu/cQZFdUEQUlBMCsxiv2Zb1QwNgfTWp0=;
-        b=pvcFYY1Od9wReDUvHuU8dmSpig5/HjS1DYUd9dxkg8D21MWHGHWIqw+16Ce4JkZbxx
-         gBS9D1Tk8YZRyJbRl6J5wuteVd96GPqFNBoWzNtCDrBwEYTeYjRWcHu6gTRjKQj4gOc9
-         cOUycclyocPZLYfOw6j7GvYD4yJ0IrD4JtJfQ8GMhOw9BBDcNYVjmW8GvSuyJgQ8RZv+
-         /HJzN3Fe8VfDHQygWOGIe7NaxoExcqqDXs3aCn89Brou1gceCZmXrii+flx01ahASWzG
-         w81fdGupsOx3VVT6KbxY1s1ZMNmBe9WjxoVKpDT4ZABQOk0rVvdmgKvIyCgAVWtiIfc+
-         pb+w==
+        d=chromium.org; s=google;
+        h=message-id:mime-version:content-transfer-encoding:in-reply-to
+         :references:subject:from:cc:to:user-agent:date;
+        bh=rpT1/n0MtDKR55gc7Xe/1ERiGiwTe4vZMPU9Bfy10FI=;
+        b=Y7o7tDsMydMyUuzGRnboQKe/5DZGF0GAAcTEKQ3TnqBW9YBJW+NKiPXSdtZCCYObN8
+         AtJrE90vxGnVWdwPAxzaJhl9IPp4pUP4BUo49u+TH7K9mJ7N7xJ5Ne1r/mTSLgfDqOqe
+         KMeAzvYaE5+sipQTmnJqT9BRA14XUcjFtqt14=
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=akVDmQLmyHVu/cQZFdUEQUlBMCsxiv2Zb1QwNgfTWp0=;
-        b=ngKDj6DrQVJlCY6hdejY4i3I6xW3VRLBd2pN1mf/Ayg3EUJvTl9IzoMvnHNKZZLg2H
-         uSjHqYg1Sr3WFuG5RWkkgnYKsvo7owUGw66eBFKVAQJAM6zMYAgc5T6CtGH8EXMpMxF8
-         1T3dCLhqitFzI/Wx/070Zu8b7GsTgmZEWvYk1GNF7CQ9f2UatxngxowT7/+Wz7KVXkGq
-         +5uK30j2S+ypxYsIxBU1VbMLHVQZVdP9cUDTcqsR8i0YL2CGgSBdov2rheP2IJoDSGfR
-         r0Z4nIpJp1EN89+huTuAu8zLWnJ1a+NgwKErLgo6LYACSFjZiCy5I3TRo5litaR97MOv
-         f9vA==
-X-Gm-Message-State: APjAAAXipt4VF5MJyu3ymnD19+Hvh932L2Oy1pDRixOA8UA9VhH6HJgh
-        +W9JukHR5iO3npBh52l1bM4=
-X-Google-Smtp-Source: APXvYqzto2FY24twGWc6FKcHSuYLjATrFTxhX5jDOiNLzoC7sG+UZke5aXwynrLm9PvF9kqjrWjWWg==
-X-Received: by 2002:a17:902:5985:: with SMTP id p5mr14295703pli.177.1565280600398;
-        Thu, 08 Aug 2019 09:10:00 -0700 (PDT)
-Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
-        by smtp.gmail.com with ESMTPSA id g2sm115493792pfb.95.2019.08.08.09.09.59
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 08 Aug 2019 09:09:59 -0700 (PDT)
-Subject: Re: [PATCH] of/platform: Clean up a return type in of_link_property()
-To:     Dan Carpenter <dan.carpenter@oracle.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Saravana Kannan <saravanak@google.com>
-Cc:     Anton Vorontsov <anton@enomsg.org>,
-        Colin Cross <ccross@android.com>,
-        Tony Luck <tony.luck@intel.com>, devicetree@vger.kernel.org,
-        kernel-janitors@vger.kernel.org
-References: <20190808103207.GA30506@mwanda>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <b5afe4e9-db49-f50c-eb03-5d300a72e88b@gmail.com>
-Date:   Thu, 8 Aug 2019 09:09:58 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:message-id:mime-version
+         :content-transfer-encoding:in-reply-to:references:subject:from:cc:to
+         :user-agent:date;
+        bh=rpT1/n0MtDKR55gc7Xe/1ERiGiwTe4vZMPU9Bfy10FI=;
+        b=JJRMVOq/xFxEGXz1Fdkn+hxzc1Yi/OprF4EDDdcW+ACq0i+jmkESmTcjvoSvg79N7c
+         XZWr94XhoECtJ+G3td0nxGorisSLghEl1XLElggaqovvE7mmf/YxPA77iSpsJAYmUenV
+         wrGMClNLLshHXlOBAsOKd0CfgSLaL9EizWSBgKQ8sZcFy6vfkG8u56kXIyU4x3SxJ0el
+         VK+AYuSU2A7sMQ14IJoJP2rfsOcD72xLFOkcHnUwExOasIHa7auhmELbGNBl3ya2nekL
+         r3H+CmovQ4EFHKtCjkFmOxB6KXLqsJU4ILfv2Qh+nTEmipg0SO9fqe74RGNgHXcUfrTV
+         DXFQ==
+X-Gm-Message-State: APjAAAVlpdW7hibm1bXMZgh0Ub2L//Z0uhumCoIHvtPljtNgZ+ngQvEk
+        g8s3IP2pas0KJ+ka/y9oNRlY/A==
+X-Google-Smtp-Source: APXvYqwrRIJFaN3/EOnl4mURCxYQeFmoB2bV4p9L6PhJ6mv+tvNN2NH1QgEbMDZXoHTTiaqtDYC/uQ==
+X-Received: by 2002:a17:90a:c58e:: with SMTP id l14mr4875532pjt.104.1565281206991;
+        Thu, 08 Aug 2019 09:20:06 -0700 (PDT)
+Received: from chromium.org ([2620:15c:202:1:fa53:7765:582b:82b9])
+        by smtp.gmail.com with ESMTPSA id j6sm3065998pjd.19.2019.08.08.09.20.06
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Thu, 08 Aug 2019 09:20:06 -0700 (PDT)
+Message-ID: <5d4c4bb6.1c69fb81.db640.7518@mx.google.com>
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-In-Reply-To: <20190808103207.GA30506@mwanda>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190808061228.16573-2-mkshah@codeaurora.org>
+References: <20190808061228.16573-1-mkshah@codeaurora.org> <20190808061228.16573-2-mkshah@codeaurora.org>
+Subject: Re: [PATCH 1/2] dt-bindings: Introduce soc sleep stats bindings for Qualcomm SoCs
+From:   Stephen Boyd <swboyd@chromium.org>
+Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
+        bjorn.andersson@linaro.org, evgreen@chromium.org,
+        dianders@chromium.org, rnayak@codeaurora.org, ilina@codeaurora.org,
+        lsrao@codeaurora.org, mkshah@codeaurora.org,
+        devicetree@vger.kernel.org,
+        Mahesh Sivasubramanian <msivasub@codeaurora.org>
+To:     Maulik Shah <mkshah@codeaurora.org>, andy.gross@linaro.org,
+        david.brown@linaro.org, linux-arm-msm@vger.kernel.org
+User-Agent: alot/0.8.1
+Date:   Thu, 08 Aug 2019 09:20:04 -0700
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/8/19 3:32 AM, Dan Carpenter wrote:
-> This function is supposed to return zero on success and negative
-> error codes on failure but currently it returns true on failure.  The
-> caller only checks for zero and non-zero so this mixup doesn't cause any
-> runtime issues.
-> 
-> Fixes: 690ff7881b26 ("of/platform: Add functional dependency link from DT bindings")
-> Signed-off-by: Dan Carpenter <dan.carpenter@oracle.com>
+Quoting Maulik Shah (2019-08-07 23:12:27)
+> Add device binding documentation for Qualcomm Technology Inc's (QTI)
+> SoC sleep stats driver. The driver is used for displaying SoC sleep
+> statistic maintained by Always On Processor or Resource Power Manager.
+>=20
+> Cc: devicetree@vger.kernel.org
+> Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
+> Signed-off-by: Lina Iyer <ilina@codeaurora.org>
+> Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
+
+Your SoB chain is odd. The author is Mahesh? Otherwise, use the
+Co-Developed-by tag.
+
 > ---
->  drivers/of/platform.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/of/platform.c b/drivers/of/platform.c
-> index 21838226d68a..86fb8ab8c012 100644
-> --- a/drivers/of/platform.c
-> +++ b/drivers/of/platform.c
-> @@ -625,7 +625,7 @@ static const struct supplier_bindings bindings[] = {
->  	{ },
->  };
->  
-> -static bool of_link_property(struct device *dev, struct device_node *con_np,
-> +static int of_link_property(struct device *dev, struct device_node *con_np,
->  			     const char *prop)
->  {
->  	struct device_node *phandle;
-> 
+>  .../bindings/soc/qcom/soc-sleep-stats.txt     | 36 +++++++++++++++++++
+>  1 file changed, 36 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-=
+stats.txt
+>=20
+> diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.t=
+xt b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt
+> new file mode 100644
+> index 000000000000..ee40687ded34
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt
+> @@ -0,0 +1,36 @@
+> +* SoC Sleep Stats
+> +
+> +Always On Processor/Resource Power Manager maintains statistics of the S=
+oC
+> +sleep modes involving lowering or powering down of the backbone rails - =
+Cx
 
-Hi Dan,
+What is a 'backbone' rail?
 
+> +and Mx and the oscillator clock, XO.
 
-Thanks for catching this.
+Drop the comma? XO is the oscillator clock.
 
-Another patch was submitted to fix this just before your patch.
+> +
+> +Statistics includes SoC sleep mode type, number of times low power mode =
+were
+> +entered, time of last entry, time of last exit and accumulated sleep dur=
+ation.
+> +SoC Sleep Stats driver provides sysfs interface to display this informat=
+ion.
 
--Frank
+Can this document be YAML? Then it can be validated.
+
+> +
+> +PROPERTIES
+> +
+> +- compatible:
+> +       Usage: required
+> +       Value type: <string>
+> +       Definition: Should be "qcom,rpmh-sleep-stats" or "qcom,rpm-sleep-=
+stats".
+> +
+> +- reg:
+> +       Usage: required
+> +       Value type: <prop-encoded-array>
+> +       Definition: The base address on the Always On Processor or Resour=
+ce Power
+> +                   Manager from where the stats are read.
+> +
+> +EXAMPLE 1:
+> +
+> +       rpmh_sleep_stats: soc-sleep-stats@c3f0000 {
+> +               compatible =3D "qcom,rpmh-sleep-stats";
+> +               reg =3D <0 0xc3f0000 0 0x400>;
+
+Is this memory region in DDR? Or some specific IMEM location? I wonder
+if it would be better to just have a pointer from the RPM node to this
+memory region and then populate some stats if so.
+
+> +       };
+> +
