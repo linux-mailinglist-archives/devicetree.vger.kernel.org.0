@@ -2,128 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8864886709
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 18:26:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8EDD286714
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 18:29:21 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1730291AbfHHQ0b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 12:26:31 -0400
-Received: from relay4-d.mail.gandi.net ([217.70.183.196]:32799 "EHLO
-        relay4-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729925AbfHHQ0b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 12:26:31 -0400
-X-Originating-IP: 88.168.111.231
-Received: from localhost (lpr83-1-88-168-111-231.fbx.proxad.net [88.168.111.231])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay4-d.mail.gandi.net (Postfix) with ESMTPSA id 292A3E0008;
-        Thu,  8 Aug 2019 16:26:29 +0000 (UTC)
-Date:   Thu, 8 Aug 2019 18:26:28 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Vasily Khoruzhick <anarsoul@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        "Jared D . McNeill" <jmcneill@netbsd.org>
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
-Message-ID: <20190808162628.pthvy3tgf3naj76s@flea>
-References: <20190806140135.4739-1-anarsoul@gmail.com>
- <89402d22-d432-9551-e787-c8ede16dbe5f@arm.com>
- <CA+E=qVfh7mirJhRsDTeuAVgG55ia936uFSFVKR0N5Pn4GCF1UA@mail.gmail.com>
- <E1hv5vZ-0000jN-M8@stardust.g4.wien.funkfeuer.at>
- <CA+E=qVdHOtebR6xjpwTY_Whp0cHLtv82YULmxLPSEzdLN9TnVg@mail.gmail.com>
- <36e60078-7dd5-9c07-ffa1-6092d8c70fa8@arm.com>
- <CA+E=qVeAR4AFN99ZVy8EZLW6p_8ucTewOdMis37wnpV3DObaGg@mail.gmail.com>
- <20190807115614.phm7sbyae6yajkug@flea>
- <CA+E=qVdh3MHMsEC9XKe5-7O8fGTHFh76WLOgVf+PZPv7c4JE9w@mail.gmail.com>
+        id S1732698AbfHHQ3U (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 12:29:20 -0400
+Received: from mga07.intel.com ([134.134.136.100]:64301 "EHLO mga07.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725535AbfHHQ3U (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Aug 2019 12:29:20 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga002.fm.intel.com ([10.253.24.26])
+  by orsmga105.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Aug 2019 09:29:20 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,362,1559545200"; 
+   d="scan'208";a="203633797"
+Received: from linux.intel.com ([10.54.29.200])
+  by fmsmga002.fm.intel.com with ESMTP; 08 Aug 2019 09:29:19 -0700
+Received: from kyablokx-mobl.amr.corp.intel.com (unknown [10.251.19.34])
+        by linux.intel.com (Postfix) with ESMTP id 0EA5F58044F;
+        Thu,  8 Aug 2019 09:29:17 -0700 (PDT)
+Subject: Re: [alsa-devel] [PATCH v2 4/4] ASoC: codecs: add wsa881x amplifier
+ support
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        vkoul@kernel.org, broonie@kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, plai@codeaurora.org,
+        linux-kernel@vger.kernel.org, lgirdwood@gmail.com,
+        robh+dt@kernel.org
+References: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
+ <20190808144504.24823-5-srinivas.kandagatla@linaro.org>
+ <3ad15652-9d6c-11e4-7cc3-0f076c6841bb@linux.intel.com>
+ <32516aae-8a43-6a74-c564-92dea8ff6e53@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <4e60b92f-a32e-671c-3b1b-9b1ccec4f9b5@linux.intel.com>
+Date:   Thu, 8 Aug 2019 11:29:20 -0500
+User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:60.0)
+ Gecko/20100101 Thunderbird/60.8.0
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="v2jptlbwy23oihws"
-Content-Disposition: inline
-In-Reply-To: <CA+E=qVdh3MHMsEC9XKe5-7O8fGTHFh76WLOgVf+PZPv7c4JE9w@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+In-Reply-To: <32516aae-8a43-6a74-c564-92dea8ff6e53@linaro.org>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---v2jptlbwy23oihws
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
+>>> +/* 4 ports */
+>>> +static struct sdw_dpn_prop wsa_sink_dpn_prop[WSA881X_MAX_SWR_PORTS] = {
+>>> +    {
+>>> +        /* DAC */
+>>> +        .num = 1,
+>>> +        .type = SDW_DPN_SIMPLE,
+>>
+>> IIRC we added the REDUCED type in SoundWire 1.1 to cover the PDM case 
+>> with channel packing (or was it grouping) used by Qualcomm. I am not 
+>> sure the SIMPLE type works?
+> grouping I guess.
+> 
+> This is a simplified data port as there is no DPn_OffsetCtrl2 register 
+> implemented.
 
-On Wed, Aug 07, 2019 at 10:36:08AM -0700, Vasily Khoruzhick wrote:
-> On Wed, Aug 7, 2019 at 4:56 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> >
-> > On Tue, Aug 06, 2019 at 07:39:26PM -0700, Vasily Khoruzhick wrote:
-> > > On Tue, Aug 6, 2019 at 2:14 PM Robin Murphy <robin.murphy@arm.com> wrote:
-> > > >
-> > > > On 2019-08-06 9:52 pm, Vasily Khoruzhick wrote:
-> > > > > On Tue, Aug 6, 2019 at 1:19 PM Harald Geyer <harald@ccbib.org> wrote:
-> > > > >>
-> > > > >> Vasily Khoruzhick writes:
-> > > > >>> On Tue, Aug 6, 2019 at 7:35 AM Robin Murphy <robin.murphy@arm.com> wrote:
-> > > > >>>>
-> > > > >>>> On 06/08/2019 15:01, Vasily Khoruzhick wrote:
-> > > > >>>>> Looks like PMU in A64 is broken, it generates no interrupts at all and
-> > > > >>>>> as result 'perf top' shows no events.
-> > > > >>>>
-> > > > >>>> Does something like 'perf stat sleep 1' at least count cycles correctly?
-> > > > >>>> It could well just be that the interrupt numbers are wrong...
-> > > > >>>
-> > > > >>> Looks like it does, at least result looks plausible:
-> > > > >>
-> > > > >> I'm using perf stat regularly (cache benchmarks) and it works fine.
-> > > > >>
-> > > > >> Unfortunately I wasn't aware that perf stat is a poor test for
-> > > > >> the interrupts part of the node, when I added it. So I'm not too
-> > > > >> surprised I got it wrong.
-> > > > >>
-> > > > >> However, it would be unfortunate if the node got removed completely,
-> > > > >> because perf stat would not work anymore. Maybe we can only remove
-> > > > >> the interrupts or just fix them even if the HW doesn't work?
-> > > > >
-> > > > > I'm not familiar with PMU driver. Is it possible to get it working
-> > > > > without interrupts?
-> > > >
-> > > > Yup - you get a grumpy message from the driver, it will refuse sampling
-> > > > events (the ones which weren't working anyway), and if you measure
-> > > > anything for long enough that a counter overflows you'll get wonky
-> > > > results. But for counting hardware events over relatively short periods
-> > > > it'll still do the job.
-> > >
-> > > I tried to drop interrupts completely from the node but 'perf top' is
-> > > still broken. Though now in different way: it complains "cycles: PMU
-> > > Hardware doesn't support sampling/overflow-interrupts. Try 'perf
-> > > stat'"
-> >
-> > I have no idea if that's the culprit, but what is the state of the
-> > 0x09010000 register?
->
-> What register is that and how do I check it?
-
-It's in the CPUX Configuration block, and the bits are labelled as CPU
-Debug Reset.
-
-And if you have busybox, you can use devmem.
-
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---v2jptlbwy23oihws
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXUxNNAAKCRDj7w1vZxhR
-xStDAP98jP1Kcn6msHdImj48XPiZcHTbCuRrjrwRFlwdpheW4wEA/tNBydnrBBHr
-UrB0GkeJjnGzoAR2JgDF28i300VyiQc=
-=4dGP
------END PGP SIGNATURE-----
-
---v2jptlbwy23oihws--
+ok, for the REDUCED type it's required to have BlockPackingMode and 
+OffsetCtrl2, so it does not apply here. Thanks for confirming.
