@@ -2,123 +2,163 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BF2E85A56
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 08:13:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BF8E685AB2
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 08:27:52 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1731077AbfHHGN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 02:13:26 -0400
-Received: from smtp.codeaurora.org ([198.145.29.96]:46162 "EHLO
-        smtp.codeaurora.org" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730694AbfHHGN0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 02:13:26 -0400
-Received: by smtp.codeaurora.org (Postfix, from userid 1000)
-        id 0F8166050D; Thu,  8 Aug 2019 06:13:24 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1565244804;
-        bh=JhHYfYaCvSYgvfGbhWmRAsUEmiyOd+CAHB6FO6d7I58=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=A6RgqiNagleLp6PaLgGsFEJzHmpHqH5kEQd2XAxSN7ZIObnW/ra43abfdUaZSw29f
-         ZSlNKpXhQ9jsU1GmQBCeH366APPix6LPQEGtE5jFQSKG6ShMOdjuMCsQyJqlIdcst/
-         SkIybOgbVzxu3HEArQh1JpZkJTI08X850cv6pnN0=
-X-Spam-Checker-Version: SpamAssassin 3.4.0 (2014-02-07) on
-        pdx-caf-mail.web.codeaurora.org
-X-Spam-Level: 
-X-Spam-Status: No, score=-2.7 required=2.0 tests=ALL_TRUSTED,BAYES_00,
-        DKIM_INVALID,DKIM_SIGNED,SPF_NONE autolearn=no autolearn_force=no
-        version=3.4.0
-Received: from mkshah-linux.qualcomm.com (blr-c-bdr-fw-01_globalnat_allzones-outside.qualcomm.com [103.229.19.19])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-SHA256 (128/128 bits))
-        (No client certificate requested)
-        (Authenticated sender: mkshah@smtp.codeaurora.org)
-        by smtp.codeaurora.org (Postfix) with ESMTPSA id 0B33E6083E;
-        Thu,  8 Aug 2019 06:13:18 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=codeaurora.org;
-        s=default; t=1565244803;
-        bh=JhHYfYaCvSYgvfGbhWmRAsUEmiyOd+CAHB6FO6d7I58=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=Lzeav3yWFeFeQoPmkybBHxlKlXu5wvQoAu7nSEkUomDz30C2PzsamTaDPnntp1btb
-         ZDXaxZsV8JdeGtBMCXIrA/No9rrWG5Q9/HNaNq/bdeo6JTvJlw/oPRRZODDsSoTkhS
-         hgRQ35vTTQtwaA1Ay189c/0qsueo9yxaAVN77rks=
-DMARC-Filter: OpenDMARC Filter v1.3.2 smtp.codeaurora.org 0B33E6083E
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; dmarc=none (p=none dis=none) header.from=codeaurora.org
-Authentication-Results: pdx-caf-mail.web.codeaurora.org; spf=none smtp.mailfrom=mkshah@codeaurora.org
-From:   Maulik Shah <mkshah@codeaurora.org>
-To:     andy.gross@linaro.org, david.brown@linaro.org,
-        linux-arm-msm@vger.kernel.org
-Cc:     linux-kernel@vger.kernel.org, linux-pm@vger.kernel.org,
-        bjorn.andersson@linaro.org, evgreen@chromium.org,
-        dianders@chromium.org, swboyd@chromium.org, rnayak@codeaurora.org,
-        ilina@codeaurora.org, lsrao@codeaurora.org, mkshah@codeaurora.org,
-        devicetree@vger.kernel.org,
-        Mahesh Sivasubramanian <msivasub@codeaurora.org>
-Subject: [PATCH 1/2] dt-bindings: Introduce soc sleep stats bindings for Qualcomm SoCs
-Date:   Thu,  8 Aug 2019 11:42:27 +0530
-Message-Id: <20190808061228.16573-2-mkshah@codeaurora.org>
-X-Mailer: git-send-email 2.22.0
-In-Reply-To: <20190808061228.16573-1-mkshah@codeaurora.org>
-References: <20190808061228.16573-1-mkshah@codeaurora.org>
+        id S1726475AbfHHG1w (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 02:27:52 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:43727 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725817AbfHHG1v (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 02:27:51 -0400
+Received: by mail-wr1-f66.google.com with SMTP id p13so19093560wru.10;
+        Wed, 07 Aug 2019 23:27:50 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=pmLe+2hh12AV2fWDLuCLoZwfalLPQvLzD4g62m50b0k=;
+        b=CEHHtXeFjhD+tzAhZywdJN5LwSzFPBqCcPSeVgeVB0ZC8DV1HXnAJ6FiFTZsAFvsVn
+         wdncjRt3iob6EbqT5FgWKKUJ+mD55V03FSv8G2E4O0KfIbzha6KDxSJO1QE7DqUl2Goy
+         uSwk8JviSdCfCLYjlcNRnTddNDKJscCudG86FTGDWPEOMFmapV90N2vff9vf/4ichait
+         OfP6P4oxvTaHHvCb1GV+2ko5/wBg+MmCPqbc33E98ssCFewIZrEM0Q0pGklNxnvPIUKP
+         savgTzmYGDzDtiRd1TALzqoYIJ/jRrjeU9XCuM2iOdjZNAH0mtqNd/T8K7ILqvY9q6rD
+         KPEw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=pmLe+2hh12AV2fWDLuCLoZwfalLPQvLzD4g62m50b0k=;
+        b=N+wWq6jpZFv5/C8xQ7MyWfNctCcWAYZHYnucZs/1T6N5j/Unj1WBqP2V2KnK18j4z/
+         qMSYPDTDaUpoqVd2BUfUyFIterNuo/0P2YI/JBgsUsJNnUIc0QA6veijS/++yDehhFpm
+         YzC6RJlyMTotTniTr6wyNOjMV7XXLwUfEEZMIZ2ZF6HYDlOl+xytEHRgwKn87AUzEVFX
+         5iTlOy+DW01OVox4mlLvJnO8i2PjpydhYlpZ1o4bdfCGZ8xrk/q2dcRG/kp9bLOVwIFE
+         ta7hH7/5prylIuJDkrBh7WTnHxteSar0cJM+POOl5aLsq7/tYehkrVvEepuB6d6elCcr
+         vhpw==
+X-Gm-Message-State: APjAAAXgcQAl6i709nrpBagUE59zAibfQb080zeiP16wZsHEsuy5Ykcx
+        Mmc7Wo0HjaHYHDZWLev77kZSfUf5C5KlMrXiqYK2mGhdCyE=
+X-Google-Smtp-Source: APXvYqyhsrFyIH7cz50WRIDklFfrjHJbj5ngQDSOUJ0FlFhaOO1kHA+UywUlX5g2SYIxq9GcmgjdbYu20O/31kXZY3E=
+X-Received: by 2002:a5d:46cf:: with SMTP id g15mr15347063wrs.93.1565245669397;
+ Wed, 07 Aug 2019 23:27:49 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+References: <20190723084104.12639-1-daniel.baluta@nxp.com> <20190723084104.12639-4-daniel.baluta@nxp.com>
+ <d85909d6-c7cb-c64b-dfa9-6cee6c0da2cb@linux.intel.com> <CAEnQRZDr+gj_eiESLNbVUVy1rreRE1nnDgtb3g=CjaRF5Aq9Vw@mail.gmail.com>
+ <CAEnQRZDctjdzQ2RjJXhQh+s=d0y_j3Taa51hDaR4bqJ62C=7iQ@mail.gmail.com>
+ <85b4a2c4-761e-bdcf-f05e-2fb16c06f11e@linux.intel.com> <CAEnQRZCE3mxorYpL_nPXiU4MezGDaqUfuFDx8ci0WdXzDa68JA@mail.gmail.com>
+In-Reply-To: <CAEnQRZCE3mxorYpL_nPXiU4MezGDaqUfuFDx8ci0WdXzDa68JA@mail.gmail.com>
+From:   Daniel Baluta <daniel.baluta@gmail.com>
+Date:   Thu, 8 Aug 2019 09:27:37 +0300
+Message-ID: <CAEnQRZCmKXNxx=mjHRcn6rYQJxzaaPLL4WQf79RZ5Aqdzqcu3Q@mail.gmail.com>
+Subject: Re: [Sound-open-firmware] [PATCH v2 3/5] ASoC: SOF: Add DT DSP device support
+To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Cc:     Daniel Baluta <daniel.baluta@nxp.com>,
+        Marco Felsch <m.felsch@pengutronix.de>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Aisheng Dong <aisheng.dong@nxp.com>,
+        Peng Fan <peng.fan@nxp.com>, Anson Huang <anson.huang@nxp.com>,
+        Devicetree List <devicetree@vger.kernel.org>,
+        "S.j. Wang" <shengjiu.wang@nxp.com>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        Paul Olaru <paul.olaru@nxp.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        dl-linux-imx <linux-imx@nxp.com>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Leonard Crestez <leonard.crestez@nxp.com>,
+        Fabio Estevam <festevam@gmail.com>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        sound-open-firmware@alsa-project.org
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add device binding documentation for Qualcomm Technology Inc's (QTI)
-SoC sleep stats driver. The driver is used for displaying SoC sleep
-statistic maintained by Always On Processor or Resource Power Manager.
+On Wed, Aug 7, 2019 at 6:28 PM Daniel Baluta <daniel.baluta@gmail.com> wrot=
+e:
+>
+> On Wed, Aug 7, 2019 at 6:22 PM Pierre-Louis Bossart
+> <pierre-louis.bossart@linux.intel.com> wrote:
+> >
+> >
+> > >>>> +static int sof_dt_probe(struct platform_device *pdev)
+> > >>>> +{
+> > >>>> +     struct device *dev =3D &pdev->dev;
+> > >>>> +     const struct sof_dev_desc *desc;
+> > >>>> +     /*TODO: create a generic snd_soc_xxx_mach */
+> > >>>> +     struct snd_soc_acpi_mach *mach;
+> > >>>
+> > >>> I wonder if you really need to use the same structures. For Intel w=
+e get
+> > >>> absolutely zero info from the firmware so rely on an ACPI codec ID =
+as a
+> > >>> key to find information on which firmware and topology to use, and =
+which
+> > >>> machine driver to load. You could have all this information in a DT=
+ blob?
+> > >>
+> > >> Yes. I see your point. I will still need to make a generic structure=
+ for
+> > >> snd_soc_acpi_mach so that everyone can use sof_nocodec_setup functio=
+n.
+> > >>
+> > >> Maybe something like this:
+> > >>
+> > >> struct snd_soc_mach {
+> > >>    union {
+> > >>    struct snd_soc_acpi_mach acpi_mach;
+> > >>    struct snd_soc_of_mach of_mach;
+> > >>    }
+> > >> };
+> > >>
+> > >> and then change the prototype of sof_nocodec_setup.
+> > >
+> > > Hi Pierre,
+> > >
+> > > I fixed all the comments except the one above. Replacing snd_soc_acpi=
+_mach
+> > > with a generic snd_soc_mach is not trivial task.
+> > >
+> > > I wonder if it is acceptable to get the initial patches as they are
+> > > now and later switch to
+> > > generic ACPI/OF abstraction.
+> > >
+> > > Asking this because for the moment on the i.MX side I have only
+> > > implemented no codec
+> > > version and we don't probe any of the machine drivers we have.
+> > >
+> > > So, there is this only one member of snd_soc_acpi_mach that imx
+> > > version is making use of:
+> > >
+> > >    mach->drv_name =3D "sof-nocodec";
+> > >
+> > > That's all.
+> > >
+> > > I think the change as it is now is very clean and non-intrusive. Late=
+r
+> > > we will get options to
+> > > read firmware name and stuff from DT.
+> > >
+> > > Anyhow, I don't think we can get rid of snd_dev_desc structure on
+> > > i.MX. This will be used
+> > > to store the information read from DT:
+> > >
+> > > static struct sof_dev_desc sof_of_imx8qxp_desc =3D {
+> > > =C2=BB       .default_fw_path =3D "imx/sof",
+> > > =C2=BB       .default_tplg_path =3D "imx/sof-tplg",
+> > > =C2=BB       .nocodec_fw_filename =3D "sof-imx8.ri",
+> > > =C2=BB       .nocodec_tplg_filename =3D "sof-imx8-nocodec.tplg",
+> > > =C2=BB       .ops =3D &sof_imx8_ops,
+> > > };
+> > >
+> > > For the moment we will only use the default values.
+> >
+> > Yes, that's fine for now. If you don't have a real machine driver then
+> > there's nothing urgent to change.
+> >
+> > Is the new version on GitHub?
+>
+> Not yet, will push it today and ping you.
 
-Cc: devicetree@vger.kernel.org
-Signed-off-by: Mahesh Sivasubramanian <msivasub@codeaurora.org>
-Signed-off-by: Lina Iyer <ilina@codeaurora.org>
-Signed-off-by: Maulik Shah <mkshah@codeaurora.org>
----
- .../bindings/soc/qcom/soc-sleep-stats.txt     | 36 +++++++++++++++++++
- 1 file changed, 36 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt
-
-diff --git a/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt
-new file mode 100644
-index 000000000000..ee40687ded34
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soc/qcom/soc-sleep-stats.txt
-@@ -0,0 +1,36 @@
-+* SoC Sleep Stats
-+
-+Always On Processor/Resource Power Manager maintains statistics of the SoC
-+sleep modes involving lowering or powering down of the backbone rails - Cx
-+and Mx and the oscillator clock, XO.
-+
-+Statistics includes SoC sleep mode type, number of times low power mode were
-+entered, time of last entry, time of last exit and accumulated sleep duration.
-+SoC Sleep Stats driver provides sysfs interface to display this information.
-+
-+PROPERTIES
-+
-+- compatible:
-+	Usage: required
-+	Value type: <string>
-+	Definition: Should be "qcom,rpmh-sleep-stats" or "qcom,rpm-sleep-stats".
-+
-+- reg:
-+	Usage: required
-+	Value type: <prop-encoded-array>
-+	Definition: The base address on the Always On Processor or Resource Power
-+		    Manager from where the stats are read.
-+
-+EXAMPLE 1:
-+
-+	rpmh_sleep_stats: soc-sleep-stats@c3f0000 {
-+		compatible = "qcom,rpmh-sleep-stats";
-+		reg = <0 0xc3f0000 0 0x400>;
-+	};
-+
-+EXAMPLE 2:
-+
-+	rpm_sleep_stats: soc-sleep-stats@4690000 {
-+		compatible = "qcom,rpm-sleep-stats";
-+		reg = <0 0x04690000 0 0x400>;
-+	};
--- 
-QUALCOMM INDIA, on behalf of Qualcomm Innovation Center, Inc. is a member of the Code Aurora Forum, hosted by The Linux Foundation.
-
+PR updated: https://github.com/thesofproject/linux/pull/1048
