@@ -2,162 +2,204 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29E188657C
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 17:17:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A2CD786584
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 17:18:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1732344AbfHHPRf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 11:17:35 -0400
-Received: from mail-wm1-f67.google.com ([209.85.128.67]:52851 "EHLO
-        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1730678AbfHHPRf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 11:17:35 -0400
-Received: by mail-wm1-f67.google.com with SMTP id s3so2800015wms.2
-        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 08:17:34 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=JH79KLt/cUnUFrKqTtYF5L+pOS2C3hiTwjXkizwU6G0=;
-        b=RPKemEq/ngZ4XjkAzy5p6s0pFtRFtPfOVsD/+Z5n0ckPkUjKaDVfcUKCJ6xU31lahb
-         dXbkMwZ95S1PMkjcpZ2UobVQneuuBSFUepU8Rp973z7umkq9ItwCOxA/6VIZBos0hZTE
-         JKSG7rIvsM+ceVU4YtEcfqSC9mIrKLhhLhQC6cBP6CLrjbcSC6MaXTJD3An8duBbRPgz
-         PUv0ohwddDt3Yp7z5E8VjLbPZTzMzycd/B/lhdU7/smHV3qswv6W7LjBXIZMQzJ1pmiu
-         aeOV4/Fx6DvkZTOqR+stPYzRw4YvqArNDGJZInzd6i6fAYf1Ntp2h06vXV9XtBcF2iQl
-         BviQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=JH79KLt/cUnUFrKqTtYF5L+pOS2C3hiTwjXkizwU6G0=;
-        b=HMURzf3F/Fm+TPM11Ow1JVMP8C8o4aNyA656ShCJAG24h5hbfe93KTDiQQLw5uWycO
-         lr7cq0OPZOn+OneP2LtrdL47Qlxz6vNmx5E3JLWDBp/Rt3IcR9WmMfugBgfC2t0W2ZDw
-         F/FL/Yov/kGoLFg40xw1ZYL2KJLCPR+kqgP2/rE8TTsXFg5PFOV4KMUBZHE6IDLm4Vdj
-         L5PckiYjOYBlADdT7vmISQqhF06S0YGzDaPkNQGIQF+zAEoBgzszZFuV03/eNSyqbt5Z
-         NF4g63CQtnxVEVBQZ6G4Ga3Uwuatz+9G62tuqYnjPxYm1oDVU0Os8uJpspa1ZKR62RbX
-         98dg==
-X-Gm-Message-State: APjAAAX3KL6ReWECE2ZBrPnsdtNeIXa1RIZ9dG/GopeBKxuNgwLTk4NH
-        4b/QBN5JTam2/uOQ5UAxzbIzmg==
-X-Google-Smtp-Source: APXvYqyrp7wFg8Mu3fozGa9Vv2k13JVkluOFUNFjwI6aSKz9AEJVqZgF8MJw6L5ZWJ419QegEd1mNQ==
-X-Received: by 2002:a05:600c:225a:: with SMTP id a26mr5268987wmm.81.1565277453643;
-        Thu, 08 Aug 2019 08:17:33 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id t19sm2992693wmi.29.2019.08.08.08.17.32
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Thu, 08 Aug 2019 08:17:32 -0700 (PDT)
-Subject: Re: [PATCH v2 2/4] soundwire: core: add device tree support for slave
- devices
-To:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        id S1732634AbfHHPSz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 11:18:55 -0400
+Received: from mga02.intel.com ([134.134.136.20]:2120 "EHLO mga02.intel.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1732477AbfHHPSz (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Thu, 8 Aug 2019 11:18:55 -0400
+X-Amp-Result: SKIPPED(no attachment in message)
+X-Amp-File-Uploaded: False
+Received: from fmsmga003.fm.intel.com ([10.253.24.29])
+  by orsmga101.jf.intel.com with ESMTP/TLS/DHE-RSA-AES256-GCM-SHA384; 08 Aug 2019 08:18:54 -0700
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="5.64,361,1559545200"; 
+   d="scan'208";a="182622610"
+Received: from spenceke-mobl1.amr.corp.intel.com (HELO [10.251.157.200]) ([10.251.157.200])
+  by FMSMGA003.fm.intel.com with ESMTP; 08 Aug 2019 08:18:53 -0700
+Subject: Re: [alsa-devel] [PATCH v2 4/4] ASoC: codecs: add wsa881x amplifier
+ support
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         vkoul@kernel.org, broonie@kernel.org
-Cc:     bgoswami@codeaurora.org, plai@codeaurora.org, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
+Cc:     devicetree@vger.kernel.org, alsa-devel@alsa-project.org,
+        bgoswami@codeaurora.org, linux-kernel@vger.kernel.org,
+        plai@codeaurora.org, lgirdwood@gmail.com, robh+dt@kernel.org
 References: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
- <20190808144504.24823-3-srinivas.kandagatla@linaro.org>
- <42ca4170-0fa0-6951-f568-89a05c095d5a@linux.intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <564f5fa4-59ec-b4e5-a7a5-29dee99039b3@linaro.org>
-Date:   Thu, 8 Aug 2019 16:17:32 +0100
+ <20190808144504.24823-5-srinivas.kandagatla@linaro.org>
+From:   Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>
+Message-ID: <3ad15652-9d6c-11e4-7cc3-0f076c6841bb@linux.intel.com>
+Date:   Thu, 8 Aug 2019 10:18:53 -0500
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <42ca4170-0fa0-6951-f568-89a05c095d5a@linux.intel.com>
+In-Reply-To: <20190808144504.24823-5-srinivas.kandagatla@linaro.org>
 Content-Type: text/plain; charset=utf-8; format=flowed
 Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for taking time to review.
 
-On 08/08/2019 16:00, Pierre-Louis Bossart wrote:
-> 
->> @@ -35,6 +36,7 @@ static int sdw_slave_add(struct sdw_bus *bus,
->>       slave->dev.release = sdw_slave_release;
->>       slave->dev.bus = &sdw_bus_type;
->> +    slave->dev.of_node = of_node_get(to_of_node(fwnode));
-> 
-> shouldn't this protected by
-> #if IS_ENABLED(CONFIG_OF) ?
-> 
-These macros and functions have dummy entries, so it should not be an issue.
-I did build soundwire with i386_defconfig with no issues.
+> +/* 4 ports */
+> +static struct sdw_dpn_prop wsa_sink_dpn_prop[WSA881X_MAX_SWR_PORTS] = {
+> +	{
+> +		/* DAC */
+> +		.num = 1,
+> +		.type = SDW_DPN_SIMPLE,
 
->>       slave->bus = bus;
->>       slave->status = SDW_SLAVE_UNATTACHED;
->>       slave->dev_num = 0;
->> @@ -112,3 +114,48 @@ int sdw_acpi_find_slaves(struct sdw_bus *bus)
->>   }
->>   #endif
->> +
->> +/*
->> + * sdw_of_find_slaves() - Find Slave devices in master device tree node
->> + * @bus: SDW bus instance
->> + *
->> + * Scans Master DT node for SDW child Slave devices and registers it.
->> + */
->> +int sdw_of_find_slaves(struct sdw_bus *bus)
->> +{
->> +    struct device *dev = bus->dev;
->> +    struct device_node *node;
->> +
->> +    for_each_child_of_node(bus->dev->of_node, node) {
->> +        struct sdw_slave_id id;
->> +        const char *compat = NULL;
->> +        int unique_id, ret;
->> +        int ver, mfg_id, part_id, class_id;
->> +
->> +        compat = of_get_property(node, "compatible", NULL);
->> +        if (!compat)
->> +            continue;
->> +
->> +        ret = sscanf(compat, "sdw%x,%x,%x,%x",
->> +                 &ver, &mfg_id, &part_id, &class_id);
->> +        if (ret != 4) {
->> +            dev_err(dev, "Manf ID & Product code not found %s\n",
->> +                compat);
->> +            continue;
->> +        }
->> +
->> +        ret = of_property_read_u32(node, "sdw-instance-id", &unique_id);
->> +        if (ret) {
->> +            dev_err(dev, "Instance id not found:%d\n", ret);
->> +            continue;
+IIRC we added the REDUCED type in SoundWire 1.1 to cover the PDM case 
+with channel packing (or was it grouping) used by Qualcomm. I am not 
+sure the SIMPLE type works?
+
+> +		.min_ch = 1,
+> +		.max_ch = 8,
+> +		.simple_ch_prep_sm = true,
+> +	}, {
+> +		/* COMP */
+> +		.num = 2,
+> +		.type = SDW_DPN_SIMPLE,
+> +		.min_ch = 1,
+> +		.max_ch = 8,
+> +		.simple_ch_prep_sm = true,
+> +	}, {
+> +		/* BOOST */
+> +		.num = 3,
+> +		.type = SDW_DPN_SIMPLE,
+> +		.min_ch = 1,
+> +		.max_ch = 8,
+> +		.simple_ch_prep_sm = true,
+> +	}, {
+> +		/* VISENSE */
+> +		.num = 4,
+> +		.type = SDW_DPN_SIMPLE,
+> +		.min_ch = 1,
+> +		.max_ch = 8,
+> +		.simple_ch_prep_sm = true,
+> +	}
+> +};
+
+> +static int wsa881x_update_status(struct sdw_slave *slave,
+> +				 enum sdw_slave_status status)
+> +{
+> +	struct wsa881x_priv *wsa881x = dev_get_drvdata(&slave->dev);
+> +
+> +	if (status == SDW_SLAVE_ATTACHED) {
+
+there is an ambiguity here, the Slave can be attached but as device0 
+(not enumerated). We should check dev_num > 0
+
+> +		if (!wsa881x->regmap) {
+> +			wsa881x->regmap = devm_regmap_init_sdw(slave,
+> +						       &wsa881x_regmap_config);
+> +			if (IS_ERR(wsa881x->regmap)) {
+> +				dev_err(&slave->dev, "regmap_init failed\n");
+> +				return PTR_ERR(wsa881x->regmap);
+> +			}
+> +		}
+> +
+> +		return snd_soc_register_component(&slave->dev,
+> +						  &wsa881x_component_drv,
+> +						  NULL, 0);
+> +	} else if (status == SDW_SLAVE_UNATTACHED) {
+> +		snd_soc_unregister_component(&slave->dev);
+
+the update_status() is supposed to be called based on bus events, it'd 
+be very odd to register/unregister the component itself dynamically. In 
+our existing Realtek-based solutions the register_component() is called 
+in the probe function (and unregister_component() in remove). We do the 
+inits when the Slave becomes attached but the component is already 
+registered.
+
+> +	}
+> +
+> +	return 0;
+> +}
+> +
+> +static int wsa881x_port_prep(struct sdw_slave *slave,
+> +			     struct sdw_prepare_ch *prepare_ch,
+> +			     enum sdw_port_prep_ops state)
+> +{
+> +	struct wsa881x_priv *wsa881x = dev_get_drvdata(&slave->dev);
+> +
+> +	if (state == SDW_OPS_PORT_POST_PREP)
+> +		wsa881x->port_prepared[prepare_ch->num - 1] = true;
+> +	else
+> +		wsa881x->port_prepared[prepare_ch->num - 1] = false;
+> +
+> +	return 0;
+> +}
+> +
+> +static int wsa881x_bus_config(struct sdw_slave *slave,
+> +			      struct sdw_bus_params *params)
+> +{
+> +	sdw_write(slave, SWRS_SCP_HOST_CLK_DIV2_CTL_BANK(params->next_bank),
+> +		  0x01);
+> +
+> +	return 0;
+> +}
+> +
+> +static struct sdw_slave_ops wsa881x_slave_ops = {
+> +	.update_status = wsa881x_update_status,
+> +	.bus_config = wsa881x_bus_config,
+> +	.port_prep = wsa881x_port_prep,
+> +};
+> +
+> +static int wsa881x_probe(struct sdw_slave *pdev,
+> +			 const struct sdw_device_id *id)
+> +{
+> +	struct wsa881x_priv *wsa881x;
+> +
+> +	wsa881x = devm_kzalloc(&pdev->dev, sizeof(*wsa881x), GFP_KERNEL);
+> +	if (!wsa881x)
+> +		return -ENOMEM;
+> +
+> +	wsa881x->sd_n = devm_gpiod_get_optional(&pdev->dev, "pd",
+> +						GPIOD_FLAGS_BIT_NONEXCLUSIVE);
+> +	if (IS_ERR(wsa881x->sd_n)) {
+> +		dev_err(&pdev->dev, "Shutdown Control GPIO not found\n");
+> +		return PTR_ERR(wsa881x->sd_n);
+> +	}
+> +
+> +	dev_set_drvdata(&pdev->dev, wsa881x);
+> +	wsa881x->slave = pdev;
+> +	wsa881x->dev = &pdev->dev;
+> +	pdev->prop.sink_ports = GENMASK(WSA881X_MAX_SWR_PORTS, 0);
+> +	pdev->prop.sink_dpn_prop = wsa_sink_dpn_prop;
+> +	gpiod_set_value(wsa881x->sd_n, 1);
+> +
+> +	return 0;
+> +}
+> +
+> +static int wsa881x_remove(struct sdw_slave *sdw)
+> +{
+> +	return 0;
+> +}
+> +
+> +static const struct sdw_device_id wsa881x_slave_id[] = {
+> +	SDW_SLAVE_ENTRY(0x0217, 0x2010, 0),
+> +	{},
+> +};
+> +MODULE_DEVICE_TABLE(sdw, wsa881x_slave_id);
+> +
+> +static struct sdw_driver wsa881x_codec_driver = {
+> +	.probe	= wsa881x_probe,
+> +	.remove = wsa881x_remove,
+
+is this needed since you do nothing in that function?
+
+> +	.ops = &wsa881x_slave_ops,
+> +	.id_table = wsa881x_slave_id,
+> +	.driver = {
+> +		.name	= "wsa881x-codec",
+> +	}
+> +};
+> +module_sdw_driver(wsa881x_codec_driver);
+> +
+> +MODULE_DESCRIPTION("WSA881x codec driver");
+> +MODULE_LICENSE("GPL v2");
 > 
-> I am confused here.
-> If you have two identical devices on the same link, isn't this property 
-> required and that should be a real error instead of a continue?
-
-Yes, I agree it will be mandatory in such cases.
-
-Am okay either way, I dont mind changing it to returning EINVAL in all 
-the cases.
-
-> 
->> +        }
->> +
->> +        id.sdw_version = ver - 0xF;
-> 
-> maybe a comment in the code would help to make the encoding 
-> self-explanatory, as you did in the DT bindings
-> 
->    Version number '0x10' represents SoundWire 1.0
->    Version number '0x11' represents SoundWire 1.1
-
-Makes sense, will fix this in next version.
-This info is also available in bindings.
-
-
---srini
-> 
->> +        id.unique_id = unique_id;
->> +        id.mfg_id = mfg_id;
->> +        id.part_id = part_id;
->> +        id.class_id = class_id;
->> +        sdw_slave_add(bus, &id, of_fwnode_handle(node));
->> +    }
->> +    return 0;
->> +}
->>
