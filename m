@@ -2,53 +2,103 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2DE8786593
-	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 17:20:20 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 499C18659E
+	for <lists+devicetree@lfdr.de>; Thu,  8 Aug 2019 17:23:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2390052AbfHHPUT (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 11:20:19 -0400
-Received: from mail.kernel.org ([198.145.29.99]:47822 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2390021AbfHHPUS (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Thu, 8 Aug 2019 11:20:18 -0400
-Received: from kernel.org (unknown [104.132.0.74])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id D044B218BA;
-        Thu,  8 Aug 2019 15:20:17 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565277617;
-        bh=EQnjkpppgKILHmLr+fRsUzCN0MnNhBmjmtEPnIrTHHQ=;
-        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
-        b=YC41VXeynHPI34GsfNdlru4v+ea7SdLqBy1nCLuFo56CP1clEc11gvqLyL7igelUf
-         q5MyRvPvAEWVDtFvijMohjEASW39dL37ypF4EWVHqo/tP9VV8pzhxzG7Vfi2GTlook
-         02QCrSisJDq3g8AmygsiVLoWYz5SSHF2IWs7dsbk=
-Content-Type: text/plain; charset="utf-8"
+        id S1732577AbfHHPXh (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 11:23:37 -0400
+Received: from mail-vk1-f193.google.com ([209.85.221.193]:42322 "EHLO
+        mail-vk1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732662AbfHHPXh (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 11:23:37 -0400
+Received: by mail-vk1-f193.google.com with SMTP id 130so18860331vkn.9
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 08:23:36 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc;
+        bh=QNB3Zm9MMvwDRnXaJ2FS/3pgiFUqCEAjWklwwyvURzI=;
+        b=QW+HXSNaJIeMSgjFtPBC8shR+iNt9+afsMRJmza60ge+Uo5qwyV5gFbqtGRm1umBx/
+         OS2BYWlgkFU1xeCsJn+PyYOqe6JQKr3WdGoL/qGN1mXfmapaYVh+6T5MOBlg1ISWAkSx
+         cHZgDJM37VcRbC+RBdKUFsjAtywZh4EA+OSAy1mLa6+fg4luQnJR8jUCGj7gY2sdEOXZ
+         2qTK2rkaNWXhAd8gK6sItZ+AZ8oCKSdzfhIkgxsZMzSnMk6r/fkT6T/uRmIujgVbrLAo
+         NRsj1iJiOiwLaAxgR1PGDzGNdTQSIofv43CI6Swq2iZJsoV5g/3Il2jpP/j03FmsExZu
+         sY+g==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc;
+        bh=QNB3Zm9MMvwDRnXaJ2FS/3pgiFUqCEAjWklwwyvURzI=;
+        b=gM9FcV/zU0XRaNYJSSy4epQHN3CLh5Z8UHp8OWyqyQZH+RGpciwRVKckHphbllvWof
+         BmktJ3jqDEMnYpv8UukUibUSL+Uge+t7ptcpujsz6N3xi2MGCLjOTY0J87Pc0SRWtX4Y
+         6UuWPq/93i4k2s+L5J2m8BV+7hIAXLe2tCrmZKbtBSlliP6TmBA9t+AYhpMaR8JLv6Gv
+         ksMoYHnXPjAlZimtfBCwtPvBXY1p9uACRbMlnJXXuI26AORR91zK9wqEcpb8+bdFEJbR
+         aD+QVztz60YHdUrAXLSdwzODpccEuBWPM2vTjsyaZZJymmqed9bz28yFqdJa1814raPc
+         vsrA==
+X-Gm-Message-State: APjAAAXAgrg4IMRxCLNvYToLQ5wV57z4bQRPuBfjL+ae2s4ZA/J+fNm4
+        n4KnIvOrxlxewOtN62SX3RBzRj9PBDUGwvqlesj7OQ==
+X-Google-Smtp-Source: APXvYqy4vBIhIEDkHZGbjPTFMN0MG3rSPoqUvYTRP/e/2YG84U7QfZw+MjtJ98ys313+siGvTnSpq6E/mbY+mp2X4wk=
+X-Received: by 2002:a1f:3f45:: with SMTP id m66mr6091559vka.17.1565277816177;
+ Thu, 08 Aug 2019 08:23:36 -0700 (PDT)
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-In-Reply-To: <20190726092332.25202-4-govinds@codeaurora.org>
-References: <20190726092332.25202-1-govinds@codeaurora.org> <20190726092332.25202-4-govinds@codeaurora.org>
-Subject: Re: [PATCH v5 3/7] clk: qcom: define probe by index API as common API
-From:   Stephen Boyd <sboyd@kernel.org>
-Cc:     andy.gross@linaro.org, linux-soc@vger.kernel.org,
-        devicetree@vger.kernel.org, Govind Singh <govinds@codeaurora.org>
-To:     Govind Singh <govinds@codeaurora.org>, bjorn.andersson@linaro.org,
-        linux-arm-msm@vger.kernel.org, linux-clk@vger.kernel.org,
-        linux-remoteproc@vger.kernel.org
-User-Agent: alot/0.8.1
-Date:   Thu, 08 Aug 2019 08:20:17 -0700
-Message-Id: <20190808152017.D044B218BA@mail.kernel.org>
+References: <1565252928-28994-1-git-send-email-eugen.hristev@microchip.com>
+In-Reply-To: <1565252928-28994-1-git-send-email-eugen.hristev@microchip.com>
+From:   Ulf Hansson <ulf.hansson@linaro.org>
+Date:   Thu, 8 Aug 2019 17:23:00 +0200
+Message-ID: <CAPDyKFrUr8_VP1JLRk48zR8_p1Y62wKLBnS0iTgdhUSArwD49Q@mail.gmail.com>
+Subject: Re: [PATCH 1/2] mmc: sdhci-of-at91: add quirk for broken HS200
+To:     Eugen.Hristev@microchip.com
+Cc:     Nicolas Ferre <Nicolas.Ferre@microchip.com>,
+        Ludovic Desroches <Ludovic.Desroches@microchip.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Adrian Hunter <adrian.hunter@intel.com>,
+        Linux ARM <linux-arm-kernel@lists.infradead.org>,
+        DTML <devicetree@vger.kernel.org>,
+        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
+        "linux-mmc@vger.kernel.org" <linux-mmc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Quoting Govind Singh (2019-07-26 02:23:28)
-> Extend the probe by index API in common code to be used
-> by other qcom clock controller.
->=20
-> Signed-off-by: Govind Singh <govinds@codeaurora.org>
+On Thu, 8 Aug 2019 at 10:35, <Eugen.Hristev@microchip.com> wrote:
+>
+> From: Eugen Hristev <eugen.hristev@microchip.com>
+>
+> HS200 is not implemented in the driver, but the controller claims it
+> through caps.
+> Remove it via quirk.
+> Without this quirk, the mmc core will try to enable hs200, which will fail,
+> and the eMMC initialization will fail.
+>
+> Signed-off-by: Eugen Hristev <eugen.hristev@microchip.com>
+
+Should this be applied as a fix and possibly tagged for stable?
+
+In such case, do you have a specific commit that it fixes?
+
+Kind regards
+Uffe
+
 > ---
-
-Applied to clk-next
-
+>  drivers/mmc/host/sdhci-of-at91.c | 3 +++
+>  1 file changed, 3 insertions(+)
+>
+> diff --git a/drivers/mmc/host/sdhci-of-at91.c b/drivers/mmc/host/sdhci-of-at91.c
+> index 57fe3b2..3a8c6d8 100644
+> --- a/drivers/mmc/host/sdhci-of-at91.c
+> +++ b/drivers/mmc/host/sdhci-of-at91.c
+> @@ -370,6 +370,9 @@ static int sdhci_at91_probe(struct platform_device *pdev)
+>         pm_runtime_set_autosuspend_delay(&pdev->dev, 50);
+>         pm_runtime_use_autosuspend(&pdev->dev);
+>
+> +       /* HS200 is broken at this moment */
+> +       host->quirks2 = SDHCI_QUIRK2_BROKEN_HS200;
+> +
+>         ret = sdhci_add_host(host);
+>         if (ret)
+>                 goto pm_runtime_disable;
+> --
+> 2.7.4
+>
