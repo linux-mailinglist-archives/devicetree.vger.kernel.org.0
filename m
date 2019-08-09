@@ -2,143 +2,88 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D9EFB873FC
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 10:25:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EB8CF8740C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 10:30:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405713AbfHIIZq (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 04:25:46 -0400
-Received: from mail-lj1-f196.google.com ([209.85.208.196]:37656 "EHLO
-        mail-lj1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405395AbfHIIZq (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 04:25:46 -0400
-Received: by mail-lj1-f196.google.com with SMTP id z28so37103997ljn.4;
-        Fri, 09 Aug 2019 01:25:44 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=/A/7y3FwUsdRyRWbpHY31PGn5klTkFuPU5InmeFB5Vk=;
-        b=Qfqne4S2i01albbmzKziFOjlp1SXKoDMxp9rmWkJewHFL7gA+G4afjkR78ZqhWYDIQ
-         cqd1c0nbWqKdgIsechuMRgIdVV9cQiusELCw/NgSM1kwEVdg4C2SXjO4a/6t7VgZHZM1
-         ztT2Ube+FUfbXXynvTQIbRFeSKxOj5+x2InTwF4SSXQJgiwSKeb5hF3R3HQLTubh83d7
-         Usj/aimxcOKIVIBM2bAhpz/0P/CY/ABl5DxO3XPh0QqhrUw8PgYY0RN4X4UP3JuIi6ry
-         G9FXKdgUw3XgqdPYkXvUGYPk0yEIuKg+aoyOT8ZrU/bQlQBbh9ChDnIbuzM83+w5iUSA
-         VaiQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=/A/7y3FwUsdRyRWbpHY31PGn5klTkFuPU5InmeFB5Vk=;
-        b=i3FVcmJmfp8emnof/N32G5PDa78hGE9Y/QMeY7Q2LBjEa01UdFQzVEAzy9vdQjCpw8
-         3A1rbNgTzr2lKxadCzxC12w3Os6I18rxcL70qAQF4gOzl0CjNMJoG3EwgyKZ0lG+w9Q5
-         78NsFvPAFfiG5rKVPOiN67vf4iBngniPLJBOELs/RDgyzbi+Bb9wys1VoubW4q+NMCGL
-         04//XxSzM/osDGIztCPaYTv2nYGcMY5qQa9PtgHv8OmwEnsbSreFYzaoZzgEKdP92GtL
-         WwR5rm/hGSY+0nNcLMVzOd3GDYuZkJHzVjqbzRKSO3PQzDkHYcd5ElIi5Py4EruUk26n
-         1ryQ==
-X-Gm-Message-State: APjAAAUK0hgWiwkkbsDPds09lq2PIY6AvHu/V7CHUhHfrlVRHjUEclWd
-        uCv/+ulixjhhqt348H5yn/JAkBmRmwJHrdPCnn4=
-X-Google-Smtp-Source: APXvYqzRX9Y6GM2LBGO/GzFpFOiYrL7yUSPZ4SglXcKIzN9V37dUNVzUdXfm4el8/ZqkKAylzB4JXgRo2vU6koy4FEA=
-X-Received: by 2002:a2e:85d7:: with SMTP id h23mr10916932ljj.53.1565339144082;
- Fri, 09 Aug 2019 01:25:44 -0700 (PDT)
+        id S2405821AbfHIIaj (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 04:30:39 -0400
+Received: from fllv0015.ext.ti.com ([198.47.19.141]:48546 "EHLO
+        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2405395AbfHIIaj (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 04:30:39 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x798UWOR117619;
+        Fri, 9 Aug 2019 03:30:32 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1565339432;
+        bh=qDQiI5/qZTy9JN42VQ92ukHigsrEUtNA8Bxoo+HDsW8=;
+        h=From:To:CC:Subject:Date;
+        b=WZk0WpY9a5710rRUUEIPmp3lBJXDwoD+B6M7Se2jyMdQoCJaPfCkQH8sB4e91QR/S
+         T+z821uTQgEK/PkAa0LS3wc6DCbY1FipY5fDrThNmVLp6tUYE7EnZxXAytNLXLTmbz
+         VNbJ70xRRP9IUZz2z8QCMZHqMAUe/JvSxH58b1PI=
+Received: from DLEE107.ent.ti.com (dlee107.ent.ti.com [157.170.170.37])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x798UW3s084400
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 9 Aug 2019 03:30:32 -0500
+Received: from DLEE102.ent.ti.com (157.170.170.32) by DLEE107.ent.ti.com
+ (157.170.170.37) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 9 Aug
+ 2019 03:30:32 -0500
+Received: from fllv0039.itg.ti.com (10.64.41.19) by DLEE102.ent.ti.com
+ (157.170.170.32) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 9 Aug 2019 03:30:32 -0500
+Received: from uda0131933.india.ti.com (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0039.itg.ti.com (8.15.2/8.15.2) with ESMTP id x798USde070370;
+        Fri, 9 Aug 2019 03:30:29 -0500
+From:   Lokesh Vutla <lokeshvutla@ti.com>
+To:     Tero Kristo <t-kristo@ti.com>, Nishanth Menon <nm@ti.com>,
+        <linus.walleij@linaro.org>
+CC:     Keerthy <j-keerthy@ti.com>, Rob Herring <robh+dt@kernel.org>,
+        <linux-gpio@vger.kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>,
+        Lokesh Vutla <lokeshvutla@ti.com>
+Subject: [PATCH 0/6] arm64: dts: ti: k3-j721e: Add gpio nodes
+Date:   Fri, 9 Aug 2019 13:59:41 +0530
+Message-ID: <20190809082947.30590-1-lokeshvutla@ti.com>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-References: <20190806155744.10263-1-megous@megous.com> <20190806155744.10263-5-megous@megous.com>
-In-Reply-To: <20190806155744.10263-5-megous@megous.com>
-From:   Code Kipper <codekipper@gmail.com>
-Date:   Fri, 9 Aug 2019 10:25:32 +0200
-Message-ID: <CAEKpxBn1nF0t-M34iRSy1yYEuUxgNMUXFBhtjXBY8Qk+43zbDQ@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v8 4/4] arm64: dts: allwinner: orange-pi-3:
- Enable HDMI output
-To:     megous@megous.com
-Cc:     linux-sunxi <linux-sunxi@googlegroups.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        dri-devel@lists.freedesktop.org,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
+Content-Type: text/plain
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 6 Aug 2019 at 17:57, <megous@megous.com> wrote:
->
-> From: Ondrej Jirman <megous@megous.com>
->
-> Orange Pi 3 has a DDC_CEC_EN signal connected to PH2, that enables the DDC
-> I2C bus voltage shifter. Before EDID can be read, we need to pull PH2 high.
-> This is realized by the ddc-en-gpios property.
-Great work. Is there any chance you can move this to the
-arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi.dtsi?, as all the H6
-based orange-pi's have this feature.
-BR,
-CK
->
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
-> ---
->  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 26 +++++++++++++++++++
->  1 file changed, 26 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> index 2c6807b74ff6..01bb1bafe284 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> @@ -22,6 +22,18 @@
->                 stdout-path = "serial0:115200n8";
->         };
->
-> +       connector {
-> +               compatible = "hdmi-connector";
-> +               ddc-en-gpios = <&pio 7 2 GPIO_ACTIVE_HIGH>; /* PH2 */
-> +               type = "a";
-> +
-> +               port {
-> +                       hdmi_con_in: endpoint {
-> +                               remote-endpoint = <&hdmi_out_con>;
-> +                       };
-> +               };
-> +       };
-> +
->         leds {
->                 compatible = "gpio-leds";
->
-> @@ -72,6 +84,10 @@
->         cpu-supply = <&reg_dcdca>;
->  };
->
-> +&de {
-> +       status = "okay";
-> +};
-> +
->  &ehci0 {
->         status = "okay";
->  };
-> @@ -91,6 +107,16 @@
->         status = "okay";
->  };
->
-> +&hdmi {
-> +       status = "okay";
-> +};
-> +
-> +&hdmi_out {
-> +       hdmi_out_con: endpoint {
-> +               remote-endpoint = <&hdmi_con_in>;
-> +       };
-> +};
-> +
->  &mdio {
->         ext_rgmii_phy: ethernet-phy@1 {
->                 compatible = "ethernet-phy-ieee802.3-c22";
-> --
-> 2.22.0
->
-> --
-> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20190806155744.10263-5-megous%40megous.com.
+This series adds gpio nodes for J721E SoC and enable gpio keys
+in J72E common process board.
+
+Tested Boot log: https://pastebin.ubuntu.com/p/P6QqmZYtSC/
+
+This series depends on Power-domain cells update series:
+https://patchwork.kernel.org/project/linux-arm-kernel/list/?series=152109
+
+
+Lokesh Vutla (5):
+  dt-bindings: gpio: davinci: Add new compatible for J721E SoCs
+  arm64: dts: ti: k3-j721e: Add gpio nodes in main domain
+  arm64: dts: ti: k3-j721e: Add gpio nodes in wakeup domain
+  arm64: dts: ti: k3-j721e-common-proc-board: Disable unused gpio
+    modules
+  dt-bindings: pinctrl: k3: Introduce pinmux definitions for J721E
+
+Nikhil Devshatwar (1):
+  arm64: dts: k3-j721e: Add gpio-keys on common processor board
+
+ .../devicetree/bindings/gpio/gpio-davinci.txt |   1 +
+ .../dts/ti/k3-j721e-common-proc-board.dts     |  65 +++++++++
+ arch/arm64/boot/dts/ti/k3-j721e-main.dtsi     | 132 ++++++++++++++++++
+ .../boot/dts/ti/k3-j721e-mcu-wakeup.dtsi      |  34 +++++
+ include/dt-bindings/pinctrl/k3.h              |   3 +
+ 5 files changed, 235 insertions(+)
+
+-- 
+2.22.0
+
