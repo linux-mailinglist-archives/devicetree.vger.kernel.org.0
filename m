@@ -2,158 +2,567 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 44F4C876C8
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 11:57:22 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D082F876E7
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 12:06:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726152AbfHIJ5R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 05:57:17 -0400
-Received: from mail-eopbgr130080.outbound.protection.outlook.com ([40.107.13.80]:42005
-        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726037AbfHIJ5R (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Aug 2019 05:57:17 -0400
-ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=KV1Y645e6LJ/hDsdB+SPBsrWE5g3b9xkPutbYav/n97GYjDy5z9wHRy43fCAUQN169eS8fLwXTdtAOftndCvVTxLgGP8ngGOCsqaZpj+kl5zvu+p+FYgdHFPQSTc08xrtJ5pnlGkzlkqrksUED3fqAMJl0/aZC6BbwfLvg5JhaeYD3IzP14l6xBENC/hNiFOMc4GlhiDnEbbhRjiHBuPvvF4EGMDYQDwSobUgFaeu5f+JITH1uIzcVUaB7gQlWpff+wMnOt2knA7CXGJA35XMJkuHInWtS1AINoJad82K/Sw2OC/HjDcrr6gV0C+sMwvoV3VRZgkbTDQcka9u3oggg==
-ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
- s=arcselector9901;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z7ADiLfyDQ6SMb4iZxbJcLZ8cV0x8UM6mZu6qwT6Qjg=;
- b=bc5osxAWCQCK64BRW3QpHX39DGizqeWxEYmdk3mMYHF7nAvwGEaoR2iVqfFLokpiGvE4ZpezmKrCaMvE1HW9kbzuuXu54a7xYFh87C8dP5fElff764KgH7mA9Hfc7VHcZ79T/EG6441Fz1Ha/GasCVbDxrQkaAgbcXRL7eZTw5bohL9eP0ZuK/319zGMupLeGTkH+2UKyodMTsCfVBk9TZFG0EQCYgttSkvDZdHe/y8kAqdzg0KvdqzbTZTNJGbmSDa633nagKMvutNnrV9VNz2g++ypbyB+dMvUWPiEmFN6IKn59uuut8nRdOMyYtaonPWlGfsmkYlDEDdIjbP+zA==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
- smtp.mailfrom=nxp.com;dmarc=pass action=none header.from=nxp.com;dkim=pass
- header.d=nxp.com;arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
- h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=Z7ADiLfyDQ6SMb4iZxbJcLZ8cV0x8UM6mZu6qwT6Qjg=;
- b=PX0nNo5P7XsjQNb4KHsIUm429hLlAr7Yzlwf6Trqv+mhAfhm8VT3w/ImdVlUQUb+PvjzU8PFBzBSSvpjHXxz5wIDCzTLkYBqu23rzOI2caHee12lIOWdHIs8JGjN5XasqK4uaNENFY/osd41Gz2smJyLPbbQUuIgfb/rmqBJ+OA=
-Received: from VI1PR0402MB2863.eurprd04.prod.outlook.com (10.175.20.18) by
- VI1PR0402MB3375.eurprd04.prod.outlook.com (52.134.1.24) with Microsoft SMTP
- Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2136.16; Fri, 9 Aug 2019 09:57:11 +0000
-Received: from VI1PR0402MB2863.eurprd04.prod.outlook.com
- ([fe80::7de6:ea4b:9b5d:d023]) by VI1PR0402MB2863.eurprd04.prod.outlook.com
- ([fe80::7de6:ea4b:9b5d:d023%7]) with mapi id 15.20.2157.020; Fri, 9 Aug 2019
- 09:57:11 +0000
-From:   Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
-To:     Will Deacon <will@kernel.org>
-CC:     "corbet@lwn.net" <corbet@lwn.net>,
-        "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
-        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "jslaby@suse.com" <jslaby@suse.com>,
-        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>,
-        Larisa Ileana Grigore <larisa.grigore@nxp.com>
-Subject: Re: [PATCH 5/6] tty: serial: Add linflexuart driver for S32V234
-Thread-Topic: [PATCH 5/6] tty: serial: Add linflexuart driver for S32V234
-Thread-Index: AQHVTpjQef+rwi1Z1UKpXJwR9xDaOg==
-Date:   Fri, 9 Aug 2019 09:57:11 +0000
-Message-ID: <VI1PR0402MB2863475AD0326DA86594427EDFD60@VI1PR0402MB2863.eurprd04.prod.outlook.com>
-References: <20190802194702.30249-1-stefan-gabriel.mirea@nxp.com>
- <20190802194702.30249-6-stefan-gabriel.mirea@nxp.com>
- <20190808080832.nleult5bknmzr3ze@willie-the-truck>
- <VI1PR0402MB28635661A4A294EC6F01095EDFD70@VI1PR0402MB2863.eurprd04.prod.outlook.com>
- <20190808171711.nk7ljqkugtketu4q@willie-the-truck>
- <VI1PR0402MB2863B3E3E2F93CBA8ADB96E5DFD60@VI1PR0402MB2863.eurprd04.prod.outlook.com>
- <20190809095338.d73fomq424gayf2b@willie-the-truck>
-Accept-Language: en-US
-Content-Language: en-US
-X-MS-Has-Attach: 
-X-MS-TNEF-Correlator: 
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=stefan-gabriel.mirea@nxp.com; 
-x-originating-ip: [212.146.100.6]
-x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: f3ac1c76-d9f0-4497-0617-08d71caff309
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR0402MB3375;
-x-ms-traffictypediagnostic: VI1PR0402MB3375:
-x-microsoft-antispam-prvs: <VI1PR0402MB33758DF6D9DE8D0CE6715F13DFD60@VI1PR0402MB3375.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:6790;
-x-forefront-prvs: 01244308DF
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(39860400002)(396003)(136003)(366004)(346002)(376002)(189003)(199004)(25786009)(71200400001)(476003)(486006)(71190400001)(186003)(5660300002)(64756008)(53546011)(6506007)(76176011)(86362001)(7416002)(66946007)(14454004)(14444005)(478600001)(256004)(102836004)(26005)(66066001)(76116006)(91956017)(9686003)(8936002)(6916009)(6246003)(53936002)(7696005)(7736002)(6116002)(99286004)(66446008)(66556008)(3846002)(66476007)(305945005)(8676002)(316002)(6436002)(81166006)(81156014)(446003)(52536014)(74316002)(2906002)(33656002)(4326008)(229853002)(54906003)(55016002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB3375;H:VI1PR0402MB2863.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
- permitted sender hosts)
-x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: DjE8S6x4URCD84Mb5GS6egryn40zkVwH3emtJo+rSL4SofcP7bPBkjz+c0dzk7LrlAU3F2ueBumlBxMjvgbECpVoyh53mn4b4g4RzP0HBgwh/Ph7VFfCIX+CAoOw18X3A2gjS1lDTcqQY5vFS3lCaKBEZF0EThV5YKUXfG2+o20OQo58eXt/kVUxi2gnCH5yUBl3F0vL+V/P46Ivc3Zl3dg5pGVB7SecebXhALZGBux4QedLYOxfATR2ckPMtzCvWV9C4bZLK+I5b6+mtdYhX4KpuWiN7FtuISorcK1/9VuWQq7+FgdX8WWrL/nLZBpoI20/6GxTj9dCL1G87POp/0FTxoDA5ceWLNZE8MhQblZLZEaJ+bfFzwX1pkxnK6gBrA/iWt4LbQQyMcSo5joBntEPgLM2X2tsOfQVpACEptk=
-Content-Type: text/plain; charset="us-ascii"
-Content-Transfer-Encoding: quoted-printable
+        id S2405953AbfHIKGe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 06:06:34 -0400
+Received: from mail-ot1-f66.google.com ([209.85.210.66]:43841 "EHLO
+        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726185AbfHIKGe (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 06:06:34 -0400
+Received: by mail-ot1-f66.google.com with SMTP id j11so30065269otp.10
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 03:06:33 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=2b+/UUP5KzPK6WOQURLTDRHl5lpQY97AU1zt5VvvbdY=;
+        b=bDJfouwcPbqBhX51o/RfK/tPM7PjzPsho9RvcuqYQZm81n3/kjpUdJogQ2ekS68qsw
+         CrkjkN7cb3pHl/rXthP7F7ytWIajnCe8aIU+vN+2yvHWdb2bjUdVWdPV7WAscdzufqwX
+         kRI62Q+8wHk9fuq4lVticm2ixXH8GQcPGESXA86u0lJAObSG0wWoDZ9IaIbMuE9dKl5W
+         8O/fYVldF9SG+Q0Tml5IknNKpx2BlW2lT+SmVGVi939AAvYffXovSy8fWHvMWaW09cBm
+         Ju5oGbvlOkO7bCTjSwaiigPsb6F68vWBJvsqKAx2PqTbL3v8EWFOkdnwWX+KToAupMYo
+         LICw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=2b+/UUP5KzPK6WOQURLTDRHl5lpQY97AU1zt5VvvbdY=;
+        b=GAuxi+XJbuQyrwAPqF9ipFC5DkNIlNUEXYoNQqNzpzKGwgC++vxX80MysEWoa8+HuI
+         UonyX2epWybqtc9ck0iNQ/fJ2SA0Da903imRb8K0sG14YeL0EnbxpxJi5919Ud1sqty8
+         /lHvcOir9KPC7IXp8M0f5EhWtp/RKygrUDEWP6ojo8I1jAzl5tJyjKE96lUkbR8RhdJp
+         HTdMhYHFPn4EARzvNP3j0/g2+uiil+GmbdsIQN4jj5Jh9AttZGTH9kO0glbM6k9oJMWc
+         Hq+CoM/JlsD4TJaO202jndD12tGXB3Z8PCki2Di1r9tts2pByZwzkeQPGzj+3dgQiXrb
+         4aPg==
+X-Gm-Message-State: APjAAAUpGckDPgZth5rNyuagFMXx/K5oxkMU5PuwLQsYPVL5meFhb3Cd
+        8o4yf3bCSljgPQT4Q4rognbxx90gDRkq5IIiwuLJsw==
+X-Google-Smtp-Source: APXvYqx1ymrFu+OzIJBplSSc4SICHYRCNuKv/bSDoJaVOa5PzQhXUV+TRwqOqfcDJf226qudy9SJDYmruhwj2A+Ipq0=
+X-Received: by 2002:a9d:5c0c:: with SMTP id o12mr4678885otk.145.1565345193247;
+ Fri, 09 Aug 2019 03:06:33 -0700 (PDT)
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: f3ac1c76-d9f0-4497-0617-08d71caff309
-X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2019 09:57:11.7364
- (UTC)
-X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
-X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: d4AA8nA41aoyhthothlFQOTQdBpYYcA889pBY0taKlVnt/vh+x0ie26hxBcDIo+bzYHnaJ7SFFScC5mIalejVhVTPY/tF9bij1lF2cDneVs=
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3375
+References: <6a38a3655bc8100764d85cb04dea5c2546a311e1.1565168564.git.baolin.wang@linaro.org>
+ <40127356a1acd1f2ff1be1d8a120b305a4e17af4.1565168564.git.baolin.wang@linaro.org>
+ <20190809091013.vguj4wty7qiab64t@pengutronix.de>
+In-Reply-To: <20190809091013.vguj4wty7qiab64t@pengutronix.de>
+From:   Baolin Wang <baolin.wang@linaro.org>
+Date:   Fri, 9 Aug 2019 18:06:21 +0800
+Message-ID: <CAMz4kuLQsrBWjta1s=ZRPgxUd0_+_f-GbJV138tccuMLg2XCLA@mail.gmail.com>
+Subject: Re: [PATCH 2/2] pwm: sprd: Add Spreadtrum PWM support
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/9/2019 12:53 PM, Will Deacon wrote:=0A=
-> On Fri, Aug 09, 2019 at 09:45:40AM +0000, Stefan-gabriel Mirea wrote:=0A=
->> On 8/8/2019 8:17 PM, Will Deacon wrote:=0A=
->>> On Thu, Aug 08, 2019 at 12:47:00PM +0000, Stefan-gabriel Mirea wrote:=
-=0A=
->>>> On 8/8/2019 11:08 AM, Will Deacon wrote:=0A=
->>>>> On Fri, Aug 02, 2019 at 07:47:23PM +0000, Stefan-gabriel Mirea wrote:=
-=0A=
->>>>>> +             linflex,<addr>=0A=
->>>>>> +                     Use early console provided by Freescale LinFle=
-x UART=0A=
->>>>>> +                     serial driver for NXP S32V234 SoCs. A valid ba=
-se=0A=
->>>>>> +                     address must be provided, and the serial port =
-must=0A=
->>>>>> +                     already be setup and configured.=0A=
->>>>>=0A=
->>>>> Why isn't earlycon=3D sufficient for this?=0A=
->>>>=0A=
->>>> "earlycon=3D" is not actually supported. I will fix this in the next=
-=0A=
->>>> version by adding a /chosen/stdout-path to the dts. The compatible=0A=
->>>> string provided to OF_EARLYCON_DECLARE will also be changed from=0A=
->>>> "fsl,s32v234-linflexuart" to "fsl,s32-linflexuart" to match the one in=
-=0A=
->>>> the device tree nodes. I missed this after importing a rename from our=
-=0A=
->>>> codebase.=0A=
->>>>=0A=
->>>> Should I remove this addition from kernel-parameters.txt after that?=
-=0A=
->>>=0A=
->>> Yes, if you can use earlycon instead, then you can drop your custom opt=
-ion=0A=
->>> entirely and therefore there's no need to document it either.=0A=
->>=0A=
->> Can you please clarify what you mean by "drop your custom option"? The=
-=0A=
->> "linflex" option documented in the paragraph is the name of the=0A=
->> earlycon_id declared via "OF_EARLYCON_DECLARE(linflex, ...)". We have=0A=
->> not done anything particular to accept it in the parameter value.=0A=
-> =0A=
-> My apologies, I completely misread your patch and thought your were addin=
-g=0A=
-> a *new* kernel parameter. Having looked at the context, I now see you're=
-=0A=
-> adding a new earlycon option, which is what I was suggesting :)=0A=
-> =0A=
-> By all means, please update the stdout-path, because then you can just pa=
-ss=0A=
-> "earlycon" and things will work as expected.=0A=
-=0A=
-No problem, I will submit the new version soon. Thank you!=0A=
-=0A=
-Regards,=0A=
-Stefan=0A=
+ Hi Uwe,
+
+On Fri, 9 Aug 2019 at 17:10, Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> On Thu, Aug 08, 2019 at 04:59:39PM +0800, Baolin Wang wrote:
+> > From: Neo Hou <neo.hou@unisoc.com>
+> >
+> > This patch adds the Spreadtrum PWM support, which provides maximum 4
+> > channels.
+> >
+> > Signed-off-by: Neo Hou <neo.hou@unisoc.com>
+> > Co-developed-by: Baolin Wang <baolin.wang@linaro.org>
+> > Signed-off-by: Baolin Wang <baolin.wang@linaro.org>
+> > ---
+> >  drivers/pwm/Kconfig    |   10 ++
+> >  drivers/pwm/Makefile   |    1 +
+> >  drivers/pwm/pwm-sprd.c |  311 ++++++++++++++++++++++++++++++++++++++++=
+++++++++
+> >  3 files changed, 322 insertions(+)
+> >  create mode 100644 drivers/pwm/pwm-sprd.c
+> >
+> > diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
+> > index a7e5751..4963b4d 100644
+> > --- a/drivers/pwm/Kconfig
+> > +++ b/drivers/pwm/Kconfig
+> > @@ -423,6 +423,16 @@ config PWM_SPEAR
+> >         To compile this driver as a module, choose M here: the module
+> >         will be called pwm-spear.
+> >
+> > +config PWM_SPRD
+> > +     tristate "Spreadtrum PWM support"
+> > +     depends on ARCH_SPRD || COMPILE_TEST
+>
+> I think you need
+>
+>         depends on HAS_IOMEM
+
+OK.
+
+>
+> > +     help
+> > +       Generic PWM framework driver for the PWM controller on
+> > +       Spreadtrum SoCs.
+> > +
+> > +       To compile this driver as a module, choose M here: the module
+> > +       will be called pwm-sprd.
+> > +
+> >  config PWM_STI
+> >       tristate "STiH4xx PWM support"
+> >       depends on ARCH_STI
+> > diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
+> > index 76b555b..26326ad 100644
+> > --- a/drivers/pwm/Makefile
+> > +++ b/drivers/pwm/Makefile
+> > @@ -41,6 +41,7 @@ obj-$(CONFIG_PWM_ROCKCHIP)  +=3D pwm-rockchip.o
+> >  obj-$(CONFIG_PWM_SAMSUNG)    +=3D pwm-samsung.o
+> >  obj-$(CONFIG_PWM_SIFIVE)     +=3D pwm-sifive.o
+> >  obj-$(CONFIG_PWM_SPEAR)              +=3D pwm-spear.o
+> > +obj-$(CONFIG_PWM_SPRD)               +=3D pwm-sprd.o
+> >  obj-$(CONFIG_PWM_STI)                +=3D pwm-sti.o
+> >  obj-$(CONFIG_PWM_STM32)              +=3D pwm-stm32.o
+> >  obj-$(CONFIG_PWM_STM32_LP)   +=3D pwm-stm32-lp.o
+> > diff --git a/drivers/pwm/pwm-sprd.c b/drivers/pwm/pwm-sprd.c
+> > new file mode 100644
+> > index 0000000..f6fc793
+> > --- /dev/null
+> > +++ b/drivers/pwm/pwm-sprd.c
+> > @@ -0,0 +1,311 @@
+> > +// SPDX-License-Identifier: GPL-2.0
+> > +/*
+> > + * Copyright (C) 2019 Spreadtrum Communications Inc.
+>
+> If there is a publicly available reference manual available, please add
+> a link to it here.
+
+Sure.
+
+>
+> > + */
+> > +
+> > +#include <linux/clk.h>
+> > +#include <linux/err.h>
+> > +#include <linux/io.h>
+> > +#include <linux/math64.h>
+> > +#include <linux/module.h>
+> > +#include <linux/platform_device.h>
+> > +#include <linux/pwm.h>
+> > +
+> > +#define SPRD_PWM_PRESCALE    0x0
+> > +#define SPRD_PWM_MOD         0x4
+> > +#define SPRD_PWM_DUTY                0x8
+> > +#define SPRD_PWM_DIV         0xc
+> > +#define SPRD_PWM_PAT_LOW     0x10
+> > +#define SPRD_PWM_PAT_HIGH    0x14
+> > +#define SPRD_PWM_ENABLE              0x18
+> > +
+> > +#define SPRD_PWM_MOD_MAX     GENMASK(7, 0)
+> > +#define SPRD_PWM_REG_MSK     GENMASK(15, 0)
+> > +#define SPRD_PWM_ENABLE_BIT  BIT(0)
+> > +
+> > +#define SPRD_PWM_NUM         4
+> > +#define SPRD_PWM_REGS_SHIFT  5
+> > +#define SPRD_PWM_NUM_CLKS    2
+> > +#define SPRD_PWM_DEFAULT_CLK 26000000UL
+> > +
+> > +struct sprd_pwm_chn {
+> > +     struct clk_bulk_data clks[SPRD_PWM_NUM_CLKS];
+> > +     unsigned long clk_rate;
+> > +     bool clk_enabled;
+> > +};
+> > +
+> > +struct sprd_pwm_chip {
+> > +     void __iomem *base;
+> > +     struct device *dev;
+> > +     struct pwm_chip chip;
+> > +     int num_pwms;
+> > +     struct sprd_pwm_chn chn[SPRD_PWM_NUM];
+> > +};
+> > +
+> > +/* list of clocks required by PWM channels */
+> > +static const char * const sprd_pwm_clks[] =3D {
+> > +     "enable0", "pwm0",
+> > +     "enable1", "pwm1",
+> > +     "enable2", "pwm2",
+> > +     "enable3", "pwm3",
+> > +};
+> > +
+> > +static u32 sprd_pwm_read(struct sprd_pwm_chip *chip, u32 num, u32 reg)
+>
+> num is the channel id here? Then maybe "hwid" or "chanid" would be a
+> better name. Or pass struct pwm_chip only?
+
+Yes, will change to 'hwid'.
+
+>
+> Please (if you keep sprd_pwm_chip) rename chip to spc which is the name
+> used in other places for structures of this type. "chip" is for struct
+> pwm_chip.
+
+Yes, sure.
+
+>
+> > +{
+> > +     u32 offset =3D reg + (num << SPRD_PWM_REGS_SHIFT);
+> > +
+> > +     return readl_relaxed(chip->base + offset);
+> > +}
+> > +
+> > +static void sprd_pwm_write(struct sprd_pwm_chip *chip, u32 num,
+> > +                        u32 reg, u32 val)
+> > +{
+> > +     u32 offset =3D reg + (num << SPRD_PWM_REGS_SHIFT);
+> > +
+> > +     writel_relaxed(val, chip->base + offset);
+> > +}
+> > +
+> > +static int sprd_pwm_config(struct pwm_chip *chip, struct pwm_device *p=
+wm,
+> > +                        int duty_ns, int period_ns)
+>
+> Please implement .apply() instead of .config(), .enable() and
+> .disable().
+
+OK.
+
+>
+> > +{
+> > +     struct sprd_pwm_chip *spc =3D
+> > +             container_of(chip, struct sprd_pwm_chip, chip);
+> > +     struct sprd_pwm_chn *chn =3D &spc->chn[pwm->hwpwm];
+> > +     u64 div, tmp;
+> > +     u32 prescale, duty;
+> > +     int ret;
+> > +
+> > +     /*
+> > +      * NOTE: the clocks to PWM channel has to be enabled first before
+> > +      * writing to the registers.
+> > +      */
+> > +     if (!chn->clk_enabled) {
+> > +             ret =3D clk_bulk_prepare_enable(SPRD_PWM_NUM_CLKS, chn->c=
+lks);
+>
+> Do you really need to enable all 8 clocks to configure a single channel?
+
+We have 4 channels, and each channel use 2 clocks, so here only enable
+2 clocks, see SPRD_PWM_NUM_CLKS.
+
+>
+> > +             if (ret) {
+> > +                     dev_err(spc->dev, "failed to enable pwm%u clock\n=
+",
+> > +                             pwm->hwpwm);
+> > +                     return ret;
+> > +             }
+> > +
+> > +             chn->clk_enabled =3D true;
+> > +     }
+> > +
+> > +     duty =3D duty_ns * SPRD_PWM_MOD_MAX / period_ns;
+>
+> @Baolin: until we're there that there are framework requirements how to
+> round, please document at least how you do it here. Also describing the
+> underlying concepts would be good for the driver reader.
+>
+> Something like:
+>
+> /*
+>  * The hardware provides a counter that is feed by the source clock.
+>  * The period length is (PRESCALE + 1) * MOD counter steps.
+>  * The duty cycle length is (PRESCALE + 1) * DUTY counter steps.
+>  *
+>  * To keep the maths simple we're always using MOD =3D MOD_MAX.
+>  * The value for PRESCALE is selected such that the resulting period
+>  * gets the maximal length not bigger than the requested one with the
+>  * given settings (MOD =3D MOD_MAX and input clock).
+>  */
+
+Yes, totally agree with you. I will add some documentation for our
+controller's setting.
+
+>
+> @Thierry: having a framework guideline here would be good. Or still
+> better a guideline and a debug setting that notices drivers stepping out
+> of line.
+>
+> I assume using MOD =3D 0 is forbidden?
+>
+> > +     /*
+> > +      * According to the datasheet, the period_ns calculation formula
+> > +      * should be:
+> > +      * period_ns =3D 10^9 * (prescale + 1) * mod / clk_rate
+> > +      *
+> > +      * Then we can get the prescale formula:
+> > +      * prescale =3D (period_ns * clk_rate) / (10^9 * mod) -1
+> > +      */
+> > +     tmp =3D chn->clk_rate * period_ns;
+> > +     div =3D 1000000000ULL * SPRD_PWM_MOD_MAX;
+>
+> Please use NSEC_PER_SEC instead of 1000000000ULL.
+
+Sure.
+
+>
+> > +     prescale =3D div64_u64(tmp, div) - 1;
+>
+> If tmp is smaller than div you end up with prescale =3D 0xffffffff which
+> should be catched. What if prescale > 0xffff?
+
+Usually we can not meet this case, but you are right, the prescale has
+a limit according to the register definition. So will add a validation
+here.
+
+>
+> > +     sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_MOD, SPRD_PWM_MOD_MAX);
+> > +     sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_DUTY, duty);
+>
+> You're losing precision here as you always use SPRD_PWM_MOD_MAX, right?
+> (Just for my understanding, if this simpler approach is good enough
+> here that's fine.)
+
+Yes, SPRD_PWM_MOD_MAX is good enough.
+
+>
+> > +     sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_PAT_LOW, SPRD_PWM_REG_MS=
+K);
+> > +     sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_PAT_HIGH, SPRD_PWM_REG_M=
+SK);
+>
+> Please describe these two registers in a short comment.
+
+Sure.
+
+>
+> > +     sprd_pwm_write(spc, pwm->hwpwm, SPRD_PWM_PRESCALE, prescale);
+>
+> Is the configuration here atomic in the sense that the write of DUTY
+> above only gets effective when PRESCALE is written? If not, please add
+
+Yes.
+
+> a describing paragraph at the top of the driver similar to what is
+> written in pwm-sifive.c. When the PWM is already running before, how
+> does a configuration change effects the output? Is the currently running
+> period completed?
+
+Anyway, I'll add some comments to explain how it works.
+
+>
+> > +static void sprd_pwm_get_state(struct pwm_chip *chip, struct pwm_devic=
+e *pwm,
+> > +                            struct pwm_state *state)
+> > +{
+> > +     struct sprd_pwm_chip *spc =3D
+> > +             container_of(chip, struct sprd_pwm_chip, chip);
+> > +     struct sprd_pwm_chn *chn =3D &spc->chn[pwm->hwpwm];
+> > +     u32 enabled, duty, prescale;
+> > +     u64 tmp;
+> > +     int ret;
+> > +
+> > +     ret =3D clk_bulk_prepare_enable(SPRD_PWM_NUM_CLKS, chn->clks);
+> > +     if (ret) {
+> > +             dev_err(spc->dev, "failed to enable pwm%u clocks\n",
+> > +                     pwm->hwpwm);
+> > +             return;
+> > +     }
+> > +
+> > +     chn->clk_enabled =3D true;
+> > +
+> > +     duty =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_DUTY) & SPRD_PWM=
+_REG_MSK;
+> > +     prescale =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_PRESCALE) & =
+SPRD_PWM_REG_MSK;
+> > +     enabled =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_ENABLE) & SPR=
+D_PWM_ENABLE_BIT;
+> > +
+> > +     /*
+> > +      * According to the datasheet, the period_ns and duty_ns calculat=
+ion
+> > +      * formula should be:
+> > +      * period_ns =3D 10^9 * (prescale + 1) * mod / clk_rate
+> > +      * duty_ns =3D 10^9 * (prescale + 1) * duty / clk_rate
+> > +      */
+> > +     tmp =3D (prescale + 1) * 1000000000ULL * SPRD_PWM_MOD_MAX;
+> > +     state->period =3D div64_u64(tmp, chn->clk_rate);
+>
+> This is not idempotent. If you apply the configuration that is returned
+> here this shouldn't result in a reconfiguration.
+
+Since we may configure the  PWM in bootloader, so in kernel part we
+should get current PWM state to avoid reconfiguration if state
+configuration are same.
+
+>
+> > +     tmp =3D (prescale + 1) * 1000000000ULL * duty;
+> > +     state->duty_cycle =3D div64_u64(tmp, chn->clk_rate);
+> > +
+> > +     state->enabled =3D !!enabled;
+> > +
+> > +     /* Disable PWM clocks if the PWM channel is not in enable state. =
+*/
+> > +     if (!enabled) {
+> > +             clk_bulk_disable_unprepare(SPRD_PWM_NUM_CLKS, chn->clks);
+> > +             chn->clk_enabled =3D false;
+> > +     }
+> > +}
+> > +
+> > +static const struct pwm_ops sprd_pwm_ops =3D {
+> > +     .config =3D sprd_pwm_config,
+> > +     .enable =3D sprd_pwm_enable,
+> > +     .disable =3D sprd_pwm_disable,
+> > +     .get_state =3D sprd_pwm_get_state,
+> > +     .owner =3D THIS_MODULE,
+> > +};
+> > +
+> > +static int sprd_pwm_clk_init(struct sprd_pwm_chip *spc)
+> > +{
+> > +     struct clk *clk_parent, *clk_pwm;
+> > +     int ret, i, clk_index =3D 0;
+> > +
+> > +     clk_parent =3D devm_clk_get(spc->dev, "source");
+> > +     if (IS_ERR(clk_parent)) {
+> > +             dev_err(spc->dev, "failed to get source clock\n");
+> > +             return PTR_ERR(clk_parent);
+> > +     }
+> > +
+> > +     for (i =3D 0; i < SPRD_PWM_NUM; i++) {
+> > +             struct sprd_pwm_chn *chn =3D &spc->chn[i];
+> > +             int j;
+> > +
+> > +             for (j =3D 0; j < SPRD_PWM_NUM_CLKS; ++j)
+> > +                     chn->clks[j].id =3D sprd_pwm_clks[clk_index++];
+> > +
+> > +             ret =3D devm_clk_bulk_get(spc->dev, SPRD_PWM_NUM_CLKS, ch=
+n->clks);
+> > +             if (ret) {
+> > +                     if (ret =3D=3D -ENOENT)
+> > +                             break;
+>
+> devm_clk_bulk_get_optional ? I'm sure you don't want to get all 8 clocks
+> 8 times.
+
+This is not optional, each channel has 2 required clocks, and we have
+4 channels. (SPRD_PWM_NUM_CLKS =3D=3D 2)
+
+>
+> > +
+> > +                     dev_err(spc->dev, "failed to get channel clocks\n=
+");
+> > +                     return ret;
+> > +             }
+> > +
+> > +             clk_pwm =3D chn->clks[1].clk;
+>
+> This 1 looks suspicious. Are you using all clocks provided in the dtb at
+> all? You're not using i in the loop at all, this doesn't look right.
+
+Like I said above, each channel has 2 clocks: enable clock and pwm
+clock, the 2nd clock of each channel's bulk clocks is the pwm clock,
+which is used to set the source clock. I know this's not easy to read,
+so do you have any good suggestion?
+
+>
+> > +             if (!clk_set_parent(clk_pwm, clk_parent))
+> > +                     chn->clk_rate =3D clk_get_rate(clk_pwm);
+> > +             else
+> > +                     chn->clk_rate =3D SPRD_PWM_DEFAULT_CLK;
+>
+> I don't know all the clock framework details, but I think there are
+> better ways to ensure that a given clock is used as parent for another
+> given clock. Please read the chapter about "Assigned clock parents and
+> rates" in the clock bindings and check if this could be used for the
+> purpose here and so simplify the driver.
+
+Actually there are many other drivers set the parent clock like this,
+and we want a default clock if failed to set the parent clock.
+
+>
+> > +     }
+> > +
+> > +     if (!i) {
+> > +             dev_err(spc->dev, "no availbale PWM channels\n");
+>
+> s/availbale/available/
+
+Sure.
+
+>
+> > +             return -EINVAL;
+> > +     }
+> > +
+> > +     spc->num_pwms =3D i;
+> > +
+> > +     return 0;
+> > +}
+> > +
+> > +static int sprd_pwm_probe(struct platform_device *pdev)
+> > +{
+> > +     struct sprd_pwm_chip *spc;
+> > +     int ret;
+> > +
+> > +     spc =3D devm_kzalloc(&pdev->dev, sizeof(*spc), GFP_KERNEL);
+> > +     if (!spc)
+> > +             return -ENOMEM;
+> > +
+> > +     spc->base =3D devm_platform_ioremap_resource(pdev, 0);
+> > +     if (IS_ERR(spc->base))
+> > +             return PTR_ERR(spc->base);
+> > +
+> > +     spc->dev =3D &pdev->dev;
+> > +     ret =3D sprd_pwm_clk_init(spc);
+> > +     if (ret)
+> > +             return ret;
+> > +
+> > +     spc->chip.dev =3D &pdev->dev;
+> > +     spc->chip.ops =3D &sprd_pwm_ops;
+> > +     spc->chip.base =3D -1;
+> > +     spc->chip.npwm =3D spc->num_pwms;
+> > +
+> > +     ret =3D pwmchip_add(&spc->chip);
+> > +     if (ret) {
+> > +             dev_err(&pdev->dev, "failed to add PWM chip\n");
+> > +             return ret;
+> > +     }
+> > +
+> > +     platform_set_drvdata(pdev, spc);
+>
+> If you do this earlier you can simplify the last part of the driver to:
+>
+>         ret =3D pwmchip_add(&spc->chip);
+>         if (ret)
+>                 dev_err(&pdev->dev, "failed to add PWM chip\n");
+>
+>         return ret;
+
+OK.
+
+>
+> > +     return 0;
+> > +}
+> > +
+> > +static int sprd_pwm_remove(struct platform_device *pdev)
+> > +{
+> > +     struct sprd_pwm_chip *spc =3D platform_get_drvdata(pdev);
+> > +     int i;
+> > +
+> > +     for (i =3D 0; i < spc->num_pwms; i++)
+> > +             pwm_disable(&spc->chip.pwms[i]);
+>
+> This is wrong. You must not call pwm_disable here. It's the consumer's
+> responsibility to disable the hardware.
+
+Emm, I saw some drivers did like this, like pwm-spear.c.
+Could you elaborate on what's the problem if the driver issues pwm_disable?
+
+Very appreciated for your comments.
+
+--=20
+Baolin Wang
+Best Regards
