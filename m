@@ -2,87 +2,69 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5BB37875F2
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 11:30:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 93ACC875FF
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 11:32:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405976AbfHIJau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 05:30:50 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:54359 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727063AbfHIJau (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 05:30:50 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hw1EV-0003sh-PK; Fri, 09 Aug 2019 11:30:47 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hw1EV-0006F3-8E; Fri, 09 Aug 2019 11:30:47 +0200
-Date:   Fri, 9 Aug 2019 11:30:47 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org
-Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
-        linux-input@vger.kernel.org
-Subject: Re: [PATCH 0/4] ADS7846 add general touchscreen features
-Message-ID: <20190809093047.xo3vngthu3kqbtqz@pengutronix.de>
-References: <20190327133927.1340-1-m.felsch@pengutronix.de>
+        id S2406078AbfHIJco (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 05:32:44 -0400
+Received: from shell.v3.sk ([90.176.6.54]:51811 "EHLO shell.v3.sk"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2405957AbfHIJco (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Aug 2019 05:32:44 -0400
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id BB13ED63BD;
+        Fri,  9 Aug 2019 11:32:35 +0200 (CEST)
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10032)
+        with ESMTP id RBewaE-fcJTT; Fri,  9 Aug 2019 11:32:13 +0200 (CEST)
+Received: from localhost (localhost [127.0.0.1])
+        by zimbra.v3.sk (Postfix) with ESMTP id F3F7CD63C0;
+        Fri,  9 Aug 2019 11:32:11 +0200 (CEST)
+X-Virus-Scanned: amavisd-new at zimbra.v3.sk
+Received: from shell.v3.sk ([127.0.0.1])
+        by localhost (zimbra.v3.sk [127.0.0.1]) (amavisd-new, port 10026)
+        with ESMTP id gOklHG2eGQZ3; Fri,  9 Aug 2019 11:32:08 +0200 (CEST)
+Received: from furthur.local (ip-37-188-137-236.eurotel.cz [37.188.137.236])
+        by zimbra.v3.sk (Postfix) with ESMTPSA id 88485D6350;
+        Fri,  9 Aug 2019 11:32:07 +0200 (CEST)
+From:   Lubomir Rintel <lkundrak@v3.sk>
+To:     Olof Johansson <olof@lixom.net>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Jason Cooper <jason@lakedaemon.net>,
+        Marc Zyngier <maz@kernel.org>,
+        Kishon Vijay Abraham I <kishon@ti.com>,
+        Russell King <linux@armlinux.org.uk>,
+        Michael Turquette <mturquette@baylibre.com>,
+        Stephen Boyd <sboyd@kernel.org>, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-clk@vger.kernel.org
+Subject: [PATCH 00/19] Initial support for Marvell MMP3 SoC
+Date:   Fri,  9 Aug 2019 11:31:39 +0200
+Message-Id: <20190809093158.7969-1-lkundrak@v3.sk>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190327133927.1340-1-m.felsch@pengutronix.de>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:30:21 up 83 days, 15:48, 58 users,  load average: 0.23, 0.11,
- 0.08
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Dmitry,
+Hi,
 
-gentle ping.
+this patch set adds support for the Marvell MMP3 processor. MMP3 is used
+in OLPC XO-4 laptops, Panasonic Toughpad FZ-A1 tablet and Dell Wyse 3020
+Tx0D thin clients.
 
-Regards,
-  Marco
+Apart from the adjustments in mach-mmp/, the patch makes necessary
+changes to the irqchip driver and adds an USB2 PHY driver. The latter
+has a dependency on the mach-mmp/ changes, so it can't be submitted
+separately.
 
-On 19-03-27 14:39, Marco Felsch wrote:
-> Hi,
-> 
-> The main purpose of this small set is to add support for the general
-> touchscreen dt-properties. During this work I also changed the memory
-> allocation methods to the devm_* ones to cleanup the error-paths.
-> 
-> Regards,
-> Marco
-> 
-> Marco Felsch (4):
->   Input: ads7846 - convert to devm_ alloc functions
->   dt-bindings: input: ads7846: fix property description
->   dt-bindings: input: ads7846: replace vendor-bindings by general ones
->   Input: ads7846 - add support for general touchscreen bindings
-> 
->  .../bindings/input/touchscreen/ads7846.txt    | 29 +++++--
->  drivers/input/touchscreen/ads7846.c           | 75 +++++++++++--------
->  2 files changed, 66 insertions(+), 38 deletions(-)
-> 
-> -- 
-> 2.20.1
-> 
-> 
-> 
+The patch set has been tested to work on Wyse Tx0D and not ruin MMP2
+support on XO-1.75.
 
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+Lubo
+
+
