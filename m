@@ -2,125 +2,235 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B582B87A69
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 14:46:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id C71FB87A92
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 14:54:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406721AbfHIMqK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 08:46:10 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:44644 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726091AbfHIMqK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 08:46:10 -0400
-Received: by mail-lj1-f193.google.com with SMTP id k18so91944005ljc.11;
-        Fri, 09 Aug 2019 05:46:07 -0700 (PDT)
+        id S2406801AbfHIMyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 08:54:11 -0400
+Received: from mail-wr1-f65.google.com ([209.85.221.65]:43104 "EHLO
+        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406777AbfHIMyK (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 08:54:10 -0400
+Received: by mail-wr1-f65.google.com with SMTP id p13so23565460wru.10
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 05:54:09 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=oHD9gAbpUGqohG11KOfFTQG8DPTHY5YiY1mqT8307h0=;
-        b=Aicz9GKaiBL3XNYy5FUJNijtWIq0HJaEKfd7pD9t0ChHaGa9Y6LvuNZ/sXwHV/X0BH
-         yon5hYP3TQtf11PavNBvvfat9+Yb1J76Pxdfj8m58OJ59I4Y0O2gxMUz7KZCkEUKsVrp
-         V8nS5wxKUUhFsoDM5a/QUoD2q2aOwiMJcFyOtJcXpIQ1ILVwMXL8iHee1q1pByLXTp7R
-         fPGJq5NbJ6kSX7fokzgVoyKeBrdltU5JeF91YhpbJdIt12xzx1e8h1Q7oxVJFlHyUSzM
-         4Bz361fkZX9xNhoubpAMwuropRnPruAKK6KMfw4OvUdrEju1PFjFocFpNZLqv8pGTbaQ
-         EuVg==
+        d=devtank-co-uk.20150623.gappssmtp.com; s=20150623;
+        h=from:to:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=y32KFC5Gmco7XtWCiisEpnhBgSBOWGVlewparZe3tOw=;
+        b=068o3O1lgPGrnJDGhdnBf7bX6dF9HXO3wLzt5tlQih8ELJzjpi5XN6itsC9m26VaJT
+         MWjNzwpumYm5PaGNTgihrdW2iHPxYfre+iogU4hW3CsIzSj016Ww2OIpfGFT+lexFcn6
+         IXk6SId7Rbt/w1zBe2xKSqUbo3/HN+dVRSELxXzhT8bFEcw6HmfoglK5FVcINDHwpsbc
+         aqphkBa3oOA2fUq5QJIHtx3aacw9NN6G0efDjPRcpWp0EpIEFo4IU1P+ZcoAl/CQlUpl
+         gG1fYzkzrBqw2j123HyPnjhjg6v2k1tn0flHP9njM5g5CTmehIA0FmC4pcwvGCf2x3qa
+         PW6w==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
+        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
          :content-transfer-encoding;
-        bh=oHD9gAbpUGqohG11KOfFTQG8DPTHY5YiY1mqT8307h0=;
-        b=Ig4IpEx2uURg+2biZT91bNMdGIem5yPCmdQT08oDASzo42uXaWVIKONA137jubl8tG
-         0acbtI2tcL8UuE6LB7M50uBL4tNim3a8/RcW2BCrdapcrzPVN4cApcrQczLlAUczmle7
-         897HO3xz+/XVHEogqyAHMHtAu6rodAW0fkIHwtkQMlmJi71FF/BmeFs6tyaCsa3wmuHb
-         GSZyfP6J6OG4xNhQTFvj48ZXigi/fK+7CMYlJUa99F6L+tRAMPHjDKjaNREROAZF7MM9
-         zi9VjqAkG+SCwLnvS7oTtvg+Alkv19VFSm4SHjtj+GTVyBx57b90fSuK9s79zb5HmDGc
-         7Jtg==
-X-Gm-Message-State: APjAAAWe+D7ZcPmU+HDhCAQRiwwnsL4m1EWGQMpwn6XkOc7ehimoLbvC
-        Atgkzh82fBuB9IxIXVEny938lQHc
-X-Google-Smtp-Source: APXvYqyqnTJF/IDLsH/Wh7eA04jc+Hd8J1dnUy6eHI5Oz6M87mrrHA6GwJ7gbtqVvE/Q0rNE+X8SAw==
-X-Received: by 2002:a2e:9c19:: with SMTP id s25mr11168306lji.188.1565354766958;
-        Fri, 09 Aug 2019 05:46:06 -0700 (PDT)
-Received: from [192.168.2.145] ([94.29.34.218])
-        by smtp.googlemail.com with ESMTPSA id a15sm3206759lfo.2.2019.08.09.05.46.05
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Aug 2019 05:46:06 -0700 (PDT)
-Subject: Re: [PATCH v8 05/21] clk: tegra: pll: Save and restore pll context
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, marc.zyngier@arm.com,
-        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, rjw@rjwysocki.net,
-        viresh.kumar@linaro.org, linux-pm@vger.kernel.org
-References: <1565308020-31952-1-git-send-email-skomatineni@nvidia.com>
- <1565308020-31952-6-git-send-email-skomatineni@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <3e5867db-2675-a701-948b-1436f9d5dcd9@gmail.com>
-Date:   Fri, 9 Aug 2019 15:46:04 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        bh=y32KFC5Gmco7XtWCiisEpnhBgSBOWGVlewparZe3tOw=;
+        b=qmJNfO5bkHYUvueQ9QZMXi2XB9ZjtT6x430vmTnHSSczUM3c5ifIvKPX6GwK7Ezmrd
+         H81I5SbS7ZeopGv32KbVMDWsWrNsVa9d3leZxyYIM3YgcqiKh7VjX+QOWKXcSeeMNoJ3
+         X3DN061QF/CuFwkmUgT476/SJYIWTPG1pcnXM99NIp9wmMgDc+De/Kpk5g5xTAu1VyGE
+         2snIlNFxEoppUCc87uh7I4h2/6x5hzY3yQPyYWM4C42NVHhgitxCJPVAnsm9Sz1Y8L3F
+         6hffcj4niZCmmaGTZK/XZCSrRTgQ3nGvmrNgNOG/EKY8dDS8zCDQXK55DLR2skrYXRna
+         1N2w==
+X-Gm-Message-State: APjAAAVM68rILx7A5uGzxjFTRI4SU3odwEUOPStihi0fYpqupwPg733B
+        ilUPfKA9A4+0XYvOGVGcnZxkEg==
+X-Google-Smtp-Source: APXvYqxLDHv3jxjGKDWsbywwOeEk3IGevqplEAVGrmT7HBU9VjuZwFqc+KTT9uefcoI9FLWi9teM/g==
+X-Received: by 2002:adf:e40e:: with SMTP id g14mr22200335wrm.161.1565355248494;
+        Fri, 09 Aug 2019 05:54:08 -0700 (PDT)
+Received: from jabjoe-desktop.lan (82-71-5-123.dsl.in-addr.zen.co.uk. [82.71.5.123])
+        by smtp.googlemail.com with ESMTPSA id 2sm2748038wrg.83.2019.08.09.05.54.07
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 09 Aug 2019 05:54:07 -0700 (PDT)
+From:   Joe Burmeister <joe.burmeister@devtank.co.uk>
+To:     joe.burmeister@devtank.co.uk, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject: [PATCH] Add optional chip erase functionality to AT25 EEPROM driver.
+Date:   Fri,  9 Aug 2019 13:53:55 +0100
+Message-Id: <20190809125358.24440-1-joe.burmeister@devtank.co.uk>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <1565308020-31952-6-git-send-email-skomatineni@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
 Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-09.08.2019 2:46, Sowjanya Komatineni пишет:
-> This patch implements save and restore of PLL context.
-> 
-> During system suspend, core power goes off and looses the settings
-> of the Tegra CAR controller registers.
-> 
-> So during suspend entry pll context is stored and on resume it is
-> restored back along with its state.
-> 
-> Acked-by: Thierry Reding <treding@nvidia.com>
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/clk/tegra/clk-pll.c | 88 ++++++++++++++++++++++++++++-----------------
->  drivers/clk/tegra/clk.h     |  2 ++
->  2 files changed, 58 insertions(+), 32 deletions(-)
-> 
-> diff --git a/drivers/clk/tegra/clk-pll.c b/drivers/clk/tegra/clk-pll.c
-> index 1583f5fc992f..e52add2bbdbb 100644
-> --- a/drivers/clk/tegra/clk-pll.c
-> +++ b/drivers/clk/tegra/clk-pll.c
-> @@ -1008,6 +1008,28 @@ static unsigned long clk_plle_recalc_rate(struct clk_hw *hw,
->  	return rate;
->  }
->  
-> +static void tegra_clk_pll_restore_context(struct clk_hw *hw)
-> +{
-> +	struct tegra_clk_pll *pll = to_clk_pll(hw);
-> +	struct clk_hw *parent = clk_hw_get_parent(hw);
-> +	unsigned long parent_rate = clk_hw_get_rate(parent);
-> +	unsigned long rate = clk_hw_get_rate(hw);
-> +	u32 val;
-> +
-> +	if (clk_pll_is_enabled(hw))
-> +		return;
-> +
-> +	if (pll->params->set_defaults)
-> +		pll->params->set_defaults(pll);
-> +
-> +	clk_pll_set_rate(hw, rate, parent_rate);
-> +
-> +	if (!__clk_get_enable_count(hw->clk))
-> +		clk_pll_disable(hw);
-> +	else
-> +		clk_pll_enable(hw);
-> +}
+Many, though not all, AT25s have an instruction for chip erase.
+If there is one in the datasheet, it can be added to device tree.
+Erase can then be done in userspace via the sysfs API with a new
+"erase" device attribute. This matches the eeprom_93xx46 driver's
+"erase".
 
-drivers/clk/tegra/clk-pll.c: In function ‘tegra_clk_pll_restore_context’:
-drivers/clk/tegra/clk-pll.c:1024:6: warning: unused variable ‘val’ [-Wunused-variable]
- 1024 |  u32 val;
+Signed-off-by: Joe Burmeister <joe.burmeister@devtank.co.uk>
+---
+ .../devicetree/bindings/eeprom/at25.txt       |  2 +
+ drivers/misc/eeprom/at25.c                    | 83 ++++++++++++++++++-
+ 2 files changed, 82 insertions(+), 3 deletions(-)
+
+diff --git a/Documentation/devicetree/bindings/eeprom/at25.txt b/Documentation/devicetree/bindings/eeprom/at25.txt
+index b3bde97dc199..c65d11e14c7a 100644
+--- a/Documentation/devicetree/bindings/eeprom/at25.txt
++++ b/Documentation/devicetree/bindings/eeprom/at25.txt
+@@ -19,6 +19,7 @@ Optional properties:
+ - spi-cpha : SPI shifted clock phase, as per spi-bus bindings.
+ - spi-cpol : SPI inverse clock polarity, as per spi-bus bindings.
+ - read-only : this parameter-less property disables writes to the eeprom
++- chip_erase_instruction : Chip erase instruction for this AT25, often 0xc7 or 0x62.
+ 
+ Obsolete legacy properties can be used in place of "size", "pagesize",
+ "address-width", and "read-only":
+@@ -39,4 +40,5 @@ Example:
+ 		pagesize = <64>;
+ 		size = <32768>;
+ 		address-width = <16>;
++		chip_erase_instruction = <0x62>;
+ 	};
+diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
+index 99de6939cd5a..28141bc4028f 100644
+--- a/drivers/misc/eeprom/at25.c
++++ b/drivers/misc/eeprom/at25.c
+@@ -35,6 +35,7 @@ struct at25_data {
+ 	unsigned		addrlen;
+ 	struct nvmem_config	nvmem_config;
+ 	struct nvmem_device	*nvmem;
++	u8			erase_instr;
+ };
+ 
+ #define	AT25_WREN	0x06		/* latch the write enable */
+@@ -59,6 +60,8 @@ struct at25_data {
+  */
+ #define	EE_TIMEOUT	25
+ 
++#define ERASE_TIMEOUT 2020
++
+ /*-------------------------------------------------------------------------*/
+ 
+ #define	io_limit	PAGE_SIZE	/* bytes */
+@@ -304,6 +307,71 @@ static int at25_fw_to_chip(struct device *dev, struct spi_eeprom *chip)
+ 	return 0;
+ }
+ 
++static void _eeprom_at25_store_erase_locked(struct at25_data *at25)
++{
++	unsigned long	timeout, retries;
++	int				sr, status;
++	u8	cp;
++
++	cp = AT25_WREN;
++	status = spi_write(at25->spi, &cp, 1);
++	if (status < 0) {
++		dev_dbg(&at25->spi->dev, "ERASE WREN --> %d\n", status);
++		return;
++	}
++	cp = at25->erase_instr;
++	status = spi_write(at25->spi, &cp, 1);
++	if (status < 0) {
++		dev_dbg(&at25->spi->dev, "CHIP_ERASE --> %d\n", status);
++		return;
++	}
++	/* Wait for non-busy status */
++	timeout = jiffies + msecs_to_jiffies(ERASE_TIMEOUT);
++	retries = 0;
++	do {
++		sr = spi_w8r8(at25->spi, AT25_RDSR);
++		if (sr < 0 || (sr & AT25_SR_nRDY)) {
++			dev_dbg(&at25->spi->dev,
++				"rdsr --> %d (%02x)\n", sr, sr);
++			/* at HZ=100, this is sloooow */
++			msleep(1);
++			continue;
++		}
++		if (!(sr & AT25_SR_nRDY))
++			return;
++	} while (retries++ < 200 || time_before_eq(jiffies, timeout));
++
++	if ((sr < 0) || (sr & AT25_SR_nRDY)) {
++		dev_err(&at25->spi->dev,
++			"chip erase, timeout after %u msecs\n",
++			jiffies_to_msecs(jiffies -
++				(timeout - ERASE_TIMEOUT)));
++		status = -ETIMEDOUT;
++		return;
++	}
++}
++
++
++static ssize_t eeprom_at25_store_erase(struct device *dev,
++					 struct device_attribute *attr,
++					 const char *buf, size_t count)
++{
++	struct at25_data *at25 = dev_get_drvdata(dev);
++	int erase = 0;
++
++	sscanf(buf, "%d", &erase);
++	if (erase) {
++		mutex_lock(&at25->lock);
++		_eeprom_at25_store_erase_locked(at25);
++		mutex_unlock(&at25->lock);
++	}
++
++	return count;
++}
++
++static DEVICE_ATTR(erase, S_IWUSR, NULL, eeprom_at25_store_erase);
++
++
+ static int at25_probe(struct spi_device *spi)
+ {
+ 	struct at25_data	*at25 = NULL;
+@@ -311,6 +379,7 @@ static int at25_probe(struct spi_device *spi)
+ 	int			err;
+ 	int			sr;
+ 	int			addrlen;
++	int			has_erase;
+ 
+ 	/* Chip description */
+ 	if (!spi->dev.platform_data) {
+@@ -352,6 +421,9 @@ static int at25_probe(struct spi_device *spi)
+ 	spi_set_drvdata(spi, at25);
+ 	at25->addrlen = addrlen;
+ 
++	/* Optional chip erase instruction */
++	device_property_read_u8(&spi->dev, "chip_erase_instruction", &at25->erase_instr);
++
+ 	at25->nvmem_config.name = dev_name(&spi->dev);
+ 	at25->nvmem_config.dev = &spi->dev;
+ 	at25->nvmem_config.read_only = chip.flags & EE_READONLY;
+@@ -370,17 +442,22 @@ static int at25_probe(struct spi_device *spi)
+ 	if (IS_ERR(at25->nvmem))
+ 		return PTR_ERR(at25->nvmem);
+ 
+-	dev_info(&spi->dev, "%d %s %s eeprom%s, pagesize %u\n",
++	has_erase = (!(chip.flags & EE_READONLY) && at25->erase_instr);
++
++	dev_info(&spi->dev, "%d %s %s eeprom%s, pagesize %u%s\n",
+ 		(chip.byte_len < 1024) ? chip.byte_len : (chip.byte_len / 1024),
+ 		(chip.byte_len < 1024) ? "Byte" : "KByte",
+ 		at25->chip.name,
+ 		(chip.flags & EE_READONLY) ? " (readonly)" : "",
+-		at25->chip.page_size);
++		at25->chip.page_size, (has_erase)?" <has erase>":"");
++
++	if (has_erase && device_create_file(&spi->dev, &dev_attr_erase))
++		dev_err(&spi->dev, "can't create erase interface\n");
++
+ 	return 0;
+ }
+ 
+ /*-------------------------------------------------------------------------*/
+-
+ static const struct of_device_id at25_of_match[] = {
+ 	{ .compatible = "atmel,at25", },
+ 	{ }
+-- 
+2.20.1
 
