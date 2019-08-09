@@ -2,48 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 373F787B47
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 15:34:52 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7650A87B42
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 15:34:49 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406850AbfHINep (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 09:34:45 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:43911 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406662AbfHINeb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 09:34:31 -0400
-Received: by mail-wr1-f65.google.com with SMTP id p13so23686418wru.10
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 06:34:30 -0700 (PDT)
+        id S2436496AbfHINed (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 09:34:33 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:45888 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2407126AbfHINec (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 09:34:32 -0400
+Received: by mail-wr1-f68.google.com with SMTP id q12so8011815wrj.12
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 06:34:31 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=from:to:cc:subject:date:message-id:in-reply-to:references
          :mime-version:content-transfer-encoding;
-        bh=0HujpxJDALuBLWUqjS8zq5NBk/WyCBZfMmdnlRTpNtM=;
-        b=DcQZdgr2IlFroNIH+nLIyKRTWFgLTPuEN1bDsv4N8D5zGm8ZqLRiw14VLSCE1WjSjA
-         l5cUBLF29k/e6ssUrIqAvYe+WGKfvsLlWyavYiYiDC/Iwo7gZ602Xg6LGySET24t9jLy
-         SXznkZWj8N1WtvSXSYngfTpgBTabH4LUTGl9Y2W7Po/wN1EARpyUHyif13pwgzvm0UAF
-         k1RX9axwIeRu4C0pVccAi1fG1DmY1/TEIXRTwVIlOuMcDsVGjtT0dKrN3KIlW5zgnZUb
-         hK3eiL+bOsp7rzGQV0NoeV6XEjkJYwn7H778pBmYu7kcXctMI5F7AkXm2lYG+1r5r1Da
-         fZsA==
+        bh=WSA7ezdPPag+s30NiG1INKw2c+i3SxQK3zdXCLkhRcc=;
+        b=PsLHerYoUVRKASnwTKpiAHQR0yPELiRX+g+NPh9prYQur1qyuSIfRI9PXP0Ob5CJp2
+         HPSso9SxnVC7il0jzaoVV9lJC6Ex7sVcFdBqN/S3qOmWNjZMJ8rm0TEGcsqbB0CAcH5K
+         fyZbwFQD3D/CnClOZa2uSp5cr/QjbAktrc4mFi1VK8uSKqaex2aNsIEgcg7+IdI7zYi0
+         xJX5+xEAyIYNbHAARfShnXDBAftp15zQHxpDPB2AAU9xbMcZxVIVBcpC5QD1peeHs+TV
+         oHBwA+QBhimbf9/kN9APXDT3/9VvtWTAOTgNcJVKr8OOeFTUSJjQNUsvDC3qBFv9B6Bf
+         YYYA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
          :references:mime-version:content-transfer-encoding;
-        bh=0HujpxJDALuBLWUqjS8zq5NBk/WyCBZfMmdnlRTpNtM=;
-        b=LrdO42u8Be2AXU7kDlNeELrlEAiAdSqEWSqOIyo4rDJ0mQe2Iy+JlujVqbhzpB7Thc
-         BhgYz3NcJKBtr+jejCTOjI8o/temblA6zY1RBW7PUvVAKMXHLRtWzdQXJuDQRcEWVEYm
-         b9Fa5FdHnuWJkKqhcE0lv+FEw1iZ4QRgINYpqTwncbjAvb1V0Hx4/ZvQ4Hb0MspbUoEO
-         UWGA4uWJ4lAafPQaZUD49moIg99M7yLFdfeMWfYF4qcNGOIKWLYfA3jMMLbe8TkLaR+n
-         2MCdUOFHpQg6zEMkqhcvNJeApux3PITrbtDXLOJDtfXD3lzdqS9JDC+qjp28Cwbd/M7u
-         PKmw==
-X-Gm-Message-State: APjAAAUfO8CTqTqkNLz06Ie5Z5KPGo7SzPtvrK9xeXLWIn9GnpKTn6gs
-        W8VSIHPcCpJO758EAuD01SPh6w==
-X-Google-Smtp-Source: APXvYqxcL/4UZ+zBOXcgvw4tHlarYgHxBGZtino0zaUbILQwiVTHaAxi7DlzP3mT4N0JY7khimgnvg==
-X-Received: by 2002:adf:f7cd:: with SMTP id a13mr1202327wrq.165.1565357669514;
-        Fri, 09 Aug 2019 06:34:29 -0700 (PDT)
+        bh=WSA7ezdPPag+s30NiG1INKw2c+i3SxQK3zdXCLkhRcc=;
+        b=LpvaM3kU3LavyT49im+z1kt3BZOjiNEmiOkG6BDXj48B9V34WqeHowMiuJyhhTty+J
+         a0ckAOdCPo9Yeus0uSeuxQE/11DI35lpPj93G7ki9qUq0GiakZEXtYfn3x5HWvJwHCcF
+         W0st3OU2rcxNqhOx6OKpi2NlWAJ8Jcc4db4jHYYNaX7CzTLgNq5R/AznY+872ZXiCtUT
+         dTypZZXwYSePw/SjIa0TRfS0X5rjTs+BmKstOx6kYVhm/Tg/JnnFFN577TO4uyYobx/n
+         DbJm6uyi7fpr/xK9e0hbSit8Wtt72hoOe9f/zW7ftSKX4/OBn4uVdcsA/EAT90E7MQ3t
+         0XFw==
+X-Gm-Message-State: APjAAAWFcEInPawA3lnvN0a6SBerkEP/vM6N2vuvofVKsUv7gSWV8GvR
+        yQhxSLNu9xoz5A6c/m3ma10dxQ==
+X-Google-Smtp-Source: APXvYqwlUmqdetUDTyTK+lXVK3bZa3Ttblwj2qzFWoaZD/WRa1755r4Jj/b9Aq2U0IDNuwXtzb074g==
+X-Received: by 2002:adf:f206:: with SMTP id p6mr24947252wro.216.1565357670593;
+        Fri, 09 Aug 2019 06:34:30 -0700 (PDT)
 Received: from srini-hackbox.lan (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.gmail.com with ESMTPSA id y18sm5674641wmi.23.2019.08.09.06.34.28
+        by smtp.gmail.com with ESMTPSA id y18sm5674641wmi.23.2019.08.09.06.34.29
         (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
-        Fri, 09 Aug 2019 06:34:28 -0700 (PDT)
+        Fri, 09 Aug 2019 06:34:30 -0700 (PDT)
 From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 To:     vkoul@kernel.org, broonie@kernel.org
 Cc:     bgoswami@codeaurora.org, plai@codeaurora.org,
@@ -51,9 +51,9 @@ Cc:     bgoswami@codeaurora.org, plai@codeaurora.org,
         devicetree@vger.kernel.org, lgirdwood@gmail.com,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Subject: [PATCH v3 1/4] dt-bindings: soundwire: add slave bindings
-Date:   Fri,  9 Aug 2019 14:34:04 +0100
-Message-Id: <20190809133407.25918-2-srinivas.kandagatla@linaro.org>
+Subject: [PATCH v3 2/4] soundwire: core: add device tree support for slave devices
+Date:   Fri,  9 Aug 2019 14:34:05 +0100
+Message-Id: <20190809133407.25918-3-srinivas.kandagatla@linaro.org>
 X-Mailer: git-send-email 2.21.0
 In-Reply-To: <20190809133407.25918-1-srinivas.kandagatla@linaro.org>
 References: <20190809133407.25918-1-srinivas.kandagatla@linaro.org>
@@ -64,73 +64,107 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds bindings for Soundwire Slave devices that includes how
-SoundWire enumeration address and Link ID are used to represented in
-SoundWire slave device tree nodes.
+This patch adds support to parsing device tree based
+SoundWire slave devices.
 
 Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 ---
- .../devicetree/bindings/soundwire/slave.txt   | 51 +++++++++++++++++++
- 1 file changed, 51 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/soundwire/slave.txt
+ drivers/soundwire/bus.c   |  2 ++
+ drivers/soundwire/bus.h   |  1 +
+ drivers/soundwire/slave.c | 44 +++++++++++++++++++++++++++++++++++++++
+ 3 files changed, 47 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/soundwire/slave.txt b/Documentation/devicetree/bindings/soundwire/slave.txt
-new file mode 100644
-index 000000000000..201f65d2fafa
---- /dev/null
-+++ b/Documentation/devicetree/bindings/soundwire/slave.txt
-@@ -0,0 +1,51 @@
-+SoundWire slave device bindings.
+diff --git a/drivers/soundwire/bus.c b/drivers/soundwire/bus.c
+index fe745830a261..324c54dc52fb 100644
+--- a/drivers/soundwire/bus.c
++++ b/drivers/soundwire/bus.c
+@@ -77,6 +77,8 @@ int sdw_add_bus_master(struct sdw_bus *bus)
+ 	 */
+ 	if (IS_ENABLED(CONFIG_ACPI) && ACPI_HANDLE(bus->dev))
+ 		ret = sdw_acpi_find_slaves(bus);
++	else if (IS_ENABLED(CONFIG_OF) && bus->dev->of_node)
++		ret = sdw_of_find_slaves(bus);
+ 	else
+ 		ret = -ENOTSUPP; /* No ACPI/DT so error out */
+ 
+diff --git a/drivers/soundwire/bus.h b/drivers/soundwire/bus.h
+index 3048ca153f22..ee46befedbd1 100644
+--- a/drivers/soundwire/bus.h
++++ b/drivers/soundwire/bus.h
+@@ -15,6 +15,7 @@ static inline int sdw_acpi_find_slaves(struct sdw_bus *bus)
+ }
+ #endif
+ 
++int sdw_of_find_slaves(struct sdw_bus *bus);
+ void sdw_extract_slave_id(struct sdw_bus *bus,
+ 			  u64 addr, struct sdw_slave_id *id);
+ 
+diff --git a/drivers/soundwire/slave.c b/drivers/soundwire/slave.c
+index f39a5815e25d..c0dd79fc4fc5 100644
+--- a/drivers/soundwire/slave.c
++++ b/drivers/soundwire/slave.c
+@@ -2,6 +2,7 @@
+ // Copyright(c) 2015-17 Intel Corporation.
+ 
+ #include <linux/acpi.h>
++#include <linux/of.h>
+ #include <linux/soundwire/sdw.h>
+ #include <linux/soundwire/sdw_type.h>
+ #include "bus.h"
+@@ -35,6 +36,7 @@ static int sdw_slave_add(struct sdw_bus *bus,
+ 
+ 	slave->dev.release = sdw_slave_release;
+ 	slave->dev.bus = &sdw_bus_type;
++	slave->dev.of_node = of_node_get(to_of_node(fwnode));
+ 	slave->bus = bus;
+ 	slave->status = SDW_SLAVE_UNATTACHED;
+ 	slave->dev_num = 0;
+@@ -112,3 +114,45 @@ int sdw_acpi_find_slaves(struct sdw_bus *bus)
+ }
+ 
+ #endif
 +
-+SoundWire is a 2-pin multi-drop interface with data and clock line.
-+It facilitates development of low cost, efficient, high performance systems.
++/*
++ * sdw_of_find_slaves() - Find Slave devices in master device tree node
++ * @bus: SDW bus instance
++ *
++ * Scans Master DT node for SDW child Slave devices and registers it.
++ */
++int sdw_of_find_slaves(struct sdw_bus *bus)
++{
++	struct device *dev = bus->dev;
++	struct device_node *node;
 +
-+SoundWire slave devices:
-+Every SoundWire controller node can contain zero or more child nodes
-+representing slave devices on the bus. Every SoundWire slave device is
-+uniquely determined by the enumeration address containing 5 fields:
-+SoundWire Version, Instance ID, Manufacturer ID, Part ID
-+and Class ID for a device. Addition to below required properties,
-+child nodes can have device specific bindings.
++	for_each_child_of_node(bus->dev->of_node, node) {
++		struct sdw_slave_id id;
++		const char *compat = NULL;
++		int unique_id, link_id, sdw_version, ret;
 +
-+Required properties:
-+- compatible:	 "sdw<LinkID><VersionID><InstanceID><MFD><PID><CID>".
-+		  Is the textual representation of SoundWire Enumeration
-+		  address along with Link ID. compatible string should contain
-+		  SoundWire Link ID, SoundWire Version ID, Instance ID,
-+		  Manufacturer ID, Part ID and Class ID in order
-+		  represented as above and shall be in lower-case hexadecimal
-+		  with leading zeroes. Vaild sizes of these fields are
-+		  LinkID is 1 nibble,
-+		  Version ID is 1 nibble
-+		  Instance ID in 1 nibble
-+		  MFD in 4 nibbles
-+		  PID in 4 nibbles
-+		  CID is 2 nibbles
++		compat = of_get_property(node, "compatible", NULL);
++		if (!compat)
++			continue;
 +
-+		  Version number '0x1' represents SoundWire 1.0
-+		  Version number '0x2' represents SoundWire 1.1
-+		  ex: "sdw0110217201000" represents 0 LinkID,
-+		  SoundWire 1.0 version slave with Instance ID 1.
-+		  More Information on detail of encoding of these fields can be
-+		  found in MIPI Alliance DisCo & SoundWire 1.0 Specifications.
++		ret = sscanf(compat, "sdw%01x%01x%01x%04hx%04hx%02hhx",
++			     &link_id, &sdw_version, &unique_id, &id.mfg_id,
++			     &id.part_id, &id.class_id);
 +
-+SoundWire example for Qualcomm's SoundWire controller:
++		if (ret != 6) {
++			dev_err(dev, "Invalid compatible string found %s\n",
++				compat);
++			continue;
++		}
 +
-+soundwire@c2d0000 {
-+	compatible = "qcom,soundwire-v1.5.0"
-+	reg = <0x0c2d0000 0x2000>;
++		/* Check for link_id match */
++		if (link_id != bus->link_id)
++			continue;
 +
-+	spkr_left:wsa8810-left{
-+		compatible = "sdw0110217201000";
-+		...
-+	};
++		id.sdw_version = sdw_version;
++		id.unique_id = unique_id;
++		sdw_slave_add(bus, &id, of_fwnode_handle(node));
++	}
 +
-+	spkr_right:wsa8810-right{
-+		compatible = "sdw0120217201000";
-+		...
-+	};
-+};
++	return 0;
++}
 -- 
 2.21.0
 
