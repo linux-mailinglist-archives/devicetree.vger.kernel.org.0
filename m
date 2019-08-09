@@ -2,130 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0115E87514
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 11:16:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5BB37875F2
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 11:30:51 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406091AbfHIJQ3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 05:16:29 -0400
-Received: from vps.xff.cz ([195.181.215.36]:46522 "EHLO vps.xff.cz"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405641AbfHIJQ3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Aug 2019 05:16:29 -0400
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=megous.com; s=mail;
-        t=1565342186; bh=058fnVgEdld0XWcxrIoVMkGIvEFjKF/KELntlth1H7Y=;
-        h=Date:From:To:Cc:Subject:References:X-My-GPG-KeyId:From;
-        b=QED54Z6SSAM6GpHg9GkeBumXygOE+uGYcbOUyEZ9cs3qsVjloPPJcPaoWwHrtpIsq
-         98dW5idtdWYH3HUAO8Xn4vgDBzZhDR7Bv02o8SKJTsAafO6SXIZSriBzJmZV/HcfIQ
-         BZIUIfh4poi+kviXd1y+WPaGI2SqNEYTghwjBE0Q=
-Date:   Fri, 9 Aug 2019 11:16:26 +0200
-From:   =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>
-To:     Alexandre Belloni <alexandre.belloni@bootlin.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Mark Rutland <mark.rutland@arm.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree <devicetree@vger.kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-rtc@vger.kernel.org
-Subject: Re: [linux-sunxi] [PATCH 0/3] Add basic support for RTC on Allwinner
- H6 SoC
-Message-ID: <20190809091626.6kanjbmvbi4oipco@core.my.home>
-Mail-Followup-To: Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>, Mark Rutland <mark.rutland@arm.com>,
-        Alessandro Zummo <a.zummo@towertech.it>,
-        devicetree <devicetree@vger.kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-rtc@vger.kernel.org
-References: <20190412120730.473-1-megous@megous.com>
- <CAGb2v66cbpsoHJoiFJkBwhZ5SbO+uO+Kf6gtnA3kPFQZq0329Q@mail.gmail.com>
- <20190806183045.edhm3qzpegscf2z7@core.my.home>
- <20190807105502.GK3600@piout.net>
- <20190808121237.g6twq2nh3sayu3vx@core.my.home>
- <20190808233930.GM3600@piout.net>
+        id S2405976AbfHIJau (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 05:30:50 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:54359 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727063AbfHIJau (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 05:30:50 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hw1EV-0003sh-PK; Fri, 09 Aug 2019 11:30:47 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hw1EV-0006F3-8E; Fri, 09 Aug 2019 11:30:47 +0200
+Date:   Fri, 9 Aug 2019 11:30:47 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     dmitry.torokhov@gmail.com, robh+dt@kernel.org
+Cc:     devicetree@vger.kernel.org, kernel@pengutronix.de,
+        linux-input@vger.kernel.org
+Subject: Re: [PATCH 0/4] ADS7846 add general touchscreen features
+Message-ID: <20190809093047.xo3vngthu3kqbtqz@pengutronix.de>
+References: <20190327133927.1340-1-m.felsch@pengutronix.de>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190808233930.GM3600@piout.net>
-X-My-GPG-KeyId: EBFBDDE11FB918D44D1F56C1F9F0A873BE9777ED
- <https://xff.cz/key.txt>
+In-Reply-To: <20190327133927.1340-1-m.felsch@pengutronix.de>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 11:30:21 up 83 days, 15:48, 58 users,  load average: 0.23, 0.11,
+ 0.08
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 09, 2019 at 01:39:30AM +0200, Alexandre Belloni wrote:
-> On 08/08/2019 14:12:37+0200, Ondřej Jirman wrote:
-> > On Wed, Aug 07, 2019 at 12:55:02PM +0200, Alexandre Belloni wrote:
-> > > Hi,
-> > > 
-> > > On 06/08/2019 20:30:45+0200, Ondřej Jirman wrote:
-> > > > Maybe whether XO or DCXO is used also matters if you want to do some fine
-> > > > tunning of DCXO (control register has pletny of options), but that's probably
-> > > > better done in u-boot. And there's still no need to read HOSC source from DT.
-> > > > The driver can just check compatible, and if it is H6 and OSC_CLK_SRC_SEL is 1,
-> > > > it can do it's DCXO tunning, or whatever. But neither OS nor bootloader will
-> > > > be using this info to gate/disable the osciallator.
-> > > > 
-> > > 
-> > > It is actually useful to be able to tweak the crystal tuning at
-> > > runtime to be able to reduce clock drift and compare with a reliable
-> > > source (e.g. NTP).
-> > 
-> > I don't think there's a Linux kernel API that you can use to achieve that, so
-> > that's a rather theoretical concern at the moment.
-> > 
-> 
-> There is /sys/class/rtc/rtcX/offset which is even properly documented.
-> 
-> The reason I asked is that some RTCs have both analog (changing the
-> oscillator capacitance) and digital (changing the RTC counter) so I'm
-> wondering whether this interface should be extended.
+Hi Dmitry,
 
-As I wrote below, that can't be achieved by tuning DCXO.
+gentle ping.
 
-> > Also there are multiple clocks, that can drive the RTC, and you usually don't
-> > drive it from 24MHz DCXO oscillator. The reason is that you'd have to deal with
-> > the fact that the clock for RTC then becomes 24000000/750 (750 is fixed
-> > divider), which is 32000.
-> > 
-> > So if you want to get 32768Hz for RTC by tuning the DCXO, it would have to have
-> > 24 576 000 Hz. And even if you could achieve that (doubtful), it would throw off
-> > timings in the rest of the system (say UART, USB, CPU, display ctl) in a major way.
-> > 
-> > I guess you can try tuning 24MHz oscillator so that it's closer to the
-> > real-world 24MHz via NTP reference for other reasons. But it would be
-> > complicated, and require precise interaction with other components, like using
-> > HW timers sourced from 24MHz HOSC clock, because you can't use CPU's timers,
-> > because of inaccuracies introduced during DVFS, for example.
-> > 
-> > regards,
-> > 	o.
-> > 
-> > > I'm curious, what kind of options does this RTC have?
-> > > 
-> > > -- 
-> > > Alexandre Belloni, Bootlin
-> > > Embedded Linux and Kernel engineering
-> > > https://bootlin.com
-> > > 
-> > > _______________________________________________
-> > > linux-arm-kernel mailing list
-> > > linux-arm-kernel@lists.infradead.org
-> > > http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+Regards,
+  Marco
+
+On 19-03-27 14:39, Marco Felsch wrote:
+> Hi,
+> 
+> The main purpose of this small set is to add support for the general
+> touchscreen dt-properties. During this work I also changed the memory
+> allocation methods to the devm_* ones to cleanup the error-paths.
+> 
+> Regards,
+> Marco
+> 
+> Marco Felsch (4):
+>   Input: ads7846 - convert to devm_ alloc functions
+>   dt-bindings: input: ads7846: fix property description
+>   dt-bindings: input: ads7846: replace vendor-bindings by general ones
+>   Input: ads7846 - add support for general touchscreen bindings
+> 
+>  .../bindings/input/touchscreen/ads7846.txt    | 29 +++++--
+>  drivers/input/touchscreen/ads7846.c           | 75 +++++++++++--------
+>  2 files changed, 66 insertions(+), 38 deletions(-)
 > 
 > -- 
-> Alexandre Belloni, Bootlin
-> Embedded Linux and Kernel engineering
-> https://bootlin.com
+> 2.20.1
 > 
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+> 
+> 
+
+-- 
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
