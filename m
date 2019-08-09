@@ -2,112 +2,85 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CB9CB8861E
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 00:35:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 23FD588626
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 00:39:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726189AbfHIWe7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 18:34:59 -0400
-Received: from mail.kernel.org ([198.145.29.99]:42698 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726053AbfHIWe7 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Aug 2019 18:34:59 -0400
-Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 091DD218BE;
-        Fri,  9 Aug 2019 22:34:58 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565390098;
-        bh=63h+WNre9YQ91vhQdUSrJEGDG63V2dteAn2444A1ohI=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=OEin0ETOfBu0l8QJnZsDkSE0QwVCVNfwFiafp1UtCcHJBQd9O8yyv7gcfa9P8+6a6
-         YOXg2lJtrS9bxP0z/v8R/LSIGjzbHE80DHxY1dMcKRM0f4H/3SzkxaEep9CWhYqYGu
-         g7X5MNhUy1XssHh0w4DQAGekHVe/K+kWuipPNgJc=
-Received: by mail-qk1-f169.google.com with SMTP id s145so72913448qke.7;
-        Fri, 09 Aug 2019 15:34:57 -0700 (PDT)
-X-Gm-Message-State: APjAAAWCvX5MglAyCNFpR30ahaRsrrXcAcI8v9KxE0ajOjDAfOnL1vgS
-        b+DeiEKpyvNtpOWLp1BgnkSa29wQzghRSJlsKQ==
-X-Google-Smtp-Source: APXvYqy7pA1ssspQpP07TJLYeFH4TeLAYGnMjiVHA3c2ol55j5NOO6wJlnI0Y9JTEpnWdpxuoN6j/rvKKcuaO7v75dI=
-X-Received: by 2002:a37:6944:: with SMTP id e65mr19065297qkc.119.1565390097227;
- Fri, 09 Aug 2019 15:34:57 -0700 (PDT)
+        id S1728188AbfHIWj0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 18:39:26 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:39047 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726804AbfHIWj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 18:39:26 -0400
+Received: by mail-pf1-f194.google.com with SMTP id f17so42779531pfn.6
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 15:39:25 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=R8IVqh7wNpqQDfIMMC12abfOlWhh3Xl6VzDVWeyjpqU=;
+        b=koHCpbhas47m+8kubE8D34Xr+WHGo4wP8w8VF91CC3jXukweA2wnDrgcCudp6FO4Au
+         ++SgN3LzVEBJLekmB2wCZN3rKB2qoPxFD6cNXexR7hyMO8CJheGlcqshx6VgbQWTPlQP
+         RCB0kgSU397FUL8ELhq9uWiMNghiaUx1kG8m9GKtdtxU0lqL38CC5hPofaLjXwRPvRMq
+         97R4iHo8o9xR4i+YStWSdOOzuLid6XJAoJQMxVsvfNvayZluDAwAhg2zb1CGcYYAGxEd
+         MO7M5rlDnn/qmIOI7CkelajgZ9JklTuNCnnDsl05oIuP1xOGDf/c6w+NAYkIe9KKfMm3
+         fJgQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=R8IVqh7wNpqQDfIMMC12abfOlWhh3Xl6VzDVWeyjpqU=;
+        b=Q4t04/f+7D2JMmxuzBGXySaV85rbGMTJNafU3ZQUlbR3DyYOb1qairRFZBWDDAopNV
+         TOYp1imPTaH5C6wQVEJmzyr0/MyMwsSFHCDxJoCqFvVegMIsL1O/K4dnfnkxlVNO5YuE
+         o9LgqpFbARnYOVNza8GCVQ2KX3vk4WPY+BMs2I3iOotcGk5scuaIieby76ROMv1S0qb3
+         8w79U4WcUN6+qvhDotkIFPM0lSssmM1p6DYffDHaAVFFTGGXfvkPOxjAmp31u4e2WW2t
+         wAZgbF3Dh/m2sBrElEWUB/03O4UT28IXSdaMl0VQ95LBZFKq+E1Y1xBX2ERPYHir+Yhp
+         O/Qg==
+X-Gm-Message-State: APjAAAVlPtuj4q4GS8uqXpPno+d10xBdtp4+9VCDB9SCRdKEOfNEPEqp
+        U5BUe0d0ckRCHcyJs2coQUg5gQ==
+X-Google-Smtp-Source: APXvYqzABUyKC0jSvgE7WOPJUqmUvpdDD6GCn2QJTRwTDXEgpqNw+hfWHxGIIm/8tVEh0rnWuRjffQ==
+X-Received: by 2002:a62:ae01:: with SMTP id q1mr23332658pff.219.1565390365097;
+        Fri, 09 Aug 2019 15:39:25 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:b873:707a:e893:cdb3])
+        by smtp.gmail.com with ESMTPSA id l31sm143779758pgm.63.2019.08.09.15.39.24
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 09 Aug 2019 15:39:24 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Neil Armstrong <narmstrong@baylibre.com>
+Cc:     devicetree@vger.kernel.org, linux-amlogic@lists.infradead.org,
+        "linux-kernel\@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Christian Hewitt <christianshewitt@gmail.com>
+Subject: Re: [PATCH] dt-bindings: arm: amlogic: fix x96-max/sei510 section in amlogic.yaml
+In-Reply-To: <CAL_JsqJ=dUX-bPa06KxJowf_3GM2-mPwm4U1KyTXyH0thA1pvg@mail.gmail.com>
+References: <20190806075520.14652-1-narmstrong@baylibre.com> <CAL_JsqJ=dUX-bPa06KxJowf_3GM2-mPwm4U1KyTXyH0thA1pvg@mail.gmail.com>
+Date:   Fri, 09 Aug 2019 15:39:23 -0700
+Message-ID: <7ho90y2cbo.fsf@baylibre.com>
 MIME-Version: 1.0
-References: <20190809173321.19944-1-marek.vasut@gmail.com>
-In-Reply-To: <20190809173321.19944-1-marek.vasut@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Fri, 9 Aug 2019 16:34:45 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJyYQ99ENOkNd6yzn1eYwLTGLNihFxtovSPJajtF9SVvg@mail.gmail.com>
-Message-ID: <CAL_JsqJyYQ99ENOkNd6yzn1eYwLTGLNihFxtovSPJajtF9SVvg@mail.gmail.com>
-Subject: Re: [PATCH] of: Fix of_empty_ranges_quirk()
-To:     =?UTF-8?B?TWFyZWsgVmHFoXV0?= <marek.vasut@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 9, 2019 at 11:33 AM <marek.vasut@gmail.com> wrote:
->
-> From: Marek Vasut <marek.vasut+renesas@gmail.com>
->
-> The of_empty_ranges_quirk() returns a mix of boolean and signed integer
-> types, which cannot work well.
+Rob Herring <robh+dt@kernel.org> writes:
 
-It never returns a negative. The negative is used as an uninitialized
-flag. Note quirk_state is static.
-
-> Replace that with boolean only and fix
-> usage logic in of_translate_one() -- the check should trigger when the
-> ranges are NULL and the quirk is applicable on the hardware.
+> On Tue, Aug 6, 2019 at 1:55 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
+>>
+>> From: Christian Hewitt <christianshewitt@gmail.com>
+>>
+>> Move amediatech,x96-max and seirobotics,sei510 to the S905D2 section and
+>> update the S905D2 description to S905D2/X2/Y2.
+>>
+>> Signed-off-by: Christian Hewitt <christianshewitt@gmail.com>
+>> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
+>> ---
+>>  Documentation/devicetree/bindings/arm/amlogic.yaml | 6 +++---
+>>  1 file changed, 3 insertions(+), 3 deletions(-)
 >
-> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
-> Cc: Rob Herring <robh+dt@kernel.org>
-> Cc: Frank Rowand <frowand.list@gmail.com>
-> Cc: linux-renesas-soc@vger.kernel.org
-> To: devicetree@vger.kernel.org
-> ---
->  drivers/of/address.c | 9 +++++----
->  1 file changed, 5 insertions(+), 4 deletions(-)
->
-> diff --git a/drivers/of/address.c b/drivers/of/address.c
-> index b492176c0572..ae2819e148b8 100644
-> --- a/drivers/of/address.c
-> +++ b/drivers/of/address.c
-> @@ -616,7 +616,7 @@ static struct of_bus *of_match_bus(struct device_node *np)
->         return NULL;
->  }
->
-> -static int of_empty_ranges_quirk(struct device_node *np)
-> +static bool of_empty_ranges_quirk(struct device_node *np)
->  {
->         if (IS_ENABLED(CONFIG_PPC)) {
->                 /* To save cycles, we cache the result for global "Mac" setting */
-> @@ -631,7 +631,8 @@ static int of_empty_ranges_quirk(struct device_node *np)
->                         quirk_state =
->                                 of_machine_is_compatible("Power Macintosh") ||
->                                 of_machine_is_compatible("MacRISC");
-> -               return quirk_state;
-> +               if (quirk_state > 0)
-> +                       return true;
->         }
->         return false;
->  }
-> @@ -662,8 +663,8 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
->          * This code is only enabled on powerpc. --gcl
->          */
->         ranges = of_get_property(parent, rprop, &rlen);
-> -       if (ranges == NULL && !of_empty_ranges_quirk(parent)) {
-> -               pr_debug("no ranges; cannot translate\n");
-> +       if (ranges == NULL && of_empty_ranges_quirk(parent)) {
-> +               pr_err("no ranges; cannot translate\n");
+> Acked-by: Rob Herring <robh@kernel.org>
 
-This is wrong. If you have NULL ranges and not the quirk, then no
-ranges is an error. IOW, if you are getting an error here, you have an
-error in your DT (because I assume you are not working on a PASemi or
-Apple system).
+Queued for v5.4,
 
-Rob
+Thanks,
+
+Kevin
