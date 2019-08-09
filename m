@@ -2,235 +2,173 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C71FB87A92
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 14:54:11 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CB35A87ABA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 15:00:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406801AbfHIMyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 08:54:11 -0400
-Received: from mail-wr1-f65.google.com ([209.85.221.65]:43104 "EHLO
-        mail-wr1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406777AbfHIMyK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 08:54:10 -0400
-Received: by mail-wr1-f65.google.com with SMTP id p13so23565460wru.10
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 05:54:09 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=devtank-co-uk.20150623.gappssmtp.com; s=20150623;
-        h=from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=y32KFC5Gmco7XtWCiisEpnhBgSBOWGVlewparZe3tOw=;
-        b=068o3O1lgPGrnJDGhdnBf7bX6dF9HXO3wLzt5tlQih8ELJzjpi5XN6itsC9m26VaJT
-         MWjNzwpumYm5PaGNTgihrdW2iHPxYfre+iogU4hW3CsIzSj016Ww2OIpfGFT+lexFcn6
-         IXk6SId7Rbt/w1zBe2xKSqUbo3/HN+dVRSELxXzhT8bFEcw6HmfoglK5FVcINDHwpsbc
-         aqphkBa3oOA2fUq5QJIHtx3aacw9NN6G0efDjPRcpWp0EpIEFo4IU1P+ZcoAl/CQlUpl
-         gG1fYzkzrBqw2j123HyPnjhjg6v2k1tn0flHP9njM5g5CTmehIA0FmC4pcwvGCf2x3qa
-         PW6w==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=y32KFC5Gmco7XtWCiisEpnhBgSBOWGVlewparZe3tOw=;
-        b=qmJNfO5bkHYUvueQ9QZMXi2XB9ZjtT6x430vmTnHSSczUM3c5ifIvKPX6GwK7Ezmrd
-         H81I5SbS7ZeopGv32KbVMDWsWrNsVa9d3leZxyYIM3YgcqiKh7VjX+QOWKXcSeeMNoJ3
-         X3DN061QF/CuFwkmUgT476/SJYIWTPG1pcnXM99NIp9wmMgDc+De/Kpk5g5xTAu1VyGE
-         2snIlNFxEoppUCc87uh7I4h2/6x5hzY3yQPyYWM4C42NVHhgitxCJPVAnsm9Sz1Y8L3F
-         6hffcj4niZCmmaGTZK/XZCSrRTgQ3nGvmrNgNOG/EKY8dDS8zCDQXK55DLR2skrYXRna
-         1N2w==
-X-Gm-Message-State: APjAAAVM68rILx7A5uGzxjFTRI4SU3odwEUOPStihi0fYpqupwPg733B
-        ilUPfKA9A4+0XYvOGVGcnZxkEg==
-X-Google-Smtp-Source: APXvYqxLDHv3jxjGKDWsbywwOeEk3IGevqplEAVGrmT7HBU9VjuZwFqc+KTT9uefcoI9FLWi9teM/g==
-X-Received: by 2002:adf:e40e:: with SMTP id g14mr22200335wrm.161.1565355248494;
-        Fri, 09 Aug 2019 05:54:08 -0700 (PDT)
-Received: from jabjoe-desktop.lan (82-71-5-123.dsl.in-addr.zen.co.uk. [82.71.5.123])
-        by smtp.googlemail.com with ESMTPSA id 2sm2748038wrg.83.2019.08.09.05.54.07
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 09 Aug 2019 05:54:07 -0700 (PDT)
-From:   Joe Burmeister <joe.burmeister@devtank.co.uk>
-To:     joe.burmeister@devtank.co.uk, Rob Herring <robh+dt@kernel.org>,
+        id S2406814AbfHINAJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 09:00:09 -0400
+Received: from mail.kernel.org ([198.145.29.99]:44930 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726157AbfHINAJ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Aug 2019 09:00:09 -0400
+Received: from localhost (83-86-89-107.cable.dynamic.v4.ziggo.nl [83.86.89.107])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2DCF020B7C;
+        Fri,  9 Aug 2019 13:00:07 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565355607;
+        bh=iDWm4tx1wC6eLb9RWMaVgsIMEJY2hF+w7j8VkSayoo8=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=QZK6BTSHaAol78GPo+Y5GRnYjKPVwg3rODZUsyUhYlZ5M85m65KYBBe3xgYzevA81
+         BySmSkonFQQiLBQX4n7PX5CZHLSdLYqP8Oe6LWMTsSfFKgwWnLzjIIslNgKGVPNDOW
+         nIpYL1s1RL1gPqpxZw0yCwtywrc+Vtx0Q8ocJiXY=
+Date:   Fri, 9 Aug 2019 15:00:05 +0200
+From:   Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To:     Joe Burmeister <joe.burmeister@devtank.co.uk>
+Cc:     Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
         Arnd Bergmann <arnd@arndb.de>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
         Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
         YueHaibing <yuehaibing@huawei.com>,
         Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
-Subject: [PATCH] Add optional chip erase functionality to AT25 EEPROM driver.
-Date:   Fri,  9 Aug 2019 13:53:55 +0100
-Message-Id: <20190809125358.24440-1-joe.burmeister@devtank.co.uk>
-X-Mailer: git-send-email 2.20.1
+Subject: Re: [PATCH] Add optional chip erase functionality to AT25 EEPROM
+ driver.
+Message-ID: <20190809130005.GA13962@kroah.com>
+References: <20190809125358.24440-1-joe.burmeister@devtank.co.uk>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190809125358.24440-1-joe.burmeister@devtank.co.uk>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Many, though not all, AT25s have an instruction for chip erase.
-If there is one in the datasheet, it can be added to device tree.
-Erase can then be done in userspace via the sysfs API with a new
-"erase" device attribute. This matches the eeprom_93xx46 driver's
-"erase".
+On Fri, Aug 09, 2019 at 01:53:55PM +0100, Joe Burmeister wrote:
+> +static void _eeprom_at25_store_erase_locked(struct at25_data *at25)
+> +{
+> +	unsigned long	timeout, retries;
+> +	int				sr, status;
+> +	u8	cp;
+> +
+> +	cp = AT25_WREN;
+> +	status = spi_write(at25->spi, &cp, 1);
+> +	if (status < 0) {
+> +		dev_dbg(&at25->spi->dev, "ERASE WREN --> %d\n", status);
+> +		return;
+> +	}
+> +	cp = at25->erase_instr;
+> +	status = spi_write(at25->spi, &cp, 1);
+> +	if (status < 0) {
+> +		dev_dbg(&at25->spi->dev, "CHIP_ERASE --> %d\n", status);
+> +		return;
+> +	}
+> +	/* Wait for non-busy status */
+> +	timeout = jiffies + msecs_to_jiffies(ERASE_TIMEOUT);
+> +	retries = 0;
+> +	do {
+> +		sr = spi_w8r8(at25->spi, AT25_RDSR);
+> +		if (sr < 0 || (sr & AT25_SR_nRDY)) {
+> +			dev_dbg(&at25->spi->dev,
+> +				"rdsr --> %d (%02x)\n", sr, sr);
+> +			/* at HZ=100, this is sloooow */
+> +			msleep(1);
+> +			continue;
+> +		}
+> +		if (!(sr & AT25_SR_nRDY))
+> +			return;
+> +	} while (retries++ < 200 || time_before_eq(jiffies, timeout));
+> +
+> +	if ((sr < 0) || (sr & AT25_SR_nRDY)) {
+> +		dev_err(&at25->spi->dev,
+> +			"chip erase, timeout after %u msecs\n",
+> +			jiffies_to_msecs(jiffies -
+> +				(timeout - ERASE_TIMEOUT)));
+> +		status = -ETIMEDOUT;
+> +		return;
+> +	}
+> +}
+> +
+> +
 
-Signed-off-by: Joe Burmeister <joe.burmeister@devtank.co.uk>
----
- .../devicetree/bindings/eeprom/at25.txt       |  2 +
- drivers/misc/eeprom/at25.c                    | 83 ++++++++++++++++++-
- 2 files changed, 82 insertions(+), 3 deletions(-)
+No need for 2 lines :(
 
-diff --git a/Documentation/devicetree/bindings/eeprom/at25.txt b/Documentation/devicetree/bindings/eeprom/at25.txt
-index b3bde97dc199..c65d11e14c7a 100644
---- a/Documentation/devicetree/bindings/eeprom/at25.txt
-+++ b/Documentation/devicetree/bindings/eeprom/at25.txt
-@@ -19,6 +19,7 @@ Optional properties:
- - spi-cpha : SPI shifted clock phase, as per spi-bus bindings.
- - spi-cpol : SPI inverse clock polarity, as per spi-bus bindings.
- - read-only : this parameter-less property disables writes to the eeprom
-+- chip_erase_instruction : Chip erase instruction for this AT25, often 0xc7 or 0x62.
- 
- Obsolete legacy properties can be used in place of "size", "pagesize",
- "address-width", and "read-only":
-@@ -39,4 +40,5 @@ Example:
- 		pagesize = <64>;
- 		size = <32768>;
- 		address-width = <16>;
-+		chip_erase_instruction = <0x62>;
- 	};
-diff --git a/drivers/misc/eeprom/at25.c b/drivers/misc/eeprom/at25.c
-index 99de6939cd5a..28141bc4028f 100644
---- a/drivers/misc/eeprom/at25.c
-+++ b/drivers/misc/eeprom/at25.c
-@@ -35,6 +35,7 @@ struct at25_data {
- 	unsigned		addrlen;
- 	struct nvmem_config	nvmem_config;
- 	struct nvmem_device	*nvmem;
-+	u8			erase_instr;
- };
- 
- #define	AT25_WREN	0x06		/* latch the write enable */
-@@ -59,6 +60,8 @@ struct at25_data {
-  */
- #define	EE_TIMEOUT	25
- 
-+#define ERASE_TIMEOUT 2020
-+
- /*-------------------------------------------------------------------------*/
- 
- #define	io_limit	PAGE_SIZE	/* bytes */
-@@ -304,6 +307,71 @@ static int at25_fw_to_chip(struct device *dev, struct spi_eeprom *chip)
- 	return 0;
- }
- 
-+static void _eeprom_at25_store_erase_locked(struct at25_data *at25)
-+{
-+	unsigned long	timeout, retries;
-+	int				sr, status;
-+	u8	cp;
-+
-+	cp = AT25_WREN;
-+	status = spi_write(at25->spi, &cp, 1);
-+	if (status < 0) {
-+		dev_dbg(&at25->spi->dev, "ERASE WREN --> %d\n", status);
-+		return;
-+	}
-+	cp = at25->erase_instr;
-+	status = spi_write(at25->spi, &cp, 1);
-+	if (status < 0) {
-+		dev_dbg(&at25->spi->dev, "CHIP_ERASE --> %d\n", status);
-+		return;
-+	}
-+	/* Wait for non-busy status */
-+	timeout = jiffies + msecs_to_jiffies(ERASE_TIMEOUT);
-+	retries = 0;
-+	do {
-+		sr = spi_w8r8(at25->spi, AT25_RDSR);
-+		if (sr < 0 || (sr & AT25_SR_nRDY)) {
-+			dev_dbg(&at25->spi->dev,
-+				"rdsr --> %d (%02x)\n", sr, sr);
-+			/* at HZ=100, this is sloooow */
-+			msleep(1);
-+			continue;
-+		}
-+		if (!(sr & AT25_SR_nRDY))
-+			return;
-+	} while (retries++ < 200 || time_before_eq(jiffies, timeout));
-+
-+	if ((sr < 0) || (sr & AT25_SR_nRDY)) {
-+		dev_err(&at25->spi->dev,
-+			"chip erase, timeout after %u msecs\n",
-+			jiffies_to_msecs(jiffies -
-+				(timeout - ERASE_TIMEOUT)));
-+		status = -ETIMEDOUT;
-+		return;
-+	}
-+}
-+
-+
-+static ssize_t eeprom_at25_store_erase(struct device *dev,
-+					 struct device_attribute *attr,
-+					 const char *buf, size_t count)
-+{
-+	struct at25_data *at25 = dev_get_drvdata(dev);
-+	int erase = 0;
-+
-+	sscanf(buf, "%d", &erase);
-+	if (erase) {
-+		mutex_lock(&at25->lock);
-+		_eeprom_at25_store_erase_locked(at25);
-+		mutex_unlock(&at25->lock);
-+	}
-+
-+	return count;
-+}
-+
-+static DEVICE_ATTR(erase, S_IWUSR, NULL, eeprom_at25_store_erase);
-+
-+
- static int at25_probe(struct spi_device *spi)
- {
- 	struct at25_data	*at25 = NULL;
-@@ -311,6 +379,7 @@ static int at25_probe(struct spi_device *spi)
- 	int			err;
- 	int			sr;
- 	int			addrlen;
-+	int			has_erase;
- 
- 	/* Chip description */
- 	if (!spi->dev.platform_data) {
-@@ -352,6 +421,9 @@ static int at25_probe(struct spi_device *spi)
- 	spi_set_drvdata(spi, at25);
- 	at25->addrlen = addrlen;
- 
-+	/* Optional chip erase instruction */
-+	device_property_read_u8(&spi->dev, "chip_erase_instruction", &at25->erase_instr);
-+
- 	at25->nvmem_config.name = dev_name(&spi->dev);
- 	at25->nvmem_config.dev = &spi->dev;
- 	at25->nvmem_config.read_only = chip.flags & EE_READONLY;
-@@ -370,17 +442,22 @@ static int at25_probe(struct spi_device *spi)
- 	if (IS_ERR(at25->nvmem))
- 		return PTR_ERR(at25->nvmem);
- 
--	dev_info(&spi->dev, "%d %s %s eeprom%s, pagesize %u\n",
-+	has_erase = (!(chip.flags & EE_READONLY) && at25->erase_instr);
-+
-+	dev_info(&spi->dev, "%d %s %s eeprom%s, pagesize %u%s\n",
- 		(chip.byte_len < 1024) ? chip.byte_len : (chip.byte_len / 1024),
- 		(chip.byte_len < 1024) ? "Byte" : "KByte",
- 		at25->chip.name,
- 		(chip.flags & EE_READONLY) ? " (readonly)" : "",
--		at25->chip.page_size);
-+		at25->chip.page_size, (has_erase)?" <has erase>":"");
-+
-+	if (has_erase && device_create_file(&spi->dev, &dev_attr_erase))
-+		dev_err(&spi->dev, "can't create erase interface\n");
-+
- 	return 0;
- }
- 
- /*-------------------------------------------------------------------------*/
--
- static const struct of_device_id at25_of_match[] = {
- 	{ .compatible = "atmel,at25", },
- 	{ }
--- 
-2.20.1
+> +static ssize_t eeprom_at25_store_erase(struct device *dev,
+> +					 struct device_attribute *attr,
+> +					 const char *buf, size_t count)
+> +{
+> +	struct at25_data *at25 = dev_get_drvdata(dev);
+> +	int erase = 0;
+> +
+> +	sscanf(buf, "%d", &erase);
+> +	if (erase) {
+> +		mutex_lock(&at25->lock);
+> +		_eeprom_at25_store_erase_locked(at25);
+> +		mutex_unlock(&at25->lock);
+> +	}
+> +
+> +	return count;
+> +}
+> +
+> +static DEVICE_ATTR(erase, S_IWUSR, NULL, eeprom_at25_store_erase);
+> +
+> +
 
+Same here.
+
+Also, where is the Documentation/ABI/ update for the new sysfs file?
+
+>  static int at25_probe(struct spi_device *spi)
+>  {
+>  	struct at25_data	*at25 = NULL;
+> @@ -311,6 +379,7 @@ static int at25_probe(struct spi_device *spi)
+>  	int			err;
+>  	int			sr;
+>  	int			addrlen;
+> +	int			has_erase;
+>  
+>  	/* Chip description */
+>  	if (!spi->dev.platform_data) {
+> @@ -352,6 +421,9 @@ static int at25_probe(struct spi_device *spi)
+>  	spi_set_drvdata(spi, at25);
+>  	at25->addrlen = addrlen;
+>  
+> +	/* Optional chip erase instruction */
+> +	device_property_read_u8(&spi->dev, "chip_erase_instruction", &at25->erase_instr);
+> +
+>  	at25->nvmem_config.name = dev_name(&spi->dev);
+>  	at25->nvmem_config.dev = &spi->dev;
+>  	at25->nvmem_config.read_only = chip.flags & EE_READONLY;
+> @@ -370,17 +442,22 @@ static int at25_probe(struct spi_device *spi)
+>  	if (IS_ERR(at25->nvmem))
+>  		return PTR_ERR(at25->nvmem);
+>  
+> -	dev_info(&spi->dev, "%d %s %s eeprom%s, pagesize %u\n",
+> +	has_erase = (!(chip.flags & EE_READONLY) && at25->erase_instr);
+> +
+> +	dev_info(&spi->dev, "%d %s %s eeprom%s, pagesize %u%s\n",
+>  		(chip.byte_len < 1024) ? chip.byte_len : (chip.byte_len / 1024),
+>  		(chip.byte_len < 1024) ? "Byte" : "KByte",
+>  		at25->chip.name,
+>  		(chip.flags & EE_READONLY) ? " (readonly)" : "",
+> -		at25->chip.page_size);
+> +		at25->chip.page_size, (has_erase)?" <has erase>":"");
+> +
+> +	if (has_erase && device_create_file(&spi->dev, &dev_attr_erase))
+> +		dev_err(&spi->dev, "can't create erase interface\n");
+
+You just raced with userspace and lost :(
+
+Please create an attribute group and add it to the .dev_groups pointer
+in struct driver so it can be created properly in a race-free manner.
+
+See the thread at:
+	https://lore.kernel.org/r/20190731124349.4474-2-gregkh@linuxfoundation.org
+for the details on how to do that.
+
+thanks,
+
+greg k-h
