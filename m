@@ -2,126 +2,201 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D794B871B1
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 07:47:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 8C127871E9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 07:58:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405472AbfHIFrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 01:47:16 -0400
-Received: from mail.kernel.org ([198.145.29.99]:45958 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725912AbfHIFrQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Aug 2019 01:47:16 -0400
-Received: from localhost (unknown [122.167.65.92])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 2FFCB20C01;
-        Fri,  9 Aug 2019 05:47:13 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565329635;
-        bh=0NGH7pa4qGdi2942c1QYy0xh8Num+O/K8NEalY+oyGU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=VWDkjNU0fHKREEctsjhTGG5vYGpFBmwBGgIRi6C5Qm9oTsvdakjZY6PAceWV6hCy1
-         Dd6GSPZoVIF5PFHFtKsno0L0SVfpWY32J5jE1/NbjYqJNVwHm8ADRzfAxlACBrECmt
-         GkWzMKQFOFxvkSGeoEyLjcvlrPk01QN5hxtuAAVk=
-Date:   Fri, 9 Aug 2019 11:16:02 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
-        broonie@kernel.org, bgoswami@codeaurora.org, plai@codeaurora.org,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] soundwire: core: add device tree support for
- slave devices
-Message-ID: <20190809054602.GK12733@vkoul-mobl.Dlink>
-References: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
- <20190808144504.24823-3-srinivas.kandagatla@linaro.org>
- <42ca4170-0fa0-6951-f568-89a05c095d5a@linux.intel.com>
- <564f5fa4-59ec-b4e5-a7a5-29dee99039b3@linaro.org>
+        id S1726212AbfHIF6R (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 01:58:17 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:36283 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725850AbfHIF6R (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 01:58:17 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hvxuk-0006DT-5q; Fri, 09 Aug 2019 07:58:10 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hvxuj-0006sP-59; Fri, 09 Aug 2019 07:58:09 +0200
+Date:   Fri, 9 Aug 2019 07:58:09 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Rob Herring <robh@kernel.org>
+Subject: Re: [PATCH v6 01/13] dt-bindings: connector: analog: add tv norms
+ property
+Message-ID: <20190809055809.fm47nllixxfievre@pengutronix.de>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+ <20190415124413.18456-2-m.felsch@pengutronix.de>
+ <20190516162755.GN14820@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <564f5fa4-59ec-b4e5-a7a5-29dee99039b3@linaro.org>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+In-Reply-To: <20190516162755.GN14820@pendragon.ideasonboard.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 07:50:40 up 83 days, 12:08, 54 users,  load average: 0.06, 0.04,
+ 0.02
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-08-19, 16:17, Srinivas Kandagatla wrote:
-> Thanks for taking time to review.
-> 
-> On 08/08/2019 16:00, Pierre-Louis Bossart wrote:
-> > 
-> > > @@ -35,6 +36,7 @@ static int sdw_slave_add(struct sdw_bus *bus,
-> > >       slave->dev.release = sdw_slave_release;
-> > >       slave->dev.bus = &sdw_bus_type;
-> > > +    slave->dev.of_node = of_node_get(to_of_node(fwnode));
-> > 
-> > shouldn't this protected by
-> > #if IS_ENABLED(CONFIG_OF) ?
-> > 
-> These macros and functions have dummy entries, so it should not be an issue.
-> I did build soundwire with i386_defconfig with no issues.
+Hi Laurent,
 
-That means this function was compiled without errors, that is not strange nowadays
-given the ARM compiles ACPI and x86 OF, so check with OF being disable
-just to be safe :) I think dummy entries are helping
-
+On 19-05-16 19:27, Laurent Pinchart wrote:
+> Hi Marco,
 > 
-> > >       slave->bus = bus;
-> > >       slave->status = SDW_SLAVE_UNATTACHED;
-> > >       slave->dev_num = 0;
-> > > @@ -112,3 +114,48 @@ int sdw_acpi_find_slaves(struct sdw_bus *bus)
-> > >   }
-> > >   #endif
-> > > +
-> > > +/*
-> > > + * sdw_of_find_slaves() - Find Slave devices in master device tree node
-> > > + * @bus: SDW bus instance
-> > > + *
-> > > + * Scans Master DT node for SDW child Slave devices and registers it.
-> > > + */
-> > > +int sdw_of_find_slaves(struct sdw_bus *bus)
-> > > +{
-> > > +    struct device *dev = bus->dev;
-> > > +    struct device_node *node;
-> > > +
-> > > +    for_each_child_of_node(bus->dev->of_node, node) {
-> > > +        struct sdw_slave_id id;
-> > > +        const char *compat = NULL;
-> > > +        int unique_id, ret;
-> > > +        int ver, mfg_id, part_id, class_id;
-> > > +
-> > > +        compat = of_get_property(node, "compatible", NULL);
-> > > +        if (!compat)
-> > > +            continue;
-> > > +
-> > > +        ret = sscanf(compat, "sdw%x,%x,%x,%x",
-> > > +                 &ver, &mfg_id, &part_id, &class_id);
-> > > +        if (ret != 4) {
-> > > +            dev_err(dev, "Manf ID & Product code not found %s\n",
-> > > +                compat);
-> > > +            continue;
-> > > +        }
-> > > +
-> > > +        ret = of_property_read_u32(node, "sdw-instance-id", &unique_id);
-> > > +        if (ret) {
-> > > +            dev_err(dev, "Instance id not found:%d\n", ret);
-> > > +            continue;
+> Thank you for the patch.
+> 
+> On Mon, Apr 15, 2019 at 02:44:01PM +0200, Marco Felsch wrote:
+> > Some connectors no matter if in- or output supports only a limited
+> > range of tv norms. It doesn't matter if the hardware behind that
+> > connector supports more than the listed formats since the users are
+> > restriced by a label e.g. to plug only a camera into this connector
+> > which uses the PAL format.
 > > 
-> > I am confused here.
-> > If you have two identical devices on the same link, isn't this property
-> > required and that should be a real error instead of a continue?
+> > This patch adds the capability to describe such limitation within the
+> > firmware. There are no format restrictions if the property isn't
+> > present, so it's completely backward compatible.
 > 
-> Yes, I agree it will be mandatory in such cases.
-> 
-> Am okay either way, I dont mind changing it to returning EINVAL in all the
-> cases.
+> Why is this needed ? It's not really a hardware property, is it ? What's
+> the use case ?
 
-Do we want to abort? We are in loop scanning for devices so makes sense
-if we do not do that and continue to check next one..
+Cause some hardware only support a limited range of formats to that
+connector. Of course it is a hardware property. For example if a
+customer wants to limit a connector to a specifc norm because the
+hardware behind that connector only supports that format or is
+restricted to that format.
+
+Regards,
+  Marco
+
+> 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > Reviewed-by: Rob Herring <robh@kernel.org>
+> > ---
+> > [1] https://patchwork.kernel.org/cover/10794703/
+> > 
+> > v6:
+> > - tvnorms.h: use tabs instead of spaces
+> > - tvnorms.h: add TVNORM_PAL and TVNORM_SECAM
+> > - tvnorms.h: drop rarely used TVNORM_ATSC_* norms
+> > 
+> > v2-v4:
+> > - nothing since the patch was squashed from series [1] into this
+> >   series.
+> > 
+> >  .../display/connector/analog-tv-connector.txt |  4 ++
+> >  include/dt-bindings/media/tvnorms.h           | 56 +++++++++++++++++++
+> >  2 files changed, 60 insertions(+)
+> >  create mode 100644 include/dt-bindings/media/tvnorms.h
+> > 
+> > diff --git a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> > index 0c0970c210ab..346f8937a0b7 100644
+> > --- a/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> > +++ b/Documentation/devicetree/bindings/display/connector/analog-tv-connector.txt
+> > @@ -6,6 +6,9 @@ Required properties:
+> >  
+> >  Optional properties:
+> >  - label: a symbolic name for the connector
+> > +- tvnorms: limit the supported tv norms on a connector to the given ones else
+> > +           all tv norms are allowed. Possible video standards are defined in
+> > +           include/dt-bindings/media/tvnorms.h.
+> >  
+> >  Required nodes:
+> >  - Video port for TV input
+> > @@ -16,6 +19,7 @@ Example
+> >  tv: connector {
+> >  	compatible = "composite-video-connector";
+> >  	label = "tv";
+> > +	tvnorms = <(TVNORM_PAL_M | TVNORM_NTSC_M)>;
+> >  
+> >  	port {
+> >  		tv_connector_in: endpoint {
+> > diff --git a/include/dt-bindings/media/tvnorms.h b/include/dt-bindings/media/tvnorms.h
+> > new file mode 100644
+> > index 000000000000..058ab8414145
+> > --- /dev/null
+> > +++ b/include/dt-bindings/media/tvnorms.h
+> > @@ -0,0 +1,56 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only or X11 */
+> > +/*
+> > + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> > + */
+> > +
+> > +#ifndef _DT_BINDINGS_MEDIA_TVNORMS_H
+> > +#define _DT_BINDINGS_MEDIA_TVNORMS_H
+> > +
+> > +/* one bit for each */
+> > +#define TVNORM_PAL_B		0x00000001
+> > +#define TVNORM_PAL_B1		0x00000002
+> > +#define TVNORM_PAL_G		0x00000004
+> > +#define TVNORM_PAL_H		0x00000008
+> > +#define TVNORM_PAL_I		0x00000010
+> > +#define TVNORM_PAL_D		0x00000020
+> > +#define TVNORM_PAL_D1		0x00000040
+> > +#define TVNORM_PAL_K		0x00000080
+> > +
+> > +#define TVNORM_PAL		(TVNORM_PAL_B  | \
+> > +				 TVNORM_PAL_B1 | \
+> > +				 TVNORM_PAL_G  | \
+> > +				 TVNORM_PAL_H  | \
+> > +				 TVNORM_PAL_I  | \
+> > +				 TVNORM_PAL_D  | \
+> > +				 TVNORM_PAL_D1 | \
+> > +				 TVNORM_PAL_K)
+> > +
+> > +#define TVNORM_PAL_M		0x00000100
+> > +#define TVNORM_PAL_N		0x00000200
+> > +#define TVNORM_PAL_Nc		0x00000400
+> > +#define TVNORM_PAL_60		0x00000800
+> > +
+> > +#define TVNORM_NTSC_M		0x00001000	/* BTSC */
+> > +#define TVNORM_NTSC_M_JP	0x00002000	/* EIA-J */
+> > +#define TVNORM_NTSC_443		0x00004000
+> > +#define TVNORM_NTSC_M_KR	0x00008000	/* FM A2 */
+> > +
+> > +#define TVNORM_SECAM_B		0x00010000
+> > +#define TVNORM_SECAM_D		0x00020000
+> > +#define TVNORM_SECAM_G		0x00040000
+> > +#define TVNORM_SECAM_H		0x00080000
+> > +#define TVNORM_SECAM_K		0x00100000
+> > +#define TVNORM_SECAM_K1		0x00200000
+> > +#define TVNORM_SECAM_L		0x00400000
+> > +#define TVNORM_SECAM_LC		0x00800000
+> > +
+> > +#define TVNORM_SECAM		(TVNORM_SECAM_B  | \
+> > +				 TVNORM_SECAM_D  | \
+> > +				 TVNORM_SECAM_G  | \
+> > +				 TVNORM_SECAM_H  | \
+> > +				 TVNORM_SECAM_K  | \
+> > +				 TVNORM_SECAM_K1 | \
+> > +				 TVNORM_SECAM_L  | \
+> > +				 TVNORM_SECAM_LC)
+> > +
+> > +#endif /* _DT_BINDINGS_MEDIA_TVNORMS_H */
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
 
 -- 
-~Vinod
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
