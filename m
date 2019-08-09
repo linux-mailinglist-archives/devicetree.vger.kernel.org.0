@@ -2,359 +2,145 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2BD2E8799A
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 14:16:25 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF149879A5
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 14:17:35 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406727AbfHIMQX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 08:16:23 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:34143 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726152AbfHIMQW (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 08:16:22 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hw3oX-00078D-Qr; Fri, 09 Aug 2019 14:16:09 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hw3oU-00046a-Uk; Fri, 09 Aug 2019 14:16:06 +0200
-Date:   Fri, 9 Aug 2019 14:16:06 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-Cc:     Hans Verkuil <hverkuil@xs4all.nl>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
-        kernel@pengutronix.de, Jacopo Mondi <jacopo@jmondi.org>
-Subject: Re: [PATCH v6 03/13] media: v4l2-fwnode: add initial connector
- parsing support
-Message-ID: <20190809121606.pv3ieak5f2ffpj3x@pengutronix.de>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
- <20190415124413.18456-4-m.felsch@pengutronix.de>
- <67f45a50-1eef-89d7-c008-17f085940eb2@xs4all.nl>
- <20190514152004.30d7838b@coco.lan>
- <20190516165114.GP14820@pendragon.ideasonboard.com>
+        id S2406738AbfHIMRb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 08:17:31 -0400
+Received: from mail-lj1-f194.google.com ([209.85.208.194]:34327 "EHLO
+        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726152AbfHIMRa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 08:17:30 -0400
+Received: by mail-lj1-f194.google.com with SMTP id p17so91933287ljg.1;
+        Fri, 09 Aug 2019 05:17:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=2Y6cibe++jUg1MqhLsa4ocC0OGOAItgbasTPZNkc7eI=;
+        b=Es6Xtux7P3VZubYU24Nu2MzcD53Hn5+4l+jctyBOlss37Ut6Fr35RRHB7rum14F/YO
+         im/2vEWM/Mbwk86IrmWCV3j2JqQfZ18hNsJZtpnwc6KVv37RoYQuXP2le7U5Z90Pp7Tm
+         UOrCh9NsBbBwrn1YVlm9icOVMh5XrQ0dbVE4/ZOcOrL866nFG/cDYJKlV59WH+SHYNSG
+         h1SY+AmpqR6S1ouoiDNZ/6TbGvvZzCkAv6/ctDWfYBQvHxEbOFqvUsu7970eJZDtw+Oo
+         yANlaSFTAl1ZaM5Nta13wmxvh1Z7/P6Py7s5kfj/2IKExjMyvVSdB6O4TNR+WSYavIun
+         VitQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=2Y6cibe++jUg1MqhLsa4ocC0OGOAItgbasTPZNkc7eI=;
+        b=ttJsX8OESu7QANCrHv3lItf+z85Jh+j1qBRJxoCaZI8zLinz1ufMl+mV65Loi/JxaU
+         MI0W+Nv7y2RlfwUbQC2JuR13Km4NxF8b3Vamt6T5pgQkdW23XhbOUQls+WWVntOn5cJO
+         WRDCao7fLEO1pwL7CvJrEY6IT0lOcp1C7UdlGyMWL+/cx8Vl7LVXidafkxnq1izf7MBL
+         AsHA63XsG2I52MvHm4HjkxfkaWnvlA20JYt3WpszBPzRNHUnkzbfBtLSy2+YNfReRrWi
+         OkNb3+jm+Uu+YBxKHA5g7c9EtGl8bOC5VdLqdAM9JdNnlKdE8AGo93OxDdFqIQU2hwYs
+         8S3A==
+X-Gm-Message-State: APjAAAXfuR9FSRrPbHOQS4XOE7mXfEqeS6PTpHMKqafWY6ErY9DN51jg
+        yNSgD6W+JBHoHJlHhum7M7QKuZr/
+X-Google-Smtp-Source: APXvYqzCXqbF8YtE4fLH2dz9U0bvhopDeKHat7TwKL2v5Op5k+Prytgbyv6O6tgSJkzGbUcN7TNCCg==
+X-Received: by 2002:a2e:93cc:: with SMTP id p12mr5978706ljh.11.1565353047460;
+        Fri, 09 Aug 2019 05:17:27 -0700 (PDT)
+Received: from [192.168.2.145] ([94.29.34.218])
+        by smtp.googlemail.com with ESMTPSA id g5sm19606366ljj.69.2019.08.09.05.17.25
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 Aug 2019 05:17:26 -0700 (PDT)
+Subject: Re: [PATCH v8 10/21] clk: tegra: clk-super: Add restore-context
+ support
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
+        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
+        jason@lakedaemon.net, marc.zyngier@arm.com,
+        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
+Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
+        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
+        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
+        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
+        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
+        devicetree@vger.kernel.org, rjw@rjwysocki.net,
+        viresh.kumar@linaro.org, linux-pm@vger.kernel.org
+References: <1565308020-31952-1-git-send-email-skomatineni@nvidia.com>
+ <1565308020-31952-11-git-send-email-skomatineni@nvidia.com>
+From:   Dmitry Osipenko <digetx@gmail.com>
+Message-ID: <4e33bad9-8d5a-dcd7-c75e-db5843c9be4a@gmail.com>
+Date:   Fri, 9 Aug 2019 15:17:25 +0300
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.7.2
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190516165114.GP14820@pendragon.ideasonboard.com>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 11:00:07 up 83 days, 15:18, 57 users,  load average: 0.04, 0.05,
- 0.01
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+In-Reply-To: <1565308020-31952-11-git-send-email-skomatineni@nvidia.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Laurent,
-
-On 19-05-16 19:51, Laurent Pinchart wrote:
-> Hello Marco,
+09.08.2019 2:46, Sowjanya Komatineni пишет:
+> This patch implements restore_context for clk_super_mux and clk_super.
 > 
-> Thank you for the patch.
-
-Thanks for the review.
-
+> During system supend, core power goes off the and context of Tegra
+> CAR registers is lost.
 > 
-> On Tue, May 14, 2019 at 03:20:04PM -0300, Mauro Carvalho Chehab wrote:
-> > Em Mon, 6 May 2019 12:10:41 +0200 Hans Verkuil escreveu:
-> > > On 4/15/19 2:44 PM, Marco Felsch wrote:
-> > > > The patch adds the initial connector parsing code, so we can move from a
-> > > > driver specific parsing code to a generic one. Currently only the
-> > > > generic fields and the analog-connector specific fields are parsed. Parsing
-> > > > the other connector specific fields can be added by a simple callbacks.
-> > > > 
-> > > > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> > > > Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
-> > > > ---
-> > > > [1] https://patchwork.kernel.org/cover/10794703/
-> > > > 
-> > > > v6:
-> > > > - use 'unsigned int' count var
-> > > > - fix comment and style issues
-> > > > - place '/* fall through */' to correct places
-> > > > - fix error handling and cleanup by releasing fwnode
-> > > > - drop vga and dvi parsing support as those connectors are rarely used
-> > > >   these days
-> > > > 
-> > > > v5:
-> > > > - s/strlcpy/strscpy/
-> > > > 
-> > > > v2-v4:
-> > > > - nothing since the patch was squashed from series [1] into this
-> > > >   series.
-> > > > 
-> > > >  drivers/media/v4l2-core/v4l2-fwnode.c | 111 ++++++++++++++++++++++++++
-> > > >  include/media/v4l2-fwnode.h           |  16 ++++
-> > > >  2 files changed, 127 insertions(+)
-> > > > 
-> > > > diff --git a/drivers/media/v4l2-core/v4l2-fwnode.c b/drivers/media/v4l2-core/v4l2-fwnode.c
-> > > > index 20571846e636..f1cca95c8fef 100644
-> > > > --- a/drivers/media/v4l2-core/v4l2-fwnode.c
-> > > > +++ b/drivers/media/v4l2-core/v4l2-fwnode.c
-> > > > @@ -592,6 +592,117 @@ void v4l2_fwnode_put_link(struct v4l2_fwnode_link *link)
-> > > >  }
-> > > >  EXPORT_SYMBOL_GPL(v4l2_fwnode_put_link);
-> > > >  
-> > > > +static const struct v4l2_fwnode_connector_conv {
-> > > > +	enum v4l2_connector_type type;
-> > > > +	const char *name;
+> So on system resume, context of super clock registers are restored
+> to have them in same state as before suspend.
 > 
-> Maybe compatible instead of name ?
-
-Okay, I can change that.
-
-> > > > +} connectors[] = {
-> > > > +	{
-> > > > +		.type = V4L2_CON_COMPOSITE,
-> > > > +		.name = "composite-video-connector",
-> > > > +	}, {
-> > > > +		.type = V4L2_CON_SVIDEO,
-> > > > +		.name = "svideo-connector",
-> > > > +	}, {
-> > > > +		.type = V4L2_CON_HDMI,
-> > > > +		.name = "hdmi-connector",
-> > > > +	},
-> > > > +};
-> > > > +
-> > > > +static enum v4l2_connector_type
-> > > > +v4l2_fwnode_string_to_connector_type(const char *con_str)
-> > > > +{
-> > > > +	unsigned int i;
-> > > > +
-> > > > +	for (i = 0; i < ARRAY_SIZE(connectors); i++)
-> > > > +		if (!strcmp(con_str, connectors[i].name))
-> > > > +			return connectors[i].type;
-> > > > +
-> > > > +	/* no valid connector found */
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
+> ---
+>  drivers/clk/tegra/clk-super.c | 21 +++++++++++++++++++++
+>  1 file changed, 21 insertions(+)
 > 
-> The usual comment style in this file is to start with a capital letter
-> and end sentences with a period. I would however drop this comment, it's
-> not very useful. The other comments should be updated accordingly.
+> diff --git a/drivers/clk/tegra/clk-super.c b/drivers/clk/tegra/clk-super.c
+> index e2a1e95a8db7..74c9e913e41c 100644
+> --- a/drivers/clk/tegra/clk-super.c
+> +++ b/drivers/clk/tegra/clk-super.c
+> @@ -124,9 +124,18 @@ static int clk_super_set_parent(struct clk_hw *hw, u8 index)
+>  	return err;
+>  }
+>  
+> +static void clk_super_mux_restore_context(struct clk_hw *hw)
+> +{
+> +	struct clk_hw *parent = clk_hw_get_parent(hw);
+> +	int parent_id = clk_hw_get_parent_index(hw, parent);
+> +
+> +	clk_super_set_parent(hw, parent_id);
+
+All Super clocks have a divider, including the "MUX". Thus I'm wondering
+if there is a chance that divider's configuration may differ on resume
+from what it was on suspend.
+
+> +}
+> +
+>  static const struct clk_ops tegra_clk_super_mux_ops = {
+>  	.get_parent = clk_super_get_parent,
+>  	.set_parent = clk_super_set_parent,
+> +	.restore_context = clk_super_mux_restore_context,
+>  };
+>  
+>  static long clk_super_round_rate(struct clk_hw *hw, unsigned long rate,
+> @@ -162,12 +171,24 @@ static int clk_super_set_rate(struct clk_hw *hw, unsigned long rate,
+>  	return super->div_ops->set_rate(div_hw, rate, parent_rate);
+>  }
+>  
+> +static void clk_super_restore_context(struct clk_hw *hw)
+> +{
+> +	struct tegra_clk_super_mux *super = to_clk_super_mux(hw);
+> +	struct clk_hw *div_hw = &super->frac_div.hw;
+> +	struct clk_hw *parent = clk_hw_get_parent(hw);
+> +	int parent_id = clk_hw_get_parent_index(hw, parent);
+> +
+> +	super->div_ops->restore_context(div_hw);
+> +	clk_super_set_parent(hw, parent_id);
+> +}
+> +
+>  const struct clk_ops tegra_clk_super_ops = {
+>  	.get_parent = clk_super_get_parent,
+>  	.set_parent = clk_super_set_parent,
+>  	.set_rate = clk_super_set_rate,
+>  	.round_rate = clk_super_round_rate,
+>  	.recalc_rate = clk_super_recalc_rate,
+> +	.restore_context = clk_super_restore_context,
+>  };
+>  
+>  struct clk *tegra_clk_register_super_mux(const char *name,
 > 
 
-I will change my comments and drop this one.
-
-> > > > +	return V4L2_CON_UNKNOWN;
-> > > > +}
-> > > > +
-> > > > +static int
-> > > > +v4l2_fwnode_connector_parse_analog(struct fwnode_handle *fwnode,
-> > > > +				   struct v4l2_fwnode_connector *vc)
-> > > > +{
-> > > > +	u32 tvnorms;
-> > > > +	int ret;
-> > > > +
-> > > > +	ret = fwnode_property_read_u32(fwnode, "tvnorms", &tvnorms);
-> > > > +
-> > > > +	/* tvnorms is optional */
-> > > > +	vc->connector.analog.supported_tvnorms = ret ? V4L2_STD_ALL : tvnorms;
-> > > > +
-> > > > +	return 0;
-> > > > +}
-> > > > +
-> 
-> Please document all exported functions with kerneldoc.
-
-It is documented within the header file. To be aligned with the other
-functions I wouldn't change that.
-
-> > > > +int v4l2_fwnode_parse_connector(struct fwnode_handle *__fwnode,
-> > > > +				struct v4l2_fwnode_connector *connector)
-> > > > +{
-> > > > +	struct fwnode_handle *fwnode;
-> > > > +	struct fwnode_endpoint __ep;
-> > > > +	const char *c_type_str, *label;
-> > > > +	int ret;
-> > > > +
-> > > > +	memset(connector, 0, sizeof(*connector));
-> > > > +
-> > > > +	fwnode = fwnode_graph_get_remote_port_parent(__fwnode);
-> 
-> I would rename the argument __fwnode to fwnode, and rename the fwnode
-> variable to remote (or similar) to make this clearer.
-
-Okay.
-
-> 
-> > > > +	if (!fwnode)
-> > > > +		return -EINVAL;
-> 
-> Is EINVAL the right error here ? Wouldn't it be useful for the caller to
-> differentiate between unconnected connector nodes and invalid ones ?
-
-Yes it would. Should I return ENOLINK instead?
-
-> 
-> > > > +
-> > > > +	/* parse all common properties first */
-> > > > +	/* connector-type is stored within the compatible string */
-> > > > +	ret = fwnode_property_read_string(fwnode, "compatible", &c_type_str);
-> 
-> Prefixing or postfixing names with types is usually frowned upon. You
-> could rename this to type_name for instance.
-
-Okay.
-
-> > > > +	if (ret) {
-> > > > +		fwnode_handle_put(fwnode);
-> > > > +		return -EINVAL;
-> > > > +	}
-> > > > +
-> > > > +	connector->type = v4l2_fwnode_string_to_connector_type(c_type_str);
-> > > > +
-> > > > +	fwnode_graph_parse_endpoint(__fwnode, &__ep);
-> > > > +	connector->remote_port = __ep.port;
-> > > > +	connector->remote_id = __ep.id;
-> > > > +
-> > > > +	ret = fwnode_property_read_string(fwnode, "label", &label);
-> > > > +	if (!ret) {
-> > > > +		/* ensure label doesn't exceed V4L2_CONNECTOR_MAX_LABEL size */
-> > > > +		strscpy(connector->label, label, V4L2_CONNECTOR_MAX_LABEL);
-> > > > +	} else {
-> > > > +		/*
-> > > > +		 * labels are optional, if none is given create one:
-> > > > +		 * <connector-type-string>@port<endpoint_port>/ep<endpoint_id>
-> > > > +		 */
-> > > > +		snprintf(connector->label, V4L2_CONNECTOR_MAX_LABEL,
-> > > > +			 "%s@port%u/ep%u", c_type_str, connector->remote_port,
-> > > > +			 connector->remote_id);
-> 
-> Should we really try to create labels when none is available ? If so
-> this needs much more careful thoughts, we need to think about what the
-> label will be used for, and create a good naming scheme accordingly. If
-> the label will be displayed to the end-user I don't think the above name
-> would be very useful, it would be best to leave it empty and let
-> applications create a name based on the connector type and other
-> information they have at their disposal.
-
-Hm.. I don't have a strong opinion on that. If the others are with you I
-will leave it empty.
-
-> > > > +	}
-> > > > +
-> > > > +	/* now parse the connector specific properties */
-> > > > +	switch (connector->type) {
-> > > > +	case V4L2_CON_COMPOSITE:
-> > > > +		/* fall through */
-> 
-> I don't think you need a fall-through comment when the two cases are
-> adjacent with no line in-between.
-
-Hm.. I don't know the compiler behaviour. According the official
-gcc documentation [1] I would not leave that.
-
-[1] https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html
-
-> 
-> > > > +	case V4L2_CON_SVIDEO:
-> > > > +		ret = v4l2_fwnode_connector_parse_analog(fwnode, connector);
-> > > > +		break;
-> > > > +	case V4L2_CON_HDMI:
-> > > > +		pr_warn("Connector specific parsing is currently not supported for %s\n",
-> > > > +			c_type_str);  
-> > > 
-> > > Why warn? Just drop this.
-> > 
-> > good point. I would prefer to have some warning here, in order to warn a
-> > developer that might be using it that this part of the code would require 
-> > some change.
-> > 
-> > perhaps pr_warn_once()?
-> >
-> > > > +		ret = 0;
-> > > > +		break;
-> 
-> If it's not supported we should warn and return an error. Otherwise we
-> should be silent and return success. Combining a warning with success
-> isn't a good idea, this is either a normal case or an error, not both.
-
-The generic part still applies and is valid. That was the reason why I
-did return success.
-
-> > > > +	case V4L2_CON_UNKNOWN:
-> > > > +		/* fall through */
-> > > > +	default:
-> > > > +		pr_err("Unknown connector type\n");
-> > > > +		ret = -EINVAL;
-> > > > +	};
-> > > > +
-> > > > +	fwnode_handle_put(fwnode);
-> > > > +
-> > > > +	return ret;
-> > > > +}
-> > > > +EXPORT_SYMBOL_GPL(v4l2_fwnode_parse_connector);
-> > > > +
-> > > >  static int
-> > > >  v4l2_async_notifier_fwnode_parse_endpoint(struct device *dev,
-> > > >  					  struct v4l2_async_notifier *notifier,
-> > > > diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
-> > > > index f4df1b95c5ef..e072f2915ddb 100644
-> > > > --- a/include/media/v4l2-fwnode.h
-> > > > +++ b/include/media/v4l2-fwnode.h
-> > > > @@ -269,6 +269,22 @@ int v4l2_fwnode_parse_link(struct fwnode_handle *fwnode,
-> > > >   */
-> > > >  void v4l2_fwnode_put_link(struct v4l2_fwnode_link *link);
-> > > >  
-> 
-> And I see here that the function is documented. One more reason to move
-> kerneldoc to the .c files...
-
-Please check my comment above.
-
-> > > > +/**
-> > > > + * v4l2_fwnode_parse_connector() - parse the connector on endpoint
-> > > > + * @fwnode: pointer to the endpoint's fwnode handle where the connector is
-> > > > + *          connected to
-> 
-> This is very unclear, I would interpret that as the remote endpoint, not
-> the local endpoint. Could you please try to clarify the documentation ?
-
-Hm.. I have no good idea how I should describe it..
-
-"""
-The device (local) endpoint fwnode handle on which the connector is
-connected to using the remote-enpoint property.
-"""
-
-Regards,
-  Marco
-
-> > > > + * @connector: pointer to the V4L2 fwnode connector data structure
-> > > > + *
-> > > > + * Fill the connector data structure with the connector type, label and the
-> > > > + * endpoint id and port where the connector belongs to. If no label is present
-> > > > + * a unique one will be created. Labels with more than 40 characters are cut.
-> > > > + *
-> > > > + * Return: %0 on success or a negative error code on failure:
-> > > > + *	   %-EINVAL on parsing failure
-> > > > + */
-> > > > +int v4l2_fwnode_parse_connector(struct fwnode_handle *fwnode,
-> > > > +				struct v4l2_fwnode_connector *connector);
-> > > > +
-> > > >  /**
-> > > >   * typedef parse_endpoint_func - Driver's callback function to be called on
-> > > >   *	each V4L2 fwnode endpoint.
-> 
-> -- 
-> Regards,
-> 
-> Laurent Pinchart
-> 
-
--- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
