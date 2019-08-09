@@ -2,83 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CC68D88385
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 21:55:30 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9E95788391
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 21:58:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726219AbfHITz2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 15:55:28 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:33209 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726137AbfHITz1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 15:55:27 -0400
-Received: by mail-ot1-f67.google.com with SMTP id q20so136966339otl.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 12:55:27 -0700 (PDT)
+        id S1726219AbfHIT62 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 15:58:28 -0400
+Received: from mail-pg1-f193.google.com ([209.85.215.193]:44469 "EHLO
+        mail-pg1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726125AbfHIT62 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 15:58:28 -0400
+Received: by mail-pg1-f193.google.com with SMTP id i18so46355477pgl.11;
+        Fri, 09 Aug 2019 12:58:28 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=googlemail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=f5RgM5PeUcKR496STO6AkWGhAtd5KnNhCs3hLEyVgLQ=;
-        b=rjZGNhdd53P41uJeFy3L2aPLCgR6nvP9AnIBelUUQRi55U2lWW6Xgm1msUkSq6KmrM
-         TIadEb+dQfS0abbyV8Qec3FB+S8dJpxcVosOMAkKXgUO7Ke4VPogM8mO5XNNEd3wyLoc
-         7eok6qlXt++ohA0BtGignLByuihuqYPGgO48DOvafX01tQr3h9Rlrs07oYSjjEviq89y
-         +5MA9Ym7HnBdec4ZdTwhWmi9sResZd/J+17sqhHN5ejPv9J0AU/eu8CW/LwWhzC+aDm0
-         axod406VA2x7QEKiWJ1hi3oGKqtHfvY8lsv5TR3ByYgSsxNEWeGEqnhET9S1qrovVPzd
-         rUqA==
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=VCbCImaeM8b+lSq9b5GdAInVj6FUq3y4HZVgqjfUX78=;
+        b=Kw+oLUAxF2xxa7RFNdoD7DmGpocjBPvMlHmmMmL5/etDe1Tt38kDjqNzn7BakcQozY
+         hxSEPjM5Xm9RuXFZxikLSc712ri71mgNhwqMMCfZECvg5XFueWEjk+QBrjlJqvawY89w
+         JVi+SILsovZ742bj7b6ctTI7RqJOMdc4N+qSmLINodL+CqdxPpFQyba7Dg1Veo8nxy89
+         5g0lAZJkfGMsJi3MVaA71iAXyKgO2eo2fEe86jSPJzumEk90NqF1r35J3lhndVRigHvI
+         1wfTydffNCtLrzfblDWprgfw5q82Y2pJpWtoln7iVuuKmCKAVE/ptSi3kvI9LiUpPOvW
+         Ihig==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=f5RgM5PeUcKR496STO6AkWGhAtd5KnNhCs3hLEyVgLQ=;
-        b=q4lP63VNQo8EHjg/JAVp2Qzw0jYpXK0x7+m+L0sWGwChnm+3j2O7+gSNzDbSOg6dTX
-         lAaW4K/zJEUE11H5MrBgn+Z0H6Cz4sBWiINBhKXbv5YMoPXtKiuPEuyjqBELJXpX9NC6
-         ZeP3XAv06zNObSOBhEWxUSIjTlfJpQoXCkikSIO0tcrZb38uxHF01osu7TSdcyiE8wRL
-         MqZGGx56irh2Vz6mEf5AKyLKyd8dVF71aboLck4R+T4HWnwFz91ss01pp9AF8acULI8b
-         8e33hsQzbvOiZGO5rvEwQqTkR9Eoaui9TFpVziCb2kKcRzECfg3/9JoYlwTH8q6upG57
-         tHwg==
-X-Gm-Message-State: APjAAAU72S3kK0d0v/uzY2tDXyRuxkovtwHYW637R8TUTAraSpuE+dCa
-        XZaegSH282HnKmSzrhzdK5K9tAt8hwrzY5qQw0/Q5A==
-X-Google-Smtp-Source: APXvYqz2iUAE9lCz16hjXHExEjubfeLPLLx1yZx3utlS02+GZFq4P0Z52FDXChVD4BmHWDdSnjhIg33whcusluo+pCI=
-X-Received: by 2002:aca:5c55:: with SMTP id q82mr7646834oib.15.1565380526824;
- Fri, 09 Aug 2019 12:55:26 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=VCbCImaeM8b+lSq9b5GdAInVj6FUq3y4HZVgqjfUX78=;
+        b=NFjHv3+kDgw7ZUZ5KKbm9gDqL2LnekATKFJdQAtWB8aVUwp/QovFF7hH8mxh0rqDP7
+         oTM3n8WrS45sMmq/jcUFAvTzwe5geqWwPFElYdQoDonZCjSuF1Wz7EC7J7YwBlXtXk56
+         z4eAEJ+RaRNebrPFHjXazrBNoygcm/XJhEcB15hytkAbDVTzP/0CIe1LYUoljF5UTddb
+         lFc5VyRhtOD3XEib0VyPTU7cI2J9B/g0L4OrqIA+cJFxwR4RjWoKRfEVB5ctF1dlBBTx
+         VL2mZm4NQHR9kssYX8QkEJrkGgCLOTjPZZy7j1MDOoUILSpTOkTw+FUgRTIPOE1u63SS
+         6Y2Q==
+X-Gm-Message-State: APjAAAX/hkaKDAWfyjZm18Mjds/ZVjibVwBAkX4VaLaLjrYt8R2xuHyQ
+        P4YZSuVHLsmLpavchgxo3wMv0OLT
+X-Google-Smtp-Source: APXvYqwr8vYcmauTzmL6JZ6snH2j18Lcbrgl3NoEzcj7F6farIZmKNhOtBqj2Vm5a48ynNus84SThw==
+X-Received: by 2002:a63:60d1:: with SMTP id u200mr18948265pgb.439.1565380707327;
+        Fri, 09 Aug 2019 12:58:27 -0700 (PDT)
+Received: from Asurada (c-98-248-47-108.hsd1.ca.comcast.net. [98.248.47.108])
+        by smtp.gmail.com with ESMTPSA id f197sm97530357pfa.161.2019.08.09.12.58.26
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 Aug 2019 12:58:26 -0700 (PDT)
+Date:   Fri, 9 Aug 2019 12:58:13 -0700
+From:   Nicolin Chen <nicoleotsuka@gmail.com>
+To:     Shengjiu Wang <shengjiu.wang@nxp.com>
+Cc:     timur@kernel.org, Xiubo.Lee@gmail.com, festevam@gmail.com,
+        broonie@kernel.org, alsa-devel@alsa-project.org,
+        robh+dt@kernel.org, mark.rutland@arm.com,
+        linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
+        devicetree@vger.kernel.org
+Subject: Re: [PATCH 2/2] ASoC: fsl_esai: Add new compatible string for imx6ull
+Message-ID: <20190809195812.GA8148@Asurada>
+References: <1565346467-5769-1-git-send-email-shengjiu.wang@nxp.com>
+ <1565346467-5769-2-git-send-email-shengjiu.wang@nxp.com>
 MIME-Version: 1.0
-References: <20190808085139.21438-1-narmstrong@baylibre.com>
- <20190808085139.21438-8-narmstrong@baylibre.com> <CAFBinCBnVdTxWgqmnrPo-5uZ5gxy7p68w0PUa=_42fYxhVrDXQ@mail.gmail.com>
- <2e6ade0e-175c-e77c-e767-28f4bbfbe575@baylibre.com>
-In-Reply-To: <2e6ade0e-175c-e77c-e767-28f4bbfbe575@baylibre.com>
-From:   Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Date:   Fri, 9 Aug 2019 21:55:16 +0200
-Message-ID: <CAFBinCC7UGG014D6xt97SZ-WjR=rTLvag7F+DXG6byxaOEFHJg@mail.gmail.com>
-Subject: Re: [PATCH 7/9] dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert
- to yaml
-To:     Neil Armstrong <narmstrong@baylibre.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, kishon@ti.com,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <1565346467-5769-2-git-send-email-shengjiu.wang@nxp.com>
+User-Agent: Mutt/1.5.22 (2013-10-16)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 9, 2019 at 9:00 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->
-> Hi,
->
-> On 08/08/2019 21:50, Martin Blumenstingl wrote:
-> > On Thu, Aug 8, 2019 at 10:54 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
-> >>
-> >> Now that we have the DT validation in place, let's convert the device tree
-> >> bindings for the Amlogic G12A USB3 + PCIE Combo PHY over to a YAML schemas.
-> >>
-> >> While the original phy bindings specifies phy-supply as required,
-> >> the examples and implementations makes it optional, thus phy-supply
-> >> is not present in the properties and required lists.
-> > nit-pick: the original bindings didn't mention the phy-supply property at all
-> > I'm not sure if you have to re-send it, maybe this can be fixed up
-> > while applying?
->
-> It didn't, but the phy.txt made it mandatory, but was optional in all examples
-> and implementation, thus rob asked me to precise it in the commit log.
-sorry, I missed that
-my Reviewed-by still stands - thanks for pointing it out (again)
+On Fri, Aug 09, 2019 at 06:27:47PM +0800, Shengjiu Wang wrote:
+> Add new compatible string "fsl,imx6ull-esai" in the binding document.
+> 
+> Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
+
+Acked-by: Nicolin Chen <nicoleotsuka@gmail.com>
+
+> ---
+>  Documentation/devicetree/bindings/sound/fsl,esai.txt | 7 +++++--
+>  1 file changed, 5 insertions(+), 2 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/sound/fsl,esai.txt b/Documentation/devicetree/bindings/sound/fsl,esai.txt
+> index 5b9914367610..0e6e2166f76c 100644
+> --- a/Documentation/devicetree/bindings/sound/fsl,esai.txt
+> +++ b/Documentation/devicetree/bindings/sound/fsl,esai.txt
+> @@ -7,8 +7,11 @@ other DSPs. It has up to six transmitters and four receivers.
+>  
+>  Required properties:
+>  
+> -  - compatible		: Compatible list, must contain "fsl,imx35-esai" or
+> -			  "fsl,vf610-esai"
+> +  - compatible		: Compatible list, should contain one of the following
+> +			  compatibles:
+> +			  "fsl,imx35-esai",
+> +			  "fsl,vf610-esai",
+> +			  "fsl,imx6ull-esai",
+>  
+>    - reg			: Offset and length of the register set for the device.
+>  
+> -- 
+> 2.21.0
+> 
