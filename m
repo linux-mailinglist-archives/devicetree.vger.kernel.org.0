@@ -2,189 +2,230 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB7B18733E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 09:38:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B6D7487386
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 09:55:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405938AbfHIHiG (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 03:38:06 -0400
-Received: from mail.kernel.org ([198.145.29.99]:36002 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725980AbfHIHiF (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Aug 2019 03:38:05 -0400
-Received: from localhost.localdomain (unknown [122.167.65.92])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id DD3872173E;
-        Fri,  9 Aug 2019 07:38:01 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565336285;
-        bh=O7WQ1zBAJzEuaFnALgFxwTwuUZjx7Kjinzu8wn2fR2U=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=tQtyusUqYs3H27n+cSP6KJnTH7/204WF+EfBeR87/9hMXkRLUzXVaPUmHltzakOzZ
-         6etglwvvDqJ1AbqcTlpP7C9V2gAuybgl27VVStRdMG19LxbTuJp1yjSW8TXxZcbkKP
-         TWGt6ceWMNNGs3BH/LNUuIpVq2coyd4SXLkt35Gs=
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Mark Brown <broonie@kernel.org>
-Cc:     linux-arm-msm@vger.kernel.org,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: [PATCH 4/4] regulator: qcom-rpmh: Update PMIC modes for PMIC5
-Date:   Fri,  9 Aug 2019 13:06:16 +0530
-Message-Id: <20190809073616.1235-4-vkoul@kernel.org>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190809073616.1235-1-vkoul@kernel.org>
-References: <20190809073616.1235-1-vkoul@kernel.org>
+        id S2405415AbfHIHzp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 03:55:45 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:36051 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727063AbfHIHzo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 03:55:44 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hvzkQ-0000MB-J2; Fri, 09 Aug 2019 09:55:38 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hvzkO-0002jL-Ul; Fri, 09 Aug 2019 09:55:36 +0200
+Date:   Fri, 9 Aug 2019 09:55:36 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, linux-media@vger.kernel.org,
+        devicetree@vger.kernel.org, kernel@pengutronix.de,
+        Jacopo Mondi <jacopo@jmondi.org>
+Subject: Re: [PATCH v6 02/13] media: v4l2-fwnode: add v4l2_fwnode_connector
+Message-ID: <20190809075536.pukp444dmb7haoxj@pengutronix.de>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+ <20190415124413.18456-3-m.felsch@pengutronix.de>
+ <20190516163632.GO14820@pendragon.ideasonboard.com>
 MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190516163632.GO14820@pendragon.ideasonboard.com>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 09:25:12 up 83 days, 13:43, 57 users,  load average: 0.09, 0.06,
+ 0.02
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add the PMIC5 modes and use them pmic5 ldo and smps
+Hi Laurent,
 
-Signed-off-by: Vinod Koul <vkoul@kernel.org>
----
- drivers/regulator/qcom-rpmh-regulator.c | 52 +++++++++++++++++++++----
- 1 file changed, 45 insertions(+), 7 deletions(-)
+On 19-05-16 19:36, Laurent Pinchart wrote:
+> Hi Marco,
+> 
+> Thank you for the patch.
 
-diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
-index 391ed844a251..db6c085da65e 100644
---- a/drivers/regulator/qcom-rpmh-regulator.c
-+++ b/drivers/regulator/qcom-rpmh-regulator.c
-@@ -50,6 +50,20 @@ enum rpmh_regulator_type {
- #define PMIC4_BOB_MODE_AUTO			2
- #define PMIC4_BOB_MODE_PWM			3
- 
-+#define PMIC5_LDO_MODE_RETENTION		3
-+#define PMIC5_LDO_MODE_LPM			4
-+#define PMIC5_LDO_MODE_HPM			7
-+
-+#define PMIC5_SMPS_MODE_RETENTION		3
-+#define PMIC5_SMPS_MODE_PFM			4
-+#define PMIC5_SMPS_MODE_AUTO			6
-+#define PMIC5_SMPS_MODE_PWM			7
-+
-+#define PMIC5_BOB_MODE_PASS			2
-+#define PMIC5_BOB_MODE_PFM			4
-+#define PMIC5_BOB_MODE_AUTO			6
-+#define PMIC5_BOB_MODE_PWM			7
-+
- /**
-  * struct rpmh_vreg_hw_data - RPMh regulator hardware configurations
-  * @regulator_type:		RPMh accelerator type used to manage this
-@@ -488,6 +502,14 @@ static const int pmic_mode_map_pmic4_ldo[REGULATOR_MODE_STANDBY + 1] = {
- 	[REGULATOR_MODE_FAST]    = -EINVAL,
- };
- 
-+static const int pmic_mode_map_pmic5_ldo[REGULATOR_MODE_STANDBY + 1] = {
-+	[REGULATOR_MODE_INVALID] = -EINVAL,
-+	[REGULATOR_MODE_STANDBY] = PMIC5_LDO_MODE_RETENTION,
-+	[REGULATOR_MODE_IDLE]    = PMIC5_LDO_MODE_LPM,
-+	[REGULATOR_MODE_NORMAL]  = PMIC5_LDO_MODE_HPM,
-+	[REGULATOR_MODE_FAST]    = -EINVAL,
-+};
-+
- static unsigned int rpmh_regulator_pmic4_ldo_of_map_mode(unsigned int rpmh_mode)
- {
- 	unsigned int mode;
-@@ -518,6 +540,14 @@ static const int pmic_mode_map_pmic4_smps[REGULATOR_MODE_STANDBY + 1] = {
- 	[REGULATOR_MODE_FAST]    = PMIC4_SMPS_MODE_PWM,
- };
- 
-+static const int pmic_mode_map_pmic5_smps[REGULATOR_MODE_STANDBY + 1] = {
-+	[REGULATOR_MODE_INVALID] = -EINVAL,
-+	[REGULATOR_MODE_STANDBY] = PMIC5_SMPS_MODE_RETENTION,
-+	[REGULATOR_MODE_IDLE]    = PMIC5_SMPS_MODE_PFM,
-+	[REGULATOR_MODE_NORMAL]  = PMIC5_SMPS_MODE_AUTO,
-+	[REGULATOR_MODE_FAST]    = PMIC5_SMPS_MODE_PWM,
-+};
-+
- static unsigned int
- rpmh_regulator_pmic4_smps_of_map_mode(unsigned int rpmh_mode)
- {
-@@ -552,6 +582,14 @@ static const int pmic_mode_map_pmic4_bob[REGULATOR_MODE_STANDBY + 1] = {
- 	[REGULATOR_MODE_FAST]    = PMIC4_BOB_MODE_PWM,
- };
- 
-+static const int pmic_mode_map_pmic5_bob[REGULATOR_MODE_STANDBY + 1] = {
-+	[REGULATOR_MODE_INVALID] = -EINVAL,
-+	[REGULATOR_MODE_STANDBY] = -EINVAL,
-+	[REGULATOR_MODE_IDLE]    = PMIC5_BOB_MODE_PFM,
-+	[REGULATOR_MODE_NORMAL]  = PMIC5_BOB_MODE_AUTO,
-+	[REGULATOR_MODE_FAST]    = PMIC5_BOB_MODE_PWM,
-+};
-+
- static unsigned int rpmh_regulator_pmic4_bob_of_map_mode(unsigned int rpmh_mode)
- {
- 	unsigned int mode;
-@@ -643,7 +681,7 @@ static const struct rpmh_vreg_hw_data pmic5_pldo = {
- 	.voltage_range = REGULATOR_LINEAR_RANGE(1504000, 0, 255, 8000),
- 	.n_voltages = 256,
- 	.hpm_min_load_uA = 10000,
--	.pmic_mode_map = pmic_mode_map_pmic4_ldo,
-+	.pmic_mode_map = pmic_mode_map_pmic5_ldo,
- 	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
- };
- 
-@@ -653,7 +691,7 @@ static const struct rpmh_vreg_hw_data pmic5_pldo_lv = {
- 	.voltage_range = REGULATOR_LINEAR_RANGE(1504000, 0, 62, 8000),
- 	.n_voltages = 63,
- 	.hpm_min_load_uA = 10000,
--	.pmic_mode_map = pmic_mode_map_pmic4_ldo,
-+	.pmic_mode_map = pmic_mode_map_pmic5_ldo,
- 	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
- };
- 
-@@ -663,7 +701,7 @@ static const struct rpmh_vreg_hw_data pmic5_nldo = {
- 	.voltage_range = REGULATOR_LINEAR_RANGE(320000, 0, 123, 8000),
- 	.n_voltages = 124,
- 	.hpm_min_load_uA = 30000,
--	.pmic_mode_map = pmic_mode_map_pmic4_ldo,
-+	.pmic_mode_map = pmic_mode_map_pmic5_ldo,
- 	.of_map_mode = rpmh_regulator_pmic4_ldo_of_map_mode,
- };
- 
-@@ -672,7 +710,7 @@ static const struct rpmh_vreg_hw_data pmic5_hfsmps510 = {
- 	.ops = &rpmh_regulator_vrm_ops,
- 	.voltage_range = REGULATOR_LINEAR_RANGE(320000, 0, 215, 8000),
- 	.n_voltages = 216,
--	.pmic_mode_map = pmic_mode_map_pmic4_smps,
-+	.pmic_mode_map = pmic_mode_map_pmic5_smps,
- 	.of_map_mode = rpmh_regulator_pmic4_smps_of_map_mode,
- };
- 
-@@ -681,7 +719,7 @@ static const struct rpmh_vreg_hw_data pmic5_ftsmps510 = {
- 	.ops = &rpmh_regulator_vrm_ops,
- 	.voltage_range = REGULATOR_LINEAR_RANGE(300000, 0, 263, 4000),
- 	.n_voltages = 264,
--	.pmic_mode_map = pmic_mode_map_pmic4_smps,
-+	.pmic_mode_map = pmic_mode_map_pmic5_smps,
- 	.of_map_mode = rpmh_regulator_pmic4_smps_of_map_mode,
- };
- 
-@@ -690,7 +728,7 @@ static const struct rpmh_vreg_hw_data pmic5_hfsmps515 = {
- 	.ops = &rpmh_regulator_vrm_ops,
- 	.voltage_range = REGULATOR_LINEAR_RANGE(2800000, 0, 4, 1600),
- 	.n_voltages = 5,
--	.pmic_mode_map = pmic_mode_map_pmic4_smps,
-+	.pmic_mode_map = pmic_mode_map_pmic5_smps,
- 	.of_map_mode = rpmh_regulator_pmic4_smps_of_map_mode,
- };
- 
-@@ -699,7 +737,7 @@ static const struct rpmh_vreg_hw_data pmic5_bob = {
- 	.ops = &rpmh_regulator_vrm_bypass_ops,
- 	.voltage_range = REGULATOR_LINEAR_RANGE(300000, 0, 135, 32000),
- 	.n_voltages = 136,
--	.pmic_mode_map = pmic_mode_map_pmic4_bob,
-+	.pmic_mode_map = pmic_mode_map_pmic5_bob,
- 	.of_map_mode = rpmh_regulator_pmic4_bob_of_map_mode,
- };
- 
+Thanks for the review and sorry for the delayed reply.
+
+> On Mon, Apr 15, 2019 at 02:44:02PM +0200, Marco Felsch wrote:
+> > Currently every driver needs to parse the connector endpoints by it self.
+> 
+> s/it self/itself/
+> 
+> > This is the initial work to make this generic. The generic connector has
+> > some common fields and some connector specific parts. The generic one
+> > includes:
+> >   - type
+> >   - label
+> >   - remote_port (the port where the connector is connected to)
+> >   - remote_id   (the endpoint where the connector is connected to)
+> 
+> This assumes a single connection between a connector and a remote port,
+> and a single port on the connector side. Is this guaranteed ? For the
+> mini-DIN-4 connectors (often used for S-Video) for instance, I recall
+> from the extensive discussions we had in the past that they should be
+> modeled with two pins, one for the Y component and one for C components.
+> The rationale for this is to support systems where such a connector
+> could be used to carry S-Video, but also two composite video signals
+> (usually through an external adapter from 2 RCA female connectors to one
+> S-Video male connector) that would be routed to two separate video
+> decoders (or two different inputs of the same video decoder). Other
+> topologies may be possible too.
+
+I got your concerns and I also remember the tvp5150 port bindings
+myself in the past. Do you know how often such a setup you described
+above happens these days? I would rather add more documentation to the
+bindings [1] and add a check to v4l2_fwnode_parse_connector() to
+guarantee that one port has only one endpoint. Because I don't think
+that analog connectors has a bright future these days.
+
+[1] Documentation/devicetree/bindings/display/connector/ \
+    analog-tv-connector.txt
+
+> > The specific fields are within a union, since only one of them can be
+> > available at the time. Since this is the initial support the patch adds
+> > only the analog-connector specific ones.
+> > 
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > Reviewed-by: Jacopo Mondi <jacopo@jmondi.org>
+> > ---
+> > [1] https://patchwork.kernel.org/cover/10794703/
+> > 
+> > v6:
+> > - fix some spelling and style issues
+> > - rm unnecessary comments
+> > - drop vga and dvi connector
+> > 
+> > v2-v4:
+> > - nothing since the patch was squashed from series [1] into this
+> >   series.
+> > 
+> >  include/media/v4l2-connector.h | 30 ++++++++++++++++++++++++++++++
+> >  include/media/v4l2-fwnode.h    | 33 +++++++++++++++++++++++++++++++++
+> >  2 files changed, 63 insertions(+)
+> >  create mode 100644 include/media/v4l2-connector.h
+> > 
+> > diff --git a/include/media/v4l2-connector.h b/include/media/v4l2-connector.h
+> > new file mode 100644
+> > index 000000000000..3a951c54f50e
+> > --- /dev/null
+> > +++ b/include/media/v4l2-connector.h
+> > @@ -0,0 +1,30 @@
+> > +/* SPDX-License-Identifier: GPL-2.0-only */
+> > +/*
+> > + * v4l2-connector.h
+> > + *
+> > + * V4L2 connector types.
+> > + *
+> > + * Copyright 2019 Pengutronix, Marco Felsch <kernel@pengutronix.de>
+> > + */
+> > +
+> > +#ifndef V4L2_CONNECTOR_H
+> > +#define V4L2_CONNECTOR_H
+> > +
+> > +#define V4L2_CONNECTOR_MAX_LABEL 41
+> 
+> Hans pointed out this was a weird number. Should you turn the label
+> field into a pointer to make this more generic (with a
+> v4l2_fwnode_connector_cleanup() function then) ?
+
+Yes, that would be the better approach. I will change that.
+
+Regards,
+  Marco
+
+> > +
+> > +/**
+> > + * enum v4l2_connector_type - connector type
+> > + * @V4L2_CON_UNKNOWN:   unknown connector type, no V4L2 connetor configuration
+> > + * @V4L2_CON_COMPOSITE: analog composite connector
+> > + * @V4L2_CON_SVIDEO:    analog svideo connector
+> > + * @V4L2_CON_HDMI:      digital hdmi connector
+> > + */
+> > +enum v4l2_connector_type {
+> > +	V4L2_CON_UNKNOWN,
+> > +	V4L2_CON_COMPOSITE,
+> > +	V4L2_CON_SVIDEO,
+> > +	V4L2_CON_HDMI,
+> > +};
+> > +
+> > +#endif /* V4L2_CONNECTOR_H */
+> > +
+> > diff --git a/include/media/v4l2-fwnode.h b/include/media/v4l2-fwnode.h
+> > index 6c07825e18b9..f4df1b95c5ef 100644
+> > --- a/include/media/v4l2-fwnode.h
+> > +++ b/include/media/v4l2-fwnode.h
+> > @@ -22,6 +22,7 @@
+> >  #include <linux/list.h>
+> >  #include <linux/types.h>
+> >  
+> > +#include <media/v4l2-connector.h>
+> >  #include <media/v4l2-mediabus.h>
+> >  #include <media/v4l2-subdev.h>
+> >  
+> > @@ -126,6 +127,38 @@ struct v4l2_fwnode_link {
+> >  	unsigned int remote_port;
+> >  };
+> >  
+> > +/**
+> > + * struct v4l2_fwnode_connector_analog - analog connector data structure
+> > + * @supported_tvnorms: tv norms this connector supports, set to V4L2_STD_ALL
+> > + *                     if no restrictions are specified.
+> > + */
+> > +struct v4l2_fwnode_connector_analog {
+> > +	v4l2_std_id supported_tvnorms;
+> > +};
+> > +
+> > +/**
+> > + * struct v4l2_fwnode_connector - the connector data structure
+> > + * @remote_port: identifier of the remote endpoint port the connector connects
+> > + *		 to
+> > + * @remote_id: identifier of the remote endpoint the connector connects to
+> > + * @label: connetor label
+> > + * @type: connector type
+> > + * @connector: connector configuration
+> > + * @connector.analog: analog connector configuration
+> > + *                    &struct v4l2_fwnode_connector_analog
+> > + */
+> > +struct v4l2_fwnode_connector {
+> > +	unsigned int remote_port;
+> > +	unsigned int remote_id;
+> > +	char label[V4L2_CONNECTOR_MAX_LABEL];
+> > +	enum v4l2_connector_type type;
+> > +
+> > +	union {
+> > +		struct v4l2_fwnode_connector_analog analog;
+> > +		/* future connectors */
+> > +	} connector;
+> > +};
+> > +
+> >  /**
+> >   * v4l2_fwnode_endpoint_parse() - parse all fwnode node properties
+> >   * @fwnode: pointer to the endpoint's fwnode handle
+> 
+> -- 
+> Regards,
+> 
+> Laurent Pinchart
+> 
+
 -- 
-2.20.1
-
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
