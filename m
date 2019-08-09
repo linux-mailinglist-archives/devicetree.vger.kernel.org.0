@@ -2,145 +2,148 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CA295875FB
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 11:32:10 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 40BE38767C
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 11:45:48 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406170AbfHIJcC (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 05:32:02 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:44263 "EHLO
-        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2405766AbfHIJcC (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 05:32:02 -0400
-Received: by mail-wr1-f68.google.com with SMTP id p17so97584245wrf.11
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 02:32:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=7xl4Fxz1zkuKhZY0T+DBnZURadM5hWOlSpQpQ4x+iYI=;
-        b=zq+sCrrHuP1zwsq5Z24lxPWAOi2UiWGLr0liOc8JGvDoRtsxoeNufIes/YwhMQen4j
-         l1hjznGhPLY+PfJoLt+daMcI+S0mdvFjgxs3PeYhy0PhGoQJP2vodAE0KRguFMnO/2yU
-         5KZt1bckXqoy0Np0gHfOoVStkcg1jVLtghC/L7pCt3NLjchm3Aor4hkqQJllJK/oOq/y
-         dplcIvZIuO7UkO10kTkbLctD78DjNu2P4FGeXppnAgvth9DjV4cv6rzjzcayTL/HIT6/
-         6Pvf8VxpFBwFnf0OrGk8C2MEU7Lq2zRHSUdyYUR+7fhypDorjMKGZ0EiGRrmOdQobmkA
-         DAdA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=7xl4Fxz1zkuKhZY0T+DBnZURadM5hWOlSpQpQ4x+iYI=;
-        b=kb4qxQCGRxPxJpuB7PblY1QZW5wevwgPp+j/PxfQ+6CFP3LY1tcKup47+0/+mSSPd8
-         KStot27eVVn7aUw7xMqp1tRokwaMLbSLEe+0tks8X1DdPZp8oiREIB+vsxpacsMzaemK
-         34AJszEh0KjGWIHm1PEVGav/WV9Nfnagsu38M0x3ijaOhVjzdVWMit4AVZ6IAH9x6eUT
-         wIkh235L1Xw9w/VUMzZXHvwoe8Xb9ytr4HAemFCXUg18gwV6oGWZ269w6bLq6TfcxDUF
-         cPf9tShAHS2nEwCgGjGt3XmroToJ44IdKWU5N+6QKygvN7bdc+foRVDNwBmwTDchCOKj
-         zX2g==
-X-Gm-Message-State: APjAAAV3iu02Xp3sySyIUV6AvQWuMfbun5I0RcvY2jkPOeP/UQrIwHu6
-        78ErpdY+7OYVpYZXRHNdyd9i8DabhtXGxQ==
-X-Google-Smtp-Source: APXvYqw944iPQH2qQN50PmaPHC4lvJ0N0eak5vEu5unZkeS4AMUzsRM5FGRL5u4veWWjxO8395O/Lw==
-X-Received: by 2002:adf:e5c4:: with SMTP id a4mr8213433wrn.87.1565343119382;
-        Fri, 09 Aug 2019 02:31:59 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id t10sm491288wru.96.2019.08.09.02.31.58
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Aug 2019 02:31:58 -0700 (PDT)
-Subject: Re: [PATCH v3 0/2] dt-bindings: net: meson-dwmac: convert to yaml
-To:     David Miller <davem@davemloft.net>
-Cc:     robh+dt@kernel.org, martin.blumenstingl@googlemail.com,
-        devicetree@vger.kernel.org, netdev@vger.kernel.org,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190808114101.29982-1-narmstrong@baylibre.com>
- <20190808.112033.180369877501058953.davem@davemloft.net>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <e39ca095-d68e-7231-f746-2470e16cd2e9@baylibre.com>
-Date:   Fri, 9 Aug 2019 11:31:58 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190808.112033.180369877501058953.davem@davemloft.net>
-Content-Type: text/plain; charset=utf-8
+        id S2406160AbfHIJpr (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 05:45:47 -0400
+Received: from mail-eopbgr50057.outbound.protection.outlook.com ([40.107.5.57]:32389
+        "EHLO EUR03-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2406138AbfHIJpr (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Aug 2019 05:45:47 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=HwvhAU50FVGmkGJlGxmEfjXrhh366das8yim7aUT5TWeCPqTwUVRK15Yg/FTXKQXkmEsJfU68vp1fV1v68OqaLy01MBJX4mbUs3ToMaoiTMFfsYQpHDOnXznqAGsOvYdCEyahrjCRRPbCZpy0LeSeoWOdDAui6sKCUEOiisjSDGUlanDvO5TCTOOB1RF5U1M6rvCbJLhw69tK2esM6WDCFgN8cuTzS/f59wQyvCqH1D+i/5CkLbfUtcOZKsAqXM04MbtZoNW+K0+Y+HKTh2kLtQqPsrslRfDiVLM6J5y5hmyxLw5uSVxYGT8Zs1IAS3lpVHoymyXJ/U57Zgh3LHPhQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Hg3Gp8dptVuK+uaY9Ye8x7ZbYCrF0v/JWUmNUsOlG64=;
+ b=YNlLLt5xj/UAP/6fYQrlDFDh1XuJU12PLZto+vEPpoG+cD9jPmNLWFIacN7eqAVIcdXkqoKXQJA7Jpeh9EtCBxD8Se1OOox8dAZIHrXjiHBg0D19+IzII/bI9/5kyaFWbLybn5bstZEJ156vutzSW6CuJHOHCt2wQ4dTkFyEaSt7G1fcWfdjb526UkWnfonWMFN6eCTOjpopm4sQ0+gkQu8QLOuODet5Pdyt9qY4mgRmV2ZNpWYllfgOdxp4WwgtdHwqz6Yfz7nBYzjFDNkluKSUjFfDqO0Zkw32E9k9nC1HRCREHBMN7w6CgNYT/RNKN//+h3zkHbCjeGwnmDz/tA==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
+ header.d=nxp.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=Hg3Gp8dptVuK+uaY9Ye8x7ZbYCrF0v/JWUmNUsOlG64=;
+ b=LfazChVs4fqY/yHq4h9uqKcMB3Cpi28fmljijeOYaihTEl1nFmqJ4JRB6qtrOIdsdGCmYNDpSgsOeSc4dwQkdRr6jYuUhAz5I1yPz7FKQLYkVHS0DlhiHX2cppeYFeQ0fPx9yVzFnyqk8UUcpSkJx1lPcXvWyzVCG+ThwapwBmQ=
+Received: from VI1PR0402MB2863.eurprd04.prod.outlook.com (10.175.20.18) by
+ VI1PR0402MB3487.eurprd04.prod.outlook.com (52.134.4.12) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2157.18; Fri, 9 Aug 2019 09:45:40 +0000
+Received: from VI1PR0402MB2863.eurprd04.prod.outlook.com
+ ([fe80::7de6:ea4b:9b5d:d023]) by VI1PR0402MB2863.eurprd04.prod.outlook.com
+ ([fe80::7de6:ea4b:9b5d:d023%7]) with mapi id 15.20.2157.020; Fri, 9 Aug 2019
+ 09:45:40 +0000
+From:   Stefan-gabriel Mirea <stefan-gabriel.mirea@nxp.com>
+To:     Will Deacon <will@kernel.org>
+CC:     "corbet@lwn.net" <corbet@lwn.net>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "catalin.marinas@arm.com" <catalin.marinas@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>,
+        "jslaby@suse.com" <jslaby@suse.com>,
+        "linux-doc@vger.kernel.org" <linux-doc@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-serial@vger.kernel.org" <linux-serial@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        Cosmin Stefan Stoica <cosmin.stoica@nxp.com>,
+        Larisa Ileana Grigore <larisa.grigore@nxp.com>
+Subject: Re: [PATCH 5/6] tty: serial: Add linflexuart driver for S32V234
+Thread-Topic: [PATCH 5/6] tty: serial: Add linflexuart driver for S32V234
+Thread-Index: AQHVTpc0N7PGKATl60WX/HSnUpERYA==
+Date:   Fri, 9 Aug 2019 09:45:40 +0000
+Message-ID: <VI1PR0402MB2863B3E3E2F93CBA8ADB96E5DFD60@VI1PR0402MB2863.eurprd04.prod.outlook.com>
+References: <20190802194702.30249-1-stefan-gabriel.mirea@nxp.com>
+ <20190802194702.30249-6-stefan-gabriel.mirea@nxp.com>
+ <20190808080832.nleult5bknmzr3ze@willie-the-truck>
+ <VI1PR0402MB28635661A4A294EC6F01095EDFD70@VI1PR0402MB2863.eurprd04.prod.outlook.com>
+ <20190808171711.nk7ljqkugtketu4q@willie-the-truck>
+Accept-Language: en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=stefan-gabriel.mirea@nxp.com; 
+x-originating-ip: [212.146.100.6]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: b1ce9e63-d687-4377-7fc5-08d71cae56dd
+x-ms-office365-filtering-ht: Tenant
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(4618075)(2017052603328)(7193020);SRVR:VI1PR0402MB3487;
+x-ms-traffictypediagnostic: VI1PR0402MB3487:
+x-ms-exchange-purlcount: 1
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0402MB3487A57EC47CF9CC1DCD49EBDFD60@VI1PR0402MB3487.eurprd04.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 01244308DF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(376002)(346002)(136003)(366004)(39860400002)(396003)(189003)(199004)(14454004)(9686003)(66066001)(478600001)(25786009)(6246003)(66446008)(91956017)(64756008)(99286004)(966005)(66476007)(7416002)(76116006)(476003)(81156014)(446003)(486006)(52536014)(4326008)(5660300002)(229853002)(256004)(33656002)(81166006)(6916009)(8676002)(86362001)(66556008)(6436002)(66946007)(74316002)(54906003)(8936002)(53936002)(6506007)(3846002)(186003)(26005)(7696005)(6116002)(2906002)(76176011)(6306002)(102836004)(7736002)(55016002)(305945005)(53546011)(71190400001)(71200400001)(316002);DIR:OUT;SFP:1101;SCL:1;SRVR:VI1PR0402MB3487;H:VI1PR0402MB2863.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: nxp.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: VyyhMslZwBvsUnmwB6TSMV9voZEpehOg1viKRnTsBSlMEttEi66M5sogjcHRrhNeThzg5UuxOTh01aLizkypE8lSec88QvBZoLI/SLJa7eF1MQGUjuHH4raKtWsbBncL5xSvUfrPww3q8z+bGz3hVwblZY2qvuctjhxofq7LVkWMN8+6ITj7T5lp9aPSpEvweOt7dybZ7z8FzRiUF0rHHnQVEA3o6WZ8cBXWuHYf66M8wNQSWn/3lrhqgZ8Cr9tYUNlGwsjcQ2XAVZSf2S7DERRaS5+Dm+uQGx4aAIdVT2fL6t4T6YIugeNHAxxVBi89alw0PMoVZbY4B43KNfSdRqmqBM21pReMQ78Gujw3BkjShkkZBSPiNLeEbEA6kKipIc5t8xHjzNYHMWutbZHhFjMZVuZxkfWBwVNE2sY6YLs=
+Content-Type: text/plain; charset="us-ascii"
+Content-Transfer-Encoding: quoted-printable
+MIME-Version: 1.0
+X-OriginatorOrg: nxp.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: b1ce9e63-d687-4377-7fc5-08d71cae56dd
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2019 09:45:40.2418
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: mQTYDFCG5FWbj/6dT0j0JlhWuLrK/tfyIhrltz1ZxBCa0EY/7PVgvAkHY1XrM+gcgsCUj1yFevooUHTaefHnohN++xPwd9OHH3B5rjhTQTE=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0402MB3487
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
-
-On 08/08/2019 20:20, David Miller wrote:
-> From: Neil Armstrong <narmstrong@baylibre.com>
-> Date: Thu,  8 Aug 2019 13:40:59 +0200
-> 
->> This patchsets converts the Amlogic Meson DWMAC glue bindings over to
->> YAML schemas using the already converted dwmac bindings.
->>
->> The first patch is needed because the Amlogic glue needs a supplementary
->> reg cell to access the DWMAC glue registers.
->>
->> Changes since v2:
->> - Added review tags
->> - Updated allwinner,sun7i-a20-gmac.yaml reg maxItems
-> 
-> Where is this targetted to be merged, an ARM tree?  Or one of my
-> networking trees?
-> 
-
-I assume you can take it in one of your net trees.
-
-Thanks,
-Neil
+On 8/8/2019 8:17 PM, Will Deacon wrote:=0A=
+> On Thu, Aug 08, 2019 at 12:47:00PM +0000, Stefan-gabriel Mirea wrote:=0A=
+>> On 8/8/2019 11:08 AM, Will Deacon wrote:=0A=
+>>> On Fri, Aug 02, 2019 at 07:47:23PM +0000, Stefan-gabriel Mirea wrote:=
+=0A=
+>>>> +             linflex,<addr>=0A=
+>>>> +                     Use early console provided by Freescale LinFlex =
+UART=0A=
+>>>> +                     serial driver for NXP S32V234 SoCs. A valid base=
+=0A=
+>>>> +                     address must be provided, and the serial port mu=
+st=0A=
+>>>> +                     already be setup and configured.=0A=
+>>>=0A=
+>>> Why isn't earlycon=3D sufficient for this?=0A=
+>>=0A=
+>> "earlycon=3D" is not actually supported. I will fix this in the next=0A=
+>> version by adding a /chosen/stdout-path to the dts. The compatible=0A=
+>> string provided to OF_EARLYCON_DECLARE will also be changed from=0A=
+>> "fsl,s32v234-linflexuart" to "fsl,s32-linflexuart" to match the one in=
+=0A=
+>> the device tree nodes. I missed this after importing a rename from our=
+=0A=
+>> codebase.=0A=
+>>=0A=
+>> Should I remove this addition from kernel-parameters.txt after that?=0A=
+> =0A=
+> Yes, if you can use earlycon instead, then you can drop your custom optio=
+n=0A=
+> entirely and therefore there's no need to document it either.=0A=
+=0A=
+Can you please clarify what you mean by "drop your custom option"? The=0A=
+"linflex" option documented in the paragraph is the name of the=0A=
+earlycon_id declared via "OF_EARLYCON_DECLARE(linflex, ...)". We have=0A=
+not done anything particular to accept it in the parameter value.=0A=
+=0A=
+We do use earlycon (e.g. "earlycon=3Dlinflex,0x40053000"), we just do not=
+=0A=
+support an empty value after "=3D", which needs to be fixed as I=0A=
+understand, because it does not respect the comment[1] about ARM64.=0A=
+=0A=
+Regards,=0A=
+Stefan=0A=
+=0A=
+[1] https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/tree=
+/Documentation/admin-guide/kernel-parameters.txt?h=3Dv5.3-rc3#n980=0A=
