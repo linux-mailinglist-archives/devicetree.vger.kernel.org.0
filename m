@@ -2,204 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 363458809E
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 18:56:09 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 7C149880AA
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 19:00:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2407502AbfHIQ4D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 12:56:03 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:9918 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2407498AbfHIQ4D (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 12:56:03 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d4da5a30002>; Fri, 09 Aug 2019 09:56:03 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Fri, 09 Aug 2019 09:56:01 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Fri, 09 Aug 2019 09:56:01 -0700
-Received: from [10.2.167.88] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Fri, 9 Aug
- 2019 16:56:00 +0000
-Subject: Re: [PATCH v8 08/21] clk: tegra: periph: Add restore_context support
-To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
-        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
-        <linus.walleij@linaro.org>, <stefan@agner.ch>,
-        <mark.rutland@arm.com>
-CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
-        <josephl@nvidia.com>, <talho@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <rjw@rjwysocki.net>,
-        <viresh.kumar@linaro.org>, <linux-pm@vger.kernel.org>
-References: <1565308020-31952-1-git-send-email-skomatineni@nvidia.com>
- <1565308020-31952-9-git-send-email-skomatineni@nvidia.com>
- <5a5f9fb9-9cdd-5d91-4b0e-9bdb95b2625e@gmail.com>
- <0f8259d8-08f2-671c-331c-fe2d83518be0@gmail.com>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <1ef367a5-2f2f-dc66-1e26-9038af235e36@nvidia.com>
-Date:   Fri, 9 Aug 2019 09:55:59 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S2436753AbfHIRAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 13:00:01 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:39117 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436740AbfHIRAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 13:00:01 -0400
+Received: by mail-pl1-f195.google.com with SMTP id b7so45253051pls.6
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 10:00:00 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=HzTYQAsTwaeVmkPpyYA1+naQMbibccJuAVbeLptpfdo=;
+        b=jLURGumwZc6E/p0KiMVcYkNhD2BqzUR63Qb5/zAULhocRqcCYmkB3afGtGBPibGK8g
+         kE9JHSlMRB/Dv6m6pfftnIfCMzVc7OsepxQRXmXOeC9MqYcZB9lNEKVXGBrSiGHv4CWi
+         Mt2hQMxvMS8k5RAg5MRZDajoCjGOVCxONDVAyo7HssYFEUF6miW/Ph9ojHWuz4Wwnrwb
+         INWAX2BJIs8RhNAAqZbBG0BHV92QTFpkXtUFFNOlfm7rWNa5Mg7caNoonzIH7PYhKqx/
+         jAmstmGYBm9Q4d+XKNpjbylQCgtRL8fVbGjcCMT6b5m8wHwvqzhrjmXMddlQFa7+zlFy
+         dq7w==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=HzTYQAsTwaeVmkPpyYA1+naQMbibccJuAVbeLptpfdo=;
+        b=mAxd1/eLkmHyINAwSs7HuRFxiWAEIzphFg2V4C6i86ylDKRdNZMJxSB5nh5kWCet1C
+         uJv3DetAbMmeFQtQCo0AeoW197qZv2LsYMKWrEmwn6pjSiUD5B4BW3f1avu2EsngHJxq
+         Br4D25rogUrNnDmZo2wavR+QKzUtxiFHaAnDqE+v3+Dd+uNGxybDADT7MbZLAXDiNJBI
+         80bi6i5FU93vC+BikeODvm02U8q5+CJ1Vfvid5iykoKzs0Knp1qeMBC0rbFM2943qVZH
+         gkODwdlTajziUC2uV0GRzwCohpNs4x0taZ9kcQ+e6v5SX5NAdirxhaUOUP+HnEW2nTVr
+         phNQ==
+X-Gm-Message-State: APjAAAUJq5YP2vUdHDPtO9L8XxxDAOYl3vTLxCq1R45+uCc/O5honDlk
+        a3etvYMP5tj5LCo2a/N9ShAIkg==
+X-Google-Smtp-Source: APXvYqxIvh8RXaUTDHMAAPall519zovv23HzUG1DHQ2lDtsV6hbQ9nI3rJVwqZmuAYs+AgsL8D8x4Q==
+X-Received: by 2002:a17:902:a40c:: with SMTP id p12mr20027983plq.146.1565370000206;
+        Fri, 09 Aug 2019 10:00:00 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id 185sm98899540pfd.125.2019.08.09.09.59.58
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 09 Aug 2019 09:59:59 -0700 (PDT)
+Date:   Fri, 9 Aug 2019 10:01:34 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] regulator: dt-bindings: Sort the compatibles and
+ nodes
+Message-ID: <20190809170134.GM26807@tuxbook-pro>
+References: <20190809073616.1235-1-vkoul@kernel.org>
 MIME-Version: 1.0
-In-Reply-To: <0f8259d8-08f2-671c-331c-fe2d83518be0@gmail.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1565369763; bh=rpTLa6sa3a8anBDFVNAQaH6Y2kzog28pGWDaUlhMPCo=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=Q15T0LyrUTI3QFsiyPBRdCXoOyUL80KpewUGT8c3SFUPRkLcJgkgX1uY9n3MSJdHf
-         qGMnI402yn6AlP347Y3G3vIWyWZSG0AMUztMx0cLxqakcOoS9oN8LN7FdaU/NMcu2f
-         E3QcNf6TefH5a3FHyh/+eYB5pLu1GGZqG5aey8+E3/WF617ruqCKo0Anm7uoAV0Bs6
-         88sz6VQVH+jMyUVxMP0LKzUxKttBvz4T9aOMIKFUVKNkXPkcxVFzcxqeHmVeYBHWiV
-         1sussEsFPwQIkll2Sq1OqM9Q4Ue1HShkcJxOK+89JW9J6kCfPAtlEmI3XnvNkeUxGJ
-         /iI4Xqv5zzuGQ==
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190809073616.1235-1-vkoul@kernel.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Fri 09 Aug 00:36 PDT 2019, Vinod Koul wrote:
 
-On 8/9/19 5:20 AM, Dmitry Osipenko wrote:
-> 09.08.2019 14:55, Dmitry Osipenko =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->> 09.08.2019 2:46, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->>> This patch implements restore_context support for clk-periph and
->>> clk-sdmmc-mux clock operations to restore clock parent and rates
->>> on system resume.
->>>
->>> During system suspend, core power goes off and looses the context
->>> of the Tegra clock controller registers.
->>>
->>> So on system resume, clocks parent and rate are restored back to
->>> the context before suspend based on cached data.
->>>
->>> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->>> ---
->>>   drivers/clk/tegra/clk-periph.c    | 18 ++++++++++++++++++
->>>   drivers/clk/tegra/clk-sdmmc-mux.c | 12 ++++++++++++
->>>   2 files changed, 30 insertions(+)
->>>
->>> diff --git a/drivers/clk/tegra/clk-periph.c b/drivers/clk/tegra/clk-per=
-iph.c
->>> index 58437da25156..c9d28cbadccc 100644
->>> --- a/drivers/clk/tegra/clk-periph.c
->>> +++ b/drivers/clk/tegra/clk-periph.c
->>> @@ -3,6 +3,7 @@
->>>    * Copyright (c) 2012, NVIDIA CORPORATION.  All rights reserved.
->>>    */
->>>  =20
->>> +#include <linux/clk.h>
->>>   #include <linux/clk-provider.h>
->>>   #include <linux/export.h>
->>>   #include <linux/slab.h>
->>> @@ -99,6 +100,20 @@ static void clk_periph_disable(struct clk_hw *hw)
->>>   	gate_ops->disable(gate_hw);
->>>   }
->>>  =20
->>> +static void clk_periph_restore_context(struct clk_hw *hw)
->>> +{
->>> +	struct tegra_clk_periph *periph =3D to_clk_periph(hw);
->>> +	const struct clk_ops *div_ops =3D periph->div_ops;
->>> +	struct clk_hw *div_hw =3D &periph->divider.hw;
->>> +	struct clk_hw *parent =3D clk_hw_get_parent(hw);
->>> +	int parent_id =3D clk_hw_get_parent_index(hw, parent);
->>> +
->>> +	if (!(periph->gate.flags & TEGRA_PERIPH_NO_DIV))
->>> +		div_ops->restore_context(div_hw);
->>> +
->>> +	clk_periph_set_parent(hw, parent_id);
->>> +}
->>> +
->>>   const struct clk_ops tegra_clk_periph_ops =3D {
->>>   	.get_parent =3D clk_periph_get_parent,
->>>   	.set_parent =3D clk_periph_set_parent,
->>> @@ -108,6 +123,7 @@ const struct clk_ops tegra_clk_periph_ops =3D {
->>>   	.is_enabled =3D clk_periph_is_enabled,
->>>   	.enable =3D clk_periph_enable,
->>>   	.disable =3D clk_periph_disable,
->>> +	.restore_context =3D clk_periph_restore_context,
->>>   };
->>>  =20
->>>   static const struct clk_ops tegra_clk_periph_nodiv_ops =3D {
->>> @@ -116,6 +132,7 @@ static const struct clk_ops tegra_clk_periph_nodiv_=
-ops =3D {
->>>   	.is_enabled =3D clk_periph_is_enabled,
->>>   	.enable =3D clk_periph_enable,
->>>   	.disable =3D clk_periph_disable,
->>> +	.restore_context =3D clk_periph_restore_context,
->>>   };
->>>  =20
->>>   static const struct clk_ops tegra_clk_periph_no_gate_ops =3D {
->>> @@ -124,6 +141,7 @@ static const struct clk_ops tegra_clk_periph_no_gat=
-e_ops =3D {
->>>   	.recalc_rate =3D clk_periph_recalc_rate,
->>>   	.round_rate =3D clk_periph_round_rate,
->>>   	.set_rate =3D clk_periph_set_rate,
->>> +	.restore_context =3D clk_periph_restore_context,
->>>   };
->>>  =20
->>>   static struct clk *_tegra_clk_register_periph(const char *name,
->>> diff --git a/drivers/clk/tegra/clk-sdmmc-mux.c b/drivers/clk/tegra/clk-=
-sdmmc-mux.c
->>> index a5cd3e31dbae..8db48966b100 100644
->>> --- a/drivers/clk/tegra/clk-sdmmc-mux.c
->>> +++ b/drivers/clk/tegra/clk-sdmmc-mux.c
->>> @@ -194,6 +194,17 @@ static void clk_sdmmc_mux_disable(struct clk_hw *h=
-w)
->>>   	gate_ops->disable(gate_hw);
->>>   }
->>>  =20
->>> +static void clk_sdmmc_mux_restore_context(struct clk_hw *hw)
->>> +{
->>> +	struct clk_hw *parent =3D clk_hw_get_parent(hw);
->>> +	unsigned long parent_rate =3D clk_hw_get_rate(parent);
->>> +	unsigned long rate =3D clk_hw_get_rate(hw);
->>> +	int parent_id =3D clk_hw_get_parent_index(hw, parent);
->>> +
->>> +	clk_sdmmc_mux_set_parent(hw, parent_id);
->>> +	clk_sdmmc_mux_set_rate(hw, rate, parent_rate);
->> For the periph clocks you're restoring rate at first and then the
->> parent, while here it's the other way around. I'm wondering if there is
->> any difference in practice and thus whether rate's divider need to be
->> set to a some safe value before switching to a new parent that has a
->> higher clock rate than the old parent.
-> Although, I guess that all peripheral clocks should be disabled at this
-> point of resume. Correct?
+> It helps to keep sorted order for compatibles and nodes, so sort them
+> 
+> Suggested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  .../regulator/qcom,rpmh-regulator.txt         | 19 ++++++++++---------
+>  1 file changed, 10 insertions(+), 9 deletions(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+> index 1a9cab50503a..bab9f71140b8 100644
+> --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+> @@ -22,12 +22,12 @@ RPMh resource.
+>  
+>  The names used for regulator nodes must match those supported by a given PMIC.
+>  Supported regulator node names:
+> -	PM8998:		smps1 - smps13, ldo1 - ldo28, lvs1 - lvs2
+> -	PMI8998:	bob
+>  	PM8005:		smps1 - smps4
+> +	PM8009:		smps1 - smps2, ldo1 - ldo7
+>  	PM8150:		smps1 - smps10, ldo1 - ldo18
+>  	PM8150L:	smps1 - smps8, ldo1 - ldo11, bob, flash, rgb
+> -	PM8009:		smps1 - smps2, ld01 - ldo7
+> +	PM8998:		smps1 - smps13, ldo1 - ldo28, lvs1 - lvs2
+> +	PMI8998:	bob
+>  
+>  ========================
+>  First Level Nodes - PMIC
+> @@ -36,12 +36,13 @@ First Level Nodes - PMIC
+>  - compatible
+>  	Usage:      required
+>  	Value type: <string>
+> -	Definition: Must be one of: "qcom,pm8998-rpmh-regulators",
+> -		    "qcom,pmi8998-rpmh-regulators" or
+> -		    "qcom,pm8005-rpmh-regulators" or
+> -		    "qcom,pm8150-rpmh-regulators" or
+> -		    "qcom,pm8150l-rpmh-regulators" or
+> -		    "qcom,pm8009-rpmh-regulators".
+> +	Definition: Must be one of below:
+> +		    "qcom,pm8005-rpmh-regulators"
+> +		    "qcom,pm8009-rpmh-regulators"
+> +		    "qcom,pm8150-rpmh-regulators"
+> +		    "qcom,pm8150l-rpmh-regulators"
+> +		    "qcom,pm8998-rpmh-regulators"
+> +		    "qcom,pmi8998-rpmh-regulators"
 
-by the time restore happens, peripheral clocks are enabled but held in=20
-reset state.
+Thanks for dropping the "or" as well.
 
-For non-boot clocks, doing divider programming before parent source is=20
-preferred.
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-For sdmmc clock, programming parent before divisor is allowed.
-
-Also, clk_sdmmc_mux_set_rate gets parent MUX selection thru register=20
-read so restoring parent prior to this will have right divisor based on=20
-rate and parent.
-
->>> +}
->>> +
->>>   static const struct clk_ops tegra_clk_sdmmc_mux_ops =3D {
->>>   	.get_parent =3D clk_sdmmc_mux_get_parent,
->>>   	.set_parent =3D clk_sdmmc_mux_set_parent,
->>> @@ -203,6 +214,7 @@ static const struct clk_ops tegra_clk_sdmmc_mux_ops=
- =3D {
->>>   	.is_enabled =3D clk_sdmmc_mux_is_enabled,
->>>   	.enable =3D clk_sdmmc_mux_enable,
->>>   	.disable =3D clk_sdmmc_mux_disable,
->>> +	.restore_context =3D clk_sdmmc_mux_restore_context,
->>>   };
->>>  =20
->>>   struct clk *tegra_clk_register_sdmmc_mux_div(const char *name,
->>>
+>  
+>  - qcom,pmic-id
+>  	Usage:      required
+> -- 
+> 2.20.1
+> 
