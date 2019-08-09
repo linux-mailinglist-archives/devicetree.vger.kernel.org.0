@@ -2,114 +2,81 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A841288063
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 18:42:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 485EE8806B
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 18:44:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406668AbfHIQms (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 12:42:48 -0400
-Received: from mail-pf1-f195.google.com ([209.85.210.195]:39192 "EHLO
-        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726157AbfHIQms (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 12:42:48 -0400
-Received: by mail-pf1-f195.google.com with SMTP id f17so42350345pfn.6;
-        Fri, 09 Aug 2019 09:42:48 -0700 (PDT)
+        id S1726261AbfHIQog (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 12:44:36 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:36042 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726157AbfHIQog (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 12:44:36 -0400
+Received: by mail-pl1-f196.google.com with SMTP id k8so45195688plt.3;
+        Fri, 09 Aug 2019 09:44:36 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=sender:date:from:to:cc:subject:message-id:references:mime-version
+        h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:in-reply-to:user-agent;
-        bh=lQR64lsM2F4GHE16CB+rGeKc+DaWwGBd1G+dV7Mx9vQ=;
-        b=KyVK5awF6Kfdm70TtcKte/vbR/UqeyC/LQEtp6sXplFv36hDRFUfnjY/dUtHRt4SGI
-         /HoG6wzxkF3lILfFeMSfqggAhIRHHaenBEWEC1z1bGxyUknckb8djkEOc1tMURDE17g6
-         ih9F4hpbuqn31LdRl49mXJZI6O7jT6uW/F8BVxQMioRqLROdfNpTtpk+r1FjfFvIvBud
-         Yy4wxLPzgcfVx+S8Jk2dmdWAa72kPMmiQfVTZD+uvI8IVRjfzhj7lXesnncnSSCbJfA+
-         PU75xc5L+I0WP1cI7q/nCIQyywurDQSTBknAbd2qd7VNxtCI7ggKxcmuh/r8FKa2wzfF
-         1hJA==
+        bh=zHFQ1q9oybjdm+Lhdga3P2zcL4tO7hphnuA5JEFhoLg=;
+        b=TLh2Fckj63PDPWgSiCjlGwj61lJL0LpUBylLUf7dt5Z7Gguf8kVDv8Rgved+P8bm0A
+         ZwfuSuHXDprOa90uKnhQjiMaSX9ksdUed5VZfQNOGjI70lZPIph2PovfWxkhm5DOp1lx
+         9TpeSPh9q9ecHPJagjYc4YBG+mAnMkwDyqKc//ct4FtVh4TmnXisVlE15MHSQC4ImkuG
+         KEPsPSohRzIxRnVR1wkosRnXhiCu+ayMZtA7wxyh032ZWDybim/JW3wwLoJNIpuST0GN
+         YG6Qm8I2iUmxLLkorP/fkFtUFu80HNQGWlYPUakYDjtZwbE/tPARnhafxknbOKTTBVKm
+         g7CA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:sender:date:from:to:cc:subject:message-id
-         :references:mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lQR64lsM2F4GHE16CB+rGeKc+DaWwGBd1G+dV7Mx9vQ=;
-        b=Oy4cZHy+Vj0j6Mdb7NooYiOIq/Ww0DBmQSdKNHgzZs2lQzsMUDhnCHGeq882vj3IEO
-         E3RO2h70PTyZmToc95yKMEh60KNBEv4jGGAcOeF67WqAhKZHQqubaFg9oDxK1LAMf2Fh
-         eqtCuPG0HoI3TpsaEFBVUUfqF0kodUmLvH6heHYJTC90pOBsyzumpz02VsvkOXKYW/8p
-         d5is5VVJAsQC1fZpD0YRcVhCB/3xBj32VCSVzz1ZNXqcRQLaxzH2iXMQsjWYs11T5F/H
-         fNLMttGzl7J5XX5QH7olLVfvoUU5pONhTCdw/eady6J+WFPO66I5IL0A439hWzTTOW9h
-         i79g==
-X-Gm-Message-State: APjAAAVeAk8MVUhsKF9K9nvKrUTT0BVL7yK3gqGkhW6Xqy9VXf0me2gW
-        unqcPDXgUyDlUS3NRXfI8oI=
-X-Google-Smtp-Source: APXvYqzikkhASYL+yHYO3qlFUUkyWSKcPxDKgLjky1s0KPej6LcMb0qkFFsxJEXHw1pDKKiVJJ0u9w==
-X-Received: by 2002:a65:448a:: with SMTP id l10mr17950446pgq.327.1565368967690;
-        Fri, 09 Aug 2019 09:42:47 -0700 (PDT)
-Received: from localhost ([2600:1700:e321:62f0:329c:23ff:fee3:9d7c])
-        by smtp.gmail.com with ESMTPSA id f12sm82607856pgq.52.2019.08.09.09.42.46
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Aug 2019 09:42:46 -0700 (PDT)
-Date:   Fri, 9 Aug 2019 09:42:45 -0700
-From:   Guenter Roeck <linux@roeck-us.net>
-To:     Anson Huang <Anson.Huang@nxp.com>
-Cc:     wim@linux-watchdog.org, robh+dt@kernel.org, mark.rutland@arm.com,
-        shawnguo@kernel.org, s.hauer@pengutronix.de, kernel@pengutronix.de,
-        festevam@gmail.com, linux@armlinux.org.uk, otavio@ossystems.com.br,
-        leonard.crestez@nxp.com, schnitzeltony@gmail.com,
-        u.kleine-koenig@pengutronix.de, jan.tuerk@emtrion.com,
-        linux-watchdog@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        Linux-imx@nxp.com
-Subject: Re: [PATCH 1/4] dt-bindings: watchdog: Add i.MX7ULP bindings
-Message-ID: <20190809164245.GA17136@roeck-us.net>
-References: <1565334842-28161-1-git-send-email-Anson.Huang@nxp.com>
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=zHFQ1q9oybjdm+Lhdga3P2zcL4tO7hphnuA5JEFhoLg=;
+        b=SVJRpUatuqFUnOhEHo8q5ZBUqkZOTD15hkzaoouTkQo2xQJ8sWNBn77dLIqtm6YgDw
+         BuaElW/t5AvrLPFv1Gtc5XRlQtwFVlLt4iIUN5PTjIu3TojwzNT/i821sZzQSB8/nDKl
+         OwR+QxutPTPBBHj2ID79TvNAdQf60pWfAKQhC0uTNS+oTf2b4qSxeXquNemZlDG2+5i5
+         AQid4Z0K+ZhRmyXieu0un7S91QWyor9CB9t8HUKttypRXW/a6nnYmF3ZwCgAije7LKGX
+         6b///7SbnJqumoznHlU+xA843QdP5V7Kv7EQl47l546iZif0NI8DOUlr62edzJnTZVbC
+         xHfg==
+X-Gm-Message-State: APjAAAXs8fx1mWGctwEPICwfJAB7Em1WATW7QgdGHAdDeTfI1TETF6a9
+        fK8dov49D094YOsqd8kmqMQ=
+X-Google-Smtp-Source: APXvYqyy6Cv8S8ZjMDZqVq/Dgalet3juxVvctgVctdliyTzscyW6v2hMmpOZn8vFCPVkGPt9OeYTow==
+X-Received: by 2002:a17:902:ba8b:: with SMTP id k11mr19868176pls.107.1565369075849;
+        Fri, 09 Aug 2019 09:44:35 -0700 (PDT)
+Received: from dtor-ws ([2620:15c:202:201:3adc:b08c:7acc:b325])
+        by smtp.gmail.com with ESMTPSA id p68sm115940943pfb.80.2019.08.09.09.44.33
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Fri, 09 Aug 2019 09:44:33 -0700 (PDT)
+Date:   Fri, 9 Aug 2019 09:44:31 -0700
+From:   Dmitry Torokhov <dmitry.torokhov@gmail.com>
+To:     Marco Felsch <m.felsch@pengutronix.de>
+Cc:     robh+dt@kernel.org, kernel@pengutronix.de,
+        linux-input@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/4] Input: ads7846 - convert to devm_ alloc functions
+Message-ID: <20190809164431.GL178933@dtor-ws>
+References: <20190327133927.1340-1-m.felsch@pengutronix.de>
+ <20190327133927.1340-2-m.felsch@pengutronix.de>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <1565334842-28161-1-git-send-email-Anson.Huang@nxp.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20190327133927.1340-2-m.felsch@pengutronix.de>
+User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 09, 2019 at 03:13:59PM +0800, Anson Huang wrote:
-> Add the watchdog bindings for Freescale i.MX7ULP.
+On Wed, Mar 27, 2019 at 02:39:24PM +0100, Marco Felsch wrote:
+> Convert to devm function to drop the 'no-mem' error handling path and
+> strip down the remove funciton a bit.
 > 
-> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
-> ---
->  .../bindings/watchdog/fsl-imx7ulp-wdt.txt          | 22 ++++++++++++++++++++++
->  1 file changed, 22 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.txt b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.txt
-> new file mode 100644
-> index 0000000..d83fc5c
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/watchdog/fsl-imx7ulp-wdt.txt
-> @@ -0,0 +1,22 @@
-> +* Freescale i.MX7ULP Watchdog Timer (WDT) Controller
-> +
-> +Required properties:
-> +- compatible : Should be "fsl,imx7ulp-wdt"
-> +- reg : Should contain WDT registers location and length
-> +- interrupts : Should contain WDT interrupt
-> +- clocks: Should contain a phandle pointing to the gated peripheral clock.
+> Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
 
-The driver as submitted does not include clock or interrupt handling.
-Why are those properties listed as mandatory if they are not really
-needed (nor used) ?
+I am not fond of partial devm conversions, as this causes reordering in
+of freeing resources in unwind path. In this particular case input
+device will be unregistered only after majority of the driver structure
+is torn down.
 
-> +
-> +Optional properties:
-> +- timeout-sec : Contains the watchdog timeout in seconds
-> +
-> +Examples:
-> +
-> +wdog1: wdog@403d0000 {
-> +	compatible = "fsl,imx7ulp-wdt";
-> +	reg = <0x403d0000 0x10000>;
-> +	interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-> +	clocks = <&pcc2 IMX7ULP_CLK_WDG1>;
-> +	assigned-clocks = <&pcc2 IMX7ULP_CLK_WDG1>;
-> +	assigned-clocks-parents = <&scg1 IMX7ULP_CLK_FIRC_BUS_CLK>;
-> +	timeout-sec = <40>;
-> +};
-> -- 
-> 2.7.4
-> 
+If we want to do devm conversion, we need to do a complete one.
+
+Thanks.
+
+-- 
+Dmitry
