@@ -2,166 +2,337 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B50938713B
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 07:08:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E753587183
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 07:33:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726233AbfHIFIX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 01:08:23 -0400
-Received: from mail.kernel.org ([198.145.29.99]:35238 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725879AbfHIFIX (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Aug 2019 01:08:23 -0400
-Received: from localhost (unknown [106.51.111.143])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id EF96D2166E;
-        Fri,  9 Aug 2019 05:08:19 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565327301;
-        bh=MmF6WWRL1pcs+ucuXcAxtpIt0qSzw7MHhSUeHKq1q5w=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=A2LG3OKFdiLPL4whgmcQBWk81uaHwxpG8blgifwzwTWG3z6G7YdaLKCEJrUTL46xv
-         I+ia5RTgcqn6K7mmufL1DVHw7lT28u3l3BmHIRk9FnJ8Lh+QJ9PO3PggQQIDly4WW4
-         vM/s77I4JfaXc2aZVmCVhDJCu3h8EGgVuIzhpYyU=
-Date:   Fri, 9 Aug 2019 10:37:00 +0530
-From:   Vinod Koul <vkoul@kernel.org>
-To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Cc:     broonie@kernel.org, bgoswami@codeaurora.org, plai@codeaurora.org,
-        pierre-louis.bossart@linux.intel.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 2/4] soundwire: core: add device tree support for
- slave devices
-Message-ID: <20190809050700.GJ12733@vkoul-mobl.Dlink>
-References: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
- <20190808144504.24823-3-srinivas.kandagatla@linaro.org>
+        id S1725890AbfHIFd3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 01:33:29 -0400
+Received: from metis.ext.pengutronix.de ([85.220.165.71]:37761 "EHLO
+        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725912AbfHIFd3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 01:33:29 -0400
+Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
+        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
+        (Exim 4.92)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hvxWh-0003nm-2q; Fri, 09 Aug 2019 07:33:19 +0200
+Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
+        (envelope-from <mfe@pengutronix.de>)
+        id 1hvxWd-0006Cr-Hx; Fri, 09 Aug 2019 07:33:15 +0200
+Date:   Fri, 9 Aug 2019 07:33:15 +0200
+From:   Marco Felsch <m.felsch@pengutronix.de>
+To:     Jacopo Mondi <jacopo@jmondi.org>
+Cc:     mchehab@kernel.org, sakari.ailus@linux.intel.com,
+        hans.verkuil@cisco.com, jacopo+renesas@jmondi.org,
+        robh+dt@kernel.org, laurent.pinchart@ideasonboard.com,
+        linux-media@vger.kernel.org, devicetree@vger.kernel.org,
+        kernel@pengutronix.de
+Subject: Re: [PATCH v6 07/13] media: tvp5150: add FORMAT_TRY support for
+ get/set selection handlers
+Message-ID: <20190809053315.mkgkui2jpvdxubrt@pengutronix.de>
+References: <20190415124413.18456-1-m.felsch@pengutronix.de>
+ <20190415124413.18456-8-m.felsch@pengutronix.de>
+ <20190506133555.yrxaeg5lbswzcd3i@uno.localdomain>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190808144504.24823-3-srinivas.kandagatla@linaro.org>
-User-Agent: Mutt/1.11.3 (2019-02-01)
+In-Reply-To: <20190506133555.yrxaeg5lbswzcd3i@uno.localdomain>
+X-Sent-From: Pengutronix Hildesheim
+X-URL:  http://www.pengutronix.de/
+X-IRC:  #ptxdist @freenode
+X-Accept-Language: de,en
+X-Accept-Content-Type: text/plain
+X-Uptime: 07:17:05 up 83 days, 11:35, 53 users,  load average: 0.01, 0.04,
+ 0.05
+User-Agent: NeoMutt/20170113 (1.7.2)
+X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
+X-SA-Exim-Mail-From: mfe@pengutronix.de
+X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
+X-PTX-Original-Recipient: devicetree@vger.kernel.org
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 08-08-19, 15:45, Srinivas Kandagatla wrote:
-> This patch adds support to parsing device tree based
-> SoundWire slave devices.
+Hi Jacopo,
+
+On 19-05-06 15:36, Jacopo Mondi wrote:
+> Hi Marco,
+
+Sorry for the long time absence of this topic...
+
+> On Mon, Apr 15, 2019 at 02:44:07PM +0200, Marco Felsch wrote:
+> > Since commit 10d5509c8d50 ("[media] v4l2: remove g/s_crop from video ops")
+> > the 'which' field for set/get_selection must be FORMAT_ACTIVE. There is
+> > no way to try different selections. The patch adds a helper function to
+> > select the correct selection memory space (sub-device file handle or
+> > driver state) which will be set/returned.
+> >
+> > The TVP5150 AVID will be updated if the 'which' field is FORMAT_ACTIVE
+> > and the requested selection rectangle differs from the already set one.
+> >
+> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
+> > ---
+> > Changelog:
+> >
+> > v5:
+> >  - handle stub for v4l2_subdev_get_try_crop() internal since commit
+> >    ("media: v4l2-subdev: add stubs for v4l2_subdev_get_try_*")
+> >    isn't anymore part of this series.
+> >  - add error handling of __tvp5150_get_pad_crop()
+> > v4:
+> >  - fix merge conflict due to rebase on top of media-tree/master
+> >  - __tvp5150_get_pad_crop(): cosmetic alignment fixes
+> >
+> >  drivers/media/i2c/tvp5150.c | 130 ++++++++++++++++++++++++++----------
+> >  1 file changed, 96 insertions(+), 34 deletions(-)
+> >
+> > diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
+> > index 4e3228b2ccbc..9331609425bf 100644
+> > --- a/drivers/media/i2c/tvp5150.c
+> > +++ b/drivers/media/i2c/tvp5150.c
+> > @@ -19,6 +19,7 @@
+> >  #include <media/v4l2-ctrls.h>
+> >  #include <media/v4l2-fwnode.h>
+> >  #include <media/v4l2-mc.h>
+> > +#include <media/v4l2-rect.h>
+> >
+> >  #include "tvp5150_reg.h"
+> >
+> > @@ -997,20 +998,48 @@ static void tvp5150_set_default(v4l2_std_id std, struct v4l2_rect *crop)
+> >  		crop->height = TVP5150_V_MAX_OTHERS;
+> >  }
+> >
+> > +static struct v4l2_rect *
+> > +__tvp5150_get_pad_crop(struct tvp5150 *decoder,
+> > +		       struct v4l2_subdev_pad_config *cfg, unsigned int pad,
+> > +		       enum v4l2_subdev_format_whence which)
+> > +{
+> > +	switch (which) {
+> > +	case V4L2_SUBDEV_FORMAT_TRY:
+> > +#if defined(CONFIG_VIDEO_V4L2_SUBDEV_API)
+> > +		return v4l2_subdev_get_try_crop(&decoder->sd, cfg, pad);
+> > +#else
+> > +		return ERR_PTR(-ENOTTY);
+> > +#endif
+> > +	case V4L2_SUBDEV_FORMAT_ACTIVE:
+> > +		return &decoder->rect;
+> > +	default:
+> > +		return NULL;
 > 
-> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-> ---
->  drivers/soundwire/bus.c   |  2 ++
->  drivers/soundwire/bus.h   |  1 +
->  drivers/soundwire/slave.c | 47 +++++++++++++++++++++++++++++++++++++++
->  3 files changed, 50 insertions(+)
+> Do you need this default case? Can you return -EINVAL so that...
+
+I will change that, thanks.
+
 > 
-> diff --git a/drivers/soundwire/bus.c b/drivers/soundwire/bus.c
-> index fe745830a261..324c54dc52fb 100644
-> --- a/drivers/soundwire/bus.c
-> +++ b/drivers/soundwire/bus.c
-> @@ -77,6 +77,8 @@ int sdw_add_bus_master(struct sdw_bus *bus)
->  	 */
->  	if (IS_ENABLED(CONFIG_ACPI) && ACPI_HANDLE(bus->dev))
->  		ret = sdw_acpi_find_slaves(bus);
-> +	else if (IS_ENABLED(CONFIG_OF) && bus->dev->of_node)
-> +		ret = sdw_of_find_slaves(bus);
->  	else
->  		ret = -ENOTSUPP; /* No ACPI/DT so error out */
->  
-> diff --git a/drivers/soundwire/bus.h b/drivers/soundwire/bus.h
-> index 3048ca153f22..ee46befedbd1 100644
-> --- a/drivers/soundwire/bus.h
-> +++ b/drivers/soundwire/bus.h
-> @@ -15,6 +15,7 @@ static inline int sdw_acpi_find_slaves(struct sdw_bus *bus)
->  }
->  #endif
->  
-> +int sdw_of_find_slaves(struct sdw_bus *bus);
->  void sdw_extract_slave_id(struct sdw_bus *bus,
->  			  u64 addr, struct sdw_slave_id *id);
->  
-> diff --git a/drivers/soundwire/slave.c b/drivers/soundwire/slave.c
-> index f39a5815e25d..8ab76f5d5a56 100644
-> --- a/drivers/soundwire/slave.c
-> +++ b/drivers/soundwire/slave.c
-> @@ -2,6 +2,7 @@
->  // Copyright(c) 2015-17 Intel Corporation.
->  
->  #include <linux/acpi.h>
-> +#include <linux/of.h>
->  #include <linux/soundwire/sdw.h>
->  #include <linux/soundwire/sdw_type.h>
->  #include "bus.h"
-> @@ -35,6 +36,7 @@ static int sdw_slave_add(struct sdw_bus *bus,
->  
->  	slave->dev.release = sdw_slave_release;
->  	slave->dev.bus = &sdw_bus_type;
-> +	slave->dev.of_node = of_node_get(to_of_node(fwnode));
->  	slave->bus = bus;
->  	slave->status = SDW_SLAVE_UNATTACHED;
->  	slave->dev_num = 0;
-> @@ -112,3 +114,48 @@ int sdw_acpi_find_slaves(struct sdw_bus *bus)
->  }
->  
->  #endif
-> +
-> +/*
-> + * sdw_of_find_slaves() - Find Slave devices in master device tree node
-> + * @bus: SDW bus instance
-> + *
-> + * Scans Master DT node for SDW child Slave devices and registers it.
-> + */
-> +int sdw_of_find_slaves(struct sdw_bus *bus)
-> +{
-> +	struct device *dev = bus->dev;
-> +	struct device_node *node;
-> +
-> +	for_each_child_of_node(bus->dev->of_node, node) {
-> +		struct sdw_slave_id id;
-> +		const char *compat = NULL;
-> +		int unique_id, ret;
-> +		int ver, mfg_id, part_id, class_id;
-> +
-> +		compat = of_get_property(node, "compatible", NULL);
-> +		if (!compat)
-> +			continue;
+> > +	}
+> > +}
+> > +
+> >  static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
+> >  			    struct v4l2_subdev_pad_config *cfg,
+> >  			    struct v4l2_subdev_format *format)
+> >  {
+> >  	struct v4l2_mbus_framefmt *f;
+> > +	struct v4l2_rect *__crop;
+> >  	struct tvp5150 *decoder = to_tvp5150(sd);
+> >
+> >  	if (!format || (format->pad != TVP5150_PAD_VID_OUT))
+> >  		return -EINVAL;
+> >
+> >  	f = &format->format;
+> > +	__crop = __tvp5150_get_pad_crop(decoder, cfg, format->pad,
+> > +					format->which);
+> > +	if (IS_ERR_OR_NULL(__crop)) {
+> 
+> ... here you just need to check if (IS_ERR()) and return it?
+> 
+> > +		if (!__crop)
+> > +			return -EINVAL;
+> > +		else
+> > +			return PTR_ERR(__crop);
+> > +	}
+> >
+> > -	f->width = decoder->rect.width;
+> > -	f->height = decoder->rect.height / 2;
+> > +	f->width = __crop->width;
+> > +	f->height = __crop->height / 2;
+> >
+> >  	f->code = TVP5150_MBUS_FMT;
+> >  	f->field = TVP5150_FIELD;
+> > @@ -1021,17 +1050,51 @@ static int tvp5150_fill_fmt(struct v4l2_subdev *sd,
+> >  	return 0;
+> >  }
+> >
+> > +unsigned int tvp5150_get_hmax(struct v4l2_subdev *sd)
+> > +{
+> > +	struct tvp5150 *decoder = to_tvp5150(sd);
+> > +	v4l2_std_id std;
+> > +
+> > +	/* Calculate height based on current standard */
+> > +	if (decoder->norm == V4L2_STD_ALL)
+> > +		std = tvp5150_read_std(sd);
+> > +	else
+> > +		std = decoder->norm;
+> > +
+> > +	return (std & V4L2_STD_525_60) ?
+> > +		TVP5150_V_MAX_525_60 : TVP5150_V_MAX_OTHERS;
+> > +}
+> > +
+> > +static inline void
+> > +__tvp5150_set_selection(struct v4l2_subdev *sd, struct v4l2_rect rect)
+> > +{
+> > +	struct tvp5150 *decoder = to_tvp5150(sd);
+> > +	unsigned int hmax = tvp5150_get_hmax(sd);
+> > +
+> > +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
+> > +	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
+> > +		     rect.top + rect.height - hmax);
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
+> > +		     rect.left >> TVP5150_CROP_SHIFT);
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
+> > +		     rect.left | (1 << TVP5150_CROP_SHIFT));
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
+> > +		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
+> > +		     TVP5150_CROP_SHIFT);
+> > +	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
+> > +		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
+> > +}
+> > +
+> >  static int tvp5150_set_selection(struct v4l2_subdev *sd,
+> >  				 struct v4l2_subdev_pad_config *cfg,
+> >  				 struct v4l2_subdev_selection *sel)
+> >  {
+> >  	struct tvp5150 *decoder = to_tvp5150(sd);
+> >  	struct v4l2_rect rect = sel->r;
+> > -	v4l2_std_id std;
+> > -	int hmax;
+> > +	struct v4l2_rect *__crop;
+> > +	unsigned int hmax;
+> >
+> > -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE ||
+> > -	    sel->target != V4L2_SEL_TGT_CROP)
+> > +	if (sel->target != V4L2_SEL_TGT_CROP)
+> >  		return -EINVAL;
+> >
+> >  	dev_dbg_lvl(sd->dev, 1, debug, "%s left=%d, top=%d, width=%d, height=%d\n",
+> > @@ -1040,17 +1103,7 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
+> >  	/* tvp5150 has some special limits */
+> >  	rect.left = clamp(rect.left, 0, TVP5150_MAX_CROP_LEFT);
+> >  	rect.top = clamp(rect.top, 0, TVP5150_MAX_CROP_TOP);
+> > -
+> > -	/* Calculate height based on current standard */
+> > -	if (decoder->norm == V4L2_STD_ALL)
+> > -		std = tvp5150_read_std(sd);
+> > -	else
+> > -		std = decoder->norm;
+> > -
+> > -	if (std & V4L2_STD_525_60)
+> > -		hmax = TVP5150_V_MAX_525_60;
+> > -	else
+> > -		hmax = TVP5150_V_MAX_OTHERS;
+> > +	hmax = tvp5150_get_hmax(sd);
+> >
+> >  	/*
+> >  	 * alignments:
+> > @@ -1063,20 +1116,23 @@ static int tvp5150_set_selection(struct v4l2_subdev *sd,
+> >  			      hmax - TVP5150_MAX_CROP_TOP - rect.top,
+> >  			      hmax - rect.top, 0, 0);
+> >
+> > -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_START, rect.top);
+> > -	regmap_write(decoder->regmap, TVP5150_VERT_BLANKING_STOP,
+> > -		     rect.top + rect.height - hmax);
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_MSB,
+> > -		     rect.left >> TVP5150_CROP_SHIFT);
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_ST_LSB,
+> > -		     rect.left | (1 << TVP5150_CROP_SHIFT));
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_MSB,
+> > -		     (rect.left + rect.width - TVP5150_MAX_CROP_LEFT) >>
+> > -		     TVP5150_CROP_SHIFT);
+> > -	regmap_write(decoder->regmap, TVP5150_ACT_VD_CROP_STP_LSB,
+> > -		     rect.left + rect.width - TVP5150_MAX_CROP_LEFT);
+> > +	__crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad, sel->which);
+> > +	if (IS_ERR_OR_NULL(__crop)) {
+> > +		if (!__crop)
+> > +			return -EINVAL;
+> > +		else
+> > +			return PTR_ERR(__crop);
+> 
+> here too
 
-Why not use of_find_compatible_node() that will return the node which is
-sdw* and we dont need to checks on that..
+Simplified both thanks.
 
-> +
-> +		ret = sscanf(compat, "sdw%x,%x,%x,%x",
-> +			     &ver, &mfg_id, &part_id, &class_id);
-> +		if (ret != 4) {
-> +			dev_err(dev, "Manf ID & Product code not found %s\n",
-> +				compat);
-> +			continue;
-> +		}
-> +
-> +		ret = of_property_read_u32(node, "sdw-instance-id", &unique_id);
-> +		if (ret) {
-> +			dev_err(dev, "Instance id not found:%d\n", ret);
-> +			continue;
-> +		}
-> +
-> +		id.sdw_version = ver - 0xF;
-> +		id.unique_id = unique_id;
-> +		id.mfg_id = mfg_id;
-> +		id.part_id = part_id;
-> +		id.class_id = class_id;
+> 
+> > +	}
+> > +
+> > +	/*
+> > +	 * Update output image size if the selection (crop) rectangle size or
+> > +	 * position has been modified.
+> > +	 */
+> > +	if (!v4l2_rect_equal(&rect, __crop))
+> > +		if (sel->which == V4L2_SUBDEV_FORMAT_ACTIVE)
+> 
+> Can this be a single condition?
+> Or maybe you could check if the rects are equal and this is a TRY and
+> return here.
 
-empty line here please
+I squashed it into a single condition because your second approach won't
+cover the case if it is TRY and the rect changed. In that case the rect
+would be applied to the hw.
 
-> +		sdw_slave_add(bus, &id, of_fwnode_handle(node));
-> +	}
+> 
+> > +			__tvp5150_set_selection(sd, rect);
+> >
+> > -	decoder->rect = rect;
+> > +	*__crop = rect;
+> >
+> >  	return 0;
+> >  }
+> > @@ -1086,11 +1142,9 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
+> >  				 struct v4l2_subdev_selection *sel)
+> >  {
+> >  	struct tvp5150 *decoder = container_of(sd, struct tvp5150, sd);
+> > +	struct v4l2_rect *__crop;
+> >  	v4l2_std_id std;
+> >
+> > -	if (sel->which != V4L2_SUBDEV_FORMAT_ACTIVE)
+> > -		return -EINVAL;
+> > -
+> >  	switch (sel->target) {
+> >  	case V4L2_SEL_TGT_CROP_BOUNDS:
+> >  		sel->r.left = 0;
+> > @@ -1108,7 +1162,15 @@ static int tvp5150_get_selection(struct v4l2_subdev *sd,
+> >  			sel->r.height = TVP5150_V_MAX_OTHERS;
+> >  		return 0;
+> >  	case V4L2_SEL_TGT_CROP:
+> > -		sel->r = decoder->rect;
+> > +		__crop = __tvp5150_get_pad_crop(decoder, cfg, sel->pad,
+> > +						sel->which);
+> > +		if (IS_ERR_OR_NULL(__crop)) {
+> > +			if (!__crop)
+> > +				return -EINVAL;
+> > +			else
+> > +				return PTR_ERR(__crop);
+> > +		}
 
-and here as well
+This one as well.
 
-> +	return 0;
-> +}
-> -- 
-> 2.21.0
+Thanks for the review.
+
+Regards,
+  Marco
+
+> > +		sel->r = *__crop;
+> >  		return 0;
+> >  	default:
+> >  		return -EINVAL;
+> > --
+> > 2.20.1
+> >
+
+
 
 -- 
-~Vinod
+Pengutronix e.K.                           |                             |
+Industrial Linux Solutions                 | http://www.pengutronix.de/  |
+Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
+Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
