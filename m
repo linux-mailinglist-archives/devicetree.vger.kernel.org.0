@@ -2,115 +2,215 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F052B87ADF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 15:13:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0485C87AF9
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 15:18:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2406563AbfHINN0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 09:13:26 -0400
-Received: from mail-lf1-f67.google.com ([209.85.167.67]:45574 "EHLO
-        mail-lf1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726157AbfHINNZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 09:13:25 -0400
-Received: by mail-lf1-f67.google.com with SMTP id a30so6430752lfk.12;
-        Fri, 09 Aug 2019 06:13:23 -0700 (PDT)
+        id S2436474AbfHINSa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 09:18:30 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:43112 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2436468AbfHINS2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 09:18:28 -0400
+Received: by mail-wr1-f66.google.com with SMTP id p13so23639548wru.10
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 06:18:26 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=devtank-co-uk.20150623.gappssmtp.com; s=20150623;
         h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=R/qbfybNTawBfvTZEySh0cjltm2Kq0tph5R6n428udM=;
-        b=GlblEZrkT23FfH3YxwgAttCw6xMNP7KmjYM4WXbspvsjFKfa2jnMBD9iz9n/359YcB
-         mh1ba0d5xf1zHxpLYacNsJ3P90ZN+296q6JzVff86xucaYj/+8z6O4lg6Lk8RQX1Ftfi
-         ISE1PqIr2YzS82esJXELAiYZhczT1wMe71LlZOhk/PnPHjZ2R5k3+3XQCEEg4zOWHdHr
-         md4eFoFMjx17VGzybjmylCG7pkgn06aca+wnsBRr6jiVDdjPDUmN+4APIHiT9poKviyF
-         oMEBxX3477w1dW3K+x6B52wSS/8CkF3eQtIrPf+jvad1ZuOdshSYXAMuhyVGzBm78tth
-         3qsA==
+         :mime-version:in-reply-to:content-transfer-encoding:content-language;
+        bh=42uV7DurzBGNdoHGvTqQVRhcHK8QAjR3iIUcZK+4LkY=;
+        b=zIW8ddVR27zXLKH9fZhIInf53B0Gh7iwnxOugtzCHM95gAdCzwDF13gpIHDMDlAxDG
+         uCr8usHYX04M3ywP/J0JIo2qJxb9F/86DE1NRBV691y34xB+FdwlA+IrFHEL33I9RDVZ
+         wTJZEiWixNjcgubZnEc0DNqZ+snRpjCjwyYqe4UOANHawkW346V+GKb7jrxlsAlCsU4W
+         EyLEuQx2TYEpRlQX8b80QwT7Ox7h6z9jfom/tnVcpEf9b7zMszSNpD3qS57KfObMI5BK
+         KJl330eUZ3OG9pRM5vCZk/r57nWk4hynC8W0vXJjQT5oH+HkpPhfLv6nKNjJocSjLfOl
+         vXPg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=R/qbfybNTawBfvTZEySh0cjltm2Kq0tph5R6n428udM=;
-        b=j1YtCmyfZ48Dgraz2bmpoKEtL8ufcAevdF5JTPvFIHTIsWQb9AbJJKXb8Ubr9jvBdT
-         aOmBfvE+yNH/iiuwkxoDvR09+MdssA7ZCVUf021iZMI9sjcP9jwRbz4ezqKDthz5pfU+
-         T7PF9T9c/8WIFPaQiTQCygYlLL5JPytZEh0GMd4yfRjLiRTMgRF0uLc1UdbPHitH8Wqu
-         B964jWD7e/OX3C6P9tavqmGTEx5x5l0Q34ihhX7kPpHcIqgu7s8ZsJhX90uOFoBWELKB
-         EFi8hKDg5X91ctI0nlZ7d7xwj9jQT+WCz5fhnpfWE+JG2Y1Srny2fOMvU7Ipw4OqK+CH
-         EthQ==
-X-Gm-Message-State: APjAAAVaqDVFElqP5I4yHme1FMNQlqfG6NqGKEQhFVO/gzyEihhdodzT
-        sd7s+OVI4j7Ig1SsDTH6PV4KB+2K
-X-Google-Smtp-Source: APXvYqyf29S37MuD+Ii1VOieSMvQRwalWsMCTSNp4taVg2fWHXkXUtz+sOa2dH9UTLHVaWFwFCfeCQ==
-X-Received: by 2002:ac2:568e:: with SMTP id 14mr12994101lfr.189.1565356402685;
-        Fri, 09 Aug 2019 06:13:22 -0700 (PDT)
-Received: from [192.168.2.145] ([94.29.34.218])
-        by smtp.googlemail.com with ESMTPSA id k124sm17587000lfd.60.2019.08.09.06.13.20
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Aug 2019 06:13:21 -0700 (PDT)
-Subject: Re: [PATCH v8 18/21] soc/tegra: pmc: Configure core power request
- polarity
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, marc.zyngier@arm.com,
-        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, rjw@rjwysocki.net,
-        viresh.kumar@linaro.org, linux-pm@vger.kernel.org
-References: <1565308020-31952-1-git-send-email-skomatineni@nvidia.com>
- <1565308020-31952-19-git-send-email-skomatineni@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <29842147-a5f8-d51d-c594-b93b20b2e20f@gmail.com>
-Date:   Fri, 9 Aug 2019 16:13:20 +0300
+         :user-agent:mime-version:in-reply-to:content-transfer-encoding
+         :content-language;
+        bh=42uV7DurzBGNdoHGvTqQVRhcHK8QAjR3iIUcZK+4LkY=;
+        b=IpxfY2JkVbB4QqT7BYj5wCi9+jaJ87bjLDsv1bD93uo1j4FNw0+LHVcbQvKspobYhs
+         ZgqyF66/jB1qt+s5GizZaGhClkmubmhT/T+t1QiJJYBuzFJFWCvoxHEr59UhaI+q49GO
+         IelOSgfRh/0vzQWnIypwyGpxGCnn+vxUfFDGdljGJ/U6QNZLhOEC4ZR8ckEiq+Ih5oyo
+         y3tE0xvWzreg24KRy9fcTXOZw1oi538rOlpAoP/BZhODyvS7xwQm+PZoAagd+1pJlEFJ
+         c24wQ0zDCQT5iA1Sgk7P13/ENPy+pUT3NMyRJRNTsfrMTR7c4JdBMNWwK8Jcyg9hnjt+
+         z8wg==
+X-Gm-Message-State: APjAAAW7jidPxRRHjus5f30MINzqIwPNM1E6P9whMtdSxIzI9mQfqJZx
+        hLHYZ426/2huVlFwS43sC1zxkw==
+X-Google-Smtp-Source: APXvYqwRA0Oy4xrGac8+CSZ14Q0cld46PVL/7rOY6ivBnGJYCE949LN1UmjoX6+QqoQDc0cBrqPHEA==
+X-Received: by 2002:adf:eb51:: with SMTP id u17mr23274490wrn.257.1565356706219;
+        Fri, 09 Aug 2019 06:18:26 -0700 (PDT)
+Received: from [192.168.200.229] ([141.105.200.141])
+        by smtp.gmail.com with ESMTPSA id d17sm6187647wrm.52.2019.08.09.06.18.25
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Fri, 09 Aug 2019 06:18:25 -0700 (PDT)
+Subject: Re: [PATCH] Add optional chip erase functionality to AT25 EEPROM
+ driver.
+To:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Arnd Bergmann <arnd@arndb.de>,
+        Srinivas Kandagatla <srinivas.kandagatla@linaro.org>,
+        YueHaibing <yuehaibing@huawei.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org
+References: <20190809125358.24440-1-joe.burmeister@devtank.co.uk>
+ <20190809130005.GA13962@kroah.com>
+From:   Joe Burmeister <joe.burmeister@devtank.co.uk>
+Message-ID: <d6534808-aa41-0bf0-a516-cee9bbd8e97a@devtank.co.uk>
+Date:   Fri, 9 Aug 2019 14:18:24 +0100
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <1565308020-31952-19-git-send-email-skomatineni@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190809130005.GA13962@kroah.com>
+Content-Type: text/plain; charset=utf-8; format=flowed
+Content-Transfer-Encoding: 7bit
+Content-Language: en-GB
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-09.08.2019 2:46, Sowjanya Komatineni пишет:
-> This patch configures polarity of the core power request signal
-> in PMC control register based on the device tree property.
-> 
-> PMC asserts and de-asserts power request signal based on it polarity
-> when it need to power-up and power-down the core rail during SC7.
-> 
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/soc/tegra/pmc.c | 6 ++++++
->  1 file changed, 6 insertions(+)
-> 
-> diff --git a/drivers/soc/tegra/pmc.c b/drivers/soc/tegra/pmc.c
-> index 3aa71c28a10a..e013ada7e4e9 100644
-> --- a/drivers/soc/tegra/pmc.c
-> +++ b/drivers/soc/tegra/pmc.c
-> @@ -56,6 +56,7 @@
->  #define  PMC_CNTRL_SIDE_EFFECT_LP0	BIT(14) /* LP0 when CPU pwr gated */
->  #define  PMC_CNTRL_SYSCLK_OE		BIT(11) /* system clock enable */
->  #define  PMC_CNTRL_SYSCLK_POLARITY	BIT(10) /* sys clk polarity */
-> +#define  PMC_CNTRL_PWRREQ_POLARITY	BIT(8)
->  #define  PMC_CNTRL_MAIN_RST		BIT(4)
->  
->  #define PMC_WAKE_MASK			0x0c
-> @@ -2290,6 +2291,11 @@ static void tegra20_pmc_init(struct tegra_pmc *pmc)
->  	else
->  		value |= PMC_CNTRL_SYSCLK_POLARITY;
->  
-> +	if (pmc->corereq_high)
-> +		value &= ~PMC_CNTRL_PWRREQ_POLARITY;
-> +	else
-> +		value |= PMC_CNTRL_PWRREQ_POLARITY;
-> +
->  	/* configure the output polarity while the request is tristated */
->  	tegra_pmc_writel(pmc, value, PMC_CNTRL);
->  
-> 
+Hi Greg,
 
-Reviewed-by: Dmitry Osipenko <digetx@gmail.com>
+On 09/08/2019 14:00, Greg Kroah-Hartman wrote:
+> On Fri, Aug 09, 2019 at 01:53:55PM +0100, Joe Burmeister wrote:
+>> +static void _eeprom_at25_store_erase_locked(struct at25_data *at25)
+>> +{
+>> +	unsigned long	timeout, retries;
+>> +	int				sr, status;
+>> +	u8	cp;
+>> +
+>> +	cp = AT25_WREN;
+>> +	status = spi_write(at25->spi, &cp, 1);
+>> +	if (status < 0) {
+>> +		dev_dbg(&at25->spi->dev, "ERASE WREN --> %d\n", status);
+>> +		return;
+>> +	}
+>> +	cp = at25->erase_instr;
+>> +	status = spi_write(at25->spi, &cp, 1);
+>> +	if (status < 0) {
+>> +		dev_dbg(&at25->spi->dev, "CHIP_ERASE --> %d\n", status);
+>> +		return;
+>> +	}
+>> +	/* Wait for non-busy status */
+>> +	timeout = jiffies + msecs_to_jiffies(ERASE_TIMEOUT);
+>> +	retries = 0;
+>> +	do {
+>> +		sr = spi_w8r8(at25->spi, AT25_RDSR);
+>> +		if (sr < 0 || (sr & AT25_SR_nRDY)) {
+>> +			dev_dbg(&at25->spi->dev,
+>> +				"rdsr --> %d (%02x)\n", sr, sr);
+>> +			/* at HZ=100, this is sloooow */
+>> +			msleep(1);
+>> +			continue;
+>> +		}
+>> +		if (!(sr & AT25_SR_nRDY))
+>> +			return;
+>> +	} while (retries++ < 200 || time_before_eq(jiffies, timeout));
+>> +
+>> +	if ((sr < 0) || (sr & AT25_SR_nRDY)) {
+>> +		dev_err(&at25->spi->dev,
+>> +			"chip erase, timeout after %u msecs\n",
+>> +			jiffies_to_msecs(jiffies -
+>> +				(timeout - ERASE_TIMEOUT)));
+>> +		status = -ETIMEDOUT;
+>> +		return;
+>> +	}
+>> +}
+>> +
+>> +
+> No need for 2 lines :(
+
+Sorry, other coding conventions I'm used to.
+
+
+>> +static ssize_t eeprom_at25_store_erase(struct device *dev,
+>> +					 struct device_attribute *attr,
+>> +					 const char *buf, size_t count)
+>> +{
+>> +	struct at25_data *at25 = dev_get_drvdata(dev);
+>> +	int erase = 0;
+>> +
+>> +	sscanf(buf, "%d", &erase);
+>> +	if (erase) {
+>> +		mutex_lock(&at25->lock);
+>> +		_eeprom_at25_store_erase_locked(at25);
+>> +		mutex_unlock(&at25->lock);
+>> +	}
+>> +
+>> +	return count;
+>> +}
+>> +
+>> +static DEVICE_ATTR(erase, S_IWUSR, NULL, eeprom_at25_store_erase);
+>> +
+>> +
+> Same here.
+>
+> Also, where is the Documentation/ABI/ update for the new sysfs file?
+
+There isn't anything for the existing SPI EEPROM stuff I can see.
+
+Would I have to document what was already there to add my bit?
+
+
+>>   static int at25_probe(struct spi_device *spi)
+>>   {
+>>   	struct at25_data	*at25 = NULL;
+>> @@ -311,6 +379,7 @@ static int at25_probe(struct spi_device *spi)
+>>   	int			err;
+>>   	int			sr;
+>>   	int			addrlen;
+>> +	int			has_erase;
+>>   
+>>   	/* Chip description */
+>>   	if (!spi->dev.platform_data) {
+>> @@ -352,6 +421,9 @@ static int at25_probe(struct spi_device *spi)
+>>   	spi_set_drvdata(spi, at25);
+>>   	at25->addrlen = addrlen;
+>>   
+>> +	/* Optional chip erase instruction */
+>> +	device_property_read_u8(&spi->dev, "chip_erase_instruction", &at25->erase_instr);
+>> +
+>>   	at25->nvmem_config.name = dev_name(&spi->dev);
+>>   	at25->nvmem_config.dev = &spi->dev;
+>>   	at25->nvmem_config.read_only = chip.flags & EE_READONLY;
+>> @@ -370,17 +442,22 @@ static int at25_probe(struct spi_device *spi)
+>>   	if (IS_ERR(at25->nvmem))
+>>   		return PTR_ERR(at25->nvmem);
+>>   
+>> -	dev_info(&spi->dev, "%d %s %s eeprom%s, pagesize %u\n",
+>> +	has_erase = (!(chip.flags & EE_READONLY) && at25->erase_instr);
+>> +
+>> +	dev_info(&spi->dev, "%d %s %s eeprom%s, pagesize %u%s\n",
+>>   		(chip.byte_len < 1024) ? chip.byte_len : (chip.byte_len / 1024),
+>>   		(chip.byte_len < 1024) ? "Byte" : "KByte",
+>>   		at25->chip.name,
+>>   		(chip.flags & EE_READONLY) ? " (readonly)" : "",
+>> -		at25->chip.page_size);
+>> +		at25->chip.page_size, (has_erase)?" <has erase>":"");
+>> +
+>> +	if (has_erase && device_create_file(&spi->dev, &dev_attr_erase))
+>> +		dev_err(&spi->dev, "can't create erase interface\n");
+> You just raced with userspace and lost :(
+>
+> Please create an attribute group and add it to the .dev_groups pointer
+> in struct driver so it can be created properly in a race-free manner.
+>
+> See the thread at:
+> 	https://lore.kernel.org/r/20190731124349.4474-2-gregkh@linuxfoundation.org
+> for the details on how to do that.
+
+Clearly I didn't know about that. I'll do some reading when I've got a 
+bit of time and try a again.
+
+
+> thanks,
+>
+> greg k-h
+
+Cheers,
+
+Joe
+
