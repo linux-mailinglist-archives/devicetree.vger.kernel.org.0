@@ -2,149 +2,268 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 14D9C8728F
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 09:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E9D60872D3
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 09:19:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405470AbfHIHAF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 03:00:05 -0400
-Received: from mail-wm1-f65.google.com ([209.85.128.65]:39676 "EHLO
-        mail-wm1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726212AbfHIHAE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 03:00:04 -0400
-Received: by mail-wm1-f65.google.com with SMTP id u25so4592837wmc.4
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 00:00:03 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
-        h=subject:to:cc:references:from:openpgp:autocrypt:organization
-         :message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=XvbLGtLQihmi02+B8NlT3w/9y6q9JPuCZog03Wl8KIE=;
-        b=b5yOokoGav6rR2NQV38ro/5NmcR1OyJ8fATSqwTBlXsfYhGSQJpS+e9GiEIV7NVZtD
-         6pygRgGQktuX+bGfmdsU+EmoqxXS2aPiG/Z8sjtuGqy3BjA45QxXmCJgrCaM0u5f7Ahp
-         /Em1PGRw5qANFUnh2+kI9fteaXlhwoy6DV+hxme03I0yuM9mwqG2yxCR5K0tMSXADgGs
-         HvQhE8DJP2I4i1iohlxooHs1jKNE6iKo7azXoX+akKtJTQJWXCiFtkDopIxN8ChVRqez
-         PwmNQ9tYKVbFO9n1ClTvrL0m4kvPy+jbH+bVc34uk7TFTPSbmHi+ZBxm8a8gfJEBoTEF
-         7Erw==
+        id S2405664AbfHIHT4 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Fri, 9 Aug 2019 03:19:56 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:34692 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726212AbfHIHT4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 03:19:56 -0400
+Received: by mail-ot1-f65.google.com with SMTP id n5so129108150otk.1;
+        Fri, 09 Aug 2019 00:19:55 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:openpgp:autocrypt
-         :organization:message-id:date:user-agent:mime-version:in-reply-to
-         :content-language:content-transfer-encoding;
-        bh=XvbLGtLQihmi02+B8NlT3w/9y6q9JPuCZog03Wl8KIE=;
-        b=P+dPK9JAkyJxWPvEWdZv3gBsmYlmh+r34Cdfvm6mUYepS2bDURUq5UttSNcA/9x93c
-         3xmvCmE3BMaYQgpPl/pxgxaqVJsEUlvu8hOzNUVzT6GOatP5UpZYVOgt+CBCDxQdEKm8
-         tFRBsLqEs5mvKFC5G+hRvfkToI9xTZYw96J2xTRDADLMasto4jTMGlbTx8Z6qEo/BkeO
-         4Up0rp84af+o0SfAR2pPlL40TQqzrIEhaQGYKFr/Gkmc2o1Krl/3RGHxkY6haHxHKaqz
-         2g8BBflTdljxABP4QLcPXzzaJkEGWJ+zB4hvs3vE3rSnkYZEo5RF62hQ/yqUcwGub4kY
-         bIlA==
-X-Gm-Message-State: APjAAAWRbwhhDzi5Jzfur9tmGjr76zkTiiTzggz8QfC95ClaC3vCjNse
-        EPmClc0AgUMBko8pN7NraqOukA==
-X-Google-Smtp-Source: APXvYqwNiRvkwSUeyES3Z/yqy7wuV5OvAO1I5V4kKRRZqPAd3JeSQebqR1m/SrTq7RGEPHzSvP3lMg==
-X-Received: by 2002:a1c:770d:: with SMTP id t13mr8681473wmi.79.1565334002720;
-        Fri, 09 Aug 2019 00:00:02 -0700 (PDT)
-Received: from [10.1.2.12] (lmontsouris-657-1-212-31.w90-63.abo.wanadoo.fr. [90.63.244.31])
-        by smtp.gmail.com with ESMTPSA id x6sm5900203wmf.6.2019.08.09.00.00.01
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Aug 2019 00:00:02 -0700 (PDT)
-Subject: Re: [PATCH 7/9] dt-bindings: phy: meson-g12a-usb3-pcie-phy: convert
- to yaml
-To:     Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-Cc:     robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh@kernel.org>, kishon@ti.com,
-        linux-amlogic@lists.infradead.org,
-        linux-arm-kernel@lists.infradead.org
-References: <20190808085139.21438-1-narmstrong@baylibre.com>
- <20190808085139.21438-8-narmstrong@baylibre.com>
- <CAFBinCBnVdTxWgqmnrPo-5uZ5gxy7p68w0PUa=_42fYxhVrDXQ@mail.gmail.com>
-From:   Neil Armstrong <narmstrong@baylibre.com>
-Openpgp: preference=signencrypt
-Autocrypt: addr=narmstrong@baylibre.com; prefer-encrypt=mutual; keydata=
- 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
- ZaTUOEkgIor5losDrePdPgE=
-Organization: Baylibre
-Message-ID: <2e6ade0e-175c-e77c-e767-28f4bbfbe575@baylibre.com>
-Date:   Fri, 9 Aug 2019 09:00:01 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=6p6dBdqDPricYiTRinA1aQUZ05T7XbK23I9zukd3E6E=;
+        b=oqaz6E8GjRwSQz0LB0LDrXB4TPCdhWx+6XvBP9AtqdjdM+FCUCk2B714OxPUrZ6v0s
+         fgYelmO6nlK4I0UFpuc/VFHH8ySwXMqN3vmFYm4sRGBIqI5RP3L4riWdJ680DbFaROIt
+         HZoJRQBZN8dW/0FUaNSusn6Oq0YHzdf+ZeUM6U+fsG0IGYPBsT2Wam+IxOoacQdLEtSb
+         /avKeyFmjEH7IIM2+T1JR/FHl6OXelGbY/+EHjA/6/T+0cQXPfkQz3TxAq9iJpAkZ4d+
+         LIw6/sG1k/kHDW0Hthpmo6SX4Fzu3x8ZMcXXNDPhwhANGkn4qFXC0Rmw896ATFhzfIyI
+         I0bA==
+X-Gm-Message-State: APjAAAUF0M8KutSRiNc8DbTuXT5eHIh55A/7JkyEwCa1JVP33N7N/rS0
+        XNEpynlry8WzC1yG8APLAd6hjMYKv3YR9TNA1RTRRBLW
+X-Google-Smtp-Source: APXvYqxZiWbqh8vvzsFz23He51VOzzWRYhJvKHKEvIgTNhCZk439MI6sntbZ6JJYozM7MNk3Jb6bI+BrZ4NsPoCbFxc=
+X-Received: by 2002:a9d:5c0c:: with SMTP id o12mr4177810otk.145.1565335195266;
+ Fri, 09 Aug 2019 00:19:55 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <CAFBinCBnVdTxWgqmnrPo-5uZ5gxy7p68w0PUa=_42fYxhVrDXQ@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <20190809040558.10698-1-niklas.soderlund+renesas@ragnatech.se> <20190809040558.10698-2-niklas.soderlund+renesas@ragnatech.se>
+In-Reply-To: <20190809040558.10698-2-niklas.soderlund+renesas@ragnatech.se>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Fri, 9 Aug 2019 09:19:43 +0200
+Message-ID: <CAMuHMdUbc-Zr6JvDRSMWN2ovGG88s-YmJsQ+fEadqSV0+WgRzg@mail.gmail.com>
+Subject: Re: [PATCH 1/2] dt-bindings: media: i2c: Add bindings for Maxim
+ Integrated MAX9286
+To:     =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>
+Cc:     Jacopo Mondi <jacopo+renesas@jmondi.org>,
+        Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>,
+        Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>,
+        Linux Media Mailing List <linux-media@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8BIT
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+CC devicetree
 
-On 08/08/2019 21:50, Martin Blumenstingl wrote:
-> On Thu, Aug 8, 2019 at 10:54 AM Neil Armstrong <narmstrong@baylibre.com> wrote:
->>
->> Now that we have the DT validation in place, let's convert the device tree
->> bindings for the Amlogic G12A USB3 + PCIE Combo PHY over to a YAML schemas.
->>
->> While the original phy bindings specifies phy-supply as required,
->> the examples and implementations makes it optional, thus phy-supply
->> is not present in the properties and required lists.
-> nit-pick: the original bindings didn't mention the phy-supply property at all
-> I'm not sure if you have to re-send it, maybe this can be fixed up
-> while applying?
+cover letter at
+https://lore.kernel.org/linux-renesas-soc/20190809040558.10698-1-niklas.soderlund+renesas@ragnatech.se/
 
-It didn't, but the phy.txt made it mandatory, but was optional in all examples
-and implementation, thus rob asked me to precise it in the commit log.
-
-Neil
-
-> 
->> Reviewed-by: Rob Herring <robh@kernel.org>
->> Signed-off-by: Neil Armstrong <narmstrong@baylibre.com>
-> Reviewed-by: Martin Blumenstingl <martin.blumenstingl@googlemail.com>
-> 
-
+On Fri, Aug 9, 2019 at 6:07 AM Niklas Söderlund
+<niklas.soderlund+renesas@ragnatech.se> wrote:
+> From: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+>
+> The MAX9286 deserializes video data received on up to 4 Gigabit
+> Multimedia Serial Links (GMSL) and outputs them on a CSI-2 port using up
+> to 4 data lanes.
+>
+> Signed-off-by: Laurent Pinchart <laurent.pinchart+renesas@ideasonboard.com>
+> Signed-off-by: Jacopo Mondi <jacopo+renesas@jmondi.org>
+> Signed-off-by: Kieran Bingham <kieran.bingham+renesas@ideasonboard.com>
+> Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> Signed-off-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+> ---
+>  .../bindings/media/i2c/maxim,max9286.txt      | 182 ++++++++++++++++++
+>  1 file changed, 182 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/media/i2c/maxim,max9286.txt
+>
+> diff --git a/Documentation/devicetree/bindings/media/i2c/maxim,max9286.txt b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.txt
+> new file mode 100644
+> index 0000000000000000..afff77a55bb70744
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/media/i2c/maxim,max9286.txt
+> @@ -0,0 +1,182 @@
+> +Maxim Integrated Quad GMSL Deserializer
+> +---------------------------------------
+> +
+> +The MAX9286 deserializer receives video data on up to 4 Gigabit Multimedia
+> +Serial Links (GMSL) and outputs them on a CSI-2 D-PHY port using up to 4 data
+> +lanes.
+> +
+> +In addition to video data, the GMSL links carry a bidirectional control channel
+> +that encapsulates I2C messages. The MAX9286 forwards all I2C traffic not
+> +addressed to itself to the other side of the links, where a GMSL serializer
+> +will output it on a local I2C bus. In the other direction all I2C traffic
+> +received over GMSL by the MAX9286 is output on the local I2C bus.
+> +
+> +Required Properties:
+> +
+> +- compatible: Shall be "maxim,max9286"
+> +- reg: I2C device address
+> +
+> +Optional Properties:
+> +
+> +- poc-supply: Regulator providing Power over Coax to the cameras
+> +- enable-gpios: GPIO connected to the #PWDN pin with inverted polarity
+> +
+> +Required endpoint nodes:
+> +-----------------------
+> +
+> +The connections to the MAX9286 GMSL and its endpoint nodes are modelled using
+> +the OF graph bindings in accordance with the video interface bindings defined
+> +in Documentation/devicetree/bindings/media/video-interfaces.txt.
+> +
+> +The following table lists the port number corresponding to each device port.
+> +
+> +        Port            Description
+> +        ----------------------------------------
+> +        Port 0          GMSL Input 0
+> +        Port 1          GMSL Input 1
+> +        Port 2          GMSL Input 2
+> +        Port 3          GMSL Input 3
+> +        Port 4          CSI-2 Output
+> +
+> +Optional Endpoint Properties for GMSL Input Ports (Port [0-3]):
+> +
+> +- remote-endpoint: phandle to the remote GMSL source endpoint subnode in the
+> +  remote node port.
+> +
+> +Required Endpoint Properties for CSI-2 Output Port (Port 4):
+> +
+> +- remote-endpoint: phandle to the remote CSI-2 sink endpoint node.
+> +- data-lanes: array of physical CSI-2 data lane indexes.
+> +
+> +Required i2c-mux nodes:
+> +----------------------
+> +
+> +Each GMSL link is modelled as a child bus of an i2c bus multiplexer/switch, in
+> +accordance with bindings described in
+> +Documentation/devicetree/bindings/i2c/i2c-mux.txt. The serializer device on the
+> +remote end of the GMSL link shall be modelled as a child node of the
+> +corresponding I2C bus.
+> +
+> +Required i2c child bus properties:
+> +- all properties described as required i2c child bus nodes properties in
+> +  Documentation/devicetree/bindings/i2c/i2c-mux.txt.
+> +
+> +Example:
+> +-------
+> +
+> +       gmsl-deserializer@2c {
+> +               compatible = "maxim,max9286";
+> +               reg = <0x2c>;
+> +               poc-supply = <&camera_poc_12v>;
+> +               enable-gpios = <&gpio 13 GPIO_ACTIVE_HIGH>;
+> +
+> +               #address-cells = <1>;
+> +               #size-cells = <0>;
+> +
+> +               ports {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +
+> +                       port@0 {
+> +                               reg = <0>;
+> +                               max9286_in0: endpoint {
+> +                                       remote-endpoint = <&rdacm20_out0>;
+> +                               };
+> +                       };
+> +
+> +                       port@1 {
+> +                               reg = <1>;
+> +                               max9286_in1: endpoint {
+> +                                       remote-endpoint = <&rdacm20_out1>;
+> +                               };
+> +                       };
+> +
+> +                       port@2 {
+> +                               reg = <2>;
+> +                               max9286_in2: endpoint {
+> +                                       remote-endpoint = <&rdacm20_out2>;
+> +                               };
+> +                       };
+> +
+> +                       port@3 {
+> +                               reg = <3>;
+> +                               max9286_in3: endpoint {
+> +                                       remote-endpoint = <&rdacm20_out3>;
+> +                               };
+> +                       };
+> +
+> +                       port@4 {
+> +                               reg = <4>;
+> +                               max9286_out: endpoint {
+> +                                       data-lanes = <1 2 3 4>;
+> +                                       remote-endpoint = <&csi40_in>;
+> +                               };
+> +                       };
+> +               };
+> +
+> +               i2c@0 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <0>;
+> +
+> +                       camera@51 {
+> +                               compatible = "imi,rdacm20";
+> +                               reg = <0x51 0x61>;
+> +
+> +                               port {
+> +                                       rdacm20_out0: endpoint {
+> +                                               remote-endpoint = <&max9286_in0>;
+> +                                       };
+> +                               };
+> +
+> +                       };
+> +               };
+> +
+> +               i2c@1 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <1>;
+> +
+> +                       camera@52 {
+> +                               compatible = "imi,rdacm20";
+> +                               reg = <0x52 0x62>;
+> +                               port {
+> +                                       rdacm20_out1: endpoint {
+> +                                               remote-endpoint = <&max9286_in1>;
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+> +
+> +               i2c@2 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <2>;
+> +
+> +                       camera@53 {
+> +                               compatible = "imi,rdacm20";
+> +                               reg = <0x53 0x63>;
+> +                               port {
+> +                                       rdacm20_out2: endpoint {
+> +                                               remote-endpoint = <&max9286_in2>;
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+> +
+> +               i2c@3 {
+> +                       #address-cells = <1>;
+> +                       #size-cells = <0>;
+> +                       reg = <3>;
+> +
+> +                       camera@54 {
+> +                               compatible = "imi,rdacm20";
+> +                               reg = <0x54 0x64>;
+> +                               port {
+> +                                       rdacm20_out3: endpoint {
+> +                                               remote-endpoint = <&max9286_in3>;
+> +                                       };
+> +                               };
+> +                       };
+> +               };
+> +       };
+> --
+> 2.22.0
+>
