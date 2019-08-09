@@ -2,119 +2,130 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id B7E1487D49
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 16:55:14 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B790087D52
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 16:56:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726140AbfHIOzM (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 10:55:12 -0400
-Received: from fllv0015.ext.ti.com ([198.47.19.141]:33234 "EHLO
-        fllv0015.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2406490AbfHIOzM (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 10:55:12 -0400
-Received: from lelv0266.itg.ti.com ([10.180.67.225])
-        by fllv0015.ext.ti.com (8.15.2/8.15.2) with ESMTP id x79Et7dA076455;
-        Fri, 9 Aug 2019 09:55:07 -0500
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
-        s=ti-com-17Q1; t=1565362507;
-        bh=SbXCWSXrPbzkxcNI0xPkTqByRL7MD28rx0zf/9b0SJc=;
-        h=Subject:To:CC:References:From:Date:In-Reply-To;
-        b=D8uJMUZHzeSslOS2jPMI47dDnvKaJuU35Im7B+slRsio4LKczitE4mJDuvStKX3f4
-         rTinh2DrAaeKSLzM53fPmdaf/ELc+YtltA62G3pNMV9gORzCP7mSniSzYOv2ejrxgc
-         xTFLgyPJLAdqJu7Usu22aO5SNXciof3OxvzeKmeo=
-Received: from DFLE102.ent.ti.com (dfle102.ent.ti.com [10.64.6.23])
-        by lelv0266.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x79Et7Ow062013
-        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
-        Fri, 9 Aug 2019 09:55:07 -0500
-Received: from DFLE105.ent.ti.com (10.64.6.26) by DFLE102.ent.ti.com
- (10.64.6.23) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 9 Aug
- 2019 09:55:06 -0500
-Received: from lelv0327.itg.ti.com (10.180.67.183) by DFLE105.ent.ti.com
- (10.64.6.26) with Microsoft SMTP Server (version=TLS1_2,
- cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
- Frontend Transport; Fri, 9 Aug 2019 09:55:06 -0500
-Received: from [172.24.191.45] (ileax41-snat.itg.ti.com [10.172.224.153])
-        by lelv0327.itg.ti.com (8.15.2/8.15.2) with ESMTP id x79Et38f088998;
-        Fri, 9 Aug 2019 09:55:04 -0500
-Subject: Re: [PATCH 4/6] arm64: dts: ti: k3-j721e-common-proc-board: Disable
- unused gpio modules
-To:     Lokesh Vutla <lokeshvutla@ti.com>, Tero Kristo <t-kristo@ti.com>,
-        Nishanth Menon <nm@ti.com>, <linus.walleij@linaro.org>
-CC:     Rob Herring <robh+dt@kernel.org>, <linux-gpio@vger.kernel.org>,
-        Device Tree Mailing List <devicetree@vger.kernel.org>,
-        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
-References: <20190809082947.30590-1-lokeshvutla@ti.com>
- <20190809082947.30590-5-lokeshvutla@ti.com>
-From:   Keerthy <j-keerthy@ti.com>
-Message-ID: <f6ac4c30-92e6-e952-237b-603537b67053@ti.com>
-Date:   Fri, 9 Aug 2019 20:25:40 +0530
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <20190809082947.30590-5-lokeshvutla@ti.com>
-Content-Type: text/plain; charset="utf-8"; format=flowed
+        id S2406558AbfHIO4T (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 10:56:19 -0400
+Received: from mail-eopbgr20128.outbound.protection.outlook.com ([40.107.2.128]:29966
+        "EHLO EUR02-VE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S2407024AbfHIO4T (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Aug 2019 10:56:19 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=jrZ+xpwJg5l20/cPEWB6goVOPR0ew8y4cvN0wWy9vJA+1OJ7Xcguq4zyJvsVoEZ1SOmTyrO0sbwzyc3Gzw1ZgRBggiatK/tdjgS+J1Nqw2pIpV0/uYMPSNzvGrsIFEioScEY2OAK+h27UxJw/Yfuf6obZMKGReOtJo7lRDKJPAt2q9REZ5lgMw99rqoGRhs6XTNhhf6Ku6byJdC0IXncirup1Ybv515idYK9LWAOZ2DQpWnBWxVu7yoiwqrbOg7G6yW+YieECFbDA0XDGIlZx/c9qDqzHnr67Q+a3irw4eeeF8IrfMPWVPo1aJNOccHWFiA3YL8XwV6NSW1ZNwtCVg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WogOHEMkg2jyyHRAvUwE8ayB+S20B+d7r3fcyL9tXog=;
+ b=iWcq7Xc0khT+ns7RYjAYfmk205x1tIZN7XJs7o3h9RNEguplPAxZWWHAsCRU+NRvVnFHRIvOrdKrLSx7XXGxzUrD5M0HvKrfp72WdUoaWM67sswV85spc0uw/dnYQ/RN0e6QU3+I6TjkN2Qq4kFNLQCVXrRWgGJNbnjLnXo6sm3omUt/3sqKDN37Zx9Lz2fXCu24DbhABvZw52Ile5Ht/4DMviYF1yQp6CLffj1uY8v6o35bdPSMHvm4YMidlg7Nnmm8RfHFJkp141xfn5rmxrloNJLVRubfgGl9xibeADmhhIzD8aJvnbW8Zse//t/n+GPK9gp1eD7dWvbh2fTKtg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=WogOHEMkg2jyyHRAvUwE8ayB+S20B+d7r3fcyL9tXog=;
+ b=BqUZMJKInS7q1DvDaErTwSgMu6BAD0CqQPItdSKaJ7qCFgHh0GpXdnxJt+qddiN/XAm6yB7WvXt2Q/3ADbOtheQRV41G3jPyolr7pOo5RQBjeqgm6kKRw4SJfx6nSIupUVJFGcoEm6CjZtS9VgD8qTGcNFxkcRD9kK2YJdQWdtY=
+Received: from VI1PR05MB6415.eurprd05.prod.outlook.com (20.179.27.139) by
+ VI1PR05MB4253.eurprd05.prod.outlook.com (52.133.12.18) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2157.14; Fri, 9 Aug 2019 14:56:14 +0000
+Received: from VI1PR05MB6415.eurprd05.prod.outlook.com
+ ([fe80::f1b2:353a:da9b:c19a]) by VI1PR05MB6415.eurprd05.prod.outlook.com
+ ([fe80::f1b2:353a:da9b:c19a%4]) with mapi id 15.20.2157.020; Fri, 9 Aug 2019
+ 14:56:14 +0000
+From:   Marcel Ziswiler <marcel.ziswiler@toradex.com>
+To:     Max Krummenacher <max.krummenacher@toradex.com>,
+        "stefan@agner.ch" <stefan@agner.ch>,
+        Philippe Schenker <philippe.schenker@toradex.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "michal.vokac@ysoft.com" <michal.vokac@ysoft.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>
+Subject: Re: [PATCH v3 08/21] ARM: dts: imx7-colibri: Add touch controllers
+Thread-Topic: [PATCH v3 08/21] ARM: dts: imx7-colibri: Add touch controllers
+Thread-Index: AQHVTPnLOqa7gLhcA0CJ95ai1QRG/aby6zoA
+Date:   Fri, 9 Aug 2019 14:56:14 +0000
+Message-ID: <4875e91c34f7206d960ccdf7b499408b6f48364b.camel@toradex.com>
+References: <20190807082556.5013-1-philippe.schenker@toradex.com>
+         <20190807082556.5013-9-philippe.schenker@toradex.com>
+In-Reply-To: <20190807082556.5013-9-philippe.schenker@toradex.com>
+Accept-Language: en-GB, en-US
 Content-Language: en-US
-Content-Transfer-Encoding: 7bit
-X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=marcel.ziswiler@toradex.com; 
+x-originating-ip: [2a01:2a8:8501:4d00:ca5b:76ff:fedf:3c49]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 293c8ad4-c443-4930-5d3e-08d71cd9b9db
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR05MB4253;
+x-ms-traffictypediagnostic: VI1PR05MB4253:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR05MB4253B8CF8DDDD09423667CA1FBD60@VI1PR05MB4253.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:308;
+x-forefront-prvs: 01244308DF
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(366004)(39850400004)(346002)(376002)(136003)(199004)(189003)(66556008)(64756008)(305945005)(14444005)(25786009)(6506007)(46003)(476003)(91956017)(66946007)(2616005)(11346002)(446003)(86362001)(44832011)(76116006)(256004)(486006)(14454004)(66446008)(186003)(316002)(7736002)(102836004)(110136005)(7416002)(71200400001)(71190400001)(66476007)(54906003)(229853002)(6486002)(6512007)(36756003)(6436002)(53936002)(2906002)(6116002)(5660300002)(2201001)(478600001)(8676002)(99286004)(6246003)(2501003)(76176011)(8936002)(4326008)(81156014)(81166006)(118296001);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR05MB4253;H:VI1PR05MB6415.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: H2w+vaSEszh4DxPkWSNVs/ual3VkrE1iSud9QA0W0eSmp3I9PaaR01M78qyqUAo6JVstwURnLvYo0JN9AZMnr99GDAar8n3Cot52Qm1ICiSJan3Hks60f2ZxBOJhFQWNKDt7SHiTIkx6oxblze4rXPzsIWl/MUZIpe/cOt5MyWx1Hdo3/DKWUhjrJVhl5Xh/NsMhenibTyQXzQtRTn4EE98mDkZbXLM6lwMbWzwBEYBLt0QlAhM1+WTa0BOUAWzw9ey8eNp2i/l96T0ltnXtR0fP6ZC8ZEq5a4PjzRBiFUoKsEloik1jY8xXLj34Q6WlIQPGaySovtB//HdQ/08PVt2j8uWoyxAkc4bk+MqPy6IFJKpyw8MbqY3MutBW+jHnWTkG+TbVbrycroKG9Ylo7wEpOwl6oWEDxLtObwESPqw=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <06F6FF2CD78DF146ADC461BDE4286D40@eurprd05.prod.outlook.com>
+Content-Transfer-Encoding: base64
+MIME-Version: 1.0
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 293c8ad4-c443-4930-5d3e-08d71cd9b9db
+X-MS-Exchange-CrossTenant-originalarrivaltime: 09 Aug 2019 14:56:14.6647
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: cYOen78V95xwkH2aES09tET8r5SD7t3DYOeOr71YEs+HbMkzycTQQf60rYeBP0Eu0yEa1s6IhI9nbGWkEHY8M1dSnQMMMwCQKdS24dU66oA=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR05MB4253
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-
-
-On 09/08/19 1:59 PM, Lokesh Vutla wrote:
-> There are 10 gpio instances inside SoC with 3 groups as below:
-> - Group1: main_gpio0, main_gpio2, main_gpio4, main_gpio6
-> - Group2: main_gpio1, main_gpio3, main_gpio5, main_gpio7
-> - Group3: wkup_gpio0, wkup_gpio1
-> 
-> Only one instance can be used in each group at a time. So use main_gpio0,
-> main_gpio1 and wkup_gpio0 for the current linux context and mark other
-> gpio nodes as disabled.
-
-Reviewed-by: Keerthy <j-keerthy@ti.com>
-
-> 
-> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
-> ---
->   .../dts/ti/k3-j721e-common-proc-board.dts     | 28 +++++++++++++++++++
->   1 file changed, 28 insertions(+)
-> 
-> diff --git a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> index 63b47b839388..509579ca3db2 100644
-> --- a/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> +++ b/arch/arm64/boot/dts/ti/k3-j721e-common-proc-board.dts
-> @@ -52,3 +52,31 @@
->   	/* UART not brought out */
->   	status = "disabled";
->   };
-> +
-> +&main_gpio2 {
-> +	status = "disabled";
-> +};
-> +
-> +&main_gpio3 {
-> +	status = "disabled";
-> +};
-> +
-> +&main_gpio4 {
-> +	status = "disabled";
-> +};
-> +
-> +&main_gpio5 {
-> +	status = "disabled";
-> +};
-> +
-> +&main_gpio6 {
-> +	status = "disabled";
-> +};
-> +
-> +&main_gpio7 {
-> +	status = "disabled";
-> +};
-> +
-> +&wkup_gpio1 {
-> +	status = "disabled";
-> +};
-> 
+T24gV2VkLCAyMDE5LTA4LTA3IGF0IDA4OjI2ICswMDAwLCBQaGlsaXBwZSBTY2hlbmtlciB3cm90
+ZToNCj4gQWRkIHRvdWNoIGNvbnRyb2xsZXIgdGhhdCBpcyBjb25uZWN0ZWQgb3ZlciBhbiBJMkMg
+YnVzLg0KPiANCj4gU2lnbmVkLW9mZi1ieTogUGhpbGlwcGUgU2NoZW5rZXIgPHBoaWxpcHBlLnNj
+aGVua2VyQHRvcmFkZXguY29tPg0KDQpBY2tlZC1ieTogTWFyY2VsIFppc3dpbGVyIDxtYXJjZWwu
+emlzd2lsZXJAdG9yYWRleC5jb20+DQoNCj4gLS0tDQo+IA0KPiBDaGFuZ2VzIGluIHYzOg0KPiAt
+IEZpeCBjb21taXQgbWVzc2FnZQ0KPiANCj4gQ2hhbmdlcyBpbiB2MjoNCj4gLSBEZWxldGVkIHRv
+dWNocmV2b2x1dGlvbiBkb3duc3RyZWFtIHN0dWZmDQo+IC0gVXNlIGdlbmVyaWMgbm9kZSBuYW1l
+DQo+IC0gQmV0dGVyIGNvbW1lbnQNCj4gDQo+ICBhcmNoL2FybS9ib290L2R0cy9pbXg3LWNvbGli
+cmktZXZhbC12My5kdHNpIHwgMjQNCj4gKysrKysrKysrKysrKysrKysrKysrDQo+ICAxIGZpbGUg
+Y2hhbmdlZCwgMjQgaW5zZXJ0aW9ucygrKQ0KPiANCj4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jv
+b3QvZHRzL2lteDctY29saWJyaS1ldmFsLXYzLmR0c2kNCj4gYi9hcmNoL2FybS9ib290L2R0cy9p
+bXg3LWNvbGlicmktZXZhbC12My5kdHNpDQo+IGluZGV4IGQ0ZGJjNGZjMWFkZi4uNTc2ZGVjOWZm
+ODFjIDEwMDY0NA0KPiAtLS0gYS9hcmNoL2FybS9ib290L2R0cy9pbXg3LWNvbGlicmktZXZhbC12
+My5kdHNpDQo+ICsrKyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDctY29saWJyaS1ldmFsLXYzLmR0
+c2kNCj4gQEAgLTE0NSw2ICsxNDUsMjEgQEANCj4gICZpMmM0IHsNCj4gIAlzdGF0dXMgPSAib2th
+eSI7DQo+ICANCj4gKwkvKg0KPiArCSAqIFRvdWNoc2NyZWVuIGlzIHVzaW5nIFNPRElNTSAyOC8z
+MCwgYWxzbyB1c2VkIGZvciBQV008Qj4sDQo+IFBXTTxDPiwNCj4gKwkgKiBha2EgcHdtMiwgcHdt
+My4gc28gaWYgeW91IGVuYWJsZSB0b3VjaHNjcmVlbiwgZGlzYWJsZSB0aGUNCj4gcHdtcw0KPiAr
+CSAqLw0KPiArCXRvdWNoc2NyZWVuQDRhIHsNCj4gKwkJY29tcGF0aWJsZSA9ICJhdG1lbCxtYXh0
+b3VjaCI7DQo+ICsJCXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+ICsJCXBpbmN0cmwtMCA9
+IDwmcGluY3RybF9ncGlvdG91Y2g+Ow0KPiArCQlyZWcgPSA8MHg0YT47DQo+ICsJCWludGVycnVw
+dC1wYXJlbnQgPSA8JmdwaW8xPjsNCj4gKwkJaW50ZXJydXB0cyA9IDw5IElSUV9UWVBFX0VER0Vf
+RkFMTElORz47CQkvKg0KPiBTT0RJTU0gMjggKi8NCj4gKwkJcmVzZXQtZ3Bpb3MgPSA8JmdwaW8x
+IDEwIEdQSU9fQUNUSVZFX0hJR0g+OwkvKg0KPiBTT0RJTU0gMzAgKi8NCj4gKwkJc3RhdHVzID0g
+ImRpc2FibGVkIjsNCj4gKwl9Ow0KPiArDQo+ICAJLyogTTQxVDBNNiByZWFsIHRpbWUgY2xvY2sg
+b24gY2FycmllciBib2FyZCAqLw0KPiAgCXJ0YzogbTQxdDBtNkA2OCB7DQo+ICAJCWNvbXBhdGli
+bGUgPSAic3QsbTQxdDAiOw0KPiBAQCAtMjAwLDMgKzIxNSwxMiBAQA0KPiAgCXZtbWMtc3VwcGx5
+ID0gPCZyZWdfM3YzPjsNCj4gIAlzdGF0dXMgPSAib2theSI7DQo+ICB9Ow0KPiArDQo+ICsmaW9t
+dXhjIHsNCj4gKwlwaW5jdHJsX2dwaW90b3VjaDogdG91Y2hncGlvcyB7DQo+ICsJCWZzbCxwaW5z
+ID0gPA0KPiArCQkJTVg3RF9QQURfR1BJTzFfSU8wOV9fR1BJTzFfSU85CQkweDc0DQo+ICsJCQlN
+WDdEX1BBRF9HUElPMV9JTzEwX19HUElPMV9JTzEwCQkweDE0DQo+ICsJCT47DQo+ICsJfTsNCj4g
+K307DQo=
