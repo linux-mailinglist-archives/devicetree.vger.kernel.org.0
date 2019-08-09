@@ -2,68 +2,89 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 73106877CA
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 12:51:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3E3CB877FC
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 12:55:20 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405999AbfHIKuu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 06:50:50 -0400
-Received: from inva020.nxp.com ([92.121.34.13]:56538 "EHLO inva020.nxp.com"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1726537AbfHIKut (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Aug 2019 06:50:49 -0400
-Received: from inva020.nxp.com (localhost [127.0.0.1])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id 068D21A013B;
-        Fri,  9 Aug 2019 12:50:48 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva020.eu-rdc02.nxp.com (Postfix) with ESMTP id E5F101A0068;
-        Fri,  9 Aug 2019 12:50:42 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 696B04029A;
-        Fri,  9 Aug 2019 18:50:36 +0800 (SGT)
-From:   Shengjiu Wang <shengjiu.wang@nxp.com>
-To:     timur@kernel.org, nicoleotsuka@gmail.com, Xiubo.Lee@gmail.com,
-        festevam@gmail.com, broonie@kernel.org,
-        alsa-devel@alsa-project.org, robh+dt@kernel.org,
-        mark.rutland@arm.com
-Cc:     linuxppc-dev@lists.ozlabs.org, linux-kernel@vger.kernel.org,
-        devicetree@vger.kernel.org
-Subject: [PATCH 2/2] ASoC: fsl_esai: Add new compatible string for imx6ull
-Date:   Fri,  9 Aug 2019 18:27:47 +0800
-Message-Id: <1565346467-5769-2-git-send-email-shengjiu.wang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1565346467-5769-1-git-send-email-shengjiu.wang@nxp.com>
-References: <1565346467-5769-1-git-send-email-shengjiu.wang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S2406367AbfHIKzS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 06:55:18 -0400
+Received: from lelv0143.ext.ti.com ([198.47.23.248]:46462 "EHLO
+        lelv0143.ext.ti.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S2406093AbfHIKzS (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 06:55:18 -0400
+Received: from fllv0035.itg.ti.com ([10.64.41.0])
+        by lelv0143.ext.ti.com (8.15.2/8.15.2) with ESMTP id x79At644119000;
+        Fri, 9 Aug 2019 05:55:06 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=ti.com;
+        s=ti-com-17Q1; t=1565348106;
+        bh=EuFRbPO24ydwIrvN4X9jukmq4Ulhmnp4FtEkRmDum1c=;
+        h=Subject:To:CC:References:From:Date:In-Reply-To;
+        b=lv0eUFWtcdzYUOYpKZ9h6xZmtzW1Wg8fBnZ/xS0RypnEJok9ZZ6x6+jJLcLLksRqh
+         HF5q9XuSnJXac9PXQ3H6xXt8BJ/EJPhhmoahDgtGInKNjCYT+h6MRhhr5u5sH57spL
+         ENc3OQBWtOzrJsS+8swz3rHfG6U2FrUdUm5hzDNc=
+Received: from DLEE100.ent.ti.com (dlee100.ent.ti.com [157.170.170.30])
+        by fllv0035.itg.ti.com (8.15.2/8.15.2) with ESMTPS id x79At6uu000734
+        (version=TLSv1.2 cipher=AES256-GCM-SHA384 bits=256 verify=FAIL);
+        Fri, 9 Aug 2019 05:55:06 -0500
+Received: from DLEE103.ent.ti.com (157.170.170.33) by DLEE100.ent.ti.com
+ (157.170.170.30) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5; Fri, 9 Aug
+ 2019 05:55:04 -0500
+Received: from fllv0040.itg.ti.com (10.64.41.20) by DLEE103.ent.ti.com
+ (157.170.170.33) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256_P256) id 15.1.1713.5 via
+ Frontend Transport; Fri, 9 Aug 2019 05:55:04 -0500
+Received: from [172.24.191.45] (ileax41-snat.itg.ti.com [10.172.224.153])
+        by fllv0040.itg.ti.com (8.15.2/8.15.2) with ESMTP id x79At1cW079749;
+        Fri, 9 Aug 2019 05:55:02 -0500
+Subject: Re: [PATCH 1/6] dt-bindings: gpio: davinci: Add new compatible for
+ J721E SoCs
+To:     Lokesh Vutla <lokeshvutla@ti.com>, Tero Kristo <t-kristo@ti.com>,
+        Nishanth Menon <nm@ti.com>, <linus.walleij@linaro.org>
+CC:     Rob Herring <robh+dt@kernel.org>, <linux-gpio@vger.kernel.org>,
+        Device Tree Mailing List <devicetree@vger.kernel.org>,
+        Linux ARM Mailing List <linux-arm-kernel@lists.infradead.org>
+References: <20190809082947.30590-1-lokeshvutla@ti.com>
+ <20190809082947.30590-2-lokeshvutla@ti.com>
+From:   Keerthy <j-keerthy@ti.com>
+Message-ID: <3d001f23-6389-d5c2-4037-9a36e057db41@ti.com>
+Date:   Fri, 9 Aug 2019 16:25:38 +0530
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
+MIME-Version: 1.0
+In-Reply-To: <20190809082947.30590-2-lokeshvutla@ti.com>
+Content-Type: text/plain; charset="utf-8"; format=flowed
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
+X-EXCLAIMER-MD-CONFIG: e1e8a2fd-e40a-4ac6-ac9b-f7e9cc9ee180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add new compatible string "fsl,imx6ull-esai" in the binding document.
 
-Signed-off-by: Shengjiu Wang <shengjiu.wang@nxp.com>
----
- Documentation/devicetree/bindings/sound/fsl,esai.txt | 7 +++++--
- 1 file changed, 5 insertions(+), 2 deletions(-)
 
-diff --git a/Documentation/devicetree/bindings/sound/fsl,esai.txt b/Documentation/devicetree/bindings/sound/fsl,esai.txt
-index 5b9914367610..0e6e2166f76c 100644
---- a/Documentation/devicetree/bindings/sound/fsl,esai.txt
-+++ b/Documentation/devicetree/bindings/sound/fsl,esai.txt
-@@ -7,8 +7,11 @@ other DSPs. It has up to six transmitters and four receivers.
- 
- Required properties:
- 
--  - compatible		: Compatible list, must contain "fsl,imx35-esai" or
--			  "fsl,vf610-esai"
-+  - compatible		: Compatible list, should contain one of the following
-+			  compatibles:
-+			  "fsl,imx35-esai",
-+			  "fsl,vf610-esai",
-+			  "fsl,imx6ull-esai",
- 
-   - reg			: Offset and length of the register set for the device.
- 
--- 
-2.21.0
+On 09/08/19 1:59 PM, Lokesh Vutla wrote:
+> J721e SoCs have same gpio IP as K2G davinci gpio. Add a new compatible to
+> handle J721E SoCs.
 
+Reviewed-by: Keerthy <j-keerthy@ti.com>
+
+> 
+> Signed-off-by: Lokesh Vutla <lokeshvutla@ti.com>
+> ---
+>   Documentation/devicetree/bindings/gpio/gpio-davinci.txt | 1 +
+>   1 file changed, 1 insertion(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/gpio/gpio-davinci.txt b/Documentation/devicetree/bindings/gpio/gpio-davinci.txt
+> index bc6b4b62df83..cd91d61eac31 100644
+> --- a/Documentation/devicetree/bindings/gpio/gpio-davinci.txt
+> +++ b/Documentation/devicetree/bindings/gpio/gpio-davinci.txt
+> @@ -6,6 +6,7 @@ Required Properties:
+>   						66AK2E SoCs
+>   			"ti,k2g-gpio", "ti,keystone-gpio": for 66AK2G
+>   			"ti,am654-gpio", "ti,keystone-gpio": for TI K3 AM654
+> +			"ti,j721e-gpio", "ti,keystone-gpio": for J721E SoCs
+>   
+>   - reg: Physical base address of the controller and the size of memory mapped
+>          registers.
+> 
