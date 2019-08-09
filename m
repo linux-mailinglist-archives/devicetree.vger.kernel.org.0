@@ -2,121 +2,126 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 10D9D871A6
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 07:43:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D794B871B1
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 07:47:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405425AbfHIFnB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 01:43:01 -0400
-Received: from metis.ext.pengutronix.de ([85.220.165.71]:54627 "EHLO
-        metis.ext.pengutronix.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727718AbfHIFnB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 01:43:01 -0400
-Received: from pty.hi.pengutronix.de ([2001:67c:670:100:1d::c5])
-        by metis.ext.pengutronix.de with esmtps (TLS1.2:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hvxfy-0004qe-Pc; Fri, 09 Aug 2019 07:42:54 +0200
-Received: from mfe by pty.hi.pengutronix.de with local (Exim 4.89)
-        (envelope-from <mfe@pengutronix.de>)
-        id 1hvxfy-0006TL-FG; Fri, 09 Aug 2019 07:42:54 +0200
-Date:   Fri, 9 Aug 2019 07:42:54 +0200
-From:   Marco Felsch <m.felsch@pengutronix.de>
-To:     Mauro Carvalho Chehab <mchehab@kernel.org>
-Cc:     sakari.ailus@linux.intel.com, hans.verkuil@cisco.com,
-        jacopo+renesas@jmondi.org, robh+dt@kernel.org,
-        laurent.pinchart@ideasonboard.com, linux-media@vger.kernel.org,
-        devicetree@vger.kernel.org, kernel@pengutronix.de,
-        Michael Tretter <m.tretter@pengutronix.de>
-Subject: Re: [PATCH v6 08/13] media: tvp5150: initialize subdev before
- parsing device tree
-Message-ID: <20190809054254.k6saouaq6l4ebb3l@pengutronix.de>
-References: <20190415124413.18456-1-m.felsch@pengutronix.de>
- <20190415124413.18456-9-m.felsch@pengutronix.de>
- <20190514172052.7123204f@coco.lan>
+        id S2405472AbfHIFrQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 01:47:16 -0400
+Received: from mail.kernel.org ([198.145.29.99]:45958 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725912AbfHIFrQ (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Aug 2019 01:47:16 -0400
+Received: from localhost (unknown [122.167.65.92])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 2FFCB20C01;
+        Fri,  9 Aug 2019 05:47:13 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565329635;
+        bh=0NGH7pa4qGdi2942c1QYy0xh8Num+O/K8NEalY+oyGU=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=VWDkjNU0fHKREEctsjhTGG5vYGpFBmwBGgIRi6C5Qm9oTsvdakjZY6PAceWV6hCy1
+         Dd6GSPZoVIF5PFHFtKsno0L0SVfpWY32J5jE1/NbjYqJNVwHm8ADRzfAxlACBrECmt
+         GkWzMKQFOFxvkSGeoEyLjcvlrPk01QN5hxtuAAVk=
+Date:   Fri, 9 Aug 2019 11:16:02 +0530
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+Cc:     Pierre-Louis Bossart <pierre-louis.bossart@linux.intel.com>,
+        broonie@kernel.org, bgoswami@codeaurora.org, plai@codeaurora.org,
+        robh+dt@kernel.org, devicetree@vger.kernel.org,
+        lgirdwood@gmail.com, alsa-devel@alsa-project.org,
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH v2 2/4] soundwire: core: add device tree support for
+ slave devices
+Message-ID: <20190809054602.GK12733@vkoul-mobl.Dlink>
+References: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
+ <20190808144504.24823-3-srinivas.kandagatla@linaro.org>
+ <42ca4170-0fa0-6951-f568-89a05c095d5a@linux.intel.com>
+ <564f5fa4-59ec-b4e5-a7a5-29dee99039b3@linaro.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
-In-Reply-To: <20190514172052.7123204f@coco.lan>
-X-Sent-From: Pengutronix Hildesheim
-X-URL:  http://www.pengutronix.de/
-X-IRC:  #ptxdist @freenode
-X-Accept-Language: de,en
-X-Accept-Content-Type: text/plain
-X-Uptime: 07:42:22 up 83 days, 12:00, 54 users,  load average: 0.06, 0.08,
- 0.04
-User-Agent: NeoMutt/20170113 (1.7.2)
-X-SA-Exim-Connect-IP: 2001:67c:670:100:1d::c5
-X-SA-Exim-Mail-From: mfe@pengutronix.de
-X-SA-Exim-Scanned: No (on metis.ext.pengutronix.de); SAEximRunCond expanded to false
-X-PTX-Original-Recipient: devicetree@vger.kernel.org
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <564f5fa4-59ec-b4e5-a7a5-29dee99039b3@linaro.org>
+User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mauro,
-
-On 19-05-14 17:20, Mauro Carvalho Chehab wrote:
-> Em Mon, 15 Apr 2019 14:44:08 +0200
-> Marco Felsch <m.felsch@pengutronix.de> escreveu:
+On 08-08-19, 16:17, Srinivas Kandagatla wrote:
+> Thanks for taking time to review.
 > 
-> > From: Michael Tretter <m.tretter@pengutronix.de>
+> On 08/08/2019 16:00, Pierre-Louis Bossart wrote:
 > > 
-> > There are several debug prints in the tvp5150_parse_dt() function, which
-> > do not print the prefix, because the v4l2_subdev is not initialized, yet.
+> > > @@ -35,6 +36,7 @@ static int sdw_slave_add(struct sdw_bus *bus,
+> > >       slave->dev.release = sdw_slave_release;
+> > >       slave->dev.bus = &sdw_bus_type;
+> > > +    slave->dev.of_node = of_node_get(to_of_node(fwnode));
 > > 
-> > Initialize the v4l2_subdev before parsing the device tree to fix the
-> > debug messages.
+> > shouldn't this protected by
+> > #if IS_ENABLED(CONFIG_OF) ?
 > > 
-> > Signed-off-by: Michael Tretter <m.tretter@pengutronix.de>
-> > Signed-off-by: Marco Felsch <m.felsch@pengutronix.de>
-> 
-> Looks ok to me.
+> These macros and functions have dummy entries, so it should not be an issue.
+> I did build soundwire with i386_defconfig with no issues.
 
-Can I add you Reviewed-by tag here?
-
-Regards,
-  Marco
+That means this function was compiled without errors, that is not strange nowadays
+given the ARM compiles ACPI and x86 OF, so check with OF being disable
+just to be safe :) I think dummy entries are helping
 
 > 
-> > ---
-> >  drivers/media/i2c/tvp5150.c | 7 +++----
-> >  1 file changed, 3 insertions(+), 4 deletions(-)
+> > >       slave->bus = bus;
+> > >       slave->status = SDW_SLAVE_UNATTACHED;
+> > >       slave->dev_num = 0;
+> > > @@ -112,3 +114,48 @@ int sdw_acpi_find_slaves(struct sdw_bus *bus)
+> > >   }
+> > >   #endif
+> > > +
+> > > +/*
+> > > + * sdw_of_find_slaves() - Find Slave devices in master device tree node
+> > > + * @bus: SDW bus instance
+> > > + *
+> > > + * Scans Master DT node for SDW child Slave devices and registers it.
+> > > + */
+> > > +int sdw_of_find_slaves(struct sdw_bus *bus)
+> > > +{
+> > > +    struct device *dev = bus->dev;
+> > > +    struct device_node *node;
+> > > +
+> > > +    for_each_child_of_node(bus->dev->of_node, node) {
+> > > +        struct sdw_slave_id id;
+> > > +        const char *compat = NULL;
+> > > +        int unique_id, ret;
+> > > +        int ver, mfg_id, part_id, class_id;
+> > > +
+> > > +        compat = of_get_property(node, "compatible", NULL);
+> > > +        if (!compat)
+> > > +            continue;
+> > > +
+> > > +        ret = sscanf(compat, "sdw%x,%x,%x,%x",
+> > > +                 &ver, &mfg_id, &part_id, &class_id);
+> > > +        if (ret != 4) {
+> > > +            dev_err(dev, "Manf ID & Product code not found %s\n",
+> > > +                compat);
+> > > +            continue;
+> > > +        }
+> > > +
+> > > +        ret = of_property_read_u32(node, "sdw-instance-id", &unique_id);
+> > > +        if (ret) {
+> > > +            dev_err(dev, "Instance id not found:%d\n", ret);
+> > > +            continue;
 > > 
-> > diff --git a/drivers/media/i2c/tvp5150.c b/drivers/media/i2c/tvp5150.c
-> > index 9331609425bf..305a5e256b31 100644
-> > --- a/drivers/media/i2c/tvp5150.c
-> > +++ b/drivers/media/i2c/tvp5150.c
-> > @@ -1973,6 +1973,9 @@ static int tvp5150_probe(struct i2c_client *c,
-> >  
-> >  	core->regmap = map;
-> >  	sd = &core->sd;
-> > +	v4l2_i2c_subdev_init(sd, c, &tvp5150_ops);
-> > +	sd->internal_ops = &tvp5150_internal_ops;
-> > +	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> >  
-> >  	if (IS_ENABLED(CONFIG_OF) && np) {
-> >  		res = tvp5150_parse_dt(core, np);
-> > @@ -1985,10 +1988,6 @@ static int tvp5150_probe(struct i2c_client *c,
-> >  		core->mbus_type = V4L2_MBUS_BT656;
-> >  	}
-> >  
-> > -	v4l2_i2c_subdev_init(sd, c, &tvp5150_ops);
-> > -	sd->internal_ops = &tvp5150_internal_ops;
-> > -	sd->flags |= V4L2_SUBDEV_FL_HAS_DEVNODE;
-> > -
-> >  	res = tvp5150_mc_init(core);
-> >  	if (res)
-> >  		goto err_cleanup_dt;
+> > I am confused here.
+> > If you have two identical devices on the same link, isn't this property
+> > required and that should be a real error instead of a continue?
 > 
+> Yes, I agree it will be mandatory in such cases.
 > 
-> 
-> Thanks,
-> Mauro
-> 
+> Am okay either way, I dont mind changing it to returning EINVAL in all the
+> cases.
+
+Do we want to abort? We are in loop scanning for devices so makes sense
+if we do not do that and continue to check next one..
 
 -- 
-Pengutronix e.K.                           |                             |
-Industrial Linux Solutions                 | http://www.pengutronix.de/  |
-Peiner Str. 6-8, 31137 Hildesheim, Germany | Phone: +49-5121-206917-0    |
-Amtsgericht Hildesheim, HRA 2686           | Fax:   +49-5121-206917-5555 |
+~Vinod
