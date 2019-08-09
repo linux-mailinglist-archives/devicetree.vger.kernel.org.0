@@ -2,96 +2,92 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BD1B8880AF
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 19:01:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 34247880CD
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 19:07:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2436821AbfHIRBt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 13:01:49 -0400
-Received: from mail-pl1-f193.google.com ([209.85.214.193]:33366 "EHLO
-        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S2436801AbfHIRBt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 13:01:49 -0400
-Received: by mail-pl1-f193.google.com with SMTP id c14so45110681plo.0
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 10:01:49 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=mQxrbMZs/P0o3fvXA6rWNom+DiEV73SK0CyreYYoeco=;
-        b=g6XhQsxjBSHr7B3N+XAUtFobb0a6Qhe5NzHTss0Z3N6hg2Lj+w3Fc0+mmNK2ddfzvi
-         ifdSm4AhQex1l9YpBOIBpix6YdbZOV3YEZwpEtlX6mo9FqK78njXXUYna5ZR0htvQx/y
-         UKMsMYhVHHTqr8vrEKRG+NgGoxa4/GQCEA7LWdQniWGLP5Vat73a5CUg/j4noYI+DBHB
-         w5ozBbNcUGYPs9kTfnRkyzATzV3yR/z7w6sn7p8gS61o5vb4HmQL6NB2JOd2qN8egQsq
-         dTFxGmIo15mJ9xI0fyMSsjwVonsgWtbdqRBtGdBK2OKm4wl4HIq5vemoAlCnrSzrzVXR
-         RrcQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=mQxrbMZs/P0o3fvXA6rWNom+DiEV73SK0CyreYYoeco=;
-        b=ZC3/iTXU9Zaw9L3Ze7JP8Mj85Y0oiwugNpXnq8y+2ltZJStqjoh5YCiIhhlo4Phc9g
-         qk85OjnMHAqD04wSHz4s0QF3hHKnP4qtF/KYXgdrONQkjgnC2XfTBOF2T+Fw1otq1awv
-         b9YoL1vId09e70yYv+spjSQSPKee8POnr2tizWhg0zZFR9VAzXliHH0ad1iDIF8yAd6v
-         0wYetlQ//xjxCikRl3eyLJ5Ruxd/d/7aJU/vd6hqPtGp0RmBebOgxRlfdCA2kWJajJzI
-         0BKkJkV2olmloeJdFyjTVGk3uz4a07s5B2E4KoWBJuryi4gXLRwup5QKbuEYCKx9i0MM
-         07Xg==
-X-Gm-Message-State: APjAAAVcX6bPF7vCfTgq+AbvaOmIQx12j9iM0LMDZxMXmjUkBERYTHX9
-        2itgV0mz/DDmdbRA867je41VRg==
-X-Google-Smtp-Source: APXvYqz/+EaQnfQKxiBOqQ5ZQQWWUCD2VOGKCRvqtpriP1SeTj/ziKt4NAn1mwADltF9GXsvm1S38A==
-X-Received: by 2002:a17:902:e613:: with SMTP id cm19mr18634717plb.299.1565370108924;
-        Fri, 09 Aug 2019 10:01:48 -0700 (PDT)
-Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
-        by smtp.gmail.com with ESMTPSA id 4sm111526529pfc.92.2019.08.09.10.01.47
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 09 Aug 2019 10:01:48 -0700 (PDT)
-Date:   Fri, 9 Aug 2019 10:03:22 -0700
-From:   Bjorn Andersson <bjorn.andersson@linaro.org>
-To:     Vinod Koul <vkoul@kernel.org>
-Cc:     Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
-        Andy Gross <agross@kernel.org>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
-Subject: Re: [PATCH 3/4] regulator: qcom-rpmh: Fix pmic5_bob voltage count
-Message-ID: <20190809170322.GO26807@tuxbook-pro>
-References: <20190809073616.1235-1-vkoul@kernel.org>
- <20190809073616.1235-3-vkoul@kernel.org>
+        id S2437217AbfHIRHo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 13:07:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:60596 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S2437166AbfHIRHo (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Aug 2019 13:07:44 -0400
+Received: from mail-qt1-f180.google.com (mail-qt1-f180.google.com [209.85.160.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 0BB5520820;
+        Fri,  9 Aug 2019 17:07:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565370463;
+        bh=td4WT5L6sUbLPGMcC2rgQ1AreEqJT3zC3mPDyJzfMwg=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=QYaiJaeNwh52yygHZKBZK4gJSBvGHNK2g9MXjg/qpBnEhDw7XHDMXx4iet/4+C9PQ
+         czBsLI4++elQaRyiricXgHxxvetYGVXZbnt/gzHU1gtm0qsh7Bif8b+E9/3JSaYFp9
+         9CP/LaUOkV+qh9QOdx10zuUkIq64xQzmsETb7FDs=
+Received: by mail-qt1-f180.google.com with SMTP id a15so96431345qtn.7;
+        Fri, 09 Aug 2019 10:07:43 -0700 (PDT)
+X-Gm-Message-State: APjAAAXgCew8m2wEJkvuQaMCyuINzv11KT7MncVG62UlaJn4hsuy0Jkm
+        09BLHc9RZ9PLQNzgBlzdp/zHj5aQ5XaQA2wH9w==
+X-Google-Smtp-Source: APXvYqxQFlsxKQTsoRNrDqs5WV3+vuTWpbQ6YgRh5R5HUZ9BUeRSJyuUwydSt19fd8aJIkkfwtreR3hWL5+n91XE59E=
+X-Received: by 2002:a0c:9782:: with SMTP id l2mr5661633qvd.72.1565370462225;
+ Fri, 09 Aug 2019 10:07:42 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190809073616.1235-3-vkoul@kernel.org>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+References: <20190809121918.25047-1-sr@denx.de> <20190809121918.25047-2-sr@denx.de>
+In-Reply-To: <20190809121918.25047-2-sr@denx.de>
+From:   Rob Herring <robh@kernel.org>
+Date:   Fri, 9 Aug 2019 11:07:29 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJmcHWq8LA6CrTJEV2Pi58+6yO_ND61MNA_=LrOa33Psg@mail.gmail.com>
+Message-ID: <CAL_JsqJmcHWq8LA6CrTJEV2Pi58+6yO_ND61MNA_=LrOa33Psg@mail.gmail.com>
+Subject: Re: [PATCH 2/3 v3] dt-bindings: mips: Add gardena vendor prefix and
+ board description
+To:     Stefan Roese <sr@denx.de>
+Cc:     linux-mips@vger.kernel.org, Paul Burton <paul.burton@mips.com>,
+        devicetree@vger.kernel.org
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri 09 Aug 00:36 PDT 2019, Vinod Koul wrote:
-
-> pmic5_bob voltages count is 136 [0,135] so update it
-> 
-> Signed-off-by: Vinod Koul <vkoul@kernel.org>
-
-Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
-
+On Fri, Aug 9, 2019 at 6:19 AM Stefan Roese <sr@denx.de> wrote:
+>
+> This patch adds the vendor prefix for gardena and a short description
+> including the compatible string for the "GARDENA smart Gateway" based
+> on the MT7688 SoC.
+>
+> Signed-off-by: Stefan Roese <sr@denx.de>
+> Cc: Paul Burton <paul.burton@mips.com>
+> Cc: Rob Herring <robh@kernel.org>
+> Cc: devicetree@vger.kernel.org
 > ---
->  drivers/regulator/qcom-rpmh-regulator.c | 2 +-
->  1 file changed, 1 insertion(+), 1 deletion(-)
-> 
-> diff --git a/drivers/regulator/qcom-rpmh-regulator.c b/drivers/regulator/qcom-rpmh-regulator.c
-> index 0ef2716da3bd..391ed844a251 100644
-> --- a/drivers/regulator/qcom-rpmh-regulator.c
-> +++ b/drivers/regulator/qcom-rpmh-regulator.c
-> @@ -698,7 +698,7 @@ static const struct rpmh_vreg_hw_data pmic5_bob = {
->  	.regulator_type = VRM,
->  	.ops = &rpmh_regulator_vrm_bypass_ops,
->  	.voltage_range = REGULATOR_LINEAR_RANGE(300000, 0, 135, 32000),
-> -	.n_voltages = 135,
-> +	.n_voltages = 136,
->  	.pmic_mode_map = pmic_mode_map_pmic4_bob,
->  	.of_map_mode = rpmh_regulator_pmic4_bob_of_map_mode,
->  };
-> -- 
-> 2.20.1
-> 
+> v3:
+> - New patch
+>
+>  .../devicetree/bindings/mips/ralink/gardena.txt          | 9 +++++++++
+>  Documentation/devicetree/bindings/vendor-prefixes.yaml   | 2 ++
+>  2 files changed, 11 insertions(+)
+>  create mode 100644 Documentation/devicetree/bindings/mips/ralink/gardena.txt
+
+Please add to ralink.txt rather than a new file. Ideally, that would
+be converted to DT schema first, but given this is v3 already I won't
+require that. A binding file per board vendor doesn't scale well and
+will be a lot of duplication for schemas.
+
+> diff --git a/Documentation/devicetree/bindings/mips/ralink/gardena.txt b/Documentation/devicetree/bindings/mips/ralink/gardena.txt
+> new file mode 100644
+> index 000000000000..4022fe61a8ee
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/mips/ralink/gardena.txt
+> @@ -0,0 +1,9 @@
+> +GARDENA smart Gateway (MT7688)
+> +
+> +This board is based on the MediaTek MT7688 and equipped with 128 MiB
+> +of DDR and 8 MiB of flash (SPI NOR) and additional 128MiB SPI NAND
+> +storage.
+> +
+> +------------------------------
+> +Required root node properties:
+> +- compatible = "gardena,smartGatewayMT7688";
+
+You need an SoC compatible for MT7688 which isn't documented either.
+
+Rob
