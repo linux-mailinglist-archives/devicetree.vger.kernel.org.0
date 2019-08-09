@@ -2,74 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F268B87330
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 09:37:38 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 765C487335
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 09:38:03 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S2405871AbfHIHhS (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 03:37:18 -0400
-Received: from inva021.nxp.com ([92.121.34.21]:60644 "EHLO inva021.nxp.com"
+        id S2405697AbfHIHhy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 03:37:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:35744 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S2405856AbfHIHhP (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Aug 2019 03:37:15 -0400
-Received: from inva021.nxp.com (localhost [127.0.0.1])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id 3C73520034E;
-        Fri,  9 Aug 2019 09:37:13 +0200 (CEST)
-Received: from invc005.ap-rdc01.nxp.com (invc005.ap-rdc01.nxp.com [165.114.16.14])
-        by inva021.eu-rdc02.nxp.com (Postfix) with ESMTP id E7BBB200348;
-        Fri,  9 Aug 2019 09:37:04 +0200 (CEST)
-Received: from localhost.localdomain (shlinux2.ap.freescale.net [10.192.224.44])
-        by invc005.ap-rdc01.nxp.com (Postfix) with ESMTP id 9CBE440293;
-        Fri,  9 Aug 2019 15:36:54 +0800 (SGT)
-From:   Anson Huang <Anson.Huang@nxp.com>
-To:     wim@linux-watchdog.org, linux@roeck-us.net, robh+dt@kernel.org,
-        mark.rutland@arm.com, shawnguo@kernel.org, s.hauer@pengutronix.de,
-        kernel@pengutronix.de, festevam@gmail.com, linux@armlinux.org.uk,
-        otavio@ossystems.com.br, leonard.crestez@nxp.com,
-        schnitzeltony@gmail.com, u.kleine-koenig@pengutronix.de,
-        jan.tuerk@emtrion.com, linux-watchdog@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Cc:     Linux-imx@nxp.com
-Subject: [PATCH 4/4] ARM: dts: imx7ulp: Add wdog1 node
-Date:   Fri,  9 Aug 2019 15:14:02 +0800
-Message-Id: <1565334842-28161-4-git-send-email-Anson.Huang@nxp.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1565334842-28161-1-git-send-email-Anson.Huang@nxp.com>
-References: <1565334842-28161-1-git-send-email-Anson.Huang@nxp.com>
-X-Virus-Scanned: ClamAV using ClamSMTP
+        id S1725980AbfHIHhy (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Aug 2019 03:37:54 -0400
+Received: from localhost.localdomain (unknown [122.167.65.92])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3780B2171F;
+        Fri,  9 Aug 2019 07:37:50 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565336274;
+        bh=Wub1Zh9b0Ued8Nu9nACHA+ybTs6jaysV3XnW8dA4YcE=;
+        h=From:To:Cc:Subject:Date:From;
+        b=ocuwjTNk7pUIjC5736gkGIKpY0rf1OIL2FwHCE4UXCLKNpWmctZP9xCrt6lJZaty3
+         SBlB2aUUkhGsMmqJ3d2mvtYNTpsB4aqjdoh5nV6JS/hxZWSACsyCpzaamXh/VamDez
+         o+97aOd+qcKlDt8zJZUbpD/Vv/Cdx71bMqeWoO88=
+From:   Vinod Koul <vkoul@kernel.org>
+To:     Mark Brown <broonie@kernel.org>
+Cc:     linux-arm-msm@vger.kernel.org,
+        Bjorn Andersson <bjorn.andersson@linaro.org>,
+        Vinod Koul <vkoul@kernel.org>, Andy Gross <agross@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: [PATCH 1/4] regulator: dt-bindings: Sort the compatibles and nodes
+Date:   Fri,  9 Aug 2019 13:06:13 +0530
+Message-Id: <20190809073616.1235-1-vkoul@kernel.org>
+X-Mailer: git-send-email 2.20.1
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add wdog1 node to support watchdog driver.
+It helps to keep sorted order for compatibles and nodes, so sort them
 
-Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+Suggested-by: Bjorn Andersson <bjorn.andersson@linaro.org>
+Signed-off-by: Vinod Koul <vkoul@kernel.org>
 ---
- arch/arm/boot/dts/imx7ulp.dtsi | 10 ++++++++++
- 1 file changed, 10 insertions(+)
+ .../regulator/qcom,rpmh-regulator.txt         | 19 ++++++++++---------
+ 1 file changed, 10 insertions(+), 9 deletions(-)
 
-diff --git a/arch/arm/boot/dts/imx7ulp.dtsi b/arch/arm/boot/dts/imx7ulp.dtsi
-index 6859a3a..1fdb5a35 100644
---- a/arch/arm/boot/dts/imx7ulp.dtsi
-+++ b/arch/arm/boot/dts/imx7ulp.dtsi
-@@ -264,6 +264,16 @@
- 			#clock-cells = <1>;
- 		};
+diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+index 1a9cab50503a..bab9f71140b8 100644
+--- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
++++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+@@ -22,12 +22,12 @@ RPMh resource.
  
-+		wdog1: wdog@403d0000 {
-+			compatible = "fsl,imx7ulp-wdt";
-+			reg = <0x403d0000 0x10000>;
-+			interrupts = <GIC_SPI 55 IRQ_TYPE_LEVEL_HIGH>;
-+			clocks = <&pcc2 IMX7ULP_CLK_WDG1>;
-+			assigned-clocks = <&pcc2 IMX7ULP_CLK_WDG1>;
-+			assigned-clocks-parents = <&scg1 IMX7ULP_CLK_FIRC_BUS_CLK>;
-+			timeout-sec = <40>;
-+		};
-+
- 		pcc2: clock-controller@403f0000 {
- 			compatible = "fsl,imx7ulp-pcc2";
- 			reg = <0x403f0000 0x10000>;
+ The names used for regulator nodes must match those supported by a given PMIC.
+ Supported regulator node names:
+-	PM8998:		smps1 - smps13, ldo1 - ldo28, lvs1 - lvs2
+-	PMI8998:	bob
+ 	PM8005:		smps1 - smps4
++	PM8009:		smps1 - smps2, ldo1 - ldo7
+ 	PM8150:		smps1 - smps10, ldo1 - ldo18
+ 	PM8150L:	smps1 - smps8, ldo1 - ldo11, bob, flash, rgb
+-	PM8009:		smps1 - smps2, ld01 - ldo7
++	PM8998:		smps1 - smps13, ldo1 - ldo28, lvs1 - lvs2
++	PMI8998:	bob
+ 
+ ========================
+ First Level Nodes - PMIC
+@@ -36,12 +36,13 @@ First Level Nodes - PMIC
+ - compatible
+ 	Usage:      required
+ 	Value type: <string>
+-	Definition: Must be one of: "qcom,pm8998-rpmh-regulators",
+-		    "qcom,pmi8998-rpmh-regulators" or
+-		    "qcom,pm8005-rpmh-regulators" or
+-		    "qcom,pm8150-rpmh-regulators" or
+-		    "qcom,pm8150l-rpmh-regulators" or
+-		    "qcom,pm8009-rpmh-regulators".
++	Definition: Must be one of below:
++		    "qcom,pm8005-rpmh-regulators"
++		    "qcom,pm8009-rpmh-regulators"
++		    "qcom,pm8150-rpmh-regulators"
++		    "qcom,pm8150l-rpmh-regulators"
++		    "qcom,pm8998-rpmh-regulators"
++		    "qcom,pmi8998-rpmh-regulators"
+ 
+ - qcom,pmic-id
+ 	Usage:      required
 -- 
-2.7.4
+2.20.1
 
