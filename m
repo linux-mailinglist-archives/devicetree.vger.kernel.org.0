@@ -2,42 +2,42 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 5FA6E87125
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 06:57:51 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 0FCBE87133
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 07:01:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725879AbfHIE5u (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 00:57:50 -0400
-Received: from mail.kernel.org ([198.145.29.99]:33802 "EHLO mail.kernel.org"
+        id S2405388AbfHIFBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 01:01:17 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34432 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725811AbfHIE5u (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Fri, 9 Aug 2019 00:57:50 -0400
-Received: from localhost (unknown [122.167.65.92])
+        id S1725879AbfHIFBR (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Fri, 9 Aug 2019 01:01:17 -0400
+Received: from localhost (unknown [106.51.111.143])
         (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id AD7C22173E;
-        Fri,  9 Aug 2019 04:57:46 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 71BE2214C6;
+        Fri,  9 Aug 2019 05:01:15 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565326669;
-        bh=c2r9FC9z+EDj4pfOEGxUvJFcx8xbR4EhmThEzzCOMRc=;
+        s=default; t=1565326876;
+        bh=55Gs1G9Rz04Gs41D1M4WjTdna+61wD7lIipwnYMQUFY=;
         h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=rEQXtV1oQBgjC9+EI0rtsFoOwtAFPNHyZWBA4tRxjGk3V3wHBC8NrVusknkHTFVPJ
-         nDnn9FDpvWmdLV+QH266JQjeEfMa2NPt0XWZ7QGP9XXbdGGoD/4dfpjqc4w95G/LkB
-         /OLw++KZcT/y1UU5qfggjoF/s2R2qA132VIaUxoY=
-Date:   Fri, 9 Aug 2019 10:26:30 +0530
+        b=cwaTFUMUPfzNaN/PYEWqdDYZ+GJMRCu5TiiLR7EnQoxnGsSVl8Z+09Q7JAHTOXjeL
+         jvlwUdLeiND0cIP93SeVPyFcKaXUVGw4Wrk+JstNZmj+yvQLLlJ/C+OWjE+2ATQFcr
+         E4DCh5p77RxazIhzmgohj63LIDqUX/RbUlnBn12Y=
+Date:   Fri, 9 Aug 2019 10:30:04 +0530
 From:   Vinod Koul <vkoul@kernel.org>
 To:     Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
 Cc:     broonie@kernel.org, bgoswami@codeaurora.org, plai@codeaurora.org,
         pierre-louis.bossart@linux.intel.com, robh+dt@kernel.org,
         devicetree@vger.kernel.org, lgirdwood@gmail.com,
         alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-Subject: Re: [PATCH v2 0/4] ASoC: codecs: Add WSA881x Smart Speaker amplifier
- support
-Message-ID: <20190809045630.GH12733@vkoul-mobl.Dlink>
+Subject: Re: [PATCH v2 1/4] dt-bindings: soundwire: add slave bindings
+Message-ID: <20190809050004.GI12733@vkoul-mobl.Dlink>
 References: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
+ <20190808144504.24823-2-srinivas.kandagatla@linaro.org>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190808144504.24823-1-srinivas.kandagatla@linaro.org>
+In-Reply-To: <20190808144504.24823-2-srinivas.kandagatla@linaro.org>
 User-Agent: Mutt/1.11.3 (2019-02-01)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -45,52 +45,74 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 On 08-08-19, 15:45, Srinivas Kandagatla wrote:
-> This patchset adds support to WSA8810/WSA8815 Class-D Smart Speaker
-> Amplifier which is SoundWire interfaced.
-> This also adds support to some missing bits in SoundWire bus layer like
-> Device Tree support and module_sdw_driver macro.
-                                ^^^^^^^^^^^^^^^
-That part we already applied :D
-
-> This patchset along with DB845c machine driver and WCD934x codec driver
-> has been tested on SDM845 SoC based DragonBoard DB845c with two
-> WSA8810 speakers.
+> This patch adds bindings for Soundwire Slave devices which includes how
+> SoundWire enumeration address is represented in SoundWire slave device
+> tree nodes.
 > 
-> Most of the code in this driver is rework of Qualcomm downstream drivers
-> used in Andriod. Credits to Banajit Goswami and Patrick Lai's Team.
-> 
-> TODO:
-> 	Add thermal sensor support in WSA881x.
-> 
-> This patchset also depends on the soundwire Kconfig patch
-> https://lkml.org/lkml/2019/7/18/834 from Pierre
-> 
-> Thanks,
-> srini
-> 
-> Changes since v1 RFC:
-> - bindings document renamed to slave.txt
-> - fix error code from dt slave parsing
-> 
-> Srinivas Kandagatla (4):
->   dt-bindings: soundwire: add slave bindings
->   soundwire: core: add device tree support for slave devices
->   dt-bindings: ASoC: Add WSA881x bindings
->   ASoC: codecs: add wsa881x amplifier support
-> 
->  .../bindings/sound/qcom,wsa881x.txt           |   27 +
->  .../devicetree/bindings/soundwire/slave.txt   |   46 +
->  drivers/soundwire/bus.c                       |    2 +
->  drivers/soundwire/bus.h                       |    1 +
->  drivers/soundwire/slave.c                     |   47 +
->  sound/soc/codecs/Kconfig                      |   10 +
->  sound/soc/codecs/Makefile                     |    2 +
->  sound/soc/codecs/wsa881x.c                    | 1160 +++++++++++++++++
->  8 files changed, 1295 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/sound/qcom,wsa881x.txt
+> Signed-off-by: Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
+> ---
+>  .../devicetree/bindings/soundwire/slave.txt   | 46 +++++++++++++++++++
+>  1 file changed, 46 insertions(+)
 >  create mode 100644 Documentation/devicetree/bindings/soundwire/slave.txt
->  create mode 100644 sound/soc/codecs/wsa881x.c
 > 
+> diff --git a/Documentation/devicetree/bindings/soundwire/slave.txt b/Documentation/devicetree/bindings/soundwire/slave.txt
+> new file mode 100644
+> index 000000000000..b8e8d34bbc92
+> --- /dev/null
+> +++ b/Documentation/devicetree/bindings/soundwire/slave.txt
+> @@ -0,0 +1,46 @@
+> +SoundWire slave device bindings.
+> +
+> +SoundWire is a 2-pin multi-drop interface with data and clock line.
+> +It facilitates development of low cost, efficient, high performance systems.
+> +
+> +SoundWire slave devices:
+> +Every SoundWire controller node can contain zero or more child nodes
+> +representing slave devices on the bus. Every SoundWire slave device is
+> +uniquely determined by the enumeration address containing 5 fields:
+> +SoundWire Version, Instance ID, Manufacturer ID, Part ID and Class ID
+> +for a device. Addition to below required properties, child nodes can
+
+It would help to list them rather than free flowing text
+
+> +have device specific bindings.
+> +
+> +Required property for SoundWire child node if it is present:
+
+As said earlier, lets make it "Required properties:"
+
+> +- compatible:	 "sdwVER,MFD,PID,CID". The textual representation of
+> +		  SoundWire Enumeration address comprising SoundWire
+> +		  Version, Manufacturer ID, Part ID and Class ID,
+> +		  shall be in lower-case hexadecimal with leading
+> +		  zeroes suppressed.
+> +		  Version number '0x10' represents SoundWire 1.0
+> +		  Version number '0x11' represents SoundWire 1.1
+> +		  ex: "sdw10,0217,2010,0"
+> +
+> +- sdw-instance-id: Should be ('Instance ID') from SoundWire
+> +		  Enumeration Address. Instance ID is for the cases
+> +		  where multiple Devices of the same type or Class
+> +		  are attached to the bus.
+> +
+> +SoundWire example for Qualcomm's SoundWire controller:
+> +
+> +soundwire@c2d0000 {
+> +	compatible = "qcom,soundwire-v1.5.0"
+> +	reg = <0x0c2d0000 0x2000>;
+> +
+> +	spkr_left:wsa8810-left{
+> +		compatible = "sdw10,0217,2010,0";
+> +		sdw-instance-id = <1>;
+> +		...
+> +	};
+> +
+> +	spkr_right:wsa8810-right{
+> +		compatible = "sdw10,0217,2010,0";
+> +		sdw-instance-id = <2>;
+> +		...
+> +	};
+> +};
 > -- 
 > 2.21.0
 
