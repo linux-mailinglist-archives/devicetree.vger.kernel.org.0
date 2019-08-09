@@ -2,124 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id E25E487015
-	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 05:12:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 854F18702A
+	for <lists+devicetree@lfdr.de>; Fri,  9 Aug 2019 05:27:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1729418AbfHIDMg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Thu, 8 Aug 2019 23:12:36 -0400
-Received: from mail-wr1-f66.google.com ([209.85.221.66]:39302 "EHLO
-        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1729307AbfHIDMf (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 23:12:35 -0400
-Received: by mail-wr1-f66.google.com with SMTP id t16so6706421wra.6;
-        Thu, 08 Aug 2019 20:12:34 -0700 (PDT)
+        id S2404787AbfHID1q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Thu, 8 Aug 2019 23:27:46 -0400
+Received: from mail-pf1-f195.google.com ([209.85.210.195]:41349 "EHLO
+        mail-pf1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1732375AbfHID1o (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Thu, 8 Aug 2019 23:27:44 -0400
+Received: by mail-pf1-f195.google.com with SMTP id m30so45263393pff.8
+        for <devicetree@vger.kernel.org>; Thu, 08 Aug 2019 20:27:44 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=v5m7Msw6nF9vdn6sxJ12YYLnKtWCnR8AC90/6IDMe8c=;
+        b=WEir+432H/f7d295W8cxOvBj5Ne5OdMecu8yIUZ8ffg8mVDnPKdF7zr4fXKhU1n0DA
+         Ps3iuLwfFIeka+oIiYMoDbhDEv5h8IIKGh6RWjxZTO1flxJ19GAtgIqMtb0jcpmeU0Wa
+         e5TAGfXxHzrYfh22/43JydGwM8R2jK52gGMc2PIcKY9g16F5JvvjvfCjux50aM8bKtyc
+         BvZdSOZW7huCpZz00oXmIm2QAL2lizKouCqh014aMFVfTz5LvQB2rjupUjss3fgCzIfQ
+         MUyIwYaiOHwq06V984f+Y3NexhfuQOJmC24HH9AgewjH8yMmlG8Ql+xLfjv5BmcvVyk8
+         5YDg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
-         :content-transfer-encoding;
-        bh=EGHNJ41q8Xk+rxqslkgHM8iSCXHrbORbX9tN8p2H7Dg=;
-        b=LXwyjzgmbqWLxl7RnRdnV9VukxwLGVefvMXj/ntON8hHJuBW/PhA/Q8KogmmFOCYCJ
-         H9cBh6nMxQXTViMQ2Xc/fXpIyVPDJsnc3B8v+8Swzx12pNUy/5A4+SSzc/168thwKdgw
-         6uY0WNfWgPeYbXLIyfm8C0+8dz5pVz0Fnl/CP5ej6M5EqhEvpcEPg9CJF2wduqI9nOmR
-         +bIkqm3SHsOjfUZswjQ1TnPJ8CimkshskiAhlX5PHQeDEbfG3y1obiZI3Erygr2R89oX
-         +JdYj5/2czVxSZyZeBibevRSHXlRpWdSYhCLrOSJjgQ0cP2tz+ST3ZaPKyY6sWJ6rGnM
-         yPhQ==
-X-Gm-Message-State: APjAAAWX2BR9sG8r1ZfsMYG4dqHgV/HdAVIfS41D9gM29Gna5S2IBYM4
-        KCbGaslYGHJ4y4C+zGsJGNrtNBVQRRCjGQ==
-X-Google-Smtp-Source: APXvYqyEWcvAnhF4Ue9wN4qIrQ6LTTi30ZSRVlF3B9zoC2iuTwaAv0Ylfl09QVksRxGknvXGG4p0/A==
-X-Received: by 2002:a5d:46d1:: with SMTP id g17mr7959113wrs.131.1565320353238;
-        Thu, 08 Aug 2019 20:12:33 -0700 (PDT)
-Received: from tfsielt31850.garage.tyco.com ([79.97.20.138])
-        by smtp.gmail.com with ESMTPSA id t19sm4798565wmi.29.2019.08.08.20.12.31
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=v5m7Msw6nF9vdn6sxJ12YYLnKtWCnR8AC90/6IDMe8c=;
+        b=jfMq7Dgb3ujethfJv0B7AkeLTYE4BYxJdFKp+WGF3cQsK1mcJuU7kVqACt1xw8qPAH
+         85VeOpcTZ8/R7lYZNguuEMp7I2UIrgfnit6yG6sOOhaKE2lIVH6c2U+UgbmNEDY/aedo
+         JBj/rUTTA4KJNy4omP0WrzTxRL5g7PXKJ1omVC99cOIRMAl21HWDNEIMgaZb6huRUWy1
+         eCdxmX+O05nkZajX41NW7TJYoQ6ynfMFySpY4KFnqh3+20tCzdapMK2NrawpHPaReLM2
+         +B2NbLpvqWPQOPtYVlsf9/oh1KXe66zId6fl2YeDL0abhRB+Qad6llZShgqu37rjTvI9
+         mlOQ==
+X-Gm-Message-State: APjAAAX3YFRKjGoaOvld8a++Ab+jNrjHtKT8LD+Xend6kwc8lewBQbOb
+        2geQR2T2Ppd4KJ8wrXdlOZX+YQ==
+X-Google-Smtp-Source: APXvYqzNvZFJvhvFbH2thlotSUGSz9ktBlepD6RKn5dOv6s6nOnmPWoEm8xbcV+82utj/F9bml8lkg==
+X-Received: by 2002:a17:90a:f98a:: with SMTP id cq10mr7303114pjb.43.1565321263372;
+        Thu, 08 Aug 2019 20:27:43 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id e9sm1040807pfh.155.2019.08.08.20.27.42
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Thu, 08 Aug 2019 20:12:32 -0700 (PDT)
-From:   =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
-To:     linux-kernel@vger.kernel.org
-Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
-        Ilya Ledvich <ilya@compulab.co.il>,
-        Igor Grinberg <grinberg@compulab.co.il>,
+        Thu, 08 Aug 2019 20:27:42 -0700 (PDT)
+Date:   Thu, 8 Aug 2019 20:29:15 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vinod Koul <vkoul@kernel.org>
+Cc:     Mark Brown <broonie@kernel.org>, linux-arm-msm@vger.kernel.org,
+        Andy Gross <agross@kernel.org>,
+        Liam Girdwood <lgirdwood@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: [PATCH] ARM: dts: imx7d: cl-som-imx7: make ethernet work again
-Date:   Fri,  9 Aug 2019 04:12:27 +0100
-Message-Id: <20190809031227.3319-1-git@andred.net>
-X-Mailer: git-send-email 2.20.1
+        linux-kernel@vger.kernel.org, devicetree@vger.kernel.org
+Subject: Re: [PATCH 1/2] regulator: dt-bindings: Add PM8150x compatibles
+Message-ID: <20190809032915.GK26807@tuxbook-pro>
+References: <20190808093343.5600-1-vkoul@kernel.org>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190808093343.5600-1-vkoul@kernel.org>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Recent changes to the atheros at803x driver caused
-ethernet to stop working on this board.
-In particular commit 6d4cd041f0af
-("net: phy: at803x: disable delay only for RGMII mode")
-and commit cd28d1d6e52e
-("net: phy: at803x: Disable phy delay for RGMII mode")
-fix the AR8031 driver to configure the phy's (RX/TX)
-delays as per the 'phy-mode' in the device tree.
+On Thu 08 Aug 02:33 PDT 2019, Vinod Koul wrote:
 
-This now prevents ethernet from working on this board.
+> Add PM8150, PM8150L and PM8009 compatibles for these PMICs found
+> in some Qualcomm platforms.
+> 
+> Signed-off-by: Vinod Koul <vkoul@kernel.org>
+> ---
+>  .../devicetree/bindings/regulator/qcom,rpmh-regulator.txt | 8 +++++++-
+>  1 file changed, 7 insertions(+), 1 deletion(-)
+> 
+> diff --git a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+> index 14d2eee96b3d..1a9cab50503a 100644
+> --- a/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+> +++ b/Documentation/devicetree/bindings/regulator/qcom,rpmh-regulator.txt
+> @@ -25,6 +25,9 @@ Supported regulator node names:
+>  	PM8998:		smps1 - smps13, ldo1 - ldo28, lvs1 - lvs2
+>  	PMI8998:	bob
+>  	PM8005:		smps1 - smps4
+> +	PM8150:		smps1 - smps10, ldo1 - ldo18
+> +	PM8150L:	smps1 - smps8, ldo1 - ldo11, bob, flash, rgb
+> +	PM8009:		smps1 - smps2, ld01 - ldo7
 
-It used to work before those commits, because the
-AR8031 comes out of reset with RX delay enabled, and
-the at803x driver didn't touch the delay configuration
-at all when "rgmii" mode was selected, and because
-arch/arm/mach-imx/mach-imx7d.c:ar8031_phy_fixup()
-unconditionally enables TX delay.
+Please maintain the sort order.
 
-Since above commits ar8031_phy_fixup() also has no
-effect anymore, and the end-result is that all delays
-are disabled in the phy, no ethernet.
+Apart from that
 
-Update the device tree to restore functionality.
+Reviewed-by: Bjorn Andersson <bjorn.andersson@linaro.org>
 
-Signed-off-by: André Draszik <git@andred.net>
-CC: Ilya Ledvich <ilya@compulab.co.il>
-CC: Igor Grinberg <grinberg@compulab.co.il>
-CC: Rob Herring <robh+dt@kernel.org>
-CC: Mark Rutland <mark.rutland@arm.com>
-CC: Shawn Guo <shawnguo@kernel.org>
-CC: Sascha Hauer <s.hauer@pengutronix.de>
-CC: Pengutronix Kernel Team <kernel@pengutronix.de>
-CC: Fabio Estevam <festevam@gmail.com>
-CC: NXP Linux Team <linux-imx@nxp.com>
-CC: devicetree@vger.kernel.org
-CC: linux-arm-kernel@lists.infradead.org
----
- arch/arm/boot/dts/imx7d-cl-som-imx7.dts | 4 ++--
- 1 file changed, 2 insertions(+), 2 deletions(-)
+Regards,
+Bjorn
 
-diff --git a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-index e61567437d73..62d5e9a4a781 100644
---- a/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-+++ b/arch/arm/boot/dts/imx7d-cl-som-imx7.dts
-@@ -44,7 +44,7 @@
- 			  <&clks IMX7D_ENET1_TIME_ROOT_CLK>;
- 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
- 	assigned-clock-rates = <0>, <100000000>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy0>;
- 	fsl,magic-packet;
- 	status = "okay";
-@@ -70,7 +70,7 @@
- 			  <&clks IMX7D_ENET2_TIME_ROOT_CLK>;
- 	assigned-clock-parents = <&clks IMX7D_PLL_ENET_MAIN_100M_CLK>;
- 	assigned-clock-rates = <0>, <100000000>;
--	phy-mode = "rgmii";
-+	phy-mode = "rgmii-id";
- 	phy-handle = <&ethphy1>;
- 	fsl,magic-packet;
- 	status = "okay";
--- 
-2.20.1
-
+>  
+>  ========================
+>  First Level Nodes - PMIC
+> @@ -35,7 +38,10 @@ First Level Nodes - PMIC
+>  	Value type: <string>
+>  	Definition: Must be one of: "qcom,pm8998-rpmh-regulators",
+>  		    "qcom,pmi8998-rpmh-regulators" or
+> -		    "qcom,pm8005-rpmh-regulators".
+> +		    "qcom,pm8005-rpmh-regulators" or
+> +		    "qcom,pm8150-rpmh-regulators" or
+> +		    "qcom,pm8150l-rpmh-regulators" or
+> +		    "qcom,pm8009-rpmh-regulators".
+>  
+>  - qcom,pmic-id
+>  	Usage:      required
+> -- 
+> 2.20.1
+> 
