@@ -2,202 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F1AE688859
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 07:20:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 018DD88861
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 07:29:09 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725730AbfHJFUz (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Aug 2019 01:20:55 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:43810 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725372AbfHJFUy (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 01:20:54 -0400
-Received: by mail-pf1-f194.google.com with SMTP id i189so47113961pfg.10;
-        Fri, 09 Aug 2019 22:20:54 -0700 (PDT)
+        id S1725927AbfHJF3D (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Aug 2019 01:29:03 -0400
+Received: from mail-pl1-f193.google.com ([209.85.214.193]:43756 "EHLO
+        mail-pl1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725730AbfHJF3D (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 01:29:03 -0400
+Received: by mail-pl1-f193.google.com with SMTP id 4so38766794pld.10;
+        Fri, 09 Aug 2019 22:29:02 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=vCsZ0PUnHs9X6E+H649TATEMkEAfcQAEW4STfpgMP9A=;
-        b=rO8fh5d1udF9jjI9wNP6a/eo3y9gsdKSGShy/3uXD+5E3Rv8bKfPqP48YfAv4P5tFW
-         24tEm862r084m6K+F7vkLHZtrYbu3uH0VhZb72L+BdzQjWPoCkI4y1M159wW8cXg6/2h
-         SC0Fx0K287Y3JtrFAsTZlU3R+VSHnKwnGZ5ySnsK0T3Q4vbA3Egs8Ap6y8rqofK9b3AJ
-         gPSf+KCf1hxHSIoSMnBE4syof28Ql4tc/y5Z9TbqnzXpC/AjoJDPbc5RUaS1wFxKuvk9
-         JFNQU+0dR2OqYRYK4dqCw52NBiuopwRsUrV41gZIXeL31nxCrOIipbyQZ4PZyEiup97Q
-         T+5A==
+        h=from:to:cc:subject:date:message-id;
+        bh=wwnkha2cPalip0BRfrHsmWB3+skZcqk2g4L3dadW7dk=;
+        b=H9+DbqeRAbiVFOVv27yxPfHJ4OI4UyI/Oo/c7lNEytzV7UFucZSdGLxmxtx9pPR7ny
+         9YpDzxGgR8zy/2BL7xHfkr6066cTNPsSoeOv93JqxYfrpiDnFK/Zj3OIn+GQUykM5jtQ
+         XdduqCV93DQF4uWog0v3M5FWj/bU8osBz28QjwUoQo/lnt6RLzIWa0ElT+ZuCfyk5/jF
+         0knjq5eWJoix988ngCDNNOlJmbwYY/ndIl7KPvHCB9kVdTcfQKlr7JvrI960ivEY3nqB
+         xogVwXvTx7sN2tVE+wZnPsJn5GvNDTfESVV2m0PV5rLhH4oVIows53TAst0y3hq74fgv
+         kvLg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=vCsZ0PUnHs9X6E+H649TATEMkEAfcQAEW4STfpgMP9A=;
-        b=aa5s2wmXquRQ2zwo7UmTzBiBcfENyMpjKQZL5TK98kRwdorGA5Ox8Ols7lQ8sjn1sP
-         KDEu3GRdvLUM/w9b1MG6w01xZQLDsoiT1s/YCY8+ukGytvesPll2WqaQqtJtOrr2Xw/D
-         1dNVHzMp0a9Hj92TC9jD3Xp6L0/ilwMnhkYlzVlki7mjSR6Q/NjWj48+3FxtaJXzHNsg
-         ZeV0H5W/LTzb05UwcttU2SP0tGDgobqj3NT1OWnGYrbAupvebvg5RJUmJOWd28J+hvst
-         NqGGUYgtyJ/c17LCpA625xU3Lo+XfeyuH0B8kQqIiyvSD7ZV5ixS+3AWY+5Aj/JhPY2H
-         Ziww==
-X-Gm-Message-State: APjAAAWSzgUeYmK0mf/4hlk6upEVgX3reVY7ZRHBcXYYIc6tBR66uDcV
-        yDDcrh0+mGJrFVlyng1AdMs=
-X-Google-Smtp-Source: APXvYqylqJg+lOXNG/X7r1SmMXsjDbYwCILG7+M8gI8MG1Dx/AOhqRqPQFUJzL+GG9pxAM3o9gEOUg==
-X-Received: by 2002:a63:204b:: with SMTP id r11mr20600578pgm.121.1565414453897;
-        Fri, 09 Aug 2019 22:20:53 -0700 (PDT)
-Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
-        by smtp.gmail.com with ESMTPSA id x24sm95073669pgl.84.2019.08.09.22.20.52
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Aug 2019 22:20:53 -0700 (PDT)
-Subject: Re: [PATCH v9 0/7] Solve postboot supplier cleanup and optimize probe
- ordering
-To:     Saravana Kannan <saravanak@google.com>
-Cc:     Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        "Rafael J. Wysocki" <rafael@kernel.org>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>, LKML <linux-kernel@vger.kernel.org>,
-        David Collins <collinsd@codeaurora.org>,
-        Android Kernel Team <kernel-team@android.com>
-References: <20190731221721.187713-1-saravanak@google.com>
- <919b66e9-9708-de34-41cd-e448838b130c@gmail.com>
- <CAGETcx8LqeOXD5zPsLuxoG5pR9VZ_v=PQfRf-aFwCSaW4kwoxA@mail.gmail.com>
-From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <7a0ee940-f81f-36b9-93e7-2b4c242360c9@gmail.com>
-Date:   Fri, 9 Aug 2019 22:20:52 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.8.0
-MIME-Version: 1.0
-In-Reply-To: <CAGETcx8LqeOXD5zPsLuxoG5pR9VZ_v=PQfRf-aFwCSaW4kwoxA@mail.gmail.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=wwnkha2cPalip0BRfrHsmWB3+skZcqk2g4L3dadW7dk=;
+        b=eFSpYiewhVSA+ezWc6lPeaKNaMHeyOQAFLqrIHxzdWLhhmA7JnhulzBP4w4EqVW6Ma
+         0YbSlauV02138uJ4D6IVZI34ZaPNxfY6hPE7wxIZd61nDwq9VLcR59Eq4aGo05sd/hOE
+         q7xSkYcgE2WfMxSOan60tOy9uD5dWgsDwqvK41NRdntMGjAkcLgif5jLdUypxf+eCT8b
+         jyHGJgcvPr27bwLexZJiyyokhSFd6+V1kiVlKh8yL8QRmtf7CVy5EpP+PPy8kkhpVI8Z
+         pZQkh1S8BTXaBCJqNrpz1tRlLK+uLrEkcz1VNqVzIbHs7/7XrfvNx1dSqvpyvudkMiaz
+         CY0g==
+X-Gm-Message-State: APjAAAW8OZvapbUzQH1QOIMWPvtWF4UUj/nNPvShfKVAVnKZWlML7R6u
+        T6luLPh5kIxOEtW7iTXEfUs=
+X-Google-Smtp-Source: APXvYqzMo7nOByZJMmjM7GKUOTMF/RVyxY8jSVwew10yohKpvdkmRmd12vIA5OSvtsjRXEUGHIttwQ==
+X-Received: by 2002:a17:902:1125:: with SMTP id d34mr22696273pla.40.1565414942290;
+        Fri, 09 Aug 2019 22:29:02 -0700 (PDT)
+Received: from localhost ([202.182.106.211])
+        by smtp.gmail.com with ESMTPSA id a12sm25517729pgv.48.2019.08.09.22.29.01
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 09 Aug 2019 22:29:01 -0700 (PDT)
+From:   Yangtao Li <tiny.windzz@gmail.com>
+To:     rui.zhang@intel.com, edubezval@gmail.com,
+        daniel.lezcano@linaro.org, robh+dt@kernel.org,
+        mark.rutland@arm.com, maxime.ripard@bootlin.com, wens@csie.org,
+        mchehab+samsung@kernel.org, davem@davemloft.net,
+        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
+        nicolas.ferre@microchip.com
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        Yangtao Li <tiny.windzz@gmail.com>
+Subject: [PATCH v5 00/18] add thermal driver for h6
+Date:   Sat, 10 Aug 2019 05:28:11 +0000
+Message-Id: <20190810052829.6032-1-tiny.windzz@gmail.com>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On 8/9/19 10:00 PM, Saravana Kannan wrote:
-> On Fri, Aug 9, 2019 at 7:57 PM Frank Rowand <frowand.list@gmail.com> wrote:
->>
->> Hi Saravana,
->>
->> On 7/31/19 3:17 PM, Saravana Kannan wrote:
->>> Add device-links to track functional dependencies between devices
->>> after they are created (but before they are probed) by looking at
->>> their common DT bindings like clocks, interconnects, etc.
->>>
->>> Having functional dependencies automatically added before the devices
->>> are probed, provides the following benefits:
->>>
->>> - Optimizes device probe order and avoids the useless work of
->>>   attempting probes of devices that will not probe successfully
->>>   (because their suppliers aren't present or haven't probed yet).
->>>
->>>   For example, in a commonly available mobile SoC, registering just
->>>   one consumer device's driver at an initcall level earlier than the
->>>   supplier device's driver causes 11 failed probe attempts before the
->>>   consumer device probes successfully. This was with a kernel with all
->>>   the drivers statically compiled in. This problem gets a lot worse if
->>>   all the drivers are loaded as modules without direct symbol
->>>   dependencies.
->>>
->>> - Supplier devices like clock providers, interconnect providers, etc
->>>   need to keep the resources they provide active and at a particular
->>>   state(s) during boot up even if their current set of consumers don't
->>>   request the resource to be active. This is because the rest of the
->>>   consumers might not have probed yet and turning off the resource
->>>   before all the consumers have probed could lead to a hang or
->>>   undesired user experience.
->>>
->>>   Some frameworks (Eg: regulator) handle this today by turning off
->>>   "unused" resources at late_initcall_sync and hoping all the devices
->>>   have probed by then. This is not a valid assumption for systems with
->>>   loadable modules. Other frameworks (Eg: clock) just don't handle
->>>   this due to the lack of a clear signal for when they can turn off
->>>   resources. This leads to downstream hacks to handle cases like this
->>>   that can easily be solved in the upstream kernel.
->>>
->>>   By linking devices before they are probed, we give suppliers a clear
->>>   count of the number of dependent consumers. Once all of the
->>>   consumers are active, the suppliers can turn off the unused
->>>   resources without making assumptions about the number of consumers.
->>>
->>> By default we just add device-links to track "driver presence" (probe
->>> succeeded) of the supplier device. If any other functionality provided
->>> by device-links are needed, it is left to the consumer/supplier
->>> devices to change the link when they probe.
->>>
->>> v1 -> v2:
->>> - Drop patch to speed up of_find_device_by_node()
->>> - Drop depends-on property and use existing bindings
->>>
->>> v2 -> v3:
->>> - Refactor the code to have driver core initiate the linking of devs
->>> - Have driver core link consumers to supplier before it's probed
->>> - Add support for drivers to edit the device links before probing
->>>
->>> v3 -> v4:
->>> - Tested edit_links() on system with cyclic dependency. Works.
->>> - Added some checks to make sure device link isn't attempted from
->>>   parent device node to child device node.
->>> - Added way to pause/resume sync_state callbacks across
->>>   of_platform_populate().
->>> - Recursively parse DT node to create device links from parent to
->>>   suppliers of parent and all child nodes.
->>>
->>> v4 -> v5:
->>> - Fixed copy-pasta bugs with linked list handling
->>> - Walk up the phandle reference till I find an actual device (needed
->>>   for regulators to work)
->>> - Added support for linking devices from regulator DT bindings
->>> - Tested the whole series again to make sure cyclic dependencies are
->>>   broken with edit_links() and regulator links are created properly.
->>>
->>> v5 -> v6:
->>> - Split, squashed and reordered some of the patches.
->>> - Refactored the device linking code to follow the same code pattern for
->>>   any property.
->>>
->>> v6 -> v7:
->>> - No functional changes.
->>> - Renamed i to index
->>> - Added comment to clarify not having to check property name for every
->>>   index
->>> - Added "matched" variable to clarify code. No functional change.
->>> - Added comments to include/linux/device.h for add_links()
->>>
->>> v7 -> v8:
->>> - Rebased on top of linux-next to handle device link changes in [1]
->>>
->>
->>
->>> v8 -> v9:
->>> - Fixed kbuild test bot reported errors (docs and const)
->>
->> Some maintainers have strong opinions about whether change logs should be:
->>
->>   (1) only in patch 0
->>   (2) only in the specific patches that are changed
->>   (3) both in patch 0 and in the specific patches that are changed.
->>
->> I can adapt to any of the three styles.  But for style "(1)" please
->> list which specific patch has changed for each item in the change list.
->>
-> 
-> Thanks for the context Frank. I'm okay with (1) or (2) but I'll stick
-> with (1) for this series. Didn't realize there were options (2) and
-> (3). Since you started reviewing from v7, I'll do that in the future
-> updates? Also, I haven't forgotten your emails. Just tied up with
-> something else for a few days. I'll get to your emails next week.
+This patchset add support for A64, H3, H5, H6 and R40 thermal sensor.
 
-Yes, starting with future updates is fine, no need to redo the v9
-change logs.
+Thx to Icenowy and Vasily.
 
-No problem on the timing.  I figured you were busy or away from the
-internet.
+BTY, do a cleanup in thermal makfile.
 
--Frank
+Icenowy Zheng (3):
+  thermal: sun8i: allow to use custom temperature calculation function
+  thermal: sun8i: add support for Allwinner H5 thermal sensor
+  thermal: sun8i: add support for Allwinner R40 thermal sensor
 
-> 
-> Thanks,
-> Saravana
-> 
+Vasily Khoruzhick (1):
+  thermal: sun8i: add thermal driver for A64
+
+Yangtao Li (14):
+  thermal: sun8i: add thermal driver for h6
+  dt-bindings: thermal: add binding document for h6 thermal controller
+  thermal: fix indentation in makefile
+  thermal: sun8i: get ths sensor number from device compatible
+  thermal: sun8i: rework for sun8i_ths_get_temp()
+  thermal: sun8i: get ths init func from device compatible
+  thermal: sun8i: rework for ths irq handler func
+  thermal: sun8i: support mod clocks
+  thermal: sun8i: rework for ths calibrate func
+  dt-bindings: thermal: add binding document for h3 thermal controller
+  thermal: sun8i: add thermal driver for h3
+  dt-bindings: thermal: add binding document for a64 thermal controller
+  dt-bindings: thermal: add binding document for h5 thermal controller
+  dt-bindings: thermal: add binding document for r40 thermal controller
+
+ .../bindings/thermal/sun8i-thermal.yaml       | 157 +++++
+ MAINTAINERS                                   |   7 +
+ drivers/thermal/Kconfig                       |  14 +
+ drivers/thermal/Makefile                      |   9 +-
+ drivers/thermal/sun8i_thermal.c               | 596 ++++++++++++++++++
+ 5 files changed, 779 insertions(+), 4 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/thermal/sun8i-thermal.yaml
+ create mode 100644 drivers/thermal/sun8i_thermal.c
+
+---
+v5:
+-add more support
+-some trival fix
+---
+2.17.1
 
