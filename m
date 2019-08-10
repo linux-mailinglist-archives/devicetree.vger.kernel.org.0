@@ -2,325 +2,143 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 31C2A88B7D
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 15:09:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4AF6888B99
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 15:39:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726213AbfHJNJd (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Aug 2019 09:09:33 -0400
-Received: from mail-pf1-f196.google.com ([209.85.210.196]:38921 "EHLO
-        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725862AbfHJNJd (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 09:09:33 -0400
-Received: by mail-pf1-f196.google.com with SMTP id f17so43479074pfn.6;
-        Sat, 10 Aug 2019 06:09:32 -0700 (PDT)
+        id S1726112AbfHJNj1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Aug 2019 09:39:27 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:38197 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726024AbfHJNj0 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 09:39:26 -0400
+Received: by mail-wr1-f66.google.com with SMTP id g17so100682568wrr.5;
+        Sat, 10 Aug 2019 06:39:25 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=nbp33dhtEClMZJfYmdVFpechLLFXlx7/6GRzJF8BUsQ=;
-        b=sLHpz8kylvDXRLZFNKnk+XfEE+9bI+XO05/0nYrgqwg890FMLxcSh3dLEYHLCMEuaZ
-         4460ZpV0AHUG7benYX/T+GmjLX6cYpoZCJiNPytDVlx8ky7s0JQ4pcNREVrOHApQA3x1
-         VENsW0/nsQx9l8IqBdg/ZGyrIyp1IDB3wrqk7pVsxSPIx7TFJh1VPGf22R+xkS4MO/6e
-         sJ+r60UgrQOZGuU6b0XEi7EPy7VGvVe0kDqHwlvY/hrFH+R5R7gGUY2bPm+oYb5TKVno
-         eHHTpOrqbdcU/bm6ZWocgXt/k2gk7J1pJeFtP0AaJDgJe3xn8wAosprsBtK3SU4ixDYl
-         LZsA==
+        h=subject:to:cc:references:from:openpgp:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=5/3FfEJPS8imxnDmySQlXeFmpaLpmd+YEDEVNi+1uS4=;
+        b=rvTCHkxgDzNan3ofgDHwmx6BSxM7wtCBd5Wst5AouLKoHjyH5KYRBF7FW8/7FdM+Xz
+         6fd6NgtlztJl0Tj/t7w62gdLYG62PwE6Il9mU3zvezzdMzZTbGmv4jXX7kHMIY+UW3xu
+         qoSbLSqp6xanYBg5ebEsC07WA+tQGXlmdjUsHZiz5h9joXzM9g/AJYrh9EJc7TiW5yuF
+         OKecUmtbw1R9GdHYB+4uT2Oq30NDNWmBPyUY0hGx9M6fdfUysqP/0MjkmwZxUawq4jN3
+         BtqidtTnoJnx3Qm1M26fMjAYU8QFdPMdS/Ceu/KR03HoO1zbhSXj89aeaIefM3A3k+ln
+         6LTQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=nbp33dhtEClMZJfYmdVFpechLLFXlx7/6GRzJF8BUsQ=;
-        b=GnaSlvPwUUSpFbg4Elfw5Kx5jL3xahiOzKPXQ08AZa1jCzBOQxEKmxHMsVsjmrYJ/e
-         aFoJqta9JFiWaDZj2+1krIOwz96BomyiT174QbHyHjb0O064u/5U51wiUiVOmucDLiuV
-         qof/FK5g8hNVRoJJT/OXYp2I7dnn/tDhczkEUWoCw19RPhFtaimt69C1sNjLCwH4trWc
-         vaCesA92cI7bQaOe7wj9mTGor0zlBJTs41poRzBILcSyG8HuvlanOWi2kdW6iY54yz7s
-         6TayuseugjQ8+HCjUAvZoxvy+jFsROCLlIt6EYA0V10NMW194FGZiy8v5dRPDgj48dH2
-         0KGQ==
-X-Gm-Message-State: APjAAAUAvJQq5ivq287v91WyU33pT8NsUeDXdP4g+Fk+3WVQHTAfv/qE
-        Rx0t4RyTIn/P+tVT+1QDeX/MPLYZwjnKqG3ME2A=
-X-Google-Smtp-Source: APXvYqyE+ULqZVrF1p9wQKabJ2ELBRkepsfar6pZIykSfU9M+fAS92ifxACCYFnuH4uBVfAR8Xu+1d7JNGtHnnaJcrU=
-X-Received: by 2002:a63:e54f:: with SMTP id z15mr21886228pgj.4.1565442572461;
- Sat, 10 Aug 2019 06:09:32 -0700 (PDT)
+        h=x-gm-message-state:subject:to:cc:references:from:openpgp:message-id
+         :date:user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=5/3FfEJPS8imxnDmySQlXeFmpaLpmd+YEDEVNi+1uS4=;
+        b=oqcmWIXtGdVfPUxFgVUWQTIV0p4eQy+oSmi9A99Krf0GUWG4u/kC+egD0Mux5e8Wyb
+         ArtCc90LdirP2nWmQXsvzFDwfEza2Lfdhu0lEBiJDZKSEP1h+06Qji/oj49u/o0+0/cr
+         tNOzznir+rGgPYFEfmqhN3tQ9NGQ7VrEDZC/rBZY2IkSyaB45VwKXFxE4+UxBwcdoVY/
+         bQbDXws14OVgTAnq3MpFR5+gadJxStAoT5LdDUt2XCwxQffkg7b1M2vkYbZdWWQlk1Ir
+         6hc0A38h9sDUXpO6lPmtFFsK6rwrWllH1dN3y+s4clBv3cdy/IH0ZJIh8Q8xZaKbv4wD
+         qK1A==
+X-Gm-Message-State: APjAAAXelxWlk8N4YzA0bONHCs/uypBQ2m/p/ZpHAol8qufx7VmSGlpK
+        ymXiOQIGggE6JsHYbJ6nS4jONZjY
+X-Google-Smtp-Source: APXvYqwxykXAH80d8sDSUVEKLOyd7RLhVgZwv8X755hUhNoTupCPwhX7gU8s6RmxkZx26keRJlsAlw==
+X-Received: by 2002:a05:6000:12c3:: with SMTP id l3mr26496248wrx.100.1565444363973;
+        Sat, 10 Aug 2019 06:39:23 -0700 (PDT)
+Received: from [192.168.1.4] (ip-86-49-35-8.net.upcbroadband.cz. [86.49.35.8])
+        by smtp.gmail.com with ESMTPSA id e4sm21532075wrh.39.2019.08.10.06.39.22
+        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
+        Sat, 10 Aug 2019 06:39:23 -0700 (PDT)
+Subject: Re: [PATCH] of: Fix of_empty_ranges_quirk()
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20190809173321.19944-1-marek.vasut@gmail.com>
+ <CAL_JsqJyYQ99ENOkNd6yzn1eYwLTGLNihFxtovSPJajtF9SVvg@mail.gmail.com>
+From:   Marek Vasut <marek.vasut@gmail.com>
+Openpgp: preference=signencrypt
+Message-ID: <10818888-6476-f4b1-1a2e-e10c3159327f@gmail.com>
+Date:   Sat, 10 Aug 2019 15:39:22 +0200
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
-References: <1560280855-18085-1-git-send-email-luis.oliveira@synopsys.com>
- <1560280855-18085-3-git-send-email-luis.oliveira@synopsys.com> <20190809141000.GB864@valkosipuli.retiisi.org.uk>
-In-Reply-To: <20190809141000.GB864@valkosipuli.retiisi.org.uk>
-From:   Andy Shevchenko <andy.shevchenko@gmail.com>
-Date:   Sat, 10 Aug 2019 16:09:21 +0300
-Message-ID: <CAHp75VeutP=W43GHtY+FKvVGjBnQrF+nKbdaq_QXy8ZCoS=k1g@mail.gmail.com>
-Subject: Re: [v4 2/6] media: platform: dwc: Add MIPI CSI-2 controller driver
-To:     Sakari Ailus <sakari.ailus@iki.fi>
-Cc:     Luis Oliveira <Luis.Oliveira@synopsys.com>,
-        Mauro Carvalho Chehab <mchehab@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Rob Herring <robh@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        paulmck@linux.ibm.com, Mark Rutland <mark.rutland@arm.com>,
-        Kishon Vijay Abraham I <kishon@ti.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        Linux Media Mailing List <linux-media@vger.kernel.org>,
-        Linux Kernel Mailing List <linux-kernel@vger.kernel.org>,
-        Joao Pinto <Joao.Pinto@synopsys.com>
-Content-Type: text/plain; charset="UTF-8"
+In-Reply-To: <CAL_JsqJyYQ99ENOkNd6yzn1eYwLTGLNihFxtovSPJajtF9SVvg@mail.gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
+Content-Transfer-Encoding: 7bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 9, 2019 at 5:38 PM Sakari Ailus <sakari.ailus@iki.fi> wrote:
-> On Tue, Jun 11, 2019 at 09:20:51PM +0200, Luis Oliveira wrote:
-> > Add the Synopsys MIPI CSI-2 controller driver. This
-> > controller driver is divided in platform functions and core functions.
-> > This way it serves as platform for future DesignWare drivers.
+On 8/10/19 12:34 AM, Rob Herring wrote:
+> On Fri, Aug 9, 2019 at 11:33 AM <marek.vasut@gmail.com> wrote:
+>>
+>> From: Marek Vasut <marek.vasut+renesas@gmail.com>
+>>
+>> The of_empty_ranges_quirk() returns a mix of boolean and signed integer
+>> types, which cannot work well.
+> 
+> It never returns a negative. The negative is used as an uninitialized
+> flag. Note quirk_state is static.
 
-> > +const struct mipi_dt csi_dt[] = {
->
-> Make this static or use a common prefix that somehow resembles the name
-> name of the driver.
->
-> > +     {
-> > +             .hex = CSI_2_YUV420_8,
-> > +             .name = "YUV420_8bits",
-> > +     }, {
-> > +             .hex = CSI_2_YUV420_10,
-> > +             .name = "YUV420_10bits",
-> > +     }, {
-> > +             .hex = CSI_2_YUV420_8_LEG,
-> > +             .name = "YUV420_8bits_LEGACY",
-> > +     }, {
-> > +             .hex = CSI_2_YUV420_8_SHIFT,
-> > +             .name = "YUV420_8bits_SHIFT",
-> > +     }, {
-> > +             .hex = CSI_2_YUV420_10_SHIFT,
-> > +             .name = "YUV420_10bits_SHIFT",
-> > +     }, {
-> > +             .hex = CSI_2_YUV422_8,
-> > +             .name = "YUV442_8bits",
-> > +     }, {
-> > +             .hex = CSI_2_YUV422_10,
-> > +             .name = "YUV442_10bits",
-> > +     }, {
-> > +             .hex = CSI_2_RGB444,
-> > +             .name = "RGB444",
-> > +     }, {
-> > +             .hex = CSI_2_RGB555,
-> > +             .name = "RGB555",
-> > +     }, {
-> > +             .hex = CSI_2_RGB565,
-> > +             .name = "RGB565",
-> > +     }, {
-> > +             .hex = CSI_2_RGB666,
-> > +             .name = "RGB666",
-> > +     }, {
-> > +             .hex = CSI_2_RGB888,
-> > +             .name = "RGB888",
-> > +     }, {
-> > +             .hex = CSI_2_RAW6,
-> > +             .name = "RAW6",
-> > +     }, {
-> > +             .hex = CSI_2_RAW7,
-> > +             .name = "RAW7",
-> > +     }, {
-> > +             .hex = CSI_2_RAW8,
-> > +             .name = "RAW8",
-> > +     }, {
-> > +             .hex = CSI_2_RAW10,
-> > +             .name = "RAW10",
-> > +     }, {
-> > +             .hex = CSI_2_RAW12,
-> > +             .name = "RAW12",
-> > +     }, {
-> > +             .hex = CSI_2_RAW14,
-> > +             .name = "RAW14",
-> > +     }, {
-> > +             .hex = CSI_2_RAW16,
-> > +             .name = "RAW16",
-> > +     },
-> > +};
+It's still mixing boolean and signed int types though, which isn't right.
 
-One may utilize __stringify() macro and do somelike
+>> Replace that with boolean only and fix
+>> usage logic in of_translate_one() -- the check should trigger when the
+>> ranges are NULL and the quirk is applicable on the hardware.
+>>
+>> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
+>> Cc: Rob Herring <robh+dt@kernel.org>
+>> Cc: Frank Rowand <frowand.list@gmail.com>
+>> Cc: linux-renesas-soc@vger.kernel.org
+>> To: devicetree@vger.kernel.org
+>> ---
+>>  drivers/of/address.c | 9 +++++----
+>>  1 file changed, 5 insertions(+), 4 deletions(-)
+>>
+>> diff --git a/drivers/of/address.c b/drivers/of/address.c
+>> index b492176c0572..ae2819e148b8 100644
+>> --- a/drivers/of/address.c
+>> +++ b/drivers/of/address.c
+>> @@ -616,7 +616,7 @@ static struct of_bus *of_match_bus(struct device_node *np)
+>>         return NULL;
+>>  }
+>>
+>> -static int of_empty_ranges_quirk(struct device_node *np)
+>> +static bool of_empty_ranges_quirk(struct device_node *np)
+>>  {
+>>         if (IS_ENABLED(CONFIG_PPC)) {
+>>                 /* To save cycles, we cache the result for global "Mac" setting */
+>> @@ -631,7 +631,8 @@ static int of_empty_ranges_quirk(struct device_node *np)
+>>                         quirk_state =
+>>                                 of_machine_is_compatible("Power Macintosh") ||
+>>                                 of_machine_is_compatible("MacRISC");
+>> -               return quirk_state;
+>> +               if (quirk_state > 0)
+>> +                       return true;
+>>         }
+>>         return false;
+>>  }
+>> @@ -662,8 +663,8 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
+>>          * This code is only enabled on powerpc. --gcl
+>>          */
+>>         ranges = of_get_property(parent, rprop, &rlen);
+>> -       if (ranges == NULL && !of_empty_ranges_quirk(parent)) {
+>> -               pr_debug("no ranges; cannot translate\n");
+>> +       if (ranges == NULL && of_empty_ranges_quirk(parent)) {
+>> +               pr_err("no ranges; cannot translate\n");
+> 
+> This is wrong. If you have NULL ranges and not the quirk, then no
+> ranges is an error. IOW, if you are getting an error here, you have an
+> error in your DT (because I assume you are not working on a PASemi or
+> Apple system).
 
-#define CSI_FMT_DESC(fmt) \
- { .hex = CSI_2_##fmt, .name = __stringify(fmt), }
+The way I understand the code is that
+if (you have no ranges in the DT) AND (the quirk is applicable) then
+print the message. Which is what this patch does.
 
-And do
-
- CSI_FMT_DESC(RAW16),
-
-etc.
-
-> > +             return cfg ? v4l2_subdev_get_try_format(&dev->sd,
-> > +                                                     cfg,
-> > +                                                     0) : NULL;
-
-This indentation looks ugly.
-I would rather put this on one line.
-
-> > +     dev_dbg(dev->dev,
-> > +             "%s got v4l2_mbus_pixelcode. 0x%x\n", __func__,
-> > +             dev->format.code);
-> > +     dev_dbg(dev->dev,
-> > +             "%s got width. 0x%x\n", __func__,
-> > +             dev->format.width);
-> > +     dev_dbg(dev->dev,
-> > +             "%s got height. 0x%x\n", __func__,
-> > +             dev->format.height);
-
-__func__ is usually redundant (if Dynamic Debug in use it can be
-switched at run-time).
-
-> I'd just omit these debug prints in a driver. But adding them to the
-> framework might make sense. We don't have a lot of debug prints dealing
-> with user parameters in there. OTOH the common test programs largely do the
-> same already.
-
-I would rather see tracepoints instead of debug prints if we are
-talking about generic solution for entire framework.
-
->
-> > +     return &dev->format;
-> > +}
-
-> > +     struct mipi_fmt *dev_fmt;
-
-This is simple bad name. We have dev_fmt() macro. I would rather avoid
-potential collisions.
-
-> > +     struct v4l2_mbus_framefmt *mf;
-> > +
-> > +     mf = dw_mipi_csi_get_format(dev, cfg, fmt->which);
-> > +     if (!mf)
-> > +             return -EINVAL;
-
-Can't you rather return an error pointer in this and similar cases?
-
-> > +     dev_vdbg(dev->dev, "%s: on=%d\n", __func__, on);
-
-This is noise. If you would like to debug Function Tracer is a good start.
-
-> > +     of_id = of_match_node(dw_mipi_csi_of_match, dev->of_node);
-> > +     if (!of_id)
-> > +             return -EINVAL;
-
-Is it possible to have this asserted?
-
-
-> > +     res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
-
-> > +     if (!res)
-> > +             return -ENXIO;
-
-Redundant. Below does the check for you.
-
-> > +
-> > +     csi->base_address = devm_ioremap_resource(dev, res);
-> > +     if (IS_ERR(csi->base_address)) {
-
-> > +             dev_err(dev, "Base address not set.\n");
-
-Redundant. Above does print an error message for you.
-
-> > +             return PTR_ERR(csi->base_address);
-> > +     }
-
-Moreover, use devm_platform_ioremap_resource() instead of both.
-
-> > +     csi->ctrl_irq_number = platform_get_irq(pdev, 0);
-> > +     if (csi->ctrl_irq_number < 0) {
-
-> > +             dev_err(dev, "irq number %d not set.\n", csi->ctrl_irq_number);
-
-Redundant since this cycle (v5.4).
-
-> > +             ret = csi->ctrl_irq_number;
-
-Better to do the opposite
-
-ret = platform_get_irq();
-if (ret)
- goto end;
-... = ret;
-
-> > +             goto end;
-> > +     }
-
-> > +     ret = devm_request_irq(dev, csi->ctrl_irq_number,
-> > +                            dw_mipi_csi_irq1, IRQF_SHARED,
-> > +                            dev_name(dev), csi);
-> > +     if (ret) {
-> > +             dev_err(dev, "irq csi %s failed\n", of_id->name);
-> > +
-> > +             goto end;
-> > +     }
-
-devm_*irq() might be a bad idea. Is it race free in your driver?
-
-> > +static const struct of_device_id dw_mipi_csi_of_match[] = {
-> > +     { .compatible = "snps,dw-csi" },
-
-> > +     {},
-
-Better without comma. Terminator may terminate even at compile time.
-
-> > +};
-
-> > +static ssize_t core_version_show(struct device *dev,
-> > +                              struct device_attribute *attr,
-> > +                              char *buf)
-> > +{
-> > +     struct platform_device *pdev = to_platform_device(dev);
-> > +     struct v4l2_subdev *sd = platform_get_drvdata(pdev);
-> > +     struct dw_csi *csi_dev = sd_to_mipi_csi_dev(sd);
-
-> > +
-> > +     char buffer[10];
-> > +
-> > +     snprintf(buffer, 10, "v.%d.%d*\n", csi_dev->hw_version_major,
-> > +              csi_dev->hw_version_minor);
-> > +
-> > +     return strlcpy(buf, buffer, PAGE_SIZE);
-
-Oh, can't you simple without any temprorary useless buffers?
- sprintf(buf, ...)?
-(Yes, note _absence_ of *n* there)
-
-> > +}
-
-> > +static ssize_t n_lanes_store(struct device *dev, struct device_attribute *attr,
-> > +                          const char *buf, size_t count)
-> > +{
-> > +     int ret;
-> > +     unsigned long lanes;
-
-> > +
-
-More blank lines! We need them!
-
-> > +     struct platform_device *pdev = to_platform_device(dev);
-> > +     struct v4l2_subdev *sd = platform_get_drvdata(pdev);
-> > +     struct dw_csi *csi_dev = sd_to_mipi_csi_dev(sd);
-> > +
-> > +     ret = kstrtoul(buf, 10, &lanes);
-> > +     if (ret < 0)
-> > +             return ret;
-
-Can it return positive number?
-
-> > +     dev_info(dev, "Lanes %lu\n", lanes);
-
-Noise.
-The user gets it, why to spam kernel log???
-
-> > +     csi_dev->hw.num_lanes = lanes;
-> > +
-> > +     return count;
-> > +}
-
-I told once, can repeat again. Synopsys perhaps needs better reviews
-inside company. Each time I see the code, it repeats same mistakes
-over and over. Have you, guys, do something about it?
+Am I missing something ?
 
 -- 
-With Best Regards,
-Andy Shevchenko
+Best regards,
+Marek Vasut
