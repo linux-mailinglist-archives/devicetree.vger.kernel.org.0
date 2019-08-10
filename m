@@ -2,118 +2,136 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4AC0988E99
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 23:58:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id CCD1588EB9
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2019 01:06:36 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726084AbfHJV6r (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Aug 2019 17:58:47 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:43587 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726014AbfHJV6r (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 17:58:47 -0400
-Received: by mail-wr1-f67.google.com with SMTP id p13so26777558wru.10;
-        Sat, 10 Aug 2019 14:58:45 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=K9HKM9K3HL43njYCcY6vOqInMtfbzDaB9eASkJJfruQ=;
-        b=iUThwJzo6/R3D8r9w+FbypguBYEuNDOe01nxxYhotqFXRGO2smtZvox8Ra1TPLGd3s
-         C1Z4JdXceg+Azq+s4M83acj2AvLP8HxhJg4v9H3lf87I5E/w/k0Y2i32+O8qUCowaocU
-         k56Av8twKHln4fSFFvGsQ4zsPw4QCtUjXXb2cpf4KpJptaV6jy73N0v4nMWuQiTQaDUy
-         rNkCEvY8WdnKKOXYwFhzJLIGrYM3mJMlfYtOCVic8fHf9AMjVEtA3Dm99JEp22+ReLT/
-         JCR3Li6XzQWuFX8M1/5QbEnV2TpK5ZT5eRUvyuYUWmzAN/0tEthDfAbMKd5cJ8QLOhA+
-         /zTQ==
-X-Gm-Message-State: APjAAAUGTxDar8Xy2QyY/SC30otNo5PGV+I3KuP7iuwzPSViZ9EewU3O
-        1Trfhbdz9wfZ8IpSgPzpQjQ=
-X-Google-Smtp-Source: APXvYqyV5953tlVYfSNQrY/Za/BWWnls8Tn6aDGoR3zfQywrFQ+MRg/Vdsac8DqIe7uRHHb5+a0h3A==
-X-Received: by 2002:adf:fe85:: with SMTP id l5mr11610028wrr.5.1565474325005;
-        Sat, 10 Aug 2019 14:58:45 -0700 (PDT)
-Received: from tfsielt31850.garage.tyco.com ([79.97.20.138])
-        by smtp.gmail.com with ESMTPSA id c15sm40631344wrb.80.2019.08.10.14.58.43
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Sat, 10 Aug 2019 14:58:44 -0700 (PDT)
-From:   =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>
-To:     Philippe Schenker <philippe.schenker@toradex.com>
-Cc:     =?UTF-8?q?Andr=C3=A9=20Draszik?= <git@andred.net>,
-        Max Krummenacher <max.krummenacher@toradex.com>,
-        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
-        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] ARM: dts: imx7d: sbc-iot-imx7: add recovery for i2c3/4
-Date:   Sat, 10 Aug 2019 22:58:17 +0100
-Message-Id: <20190810215817.5118-1-git@andred.net>
-X-Mailer: git-send-email 2.20.1
-In-Reply-To: <20190807082556.5013-6-philippe.schenker@toradex.com>
-References: <20190807082556.5013-6-philippe.schenker@toradex.com>
+        id S1726084AbfHJXGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Aug 2019 19:06:35 -0400
+Received: from mail.kernel.org ([198.145.29.99]:41714 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1725788AbfHJXGf (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Sat, 10 Aug 2019 19:06:35 -0400
+Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E905B208C4;
+        Sat, 10 Aug 2019 23:06:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565478394;
+        bh=SI2d4Y4hZcsrt7ve7CrzNd1JjWMC3yyXOT2RxwbjXqE=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=qojn2EIuU0YQdoMtEZa0fsyEnVUqcQtKuMbGD7jqJUsatW8elNX+GjFPGrY/MTLLQ
+         ReD1q5nafCpn0ZJl0SSx2G11jm+nQvtiIXSPuI3hsZ6QGrqF7PrMi496Xmm00XSz7o
+         ozHQ64LKOaSrsy5wYU9cV5+1vFkGFiKD/oTPKNjs=
+Received: by mail-qk1-f180.google.com with SMTP id g17so3787759qkk.8;
+        Sat, 10 Aug 2019 16:06:33 -0700 (PDT)
+X-Gm-Message-State: APjAAAXBHQvZgfiayn9V/neIeNV5ZeAksWAZehsc4aKSgtwo8cHvUiho
+        t+yMcpowYsr/WN28LqXLLoFNzJ+UpXgdlsFpwg==
+X-Google-Smtp-Source: APXvYqzMoxSMzmfJnWNfgvCIgM0nuiBjcGotb8rUssRzaeUgirt9md2wJ5YyJkMUroVAciLVRbrAOptmfLb33d7v8Vs=
+X-Received: by 2002:a37:a44a:: with SMTP id n71mr24174784qke.393.1565478393051;
+ Sat, 10 Aug 2019 16:06:33 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=UTF-8
-Content-Transfer-Encoding: 8bit
+References: <20190809173321.19944-1-marek.vasut@gmail.com> <CAL_JsqJyYQ99ENOkNd6yzn1eYwLTGLNihFxtovSPJajtF9SVvg@mail.gmail.com>
+ <10818888-6476-f4b1-1a2e-e10c3159327f@gmail.com>
+In-Reply-To: <10818888-6476-f4b1-1a2e-e10c3159327f@gmail.com>
+From:   Rob Herring <robh+dt@kernel.org>
+Date:   Sat, 10 Aug 2019 17:06:21 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJMQtvrQac6F6vy+0uWOMVi-4_7_1ooYWiB8gekrt9Jqg@mail.gmail.com>
+Message-ID: <CAL_JsqJMQtvrQac6F6vy+0uWOMVi-4_7_1ooYWiB8gekrt9Jqg@mail.gmail.com>
+Subject: Re: [PATCH] of: Fix of_empty_ranges_quirk()
+To:     Marek Vasut <marek.vasut@gmail.com>
+Cc:     devicetree@vger.kernel.org,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        Frank Rowand <frowand.list@gmail.com>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, 07 Aug 2019 08:26:15 +0000, Philippe Schenker wrote:
-> From: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
+On Sat, Aug 10, 2019 at 7:39 AM Marek Vasut <marek.vasut@gmail.com> wrote:
 >
-> - add recovery mode for applicable i2c buses for
->   Colibri iMX7 module.
+> On 8/10/19 12:34 AM, Rob Herring wrote:
+> > On Fri, Aug 9, 2019 at 11:33 AM <marek.vasut@gmail.com> wrote:
+> >>
+> >> From: Marek Vasut <marek.vasut+renesas@gmail.com>
+> >>
+> >> The of_empty_ranges_quirk() returns a mix of boolean and signed integer
+> >> types, which cannot work well.
+> >
+> > It never returns a negative. The negative is used as an uninitialized
+> > flag. Note quirk_state is static.
 >
-> Signed-off-by: Oleksandr Suvorov <oleksandr.suvorov@toradex.com>
-> Signed-off-by: Philippe Schenker <philippe.schenker@toradex.com>
-> ---
->
-> Changes in v3: None
-> Changes in v2: None
->
->  arch/arm/boot/dts/imx7-colibri.dtsi | 25 +++++++++++++++++++++++--
->  1 file changed, 23 insertions(+), 2 deletions(-)
->
-> diff --git a/arch/arm/boot/dts/imx7-colibri.dtsi b/arch/arm/boot/dts/imx7-colibri.dtsi
-> index a8d992f3e897..2480623c92ff 100644
-> --- a/arch/arm/boot/dts/imx7-colibri.dtsi
-> +++ b/arch/arm/boot/dts/imx7-colibri.dtsi
-> @@ -140,8 +140,12 @@
->
->  &i2c1 {
->  	clock-frequency = <100000>;
-> -	pinctrl-names = "default";
-> +	pinctrl-names = "default", "gpio";
->  	pinctrl-0 = <&pinctrl_i2c1 &pinctrl_i2c1_int>;
-> +	pinctrl-1 = <&pinctrl_i2c1_recovery &pinctrl_i2c1_int>;
-> +	scl-gpios = <&gpio1 4 GPIO_ACTIVE_HIGH>;
+> It's still mixing boolean and signed int types though, which isn't right.
 
-scl-gpios should be (GPIO_ACTIVE_HIGH | GPIO_OPEN_DRAIN) since
-commit d2d0ad2aec4a ("i2c: imx: use open drain for recovery GPIO")
+I'm really only interested in touching this code if it is too remove
+it. But some reason people still run 1990s Macs.
 
-Otherwise you'll get a boot-time warning:
-   enforced open drain please flag it properly in DT/ACPI DSDT/board file
-
-> +	sda-gpios = <&gpio1 5 GPIO_ACTIVE_HIGH>;
-> +
->  	status = "okay";
+> >> Replace that with boolean only and fix
+> >> usage logic in of_translate_one() -- the check should trigger when the
+> >> ranges are NULL and the quirk is applicable on the hardware.
+> >>
+> >> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
+> >> Cc: Rob Herring <robh+dt@kernel.org>
+> >> Cc: Frank Rowand <frowand.list@gmail.com>
+> >> Cc: linux-renesas-soc@vger.kernel.org
+> >> To: devicetree@vger.kernel.org
+> >> ---
+> >>  drivers/of/address.c | 9 +++++----
+> >>  1 file changed, 5 insertions(+), 4 deletions(-)
+> >>
+> >> diff --git a/drivers/of/address.c b/drivers/of/address.c
+> >> index b492176c0572..ae2819e148b8 100644
+> >> --- a/drivers/of/address.c
+> >> +++ b/drivers/of/address.c
+> >> @@ -616,7 +616,7 @@ static struct of_bus *of_match_bus(struct device_node *np)
+> >>         return NULL;
+> >>  }
+> >>
+> >> -static int of_empty_ranges_quirk(struct device_node *np)
+> >> +static bool of_empty_ranges_quirk(struct device_node *np)
+> >>  {
+> >>         if (IS_ENABLED(CONFIG_PPC)) {
+> >>                 /* To save cycles, we cache the result for global "Mac" setting */
+> >> @@ -631,7 +631,8 @@ static int of_empty_ranges_quirk(struct device_node *np)
+> >>                         quirk_state =
+> >>                                 of_machine_is_compatible("Power Macintosh") ||
+> >>                                 of_machine_is_compatible("MacRISC");
+> >> -               return quirk_state;
+> >> +               if (quirk_state > 0)
+> >> +                       return true;
+> >>         }
+> >>         return false;
+> >>  }
+> >> @@ -662,8 +663,8 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
+> >>          * This code is only enabled on powerpc. --gcl
+> >>          */
+> >>         ranges = of_get_property(parent, rprop, &rlen);
+> >> -       if (ranges == NULL && !of_empty_ranges_quirk(parent)) {
+> >> -               pr_debug("no ranges; cannot translate\n");
+> >> +       if (ranges == NULL && of_empty_ranges_quirk(parent)) {
+> >> +               pr_err("no ranges; cannot translate\n");
+> >
+> > This is wrong. If you have NULL ranges and not the quirk, then no
+> > ranges is an error. IOW, if you are getting an error here, you have an
+> > error in your DT (because I assume you are not working on a PASemi or
+> > Apple system).
 >
->  	codec: sgtl5000@a {
-> @@ -242,8 +246,11 @@
->
->  &i2c4 {
->  	clock-frequency = <100000>;
-> -	pinctrl-names = "default";
-> +	pinctrl-names = "default", "gpio";
->  	pinctrl-0 = <&pinctrl_i2c4>;
-> +	pinctrl-1 = <&pinctrl_i2c4_recovery>;
-> +	scl-gpios = <&gpio7 8 GPIO_ACTIVE_HIGH>;
+> The way I understand the code is that
+> if (you have no ranges in the DT) AND (the quirk is applicable) then
+> print the message. Which is what this patch does.
 
-and here, too.
+Your understanding is wrong.
 
-Cheers,
-André
+> Am I missing something ?
+
+The normal case is you must have ranges to translate addresses. If you
+don't have ranges (say for I2C addresses), then you shouldn't be in
+this code. The quirk is for when there is not a ranges property but
+should be. IOW, if the quirk is true, then pretend there is an empty
+ranges (1:1 translation) property and continue to translate the
+address.
+
+Rob
