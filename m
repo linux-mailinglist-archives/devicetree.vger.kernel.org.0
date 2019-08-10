@@ -2,126 +2,195 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 16DED88C49
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 18:38:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E1D2F88D14
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 21:47:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726114AbfHJQiP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Aug 2019 12:38:15 -0400
-Received: from mailgw02.mediatek.com ([1.203.163.81]:49029 "EHLO
-        mailgw02.mediatek.com" rhost-flags-OK-FAIL-OK-FAIL) by vger.kernel.org
-        with ESMTP id S1726112AbfHJQiO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 12:38:14 -0400
-X-UUID: 4354e03d6b6c4d93b3e200d25d7fc4d8-20190811
-X-UUID: 4354e03d6b6c4d93b3e200d25d7fc4d8-20190811
-Received: from mtkcas32.mediatek.inc [(172.27.4.253)] by mailgw02.mediatek.com
-        (envelope-from <houlong.wei@mediatek.com>)
-        (mailgw01.mediatek.com ESMTP with TLS)
-        with ESMTP id 629964535; Sun, 11 Aug 2019 00:38:05 +0800
-Received: from MTKCAS32.mediatek.inc (172.27.4.184) by MTKMBS31DR.mediatek.inc
- (172.27.6.102) with Microsoft SMTP Server (TLS) id 15.0.1395.4; Sun, 11 Aug
- 2019 00:38:03 +0800
-Received: from [10.17.3.153] (172.27.4.253) by MTKCAS32.mediatek.inc
- (172.27.4.170) with Microsoft SMTP Server id 15.0.1395.4 via Frontend
- Transport; Sun, 11 Aug 2019 00:38:01 +0800
-Message-ID: <1565455081.19079.36.camel@mhfsdcap03>
-Subject: Re: [PATCH v11 09/12] soc: mediatek: cmdq: define the instruction
- struct
-From:   houlong wei <houlong.wei@mediatek.com>
-To:     Bibby Hsieh =?UTF-8?Q?=28=E8=AC=9D=E6=BF=9F=E9=81=A0=29?= 
-        <Bibby.Hsieh@mediatek.com>
-CC:     Jassi Brar <jassisinghbrar@gmail.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        CK Hu =?UTF-8?Q?=28=E8=83=A1=E4=BF=8A=E5=85=89=29?= 
-        <ck.hu@mediatek.com>, "Daniel Kurtz" <djkurtz@chromium.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "linux-mediatek@lists.infradead.org" 
-        <linux-mediatek@lists.infradead.org>,
-        srv_heupstream <srv_heupstream@mediatek.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        "Nicolas Boichat" <drinkcat@chromium.org>,
-        YT Shen =?UTF-8?Q?=28=E6=B2=88=E5=B2=B3=E9=9C=86=29?= 
-        <Yt.Shen@mediatek.com>,
-        Daoyuan Huang =?UTF-8?Q?=28=E9=BB=83=E9=81=93=E5=8E=9F=29?= 
-        <Daoyuan.Huang@mediatek.com>,
-        Jiaguang Zhang =?UTF-8?Q?=28=E5=BC=A0=E5=8A=A0=E5=B9=BF=29?= 
-        <Jiaguang.Zhang@mediatek.com>,
-        Dennis-YC Hsieh =?UTF-8?Q?=28=E8=AC=9D=E5=AE=87=E5=93=B2=29?= 
-        <Dennis-YC.Hsieh@mediatek.com>,
-        Ginny Chen =?UTF-8?Q?=28=E9=99=B3=E6=B2=BB=E5=82=91=29?= 
-        <ginny.chen@mediatek.com>, <houlong.wei@mediatek.com>
-Date:   Sun, 11 Aug 2019 00:38:01 +0800
-In-Reply-To: <1565453520.19079.17.camel@mhfsdcap03>
-References: <20190729070106.9332-1-bibby.hsieh@mediatek.com>
-         <20190729070106.9332-10-bibby.hsieh@mediatek.com>
-         <1565453520.19079.17.camel@mhfsdcap03>
-Content-Type: text/plain; charset="UTF-8"
-X-Mailer: Evolution 3.10.4-0ubuntu2 
+        id S1726114AbfHJTra (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Aug 2019 15:47:30 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:42544 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725788AbfHJTr3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 15:47:29 -0400
+Received: by mail-pf1-f196.google.com with SMTP id q10so47758820pff.9;
+        Sat, 10 Aug 2019 12:47:29 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=subject:to:cc:references:from:message-id:date:user-agent
+         :mime-version:in-reply-to:content-language:content-transfer-encoding;
+        bh=nZ/7YOyOKU/WfMjnpN3j2xVNlX2pQ0OoVYVLoACqeO0=;
+        b=g2iZgi1yw3okZWCmRGIX3x5A8gm5qJ0vEdNucIP0iGAKXyaAv8kPbmJx/E+rWTduvc
+         pRfCNL3DmWbHPV9doP1SjaCSrgHdtZZzWPqN/UO7heTIUWEvuUbkw8Ab2DWpsUn/AUFL
+         tWVRkDRzNraAy+h0V4Ijpn827RdfYPjepFyMqnpCSlHGJqNCvph9pXVooxc+sdtreW4V
+         RpZfKTi9osEDSYfdYdgj08CHlSoUDqaiw4on936Bif3S+XaQFvbTqmHn5tOqvVMlWrs4
+         h2P09K0jxbrHmxo76pkIx6STejVcFc2NW+in4e1Vh4VzMO06zwNqRCf9MKb/MMsYE3K8
+         HSHw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
+         :user-agent:mime-version:in-reply-to:content-language
+         :content-transfer-encoding;
+        bh=nZ/7YOyOKU/WfMjnpN3j2xVNlX2pQ0OoVYVLoACqeO0=;
+        b=elMz9QoOvnff9gacNBTBFwdBQICYN36vIqBcZw8tbz5wj5ePWlUG01NV/tU5HRz7EF
+         2kgs3v/2a51Ue5Z6bHFr8U13Dq5vEFApp/WpHfNxwqH+da1/JN+sMD+ynGhpayllk4RO
+         8+gYfkIDzKhMDEgMDqFpFpe7wl3DSmY+bIj+Sh9Oe0Rt4WzmcdDSj4BtRRE835nhvIld
+         PFxAPQSZC6DAgekSG4SWyRbvWCkEWEbZJdXlMFfmcLg0uXwHEiibAYlrTcONvX1+G2rn
+         aQKGtdEU6eMeaywNzDHwN3F1hQ+DmRbromqk5HQr4/JVQ4AmLFC3kGJvTl1dWRz4F/rI
+         /oBA==
+X-Gm-Message-State: APjAAAXHUPEgMktd7A/DLKn8RMHcZGmXGj2gfLSVHvBi5vbTyr8CBiK4
+        ib2b71tUv+E1toqzlEdiVEI=
+X-Google-Smtp-Source: APXvYqy/7dzUAbycF72ZXo5CCBqwAIip2zseR88VEZXjmMV67whU6RczcZC2js2/9pRDFkvVwpeNVg==
+X-Received: by 2002:a62:27c2:: with SMTP id n185mr27257547pfn.79.1565466448957;
+        Sat, 10 Aug 2019 12:47:28 -0700 (PDT)
+Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
+        by smtp.gmail.com with ESMTPSA id r27sm127945726pgn.25.2019.08.10.12.47.28
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Sat, 10 Aug 2019 12:47:28 -0700 (PDT)
+Subject: Re: [PATCH] of: Fix of_empty_ranges_quirk()
+To:     Marek Vasut <marek.vasut@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     devicetree@vger.kernel.org,
+        Marek Vasut <marek.vasut+renesas@gmail.com>,
+        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
+        <linux-renesas-soc@vger.kernel.org>
+References: <20190809173321.19944-1-marek.vasut@gmail.com>
+ <CAL_JsqJyYQ99ENOkNd6yzn1eYwLTGLNihFxtovSPJajtF9SVvg@mail.gmail.com>
+ <10818888-6476-f4b1-1a2e-e10c3159327f@gmail.com>
+From:   Frank Rowand <frowand.list@gmail.com>
+Message-ID: <5d393d4b-b8dc-39e1-991e-de367649cf58@gmail.com>
+Date:   Sat, 10 Aug 2019 12:47:27 -0700
+User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
+ Thunderbird/60.8.0
 MIME-Version: 1.0
+In-Reply-To: <10818888-6476-f4b1-1a2e-e10c3159327f@gmail.com>
+Content-Type: text/plain; charset=utf-8
+Content-Language: en-US
 Content-Transfer-Encoding: 7bit
-X-TM-SNTS-SMTP: 8232FFF279301A39457DCF48E56192120E1B5723579B6362CE045B6813A8FDA22000:8
-X-MTK:  N
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sun, 2019-08-11 at 00:12 +0800, houlong wei wrote:
-> Hi Bibby, I have inline comment in function cmdq_pkt_write_mask().
+On 8/10/19 6:39 AM, Marek Vasut wrote:
+> On 8/10/19 12:34 AM, Rob Herring wrote:
+>> On Fri, Aug 9, 2019 at 11:33 AM <marek.vasut@gmail.com> wrote:
+>>>
+>>> From: Marek Vasut <marek.vasut+renesas@gmail.com>
+>>>
+>>> The of_empty_ranges_quirk() returns a mix of boolean and signed integer
+>>> types, which cannot work well.
+>>
+>> It never returns a negative. The negative is used as an uninitialized
+>> flag. Note quirk_state is static.
 > 
-> On Mon, 2019-07-29 at 15:01 +0800, Bibby Hsieh wrote:
-> > Define an instruction structure for gce driver to append command.
-> > This structure can make the client's code more readability.
-> > 
-> > Signed-off-by: Bibby Hsieh <bibby.hsieh@mediatek.com>
-> > Reviewed-by: CK Hu <ck.hu@mediatek.com>
-> > ---
-> >  drivers/soc/mediatek/mtk-cmdq-helper.c   | 103 +++++++++++++++--------
-> >  include/linux/mailbox/mtk-cmdq-mailbox.h |   2 +
-> >  2 files changed, 72 insertions(+), 33 deletions(-)
-> > 
-> > diff --git a/drivers/soc/mediatek/mtk-cmdq-helper.c b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> > index 7aa0517ff2f3..0886c4967ca4 100644
-> > --- a/drivers/soc/mediatek/mtk-cmdq-helper.c
-> > +++ b/drivers/soc/mediatek/mtk-cmdq-helper.c
-> > @@ -9,12 +9,24 @@
-> >  #include <linux/mailbox_controller.h>
-> >  #include <linux/soc/mediatek/mtk-cmdq.h>
-[...]
-> >  
-> >  int cmdq_pkt_write_mask(struct cmdq_pkt *pkt, u8 subsys,
-> >  			u16 offset, u32 value, u32 mask)
-> >  {
-> > +	struct cmdq_instruction *inst;
-> >  	u32 offset_mask = offset;
-> > -	int err = 0;
-> >  
-> >  	if (mask != 0xffffffff) {
-> > -		err = cmdq_pkt_append_command(pkt, CMDQ_CODE_MASK, 0, ~mask);
-> > +		inst = cmdq_pkt_append_command(pkt);
-> > +		if (!inst)
-> > +			return -ENOMEM;
-> > +
-> > +		inst->op = CMDQ_CODE_MASK;
-> > +		inst->mask = ~mask;
+> It's still mixing boolean and signed int types though, which isn't right.
 
-> >  		offset_mask |= CMDQ_WRITE_ENABLE_MASK;
-> >  	}
-> > -	err |= cmdq_pkt_write(pkt, value, subsys, offset_mask);
-> >  
-> > -	return err;
-> > +	return cmdq_pkt_write(pkt, subsys, offset_mask, value);
+From a code readability aspect, Marek is correct.
 
-We need add a type conversion here, (u8)offset_mask, for your new
-function type. Er... it's better to remove local variable 'offset_mask'
-and replace it with 'offset'.
+The code author used "stupid (or clever) coding tricks" (tm) to save a
+little bit of memory.  A more readable implementation would be:
 
-> >  }
-[...]
 
+static bool of_empty_ranges_quirk(struct device_node *np)
+{
+        /*
+         * As far as we know, the missing "ranges" problem only exists on Apple
+	 * machines, so only enable the exception on powerpc. --gcl
+         */
+
+        if (IS_ENABLED(CONFIG_PPC)) {
+                /* Cache the result for global "Mac" setting */
+                static int quirk_state_initialized = 0;
+                static bool quirk_state;
+
+                /* PA-SEMI sdc DT bug */
+                if (of_device_is_compatible(np, "1682m-sdc"))
+                        return true;
+
+                if (!quirk_state_initialized)
+			quirk_state_initialized = 1;
+                        quirk_state =
+                                of_machine_is_compatible("Power Macintosh") ||
+                                of_machine_is_compatible("MacRISC");
+                return quirk_state;
+        }
+        return false;
+}
+
+
+I would also rename of_empty_ranges_quirk() to something like
+of_missing_ranges_is_ok() or of_missing_ranges_allowed().
+"quirk" does not convey any useful information while my proposed rename
+describes what the function is actually checking for.
+
+The comment that I added is currently in the caller of of_empty_ranges_quirk(),
+but instead belongs in of_empty_ranges_quirk().  When I read that comment in
+of_translate_one(), my reaction was to look for the check for powerpc in
+of_translate_one() and to be puzzled when I could not find it.  I also
+modified the comment for the changed context.  Thus the "--gcl" portion
+of the comment should also be removed from of_translate_one().
+
+The more readable implementation (IMNSHO) uses slightly more memory and
+slightly more code, but it is more direct about what it is doing and thus
+more readable.
+
+-Frank
+
+
+> 
+>>> Replace that with boolean only and fix
+>>> usage logic in of_translate_one() -- the check should trigger when the
+>>> ranges are NULL and the quirk is applicable on the hardware.
+>>>
+>>> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
+>>> Cc: Rob Herring <robh+dt@kernel.org>
+>>> Cc: Frank Rowand <frowand.list@gmail.com>
+>>> Cc: linux-renesas-soc@vger.kernel.org
+>>> To: devicetree@vger.kernel.org
+>>> ---
+>>>  drivers/of/address.c | 9 +++++----
+>>>  1 file changed, 5 insertions(+), 4 deletions(-)
+>>>
+>>> diff --git a/drivers/of/address.c b/drivers/of/address.c
+>>> index b492176c0572..ae2819e148b8 100644
+>>> --- a/drivers/of/address.c
+>>> +++ b/drivers/of/address.c
+>>> @@ -616,7 +616,7 @@ static struct of_bus *of_match_bus(struct device_node *np)
+>>>         return NULL;
+>>>  }
+>>>
+>>> -static int of_empty_ranges_quirk(struct device_node *np)
+>>> +static bool of_empty_ranges_quirk(struct device_node *np)
+>>>  {
+>>>         if (IS_ENABLED(CONFIG_PPC)) {
+>>>                 /* To save cycles, we cache the result for global "Mac" setting */
+>>> @@ -631,7 +631,8 @@ static int of_empty_ranges_quirk(struct device_node *np)
+>>>                         quirk_state =
+>>>                                 of_machine_is_compatible("Power Macintosh") ||
+>>>                                 of_machine_is_compatible("MacRISC");
+>>> -               return quirk_state;
+>>> +               if (quirk_state > 0)
+>>> +                       return true;
+>>>         }
+>>>         return false;
+>>>  }
+>>> @@ -662,8 +663,8 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
+>>>          * This code is only enabled on powerpc. --gcl
+>>>          */
+>>>         ranges = of_get_property(parent, rprop, &rlen);
+>>> -       if (ranges == NULL && !of_empty_ranges_quirk(parent)) {
+>>> -               pr_debug("no ranges; cannot translate\n");
+>>> +       if (ranges == NULL && of_empty_ranges_quirk(parent)) {
+>>> +               pr_err("no ranges; cannot translate\n");
+>>
+>> This is wrong. If you have NULL ranges and not the quirk, then no
+>> ranges is an error. IOW, if you are getting an error here, you have an
+>> error in your DT (because I assume you are not working on a PASemi or
+>> Apple system).
+> 
+> The way I understand the code is that
+> if (you have no ranges in the DT) AND (the quirk is applicable) then
+> print the message. Which is what this patch does.
+> 
+> Am I missing something ?
+> 
 
