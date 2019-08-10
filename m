@@ -2,113 +2,108 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EA89F8870C
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 02:02:54 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 2501688723
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 02:11:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726652AbfHJACx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 20:02:53 -0400
-Received: from mail-lf1-f66.google.com ([209.85.167.66]:45079 "EHLO
-        mail-lf1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726219AbfHJACx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 20:02:53 -0400
-Received: by mail-lf1-f66.google.com with SMTP id a30so7621890lfk.12
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 17:02:51 -0700 (PDT)
+        id S1726185AbfHJALk (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 20:11:40 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:43464 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726189AbfHJALk (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 20:11:40 -0400
+Received: by mail-pg1-f195.google.com with SMTP id r26so10661147pgl.10
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 17:11:40 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=ragnatech-se.20150623.gappssmtp.com; s=20150623;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=AA9v8dxfCCblJqMoNCF+8j4H1UmYH/D+RZS5ewmEe+s=;
-        b=lx/LC+eKE3aevRot99Bn/5gxXD1PF/y9WkfcmZd3f3ET2dEEk+HweSEA0bsc8IpmT0
-         qtj8YUCMcGSg39e5oOXJekABpAMlf3jPn5eyVzW1aZ6CJmOUzr9TCV/owN+SmffqAkqC
-         TBt//U6YgoctpCOJbmL6c1NrZNcwEv4hDQauH8PnxmLFPeJ1y3gtP03nK0xm1kxezkmK
-         DfN36RuJ0G6M5X8NiZlkNg0sPmSFY36Afs4moLgQ8+4PzB/kJ8oZvYOSxaRP1hPhrLsi
-         o7e/8G9R6ZrozwFN23L9+4HwnQYbTdPB3xrV1MCtI7TCEcWS/uGReKDD+WjOGOGmO6qL
-         LKgA==
+        d=baylibre-com.20150623.gappssmtp.com; s=20150623;
+        h=from:to:cc:subject:in-reply-to:references:date:message-id
+         :mime-version;
+        bh=EuQ/R3CppOBh2T1D6FSE6/gAUMLd+emlPXZ8P0KlK4E=;
+        b=KECCdmknzaH0Ve1akzRhLGqPfYzLSqiQZzqIGqUTh+SAcO6Q19ScBeUTVGmT9Kn2fi
+         wuc/H+9Zvt1RiYlS2YMjELwda9ElQG3tetwgpwSLKyc3GMze7p3oJ/iAFf+mlr04fS3p
+         4SoG8g9Vg49LMc+XN9CN2yjxwMYkHbcBup94eMKinNVLCmVJIOstAPR1bTlg+BvjkpIY
+         cd36ZXrgFEWiqQp6BRzMLy0rpNVl0ji479pxHPF2OWsm4aIthkJshQrCEUBBzGGR6KqN
+         xCB5+OxoXjeEhzq/eUA6LgN2F98/tP71hoMrI7Rz306vlRZd504t0Hj1N10xjJOIG5GQ
+         EZNQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=AA9v8dxfCCblJqMoNCF+8j4H1UmYH/D+RZS5ewmEe+s=;
-        b=iqOIvWmkvKt2YIL0Z/kdTXJxsTuolQWPBzKiz/kQn1FRMkEcCbMArjVYmiXT6hIwnb
-         CgBkDQmAsxZnfIbILNox6pwqxLCjmTuYjUEm9GCM2AKogMa7S0ZJkjmT5KctOIBxVjo2
-         t1jKDUHNPxtcoPhHNxLrBodLtPJrrU5ZVtBnzAolBy1nS41ACLkjTP3lRk7VyWwt5zQ6
-         nYew4rLVPr0cLdE/Dkaaze6GTDYkFubSvTZFM+s6747T536l4ryX5aNsbyZLbSHnjBFW
-         8vx48zSXR6HI8e4g6Hab2GwFY5zs7PX4/92oh5ZC7UeiaJza7SSZDQkbPhJgnAH6cAqq
-         AT3Q==
-X-Gm-Message-State: APjAAAVZFXTFxK0G4xc4KdRdwvVBxbC69FRSH9NiU4XJDEp4lHA/Rx8P
-        T9QatZB6p3N7GUjTZqMzncYnkg==
-X-Google-Smtp-Source: APXvYqzYg17dNbQ7istBhfp2oTQBSDWS4a2fNxYBL5FMm/Pqvn+OsRUwnLTP04cgqMppoLXqBOh4SA==
-X-Received: by 2002:a19:7006:: with SMTP id h6mr14109459lfc.5.1565395371056;
-        Fri, 09 Aug 2019 17:02:51 -0700 (PDT)
-Received: from localhost (h-177-236.A463.priv.bahnhof.se. [217.31.177.236])
-        by smtp.gmail.com with ESMTPSA id y5sm19545824ljj.5.2019.08.09.17.02.50
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Fri, 09 Aug 2019 17:02:50 -0700 (PDT)
-Date:   Sat, 10 Aug 2019 02:02:49 +0200
-From:   Niklas =?iso-8859-1?Q?S=F6derlund?= 
-        <niklas.soderlund+renesas@ragnatech.se>
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>, linux-usb@vger.kernel.org,
-        devicetree@vger.kernel.org, linux-renesas-soc@vger.kernel.org
-Subject: Re: [PATCH v2] dt-bindings: usb: renesas_gen3: Rename bindings
- documentation file to reflect IP block
-Message-ID: <20190810000249.GB28494@bigcity.dyn.berto.se>
-References: <20190809213710.31783-1-horms+renesas@verge.net.au>
+        h=x-gm-message-state:from:to:cc:subject:in-reply-to:references:date
+         :message-id:mime-version;
+        bh=EuQ/R3CppOBh2T1D6FSE6/gAUMLd+emlPXZ8P0KlK4E=;
+        b=OGhvl9HqWLZalE8X2lk1a/zwRR6te2eCgyjuC9acym2m9UYBFTbi8CrpcHYNn+YWKj
+         LWNYMTOzdgr0EczN7cCQ2hwon6bIux9aZ2kq1OGWa2VybaGfcgZRsRffu3yKKUDpjB9p
+         4HCHIh1Y77jMtPuSp3+Nm9H3S20qNWrnohrc0jELfGf/0SE82W/YmnvTr1ilmvcTZ6vL
+         TeR8Md+rXmUcTChYTCqM+pCtf6caUP7Bz54mHixwKrWG6kAVDEbEI/6DgsnLEBvQM4vh
+         Dpqj6wqnjzK/7HTbD6QYz5lhcYExaDlRu42uo0QBk6Fbq2u7WHhi28GTNjfwyUenmAnB
+         ZH6Q==
+X-Gm-Message-State: APjAAAUQaU5bew3Ljpr6pQQU3EyBbFvFkeKMpikpa7gF9TdfwhBOI7H/
+        PkKTiZ5va9Ly2vd33eIbHnME0g==
+X-Google-Smtp-Source: APXvYqwfo3bJUKvTH7g4ZfJhFp6Q9sQXhh6NsNs21MEaB/aVJYLW2l4lX40Zlrs3JJt56T2EbsbNBA==
+X-Received: by 2002:a62:82c1:: with SMTP id w184mr24770723pfd.8.1565395899475;
+        Fri, 09 Aug 2019 17:11:39 -0700 (PDT)
+Received: from localhost ([2601:602:9200:a1a5:b873:707a:e893:cdb3])
+        by smtp.gmail.com with ESMTPSA id k14sm25201452pgb.78.2019.08.09.17.11.38
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Fri, 09 Aug 2019 17:11:38 -0700 (PDT)
+From:   Kevin Hilman <khilman@baylibre.com>
+To:     Guillaume La Roque <glaroque@baylibre.com>,
+        daniel.lezcano@linaro.org
+Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-amlogic@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-arm-kernel@lists.infradead.org
+Subject: Re: [PATCH v3 0/6] Add support of New Amlogic temperature sensor for G12 SoCs
+In-Reply-To: <20190806130506.8753-1-glaroque@baylibre.com>
+References: <20190806130506.8753-1-glaroque@baylibre.com>
+Date:   Fri, 09 Aug 2019 17:11:37 -0700
+Message-ID: <7hd0hd3mme.fsf@baylibre.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190809213710.31783-1-horms+renesas@verge.net.au>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+Content-Type: text/plain
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Simon,
+Guillaume La Roque <glaroque@baylibre.com> writes:
 
-Thanks for your work.
+> This patchs series add support of New Amlogic temperature sensor and minimal
+> thermal zone for SEI510 and ODROID-N2 boards.
+>
+> First implementation was doing on IIO[1] but after comments i move on thermal framework.
+> Formulas and calibration values come from amlogic.
+>
+> Changes since v2:
+>   - fix yaml documention 
+>   - remove unneeded status variable for temperature-sensor node
+>   - rework driver after Martin review
+>   - add some information in commit message
+>
+> Changes since v1:
+>   - fix enum vs const in documentation
+>   - fix error with thermal-sensor-cells value set to 1 instead of 0
+>   - add some dependencies needed to add cooling-maps
+>
+> Dependencies :
+> - patch 3,4 & 5: depends on Neil's patch and series :
+>               - missing dwc2 phy-names[2]
+>               - patchsets to add DVFS on G12a[3] which have deps on [4] and [5]
+>
+> [1] https://lore.kernel.org/linux-amlogic/20190604144714.2009-1-glaroque@baylibre.com/
+> [2] https://lore.kernel.org/linux-amlogic/20190625123647.26117-1-narmstrong@baylibre.com/
+> [3] https://lore.kernel.org/linux-amlogic/20190729132622.7566-1-narmstrong@baylibre.com/
+> [4] https://lore.kernel.org/linux-amlogic/20190731084019.8451-5-narmstrong@baylibre.com/
+> [5] https://lore.kernel.org/linux-amlogic/20190729132622.7566-3-narmstrong@baylibre.com/
 
-On 2019-08-09 14:37:10 -0700, Simon Horman wrote:
-> For consistency with the naming of (most) other documentation files for DT
-> bindings for Renesas IP blocks rename the Renesas USB3.0 peripheral
-> documentation file from renesas,usb3.txt to renesas,usb3-peri.txt
-> 
-> This refines a recent rename from renesas_usb3.txt to renesas-usb3.txt.
-> The motivation is to more accurately reflect the IP block documented in
-> this file.
-> 
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
-> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Thank you for the detailed list of dependencies!  Much appreciated.
 
-Reviewed-by: Niklas Söderlund <niklas.soderlund+renesas@ragnatech.se>
+With all the deps, I tested this on sei510 and odroid-n2, and basic
+functionality seems to work.
 
-> ---
-> * Based on v5.3-rc1
-> 
-> v2
-> * Add review tag
-> * Correct changelog
-> ---
->  .../devicetree/bindings/usb/{renesas,usb3.txt => renesas,usb3-peri.txt}   | 0
->  1 file changed, 0 insertions(+), 0 deletions(-)
->  rename Documentation/devicetree/bindings/usb/{renesas,usb3.txt => renesas,usb3-peri.txt} (100%)
-> 
-> diff --git a/Documentation/devicetree/bindings/usb/renesas,usb3.txt b/Documentation/devicetree/bindings/usb/renesas,usb3-peri.txt
-> similarity index 100%
-> rename from Documentation/devicetree/bindings/usb/renesas,usb3.txt
-> rename to Documentation/devicetree/bindings/usb/renesas,usb3-peri.txt
-> -- 
-> 2.11.0
-> 
+As discussed off-list: it would be nice to have an example of how
+cpufreq could be used as a cooling device for hot temperatures.  The
+vendor kernel has some trip points that could be included as examples,
+or even included as extra patches.
 
--- 
-Regards,
-Niklas Söderlund
+Also the driver patch is missing the two main thermal maintainers, so
+please resend at least the driver and bindings including them.
+
+
+Kevin
