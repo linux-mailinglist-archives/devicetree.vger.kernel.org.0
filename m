@@ -2,62 +2,67 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4B3168879D
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 04:26:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 68085887A5
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 04:57:47 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726870AbfHJC0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 22:26:43 -0400
-Received: from mail-pl1-f195.google.com ([209.85.214.195]:37531 "EHLO
-        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726862AbfHJC0n (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 22:26:43 -0400
-Received: by mail-pl1-f195.google.com with SMTP id b3so45708604plr.4
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 19:26:42 -0700 (PDT)
+        id S1725830AbfHJC5q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 22:57:46 -0400
+Received: from mail-pf1-f196.google.com ([209.85.210.196]:44681 "EHLO
+        mail-pf1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725773AbfHJC5q (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 22:57:46 -0400
+Received: by mail-pf1-f196.google.com with SMTP id t16so46971497pfe.11;
+        Fri, 09 Aug 2019 19:57:45 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=fJRKchZ4P9X/GnIo7ipt+NWYwkn02uqrbxcZx/6Jbfw=;
-        b=I2YTdPfhPyylXC6aX95mx9ZovblDn6zC/vDjxDGfS+bGV0mLRn0O/FRkc+wMTejfzm
-         OxaejtdFbfNOgXTPilcQhTfHj/jiZ60FThMvf9DNhAbOEzlsQWjOWhz8T1iW3RdBnC1f
-         wglauzOeL6s+wfQA7QwNuVQAq6Jednq49YPzEE+L1CJH9h16VMNcqFC89hRz1dJnCL3o
-         sZkvlRBzZtCTOZ9G+qgvA1uWg2M45vk9vO6XXEZ14pQgq7KzdMh4wabAmZEaufet7wnf
-         fKaC1nshzbovjyBidI8qAtGWFQRgbNlQ86FQhGlj4lSzdsZzC3fzlQKg9/Qt+irIiTA5
-         qqyQ==
+        bh=kQcn7trNekDj0qqTtDkSs96HNHs6dudjhS459W20OWo=;
+        b=hM96Sb0BYW/n/w11bIADqi7mwIwqUS+dBKttzYw4hWbql5ALkH5BSFvdfVEzHEp6Jp
+         0NCyPcckjd4ksM+HtzUM4OTyhbRfo58Nnx/pR7k1/WOpBHvitgL8PosUcZZNt5FMrNuU
+         ghhTMw2N/JaYr2nkCoHSeJZq3syjmqLtDRo5owDJA4ZB0k0IevX/G/yedx3j8g3tqGec
+         QBhySOvX4QgXE5R76K8ohI1g8LCxCqbBMQL5dlx0RvfTCOLhKGIinaymYoH9tWn0viE9
+         L2giVnaAcuxt6x+z+Pm0DWPWxWSsNT/QzajTq5V4AhvhtF7ewa6ZQxF1nTYIlntN3Ff0
+         F1RA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=fJRKchZ4P9X/GnIo7ipt+NWYwkn02uqrbxcZx/6Jbfw=;
-        b=CXu1R7a6QvJ44pUfyoKa8tns7HRhqKRADvCXXc7nRuSMN6rlFalqmKvfsCtMLUgb1J
-         a0BitpodwWGy2iSBIgk5k/hzGuSb3Rz8MtUQuqdg28VtRdBtsFuf7fu2v9RLHFh+Tmrn
-         s3AlME0BHCHlDKUZdwSnYGkRVU2Ksqeyao+Wv8aQUBwv/lXO+JxFGvH+S+WgGesWj44I
-         cVmQ1beipFgFE2OiQB7lBZ3RXiAX7rJ5MNljvJSGidiw6V6yztop8y6xPYSE0UcIZcp1
-         afl3CggBZJ+Z3B1gh272vDjfQGA2oxJ9t4y7RXQ+xxSDLjgotaFSaWopqzjkZUCLQois
-         /xQA==
-X-Gm-Message-State: APjAAAWPB/XO9xbGRj1XOkb70NlFHUrtcWJkKrWpKxvE2dawV/sdyaAx
-        wGXzQPVa4r9dkS1s7qw0sc4=
-X-Google-Smtp-Source: APXvYqwA33HQny5tELZXR8SnMfxoPX/jXYVF9o6ArD++LLaoTYtD9LJ9pbNAOTZiVOTRclDK43hH2A==
-X-Received: by 2002:a17:902:a714:: with SMTP id w20mr22160885plq.127.1565404001868;
-        Fri, 09 Aug 2019 19:26:41 -0700 (PDT)
+        bh=kQcn7trNekDj0qqTtDkSs96HNHs6dudjhS459W20OWo=;
+        b=SJnrtt1MKTMZT1c+MqlkAwSlZ/0qkTZzpsOQRg6ariy3/PMRBh60qVf8zUlyR3Te17
+         8HwSM8BYT2ft/LBFrFhquSBpMw5OJYh1tkiq/HkPZ8nv0VTPvUBmTwlus7pZwBlwbqyv
+         FzYs4FVpPJlxqLPvUTYP6M/MiZHfYLxSZNaMpxfCIRFaPTMSmItniq62686vqSMC88HA
+         zFl17Q1OvXgcW+GzAzRyso8i+S57BOCQ3jBlnbdWndgLHT/J45XXXP2KJ7RcWTIiZvt+
+         +T7SGMzAeUuM0fYGRCKErldsz5+iulVKCQZfoNgVbWDj+qbseJF1TspW6izM4PEnW4Un
+         219w==
+X-Gm-Message-State: APjAAAWDJaH6IgHFooGY18gdRcgPlcCAxoSp9pFlpkxJYnWGMXjZgNRP
+        oE7+eI4mEkoG1tnLzt8BC0w=
+X-Google-Smtp-Source: APXvYqyODM1aXn3F0N5dKbLQNYVoL+RPmQnATl8faybWKMxo9YzKkJEhSTG1H5dvEuw5VlZHE876og==
+X-Received: by 2002:a65:64cf:: with SMTP id t15mr19721356pgv.88.1565405865533;
+        Fri, 09 Aug 2019 19:57:45 -0700 (PDT)
 Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
-        by smtp.gmail.com with ESMTPSA id y14sm455848pfq.85.2019.08.09.19.26.41
+        by smtp.gmail.com with ESMTPSA id m13sm4112400pfh.36.2019.08.09.19.57.44
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Aug 2019 19:26:41 -0700 (PDT)
-Subject: Re: [PATCH v2] of/fdt: implement a "merge-cmdline" property
-To:     Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
-        devicetree@vger.kernel.org
-Cc:     Paul Burton <paul.burton@mips.com>,
-        Frank Rowand <frowand.list@gmail.com>
-References: <1565020400-25679-1-git-send-email-daniel@gimpelevich.san-francisco.ca.us>
+        Fri, 09 Aug 2019 19:57:44 -0700 (PDT)
+Subject: Re: [PATCH v9 0/7] Solve postboot supplier cleanup and optimize probe
+ ordering
+To:     Saravana Kannan <saravanak@google.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        "Rafael J. Wysocki" <rafael@kernel.org>
+Cc:     devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        David Collins <collinsd@codeaurora.org>,
+        kernel-team@android.com
+References: <20190731221721.187713-1-saravanak@google.com>
 From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <6772aab0-a4eb-55dc-657d-0f2b67b0d163@gmail.com>
-Date:   Fri, 9 Aug 2019 19:26:40 -0700
+Message-ID: <919b66e9-9708-de34-41cd-e448838b130c@gmail.com>
+Date:   Fri, 9 Aug 2019 19:57:43 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
-In-Reply-To: <1565020400-25679-1-git-send-email-daniel@gimpelevich.san-francisco.ca.us>
+In-Reply-To: <20190731221721.187713-1-saravanak@google.com>
 Content-Type: text/plain; charset=utf-8
 Content-Language: en-US
 Content-Transfer-Encoding: 7bit
@@ -66,90 +71,134 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-+Frank (me)
+Hi Saravana,
 
-On 8/5/19 8:53 AM, Daniel Gimpelevich wrote:
-> Currently, "bootargs" supplied via the "chosen" node can be used only to
-> supply a kernel command line as a whole. No mechanism exists in DT to add
-> bootargs to the existing command line instead. This is needed in order to
-> avoid having to update the bootloader or default bootloader config when
-> upgrading to a DTB and kernel pair that requires bootargs not previously
-> needed.
+On 7/31/19 3:17 PM, Saravana Kannan wrote:
+> Add device-links to track functional dependencies between devices
+> after they are created (but before they are probed) by looking at
+> their common DT bindings like clocks, interconnects, etc.
 > 
-> One example use case is that OpenWrt currently supports four ARM devices by
-> means of locally applying the previously rejected edition of this patch. So
-> far, the patch has been used in production only on ARM, but architecture is
-> not a distinction in the design.
+> Having functional dependencies automatically added before the devices
+> are probed, provides the following benefits:
 > 
-> On MIPS, Commit 951d223 ("MIPS: Fix CONFIG_CMDLINE handling") currently
-> prevents support of such a mechanism, so I am including a workaround, in
-> anticipation of upcoming changes.
+> - Optimizes device probe order and avoids the useless work of
+>   attempting probes of devices that will not probe successfully
+>   (because their suppliers aren't present or haven't probed yet).
 > 
-> Signed-off-by: Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>
-> Fixes: 951d223 ("MIPS: Fix CONFIG_CMDLINE handling")
-> References: https://patchwork.linux-mips.org/patch/17659/
-> ---
->  arch/mips/kernel/setup.c | 12 ++++++++----
->  drivers/of/fdt.c         |  9 +++++++--
->  2 files changed, 15 insertions(+), 6 deletions(-)
+>   For example, in a commonly available mobile SoC, registering just
+>   one consumer device's driver at an initcall level earlier than the
+>   supplier device's driver causes 11 failed probe attempts before the
+>   consumer device probes successfully. This was with a kernel with all
+>   the drivers statically compiled in. This problem gets a lot worse if
+>   all the drivers are loaded as modules without direct symbol
+>   dependencies.
 > 
-> diff --git a/arch/mips/kernel/setup.c b/arch/mips/kernel/setup.c
-> index ab349d2..9ce58f2 100644
-> --- a/arch/mips/kernel/setup.c
-> +++ b/arch/mips/kernel/setup.c
-> @@ -725,7 +725,10 @@ static void __init arch_mem_init(char **cmdline_p)
->  	 * CONFIG_CMDLINE ourselves below & don't want to duplicate its
->  	 * content because repeating arguments can be problematic.
->  	 */
-> -	strlcpy(boot_command_line, " ", COMMAND_LINE_SIZE);
-> +	if (USE_DTB_CMDLINE)
-> +		strlcpy(boot_command_line, arcs_cmdline, COMMAND_LINE_SIZE);
-> +	else
-> +		strlcpy(boot_command_line, " ", COMMAND_LINE_SIZE);
->  
->  	/* call board setup routine */
->  	plat_mem_setup();
-> @@ -753,9 +756,10 @@ static void __init arch_mem_init(char **cmdline_p)
->  #if defined(CONFIG_CMDLINE_BOOL) && defined(CONFIG_CMDLINE_OVERRIDE)
->  	strlcpy(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
->  #else
-> -	if ((USE_PROM_CMDLINE && arcs_cmdline[0]) ||
-> -	    (USE_DTB_CMDLINE && !boot_command_line[0]))
-> +	if (USE_PROM_CMDLINE)
->  		strlcpy(boot_command_line, arcs_cmdline, COMMAND_LINE_SIZE);
-> +	else if (!strcmp(boot_command_line, " "))
-> +		boot_command_line[0] = '\0';
->  
->  	if (EXTEND_WITH_PROM && arcs_cmdline[0]) {
->  		if (boot_command_line[0])
-> @@ -764,7 +768,7 @@ static void __init arch_mem_init(char **cmdline_p)
->  	}
->  
->  #if defined(CONFIG_CMDLINE_BOOL)
-> -	if (builtin_cmdline[0]) {
-> +	if (builtin_cmdline[0] && strcmp(boot_command_line, builtin_cmdline)) {
->  		if (boot_command_line[0])
->  			strlcat(boot_command_line, " ", COMMAND_LINE_SIZE);
->  		strlcat(boot_command_line, builtin_cmdline, COMMAND_LINE_SIZE);
-> diff --git a/drivers/of/fdt.c b/drivers/of/fdt.c
-> index 9cdf14b..08c25eb 100644
-> --- a/drivers/of/fdt.c
-> +++ b/drivers/of/fdt.c
-> @@ -1055,8 +1055,13 @@ int __init early_init_dt_scan_chosen(unsigned long node, const char *uname,
->  
->  	/* Retrieve command line */
->  	p = of_get_flat_dt_prop(node, "bootargs", &l);
-> -	if (p != NULL && l > 0)
-> -		strlcpy(data, p, min(l, COMMAND_LINE_SIZE));
-> +	if (p != NULL && l > 0) {
-> +		if (!of_get_flat_dt_prop(node, "merge-cmdline", NULL))
-> +			*(char *)data = '\0';
-> +		if (*(char *)data)
-> +			strlcat(data, " ", COMMAND_LINE_SIZE);
-> +		strlcat(data, p, min(l + strlen(data), COMMAND_LINE_SIZE));
-> +	}
->  
->  	/*
->  	 * CONFIG_CMDLINE is meant to be a default in case nothing else
+> - Supplier devices like clock providers, interconnect providers, etc
+>   need to keep the resources they provide active and at a particular
+>   state(s) during boot up even if their current set of consumers don't
+>   request the resource to be active. This is because the rest of the
+>   consumers might not have probed yet and turning off the resource
+>   before all the consumers have probed could lead to a hang or
+>   undesired user experience.
+> 
+>   Some frameworks (Eg: regulator) handle this today by turning off
+>   "unused" resources at late_initcall_sync and hoping all the devices
+>   have probed by then. This is not a valid assumption for systems with
+>   loadable modules. Other frameworks (Eg: clock) just don't handle
+>   this due to the lack of a clear signal for when they can turn off
+>   resources. This leads to downstream hacks to handle cases like this
+>   that can easily be solved in the upstream kernel.
+> 
+>   By linking devices before they are probed, we give suppliers a clear
+>   count of the number of dependent consumers. Once all of the
+>   consumers are active, the suppliers can turn off the unused
+>   resources without making assumptions about the number of consumers.
+> 
+> By default we just add device-links to track "driver presence" (probe
+> succeeded) of the supplier device. If any other functionality provided
+> by device-links are needed, it is left to the consumer/supplier
+> devices to change the link when they probe.
+> 
+> v1 -> v2:
+> - Drop patch to speed up of_find_device_by_node()
+> - Drop depends-on property and use existing bindings
+> 
+> v2 -> v3:
+> - Refactor the code to have driver core initiate the linking of devs
+> - Have driver core link consumers to supplier before it's probed
+> - Add support for drivers to edit the device links before probing
+> 
+> v3 -> v4:
+> - Tested edit_links() on system with cyclic dependency. Works.
+> - Added some checks to make sure device link isn't attempted from
+>   parent device node to child device node.
+> - Added way to pause/resume sync_state callbacks across
+>   of_platform_populate().
+> - Recursively parse DT node to create device links from parent to
+>   suppliers of parent and all child nodes.
+> 
+> v4 -> v5:
+> - Fixed copy-pasta bugs with linked list handling
+> - Walk up the phandle reference till I find an actual device (needed
+>   for regulators to work)
+> - Added support for linking devices from regulator DT bindings
+> - Tested the whole series again to make sure cyclic dependencies are
+>   broken with edit_links() and regulator links are created properly.
+> 
+> v5 -> v6:
+> - Split, squashed and reordered some of the patches.
+> - Refactored the device linking code to follow the same code pattern for
+>   any property.
+> 
+> v6 -> v7:
+> - No functional changes.
+> - Renamed i to index
+> - Added comment to clarify not having to check property name for every
+>   index
+> - Added "matched" variable to clarify code. No functional change.
+> - Added comments to include/linux/device.h for add_links()
+> 
+> v7 -> v8:
+> - Rebased on top of linux-next to handle device link changes in [1]
+> 
+
+
+> v8 -> v9:
+> - Fixed kbuild test bot reported errors (docs and const)
+
+Some maintainers have strong opinions about whether change logs should be:
+
+  (1) only in patch 0
+  (2) only in the specific patches that are changed
+  (3) both in patch 0 and in the specific patches that are changed.
+
+I can adapt to any of the three styles.  But for style "(1)" please
+list which specific patch has changed for each item in the change list.
+
+-Frank
+
+
+> 
+> [1] - https://lore.kernel.org/lkml/2305283.AStDPdUUnE@kreacher/
+> 
+> -Saravana
+> 
+> 
+> Saravana Kannan (7):
+>   driver core: Add support for linking devices during device addition
+>   driver core: Add edit_links() callback for drivers
+>   of/platform: Add functional dependency link from DT bindings
+>   driver core: Add sync_state driver/bus callback
+>   of/platform: Pause/resume sync state during init and
+>     of_platform_populate()
+>   of/platform: Create device links for all child-supplier depencencies
+>   of/platform: Don't create device links for default busses
+> 
+>  .../admin-guide/kernel-parameters.txt         |   5 +
+>  drivers/base/core.c                           | 168 ++++++++++++++++
+>  drivers/base/dd.c                             |  29 +++
+>  drivers/of/platform.c                         | 189 ++++++++++++++++++
+>  include/linux/device.h                        |  60 ++++++
+>  5 files changed, 451 insertions(+)
 > 
 
