@@ -2,57 +2,58 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CBB7F8879A
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 04:12:33 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4B3168879D
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 04:26:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726185AbfHJCMc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Fri, 9 Aug 2019 22:12:32 -0400
-Received: from mail-pf1-f194.google.com ([209.85.210.194]:42374 "EHLO
-        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726022AbfHJCMc (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 22:12:32 -0400
-Received: by mail-pf1-f194.google.com with SMTP id q10so46951246pff.9
-        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 19:12:31 -0700 (PDT)
+        id S1726870AbfHJC0n (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Fri, 9 Aug 2019 22:26:43 -0400
+Received: from mail-pl1-f195.google.com ([209.85.214.195]:37531 "EHLO
+        mail-pl1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726862AbfHJC0n (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Fri, 9 Aug 2019 22:26:43 -0400
+Received: by mail-pl1-f195.google.com with SMTP id b3so45708604plr.4
+        for <devicetree@vger.kernel.org>; Fri, 09 Aug 2019 19:26:42 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=gmail.com; s=20161025;
         h=subject:to:cc:references:from:message-id:date:user-agent
          :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=dIsTIbIVT0DvOH4LTzbsKWAgQLESoVNEJNMZCugoqJI=;
-        b=olc+LWBhlrB/yzFGXNfphgCQ48TQ4q+RKDdJUN+tAVqzIR68BXl+jqB2YwGBKVZ1rr
-         nrojspjO71Sh234yoq0S6M8IGUxNNvKWANXi5BYfBiu4FujRVsu6jqzh5+as8krKecJ9
-         MuFHUHvnhM92Zr1opEnsGnA5UU/laOqix7MA09noJZ1Ew6MTFpVIEUcuB61642HjPsLf
-         /yS/gz1bFNro4pvuMQRNoyfzb7Cwy/XP0Ndcs6C9iLju3U7e8GGvehg9ylmysVz2+bvH
-         tdzwJjoO6tPVwMLG4QCORITF2YgVeQVoBA8pqo/8b6zGwAO60izUEFyfUo5jNs/r9Lth
-         /rQQ==
+        bh=fJRKchZ4P9X/GnIo7ipt+NWYwkn02uqrbxcZx/6Jbfw=;
+        b=I2YTdPfhPyylXC6aX95mx9ZovblDn6zC/vDjxDGfS+bGV0mLRn0O/FRkc+wMTejfzm
+         OxaejtdFbfNOgXTPilcQhTfHj/jiZ60FThMvf9DNhAbOEzlsQWjOWhz8T1iW3RdBnC1f
+         wglauzOeL6s+wfQA7QwNuVQAq6Jednq49YPzEE+L1CJH9h16VMNcqFC89hRz1dJnCL3o
+         sZkvlRBzZtCTOZ9G+qgvA1uWg2M45vk9vO6XXEZ14pQgq7KzdMh4wabAmZEaufet7wnf
+         fKaC1nshzbovjyBidI8qAtGWFQRgbNlQ86FQhGlj4lSzdsZzC3fzlQKg9/Qt+irIiTA5
+         qqyQ==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:subject:to:cc:references:from:message-id:date
          :user-agent:mime-version:in-reply-to:content-language
          :content-transfer-encoding;
-        bh=dIsTIbIVT0DvOH4LTzbsKWAgQLESoVNEJNMZCugoqJI=;
-        b=Q5zM85iCewn9go9VXAlPctqxMZXeJMypr1UYI2zR8t9+QcHH5BdbPk+ayUMWHXAiiy
-         hKb3xK9OBTH2l4M4JbEw4eEADlm++JhfYPL81Ye2rRdMYHXzXAg5TdPIdKOobkHPByA/
-         U40FJ3fZN2CgvbojlI9CCgL+rIvpV5LB7vw8qeRqjU0o59WrwCLjjGnFQtpTweopg2fA
-         yLjSYoGOMfkb+wmXUEAbAe3a/yHYioc2jrZZO+hqTxdczBT1eTyQqgo1jcP146GWnWoE
-         IfLcxA6U4UVD9vi3M+3ayWG2FroITulp9viSFLVugXXYYH4OOlKSvrlGcmIx4cDwi9dx
-         XDEg==
-X-Gm-Message-State: APjAAAXnDt0h3K0Kc0lU88kfhO7eHQX7+2rw0y5NTFw1zriLT/z9IAVH
-        VJUyHHNRXiZBmIjARPAgFvA=
-X-Google-Smtp-Source: APXvYqzYMOuu5ho/fMFkhqvU4tWBcbwgIR5t1rR+3JijgdXVEyA7y8rVKyIw5S0qq6B5zwJBoYVwAA==
-X-Received: by 2002:aa7:98da:: with SMTP id e26mr24692418pfm.34.1565403151634;
-        Fri, 09 Aug 2019 19:12:31 -0700 (PDT)
+        bh=fJRKchZ4P9X/GnIo7ipt+NWYwkn02uqrbxcZx/6Jbfw=;
+        b=CXu1R7a6QvJ44pUfyoKa8tns7HRhqKRADvCXXc7nRuSMN6rlFalqmKvfsCtMLUgb1J
+         a0BitpodwWGy2iSBIgk5k/hzGuSb3Rz8MtUQuqdg28VtRdBtsFuf7fu2v9RLHFh+Tmrn
+         s3AlME0BHCHlDKUZdwSnYGkRVU2Ksqeyao+Wv8aQUBwv/lXO+JxFGvH+S+WgGesWj44I
+         cVmQ1beipFgFE2OiQB7lBZ3RXiAX7rJ5MNljvJSGidiw6V6yztop8y6xPYSE0UcIZcp1
+         afl3CggBZJ+Z3B1gh272vDjfQGA2oxJ9t4y7RXQ+xxSDLjgotaFSaWopqzjkZUCLQois
+         /xQA==
+X-Gm-Message-State: APjAAAWPB/XO9xbGRj1XOkb70NlFHUrtcWJkKrWpKxvE2dawV/sdyaAx
+        wGXzQPVa4r9dkS1s7qw0sc4=
+X-Google-Smtp-Source: APXvYqwA33HQny5tELZXR8SnMfxoPX/jXYVF9o6ArD++LLaoTYtD9LJ9pbNAOTZiVOTRclDK43hH2A==
+X-Received: by 2002:a17:902:a714:: with SMTP id w20mr22160885plq.127.1565404001868;
+        Fri, 09 Aug 2019 19:26:41 -0700 (PDT)
 Received: from [192.168.1.70] (c-73-231-235-122.hsd1.ca.comcast.net. [73.231.235.122])
-        by smtp.gmail.com with ESMTPSA id v18sm98220761pgl.87.2019.08.09.19.12.30
+        by smtp.gmail.com with ESMTPSA id y14sm455848pfq.85.2019.08.09.19.26.41
         (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Fri, 09 Aug 2019 19:12:30 -0700 (PDT)
+        Fri, 09 Aug 2019 19:26:41 -0700 (PDT)
 Subject: Re: [PATCH v2] of/fdt: implement a "merge-cmdline" property
 To:     Daniel Gimpelevich <daniel@gimpelevich.san-francisco.ca.us>,
         devicetree@vger.kernel.org
-Cc:     Paul Burton <paul.burton@mips.com>
+Cc:     Paul Burton <paul.burton@mips.com>,
+        Frank Rowand <frowand.list@gmail.com>
 References: <1565020400-25679-1-git-send-email-daniel@gimpelevich.san-francisco.ca.us>
 From:   Frank Rowand <frowand.list@gmail.com>
-Message-ID: <202c73b3-7b38-8040-49fc-a7ea14020370@gmail.com>
-Date:   Fri, 9 Aug 2019 19:12:29 -0700
+Message-ID: <6772aab0-a4eb-55dc-657d-0f2b67b0d163@gmail.com>
+Date:   Fri, 9 Aug 2019 19:26:40 -0700
 User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
  Thunderbird/60.8.0
 MIME-Version: 1.0
@@ -65,11 +66,7 @@ Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Daniel,
-
-Please include me on the distribution list for devicetree patches.
-
--Frank
++Frank (me)
 
 On 8/5/19 8:53 AM, Daniel Gimpelevich wrote:
 > Currently, "bootargs" supplied via the "chosen" node can be used only to
