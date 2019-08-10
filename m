@@ -2,108 +2,161 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C7DDD88A1E
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 10:45:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9D57F88A27
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 10:51:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725884AbfHJIpg (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Aug 2019 04:45:36 -0400
-Received: from mail-yb1-f194.google.com ([209.85.219.194]:46718 "EHLO
-        mail-yb1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725763AbfHJIpg (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 04:45:36 -0400
-Received: by mail-yb1-f194.google.com with SMTP id w196so8776570ybe.13;
-        Sat, 10 Aug 2019 01:45:35 -0700 (PDT)
+        id S1725884AbfHJIv4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Aug 2019 04:51:56 -0400
+Received: from mail-lf1-f68.google.com ([209.85.167.68]:45991 "EHLO
+        mail-lf1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725773AbfHJIv4 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 04:51:56 -0400
+Received: by mail-lf1-f68.google.com with SMTP id a30so8128793lfk.12
+        for <devicetree@vger.kernel.org>; Sat, 10 Aug 2019 01:51:54 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
+        d=linaro.org; s=google;
         h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=4N2DP4l2LpXR0ja9/QlgTCxk89cb9ApRuW6Y7KL7/QM=;
-        b=tFjHxYGsshA6uhC4ZyO8gQA5CGqOklLRWWxRbDw74L/pi+b9ttnCV0SxJXzM1GWIvS
-         F9rYQq1hBhIsaxKOI08ZyaGxkadwK312OhWil5n/UwwkKSmadnu/olRJh1TePylAFF1P
-         4ktVi+A2LsntpLrg+0r5GSjYQS6MoaBf5QcbFDhiWv7xJnDJnGAAFTUKJLcAwhajChY9
-         OyZKinHBA6UhYKPjOgT2ZHjTfw/jp+Njsc09CGDN2oGgyuMarC1b8lJbRsvnx9Il0N93
-         Q2aGmNoPzI8TmYFqu0vVtm5p9ZXDTei6QktQwpM52ZY7q5UI24kSvWdBmw3r3ttiWOfn
-         PRfg==
+         :cc;
+        bh=EptPs7iPcbS003ql4LofPryli8/kPRHigttfa0soGPM=;
+        b=dY4tmKhPRkkunQn4UGIQVrsBDJJjmPHo8Zno912x+TJ8dzjiGFuxd76ubqw8MCLP5t
+         p5MwPMZhibwnWf+UnCMS/azgJ7pEWR+PJWYzVau9tW80vpZ0ftga211e10RR9o93Ut5U
+         3WZIT+eAQNY8RrhebusFP/sAX5TuYrF38e7p3L4NJiXc+hGWOsBBRpQT/vazmeHXJjEj
+         T79XP88p35y8oqVSt5ezwijpyhVTgF4ixGNtONNqGpDzh0J5gRq/wyFHm4LNGieQBuSV
+         oS4jiDM1efuGQivvU08x1ozI5BokzjdbbQO7j41mycYCRHILLyQGPP9+x77ehtCUCXHd
+         md/g==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=4N2DP4l2LpXR0ja9/QlgTCxk89cb9ApRuW6Y7KL7/QM=;
-        b=e0jFvHJrt/Ei0HgtWqj5//2isnrkp+vyAXTitNstIFCReo/eYytWQlBOU+Qh3Eapj2
-         6dDvh3A1IjSzqsiQYeloC6Ryo3QimUeNiQOTBiTiOBsOUIfg+bzhrWKr6Xyym3vIcmuT
-         Pze5YCJ/shKbWejTHE8o5PGJm3TEPI7Sh5UVBP5t152VDcEubxTDjoyJRF5PIyW0Owq2
-         pouUXcKgac/psoQ6mYFfgcDg97iLyVgzebtkqf5BG68JHD/xaU6RfRst67p6yr4fSEtx
-         gYrzcRD6lF3tS+aibUmHP7neV7IzCmvHllivGgNvRNXHXVtDbDSu0QyJYsnXKFe3eILj
-         f7gg==
-X-Gm-Message-State: APjAAAULcyvAW4L7qXx95o9aAJXVAKaDBia8rDbMUM+mi2t30pbRlpur
-        QwaAWjTCvj2X4zwt+RxT73+8vY74dQrJ9mkIbUc=
-X-Google-Smtp-Source: APXvYqwYP1MVAOUz7wJvEpUhVTE97jzCm1T5VZgDMaOxdDC99C9zKxDOMpuB6Lus4uMwey10ooqmjZMMWn1jbSlbvgQ=
-X-Received: by 2002:a25:9109:: with SMTP id v9mr17429940ybl.396.1565426734980;
- Sat, 10 Aug 2019 01:45:34 -0700 (PDT)
+         :message-id:subject:to:cc;
+        bh=EptPs7iPcbS003ql4LofPryli8/kPRHigttfa0soGPM=;
+        b=ppxdfyUyNXXJA2F/Mpnim7fZNBRl6azkTpNUBQmbjHOECCmtEJuha/Fu3Rgx87MJre
+         AIQtPYpRITHymobyx+wZdRyT5PfNp4i5vwsPeWijkUvyxALF4FvJiHzKM3vE9XL8asmm
+         Ex3fePGHlfrdGfDLcEAK/UFSFDzRygvdqbRQrRA9XxWr24ldVigY5O3GCbCgtJe+f+2c
+         wExBY1uegYrCMyFM8nPJiz2+jlyKJ48t+I3e7RCUsCxs0xp/hA4OW2CQ7Kb301djH0H2
+         KPjTjuxG6rMb5rTLAGtT3JCPS8N8ijy73h6ORnWIgtVQsqMujlTmk6yP61iRcSkjVn4F
+         u90w==
+X-Gm-Message-State: APjAAAU2lHkf1tm82dw9m+/JIOTdWsqrab1fOmepnUo0BF2LhRihKPC6
+        EpV6Cx2PzWbTL7amdOeRakzRKYXZv+ZpUajLLG5xORBzk56Vzg==
+X-Google-Smtp-Source: APXvYqy0q3+99yt9Yrth805vgSHJ+YTcfeZacji31vbJYYZzgrHB5Tsjno2Q6ZJtod05sQ2eaXqEh7kKho/FGfr4x7U=
+X-Received: by 2002:a19:e006:: with SMTP id x6mr14722940lfg.165.1565427114167;
+ Sat, 10 Aug 2019 01:51:54 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190527200627.8635-1-peron.clem@gmail.com> <CAJiuCcfUhBxEr=o7VVpPROQZadQh7z1QC0SkWSYt-53Sj3H2qw@mail.gmail.com>
- <CAJiuCcc3_1jZWV7G3+fFQYRZ8b6qcAbnH+K6pkRvww6_D=OMAw@mail.gmail.com> <20190715193842.GC4503@sirena.org.uk>
-In-Reply-To: <20190715193842.GC4503@sirena.org.uk>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Sat, 10 Aug 2019 10:45:23 +0200
-Message-ID: <CAJiuCceYDnyxRLLLLy6Dn6DLTZ+NmSaUnoX1Vmzvgiy0XvF_Fw@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] Allwinner H6 SPDIF support
-To:     Mark Brown <broonie@kernel.org>,
-        Maxime Ripard <maxime.ripard@bootlin.com>
-Cc:     Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+References: <1561714250-19613-1-git-send-email-harish_kandiga@mentor.com>
+ <CAL_Jsq+-xWLkvku-nLmJnFvbuS=dSD=9dG=GS4uBUqL50tdcDg@mail.gmail.com>
+ <06c95f15-d577-e43d-e046-ee222f86c406@mentor.com> <CAL_JsqLQvjtnfUsZ2RP4eozvdwMLzNxtgmT+XFaxW4xzoFjL=w@mail.gmail.com>
+ <f1616784-4dbf-d0fa-b33e-c85fd569383a@mentor.com> <CACRpkdZ+vXG-mGjn0Tt5gyGowAuxiCSQNdjEPGTP9qj23CwkSw@mail.gmail.com>
+ <CAL_JsqLp___2O-naU+2PPQy0QmJX6+aN3hByz-OB9+qFvWgN9Q@mail.gmail.com>
+In-Reply-To: <CAL_JsqLp___2O-naU+2PPQy0QmJX6+aN3hByz-OB9+qFvWgN9Q@mail.gmail.com>
+From:   Linus Walleij <linus.walleij@linaro.org>
+Date:   Sat, 10 Aug 2019 10:51:43 +0200
+Message-ID: <CACRpkdbmyc9LsJ2xiX=zAQR9FZ9dmwu-nPrNbt1Tgud9+rBGpw@mail.gmail.com>
+Subject: Re: [PATCH V4 2/2] gpio: inverter: document the inverter bindings
+To:     Rob Herring <robh+dt@kernel.org>
+Cc:     Harish Jenny K N <harish_kandiga@mentor.com>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        "open list:GPIO SUBSYSTEM" <linux-gpio@vger.kernel.org>,
+        Balasubramani Vivekanandan 
+        <balasubramani_vivekanandan@mentor.com>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi,
+On Fri, Aug 9, 2019 at 4:08 PM Rob Herring <robh+dt@kernel.org> wrote:
+> On Mon, Aug 5, 2019 at 5:15 AM Linus Walleij <linus.walleij@linaro.org> wrote:
 
-Sorry, I just discovered that the ASoC patches have been merged into
-the broonie and linus tree in 5.3.
-
-I'm still quite new in the sending of patches to the Kernel but
-souldn't be a ack or a mail sent to warn the sender when the series
-are accepted?
-
-Should 5/6/7 patches be picked by Sunxi maintainer?
-
-Thanks,
-Cl=C3=A9ment
-
-
-
-
-
-On Mon, 15 Jul 2019 at 21:38, Mark Brown <broonie@kernel.org> wrote:
->
-> On Mon, Jul 15, 2019 at 09:21:01PM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
-> > Hi,
+> > There is some level of ambition here which is inherently a bit fuzzy
+> > around the edges. ("How long is the coast of Britain?" comes to mind.)
 > >
-> > I'm missing ACK from ASoC Maintainers patch 2-3-4.
+> > Surely the intention of device tree is not to recreate the schematic
+> > in all detail. What we want is a model of the hardware that will
+> > suffice for the operating system usecases.
 > >
-> > It's really small paches, if you could have a look at it.
+> > But sometimes the DTS files will become confusing: why is this
+> > component using GPIO_ACTIVE_LOW when another system
+> > doesn't have that flag? If there is an explicit inverter, the
+> > DTS gets more readable for a human.
+> >
+> > But arguable that is case for adding inverters as syntactic
+> > sugar in the DTS compiler instead...
 >
-> Please don't send content free pings and please allow a reasonable time
-> for review.  People get busy, go on holiday, attend conferences and so
-> on so unless there is some reason for urgency (like critical bug fixes)
-> please allow at least a couple of weeks for review.  If there have been
-> review comments then people may be waiting for those to be addressed.
->
-> Sending content free pings adds to the mail volume (if they are seen at
-> all) which is often the problem and since they can't be reviewed
-> directly if something has gone wrong you'll have to resend the patches
-> anyway, so sending again is generally a better approach though there are
-> some other maintainers who like them - if in doubt look at how patches
-> for the subsystem are normally handled.
+> If you really want something more explicit, then add a new GPIO
+> 'inverted' flag. Then a device can always have the same HIGH/LOW flag.
+> That also solves the abstract it for userspace problem.
+
+I think there are some intricate ontologies at work here.
+
+Consider this example: a GPIO is controlling a chip select
+regulator, say Acme Foo. The chip select
+has a pin named CSN. We know from convention that the
+"N" at the end of that pin name means "negative" i.e. active
+low, and that is how the electronics engineers think about
+that chip select line: it activates the IC when
+the line goes low.
+
+The regulator subsystem and I think all subsystems in the
+Linux kernel say the consumer pin should be named and
+tagged after the datsheet of the regulator.
+
+So it has for example:
+
+foo {
+    compatible = "acme,foo";
+    cs-gpios = <&gpio0 6 GPIO_ACTIVE_LOW>;
+};
+
+(It would be inappropriate to name it "csn-gpios" since
+we have an established flag for active low. But it is another
+of these syntactic choices where people likely do mistakes.)
+
+I think it would be appropriate for the DT binding to say
+that this flag must always be GPIO_ACTIVE_LOW since
+the bindings are seen from the component point of view,
+and thus this is always active low.
+
+It would even be reasonable for a yaml schema to enfore
+this, if it could. It is defined as active low after all.
+
+Now if someone adds an inverter on that line between
+gpio0 and Acme Foo it looks like this:
+
+foo {
+    compatible = "acme,foo";
+    cs-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+};
+
+And now we get cognitive dissonance or whatever I should
+call it: someone reading this DTS sheet and the data
+sheet for the component Acme Foo to troubleshoot
+this will be confused: this component has CS active
+low and still it is specified as active high? Unless they
+also look at the schematic or the board and find the
+inverter things are pretty muddy and they will likely curse
+and solve the situation with the usual trial-and-error,
+inserting some random cursewords as a comment.
+
+With an intermediate inverter node, the cs-gpios
+can go back to GPIO_ACTIVE_LOW and follow
+the bindings:
+
+inv0: inverter {
+    compatible = "gpio-inverter";
+    gpio-controller;
+    #gpio-cells = <1>;
+    inverted-gpios = <&gpio0 6 GPIO_ACTIVE_HIGH>;
+};
+
+foo {
+    compatible = "acme,foo";
+    cs-gpios = <&inv0 0 GPIO_ACTIVE_LOW>;
+};
+
+And now Acme Foo bindings can keep enforcing cs-gpios
+to always be tagged GPIO_ACTIVE_LOW.
+
+Yours,
+Linus Walleij
