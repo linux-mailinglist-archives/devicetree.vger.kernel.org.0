@@ -2,136 +2,99 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CCD1588EB9
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2019 01:06:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id BB10F88EBB
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2019 01:10:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726084AbfHJXGf (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Aug 2019 19:06:35 -0400
-Received: from mail.kernel.org ([198.145.29.99]:41714 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725788AbfHJXGf (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Sat, 10 Aug 2019 19:06:35 -0400
-Received: from mail-qk1-f180.google.com (mail-qk1-f180.google.com [209.85.222.180])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E905B208C4;
-        Sat, 10 Aug 2019 23:06:33 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565478394;
-        bh=SI2d4Y4hZcsrt7ve7CrzNd1JjWMC3yyXOT2RxwbjXqE=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=qojn2EIuU0YQdoMtEZa0fsyEnVUqcQtKuMbGD7jqJUsatW8elNX+GjFPGrY/MTLLQ
-         ReD1q5nafCpn0ZJl0SSx2G11jm+nQvtiIXSPuI3hsZ6QGrqF7PrMi496Xmm00XSz7o
-         ozHQ64LKOaSrsy5wYU9cV5+1vFkGFiKD/oTPKNjs=
-Received: by mail-qk1-f180.google.com with SMTP id g17so3787759qkk.8;
-        Sat, 10 Aug 2019 16:06:33 -0700 (PDT)
-X-Gm-Message-State: APjAAAXBHQvZgfiayn9V/neIeNV5ZeAksWAZehsc4aKSgtwo8cHvUiho
-        t+yMcpowYsr/WN28LqXLLoFNzJ+UpXgdlsFpwg==
-X-Google-Smtp-Source: APXvYqzMoxSMzmfJnWNfgvCIgM0nuiBjcGotb8rUssRzaeUgirt9md2wJ5YyJkMUroVAciLVRbrAOptmfLb33d7v8Vs=
-X-Received: by 2002:a37:a44a:: with SMTP id n71mr24174784qke.393.1565478393051;
- Sat, 10 Aug 2019 16:06:33 -0700 (PDT)
+        id S1726212AbfHJXK5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Aug 2019 19:10:57 -0400
+Received: from perceval.ideasonboard.com ([213.167.242.64]:39418 "EHLO
+        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725863AbfHJXK5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 19:10:57 -0400
+Received: from pendragon.bb.dnainternet.fi (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
+        by perceval.ideasonboard.com (Postfix) with ESMTPSA id 151BC67;
+        Sun, 11 Aug 2019 01:10:54 +0200 (CEST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
+        s=mail; t=1565478655;
+        bh=kRXCKfglv72i1u0mmAlcNGo3MS94Y4n2efu9YhAGczw=;
+        h=From:To:Cc:Subject:Date:From;
+        b=TguoP9uNX+wdemVdus1FWxdNxJMbWhsGszGLNsBuLlrBa4iS12AAj3fS7lb29L40g
+         e7fxi4/XfdjfhbIlQ61YUHrHxfBOTAeCIefjHEFhxFB2Hq883GaHEfIsuJ/IK4MDr5
+         dSQ/iWI7SQt+uvqwqiC/0uOhd1z1GmnhZvOQaIT4=
+From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
+To:     dri-devel@lists.freedesktop.org
+Cc:     Sam Ravnborg <sam@ravnborg.org>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
+Subject: [PATCH v2 0/9] DRM panel drivers for omapdrm
+Date:   Sun, 11 Aug 2019 02:10:39 +0300
+Message-Id: <20190810231048.1921-1-laurent.pinchart@ideasonboard.com>
+X-Mailer: git-send-email 2.21.0
 MIME-Version: 1.0
-References: <20190809173321.19944-1-marek.vasut@gmail.com> <CAL_JsqJyYQ99ENOkNd6yzn1eYwLTGLNihFxtovSPJajtF9SVvg@mail.gmail.com>
- <10818888-6476-f4b1-1a2e-e10c3159327f@gmail.com>
-In-Reply-To: <10818888-6476-f4b1-1a2e-e10c3159327f@gmail.com>
-From:   Rob Herring <robh+dt@kernel.org>
-Date:   Sat, 10 Aug 2019 17:06:21 -0600
-X-Gmail-Original-Message-ID: <CAL_JsqJMQtvrQac6F6vy+0uWOMVi-4_7_1ooYWiB8gekrt9Jqg@mail.gmail.com>
-Message-ID: <CAL_JsqJMQtvrQac6F6vy+0uWOMVi-4_7_1ooYWiB8gekrt9Jqg@mail.gmail.com>
-Subject: Re: [PATCH] of: Fix of_empty_ranges_quirk()
-To:     Marek Vasut <marek.vasut@gmail.com>
-Cc:     devicetree@vger.kernel.org,
-        Marek Vasut <marek.vasut+renesas@gmail.com>,
-        Frank Rowand <frowand.list@gmail.com>,
-        "open list:MEDIA DRIVERS FOR RENESAS - FCP" 
-        <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Sat, Aug 10, 2019 at 7:39 AM Marek Vasut <marek.vasut@gmail.com> wrote:
->
-> On 8/10/19 12:34 AM, Rob Herring wrote:
-> > On Fri, Aug 9, 2019 at 11:33 AM <marek.vasut@gmail.com> wrote:
-> >>
-> >> From: Marek Vasut <marek.vasut+renesas@gmail.com>
-> >>
-> >> The of_empty_ranges_quirk() returns a mix of boolean and signed integer
-> >> types, which cannot work well.
-> >
-> > It never returns a negative. The negative is used as an uninitialized
-> > flag. Note quirk_state is static.
->
-> It's still mixing boolean and signed int types though, which isn't right.
+Hello everybody,
 
-I'm really only interested in touching this code if it is too remove
-it. But some reason people still run 1990s Macs.
+These 9 patches have initially been posted as part of the larger "[PATCH
+00/60] drm/omap: Replace custom display drivers with drm_bridge and
+drm_panel" series, hence the v2 in the subject prefix.
 
-> >> Replace that with boolean only and fix
-> >> usage logic in of_translate_one() -- the check should trigger when the
-> >> ranges are NULL and the quirk is applicable on the hardware.
-> >>
-> >> Signed-off-by: Marek Vasut <marek.vasut+renesas@gmail.com>
-> >> Cc: Rob Herring <robh+dt@kernel.org>
-> >> Cc: Frank Rowand <frowand.list@gmail.com>
-> >> Cc: linux-renesas-soc@vger.kernel.org
-> >> To: devicetree@vger.kernel.org
-> >> ---
-> >>  drivers/of/address.c | 9 +++++----
-> >>  1 file changed, 5 insertions(+), 4 deletions(-)
-> >>
-> >> diff --git a/drivers/of/address.c b/drivers/of/address.c
-> >> index b492176c0572..ae2819e148b8 100644
-> >> --- a/drivers/of/address.c
-> >> +++ b/drivers/of/address.c
-> >> @@ -616,7 +616,7 @@ static struct of_bus *of_match_bus(struct device_node *np)
-> >>         return NULL;
-> >>  }
-> >>
-> >> -static int of_empty_ranges_quirk(struct device_node *np)
-> >> +static bool of_empty_ranges_quirk(struct device_node *np)
-> >>  {
-> >>         if (IS_ENABLED(CONFIG_PPC)) {
-> >>                 /* To save cycles, we cache the result for global "Mac" setting */
-> >> @@ -631,7 +631,8 @@ static int of_empty_ranges_quirk(struct device_node *np)
-> >>                         quirk_state =
-> >>                                 of_machine_is_compatible("Power Macintosh") ||
-> >>                                 of_machine_is_compatible("MacRISC");
-> >> -               return quirk_state;
-> >> +               if (quirk_state > 0)
-> >> +                       return true;
-> >>         }
-> >>         return false;
-> >>  }
-> >> @@ -662,8 +663,8 @@ static int of_translate_one(struct device_node *parent, struct of_bus *bus,
-> >>          * This code is only enabled on powerpc. --gcl
-> >>          */
-> >>         ranges = of_get_property(parent, rprop, &rlen);
-> >> -       if (ranges == NULL && !of_empty_ranges_quirk(parent)) {
-> >> -               pr_debug("no ranges; cannot translate\n");
-> >> +       if (ranges == NULL && of_empty_ranges_quirk(parent)) {
-> >> +               pr_err("no ranges; cannot translate\n");
-> >
-> > This is wrong. If you have NULL ranges and not the quirk, then no
-> > ranges is an error. IOW, if you are getting an error here, you have an
-> > error in your DT (because I assume you are not working on a PASemi or
-> > Apple system).
->
-> The way I understand the code is that
-> if (you have no ranges in the DT) AND (the quirk is applicable) then
-> print the message. Which is what this patch does.
+I'm posting this second version separately per Sam's request as the rest
+of the original series is expected to take more time to process through
+review. 
 
-Your understanding is wrong.
+There's nothing very special here. The first three patches add DT vendor
+prefixes and DT bindings. Since v1 patch 3/9 has been converted from
+text to YAML, and as I'm not very familiar with YAML DT bindings, I'm
+eagerly waiting for reviews.
 
-> Am I missing something ?
+The last six patches add new panel drivers. The code originates from the
+corresponding omapdrm-specific panel drivers, which explains why only
+one new DT binding is needed as most of them are already present.
 
-The normal case is you must have ranges to translate addresses. If you
-don't have ranges (say for I2C addresses), then you shouldn't be in
-this code. The quirk is for when there is not a ranges property but
-should be. IOW, if the quirk is true, then pretend there is an empty
-ranges (1:1 translation) property and continue to translate the
-address.
+Please see individual patches for changelogs. Sam, I believe I've taken
+all your comments into account, I hope none fell through the cracks.
 
-Rob
+The patches are based on top of drm-misc-next and can be found at
+
+	git://linuxtv.org/pinchartl/media.git omapdrm/panels
+
+Laurent Pinchart (9):
+  dt-bindings: Add vendor prefix for LG Display
+  dt-bindings: Add legacy 'toppoly' vendor prefix
+  dt-bindings: display: panel: Add bindings for NEC NL8048HL11 panel
+  drm/panel: Add driver for the LG Philips LB035Q02 panel
+  drm/panel: Add driver for the NEC NL8048HL11 panel
+  drm/panel: Add driver for the Sharp LS037V7DW01 panel
+  drm/panel: Add driver for the Sony ACX565AKM panel
+  drm/panel: Add driver for the Toppoly TD028TTEC1 panel
+  drm/panel: Add driver for the Toppoly TD043MTEA1 panel
+
+ .../display/panel/nec,nl8048hl11.yaml         |  49 ++
+ .../devicetree/bindings/vendor-prefixes.yaml  |   5 +
+ drivers/gpu/drm/panel/Kconfig                 |  46 ++
+ drivers/gpu/drm/panel/Makefile                |   6 +
+ drivers/gpu/drm/panel/panel-lg-lb035q02.c     | 237 ++++++
+ drivers/gpu/drm/panel/panel-nec-nl8048hl11.c  | 247 +++++++
+ .../gpu/drm/panel/panel-sharp-ls037v7dw01.c   | 226 ++++++
+ drivers/gpu/drm/panel/panel-sony-acx565akm.c  | 693 ++++++++++++++++++
+ drivers/gpu/drm/panel/panel-tpo-td028ttec1.c  | 381 ++++++++++
+ drivers/gpu/drm/panel/panel-tpo-td043mtea1.c  | 508 +++++++++++++
+ 10 files changed, 2398 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
+ create mode 100644 drivers/gpu/drm/panel/panel-lg-lb035q02.c
+ create mode 100644 drivers/gpu/drm/panel/panel-nec-nl8048hl11.c
+ create mode 100644 drivers/gpu/drm/panel/panel-sharp-ls037v7dw01.c
+ create mode 100644 drivers/gpu/drm/panel/panel-sony-acx565akm.c
+ create mode 100644 drivers/gpu/drm/panel/panel-tpo-td028ttec1.c
+ create mode 100644 drivers/gpu/drm/panel/panel-tpo-td043mtea1.c
+
+-- 
+Regards,
+
+Laurent Pinchart
+
