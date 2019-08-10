@@ -2,165 +2,95 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 29B60888CB
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 08:17:16 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 69D07888E0
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 08:40:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725497AbfHJGRP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Aug 2019 02:17:15 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:32840 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725468AbfHJGRO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 02:17:14 -0400
-Received: by mail-ot1-f68.google.com with SMTP id q20so140948366otl.0;
-        Fri, 09 Aug 2019 23:17:14 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc;
-        bh=GFQESJU0HLdydkYi11prZWb0uKl8NCE/OD8DthGkiqE=;
-        b=f+3F7E1eh0XF4E+DiMuJruDYCrdAxIWvreWv1xMzoCqqFDrKDsFZbsz4DqpLVIM5q4
-         B0UIQGGgOvdLbbMpmHHEBM7aabze/uBMEOBO5BTq2VAM/RwVghSrIBLEZLan0b2rYKTA
-         FLHRlmM51F48KNsXTFkXPTO3locOu5bpiuxxX7uwvMVgfIXquX/0XcbHl908xUz8rR3Z
-         LbQXf8GVeCqWKnjhwh+E/Ud0+e2VBckJ6Hdlg+EmikqVaSIrGItSoetXFbMHwPDqJTi7
-         Kth46OfyhGtUvnTzQ6zxhNBVi4ewZRdFcoEDGUgqozTIZeuKmUgOwXRyA3PJtt2eDlp8
-         O2Mw==
+        id S1725468AbfHJGk2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Aug 2019 02:40:28 -0400
+Received: from mail-ot1-f67.google.com ([209.85.210.67]:46880 "EHLO
+        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725372AbfHJGk2 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 02:40:28 -0400
+Received: by mail-ot1-f67.google.com with SMTP id z17so22742533otk.13;
+        Fri, 09 Aug 2019 23:40:27 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=GFQESJU0HLdydkYi11prZWb0uKl8NCE/OD8DthGkiqE=;
-        b=qdniQkQ3qQ3mXy0e9LuW0SUR20WjCIxFETEbeIKPD45F4rwWBjCsOmTjWi1sgBVZ1u
-         8MzKIiWmG1EShcgx+8V+S/RZXEzd6zK7Enclpem5JlBqOdR03hb6WghxmZPUF4FjOrTF
-         AsumlkinZh4OVZraLX7r52gbZOiVWCJkkypwWUuoXh36vzgAwdmW4N1e8wL0icpb4Hf6
-         nRBNcyL/+foBRZ1nE8f15L48OH9q7O6lzpobY/VN5NGOGBnU8Xy8HnNyjSm/kD0br99q
-         vMOkdmcsGJRWB8l2pnnYvVWB2A5jyiCiBgdAIR+1zjP04p/GwAhuSbc+8IY8LyWeH/z+
-         zfuQ==
-X-Gm-Message-State: APjAAAXTsx8yM7fkn3SUBzE2rXKNpD4vziTP7mBZCNJSYS3lCuTLPlUZ
-        qy2spPG2+OGZYnBtPpINvSy0uqKhnjAardPU560=
-X-Google-Smtp-Source: APXvYqyHHWc+Ae3MZP5usnRpiYzR1mL1m3YZLNpeSjJ0StHZktGgRfPkbbXhPSuFohfq/eXEokgAUj1A9vc9DkA86io=
-X-Received: by 2002:a9d:4109:: with SMTP id o9mr19424717ote.353.1565417833721;
- Fri, 09 Aug 2019 23:17:13 -0700 (PDT)
+        bh=sgL6/Ytr+pf8qX9FnpbE1cRVsjA4/JRI+n1Ds36OnRQ=;
+        b=EWbaTbgJxtrFckaoEJI2KE8ne94DeFq9YST4Uxx9T3/4Q6/04oPh2YOar0vr/qasH9
+         cdZ7fgY4N0j72b/NP5VMziE3mtzZJlLFTLIj6Ja/pTbbPhKRtjPZgROuL3pZ0Vt3Y/XY
+         nV/OfPKz20n9lXgL0MpOQbJfOFVb8HytIuDC3tOHf8or4B0FmjdIBZps02KR+dvseTWQ
+         zqBwHURb8DXwDvX11XD1c3h67ejSBxCt9J4ptXMacyEiGfO3MvmC1JxxtzTT2mYxIgKV
+         L7ya1PWxU659XoE8ObU//0PXaOt0chMfqlNRHE+6Uso3/ReHP88FXeUKCS5WvSBP3Nx1
+         8WMw==
+X-Gm-Message-State: APjAAAVimJ4E6mIngRczzn5lqGuutq7xKCtsrRDITFo2UPm5vuncHnRB
+        vCZJ8wM9pB/GYUQ2g0RLJAEGT8GVPotIxvI960c=
+X-Google-Smtp-Source: APXvYqwL1Hr4nukuQHiZBX7IlO3VywoiQEEq8oLdMtUNZRZXHuL3Ju75BOcXu/Uz+0jWeJRI1uykPzqCJiIXVfSBQ9c=
+X-Received: by 2002:aca:c4d5:: with SMTP id u204mr8236259oif.131.1565419226816;
+ Fri, 09 Aug 2019 23:40:26 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190810052829.6032-1-tiny.windzz@gmail.com> <20190810052829.6032-9-tiny.windzz@gmail.com>
-In-Reply-To: <20190810052829.6032-9-tiny.windzz@gmail.com>
-From:   Vasily Khoruzhick <anarsoul@gmail.com>
-Date:   Fri, 9 Aug 2019 23:16:48 -0700
-Message-ID: <CA+E=qVfp-rProxOwX__J6jM-pZ9g_SmeuOCOgvC_5DJVQw4OGw@mail.gmail.com>
-Subject: Re: [PATCH v5 08/18] thermal: sun8i: support mod clocks
-To:     Yangtao Li <tiny.windzz@gmail.com>
-Cc:     rui.zhang@intel.com, Eduardo Valentin <edubezval@gmail.com>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
+References: <20190809213710.31783-1-horms+renesas@verge.net.au>
+In-Reply-To: <20190809213710.31783-1-horms+renesas@verge.net.au>
+From:   Geert Uytterhoeven <geert@linux-m68k.org>
+Date:   Sat, 10 Aug 2019 08:40:15 +0200
+Message-ID: <CAMuHMdUHK7Fq3m4y1rjVFxnSXH3tZyTjOzFMfVMtRtPcdKjNCw@mail.gmail.com>
+Subject: Re: [PATCH v2] dt-bindings: usb: renesas_gen3: Rename bindings
+ documentation file to reflect IP block
+To:     Simon Horman <horms+renesas@verge.net.au>
+Cc:     Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Yoshihiro Shimoda <yoshihiro.shimoda.uh@renesas.com>,
+        Geert Uytterhoeven <geert+renesas@glider.be>,
+        =?UTF-8?Q?Niklas_S=C3=B6derlund?= 
+        <niklas.soderlund+renesas@ragnatech.se>,
+        Magnus Damm <magnus.damm@gmail.com>,
         Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Chen-Yu Tsai <wens@csie.org>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        "David S. Miller" <davem@davemloft.net>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan.Cameron@huawei.com,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
-        Linux PM <linux-pm@vger.kernel.org>
+        USB list <linux-usb@vger.kernel.org>,
+        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
 Content-Type: text/plain; charset="UTF-8"
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 9, 2019 at 10:31 PM Yangtao Li <tiny.windzz@gmail.com> wrote:
+Hi Simon,
+
+On Fri, Aug 9, 2019 at 11:37 PM Simon Horman <horms+renesas@verge.net.au> wrote:
+> For consistency with the naming of (most) other documentation files for DT
+> bindings for Renesas IP blocks rename the Renesas USB3.0 peripheral
+> documentation file from renesas,usb3.txt to renesas,usb3-peri.txt
 >
-> H3 has extra clock, so introduce something in ths_thermal_chip/ths_device
-> and adds the process of the clock.
+> This refines a recent rename from renesas_usb3.txt to renesas-usb3.txt.
+
+s/renesas-usb3.txt/renesas,usb3.txt/
+
+> The motivation is to more accurately reflect the IP block documented in
+> this file.
 >
-> This is pre-work for supprt it.
->
-> Signed-off-by: Yangtao Li <tiny.windzz@gmail.com>
+> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+> Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
 > ---
->  drivers/thermal/sun8i_thermal.c | 17 ++++++++++++++++-
->  1 file changed, 16 insertions(+), 1 deletion(-)
+> * Based on v5.3-rc1
 >
-> diff --git a/drivers/thermal/sun8i_thermal.c b/drivers/thermal/sun8i_thermal.c
-> index b934bc81eba7..6f4294c2aba7 100644
-> --- a/drivers/thermal/sun8i_thermal.c
-> +++ b/drivers/thermal/sun8i_thermal.c
-> @@ -54,6 +54,7 @@ struct tsensor {
->  };
->
->  struct ths_thermal_chip {
-> +       bool            has_mod_clk;
->         int             sensor_num;
->         int             offset;
->         int             scale;
-> @@ -69,6 +70,7 @@ struct ths_device {
->         struct regmap                           *regmap;
->         struct reset_control                    *reset;
->         struct clk                              *bus_clk;
-> +       struct clk                              *mod_clk;
->         struct tsensor                          sensor[MAX_SENSOR_NUM];
->  };
->
-> @@ -274,6 +276,12 @@ static int sun8i_ths_resource_init(struct ths_device *tmdev)
->         if (IS_ERR(tmdev->bus_clk))
->                 return PTR_ERR(tmdev->bus_clk);
->
-> +       if (tmdev->chip->has_mod_clk) {
-> +               tmdev->mod_clk = devm_clk_get(&pdev->dev, "mod");
-> +               if (IS_ERR(tmdev->mod_clk))
-> +                       return PTR_ERR(tmdev->mod_clk);
-> +       }
-> +
->         ret = reset_control_deassert(tmdev->reset);
->         if (ret)
->                 return ret;
-> @@ -282,12 +290,18 @@ static int sun8i_ths_resource_init(struct ths_device *tmdev)
->         if (ret)
->                 goto assert_reset;
->
-> -       ret = sun50i_ths_calibrate(tmdev);
-> +       ret = clk_prepare_enable(tmdev->mod_clk);
+> v2
+> * Add review tag
+> * Correct changelog
 
-You have to set rate of modclk before enabling it since you can't rely
-on whatever bootloader left for you.
+I feel sorry for you...
 
-Also I found that parameters you're using for PC_TEMP_PERIOD, ACQ0 and
-ACQ1 are too aggressive and may result in high interrupt rate to the
-point when it may stall RCU. I changed driver a bit to use params from
-Philipp Rossak's work (modclk set to 4MHz, PC_TEMP_PERIOD is 7, ACQ0
-is 255, ACQ1 is 63) and it fixed RCU stalls for me, see [1] for
-details.
+> ---
+>  .../devicetree/bindings/usb/{renesas,usb3.txt => renesas,usb3-peri.txt}   | 0
 
-[1] https://github.com/anarsoul/linux-2.6/commit/46b8bb0fe2ccd1cd88fa9181a2ecbf79e8d513b2
+Gr{oetje,eeting}s,
 
+                        Geert
 
->         if (ret)
->                 goto bus_disable;
->
-> +       ret = sun50i_ths_calibrate(tmdev);
-> +       if (ret)
-> +               goto mod_disable;
-> +
->         return 0;
->
-> +mod_disable:
-> +       clk_disable_unprepare(tmdev->mod_clk);
->  bus_disable:
->         clk_disable_unprepare(tmdev->bus_clk);
->  assert_reset:
-> @@ -395,6 +409,7 @@ static int sun8i_ths_remove(struct platform_device *pdev)
->  {
->         struct ths_device *tmdev = platform_get_drvdata(pdev);
->
-> +       clk_disable_unprepare(tmdev->mod_clk);
->         clk_disable_unprepare(tmdev->bus_clk);
->         reset_control_assert(tmdev->reset);
->
-> --
-> 2.17.1
->
->
-> _______________________________________________
-> linux-arm-kernel mailing list
-> linux-arm-kernel@lists.infradead.org
-> http://lists.infradead.org/mailman/listinfo/linux-arm-kernel
+-- 
+Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+
+In personal conversations with technical people, I call myself a hacker. But
+when I'm talking to journalists I just say "programmer" or something like that.
+                                -- Linus Torvalds
