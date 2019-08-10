@@ -2,75 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 2366B888F2
-	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 08:59:48 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9577B88941
+	for <lists+devicetree@lfdr.de>; Sat, 10 Aug 2019 09:49:38 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725601AbfHJG7q (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Aug 2019 02:59:46 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:34010 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725468AbfHJG7q (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 02:59:46 -0400
-Received: by mail-ot1-f66.google.com with SMTP id n5so141361086otk.1;
-        Fri, 09 Aug 2019 23:59:46 -0700 (PDT)
+        id S1725862AbfHJHth (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sat, 10 Aug 2019 03:49:37 -0400
+Received: from mail-pf1-f194.google.com ([209.85.210.194]:46475 "EHLO
+        mail-pf1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725773AbfHJHth (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 03:49:37 -0400
+Received: by mail-pf1-f194.google.com with SMTP id c3so24094158pfa.13;
+        Sat, 10 Aug 2019 00:49:37 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id;
+        bh=tfcngCHqd46yllw36zTt+HKJhbu2ae6xc0MYFSsQkao=;
+        b=KhEV4lP5tlK/NolD1x059fVSIk9Ag8go1pfKAXNZfIiW8AUG4nzVOwlLO/+CDjkyff
+         KlOlPAl0pj4fEsiDoA3rokoM+iTcp9eGriDzoQIZhtE1zpwTIADuE7G79JF45JvMvgoe
+         Oij06L2zwSf+nOdUSezBj6jrSmTxtFsGIa4PEJvs3qPkS7ycJJOqYgcZjLyeTDDnjko3
+         /Cglfowecm+2Cvf+Ewe1RMoQNnhlGOU0wmDpWS0i9u4Pv7esa0aPcfaghImAkXsOgIdA
+         iyw03Hfz0Kb+adwRgHt3AJxDuWrNkY4qtjRrmX/WHUkhZDUWJoh42b32GC2yv/8zWQrC
+         MXhg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=4fp4hsWr8syuRKTwFPCpF0dTJtEb/wet/DLA0Rph5N4=;
-        b=ImkDGR7dnfMHrXL1ARALnlFXB3jWIqQGxKxKRVzCJIq2lG9ePvdbaFllxcOANL/B83
-         5S7DBpX3UE9SjTAdtG57y+Qjn2vT3fEPCKXiNlU9bMAt6C8cvsyRJORBlcBTLI3Wj9R/
-         bGZNiwICKX7olJe6/5qPmAIDhTdvOr+FuQi27PY64p9mbcHh5yQZr4r23yLcBEx4jsk2
-         5fHLL0LP+T6ZJORqztOqvbbDCNeIFgWF9MpQBB8HVGHHfKamV8l8dLpQMC153MmrI/QJ
-         X/1W17RSTFlprer6gEgV6Vbx/tG3b2H24YHcDqsOEbNfdNp7KE922YJ052gBrX/tFcsI
-         ildQ==
-X-Gm-Message-State: APjAAAXD+LYGj0VExNFrnfEOdZ05AC7Nlcb80VqXlY2kfhs7Kd7OD1Pb
-        LjwIaTKL3ej1H/C//7UXhtHm+/yvE2DMnmOd3w8=
-X-Google-Smtp-Source: APXvYqwZqivSCVKiTybKuSYyqKw6SGkvI+q08qTetYUm3KXeOaa7QsJmq0t7hdRAs1gLZOSXjjl1xzJ2MUduMbuklWw=
-X-Received: by 2002:a9d:5c0c:: with SMTP id o12mr8786344otk.145.1565420385727;
- Fri, 09 Aug 2019 23:59:45 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190809215131.877-1-horms+renesas@verge.net.au>
-In-Reply-To: <20190809215131.877-1-horms+renesas@verge.net.au>
-From:   Geert Uytterhoeven <geert@linux-m68k.org>
-Date:   Sat, 10 Aug 2019 08:59:34 +0200
-Message-ID: <CAMuHMdVi4LK-v_MbeM1T6OO3A7CtGZ3FcR55PcVdgB8rh6oA2Q@mail.gmail.com>
-Subject: Re: [PATCH] dt-bindings: ata: sata_rcar: Rename bindings
- documentation file
-To:     Simon Horman <horms+renesas@verge.net.au>
-Cc:     Jens Axboe <axboe@kernel.dk>, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Geert Uytterhoeven <geert+renesas@glider.be>,
-        Magnus Damm <magnus.damm@gmail.com>, linux-ide@vger.kernel.org,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux-Renesas <linux-renesas-soc@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=tfcngCHqd46yllw36zTt+HKJhbu2ae6xc0MYFSsQkao=;
+        b=tBjV92kvi29xW9QC4J1/gtBhIEpwavuP5U64//JK0KLow2vfipgJTfBUntuj4Agz4k
+         lmfFnYBP6BRe7kJu2uNjuCG007XL9PlmfyeoZMgzSzvWPzwH1Kazfbar696UmDlfi9y8
+         wFWGQo/ut760h41CZJxds2obzSQ7LvLdSVjL35nbqjMvPPjDtnGdKyPmgnGYll5sj7MK
+         EVBPST5zEtHutvYykW36p5xt3W8D2X4+MK2ZiZRZf7KaGpEDQQsRuVNXNitRziAyhp2f
+         5mTxxufw+tJwFtTc0WnTf+DomgI79te8iMCVrufRQepkP0/2fZuc0HqiKexEZp8eRq/a
+         b3DA==
+X-Gm-Message-State: APjAAAXa3r7/OHo0SNS7qDG/Km/bHz0XY5ZpPKcb3lIdWqrQayqPDOKS
+        Z50SBYqn7dx3fghOXYZ/T3cLTYRQUTo=
+X-Google-Smtp-Source: APXvYqwtOh6UGtC4RwED7iygtgaXorec3tY8T44ol3lTCDHO5KnIpOjkUISvLGClRcF5k6prFBinMg==
+X-Received: by 2002:a63:48c:: with SMTP id 134mr21203419pge.386.1565423376348;
+        Sat, 10 Aug 2019 00:49:36 -0700 (PDT)
+Received: from localhost.localdomain ([219.91.196.106])
+        by smtp.gmail.com with ESMTPSA id c98sm7769318pje.1.2019.08.10.00.49.33
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-SHA bits=128/128);
+        Sat, 10 Aug 2019 00:49:35 -0700 (PDT)
+From:   Raag Jadav <raagjadav@gmail.com>
+To:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>
+Cc:     Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>,
+        Raag Jadav <raagjadav@gmail.com>
+Subject: [PATCH 0/2] act8865 regulator modes and suspend states
+Date:   Sat, 10 Aug 2019 13:18:53 +0530
+Message-Id: <1565423335-3213-1-git-send-email-raagjadav@gmail.com>
+X-Mailer: git-send-email 2.7.4
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Aug 9, 2019 at 11:52 PM Simon Horman <horms+renesas@verge.net.au> wrote:
->
-> Rename the bindings documentation file for Renesas SATA controller
-> from sata_rcar.txt to renesas,rcar-sata.txt
->
-> This is part of an ongoing effort to name bindings documentation files for
-> Renesas IP blocks consistently, in line with the compat strings they
-> document.
->
-> Signed-off-by: Simon Horman <horms+renesas@verge.net.au>
+This series implements operating mode and suspend state support for act8865.
 
-Reviewed-by: Geert Uytterhoeven <geert+renesas@glider.be>
+Raag Jadav (2):
+  regulator: act8865: operating mode and suspend state support
+  dt-bindings: regulator: act8865 regulator modes and suspend states
 
-Gr{oetje,eeting}s,
-
-                        Geert
+ .../bindings/regulator/act8865-regulator.txt       |  27 +++-
+ drivers/regulator/act8865-regulator.c              | 160 ++++++++++++++++++++-
+ .../regulator/active-semi,8865-regulator.h         |  28 ++++
+ include/linux/regulator/act8865.h                  |   2 +-
+ 4 files changed, 213 insertions(+), 4 deletions(-)
+ create mode 100644 include/dt-bindings/regulator/active-semi,8865-regulator.h
 
 -- 
-Geert Uytterhoeven -- There's lots of Linux beyond ia32 -- geert@linux-m68k.org
+2.7.4
 
-In personal conversations with technical people, I call myself a hacker. But
-when I'm talking to journalists I just say "programmer" or something like that.
-                                -- Linus Torvalds
