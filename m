@@ -2,127 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6DC028941C
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2019 23:14:35 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id ECFC189499
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 00:07:00 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726055AbfHKVOe (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Aug 2019 17:14:34 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:55763 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726053AbfHKVOe (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Aug 2019 17:14:34 -0400
-Received: by mail-wm1-f66.google.com with SMTP id f72so10396828wmf.5;
-        Sun, 11 Aug 2019 14:14:32 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=PszWHvsLW/V6ZIB/afDy1WXCmSMBx8K80OqoFKRpWh8=;
-        b=fG0PSTuiukHcjUI+CKoLX7LrppjKawyg62flNpJVoVJ2lP7lZog5dTPwS5OPLR1MVR
-         3FT/iTW7ksED0tg9OZQOM2mpg7vGPo3/qP+uLF9XVIuPwokNkX0MvbHgDOz98rUnIWE8
-         LpJSSfaxStjdJitospeus04UjuJFKB8yO9OtPc4oLPLhb7T7WTuzQLHyiMATekCdiscL
-         T+sURDuZAlMXOj7aHLeYQB1ZFUBsFClhxb6lrDpJf+7hl6LITkpN1otjp5NErC9kpaqP
-         asTQAxmlwm/HYJMQaaDFCbN8nZayFZtPUMBEjh2Qh+j/3kWglrmD6qB410Fzrkoo6RFk
-         gGtg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=PszWHvsLW/V6ZIB/afDy1WXCmSMBx8K80OqoFKRpWh8=;
-        b=K4aM5mYb/9YtSvDC3JeZOsrWIOY3vUAVwPPXqcg1Ypf7vUaX7U94w/uume7gT+sRaF
-         EXPAQCEJxTfvzmKq8vusP/tffUcdOwQ1CnLR1YmzdC0jfQudgXs4YNDn0AfRiGzbOEc3
-         wuGx/r13ViWc7BoMjcng3sZNjOx7riq9p/dPp/Bs5R/sfGiqGcj3nmyn+gdCZRPcQ2Vv
-         2JRQQEDmkODlN6/1h8q8SOLCtW4Sr2U9n6vo6rvlDZqyTLM3cIYLqDSM2ReuIM1NhHEI
-         Z5c5oJpd7k6GmwvrSwkQyz204UBj+CtxfWPlAutzqA2UCDqiJ2XN80dtfrSUn/SKiYT2
-         sCTw==
-X-Gm-Message-State: APjAAAW7ldMANCFVt4kW8aVxBFfM+9ioNtJVJ9O2NZfdWq8dl5RpTb2m
-        14WOLSzeL9yvNC8YOe5TN7JK28fxbwbv8g==
-X-Google-Smtp-Source: APXvYqzH7S9vOiayMX06yEUTN1laxhsJ3ePYWknAWl8ojDlgYEwAhy1f7wQcZAvlXBJybcSJoh9W9Q==
-X-Received: by 2002:a1c:a6c8:: with SMTP id p191mr23065963wme.99.1565558071411;
-        Sun, 11 Aug 2019 14:14:31 -0700 (PDT)
-Received: from ?IPv6:2a01:e0a:1f1:d0f0::4e2b:d7ca? ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
-        by smtp.gmail.com with ESMTPSA id c15sm46855416wrb.80.2019.08.11.14.14.30
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 11 Aug 2019 14:14:30 -0700 (PDT)
-Subject: Re: [PATCH v5 00/18] add thermal driver for h6
-To:     Yangtao Li <tiny.windzz@gmail.com>, rui.zhang@intel.com,
-        edubezval@gmail.com, daniel.lezcano@linaro.org, robh+dt@kernel.org,
-        mark.rutland@arm.com, maxime.ripard@bootlin.com, wens@csie.org,
-        mchehab+samsung@kernel.org, davem@davemloft.net,
-        gregkh@linuxfoundation.org, Jonathan.Cameron@huawei.com,
-        nicolas.ferre@microchip.com
-Cc:     linux-pm@vger.kernel.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-References: <20190810052829.6032-1-tiny.windzz@gmail.com>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Message-ID: <f479c162-4eac-f320-3583-b9ddbef79b1a@gmail.com>
-Date:   Sun, 11 Aug 2019 23:14:30 +0200
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.3.0
+        id S1726053AbfHKWG6 convert rfc822-to-8bit (ORCPT
+        <rfc822;lists+devicetree@lfdr.de>); Sun, 11 Aug 2019 18:06:58 -0400
+Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:46314 "EHLO
+        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
+        by vger.kernel.org with ESMTP id S1726014AbfHKWG6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Sun, 11 Aug 2019 18:06:58 -0400
+Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
+        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7BM1fQ1108669
+        for <devicetree@vger.kernel.org>; Sun, 11 Aug 2019 18:06:56 -0400
+Received: from smtp.notes.na.collabserv.com (smtp.notes.na.collabserv.com [192.155.248.75])
+        by mx0a-001b2d01.pphosted.com with ESMTP id 2uasq3th8c-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
+        for <devicetree@vger.kernel.org>; Sun, 11 Aug 2019 18:06:56 -0400
+Received: from localhost
+        by smtp.notes.na.collabserv.com with smtp.notes.na.collabserv.com ESMTP
+        for <devicetree@vger.kernel.org> from <miltonm@us.ibm.com>;
+        Sun, 11 Aug 2019 22:06:56 -0000
+Received: from us1a3-smtp06.a3.dal06.isc4sb.com (10.146.103.243)
+        by smtp.notes.na.collabserv.com (10.106.227.123) with smtp.notes.na.collabserv.com ESMTP;
+        Sun, 11 Aug 2019 22:06:46 -0000
+Received: from us1a3-mail228.a3.dal06.isc4sb.com ([10.146.103.71])
+          by us1a3-smtp06.a3.dal06.isc4sb.com
+          with ESMTP id 2019081122064531-459019 ;
+          Sun, 11 Aug 2019 22:06:45 +0000 
+In-Reply-To: <20190810095325.5333-1-wangzqbj@inspur.com>
+From:   "Milton Miller II" <miltonm@us.ibm.com>
+To:     John Wang <wangzqbj@inspur.com>
+Cc:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <trivial@kernel.org>,
+        <linux@roeck-us.net>, <venture@google.com>,
+        <jgebben@sweptlaser.com>, <anson.huang@nxp.com>,
+        <devicetree@vger.kernel.org>, <openbmc@lists.ozlabs.org>,
+        <duanzhijia01@inspur.com>, <mine260309@gmail.com>
+Date:   Sun, 11 Aug 2019 22:06:45 +0000
 MIME-Version: 1.0
-In-Reply-To: <20190810052829.6032-1-tiny.windzz@gmail.com>
-Content-Type: text/plain; charset=utf-8; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Sensitivity: 
+Importance: Normal
+X-Priority: 3 (Normal)
+References: <20190810095325.5333-1-wangzqbj@inspur.com>
+X-Mailer: IBM iNotes ($HaikuForm 1054) | IBM Domino Build
+ SCN1812108_20180501T0841_FP55 May 22, 2019 at 11:09
+X-LLNOutbound: False
+X-Disclaimed: 49647
+X-TNEFEvaluated: 1
+Content-Transfer-Encoding: 8BIT
+Content-Type: text/plain; charset=UTF-8
+x-cbid: 19081122-6875-0000-0000-0000000642D2
+X-IBM-SpamModules-Scores: BY=0; FL=0; FP=0; FZ=0; HX=0; KW=0; PH=0;
+ SC=0.40962; ST=0; TS=0; UL=0; ISC=; MB=0.000003
+X-IBM-SpamModules-Versions: BY=3.00011582; HX=3.00000242; KW=3.00000007;
+ PH=3.00000004; SC=3.00000287; SDB=6.01245454; UDB=6.00657162; IPR=6.01026945;
+ MB=3.00028138; MTD=3.00000008; XFM=3.00000015; UTC=2019-08-11 22:06:53
+X-IBM-AV-DETECTION: SAVI=unsuspicious REMOTE=unsuspicious XFE=unused
+X-IBM-AV-VERSION: SAVI=2019-08-11 16:15:13 - 6.00010273
+x-cbparentid: 19081122-6876-0000-0000-0000000A5649
+Message-Id: <OF3B0A1F81.64227A30-ON00258453.007977BA-00258453.007977C8@notes.na.collabserv.com>
+Subject: Re:  [PATCH v2 1/2] dt-bindings: Add ipsps1 as a trivial device
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-11_10:,,
+ signatures=0
+X-Proofpoint-Spam-Reason: safe
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Yangtao,
+Around 08/10/2019 04:54AM in some timezone, John Wang wrote:
+>The ipsps1 is an Inspur Power System power supply unit
+>
+>Signed-off-by: John Wang <wangzqbj@inspur.com>
+>---
+>v2:
+>    - No changes.
+>---
+> Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
+> 1 file changed, 2 insertions(+)
+>
+>diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml
+>b/Documentation/devicetree/bindings/trivial-devices.yaml
+>index 747fd3f689dc..63960c7d949a 100644
+>--- a/Documentation/devicetree/bindings/trivial-devices.yaml
+>+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
+>@@ -101,6 +101,8 @@ properties:
+>             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
+>           - infineon,tlv493d-a1b6
+>             # Intersil ISL29028 Ambient Light and Proximity Sensor
+>+          - inspur,ipsps1
+>+            # Inspur Power System power supply unit version 1
+>           - isil,isl29028
 
-On 10/08/2019 07:28, Yangtao Li wrote:
-> This patchset add support for A64, H3, H5, H6 and R40 thermal sensor.
+The comment describing your entry should go abvoe your entry, and 
+your new entry (starting with the comment) should be before the 
+Intersil entry comment line.
 
-Could you add the device-tree configuration in the same series?
-This will allow user to test it.
 
-Thanks,
-Clément
+>             # Intersil ISL29030 Ambient Light and Proximity Sensor
+>           - isil,isl29030
+>-- 
+>2.17.1
+>
+>
 
-> 
-> Thx to Icenowy and Vasily.
-> 
-> BTY, do a cleanup in thermal makfile.
-> 
-> Icenowy Zheng (3):
->    thermal: sun8i: allow to use custom temperature calculation function
->    thermal: sun8i: add support for Allwinner H5 thermal sensor
->    thermal: sun8i: add support for Allwinner R40 thermal sensor
-> 
-> Vasily Khoruzhick (1):
->    thermal: sun8i: add thermal driver for A64
-> 
-> Yangtao Li (14):
->    thermal: sun8i: add thermal driver for h6
->    dt-bindings: thermal: add binding document for h6 thermal controller
->    thermal: fix indentation in makefile
->    thermal: sun8i: get ths sensor number from device compatible
->    thermal: sun8i: rework for sun8i_ths_get_temp()
->    thermal: sun8i: get ths init func from device compatible
->    thermal: sun8i: rework for ths irq handler func
->    thermal: sun8i: support mod clocks
->    thermal: sun8i: rework for ths calibrate func
->    dt-bindings: thermal: add binding document for h3 thermal controller
->    thermal: sun8i: add thermal driver for h3
->    dt-bindings: thermal: add binding document for a64 thermal controller
->    dt-bindings: thermal: add binding document for h5 thermal controller
->    dt-bindings: thermal: add binding document for r40 thermal controller
-> 
->   .../bindings/thermal/sun8i-thermal.yaml       | 157 +++++
->   MAINTAINERS                                   |   7 +
->   drivers/thermal/Kconfig                       |  14 +
->   drivers/thermal/Makefile                      |   9 +-
->   drivers/thermal/sun8i_thermal.c               | 596 ++++++++++++++++++
->   5 files changed, 779 insertions(+), 4 deletions(-)
->   create mode 100644 Documentation/devicetree/bindings/thermal/sun8i-thermal.yaml
->   create mode 100644 drivers/thermal/sun8i_thermal.c
-> ---
-> v5:
-> -add more support
-> -some trival fix
-> ---
-> 2.17.1
-> 
-> 
+Milton
+
