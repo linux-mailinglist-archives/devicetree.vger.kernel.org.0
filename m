@@ -2,125 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 23F908934C
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2019 21:16:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6CE38893A5
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2019 22:31:58 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726296AbfHKTQx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Aug 2019 15:16:53 -0400
-Received: from hqemgate16.nvidia.com ([216.228.121.65]:14883 "EHLO
-        hqemgate16.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726014AbfHKTQx (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Aug 2019 15:16:53 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate16.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d5069a60001>; Sun, 11 Aug 2019 12:16:54 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Sun, 11 Aug 2019 12:16:52 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Sun, 11 Aug 2019 12:16:52 -0700
-Received: from [10.2.167.88] (10.124.1.5) by HQMAIL107.nvidia.com
- (172.20.187.13) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Sun, 11 Aug
- 2019 19:16:50 +0000
-Subject: Re: [PATCH v8 13/21] clk: tegra210: Use fence_udelay during PLLU init
-To:     Dmitry Osipenko <digetx@gmail.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <tglx@linutronix.de>,
-        <jason@lakedaemon.net>, <marc.zyngier@arm.com>,
-        <linus.walleij@linaro.org>, <stefan@agner.ch>,
-        <mark.rutland@arm.com>
-CC:     <pdeschrijver@nvidia.com>, <pgaikwad@nvidia.com>,
-        <sboyd@kernel.org>, <linux-clk@vger.kernel.org>,
-        <linux-gpio@vger.kernel.org>, <jckuo@nvidia.com>,
-        <josephl@nvidia.com>, <talho@nvidia.com>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        <mperttunen@nvidia.com>, <spatra@nvidia.com>, <robh+dt@kernel.org>,
-        <devicetree@vger.kernel.org>, <rjw@rjwysocki.net>,
-        <viresh.kumar@linaro.org>, <linux-pm@vger.kernel.org>
-References: <1565308020-31952-1-git-send-email-skomatineni@nvidia.com>
- <1565308020-31952-14-git-send-email-skomatineni@nvidia.com>
- <1d09a2c5-4973-340f-fdfc-d4e665c8b55d@gmail.com>
-From:   Sowjanya Komatineni <skomatineni@nvidia.com>
-Message-ID: <af4dce78-5561-7078-1da7-cef01f187cf3@nvidia.com>
-Date:   Sun, 11 Aug 2019 12:16:49 -0700
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        id S1726307AbfHKUb5 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Aug 2019 16:31:57 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:39943 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726055AbfHKUb5 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Aug 2019 16:31:57 -0400
+Received: by mail-wm1-f67.google.com with SMTP id v19so10022050wmj.5;
+        Sun, 11 Aug 2019 13:31:55 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6dOMEfOb1vmuX/6l/d3avTdPuEJdGUDFzKuzVhzSSwQ=;
+        b=ViO0P++5hjh8dnkGtGqlG3J38bvwKJgVHbgG4HRRD2mqb03ZqtIsupG7JVG3AKdKB0
+         uqGJD4EGCMwBtCQrCz1lSw+9mIzXjIFFAtpyPdk7iNhMdR/VwtC9xUtJsUUy2f3FBgPv
+         A1Gm1HqtMZXGWX5sNowc4ICheOxtNKIFMtDXdjjMQE9FZZQR3RdJP+YmxvWQ6aM9c3Hw
+         jX/cHA8SsoIUr+VbSOvCHCC9k8NNCdja6r+g/j1s0V7v8viQGEoIhN7KTGXsS/2hvmxb
+         YjZoSKkOmUYPmuXl2TK8e+ip7A73zeMJeLL+ezFto+Zo3LRt1aKadA9TNSxk8LYVKTyS
+         QJkQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id:mime-version
+         :content-transfer-encoding;
+        bh=6dOMEfOb1vmuX/6l/d3avTdPuEJdGUDFzKuzVhzSSwQ=;
+        b=dt5G27TK0RG0XZrIyAGSSMF6wJSFPFWBSRA+l3VUGSIOr+1JHM2xtsX3tPBCvp84WG
+         kjCni64YNrePiYPRxwU221CEfakE7pTk6fGd/ReQtLZYk6Tnq1k/XqkphrVC6rGXNEeQ
+         ijdqv+sEY9nTH4i5IEAVJnXzEcxnjZXxf1JlQjI/GA/3gXDpdlNIQ06LksvK2S1vt26W
+         qU/L7WXOmkSi+6IC7llMP8yakTPwEzBC70ZlURmXNwwoVXXWUuaI5044qz/H8XbQMRkw
+         yyBLsJSanqlfYQb3IXkdgPUS6YTTzgXd6Qs6Cgs2ktNKaGsYpbiFCOA5LviK4kJJeeCL
+         G/8w==
+X-Gm-Message-State: APjAAAWPpR8821Q1Df7Oji7Bq/eTORRDYVBftow144BuDGgVlnFYfCoe
+        ojFYVKt3jHZhONh3DoF40K8=
+X-Google-Smtp-Source: APXvYqzEN7q5gvE9iuIA2xRk3W11noAPkkHt45AjTzx1U+c5eNJWmzVS+/Yb/w+zT/xNpTBDnGtYmA==
+X-Received: by 2002:a7b:cd06:: with SMTP id f6mr9391045wmj.66.1565555514739;
+        Sun, 11 Aug 2019 13:31:54 -0700 (PDT)
+Received: from localhost.localdomain ([2a01:e0a:1f1:d0f0::4e2b:d7ca])
+        by smtp.gmail.com with ESMTPSA id a8sm11063269wma.31.2019.08.11.13.31.54
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Sun, 11 Aug 2019 13:31:54 -0700 (PDT)
+From:   =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+To:     Maxime Ripard <maxime.ripard@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>
+Cc:     linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com,
+        =?UTF-8?q?Cl=C3=A9ment=20P=C3=A9ron?= <peron.clem@gmail.com>
+Subject: [PATCH v5 0/3] Allwinner H6 SPDIF support
+Date:   Sun, 11 Aug 2019 22:31:41 +0200
+Message-Id: <20190811203144.5999-1-peron.clem@gmail.com>
+X-Mailer: git-send-email 2.20.1
 MIME-Version: 1.0
-In-Reply-To: <1d09a2c5-4973-340f-fdfc-d4e665c8b55d@gmail.com>
-X-Originating-IP: [10.124.1.5]
-X-ClientProxiedBy: HQMAIL101.nvidia.com (172.20.187.10) To
- HQMAIL107.nvidia.com (172.20.187.13)
-Content-Type: text/plain; charset="utf-8"; format=flowed
-Content-Transfer-Encoding: quoted-printable
-Content-Language: en-US
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1565551014; bh=B6ddjnEKl0ua+Tada6d8Tb7SUSLehPfPuF8MM3YYMj8=;
-        h=X-PGP-Universal:Subject:To:CC:References:From:Message-ID:Date:
-         User-Agent:MIME-Version:In-Reply-To:X-Originating-IP:
-         X-ClientProxiedBy:Content-Type:Content-Transfer-Encoding:
-         Content-Language;
-        b=K6ERdW8yThtfsPaINCIqakd5gFwkxjyduawu95MVejzx32Fq0TqO1jaMsLabDvmE5
-         /DFiAeD/BMuLmfdN3gkXnnb1GTiQ32zkFxz8IiH3pP6C6ORCCdE4/Bl5BGtZKn07hj
-         U4kFIXRuMra4yyN3wXhdMtXeNfFVCBIgcc/YKPqAy3I57uYbrOVBVwDUXNFBfoW1Jv
-         jDRLNih5SeR2PIhu0BznbHvZRZcF69Cm0yhf0za2gRcFZJKgOBz6JxJGgC9MqWqUum
-         Bd63yHkGj5tyui/8MEMsf79d8GtFQCboBZQCglK65t40mmcM++wpwhVvbDfOmT69j5
-         xtlCDuflo1isA==
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+Allwinner H6 SoC has a SPDIF controller called One Wire Audio (OWA) which
+is different from the previous H3 generation and not compatible.
 
-On 8/11/19 11:02 AM, Dmitry Osipenko wrote:
-> 09.08.2019 2:46, Sowjanya Komatineni =D0=BF=D0=B8=D1=88=D0=B5=D1=82:
->> This patch uses fence_udelay rather than udelay during PLLU
->> initialization to ensure writes to clock registers happens before
->> waiting for specified delay.
->>
->> Acked-by: Thierry Reding <treding@nvidia.com>
->> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
->> ---
->>   drivers/clk/tegra/clk-tegra210.c | 8 ++++----
->>   1 file changed, 4 insertions(+), 4 deletions(-)
->>
->> diff --git a/drivers/clk/tegra/clk-tegra210.c b/drivers/clk/tegra/clk-te=
-gra210.c
->> index 4721ee030d1c..998bf60b219a 100644
->> --- a/drivers/clk/tegra/clk-tegra210.c
->> +++ b/drivers/clk/tegra/clk-tegra210.c
->> @@ -2841,7 +2841,7 @@ static int tegra210_enable_pllu(void)
->>   	reg =3D readl_relaxed(clk_base + pllu.params->ext_misc_reg[0]);
->>   	reg &=3D ~BIT(pllu.params->iddq_bit_idx);
->>   	writel_relaxed(reg, clk_base + pllu.params->ext_misc_reg[0]);
->> -	udelay(5);
->> +	fence_udelay(5, clk_base);
->>  =20
->>   	reg =3D readl_relaxed(clk_base + PLLU_BASE);
->>   	reg &=3D ~GENMASK(20, 0);
->> @@ -2849,7 +2849,7 @@ static int tegra210_enable_pllu(void)
->>   	reg |=3D fentry->n << 8;
->>   	reg |=3D fentry->p << 16;
->>   	writel(reg, clk_base + PLLU_BASE);
->> -	udelay(1);
->> +	fence_udelay(1, clk_base);
->>   	reg |=3D PLL_ENABLE;
->>   	writel(reg, clk_base + PLLU_BASE);
->>  =20
->> @@ -2895,12 +2895,12 @@ static int tegra210_init_pllu(void)
->>   		reg =3D readl_relaxed(clk_base + XUSB_PLL_CFG0);
->>   		reg &=3D ~XUSB_PLL_CFG0_PLLU_LOCK_DLY_MASK;
->>   		writel_relaxed(reg, clk_base + XUSB_PLL_CFG0);
->> -		udelay(1);
->> +		fence_udelay(1, clk_base);
->>  =20
->>   		reg =3D readl_relaxed(clk_base + PLLU_HW_PWRDN_CFG0);
->>   		reg |=3D PLLU_HW_PWRDN_CFG0_SEQ_ENABLE;
->>   		writel_relaxed(reg, clk_base + PLLU_HW_PWRDN_CFG0);
->> -		udelay(1);
->> +		fence_udelay(1, clk_base);
->>  =20
->>   		reg =3D readl_relaxed(clk_base + PLLU_BASE);
->>   		reg &=3D ~PLLU_BASE_CLKENABLE_USB;
->>
-> The clk_base corresponds to the RESET controller's part of Clock-and-Rese=
-t hardware, is it
-> okay to read-back the RST register and not the clock for the fencing?
-Yes as both reset and clocks are all in same CAR
+Difference are an increase of fifo sizes, some memory mapping are different
+and there is now the possibility to output the master clock on a pin.
+
+Actually all these features are unused and only a bit for flushing the TX
+fifo is required.
+
+Changes since v4:
+ - rename audio card name to sun50i-h6-spdif
+ - drop patches already merged
+
+Changes since v3:
+ - rename reg_fctl_ftx to val_fctl_ftx
+ - rebase this series on sound-next
+ - fix dt-bindings due to change in sound-next
+ - change node name sound_spdif to sound-spdif
+
+Changes since v2:
+ - Split quirks and H6 support patch
+ - Add specific section for quirks comment
+
+Changes since v1:
+ - Remove H3 compatible
+ - Add TX fifo bit flush quirks
+ - Add H6 bindings in SPDIF driver
+
+
+Clément Péron (3):
+  arm64: dts: allwinner: Add SPDIF node for Allwinner H6
+  arm64: dts: allwinner: h6: Enable SPDIF for Beelink GS1
+  arm64: defconfig: Enable Sun4i SPDIF module
+
+ .../dts/allwinner/sun50i-h6-beelink-gs1.dts   |  4 ++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 38 +++++++++++++++++++
+ arch/arm64/configs/defconfig                  |  1 +
+ 3 files changed, 43 insertions(+)
+
+-- 
+2.20.1
+
