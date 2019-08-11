@@ -2,113 +2,64 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A7C2388EBD
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2019 01:10:59 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B10E2890D7
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2019 11:05:17 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726201AbfHJXK7 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sat, 10 Aug 2019 19:10:59 -0400
-Received: from perceval.ideasonboard.com ([213.167.242.64]:39438 "EHLO
-        perceval.ideasonboard.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725863AbfHJXK6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sat, 10 Aug 2019 19:10:58 -0400
-Received: from pendragon.bb.dnainternet.fi (dfj612yhrgyx302h3jwwy-3.rev.dnainternet.fi [IPv6:2001:14ba:21f5:5b00:ce28:277f:58d7:3ca4])
-        by perceval.ideasonboard.com (Postfix) with ESMTPSA id D36D5E17;
-        Sun, 11 Aug 2019 01:10:56 +0200 (CEST)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=ideasonboard.com;
-        s=mail; t=1565478657;
-        bh=hxZ/GXHBi+qa4IwcSpC180c5YAUxNPLiehYoVo7tcg8=;
-        h=From:To:Cc:Subject:Date:In-Reply-To:References:From;
-        b=WXk3oajK7IpU2sQN+oc1aFYAHnV9FIg1Ij1dCSz4Xr2pP+oWPzzyqzCV80lqpC4Lb
-         UgisrLwGlPZgs42mubwB26cusv0WNSP67YYPhazMnk3fDLgYKQsErN4/8sSLwa1SI5
-         TiTt1AaaqjKH3nU1AY78kKfCTZ1+VqUOTGR02j58=
-From:   Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-To:     dri-devel@lists.freedesktop.org
-Cc:     Sam Ravnborg <sam@ravnborg.org>,
-        Thierry Reding <thierry.reding@gmail.com>,
-        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>
-Subject: [PATCH v2 3/9] dt-bindings: display: panel: Add bindings for NEC NL8048HL11 panel
-Date:   Sun, 11 Aug 2019 02:10:42 +0300
-Message-Id: <20190810231048.1921-4-laurent.pinchart@ideasonboard.com>
-X-Mailer: git-send-email 2.21.0
-In-Reply-To: <20190810231048.1921-1-laurent.pinchart@ideasonboard.com>
-References: <20190810231048.1921-1-laurent.pinchart@ideasonboard.com>
-MIME-Version: 1.0
-Content-Transfer-Encoding: 8bit
+        id S1725855AbfHKJFQ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Aug 2019 05:05:16 -0400
+Received: from mail-pg1-f195.google.com ([209.85.215.195]:38924 "EHLO
+        mail-pg1-f195.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725826AbfHKJFQ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Aug 2019 05:05:16 -0400
+Received: by mail-pg1-f195.google.com with SMTP id u17so48012076pgi.6;
+        Sun, 11 Aug 2019 02:05:16 -0700 (PDT)
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:from:to:cc:subject:date:message-id;
+        bh=IcaO688fqJ9Hhcivif+YH1kMxvlYAd9l9NqrayDjxq0=;
+        b=OWkY+cvsQHo6nG/1/wUs0s/HCs2ucdS4RkIyDu1RUYKmhqJImTogg521JDtDceLcSK
+         efEg40j+wjaEpAO8/cf2+HD0biWxbw+me4W1zGScnxjkz32JtQLFnbwh0SONfdIh8k8o
+         +XlvwAmivn9m/H9JZ04QixDJicFSosF38JqfmS3+U/GEHWvKTBkL+kV+MNMojfuh40W/
+         5GpDtZemDaI8NowsGz0wuc5F2ZnXrkIT1bmv3Zd71V+Q4/UGqdzBenUtugvDWJEV/z3d
+         9KVX1I+85xmH2KevQh3baEAHJRWPx3OLFf5LGpW3yi0zw5Si1hHI4Ayl56QZR+ehV3sq
+         kZvw==
+X-Gm-Message-State: APjAAAWeUpHn5oY4P67LhHXpn2OtamrnJUf3+4UjpKY/Qod1cFiTf/r6
+        UibbAdnyqFFb4Uaxh234fEs=
+X-Google-Smtp-Source: APXvYqx2blkLw/V4FEJpl8ZqPLTs9eoghw79426vNrE77wukLP1oTnruHW4TTYpJjIaWDZC5dITeDA==
+X-Received: by 2002:a62:e801:: with SMTP id c1mr30719946pfi.41.1565514315923;
+        Sun, 11 Aug 2019 02:05:15 -0700 (PDT)
+Received: from archbox.localdomain ([203.88.145.156])
+        by smtp.gmail.com with ESMTPSA id q63sm134447761pfb.81.2019.08.11.02.05.14
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Sun, 11 Aug 2019 02:05:15 -0700 (PDT)
+From:   Bhushan Shah <bshah@kde.org>
+To:     Icenowy Zheng <icenowy@aosc.io>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org
+Cc:     Bhushan Shah <bshah@kde.org>
+Subject: [PATCH 0/2] Enable the I2C nodes for Allwinner H6 CPU
+Date:   Sun, 11 Aug 2019 14:35:01 +0530
+Message-Id: <20190811090503.32396-1-bshah@kde.org>
+X-Mailer: git-send-email 2.17.1
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-The NEC NL8048HL11 is a 10.4cm WVGA (800x480) panel with a 24-bit RGB
-parallel data interface and an SPI control interface.
+This patch series adds device-tree nodes for i2c nodes in the H6 dtsi,
+and enables it for the Pine H64.
 
-Signed-off-by: Laurent Pinchart <laurent.pinchart@ideasonboard.com>
----
-Changes since v1:
+Bhushan Shah (2):
+  arm64: allwinner: h6: add I2C nodes
+  arm64: allwinner: h6: enable i2c0 in PineH64
 
-- Convert to YAML
----
- .../display/panel/nec,nl8048hl11.yaml         | 49 +++++++++++++++++++
- 1 file changed, 49 insertions(+)
- create mode 100644 Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
+ .../boot/dts/allwinner/sun50i-h6-pine-h64.dts |  4 ++
+ arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi  | 54 +++++++++++++++++++
+ 2 files changed, 58 insertions(+)
 
-diff --git a/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml b/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
-new file mode 100644
-index 000000000000..cc3d40975828
---- /dev/null
-+++ b/Documentation/devicetree/bindings/display/panel/nec,nl8048hl11.yaml
-@@ -0,0 +1,49 @@
-+# SPDX-License-Identifier: GPL-2.0
-+%YAML 1.2
-+---
-+$id: http://devicetree.org/schemas/display/panel/nec,nl8048hl11.yaml#
-+$schema: http://devicetree.org/meta-schemas/core.yaml#
-+
-+title: NEC NL8048HL11 4.1" WVGA TFT LCD panel
-+
-+description:
-+  The NEC NL8048HL11 is a 4.1" WVGA TFT LCD panel with a 24-bit RGB parallel
-+  data interface and an SPI control interface.
-+
-+maintainers:
-+  - Laurent Pinchart <laurent.pinchart@ideasonboard.com>
-+
-+allOf:
-+  - $ref: panel-common.yaml#
-+
-+properties:
-+  compatible:
-+    const: nec,nl8048hl11
-+
-+  label: true
-+  reset-gpios: true
-+  port: true
-+
-+required:
-+  - compatible
-+  - reset-gpios
-+  - port
-+
-+additionalProperties: false
-+
-+examples:
-+  - |
-+    lcd_panel: panel {
-+      compatible = "nec,nl8048hl11";
-+      spi-max-frequency = <10000000>;
-+
-+      reset-gpios = <&gpio7 7 GPIO_ACTIVE_LOW>;
-+
-+      port {
-+        lcd_in: endpoint {
-+          remote-endpoint = <&dpi_out>;
-+        };
-+      };
-+    };
-+
-+...
 -- 
-Regards,
-
-Laurent Pinchart
+2.17.1
 
