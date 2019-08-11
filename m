@@ -2,109 +2,413 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id ECFC189499
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 00:07:00 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5D171894C7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 01:01:18 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726053AbfHKWG6 convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Sun, 11 Aug 2019 18:06:58 -0400
-Received: from mx0b-001b2d01.pphosted.com ([148.163.158.5]:46314 "EHLO
-        mx0a-001b2d01.pphosted.com" rhost-flags-OK-OK-OK-FAIL)
-        by vger.kernel.org with ESMTP id S1726014AbfHKWG6 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>);
-        Sun, 11 Aug 2019 18:06:58 -0400
-Received: from pps.filterd (m0098417.ppops.net [127.0.0.1])
-        by mx0a-001b2d01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7BM1fQ1108669
-        for <devicetree@vger.kernel.org>; Sun, 11 Aug 2019 18:06:56 -0400
-Received: from smtp.notes.na.collabserv.com (smtp.notes.na.collabserv.com [192.155.248.75])
-        by mx0a-001b2d01.pphosted.com with ESMTP id 2uasq3th8c-1
-        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT)
-        for <devicetree@vger.kernel.org>; Sun, 11 Aug 2019 18:06:56 -0400
-Received: from localhost
-        by smtp.notes.na.collabserv.com with smtp.notes.na.collabserv.com ESMTP
-        for <devicetree@vger.kernel.org> from <miltonm@us.ibm.com>;
-        Sun, 11 Aug 2019 22:06:56 -0000
-Received: from us1a3-smtp06.a3.dal06.isc4sb.com (10.146.103.243)
-        by smtp.notes.na.collabserv.com (10.106.227.123) with smtp.notes.na.collabserv.com ESMTP;
-        Sun, 11 Aug 2019 22:06:46 -0000
-Received: from us1a3-mail228.a3.dal06.isc4sb.com ([10.146.103.71])
-          by us1a3-smtp06.a3.dal06.isc4sb.com
-          with ESMTP id 2019081122064531-459019 ;
-          Sun, 11 Aug 2019 22:06:45 +0000 
-In-Reply-To: <20190810095325.5333-1-wangzqbj@inspur.com>
-From:   "Milton Miller II" <miltonm@us.ibm.com>
-To:     John Wang <wangzqbj@inspur.com>
-Cc:     <robh+dt@kernel.org>, <mark.rutland@arm.com>, <trivial@kernel.org>,
-        <linux@roeck-us.net>, <venture@google.com>,
-        <jgebben@sweptlaser.com>, <anson.huang@nxp.com>,
-        <devicetree@vger.kernel.org>, <openbmc@lists.ozlabs.org>,
-        <duanzhijia01@inspur.com>, <mine260309@gmail.com>
-Date:   Sun, 11 Aug 2019 22:06:45 +0000
-MIME-Version: 1.0
-Sensitivity: 
-Importance: Normal
-X-Priority: 3 (Normal)
-References: <20190810095325.5333-1-wangzqbj@inspur.com>
-X-Mailer: IBM iNotes ($HaikuForm 1054) | IBM Domino Build
- SCN1812108_20180501T0841_FP55 May 22, 2019 at 11:09
-X-LLNOutbound: False
-X-Disclaimed: 49647
-X-TNEFEvaluated: 1
-Content-Transfer-Encoding: 8BIT
-Content-Type: text/plain; charset=UTF-8
-x-cbid: 19081122-6875-0000-0000-0000000642D2
-X-IBM-SpamModules-Scores: BY=0; FL=0; FP=0; FZ=0; HX=0; KW=0; PH=0;
- SC=0.40962; ST=0; TS=0; UL=0; ISC=; MB=0.000003
-X-IBM-SpamModules-Versions: BY=3.00011582; HX=3.00000242; KW=3.00000007;
- PH=3.00000004; SC=3.00000287; SDB=6.01245454; UDB=6.00657162; IPR=6.01026945;
- MB=3.00028138; MTD=3.00000008; XFM=3.00000015; UTC=2019-08-11 22:06:53
-X-IBM-AV-DETECTION: SAVI=unsuspicious REMOTE=unsuspicious XFE=unused
-X-IBM-AV-VERSION: SAVI=2019-08-11 16:15:13 - 6.00010273
-x-cbparentid: 19081122-6876-0000-0000-0000000A5649
-Message-Id: <OF3B0A1F81.64227A30-ON00258453.007977BA-00258453.007977C8@notes.na.collabserv.com>
-Subject: Re:  [PATCH v2 1/2] dt-bindings: Add ipsps1 as a trivial device
-X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-11_10:,,
- signatures=0
-X-Proofpoint-Spam-Reason: safe
+        id S1726155AbfHKXBR (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Aug 2019 19:01:17 -0400
+Received: from outgoing14.flk.host-h.net ([197.242.87.48]:36667 "EHLO
+        outgoing14.flk.host-h.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726144AbfHKXBR (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Aug 2019 19:01:17 -0400
+Received: from www31.flk1.host-h.net ([188.40.1.173])
+        by antispam4-flk1.host-h.net with esmtpsa (TLSv1.2:ECDHE-RSA-AES128-GCM-SHA256:128)
+        (Exim 4.89)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1hwwpr-0002mc-KS; Mon, 12 Aug 2019 01:01:12 +0200
+Received: from [130.255.73.16] (helo=v01.28459.vpscontrol.net)
+        by www31.flk1.host-h.net with esmtpsa (TLS1.2:ECDHE_RSA_AES_128_GCM_SHA256:128)
+        (Exim 4.84_2)
+        (envelope-from <justin.swartz@risingedge.co.za>)
+        id 1hwwpo-0005mQ-Il; Mon, 12 Aug 2019 01:01:08 +0200
+From:   Justin Swartz <justin.swartz@risingedge.co.za>
+To:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Heiko Stuebner <heiko@sntech.de>
+Cc:     Justin Swartz <justin.swartz@risingedge.co.za>,
+        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        linux-rockchip@lists.infradead.org, linux-kernel@vger.kernel.org
+Subject: [PATCH v2] ARM: dts: add device tree for Mecer Xtreme Mini S6
+Date:   Sun, 11 Aug 2019 23:00:13 +0000
+Message-Id: <20190811230015.28349-1-justin.swartz@risingedge.co.za>
+X-Mailer: git-send-email 2.11.0
+X-Authenticated-Sender: justin.swartz@risingedge.co.za
+X-Virus-Scanned: Clear (ClamAV 0.100.3/25538/Sun Aug 11 10:18:30 2019)
+X-Originating-IP: 188.40.1.173
+X-SpamExperts-Domain: risingedge.co.za
+X-SpamExperts-Username: 
+Authentication-Results: host-h.net; auth=pass (login) smtp.auth=@risingedge.co.za
+X-SpamExperts-Outgoing-Class: ham
+X-SpamExperts-Outgoing-Evidence: SB/global_tokens (0.0018101804767)
+X-Recommended-Action: accept
+X-Filter-ID: Mvzo4OR0dZXEDF/gcnlw0Wp43USNh4+oPQIPr3x336CpSDasLI4SayDByyq9LIhVKm1gRKW7ekOu
+ zz8r3TZkPkTNWdUk1Ol2OGx3IfrIJKyP9eGNFz9TW9u+Jt8z2T3K7uDjV/sFUXQr+CDrNQuIHgQg
+ mAX8Bxy/iUu0ThNZg0h/RxVysY5Ye6+GGw0VqdJD7ren9RtRNyYim5e3GD8LGfWrcbYvelpuN/Pk
+ qhBpvAyWwieZyauFYqHkIbFa+ipF21HJWO60ZqrvKy/1AXUV5oXt6ymoFHaG7BQtEYvFCSqHkTDj
+ dyZcrshowL7tH1pWEOpHXO3AWQB4otYhXjSOOlnZeZkTpSWjdKDr98cJY3GhoSe4G2e3oZQMPPCL
+ TET2QWyC1bDOw2oEv3DmjqX5Rdlnibl3vcBqVmvQB4A18aeunDIleDTKIGw+hISik27CAVXirbLu
+ Jjy3NtnGWLbnBGfrUBEXB2fYGLNieGQuoHtJvp0r29Rf3ZjFwL+MhHEWw/0qBlNDp8uABz3dkWV+
+ tnlsqEID1rwhWix/EYFNtp1TycYLFeAN4+MGwnsp7SkU6CLbyF0Zq4b1/7rjUzETJrWks4pbbQJq
+ 6gWopI3ep45X19ZysgQ+31LcAX8eoFXAhohfegXGH2GIVQVglJFbK771YV8YbC29CtmpcTqTfSIf
+ CWq9oj7OiT8GwpAriB+3/81I3rvR8KJ2fK9jiDYgiuaWjWJ1lPr1Ev5xNW3FQUl1thv0hd9gZGlV
+ L/SEDgzCxVAfo0TfAdBm88UU/z2X2IjokNqZVv3KMEb5yncp4Gliqy40Rbjn7L/aSJSlbL1zKyEL
+ KRIlJqopKieSGgZIDDCaOnYR+e17nmKXMy4iUno/l2R44/7at9DP1rQ8e6dbF/Yfz7ZwWRFpJHQn
+ mVbGJJcMBQM8xFcyypgGsWJnLxVzYMsh2xD7KXeSzOTYSf/OzQimTss39BPbTa6gkWqxqeDt/vDy
+ PLUXN2ILHndC4hwbA2fIdq9z/kUhYTDkDb9GLLhZsgdKPiGhHoIVmEgc3vQE4bdGRg51xWZ402gC
+ TyXPOOUgfrQ68NrwMFh7KSOb5P6QksNjtkRqQoUwY2m2XXORzshGSanMY2R9xqtrh1M8CVsONrMJ
+ uGzuoGnKTKcyMAVhaIz/fGNqyRYsGJ0LJeBqPlwuAReGWkPdwxr2XgmbPrJVQzt6iVRPsiDvDuTj
+ 4oYwO9PC4N2NoF8mn/qyLT9gcYZ23l4P3JrzWS8jWh8xuwZvHnAADkIPtamKuAZddoNrr+WHg4o5
+ S3beb97n9J0N63F3lSElipbV7k/tzvRn13OWvSfGlZ4x16b3bGBx
+X-Report-Abuse-To: spam@antispammaster.host-h.net
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Around 08/10/2019 04:54AM in some timezone, John Wang wrote:
->The ipsps1 is an Inspur Power System power supply unit
->
->Signed-off-by: John Wang <wangzqbj@inspur.com>
->---
->v2:
->    - No changes.
->---
-> Documentation/devicetree/bindings/trivial-devices.yaml | 2 ++
-> 1 file changed, 2 insertions(+)
->
->diff --git a/Documentation/devicetree/bindings/trivial-devices.yaml
->b/Documentation/devicetree/bindings/trivial-devices.yaml
->index 747fd3f689dc..63960c7d949a 100644
->--- a/Documentation/devicetree/bindings/trivial-devices.yaml
->+++ b/Documentation/devicetree/bindings/trivial-devices.yaml
->@@ -101,6 +101,8 @@ properties:
->             # Infineon TLV493D-A1B6 I2C 3D Magnetic Sensor
->           - infineon,tlv493d-a1b6
->             # Intersil ISL29028 Ambient Light and Proximity Sensor
->+          - inspur,ipsps1
->+            # Inspur Power System power supply unit version 1
->           - isil,isl29028
+The Mecer Xtreme Mini S6 features a Rockchip RK3229 SoC,
+1GB DDR3 RAM, 8GB eMMC, MicroSD port, 10/100Mbps Ethernet,
+Realtek 8723BS WLAN module, 2 x USB 2.0 ports, HDMI output,
+and S/PDIF output.
 
-The comment describing your entry should go abvoe your entry, and 
-your new entry (starting with the comment) should be before the 
-Intersil entry comment line.
+Signed-off-by: Justin Swartz <justin.swartz@risingedge.co.za>
+---
+ .../devicetree/bindings/arm/rockchip.yaml          |   5 +
+ .../devicetree/bindings/vendor-prefixes.yaml       |   2 +
+ arch/arm/boot/dts/Makefile                         |   1 +
+ arch/arm/boot/dts/rk3229-xms6.dts                  | 283 +++++++++++++++++++++
+ 4 files changed, 291 insertions(+)
+ create mode 100644 arch/arm/boot/dts/rk3229-xms6.dts
 
-
->             # Intersil ISL29030 Ambient Light and Proximity Sensor
->           - isil,isl29030
->-- 
->2.17.1
->
->
-
-Milton
+diff --git a/Documentation/devicetree/bindings/arm/rockchip.yaml b/Documentation/devicetree/bindings/arm/rockchip.yaml
+index 34865042f4e4..4abd91c2b0bd 100644
+--- a/Documentation/devicetree/bindings/arm/rockchip.yaml
++++ b/Documentation/devicetree/bindings/arm/rockchip.yaml
+@@ -329,6 +329,11 @@ properties:
+               - khadas,edge-v
+           - const: rockchip,rk3399
+ 
++      - description: Mecer Xtreme Mini S6
++        items:
++          - const: mecer,xms6
++          - const: rockchip,rk3229
++
+       - description: mqmaker MiQi
+         items:
+           - const: mqmaker,miqi
+diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+index 6992bbbbffab..97992fccfc3d 100644
+--- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
++++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
+@@ -549,6 +549,8 @@ patternProperties:
+     description: mCube
+   "^meas,.*":
+     description: Measurement Specialties
++  "^mecer,.*":
++    description: Mustek Limited
+   "^mediatek,.*":
+     description: MediaTek Inc.
+   "^megachips,.*":
+diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
+index 9159fa2cea90..4567c0b045c2 100644
+--- a/arch/arm/boot/dts/Makefile
++++ b/arch/arm/boot/dts/Makefile
+@@ -905,6 +905,7 @@ dtb-$(CONFIG_ARCH_ROCKCHIP) += \
+ 	rk3188-radxarock.dtb \
+ 	rk3228-evb.dtb \
+ 	rk3229-evb.dtb \
++	rk3229-xms6.dtb \
+ 	rk3288-evb-act8846.dtb \
+ 	rk3288-evb-rk808.dtb \
+ 	rk3288-fennec.dtb \
+diff --git a/arch/arm/boot/dts/rk3229-xms6.dts b/arch/arm/boot/dts/rk3229-xms6.dts
+new file mode 100644
+index 000000000000..4b6ab4954dd4
+--- /dev/null
++++ b/arch/arm/boot/dts/rk3229-xms6.dts
+@@ -0,0 +1,283 @@
++// SPDX-License-Identifier: (GPL-2.0+ OR MIT)
++
++/dts-v1/;
++
++#include <dt-bindings/input/input.h>
++#include "rk3229.dtsi"
++
++/ {
++	model = "Mecer Xtreme Mini S6";
++	compatible = "mecer,xms6", "rockchip,rk3229";
++
++	dc_12v: dc-12v-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "dc_12v";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <12000000>;
++		regulator-max-microvolt = <12000000>;
++	};
++
++	ext_gmac: ext_gmac {
++		compatible = "fixed-clock";
++		clock-frequency = <125000000>;
++		clock-output-names = "ext_gmac";
++		#clock-cells = <0>;
++	};
++
++	memory@60000000 {
++		device_type = "memory";
++		reg = <0x60000000 0x40000000>;
++	};
++
++	power-led {
++		compatible = "gpio-leds";
++
++		blue {
++			gpios = <&gpio3 21 GPIO_ACTIVE_HIGH>;
++			default-state = "on";
++		};
++	};
++
++	vcc_host: vcc-host-regulator {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		gpio = <&gpio3 RK_PC4 GPIO_ACTIVE_HIGH>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&host_vbus_drv>;
++		regulator-name = "vcc_host";
++		regulator-always-on;
++		regulator-boot-on;
++		vin-supply = <&vcc_sys>;
++	};
++
++	vcc_phy: vcc-phy-regulator {
++		compatible = "regulator-fixed";
++		enable-active-high;
++		regulator-name = "vcc_phy";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++		regulator-boot-on;
++		vin-supply = <&vccio_1v8>;
++	};
++
++	vcc_sys: vcc-sys-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc_sys";
++		regulator-always-on;
++		regulator-boot-on;
++		regulator-min-microvolt = <5000000>;
++		regulator-max-microvolt = <5000000>;
++		vin-supply = <&dc_12v>;
++	};
++
++	vccio_1v8: vccio-1v8-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vccio_1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++		regulator-always-on;
++		vin-supply = <&vcc_sys>;
++	};
++
++	vccio_3v3: vccio-3v3-regulator {
++		compatible = "regulator-fixed";
++		regulator-name = "vccio_3v3";
++		regulator-min-microvolt = <3300000>;
++		regulator-max-microvolt = <3300000>;
++		regulator-always-on;
++		vin-supply = <&vcc_sys>;
++	};
++
++	vdd_arm: vdd-arm-regulator {
++		compatible = "pwm-regulator";
++		pwms = <&pwm1 0 25000 1>;
++		pwm-supply = <&vcc_sys>;
++		regulator-name = "vdd_arm";
++		regulator-min-microvolt = <950000>;
++		regulator-max-microvolt = <1400000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++
++	vdd_log: vdd-log-regulator {
++		compatible = "pwm-regulator";
++		pwms = <&pwm2 0 25000 1>;
++		pwm-supply = <&vcc_sys>;
++		regulator-name = "vdd_log";
++		regulator-min-microvolt = <1000000>;
++		regulator-max-microvolt = <1300000>;
++		regulator-always-on;
++		regulator-boot-on;
++	};
++};
++
++&cpu0 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu1 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu2 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&cpu3 {
++	cpu-supply = <&vdd_arm>;
++};
++
++&emmc {
++	cap-mmc-highspeed;
++	disable-wp;
++	non-removable;
++	status = "okay";
++};
++
++&gmac {
++	assigned-clocks = <&cru SCLK_MAC_SRC>;
++	assigned-clock-rates = <50000000>;
++	clock_in_out = "output";
++	phy-supply = <&vcc_phy>;
++	phy-mode = "rmii";
++	phy-handle = <&phy>;
++	status = "okay";
++
++	mdio {
++		compatible = "snps,dwmac-mdio";
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		phy: phy@0 {
++			compatible = "ethernet-phy-id1234.d400",
++			             "ethernet-phy-ieee802.3-c22";
++			reg = <0>;
++			clocks = <&cru SCLK_MAC_PHY>;
++			resets = <&cru SRST_MACPHY>;
++			phy-is-integrated;
++		};
++	};
++};
++
++&gpu {
++	mali-supply = <&vdd_log>;
++	status = "okay";
++};
++
++&hdmi {
++	status = "okay";
++};
++
++&hdmi_phy {
++	status = "okay";
++};
++
++&iep_mmu {
++	status = "okay";
++};
++
++&io_domains {
++	status = "okay";
++
++	vccio1-supply = <&vccio_3v3>;
++	vccio2-supply = <&vccio_1v8>;
++	vccio4-supply = <&vccio_3v3>;
++};
++
++&pinctrl {
++	usb {
++		host_vbus_drv: host-vbus-drv {
++			rockchip,pins = <3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_none>;
++		};
++	};
++};
++
++&pwm1 {
++	status = "okay";
++};
++
++&pwm2 {
++	status = "okay";
++};
++
++&sdmmc {
++	cap-mmc-highspeed;
++	disable-wp;
++	status = "okay";
++};
++
++&tsadc {
++	rockchip,hw-tshut-mode = <0>;
++	status = "okay";
++};
++
++&u2phy0 {
++	status = "okay";
++
++	u2phy0_host: host-port {
++		phy-supply = <&vcc_host>;
++		status = "okay";
++	};
++
++	u2phy0_otg: otg-port {
++		phy-supply = <&vcc_host>;
++		status = "okay";
++	};
++};
++
++&u2phy1 {
++	status = "okay";
++
++	u2phy1_host: host-port {
++		phy-supply = <&vcc_host>;
++		status = "okay";
++	};
++
++	u2phy1_otg: otg-port {
++		phy-supply = <&vcc_host>;
++		status = "okay";
++	};
++};
++
++&uart2 {
++	pinctrl-0 = <&uart21_xfer>;
++	status = "okay";
++};
++
++&usb_host0_ehci {
++	status = "okay";
++};
++
++&usb_host0_ohci {
++	status = "okay";
++};
++
++&usb_host1_ehci {
++	status = "okay";
++};
++
++&usb_host1_ohci {
++	status = "okay";
++};
++
++&usb_host2_ehci {
++	status = "okay";
++};
++
++&usb_host2_ohci {
++	status = "okay";
++};
++
++&usb_otg {
++	status = "okay";
++};
++
++&vop {
++	status = "okay";
++};
++
++&vop_mmu {
++	status = "okay";
++};
+-- 
+2.11.0
 
