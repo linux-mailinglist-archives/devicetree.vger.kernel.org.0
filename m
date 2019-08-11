@@ -2,162 +2,127 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D404C8930A
-	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2019 20:04:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B1FF689336
+	for <lists+devicetree@lfdr.de>; Sun, 11 Aug 2019 21:00:24 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726267AbfHKSEa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Sun, 11 Aug 2019 14:04:30 -0400
-Received: from mail-lj1-f193.google.com ([209.85.208.193]:46414 "EHLO
-        mail-lj1-f193.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725939AbfHKSE3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Aug 2019 14:04:29 -0400
-Received: by mail-lj1-f193.google.com with SMTP id h13so921849ljc.13;
-        Sun, 11 Aug 2019 11:04:27 -0700 (PDT)
+        id S1726144AbfHKTAX (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Sun, 11 Aug 2019 15:00:23 -0400
+Received: from mail-pl1-f196.google.com ([209.85.214.196]:37936 "EHLO
+        mail-pl1-f196.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725939AbfHKTAX (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Sun, 11 Aug 2019 15:00:23 -0400
+Received: by mail-pl1-f196.google.com with SMTP id m12so8417282plt.5
+        for <devicetree@vger.kernel.org>; Sun, 11 Aug 2019 12:00:23 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=mwCCmTPyZMzB8rOB2/u+aHD+9E+Hp331HV98rXItsy0=;
-        b=ibKaAsX9ikH9awumenb7RFQejb6OIAjvguIQ9x3qSfgbwDLOe8y/isrP8t5T3aExCp
-         yCo5P6K2VaEfSATv2a+z1mCazdhQDKSs13QPvF6ht/6RIOfmsM5k/GPSlqSCDzFyhyrq
-         8ZTzSXievbbq6VrTpFjYFyF4VDrWM15oD0e2Yr54MKmRoj8TPqHFO0PE9ZqH7F5EYnB0
-         yt9kf7ReoKEBg+km75tj9r38bOrDmRoqH5a/lrG0V49p5edci7qQRpLv6srb35j+qnki
-         C0o3grbkFP9lECGJys7YY4BBYLKiBGB5fjZFOZc88RrrgHAsUQDGF7l1HzbYh6NWEWcC
-         DG7A==
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=g4HRffWR5sTfOdPb8n2H2gBlNEK3O7QkgVCtkSjBUGc=;
+        b=NKH6a5rKubvrnRjIiAagMdwN7DNFvpDIxEUxLYf+kcaaRrXUD4LXVeEaPzEwnv51Qn
+         7QZtgmEqhK5E4pjO/rrk1i6VlM2ljoxMczTY2s0GmrCxGCEIRTRvwfm2eZyvt5gl2ail
+         i4BetvPir8rZaPCg6FdYaMlO7QhhsOWiFl05YooTM8FK+qi+aGZytl2RfGMDZccqWYcH
+         c7A1ri271xLpFxZkPBYu7DbHUIaK8beRCewn28rCUTsX9GjAB64fyF3nlcG1issWWlne
+         M1MeftR3HX7ZBV69FKtlbTP5HTcIxgTIQFwFvS9sWY9tl+c2q40uABiEoYtg7El1O0aC
+         FcCA==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=mwCCmTPyZMzB8rOB2/u+aHD+9E+Hp331HV98rXItsy0=;
-        b=jWeplow+YNcVZjmXikoRY3sGYBYKEiBTIi3SMGD/s12Sa6kXudQyuLc1mklpaRFGIV
-         +QQaalfsyIv2XuZzZt9W1oyOy69S2FSeWXV1Y61QOXa+8iK3gMIR/IlwVUKsq40wNupH
-         f4fNuVo6do3z413dArM0UlFans9++fnCBTP/HY5nDvw7qwVQhBbO5KZBeGa+sj4im910
-         bNsWVUs5Q8kQamkydp9PzyxZZVkVLgjmBFsgM14loWYQ6/DHc/XqyI+oDHCdOgQ3021k
-         3x8MoBR2f7bfi3GULg+NB9ItVEufGHm7iQPe8jB0AAcYfgvLo7iYLOPXKrdxrmoPjVmF
-         PCVw==
-X-Gm-Message-State: APjAAAWX1/+4OqoHVo7b/5QQiX2hBJu1o+DnutedGs+PkFFTi7i5frGl
-        eQ1nYiFq2FEJotn5mjTEh+8U0odi
-X-Google-Smtp-Source: APXvYqwSAgc+L2f0y5uKMKUohDnZg6B/2bgLcBngpfnUX56foIbBQ87h6ZEZBm1g5ve48U2Q1YAbvw==
-X-Received: by 2002:a2e:9f0d:: with SMTP id u13mr17165699ljk.186.1565546666339;
-        Sun, 11 Aug 2019 11:04:26 -0700 (PDT)
-Received: from [192.168.2.145] ([94.29.34.218])
-        by smtp.googlemail.com with ESMTPSA id v7sm20649866ljj.3.2019.08.11.11.04.24
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Sun, 11 Aug 2019 11:04:25 -0700 (PDT)
-Subject: Re: [PATCH v8 04/21] clk: tegra: pllout: Save and restore pllout
- context
-To:     Sowjanya Komatineni <skomatineni@nvidia.com>,
-        thierry.reding@gmail.com, jonathanh@nvidia.com, tglx@linutronix.de,
-        jason@lakedaemon.net, marc.zyngier@arm.com,
-        linus.walleij@linaro.org, stefan@agner.ch, mark.rutland@arm.com
-Cc:     pdeschrijver@nvidia.com, pgaikwad@nvidia.com, sboyd@kernel.org,
-        linux-clk@vger.kernel.org, linux-gpio@vger.kernel.org,
-        jckuo@nvidia.com, josephl@nvidia.com, talho@nvidia.com,
-        linux-tegra@vger.kernel.org, linux-kernel@vger.kernel.org,
-        mperttunen@nvidia.com, spatra@nvidia.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, rjw@rjwysocki.net,
-        viresh.kumar@linaro.org, linux-pm@vger.kernel.org
-References: <1565308020-31952-1-git-send-email-skomatineni@nvidia.com>
- <1565308020-31952-5-git-send-email-skomatineni@nvidia.com>
-From:   Dmitry Osipenko <digetx@gmail.com>
-Message-ID: <3bc1cdc5-c8e7-a210-67ae-2a3f6f01660f@gmail.com>
-Date:   Sun, 11 Aug 2019 21:04:24 +0300
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.7.2
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=g4HRffWR5sTfOdPb8n2H2gBlNEK3O7QkgVCtkSjBUGc=;
+        b=HNHaij4iKdMWThN8qrK/qOnESBAwigI2K8lmDxcUORlWG6kx9vOpKH5l39DMnCdw1J
+         4VjFw2cpjnhbOzCDYJXmvnbO/166ki8VjxrMxUOnelokoGic0KajA7ngGv72YqmhvCF3
+         84xlqJo4+L2r2Mvi6wjAwzn2pUiX8EitM1pO4NtSzyXzq42HpAgx+WCARhzKYV2NcdBl
+         TjWd+zo0Tts/PE2gjw0ihJ/vBG0OB8NYwiuLJXiHnVQmXb9aq4sYQXipwkRAGcdC+WTm
+         C0ew0Yw6FLe9GIVFvZQemK7FLM+BfaTpDjAu6iizaNuZURuQc6GzKKfsFcNQgJqrEl14
+         BS8A==
+X-Gm-Message-State: APjAAAVDRVF+fy9J6ptnC8wUStu3dPkDd9PKfv/IPUf3awhxbvjl5Z/W
+        sZFR97ezy9phxS5eIA38W/gAXQ==
+X-Google-Smtp-Source: APXvYqzc4Bn9ATOCQYg7LsJf9jLHX1jrV/wEcEKA0Dzyd51K6OZ8vz1CVcwhFwEFMJTVX7DrRrXbdA==
+X-Received: by 2002:a17:902:e4:: with SMTP id a91mr29498761pla.150.1565550022586;
+        Sun, 11 Aug 2019 12:00:22 -0700 (PDT)
+Received: from tuxbook-pro (104-188-17-28.lightspeed.sndgca.sbcglobal.net. [104.188.17.28])
+        by smtp.gmail.com with ESMTPSA id 5sm41932620pgh.93.2019.08.11.12.00.21
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Sun, 11 Aug 2019 12:00:21 -0700 (PDT)
+Date:   Sun, 11 Aug 2019 12:01:59 -0700
+From:   Bjorn Andersson <bjorn.andersson@linaro.org>
+To:     Vivek Gautam <vivek.gautam@codeaurora.org>
+Cc:     "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
+        <devicetree@vger.kernel.org>,
+        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
+        Will Deacon <will.deacon@arm.com>,
+        open list <linux-kernel@vger.kernel.org>,
+        robh+dt <robh+dt@kernel.org>,
+        David Brown <david.brown@linaro.org>,
+        "list@263.net:IOMMU DRIVERS <iommu@lists.linux-foundation.org>, Joerg
+        Roedel <joro@8bytes.org>," <iommu@lists.linux-foundation.org>,
+        Andy Gross <agross@kernel.org>,
+        Robin Murphy <robin.murphy@arm.com>
+Subject: Re: [PATCH v3 4/4] arm64: dts/sdm845: Enable FW implemented safe
+ sequence handler on MTP
+Message-ID: <20190811190159.GQ26807@tuxbook-pro>
+References: <20190612071554.13573-1-vivek.gautam@codeaurora.org>
+ <20190612071554.13573-5-vivek.gautam@codeaurora.org>
+ <20190805222627.GA2634@builder>
+ <CAFp+6iHGrXAJ2Y1ewxaePGYEcbnprjScUnGyR61qvOv03HVZhQ@mail.gmail.com>
 MIME-Version: 1.0
-In-Reply-To: <1565308020-31952-5-git-send-email-skomatineni@nvidia.com>
-Content-Type: text/plain; charset=utf-8
-Content-Language: en-US
-Content-Transfer-Encoding: 8bit
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <CAFp+6iHGrXAJ2Y1ewxaePGYEcbnprjScUnGyR61qvOv03HVZhQ@mail.gmail.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-09.08.2019 2:46, Sowjanya Komatineni пишет:
-> This patch implements save and restore of pllout context.
+On Sun 11 Aug 09:08 PDT 2019, Vivek Gautam wrote:
+
+> On Tue, Aug 6, 2019 at 3:56 AM Bjorn Andersson
+> <bjorn.andersson@linaro.org> wrote:
+> >
+> > On Wed 12 Jun 00:15 PDT 2019, Vivek Gautam wrote:
+> >
+> > > Indicate on MTP SDM845 that firmware implements handler to
+> > > TLB invalidate erratum SCM call where SAFE sequence is toggled
+> > > to achieve optimum performance on real-time clients, such as
+> > > display and camera.
+> > >
+> > > Signed-off-by: Vivek Gautam <vivek.gautam@codeaurora.org>
+> > > ---
+> > >  arch/arm64/boot/dts/qcom/sdm845.dtsi | 1 +
+> > >  1 file changed, 1 insertion(+)
+> > >
+> > > diff --git a/arch/arm64/boot/dts/qcom/sdm845.dtsi b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > > index 78ec373a2b18..6a73d9744a71 100644
+> > > --- a/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > > +++ b/arch/arm64/boot/dts/qcom/sdm845.dtsi
+> > > @@ -2368,6 +2368,7 @@
+> > >                       compatible = "qcom,sdm845-smmu-500", "arm,mmu-500";
+> > >                       reg = <0 0x15000000 0 0x80000>;
+> > >                       #iommu-cells = <2>;
+> > > +                     qcom,smmu-500-fw-impl-safe-errata;
+> >
+> > Looked back at this series and started to wonder if there there is a
+> > case where this should not be set? I mean we're after all adding this to
+> > the top 845 dtsi...
 > 
-> During system suspend, core power goes off and looses the settings
-> of the Tegra CAR controller registers.
-> 
-> So during suspend entry the state of pllout is saved and on resume
-> it is restored back to have pllout in same state as before suspend.
-> 
-> pllout rate is saved and restore in clock divider so it will be at
-> same rate as before suspend when pllout state is restored.
-> 
-> Acked-by: Thierry Reding <treding@nvidia.com>
-> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
-> ---
->  drivers/clk/tegra/clk-pll-out.c  | 9 +++++++++
->  drivers/clk/tegra/clk-tegra210.c | 3 ++-
->  drivers/clk/tegra/clk.h          | 6 ++++++
->  3 files changed, 17 insertions(+), 1 deletion(-)
-> 
-> diff --git a/drivers/clk/tegra/clk-pll-out.c b/drivers/clk/tegra/clk-pll-out.c
-> index 35f2bf00e1e6..d8bf89a81e6d 100644
-> --- a/drivers/clk/tegra/clk-pll-out.c
-> +++ b/drivers/clk/tegra/clk-pll-out.c
-> @@ -69,10 +69,19 @@ static void clk_pll_out_disable(struct clk_hw *hw)
->  		spin_unlock_irqrestore(pll_out->lock, flags);
->  }
->  
-> +static void tegra_clk_pll_out_restore_context(struct clk_hw *hw)
-> +{
-> +	if (!__clk_get_enable_count(hw->clk))
-> +		clk_pll_out_disable(hw);
-> +	else
-> +		clk_pll_out_enable(hw);
-> +}
-> +
->  const struct clk_ops tegra_clk_pll_out_ops = {
->  	.is_enabled = clk_pll_out_is_enabled,
->  	.enable = clk_pll_out_enable,
->  	.disable = clk_pll_out_disable,
-> +	.restore_context = tegra_clk_pll_out_restore_context,
->  };
->  
->  struct clk *tegra_clk_register_pll_out(const char *name,
-> diff --git a/drivers/clk/tegra/clk-tegra210.c b/drivers/clk/tegra/clk-tegra210.c
-> index df172d5772d7..4721ee030d1c 100644
-> --- a/drivers/clk/tegra/clk-tegra210.c
-> +++ b/drivers/clk/tegra/clk-tegra210.c
-> @@ -3200,7 +3200,8 @@ static void __init tegra210_pll_init(void __iomem *clk_base,
->  					 8, 8, 1, NULL);
->  	clk = tegra_clk_register_pll_out("pll_re_out1", "pll_re_out1_div",
->  					 clk_base + PLLRE_OUT1, 1, 0,
-> -					 CLK_SET_RATE_PARENT, 0, NULL);
-> +					 CLK_SET_RATE_PARENT, TEGRA_PLLRE_OUT,
-> +					 NULL);
->  	clks[TEGRA210_CLK_PLL_RE_OUT1] = clk;
->  
->  	/* PLLE */
-> diff --git a/drivers/clk/tegra/clk.h b/drivers/clk/tegra/clk.h
-> index 905bf1096558..a464524fbc90 100644
-> --- a/drivers/clk/tegra/clk.h
-> +++ b/drivers/clk/tegra/clk.h
-> @@ -437,6 +437,10 @@ struct clk *tegra_clk_register_pllu_tegra210(const char *name,
->   * @rst_bit_idx:	bit to reset PLL divider
->   * @lock:		register lock
->   * @flags:		hardware-specific flags
-> + *
-> + * Flags:
-> + * TEGRA_PLLRE_OUT - This flag indicates that it is PLLRE_OUT and is used to
-> + *		     identify PLLRE_OUT during clk_pll_out save and restore.
->   */
->  struct tegra_clk_pll_out {
->  	struct clk_hw	hw;
-> @@ -447,6 +451,8 @@ struct tegra_clk_pll_out {
->  	u8		flags;
->  };
->  
-> +#define TEGRA_PLLRE_OUT BIT(0)
-> +
->  #define to_clk_pll_out(_hw) container_of(_hw, struct tegra_clk_pll_out, hw)
->  
->  extern const struct clk_ops tegra_clk_pll_out_ops;
+> My bad.
+> This is not valid in case of cheza. Cheza firmware doesn't implement
+> the safe errata handling hook.
+> On cheza we just have the liberty of accessing the secure registers
+> through scm calls - this is what
+> we were doing in earlier patch series handling this errata.
+> So, a property like this should go to mtp board's dts file.
 > 
 
-Looks like the TEGRA_PLLRE_OUT flag is unused.
+It would have been nice if the common case was just selected by default,
+but afaict no safe workaround is needed on Cheza? You mention here that
+it should (could?) use the scm write based approach instead, would an
+introduction of that come with another flag?
 
+
+PS. In it's current form it's correct that this should be moved to the
+device dts files - all but one of them...
+
+Regards,
+Bjorn
