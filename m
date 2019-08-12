@@ -2,300 +2,189 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 12C0E89614
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 06:22:47 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 967378965B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 06:43:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726895AbfHLEWi (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 00:22:38 -0400
-Received: from mail-eopbgr40052.outbound.protection.outlook.com ([40.107.4.52]:15436
-        "EHLO EUR03-DB5-obe.outbound.protection.outlook.com"
-        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
-        id S1726885AbfHLEWh (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 00:22:37 -0400
+        id S1725852AbfHLEnl (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 00:43:41 -0400
+Received: from mx0a-0014ca01.pphosted.com ([208.84.65.235]:24774 "EHLO
+        mx0a-0014ca01.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725822AbfHLEnl (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 00:43:41 -0400
+Received: from pps.filterd (m0042385.ppops.net [127.0.0.1])
+        by mx0a-0014ca01.pphosted.com (8.16.0.27/8.16.0.27) with SMTP id x7C4go8q002262;
+        Sun, 11 Aug 2019 21:43:20 -0700
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com; h=from : to : cc :
+ subject : date : message-id : references : in-reply-to : content-type :
+ content-transfer-encoding : mime-version; s=proofpoint;
+ bh=LPHDMKrWb3YwzkRZieLbAD2SEf5plTuilZx/nH0mNG0=;
+ b=ESZ5ZBEZTpc8Qj1QU/jrcpgh2HquqTtXYg1x0UiuiILaCYPq+b4/lKaBhSOU5kqbH0Ne
+ /SfNZgkuqz1mirJbvrqgodH1sSbZ0bsl/U6/MhGp0xBG26Ojw01WhPHkneDRfUQdjJPY
+ 2A6OCh4aaM2I80gxE/Y5FUz3aTdmdYI82GQkmquwd/VgKz2KDM9ug30jHBqyVOrVx8Lc
+ XQTP421cCz77/sqRDCpzMxgTYoxMSmUcPHOjnVe4vJ0sX0MxcIbOT0fNvctsTqL+uOvt
+ 0Z6CvbyuB3ADfCp278GzdOqNdKePHp5vBo6J27m2PWAwg8YCmZMKWJ0HpXCmDXAfaGoh qA== 
+Authentication-Results: cadence.com;
+        spf=pass smtp.mailfrom=pawell@cadence.com
+Received: from nam02-sn1-obe.outbound.protection.outlook.com (mail-sn1nam02lp2050.outbound.protection.outlook.com [104.47.36.50])
+        by mx0a-0014ca01.pphosted.com with ESMTP id 2u9tfs4f10-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES256-GCM-SHA384 bits=256 verify=NOT);
+        Sun, 11 Aug 2019 21:43:19 -0700
 ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
- b=LoDAdPlfeA7j6Z10FBc3rUZntnY5d9CH7DKmY8w0e6n3wxJy8SOxVUO4VXocrkBcpZEUsCcDydeW744XeH4QlbH0YnaBiRwSIW3QV/Ak+XnBj6+CmZJJc0owEPvHi/xQc8kbA4WoGPLmcBYYNqvXnK4V3o/uOQTB5mxNGOX6YJwkT8n/KJ8RM6gfoElBrta4B83NWoKwEFU+81m5ZsJqoS2P1Y05uKFhJBFlsiMBM0FHtjFc9K0PJOhR0ujJsQNFnPFl7YmZRTvfT5ted5MiMfJKZ71ZYPWSL/CIvS52E++rrkWoh1X5ZALjGz94lZc0m+suEppG9W6+WuiEU7yMAQ==
+ b=EZC+JZdQSMVwaEt3y8ZInUGB+uabzn6uk7r9JJawl0jDJALIVcsNPNBfTXNyltPGlX5aR6QKSLqdIwZ7ziw0HINRuk7+4ngSbqv+xkaxdvlSU3MOkVTHnwaEWYnlppYhQbJGHdRedvq1wMbXHQBDNwqC117DiE54bTpUJxS3B4CE9IpOmri3LlBSZmJOqFLmcQPmKbrvfvVg4QMW8G3GsEcPGz0sE2P1eIiLPQ/OywRSgWbr3V2zRvmNtgq3+q7lOQ1CXdjgCyAFGm8YxWnP3G9Vd9f7QjijO9tyDMLKcbNE0cbWXsXd8FrnfpbspNg/HhPoFXCS9qrhiq51xcwZlw==
 ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
  s=arcselector9901;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BIXsOqPz424V2pYO6OHn9ImT4VL1Xd2sF5UJOiAHijk=;
- b=e12yV56G8susTfM4JbABxi+REVGzQCUL1OxmhHRCar+hO9hKqfLj3vsLREP+pV08TubHtCYfyNPwBfzs0QV+U1DotHI6UKVSfoXy2vgWUXvB+p5fuegXBuSZnOy1rCZ2B6f9H7nSfqJhE3O133PR/mN7eFdhlz/rzXkqx6QF1AwEsaJNjBXfrrALRhpEGEnrq8DGIghgAInMJs00KVkUua3OjvhOhKmD7to/pnvQrsmkej6UC3HiiyBj/1YWMsxg4WyR6se2wBC8NeoZEEtFYnvIqrhRdNZA4WvKrkBArNKlVw2U9RF/utqhUJy0IAb2LCKbgFG85/GllAcEzh36CQ==
-ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
- smtp.mailfrom=nxp.com; dmarc=pass action=none header.from=nxp.com; dkim=pass
- header.d=nxp.com; arc=none
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nxp.com; s=selector2;
+ bh=LPHDMKrWb3YwzkRZieLbAD2SEf5plTuilZx/nH0mNG0=;
+ b=GR0tqaUICF8QMaRi71k/CKz/j/See5xtH2Rwo127/tloLF2OmJA34SbPmE1uqQMyeCPh2zYfYVFM9wE+0JRiCg07KDeTafUBij4orT35Vj2RyenB7oMQvi2zyEaVbadqvvtqk0F/F07otzkBIu3Dpsr1MCBCcWOBKrszK5kSehN6/C89r9/T17L7hDhtCJ12SuySfj7JcI6wO71THZIcokkEoQNd7BQZXx0VtIJfeM19RsxvYwwq58gnKeWh2Hb0x7DqTpuJZfCFkmB6PdpeZ57QSWp718Bz74QoIt7MRtiqwZy1U4YtUApP/XR83G84z/suSnVXskqNvSIq7uBIcg==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1;spf=pass
+ smtp.mailfrom=cadence.com;dmarc=pass action=none
+ header.from=cadence.com;dkim=pass header.d=cadence.com;arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cadence.com;
+ s=selector2;
  h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
- bh=BIXsOqPz424V2pYO6OHn9ImT4VL1Xd2sF5UJOiAHijk=;
- b=S91QHO6Xd+SGnoFxD0KrhLCGaSyYTT7izNLugrTeuXjZKP5vobypanvmOUO2WYiEblqQQMwtIE01hY2/c09vEjLo5QNjEA46rUMdZYj50f4LRLQH7K3+nw3na9DZ2u/nPHIWVyAnKLK0ACrMU6CAaaZp8TNSToK1vrrmPQa/lCc=
-Received: from DB8PR04MB6747.eurprd04.prod.outlook.com (20.179.250.159) by
- DB8PR04MB5931.eurprd04.prod.outlook.com (20.179.11.140) with Microsoft SMTP
+ bh=LPHDMKrWb3YwzkRZieLbAD2SEf5plTuilZx/nH0mNG0=;
+ b=TT6uM6P3qyDODEPBK5klQVxV3phseGVoJVHGXDhoN98RBp67P8gJU5UvsJA3N24xFMQeSvSq7O0wZbIWRYHXpAoeQfci1nlVhQeRjbq6tf7cMngeJZUBw9ZvrDA6TvmWgttTdmZtSIWS3lXN61KdYjSr7u3Oxt8M0AGDUGomb8c=
+Received: from BYAPR07MB4709.namprd07.prod.outlook.com (52.135.204.159) by
+ BYAPR07MB4549.namprd07.prod.outlook.com (52.135.225.146) with Microsoft SMTP
  Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
- 15.20.2157.23; Mon, 12 Aug 2019 04:22:33 +0000
-Received: from DB8PR04MB6747.eurprd04.prod.outlook.com
- ([fe80::19ec:cddf:5e07:37eb]) by DB8PR04MB6747.eurprd04.prod.outlook.com
- ([fe80::19ec:cddf:5e07:37eb%3]) with mapi id 15.20.2157.015; Mon, 12 Aug 2019
- 04:22:33 +0000
-From:   "Z.q. Hou" <zhiqiang.hou@nxp.com>
-To:     "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "gustavo.pimentel@synopsys.com" <gustavo.pimentel@synopsys.com>,
-        "jingoohan1@gmail.com" <jingoohan1@gmail.com>,
-        "bhelgaas@google.com" <bhelgaas@google.com>,
+ 15.20.2136.17; Mon, 12 Aug 2019 04:43:16 +0000
+Received: from BYAPR07MB4709.namprd07.prod.outlook.com
+ ([fe80::98f2:1592:6dff:63e]) by BYAPR07MB4709.namprd07.prod.outlook.com
+ ([fe80::98f2:1592:6dff:63e%7]) with mapi id 15.20.2136.022; Mon, 12 Aug 2019
+ 04:43:16 +0000
+From:   Pawel Laszczak <pawell@cadence.com>
+To:     Peter Chen <peter.chen@nxp.com>,
+        Felipe Balbi <felipe.balbi@linux.intel.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>
+CC:     "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "linux-usb@vger.kernel.org" <linux-usb@vger.kernel.org>,
+        "hdegoede@redhat.com" <hdegoede@redhat.com>,
+        "heikki.krogerus@linux.intel.com" <heikki.krogerus@linux.intel.com>,
         "robh+dt@kernel.org" <robh+dt@kernel.org>,
-        "mark.rutland@arm.com" <mark.rutland@arm.com>,
-        "shawnguo@kernel.org" <shawnguo@kernel.org>,
-        Leo Li <leoyang.li@nxp.com>,
-        "lorenzo.pieralisi@arm.com" <lorenzo.pieralisi@arm.com>
-CC:     "M.h. Lian" <minghuan.lian@nxp.com>,
-        "Z.q. Hou" <zhiqiang.hou@nxp.com>
-Subject: [PATCH 4/4] arm64: dts: fsl: Remove num-lanes property from PCIe
- nodes
-Thread-Topic: [PATCH 4/4] arm64: dts: fsl: Remove num-lanes property from PCIe
- nodes
-Thread-Index: AQHVUMWQPzBEI52VGku2HzYmow0ewA==
-Date:   Mon, 12 Aug 2019 04:22:33 +0000
-Message-ID: <20190812042435.25102-5-Zhiqiang.Hou@nxp.com>
-References: <20190812042435.25102-1-Zhiqiang.Hou@nxp.com>
-In-Reply-To: <20190812042435.25102-1-Zhiqiang.Hou@nxp.com>
-Accept-Language: zh-CN, en-US
+        "rogerq@ti.com" <rogerq@ti.com>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "jbergsagel@ti.com" <jbergsagel@ti.com>,
+        "nsekhar@ti.com" <nsekhar@ti.com>, "nm@ti.com" <nm@ti.com>,
+        Suresh Punnoose <sureshp@cadence.com>,
+        Jayshri Dajiram Pawar <jpawar@cadence.com>,
+        Rahul Kumar <kurahul@cadence.com>
+Subject: RE: [PATCH v9 5/6] usb:cdns3 Add Cadence USB3 DRD Driver
+Thread-Topic: [PATCH v9 5/6] usb:cdns3 Add Cadence USB3 DRD Driver
+Thread-Index: AQHVMyCBLRb+XoB9zUqxphM8AIPBC6bAUmQAgAroVsCAJHZ6gIAFRjxwgAIEXoCAAC01IA==
+Date:   Mon, 12 Aug 2019 04:43:16 +0000
+Message-ID: <BYAPR07MB4709E993145DE80AD24D2E36DDD30@BYAPR07MB4709.namprd07.prod.outlook.com>
+References: <1562324238-16655-1-git-send-email-pawell@cadence.com>
+ <1562324238-16655-6-git-send-email-pawell@cadence.com>
+ <877e8tm25r.fsf@linux.intel.com>
+ <BYAPR07MB4709152CB29B6B027ABEB688DDCF0@BYAPR07MB4709.namprd07.prod.outlook.com>
+ <8736idnu0q.fsf@gmail.com>
+ <BYAPR07MB4709B0A4FADFB76183D651DCDDD10@BYAPR07MB4709.namprd07.prod.outlook.com>
+ <VI1PR04MB53279117788B7D7CC3080B398BD30@VI1PR04MB5327.eurprd04.prod.outlook.com>
+In-Reply-To: <VI1PR04MB53279117788B7D7CC3080B398BD30@VI1PR04MB5327.eurprd04.prod.outlook.com>
+Accept-Language: en-US
 Content-Language: en-US
 X-MS-Has-Attach: 
 X-MS-TNEF-Correlator: 
-x-clientproxiedby: HK0PR03CA0060.apcprd03.prod.outlook.com
- (2603:1096:203:52::24) To DB8PR04MB6747.eurprd04.prod.outlook.com
- (2603:10a6:10:10b::31)
-authentication-results: spf=none (sender IP is )
- smtp.mailfrom=zhiqiang.hou@nxp.com; 
-x-ms-exchange-messagesentrepresentingtype: 1
-x-mailer: git-send-email 2.17.1
-x-originating-ip: [119.31.174.73]
+x-dg-ref: PG1ldGE+PGF0IG5tPSJib2R5LnR4dCIgcD0iYzpcdXNlcnNccGF3ZWxsXGFwcGRhdGFccm9hbWluZ1wwOWQ4NDliNi0zMmQzLTRhNDAtODVlZS02Yjg0YmEyOWUzNWJcbXNnc1xtc2ctOGE4NDAzNjItYmNiYi0xMWU5LTg3NDUtMWM0ZDcwMWRmYmE0XGFtZS10ZXN0XDhhODQwMzY0LWJjYmItMTFlOS04NzQ1LTFjNGQ3MDFkZmJhNGJvZHkudHh0IiBzej0iMjAxNCIgdD0iMTMyMTAwNTg1MjkwNjMxMjY4IiBoPSIvaW1xdmdkSnBiV20veEcvTjZCNGhQQkw1NWM9IiBpZD0iIiBibD0iMCIgYm89IjEiLz48L21ldGE+
+x-dg-rorf: 
+x-originating-ip: [158.140.1.28]
 x-ms-publictraffictype: Email
-x-ms-office365-filtering-correlation-id: 96a2a906-eea2-41ab-5ade-08d71edcb263
-x-ms-office365-filtering-ht: Tenant
-x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(5600148)(711020)(4605104)(1401327)(4618075)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(2017052603328)(7193020);SRVR:DB8PR04MB5931;
-x-ms-traffictypediagnostic: DB8PR04MB5931:
-x-ms-exchange-transport-forked: True
-x-microsoft-antispam-prvs: <DB8PR04MB5931B53A3D934AE75852C00B84D30@DB8PR04MB5931.eurprd04.prod.outlook.com>
-x-ms-oob-tlc-oobclassifiers: OLM:7219;
+x-ms-office365-filtering-correlation-id: dcb03664-4e3b-46f4-8d2a-08d71edf978b
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:BYAPR07MB4549;
+x-ms-traffictypediagnostic: BYAPR07MB4549:
+x-microsoft-antispam-prvs: <BYAPR07MB45491E1380A0D8690A4C7564DDD30@BYAPR07MB4549.namprd07.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:10000;
 x-forefront-prvs: 012792EC17
-x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(136003)(376002)(39860400002)(396003)(366004)(189003)(199004)(6436002)(256004)(25786009)(14444005)(66476007)(66556008)(66946007)(50226002)(2616005)(476003)(64756008)(186003)(11346002)(446003)(486006)(6486002)(66066001)(66446008)(53936002)(7416002)(71190400001)(6512007)(71200400001)(2501003)(8936002)(4326008)(8676002)(6116002)(3846002)(76176011)(52116002)(110136005)(54906003)(305945005)(7736002)(1076003)(81166006)(81156014)(86362001)(5660300002)(14454004)(26005)(478600001)(36756003)(2201001)(2906002)(386003)(6506007)(102836004)(99286004)(316002)(921003)(1121003);DIR:OUT;SFP:1101;SCL:1;SRVR:DB8PR04MB5931;H:DB8PR04MB6747.eurprd04.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
-received-spf: None (protection.outlook.com: nxp.com does not designate
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(4636009)(346002)(366004)(136003)(396003)(376002)(39860400002)(189003)(36092001)(199004)(51444003)(54906003)(102836004)(74316002)(256004)(66066001)(71200400001)(76116006)(6506007)(71190400001)(110136005)(6436002)(5660300002)(6116002)(316002)(7696005)(66476007)(229853002)(55016002)(86362001)(2906002)(64756008)(14444005)(66556008)(446003)(107886003)(14454004)(99286004)(66946007)(11346002)(66446008)(52536014)(3846002)(476003)(7416002)(26005)(53936002)(6246003)(8936002)(9686003)(81166006)(76176011)(25786009)(33656002)(4326008)(8676002)(478600001)(2501003)(486006)(81156014)(305945005)(7736002)(186003);DIR:OUT;SFP:1101;SCL:1;SRVR:BYAPR07MB4549;H:BYAPR07MB4709.namprd07.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;MX:1;A:1;
+received-spf: None (protection.outlook.com: cadence.com does not designate
  permitted sender hosts)
 x-ms-exchange-senderadcheck: 1
-x-microsoft-antispam-message-info: 1WhzR79aG9J+pFa5WE592cE4qaJ4a26AZ9oVYAgfuAPRmWLyWwGHJcwMDKDliqe/ld2h104in5zyBAvKe2iitJ9HZisZzjkVK7O38nY/A+g2YzAd3NQZvq15oa9gDeFXk19N4LpV+T0KjViUvFOr+SoJSQXAb/Zl/DNK3GLE9/PXtduHWc6KNHhFwCV8IcTAAnRLSxwGetDlzRKxGQH9vZvQ9hGsNcNdWBAaGAa0x0umMxlbsrdVJzmaC5cEQRNwRoGtNtYA2bJPgTqXZtk7K9rsfDoVK6fXHqL/uIWBDUNWexXfcSfjSepF3WvfWEPEiH2K6nUFm2lH6DN5JiGQxH7OrK5W/4/DBjiCqFPE5tnDRCpQp7prD9+P2jip5I1NOcjXqc/xqXG9sVosTF8J3d2jureyGOdCHw0+SemFyVU=
-Content-Type: text/plain; charset="iso-8859-1"
+x-microsoft-antispam-message-info: RVi9vov1wQFgIkcaZmYeXmsaugr16+jc8ukTeaUQZ2LaLFDOZ896JS86R9DIGQ5/Leeydqbn/0gNZqT/uNu1TOmSorGi5LsbQgWN1xkOqHQYVAmVzgFb41mnr/i4rC0z+HmjbJcY7FBFSudtXPC9XBGPWCRsO1WRgU3LtNecGX+iZATgTb0DKA6fbMfZYDnMD2layRnC6OQ68Ln2BBcXWrrwPMO91kFpGRdISQOHCmrLciRAHEnNdufw1lYhYhMCs/+Mes18cC/wfzGG9FJ7GhEcq1SuNqbbdX6RyI+VWGFjdNLK94xkY4lbWVowmLyfWTISq/vA7YU0ZxJ8yj3iyYbvCY9oOpfX1dd7glS4cQwlpdPp83oBW3LU+i9uy1B+TRkraytT47oh+0y6fAWoio2TGrpL5jZ+XHN3W6ofjWM=
+Content-Type: text/plain; charset="us-ascii"
 Content-Transfer-Encoding: quoted-printable
 MIME-Version: 1.0
-X-OriginatorOrg: nxp.com
-X-MS-Exchange-CrossTenant-Network-Message-Id: 96a2a906-eea2-41ab-5ade-08d71edcb263
-X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Aug 2019 04:22:33.3806
+X-OriginatorOrg: cadence.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: dcb03664-4e3b-46f4-8d2a-08d71edf978b
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Aug 2019 04:43:16.3730
  (UTC)
 X-MS-Exchange-CrossTenant-fromentityheader: Hosted
-X-MS-Exchange-CrossTenant-id: 686ea1d3-bc2b-4c6f-a92c-d99c5c301635
+X-MS-Exchange-CrossTenant-id: d36035c5-6ce6-4662-a3dc-e762e61ae4c9
 X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
-X-MS-Exchange-CrossTenant-userprincipalname: vxxaul0mRZtXK+zkVuUgt6cMd0Gm3JeogzPBqPuyXuW2weNevw/5iOQEkyNmt39Idmlm6loXxne3sut/CWDiMw==
-X-MS-Exchange-Transport-CrossTenantHeadersStamped: DB8PR04MB5931
+X-MS-Exchange-CrossTenant-userprincipalname: pawell@global.cadence.com
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: BYAPR07MB4549
+X-Proofpoint-SPF-Result: pass
+X-Proofpoint-SPF-Record: v=spf1 include:spf.smktg.jp include:_spf.salesforce.com
+ include:mktomail.com include:spf-0014ca01.pphosted.com
+ include:spf.protection.outlook.com include:auth.msgapp.com
+ include:spf.mandrillapp.com ~all
+X-Proofpoint-Virus-Version: vendor=fsecure engine=2.50.10434:,, definitions=2019-08-12_03:,,
+ signatures=0
+X-Proofpoint-Spam-Details: rule=outbound_check_notspam policy=outbound_check score=0
+ priorityscore=1501 malwarescore=0 suspectscore=0 phishscore=0 bulkscore=0
+ spamscore=0 clxscore=1015 lowpriorityscore=0 mlxscore=0 impostorscore=0
+ mlxlogscore=870 adultscore=0 classifier=spam adjust=0 reason=mlx
+ scancount=1 engine=8.0.1-1906280000 definitions=main-1908120051
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
 
-On FSL Layerscape SoCs, the number of lanes assigned to PCIe
-controller is not fixed, it is determined by the selected
-SerDes protocol in the RCW (Reset Configuration Word), and
-the PCIe link training is completed automatically base on
-the selected SerDes protocol, and the link width set-up is
-updated by hardware. So the num-lanes is not needed to
-specify the link width.
+>
+>>
+>> Yes, driver frees not used buffers here.
+>> I think that it's the safest place for this purpose.
+>>
+>> >
+>> >>>> +				dma_free_coherent(priv_dev->sysdev, buf-
+>> >size,
+>> >>>> +						  buf->buf,
+>> >>>> +						  buf->dma);
+>> >>>> +				spin_lock_irqsave(&priv_dev->lock, flags);
+>> >>>> +
+>> >>>> +				kfree(buf);
+>> >>>
+>> >>>why do you even need this "garbage collector"?
+>> >>
+>> >> I need to free not used memory. The once allocated buffer will be
+>> >> associated with request, but if request.length will be increased in
+>> >> usb_request then driver will must allocate the  bigger buffer. As I
+>> >> remember I couldn't call dma_free_coherent in interrupt context so I
+>> >> had to move it to thread handled. This flag was used to avoid going t=
+hrough
+>> whole  aligned_buf_list  every time.
+>> >> In most cases this part will never called int this place
+>> >
+>> >Did you try, btw, setting the quirk flag which tells gadget drivers to
+>> >always allocate buffers aligned to MaxPacketSize? Wouldn't that be enou=
+gh?
+>>
+>> If found only  quirk_ep_out_aligned_size flag, but it align only buffer =
+size.
+>>
+>> DMA used by this controller must have buffer address aligned to 8.
+>> I think that on most architecture kmalloc should guarantee such aligned.
+>> The problem was detected on NXP testing board.
+>> On my board all buffer address are alignment at least to 8.
+>>
+>
+>This un-aligned request buffer address for 8 occurs for Ethernet Gadget (e=
+g, NCM),
+>it allocates socket buffer with NET_IP_ALIGN, so the last byte of buffer a=
+ddress
+>is always 2. Although this can be workaround by setting quirk_avoids_skb_r=
+eserve,
+>but we are not sure if all gadget request buffers can be 8 or Max Packet S=
+ize aligned.
+>
 
-The current num-lanes indicates the max lanes PCIe controller
-can support up to, instead of the lanes assigned to the PCIe
-controller. This can result in PCIe link training fail after
-hot-reset. So remove the num-lanes to avoid set-up to incorrect
-link width.
+Thanks Peter for explanation.=20
+I will add quirk_avoids_skb_reserve to avoid using this extra buffers, but =
+I leave this=20
+code for safety.=20
 
-Signed-off-by: Hou Zhiqiang <Zhiqiang.Hou@nxp.com>
----
- arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi | 1 -
- arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi | 3 ---
- arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi | 6 ------
- arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 3 ---
- arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi | 4 ----
- 5 files changed, 17 deletions(-)
-
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi b/arch/arm64/bo=
-ot/dts/freescale/fsl-ls1012a.dtsi
-index ec6257a5b251..119c597ca867 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1012a.dtsi
-@@ -486,7 +486,6 @@
- 			#address-cells =3D <3>;
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
--			num-lanes =3D <4>;
- 			num-viewport =3D <2>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x40 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi b/arch/arm64/bo=
-ot/dts/freescale/fsl-ls1043a.dtsi
-index 71d9ed9ff985..c084c7a4b6a6 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1043a.dtsi
-@@ -677,7 +677,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x40 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -704,7 +703,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <2>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x48 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -731,7 +729,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <2>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x50 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi b/arch/arm64/bo=
-ot/dts/freescale/fsl-ls1046a.dtsi
-index b0ef08b090dd..d4c1da3d4bde 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1046a.dtsi
-@@ -649,7 +649,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <8>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x40 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -671,7 +670,6 @@
- 			reg-names =3D "regs", "addr_space";
- 			num-ib-windows =3D <6>;
- 			num-ob-windows =3D <8>;
--			num-lanes =3D <2>;
- 			status =3D "disabled";
- 		};
-=20
-@@ -687,7 +685,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <2>;
- 			num-viewport =3D <8>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x48 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -709,7 +706,6 @@
- 			reg-names =3D "regs", "addr_space";
- 			num-ib-windows =3D <6>;
- 			num-ob-windows =3D <8>;
--			num-lanes =3D <2>;
- 			status =3D "disabled";
- 		};
-=20
-@@ -725,7 +721,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <2>;
- 			num-viewport =3D <8>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x50 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -747,7 +742,6 @@
- 			reg-names =3D "regs", "addr_space";
- 			num-ib-windows =3D <6>;
- 			num-ob-windows =3D <8>;
--			num-lanes =3D <2>;
- 			status =3D "disabled";
- 		};
-=20
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/bo=
-ot/dts/freescale/fsl-ls1088a.dtsi
-index dfbead405783..76c87afeba1e 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
-@@ -456,7 +456,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <256>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x20 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -482,7 +481,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x28 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-@@ -508,7 +506,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <8>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			ranges =3D <0x81000000 0x0 0x00000000 0x30 0x00010000 0x0 0x00010000   =
-/* downstream I/O */
-diff --git a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi b/arch/arm64/bo=
-ot/dts/freescale/fsl-ls208xa.dtsi
-index 64101c9962ce..7a0be8eaa84a 100644
---- a/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-+++ b/arch/arm64/boot/dts/freescale/fsl-ls208xa.dtsi
-@@ -639,7 +639,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			msi-parent =3D <&its>;
-@@ -661,7 +660,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			msi-parent =3D <&its>;
-@@ -683,7 +681,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <8>;
- 			num-viewport =3D <256>;
- 			bus-range =3D <0x0 0xff>;
- 			msi-parent =3D <&its>;
-@@ -705,7 +702,6 @@
- 			#size-cells =3D <2>;
- 			device_type =3D "pci";
- 			dma-coherent;
--			num-lanes =3D <4>;
- 			num-viewport =3D <6>;
- 			bus-range =3D <0x0 0xff>;
- 			msi-parent =3D <&its>;
---=20
-2.17.1
+--
+Cheers,
+Pawell
 
