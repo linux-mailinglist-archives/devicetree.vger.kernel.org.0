@@ -2,100 +2,165 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 28F0189723
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 08:25:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 3B15C89734
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 08:35:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725923AbfHLGZZ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 02:25:25 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:35839 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725887AbfHLGZZ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 02:25:25 -0400
-Received: by mail-wm1-f66.google.com with SMTP id l2so10712799wmg.0
-        for <devicetree@vger.kernel.org>; Sun, 11 Aug 2019 23:25:23 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=zNM9CQE2nH0MfN9gL6cFS6VhCkj3/pdwb+Kpr2qK1RY=;
-        b=GGlLH6m3vmzSx9ZoEWu0rHrchVy7wHSg+SV38pq8jUYMU/pkHeuEpS6EQmgBNTwvib
-         Gof6YA2GgVzg9BshC6HK2fLyAgheCJeEr6FdgFECcU+W+IaaM/XgB+UlIxbVb6IYAFed
-         VWl+SevhfrbOtGzpTWO+VgzafItAxRFEPEAgbw9MfhmAiQEGnmf4zmS1jayadb/g95tQ
-         HZ8NJZF/SLNYYFsax3aIZY4OeeJS48ZlVPMMHPpNnSQhOPz1Awqm+qXSgV1j4DofDZOf
-         tqO3l2MI3oOeJ8qCzr/Fpe5GrMu3NGU7kXllNluhwJDQbF2T9gv8QmpRKM9dKW1Tb2NR
-         tWbQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=zNM9CQE2nH0MfN9gL6cFS6VhCkj3/pdwb+Kpr2qK1RY=;
-        b=Hxc4yUqqQ8+lfnqvIpX1jbGvfkdt8ysFBIyJScqjqPEZS5vi32bk4WaA7M2Z5g2R8X
-         LL59jvhJcvFNmgf/gTgmjI8ywWoz+IwG+z4Tm5XiJe9Ml/4qrhApKSQ9GsfpEH+sYaF2
-         2LfVrCOnXciR5r4ZlDRqdZphN65fq0rn/xkQtn1fstMw97ygVAob7JlBjP12xKoSussL
-         9Snzn1hddtp7JVDNKsPufby7gLwrWDi8X5YKnq9ey55egjTzRvJJWMWUE3a6QFmaH0mR
-         x2cbD3hQQAbXp5lSZztuKk8N4KDY8F/KJtcqhWNOYfGa919knQzAii9P4g0G9SAJ57P3
-         2AZg==
-X-Gm-Message-State: APjAAAW+nNulWfL2O/EyCtc90L7zzImmavoGkUKk4GpmNIGsmlnkTx5P
-        a+bbq6w6QMy+be44ZqIUsplrJw==
-X-Google-Smtp-Source: APXvYqwrfxaGz5ztqxyzMHpAK9TC89kgQXpG97kTymw+X1Gwrp0Vy+khA9CnCoXcKDnPh/EO+FO50w==
-X-Received: by 2002:a1c:4803:: with SMTP id v3mr25906217wma.49.1565591122813;
-        Sun, 11 Aug 2019 23:25:22 -0700 (PDT)
-Received: from dell ([2.27.35.255])
-        by smtp.gmail.com with ESMTPSA id b186sm19879747wmb.3.2019.08.11.23.25.22
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Sun, 11 Aug 2019 23:25:22 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 07:25:20 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Jonathan =?iso-8859-1?Q?Neusch=E4fer?= <j.neuschaefer@gmx.net>
-Cc:     devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        linux-kernel@vger.kernel.org
-Subject: Re: [PATCH] dt-bindings: mfd: rn5t618: Document optional property
- system-power-controller
-Message-ID: <20190812062520.GB4594@dell>
-References: <20190129135917.29521-1-j.neuschaefer@gmx.net>
- <20190201092411.GG783@dell>
- <20190808183924.GB1966@latitude>
+        id S1726452AbfHLGfE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 02:35:04 -0400
+Received: from mail.kernel.org ([198.145.29.99]:53598 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726548AbfHLGfE (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 02:35:04 -0400
+Received: from mail-wr1-f51.google.com (mail-wr1-f51.google.com [209.85.221.51])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id DF0792085A;
+        Mon, 12 Aug 2019 06:35:02 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565591703;
+        bh=FDH4N0xh7Fwa7gaXhJaHOOg7qvvBLShzHcWko2nwNJU=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=2Je1iR/p45ngVV/8voc5pWJs1X09knzNcaDwIkPS3Zu76WYAIPWXDNiKw5M6wgzj7
+         zBjx/7/0jehu4GB3B0xp2TxAbr1GQ/6zI+ukgt65P4RqZ/rSeORZjjjH+Zit5sVt83
+         l75VHZIgzm4DArOUi+I0ql+z1xyz7HegjlbAQz6I=
+Received: by mail-wr1-f51.google.com with SMTP id 31so103596184wrm.1;
+        Sun, 11 Aug 2019 23:35:02 -0700 (PDT)
+X-Gm-Message-State: APjAAAWtMjCbPpE0aM30EIB1zb4Dxgn4kPTfGVM0EmoBmycwwh9kZpsi
+        HS0FvOg+aImyZL1O52iKhmjSYh5JA/7ZrLkvTwo=
+X-Google-Smtp-Source: APXvYqwbKaJYYzJA4RMxQdCBE3g3AVDdQm3Y0rriEny5AYeBlG/2L+w5b4yTCa+e4D7SSgwuQz3nhFtp2i+V1Pd4cOI=
+X-Received: by 2002:adf:dbce:: with SMTP id e14mr29948995wrj.9.1565591701429;
+ Sun, 11 Aug 2019 23:35:01 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190808183924.GB1966@latitude>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+References: <20190811203144.5999-1-peron.clem@gmail.com> <20190811203144.5999-2-peron.clem@gmail.com>
+ <CAGb2v67T3h_KTVZ20NVWNd78xqCa2ZhYiCJr4oOwYjUM3OaZXA@mail.gmail.com>
+In-Reply-To: <CAGb2v67T3h_KTVZ20NVWNd78xqCa2ZhYiCJr4oOwYjUM3OaZXA@mail.gmail.com>
+From:   Chen-Yu Tsai <wens@kernel.org>
+Date:   Mon, 12 Aug 2019 14:34:50 +0800
+X-Gmail-Original-Message-ID: <CAGb2v67N5Ykzo6myKqrNMgu6PCH2pJTzw9JJ5t0MGP_p=0ae9g@mail.gmail.com>
+Message-ID: <CAGb2v67N5Ykzo6myKqrNMgu6PCH2pJTzw9JJ5t0MGP_p=0ae9g@mail.gmail.com>
+Subject: Re: [linux-sunxi] [PATCH v5 1/3] arm64: dts: allwinner: Add SPDIF
+ node for Allwinner H6
+To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Chen-Yu Tsai <wens@kernel.org>,
+        Maxime Ripard <maxime.ripard@bootlin.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        devicetree <devicetree@vger.kernel.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>,
+        linux-sunxi <linux-sunxi@googlegroups.com>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 08 Aug 2019, Jonathan Neuschäfer wrote:
-
-> On Fri, Feb 01, 2019 at 09:24:11AM +0000, Lee Jones wrote:
-> > On Tue, 29 Jan 2019, Jonathan Neuschäfer wrote:
-> > 
-> > > The RN5T618 family of PMICs can be used as system management
-> > > controllers, in which case they handle poweroff and restart. Document
-> > > this capability by referring to the corresponding generic DT binding.
-> > > 
-> > > Signed-off-by: Jonathan Neuschäfer <j.neuschaefer@gmx.net>
-> > > ---
-> > >  Documentation/devicetree/bindings/mfd/rn5t618.txt | 5 +++++
-> > >  1 file changed, 5 insertions(+)
-> > 
-> > Applied, thanks.
-> 
+On Mon, Aug 12, 2019 at 12:52 PM Chen-Yu Tsai <wens@kernel.org> wrote:
+>
 > Hi,
-> 
-> apparently this patch got lost somehow (I can't find it in mainline or
-> -next). Should I resend it?
+>
+> On Mon, Aug 12, 2019 at 4:31 AM Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail=
+.com> wrote:
+> >
+> > The Allwinner H6 has a SPDIF controller called OWA (One Wire Audio).
+> >
+> > Only one pinmuxing is available so set it as default.
+> >
+> > Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> > ---
+> >  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 38 ++++++++++++++++++++
+> >  1 file changed, 38 insertions(+)
+> >
+> > diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/=
+boot/dts/allwinner/sun50i-h6.dtsi
+> > index 7628a7c83096..677eb374678d 100644
+> > --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
+> > @@ -83,6 +83,24 @@
+> >                 method =3D "smc";
+> >         };
+> >
+> > +       sound-spdif {
+> > +               compatible =3D "simple-audio-card";
+> > +               simple-audio-card,name =3D "sun50i-h6-spdif";
+> > +
+> > +               simple-audio-card,cpu {
+> > +                       sound-dai =3D <&spdif>;
+> > +               };
+> > +
+> > +               simple-audio-card,codec {
+> > +                       sound-dai =3D <&spdif_out>;
+> > +               };
+> > +       };
+> > +
+> > +       spdif_out: spdif-out {
+> > +               #sound-dai-cells =3D <0>;
+> > +               compatible =3D "linux,spdif-dit";
+> > +       };
+> > +
+>
+> We've always had this part in the board dts. It isn't relevant to boards
+> that don't have SPDIF output.
+>
+> Also, not so relevant here, but there are different simple sound card
+> constructs. Some support multiple audio streams with dynamic PCM routing.
+> How these are configured really depends on what interfaces are usable.
+>
+> So keeping this at the board level is IMO a better choice.
 
-Yes, it appears that it did.
+Forgot to mention. Both patches and all parts in this patch are OK. It's
+just the parts the need to be moved.
 
-I've applied it again.
 
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+> ChenYu
+>
+>
+> >         timer {
+> >                 compatible =3D "arm,armv8-timer";
+> >                 interrupts =3D <GIC_PPI 13
+> > @@ -282,6 +300,11 @@
+> >                                 bias-pull-up;
+> >                         };
+> >
+> > +                       spdif_tx_pin: spdif-tx-pin {
+> > +                               pins =3D "PH7";
+> > +                               function =3D "spdif";
+> > +                       };
+> > +
+> >                         uart0_ph_pins: uart0-ph-pins {
+> >                                 pins =3D "PH0", "PH1";
+> >                                 function =3D "uart0";
+> > @@ -411,6 +434,21 @@
+> >                         };
+> >                 };
+> >
+> > +               spdif: spdif@5093000 {
+> > +                       #sound-dai-cells =3D <0>;
+> > +                       compatible =3D "allwinner,sun50i-h6-spdif";
+> > +                       reg =3D <0x05093000 0x400>;
+> > +                       interrupts =3D <GIC_SPI 21 IRQ_TYPE_LEVEL_HIGH>=
+;
+> > +                       clocks =3D <&ccu CLK_BUS_SPDIF>, <&ccu CLK_SPDI=
+F>;
+> > +                       clock-names =3D "apb", "spdif";
+> > +                       resets =3D <&ccu RST_BUS_SPDIF>;
+> > +                       dmas =3D <&dma 2>;
+> > +                       dma-names =3D "tx";
+> > +                       pinctrl-names =3D "default";
+> > +                       pinctrl-0 =3D <&spdif_tx_pin>;
+> > +                       status =3D "disabled";
+> > +               };
+> > +
+> >                 usb2otg: usb@5100000 {
+> >                         compatible =3D "allwinner,sun50i-h6-musb",
+> >                                      "allwinner,sun8i-a33-musb";
+> > --
+> > 2.20.1
+> >
+> > --
+> > You received this message because you are subscribed to the Google Grou=
+ps "linux-sunxi" group.
+> > To unsubscribe from this group and stop receiving emails from it, send =
+an email to linux-sunxi+unsubscribe@googlegroups.com.
+> > To view this discussion on the web, visit https://groups.google.com/d/m=
+sgid/linux-sunxi/20190811203144.5999-2-peron.clem%40gmail.com.
