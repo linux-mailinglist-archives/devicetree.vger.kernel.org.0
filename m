@@ -2,58 +2,48 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id EEC5089C30
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:01:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id EF07289C64
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:10:15 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727995AbfHLLB3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 07:01:29 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:49444 "EHLO
+        id S1727936AbfHLLKP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 07:10:15 -0400
+Received: from heliosphere.sirena.org.uk ([172.104.155.198]:35984 "EHLO
         heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727936AbfHLLB3 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:01:29 -0400
+        with ESMTP id S1727235AbfHLLKO (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:10:14 -0400
 DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
         d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
         MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
         Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
         Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
         List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=jvTQU0/ncqqXZDApf5L3Jww+4/vfyT4p+hACaV7a4bM=; b=kkqMmOPduW+sLbd1PSVVdomcK
-        Zkfy5Q6CbT3E9jxZYRj6CawNRtzGVSoW+0Z4abnGmutl7WeeYJFlKlRbNxR0meLNSCeIb378NCWxR
-        d3Ms2GYtWOqD6r6VMQWwgNViFFJVaKVhyt8BwRuycxEk8oEo8InmjCfvzIsFF8h8BMOFQ=;
-Received: from ypsilon.sirena.org.uk ([2001:470:1f1d:6b5::7])
+         bh=vED+9cQ0sertdJ1ms2MKGbJLYJH7mjscNUgYcRMgoP8=; b=nBG/fX81cclUONp6sUQcuMu7E
+        JluFxxkl0XrObYtk/lHbAKQ1I4vVR2I/xm3HeDy6A2oL/efLgCopfTe4tA7twrHPvqdWF/x+ACcYq
+        sbKy/2Kpke0l+H62/MuFWww6VzAPB3gLYUJjeASrhWnLN+4BE4mzRJW16Qk/5FwcaFGs8=;
+Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
         by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
         (Exim 4.92)
         (envelope-from <broonie@sirena.co.uk>)
-        id 1hx84W-0000yA-VK; Mon, 12 Aug 2019 11:01:05 +0000
+        id 1hx8DM-000134-51; Mon, 12 Aug 2019 11:10:12 +0000
 Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id B6FE127430B7; Mon, 12 Aug 2019 12:01:03 +0100 (BST)
-Date:   Mon, 12 Aug 2019 12:01:03 +0100
+        id 94A3527430B7; Mon, 12 Aug 2019 12:10:11 +0100 (BST)
+Date:   Mon, 12 Aug 2019 12:10:11 +0100
 From:   Mark Brown <broonie@kernel.org>
-To:     =?iso-8859-1?Q?Cl=E9ment_P=E9ron?= <peron.clem@gmail.com>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+To:     Raag Jadav <raagjadav@gmail.com>
+Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
+        Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Subject: Re: [PATCH v4 0/7] Allwinner H6 SPDIF support
-Message-ID: <20190812110103.GD4592@sirena.co.uk>
-References: <20190527200627.8635-1-peron.clem@gmail.com>
- <CAJiuCcfUhBxEr=o7VVpPROQZadQh7z1QC0SkWSYt-53Sj3H2qw@mail.gmail.com>
- <CAJiuCcc3_1jZWV7G3+fFQYRZ8b6qcAbnH+K6pkRvww6_D=OMAw@mail.gmail.com>
- <20190715193842.GC4503@sirena.org.uk>
- <CAJiuCceYDnyxRLLLLy6Dn6DLTZ+NmSaUnoX1Vmzvgiy0XvF_Fw@mail.gmail.com>
+        Liam Girdwood <lgirdwood@gmail.com>
+Subject: Re: [PATCH 1/2] regulator: act8865: operating mode and suspend state
+ support
+Message-ID: <20190812111011.GF4592@sirena.co.uk>
+References: <1565423335-3213-1-git-send-email-raagjadav@gmail.com>
+ <1565423335-3213-2-git-send-email-raagjadav@gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="d01dLTUuW90fS44H"
+        protocol="application/pgp-signature"; boundary="QXO0/MSS4VvK6f+D"
 Content-Disposition: inline
-In-Reply-To: <CAJiuCceYDnyxRLLLLy6Dn6DLTZ+NmSaUnoX1Vmzvgiy0XvF_Fw@mail.gmail.com>
+In-Reply-To: <1565423335-3213-2-git-send-email-raagjadav@gmail.com>
 X-Cookie: Decaffeinated coffee?  Just Say No.
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
@@ -62,43 +52,49 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---d01dLTUuW90fS44H
-Content-Type: text/plain; charset=iso-8859-1
+--QXO0/MSS4VvK6f+D
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
 
-On Sat, Aug 10, 2019 at 10:45:23AM +0200, Cl=E9ment P=E9ron wrote:
+On Sat, Aug 10, 2019 at 01:18:54PM +0530, Raag Jadav wrote:
 
-> Hi,
+> +static int act8865_set_mode(struct regulator_dev *rdev, unsigned int mode)
+> +{
+> +	struct act8865 *act8865 = rdev_get_drvdata(rdev);
+> +	struct regmap *regmap = rdev->regmap;
+> +	int id = rdev_get_id(rdev);
+> +	int reg, ret, val = 0;
 
-Please don't top post, reply in line with needed context.  This allows
-readers to readily follow the flow of conversation and understand what
-you are talking about and also helps ensure that everything in the
-discussion is being addressed.
+This function doesn't check if the mode is _FIXED - if it is then I'd
+expect to get an error when trying to set the mode (I'm assuming that
+means fixed in hardware).
 
-> Sorry, I just discovered that the ASoC patches have been merged into
-> the broonie and linus tree in 5.3.
+> +static unsigned int act8865_get_mode(struct regulator_dev *rdev)
+> +{
+> +	struct act8865 *act8865 = rdev_get_drvdata(rdev);
+> +	int id = rdev_get_id(rdev);
+> +
+> +	if (id < ACT8865_ID_DCDC1 || id >= ACT8865_ID_MAX)
+> +		return -EINVAL;
+> +
+> +	return act8865->op_mode[id];
+> +}
 
-> I'm still quite new in the sending of patches to the Kernel but
-> souldn't be a ack or a mail sent to warn the sender when the series
-> are accepted?
+This should be reading the value back from the hardware.
 
-Not every maintainer will send those, I do but you might find they've
-gone into your spam folder if you're using gmail.
-
---d01dLTUuW90fS44H
+--QXO0/MSS4VvK6f+D
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1RRu4ACgkQJNaLcl1U
-h9BDaAf+JGgo/qiKbJdNE79u2FwpthOgmKAEpcOVw6Z0Lrx2YvRMtW86kCYYDdmh
-La5nF6FUWArR10NnVlhJNeSshE4iSF8iGIBtN/lNJGzb3mprdBrCReGkJzcGoHdI
-LnpzXGf+ixSv5om2cqAGZ9a6Wh0l4uNdigwEmH3fNv+K+HT4jdO67g78VFHuaB96
-mNlhbXTJ36FtGR6ZNiXjpbzCsRiRwT4r0WtGIoEYO5uPzL3zXV467CbGKmMBpjbD
-XlUl7rNzdCRu4eqmnQNVFUcToCt4ZVZYGUZmBrIFS1FW7LVaGQRAjf46gC4WEq/R
-Ui9Pyp92dWkr76RNhU29bXkdhz8tcA==
-=uNoD
+iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1RSRIACgkQJNaLcl1U
+h9BhNQf7B2/bNkk+XZ0e/tSVOzn00nt73fznt5qCrh7/yAtFkVxdf6LjfSE1npvK
+SueIulSiA0j0bCBr//JcD19lDdGzdrCH3+bc6vRFfFSOo5tJfqsm/gCYJg8k86uS
+1uT4fRIJfp0dVtG0CADCY1mxAY3bltg8TRHKudtQHv9bV5Wm0iV7oQrcSrttowCk
+HgsoWDMg6VHDp+kxoPt1GzP7vlIB85KOGpjq7wY0/LCPih+/rwbmvTC36KXtrD9o
+3bm949Pf2aw/x1EQ8ImqVBpJmtq8gWTjhjMe7VWwhu5LuLu2UD22HvkkcA9pp7tB
+LEr7wsIbp2dzxwUgLWZZgVDRzNRDyg==
+=N1iA
 -----END PGP SIGNATURE-----
 
---d01dLTUuW90fS44H--
+--QXO0/MSS4VvK6f+D--
