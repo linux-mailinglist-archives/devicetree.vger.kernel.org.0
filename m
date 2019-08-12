@@ -2,47 +2,44 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 051F689863
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 10:04:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AB5648987F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 10:14:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726820AbfHLIEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 04:04:31 -0400
-Received: from relay1-d.mail.gandi.net ([217.70.183.193]:59347 "EHLO
-        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726405AbfHLIEa (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 04:04:30 -0400
+        id S1726834AbfHLIOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 04:14:50 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:43401 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726528AbfHLIOu (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 04:14:50 -0400
 X-Originating-IP: 86.250.200.211
 Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
         (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 7A74A240006;
-        Mon, 12 Aug 2019 08:04:21 +0000 (UTC)
-Date:   Mon, 12 Aug 2019 10:04:20 +0200
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 6446E20011;
+        Mon, 12 Aug 2019 08:14:46 +0000 (UTC)
+Date:   Mon, 12 Aug 2019 10:14:45 +0200
 From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Vasily Khoruzhick <anarsoul@gmail.com>
-Cc:     Robin Murphy <robin.murphy@arm.com>,
-        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
+To:     Chen-Yu Tsai <wens@csie.org>
+Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
+        linux-sunxi <linux-sunxi@googlegroups.com>,
+        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
         Rob Herring <robh+dt@kernel.org>,
+        David Airlie <airlied@linux.ie>,
+        Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        arm-linux <linux-arm-kernel@lists.infradead.org>,
+        dri-devel <dri-devel@lists.freedesktop.org>,
         devicetree <devicetree@vger.kernel.org>,
-        "Jared D . McNeill" <jmcneill@netbsd.org>
-Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
-Message-ID: <20190812080420.saelmqb36vkelxn4@flea>
-References: <89402d22-d432-9551-e787-c8ede16dbe5f@arm.com>
- <CA+E=qVfh7mirJhRsDTeuAVgG55ia936uFSFVKR0N5Pn4GCF1UA@mail.gmail.com>
- <E1hv5vZ-0000jN-M8@stardust.g4.wien.funkfeuer.at>
- <CA+E=qVdHOtebR6xjpwTY_Whp0cHLtv82YULmxLPSEzdLN9TnVg@mail.gmail.com>
- <36e60078-7dd5-9c07-ffa1-6092d8c70fa8@arm.com>
- <CA+E=qVeAR4AFN99ZVy8EZLW6p_8ucTewOdMis37wnpV3DObaGg@mail.gmail.com>
- <20190807115614.phm7sbyae6yajkug@flea>
- <CA+E=qVdh3MHMsEC9XKe5-7O8fGTHFh76WLOgVf+PZPv7c4JE9w@mail.gmail.com>
- <20190808162628.pthvy3tgf3naj76s@flea>
- <CA+E=qVeiWoRGn05HpMzx_5yidit4GM18tBrziW5MBo00f_-PKQ@mail.gmail.com>
+        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
+        linux-kernel <linux-kernel@vger.kernel.org>
+Subject: Re: [linux-sunxi] [PATCH v8 0/4] Add support for Orange Pi 3
+Message-ID: <20190812081445.kfsbikfrt3pmsh6d@flea>
+References: <20190806155744.10263-1-megous@megous.com>
+ <2218280.0sI6yjypBf@jernej-laptop>
+ <CAGb2v67JVG2rhOdUwBmfsO0+RYb4DNOPmUo=Q_UhL3N+niLiEg@mail.gmail.com>
 MIME-Version: 1.0
 Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="jjtftgvl3v4z5fl7"
+        protocol="application/pgp-signature"; boundary="wnuh5gs25vfqywb6"
 Content-Disposition: inline
-In-Reply-To: <CA+E=qVeiWoRGn05HpMzx_5yidit4GM18tBrziW5MBo00f_-PKQ@mail.gmail.com>
+In-Reply-To: <CAGb2v67JVG2rhOdUwBmfsO0+RYb4DNOPmUo=Q_UhL3N+niLiEg@mail.gmail.com>
 User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -50,78 +47,57 @@ List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---jjtftgvl3v4z5fl7
-Content-Type: text/plain; charset=us-ascii
+--wnuh5gs25vfqywb6
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Thu, Aug 08, 2019 at 12:59:07PM -0700, Vasily Khoruzhick wrote:
-> On Thu, Aug 8, 2019 at 9:26 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+On Mon, Aug 12, 2019 at 03:54:03PM +0800, Chen-Yu Tsai wrote:
+> On Mon, Aug 12, 2019 at 3:45 PM Jernej =C5=A0krabec <jernej.skrabec@gmail=
+=2Ecom> wrote:
 > >
-> > On Wed, Aug 07, 2019 at 10:36:08AM -0700, Vasily Khoruzhick wrote:
-> > > On Wed, Aug 7, 2019 at 4:56 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
-> > > >
-> > > > On Tue, Aug 06, 2019 at 07:39:26PM -0700, Vasily Khoruzhick wrote:
-> > > > > On Tue, Aug 6, 2019 at 2:14 PM Robin Murphy <robin.murphy@arm.com> wrote:
-> > > > > >
-> > > > > > On 2019-08-06 9:52 pm, Vasily Khoruzhick wrote:
-> > > > > > > On Tue, Aug 6, 2019 at 1:19 PM Harald Geyer <harald@ccbib.org> wrote:
-> > > > > > >>
-> > > > > > >> Vasily Khoruzhick writes:
-> > > > > > >>> On Tue, Aug 6, 2019 at 7:35 AM Robin Murphy <robin.murphy@arm.com> wrote:
-> > > > > > >>>>
-> > > > > > >>>> On 06/08/2019 15:01, Vasily Khoruzhick wrote:
-> > > > > > >>>>> Looks like PMU in A64 is broken, it generates no interrupts at all and
-> > > > > > >>>>> as result 'perf top' shows no events.
-> > > > > > >>>>
-> > > > > > >>>> Does something like 'perf stat sleep 1' at least count cycles correctly?
-> > > > > > >>>> It could well just be that the interrupt numbers are wrong...
-> > > > > > >>>
-> > > > > > >>> Looks like it does, at least result looks plausible:
-> > > > > > >>
-> > > > > > >> I'm using perf stat regularly (cache benchmarks) and it works fine.
-> > > > > > >>
-> > > > > > >> Unfortunately I wasn't aware that perf stat is a poor test for
-> > > > > > >> the interrupts part of the node, when I added it. So I'm not too
-> > > > > > >> surprised I got it wrong.
-> > > > > > >>
-> > > > > > >> However, it would be unfortunate if the node got removed completely,
-> > > > > > >> because perf stat would not work anymore. Maybe we can only remove
-> > > > > > >> the interrupts or just fix them even if the HW doesn't work?
-> > > > > > >
-> > > > > > > I'm not familiar with PMU driver. Is it possible to get it working
-> > > > > > > without interrupts?
-> > > > > >
-> > > > > > Yup - you get a grumpy message from the driver, it will refuse sampling
-> > > > > > events (the ones which weren't working anyway), and if you measure
-> > > > > > anything for long enough that a counter overflows you'll get wonky
-> > > > > > results. But for counting hardware events over relatively short periods
-> > > > > > it'll still do the job.
-> > > > >
-> > > > > I tried to drop interrupts completely from the node but 'perf top' is
-> > > > > still broken. Though now in different way: it complains "cycles: PMU
-> > > > > Hardware doesn't support sampling/overflow-interrupts. Try 'perf
-> > > > > stat'"
-> > > >
-> > > > I have no idea if that's the culprit, but what is the state of the
-> > > > 0x09010000 register?
+> > Dne torek, 06. avgust 2019 ob 17:57:39 CEST je megous@megous.com napisa=
+l(a):
+> > > From: Ondrej Jirman <megous@megous.com>
 > > >
-> > > What register is that and how do I check it?
+> > > This series implements support for Xunlong Orange Pi 3 board. There
+> > > are only a few patches remaining.
+> > >
+> > > - ethernet support - just a DT change (patch 1)
+> > > - HDMI support (patches 2-4)
+> > >
+> > > For some people, ethernet doesn't work after reboot because u-boot do=
+esn't
+> > > support AXP805 PMIC, and will not turn off the etherent PHY regulator=
+s.
+> > > So the regulator controlled by gpio will be shut down, but the other =
+one
+> > > controlled by the AXP PMIC will not.
+> > >
+> > > This is a problem only when running with a builtin driver. This needs
+> > > to be fixed in u-boot.
+> > >
+> > >
+> > > Please take a look.
 > >
-> > It's in the CPUX Configuration block, and the bits are labelled as CPU
-> > Debug Reset.
-> >
-> > And if you have busybox, you can use devmem.
+> > Is there anything missing? It would be nice to get this in 5.4. There i=
+s a lot
+> > of H6 boards which needs DDC bus enable mechanism (part of H6 reference
+> > design), including Beelink GS1 which already has HDMI node in mainline =
+kernel
+> > DT, but due to disabled DDC lines works only with 1024x768 (fallback
+> > resolution in DRM core).
 >
-> CPUX configuration block is at 0x01700000 according to A64 user
-> manual, and particular register you're interested in is at 0x01700080,
-> its value is 0x1110110F.
+> I have a few minor comments about patch 1.
 >
-> Bits 16-19 are not defined in user manual and are not set.
+> I think the HDMI bits are good, but I don't have maintainership / commit
+> permissions for drm-misc, so I'll have to wait until someone applies patc=
+hes
+> 2 and 3 before I apply patch 4.
 
-Sorry, I somehow thought this was for the H6...
+I've applied 2,3 and 4
 
-I don't have any idea then :/
-
+Thanks!
 Maxime
 
 --
@@ -129,15 +105,15 @@ Maxime Ripard, Bootlin
 Embedded Linux and Kernel engineering
 https://bootlin.com
 
---jjtftgvl3v4z5fl7
+--wnuh5gs25vfqywb6
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVEdhAAKCRDj7w1vZxhR
-xSyPAQCFME/zsUEVHgZg4ppjjkr35AZKmYuqCT3DqH/bapfBDAD+PK0I4XFjk7cN
-o4b5O3nwe0SmShTKrXjCEA0bEL8dfQ0=
-=gNZ7
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVEf9QAKCRDj7w1vZxhR
+xXlgAP9MFKL3iPUwZUiy1/l5hoQrktuJFTIedDN9ko3r/H6TDAD/RZg3u4WBh6O3
+tteR/L/slzyHzMHsyD72abKseY8/IQE=
+=i2m2
 -----END PGP SIGNATURE-----
 
---jjtftgvl3v4z5fl7--
+--wnuh5gs25vfqywb6--
