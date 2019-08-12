@@ -2,116 +2,263 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 6D5AA89953
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 11:05:17 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78CE68998B
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 11:12:10 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727284AbfHLJFJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 05:05:09 -0400
-Received: from mail-wm1-f68.google.com ([209.85.128.68]:35539 "EHLO
-        mail-wm1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727202AbfHLJFJ (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 05:05:09 -0400
-Received: by mail-wm1-f68.google.com with SMTP id l2so11076949wmg.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 02:05:07 -0700 (PDT)
+        id S1727170AbfHLJMJ (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 05:12:09 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:44441 "EHLO
+        mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727140AbfHLJMJ (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 05:12:09 -0400
+Received: by mail-ot1-f65.google.com with SMTP id b7so105991760otl.11
+        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 02:12:08 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
-        h=subject:to:cc:references:from:message-id:date:user-agent
-         :mime-version:in-reply-to:content-language:content-transfer-encoding;
-        bh=AWJiL+7zg6Ima534bZuseIPwdWeNk9fdB/sixhxGumQ=;
-        b=K2BFc4diF9MOIydBpGiljdW9VVNeZjGfd7Trdr70W1zmTCMm++cfT3I4Gs1DJf8Hq3
-         62ci06FebJH+iG7T+nbdizfzyr5OfCrOPDvPxFEaumY09OdROikoGmdWal5qANtysrHj
-         lOZxURyUC3Tgenf1MwcdW828jqGejbQAMrhSgRd8A06JVpaLH0ym7VZeHROEIFxIVyvI
-         2YeU/Y1crAYUffJeliGjfHNo8pm+WQshMEogGKM5u9gkYrISTdt9S10iA3JQ1pS7kUVf
-         rSn8UH7WzYItHdPpj4DJV7GXZDBZL6W8wg5JBlcx1m8ZdsJkRX49MofZm9FGVqSmGY1e
-         /ktA==
+        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
+         :cc:content-transfer-encoding;
+        bh=wdZyun565rMEMI5nrVFcxcYEx7GFK77k+ZNdL1lQ6FQ=;
+        b=bCiDFOiEutFtUSei8uS30/dZCyknXL3Y+sdcVYHReFPlkqv99B4MbUZDmE5THMle1N
+         zqnu8ePllUKJDrV9qFjij+kGlx4JmPzKOsqRArrYUoi3MZoc+6NEKRDcn7SI6hs9y0MZ
+         CQB1D6F/RHnIT2Ea4HtcG2wtOjni9GhfPr/3uYwWMa0kYKlcQMPpkH/5NeF9cxzmaDgY
+         58dWl6Zq4yHI2J3l4TLGgQ6ytnCLfquaos5ycEwAQA4ceJoUITiXxZR4vo0E4jzc5SuI
+         UX34bKGQ6Mukjc/hGlzSPoZ2esR+U/NcZa9+ibT9K+Qbo0LWvVJjPiJVak1Tf0y7EDSb
+         YuJg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:subject:to:cc:references:from:message-id:date
-         :user-agent:mime-version:in-reply-to:content-language
-         :content-transfer-encoding;
-        bh=AWJiL+7zg6Ima534bZuseIPwdWeNk9fdB/sixhxGumQ=;
-        b=azGuKcFddlheyIt8IXaPZes1DButRsRfzIa9j90DCdaNfzkjYZz9xe92iZc8liGdAv
-         Pd+7xTBlQMXWgfEM1yMjfh4LrY/5Lp/B722whYYITjYu//gIoE6iH0iWolQDgvLb1o7C
-         Er15MokgO3Wn4WdENAWCTMTtqAp1B6OMU1XSLIcSzhnYOd9WLx7cEo9WonWPS5YG5t2c
-         oPR2L9mMUaEguWTu+VxZ7eEu3MP+6yGkHzdkpzLOy6GHECK2Z2ebI0EOMig/7qxBsVSY
-         RC+20BCIyjOdlAjJBZTziHY4OTSy96exwmyI89WZ45dFTgfWlGlrwubmWpUY3xqqkvlc
-         9Zpw==
-X-Gm-Message-State: APjAAAWrXZ9ZUM7Fmszuzwi/SoKchnOMnuIWKQ7OzEj84lnEjlSkk5BX
-        JCccV2SCVv6Dwsnz8G1awX8y8Q==
-X-Google-Smtp-Source: APXvYqx3TsRhS9G0jmEqnE5mj/Efoz83lMVWBRL4X5b8foKuB4AOhkC5BGzEj3PchftN1c/+c42EqQ==
-X-Received: by 2002:a1c:7914:: with SMTP id l20mr2426303wme.130.1565600706659;
-        Mon, 12 Aug 2019 02:05:06 -0700 (PDT)
-Received: from [192.168.86.34] (cpc89974-aztw32-2-0-cust43.18-1.cable.virginm.net. [86.30.250.44])
-        by smtp.googlemail.com with ESMTPSA id d69sm7205314wmd.4.2019.08.12.02.05.05
-        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
-        Mon, 12 Aug 2019 02:05:06 -0700 (PDT)
-Subject: Re: [PATCH v3 4/4] ASoC: codecs: add wsa881x amplifier support
-To:     kbuild test robot <lkp@intel.com>
-Cc:     kbuild-all@01.org, vkoul@kernel.org, broonie@kernel.org,
-        bgoswami@codeaurora.org, plai@codeaurora.org,
-        pierre-louis.bossart@linux.intel.com, robh+dt@kernel.org,
-        devicetree@vger.kernel.org, lgirdwood@gmail.com,
-        alsa-devel@alsa-project.org, linux-kernel@vger.kernel.org
-References: <20190809133407.25918-5-srinivas.kandagatla@linaro.org>
- <201908121031.HBxXaLjU%lkp@intel.com>
-From:   Srinivas Kandagatla <srinivas.kandagatla@linaro.org>
-Message-ID: <a89e6a52-35da-15bf-6561-c58cb3453178@linaro.org>
-Date:   Mon, 12 Aug 2019 10:05:05 +0100
-User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101
- Thunderbird/60.6.1
+        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
+         :message-id:subject:to:cc:content-transfer-encoding;
+        bh=wdZyun565rMEMI5nrVFcxcYEx7GFK77k+ZNdL1lQ6FQ=;
+        b=BzJAZpzEnvry6sRTsv68THwYeoqPhVfyxhfz6z9+tFtYLX2yyc56Ipa79KVyNDw39W
+         kkqFKCf/7Q6Wiumoj4BW21RrNzxnoA0W2exI8+axAbAR4HnjHrO4EL/R54ZPjclqOkgG
+         rqsJLtJ0rD8RPdQTCjledNLjxnL0RedaY3qthJ8+ym6y7e5UXSflnV6+aYsFTqC4TSiA
+         pSi0555mzhx62FAL6ZLhoijmla6Q3B2OT2tdT441jnGfwcRXgRf0O8ZVLYaH4xU4FAc6
+         /UqZRG7vfHdQ/87NSwho5S+yds/dQePsgfUBLtHYB3q3q8omcQeO29TWyhdh+sGkzscx
+         dpCg==
+X-Gm-Message-State: APjAAAWUWXHMVbp0OERMNVDq1zJbeP4E7D6XCaWs+v/9nLfFVBu/BHWJ
+        K/qa/cXXCLp2R3r1CMT2E+X7aKo+Qmy/iEvBXnqI0A==
+X-Google-Smtp-Source: APXvYqzjxs1NKNev+ynqOpkaypGZyhAhPHyQqRrmfnNxDVkl/4mg+MgIbBda7CqtUUC7iUBpKhscpYIJ8hfrw+iGSAo=
+X-Received: by 2002:aca:6183:: with SMTP id v125mr12824531oib.6.1565601127888;
+ Mon, 12 Aug 2019 02:12:07 -0700 (PDT)
 MIME-Version: 1.0
-In-Reply-To: <201908121031.HBxXaLjU%lkp@intel.com>
-Content-Type: text/plain; charset=windows-1252; format=flowed
-Content-Language: en-US
-Content-Transfer-Encoding: 7bit
+References: <6a38a3655bc8100764d85cb04dea5c2546a311e1.1565168564.git.baolin.wang@linaro.org>
+ <40127356a1acd1f2ff1be1d8a120b305a4e17af4.1565168564.git.baolin.wang@linaro.org>
+ <20190809091013.vguj4wty7qiab64t@pengutronix.de> <CAMz4kuLQsrBWjta1s=ZRPgxUd0_+_f-GbJV138tccuMLg2XCLA@mail.gmail.com>
+ <20190809144124.3as3rtctlywxkudr@pengutronix.de> <CAMz4ku+o6dCyxhR3-5yM+zr2nBpTQG5A8Pbnxpo7yRciwPbv3Q@mail.gmail.com>
+ <20190812083556.dvprpwv6mjy3cjae@pengutronix.de>
+In-Reply-To: <20190812083556.dvprpwv6mjy3cjae@pengutronix.de>
+From:   Baolin Wang <baolin.wang@linaro.org>
+Date:   Mon, 12 Aug 2019 17:11:56 +0800
+Message-ID: <CAMz4kuJA81ZP6Kc63dPV1jEn1ah=jow6tQBfO=UDCcTzSf3y-A@mail.gmail.com>
+Subject: Re: [PATCH 2/2] pwm: sprd: Add Spreadtrum PWM support
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Thierry Reding <thierry.reding@gmail.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Orson Zhai <orsonzhai@gmail.com>,
+        Chunyan Zhang <zhang.lyra@gmail.com>,
+        Vincent Guittot <vincent.guittot@linaro.org>,
+        linux-pwm@vger.kernel.org, DTML <devicetree@vger.kernel.org>,
+        LKML <linux-kernel@vger.kernel.org>, kernel@pengutronix.de
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Thanks for reporting this,
+Hi Uwe,
 
-On 12/08/2019 03:46, kbuild test robot wrote:
-> Hi Srinivas,
-> 
-> I love your patch! Yet something to improve:
-> 
-> [auto build test ERROR on linus/master]
-> [cannot apply to v5.3-rc4 next-20190809]
-> [if your patch is applied to the wrong git tree, please drop us a note to help improve the system]
-> 
-> url:    https://github.com/0day-ci/linux/commits/Srinivas-Kandagatla/ASoC-codecs-Add-WSA881x-Smart-Speaker-amplifier-support/20190812-080612
-> config: m68k-allmodconfig (attached as .config)
-> compiler: m68k-linux-gcc (GCC) 7.4.0
-> reproduce:
->          wget https://raw.githubusercontent.com/intel/lkp-tests/master/sbin/make.cross -O ~/bin/make.cross
->          chmod +x ~/bin/make.cross
->          # save the attached .config to linux build tree
->          GCC_VERSION=7.4.0 make.cross ARCH=m68k
-> 
-> If you fix the issue, kindly add following tag
-> Reported-by: kbuild test robot <lkp@intel.com>
-> 
-> All errors (new ones prefixed by >>):
-> 
->>> ERROR: "sdw_unregister_driver" [sound/soc/codecs/snd-soc-wsa881x.ko] undefined!
->>> ERROR: "sdw_write" [sound/soc/codecs/snd-soc-wsa881x.ko] undefined!
->>> ERROR: "__sdw_register_driver" [sound/soc/codecs/snd-soc-wsa881x.ko] undefined!
->>> ERROR: "sdw_write" [drivers/base/regmap/regmap-sdw.ko] undefined!
->>> ERROR: "sdw_read" [drivers/base/regmap/regmap-sdw.ko] undefined!
-> 
+On Mon, 12 Aug 2019 at 16:36, Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> Hello Baolin,
+>
+> On Mon, Aug 12, 2019 at 03:29:07PM +0800, Baolin Wang wrote:
+> > Hi Uwe,
+> >
+> > On Fri, 9 Aug 2019 at 22:41, Uwe Kleine-K=C3=B6nig
+> > <u.kleine-koenig@pengutronix.de> wrote:
+> > > On Fri, Aug 09, 2019 at 06:06:21PM +0800, Baolin Wang wrote:
+> > > > On Fri, 9 Aug 2019 at 17:10, Uwe Kleine-K=C3=B6nig
+> > > > <u.kleine-koenig@pengutronix.de> wrote:
+> > > > > On Thu, Aug 08, 2019 at 04:59:39PM +0800, Baolin Wang wrote:
+> > > > > > +static void sprd_pwm_get_state(struct pwm_chip *chip, struct p=
+wm_device *pwm,
+> > > > > > +                            struct pwm_state *state)
+> > > > > > +{
+> > > > > > +     struct sprd_pwm_chip *spc =3D
+> > > > > > +             container_of(chip, struct sprd_pwm_chip, chip);
+> > > > > > +     struct sprd_pwm_chn *chn =3D &spc->chn[pwm->hwpwm];
+> > > > > > +     u32 enabled, duty, prescale;
+> > > > > > +     u64 tmp;
+> > > > > > +     int ret;
+> > > > > > +
+> > > > > > +     ret =3D clk_bulk_prepare_enable(SPRD_PWM_NUM_CLKS, chn->c=
+lks);
+> > > > > > +     if (ret) {
+> > > > > > +             dev_err(spc->dev, "failed to enable pwm%u clocks\=
+n",
+> > > > > > +                     pwm->hwpwm);
+> > > > > > +             return;
+> > > > > > +     }
+> > > > > > +
+> > > > > > +     chn->clk_enabled =3D true;
+> > > > > > +
+> > > > > > +     duty =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_DUTY) & =
+SPRD_PWM_REG_MSK;
+> > > > > > +     prescale =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_PRES=
+CALE) & SPRD_PWM_REG_MSK;
+> > > > > > +     enabled =3D sprd_pwm_read(spc, pwm->hwpwm, SPRD_PWM_ENABL=
+E) & SPRD_PWM_ENABLE_BIT;
+> > > > > > +
+> > > > > > +     /*
+> > > > > > +      * According to the datasheet, the period_ns and duty_ns =
+calculation
+> > > > > > +      * formula should be:
+> > > > > > +      * period_ns =3D 10^9 * (prescale + 1) * mod / clk_rate
+> > > > > > +      * duty_ns =3D 10^9 * (prescale + 1) * duty / clk_rate
+> > > > > > +      */
+> > > > > > +     tmp =3D (prescale + 1) * 1000000000ULL * SPRD_PWM_MOD_MAX=
+;
+> > > > > > +     state->period =3D div64_u64(tmp, chn->clk_rate);
+> > > > >
+> > > > > This is not idempotent. If you apply the configuration that is re=
+turned
+> > > > > here this shouldn't result in a reconfiguration.
+> > > >
+> > > > Since we may configure the  PWM in bootloader, so in kernel part we
+> > > > should get current PWM state to avoid reconfiguration if state
+> > > > configuration are same.
+> > >
+> > > This is also important as some consumers might do something like:
+> > >
+> > >         state =3D pwm_get_state(mypwm)
+> > >         if (something):
+> > >                 state->duty =3D 0
+> > >         else:
+> > >                 state->duty =3D state->period / 2
+> > >         pwm_set_state(mypwm, state)
+> > >
+> > > and then period shouldn't get smaller in each step.
+> > > (This won't happen as of now because the PWM framework caches the las=
+t
+> > > state that was set and returns this for pwm_get_state. Still getting
+> > > this right would be good.)
+> >
+> > I understood your concern, but the period can be configured in
+> > bootloader, we have no software things to save the accurate period.
+>
+> I don't understand what you're saying here. The bootloader configuring
+> the hardware is a usual use-case. That's why we have the .get_state
+> callback in the first place.
 
+Ah, sorry for confusing. I think I get your point now with below explanatio=
+n.
 
-There are changes in SoundWire Kconfigs 
-(https://git.kernel.org/pub/scm/linux/kernel/git/vkoul/soundwire.git/commit/?h=fixes&id=8676b3ca4673517650fd509d7fa586aff87b3c28) 
-which are not available in linux/master yet so this error!
+>
+> > Moreover I think I can change to use DIV_ROUND_CLOSET_ULL to keep the
+> > accuracy.
+>
+> DIV_ROUND_CLOSEST_ULL still doesn't match what the apply callback uses.
+> With the lack of an official statement from the maintainer I'd prefer
+> .apply to round down and implement .get_state such that
+>
+>         pwm_apply(pwm, pwm_get_state(pwm))
+>
+> is a no-op.
 
-Once this patch lands then below errors should disappear.
+OK.
 
+>
+> > > > > > +
+> > > > > > +                     dev_err(spc->dev, "failed to get channel =
+clocks\n");
+> > > > > > +                     return ret;
+> > > > > > +             }
+> > > > > > +
+> > > > > > +             clk_pwm =3D chn->clks[1].clk;
+> > > > >
+> > > > > This 1 looks suspicious. Are you using all clocks provided in the=
+ dtb at
+> > > > > all? You're not using i in the loop at all, this doesn't look rig=
+ht.
+> > > >
+> > > > Like I said above, each channel has 2 clocks: enable clock and pwm
+> > > > clock, the 2nd clock of each channel's bulk clocks is the pwm clock=
+,
+> > > > which is used to set the source clock. I know this's not easy to re=
+ad,
+> > > > so do you have any good suggestion?
+> > >
+> > > Not sure this is easily possible to rework to make this clearer.
+> > >
+> > > Do these clks have different uses? e.g. one to enable register access
+> > > and the other to enable the pwm output? If so just using
+> >
+> > Yes.
+>
+> So assuming one of the clocks is for operation of the output and the
+> other for accessing the registers, the latter can be disabled at the end
 
-thanks,
-srini
-> ---
-> 0-DAY kernel test infrastructure                Open Source Technology Center
-> https://lists.01.org/pipermail/kbuild-all                   Intel Corporation
-> 
+Right.
+
+> of each callback?
+
+We can not disable the latter one when using the PWM channel, we must
+enable the pwm-enable clock, then enable pwm-output clock to make PWM
+work. When disabling PWM channel, we should disable the pwm-output
+clock, then pwm-enable clock.
+
+>
+> > > devm_clk_bulk_get isn't the right thing because you should be able kn=
+ow
+> > > if clks[0] or clks[1] is the one you need to enable the output (or
+> > > register access).
+> >
+> > We've fixed the clock order in bulk clocks by the array
+> > 'sprd_pwm_clks', maybe I should define one readable macro instead of
+> > magic number.
+>
+> ack.
+>
+> > > > > > +             if (!clk_set_parent(clk_pwm, clk_parent))
+> > > > > > +                     chn->clk_rate =3D clk_get_rate(clk_pwm);
+> > > > > > +             else
+> > > > > > +                     chn->clk_rate =3D SPRD_PWM_DEFAULT_CLK;
+> > > > >
+> > > > > I don't know all the clock framework details, but I think there a=
+re
+> > > > > better ways to ensure that a given clock is used as parent for an=
+other
+> > > > > given clock. Please read the chapter about "Assigned clock parent=
+s and
+> > > > > rates" in the clock bindings and check if this could be used for =
+the
+> > > > > purpose here and so simplify the driver.
+> > > >
+> > > > Actually there are many other drivers set the parent clock like thi=
+s,
+> > > > and we want a default clock if failed to set the parent clock.
+> > >
+> > > These might be older than the clk framework capabilities, or the
+> > > reviewers didn't pay attention to this detail; both shouldn't be a
+> > > reason to not make it better here.
+> >
+> > The clock framework supplies 'assigned-clocks' and
+> > 'assigned-clock-parents' properties to set parent, but for our case we
+> > still want to set a default clock rate if failed to set parent when
+> > met some abnormal things.
+>
+> Without understanding the complete problem I'd say this is out of the
+> area the driver should care about.
+
+Fair enough, I will try to use 'assigned-clocks' and
+'assigned-clock-parents' to simplify the code.
+
+Thanks.
+
+--=20
+Baolin Wang
+Best Regards
