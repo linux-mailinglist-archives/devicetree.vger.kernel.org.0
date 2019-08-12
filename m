@@ -2,76 +2,117 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 96AC08974A
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 08:43:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D68C18975D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 08:54:11 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726185AbfHLGnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 02:43:49 -0400
-Received: from mail.kernel.org ([198.145.29.99]:55566 "EHLO mail.kernel.org"
+        id S1726527AbfHLGyL (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 02:54:11 -0400
+Received: from mout.gmx.net ([212.227.15.15]:51793 "EHLO mout.gmx.net"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725923AbfHLGnt (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 02:43:49 -0400
-Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 3175E208C2;
-        Mon, 12 Aug 2019 06:43:48 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565592228;
-        bh=Au2I1+pUG8x4q8Vy+c0mrDmoxr5LQjnxTD3Xa5TQ1QU=;
-        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=Mbt0BRjkREv80x2Y1XC6k01N3P07Y10yQ0YuB/ojwaH/IlA4yjz+wrMCxIM2bVyq5
-         PT4q8AY+Q/0MTBx2VYvfDiW8s/UGZzey9WNhPzsO6iw183/5duURR5uS2WF5IZhscv
-         mZGKDaC7SoOt80tFLSB5eU3kVqm2I4ELWgO3hhuI=
-Received: by mail-lj1-f174.google.com with SMTP id 15so5534874ljr.9;
-        Sun, 11 Aug 2019 23:43:48 -0700 (PDT)
-X-Gm-Message-State: APjAAAW64XNYsW1FiwOe67PcZ4ZxCcU5X6JEUBFeSbDrmKC7cGq/4Maj
-        oMBap0U7WbTT8pCnTTAe5CBVZc/29AiRqDP+0/c=
-X-Google-Smtp-Source: APXvYqwTeVn92BEolAItuNZHe53VnNj3QCoRCdIpcVGtJTAkEKRjOqmtUpzwDjY4TbKPcg+mlkRd1l0/IhIzzOgy18Y=
-X-Received: by 2002:a2e:8197:: with SMTP id e23mr608659ljg.80.1565592226364;
- Sun, 11 Aug 2019 23:43:46 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190808172616.11728-1-krzk@kernel.org> <20190808172616.11728-2-krzk@kernel.org>
- <de032954-2b6e-5aa9-0d91-c37417c8e162@kontron.de>
-In-Reply-To: <de032954-2b6e-5aa9-0d91-c37417c8e162@kontron.de>
-From:   Krzysztof Kozlowski <krzk@kernel.org>
-Date:   Mon, 12 Aug 2019 08:43:35 +0200
-X-Gmail-Original-Message-ID: <CAJKOXPf_uJUhNrciK1mFddN+gZ8vxtTEsz_uF7k60+EWYW94OA@mail.gmail.com>
-Message-ID: <CAJKOXPf_uJUhNrciK1mFddN+gZ8vxtTEsz_uF7k60+EWYW94OA@mail.gmail.com>
-Subject: Re: [PATCH v4 2/3] dt-bindings: eeprom: at25: Add Anvo ANV32E61W
-To:     Schrempf Frieder <frieder.schrempf@kontron.de>
-Cc:     Rob Herring <robh+dt@kernel.org>,
+        id S1725843AbfHLGyL (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 02:54:11 -0400
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=gmx.net;
+        s=badeba3b8450; t=1565592845;
+        bh=muCwBkulWXt9jniwNNVXYtlUSvKh+OTHOdKC7/7Donc=;
+        h=X-UI-Sender-Class:Date:From:To:Cc:Subject:References:In-Reply-To;
+        b=g3sAA9jEYVf7TJnUqDQZKozfgQ6iotPeo6Fg/TimIXREF7mm0nACEJqWs15zj+TO/
+         FQstiF6iMRVpWx7dQGmtZtan18797LT1BWtMroo9yjiK9PU2F+ktYyvV5CQ9HBrgKc
+         WxlW0HAO8M2h7De4VN/5z3GDQ0ojKez0PSl6DuTo=
+X-UI-Sender-Class: 01bb95c1-4bf8-414a-932a-4f6e2808ef9c
+Received: from longitude ([109.90.233.87]) by mail.gmx.com (mrgmx005
+ [212.227.17.190]) with ESMTPSA (Nemesis) id 1MDQiS-1i7Y551ghS-00ASBJ; Mon, 12
+ Aug 2019 08:54:05 +0200
+Date:   Mon, 12 Aug 2019 08:53:51 +0200
+From:   Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>
+To:     Lee Jones <lee.jones@linaro.org>
+Cc:     Jonathan =?utf-8?Q?Neusch=C3=A4fer?= <j.neuschaefer@gmx.net>,
+        devicetree@vger.kernel.org, Rob Herring <robh+dt@kernel.org>,
         Mark Rutland <mark.rutland@arm.com>,
-        Shawn Guo <shawnguo@kernel.org>,
-        Sascha Hauer <s.hauer@pengutronix.de>,
-        Pengutronix Kernel Team <kernel@pengutronix.de>,
-        Fabio Estevam <festevam@gmail.com>,
-        NXP Linux Team <linux-imx@nxp.com>,
-        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
-        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
-        "linux-arm-kernel@lists.infradead.org" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "notify@kernel.org" <notify@kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+        linux-kernel@vger.kernel.org
+Subject: Re: [PATCH] dt-bindings: mfd: rn5t618: Document optional property
+ system-power-controller
+Message-ID: <20190812065351.GE1966@latitude>
+References: <20190129135917.29521-1-j.neuschaefer@gmx.net>
+ <20190201092411.GG783@dell>
+ <20190808183924.GB1966@latitude>
+ <20190812062520.GB4594@dell>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha512;
+        protocol="application/pgp-signature"; boundary="maH1Gajj2nflutpK"
+Content-Disposition: inline
+In-Reply-To: <20190812062520.GB4594@dell>
+User-Agent: Mutt/1.10.1 (2018-07-13)
+X-Provags-ID: V03:K1:0+t/4tjn5mVBiots3LoCVFLYTLI74+cDsU8c5ZuStgO/8b+KpiL
+ oAod8woJAh8rcoDrLv/nK76vkHNW4Xh7zDAwHx3jSxCku4F+X5B/h6+1V7luvTF6RI9GUP7
+ Iiu5MMkoLSykaNUHBSGMww4DzkOST8rVn9KQHHa6u1TnmwWC4t+QmRj4B1EbT506RhGBSYG
+ fC38FheIUmHE7wG/Rt8FQ==
+X-Spam-Flag: NO
+X-UI-Out-Filterresults: notjunk:1;V03:K0:YM9U+Z9XuY0=:Wpf0OfEeYuFPOGyk6eTzLK
+ W/is/NGC04Gu84EngU/pe5d1cZNHbGNzosD4gnDmpPdGtDALIpfHcdhI8YZemNwQjSn8A+1L6
+ 8tIpc3hGF5wyhDjRf/QNiyB9fXWP+tcHKoEY9A+Fi2sNAz55shVA+HaMOq9AP+icvYKfaneyx
+ DYhdLCkeEiyRrRmd8uQ04tE9SE9g08rGE0hyPd20RIufCJxJRaWvsxdwFhwyhiobsyhN/v3q7
+ o24wcAH2ZvqbVxvJALr1yzAWwb0BArgXoks/h+TiveK92H8LGCFYYTIbXhvjIWMYQpWHsGsQE
+ NepPUHlE5NSIm7pjTP1sJbJeQ7RlfXvuPADVftBWB4/e0X7js0hnh0iL2eK+Cbz/O8mieBva0
+ GXWvaUnzNh7X7JkzRLtYfPOeVIRs9I+77cv/5XXNJymGkO+yqz83R1kxiZuOsat6oxA0+7Aci
+ 4NUoTJLaZ+H2uZgqyqA9TMyAMdzp63JIEtkEYBj/UKuOXwOmNoNFOA/5t6G+AGtdxYIUGQPeJ
+ FVFA0FdS0Om6tUTPVVfGv4JQo7tCzzavdRpG5iB4OCIZHB3C0mKALNckhUyOIDnFXsT4qUMDz
+ e/tsde/PXogKdK95EMFMpErkbRcU06X0Z8qkk6yDwJvti9JedQ18MQbEdDgwoXVY01MZ/mpV0
+ sFCMRyKuGMftBBQCS7yeZ7yimiSClmFvGrZVXLSdROMDczL7SqqF5wlBa8/lT801gvutowKVr
+ ixuUqS3bus1EIo+35A6oHMngjyATNxAcaklDVjCJ3wKSREthLW41AuCx3okIWNXyFm4xkA5MM
+ dSypikRphLSMNUkDaMbpLusWXa5Lz/NChUxXUyCZ9TM4jMXJ0Em5topoNdOhZIkJOf/oqqCqW
+ kUFc3REnFvfmd4iHKbKvTXC29v4zwrvS+fvuKa+cDMYeK5BjFotyBP18g0QYxKS2TJNHsVDVK
+ CHqAflZs8KxxPud7ciBMed6aGlSsPQNlvKEuIhMlWC2dWykdsZ5rBkGtOUNGlCbkTRLLx6gb6
+ a7V5GhEu+Q9CWz7ybTsWu5T8wUGD5oqtI+tEZ1ZPqSh14QPXBYAMkraVfF4VyEfh3hBJLD3vq
+ WEv37pB/umX2lbzz4NOnEZriZ33JfYUWhWo0A3KVB++wy9KDgScTSkfZQ==
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Thu, 8 Aug 2019 at 20:09, Schrempf Frieder
-<frieder.schrempf@kontron.de> wrote:
->
-> On 08.08.19 19:26, Krzysztof Kozlowski wrote:
-> > Document the compatible for ANV32E61W EEPROM chip.
->
-> This chip is actually not an EEPROM, but a SPI nvSRAM. It can be
-> interfaced by the at25 driver similar to an EEPROM. This is not the
-> ideal solution, but it works until there's a proper driver for such
-> chips. Maybe you can add some of these details to the commit message
-> here. Also there is more information on this topic here:
-> https://patchwork.ozlabs.org/patch/1043950/.
 
-Indeed, I'll correct the description of commit.
+--maH1Gajj2nflutpK
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-Best regards,
-Krzysztof
+On Mon, Aug 12, 2019 at 07:25:20AM +0100, Lee Jones wrote:
+> On Thu, 08 Aug 2019, Jonathan Neusch=C3=A4fer wrote:
+> > On Fri, Feb 01, 2019 at 09:24:11AM +0000, Lee Jones wrote:
+> > > On Tue, 29 Jan 2019, Jonathan Neusch=C3=A4fer wrote:
+> > > >  Documentation/devicetree/bindings/mfd/rn5t618.txt | 5 +++++
+> > > >  1 file changed, 5 insertions(+)
+> > >=20
+> > > Applied, thanks.
+> >=20
+> > Hi,
+> >=20
+> > apparently this patch got lost somehow (I can't find it in mainline or
+> > -next). Should I resend it?
+>=20
+> Yes, it appears that it did.
+>=20
+> I've applied it again.
+
+Thanks!
+
+--maH1Gajj2nflutpK
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEvHAHGBBjQPVy+qvDCDBEmo7zX9sFAl1RDPYACgkQCDBEmo7z
+X9shKw/+JZCAsjf1jIve1vL5EAHYyh19xmD6BTvCpIjinKKs3lspa2jQd34ePTCq
+4BhMRoisEjqvx5SqUlOccHAqT+WoU9gBAegDqkVUPTEUXFB2H0i2I8u6AoOWCQJ+
+tqltE/95fRn5oPxmk2rzF2hCPABRK94A1LQPEKr7YfLKqoA47tCmZ6CjWRqVzx+E
+mGo6aW/nChuMG5Sq1iZTJUOtJ1adSEL8I3h/S00UBumkd5XjXAu1fjBEBOX4l5Yg
+T5qV6LXxQppQLUV/UWS/025aSy1bYm9jBY526Tz9iHb0z8ZljlWY9Mn7oWLS9Ujo
+ExflAfx/QtiQ/45mwHYa/71xLz5rUhowbeo0dZfCfMTzDOB3e+gF83ss6eSOQ7sQ
+ehNbWYf1T5Ct/9AW/OBjuzChlP0UY02KfHPP/EpZV0VjsGo2PxV3C8qmnzYfrK5x
+wq4sblpFHdDIQHoJQPL7XgJwb12fhDgdmUCXkLJXrB1Hv2avEqmMBC30rJDeC1GL
+0YAZSMYEkW7FAYxYwiElKp8lKNd2hPM8zzwj6KnE9OOfuhvkE9TjtPSRTcmg6Cnu
+bxDH9iun1cy9MOIIJ2n3h0xeE3+Zf6YdC4hK0sRCPJnkNVS1o6+LKtpGEcyr1EFH
+SZoTweJD6Z2WOCvJ2a0iWIrY6893L8fCClafY+aEonYxmRYx+M0=
+=HJdh
+-----END PGP SIGNATURE-----
+
+--maH1Gajj2nflutpK--
