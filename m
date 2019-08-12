@@ -2,63 +2,76 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id BB0868973C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 08:37:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 96AC08974A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 08:43:50 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725901AbfHLGh2 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 02:37:28 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53966 "EHLO mail.kernel.org"
+        id S1726185AbfHLGnt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 02:43:49 -0400
+Received: from mail.kernel.org ([198.145.29.99]:55566 "EHLO mail.kernel.org"
         rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725822AbfHLGh2 (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 02:37:28 -0400
-Received: from mail-wm1-f50.google.com (mail-wm1-f50.google.com [209.85.128.50])
+        id S1725923AbfHLGnt (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 02:43:49 -0400
+Received: from mail-lj1-f174.google.com (mail-lj1-f174.google.com [209.85.208.174])
         (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
         (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id E56EB2070C;
-        Mon, 12 Aug 2019 06:37:27 +0000 (UTC)
+        by mail.kernel.org (Postfix) with ESMTPSA id 3175E208C2;
+        Mon, 12 Aug 2019 06:43:48 +0000 (UTC)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565591848;
-        bh=yzB5zh4Nx6+UzoV/qKu39N7ca/NcQkTP25F/oH/DAUs=;
+        s=default; t=1565592228;
+        bh=Au2I1+pUG8x4q8Vy+c0mrDmoxr5LQjnxTD3Xa5TQ1QU=;
         h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
-        b=n8dhDwk/RXQ1MwkksvGZU6TTH/09lZzwQO/+QAqS71qES/V2mrf3enUCR0KuXMYTG
-         P7N3WK1cXS9Aqh44AufGcskqoGprkNyZ71HvrEAGOZNfvO0OW9+IJFAD0SQHt4Njbc
-         UM9eyQBSDsv1LB72IoMLne19iQU8aRP+aNxcCCcs=
-Received: by mail-wm1-f50.google.com with SMTP id f72so11051480wmf.5;
-        Sun, 11 Aug 2019 23:37:27 -0700 (PDT)
-X-Gm-Message-State: APjAAAVp5GjOffl+JIDlKeIMOrYjBs1ehXI+lubRQqvU7OOSSeVReQAU
-        s8UXlx8/1tVspoDwFtvVMbFbPJfE/C7rwW2HsQM=
-X-Google-Smtp-Source: APXvYqwCMmZLThLs+ABWEFDndGaEubz/Nt5ZO+lSRkNAUIHiANERBPLWnIFyXv7U/9+AyVUfzIsZIZwRnc0MCDOeMeU=
-X-Received: by 2002:a7b:c051:: with SMTP id u17mr25235520wmc.25.1565591846502;
- Sun, 11 Aug 2019 23:37:26 -0700 (PDT)
+        b=Mbt0BRjkREv80x2Y1XC6k01N3P07Y10yQ0YuB/ojwaH/IlA4yjz+wrMCxIM2bVyq5
+         PT4q8AY+Q/0MTBx2VYvfDiW8s/UGZzey9WNhPzsO6iw183/5duURR5uS2WF5IZhscv
+         mZGKDaC7SoOt80tFLSB5eU3kVqm2I4ELWgO3hhuI=
+Received: by mail-lj1-f174.google.com with SMTP id 15so5534874ljr.9;
+        Sun, 11 Aug 2019 23:43:48 -0700 (PDT)
+X-Gm-Message-State: APjAAAW64XNYsW1FiwOe67PcZ4ZxCcU5X6JEUBFeSbDrmKC7cGq/4Maj
+        oMBap0U7WbTT8pCnTTAe5CBVZc/29AiRqDP+0/c=
+X-Google-Smtp-Source: APXvYqwTeVn92BEolAItuNZHe53VnNj3QCoRCdIpcVGtJTAkEKRjOqmtUpzwDjY4TbKPcg+mlkRd1l0/IhIzzOgy18Y=
+X-Received: by 2002:a2e:8197:: with SMTP id e23mr608659ljg.80.1565592226364;
+ Sun, 11 Aug 2019 23:43:46 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190811203144.5999-1-peron.clem@gmail.com> <20190811203144.5999-4-peron.clem@gmail.com>
-In-Reply-To: <20190811203144.5999-4-peron.clem@gmail.com>
-From:   Chen-Yu Tsai <wens@kernel.org>
-Date:   Mon, 12 Aug 2019 14:37:15 +0800
-X-Gmail-Original-Message-ID: <CAGb2v64L0VNdb=b64N4CTNT9DBYSZO8wGr2SWDiwuvYp0CNEzg@mail.gmail.com>
-Message-ID: <CAGb2v64L0VNdb=b64N4CTNT9DBYSZO8wGr2SWDiwuvYp0CNEzg@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v5 3/3] arm64: defconfig: Enable Sun4i SPDIF module
-To:     =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>
+References: <20190808172616.11728-1-krzk@kernel.org> <20190808172616.11728-2-krzk@kernel.org>
+ <de032954-2b6e-5aa9-0d91-c37417c8e162@kontron.de>
+In-Reply-To: <de032954-2b6e-5aa9-0d91-c37417c8e162@kontron.de>
+From:   Krzysztof Kozlowski <krzk@kernel.org>
+Date:   Mon, 12 Aug 2019 08:43:35 +0200
+X-Gmail-Original-Message-ID: <CAJKOXPf_uJUhNrciK1mFddN+gZ8vxtTEsz_uF7k60+EWYW94OA@mail.gmail.com>
+Message-ID: <CAJKOXPf_uJUhNrciK1mFddN+gZ8vxtTEsz_uF7k60+EWYW94OA@mail.gmail.com>
+Subject: Re: [PATCH v4 2/3] dt-bindings: eeprom: at25: Add Anvo ANV32E61W
+To:     Schrempf Frieder <frieder.schrempf@kontron.de>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Shawn Guo <shawnguo@kernel.org>,
+        Sascha Hauer <s.hauer@pengutronix.de>,
+        Pengutronix Kernel Team <kernel@pengutronix.de>,
+        Fabio Estevam <festevam@gmail.com>,
+        NXP Linux Team <linux-imx@nxp.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "notify@kernel.org" <notify@kernel.org>
 Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 4:32 AM Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.c=
-om> wrote:
+On Thu, 8 Aug 2019 at 20:09, Schrempf Frieder
+<frieder.schrempf@kontron.de> wrote:
 >
-> Allwinner A64 and H6 use the Sun4i SPDIF driver.
+> On 08.08.19 19:26, Krzysztof Kozlowski wrote:
+> > Document the compatible for ANV32E61W EEPROM chip.
 >
-> Enable this to allow a proper support.
->
-> Signed-off-by: Cl=C3=A9ment P=C3=A9ron <peron.clem@gmail.com>
+> This chip is actually not an EEPROM, but a SPI nvSRAM. It can be
+> interfaced by the at25 driver similar to an EEPROM. This is not the
+> ideal solution, but it works until there's a proper driver for such
+> chips. Maybe you can add some of these details to the commit message
+> here. Also there is more information on this topic here:
+> https://patchwork.ozlabs.org/patch/1043950/.
 
-Applied. Thanks.
+Indeed, I'll correct the description of commit.
+
+Best regards,
+Krzysztof
