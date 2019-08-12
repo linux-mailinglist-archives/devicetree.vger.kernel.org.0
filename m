@@ -2,49 +2,49 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 013EA895ED
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 06:12:53 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 1D4C3895F7
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 06:19:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725819AbfHLEMx (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 00:12:53 -0400
-Received: from mail-ed1-f66.google.com ([209.85.208.66]:44801 "EHLO
-        mail-ed1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1725774AbfHLEMw (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 00:12:52 -0400
-Received: by mail-ed1-f66.google.com with SMTP id a21so1632070edt.11;
-        Sun, 11 Aug 2019 21:12:51 -0700 (PDT)
+        id S1725819AbfHLETb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 00:19:31 -0400
+Received: from mail-ed1-f68.google.com ([209.85.208.68]:35121 "EHLO
+        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1725648AbfHLETb (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 00:19:31 -0400
+Received: by mail-ed1-f68.google.com with SMTP id w20so102527491edd.2;
+        Sun, 11 Aug 2019 21:19:30 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:mime-version:references:in-reply-to:from:date
          :message-id:subject:to:cc;
-        bh=oAP6t0pKBozy4Ru4dNG6hCmwdati3Pg/29On1WvuiE8=;
-        b=G1zWlhLBEBk5Qhu34ztoscprtrYGSJQyC88CkiuSKPHdn6ZsicuDBL8lfCKfFCalrX
-         YuHLCyb9W4ytUYeTMhv3uN3MzP79Q0sTvbH/C+h733xyT5YC1Z+FCRXKHRLtCDBd9ly8
-         S/oV4Pth5a2oGFOJk4nggqzU52sLKnJ1PrahHjMrCuz+9VQBjx24xPKUQNc8v36LNYfN
-         2N0J5GMYnPHNuN3owvK7sFIZ8EBdQWfj+l6bQLxd3sn+ddk77Ykyt7KLJyV3DSh8olZ6
-         wZ15hVDLrTnbULsoSQM5DAfROFD81TzpTmyRgS4FjFz/1SAk+LEA5dBgbWEpaBUP3dzm
-         x9FQ==
-X-Gm-Message-State: APjAAAVh0Udh2zh7y5BgHiZ7keHZfbE990qNN7le0Bbr0bmDHtVRqc5p
-        iDGnALyTBSSxzayHaZtx6rfpQiA1Hc0=
-X-Google-Smtp-Source: APXvYqzgtxu2/C3svbR2pHpD+DVaAmvSmwrvt7pBjQQRAWC6GCunsaarLJIHsnm/Lgn/pnYn6cjNrA==
-X-Received: by 2002:a17:907:39a:: with SMTP id ss26mr18836635ejb.278.1565583170546;
-        Sun, 11 Aug 2019 21:12:50 -0700 (PDT)
-Received: from mail-wr1-f49.google.com (mail-wr1-f49.google.com. [209.85.221.49])
-        by smtp.gmail.com with ESMTPSA id m26sm425895edd.19.2019.08.11.21.12.49
+        bh=Z4s3JUibN+WGVLqaHsLHxXIi1D8VvPq6c/60ITp5nIA=;
+        b=Cg9ho7/QtclAWMDb+MkWwr7n4WkOcYWYeBfHiq4Zw4e/Tv2KtwmX3tSbu7LzSpFvw5
+         0NUmtnYWYQvyrPsSUBrLPyYeDOaWR3Rp02CA1fEYrI2/6HweNXliGC1jMd2IXU2+UTz3
+         b9xsGM2Jq/eFkkLC9lzBqii1DkPQad8xs0+0mkEvQPQawNFQu5bCsXOhCmfvxmOVz4nP
+         oWzZSy/z0eQd7pABb4PrOsxt8JMn+ipLZT5/we6mwBKRViA76hRddwI4evg5yWbUb53f
+         i+QT2u4EhHpZr66Eafz/OVrMudd9zzDCf/JTKsykaC6L6DjU6O1biqo62fVycokIhpwp
+         y4NA==
+X-Gm-Message-State: APjAAAWRCaRZ7eYYrrWtNwEoO+bY8+KF5N79+MHdnyKiJgehE/mwQEzW
+        IjwitIYn7Nvm2oq9DTshWNTLGF8dUbM=
+X-Google-Smtp-Source: APXvYqxZJnhll1tRCxYh3xf+rl1GwrSNd94Ccz7IddVgvBJBriUzifQMYmth/jbyGUjZxna+9EDP5A==
+X-Received: by 2002:a17:906:eb8d:: with SMTP id mh13mr18211724ejb.98.1565583569223;
+        Sun, 11 Aug 2019 21:19:29 -0700 (PDT)
+Received: from mail-wm1-f46.google.com (mail-wm1-f46.google.com. [209.85.128.46])
+        by smtp.gmail.com with ESMTPSA id y12sm16978775ejq.40.2019.08.11.21.19.28
         (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Sun, 11 Aug 2019 21:12:49 -0700 (PDT)
-Received: by mail-wr1-f49.google.com with SMTP id b16so6649570wrq.9;
-        Sun, 11 Aug 2019 21:12:49 -0700 (PDT)
-X-Received: by 2002:a5d:568e:: with SMTP id f14mr37314937wrv.167.1565583169399;
- Sun, 11 Aug 2019 21:12:49 -0700 (PDT)
+        Sun, 11 Aug 2019 21:19:28 -0700 (PDT)
+Received: by mail-wm1-f46.google.com with SMTP id e8so9733490wme.1;
+        Sun, 11 Aug 2019 21:19:28 -0700 (PDT)
+X-Received: by 2002:a05:600c:292:: with SMTP id 18mr25156704wmk.51.1565583568180;
+ Sun, 11 Aug 2019 21:19:28 -0700 (PDT)
 MIME-Version: 1.0
-References: <20190811090503.32396-1-bshah@kde.org> <20190811090503.32396-2-bshah@kde.org>
-In-Reply-To: <20190811090503.32396-2-bshah@kde.org>
+References: <20190811090503.32396-1-bshah@kde.org> <20190811090503.32396-3-bshah@kde.org>
+In-Reply-To: <20190811090503.32396-3-bshah@kde.org>
 From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 12 Aug 2019 12:12:38 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67_GjWFOEiThMp5o8m+nqYrrTCrNdSkscRfe5vmoJM47Q@mail.gmail.com>
-Message-ID: <CAGb2v67_GjWFOEiThMp5o8m+nqYrrTCrNdSkscRfe5vmoJM47Q@mail.gmail.com>
-Subject: Re: [PATCH 1/2] arm64: allwinner: h6: add I2C nodes
+Date:   Mon, 12 Aug 2019 12:19:17 +0800
+X-Gmail-Original-Message-ID: <CAGb2v65xDCNywexZGW=EBrsJwm-KwANxpdCv-AM2sgVNbz6qQQ@mail.gmail.com>
+Message-ID: <CAGb2v65xDCNywexZGW=EBrsJwm-KwANxpdCv-AM2sgVNbz6qQQ@mail.gmail.com>
+Subject: Re: [PATCH 2/2] arm64: allwinner: h6: enable i2c0 in PineH64
 To:     Bhushan Shah <bshah@kde.org>
 Cc:     Icenowy Zheng <icenowy@aosc.io>,
         Maxime Ripard <maxime.ripard@bootlin.com>,
@@ -61,101 +61,43 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Sun, Aug 11, 2019 at 5:05 PM Bhushan Shah <bshah@kde.org> wrote:
 >
-> Add device-tree nodes for i2c0 to i2c2, and also add relevant pinctrl
-> nodes.
+> i2c0 bus is exposed by PI-2 BUS in the PineH64, model B.
 >
-> Suggested-by: Icenowy Zheng <icenowy@aosc.io>
 > Signed-off-by: Bhushan Shah <bshah@kde.org>
 > ---
->  arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi | 54 ++++++++++++++++++++
->  1 file changed, 54 insertions(+)
+>  arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts | 8 ++++++++
+>  1 file changed, 8 insertions(+)
 >
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> index bcecca17d61d..1d9ad3ec0b65 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6.dtsi
-> @@ -329,6 +329,21 @@
->                                 function = "hdmi";
->                         };
+> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+> index 684d1daa3081..a184361bc10d 100644
+> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64.dts
+> @@ -160,6 +160,14 @@
+>         vcc-pg-supply = <&reg_aldo1>;
+>  };
 >
-> +                       i2c0_pins: i2c0-pins {
-> +                               pins = "PD25", "PD26";
-> +                               function = "i2c0";
-> +                       };
-> +
-> +                       i2c1_pins: i2c1-pins {
-> +                               pins = "PH5", "PH6";
-> +                               function = "i2c1";
-> +                       };
-> +
-> +                       i2c2_pins: i2c2-pins {
-> +                               pins = "PD23", "PD24";
-> +                               function = "i2c2";
-> +                       };
-> +
->                         mmc0_pins: mmc0-pins {
->                                 pins = "PF0", "PF1", "PF2", "PF3",
->                                        "PF4", "PF5";
-> @@ -464,6 +479,45 @@
->                         status = "disabled";
->                 };
->
-> +               i2c0: i2c@5002000 {
-> +                       compatible = "allwinner,sun6i-a31-i2c";
+> +&i2c0 {
+> +       status = "okay";
 
-Please add an soc-specific compatible string, like "allwinner,sun50i-h6-i2c".
-This is a last-resort way out in case the hardware isn't so compatible with
-the A31.
+We don't enable interfaces that are exposed on the extension headers
+by default. Instead we let the users enable it themselves, by modifying
+the device tree either with overlays or through U-boot commands.
 
-You'll also need to update the bindings in
-
-    Documentation/devicetree/bindings/i2c/marvell,mv64xxx-i2c.yaml
-
-The file also shows that we do this for other chips, such as the A23,
-A64 and A83T.
+Please set this to "disabled", and add a comment mentioning that it is
+on the PI-2 BUS. Having it explicitly listed in the source serves as a
+pointer to people looking at how to enable stuff.
 
 ChenYu
 
-> +                       reg = <0x05002000 0x400>;
-> +                       interrupts = <GIC_SPI 4 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&ccu CLK_BUS_I2C0>;
-> +                       resets = <&ccu RST_BUS_I2C0>;
-> +                       pinctrl-names = "default";
-> +                       pinctrl-0 = <&i2c0_pins>;
-> +                       status = "disabled";
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +               };
+> +};
 > +
-> +               i2c1: i2c@5002400 {
-> +                       compatible = "allwinner,sun6i-a31-i2c";
-> +                       reg = <0x05002400 0x400>;
-> +                       interrupts = <GIC_SPI 5 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&ccu CLK_BUS_I2C1>;
-> +                       resets = <&ccu RST_BUS_I2C1>;
-> +                       pinctrl-names = "default";
-> +                       pinctrl-0 = <&i2c1_pins>;
-> +                       status = "disabled";
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +               };
+> +&i2c0_pins {
+> +       bias-pull-up;
+> +};
 > +
-> +               i2c2: i2c@5002800 {
-> +                       compatible = "allwinner,sun6i-a31-i2c";
-> +                       reg = <0x05002800 0x400>;
-> +                       interrupts = <GIC_SPI 6 IRQ_TYPE_LEVEL_HIGH>;
-> +                       clocks = <&ccu CLK_BUS_I2C2>;
-> +                       resets = <&ccu RST_BUS_I2C2>;
-> +                       pinctrl-names = "default";
-> +                       pinctrl-0 = <&i2c2_pins>;
-> +                       status = "disabled";
-> +                       #address-cells = <1>;
-> +                       #size-cells = <0>;
-> +               };
-> +
->                 emac: ethernet@5020000 {
->                         compatible = "allwinner,sun50i-h6-emac",
->                                      "allwinner,sun50i-a64-emac";
+>  &r_i2c {
+>         status = "okay";
+>
 > --
 > 2.17.1
 >
