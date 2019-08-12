@@ -2,140 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 63D598A2B4
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 17:54:55 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D78828A305
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 18:10:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1725901AbfHLPyy (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 11:54:54 -0400
-Received: from mail.kernel.org ([198.145.29.99]:53034 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1725887AbfHLPyy (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 11:54:54 -0400
-Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 02F5B20820;
-        Mon, 12 Aug 2019 15:54:49 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565625293;
-        bh=GqbIVxc3IQ9SeU60mFNZIC6Nb287EK7LtdRjU/Ufx7U=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=FLw9OfRUlzvUhEmRtEKfgvMkxE0PeWjjuY+1TQMisiwwx+YRhJ5AiokPZ1ZnOmMVS
-         /jV7XfO9GrRel6gy1O0jcCgWqAWnIAhhZaR6CsIoLY1b0vpErRfQ6NjeHDOMZrLiij
-         5HKbpaw3tryoGqsBC8WqkuO+z+XQEKAdz/gI+ELE=
-Date:   Mon, 12 Aug 2019 17:54:42 +0200
-From:   Shawn Guo <shawnguo@kernel.org>
-To:     Aisheng Dong <aisheng.dong@nxp.com>
-Cc:     Dong Aisheng <dongas86@gmail.com>,
-        linux-clk <linux-clk@vger.kernel.org>,
-        "moderated list:ARM/FREESCALE IMX / MXC ARM ARCHITECTURE" 
-        <linux-arm-kernel@lists.infradead.org>,
-        "sboyd@kernel.org" <sboyd@kernel.org>,
-        Michael Turquette <mturquette@baylibre.com>,
-        Fabio Estevam <fabio.estevam@nxp.com>,
-        dl-linux-imx <linux-imx@nxp.com>,
-        Sascha Hauer <kernel@pengutronix.de>,
-        Rob Herring <robh+dt@kernel.org>,
-        devicetree <devicetree@vger.kernel.org>
-Subject: Re: [PATCH v3 02/11] dt-bindings: clock: imx-lpcg: add support to
- parse clocks from device tree
-Message-ID: <20190812155440.GA12237@X250>
-References: <1563289265-10977-1-git-send-email-aisheng.dong@nxp.com>
- <1563289265-10977-3-git-send-email-aisheng.dong@nxp.com>
- <20190803135048.GL8870@X250.getinternet.no>
- <CAA+hA=TVv8m2GZr0W-u+S6XzJUCYrFDF95iyUGyAsbYMwatyZg@mail.gmail.com>
- <20190812130041.GD27041@X250>
- <AM0PR04MB42117575E82B4B762FE2143880D30@AM0PR04MB4211.eurprd04.prod.outlook.com>
+        id S1726727AbfHLQJo (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 12:09:44 -0400
+Received: from mx0b-001ae601.pphosted.com ([67.231.152.168]:29562 "EHLO
+        mx0b-001ae601.pphosted.com" rhost-flags-OK-OK-OK-OK)
+        by vger.kernel.org with ESMTP id S1725843AbfHLQJo (ORCPT
+        <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 12:09:44 -0400
+Received: from pps.filterd (m0077474.ppops.net [127.0.0.1])
+        by mx0b-001ae601.pphosted.com (8.16.0.42/8.16.0.42) with SMTP id x7CG91AI031365;
+        Mon, 12 Aug 2019 11:09:39 -0500
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=cirrus.com; h=date : from : to : cc
+ : subject : message-id : references : mime-version : content-type :
+ in-reply-to; s=PODMain02222019;
+ bh=BOhCFqPI+D+pfHpXRqMVBc4hjnBNRMAkRbGZXOwrg7c=;
+ b=GE3zqRpy8+qSWmKA+FLstRshm5giHjftIlH6/AzPrWnru0jVWba1WNWWfi8xzlPoN18Q
+ KPeUNcRPrYVRAdC4Y8jMfuZ38a5xl8eCLNY1vjtoHz//JJ9u1Osgd5ekHXXbFmVVEMhk
+ qqjaWkMo/m3eKKAhc49iP17GkAZnbTQADLqW06J9h3OWAHeKj0KYzox61VjBrei1xMvR
+ i/3xJSD4cCe+KpoFsF8afe8M4z29KGa1L4EQUUH8BG1r6EutdK6UVuIv3IwSjb7ULVYc
+ wvmpLxLdTn0NcGr4P/tEwo6FnbWK+H1CbtWEhp6kreW6J6motBjSQIlOIZCf9kW4Rm3Q kw== 
+Authentication-Results: ppops.net;
+        spf=fail smtp.mailfrom=ckeepax@opensource.cirrus.com
+Received: from ediex01.ad.cirrus.com ([87.246.76.36])
+        by mx0b-001ae601.pphosted.com with ESMTP id 2u9tbru2tm-1
+        (version=TLSv1.2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128 verify=NOT);
+        Mon, 12 Aug 2019 11:09:38 -0500
+Received: from EDIEX01.ad.cirrus.com (198.61.84.80) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id 15.1.1591.10; Mon, 12 Aug
+ 2019 17:09:37 +0100
+Received: from ediswmail.ad.cirrus.com (198.61.86.93) by EDIEX01.ad.cirrus.com
+ (198.61.84.80) with Microsoft SMTP Server id 15.1.1591.10 via Frontend
+ Transport; Mon, 12 Aug 2019 17:09:37 +0100
+Received: from ediswmail.ad.cirrus.com (ediswmail.ad.cirrus.com [198.61.86.93])
+        by ediswmail.ad.cirrus.com (Postfix) with ESMTP id 183FD448;
+        Mon, 12 Aug 2019 17:09:37 +0100 (BST)
+Date:   Mon, 12 Aug 2019 17:09:37 +0100
+From:   Charles Keepax <ckeepax@opensource.cirrus.com>
+To:     Lee Jones <lee.jones@linaro.org>
+CC:     <robh+dt@kernel.org>, <mark.rutland@arm.com>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <patches@opensource.cirrus.com>
+Subject: Re: [PATCH 2/2] mfd: madera: Add support for requesting the supply
+ clocks
+Message-ID: <20190812160937.GM54126@ediswmail.ad.cirrus.com>
+References: <20190806151321.31137-1-ckeepax@opensource.cirrus.com>
+ <20190806151321.31137-2-ckeepax@opensource.cirrus.com>
+ <20190812103853.GM26727@dell>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
+Content-Type: text/plain; charset="us-ascii"
 Content-Disposition: inline
-In-Reply-To: <AM0PR04MB42117575E82B4B762FE2143880D30@AM0PR04MB4211.eurprd04.prod.outlook.com>
-User-Agent: Mutt/1.5.24 (2015-08-30)
+In-Reply-To: <20190812103853.GM26727@dell>
+User-Agent: Mutt/1.5.21 (2010-09-15)
+X-Proofpoint-SPF-Result: fail
+X-Proofpoint-SPF-Record: v=spf1 include:spf-001ae601.pphosted.com include:spf.protection.outlook.com
+ -all
+X-Proofpoint-Spam-Details: rule=notspam policy=default score=0 mlxscore=0 mlxlogscore=999 adultscore=0
+ priorityscore=1501 suspectscore=0 phishscore=0 lowpriorityscore=0
+ spamscore=0 impostorscore=0 clxscore=1015 bulkscore=0 malwarescore=0
+ classifier=spam adjust=0 reason=mlx scancount=1 engine=8.12.0-1906280000
+ definitions=main-1908120180
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 02:41:55PM +0000, Aisheng Dong wrote:
-> > From: Shawn Guo <shawnguo@kernel.org>
-> > Sent: Monday, August 12, 2019 9:01 PM 
-> > On Mon, Aug 05, 2019 at 11:27:20AM +0800, Dong Aisheng wrote:
-> > > > > +- compatible:                Should be one of:
-> > > > > +                       "fsl,imx8qxp-lpcg"
-> > > > > +                       "fsl,imx8qm-lpcg" followed by
-> > "fsl,imx8qxp-lpcg".
-> > > > > +- reg:                       Address and length of the register set.
-> > > > > +- #clock-cells:              Should be 1. One LPCG supports multiple
-> > clocks.
-> > > > > +- clocks:            Input parent clocks phandle array for each clock.
-> > > > > +- bit-offset:                An integer array indicating the bit offset
-> > for each clock.
-> > > >
-> > > > I guess that the driver should be able to figure bit offset from
-> > > > 'clock-indices' property.
-> > > >
-> > >
-> > > Yes, it can be done in theory.
-> > > Then the binding may look like:
-> > > sdhc0_lpcg: clock-controller@5b200000 {
-> > >         ...
-> > >         #clock-cells = <1>;
-> > >         clocks = <&sdhc0_clk IMX_SC_PM_CLK_PER>,
-> > >                  <&conn_ipg_clk>, <&conn_axi_clk>;
-> > >         clock-indices = <0>, <16>, <20>;
-> > >         clock-output-names = "sdhc0_lpcg_per_clk",
-> > >                              "sdhc0_lpcg_ipg_clk",
-> > >                              "sdhc0_lpcg_ahb_clk";
-> > >         power-domains = <&pd IMX_SC_R_SDHC_0>; };
-> > >
-> > > usdhc1: mmc@5b010000 {
-> > >         ...
-> > >         clocks = <&sdhc0_lpcg 16>,
-> > >                  <&sdhc0_lpcg 0>,
-> > >                  <&sdhc0_lpcg 20>;
-> > >         clock-names = "ipg", "per", "ahb"; };
-> > >
-> > > However, after trying, i found  one limitation if using clock-indices
-> > > that users have to do a secondary search for the indices value from
-> > > clock names which is not very friendly.
-> > >
-> > > Formerly from the clock output names, user can easily get the clock
-> > > index as they're in fixed orders as output names, so very easily to
-> > > use.
-> > > e.g.
-> > > clocks = <&sdhc0_lpcg 1>,
-> > >          <&sdhc0_lpcg 0>,
-> > >          <&sdhc0_lpcg 2>;
-> > >
-> > > If using clock-indices, users have no way to know it's clock index
-> > > from clock output names order unless they do a secondary search from
-> > > the clock-indice array accordingly.
-> > > For example, for "sdhc0_lpcg_ahb_clk", user can easily know its
-> > > reference is <&sdhc0_lpcg 2>.
-> > > But if using clock-indice, we need search clock-indices array to find
-> > > its reference becomes <&sdhc0_lpcg 20>. So this seems like a drawback
-> > > if using clock-indices.
-> > 
-> > Shouldn't we have constant macro defined for those numbers, so that both
-> > 'clock-indices' and 'clocks' of client device can use?
-> > 
+On Mon, Aug 12, 2019 at 11:38:53AM +0100, Lee Jones wrote:
+> On Tue, 06 Aug 2019, Charles Keepax wrote:
 > 
-> I think we can do it.
-> Does below one look ok to you?
-> #define IMX_LPCG_ CLK_0	0
-> #define IMX_LPCG_ CLK_1	4
-> #define IMX_LPCG_ CLK_2	8
-> #define IMX_LPCG_ CLK_3	12
-> #define IMX_LPCG_ CLK_4	16
-> #define IMX_LPCG_ CLK_5	20
-> #define IMX_LPCG_ CLK_6	24
-> #define IMX_LPCG_ CLK_7	28
-
-Looks fine to me, except the space in the middle of macro name, which
-compiler will complain anyway :)
-
-Shawn
-
+> > Add the ability to get the clock for each clock input pin of the chip
+> > and enable MCLK2 since that is expected to be a permanently enabled
+> > 32kHz clock.
+> > 
+> > Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> > ---
+> >  int madera_dev_init(struct madera *madera)
+> >  {
+> > +	static const char * const mclk_name[] = { "mclk1", "mclk2", "mclk3" };
+> >  	struct device *dev = madera->dev;
+> >  	unsigned int hwid;
+> >  	int (*patch_fn)(struct madera *) = NULL;
+> > @@ -450,6 +451,17 @@ int madera_dev_init(struct madera *madera)
+> >  		       sizeof(madera->pdata));
+> >  	}
+> >  
+> > +	BUILD_BUG_ON(ARRAY_SIZE(madera->mclk) != ARRAY_SIZE(mclk_name));
 > 
-> The usage will look like:
-> <&sdhc0_lpcg IMX_LPCG_CLK_5>
+> Not sure how this could happen.  Surely we don't need it.
+> 
+
+mclk_name is defined locally in this function and the mclk array in
+include/linux/mfd/madera/core.h. This is to guard against one of
+them being updated but not the other. It is by no means essential
+but it feels like a good trade off given there is really limited
+downside.
+
+> > +	for (i = 0; i < ARRAY_SIZE(madera->mclk); i++) {
+> > +		madera->mclk[i] = devm_clk_get_optional(madera->dev,
+> > +							mclk_name[i]);
+> > +		if (IS_ERR(madera->mclk[i])) {
+> > +			dev_warn(madera->dev, "Failed to get %s: %ld\n",
+> > +				 mclk_name[i], PTR_ERR(madera->mclk[i]));
+> 
+> Do we even want to warn on the non-acquisition of an optional clock?
+> 
+> Especially with a message that looks like something actually failed.
+> 
+
+devm_clk_get_optional will return NULL if the clock was not
+specified, so this is silent in that case. A warning in the case
+something actually went wrong seems reasonable even if the clock
+is optional as the user tried to do something and it didn't
+behave as they intended.
+
+> > +			madera->mclk[i] = NULL;
+> > +		}
+> > +	}
+> > +
+> >  	ret = madera_get_reset_gpio(madera);
+> >  	if (ret)
+> >  		return ret;
+> > @@ -660,13 +672,19 @@ int madera_dev_init(struct madera *madera)
+> >  	}
+> >  
+> >  	/* Init 32k clock sourced from MCLK2 */
+> > +	ret = clk_prepare_enable(madera->mclk[MADERA_MCLK2]);
+> > +	if (ret != 0) {
+> > +		dev_err(madera->dev, "Failed to enable 32k clock: %d\n", ret);
+> > +		goto err_reset;
+> > +	}
+> 
+> What happened to this being optional?
+> 
+
+The device needs the clock but specifying it through DT is
+optional (the clock framework functions are no-ops and return
+success if the clock pointer is NULL). Normally the 32kHz
+clock is always on, and more importantly no existing users of
+the driver will be specifying one.
+
+We could remove the optional status for MCLK2, but it could break
+existing users who don't yet specify the clock until they update
+their DT and it will complicate the code as the other clocks are
+definitely optional, so MCLK2 will need special handling.
+
+> >  	ret = regmap_update_bits(madera->regmap,
+> >  			MADERA_CLOCK_32K_1,
+> >  			MADERA_CLK_32K_ENA_MASK | MADERA_CLK_32K_SRC_MASK,
+> >  			MADERA_CLK_32K_ENA | MADERA_32KZ_MCLK2);
+> >  	if (ret) {
+> >  		dev_err(madera->dev, "Failed to init 32k clock: %d\n", ret);
+> > -		goto err_reset;
+> > +		goto err_clock;
+> >  	}
+> >  
+> >  	pm_runtime_set_active(madera->dev);
+> > @@ -687,6 +705,8 @@ int madera_dev_init(struct madera *madera)
+> >  
+> >  err_pm_runtime:
+> >  	pm_runtime_disable(madera->dev);
+> > +err_clock:
+> > +	clk_disable_unprepare(madera->mclk[MADERA_MCLK2]);
+> 
+> Where are the other clocks consumed?
+> 
+
+Other clocks will be consumed by the ASoC part of the driver for
+clocking the audio functionality and running the FLLs. I haven't
+sent those patches yet, but was planning on doing so once this
+was merged.
+
+Thanks,
+Charles
