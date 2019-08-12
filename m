@@ -2,118 +2,105 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AB5648987F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 10:14:50 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id AD43A8988A
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 10:16:46 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726834AbfHLIOu (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 04:14:50 -0400
-Received: from relay7-d.mail.gandi.net ([217.70.183.200]:43401 "EHLO
-        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726528AbfHLIOu (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 04:14:50 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 6446E20011;
-        Mon, 12 Aug 2019 08:14:46 +0000 (UTC)
-Date:   Mon, 12 Aug 2019 10:14:45 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Chen-Yu Tsai <wens@csie.org>
-Cc:     Jernej Skrabec <jernej.skrabec@gmail.com>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        =?utf-8?Q?Ond=C5=99ej?= Jirman <megous@megous.com>,
+        id S1726972AbfHLIQp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 04:16:45 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:35497 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727023AbfHLIQp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 04:16:45 -0400
+Received: by mail-wr1-f66.google.com with SMTP id k2so17928497wrq.2
+        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 01:16:43 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=MJHxBxh/Q5vo+W76uNGRUJUeN3hwDfWxfMg6P/gBOg0=;
+        b=u4QlkRbMDiHfGrjdu436aHZusopdsD94AaT6zXTM3eaZ4y6BosUM0tlaA56X51nN9c
+         umI3PH27REA1YdEm/bDm3OE2UI9MGULdMLuGUTvnDBKUBlM+u5BgwEJXKd1SByIuWkrY
+         2kv99VeKU+V5QXG9oieP77x7yQgoExIDYXx4vPH8vlEru6HzZ6/p32cpzzObsHy5W3az
+         O2VbXSjzdwyFpNJYin4w9mGvGx4NIQqGMocgiLaaq7HHG8qkJjXvIxiD9mAgo53+VJlh
+         LCcGJbAa2s5qZg9/JZfFsSRo/t/+spxSIJYxDJW7Gfq3OorZb4uOTIjODwyWsHDkDNXd
+         LmBw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=MJHxBxh/Q5vo+W76uNGRUJUeN3hwDfWxfMg6P/gBOg0=;
+        b=i4S6U2uLZ3vMma7ulW09KSFNngQhPe0U6B7SdcHv03TVpTUg2S7R54OveJxeEMb66o
+         HGoTFh1K9jjCRVzVw9UcpsSsW6XsD+0DWIud9xlZoG870hbmoogh7Yqf7APFJBnoPDa5
+         d35S6QrEmrjxxJc/DDkNp5YYvhng8iuNHU038GVixvBClBm0lM3rAdZj+XPCO47sxQ+/
+         N3mLyD+PIK0kMsWj0wwo9umL7yZbyDRm3CXODMt+sid/hc8FEKxlm8Yri6UIG48XouUY
+         APqLZhvlfp8OmxD8CUFfT1NB13MZRZSbQxFvogYBpukaE4BZ6Fmm5en9tpQvPaJs1DAl
+         bEwQ==
+X-Gm-Message-State: APjAAAUx3JMQRK+2fTyVn/TyylMUfp7YXf06cQ2QzPyKK35B9SApL2X+
+        obXtvj4Syd2so2phuEO3r80uIYlPgRM=
+X-Google-Smtp-Source: APXvYqyD6fPKryZQTpN9zsdwGV7yS5BKNQZ8tOEeMIPGi0uW8Qmgi+HgiANiv0VmQSgyzgbueGKdzg==
+X-Received: by 2002:adf:ec0d:: with SMTP id x13mr40515082wrn.240.1565597802765;
+        Mon, 12 Aug 2019 01:16:42 -0700 (PDT)
+Received: from dell ([2.27.35.255])
+        by smtp.gmail.com with ESMTPSA id g15sm16420028wrp.29.2019.08.12.01.16.41
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 12 Aug 2019 01:16:42 -0700 (PDT)
+Date:   Mon, 12 Aug 2019 09:16:40 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Paul Cercueil <paul@crapouillou.net>
+Cc:     Ralf Baechle <ralf@linux-mips.org>,
+        Paul Burton <paul.burton@mips.com>,
+        James Hogan <jhogan@kernel.org>,
         Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Subject: Re: [linux-sunxi] [PATCH v8 0/4] Add support for Orange Pi 3
-Message-ID: <20190812081445.kfsbikfrt3pmsh6d@flea>
-References: <20190806155744.10263-1-megous@megous.com>
- <2218280.0sI6yjypBf@jernej-laptop>
- <CAGb2v67JVG2rhOdUwBmfsO0+RYb4DNOPmUo=Q_UhL3N+niLiEg@mail.gmail.com>
+        Vinod Koul <vkoul@kernel.org>,
+        Jean Delvare <jdelvare@suse.com>,
+        Guenter Roeck <linux@roeck-us.net>,
+        Miquel Raynal <miquel.raynal@bootlin.com>,
+        Richard Weinberger <richard@nod.at>,
+        Sebastian Reichel <sre@kernel.org>,
+        Bartlomiej Zolnierkiewicz <b.zolnierkie@samsung.com>,
+        Liam Girdwood <lgirdwood@gmail.com>,
+        Mark Brown <broonie@kernel.org>, od@zcrc.me,
+        devicetree@vger.kernel.org, linux-mips@vger.kernel.org,
+        linux-kernel@vger.kernel.org, dmaengine@vger.kernel.org,
+        linux-hwmon@vger.kernel.org, linux-mtd@lists.infradead.org,
+        linux-pm@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        linux-fbdev@vger.kernel.org, alsa-devel@alsa-project.org,
+        Artur Rojek <contact@artur-rojek.eu>
+Subject: Re: [PATCH 10/11] mfd: Drop obsolete JZ4740 driver
+Message-ID: <20190812081640.GA26727@dell>
+References: <20190725220215.460-1-paul@crapouillou.net>
+ <20190725220215.460-11-paul@crapouillou.net>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="wnuh5gs25vfqywb6"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <CAGb2v67JVG2rhOdUwBmfsO0+RYb4DNOPmUo=Q_UhL3N+niLiEg@mail.gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190725220215.460-11-paul@crapouillou.net>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Thu, 25 Jul 2019, Paul Cercueil wrote:
 
---wnuh5gs25vfqywb6
-Content-Type: text/plain; charset=utf-8
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> It has been replaced with the ingenic-iio driver for the ADC.
+> 
+> Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> Tested-by: Artur Rojek <contact@artur-rojek.eu>
+> ---
+>  drivers/mfd/Kconfig      |   9 --
+>  drivers/mfd/Makefile     |   1 -
+>  drivers/mfd/jz4740-adc.c | 324 ---------------------------------------
+>  3 files changed, 334 deletions(-)
+>  delete mode 100644 drivers/mfd/jz4740-adc.c
 
-On Mon, Aug 12, 2019 at 03:54:03PM +0800, Chen-Yu Tsai wrote:
-> On Mon, Aug 12, 2019 at 3:45 PM Jernej =C5=A0krabec <jernej.skrabec@gmail=
-=2Ecom> wrote:
-> >
-> > Dne torek, 06. avgust 2019 ob 17:57:39 CEST je megous@megous.com napisa=
-l(a):
-> > > From: Ondrej Jirman <megous@megous.com>
-> > >
-> > > This series implements support for Xunlong Orange Pi 3 board. There
-> > > are only a few patches remaining.
-> > >
-> > > - ethernet support - just a DT change (patch 1)
-> > > - HDMI support (patches 2-4)
-> > >
-> > > For some people, ethernet doesn't work after reboot because u-boot do=
-esn't
-> > > support AXP805 PMIC, and will not turn off the etherent PHY regulator=
-s.
-> > > So the regulator controlled by gpio will be shut down, but the other =
-one
-> > > controlled by the AXP PMIC will not.
-> > >
-> > > This is a problem only when running with a builtin driver. This needs
-> > > to be fixed in u-boot.
-> > >
-> > >
-> > > Please take a look.
-> >
-> > Is there anything missing? It would be nice to get this in 5.4. There i=
-s a lot
-> > of H6 boards which needs DDC bus enable mechanism (part of H6 reference
-> > design), including Beelink GS1 which already has HDMI node in mainline =
-kernel
-> > DT, but due to disabled DDC lines works only with 1024x768 (fallback
-> > resolution in DRM core).
->
-> I have a few minor comments about patch 1.
->
-> I think the HDMI bits are good, but I don't have maintainership / commit
-> permissions for drm-misc, so I'll have to wait until someone applies patc=
-hes
-> 2 and 3 before I apply patch 4.
+Applied, thanks.
 
-I've applied 2,3 and 4
-
-Thanks!
-Maxime
-
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
-
---wnuh5gs25vfqywb6
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVEf9QAKCRDj7w1vZxhR
-xXlgAP9MFKL3iPUwZUiy1/l5hoQrktuJFTIedDN9ko3r/H6TDAD/RZg3u4WBh6O3
-tteR/L/slzyHzMHsyD72abKseY8/IQE=
-=i2m2
------END PGP SIGNATURE-----
-
---wnuh5gs25vfqywb6--
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
