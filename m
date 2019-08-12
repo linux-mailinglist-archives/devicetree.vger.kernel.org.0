@@ -2,314 +2,154 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id A686C89D22
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:30:15 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id A589689D31
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:35:56 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728682AbfHLL3c (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 07:29:32 -0400
-Received: from hqemgate15.nvidia.com ([216.228.121.64]:18504 "EHLO
-        hqemgate15.nvidia.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728688AbfHLL3c (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:29:32 -0400
-Received: from hqpgpgate101.nvidia.com (Not Verified[216.228.121.13]) by hqemgate15.nvidia.com (using TLS: TLSv1.2, DES-CBC3-SHA)
-        id <B5d514da40001>; Mon, 12 Aug 2019 04:29:40 -0700
-Received: from hqmail.nvidia.com ([172.20.161.6])
-  by hqpgpgate101.nvidia.com (PGP Universal service);
-  Mon, 12 Aug 2019 04:29:29 -0700
-X-PGP-Universal: processed;
-        by hqpgpgate101.nvidia.com on Mon, 12 Aug 2019 04:29:29 -0700
-Received: from HQMAIL101.nvidia.com (172.20.187.10) by HQMAIL104.nvidia.com
- (172.18.146.11) with Microsoft SMTP Server (TLS) id 15.0.1473.3; Mon, 12 Aug
- 2019 11:29:29 +0000
-Received: from hqnvemgw02.nvidia.com (172.16.227.111) by HQMAIL101.nvidia.com
- (172.20.187.10) with Microsoft SMTP Server (TLS) id 15.0.1473.3 via Frontend
- Transport; Mon, 12 Aug 2019 11:29:29 +0000
-Received: from kyarlagadda-linux.nvidia.com (Not Verified[10.19.64.169]) by hqnvemgw02.nvidia.com with Trustwave SEG (v7,5,8,10121)
-        id <B5d514d950004>; Mon, 12 Aug 2019 04:29:28 -0700
-From:   Krishna Yarlagadda <kyarlagadda@nvidia.com>
-To:     <gregkh@linuxfoundation.org>, <robh+dt@kernel.org>,
-        <mark.rutland@arm.com>, <thierry.reding@gmail.com>,
-        <jonathanh@nvidia.com>, <ldewangan@nvidia.com>, <jslaby@suse.com>
-CC:     <linux-serial@vger.kernel.org>, <devicetree@vger.kernel.org>,
-        <linux-tegra@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
-        Krishna Yarlagadda <kyarlagadda@nvidia.com>,
-        Shardar Shariff Md <smohammed@nvidia.com>
-Subject: [PATCH 14/14] serial: tegra: Add PIO mode support
-Date:   Mon, 12 Aug 2019 16:58:23 +0530
-Message-ID: <1565609303-27000-15-git-send-email-kyarlagadda@nvidia.com>
-X-Mailer: git-send-email 2.7.4
-In-Reply-To: <1565609303-27000-1-git-send-email-kyarlagadda@nvidia.com>
-References: <1565609303-27000-1-git-send-email-kyarlagadda@nvidia.com>
-X-NVConfidentiality: public
+        id S1728242AbfHLLfw (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 07:35:52 -0400
+Received: from foss.arm.com ([217.140.110.172]:48936 "EHLO foss.arm.com"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728066AbfHLLfv (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 07:35:51 -0400
+Received: from usa-sjc-imap-foss1.foss.arm.com (unknown [10.121.207.14])
+        by usa-sjc-mx-foss1.foss.arm.com (Postfix) with ESMTP id B3FC615AB;
+        Mon, 12 Aug 2019 04:35:50 -0700 (PDT)
+Received: from e121166-lin.cambridge.arm.com (unknown [10.1.196.255])
+        by usa-sjc-imap-foss1.foss.arm.com (Postfix) with ESMTPSA id 4384D3F706;
+        Mon, 12 Aug 2019 04:35:48 -0700 (PDT)
+Date:   Mon, 12 Aug 2019 12:35:43 +0100
+From:   Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+To:     Xiaowei Bao <xiaowei.bao@nxp.com>
+Cc:     "kishon@ti.com" <kishon@ti.com>,
+        "bhelgaas@google.com" <bhelgaas@google.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        Leo Li <leoyang.li@nxp.com>, "arnd@arndb.de" <arnd@arndb.de>,
+        "gregkh@linuxfoundation.org" <gregkh@linuxfoundation.org>,
+        "M.h. Lian" <minghuan.lian@nxp.com>,
+        Mingkai Hu <mingkai.hu@nxp.com>, Roy Zang <roy.zang@nxp.com>,
+        "kstewart@linuxfoundation.org" <kstewart@linuxfoundation.org>,
+        "pombredanne@nexb.com" <pombredanne@nexb.com>,
+        "shawn.lin@rock-chips.com" <shawn.lin@rock-chips.com>,
+        "linux-pci@vger.kernel.org" <linux-pci@vger.kernel.org>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "linuxppc-dev@lists.ozlabs.org" <linuxppc-dev@lists.ozlabs.org>
+Subject: Re: [EXT] Re: [PATCHv3 1/2] PCI: layerscape: Add the bar_fixed_64bit
+ property in EP driver.
+Message-ID: <20190812113543.GA25040@e121166-lin.cambridge.arm.com>
+References: <20190628013826.4705-1-xiaowei.bao@nxp.com>
+ <20190812101213.GB20861@e121166-lin.cambridge.arm.com>
+ <AM5PR04MB329929A0B046F6BEB94B0120F5D30@AM5PR04MB3299.eurprd04.prod.outlook.com>
 MIME-Version: 1.0
-Content-Type: text/plain
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=nvidia.com; s=n1;
-        t=1565609380; bh=Vxzh1OPXEktqHUn/3Dn+GZxJZNYtPAod90S85gBFsSM=;
-        h=X-PGP-Universal:From:To:CC:Subject:Date:Message-ID:X-Mailer:
-         In-Reply-To:References:X-NVConfidentiality:MIME-Version:
-         Content-Type;
-        b=q7Q97fr7oHygJNXR9ZXtYtgeHND0m/QWtdVf8r+nzw61DZek/GGTPN3d3gYn6bt5W
-         BZgY87TOlBP9qnc0QqEKcLRQpnZ7XCKruhs8pt0MtWr0h+XF7R2MFZKs+QQZ1wXg9Y
-         Oy0MTAyj7jvS/TJjNXNjjwSPdumbXMpb/4zSLod6fPZvW1Z7/q7Tr6kzJhJJ3fDOeL
-         xZ5FyUlq7jxZhijVDpIhvAUPQYAJeIfD50vOVrM8dv3p4U9nO1jaarnRfHyqSqylvQ
-         mZbvp2lH1EliW1y4RAVeesVZBcRmo9ZTbVULbB9qXshfYzXY/ePydolMcI0hp9Ph5q
-         R7ujtqWVi6Bhg==
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <AM5PR04MB329929A0B046F6BEB94B0120F5D30@AM5PR04MB3299.eurprd04.prod.outlook.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Add PIO mode support in receive and transmit path with RX interrupt
-trigger of 16 bytes for Tegra194 and older chips.
+On Mon, Aug 12, 2019 at 10:39:00AM +0000, Xiaowei Bao wrote:
+> 
+> 
+> > -----Original Message-----
+> > From: Lorenzo Pieralisi <lorenzo.pieralisi@arm.com>
+> > Sent: 2019年8月12日 18:12
+> > To: Xiaowei Bao <xiaowei.bao@nxp.com>; kishon@ti.com
+> > Cc: bhelgaas@google.com; robh+dt@kernel.org; mark.rutland@arm.com;
+> > shawnguo@kernel.org; Leo Li <leoyang.li@nxp.com>; arnd@arndb.de;
+> > gregkh@linuxfoundation.org; M.h. Lian <minghuan.lian@nxp.com>; Mingkai
+> > Hu <mingkai.hu@nxp.com>; Roy Zang <roy.zang@nxp.com>;
+> > kstewart@linuxfoundation.org; pombredanne@nexb.com;
+> > shawn.lin@rock-chips.com; linux-pci@vger.kernel.org;
+> > devicetree@vger.kernel.org; linux-kernel@vger.kernel.org;
+> > linux-arm-kernel@lists.infradead.org; linuxppc-dev@lists.ozlabs.org
+> > Subject: [EXT] Re: [PATCHv3 1/2] PCI: layerscape: Add the bar_fixed_64bit
+> > property in EP driver.
+> > 
+> > Caution: EXT Email
+> > 
+> > First off:
+> > 
+> > Trim the CC list, you CC'ed maintainers (and mailing lists) for no reasons
+> > whatsover.
+> [Xiaowei Bao]Hi Lorenzo, I am not clear why the mail list is the CC, I use the command "git send-email --to", I will try to send the patch again, do I need to modify the version is v4 when I send this patch again?
 
-Signed-off-by: Shardar Shariff Md <smohammed@nvidia.com>
-Signed-off-by: Krishna Yarlagadda <kyarlagadda@nvidia.com>
----
- drivers/tty/serial/serial-tegra.c | 117 ++++++++++++++++++++++++++++----------
- 1 file changed, 86 insertions(+), 31 deletions(-)
+Yes you do.
 
-diff --git a/drivers/tty/serial/serial-tegra.c b/drivers/tty/serial/serial-tegra.c
-index 3e02f27..6e5b418 100644
---- a/drivers/tty/serial/serial-tegra.c
-+++ b/drivers/tty/serial/serial-tegra.c
-@@ -139,6 +139,8 @@ struct tegra_uart_port {
- 	int					n_adjustable_baud_rates;
- 	int					required_rate;
- 	int					configured_rate;
-+	bool					use_rx_pio;
-+	bool					use_tx_pio;
- };
- 
- static void tegra_uart_start_next_tx(struct tegra_uart_port *tup);
-@@ -569,7 +571,7 @@ static void tegra_uart_start_next_tx(struct tegra_uart_port *tup)
- 	if (!count)
- 		return;
- 
--	if (count < TEGRA_UART_MIN_DMA)
-+	if (tup->use_tx_pio || count < TEGRA_UART_MIN_DMA)
- 		tegra_uart_start_pio_tx(tup, count);
- 	else if (BYTES_TO_ALIGN(tail) > 0)
- 		tegra_uart_start_pio_tx(tup, BYTES_TO_ALIGN(tail));
-@@ -802,6 +804,18 @@ static void tegra_uart_handle_modem_signal_change(struct uart_port *u)
- 		uart_handle_cts_change(&tup->uport, msr & UART_MSR_CTS);
- }
- 
-+static void do_handle_rx_pio(struct tegra_uart_port *tup)
-+{
-+	struct tty_struct *tty = tty_port_tty_get(&tup->uport.state->port);
-+	struct tty_port *port = &tup->uport.state->port;
-+
-+	tegra_uart_handle_rx_pio(tup, port);
-+	if (tty) {
-+		tty_flip_buffer_push(port);
-+		tty_kref_put(tty);
-+	}
-+}
-+
- static irqreturn_t tegra_uart_isr(int irq, void *data)
- {
- 	struct tegra_uart_port *tup = data;
-@@ -815,7 +829,7 @@ static irqreturn_t tegra_uart_isr(int irq, void *data)
- 	while (1) {
- 		iir = tegra_uart_read(tup, UART_IIR);
- 		if (iir & UART_IIR_NO_INT) {
--			if (is_rx_int) {
-+			if (!tup->use_rx_pio && is_rx_int) {
- 				tegra_uart_handle_rx_dma(tup);
- 				if (tup->rx_in_progress) {
- 					ier = tup->ier_shadow;
-@@ -843,7 +857,7 @@ static irqreturn_t tegra_uart_isr(int irq, void *data)
- 		case 4: /* End of data */
- 		case 6: /* Rx timeout */
- 		case 2: /* Receive */
--			if (!is_rx_int) {
-+			if (!tup->use_rx_pio && !is_rx_int) {
- 				is_rx_int = true;
- 				/* Disable Rx interrupts */
- 				ier = tup->ier_shadow;
-@@ -853,6 +867,8 @@ static irqreturn_t tegra_uart_isr(int irq, void *data)
- 					UART_IER_RTOIE | TEGRA_UART_IER_EORD);
- 				tup->ier_shadow = ier;
- 				tegra_uart_write(tup, ier, UART_IER);
-+			} else {
-+				do_handle_rx_pio(tup);
- 			}
- 			break;
- 
-@@ -871,6 +887,7 @@ static irqreturn_t tegra_uart_isr(int irq, void *data)
- static void tegra_uart_stop_rx(struct uart_port *u)
- {
- 	struct tegra_uart_port *tup = to_tegra_uport(u);
-+	struct tty_port *port = &tup->uport.state->port;
- 	struct dma_tx_state state;
- 	unsigned long ier;
- 
-@@ -888,9 +905,13 @@ static void tegra_uart_stop_rx(struct uart_port *u)
- 	tup->ier_shadow = ier;
- 	tegra_uart_write(tup, ier, UART_IER);
- 	tup->rx_in_progress = 0;
--	dmaengine_terminate_all(tup->rx_dma_chan);
--	dmaengine_tx_status(tup->rx_dma_chan, tup->rx_cookie, &state);
--	tegra_uart_rx_buffer_push(tup, state.residue);
-+	if (tup->rx_dma_chan && !tup->use_rx_pio) {
-+		dmaengine_terminate_all(tup->rx_dma_chan);
-+		dmaengine_tx_status(tup->rx_dma_chan, tup->rx_cookie, &state);
-+		tegra_uart_rx_buffer_push(tup, state.residue);
-+	} else {
-+		tegra_uart_handle_rx_pio(tup, port);
-+	}
- }
- 
- static void tegra_uart_hw_deinit(struct tegra_uart_port *tup)
-@@ -941,8 +962,10 @@ static void tegra_uart_hw_deinit(struct tegra_uart_port *tup)
- 	tup->rx_in_progress = 0;
- 	tup->tx_in_progress = 0;
- 
--	tegra_uart_dma_channel_free(tup, true);
--	tegra_uart_dma_channel_free(tup, false);
-+	if (!tup->use_rx_pio)
-+		tegra_uart_dma_channel_free(tup, true);
-+	if (!tup->use_tx_pio)
-+		tegra_uart_dma_channel_free(tup, false);
- 
- 	clk_disable_unprepare(tup->uart_clk);
- }
-@@ -987,10 +1010,14 @@ static int tegra_uart_hw_init(struct tegra_uart_port *tup)
- 	 */
- 	tup->fcr_shadow = UART_FCR_ENABLE_FIFO;
- 
--	if (tup->cdata->dma_burst_bytes == 8)
--		tup->fcr_shadow |= UART_FCR_R_TRIG_10;
--	else
--		tup->fcr_shadow |= UART_FCR_R_TRIG_01;
-+	if (tup->use_rx_pio) {
-+		tup->fcr_shadow |= UART_FCR_R_TRIG_11;
-+	} else {
-+		if (tup->cdata->dma_burst_bytes == 8)
-+			tup->fcr_shadow |= UART_FCR_R_TRIG_10;
-+		else
-+			tup->fcr_shadow |= UART_FCR_R_TRIG_01;
-+	}
- 
- 	tup->fcr_shadow |= TEGRA_UART_TX_TRIG_16B;
- 	tegra_uart_write(tup, tup->fcr_shadow, UART_FCR);
-@@ -1017,19 +1044,23 @@ static int tegra_uart_hw_init(struct tegra_uart_port *tup)
- 	 * (115200, N, 8, 1) so that the receive DMA buffer may be
- 	 * enqueued
- 	 */
--	tup->lcr_shadow = TEGRA_UART_DEFAULT_LSR;
- 	ret = tegra_set_baudrate(tup, TEGRA_UART_DEFAULT_BAUD);
- 	if (ret < 0) {
- 		dev_err(tup->uport.dev, "Failed to set baud rate\n");
- 		return ret;
- 	}
--	tup->fcr_shadow |= UART_FCR_DMA_SELECT;
--	tegra_uart_write(tup, tup->fcr_shadow, UART_FCR);
-+	if (!tup->use_rx_pio) {
-+		tup->lcr_shadow = TEGRA_UART_DEFAULT_LSR;
-+		tup->fcr_shadow |= UART_FCR_DMA_SELECT;
-+		tegra_uart_write(tup, tup->fcr_shadow, UART_FCR);
- 
--	ret = tegra_uart_start_rx_dma(tup);
--	if (ret < 0) {
--		dev_err(tup->uport.dev, "Not able to start Rx DMA\n");
--		return ret;
-+		ret = tegra_uart_start_rx_dma(tup);
-+		if (ret < 0) {
-+			dev_err(tup->uport.dev, "Not able to start Rx DMA\n");
-+			return ret;
-+		}
-+	} else {
-+		tegra_uart_write(tup, tup->fcr_shadow, UART_FCR);
- 	}
- 	tup->rx_in_progress = 1;
- 
-@@ -1051,7 +1082,12 @@ static int tegra_uart_hw_init(struct tegra_uart_port *tup)
- 	 * both the EORD as well as RX_TIMEOUT - SW sees RX_TIMEOUT first
- 	 * then the EORD.
- 	 */
--	tup->ier_shadow = UART_IER_RLSI | UART_IER_RTOIE | TEGRA_UART_IER_EORD;
-+	if (!tup->use_rx_pio)
-+		tup->ier_shadow = UART_IER_RLSI | UART_IER_RTOIE |
-+			TEGRA_UART_IER_EORD;
-+	else
-+		tup->ier_shadow = UART_IER_RLSI | UART_IER_RTOIE | UART_IER_RDI;
-+
- 	tegra_uart_write(tup, tup->ier_shadow, UART_IER);
- 	return 0;
- }
-@@ -1146,16 +1182,22 @@ static int tegra_uart_startup(struct uart_port *u)
- 	struct tegra_uart_port *tup = to_tegra_uport(u);
- 	int ret;
- 
--	ret = tegra_uart_dma_channel_allocate(tup, false);
--	if (ret < 0) {
--		dev_err(u->dev, "Tx Dma allocation failed, err = %d\n", ret);
--		return ret;
-+	if (!tup->use_tx_pio) {
-+		ret = tegra_uart_dma_channel_allocate(tup, false);
-+		if (ret < 0) {
-+			dev_err(u->dev, "Tx Dma allocation failed, err = %d\n",
-+				ret);
-+			return ret;
-+		}
- 	}
- 
--	ret = tegra_uart_dma_channel_allocate(tup, true);
--	if (ret < 0) {
--		dev_err(u->dev, "Rx Dma allocation failed, err = %d\n", ret);
--		goto fail_rx_dma;
-+	if (!tup->use_rx_pio) {
-+		ret = tegra_uart_dma_channel_allocate(tup, true);
-+		if (ret < 0) {
-+			dev_err(u->dev, "Rx Dma allocation failed, err = %d\n",
-+				ret);
-+			goto fail_rx_dma;
-+		}
- 	}
- 
- 	ret = tegra_uart_hw_init(tup);
-@@ -1173,9 +1215,11 @@ static int tegra_uart_startup(struct uart_port *u)
- 	return 0;
- 
- fail_hw_init:
--	tegra_uart_dma_channel_free(tup, true);
-+	if (!tup->use_rx_pio)
-+		tegra_uart_dma_channel_free(tup, true);
- fail_rx_dma:
--	tegra_uart_dma_channel_free(tup, false);
-+	if (!tup->use_tx_pio)
-+		tegra_uart_dma_channel_free(tup, false);
- 	return ret;
- }
- 
-@@ -1379,7 +1423,6 @@ static int tegra_uart_parse_dt(struct platform_device *pdev,
- 	int count;
- 	int n_entries;
- 
--
- 	port = of_alias_get_id(np, "serial");
- 	if (port < 0) {
- 		dev_err(&pdev->dev, "failed to get alias id, errno %d\n", port);
-@@ -1389,6 +1432,18 @@ static int tegra_uart_parse_dt(struct platform_device *pdev,
- 
- 	tup->enable_modem_interrupt = of_property_read_bool(np,
- 					"nvidia,enable-modem-interrupt");
-+
-+	index = of_property_match_string(np, "dma-names", "rx");
-+	if (index < 0) {
-+		tup->use_rx_pio = true;
-+		dev_info(&pdev->dev, "RX in PIO mode\n");
-+	}
-+	index = of_property_match_string(np, "dma-names", "tx");
-+	if (index < 0) {
-+		tup->use_tx_pio = true;
-+		dev_info(&pdev->dev, "TX in PIO mode\n");
-+	}
-+
- 	n_entries = of_property_count_u32_elems(np, "nvidia,adjust-baud-rates");
- 	if (n_entries > 0) {
- 		tup->n_adjustable_baud_rates = n_entries / 3;
--- 
-2.7.4
+Wrap lines to max 80 characters. There is no need to add [Xiaowei Bao].
 
+1) Read, email etiquette
+
+https://kernelnewbies.org/PatchCulture
+
+2) get_maintainer.pl -f drivers/pci/controller/dwc/pci-layerscape.c
+
+Compare the output to the people in CC, trim it accordingly.
+
+3) The NXP maintainers in the MAINTAINERS file have not given a single
+   comment for this patchset. Either they show up or I will remove them
+   from the MAINTAINERS list.
+
+4) Before submitting patches, talk to someone at NXP who can help you
+   format them in preparation for posting, I do not have time to write
+   guidelines for everyone posting on linux-pci, sorry, the information
+   is out there if you care to read it.
+
+Thanks,
+Lorenzo
+
+> > 
+> > Then, read this:
+> > 
+> > https://eur01.safelinks.protection.outlook.com/?url=https%3A%2F%2Flore.ke
+> > rnel.org%2Flinux-pci%2F20171026223701.GA25649%40bhelgaas-glaptop.roa
+> > m.corp.google.com%2F&amp;data=02%7C01%7Cxiaowei.bao%40nxp.com%7
+> > C1c586178e23c423a0e8808d71f0d8f6f%7C686ea1d3bc2b4c6fa92cd99c5c30
+> > 1635%7C0%7C0%7C637012015426788575&amp;sdata=3bx1bDFIzik8FnD0wl
+> > duAUv7wtLdD1J3hQ3xNH2xmFY%3D&amp;reserved=0
+> > 
+> > and make your patches compliant please.
+> > 
+> > On Fri, Jun 28, 2019 at 09:38:25AM +0800, Xiaowei Bao wrote:
+> > > The PCIe controller of layerscape just have 4 BARs, BAR0 and BAR1 is
+> > > 32bit, BAR3 and BAR4 is 64bit, this is determined by hardware, so set
+> > > the bar_fixed_64bit with 0x14.
+> > >
+> > > Signed-off-by: Xiaowei Bao <xiaowei.bao@nxp.com>
+> > > ---
+> > > v2:
+> > >  - Replace value 0x14 with a macro.
+> > > v3:
+> > >  - No change.
+> > >
+> > >  drivers/pci/controller/dwc/pci-layerscape-ep.c |    1 +
+> > >  1 files changed, 1 insertions(+), 0 deletions(-)
+> > >
+> > > diff --git a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > index be61d96..227c33b 100644
+> > > --- a/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > +++ b/drivers/pci/controller/dwc/pci-layerscape-ep.c
+> > > @@ -44,6 +44,7 @@ static int ls_pcie_establish_link(struct dw_pcie *pci)
+> > >       .linkup_notifier = false,
+> > >       .msi_capable = true,
+> > >       .msix_capable = false,
+> > > +     .bar_fixed_64bit = (1 << BAR_2) | (1 << BAR_4),
+> > 
+> > I would appreciate Kishon's ACK on this.
+> > 
+> > Lorenzo
+> > 
+> > >  };
+> > >
+> > >  static const struct pci_epc_features*
+> > > --
+> > > 1.7.1
+> > >
