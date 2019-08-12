@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 686F689C1E
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 12:59:46 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 41A8289C24
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:00:06 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727981AbfHLK7j (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 06:59:39 -0400
-Received: from mail-wm1-f66.google.com ([209.85.128.66]:34941 "EHLO
-        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728126AbfHLK7j (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 06:59:39 -0400
-Received: by mail-wm1-f66.google.com with SMTP id l2so11371047wmg.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 03:59:36 -0700 (PDT)
+        id S1728002AbfHLLAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 07:00:01 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:32818 "EHLO
+        mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728167AbfHLLAB (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:00:01 -0400
+Received: by mail-wr1-f68.google.com with SMTP id n9so104283959wru.0
+        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 04:00:00 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to
          :user-agent;
-        bh=L3QDldUNKawRROwPoifWuojCk4A/opVfl24XOrd2D7A=;
-        b=obSlPtmAMxsNOfVblv1rcLth1tU1YkoOq/0WsTxm0q0uFxpqHtR77NtUQ+rl03ecjl
-         WkoobEX1p04hFOFoObYL3iULEGiERZ6FlpX5EujGVaDmLku+GdXft+03MhQgxDVgrr14
-         sCL/ithC+ZDs+9yBSpOSxCUlc/2Pn2ewjwy4ZPyjZ0wthxAZ8ico9frp/ttcYKD6VyId
-         iKx3kyMmKVGEJDBtt1GU9ByQdWMJXoQhvRZiRTwklE+jNOb+4mZl42tPsQTP+hdmHnnD
-         0NMd0XuWjT+YitJyNjUdq+o3a5ihmsG5e3VfFBSYDn4QlbTghhFoD4eEMF1Y+HRl16cl
-         GGUw==
+        bh=Se9XSbsfGDt4BhyzlQIMi1S9/MkvfhBPx11WicajSSg=;
+        b=yaHiSpqBDdc2sT6zI2Dw8zIEtpSIuQSkOCCSmj9RJNlb1WEg3hBK3DieiAioZ8alKu
+         AhP6xz8HC1xq2zeOzZD/CESJhRrdOgr9LS9ALNZnKZ7qQmpeLUV9bDwnT3EpLlwruIiP
+         qw6Wfo9LBJzqQuQkLSFwdLolV8LwmnGKEdztwiHvhxo4Su+Amv+FnsR+5zM2D+cajBpc
+         ylXscLIIU6eUjTydGSw0LQX8ETWkvZ56eeYt1TiS0+Pe7xUOVQiHuRDq1jqfF+s8ugmx
+         Yb3gupA+zwYIsrVaxjBkVmzYbfHGadHGrRwNto9vTAoF1Gi8UzYRJPde3HbA0jbocbzQ
+         ck9A==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to:user-agent;
-        bh=L3QDldUNKawRROwPoifWuojCk4A/opVfl24XOrd2D7A=;
-        b=EDLIqd8Ek6C69EdSehJqlrZX4TkuLcWc3p0JWdW2JB0tCwD9VaPAhhwG6Cg3yEebST
-         D0dh1ZNRjFY+26bwFZWm4FSrS+fzLcZsUzFnmJnEdqfwOeDYxwiNLU7rIYLM0MvUIMKF
-         OKwVKI+uo2Q5ITp08M3a8RIJ4oxkJtodkJb5Z+kxV///KK+5G/wV47DxhGMfJNMXtbIh
-         9qWnXeTGUm6HTV3VNJJmQOaltAzKaozUewQLKnrW9PuIuxzqCgRmkN+4t5fFqTSXKrmn
-         lN9kfEVVyhQSu6YuauO2cS1Q/Bu2mNx4Xwj8guwh8bfaTTbIXY0kpt6h3sm70tPgLGXs
-         DO4w==
-X-Gm-Message-State: APjAAAU0NBIxz0JBpONV9W6lqOtNmWU5qvuRVS5pnBrBuCaR7RjuClnq
-        jrQSIIvU/XYg1YnSZtmLP1L6+g==
-X-Google-Smtp-Source: APXvYqywqTqWPVgMZmVrzbCZt88p0+kSGz4htkEKRS3xHptkYpO7UA20whgKvePyENz44HvhOZ+enQ==
-X-Received: by 2002:a1c:20c8:: with SMTP id g191mr26698891wmg.55.1565607575988;
-        Mon, 12 Aug 2019 03:59:35 -0700 (PDT)
+        bh=Se9XSbsfGDt4BhyzlQIMi1S9/MkvfhBPx11WicajSSg=;
+        b=Pz0fTQh2V1Ic+QtnZ9II6YV6Rv2Rh/4U7cfRSHBRcKN7d6lRb4ENcezllVQDDzfRZ5
+         thaNwfOPr3QfpgZFh1TD4NAIksE0xErV6nKvf8MwQ/x1M+4oP8WaXZmdxshgopGQXcDU
+         wSWHNFsXypmu9cXd7Y28IaeXH9wXdb0EAJBH75NoUuqgobfZJ1p2P2NGHHXVLutt41hH
+         pPQwaFihpsq/ezTA2lLXJ6Ckbcb+aD59x+JpyssAcjE777GmIIj9rghaQL1GzGgPRHy+
+         cyyoW3uEsXOUHvDqwnJJD0zyWdRVqtM057n1VJu6RBKpBnMjfHOUH2OfdI8cT209FU5d
+         VIvA==
+X-Gm-Message-State: APjAAAVhCvZcz/Uihuo7+syzfYJK7W/HX8GHmrLPJEM0xt3fLsjPBPhr
+        +t82104LAHdoVLwTimWQu+8zLw==
+X-Google-Smtp-Source: APXvYqz8c1NJgqCLXi1ZOgbjqMY0Kt0jc3i39Y6I1YxE2q8hdoWNcdXIgZA0cAg94/5QZFrH+80nhg==
+X-Received: by 2002:adf:dc51:: with SMTP id m17mr41748135wrj.256.1565607599334;
+        Mon, 12 Aug 2019 03:59:59 -0700 (PDT)
 Received: from dell ([2.27.35.255])
-        by smtp.gmail.com with ESMTPSA id g26sm1600973wmh.32.2019.08.12.03.59.34
+        by smtp.gmail.com with ESMTPSA id a81sm5608087wma.3.2019.08.12.03.59.58
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 12 Aug 2019 03:59:35 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 11:59:33 +0100
+        Mon, 12 Aug 2019 03:59:58 -0700 (PDT)
+Date:   Mon, 12 Aug 2019 11:59:57 +0100
 From:   Lee Jones <lee.jones@linaro.org>
 To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -65,15 +65,16 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com
-Subject: Re: [PATCH v4 06/10] mfd: Add support for the MediaTek MT6358 PMIC
-Message-ID: <20190812105933.GO26727@dell>
+Subject: Re: [PATCH v4 02/10] mfd: mt6397: extract irq related code from core
+ driver
+Message-ID: <20190812105957.GP26727@dell>
 References: <1564982518-32163-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1564982518-32163-7-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1564982518-32163-3-git-send-email-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1564982518-32163-7-git-send-email-hsin-hsiung.wang@mediatek.com>
+In-Reply-To: <1564982518-32163-3-git-send-email-hsin-hsiung.wang@mediatek.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -82,252 +83,21 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, 05 Aug 2019, Hsin-Hsiung Wang wrote:
 
-> This adds support for the MediaTek MT6358 PMIC. This is a
-> multifunction device with the following sub modules:
-> 
-> - Regulator
-> - RTC
-> - Codec
-> - Interrupt
-> 
-> It is interfaced to the host controller using SPI interface
-> by a proprietary hardware called PMIC wrapper or pwrap.
-> MT6358 MFD is a child device of the pwrap.
+> In order to support different types of irq design, we decide to add
+> separate irq drivers for different design and keep mt6397 mfd core
+> simple and reusable to all generations of PMICs so far.
 > 
 > Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
 > ---
->  drivers/mfd/Makefile                 |   3 +-
->  drivers/mfd/mt6358-irq.c             | 229 ++++++++++++++++++++++++++++
->  drivers/mfd/mt6397-core.c            |  52 ++++++-
->  include/linux/mfd/mt6358/core.h      | 158 ++++++++++++++++++++
->  include/linux/mfd/mt6358/registers.h | 282 +++++++++++++++++++++++++++++++++++
->  include/linux/mfd/mt6397/core.h      |   3 +
->  6 files changed, 725 insertions(+), 2 deletions(-)
->  create mode 100644 drivers/mfd/mt6358-irq.c
->  create mode 100644 include/linux/mfd/mt6358/core.h
->  create mode 100644 include/linux/mfd/mt6358/registers.h
-> 
-> diff --git a/drivers/mfd/Makefile b/drivers/mfd/Makefile
-> index 9a96325..36d088b 100644
-> --- a/drivers/mfd/Makefile
-> +++ b/drivers/mfd/Makefile
-> @@ -241,7 +241,8 @@ obj-$(CONFIG_INTEL_SOC_PMIC)	+= intel-soc-pmic.o
->  obj-$(CONFIG_INTEL_SOC_PMIC_BXTWC)	+= intel_soc_pmic_bxtwc.o
->  obj-$(CONFIG_INTEL_SOC_PMIC_CHTWC)	+= intel_soc_pmic_chtwc.o
->  obj-$(CONFIG_INTEL_SOC_PMIC_CHTDC_TI)	+= intel_soc_pmic_chtdc_ti.o
-> -mt6397-objs	:= mt6397-core.o mt6397-irq.o
-> +
-> +mt6397-objs			:= mt6397-core.o mt6397-irq.o mt6358-irq.o
->  obj-$(CONFIG_MFD_MT6397)	+= mt6397.o
->  
->  obj-$(CONFIG_MFD_ALTERA_A10SR)	+= altera-a10sr.o
-> diff --git a/drivers/mfd/mt6358-irq.c b/drivers/mfd/mt6358-irq.c
-> new file mode 100644
-> index 0000000..2f55079
-> --- /dev/null
-> +++ b/drivers/mfd/mt6358-irq.c
-> @@ -0,0 +1,229 @@
-> +// SPDX-License-Identifier: GPL-2.0
-> +//
-> +// Copyright (c) 2019 MediaTek Inc.
-> +
-> +#include <linux/interrupt.h>
-> +#include <linux/mfd/mt6358/core.h>
-> +#include <linux/mfd/mt6358/registers.h>
-> +#include <linux/mfd/mt6397/core.h>
-> +#include <linux/module.h>
-> +#include <linux/of.h>
-> +#include <linux/of_device.h>
-> +#include <linux/of_irq.h>
-> +#include <linux/platform_device.h>
-> +#include <linux/regmap.h>
+>  drivers/mfd/Makefile            |   3 +-
+>  drivers/mfd/mt6397-core.c       | 146 --------------------------------
+>  drivers/mfd/mt6397-irq.c        | 181 ++++++++++++++++++++++++++++++++++++++++
+>  include/linux/mfd/mt6397/core.h |   9 ++
+>  4 files changed, 192 insertions(+), 147 deletions(-)
+>  create mode 100644 drivers/mfd/mt6397-irq.c
 
-[...]
-
-> +static void pmic_irq_sync_unlock(struct irq_data *data)
-> +{
-> +	unsigned int i, top_gp, en_reg, int_regs, shift;
-> +	struct mt6397_chip *chip = irq_data_get_irq_chip_data(data);
-> +	struct pmic_irq_data *irqd = chip->irq_data;
-> +
-> +	for (i = 0; i < irqd->num_pmic_irqs; i++) {
-> +		if (irqd->enable_hwirq[i] == irqd->cache_hwirq[i])
-> +			continue;
-> +
-> +		top_gp = 0;
-> +		while ((top_gp + 1) < ARRAY_SIZE(mt6358_ints) &&
-> +		       i >= mt6358_ints[top_gp + 1].hwirq_base)
-> +			top_gp++;
-
-A comment here would make this easier to follow.
-
-> +		if (top_gp >= ARRAY_SIZE(mt6358_ints)) {
-> +			mutex_unlock(&chip->irqlock);
-> +			dev_err(chip->dev,
-> +				"Failed to get top_group: %d\n", top_gp);
-> +			return;
-> +		}
-> +
-> +		int_regs = (i - mt6358_ints[top_gp].hwirq_base) /
-> +			    MT6358_REG_WIDTH;
-> +		en_reg = mt6358_ints[top_gp].en_reg +
-> +			mt6358_ints[top_gp].en_reg_shift * int_regs;
-> +		shift = (i - mt6358_ints[top_gp].hwirq_base) % MT6358_REG_WIDTH;
-> +		regmap_update_bits(chip->regmap, en_reg, BIT(shift),
-> +				   irqd->enable_hwirq[i] << shift);
-> +		irqd->cache_hwirq[i] = irqd->enable_hwirq[i];
-> +	}
-> +	mutex_unlock(&chip->irqlock);
-> +}
-
-[...]
-
-> +int mt6358_irq_init(struct mt6397_chip *chip)
-> +{
-> +	int i, j, ret;
-> +	struct pmic_irq_data *irqd;
-> +
-> +	irqd = devm_kzalloc(chip->dev, sizeof(struct pmic_irq_data *),
-> +			    GFP_KERNEL);
-> +	if (!irqd)
-> +		return -ENOMEM;
-> +
-> +	chip->irq_data = irqd;
-> +
-> +	mutex_init(&chip->irqlock);
-> +	irqd->top_int_status_reg = MT6358_TOP_INT_STATUS0;
-> +	irqd->num_pmic_irqs = MT6358_IRQ_NR;
-> +	irqd->num_top = ARRAY_SIZE(mt6358_ints);
-> +
-> +	irqd->enable_hwirq = devm_kcalloc(chip->dev,
-> +					  irqd->num_pmic_irqs,
-> +					  sizeof(bool),
-> +					  GFP_KERNEL);
-> +	if (!irqd->enable_hwirq)
-> +		return -ENOMEM;
-> +
-> +	irqd->cache_hwirq = devm_kcalloc(chip->dev,
-> +					 irqd->num_pmic_irqs,
-> +					 sizeof(bool),
-> +					 GFP_KERNEL);
-> +	if (!irqd->cache_hwirq)
-> +		return -ENOMEM;
-> +
-> +	/* Disable all interrupt for initializing */
-
-s/interrupt/interrupts/
-
-> +	for (i = 0; i < irqd->num_top; i++) {
-> +		for (j = 0; j < mt6358_ints[i].num_int_regs; j++)
-> +			regmap_write(chip->regmap,
-> +				     mt6358_ints[i].en_reg +
-> +				     mt6358_ints[i].en_reg_shift * j, 0);
-> +	}
-> +
-> +	chip->irq_domain = irq_domain_add_linear(chip->dev->of_node,
-> +						 irqd->num_pmic_irqs,
-> +						 &mt6358_irq_domain_ops, chip);
-> +	if (!chip->irq_domain) {
-> +		dev_err(chip->dev, "could not create irq domain\n");
-
-s/irq/IRQ/
-
-> +		return -ENODEV;
-> +	}
-> +
-> +	ret = devm_request_threaded_irq(chip->dev, chip->irq, NULL,
-> +					mt6358_irq_handler, IRQF_ONESHOT,
-> +					mt6358_irq_chip.name, chip);
-> +	if (ret) {
-> +		dev_err(chip->dev, "failed to register irq=%d; err: %d\n",
-> +			chip->irq, ret);
-> +		return ret;
-> +	}
-> +
-> +	enable_irq_wake(chip->irq);
-> +	return ret;
-> +}
-
-[...]
-
->  static const struct chip_data mt6397_core = {
->  	.cid_addr = MT6397_CID,
->  	.cid_shift = 0,
-> @@ -135,7 +172,11 @@ static int mt6397_probe(struct platform_device *pdev)
->  	if (pmic->irq <= 0)
->  		return pmic->irq;
->  
-> -	ret = mt6397_irq_init(pmic);
-> +	if (pmic->chip_id == MT6358_CHIP_ID)
-> +		ret = mt6358_irq_init(pmic);
-> +	else
-> +		ret = mt6397_irq_init(pmic);
-> +
-
-You may with so to check for both and error out on an unsupported chip
-ID.
-
->  	if (ret)
->  		return ret;
->  
-> @@ -146,6 +187,12 @@ static int mt6397_probe(struct platform_device *pdev)
->  					   0, pmic->irq_domain);
->  		break;
->  
-> +	case MT6358_CHIP_ID:
-> +		ret = devm_mfd_add_devices(&pdev->dev, -1, mt6358_devs,
-
-Not -1.  Please use the defines.
-
-> +					   ARRAY_SIZE(mt6358_devs), NULL,
-> +					   0, pmic->irq_domain);
-> +		break;
-> +
->  	case MT6391_CHIP_ID:
->  	case MT6397_CHIP_ID:
->  		ret = devm_mfd_add_devices(&pdev->dev, -1, mt6397_devs,
-> @@ -171,6 +218,9 @@ static const struct of_device_id mt6397_of_match[] = {
->  		.compatible = "mediatek,mt6323",
->  		.data = &mt6323_core,
->  	}, {
-> +		.compatible = "mediatek,mt6358",
-> +		.data = &mt6358_core,
-> +	}, {
->  		.compatible = "mediatek,mt6397",
->  		.data = &mt6397_core,
->  	}, {
-> diff --git a/include/linux/mfd/mt6358/core.h b/include/linux/mfd/mt6358/core.h
-> new file mode 100644
-> index 0000000..05108617
-> --- /dev/null
-> +++ b/include/linux/mfd/mt6358/core.h
-> @@ -0,0 +1,158 @@
-> +/* SPDX-License-Identifier: GPL-2.0 */
-> +/*
-> + * Copyright (c) 2019 MediaTek Inc.
-> + */
-> +
-> +#ifndef __MFD_MT6358_CORE_H__
-> +#define __MFD_MT6358_CORE_H__
-> +
-> +#define MT6358_REG_WIDTH 16
-
-[...]
-
-> +#define MT6358_TOP_GEN(sp)	\
-> +{	\
-> +	.hwirq_base = MT6358_IRQ_##sp##_BASE,	\
-> +	.num_int_regs =	\
-> +		((MT6358_IRQ_##sp##_BITS - 1) / MT6358_REG_WIDTH) + 1,	\
-> +	.num_int_bits = MT6358_IRQ_##sp##_BITS, \
-> +	.en_reg = MT6358_##sp##_TOP_INT_CON0,		\
-> +	.en_reg_shift = 0x6,	\
-> +	.sta_reg = MT6358_##sp##_TOP_INT_STATUS0,		\
-> +	.sta_reg_shift = 0x2,	\
-> +	.top_offset = MT6358_##sp##_TOP,	\
-> +}
-
-Please tab out the '\'s.
+For my own reference:
+  Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
 
 -- 
 Lee Jones [李琼斯]
