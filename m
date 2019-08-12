@@ -2,88 +2,107 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 928528AB44
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 01:36:26 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EEBC8AB4D
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 01:39:57 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726754AbfHLXg0 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 19:36:26 -0400
-Received: from mail-ot1-f67.google.com ([209.85.210.67]:45901 "EHLO
-        mail-ot1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726358AbfHLXg0 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 19:36:26 -0400
-Received: by mail-ot1-f67.google.com with SMTP id m24so12665375otp.12;
-        Mon, 12 Aug 2019 16:36:25 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=JUhoBbFfJyoEZHhxE0yhHd01Inh7+bhFFQBfYp/6IHI=;
-        b=C0wtaisBxNDTA6BgfyRVYslK5Mgpvp8Twaar+oyBoQ34Ki+jw7ss98bZDh0R+Azdf5
-         mjLxbOQR0WD65SsY/fv/7nJFyxUgo7OIRx9kwnnXRF4LHvWvEoQhkY14bA2CJqby5yVt
-         FyFBJ62lQhqIIULcn5eEfN/Cyvy+J2Fj4qazcuU/Cn1mlceF4CAw0jAO6sFj6pGN8AJv
-         Nc4MCl6B6/QTlPlGgFsR1BohWGNOaZl881LMuAXHZxV7jMyrtWBAwx8Fq5rGx6sqVTHH
-         GPgkiBNTtT1WAjRaIGwPF1pmBDh6mikJdcQoiQHMx4/OnVM7eMVzSMCsaReu3YlzcpQy
-         lAUA==
-X-Gm-Message-State: APjAAAV9QRXUUPTCVwvRVJTTDz9Kwz/qSp0f+7+nAReaGPimqs/37kqu
-        fHDH5fcjczCKBw96QnqTE3/PxQw=
-X-Google-Smtp-Source: APXvYqz7S8FkR6SwClag3erlK+yDMUQoYwEC/imJe9WJrw+kMtxqR06+H2rRmQKOwlNcvAwWgGSluQ==
-X-Received: by 2002:a5e:8c11:: with SMTP id n17mr313906ioj.64.1565652984885;
-        Mon, 12 Aug 2019 16:36:24 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id i4sm131555614iog.31.2019.08.12.16.36.24
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 12 Aug 2019 16:36:24 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 17:36:23 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Tomer Maimon <tmaimon77@gmail.com>
-Cc:     mpm@selenic.com, herbert@gondor.apana.org.au, arnd@arndb.de,
-        gregkh@linuxfoundation.org, mark.rutland@arm.com,
-        avifishman70@gmail.com, tali.perry1@gmail.com, venture@google.com,
-        yuenn@google.com, benjaminfair@google.com, sumit.garg@linaro.org,
-        jens.wiklander@linaro.org, vkoul@kernel.org, tglx@linutronix.de,
-        joel@jms.id.au, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-crypto@vger.kernel.org,
-        openbmc@lists.ozlabs.org
-Subject: Re: [PATCH v1 1/2] dt-binding: hwrng: add NPCM RNG documentation
-Message-ID: <20190812233623.GA24924@bogus>
-References: <20190722150241.345609-1-tmaimon77@gmail.com>
- <20190722150241.345609-2-tmaimon77@gmail.com>
+        id S1726522AbfHLXj4 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 19:39:56 -0400
+Received: from mail.kernel.org ([198.145.29.99]:37646 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726453AbfHLXj4 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 19:39:56 -0400
+Received: from mail-qk1-f169.google.com (mail-qk1-f169.google.com [209.85.222.169])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id A609620820;
+        Mon, 12 Aug 2019 23:39:54 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565653194;
+        bh=g1oGI/RT7q+tWZ2BW7Bj/hckAKrhiNedFdjBEplqisA=;
+        h=References:In-Reply-To:From:Date:Subject:To:Cc:From;
+        b=jWZvvpDMOZIOxvbu8qTb1T1bHujYnWZxRtUuMOJ88SX+lJ+yl2x4LvXD0CCOJJ6Cm
+         JFSXqg4V1bgoVpqM1qTM0Cink5TzT0+WVXAmtWmZOT/edkdNbwOUcUPQ1ZyccQyVpE
+         16E1cGwOeMwhIPkcvVNS6MJSmzEdlPhJANNdq2Ak=
+Received: by mail-qk1-f169.google.com with SMTP id u190so14687778qkh.5;
+        Mon, 12 Aug 2019 16:39:54 -0700 (PDT)
+X-Gm-Message-State: APjAAAU0JIN/FhOIDrEyUDfEWt24dL5xBMz3HrBIE45i16OsUxPAVDEb
+        27Ii/PZYLj34Wh1BiU+jq+RRsUQzz4sOjvVLng==
+X-Google-Smtp-Source: APXvYqx7EbPjgLHVpq/dM8qT7Al9/ZfUvTi6FAz8DRCcUvaxEZ+RFwA37wmOT/6EmvBt557f0GUFFOvVpEKHIXy2qu8=
+X-Received: by 2002:a37:d8f:: with SMTP id 137mr24941301qkn.254.1565653193835;
+ Mon, 12 Aug 2019 16:39:53 -0700 (PDT)
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190722150241.345609-2-tmaimon77@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+References: <20190607154410.10633-1-paul@crapouillou.net> <20190607154410.10633-2-paul@crapouillou.net>
+ <20190709020425.GA7984@bogus> <20190808082829.i6enaout5ozvdnwj@pengutronix.de>
+In-Reply-To: <20190808082829.i6enaout5ozvdnwj@pengutronix.de>
+From:   Rob Herring <robh@kernel.org>
+Date:   Mon, 12 Aug 2019 17:39:42 -0600
+X-Gmail-Original-Message-ID: <CAL_JsqJv8kv_xXwoOUa-avTZhq0NkkDHCUmA5HbQFydWKu=n-g@mail.gmail.com>
+Message-ID: <CAL_JsqJv8kv_xXwoOUa-avTZhq0NkkDHCUmA5HbQFydWKu=n-g@mail.gmail.com>
+Subject: Re: [PATCH v2 1/6] dt-bindings: Remove unused compatible strings
+To:     =?UTF-8?Q?Uwe_Kleine=2DK=C3=B6nig?= 
+        <u.kleine-koenig@pengutronix.de>
+Cc:     Paul Cercueil <paul@crapouillou.net>,
+        Thierry Reding <thierry.reding@gmail.com>,
+        Mark Rutland <mark.rutland@arm.com>, od@zcrc.me,
+        Linux PWM List <linux-pwm@vger.kernel.org>,
+        devicetree@vger.kernel.org,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 22, 2019 at 06:02:40PM +0300, Tomer Maimon wrote:
-> Added device tree binding documentation for Nuvoton BMC
-> NPCM Random Number Generator (RNG).
-> 
-> Signed-off-by: Tomer Maimon <tmaimon77@gmail.com>
-> ---
->  .../bindings/rng/nuvoton,npcm-rng.txt           | 17 +++++++++++++++++
->  1 file changed, 17 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt b/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
-> new file mode 100644
-> index 000000000000..a697b4425fb3
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/rng/nuvoton,npcm-rng.txt
-> @@ -0,0 +1,17 @@
-> +NPCM SoC Random Number Generator
-> +
-> +Required properties:
-> +- compatible  : "nuvoton,npcm750-rng" for the NPCM7XX BMC.
-> +- reg         : Specifies physical base address and size of the registers.
-> +
-> +Optional property:
-> +- quality : estimated number of bits of true entropy per 1024 bits
-> +			read from the rng.
-> +			If this property is not defined, it defaults to 1000.
+On Thu, Aug 8, 2019 at 2:28 AM Uwe Kleine-K=C3=B6nig
+<u.kleine-koenig@pengutronix.de> wrote:
+>
+> On Mon, Jul 08, 2019 at 08:04:25PM -0600, Rob Herring wrote:
+> > On Fri, Jun 07, 2019 at 05:44:05PM +0200, Paul Cercueil wrote:
+> > > Right now none of the Ingenic-based boards probe this driver from
+> > > devicetree. This driver defined three compatible strings for the exac=
+t
+> > > same behaviour. Before these strings are used, we can remove two of
+> > > them.
+> > >
+> > > Signed-off-by: Paul Cercueil <paul@crapouillou.net>
+> > > ---
+> > >
+> > > Notes:
+> > >     v2: Rebase on v5.2-rc3
+> > >
+> > >  Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt | 5 +--=
+--
+> > >  1 file changed, 1 insertion(+), 4 deletions(-)
+> > >
+> > > diff --git a/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm=
+.txt b/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+> > > index 7d9d3f90641b..493bec80d59b 100644
+> > > --- a/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+> > > +++ b/Documentation/devicetree/bindings/pwm/ingenic,jz47xx-pwm.txt
+> > > @@ -2,10 +2,7 @@ Ingenic JZ47xx PWM Controller
+> > >  =3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=3D=
+=3D=3D=3D=3D=3D=3D=3D
+> > >
+> > >  Required properties:
+> > > -- compatible: One of:
+> > > -  * "ingenic,jz4740-pwm"
+> > > -  * "ingenic,jz4770-pwm"
+> > > -  * "ingenic,jz4780-pwm"
+> > > +- compatible: Should be "ingenic,jz4740-pwm"
+> >
+> > Are you sure all 3 chips are exactly the same features and bugs?
+> >
+> > The correct thing to do here generally is the 4770 and 4780 would also
+> > have ingenic,jz4740-pwm as a fallback compatible. Then the driver can
+> > match on that until you find some difference and can use the more
+> > specific compatible.
+>
+> Note that Thierry already applied this patch before your concern reached
+> the mailing list. Is this bad enough to revert
+> 925488e8df4f396ad96ff008a84f5b14d8b73347?
 
-This would need a vendor prefix, however, I think it should be implied 
-by the compatible string. It is fixed per SoC, right?
+It won't be my problem when you find and need to handle any of the
+differences in the driver.
+
+Rob
