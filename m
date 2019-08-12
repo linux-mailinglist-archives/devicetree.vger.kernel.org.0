@@ -2,69 +2,78 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id C33498AABB
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 00:52:31 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id B10C28AAD5
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 00:55:27 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726826AbfHLWwb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 18:52:31 -0400
-Received: from mail-ot1-f68.google.com ([209.85.210.68]:44324 "EHLO
-        mail-ot1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726681AbfHLWwb (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 18:52:31 -0400
-Received: by mail-ot1-f68.google.com with SMTP id b7so115054856otl.11
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 15:52:30 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=TEv42QyAB5YGoMPNI1KwTTniGX03gXrFw6k1OfPyaJY=;
-        b=cZNwOIKmhdxfLYIlqHyBPkQl54NWYs1KzkXaE2pMQNRJDLa8cGtjis/CIdXt8wB8Mj
-         lGj2r9cDvCw+ccD5dYNivgCuDFHFhy/oNYqp5/L7Zo58N82OX5K6qKuGIxXfPgTnSpik
-         fylYhUG4z7xr8iOutejhyVSdkhX8fGx9Z2F1ZK2N5SacgdqWcB4i8vj9WsXGO86gphKD
-         Z245LvSJ6pwl51aKEE3OmAGPQN9GPAdFzitbztu2SD24kP+MQKrJ+F1yDR0Nks7Wxlee
-         tyuAvsLdBpZ9cD9paZIVzSUcawwYsrEy89AQgpi6JbuuABrgdCW3ITbY8Zr7JAmFjXhY
-         3PJg==
-X-Gm-Message-State: APjAAAUufiCbDlun7cbqx9MIyKCCRmDKxYxA2tsNWYVC+t7NPLq0B6EV
-        nyGfDZwd+4QAbQ5rNVoMzg==
-X-Google-Smtp-Source: APXvYqyrg0SrA4qOcqgdUxPMpwLvnL7FF+6mHkABaZPsf2auELPIbUbaRQRMoSGskA/bFVy1M3WQcA==
-X-Received: by 2002:a02:6a68:: with SMTP id m40mr2222470jaf.135.1565650350040;
-        Mon, 12 Aug 2019 15:52:30 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id v13sm85185658ioq.13.2019.08.12.15.52.29
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 12 Aug 2019 15:52:29 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 16:52:28 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Nishka Dasgupta <nishkadg.linux@gmail.com>
-Cc:     pantelis.antoniou@konsulko.com, frowand.list@gmail.com,
-        robh+dt@kernel.org, devicetree@vger.kernel.org,
-        Nishka Dasgupta <nishkadg.linux@gmail.com>
-Subject: Re: [PATCH] of: resolver: Add of_node_put() before return and break
-Message-ID: <20190812225228.GA21794@bogus>
-References: <20190716054331.2775-1-nishkadg.linux@gmail.com>
+        id S1726978AbfHLWzW (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 18:55:22 -0400
+Received: from mail.kernel.org ([198.145.29.99]:57056 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726681AbfHLWzV (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 18:55:21 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 5A67C206A2;
+        Mon, 12 Aug 2019 22:55:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565650520;
+        bh=bzSVxn1O+XeeWY+2gZI6RE/G7J9stvLsMgc7wXKMLBY=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=2fFWNBju/NoA9EEEg6SgrC0ymxSRFlWH+/sXXpWVTbVoBuKIvJiA7w1IyG/Q5cfgN
+         gw3v0MRCJ48hdqHfIdIAFVkbP+9VeXqYGvbIjFkrUu6xwlZcEnR9KMfu3l/b+H0uED
+         iKs6Gza2xwnDfKRu3oYIOckfg2RYjnmKmEyi2wfI=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190716054331.2775-1-nishkadg.linux@gmail.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190812182421.141150-4-brendanhiggins@google.com>
+References: <20190812182421.141150-1-brendanhiggins@google.com> <20190812182421.141150-4-brendanhiggins@google.com>
+Subject: Re: [PATCH v12 03/18] kunit: test: add string_stream a std::stream like string builder
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com
+User-Agent: alot/0.8.1
+Date:   Mon, 12 Aug 2019 15:55:19 -0700
+Message-Id: <20190812225520.5A67C206A2@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, 16 Jul 2019 11:13:30 +0530, Nishka Dasgupta wrote:
-> Each iteration of for_each_child_of_node puts the previous node, but in
-> the case of a return or break from the middle of the loop, there is no
-> put, thus causing a memory leak. Hence add an of_node_put before the
-> return or break in three places.
-> Issue found with Coccinelle.
-> 
-> Signed-off-by: Nishka Dasgupta <nishkadg.linux@gmail.com>
-> ---
->  drivers/of/resolver.c | 12 +++++++++---
->  1 file changed, 9 insertions(+), 3 deletions(-)
-> 
+Quoting Brendan Higgins (2019-08-12 11:24:06)
+> +void string_stream_clear(struct string_stream *stream)
+> +{
+> +       struct string_stream_fragment *frag_container, *frag_container_sa=
+fe;
+> +
+> +       spin_lock(&stream->lock);
+> +       list_for_each_entry_safe(frag_container,
+> +                                frag_container_safe,
+> +                                &stream->fragments,
+> +                                node) {
+> +               list_del(&frag_container->node);
 
-Applied, thanks.
+Shouldn't we free the allocation here? Otherwise, if some test is going
+to add, add, clear, add, it's going to leak until the test is over?
 
-Rob
+> +       }
+> +       stream->length =3D 0;
+> +       spin_unlock(&stream->lock);
+> +}
+> +
