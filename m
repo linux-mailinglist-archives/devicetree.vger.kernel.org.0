@@ -2,137 +2,150 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 8998189C0C
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 12:57:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 6EFB989C19
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 12:59:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727841AbfHLK5B (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 06:57:01 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:45110 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727691AbfHLK5B (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 06:57:01 -0400
-Received: by mail-wr1-f67.google.com with SMTP id q12so13896099wrj.12;
-        Mon, 12 Aug 2019 03:57:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=from:to:cc:subject:date:message-id:in-reply-to:references
-         :mime-version:content-transfer-encoding;
-        bh=K78hhqilCXirWAVkuhMYsumaEi1zxudUZQ7iEz3kX74=;
-        b=PdI/+tQ4letAYBv2LKdyiQh79k8OXmFVdA1aPMzyFY6KxCZy8EyOOdBqoVf9JVMfVO
-         30m3LjeMpdM0OZFZZTRtCKqs2nyVfFAIaEWbx3Jk51IPkPPtDLndfj71VGWrn8fzM8xY
-         U3sY85j6CJkurFsMuJDvx6AXb4BZoWQ3TQgHguNVzPnpBhfLicn//ZIWc1h/Cvn1oHZc
-         8Q33Y8rxq3+Xgt2uo2oj/4TpPz8X7vfH2CxNf27UpaHgUG3X7fxmCdiMl8x/jBItfRLz
-         NcKuELcTui9SWipQsllbPTSVxldRd2NmBhVvztGPtdoZv89YJ/80d2yl3HCw6rarNtZm
-         MwVg==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:from:to:cc:subject:date:message-id:in-reply-to
-         :references:mime-version:content-transfer-encoding;
-        bh=K78hhqilCXirWAVkuhMYsumaEi1zxudUZQ7iEz3kX74=;
-        b=k6oneRRghoxez0/VXZwLDx4s3lnZmq/+kyJbiybbJ4IcmpZ1g/yqPTBBylccdNhZ8B
-         oKOyEp0d/2oB4O4n12t0x6jU+q88NRTLPqjI5uOz5XzkyaBYso8pCee7nNdIuZjNxnPv
-         tK0qJbKNKNruR8q0sNMKKL0guGeVH/Vx2p7D7O3PppdFpTH9lCPNnQZqRVJgNh2TlZAH
-         vnxn4LBjL1LzF6DrYCADNB6uTSe2YPreWskUt89q26T0KfmiemSyV3XZKuzZWMTqJojV
-         ECB/efwpbA5NMCUtS37XIGgL/jBTM2Ckz9xtM+2hH9dq33VhaOtQqGwVXZLS7u3DSR7f
-         DqZg==
-X-Gm-Message-State: APjAAAUvFzBb+jSayQk7waA5mQmTgrE1iFr8bajzUkstQqOBN2JsWSUW
-        9Y8AVdpz+JqzrP285/yUvTc=
-X-Google-Smtp-Source: APXvYqzz1/k5WxBr/pJpNEMxkuMePNDA75QA3mkP0fkCS8qkAfo5N9m+7vaBmpiUqwP5ZR0e9K9n/A==
-X-Received: by 2002:adf:dbcb:: with SMTP id e11mr38755203wrj.272.1565607419384;
-        Mon, 12 Aug 2019 03:56:59 -0700 (PDT)
-Received: from jernej-laptop.localnet (89-212-178-211.dynamic.t-2.net. [89.212.178.211])
-        by smtp.gmail.com with ESMTPSA id c65sm13285562wma.44.2019.08.12.03.56.57
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 12 Aug 2019 03:56:58 -0700 (PDT)
-From:   Jernej =?utf-8?B?xaBrcmFiZWM=?= <jernej.skrabec@gmail.com>
-To:     linux-sunxi@googlegroups.com, clabbe.montjoie@gmail.com
-Cc:     mark.rutland@arm.com, mripard@kernel.org, robh+dt@kernel.org,
-        wens@csie.org, devicetree@vger.kernel.org,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org
-Subject: Re: [linux-sunxi] [PATCH] ARM64: dts: allwinner: Add devicetree for pine H64 modelA evaluation board
-Date:   Mon, 12 Aug 2019 12:56:56 +0200
-Message-ID: <1648748.TWHgARQioU@jernej-laptop>
-In-Reply-To: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
-References: <20190808084253.10573-1-clabbe.montjoie@gmail.com>
+        id S1727920AbfHLK71 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 06:59:27 -0400
+Received: from mail-eopbgr130132.outbound.protection.outlook.com ([40.107.13.132]:7345
+        "EHLO EUR01-HE1-obe.outbound.protection.outlook.com"
+        rhost-flags-OK-OK-OK-FAIL) by vger.kernel.org with ESMTP
+        id S1727691AbfHLK71 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 06:59:27 -0400
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=IuTRhGf2ZJxliLUZFjlAITmJeiC8xWuAniqk2rkCC5rGOFw+doSYGpF4fyq24LAZLJ5NyWn2N+wATieIjHg199Rc7WeVUEtjacHB6kXgmRFTKkMBmUqERH9NfkMETLOze2hwqmi6LnNeI7Gc+JGN4k0rqCQXHiL4ntQtdMQfWCEmtyoWOATJ2gvKn0bcAb6uYz6CAFnOYPBZeSHdAcmBQIpXzLDNbUE2kSIMSamCGaVEBNpKnGNUZ9kRlW0gkQTaT1cGThhl61rRfOMsNQDh9s5n1LAyaviqjcKa2O+1vLUqStkUbZupMjqFoQkNOpQeHeK+OPPF+B0nRKiYJ1vTPA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+2xhQobUc2rRhp5kmDObpJuKamNn87J+odFug7SIfaE=;
+ b=UhkMShVKhwV/C90g9i6mtTwsawHnS1jn4YmZy7Ax9r8O3AfTj8K+NE04l4obsyLsn5Sq68UwXCr6VNVGf4XxTZL8ABg+BckG7+4bB9h4131gLO7cfOJnk6BS8mo4pahSGNmp1gBVsVf3bc0qg0oZu9pQ0lhRGezGaqCoVesYSCza4mUvJPFQerxt7lFWOhrlOnl5Q4Mp5/YQJmn7/2k4Mhwjyt2bTphhqr98/c16tFNND4dohQYWj61+dqMGT8KLOPmnViWvipPB0Na+AjFZqQ7l73B3zO4uxJPGO7xa839R7z/VXsw0BzKqmgkU7Bsbvy/Lpo4kR2GoKIUMyrAjYw==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=toradex.com; dmarc=pass action=none header.from=toradex.com;
+ dkim=pass header.d=toradex.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=toradex.com;
+ s=selector2;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=+2xhQobUc2rRhp5kmDObpJuKamNn87J+odFug7SIfaE=;
+ b=ZCgbyyBVYEBIh/2VqqYRxcxOcHWWdVqcRoj5RXr3vJxMbdEnuHk5SuZ08zOPA2jraGrjVLflEZz1bfSpNNxsNC/ZfimDTQWTUe+GNjEviIr+7J2sMwapB32iqPrbBO0q/eM1cwNVmB9UdcnnV/kW9lVtGNZLSqkhk4uQkoahsUk=
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com (52.134.17.157) by
+ VI1PR0502MB3983.eurprd05.prod.outlook.com (52.134.18.25) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2157.18; Mon, 12 Aug 2019 10:59:20 +0000
+Received: from VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::8405:5b51:b25d:39a2]) by VI1PR0502MB3965.eurprd05.prod.outlook.com
+ ([fe80::8405:5b51:b25d:39a2%6]) with mapi id 15.20.2157.022; Mon, 12 Aug 2019
+ 10:59:20 +0000
+From:   Philippe Schenker <philippe.schenker@toradex.com>
+To:     "stefan@agner.ch" <stefan@agner.ch>,
+        Marcel Ziswiler <marcel.ziswiler@toradex.com>,
+        Max Krummenacher <max.krummenacher@toradex.com>,
+        "mark.rutland@arm.com" <mark.rutland@arm.com>,
+        "devicetree@vger.kernel.org" <devicetree@vger.kernel.org>,
+        "michal.vokac@ysoft.com" <michal.vokac@ysoft.com>,
+        "shawnguo@kernel.org" <shawnguo@kernel.org>,
+        "festevam@gmail.com" <festevam@gmail.com>,
+        "robh+dt@kernel.org" <robh+dt@kernel.org>
+CC:     "linux-arm-kernel@lists.infradead.org" 
+        <linux-arm-kernel@lists.infradead.org>,
+        "s.hauer@pengutronix.de" <s.hauer@pengutronix.de>,
+        "kernel@pengutronix.de" <kernel@pengutronix.de>,
+        "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+        Oleksandr Suvorov <oleksandr.suvorov@toradex.com>,
+        "linux-imx@nxp.com" <linux-imx@nxp.com>
+Subject: Re: [PATCH v3 05/21] ARM: dts: add recovery for I2C for iMX7
+Thread-Topic: [PATCH v3 05/21] ARM: dts: add recovery for I2C for iMX7
+Thread-Index: AQHVTPnHBymxxsKMCkWQ+k28WDfDKab3QxYAgAAc8YA=
+Date:   Mon, 12 Aug 2019 10:59:19 +0000
+Message-ID: <bfbf1b9c233da9362cdca5e000bc1dc7b92f08a2.camel@toradex.com>
+References: <20190807082556.5013-1-philippe.schenker@toradex.com>
+         <20190807082556.5013-6-philippe.schenker@toradex.com>
+         <cd0da6ed-6b59-be60-34b2-74eb603aa10d@ysoft.com>
+In-Reply-To: <cd0da6ed-6b59-be60-34b2-74eb603aa10d@ysoft.com>
+Accept-Language: en-GB, en-US
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+authentication-results: spf=none (sender IP is )
+ smtp.mailfrom=philippe.schenker@toradex.com; 
+x-originating-ip: [46.140.72.82]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: 4db9d560-d881-4019-2115-08d71f14209e
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:VI1PR0502MB3983;
+x-ms-traffictypediagnostic: VI1PR0502MB3983:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <VI1PR0502MB3983B3F86E99DC5CE13FCA9AF4D30@VI1PR0502MB3983.eurprd05.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:7691;
+x-forefront-prvs: 012792EC17
+x-forefront-antispam-report: SFV:NSPM;SFS:(10019020)(4636009)(396003)(39840400004)(376002)(346002)(366004)(136003)(199004)(189003)(91956017)(71200400001)(71190400001)(2906002)(76116006)(66946007)(66476007)(478600001)(256004)(66556008)(7416002)(118296001)(6116002)(3846002)(14454004)(81156014)(81166006)(8676002)(8936002)(4326008)(36756003)(14444005)(229853002)(305945005)(6506007)(26005)(66066001)(76176011)(25786009)(110136005)(316002)(54906003)(99286004)(102836004)(44832011)(6486002)(64756008)(6436002)(66446008)(5660300002)(53936002)(6512007)(7736002)(2501003)(6246003)(476003)(2201001)(186003)(86362001)(486006)(11346002)(2616005)(446003);DIR:OUT;SFP:1102;SCL:1;SRVR:VI1PR0502MB3983;H:VI1PR0502MB3965.eurprd05.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: toradex.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: 8aA0Px4zMVCNgVsDA16OepDfhfkkAiX4pfFqIinuMQAqdl1BSrs63gYvssvu1h+GXSk1sJbpvmE+MS0glRNj5qtEQbFXumPaDrlkp9/ms9SKZhzGbeOv/8An7QNFlxQQZqC9uEk32Z/RNRO3UTrv5AXOT9+zY/IHeFdOCZqpUL96VzsvSCpBKdq3F4BK0ELq4cpfMKXBqNP9b509aJ0mBswitAZBK9slPbNQVeuL9WG0JmgL0zD6xVgKDTuxSDqvxLojRMfSqNAJhjjLME+sV6Q+m7SnVuxTg3RKyjQWN7tCcGGhyZ3QOmNPFSssChlIW4SwHcWl5owduJ3mqDSr7iLfluqTL/VOBH1mCZSPyebS0Q4E8D8kEzoL2O0cO4J47/mC6vHg72pyDYV1dHalrvB3LhpBLRWCZh7h/C5nG1w=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <15A196EE244FFF46BAD0486B46FCD407@eurprd05.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Content-Type: text/plain; charset="UTF-8"
+X-OriginatorOrg: toradex.com
+X-MS-Exchange-CrossTenant-Network-Message-Id: 4db9d560-d881-4019-2115-08d71f14209e
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Aug 2019 10:59:19.9887
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: d9995866-0d9b-4251-8315-093f062abab4
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: 6PytLYfrS6/TvQ1BLxzWtL5LyablOpB28h9BnxWzkx7IkqjuG8T1moK8eVw9ThFVY72f0a1gCvjgLW7h+sZqKTM53dQkfJQmU7YAZNSPNY8=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: VI1PR0502MB3983
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Dne =C4=8Detrtek, 08. avgust 2019 ob 10:42:53 CEST je Corentin Labbe napisa=
-l(a):
-> This patch adds the evaluation variant of the model A of the PineH64.
-> The model A has the same size of the pine64 and has a PCIE slot.
->=20
-> The only devicetree difference with current pineH64, is the PHY
-> regulator.
-
-I have Model A board which also needs ddc-en-gpios property for HDMI connec=
-tor=20
-in order for HDMI to work correctly. Otherwise it will just use 1024x768=20
-resolution. Can you confirm that?
-
-Best regards,
-Jernej
-
->=20
-> Signed-off-by: Corentin Labbe <clabbe.montjoie@gmail.com>
-> ---
->  arch/arm64/boot/dts/allwinner/Makefile        |  1 +
->  .../sun50i-h6-pine-h64-modelA-eval.dts        | 26 +++++++++++++++++++
->  2 files changed, 27 insertions(+)
->  create mode 100644
-> arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
->=20
-> diff --git a/arch/arm64/boot/dts/allwinner/Makefile
-> b/arch/arm64/boot/dts/allwinner/Makefile index f6db0611cb85..9a02166cbf72
-> 100644
-> --- a/arch/arm64/boot/dts/allwinner/Makefile
-> +++ b/arch/arm64/boot/dts/allwinner/Makefile
-> @@ -25,3 +25,4 @@ dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-orangepi-3.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-orangepi-lite2.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-orangepi-one-plus.dtb
->  dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-pine-h64.dtb
-> +dtb-$(CONFIG_ARCH_SUNXI) +=3D sun50i-h6-pine-h64-modelA-eval.dtb
-> diff --git
-> a/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
-> b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts new fi=
-le
-> mode 100644
-> index 000000000000..d8ff02747efe
-> --- /dev/null
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-pine-h64-modelA-eval.dts
-> @@ -0,0 +1,26 @@
-> +// SPDX-License-Identifier: (GPL-2.0+ or MIT)
-> +/*
-> + * Copyright (C) 2019 Corentin Labbe <clabbe.montjoie@gmail.com>
-> + */
-> +
-> +#include "sun50i-h6-pine-h64.dts"
-> +
-> +/ {
-> +	model =3D "Pine H64 model A evaluation board";
-> +	compatible =3D "pine64,pine-h64-modelA-eval", "allwinner,sun50i-h6";
-> +
-> +	reg_gmac_3v3: gmac-3v3 {
-> +		compatible =3D "regulator-fixed";
-> +		regulator-name =3D "vcc-gmac-3v3";
-> +		regulator-min-microvolt =3D <3300000>;
-> +		regulator-max-microvolt =3D <3300000>;
-> +		startup-delay-us =3D <100000>;
-> +		gpio =3D <&pio 2 16 GPIO_ACTIVE_HIGH>;
-> +		enable-active-high;
-> +	};
-> +
-> +};
-> +
-> +&emac {
-> +	phy-supply =3D <&reg_gmac_3v3>;
-> +};
-
-
-
-
+T24gTW9uLCAyMDE5LTA4LTEyIGF0IDExOjE1ICswMjAwLCBNaWNoYWwgVm9rw6HEjSB3cm90ZToN
+Cj4gT24gMDcuIDA4LiAxOSAxMDoyNiwgUGhpbGlwcGUgU2NoZW5rZXIgd3JvdGU6DQo+ID4gRnJv
+bTogT2xla3NhbmRyIFN1dm9yb3YgPG9sZWtzYW5kci5zdXZvcm92QHRvcmFkZXguY29tPg0KPiA+
+IA0KPiA+IC0gYWRkIHJlY292ZXJ5IG1vZGUgZm9yIGFwcGxpY2FibGUgaTJjIGJ1c2VzIGZvcg0K
+PiA+ICAgIENvbGlicmkgaU1YNyBtb2R1bGUuDQo+ID4gDQo+ID4gU2lnbmVkLW9mZi1ieTogT2xl
+a3NhbmRyIFN1dm9yb3YgPG9sZWtzYW5kci5zdXZvcm92QHRvcmFkZXguY29tPg0KPiA+IFNpZ25l
+ZC1vZmYtYnk6IFBoaWxpcHBlIFNjaGVua2VyIDxwaGlsaXBwZS5zY2hlbmtlckB0b3JhZGV4LmNv
+bT4NCj4gPiAtLS0NCj4gSGkgUGhpbGlwcGUsDQo+IA0KPiBzaW5jZSB5b3UgYXJlIGdvaW5nIHRv
+IHNlbmQgdjQgYW55d2F5IEkgc3VnZ2VzdCB5b3UgdXBkYXRlIHRoZSBzdWJqZWN0DQo+IHRvIGJl
+IGNvbnNpc3RlbnQgYWNyb3NzIGFsbCB0aGUgcGF0Y2hlcy4NCj4gDQo+IAkiQVJNOiBkdHM6IGlt
+eDctY29saWJyaTogYWRkIHJlY292ZXJ5IGZvciBJMkMgZm9yIGlNWDciDQo+IA0KPiBmaXRzIGJl
+dHRlciBJIHRoaW5rLg0KPiANCj4gVGhhbmsgeW91LA0KPiBNaWNoYWwNCg0KT2theSwgd2lsbCBk
+byB0aGF0IGZvciB2NC4gSSdsbCBnbyBvdmVyIGFsbCBtZXNzYWdlcyB0aGVuIGFnYWluIGFuZCBz
+ZWUNCnRoYXQgaXQgaXMgY29uc2lzdGVudC4NCg0KUGhpbGlwcGUNCj4gDQo+ID4gQ2hhbmdlcyBp
+biB2MzogTm9uZQ0KPiA+IENoYW5nZXMgaW4gdjI6IE5vbmUNCj4gPiANCj4gPiAgIGFyY2gvYXJt
+L2Jvb3QvZHRzL2lteDctY29saWJyaS5kdHNpIHwgMjUgKysrKysrKysrKysrKysrKysrKysrKyst
+LQ0KPiA+ICAgMSBmaWxlIGNoYW5nZWQsIDIzIGluc2VydGlvbnMoKyksIDIgZGVsZXRpb25zKC0p
+DQo+ID4gDQo+ID4gZGlmZiAtLWdpdCBhL2FyY2gvYXJtL2Jvb3QvZHRzL2lteDctY29saWJyaS5k
+dHNpDQo+ID4gYi9hcmNoL2FybS9ib290L2R0cy9pbXg3LWNvbGlicmkuZHRzaQ0KPiA+IGluZGV4
+IGE4ZDk5MmYzZTg5Ny4uMjQ4MDYyM2M5MmZmIDEwMDY0NA0KPiA+IC0tLSBhL2FyY2gvYXJtL2Jv
+b3QvZHRzL2lteDctY29saWJyaS5kdHNpDQo+ID4gKysrIGIvYXJjaC9hcm0vYm9vdC9kdHMvaW14
+Ny1jb2xpYnJpLmR0c2kNCj4gPiBAQCAtMTQwLDggKzE0MCwxMiBAQA0KPiA+ICAgDQo+ID4gICAm
+aTJjMSB7DQo+ID4gICAJY2xvY2stZnJlcXVlbmN5ID0gPDEwMDAwMD47DQo+ID4gLQlwaW5jdHJs
+LW5hbWVzID0gImRlZmF1bHQiOw0KPiA+ICsJcGluY3RybC1uYW1lcyA9ICJkZWZhdWx0IiwgImdw
+aW8iOw0KPiA+ICAgCXBpbmN0cmwtMCA9IDwmcGluY3RybF9pMmMxICZwaW5jdHJsX2kyYzFfaW50
+PjsNCj4gPiArCXBpbmN0cmwtMSA9IDwmcGluY3RybF9pMmMxX3JlY292ZXJ5ICZwaW5jdHJsX2ky
+YzFfaW50PjsNCj4gPiArCXNjbC1ncGlvcyA9IDwmZ3BpbzEgNCBHUElPX0FDVElWRV9ISUdIPjsN
+Cj4gPiArCXNkYS1ncGlvcyA9IDwmZ3BpbzEgNSBHUElPX0FDVElWRV9ISUdIPjsNCj4gPiArDQo+
+ID4gICAJc3RhdHVzID0gIm9rYXkiOw0KPiA+ICAgDQo+ID4gICAJY29kZWM6IHNndGw1MDAwQGEg
+ew0KPiA+IEBAIC0yNDIsOCArMjQ2LDExIEBADQo+ID4gICANCj4gPiAgICZpMmM0IHsNCj4gPiAg
+IAljbG9jay1mcmVxdWVuY3kgPSA8MTAwMDAwPjsNCj4gPiAtCXBpbmN0cmwtbmFtZXMgPSAiZGVm
+YXVsdCI7DQo+ID4gKwlwaW5jdHJsLW5hbWVzID0gImRlZmF1bHQiLCAiZ3BpbyI7DQo+ID4gICAJ
+cGluY3RybC0wID0gPCZwaW5jdHJsX2kyYzQ+Ow0KPiA+ICsJcGluY3RybC0xID0gPCZwaW5jdHJs
+X2kyYzRfcmVjb3Zlcnk+Ow0KPiA+ICsJc2NsLWdwaW9zID0gPCZncGlvNyA4IEdQSU9fQUNUSVZF
+X0hJR0g+Ow0KPiA+ICsJc2RhLWdwaW9zID0gPCZncGlvNyA5IEdQSU9fQUNUSVZFX0hJR0g+Ow0K
+PiA+ICAgfTsNCj4gPiAgIA0KPiA+ICAgJmxjZGlmIHsNCj4gPiBAQCAtNTQwLDYgKzU0NywxMyBA
+QA0KPiA+ICAgCQk+Ow0KPiA+ICAgCX07DQo+ID4gICANCj4gPiArCXBpbmN0cmxfaTJjNF9yZWNv
+dmVyeTogaTJjNC1yZWNvdmVyeWdycCB7DQo+ID4gKwkJZnNsLHBpbnMgPSA8DQo+ID4gKwkJCU1Y
+N0RfUEFEX0VORVQxX1JHTUlJX1REMl9fR1BJTzdfSU84CTB4NDAwMDAwN2YNCj4gPiArCQkJTVg3
+RF9QQURfRU5FVDFfUkdNSUlfVEQzX19HUElPN19JTzkJMHg0MDAwMDA3Zg0KPiA+ICsJCT47DQo+
+ID4gKwl9Ow0KPiA+ICsNCj4gPiAgIAlwaW5jdHJsX2xjZGlmX2RhdDogbGNkaWYtZGF0LWdycCB7
+DQo+ID4gICAJCWZzbCxwaW5zID0gPA0KPiA+ICAgCQkJTVg3RF9QQURfTENEX0RBVEEwMF9fTENE
+X0RBVEEwCQkweDc5DQo+ID4gQEAgLTc0MCw2ICs3NTQsMTMgQEANCj4gPiAgIAkJPjsNCj4gPiAg
+IAl9Ow0KPiA+ICAgDQo+ID4gKwlwaW5jdHJsX2kyYzFfcmVjb3Zlcnk6IGkyYzEtcmVjb3Zlcnln
+cnAgew0KPiA+ICsJCWZzbCxwaW5zID0gPA0KPiA+ICsJCQlNWDdEX1BBRF9MUFNSX0dQSU8xX0lP
+MDRfX0dQSU8xX0lPNAkweDQwMDAwMDdmDQo+ID4gKwkJCU1YN0RfUEFEX0xQU1JfR1BJTzFfSU8w
+NV9fR1BJTzFfSU81CTB4NDAwMDAwN2YNCj4gPiArCQk+Ow0KPiA+ICsJfTsNCj4gPiArDQo+ID4g
+ICAJcGluY3RybF9jZF91c2RoYzE6IHVzZGhjMS1jZC1ncnAgew0KPiA+ICAgCQlmc2wscGlucyA9
+IDwNCj4gPiAgIAkJCU1YN0RfUEFEX0xQU1JfR1BJTzFfSU8wMF9fR1BJTzFfSU8wCTB4NTkgLyog
+Q0QNCj4gPiAqLw0KPiA+IA0K
