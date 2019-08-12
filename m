@@ -2,95 +2,212 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id CBFD789BA0
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 12:37:12 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 5946A89BAA
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 12:38:59 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727821AbfHLKhK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 06:37:10 -0400
-Received: from mx2.mailbox.org ([80.241.60.215]:35528 "EHLO mx2.mailbox.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727276AbfHLKhK (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 06:37:10 -0400
-Received: from smtp1.mailbox.org (smtp1.mailbox.org [80.241.60.240])
-        (using TLSv1.2 with cipher ECDHE-RSA-CHACHA20-POLY1305 (256/256 bits))
-        (No client certificate requested)
-        by mx2.mailbox.org (Postfix) with ESMTPS id 876B6A1619;
-        Mon, 12 Aug 2019 12:37:08 +0200 (CEST)
-X-Virus-Scanned: amavisd-new at heinlein-support.de
-Received: from smtp1.mailbox.org ([80.241.60.240])
-        by gerste.heinlein-support.de (gerste.heinlein-support.de [91.198.250.173]) (amavisd-new, port 10030)
-        with ESMTP id NJXQZ4GMOWhr; Mon, 12 Aug 2019 12:36:57 +0200 (CEST)
-From:   Stefan Roese <sr@denx.de>
-To:     linux-mips@vger.kernel.org
-Cc:     Paul Burton <paul.burton@mips.com>, Rob Herring <robh@kernel.org>,
-        devicetree@vger.kernel.org
-Subject: [PATCH 3/4 v4] dt-bindings: mips: Add gardena vendor prefix and board description
-Date:   Mon, 12 Aug 2019 12:36:54 +0200
-Message-Id: <20190812103655.11070-3-sr@denx.de>
-In-Reply-To: <20190812103655.11070-1-sr@denx.de>
-References: <20190812103655.11070-1-sr@denx.de>
+        id S1727807AbfHLKi6 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 06:38:58 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:41145 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727691AbfHLKi6 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 06:38:58 -0400
+Received: by mail-wr1-f66.google.com with SMTP id j16so1854400wrr.8
+        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 03:38:56 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=7b3n5NKIs0QO9tGBF6PQ+renF/Om9ojGaBkhFRxGbp8=;
+        b=jXx+Xx03meTbr4eyHv+1urOuHrqsRH8Ttb2Gam7K/oWIPgI0k4WTcOX4plmR4pjeZe
+         Zvo5LxdvA1fVOV/hxNP1sFgTyVTszT/eGLj8mzWU9REP+aXB7jU8h7vZT6frlBYjx5Kg
+         C+dj2i+1qa65PYYh1dge3Zr8CR83oDUKZLLNiZW6b3zICAc3naqsRpDoHoaV9zW2Ru4n
+         TFzoV9fvqDEg94aUVtp6A5Gb0TmqYLRYvA1PT+zm50enDW2WWDO3rB+pgDEkRd4ZVg9m
+         HifZBhwvOYblYQL/HkCaC1FJh9KD9vdFHMX2LcieETYnFe9U6PCjff+h31bY2ICOlMgu
+         k+PA==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=7b3n5NKIs0QO9tGBF6PQ+renF/Om9ojGaBkhFRxGbp8=;
+        b=YWV1XDGGSZ0G5TdT1I150Y7FJW5ZN5KcBSaKa7wu7spEbSXNoV8wZ7q3/R2HRJAzla
+         /wkgzTGrwMUMLw1FvnZdYP+3ZH3zcTzXmPgb66JpgijsRHs128FCdpOm/OAXCJZhE41B
+         jA2uAeSVbPH3P7uUATIBoGbQukrA6iGA+gsV0At3V3PQYiTM2ZASd+a8WUbSl0dK8kSb
+         FE1kqdDbIQA4vDY115VOvbLt606ojX/meABAZTGf5J8PY04t6EbVGkrxfbcAlMBYbDBO
+         +26qRh6p2g9n3Zimx8AlvHubpTzMEO8m0jFwE4BkgvUmURXAX5K8gb1wH3nePK8v4XUd
+         lp8g==
+X-Gm-Message-State: APjAAAW1gwqYmQc6JdnenCMpwsTMy0GYSu6ZOVwVkOHtVOn9pS728U6x
+        WwN/2tHh0hBiWvnnSDlT91rFBg==
+X-Google-Smtp-Source: APXvYqz8Yya7OU/9cDk/irjRRQ9TX/KGTlrvG5IiZILpY7qG1UeqpwhH8dz5KgFj/+JLHxl+S6+DVw==
+X-Received: by 2002:adf:cd11:: with SMTP id w17mr12305515wrm.297.1565606335239;
+        Mon, 12 Aug 2019 03:38:55 -0700 (PDT)
+Received: from dell ([2.27.35.255])
+        by smtp.gmail.com with ESMTPSA id 91sm204353708wrp.3.2019.08.12.03.38.54
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 12 Aug 2019 03:38:54 -0700 (PDT)
+Date:   Mon, 12 Aug 2019 11:38:53 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Charles Keepax <ckeepax@opensource.cirrus.com>
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com,
+        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
+        patches@opensource.cirrus.com
+Subject: Re: [PATCH 2/2] mfd: madera: Add support for requesting the supply
+ clocks
+Message-ID: <20190812103853.GM26727@dell>
+References: <20190806151321.31137-1-ckeepax@opensource.cirrus.com>
+ <20190806151321.31137-2-ckeepax@opensource.cirrus.com>
 MIME-Version: 1.0
+Content-Type: text/plain; charset=utf-8
+Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
+In-Reply-To: <20190806151321.31137-2-ckeepax@opensource.cirrus.com>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-This patch adds the vendor prefix for gardena and a short description
-including the compatible string for the "GARDENA smart Gateway" based
-on the MT7688 SoC.
+On Tue, 06 Aug 2019, Charles Keepax wrote:
 
-Signed-off-by: Stefan Roese <sr@denx.de>
-Cc: Paul Burton <paul.burton@mips.com>
-Cc: Rob Herring <robh@kernel.org>
-Cc: devicetree@vger.kernel.org
----
-v4:
-- Move board description into ralink.txt instead of creating a gardena
-  board file (Rob)
-- Slightly changed board compatible
+> Add the ability to get the clock for each clock input pin of the chip
+> and enable MCLK2 since that is expected to be a permanently enabled
+> 32kHz clock.
+> 
+> Signed-off-by: Charles Keepax <ckeepax@opensource.cirrus.com>
+> ---
+>  drivers/mfd/madera-core.c       | 24 +++++++++++++++++++++++-
+>  include/linux/mfd/madera/core.h | 11 +++++++++++
+>  2 files changed, 34 insertions(+), 1 deletion(-)
+> 
+> diff --git a/drivers/mfd/madera-core.c b/drivers/mfd/madera-core.c
+> index 29540cbf75934..8d7ab1c7bf9f7 100644
+> --- a/drivers/mfd/madera-core.c
+> +++ b/drivers/mfd/madera-core.c
+> @@ -428,6 +428,7 @@ static void madera_set_micbias_info(struct madera *madera)
+>  
+>  int madera_dev_init(struct madera *madera)
+>  {
+> +	static const char * const mclk_name[] = { "mclk1", "mclk2", "mclk3" };
+>  	struct device *dev = madera->dev;
+>  	unsigned int hwid;
+>  	int (*patch_fn)(struct madera *) = NULL;
+> @@ -450,6 +451,17 @@ int madera_dev_init(struct madera *madera)
+>  		       sizeof(madera->pdata));
+>  	}
+>  
+> +	BUILD_BUG_ON(ARRAY_SIZE(madera->mclk) != ARRAY_SIZE(mclk_name));
 
-v3:
-- New patch
+Not sure how this could happen.  Surely we don't need it.
 
- Documentation/devicetree/bindings/mips/ralink.txt   | 13 +++++++++++++
- .../devicetree/bindings/vendor-prefixes.yaml        |  2 ++
- 2 files changed, 15 insertions(+)
+> +	for (i = 0; i < ARRAY_SIZE(madera->mclk); i++) {
+> +		madera->mclk[i] = devm_clk_get_optional(madera->dev,
+> +							mclk_name[i]);
+> +		if (IS_ERR(madera->mclk[i])) {
+> +			dev_warn(madera->dev, "Failed to get %s: %ld\n",
+> +				 mclk_name[i], PTR_ERR(madera->mclk[i]));
 
-diff --git a/Documentation/devicetree/bindings/mips/ralink.txt b/Documentation/devicetree/bindings/mips/ralink.txt
-index 3341945b51d9..8cc0ab41578c 100644
---- a/Documentation/devicetree/bindings/mips/ralink.txt
-+++ b/Documentation/devicetree/bindings/mips/ralink.txt
-@@ -17,3 +17,16 @@ value must be one of the following values:
-   ralink,mt7620n-soc
-   ralink,mt7628a-soc
-   ralink,mt7688a-soc
-+
-+2. Boards
-+
-+GARDENA smart Gateway (MT7688)
-+
-+This board is based on the MediaTek MT7688 and equipped with 128 MiB
-+of DDR and 8 MiB of flash (SPI NOR) and additional 128MiB SPI NAND
-+storage.
-+
-+------------------------------
-+Required root node properties:
-+- compatible = "gardena,smart-gateway-mt7688", "ralink,mt7688a-soc",
-+		"ralink,mt7628a-soc";
-diff --git a/Documentation/devicetree/bindings/vendor-prefixes.yaml b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-index 6992bbbbffab..73166adfd4ad 100644
---- a/Documentation/devicetree/bindings/vendor-prefixes.yaml
-+++ b/Documentation/devicetree/bindings/vendor-prefixes.yaml
-@@ -337,6 +337,8 @@ patternProperties:
-     description: Freescale Semiconductor
-   "^fujitsu,.*":
-     description: Fujitsu Ltd.
-+  "^gardena,.*":
-+    description: GARDENA GmbH
-   "^gateworks,.*":
-     description: Gateworks Corporation
-   "^gcw,.*":
+Do we even want to warn on the non-acquisition of an optional clock?
+
+Especially with a message that looks like something actually failed.
+
+> +			madera->mclk[i] = NULL;
+> +		}
+> +	}
+> +
+>  	ret = madera_get_reset_gpio(madera);
+>  	if (ret)
+>  		return ret;
+> @@ -660,13 +672,19 @@ int madera_dev_init(struct madera *madera)
+>  	}
+>  
+>  	/* Init 32k clock sourced from MCLK2 */
+> +	ret = clk_prepare_enable(madera->mclk[MADERA_MCLK2]);
+> +	if (ret != 0) {
+> +		dev_err(madera->dev, "Failed to enable 32k clock: %d\n", ret);
+> +		goto err_reset;
+> +	}
+
+What happened to this being optional?
+
+>  	ret = regmap_update_bits(madera->regmap,
+>  			MADERA_CLOCK_32K_1,
+>  			MADERA_CLK_32K_ENA_MASK | MADERA_CLK_32K_SRC_MASK,
+>  			MADERA_CLK_32K_ENA | MADERA_32KZ_MCLK2);
+>  	if (ret) {
+>  		dev_err(madera->dev, "Failed to init 32k clock: %d\n", ret);
+> -		goto err_reset;
+> +		goto err_clock;
+>  	}
+>  
+>  	pm_runtime_set_active(madera->dev);
+> @@ -687,6 +705,8 @@ int madera_dev_init(struct madera *madera)
+>  
+>  err_pm_runtime:
+>  	pm_runtime_disable(madera->dev);
+> +err_clock:
+> +	clk_disable_unprepare(madera->mclk[MADERA_MCLK2]);
+
+Where are the other clocks consumed?
+
+>  err_reset:
+>  	madera_enable_hard_reset(madera);
+>  	regulator_disable(madera->dcvdd);
+> @@ -713,6 +733,8 @@ int madera_dev_exit(struct madera *madera)
+>  	 */
+>  	pm_runtime_disable(madera->dev);
+>  
+> +	clk_disable_unprepare(madera->mclk[MADERA_MCLK2]);
+> +
+>  	regulator_disable(madera->dcvdd);
+>  	regulator_put(madera->dcvdd);
+>  
+> diff --git a/include/linux/mfd/madera/core.h b/include/linux/mfd/madera/core.h
+> index 7ffa696cce7ca..2b6c83fe221dc 100644
+> --- a/include/linux/mfd/madera/core.h
+> +++ b/include/linux/mfd/madera/core.h
+> @@ -8,6 +8,7 @@
+>  #ifndef MADERA_CORE_H
+>  #define MADERA_CORE_H
+>  
+> +#include <linux/clk.h>
+>  #include <linux/gpio/consumer.h>
+>  #include <linux/interrupt.h>
+>  #include <linux/mfd/madera/pdata.h>
+> @@ -29,6 +30,13 @@ enum madera_type {
+>  	CS42L92 = 9,
+>  };
+>  
+> +enum {
+> +	MADERA_MCLK1,
+> +	MADERA_MCLK2,
+> +	MADERA_MCLK3,
+> +	MADERA_NUM_MCLK
+> +};
+> +
+>  #define MADERA_MAX_CORE_SUPPLIES	2
+>  #define MADERA_MAX_GPIOS		40
+>  
+> @@ -155,6 +163,7 @@ struct snd_soc_dapm_context;
+>   * @irq_dev:		the irqchip child driver device
+>   * @irq_data:		pointer to irqchip data for the child irqchip driver
+>   * @irq:		host irq number from SPI or I2C configuration
+> + * @mclk:		pointers to clock supplies
+>   * @out_clamp:		indicates output clamp state for each analogue output
+>   * @out_shorted:	indicates short circuit state for each analogue output
+>   * @hp_ena:		bitflags of enable state for the headphone outputs
+> @@ -184,6 +193,8 @@ struct madera {
+>  	struct regmap_irq_chip_data *irq_data;
+>  	int irq;
+>  
+> +	struct clk *mclk[MADERA_NUM_MCLK];
+> +
+>  	unsigned int num_micbias;
+>  	unsigned int num_childbias[MADERA_MAX_MICBIAS];
+>  
+
 -- 
-2.22.0
-
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
