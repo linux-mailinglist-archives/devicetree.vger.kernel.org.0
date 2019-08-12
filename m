@@ -2,85 +2,75 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 829A389C6F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:11:58 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 30F2089C82
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:23:31 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728189AbfHLLLs (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 07:11:48 -0400
-Received: from heliosphere.sirena.org.uk ([172.104.155.198]:38512 "EHLO
-        heliosphere.sirena.org.uk" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728125AbfHLLLo (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:11:44 -0400
-DKIM-Signature: v=1; a=rsa-sha256; q=dns/txt; c=relaxed/relaxed;
-        d=sirena.org.uk; s=20170815-heliosphere; h=In-Reply-To:Content-Type:
-        MIME-Version:References:Message-ID:Subject:Cc:To:From:Date:Sender:Reply-To:
-        Content-Transfer-Encoding:Content-ID:Content-Description:Resent-Date:
-        Resent-From:Resent-Sender:Resent-To:Resent-Cc:Resent-Message-ID:List-Id:
-        List-Help:List-Unsubscribe:List-Subscribe:List-Post:List-Owner:List-Archive;
-         bh=VOU+A7N6Ee0Dhs3ArVSbBOqkU2CM/MzFu4Eo8Vtc5Hw=; b=ffEBe40YCHxGSxDqNpEbhChwl
-        zv4FStkFDOSl/qWyUyZ6fOe2c3rXVzDsbZ3T5DHT5qNx0EodSX1IQLIiG8DDtxo5RgJEHM2YiG68Q
-        E4qxh0O3IyC9Jz+J2iJCHMfyj5dvH8+0JHCDO2+NuMLvuuqqlfFhBOY8jRVu0utabE2aQ=;
-Received: from cpc102320-sgyl38-2-0-cust46.18-2.cable.virginm.net ([82.37.168.47] helo=ypsilon.sirena.org.uk)
-        by heliosphere.sirena.org.uk with esmtpsa (TLS1.3:ECDHE_RSA_AES_256_GCM_SHA384:256)
-        (Exim 4.92)
-        (envelope-from <broonie@sirena.co.uk>)
-        id 1hx8Em-00013U-V9; Mon, 12 Aug 2019 11:11:41 +0000
-Received: by ypsilon.sirena.org.uk (Postfix, from userid 1000)
-        id 7511D27430B7; Mon, 12 Aug 2019 12:11:40 +0100 (BST)
-Date:   Mon, 12 Aug 2019 12:11:40 +0100
-From:   Mark Brown <broonie@kernel.org>
-To:     Raag Jadav <raagjadav@gmail.com>
-Cc:     linux-kernel@vger.kernel.org, devicetree@vger.kernel.org,
-        Rob Herring <robh+dt@kernel.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Liam Girdwood <lgirdwood@gmail.com>
-Subject: Re: [PATCH 2/2] dt-bindings: regulator: act8865 regulator modes and
- suspend states
-Message-ID: <20190812111140.GG4592@sirena.co.uk>
-References: <1565423335-3213-1-git-send-email-raagjadav@gmail.com>
- <1565423335-3213-3-git-send-email-raagjadav@gmail.com>
+        id S1728108AbfHLLXa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 07:23:30 -0400
+Received: from relay7-d.mail.gandi.net ([217.70.183.200]:41419 "EHLO
+        relay7-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728063AbfHLLXa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:23:30 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay7-d.mail.gandi.net (Postfix) with ESMTPSA id 75E3C20008;
+        Mon, 12 Aug 2019 11:23:28 +0000 (UTC)
+Date:   Mon, 12 Aug 2019 13:23:28 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
+Subject: Re: [PATCH v6 0/2] Allwinner H6 SPDIF support
+Message-ID: <20190812112328.o6xznp2mvnuchswe@flea>
+References: <20190812105115.26676-1-peron.clem@gmail.com>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha512;
-        protocol="application/pgp-signature"; boundary="w/VI3ydZO+RcZ3Ux"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jy2mseu76lv4s422"
 Content-Disposition: inline
-In-Reply-To: <1565423335-3213-3-git-send-email-raagjadav@gmail.com>
-X-Cookie: Decaffeinated coffee?  Just Say No.
-User-Agent: Mutt/1.10.1 (2018-07-13)
+In-Reply-To: <20190812105115.26676-1-peron.clem@gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
 
---w/VI3ydZO+RcZ3Ux
-Content-Type: text/plain; charset=us-ascii
+--jy2mseu76lv4s422
+Content-Type: text/plain; charset=iso-8859-1
 Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
 
-On Sat, Aug 10, 2019 at 01:18:55PM +0530, Raag Jadav wrote:
+On Mon, Aug 12, 2019 at 12:51:13PM +0200, Cl=E9ment P=E9ron wrote:
+> Allwinner H6 SoC has a SPDIF controller called One Wire Audio (OWA) which
+> is different from the previous H3 generation and not compatible.
+>
+> Difference are an increase of fifo sizes, some memory mapping are differe=
+nt
+> and there is now the possibility to output the master clock on a pin.
+>
+> Actually all these features are unused and only a bit for flushing the TX
+> fifo is required.
 
-> + * ACT8865 regulators as follows:
-> + * ACT8865_REGULATOR_MODE_FIXED:	It is specific to DCDC regulators and it
-> + *					specifies the usage of fixed-frequency
-> + *					PWM.
+Applied both, thanks
 
-Ah, _FIXED doesn't mean what it sounded like - this should map to _FAST.
-The reason you use forced PWM is to avoid any delay in the hardware
-figuring out that it needs to go into PWM mode in the case of rapid load
-changes.
+Maxime
 
---w/VI3ydZO+RcZ3Ux
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--jy2mseu76lv4s422
 Content-Type: application/pgp-signature; name="signature.asc"
 
 -----BEGIN PGP SIGNATURE-----
 
-iQEzBAABCgAdFiEEreZoqmdXGLWf4p/qJNaLcl1Uh9AFAl1RSWsACgkQJNaLcl1U
-h9BgOwf+L+0uD2AkY2mKb2rgbO4kz8XM2/qXa/Guj883xw8zawXENnnGXMu1g+i3
-0gO9qV1QdTKin8sA2YFzlSqIreIjIh5EBwxcTDBizvq7+QO40zJVxLi4kvMNEQcN
-O144ApoOUPDU4HhhaZM9fW9+kx13IAgn4cficrqDdnoL2pZ8sNWsQP28vjprfgWH
-45DxGYJqrrhnXW3unBkGBT/z6Cu5DhCo9NYnNY6+G2eQqNtD+UacEu2K+HQuVuUj
-g/0Tg8h9ZhsIX+z1eo2Idorf7jkvd4QctqaA4DJHIKezvyD+7STfmAIwyobXC0Nh
-fDr0HHOLg3E7HBBIXu8mX4GEVDJkZw==
-=mPsh
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVFMLwAKCRDj7w1vZxhR
+xcPRAP0ebGBO67tqWojTHkbb+BtT7hi+/h6+hwFFzFt8mCG2RQD9GxoAuuARoreO
+CEPXNNW5FHOEKlw26Jh57e6Xkr2X1A8=
+=n+Qt
 -----END PGP SIGNATURE-----
 
---w/VI3ydZO+RcZ3Ux--
+--jy2mseu76lv4s422--
