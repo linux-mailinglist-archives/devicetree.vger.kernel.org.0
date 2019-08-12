@@ -2,144 +2,123 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 91DF58A211
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 17:15:36 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 286068A23F
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 17:27:37 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727037AbfHLPPb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 11:15:31 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:46540 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727060AbfHLPP1 (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 11:15:27 -0400
-Received: by mail-wr1-f67.google.com with SMTP id z1so104896080wru.13
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 08:15:25 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=kxqbuY4B1dItH0K76N5jkNqR9OjL/xCxchMz+Ee+8mE=;
-        b=lr/cfQpIZIaBSo6b9Q3zxeOVa2+U0uJcOFT+1l6c30ZI2NbC+DOeDIoBUtdF0VF0ov
-         iwtSxkFt8UCR7dfeUmqY7rXB+7He3ZhOOiiMgmL9FmhQZgX9io9AucbNrI9nJyrQPpiQ
-         E09PfHLDjAQW2IEh/0AroZo9xVRg/aeq/biCAQVAdq5XJb+nsYnv99EIGDBAAuOFFspl
-         SvwOCXElndrpLEvzqNZeT1j0BHnGnbf85ioODXWRgasd1a/qtdcwvPJPWxwnBX0nqdQV
-         SOBGjVPPASSZhDPvsfTKmRg64PHj8QlxLf59HMArxIzwN0KgPsk+8C2CZB54WJ5SHGl+
-         0P7A==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=kxqbuY4B1dItH0K76N5jkNqR9OjL/xCxchMz+Ee+8mE=;
-        b=b4ggj1G+kX16vk7ZlQzlh+Ac0bnNpUE5Hvl76dHUgvyerdVvpqLKAAnPpPRsUxWmY7
-         ln/SwQeWq2+oQfMvqFHkdtjL8pL3GdluJH2vD6z18vxBR6GZgajhSxlO9Fo7d/818Eti
-         JbHf1Ex+2lIelbh1CEhBXDQNL6ModEsTEIeRd6Oc5qZjFSyRcq4Rcv5oJZskgA2sJg+C
-         OruZl7JQ/0bnG1ExSx/UnpS7vUNiRfx/zhHqQ8OCBF4XCC/GR6zfcFMl0rnfuYXx8txQ
-         Cc0r601JMrJUkqjA29b9foy+7qOMK63z8spGKqO43ZKSVG3FBslHtRcwur3lll9hPqKQ
-         fOKQ==
-X-Gm-Message-State: APjAAAWATgC6u4MlcO4NdAC4BrhH1S/Nv6X2c4cKyzfGQDAOtWti2VY+
-        HAM/OacEjOq1oMvPn3oSfAqqmA==
-X-Google-Smtp-Source: APXvYqyuePFlhOmpa07Fm6SyAPeyyhzMKjfeXv4MqLRtO62+RwuhXTyFoBewlD8zEFNaSN29kSEuGg==
-X-Received: by 2002:adf:f008:: with SMTP id j8mr26439756wro.129.1565622925048;
-        Mon, 12 Aug 2019 08:15:25 -0700 (PDT)
-Received: from dell ([2.27.35.255])
-        by smtp.gmail.com with ESMTPSA id f134sm30682221wmg.20.2019.08.12.08.15.23
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 12 Aug 2019 08:15:24 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 16:15:22 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allison Randal <allison@lohutok.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Eddie Huang <eddie.huang@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Richard Fontana <rfontana@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "Tianping . Fang" <tianping.fang@mediatek.com>,
-        Josef Friedl <josef.friedl@speed.at>
-Subject: Re: [PATCH v5 01/10] dt-bindings: add powercontroller
-Message-ID: <20190812151522.GW26727@dell>
-References: <20190812121511.4169-1-frank-w@public-files.de>
- <20190812121511.4169-2-frank-w@public-files.de>
+        id S1727159AbfHLP1g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 11:27:36 -0400
+Received: from mail.kernel.org ([198.145.29.99]:42850 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1727103AbfHLP1f (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 11:27:35 -0400
+Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 7261B2070C;
+        Mon, 12 Aug 2019 15:27:32 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565623655;
+        bh=vbVr9jjl22J0zb0ffZlickEWyD1dg9kUn83VsAuo2gc=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=pV7VfsZmTSwqdx7hJ19BAsFa2hxZSxzosbwfvKgUv/wMxXD6fuH8M5J9Pqve32BHM
+         LGi33XJvc9mlNIxCCG7JnfYNDqfXjO0tCKMWDhPFbuQ3/kuQHKbGdxCNTOyTWARIyc
+         iGsnxyY//nXtgglWqzmEM9Z93K1D54pAY09YstTk=
+Date:   Mon, 12 Aug 2019 17:27:25 +0200
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Hui Song <hui.song_1@nxp.com>
+Cc:     Li Yang <leoyang.li@nxp.com>, Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH v1 2/3] arm64: dts: fix gpio node
+Message-ID: <20190812152723.GK27041@X250>
+References: <20190808101628.36782-1-hui.song_1@nxp.com>
+ <20190808101628.36782-2-hui.song_1@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190812121511.4169-2-frank-w@public-files.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190808101628.36782-2-hui.song_1@nxp.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Aug 2019, Frank Wunderlich wrote:
+On Thu, Aug 08, 2019 at 06:16:27PM +0800, Hui Song wrote:
+> From: Song Hui <hui.song_1@nxp.com>
+> 
+> Update the nodes to include little-endian
+> property to be consistent with the hardware
+> and add ls1088a gpio specify compatible.
+> 
+> Signed-off-by: Song Hui <hui.song_1@nxp.com>
 
-> From: Josef Friedl <josef.friedl@speed.at>
-> 
-> add mt6323-rtc and mt6323-pwrc to mt6397 mfd DT bindings
-> an example is shown in mt6323-poweroff.txt
-> 
-> Suggested-by: Frank Wunderlich <frank-w@public-files.de>
-> Signed-off-by: Josef Friedl <josef.friedl@speed.at>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
-> Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
+The prefix should be more specific, like 'arm64: dts: ls1088a: ...'
+
+Shawn
+
 > ---
-> changes since v4: use relative path
-> changes since v3: none
-> changes since v2: separated rtc-mt6397.txt to part 2
-> ---
->  .../devicetree/bindings/mfd/mt6397.txt        | 20 +++++++++++++------
->  .../bindings/power/reset/mt6323-poweroff.txt  | 20 +++++++++++++++++++
->  2 files changed, 34 insertions(+), 6 deletions(-)
->  create mode 100644 Documentation/devicetree/bindings/power/reset/mt6323-poweroff.txt
+>  arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi | 12 ++++++++----
+>  1 file changed, 8 insertions(+), 4 deletions(-)
 > 
-> diff --git a/Documentation/devicetree/bindings/mfd/mt6397.txt b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> index 0ebd08af777d..063f5fe1cace 100644
-> --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
-> +++ b/Documentation/devicetree/bindings/mfd/mt6397.txt
-> @@ -8,11 +8,12 @@ MT6397/MT6323 is a multifunction device with the following sub modules:
->  - Clock
->  - LED
->  - Keys
-> +- Power controller
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> index 20f5ebd..d58d203 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1088a.dtsi
+> @@ -269,43 +269,47 @@
+>  		};
 >  
->  It is interfaced to host controller using SPI interface by a proprietary hardware
->  called PMIC wrapper or pwrap. MT6397/MT6323 MFD is a child device of pwrap.
->  See the following for pwarp node definitions:
-> -Documentation/devicetree/bindings/soc/mediatek/pwrap.txt
-> +../../bindings/soc/mediatek/pwrap.txt
+>  		gpio0: gpio@2300000 {
+> -			compatible = "fsl,qoriq-gpio";
+> +			compatible = "fsl,ls1088a-gpio", "fsl,qoriq-gpio";
+>  			reg = <0x0 0x2300000 0x0 0x10000>;
+>  			interrupts = <0 36 IRQ_TYPE_LEVEL_HIGH>;
+>  			gpio-controller;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> +			little-endian;
+>  		};
 >  
->  This document describes the binding for MFD device and its sub module.
+>  		gpio1: gpio@2310000 {
+> -			compatible = "fsl,qoriq-gpio";
+> +			compatible = "fsl,ls1088a-gpio", "fsl,qoriq-gpio";
+>  			reg = <0x0 0x2310000 0x0 0x10000>;
+>  			interrupts = <0 36 IRQ_TYPE_LEVEL_HIGH>;
+>  			gpio-controller;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> +			little-endian;
+>  		};
 >  
-> @@ -22,14 +23,16 @@ compatible: "mediatek,mt6397" or "mediatek,mt6323"
->  Optional subnodes:
+>  		gpio2: gpio@2320000 {
+> -			compatible = "fsl,qoriq-gpio";
+> +			compatible = "fsl,ls1088a-gpio", "fsl,qoriq-gpio";
+>  			reg = <0x0 0x2320000 0x0 0x10000>;
+>  			interrupts = <0 37 IRQ_TYPE_LEVEL_HIGH>;
+>  			gpio-controller;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> +			little-endian;
+>  		};
 >  
->  - rtc
-> -	Required properties:
-> +	Required properties: Should be one of follows
-> +		- compatible: "mediatek,mt6323-rtc"
->  		- compatible: "mediatek,mt6397-rtc"
-> +	For details, see ../../bindings/rtc/rtc-mt6397.txt
-
-Apologies for the ambiguity.  I don't think you need to go all the way
-back to 'bindings'.  Just one step back will do fine.  ../rtc/* will be
-fine here.
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>  		gpio3: gpio@2330000 {
+> -			compatible = "fsl,qoriq-gpio";
+> +			compatible = "fsl,ls1088a-gpio", "fsl,qoriq-gpio";
+>  			reg = <0x0 0x2330000 0x0 0x10000>;
+>  			interrupts = <0 37 IRQ_TYPE_LEVEL_HIGH>;
+>  			gpio-controller;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> +			little-endian;
+>  		};
+>  
+>  		ifc: ifc@2240000 {
+> -- 
+> 2.9.5
+> 
