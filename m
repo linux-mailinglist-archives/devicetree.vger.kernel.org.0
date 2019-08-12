@@ -2,177 +2,116 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 78E96899A1
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 11:18:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 70688899AB
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 11:20:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727248AbfHLJSE (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 05:18:04 -0400
-Received: from mail-ed1-f65.google.com ([209.85.208.65]:46771 "EHLO
-        mail-ed1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727154AbfHLJSE (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 05:18:04 -0400
-Received: by mail-ed1-f65.google.com with SMTP id z51so15635111edz.13;
-        Mon, 12 Aug 2019 02:18:02 -0700 (PDT)
+        id S1727054AbfHLJU1 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 05:20:27 -0400
+Received: from mail-wm1-f67.google.com ([209.85.128.67]:55053 "EHLO
+        mail-wm1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1727023AbfHLJU1 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 05:20:27 -0400
+Received: by mail-wm1-f67.google.com with SMTP id p74so11473724wme.4;
+        Mon, 12 Aug 2019 02:20:24 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20161025;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:in-reply-to:user-agent;
+        bh=MgLPMTtg6Jyzs9wt4ekHIpThJOy3S51fX4Pbs5028Qw=;
+        b=MRdxqniAXGFwWGp6ovZBRFM5kKVCzLuypXpwid6B4G8z7Twcw1CyFlX5XZduWh6krN
+         BvoiV1sQSftc9cDjUaJAIOA/xdD5x5IaNN4fT2PbmzflVMWDP+lnn4Uj0gJ9mrnTDb//
+         QN9BugW6+JENQzNq/HeN8qdi9AxVJ5WyVlu/z74wAoImfMnLfr1BdDzzhR0VUaX/NK7B
+         DjFAfJuOmwwnepWyG9icGE30RhNahktJMk1z8ZBV9B2HcjMfnrEw9PueE3xjbd5ao0ls
+         4dceqzuANg44kgeClcK0gxjc/+68HYucfwePMGct+S/xb/Woo+wd1CzjNrg24nC5bztP
+         11Eg==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc;
-        bh=qYfm+HhxiVLxwMRZpF6kOW9iq3of0f5g9KF9ckov0fc=;
-        b=cVXExtymyEjoZpWX0ovDJLW5SCLo+b+U7P4pTosqUARvfjcwtFd3VsaOuw5CLJ4gYx
-         Ui6SInKS2BXsZLMOEhVMlTfUu34DkUMkvCgK5qd6aDXZ8NSBNPREMqeCBoIENIwVMh1t
-         jUUNMkjG+tEDPc/Tu8ir/VJB6VDNs10YW8NjOul8oArMoZ3OoD+TM4x0EFJVrL2jsbrr
-         sTOwwhRhNnYUTksL86wxQMr43wwGe2Cl2vbL8Kq9WBjT/+Mxb/vg6mqlytoPEmaJ3oUf
-         6B2vwzlnmFTig8HHyk5Fpb9g4KPo1RY3o5lFK+3cv8QdUBTWuDkrO7MzKpM+n2gA9mis
-         M3/A==
-X-Gm-Message-State: APjAAAWUieWSFTXtE7P8qr+MxzM59a7r0J010MLNxZ/FnG7ykvRtT1oc
-        yUJOauTqbe4k/hhuQwIgOm0jyhNf59E=
-X-Google-Smtp-Source: APXvYqzK3Gd7c+stmPBEDXck6lIvUr4izmcWUK1wvlhoe6Bx1vfTv9cxeWM97fymb54Y17+cYoQQSA==
-X-Received: by 2002:a50:8b64:: with SMTP id l91mr15854796edl.258.1565601481313;
-        Mon, 12 Aug 2019 02:18:01 -0700 (PDT)
-Received: from mail-wr1-f45.google.com (mail-wr1-f45.google.com. [209.85.221.45])
-        by smtp.gmail.com with ESMTPSA id l26sm438803ejg.70.2019.08.12.02.18.00
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 12 Aug 2019 02:18:01 -0700 (PDT)
-Received: by mail-wr1-f45.google.com with SMTP id p17so103906122wrf.11;
-        Mon, 12 Aug 2019 02:18:00 -0700 (PDT)
-X-Received: by 2002:adf:dbce:: with SMTP id e14mr30773546wrj.9.1565601480549;
- Mon, 12 Aug 2019 02:18:00 -0700 (PDT)
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:in-reply-to:user-agent;
+        bh=MgLPMTtg6Jyzs9wt4ekHIpThJOy3S51fX4Pbs5028Qw=;
+        b=uLH+2WOkrWNz0tTDoB+NX4b++ENxLOgWMFLL/GNehwRSLJTcXd9LFKmRMZLDj+I2pT
+         bL8TaTDDzYPX72wOhPYP5T/FByuR50JiC7ZgCzDADzyhK0auxjtGpjEvjgf2Rh2yqprR
+         4NVmHzHI4EY2gETMozMiGpLxS+PZSryMEdmpIG5Mv1DUJxHvBskVTQfdBYFic6n+j8G+
+         uYeFWJpJdPPftYwmuYPMX2KxrruqdZEMZZGY3sw+PzJrlaRtH20FceU6vqA3vSX5SxmW
+         OTQO/2OEfq2Y+/vwsAmF/SmuE6n2HXZEMMirQ4j6L1T9o7vRhehZEE7oR0yQUTkmz/EX
+         VH8g==
+X-Gm-Message-State: APjAAAU4BcbzardcI25fwQQmnMQGN2cp8WC7/KrMqWvz7Gm7C/R0ga3a
+        Slhtt+P6WaIDbLccF8Acq74=
+X-Google-Smtp-Source: APXvYqxHLPKNrpdLLMqp0G4bXC5Z91yn/gIGCzLXSVN9445Z3ZyS5vnf0Dqr+tLu8Cusm5o3P0Nl2Q==
+X-Received: by 2002:a05:600c:10ce:: with SMTP id l14mr25953651wmd.118.1565601624096;
+        Mon, 12 Aug 2019 02:20:24 -0700 (PDT)
+Received: from localhost (pD9E51890.dip0.t-ipconnect.de. [217.229.24.144])
+        by smtp.gmail.com with ESMTPSA id w13sm44443446wre.44.2019.08.12.02.20.22
+        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
+        Mon, 12 Aug 2019 02:20:22 -0700 (PDT)
+Date:   Mon, 12 Aug 2019 11:20:21 +0200
+From:   Thierry Reding <thierry.reding@gmail.com>
+To:     Sowjanya Komatineni <skomatineni@nvidia.com>
+Cc:     jonathanh@nvidia.com, tglx@linutronix.de, jason@lakedaemon.net,
+        marc.zyngier@arm.com, linus.walleij@linaro.org, stefan@agner.ch,
+        mark.rutland@arm.com, pdeschrijver@nvidia.com, pgaikwad@nvidia.com,
+        sboyd@kernel.org, linux-clk@vger.kernel.org,
+        linux-gpio@vger.kernel.org, jckuo@nvidia.com, josephl@nvidia.com,
+        talho@nvidia.com, linux-tegra@vger.kernel.org,
+        linux-kernel@vger.kernel.org, mperttunen@nvidia.com,
+        spatra@nvidia.com, robh+dt@kernel.org, digetx@gmail.com,
+        devicetree@vger.kernel.org, rjw@rjwysocki.net,
+        viresh.kumar@linaro.org, linux-pm@vger.kernel.org
+Subject: Re: [PATCH v8 01/21] pinctrl: tegra: Fix write barrier placement in
+ pmx_writel
+Message-ID: <20190812092021.GC8903@ulmo>
+References: <1565308020-31952-1-git-send-email-skomatineni@nvidia.com>
+ <1565308020-31952-2-git-send-email-skomatineni@nvidia.com>
 MIME-Version: 1.0
-References: <20190806155744.10263-1-megous@megous.com> <20190806155744.10263-2-megous@megous.com>
-In-Reply-To: <20190806155744.10263-2-megous@megous.com>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 12 Aug 2019 17:17:48 +0800
-X-Gmail-Original-Message-ID: <CAGb2v66+L6_QrL-05fLHQxqavBAmP-pEFp9RWT5XeTQ2rpGa3w@mail.gmail.com>
-Message-ID: <CAGb2v66+L6_QrL-05fLHQxqavBAmP-pEFp9RWT5XeTQ2rpGa3w@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v8 1/4] arm64: dts: allwinner: orange-pi-3:
- Enable ethernet
-To:     =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>
-Cc:     linux-sunxi <linux-sunxi@googlegroups.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        =?UTF-8?Q?Jernej_=C5=A0krabec?= <jernej.skrabec@gmail.com>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
-        Mark Rutland <mark.rutland@arm.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="i7F3eY7HS/tUJxUd"
+Content-Disposition: inline
+In-Reply-To: <1565308020-31952-2-git-send-email-skomatineni@nvidia.com>
+User-Agent: Mutt/1.12.1 (2019-06-15)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Tue, Aug 6, 2019 at 11:57 PM <megous@megous.com> wrote:
->
-> From: Ondrej Jirman <megous@megous.com>
->
-> Orange Pi 3 has two regulators that power the Realtek RTL8211E. According
-> to the phy datasheet, both regulators need to be enabled at the same time,
-> but we can only specify a single phy-supply in the DT.
->
-> This can be achieved by making one regulator depedning on the other via
-> vin-supply. While it's not a technically correct description of the
-> hardware, it achieves the purpose.
->
-> All values of RX/TX delay were tested exhaustively and a middle one of the
-> working values was chosen.
->
-> Signed-off-by: Ondrej Jirman <megous@megous.com>
+
+--i7F3eY7HS/tUJxUd
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+Content-Transfer-Encoding: quoted-printable
+
+On Thu, Aug 08, 2019 at 04:46:40PM -0700, Sowjanya Komatineni wrote:
+> pmx_writel uses writel which inserts write barrier before the
+> register write rather.
+>=20
+> This patch has fix to replace writel with writel_relaxed followed
+> by a write barrier to ensure write operation before the barrier
+> is completed for successful pinctrl change.
+>=20
+> Signed-off-by: Sowjanya Komatineni <skomatineni@nvidia.com>
 > ---
->  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 44 +++++++++++++++++++
->  1 file changed, 44 insertions(+)
->
-> diff --git a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> index 17d496990108..2c6807b74ff6 100644
-> --- a/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> +++ b/arch/arm64/boot/dts/allwinner/sun50i-h6-orangepi-3.dts
-> @@ -15,6 +15,7 @@
->
->         aliases {
->                 serial0 = &uart0;
-> +               ethernet0 = &emac;
->         };
->
->         chosen {
-> @@ -44,6 +45,27 @@
->                 regulator-max-microvolt = <5000000>;
->                 regulator-always-on;
->         };
-> +
-> +       /*
-> +        * The board uses 2.5V RGMII signalling. Power sequence to enable
-> +        * the phy is to enable GMAC-2V5 and GMAC-3V (aldo2) power rails
-> +        * at the same time and to wait 100ms.
-> +        */
-> +       reg_gmac_2v5: gmac-2v5 {
-> +               compatible = "regulator-fixed";
-> +               regulator-name = "gmac-2v5";
-> +               regulator-min-microvolt = <2500000>;
-> +               regulator-max-microvolt = <2500000>;
-> +               startup-delay-us = <100000>;
-> +               enable-active-high;
-> +               gpio = <&pio 3 6 GPIO_ACTIVE_HIGH>; /* PD6 */
-> +
-> +               /* The real parent of gmac-2v5 is reg_vcc5v, but we need to
-> +                * enable two regulators to power the phy. This is one way
-> +                * to achieve that.
-> +                */
-> +               vin-supply = <&reg_aldo2>; /* GMAC-3V */
-> +       };
+>  drivers/pinctrl/tegra/pinctrl-tegra.c | 4 +++-
+>  1 file changed, 3 insertions(+), 1 deletion(-)
 
-The RTL8211E datasheet I have says:
+Acked-by: Thierry Reding <treding@nvidia.com>
 
-    2.5V (or 1.8/1.5V) RGMII power should be risen simultaneously or slightly
-    earlier than 3.3V power. Rising 2.5V (or 1.8/1.5V) power later than 3.3V
-    power may lead to errors.
+--i7F3eY7HS/tUJxUd
+Content-Type: application/pgp-signature; name="signature.asc"
 
-Since you can't reverse the parent relationship in your patch, maybe it's
-time to add a phy-io-supply property?
+-----BEGIN PGP SIGNATURE-----
 
-It also says the rise time for 3.3V must be between 1ms and 100ms. However
-the PMIC doesn't support voltage ramp control for the LDOs, nor does it list
-the ramp rate.
+iQIzBAABCAAdFiEEiOrDCAFJzPfAjcif3SOs138+s6EFAl1RL1EACgkQ3SOs138+
+s6GgOQ/+KHEjD8Jzg9BS66GmKuNoOclOxDM03l3CoYiOGhyyUsPjifCTvtnDFGwa
+lqaq7sH3V7fOCC/qun2i5BE8pumI+NgLEkm9tYKvmLCn2vKCzIpv2LGX37+e91M8
+GiMD27bmKkEDW4nLgIza9y3v/t6kJ4XhwKnFA2+eMjqZB9SNleworpYAZp832AIj
+nl0HbqRiGpkLjcIaWAibNY5+0OEpRB6AhZlhsCWz5h7c00Jad8qK1rBnoLxDiq7a
+s5jPfDc8fYWQ6OnIutLEjm+GdSx17odH7R+mprW9OiKqWPmdZUp/aZEHDyS434Al
++c8I0wEpxWWCEk924kF6oPytP6KKjOHy29SdhPg0RV7uuK/qPm6ylaSxem3NyCMi
+sibGMlfXuMKdFaDbCEIv0XbVsu7nmu1I0h7PV1Gy+oCSnPI8EJ+tFiGozbYoy9hQ
+INdJWkMQLWXsCRsECrP1zWyDdiA5zhI0nRNVSflZi5Lz9GkcGa8fmi+r0o4vOL+x
+Lsy85RpW8ukLteRRUf51hpXNcvsXTGXZEempESfd+uLu7eHTpq8WciMDDT0//ekQ
+L4xaq/9TB7s0sDH3D2O8VOd5s1tR0nHl0DojzeY/YS25hOi3nW/8/fHaz+1c6z/C
+cZ7LUpJxyGhfs9Sj00Ftyj2fWVZGuIxFDQXh5ny339ST1DhgPRQ=
+=NUo9
+-----END PGP SIGNATURE-----
 
-ChenYu
-
->  };
->
->  &cpu0 {
-> @@ -58,6 +80,28 @@
->         status = "okay";
->  };
->
-> +&emac {
-> +       pinctrl-names = "default";
-> +       pinctrl-0 = <&ext_rgmii_pins>;
-> +       phy-mode = "rgmii";
-> +       phy-handle = <&ext_rgmii_phy>;
-> +       phy-supply = <&reg_gmac_2v5>;
-> +       allwinner,rx-delay-ps = <1500>;
-> +       allwinner,tx-delay-ps = <700>;
-> +       status = "okay";
-> +};
-> +
-> +&mdio {
-> +       ext_rgmii_phy: ethernet-phy@1 {
-> +               compatible = "ethernet-phy-ieee802.3-c22";
-> +               reg = <1>;
-> +
-> +               reset-gpios = <&pio 3 14 GPIO_ACTIVE_LOW>; /* PD14 */
-> +               reset-assert-us = <15000>;
-> +               reset-deassert-us = <40000>;
-> +       };
-> +};
-> +
->  &mmc0 {
->         vmmc-supply = <&reg_cldo1>;
->         cd-gpios = <&pio 5 6 GPIO_ACTIVE_LOW>; /* PF6 */
-> --
-> 2.22.0
->
-> --
-> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/20190806155744.10263-2-megous%40megous.com.
+--i7F3eY7HS/tUJxUd--
