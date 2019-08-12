@@ -2,97 +2,122 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id F402689DB7
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 14:11:05 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 120C089E19
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 14:26:28 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727059AbfHLMKt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 08:10:49 -0400
-Received: from mail-yw1-f66.google.com ([209.85.161.66]:40983 "EHLO
-        mail-yw1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726200AbfHLMKt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 08:10:49 -0400
-Received: by mail-yw1-f66.google.com with SMTP id i138so38581690ywg.8;
-        Mon, 12 Aug 2019 05:10:48 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=gmail.com; s=20161025;
-        h=mime-version:references:in-reply-to:from:date:message-id:subject:to
-         :cc:content-transfer-encoding;
-        bh=4z7p+08vVGRKaFoY5K0HIJAi+xxlVs7dirH0vF1HBV8=;
-        b=ZlaFDJkn8yLyk6xQ571Oe8ABNlq9Ly3tW4PGAUu0Hla738q5vre4pOqrZkuY8VjcLY
-         QpxgkZTkbiY5sV9lQyaoMRfyOwYTWorH8Q/M9AGSYfXcB2QnWh+47f3RNUrhS2QpK/5e
-         u3IU8gEwuMfoi3EGj67aC76xwxowAQLpbLbVGMW7agkwzX82V6xh1zjOBqIhiqHYbyaF
-         yVd6r5BMz4VbmSsQ6rCvKNmfk8yfWU+9/KiQ0PdmBWgR/JeRaGFjSPZxUW9F6UL+1/eV
-         wU+j+FFe1HlJHonkDpZU+uOHPi21H1I9DZdnZ2Adw2fBBWsnTpd0/OHNFbV2q6NBxxKh
-         4VfQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=4z7p+08vVGRKaFoY5K0HIJAi+xxlVs7dirH0vF1HBV8=;
-        b=EndTiCuOp0VhPZGy93xn5tLtSXROWw9gsoz1ntZ4MqVoNZLvHRLl0RAJf9pKw7XdNl
-         e9DVfvbs6/PuzK6aL/xIAtMjsIZwbAzH7pgKQjO/sLLYKt89BXpYe1R8Jnx+ZTXZ6fF/
-         03/chUzXIg+YK6ShF5qTiChPwI/RrFUuRkhASqaRfsxVOr0P6X4XnTayrbbnO+DkKiRI
-         dnVjqvxcLWRWw9XGTnn+ciGQaslNXR2fEpP+I1Mio3drMXj3saf1nwkbRhluVaxryw0U
-         WuRCFUn0JQrgTMmoY/RLXNI2O1G5SqMzDCN8dqj/xecsA4EDWElUtzmAlrMGyQmtyUcg
-         1ivg==
-X-Gm-Message-State: APjAAAV89uvPYAuFrc8AORp6xfWU87rG5xBWkpxVTkj+kgQnR0wo+0xa
-        Q9tWifeKBj8c/1tPefEouYpWloOuQo2yjYKYLZk=
-X-Google-Smtp-Source: APXvYqzEXZhLUtV7pYNDbu1/3ce7u6Be+J9JdJvlDEwjC+aEheD9+kDaCkP9TtrZOgUEqijXeYpwIxIL2W3izU/ZO14=
-X-Received: by 2002:a81:2655:: with SMTP id m82mr4525703ywm.306.1565611848215;
- Mon, 12 Aug 2019 05:10:48 -0700 (PDT)
+        id S1728668AbfHLMYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 08:24:14 -0400
+Received: from mxwww.masterlogin.de ([95.129.51.220]:59310 "EHLO
+        mxwww.masterlogin.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728562AbfHLMYN (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 08:24:13 -0400
+Received: from mxout2.routing.net (unknown [192.168.10.82])
+        by new.mxwww.masterlogin.de (Postfix) with ESMTPS id B35E796D58;
+        Mon, 12 Aug 2019 12:15:26 +0000 (UTC)
+Received: from mxbox2.masterlogin.de (unknown [192.168.10.253])
+        by mxout2.routing.net (Postfix) with ESMTP id E85345FA23;
+        Mon, 12 Aug 2019 12:15:26 +0000 (UTC)
+Received: from localhost.localdomain (fttx-pool-217.61.152.193.bambit.de [217.61.152.193])
+        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id 7E70610083A;
+        Mon, 12 Aug 2019 14:15:25 +0200 (CEST)
+From:   Frank Wunderlich <frank-w@public-files.de>
+To:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allison Randal <allison@lohutok.net>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Eddie Huang <eddie.huang@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        Lee Jones <lee.jones@linaro.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Richard Fontana <rfontana@redhat.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        Sean Wang <sean.wang@mediatek.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "Tianping . Fang" <tianping.fang@mediatek.com>
+Cc:     Frank Wunderlich <frank-w@public-files.de>
+Subject: [PATCH v5 00/10] implement poweroff for mt6323 / bpi-r2
+Date:   Mon, 12 Aug 2019 14:15:01 +0200
+Message-Id: <20190812121511.4169-1-frank-w@public-files.de>
+X-Mailer: git-send-email 2.17.1
 MIME-Version: 1.0
-References: <20190527200627.8635-1-peron.clem@gmail.com> <CAJiuCcfUhBxEr=o7VVpPROQZadQh7z1QC0SkWSYt-53Sj3H2qw@mail.gmail.com>
- <CAJiuCcc3_1jZWV7G3+fFQYRZ8b6qcAbnH+K6pkRvww6_D=OMAw@mail.gmail.com>
- <20190715193842.GC4503@sirena.org.uk> <CAJiuCceYDnyxRLLLLy6Dn6DLTZ+NmSaUnoX1Vmzvgiy0XvF_Fw@mail.gmail.com>
- <20190812110103.GD4592@sirena.co.uk>
-In-Reply-To: <20190812110103.GD4592@sirena.co.uk>
-From:   =?UTF-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Date:   Mon, 12 Aug 2019 14:10:36 +0200
-Message-ID: <CAJiuCcdNFbKgo+oGZXKfBpyPKNOuUwpPbHdq-yBpcm3XYtPhEQ@mail.gmail.com>
-Subject: Re: [PATCH v4 0/7] Allwinner H6 SPDIF support
-To:     Mark Brown <broonie@kernel.org>
-Cc:     Maxime Ripard <maxime.ripard@bootlin.com>,
-        Liam Girdwood <lgirdwood@gmail.com>,
-        Jaroslav Kysela <perex@perex.cz>,
-        Takashi Iwai <tiwai@suse.com>,
-        Linux-ALSA <alsa-devel@alsa-project.org>,
-        devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>, Chen-Yu Tsai <wens@csie.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>,
-        linux-sunxi <linux-sunxi@googlegroups.com>,
-        Jagan Teki <jagan@amarulasolutions.com>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: quoted-printable
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-Hi Mark,
+mainline-driver does not support mt6323
 
-On Mon, 12 Aug 2019 at 13:01, Mark Brown <broonie@kernel.org> wrote:
->
-> On Sat, Aug 10, 2019 at 10:45:23AM +0200, Cl=C3=A9ment P=C3=A9ron wrote:
->
-> > Hi,
->
-> Please don't top post, reply in line with needed context.  This allows
-> readers to readily follow the flow of conversation and understand what
-> you are talking about and also helps ensure that everything in the
-> discussion is being addressed.
->
-> > Sorry, I just discovered that the ASoC patches have been merged into
-> > the broonie and linus tree in 5.3.
->
-> > I'm still quite new in the sending of patches to the Kernel but
-> > souldn't be a ack or a mail sent to warn the sender when the series
-> > are accepted?
->
-> Not every maintainer will send those, I do but you might find they've
-> gone into your spam folder if you're using gmail.
+this series makes some cleanup to mt6397-rtc-driver, adds mt6323 and
+implement power-controller on it.
 
-Thank you very much for the answer,
-Regards,
-Cl=C3=A9ment
+tested on bananapi-r2
+
+Original Patch from Josef Friedl
+
+changes since v4:
+	- relative path in part 1+2
+	- drop change of copyright-year in part 5
+changes since v3:
+	- moved SOB in 2/10 and 9/10
+	- moved part 5 to 6 to be near driver-change
+	- changehistory of patches below ---
+
+changes since v2:
+	- Splitted some parts and rebased on 5.3-rc2:
+
+	v2.1 dt-bindings: add powercontroller – try to make better subject
+	v2.2 separate rtc-mt6397.txt (suggested by Alexandre Belloni)
+	     add missing commit-message (suggested by Matthias Brugger)
+	v2.3 fix alloc after IRQ (suggested by Alexandre Belloni)
+	     new compatible (splitting suggested by Alexandre Belloni)
+	     needed due to different rtc-base/size see #7
+	v2.4 simplifications (Define-res-macros)
+	     add mt6323 rtc+pwrc
+	v2.5 add poweroff-driver (no change)
+	v2.6 MAINTAINERS (no change)
+	v2.7 DTS-Changes (no change)
+
+
+Josef Friedl (10):
+  dt-bindings: add powercontroller
+  dt-bindings: add missing mt6397 rtc
+  rtc: mt6397: move some common definitions into rtc.h
+  rtc: mt6397: improvements of rtc driver
+  mfd: mt6323: some improvements of mt6397-core
+  rtc: mt6397: add compatible for mt6323
+  mfd: mt6323: add mt6323 rtc+pwrc
+  power: reset: add driver for mt6323 poweroff
+  MAINTAINERS: add Mediatek shutdown drivers
+  arm: dts: mt6323: add keys, power-controller, rtc and codec
+
+ .../devicetree/bindings/mfd/mt6397.txt        |  20 +++-
+ .../bindings/power/reset/mt6323-poweroff.txt  |  20 ++++
+ .../devicetree/bindings/rtc/rtc-mt6397.txt    |  29 +++++
+ MAINTAINERS                                   |   7 ++
+ arch/arm/boot/dts/mt6323.dtsi                 |  27 +++++
+ drivers/mfd/mt6397-core.c                     |  38 +++++--
+ drivers/power/reset/Kconfig                   |  10 ++
+ drivers/power/reset/Makefile                  |   1 +
+ drivers/power/reset/mt6323-poweroff.c         |  97 ++++++++++++++++
+ drivers/rtc/rtc-mt6397.c                      | 107 ++++--------------
+ include/linux/mfd/mt6397/core.h               |   2 +
+ include/linux/mfd/mt6397/rtc.h                |  71 ++++++++++++
+ 12 files changed, 327 insertions(+), 102 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/power/reset/mt6323-poweroff.txt
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
+ create mode 100644 drivers/power/reset/mt6323-poweroff.c
+ create mode 100644 include/linux/mfd/mt6397/rtc.h
+
+-- 
+2.17.1
+
