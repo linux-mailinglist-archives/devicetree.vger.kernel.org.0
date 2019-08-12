@@ -2,111 +2,91 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 730F689E0F
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 14:26:23 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id F3C9A89E63
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 14:32:25 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728537AbfHLMYK (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 08:24:10 -0400
-Received: from mxwww.masterlogin.de ([95.129.51.220]:59228 "EHLO
-        mxwww.masterlogin.de" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728294AbfHLMYK (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 08:24:10 -0400
-Received: from mxout2.routing.net (unknown [192.168.10.82])
-        by new.mxwww.masterlogin.de (Postfix) with ESMTPS id 9C48C96E51;
-        Mon, 12 Aug 2019 12:15:40 +0000 (UTC)
-Received: from mxbox2.masterlogin.de (unknown [192.168.10.253])
-        by mxout2.routing.net (Postfix) with ESMTP id F407964895;
-        Mon, 12 Aug 2019 12:15:40 +0000 (UTC)
-Received: from localhost.localdomain (fttx-pool-217.61.152.193.bambit.de [217.61.152.193])
-        by mxbox2.masterlogin.de (Postfix) with ESMTPSA id E810110083A;
-        Mon, 12 Aug 2019 14:15:39 +0200 (CEST)
-From:   Frank Wunderlich <frank-w@public-files.de>
-To:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allison Randal <allison@lohutok.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Eddie Huang <eddie.huang@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        Lee Jones <lee.jones@linaro.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Richard Fontana <rfontana@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "Tianping . Fang" <tianping.fang@mediatek.com>
-Cc:     Josef Friedl <josef.friedl@speed.at>,
-        Frank Wunderlich <frank-w@public-files.de>
-Subject: [PATCH v5 10/10] arm: dts: mt6323: add keys, power-controller, rtc and codec
-Date:   Mon, 12 Aug 2019 14:15:11 +0200
-Message-Id: <20190812121511.4169-11-frank-w@public-files.de>
-X-Mailer: git-send-email 2.17.1
-In-Reply-To: <20190812121511.4169-1-frank-w@public-files.de>
-References: <20190812121511.4169-1-frank-w@public-files.de>
+        id S1728580AbfHLMao (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 08:30:44 -0400
+Received: from mail.kernel.org ([198.145.29.99]:33360 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1728449AbfHLMao (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 08:30:44 -0400
+Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id E61D021744;
+        Mon, 12 Aug 2019 12:30:37 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565613043;
+        bh=Ijmr7L4rj9fAdpDTeN+I568sFcwLmUT8CgsOo/en4AA=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=S4GKmEuU3TYlyUYRKAnckZZb1Qg5JvWhhhH8O5Io14pQ48FHhe12HFwxtUuZ3BNdu
+         ez6RpxAdFpRTHYvheWx7FPUhY1lC76AZL6SSJARrmIXW+34fMtPid+LMjcRkNZd4Bh
+         HF/vN8apPq1sJgZbMgDe36lbuDhZq6p/TcEpc8EI=
+Date:   Mon, 12 Aug 2019 14:30:28 +0200
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Anson.Huang@nxp.com
+Cc:     robh+dt@kernel.org, mark.rutland@arm.com, s.hauer@pengutronix.de,
+        kernel@pengutronix.de, festevam@gmail.com,
+        andrew.smirnov@gmail.com, manivannan.sadhasivam@linaro.org,
+        j.neuschaefer@gmx.net, u.kleine-koenig@pengutronix.de,
+        leoyang.li@nxp.com, aisheng.dong@nxp.com, l.stach@pengutronix.de,
+        vabhav.sharma@nxp.com, bhaskar.upadhaya@nxp.com, ping.bai@nxp.com,
+        pramod.kumar_1@nxp.com, leonard.crestez@nxp.com,
+        daniel.baluta@nxp.com, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
+        Linux-imx@nxp.com
+Subject: Re: [PATCH V4 4/4] dt-bindings: arm: imx: Add the soc binding for
+ i.MX8MQ
+Message-ID: <20190812123026.GA27041@X250>
+References: <20190619022145.42398-1-Anson.Huang@nxp.com>
+ <20190619022145.42398-4-Anson.Huang@nxp.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20190619022145.42398-4-Anson.Huang@nxp.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-From: Josef Friedl <josef.friedl@speed.at>
+On Wed, Jun 19, 2019 at 10:21:45AM +0800, Anson.Huang@nxp.com wrote:
+> From: Anson Huang <Anson.Huang@nxp.com>
+> 
+> This patch adds the soc & board binding for i.MX8MQ.
+> 
+> Signed-off-by: Anson Huang <Anson.Huang@nxp.com>
+> Reviewed-by: Rob Herring <robh@kernel.org>
+> ---
+> No changes.
+> ---
+>  Documentation/devicetree/bindings/arm/fsl.yaml | 6 ++++++
+>  1 file changed, 6 insertions(+)
+> 
+> diff --git a/Documentation/devicetree/bindings/arm/fsl.yaml b/Documentation/devicetree/bindings/arm/fsl.yaml
+> index b35abb1..f944df8 100644
+> --- a/Documentation/devicetree/bindings/arm/fsl.yaml
+> +++ b/Documentation/devicetree/bindings/arm/fsl.yaml
+> @@ -183,6 +183,12 @@ properties:
+>                - fsl,imx8mn-ddr4-evk            # i.MX8MN DDR4 EVK Board
+>            - const: fsl,imx8mn
+>  
+> +      - description: i.MX8MQ based Boards
+> +        items:
+> +          - enum:
+> +              - fsl,imx8mq-evk            # i.MX8MQ EVK Board
+> +          - const: fsl,imx8mq
+> +
 
-support poweroff and power-related keys on bpi-r2
+We already have this with e126417ff1b1 (dt-bindings: arm: fsl: Add the
+imx8mq boards).
 
-Suggested-by: Frank Wunderlich <frank-w@public-files.de>
-Signed-off-by: Josef Friedl <josef.friedl@speed.at>
-Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
----
-changes since v4: none
-changes since v3: none
-changes since v2: none (=v2 part 7)
----
- arch/arm/boot/dts/mt6323.dtsi | 27 +++++++++++++++++++++++++++
- 1 file changed, 27 insertions(+)
+Shawn
 
-diff --git a/arch/arm/boot/dts/mt6323.dtsi b/arch/arm/boot/dts/mt6323.dtsi
-index ba397407c1dd..7fda40ab5fe8 100644
---- a/arch/arm/boot/dts/mt6323.dtsi
-+++ b/arch/arm/boot/dts/mt6323.dtsi
-@@ -238,5 +238,32 @@
- 				regulator-enable-ramp-delay = <216>;
- 			};
- 		};
-+
-+		mt6323keys: mt6323keys {
-+			compatible = "mediatek,mt6323-keys";
-+			mediatek,long-press-mode = <1>;
-+			power-off-time-sec = <0>;
-+
-+			power {
-+				linux,keycodes = <116>;
-+				wakeup-source;
-+			};
-+
-+			home {
-+				linux,keycodes = <114>;
-+			};
-+		};
-+
-+		codec: mt6397codec {
-+			compatible = "mediatek,mt6397-codec";
-+		};
-+
-+		power-controller {
-+			compatible = "mediatek,mt6323-pwrc";
-+		};
-+
-+		rtc {
-+			compatible = "mediatek,mt6323-rtc";
-+		};
- 	};
- };
--- 
-2.17.1
-
+>        - description: i.MX8QXP based Boards
+>          items:
+>            - enum:
+> -- 
+> 2.7.4
+> 
