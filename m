@@ -2,94 +2,87 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id D40A38AB08
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 01:19:49 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 405A18AB17
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 01:28:55 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726463AbfHLXTt (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 19:19:49 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:39769 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726316AbfHLXTt (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 19:19:49 -0400
-Received: by mail-ot1-f66.google.com with SMTP id r21so159614197otq.6;
-        Mon, 12 Aug 2019 16:19:48 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=lqrNtsY3z/GqboCx94xUohSgcAprstWJeqrp2vVk0Is=;
-        b=d0Nc+1hq54Ja7S5fzMZyKTbQjeAvKICKmn9JhAqVBljzCaPg8sHg/jV/NkG0zHVpts
-         ABW3vACRA5V2esh0DSztOVdlG9eEW9X1iMLDJnpsXXM9bHwo0gGAdYKse7MKrvnLQvc4
-         rgDuJPHR764/lqBA34YfasS0mPjiYJMQK46piPhoRfkHgvQJq/66TKhef+K7Wo6UNUMY
-         /Ja36+16StO9SJHX/GG0zSiM/clEQDGwlaBt3MbWGeIDDWbLDzrgqQVVAWqMYaDZerIF
-         /meEwQiGM/hBzqv5h59SlhK+F//nMVP5v6KxFLcCjJNo4X36OjFAzNadkUqSgp9qlZc1
-         7i5w==
-X-Gm-Message-State: APjAAAXEW8F+Vm/HdoloLel9CwdRpyhmH5iYYyjS9LO2o36vH4dvu2Lp
-        Jq7PnOYmCusLH68mpNJPbU6/b/A=
-X-Google-Smtp-Source: APXvYqzwBkIvZBYjlD4u+kjMaZdM68xR5wuwLJn2T+FcAD1ydiPZOHSTU9O9tYsk3wdi1CNOJnVggw==
-X-Received: by 2002:a5e:9e03:: with SMTP id i3mr880391ioq.66.1565651988117;
-        Mon, 12 Aug 2019 16:19:48 -0700 (PDT)
-Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id f1sm11826048ioh.73.2019.08.12.16.19.47
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 12 Aug 2019 16:19:47 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 17:19:46 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Wen He <wen.he_1@nxp.com>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, mark.rutland@arm.com,
-        liviu.dudau@arm.com, brian.starkey@arm.com, airlied@linux.ie,
-        daniel@ffwll.ch, leoyang.li@nxp.com
-Subject: Re: [v2 2/3] dt/bindings: display: Add optional property node
- defined for Mali DP500
-Message-ID: <20190812231946.GA31179@bogus>
-References: <20190719095842.11683-1-wen.he_1@nxp.com>
+        id S1726200AbfHLX2y (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 19:28:54 -0400
+Received: from mail.kernel.org ([198.145.29.99]:59962 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726144AbfHLX2x (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 19:28:53 -0400
+Received: from localhost (c-71-197-186-152.hsd1.wa.comcast.net [71.197.186.152])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id CA3F620665;
+        Mon, 12 Aug 2019 23:28:52 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565652532;
+        bh=ahoNLQPnX82nGz86Y7FW3a1cpXocBYRKZ1y2smEqp9A=;
+        h=From:To:Cc:Subject:Date:From;
+        b=SgRawVWOSYB+zs6GRhqN0CAZz+chFVi+ssW8Bfm5yd2twCRJEsMoVGuyJ3Z6aUSFU
+         eJ+T6/YYkUkqs+sdXgx9YMhB4k4QkyMQHc44qM4jTCyAlK4bormafrCFgWhr2zhcxz
+         Agqf5Ba9N/0iGYbhfQDN1m5mSeXM1yChtFD/51mM=
+From:   Kevin Hilman <khilman@kernel.org>
+To:     Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-rtc@vger.kernel.org
+Cc:     linux-amlogic@lists.infradead.org,
+        linux-arm-kernel@lists.infradead.org,
+        Neil Armstrong <narmstrong@baylibre.com>,
+        devicetree@vger.kernel.org
+Subject: [PATCH v3 0/2] rtc: add new Amlogic Virtual Wake RTC
+Date:   Mon, 12 Aug 2019 16:28:48 -0700
+Message-Id: <20190812232850.8016-1-khilman@kernel.org>
+X-Mailer: git-send-email 2.22.0
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190719095842.11683-1-wen.he_1@nxp.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: 8bit
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 19, 2019 at 05:58:42PM +0800, Wen He wrote:
-> Add optional property node 'arm,malidp-arqos-value' for the Mali DP500.
-> This property describe the ARQoS levels of DP500's QoS signaling.
-> 
-> Signed-off-by: Wen He <wen.he_1@nxp.com>
-> ---
->  Documentation/devicetree/bindings/display/arm,malidp.txt | 3 +++
->  1 file changed, 3 insertions(+)
-> 
-> diff --git a/Documentation/devicetree/bindings/display/arm,malidp.txt b/Documentation/devicetree/bindings/display/arm,malidp.txt
-> index 2f7870983ef1..76a0e7251251 100644
-> --- a/Documentation/devicetree/bindings/display/arm,malidp.txt
-> +++ b/Documentation/devicetree/bindings/display/arm,malidp.txt
-> @@ -37,6 +37,8 @@ Optional properties:
->      Documentation/devicetree/bindings/reserved-memory/reserved-memory.txt)
->      to be used for the framebuffer; if not present, the framebuffer may
->      be located anywhere in memory.
-> +  - arm,malidp-arqos-high-level: integer of u32 value describing the ARQoS
-> +    levels of DP500's QoS signaling.
+From: Kevin Hilman <khilman@baylibre.com>
 
-u32 here, and...
+Add a new driver for the virtual wake RTC on Amlogic SoCs.
 
->  
->  
->  Example:
-> @@ -54,6 +56,7 @@ Example:
->  		clocks = <&oscclk2>, <&fpgaosc0>, <&fpgaosc1>, <&fpgaosc1>;
->  		clock-names = "pxlclk", "mclk", "aclk", "pclk";
->  		arm,malidp-output-port-lines = /bits/ 8 <8 8 8>;
-> +		arm,malidp-arqos-high-level = <&rqosvalue>;
+The RTC is virtual from the Linux side because it's a hardware timer
+managed by firmware on the secure co-processor (SCP.)  The interface
+is 1 register where a wakeup time (in seconds) is written.  The SCP then
+uses this value to program an always-on timer.
 
-phandle here?
+Changes since v2:
+- switch to devm_platform_ioremap_resource()
+- switch to devm_rtc_allocate_device() and rtc_register_device()
 
->  		port {
->  			dp0_output: endpoint {
->  				remote-endpoint = <&tda998x_2_input>;
-> -- 
-> 2.17.1
-> 
+Changes since v1:
+- add MAINTAINERS entry
+- add nop ->alarm_irq_enable() (workaround for RTC core
+  limitation pointed out by Alexandre Belloni)
+- remove unused ->read_alarm()
+- fix statics
+- move resume to dev_pm_ops
+- add suspend hook
+- don't calculate (or write) the alarm timer value until suspend time
+
+Changes since Neil's original version
+- move from do_gettimeofday() to ktime_get()
+
+
+Kevin Hilman (1):
+  dt-bindings: rtc: new binding for Amlogic VRTC
+
+Neil Armstrong (1):
+  rtc: Add Amlogic Virtual Wake RTC
+
+ .../bindings/rtc/rtc-meson-vrtc.txt           |  22 +++
+ MAINTAINERS                                   |   1 +
+ drivers/rtc/Kconfig                           |  11 ++
+ drivers/rtc/Makefile                          |   1 +
+ drivers/rtc/rtc-meson-vrtc.c                  | 156 ++++++++++++++++++
+ 5 files changed, 191 insertions(+)
+ create mode 100644 Documentation/devicetree/bindings/rtc/rtc-meson-vrtc.txt
+ create mode 100644 drivers/rtc/rtc-meson-vrtc.c
+
+-- 
+2.22.0
+
