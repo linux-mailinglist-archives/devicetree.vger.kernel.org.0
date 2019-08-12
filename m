@@ -2,127 +2,68 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4BF4F8AB20
-	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 01:29:37 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id D13AB8AB2C
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 01:32:45 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726516AbfHLX3g (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 19:29:36 -0400
-Received: from mail-ot1-f65.google.com ([209.85.210.65]:43119 "EHLO
+        id S1726522AbfHLXcp (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 19:32:45 -0400
+Received: from mail-ot1-f65.google.com ([209.85.210.65]:44484 "EHLO
         mail-ot1-f65.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726358AbfHLX3g (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 19:29:36 -0400
-Received: by mail-ot1-f65.google.com with SMTP id e12so21328095otp.10;
-        Mon, 12 Aug 2019 16:29:35 -0700 (PDT)
+        with ESMTP id S1726200AbfHLXcp (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 19:32:45 -0400
+Received: by mail-ot1-f65.google.com with SMTP id b7so115362831otl.11;
+        Mon, 12 Aug 2019 16:32:44 -0700 (PDT)
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=4yxOmFc8mjrzQ7FT1CRXemmXNTDbbde5+76CCWY9y9w=;
-        b=aG7cwCOJUCfJBYEJb0q6C4GrFHXDKQpt/0p04oyzQ9CzeCKToFiE8dWRjU9nG10qLk
-         IhbMQCKAL3Sqszp/2MyJWFtMnI4iam07l2ynLlnaeOw0+1I2xcO2QNzoomZ+E5abcMjU
-         1OnJ18bCJ9ZZvHQXIvk1UMkaMy72uzhx7oiUe6VoiMQznWMjX2tsd/WiV7VG0eGU99M6
-         3mvaFjYQwKU8N4C5hEgCO6PFMDCyLoP0ua2Sq9xmIasXnl0ZfKrMVzN8MQ+3voogLrym
-         qkeaWej0cvDH169dT0/66xKnd3be8LAuM0qWBefL4cZZsRkbnNVnlLnT44kfh/Ku+ZDH
-         lXnw==
-X-Gm-Message-State: APjAAAU1/Q69rBWUMFjyVjE00DgnXiK74qyEoBO4aZuOPi6vuxX6cugl
-        ssUUJtXf7zZqZLwWb7sN5g==
-X-Google-Smtp-Source: APXvYqwMVgFEMJqzgRQCjE77n0TRXXJZ+evINUqzU+d3BirD/mE1ZLx1bMt8mhMDISlggMrsS6Hamw==
-X-Received: by 2002:a6b:7619:: with SMTP id g25mr631364iom.92.1565652575408;
-        Mon, 12 Aug 2019 16:29:35 -0700 (PDT)
+        bh=D0CFZ1Cw7EwOnNhmZTmtz0RRwtC+nMsalp8emT68oCM=;
+        b=cYI8SsS/7Csb9QVa3MwsIlYDs1YMwkPv0w1xRw8/mhMJzIo2enww07Xq/T65Tmp9Sx
+         HcY46zyeXsM08CqklfJdNtPKh8ai6KmAbF0DB4/uIDEEJZQM1Tabl1TpWg7Yv4vr9jOH
+         fQ/X8xdWTOc05D1em9h1VjwPDv8VeNULC3Xq/MiKWXYpPSCYCrbSj79nRI0GUnfXb5dl
+         MHPCefq0QGdEW2OcrBGzP9DNW/61kUze1iubBWwG/0mg6UGrlW7og5gjKFiZTtume5ZM
+         9sulW+dMmmbhKu6b3X1dvUZE4DKDIeW8dv6ZRkVN2B6JpDpkGGXxFgoWTPNjWeBvkrlg
+         LIdw==
+X-Gm-Message-State: APjAAAUCSDVtciZxoPX/KaTg6PRZUpnBp2Lt8uWdM+jpj0OP8S5f4aB7
+        +5SW9uhnZC+A6+ao4JKVXQ==
+X-Google-Smtp-Source: APXvYqzuSKoAknR+BRDTeNHhcu7ZdP4VSOsBy/9nJOzGbVO3/DHRkj6QLFRtQKk6Nhe72OKs0FOuOQ==
+X-Received: by 2002:a02:8663:: with SMTP id e90mr41002015jai.98.1565652763799;
+        Mon, 12 Aug 2019 16:32:43 -0700 (PDT)
 Received: from localhost ([64.188.179.254])
-        by smtp.gmail.com with ESMTPSA id j25sm151097051ioj.67.2019.08.12.16.29.34
+        by smtp.gmail.com with ESMTPSA id d6sm22314934iod.17.2019.08.12.16.32.43
         (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 12 Aug 2019 16:29:34 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 17:29:34 -0600
+        Mon, 12 Aug 2019 16:32:43 -0700 (PDT)
+Date:   Mon, 12 Aug 2019 17:32:42 -0600
 From:   Rob Herring <robh@kernel.org>
-To:     Wen He <wen.he_1@nxp.com>
-Cc:     linux-kernel@vger.kernel.org, dri-devel@lists.freedesktop.org,
-        devicetree@vger.kernel.org, mark.rutland@arm.com,
-        shawnguo@kernel.org, leoyang.li@nxp.com
-Subject: Re: [v2 1/4] dt-bindings: display: Add DT bindings for LS1028A
- HDP-TX PHY.
-Message-ID: <20190812232934.GA1219@bogus>
-References: <20190719100942.12016-1-wen.he_1@nxp.com>
+To:     Yash Shah <yash.shah@sifive.com>
+Cc:     davem@davemloft.net, robh+dt@kernel.org, paul.walmsley@sifive.com,
+        netdev@vger.kernel.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-riscv@lists.infradead.org,
+        mark.rutland@arm.com, palmer@sifive.com, aou@eecs.berkeley.edu,
+        nicolas.ferre@microchip.com, ynezz@true.cz,
+        sachin.ghadi@sifive.com, Yash Shah <yash.shah@sifive.com>
+Subject: Re: [PATCH 1/3] macb: bindings doc: update sifive fu540-c000 binding
+Message-ID: <20190812233242.GA21855@bogus>
+References: <1563534631-15897-1-git-send-email-yash.shah@sifive.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-In-Reply-To: <20190719100942.12016-1-wen.he_1@nxp.com>
+In-Reply-To: <1563534631-15897-1-git-send-email-yash.shah@sifive.com>
 User-Agent: Mutt/1.10.1 (2018-07-13)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Fri, Jul 19, 2019 at 06:09:39PM +0800, Wen He wrote:
-> Add DT bindings documentmation for the HDP-TX PHY controller. The describes
-> which could be found on NXP Layerscape ls1028a platform.
-
-Not required, but please consider converting to DT schema (YAML) format.
-
+On Fri, 19 Jul 2019 16:40:29 +0530, Yash Shah wrote:
+> As per the discussion with Nicolas Ferre, rename the compatible property
+> to a more appropriate and specific string.
+> LINK: https://lkml.org/lkml/2019/7/17/200
 > 
-> Signed-off-by: Wen He <wen.he_1@nxp.com>
+> Signed-off-by: Yash Shah <yash.shah@sifive.com>
 > ---
-> change in v2:
->         - correction the node name.
+>  Documentation/devicetree/bindings/net/macb.txt | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
 > 
->  .../devicetree/bindings/display/fsl,hdp.txt   | 56 +++++++++++++++++++
->  1 file changed, 56 insertions(+)
->  create mode 100644 Documentation/devicetree/bindings/display/fsl,hdp.txt
-> 
-> diff --git a/Documentation/devicetree/bindings/display/fsl,hdp.txt b/Documentation/devicetree/bindings/display/fsl,hdp.txt
-> new file mode 100644
-> index 000000000000..53ca08337587
-> --- /dev/null
-> +++ b/Documentation/devicetree/bindings/display/fsl,hdp.txt
-> @@ -0,0 +1,56 @@
-> +NXP Layerscpae ls1028a HDP-TX PHY Controller
 
-typo
-
-> +============================================
-> +
-> +The following bindings describe the Cadence HDP TX PHY on ls1028a that
-> +offer multi-protocol support of standars such as eDP and Displayport,
-
-s/offer/offers/
-
-and another typo.
-
-> +supports for 25-600MHz pixel clock and up to 4k2k at 60MHz resolution.
-> +The HDP transmitter is a Cadence HDP TX controller IP with a companion
-> +PHY IP.
-> +
-> +Required properties:
-> +  - compatible:   Should be "fsl,ls1028a-dp" for ls1028a.
-> +  - reg:          Physical base address and size of the block of registers used
-> +  by the processor.
-
-The example shows 2 regions, what are they?
-
-> +  - interrupts:   HDP hotplug in/out detect interrupt number
-> +  - clocks:       A list of phandle + clock-specifier pairs, one for each entry
-> +  in 'clock-names'
-> +  - clock-names:  A list of clock names. It should contain:
-> +      - "clk_ipg": inter-Integrated circuit clock
-> +      - "clk_core": for the Main Display TX controller clock
-> +      - "clk_pxl": for the pixel clock feeding the output PLL of the processor
-> +      - "clk_pxl_mux": for the high PerfPLL bypass clock
-> +      - "clk_pxl_link": for the link rate pixel clock
-> +      - "clk_apb": for the APB interface clock
-> +      - "clk_vif": for the Video pixel clock
-
-'clk_' is redundant.
-
-> +
-> +Required sub-nodes:
-> +  - port: The HDP connection to an encoder output port. The connection
-> +    is modelled using the OF graph bindings specified in
-> +    Documentation/devicetree/bindings/graph.txt
-
-I'm still confused as to what this block does? The 'encoder output' is 
-DisplayPort? If this is just a phy, then use the phy binding.
-
-Normally, a DisplayPort encoder/bridge OF graph output would be 
-connected to a DP connector node or a panel.
-
-Rob
+Reviewed-by: Rob Herring <robh@kernel.org>
