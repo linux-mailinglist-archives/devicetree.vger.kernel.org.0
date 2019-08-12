@@ -2,51 +2,51 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 41A8289C24
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:00:06 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id E916F89C29
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:00:29 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728002AbfHLLAB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 07:00:01 -0400
-Received: from mail-wr1-f68.google.com ([209.85.221.68]:32818 "EHLO
+        id S1728010AbfHLLAP (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 07:00:15 -0400
+Received: from mail-wr1-f68.google.com ([209.85.221.68]:43050 "EHLO
         mail-wr1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728167AbfHLLAB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:00:01 -0400
-Received: by mail-wr1-f68.google.com with SMTP id n9so104283959wru.0
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 04:00:00 -0700 (PDT)
+        with ESMTP id S1728051AbfHLLAP (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:00:15 -0400
+Received: by mail-wr1-f68.google.com with SMTP id p13so29584369wru.10
+        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 04:00:13 -0700 (PDT)
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=linaro.org; s=google;
         h=date:from:to:cc:subject:message-id:references:mime-version
          :content-disposition:content-transfer-encoding:in-reply-to
          :user-agent;
-        bh=Se9XSbsfGDt4BhyzlQIMi1S9/MkvfhBPx11WicajSSg=;
-        b=yaHiSpqBDdc2sT6zI2Dw8zIEtpSIuQSkOCCSmj9RJNlb1WEg3hBK3DieiAioZ8alKu
-         AhP6xz8HC1xq2zeOzZD/CESJhRrdOgr9LS9ALNZnKZ7qQmpeLUV9bDwnT3EpLlwruIiP
-         qw6Wfo9LBJzqQuQkLSFwdLolV8LwmnGKEdztwiHvhxo4Su+Amv+FnsR+5zM2D+cajBpc
-         ylXscLIIU6eUjTydGSw0LQX8ETWkvZ56eeYt1TiS0+Pe7xUOVQiHuRDq1jqfF+s8ugmx
-         Yb3gupA+zwYIsrVaxjBkVmzYbfHGadHGrRwNto9vTAoF1Gi8UzYRJPde3HbA0jbocbzQ
-         ck9A==
+        bh=8QwbDdz8xqQedTgCl59sT1FB6qWBgfpvrd6AWSplSFM=;
+        b=un9eNtBw+OwLU4ECOEq/jaCjwbqDOeyKlR1jeFZysKarWaE6LfHAgOtOToynNr73TD
+         IZ8RZq2G/h9HmZnRr8fH+UdbzJ7j1OQuTnNMaM7uYcg75t14SgAdPY9xb+6btm5hMtD7
+         cM1JOj4QSiFAo09HIW/yEprtgbD/yD2CipP/o9bOD1GAJ9px4//v9vxW3QEYa8TMGaqq
+         gnZ5KsRxHaRN9gTZ6mYC2ocXexOr4l/Rb5JUtRUU9c+OkT1KiY0ros3uUgjcXImhsclZ
+         qVIkzEq4vwaJXR3D53rcVvMFEhWfew+kbFWC33VcCJGkMJ2v7lyTkTXiBX7JRCc/YjbH
+         Qehw==
 X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
         d=1e100.net; s=20161025;
         h=x-gm-message-state:date:from:to:cc:subject:message-id:references
          :mime-version:content-disposition:content-transfer-encoding
          :in-reply-to:user-agent;
-        bh=Se9XSbsfGDt4BhyzlQIMi1S9/MkvfhBPx11WicajSSg=;
-        b=Pz0fTQh2V1Ic+QtnZ9II6YV6Rv2Rh/4U7cfRSHBRcKN7d6lRb4ENcezllVQDDzfRZ5
-         thaNwfOPr3QfpgZFh1TD4NAIksE0xErV6nKvf8MwQ/x1M+4oP8WaXZmdxshgopGQXcDU
-         wSWHNFsXypmu9cXd7Y28IaeXH9wXdb0EAJBH75NoUuqgobfZJ1p2P2NGHHXVLutt41hH
-         pPQwaFihpsq/ezTA2lLXJ6Ckbcb+aD59x+JpyssAcjE777GmIIj9rghaQL1GzGgPRHy+
-         cyyoW3uEsXOUHvDqwnJJD0zyWdRVqtM057n1VJu6RBKpBnMjfHOUH2OfdI8cT209FU5d
-         VIvA==
-X-Gm-Message-State: APjAAAVhCvZcz/Uihuo7+syzfYJK7W/HX8GHmrLPJEM0xt3fLsjPBPhr
-        +t82104LAHdoVLwTimWQu+8zLw==
-X-Google-Smtp-Source: APXvYqz8c1NJgqCLXi1ZOgbjqMY0Kt0jc3i39Y6I1YxE2q8hdoWNcdXIgZA0cAg94/5QZFrH+80nhg==
-X-Received: by 2002:adf:dc51:: with SMTP id m17mr41748135wrj.256.1565607599334;
-        Mon, 12 Aug 2019 03:59:59 -0700 (PDT)
+        bh=8QwbDdz8xqQedTgCl59sT1FB6qWBgfpvrd6AWSplSFM=;
+        b=PoL5rQ5UnX4+9uM6cVgC3vBuhesSF6Mx+XsE7RXWTB2Iti658Or58qqKu2hLgO6Bp2
+         4yM10heEfK/Pts9x1j32iRj0syvOa8TRhH4D2ynBBo/FzN7jdnQ7yL55ex5cmELHc26B
+         fbz/54lJT0i3TT4Cgit2yixZ7BYXCIoFssWfHS9Lphe82VkyBzrWK25aOfikW4lPN+Xj
+         h0hI3T5vMHlFZlQ7axa8/IjlQsWX+85IX/nPNNg9xhbl54KyGDGZKxhWIxjBSoTIZmXQ
+         SdsrdglRP0O4wa/1C1bDxiNSMwCeWzFpLM0laqFTWdGYQr3Bos/QTR4b+138F0ha30AC
+         iX4w==
+X-Gm-Message-State: APjAAAX94Gw+wq4uauc2MjSIr+a1vA0KzMCTSIICbNnL9DVZKJ+gWUPE
+        dFvB1e3K9Er8T+zY/wWMAfIOtA==
+X-Google-Smtp-Source: APXvYqwghxYdeRuqVzPuYU2ropqG0cb6TCIVcqdi0Kn7ZW3EZH/gvO+aYyOhLrZXyhKsuMQmxwRNAw==
+X-Received: by 2002:a5d:6406:: with SMTP id z6mr39714762wru.280.1565607612886;
+        Mon, 12 Aug 2019 04:00:12 -0700 (PDT)
 Received: from dell ([2.27.35.255])
-        by smtp.gmail.com with ESMTPSA id a81sm5608087wma.3.2019.08.12.03.59.58
+        by smtp.gmail.com with ESMTPSA id k124sm20536169wmk.47.2019.08.12.04.00.11
         (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 12 Aug 2019 03:59:58 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 11:59:57 +0100
+        Mon, 12 Aug 2019 04:00:12 -0700 (PDT)
+Date:   Mon, 12 Aug 2019 12:00:10 +0100
 From:   Lee Jones <lee.jones@linaro.org>
 To:     Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
 Cc:     Rob Herring <robh+dt@kernel.org>,
@@ -65,16 +65,15 @@ Cc:     Rob Herring <robh+dt@kernel.org>,
         devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org,
         linux-mediatek@lists.infradead.org, linux-kernel@vger.kernel.org,
         linux-rtc@vger.kernel.org, srv_heupstream@mediatek.com
-Subject: Re: [PATCH v4 02/10] mfd: mt6397: extract irq related code from core
- driver
-Message-ID: <20190812105957.GP26727@dell>
+Subject: Re: [PATCH v4 03/10] mfd: mt6397: modify suspend/resume behavior
+Message-ID: <20190812110010.GQ26727@dell>
 References: <1564982518-32163-1-git-send-email-hsin-hsiung.wang@mediatek.com>
- <1564982518-32163-3-git-send-email-hsin-hsiung.wang@mediatek.com>
+ <1564982518-32163-4-git-send-email-hsin-hsiung.wang@mediatek.com>
 MIME-Version: 1.0
 Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
 Content-Transfer-Encoding: 8bit
-In-Reply-To: <1564982518-32163-3-git-send-email-hsin-hsiung.wang@mediatek.com>
+In-Reply-To: <1564982518-32163-4-git-send-email-hsin-hsiung.wang@mediatek.com>
 User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
@@ -83,18 +82,15 @@ X-Mailing-List: devicetree@vger.kernel.org
 
 On Mon, 05 Aug 2019, Hsin-Hsiung Wang wrote:
 
-> In order to support different types of irq design, we decide to add
-> separate irq drivers for different design and keep mt6397 mfd core
-> simple and reusable to all generations of PMICs so far.
+> Some pmics don't need backup interrupt settings, so we change to use
+> pm notifier for the pmics which are necessary to store settings.
 > 
 > Signed-off-by: Hsin-Hsiung Wang <hsin-hsiung.wang@mediatek.com>
 > ---
->  drivers/mfd/Makefile            |   3 +-
->  drivers/mfd/mt6397-core.c       | 146 --------------------------------
->  drivers/mfd/mt6397-irq.c        | 181 ++++++++++++++++++++++++++++++++++++++++
->  include/linux/mfd/mt6397/core.h |   9 ++
->  4 files changed, 192 insertions(+), 147 deletions(-)
->  create mode 100644 drivers/mfd/mt6397-irq.c
+>  drivers/mfd/mt6397-core.c       | 89 +++++++++++++++++------------------------
+>  drivers/mfd/mt6397-irq.c        | 33 +++++++++++++++
+>  include/linux/mfd/mt6397/core.h |  3 ++
+>  3 files changed, 73 insertions(+), 52 deletions(-)
 
 For my own reference:
   Acked-for-MFD-by: Lee Jones <lee.jones@linaro.org>
