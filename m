@@ -2,87 +2,72 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 11AA78A9B3
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 23:51:07 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 78A318AA2A
+	for <lists+devicetree@lfdr.de>; Tue, 13 Aug 2019 00:10:33 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726811AbfHLVvF (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 17:51:05 -0400
-Received: from mail-ot1-f66.google.com ([209.85.210.66]:33788 "EHLO
-        mail-ot1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726530AbfHLVvF (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 17:51:05 -0400
-Received: by mail-ot1-f66.google.com with SMTP id q20so11883330otl.0;
-        Mon, 12 Aug 2019 14:51:05 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=YxUrApdtPFyU9H97SktZgYuAmYUABRE+Th0JrfsEq/M=;
-        b=lHs9nlY+uZmE73y2F7u9PZYHHIlSnhEJK38vmzR8RuPqfCy5wqM/da32UmByEUDFJ7
-         LlmWew5gj0GjgMNaktoH9i36A4+ggtFB0rEiyf1nGAEwDnBoS0JTv5HAr0qkPotF+rYp
-         BLJWp/FIAdUkvI6DqhTshUWiLprKOD4I+BMJGNZQ+gGVnGdoiGoi4Dd3GEKXe1ytZzC1
-         CJDY8NG1iTNveTFO2z8jCGyN3o+F4JUAtvl6FIdsqU0A58KDpj7EFOuBbjNTK7KqxD/D
-         fFMEgni7V506Gr1Bb8Oyyu84nFVm8XNLG+CxAEMPM5E8bOblcvMsSnFpHd08ScqGLvyM
-         FFyA==
-X-Gm-Message-State: APjAAAXj56qAjxk94PiTQkaGpSuvzncED74w54Q8H+18x2kmppa4wjUn
-        57Hbe6GEIn4e/4ZUkoSITw==
-X-Google-Smtp-Source: APXvYqwW5LyJN2JbS/NExdIgszJ6uaD2Tgi4uSs8FsNTdmrSvThlgJLvWGD+LXLQDLkz6CM2zEf6mw==
-X-Received: by 2002:a02:528a:: with SMTP id d132mr38640289jab.68.1565646664461;
-        Mon, 12 Aug 2019 14:51:04 -0700 (PDT)
-Received: from localhost ([74.118.88.158])
-        by smtp.gmail.com with ESMTPSA id a7sm83055927iok.19.2019.08.12.14.51.03
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 12 Aug 2019 14:51:04 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 15:51:03 -0600
-From:   Rob Herring <robh@kernel.org>
-To:     Jitao Shi <jitao.shi@mediatek.com>
-Cc:     Pawel Moll <pawel.moll@arm.com>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Ian Campbell <ijc+devicetree@hellion.org.uk>,
-        linux-pwm@vger.kernel.org, David Airlie <airlied@linux.ie>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Thierry Reding <treding@nvidia.com>,
-        Ajay Kumar <ajaykumar.rs@samsung.com>,
-        Inki Dae <inki.dae@samsung.com>,
-        Rahul Sharma <rahul.sharma@samsung.com>,
-        Sean Paul <seanpaul@chromium.org>,
-        Vincent Palatin <vpalatin@chromium.org>,
-        Andy Yan <andy.yan@rock-chips.com>,
-        Philipp Zabel <p.zabel@pengutronix.de>,
-        Russell King <rmk+kernel@arm.linux.org.uk>,
-        devicetree@vger.kernel.org, linux-kernel@vger.kernel.org,
-        dri-devel@lists.freedesktop.org,
-        linux-arm-kernel@lists.infradead.org,
-        linux-mediatek@lists.infradead.org, srv_heupstream@mediatek.com,
-        Sascha Hauer <kernel@pengutronix.de>,
-        yingjoe.chen@mediatek.com, eddie.huang@mediatek.com,
-        cawa.cheng@mediatek.com, bibby.hsieh@mediatek.com,
-        ck.hu@mediatek.com, stonea168@163.com
-Subject: Re: [PATCH v5 1/4] dt-bindings: display: mediatek: update dpi
-  supported chips
-Message-ID: <20190812215103.GB5954@bogus>
-References: <20190807060257.57007-1-jitao.shi@mediatek.com>
- <20190807060257.57007-2-jitao.shi@mediatek.com>
+        id S1726358AbfHLWKc (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 18:10:32 -0400
+Received: from mail.kernel.org ([198.145.29.99]:49114 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726185AbfHLWKc (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 18:10:32 -0400
+Received: from kernel.org (unknown [104.132.0.74])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 99B31206C2;
+        Mon, 12 Aug 2019 22:10:30 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565647830;
+        bh=SPZRl5pSVopkTs0dY+BYgF4YdIC5weWXIEKe9ul/RDw=;
+        h=In-Reply-To:References:Subject:From:Cc:To:Date:From;
+        b=V3lZzoj5A/ZUJ82O/D6JOwCAESMHhjfhFsM/G+WlAQFOJn0eCYLeKxiUav3yhAWrc
+         3bLOfvUeJqm5cu0JRjxhkYqU/qNE2mLaefdclg0BgxHvmqSh/kXGRMQIhxkerIgm9f
+         dbMpOgSRN5v/bzLnxQ4pQx6d7nMjpT4h51jSvW3c=
+Content-Type: text/plain; charset="utf-8"
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <20190807060257.57007-2-jitao.shi@mediatek.com>
-User-Agent: Mutt/1.10.1 (2018-07-13)
+Content-Transfer-Encoding: quoted-printable
+In-Reply-To: <20190812182421.141150-3-brendanhiggins@google.com>
+References: <20190812182421.141150-1-brendanhiggins@google.com> <20190812182421.141150-3-brendanhiggins@google.com>
+Subject: Re: [PATCH v12 02/18] kunit: test: add test resource management API
+From:   Stephen Boyd <sboyd@kernel.org>
+Cc:     devicetree@vger.kernel.org, dri-devel@lists.freedesktop.org,
+        kunit-dev@googlegroups.com, linux-doc@vger.kernel.org,
+        linux-fsdevel@vger.kernel.org, linux-kbuild@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-kselftest@vger.kernel.org,
+        linux-nvdimm@lists.01.org, linux-um@lists.infradead.org,
+        Alexander.Levin@microsoft.com, Tim.Bird@sony.com,
+        amir73il@gmail.com, dan.carpenter@oracle.com, daniel@ffwll.ch,
+        jdike@addtoit.com, joel@jms.id.au, julia.lawall@lip6.fr,
+        khilman@baylibre.com, knut.omang@oracle.com, logang@deltatee.com,
+        mpe@ellerman.id.au, pmladek@suse.com, rdunlap@infradead.org,
+        richard@nod.at, rientjes@google.com, rostedt@goodmis.org,
+        wfg@linux.intel.com, Brendan Higgins <brendanhiggins@google.com>
+To:     Brendan Higgins <brendanhiggins@google.com>,
+        frowand.list@gmail.com, gregkh@linuxfoundation.org,
+        jpoimboe@redhat.com, keescook@google.com,
+        kieran.bingham@ideasonboard.com, mcgrof@kernel.org,
+        peterz@infradead.org, robh@kernel.org, shuah@kernel.org,
+        tytso@mit.edu, yamada.masahiro@socionext.com
+User-Agent: alot/0.8.1
+Date:   Mon, 12 Aug 2019 15:10:29 -0700
+Message-Id: <20190812221030.99B31206C2@mail.kernel.org>
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Wed, Aug 07, 2019 at 02:02:54PM +0800, Jitao Shi wrote:
-> Add decriptions about supported chips, including MT2701 & MT8173 &
-> mt8183
-> 
-> Signed-off-by: Jitao Shi <jitao.shi@mediatek.com>
+Quoting Brendan Higgins (2019-08-12 11:24:05)
+> Create a common API for test managed resources like memory and test
+> objects. A lot of times a test will want to set up infrastructure to be
+> used in test cases; this could be anything from just wanting to allocate
+> some memory to setting up a driver stack; this defines facilities for
+> creating "test resources" which are managed by the test infrastructure
+> and are automatically cleaned up at the conclusion of the test.
+>=20
+> Signed-off-by: Brendan Higgins <brendanhiggins@google.com>
+> Reviewed-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+> Reviewed-by: Logan Gunthorpe <logang@deltatee.com>
 > ---
->  .../bindings/display/mediatek/mediatek,dpi.txt        | 11 +++++++++++
->  1 file changed, 11 insertions(+)
 
-And run a current get_maintainers.pl. Your DT maintainer list is out of 
-date by years.
+Reviewed-by: Stephen Boyd <sboyd@kernel.org>
 
-Rob
