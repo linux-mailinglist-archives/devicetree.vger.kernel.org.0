@@ -2,79 +2,114 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 999DA89CC9
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:27:29 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4186389CDD
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:29:05 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728085AbfHLL0s (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 07:26:48 -0400
-Received: from mail.kernel.org ([198.145.29.99]:52534 "EHLO mail.kernel.org"
-        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
-        id S1727691AbfHLL0s (ORCPT <rfc822;devicetree@vger.kernel.org>);
-        Mon, 12 Aug 2019 07:26:48 -0400
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (using TLSv1.2 with cipher ECDHE-RSA-AES256-GCM-SHA384 (256/256 bits))
-        (No client certificate requested)
-        by mail.kernel.org (Postfix) with ESMTPSA id 1E86E208C2;
-        Mon, 12 Aug 2019 11:26:46 +0000 (UTC)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
-        s=default; t=1565609207;
-        bh=WMX5WzUBHC7wrBcFibKuCXcsI0mYQCxfu+77DTSZQHU=;
-        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
-        b=jmrlemJOZkcq7TFqEpSIyvlO5ThYDd7E/0FPazJ/0SSO95N8OALMPNG+Dv9Lzu77H
-         oD53cj2dOs4yc31OKOaVSUa6DJLcG0nIUJ+RixdUj91vIqWuImq8HAjj7rlCdG7QIC
-         04knvFtiuXW9NftL4mCeQcu9dp9bNGim2mOXEHbk=
-Date:   Mon, 12 Aug 2019 13:26:45 +0200
-From:   Maxime Ripard <mripard@kernel.org>
-To:     =?utf-8?B?Q2zDqW1lbnQgUMOpcm9u?= <peron.clem@gmail.com>
-Cc:     Chen-Yu Tsai <wens@csie.org>, Rob Herring <robh+dt@kernel.org>,
-        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
-        linux-kernel@vger.kernel.org, linux-sunxi@googlegroups.com
-Subject: Re: [PATCH] arm64: dts: allwinner: Enable DDC regulator for Beelink
- GS1
-Message-ID: <20190812112645.avyyf5iexxatgrwe@flea>
-References: <20190812102355.22586-1-peron.clem@gmail.com>
+        id S1728224AbfHLL1m (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 07:27:42 -0400
+Received: from mail-wm1-f66.google.com ([209.85.128.66]:39762 "EHLO
+        mail-wm1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728217AbfHLL1l (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:27:41 -0400
+Received: by mail-wm1-f66.google.com with SMTP id u25so11419752wmc.4
+        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 04:27:40 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=onzhCYAhu69mMnXiA3vphG6i/bzFEmmStwTFQWrMk/M=;
+        b=LO5JKiJdEnUY8rCcJ2Dk0Cx7bVBWYoQfej9KzgsHgDhAkyu5Y53OGvPMUIyUokibZk
+         Zq3jSti6K5bU1CJ1cDsfIvltT3cpISE22lYn65JOgKwL0eAC4njzGhFQOH0fs648Ld1p
+         qR8D+vvuePJgI5XIy2e6QmnkXtoZxFh1k1FIf3QoOj5cPvSzuFIraDR9m/Ej91wJ9lHG
+         MzA0WxkE8gJ7UbJ970D1xLiwDnkOp5LkugO3JNEFjh8jNRwZeWjGmQwOpSRQ1GJwXJxh
+         xkJIHvQ7nBoS5vusCij3D0275J2K8rV9GTxNsY8GZDHgGh68O6JeV3dAqlT+aK6w4z9s
+         4xhQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=onzhCYAhu69mMnXiA3vphG6i/bzFEmmStwTFQWrMk/M=;
+        b=TVgq9iEx/dPsHzb3fzkfFlmIgNiDNlyAzXcIjBLfabrKySd1XYKqwE7WJ+eDcZlQsJ
+         sTCglHPbVHZ71OABnICKBuWr/juTjmbpuqiIzisSK8fzkUCCc2vz82zRdpf7CscNPRNa
+         L+crlEoqXCtZCQ1mHTok9wkrijvICZynpZ7uRkMdpKG5m4QMKXBD3b6AlepNCsiGDMo7
+         KP22Ex9ilJgGpeY0CgqKQ3b001LfDyHIh+GVsYRo6lD2at2VEdeds+Nq3DP84l7/ozNV
+         aCwXwa7/fV4Z/7waUQC/SyIlxjG4+FG6GSfOsY7gY8FrAisJXYIx2wvdairZoojMgPpm
+         7Y8A==
+X-Gm-Message-State: APjAAAVDh1OntlOpxyFZewni5a8vaUfsCK/RSxKopad8AJIM8+yFDFM5
+        qta2vOneuERqedrJ/ZOz5lumCQ==
+X-Google-Smtp-Source: APXvYqxmaNB4W7rQ1NBaIa13dmH8j4PeVi2WkfZMssZuVRKBziRrA/ksz+FwV16y1femTzoXzfSu1Q==
+X-Received: by 2002:a05:600c:54c:: with SMTP id k12mr8590960wmc.117.1565609260064;
+        Mon, 12 Aug 2019 04:27:40 -0700 (PDT)
+Received: from dell ([2.27.35.255])
+        by smtp.gmail.com with ESMTPSA id e11sm13412913wrc.4.2019.08.12.04.27.35
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 12 Aug 2019 04:27:39 -0700 (PDT)
+Date:   Mon, 12 Aug 2019 12:27:31 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Kate Stewart <kstewart@linuxfoundation.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        linux-kernel@vger.kernel.org,
+        Richard Fontana <rfontana@redhat.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        linux-rtc@vger.kernel.org, Allison Randal <allison@lohutok.net>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        devicetree@vger.kernel.org, linux-pm@vger.kernel.org,
+        Sean Wang <sean.wang@mediatek.com>,
+        "Tianping . Fang" <tianping.fang@mediatek.com>,
+        Rob Herring <robh+dt@kernel.org>,
+        linux-mediatek@lists.infradead.org,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        Eddie Huang <eddie.huang@mediatek.com>,
+        linux-arm-kernel@lists.infradead.org,
+        Alessandro Zummo <a.zummo@towertech.it>,
+        Josef Friedl <josef.friedl@speed.at>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Sebastian Reichel <sre@kernel.org>,
+        "David S. Miller" <davem@davemloft.net>
+Subject: Re: Re: [PATCH v3 06/10] mfd: mt6323: some improvements of
+ mt6397-core
+Message-ID: <20190812112731.GS26727@dell>
+References: <20190729174154.4335-1-frank-w@public-files.de>
+ <20190729174154.4335-7-frank-w@public-files.de>
+ <20190812102209.GI26727@dell>
+ <trinity-0fa641df-f7bb-4627-a9ab-aac3cabc90ba-1565609115974@3c-app-gmx-bs80>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="myuur5a3gwhb4nbt"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <20190812102355.22586-1-peron.clem@gmail.com>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <trinity-0fa641df-f7bb-4627-a9ab-aac3cabc90ba-1565609115974@3c-app-gmx-bs80>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 12 Aug 2019, Frank Wunderlich wrote:
 
---myuur5a3gwhb4nbt
-Content-Type: text/plain; charset=iso-8859-1
-Content-Disposition: inline
-Content-Transfer-Encoding: quoted-printable
+> > Gesendet: Montag, 12. August 2019 um 12:22 Uhr
+> > Von: "Lee Jones" <lee.jones@linaro.org>
+> 
+> > > - * Copyright (c) 2014 MediaTek Inc.
+> > > + * Copyright (c) 2014-2018 MediaTek Inc.
+> >
+> > This is out of date.  Please update it.
+> 
+> maybe i should drop change of this line completely (else it needs to be adjusted every year)
 
-On Mon, Aug 12, 2019 at 12:23:55PM +0200, Cl=E9ment P=E9ron wrote:
-> Beelink GS1 has a DDC I2C bus voltage shifter. This is actually missing
-> and video is limited to 1024x768 due to missing EDID information.
->
-> Add the DDC regulator in the device-tree.
->
-> Signed-off-by: Cl=E9ment P=E9ron <peron.clem@gmail.com>
+It only needs changing when the Copyright is changed.
 
-Applied, thanks
-Maxime
+If you want to update it to 2014-2019, that's fine.
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+Or leaving it untouched, is also fine.
 
---myuur5a3gwhb4nbt
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVFM9AAKCRDj7w1vZxhR
-xXlfAQCzGoHNMF6inUbK/DxstBsOVMBjL9GAKYk4ftUwdU7LDQEAq6yMKoeAHhfX
-FQiNLVXWJr+pVOrIPUOnWyLlp/Ocrgk=
-=XUMj
------END PGP SIGNATURE-----
-
---myuur5a3gwhb4nbt--
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
