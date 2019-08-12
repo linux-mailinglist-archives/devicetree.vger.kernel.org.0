@@ -2,184 +2,142 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 4703F89852
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 09:54:21 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 051F689863
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 10:04:32 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1726972AbfHLHyT convert rfc822-to-8bit (ORCPT
-        <rfc822;lists+devicetree@lfdr.de>); Mon, 12 Aug 2019 03:54:19 -0400
-Received: from mail-ed1-f68.google.com ([209.85.208.68]:46024 "EHLO
-        mail-ed1-f68.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1726753AbfHLHyS (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 03:54:18 -0400
-Received: by mail-ed1-f68.google.com with SMTP id x19so96976414eda.12;
-        Mon, 12 Aug 2019 00:54:16 -0700 (PDT)
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:mime-version:references:in-reply-to:from:date
-         :message-id:subject:to:cc:content-transfer-encoding;
-        bh=SOVNyFeEtai/A5ZZgvPx+OqlDS//TmiI6n774GHwAK8=;
-        b=S9MVamREAOaHigp6ogaEz0bBf9dBw4/qWGv/hSs5HJayB3akL2jx15SD8C81gc4n5D
-         bX76hqB3sz6yMPUxaPpdYnppfUDyH2dIxkpujUjrYrLOkyQKXJmhn9Ps/FtA2OBLdt/H
-         Y/9e1Ml2fgGtAB82xp5XszYXFRIGth3OT2Mu2kBBWWDKe2r6HyIyo0Wv70MKfHT5NcqD
-         twDWV2JKUpyKdUcSYn7Ukkr+zSvDaSLnOlMQyFKHr/aX2ye4xzZsy3H0a0JdLsKe/421
-         MEm0PgJNoDkhPzdf6i1f2tsawA+nufbPSx8jLGxcKw/r/OkT0xmZWyKeSPR4asVcf5w8
-         EUnA==
-X-Gm-Message-State: APjAAAXdP8JcIqFGWlP7LX/x1GDBGNdLvCO6dwVJ6oMqqdNyzvjUDnOU
-        lnPPALQ8gEuU/JX0eRk8pHWii+aTGIs=
-X-Google-Smtp-Source: APXvYqzUuL/YmK0Q13l1Cuxp207zea1udFcmNce/bstzHv3hUKx1S2dC/0EZLE0+weTldJWJIEG8CQ==
-X-Received: by 2002:aa7:c30d:: with SMTP id l13mr24663307edq.286.1565596455682;
-        Mon, 12 Aug 2019 00:54:15 -0700 (PDT)
-Received: from mail-wr1-f43.google.com (mail-wr1-f43.google.com. [209.85.221.43])
-        by smtp.gmail.com with ESMTPSA id h2sm1501008edr.16.2019.08.12.00.54.14
-        (version=TLS1_3 cipher=AEAD-AES128-GCM-SHA256 bits=128/128);
-        Mon, 12 Aug 2019 00:54:15 -0700 (PDT)
-Received: by mail-wr1-f43.google.com with SMTP id b16so7007815wrq.9;
-        Mon, 12 Aug 2019 00:54:14 -0700 (PDT)
-X-Received: by 2002:adf:e941:: with SMTP id m1mr39772503wrn.279.1565596454773;
- Mon, 12 Aug 2019 00:54:14 -0700 (PDT)
-MIME-Version: 1.0
-References: <20190806155744.10263-1-megous@megous.com> <2218280.0sI6yjypBf@jernej-laptop>
-In-Reply-To: <2218280.0sI6yjypBf@jernej-laptop>
-From:   Chen-Yu Tsai <wens@csie.org>
-Date:   Mon, 12 Aug 2019 15:54:03 +0800
-X-Gmail-Original-Message-ID: <CAGb2v67JVG2rhOdUwBmfsO0+RYb4DNOPmUo=Q_UhL3N+niLiEg@mail.gmail.com>
-Message-ID: <CAGb2v67JVG2rhOdUwBmfsO0+RYb4DNOPmUo=Q_UhL3N+niLiEg@mail.gmail.com>
-Subject: Re: [linux-sunxi] [PATCH v8 0/4] Add support for Orange Pi 3
-To:     Jernej Skrabec <jernej.skrabec@gmail.com>
-Cc:     linux-sunxi <linux-sunxi@googlegroups.com>,
-        =?UTF-8?Q?Ond=C5=99ej_Jirman?= <megous@megous.com>,
-        Maxime Ripard <maxime.ripard@bootlin.com>,
+        id S1726820AbfHLIEb (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 04:04:31 -0400
+Received: from relay1-d.mail.gandi.net ([217.70.183.193]:59347 "EHLO
+        relay1-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726405AbfHLIEa (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 04:04:30 -0400
+X-Originating-IP: 86.250.200.211
+Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
+        (Authenticated sender: maxime.ripard@bootlin.com)
+        by relay1-d.mail.gandi.net (Postfix) with ESMTPSA id 7A74A240006;
+        Mon, 12 Aug 2019 08:04:21 +0000 (UTC)
+Date:   Mon, 12 Aug 2019 10:04:20 +0200
+From:   Maxime Ripard <maxime.ripard@bootlin.com>
+To:     Vasily Khoruzhick <anarsoul@gmail.com>
+Cc:     Robin Murphy <robin.murphy@arm.com>,
+        Harald Geyer <harald@ccbib.org>, Chen-Yu Tsai <wens@csie.org>,
         Rob Herring <robh+dt@kernel.org>,
-        David Airlie <airlied@linux.ie>,
-        Daniel Vetter <daniel@ffwll.ch>,
         Mark Rutland <mark.rutland@arm.com>,
-        dri-devel <dri-devel@lists.freedesktop.org>,
+        arm-linux <linux-arm-kernel@lists.infradead.org>,
         devicetree <devicetree@vger.kernel.org>,
-        linux-arm-kernel <linux-arm-kernel@lists.infradead.org>,
-        linux-kernel <linux-kernel@vger.kernel.org>
-Content-Type: text/plain; charset="UTF-8"
-Content-Transfer-Encoding: 8BIT
+        "Jared D . McNeill" <jmcneill@netbsd.org>
+Subject: Re: [PATCH] arm64: dts: allwinner: a64: Drop PMU node
+Message-ID: <20190812080420.saelmqb36vkelxn4@flea>
+References: <89402d22-d432-9551-e787-c8ede16dbe5f@arm.com>
+ <CA+E=qVfh7mirJhRsDTeuAVgG55ia936uFSFVKR0N5Pn4GCF1UA@mail.gmail.com>
+ <E1hv5vZ-0000jN-M8@stardust.g4.wien.funkfeuer.at>
+ <CA+E=qVdHOtebR6xjpwTY_Whp0cHLtv82YULmxLPSEzdLN9TnVg@mail.gmail.com>
+ <36e60078-7dd5-9c07-ffa1-6092d8c70fa8@arm.com>
+ <CA+E=qVeAR4AFN99ZVy8EZLW6p_8ucTewOdMis37wnpV3DObaGg@mail.gmail.com>
+ <20190807115614.phm7sbyae6yajkug@flea>
+ <CA+E=qVdh3MHMsEC9XKe5-7O8fGTHFh76WLOgVf+PZPv7c4JE9w@mail.gmail.com>
+ <20190808162628.pthvy3tgf3naj76s@flea>
+ <CA+E=qVeiWoRGn05HpMzx_5yidit4GM18tBrziW5MBo00f_-PKQ@mail.gmail.com>
+MIME-Version: 1.0
+Content-Type: multipart/signed; micalg=pgp-sha256;
+        protocol="application/pgp-signature"; boundary="jjtftgvl3v4z5fl7"
+Content-Disposition: inline
+In-Reply-To: <CA+E=qVeiWoRGn05HpMzx_5yidit4GM18tBrziW5MBo00f_-PKQ@mail.gmail.com>
+User-Agent: NeoMutt/20180716
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Aug 12, 2019 at 3:45 PM Jernej Škrabec <jernej.skrabec@gmail.com> wrote:
->
-> Dne torek, 06. avgust 2019 ob 17:57:39 CEST je megous@megous.com napisal(a):
-> > From: Ondrej Jirman <megous@megous.com>
-> >
-> > This series implements support for Xunlong Orange Pi 3 board. There
-> > are only a few patches remaining.
-> >
-> > - ethernet support - just a DT change (patch 1)
-> > - HDMI support (patches 2-4)
-> >
-> > For some people, ethernet doesn't work after reboot because u-boot doesn't
-> > support AXP805 PMIC, and will not turn off the etherent PHY regulators.
-> > So the regulator controlled by gpio will be shut down, but the other one
-> > controlled by the AXP PMIC will not.
-> >
-> > This is a problem only when running with a builtin driver. This needs
-> > to be fixed in u-boot.
-> >
-> >
-> > Please take a look.
->
-> Is there anything missing? It would be nice to get this in 5.4. There is a lot
-> of H6 boards which needs DDC bus enable mechanism (part of H6 reference
-> design), including Beelink GS1 which already has HDMI node in mainline kernel
-> DT, but due to disabled DDC lines works only with 1024x768 (fallback
-> resolution in DRM core).
 
-I have a few minor comments about patch 1.
+--jjtftgvl3v4z5fl7
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
 
-I think the HDMI bits are good, but I don't have maintainership / commit
-permissions for drm-misc, so I'll have to wait until someone applies patches
-2 and 3 before I apply patch 4.
+On Thu, Aug 08, 2019 at 12:59:07PM -0700, Vasily Khoruzhick wrote:
+> On Thu, Aug 8, 2019 at 9:26 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> >
+> > On Wed, Aug 07, 2019 at 10:36:08AM -0700, Vasily Khoruzhick wrote:
+> > > On Wed, Aug 7, 2019 at 4:56 AM Maxime Ripard <maxime.ripard@bootlin.com> wrote:
+> > > >
+> > > > On Tue, Aug 06, 2019 at 07:39:26PM -0700, Vasily Khoruzhick wrote:
+> > > > > On Tue, Aug 6, 2019 at 2:14 PM Robin Murphy <robin.murphy@arm.com> wrote:
+> > > > > >
+> > > > > > On 2019-08-06 9:52 pm, Vasily Khoruzhick wrote:
+> > > > > > > On Tue, Aug 6, 2019 at 1:19 PM Harald Geyer <harald@ccbib.org> wrote:
+> > > > > > >>
+> > > > > > >> Vasily Khoruzhick writes:
+> > > > > > >>> On Tue, Aug 6, 2019 at 7:35 AM Robin Murphy <robin.murphy@arm.com> wrote:
+> > > > > > >>>>
+> > > > > > >>>> On 06/08/2019 15:01, Vasily Khoruzhick wrote:
+> > > > > > >>>>> Looks like PMU in A64 is broken, it generates no interrupts at all and
+> > > > > > >>>>> as result 'perf top' shows no events.
+> > > > > > >>>>
+> > > > > > >>>> Does something like 'perf stat sleep 1' at least count cycles correctly?
+> > > > > > >>>> It could well just be that the interrupt numbers are wrong...
+> > > > > > >>>
+> > > > > > >>> Looks like it does, at least result looks plausible:
+> > > > > > >>
+> > > > > > >> I'm using perf stat regularly (cache benchmarks) and it works fine.
+> > > > > > >>
+> > > > > > >> Unfortunately I wasn't aware that perf stat is a poor test for
+> > > > > > >> the interrupts part of the node, when I added it. So I'm not too
+> > > > > > >> surprised I got it wrong.
+> > > > > > >>
+> > > > > > >> However, it would be unfortunate if the node got removed completely,
+> > > > > > >> because perf stat would not work anymore. Maybe we can only remove
+> > > > > > >> the interrupts or just fix them even if the HW doesn't work?
+> > > > > > >
+> > > > > > > I'm not familiar with PMU driver. Is it possible to get it working
+> > > > > > > without interrupts?
+> > > > > >
+> > > > > > Yup - you get a grumpy message from the driver, it will refuse sampling
+> > > > > > events (the ones which weren't working anyway), and if you measure
+> > > > > > anything for long enough that a counter overflows you'll get wonky
+> > > > > > results. But for counting hardware events over relatively short periods
+> > > > > > it'll still do the job.
+> > > > >
+> > > > > I tried to drop interrupts completely from the node but 'perf top' is
+> > > > > still broken. Though now in different way: it complains "cycles: PMU
+> > > > > Hardware doesn't support sampling/overflow-interrupts. Try 'perf
+> > > > > stat'"
+> > > >
+> > > > I have no idea if that's the culprit, but what is the state of the
+> > > > 0x09010000 register?
+> > >
+> > > What register is that and how do I check it?
+> >
+> > It's in the CPUX Configuration block, and the bits are labelled as CPU
+> > Debug Reset.
+> >
+> > And if you have busybox, you can use devmem.
+>
+> CPUX configuration block is at 0x01700000 according to A64 user
+> manual, and particular register you're interested in is at 0x01700080,
+> its value is 0x1110110F.
+>
+> Bits 16-19 are not defined in user manual and are not set.
 
-ChenYu
+Sorry, I somehow thought this was for the H6...
 
-> Best regards,
-> Jernej
->
-> >
-> > thank you and regards,
-> >   Ondrej Jirman
-> >
-> > Changes in v8:
-> > - added reviewed-by tags
-> > - dropped already applied patches
-> > - added more info about the phy initialization issue after reset
-> >
-> > Changes in v7:
-> > - dropped stored reference to connector_pdev as suggested by Jernej
-> > - added forgotten dt-bindings reviewed-by tag
-> >
-> > Changes in v6:
-> > - added dt-bindings reviewed-by tag
-> > - fix wording in stmmac commit (as suggested by Sergei)
-> >
-> > Changes in v5:
-> > - dropped already applied patches (pinctrl patches, mmc1 pinconf patch)
-> > - rename GMAC-3V3 -> GMAC-3V to match the schematic (Jagan)
-> > - changed hdmi-connector's ddc-supply property to ddc-en-gpios
-> >   (Rob Herring)
-> >
-> > Changes in v4:
-> > - fix checkpatch warnings/style issues
-> > - use enum in struct sunxi_desc_function for io_bias_cfg_variant
-> > - collected acked-by's
-> > - fix compile error in drivers/pinctrl/sunxi/pinctrl-sun9i-a80-r.c:156
-> >   caused by missing conversion from has_io_bias_cfg struct member
-> >   (I've kept the acked-by, because it's a trivial change, but feel free
-> >   to object.) (reported by Martin A. on github)
-> >   I did not have A80 pinctrl enabled for some reason, so I did not catch
-> >   this sooner.
-> > - dropped brcm firmware patch (was already applied)
-> > - dropped the wifi dts patch (will re-send after H6 RTC gets merged,
-> >   along with bluetooth support, in a separate series)
-> >
-> > Changes in v3:
-> > - dropped already applied patches
-> > - changed pinctrl I/O bias selection constants to enum and renamed
-> > - added /omit-if-no-ref/ to mmc1_pins
-> > - made mmc1_pins default pinconf for mmc1 in H6 dtsi
-> > - move ddc-supply to HDMI connector node, updated patch descriptions,
-> >   changed dt-bindings docs
-> >
-> > Changes in v2:
-> > - added dt-bindings documentation for the board's compatible string
-> >   (suggested by Clement)
-> > - addressed checkpatch warnings and code formatting issues (on Maxime's
-> >   suggestions)
-> > - stmmac: dropped useless parenthesis, reworded description of the patch
-> >   (suggested by Sergei)
-> > - drop useles dev_info() about the selected io bias voltage
-> > - docummented io voltage bias selection variant macros
-> > - wifi: marked WiFi DTS patch and realted mmc1_pins as "DO NOT MERGE",
-> >   because wifi depends on H6 RTC support that's not merged yet (suggested
-> >   by Clement)
-> > - added missing signed-of-bys
-> > - changed &usb2otg dr_mode to otg, and added a note about VBUS
-> > - improved wording of HDMI driver's DDC power supply patch
-> >
-> > Ondrej Jirman (4):
-> >   arm64: dts: allwinner: orange-pi-3: Enable ethernet
-> >   dt-bindings: display: hdmi-connector: Support DDC bus enable
-> >   drm: sun4i: Add support for enabling DDC I2C bus to sun8i_dw_hdmi glue
-> >   arm64: dts: allwinner: orange-pi-3: Enable HDMI output
-> >
-> >  .../display/connector/hdmi-connector.txt      |  1 +
-> >  .../dts/allwinner/sun50i-h6-orangepi-3.dts    | 70 +++++++++++++++++++
-> >  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.c         | 54 ++++++++++++--
-> >  drivers/gpu/drm/sun4i/sun8i_dw_hdmi.h         |  2 +
-> >  4 files changed, 123 insertions(+), 4 deletions(-)
->
->
->
->
-> --
-> You received this message because you are subscribed to the Google Groups "linux-sunxi" group.
-> To unsubscribe from this group and stop receiving emails from it, send an email to linux-sunxi+unsubscribe@googlegroups.com.
-> To view this discussion on the web, visit https://groups.google.com/d/msgid/linux-sunxi/2218280.0sI6yjypBf%40jernej-laptop.
+I don't have any idea then :/
+
+Maxime
+
+--
+Maxime Ripard, Bootlin
+Embedded Linux and Kernel engineering
+https://bootlin.com
+
+--jjtftgvl3v4z5fl7
+Content-Type: application/pgp-signature; name="signature.asc"
+
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVEdhAAKCRDj7w1vZxhR
+xSyPAQCFME/zsUEVHgZg4ppjjkr35AZKmYuqCT3DqH/bapfBDAD+PK0I4XFjk7cN
+o4b5O3nwe0SmShTKrXjCEA0bEL8dfQ0=
+=gNZ7
+-----END PGP SIGNATURE-----
+
+--jjtftgvl3v4z5fl7--
