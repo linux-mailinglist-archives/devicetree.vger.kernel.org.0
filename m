@@ -2,88 +2,115 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 0093589CB5
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:25:42 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 9DBEA89CB2
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 13:25:40 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728255AbfHLLYO (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 07:24:14 -0400
-Received: from relay5-d.mail.gandi.net ([217.70.183.197]:59549 "EHLO
-        relay5-d.mail.gandi.net" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728224AbfHLLYO (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:24:14 -0400
-X-Originating-IP: 86.250.200.211
-Received: from localhost (lfbn-1-17395-211.w86-250.abo.wanadoo.fr [86.250.200.211])
-        (Authenticated sender: maxime.ripard@bootlin.com)
-        by relay5-d.mail.gandi.net (Postfix) with ESMTPSA id D35D31C0002;
-        Mon, 12 Aug 2019 11:24:11 +0000 (UTC)
-Date:   Mon, 12 Aug 2019 13:24:11 +0200
-From:   Maxime Ripard <maxime.ripard@bootlin.com>
-To:     Daniel Lezcano <daniel.lezcano@linaro.org>
-Cc:     Mark Rutland <mark.rutland@arm.com>,
+        id S1728180AbfHLLZa (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 07:25:30 -0400
+Received: from mail-wr1-f66.google.com ([209.85.221.66]:44792 "EHLO
+        mail-wr1-f66.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1728104AbfHLLZ3 (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 07:25:29 -0400
+Received: by mail-wr1-f66.google.com with SMTP id p17so104219660wrf.11
+        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 04:25:28 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=linaro.org; s=google;
+        h=date:from:to:cc:subject:message-id:references:mime-version
+         :content-disposition:content-transfer-encoding:in-reply-to
+         :user-agent;
+        bh=49CBW8Jmx90YcYNx8wReWcg2SN7UmhhfHSj1OE9VGKY=;
+        b=nJ4FxnH+8fGcZOZSrqQVAYBMKxnGE4IOx3TnqukSR1QQoo0UyYYxDXtMV35wZjt1T1
+         kOiRqFryRBep6h9A+GS0gUtCjdc29Cw9Zn0te2tYLhcDO6+yWJLE0Q8M2UfOZnm6N1+k
+         9A/Jm1GA87/N6JAYm+u0a8MTphDzyByR51rMQzKJJF1EEfcESoB6h02+UME8QDWsSxL/
+         nZCt75lbnJWXN6gdUUyEnE8RuOjewzGhcv9xMe0lDG6r4ylRrRLNF5fNITAf2pQDYeYZ
+         eAK4CwWpXLSMAW7mmqFTRgeCIng78potcp33k04z6fQ825NXNrbb7L8Jb+y4V0KG7UA9
+         hBfw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20161025;
+        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
+         :mime-version:content-disposition:content-transfer-encoding
+         :in-reply-to:user-agent;
+        bh=49CBW8Jmx90YcYNx8wReWcg2SN7UmhhfHSj1OE9VGKY=;
+        b=IZJai0z2KCBDOBMmImmYENzfUrsUOazgvcx9n9HtoCIzLcLtO7QAEvjFh7453fyKcB
+         E/EgguotbA6dgl/GYhQzlajSZ9J+zq5p8pSPZdQ1e6nHfF0N94ltKsDjpkveQ9S5OE9Y
+         9vY+zKSBi9cu42W3SiIE7gBC98DG8nVKWZtIkH6eB0zLZL1Nlts5QY2Rw50sf4I9Wn9H
+         E7bnzKMY+AAgf9C29C1D/coUH4Iyl9O/bsCisJw1KUzO62w9YN0pv11UyaxchUsAocCV
+         tvu/JbNd06C1LkxrmaJh+yAcepdF5IWqoO43Kw09s/hiWu5yjcPeWRAuYJdEBcQDLZYa
+         Tkwg==
+X-Gm-Message-State: APjAAAUuwgF/hrsmXDJRsS4QDJw30W8rs7SXOStIkryON1VBOFbEcGf3
+        T7IGT+YkpTHC0FFlxIhmKF9ltA==
+X-Google-Smtp-Source: APXvYqy6WbRf37/8vVpsj8slsd6qhrcT26PVhm1zZSyanYDyMDDJ2/CALUfqVjfjKV/6kEIUhtVDLA==
+X-Received: by 2002:adf:ed4a:: with SMTP id u10mr42749044wro.284.1565609127998;
+        Mon, 12 Aug 2019 04:25:27 -0700 (PDT)
+Received: from dell ([2.27.35.255])
+        by smtp.gmail.com with ESMTPSA id o17sm13057600wrx.60.2019.08.12.04.25.24
+        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
+        Mon, 12 Aug 2019 04:25:27 -0700 (PDT)
+Date:   Mon, 12 Aug 2019 12:25:07 +0100
+From:   Lee Jones <lee.jones@linaro.org>
+To:     Frank Wunderlich <frank-w@public-files.de>
+Cc:     Alessandro Zummo <a.zummo@towertech.it>,
+        Alexandre Belloni <alexandre.belloni@bootlin.com>,
+        Allison Randal <allison@lohutok.net>,
+        "David S. Miller" <davem@davemloft.net>,
+        devicetree@vger.kernel.org, Eddie Huang <eddie.huang@mediatek.com>,
+        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
+        Kate Stewart <kstewart@linuxfoundation.org>,
+        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
+        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
+        linux-rtc@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
+        Matthias Brugger <matthias.bgg@gmail.com>,
+        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
+        Nicolas Ferre <nicolas.ferre@microchip.com>,
+        Richard Fontana <rfontana@redhat.com>,
         Rob Herring <robh+dt@kernel.org>,
-        Frank Rowand <frowand.list@gmail.com>,
-        Chen-Yu Tsai <wens@csie.org>, tglx@linutronix.de,
-        devicetree@vger.kernel.org, linux-arm-kernel@lists.infradead.org
-Subject: Re: [PATCH 03/11] clocksource: sun4i: Add missing compatibles
-Message-ID: <20190812112411.ty3npkq6ztbushhm@flea>
-References: <20190722081229.22422-1-maxime.ripard@bootlin.com>
- <20190722081229.22422-3-maxime.ripard@bootlin.com>
- <9df53981-d1b2-433c-e61f-7c000c71bc55@linaro.org>
- <20190812091631.j2pr7i2zeput3hrc@flea>
- <42ee55ee-258c-7588-fea3-db3c661a0156@linaro.org>
+        Sean Wang <sean.wang@mediatek.com>,
+        Sebastian Reichel <sre@kernel.org>,
+        Thomas Gleixner <tglx@linutronix.de>,
+        "Tianping . Fang" <tianping.fang@mediatek.com>,
+        Josef Friedl <josef.friedl@speed.at>
+Subject: Re: Re: [PATCH v3 01/10] dt-bindings: add powercontroller
+Message-ID: <20190812112507.GR26727@dell>
+References: <20190729174154.4335-1-frank-w@public-files.de>
+ <20190729174154.4335-2-frank-w@public-files.de>
+ <20190812102035.GH26727@dell>
+ <trinity-a6c06411-16d3-40ab-a4fb-3494131c8ed6-1565608221532@3c-app-gmx-bs80>
 MIME-Version: 1.0
-Content-Type: multipart/signed; micalg=pgp-sha256;
-        protocol="application/pgp-signature"; boundary="chbync4osl7cj5bo"
+Content-Type: text/plain; charset=utf-8
 Content-Disposition: inline
-In-Reply-To: <42ee55ee-258c-7588-fea3-db3c661a0156@linaro.org>
-User-Agent: NeoMutt/20180716
+Content-Transfer-Encoding: 8bit
+In-Reply-To: <trinity-a6c06411-16d3-40ab-a4fb-3494131c8ed6-1565608221532@3c-app-gmx-bs80>
+User-Agent: Mutt/1.9.4 (2018-02-28)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
+On Mon, 12 Aug 2019, Frank Wunderlich wrote:
 
---chbync4osl7cj5bo
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-
-On Mon, Aug 12, 2019 at 11:21:50AM +0200, Daniel Lezcano wrote:
-> On 12/08/2019 11:16, Maxime Ripard wrote:
-> > Hi,
+> > Gesendet: Montag, 12. August 2019 um 12:20 Uhr
+> > Von: "Lee Jones" <lee.jones@linaro.org>
+> 
+> > > --- a/Documentation/devicetree/bindings/mfd/mt6397.txt
+> ...
+> > > +	For details, see Documentation/devicetree/bindings/rtc/rtc-mt6397.txt
 > >
-> > On Mon, Aug 12, 2019 at 10:59:51AM +0200, Daniel Lezcano wrote:
-> >> On 22/07/2019 10:12, Maxime Ripard wrote:
-> >>> Newer Allwinner SoCs have different number of interrupts, let's add
-> >>> different compatibles for all of them to deal with this properly.
-> >>>
-> >>> Signed-off-by: Maxime Ripard <maxime.ripard@bootlin.com>
-> >>
-> >> Acked-by: Daniel Lezcano <daniel.lezcano@linaro.org>
+> > Please use relative paths.
 > >
-> > Thanks!
-> >
-> > Can you merge this through your tree (along with the bindings)? I'll
-> > merge the DT patches
->
-> patches 1-4 then ?
+> > E.g: ../bindings/rtc/rtc-mt6397.txt
+> 
+> Hi,
+> 
+> as we are in Documentation/devicetree/bindings/mfd/ it should be
+> ../../bindings/..., right? or ../rtc/rtc-mt6397.txt ?
 
-Yep, thanks!
-Maxime
+It was an example (hence the "E.g.").
 
---
-Maxime Ripard, Bootlin
-Embedded Linux and Kernel engineering
-https://bootlin.com
+You will need to adapt it depending on where the file ends up.
 
---chbync4osl7cj5bo
-Content-Type: application/pgp-signature; name="signature.asc"
-
------BEGIN PGP SIGNATURE-----
-
-iHUEABYIAB0WIQRcEzekXsqa64kGDp7j7w1vZxhRxQUCXVFMWwAKCRDj7w1vZxhR
-xRg7AP9AGyLnuIz1tKYeJZXcdHCdmVcPwADY+KkLmegiEm4mkwD/R7lwmli2RLhK
-8NMsjP1LNwEklTeR3aMbTsfrI1uvTw4=
-=0T8v
------END PGP SIGNATURE-----
-
---chbync4osl7cj5bo--
+-- 
+Lee Jones [李琼斯]
+Linaro Services Technical Lead
+Linaro.org │ Open source software for ARM SoCs
+Follow Linaro: Facebook | Twitter | Blog
