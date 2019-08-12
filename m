@@ -2,164 +2,178 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id 520868A244
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 17:28:32 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 4D8938A26D
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 17:39:13 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1727841AbfHLP2b (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 11:28:31 -0400
-Received: from mail-lj1-f194.google.com ([209.85.208.194]:42067 "EHLO
-        mail-lj1-f194.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1727103AbfHLP2b (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 11:28:31 -0400
-Received: by mail-lj1-f194.google.com with SMTP id 15so6912415ljr.9
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 08:28:30 -0700 (PDT)
+        id S1726219AbfHLPii (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 11:38:38 -0400
+Received: from esa4.microchip.iphmx.com ([68.232.154.123]:17779 "EHLO
+        esa4.microchip.iphmx.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
+        with ESMTP id S1726185AbfHLPih (ORCPT
+        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 11:38:37 -0400
+Received-SPF: Pass (esa4.microchip.iphmx.com: domain of
+  Eugen.Hristev@microchip.com designates 198.175.253.82 as
+  permitted sender) identity=mailfrom;
+  client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
+  envelope-from="Eugen.Hristev@microchip.com";
+  x-sender="Eugen.Hristev@microchip.com";
+  x-conformance=spf_only; x-record-type="v=spf1";
+  x-record-text="v=spf1 mx a:ushub1.microchip.com
+  a:smtpout.microchip.com a:mx1.microchip.iphmx.com
+  a:mx2.microchip.iphmx.com include:servers.mcsv.net
+  include:mktomail.com include:spf.protection.outlook.com ~all"
+Received-SPF: None (esa4.microchip.iphmx.com: no sender
+  authenticity information available from domain of
+  postmaster@email.microchip.com) identity=helo;
+  client-ip=198.175.253.82; receiver=esa4.microchip.iphmx.com;
+  envelope-from="Eugen.Hristev@microchip.com";
+  x-sender="postmaster@email.microchip.com";
+  x-conformance=spf_only
+Authentication-Results: esa4.microchip.iphmx.com; spf=Pass smtp.mailfrom=Eugen.Hristev@microchip.com; spf=None smtp.helo=postmaster@email.microchip.com; dkim=pass (signature verified) header.i=@microchiptechnology.onmicrosoft.com; dmarc=pass (p=none dis=none) d=microchip.com
+IronPort-SDR: HVM3Ypcbb0kWK83dM3HZJNGEUcROICj9HAvliyFvddmtdhq0O4P3epGeCOqYCmTQL4tLunYNvh
+ lgjXYKqoC0fIRRBVbfa2EwYhrgbU/NTfUTUZicjDVzpQmexqzc0ZmsEaVnatwOjjsKOltjkw4v
+ y/s4UTjXyJjr3jgSl432MMDUSASbFQFg0As968HbRCPQ0REZYsoVGMkDeVHEIQIpzRNgcByH+h
+ nVnAl3ooZufeigdPplWdRIlx2MQrfPaobZUQWFh6V6ehcigTyv4u0DmS5D3O0Yru2it/7owuy9
+ Yo0=
+X-IronPort-AV: E=Sophos;i="5.64,377,1559545200"; 
+   d="scan'208";a="44000997"
+Received: from smtpout.microchip.com (HELO email.microchip.com) ([198.175.253.82])
+  by esa4.microchip.iphmx.com with ESMTP/TLS/AES256-SHA256; 12 Aug 2019 08:38:35 -0700
+Received: from chn-vm-ex02.mchp-main.com (10.10.87.72) by
+ chn-vm-ex02.mchp-main.com (10.10.87.72) with Microsoft SMTP Server
+ (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256) id
+ 15.1.1713.5; Mon, 12 Aug 2019 08:38:34 -0700
+Received: from NAM05-BY2-obe.outbound.protection.outlook.com (10.10.215.89) by
+ email.microchip.com (10.10.87.72) with Microsoft SMTP Server (version=TLS1_2,
+ cipher=TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256) id 15.1.1713.5 via Frontend
+ Transport; Mon, 12 Aug 2019 08:38:34 -0700
+ARC-Seal: i=1; a=rsa-sha256; s=arcselector9901; d=microsoft.com; cv=none;
+ b=QDovpHfHa/eV+0caKiPB3G2/wfhYc0GKsshUxZ7rCbIqcuCKHN43mwvVB/lfa6DL1wIwXEHlegrcpdoOTQxGqDZ0cmgiIs0ENJiLSPx77YqwZahesE1j+QEjZUVEk/b7S62+cN2fhAoA4r+gFR4K8Fo9GoAIgpdzFjAMuRraO83zVgZ/C2PmX6OGC5YR8XIuJwD2dxVVEuXv1rDK2I3agjgg3C9ye6gdWoAKwdBZmQX2XewhcDtc7/yazkwzEJNo/xH7OSy8l5BsQ0Blt0xQuZSPp535hDWHDnxRoZDVz1bbkxfrYGds2bTRGH/ttYo7wEbyWcbGtOcx5EMAy+XccQ==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=microsoft.com;
+ s=arcselector9901;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r76JbPtMf2px6tRkAqyMgwErJRKaGzYabwivHe7HpoE=;
+ b=g3V+fPD2huko2N0/dQCrzMyjNuHAACj1zePN5ENQwT7RmBNdfruHzupJzEksMBlGTDlvczH4yunAHvIuwhoaFu+pyi5My/0erSw1dH+jOZS0GJsJlEiok+8Cnxt5ypDIDvmlCPf5SAA6RSPnjyFfrBeD8aSXhQmvm99VswVmx39ODl/9O7NwaLGPI92kcAhTadRzTcFSVWDiWi5hLTXVl/apNW1YkZOSjGkoEMRdsCm/miWU07u1XgAhNrgG6ya3ewp5bFVUCiA6Z/KXLahL3F2XrxPVEHh9GhtKQCUSUB7Iwcb6hEXfHASFdh2NIPU9Wfca036FeeGM3Da6C7yPyQ==
+ARC-Authentication-Results: i=1; mx.microsoft.com 1; spf=pass
+ smtp.mailfrom=microchip.com; dmarc=pass action=none
+ header.from=microchip.com; dkim=pass header.d=microchip.com; arc=none
 DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:in-reply-to:user-agent;
-        bh=hgRkzXbbFmA3Q2Zv0rEz4OjwQ8vdleRxSlP6kVoEu4o=;
-        b=RHYO2LRRbZVVHhAAUaNKKEDN8NajKtK8q91SUFV6qIqWj29qigjT4M1fbdwhmfM5uX
-         j4XvBExlMzBwRfNH0dzDn63BCDaCszhrSAlVFsoIDxZpwQLm6YNA+tm1lbO8FptnuW2R
-         QsxenZ4WyFbmETyx/8FeQzf9SOCMYvUGc1yoRbHPIuUc9QsQCm1OCFKUSo4DSlIKoVHn
-         nOoWU2dM5ToC1t4htrb89UsgT1gEVr78xdCQQxjpFa4/uN7TxvKuQKao13Fvl4Luk9ol
-         FkywXuApfxFrPiBqCSDOA7NWPn2B7qRP/G3ljLMJx2OT68/eflmymj87HzCKR/RkBiUT
-         gTKQ==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:in-reply-to:user-agent;
-        bh=hgRkzXbbFmA3Q2Zv0rEz4OjwQ8vdleRxSlP6kVoEu4o=;
-        b=NAPFihRpJU0zoRhIcCHZfkYHn5MP5N5SgivBFxSWaqOBeo4M4Du44SbCxMN51eXrcP
-         tYzeykGv565+59iu5STFE0XuD333MPN42sWLdIwBxB4B3zPtU17N5+2AJf59Evsumslr
-         q6reuE+dAeofV7GXLCxK+yaJrkfqilrk8ObETJKdxbtJuoyKST0LEds9zJRmvFGOM1kK
-         b4yA4zfG9ErzIyw2nY4Az3/CrDdKjVR7liaoqgubXqKXBR5bdP//zOXTgE8esY/RS09V
-         avvars/yMQPFS5+wsrtXoGjsDLA/xeMxVbH5ivYWpVu5R84rkdYj7/hd/U78OiJwk7Be
-         746A==
-X-Gm-Message-State: APjAAAXmCnfgcMTDVtu8t90EodtDRasZTmzqH2AdMFexk4cNM7HLX9rM
-        8qCtg2uPfLYEhGP4e30FQ54PPg==
-X-Google-Smtp-Source: APXvYqwUmSGekdM518oHm5YmsPxuO3pZgErv7gZZOAkXmjPQw54dzNZSR7pYytvzTLEDpYt1bR7jwQ==
-X-Received: by 2002:a2e:800a:: with SMTP id j10mr5258515ljg.137.1565623709249;
-        Mon, 12 Aug 2019 08:28:29 -0700 (PDT)
-Received: from centauri (ua-84-219-138-247.bbcust.telenor.se. [84.219.138.247])
-        by smtp.gmail.com with ESMTPSA id n187sm19035377lfa.30.2019.08.12.08.28.27
-        (version=TLS1_3 cipher=AEAD-AES256-GCM-SHA384 bits=256/256);
-        Mon, 12 Aug 2019 08:28:28 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 17:28:26 +0200
-From:   Niklas Cassel <niklas.cassel@linaro.org>
-To:     Amit Kucheria <amit.kucheria@linaro.org>
-Cc:     Luca Weiss <luca@z3ntu.xyz>, LKML <linux-kernel@vger.kernel.org>,
-        Brian Masney <masneyb@onstation.org>,
-        linux-arm-msm <linux-arm-msm@vger.kernel.org>,
-        Bjorn Andersson <bjorn.andersson@linaro.org>,
-        Eduardo Valentin <edubezval@gmail.com>,
-        Andy Gross <andy.gross@linaro.org>,
-        Andy Gross <agross@kernel.org>,
-        Daniel Lezcano <daniel.lezcano@linaro.org>,
-        Mark Rutland <mark.rutland@arm.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Zhang Rui <rui.zhang@intel.com>,
-        Marc Gonzalez <marc.w.gonzalez@free.fr>,
-        "open list:OPEN FIRMWARE AND FLATTENED DEVICE TREE BINDINGS" 
-        <devicetree@vger.kernel.org>,
-        Linux PM list <linux-pm@vger.kernel.org>
-Subject: Re: [PATCH 00/15] thermal: qcom: tsens: Add interrupt support
-Message-ID: <20190812152826.GA7958@centauri>
-References: <cover.1564091601.git.amit.kucheria@linaro.org>
- <CAHLCerNay31+RNQvQZyxMMVyb1mLLfN5BoZbz-M+bMqbmbYwtA@mail.gmail.com>
- <20190729090735.GA897@onstation.org>
- <2123341.TWUfUUIiFt@g550jk>
- <CAHLCerNU3oAZd6aGw1pgN-SLOJTebi5usqxaFHbQUd+sC2sc9g@mail.gmail.com>
+ d=microchiptechnology.onmicrosoft.com;
+ s=selector2-microchiptechnology-onmicrosoft-com;
+ h=From:Date:Subject:Message-ID:Content-Type:MIME-Version:X-MS-Exchange-SenderADCheck;
+ bh=r76JbPtMf2px6tRkAqyMgwErJRKaGzYabwivHe7HpoE=;
+ b=NbkFVVmON7Q00Z+et9+xsFu2QzC+sHn3ADM+94mjKESVEmpjx5LD/xG2n20wOXSEz4wphMrna/w7hBP64gLQDmlNstIgW3VWXl25h4PEZ+7LhqVqMHw1CMkgBlMPwEqPZ913sarNfJpA7zIaUdnx7BHYUYp4FnaMUraUwvn01ss=
+Received: from DM5PR11MB1242.namprd11.prod.outlook.com (10.168.108.8) by
+ DM5PR11MB2009.namprd11.prod.outlook.com (10.168.108.145) with Microsoft SMTP
+ Server (version=TLS1_2, cipher=TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384) id
+ 15.20.2157.16; Mon, 12 Aug 2019 15:38:34 +0000
+Received: from DM5PR11MB1242.namprd11.prod.outlook.com
+ ([fe80::c457:dc57:6e6f:f4f3]) by DM5PR11MB1242.namprd11.prod.outlook.com
+ ([fe80::c457:dc57:6e6f:f4f3%10]) with mapi id 15.20.2157.022; Mon, 12 Aug
+ 2019 15:38:34 +0000
+From:   <Eugen.Hristev@microchip.com>
+To:     <adrian.hunter@intel.com>, <Nicolas.Ferre@microchip.com>,
+        <alexandre.belloni@bootlin.com>, <ulf.hansson@linaro.org>,
+        <linux-arm-kernel@lists.infradead.org>,
+        <devicetree@vger.kernel.org>, <linux-kernel@vger.kernel.org>,
+        <linux-mmc@vger.kernel.org>
+Subject: Re: [PATCH 2/2] ARM: dts: at91: sama5d27_som1_ek: add mmc
+ capabilities for SDMMC0
+Thread-Topic: [PATCH 2/2] ARM: dts: at91: sama5d27_som1_ek: add mmc
+ capabilities for SDMMC0
+Thread-Index: AQHVTcREWHJkbws9ckOkZIu1sPO5NabxMeQAgAAEQACAASQ2AIAFUKOA
+Date:   Mon, 12 Aug 2019 15:38:34 +0000
+Message-ID: <fa0debbb-b84c-1f74-f8b8-8fdd7812aaee@microchip.com>
+References: <1565252928-28994-1-git-send-email-eugen.hristev@microchip.com>
+ <1565252928-28994-2-git-send-email-eugen.hristev@microchip.com>
+ <20190808124217.wrmcxohw5i6ju2qe@M43218.corp.atmel.com>
+ <04fd74c3-a828-1064-b77b-f3de07a26190@intel.com>
+ <20190809062322.syuieymdqjs4e7lh@M43218.corp.atmel.com>
+In-Reply-To: <20190809062322.syuieymdqjs4e7lh@M43218.corp.atmel.com>
+Accept-Language: en-US, ro-RO
+Content-Language: en-US
+X-MS-Has-Attach: 
+X-MS-TNEF-Correlator: 
+x-clientproxiedby: VI1PR08CA0266.eurprd08.prod.outlook.com
+ (2603:10a6:803:dc::39) To DM5PR11MB1242.namprd11.prod.outlook.com
+ (2603:10b6:3:14::8)
+x-ms-exchange-messagesentrepresentingtype: 1
+x-tagtoolbar-keys: D20190812183317755
+x-originating-ip: [94.177.32.154]
+x-ms-publictraffictype: Email
+x-ms-office365-filtering-correlation-id: c052edc5-a8a9-4649-7123-08d71f3b2274
+x-microsoft-antispam: BCL:0;PCL:0;RULEID:(2390118)(7020095)(4652040)(8989299)(4534185)(4627221)(201703031133081)(201702281549075)(8990200)(5600148)(711020)(4605104)(1401327)(2017052603328)(7193020);SRVR:DM5PR11MB2009;
+x-ms-traffictypediagnostic: DM5PR11MB2009:
+x-ms-exchange-transport-forked: True
+x-microsoft-antispam-prvs: <DM5PR11MB20099FA6D5D8E2608EAD259EE8D30@DM5PR11MB2009.namprd11.prod.outlook.com>
+x-ms-oob-tlc-oobclassifiers: OLM:6790;
+x-forefront-prvs: 012792EC17
+x-forefront-antispam-report: SFV:NSPM;SFS:(10009020)(396003)(136003)(366004)(39860400002)(376002)(346002)(199004)(189003)(31686004)(7736002)(5660300002)(6116002)(186003)(305945005)(229853002)(26005)(25786009)(3846002)(36756003)(71190400001)(71200400001)(66066001)(6246003)(99286004)(316002)(8676002)(6512007)(52116002)(53936002)(76176011)(2906002)(81156014)(110136005)(6486002)(102836004)(2201001)(386003)(31696002)(8936002)(86362001)(6506007)(53546011)(81166006)(6436002)(14454004)(486006)(446003)(11346002)(66446008)(476003)(2616005)(64756008)(66556008)(66476007)(66946007)(2501003)(478600001)(256004);DIR:OUT;SFP:1101;SCL:1;SRVR:DM5PR11MB2009;H:DM5PR11MB1242.namprd11.prod.outlook.com;FPR:;SPF:None;LANG:en;PTR:InfoNoRecords;A:1;MX:1;
+received-spf: None (protection.outlook.com: microchip.com does not designate
+ permitted sender hosts)
+x-ms-exchange-senderadcheck: 1
+x-microsoft-antispam-message-info: XcgwdcFYRRMfeS3qmmj7blzXGADX5HaWZ2LbCGCyhqbZfcs9U9q3742QZNaleCdFRs7SYLrKeqHx65hqkij0oJaeEwow9cabszLYoq1mC8PetACaEvMmsId3If9zUpde8LpZCt/rVHDCE/mwVy4R8NLXRkjG5TYIOOjiy53/fxySEIUtf6rXm6QMuBUumnbIXzRm+6Z4ayWvGjbszXH4ETW/NS+1dgfC2OpmYPIShwc3tnwDqdB9yVnvkJQViyrtP91M/pj9dS6KCe25w7j0Nvf5z/l/sE+d8GT4GAiz7GUMLMOWSvjUZ6JWy1b+v/DcteJp+Or/SL487XU6skjPGok84DZod3SilX2dijjxdv0A1Ye6UqAe7vjdJri5qtPsJanlrQqDnlLq6P4V3r4JJLcnKs3SiY1UoKNsIy/YBBM=
+Content-Type: text/plain; charset="utf-8"
+Content-ID: <1A3BA531877C9C438F08D84BC3EDC250@namprd11.prod.outlook.com>
+Content-Transfer-Encoding: base64
 MIME-Version: 1.0
-Content-Type: text/plain; charset=us-ascii
-Content-Disposition: inline
-In-Reply-To: <CAHLCerNU3oAZd6aGw1pgN-SLOJTebi5usqxaFHbQUd+sC2sc9g@mail.gmail.com>
-User-Agent: Mutt/1.12.1 (2019-06-15)
+X-MS-Exchange-CrossTenant-Network-Message-Id: c052edc5-a8a9-4649-7123-08d71f3b2274
+X-MS-Exchange-CrossTenant-originalarrivaltime: 12 Aug 2019 15:38:34.2910
+ (UTC)
+X-MS-Exchange-CrossTenant-fromentityheader: Hosted
+X-MS-Exchange-CrossTenant-id: 3f4057f3-b418-4d4e-ba84-d55b4e897d88
+X-MS-Exchange-CrossTenant-mailboxtype: HOSTED
+X-MS-Exchange-CrossTenant-userprincipalname: KS5q9lG9iMvyEHChJiElEv8kRDVo1F5A8THFjqCQVnPIYm+6l+33c6Sh0320rxeG+YEF51EpPyaLB6QtgLN+g9qdKBwpzzbNb8NrHqJ7CUY=
+X-MS-Exchange-Transport-CrossTenantHeadersStamped: DM5PR11MB2009
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, Jul 29, 2019 at 03:20:11PM +0530, Amit Kucheria wrote:
-> On Mon, Jul 29, 2019 at 3:03 PM Luca Weiss <luca@z3ntu.xyz> wrote:
-> >
-> > On Montag, 29. Juli 2019 11:07:35 CEST Brian Masney wrote:
-> > > On Sat, Jul 27, 2019 at 12:58:54PM +0530, Amit Kucheria wrote:
-> > > > On Fri, Jul 26, 2019 at 4:59 PM Brian Masney <masneyb@onstation.org> wrote:
-> > > > > On Fri, Jul 26, 2019 at 04:40:16PM +0530, Amit Kucheria wrote:
-> > > > > > How well does cpufreq work on 8974? I haven't looked at it yet but
-> > > > > > we'll need it for thermal throttling.
-> > > > >
-> > > > > I'm not sure how to tell if the frequency is dynamically changed during
-> > > > > runtime on arm. x86-64 shows this information in /proc/cpuinfo. Here's
-> > > >
-> > > > > the /proc/cpuinfo on the Nexus 5:
-> > > > Nah. /proc/cpuinfo won't show what we need.
-> > > >
-> > > > Try the following:
-> > > >
-> > > > $ grep "" /sys/devices/system/cpu/cpufreq/policy?/*
-> > > >
-> > > > More specifically, the following files have the information you need.
-> > > > Run watch -n1 on them.
-> > > >
-> > > > $ grep "" /sys/devices/system/cpu/cpufreq/policy?/scaling_*_freq
-> > >
-> > > There's no cpufreq directory on msm8974:
-> > >
-> > >     # ls -1 /sys/devices/system/cpu/
-> > >     cpu0
-> > >     cpu1
-> > >     cpu2
-> > >     cpu3
-> > >     cpuidle
-> > >     hotplug
-> > >     isolated
-> > >     kernel_max
-> > >     modalias
-> > >     offline
-> > >     online
-> > >     possible
-> > >     power
-> > >     present
-> > >     smt
-> > >     uevent
-> > >
-> > > I'm using qcom_defconfig.
-> > >
-> > > Brian
-> >
-> > Hi Brian,
-> > cpufreq isn't supported on msm8974 yet.
-> > I have these patches [0] in my tree but I'm not sure they work correctly, but I haven't tested much with them. Feel free to try them on hammerhead.
-> >
-> > Luca
-> >
-> > [0] https://github.com/z3ntu/linux/compare/b0917f53ada0e929896a094b451219cd8091366e...6459ca6aff498c9d12acd35709b4903effc4c3f8
-> 
-> Niklas is working on refactoring some of the Krait code[1]. I'm not
-> sure if he looked at 8974 directly as part of the refactor adding him
-> here to get a better sense of the state of cpufreq on 8974.
-
-Hello,
-
-I took and cleaned up Sricharans commit
-"cpufreq: qcom: Re-organise kryo cpufreq to use it for other nvmem based qcom socs"
-from his Krait cpufreq series.
-
-The commit renames and refactors the Kryo cpufreq driver.
-
-This commit is now in linux-next:
-https://git.kernel.org/pub/scm/linux/kernel/git/vireshk/pm.git/commit/?h=cpufreq/arm/linux-next&id=106b976debd36b0e61847769f8edd71bfea56ed7
-
-
-I also added Qualcomm A53 support to this driver.
-
-However, Krait CPUs are different from both Kryo and Qualcomm A53,
-so you will need to take Sricharans patch series and rebase it
-on top of linux-next.
-
-Kind regards,
-Niklas
-
-> 
-> [1] https://lore.kernel.org/linux-arm-msm/20190726080823.xwhxagv5iuhudmic@vireshk-i7/T/#t
+DQoNCk9uIDA5LjA4LjIwMTkgMDk6MjMsIEx1ZG92aWMgRGVzcm9jaGVzIHdyb3RlOg0KPiBPbiBU
+aHUsIEF1ZyAwOCwgMjAxOSBhdCAwMzo1NzozMFBNICswMzAwLCBBZHJpYW4gSHVudGVyIHdyb3Rl
+Og0KPj4gT24gOC8wOC8xOSAzOjQyIFBNLCBMdWRvdmljIERlc3JvY2hlcyB3cm90ZToNCj4+PiBP
+biBUaHUsIEF1ZyAwOCwgMjAxOSBhdCAxMDozNTo0M0FNICswMjAwLCBFdWdlbiBIcmlzdGV2IC0g
+TTE4MjgyIHdyb3RlOg0KPj4+PiBGcm9tOiBFdWdlbiBIcmlzdGV2IDxldWdlbi5ocmlzdGV2QG1p
+Y3JvY2hpcC5jb20+DQo+Pj4+DQo+Pj4+IEFkZCBtbWMgY2FwYWJpbGl0aWVzIGZvciBTRE1NQzAg
+Zm9yIHRoaXMgYm9hcmQuDQo+Pj4+IFdpdGggdGhpcyBlbmFibGVkLCBlTU1DIGNvbm5lY3RlZCBj
+YXJkIGlzIGRldGVjdGVkIGFzOg0KPj4+Pg0KPj4+PiBtbWMwOiBuZXcgRERSIE1NQyBjYXJkIGF0
+IGFkZHJlc3MgMDAwMQ0KPj4+Pg0KPj4+PiBTaWduZWQtb2ZmLWJ5OiBFdWdlbiBIcmlzdGV2IDxl
+dWdlbi5ocmlzdGV2QG1pY3JvY2hpcC5jb20+DQo+Pj4gQWNrZWQtYnk6IEx1ZG92aWMgRGVzcm9j
+aGVzIDxsdWRvdmljLmRlc3JvY2hlc0BtaWNyb2NoaXAuY29tPg0KPj4+DQo+Pj4gSSBhbSBpbnRl
+cmVzdGVkIHRvIGhhdmUgdGhlIHNvbWUgaW5zaWdodHMgYWJvdXQgdGhlIHVzZSBvZiBzZC11aHMt
+Kg0KPj4+IHByb3BlcnRpZXMuDQo+Pj4NCj4+PiBPdXIgSVAgY2FuJ3QgZGVhbCB3aXRoIDFWOCBi
+eSBpdHNlbGYuIEl0IGhhcyBhIDFWOFNFTCBzaWduYWwgd2hpY2ggY2FuDQo+Pj4gYmUgdXNlZCBh
+cyB0aGUgbG9naWMgY29udHJvbCBpbnB1dCBvZiBhIG11eC4gU28gZXZlbiBpZiB0aGUgSVAgY2xh
+aW1zDQo+Pj4gdG8gc3VwcG9ydCBVSFMgbW9kZXMsIGl0IGRlcGVuZHMgb24gdGhlIGJvYXJkLg0K
+Pj4+DQo+Pj4gQXJlIHRoZSBzZC11aHMtKiBwcm9wZXJ0aWVzIGEgd2F5IHRvIGRlYWwgd2l0aCB0
+aGlzPyBJIHRlbmQgdG8gdGhpbmsgbm8NCj4+PiBhcyBzZGhjaV9zZXR1cF9ob3N0KCkgd2lsbCBz
+ZXQgdGhlIGNhcHMgZGVwZW5kaW5nIG9uIHRoZSBjb250ZW50IG9mIHRoZQ0KPj4+IGNhcGFiaWxp
+dGllcyByZWdpc3Rlci4gRG8gd2UgaGF2ZSB0byB1c2UgdGhlIFNESENJX1FVSVJLX01JU1NJTkdf
+Q0FQUw0KPj4+IHF1aXJrIG9yIHNkaGNpLWNhcHMvc2RoY2ktY2Fwcy1tYXNrPw0KPj4NCj4+IFRo
+ZXJlIGlzICJuby0xLTgtdiIgd2hpY2ggaXQgbG9va3MgbGlrZSBzZGhjaS1vZi1hdDkxLmMgYWxy
+ZWFkeSBzdXBwb3J0czoNCj4+DQo+PiAgICBzZGhjaV9hdDkxX3Byb2JlKCkgLT4gc2RoY2lfZ2V0
+X29mX3Byb3BlcnR5KCkgLT4gc2RoY2lfZ2V0X3Byb3BlcnR5KCkNCj4+DQo+PiAgICAgIAlpZiAo
+ZGV2aWNlX3Byb3BlcnR5X3ByZXNlbnQoZGV2LCAibm8tMS04LXYiKSkNCj4+IAkJaG9zdC0+cXVp
+cmtzMiB8PSBTREhDSV9RVUlSSzJfTk9fMV84X1Y7DQo+Pg0KPiANCj4gUmlnaHQsIEkgZm9yZ290
+IHRoaXMgcHJvcGVydHkuIFRoYW5rcy4NCj4gDQo+IEV1Z2VuLCBkbyB5b3Ugc2VlIGNhc2VzIHdl
+IGNhbid0IGNvdmVyIHdpdGggdGhpcyBwcm9wZXJ0eT8NCg0KSGksDQoNCkZvciBjdXJyZW50IHJl
+cXVpcmVtZW50cyBhbmQgZHJpdmVyIHN1cHBvcnQsIHRoaXMgc2hvdWxkIGJlIGVub3VnaC4NCg0K
+SSBub3RpY2VkIG9uZSB0aGluZyByZWdhcmRpbmcgU0QtQ2FyZHMsIGlmIEkgYWRkIHByb3BlcnR5
+IHNkLXVocy1zZHIxMDQgDQp0aGUgY2xhc3MgMTAgdWhzMSBjYXJkcyBhcmUgZGV0ZWN0ZWQgYXMg
+U0RSMTA0IC4gV2l0aG91dCB0aGlzIHByb3BlcnR5IA0KdGhleSBhcmUgZGV0ZWN0ZWQgYXMgRERS
+NTAuIEFueSBpZGVhIHdoeSB0aGUgZGlmZmVyZW5jZSA/IFRoZSBjb250cm9sbGVyIA0KZG9lcyBu
+b3QgY2xhaW0gdG8gaGF2ZSBTRFIxMDQgc3VwcG9ydCA/ICBXZSBzaG91bGQgYWRkIGl0ID8NCg0K
+RXVnZW4NCg0KPiANCj4gUmVnYXJkcw0KPiANCj4gTHVkb3ZpYw0KPiANCj4+DQo+Pj4NCj4+PiBS
+ZWdhcmRzDQo+Pj4NCj4+PiBMdWRvdmljDQo+Pj4NCj4+Pj4gLS0tDQo+Pj4+ICAgYXJjaC9hcm0v
+Ym9vdC9kdHMvYXQ5MS1zYW1hNWQyN19zb20xX2VrLmR0cyB8IDEgKw0KPj4+PiAgIDEgZmlsZSBj
+aGFuZ2VkLCAxIGluc2VydGlvbigrKQ0KPj4+Pg0KPj4+PiBkaWZmIC0tZ2l0IGEvYXJjaC9hcm0v
+Ym9vdC9kdHMvYXQ5MS1zYW1hNWQyN19zb20xX2VrLmR0cyBiL2FyY2gvYXJtL2Jvb3QvZHRzL2F0
+OTEtc2FtYTVkMjdfc29tMV9lay5kdHMNCj4+Pj4gaW5kZXggMTQ5ZTUzOS4uMTk0YjNhMyAxMDA2
+NDQNCj4+Pj4gLS0tIGEvYXJjaC9hcm0vYm9vdC9kdHMvYXQ5MS1zYW1hNWQyN19zb20xX2VrLmR0
+cw0KPj4+PiArKysgYi9hcmNoL2FybS9ib290L2R0cy9hdDkxLXNhbWE1ZDI3X3NvbTFfZWsuZHRz
+DQo+Pj4+IEBAIC01NCw2ICs1NCw3IEBADQo+Pj4+ICAgDQo+Pj4+ICAgCQlzZG1tYzA6IHNkaW8t
+aG9zdEBhMDAwMDAwMCB7DQo+Pj4+ICAgCQkJYnVzLXdpZHRoID0gPDg+Ow0KPj4+PiArCQkJbW1j
+LWRkci0zXzN2Ow0KPj4+PiAgIAkJCXBpbmN0cmwtbmFtZXMgPSAiZGVmYXVsdCI7DQo+Pj4+ICAg
+CQkJcGluY3RybC0wID0gPCZwaW5jdHJsX3NkbW1jMF9kZWZhdWx0PjsNCj4+Pj4gICAJCQlzdGF0
+dXMgPSAib2theSI7DQo+Pj4+IC0tIA0KPj4+PiAyLjcuNA0KPj4+Pg0KPj4+DQo+Pg0KPiANCg==
