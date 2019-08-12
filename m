@@ -2,115 +2,109 @@ Return-Path: <devicetree-owner@vger.kernel.org>
 X-Original-To: lists+devicetree@lfdr.de
 Delivered-To: lists+devicetree@lfdr.de
 Received: from vger.kernel.org (vger.kernel.org [209.132.180.67])
-	by mail.lfdr.de (Postfix) with ESMTP id AC0DF89F92
-	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 15:24:02 +0200 (CEST)
+	by mail.lfdr.de (Postfix) with ESMTP id 61F0589FFF
+	for <lists+devicetree@lfdr.de>; Mon, 12 Aug 2019 15:47:30 +0200 (CEST)
 Received: (majordomo@vger.kernel.org) by vger.kernel.org via listexpand
-        id S1728794AbfHLNYB (ORCPT <rfc822;lists+devicetree@lfdr.de>);
-        Mon, 12 Aug 2019 09:24:01 -0400
-Received: from mail-wr1-f67.google.com ([209.85.221.67]:45306 "EHLO
-        mail-wr1-f67.google.com" rhost-flags-OK-OK-OK-OK) by vger.kernel.org
-        with ESMTP id S1728552AbfHLNYB (ORCPT
-        <rfc822;devicetree@vger.kernel.org>); Mon, 12 Aug 2019 09:24:01 -0400
-Received: by mail-wr1-f67.google.com with SMTP id q12so14282317wrj.12
-        for <devicetree@vger.kernel.org>; Mon, 12 Aug 2019 06:24:00 -0700 (PDT)
-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=linaro.org; s=google;
-        h=date:from:to:cc:subject:message-id:references:mime-version
-         :content-disposition:content-transfer-encoding:in-reply-to
-         :user-agent;
-        bh=nC0XBOiWbAbQwJIvttLNUSDXZEWVPgrZEH9kYI4ESEg=;
-        b=KdowPy/ZBvnwn/HSU7gjkVq9UrYpR3h4Rz7yrxwQA3ohuwT4La1YEbafzwTQiyGbB3
-         6QonaqtKmwTvQvVAkUuXqhFlDfDjkaXKQ7zpwE7eGxhuj1ceYyytsva8K5UQ8S9Sxa1l
-         0Y1oon8rOVVaf+boODQgVUswo8xgye+BoTn+yDsiXWTW/NS6IQsn/plpM4JQaaNP4O6B
-         TqZTxR3XHrKVwJXd9XdY0hqFqBNW8M1q45w82I966F/alSFqF39B+Nsz1nWQEnNynAc4
-         A2YNPddK8smYE3BcVulLdkdiz+QMZyywgQdjm7O4meR9DNvs9jp6Y3XjTE1cuP7rEBBJ
-         1TgA==
-X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
-        d=1e100.net; s=20161025;
-        h=x-gm-message-state:date:from:to:cc:subject:message-id:references
-         :mime-version:content-disposition:content-transfer-encoding
-         :in-reply-to:user-agent;
-        bh=nC0XBOiWbAbQwJIvttLNUSDXZEWVPgrZEH9kYI4ESEg=;
-        b=W2SgA6wxAqi1bPvsUz81EMhWZo1FuAIKJ2EWLDZts/d7Yi0i7zTqx9tLSArLQlgoeR
-         IYxMLKpO4W2WhZbqP6gi9qz+ejjYSO1DfXSXxEsHRZXe0HBqfsqjRrAcWN0NfNFQjrOc
-         5ALcPyEAuqFD7Wp0/S4xjYh/kiywPRx0rpaFdQJCtVT59lfVIU60BOVR3FyAwBjH45lK
-         3VJepetmhm9fraiadupwxm+n7IFMsJCyen2DXomE1p+yxaRDrKr4zL7e+G2BsQ3p14Zo
-         XlIgZsI470k2OPEvNpynW1ONjsw18tGGstZPwK1yX1SOIW/iJBpm+SKRZ4Wc+UxXDXhp
-         3ZxQ==
-X-Gm-Message-State: APjAAAXyXPTiNij/R+RonoUrLtJQpBPjC34TWiv2hfzd4wHKfNDuns+L
-        8U5ZHRUu+oJg+FAGW0BbdJsmXw==
-X-Google-Smtp-Source: APXvYqzLO2AY4MikUonMGWLbUw1cnzGTo7DsP/PsiUuAIcFjooUQxIKV9Ku81rDgvyEOx2q7Cg6gpA==
-X-Received: by 2002:adf:8364:: with SMTP id 91mr40735060wrd.13.1565616239967;
-        Mon, 12 Aug 2019 06:23:59 -0700 (PDT)
-Received: from dell ([2.27.35.255])
-        by smtp.gmail.com with ESMTPSA id g7sm25060681wmg.8.2019.08.12.06.23.58
-        (version=TLS1_2 cipher=ECDHE-RSA-CHACHA20-POLY1305 bits=256/256);
-        Mon, 12 Aug 2019 06:23:59 -0700 (PDT)
-Date:   Mon, 12 Aug 2019 14:23:57 +0100
-From:   Lee Jones <lee.jones@linaro.org>
-To:     Frank Wunderlich <frank-w@public-files.de>
-Cc:     Alessandro Zummo <a.zummo@towertech.it>,
-        Alexandre Belloni <alexandre.belloni@bootlin.com>,
-        Allison Randal <allison@lohutok.net>,
-        "David S. Miller" <davem@davemloft.net>,
-        devicetree@vger.kernel.org, Eddie Huang <eddie.huang@mediatek.com>,
-        Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
-        Jonathan Cameron <Jonathan.Cameron@huawei.com>,
-        Kate Stewart <kstewart@linuxfoundation.org>,
-        linux-arm-kernel@lists.infradead.org, linux-kernel@vger.kernel.org,
-        linux-mediatek@lists.infradead.org, linux-pm@vger.kernel.org,
-        linux-rtc@vger.kernel.org, Mark Rutland <mark.rutland@arm.com>,
-        Matthias Brugger <matthias.bgg@gmail.com>,
-        Mauro Carvalho Chehab <mchehab+samsung@kernel.org>,
-        Nicolas Ferre <nicolas.ferre@microchip.com>,
-        Richard Fontana <rfontana@redhat.com>,
-        Rob Herring <robh+dt@kernel.org>,
-        Sean Wang <sean.wang@mediatek.com>,
-        Sebastian Reichel <sre@kernel.org>,
-        Thomas Gleixner <tglx@linutronix.de>,
-        "Tianping . Fang" <tianping.fang@mediatek.com>,
-        Josef Friedl <josef.friedl@speed.at>
-Subject: Re: [PATCH v5 08/10] power: reset: add driver for mt6323 poweroff
-Message-ID: <20190812132357.GU26727@dell>
-References: <20190812121511.4169-1-frank-w@public-files.de>
- <20190812121511.4169-9-frank-w@public-files.de>
+        id S1727029AbfHLNr3 (ORCPT <rfc822;lists+devicetree@lfdr.de>);
+        Mon, 12 Aug 2019 09:47:29 -0400
+Received: from mail.kernel.org ([198.145.29.99]:34744 "EHLO mail.kernel.org"
+        rhost-flags-OK-OK-OK-OK) by vger.kernel.org with ESMTP
+        id S1726974AbfHLNr3 (ORCPT <rfc822;devicetree@vger.kernel.org>);
+        Mon, 12 Aug 2019 09:47:29 -0400
+Received: from X250 (37.80-203-192.nextgentel.com [80.203.192.37])
+        (using TLSv1.2 with cipher ECDHE-RSA-AES128-GCM-SHA256 (128/128 bits))
+        (No client certificate requested)
+        by mail.kernel.org (Postfix) with ESMTPSA id 980F920665;
+        Mon, 12 Aug 2019 13:47:25 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple; d=kernel.org;
+        s=default; t=1565617648;
+        bh=lDwE2JFlLkSjIPAZyakVJl0cY+OqVkRfz8MCjA0tf1I=;
+        h=Date:From:To:Cc:Subject:References:In-Reply-To:From;
+        b=cnhVXF6TBt1O/ZCoOa/JveRDnPwh9D7lHlkbIIhKRRlBBZ6LJIZFHHRn2zRJ1hLS6
+         Lk5BVQ81W5nJIl78G82G8wTslaNtl1qc+bH6T0zd654x3pY/41+ZtUnE2jKvSHLLLp
+         QS/B3TsU2UHKjheIZlm/wXhSyRwMmP9thb6F00/4=
+Date:   Mon, 12 Aug 2019 15:47:17 +0200
+From:   Shawn Guo <shawnguo@kernel.org>
+To:     Hui Song <hui.song_1@nxp.com>, Li Yang <leoyang.li@nxp.com>
+Cc:     Rob Herring <robh+dt@kernel.org>,
+        Mark Rutland <mark.rutland@arm.com>,
+        Linus Walleij <linus.walleij@linaro.org>,
+        Bartosz Golaszewski <bgolaszewski@baylibre.com>,
+        linux-arm-kernel@lists.infradead.org, devicetree@vger.kernel.org,
+        linux-kernel@vger.kernel.org, linux-gpio@vger.kernel.org
+Subject: Re: [PATCH] arm64: dts: ls1028a: fix gpio nodes
+Message-ID: <20190812134716.GF27041@X250>
+References: <20190805065700.7601-1-hui.song_1@nxp.com>
 MIME-Version: 1.0
-Content-Type: text/plain; charset=utf-8
+Content-Type: text/plain; charset=us-ascii
 Content-Disposition: inline
-Content-Transfer-Encoding: 8bit
-In-Reply-To: <20190812121511.4169-9-frank-w@public-files.de>
-User-Agent: Mutt/1.9.4 (2018-02-28)
+In-Reply-To: <20190805065700.7601-1-hui.song_1@nxp.com>
+User-Agent: Mutt/1.5.24 (2015-08-30)
 Sender: devicetree-owner@vger.kernel.org
 Precedence: bulk
 List-ID: <devicetree.vger.kernel.org>
 X-Mailing-List: devicetree@vger.kernel.org
 
-On Mon, 12 Aug 2019, Frank Wunderlich wrote:
-
-> From: Josef Friedl <josef.friedl@speed.at>
+On Mon, Aug 05, 2019 at 02:57:00PM +0800, Hui Song wrote:
+> From: Song Hui <hui.song_1@nxp.com>
 > 
-> add poweroff driver for mt6323 and make Makefile and Kconfig-Entries
+> Update the nodes to include little-endian
+> property to be consistent with the hardware.
 > 
-> Suggested-by: Frank Wunderlich <frank-w@public-files.de>
-> Signed-off-by: Josef Friedl <josef.friedl@speed.at>
-> Signed-off-by: Frank Wunderlich <frank-w@public-files.de>
+> Signed-off-by: Song Hui <hui.song_1@nxp.com>
+
+@Leo, looks good?
+
+Shawn
+
 > ---
-> changes since v4: none
-> changes since v3: none
-> changes since v2: none (=v2 part 5)
-> ---
->  drivers/power/reset/Kconfig           | 10 +++
->  drivers/power/reset/Makefile          |  1 +
->  drivers/power/reset/mt6323-poweroff.c | 97 +++++++++++++++++++++++++++
-
->  include/linux/mfd/mt6397/core.h       |  2 +
-
-This looks like an unrelated change.
-
-Please separate it out.
-
--- 
-Lee Jones [李琼斯]
-Linaro Services Technical Lead
-Linaro.org │ Open source software for ARM SoCs
-Follow Linaro: Facebook | Twitter | Blog
+>  arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi | 9 ++++++---
+>  1 file changed, 6 insertions(+), 3 deletions(-)
+> 
+> diff --git a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> index aef5b06..7ccbbfc 100644
+> --- a/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> +++ b/arch/arm64/boot/dts/freescale/fsl-ls1028a.dtsi
+> @@ -277,33 +277,36 @@
+>  		};
+>  
+>  		gpio1: gpio@2300000 {
+> -			compatible = "fsl,qoriq-gpio";
+> +			compatible = "fsl,ls1028a-gpio","fsl,qoriq-gpio";
+>  			reg = <0x0 0x2300000 0x0 0x10000>;
+>  			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+>  			gpio-controller;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> +			little-endian;
+>  		};
+>  
+>  		gpio2: gpio@2310000 {
+> -			compatible = "fsl,qoriq-gpio";
+> +			compatible = "fsl,ls1028a-gpio","fsl,qoriq-gpio";
+>  			reg = <0x0 0x2310000 0x0 0x10000>;
+>  			interrupts = <GIC_SPI 36 IRQ_TYPE_LEVEL_HIGH>;
+>  			gpio-controller;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> +			little-endian;
+>  		};
+>  
+>  		gpio3: gpio@2320000 {
+> -			compatible = "fsl,qoriq-gpio";
+> +			compatible = "fsl,ls1028a-gpio","fsl,qoriq-gpio";
+>  			reg = <0x0 0x2320000 0x0 0x10000>;
+>  			interrupts = <GIC_SPI 37 IRQ_TYPE_LEVEL_HIGH>;
+>  			gpio-controller;
+>  			#gpio-cells = <2>;
+>  			interrupt-controller;
+>  			#interrupt-cells = <2>;
+> +			little-endian;
+>  		};
+>  
+>  		usb0: usb@3100000 {
+> -- 
+> 2.9.5
+> 
